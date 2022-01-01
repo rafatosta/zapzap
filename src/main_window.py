@@ -4,8 +4,9 @@ from browser import Browser
 
 
 class MainWindow(QMainWindow):
-    def __init__(self, *args, **kwargs):
-        super(MainWindow, self).__init__(*args, **kwargs)
+    def __init__(self, app):
+        super(MainWindow, self).__init__()
+        self.app = app
 
         # Propriedades gerais
         self.setWindowTitle('WhatsApp - Cliente para WhatApp Web')
@@ -28,10 +29,9 @@ class MainWindow(QMainWindow):
         # Funções para as opções do menu do tray icon
         self.trayHide.triggered.connect(self.on_hide)
         self.trayShow.triggered.connect(self.on_show)
-        #self.trayExit.triggered.connect(app.quit)
+        self.trayExit.triggered.connect(lambda: self.app.quit())
 
         self.trayMenu = QMenu()
-        self.trayMenu.addAction(self.trayShow)
         self.trayMenu.addAction(self.trayHide)
         self.trayMenu.addAction(self.trayExit)
 
@@ -41,6 +41,7 @@ class MainWindow(QMainWindow):
     def createWebEngine(self):
         self.view = Browser()
         self.setCentralWidget(self.view)
+        self.setWindowTitle(self.view.title())
 
     # Abrindo o webapp do system tray.
     def on_show(self):

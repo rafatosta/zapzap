@@ -21,3 +21,8 @@ class Browser(QWebEngineView):
         self.settings().setAttribute(QWebEngineSettings.AutoLoadImages, True)
         self.settings().setAttribute(QWebEngineSettings.PluginsEnabled, True)
         self.settings().setAttribute(QWebEngineSettings.LocalStorageEnabled, True)
+
+        self.titleChanged.connect(self.printTitle)
+
+    def printTitle(self, title):
+        print(title)

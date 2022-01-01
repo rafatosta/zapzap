@@ -15,7 +15,7 @@ app.setApplicationName(__appname__)
 app.setApplicationVersion(__version__)
 app.setWindowIcon(QIcon('images/whatsapp_icon.svg'))
 
-window = MainWindow()
+window = MainWindow(app)
 window.show()
 
 sys.exit(app.exec())
