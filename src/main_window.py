@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QMainWindow, QSystemTrayIcon, QMenu
 from PySide6.QtGui import QAction, QIcon
+from app_info import ICON
 from browser import Browser
 
 
@@ -9,7 +10,7 @@ class MainWindow(QMainWindow):
         self.app = app
 
         # Propriedades gerais
-        self.setWindowTitle('WhatsApp - Cliente para WhatApp Web')
+        #self.setWindowTitle('WhatsApp - Cliente para WhatApp Web')
         # self.setWindowIcon(QIcon(setIcon()))
         self.setMinimumSize(800, 600)
 
@@ -19,7 +20,7 @@ class MainWindow(QMainWindow):
     def createTrayIcon(self):
         # Criando o tray icon
         self.tray = QSystemTrayIcon()
-        self.tray.setIcon(QIcon('images/whatsapp_icon.svg'))
+        self.tray.setIcon(QIcon(ICON))
 
         # Itens para o menu do tray icon
         self.trayHide = QAction('Hide', self)
@@ -39,7 +40,7 @@ class MainWindow(QMainWindow):
         self.tray.show()
 
     def createWebEngine(self):
-        self.view = Browser()
+        self.view = Browser(self)
         self.setCentralWidget(self.view)
         self.setWindowTitle(self.view.title())
 
@@ -64,4 +65,5 @@ class MainWindow(QMainWindow):
     # Evento ao fechar a janela.
     def closeEvent(self, event):
         self.hide()
+        self.on_hide()
         event.ignore()

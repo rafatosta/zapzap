@@ -1,5 +1,5 @@
 from PySide6.QtWebEngineCore import QWebEnginePage
-from app_config import __url__, user_agent
+from app_info import __url__, user_agent
 
 # Classe para a página do webapp.
 class WhatsApp(QWebEnginePage):

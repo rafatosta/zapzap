@@ -1,6 +1,6 @@
 import sys
 import os
-from app_config import __appname__, __version__
+from app_info import ICON, __appname__, __version__
 
 from PySide6.QtWidgets import QApplication
 from PySide6.QtGui import QIcon
@@ -13,7 +13,7 @@ app = QApplication(sys.argv)
 app.setOrganizationName("")
 app.setApplicationName(__appname__)
 app.setApplicationVersion(__version__)
-app.setWindowIcon(QIcon('images/whatsapp_icon.svg'))
+app.setWindowIcon(QIcon(ICON))
 
 window = MainWindow(app)
 window.show()
