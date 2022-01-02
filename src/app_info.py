@@ -1,7 +1,5 @@
 __appname__ = 'WhatsApp'
 
-__pagename__ = __appname__ + ' - Cliente WhatsApp Desktop'
-
 __version__ = '0.1'
 
 __url__ = 'https://web.whatsapp.com/'

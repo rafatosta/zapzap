@@ -29,11 +29,11 @@ class Browser(QWebEngineView):
         self.titleChanged.connect(self.verifyNotify)
 
     # Função que possibilita o download de arquivos.
-    #@Slot(QWebEngineDownloadItem)
     def download(self, download):
         old_path = download.url().path()
         suffix = QFileInfo(old_path).suffix()
-        path = QFileDialog.getSaveFileName(self, "Save File", old_path, "*." + suffix)[0]
+        path = QFileDialog.getSaveFileName(
+            self, "Save File", old_path, "*." + suffix)[0]
         if path:
             download.url().setPath(path)
             download.accept()

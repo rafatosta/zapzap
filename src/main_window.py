@@ -10,8 +10,6 @@ class MainWindow(QMainWindow):
         self.app = app
 
         # Propriedades gerais
-        #self.setWindowTitle('WhatsApp - Cliente para WhatApp Web')
-        # self.setWindowIcon(QIcon(setIcon()))
         self.setMinimumSize(800, 600)
 
         self.createTrayIcon()
