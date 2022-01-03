@@ -1,7 +1,8 @@
 from PySide6.QtWidgets import QMainWindow, QSystemTrayIcon, QMenu
-from PySide6.QtGui import QAction, QIcon
+from PySide6.QtGui import QAction, QIcon, QPixmap
 from app_info import ICON
 from browser import Browser
+import resources_img
 
 
 class MainWindow(QMainWindow):
@@ -21,7 +22,7 @@ class MainWindow(QMainWindow):
     def createTrayIcon(self):
         # Criando o tray icon
         self.tray = QSystemTrayIcon()
-        self.tray.setIcon(QIcon(ICON))
+        self.tray.setIcon(QIcon(QPixmap(ICON)))
 
         # Itens para o menu do tray icon
         self.trayHide = QAction('Hide', self)
