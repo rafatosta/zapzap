@@ -4,7 +4,7 @@ from PySide6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
 from PySide6.QtWidgets import QFileDialog
 from whatsapp import WhatsApp
 from PySide6.QtCore import QFileInfo, QUrl
-from app_info import ICON, ICON_MSG, user_agent
+from app_info import ICON, ICON_MSG, WHATS_URL, user_agent
 
 
 class Browser(QWebEngineView):
@@ -12,13 +12,19 @@ class Browser(QWebEngineView):
         super().__init__()
         self.parent = parent
 
+        # definição do pergil do usuário, local que será armazenados os cookies e informações sobre os navegadores
         profile = QWebEngineProfile("storage-whats", self)
         profile.setHttpUserAgent(user_agent)
+
+        # Rotina para download de arquivos
         profile.downloadRequested.connect(self.download)
 
+        # Cria a WebPage personalizada
         self.whats = WhatsApp(profile, self)
         self.setPage(self.whats)
-        self.load(QUrl(self.whats.url))
+
+        # carrega a página do whatsapp web
+        self.load(QUrl(WHATS_URL))
 
         # Ativando tudo o que tiver de direito
         self.settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
