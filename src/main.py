@@ -1,9 +1,9 @@
 import sys
 import os
 from app_info import ICON, APPLICATION_NAME, __version__
-
 from PySide6.QtWidgets import QApplication
-from PySide6.QtGui import QIcon
+from PySide6.QtGui import QIcon, QPixmap
+import resources_img
 
 from main_window import MainWindow
 
@@ -18,7 +18,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setApplicationName(APPLICATION_NAME)
     app.setApplicationVersion(__version__)
-    app.setWindowIcon(QIcon(ICON))
+    app.setWindowIcon(QIcon(QPixmap(ICON)))
 
     window = MainWindow(app)
     window.show()

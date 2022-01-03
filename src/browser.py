@@ -1,10 +1,11 @@
-from PySide6.QtGui import QIcon
+from PySide6.QtGui import QIcon, QPixmap
 from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
 from PySide6.QtWidgets import QFileDialog
 from whatsapp import WhatsApp
 from PySide6.QtCore import QFileInfo, QUrl
 from app_info import ICON, ICON_MSG, WHATS_URL, user_agent
+import resources_img
 
 
 class Browser(QWebEngineView):
@@ -52,6 +53,6 @@ class Browser(QWebEngineView):
         try:
             int(num)
         except:
-            self.parent.tray.setIcon(QIcon(ICON))
+            self.parent.tray.setIcon(QIcon(QPixmap(ICON)))
         else:
-            self.parent.tray.setIcon(QIcon(ICON_MSG))
+            self.parent.tray.setIcon(QIcon(QPixmap(ICON_MSG)))
