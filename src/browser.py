@@ -59,14 +59,3 @@ class Browser(QWebEngineView):
             self.parent.tray.setIcon(QIcon(QPixmap(ICON_MSG)))
             self.notifyMessage()
 
-    # Imprime uma notificação em caso de nova mensagem
-    def notifyMessage(self):
-        from pathlib import Path
-        from subprocess import run
-        # procurar a solução de como inserir o ícone atravez do resources-img
-        BASE_DIR = Path(__file__).resolve().parent.parent
-        IMG_DIR = str(BASE_DIR.joinpath('images', 'whatsapp.svg'))
-        msg = "Nova mensagem"
-        com = "notify-send --icon="+IMG_DIR+" -t 10000 \'" + \
-            APPLICATION_NAME+"' '"+msg+"'"
-        run(com, shell=True)
