@@ -34,7 +34,9 @@ class Browser(QWebEngineView):
         self.settings().setAttribute(QWebEngineSettings.PluginsEnabled, True)
         self.settings().setAttribute(QWebEngineSettings.LocalStorageEnabled, True)
 
-        self.titleChanged.connect(self.verifyNotify)
+        self.titleChanged.connect(self.title_changed)
+
+        self.iconChanged.connect(self.icon_changed)
 
     # Função que possibilita o download de arquivos.
     def download(self, download):
@@ -48,14 +50,15 @@ class Browser(QWebEngineView):
 
     # verifica se há uma nova notificação a partir do título
     # a quantidade de mensagens pendentes é mostrada no título na página. Ex: (2) Whatsapp
-    def verifyNotify(self, title):
-        self.parent.setWindowTitle(title)
+    def title_changed(self, title):
         num = ''.join(filter(str.isdigit, title))
         try:
             int(num)
         except:
-            self.parent.tray.setIcon(QIcon(QPixmap(ICON)))
+            self.parent.setWindowTitle(APPLICATION_NAME)
         else:
-            self.parent.tray.setIcon(QIcon(QPixmap(ICON_MSG)))
-            self.notifyMessage()
+            self.parent.setWindowTitle("("+num+") - "+APPLICATION_NAME)
 
+    def icon_changed(self, icon):
+        # Utiliza o ícone associado à página para o tray
+        self.parent.tray.setIcon(icon)

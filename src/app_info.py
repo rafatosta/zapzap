@@ -1,4 +1,4 @@
-APPLICATION_NAME = 'WhatsApp'
+APPLICATION_NAME = 'ZapZap'
 
 __version__ = '0.1'
 

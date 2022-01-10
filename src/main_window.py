@@ -13,16 +13,16 @@ class MainWindow(QMainWindow):
         # Define tamanho mínimo para a janela
         self.setMinimumSize(800, 600)
 
-        # rotina para definição do Tray
-        self.createTrayIcon()
-
         # rotina para criação do WebView que irá carregar a página do whatsapp
         self.createWebEngine()
+
+        # rotina para definição do Tray
+        self.createTrayIcon()
 
     def createTrayIcon(self):
         # Criando o tray icon
         self.tray = QSystemTrayIcon()
-        self.tray.setIcon(QIcon(QPixmap(ICON)))
+        self.tray.setIcon(self.view.icon())
 
         # Itens para o menu do tray icon
         self.trayHide = QAction('Hide', self)
@@ -47,7 +47,6 @@ class MainWindow(QMainWindow):
     def createWebEngine(self):
         self.view = Browser(self)
         self.setCentralWidget(self.view)
-        self.setWindowTitle(self.view.title())
 
     # Abrindo o webapp do system tray.
     def on_show(self):
