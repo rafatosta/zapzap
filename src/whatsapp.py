@@ -23,6 +23,22 @@ class WhatsApp(QWebEnginePage):
         # Este sinal é emitido quando o mouse passa sobre um link
         self.linkHovered.connect(self.link_hovered)
 
+        self.loadFinished.connect(self.load_finished)
+
+    def load_finished(self, flag):
+       # Ativa a tela cheia para telas de proporção grande no WhatsApp Web.
+        if flag:
+            self.runJavaScript("""
+                const checkExist = setInterval(() => {
+                    const classElement = document.getElementsByClassName("_1XkO3")[0];
+
+                    if (classElement != null) {
+                        classElement.style = 'width: 100vw; height: 100vh; position: unset'
+                        clearInterval(checkExist);
+                    }
+                }, 100);
+            """)
+
     def link_hovered(self, url):
         # url contém o URL de destino do link. Ao mover o mouse para fora da url o seu valor é definido como uma string vazia
         self.link_url = url
