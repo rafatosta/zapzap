@@ -1,0 +1,6 @@
+
+flatpak-builder build com.rtosta.zapzap.yaml
+
+flatpak-builder build com.rtosta.zapzap.yaml --force-clean
+
+flatpak-builder --run build com.rtosta.zapzap.yaml zapzap
