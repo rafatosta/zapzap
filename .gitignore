@@ -6,9 +6,12 @@ __pycache__/
 # C extensions
 *.so
 
+# Flatpak
+.flatpak-builder
+repo
+
 # Distribution / packaging
 .Python
-.flatpak-builder
 build/
 develop-eggs/
 dist/

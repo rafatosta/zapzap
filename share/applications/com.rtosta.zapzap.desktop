@@ -1,0 +1,11 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=ZapZap
+Comment=Cliente Unofficial para Whatsapp
+Version=1.0
+Type=Application
+Exec=zapzap
+Icon=org.flatpak.zapzap
+Terminal=false
+Categories=Network;InstantMessaging;
+StartupNotify=true
