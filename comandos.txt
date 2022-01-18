@@ -4,3 +4,7 @@ flatpak-builder build com.rtosta.zapzap.yaml
 flatpak-builder build com.rtosta.zapzap.yaml --force-clean
 
 flatpak-builder --run build com.rtosta.zapzap.yaml zapzap
+
+flatpak --user remote-add --no-gpg-verify rafatosta repo
+
+flatpak --user install rafatosta com.rtosta.zapzap
