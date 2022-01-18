@@ -9,9 +9,12 @@ finish-args:
   - --share=ipc
   - --socket=fallback-x11
   - --socket=wayland
-  - --device=all
+  - --socket=pulseaudio
+  - --share=network
+  - --filesystem=xdg-download
   - --talk-name=org.kde.StatusNotifierWatcher
   - --talk-name=org.freedesktop.Flatpak
+  - --own-name=org.kde.*
 cleanup:
   - /include
   - /lib/pkgconfig
@@ -28,3 +31,37 @@ modules:
       - type: git
         url: https://github.com/rafatosta/zapzap.git
         branch: main
+
+  - name: shiboken6
+    buildsystem: simple
+    build-options:
+      prepend-path: /usr/lib/sdk/llvm12/bin
+      prepend-ld-library-path: /usr/lib/sdk/llvm12/lib
+    build-commands:
+      - python3 setup.py install --verbose-build --skip-docs --build-type=shiboken6 --prefix=${FLATPAK_DEST}
+    sources:
+      - type: git
+        url: https://github.com/qtproject/pyside-pyside-setup.git
+        branch: 6.2.1
+        commit: 4cc0c0beb5519e03c9c2adeb61ffb4a5ea38a2fc
+
+  - name: pyside6
+    buildsystem: cmake-ninja
+    builddir: true
+    build-options:
+      prepend-path: /usr/lib/sdk/llvm12/bin
+      prepend-ld-library-path: /usr/lib/sdk/llvm12/lib
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_TESTS=OFF
+      - -DCMAKE_SKIP_RPATH:BOOL=YES
+    sources:
+      - type: git
+        url: https://github.com/qtproject/pyside-pyside-setup.git
+        branch: 6.2.1
+        commit: 4cc0c0beb5519e03c9c2adeb61ffb4a5ea38a2fc
+      - type: shell
+        commands:
+          - mkdir -p /app/include/qt6tmp && cp -R /usr/include/Qt* /app/include/qt6tmp # https://bugreports.qt.io/broswse/PYSIDE-787
+          - sed -i 's|--include-paths=|--include-paths=/app/include/qt6tmp:|' sources/pyside6/cmake/Macros/PySideModules.cmake
+    
