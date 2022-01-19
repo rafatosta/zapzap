@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 setup_requires = ['setuptools']
 
 try:
-    result = setup(
+    setup(
         name='zapzap',
         version='1.0',
         author='rtosta',
