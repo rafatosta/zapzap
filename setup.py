@@ -19,9 +19,6 @@ try:
             'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
             'Topic :: Office/Business',
             'Programming Language :: Python :: 3 :: Only'
-        ],
-        install_requires=[
-            'PySide6',
         ]
     )
 except:
