@@ -23,7 +23,7 @@ try:
         ],
         install_requires=[
             'PySide6',
-        ],
+        ]
     )
 except:
     print('deu erro!')
