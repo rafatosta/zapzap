@@ -20,7 +20,7 @@ class MainWindow(QMainWindow):
     def createTrayIcon(self):
         # Criando o tray icon
         self.tray = QSystemTrayIcon()
-        self.tray.setIcon(self.view.icon())
+        #self.tray.setIcon(self.view.icon())
 
         # Itens para o menu do tray icon
         self.trayHide = QAction('Hide', self)
@@ -43,8 +43,9 @@ class MainWindow(QMainWindow):
         self.tray.show()
 
     def createWebEngine(self):
-        self.view = Browser(self)
-        self.setCentralWidget(self.view)
+        #self.view = Browser(self)
+        #self.setCentralWidget(self.view)
+        pass
 
     # Abrindo o webapp do system tray.
     def on_show(self):
