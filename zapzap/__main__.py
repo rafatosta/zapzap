@@ -1,11 +1,12 @@
 import sys
 import os
-from app_info import ICON, APPLICATION_NAME, __version__
+
 from PySide6.QtWidgets import QApplication
 from PySide6.QtGui import QIcon, QPixmap
 import resources_img
 
 from main_window import MainWindow
+from zapzap.app_info import APPLICATION_NAME, __version__, ICON
 
 
 def main():
