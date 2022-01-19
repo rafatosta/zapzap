@@ -1,12 +1,10 @@
-from PySide6.QtGui import QIcon, QPixmap
 from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
 from PySide6.QtWidgets import QFileDialog
 from whatsapp import WhatsApp
 from PySide6.QtCore import QFileInfo, QUrl
-from app_info import ICON, ICON_MSG, WHATS_URL, user_agent, APPLICATION_NAME
-from subprocess import run
-import resources_img
+
+from zapzap.app_info import APPLICATION_NAME, USER_AGENT, WHATS_URL
 
 
 class Browser(QWebEngineView):
@@ -16,7 +14,7 @@ class Browser(QWebEngineView):
 
         # definição do pergil do usuário, local que será armazenados os cookies e informações sobre os navegadores
         profile = QWebEngineProfile("storage-whats", self)
-        profile.setHttpUserAgent(user_agent)
+        profile.setHttpUserAgent(USER_AGENT)
 
         # Rotina para download de arquivos
         profile.downloadRequested.connect(self.download)

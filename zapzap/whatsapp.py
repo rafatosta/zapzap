@@ -2,7 +2,9 @@ from PySide6.QtCore import QEvent, Qt
 from PySide6.QtGui import QDesktopServices
 from PySide6.QtWebEngineCore import QWebEnginePage
 from PySide6.QtWidgets import QApplication
-from app_info import WHATS_URL, user_agent
+
+from zapzap.app_info import WHATS_URL
+
 
 # Classe para a página do webapp.
 

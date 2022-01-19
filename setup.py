@@ -5,7 +5,7 @@ try:
     setup(
         name='zapzap',
         version='1.0',
-        author='rtosta',
+        author='Rafael Tosta',
         author_email='rafa.ecomp@gmail.com',
         description='Web App for Whatsapp',
         license='GPLv3+',
@@ -21,5 +21,5 @@ try:
             'Programming Language :: Python :: 3 :: Only'
         ]
     )
-except:
-    print('deu erro!')
+except Exception as e:
+    print(e)

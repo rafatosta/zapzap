@@ -1,12 +1,10 @@
 import sys
 import os
-"""
-from PySide6.QtWidgets import QApplication
-from PySide6.QtGui import QIcon, QPixmap
-import resources_img
 
-from main_window import MainWindow"""
-from zapzap.app_info import APPLICATION_NAME, __version__, ICON
+from PySide6.QtWidgets import QApplication
+
+from zapzap.app_info import APPLICATION_NAME, __version__
+from zapzap.main_window import MainWindow
 
 
 def main():
@@ -17,16 +15,15 @@ def main():
             # se deixar como wayland é aplicado a decoração da janela padrão do QT e não do sistema
             os.environ['QT_QPA_PLATFORM'] = 'xcb'
 
-    """ app = QApplication(sys.argv)
+    app = QApplication(sys.argv)
     app.setApplicationName(APPLICATION_NAME)
     app.setApplicationVersion(__version__)
-    app.setWindowIcon(QIcon(QPixmap(ICON)))
+    #app.setWindowIcon(QIcon(QPixmap(ICON)))
 
     window = MainWindow(app)
     window.show()
 
-    sys.exit(app.exec())"""
-    print(APPLICATION_NAME)
+    sys.exit(app.exec())
 
 
 if __name__ == "__main__":

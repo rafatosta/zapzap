@@ -1,9 +1,7 @@
 from PySide6.QtWidgets import QMainWindow, QSystemTrayIcon, QMenu
-from PySide6.QtGui import QAction, QIcon, QPixmap
-from app_info import ICON
-from browser import Browser
-import resources_img
+from PySide6.QtGui import QAction
 
+from zapzap.browser import Browser
 
 class MainWindow(QMainWindow):
     def __init__(self, app):

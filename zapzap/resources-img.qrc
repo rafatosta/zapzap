@@ -1,7 +1,0 @@
-<!DOCTYPE RCC>
-<RCC version="1.0">
-    <qresource>
-       <file>images/whatsapp_msg.svg</file>
-       <file>images/whatsapp.svg</file>
-    </qresource>
-</RCC>
