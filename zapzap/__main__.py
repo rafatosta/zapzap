@@ -17,7 +17,7 @@ def main():
             # se deixar como wayland é aplicado a decoração da janela padrão do QT e não do sistema
             os.environ['QT_QPA_PLATFORM'] = 'xcb'
 
-    app = QApplication(sys.argv)
+   """ app = QApplication(sys.argv)
     app.setApplicationName(APPLICATION_NAME)
     app.setApplicationVersion(__version__)
     app.setWindowIcon(QIcon(QPixmap(ICON)))
@@ -25,7 +25,8 @@ def main():
     window = MainWindow(app)
     window.show()
 
-    sys.exit(app.exec())
+    sys.exit(app.exec())"""
+    print(APPLICATION_NAME)
 
 
 if __name__ == "__main__":

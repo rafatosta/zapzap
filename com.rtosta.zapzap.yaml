@@ -31,11 +31,3 @@ modules:
       - type: git
         url: https://github.com/rafatosta/zapzap.git
         branch: main
-
-  - name: pyside6
-    buildsystem: simple
-    build-options:
-      build-args:
-        - --share=network
-    build-commands:
-      - pip3 install PySide6
