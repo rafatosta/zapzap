@@ -1,5 +1,6 @@
 APPLICATION_NAME = 'ZapZap'
 
+__version__ = '1.0'
 
 WHATS_URL = 'https://web.whatsapp.com/'
 
