@@ -1,7 +1,7 @@
 import sys
 import os
 
-from PySide6.QtWidgets import QApplication
+from PyQt6.QtWidgets import QApplication
 
 from zapzap.app_info import APPLICATION_NAME, __version__
 from zapzap.main_window import MainWindow

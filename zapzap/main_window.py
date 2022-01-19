@@ -1,5 +1,5 @@
-from PySide6.QtWidgets import QMainWindow, QSystemTrayIcon, QMenu
-from PySide6.QtGui import QAction
+from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon, QMenu
+from PyQt6.QtGui import QAction
 
 from zapzap.browser import Browser
 

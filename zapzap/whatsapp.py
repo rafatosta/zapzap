@@ -1,7 +1,7 @@
-from PySide6.QtCore import QEvent, Qt
-from PySide6.QtGui import QDesktopServices
-from PySide6.QtWebEngineCore import QWebEnginePage
-from PySide6.QtWidgets import QApplication
+from PyQt6.QtCore import QEvent, Qt
+from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtWebEngineCore import QWebEnginePage
+from PyQt6.QtWidgets import QApplication
 
 from zapzap.app_info import WHATS_URL
 
@@ -53,9 +53,9 @@ class WhatsApp(QWebEnginePage):
     # Solução alternativa ao acceptNavigationRequest, pois não funcionou dentro do whatsapp.
     # Mapeia os eventos do Mouse e abre o link a partir do capturado do signal linkHovered.
     def eventFilter(self, obj, event):
-        if event.type() == QEvent.MouseButtonPress:
+        """if event.type() == QEvent.MouseButtonPress:
             if event.button() == Qt.LeftButton:
                 if self.link_url != '' and self.link_url != WHATS_URL:
                     QDesktopServices.openUrl(self.link_url)
-                    return True
+                    return True"""
         return False

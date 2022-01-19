@@ -1,8 +1,8 @@
-from PySide6.QtWebEngineWidgets import QWebEngineView
-from PySide6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
-from PySide6.QtWidgets import QFileDialog
+from PyQt6.QtWebEngineWidgets import QWebEngineView
+from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
+from PyQt6.QtWidgets import QFileDialog
 from whatsapp import WhatsApp
-from PySide6.QtCore import QFileInfo, QUrl
+from PyQt6.QtCore import QFileInfo, QUrl
 
 from zapzap.app_info import APPLICATION_NAME, USER_AGENT, WHATS_URL
 
@@ -27,10 +27,10 @@ class Browser(QWebEngineView):
         self.load(QUrl(WHATS_URL))
 
         # Ativando tudo o que tiver de direito
-        self.settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
-        self.settings().setAttribute(QWebEngineSettings.AutoLoadImages, True)
-        self.settings().setAttribute(QWebEngineSettings.PluginsEnabled, True)
-        self.settings().setAttribute(QWebEngineSettings.LocalStorageEnabled, True)
+        #self.settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
+        #self.settings().setAttribute(QWebEngineSettings.AutoLoadImages, True)
+        #self.settings().setAttribute(QWebEngineSettings.PluginsEnabled, True)
+        #self.settings().setAttribute(QWebEngineSettings.LocalStorageEnabled, True)
 
         self.titleChanged.connect(self.title_changed)
 
