@@ -74,7 +74,7 @@ class SingleApplication(QApplication):
 
     def _onNewConnection(self):
         self.window.show()
-        if self._inSocket:
+        """if self._inSocket:
             self._inSocket.readyRead.disconnect(self._onReadyRead)
         self._inSocket = self._server.nextPendingConnection()
         if not self._inSocket:
@@ -82,7 +82,7 @@ class SingleApplication(QApplication):
         self._inStream = QTextStream(self._inSocket)
         self._inSocket.readyRead.connect(self._onReadyRead)
         if self._activateOnMessage:
-            self.activateWindow()
+            self.activateWindow()"""
         
     def _onReadyRead(self):
         while True:
