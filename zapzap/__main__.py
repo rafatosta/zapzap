@@ -23,6 +23,9 @@ def main():
     app.setApplicationVersion(__version__)
 
     window = MainWindow(app)
+
+    app.setWindow(window)
+    
     window.show()
 
     sys.exit(app.exec())

@@ -20,8 +20,9 @@ class SingleApplication(QApplication):
         self._inSocket = None
         self._inStream = None
         self._server = None
-    
-        if self._isRunning :
+        self.window = None
+
+        if self._isRunning:
             self._outStream = QTextStream(self._outSocket)
             sys.exit(0)
         else:
@@ -42,7 +43,6 @@ class SingleApplication(QApplication):
         if self._server:
             self._server.close()
 
-
     def isRunning(self):
         return self._isRunning
 
@@ -59,7 +59,8 @@ class SingleApplication(QApplication):
     def activateWindow(self):
         if not self._activationWindow:
             return
-        self._activationWindow.setWindowState(self._activationWindow.windowState() & ~Qt.WindowState.WindowMinimized)
+        self._activationWindow.setWindowState(
+            self._activationWindow.windowState() & ~Qt.WindowState.WindowMinimized)
         self._activationWindow.raise_()
         self._activationWindow.activateWindow()
 
@@ -81,6 +82,7 @@ class SingleApplication(QApplication):
         self._inSocket.readyRead.connect(self._onReadyRead)
         if self._activateOnMessage:
             self.activateWindow()
+        self.window.show()
 
     def _onReadyRead(self):
         while True:
@@ -88,3 +90,6 @@ class SingleApplication(QApplication):
             if not msg:
                 break
             self.messageReceived.emit(msg)
+
+    def setWindow(self, window):
+        self.window = window
