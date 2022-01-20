@@ -1,4 +1,4 @@
-from PyQt6.QtCore import QEvent, Qt
+from PyQt6.QtCore import QEvent, Qt, QUrl
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWebEngineCore import QWebEnginePage
 from PyQt6.QtWidgets import QApplication
@@ -28,7 +28,7 @@ class WhatsApp(QWebEnginePage):
         self.loadFinished.connect(self.load_finished)
 
     def load_finished(self, flag):
-       # Ativa a tela cheia para telas de proporção grande no WhatsApp Web.
+        # Ativa a tela cheia para telas de proporção grande no WhatsApp Web.
         if flag:
             self.runJavaScript("""
                 const checkExist = setInterval(() => {
@@ -53,9 +53,9 @@ class WhatsApp(QWebEnginePage):
     # Solução alternativa ao acceptNavigationRequest, pois não funcionou dentro do whatsapp.
     # Mapeia os eventos do Mouse e abre o link a partir do capturado do signal linkHovered.
     def eventFilter(self, obj, event):
-        """if event.type() == QEvent.MouseButtonPress:
-            if event.button() == Qt.LeftButton:
+        if event.type() == QEvent.Type.MouseButtonPress:
+            if event.button() == Qt.MouseButton.LeftButton:
                 if self.link_url != '' and self.link_url != WHATS_URL:
-                    QDesktopServices.openUrl(self.link_url)
-                    return True"""
+                    QDesktopServices.openUrl(QUrl(self.link_url))
+                    return True
         return False
