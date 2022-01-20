@@ -73,6 +73,7 @@ class SingleApplication(QApplication):
         return self._outSocket.waitForBytesWritten()
 
     def _onNewConnection(self):
+        self.window.show()
         if self._inSocket:
             self._inSocket.readyRead.disconnect(self._onReadyRead)
         self._inSocket = self._server.nextPendingConnection()
@@ -82,8 +83,7 @@ class SingleApplication(QApplication):
         self._inSocket.readyRead.connect(self._onReadyRead)
         if self._activateOnMessage:
             self.activateWindow()
-        self.window.show()
-
+        
     def _onReadyRead(self):
         while True:
             msg = self._inStream.readLine()
