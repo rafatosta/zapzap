@@ -1,7 +1,7 @@
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
 from PyQt6.QtWidgets import QFileDialog
-from whatsapp import WhatsApp
+from zapzap.whatsapp import WhatsApp
 from PyQt6.QtCore import QFileInfo, QUrl
 
 from zapzap.app_info import APPLICATION_NAME, USER_AGENT, WHATS_URL

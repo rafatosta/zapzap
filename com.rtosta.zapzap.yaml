@@ -2,8 +2,8 @@ app-id: com.rtosta.zapzap
 runtime: org.kde.Platform
 runtime-version: "6.2"
 sdk: org.kde.Sdk
-sdk-extensions:
-  - org.freedesktop.Sdk.Extension.llvm12
+base: io.qt.qtwebengine.BaseApp
+base-version: "6.2"
 comand: "zapzap"
 finish-args:
   - --share=ipc
@@ -15,12 +15,16 @@ finish-args:
   - --talk-name=org.kde.StatusNotifierWatcher
   - --talk-name=org.freedesktop.Flatpak
   - --own-name=org.kde.*
+  - --env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess
 cleanup:
   - /include
   - /lib/pkgconfig
   - "*.la"
   - "*.a"
 modules:
+  - pyqt6.yml
+  - pyqt6-webengine.yml
+
   - name: zapzap
     buildsystem: simple
     build-commands:
@@ -31,14 +35,4 @@ modules:
       - type: git
         url: https://github.com/rafatosta/zapzap.git
         branch: main
-  
-  - name: pyqt6
-    buildsystem: simple
-    build-options:
-      build-args:
-        - --share=network
-    build-commands:
-      - pip3 install pyqt6 --prefix=${FLATPAK_DEST}
-      - pip3 install PyQt6-WebEngine --prefix=${FLATPAK_DEST}
-    
       
