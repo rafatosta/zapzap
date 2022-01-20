@@ -47,7 +47,7 @@ class WhatsApp(QWebEnginePage):
 
     def permission(self, frame, feature):
         self.setFeaturePermission(
-            frame, feature, QWebEnginePage.PermissionGrantedByUser)
+            frame, feature,  QWebEnginePage.PermissionPolicy.PermissionGrantedByUser)
 
     # Abrindo links no navegador padrão do usuário
     # Solução alternativa ao acceptNavigationRequest, pois não funcionou dentro do whatsapp.
