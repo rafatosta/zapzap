@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2019 Pete Alexandrou <pete@ozmartians.com> -->
+<component type="desktop">
+  <id>com.rtosta.zapzap.desktop</id>
+  <name>ZapZap</name>
+  <summary>ZapZap - Whatsapp Desktop para linux </summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <content_rating type="oars-1.0" />
+  <description>
+    <p>
+      Cliente Whatsapp para linux.
+    </p>
+    <p>Features include:</p>
+    <ul>
+      <li>Tudo funcionando</li>
+      
+    </ul>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image> https://github.com/rafatosta/zapzap/blob/main/share/icons/com.rtosta.zapzap.svg</image>
+      <caption>ZapZap :: teste de imagem</caption>
+    </screenshot>
+    <screenshot>
+     
+    </screenshot>
+  </screenshots>
+  <url type="homepage">https://github.com/rafatosta/zapzap</url>
+  <url type="bugtracker">https://github.com/rafatosta/zapzap/issues</url>
+  <update_contact>rafa.ecomp@gmail.com</update_contact>
+  <developer_name>Rafael Tosta</developer_name>
+  <releases>
+    <release date="2022-01-20" version="1.">
+      <description>
+        <p>Maintenance release updating:</p>
+        <ul>
+            <li>PyQt5</li>
+            <li>PyQt6-WebEngine</li>
+            <li>Só para testes =D</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+</component>
