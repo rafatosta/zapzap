@@ -3,6 +3,7 @@ from PyQt6.QtGui import QAction
 
 from zapzap.browser import Browser
 
+
 class MainWindow(QMainWindow):
     def __init__(self, app):
         super(MainWindow, self).__init__()
@@ -20,6 +21,7 @@ class MainWindow(QMainWindow):
     def createTrayIcon(self):
         # Criando o tray icon
         self.tray = QSystemTrayIcon()
+        self.tray.activated.connect(self.onTrayIconActivated)
         self.tray.setIcon(self.view.icon())
 
         # Itens para o menu do tray icon
@@ -63,6 +65,14 @@ class MainWindow(QMainWindow):
         self.trayMenu.clear()  # Alterando as opções do menu do tray icon
         self.trayMenu.addAction(self.trayShow)
         self.trayMenu.addAction(self.trayExit)
+
+    # Evento para mostrar e ocultar a janela com apenas dois clique ou botão do meio no tray icon. Com um click abre o menu.
+    def onTrayIconActivated(self, reason):
+        if reason == QSystemTrayIcon.ActivationReason.Trigger or reason == QSystemTrayIcon.ActivationReason.MiddleClick:
+            if self.isHidden():
+                self.on_show()
+            else:
+                self.on_hide()
 
     # Evento ao fechar a janela.
     def closeEvent(self, event):
