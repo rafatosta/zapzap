@@ -54,6 +54,7 @@ class MainWindow(QMainWindow):
         self.trayMenu.clear()  # Alterando as opções do menu do tray icon
         self.trayMenu.addAction(self.trayHide)
         self.trayMenu.addAction(self.trayExit)
+        self.app.activateWindow() #ao mostrar move a janela para a área de trabalho atual
 
     # Minimizando para o system tray.
     def on_hide(self):
