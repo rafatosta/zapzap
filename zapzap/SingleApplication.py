@@ -74,6 +74,8 @@ class SingleApplication(QApplication):
 
     def _onNewConnection(self):
         self.window.show()
+        self.alert(self.window)
+        self.activateWindow()
         """if self._inSocket:
             self._inSocket.readyRead.disconnect(self._onReadyRead)
         self._inSocket = self._server.nextPendingConnection()

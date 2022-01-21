@@ -27,10 +27,10 @@ class Browser(QWebEngineView):
         self.load(QUrl(WHATS_URL))
 
         # Ativando tudo o que tiver de direito
-        #self.settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
-        #self.settings().setAttribute(QWebEngineSettings.AutoLoadImages, True)
-        #self.settings().setAttribute(QWebEngineSettings.PluginsEnabled, True)
-        #self.settings().setAttribute(QWebEngineSettings.LocalStorageEnabled, True)
+        self.settings().setAttribute(QWebEngineSettings.WebAttribute.JavascriptEnabled, True)
+        self.settings().setAttribute(QWebEngineSettings.WebAttribute.AutoLoadImages, True)
+        self.settings().setAttribute(QWebEngineSettings.WebAttribute.PluginsEnabled, True)
+        self.settings().setAttribute(QWebEngineSettings.WebAttribute.LocalStorageEnabled, True)
 
         self.titleChanged.connect(self.title_changed)
 
