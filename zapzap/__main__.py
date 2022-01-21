@@ -22,9 +22,16 @@ def main():
     app.setApplicationName(APPLICATION_NAME)
     app.setApplicationVersion(__version__)
 
+    if app.isRunning():
+        app.sendMessage("app is running")
+        sys.exit(0)
+
     window = MainWindow(app)
 
     app.setWindow(window)
+
+    app.setActivationWindow(window)
+    
     
     window.show()
 
