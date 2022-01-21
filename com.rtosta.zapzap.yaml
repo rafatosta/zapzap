@@ -30,7 +30,7 @@ modules:
       - pip3 install --prefix=${FLATPAK_DEST} .
       - install -Dm644 share/icons/${FLATPAK_ID}.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - install -Dm644 share/applications/${FLATPAK_ID}.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
-      - install -Dm644 share/metainfo/com.rtosta.zapzap.appdata.xml -t ${FLATPAK_DEST}/share/metainfo/com.rtosta.zapzap.appdata.xml
+      - install -Dm644 share/metainfo/${FLATPAK_ID}.appdata.xml -t ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.xml
     sources:
       - type: git
         url: https://github.com/rafatosta/zapzap.git
