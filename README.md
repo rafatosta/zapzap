@@ -1,17 +1,17 @@
 # ZapZap - Whatsapp Desktop for linux 
 An unofficial WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.
 
-![Zapzap for whatsapp]()
+![Zapzap for whatsapp](https://github.com/rafatosta/zapzap/blob/main/share/screenshot/zapzap.png)
 
 ## Features
 - [x] Features come with whatsapp web
 - [x] System tray icon
 - [x] Icon in systray with different icon if there is new messages
 - [x] Fullscreen mode
+- [x] Background running
 
 ## Future Features
-- [ ] Show/Hide headerbar by pressing *Alt*
-- [ ] Run multiple instances
+- [ ] Run multiple users
 
 ## Contribute
 
@@ -60,7 +60,7 @@ $ flatpak install --user --assumeyes flathub org.kde.Platform//6.2 org.kde.Sdk//
 $ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # installing required packages
-$ sudo flatpak install --assumeyes flathub org.kde.Platform//6.2 org.kde.Sdk//6.2 io.qt.qtwebengine.BaseApp//6.2
+$ sudo flatpak install flathub org.kde.Platform//6.2 org.kde.Sdk//6.2 io.qt.qtwebengine.BaseApp//6.2
 ```
 ### Building and running the application
 Youp can be installed on all distributions supporting [Flatpak](http://flatpak.org/) from [Flathub](https://flathub.org/apps/details/com.rtosta.zapzap).
