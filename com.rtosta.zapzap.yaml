@@ -4,23 +4,22 @@ runtime-version: "6.2"
 sdk: org.kde.Sdk
 base: io.qt.qtwebengine.BaseApp
 base-version: "6.2"
-comand: "zapzap"
+comamnd: zapzap
 finish-args:
   - "--share=ipc"
-  - "--socket=fallback-x11"
+  - "--socket=x11"
   - "--socket=pulseaudio"
   - "--share=network"
   - "--filesystem=xdg-download"
   - "--device=dri"
   - "--env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess"
   - "--talk-name=org.kde.StatusNotifierWatcher"
-  - "--own-name=org.kde.*"
 cleanup:
   - /include
   - /lib/pkgconfig
   - "*.la"
   - "*.a"
-modules:
+modules:       
   - pyqt6.yml
   - pyqt6-webengine.yml
   - name: zapzap
@@ -33,5 +32,4 @@ modules:
     sources:
       - type: git
         url: https://github.com/rafatosta/zapzap.git
-        branch: main
-      
+        tag: v1.0
