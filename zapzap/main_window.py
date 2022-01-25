@@ -54,7 +54,7 @@ class MainWindow(QMainWindow):
         self.trayMenu.clear()  # Alterando as opções do menu do tray icon
         self.trayMenu.addAction(self.trayHide)
         self.trayMenu.addAction(self.trayExit)
-        self.app.activateWindow() #ao mostrar move a janela para a área de trabalho atual
+        self.app.activateWindow()  # ao mostrar move a janela para a área de trabalho atual
 
     # Minimizando para o system tray.
     def on_hide(self):
@@ -70,12 +70,11 @@ class MainWindow(QMainWindow):
     # Evento para mostrar e ocultar a janela com apenas dois clique ou botão do meio no tray icon. Com um click abre o menu.
     def onTrayIconActivated(self, reason):
         if reason == QSystemTrayIcon.ActivationReason.Trigger or reason == QSystemTrayIcon.ActivationReason.MiddleClick:
-            if self.isHidden():
-                self.on_show()
-            else:
-                self.on_hide()
+            self.on_show()
+            self.app.activateWindow()
 
     # Evento ao fechar a janela.
+
     def closeEvent(self, event):
         self.hide()
         self.on_hide()
