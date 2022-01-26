@@ -8,6 +8,7 @@ comamnd: zapzap
 finish-args:
   - "--share=ipc"
   - "--socket=x11"
+  - "--socket=wayland"
   - "--socket=pulseaudio"
   - "--share=network"
   - "--filesystem=xdg-download"
