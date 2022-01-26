@@ -12,6 +12,7 @@ finish-args:
   - "--share=network"
   - "--filesystem=xdg-download"
   - "--device=dri"
+  - "--device=all"
   - "--env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess"
   - "--talk-name=org.kde.StatusNotifierWatcher"
 cleanup:
