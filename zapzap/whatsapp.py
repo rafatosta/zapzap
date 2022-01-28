@@ -33,13 +33,23 @@ class WhatsApp(QWebEnginePage):
             self.runJavaScript("""
                 const checkExist = setInterval(() => {
                     const classElement = document.getElementsByClassName("_1XkO3")[0];
-
+                    console.log('checkExist');
                     if (classElement != null) {
                         classElement.style = 'width: 100vw; height: 100vh; position: unset'
                         clearInterval(checkExist);
                     }
                 }, 100);
+
+                 const checkNotify = setInterval(() => {
+                    const classElement = document.evaluate('//*[@id="side"]/span/div/div', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                    console.log('checkNotify');
+                    if (classElement != null) {
+                        classElement.click()
+                        clearInterval(checkNotify);
+                    }
+                }, 100);
             """)
+
 
     def link_hovered(self, url):
         # url contém o URL de destino do link. Ao mover o mouse para fora da url o seu valor é definido como uma string vazia
