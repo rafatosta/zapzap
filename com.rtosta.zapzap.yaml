@@ -9,6 +9,8 @@ finish-args:
   - "--share=ipc"
   - "--socket=x11"
   - "--socket=pulseaudio"
+  - "--socket=system-bus"
+  - "--socket=session-bus"
   - "--share=network"
   - "--filesystem=xdg-download"
   - "--device=dri"
