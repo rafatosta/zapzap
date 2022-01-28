@@ -1,4 +1,5 @@
 import dbus
+import os
 from pathlib import Path
 
 from zapzap.app_info import APPLICATION_NAME
@@ -13,7 +14,7 @@ def show(q_notification):
     actions = {}
     app_name = APPLICATION_NAME
     hints = {}
-    time = 1000 
+    time = 1000   # Use seconds x 1000
     bus = dbus.SessionBus()
     notif = bus.get_object(item, path)
 
@@ -22,7 +23,17 @@ def show(q_notification):
                   q_notification.title(), q_notification.message(), actions, hints, time)
 
 def convertImage(img):
-    path = '/app/share/icons/hicolor/scalable/apps/foto.png'
+    BASE_DIR = Path(__file__).resolve().parent
+    foto_DIR = str(BASE_DIR.joinpath('foto_temp.png'))
+
+    print(BASE_DIR)
+    print(foto_DIR)
+    path = foto_DIR
+
+ 
+    for _, _, arquivo in os.walk(BASE_DIR):
+        print(arquivo)
+
     confirm = img.save(path)
     if(confirm):
         return path
