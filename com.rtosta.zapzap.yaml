@@ -25,7 +25,8 @@ cleanup:
 modules:       
   - pyqt6.yml
   - pyqt6-webengine.yml
-  - name: dbus
+  
+  - name: dbus-python
     buildsystem: simple
     build-options:
       build-args:
