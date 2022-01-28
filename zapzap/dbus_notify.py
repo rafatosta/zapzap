@@ -4,6 +4,9 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 foto_DIR = str(BASE_DIR.joinpath('foto_temp.png'))
 
+print(BASE_DIR)
+print(foto_DIR)
+
 from zapzap.app_info import APPLICATION_NAME
 
 
@@ -27,7 +30,6 @@ def show(q_notification):
 def convertImage(img):
     path = foto_DIR
     confirm = img.save(path)
-    print(confirm)
     if(confirm):
         return path
     else:
