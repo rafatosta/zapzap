@@ -22,14 +22,9 @@ def show(q_notification):
                   q_notification.title(), q_notification.message(), actions, hints, time)
 
 def convertImage(img):
-    BASE_DIR = Path(__file__).resolve().parent
-    foto_DIR = str(BASE_DIR.joinpath('foto_temp.png'))
-
-    print(BASE_DIR)
-    print(foto_DIR)
-    path = foto_DIR
+    path = '/app/share/icons/hicolor/scalable/apps/com.rtosta.zapzap.user.png'
     confirm = img.save(path)
     if(confirm):
-        return path
+        return 'com.rtosta.zapzap.user'
     else:
         return 'com.rtosta.zapzap'
