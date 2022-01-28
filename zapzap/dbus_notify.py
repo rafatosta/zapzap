@@ -2,7 +2,7 @@ import dbus
 from zapzap.app_info import APPLICATION_NAME
 
 
-def show_notify(q_notification):
+def show(q_notification):
     item = "org.freedesktop.Notifications"
     path = "/org/freedesktop/Notifications"
     interface = "org.freedesktop.Notifications"
