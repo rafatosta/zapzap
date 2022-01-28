@@ -25,6 +25,6 @@ def convertImage(img):
     path = '/app/share/icons/hicolor/scalable/apps/com.rtosta.zapzap.user.png'
     confirm = img.save(path)
     if(confirm):
-        return 'com.rtosta.zapzap.user'
+        return path
     else:
         return 'com.rtosta.zapzap'
