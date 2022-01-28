@@ -23,6 +23,14 @@ cleanup:
 modules:       
   - pyqt6.yml
   - pyqt6-webengine.yml
+  - name: dbus
+    buildsystem: simple
+    build-options:
+      build-args:
+      - --share=network
+    build-commands:
+      - pip3 install dbus-python --prefix=${FLATPAK_DEST} 
+    
   - name: zapzap
     buildsystem: simple
     build-commands:
