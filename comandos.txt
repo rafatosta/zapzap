@@ -9,4 +9,4 @@ flatpak --user remote-add --no-gpg-verify rafatosta repo
 
 flatpak --user install rafatosta com.rtosta.zapzap
 
-flatpak-builder build com.rtosta.zapzap.yaml --force-clean --ccache --install --user
+flatpak-builder build com.rtosta.zapzap.yaml --force-clean --ccache --user --install 
