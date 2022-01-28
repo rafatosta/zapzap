@@ -31,6 +31,21 @@
   <update_contact>rafa.ecomp@gmail.com</update_contact>
   <developer_name>Rafael Tosta</developer_name>
   <releases>
+    <release date="2022-01-28" version="1.0">
+      <description>
+        <p>News</p>
+         <ul>
+          <li>Shows notifications in the system;</li>
+          <li>Attention: Does not open the window if it is hidden. Solution soon.</li>
+        </ul>
+        <p>Updates</p>
+         <ul>
+          <li>Focus on the window when clicking on the Tray, if it is already open;</li>
+          <li>UserAgent;</li>
+          <li>Webcam permissions.</li>
+        </ul>
+      </description>
+    </release>
     <release date="2022-01-22" version="1.0">
       <description>
         <p>First release.</p>
