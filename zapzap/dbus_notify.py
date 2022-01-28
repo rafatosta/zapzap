@@ -13,7 +13,7 @@ def show(q_notification):
     actions = {}
     app_name = APPLICATION_NAME
     hints = {}
-    time = 1000   # Use seconds x 1000
+    time = 1000 
     bus = dbus.SessionBus()
     notif = bus.get_object(item, path)
 
@@ -22,7 +22,7 @@ def show(q_notification):
                   q_notification.title(), q_notification.message(), actions, hints, time)
 
 def convertImage(img):
-    path = '/app/share/icons/hicolor/scalable/apps/com.rtosta.zapzap.user.png'
+    path = '/app/share/icons/hicolor/scalable/apps/foto.png'
     confirm = img.save(path)
     if(confirm):
         return path
