@@ -1,9 +1,0 @@
-#!/bin/bash
-
-flatpak-builder -v \
-	--force-clean \
-	--ccache \
-	--repo=repo \
-	--subject="Build of com.rtosta.zapzap `date`" \
-	./build \
-	com.rtosta.zapzap.yaml
