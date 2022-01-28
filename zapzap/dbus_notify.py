@@ -1,6 +1,5 @@
 import dbus
 import os
-from pathlib import Path
 
 from zapzap.app_info import APPLICATION_NAME
 
@@ -23,15 +22,12 @@ def show(q_notification):
                   q_notification.title(), q_notification.message(), actions, hints, time)
 
 def convertImage(img):
-    BASE_DIR = Path(__file__).resolve().parent
-    foto_DIR = str(BASE_DIR.joinpath('foto_temp.png'))
+    ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+    print(ROOT_DIR)
+    path = ROOT_DIR+('/foto_temp.png')
+    print(path)
 
-    print(BASE_DIR)
-    print(foto_DIR)
-    path = foto_DIR
-
- 
-    for _, _, arquivo in os.walk(BASE_DIR):
+    for _, _, arquivo in os.walk(ROOT_DIR):
         print(arquivo)
 
     confirm = img.save(path)
