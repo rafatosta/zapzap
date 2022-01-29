@@ -5,6 +5,7 @@ from zapzap.whatsapp import WhatsApp
 from PyQt6.QtCore import QFileInfo, QUrl
 
 from zapzap.app_info import APPLICATION_NAME, USER_AGENT, WHATS_URL
+import zapzap.dbus_notify
 
 
 class Browser(QWebEngineView):
@@ -15,7 +16,8 @@ class Browser(QWebEngineView):
         # definição do pergil do usuário, local que será armazenados os cookies e informações sobre os navegadores
         profile = QWebEngineProfile("storage-whats", self)
         profile.setHttpUserAgent(USER_AGENT)
-    
+        profile.setNotificationPresenter(self.show_notification)
+
         # Rotina para download de arquivos
         profile.downloadRequested.connect(self.download)
 
@@ -60,3 +62,6 @@ class Browser(QWebEngineView):
     def icon_changed(self, icon):
         # Utiliza o ícone associado à página para o tray
         self.parent.tray.setIcon(icon)
+
+    def show_notification(notification):
+        zapzap.dbus_notify.show(notification)
