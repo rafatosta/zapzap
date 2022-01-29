@@ -63,5 +63,5 @@ class Browser(QWebEngineView):
         # Utiliza o ícone associado à página para o tray
         self.parent.tray.setIcon(icon)
 
-    def show_notification(notification):
+    def show_notification(self, notification):
         zapzap.dbus_notify.show(notification)
