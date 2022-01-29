@@ -1,11 +1,10 @@
 from PyQt6.QtWebEngineWidgets import QWebEngineView
-from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings, QWebEngineNotification
+from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
 from PyQt6.QtWidgets import QFileDialog
 from zapzap.whatsapp import WhatsApp
 from PyQt6.QtCore import QFileInfo, QUrl
 
 from zapzap.app_info import APPLICATION_NAME, USER_AGENT, WHATS_URL
-import zapzap.dbus_notify
 
 
 class Browser(QWebEngineView):
@@ -15,6 +14,7 @@ class Browser(QWebEngineView):
 
         # definição do pergil do usuário, local que será armazenados os cookies e informações sobre os navegadores
         profile = QWebEngineProfile("storage-whats", self)
+        profile.setPersistentCookiesPolicy(QWebEngineProfile.PersistentCookiesPolicy.ForcePersistentCookies)
         profile.setHttpUserAgent(USER_AGENT)
         #profile.setNotificationPresenter(self.show_notification)
 
@@ -62,7 +62,3 @@ class Browser(QWebEngineView):
     def icon_changed(self, icon):
         # Utiliza o ícone associado à página para o tray
         self.parent.tray.setIcon(icon)
-
-    
-    """def show_notification(self,notification: QWebEngineNotification):
-        zapzap.dbus_notify.show(notification)"""
