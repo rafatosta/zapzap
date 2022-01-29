@@ -16,7 +16,7 @@ class Browser(QWebEngineView):
         # definição do pergil do usuário, local que será armazenados os cookies e informações sobre os navegadores
         profile = QWebEngineProfile("storage-whats", self)
         profile.setHttpUserAgent(USER_AGENT)
-        profile.setNotificationPresenter(self.show_notification)
+        #profile.setNotificationPresenter(self.show_notification)
 
         # Rotina para download de arquivos
         profile.downloadRequested.connect(self.download)
@@ -64,5 +64,5 @@ class Browser(QWebEngineView):
         self.parent.tray.setIcon(icon)
 
     
-    def show_notification(self,notification: QWebEngineNotification):
-        zapzap.dbus_notify.show(notification)
+    """def show_notification(self,notification: QWebEngineNotification):
+        zapzap.dbus_notify.show(notification)"""

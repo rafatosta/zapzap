@@ -1,4 +1,4 @@
-import dbus
+"""import dbus
 
 from zapzap.app_info import APPLICATION_NAME
 
@@ -17,7 +17,7 @@ def show(q_notification):
 
     notify = dbus.Interface(notif, interface)
     notify.Notify(app_name, id_num_to_replace, icon,
-                  q_notification.title(), q_notification.message(), actions, hints, time)
+                  q_notification.title(), q_notification.message(), actions, hints, time)"""
 
 
 """ Não funciona, pois a url está dentro do flatpak.
