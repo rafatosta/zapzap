@@ -14,10 +14,8 @@ class Browser(QWebEngineView):
 
         # definição do pergil do usuário, local que será armazenados os cookies e informações sobre os navegadores
         profile = QWebEngineProfile("storage-whats", self)
-        profile.setPersistentCookiesPolicy(QWebEngineProfile.PersistentCookiesPolicy.ForcePersistentCookies)
         profile.setHttpUserAgent(USER_AGENT)
-        #profile.setNotificationPresenter(self.show_notification)
-
+    
         # Rotina para download de arquivos
         profile.downloadRequested.connect(self.download)
 
