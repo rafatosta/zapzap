@@ -33,6 +33,11 @@
   <releases>
     <release date="2022-01-29" version="1.1">
       <description>
+        <p>News</p>
+         <ul>
+          <li>Shows notifications in the system;</li>
+          <li>Attention: Does not open the window if it is hidden. Solution soon.</li>
+        </ul>
         <p>Updates</p>
          <ul>
           <li>Focus on the window when clicking on the Tray, if it is already open;</li>
