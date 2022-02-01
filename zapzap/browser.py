@@ -1,6 +1,8 @@
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEnginePage
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
+from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QFileDialog
 from zapzap.whatsapp import WhatsApp
 from PyQt6.QtCore import QFileInfo, QUrl
@@ -22,6 +24,9 @@ class Browser(QWebEngineView):
         # Rotina para download de arquivos
         profile.downloadRequested.connect(self.download)
 
+        # Menu de contexto
+        self.createContextMenu()
+
         # Cria a WebPage personalizada
         self.whats = WhatsApp(profile, self)
         self.setPage(self.whats)
@@ -38,6 +43,12 @@ class Browser(QWebEngineView):
         self.titleChanged.connect(self.title_changed)
 
         self.iconChanged.connect(self.icon_changed)
+
+    def createContextMenu(self):
+        self.setContextMenuPolicy(Qt.ContextMenuPolicy.ActionsContextMenu)
+        quitAction = QAction("Reload", self)
+        quitAction.triggered.connect(self.doReload)
+        self.addAction(quitAction)
 
     # Função que possibilita o download de arquivos.
     def download(self, download):
