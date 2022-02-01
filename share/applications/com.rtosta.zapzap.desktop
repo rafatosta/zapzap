@@ -1,7 +1,7 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Name=ZapZap
-Comment=Cliente Unofficial para Whatsapp
+Comment=Cliente não oficial para Whatsapp
 Version=1.0
 Type=Application
 Exec=zapzap
