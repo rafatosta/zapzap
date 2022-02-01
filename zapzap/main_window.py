@@ -1,4 +1,5 @@
 from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon, QMenu
+from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
 
 from zapzap.browser import Browser
@@ -46,6 +47,7 @@ class MainWindow(QMainWindow):
 
     def createWebEngine(self):
         self.view = Browser(self)
+        self.view.doReload()
         self.setCentralWidget(self.view)
 
     # Abrindo o webapp do system tray.
@@ -79,3 +81,7 @@ class MainWindow(QMainWindow):
         self.hide()
         self.on_hide()
         event.ignore()
+
+    def keyPressEvent(self, e):
+        if e.key() == Qt.Key.Key_F5:
+            self.view.doReload()
