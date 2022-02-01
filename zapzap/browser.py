@@ -1,4 +1,5 @@
 from PyQt6.QtWebEngineWidgets import QWebEngineView
+from PyQt6.QtWebEngineCore import QWebEnginePage
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
 from PyQt6.QtWidgets import QFileDialog
 from zapzap.whatsapp import WhatsApp
@@ -65,3 +66,6 @@ class Browser(QWebEngineView):
 
     def show_notification(self, notification):
         zapzap.dbus_notify.show(notification)
+
+    def doReload(self):
+        self.triggerPageAction(QWebEnginePage.WebAction.ReloadAndBypassCache)
