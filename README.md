@@ -36,7 +36,7 @@ $ pip install PyQt6 PyQt6-WebEngine
 $ git clone https://github.com/rafatosta/zapzap.git
 $ cd zapzap
 # Running
-$ python zapzap
+$ python -m zapzap
 ```
 
 ### Flatpak Development
