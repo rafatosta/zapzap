@@ -1,15 +1,20 @@
 from setuptools import setup
+import zapzap
 setup_requires = ['setuptools']
-
 try:
     setup(
-        name='zapzap',
-        version='1.0',
-        author='Rafael Tosta',
-        author_email='rafa.ecomp@gmail.com',
+        name=zapzap.__appname__.lower(),
+        version=zapzap.__version__,
+        author=zapzap.__author__,
+        author_email=zapzap.__email__,
         description='Web App for Whatsapp',
+        url=zapzap.__website__,
         license='GPLv3+',
-        packages=['zapzap'],
+        packages=['zapzap',
+                  'zapzap.controllers',
+                  'zapzap.model',
+                  'zapzap.engine',
+                  'zapzap.services'],
         setup_requires=setup_requires,
         entry_points={'gui_scripts': ['zapzap = zapzap.__main__:main']},
         keywords='zapzap whatsapp client web app',

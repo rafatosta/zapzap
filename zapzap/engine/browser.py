@@ -4,11 +4,10 @@ from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QFileDialog
-from zapzap.whatsapp import WhatsApp
+from zapzap.engine.whatsapp import WhatsApp
 from PyQt6.QtCore import QFileInfo, QUrl
-
-from zapzap.app_info import APPLICATION_NAME, USER_AGENT, WHATS_URL
-import zapzap.dbus_notify
+import zapzap
+import zapzap.service.dbus_notify
 
 
 class Browser(QWebEngineView):
@@ -18,7 +17,7 @@ class Browser(QWebEngineView):
 
         # definição do pergil do usuário, local que será armazenados os cookies e informações sobre os navegadores
         profile = QWebEngineProfile("storage-whats", self)
-        profile.setHttpUserAgent(USER_AGENT)
+        profile.setHttpUserAgent(zapzap.__user_agent__)
         profile.setNotificationPresenter(self.show_notification)
 
         # Rotina para download de arquivos
@@ -32,7 +31,7 @@ class Browser(QWebEngineView):
         self.setPage(self.whats)
 
         # carrega a página do whatsapp web
-        self.load(QUrl(WHATS_URL))
+        self.load(QUrl(zapzap.__whatsapp_url__))
 
         # Ativando tudo o que tiver de direito
         self.settings().setAttribute(QWebEngineSettings.WebAttribute.JavascriptEnabled, True)
@@ -67,16 +66,16 @@ class Browser(QWebEngineView):
         try:
             int(num)
         except:
-            self.parent.setWindowTitle(APPLICATION_NAME)
+            self.parent.setWindowTitle(zapzap.__appname__)
         else:
-            self.parent.setWindowTitle("("+num+") - "+APPLICATION_NAME)
+            self.parent.setWindowTitle("("+num+") - "+zapzap.__appname__)
 
     def icon_changed(self, icon):
         # Utiliza o ícone associado à página para o tray
         self.parent.tray.setIcon(icon)
 
     def show_notification(self, notification):
-        zapzap.dbus_notify.show(notification)
+        zapzap.service.dbus_notify.show(notification)
 
     def doReload(self):
         self.triggerPageAction(QWebEnginePage.WebAction.ReloadAndBypassCache)

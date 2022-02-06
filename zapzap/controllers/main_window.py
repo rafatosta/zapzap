@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon, QMenu
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
 
-from zapzap.browser import Browser
+from zapzap.engine.browser import Browser
 
 
 class MainWindow(QMainWindow):

@@ -1,6 +1,6 @@
 import dbus
 
-from zapzap.app_info import APPLICATION_NAME
+from zapzap import __appname__
 
 def show(q_notification):
     item = "org.freedesktop.Notifications"
@@ -9,7 +9,7 @@ def show(q_notification):
     id_num_to_replace = 0
     icon = 'com.rtosta.zapzap'
     actions = {}
-    app_name = APPLICATION_NAME
+    app_name = __appname__
     hints = {}
     time = 1000
     bus = dbus.SessionBus()

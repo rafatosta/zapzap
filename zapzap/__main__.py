@@ -1,10 +1,8 @@
 import sys
 import os
-
-from zapzap.SingleApplication import SingleApplication
-
-from zapzap.app_info import APPLICATION_NAME, __version__
-from zapzap.main_window import MainWindow
+import zapzap
+from zapzap.controllers.SingleApplication import SingleApplication
+from zapzap.controllers.main_window import MainWindow
 
 
 def main():
@@ -12,21 +10,21 @@ def main():
     # Via Flatpak o --socket é quem define como será executado
     os.environ['QT_QPA_PLATFORM'] = 'xcb'
 
-    appGuid = 'zapzap-F3FF80BA-BA05-4277-8063-82A6DB9245A2'
+    app = SingleApplication(zapzap.__appid__, sys.argv)
+    app.setApplicationName(zapzap.__appname__)
+    app.setApplicationVersion(zapzap.__version__)
+    app.setDesktopFileName(zapzap.__desktopid__)
+    app.setOrganizationDomain(zapzap.__domain__)
 
-    app = SingleApplication(appGuid, sys.argv)
-    app.setApplicationName(APPLICATION_NAME)
-    app.setApplicationVersion(__version__)
+    # criar o db se não existir 
+    #db.createDB()
 
     window = MainWindow(app)
-
     app.setWindow(window)
     app.setActivationWindow(window)
-
     window.show()
 
     sys.exit(app.exec())
-
 
 if __name__ == "__main__":
     main()

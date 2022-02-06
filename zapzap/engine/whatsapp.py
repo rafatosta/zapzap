@@ -2,13 +2,10 @@ from PyQt6.QtCore import QEvent, Qt, QUrl
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWebEngineCore import QWebEnginePage
 from PyQt6.QtWidgets import QApplication
-
-from zapzap.app_info import WHATS_URL
+from zapzap import __whatsapp_url__
 
 
 # Classe para a página do webapp.
-
-
 class WhatsApp(QWebEnginePage):
 
     link_url = ''
@@ -50,7 +47,6 @@ class WhatsApp(QWebEnginePage):
                 }, 100);
             """)
 
-
     def link_hovered(self, url):
         # url contém o URL de destino do link. Ao mover o mouse para fora da url o seu valor é definido como uma string vazia
         self.link_url = url
@@ -65,7 +61,7 @@ class WhatsApp(QWebEnginePage):
     def eventFilter(self, obj, event):
         if event.type() == QEvent.Type.MouseButtonPress:
             if event.button() == Qt.MouseButton.LeftButton:
-                if self.link_url != '' and self.link_url != WHATS_URL:
+                if self.link_url != '' and self.link_url != __whatsapp_url__:
                     QDesktopServices.openUrl(QUrl(self.link_url))
                     return True
         return False
