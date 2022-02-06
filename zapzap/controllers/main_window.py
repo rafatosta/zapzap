@@ -1,4 +1,5 @@
 from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon, QMenu
+from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
 
@@ -13,17 +14,18 @@ class MainWindow(QMainWindow):
         # Define tamanho mínimo para a janela
         self.setMinimumSize(800, 600)
 
-        # rotina para criação do WebView que irá carregar a página do whatsapp
-        self.createWebEngine()
-
         # rotina para definição do Tray
         self.createTrayIcon()
+
+        # rotina para criação do WebView que irá carregar a página do whatsapp
+        self.createWebEngine()
 
     def createTrayIcon(self):
         # Criando o tray icon
         self.tray = QSystemTrayIcon()
+        self.tray.setIcon(QIcon('zapzap/assets/icons/tray/tray.svg'))
         self.tray.activated.connect(self.onTrayIconActivated)
-        self.tray.setIcon(self.view.icon())
+        
 
         # Itens para o menu do tray icon
         self.trayHide = QAction('Hide', self)
