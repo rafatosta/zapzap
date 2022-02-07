@@ -5,8 +5,7 @@ from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.controllers.main_window import MainWindow
 from PyQt6.QtCore import QStandardPaths
 
-
-def main():
+if __name__ == "__main__":
     # se deixar como wayland é aplicado a decoração da janela padrão do QT e não do sistema
     # Via Flatpak o --socket é quem define como será executado
     os.environ['QT_QPA_PLATFORM'] = 'xcb'
@@ -32,7 +31,3 @@ def main():
     window.show()
 
     sys.exit(app.exec())
-
-
-if __name__ == "__main__":
-    main()
