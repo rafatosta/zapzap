@@ -29,8 +29,9 @@ def show(q_notification):
 def getPathImage(qin, title):
 
     path = QStandardPaths.writableLocation(
-        QStandardPaths.StandardLocation.AppLocalDataLocation)+'/tmp/'
+        QStandardPaths.StandardLocation.AppLocalDataLocation)+'/tmp/'+title+'.png'
 
+    print(path)
     # deixa a foto arrendondada
     qout = QImage(qin.width(), qin.height(), QImage.Format.Format_ARGB32)
     qout.fill(Qt.GlobalColor.transparent)
@@ -48,8 +49,9 @@ def getPathImage(qin, title):
 
     painter.drawRoundedRect(0, 0, qin.width(), qin.height(),
                             qin.width()//2, qin.height()//2)
-
-    if(qout.save(path+title+'.png') == False):
+    painter.end()
+    c = qout.save(path)
+    if(c == False):
         return 'com.rtosta.zapzap'
     else:
         return path
