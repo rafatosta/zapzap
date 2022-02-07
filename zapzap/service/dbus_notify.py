@@ -13,7 +13,7 @@ def show(q_notification):
     actions = {}
     app_name = __appname__
     hints = {}
-    time = 1000
+    time = 2000
     bus = dbus.SessionBus()
     notif = bus.get_object(item, path)
 
