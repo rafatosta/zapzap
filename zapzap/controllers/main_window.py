@@ -71,12 +71,12 @@ class MainWindow(QMainWindow):
             self.app.activateWindow()
 
     # Evento ao fechar a janela.
-
     def closeEvent(self, event):
         self.hide()
         self.on_hide()
         event.ignore()
 
+    # Mapeamento dos atalhos
     def keyPressEvent(self, e):
         if e.key() == Qt.Key.Key_F5:
             self.view.doReload()

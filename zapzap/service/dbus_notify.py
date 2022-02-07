@@ -27,31 +27,29 @@ def show(q_notification):
 
 
 def getPathImage(qin, title):
-    try:
-        path = QStandardPaths.writableLocation(
-            QStandardPaths.StandardLocation.AppLocalDataLocation+'/tmp/')
-        os.mkdir(path)
 
-        # deixa a foto arrendondada
-        qout = QImage(qin.width(), qin.height(), QImage.Format.Format_ARGB32)
-        qout.fill(Qt.GlobalColor.transparent)
+    path = QStandardPaths.writableLocation(
+        QStandardPaths.StandardLocation.AppLocalDataLocation)+'/tmp/'
 
-        brush = QBrush(qin)
+    # deixa a foto arrendondada
+    qout = QImage(qin.width(), qin.height(), QImage.Format.Format_ARGB32)
+    qout.fill(Qt.GlobalColor.transparent)
 
-        pen = QPen()
-        pen.setColor(Qt.GlobalColor.darkGray)
-        pen.setJoinStyle(Qt.PenJoinStyle.RoundJoin)
+    brush = QBrush(qin)
 
-        painter = QPainter(qout)
-        painter.setBrush(brush)
-        painter.setPen(pen)
-        painter.setRenderHint(QPainter.RenderHint.Antialiasing, True)
+    pen = QPen()
+    pen.setColor(Qt.GlobalColor.darkGray)
+    pen.setJoinStyle(Qt.PenJoinStyle.RoundJoin)
 
-        painter.drawRoundedRect(0, 0, qin.width(), qin.height(),
-                                qin.width()//2, qin.height()//2)
+    painter = QPainter(qout)
+    painter.setBrush(brush)
+    painter.setPen(pen)
+    painter.setRenderHint(QPainter.RenderHint.Antialiasing, True)
 
-        qout.save(path+title+'.png')
-    except:
+    painter.drawRoundedRect(0, 0, qin.width(), qin.height(),
+                            qin.width()//2, qin.height()//2)
+
+    if(qout.save(path+title+'.png') == False):
         return 'com.rtosta.zapzap'
     else:
         return path
