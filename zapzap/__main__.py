@@ -3,6 +3,7 @@ import os
 import zapzap
 from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.controllers.main_window import MainWindow
+from PyQt6.QtCore import QStandardPaths
 
 
 def main():
@@ -16,8 +17,14 @@ def main():
     app.setDesktopFileName(zapzap.__desktopid__)
     app.setOrganizationDomain(zapzap.__domain__)
 
-    # criar o db se não existir 
-    #db.createDB()
+    # criar o db se não existir
+    # db.createDB()
+
+    # garante que teremos o diretório tmp para as fotos dos usuários utilizados nas notificações
+    path = QStandardPaths.writableLocation(
+        QStandardPaths.StandardLocation.AppLocalDataLocation)+'/tmp'
+    if not os.path.exists(path):
+        os.makedirs(path)
 
     window = MainWindow(app)
     app.setWindow(window)
@@ -25,6 +32,7 @@ def main():
     window.show()
 
     sys.exit(app.exec())
+
 
 if __name__ == "__main__":
     main()
