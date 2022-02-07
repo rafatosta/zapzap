@@ -4,6 +4,7 @@ from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QFileDialog
+from PyQt6.QtGui import QIcon
 from zapzap.engine.whatsapp import WhatsApp
 from PyQt6.QtCore import QFileInfo, QUrl
 import zapzap
@@ -41,8 +42,6 @@ class Browser(QWebEngineView):
 
         self.titleChanged.connect(self.title_changed)
 
-        self.iconChanged.connect(self.icon_changed)
-
     def createContextMenu(self):
         self.setContextMenuPolicy(Qt.ContextMenuPolicy.ActionsContextMenu)
         quitAction = QAction("Reload", self)
@@ -67,12 +66,12 @@ class Browser(QWebEngineView):
             int(num)
         except:
             self.parent.setWindowTitle(zapzap.__appname__)
+            self.parent.tray.setIcon(
+                QIcon('zapzap/assets/icons/tray/tray.svg'))
         else:
             self.parent.setWindowTitle("("+num+") - "+zapzap.__appname__)
-
-    def icon_changed(self, icon):
-        # Utiliza o ícone associado à página para o tray
-        self.parent.tray.setIcon(icon)
+            self.parent.tray.setIcon(
+                QIcon('zapzap/assets/icons/tray/tray_notify.svg'))
 
     def show_notification(self, notification):
         zapzap.service.dbus_notify.show(notification)
