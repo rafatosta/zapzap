@@ -34,9 +34,9 @@ QLabel#imgCardLabel{
 
 QPushButton#openDrawerButton
 {
-     background-color:  rgba(0, 0, 0, 0.3);
-      border: 0.04em solid rgba(0, 0, 0, 0.3);
-     border-radius: 0.09em;
+    background-color:  rgba(100, 100, 100, 0.3);
+    border: 0.01em solid rgba(100, 100, 100, 0.3);
+    border-radius: 0.09em;
 }
 
 QPushButton
