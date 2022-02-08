@@ -103,20 +103,20 @@
       <item>
        <widget class="QGroupBox" name="groupBox">
         <property name="title">
-         <string>Integração ao sistema</string>
+         <string>System integration</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
           <widget class="QCheckBox" name="checkBox">
            <property name="text">
-            <string>Iniciar o ZapZap com o sistema</string>
+            <string>Start ZapZap with the system</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QCheckBox" name="checkBox_2">
            <property name="text">
-            <string>Iniciar minimizado</string>
+            <string>Start minimized</string>
            </property>
           </widget>
          </item>
@@ -130,7 +130,7 @@
          <item>
           <widget class="QCheckBox" name="checkBox_3">
            <property name="text">
-            <string>Modo Noturno</string>
+            <string>Night mode</string>
            </property>
           </widget>
          </item>
@@ -156,13 +156,13 @@
       <item>
        <widget class="QGroupBox" name="groupBox_2">
         <property name="title">
-         <string>Notificações de chats</string>
+         <string>Chat notifications</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QCheckBox" name="checkBox_4">
            <property name="text">
-            <string>Notificações na área de trabalho</string>
+            <string>Notifications on the desktop</string>
            </property>
            <property name="checked">
             <bool>true</bool>
@@ -172,7 +172,7 @@
          <item>
           <widget class="QCheckBox" name="checkBox_7">
            <property name="text">
-            <string>Mostar a foto de quem enviou</string>
+            <string>Show the photo of the sender</string>
            </property>
            <property name="checked">
             <bool>true</bool>
@@ -182,7 +182,7 @@
          <item>
           <widget class="QCheckBox" name="checkBox_5">
            <property name="text">
-            <string>Mostrar o nome de quem enviou</string>
+            <string>Show the sender's name</string>
            </property>
            <property name="checked">
             <bool>true</bool>
@@ -192,7 +192,7 @@
          <item>
           <widget class="QCheckBox" name="checkBox_6">
            <property name="text">
-            <string>Mostrar prévia da mensagem</string>
+            <string>Show message preview</string>
            </property>
            <property name="checked">
             <bool>true</bool>
@@ -229,7 +229,7 @@
           <item>
            <widget class="QPushButton" name="pushButton_3">
             <property name="text">
-             <string>Versão 2.0</string>
+             <string>Version 2.0</string>
             </property>
            </widget>
           </item>
@@ -249,7 +249,7 @@
           <item>
            <widget class="QPushButton" name="pushButton_4">
             <property name="text">
-             <string>Sobre</string>
+             <string>About</string>
             </property>
            </widget>
           </item>

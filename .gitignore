@@ -10,6 +10,9 @@ __pycache__/
 .flatpak-builder
 repo
 
+# Qt_for_python
+.qt_for_python
+
 # Distribution / packaging
 .Python
 build/
