@@ -111,4 +111,25 @@ QGroupBox::title
     padding-right: 0.2em;
 }
 
+/*** QCHECKBOX */
+
+QCheckBox
+{
+    spacing: 0.23em;
+    outline: none;
+    color: #31363b;
+    margin-bottom: 0.09em;
+    opacity: 200;
+}
+
+QCheckBox:disabled
+{
+    color: #bab9b8;
+}
+
+QCheckBox::indicator
+{
+    width: 1em;
+    height: 1em;
+}
 

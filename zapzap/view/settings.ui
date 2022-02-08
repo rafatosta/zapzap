@@ -115,6 +115,9 @@
          </item>
          <item>
           <widget class="QCheckBox" name="start_hide">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Start minimized</string>
            </property>
@@ -160,7 +163,7 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <widget class="QCheckBox" name="checkBox_4">
+          <widget class="QCheckBox" name="notify_desktop">
            <property name="text">
             <string>Notifications on the desktop</string>
            </property>
@@ -170,7 +173,10 @@
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox_7">
+          <widget class="QCheckBox" name="show_photo">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
            <property name="text">
             <string>Show the photo of the sender</string>
            </property>
@@ -180,7 +186,10 @@
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox_5">
+          <widget class="QCheckBox" name="show_name">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
            <property name="text">
             <string>Show the sender's name</string>
            </property>
@@ -190,7 +199,10 @@
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox_6">
+          <widget class="QCheckBox" name="show_msg">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
            <property name="text">
             <string>Show message preview</string>
            </property>
