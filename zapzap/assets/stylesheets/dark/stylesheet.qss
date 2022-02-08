@@ -32,6 +32,10 @@ QLabel#imgCardLabel{
 
 /****** QPUSHBUTTON ******/ 
 
+QPushButton#openDrawerButton
+{
+     background-color:  rgba(0, 0, 0, 0.7);
+}
 
 QPushButton
 {
