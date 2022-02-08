@@ -1,0 +1,107 @@
+/***** QWIDGET *****/
+QWidget
+{
+    color: #41525D;
+    background-color:#F0F2F5;
+    selection-background-color: rgba(51, 164, 223, 0.5);
+    selection-color: #41525D;
+    background-clip: border;
+    border-image: none;
+}
+
+QWidget#blur{
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+/*****Label *****/
+
+QLabel#imgLabel{
+    border: filed; 
+    border-radius: 50px; 
+    background-color: #737373; 
+    color: #FFFFFF;
+}
+
+QLabel#imgCardLabel{
+    border: filed; 
+    border-radius: 35px; 
+    background-color: #737373; 
+    color: #FFFFFF;
+}
+
+
+/****** QPUSHBUTTON ******/ 
+
+QPushButton
+{
+    height: 25px
+}
+
+
+/* Botão ok */
+QPushButton#okButton
+{
+    color: #FFFFFF;
+    background-color: #008069;
+    border: 0.04em solid #008069;
+    padding: 0.23em;
+    border-radius: 0.09em;
+    outline: none;
+    min-height: 1.1em;
+    height: 25px
+}
+
+QPushButton#okButton:hover
+{
+    background-color:#005849;
+     border: 0.04em solid #005849;
+}
+
+/****** QLINEEDIT ******/
+QLineEdit
+{
+    background-color: #eff0f1;
+    padding: 0.23em;
+    border-style: solid;
+    border: 0.04em solid #bab9b8;
+    border-radius: 0.09em;
+    color: #31363b;
+    height: 25px
+}
+
+QLineEdit:hover,
+QLineEdit:focus
+{
+    border: 0.04em solid #008069;
+    color: #31363b;
+}
+
+/****** QGroupBox ******/
+QGroupBox
+{
+    /* Need to make sure the groupbox doesn't compress below the title. */
+    min-height: 1.2em;
+    border: 0.04em solid #bab9b8;
+    border-radius: 0.09em;
+    margin-top: 0.5em;
+    padding-top: 1em;
+}
+
+QGroupBox:focus
+{
+    border: 0.04em solid #bab9b8;
+    border-radius: 0.09em;
+}
+
+QGroupBox::title
+{
+    /* We need to move 0.6em up to be inside the lines, +1em for padding. */
+    top: -1.6em;
+    subcontrol-origin: content;
+    subcontrol-position: top left;
+    background: #F0F2F5;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+}
+
+

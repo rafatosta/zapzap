@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon, QMenu
 from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
+from zapzap.controllers.drawer import Drawer
 
 from zapzap.engine.browser import Browser
 
@@ -17,8 +18,20 @@ class MainWindow(QMainWindow):
         # rotina para definição do Tray
         self.createTrayIcon()
 
+
         # rotina para criação do WebView que irá carregar a página do whatsapp
         self.createWebEngine()
+
+        # cria o menu drawer
+        self.createDrawer()
+
+        # aplica o estilo inicial
+        self.toggle_stylesheet()
+
+    def createDrawer(self):
+        self.drawer = Drawer(self)
+        self.drawer.maximum_width = self.width()
+        self.drawer.raise_()
 
     def createTrayIcon(self):
         # Criando o tray icon
@@ -72,11 +85,35 @@ class MainWindow(QMainWindow):
 
     # Evento ao fechar a janela.
     def closeEvent(self, event):
-        self.hide()
-        self.on_hide()
+        #self.hide()
+        #self.on_hide()
+        self.close()
         event.ignore()
+
+    def resizeEvent(self, event):
+        self.drawer.setFixedHeight(self.height() - self.drawer.pos().y())
+        self.drawer.maximum_width = self.width()
+        super().resizeEvent(event)
+
+    def toggle_stylesheet(self, type='light'):
+        if type == 'light':
+            path = 'zapzap/assets/stylesheets/light/stylesheet.qss'
+        else:
+            path = 'zapzap/assets/stylesheets/dark/stylesheet.qss'
+
+        with open(path, 'r') as f:
+            style = f.read()
+
+            # Set the stylesheet of the application
+        self.app.setStyleSheet(style)
 
     # Mapeamento dos atalhos
     def keyPressEvent(self, e):
         if e.key() == Qt.Key.Key_F5:
             self.view.doReload()
+        if e.key() == Qt.Key.Key_Alt:
+            self.drawer.onToggled()
+        if e.key() == Qt.Key.Key_F1:
+            self.toggle_stylesheet()
+        if e.key() == Qt.Key.Key_F2:
+            self.toggle_stylesheet('dark')
