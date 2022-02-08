@@ -12,12 +12,13 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.app = app
 
+        self.isTheme = True
+
         # Define tamanho mínimo para a janela
         self.setMinimumSize(800, 600)
 
         # rotina para definição do Tray
         self.createTrayIcon()
-
 
         # rotina para criação do WebView que irá carregar a página do whatsapp
         self.createWebEngine()
@@ -57,9 +58,9 @@ class MainWindow(QMainWindow):
         self.tray.show()
 
     def createWebEngine(self):
-        self.view = Browser(self)
-        self.view.doReload()
-        self.setCentralWidget(self.view)
+        self.browser = Browser(self)
+        self.browser.doReload()
+        self.setCentralWidget(self.browser)
 
     # Abrindo o webapp do system tray.
     def on_show(self):
@@ -85,8 +86,8 @@ class MainWindow(QMainWindow):
 
     # Evento ao fechar a janela.
     def closeEvent(self, event):
-        #self.hide()
-        #self.on_hide()
+        # self.hide()
+        # self.on_hide()
         self.close()
         event.ignore()
 
@@ -95,11 +96,18 @@ class MainWindow(QMainWindow):
         self.drawer.maximum_width = self.width()
         super().resizeEvent(event)
 
-    def toggle_stylesheet(self, type='light'):
-        if type == 'light':
+    def toggle_stylesheet(self):
+        #salvar as preferêcias
+        if self.isTheme:
             path = 'zapzap/assets/stylesheets/light/stylesheet.qss'
+            self.browser.whats.setTheme('light')
+            self.drawer.settings.night_mode.setChecked(False)
+            self.isTheme = False
         else:
             path = 'zapzap/assets/stylesheets/dark/stylesheet.qss'
+            self.browser.whats.setTheme('dark')
+            self.drawer.settings.night_mode.setChecked(True)
+            self.isTheme = True
 
         with open(path, 'r') as f:
             style = f.read()
@@ -110,10 +118,9 @@ class MainWindow(QMainWindow):
     # Mapeamento dos atalhos
     def keyPressEvent(self, e):
         if e.key() == Qt.Key.Key_F5:
-            self.view.doReload()
+            self.browser.doReload()
         if e.key() == Qt.Key.Key_Alt:
             self.drawer.onToggled()
         if e.key() == Qt.Key.Key_F1:
-            self.toggle_stylesheet()
-        if e.key() == Qt.Key.Key_F2:
-            self.toggle_stylesheet('dark')
+           self.toggle_stylesheet()
+            

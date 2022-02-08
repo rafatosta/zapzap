@@ -12,7 +12,6 @@ class WhatsApp(QWebEnginePage):
 
     def __init__(self, *args, **kwargs):
         QWebEnginePage.__init__(self, *args, **kwargs)
-
         # Ativa o EventFilter
         QApplication.instance().installEventFilter(self)
 
@@ -46,6 +45,13 @@ class WhatsApp(QWebEnginePage):
                     }
                 }, 100);
             """)
+
+    def setTheme(self, theme):
+        if theme == 'light':  # light
+            self.runJavaScript(
+                "document.body.classList.remove('dark')")
+        else:  # dark
+            self.runJavaScript("document.body.classList.add('dark')")
 
     def link_hovered(self, url):
         # url contém o URL de destino do link. Ao mover o mouse para fora da url o seu valor é definido como uma string vazia

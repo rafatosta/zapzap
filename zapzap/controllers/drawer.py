@@ -22,7 +22,9 @@ class Drawer(QWidget):
         self.show()
         self.blur.hide()
 
-        self.stackedWidget.insertWidget(0,Settings(self))
+        self.settings = Settings(self)
+
+        self.stackedWidget.insertWidget(0, self.settings)
 
         self.openDrawerButton.clicked.connect(self.onToggled)
 
