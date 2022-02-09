@@ -7,7 +7,8 @@ from PyQt6.QtCore import QStandardPaths
 
 from zapzap.services.portal_config import checkSettings, get_setting
 
-if __name__ == "__main__":
+
+def main():
     # se deixar como wayland é aplicado a decoração da janela padrão do QT e não do sistema
     # Via Flatpak o --socket é quem define como será executado
     os.environ['QT_QPA_PLATFORM'] = 'xcb'
@@ -41,3 +42,7 @@ if __name__ == "__main__":
         window.toggle_stylesheet()
 
     sys.exit(app.exec())
+
+
+if __name__ == "__main__":
+    main()
