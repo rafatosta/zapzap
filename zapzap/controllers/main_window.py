@@ -3,7 +3,7 @@ from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
 from zapzap.controllers.drawer import Drawer
-
+import os
 from zapzap.engine.browser import Browser
 
 
@@ -97,14 +97,15 @@ class MainWindow(QMainWindow):
         super().resizeEvent(event)
 
     def toggle_stylesheet(self):
-        #salvar as preferêcias
+        cwd = os.getcwd()
+        # salvar as preferêcias
         if self.isTheme:
-            path = '/assets/stylesheets/light/stylesheet.qss'
+            path = cwd+'/zapzap/assets/stylesheets/light/stylesheet.qss'
             self.browser.whats.setTheme('light')
             self.drawer.settings.night_mode.setChecked(False)
             self.isTheme = False
         else:
-            path = '/assets/stylesheets/dark/stylesheet.qss'
+            path = cwd+'/zapzap/assets/stylesheets/dark/stylesheet.qss'
             self.browser.whats.setTheme('dark')
             self.drawer.settings.night_mode.setChecked(True)
             self.isTheme = True
@@ -122,5 +123,4 @@ class MainWindow(QMainWindow):
         if e.key() == Qt.Key.Key_Alt:
             self.drawer.onToggled()
         if e.key() == Qt.Key.Key_F1:
-           self.toggle_stylesheet()
-            
+            self.toggle_stylesheet()
