@@ -3,7 +3,7 @@ from PyQt6.QtCore import QStandardPaths, Qt
 from PyQt6.QtGui import QPainter, QPainter, QImage, QBrush, QPen
 from zapzap import __appname__
 import zapzap
-from zapzap.service.portal_config import get_setting
+from zapzap.services.portal_config import get_setting
 
 
 def show(q_notification):

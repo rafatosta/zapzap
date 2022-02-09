@@ -5,7 +5,7 @@ from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.controllers.main_window import MainWindow
 from PyQt6.QtCore import QStandardPaths
 
-from zapzap.service.portal_config import checkSettings, get_setting
+from zapzap.services.portal_config import checkSettings, get_setting
 
 if __name__ == "__main__":
     # se deixar como wayland é aplicado a decoração da janela padrão do QT e não do sistema

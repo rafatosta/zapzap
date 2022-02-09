@@ -8,8 +8,8 @@ from PyQt6.QtGui import QIcon
 from zapzap.engine.whatsapp import WhatsApp
 from PyQt6.QtCore import QFileInfo, QUrl
 import zapzap
-import zapzap.service.dbus_notify
-from zapzap.service.portal_config import get_setting
+import zapzap.services.dbus_notify
+from zapzap.services.portal_config import get_setting
 
 
 class Browser(QWebEngineView):
