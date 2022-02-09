@@ -97,15 +97,14 @@ class MainWindow(QMainWindow):
         super().resizeEvent(event)
 
     def toggle_stylesheet(self):
-        cwd = os.getcwd()
-        # salvar as preferêcias
+        #salvar as preferêcias
         if self.isTheme:
-            path = cwd+'/zapzap/assets/stylesheets/light/stylesheet.qss'
+            #path = 'zapzap/assets/stylesheets/light/stylesheet.qss'
             self.browser.whats.setTheme('light')
             self.drawer.settings.night_mode.setChecked(False)
             self.isTheme = False
         else:
-            path = cwd+'/zapzap/assets/stylesheets/dark/stylesheet.qss'
+            #path = 'zapzap/assets/stylesheets/dark/stylesheet.qss'
             self.browser.whats.setTheme('dark')
             self.drawer.settings.night_mode.setChecked(True)
             self.isTheme = True
@@ -123,4 +122,5 @@ class MainWindow(QMainWindow):
         if e.key() == Qt.Key.Key_Alt:
             self.drawer.onToggled()
         if e.key() == Qt.Key.Key_F1:
-            self.toggle_stylesheet()
+           self.toggle_stylesheet()
+            
