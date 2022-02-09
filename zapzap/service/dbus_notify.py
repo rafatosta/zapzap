@@ -2,6 +2,8 @@ import dbus
 from PyQt6.QtCore import QStandardPaths, Qt
 from PyQt6.QtGui import QPainter, QPainter, QImage, QBrush, QPen
 from zapzap import __appname__
+import zapzap
+from zapzap.service.portal_config import get_setting
 
 
 def show(q_notification):
@@ -9,7 +11,6 @@ def show(q_notification):
     path = "/org/freedesktop/Notifications"
     interface = "org.freedesktop.Notifications"
     id_num_to_replace = 0
-    icon = getPathImage(q_notification.icon(), q_notification.title())
     actions = {}
     app_name = __appname__
     hints = {}
@@ -17,9 +18,17 @@ def show(q_notification):
     bus = dbus.SessionBus()
     notif = bus.get_object(item, path)
 
+    # <expressao1> if <condicao> else <expressao2>
+    icon = getPathImage(q_notification.icon(), q_notification.title(
+    )) if get_setting('show_photo') else 'com.rtosta.zapzap'
+
+    title = q_notification.title() if get_setting('show_name') else __appname__
+
+    message = q_notification.message() if get_setting('show_msg') else 'New message...'
+
     notify = dbus.Interface(notif, interface)
     notify.Notify(app_name, id_num_to_replace, icon,
-                  q_notification.title(), q_notification.message(), actions, hints, time)
+                  title, message, actions, hints, time)
 
 
 # salva a imagem do contato na pasta de dados do app

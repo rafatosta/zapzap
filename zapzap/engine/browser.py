@@ -9,6 +9,7 @@ from zapzap.engine.whatsapp import WhatsApp
 from PyQt6.QtCore import QFileInfo, QUrl
 import zapzap
 import zapzap.service.dbus_notify
+from zapzap.service.portal_config import get_setting
 
 
 class Browser(QWebEngineView):
@@ -74,7 +75,8 @@ class Browser(QWebEngineView):
                 QIcon('zapzap/assets/icons/tray/tray_notify.svg'))
 
     def show_notification(self, notification):
-        zapzap.service.dbus_notify.show(notification)
+        if get_setting('notify_desktop'):
+            zapzap.service.dbus_notify.show(notification)
 
     def doReload(self):
         self.triggerPageAction(QWebEnginePage.WebAction.ReloadAndBypassCache)

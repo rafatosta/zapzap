@@ -5,6 +5,8 @@ from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.controllers.main_window import MainWindow
 from PyQt6.QtCore import QStandardPaths
 
+from zapzap.service.portal_config import checkSettings, get_setting
+
 if __name__ == "__main__":
     # se deixar como wayland é aplicado a decoração da janela padrão do QT e não do sistema
     # Via Flatpak o --socket é quem define como será executado
@@ -16,8 +18,8 @@ if __name__ == "__main__":
     app.setDesktopFileName(zapzap.__desktopid__)
     app.setOrganizationDomain(zapzap.__domain__)
 
-    # criar o db se não existir
-    # db.createDB()
+    # configurações do app
+    checkSettings()
 
     # garante que teremos o diretório tmp para as fotos dos usuários utilizados nas notificações
     path = QStandardPaths.writableLocation(
@@ -28,6 +30,15 @@ if __name__ == "__main__":
     window = MainWindow(app)
     app.setWindow(window)
     app.setActivationWindow(window)
-    window.show()
+
+    # Aplica as configurações
+    if get_setting('start_hide'):
+        window.hide()
+    else:
+        window.show()
+    
+    if get_setting('night_mode'):
+        window.toggle_stylesheet()
+
 
     sys.exit(app.exec())

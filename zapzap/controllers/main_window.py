@@ -112,7 +112,7 @@ class MainWindow(QMainWindow):
         with open(path, 'r') as f:
             style = f.read()
 
-            # Set the stylesheet of the application
+        # Set the stylesheet of the application
         self.app.setStyleSheet(style)
 
     # Mapeamento dos atalhos
