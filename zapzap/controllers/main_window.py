@@ -109,11 +109,11 @@ class MainWindow(QMainWindow):
             self.drawer.settings.night_mode.setChecked(True)
             self.isTheme = True
 
-        with open(path, 'r') as f:
+        """with open(path, 'r') as f:
             style = f.read()
 
         # Set the stylesheet of the application
-        self.app.setStyleSheet(style)
+        self.app.setStyleSheet(style)"""
 
     # Mapeamento dos atalhos
     def keyPressEvent(self, e):
