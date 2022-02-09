@@ -1,7 +1,6 @@
-from multiprocessing.spawn import import_main_path
 from PyQt6.QtWidgets import QWidget
 from PyQt6 import uic
-from zapzap.service.portal_config import write_json
+from zapzap.service.portal_config import write_json, get_setting
 
 
 class Settings(QWidget):
@@ -10,6 +9,8 @@ class Settings(QWidget):
         uic.loadUi('zapzap/view/settings.ui', self)
 
         self.parent = parent
+
+        self.loadConfigChecked()
 
         self.closeButton.clicked.connect(parent.onToggled)
 
@@ -44,3 +45,23 @@ class Settings(QWidget):
         self.show_msg.setEnabled(s)
 
         write_json('notify_desktop', bool(s))
+
+    def loadConfigChecked(self):
+        ## Sistema
+        self.start_system.setChecked(get_setting("start_system"))
+        # habilita
+        self.start_hide.setEnabled(get_setting("start_system"))
+        # checked
+        self.start_hide.setChecked(get_setting("start_hide"))
+        #self.night_mode.setChecked(get_setting("night_mode")) está no main por causa do atalho
+
+        ## Notificações
+        self.notify_desktop.setChecked(get_setting("notify_desktop"))
+        # habilita ou desabilita
+        self.show_photo.setEnabled(get_setting("notify_desktop"))
+        self.show_name.setEnabled(get_setting("notify_desktop"))
+        self.show_msg.setEnabled(get_setting("notify_desktop"))
+        # checked
+        self.show_photo.setChecked(get_setting("show_photo"))
+        self.show_name.setChecked(get_setting("show_name"))
+        self.show_msg.setChecked(get_setting("show_msg"))
