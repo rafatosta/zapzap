@@ -1,13 +1,14 @@
 from PyQt6.QtWidgets import QWidget
-from PyQt6 import uic
+#from PyQt6 import uic
 from zapzap.services.portal_config import write_json, get_setting
 from zapzap.services.portal_desktop import createDesktop, removeDesktop
+from zapzap.view.settings import Ui_settings
 
-
-class Settings(QWidget):
+class Settings(QWidget, Ui_settings):
     def __init__(self, parent=None):
         super().__init__(parent)
-        uic.loadUi('zapzap/view/settings.ui', self)
+        self.setupUi(self)
+        #uic.loadUi('zapzap/view/settings.ui', self)
 
         self.parent = parent
 

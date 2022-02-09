@@ -1,15 +1,17 @@
 
 from PyQt6.QtWidgets import QWidget
 from PyQt6.QtCore import QPropertyAnimation, QAbstractAnimation
-from PyQt6 import uic
+#from PyQt6 import uic
 
 from zapzap.controllers.settings import Settings
+from zapzap.view.drawer import Ui_drawer
 
 
-class Drawer(QWidget):
+class Drawer(QWidget, Ui_drawer):
     def __init__(self, parent=None):
         super().__init__(parent)
-        uic.loadUi('zapzap/view/drawer.ui', self)
+        #uic.loadUi('zapzap/view/drawer.ui', self)
+        self.setupUi(self)
         self._maximum_width = parent.width()
         self.parent = parent
 
