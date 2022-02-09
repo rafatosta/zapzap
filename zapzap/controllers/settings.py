@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QWidget
 from PyQt6 import uic
-from zapzap.service.portal_config import write_json, get_setting
-from zapzap.service.portal_desktop import createDesktop, removeDesktop
+from zapzap.services.portal_config import write_json, get_setting
+from zapzap.services.portal_desktop import createDesktop, removeDesktop
 
 
 class Settings(QWidget):
