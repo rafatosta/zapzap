@@ -12,7 +12,6 @@ try:
         license='GPLv3+',
         packages=['zapzap',
                   'zapzap.controllers',
-                  'zapzap.model',
                   'zapzap.engine',
                   'zapzap.services'],
         setup_requires=setup_requires,
