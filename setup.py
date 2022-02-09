@@ -7,7 +7,7 @@ try:
         version=zapzap.__version__,
         author=zapzap.__author__,
         author_email=zapzap.__email__,
-        description='Web App for Whatsapp',
+        description=zapzap.__comment__,
         url=zapzap.__website__,
         license='GPLv3+',
         packages=['zapzap',

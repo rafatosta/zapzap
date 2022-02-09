@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QWidget
 from PyQt6 import uic
 from zapzap.service.portal_config import write_json, get_setting
+from zapzap.service.portal_desktop import createDesktop, removeDesktop
 
 
 class Settings(QWidget):
@@ -36,6 +37,12 @@ class Settings(QWidget):
 
     def state_start_system(self, s):
         self.start_hide.setEnabled(s)
+        # cria ou remove o arquivo
+
+        if bool(s):
+            createDesktop()
+        else:
+            removeDesktop()
 
         write_json('start_system', bool(s))
 
@@ -47,15 +54,15 @@ class Settings(QWidget):
         write_json('notify_desktop', bool(s))
 
     def loadConfigChecked(self):
-        ## Sistema
+        # Sistema
         self.start_system.setChecked(get_setting("start_system"))
         # habilita
         self.start_hide.setEnabled(get_setting("start_system"))
         # checked
         self.start_hide.setChecked(get_setting("start_hide"))
-        #self.night_mode.setChecked(get_setting("night_mode")) está no main por causa do atalho
+        # self.night_mode.setChecked(get_setting("night_mode")) está no main por causa do atalho
 
-        ## Notificações
+        # Notificações
         self.notify_desktop.setChecked(get_setting("notify_desktop"))
         # habilita ou desabilita
         self.show_photo.setEnabled(get_setting("notify_desktop"))

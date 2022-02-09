@@ -32,13 +32,12 @@ if __name__ == "__main__":
     app.setActivationWindow(window)
 
     # Aplica as configurações
-    if get_setting('start_hide'):
+    if get_setting('start_system') and get_setting('start_hide'):
         window.hide()
     else:
         window.show()
-    
+
     if get_setting('night_mode'):
         window.toggle_stylesheet()
-
 
     sys.exit(app.exec())

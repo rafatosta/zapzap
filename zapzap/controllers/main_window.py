@@ -86,8 +86,8 @@ class MainWindow(QMainWindow):
 
     # Evento ao fechar a janela.
     def closeEvent(self, event):
-        # self.hide()
-        # self.on_hide()
+        self.hide()
+        self.on_hide()
         self.close()
         event.ignore()
 
