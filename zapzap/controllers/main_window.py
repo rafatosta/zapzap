@@ -99,12 +99,12 @@ class MainWindow(QMainWindow):
     def toggle_stylesheet(self):
         #salvar as preferêcias
         if self.isTheme:
-            path = 'zapzap/assets/stylesheets/light/stylesheet.qss'
+            path = '/assets/stylesheets/light/stylesheet.qss'
             self.browser.whats.setTheme('light')
             self.drawer.settings.night_mode.setChecked(False)
             self.isTheme = False
         else:
-            path = 'zapzap/assets/stylesheets/dark/stylesheet.qss'
+            path = '/assets/stylesheets/dark/stylesheet.qss'
             self.browser.whats.setTheme('dark')
             self.drawer.settings.night_mode.setChecked(True)
             self.isTheme = True
