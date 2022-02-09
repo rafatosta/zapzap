@@ -17,6 +17,8 @@ finish-args:
   - "--device=all"
   - "--env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess"
   - "--talk-name=org.kde.StatusNotifierWatcher"
+  - "--unset-env=XDG_DATA_HOME"
+  - "--filesystem=xdg-config/autostart:create"
 cleanup:
   - /include
   - /lib/pkgconfig
