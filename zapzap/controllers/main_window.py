@@ -3,8 +3,8 @@ from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
 from zapzap.controllers.drawer import Drawer
-import os
 from zapzap.engine.browser import Browser
+from PyQt6.QtCore import QStandardPaths
 
 
 class MainWindow(QMainWindow):
@@ -98,22 +98,25 @@ class MainWindow(QMainWindow):
 
     def toggle_stylesheet(self):
         #salvar as preferêcias
+        path = QStandardPaths.standardLocations(
+            QStandardPaths.StandardLocation.ApplicationsLocation)
+        print(path)
         if self.isTheme:
-            #path = 'zapzap/assets/stylesheets/light/stylesheet.qss'
+            path = 'zapzap/assets/stylesheets/light/stylesheet.qss'
             self.browser.whats.setTheme('light')
             self.drawer.settings.night_mode.setChecked(False)
             self.isTheme = False
         else:
-            #path = 'zapzap/assets/stylesheets/dark/stylesheet.qss'
+            path = 'zapzap/assets/stylesheets/dark/stylesheet.qss'
             self.browser.whats.setTheme('dark')
             self.drawer.settings.night_mode.setChecked(True)
             self.isTheme = True
 
-        """with open(path, 'r') as f:
+        with open(path, 'r') as f:
             style = f.read()
 
         # Set the stylesheet of the application
-        self.app.setStyleSheet(style)"""
+        self.app.setStyleSheet(style)
 
     # Mapeamento dos atalhos
     def keyPressEvent(self, e):
