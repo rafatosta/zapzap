@@ -14,7 +14,7 @@ try:
                   'zapzap.controllers',
                   'zapzap.engine',
                   'zapzap.services',
-                  'zapzap.view']
+                  'zapzap.view'],
         setup_requires=setup_requires,
         entry_points={'gui_scripts': ['zapzap = zapzap.__main__:main']},
         keywords='zapzap whatsapp client web app',
