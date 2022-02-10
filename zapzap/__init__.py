@@ -22,8 +22,8 @@ print(QFileInfo(__file__).absolutePath())
 
 
 ## Temas
-theme_light_path = absolutePath+'/zapzap/assets/stylesheets/light/stylesheet.qss'
-theme_dark_path = absolutePath+'/zapzap/assets/stylesheets/dark/stylesheet.qss'
+theme_light_path = absolutePath+'/assets/stylesheets/light/stylesheet.qss'
+theme_dark_path = absolutePath+'/assets/stylesheets/dark/stylesheet.qss'
 
 ## Tray
 tray_path = absolutePath+'/zapzap/assets/icons/tray/tray.svg'
