@@ -97,10 +97,7 @@ class MainWindow(QMainWindow):
         super().resizeEvent(event)
 
     def toggle_stylesheet(self):
-        from PyQt6.QtCore import QFileInfo
         # salvar as preferêcias
-        
-        print(QFileInfo(__file__).absolutePath())
         if self.isTheme:
             path = theme_light_path
             self.browser.whats.setTheme('light')

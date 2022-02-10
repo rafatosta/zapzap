@@ -16,15 +16,11 @@ __user_agent__ = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, lik
 
 
 # iniciando os paths
-from PyQt6.QtCore import QFileInfo
-absolutePath = QFileInfo(__file__).absolutePath()
-print(QFileInfo(__file__).absolutePath())
-
 
 ## Temas
-theme_light_path = absolutePath+'/assets/stylesheets/light/stylesheet.qss'
-theme_dark_path = absolutePath+'/assets/stylesheets/dark/stylesheet.qss'
+theme_light_path = 'zapzap/assets/stylesheets/light/stylesheet.qss'
+theme_dark_path = 'zapzap/assets/stylesheets/dark/stylesheet.qss'
 
 ## Tray
-tray_path = absolutePath+'/assets/icons/tray/tray.svg'
-tray_notify_path = absolutePath+'/assets/icons/tray/tray_notify.svg'
+tray_path = 'zapzap/assets/icons/tray/tray.svg'
+tray_notify_path = 'zapzap/assets/icons/tray/tray_notify.svg'
