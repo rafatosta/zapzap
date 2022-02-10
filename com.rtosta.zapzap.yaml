@@ -44,6 +44,10 @@ modules:
       - install -Dm644 share/icons/${FLATPAK_ID}.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - install -Dm644 share/applications/${FLATPAK_ID}.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
       - install -Dm644 share/metainfo/${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.appdata.xml
+      - install -Dm644 zapzap/assets/stylesheets/light/stylesheet.qss ${FLATPAK_DEST}/zapzap/assets/stylesheets/light/stylesheet.qss
+      - install -Dm644 zapzap/assets/stylesheets/dark/stylesheet.qss ${FLATPAK_DEST}/zapzap/assets/stylesheets/dark/stylesheet.qss
+      - install -Dm644 zapzap/assets/icons/tray/tray.svg ${FLATPAK_DEST}/zapzap/assets/icons/tray/tray.svg
+      - install -Dm644 zapzap/assets/icons/tray/tray_notify.svg ${FLATPAK_DEST}/zapzap/assets/icons/tray/tray_notify.svg
     sources:
       - type: git
         url: https://github.com/rafatosta/zapzap.git
