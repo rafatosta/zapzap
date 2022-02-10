@@ -4,7 +4,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
 from zapzap.controllers.drawer import Drawer
 from zapzap.engine.browser import Browser
-from PyQt6.QtCore import QStandardPaths
+from zapzap import theme_light_path, theme_dark_path, tray_path
 
 
 class MainWindow(QMainWindow):
@@ -37,7 +37,7 @@ class MainWindow(QMainWindow):
     def createTrayIcon(self):
         # Criando o tray icon
         self.tray = QSystemTrayIcon()
-        self.tray.setIcon(QIcon('zapzap/assets/icons/tray/tray.svg'))
+        self.tray.setIcon(QIcon(tray_path))
         self.tray.activated.connect(self.onTrayIconActivated)
 
         # Itens para o menu do tray icon
@@ -97,24 +97,24 @@ class MainWindow(QMainWindow):
         super().resizeEvent(event)
 
     def toggle_stylesheet(self):
-        #salvar as preferêcias
-       
+        # salvar as preferêcias
+
         if self.isTheme:
-            #path = 'zapzap/assets/stylesheets/light/stylesheet.qss'
+            path = theme_light_path
             self.browser.whats.setTheme('light')
             self.drawer.settings.night_mode.setChecked(False)
             self.isTheme = False
         else:
-            #path = 'zapzap/assets/stylesheets/dark/stylesheet.qss'
+            path = theme_dark_path
             self.browser.whats.setTheme('dark')
             self.drawer.settings.night_mode.setChecked(True)
             self.isTheme = True
 
-        #with open(path, 'r') as f:
-        #    style = f.read()
+        with open(path, 'r') as f:
+            style = f.read()
 
         # Set the stylesheet of the application
-        #self.app.setStyleSheet(style)
+        self.app.setStyleSheet(style)
 
     # Mapeamento dos atalhos
     def keyPressEvent(self, e):
@@ -123,5 +123,4 @@ class MainWindow(QMainWindow):
         if e.key() == Qt.Key.Key_Alt:
             self.drawer.onToggled()
         if e.key() == Qt.Key.Key_F1:
-           self.toggle_stylesheet()
-            
+            self.toggle_stylesheet()

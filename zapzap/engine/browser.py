@@ -67,12 +67,10 @@ class Browser(QWebEngineView):
             int(num)
         except:
             self.parent.setWindowTitle(zapzap.__appname__)
-            self.parent.tray.setIcon(
-                QIcon('zapzap/assets/icons/tray/tray.svg'))
+            self.parent.tray.setIcon(QIcon(zapzap.tray_path))
         else:
             self.parent.setWindowTitle("("+num+") - "+zapzap.__appname__)
-            self.parent.tray.setIcon(
-                QIcon('zapzap/assets/icons/tray/tray_notify.svg'))
+            self.parent.tray.setIcon(QIcon(zapzap.tray_notify_path))
 
     def show_notification(self, notification):
         if get_setting('notify_desktop'):

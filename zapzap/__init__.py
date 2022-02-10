@@ -13,3 +13,16 @@ __bugreport__ = 'https://github.com/rafatosta/zapzap/issues'
 __whatsapp_url__ = 'https://web.whatsapp.com/'
 # Link para pegar o userAgent: http://httpbin.org/user-agent
 __user_agent__ = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36"
+
+
+# iniciando os paths
+from PyQt6.QtCore import QFileInfo
+absolutePath = QFileInfo(__file__).absolutePath()
+
+## Temas
+theme_light_path = absolutePath+'/assets/stylesheets/light/stylesheet.qss'
+theme_dark_path = absolutePath+'/assets/stylesheets/dark/stylesheet.qss'
+
+## Tray
+tray_path = absolutePath+'/assets/icons/tray/tray.svg'
+tray_notify_path = absolutePath+'/assets/icons/tray/tray_notify.svg'
