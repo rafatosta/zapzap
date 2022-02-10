@@ -31,7 +31,25 @@
   <update_contact>rafa.ecomp@gmail.com</update_contact>
   <developer_name>Rafael Tosta</developer_name>
   <releases>
-  <release date="2022-02-01" version="1.2">
+    <release date="2022-02-10" version="2.0">
+      <description>
+        <p>System integration</p>
+          <ul>
+            <li>Start ZapZap with the system</li>
+            <li>Start minimized</li>
+            <li>Night mode</li>
+          </ul>
+        
+        <p>Chat notifications</p>
+          <ul>
+            <li>Notifications on the desktop</li>
+            <li>Show the photo of the sender</li>
+            <li>Show the sender's name</li>
+            <li>Show message preview</li>     
+          </ul>
+      </description>
+    </release>
+    <release date="2022-02-01" version="1.2">
       <description>
         <p>Fix Chrome Upgrade 60+</p>
       </description>
