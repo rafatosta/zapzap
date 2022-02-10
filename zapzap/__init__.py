@@ -26,5 +26,5 @@ theme_light_path = absolutePath+'/assets/stylesheets/light/stylesheet.qss'
 theme_dark_path = absolutePath+'/assets/stylesheets/dark/stylesheet.qss'
 
 ## Tray
-tray_path = absolutePath+'/zapzap/assets/icons/tray/tray.svg'
-tray_notify_path = absolutePath+'zapzap/assets/icons/tray/tray_notify.svg'
+tray_path = absolutePath+'/assets/icons/tray/tray.svg'
+tray_notify_path = absolutePath+'/assets/icons/tray/tray_notify.svg'

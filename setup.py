@@ -15,7 +15,7 @@ try:
                   'zapzap.engine',
                   'zapzap.services',
                   'zapzap.view',
-                  'zapzap.assets'],
+                  'zapzap.assets','zapzap.assets.icons','zapzap.assets.stylesheets','zapzap.assets.stylesheets.dark','zapzap.assets.stylesheets.light'],
         setup_requires=setup_requires,
         entry_points={'gui_scripts': ['zapzap = zapzap.__main__:main']},
         keywords='zapzap whatsapp client web app',
