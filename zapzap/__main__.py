@@ -38,8 +38,9 @@ def main():
     else:
         window.show()
 
-    #if get_setting('night_mode'):
-    #    window.toggle_stylesheet()
+    if get_setting('night_mode'):
+        window.toggle_stylesheet()
+   
 
     sys.exit(app.exec())
 
