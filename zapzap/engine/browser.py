@@ -74,7 +74,7 @@ class Browser(QWebEngineView):
 
     def show_notification(self, notification):
         if get_setting('notify_desktop'):
-            zapzap.service.dbus_notify.show(notification)
+            zapzap.services.dbus_notify.show(notification)
 
     def doReload(self):
         self.triggerPageAction(QWebEnginePage.WebAction.ReloadAndBypassCache)
