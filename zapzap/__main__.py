@@ -34,7 +34,7 @@ def main():
 
     # Aplica as configurações
     if get_setting('start_system') and get_setting('start_hide'):
-        window.hide()
+        window.on_hide()
     else:
         window.show()
 
