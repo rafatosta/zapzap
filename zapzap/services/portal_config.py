@@ -29,7 +29,6 @@ def checkSettings():
         with open(j_file):
             pass
     except Exception as msg:
-        print('>>>>>> ', msg)
         if not isdir(j_folder):
             makedirs(j_folder)
         with open(j_file, 'w') as jfile:
