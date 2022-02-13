@@ -118,7 +118,5 @@ class MainWindow(QMainWindow):
     def keyPressEvent(self, e):
         if e.key() == Qt.Key.Key_F5:
             self.browser.doReload()
-        if e.key() == Qt.Key.Key_Alt:
-            self.drawer.onToggled()
         if e.key() == Qt.Key.Key_F1:
             self.toggle_stylesheet()
