@@ -97,7 +97,6 @@ class MainWindow(QMainWindow):
         super().resizeEvent(event)
 
     def toggle_stylesheet(self):
-        # salvar as preferêcias
         if self.isTheme:
             path = theme_light_path
             self.browser.whats.setTheme('light')

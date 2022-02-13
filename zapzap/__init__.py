@@ -18,7 +18,6 @@ __user_agent__ = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, lik
 # iniciando os paths
 from PyQt6.QtCore import QFileInfo
 flatpak = QFileInfo(__file__).absolutePath().startswith('/app/')
-print(flatpak)
 
 flatpak_paht = ''
 if flatpak:

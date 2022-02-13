@@ -30,7 +30,6 @@ class WhatsApp(QWebEnginePage):
             self.runJavaScript("""
                 const checkExist = setInterval(() => {
                     const classElement = document.getElementsByClassName("_1XkO3")[0];
-                    console.log('checkExist');
                     if (classElement != null) {
                         classElement.style = 'width: 100vw; height: 100vh; position: unset'
                         clearInterval(checkExist);
