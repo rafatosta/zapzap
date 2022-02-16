@@ -1,11 +1,11 @@
 from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon, QMenu
-from PyQt6.QtGui import QIcon
+from PyQt6.QtGui import QIcon, QAction
 from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QAction
 from zapzap.controllers.drawer import Drawer
 from zapzap.engine.browser import Browser
 from zapzap import theme_light_path, theme_dark_path, tray_path
 from zapzap.services.portal_config import get_setting
+
 
 class MainWindow(QMainWindow):
     def __init__(self, app):
@@ -27,7 +27,6 @@ class MainWindow(QMainWindow):
 
         # aplica o estilo inicial
         self.toggle_stylesheet()
-        
 
     def createDrawer(self):
         self.drawer = Drawer(self)
