@@ -41,15 +41,15 @@ class MainWindow(QMainWindow):
         self.tray.activated.connect(self.onTrayIconActivated)
 
         # Itens para o menu do tray icon
-        self.trayHide = QAction('Hide', self)
-        self.trayHide.triggered.connect(self.on_hide)
+        self.trayShow = QAction('Show', self)
+        self.trayShow.triggered.connect(self.on_show)
 
         self.trayExit = QAction('Exit', self)
         self.trayExit.triggered.connect(lambda: self.app.quit())
 
         # Cria o Menu e adiciona as ações
         self.trayMenu = QMenu()
-        self.trayMenu.addAction(self.trayHide)
+        self.trayMenu.addAction(self.trayShow)
         self.trayMenu.addAction(self.trayExit)
 
         self.tray.setContextMenu(self.trayMenu)
@@ -65,18 +65,7 @@ class MainWindow(QMainWindow):
     # Abrindo o webapp do system tray.
     def on_show(self):
         self.show()
-        self.trayHide.setText('Hide')
-        self.trayHide.triggered.connect(self.on_hide)
         self.app.activateWindow()  # ao mostrar move a janela para a área de trabalho atual
-
-    # Minimizando para o system tray.
-    def on_hide(self):
-        # Evitando que o programa minimize ao invés de maximizar ao reabri-lo
-        if self.isMinimized():
-            self.show()
-        self.hide()
-        self.trayHide.setText('Show')
-        self.trayHide.triggered.connect(self.on_show)
 
     # Evento para mostrar e ocultar a janela com apenas dois clique ou botão do meio no tray icon. Com um click abre o menu.
     def onTrayIconActivated(self, reason):
@@ -87,7 +76,6 @@ class MainWindow(QMainWindow):
     # Evento ao fechar a janela.
     def closeEvent(self, event):
         self.hide()
-        self.on_hide()
         self.close()
         event.ignore()
 
