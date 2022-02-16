@@ -1,15 +1,13 @@
 from PyQt6.QtWebEngineWidgets import QWebEngineView
-from PyQt6.QtWebEngineCore import QWebEnginePage
-from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QAction
+from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest,QWebEngineProfile, QWebEngineSettings
+from PyQt6.QtCore import Qt,QUrl
+from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtWidgets import QFileDialog
-from PyQt6.QtGui import QIcon
 from zapzap.engine.whatsapp import WhatsApp
-from PyQt6.QtCore import QFileInfo, QUrl
 import zapzap
 import zapzap.services.dbus_notify
 from zapzap.services.portal_config import get_setting
+import os
 
 
 class Browser(QWebEngineView):
@@ -49,15 +47,19 @@ class Browser(QWebEngineView):
         quitAction.triggered.connect(self.doReload)
         self.addAction(quitAction)
 
-    # Função que possibilita o download de arquivos.
+    # Download de arquivos
     def download(self, download):
-        old_path = download.url().path()
-        suffix = QFileInfo(old_path).suffix()
-        path = QFileDialog.getSaveFileName(
-            self, "Save File", old_path, "*." + suffix)[0]
-        if path:
-            download.url().setPath(path)
-            download.accept()
+        if (download.state() == QWebEngineDownloadRequest.DownloadState.DownloadRequested):
+            path, _ = QFileDialog.getSaveFileName(
+                self, self.tr("Save file"), download.downloadFileName())
+            print(">> path: ", path)
+            if path:
+                # define a pasta para download. Por padrão é /user/downloads
+                download.setDownloadDirectory(os.path.dirname(path))
+                # Atualiza o nome do arquivo
+                download.setDownloadFileName(os.path.basename(path))
+                download.url().setPath(path)
+                download.accept()
 
     # verifica se há uma nova notificação a partir do título
     # a quantidade de mensagens pendentes é mostrada no título na página. Ex: (2) Whatsapp
