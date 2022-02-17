@@ -1,4 +1,4 @@
-__version__ = '2.0'
+__version__ = '2.1'
 __appname__ = 'ZapZap'
 __comment__ = 'Whatsapp Desktop for linux'
 __domain__ = 'com.rtosta'
