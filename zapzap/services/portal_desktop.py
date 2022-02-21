@@ -1,5 +1,5 @@
 from zapzap import __version__, __appname__, __comment__
-from PyQt6.QtCore import QStandardPaths, QFileInfo
+from PyQt6.QtCore import QStandardPaths
 import os
 
 path_data = QStandardPaths.writableLocation(
@@ -7,15 +7,12 @@ path_data = QStandardPaths.writableLocation(
 
 
 def createDesktop():
-    # define a string de execução a depender do ambiente
-    exec = '/usr/bin/flatpak run --command=zapzap com.rtosta.zapzap' if QFileInfo(
-        __file__).absolutePath().startswith('/app/') else 'zapzap'
     conteudo = f"""[Desktop Entry]
     Name={__appname__}
     Comment= {__comment__}
     Version={__version__}
     Type=Application
-    Exec={exec}
+    Exec=/usr/bin/flatpak run --command=zapzap com.rtosta.zapzap
     Icon=com.rtosta.zapzap
     Terminal=false
     Categories=Network;InstantMessaging;

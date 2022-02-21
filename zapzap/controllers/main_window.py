@@ -4,7 +4,6 @@ from PyQt6.QtCore import Qt
 from zapzap.controllers.drawer import Drawer
 from zapzap.engine.browser import Browser
 from zapzap import theme_light_path, theme_dark_path, tray_path
-from zapzap.services.portal_config import get_setting
 
 
 class MainWindow(QMainWindow):
