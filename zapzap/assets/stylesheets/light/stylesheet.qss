@@ -7,6 +7,7 @@ QWidget
     selection-color: #41525D;
     background-clip: border;
     border-image: none;
+    border-radius: 5px; 
 }
 
 QWidget#blur{
@@ -62,6 +63,11 @@ QPushButton#okButton:hover
 {
     background-color:#005849;
      border: 0.04em solid #005849;
+}
+
+QPushButton#closeButton:hover
+{
+    color:#FF0000;
 }
 
 /****** QLINEEDIT ******/
@@ -132,4 +138,3 @@ QCheckBox::indicator
     width: 1em;
     height: 1em;
 }
-
