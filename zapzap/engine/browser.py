@@ -52,7 +52,6 @@ class Browser(QWebEngineView):
         if (download.state() == QWebEngineDownloadRequest.DownloadState.DownloadRequested):
             path, _ = QFileDialog.getSaveFileName(
                 self, self.tr("Save file"), download.downloadFileName())
-            print(">> path: ", path)
             if path:
                 # define a pasta para download. Por padrão é /user/downloads
                 download.setDownloadDirectory(os.path.dirname(path))
