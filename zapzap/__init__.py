@@ -1,4 +1,4 @@
-__version__ = '2.1'
+__version__ = '2.2'
 __appname__ = 'ZapZap'
 __comment__ = 'Whatsapp Desktop for linux'
 __domain__ = 'com.rtosta'
@@ -18,7 +18,7 @@ __user_agent__ = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, lik
 # iniciando os paths
 from PyQt6.QtCore import QFileInfo
 abs_path = QFileInfo(__file__).absolutePath()
-print(abs_path)
+
 # Temas
 theme_light_path = abs_path+'/assets/stylesheets/light/stylesheet.qss'
 theme_dark_path = abs_path+'/assets/stylesheets/dark/stylesheet.qss'
