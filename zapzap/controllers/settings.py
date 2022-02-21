@@ -1,14 +1,15 @@
 from PyQt6.QtWidgets import QWidget
-#from PyQt6 import uic
+from PyQt6 import uic
+
 from zapzap.services.portal_config import write_json, get_setting
 from zapzap.services.portal_desktop import createDesktop, removeDesktop
-from zapzap.view.settings import Ui_settings
+from zapzap import abs_path
 
-class Settings(QWidget, Ui_settings):
+
+class Settings(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setupUi(self)
-        #uic.loadUi('zapzap/view/settings.ui', self)
+        uic.loadUi(abs_path+'/view/settings.ui', self)
 
         self.parent = parent
 
@@ -73,3 +74,6 @@ class Settings(QWidget, Ui_settings):
         self.show_photo.setChecked(get_setting("show_photo"))
         self.show_name.setChecked(get_setting("show_name"))
         self.show_msg.setChecked(get_setting("show_msg"))
+
+    def mousePressEvent(self, event):
+        pass

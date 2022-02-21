@@ -1,20 +1,17 @@
 
 from PyQt6.QtWidgets import QWidget
 from PyQt6.QtCore import QPropertyAnimation, QAbstractAnimation
-#from PyQt6 import uic
-
+from PyQt6 import uic
 from zapzap.controllers.settings import Settings
-from zapzap.view.drawer import Ui_drawer
+from zapzap import abs_path
 
 
-class Drawer(QWidget, Ui_drawer):
+class Drawer(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        #uic.loadUi('zapzap/view/drawer.ui', self)
-        self.setupUi(self)
+        uic.loadUi(abs_path+'/view/drawer.ui', self)
         self._maximum_width = parent.width()
         self.parent = parent
-
         self.isOpen = True
 
         self._animation = QPropertyAnimation(self, b"width")
@@ -61,3 +58,7 @@ class Drawer(QWidget, Ui_drawer):
         self._animation.setDuration(100)
         self._animation.setDirection(QAbstractAnimation.Direction.Backward)
         self._animation.start()
+
+    def mousePressEvent(self, event):
+        if self.isOpen == False:
+            self.onToggled()
