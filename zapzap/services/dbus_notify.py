@@ -6,36 +6,36 @@ from zapzap.services.portal_config import get_setting
 
 
 def show(q_notification):
-        item = "org.freedesktop.Notifications"
-        path = "/org/freedesktop/Notifications"
-        interface = "org.freedesktop.Notifications"
-        id_num_to_replace = 0
-        actions = {}
-        app_name = __appname__
-        hints = {}
-        time = 2000 
-        bus = QDBusConnection.sessionBus()
-        notify = QDBusInterface(item, path, interface, bus)
+    item = "org.freedesktop.Notifications"
+    path = "/org/freedesktop/Notifications"
+    interface = "org.freedesktop.Notifications"
+    id_num_to_replace = 0
+    actions = {}
+    app_name = __appname__
+    hints = {}
+    time = 2000 
+    bus = QDBusConnection.sessionBus()
+    notify = QDBusInterface(item, path, interface, bus)
 
-        icon = getPathImage(q_notification.icon(), q_notification.title(
-                )) if get_setting('show_photo') else 'com.rtosta.zapzap'
+    icon = getPathImage(q_notification.icon(), q_notification.title(
+            )) if get_setting('show_photo') else 'com.rtosta.zapzap'
 
-        title = q_notification.title() if get_setting('show_name') else __appname__
+    title = q_notification.title() if get_setting('show_name') else __appname__
 
-        message = q_notification.message() if get_setting('show_msg') else 'New message...'
+    message = q_notification.message() if get_setting('show_msg') else 'New message...'
 
-        if not bus.isConnected():
-            print("Bus is not connected.")
-            return
+    if not bus.isConnected():
+        print("Bus is not connected.")
+        return
 
-        if notify.isValid():
-            retval = notify.call(QDBus.CallMode.AutoDetect, "Notify", app_name,
-                            id_num_to_replace, icon, title, message,
-                            actions, hints, time)
-            if retval.errorName():
-                print("Failed to send notification: ", retval.errorMessage())
-        else:
-            print("Invalid interface.")
+    if notify.isValid():
+        retval = notify.call(QDBus.CallMode.AutoDetect, "Notify", app_name,
+                        id_num_to_replace, icon, title, message,
+                        actions, hints, time)
+        if retval.errorName():
+            print("Failed to send notification: ", retval.errorMessage())
+    else:
+        print("Invalid interface.")
 
 
 
