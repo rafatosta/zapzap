@@ -1,12 +1,10 @@
 from PyQt6.QtWebEngineWidgets import QWebEngineView
-from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest,QWebEngineProfile, QWebEngineSettings
-from PyQt6.QtCore import Qt,QUrl
+from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest, QWebEngineProfile, QWebEngineSettings
+from PyQt6.QtCore import Qt, QUrl
 from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtWidgets import QFileDialog
 from zapzap.engine.whatsapp import WhatsApp
 import zapzap
-#from zapzap.services.zap_notification import ZapNotification
-import zapzap.services.dbus_notify as dbus_notify 
 from zapzap.services.portal_config import get_setting
 import os
 
@@ -76,9 +74,8 @@ class Browser(QWebEngineView):
 
     def show_notification(self, notification):
         if get_setting('notify_desktop'):
-            zap = dbus_notify.ZapNotifications(notification, self.parent)
-            zap.show()
-            #dbus_notify.show(notification, lambda: self.parent.on_show)
-    
+            self.parent.tray.showMessage(notification.title(
+            ), notification.message(), QIcon(zapzap.tray_notify_path), 1000)
+
     def doReload(self):
         self.triggerPageAction(QWebEnginePage.WebAction.ReloadAndBypassCache)

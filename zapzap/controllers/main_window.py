@@ -37,6 +37,7 @@ class MainWindow(QMainWindow):
         self.tray = QSystemTrayIcon()
         self.tray.setIcon(QIcon(tray_path))
         self.tray.activated.connect(self.onTrayIconActivated)
+        self.tray.messageClicked.connect(self.onTrayMessageClicked)
 
         # Itens para o menu do tray icon
         self.trayShow = QAction('Show', self)
@@ -70,6 +71,10 @@ class MainWindow(QMainWindow):
         if reason == QSystemTrayIcon.ActivationReason.Trigger or reason == QSystemTrayIcon.ActivationReason.MiddleClick:
             self.on_show()
             self.app.activateWindow()
+
+    def onTrayMessageClicked(self):
+        self.on_show()
+        self.app.activateWindow()
 
     # Evento ao fechar a janela.
     def closeEvent(self, event):
