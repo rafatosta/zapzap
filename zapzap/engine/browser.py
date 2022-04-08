@@ -1,11 +1,10 @@
 from PyQt6.QtWebEngineWidgets import QWebEngineView
-from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest,QWebEngineProfile, QWebEngineSettings
-from PyQt6.QtCore import Qt,QUrl
-from PyQt6.QtGui import QAction, QIcon
+from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest, QWebEngineProfile, QWebEngineSettings
+from PyQt6.QtCore import Qt, QUrl, QStandardPaths
+from PyQt6.QtGui import QAction, QIcon, QPainter, QImage, QBrush, QPen
 from PyQt6.QtWidgets import QFileDialog
 from zapzap.engine.whatsapp import WhatsApp
 import zapzap
-import zapzap.services.dbus_notify
 from zapzap.services.portal_config import get_setting
 import os
 
@@ -75,7 +74,40 @@ class Browser(QWebEngineView):
 
     def show_notification(self, notification):
         if get_setting('notify_desktop'):
-            zapzap.services.dbus_notify.show(notification)
+            icon = self.getPathImage(notification.icon(), notification.title())
+            self.parent.tray.showMessage(notification.title(
+            ), notification.message(), QIcon(icon), 1000)
 
     def doReload(self):
         self.triggerPageAction(QWebEnginePage.WebAction.ReloadAndBypassCache)
+
+    def getPathImage(self, qin, title):
+        try:  # só por garantia de não quebrar a aplicação por causa de um ícone
+            path = QStandardPaths.writableLocation(
+                QStandardPaths.StandardLocation.AppLocalDataLocation)+'/tmp/'+title+'.png'
+
+            # deixa a foto arrendondada
+            qout = QImage(qin.width(), qin.height(),
+                          QImage.Format.Format_ARGB32)
+            qout.fill(Qt.GlobalColor.transparent)
+
+            brush = QBrush(qin)
+
+            pen = QPen()
+            pen.setColor(Qt.GlobalColor.darkGray)
+            pen.setJoinStyle(Qt.PenJoinStyle.RoundJoin)
+
+            painter = QPainter(qout)
+            painter.setBrush(brush)
+            painter.setPen(pen)
+            painter.setRenderHint(QPainter.RenderHint.Antialiasing, True)
+            painter.drawRoundedRect(0, 0, qin.width(), qin.height(),
+                                    qin.width()//2, qin.height()//2)
+            painter.end()
+            c = qout.save(path)
+            if not c:
+                return 'com.rtosta.zapzap'
+            else:
+                return path
+        except:
+            return 'com.rtosta.zapzap'
