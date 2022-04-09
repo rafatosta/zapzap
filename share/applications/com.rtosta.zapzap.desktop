@@ -9,3 +9,5 @@ Icon=com.rtosta.zapzap
 Terminal=false
 Categories=Network;InstantMessaging;
 StartupNotify=true
+DBusActivatable=true
+X-GNOME-UsesNotifications=true

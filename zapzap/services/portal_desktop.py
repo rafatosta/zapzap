@@ -16,9 +16,11 @@ def createDesktop():
     Icon=com.rtosta.zapzap
     Terminal=false
     Categories=Network;InstantMessaging;
-    StartupNotify=false
     X-GNOME-Autostart-Delay=60
-    X-Flatpak=com.rtosta.zapzap"""
+    X-Flatpak=com.rtosta.zapzap
+    StartupNotify=true
+    DBusActivatable=true
+    X-GNOME-UsesNotifications=true"""
 
     with open(path_data, 'w') as arquivo:
         arquivo.write(conteudo)
