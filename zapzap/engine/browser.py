@@ -5,7 +5,7 @@ from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtWidgets import QFileDialog
 from zapzap.engine.whatsapp import WhatsApp
 import zapzap
-import zapzap.services.dbus_notify as dbus_notify 
+from zapzap.services.dbus_notify import ZapNotifications
 from zapzap.services.portal_config import get_setting
 import os
 
@@ -75,7 +75,7 @@ class Browser(QWebEngineView):
 
     def show_notification(self, notification):
         if get_setting('notify_desktop'):
-            zap = dbus_notify.ZapNotifications(notification, self.parent)
+            zap = ZapNotifications(notification, self.parent)
             zap.show()
 
     def doReload(self):
