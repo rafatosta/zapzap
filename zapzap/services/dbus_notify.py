@@ -1,6 +1,6 @@
+import dbus
 from PyQt6.QtCore import QStandardPaths, Qt
 from PyQt6.QtGui import QPainter, QPainter, QImage, QBrush, QPen
-from PyQt6.QtDBus import QDBus, QDBusConnection, QDBusInterface
 from zapzap import __appname__
 from zapzap.services.portal_config import get_setting
 from dbus.mainloop.glib import DBusGMainLoop
@@ -22,8 +22,8 @@ class ZapNotifications:
         app_name = __appname__
         hints = {}
         time = 2000
-        bus = QDBusConnection.sessionBus()
-        notify = QDBusInterface(item, path, interface, bus)
+        bus = dbus.SessionBus()
+        notif = bus.get_object(item, path)
 
         # ações
         actions['view'] = ('View', self.manWindow.on_show, None)
@@ -37,18 +37,9 @@ class ZapNotifications:
         message = self.q_notification.message() if get_setting(
             'show_msg') else 'New message...'
 
-        if not bus.isConnected():
-            print("Bus is not connected.")
-            return
-
-        if notify.isValid():
-            retval = notify.call(QDBus.CallMode.AutoDetect, "Notify", app_name,
-                            id_num_to_replace, icon, title, message,
-                            actions, hints, time)
-            if retval.errorName():
-                print("Failed to send notification: ", retval.errorMessage())
-        else:
-            print("Invalid interface.")
+        notify = dbus.Interface(notif, interface)
+        notify.Notify(app_name, id_num_to_replace, icon,
+                      title, message, self._makeActionsList(actions), hints, time)
 
         # We have a mainloop, so connect callbacks
         notify.connect_to_signal(
@@ -58,16 +49,17 @@ class ZapNotifications:
             'NotificationClosed', self._onNotificationClosed)
 
     def _onNotificationClosed(self,nid, reason):
-        print("""Called when the notification is closed""")
-        nid, reason = int(nid), int(reason)
-        print(nid, reason)
+        #print("""Called when the notification is closed""")
+        #nid, reason = int(nid), int(reason)
+        #print(nid, reason)
+        pass
 
     def _onActionInvoked(self, nid, action):
         # Feito de maneira direta por ter apenas uma única ação
         # O correto seria tratar a ação vinda do action criado no dicionário de ações
-        print("""Called when a notification action is clicked""")
-        nid, action = int(nid), int(action)
-        print(nid, action)
+        #print("""Called when a notification action is clicked""")
+        #nid, action = int(nid), int(action)
+        #print(nid, action)
         self.manWindow.on_show()
 
     def _makeActionsList(self, actions):
