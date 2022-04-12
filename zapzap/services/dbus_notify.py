@@ -8,7 +8,6 @@ DBusGMainLoop(set_as_default=True)
 
 
 class ZapNotifications:
-
     def __init__(self, q_notification, manWindow) -> None:
         self.q_notification = q_notification
         self.manWindow = manWindow
@@ -26,7 +25,7 @@ class ZapNotifications:
         notif = bus.get_object(item, path)
 
         # ações
-        actions['view'] = ('View', self.manWindow.on_show, None)
+        #actions['view'] = ('View', self.manWindow.on_show, None)
 
         # <expressao1> if <condicao> else <expressao2>
         icon = self.getPathImage(self.q_notification.icon(), self.q_notification.title(
@@ -41,14 +40,14 @@ class ZapNotifications:
         notify.Notify(app_name, id_num_to_replace, icon,
                       title, message, self._makeActionsList(actions), hints, time)
 
-        # We have a mainloop, so connect callbacks
-        notify.connect_to_signal(
+        """# We have a mainloop, so connect callbacks
+        notify.X-Flatpak=com.rtosta.zapzap(
             'ActionInvoked', self._onActionInvoked)
 
         notify.connect_to_signal(
-            'NotificationClosed', self._onNotificationClosed)
+            'NotificationClosed', self._onNotificationClosed)"""
 
-    def _onNotificationClosed(self,nid, reason):
+    def _onNotificationClosed(self, nid, reason):
         #print("""Called when the notification is closed""")
         #nid, reason = int(nid), int(reason)
         #print(nid, reason)

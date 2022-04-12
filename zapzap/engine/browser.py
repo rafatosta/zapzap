@@ -1,7 +1,7 @@
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest,QWebEngineProfile, QWebEngineSettings
 from PyQt6.QtCore import Qt,QUrl
-from PyQt6.QtGui import QAction, QIcon
+from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QFileDialog
 from zapzap.engine.whatsapp import WhatsApp
 import zapzap
@@ -68,10 +68,10 @@ class Browser(QWebEngineView):
             int(num)
         except:
             self.parent.setWindowTitle(zapzap.__appname__)
-            self.parent.tray.setIcon(QIcon(zapzap.tray_path))
+            self.parent.tray.setIcon(zapzap.tray_path)
         else:
             self.parent.setWindowTitle("("+num+") - "+zapzap.__appname__)
-            self.parent.tray.setIcon(QIcon(zapzap.tray_notify_path))
+            self.parent.tray.setIcon(zapzap.tray_notify_path)
 
     def show_notification(self, notification):
         if get_setting('notify_desktop'):

@@ -23,6 +23,7 @@ abs_path = QFileInfo(__file__).absolutePath()
 theme_light_path = abs_path+'/assets/stylesheets/light/stylesheet.qss'
 theme_dark_path = abs_path+'/assets/stylesheets/dark/stylesheet.qss'
 
+from PyQt6.QtGui import QIcon
 # Tray
-tray_path = abs_path+'/assets/icons/tray/tray.svg'
-tray_notify_path = abs_path+'/assets/icons/tray/tray_notify.svg'
+tray_path = QIcon(abs_path+'/assets/icons/tray/tray.svg')
+tray_notify_path = QIcon(abs_path+'/assets/icons/tray/tray_notify.svg')
