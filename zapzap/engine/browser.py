@@ -1,13 +1,14 @@
-from PyQt6.QtWebEngineWidgets import QWebEngineView
-from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest,QWebEngineProfile, QWebEngineSettings
-from PyQt6.QtCore import Qt,QUrl
-from PyQt6.QtGui import QAction
-from PyQt6.QtWidgets import QFileDialog
-from zapzap.engine.whatsapp import WhatsApp
-import zapzap
-from zapzap.services.dbus_notify import ZapNotifications
-from zapzap.services.portal_config import get_setting
 import os
+from PyQt6.QtWebEngineWidgets import QWebEngineView
+from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest, QWebEngineProfile, QWebEngineSettings
+from PyQt6.QtCore import Qt, QUrl, QStandardPaths
+from PyQt6.QtGui import QAction, QPainter, QPainter, QImage, QBrush, QPen
+from PyQt6.QtWidgets import QFileDialog
+import zapzap
+from zapzap import __appname__
+from zapzap.engine.whatsapp import WhatsApp
+import zapzap.services.dbus_notify as dbus
+from zapzap.services.portal_config import get_setting
 
 
 class Browser(QWebEngineView):
@@ -40,6 +41,9 @@ class Browser(QWebEngineView):
         self.settings().setAttribute(QWebEngineSettings.WebAttribute.LocalStorageEnabled, True)
 
         self.titleChanged.connect(self.title_changed)
+
+        # Initialize the DBus connection to the notification server
+        dbus.init(__appname__)
 
     def createContextMenu(self):
         self.setContextMenuPolicy(Qt.ContextMenuPolicy.ActionsContextMenu)
@@ -75,8 +79,57 @@ class Browser(QWebEngineView):
 
     def show_notification(self, notification):
         if get_setting('notify_desktop'):
-            zap = ZapNotifications(notification, self.parent)
-            zap.show()
+
+            title = notification.title() if get_setting('show_name') else __appname__
+            message = notification.message() if get_setting('show_msg') else 'New message...'
+            icon = self.getPathImage(notification.icon(), notification.title(
+            )) if get_setting('show_photo') else 'com.rtosta.zapzap'
+
+            n = dbus.Notification(title,
+                                  message,
+                                  timeout=3000
+                                  )
+            n.setUrgency(dbus.Urgency.NORMAL)
+            n.setCategory("im.received")
+            n.setIconPath(icon)
+            n.setHint('desktop-entry', 'com.rtosta.zapzap')
+            n.show()
+
+    def onShow(self, n, action):
+        assert(action == "show"), "Action was not show!"
+        self.parent.on_show()
+        n.close()
+
+    def getPathImage(self, qin, title):
+        try:  # só por garantia de não quebrar a aplicação por causa de um ícone
+            path = QStandardPaths.writableLocation(
+                QStandardPaths.StandardLocation.AppLocalDataLocation)+'/tmp/'+title+'.png'
+
+            # deixa a foto arrendondada
+            qout = QImage(qin.width(), qin.height(),
+                          QImage.Format.Format_ARGB32)
+            qout.fill(Qt.GlobalColor.transparent)
+
+            brush = QBrush(qin)
+
+            pen = QPen()
+            pen.setColor(Qt.GlobalColor.darkGray)
+            pen.setJoinStyle(Qt.PenJoinStyle.RoundJoin)
+
+            painter = QPainter(qout)
+            painter.setBrush(brush)
+            painter.setPen(pen)
+            painter.setRenderHint(QPainter.RenderHint.Antialiasing, True)
+            painter.drawRoundedRect(0, 0, qin.width(), qin.height(),
+                                    qin.width()//2, qin.height()//2)
+            painter.end()
+            c = qout.save(path)
+            if(c == False):
+                return 'com.rtosta.zapzap'
+            else:
+                return path
+        except:
+            return 'com.rtosta.zapzap'
 
     def doReload(self):
         self.triggerPageAction(QWebEnginePage.WebAction.ReloadAndBypassCache)
