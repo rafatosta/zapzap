@@ -1,6 +1,6 @@
 from PyQt6.QtGui import QIcon
 
-__version__ = '2.2'
+__version__ = '2.3'
 __appname__ = 'ZapZap'
 __comment__ = 'Whatsapp Desktop for linux'
 __domain__ = 'com.rtosta'
