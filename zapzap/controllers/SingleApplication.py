@@ -1,15 +1,15 @@
-from PyQt6.QtWidgets import QApplication
-from PyQt6.QtCore import pyqtSignal, Qt, QTextStream
-
-from PyQt6.QtNetwork import QLocalServer, QLocalSocket
+import os
 import sys
+from PyQt6.QtWidgets import QApplication
+from PyQt6.QtCore import pyqtSignal, Qt, QDir, QFileInfo, QProcessEnvironment, QSettings, QTextStream
+from PyQt6.QtNetwork import QLocalServer, QLocalSocket
 
 
-class SingleApplication(QApplication):
+class QSingleApplication(QApplication):
     messageReceived = pyqtSignal(str)
 
     def __init__(self, appid, *argv):
-        super(SingleApplication, self).__init__(*argv)
+        super(QSingleApplication, self).__init__(*argv)
         self._appid = appid
         self._activationWindow = None
         self._activateOnMessage = False
@@ -20,14 +20,21 @@ class SingleApplication(QApplication):
         self._inSocket = None
         self._inStream = None
         self._server = None
-        self.window = None
-
-        if self._isRunning:
+        self.settings = QSettings(
+            QSingleApplication.getSettingsPath(), QSettings.IniFormat)
+        self.singleInstance = self.settings.value(
+            'singleInstance', 'on', type=str) in {'on', 'true'}
+        if self._isRunning and self.singleInstance:
             self._outStream = QTextStream(self._outSocket)
+            for a in argv[0][1:]:
+                a = os.path.join(os.getcwd(), a)
+                if os.path.isfile(a):
+                    self.sendMessage(a)
+                    break
             sys.exit(0)
         else:
             error = self._outSocket.error()
-            if error == QLocalSocket.LocalSocketError.ConnectionRefusedError:
+            if error == QLocalSocket.ConnectionRefusedError:
                 self.close()
                 QLocalServer.removeServer(self._appid)
             self._outSocket = None
@@ -73,10 +80,7 @@ class SingleApplication(QApplication):
         return self._outSocket.waitForBytesWritten()
 
     def _onNewConnection(self):
-        self.window.show()
-        self.alert(self.window)
-        self.activateWindow()
-        """if self._inSocket:
+        if self._inSocket:
             self._inSocket.readyRead.disconnect(self._onReadyRead)
         self._inSocket = self._server.nextPendingConnection()
         if not self._inSocket:
@@ -84,14 +88,11 @@ class SingleApplication(QApplication):
         self._inStream = QTextStream(self._inSocket)
         self._inSocket.readyRead.connect(self._onReadyRead)
         if self._activateOnMessage:
-            self.activateWindow()"""
-        
+            self.activateWindow()
+
     def _onReadyRead(self):
         while True:
             msg = self._inStream.readLine()
             if not msg:
                 break
             self.messageReceived.emit(msg)
-
-    def setWindow(self, window):
-        self.window = window
