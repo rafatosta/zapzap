@@ -14,6 +14,9 @@ def main():
     os.environ['QT_QPA_PLATFORM'] = 'xcb'
 
     app = SingleApplication(zapzap.__appid__, sys.argv)
+
+    print(app.isRunning())
+
     app.setApplicationName(zapzap.__appname__)
     app.setApplicationVersion(zapzap.__version__)
     app.setDesktopFileName(zapzap.__desktopid__)
@@ -41,7 +44,7 @@ def main():
     if get_setting('night_mode'):
         window.toggle_stylesheet()
    
-
+    window.start()
     sys.exit(app.exec())
 
 

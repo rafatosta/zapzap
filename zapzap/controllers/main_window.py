@@ -15,14 +15,15 @@ class MainWindow(QMainWindow):
         # Define tamanho mínimo para a janela
         self.setMinimumSize(800, 600)
 
+        # cria o menu drawer
+        self.createDrawer()
+
+    def start(self):
         # rotina para definição do Tray
         self.createTrayIcon()
 
         # rotina para criação do WebView que irá carregar a página do whatsapp
         self.createWebEngine()
-
-        # cria o menu drawer
-        self.createDrawer()
 
         # aplica o estilo inicial
         self.toggle_stylesheet()
