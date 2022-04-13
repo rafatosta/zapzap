@@ -1,7 +1,7 @@
 import sys
 import os
 import zapzap
-from zapzap.controllers.SingleApplication import QSingleApplication
+from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.controllers.main_window import MainWindow
 from PyQt6.QtCore import QStandardPaths
 
@@ -13,7 +13,7 @@ def main():
     # Via Flatpak o --socket é quem define como será executado
     os.environ['QT_QPA_PLATFORM'] = 'xcb'
 
-    app = QSingleApplication(zapzap.__appid__, sys.argv)
+    app = SingleApplication(zapzap.__appid__, sys.argv)
     app.setApplicationName(zapzap.__appname__)
     app.setApplicationVersion(zapzap.__version__)
     app.setDesktopFileName(zapzap.__desktopid__)
