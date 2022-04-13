@@ -1,7 +1,7 @@
 import os
 import sys
 from PyQt6.QtWidgets import QApplication
-from PyQt6.QtCore import pyqtSignal, Qt, QDir, QFileInfo, QProcessEnvironment, QSettings, QTextStream
+from PyQt6.QtCore import pyqtSignal, Qt, QSettings, QTextStream
 from PyQt6.QtNetwork import QLocalServer, QLocalSocket
 
 
