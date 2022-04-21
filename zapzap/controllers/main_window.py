@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon, QMenu
 from PyQt6.QtGui import QIcon, QAction
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QSettings, QByteArray
+import zapzap
 from zapzap.controllers.drawer import Drawer
 from zapzap.engine.browser import Browser
 from zapzap import theme_light_path, theme_dark_path, tray_path
@@ -26,6 +27,14 @@ class MainWindow(QMainWindow):
 
         # aplica o estilo inicial
         self.toggle_stylesheet()
+
+        # Restore Settings
+        self.readSettings()
+
+    def readSettings(self):
+        settings = QSettings(zapzap.__domain__, zapzap.__appname__, self)
+        self.restoreGeometry(settings.value("main/geometry", QByteArray()))
+        self.restoreState(settings.value("main/windowState", QByteArray()))
 
     def createDrawer(self):
         self.drawer = Drawer(self)
@@ -61,7 +70,9 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.browser)
 
     # Abrindo o webapp do system tray.
+
     def on_show(self):
+        self.readSettings()
         self.show()
         self.app.activateWindow()  # ao mostrar move a janela para a área de trabalho atual
 
@@ -73,6 +84,10 @@ class MainWindow(QMainWindow):
 
     # Evento ao fechar a janela.
     def closeEvent(self, event):
+        settings = QSettings(zapzap.__domain__, zapzap.__appname__, self)
+        settings.setValue("main/geometry", self.saveGeometry())
+        settings.setValue("main/windowState", self.saveState())
+
         self.hide()
         event.ignore()
 
@@ -84,13 +99,13 @@ class MainWindow(QMainWindow):
     def toggle_stylesheet(self):
         if self.isTheme:
             path = theme_light_path
-            self.browser.whats.setTheme('light')
+            # self.browser.whats.setTheme('light')
             self.drawer.settings.night_mode.setChecked(False)
             self.isTheme = False
         else:
             path = theme_dark_path
             self.browser.whats.setTheme('dark')
-            self.drawer.settings.night_mode.setChecked(True)
+            # self.drawer.settings.night_mode.setChecked(True)
             self.isTheme = True
 
         with open(path, 'r') as f:
