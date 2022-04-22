@@ -1,26 +1,29 @@
 from PyQt6.QtWidgets import QWidget
 from PyQt6 import uic
-
+from PyQt6.QtCore import QSettings, QVariant
 from zapzap.services.portal_config import write_json, get_setting
 from zapzap.services.portal_desktop import createDesktop, removeDesktop
-from zapzap import abs_path
+import zapzap
 
 
 class Settings(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        uic.loadUi(abs_path+'/view/settings.ui', self)
+        uic.loadUi(zapzap.abs_path+'/view/settings.ui', self)
 
         self.parent = parent
+
+        self.settings = QSettings(zapzap.__appname__, zapzap.__appname__, self)
 
         self.loadConfigChecked()
 
         self.closeButton.clicked.connect(parent.onToggled)
 
-        # Sistema
+        # System
         self.start_system.stateChanged.connect(self.state_start_system)
+
         self.start_hide.stateChanged.connect(
-            lambda: write_json('start_hide', self.start_hide.isChecked()))
+            lambda: self.settings.setValue("system/start_hide",  self.start_hide.isChecked()))
         self.night_mode.stateChanged.connect(self.state_night_mode)
 
         # Notificações
@@ -46,7 +49,8 @@ class Settings(QWidget):
         else:
             removeDesktop()
 
-        write_json('start_system', bool(s))
+        self.settings.setValue("system/start_system",
+                               self.start_system.isChecked())
 
     def state_notify_desktop(self, s):
         self.show_photo.setEnabled(s)
@@ -56,15 +60,21 @@ class Settings(QWidget):
         write_json('notify_desktop', bool(s))
 
     def loadConfigChecked(self):
-        # Sistema
-        self.start_system.setChecked(get_setting("start_system"))
-        # habilita
-        self.start_hide.setEnabled(get_setting("start_system"))
-        # checked
-        self.start_hide.setChecked(get_setting("start_hide"))
+        ## System ##
+        isStart_system = self.settings.value(
+            "system/start_system", False, bool)
+        # Start_system
+        self.start_system.setChecked(isStart_system)
+        # Enable Start Hide
+        self.start_hide.setEnabled(isStart_system)
+
+        # Start_hide
+        self.start_hide.setChecked(self.settings.value(
+            "system/start_hide", False, bool))
+
         # self.night_mode.setChecked(get_setting("night_mode")) está no main por causa do atalho
 
-        # Notificações
+        ## Notificações ##
         self.notify_desktop.setChecked(get_setting("notify_desktop"))
         # habilita ou desabilita
         self.show_photo.setEnabled(get_setting("notify_desktop"))

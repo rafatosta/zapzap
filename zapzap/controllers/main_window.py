@@ -16,6 +16,8 @@ class MainWindow(QMainWindow):
         # Define tamanho mínimo para a janela
         self.setMinimumSize(800, 600)
 
+        self.settings = QSettings(zapzap.__appname__, zapzap.__appname__, self)
+
         # rotina para definição do Tray
         self.createTrayIcon()
 
@@ -32,9 +34,20 @@ class MainWindow(QMainWindow):
         self.readSettings()
 
     def readSettings(self):
-        settings = QSettings(zapzap.__domain__, zapzap.__appname__, self)
-        self.restoreGeometry(settings.value("main/geometry", QByteArray()))
-        self.restoreState(settings.value("main/windowState", QByteArray()))
+        self.restoreGeometry(self.settings.value(
+            "main/geometry", QByteArray()))
+        self.restoreState(self.settings.value(
+            "main/windowState", QByteArray()))
+
+        isStart_system = self.settings.value(
+            "system/start_system", False, bool)
+        isStart_hide = self.settings.value("system/start_hide", False, bool)
+
+        print(isStart_system, isStart_hide)
+        if isStart_system and isStart_hide:
+            self.hide()
+        else:
+            self.show()
 
     def createDrawer(self):
         self.drawer = Drawer(self)
@@ -84,9 +97,8 @@ class MainWindow(QMainWindow):
 
     # Evento ao fechar a janela.
     def closeEvent(self, event):
-        settings = QSettings(zapzap.__domain__, zapzap.__appname__, self)
-        settings.setValue("main/geometry", self.saveGeometry())
-        settings.setValue("main/windowState", self.saveState())
+        self.settings.setValue("main/geometry", self.saveGeometry())
+        self.settings.setValue("main/windowState", self.saveState())
 
         self.hide()
         event.ignore()
@@ -99,13 +111,13 @@ class MainWindow(QMainWindow):
     def toggle_stylesheet(self):
         if self.isTheme:
             path = theme_light_path
-            # self.browser.whats.setTheme('light')
+            self.browser.whats.setTheme('light')
             self.drawer.settings.night_mode.setChecked(False)
             self.isTheme = False
         else:
             path = theme_dark_path
             self.browser.whats.setTheme('dark')
-            # self.drawer.settings.night_mode.setChecked(True)
+            self.drawer.settings.night_mode.setChecked(True)
             self.isTheme = True
 
         with open(path, 'r') as f:
