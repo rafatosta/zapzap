@@ -92,8 +92,11 @@ class MainWindow(QMainWindow):
     # Abrindo o webapp do system tray.
     def on_show(self):
         self.readSettings()
-        self.show()
-        self.app.activateWindow()  # ao mostrar move a janela para a área de trabalho atual
+        if self.app.activeWindow() != None: # Se a janela estiver em foco será escondida
+            self.hide()
+        else: # Caso não esteja, será mostrada
+            self.show()
+            self.app.activateWindow()
 
     # Evento para mostrar e ocultar a janela com apenas dois clique ou botão do meio no tray icon. Com um click abre o menu.
     def onTrayIconActivated(self, reason):
