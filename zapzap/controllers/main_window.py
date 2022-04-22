@@ -43,7 +43,6 @@ class MainWindow(QMainWindow):
             "system/start_system", False, bool)
         isStart_hide = self.settings.value("system/start_hide", False, bool)
 
-        print(isStart_system, isStart_hide)
         if isStart_system and isStart_hide:
             self.hide()
         else:
@@ -65,7 +64,7 @@ class MainWindow(QMainWindow):
         self.trayShow.triggered.connect(self.on_show)
 
         self.trayExit = QAction('Exit', self)
-        self.trayExit.triggered.connect(lambda: self.app.quit())
+        self.trayExit.triggered.connect(self.closeApp)
 
         # Cria o Menu e adiciona as ações
         self.trayMenu = QMenu()
@@ -79,11 +78,18 @@ class MainWindow(QMainWindow):
 
     def createWebEngine(self):
         self.browser = Browser(self)
+        self.browser.setZoomFactor(self.settings.value(
+            "browser/zoomFactor", 1.0, float))
         self.browser.doReload()
+
         self.setCentralWidget(self.browser)
 
-    # Abrindo o webapp do system tray.
+    def closeApp(self):
+        # Save zoomFactor for browser
+        self.settings.setValue("browser/zoomFactor", self.browser.zoomFactor())
+        self.app.quit()
 
+    # Abrindo o webapp do system tray.
     def on_show(self):
         self.readSettings()
         self.show()
