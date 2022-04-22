@@ -1,11 +1,13 @@
-from PyQt6.QtCore import QEvent, Qt, QUrl
+from PyQt6.QtCore import QEvent, Qt, QUrl, QSettings
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWebEngineCore import QWebEnginePage
 from PyQt6.QtWidgets import QApplication
-from zapzap import __whatsapp_url__
+from zapzap import __whatsapp_url__, __appname__
 from zapzap.services.portal_config import get_setting
 
 # Classe para a página do webapp.
+
+
 class WhatsApp(QWebEnginePage):
 
     link_url = ''
@@ -22,7 +24,6 @@ class WhatsApp(QWebEnginePage):
         self.linkHovered.connect(self.link_hovered)
 
         self.loadFinished.connect(self.load_finished)
-       
 
     def load_finished(self, flag):
         # Ativa a tela cheia para telas de proporção grande no WhatsApp Web.
@@ -45,11 +46,11 @@ class WhatsApp(QWebEnginePage):
                 }, 100);
             """)
 
-            if get_setting('night_mode'):
-                self.setTheme('dark')
+            settings = QSettings(__appname__, __appname__, self)
+            self.setTheme(settings.value("system/night_mode", False, bool))
 
-    def setTheme(self, theme):
-        if theme == 'light':  # light
+    def setTheme(self, isNight_mode):
+        if isNight_mode == False:  # light
             self.runJavaScript(
                 "document.body.classList.remove('dark')")
         else:  # dark

@@ -24,6 +24,8 @@ class Settings(QWidget):
 
         self.start_hide.stateChanged.connect(
             lambda: self.settings.setValue("system/start_hide",  self.start_hide.isChecked()))
+
+        # Night Mode
         self.night_mode.stateChanged.connect(self.state_night_mode)
 
         # Notificações
@@ -36,14 +38,13 @@ class Settings(QWidget):
             lambda: write_json('show_msg', self.show_msg.isChecked()))
 
     def state_night_mode(self, s):
-        self.parent.parent.toggle_stylesheet()
+        self.parent.parent.toggle_stylesheet(self.night_mode.isChecked())
 
-        write_json('night_mode', bool(s))
+        self.settings.setValue("system/night_mode", self.night_mode.isChecked())
 
     def state_start_system(self, s):
         self.start_hide.setEnabled(s)
         # cria ou remove o arquivo
-
         if bool(s):
             createDesktop()
         else:
@@ -72,7 +73,8 @@ class Settings(QWidget):
         self.start_hide.setChecked(self.settings.value(
             "system/start_hide", False, bool))
 
-        # self.night_mode.setChecked(get_setting("night_mode")) está no main por causa do atalho
+        # Night Mode
+        self.night_mode.setChecked(self.settings.value("system/night_mode", False, bool)) 
 
         ## Notificações ##
         self.notify_desktop.setChecked(get_setting("notify_desktop"))

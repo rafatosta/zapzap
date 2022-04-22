@@ -9,8 +9,6 @@ from zapzap.services.portal_config import checkSettings, get_setting
 
 
 def main():
-    # se deixar como wayland é aplicado a decoração da janela padrão do QT e não do sistema
-    # Via Flatpak o --socket é quem define como será executado
     #os.environ['QT_QPA_PLATFORM'] = 'xcb'
 
     app = SingleApplication(zapzap.__appid__, sys.argv)
@@ -32,10 +30,9 @@ def main():
     app.setWindow(window)
     app.setActivationWindow(window)
 
-    if get_setting('night_mode'):
-        window.toggle_stylesheet()
+    isNight_mode = window.settings.value("system/night_mode", False, bool)
+    window.toggle_stylesheet(isNight_mode)
    
-
     sys.exit(app.exec())
 
 

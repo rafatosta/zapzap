@@ -12,7 +12,6 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.app = app
 
-        self.isTheme = True
         # Define tamanho mínimo para a janela
         self.setMinimumSize(800, 600)
 
@@ -26,9 +25,6 @@ class MainWindow(QMainWindow):
 
         # cria o menu drawer
         self.createDrawer()
-
-        # aplica o estilo inicial
-        self.toggle_stylesheet()
 
         # Restore Settings
         self.readSettings()
@@ -47,6 +43,7 @@ class MainWindow(QMainWindow):
             self.hide()
         else:
             self.show()
+        
 
     def createDrawer(self):
         self.drawer = Drawer(self)
@@ -117,18 +114,13 @@ class MainWindow(QMainWindow):
         self.drawer.maximum_width = self.width()
         super().resizeEvent(event)
 
-    def toggle_stylesheet(self):
-        if self.isTheme:
-            path = theme_light_path
-            self.browser.whats.setTheme('light')
-            self.drawer.settings.night_mode.setChecked(False)
-            self.isTheme = False
-        else:
+    def toggle_stylesheet(self, isNight_mode):        
+        if isNight_mode:
             path = theme_dark_path
-            self.browser.whats.setTheme('dark')
-            self.drawer.settings.night_mode.setChecked(True)
-            self.isTheme = True
-
+        else:
+            path = theme_light_path
+        
+        self.browser.whats.setTheme(isNight_mode)
         with open(path, 'r') as f:
             style = f.read()
 
@@ -139,5 +131,3 @@ class MainWindow(QMainWindow):
     def keyPressEvent(self, e):
         if e.key() == Qt.Key.Key_F5:
             self.browser.doReload()
-        if e.key() == Qt.Key.Key_F1:
-            self.toggle_stylesheet()
