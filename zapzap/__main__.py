@@ -5,8 +5,6 @@ from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.controllers.main_window import MainWindow
 from PyQt6.QtCore import QStandardPaths
 
-from zapzap.services.portal_config import checkSettings, get_setting
-
 
 def main():
     #os.environ['QT_QPA_PLATFORM'] = 'xcb'
@@ -16,9 +14,6 @@ def main():
     app.setApplicationVersion(zapzap.__version__)
     app.setDesktopFileName(zapzap.__desktopid__)
     app.setOrganizationDomain(zapzap.__domain__)
-
-    # configurações do app
-    checkSettings()
 
     # garante que teremos o diretório tmp para as fotos dos usuários utilizados nas notificações
     path = QStandardPaths.writableLocation(
@@ -32,7 +27,7 @@ def main():
 
     isNight_mode = window.settings.value("system/night_mode", False, bool)
     window.toggle_stylesheet(isNight_mode)
-   
+
     sys.exit(app.exec())
 
 

@@ -8,7 +8,6 @@ import zapzap
 from zapzap import __appname__
 from zapzap.engine.whatsapp import WhatsApp
 import zapzap.services.dbus_notify as dbus
-from zapzap.services.portal_config import get_setting
 
 
 class Browser(QWebEngineView):
@@ -78,12 +77,14 @@ class Browser(QWebEngineView):
             self.parent.tray.setIcon(zapzap.tray_notify_path)
 
     def show_notification(self, notification):
-        if get_setting('notify_desktop'):
+        if self.parent.settings.value('notification/app', True, bool):
 
-            title = notification.title() if get_setting('show_name') else __appname__
-            message = notification.message() if get_setting('show_msg') else 'New message...'
+            title = notification.title() if self.parent.settings.value(
+                'notification/show_name', True, bool) else __appname__
+            message = notification.message() if self.parent.settings.value(
+                'notification/show_msg', True, bool) else 'New message...'
             icon = self.getPathImage(notification.icon(), notification.title(
-            )) if get_setting('show_photo') else 'com.rtosta.zapzap'
+            )) if self.parent.settings.value('notification/show_photo', True, bool) else 'com.rtosta.zapzap'
 
             n = dbus.Notification(title,
                                   message,
