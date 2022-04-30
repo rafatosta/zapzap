@@ -31,7 +31,7 @@ class Browser(QWebEngineView):
         self.setPage(self.whats)
 
         # carrega a página do whatsapp web
-        #self.load(QUrl(zapzap.__whatsapp_url__))
+        self.load(QUrl(zapzap.__whatsapp_url__))
 
         # Ativando tudo o que tiver de direito
         self.settings().setAttribute(QWebEngineSettings.WebAttribute.JavascriptEnabled, True)
