@@ -20,6 +20,8 @@ class Settings(QWidget):
         super().__init__(parent)
         uic.loadUi(zapzap.abs_path+'/view/settings.ui', self)
 
+        self.parent = parent
+
         self.tabs.setTabBar(TabBar())
         self.tabs.setDocumentMode(True)
         self.tabs.setElideMode(Qt.TextElideMode.ElideRight)
