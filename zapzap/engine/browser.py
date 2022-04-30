@@ -31,7 +31,7 @@ class Browser(QWebEngineView):
         self.setPage(self.whats)
 
         # carrega a página do whatsapp web
-        self.load(QUrl(zapzap.__whatsapp_url__))
+        #self.load(QUrl(zapzap.__whatsapp_url__))
 
         # Ativando tudo o que tiver de direito
         self.settings().setAttribute(QWebEngineSettings.WebAttribute.JavascriptEnabled, True)
@@ -78,23 +78,26 @@ class Browser(QWebEngineView):
 
     def show_notification(self, notification):
         if self.parent.settings.value('notification/app', True, bool):
+            try:
+                title = notification.title() if self.parent.settings.value(
+                    'notification/show_name', True, bool) else __appname__
+                message = notification.message() if self.parent.settings.value(
+                    'notification/show_msg', True, bool) else 'New message...'
+                icon = self.getPathImage(notification.icon(), notification.title(
+                )) if self.parent.settings.value('notification/show_photo', True, bool) else 'com.rtosta.zapzap'
 
-            title = notification.title() if self.parent.settings.value(
-                'notification/show_name', True, bool) else __appname__
-            message = notification.message() if self.parent.settings.value(
-                'notification/show_msg', True, bool) else 'New message...'
-            icon = self.getPathImage(notification.icon(), notification.title(
-            )) if self.parent.settings.value('notification/show_photo', True, bool) else 'com.rtosta.zapzap'
-
-            n = dbus.Notification(title,
-                                  message,
-                                  timeout=3000
-                                  )
-            n.setUrgency(dbus.Urgency.NORMAL)
-            n.setCategory("im.received")
-            n.setIconPath(icon)
-            n.setHint('desktop-entry', 'com.rtosta.zapzap')
-            n.show()
+                n = dbus.Notification(title,
+                                    message,
+                                    timeout=3000
+                                    )
+                n.setUrgency(dbus.Urgency.NORMAL)
+                n.setCategory("im.received")
+                n.setIconPath(icon)
+                n.setHint('desktop-entry', 'com.rtosta.zapzap')
+                n.show()
+            except Exception as e:
+                print(e)
+                
 
     def onShow(self, n, action):
         assert(action == "show"), "Action was not show!"
