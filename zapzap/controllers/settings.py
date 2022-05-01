@@ -28,7 +28,7 @@ class Settings(QWidget):
         #self.tabs.addTab(Settings_Users(), "Users")
         self.tabs.addTab(Settings_System(self), "System")
         self.tabs.addTab(Settings_Notify(), "Notifications")
-        #self.tabs.addTab(Settings_About(), "About")
+        self.tabs.addTab(Settings_About(), "About")
 
         self.closeButton.clicked.connect(parent.onToggled)
 

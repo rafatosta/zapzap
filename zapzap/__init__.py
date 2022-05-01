@@ -11,6 +11,7 @@ __author__ = 'Rafael Tosta'
 __email__ = 'rafa.ecomp@gmail.com'
 __website__ = 'https://github.com/rafatosta/zapzap'
 __bugreport__ = 'https://github.com/rafatosta/zapzap/issues'
+__licence__ =  'GNU General Public License v3.0'
 
 __whatsapp_url__ = 'https://web.whatsapp.com/'
 # Link para pegar o userAgent: http://httpbin.org/user-agent
