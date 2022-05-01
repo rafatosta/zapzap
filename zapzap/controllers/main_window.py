@@ -84,6 +84,11 @@ class MainWindow(QMainWindow):
     def closeApp(self):
         # Save zoomFactor for browser
         self.settings.setValue("browser/zoomFactor", self.browser.zoomFactor())
+
+        self.settings.setValue("main/geometry", self.saveGeometry())
+        self.settings.setValue("main/windowState", self.saveState())
+
+        self.hide()
         self.app.quit()
 
     # Abrindo o webapp do system tray.
