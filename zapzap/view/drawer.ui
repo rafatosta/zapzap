@@ -26,17 +26,7 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget#blur{
-	background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 0px;
-}
-
-QPushButton#openDrawerButton
-{
-    background-color:  rgba(100, 100, 100, 0.8);
-    border: 0.01em solid rgba(100, 100, 100, 0.8);
-    border-radius: 0.09em;
-}</string>
+   <string notr="true"/>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_2">
    <property name="spacing">
@@ -56,6 +46,9 @@ QPushButton#openDrawerButton
    </property>
    <item>
     <widget class="QWidget" name="blur" native="true">
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <property name="spacing">
        <number>0</number>

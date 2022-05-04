@@ -32,11 +32,13 @@ class Drawer(QWidget):
             self.isOpen = False
             self.blur.show()
             self.openDrawerButton.hide()
+            self.setAutoFillBackground(True)
         else:
             self.close()
             self.isOpen = True
             self.blur.hide()
             self.openDrawerButton.show()
+            self.setAutoFillBackground(False)
 
     @property
     def maximum_width(self):
