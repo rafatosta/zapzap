@@ -65,7 +65,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Theme for Whatsapp Web</string>
+        <string>Choose a theme</string>
        </property>
       </widget>
      </item>
@@ -79,15 +79,43 @@
        </property>
        <item>
         <widget class="QCheckBox" name="night_mode">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="text">
           <string>Night mode</string>
          </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBox_2">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <item>
+          <property name="text">
+           <string>Automatic (System)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Light</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Dark</string>
+          </property>
+         </item>
         </widget>
        </item>
       </layout>
      </item>
      <item>
       <widget class="QLabel" name="label_3">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="font">
         <font>
          <bold>true</bold>

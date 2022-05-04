@@ -4,7 +4,7 @@ from PyQt6.QtCore import Qt, QSettings, QByteArray
 import zapzap
 from zapzap.controllers.drawer import Drawer
 from zapzap.engine.browser import Browser
-from zapzap import theme_light_path, theme_dark_path, tray_path
+from zapzap import tray_path
 
 
 class MainWindow(QMainWindow):
@@ -129,19 +129,6 @@ class MainWindow(QMainWindow):
         self.drawer.setFixedHeight(self.height() - self.drawer.pos().y())
         self.drawer.maximum_width = self.width()
         super().resizeEvent(event)
-
-    def toggle_stylesheet(self, isNight_mode):
-        if isNight_mode:
-            path = theme_dark_path
-        else:
-            path = theme_light_path
-
-        self.browser.whats.setTheme(isNight_mode)
-        with open(path, 'r') as f:
-            style = f.read()
-
-        # Set the stylesheet of the application
-        #self.app.setStyleSheet(style)
 
     # Mapeamento dos atalhos
     def keyPressEvent(self, e):
