@@ -23,7 +23,7 @@ class Settings_System(QWidget):
         # Night Mode
         self.night_mode.stateChanged.connect(self.state_night_mode)
 
-        self.loadStyles()
+        #self.loadStyles()
 
     def loadStyles(self):
         current_style = QApplication.instance().style()

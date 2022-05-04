@@ -46,10 +46,11 @@ class WhatsApp(QWebEnginePage):
                 }, 100);
             """)
 
-            self.setTheme(isDarktheme())
+            self.setTheme()
 
-    def setTheme(self, isNight_mode):
-        if isNight_mode == False:  # light
+    def setTheme(self):
+        print('>>>>', isDarktheme())
+        if isDarktheme() == False:  # light
             self.runJavaScript(
                 "document.body.classList.remove('dark')")
         else:  # dark

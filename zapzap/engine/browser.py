@@ -30,6 +30,8 @@ class Browser(QWebEngineView):
         self.whats = WhatsApp(profile, self)
         self.setPage(self.whats)
 
+        self.whats.setTheme()
+
         # carrega a página do whatsapp web
         self.load(QUrl(zapzap.__whatsapp_url__))
 

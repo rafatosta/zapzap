@@ -134,6 +134,9 @@
        </property>
        <item>
         <widget class="QComboBox" name="comboBox">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <item>
           <property name="text">
            <string>Default</string>
