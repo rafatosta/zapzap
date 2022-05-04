@@ -49,8 +49,11 @@ class WhatsApp(QWebEnginePage):
             self.setTheme()
 
     def setTheme(self):
-        
-        if isDarktheme() == False:  # light
+        app = QApplication.instance()
+        current_style = app.style().objectName()
+
+        print('Dark'.upper(), current_style.upper(), 'Dark'.upper() in current_style.upper())
+        if 'Dark'.upper() in current_style.upper() == False:  # light
             self.runJavaScript(
                 "document.body.classList.remove('dark')")
         else:  # dark
