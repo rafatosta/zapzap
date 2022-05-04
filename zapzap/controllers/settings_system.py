@@ -37,10 +37,14 @@ class Settings_System(QWidget):
         if i > 0:
             name_style = self.styles[i-1]
             print(name_style)
-            if name_style in 'Dark':
+
+            if name_style.upper() in 'Dark'.upper():
                 self.parent_settings.colorFrameBackground(True)
             else:
                 self.parent_settings.colorFrameBackground()
+
+            print(name_style.upper(), 'Dark'.upper(),
+                  name_style.upper() in 'Dark'.upper())
             QApplication.instance().setStyle(name_style)
 
     def loadConfigChecked(self):
