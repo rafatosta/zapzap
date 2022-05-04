@@ -5,9 +5,3 @@ QWidget#blur{
     border-radius: 0px;
 }
 
-QPushButton#openDrawerButton
-{
-    background-color:  rgba(100, 100, 100, 0.8);
-    border: 0.01em solid rgba(100, 100, 100, 0.8);
-    border-radius: 0.09em;
-}
