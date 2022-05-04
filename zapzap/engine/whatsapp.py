@@ -1,8 +1,9 @@
-from PyQt6.QtCore import QEvent, Qt, QUrl, QSettings
+from PyQt6.QtCore import QEvent, Qt, QUrl
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWebEngineCore import QWebEnginePage
 from PyQt6.QtWidgets import QApplication
 from zapzap import __whatsapp_url__, __appname__
+from zapzap.services.portal_theme import isDarkTheme
 
 # Classe para a página do webapp.
 
@@ -48,15 +49,11 @@ class WhatsApp(QWebEnginePage):
             self.setTheme()
 
     def setTheme(self):
-        app = QApplication.instance()
-        current_style = app.style().objectName()
-
-        print('Dark'.upper(), current_style.upper(), 'Dark'.upper() in current_style.upper())
-        if 'Dark'.upper() in current_style.upper() == False:  # light
+        if isDarkTheme():
+            self.runJavaScript("document.body.classList.add('dark')")
+        else:
             self.runJavaScript(
                 "document.body.classList.remove('dark')")
-        else:  # dark
-            self.runJavaScript("document.body.classList.add('dark')")
 
     def link_hovered(self, url):
         # url contém o URL de destino do link. Ao mover o mouse para fora da url o seu valor é definido como uma string vazia

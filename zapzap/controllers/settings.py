@@ -5,6 +5,7 @@ from zapzap.controllers.settings_about import Settings_About
 from zapzap.controllers.settings_notify import Settings_Notify
 from zapzap.controllers.settings_system import Settings_System
 from zapzap.controllers.settings_users import Settings_Users
+from zapzap.services.portal_theme import isDarkTheme
 import zapzap
 
 
@@ -31,6 +32,13 @@ class Settings(QWidget):
         self.tabs.addTab(Settings_About(), "About")
 
         self.closeButton.clicked.connect(parent.onToggled)
+
+        if isDarkTheme(): #dark
+            self.frame.setStyleSheet("""QFrame#frame {border: 1px solid rgb(192, 191, 188);border-radius: 10px;background-color: #353535;}""")
+        else: #light
+            self.frame.setStyleSheet("""QFrame#frame {border: 1px solid rgb(192, 191, 188);border-radius: 10px;background-color: rgb(246, 245, 244);}""")
+
+
 
     def mousePressEvent(self, event):
         pass
