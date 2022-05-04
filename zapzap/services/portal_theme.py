@@ -18,7 +18,7 @@ def loadStylesheet():
     # Pega o tema atual do sistema
     app = QApplication.instance()
     current_style = app.style().objectName()
-
+    print(current_style, '<<<<')
     # Verifica se existe a palavra dark no tema
     if 'Dark'.upper() in current_style.upper():
         path = theme_dark_path
