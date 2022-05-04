@@ -3,7 +3,6 @@ from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWebEngineCore import QWebEnginePage
 from PyQt6.QtWidgets import QApplication
 from zapzap import __whatsapp_url__, __appname__
-from zapzap.services.portal_theme import isDarktheme
 
 # Classe para a página do webapp.
 
