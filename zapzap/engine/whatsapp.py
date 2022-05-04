@@ -49,7 +49,7 @@ class WhatsApp(QWebEnginePage):
             self.setTheme()
 
     def setTheme(self):
-        print('>>>>', isDarktheme())
+        
         if isDarktheme() == False:  # light
             self.runJavaScript(
                 "document.body.classList.remove('dark')")
