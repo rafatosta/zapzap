@@ -141,7 +141,7 @@ class MainWindow(QMainWindow):
             style = f.read()
 
         # Set the stylesheet of the application
-        self.app.setStyleSheet(style)
+        #self.app.setStyleSheet(style)
 
     # Mapeamento dos atalhos
     def keyPressEvent(self, e):
