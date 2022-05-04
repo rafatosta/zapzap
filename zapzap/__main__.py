@@ -18,7 +18,7 @@ def loadStylesheet(app):
 
     with open(path, 'r') as f:
         style = f.read()
-    app.setStyleSheet(style)
+    #app.setStyleSheet(style)
 
 
 def main():
