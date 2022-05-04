@@ -9,7 +9,7 @@ class Settings_System(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         uic.loadUi(zapzap.abs_path+'/view/settings_system.ui', self)
-        self.parent = parent
+        self.parent_settings = parent
 
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__, self)
         self.loadConfigChecked()
@@ -26,6 +26,9 @@ class Settings_System(QWidget):
         self.loadStyles()
 
     def loadStyles(self):
+        current_style = QApplication.instance().style()
+        print('>>> ', current_style.objectName())
+
         self.styles = QStyleFactory.keys()
         self.comboBox.addItems(self.styles)
         self.comboBox.currentIndexChanged.connect(self.index_changed)
@@ -64,7 +67,7 @@ class Settings_System(QWidget):
                                self.start_system.isChecked())
 
     def state_night_mode(self, s):
-        self.parent.parent.parent.toggle_stylesheet(
+        self.parent_settings.parent.parent.toggle_stylesheet(
             self.night_mode.isChecked())
 
         self.settings.setValue("system/night_mode",

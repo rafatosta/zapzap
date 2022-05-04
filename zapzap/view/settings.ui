@@ -38,11 +38,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">.QFrame {border: 1px solid rgb(192, 191, 188);
-border-radius: 10px;
-background-color: rgb(246, 245, 244);
-}
-</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
