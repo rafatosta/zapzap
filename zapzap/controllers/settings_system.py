@@ -23,15 +23,15 @@ class Settings_System(QWidget):
         # Night Mode
         self.night_mode.stateChanged.connect(self.state_night_mode)
 
-        #self.loadStyles()
+        self.loadStyles()
 
     def loadStyles(self):
         current_style = QApplication.instance().style()
-        print('>>> ', current_style.objectName())
+        print('>>> nome do tema: ', current_style.objectName())
 
-        self.styles = QStyleFactory.keys()
-        self.comboBox.addItems(self.styles)
-        self.comboBox.currentIndexChanged.connect(self.index_changed)
+        #self.styles = QStyleFactory.keys()
+        #self.comboBox.addItems(self.styles)
+        #self.comboBox.currentIndexChanged.connect(self.index_changed)
 
     def index_changed(self, i):
         if i > 0:
