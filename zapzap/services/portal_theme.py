@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QApplication
+
 from zapzap import theme_light_path, theme_dark_path
 
 
