@@ -18,7 +18,7 @@ def loadStylesheet(app):
 
     with open(path, 'r') as f:
         style = f.read()
-    #app.setStyleSheet(style)
+    app.setStyleSheet(style)
 
 
 def main():
@@ -30,7 +30,7 @@ def main():
     app.setDesktopFileName(zapzap.__desktopid__)
     app.setOrganizationDomain(zapzap.__domain__)
 
-    loadStylesheet(app)
+    #loadStylesheet(app)
 
     # garante que teremos o diretório tmp para as fotos dos usuários utilizados nas notificações
     path = QStandardPaths.writableLocation(
