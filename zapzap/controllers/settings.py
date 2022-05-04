@@ -33,12 +33,12 @@ class Settings(QWidget):
 
         self.closeButton.clicked.connect(parent.onToggled)
 
-        if isDarkTheme(): #dark
-            self.frame.setStyleSheet("""QFrame#frame {border: 1px solid rgb(192, 191, 188);border-radius: 10px;background-color: #353535;}""")
-        else: #light
-            self.frame.setStyleSheet("""QFrame#frame {border: 1px solid rgb(192, 191, 188);border-radius: 10px;background-color: rgb(246, 245, 244);}""")
-
-
+        if isDarkTheme():  # dark
+            self.frame.setStyleSheet(
+                """QFrame#frame {border: 1px solid rgb(192, 191, 188);border-radius: 10px;background-color: #353535;}""")
+        else:  # light
+            self.frame.setStyleSheet(
+                """QFrame#frame {border: 1px solid rgb(192, 191, 188);border-radius: 10px;background-color: rgb(246, 245, 244);}""")
 
     def mousePressEvent(self, event):
         pass
