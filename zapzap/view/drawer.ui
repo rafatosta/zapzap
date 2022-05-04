@@ -108,13 +108,13 @@
     <widget class="QPushButton" name="openDrawerButton">
      <property name="minimumSize">
       <size>
-       <width>5</width>
+       <width>7</width>
        <height>150</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>5</width>
+       <width>7</width>
        <height>150</height>
       </size>
      </property>
