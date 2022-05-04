@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QWidget
+from PyQt6.QtWidgets import QWidget, QStyleFactory, QApplication
 from PyQt6.QtCore import QSettings
 from PyQt6 import uic
 import zapzap
@@ -22,6 +22,18 @@ class Settings_System(QWidget):
 
         # Night Mode
         self.night_mode.stateChanged.connect(self.state_night_mode)
+
+        self.loadStyles()
+
+    def loadStyles(self):
+        self.styles = QStyleFactory.keys()
+        self.comboBox.addItems(self.styles)
+        self.comboBox.currentIndexChanged.connect(self.index_changed)
+
+    def index_changed(self, i):
+        print(i)
+        if i > 0:
+            QApplication.instance().setStyle(self.styles[i-1])
 
     def loadConfigChecked(self):
         ## System ##
@@ -52,7 +64,8 @@ class Settings_System(QWidget):
                                self.start_system.isChecked())
 
     def state_night_mode(self, s):
-        self.parent.parent.parent.toggle_stylesheet(self.night_mode.isChecked())
+        self.parent.parent.parent.toggle_stylesheet(
+            self.night_mode.isChecked())
 
         self.settings.setValue("system/night_mode",
                                self.night_mode.isChecked())

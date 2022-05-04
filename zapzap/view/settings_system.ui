@@ -111,26 +111,6 @@
            <string>Default</string>
           </property>
          </item>
-         <item>
-          <property name="text">
-           <string>Adwaita</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Adawaita-dark</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Fusion</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Windows</string>
-          </property>
-         </item>
         </widget>
        </item>
       </layout>
