@@ -68,7 +68,6 @@ class WhatsApp(QWebEnginePage):
     # Mapeia os eventos do Mouse e abre o link a partir do capturado do signal linkHovered.
     def eventFilter(self, obj, event):
         if event.type() == QEvent.Type.MouseButtonPress:
-            print('>>> ', self.link_url, 'faq.whatsapp.com/web/download-and-installation/how-to-log-in-or-out' in self.link_url)
             if event.button() == Qt.MouseButton.LeftButton:
                 if self.link_url != '' and self.link_url != __whatsapp_url__ and not 'faq.whatsapp.com/web/download-and-installation/how-to-log-in-or-out' in self.link_url:
                     QDesktopServices.openUrl(QUrl(self.link_url))

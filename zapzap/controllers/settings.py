@@ -22,8 +22,6 @@ class Settings(QWidget):
 
         self.parent = parent
 
-        self.setAutoFillBackground(True)
-
         self.tabs.setTabBar(TabBar())
         self.tabs.setDocumentMode(True)
         self.tabs.setElideMode(Qt.TextElideMode.ElideRight)
