@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QWidget
+from PyQt6.QtWidgets import QWidget, QStyleFactory, QApplication
 from PyQt6.QtCore import QSettings
 from PyQt6 import uic
 import zapzap
@@ -9,7 +9,7 @@ class Settings_System(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         uic.loadUi(zapzap.abs_path+'/view/settings_system.ui', self)
-        self.parent = parent
+        self.parent_settings = parent
 
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__, self)
         self.loadConfigChecked()
@@ -22,6 +22,30 @@ class Settings_System(QWidget):
 
         # Night Mode
         self.night_mode.stateChanged.connect(self.state_night_mode)
+
+        self.loadStyles()
+
+    def loadStyles(self):
+        current_style = QApplication.instance().style()
+        print('>>> ', current_style.objectName())
+
+        self.styles = QStyleFactory.keys()
+        self.comboBox.addItems(self.styles)
+        self.comboBox.currentIndexChanged.connect(self.index_changed)
+
+    def index_changed(self, i):
+        if i > 0:
+            name_style = self.styles[i-1]
+            print(name_style)
+
+            if 'Dark'.upper() in name_style.upper()  :
+                self.parent_settings.colorFrameBackground(True)
+            else:
+                self.parent_settings.colorFrameBackground()
+
+            print(name_style.upper(), 'Dark'.upper(),
+                  name_style.upper() in 'Dark'.upper())
+            QApplication.instance().setStyle(name_style)
 
     def loadConfigChecked(self):
         ## System ##
@@ -52,7 +76,8 @@ class Settings_System(QWidget):
                                self.start_system.isChecked())
 
     def state_night_mode(self, s):
-        self.parent.parent.parent.toggle_stylesheet(self.night_mode.isChecked())
+        self.parent_settings.parent.parent.toggle_stylesheet(
+            self.night_mode.isChecked())
 
         self.settings.setValue("system/night_mode",
                                self.night_mode.isChecked())
