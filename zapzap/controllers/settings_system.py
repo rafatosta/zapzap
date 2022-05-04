@@ -37,7 +37,7 @@ class Settings_System(QWidget):
         if i > 0:
             name_style = self.styles[i-1]
             print(name_style)
-            if name_style.upper() in 'DARK':
+            if name_style in 'Dark':
                 self.parent_settings.colorFrameBackground(True)
             else:
                 self.parent_settings.colorFrameBackground()
