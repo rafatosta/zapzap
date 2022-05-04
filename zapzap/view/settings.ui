@@ -26,7 +26,7 @@
    <string>Form</string>
   </property>
   <property name="autoFillBackground">
-   <bool>false</bool>
+   <bool>true</bool>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -38,8 +38,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
