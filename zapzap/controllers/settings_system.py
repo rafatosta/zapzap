@@ -34,9 +34,13 @@ class Settings_System(QWidget):
         self.comboBox.currentIndexChanged.connect(self.index_changed)
 
     def index_changed(self, i):
-        print(i)
         if i > 0:
-            QApplication.instance().setStyle(self.styles[i-1])
+            name_style = self.styles[i-1]
+            if name_style.upper() in 'DARK':
+                self.parent_settings.colorFrameBackground(True)
+            else:
+                self.parent_settings.colorFrameBackground()
+            QApplication.instance().setStyle(name_style)
 
     def loadConfigChecked(self):
         ## System ##
