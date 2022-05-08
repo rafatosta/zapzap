@@ -22,9 +22,24 @@ class Drawer(QWidget):
 
         self.settings = Settings(self)
 
-        self.stackedWidget.insertWidget(0, self.settings)
-
+        self.layoutSettings.addWidget(self.settings)
+        
         self.openDrawerButton.clicked.connect(self.onToggled)
+
+        self.frame_drawer.setStyleSheet(
+            """QFrame#frame_drawer {border: 5px solid rgba(100, 100, 100, 0.8);border-radius: 10px;}""")
+
+        self.blur.setStyleSheet("""QWidget#blur{
+                                    background-color: rgba(0, 0, 0, 0.5);
+                                    border-radius: 0px;
+                                }""")
+
+        self.openDrawerButton.setStyleSheet("""QPushButton#openDrawerButton
+                                {
+                                    background-color:  rgba(100, 100, 100, 0.8);
+                                    border: 0.01em solid rgba(100, 100, 100, 0.8);
+                                    border-radius: 0.09em;
+                                }""")
 
     def onToggled(self):
         if self.isOpen:
