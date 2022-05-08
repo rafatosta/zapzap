@@ -43,7 +43,6 @@ class MainWindow(QMainWindow):
             self.hide()
         else:
             self.show()
-        
 
     def createDrawer(self):
         self.drawer = Drawer(self)
@@ -60,18 +59,30 @@ class MainWindow(QMainWindow):
         self.trayShow = QAction('Show', self)
         self.trayShow.triggered.connect(self.on_show)
 
+        self.traySettings = QAction('Zapzap Settings', self)
+        self.traySettings.triggered.connect(self.on_settings)
+
         self.trayExit = QAction('Exit', self)
         self.trayExit.triggered.connect(self.closeApp)
 
         # Cria o Menu e adiciona as ações
         self.trayMenu = QMenu()
         self.trayMenu.addAction(self.trayShow)
+        self.trayMenu.addAction(self.traySettings)
+        self.trayMenu.insertSeparator(self.trayExit)
         self.trayMenu.addAction(self.trayExit)
 
         self.tray.setContextMenu(self.trayMenu)
 
         # Mostra o Tray na barra de status
         self.tray.show()
+
+    def on_settings(self):
+        if self.drawer.isOpen:
+            self.drawer.onToggled()
+
+        self.show()
+        self.app.activateWindow()
 
     def createWebEngine(self):
         self.browser = Browser(self)
@@ -89,9 +100,9 @@ class MainWindow(QMainWindow):
     # Abrindo o webapp do system tray.
     def on_show(self):
         self.readSettings()
-        if self.app.activeWindow() != None: # Se a janela estiver em foco será escondida
+        if self.app.activeWindow() != None:  # Se a janela estiver em foco será escondida
             self.hide()
-        else: # Caso não esteja, será mostrada
+        else:  # Caso não esteja, será mostrada
             self.show()
             self.app.activateWindow()
 
@@ -114,12 +125,12 @@ class MainWindow(QMainWindow):
         self.drawer.maximum_width = self.width()
         super().resizeEvent(event)
 
-    def toggle_stylesheet(self, isNight_mode):        
+    def toggle_stylesheet(self, isNight_mode):
         if isNight_mode:
             path = theme_dark_path
         else:
             path = theme_light_path
-        
+
         self.browser.whats.setTheme(isNight_mode)
         with open(path, 'r') as f:
             style = f.read()
