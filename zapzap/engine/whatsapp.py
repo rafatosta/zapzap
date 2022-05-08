@@ -69,7 +69,7 @@ class WhatsApp(QWebEnginePage):
     def eventFilter(self, obj, event):
         if event.type() == QEvent.Type.MouseButtonPress:
             if event.button() == Qt.MouseButton.LeftButton:
-                if self.link_url != '' and self.link_url != __whatsapp_url__:
+                if self.link_url != '' and self.link_url != __whatsapp_url__ and not 'faq.whatsapp.com/web/download-and-installation/how-to-log-in-or-out' in self.link_url:
                     QDesktopServices.openUrl(QUrl(self.link_url))
                     return True
         return False
