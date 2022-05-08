@@ -16,9 +16,6 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
-     <property name="spacing">
-      <number>0</number>
-     </property>
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
@@ -33,7 +30,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="icon">
+      <widget class="QLabel" name="label">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -53,13 +50,13 @@
         </size>
        </property>
        <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
+        <enum>QFrame::Box</enum>
        </property>
        <property name="text">
         <string>icone do app</string>
        </property>
        <property name="scaledContents">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -83,11 +80,6 @@
    </item>
    <item>
     <widget class="QLabel" name="version">
-     <property name="font">
-      <font>
-       <bold>true</bold>
-      </font>
-     </property>
      <property name="text">
       <string>versão</string>
      </property>
@@ -111,14 +103,8 @@
      <property name="text">
       <string>pagina na web</string>
      </property>
-     <property name="textFormat">
-      <enum>Qt::PlainText</enum>
-     </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
-     </property>
-     <property name="openExternalLinks">
-      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -135,7 +121,7 @@
    <item>
     <widget class="QLabel" name="license">
      <property name="text">
-      <string>GNU General Public License v3.0</string>
+      <string>license</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>

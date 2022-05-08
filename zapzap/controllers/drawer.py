@@ -26,18 +26,6 @@ class Drawer(QWidget):
 
         self.openDrawerButton.clicked.connect(self.onToggled)
 
-        self.blur.setStyleSheet("""QWidget#blur{
-                                    background-color: rgba(0, 0, 0, 0.3);
-                                    border-radius: 0px;
-                                }""")
-
-        self.openDrawerButton.setStyleSheet("""QPushButton#openDrawerButton
-                                {
-                                    background-color:  rgba(100, 100, 100, 0.8);
-                                    border: 0.01em solid rgba(100, 100, 100, 0.8);
-                                    border-radius: 0.09em;
-                                }""")
-
     def onToggled(self):
         if self.isOpen:
             self.open()

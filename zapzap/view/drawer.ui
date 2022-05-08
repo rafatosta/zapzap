@@ -22,12 +22,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <property name="autoFillBackground">
-   <bool>false</bool>
-  </property>
-  <property name="styleSheet">
-   <string notr="true"/>
-  </property>
   <layout class="QHBoxLayout" name="horizontalLayout_2">
    <property name="spacing">
     <number>10</number>
@@ -46,9 +40,6 @@
    </property>
    <item>
     <widget class="QWidget" name="blur" native="true">
-     <property name="autoFillBackground">
-      <bool>false</bool>
-     </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <property name="spacing">
        <number>0</number>
@@ -108,13 +99,13 @@
     <widget class="QPushButton" name="openDrawerButton">
      <property name="minimumSize">
       <size>
-       <width>7</width>
+       <width>5</width>
        <height>150</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>7</width>
+       <width>5</width>
        <height>150</height>
       </size>
      </property>
