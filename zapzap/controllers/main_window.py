@@ -117,8 +117,11 @@ class MainWindow(QMainWindow):
         self.settings.setValue("main/geometry", self.saveGeometry())
         self.settings.setValue("main/windowState", self.saveState())
 
-        self.hide()
-        event.ignore()
+        keepBackgrounf = self.settings.value(
+            "system/keep_background", True, bool)
+        if keepBackgrounf:
+            self.hide()
+            event.ignore()
 
     def resizeEvent(self, event):
         self.drawer.setFixedHeight(self.height() - self.drawer.pos().y())

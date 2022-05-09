@@ -20,6 +20,9 @@ class Settings_System(QWidget):
         self.start_hide.stateChanged.connect(
             lambda: self.settings.setValue("system/start_hide",  self.start_hide.isChecked()))
 
+        self.keepBackground.stateChanged.connect(
+            lambda: self.settings.setValue("system/keep_background",  self.keepBackground.isChecked()))
+
         # Night Mode
         self.night_mode.stateChanged.connect(self.state_night_mode)
 
@@ -35,6 +38,10 @@ class Settings_System(QWidget):
         # Start_hide
         self.start_hide.setChecked(self.settings.value(
             "system/start_hide", False, bool))
+
+        # keep_background
+        self.keepBackground.setChecked(self.settings.value(
+            "system/keep_background", True, bool))
 
         # Night Mode
         self.night_mode.setChecked(self.settings.value(
@@ -52,7 +59,8 @@ class Settings_System(QWidget):
                                self.start_system.isChecked())
 
     def state_night_mode(self, s):
-        self.parent.parent.parent.toggle_stylesheet(self.night_mode.isChecked())
+        self.parent.parent.parent.toggle_stylesheet(
+            self.night_mode.isChecked())
 
         self.settings.setValue("system/night_mode",
                                self.night_mode.isChecked())
