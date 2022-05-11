@@ -9,6 +9,7 @@ class Settings_About(QWidget):
         super().__init__(parent)
         uic.loadUi(zapzap.abs_path+'/view/settings_about.ui', self)
 
+        self.groupBox.setTitle(f'{zapzap.__appname__} About')
         self.version.setText(f'{zapzap.__appname__} (Version {zapzap.__version__})')
         self.description_app.setText(zapzap.__comment__)
         self.webpage.setText(zapzap.__website__)

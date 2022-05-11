@@ -29,7 +29,12 @@
   <screenshots>
     <screenshot type="default">
       <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/zapzap.png</image>
-      <caption>ZapZap :: Screenshot</caption>
+    </screenshot>
+    <screenshot>
+      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/zapzap_light.png</image>
+    </screenshot>
+    <screenshot>
+      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/zapzap_dark.png</image>
     </screenshot>
   </screenshots>
   <url type="homepage">https://github.com/rafatosta/zapzap</url>
@@ -37,6 +42,17 @@
   <update_contact>rafa.ecomp@gmail.com</update_contact>
   <developer_name>Rafael Tosta</developer_name>
   <releases>
+    <release date="2022-05-11" version="2.5">
+      <description>
+        <p>Usability improvements:</p>
+        <ul>
+            <li>Better visibility for accessing zapzap settings</li>
+            <li>Choose to stay in the background or close the app</li>
+            <li>Action to open Settings in Tray menu</li>
+            <li>Sets Fusion as default style</li>
+        </ul>
+      </description>
+    </release>
     <release date="2022-04-25" version="2.4">
       <description>
         <p>Usability improvements: Actions when clicking on the tray icon similar to Telegram-Desktop.</p>

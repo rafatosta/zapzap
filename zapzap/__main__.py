@@ -15,6 +15,8 @@ def main():
     app.setDesktopFileName(zapzap.__desktopid__)
     app.setOrganizationDomain(zapzap.__domain__)
 
+    app.setStyle('Fusion')
+
     # garante que teremos o diretório tmp para as fotos dos usuários utilizados nas notificações
     path = QStandardPaths.writableLocation(
         QStandardPaths.StandardLocation.AppLocalDataLocation)+'/tmp'
@@ -24,6 +26,9 @@ def main():
     window = MainWindow(app)
     app.setWindow(window)
     app.setActivationWindow(window)
+
+    isNight_mode = window.settings.value("system/night_mode", False, bool)
+    window.toggle_stylesheet(isNight_mode)
 
     sys.exit(app.exec())
 

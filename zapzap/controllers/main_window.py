@@ -4,7 +4,7 @@ from PyQt6.QtCore import Qt, QSettings, QByteArray
 import zapzap
 from zapzap.controllers.drawer import Drawer
 from zapzap.engine.browser import Browser
-from zapzap import tray_path
+from zapzap import theme_light_path, theme_dark_path, tray_path
 
 
 class MainWindow(QMainWindow):
@@ -77,6 +77,13 @@ class MainWindow(QMainWindow):
         # Mostra o Tray na barra de status
         self.tray.show()
 
+    def on_settings(self):
+        if self.drawer.isOpen:
+            self.drawer.onToggled()
+
+        self.show()
+        self.app.activateWindow()
+
     def createWebEngine(self):
         self.browser = Browser(self)
         self.browser.setZoomFactor(self.settings.value(
@@ -85,21 +92,9 @@ class MainWindow(QMainWindow):
 
         self.setCentralWidget(self.browser)
 
-    def on_settings(self):
-        if self.drawer.isOpen:
-            self.drawer.onToggled()
-        
-        self.show()
-        self.app.activateWindow()
-
     def closeApp(self):
         # Save zoomFactor for browser
         self.settings.setValue("browser/zoomFactor", self.browser.zoomFactor())
-
-        self.settings.setValue("main/geometry", self.saveGeometry())
-        self.settings.setValue("main/windowState", self.saveState())
-
-        self.hide()
         self.app.quit()
 
     # Abrindo o webapp do system tray.
@@ -122,13 +117,29 @@ class MainWindow(QMainWindow):
         self.settings.setValue("main/geometry", self.saveGeometry())
         self.settings.setValue("main/windowState", self.saveState())
 
-        self.hide()
-        event.ignore()
+        keepBackgrounf = self.settings.value(
+            "system/keep_background", True, bool)
+        if keepBackgrounf:
+            self.hide()
+            event.ignore()
 
     def resizeEvent(self, event):
         self.drawer.setFixedHeight(self.height() - self.drawer.pos().y())
         self.drawer.maximum_width = self.width()
         super().resizeEvent(event)
+
+    def toggle_stylesheet(self, isNight_mode):
+        if isNight_mode:
+            path = theme_dark_path
+        else:
+            path = theme_light_path
+
+        self.browser.whats.setTheme(isNight_mode)
+        with open(path, 'r') as f:
+            style = f.read()
+
+        # Set the stylesheet of the application
+        self.app.setStyleSheet(style)
 
     # Mapeamento dos atalhos
     def keyPressEvent(self, e):
