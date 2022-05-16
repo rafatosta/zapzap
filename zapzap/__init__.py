@@ -28,3 +28,7 @@ theme_dark_path = abs_path+'/assets/stylesheets/dark/stylesheet.qss'
 # Tray
 tray_path = QIcon(abs_path+'/assets/icons/tray/tray.svg')
 tray_notify_path = QIcon(abs_path+'/assets/icons/tray/tray_notify.svg')
+
+# Tray symbolic
+tray_symbolic_path = QIcon(abs_path+'/assets/icons/tray/tray_symbolic.svg')
+tray_symbolic_notify_path = QIcon(abs_path+'/assets/icons/tray/tray_symbolic_notify.svg')
