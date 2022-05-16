@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QWidget
+from PyQt6.QtWidgets import QWidget, QApplication
 from PyQt6.QtCore import QSettings
 from PyQt6 import uic
 import zapzap
@@ -20,10 +20,22 @@ class Settings_Notify(QWidget):
         self.show_msg.stateChanged.connect(
             lambda: self.settings.setValue('notification/show_msg', self.show_msg.isChecked()))
 
+        self.symbolic_icon.stateChanged.connect(self.setSymbolic_icon)
+
+    def setSymbolic_icon(self):
+        self.settings.setValue('notification/symbolic_icon',
+                               self.symbolic_icon.isChecked())
+
+        mainWindow = QApplication.instance().getWindow()
+        mainWindow.browser.title_changed(mainWindow.windowTitle())
+
     def loadConfigChecked(self):
         ## Notifications ##
         isNotifyApp = self.settings.value("notification/app", True, bool)
         self.notify_desktop.setChecked(isNotifyApp)
+        self.symbolic_icon.setChecked(self.settings.value(
+            "notification/symbolic_icon", True, bool))
+
         # enable ou disable
         self.show_photo.setEnabled(isNotifyApp)
         self.show_name.setEnabled(isNotifyApp)
