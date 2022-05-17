@@ -26,7 +26,7 @@ class Settings(QWidget):
         self.tabs.setDocumentMode(True)
         self.tabs.setElideMode(Qt.TextElideMode.ElideRight)
         #self.tabs.addTab(Settings_Users(), "Users")
-        self.tabs.addTab(Settings_System(self), "System")
+        self.tabs.addTab(Settings_System(), "System")
         self.tabs.addTab(Settings_Notify(), "Notifications")
         self.tabs.addTab(Settings_About(), "About")
 

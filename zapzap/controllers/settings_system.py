@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QWidget
+from PyQt6.QtWidgets import QWidget, QApplication
 from PyQt6.QtCore import QSettings
 from PyQt6 import uic
 import zapzap
@@ -9,7 +9,6 @@ class Settings_System(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         uic.loadUi(zapzap.abs_path+'/view/settings_system.ui', self)
-        self.parent = parent
 
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__, self)
         self.loadConfigChecked()
@@ -59,7 +58,8 @@ class Settings_System(QWidget):
                                self.start_system.isChecked())
 
     def state_night_mode(self, s):
-        self.parent.parent.parent.toggle_stylesheet(
+        mainWindow = QApplication.instance().getWindow()
+        mainWindow.toggle_stylesheet(
             self.night_mode.isChecked())
 
         self.settings.setValue("system/night_mode",
