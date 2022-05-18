@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QWidget, QTabBar
+from PyQt6.QtGui import QDesktopServices
 from PyQt6 import uic
-from PyQt6.QtCore import QSize, Qt
+from PyQt6.QtCore import QSize, Qt, QUrl
 from zapzap.controllers.settings_about import Settings_About
 from zapzap.controllers.settings_notify import Settings_Notify
 from zapzap.controllers.settings_system import Settings_System
@@ -31,6 +32,11 @@ class Settings(QWidget):
         self.tabs.addTab(Settings_About(), "About")
 
         self.closeButton.clicked.connect(parent.onToggled)
+
+        self.pushButtonReport.clicked.connect(self.reportIssue)
+
+    def reportIssue(self):
+        QDesktopServices.openUrl(QUrl('https://github.com/rafatosta/zapzap/issues'))
 
     def mousePressEvent(self, event):
         pass
