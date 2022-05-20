@@ -4,7 +4,7 @@ from PyQt6.QtCore import Qt, QSettings, QByteArray
 import zapzap
 from zapzap.controllers.drawer import Drawer
 from zapzap.engine.browser import Browser
-from zapzap import theme_light_path, theme_dark_path, tray_path
+from zapzap import theme_light_path, theme_dark_path, tray_path, tray_symbolic_path
 
 
 class MainWindow(QMainWindow):
@@ -52,7 +52,13 @@ class MainWindow(QMainWindow):
     def createTrayIcon(self):
         # Criando o tray icon
         self.tray = QSystemTrayIcon()
-        self.tray.setIcon(QIcon(tray_path))
+
+        isTraySymbolic = self.settings.value(
+            "notification/symbolic_icon", True, bool)
+        if isTraySymbolic:
+            self.tray.setIcon(QIcon(tray_symbolic_path))
+        else:
+            self.tray.setIcon(QIcon(tray_path))
         self.tray.activated.connect(self.onTrayIconActivated)
 
         # Itens para o menu do tray icon
@@ -93,8 +99,10 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.browser)
 
     def closeApp(self):
-        # Save zoomFactor for browser
         self.settings.setValue("browser/zoomFactor", self.browser.zoomFactor())
+        self.settings.setValue("main/geometry", self.saveGeometry())
+        self.settings.setValue("main/windowState", self.saveState())
+        self.hide()
         self.app.quit()
 
     # Abrindo o webapp do system tray.

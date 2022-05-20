@@ -67,14 +67,22 @@ class Browser(QWebEngineView):
     # a quantidade de mensagens pendentes é mostrada no título na página. Ex: (2) Whatsapp
     def title_changed(self, title):
         num = ''.join(filter(str.isdigit, title))
+        isTraySymbolic = self.parent.settings.value(
+            "notification/symbolic_icon", True, bool)
         try:
             int(num)
         except:
             self.parent.setWindowTitle(zapzap.__appname__)
-            self.parent.tray.setIcon(zapzap.tray_path)
+            if isTraySymbolic:
+                self.parent.tray.setIcon(zapzap.tray_symbolic_path)
+            else:
+                self.parent.tray.setIcon(zapzap.tray_path)
         else:
             self.parent.setWindowTitle("("+num+") - "+zapzap.__appname__)
-            self.parent.tray.setIcon(zapzap.tray_notify_path)
+            if isTraySymbolic:
+                self.parent.tray.setIcon(zapzap.tray_symbolic_notify_path)
+            else:
+                self.parent.tray.setIcon(zapzap.tray_notify_path)
 
     def show_notification(self, notification):
         if self.parent.settings.value('notification/app', True, bool):
@@ -87,9 +95,9 @@ class Browser(QWebEngineView):
                 )) if self.parent.settings.value('notification/show_photo', True, bool) else 'com.rtosta.zapzap'
 
                 n = dbus.Notification(title,
-                                    message,
-                                    timeout=3000
-                                    )
+                                      message,
+                                      timeout=3000
+                                      )
                 n.setUrgency(dbus.Urgency.NORMAL)
                 n.setCategory("im.received")
                 n.setIconPath(icon)
@@ -97,7 +105,6 @@ class Browser(QWebEngineView):
                 n.show()
             except Exception as e:
                 print(e)
-                
 
     def onShow(self, n, action):
         assert(action == "show"), "Action was not show!"

@@ -85,7 +85,7 @@ class SingleApplication(QApplication):
         self._inSocket.readyRead.connect(self._onReadyRead)
         if self._activateOnMessage:
             self.activateWindow()"""
-        
+
     def _onReadyRead(self):
         while True:
             msg = self._inStream.readLine()
@@ -95,3 +95,6 @@ class SingleApplication(QApplication):
 
     def setWindow(self, window):
         self.window = window
+
+    def getWindow(self):
+        return self.window
