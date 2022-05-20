@@ -42,6 +42,16 @@
   <update_contact>rafa.ecomp@gmail.com</update_contact>
   <developer_name>Rafael Tosta</developer_name>
   <releases>
+    <release date="2022-05-19" version="2.6">
+      <description>
+        <p>This will be the last update from version 2.x. Development will be focused on version 3.0 which will bring a new look to improve usability and the option to use multiple accounts. </p>
+        <p>Improvements:</p>
+        <ul>
+            <li>Symbolic icon for tray (better integration with KDE Plasma)</li>
+            <li>Some tweaks you won't notice</li>
+        </ul>
+      </description>
+    </release>
     <release date="2022-05-11" version="2.5">
       <description>
         <p>Usability improvements:</p>
