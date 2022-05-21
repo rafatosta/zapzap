@@ -1,6 +1,6 @@
-from PyQt6.QtWidgets import QMainWindow
-from PyQt6.QtGui import QMoveEvent, QDesktopServices
-from PyQt6.QtCore import QUrl, QSettings, QByteArray
+from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon
+from PyQt6.QtGui import QMoveEvent
+from PyQt6.QtCore import QSettings, QByteArray
 from PyQt6 import uic
 import zapzap
 from zapzap.controllers.about import About
@@ -48,13 +48,17 @@ class MainWindow(QMainWindow):
             self.show()
 
     def quit(self):
+        """
+        Close window.
+        """
         self.settings.setValue("main/geometry", self.saveGeometry())
         self.settings.setValue("main/windowState", self.saveState())
         self.hide()
         self.app.quit()
 
     def closeEvent(self, event):
-        """ Override the window close event.
+        """
+        Override the window close event.
         Save window dimensions and check if it should be hidden or closed
         """
         self.settings.setValue("main/geometry", self.saveGeometry())
@@ -64,3 +68,23 @@ class MainWindow(QMainWindow):
                 "system/keep_background", True, bool):
             self.hide()
             event.ignore()
+
+    def onTrayIconActivated(self, reason):
+        """
+        wind to show and hide the window with just two click or middle button on the tray icon. 
+        One click opens the menu.
+        """
+        if reason == QSystemTrayIcon.ActivationReason.Trigger or reason == QSystemTrayIcon.ActivationReason.MiddleClick:
+            self.on_show()
+            self.app.activateWindow()
+
+    def on_show(self):
+        """
+        Opening the system tray web app.
+        """
+        self.loadSettings()
+        if self.app.activeWindow() != None:  # Se a janela estiver em foco será escondida
+            self.hide()
+        else:  # Caso não esteja, será mostrada
+            self.show()
+            self.app.activateWindow()
