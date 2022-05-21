@@ -1,9 +1,9 @@
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QDialog, QApplication
+from PyQt6.QtWidgets import QWidget, QApplication
 from PyQt6 import uic
 
 
-class ZapDialog(QDialog):
+class ZapDialog(QWidget):
     def __init__(self, uic_path):
         super().__init__()
         self.setWindowFlags(Qt.WindowType.Tool)
