@@ -7,7 +7,7 @@ from PyQt6.QtCore import QStandardPaths
 
 
 def main():
-    #os.environ['QT_QPA_PLATFORM'] = 'xcb'
+    os.environ['QT_QPA_PLATFORM'] = 'xcb'
 
     app = SingleApplication(zapzap.__appid__, sys.argv)
     app.setApplicationName(zapzap.__appname__)
@@ -26,12 +26,16 @@ def main():
     window = MainWindow(app)
     app.setWindow(window)
     app.setActivationWindow(window)
-
-    isNight_mode = window.settings.value("system/night_mode", False, bool)
-    window.toggle_stylesheet(isNight_mode)
+    window.show()
+    #isNight_mode = window.settings.value("system/night_mode", False, bool)
+    # window.toggle_stylesheet(isNight_mode)
 
     sys.exit(app.exec())
 
 
 if __name__ == "__main__":
     main()
+
+# https://github.com/dmMaze/BallonsTranslator/
+# https://www.pythonfixing.com/2021/11/fixed-how-to-change-languagestranslatio.html
+# https://github.com/eyllanesc/stackoverflow/tree/master/questions/53349623
