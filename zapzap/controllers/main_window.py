@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import QMainWindow
-from PyQt6.QtGui import QMoveEvent
+from PyQt6.QtGui import QMoveEvent, QDesktopServices
+from PyQt6.QtCore import QUrl
 from PyQt6 import uic
 import zapzap
 from zapzap.controllers.about import About
@@ -14,6 +15,13 @@ class MainWindow(QMainWindow):
 
         self.actionReload_Service.triggered.connect(self.reload_Service)
         self.actionAbout_Zapzap.triggered.connect(self.openAbout_Zapzap)
+        
+        self.actionLearn_More.triggered.connect(lambda: QDesktopServices.openUrl(
+            QUrl('https://github.com/rafatosta/zapzap')))
+        self.actionChangelog.triggered.connect(lambda: QDesktopServices.openUrl(
+            QUrl('https://github.com/rafatosta/zapzap/releases')))
+        self.actionSupport.triggered.connect(lambda: QDesktopServices.openUrl(
+            QUrl('https://github.com/rafatosta/zapzap/issues')))
 
     def reload_Service(self):
         print('f5')
