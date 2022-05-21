@@ -33,15 +33,21 @@ class MainWindow(QMainWindow):
         return super().moveEvent(a0)
 
     def loadSettings(self):
+        """
+        Load the settings
+        """
+        # keep_background
+        self.actionHide_on_close.setChecked(self.settings.value(
+            "system/keep_background", True, bool))
+        # Window State
         self.restoreGeometry(self.settings.value(
             "main/geometry", QByteArray()))
         self.restoreState(self.settings.value(
             "main/windowState", QByteArray()))
-
+        # System start
         isStart_system = self.settings.value(
             "system/start_system", False, bool)
         isStart_hide = self.settings.value("system/start_hide", False, bool)
-
         if isStart_system and isStart_hide:
             self.hide()
         else:

@@ -7,6 +7,10 @@ class MenuBar():
         # File
         mainWindow.actionQuit.triggered.connect(mainWindow.quit)
 
+        mainWindow.actionHide_on_close.triggered.connect(
+            lambda: mainWindow.settings.setValue(
+                "system/keep_background",  mainWindow.actionHide_on_close.isChecked()))
+
         # View
         mainWindow.actionReload_Service.triggered.connect(
             mainWindow.reload_Service)
