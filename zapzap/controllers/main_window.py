@@ -58,9 +58,19 @@ class MainWindow(QMainWindow):
             self.show()
 
     def quit(self):
-        #self.settings.setValue("browser/zoomFactor", self.browser.zoomFactor())
         self.settings.setValue("main/geometry", self.saveGeometry())
         self.settings.setValue("main/windowState", self.saveState())
         self.hide()
         self.app.quit()
 
+    def closeEvent(self, event):
+        """ Override the window close event.
+        Save window dimensions and check if it should be hidden or closed
+        """
+        self.settings.setValue("main/geometry", self.saveGeometry())
+        self.settings.setValue("main/windowState", self.saveState())
+
+        if self.settings.value(
+                "system/keep_background", True, bool):
+            self.hide()
+            event.ignore()
