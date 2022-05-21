@@ -6,7 +6,6 @@ class MenuBar():
     def __init__(self, mainWindow) -> None:
         # File
         mainWindow.actionQuit.triggered.connect(mainWindow.quit)
-
         mainWindow.actionHide_on_close.triggered.connect(
             lambda: mainWindow.settings.setValue(
                 "system/keep_background",  mainWindow.actionHide_on_close.isChecked()))
@@ -14,6 +13,9 @@ class MenuBar():
         # View
         mainWindow.actionReload_Service.triggered.connect(
             mainWindow.reload_Service)
+
+        mainWindow.actionToggle_Full_Screen.triggered.connect(
+            mainWindow.setFullSreen)
 
         # Help
         mainWindow.actionLearn_More.triggered.connect(lambda: QDesktopServices.openUrl(

@@ -14,7 +14,7 @@ class MainWindow(QMainWindow):
         uic.loadUi(zapzap.abs_path+'/view/main_window.ui', self)
         self.app = parent
         self.openDialog = None
-
+        self.isFullScreen = False
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__, self)
 
         MenuBar(self)
@@ -94,3 +94,13 @@ class MainWindow(QMainWindow):
         else:  # Caso não esteja, será mostrada
             self.show()
             self.app.activateWindow()
+
+    def setFullSreen(self):
+        """
+        Full Screen Window
+        """
+        if not self.isFullScreen:
+            self.showFullScreen()
+        else:
+            self.showNormal()
+        self.isFullScreen = not self.isFullScreen
