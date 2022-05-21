@@ -13,10 +13,10 @@ class MenuBar():
         # View
         mainWindow.actionReload_Service.triggered.connect(
             mainWindow.reload_Service)
-
+        mainWindow.actionOpen_Quick_Switch.triggered.connect(
+            mainWindow.open_Quick_Switch)
         mainWindow.actionToggle_Full_Screen.triggered.connect(
             mainWindow.setFullSreen)
-
         mainWindow.actionAuto_hide_menu_bar.triggered.connect(
             mainWindow.setHideMenuBar)
 

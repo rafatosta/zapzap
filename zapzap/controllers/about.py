@@ -1,5 +1,4 @@
 from PyQt6.QtCore import QSize
-from PyQt6 import uic
 import zapzap
 from zapzap.controllers.zapDialog import ZapDialog
 

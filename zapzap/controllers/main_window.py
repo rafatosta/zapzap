@@ -6,6 +6,7 @@ import zapzap
 from zapzap.controllers.about import About
 from zapzap.controllers.main_window_components.menu_bar import MenuBar
 from zapzap.controllers.main_window_components.tray_icon import TrayIcon
+from zapzap.controllers.quick_switch import QuickSwitch
 
 
 class MainWindow(QMainWindow):
@@ -123,4 +124,11 @@ class MainWindow(QMainWindow):
 
         self.settings.setValue("main/hideMenuBar", self.isHideMenuBar)
         self.isHideMenuBar = not self.isHideMenuBar
-        
+
+    def open_Quick_Switch(self):
+        """
+        Open QuickSwitch
+        """
+        self.openDialog = QuickSwitch()
+        self.openDialog.show()
+
