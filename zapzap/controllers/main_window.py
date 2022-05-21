@@ -4,6 +4,8 @@ from PyQt6.QtCore import QUrl, QSettings, QByteArray
 from PyQt6 import uic
 import zapzap
 from zapzap.controllers.about import About
+from zapzap.controllers.main_window_components.menu_bar import MenuBar
+from zapzap.controllers.main_window_components.tray_icon import TrayIcon
 
 
 class MainWindow(QMainWindow):
@@ -15,20 +17,8 @@ class MainWindow(QMainWindow):
 
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__, self)
 
-        # File
-        self.actionQuit.triggered.connect(self.quit)
-
-        # View
-        self.actionReload_Service.triggered.connect(self.reload_Service)
-
-        # Help
-        self.actionLearn_More.triggered.connect(lambda: QDesktopServices.openUrl(
-            QUrl('https://github.com/rafatosta/zapzap')))
-        self.actionChangelog.triggered.connect(lambda: QDesktopServices.openUrl(
-            QUrl('https://github.com/rafatosta/zapzap/releases')))
-        self.actionSupport.triggered.connect(lambda: QDesktopServices.openUrl(
-            QUrl('https://github.com/rafatosta/zapzap/issues')))
-        self.actionAbout_Zapzap.triggered.connect(self.openAbout_Zapzap)
+        MenuBar(self)
+        TrayIcon(self)
 
     def reload_Service(self):
         print('f5')
