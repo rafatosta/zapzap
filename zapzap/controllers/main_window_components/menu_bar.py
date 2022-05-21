@@ -17,6 +17,9 @@ class MenuBar():
         mainWindow.actionToggle_Full_Screen.triggered.connect(
             mainWindow.setFullSreen)
 
+        mainWindow.actionAuto_hide_menu_bar.triggered.connect(
+            mainWindow.setHideMenuBar)
+
         # Help
         mainWindow.actionLearn_More.triggered.connect(lambda: QDesktopServices.openUrl(
             QUrl('https://github.com/rafatosta/zapzap')))

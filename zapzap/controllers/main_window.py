@@ -15,6 +15,7 @@ class MainWindow(QMainWindow):
         self.app = parent
         self.openDialog = None
         self.isFullScreen = False
+        self.isHideMenuBar = False
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__, self)
 
         MenuBar(self)
@@ -36,6 +37,11 @@ class MainWindow(QMainWindow):
         """
         Load the settings
         """
+        # MenuBar
+        self.isHideMenuBar = self.settings.value(
+            "main/hideMenuBar", False, bool)
+        self.actionAuto_hide_menu_bar.setChecked(self.isHideMenuBar)
+        self.setHideMenuBar()
         # keep_background
         self.actionHide_on_close.setChecked(self.settings.value(
             "system/keep_background", True, bool))
@@ -104,3 +110,17 @@ class MainWindow(QMainWindow):
         else:
             self.showNormal()
         self.isFullScreen = not self.isFullScreen
+
+    def setHideMenuBar(self):
+        """
+        Hide/Show MenuBar
+        """
+        if self.isHideMenuBar:
+            self.menubar.setMaximumHeight(0)
+        else:
+            # default size for qt designer
+            self.menubar.setMaximumHeight(16777215)
+
+        self.settings.setValue("main/hideMenuBar", self.isHideMenuBar)
+        self.isHideMenuBar = not self.isHideMenuBar
+        

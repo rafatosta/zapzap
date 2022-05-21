@@ -41,6 +41,7 @@
     </property>
     <addaction name="actionSettings"/>
     <addaction name="separator"/>
+    <addaction name="actionHide_on_close"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuView">
@@ -73,7 +74,6 @@
     </property>
     <addaction name="actionLearn_More"/>
     <addaction name="actionChangelog"/>
-    <addaction name="separator"/>
     <addaction name="actionSupport"/>
     <addaction name="separator"/>
     <addaction name="actionAbout_Zapzap"/>
@@ -147,6 +147,9 @@
    <property name="text">
     <string>Auto-hide menu bar</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
+   </property>
   </action>
   <action name="actionAdd_new_user">
    <property name="text">
@@ -183,12 +186,29 @@
   </action>
   <action name="actionSupport">
    <property name="text">
-    <string>Support</string>
+    <string>Report issue...</string>
    </property>
   </action>
   <action name="actionAbout_Zapzap">
    <property name="text">
     <string>About Zapzap</string>
+   </property>
+  </action>
+  <action name="actionHide_on_close">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Hide on close</string>
+   </property>
+   <property name="toolTip">
+    <string>Keep in background when closing window</string>
+   </property>
+   <property name="statusTip">
+    <string>Keep in background when closing window</string>
    </property>
   </action>
  </widget>
