@@ -13,7 +13,7 @@ class ZapDialog(QWidget):
                             Qt.WindowType.FramelessWindowHint)
         uic.loadUi(uic_path, self)
 
-        radius = 5.0
+        radius = 10.0
         path = QPainterPath()
         path.addRoundedRect(QRectF(self.rect()), radius, radius)
         mask = QRegion(path.toFillPolygon().toPolygon())
