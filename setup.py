@@ -12,6 +12,7 @@ try:
         license='GPLv3+',
         packages=['zapzap',
                   'zapzap.controllers',
+                  'zapzap.controllers.main_window_components',
                   'zapzap.engine',
                   'zapzap.services'],
         include_package_data=True,
