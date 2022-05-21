@@ -26,7 +26,7 @@ def main():
     window = MainWindow(app)
     app.setWindow(window)
     app.setActivationWindow(window)
-    window.show()
+    window.loadSettings()
     #isNight_mode = window.settings.value("system/night_mode", False, bool)
     # window.toggle_stylesheet(isNight_mode)
 
