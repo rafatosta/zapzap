@@ -124,9 +124,6 @@
     </property>
     <addaction name="actionAdd_new_user"/>
     <addaction name="separator"/>
-    <addaction name="actionMostrar_todos_os_usu_rios_aqui"/>
-    <addaction name="actionUser_1"/>
-    <addaction name="actionUser2"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">

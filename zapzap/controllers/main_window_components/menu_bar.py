@@ -20,6 +20,10 @@ class MenuBar():
         mainWindow.actionAuto_hide_menu_bar.triggered.connect(
             mainWindow.setHideMenuBar)
 
+        # Users
+        mainWindow.actionAdd_new_user.triggered.connect(
+            mainWindow.openNewUserDialog)
+
         # Help
         mainWindow.actionLearn_More.triggered.connect(lambda: QDesktopServices.openUrl(
             QUrl('https://github.com/rafatosta/zapzap')))

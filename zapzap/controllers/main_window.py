@@ -7,6 +7,7 @@ from zapzap.controllers.about import About
 from zapzap.controllers.main_window_components.menu_bar import MenuBar
 from zapzap.controllers.main_window_components.tray_icon import TrayIcon
 from zapzap.controllers.quick_switch import QuickSwitch
+from zapzap.controllers.new_user import NewUser
 
 
 class MainWindow(QMainWindow):
@@ -24,6 +25,11 @@ class MainWindow(QMainWindow):
 
     def reload_Service(self):
         print('f5')
+
+    
+    def openNewUserDialog(self):
+        self.openDialog = NewUser()
+        self.openDialog.show()
 
     def openAbout_Zapzap(self):
         self.openDialog = About(self)
