@@ -117,12 +117,15 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="close_1">
           <property name="maximumSize">
            <size>
             <width>35</width>
             <height>35</height>
            </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="text">
            <string>x</string>
@@ -144,7 +147,11 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="nameLineEdit"/>
+         <widget class="QLineEdit" name="nameLineEdit">
+          <property name="placeholderText">
+           <string>Account name</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -164,14 +171,14 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_3">
+         <widget class="QPushButton" name="close_2">
           <property name="text">
            <string>Close</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="save">
           <property name="text">
            <string>Save</string>
           </property>
