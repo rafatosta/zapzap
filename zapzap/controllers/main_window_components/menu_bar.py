@@ -5,6 +5,7 @@ from PyQt6.QtCore import QUrl
 class MenuBar():
     def __init__(self, mainWindow) -> None:
         # File
+        mainWindow.actionSettings.triggered.connect(mainWindow.openSettingsDialog)
         mainWindow.actionQuit.triggered.connect(mainWindow.quit)
         mainWindow.actionHide_on_close.triggered.connect(
             lambda: mainWindow.settings.setValue(
