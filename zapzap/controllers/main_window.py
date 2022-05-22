@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon
-from PyQt6.QtGui import QMoveEvent
+from PyQt6.QtGui import QMoveEvent, QAction, QActionGroup, QKeySequence
 from PyQt6.QtCore import QSettings, QByteArray
 from PyQt6 import uic
 import zapzap
@@ -10,28 +10,70 @@ from zapzap.controllers.quick_switch import QuickSwitch
 from zapzap.controllers.new_user import NewUser
 from zapzap.controllers.settings import Settings
 from zapzap.controllers.users import Users
+from zapzap.engine.browser import Browser
 
 
 class MainWindow(QMainWindow):
+
+    openDialog = None
+    isFullScreen = False
+    isHideMenuBar = False
+
     def __init__(self, parent=None):
         super(MainWindow, self).__init__()
         uic.loadUi(zapzap.abs_path+'/view/main_window.ui', self)
         self.app = parent
-        self.openDialog = None
-        self.isFullScreen = False
-        self.isHideMenuBar = False
-        self.settings = QSettings(zapzap.__appname__, zapzap.__appname__, self)
+        self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
+        self.users_sgs = QSettings(zapzap.__appname__, 'users')
 
         MenuBar(self)
         TrayIcon(self)
+
+        self.loadUsers()
+
+    def loadUsers(self):
+        """
+        Upload all users and start whatsapp sessions
+        """
+        self.users_sgs.beginGroup("users")
+        keys = self.users_sgs.allKeys()
+        # If the list is empty, it starts with the default user
+        if not len(keys) > 0:
+            self.users_sgs.setValue(
+                "storage-whats", {'storageName': 'storage-whats', 'name': 'Whatsapp'})
+            keys = self.users_sgs.allKeys()
+        """
+        For each user create:
+            + The Browser: Page for whatsapp
+            + Action menu
+        """
+        # creating a action group
+        for id, u in enumerate(keys):
+            # Browser
+            b = Browser(self.users_sgs.value(u, dict))
+            b.setZoomFactor(self.settings.value(
+                "browser/zoomFactor", 1.0, float))
+            b.doReload()
+            # QAction
+            action = QAction(self.users_sgs.value(u, dict)['name'], self)
+            action.setShortcut(QKeySequence(f'Ctrl+{id+1}'))
+            action.triggered.connect(
+                lambda checked, index=id: self.setStackedWidgetPage(index))
+            self.menuUsers.addAction(action)
+            self.stackedWidget.addWidget(b)
+        self.users_sgs.endGroup()  # encerra o grupo (não pode esquecer)
+
+    def setStackedWidgetPage(self, id):
+        print('Set :', id)
+        self.stackedWidget.setCurrentIndex(id)
 
     def reload_Service(self):
         print('f5')
 
     def openSettingsDialog(self):
-        self.openDialog = Users()#Settings()
+        self.openDialog = Users()  # Settings()
         self.openDialog.show()
-    
+
     def openNewUserDialog(self):
         self.openDialog = NewUser()
         self.openDialog.show()
@@ -141,4 +183,3 @@ class MainWindow(QMainWindow):
         """
         self.openDialog = QuickSwitch()
         self.openDialog.show()
-

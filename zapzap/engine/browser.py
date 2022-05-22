@@ -11,12 +11,12 @@ import zapzap.services.dbus_notify as dbus
 
 
 class Browser(QWebEngineView):
-    def __init__(self, parent):
+    def __init__(self, perfil):
         super().__init__()
-        self.parent = parent
+        self.perfil = perfil
 
         # definição do pergil do usuário, local que será armazenados os cookies e informações sobre os navegadores
-        profile = QWebEngineProfile("storage-whats", self)
+        profile = QWebEngineProfile(perfil['storageName'], self)
         profile.setHttpUserAgent(zapzap.__user_agent__)
         profile.setNotificationPresenter(self.show_notification)
 
@@ -66,7 +66,9 @@ class Browser(QWebEngineView):
     # verifica se há uma nova notificação a partir do título
     # a quantidade de mensagens pendentes é mostrada no título na página. Ex: (2) Whatsapp
     def title_changed(self, title):
-        num = ''.join(filter(str.isdigit, title))
+        print('title_changed: ', title, self.perfil['name'])
+
+        """num = ''.join(filter(str.isdigit, title))
         isTraySymbolic = self.parent.settings.value(
             "notification/symbolic_icon", True, bool)
         try:
@@ -82,10 +84,11 @@ class Browser(QWebEngineView):
             if isTraySymbolic:
                 self.parent.tray.setIcon(zapzap.tray_symbolic_notify_path)
             else:
-                self.parent.tray.setIcon(zapzap.tray_notify_path)
+                self.parent.tray.setIcon(zapzap.tray_notify_path)"""
 
     def show_notification(self, notification):
-        if self.parent.settings.value('notification/app', True, bool):
+        print('show_notification: ', self.perfil['name'])
+        """if self.parent.settings.value('notification/app', True, bool):
             try:
                 title = notification.title() if self.parent.settings.value(
                     'notification/show_name', True, bool) else __appname__
@@ -104,12 +107,12 @@ class Browser(QWebEngineView):
                 n.setHint('desktop-entry', 'com.rtosta.zapzap')
                 n.show()
             except Exception as e:
-                print(e)
+                print(e)"""
 
-    def onShow(self, n, action):
+    """def onShow(self, n, action):
         assert(action == "show"), "Action was not show!"
         self.parent.on_show()
-        n.close()
+        n.close()"""
 
     def getPathImage(self, qin, title):
         try:  # só por garantia de não quebrar a aplicação por causa de um ícone
