@@ -19,7 +19,7 @@
   <property name="maximumSize">
    <size>
     <width>430</width>
-    <height>180</height>
+    <height>219</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -157,6 +157,13 @@
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>Delete</string>
+          </property>
+         </widget>
+        </item>
         <item>
          <spacer name="horizontalSpacer_3">
           <property name="orientation">
