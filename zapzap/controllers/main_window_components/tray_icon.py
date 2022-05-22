@@ -9,7 +9,7 @@ class TrayIcon():
         self.tray = QSystemTrayIcon(mainWindow)
        
         isTraySymbolic = mainWindow.settings.value(
-            "notification/symbolic_icon", True, bool)
+            "notification/symbolic_icon", False, bool)
         if isTraySymbolic:
             self.tray.setIcon(QIcon(tray_symbolic_path))
         else:
