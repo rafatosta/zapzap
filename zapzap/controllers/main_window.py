@@ -28,7 +28,7 @@ class MainWindow(QMainWindow):
         self.users_sgs = QSettings(zapzap.__appname__, 'users')
 
         MenuBar(self)
-        TrayIcon(self)
+        self.tray = TrayIcon(self)
 
         self.loadUsers()
 
@@ -51,7 +51,7 @@ class MainWindow(QMainWindow):
         # creating a action group
         for id, u in enumerate(keys):
             # Browser
-            b = Browser(self.users_sgs.value(u, dict))
+            b = Browser(self.users_sgs.value(u, dict), self)
             b.setZoomFactor(self.settings.value(
                 "browser/zoomFactor", 1.0, float))
             b.doReload()
@@ -188,3 +188,12 @@ class MainWindow(QMainWindow):
         """
         self.openDialog = QuickSwitch()
         self.openDialog.show()
+
+    def updateNotificationIcon(self):
+        """
+        Updates the tray icon depending on the amount of pending notifications
+        """
+        n = 0
+        for b in self.list_browser:
+            n += b.numberNotifications
+        self.tray.showIconNotification(n)
