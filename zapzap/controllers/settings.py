@@ -5,7 +5,6 @@ from PyQt6.QtCore import QSize, Qt, QUrl
 from zapzap.controllers.settings_about import Settings_About
 from zapzap.controllers.settings_notify import Settings_Notify
 from zapzap.controllers.settings_system import Settings_System
-from zapzap.controllers.settings_users import Settings_Users
 import zapzap
 
 
