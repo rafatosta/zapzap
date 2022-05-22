@@ -18,6 +18,7 @@ class MainWindow(QMainWindow):
     openDialog = None
     isFullScreen = False
     isHideMenuBar = False
+    list_browser = []
 
     def __init__(self, parent=None):
         super(MainWindow, self).__init__()
@@ -54,6 +55,7 @@ class MainWindow(QMainWindow):
             b.setZoomFactor(self.settings.value(
                 "browser/zoomFactor", 1.0, float))
             b.doReload()
+            self.list_browser.append(b)
             # QAction
             action = QAction(self.users_sgs.value(u, dict)['name'], self)
             action.setShortcut(QKeySequence(f'Ctrl+{id+1}'))
@@ -69,6 +71,9 @@ class MainWindow(QMainWindow):
 
     def reload_Service(self):
         print('f5')
+        # é possível modificar/acessar mantendo uma lista
+        for b in self.list_browser:
+            b.whats.setTheme(True)
 
     def openSettingsDialog(self):
         self.openDialog = Users()  # Settings()
