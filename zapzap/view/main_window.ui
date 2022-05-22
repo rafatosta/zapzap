@@ -199,7 +199,7 @@
   </action>
   <action name="actionAuto_hide_menu_bar">
    <property name="checkable">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>Auto-hide menu bar</string>

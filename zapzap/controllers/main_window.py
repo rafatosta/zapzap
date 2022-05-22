@@ -47,7 +47,6 @@ class MainWindow(QMainWindow):
         # MenuBar
         self.isHideMenuBar = self.settings.value(
             "main/hideMenuBar", False, bool)
-        self.actionAuto_hide_menu_bar.setChecked(self.isHideMenuBar)
         self.setHideMenuBar()
         # keep_background
         self.actionHide_on_close.setChecked(self.settings.value(
