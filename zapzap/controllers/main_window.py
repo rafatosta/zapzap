@@ -7,7 +7,6 @@ from zapzap.controllers.about import About
 from zapzap.controllers.main_window_components.menu_bar import MenuBar
 from zapzap.controllers.main_window_components.tray_icon import TrayIcon
 from zapzap.controllers.quick_switch import QuickSwitch
-from zapzap.controllers.new_user import NewUser
 from zapzap.controllers.settings import Settings
 from zapzap.controllers.users import Users
 from zapzap.engine.browser import Browser
@@ -76,11 +75,12 @@ class MainWindow(QMainWindow):
             b.whats.setTheme(True)
 
     def openSettingsDialog(self):
-        self.openDialog = Users()  # Settings()
-        self.openDialog.show()
+        pass
+        #self.openDialog = Users()  # Settings()
+        #self.openDialog.show()
 
     def openNewUserDialog(self):
-        self.openDialog = NewUser()
+        self.openDialog = Users()
         self.openDialog.show()
 
     def openAbout_Zapzap(self):
