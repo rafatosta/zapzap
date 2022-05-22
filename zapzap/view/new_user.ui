@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>Form</class>
  <widget class="QWidget" name="Form">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -23,7 +26,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>New user whatsapp</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -47,7 +50,7 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <property name="bottomMargin">
-         <number>20</number>
+         <number>15</number>
         </property>
         <item>
          <widget class="QLabel" name="icon_label">
@@ -115,25 +118,6 @@
            </size>
           </property>
          </spacer>
-        </item>
-        <item>
-         <widget class="QPushButton" name="close_1">
-          <property name="maximumSize">
-           <size>
-            <width>35</width>
-            <height>35</height>
-           </size>
-          </property>
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="text">
-           <string>x</string>
-          </property>
-          <property name="flat">
-           <bool>true</bool>
-          </property>
-         </widget>
         </item>
        </layout>
       </item>

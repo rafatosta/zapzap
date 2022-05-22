@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>Form</class>
  <widget class="QWidget" name="Form">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -17,7 +20,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <property name="bottomMargin">
-      <number>20</number>
+      <number>15</number>
      </property>
      <item>
       <widget class="QLabel" name="icon_label">
@@ -86,28 +89,6 @@
        </property>
       </spacer>
      </item>
-     <item>
-      <widget class="QPushButton" name="close_1">
-       <property name="maximumSize">
-        <size>
-         <width>35</width>
-         <height>35</height>
-        </size>
-       </property>
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
-       </property>
-       <property name="text">
-        <string>x</string>
-       </property>
-       <property name="flat">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
    <item>
@@ -121,7 +102,7 @@
         <x>0</x>
         <y>0</y>
         <width>369</width>
-        <height>344</height>
+        <height>349</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">

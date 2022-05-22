@@ -16,5 +16,3 @@ class About(ZapDialog):
         self.license.setText(zapzap.__licence__)
 
         self.icon.setPixmap(zapzap.tray_path.pixmap(QSize(100, 100)))
-
-        self.btnClose.clicked.connect(self.close)
