@@ -5,6 +5,8 @@ from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.controllers.main_window import MainWindow
 from PyQt6.QtCore import QStandardPaths
 
+from zapzap.model.users_model import createDB
+
 
 def main():
     os.environ['QT_QPA_PLATFORM'] = 'xcb'
@@ -16,7 +18,8 @@ def main():
     app.setOrganizationDomain(zapzap.__domain__)
 
     #app.setStyle('Fusion')
-
+    createDB()
+    
     # garante que teremos o diretório tmp para as fotos dos usuários utilizados nas notificações
     path = QStandardPaths.writableLocation(
         QStandardPaths.StandardLocation.AppLocalDataLocation)+'/tmp'
