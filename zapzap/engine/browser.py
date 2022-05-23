@@ -14,15 +14,13 @@ class Browser(QWebEngineView):
 
     numberNotifications = 0
 
-    def __init__(self, perfil, parent):
+    def __init__(self, nameSpace, parent=None):
         super().__init__()
-        self.perfil = perfil
-        self.parent = parent
 
         self.qset = QSettings(zapzap.__appname__, zapzap.__appname__)
 
         # definição do pergil do usuário, local que será armazenados os cookies e informações sobre os navegadores
-        profile = QWebEngineProfile(perfil['storageName'], self)
+        profile = QWebEngineProfile(nameSpace, self)
         profile.setHttpUserAgent(zapzap.__user_agent__)
         profile.setNotificationPresenter(self.show_notification)
 
@@ -79,7 +77,7 @@ class Browser(QWebEngineView):
         except:
             self.numberNotifications = 0
 
-        self.parent.updateNotificationIcon()
+        #self.parent.updateNotificationIcon()
 
         """num = ''.join(filter(str.isdigit, title))
         isTraySymbolic = self.parent.settings.value(

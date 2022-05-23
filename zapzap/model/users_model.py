@@ -2,6 +2,7 @@ import sqlite3
 import os
 from PyQt6.QtCore import QStandardPaths
 import zapzap
+from zapzap.engine.container import Container
 
 
 # Path database
@@ -36,13 +37,18 @@ def createTableUsers(cursor):
     """)
 
 
-def insert(name):
+def insert(name) -> Container:
     try:
         conn = connect_db()
         cursor = conn.cursor()
         SQL = """INSERT INTO users (name) VALUES (?);"""
-        cursor.execute(SQL, [name])
+        a = cursor.execute(SQL, [name])
         conn.commit()
+    except:
+        pass
+    else:
+        id = cursor.execute('select last_insert_rowid();').fetchall()[0][0]
+        return Container(id, name)
     finally:
         conn.close()
 
@@ -78,7 +84,9 @@ def selectAll():
         cursor = conn.cursor()
         SQL = """SELECT * FROM users;"""
         cursor.execute(SQL)
-        user_list = cursor.fetchall()
+
+        for user in cursor.fetchall():
+            user_list.append(Container(str(user[0]), user[1]))
     finally:
         conn.close()
     return user_list

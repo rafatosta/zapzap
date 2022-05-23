@@ -1,5 +1,6 @@
 from zapzap.engine.browser import Browser
 
+
 class Container():
     """Classe Container
         A ideia é definir para cada usuário seu próprio conjunto de configurações e
@@ -9,25 +10,19 @@ class Container():
                 + Nome do arquivo de configuração
 
     """
+
     def __init__(self, nameSpace='storage-whats', name='default'):
         self.nameSpace = nameSpace
         self.name = name
 
-    @property
-    def nameSpace(self):
-        return self.nameSpace
+        #self.createWebEngine()
 
-    @property
-    def name(self):
-        return self.name
-
-    @name.setter
-    def name(self, value):
-        self.name = value
-
-    def create(self):
+    def createWebEngine(self):
         """Cria o objeto Browser com as configurações definidas"""
-        pass
+        self.browser = Browser(self.nameSpace)
+        # self.browser.setZoomFactor(self.settings.value(
+        #    "browser/zoomFactor", 1.0, float))
+        self.browser.doReload()
 
     def remove(self):
         """Remove todas as informações persistente do container
