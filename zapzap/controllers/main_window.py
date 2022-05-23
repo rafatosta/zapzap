@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon
-from PyQt6.QtGui import QMoveEvent, QAction, QActionGroup, QKeySequence
+from PyQt6.QtGui import QMoveEvent, QAction, QKeySequence
 from PyQt6.QtCore import QSettings, QByteArray
 from PyQt6 import uic
 import zapzap
@@ -7,9 +7,9 @@ from zapzap.controllers.about import About
 from zapzap.controllers.main_window_components.menu_bar import MenuBar
 from zapzap.controllers.main_window_components.tray_icon import TrayIcon
 from zapzap.controllers.quick_switch import QuickSwitch
-from zapzap.controllers.settings import Settings
 from zapzap.controllers.users import Users
-from zapzap.engine.browser import Browser
+from zapzap.engine.container import Container
+import zapzap.model.users_model as user_db
 
 
 class MainWindow(QMainWindow):
@@ -17,7 +17,8 @@ class MainWindow(QMainWindow):
     openDialog = None
     isFullScreen = False
     isHideMenuBar = False
-    list_browser = []
+    list_browser = []  # remover isso depois
+    container_list = []
 
     def __init__(self, parent=None):
         super(MainWindow, self).__init__()
@@ -32,6 +33,15 @@ class MainWindow(QMainWindow):
         self.loadUsers()
 
     def loadUsers(self):
+        """
+        Upload all users and start whatsapp sessions
+        """
+        self.container_list = user_db.selectAll()
+        for c in self.container_list:
+            pass
+            # self.stackedWidget.addWidget(c.browser)
+
+    def loadUsers_old(self):
         """
         Upload all users and start whatsapp sessions
         """
@@ -50,12 +60,14 @@ class MainWindow(QMainWindow):
         # creating a action group
         for id, u in enumerate(keys):
             # Browser
-            b = Browser(self.users_sgs.value(u, dict), self)
+            print(self.users_sgs.value(u, dict))
+            b = Container(self.users_sgs.value(u, dict), self)
             b.setZoomFactor(self.settings.value(
                 "browser/zoomFactor", 1.0, float))
             b.doReload()
             self.list_browser.append(b)
             # QAction
+
             action = QAction(self.users_sgs.value(u, dict)['name'], self)
             action.setShortcut(QKeySequence(f'Ctrl+{id+1}'))
             action.triggered.connect(
@@ -76,11 +88,11 @@ class MainWindow(QMainWindow):
 
     def openSettingsDialog(self):
         pass
-        #self.openDialog = Users()  # Settings()
-        #self.openDialog.show()
+        # self.openDialog = Users()  # Settings()
+        # self.openDialog.show()
 
     def openNewUserDialog(self):
-        self.openDialog = Users()
+        self.openDialog = Users(self.container_list)
         self.openDialog.show()
 
     def openAbout_Zapzap(self):
