@@ -11,6 +11,7 @@ try:
         url=zapzap.__website__,
         license='GPLv3+',
         packages=['zapzap',
+                  'zapzap.model'
                   'zapzap.controllers',
                   'zapzap.controllers.main_window_components',
                   'zapzap.engine',
