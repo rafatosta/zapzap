@@ -14,7 +14,7 @@ class Browser(QWebEngineView):
 
     numberNotifications = 0
 
-    def __init__(self, nameSpace, parent=None):
+    def __init__(self, nameSpace='storage-whats', parent=None):
         super().__init__()
 
         self.qset = QSettings(zapzap.__appname__, zapzap.__appname__)
@@ -77,7 +77,7 @@ class Browser(QWebEngineView):
         except:
             self.numberNotifications = 0
 
-        #self.parent.updateNotificationIcon()
+        # self.parent.updateNotificationIcon()
 
         """num = ''.join(filter(str.isdigit, title))
         isTraySymbolic = self.parent.settings.value(

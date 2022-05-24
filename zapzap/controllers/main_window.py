@@ -1,15 +1,12 @@
 from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon
-from PyQt6.QtGui import QMoveEvent, QAction, QKeySequence
+from PyQt6.QtGui import QMoveEvent
 from PyQt6.QtCore import QSettings, QByteArray
 from PyQt6 import uic
 import zapzap
 from zapzap.controllers.about import About
 from zapzap.controllers.main_window_components.menu_bar import MenuBar
 from zapzap.controllers.main_window_components.tray_icon import TrayIcon
-from zapzap.controllers.quick_switch import QuickSwitch
-from zapzap.controllers.users import Users
-from zapzap.engine.container import Container
-import zapzap.model.users_model as user_db
+from zapzap.engine.browser import Browser
 
 
 class MainWindow(QMainWindow):
@@ -30,70 +27,31 @@ class MainWindow(QMainWindow):
         MenuBar(self)
         self.tray = TrayIcon(self)
 
-        self.loadUsers()
+        self.createWebEngine()
 
-    def loadUsers(self):
-        """
-        Upload all users and start whatsapp sessions
-        """
-        self.container_list = user_db.selectAll()
-        for c in self.container_list:
-            pass
-            # self.stackedWidget.addWidget(c.browser)
+    def createWebEngine(self):
+        self.browser = Browser()
+        self.browser.setZoomFactor(self.settings.value(
+            "browser/zoomFactor", 1.0, float))
+        self.browser.doReload()
+        self.setCentralWidget(self.browser)
 
-    def loadUsers_old(self):
-        """
-        Upload all users and start whatsapp sessions
-        """
-        self.users_sgs.beginGroup("users")
-        keys = self.users_sgs.allKeys()
-        # If the list is empty, it starts with the default user
-        if not len(keys) > 0:
-            self.users_sgs.setValue(
-                "storage-whats", {'storageName': 'storage-whats', 'name': 'Whatsapp'})
-            keys = self.users_sgs.allKeys()
-        """
-        For each user create:
-            + The Browser: Page for whatsapp
-            + Action menu
-        """
-        # creating a action group
-        for id, u in enumerate(keys):
-            # Browser
-            print(self.users_sgs.value(u, dict))
-            b = Container(self.users_sgs.value(u, dict), self)
-            b.setZoomFactor(self.settings.value(
-                "browser/zoomFactor", 1.0, float))
-            b.doReload()
-            self.list_browser.append(b)
-            # QAction
-
-            action = QAction(self.users_sgs.value(u, dict)['name'], self)
-            action.setShortcut(QKeySequence(f'Ctrl+{id+1}'))
-            action.triggered.connect(
-                lambda checked, index=id: self.setStackedWidgetPage(index))
-            self.menuUsers.addAction(action)
-            self.stackedWidget.addWidget(b)
-        self.users_sgs.endGroup()  # encerra o grupo (não pode esquecer)
-
-    def setStackedWidgetPage(self, id):
-        print('Set :', id)
-        self.stackedWidget.setCurrentIndex(id)
+    def setNight_mode(self):
+        isNight_mode = not self.settings.value(
+            "system/night_mode", False, bool)
+        self.browser.whats.setTheme(isNight_mode)
+        self.settings.setValue("system/night_mode", isNight_mode)
 
     def reload_Service(self):
-        print('f5')
-        # é possível modificar/acessar mantendo uma lista
-        for b in self.list_browser:
-            b.whats.setTheme(True)
+        self.browser.doReload()
+
+    def setDefault_size_page(self):
+        self.browser.setZoomFactor(1.0)
 
     def openSettingsDialog(self):
         pass
         # self.openDialog = Users()  # Settings()
         # self.openDialog.show()
-
-    def openNewUserDialog(self):
-        self.openDialog = Users(self.container_list)
-        self.openDialog.show()
 
     def openAbout_Zapzap(self):
         self.openDialog = About(self)
@@ -143,6 +101,7 @@ class MainWindow(QMainWindow):
         Override the window close event.
         Save window dimensions and check if it should be hidden or closed
         """
+        self.settings.setValue("browser/zoomFactor", self.browser.zoomFactor())
         self.settings.setValue("main/geometry", self.saveGeometry())
         self.settings.setValue("main/windowState", self.saveState())
 
@@ -193,19 +152,3 @@ class MainWindow(QMainWindow):
 
         self.settings.setValue("main/hideMenuBar", self.isHideMenuBar)
         self.isHideMenuBar = not self.isHideMenuBar
-
-    def open_Quick_Switch(self):
-        """
-        Open QuickSwitch
-        """
-        self.openDialog = QuickSwitch()
-        self.openDialog.show()
-
-    def updateNotificationIcon(self):
-        """
-        Updates the tray icon depending on the amount of pending notifications
-        """
-        n = 0
-        for b in self.list_browser:
-            n += b.numberNotifications
-        self.tray.showIconNotification(n)
