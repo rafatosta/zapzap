@@ -36,9 +36,6 @@
     <property name="bottomMargin">
      <number>0</number>
     </property>
-    <item>
-     <widget class="QStackedWidget" name="stackedWidget"/>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -77,20 +74,11 @@
     </property>
     <addaction name="actionReload_Service"/>
     <addaction name="separator"/>
-    <addaction name="actionOpen_Quick_Switch"/>
-    <addaction name="separator"/>
     <addaction name="actionDefault_size_page"/>
     <addaction name="separator"/>
     <addaction name="actionToggle_Full_Screen"/>
     <addaction name="actionToggle_Darck_Mode"/>
     <addaction name="actionAuto_hide_menu_bar"/>
-   </widget>
-   <widget class="QMenu" name="menuUsers">
-    <property name="title">
-     <string>Users</string>
-    </property>
-    <addaction name="actionAdd_new_user"/>
-    <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -100,14 +88,13 @@
     <addaction name="actionChangelog"/>
     <addaction name="actionSupport"/>
     <addaction name="separator"/>
+    <addaction name="actionBuy_a_coffee"/>
     <addaction name="actionAbout_Zapzap"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
-   <addaction name="menuUsers"/>
    <addaction name="menuHelp"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSettings">
    <property name="text">
     <string>Settings</string>
@@ -232,7 +219,12 @@
     <string>Keep in background when closing window</string>
    </property>
    <property name="statusTip">
-    <string>Keep in background when closing window</string>
+    <string/>
+   </property>
+  </action>
+  <action name="actionBuy_a_coffee">
+   <property name="text">
+    <string>Buy a coffee</string>
    </property>
   </action>
  </widget>
