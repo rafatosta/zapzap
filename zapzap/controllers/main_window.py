@@ -30,7 +30,7 @@ class MainWindow(QMainWindow):
         self.createWebEngine()
 
     def createWebEngine(self):
-        self.browser = Browser()
+        self.browser = Browser(self)
         self.browser.setZoomFactor(self.settings.value(
             "browser/zoomFactor", 1.0, float))
         self.browser.doReload()

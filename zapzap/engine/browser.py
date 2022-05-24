@@ -11,16 +11,13 @@ import zapzap.services.dbus_notify as dbus
 
 
 class Browser(QWebEngineView):
-
-    numberNotifications = 0
-
-    def __init__(self, nameSpace='storage-whats', parent=None):
+    def __init__(self, parent):
         super().__init__()
-
+        self.parent = parent
         self.qset = QSettings(zapzap.__appname__, zapzap.__appname__)
 
         # definição do pergil do usuário, local que será armazenados os cookies e informações sobre os navegadores
-        profile = QWebEngineProfile(nameSpace, self)
+        profile = QWebEngineProfile('storage-whats', self)
         profile.setHttpUserAgent(zapzap.__user_agent__)
         profile.setNotificationPresenter(self.show_notification)
 
@@ -72,30 +69,18 @@ class Browser(QWebEngineView):
         The number of messages are available from the window title
         """
         num = ''.join(filter(str.isdigit, title))
-        try:
-            self.numberNotifications = int(num)
-        except:
-            self.numberNotifications = 0
-
-        # self.parent.updateNotificationIcon()
-
-        """num = ''.join(filter(str.isdigit, title))
-        isTraySymbolic = self.parent.settings.value(
+        isTraySymbolic = self.qset.value(
             "notification/symbolic_icon", True, bool)
+        qtd = 0
         try:
-            int(num)
+            qtd = int(num)
         except:
             self.parent.setWindowTitle(zapzap.__appname__)
-            if isTraySymbolic:
-                self.parent.tray.setIcon(zapzap.tray_symbolic_path)
-            else:
-                self.parent.tray.setIcon(zapzap.tray_path)
+            qtd = 0
         else:
             self.parent.setWindowTitle("("+num+") - "+zapzap.__appname__)
-            if isTraySymbolic:
-                self.parent.tray.setIcon(zapzap.tray_symbolic_notify_path)
-            else:
-                self.parent.tray.setIcon(zapzap.tray_notify_path)"""
+
+        self.parent.tray.showIconNotification(qtd)
 
     def show_notification(self, notification):
         """
