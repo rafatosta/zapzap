@@ -1,6 +1,6 @@
 from PyQt6.QtGui import QIcon
 
-__version__ = '3.0'
+__version__ = '2.8'
 __appname__ = 'ZapZap'
 __comment__ = 'Whatsapp Desktop for linux'
 __domain__ = 'com.rtosta'
@@ -11,6 +11,8 @@ __author__ = 'Rafael Tosta'
 __email__ = 'rafa.ecomp@gmail.com'
 __website__ = 'https://github.com/rafatosta/zapzap'
 __bugreport__ = 'https://github.com/rafatosta/zapzap/issues'
+__releases__ = 'https://github.com/rafatosta/zapzap/releases'
+__buycoffe__ = 'pague um café'
 __licence__ = 'GNU General Public License v3.0'
 
 __whatsapp_url__ = 'https://web.whatsapp.com/'
@@ -20,10 +22,6 @@ __user_agent__ = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, lik
 # iniciando os paths
 from PyQt6.QtCore import QFileInfo
 abs_path = QFileInfo(__file__).absolutePath()
-
-# Temas
-theme_light_path = abs_path+'/assets/stylesheets/light/stylesheet.qss'
-theme_dark_path = abs_path+'/assets/stylesheets/dark/stylesheet.qss'
 
 # Tray
 tray_path = QIcon(abs_path+'/assets/icons/tray/tray.svg')
