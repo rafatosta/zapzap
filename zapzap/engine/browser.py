@@ -78,7 +78,7 @@ class Browser(QWebEngineView):
             self.parent.setWindowTitle(zapzap.__appname__)
             qtd = 0
         else:
-            self.parent.setWindowTitle("("+num+") - "+zapzap.__appname__)
+            self.parent.setWindowTitle(zapzap.__appname__+" - ("+num+")")
 
         self.parent.tray.showIconNotification(qtd)
 
