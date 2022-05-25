@@ -6,6 +6,7 @@ import zapzap
 from zapzap.controllers.about import About
 from zapzap.controllers.main_window_components.menu_bar import MenuBar
 from zapzap.controllers.main_window_components.tray_icon import TrayIcon
+from zapzap.controllers.settings import Settings
 from zapzap.engine.browser import Browser
 
 
@@ -22,7 +23,6 @@ class MainWindow(QMainWindow):
         uic.loadUi(zapzap.abs_path+'/view/main_window.ui', self)
         self.app = parent
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
-        self.users_sgs = QSettings(zapzap.__appname__, 'users')
 
         MenuBar(self)
         self.tray = TrayIcon(self)
@@ -41,7 +41,7 @@ class MainWindow(QMainWindow):
             "system/night_mode", False, bool)
         self.browser.whats.setTheme(isNight_mode)
         self.settings.setValue("system/night_mode", isNight_mode)
-
+    
     def reload_Service(self):
         self.browser.doReload()
 
@@ -49,9 +49,8 @@ class MainWindow(QMainWindow):
         self.browser.setZoomFactor(1.0)
 
     def openSettingsDialog(self):
-        pass
-        # self.openDialog = Users()  # Settings()
-        # self.openDialog.show()
+        self.openDialog = Settings()
+        self.openDialog.show()
 
     def openAbout_Zapzap(self):
         self.openDialog = About(self)
