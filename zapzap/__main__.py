@@ -6,7 +6,8 @@ from zapzap.controllers.main_window import MainWindow
 from PyQt6.QtCore import QStandardPaths
 
 def main():
-    os.environ['QT_QPA_PLATFORM'] = 'xcb'
+    #os.environ['QT_QPA_PLATFORM'] = 'xcb'
+    os.environ["QT_FONT_DPI"] = "96"
 
     app = SingleApplication(zapzap.__appid__, sys.argv)
     app.setApplicationName(zapzap.__appname__)
