@@ -6,14 +6,15 @@ from zapzap.controllers.main_window import MainWindow
 from PyQt6.QtCore import QStandardPaths
 
 def main():
-    #os.environ['QT_QPA_PLATFORM'] = 'xcb'
-    os.environ["QT_FONT_DPI"] = "96"
+    os.environ['QT_QPA_PLATFORM'] = 'xcb'
 
     app = SingleApplication(zapzap.__appid__, sys.argv)
     app.setApplicationName(zapzap.__appname__)
     app.setApplicationVersion(zapzap.__version__)
     app.setDesktopFileName(zapzap.__desktopid__)
     app.setOrganizationDomain(zapzap.__domain__)
+
+    app.setStyle('Fusion')
 
     # garante que teremos o diretório tmp para as fotos dos usuários utilizados nas notificações
     path = QStandardPaths.writableLocation(

@@ -8,6 +8,7 @@ from zapzap.controllers.main_window_components.menu_bar import MenuBar
 from zapzap.controllers.main_window_components.tray_icon import TrayIcon
 from zapzap.controllers.settings import Settings
 from zapzap.engine.browser import Browser
+from zapzap import theme_light_path, theme_dark_path
 
 
 class MainWindow(QMainWindow):
@@ -34,14 +35,30 @@ class MainWindow(QMainWindow):
         self.browser.setZoomFactor(self.settings.value(
             "browser/zoomFactor", 1.0, float))
         self.browser.doReload()
-        self.setCentralWidget(self.browser)
+        # self.setCentralWidget(self.browser)
+        self.stackedWidget.addWidget(self.browser)
 
     def setNight_mode(self):
         isNight_mode = not self.settings.value(
             "system/night_mode", False, bool)
         self.browser.whats.setTheme(isNight_mode)
+        self.setThemeApp(isNight_mode)
+
         self.settings.setValue("system/night_mode", isNight_mode)
-    
+
+    def setThemeApp(self, isNight_mode):
+        if isNight_mode:
+            print('> dark')
+            path = theme_dark_path
+        else:
+            print('> light')
+            path = theme_light_path
+        with open(path, 'r') as f:
+            style = f.read()
+
+        # Set the stylesheet of the application
+        self.app.setStyleSheet(style)
+
     def reload_Service(self):
         self.browser.doReload()
 
@@ -65,6 +82,8 @@ class MainWindow(QMainWindow):
         """
         Load the settings
         """
+        # Theme App
+        self.setThemeApp(self.settings.value("system/night_mode", False, bool))
         # MenuBar
         self.isHideMenuBar = self.settings.value(
             "main/hideMenuBar", False, bool)
