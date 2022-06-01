@@ -48,10 +48,8 @@ class MainWindow(QMainWindow):
 
     def setThemeApp(self, isNight_mode):
         if isNight_mode:
-            print('> dark')
             path = theme_dark_path
         else:
-            print('> light')
             path = theme_light_path
         with open(path, 'r') as f:
             style = f.read()
