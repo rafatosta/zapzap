@@ -5,9 +5,8 @@ from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.controllers.main_window import MainWindow
 from PyQt6.QtCore import QStandardPaths
 
-
 def main():
-    #os.environ['QT_QPA_PLATFORM'] = 'xcb'
+    os.environ['QT_QPA_PLATFORM'] = 'xcb'
 
     app = SingleApplication(zapzap.__appid__, sys.argv)
     app.setApplicationName(zapzap.__appname__)
@@ -26,9 +25,8 @@ def main():
     window = MainWindow(app)
     app.setWindow(window)
     app.setActivationWindow(window)
-
-    isNight_mode = window.settings.value("system/night_mode", False, bool)
-    window.toggle_stylesheet(isNight_mode)
+    window.loadSettings()
+    
 
     sys.exit(app.exec())
 

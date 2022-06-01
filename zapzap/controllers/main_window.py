@@ -1,155 +1,170 @@
-from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon, QMenu
-from PyQt6.QtGui import QIcon, QAction
-from PyQt6.QtCore import Qt, QSettings, QByteArray
+from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon
+from PyQt6.QtGui import QMoveEvent
+from PyQt6.QtCore import QSettings, QByteArray
+from PyQt6 import uic
 import zapzap
-from zapzap.controllers.drawer import Drawer
+from zapzap.controllers.about import About
+from zapzap.controllers.main_window_components.menu_bar import MenuBar
+from zapzap.controllers.main_window_components.tray_icon import TrayIcon
+from zapzap.controllers.settings import Settings
 from zapzap.engine.browser import Browser
-from zapzap import theme_light_path, theme_dark_path, tray_path, tray_symbolic_path
+from zapzap import theme_light_path, theme_dark_path
 
 
 class MainWindow(QMainWindow):
-    def __init__(self, app):
+
+    openDialog = None
+    isFullScreen = False
+    isHideMenuBar = False
+    list_browser = []  # remover isso depois
+    container_list = []
+
+    def __init__(self, parent=None):
         super(MainWindow, self).__init__()
-        self.app = app
+        uic.loadUi(zapzap.abs_path+'/view/main_window.ui', self)
+        self.app = parent
+        self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
+    
+        MenuBar(self)
+        self.tray = TrayIcon(self)
 
-        # Define tamanho mínimo para a janela
-        self.setMinimumSize(800, 600)
-
-        self.settings = QSettings(zapzap.__appname__, zapzap.__appname__, self)
-
-        # rotina para definição do Tray
-        self.createTrayIcon()
-
-        # rotina para criação do WebView que irá carregar a página do whatsapp
         self.createWebEngine()
-
-        # cria o menu drawer
-        self.createDrawer()
-
-        # Restore Settings
-        self.readSettings()
-
-    def readSettings(self):
-        self.restoreGeometry(self.settings.value(
-            "main/geometry", QByteArray()))
-        self.restoreState(self.settings.value(
-            "main/windowState", QByteArray()))
-
-        isStart_system = self.settings.value(
-            "system/start_system", False, bool)
-        isStart_hide = self.settings.value("system/start_hide", False, bool)
-
-        if isStart_system and isStart_hide:
-            self.hide()
-        else:
-            self.show()
-
-    def createDrawer(self):
-        self.drawer = Drawer(self)
-        self.drawer.maximum_width = self.width()
-        self.drawer.raise_()
-
-    def createTrayIcon(self):
-        # Criando o tray icon
-        self.tray = QSystemTrayIcon()
-
-        isTraySymbolic = self.settings.value(
-            "notification/symbolic_icon", True, bool)
-        if isTraySymbolic:
-            self.tray.setIcon(QIcon(tray_symbolic_path))
-        else:
-            self.tray.setIcon(QIcon(tray_path))
-        self.tray.activated.connect(self.onTrayIconActivated)
-
-        # Itens para o menu do tray icon
-        self.trayShow = QAction('Show', self)
-        self.trayShow.triggered.connect(self.on_show)
-
-        self.traySettings = QAction('Zapzap Settings', self)
-        self.traySettings.triggered.connect(self.on_settings)
-
-        self.trayExit = QAction('Exit', self)
-        self.trayExit.triggered.connect(self.closeApp)
-
-        # Cria o Menu e adiciona as ações
-        self.trayMenu = QMenu()
-        self.trayMenu.addAction(self.trayShow)
-        self.trayMenu.addAction(self.traySettings)
-        self.trayMenu.insertSeparator(self.trayExit)
-        self.trayMenu.addAction(self.trayExit)
-
-        self.tray.setContextMenu(self.trayMenu)
-
-        # Mostra o Tray na barra de status
-        self.tray.show()
-
-    def on_settings(self):
-        if self.drawer.isOpen:
-            self.drawer.onToggled()
-
-        self.show()
-        self.app.activateWindow()
 
     def createWebEngine(self):
         self.browser = Browser(self)
         self.browser.setZoomFactor(self.settings.value(
             "browser/zoomFactor", 1.0, float))
         self.browser.doReload()
-
         self.setCentralWidget(self.browser)
+        
 
-    def closeApp(self):
-        self.settings.setValue("browser/zoomFactor", self.browser.zoomFactor())
-        self.settings.setValue("main/geometry", self.saveGeometry())
-        self.settings.setValue("main/windowState", self.saveState())
-        self.hide()
-        self.app.quit()
+    def setNight_mode(self):
+        isNight_mode = not self.settings.value(
+            "system/night_mode", False, bool)
+        self.browser.whats.setTheme(isNight_mode)
+        self.setThemeApp(isNight_mode)
 
-    # Abrindo o webapp do system tray.
-    def on_show(self):
-        self.readSettings()
-        if self.app.activeWindow() != None:  # Se a janela estiver em foco será escondida
-            self.hide()
-        else:  # Caso não esteja, será mostrada
-            self.show()
-            self.app.activateWindow()
+        self.settings.setValue("system/night_mode", isNight_mode)
 
-    # Evento para mostrar e ocultar a janela com apenas dois clique ou botão do meio no tray icon. Com um click abre o menu.
-    def onTrayIconActivated(self, reason):
-        if reason == QSystemTrayIcon.ActivationReason.Trigger or reason == QSystemTrayIcon.ActivationReason.MiddleClick:
-            self.on_show()
-            self.app.activateWindow()
-
-    # Evento ao fechar a janela.
-    def closeEvent(self, event):
-        self.settings.setValue("main/geometry", self.saveGeometry())
-        self.settings.setValue("main/windowState", self.saveState())
-
-        keepBackgrounf = self.settings.value(
-            "system/keep_background", True, bool)
-        if keepBackgrounf:
-            self.hide()
-            event.ignore()
-
-    def resizeEvent(self, event):
-        self.drawer.setFixedHeight(self.height() - self.drawer.pos().y())
-        self.drawer.maximum_width = self.width()
-        super().resizeEvent(event)
-
-    def toggle_stylesheet(self, isNight_mode):
+    def setThemeApp(self, isNight_mode):
         if isNight_mode:
             path = theme_dark_path
         else:
             path = theme_light_path
-
-        self.browser.whats.setTheme(isNight_mode)
         with open(path, 'r') as f:
             style = f.read()
 
         # Set the stylesheet of the application
         self.app.setStyleSheet(style)
 
-    # Mapeamento dos atalhos
-    def keyPressEvent(self, e):
-        if e.key() == Qt.Key.Key_F5:
-            self.browser.doReload()
+    def reload_Service(self):
+        self.browser.doReload()
+
+    def setDefault_size_page(self):
+        self.browser.setZoomFactor(1.0)
+
+    def openSettingsDialog(self):
+        self.openDialog = Settings()
+        self.openDialog.show()
+
+    def openAbout_Zapzap(self):
+        self.openDialog = About(self)
+        self.openDialog.show()
+
+    def moveEvent(self, a0: QMoveEvent) -> None:
+        if self.openDialog != None:
+            self.openDialog.centerPos()
+        return super().moveEvent(a0)
+
+    def loadSettings(self):
+        """
+        Load the settings
+        """
+        # Theme App
+        self.setThemeApp(self.settings.value("system/night_mode", False, bool))
+        # MenuBar
+        self.isHideMenuBar = self.settings.value(
+            "main/hideMenuBar", False, bool)
+        self.setHideMenuBar()
+        # keep_background
+        self.actionHide_on_close.setChecked(self.settings.value(
+            "system/keep_background", True, bool))
+        # Window State
+        self.restoreGeometry(self.settings.value(
+            "main/geometry", QByteArray()))
+        self.restoreState(self.settings.value(
+            "main/windowState", QByteArray()))
+        # System start
+        isStart_system = self.settings.value(
+            "system/start_system", False, bool)
+        isStart_hide = self.settings.value("system/start_hide", False, bool)
+        if isStart_system and isStart_hide:
+            self.hide()
+        else:
+            self.show()
+
+    def quit(self):
+        """
+        Close window.
+        """
+        self.settings.setValue("main/geometry", self.saveGeometry())
+        self.settings.setValue("main/windowState", self.saveState())
+        self.hide()
+        self.app.quit()
+
+    def closeEvent(self, event):
+        """
+        Override the window close event.
+        Save window dimensions and check if it should be hidden or closed
+        """
+        self.settings.setValue("browser/zoomFactor", self.browser.zoomFactor())
+        self.settings.setValue("main/geometry", self.saveGeometry())
+        self.settings.setValue("main/windowState", self.saveState())
+
+        if self.settings.value(
+                "system/keep_background", True, bool):
+            self.hide()
+            event.ignore()
+
+    def onTrayIconActivated(self, reason):
+        """
+        wind to show and hide the window with just two click or middle button on the tray icon. 
+        One click opens the menu.
+        """
+        if reason == QSystemTrayIcon.ActivationReason.Trigger or reason == QSystemTrayIcon.ActivationReason.MiddleClick:
+            self.on_show()
+            self.app.activateWindow()
+
+    def on_show(self):
+        """
+        Opening the system tray web app.
+        """
+        self.loadSettings()
+        if self.app.activeWindow() != None:  # Se a janela estiver em foco será escondida
+            self.hide()
+        else:  # Caso não esteja, será mostrada
+            self.show()
+            self.app.activateWindow()
+
+    def setFullSreen(self):
+        """
+        Full Screen Window
+        """
+        if not self.isFullScreen:
+            self.showFullScreen()
+        else:
+            self.showNormal()
+        self.isFullScreen = not self.isFullScreen
+
+    def setHideMenuBar(self):
+        """
+        Hide/Show MenuBar
+        """
+        if self.isHideMenuBar:
+            self.menubar.setMaximumHeight(0)
+        else:
+            # default size for qt designer
+            self.menubar.setMaximumHeight(16777215)
+
+        self.settings.setValue("main/hideMenuBar", self.isHideMenuBar)
+        self.isHideMenuBar = not self.isHideMenuBar

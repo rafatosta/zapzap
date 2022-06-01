@@ -42,6 +42,13 @@
   <update_contact>rafa.ecomp@gmail.com</update_contact>
   <developer_name>Rafael Tosta</developer_name>
   <releases>
+    <release date="2022-06-01" version="2.7">
+      <description>
+        <p>Improvements to the configuration interface.</p> 
+        <p>Now Zapzap has a MenuBar and Settings Panel to allow better access to settings.
+News: Possibility to hide the MenuBar; F11 for full screen; Disable the tray icon.</p>
+      </description>
+    </release>
     <release date="2022-05-19" version="2.6">
       <description>
         <p>This will be the last update from version 2.x. Development will be focused on version 3.0 which will bring a new look to improve usability and the option to use multiple accounts. </p>

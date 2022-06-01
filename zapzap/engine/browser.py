@@ -1,7 +1,7 @@
 import os
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest, QWebEngineProfile, QWebEngineSettings
-from PyQt6.QtCore import Qt, QUrl, QStandardPaths
+from PyQt6.QtCore import Qt, QUrl, QStandardPaths, QSettings
 from PyQt6.QtGui import QAction, QPainter, QPainter, QImage, QBrush, QPen
 from PyQt6.QtWidgets import QFileDialog
 import zapzap
@@ -14,9 +14,10 @@ class Browser(QWebEngineView):
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
+        self.qset = QSettings(zapzap.__appname__, zapzap.__appname__)
 
         # definição do pergil do usuário, local que será armazenados os cookies e informações sobre os navegadores
-        profile = QWebEngineProfile("storage-whats", self)
+        profile = QWebEngineProfile('storage-whats', self)
         profile.setHttpUserAgent(zapzap.__user_agent__)
         profile.setNotificationPresenter(self.show_notification)
 
@@ -63,36 +64,38 @@ class Browser(QWebEngineView):
                 download.url().setPath(path)
                 download.accept()
 
-    # verifica se há uma nova notificação a partir do título
-    # a quantidade de mensagens pendentes é mostrada no título na página. Ex: (2) Whatsapp
     def title_changed(self, title):
+        """
+        The number of messages are available from the window title
+        """
         num = ''.join(filter(str.isdigit, title))
-        isTraySymbolic = self.parent.settings.value(
+        isTraySymbolic = self.qset.value(
             "notification/symbolic_icon", True, bool)
+        qtd = 0
         try:
-            int(num)
+            qtd = int(num)
         except:
             self.parent.setWindowTitle(zapzap.__appname__)
-            if isTraySymbolic:
-                self.parent.tray.setIcon(zapzap.tray_symbolic_path)
-            else:
-                self.parent.tray.setIcon(zapzap.tray_path)
+            qtd = 0
         else:
-            self.parent.setWindowTitle("("+num+") - "+zapzap.__appname__)
-            if isTraySymbolic:
-                self.parent.tray.setIcon(zapzap.tray_symbolic_notify_path)
-            else:
-                self.parent.tray.setIcon(zapzap.tray_notify_path)
+            self.parent.setWindowTitle(zapzap.__appname__+" ("+num+")")
+
+        self.parent.tray.showIconNotification(qtd)
 
     def show_notification(self, notification):
-        if self.parent.settings.value('notification/app', True, bool):
+        """
+        Create a notification through the DBus.Notification for the system.
+        When you click on it, the window will open.
+        """
+
+        if self.qset.value('notification/app', True, bool):
             try:
-                title = notification.title() if self.parent.settings.value(
+                title = notification.title() if self.qset.value(
                     'notification/show_name', True, bool) else __appname__
-                message = notification.message() if self.parent.settings.value(
+                message = notification.message() if self.qset.value(
                     'notification/show_msg', True, bool) else 'New message...'
                 icon = self.getPathImage(notification.icon(), notification.title(
-                )) if self.parent.settings.value('notification/show_photo', True, bool) else 'com.rtosta.zapzap'
+                )) if self.qset.value('notification/show_photo', True, bool) else 'com.rtosta.zapzap'
 
                 n = dbus.Notification(title,
                                       message,
@@ -106,17 +109,15 @@ class Browser(QWebEngineView):
             except Exception as e:
                 print(e)
 
-    def onShow(self, n, action):
-        assert(action == "show"), "Action was not show!"
-        self.parent.on_show()
-        n.close()
-
     def getPathImage(self, qin, title):
-        try:  # só por garantia de não quebrar a aplicação por causa de um ícone
+        """
+        To show an image in notifications on dbus it is necessary that the image exists in a directory. 
+        So the contact image is saved in a temporary folder (tmp) in the application data folder
+        """
+        try:
             path = QStandardPaths.writableLocation(
                 QStandardPaths.StandardLocation.AppLocalDataLocation)+'/tmp/'+title+'.png'
 
-            # deixa a foto arrendondada
             qout = QImage(qin.width(), qin.height(),
                           QImage.Format.Format_ARGB32)
             qout.fill(Qt.GlobalColor.transparent)
@@ -143,4 +144,8 @@ class Browser(QWebEngineView):
             return 'com.rtosta.zapzap'
 
     def doReload(self):
+        """
+        Reload the page.
+        Prevent Chrome update message from appearing
+        """
         self.triggerPageAction(QWebEnginePage.WebAction.ReloadAndBypassCache)

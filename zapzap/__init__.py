@@ -1,6 +1,6 @@
 from PyQt6.QtGui import QIcon
 
-__version__ = '2.6'
+__version__ = '2.8'
 __appname__ = 'ZapZap'
 __comment__ = 'Whatsapp Desktop for linux'
 __domain__ = 'com.rtosta'
@@ -11,7 +11,9 @@ __author__ = 'Rafael Tosta'
 __email__ = 'rafa.ecomp@gmail.com'
 __website__ = 'https://github.com/rafatosta/zapzap'
 __bugreport__ = 'https://github.com/rafatosta/zapzap/issues'
-__licence__ =  'GNU General Public License v3.0'
+__releases__ = 'https://github.com/rafatosta/zapzap/releases'
+__buycoffe__ = 'https://www.paypal.com/donate/?business=E7R4BVR45GRC2&no_recurring=0&item_name=ZapZap+-+Whatsapp+Desktop+for+linux%0AAn+unofficial+WhatsApp+desktop+application+written+in+Pyqt6+%2B+PyQt6-WebEngine.&currency_code=USD'
+__licence__ = 'GNU General Public License v3.0'
 
 __whatsapp_url__ = 'https://web.whatsapp.com/'
 # Link para pegar o userAgent: http://httpbin.org/user-agent
@@ -31,4 +33,5 @@ tray_notify_path = QIcon(abs_path+'/assets/icons/tray/tray_notify.svg')
 
 # Tray symbolic
 tray_symbolic_path = QIcon(abs_path+'/assets/icons/tray/tray_symbolic.svg')
-tray_symbolic_notify_path = QIcon(abs_path+'/assets/icons/tray/tray_symbolic_notify.svg')
+tray_symbolic_notify_path = QIcon(
+    abs_path+'/assets/icons/tray/tray_symbolic_notify.svg')

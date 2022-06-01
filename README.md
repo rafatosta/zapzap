@@ -80,6 +80,9 @@ Maintainer: Rafael Tosta<br/>
 E-Mail: *rafa.ecomp@gmail.com*<br/>
 Telegram: *@RafaelTosta*<br/>
 
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/donate/?business=E7R4BVR45GRC2&no_recurring=0&item_name=ZapZap+-+Whatsapp+Desktop+for+linux%0AAn+unofficial+WhatsApp+desktop+application+written+in+Pyqt6+%2B+PyQt6-WebEngine.&currency_code=USD)
+
+
 
 
 

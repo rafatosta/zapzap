@@ -31,7 +31,7 @@ class WhatsApp(QWebEnginePage):
                 const checkExist = setInterval(() => {
                     const classElement = document.getElementsByClassName("_1XkO3")[0];
                     if (classElement != null) {
-                        classElement.style = 'width: 100vw; height: 100vh; position: unset'
+                        classElement.style = 'max-width: initial; width: 100%; height: 100%; position: unset;margin: 0'
                         clearInterval(checkExist);
                     }
                 }, 100);
