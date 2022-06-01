@@ -156,7 +156,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Auto-hide menu bar</string>
+    <string>Hide menu bar</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+M</string>

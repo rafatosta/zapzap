@@ -12,7 +12,7 @@ __email__ = 'rafa.ecomp@gmail.com'
 __website__ = 'https://github.com/rafatosta/zapzap'
 __bugreport__ = 'https://github.com/rafatosta/zapzap/issues'
 __releases__ = 'https://github.com/rafatosta/zapzap/releases'
-__buycoffe__ = 'https://www.paypal.com/br/home'
+__buycoffe__ = 'https://www.paypal.com/donate/?business=E7R4BVR45GRC2&no_recurring=0&item_name=ZapZap+-+Whatsapp+Desktop+for+linux%0AAn+unofficial+WhatsApp+desktop+application+written+in+Pyqt6+%2B+PyQt6-WebEngine.&currency_code=USD'
 __licence__ = 'GNU General Public License v3.0'
 
 __whatsapp_url__ = 'https://web.whatsapp.com/'
