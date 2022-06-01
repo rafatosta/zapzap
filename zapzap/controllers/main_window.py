@@ -24,7 +24,9 @@ class MainWindow(QMainWindow):
         uic.loadUi(zapzap.abs_path+'/view/main_window.ui', self)
         self.app = parent
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
-
+        
+        self.titleLeftApp.setText(zapzap.__appname__)
+        self.titleLeftDescription.setText(zapzap.__comment__)
         MenuBar(self)
         self.tray = TrayIcon(self)
 

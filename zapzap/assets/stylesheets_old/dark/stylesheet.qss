@@ -1,0 +1,18 @@
+QWidget{
+	color: #FFFFFF;
+	background-color: #202C33;
+}
+
+/*Centralwidget */
+#centralwidget {	
+	background-color: #202C33;
+	border: 1px solid #202C33;
+    color: #202C33;
+}
+
+/* Left Menu */
+#leftMenuBg {	
+	background-color: #202C33;
+}
+#titleLeftApp { font: 63 14pt; color: #FFFFFF; }
+#titleLeftDescription { font: 11pt ; color: #42CBA5; }
