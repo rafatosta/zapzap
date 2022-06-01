@@ -37,7 +37,7 @@ class TrayIcon():
         self.tray.setContextMenu(self.trayMenu)
 
         # Mostra o Tray na barra de status
-        if (mainWindow.settings.value("system/tray_icon", False, bool)):
+        if (mainWindow.settings.value("system/tray_icon", True, bool)):
             self.tray.show()
     
     def setVisible(self, v):

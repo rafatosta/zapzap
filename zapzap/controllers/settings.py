@@ -82,7 +82,7 @@ class Settings(ZapDialog):
             "system/night_mode", False, bool))  # Night Mode
 
         self.disableTrayIcon.setChecked(not self.settings.value(
-            "system/tray_icon", False, bool))  # tray_icon
+            "system/tray_icon", True, bool))  # tray_icon
 
         """ Notifications """
         isNotifyApp = self.settings.value("notification/app", True, bool)
