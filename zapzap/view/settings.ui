@@ -132,7 +132,28 @@
           <string>System integration</string>
          </property>
          <layout class="QGridLayout" name="gridLayout">
-          <item row="3" column="0" colspan="2">
+          <item row="3" column="0">
+           <widget class="QCheckBox" name="disableTrayIcon">
+            <property name="text">
+             <string>Disable tray icon</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QCheckBox" name="start_system">
+            <property name="text">
+             <string>Start ZapZap with the system</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QCheckBox" name="symbolic_icon">
+            <property name="text">
+             <string>Symbolic icon</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" colspan="2">
            <widget class="Line" name="line_2">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -149,17 +170,10 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0" colspan="2">
-           <widget class="QCheckBox" name="start_system">
+          <item row="6" column="0">
+           <widget class="QCheckBox" name="night_mode">
             <property name="text">
-             <string>Start ZapZap with the system</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
-           <widget class="QCheckBox" name="symbolic_icon">
-            <property name="text">
-             <string>Symbolic icon</string>
+             <string>Night mode</string>
             </property>
            </widget>
           </item>
@@ -170,13 +184,6 @@
             </property>
             <property name="text">
              <string>Start minimized</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QCheckBox" name="night_mode">
-            <property name="text">
-             <string>Night mode</string>
             </property>
            </widget>
           </item>

@@ -23,6 +23,8 @@ class Settings(ZapDialog):
         self.start_hide.stateChanged.connect(self.save)
         self.keepBackground.stateChanged.connect(self.setHideClose)
         self.night_mode.stateChanged.connect(self.state_night_mode)
+        self.disableTrayIcon.stateChanged.connect(self.setDisableTrayIcon)
+
         # Notifications
         self.notify_desktop.stateChanged.connect(self.state_notify_desktop)
         self.show_photo.stateChanged.connect(self.save)
@@ -31,8 +33,13 @@ class Settings(ZapDialog):
 
         self.symbolic_icon.stateChanged.connect(self.setSymbolic_icon)
 
+    def setDisableTrayIcon(self):
+        self.mainWindow.tray.setVisible(not self.disableTrayIcon.isChecked())
+        self.save()
+
     def setHideClose(self):
-        self.mainWindow.actionHide_on_close.setChecked(self.keepBackground.isChecked())
+        self.mainWindow.actionHide_on_close.setChecked(
+            self.keepBackground.isChecked())
         self.save()
 
     def setSymbolic_icon(self):
@@ -73,6 +80,10 @@ class Settings(ZapDialog):
             "system/keep_background", True, bool))  # keep_background
         self.night_mode.setChecked(self.settings.value(
             "system/night_mode", False, bool))  # Night Mode
+
+        self.disableTrayIcon.setChecked(not self.settings.value(
+            "system/tray_icon", False, bool))  # tray_icon
+
         """ Notifications """
         isNotifyApp = self.settings.value("notification/app", True, bool)
         self.notify_desktop.setChecked(isNotifyApp)
@@ -105,6 +116,8 @@ class Settings(ZapDialog):
                                self.keepBackground.isChecked())
         self.settings.setValue("system/night_mode",
                                self.night_mode.isChecked())
+        self.settings.setValue("system/tray_icon",
+                               not self.disableTrayIcon.isChecked())
         # Notifications
         self.settings.setValue('notification/show_photo',
                                self.show_photo.isChecked())
