@@ -80,6 +80,7 @@ Maintainer: Rafael Tosta<br/>
 E-Mail: *rafa.ecomp@gmail.com*<br/>
 Telegram: *@RafaelTosta*<br/>
 
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E7R4BVR45GRC2)
 <form action="https://www.paypal.com/donate" method="post" target="_top">
 <input type="hidden" name="business" value="E7R4BVR45GRC2" />
 <input type="hidden" name="no_recurring" value="0" />
