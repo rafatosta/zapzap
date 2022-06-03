@@ -1,12 +1,12 @@
-# ZapZap - Whatsapp Desktop for linux 
+# ZapZap - Whatsapp Desktop for Linux 
 An unofficial WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.
 
 ![Zapzap for whatsapp](https://github.com/rafatosta/zapzap/blob/main/share/screenshot/zapzap.png)
 
 ## Features
-- [x] Features come with whatsapp web
+- [x] Features come with Whatsapp web
 - [x] System tray icon
-- [x] Icon in systray with different icon if there is new messages
+- [x] Icon in systray changes if there are new messages
 - [x] Fullscreen mode
 - [x] Background running
 
@@ -42,7 +42,7 @@ $ python -m zapzap
 ### Flatpak Development
 
 #### Installing dependencies
-It is recommend to use the **flatpak user mode** installation method.
+It is recommend to use the **Flatpak User Mode** installation method.
 In this mode the packages are installed into user space, without affecting the system.
 
 #### Flatpak user mode
@@ -73,7 +73,7 @@ $ flatpak-builder --run build com.rtosta.zapzap.yaml zapzap
 ```
 
 #### Fork
-The application is built directly from github, in case of Fork don't forget to change your github link in [com.rtosta.zapzap.yaml](https://github.com/rafatosta/zapzap/blob/main/com.rtosta.zapzap.yaml) and commit it first.
+The application is built directly from Github, in case of Fork don't forget to change your Github link in [com.rtosta.zapzap.yaml](https://github.com/rafatosta/zapzap/blob/main/com.rtosta.zapzap.yaml) and commit it first.
 
 ### Contact
 Maintainer: Rafael Tosta<br/>
