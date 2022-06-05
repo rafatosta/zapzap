@@ -37,7 +37,6 @@ class MainWindow(QMainWindow):
             "browser/zoomFactor", 1.0, float))
         self.browser.doReload()
         self.setCentralWidget(self.browser)
-        self.browser.whats.setTheme(get_system_theme())
         
 
     def setNight_mode(self):
