@@ -46,7 +46,7 @@ class MainWindow(QMainWindow):
         #self.browser.whats.setTheme(isNight_mode)
         #self.setThemeApp(isNight_mode)
 
-        self.settings.setValue("system/night_mode", isNight_mode)
+        #self.settings.setValue("system/night_mode", isNight_mode)
 
     def setThemeApp(self, isNight_mode):
         if isNight_mode:
