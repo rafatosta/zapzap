@@ -46,9 +46,9 @@ class WhatsApp(QWebEnginePage):
                 }, 100);
             """)
 
-            settings = QSettings(__appname__, __appname__, self)
+            #settings = QSettings(__appname__, __appname__, self)
             #self.setTheme(settings.value("system/night_mode", False, bool))
-            self.setTheme(get_system_theme())
+            #self.setTheme(get_system_theme())
 
     def setTheme(self, isNight_mode):
         print(isNight_mode)

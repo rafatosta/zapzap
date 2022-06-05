@@ -37,12 +37,13 @@ class MainWindow(QMainWindow):
             "browser/zoomFactor", 1.0, float))
         self.browser.doReload()
         self.setCentralWidget(self.browser)
+        self.browser.whats.setTheme(get_system_theme())
         
 
     def setNight_mode(self):
         print('desativado')
-        isNight_mode = not self.settings.value(
-            "system/night_mode", False, bool)
+        #isNight_mode = not self.settings.value(
+        #    "system/night_mode", False, bool)
         #self.browser.whats.setTheme(isNight_mode)
         #self.setThemeApp(isNight_mode)
 

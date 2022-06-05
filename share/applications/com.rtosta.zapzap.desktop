@@ -2,7 +2,7 @@
 [Desktop Entry]
 Name=ZapZap
 Comment=Unofficial WhatsApp desktop application for Linux
-Version=2.1
+Version=2.8
 Type=Application
 Exec=zapzap
 Icon=com.rtosta.zapzap
