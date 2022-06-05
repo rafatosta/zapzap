@@ -82,6 +82,7 @@ build-commands:
     --enable=QtWebChannel
     --enable=QtQml
     --enable=QtPrintSupport
+    --enable=QtDBus
 sources:
   - type: archive
     url: https://pypi.python.org/packages/source/P/PyQt6/PyQt6-6.2.1.tar.gz

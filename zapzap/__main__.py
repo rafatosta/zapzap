@@ -6,7 +6,7 @@ from zapzap.controllers.main_window import MainWindow
 from PyQt6.QtCore import QStandardPaths
 
 def main():
-    os.environ['QT_QPA_PLATFORM'] = 'xcb'
+    #os.environ['QT_QPA_PLATFORM'] = 'xcb'
 
     app = SingleApplication(zapzap.__appid__, sys.argv)
     app.setApplicationName(zapzap.__appname__)

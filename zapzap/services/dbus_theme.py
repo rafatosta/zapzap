@@ -18,4 +18,4 @@ def get_system_theme():
         print(f'Current color: {color_sheme}')
         return False if (color_sheme == 0) or color_sheme == 2 else True
     except Exception:
-        return False
+        return True
