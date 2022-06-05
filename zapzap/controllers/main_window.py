@@ -9,6 +9,7 @@ from zapzap.controllers.main_window_components.tray_icon import TrayIcon
 from zapzap.controllers.settings import Settings
 from zapzap.engine.browser import Browser
 from zapzap import theme_light_path, theme_dark_path
+from zapzap.services.dbus_theme import get_system_theme
 
 
 class MainWindow(QMainWindow):
@@ -39,10 +40,11 @@ class MainWindow(QMainWindow):
         
 
     def setNight_mode(self):
+        print('desativado')
         isNight_mode = not self.settings.value(
             "system/night_mode", False, bool)
-        self.browser.whats.setTheme(isNight_mode)
-        self.setThemeApp(isNight_mode)
+        #self.browser.whats.setTheme(isNight_mode)
+        #self.setThemeApp(isNight_mode)
 
         self.settings.setValue("system/night_mode", isNight_mode)
 
@@ -81,7 +83,8 @@ class MainWindow(QMainWindow):
         Load the settings
         """
         # Theme App
-        self.setThemeApp(self.settings.value("system/night_mode", False, bool))
+        #self.setThemeApp(self.settings.value("system/night_mode", False, bool))
+        #self.setThemeApp(get_system_theme()) #pega o do sistema
         # MenuBar
         self.isHideMenuBar = self.settings.value(
             "main/hideMenuBar", False, bool)
