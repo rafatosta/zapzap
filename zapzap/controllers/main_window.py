@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon
 from PyQt6.QtGui import QMoveEvent
-from PyQt6.QtCore import QSettings, QByteArray
+from PyQt6.QtCore import QSettings, QByteArray, QTimer
 from PyQt6 import uic
 import zapzap
 from zapzap.controllers.about import About
@@ -25,11 +25,24 @@ class MainWindow(QMainWindow):
         uic.loadUi(zapzap.abs_path+'/view/main_window.ui', self)
         self.app = parent
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
-    
+
         MenuBar(self)
         self.tray = TrayIcon(self)
 
         self.createWebEngine()
+
+        self.timer = QTimer()
+        self.timer.setInterval(1000)
+        self.timer.timeout.connect(self.recurring_timer)
+        self.timer.start()
+        self.current_theme = -1
+
+    def recurring_timer(self):
+        if self.current_theme != get_system_theme():
+            self.current_theme = get_system_theme()
+            print("Current theme:", self.current_theme)
+            self.browser.whats.setTheme(self.current_theme)
+            self.setThemeApp(self.current_theme)
 
     def createWebEngine(self):
         self.browser = Browser(self)
@@ -37,14 +50,13 @@ class MainWindow(QMainWindow):
             "browser/zoomFactor", 1.0, float))
         self.browser.doReload()
         self.setCentralWidget(self.browser)
-        
 
     def setNight_mode(self):
         print('desativado')
-        #isNight_mode = not self.settings.value(
+        # isNight_mode = not self.settings.value(
         #    "system/night_mode", False, bool)
-        #self.browser.whats.setTheme(isNight_mode)
-        #self.setThemeApp(isNight_mode)
+        # self.browser.whats.setTheme(isNight_mode)
+        # self.setThemeApp(isNight_mode)
 
         #self.settings.setValue("system/night_mode", isNight_mode)
 
@@ -84,7 +96,7 @@ class MainWindow(QMainWindow):
         """
         # Theme App
         #self.setThemeApp(self.settings.value("system/night_mode", False, bool))
-        #self.setThemeApp(get_system_theme()) #pega o do sistema
+        self.setThemeApp(get_system_theme())  # pega o do sistema
         # MenuBar
         self.isHideMenuBar = self.settings.value(
             "main/hideMenuBar", False, bool)
