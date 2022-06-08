@@ -39,26 +39,99 @@
  *  MAIN STYLESHEET
  *  ---------------
  */
+
 QToolTip
 {
     /* 0.2ex is the smallest value that's not ignored on Windows. */
-    border: 0.04em solid #F0F2F5;
+    border: 0.04em solid #eff0f1;
     background-image: none;
     background-color: #202C33;
     alternate-background-color: #202C33;
-    color: #F0F2F5;
+    color: #eff0f1;
     padding: 0.1em;
     opacity: 200;
 }
 
 QWidget
 {
-    color: #F0F2F5;
+    color: #eff0f1;
     background-color: #202C33;
-    selection-background-color: #25D366;
-    selection-color: #F0F2F5;
+    selection-background-color: #00A884;
+    selection-color: #eff0f1;
     background-clip: border;
     border-image: none;
+
+    /* QDialogButtonBox icons */
+    dialog-cancel-icon: url(zapzap/assets/stylesheets/dark/dialog_cancel.svg);
+    dialog-close-icon: url(zapzap/assets/stylesheets/dark/dialog_close.svg);
+    dialog-ok-icon: url(zapzap/assets/stylesheets/dark/dialog_ok.svg);
+    dialog-open-icon: url(zapzap/assets/stylesheets/dark/dialog_open.svg);
+    dialog-reset-icon: url(zapzap/assets/stylesheets/dark/dialog_reset.svg);
+    dialog-save-icon: url(zapzap/assets/stylesheets/dark/dialog_save.svg);
+    dialog-yes-icon: url(zapzap/assets/stylesheets/dark/dialog_ok.svg);
+    dialog-help-icon: url(zapzap/assets/stylesheets/dark/dialog_help.svg);
+    dialog-no-icon: url(zapzap/assets/stylesheets/dark/dialog_no.svg);
+    dialog-apply-icon: url(zapzap/assets/stylesheets/dark/dialog_ok.svg);
+    dialog-discard-icon: url(zapzap/assets/stylesheets/dark/dialog_discard.svg);
+
+    /* File icons */
+    filedialog-backward-icon: url(zapzap/assets/stylesheets/dark/left_arrow.svg);
+    filedialog-contentsview-icon: url(zapzap/assets/stylesheets/dark/file_dialog_contents.svg);
+    filedialog-detailedview-icon: url(zapzap/assets/stylesheets/dark/file_dialog_detailed.svg);
+    filedialog-end-icon: url(zapzap/assets/stylesheets/dark/file_dialog_end.svg);
+    filedialog-infoview-icon: url(zapzap/assets/stylesheets/dark/file_dialog_info.svg);
+    filedialog-listview-icon: url(zapzap/assets/stylesheets/dark/file_dialog_list.svg);
+    filedialog-new-directory-icon: url(zapzap/assets/stylesheets/dark/folder.svg);
+    filedialog-parent-directory-icon: url(zapzap/assets/stylesheets/dark/up_arrow.svg);
+    filedialog-start-icon: url(zapzap/assets/stylesheets/dark/file_dialog_start.svg);
+    directory-closed-icon: url(zapzap/assets/stylesheets/dark/folder.svg);
+    directory-icon: url(zapzap/assets/stylesheets/dark/folder.svg);
+    directory-link-icon: url(zapzap/assets/stylesheets/dark/folder_link.svg);
+    directory-open-icon: url(zapzap/assets/stylesheets/dark/folder_open.svg);
+    file-icon: url(zapzap/assets/stylesheets/dark/file.svg);
+    file-link-icon: url(zapzap/assets/stylesheets/dark/file_link.svg);
+    home-icon: url(zapzap/assets/stylesheets/dark/home_directory.svg);
+
+    /* QMessageBox icons */
+    messagebox-critical-icon: url(zapzap/assets/stylesheets/dark/message_critical.svg);
+    messagebox-information-icon: url(zapzap/assets/stylesheets/dark/message_information.svg);
+    messagebox-question-icon: url(zapzap/assets/stylesheets/dark/message_question.svg);
+    messagebox-warning-icon: url(zapzap/assets/stylesheets/dark/message_warning.svg);
+
+    /* Computer icons */
+    computer-icon: url(zapzap/assets/stylesheets/dark/computer.svg);
+    desktop-icon: url(zapzap/assets/stylesheets/dark/desktop.svg);
+    cd-icon: url(zapzap/assets/stylesheets/dark/disc_drive.svg);
+    dvd-icon: url(zapzap/assets/stylesheets/dark/disc_drive.svg);
+    floppy-icon: url(zapzap/assets/stylesheets/dark/floppy_drive.svg);
+    harddisk-icon: url(zapzap/assets/stylesheets/dark/hard_drive.svg);
+    network-icon: url(zapzap/assets/stylesheets/dark/network_drive.svg);
+    trash-icon: url(zapzap/assets/stylesheets/dark/trash.svg);
+
+    /* Arrow icons */
+    uparrow-icon: url(zapzap/assets/stylesheets/dark/up_arrow.svg);
+    downarrow-icon: url(zapzap/assets/stylesheets/dark/down_arrow.svg);
+    leftarrow-icon: url(zapzap/assets/stylesheets/dark/left_arrow.svg);
+    rightarrow-icon: url(zapzap/assets/stylesheets/dark/right_arrow.svg);
+    backward-icon: url(zapzap/assets/stylesheets/dark/left_arrow.svg);
+    forward-icon: url(zapzap/assets/stylesheets/dark/right_arrow.svg);
+
+    /* Titlebar icons */
+    titlebar-close-icon: url(zapzap/assets/stylesheets/dark/window_close.svg);
+    titlebar-contexthelp-icon: url(zapzap/assets/stylesheets/dark/help.svg);
+    titlebar-maximize-icon: url(zapzap/assets/stylesheets/dark/maximize.svg);
+    titlebar-menu-icon: url(zapzap/assets/stylesheets/dark/menu.svg);
+    titlebar-minimize-icon: url(zapzap/assets/stylesheets/dark/minimize.svg);
+    titlebar-normal-icon: url(zapzap/assets/stylesheets/dark/restore.svg);
+    titlebar-shade-icon: url(zapzap/assets/stylesheets/dark/shade.svg);
+    titlebar-unshade-icon: url(zapzap/assets/stylesheets/dark/unshade.svg);
+
+    /* Other icons */
+    dockwidget-close-icon: url(zapzap/assets/stylesheets/dark/close.svg);
+    /**
+     *  Only available in Qt6, and causes other issues. See #62.
+     *  lineedit-clear-button-icon: url(zapzap/assets/stylesheets/dark/clear_text.svg);
+     */
 }
 
 QWidget:disabled
@@ -71,7 +144,7 @@ QCheckBox
 {
     spacing: 0.23em;
     outline: none;
-    color: #F0F2F5;
+    color: #eff0f1;
     margin-bottom: 0.09em;
     opacity: 200;
 }
@@ -85,7 +158,7 @@ QGroupBox
 {
     /* Need to make sure the groupbox doesn't compress below the title. */
     min-height: 1.2em;
-    border: 0.04em;
+    border: 0.04em solid #76797c;
     border-radius: 0.09em;
     /**
      * This gives us enough space at the top to ensure we can move the
@@ -94,7 +167,6 @@ QGroupBox
      */
     margin-top: 0.5em;
     padding-top: 1em;
-    font: 14pt; color: #F0F2F5; bold;
 }
 
 QGroupBox:focus
@@ -106,9 +178,9 @@ QGroupBox:focus
 QGroupBox::title
 {
     /* We need to move 0.6em up to be inside the lines, +1em for padding. */
-    top: -1.5em;
+    top: -1.6em;
     subcontrol-origin: content;
-    subcontrol-position: top LEFT;
+    subcontrol-position: top center;
     background: #202C33;
     padding-left: 0.2em;
     padding-right: 0.2em;
@@ -129,7 +201,7 @@ QCheckBox::indicator:unchecked:focus,
 QTreeView::indicator:unchecked,
 QTreeView::indicator:unchecked:focus
 {
-    border-image: checkbox_unchecked_disabled.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/checkbox_unchecked_disabled.svg);
 }
 
 QGroupBox::indicator:unchecked,
@@ -141,14 +213,14 @@ QGroupBox::indicator:unchecked:hover,
 QGroupBox::indicator:unchecked:pressed
 {
     border: none;
-    border-image: checkbox_unchecked.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/checkbox_unchecked.svg);
 }
 
 QCheckBox::indicator:checked,
 QTreeView::indicator:checked,
 QGroupBox::indicator:checked
 {
-    border-image: checkbox_checked.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/checkbox_checked.svg);
 }
 
 QCheckBox::indicator:checked:hover,
@@ -162,13 +234,13 @@ QGroupBox::indicator:checked:focus,
 QGroupBox::indicator:checked:pressed
 {
     border: none;
-    border-image: checkbox_checked.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/checkbox_checked.svg);
 }
 
 QCheckBox::indicator:indeterminate,
 QTreeView::indicator:indeterminate
 {
-    border-image: checkbox_indeterminate.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/checkbox_indeterminate.svg);
 }
 
 QCheckBox::indicator:indeterminate:focus,
@@ -178,34 +250,34 @@ QTreeView::indicator:indeterminate:focus,
 QTreeView::indicator:indeterminate:hover,
 QTreeView::indicator:indeterminate:pressed
 {
-    border-image: checkbox_indeterminate.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/checkbox_indeterminate.svg);
 }
 
 QCheckBox::indicator:indeterminate:disabled,
 QTreeView::indicator:indeterminate:disabled
 {
-    border-image: checkbox_indeterminate_disabled.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/checkbox_indeterminate_disabled.svg);
 }
 
 QCheckBox::indicator:checked:disabled,
 QTreeView::indicator:checked:disabled,
 QGroupBox::indicator:checked:disabled
 {
-    border-image: checkbox_checked_disabled.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/checkbox_checked_disabled.svg);
 }
 
 QCheckBox::indicator:unchecked:disabled,
 QTreeView::indicator:unchecked:disabled,
 QGroupBox::indicator:unchecked:disabled
 {
-    border-image: checkbox_unchecked_disabled.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/checkbox_unchecked_disabled.svg);
 }
 
 QRadioButton
 {
     spacing: 0.23em;
     outline: none;
-    color: #F0F2F5;
+    color: #eff0f1;
     margin-bottom: 0.09em;
 }
 
@@ -223,7 +295,7 @@ QRadioButton::indicator
 QRadioButton::indicator:unchecked,
 QRadioButton::indicator:unchecked:focus
 {
-    border-image: radio_unchecked_disabled.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/radio_unchecked_disabled.svg);
 }
 
 QRadioButton::indicator:unchecked:hover,
@@ -231,14 +303,14 @@ QRadioButton::indicator:unchecked:pressed
 {
     border: none;
     outline: none;
-    border-image: radio_unchecked.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/radio_unchecked.svg);
 }
 
 QRadioButton::indicator:checked
 {
     border: none;
     outline: none;
-    border-image: radio_checked.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/radio_checked.svg);
 }
 
 QRadioButton::indicator:checked:hover,
@@ -247,24 +319,24 @@ QRadioButton::indicator:checked:pressed
 {
     border: none;
     outline: none;
-    border-image: radio_checked.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/radio_checked.svg);
 }
 
 QRadioButton::indicator:checked:disabled
 {
     outline: none;
-    border-image: radio_checked_disabled.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/radio_checked_disabled.svg);
 }
 
 QRadioButton::indicator:unchecked:disabled
 {
-    border-image: radio_unchecked_disabled.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/radio_unchecked_disabled.svg);
 }
 
 QMenuBar
 {
     background-color: #202C33;
-    color: #F0F2F5;
+    color: #eff0f1;
 }
 
 QMenuBar::item
@@ -284,15 +356,15 @@ QMenuBar::item:disabled
 
 QMenuBar::item:pressed
 {
-    background-color: #25D366;
-    color: #F0F2F5;
+    background-color: #00A884;
+    color: #eff0f1;
     margin-bottom: -0.09em;
     padding-bottom: 0.09em;
 }
 
 QMenu
 {
-    color: #F0F2F5;
+    color: #eff0f1;
     margin: 0.09em;
 }
 
@@ -311,8 +383,8 @@ QMenu::item
 
 QMenu::item:selected
 {
-    color: #F0F2F5;
-    background-color: #25D366;
+    color: #eff0f1;
+    background-color: #00A884;
 }
 
 QMenu::item:selected:disabled
@@ -336,68 +408,68 @@ QMenu::indicator
 
 QMenu::indicator:non-exclusive:unchecked
 {
-    border-image: checkbox_unchecked_disabled.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/checkbox_unchecked_disabled.svg);
 }
 
 QMenu::indicator:non-exclusive:unchecked:selected
 {
-    border-image: checkbox_unchecked_disabled.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/checkbox_unchecked_disabled.svg);
 }
 
 QMenu::indicator:non-exclusive:checked
 {
-    border-image: checkbox_checked.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/checkbox_checked.svg);
 }
 
 QMenu::indicator:non-exclusive:checked:selected
 {
-    border-image: checkbox_checked.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/checkbox_checked.svg);
 }
 
 QMenu::indicator:exclusive:unchecked
 {
-    border-image: radio_unchecked_disabled.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/radio_unchecked_disabled.svg);
 }
 
 QMenu::indicator:exclusive:unchecked:selected
 {
-    border-image: radio_unchecked_disabled.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/radio_unchecked_disabled.svg);
 }
 
 QMenu::indicator:exclusive:checked
 {
-    border-image: radio_checked.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/radio_checked.svg);
 }
 
 QMenu::indicator:exclusive:checked:selected
 {
-    border-image: radio_checked.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/radio_checked.svg);
 }
 
 QMenu::right-arrow
 {
     margin: 0.23em;
-    border-image: right_arrow.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/right_arrow.svg);
     width: 0.5em;
     height: 0.8em;
 }
 
 QMenu::right-arrow:disabled
 {
-    border-image: right_arrow_disabled.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/right_arrow_disabled.svg);
 }
 
 QAbstractItemView
 {
     alternate-background-color: #202C33;
-    color: #F0F2F5;
+    color: #eff0f1;
     border: 0.09em solid #202C33;
     border-radius: 0.09em;
 }
 
 QMenuBar::item:focus:!disabled
 {
-    border: 0.04em solid #25D366;
+    border: 0.04em solid #00A884;
 }
 
 QTabWidget:focus,
@@ -415,7 +487,7 @@ QLineEdit
     border-style: solid;
     border: 0.04em solid #76797c;
     border-radius: 0.09em;
-    color: #F0F2F5;
+    color: #eff0f1;
 }
 
 QAbstractScrollArea
@@ -457,22 +529,22 @@ QScrollBar:horizontal:hover
 
 QScrollBar::handle:horizontal
 {
-    background-color: #25D366;
-    border: 0.04em solid #25D366;
+    background-color: #00A884;
+    border: 0.04em solid #00A884;
     min-width: 0.5em;
     border-radius: 0.17em;
 }
 
 QScrollBar::handle:horizontal:hover
 {
-    background-color: #25D366;
-    border: 0.04em solid #25D366;
+    background-color: #00A884;
+    border: 0.04em solid #00A884;
 }
 
 QScrollBar::add-line:horizontal
 {
     margin: 0em 0.13em 0em 0.13em;
-    border-image: transparent.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/transparent.svg);
     width: 0.41em;
     height: 0.41em;
     subcontrol-position: right;
@@ -482,7 +554,7 @@ QScrollBar::add-line:horizontal
 QScrollBar::sub-line:horizontal
 {
     margin: 0em 0.13em 0em 0.13em;
-    border-image: transparent.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/transparent.svg);
     width: 0.41em;
     height: 0.41em;
     subcontrol-position: left;
@@ -492,7 +564,7 @@ QScrollBar::sub-line:horizontal
 QScrollBar::add-line:horizontal:hover,
 QScrollBar::add-line:horizontal:on
 {
-    border-image: transparent.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/transparent.svg);
     width: 0.41em;
     height: 0.41em;
     subcontrol-position: right;
@@ -502,7 +574,7 @@ QScrollBar::add-line:horizontal:on
 QScrollBar::sub-line:horizontal:hover,
 QScrollBar::sub-line:horizontal:on
 {
-    border-image: transparent.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/transparent.svg);
     width: 0.41em;
     height: 0.41em;
     subcontrol-position: left;
@@ -537,22 +609,22 @@ QScrollBar:vertical:hover
 
 QScrollBar::handle:vertical
 {
-    background-color: #25D366;
-    border: 0.04em solid #25D366;
+    background-color: #00A884;
+    border: 0.04em solid #00A884;
     min-height: 0.5em;
     border-radius: 0.17em;
 }
 
 QScrollBar::handle:vertical:hover
 {
-    background-color: #25D366;
-    border: 0.04em solid #25D366;
+    background-color: #00A884;
+    border: 0.04em solid #00A884;
 }
 
 QScrollBar::sub-line:vertical
 {
     margin: 0.13em 0em 0.13em 0em;
-    border-image: transparent.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/transparent.svg);
     height: 0.41em;
     width: 0.41em;
     subcontrol-position: top;
@@ -562,7 +634,7 @@ QScrollBar::sub-line:vertical
 QScrollBar::add-line:vertical
 {
     margin: 0.13em 0em 0.13em 0em;
-    border-image: transparent.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/transparent.svg);
     height: 0.41em;
     width: 0.41em;
     subcontrol-position: bottom;
@@ -572,7 +644,7 @@ QScrollBar::add-line:vertical
 QScrollBar::sub-line:vertical:hover,
 QScrollBar::sub-line:vertical:on
 {
-    border-image: transparent.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/transparent.svg);
     height: 0.41em;
     width: 0.41em;
     subcontrol-position: top;
@@ -582,7 +654,7 @@ QScrollBar::sub-line:vertical:on
 QScrollBar::add-line:vertical:hover,
 QScrollBar::add-line:vertical:on
 {
-    border-image: transparent.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/transparent.svg);
     height: 0.41em;
     width: 0.41em;
     subcontrol-position: bottom;
@@ -604,21 +676,21 @@ QScrollBar::sub-page:vertical
 QTextEdit
 {
     background-color: #1d2023;
-    color: #F0F2F5;
+    color: #eff0f1;
     border: 0.04em solid #76797c;
 }
 
 QPlainTextEdit
 {
     background-color: #1d2023;
-    color: #F0F2F5;
+    color: #eff0f1;
     border-radius: 0.09em;
     border: 0.04em solid #76797c;
 }
 
 QSizeGrip
 {
-    border-image: sizegrip.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/sizegrip.svg);
     width: 0.5em;
     height: 0.5em;
 }
@@ -665,7 +737,7 @@ QFrame[frameShape="4"]:hover,
 QFrame[frameShape="5"]:hover,
 QFrame[frameShape="6"]:hover
 {
-    border: 0.04em solid #25D366;
+    border: 0.04em solid #00A884;
 }
 
 /* Don't provide an outline if we have a widget that takes up the space. */
@@ -698,22 +770,22 @@ QToolBar:vertical
 
 QToolBar::handle:horizontal
 {
-    border-image: hmovetoolbar.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/hmovetoolbar.svg);
 }
 
 QToolBar::handle:vertical
 {
-    border-image: vmovetoolbar.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/vmovetoolbar.svg);
 }
 
 QToolBar::separator:horizontal
 {
-    border-image: hseptoolbar.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/hseptoolbar.svg);
 }
 
 QToolBar::separator:vertical
 {
-    border-image: vseptoolbar.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/vseptoolbar.svg);
 }
 
 QToolBar QToolButton
@@ -726,12 +798,12 @@ QToolBar QToolButton
 
 QToolBar QToolButton:hover
 {
-    border: 0.04em solid #25D366;
+    border: 0.04em solid #00A884;
 }
 
 QToolBar QToolButton:pressed
 {
-    border: 0.04em solid #25D366;
+    border: 0.04em solid #00A884;
     /* The padding doesn't inherit from `QToolBar QToolButton`, so leave it in. */
     padding-left: 0.2em;
     padding-right: 0.3em;
@@ -759,7 +831,7 @@ QDialog QToolBar QToolButton[popupMode="2"]
 
 QPushButton
 {
-    color: #F0F2F5;
+    color: #eff0f1;
     background-color: #202C33;
     border: 0.04em solid #76797c;
     padding: 0.23em;
@@ -798,7 +870,7 @@ QPushButton:disabled
 
 QPushButton:focus
 {
-    color: #F0F2F5;
+    color: #eff0f1;
 }
 
 QPushButton:pressed
@@ -806,7 +878,7 @@ QPushButton:pressed
     background-color: #454a4f;
     padding-top: -0.65em;
     padding-bottom: -0.74em;
-    color: #F0F2F5;
+    color: #eff0f1;
 }
 
 QComboBox
@@ -826,21 +898,21 @@ QPushButton:checked
 {
     background-color: #626568;
     border: 0.04em solid #76797c;
-    color: #F0F2F5;
+    color: #eff0f1;
 }
 
 QPushButton:hover
 {
     background-color: #202C33;
-    border: 0.04em solid #25D366;
-    color: #F0F2F5;
+    border: 0.04em solid #00A884;
+    color: #eff0f1;
 }
 
 QPushButton:checked:hover
 {
     background-color: #626568;
-    border: 0.04em solid #25D366;
-    color: #F0F2F5;
+    border: 0.04em solid #00A884;
+    color: #eff0f1;
 }
 
 QComboBox:hover,
@@ -857,8 +929,8 @@ QAbstractView:hover,
 QTreeView:hover,
 QTreeView:focus
 {
-    border: 0.04em solid #25D366;
-    color: #F0F2F5;
+    border: 0.04em solid #00A884;
+    color: #eff0f1;
 }
 
 QComboBox:hover:pressed:!editable,
@@ -880,13 +952,13 @@ QColumnView
 
 QColumnViewGrip
 {
-    border-image: sizegrip.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/sizegrip.svg);
 }
 
 /* Each column in the view is a QAbstractItemView. */
 QColumnView QAbstractItemView
 {
-    border: 0.04em transparent #25D366;
+    border: 0.04em transparent #00A884;
 }
 
 /**
@@ -912,26 +984,26 @@ QColumnView QAbstractItemView::item
 
 QColumnView QAbstractItemView::right-arrow
 {
-    image: right_arrow.svg;
+    image: url(zapzap/assets/stylesheets/dark/right_arrow.svg);
     margin: 0.2em 0.1em 0.2em 0.1em;
 }
 
 QColumnView QAbstractItemView::right-arrow:selected,
 QColumnView QAbstractItemView::right-arrow:hover
 {
-    image: right_arrow_hover.svg;
+    image: url(zapzap/assets/stylesheets/dark/right_arrow_hover.svg);
 }
 
 QColumnView QAbstractItemView::left-arrow
 {
-    image: left_arrow.svg;
+    image: url(zapzap/assets/stylesheets/dark/left_arrow.svg);
     margin: 0.2em 0.1em 0.2em 0.1em;
 }
 
 QColumnView QAbstractItemView::left-arrow:selected,
 QColumnView QAbstractItemView::left-arrow:hover
 {
-    image: left_arrow_hover.svg;
+    image: url(zapzap/assets/stylesheets/dark/left_arrow_hover.svg);
 }
 
 QComboBox:hover:pressed:editable
@@ -943,7 +1015,7 @@ QComboBox QAbstractItemView
 {
     /* This happens for the drop-down menu always, whether editable or not.*/
     background-color: #1d2023;
-    selection-background-color: #2a79a3;
+    selection-background-color: #00A783;
     outline-color: 0em;
     border-radius: 0.09em;
 }
@@ -962,7 +1034,7 @@ QComboBox::drop-down
 
 QComboBox::down-arrow
 {
-    border-image: down_arrow_disabled.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/down_arrow_disabled.svg);
     width: 0.8em;
     height: 0.5em;
     margin-right: 0.41em;
@@ -972,7 +1044,7 @@ QComboBox::down-arrow:on,
 QComboBox::down-arrow:hover,
 QComboBox::down-arrow:focus
 {
-    border-image: down_arrow.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/down_arrow.svg);
     width: 0.8em;
     height: 0.5em;
     margin-right: 0.41em;
@@ -983,7 +1055,7 @@ QAbstractSpinBox
     padding: 0.23em;
     border: 0.09em solid #76797c;
     background-color: #1d2023;
-    color: #F0F2F5;
+    color: #eff0f1;
     border-radius: 0.09em;
     min-width: 3em;
     min-height: 1em;
@@ -991,7 +1063,7 @@ QAbstractSpinBox
 
 QAbstractSpinBox:hover
 {
-    border: 0.09em solid #25D366;
+    border: 0.09em solid #00A884;
 }
 
 QAbstractSpinBox:up-button,
@@ -1045,34 +1117,34 @@ QAbstractSpinBox::down-arrow:!off:!disabled:hover
 
 QAbstractSpinBox::up-arrow
 {
-    image: up_arrow.svg;
+    image: url(zapzap/assets/stylesheets/dark/up_arrow.svg);
 }
 
 QAbstractSpinBox::up-arrow:disabled,
 QAbstractSpinBox::up-arrow:off
 {
-    image: up_arrow_disabled.svg;
+    image: url(zapzap/assets/stylesheets/dark/up_arrow_disabled.svg);
 }
 
 QAbstractSpinBox::up-arrow:hover
 {
-    image: up_arrow_hover.svg;
+    image: url(zapzap/assets/stylesheets/dark/up_arrow_hover.svg);
 }
 
 QAbstractSpinBox::down-arrow
 {
-    image: down_arrow.svg;
+    image: url(zapzap/assets/stylesheets/dark/down_arrow.svg);
 }
 
 QAbstractSpinBox::down-arrow:disabled,
 QAbstractSpinBox::down-arrow:off
 {
-    image: down_arrow_disabled.svg;
+    image: url(zapzap/assets/stylesheets/dark/down_arrow_disabled.svg);
 }
 
 QAbstractSpinBox::down-arrow:!off:!disabled:hover
 {
-    image: down_arrow_hover.svg;
+    image: url(zapzap/assets/stylesheets/dark/down_arrow_hover.svg);
 }
 
 QDoubleSpinBox
@@ -1087,9 +1159,9 @@ QDoubleSpinBox
  */
 QCalendarWidget QAbstractItemView:enabled
 {
-    color: #F0F2F5;
-    selection-color: #F0F2F5;
-    selection-background-color: #25D366;
+    color: #eff0f1;
+    selection-color: #eff0f1;
+    selection-background-color: #00A884;
 }
 
 /* Won't take hover events. */
@@ -1102,12 +1174,12 @@ QPrevNextCalButton
 
 QPrevNextCalButton#qt_calendar_nextmonth
 {
-    image: calendar_next.svg;
+    image: url(zapzap/assets/stylesheets/dark/calendar_next.svg);
 }
 
 QPrevNextCalButton#qt_calendar_prevmonth
 {
-    image: calendar_previous.svg;
+    image: url(zapzap/assets/stylesheets/dark/calendar_previous.svg);
 }
 
 /**
@@ -1129,13 +1201,13 @@ QCalendarWidget QToolButton
 
 QCalendarWidget QToolButton:hover
 {
-    border: 0.04em solid #25D366;
+    border: 0.04em solid #00A884;
 }
 
 QCalendarWidget QToolButton:checked,
 QCalendarWidget QToolButton:pressed
 {
-    background-color: #25D366;
+    background-color: #00A884;
     padding: 0.23em;
     padding-right: 1.2em;
     min-height: 1.3em;
@@ -1151,7 +1223,7 @@ QCalendarWidget QToolButton::menu-indicator,
 #qt_datetimedit_calendar QCalendarWidget QToolButton::menu-indicator
 {
     border-image: none;
-    image: down_arrow.svg;
+    image: url(zapzap/assets/stylesheets/dark/down_arrow.svg);
     width: 0.8em;
     height: 0.5em;
     top: -0.7ex;
@@ -1165,7 +1237,7 @@ QCalendarWidget QToolButton::menu-arrow,
 #qt_datetimedit_calendar QCalendarWidget QToolButton::menu-arrow
 {
     border-image: none;
-    image: down_arrow.svg;
+    image: url(zapzap/assets/stylesheets/dark/down_arrow.svg);
     width: 0.8em;
     height: 0.5em;
     padding-right: 0.09em;
@@ -1252,19 +1324,19 @@ QTabBar:focus
 QTabBar::close-button
 {
     /* Doesn't seem possible to resize these buttons */
-    border-image: transparent.svg;
-    image: close.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/transparent.svg);
+    image: url(zapzap/assets/stylesheets/dark/close.svg);
     background: transparent;
 }
 
 QTabBar::close-button:hover
 {
-    image: close_hover.svg;
+    image: url(zapzap/assets/stylesheets/dark/close_hover.svg);
 }
 
 QTabBar::close-button:pressed
 {
-    image: close_pressed.svg;
+    image: url(zapzap/assets/stylesheets/dark/close_pressed.svg);
 }
 
 /* TOP TABS */
@@ -1272,11 +1344,11 @@ QTabBar::tab:top,
 QTabBar::tab:top:last,
 QTabBar::tab:top:only-one
 {
-    color: #F0F2F5;
+    color: #eff0f1;
     border: 0.04em transparent black;
     border-left: 0.04em solid #76797c;
     border-right: 0.04em solid #76797c;
-    border-top: 0.09em solid #25D366;
+    border-top: 0.09em solid #00A884;
     background-color: #202C33;
     padding: 0.23em;
     min-width: 50px;
@@ -1287,7 +1359,7 @@ QTabBar::tab:top:only-one
 
 QTabBar::tab:top:!selected
 {
-    color: #F0F2F5;
+    color: #eff0f1;
     background-color: #2c3034;
     border: 0.04em transparent black;
     border-right: 0.04em solid #76797c;
@@ -1325,11 +1397,11 @@ QTabBar::tab:bottom,
 QTabBar::tab:bottom:last,
 QTabBar::tab:bottom:only-one
 {
-    color: #F0F2F5;
+    color: #eff0f1;
     border: 0.04em transparent black;
     border-left: 0.04em solid #76797c;
     border-right: 0.04em solid #76797c;
-    border-bottom: 0.09em solid #25D366;
+    border-bottom: 0.09em solid #00A884;
     background-color: #202C33;
     padding: 0.23em;
     min-width: 50px;
@@ -1340,7 +1412,7 @@ QTabBar::tab:bottom:only-one
 
 QTabBar::tab:bottom:!selected
 {
-    color: #F0F2F5;
+    color: #eff0f1;
     background-color: #2c3034;
     border: 0.04em transparent black;
     border-top: 0.04em solid #76797c;
@@ -1378,9 +1450,9 @@ QTabBar::tab:left,
 QTabBar::tab:left:last,
 QTabBar::tab:left:only-one
 {
-    color: #F0F2F5;
+    color: #eff0f1;
     border: 0.04em transparent black;
-    border-top: 0.09em solid #25D366;
+    border-top: 0.09em solid #00A884;
     border-bottom: 0.04em solid #76797c;
     border-left: 0.04em solid #76797c;
     background-color: #202C33;
@@ -1393,7 +1465,7 @@ QTabBar::tab:left:only-one
 
 QTabBar::tab:left:!selected
 {
-    color: #F0F2F5;
+    color: #eff0f1;
     background-color: #2c3034;
     border: 0.04em transparent black;
     border-top: 0.04em solid #76797c;
@@ -1431,9 +1503,9 @@ QTabBar::tab:right,
 QTabBar::tab:right:last,
 QTabBar::tab:right:only-one
 {
-    color: #F0F2F5;
+    color: #eff0f1;
     border: 0.04em transparent black;
-    border-top: 0.09em solid #25D366;
+    border-top: 0.09em solid #00A884;
     border-bottom: 0.04em solid #76797c;
     border-right: 0.04em solid #76797c;
     background-color: #202C33;
@@ -1446,7 +1518,7 @@ QTabBar::tab:right:only-one
 
 QTabBar::tab:right:!selected
 {
-    color: #F0F2F5;
+    color: #eff0f1;
     background-color: #2c3034;
     border: 0.04em transparent black;
     border-top: 0.04em solid #76797c;
@@ -1505,7 +1577,7 @@ QTabBar[shape="6"]::tab:only-one,
 QTabBar[shape="7"]::tab:only-one
 {
     /* Need a dark color without alpha channel since it affects the text. */
-    color: #25D366;
+    color: #00A884;
     background-color: #202C33;
     padding: 0.23em;
 }
@@ -1535,7 +1607,7 @@ QTabBar[shape="5"]::tab:!selected,
 QTabBar[shape="6"]::tab:!selected,
 QTabBar[shape="7"]::tab:!selected
 {
-    color: #F0F2F5;
+    color: #eff0f1;
     background-color: #2c3034;
 }
 
@@ -1596,8 +1668,8 @@ QDockWidget
      *  This is a bug fix so we can handle hover, pressed, and other events.
      *  Reference: https://stackoverflow.com/questions/32145080/qdockwidget-float-close-button-hover-images
      */
-    titlebar-close-icon: transparent.svg;
-    titlebar-normal-icon: transparent.svg;
+    titlebar-close-icon: url(zapzap/assets/stylesheets/dark/transparent.svg);
+    titlebar-normal-icon: url(zapzap/assets/stylesheets/dark/transparent.svg);
 }
 
 /**
@@ -1605,9 +1677,9 @@ QDockWidget
  *  around the rest of the dock widget, which the remaining border
  *  cannot be removed.
  *
- *  There is a bug in Qt6, where the icons are small. It doesn't
- *  change if we use `image` instead of `border-image`, nor if we
- *  use `qproperty-icon`, etc. The icon seem to be half the size
+ *  There is a bug in non-Breeze styles, where the icons are small. It 
+ *  doesn't change if we use `image` instead of `border-image`, nor if 
+ *  we use `qproperty-icon`, etc. The icon seem to be half the size
  *  of our desired values.
  */
 QDockWidget::close-button,
@@ -1622,36 +1694,36 @@ QDockWidget::float-button
 
 QDockWidget::float-button
 {
-    border-image: transparent.svg;
-    image: undock.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/transparent.svg);
+    image: url(zapzap/assets/stylesheets/dark/undock.svg);
 }
 
 QDockWidget::float-button:hover
 {
-    image: undock_hover.svg;
+    image: url(zapzap/assets/stylesheets/dark/undock_hover.svg);
 }
 
 /* The :pressed events don't register, seems to be a Qt bug. */
 QDockWidget::float-button:pressed
 {
-    image: undock_hover.svg;
+    image: url(zapzap/assets/stylesheets/dark/undock_hover.svg);
 }
 
 QDockWidget::close-button
 {
-    border-image: transparent.svg;
-    image: close.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/transparent.svg);
+    image: url(zapzap/assets/stylesheets/dark/close.svg);
 }
 
 QDockWidget::close-button:hover
 {
-    image: close_hover.svg;
+    image: url(zapzap/assets/stylesheets/dark/close_hover.svg);
 }
 
 /* The :pressed events don't register, seems to be a Qt bug. */
 QDockWidget::close-button:pressed
 {
-    image: close_pressed.svg;
+    image: url(zapzap/assets/stylesheets/dark/close_pressed.svg);
 }
 
 QTreeView,
@@ -1671,7 +1743,7 @@ QListView:!selected
 
 QTreeView::branch:has-siblings
 {
-    border-image: vline.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/vline.svg);
     image: none;
 }
 
@@ -1684,48 +1756,48 @@ QTreeView::branch:!has-siblings
 
 QTreeView::branch:has-siblings:adjoins-item
 {
-    border-image: branch_more.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/branch_more.svg);
 }
 
 QTreeView::branch:!has-children:!has-siblings:adjoins-item
 {
-    border-image: branch_end.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/branch_end.svg);
 }
 
 QTreeView::branch:has-children:!has-siblings:closed,
 QTreeView::branch:closed:has-children:has-siblings
 {
-    image: branch_closed.svg;
+    image: url(zapzap/assets/stylesheets/dark/branch_closed.svg);
 }
 
 QTreeView::branch:has-children:!has-siblings:closed:hover,
 QTreeView::branch:closed:has-children:has-siblings:hover
 {
-    image: branch_closed_hover.svg;
+    image: url(zapzap/assets/stylesheets/dark/branch_closed_hover.svg);
 }
 
 QTreeView::branch:has-children:!has-siblings:closed,
 QTreeView::branch:open:has-children:!has-siblings
 {
-    border-image: branch_end_arrow.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/branch_end_arrow.svg);
 }
 
 QTreeView::branch:closed:has-children:has-siblings,
 QTreeView::branch:open:has-children:has-siblings
 {
-    border-image: branch_more_arrow.svg;
+    border-image: url(zapzap/assets/stylesheets/dark/branch_more_arrow.svg);
 }
 
 QTreeView::branch:open:has-children:!has-siblings,
 QTreeView::branch:open:has-children:has-siblings
 {
-    image: branch_open.svg;
+    image: url(zapzap/assets/stylesheets/dark/branch_open.svg);
 }
 
 QTreeView::branch:open:has-children:!has-siblings:hover,
 QTreeView::branch:open:has-children:has-siblings:hover
 {
-    image: branch_open_hover.svg;
+    image: url(zapzap/assets/stylesheets/dark/branch_open_hover.svg);
 }
 
 QListView
@@ -1739,7 +1811,7 @@ QListView::item,
 QTreeView::item
 {
     padding: 0.13em;
-    color: #F0F2F5;
+    color: #eff0f1;
 }
 
 QTreeView::item
@@ -1762,7 +1834,7 @@ QTreeView::item:!selected:hover
 {
     background-color: rgba(61, 173, 232, 0.1);
     outline: 0;
-    color: #F0F2F5;
+    color: #eff0f1;
     padding: 0.13em;
 }
 
@@ -1819,7 +1891,7 @@ QSlider::handle:horizontal:focus,
 QSlider::handle:vertical:hover,
 QSlider::handle:vertical:focus
 {
-    border: 0.04em solid #25D366;
+    border: 0.04em solid #00A884;
 }
 
 QSlider::handle:horizontal:!focus:!hover,
@@ -1831,7 +1903,7 @@ QSlider::handle:vertical:!focus:!hover
 QSlider::sub-page:horizontal,
 QSlider::add-page:vertical
 {
-    background: #25D366;
+    background: #00A884;
     border-radius: 0.19em;
 }
 
@@ -1930,14 +2002,14 @@ QDialog QToolBar QToolButton[hasMenu="true"][popupMode="2"]
 
 QToolButton:hover
 {
-    border: 0.04em solid #25D366;
+    border: 0.04em solid #00A884;
 }
 
 QToolButton:checked,
 QToolButton:pressed
 {
-    border: 0.04em solid #25D366;
-    background-color: #25D366;
+    border: 0.04em solid #00A884;
+    background-color: #00A884;
 }
 
 QToolButton::right-arrow,
@@ -1958,48 +2030,48 @@ QToolButton::down-arrow
 
 QToolButton::right-arrow:enabled
 {
-    image: right_arrow.svg;
+    image: url(zapzap/assets/stylesheets/dark/right_arrow.svg);
 }
 
 QToolButton::left-arrow:enabled
 {
-    image: left_arrow.svg;
+    image: url(zapzap/assets/stylesheets/dark/left_arrow.svg);
 }
 
 QToolButton::up-arrow:enabled
 {
-    image: up_arrow.svg;
+    image: url(zapzap/assets/stylesheets/dark/up_arrow.svg);
 }
 
 QToolButton::down-arrow:enabled
 {
-    image: down_arrow.svg;
+    image: url(zapzap/assets/stylesheets/dark/down_arrow.svg);
 }
 
 QToolButton::right-arrow:disabled
 {
-    image: right_arrow_disabled.svg;
+    image: url(zapzap/assets/stylesheets/dark/right_arrow_disabled.svg);
 }
 
 QToolButton::left-arrow:disabled
 {
-    image: left_arrow_disabled.svg;
+    image: url(zapzap/assets/stylesheets/dark/left_arrow_disabled.svg);
 }
 
 QToolButton::up-arrow:disabled
 {
-    image: up_arrow_disabled.svg;
+    image: url(zapzap/assets/stylesheets/dark/up_arrow_disabled.svg);
 }
 
 QToolButton::down-arrow:disabled
 {
-    image: down_arrow_disabled.svg;
+    image: url(zapzap/assets/stylesheets/dark/down_arrow_disabled.svg);
 }
 
 QToolButton::menu-indicator
 {
     border-image: none;
-    image: down_arrow.svg;
+    image: url(zapzap/assets/stylesheets/dark/down_arrow.svg);
     width: 0.8em;
     height: 0.5em;
     left: -0.09em;
@@ -2027,7 +2099,7 @@ QDialog QToolBar QToolButton[popupMode="2"]::menu-indicator
 QToolButton::menu-arrow
 {
     border-image: none;
-    image: down_arrow.svg;
+    image: url(zapzap/assets/stylesheets/dark/down_arrow.svg);
     width: 0.8em;
     height: 0.5em;
     padding-right: 0.09em;
@@ -2082,13 +2154,13 @@ QTableView
 
 QAbstractItemView::item
 {
-    color: #F0F2F5;
+    color: #eff0f1;
 }
 
 QAbstractItemView::item:pressed
 {
-    background: #2a79a3;
-    color: #F0F2F5;
+    background: #00A783;
+    color: #eff0f1;
 }
 
 QAbstractItemView::item:selected:!active
@@ -2102,10 +2174,10 @@ QAbstractItemView::item:selected:active
     background: qlineargradient(
         x1: 0.5, y1: 0.5
         x2: 0.5, y2: 1,
-        stop: 0 #2a79a3,
-        stop: 1 #2a79a3
+        stop: 0 #00A783,
+        stop: 1 #00A783
     );
-    color: #F0F2F5;
+    color: #eff0f1;
 }
 
 QAbstractItemView::item:selected:hover
@@ -2113,10 +2185,10 @@ QAbstractItemView::item:selected:hover
     background: qlineargradient(
         x1: 0.5, y1: 0.5
         x2: 0.5, y2: 1,
-        stop: 0 #2f88b7,
-        stop: 1 #2f88b7
+        stop: 0 #00A783,
+        stop: 1 #00A783
     );
-    color: #F0F2F5;
+    color: #eff0f1;
 }
 
 QHeaderView
@@ -2132,7 +2204,7 @@ QHeaderView::section
 {
     background-color: #202C33;
     border: 0.04em solid #76797c;
-    color: #F0F2F5;
+    color: #eff0f1;
     border-radius: 0em;
     padding: 0em 0.23em 0em 0.23em;
     text-align: center;
@@ -2179,12 +2251,12 @@ QHeaderView::section::horizontal::only-one:hover,
 QHeaderView::section::vertical::first:hover,
 QHeaderView::section::vertical::only-one:hover
 {
-    border: 0.04em solid #25D366;
+    border: 0.04em solid #00A884;
 }
 
 QHeaderView[showSortIndicator="true"]::down-arrow
 {
-    image: down_arrow.svg;
+    image: url(zapzap/assets/stylesheets/dark/down_arrow.svg);
     /**
      *  Qt5 and Qt6 differ if the subcontrol-origin is set to
      *  the default, AKA, padding. Setting it to the content,
@@ -2207,7 +2279,7 @@ QHeaderView[showSortIndicator="true"]::down-arrow
 
 QHeaderView[showSortIndicator="true"]::up-arrow
 {
-    image: up_arrow.svg;
+    image: url(zapzap/assets/stylesheets/dark/up_arrow.svg);
     subcontrol-origin: content;
     subcontrol-position: center right;
     width: 0.8em;
@@ -2233,7 +2305,7 @@ QTableView QTableCornerButton:hover
 
 QTableView QTableCornerButton::section:pressed
 {
-    border: 0.04em solid #25D366;
+    border: 0.04em solid #00A884;
     border-radius: 0em;
 }
 
@@ -2252,7 +2324,7 @@ QToolBox::tab
 QToolBox::tab:selected,
 QToolBox::tab:hover
 {
-    border-bottom: 0.09em solid #25D366;
+    border-bottom: 0.09em solid #00A884;
 }
 
 QSplitter::handle
@@ -2305,7 +2377,7 @@ QProgressBar:vertical
 QProgressBar::chunk:horizontal,
 QProgressBar::chunk:vertical
 {
-    background-color: #25D366;
+    background-color: #00A884;
     border: 0.9em transparent;
     border-radius: 0.08em;
 }
@@ -2337,96 +2409,21 @@ QDialogButtonBox
 {
     dialogbuttonbox-buttons-have-icons: true;
 
-    dialog-cancel-icon: dialog_cancel.svg;
-    dialog-close-icon: dialog_close.svg;
-    dialog-ok-icon: dialog_ok.svg;
-    dialog-open-icon: dialog_open.svg;
-    dialog-reset-icon: dialog_reset.svg;
-    dialog-save-icon: dialog_save.svg;
+    dialog-cancel-icon: url(zapzap/assets/stylesheets/dark/dialog_cancel.svg);
+    dialog-close-icon: url(zapzap/assets/stylesheets/dark/dialog_close.svg);
+    dialog-ok-icon: url(zapzap/assets/stylesheets/dark/dialog_ok.svg);
+    dialog-open-icon: url(zapzap/assets/stylesheets/dark/dialog_open.svg);
+    dialog-reset-icon: url(zapzap/assets/stylesheets/dark/dialog_reset.svg);
+    dialog-save-icon: url(zapzap/assets/stylesheets/dark/dialog_save.svg);
     /**
      *  No support yet for overriding saveall.
-     *  dialog-saveall-icon: dialog_saveall.svg;
+     *  dialog-saveall-icon: url(zapzap/assets/stylesheets/dark/dialog_saveall.svg);
      */
-    dialog-yes-icon: dialog_ok.svg;
-    dialog-help-icon: dialog_help.svg;
-    dialog-no-icon: dialog_no.svg;
-    dialog-apply-icon: dialog_ok.svg;
-    dialog-discard-icon: dialog_discard.svg;
-}
-
-QWidget
-{
-    /* QDialogButtonBox icons */
-    dialog-cancel-icon: dialog_cancel.svg;
-    dialog-close-icon: dialog_close.svg;
-    dialog-ok-icon: dialog_ok.svg;
-    dialog-open-icon: dialog_open.svg;
-    dialog-reset-icon: dialog_reset.svg;
-    dialog-save-icon: dialog_save.svg;
-    dialog-yes-icon: dialog_ok.svg;
-    dialog-help-icon: dialog_help.svg;
-    dialog-no-icon: dialog_no.svg;
-    dialog-apply-icon: dialog_ok.svg;
-    dialog-discard-icon: dialog_discard.svg;
-
-    /* File icons */
-    filedialog-backward-icon: left_arrow.svg;
-    filedialog-contentsview-icon: file_dialog_contents.svg;
-    filedialog-detailedview-icon: file_dialog_detailed.svg;
-    filedialog-end-icon: file_dialog_end.svg;
-    filedialog-infoview-icon: file_dialog_info.svg;
-    filedialog-listview-icon: file_dialog_list.svg;
-    filedialog-new-directory-icon: folder.svg;
-    filedialog-parent-directory-icon: up_arrow.svg;
-    filedialog-start-icon: file_dialog_start.svg;
-    directory-closed-icon: folder.svg;
-    directory-icon: folder.svg;
-    directory-link-icon: folder_link.svg;
-    directory-open-icon: folder_open.svg;
-    file-icon: file.svg;
-    file-link-icon: file_link.svg;
-    home-icon: home_directory.svg;
-
-    /* QMessageBox icons */
-    messagebox-critical-icon: message_critical.svg;
-    messagebox-information-icon: message_information.svg;
-    messagebox-question-icon: message_question.svg;
-    messagebox-warning-icon: message_warning.svg;
-
-    /* Computer icons */
-    computer-icon: computer.svg;
-    desktop-icon: desktop.svg;
-    cd-icon: disc_drive.svg;
-    dvd-icon: disc_drive.svg;
-    floppy-icon: floppy_drive.svg;
-    harddisk-icon: hard_drive.svg;
-    network-icon: network_drive.svg;
-    trash-icon: trash.svg;
-
-    /* Arrow icons */
-    uparrow-icon: up_arrow.svg;
-    downarrow-icon: down_arrow.svg;
-    leftarrow-icon: left_arrow.svg;
-    rightarrow-icon: right_arrow.svg;
-    backward-icon: left_arrow.svg;
-    forward-icon: right_arrow.svg;
-
-    /* Titlebar icons */
-    titlebar-close-icon: window_close.svg;
-    titlebar-contexthelp-icon: help.svg;
-    titlebar-maximize-icon: maximize.svg;
-    titlebar-menu-icon: menu.svg;
-    titlebar-minimize-icon: minimize.svg;
-    titlebar-normal-icon: restore.svg;
-    titlebar-shade-icon: shade.svg;
-    titlebar-unshade-icon: unshade.svg;
-
-    /* Other icons */
-    dockwidget-close-icon: close.svg;
-    /**
-     *  Only available in Qt6, and causes other issues. See #62.
-     *  lineedit-clear-button-icon: clear_text.svg;
-     */
+    dialog-yes-icon: url(zapzap/assets/stylesheets/dark/dialog_ok.svg);
+    dialog-help-icon: url(zapzap/assets/stylesheets/dark/dialog_help.svg);
+    dialog-no-icon: url(zapzap/assets/stylesheets/dark/dialog_no.svg);
+    dialog-apply-icon: url(zapzap/assets/stylesheets/dark/dialog_ok.svg);
+    dialog-discard-icon: url(zapzap/assets/stylesheets/dark/dialog_discard.svg);
 }
 
 /* Set some styles for these custom dialog buttons */
@@ -2435,4 +2432,60 @@ QMessageBox QPushButton
 {
     min-height: 1.1em;
     min-width: 5em;
+}
+
+/**
+ *  Special rules for creating a custom titlebar. This can only work
+ *  when setting the Qt property `isTitlebar` to `true`.
+ */
+QWidget[isTitlebar="true"],
+QWidget[isTitlebar="true"] *
+{
+    background-color: #2c3034;
+}
+
+/**
+ *  Special rules for creating a border around a top-level frame of a window. 
+ *  This can only work when setting the Qt property `isWindow` to `true`.
+ *  We've manually enumerated border widths from 1-5 below.
+ */
+QFrame[isWindow="true"],
+QFrame[frameShape][isWindow="true"]
+{
+    border: 0px transparent #2c3034;
+}
+
+QFrame[isWindow="true"][windowFrame="1"],
+QFrame[frameShape][isWindow="true"][windowFrame="1"]
+{
+    border: 1px solid #2c3034;
+    border-radius: 3px;
+}
+
+QFrame[isWindow="true"][windowFrame="2"],
+QFrame[frameShape][isWindow="true"][windowFrame="2"]
+{
+    border: 2px solid #2c3034;
+    border-radius: 3px;
+}
+
+QFrame[isWindow="true"][windowFrame="3"],
+QFrame[frameShape][isWindow="true"][windowFrame="3"]
+{
+    border: 3px solid #2c3034;
+    border-radius: 3px;
+}
+
+QFrame[isWindow="true"][windowFrame="4"],
+QFrame[frameShape][isWindow="true"][windowFrame="4"]
+{
+    border: 4px solid #2c3034;
+    border-radius: 3px;
+}
+
+QFrame[isWindow="true"][windowFrame="5"],
+QFrame[frameShape][isWindow="true"][windowFrame="5"]
+{
+    border: 5px solid #2c3034;
+    border-radius: 3px;
 }
