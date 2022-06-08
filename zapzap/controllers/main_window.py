@@ -38,9 +38,9 @@ class MainWindow(QMainWindow):
         self.current_theme = -1
 
     def recurring_timer(self):
-        if self.current_theme != get_system_theme():
-            self.current_theme = get_system_theme()
-            print("Current theme:", self.current_theme)
+        theme = get_system_theme()
+        if self.current_theme != theme:
+            self.current_theme = theme
             self.browser.whats.setTheme(self.current_theme)
             self.setThemeApp(self.current_theme)
 
@@ -135,7 +135,7 @@ class MainWindow(QMainWindow):
         self.settings.setValue("browser/zoomFactor", self.browser.zoomFactor())
         self.settings.setValue("main/geometry", self.saveGeometry())
         self.settings.setValue("main/windowState", self.saveState())
-
+        self.timer.stop()
         if self.settings.value(
                 "system/keep_background", True, bool):
             self.hide()
@@ -155,6 +155,7 @@ class MainWindow(QMainWindow):
         Opening the system tray web app.
         """
         self.loadSettings()
+        self.timer.start()
         if self.app.activeWindow() != None:  # Se a janela estiver em foco será escondida
             self.hide()
         else:  # Caso não esteja, será mostrada
