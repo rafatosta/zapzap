@@ -35,12 +35,34 @@
  * ---------------------------------------------------------------------
  */
 
-QWidget,QFrame
+
+
+QMenuBar
+{
+    background-color: #202C33;
+    color: #F0F2F5;
+}
+
+
+QMenuBar::item:pressed
+{
+    background-color: #25D366;
+    color: #F0F2F5;
+    margin-bottom: -0.09em;
+    padding-bottom: 0.09em;
+}
+
+QMenu
 {
     color: #F0F2F5;
-    background-color: #202C33;
-    selection-background-color: #25D366;
-    selection-color: #F0F2F5;
-    background-clip: border;
-    border-image: none;
+    margin: 0.09em;
 }
+
+
+QMenu::item:selected
+{
+    color: #F0F2F5;
+    background-color: #25D366;
+}
+
+
