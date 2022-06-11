@@ -19,6 +19,7 @@ try:
                   'zapzap.services'],
         include_package_data=True,
         package_data={'zapzap': ['assets/icons/tray/*.svg',
+                                 'assets/themes/light/*.svg',
                                  'view/*.ui']},
         setup_requires=setup_requires,
         entry_points={'gui_scripts': ['zapzap = zapzap.__main__:main']},

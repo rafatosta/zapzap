@@ -3,6 +3,8 @@ from PyQt6.QtGui import QMoveEvent
 from PyQt6.QtCore import QSettings, QByteArray, QTimer
 from PyQt6 import uic
 import zapzap
+from zapzap.assets.themes.dark.stylesheet import STYLE_SHEET_DARK
+from zapzap.assets.themes.light.stylesheet import STYLE_SHEET_LIGHT
 from zapzap.controllers.about import About
 from zapzap.controllers.main_window_components.menu_bar import MenuBar
 from zapzap.controllers.main_window_components.tray_icon import TrayIcon
@@ -64,18 +66,21 @@ class MainWindow(QMainWindow):
 
     def setThemeApp(self, isNight_mode):
         palete = None
+        stylesheet = None
         if isNight_mode:
             #path = theme_dark_path
-            palete = PALETTE_DARK
+            #palete = PALETTE_DARK
+            stylesheet = STYLE_SHEET_DARK
         else:
             #path = theme_light_path
-            palete = PALETTE_LIGHT
+            #palete = PALETTE_LIGHT
+            stylesheet = STYLE_SHEET_LIGHT
         #with open(path, 'r') as f:
         #    style = f.read()
-
+        self.app.setStyleSheet(stylesheet)
         # Set the stylesheet of the application
         #self.app.setStyleSheet(style)
-        self.app.setPalette(palete)
+        #self.app.setPalette(palete)
 
     def reload_Service(self):
         self.browser.doReload()
