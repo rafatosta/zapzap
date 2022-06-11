@@ -1,9 +1,7 @@
 # Theme Light
 import zapzap
 
-
 path = zapzap.abs_path + '/assets/themes/light'
-print(path)
 
 QMENU_BAR = """
 QMenuBar
@@ -29,7 +27,7 @@ QMenuBar::item:disabled
 
 QMenuBar::item:pressed
 {
-    background-color: #00A884;
+    background-color: #bab9b8;
     color: #31363b;
     margin-bottom: -0.09em;
     padding-bottom: 0.09em;
@@ -103,7 +101,6 @@ QMenu::indicator:non-exclusive:checked:selected
 
 QMenuBar::item:focus:!disabled
 {
-    border: 0.04em solid #00A884;
 }
 QMenu::separator
 {
@@ -115,8 +112,7 @@ QMenu::separator
     margin-left: 0.41em;
     margin-right: 0.41em;
 }
-""".replace("{path}",path)
-
+"""
 
 QWIDGET = """
 QWidget{
@@ -134,4 +130,4 @@ STYLE_SHEET_LIGHT = f"""
 {QWIDGET}
 {QMENU_BAR}
 {QMENU}
-"""
+""".replace("{path}", path)
