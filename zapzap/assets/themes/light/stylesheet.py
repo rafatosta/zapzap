@@ -51,7 +51,7 @@ QMenu::icon
 QMenu::item
 {
     /* Add extra padding on the right for the QMenu arrow */
-    padding: 0.23em 0.5em 0.23em 0.5em;
+    padding: 0.1em 0.5em 0.1em 0.5em;
     border: 0.09em solid transparent;
     background: transparent;
 }
@@ -59,7 +59,7 @@ QMenu::item
 QMenu::item:selected
 {
     color: #31363b;
-    background-color: #00A884;
+    background-color: #00DCAD;
 }
 
 QMenu::item:selected:disabled
@@ -98,48 +98,16 @@ QMenu::indicator:non-exclusive:checked
 
 QMenu::indicator:non-exclusive:checked:selected
 {
-    border-image: url({path}/checkbox_checked.svg);
+    border-image: url({path}/checkbox_checked_selected.svg);
 }
 
-QMenu::indicator:exclusive:unchecked
-{
-    border-image: url({path}/radio_unchecked_disabled.svg);
-}
-
-QMenu::indicator:exclusive:unchecked:selected
-{
-    border-image: url({path}/radio_unchecked_disabled.svg);
-}
-
-QMenu::indicator:exclusive:checked
-{
-    border-image: url({path}/radio_checked.svg);
-}
-
-QMenu::indicator:exclusive:checked:selected
-{
-    border-image: url({path}/radio_checked.svg);
-}
-
-QMenu::right-arrow
-{
-    margin: 0.23em;
-    border-image: url({path}/right_arrow.svg);
-    width: 0.5em;
-    height: 0.8em;
-}
-
-QMenu::right-arrow:disabled
-{
-    border-image: url({path}/right_arrow_disabled.svg);
-}
 QMenuBar::item:focus:!disabled
 {
     border: 0.04em solid #00A884;
 }
 QMenu::separator
 {
-    height: 0.09em;
+    height: 0.03em;
     background-color: #bab9b8;
     padding-left: 0.2em;
     margin-top: 0.2em;
