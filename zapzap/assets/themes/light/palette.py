@@ -2,30 +2,30 @@ from PyQt6.QtGui import QPalette, QColor
 _palette = QPalette()
 
 # base
-_palette.setColor(QPalette.ColorRole.WindowText, QColor("#4d5157"))
-_palette.setColor(QPalette.ColorRole.Button, QColor("#f8f9fa"))
-_palette.setColor(QPalette.ColorRole.Text, QColor("#4d5157"))
-_palette.setColor(QPalette.ColorRole.ButtonText, QColor("#0081db"))
-_palette.setColor(QPalette.ColorRole.Base, QColor("#f8f9fa"))
-_palette.setColor(QPalette.ColorRole.Window, QColor("#f8f9fa"))
-_palette.setColor(QPalette.ColorRole.Highlight, QColor("#0081db"))
-_palette.setColor(QPalette.ColorRole.HighlightedText, QColor("#f8f9fa"))
-_palette.setColor(QPalette.ColorRole.Link, QColor("#f8f9fa"))
+_palette.setColor(QPalette.ColorRole.WindowText, QColor("#202C33"))
+_palette.setColor(QPalette.ColorRole.Button, QColor("#F0F2F5"))
+_palette.setColor(QPalette.ColorRole.Text, QColor("#202C33"))
+_palette.setColor(QPalette.ColorRole.ButtonText, QColor("#202C33"))
+_palette.setColor(QPalette.ColorRole.Base, QColor("#F0F2F5"))
+_palette.setColor(QPalette.ColorRole.Window, QColor("#F0F2F5"))
+_palette.setColor(QPalette.ColorRole.Highlight, QColor("#00A884"))
+_palette.setColor(QPalette.ColorRole.HighlightedText, QColor("#F0F2F5"))
+_palette.setColor(QPalette.ColorRole.Link, QColor("#F0F2F5"))
 _palette.setColor(QPalette.ColorRole.AlternateBase, QColor("#e9ecef"))
 _palette.setColor(QPalette.ColorRole.ToolTipBase, QColor("#ffffff"))
-_palette.setColor(QPalette.ColorRole.ToolTipText, QColor("#4d5157"))
+_palette.setColor(QPalette.ColorRole.ToolTipText, QColor("#202C33"))
 _palette.setColor(QPalette.ColorRole.LinkVisited, QColor("#660098"))
 _palette.setColor(QPalette.ColorRole.ToolTipText, QColor("#ffffff"))
-_palette.setColor(QPalette.ColorRole.ToolTipBase, QColor("#4d5157"))
+_palette.setColor(QPalette.ColorRole.ToolTipBase, QColor("#202C33"))
 if hasattr(QPalette.ColorRole, "Foreground"):
     _palette.setColor(QPalette.ColorRole.Foreground,
-                      QColor("#4d5157"))  # type: ignore
+                      QColor("#202C33"))  # type: ignore
 if hasattr(QPalette.ColorRole, "PlaceholderText"):
     _palette.setColor(QPalette.ColorRole.PlaceholderText, QColor("#696a6c"))
 
 _palette.setColor(QPalette.ColorRole.Light, QColor("#dadce0"))
 _palette.setColor(QPalette.ColorRole.Midlight, QColor("#dadce0"))
-_palette.setColor(QPalette.ColorRole.Dark, QColor("#4d5157"))
+_palette.setColor(QPalette.ColorRole.Dark, QColor("#202C33"))
 _palette.setColor(QPalette.ColorRole.Mid, QColor("#dadce0"))
 _palette.setColor(QPalette.ColorRole.Shadow, QColor("#dadce0"))
 
