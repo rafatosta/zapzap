@@ -125,7 +125,6 @@ QWidget{
 }
 """
 
-
 STYLE_SHEET_LIGHT = f"""
 {QWIDGET}
 {QMENU_BAR}
