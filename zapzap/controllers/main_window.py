@@ -10,6 +10,8 @@ from zapzap.controllers.settings import Settings
 from zapzap.engine.browser import Browser
 from zapzap import theme_light_path, theme_dark_path
 from zapzap.services.dbus_theme import get_system_theme
+from zapzap.assets.themes.dark.palette import PALETTE_DARK
+from zapzap.assets.themes.light.palette import PALETTE_LIGHT
 
 
 class MainWindow(QMainWindow):
@@ -61,15 +63,19 @@ class MainWindow(QMainWindow):
         #self.settings.setValue("system/night_mode", isNight_mode)
 
     def setThemeApp(self, isNight_mode):
+        palete = None
         if isNight_mode:
-            path = theme_dark_path
+            #path = theme_dark_path
+            palete = PALETTE_DARK
         else:
-            path = theme_light_path
-        with open(path, 'r') as f:
-            style = f.read()
+            #path = theme_light_path
+            palete = PALETTE_LIGHT
+        #with open(path, 'r') as f:
+        #    style = f.read()
 
         # Set the stylesheet of the application
-        self.app.setStyleSheet(style)
+        #self.app.setStyleSheet(style)
+        self.app.setPalette(palete)
 
     def reload_Service(self):
         self.browser.doReload()
