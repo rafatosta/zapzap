@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Zapzap</string>
+   <string>ZapZap</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -89,7 +89,7 @@
     <addaction name="actionSupport"/>
     <addaction name="separator"/>
     <addaction name="actionBuy_a_coffee"/>
-    <addaction name="actionAbout_Zapzap"/>
+    <addaction name="actionAbout_ZapZap"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -200,9 +200,9 @@
     <string>Report issue...</string>
    </property>
   </action>
-  <action name="actionAbout_Zapzap">
+  <action name="actionAbout_ZapZap">
    <property name="text">
-    <string>About Zapzap</string>
+    <string>About ZapZap</string>
    </property>
   </action>
   <action name="actionHide_on_close">
