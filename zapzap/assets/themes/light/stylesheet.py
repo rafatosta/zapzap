@@ -117,7 +117,7 @@ QMenu::separator
 QWIDGET = """
 QWidget{
     color: #31363b;
-    background-color: #F0F2F5;
+    /*background-color: #F0F2F5; deixa borda nos componentes*/
     selection-background-color: #00A884;
     selection-color: #31363b;
     background-clip: border;
@@ -125,8 +125,48 @@ QWidget{
 }
 """
 
+SettingsMenu = """
+#leftMenu {	
+	background-color: #F0F2F5;
+}
+/* MENUS */
+#menu .QPushButton {	
+	background-position: left center;
+    background-repeat: no-repeat;
+	border: none;
+	border-radius: 5px;
+	/*border-left: 22px solid transparent;*/
+	background-color: transparent;
+	text-align: left;
+	padding-left: 44px;
+}
+#menu .QPushButton:hover {
+	background-color: rgb(222, 221, 218);
+}
+#menu .QPushButton:pressed {	
+	background-color: rgb(192, 191, 188);
+}
+/* Back Button */
+#btn_back {
+	background-position: left center;
+    background-repeat: no-repeat;
+	border: none;
+	text-align: left;
+	padding-left: 44px;
+	/*color: rgb(113, 126, 149);*/
+}
+#btn_back:hover {
+	
+}
+#btn_back:pressed {
+	
+}
+"""
+
 STYLE_SHEET_LIGHT = f"""
 {QWIDGET}
 {QMENU_BAR}
 {QMENU}
+{SettingsMenu}
 """.replace("{path}", path)
+
