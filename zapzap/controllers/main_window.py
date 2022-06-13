@@ -9,11 +9,10 @@ from zapzap.controllers.about import About
 from zapzap.controllers.main_window_components.menu_bar import MenuBar
 from zapzap.controllers.main_window_components.tray_icon import TrayIcon
 from zapzap.controllers.settings import Settings
+from zapzap.controllers.settings_new import SettingsNew
 from zapzap.engine.browser import Browser
 from zapzap import theme_light_path, theme_dark_path
 from zapzap.services.dbus_theme import get_system_theme
-from zapzap.assets.themes.dark.palette import PALETTE_DARK
-from zapzap.assets.themes.light.palette import PALETTE_LIGHT
 
 
 class MainWindow(QMainWindow):
@@ -41,6 +40,8 @@ class MainWindow(QMainWindow):
         self.timer.start()
         self.current_theme = -1
 
+        self.openSettingsDialog()
+
     def recurring_timer(self):
         theme = get_system_theme()
         if self.current_theme != theme:
@@ -53,7 +54,7 @@ class MainWindow(QMainWindow):
         self.browser.setZoomFactor(self.settings.value(
             "browser/zoomFactor", 1.0, float))
         self.browser.doReload()
-        self.setCentralWidget(self.browser)
+        self.stackedWidget.insertWidget(0, self.browser)
 
     def setNight_mode(self):
         print('desativado')
@@ -65,7 +66,6 @@ class MainWindow(QMainWindow):
         #self.settings.setValue("system/night_mode", isNight_mode)
 
     def setThemeApp(self, isNight_mode):
-        palete = None
         stylesheet = None
         if isNight_mode:
             #path = theme_dark_path
@@ -75,12 +75,11 @@ class MainWindow(QMainWindow):
             #path = theme_light_path
             #palete = PALETTE_LIGHT
             stylesheet = STYLE_SHEET_LIGHT
-        #with open(path, 'r') as f:
+        # with open(path, 'r') as f:
         #    style = f.read()
         self.app.setStyleSheet(stylesheet)
         # Set the stylesheet of the application
-        #self.app.setStyleSheet(style)
-        #self.app.setPalette(palete)
+        # self.app.setStyleSheet(style)
 
     def reload_Service(self):
         self.browser.doReload()
@@ -89,8 +88,10 @@ class MainWindow(QMainWindow):
         self.browser.setZoomFactor(1.0)
 
     def openSettingsDialog(self):
-        self.openDialog = Settings()
-        self.openDialog.show()
+        #self.openDialog = Settings()
+        # self.openDialog.show()
+        self.stackedWidget.insertWidget(1, SettingsNew())
+        self.stackedWidget.setCurrentIndex(1)
 
     def openAbout_Zapzap(self):
         self.openDialog = About(self)
