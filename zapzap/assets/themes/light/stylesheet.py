@@ -123,11 +123,6 @@ QWidget{
     background-clip: border;
     border-image: none;
 }
-QMainWindow::separator
-{
-    border: 0.09em transparent #00A884;
-    background: transparent;
-}
 QCheckBox
 {
     color: #31363b;
@@ -140,8 +135,8 @@ QCheckBox:disabled
 }
 QCheckBox::indicator
 {
-    width: 25px;
-    height: 25px;
+    width: 24px;
+    height: 24px;
 }
 QCheckBox::indicator:unchecked,
 QCheckBox::indicator:unchecked:focus
