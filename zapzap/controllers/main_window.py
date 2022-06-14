@@ -90,8 +90,10 @@ class MainWindow(QMainWindow):
     def openSettingsDialog(self):
         #self.openDialog = Settings()
         # self.openDialog.show()
+        self.setHideMenuBar()
         self.stackedWidget.insertWidget(1, SettingsNew(self))
         self.stackedWidget.setCurrentIndex(1)
+        
 
     def openAbout_Zapzap(self):
         self.openDialog = About(self)

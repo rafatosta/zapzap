@@ -193,10 +193,12 @@ QCheckBox::indicator:unchecked:disabled
 """
 
 SettingsMenu = """
-#leftMenu {	
+#leftMenu,
+#leftBar_2
+{	
 	background-color: #F0F2F5;
 }
-.QStackedWidget {	
+QStackedWidget {	
 	background-color: #F0F2F5;
 }
 /* MENUS */
@@ -210,7 +212,6 @@ SettingsMenu = """
 	text-align: left;
 	padding-left: 44px;
     font: 12pt; 
-    
 }
 
 #menu .QPushButton:hover {
@@ -227,9 +228,8 @@ SettingsMenu = """
     background-repeat: no-repeat;
 	border: none;
 	text-align: left;
-	padding-left: 44px;
-	/*color: rgb(113, 126, 149);*/
-    font: 14pt; 
+	padding-left: 40px;
+    font: 10pt; 
     background-image: url({path}/previous.svg);
 }
 #btn_back:hover {
@@ -251,7 +251,7 @@ SettingsMenu = """
 
 #frameSettings{
     background-color: rgb(255, 255, 255);
-    border: 1px solid rgba(0, 0, 0,0.1);
+    border: 2px solid rgba(0, 0, 0,0.1);
     border-radius: 5px;
 }
 """

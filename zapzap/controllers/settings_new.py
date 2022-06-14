@@ -9,4 +9,8 @@ class SettingsNew(QWidget):
         uic.loadUi(zapzap.abs_path+'/view/settings_new.ui', self)
         self.mainWindow = parent
 
-        self.btn_back.clicked.connect(lambda: self.mainWindow.stackedWidget.setCurrentIndex(0))
+        self.btn_back.clicked.connect(self.actionBack)
+
+    def actionBack(self):
+        self.mainWindow.setHideMenuBar()
+        self.mainWindow.stackedWidget.setCurrentIndex(0)
