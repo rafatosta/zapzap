@@ -123,10 +123,80 @@ QWidget{
     background-clip: border;
     border-image: none;
 }
+QCheckBox
+{
+    color: #31363b;
+    margin-bottom: 0.09em;
+    font: 11pt; 
+}
+QCheckBox:disabled
+{
+    color: #bab9b8;
+}
+QCheckBox::indicator
+{
+    width: 25px;
+    height: 25px;
+}
+QCheckBox::indicator:unchecked,
+QCheckBox::indicator:unchecked:focus
+{
+    border-image: url({path}/checkbox_unchecked_disabled.svg);
+}
+QCheckBox::indicator:unchecked:hover,
+QCheckBox::indicator:unchecked:pressed
+{
+    border: none;
+    border-image: url({path}/checkbox_unchecked.svg);
+}
+
+QCheckBox::indicator:checked
+{
+    border-image: url({path}/checkbox_checked.svg);
+}
+
+QCheckBox::indicator:checked:hover,
+QCheckBox::indicator:checked:focus,
+QCheckBox::indicator:checked:pressed
+{
+    border: none;
+    border-image: url({path}/checkbox_checked.svg);
+}
+
+QCheckBox::indicator:indeterminate
+{
+    border-image: url({path}/checkbox_indeterminate.svg);
+}
+
+QCheckBox::indicator:indeterminate:focus,
+QCheckBox::indicator:indeterminate:hover,
+QCheckBox::indicator:indeterminate:pressed
+{
+    border-image: url({path}/checkbox_indeterminate.svg);
+}
+
+QCheckBox::indicator:indeterminate:disabled
+{
+    border-image: url({path}/checkbox_indeterminate_disabled.svg);
+}
+
+QCheckBox::indicator:checked:disabled
+{
+    border-image: url({path}/checkbox_checked_disabled.svg);
+}
+
+QCheckBox::indicator:unchecked:disabled
+{
+    border-image: url({path}/checkbox_unchecked_disabled.svg);
+}
+
 """
 
 SettingsMenu = """
 #leftMenu {	
+	background-color: #F0F2F5;
+}
+.QStackedWidget {	
 	background-color: #F0F2F5;
 }
 /* MENUS */
@@ -177,6 +247,12 @@ SettingsMenu = """
 }
 #btn_about{
 	background-image: url({path}/about.svg);
+}
+
+#frameSettings{
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0,0.1);
+    border-radius: 5px;
 }
 """
 

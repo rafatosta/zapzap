@@ -40,7 +40,7 @@ class MainWindow(QMainWindow):
         self.timer.start()
         self.current_theme = -1
 
-        #self.openSettingsDialog()
+        self.openSettingsDialog()
 
     def recurring_timer(self):
         theme = get_system_theme()
