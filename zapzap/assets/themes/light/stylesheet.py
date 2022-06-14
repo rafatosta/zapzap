@@ -122,7 +122,6 @@ QWidget{
     selection-color: #31363b;
     background-clip: border;
     border-image: none;
-    font: "Segoe UI Semibold"; 
 }
 """
 
@@ -140,7 +139,7 @@ SettingsMenu = """
 	background-color: transparent;
 	text-align: left;
 	padding-left: 44px;
-    font: 63 12pt "Segoe UI Semibold"; 
+    font: 12pt; 
     
 }
 
@@ -160,7 +159,7 @@ SettingsMenu = """
 	text-align: left;
 	padding-left: 44px;
 	/*color: rgb(113, 126, 149);*/
-    font: 63 14pt "Segoe UI Semibold"; 
+    font: 14pt; 
     background-image: url({path}/previous.svg);
 }
 #btn_back:hover {
