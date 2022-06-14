@@ -164,7 +164,7 @@ SettingsMenu = """
 }
 #btn_back:hover {
 	color: #00A884;
-}z
+}
 
 #btn_system{
 	background-image: url({path}/system.svg);
