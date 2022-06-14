@@ -8,3 +8,5 @@ class SettingsNew(QWidget):
         super().__init__()
         uic.loadUi(zapzap.abs_path+'/view/settings_new.ui', self)
         self.mainWindow = parent
+
+        self.btn_back.clicked.connect(lambda: self.mainWindow.stackedWidget.setCurrentIndex(0))

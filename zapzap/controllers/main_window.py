@@ -40,7 +40,7 @@ class MainWindow(QMainWindow):
         self.timer.start()
         self.current_theme = -1
 
-        self.openSettingsDialog()
+        #self.openSettingsDialog()
 
     def recurring_timer(self):
         theme = get_system_theme()
@@ -90,7 +90,7 @@ class MainWindow(QMainWindow):
     def openSettingsDialog(self):
         #self.openDialog = Settings()
         # self.openDialog.show()
-        self.stackedWidget.insertWidget(1, SettingsNew())
+        self.stackedWidget.insertWidget(1, SettingsNew(self))
         self.stackedWidget.setCurrentIndex(1)
 
     def openAbout_Zapzap(self):
