@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="20px" height="20px" viewBox="12 12 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <filter id="grayscale-filter-0" x="-500%" y="-500%" width="1000%" height="1000%" bx:preset="grayscale 1 1">
+      <feColorMatrix type="matrix" values="0.213 0.715 0.072 0 0 0.213 0.715 0.072 0 0 0.213 0.715 0.072 0 0 0 0 0 1 0"/>
+    </filter>
+  </defs>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); filter: url(#grayscale-filter-0);" cx="23.17" cy="25.711" rx="10" ry="10" bx:origin="0.5415 0.5"/>
+  <rect width="2" height="2" fill="#31363b" x="22.314" y="19.105" bx:origin="0.465 3.383"/>
+  <rect width="2" height="8" fill="#31363b" x="22.314" y="23.105" bx:origin="0.465 0.346"/>
+</svg>

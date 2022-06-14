@@ -33,46 +33,12 @@
     <widget class="QFrame" name="leftMenu">
      <property name="maximumSize">
       <size>
-       <width>300</width>
+       <width>250</width>
        <height>16777215</height>
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">#leftMenu {	
-	background-color: #F0F2F5;
-}
-/* MENUS */
-#menu .QPushButton {	
-	background-position: left center;
-    background-repeat: no-repeat;
-	border: none;
-	border-radius: 5px;
-	/*border-left: 22px solid transparent;*/
-	background-color: transparent;
-	text-align: left;
-	padding-left: 44px;
-}
-#menu .QPushButton:hover {
-	background-color: rgb(222, 221, 218);
-}
-#menu .QPushButton:pressed {	
-	background-color: rgb(192, 191, 188);
-}
-/* Back Button */
-#btn_back {
-	background-position: left center;
-    background-repeat: no-repeat;
-	border: none;
-	text-align: left;
-	padding-left: 44px;
-	/*color: rgb(113, 126, 149);*/
-}
-#btn_back:hover {
-	
-}
-#btn_back:pressed {
-	
-}</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
@@ -82,16 +48,16 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <property name="spacing">
-       <number>3</number>
+       <number>0</number>
       </property>
       <property name="leftMargin">
-       <number>25</number>
+       <number>0</number>
       </property>
       <property name="topMargin">
        <number>0</number>
       </property>
       <property name="rightMargin">
-       <number>25</number>
+       <number>0</number>
       </property>
       <property name="bottomMargin">
        <number>0</number>
@@ -122,12 +88,12 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout">
+        <layout class="QVBoxLayout" name="verticalLayout">
          <property name="spacing">
           <number>0</number>
          </property>
          <property name="leftMargin">
-          <number>0</number>
+          <number>25</number>
          </property>
          <property name="topMargin">
           <number>0</number>
@@ -158,11 +124,21 @@
            <property name="focusPolicy">
             <enum>Qt::TabFocus</enum>
            </property>
+           <property name="toolTip">
+            <string>Return</string>
+           </property>
            <property name="text">
-            <string>Settings</string>
+            <string>ZapZap Settings</string>
            </property>
            <property name="flat">
             <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="Line" name="line_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -179,13 +155,13 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <property name="leftMargin">
-          <number>0</number>
+          <number>25</number>
          </property>
          <property name="topMargin">
           <number>0</number>
          </property>
          <property name="rightMargin">
-          <number>0</number>
+          <number>25</number>
          </property>
          <property name="bottomMargin">
           <number>0</number>
@@ -241,7 +217,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_4">
+          <widget class="QPushButton" name="btn_notifications">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
              <horstretch>60</horstretch>
@@ -266,7 +242,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_5">
+          <widget class="QPushButton" name="btn_about">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
              <horstretch>60</horstretch>

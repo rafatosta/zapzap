@@ -122,6 +122,7 @@ QWidget{
     selection-color: #31363b;
     background-clip: border;
     border-image: none;
+    font: "Segoe UI Semibold"; 
 }
 """
 
@@ -134,17 +135,22 @@ SettingsMenu = """
 	background-position: left center;
     background-repeat: no-repeat;
 	border: none;
-	border-radius: 5px;
-	/*border-left: 22px solid transparent;*/
+	border: 8px solid #F0F2F5;
+    border-radius: 5px;
 	background-color: transparent;
 	text-align: left;
 	padding-left: 44px;
+    font: 63 12pt "Segoe UI Semibold"; 
+    
 }
+
 #menu .QPushButton:hover {
 	background-color: rgb(222, 221, 218);
+    border-color: rgb(222, 221, 218);
 }
 #menu .QPushButton:pressed {	
 	background-color: rgb(192, 191, 188);
+    border-color: rgb(192, 191, 188);
 }
 /* Back Button */
 #btn_back {
@@ -154,12 +160,24 @@ SettingsMenu = """
 	text-align: left;
 	padding-left: 44px;
 	/*color: rgb(113, 126, 149);*/
+    font: 63 14pt "Segoe UI Semibold"; 
+    background-image: url({path}/previous.svg);
 }
 #btn_back:hover {
-	
+	color: #00A884;
+}z
+
+#btn_system{
+	background-image: url({path}/system.svg);
 }
-#btn_back:pressed {
-	
+#btn_appearance{
+	background-image: url({path}/appearance.svg);
+}
+#btn_notifications{
+	background-image: url({path}/notifications.svg);
+}
+#btn_about{
+	background-image: url({path}/about.svg);
 }
 """
 
@@ -169,4 +187,3 @@ STYLE_SHEET_LIGHT = f"""
 {QMENU}
 {SettingsMenu}
 """.replace("{path}", path)
-
