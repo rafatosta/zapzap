@@ -123,6 +123,11 @@ QWidget{
     background-clip: border;
     border-image: none;
 }
+QMainWindow::separator
+{
+    border: 0.09em transparent #00A884;
+    background: transparent;
+}
 QCheckBox
 {
     color: #31363b;
