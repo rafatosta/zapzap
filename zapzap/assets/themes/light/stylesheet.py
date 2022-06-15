@@ -236,6 +236,9 @@ QStackedWidget {
 	color: #00A884;
 }
 
+#btn_home{
+	background-image: url({path}/appearance.svg);
+}
 #btn_system{
 	background-image: url({path}/system.svg);
 }
@@ -253,7 +256,8 @@ QStackedWidget {
 #frameAppearance,
 #frameTray,
 #frameNotifications,
-#frameNotificationsPreview {
+#frameNotificationsPreview,
+#frameMenuBar {
     background-color: rgb(255, 255, 255);
     border: 2px solid rgba(0, 0, 0,0.1);
     border-radius: 5px;
