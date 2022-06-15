@@ -262,7 +262,7 @@ QStackedWidget {
     border: 2px solid rgba(0, 0, 0,0.1);
     border-radius: 5px;
 }
-/*
+
 QRadioButton
 {
     spacing: 0.23em;
@@ -278,48 +278,55 @@ QRadioButton:disabled
 
 QRadioButton::indicator
 {
-    width: 70px;
-    height: 70px;
+    width: 150px;
+    height: 100px;
 }
-QRadioButton::indicator:unchecked,
-QRadioButton::indicator:unchecked:focus
+
+#rb_system::indicator:unchecked,
+#rb_system::indicator:unchecked:focus,
+#rb_system::indicator:unchecked:hover,
+#rb_system::indicator:unchecked:pressed
 {
-    border-image: url({path}/image_steste.svg);
+    border-image: url({path}/theme_system_unchecked.svg);
 }
-QRadioButton::indicator:unchecked:hover,
-QRadioButton::indicator:unchecked:pressed
+
+#rb_system::indicator:checked,
+#rb_system::indicator:checked:hover,
+#rb_system::indicator:checked:focus,
+#rb_system::indicator:checked:pressed
 {
     border: none;
     outline: none;
-    border-image: url(zapzap/assets/stylesheets/light/radio_unchecked.svg);
+    border-image: url({path}/theme_system_checked.svg);
 }
-QRadioButton::indicator:checked
+
+#rb_light::indicator:unchecked,
+#rb_light::indicator:unchecked:focus,
+#rb_light::indicator:unchecked:hover,
+#rb_light::indicator:unchecked:pressed
+{
+    border-image: url({path}/theme_light_unchecked.svg);
+}
+
+#rb_light::indicator:checked,
+#rb_light::indicator:checked:hover,
+#rb_light::indicator:checked:focus,
+#rb_light::indicator:checked:pressed
 {
     border: none;
     outline: none;
-    border-image: url(zapzap/assets/stylesheets/light/radio_checked.svg);
+    border-image: url({path}/theme_light_checked.svg);
 }
 
-QRadioButton::indicator:checked:hover,
-QRadioButton::indicator:checked:focus,
-QRadioButton::indicator:checked:pressed
+#rb_dark::indicator:unchecked,
+#rb_dark::indicator:unchecked:focus,
+#rb_dark::indicator:unchecked:hover,
+#rb_dark::indicator:unchecked:pressed
 {
-    border: none;
-    outline: none;
-    border-image: url(zapzap/assets/stylesheets/light/radio_checked.svg);
+    border-image: url({path}/theme_dark_unchecked.svg);
 }
 
-QRadioButton::indicator:checked:disabled
-{
-    outline: none;
-    border-image: url(zapzap/assets/stylesheets/light/radio_checked_disabled.svg);
-}
 
-QRadioButton::indicator:unchecked:disabled
-{
-    border-image: url(zapzap/assets/stylesheets/light/radio_unchecked_disabled.svg);
-}
-*/
 """
 
 STYLE_SHEET_LIGHT = f"""
