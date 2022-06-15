@@ -31,6 +31,7 @@ class MainWindow(QMainWindow):
 
         MenuBar(self)
         self.tray = TrayIcon(self)
+        self.zapSettings = SettingsNew(self)
 
         self.createWebEngine()
 
@@ -90,9 +91,9 @@ class MainWindow(QMainWindow):
     def openSettingsDialog(self):
         #self.openDialog = Settings()
         # self.openDialog.show()
-        self.stackedWidget.insertWidget(1, SettingsNew(self))
+
+        self.stackedWidget.insertWidget(1, self.zapSettings)
         self.stackedWidget.setCurrentIndex(1)
-        
 
     def openAbout_Zapzap(self):
         self.openDialog = About(self)
@@ -196,4 +197,5 @@ class MainWindow(QMainWindow):
             self.menubar.setMaximumHeight(16777215)
 
         self.settings.setValue("main/hideMenuBar", self.isHideMenuBar)
+        self.zapSettings.menubar.setChecked(self.isHideMenuBar)
         self.isHideMenuBar = not self.isHideMenuBar

@@ -54,7 +54,7 @@
        <number>0</number>
       </property>
       <property name="topMargin">
-       <number>0</number>
+       <number>15</number>
       </property>
       <property name="rightMargin">
        <number>0</number>
@@ -83,19 +83,6 @@
          <property name="bottomMargin">
           <number>0</number>
          </property>
-         <item>
-          <spacer name="verticalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
          <item>
           <widget class="QPushButton" name="btn_home">
            <property name="text">
@@ -395,7 +382,7 @@
                  <number>15</number>
                 </property>
                 <item>
-                 <widget class="QCheckBox" name="disableTrayIcon_2">
+                 <widget class="QCheckBox" name="menubar">
                   <property name="text">
                    <string>Hide menu bar</string>
                   </property>

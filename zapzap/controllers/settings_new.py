@@ -1,29 +1,64 @@
 from PyQt6.QtWidgets import QWidget, QPushButton
+from PyQt6.QtCore import QSettings
 from PyQt6 import uic
 import zapzap
+from zapzap.services.portal_desktop import createDesktop, removeDesktop
 
 
 class SettingsNew(QWidget):
     def __init__(self, parent=None):
         super().__init__()
         uic.loadUi(zapzap.abs_path+'/view/settings_new.ui', self)
+        self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
         self.mainWindow = parent
+        self.load()
 
-        self.btn_home.clicked.connect(lambda: self.mainWindow.stackedWidget.setCurrentIndex(0))
-
+        ## Menu left ##
+        self.btn_home.clicked.connect(
+            lambda: self.mainWindow.stackedWidget.setCurrentIndex(0))
         self.btn_system.clicked.connect(self.buttonClick)
         self.btn_appearance.clicked.connect(self.buttonClick)
         self.btn_notifications.clicked.connect(self.buttonClick)
         self.btn_about.clicked.connect(self.buttonClick)
+        ## System ##
+        self.start_system.clicked.connect(self.actionsSystemMenu)
+        self.start_hide.clicked.connect(self.actionsSystemMenu)
+        self.keepBackground.clicked.connect(self.actionsSystemMenu)
+        self.disableTrayIcon.clicked.connect(self.actionsSystemMenu)
+        self.menubar.clicked.connect(self.actionsSystemMenu)
 
+        ## Set start page ##
         self.stackedWidget.setCurrentIndex(0)
         self.btn_system.setStyleSheet(
             self.selectMenu(self.btn_system.styleSheet()))
 
-    def buttonClick(self):
+
+    def actionsSystemMenu(self):
         btn = self.sender()  # returns a pointer to the object that sent the signal
         btnName = btn.objectName()
         print(btnName)
+        if btnName == 'start_system':
+            self.start_hide.setEnabled(self.start_system.isChecked())
+            # cria ou remove o arquivo
+            if bool(self.start_system.isChecked()):
+                createDesktop()
+            else:
+                removeDesktop()
+        if btnName == 'keepBackground':
+            self.mainWindow.actionHide_on_close.setChecked(
+                self.keepBackground.isChecked())
+        if btnName == 'disableTrayIcon':
+            self.mainWindow.tray.setVisible(
+                not self.disableTrayIcon.isChecked())
+        if btnName == 'menubar':
+           self.mainWindow.setHideMenuBar() 
+
+        self.save()
+
+    def buttonClick(self):
+        btn = self.sender()  # returns a pointer to the object that sent the signal
+        btnName = btn.objectName()
+        # print(btnName)
 
         self.resetStyle(btnName)
         if btnName == 'btn_system':
@@ -45,6 +80,70 @@ class SettingsNew(QWidget):
             self.stackedWidget.setCurrentIndex(3)
             self.btn_about.setStyleSheet(
                 self.selectMenu(self.btn_system.styleSheet()))
+
+    def load(self):
+        """
+        Load all settings
+        """
+        """ System """
+        isStart_system = self.settings.value(
+            "system/start_system", False, bool)
+        self.start_system.setChecked(isStart_system)  # Start_system
+        self.start_hide.setEnabled(isStart_system)  # Enable Start Hide
+        self.start_hide.setChecked(self.settings.value(
+            "system/start_hide", False, bool))  # Start_hide
+        self.keepBackground.setChecked(self.settings.value(
+            "system/keep_background", True, bool))  # keep_background
+
+        self.disableTrayIcon.setChecked(not self.settings.value(
+            "system/tray_icon", True, bool))  # tray_icon
+
+        self.menubar.setChecked(self.settings.value(
+            "main/hideMenuBar", False, bool))  # tray_icon
+
+        """ Notifications """
+        """isNotifyApp = self.settings.value("notification/app", True, bool)
+        self.notify_desktop.setChecked(isNotifyApp)
+        self.symbolic_icon.setChecked(self.settings.value(
+            "notification/symbolic_icon", False, bool))
+        # enable ou disable
+        self.show_photo.setEnabled(isNotifyApp)
+        self.show_name.setEnabled(isNotifyApp)
+        self.show_msg.setEnabled(isNotifyApp)
+        # checked
+        self.settings.setValue(
+            'notification/app', self.notify_desktop.isChecked())
+        self.show_photo.setChecked(self.settings.value(
+            'notification/show_photo', True, bool))
+        self.show_name.setChecked(self.settings.value(
+            'notification/show_name', True, bool))
+        self.show_msg.setChecked(self.settings.value(
+            'notification/show_msg', True, bool))"""
+
+    def save(self):
+        """
+        Save all settings
+        """
+        # System
+        self.settings.setValue("system/start_system",
+                               self.start_system.isChecked())
+        self.settings.setValue("system/start_hide",
+                               self.start_hide.isChecked())
+        self.settings.setValue("system/keep_background",
+                               self.keepBackground.isChecked())
+        self.settings.setValue("system/tray_icon",
+                               not self.disableTrayIcon.isChecked())
+        self.settings.setValue("main/hideMenuBar", self.menubar.isChecked())
+
+        # Notifications
+        """self.settings.setValue('notification/show_photo',
+                               self.show_photo.isChecked())
+        self.settings.setValue('notification/show_name',
+                               self.show_name.isChecked())
+        self.settings.setValue('notification/show_msg',
+                               self.show_msg.isChecked())
+        self.settings.setValue('notification/symbolic_icon',
+                               self.symbolic_icon.isChecked())"""
 
     # SELECT/DESELECT MENU
     # ///////////////////////////////////////////////////////////////
