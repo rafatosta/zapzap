@@ -249,7 +249,9 @@ QStackedWidget {
 	background-image: url({path}/about.svg);
 }
 
-#frameSettings{
+#frameSettings,
+#frameAppearance,
+#frameTray {
     background-color: rgb(255, 255, 255);
     border: 2px solid rgba(0, 0, 0,0.1);
     border-radius: 5px;
