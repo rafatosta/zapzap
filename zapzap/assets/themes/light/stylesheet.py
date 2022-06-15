@@ -262,7 +262,7 @@ QStackedWidget {
     border: 2px solid rgba(0, 0, 0,0.1);
     border-radius: 5px;
 }
-
+/*
 QRadioButton
 {
     spacing: 0.23em;
@@ -284,7 +284,7 @@ QRadioButton::indicator
 QRadioButton::indicator:unchecked,
 QRadioButton::indicator:unchecked:focus
 {
-    border-image: url({path}/image_teste.svg);
+    border-image: url({path}/image_steste.svg);
 }
 QRadioButton::indicator:unchecked:hover,
 QRadioButton::indicator:unchecked:pressed
@@ -319,6 +319,7 @@ QRadioButton::indicator:unchecked:disabled
 {
     border-image: url(zapzap/assets/stylesheets/light/radio_unchecked_disabled.svg);
 }
+*/
 """
 
 STYLE_SHEET_LIGHT = f"""

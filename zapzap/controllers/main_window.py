@@ -47,7 +47,6 @@ class MainWindow(QMainWindow):
         theme = get_system_theme()
         if self.current_theme != theme:
             self.current_theme = theme
-            self.browser.whats.setTheme(self.current_theme)
             self.setThemeApp(self.current_theme)
 
     def createWebEngine(self):
@@ -69,18 +68,11 @@ class MainWindow(QMainWindow):
     def setThemeApp(self, isNight_mode):
         stylesheet = None
         if isNight_mode:
-            #path = theme_dark_path
-            #palete = PALETTE_DARK
             stylesheet = STYLE_SHEET_DARK
         else:
-            #path = theme_light_path
-            #palete = PALETTE_LIGHT
             stylesheet = STYLE_SHEET_LIGHT
-        # with open(path, 'r') as f:
-        #    style = f.read()
+        self.browser.whats.setTheme(isNight_mode)
         self.app.setStyleSheet(stylesheet)
-        # Set the stylesheet of the application
-        # self.app.setStyleSheet(style)
 
     def reload_Service(self):
         self.browser.doReload()

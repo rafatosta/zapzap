@@ -27,10 +27,29 @@ class SettingsNew(QWidget):
         self.disableTrayIcon.clicked.connect(self.actionsSystemMenu)
         self.menubar.clicked.connect(self.actionsSystemMenu)
 
+        ## Appearance ##
+        self.rb_system.clicked.connect(self.actionsRbAppearance)
+        self.rb_light.clicked.connect(self.actionsRbAppearance)
+        self.rb_dark.clicked.connect(self.actionsRbAppearance)
+
         ## Set start page ##
         self.stackedWidget.setCurrentIndex(0)
         self.btn_system.setStyleSheet(
             self.selectMenu(self.btn_system.styleSheet()))
+
+    def actionsRbAppearance(self):
+        if self.rb_system.isChecked():
+            """Ativa o contador"""
+            self.mainWindow.current_theme = -1
+            self.mainWindow.timer.start()
+        if self.rb_light.isChecked():
+            """Desativa o contador e ativa o light"""
+            self.mainWindow.timer.stop()
+            self.mainWindow.setThemeApp(False)
+        if self.rb_dark.isChecked():
+            """Desativa o contador e ativa o dark"""
+            self.mainWindow.timer.stop()
+            self.mainWindow.setThemeApp(True)
 
 
     def actionsSystemMenu(self):
