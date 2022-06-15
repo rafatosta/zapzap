@@ -38,19 +38,23 @@ class SettingsNew(QWidget):
             self.selectMenu(self.btn_system.styleSheet()))
 
     def actionsRbAppearance(self):
+        theme = 'auto'
         if self.rb_system.isChecked():
             """Ativa o contador"""
             self.mainWindow.current_theme = -1
             self.mainWindow.timer.start()
         if self.rb_light.isChecked():
+            theme = 'light'
             """Desativa o contador e ativa o light"""
             self.mainWindow.timer.stop()
             self.mainWindow.setThemeApp(False)
         if self.rb_dark.isChecked():
+            theme = 'dark'
             """Desativa o contador e ativa o dark"""
             self.mainWindow.timer.stop()
             self.mainWindow.setThemeApp(True)
 
+        self.settings.setValue("system/theme", theme)
 
     def actionsSystemMenu(self):
         btn = self.sender()  # returns a pointer to the object that sent the signal
@@ -70,7 +74,7 @@ class SettingsNew(QWidget):
             self.mainWindow.tray.setVisible(
                 not self.disableTrayIcon.isChecked())
         if btnName == 'menubar':
-           self.mainWindow.setHideMenuBar() 
+            self.mainWindow.setHideMenuBar()
 
         self.save()
 
@@ -119,6 +123,15 @@ class SettingsNew(QWidget):
 
         self.menubar.setChecked(self.settings.value(
             "main/hideMenuBar", False, bool))  # tray_icon
+
+        ## Appearance ##
+        theme_mode = self.settings.value("system/theme", 'auto', str)
+        if theme_mode == 'auto':
+            self.rb_system.setChecked(True)
+        elif theme_mode == 'light':
+            self.rb_light.setChecked(True)
+        else:
+            self.rb_dark.setChecked(True)
 
         """ Notifications """
         """isNotifyApp = self.settings.value("notification/app", True, bool)

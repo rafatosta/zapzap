@@ -38,7 +38,7 @@ class MainWindow(QMainWindow):
         self.timer = QTimer()
         self.timer.setInterval(1000)
         self.timer.timeout.connect(self.recurring_timer)
-        self.timer.start()
+        #self.timer.start()
         self.current_theme = -1
 
         self.openSettingsDialog()
@@ -102,7 +102,14 @@ class MainWindow(QMainWindow):
         """
         # Theme App
         #self.setThemeApp(self.settings.value("system/night_mode", False, bool))
-        self.setThemeApp(get_system_theme())  # pega o do sistema
+        theme_mode = self.settings.value("system/theme", 'auto', str)
+        if theme_mode == 'auto':
+            self.setThemeApp(get_system_theme())
+            self.timer.start()
+        elif theme_mode == 'light':
+            self.setThemeApp(False)
+        else:
+            self.setThemeApp(True)
         # MenuBar
         self.isHideMenuBar = self.settings.value(
             "main/hideMenuBar", False, bool)
