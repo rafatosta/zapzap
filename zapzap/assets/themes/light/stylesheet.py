@@ -251,10 +251,69 @@ QStackedWidget {
 
 #frameSettings,
 #frameAppearance,
-#frameTray {
+#frameTray,
+#frameNotifications,
+#frameNotificationsPreview {
     background-color: rgb(255, 255, 255);
     border: 2px solid rgba(0, 0, 0,0.1);
     border-radius: 5px;
+}
+
+QRadioButton
+{
+    spacing: 0.23em;
+    outline: none;
+    color: #31363b;
+    margin-bottom: 0.09em;
+    
+}
+QRadioButton:disabled
+{
+    color: #bab9b8;
+}
+
+QRadioButton::indicator
+{
+    width: 70px;
+    height: 70px;
+}
+QRadioButton::indicator:unchecked,
+QRadioButton::indicator:unchecked:focus
+{
+    border-image: url({path}/image_teste.svg);
+}
+QRadioButton::indicator:unchecked:hover,
+QRadioButton::indicator:unchecked:pressed
+{
+    border: none;
+    outline: none;
+    border-image: url(zapzap/assets/stylesheets/light/radio_unchecked.svg);
+}
+QRadioButton::indicator:checked
+{
+    border: none;
+    outline: none;
+    border-image: url(zapzap/assets/stylesheets/light/radio_checked.svg);
+}
+
+QRadioButton::indicator:checked:hover,
+QRadioButton::indicator:checked:focus,
+QRadioButton::indicator:checked:pressed
+{
+    border: none;
+    outline: none;
+    border-image: url(zapzap/assets/stylesheets/light/radio_checked.svg);
+}
+
+QRadioButton::indicator:checked:disabled
+{
+    outline: none;
+    border-image: url(zapzap/assets/stylesheets/light/radio_checked_disabled.svg);
+}
+
+QRadioButton::indicator:unchecked:disabled
+{
+    border-image: url(zapzap/assets/stylesheets/light/radio_unchecked_disabled.svg);
 }
 """
 
