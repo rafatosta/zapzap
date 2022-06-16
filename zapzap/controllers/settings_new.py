@@ -32,10 +32,29 @@ class SettingsNew(QWidget):
         self.rb_light.clicked.connect(self.actionsRbAppearance)
         self.rb_dark.clicked.connect(self.actionsRbAppearance)
 
+        self.rb_tray_default.clicked.connect(self.actionsRbTray)
+        self.rb_tray_light.clicked.connect(self.actionsRbTray)
+        self.rb_tray_dark.clicked.connect(self.actionsRbTray)
+
         ## Set start page ##
         self.stackedWidget.setCurrentIndex(0)
         self.btn_system.setStyleSheet(
             self.selectMenu(self.btn_system.styleSheet()))
+
+    def actionsRbTray(self):
+        theme = 'default'
+        if self.rb_tray_default.isChecked():
+            """default"""
+
+        if self.rb_tray_light.isChecked():
+            theme = 'symbolic_light'
+
+        if self.rb_tray_dark.isChecked():
+            theme = 'symbolic_dark'
+
+        self.settings.setValue("notification/theme_tray", theme)
+        self.mainWindow.browser.title_changed(self.mainWindow.windowTitle())
+
 
     def actionsRbAppearance(self):
         theme = 'auto'

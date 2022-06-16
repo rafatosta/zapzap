@@ -2,7 +2,7 @@ import os
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest, QWebEngineProfile, QWebEngineSettings
 from PyQt6.QtCore import Qt, QUrl, QStandardPaths, QSettings
-from PyQt6.QtGui import QAction, QPainter, QPainter, QImage, QBrush, QPen
+from PyQt6.QtGui import QAction, QPainter, QPainter, QImage, QBrush, QPen, QIcon
 from PyQt6.QtWidgets import QFileDialog
 import zapzap
 from zapzap import __appname__
@@ -69,8 +69,6 @@ class Browser(QWebEngineView):
         The number of messages are available from the window title
         """
         num = ''.join(filter(str.isdigit, title))
-        isTraySymbolic = self.qset.value(
-            "notification/symbolic_icon", True, bool)
         qtd = 0
         try:
             qtd = int(num)

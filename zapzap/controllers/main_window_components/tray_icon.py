@@ -1,20 +1,17 @@
 
 from PyQt6.QtWidgets import QSystemTrayIcon, QMenu
-from PyQt6.QtGui import QIcon, QAction
-from zapzap import tray_path, tray_symbolic_path
-import zapzap
+from PyQt6.QtGui import QAction
+from zapzap import getIconTray
 
 
 class TrayIcon():
     def __init__(self, mainWindow) -> None:
         self.tray = QSystemTrayIcon(mainWindow)
         self.mainWindow = mainWindow
-        isTraySymbolic = mainWindow.settings.value(
-            "notification/symbolic_icon", False, bool)
-        if isTraySymbolic:
-            self.tray.setIcon(QIcon(tray_symbolic_path))
-        else:
-            self.tray.setIcon(QIcon(tray_path))
+        theme_icon = self.mainWindow.settings.value(
+            "notification/theme_tray", 'default', str)
+        self.tray.setIcon(getIconTray(theme_icon, 'normal'))
+
         self.tray.activated.connect(mainWindow.onTrayIconActivated)
 
         # Itens para o menu do tray icon
@@ -39,20 +36,14 @@ class TrayIcon():
         # Mostra o Tray na barra de status
         if (mainWindow.settings.value("system/tray_icon", True, bool)):
             self.tray.show()
-    
+
     def setVisible(self, v):
         self.tray.setVisible(v)
 
     def showIconNotification(self, n):
-        isTraySymbolic = self.mainWindow.settings.value(
-            "notification/symbolic_icon", False, bool)
+        theme_icon = self.mainWindow.settings.value(
+            "notification/theme_tray", 'default', str)
         if n > 0:
-            if isTraySymbolic:
-                self.tray.setIcon(zapzap.tray_symbolic_notify_path)
-            else:
-                self.tray.setIcon(zapzap.tray_notify_path)
+            self.tray.setIcon(getIconTray(theme_icon, 'notify'))
         else:
-            if isTraySymbolic:
-                self.tray.setIcon(zapzap.tray_symbolic_path)
-            else:
-                self.tray.setIcon(zapzap.tray_path)
+            self.tray.setIcon(getIconTray(theme_icon, 'normal'))
