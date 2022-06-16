@@ -46,11 +46,11 @@ class SettingsNew(QWidget):
         if self.rb_tray_default.isChecked():
             """default"""
 
-        if self.rb_tray_light.isChecked():
+        if self.rb_tray_light.isChecked(): #icone preto
             theme = 'symbolic_light'
 
-        if self.rb_tray_dark.isChecked():
-            theme = 'symbolic_dark'
+        if self.rb_tray_dark.isChecked(): #icone branco
+            theme = 'symbolic_dark' 
 
         self.settings.setValue("notification/theme_tray", theme)
         self.mainWindow.browser.title_changed(self.mainWindow.windowTitle())
@@ -78,7 +78,6 @@ class SettingsNew(QWidget):
     def actionsSystemMenu(self):
         btn = self.sender()  # returns a pointer to the object that sent the signal
         btnName = btn.objectName()
-        print(btnName)
         if btnName == 'start_system':
             self.start_hide.setEnabled(self.start_system.isChecked())
             # cria ou remove o arquivo
@@ -147,10 +146,21 @@ class SettingsNew(QWidget):
         theme_mode = self.settings.value("system/theme", 'auto', str)
         if theme_mode == 'auto':
             self.rb_system.setChecked(True)
-        elif theme_mode == 'light':
+        elif theme_mode == 'symbolic_light':
             self.rb_light.setChecked(True)
         else:
             self.rb_dark.setChecked(True)
+
+        ## Theme Icon ##
+        theme_icon = self.mainWindow.settings.value(
+            "notification/theme_tray", 'default', str)
+        print()
+        if theme_icon == 'default':
+            self.rb_tray_default.setChecked(True)
+        elif theme_icon == 'symbolic_light':
+            self.rb_tray_light.setChecked(True)
+        else:
+            self.rb_tray_dark.setChecked(True)
 
         """ Notifications """
         """isNotifyApp = self.settings.value("notification/app", True, bool)
