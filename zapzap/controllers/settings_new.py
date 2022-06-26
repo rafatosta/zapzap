@@ -12,7 +12,9 @@ class SettingsNew(QWidget):
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
         self.mainWindow = parent
         self.load()
+        self.settingsActions()
 
+    def settingsActions(self):
         ## Menu left ##
         self.btn_home.clicked.connect(
             lambda: self.mainWindow.stackedWidget.setCurrentIndex(0))
@@ -36,25 +38,37 @@ class SettingsNew(QWidget):
         self.rb_tray_light.clicked.connect(self.actionsRbTray)
         self.rb_tray_dark.clicked.connect(self.actionsRbTray)
 
+        ## Notifications ##
+        self.notify_desktop.stateChanged.connect(self.state_notify_desktop)
+        self.show_photo.clicked.connect(self.save)
+        self.show_name.clicked.connect(self.save)
+        self.show_msg.clicked.connect(self.save)
+
         ## Set start page ##
         self.stackedWidget.setCurrentIndex(0)
         self.btn_system.setStyleSheet(
             self.selectMenu(self.btn_system.styleSheet()))
+
+    def state_notify_desktop(self, s):
+        self.show_photo.setEnabled(s)
+        self.show_name.setEnabled(s)
+        self.show_msg.setEnabled(s)
+
+        self.save()
 
     def actionsRbTray(self):
         theme = 'default'
         if self.rb_tray_default.isChecked():
             """default"""
 
-        if self.rb_tray_light.isChecked(): #icone preto
+        if self.rb_tray_light.isChecked():  # icone preto
             theme = 'symbolic_light'
 
-        if self.rb_tray_dark.isChecked(): #icone branco
-            theme = 'symbolic_dark' 
+        if self.rb_tray_dark.isChecked():  # icone branco
+            theme = 'symbolic_dark'
 
         self.settings.setValue("notification/theme_tray", theme)
         self.mainWindow.browser.title_changed(self.mainWindow.windowTitle())
-
 
     def actionsRbAppearance(self):
         theme = 'auto'
@@ -126,7 +140,7 @@ class SettingsNew(QWidget):
         """
         Load all settings
         """
-        """ System """
+        ## System ##
         isStart_system = self.settings.value(
             "system/start_system", False, bool)
         self.start_system.setChecked(isStart_system)  # Start_system
@@ -162,11 +176,9 @@ class SettingsNew(QWidget):
         else:
             self.rb_tray_dark.setChecked(True)
 
-        """ Notifications """
-        """isNotifyApp = self.settings.value("notification/app", True, bool)
+        ## Notifications ##
+        isNotifyApp = self.settings.value("notification/app", True, bool)
         self.notify_desktop.setChecked(isNotifyApp)
-        self.symbolic_icon.setChecked(self.settings.value(
-            "notification/symbolic_icon", False, bool))
         # enable ou disable
         self.show_photo.setEnabled(isNotifyApp)
         self.show_name.setEnabled(isNotifyApp)
@@ -179,7 +191,7 @@ class SettingsNew(QWidget):
         self.show_name.setChecked(self.settings.value(
             'notification/show_name', True, bool))
         self.show_msg.setChecked(self.settings.value(
-            'notification/show_msg', True, bool))"""
+            'notification/show_msg', True, bool))
 
     def save(self):
         """
@@ -197,14 +209,14 @@ class SettingsNew(QWidget):
         self.settings.setValue("main/hideMenuBar", self.menubar.isChecked())
 
         # Notifications
-        """self.settings.setValue('notification/show_photo',
+        self.settings.setValue('notification/app',
+                               self.notify_desktop.isChecked())
+        self.settings.setValue('notification/show_photo',
                                self.show_photo.isChecked())
         self.settings.setValue('notification/show_name',
                                self.show_name.isChecked())
         self.settings.setValue('notification/show_msg',
                                self.show_msg.isChecked())
-        self.settings.setValue('notification/symbolic_icon',
-                               self.symbolic_icon.isChecked())"""
 
     # SELECT/DESELECT MENU
     # ///////////////////////////////////////////////////////////////

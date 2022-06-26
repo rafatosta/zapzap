@@ -21,8 +21,6 @@ class MenuBar():
             mainWindow.setDefault_size_page)
         mainWindow.actionToggle_Full_Screen.triggered.connect(
             mainWindow.setFullSreen)
-        mainWindow.actionToggle_Darck_Mode.triggered.connect(
-            mainWindow.setNight_mode)
         mainWindow.actionAuto_hide_menu_bar.triggered.connect(
             mainWindow.setHideMenuBar)
 

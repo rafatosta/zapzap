@@ -56,14 +56,6 @@ class MainWindow(QMainWindow):
         self.browser.doReload()
         self.stackedWidget.insertWidget(0, self.browser)
 
-    def setNight_mode(self):
-        print('desativado')
-        # isNight_mode = not self.settings.value(
-        #    "system/night_mode", False, bool)
-        # self.browser.whats.setTheme(isNight_mode)
-        # self.setThemeApp(isNight_mode)
-
-        #self.settings.setValue("system/night_mode", isNight_mode)
 
     def setThemeApp(self, isNight_mode):
         stylesheet = None

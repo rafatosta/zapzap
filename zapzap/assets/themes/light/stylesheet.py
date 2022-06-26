@@ -123,6 +123,13 @@ QWidget{
     background-clip: border;
     border-image: none;
 }
+
+#notify_desktop
+{
+    color: #31363b;
+    margin-bottom: 0.09em;
+    font: 14pt; 
+}
 QCheckBox
 {
     color: #31363b;

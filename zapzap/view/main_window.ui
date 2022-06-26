@@ -84,7 +84,6 @@
     <addaction name="actionDefault_size_page"/>
     <addaction name="separator"/>
     <addaction name="actionToggle_Full_Screen"/>
-    <addaction name="actionToggle_Darck_Mode"/>
     <addaction name="actionAuto_hide_menu_bar"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
