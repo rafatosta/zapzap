@@ -17,7 +17,7 @@ class SettingsNew(QWidget):
     def settingsActions(self):
         ## Menu left ##
         self.btn_home.clicked.connect(
-            lambda: self.mainWindow.stackedWidget.setCurrentIndex(0))
+            lambda: self.mainWindow.main_stacked.setCurrentIndex(0))
         self.btn_system.clicked.connect(self.buttonClick)
         self.btn_appearance.clicked.connect(self.buttonClick)
         self.btn_notifications.clicked.connect(self.buttonClick)
@@ -45,9 +45,21 @@ class SettingsNew(QWidget):
         self.show_msg.clicked.connect(self.save)
 
         ## Set start page ##
-        self.stackedWidget.setCurrentIndex(0)
+        self.settings_stacked.setCurrentIndex(0)
         self.btn_system.setStyleSheet(
             self.selectMenu(self.btn_system.styleSheet()))
+
+    def goPageHome(self):
+        self.settings_stacked.setCurrentIndex(0)
+        self.resetStyle('btn_system')
+        self.btn_system.setStyleSheet(
+            self.selectMenu(self.btn_system.styleSheet()))
+
+    def goPageHelp(self):
+        self.settings_stacked.setCurrentIndex(3)
+        self.resetStyle('btn_about')
+        self.btn_about.setStyleSheet(
+            self.selectMenu(self.btn_about.styleSheet()))
 
     def state_notify_desktop(self, s):
         self.show_photo.setEnabled(s)
@@ -117,22 +129,22 @@ class SettingsNew(QWidget):
 
         self.resetStyle(btnName)
         if btnName == 'btn_system':
-            self.stackedWidget.setCurrentIndex(0)
+            self.settings_stacked.setCurrentIndex(0)
             self.btn_system.setStyleSheet(
                 self.selectMenu(self.btn_system.styleSheet()))
 
         if btnName == 'btn_appearance':
-            self.stackedWidget.setCurrentIndex(1)
+            self.settings_stacked.setCurrentIndex(1)
             self.btn_appearance.setStyleSheet(
                 self.selectMenu(self.btn_system.styleSheet()))
 
         if btnName == 'btn_notifications':
-            self.stackedWidget.setCurrentIndex(2)
+            self.settings_stacked.setCurrentIndex(2)
             self.btn_notifications.setStyleSheet(
                 self.selectMenu(self.btn_system.styleSheet()))
 
         if btnName == 'btn_about':
-            self.stackedWidget.setCurrentIndex(3)
+            self.settings_stacked.setCurrentIndex(3)
             self.btn_about.setStyleSheet(
                 self.selectMenu(self.btn_system.styleSheet()))
 

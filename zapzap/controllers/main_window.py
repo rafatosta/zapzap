@@ -31,17 +31,18 @@ class MainWindow(QMainWindow):
 
         MenuBar(self)
         self.tray = TrayIcon(self)
-        self.zapSettings = SettingsNew(self)
 
         self.createWebEngine()
+
+        self.zapSettings = SettingsNew(self)
+        self.main_stacked.insertWidget(1, self.zapSettings)
 
         self.timer = QTimer()
         self.timer.setInterval(1000)
         self.timer.timeout.connect(self.recurring_timer)
-        #self.timer.start()
         self.current_theme = -1
 
-        self.openSettingsDialog()
+        #self.openSettingsDialog()
 
     def recurring_timer(self):
         theme = get_system_theme()
@@ -54,8 +55,7 @@ class MainWindow(QMainWindow):
         self.browser.setZoomFactor(self.settings.value(
             "browser/zoomFactor", 1.0, float))
         self.browser.doReload()
-        self.stackedWidget.insertWidget(0, self.browser)
-
+        self.main_stacked.insertWidget(0, self.browser)
 
     def setThemeApp(self, isNight_mode):
         stylesheet = None
@@ -73,15 +73,12 @@ class MainWindow(QMainWindow):
         self.browser.setZoomFactor(1.0)
 
     def openSettingsDialog(self):
-        #self.openDialog = Settings()
-        # self.openDialog.show()
-
-        self.stackedWidget.insertWidget(1, self.zapSettings)
-        self.stackedWidget.setCurrentIndex(1)
+        self.main_stacked.setCurrentIndex(1)
+        self.zapSettings.goPageHome()
 
     def openAbout_Zapzap(self):
-        self.openDialog = About(self)
-        self.openDialog.show()
+        self.main_stacked.setCurrentIndex(1)
+        self.zapSettings.goPageHelp()
 
     def moveEvent(self, a0: QMoveEvent) -> None:
         if self.openDialog != None:
