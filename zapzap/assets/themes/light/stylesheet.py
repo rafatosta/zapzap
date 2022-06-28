@@ -212,7 +212,6 @@ QStackedWidget {
 #menu .QPushButton {	
 	background-position: left center;
     background-repeat: no-repeat;
-	border: none;
 	border: 8px solid #F0F2F5;
     border-radius: 5px;
 	background-color: transparent;

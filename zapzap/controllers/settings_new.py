@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import QWidget, QPushButton
-from PyQt6.QtCore import QSettings
+from PyQt6.QtCore import QSettings, QSize, QUrl
+from PyQt6.QtGui import QDesktopServices
 from PyQt6 import uic
 import zapzap
 from zapzap.services.portal_desktop import createDesktop, removeDesktop
@@ -13,6 +14,26 @@ class SettingsNew(QWidget):
         self.mainWindow = parent
         self.load()
         self.settingsActions()
+        self.loadInfoHelp()
+
+    def loadInfoHelp(self):
+        self.icon_app.setPixmap(zapzap.getIconTray().pixmap(QSize(50, 50)))
+        self.name_app.setText(zapzap.__appname__)
+        self.version_app.setText(
+            f'Version {zapzap.__version__} (Official compilation)')
+        self.desc_app.setText(
+            'An unofficial WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.')
+        self.name_app2.setText(zapzap.__appname__)
+
+        # actions
+        self.btn_learn.clicked.connect(lambda: QDesktopServices.openUrl(
+            QUrl(zapzap.__website__)))
+        self.btn_changelog.clicked.connect(lambda: QDesktopServices.openUrl(
+            QUrl(zapzap.__releases__)))
+        self.btn_report.clicked.connect(lambda: QDesktopServices.openUrl(
+            QUrl(zapzap.__bugreport__)))
+        self.btn_buy.clicked.connect(lambda: QDesktopServices.openUrl(
+            QUrl(zapzap.__buycoffe__)))
 
     def settingsActions(self):
         ## Menu left ##

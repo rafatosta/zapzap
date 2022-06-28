@@ -28,6 +28,6 @@ theme_light_path = abs_path+'/assets/stylesheets/light/stylesheet.qss'
 theme_dark_path = abs_path+'/assets/stylesheets/dark/stylesheet.qss'
 
 # Tray
-def getIconTray(theme, mode):
+def getIconTray(theme = 'default', mode='normal'):
     return QIcon(abs_path+f'/assets/icons/tray/{theme}_{mode}.svg')
 

@@ -42,7 +42,7 @@ class MainWindow(QMainWindow):
         self.timer.timeout.connect(self.recurring_timer)
         self.current_theme = -1
 
-        #self.openSettingsDialog()
+        # self.openSettingsDialog()
 
     def recurring_timer(self):
         theme = get_system_theme()
@@ -77,6 +77,8 @@ class MainWindow(QMainWindow):
         self.zapSettings.goPageHome()
 
     def openAbout_Zapzap(self):
+        # self.openDialog = About(self)
+        # self.openDialog.show()
         self.main_stacked.setCurrentIndex(1)
         self.zapSettings.goPageHelp()
 
