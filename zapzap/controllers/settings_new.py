@@ -193,7 +193,7 @@ class SettingsNew(QWidget):
         theme_mode = self.settings.value("system/theme", 'auto', str)
         if theme_mode == 'auto':
             self.rb_system.setChecked(True)
-        elif theme_mode == 'symbolic_light':
+        elif theme_mode == 'light':
             self.rb_light.setChecked(True)
         else:
             self.rb_dark.setChecked(True)
