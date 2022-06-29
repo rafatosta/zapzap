@@ -92,7 +92,7 @@
          <item>
           <widget class="QPushButton" name="btn_home">
            <property name="text">
-            <string>Home</string>
+            <string>ZapZap</string>
            </property>
           </widget>
          </item>
@@ -192,7 +192,7 @@
             <enum>Qt::TabFocus</enum>
            </property>
            <property name="text">
-            <string>About ZapZap</string>
+            <string>About</string>
            </property>
           </widget>
          </item>
@@ -218,7 +218,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>3</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">

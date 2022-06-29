@@ -236,7 +236,7 @@ QStackedWidget {
 }
 
 #btn_home{
-	background-image: url({path}/appearance.svg);
+	background-image: url({path}/home.svg);
 }
 #btn_system{
 	background-image: url({path}/system.svg);
