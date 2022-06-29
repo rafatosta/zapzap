@@ -321,6 +321,59 @@ QRadioButton::indicator
     border-image: url({path}/theme_dark_unchecked.svg);
 }
 
+#rb_tray_default::indicator:unchecked,
+#rb_tray_default::indicator:unchecked:focus,
+#rb_tray_default::indicator:unchecked:hover,
+#rb_tray_default::indicator:unchecked:pressed
+{
+    border-image: url({path}/tray_default_unchecked.svg);
+}
+
+#rb_tray_default::indicator:checked,
+#rb_tray_default::indicator:checked:hover,
+#rb_tray_default::indicator:checked:focus,
+#rb_tray_default::indicator:checked:pressed
+{
+    border: none;
+    outline: none;
+    border-image: url({path}/tray_default_checked.svg);
+}
+
+#rb_tray_light::indicator:unchecked,
+#rb_tray_light::indicator:unchecked:focus,
+#rb_tray_light::indicator:unchecked:hover,
+#rb_tray_light::indicator:unchecked:pressed
+{
+    border-image: url({path}/tray_light_unchecked.svg);
+}
+
+#rb_tray_light::indicator:checked,
+#rb_tray_light::indicator:checked:hover,
+#rb_tray_light::indicator:checked:focus,
+#rb_tray_light::indicator:checked:pressed
+{
+    border: none;
+    outline: none;
+    border-image: url({path}/tray_light_checked.svg);
+}
+
+#rb_tray_dark::indicator:unchecked,
+#rb_tray_dark::indicator:unchecked:focus,
+#rb_tray_dark::indicator:unchecked:hover,
+#rb_tray_dark::indicator:unchecked:pressed
+{
+    border-image: url({path}/tray_dark_unchecked.svg);
+}
+
+#rb_tray_dark::indicator:checked,
+#rb_tray_dark::indicator:checked:hover,
+#rb_tray_dark::indicator:checked:focus,
+#rb_tray_dark::indicator:checked:pressed
+{
+    border: none;
+    outline: none;
+    border-image: url({path}/tray_dark_checked.svg);
+}
 """
 
 STYLE_SHEET_DARK = f"""
