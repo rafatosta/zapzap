@@ -115,7 +115,6 @@ QWidget{
     selection-color: #31363b;
     background-clip: border;
     border-image: none;
-    font-family: "Segoe UI";
     font: 11pt; 
 }
 
