@@ -37,6 +37,12 @@
    </property>
    <item>
     <widget class="QFrame" name="leftMenu">
+     <property name="minimumSize">
+      <size>
+       <width>250</width>
+       <height>0</height>
+      </size>
+     </property>
      <property name="maximumSize">
       <size>
        <width>250</width>
