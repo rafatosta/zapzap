@@ -221,19 +221,6 @@ QStackedWidget {
 	background-color: rgb(192, 191, 188);
     border-color: rgb(192, 191, 188);
 }
-/* Back Button */
-#btn_back {
-	background-position: left center;
-    background-repeat: no-repeat;
-	border: none;
-	text-align: left;
-	padding-left: 40px;
-    font: 10pt; 
-    background-image: url({path}/previous.svg);
-}
-#btn_back:hover {
-	color: #00A884;
-}
 
 #btn_home{
 	background-image: url({path}/home.svg);
@@ -257,7 +244,7 @@ QStackedWidget {
 #frameNotifications,
 #frameNotificationsPreview,
 #frameMenuBar {
-    background-color: rgb(255, 255, 255);
+    background-color: #F0F2F5;
     border: 2px solid rgba(0, 0, 0,0.1);
     border-radius: 5px;
 }
