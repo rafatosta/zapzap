@@ -27,7 +27,7 @@ QMenuBar::item:disabled
 
 QMenuBar::item:pressed
 {
-    background-color: #bab9b8;
+    background-color: rgb(222, 221, 218);
     color: #31363b;
     margin-bottom: -0.09em;
     padding-bottom: 0.09em;
@@ -39,6 +39,7 @@ QMenu
 {
     color: #31363b;
     margin: 0.09em;
+    background-color: #FFFFFF;
 }
 
 QMenu::icon
@@ -57,7 +58,7 @@ QMenu::item
 QMenu::item:selected
 {
     color: #31363b;
-    background-color: #00DCAD;
+    background-color: rgb(222, 221, 218);
 }
 
 QMenu::item:selected:disabled
@@ -79,24 +80,16 @@ QMenu::indicator
     subcontrol-position: center left;
 }
 
-QMenu::indicator:non-exclusive:unchecked
-{
-    border-image: url({path}/checkbox_unchecked_disabled.svg);
-}
-
+QMenu::indicator:non-exclusive:unchecked,
 QMenu::indicator:non-exclusive:unchecked:selected
 {
     border-image: url({path}/checkbox_unchecked_disabled.svg);
 }
 
-QMenu::indicator:non-exclusive:checked
-{
-    border-image: url({path}/checkbox_checked.svg);
-}
-
+QMenu::indicator:non-exclusive:checked,
 QMenu::indicator:non-exclusive:checked:selected
 {
-    border-image: url({path}/checkbox_checked_selected.svg);
+    border-image: url({path}/checkbox_checked.svg);
 }
 
 QMenuBar::item:focus:!disabled
