@@ -304,6 +304,16 @@ QRadioButton::indicator
     border-image: url({path}/theme_light_checked.svg);
 }
 
+#rb_dark::indicator:checked,
+#rb_dark::indicator:checked:hover,
+#rb_dark::indicator:checked:focus,
+#rb_dark::indicator:checked:pressed
+{
+    border: none;
+    outline: none;
+    border-image: url({path}/theme_dark_checked.svg);
+}
+
 #rb_dark::indicator:unchecked,
 #rb_dark::indicator:unchecked:focus,
 #rb_dark::indicator:unchecked:hover,
