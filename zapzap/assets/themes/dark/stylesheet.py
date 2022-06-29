@@ -116,6 +116,7 @@ QWidget{
     background-clip: border;
     border-image: none;
     font-family: "Segoe UI";
+    font: 11pt; 
 }
 #notify_desktop
 {

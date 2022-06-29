@@ -97,6 +97,12 @@
          </property>
          <item>
           <widget class="QPushButton" name="btn_home">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>45</height>
+            </size>
+           </property>
            <property name="text">
             <string>ZapZap</string>
            </property>
