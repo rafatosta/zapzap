@@ -115,6 +115,7 @@ QWidget{
     selection-color: #eff0f1;
     background-clip: border;
     border-image: none;
+    font-family: "Segoe UI";
 }
 #notify_desktop
 {
@@ -208,7 +209,7 @@ QStackedWidget {
     border-radius: 5px;
 	text-align: left;
 	padding-left: 44px;
-    font: 12pt; 
+    font: 12pt;
 }
 
 #menu .QPushButton:hover {
@@ -216,8 +217,8 @@ QStackedWidget {
     border-color: #596870;
 }
 #menu .QPushButton:pressed {	
-	background-color: rgb(192, 191, 188);
-    border-color: rgb(192, 191, 188);
+	background-color: #424D53;
+    border-color: #424D53;
 }
 
 #btn_home{
