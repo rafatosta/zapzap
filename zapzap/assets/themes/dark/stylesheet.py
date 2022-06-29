@@ -206,7 +206,6 @@ QStackedWidget {
     background-repeat: no-repeat;
 	border: 8px solid  #202C33;
     border-radius: 5px;
-	background-color: transparent;
 	text-align: left;
 	padding-left: 44px;
     font: 12pt; 
