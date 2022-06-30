@@ -15,9 +15,9 @@ def main():
     app.setDesktopFileName(zapzap.__desktopid__)
     app.setOrganizationDomain(zapzap.__domain__)
 
-    #QFontDatabase.addApplicationFont(zapzap.font_path)
+    QFontDatabase.addApplicationFont(zapzap.font_path)
     app.setStyle('Fusion')
-    #app.setFont(QFont("Segoe UI"))
+    app.setFont(QFont("SegoeUI"))
 
     # garante que teremos o diretório tmp para as fotos dos usuários utilizados nas notificações
     path = QStandardPaths.writableLocation(
