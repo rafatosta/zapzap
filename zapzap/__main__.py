@@ -17,13 +17,14 @@ def main():
 
     #QFontDatabase.addApplicationFont(zapzap.font_path)
     app.setStyle('Fusion')
-    #app.setFont(QFont("SegoeUIjj"))
+   
     QFontDatabase.addApplicationFont(zapzap.segoe_font['regular'])
     QFontDatabase.addApplicationFont(zapzap.segoe_font['bold'])
     QFontDatabase.addApplicationFont(zapzap.segoe_font['bold-italic'])
     QFontDatabase.addApplicationFont(zapzap.segoe_font['italic'])
     #print(QFontDatabase.applicationFontFamilies(2))
 
+    app.setFont(QFont("Segoe UI"))
     # garante que teremos o diretório tmp para as fotos dos usuários utilizados nas notificações
     path = QStandardPaths.writableLocation(
         QStandardPaths.StandardLocation.AppLocalDataLocation)+'/tmp'
