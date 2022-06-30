@@ -31,5 +31,10 @@ theme_dark_path = abs_path+'/assets/stylesheets/dark/stylesheet.qss'
 def getIconTray(theme = 'default', mode='normal'):
     return QIcon(abs_path+f'/assets/icons/tray/{theme}_{mode}.svg')
 
-# Font
-font_path = abs_path + '/assets/themes/segoe-ui/SegoeUI.ttf'
+# Segoe Font
+segoe_font = {
+    "regular": abs_path + '/assets/themes/segoe-ui/Segoe UI.ttf',
+    "bold": abs_path + '/assets/themes/segoe-ui/Segoe UI Bold.ttf',
+    "bold-italic": abs_path + '/assets/themes/segoe-ui/Segoe UI Bold Italic.ttf',
+    "italic": abs_path + '/assets/themes/segoe-ui/Segoe UI Italic.ttf',
+}

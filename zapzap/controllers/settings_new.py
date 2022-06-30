@@ -258,6 +258,7 @@ class SettingsNew(QWidget):
     MENU_SELECTED_STYLESHEET = """
     background-color: #00BD95;
     border-color: #00BD95;
+    font-weight: bold;
     """
 
     def selectMenu(self, getStyle):
