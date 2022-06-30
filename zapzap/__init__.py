@@ -32,4 +32,4 @@ def getIconTray(theme = 'default', mode='normal'):
     return QIcon(abs_path+f'/assets/icons/tray/{theme}_{mode}.svg')
 
 # Font
-font_path = abs_path + '/assets/themes/segoe-ui/'
+font_path = abs_path + '/assets/themes/segoe-ui/SegoeUI.ttf'
