@@ -4,9 +4,10 @@ import zapzap
 from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.controllers.main_window import MainWindow
 from PyQt6.QtCore import QStandardPaths
+from PyQt6.QtGui import QFont, QFontDatabase
 
 def main():
-    os.environ['QT_QPA_PLATFORM'] = 'xcb'
+    #os.environ['QT_QPA_PLATFORM'] = 'xcb'
 
     app = SingleApplication(zapzap.__appid__, sys.argv)
     app.setApplicationName(zapzap.__appname__)
@@ -15,6 +16,7 @@ def main():
     app.setOrganizationDomain(zapzap.__domain__)
 
     app.setStyle('Fusion')
+    QFontDatabase.addApplicationFont(zapzap.font_path)
 
     # garante que teremos o diretório tmp para as fotos dos usuários utilizados nas notificações
     path = QStandardPaths.writableLocation(
@@ -27,7 +29,7 @@ def main():
     app.setActivationWindow(window)
     window.loadSettings()
     
-
+    
     sys.exit(app.exec())
 
 
