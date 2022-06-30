@@ -20,6 +20,10 @@ def main():
     app.setStyle('Fusion')
     app.setFont(QFont("SegoeUI"))
 
+     
+    #for db in QFontDatabase.families():
+    print(QFontDatabase.families())
+
     # garante que teremos o diretório tmp para as fotos dos usuários utilizados nas notificações
     path = QStandardPaths.writableLocation(
         QStandardPaths.StandardLocation.AppLocalDataLocation)+'/tmp'
