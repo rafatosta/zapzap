@@ -8,10 +8,11 @@ from zapzap.controllers.main_window_components.menu_bar import MenuBar
 from zapzap.controllers.main_window_components.tray_icon import TrayIcon
 from zapzap.controllers.settings import Settings
 from zapzap.engine.browser import Browser
+from zapzap.view.main_window import Ui_MainWindow
 from zapzap import theme_light_path, theme_dark_path
 
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow, Ui_MainWindow):
 
     openDialog = None
     isFullScreen = False
@@ -21,7 +22,7 @@ class MainWindow(QMainWindow):
 
     def __init__(self, parent=None):
         super(MainWindow, self).__init__()
-        uic.loadUi(zapzap.abs_path+'/view/main_window.ui', self)
+        self.setupUi(self)
         self.app = parent
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
     

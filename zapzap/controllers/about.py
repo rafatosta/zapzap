@@ -1,11 +1,14 @@
 from PyQt6.QtCore import QSize
+from PyQt6.QtWidgets import QWidget, QApplication
 import zapzap
+from zapzap.view.about import Ui_Form
 from zapzap.controllers.zapDialog import ZapDialog
 
 
-class About(ZapDialog):
+class About(QWidget, Ui_Form):
     def __init__(self, parent=None):
-        super().__init__(zapzap.abs_path+'/view/about.ui')
+        super(About, self).__init__()
+        self.setupUi(self)
 
         self.name.setText(zapzap.__appname__)
 
@@ -16,3 +19,12 @@ class About(ZapDialog):
         self.license.setText(zapzap.__licence__)
 
         self.icon.setPixmap(zapzap.tray_path.pixmap(QSize(100, 100)))
+
+        self.centerPos()
+
+    def centerPos(self):
+        qrec = QApplication.instance().getWindow().geometry()
+        x = qrec.x() + (qrec.width() - self.width())/2
+        y = qrec.y() + (qrec.height() - self.height())/2
+        self.move(int(x), int(y))
+

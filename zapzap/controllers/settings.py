@@ -1,18 +1,28 @@
 from PyQt6.QtCore import QSettings
-from PyQt6.QtWidgets import QApplication
+from PyQt6.QtWidgets import QApplication, QWidget, QDialog
 import zapzap
 from zapzap.controllers.zapDialog import ZapDialog
 from zapzap.services.portal_desktop import createDesktop, removeDesktop
+from zapzap.view.settings import Ui_settings
 
 
-class Settings(ZapDialog):
+class Settings(QWidget, Ui_settings):
     def __init__(self, parent=None):
-        super().__init__(zapzap.abs_path+'/view/settings.ui')
+        super(Settings, self).__init__()
+        self.setupUi(self)
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
         self.mainWindow = QApplication.instance().getWindow()
         self.load()
 
         self.setActions()
+        self.centerPos()
+
+    def centerPos(self):
+        qrec = QApplication.instance().getWindow().geometry()
+        x = qrec.x() + (qrec.width() - self.width())/2
+        y = qrec.y() + (qrec.height() - self.height())/2
+        self.move(int(x), int(y))
+
 
     def setActions(self):
         """

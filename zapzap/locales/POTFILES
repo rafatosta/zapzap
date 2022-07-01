@@ -1,0 +1,7 @@
+zapzap/view/about.py
+zapzap/view/drawer.py
+zapzap/view/main_window.py
+zapzap/view/settings_about.py
+zapzap/view/settings_notify.py
+zapzap/view/settings_system.py
+zapzap/view/settings.py

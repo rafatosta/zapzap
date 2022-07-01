@@ -1,0 +1,239 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-01 20:20+0200\n"
+"PO-Revision-Date: 2022-07-01 20:20+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: pt_BR <LL@li.org>\n"
+"Language: pt-br\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: zapzap/view/about.py:80 zapzap/view/main_window.py:132
+msgid "About Zapzap"
+msgstr "Sobre Zapzap"
+
+#: zapzap/view/about.py:81 zapzap/view/settings_about.py:84
+msgid "icone do app"
+msgstr ""
+
+#: zapzap/view/about.py:82
+msgid "name"
+msgstr ""
+
+#: zapzap/view/about.py:83
+msgid "version"
+msgstr ""
+
+#: zapzap/view/about.py:84 zapzap/view/settings_about.py:86
+msgid "descrição"
+msgstr ""
+
+#: zapzap/view/about.py:85 zapzap/view/settings_about.py:88
+msgid "Desenvolvedor"
+msgstr ""
+
+#: zapzap/view/about.py:86 zapzap/view/settings_about.py:89
+msgid "GNU General Public License v3.0"
+msgstr ""
+
+#: zapzap/view/drawer.py:68 zapzap/view/settings_about.py:82
+#: zapzap/view/settings_notify.py:61 zapzap/view/settings_system.py:65
+msgid "Form"
+msgstr ""
+
+#: zapzap/view/main_window.py:104
+msgid "Zapzap"
+msgstr ""
+
+#: zapzap/view/main_window.py:105
+msgid "File"
+msgstr "Arquivo"
+
+#: zapzap/view/main_window.py:106
+msgid "View"
+msgstr ""
+
+#: zapzap/view/main_window.py:107
+msgid "Help"
+msgstr ""
+
+#: zapzap/view/main_window.py:108 zapzap/view/settings.py:142
+msgid "Settings"
+msgstr ""
+
+#: zapzap/view/main_window.py:109
+msgid "Ctrl+P"
+msgstr ""
+
+#: zapzap/view/main_window.py:110
+msgid "Quit"
+msgstr ""
+
+#: zapzap/view/main_window.py:111
+msgid "Ctrl+Q"
+msgstr ""
+
+#: zapzap/view/main_window.py:112
+msgid "Reload"
+msgstr ""
+
+#: zapzap/view/main_window.py:113
+msgid "F5"
+msgstr ""
+
+#: zapzap/view/main_window.py:114
+msgid "Open Quick Switch"
+msgstr ""
+
+#: zapzap/view/main_window.py:115
+msgid "Ctrl+S"
+msgstr ""
+
+#: zapzap/view/main_window.py:116
+msgid "Default  size page"
+msgstr ""
+
+#: zapzap/view/main_window.py:117
+msgid "Ctrl+0"
+msgstr ""
+
+#: zapzap/view/main_window.py:118
+msgid "Toggle Full Screen"
+msgstr ""
+
+#: zapzap/view/main_window.py:119
+msgid "F11"
+msgstr ""
+
+#: zapzap/view/main_window.py:120
+msgid "Toggle Dark Mode"
+msgstr ""
+
+#: zapzap/view/main_window.py:121
+msgid "Ctrl+Shift+D"
+msgstr ""
+
+#: zapzap/view/main_window.py:122
+msgid "Hide menu bar"
+msgstr ""
+
+#: zapzap/view/main_window.py:123
+msgid "Ctrl+M"
+msgstr ""
+
+#: zapzap/view/main_window.py:124
+msgid "Add new user"
+msgstr ""
+
+#: zapzap/view/main_window.py:125
+msgid "Ctrl+N"
+msgstr ""
+
+#: zapzap/view/main_window.py:126
+msgid "Mostrar todos os usuários aqui"
+msgstr ""
+
+#: zapzap/view/main_window.py:127
+msgid "User 1"
+msgstr ""
+
+#: zapzap/view/main_window.py:128
+msgid "User 2"
+msgstr ""
+
+#: zapzap/view/main_window.py:129
+msgid "Learn More"
+msgstr ""
+
+#: zapzap/view/main_window.py:130
+msgid "Changelog"
+msgstr ""
+
+#: zapzap/view/main_window.py:131
+msgid "Report issue..."
+msgstr ""
+
+#: zapzap/view/main_window.py:133 zapzap/view/settings.py:148
+msgid "Hide on close"
+msgstr ""
+
+#: zapzap/view/main_window.py:134 zapzap/view/settings_system.py:69
+msgid "Keep in background when closing window"
+msgstr ""
+
+#: zapzap/view/main_window.py:135
+msgid "Buy a coffee"
+msgstr ""
+
+#: zapzap/view/settings_about.py:83
+msgid "GroupBox"
+msgstr ""
+
+#: zapzap/view/settings_about.py:85
+msgid "versão"
+msgstr ""
+
+#: zapzap/view/settings_about.py:87
+msgid "pagina na web"
+msgstr ""
+
+#: zapzap/view/settings_notify.py:62 zapzap/view/settings.py:151
+msgid "Chat notifications"
+msgstr ""
+
+#: zapzap/view/settings_notify.py:63 zapzap/view/settings.py:152
+msgid "Notifications on the desktop"
+msgstr ""
+
+#: zapzap/view/settings_notify.py:64 zapzap/view/settings.py:153
+msgid "Show the photo of the sender"
+msgstr ""
+
+#: zapzap/view/settings_notify.py:65 zapzap/view/settings.py:154
+msgid "Show the sender's name"
+msgstr ""
+
+#: zapzap/view/settings_notify.py:66 zapzap/view/settings.py:155
+msgid "Show message preview"
+msgstr ""
+
+#: zapzap/view/settings_notify.py:67
+msgid "TrayIcon"
+msgstr ""
+
+#: zapzap/view/settings_notify.py:68 zapzap/view/settings.py:147
+msgid "Symbolic icon"
+msgstr ""
+
+#: zapzap/view/settings_system.py:66 zapzap/view/settings.py:144
+msgid "System integration"
+msgstr ""
+
+#: zapzap/view/settings_system.py:67 zapzap/view/settings.py:146
+msgid "Start ZapZap with the system"
+msgstr ""
+
+#: zapzap/view/settings_system.py:68 zapzap/view/settings.py:150
+msgid "Start minimized"
+msgstr ""
+
+#: zapzap/view/settings_system.py:70 zapzap/view/settings.py:149
+msgid "Night mode"
+msgstr ""
+
+#: zapzap/view/settings.py:143
+msgid "Zapzap Settings"
+msgstr ""
+
+#: zapzap/view/settings.py:145
+msgid "Disable tray icon"
+msgstr ""
