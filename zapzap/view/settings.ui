@@ -230,7 +230,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>1</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -293,6 +293,12 @@
                 <size>
                  <width>600</width>
                  <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>600</width>
+                 <height>16777215</height>
                 </size>
                </property>
                <property name="styleSheet">
@@ -376,6 +382,12 @@
                 <size>
                  <width>0</width>
                  <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>600</width>
+                 <height>16777215</height>
                 </size>
                </property>
                <property name="frameShape">
@@ -500,6 +512,12 @@
               <size>
                <width>600</width>
                <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>600</width>
+               <height>16777215</height>
               </size>
              </property>
              <property name="frameShape">
@@ -815,6 +833,12 @@
               <size>
                <width>600</width>
                <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>600</width>
+               <height>16777215</height>
               </size>
              </property>
              <property name="frameShape">
@@ -1199,6 +1223,12 @@
                <height>0</height>
               </size>
              </property>
+             <property name="maximumSize">
+              <size>
+               <width>600</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="frameShape">
               <enum>QFrame::StyledPanel</enum>
              </property>
@@ -1329,6 +1359,9 @@
          </item>
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_24">
+           <property name="topMargin">
+            <number>5</number>
+           </property>
            <item>
             <widget class="QLabel" name="label_3">
              <property name="font">
@@ -1344,6 +1377,18 @@
            </item>
            <item>
             <widget class="QFrame" name="frame">
+             <property name="minimumSize">
+              <size>
+               <width>600</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>600</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
