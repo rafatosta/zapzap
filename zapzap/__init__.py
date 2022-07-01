@@ -28,10 +28,13 @@ theme_light_path = abs_path+'/assets/stylesheets/light/stylesheet.qss'
 theme_dark_path = abs_path+'/assets/stylesheets/dark/stylesheet.qss'
 
 # Tray
-tray_path = QIcon(abs_path+'/assets/icons/tray/tray.svg')
-tray_notify_path = QIcon(abs_path+'/assets/icons/tray/tray_notify.svg')
+def getIconTray(theme = 'default', mode='normal'):
+    return QIcon(abs_path+f'/assets/icons/tray/{theme}_{mode}.svg')
 
-# Tray symbolic
-tray_symbolic_path = QIcon(abs_path+'/assets/icons/tray/tray_symbolic.svg')
-tray_symbolic_notify_path = QIcon(
-    abs_path+'/assets/icons/tray/tray_symbolic_notify.svg')
+# Segoe Font
+segoe_font = {
+    "regular": abs_path + '/assets/themes/segoe-ui/Segoe UI.ttf',
+    "bold": abs_path + '/assets/themes/segoe-ui/Segoe UI Bold.ttf',
+    "bold-italic": abs_path + '/assets/themes/segoe-ui/Segoe UI Bold Italic.ttf',
+    "italic": abs_path + '/assets/themes/segoe-ui/Segoe UI Italic.ttf',
+}

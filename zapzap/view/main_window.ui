@@ -20,7 +20,7 @@
    <string>Zapzap</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
+   <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
      <number>0</number>
     </property>
@@ -36,6 +36,13 @@
     <property name="bottomMargin">
      <number>0</number>
     </property>
+    <item>
+     <widget class="QStackedWidget" name="main_stacked">
+      <property name="currentIndex">
+       <number>-1</number>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -77,7 +84,6 @@
     <addaction name="actionDefault_size_page"/>
     <addaction name="separator"/>
     <addaction name="actionToggle_Full_Screen"/>
-    <addaction name="actionToggle_Darck_Mode"/>
     <addaction name="actionAuto_hide_menu_bar"/>
    </widget>
    <widget class="QMenu" name="menuHelp">

@@ -3,6 +3,7 @@ from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWebEngineCore import QWebEnginePage
 from PyQt6.QtWidgets import QApplication
 from zapzap import __whatsapp_url__, __appname__
+from zapzap.services.dbus_theme import get_system_theme
 
 # Classe para a página do webapp.
 
@@ -45,8 +46,9 @@ class WhatsApp(QWebEnginePage):
                 }, 100);
             """)
 
-            settings = QSettings(__appname__, __appname__, self)
-            self.setTheme(settings.value("system/night_mode", False, bool))
+            #settings = QSettings(__appname__, __appname__, self)
+            #self.setTheme(settings.value("system/night_mode", False, bool))
+            self.setTheme(get_system_theme())
 
     def setTheme(self, isNight_mode):
         if isNight_mode == False:  # light
