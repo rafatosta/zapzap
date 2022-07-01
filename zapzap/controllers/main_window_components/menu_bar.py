@@ -8,7 +8,7 @@ class MenuBar():
     def __init__(self, mainWindow) -> None:
         # File
         mainWindow.actionSettings.triggered.connect(
-            mainWindow.openSettingsDialog)
+            mainWindow.openSettings)
         mainWindow.actionQuit.triggered.connect(mainWindow.quit)
         mainWindow.actionHide_on_close.triggered.connect(
             lambda: mainWindow.settings.setValue(

@@ -5,19 +5,15 @@ from PyQt6 import uic
 import zapzap
 from zapzap.assets.themes.dark.stylesheet import STYLE_SHEET_DARK
 from zapzap.assets.themes.light.stylesheet import STYLE_SHEET_LIGHT
-from zapzap.controllers.about import About
 from zapzap.controllers.main_window_components.menu_bar import MenuBar
 from zapzap.controllers.main_window_components.tray_icon import TrayIcon
 from zapzap.controllers.settings import Settings
-from zapzap.controllers.settings_new import SettingsNew
 from zapzap.engine.browser import Browser
-from zapzap import theme_light_path, theme_dark_path
 from zapzap.services.dbus_theme import get_system_theme
 
 
 class MainWindow(QMainWindow):
 
-    openDialog = None
     isFullScreen = False
     isHideMenuBar = False
     list_browser = []  # remover isso depois
@@ -29,63 +25,64 @@ class MainWindow(QMainWindow):
         self.app = parent
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
 
+        # create menu bar
         MenuBar(self)
         self.tray = TrayIcon(self)
 
-        self.createWebEngine()
+        # create webengine for whatsapp page and insert in page zero
+        self.browser = Browser(self)
+        self.browser.setZoomFactor(self.settings.value(
+            "browser/zoomFactor", 1.0, float))  # Reset user defined zoom (1.0 by default)
+        # Refreshing the page avoids the outdated user-agent issue (still happens sometimes)
+        self.browser.doReload()
+        self.main_stacked.insertWidget(0, self.browser)
 
-        self.zapSettings = SettingsNew(self)
+        # create panel settings and insert page one
+        self.zapSettings = Settings(self)
         self.main_stacked.insertWidget(1, self.zapSettings)
 
+        # timer for system theme change check (check in 1s)
         self.timer = QTimer()
         self.timer.setInterval(1000)
         self.timer.timeout.connect(self.recurring_timer)
         self.current_theme = -1
 
-        # self.openSettingsDialog()
-
     def recurring_timer(self):
+        """ Check the current system theme and apply it in the app """
         theme = get_system_theme()
         if self.current_theme != theme:
             self.current_theme = theme
             self.setThemeApp(self.current_theme)
 
-    def createWebEngine(self):
-        self.browser = Browser(self)
-        self.browser.setZoomFactor(self.settings.value(
-            "browser/zoomFactor", 1.0, float))
-        self.browser.doReload()
-        self.main_stacked.insertWidget(0, self.browser)
-
     def setThemeApp(self, isNight_mode):
-        stylesheet = None
+        """"Apply the theme in the APP
+            isNight_mode: boll
+        """
         if isNight_mode:
-            stylesheet = STYLE_SHEET_DARK
+            self.app.setStyleSheet(STYLE_SHEET_DARK)
         else:
-            stylesheet = STYLE_SHEET_LIGHT
+            self.app.setStyleSheet(STYLE_SHEET_LIGHT)
+
+        # Apply equivalent theme on whatsapp page
         self.browser.whats.setTheme(isNight_mode)
-        self.app.setStyleSheet(stylesheet)
 
     def reload_Service(self):
+        """Refreshing the page"""
         self.browser.doReload()
 
     def setDefault_size_page(self):
+        """Reset user defined zoom (1.0 by default)"""
         self.browser.setZoomFactor(1.0)
 
-    def openSettingsDialog(self):
+    def openSettings(self):
+        """Open settings"""
         self.main_stacked.setCurrentIndex(1)
         self.zapSettings.goPageHome()
 
     def openAbout_Zapzap(self):
-        # self.openDialog = About(self)
-        # self.openDialog.show()
+        """Open About"""
         self.main_stacked.setCurrentIndex(1)
         self.zapSettings.goPageHelp()
-
-    def moveEvent(self, a0: QMoveEvent) -> None:
-        if self.openDialog != None:
-            self.openDialog.centerPos()
-        return super().moveEvent(a0)
 
     def loadSettings(self):
         """
