@@ -6,6 +6,7 @@ from zapzap.controllers.main_window import MainWindow
 from PyQt6.QtCore import QStandardPaths
 from PyQt6.QtGui import QFont, QFontDatabase
 
+
 def main():
     os.environ['QT_QPA_PLATFORM'] = 'xcb'
 
@@ -15,17 +16,17 @@ def main():
     app.setDesktopFileName(zapzap.__desktopid__)
     app.setOrganizationDomain(zapzap.__domain__)
 
-    #QFontDatabase.addApplicationFont(zapzap.font_path)
+    # Apply Fusion style as default
     app.setStyle('Fusion')
-   
+
+    # Load custom fonts into the app
     QFontDatabase.addApplicationFont(zapzap.segoe_font['regular'])
     QFontDatabase.addApplicationFont(zapzap.segoe_font['bold'])
     QFontDatabase.addApplicationFont(zapzap.segoe_font['bold-italic'])
     QFontDatabase.addApplicationFont(zapzap.segoe_font['italic'])
-    #print(QFontDatabase.applicationFontFamilies(2))
-
     app.setFont(QFont("Segoe UI"))
-    # garante que teremos o diretório tmp para as fotos dos usuários utilizados nas notificações
+
+    # tmp directory for user photos used in notifications
     path = QStandardPaths.writableLocation(
         QStandardPaths.StandardLocation.AppLocalDataLocation)+'/tmp'
     if not os.path.exists(path):
@@ -35,8 +36,7 @@ def main():
     app.setWindow(window)
     app.setActivationWindow(window)
     window.loadSettings()
-    
-    
+
     sys.exit(app.exec())
 
 

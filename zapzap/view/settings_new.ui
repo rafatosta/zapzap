@@ -230,7 +230,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -273,7 +273,7 @@
                <property name="font">
                 <font>
                  <pointsize>14</pointsize>
-                 <bold>false</bold>
+                 <bold>true</bold>
                 </font>
                </property>
                <property name="text">
@@ -362,6 +362,7 @@
                <property name="font">
                 <font>
                  <pointsize>14</pointsize>
+                 <bold>true</bold>
                 </font>
                </property>
                <property name="text">
@@ -485,6 +486,7 @@
              <property name="font">
               <font>
                <pointsize>14</pointsize>
+               <bold>true</bold>
               </font>
              </property>
              <property name="text">
@@ -761,6 +763,7 @@
              <property name="font">
               <font>
                <pointsize>12</pointsize>
+               <bold>true</bold>
               </font>
              </property>
              <property name="text">
@@ -1093,7 +1096,7 @@
                <property name="font">
                 <font>
                  <pointsize>11</pointsize>
-                 <bold>false</bold>
+                 <bold>true</bold>
                 </font>
                </property>
                <property name="cursor">
@@ -1111,6 +1114,9 @@
            </item>
            <item>
             <widget class="QFrame" name="frameNotifications">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
              <property name="minimumSize">
               <size>
                <width>600</width>
@@ -1252,6 +1258,7 @@
              <property name="font">
               <font>
                <pointsize>14</pointsize>
+               <bold>true</bold>
               </font>
              </property>
              <property name="text">
