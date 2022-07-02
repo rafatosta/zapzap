@@ -3,7 +3,7 @@ import os
 import zapzap
 from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.controllers.main_window import MainWindow
-from PyQt6.QtCore import QStandardPaths
+from PyQt6.QtCore import QStandardPaths, QLocale
 from PyQt6.QtGui import QFont, QFontDatabase
 import gettext
 
@@ -17,6 +17,8 @@ def main():
     app.setApplicationVersion(zapzap.__version__)
     app.setDesktopFileName(zapzap.__desktopid__)
     app.setOrganizationDomain(zapzap.__domain__)
+
+    print(QLocale.system().name())
 
     # Apply Fusion style as default
     app.setStyle('Fusion')
