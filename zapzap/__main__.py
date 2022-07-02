@@ -11,9 +11,8 @@ def main():
     os.environ['QT_QPA_PLATFORM'] = 'xcb'
     gettext.bindtextdomain('zapzap', zapzap.abs_path + '/locales')
     gettext.textdomain('zapzap')
-    print(gettext.bindtextdomain('zapzap', zapzap.abs_path + '/locales'))
-    print(zapzap.abs_path + '/locales')
-
+    arr = os.listdir(zapzap.abs_path + '/locales/pt_BR/LC_MESSAGES/')
+    print(arr)
     app = SingleApplication(zapzap.__appid__, sys.argv)
     app.setApplicationName(zapzap.__appname__)
     app.setApplicationVersion(zapzap.__version__)
