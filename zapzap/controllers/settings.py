@@ -16,6 +16,8 @@ class Settings(QWidget):
         self.settingsActions()
         self.loadInfoHelp()
 
+        self.retranslateUi()
+
     def loadInfoHelp(self):
         self.icon_app.setPixmap(zapzap.getIconTray().pixmap(QSize(50, 50)))
         self.name_app.setText(zapzap.__appname__)
@@ -275,3 +277,7 @@ class Settings(QWidget):
         for w in self.menu.findChildren(QPushButton):
             if w.objectName() != widget:
                 w.setStyleSheet(self.deselectMenu(w.styleSheet()))
+
+    ## Translate ##
+    def retranslateUi(self):
+        pass

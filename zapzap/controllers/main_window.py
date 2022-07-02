@@ -1,5 +1,4 @@
 from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon
-from PyQt6.QtGui import QMoveEvent
 from PyQt6.QtCore import QSettings, QByteArray, QTimer
 from PyQt6 import uic
 import zapzap
@@ -10,7 +9,7 @@ from zapzap.controllers.main_window_components.tray_icon import TrayIcon
 from zapzap.controllers.settings import Settings
 from zapzap.engine.browser import Browser
 from zapzap.services.dbus_theme import get_system_theme
-
+from gettext import gettext as _
 
 class MainWindow(QMainWindow):
 
@@ -46,6 +45,8 @@ class MainWindow(QMainWindow):
         self.timer.setInterval(1000)
         self.timer.timeout.connect(self.recurring_timer)
         self.current_theme = -1
+
+        self.retranslateUi()
 
     def recurring_timer(self):
         """ Check the current system theme and apply it in the app """
@@ -186,3 +187,18 @@ class MainWindow(QMainWindow):
         self.settings.setValue("main/hideMenuBar", self.isHideMenuBar)
         self.zapSettings.menubar.setChecked(self.isHideMenuBar)
         self.isHideMenuBar = not self.isHideMenuBar
+
+    def retranslateUi(self):
+        self.menuFile.setTitle(_("File"))
+        self.menuView.setTitle(_("View"))
+        self.menuHelp.setTitle(_("Help"))
+        self.actionSettings.setText(_("Settings"))
+        self.actionQuit.setText(_("Quit"))
+        self.actionReload_Service.setText(_("Reload"))
+        self.actionLearn_More.setText(_("Learn More"))
+        self.actionChangelog.setText(_("Changelog"))
+        self.actionSupport.setText(_("Report issue..."))
+        self.actionAbout_Zapzap.setText(_("About Zapzap"))
+        self.actionHide_on_close.setText(_("Hide on close"))
+        self.actionHide_on_close.setToolTip(_("Keep in background when closing window"))
+        self.actionBuy_a_coffee.setText(_("Buy a coffee"))
