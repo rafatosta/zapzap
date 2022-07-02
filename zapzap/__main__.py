@@ -12,6 +12,7 @@ def main():
     gettext.bindtextdomain('zapzap', zapzap.abs_path + '/locales')
     gettext.textdomain('zapzap')
     print(gettext.bindtextdomain('zapzap', zapzap.abs_path + '/locales'))
+    print(zapzap.abs_path + '/locales')
 
     app = SingleApplication(zapzap.__appid__, sys.argv)
     app.setApplicationName(zapzap.__appname__)
