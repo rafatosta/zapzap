@@ -23,7 +23,7 @@ try:
                                  'assets/themes/dark/*.svg',
                                  'assets/themes/segoe-ui/*.ttf',
                                  'view/*.ui',
-                                 'locales/*/LC_MESSAGES/*.mo']},
+                                 'locales/pt_BR/LC_MESSAGES/*.mo']},
         setup_requires=setup_requires,
         entry_points={'gui_scripts': ['zapzap = zapzap.__main__:main']},
         keywords='zapzap whatsapp client web app',
