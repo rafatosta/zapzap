@@ -11,14 +11,13 @@ def main():
     os.environ['QT_QPA_PLATFORM'] = 'xcb'
     gettext.bindtextdomain('zapzap', zapzap.abs_path + '/locales')
     gettext.textdomain('zapzap')
+    print(gettext.bindtextdomain('zapzap', zapzap.abs_path + '/locales'))
 
     app = SingleApplication(zapzap.__appid__, sys.argv)
     app.setApplicationName(zapzap.__appname__)
     app.setApplicationVersion(zapzap.__version__)
     app.setDesktopFileName(zapzap.__desktopid__)
     app.setOrganizationDomain(zapzap.__domain__)
-
-    print(QLocale.system().name())
 
     # Apply Fusion style as default
     app.setStyle('Fusion')
