@@ -19,6 +19,8 @@ try:
                   'zapzap.services'],
         include_package_data=True,
         package_data={'zapzap': ['assets/icons/tray/*.svg',
+                                 'assets/icons/*.svg',
+                                 'assets/icons/*.png',
                                  'assets/themes/light/*.svg',
                                  'assets/themes/dark/*.svg',
                                  'assets/themes/segoe-ui/*.ttf',
