@@ -82,8 +82,8 @@
     <addaction name="actionReload_Service"/>
     <addaction name="separator"/>
     <addaction name="actionDefault_size_page"/>
-    <addaction name="actionAumentar"/>
-    <addaction name="actionDiminuir"/>
+    <addaction name="actionZoomIn"/>
+    <addaction name="actionZoomOut"/>
     <addaction name="separator"/>
     <addaction name="actionToggle_Full_Screen"/>
     <addaction name="actionAuto_hide_menu_bar"/>
@@ -127,17 +127,9 @@
     <string>F5</string>
    </property>
   </action>
-  <action name="actionOpen_Quick_Switch">
-   <property name="text">
-    <string>Open Quick Switch</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+S</string>
-   </property>
-  </action>
   <action name="actionDefault_size_page">
    <property name="text">
-    <string>Default  size page</string>
+    <string>Default size page</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+0</string>
@@ -168,29 +160,6 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+M</string>
-   </property>
-  </action>
-  <action name="actionAdd_new_user">
-   <property name="text">
-    <string>Add new user</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+N</string>
-   </property>
-  </action>
-  <action name="actionMostrar_todos_os_usu_rios_aqui">
-   <property name="text">
-    <string>Mostrar todos os usuários aqui</string>
-   </property>
-  </action>
-  <action name="actionUser_1">
-   <property name="text">
-    <string>User 1</string>
-   </property>
-  </action>
-  <action name="actionUser2">
-   <property name="text">
-    <string>User 2</string>
    </property>
   </action>
   <action name="actionLearn_More">
@@ -235,17 +204,17 @@
     <string>Buy a coffee</string>
    </property>
   </action>
-  <action name="actionAumentar">
+  <action name="actionZoomIn">
    <property name="text">
-    <string>Zoom out</string>
+    <string>Zoom in</string>
    </property>
    <property name="shortcut">
     <string>Ctrl++</string>
    </property>
   </action>
-  <action name="actionDiminuir">
+  <action name="actionZoomOut">
    <property name="text">
-    <string>Zoom in</string>
+    <string>Zoom out</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+-</string>

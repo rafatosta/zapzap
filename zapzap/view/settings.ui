@@ -291,13 +291,13 @@
                </property>
                <property name="minimumSize">
                 <size>
-                 <width>600</width>
+                 <width>620</width>
                  <height>0</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>600</width>
+                 <width>620</width>
                  <height>16777215</height>
                 </size>
                </property>
@@ -380,13 +380,13 @@
               <widget class="QFrame" name="frameMenuBar">
                <property name="minimumSize">
                 <size>
-                 <width>0</width>
+                 <width>620</width>
                  <height>0</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>600</width>
+                 <width>620</width>
                  <height>16777215</height>
                 </size>
                </property>
@@ -510,13 +510,13 @@
             <widget class="QFrame" name="frameAppearance">
              <property name="minimumSize">
               <size>
-               <width>600</width>
+               <width>620</width>
                <height>0</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>600</width>
+               <width>620</width>
                <height>16777215</height>
               </size>
              </property>
@@ -831,13 +831,13 @@
             <widget class="QFrame" name="frameTray">
              <property name="minimumSize">
               <size>
-               <width>600</width>
+               <width>620</width>
                <height>0</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>600</width>
+               <width>620</width>
                <height>16777215</height>
               </size>
              </property>
@@ -1219,13 +1219,13 @@
              </property>
              <property name="minimumSize">
               <size>
-               <width>600</width>
+               <width>620</width>
                <height>0</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>600</width>
+               <width>620</width>
                <height>16777215</height>
               </size>
              </property>
@@ -1379,13 +1379,13 @@
             <widget class="QFrame" name="frame">
              <property name="minimumSize">
               <size>
-               <width>600</width>
+               <width>620</width>
                <height>0</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>600</width>
+               <width>620</width>
                <height>16777215</height>
               </size>
              </property>
@@ -1475,7 +1475,7 @@
               <item>
                <widget class="QLabel" name="desc_app">
                 <property name="text">
-                 <string>TextLabel</string>
+                 <string>An unofficial WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.</string>
                 </property>
                </widget>
               </item>
@@ -1502,6 +1502,18 @@
               </item>
               <item>
                <widget class="QFrame" name="frame_about_btns">
+                <property name="minimumSize">
+                 <size>
+                  <width>620</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>620</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">#frame_about_btns .QPushButton {
 	color: rgb(255, 255, 255);	
@@ -1571,6 +1583,18 @@
               </item>
               <item>
                <widget class="QFrame" name="frame_buy_btn">
+                <property name="minimumSize">
+                 <size>
+                  <width>620</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>620</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">#frame_buy_btn .QPushButton {
 	color: rgb(255, 255, 255);

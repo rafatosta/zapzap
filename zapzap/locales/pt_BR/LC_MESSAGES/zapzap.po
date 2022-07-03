@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-02 16:08-0300\n"
+"POT-Creation-Date: 2022-07-03 12:48-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,44 +27,186 @@ msgstr "Visualizar"
 
 #: zapzap/controllers/main_window.py:194
 msgid "Help"
-msgstr ""
+msgstr "Ajuda"
 
 #: zapzap/controllers/main_window.py:195
 msgid "Settings"
-msgstr ""
+msgstr "Configurações"
 
 #: zapzap/controllers/main_window.py:196
 msgid "Quit"
-msgstr ""
+msgstr "Sair"
 
 #: zapzap/controllers/main_window.py:197
 msgid "Reload"
-msgstr ""
+msgstr "Recarregar página"
 
 #: zapzap/controllers/main_window.py:198
-msgid "Learn More"
-msgstr ""
+msgid "Default size page"
+msgstr "Tamanho real"
 
 #: zapzap/controllers/main_window.py:199
-msgid "Changelog"
-msgstr ""
+msgid "Toggle Full Screen"
+msgstr "Modo tela cheia"
 
-#: zapzap/controllers/main_window.py:200
-msgid "Report issue..."
-msgstr ""
+#: zapzap/controllers/main_window.py:200 zapzap/controllers/settings.py:287
+msgid "Hide menu bar"
+msgstr "Esconder barra de menu"
 
 #: zapzap/controllers/main_window.py:201
-msgid "About Zapzap"
-msgstr ""
+msgid "Learn More"
+msgstr "Leia mais"
 
-#: zapzap/controllers/main_window.py:202
-msgid "Hide on close"
-msgstr ""
+#: zapzap/controllers/main_window.py:202 zapzap/controllers/settings.py:309
+msgid "Changelog"
+msgstr "Lista de mudanças"
 
 #: zapzap/controllers/main_window.py:203
-msgid "Keep in background when closing window"
-msgstr ""
+msgid "Report issue..."
+msgstr "Reporte um problema..."
 
 #: zapzap/controllers/main_window.py:204
+msgid "About Zapzap"
+msgstr "Sobre ZapZap"
+
+#: zapzap/controllers/main_window.py:205 zapzap/controllers/settings.py:284
+msgid "Hide on close"
+msgstr "Esconder ao fechar"
+
+#: zapzap/controllers/main_window.py:206
+msgid "Keep in background when closing window"
+msgstr "Execução em segundo plano"
+
+#: zapzap/controllers/main_window.py:207
 msgid "Buy a coffee"
-msgstr "meu café"
+msgstr "Café para o dev"
+
+#: zapzap/controllers/main_window.py:208
+msgid "Zoom in"
+msgstr "Ampliar"
+
+#: zapzap/controllers/main_window.py:209
+msgid "Zoom out"
+msgstr "Reduzir"
+
+#: zapzap/controllers/settings.py:276 zapzap/controllers/settings.py:303
+#: zapzap/controllers/settings.py:306
+msgid "ZapZap"
+msgstr "ZapZap"
+
+#: zapzap/controllers/settings.py:277 zapzap/controllers/settings.py:281
+msgid "System"
+msgstr "Sistema"
+
+#: zapzap/controllers/settings.py:278
+msgid "Appearance"
+msgstr "Aparência"
+
+#: zapzap/controllers/settings.py:279
+msgid "Notifications"
+msgstr "Notificações"
+
+#: zapzap/controllers/settings.py:280 zapzap/controllers/settings.py:302
+msgid "About"
+msgstr "Sobre"
+
+#: zapzap/controllers/settings.py:282
+msgid "Start ZapZap with the system"
+msgstr "Iniciar com o sistema"
+
+#: zapzap/controllers/settings.py:283
+msgid "Start minimized"
+msgstr "Iniciar minimizado"
+
+#: zapzap/controllers/settings.py:285
+msgid "Disable tray icon"
+msgstr "Desabilitar Ícone de bandeja"
+
+#: zapzap/controllers/settings.py:286
+msgid "Menu bar"
+msgstr "Barra de menu"
+
+#: zapzap/controllers/settings.py:288
+msgid "Customize appearance"
+msgstr "Customizar aparência"
+
+#: zapzap/controllers/settings.py:289
+msgid "General appearance"
+msgstr "Aparência geral"
+
+#: zapzap/controllers/settings.py:290
+msgid "System style"
+msgstr "Estilo do sistema"
+
+#: zapzap/controllers/settings.py:291
+msgid "Light style"
+msgstr "Claro"
+
+#: zapzap/controllers/settings.py:292
+msgid "Dark style"
+msgstr "Escuro"
+
+#: zapzap/controllers/settings.py:293
+msgid "Tray icon"
+msgstr "Ícone de bandeja"
+
+#: zapzap/controllers/settings.py:294
+msgid "Tray icon appearance"
+msgstr "Aparência do Ícone de bandeja"
+
+#: zapzap/controllers/settings.py:295
+msgid "Default"
+msgstr "Padrão"
+
+#: zapzap/controllers/settings.py:296
+msgid "Symbolic light"
+msgstr "Symbolic claro"
+
+#: zapzap/controllers/settings.py:297
+msgid "Symbolic dark"
+msgstr "Symbolic escuro"
+
+#: zapzap/controllers/settings.py:298
+msgid "Notifications on the desktop"
+msgstr "Notificações na área de trabalho"
+
+#: zapzap/controllers/settings.py:299
+msgid "Show the photo of the sender"
+msgstr "Mostrar a foto do remetente"
+
+#: zapzap/controllers/settings.py:300
+msgid "Show the sender's name"
+msgstr "Mostrar o nome do remetente"
+
+#: zapzap/controllers/settings.py:301
+msgid "Show message preview"
+msgstr "Mostrar a mensagem do remetente"
+
+#: zapzap/controllers/settings.py:304
+#, python-brace-format
+msgid "Version {id} (Official compilation)"
+msgstr "Versão {id} (Compilação oficial)"
+
+#: zapzap/controllers/settings.py:305
+msgid ""
+"An unofficial WhatsApp desktop application written in Pyqt6 + PyQt6-"
+"WebEngine."
+msgstr ""
+"Um aplicativo de desktop WhatsApp não oficial escrito em Pyqt6 + PyQt6-"
+"WebEngine"
+
+#: zapzap/controllers/settings.py:307
+msgid "GNU General Public License v3.0"
+msgstr "Licença Pública Geral GNU v3.0"
+
+#: zapzap/controllers/settings.py:308
+msgid "Learn more"
+msgstr "Leia mais"
+
+#: zapzap/controllers/settings.py:310
+msgid "Report isue..."
+msgstr "Reporte um problema..."
+
+#: zapzap/controllers/settings.py:311
+msgid "Buy a coffe"
+msgstr "Café para o dev"

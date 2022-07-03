@@ -4,7 +4,7 @@ from PyQt6.QtGui import QDesktopServices
 from PyQt6 import uic
 import zapzap
 from zapzap.services.portal_desktop import createDesktop, removeDesktop
-
+from gettext import gettext as _
 
 class Settings(QWidget):
     def __init__(self, parent=None):
@@ -20,13 +20,6 @@ class Settings(QWidget):
 
     def loadInfoHelp(self):
         self.icon_app.setPixmap(zapzap.getIconTray().pixmap(QSize(50, 50)))
-        self.name_app.setText(zapzap.__appname__)
-        self.version_app.setText(
-            f'Version {zapzap.__version__} (Official compilation)')
-        self.desc_app.setText(
-            'An unofficial WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.')
-        self.name_app2.setText(zapzap.__appname__)
-
         # actions
         self.btn_learn.clicked.connect(lambda: QDesktopServices.openUrl(
             QUrl(zapzap.__website__)))
@@ -280,4 +273,39 @@ class Settings(QWidget):
 
     ## Translate ##
     def retranslateUi(self):
-        pass
+        self.btn_home.setText(_("ZapZap"))
+        self.btn_system.setText(_("System"))
+        self.btn_appearance.setText(_("Appearance"))
+        self.btn_notifications.setText(_("Notifications"))
+        self.btn_about.setText(_("About"))
+        self.label.setText(_("System"))
+        self.start_system.setText(_("Start ZapZap with the system"))
+        self.start_hide.setText(_("Start minimized"))
+        self.keepBackground.setText(_("Hide on close"))
+        self.disableTrayIcon.setText(_("Disable tray icon"))
+        self.label_14.setText(_("Menu bar"))
+        self.menubar.setText(_("Hide menu bar"))
+        self.label_2.setText(_("Customize appearance"))
+        self.label_5.setText(_("General appearance"))
+        self.label_11.setText(_("System style"))
+        self.label_12.setText(_("Light style"))
+        self.label_13.setText(_("Dark style"))
+        self.label_6.setText(_("Tray icon"))
+        self.label_10.setText(_("Tray icon appearance"))
+        self.label_7.setText(_("Default"))
+        self.label_8.setText(_("Symbolic light"))
+        self.label_9.setText(_("Symbolic dark"))
+        self.notify_desktop.setText(_("Notifications on the desktop"))
+        self.show_photo.setText(_("Show the photo of the sender"))
+        self.show_name.setText(_("Show the sender\'s name"))
+        self.show_msg.setText(_("Show message preview"))
+        self.label_3.setText(_("About"))
+        self.name_app.setText(_("ZapZap"))
+        self.version_app.setText(_('Version {id} (Official compilation)').format(id=zapzap.__version__))
+        self.desc_app.setText(_("An unofficial WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine."))
+        self.name_app2.setText(_("ZapZap"))
+        self.label_4.setText(_("GNU General Public License v3.0"))
+        self.btn_learn.setText(_("Learn more"))
+        self.btn_changelog.setText(_("Changelog"))
+        self.btn_report.setText(_("Report isue..."))
+        self.btn_buy.setText(_("Buy a coffe"))
