@@ -72,6 +72,8 @@
     </property>
     <addaction name="actionSettings"/>
     <addaction name="separator"/>
+    <addaction name="actionDonations"/>
+    <addaction name="separator"/>
     <addaction name="actionHide_on_close"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -96,7 +98,6 @@
     <addaction name="actionChangelog"/>
     <addaction name="actionSupport"/>
     <addaction name="separator"/>
-    <addaction name="actionBuy_a_coffee"/>
     <addaction name="actionAbout_Zapzap"/>
    </widget>
    <addaction name="menuFile"/>
@@ -141,14 +142,6 @@
    </property>
    <property name="shortcut">
     <string>F11</string>
-   </property>
-  </action>
-  <action name="actionToggle_Darck_Mode">
-   <property name="text">
-    <string>Toggle Dark Mode</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+D</string>
    </property>
   </action>
   <action name="actionAuto_hide_menu_bar">
@@ -199,11 +192,6 @@
     <string/>
    </property>
   </action>
-  <action name="actionBuy_a_coffee">
-   <property name="text">
-    <string>Buy a coffee</string>
-   </property>
-  </action>
   <action name="actionZoomIn">
    <property name="text">
     <string>Zoom in</string>
@@ -218,6 +206,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="actionDonations">
+   <property name="text">
+    <string>Donations</string>
    </property>
   </action>
  </widget>

@@ -42,6 +42,11 @@
   <update_contact>rafa.ecomp@gmail.com</update_contact>
   <developer_name>Rafael Tosta</developer_name>
   <releases>
+    <release date="2022-07-03" version="2.9">
+        <ul>
+            <li>Translation for pt_BR.</li>
+        </ul>
+    </release>
     <release date="2022-07-01" version="2.8">
         <ul>
             <li>New settings panel;</li>

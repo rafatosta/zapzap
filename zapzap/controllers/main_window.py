@@ -77,6 +77,11 @@ class MainWindow(QMainWindow):
         self.main_stacked.setCurrentIndex(1)
         self.zapSettings.goPageHome()
 
+    def openDonations(self):
+        """Open settings"""
+        self.main_stacked.setCurrentIndex(1)
+        self.zapSettings.goPageDonations()
+
     def openAbout_Zapzap(self):
         """Open About"""
         self.main_stacked.setCurrentIndex(1)
@@ -214,6 +219,6 @@ class MainWindow(QMainWindow):
         self.actionHide_on_close.setText(_("Hide on close"))
         self.actionHide_on_close.setToolTip(
             _("Keep in background when closing window"))
-        self.actionBuy_a_coffee.setText(_("Buy a coffee"))
         self.actionZoomIn.setText(_("Zoom in"))
         self.actionZoomOut.setText(_("Zoom out"))
+        self.actionDonations.setText(_("Donations"))

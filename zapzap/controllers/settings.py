@@ -6,6 +6,7 @@ import zapzap
 from zapzap.services.portal_desktop import createDesktop, removeDesktop
 from gettext import gettext as _
 
+
 class Settings(QWidget):
     def __init__(self, parent=None):
         super().__init__()
@@ -27,8 +28,6 @@ class Settings(QWidget):
             QUrl(zapzap.__releases__)))
         self.btn_report.clicked.connect(lambda: QDesktopServices.openUrl(
             QUrl(zapzap.__bugreport__)))
-        self.btn_buy.clicked.connect(lambda: QDesktopServices.openUrl(
-            QUrl(zapzap.__buycoffe__)))
 
     def settingsActions(self):
         ## Menu left ##
@@ -37,6 +36,7 @@ class Settings(QWidget):
         self.btn_system.clicked.connect(self.buttonClick)
         self.btn_appearance.clicked.connect(self.buttonClick)
         self.btn_notifications.clicked.connect(self.buttonClick)
+        self.btn_donations.clicked.connect(self.buttonClick)
         self.btn_about.clicked.connect(self.buttonClick)
         ## System ##
         self.start_system.clicked.connect(self.actionsSystemMenu)
@@ -60,6 +60,12 @@ class Settings(QWidget):
         self.show_name.clicked.connect(self.save)
         self.show_msg.clicked.connect(self.save)
 
+        ## Donations ##
+        self.btn_buy_paypal.clicked.connect(lambda: QDesktopServices.openUrl(
+            QUrl(zapzap.__paypal__)))
+        self.btn_pix.clicked.connect(lambda: QDesktopServices.openUrl(
+            QUrl(zapzap.__pix__)))
+
         ## Set start page ##
         self.settings_stacked.setCurrentIndex(0)
         self.btn_system.setStyleSheet(
@@ -71,8 +77,14 @@ class Settings(QWidget):
         self.btn_system.setStyleSheet(
             self.selectMenu(self.btn_system.styleSheet()))
 
-    def goPageHelp(self):
+    def goPageDonations(self):
         self.settings_stacked.setCurrentIndex(3)
+        self.resetStyle('btn_donations')
+        self.btn_donations.setStyleSheet(
+            self.selectMenu(self.btn_donations.styleSheet()))
+
+    def goPageHelp(self):
+        self.settings_stacked.setCurrentIndex(4)
         self.resetStyle('btn_about')
         self.btn_about.setStyleSheet(
             self.selectMenu(self.btn_about.styleSheet()))
@@ -141,7 +153,7 @@ class Settings(QWidget):
     def buttonClick(self):
         btn = self.sender()  # returns a pointer to the object that sent the signal
         btnName = btn.objectName()
-        # print(btnName)
+        #print(btnName)
 
         self.resetStyle(btnName)
         if btnName == 'btn_system':
@@ -159,8 +171,13 @@ class Settings(QWidget):
             self.btn_notifications.setStyleSheet(
                 self.selectMenu(self.btn_system.styleSheet()))
 
-        if btnName == 'btn_about':
+        if btnName == 'btn_donations':
             self.settings_stacked.setCurrentIndex(3)
+            self.btn_donations.setStyleSheet(
+                self.selectMenu(self.btn_system.styleSheet()))
+
+        if btnName == 'btn_about':
+            self.settings_stacked.setCurrentIndex(4)
             self.btn_about.setStyleSheet(
                 self.selectMenu(self.btn_system.styleSheet()))
 
@@ -301,11 +318,16 @@ class Settings(QWidget):
         self.show_msg.setText(_("Show message preview"))
         self.label_3.setText(_("About"))
         self.name_app.setText(_("ZapZap"))
-        self.version_app.setText(_('Version {id} (Official compilation)').format(id=zapzap.__version__))
-        self.desc_app.setText(_("An unofficial WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine."))
+        self.version_app.setText(
+            _('Version {id} (Official compilation)').format(id=zapzap.__version__))
+        self.desc_app.setText(
+            _("An unofficial WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine."))
         self.name_app2.setText(_("ZapZap"))
         self.label_4.setText(_("GNU General Public License v3.0"))
         self.btn_learn.setText(_("Learn more"))
         self.btn_changelog.setText(_("Changelog"))
         self.btn_report.setText(_("Report isue..."))
-        self.btn_buy.setText(_("Buy a coffe"))
+        self.title_donations.setText(_("Donations"))
+        self.btn_buy_paypal.setText(_("Click to donate via PayPal"))
+        self.btn_donations.setText(_("Donations"))
+        

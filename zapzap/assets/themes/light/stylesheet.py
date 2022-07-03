@@ -234,8 +234,17 @@ QStackedWidget {
 #btn_notifications{
 	background-image: url({path}/notifications.svg);
 }
+#btn_donations{
+	background-image: url({path}/donations.svg);
+}
 #btn_about{
 	background-image: url({path}/about.svg);
+}
+
+#btn_buy_paypal:hover,
+#btn_pix:hover{
+    color: #5C5EBD;
+    text-decoration: underline; 
 }
 
 #frameSettings,

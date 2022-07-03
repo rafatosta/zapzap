@@ -9,6 +9,7 @@ class MenuBar():
         # File
         mainWindow.actionSettings.triggered.connect(
             mainWindow.openSettings)
+        mainWindow.actionDonations.triggered.connect(mainWindow.openDonations)
         mainWindow.actionQuit.triggered.connect(mainWindow.quit)
         mainWindow.actionHide_on_close.triggered.connect(
             lambda: mainWindow.settings.setValue(
@@ -35,7 +36,5 @@ class MenuBar():
             QUrl(zapzap.__releases__)))
         mainWindow.actionSupport.triggered.connect(lambda: QDesktopServices.openUrl(
             QUrl(zapzap.__bugreport__)))
-        mainWindow.actionBuy_a_coffee.triggered.connect(lambda: QDesktopServices.openUrl(
-            QUrl(zapzap.__buycoffe__)))
         mainWindow.actionAbout_Zapzap.triggered.connect(
             mainWindow.openAbout_Zapzap)
