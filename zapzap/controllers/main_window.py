@@ -11,6 +11,7 @@ from zapzap.engine.browser import Browser
 from zapzap.services.dbus_theme import get_system_theme
 from gettext import gettext as _
 
+
 class MainWindow(QMainWindow):
 
     isFullScreen = False
@@ -70,10 +71,6 @@ class MainWindow(QMainWindow):
     def reload_Service(self):
         """Refreshing the page"""
         self.browser.doReload()
-
-    def setDefault_size_page(self):
-        """Reset user defined zoom (1.0 by default)"""
-        self.browser.setZoomFactor(1.0)
 
     def openSettings(self):
         """Open settings"""
@@ -164,6 +161,18 @@ class MainWindow(QMainWindow):
             self.show()
             self.app.activateWindow()
 
+    def setDefault_size_page(self):
+        """Reset user defined zoom (1.0 by default)"""
+        self.browser.setZoomFactor(1.0)
+
+    def zoomIn(self):
+        """Zoom in"""
+        self.browser.setZoomFactor(self.browser.zoomFactor()+0.1)
+
+    def zoomOut(self):
+        """zoom out"""
+        self.browser.setZoomFactor(self.browser.zoomFactor()-0.1)
+
     def setFullSreen(self):
         """
         Full Screen Window
@@ -203,7 +212,8 @@ class MainWindow(QMainWindow):
         self.actionSupport.setText(_("Report issue..."))
         self.actionAbout_Zapzap.setText(_("About Zapzap"))
         self.actionHide_on_close.setText(_("Hide on close"))
-        self.actionHide_on_close.setToolTip(_("Keep in background when closing window"))
+        self.actionHide_on_close.setToolTip(
+            _("Keep in background when closing window"))
         self.actionBuy_a_coffee.setText(_("Buy a coffee"))
         self.actionZoomIn.setText(_("Zoom in"))
         self.actionZoomOut.setText(_("Zoom out"))

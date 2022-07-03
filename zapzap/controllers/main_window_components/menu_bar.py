@@ -21,6 +21,10 @@ class MenuBar():
             mainWindow.setDefault_size_page)
         mainWindow.actionToggle_Full_Screen.triggered.connect(
             mainWindow.setFullSreen)
+        mainWindow.actionZoomIn.triggered.connect(
+            mainWindow.zoomIn)
+        mainWindow.actionZoomOut.triggered.connect(
+            mainWindow.zoomOut)
         mainWindow.actionAuto_hide_menu_bar.triggered.connect(
             mainWindow.setHideMenuBar)
 

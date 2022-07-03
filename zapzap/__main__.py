@@ -8,7 +8,7 @@ from PyQt6.QtGui import QFont, QFontDatabase
 import gettext
 
 def main():
-    os.environ['QT_QPA_PLATFORM'] = 'xcb'
+    #os.environ['QT_QPA_PLATFORM'] = 'xcb'
     gettext.bindtextdomain('zapzap', zapzap.abs_path + '/locales')
     gettext.textdomain('zapzap')
 
