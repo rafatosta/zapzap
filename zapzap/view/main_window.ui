@@ -82,6 +82,8 @@
     <addaction name="actionReload_Service"/>
     <addaction name="separator"/>
     <addaction name="actionDefault_size_page"/>
+    <addaction name="actionAumentar"/>
+    <addaction name="actionDiminuir"/>
     <addaction name="separator"/>
     <addaction name="actionToggle_Full_Screen"/>
     <addaction name="actionAuto_hide_menu_bar"/>
@@ -231,6 +233,22 @@
   <action name="actionBuy_a_coffee">
    <property name="text">
     <string>Buy a coffee</string>
+   </property>
+  </action>
+  <action name="actionAumentar">
+   <property name="text">
+    <string>Zoom out</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
+  </action>
+  <action name="actionDiminuir">
+   <property name="text">
+    <string>Zoom in</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
    </property>
   </action>
  </widget>
