@@ -1,5 +1,4 @@
 from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon
-from PyQt6.QtGui import QMoveEvent
 from PyQt6.QtCore import QSettings, QByteArray, QTimer
 from PyQt6 import uic
 import zapzap
@@ -10,6 +9,7 @@ from zapzap.controllers.main_window_components.tray_icon import TrayIcon
 from zapzap.controllers.settings import Settings
 from zapzap.engine.browser import Browser
 from zapzap.services.dbus_theme import get_system_theme
+from gettext import gettext as _
 
 
 class MainWindow(QMainWindow):
@@ -47,6 +47,8 @@ class MainWindow(QMainWindow):
         self.timer.timeout.connect(self.recurring_timer)
         self.current_theme = -1
 
+        self.retranslateUi()
+
     def recurring_timer(self):
         """ Check the current system theme and apply it in the app """
         theme = get_system_theme()
@@ -70,14 +72,15 @@ class MainWindow(QMainWindow):
         """Refreshing the page"""
         self.browser.doReload()
 
-    def setDefault_size_page(self):
-        """Reset user defined zoom (1.0 by default)"""
-        self.browser.setZoomFactor(1.0)
-
     def openSettings(self):
         """Open settings"""
         self.main_stacked.setCurrentIndex(1)
         self.zapSettings.goPageHome()
+
+    def openDonations(self):
+        """Open settings"""
+        self.main_stacked.setCurrentIndex(1)
+        self.zapSettings.goPageDonations()
 
     def openAbout_Zapzap(self):
         """Open About"""
@@ -163,6 +166,18 @@ class MainWindow(QMainWindow):
             self.show()
             self.app.activateWindow()
 
+    def setDefault_size_page(self):
+        """Reset user defined zoom (1.0 by default)"""
+        self.browser.setZoomFactor(1.0)
+
+    def zoomIn(self):
+        """Zoom in"""
+        self.browser.setZoomFactor(self.browser.zoomFactor()+0.1)
+
+    def zoomOut(self):
+        """zoom out"""
+        self.browser.setZoomFactor(self.browser.zoomFactor()-0.1)
+
     def setFullSreen(self):
         """
         Full Screen Window
@@ -186,3 +201,24 @@ class MainWindow(QMainWindow):
         self.settings.setValue("main/hideMenuBar", self.isHideMenuBar)
         self.zapSettings.menubar.setChecked(self.isHideMenuBar)
         self.isHideMenuBar = not self.isHideMenuBar
+
+    def retranslateUi(self):
+        self.menuFile.setTitle(_("File"))
+        self.menuView.setTitle(_("View"))
+        self.menuHelp.setTitle(_("Help"))
+        self.actionSettings.setText(_("Settings"))
+        self.actionQuit.setText(_("Quit"))
+        self.actionReload_Service.setText(_("Reload"))
+        self.actionDefault_size_page.setText(_("Default size page"))
+        self.actionToggle_Full_Screen.setText(_("Toggle Full Screen"))
+        self.actionAuto_hide_menu_bar.setText(_("Hide menu bar"))
+        self.actionLearn_More.setText(_("Learn More"))
+        self.actionChangelog.setText(_("Changelog"))
+        self.actionSupport.setText(_("Report issue..."))
+        self.actionAbout_Zapzap.setText(_("About Zapzap"))
+        self.actionHide_on_close.setText(_("Hide on close"))
+        self.actionHide_on_close.setToolTip(
+            _("Keep in background when closing window"))
+        self.actionZoomIn.setText(_("Zoom in"))
+        self.actionZoomOut.setText(_("Zoom out"))
+        self.actionDonations.setText(_("Donations"))
