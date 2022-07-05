@@ -33,6 +33,7 @@ class UIDecoration():
         self.win.titleRightInfo.mouseMoveEvent = moveWindow
 
         # DROP SHADOW
+        # está travando o webview
         """self.shadow = QGraphicsDropShadowEffect(self.win)
         self.shadow.setBlurRadius(10)
         self.shadow.setXOffset(0)
@@ -45,6 +46,10 @@ class UIDecoration():
         self.win.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
         ## ----- Botões ------ ##
+
+        #Settings
+        self.win.settingsTopBtn.clicked.connect(self.win.openSettings)
+
         # MINIMIZE
         self.win.minimizeAppBtn.hide()
         #self.win.minimizeAppBtn.clicked.connect(
