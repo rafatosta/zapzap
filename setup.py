@@ -13,6 +13,7 @@ try:
         packages=['zapzap',
                   'zapzap.controllers',
                   'zapzap.controllers.main_window_components',
+                  'zapzap.controllers.main_window_decoration',
                   'zapzap.engine',
                   'zapzap.assets.themes.light',
                   'zapzap.assets.themes.dark',
