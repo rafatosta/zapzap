@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>892</width>
-    <height>422</height>
+    <height>567</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -243,7 +243,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -274,6 +274,9 @@
              </property>
              <property name="topMargin">
               <number>5</number>
+             </property>
+             <property name="bottomMargin">
+              <number>50</number>
              </property>
              <item>
               <widget class="QLabel" name="label">
@@ -429,6 +432,75 @@
                  <widget class="QCheckBox" name="menubar">
                   <property name="text">
                    <string>Hide menu bar</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="experiments_title">
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Experiments</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="frame_experiments">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_29">
+                <property name="spacing">
+                 <number>5</number>
+                </property>
+                <property name="leftMargin">
+                 <number>15</number>
+                </property>
+                <property name="topMargin">
+                 <number>15</number>
+                </property>
+                <property name="rightMargin">
+                 <number>15</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>15</number>
+                </property>
+                <item>
+                 <widget class="QCheckBox" name="check_zap_window">
+                  <property name="text">
+                   <string>Use zapzap window (Restart required)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="note_experiments">
+                  <property name="font">
+                   <font>
+                    <italic>true</italic>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Note: Rendering and performance issues can happen. 
+Please report if anything strange happens.</string>
+                  </property>
+                  <property name="margin">
+                   <number>0</number>
                   </property>
                  </widget>
                 </item>

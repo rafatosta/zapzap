@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-03 16:37-0300\n"
+"POT-Creation-Date: 2022-07-05 14:07-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,75 +17,75 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: zapzap/controllers/main_window.py:206
+#: zapzap/controllers/main_window.py:214
 msgid "File"
 msgstr "Arquivo"
 
-#: zapzap/controllers/main_window.py:207
+#: zapzap/controllers/main_window.py:215
 msgid "View"
 msgstr "Visualizar"
 
-#: zapzap/controllers/main_window.py:208
+#: zapzap/controllers/main_window.py:216
 msgid "Help"
 msgstr "Ajuda"
 
-#: zapzap/controllers/main_window.py:209
+#: zapzap/controllers/main_window.py:217
 msgid "Settings"
 msgstr "Configurações"
 
-#: zapzap/controllers/main_window.py:210
+#: zapzap/controllers/main_window.py:218
 msgid "Quit"
 msgstr "Sair"
 
-#: zapzap/controllers/main_window.py:211
+#: zapzap/controllers/main_window.py:219
 msgid "Reload"
 msgstr "Recarregar página"
 
-#: zapzap/controllers/main_window.py:212
+#: zapzap/controllers/main_window.py:220
 msgid "Default size page"
 msgstr "Tamanho real"
 
-#: zapzap/controllers/main_window.py:213
+#: zapzap/controllers/main_window.py:221
 msgid "Toggle Full Screen"
 msgstr "Modo tela cheia"
 
-#: zapzap/controllers/main_window.py:214 zapzap/controllers/settings.py:304
+#: zapzap/controllers/main_window.py:222 zapzap/controllers/settings.py:304
 msgid "Hide menu bar"
 msgstr "Esconder barra de menu"
 
-#: zapzap/controllers/main_window.py:215
+#: zapzap/controllers/main_window.py:223
 msgid "Learn More"
 msgstr "Leia mais"
 
-#: zapzap/controllers/main_window.py:216 zapzap/controllers/settings.py:328
+#: zapzap/controllers/main_window.py:224 zapzap/controllers/settings.py:328
 msgid "Changelog"
 msgstr "Lista de mudanças"
 
-#: zapzap/controllers/main_window.py:217
+#: zapzap/controllers/main_window.py:225
 msgid "Report issue..."
 msgstr "Reporte um problema..."
 
-#: zapzap/controllers/main_window.py:218
+#: zapzap/controllers/main_window.py:226
 msgid "About Zapzap"
 msgstr "Sobre ZapZap"
 
-#: zapzap/controllers/main_window.py:219 zapzap/controllers/settings.py:301
+#: zapzap/controllers/main_window.py:227 zapzap/controllers/settings.py:301
 msgid "Hide on close"
 msgstr "Esconder ao fechar"
 
-#: zapzap/controllers/main_window.py:221
+#: zapzap/controllers/main_window.py:229
 msgid "Keep in background when closing window"
 msgstr "Execução em segundo plano"
 
-#: zapzap/controllers/main_window.py:222
+#: zapzap/controllers/main_window.py:230
 msgid "Zoom in"
 msgstr "Ampliar"
 
-#: zapzap/controllers/main_window.py:223
+#: zapzap/controllers/main_window.py:231
 msgid "Zoom out"
 msgstr "Reduzir"
 
-#: zapzap/controllers/main_window.py:224 zapzap/controllers/settings.py:330
+#: zapzap/controllers/main_window.py:232 zapzap/controllers/settings.py:330
 #: zapzap/controllers/settings.py:332
 msgid "Donations"
 msgstr "Doações"
@@ -212,3 +212,18 @@ msgstr "Reporte um problema..."
 msgid "Click to donate via PayPal"
 msgstr "Clique para doar via Paypal"
 
+#: zapzap/controllers/settings.py:334
+msgid "Experiments"
+msgstr "Recursos experimentais"
+
+#: zapzap/controllers/settings.py:335
+msgid "Use zapzap window (Restart required)"
+msgstr "Usar janela do ZapZap"
+
+#: zapzap/controllers/settings.py:336
+msgid ""
+"Note: Rendering and performance issues can happen. \n"
+"Please report if anything strange happens."
+msgstr ""
+"Nota: Problemas de renderização e desempenho podem acontecer. \n"
+"Por favor, reporte se algo estranho acontecer."
