@@ -1,5 +1,6 @@
 # Theme Dark
 import zapzap
+from PyQt6.QtCore import QSettings
 
 path = zapzap.abs_path + '/assets/themes/dark'
 
@@ -251,7 +252,8 @@ QStackedWidget {
 #frameTray,
 #frameNotifications,
 #frameNotificationsPreview,
-#frameMenuBar {
+#frameMenuBar,
+#frame_experiments {
     background-color: #202C33;
     border: 2px solid rgba(0, 0, 0,0.1);
     border-radius: 5px;
@@ -414,6 +416,11 @@ ZapDecoration = """
 }
 
 """
+
+settings = QSettings(zapzap.__appname__, zapzap.__appname__)
+if not settings.value("system/zap_decoration", False, bool):
+    ZapDecoration = ""
+
 
 STYLE_SHEET_DARK = f"""
 {QWIDGET}

@@ -56,7 +56,7 @@ class MainWindow(QMainWindow):
         if self.current_theme != theme:
             self.current_theme = theme
             self.setThemeApp(self.current_theme)
-
+    
     def setThemeApp(self, isNight_mode):
         """"Apply the theme in the APP
             isNight_mode: boll
@@ -164,7 +164,6 @@ class MainWindow(QMainWindow):
         Opening the system tray web app.
         """
         self.loadSettings()
-        self.timer.start()
         if self.app.activeWindow() != None:  # Se a janela estiver em foco será escondida
             self.hide()
         else:  # Caso não esteja, será mostrada

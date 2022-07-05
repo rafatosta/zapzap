@@ -1,4 +1,5 @@
 # Theme Light
+from PyQt6.QtCore import QSettings
 import zapzap
 
 path = zapzap.abs_path + '/assets/themes/light'
@@ -252,7 +253,8 @@ QStackedWidget {
 #frameTray,
 #frameNotifications,
 #frameNotificationsPreview,
-#frameMenuBar {
+#frameMenuBar,
+#frame_experiments {
     background-color: #F0F2F5;
     border: 2px solid rgba(0, 0, 0,0.1);
     border-radius: 5px;
@@ -417,6 +419,10 @@ ZapDecoration = """
 }
 """
 
+
+settings = QSettings(zapzap.__appname__, zapzap.__appname__)
+if not settings.value("system/zap_decoration", False, bool):
+    ZapDecoration = ""
 
 STYLE_SHEET_LIGHT = f"""
 {QWIDGET}
