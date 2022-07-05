@@ -33,12 +33,12 @@ class UIDecoration():
         self.win.titleRightInfo.mouseMoveEvent = moveWindow
 
         # DROP SHADOW
-        self.shadow = QGraphicsDropShadowEffect(self.win)
+        """self.shadow = QGraphicsDropShadowEffect(self.win)
         self.shadow.setBlurRadius(10)
         self.shadow.setXOffset(0)
         self.shadow.setYOffset(0)
         self.shadow.setColor(QColor(0, 0, 0, 150))
-        self.win.appMargins.setGraphicsEffect(self.shadow)
+        self.win.appMargins.setGraphicsEffect(self.shadow)"""
 
         # Decoração da janela
         self.win.setWindowFlags(Qt.WindowType.FramelessWindowHint)
