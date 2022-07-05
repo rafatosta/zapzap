@@ -44,7 +44,7 @@ class Settings(QWidget):
         self.keepBackground.clicked.connect(self.actionsSystemMenu)
         self.disableTrayIcon.clicked.connect(self.actionsSystemMenu)
         self.menubar.clicked.connect(self.actionsSystemMenu)
-
+        self.check_zap_window.clicked.connect(self.actionsSystemMenu)
         ## Appearance ##
         self.rb_system.clicked.connect(self.actionsRbAppearance)
         self.rb_light.clicked.connect(self.actionsRbAppearance)
@@ -147,7 +147,7 @@ class Settings(QWidget):
                 not self.disableTrayIcon.isChecked())
         if btnName == 'menubar':
             self.mainWindow.setHideMenuBar()
-
+    
         self.save()
 
     def buttonClick(self):
@@ -201,6 +201,9 @@ class Settings(QWidget):
         self.menubar.setChecked(self.settings.value(
             "main/hideMenuBar", False, bool))  # tray_icon
 
+        self.check_zap_window.setChecked(self.settings.value(
+            "system/zap_decoration", False, bool)) 
+
         ## Appearance ##
         theme_mode = self.settings.value("system/theme", 'auto', str)
         if theme_mode == 'auto':
@@ -252,6 +255,7 @@ class Settings(QWidget):
         self.settings.setValue("system/tray_icon",
                                not self.disableTrayIcon.isChecked())
         self.settings.setValue("main/hideMenuBar", self.menubar.isChecked())
+        self.settings.setValue("system/zap_decoration", self.check_zap_window.isChecked())
 
         # Notifications
         self.settings.setValue('notification/app',
@@ -330,4 +334,8 @@ class Settings(QWidget):
         self.title_donations.setText(_("Donations"))
         self.btn_buy_paypal.setText(_("Click to donate via PayPal"))
         self.btn_donations.setText(_("Donations"))
+
+        self.experiments_title.setText(_("Experiments"))
+        self.check_zap_window.setText(_("Use zapzap window (Restart required)"))
+        self.note_experiments.setText(_("Note: Rendering and performance issues can happen. \nPlease report if anything strange happens."))
         

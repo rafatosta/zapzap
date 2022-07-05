@@ -386,9 +386,42 @@ QRadioButton::indicator
 }
 """
 
+ZapDecoration = """
+#app {	
+	background-color: #F0F2F5;
+	border: 3px solid #E4E5E5; 
+    border-radius: 10px;
+}
+#headbar{	
+	background-color: #F0F2F5;
+    border: 3px solid #F0F2F5; 
+    border-radius: 10px;
+}
+
+#rightButtons .QPushButton {	
+	background-position: center;
+    background-repeat: no-repeat;
+	border: 0px solid #F0F2F5;
+}
+
+#closeAppBtn{
+	background-image: url({path}/btn_close.svg);
+}
+
+#closeAppBtn:hover{
+	background-image: url({path}/btn_close_hover.svg);
+}
+
+#settingsTopBtn{
+	background-image: url({path}/btn_settings.svg);
+}
+"""
+
+
 STYLE_SHEET_LIGHT = f"""
 {QWIDGET}
 {QMENU_BAR}
 {QMENU}
 {SettingsMenu}
+{ZapDecoration}
 """.replace("{path}", path)

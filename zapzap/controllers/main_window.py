@@ -6,6 +6,7 @@ from zapzap.assets.themes.dark.stylesheet import STYLE_SHEET_DARK
 from zapzap.assets.themes.light.stylesheet import STYLE_SHEET_LIGHT
 from zapzap.controllers.main_window_components.menu_bar import MenuBar
 from zapzap.controllers.main_window_components.tray_icon import TrayIcon
+from zapzap.controllers.main_window_decoration.ui_decoration import UIDecoration
 from zapzap.controllers.settings import Settings
 from zapzap.engine.browser import Browser
 from zapzap.services.dbus_theme import get_system_theme
@@ -24,7 +25,7 @@ class MainWindow(QMainWindow):
         uic.loadUi(zapzap.abs_path+'/view/main_window.ui', self)
         self.app = parent
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
-
+        self.scd = None
         # create menu bar
         MenuBar(self)
         self.tray = TrayIcon(self)
@@ -91,6 +92,10 @@ class MainWindow(QMainWindow):
         """
         Load the settings
         """
+        self.headbar.hide()
+        if self.settings.value("system/zap_decoration", False, bool):
+            self.scd = UIDecoration(self)
+
         # Theme App
         #self.setThemeApp(self.settings.value("system/night_mode", False, bool))
         theme_mode = self.settings.value("system/theme", 'auto', str)
@@ -189,18 +194,21 @@ class MainWindow(QMainWindow):
         self.isFullScreen = not self.isFullScreen
 
     def setHideMenuBar(self):
-        """
-        Hide/Show MenuBar
-        """
-        if self.isHideMenuBar:
+        if self.settings.value("system/zap_decoration", False, bool):
             self.menubar.setMaximumHeight(0)
         else:
-            # default size for qt designer
-            self.menubar.setMaximumHeight(16777215)
+            """
+            Hide/Show MenuBar
+            """
+            if self.isHideMenuBar:
+                self.menubar.setMaximumHeight(0)
+            else:
+                # default size for qt designer
+                self.menubar.setMaximumHeight(16777215)
 
-        self.settings.setValue("main/hideMenuBar", self.isHideMenuBar)
-        self.zapSettings.menubar.setChecked(self.isHideMenuBar)
-        self.isHideMenuBar = not self.isHideMenuBar
+            self.settings.setValue("main/hideMenuBar", self.isHideMenuBar)
+            self.zapSettings.menubar.setChecked(self.isHideMenuBar)
+            self.isHideMenuBar = not self.isHideMenuBar
 
     def retranslateUi(self):
         self.menuFile.setTitle(_("File"))

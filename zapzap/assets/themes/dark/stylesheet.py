@@ -110,7 +110,7 @@ QMenu::separator
 QWIDGET = """
 QWidget{
     color: #eff0f1;
-    background-color: #202C33;
+    /*background-color: #202C33;*/
     selection-background-color: #00A884;
     selection-color: #eff0f1;
     background-clip: border;
@@ -385,9 +385,40 @@ QRadioButton::indicator
 }
 """
 
+ZapDecoration = """
+#app {	
+	background-color: #202C33;
+	border: 3px solid #202C33; 
+    border-radius: 10px;
+}
+#headbar{	
+	background-color: #202C33;
+}
+
+#rightButtons .QPushButton {	
+	background-position: center;
+    background-repeat: no-repeat;
+	border: 0px solid #202C33;
+}
+
+#closeAppBtn{
+	background-image: url({path}/btn_close.svg);
+}
+
+#closeAppBtn:hover{
+	background-image: url({path}/btn_close_hover.svg);
+}
+
+#settingsTopBtn{
+	background-image: url({path}/btn_settings.svg);
+}
+
+"""
+
 STYLE_SHEET_DARK = f"""
 {QWIDGET}
 {QMENU_BAR}
 {QMENU}
 {SettingsMenu}
+{ZapDecoration}
 """.replace("{path}", path)
