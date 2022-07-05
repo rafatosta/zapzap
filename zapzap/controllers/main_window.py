@@ -6,6 +6,7 @@ from zapzap.assets.themes.dark.stylesheet import STYLE_SHEET_DARK
 from zapzap.assets.themes.light.stylesheet import STYLE_SHEET_LIGHT
 from zapzap.controllers.main_window_components.menu_bar import MenuBar
 from zapzap.controllers.main_window_components.tray_icon import TrayIcon
+from zapzap.controllers.main_window_decoration.ui_decoration import UIDecoration
 from zapzap.controllers.settings import Settings
 from zapzap.engine.browser import Browser
 from zapzap.services.dbus_theme import get_system_theme
@@ -91,6 +92,9 @@ class MainWindow(QMainWindow):
         """
         Load the settings
         """
+        if self.settings.value("system/zap_decoration", True, bool):
+            self.scd = UIDecoration(self)
+
         # Theme App
         #self.setThemeApp(self.settings.value("system/night_mode", False, bool))
         theme_mode = self.settings.value("system/theme", 'auto', str)
