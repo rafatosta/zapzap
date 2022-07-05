@@ -2,17 +2,19 @@ from PyQt6.QtCore import Qt, QEvent
 from PyQt6.QtWidgets import QGraphicsDropShadowEffect
 from PyQt6.QtGui import QColor
 
+from zapzap.controllers.main_window_decoration.custom_grips import CustomGrip
+
 
 class UIDecoration():
     def __init__(self, mainWindow) -> None:
         self.win = mainWindow
 
-        #impede que redimensione até descobrir como atualizar a página
-        self.win.setMaximumWidth(1000)
+        # impede que redimensione até descobrir como atualizar a página
+        """self.win.setMaximumWidth(1000)
         self.win.setMaximumHeight(600)
 
         self.win.setMinimumWidth(1000)
-        self.win.setMinimumHeight(600)
+        self.win.setMinimumHeight(600)"""
 
         self.uiDefinitions()
 
@@ -22,7 +24,7 @@ class UIDecoration():
             # IF DOUBLE CLICK CHANGE STATUS
             if event.type() == QEvent.Type.MouseButtonDblClick:
                 self.maximize_restore()
-        #self.win.titleRightInfo.mouseDoubleClickEvent = dobleClickMaximizeRestore
+        self.win.titleRightInfo.mouseDoubleClickEvent = dobleClickMaximizeRestore
 
         # MOVE WINDOW / MAXIMIZE / RESTORE
         def moveWindow(event):
@@ -31,6 +33,12 @@ class UIDecoration():
                 window = self.win.window().windowHandle()
                 window.startSystemMove()
         self.win.titleRightInfo.mouseMoveEvent = moveWindow
+
+        # CUSTOM GRIPS
+        self.left_grip = CustomGrip(self.win, Qt.Edge.LeftEdge, True)
+        self.right_grip = CustomGrip(self.win, Qt.Edge.RightEdge, True)
+        self.top_grip = CustomGrip(self.win, Qt.Edge.TopEdge, True)
+        self.bottom_grip = CustomGrip(self.win, Qt.Edge.BottomEdge, True)
 
         # DROP SHADOW
         # está travando o webview
@@ -47,16 +55,16 @@ class UIDecoration():
 
         ## ----- Botões ------ ##
 
-        #Settings
+        # Settings
         self.win.settingsTopBtn.clicked.connect(self.win.openSettings)
 
         # MINIMIZE
         self.win.minimizeAppBtn.hide()
-        #self.win.minimizeAppBtn.clicked.connect(
+        # self.win.minimizeAppBtn.clicked.connect(
         #    lambda: self.win.showMinimized())
 
         # MAXIMIZE/RESTORE
-        #self.win.maximizeRestoreAppBtn.clicked.connect(self.maximize_restore)
+        # self.win.maximizeRestoreAppBtn.clicked.connect(self.maximize_restore)
         self.win.maximizeRestoreAppBtn.hide()
         # CLOSE APPLICATION
         self.win.closeAppBtn.clicked.connect(lambda: self.win.close())
@@ -68,3 +76,11 @@ class UIDecoration():
         else:
             self.win.appMargins.setContentsMargins(0, 0, 0, 0)
             self.win.showMaximized()
+
+    def resize_grips(self):
+        self.left_grip.setGeometry(0, 10, 10, self.win.height())
+        self.right_grip.setGeometry(
+            self.win.width() - 10, 10, 10, self.win.height())
+        self.top_grip.setGeometry(0, 0, self.win.width(), 10)
+        self.bottom_grip.setGeometry(
+            0, self.win.height() - 10, self.win.width(), 10)
