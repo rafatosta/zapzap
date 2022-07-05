@@ -389,11 +389,13 @@ QRadioButton::indicator
 ZapDecoration = """
 #app {	
 	background-color: #F0F2F5;
-	border: 3px solid #F0F2F5; 
+	border: 3px solid #E4E5E5; 
     border-radius: 10px;
 }
 #headbar{	
 	background-color: #F0F2F5;
+    border: 3px solid #F0F2F5; 
+    border-radius: 10px;
 }
 
 #rightButtons .QPushButton {	
