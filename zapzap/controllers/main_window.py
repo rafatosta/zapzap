@@ -25,7 +25,7 @@ class MainWindow(QMainWindow):
         uic.loadUi(zapzap.abs_path+'/view/main_window.ui', self)
         self.app = parent
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
-
+        self.scd = None
         # create menu bar
         MenuBar(self)
         self.tray = TrayIcon(self)
@@ -92,7 +92,8 @@ class MainWindow(QMainWindow):
         """
         Load the settings
         """
-        if self.settings.value("system/zap_decoration", True, bool):
+        self.headbar.hide()
+        if self.settings.value("system/zap_decoration", False, bool):
             self.scd = UIDecoration(self)
 
         # Theme App
@@ -193,18 +194,21 @@ class MainWindow(QMainWindow):
         self.isFullScreen = not self.isFullScreen
 
     def setHideMenuBar(self):
-        """
-        Hide/Show MenuBar
-        """
-        if self.isHideMenuBar:
+        if self.settings.value("system/zap_decoration", False, bool):
             self.menubar.setMaximumHeight(0)
         else:
-            # default size for qt designer
-            self.menubar.setMaximumHeight(16777215)
+            """
+            Hide/Show MenuBar
+            """
+            if self.isHideMenuBar:
+                self.menubar.setMaximumHeight(0)
+            else:
+                # default size for qt designer
+                self.menubar.setMaximumHeight(16777215)
 
-        self.settings.setValue("main/hideMenuBar", self.isHideMenuBar)
-        self.zapSettings.menubar.setChecked(self.isHideMenuBar)
-        self.isHideMenuBar = not self.isHideMenuBar
+            self.settings.setValue("main/hideMenuBar", self.isHideMenuBar)
+            self.zapSettings.menubar.setChecked(self.isHideMenuBar)
+            self.isHideMenuBar = not self.isHideMenuBar
 
     def retranslateUi(self):
         self.menuFile.setTitle(_("File"))

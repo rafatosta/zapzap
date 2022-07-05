@@ -9,12 +9,8 @@ class UIDecoration():
     def __init__(self, mainWindow) -> None:
         self.win = mainWindow
 
-        # impede que redimensione até descobrir como atualizar a página
-        """self.win.setMaximumWidth(1000)
-        self.win.setMaximumHeight(600)
-
-        self.win.setMinimumWidth(1000)
-        self.win.setMinimumHeight(600)"""
+        #show em headbar
+        self.win.headbar.show()
 
         self.uiDefinitions()
 
@@ -39,6 +35,12 @@ class UIDecoration():
         self.right_grip = CustomGrip(self.win, Qt.Edge.RightEdge, True)
         self.top_grip = CustomGrip(self.win, Qt.Edge.TopEdge, True)
         self.bottom_grip = CustomGrip(self.win, Qt.Edge.BottomEdge, True)
+
+        # ResizeEvent
+        def resizeEvent(event):
+            self.resize_grips()
+        self.win.resizeEvent = resizeEvent
+
 
         # DROP SHADOW
         # está travando o webview
