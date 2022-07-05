@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>993</width>
-    <height>606</height>
+    <width>892</width>
+    <height>422</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -39,7 +39,7 @@
     <widget class="QFrame" name="leftMenu">
      <property name="minimumSize">
       <size>
-       <width>250</width>
+       <width>0</width>
        <height>0</height>
       </size>
      </property>
@@ -243,7 +243,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>3</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -304,7 +304,7 @@
                </property>
                <property name="minimumSize">
                 <size>
-                 <width>620</width>
+                 <width>0</width>
                  <height>0</height>
                 </size>
                </property>
@@ -393,7 +393,7 @@
               <widget class="QFrame" name="frameMenuBar">
                <property name="minimumSize">
                 <size>
-                 <width>620</width>
+                 <width>0</width>
                  <height>0</height>
                 </size>
                </property>
@@ -523,7 +523,7 @@
             <widget class="QFrame" name="frameAppearance">
              <property name="minimumSize">
               <size>
-               <width>620</width>
+               <width>0</width>
                <height>0</height>
               </size>
              </property>
@@ -844,7 +844,7 @@
             <widget class="QFrame" name="frameTray">
              <property name="minimumSize">
               <size>
-               <width>620</width>
+               <width>0</width>
                <height>0</height>
               </size>
              </property>
@@ -1232,7 +1232,7 @@
              </property>
              <property name="minimumSize">
               <size>
-               <width>620</width>
+               <width>0</width>
                <height>0</height>
               </size>
              </property>
@@ -1735,7 +1735,7 @@
             <widget class="QFrame" name="frame">
              <property name="minimumSize">
               <size>
-               <width>620</width>
+               <width>0</width>
                <height>0</height>
               </size>
              </property>
@@ -1860,7 +1860,7 @@
                <widget class="QFrame" name="frame_about_btns">
                 <property name="minimumSize">
                  <size>
-                  <width>620</width>
+                  <width>0</width>
                   <height>0</height>
                  </size>
                 </property>
