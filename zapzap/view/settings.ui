@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>892</width>
-    <height>567</height>
+    <height>588</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -243,7 +243,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -1644,7 +1644,7 @@ Please report if anything strange happens.</string>
                       </font>
                      </property>
                      <property name="text">
-                      <string>Você é do Brasil??</string>
+                      <string>Você é do Brasil?</string>
                      </property>
                     </widget>
                    </item>
