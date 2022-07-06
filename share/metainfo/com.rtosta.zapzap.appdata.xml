@@ -28,14 +28,23 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/zapzap.png</image>
+      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/default.png</image>
     </screenshot>
     <screenshot>
-      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/zapzap_light.png</image>
+      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/light.png</image>
     </screenshot>
     <screenshot>
-      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/zapzap_dark.png</image>
+      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/dark.png</image>
     </screenshot>
+    <screenshot>
+      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/system.png</image>
+    </screenshot>
+    <screenshot>
+      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/appearance.png</image>
+    </screenshot>
+    <screenshot>
+      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/notifications.png</image>
+    </screenshot>  
   </screenshots>
   <url type="homepage">https://github.com/rafatosta/zapzap</url>
   <url type="bugtracker">https://github.com/rafatosta/zapzap/issues</url>
