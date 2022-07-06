@@ -1,7 +1,7 @@
 # ZapZap - Whatsapp Desktop for Linux 
 An unofficial WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.
 
-![Zapzap for whatsapp](https://github.com/rafatosta/zapzap/blob/main/share/screenshot/zapzap.png)
+![Zapzap for whatsapp](https://github.com/rafatosta/zapzap/blob/main/share/screenshot/default.png)
 
 ## Features
 - [x] Features come with Whatsapp web
