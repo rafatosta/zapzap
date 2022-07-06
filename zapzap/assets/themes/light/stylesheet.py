@@ -406,15 +406,25 @@ ZapDecoration = """
 	border: 0px solid #F0F2F5;
 }
 
-#closeAppBtn{
+#leftButtons .QPushButton {	
+	background-position: center;
+    background-repeat: no-repeat;
+	border: 0px solid #F0F2F5;
+}
+
+
+#closeAppBtn,
+#closeAppBtn_left{
 	background-image: url({path}/btn_close.svg);
 }
 
-#closeAppBtn:hover{
+#closeAppBtn:hover,
+#closeAppBtn_left:hover{
 	background-image: url({path}/btn_close_hover.svg);
 }
 
-#settingsTopBtn{
+#settingsTopBtn,
+#settingsTopBtn_left{
 	background-image: url({path}/btn_settings.svg);
 }
 """
