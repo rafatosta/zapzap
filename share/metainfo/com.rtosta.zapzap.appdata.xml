@@ -2,10 +2,10 @@
 <!-- Copyright 2019 Pete Alexandrou <pete@ozmartians.com> -->
 <component type="desktop">
   <id>com.rtosta.zapzap.desktop</id>
-  <name>ZapZap</name>
-  <summary>ZapZap - Whatsapp Desktop for linux</summary>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
+  <name>ZapZap</name>
+  <summary>ZapZap - Whatsapp Desktop for linux</summary>
   <content_rating type="oars-1.0" />
   <description>
     <p>
