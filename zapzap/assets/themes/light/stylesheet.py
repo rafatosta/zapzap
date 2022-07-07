@@ -108,7 +108,7 @@ QMenu::separator
 }
 """
 
-QWIDGET = """
+QWIDGETS = """
 QWidget{
     color: #31363b;
     /*background-color: #F0F2F5; deixa borda nos componentes*/
@@ -119,12 +119,19 @@ QWidget{
     font-family: Segoe UI
 }
 
+QStackedWidget {	
+	background-color: #F0F2F5;
+}
+
 #notify_desktop
 {
     color: #31363b;
     margin-bottom: 0.09em;
     font: 14pt; 
 }
+"""
+
+QCHECHBOX = """
 QCheckBox
 {
     color: #31363b;
@@ -194,79 +201,13 @@ QCheckBox::indicator:unchecked:disabled
 
 """
 
-SettingsMenu = """
-#leftMenu,
-#leftBar_2
-{	
-	background-color: #F0F2F5;
-}
-QStackedWidget {	
-	background-color: #F0F2F5;
-}
-/* MENUS */
-#menu .QPushButton {	
-	background-position: left center;
-    background-repeat: no-repeat;
-	border: 8px solid #F0F2F5;
-    border-radius: 5px;
-	text-align: left;
-	padding-left: 44px;
-    font: 12pt;
-}
-
-#menu .QPushButton:hover {
-	background-color: rgb(222, 221, 218);
-    border-color: rgb(222, 221, 218);
-}
-#menu .QPushButton:pressed {	
-	background-color: rgb(192, 191, 188);
-    border-color: rgb(192, 191, 188);
-}
-
-#btn_home{
-	background-image: url({path}/home.svg);
-}
-#btn_system{
-	background-image: url({path}/system.svg);
-}
-#btn_appearance{
-	background-image: url({path}/appearance.svg);
-}
-#btn_notifications{
-	background-image: url({path}/notifications.svg);
-}
-#btn_donations{
-	background-image: url({path}/donations.svg);
-}
-#btn_about{
-	background-image: url({path}/about.svg);
-}
-
-#btn_buy_paypal:hover,
-#btn_pix:hover{
-    color: #5C5EBD;
-    text-decoration: underline; 
-}
-
-#frameSettings,
-#frameAppearance,
-#frameTray,
-#frameNotifications,
-#frameNotificationsPreview,
-#frameMenuBar,
-#frame_experiments {
-    background-color: #F0F2F5;
-    border: 2px solid rgba(0, 0, 0,0.1);
-    border-radius: 5px;
-}
-
+QRADIONBUTTON = """
 QRadioButton
 {
     spacing: 0.23em;
     outline: none;
     color: #31363b;
     margin-bottom: 0.09em;
-    
 }
 QRadioButton:disabled
 {
@@ -388,6 +329,207 @@ QRadioButton::indicator
 }
 """
 
+QSCROLLAREA = """
+#scrollAreaWidgetContents_sys {
+	background-color: #F0F2F5;
+	background: #F0F2F5;
+}
+QScrollBar:horizontal
+    {
+        height: 15px;
+        margin: 3px 15px 3px 15px;
+        border: 1px transparent #2A2929;
+        border-radius: 4px;
+        background-color: yellow;    /* #2A2929; */
+    }
+
+    QScrollBar::handle:horizontal
+    {
+        background-color: blue;      /* #605F5F; */
+        min-width: 5px;
+        border-radius: 4px;
+    }
+
+    QScrollBar::add-line:horizontal
+    {
+        margin: 0px 3px 0px 3px;
+        border-image: url(:/qss_icons/rc/right_arrow_disabled.png);
+        width: 10px;
+        height: 10px;
+        subcontrol-position: right;
+        subcontrol-origin: margin;
+    }
+
+    QScrollBar::sub-line:horizontal
+    {
+        margin: 0px 3px 0px 3px;
+        border-image: url(:/qss_icons/rc/left_arrow_disabled.png);
+        height: 10px;
+        width: 10px;
+        subcontrol-position: left;
+        subcontrol-origin: margin;
+    }
+
+    QScrollBar::add-line:horizontal:hover,QScrollBar::add-line:horizontal:on
+    {
+        border-image: url(:/qss_icons/rc/right_arrow.png);
+        height: 10px;
+        width: 10px;
+        subcontrol-position: right;
+        subcontrol-origin: margin;
+    }
+
+
+    QScrollBar::sub-line:horizontal:hover, QScrollBar::sub-line:horizontal:on
+    {
+        border-image: url(:/qss_icons/rc/left_arrow.png);
+        height: 10px;
+        width: 10px;
+        subcontrol-position: left;
+        subcontrol-origin: margin;
+    }
+
+    QScrollBar::up-arrow:horizontal, QScrollBar::down-arrow:horizontal
+    {
+        background: none;
+    }
+
+
+    QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal
+    {
+        background: none;
+    }
+
+    QScrollBar:vertical
+    {
+        background-color: #2A2929;
+        width: 15px;
+        margin: 15px 3px 15px 3px;
+        border: 1px transparent #2A2929;
+        border-radius: 4px;
+    }
+
+    QScrollBar::handle:vertical
+    {
+        background-color: red;         /* #605F5F; */
+        min-height: 5px;
+        border-radius: 4px;
+    }
+
+    QScrollBar::sub-line:vertical
+    {
+        margin: 3px 0px 3px 0px;
+        border-image: url(:/qss_icons/rc/up_arrow_disabled.png);
+        height: 10px;
+        width: 10px;
+        subcontrol-position: top;
+        subcontrol-origin: margin;
+    }
+
+    QScrollBar::add-line:vertical
+    {
+        margin: 3px 0px 3px 0px;
+        border-image: url(:/qss_icons/rc/down_arrow_disabled.png);
+        height: 10px;
+        width: 10px;
+        subcontrol-position: bottom;
+        subcontrol-origin: margin;
+    }
+
+    QScrollBar::sub-line:vertical:hover,QScrollBar::sub-line:vertical:on
+    {
+        border-image: url(:/qss_icons/rc/up_arrow.png);
+        height: 10px;
+        width: 10px;
+        subcontrol-position: top;
+        subcontrol-origin: margin;
+    }
+
+    QScrollBar::add-line:vertical:hover, QScrollBar::add-line:vertical:on
+    {
+        border-image: url(:/qss_icons/rc/down_arrow.png);
+        height: 10px;
+        width: 10px;
+        subcontrol-position: bottom;
+        subcontrol-origin: margin;
+    }
+
+    QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical
+    {
+        background: none;
+    }
+
+    QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
+    {
+        background: none;
+    }
+"""
+
+SettingsMenu = """
+#leftMenu,
+#leftBar_2
+{	
+	background-color: #F0F2F5;
+}
+#menu .QPushButton {	
+	background-position: left center;
+    background-repeat: no-repeat;
+	border: 8px solid #F0F2F5;
+    border-radius: 5px;
+	text-align: left;
+	padding-left: 44px;
+    font: 12pt;
+}
+
+#menu .QPushButton:hover {
+	background-color: rgb(222, 221, 218);
+    border-color: rgb(222, 221, 218);
+}
+#menu .QPushButton:pressed {	
+	background-color: rgb(192, 191, 188);
+    border-color: rgb(192, 191, 188);
+}
+
+#btn_home{
+	background-image: url({path}/home.svg);
+}
+#btn_system{
+	background-image: url({path}/system.svg);
+}
+#btn_appearance{
+	background-image: url({path}/appearance.svg);
+}
+#btn_notifications{
+	background-image: url({path}/notifications.svg);
+}
+#btn_donations{
+	background-image: url({path}/donations.svg);
+}
+#btn_about{
+	background-image: url({path}/about.svg);
+}
+
+#btn_buy_paypal:hover,
+#btn_pix:hover{
+    color: #5C5EBD;
+    text-decoration: underline; 
+}
+"""
+
+FrameSetting = """
+#frameSettings,
+#frameAppearance,
+#frameTray,
+#frameNotifications,
+#frameNotificationsPreview,
+#frameMenuBar,
+#frame_experiments {
+    background-color: #F0F2F5;
+    border: 2px solid rgba(0, 0, 0,0.1);
+    border-radius: 5px;
+}
+"""
+
 ZapDecoration = """
 #app {	
 	background-color: #F0F2F5;
@@ -435,9 +577,13 @@ if not settings.value("system/zap_decoration", False, bool):
     ZapDecoration = ""
 
 STYLE_SHEET_LIGHT = f"""
-{QWIDGET}
 {QMENU_BAR}
 {QMENU}
+{QWIDGETS}
+{QCHECHBOX}
+{QRADIONBUTTON}
+{QSCROLLAREA}
 {SettingsMenu}
+{FrameSetting}
 {ZapDecoration}
 """.replace("{path}", path)
