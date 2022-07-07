@@ -48,7 +48,14 @@ class MainWindow(QMainWindow):
         self.timer.timeout.connect(self.recurring_timer)
         self.current_theme = -1
 
+        self.setZapDecoration()
+
         self.retranslateUi()
+
+    def setZapDecoration(self):
+        self.headbar.hide()
+        if self.settings.value("system/zap_decoration", False, bool):
+            self.scd = UIDecoration(self)
 
     def recurring_timer(self):
         """ Check the current system theme and apply it in the app """
@@ -56,7 +63,7 @@ class MainWindow(QMainWindow):
         if self.current_theme != theme:
             self.current_theme = theme
             self.setThemeApp(self.current_theme)
-    
+
     def setThemeApp(self, isNight_mode):
         """"Apply the theme in the APP
             isNight_mode: boll
@@ -92,12 +99,7 @@ class MainWindow(QMainWindow):
         """
         Load the settings
         """
-        self.headbar.hide()
-        if self.settings.value("system/zap_decoration", False, bool):
-            self.scd = UIDecoration(self)
-
         # Theme App
-        #self.setThemeApp(self.settings.value("system/night_mode", False, bool))
         theme_mode = self.settings.value("system/theme", 'auto', str)
         if theme_mode == 'auto':
             self.setThemeApp(get_system_theme())
@@ -163,12 +165,12 @@ class MainWindow(QMainWindow):
         """
         Opening the system tray web app.
         """
-        self.loadSettings()
         if self.app.activeWindow() != None:  # Se a janela estiver em foco será escondida
             self.hide()
         else:  # Caso não esteja, será mostrada
             self.show()
             self.app.activateWindow()
+            self.main_stacked.setCurrentIndex(0)
 
     def setDefault_size_page(self):
         """Reset user defined zoom (1.0 by default)"""
