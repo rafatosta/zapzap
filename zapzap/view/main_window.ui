@@ -140,6 +140,9 @@
                  <height>25</height>
                 </size>
                </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -159,6 +162,9 @@
                  <height>25</height>
                 </size>
                </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
                <property name="text">
                 <string>o</string>
                </property>
@@ -177,6 +183,9 @@
                  <width>25</width>
                  <height>25</height>
                 </size>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
                </property>
                <property name="text">
                 <string>_</string>
@@ -199,6 +208,9 @@
                </property>
                <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
                </property>
                <property name="text">
                 <string/>
@@ -301,8 +313,17 @@
                <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
                </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
                <property name="text">
                 <string/>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -320,8 +341,14 @@
                  <height>25</height>
                 </size>
                </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
                <property name="text">
                 <string>_</string>
+               </property>
+               <property name="default">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -338,6 +365,9 @@
                  <width>25</width>
                  <height>25</height>
                 </size>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
                </property>
                <property name="text">
                 <string>o</string>
@@ -357,6 +387,9 @@
                  <width>25</width>
                  <height>25</height>
                 </size>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
                </property>
                <property name="text">
                 <string/>
