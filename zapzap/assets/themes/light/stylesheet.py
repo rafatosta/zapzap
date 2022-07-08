@@ -330,7 +330,7 @@ QRadioButton::indicator
 """
 
 QSCROLLAREA = """
-#scrollAreaWidgetContents_sys {
+#scrollAreaWidgetContents{
 	background-color: #F0F2F5;
 	background: #F0F2F5;
 }
