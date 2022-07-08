@@ -122,13 +122,6 @@ QWidget{
 QStackedWidget {	
 	background-color: #F0F2F5;
 }
-
-#notify_desktop
-{
-    color: #31363b;
-    margin-bottom: 0.09em;
-    font: 14pt; 
-}
 """
 
 QCHECHBOX = """
@@ -136,8 +129,9 @@ QCheckBox
 {
     color: #31363b;
     margin-bottom: 0.09em;
-    font: 11pt; 
+    font: 11pt;
 }
+
 QCheckBox:disabled
 {
     color: #bab9b8;
@@ -330,7 +324,11 @@ QRadioButton::indicator
 """
 
 QSCROLLAREA = """
-#scrollAreaWidgetContents{
+#system_scrollArea,
+#appearance_scrollArea,
+#notification_scrollArea,
+#donations_scrollArea,
+#about_scrollArea {
 	background-color: #F0F2F5;
 	background: #F0F2F5;
 }

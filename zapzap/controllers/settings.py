@@ -334,6 +334,7 @@ class Settings(QWidget):
         self.title_donations.setText(_("Donations"))
         self.btn_buy_paypal.setText(_("Click to donate via PayPal"))
         self.btn_donations.setText(_("Donations"))
+        self.titileNotifications.setText(_('Notifications'))
 
         self.experiments_title.setText(_("Experiments"))
         self.check_zap_window.setText(_("Use zapzap window (Restart required)"))

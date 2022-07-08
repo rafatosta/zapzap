@@ -243,15 +243,30 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>4</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
        <property name="topMargin">
-        <number>6</number>
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
        </property>
        <item>
         <widget class="QScrollArea" name="scrollArea">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
          <property name="widgetResizable">
           <bool>true</bool>
          </property>
@@ -260,8 +275,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>733</width>
-            <height>529</height>
+            <width>763</width>
+            <height>531</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_16">
@@ -580,11 +595,26 @@ Please report if anything strange happens.</string>
      </widget>
      <widget class="QWidget" name="pageAppearance">
       <layout class="QVBoxLayout" name="verticalLayout_14">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
        <property name="topMargin">
-        <number>6</number>
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
        </property>
        <item>
         <widget class="QScrollArea" name="scrollArea_4">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
          <property name="widgetResizable">
           <bool>true</bool>
          </property>
@@ -593,8 +623,8 @@ Please report if anything strange happens.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>747</width>
-            <height>515</height>
+            <width>763</width>
+            <height>531</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1310,8 +1340,20 @@ Please report if anything strange happens.</string>
      </widget>
      <widget class="QWidget" name="pageNotifications">
       <layout class="QVBoxLayout" name="verticalLayout_18">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
        <property name="topMargin">
-        <number>6</number>
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
        </property>
        <item>
         <widget class="QScrollArea" name="scrollArea_2">
@@ -1321,6 +1363,9 @@ Please report if anything strange happens.</string>
            <height>0</height>
           </size>
          </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
          <property name="widgetResizable">
           <bool>true</bool>
          </property>
@@ -1329,8 +1374,8 @@ Please report if anything strange happens.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>747</width>
-            <height>515</height>
+            <width>763</width>
+            <height>531</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1363,6 +1408,22 @@ Please report if anything strange happens.</string>
                <property name="spacing">
                 <number>10</number>
                </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="titileNotifications">
+                 <property name="font">
+                  <font>
+                   <pointsize>14</pointsize>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Notifications</string>
+                 </property>
+                </widget>
+               </item>
                <item>
                 <layout class="QVBoxLayout" name="verticalLayout_13">
                  <property name="spacing">
@@ -1372,7 +1433,7 @@ Please report if anything strange happens.</string>
                   <widget class="QCheckBox" name="notify_desktop">
                    <property name="font">
                     <font>
-                     <pointsize>11</pointsize>
+                     <pointsize>12</pointsize>
                      <bold>false</bold>
                     </font>
                    </property>
@@ -1520,11 +1581,26 @@ Please report if anything strange happens.</string>
      </widget>
      <widget class="QWidget" name="pageDonations">
       <layout class="QVBoxLayout" name="verticalLayout_32">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
        <property name="topMargin">
-        <number>6</number>
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
        </property>
        <item>
         <widget class="QScrollArea" name="scrollArea_3">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
          <property name="widgetResizable">
           <bool>true</bool>
          </property>
@@ -1533,13 +1609,16 @@ Please report if anything strange happens.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>747</width>
-            <height>515</height>
+            <width>763</width>
+            <height>531</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_30">
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_20">
+             <property name="spacing">
+              <number>0</number>
+             </property>
              <item>
               <spacer name="horizontalSpacer_31">
                <property name="orientation">
@@ -1557,9 +1636,12 @@ Please report if anything strange happens.</string>
               </spacer>
              </item>
              <item>
-              <layout class="QVBoxLayout" name="verticalLayout_27">
+              <layout class="QVBoxLayout" name="container_donations">
+               <property name="spacing">
+                <number>10</number>
+               </property>
                <property name="topMargin">
-                <number>5</number>
+                <number>0</number>
                </property>
                <item>
                 <widget class="QLabel" name="title_donations">
@@ -1882,11 +1964,26 @@ Please report if anything strange happens.</string>
      </widget>
      <widget class="QWidget" name="pageAbout">
       <layout class="QVBoxLayout" name="verticalLayout_25">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
        <property name="topMargin">
-        <number>6</number>
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
        </property>
        <item>
         <widget class="QScrollArea" name="scrollArea_5">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
          <property name="widgetResizable">
           <bool>true</bool>
          </property>
@@ -1895,8 +1992,8 @@ Please report if anything strange happens.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>747</width>
-            <height>515</height>
+            <width>665</width>
+            <height>274</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">
