@@ -7,15 +7,13 @@ BLAK_GRAY = '#585A5D'
 GRAY = '#bab9b8'
 DARK = '#202C33'
 BLUE = '#34B7F1'
+WRITE = '#FFFFFF'
 
 
 class ZPallete():
     window = ''  # Uma cor de fundo geral.
     windowText = ''  # Uma cor geral para texto.
     disabled = ''  # Itens desabilitados
-    button = ''  # A cor geral de fundo do botão.
-    buttonText = ''  # A foreground color used with the color.
-    buttonHover = ''  # A hover color used with the color.
     highlight = ''  # Uma cor para indicar um item selecionado ou o item atual.
     # Uma cor de texto que contrasta com o item selecionado.
     highlightedText = ''

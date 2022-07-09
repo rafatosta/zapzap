@@ -305,6 +305,160 @@ def buildTheme(p) -> str:
         }
     """
 
+    QSCROLLAREA = """
+        #system_scrollArea,
+        #appearance_scrollArea,
+        #notification_scrollArea,
+        #donations_scrollArea,
+        #about_scrollArea {
+            background-color: {window};
+            background: {window};
+        }
+
+        QScrollBar:horizontal
+        {
+            background-color:{window};
+            height: 0.65em;
+            margin: 0.13em 0.65em 0.13em 0.65em;
+            border: 0.04em transparent {window};
+            border-radius: 0.17em;
+        }
+
+        QScrollBar:horizontal:hover,
+        QScrollBar:vertical:hover
+        {
+            background-color: {highlightedText};
+        }
+
+        QScrollBar::handle:horizontal
+        {
+            background-color: {highlight};
+            border: 0.04em solid {highlight};
+            min-width: 0.5em;
+            border-radius: 0.17em;
+        }
+
+        QScrollBar::handle:vertical
+        {
+            background-color: {highlight};
+            border: 0.04em solid {highlight};
+            min-height: 0.5em;
+            border-radius: 0.17em;
+        }
+
+        QScrollBar::handle:horizontal:hover,
+        QScrollBar::handle:vertical:hover
+        {
+            background-color:{highlight};
+            border: 0.04em solid {highlight};
+        }
+        
+
+        QScrollBar::add-line:horizontal
+        {
+            margin: 0em 0.13em 0em 0.13em;
+            border-image: url({path}/transparent.svg);
+            width: 0.41em;
+            height: 0.41em;
+            subcontrol-position: right;
+            subcontrol-origin: margin;
+        }
+
+        QScrollBar::sub-line:horizontal
+        {
+            margin: 0em 0.13em 0em 0.13em;
+            border-image: url({path}/transparent.svg);
+            width: 0.41em;
+            height: 0.41em;
+            subcontrol-position: left;
+            subcontrol-origin: margin;
+        }
+
+        QScrollBar::add-line:horizontal:hover,
+        QScrollBar::add-line:horizontal:on
+        {
+            border-image: url({path}/transparent.svg);
+            width: 0.41em;
+            height: 0.41em;
+            subcontrol-position: right;
+            subcontrol-origin: margin;
+        }
+
+        QScrollBar::sub-line:horizontal:hover,
+        QScrollBar::sub-line:horizontal:on
+        {
+            border-image: url({path}/transparent.svg);
+            width: 0.41em;
+            height: 0.41em;
+            subcontrol-position: left;
+            subcontrol-origin: margin;
+        }
+
+        QScrollBar::up-arrow:horizontal,
+        QScrollBar::down-arrow:horizontal,
+        QScrollBar::add-page:horizontal,
+        QScrollBar::sub-page:horizontal,        
+        QScrollBar::up-arrow:vertical,
+        QScrollBar::down-arrow:vertical,
+        QScrollBar::add-page:vertical,
+        QScrollBar::sub-page:vertical
+        {
+            background: none;
+        }
+
+        QScrollBar:vertical
+        {
+            background-color: {window};
+            width: 0.65em;
+            margin: 0.65em 0.13em 0.65em 0.13em;
+            border: 0.04em transparent {window};
+            border-radius: 0.17em;
+        }
+
+        QScrollBar::sub-line:vertical
+        {
+            margin: 0.13em 0em 0.13em 0em;
+            border-image: url({path}/transparent.svg);
+            height: 0.41em;
+            width: 0.41em;
+            subcontrol-position: top;
+            subcontrol-origin: margin;
+        }
+
+        QScrollBar::add-line:vertical
+        {
+            margin: 0.13em 0em 0.13em 0em;
+            border-image: url({path}/transparent.svg);
+            height: 0.41em;
+            width: 0.41em;
+            subcontrol-position: bottom;
+            subcontrol-origin: margin;
+        }
+
+        QScrollBar::sub-line:vertical:hover,
+        QScrollBar::sub-line:vertical:on
+        {
+            border-image: url({path}/transparent.svg);
+            height: 0.41em;
+            width: 0.41em;
+            subcontrol-position: top;
+            subcontrol-origin: margin;
+        }
+
+        QScrollBar::add-line:vertical:hover,
+        QScrollBar::add-line:vertical:on
+        {
+            border-image: url({path}/transparent.svg);
+            height: 0.41em;
+            width: 0.41em;
+            subcontrol-position: bottom;
+            subcontrol-origin: margin;
+        }
+
+        
+    """
+
+
 
     STYLE_SHEET = f"""
         {QWIDGETS}
@@ -312,6 +466,7 @@ def buildTheme(p) -> str:
         {QMENU}
         {QCHECHBOX}
         {QRADIONBUTTON}
+        {QSCROLLAREA}
         """
 
     for chave, valor in p.getPallete().items():
