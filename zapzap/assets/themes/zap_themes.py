@@ -12,7 +12,7 @@ BLUE = '#34B7F1'
 class ZPallete():
     window = ''  # Uma cor de fundo geral.
     windowText = ''  # Uma cor geral para texto.
-    disabled = '' # Itens desabilitados
+    disabled = ''  # Itens desabilitados
     button = ''  # A cor geral de fundo do botão.
     buttonText = ''  # A foreground color used with the color.
     buttonHover = ''  # A hover color used with the color.
@@ -28,8 +28,10 @@ class ZPallete():
     def getPallete(self):
         return {'window': self.window,
                 'windowText': self.windowText,
+                'disabled': self.disabled,
                 'highlight': self.highlight,
-                'highlightedText': self.highlightedText}
+                'highlightedText': self.highlightedText,
+                'path': self.path}
 
 
 def getThemeLight() -> str:
@@ -40,7 +42,7 @@ def getThemeLight() -> str:
     p.highlight = LIGHT_GRAY
     p.highlightedText = DARK
     p.path = zapzap.abs_path + '/assets/themes/light'
-
+    print(p.path)
     return buildTheme(p)
 
 
