@@ -332,135 +332,166 @@ QSCROLLAREA = """
 	background-color: #F0F2F5;
 	background: #F0F2F5;
 }
+
 QScrollBar:horizontal
-    {
-        height: 15px;
-        margin: 3px 15px 3px 15px;
-        border: 1px transparent #2A2929;
-        border-radius: 4px;
-        background-color: yellow;    /* #2A2929; */
-    }
+{
+    background-color:#F0F2F5;
+    height: 0.65em;
+    margin: 0.13em 0.65em 0.13em 0.65em;
+    border: 0.04em transparent #F0F2F5;
+    border-radius: 0.17em;
+}
 
-    QScrollBar::handle:horizontal
-    {
-        background-color: blue;      /* #605F5F; */
-        min-width: 5px;
-        border-radius: 4px;
-    }
+QScrollBar:horizontal:hover
+{
+    background-color: #c7c7c6;
+}
 
-    QScrollBar::add-line:horizontal
-    {
-        margin: 0px 3px 0px 3px;
-        border-image: url(:/qss_icons/rc/right_arrow_disabled.png);
-        width: 10px;
-        height: 10px;
-        subcontrol-position: right;
-        subcontrol-origin: margin;
-    }
+QScrollBar::handle:horizontal
+{
+    background-color: #00A884;
+    border: 0.04em solid #00A884;
+    min-width: 0.5em;
+    border-radius: 0.17em;
+}
 
-    QScrollBar::sub-line:horizontal
-    {
-        margin: 0px 3px 0px 3px;
-        border-image: url(:/qss_icons/rc/left_arrow_disabled.png);
-        height: 10px;
-        width: 10px;
-        subcontrol-position: left;
-        subcontrol-origin: margin;
-    }
+QScrollBar::handle:horizontal:hover
+{
+    background-color:#00A884;
+    border: 0.04em solid #00A884;
+}
 
-    QScrollBar::add-line:horizontal:hover,QScrollBar::add-line:horizontal:on
-    {
-        border-image: url(:/qss_icons/rc/right_arrow.png);
-        height: 10px;
-        width: 10px;
-        subcontrol-position: right;
-        subcontrol-origin: margin;
-    }
+QScrollBar::add-line:horizontal
+{
+    margin: 0em 0.13em 0em 0.13em;
+    border-image: url({path}/transparent.svg);
+    width: 0.41em;
+    height: 0.41em;
+    subcontrol-position: right;
+    subcontrol-origin: margin;
+}
 
+QScrollBar::sub-line:horizontal
+{
+    margin: 0em 0.13em 0em 0.13em;
+    border-image: url({path}/transparent.svg);
+    width: 0.41em;
+    height: 0.41em;
+    subcontrol-position: left;
+    subcontrol-origin: margin;
+}
 
-    QScrollBar::sub-line:horizontal:hover, QScrollBar::sub-line:horizontal:on
-    {
-        border-image: url(:/qss_icons/rc/left_arrow.png);
-        height: 10px;
-        width: 10px;
-        subcontrol-position: left;
-        subcontrol-origin: margin;
-    }
+QScrollBar::add-line:horizontal:hover,
+QScrollBar::add-line:horizontal:on
+{
+    border-image: url({path}/transparent.svg);
+    width: 0.41em;
+    height: 0.41em;
+    subcontrol-position: right;
+    subcontrol-origin: margin;
+}
 
-    QScrollBar::up-arrow:horizontal, QScrollBar::down-arrow:horizontal
-    {
-        background: none;
-    }
+QScrollBar::sub-line:horizontal:hover,
+QScrollBar::sub-line:horizontal:on
+{
+    border-image: url({path}/transparent.svg);
+    width: 0.41em;
+    height: 0.41em;
+    subcontrol-position: left;
+    subcontrol-origin: margin;
+}
 
+QScrollBar::up-arrow:horizontal,
+QScrollBar::down-arrow:horizontal
+{
+    background: none;
+}
 
-    QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal
-    {
-        background: none;
-    }
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal
+{
+    background: none;
+}
 
-    QScrollBar:vertical
-    {
-        background-color: #2A2929;
-        width: 15px;
-        margin: 15px 3px 15px 3px;
-        border: 1px transparent #2A2929;
-        border-radius: 4px;
-    }
+QScrollBar:vertical
+{
+    background-color: #F0F2F5;
+    width: 0.65em;
+    margin: 0.65em 0.13em 0.65em 0.13em;
+    border: 0.04em transparent #F0F2F5;
+    border-radius: 0.17em;
+}
 
-    QScrollBar::handle:vertical
-    {
-        background-color: red;         /* #605F5F; */
-        min-height: 5px;
-        border-radius: 4px;
-    }
+QScrollBar:vertical:hover
+{
+    background-color: #c7c7c6;
+}
 
-    QScrollBar::sub-line:vertical
-    {
-        margin: 3px 0px 3px 0px;
-        border-image: url(:/qss_icons/rc/up_arrow_disabled.png);
-        height: 10px;
-        width: 10px;
-        subcontrol-position: top;
-        subcontrol-origin: margin;
-    }
+QScrollBar::handle:vertical
+{
+    background-color: #00A884;
+    border: 0.04em solid #00A884;
+    min-height: 0.5em;
+    border-radius: 0.17em;
+}
 
-    QScrollBar::add-line:vertical
-    {
-        margin: 3px 0px 3px 0px;
-        border-image: url(:/qss_icons/rc/down_arrow_disabled.png);
-        height: 10px;
-        width: 10px;
-        subcontrol-position: bottom;
-        subcontrol-origin: margin;
-    }
+QScrollBar::handle:vertical:hover
+{
+    background-color: #00A884;
+    border: 0.04em solid #00A884;
+}
 
-    QScrollBar::sub-line:vertical:hover,QScrollBar::sub-line:vertical:on
-    {
-        border-image: url(:/qss_icons/rc/up_arrow.png);
-        height: 10px;
-        width: 10px;
-        subcontrol-position: top;
-        subcontrol-origin: margin;
-    }
+QScrollBar::sub-line:vertical
+{
+    margin: 0.13em 0em 0.13em 0em;
+    border-image: url({path}/transparent.svg);
+    height: 0.41em;
+    width: 0.41em;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
 
-    QScrollBar::add-line:vertical:hover, QScrollBar::add-line:vertical:on
-    {
-        border-image: url(:/qss_icons/rc/down_arrow.png);
-        height: 10px;
-        width: 10px;
-        subcontrol-position: bottom;
-        subcontrol-origin: margin;
-    }
+QScrollBar::add-line:vertical
+{
+    margin: 0.13em 0em 0.13em 0em;
+    border-image: url({path}/transparent.svg);
+    height: 0.41em;
+    width: 0.41em;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
 
-    QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical
-    {
-        background: none;
-    }
+QScrollBar::sub-line:vertical:hover,
+QScrollBar::sub-line:vertical:on
+{
+    border-image: url({path}/transparent.svg);
+    height: 0.41em;
+    width: 0.41em;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
 
-    QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
-    {
-        background: none;
-    }
+QScrollBar::add-line:vertical:hover,
+QScrollBar::add-line:vertical:on
+{
+    border-image: url({path}/transparent.svg);
+    height: 0.41em;
+    width: 0.41em;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::up-arrow:vertical,
+QScrollBar::down-arrow:vertical
+{
+    background: none;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical
+{
+    background: none;
+}
 """
 
 SettingsMenu = """
