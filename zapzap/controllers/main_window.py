@@ -2,8 +2,7 @@ from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon
 from PyQt6.QtCore import QSettings, QByteArray, QTimer
 from PyQt6 import uic
 import zapzap
-from zapzap.assets.themes.dark.stylesheet import STYLE_SHEET_DARK
-from zapzap.assets.themes.light.stylesheet import STYLE_SHEET_LIGHT
+from zapzap.assets.themes.zap_themes import getThemeDark, getThemeLight
 from zapzap.controllers.main_window_components.menu_bar import MenuBar
 from zapzap.controllers.main_window_components.tray_icon import TrayIcon
 from zapzap.controllers.main_window_decoration.ui_decoration import UIDecoration
@@ -69,9 +68,9 @@ class MainWindow(QMainWindow):
             isNight_mode: boll
         """
         if isNight_mode:
-            self.app.setStyleSheet(STYLE_SHEET_DARK)
+            self.app.setStyleSheet(getThemeDark())
         else:
-            self.app.setStyleSheet(STYLE_SHEET_LIGHT)
+            self.app.setStyleSheet(getThemeLight())
 
         # Apply equivalent theme on whatsapp page
         self.browser.whats.setTheme(isNight_mode)
