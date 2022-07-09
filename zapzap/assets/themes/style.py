@@ -15,6 +15,8 @@ def buildTheme(p) -> str:
 
         QStackedWidget {	
             background-color: {window};
+            border: 3px solid {window}; 
+            border-radius: 10px;
         }
     """
 
@@ -472,6 +474,50 @@ def buildTheme(p) -> str:
         }
     """
 
+    settings = QSettings(zapzap.__appname__, zapzap.__appname__)
+    if not settings.value("system/zap_decoration", False, bool):
+        ZapDecoration = ""
+    else:
+        ZapDecoration = """
+        #app {	
+            background-color: {window};
+            border: 1px solid rgba(0, 0, 0,0.2); 
+            border-radius: 10px;
+        }
+        #headbar{	
+            background-color: {window};
+            border: 3px solid {window}; 
+            border-radius: 10px;
+        }
+
+        #rightButtons .QPushButton {	
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 0px solid {window};
+        }
+
+        #leftButtons .QPushButton {	
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 0px solid {window};
+        }
+
+        #closeAppBtn,
+        #closeAppBtn_left{
+            background-image: url({path}/btn_close.svg);
+        }
+
+        #closeAppBtn:hover,
+        #closeAppBtn_left:hover{
+            background-image: url({path}/btn_close_hover.svg);
+        }
+
+        #settingsTopBtn,
+        #settingsTopBtn_left{
+            background-image: url({path}/btn_settings.svg);
+        }
+    """
+
     STYLE_SHEET = f"""
         {QWIDGETS}
         {QMENU_BAR}
@@ -480,6 +526,7 @@ def buildTheme(p) -> str:
         {QRADIONBUTTON}
         {QSCROLLAREA}
         {FrameSettingBorder}
+        {ZapDecoration}
         """
 
     for chave, valor in p.getPallete().items():
