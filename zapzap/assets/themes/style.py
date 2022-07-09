@@ -327,7 +327,7 @@ def buildTheme(p) -> str:
         QScrollBar:horizontal:hover,
         QScrollBar:vertical:hover
         {
-            background-color: {highlightedText};
+
         }
 
         QScrollBar::handle:horizontal
@@ -458,7 +458,19 @@ def buildTheme(p) -> str:
         
     """
 
-
+    FrameSettingBorder = """
+        #frameSettings,
+        #frameAppearance,
+        #frameTray,
+        #frameNotifications,
+        #frameNotificationsPreview,
+        #frameMenuBar,
+        #frame_experiments {
+            background-color: {window};
+            border: 1px solid rgba(0, 0, 0,0.2);
+            border-radius: 5px;
+        }
+    """
 
     STYLE_SHEET = f"""
         {QWIDGETS}
@@ -467,6 +479,7 @@ def buildTheme(p) -> str:
         {QCHECHBOX}
         {QRADIONBUTTON}
         {QSCROLLAREA}
+        {FrameSettingBorder}
         """
 
     for chave, valor in p.getPallete().items():
