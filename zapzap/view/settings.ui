@@ -39,7 +39,7 @@
     <widget class="QFrame" name="leftMenu">
      <property name="minimumSize">
       <size>
-       <width>0</width>
+       <width>250</width>
        <height>0</height>
       </size>
      </property>
@@ -63,10 +63,10 @@
        <number>0</number>
       </property>
       <property name="leftMargin">
-       <number>0</number>
+       <number>25</number>
       </property>
       <property name="topMargin">
-       <number>15</number>
+       <number>3</number>
       </property>
       <property name="rightMargin">
        <number>0</number>
@@ -76,6 +76,18 @@
       </property>
       <item>
        <widget class="QFrame" name="menu">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="frameShape">
          <enum>QFrame::NoFrame</enum>
         </property>
@@ -84,13 +96,13 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <property name="leftMargin">
-          <number>25</number>
+          <number>0</number>
          </property>
          <property name="topMargin">
           <number>0</number>
          </property>
          <property name="rightMargin">
-          <number>25</number>
+          <number>0</number>
          </property>
          <property name="bottomMargin">
           <number>0</number>
@@ -102,6 +114,9 @@
              <width>0</width>
              <height>45</height>
             </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="text">
             <string>ZapZap</string>
@@ -191,6 +206,9 @@
              <height>45</height>
             </size>
            </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
            <property name="text">
             <string>Donations</string>
            </property>
@@ -275,8 +293,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>763</width>
-            <height>531</height>
+            <width>638</width>
+            <height>529</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_16">
@@ -296,7 +314,7 @@
                   <enum>Qt::Horizontal</enum>
                  </property>
                  <property name="sizeType">
-                  <enum>QSizePolicy::Fixed</enum>
+                  <enum>QSizePolicy::Expanding</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -346,7 +364,7 @@
                    </property>
                    <property name="minimumSize">
                     <size>
-                     <width>0</width>
+                     <width>620</width>
                      <height>0</height>
                     </size>
                    </property>
@@ -560,7 +578,7 @@ Please report if anything strange happens.</string>
                   <enum>Qt::Horizontal</enum>
                  </property>
                  <property name="sizeType">
-                  <enum>QSizePolicy::Fixed</enum>
+                  <enum>QSizePolicy::Expanding</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -623,8 +641,8 @@ Please report if anything strange happens.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>763</width>
-            <height>531</height>
+            <width>636</width>
+            <height>370</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -639,7 +657,7 @@ Please report if anything strange happens.</string>
                 <enum>Qt::Horizontal</enum>
                </property>
                <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
+                <enum>QSizePolicy::Expanding</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -680,7 +698,7 @@ Please report if anything strange happens.</string>
                 <widget class="QFrame" name="frameAppearance">
                  <property name="minimumSize">
                   <size>
-                   <width>0</width>
+                   <width>620</width>
                    <height>0</height>
                   </size>
                  </property>
@@ -1001,7 +1019,7 @@ Please report if anything strange happens.</string>
                 <widget class="QFrame" name="frameTray">
                  <property name="minimumSize">
                   <size>
-                   <width>0</width>
+                   <width>620</width>
                    <height>0</height>
                   </size>
                  </property>
@@ -1307,7 +1325,7 @@ Please report if anything strange happens.</string>
                 <enum>Qt::Horizontal</enum>
                </property>
                <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
+                <enum>QSizePolicy::Expanding</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -1393,7 +1411,7 @@ Please report if anything strange happens.</string>
                 <enum>Qt::Horizontal</enum>
                </property>
                <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
+                <enum>QSizePolicy::Expanding</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -1457,7 +1475,7 @@ Please report if anything strange happens.</string>
                  </property>
                  <property name="minimumSize">
                   <size>
-                   <width>0</width>
+                   <width>620</width>
                    <height>0</height>
                   </size>
                  </property>
@@ -1548,7 +1566,7 @@ Please report if anything strange happens.</string>
                 <enum>Qt::Horizontal</enum>
                </property>
                <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
+                <enum>QSizePolicy::Expanding</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -1625,7 +1643,7 @@ Please report if anything strange happens.</string>
                 <enum>Qt::Horizontal</enum>
                </property>
                <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
+                <enum>QSizePolicy::Expanding</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -1684,7 +1702,7 @@ Please report if anything strange happens.</string>
                    <number>0</number>
                   </property>
                   <property name="topMargin">
-                   <number>10</number>
+                   <number>0</number>
                   </property>
                   <property name="rightMargin">
                    <number>0</number>
@@ -1696,7 +1714,7 @@ Please report if anything strange happens.</string>
                    <widget class="QFrame" name="frame_2">
                     <property name="minimumSize">
                      <size>
-                      <width>0</width>
+                      <width>620</width>
                       <height>0</height>
                      </size>
                     </property>
@@ -1715,6 +1733,18 @@ Please report if anything strange happens.</string>
                     <layout class="QVBoxLayout" name="verticalLayout_26">
                      <property name="spacing">
                       <number>10</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
                      </property>
                      <item>
                       <layout class="QHBoxLayout" name="horizontalLayout_26">
@@ -1781,7 +1811,7 @@ Please report if anything strange happens.</string>
                    <widget class="QFrame" name="frame_4">
                     <property name="minimumSize">
                      <size>
-                      <width>0</width>
+                      <width>620</width>
                       <height>0</height>
                      </size>
                     </property>
@@ -1800,6 +1830,18 @@ Please report if anything strange happens.</string>
                     <layout class="QVBoxLayout" name="verticalLayout_31">
                      <property name="spacing">
                       <number>10</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
                      </property>
                      <item>
                       <layout class="QHBoxLayout" name="horizontalLayout_24">
@@ -1931,7 +1973,7 @@ Please report if anything strange happens.</string>
                 <enum>Qt::Horizontal</enum>
                </property>
                <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
+                <enum>QSizePolicy::Expanding</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -1992,7 +2034,7 @@ Please report if anything strange happens.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>665</width>
+            <width>636</width>
             <height>274</height>
            </rect>
           </property>
@@ -2008,7 +2050,7 @@ Please report if anything strange happens.</string>
                 <enum>Qt::Horizontal</enum>
                </property>
                <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
+                <enum>QSizePolicy::Expanding</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -2043,7 +2085,7 @@ Please report if anything strange happens.</string>
                 <widget class="QFrame" name="frame">
                  <property name="minimumSize">
                   <size>
-                   <width>0</width>
+                   <width>620</width>
                    <height>0</height>
                   </size>
                  </property>
@@ -2168,7 +2210,7 @@ Please report if anything strange happens.</string>
                    <widget class="QFrame" name="frame_about_btns">
                     <property name="minimumSize">
                      <size>
-                      <width>0</width>
+                      <width>620</width>
                       <height>0</height>
                      </size>
                     </property>
@@ -2256,7 +2298,7 @@ Please report if anything strange happens.</string>
                 <enum>Qt::Horizontal</enum>
                </property>
                <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
+                <enum>QSizePolicy::Expanding</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
