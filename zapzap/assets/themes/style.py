@@ -22,7 +22,7 @@ def buildTheme(p) -> str:
     QMenuBar
     {
         background-color: {window};
-        color: #31363b;
+        color: {windowText};
     }
 
     QMenuBar::item
@@ -37,13 +37,13 @@ def buildTheme(p) -> str:
 
     QMenuBar::item:disabled
     {
-        color: #bab9b8;
+        color: {disabled};
     }
 
     QMenuBar::item:pressed
     {
-        background-color: rgb(222, 221, 218);
-        color: #31363b;
+        background-color: {highlight};
+        color: {highlightedText};
         margin-bottom: -0.09em;
         padding-bottom: 0.09em;
     }
