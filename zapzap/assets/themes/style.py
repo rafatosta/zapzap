@@ -15,8 +15,6 @@ def buildTheme(p) -> str:
 
         QStackedWidget {	
             background-color: {window};
-            border: 3px solid {window}; 
-            border-radius: 10px;
         }
     """
 
@@ -479,6 +477,11 @@ def buildTheme(p) -> str:
         ZapDecoration = ""
     else:
         ZapDecoration = """
+        QStackedWidget {	
+            background-color: {window};
+            border: 3px solid {window}; 
+            border-radius: 10px;
+        }
         #app {	
             background-color: {window};
             border: 1px solid rgba(0, 0, 0,0.2); 
