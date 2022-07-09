@@ -29,6 +29,7 @@ class ZPallete():
                 'disabled': self.disabled,
                 'highlight': self.highlight,
                 'highlightedText': self.highlightedText,
+                'link':self.link,
                 'path': self.path}
 
 
@@ -39,8 +40,8 @@ def getThemeLight() -> str:
     p.disabled = GRAY
     p.highlight = LIGHT_GRAY
     p.highlightedText = DARK
+    p.link = BLUE
     p.path = zapzap.abs_path + '/assets/themes/light'
-    print(p.path)
     return buildTheme(p)
 
 
@@ -51,6 +52,7 @@ def getThemeDark() -> str:
     p.disabled = GRAY
     p.highlight = BLAK_GRAY
     p.highlightedText = LIGHT
+    p.link = BLUE
     p.path = zapzap.abs_path + '/assets/themes/dark'
 
     return buildTheme(p)

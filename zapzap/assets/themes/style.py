@@ -458,6 +458,56 @@ def buildTheme(p) -> str:
         
     """
 
+    SettingsMenu = """
+        #leftMenu,
+        #leftBar_2
+        {	
+            background-color: {window};
+        }
+        #menu .QPushButton {	
+            background-position: left center;
+            background-repeat: no-repeat;
+            border: 8px solid {window};
+            border-radius: 5px;
+            text-align: left;
+            padding-left: 44px;
+            font: 12pt;
+        }
+
+        #menu .QPushButton:hover,
+        #menu .QPushButton:pressed  {
+            background-color: {highlight};
+            border-color: {highlight};
+        }
+        
+        #btn_home{
+            background-image: url({path}/home.svg);
+        }
+        #btn_system{
+            background-image: url({path}/system.svg);
+        }
+        #btn_appearance{
+            background-image: url({path}/appearance.svg);
+        }
+        #btn_notifications{
+            background-image: url({path}/notifications.svg);
+        }
+        #btn_donations{
+            background-image: url({path}/donations.svg);
+        }
+        #btn_about{
+            background-image: url({path}/about.svg);
+        }
+
+        #btn_buy_paypal:hover,
+        #btn_pix:hover{
+            color: {link};
+            text-decoration: underline; 
+        }
+        """
+
+
+
     FrameSettingBorder = """
         #frameSettings,
         #frameAppearance,
@@ -528,6 +578,7 @@ def buildTheme(p) -> str:
         {QCHECHBOX}
         {QRADIONBUTTON}
         {QSCROLLAREA}
+        {SettingsMenu}
         {FrameSettingBorder}
         {ZapDecoration}
         """
