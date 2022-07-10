@@ -505,8 +505,6 @@ def buildTheme(p) -> str:
         }
         """
 
-
-
     FrameSettingBorder = """
         #frameSettings,
         #frameAppearance,
@@ -583,8 +581,6 @@ def buildTheme(p) -> str:
         """
 
     for chave, valor in p.getPallete().items():
-        #print(f'{chave} : {valor}')
         STYLE_SHEET = STYLE_SHEET.replace("{"+chave+"}", valor)
-    # print(STYLE_SHEET)
 
     return STYLE_SHEET
