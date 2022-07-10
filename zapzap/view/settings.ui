@@ -261,7 +261,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -385,7 +385,7 @@
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_4">
                     <property name="spacing">
-                     <number>20</number>
+                     <number>15</number>
                     </property>
                     <property name="leftMargin">
                      <number>15</number>
@@ -471,7 +471,7 @@
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_19">
                     <property name="spacing">
-                     <number>20</number>
+                     <number>15</number>
                     </property>
                     <property name="leftMargin">
                      <number>15</number>
@@ -533,7 +533,7 @@
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_29">
                     <property name="spacing">
-                     <number>20</number>
+                     <number>15</number>
                     </property>
                     <property name="leftMargin">
                      <number>15</number>
@@ -703,7 +703,7 @@
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_10">
                   <property name="spacing">
-                   <number>20</number>
+                   <number>15</number>
                   </property>
                   <property name="leftMargin">
                    <number>15</number>
@@ -1024,7 +1024,7 @@
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_21">
                   <property name="spacing">
-                   <number>20</number>
+                   <number>15</number>
                   </property>
                   <property name="leftMargin">
                    <number>15</number>
@@ -1480,7 +1480,7 @@
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_16">
                   <property name="spacing">
-                   <number>20</number>
+                   <number>15</number>
                   </property>
                   <property name="leftMargin">
                    <number>15</number>
