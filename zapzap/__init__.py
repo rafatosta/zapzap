@@ -34,8 +34,8 @@ def getIconTray(theme = 'default', mode='normal'):
 
 # Segoe Font
 segoe_font = {
-    "regular": abs_path + '/assets/themes/segoe-ui/Segoe UI.ttf',
-    "bold": abs_path + '/assets/themes/segoe-ui/Segoe UI Bold.ttf',
-    "bold-italic": abs_path + '/assets/themes/segoe-ui/Segoe UI Bold Italic.ttf',
-    "italic": abs_path + '/assets/themes/segoe-ui/Segoe UI Italic.ttf',
+    "regular": abs_path + '/assets/segoe-ui/Segoe UI.ttf',
+    "bold": abs_path + '/assets/segoe-ui/Segoe UI Bold.ttf',
+    "bold-italic": abs_path + '/assets/segoe-ui/Segoe UI Bold Italic.ttf',
+    "italic": abs_path + '/assets/segoe-ui/Segoe UI Italic.ttf',
 }
