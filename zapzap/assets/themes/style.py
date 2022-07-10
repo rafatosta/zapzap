@@ -324,10 +324,9 @@ def buildTheme(p) -> str:
             border-radius: 0.17em;
         }
 
-        QScrollBar:horizontal:hover,
+        QScrollBar::handle:horizontal:hover,
         QScrollBar:vertical:hover
         {
-
         }
 
         QScrollBar::handle:horizontal
@@ -349,8 +348,8 @@ def buildTheme(p) -> str:
         QScrollBar::handle:horizontal:hover,
         QScrollBar::handle:vertical:hover
         {
-            background-color:{highlight};
-            border: 0.04em solid {highlight};
+            background-color:#00BD95;
+            border: 0.04em solid #00BD95;
         }
         
 
