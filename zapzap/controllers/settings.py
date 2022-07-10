@@ -336,7 +336,6 @@ class Settings(QWidget):
         self.btn_donations.setText(_("Donations"))
         self.titileNotifications.setText(_('Notifications'))
 
-        self.experiments_title.setText(_("Experiments"))
-        self.check_zap_window.setText(_("Use zapzap window (Restart required)"))
-        self.note_experiments.setText(_("Note: Rendering and performance issues can happen. \nPlease report if anything strange happens."))
+        self.check_zap_window.setText(_("ZapZap window (Restart required)"))
+        
         

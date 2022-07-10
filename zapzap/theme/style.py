@@ -107,6 +107,12 @@ def buildTheme(p) -> str:
     """
 
     QCHECHBOX = """
+        #check_zap_window{
+            color: {windowText};
+            margin-bottom: 0.09em;
+            font: 14pt;
+            font-weight: bold;
+        }
         QCheckBox
         {
             color: {windowText};

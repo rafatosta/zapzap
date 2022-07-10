@@ -261,7 +261,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -293,8 +293,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>638</width>
-            <height>529</height>
+            <width>763</width>
+            <height>531</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_16">
@@ -496,7 +496,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="experiments_title">
+                  <widget class="QCheckBox" name="check_zap_window">
                    <property name="font">
                     <font>
                      <pointsize>14</pointsize>
@@ -504,7 +504,10 @@
                     </font>
                    </property>
                    <property name="text">
-                    <string>Experiments</string>
+                    <string>ZapZap window (Restart required)</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
@@ -530,7 +533,7 @@
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_29">
                     <property name="spacing">
-                     <number>5</number>
+                     <number>20</number>
                     </property>
                     <property name="leftMargin">
                      <number>15</number>
@@ -545,25 +548,9 @@
                      <number>15</number>
                     </property>
                     <item>
-                     <widget class="QCheckBox" name="check_zap_window">
+                     <widget class="QLabel" name="label_15">
                       <property name="text">
-                       <string>Use zapzap window (Restart required)</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLabel" name="note_experiments">
-                      <property name="font">
-                       <font>
-                        <italic>true</italic>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>Note: Rendering and performance issues can happen. 
-Please report if anything strange happens.</string>
-                      </property>
-                      <property name="margin">
-                       <number>0</number>
+                       <string>TextLabel</string>
                       </property>
                      </widget>
                     </item>
@@ -641,8 +628,8 @@ Please report if anything strange happens.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>636</width>
-            <height>370</height>
+            <width>763</width>
+            <height>531</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -2034,8 +2021,8 @@ Please report if anything strange happens.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>636</width>
-            <height>274</height>
+            <width>763</width>
+            <height>531</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">
