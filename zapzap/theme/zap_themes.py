@@ -1,4 +1,4 @@
-from zapzap.assets.themes.style import buildTheme
+from zapzap.theme.style import buildTheme
 import zapzap
 
 LIGHT = '#F0F2F5'

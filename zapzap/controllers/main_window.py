@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon
 from PyQt6.QtCore import QSettings, QByteArray, QTimer
 from PyQt6 import uic
 import zapzap
-from zapzap.assets.themes.zap_themes import getThemeDark, getThemeLight
+from zapzap.theme.zap_themes import getThemeDark, getThemeLight
 from zapzap.controllers.main_window_components.menu_bar import MenuBar
 from zapzap.controllers.main_window_components.tray_icon import TrayIcon
 from zapzap.controllers.main_window_decoration.ui_decoration import UIDecoration
