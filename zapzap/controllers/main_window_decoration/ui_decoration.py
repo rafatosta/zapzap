@@ -9,7 +9,7 @@ class UIDecoration():
     def __init__(self, mainWindow) -> None:
         self.win = mainWindow
 
-        #show em headbar
+        # show em headbar
         self.win.headbar.show()
 
         self.uiDefinitions()
@@ -41,7 +41,6 @@ class UIDecoration():
             self.resize_grips()
         self.win.resizeEvent = resizeEvent
 
-
         # DROP SHADOW
         # está travando o webview
         """self.shadow = QGraphicsDropShadowEffect(self.win)
@@ -59,17 +58,23 @@ class UIDecoration():
 
         # Settings
         self.win.settingsTopBtn.clicked.connect(self.win.openSettings)
+        self.win.settingsTopBtn_left.clicked.connect(self.win.openSettings)
 
         # MINIMIZE
-        #self.win.minimizeAppBtn.hide()
-        # self.win.minimizeAppBtn.clicked.connect(
-        #    lambda: self.win.showMinimized())
+        # self.win.minimizeAppBtn.hide()
+        self.win.minimizeAppBtn.clicked.connect(
+            lambda: self.win.showMinimized())
+        self.win.minimizeAppBtn_left.clicked.connect(
+            lambda: self.win.showMinimized())
 
         # MAXIMIZE/RESTORE
-        # self.win.maximizeRestoreAppBtn.clicked.connect(self.maximize_restore)
+        self.win.maximizeAppBtn.clicked.connect(self.maximize_restore)
+        self.win.maximizeAppBtn_left.clicked.connect(self.maximize_restore)
         #self.win.maximizeAppBtn.hide()
+
         # CLOSE APPLICATION
         self.win.closeAppBtn.clicked.connect(lambda: self.win.close())
+        self.win.closeAppBtn_left.clicked.connect(lambda: self.win.close())
 
     def maximize_restore(self):
         if self.win.windowState() == Qt.WindowState.WindowMaximized:
