@@ -19,9 +19,17 @@ class ZPallete():
     highlightedText = ''
     link = ''  # A text color used for unvisited hyperlinks
     path = ''
+    path_btn_titlebar = ''
 
     def __init__(self) -> None:
         pass
+
+    def setPath(self, path):
+        self.path = zapzap.abs_path + '/assets/icons/app/'+path
+
+    def setPathBtnTitlebar(self, path):
+        self.path_btn_titlebar = zapzap.abs_path + \
+            '/assets/icons/titlebar_buttons/'+path
 
     def getPallete(self):
         return {'window': self.window,
@@ -29,8 +37,9 @@ class ZPallete():
                 'disabled': self.disabled,
                 'highlight': self.highlight,
                 'highlightedText': self.highlightedText,
-                'link':self.link,
-                'path': self.path}
+                'link': self.link,
+                'path': self.path,
+                'path_btn_titlebar': self.path_btn_titlebar}
 
 
 def getThemeLight() -> str:
@@ -41,7 +50,8 @@ def getThemeLight() -> str:
     p.highlight = LIGHT_GRAY
     p.highlightedText = DARK
     p.link = BLUE
-    p.path = zapzap.abs_path + '/assets/themes/light'
+    p.setPath('light')
+    p.setPathBtnTitlebar('default/light')
     return buildTheme(p)
 
 
@@ -53,6 +63,7 @@ def getThemeDark() -> str:
     p.highlight = BLAK_GRAY
     p.highlightedText = LIGHT
     p.link = BLUE
-    p.path = zapzap.abs_path + '/assets/themes/dark'
+    p.setPath('dark')
+    p.setPathBtnTitlebar('default/dark')
 
     return buildTheme(p)

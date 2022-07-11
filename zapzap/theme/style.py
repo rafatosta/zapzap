@@ -560,17 +560,17 @@ def buildTheme(p) -> str:
 
         #closeAppBtn,
         #closeAppBtn_left{
-            background-image: url({path}/btn_close.svg);
+            background-image: url({path_btn_titlebar}/btn_close.svg);
         }
 
         #closeAppBtn:hover,
         #closeAppBtn_left:hover{
-            background-image: url({path}/btn_close_hover.svg);
+            background-image: url({path_btn_titlebar}/btn_close_hover.svg);
         }
 
         #settingsTopBtn,
         #settingsTopBtn_left{
-            background-image: url({path}/btn_settings.svg);
+            background-image: url({path_btn_titlebar}/btn_settings.svg);
         }
     """
 
