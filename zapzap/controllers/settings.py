@@ -45,6 +45,10 @@ class Settings(QWidget):
         self.disableTrayIcon.clicked.connect(self.actionsSystemMenu)
         self.menubar.clicked.connect(self.actionsSystemMenu)
         self.check_zap_window.clicked.connect(self.actionsSystemMenu)
+        self.cb_maximize.clicked.connect(self.actionsSystemMenu)
+        self.cb_minimize.clicked.connect(self.actionsSystemMenu)
+        self.cb_positLeft.clicked.connect(self.actionsSystemMenu)
+
         ## Appearance ##
         self.rb_system.clicked.connect(self.actionsRbAppearance)
         self.rb_light.clicked.connect(self.actionsRbAppearance)
@@ -147,16 +151,21 @@ class Settings(QWidget):
                 not self.disableTrayIcon.isChecked())
         if btnName == 'menubar':
             self.mainWindow.setHideMenuBar()
-        print(btnName)
         if btnName == 'check_zap_window':
             self.frameZapWindow.setEnabled(self.check_zap_window.isChecked())
-    
+        if self.cb_maximize == 'cb_maximize':
+            pass
+        if self.cb_minimize == 'cb_minimize':
+            pass
+        if self.cb_positLeft == 'cb_positLeft':
+            pass
+
         self.save()
 
     def buttonClick(self):
         btn = self.sender()  # returns a pointer to the object that sent the signal
         btnName = btn.objectName()
-        #print(btnName)
+        # print(btnName)
 
         self.resetStyle(btnName)
         if btnName == 'btn_system':
@@ -205,8 +214,14 @@ class Settings(QWidget):
             "main/hideMenuBar", False, bool))  # tray_icon
 
         self.check_zap_window.setChecked(self.settings.value(
-            "system/zap_decoration", False, bool)) 
+            "system/zap_decoration", False, bool))
         self.frameZapWindow.setEnabled(self.check_zap_window.isChecked())
+        self.cb_maximize.setChecked(self.settings.value(
+            "system/winBtnMax", False, bool))
+        self.cb_minimize.setChecked(self.settings.value(
+            "system/winBtnMin", False, bool))
+        self.cb_positLeft.setChecked(self.settings.value(
+            "system/posBtnLeft", False, bool))
 
         ## Appearance ##
         theme_mode = self.settings.value("system/theme", 'auto', str)
@@ -259,7 +274,14 @@ class Settings(QWidget):
         self.settings.setValue("system/tray_icon",
                                not self.disableTrayIcon.isChecked())
         self.settings.setValue("main/hideMenuBar", self.menubar.isChecked())
-        self.settings.setValue("system/zap_decoration", self.check_zap_window.isChecked())
+        self.settings.setValue("system/zap_decoration",
+                               self.check_zap_window.isChecked())
+        self.settings.setValue("system/winBtnMax",
+                               self.cb_maximize.isChecked())
+        self.settings.setValue("system/winBtnMin",
+                               self.cb_minimize.isChecked())
+        self.settings.setValue("system/posBtnLeft",
+                               self.cb_positLeft.isChecked())
 
         # Notifications
         self.settings.setValue('notification/app',
@@ -341,5 +363,3 @@ class Settings(QWidget):
         self.titileNotifications.setText(_('Notifications'))
 
         self.check_zap_window.setText(_("ZapZap window (Restart required)"))
-        
-        
