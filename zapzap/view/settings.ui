@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1013</width>
-    <height>531</height>
+    <width>1082</width>
+    <height>659</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -293,8 +293,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>763</width>
-            <height>531</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_16">
@@ -548,9 +548,30 @@
                      <number>15</number>
                     </property>
                     <item>
-                     <widget class="QCheckBox" name="checkBox">
+                     <widget class="QLabel" name="label_15">
                       <property name="text">
-                       <string>CheckBox</string>
+                       <string>Title bar buttons</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QCheckBox" name="cb_maximize">
+                      <property name="text">
+                       <string>Maximize</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QCheckBox" name="cb_minimize">
+                      <property name="text">
+                       <string>Minimize</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QCheckBox" name="cb_positLeft">
+                      <property name="text">
+                       <string>Positioning on the left side</string>
                       </property>
                      </widget>
                     </item>
