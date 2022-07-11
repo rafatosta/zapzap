@@ -149,7 +149,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="maximizeRestoreAppBtn_left">
+              <widget class="QPushButton" name="maximizeAppBtn_left">
                <property name="minimumSize">
                 <size>
                  <width>25</width>
@@ -166,7 +166,7 @@
                 <enum>Qt::NoFocus</enum>
                </property>
                <property name="text">
-                <string>o</string>
+                <string/>
                </property>
               </widget>
              </item>
@@ -188,7 +188,7 @@
                 <enum>Qt::NoFocus</enum>
                </property>
                <property name="text">
-                <string>_</string>
+                <string/>
                </property>
               </widget>
              </item>
@@ -345,7 +345,7 @@
                 <enum>Qt::NoFocus</enum>
                </property>
                <property name="text">
-                <string>_</string>
+                <string/>
                </property>
                <property name="default">
                 <bool>false</bool>
@@ -353,7 +353,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="maximizeRestoreAppBtn">
+              <widget class="QPushButton" name="maximizeAppBtn">
                <property name="minimumSize">
                 <size>
                  <width>25</width>
@@ -370,7 +370,7 @@
                 <enum>Qt::NoFocus</enum>
                </property>
                <property name="text">
-                <string>o</string>
+                <string/>
                </property>
               </widget>
              </item>
@@ -420,7 +420,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>26</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="maximumSize">

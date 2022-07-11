@@ -61,13 +61,13 @@ class UIDecoration():
         self.win.settingsTopBtn.clicked.connect(self.win.openSettings)
 
         # MINIMIZE
-        self.win.minimizeAppBtn.hide()
+        #self.win.minimizeAppBtn.hide()
         # self.win.minimizeAppBtn.clicked.connect(
         #    lambda: self.win.showMinimized())
 
         # MAXIMIZE/RESTORE
         # self.win.maximizeRestoreAppBtn.clicked.connect(self.maximize_restore)
-        self.win.maximizeRestoreAppBtn.hide()
+        #self.win.maximizeAppBtn.hide()
         # CLOSE APPLICATION
         self.win.closeAppBtn.clicked.connect(lambda: self.win.close())
 

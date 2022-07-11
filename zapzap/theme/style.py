@@ -557,7 +557,7 @@ def buildTheme(p) -> str:
             background-repeat: no-repeat;
             border: 0px solid {window};
         }
-
+        /* CLOSE */
         #closeAppBtn,
         #closeAppBtn_left{
             background-image: url({path_btn_titlebar}/btn_close.svg);
@@ -567,11 +567,36 @@ def buildTheme(p) -> str:
         #closeAppBtn_left:hover{
             background-image: url({path_btn_titlebar}/btn_close_hover.svg);
         }
+        /* MAXIMIZE */
+        #maximizeAppBtn,
+        #maximizeAppBtn_left{
+            background-image: url({path_btn_titlebar}/btn_maximize.svg);
+        }
+
+        #maximizeAppBtn:hover,
+        #maximizeAppBtn_left:hover{
+            background-image: url({path_btn_titlebar}/btn_maximize_hover.svg);
+        }
+
+        /* MINIMIZE */
+        /* MAXIMIZE */
+        #minimizeAppBtn,
+        #minimizeAppBtn_left{
+            background-image: url({path_btn_titlebar}/btn_minimize.svg);
+        }
+
+        #minimizeAppBtn:hover,
+        #minimizeAppBtn_left:hover{
+            background-image: url({path_btn_titlebar}/btn_minimize_hover.svg);
+        }
+
+        /* SETTINGS */
 
         #settingsTopBtn,
         #settingsTopBtn_left{
             background-image: url({path_btn_titlebar}/btn_settings.svg);
         }
+
     """
 
     STYLE_SHEET = f"""
