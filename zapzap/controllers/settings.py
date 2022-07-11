@@ -147,6 +147,9 @@ class Settings(QWidget):
                 not self.disableTrayIcon.isChecked())
         if btnName == 'menubar':
             self.mainWindow.setHideMenuBar()
+        print(btnName)
+        if btnName == 'check_zap_window':
+            self.frameZapWindow.setEnabled(self.check_zap_window.isChecked())
     
         self.save()
 
@@ -203,6 +206,7 @@ class Settings(QWidget):
 
         self.check_zap_window.setChecked(self.settings.value(
             "system/zap_decoration", False, bool)) 
+        self.frameZapWindow.setEnabled(self.check_zap_window.isChecked())
 
         ## Appearance ##
         theme_mode = self.settings.value("system/theme", 'auto', str)

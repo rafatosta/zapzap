@@ -54,12 +54,17 @@ class UIDecoration():
         self.win.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.win.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
-        ## ----- Botões ------ ##
 
+        #Verifica o lado dos botões
+
+
+        #Verifica quais são ativos ou não
+
+
+        ## ----- Botões ------ ##
         # Settings
         self.win.settingsTopBtn.clicked.connect(self.win.openSettings)
         self.win.settingsTopBtn_left.clicked.connect(self.win.openSettings)
-
         # MINIMIZE
         # self.win.minimizeAppBtn.hide()
         self.win.minimizeAppBtn.clicked.connect(
