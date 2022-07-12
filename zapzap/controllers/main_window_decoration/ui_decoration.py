@@ -13,6 +13,7 @@ class UIDecoration():
         self.win.headbar.show()
 
         self.uiDefinitions()
+        self.headDefinitions()
 
     def uiDefinitions(self):
         # Duplo click na headbar
@@ -54,19 +55,11 @@ class UIDecoration():
         self.win.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.win.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
-
-        #Verifica o lado dos botões
-
-
-        #Verifica quais são ativos ou não
-
-
-        ## ----- Botões ------ ##
+        ## ----- Ações dos Botões ------ ##
         # Settings
         self.win.settingsTopBtn.clicked.connect(self.win.openSettings)
         self.win.settingsTopBtn_left.clicked.connect(self.win.openSettings)
         # MINIMIZE
-        # self.win.minimizeAppBtn.hide()
         self.win.minimizeAppBtn.clicked.connect(
             lambda: self.win.showMinimized())
         self.win.minimizeAppBtn_left.clicked.connect(
@@ -75,11 +68,28 @@ class UIDecoration():
         # MAXIMIZE/RESTORE
         self.win.maximizeAppBtn.clicked.connect(self.maximize_restore)
         self.win.maximizeAppBtn_left.clicked.connect(self.maximize_restore)
-        #self.win.maximizeAppBtn.hide()
 
         # CLOSE APPLICATION
         self.win.closeAppBtn.clicked.connect(lambda: self.win.close())
         self.win.closeAppBtn_left.clicked.connect(lambda: self.win.close())
+
+    def headDefinitions(self):
+
+        if self.win.settings.value("system/winBtnMax", False, bool):
+            self.win.maximizeAppBtn.show()
+            self.win.maximizeAppBtn_left.show()
+        else:
+            self.win.maximizeAppBtn.hide()
+            self.win.maximizeAppBtn_left.hide()
+
+        if self.win.settings.value("system/winBtnMin", False, bool):
+            self.win.minimizeAppBtn.show()
+            self.win.minimizeAppBtn_left.show()
+        else:
+            self.win.minimizeAppBtn.hide()
+            self.win.minimizeAppBtn_left.hide()
+
+        self.win.settings.value("system/posBtnLeft", False, bool)
 
     def maximize_restore(self):
         if self.win.windowState() == Qt.WindowState.WindowMaximized:

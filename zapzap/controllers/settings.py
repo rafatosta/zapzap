@@ -153,14 +153,10 @@ class Settings(QWidget):
             self.mainWindow.setHideMenuBar()
         if btnName == 'check_zap_window':
             self.frameZapWindow.setEnabled(self.check_zap_window.isChecked())
-        if self.cb_maximize == 'cb_maximize':
-            pass
-        if self.cb_minimize == 'cb_minimize':
-            pass
-        if self.cb_positLeft == 'cb_positLeft':
-            pass
 
         self.save()
+        if self.mainWindow.scd != None:
+            self.mainWindow.scd.headDefinitions()
 
     def buttonClick(self):
         btn = self.sender()  # returns a pointer to the object that sent the signal
