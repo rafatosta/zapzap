@@ -11,8 +11,10 @@ from zapzap.engine.browser import Browser
 from zapzap.services.dbus_theme import get_system_theme
 from gettext import gettext as _
 
+from zapzap.view.main_window import Ui_MainWindow
 
-class MainWindow(QMainWindow):
+
+class MainWindow(QMainWindow, Ui_MainWindow):
 
     isFullScreen = False
     isHideMenuBar = False
@@ -21,7 +23,8 @@ class MainWindow(QMainWindow):
 
     def __init__(self, parent=None):
         super(MainWindow, self).__init__()
-        uic.loadUi(zapzap.abs_path+'/view/main_window.ui', self)
+        self.setupUi(self)
+        #uic.loadUi(zapzap.abs_path+'/view/main_window.ui', self)
         self.app = parent
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
         self.scd = None
@@ -49,7 +52,6 @@ class MainWindow(QMainWindow):
 
         self.setZapDecoration()
 
-        self.retranslateUi()
 
     def setZapDecoration(self):
         self.headbar.hide()
@@ -209,24 +211,3 @@ class MainWindow(QMainWindow):
             self.settings.setValue("main/hideMenuBar", self.isHideMenuBar)
             self.zapSettings.menubar.setChecked(self.isHideMenuBar)
             self.isHideMenuBar = not self.isHideMenuBar
-
-    def retranslateUi(self):
-        self.menuFile.setTitle(_("File"))
-        self.menuView.setTitle(_("View"))
-        self.menuHelp.setTitle(_("Help"))
-        self.actionSettings.setText(_("Settings"))
-        self.actionQuit.setText(_("Quit"))
-        self.actionReload_Service.setText(_("Reload"))
-        self.actionDefault_size_page.setText(_("Default size page"))
-        self.actionToggle_Full_Screen.setText(_("Toggle Full Screen"))
-        self.actionAuto_hide_menu_bar.setText(_("Hide menu bar"))
-        self.actionLearn_More.setText(_("Learn More"))
-        self.actionChangelog.setText(_("Changelog"))
-        self.actionSupport.setText(_("Report issue..."))
-        self.actionAbout_Zapzap.setText(_("About Zapzap"))
-        self.actionHide_on_close.setText(_("Hide on close"))
-        self.actionHide_on_close.setToolTip(
-            _("Keep in background when closing window"))
-        self.actionZoomIn.setText(_("Zoom in"))
-        self.actionZoomOut.setText(_("Zoom out"))
-        self.actionDonations.setText(_("Donations"))

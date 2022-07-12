@@ -1,2 +1,2 @@
-zapzap/controllers/main_window.py
-zapzap/controllers/settings.py
+zapzap/view/main_window.py
+zapzap/view/settings.py

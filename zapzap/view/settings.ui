@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>Settings</class>
+ <widget class="QWidget" name="Settings">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -261,7 +261,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>0</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -649,8 +649,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>763</width>
-            <height>531</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1400,8 +1400,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>763</width>
-            <height>531</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1635,8 +1635,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>763</width>
-            <height>531</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_30">
@@ -2042,8 +2042,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>763</width>
-            <height>531</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -2142,7 +2142,7 @@
                        </size>
                       </property>
                       <property name="text">
-                       <string>icon</string>
+                       <string/>
                       </property>
                       <property name="scaledContents">
                        <bool>true</bool>
@@ -2166,7 +2166,7 @@
                          </font>
                         </property>
                         <property name="text">
-                         <string>TextLabel</string>
+                         <string>ZapZap</string>
                         </property>
                        </widget>
                       </item>
@@ -2178,7 +2178,7 @@
                          </font>
                         </property>
                         <property name="text">
-                         <string>TextLabel</string>
+                         <string>Version {id} (Official compilation)</string>
                         </property>
                        </widget>
                       </item>
@@ -2201,7 +2201,7 @@
                     <item>
                      <widget class="QLabel" name="name_app2">
                       <property name="text">
-                       <string>TextLabel</string>
+                       <string>ZapZap</string>
                       </property>
                      </widget>
                     </item>
