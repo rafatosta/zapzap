@@ -359,3 +359,7 @@ class Settings(QWidget):
         self.titileNotifications.setText(_('Notifications'))
 
         self.check_zap_window.setText(_("ZapZap window (Restart required)"))
+        self.label_15.setText(_("Title bar buttons"))
+        self.cb_maximize.setText(_('Maximize'))
+        self.cb_minimize.setText(_('Minimize'))
+        self.cb_positLeft.setText(_('Positioning on the left side'))
