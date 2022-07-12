@@ -29,7 +29,7 @@ class UIDecoration():
             if event.buttons() == Qt.MouseButton.LeftButton:
                 window = self.win.window().windowHandle()
                 window.startSystemMove()
-        self.win.titleRightInfo.mouseMoveEvent = moveWindow
+        self.win.headbar.mouseMoveEvent = moveWindow
 
         # CUSTOM GRIPS
         self.left_grip = CustomGrip(self.win, Qt.Edge.LeftEdge, True)
