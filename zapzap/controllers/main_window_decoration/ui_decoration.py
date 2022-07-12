@@ -89,7 +89,12 @@ class UIDecoration():
             self.win.minimizeAppBtn.hide()
             self.win.minimizeAppBtn_left.hide()
 
-        self.win.settings.value("system/posBtnLeft", False, bool)
+        if self.win.settings.value("system/posBtnLeft", False, bool):
+            self.win.rightButtons.hide()
+            self.win.leftButtons.show()
+        else:
+            self.win.rightButtons.show()
+            self.win.leftButtons.hide()
 
     def maximize_restore(self):
         if self.win.windowState() == Qt.WindowState.WindowMaximized:
