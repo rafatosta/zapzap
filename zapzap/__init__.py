@@ -24,8 +24,8 @@ __user_agent__ = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, lik
 from PyQt6.QtCore import QFileInfo
 abs_path = QFileInfo(__file__).absolutePath()
 
-#Tray
-def getIconTray(theme='default', mode='normal'):
+# Tray
+def getIconTray(theme = 'default', mode='normal'):
     return QIcon(abs_path+f'/assets/icons/tray/{theme}_{mode}.svg')
 
 # Segoe Font
@@ -36,5 +36,7 @@ segoe_font = {
     "italic": abs_path + '/assets/segoe-ui/Segoe UI Italic.ttf',
 }
 
-# Po Path
-po_path = abs_path.replace('/zapzap/zapzap', '/zapzap') + '/po'
+# Path translations
+po_path = abs_path+ '/po'
+if QFileInfo(__file__).absolutePath().startswith('/app/'):
+    po_path = '/app/share/locale'
