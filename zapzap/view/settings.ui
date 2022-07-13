@@ -261,7 +261,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>4</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -293,8 +293,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>832</width>
-            <height>659</height>
+            <width>638</width>
+            <height>593</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_16">
@@ -649,8 +649,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>832</width>
-            <height>659</height>
+            <width>636</width>
+            <height>360</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1400,8 +1400,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>832</width>
-            <height>659</height>
+            <width>636</width>
+            <height>247</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1757,7 +1757,7 @@
                      <item>
                       <layout class="QHBoxLayout" name="horizontalLayout_26">
                        <item>
-                        <widget class="QLabel" name="label_23">
+                        <widget class="QLabel" name="icon_world">
                          <property name="minimumSize">
                           <size>
                            <width>25</width>
@@ -1772,9 +1772,6 @@
                          </property>
                          <property name="text">
                           <string/>
-                         </property>
-                         <property name="pixmap">
-                          <pixmap>../assets/icons/earth.svg</pixmap>
                          </property>
                          <property name="scaledContents">
                           <bool>true</bool>
@@ -1854,7 +1851,7 @@
                      <item>
                       <layout class="QHBoxLayout" name="horizontalLayout_24">
                        <item>
-                        <widget class="QLabel" name="label_20">
+                        <widget class="QLabel" name="icon_br">
                          <property name="minimumSize">
                           <size>
                            <width>25</width>
@@ -1869,9 +1866,6 @@
                          </property>
                          <property name="text">
                           <string/>
-                         </property>
-                         <property name="pixmap">
-                          <pixmap>../assets/icons/brazil.svg</pixmap>
                          </property>
                          <property name="scaledContents">
                           <bool>true</bool>
@@ -1925,7 +1919,7 @@
                         </spacer>
                        </item>
                        <item>
-                        <widget class="QLabel" name="label_22">
+                        <widget class="QLabel" name="icon_qrcode">
                          <property name="minimumSize">
                           <size>
                            <width>150</width>
@@ -1940,9 +1934,6 @@
                          </property>
                          <property name="text">
                           <string/>
-                         </property>
-                         <property name="pixmap">
-                          <pixmap>../assets/icons/qrcode.png</pixmap>
                          </property>
                          <property name="scaledContents">
                           <bool>true</bool>
@@ -2042,8 +2033,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>832</width>
-            <height>659</height>
+            <width>636</width>
+            <height>274</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">

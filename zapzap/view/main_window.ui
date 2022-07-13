@@ -507,7 +507,7 @@
   </action>
   <action name="actionToggle_Full_Screen">
    <property name="text">
-    <string>Toggle Full Screen</string>
+    <string>Full Screen</string>
    </property>
    <property name="shortcut">
     <string>F11</string>

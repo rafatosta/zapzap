@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-12 21:47-0300\n"
+"POT-Creation-Date: 2022-07-13 11:50-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: zapzap/view/main_window.py:222 zapzap/view/settings.py:864
-#: zapzap/view/settings.py:903 zapzap/view/settings.py:906
+#: zapzap/view/main_window.py:222 zapzap/view/settings.py:861
+#: zapzap/view/settings.py:900 zapzap/view/settings.py:903
 #: share/applications/com.rtosta.zapzap.desktop:4
 #: share/metainfo/com.rtosta.zapzap.appdata.xml:7
 msgid "ZapZap"
@@ -69,14 +69,14 @@ msgid "Ctrl+0"
 msgstr ""
 
 #: zapzap/view/main_window.py:234
-msgid "Toggle Full Screen"
+msgid "Full Screen"
 msgstr ""
 
 #: zapzap/view/main_window.py:235
 msgid "F11"
 msgstr ""
 
-#: zapzap/view/main_window.py:236 zapzap/view/settings.py:876
+#: zapzap/view/main_window.py:236 zapzap/view/settings.py:873
 msgid "Hide menu bar"
 msgstr ""
 
@@ -88,7 +88,7 @@ msgstr ""
 msgid "Learn More"
 msgstr ""
 
-#: zapzap/view/main_window.py:239 zapzap/view/settings.py:909
+#: zapzap/view/main_window.py:239 zapzap/view/settings.py:906
 msgid "Changelog"
 msgstr ""
 
@@ -100,7 +100,7 @@ msgstr ""
 msgid "About Zapzap"
 msgstr ""
 
-#: zapzap/view/main_window.py:242 zapzap/view/settings.py:873
+#: zapzap/view/main_window.py:242 zapzap/view/settings.py:870
 msgid "Hide on close"
 msgstr ""
 
@@ -124,160 +124,160 @@ msgstr ""
 msgid "Ctrl+-"
 msgstr ""
 
-#: zapzap/view/main_window.py:248 zapzap/view/settings.py:868
-#: zapzap/view/settings.py:897
+#: zapzap/view/main_window.py:248 zapzap/view/settings.py:865
+#: zapzap/view/settings.py:894
 msgid "Donations"
 msgstr ""
 
-#: zapzap/view/settings.py:863
+#: zapzap/view/settings.py:860
 msgid "Form"
 msgstr ""
 
-#: zapzap/view/settings.py:865 zapzap/view/settings.py:870
+#: zapzap/view/settings.py:862 zapzap/view/settings.py:867
 msgid "System"
 msgstr ""
 
-#: zapzap/view/settings.py:866
+#: zapzap/view/settings.py:863
 msgid "Appearance"
 msgstr ""
 
-#: zapzap/view/settings.py:867 zapzap/view/settings.py:892
+#: zapzap/view/settings.py:864 zapzap/view/settings.py:889
 msgid "Notifications"
 msgstr ""
 
-#: zapzap/view/settings.py:869 zapzap/view/settings.py:902
+#: zapzap/view/settings.py:866 zapzap/view/settings.py:899
 msgid "About"
 msgstr ""
 
-#: zapzap/view/settings.py:871 share/metainfo/com.rtosta.zapzap.appdata.xml:138
+#: zapzap/view/settings.py:868 share/metainfo/com.rtosta.zapzap.appdata.xml:138
 msgid "Start ZapZap with the system"
 msgstr ""
 
-#: zapzap/view/settings.py:872 share/metainfo/com.rtosta.zapzap.appdata.xml:139
+#: zapzap/view/settings.py:869 share/metainfo/com.rtosta.zapzap.appdata.xml:139
 msgid "Start minimized"
 msgstr ""
 
-#: zapzap/view/settings.py:874
+#: zapzap/view/settings.py:871
 msgid "Disable tray icon"
 msgstr ""
 
-#: zapzap/view/settings.py:875
+#: zapzap/view/settings.py:872
 msgid "Menu bar"
 msgstr ""
 
-#: zapzap/view/settings.py:877
+#: zapzap/view/settings.py:874
 msgid "ZapZap window (Restart required)"
 msgstr ""
 
-#: zapzap/view/settings.py:878
+#: zapzap/view/settings.py:875
 msgid "Title bar buttons"
 msgstr ""
 
-#: zapzap/view/settings.py:879
+#: zapzap/view/settings.py:876
 msgid "Maximize"
 msgstr ""
 
-#: zapzap/view/settings.py:880
+#: zapzap/view/settings.py:877
 msgid "Minimize"
 msgstr ""
 
-#: zapzap/view/settings.py:881
+#: zapzap/view/settings.py:878
 msgid "Positioning on the left side"
 msgstr ""
 
-#: zapzap/view/settings.py:882
+#: zapzap/view/settings.py:879
 msgid "Customize appearance"
 msgstr ""
 
-#: zapzap/view/settings.py:883
+#: zapzap/view/settings.py:880
 msgid "General appearance"
 msgstr ""
 
-#: zapzap/view/settings.py:884
+#: zapzap/view/settings.py:881
 msgid "System style"
 msgstr ""
 
-#: zapzap/view/settings.py:885
+#: zapzap/view/settings.py:882
 msgid "Light style"
 msgstr ""
 
-#: zapzap/view/settings.py:886
+#: zapzap/view/settings.py:883
 msgid "Dark style"
 msgstr ""
 
-#: zapzap/view/settings.py:887
+#: zapzap/view/settings.py:884
 msgid "Tray icon"
 msgstr ""
 
-#: zapzap/view/settings.py:888
+#: zapzap/view/settings.py:885
 msgid "Tray icon appearance"
 msgstr ""
 
-#: zapzap/view/settings.py:889
+#: zapzap/view/settings.py:886
 msgid "Default"
 msgstr ""
 
-#: zapzap/view/settings.py:890
+#: zapzap/view/settings.py:887
 msgid "Symbolic light"
 msgstr ""
 
-#: zapzap/view/settings.py:891
+#: zapzap/view/settings.py:888
 msgid "Symbolic dark"
 msgstr ""
 
-#: zapzap/view/settings.py:893 share/metainfo/com.rtosta.zapzap.appdata.xml:145
+#: zapzap/view/settings.py:890 share/metainfo/com.rtosta.zapzap.appdata.xml:145
 msgid "Notifications on the desktop"
 msgstr ""
 
-#: zapzap/view/settings.py:894 share/metainfo/com.rtosta.zapzap.appdata.xml:146
+#: zapzap/view/settings.py:891 share/metainfo/com.rtosta.zapzap.appdata.xml:146
 msgid "Show the photo of the sender"
 msgstr ""
 
-#: zapzap/view/settings.py:895 share/metainfo/com.rtosta.zapzap.appdata.xml:147
+#: zapzap/view/settings.py:892 share/metainfo/com.rtosta.zapzap.appdata.xml:147
 msgid "Show the sender's name"
 msgstr ""
 
-#: zapzap/view/settings.py:896 share/metainfo/com.rtosta.zapzap.appdata.xml:148
+#: zapzap/view/settings.py:893 share/metainfo/com.rtosta.zapzap.appdata.xml:148
 msgid "Show message preview"
 msgstr ""
 
-#: zapzap/view/settings.py:898
+#: zapzap/view/settings.py:895
 msgid "World"
 msgstr ""
 
-#: zapzap/view/settings.py:899
+#: zapzap/view/settings.py:896
 msgid "Click to donate via PayPal"
 msgstr ""
 
-#: zapzap/view/settings.py:900
+#: zapzap/view/settings.py:897
 msgid "Você é do Brasil?"
 msgstr ""
 
-#: zapzap/view/settings.py:901
+#: zapzap/view/settings.py:898
 msgid ""
 "Acesse o link para transferir via PIX ou realize a leitura do QR code abaixo"
 msgstr ""
 
-#: zapzap/view/settings.py:904
+#: zapzap/view/settings.py:901
 #, python-brace-format
 msgid "Version {id} (Official compilation)"
 msgstr ""
 
-#: zapzap/view/settings.py:905
+#: zapzap/view/settings.py:902
 msgid ""
 "An unofficial WhatsApp desktop application written in Pyqt6 + PyQt6-"
 "WebEngine."
 msgstr ""
 
-#: zapzap/view/settings.py:907
+#: zapzap/view/settings.py:904
 msgid "GNU General Public License v3.0"
 msgstr ""
 
-#: zapzap/view/settings.py:908
+#: zapzap/view/settings.py:905
 msgid "Learn more"
 msgstr ""
 
-#: zapzap/view/settings.py:910
+#: zapzap/view/settings.py:907
 msgid "Report isue..."
 msgstr ""
 

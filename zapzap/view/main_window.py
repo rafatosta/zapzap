@@ -231,7 +231,7 @@ class Ui_MainWindow(object):
         self.actionReload_Service.setShortcut(_("F5"))
         self.actionDefault_size_page.setText(_("Default size page"))
         self.actionDefault_size_page.setShortcut(_("Ctrl+0"))
-        self.actionToggle_Full_Screen.setText(_("Toggle Full Screen"))
+        self.actionToggle_Full_Screen.setText(_("Full Screen"))
         self.actionToggle_Full_Screen.setShortcut(_("F11"))
         self.actionAuto_hide_menu_bar.setText(_("Hide menu bar"))
         self.actionAuto_hide_menu_bar.setShortcut(_("Ctrl+M"))
