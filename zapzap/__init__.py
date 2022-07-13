@@ -38,5 +38,5 @@ segoe_font = {
 
 # Path translations
 po_path = abs_path+ '/po'
-"""if QFileInfo(__file__).absolutePath().startswith('/app/'):
-    po_path = 'app/share/locale'"""
+if QFileInfo(__file__).absolutePath().startswith('/app/'):
+    po_path = '/app/share/locale'
