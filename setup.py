@@ -19,14 +19,15 @@ try:
                   'zapzap.theme',
                   'zapzap.view'],
         include_package_data=True,
-        package_data={'zapzap': ['assets/icons/tray/*.svg',
-                                 'assets/icons/*.svg',
-                                 'assets/icons/*.png',
-                                 'assets/icons/app/*/*.svg',
-                                 'assets/icons/titlebar_buttons/*/*/*.svg',
-                                 'assets/segoe-ui/*.ttf',
-                                 'view/*.ui'],
-                      'po': ['*/LC_MESSAGES/zapzap.mo']
+        package_data={'': ['zapzap/assets/icons/tray/*.svg',
+                           'zapzap/assets/icons/*.svg',
+                           'zapzap/assets/icons/*.png',
+                           'zapzap/assets/icons/app/*/*.svg',
+                           'zapzap/assets/icons/titlebar_buttons/*/*/*.svg',
+                           'zapzap/assets/segoe-ui/*.ttf',
+                           'zapzap/view/*.ui',
+                           'po/*/LC_MESSAGES/zapzap.mo'
+                           ]
                       },
         setup_requires=setup_requires,
         entry_points={'gui_scripts': ['zapzap = zapzap.__main__:main']},
