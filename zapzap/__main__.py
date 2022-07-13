@@ -11,6 +11,7 @@ def main():
     os.environ['QT_QPA_PLATFORM'] = 'xcb'
     gettext.bindtextdomain('zapzap', zapzap.po_path)
     gettext.textdomain('zapzap')
+    print(zapzap.po_path)
 
     app = SingleApplication(zapzap.__appid__, sys.argv)
     app.setApplicationName(zapzap.__appname__)
