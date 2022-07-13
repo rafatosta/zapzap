@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QWidget, QPushButton
 from PyQt6.QtCore import QSettings, QSize, QUrl
 from PyQt6.QtGui import QDesktopServices, QIcon
-from PyQt6 import uic
+#from PyQt6 import uic
 import zapzap
 from zapzap.services.portal_desktop import createDesktop, removeDesktop
 from gettext import gettext as _

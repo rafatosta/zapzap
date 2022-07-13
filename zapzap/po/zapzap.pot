@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-13 11:50-0300\n"
+"POT-Creation-Date: 2022-07-13 15:51-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -149,11 +149,11 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: zapzap/view/settings.py:868 share/metainfo/com.rtosta.zapzap.appdata.xml:138
+#: zapzap/view/settings.py:868 share/metainfo/com.rtosta.zapzap.appdata.xml:146
 msgid "Start ZapZap with the system"
 msgstr ""
 
-#: zapzap/view/settings.py:869 share/metainfo/com.rtosta.zapzap.appdata.xml:139
+#: zapzap/view/settings.py:869 share/metainfo/com.rtosta.zapzap.appdata.xml:147
 msgid "Start minimized"
 msgstr ""
 
@@ -225,19 +225,19 @@ msgstr ""
 msgid "Symbolic dark"
 msgstr ""
 
-#: zapzap/view/settings.py:890 share/metainfo/com.rtosta.zapzap.appdata.xml:145
+#: zapzap/view/settings.py:890 share/metainfo/com.rtosta.zapzap.appdata.xml:153
 msgid "Notifications on the desktop"
 msgstr ""
 
-#: zapzap/view/settings.py:891 share/metainfo/com.rtosta.zapzap.appdata.xml:146
+#: zapzap/view/settings.py:891 share/metainfo/com.rtosta.zapzap.appdata.xml:154
 msgid "Show the photo of the sender"
 msgstr ""
 
-#: zapzap/view/settings.py:892 share/metainfo/com.rtosta.zapzap.appdata.xml:147
+#: zapzap/view/settings.py:892 share/metainfo/com.rtosta.zapzap.appdata.xml:155
 msgid "Show the sender's name"
 msgstr ""
 
-#: zapzap/view/settings.py:893 share/metainfo/com.rtosta.zapzap.appdata.xml:148
+#: zapzap/view/settings.py:893 share/metainfo/com.rtosta.zapzap.appdata.xml:156
 msgid "Show message preview"
 msgstr ""
 
@@ -334,151 +334,159 @@ msgid "Rafael Tosta"
 msgstr ""
 
 #: share/metainfo/com.rtosta.zapzap.appdata.xml:57
+msgid "New: Zap decoration for the window"
+msgstr ""
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:58
+msgid "Various internal improvements"
+msgstr ""
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:65
 msgid "Experimental Function: Zap Window Decoration"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:64
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:72
 msgid "Minor bug fixes."
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:71
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:79
 msgid "Translation for pt_BR."
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:78
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:86
 msgid "New settings panel;"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:79
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:87
 msgid "Themes: follow the system, light and dark;"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:80
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:88
 msgid "Tray icons: default, symbolic light and symbolic dark;"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:81
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:89
 msgid "See the rest with your own eyes! =D"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:87
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:95
 msgid "Improvements to the configuration interface."
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:88
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:96
 msgid ""
 "Now Zapzap has a MenuBar and Settings Panel to allow better access to "
 "settings. News: Possibility to hide the MenuBar; F11 for full screen; "
 "Disable the tray icon."
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:94
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:102
 msgid ""
 "This will be the last update from version 2.x. Development will be focused "
 "on version 3.0 which will bring a new look to improve usability and the "
 "option to use multiple accounts."
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:95
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:103
 msgid "Improvements:"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:97
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:105
 msgid "Symbolic icon for tray (better integration with KDE Plasma)"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:98
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:106
 msgid "Some tweaks you won't notice"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:104
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:112
 msgid "Usability improvements:"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:106
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:114
 msgid "Better visibility for accessing zapzap settings"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:107
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:115
 msgid "Choose to stay in the background or close the app"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:108
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:116
 msgid "Action to open Settings in Tray menu"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:109
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:117
 msgid "Sets Fusion as default style"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:115
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:123
 msgid ""
 "Usability improvements: Actions when clicking on the tray icon similar to "
 "Telegram-Desktop."
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:116
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:124
 msgid ""
 "Internal improvements: Persistent Settings with QSettings. NOTE: Settings "
 "will be returned to default."
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:121
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:129
 msgid "Clicking on Notification Improvements"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:126
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:134
 msgid "New icons and some improvements"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:131
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:139
 msgid "Enhancements and Download files in any folder"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:136
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:144
 msgid "System integration"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:140
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:148
 msgid "Night mode"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:143
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:151
 msgid "Chat notifications"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:154
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:162
 msgid "Fix Chrome Upgrade 60+"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:159
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:167
 msgid "News"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:161
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:169
 msgid "Shows notifications in the system;"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:162
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:170
 msgid "Attention: Does not open the window if it is hidden. Solution soon."
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:164
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:172
 msgid "Updates"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:166
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:174
 msgid "Focus on the window when clicking on the Tray, if it is already open;"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:167
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:175
 msgid "UserAgent;"
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:168
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:176
 msgid "Webcam permissions."
 msgstr ""
 
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:174
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:182
 msgid "First release."
 msgstr ""
