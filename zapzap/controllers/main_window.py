@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon
 from PyQt6.QtCore import QSettings, QByteArray, QTimer
-from PyQt6 import uic
+#from PyQt6 import uic
 import zapzap
 from zapzap.theme.zap_themes import getThemeDark, getThemeLight
 from zapzap.controllers.main_window_components.menu_bar import MenuBar
@@ -134,6 +134,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Close window.
         """
+        self.settings.setValue("browser/zoomFactor", self.browser.zoomFactor())
         self.settings.setValue("main/geometry", self.saveGeometry())
         self.settings.setValue("main/windowState", self.saveState())
         self.hide()

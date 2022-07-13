@@ -51,6 +51,14 @@
   <update_contact>rafa.ecomp@gmail.com</update_contact>
   <developer_name>Rafael Tosta</developer_name>
   <releases>
+    <release date="2022-07-13" version="3.0">
+      <description>
+          <ul>
+              <li>New: Zap decoration for the window</li>
+              <li>Various internal improvements</li>
+          </ul>
+        </description>
+    </release>
     <release date="2022-07-05" version="2.9.2">
       <description>
           <ul>
