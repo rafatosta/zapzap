@@ -1,4 +1,4 @@
-
+from gettext import gettext as _
 from PyQt6.QtWidgets import QSystemTrayIcon, QMenu
 from PyQt6.QtGui import QAction
 from zapzap import getIconTray
@@ -15,19 +15,19 @@ class TrayIcon():
         self.tray.activated.connect(mainWindow.onTrayIconActivated)
 
         # Itens para o menu do tray icon
-        self.trayShow = QAction('Show', mainWindow)
+        self.trayShow = QAction(_("View"), mainWindow)
         self.trayShow.triggered.connect(mainWindow.on_show)
 
-        #self.traySettings = QAction('Zapzap Settings', self)
-        # self.traySettings.triggered.connect(self.on_settings)
+        self.traySettings = QAction(_("Settings"), mainWindow)
+        self.traySettings.triggered.connect(self.mainWindow.openSettings)
 
-        self.trayExit = QAction('Exit', mainWindow)
+        self.trayExit = QAction(_("Quit"), mainWindow)
         self.trayExit.triggered.connect(mainWindow.quit)
 
         # Cria o Menu e adiciona as ações
         self.trayMenu = QMenu()
         self.trayMenu.addAction(self.trayShow)
-        # self.trayMenu.addAction(self.traySettings)
+        self.trayMenu.addAction(self.traySettings)
         self.trayMenu.insertSeparator(self.trayExit)
         self.trayMenu.addAction(self.trayExit)
 

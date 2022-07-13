@@ -2,14 +2,14 @@
 <!-- Copyright 2019 Pete Alexandrou <pete@ozmartians.com> -->
 <component type="desktop">
   <id>com.rtosta.zapzap.desktop</id>
-  <name>ZapZap</name>
-  <summary>ZapZap - Whatsapp Desktop for linux</summary>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
+  <name>ZapZap</name>
+  <summary>ZapZap - Whatsapp Desktop for linux</summary>
   <content_rating type="oars-1.0" />
   <description>
     <p>
-      An unofficial WhatsApp desktop application for Linux.
+      Unofficial WhatsApp desktop application for Linux.
     </p>
     <p>Features include:</p>
     <ul>
@@ -28,20 +28,37 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/zapzap.png</image>
+      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/default.png</image>
     </screenshot>
     <screenshot>
-      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/zapzap_light.png</image>
+      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/light.png</image>
     </screenshot>
     <screenshot>
-      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/zapzap_dark.png</image>
+      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/dark.png</image>
     </screenshot>
+    <screenshot>
+      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/system.png</image>
+    </screenshot>
+    <screenshot>
+      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/appearance.png</image>
+    </screenshot>
+    <screenshot>
+      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/notifications.png</image>
+    </screenshot>  
   </screenshots>
   <url type="homepage">https://github.com/rafatosta/zapzap</url>
   <url type="bugtracker">https://github.com/rafatosta/zapzap/issues</url>
   <update_contact>rafa.ecomp@gmail.com</update_contact>
   <developer_name>Rafael Tosta</developer_name>
   <releases>
+    <release date="2022-07-13" version="3.0">
+      <description>
+          <ul>
+              <li>New: Zap decoration for the window</li>
+              <li>Various internal improvements</li>
+          </ul>
+        </description>
+    </release>
     <release date="2022-07-05" version="2.9.2">
       <description>
           <ul>

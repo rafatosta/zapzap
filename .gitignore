@@ -13,6 +13,8 @@ repo
 # Qt_for_python
 .qt_for_python
 
+# Vscode
+.vscode
 # Distribution / packaging
 .Python
 build/

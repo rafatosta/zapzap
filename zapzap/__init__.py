@@ -1,6 +1,6 @@
 from PyQt6.QtGui import QIcon
 
-__version__ = '2.9'
+__version__ = '3.0'
 __appname__ = 'ZapZap'
 __comment__ = 'Whatsapp Desktop for linux'
 __domain__ = 'com.rtosta'
@@ -24,18 +24,19 @@ __user_agent__ = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, lik
 from PyQt6.QtCore import QFileInfo
 abs_path = QFileInfo(__file__).absolutePath()
 
-# Temas
-theme_light_path = abs_path+'/assets/stylesheets/light/stylesheet.qss'
-theme_dark_path = abs_path+'/assets/stylesheets/dark/stylesheet.qss'
-
 # Tray
 def getIconTray(theme = 'default', mode='normal'):
     return QIcon(abs_path+f'/assets/icons/tray/{theme}_{mode}.svg')
 
 # Segoe Font
 segoe_font = {
-    "regular": abs_path + '/assets/themes/segoe-ui/Segoe UI.ttf',
-    "bold": abs_path + '/assets/themes/segoe-ui/Segoe UI Bold.ttf',
-    "bold-italic": abs_path + '/assets/themes/segoe-ui/Segoe UI Bold Italic.ttf',
-    "italic": abs_path + '/assets/themes/segoe-ui/Segoe UI Italic.ttf',
+    "regular": abs_path + '/assets/segoe-ui/Segoe UI.ttf',
+    "bold": abs_path + '/assets/segoe-ui/Segoe UI Bold.ttf',
+    "bold-italic": abs_path + '/assets/segoe-ui/Segoe UI Bold Italic.ttf',
+    "italic": abs_path + '/assets/segoe-ui/Segoe UI Italic.ttf',
 }
+
+# Path translations
+po_path = abs_path+ '/po'
+"""if QFileInfo(__file__).absolutePath().startswith('/app/'):
+    po_path = '/app/share/locale/'"""

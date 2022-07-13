@@ -1,9 +1,8 @@
 from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon
 from PyQt6.QtCore import QSettings, QByteArray, QTimer
-from PyQt6 import uic
+#from PyQt6 import uic
 import zapzap
-from zapzap.assets.themes.dark.stylesheet import STYLE_SHEET_DARK
-from zapzap.assets.themes.light.stylesheet import STYLE_SHEET_LIGHT
+from zapzap.theme.zap_themes import getThemeDark, getThemeLight
 from zapzap.controllers.main_window_components.menu_bar import MenuBar
 from zapzap.controllers.main_window_components.tray_icon import TrayIcon
 from zapzap.controllers.main_window_decoration.ui_decoration import UIDecoration
@@ -12,8 +11,10 @@ from zapzap.engine.browser import Browser
 from zapzap.services.dbus_theme import get_system_theme
 from gettext import gettext as _
 
+from zapzap.view.main_window import Ui_MainWindow
 
-class MainWindow(QMainWindow):
+
+class MainWindow(QMainWindow, Ui_MainWindow):
 
     isFullScreen = False
     isHideMenuBar = False
@@ -22,7 +23,8 @@ class MainWindow(QMainWindow):
 
     def __init__(self, parent=None):
         super(MainWindow, self).__init__()
-        uic.loadUi(zapzap.abs_path+'/view/main_window.ui', self)
+        self.setupUi(self)
+        #uic.loadUi(zapzap.abs_path+'/view/main_window.ui', self)
         self.app = parent
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
         self.scd = None
@@ -48,7 +50,13 @@ class MainWindow(QMainWindow):
         self.timer.timeout.connect(self.recurring_timer)
         self.current_theme = -1
 
-        self.retranslateUi()
+        self.setZapDecoration()
+
+
+    def setZapDecoration(self):
+        self.headbar.hide()
+        if self.settings.value("system/zap_decoration", False, bool):
+            self.scd = UIDecoration(self)
 
     def recurring_timer(self):
         """ Check the current system theme and apply it in the app """
@@ -56,15 +64,15 @@ class MainWindow(QMainWindow):
         if self.current_theme != theme:
             self.current_theme = theme
             self.setThemeApp(self.current_theme)
-    
+
     def setThemeApp(self, isNight_mode):
         """"Apply the theme in the APP
             isNight_mode: boll
         """
         if isNight_mode:
-            self.app.setStyleSheet(STYLE_SHEET_DARK)
+            self.app.setStyleSheet(getThemeDark())
         else:
-            self.app.setStyleSheet(STYLE_SHEET_LIGHT)
+            self.app.setStyleSheet(getThemeLight())
 
         # Apply equivalent theme on whatsapp page
         self.browser.whats.setTheme(isNight_mode)
@@ -92,12 +100,7 @@ class MainWindow(QMainWindow):
         """
         Load the settings
         """
-        self.headbar.hide()
-        if self.settings.value("system/zap_decoration", False, bool):
-            self.scd = UIDecoration(self)
-
         # Theme App
-        #self.setThemeApp(self.settings.value("system/night_mode", False, bool))
         theme_mode = self.settings.value("system/theme", 'auto', str)
         if theme_mode == 'auto':
             self.setThemeApp(get_system_theme())
@@ -131,6 +134,7 @@ class MainWindow(QMainWindow):
         """
         Close window.
         """
+        self.settings.setValue("browser/zoomFactor", self.browser.zoomFactor())
         self.settings.setValue("main/geometry", self.saveGeometry())
         self.settings.setValue("main/windowState", self.saveState())
         self.hide()
@@ -163,12 +167,12 @@ class MainWindow(QMainWindow):
         """
         Opening the system tray web app.
         """
-        self.loadSettings()
         if self.app.activeWindow() != None:  # Se a janela estiver em foco será escondida
             self.hide()
         else:  # Caso não esteja, será mostrada
             self.show()
             self.app.activateWindow()
+            self.main_stacked.setCurrentIndex(0)
 
     def setDefault_size_page(self):
         """Reset user defined zoom (1.0 by default)"""
@@ -208,24 +212,3 @@ class MainWindow(QMainWindow):
             self.settings.setValue("main/hideMenuBar", self.isHideMenuBar)
             self.zapSettings.menubar.setChecked(self.isHideMenuBar)
             self.isHideMenuBar = not self.isHideMenuBar
-
-    def retranslateUi(self):
-        self.menuFile.setTitle(_("File"))
-        self.menuView.setTitle(_("View"))
-        self.menuHelp.setTitle(_("Help"))
-        self.actionSettings.setText(_("Settings"))
-        self.actionQuit.setText(_("Quit"))
-        self.actionReload_Service.setText(_("Reload"))
-        self.actionDefault_size_page.setText(_("Default size page"))
-        self.actionToggle_Full_Screen.setText(_("Toggle Full Screen"))
-        self.actionAuto_hide_menu_bar.setText(_("Hide menu bar"))
-        self.actionLearn_More.setText(_("Learn More"))
-        self.actionChangelog.setText(_("Changelog"))
-        self.actionSupport.setText(_("Report issue..."))
-        self.actionAbout_Zapzap.setText(_("About Zapzap"))
-        self.actionHide_on_close.setText(_("Hide on close"))
-        self.actionHide_on_close.setToolTip(
-            _("Keep in background when closing window"))
-        self.actionZoomIn.setText(_("Zoom in"))
-        self.actionZoomOut.setText(_("Zoom out"))
-        self.actionDonations.setText(_("Donations"))

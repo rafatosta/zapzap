@@ -9,10 +9,11 @@ class UIDecoration():
     def __init__(self, mainWindow) -> None:
         self.win = mainWindow
 
-        #show em headbar
+        # show em headbar
         self.win.headbar.show()
 
         self.uiDefinitions()
+        self.headDefinitions()
 
     def uiDefinitions(self):
         # Duplo click na headbar
@@ -28,7 +29,7 @@ class UIDecoration():
             if event.buttons() == Qt.MouseButton.LeftButton:
                 window = self.win.window().windowHandle()
                 window.startSystemMove()
-        self.win.titleRightInfo.mouseMoveEvent = moveWindow
+        self.win.headbar.mouseMoveEvent = moveWindow
 
         # CUSTOM GRIPS
         self.left_grip = CustomGrip(self.win, Qt.Edge.LeftEdge, True)
@@ -40,7 +41,6 @@ class UIDecoration():
         def resizeEvent(event):
             self.resize_grips()
         self.win.resizeEvent = resizeEvent
-
 
         # DROP SHADOW
         # está travando o webview
@@ -55,21 +55,46 @@ class UIDecoration():
         self.win.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.win.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
-        ## ----- Botões ------ ##
-
+        ## ----- Ações dos Botões ------ ##
         # Settings
         self.win.settingsTopBtn.clicked.connect(self.win.openSettings)
-
+        self.win.settingsTopBtn_left.clicked.connect(self.win.openSettings)
         # MINIMIZE
-        self.win.minimizeAppBtn.hide()
-        # self.win.minimizeAppBtn.clicked.connect(
-        #    lambda: self.win.showMinimized())
+        self.win.minimizeAppBtn.clicked.connect(
+            lambda: self.win.showMinimized())
+        self.win.minimizeAppBtn_left.clicked.connect(
+            lambda: self.win.showMinimized())
 
         # MAXIMIZE/RESTORE
-        # self.win.maximizeRestoreAppBtn.clicked.connect(self.maximize_restore)
-        self.win.maximizeRestoreAppBtn.hide()
+        self.win.maximizeAppBtn.clicked.connect(self.maximize_restore)
+        self.win.maximizeAppBtn_left.clicked.connect(self.maximize_restore)
+
         # CLOSE APPLICATION
         self.win.closeAppBtn.clicked.connect(lambda: self.win.close())
+        self.win.closeAppBtn_left.clicked.connect(lambda: self.win.close())
+
+    def headDefinitions(self):
+
+        if self.win.settings.value("system/winBtnMax", False, bool):
+            self.win.maximizeAppBtn.show()
+            self.win.maximizeAppBtn_left.show()
+        else:
+            self.win.maximizeAppBtn.hide()
+            self.win.maximizeAppBtn_left.hide()
+
+        if self.win.settings.value("system/winBtnMin", False, bool):
+            self.win.minimizeAppBtn.show()
+            self.win.minimizeAppBtn_left.show()
+        else:
+            self.win.minimizeAppBtn.hide()
+            self.win.minimizeAppBtn_left.hide()
+
+        if self.win.settings.value("system/posBtnLeft", False, bool):
+            self.win.rightButtons.hide()
+            self.win.leftButtons.show()
+        else:
+            self.win.rightButtons.show()
+            self.win.leftButtons.hide()
 
     def maximize_restore(self):
         if self.win.windowState() == Qt.WindowState.WindowMaximized:

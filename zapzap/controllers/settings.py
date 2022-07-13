@@ -1,25 +1,32 @@
 from PyQt6.QtWidgets import QWidget, QPushButton
 from PyQt6.QtCore import QSettings, QSize, QUrl
-from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtGui import QDesktopServices, QIcon
 from PyQt6 import uic
 import zapzap
 from zapzap.services.portal_desktop import createDesktop, removeDesktop
 from gettext import gettext as _
 
+from zapzap.view.settings import Ui_Settings
 
-class Settings(QWidget):
+
+class Settings(QWidget, Ui_Settings):
     def __init__(self, parent=None):
-        super().__init__()
-        uic.loadUi(zapzap.abs_path+'/view/settings.ui', self)
+        super(Settings, self).__init__()
+        self.setupUi(self)
+        # uic.loadUi(zapzap.abs_path+'/view/settings.ui', self)
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
         self.mainWindow = parent
         self.load()
         self.settingsActions()
         self.loadInfoHelp()
 
-        self.retranslateUi()
-
     def loadInfoHelp(self):
+        self.icon_world.setPixmap(
+            QIcon(zapzap.abs_path+'/assets/icons/earth.svg').pixmap(QSize(25, 25)))
+        self.icon_br.setPixmap(QIcon(zapzap.abs_path+'/assets/icons/brazil.svg').pixmap(QSize(25, 25)))
+        self.icon_qrcode.setPixmap(QIcon(zapzap.abs_path+'/assets/icons/qrcode.png').pixmap(QSize(150, 150)))
+        self.version_app.setText(
+            _(self.version_app.text()).format(id=zapzap.__version__))
         self.icon_app.setPixmap(zapzap.getIconTray().pixmap(QSize(50, 50)))
         # actions
         self.btn_learn.clicked.connect(lambda: QDesktopServices.openUrl(
@@ -45,6 +52,10 @@ class Settings(QWidget):
         self.disableTrayIcon.clicked.connect(self.actionsSystemMenu)
         self.menubar.clicked.connect(self.actionsSystemMenu)
         self.check_zap_window.clicked.connect(self.actionsSystemMenu)
+        self.cb_maximize.clicked.connect(self.actionsSystemMenu)
+        self.cb_minimize.clicked.connect(self.actionsSystemMenu)
+        self.cb_positLeft.clicked.connect(self.actionsSystemMenu)
+
         ## Appearance ##
         self.rb_system.clicked.connect(self.actionsRbAppearance)
         self.rb_light.clicked.connect(self.actionsRbAppearance)
@@ -97,32 +108,32 @@ class Settings(QWidget):
         self.save()
 
     def actionsRbTray(self):
-        theme = 'default'
+        theme='default'
         if self.rb_tray_default.isChecked():
             """default"""
 
         if self.rb_tray_light.isChecked():  # icone preto
-            theme = 'symbolic_light'
+            theme='symbolic_light'
 
         if self.rb_tray_dark.isChecked():  # icone branco
-            theme = 'symbolic_dark'
+            theme='symbolic_dark'
 
         self.settings.setValue("notification/theme_tray", theme)
         self.mainWindow.browser.title_changed(self.mainWindow.windowTitle())
 
     def actionsRbAppearance(self):
-        theme = 'auto'
+        theme='auto'
         if self.rb_system.isChecked():
             """Ativa o contador"""
-            self.mainWindow.current_theme = -1
+            self.mainWindow.current_theme=-1
             self.mainWindow.timer.start()
         if self.rb_light.isChecked():
-            theme = 'light'
+            theme='light'
             """Desativa o contador e ativa o light"""
             self.mainWindow.timer.stop()
             self.mainWindow.setThemeApp(False)
         if self.rb_dark.isChecked():
-            theme = 'dark'
+            theme='dark'
             """Desativa o contador e ativa o dark"""
             self.mainWindow.timer.stop()
             self.mainWindow.setThemeApp(True)
@@ -130,8 +141,8 @@ class Settings(QWidget):
         self.settings.setValue("system/theme", theme)
 
     def actionsSystemMenu(self):
-        btn = self.sender()  # returns a pointer to the object that sent the signal
-        btnName = btn.objectName()
+        btn=self.sender()  # returns a pointer to the object that sent the signal
+        btnName=btn.objectName()
         if btnName == 'start_system':
             self.start_hide.setEnabled(self.start_system.isChecked())
             # cria ou remove o arquivo
@@ -147,13 +158,17 @@ class Settings(QWidget):
                 not self.disableTrayIcon.isChecked())
         if btnName == 'menubar':
             self.mainWindow.setHideMenuBar()
-    
+        if btnName == 'check_zap_window':
+            self.frameZapWindow.setEnabled(self.check_zap_window.isChecked())
+
         self.save()
+        if self.mainWindow.scd != None:
+            self.mainWindow.scd.headDefinitions()
 
     def buttonClick(self):
-        btn = self.sender()  # returns a pointer to the object that sent the signal
-        btnName = btn.objectName()
-        #print(btnName)
+        btn=self.sender()  # returns a pointer to the object that sent the signal
+        btnName=btn.objectName()
+        # print(btnName)
 
         self.resetStyle(btnName)
         if btnName == 'btn_system':
@@ -186,7 +201,7 @@ class Settings(QWidget):
         Load all settings
         """
         ## System ##
-        isStart_system = self.settings.value(
+        isStart_system=self.settings.value(
             "system/start_system", False, bool)
         self.start_system.setChecked(isStart_system)  # Start_system
         self.start_hide.setEnabled(isStart_system)  # Enable Start Hide
@@ -202,10 +217,17 @@ class Settings(QWidget):
             "main/hideMenuBar", False, bool))  # tray_icon
 
         self.check_zap_window.setChecked(self.settings.value(
-            "system/zap_decoration", False, bool)) 
+            "system/zap_decoration", False, bool))
+        self.frameZapWindow.setEnabled(self.check_zap_window.isChecked())
+        self.cb_maximize.setChecked(self.settings.value(
+            "system/winBtnMax", False, bool))
+        self.cb_minimize.setChecked(self.settings.value(
+            "system/winBtnMin", False, bool))
+        self.cb_positLeft.setChecked(self.settings.value(
+            "system/posBtnLeft", False, bool))
 
         ## Appearance ##
-        theme_mode = self.settings.value("system/theme", 'auto', str)
+        theme_mode=self.settings.value("system/theme", 'auto', str)
         if theme_mode == 'auto':
             self.rb_system.setChecked(True)
         elif theme_mode == 'light':
@@ -214,7 +236,7 @@ class Settings(QWidget):
             self.rb_dark.setChecked(True)
 
         ## Theme Icon ##
-        theme_icon = self.mainWindow.settings.value(
+        theme_icon=self.mainWindow.settings.value(
             "notification/theme_tray", 'default', str)
         print()
         if theme_icon == 'default':
@@ -225,7 +247,7 @@ class Settings(QWidget):
             self.rb_tray_dark.setChecked(True)
 
         ## Notifications ##
-        isNotifyApp = self.settings.value("notification/app", True, bool)
+        isNotifyApp=self.settings.value("notification/app", True, bool)
         self.notify_desktop.setChecked(isNotifyApp)
         # enable ou disable
         self.show_photo.setEnabled(isNotifyApp)
@@ -255,7 +277,14 @@ class Settings(QWidget):
         self.settings.setValue("system/tray_icon",
                                not self.disableTrayIcon.isChecked())
         self.settings.setValue("main/hideMenuBar", self.menubar.isChecked())
-        self.settings.setValue("system/zap_decoration", self.check_zap_window.isChecked())
+        self.settings.setValue("system/zap_decoration",
+                               self.check_zap_window.isChecked())
+        self.settings.setValue("system/winBtnMax",
+                               self.cb_maximize.isChecked())
+        self.settings.setValue("system/winBtnMin",
+                               self.cb_minimize.isChecked())
+        self.settings.setValue("system/posBtnLeft",
+                               self.cb_positLeft.isChecked())
 
         # Notifications
         self.settings.setValue('notification/app',
@@ -271,19 +300,19 @@ class Settings(QWidget):
     # ///////////////////////////////////////////////////////////////
     # SELECT
     # MENU SELECTED STYLESHEET
-    MENU_SELECTED_STYLESHEET = """
+    MENU_SELECTED_STYLESHEET="""
     background-color: #00BD95;
     border-color: #00BD95;
     font-weight: bold;
     """
 
     def selectMenu(self, getStyle):
-        select = getStyle + self.MENU_SELECTED_STYLESHEET
+        select=getStyle + self.MENU_SELECTED_STYLESHEET
         return select
 
     # DESELECT
     def deselectMenu(self, getStyle):
-        deselect = getStyle.replace(self.MENU_SELECTED_STYLESHEET, "")
+        deselect=getStyle.replace(self.MENU_SELECTED_STYLESHEET, "")
         return deselect
 
     # RESET SELECTION
@@ -291,51 +320,3 @@ class Settings(QWidget):
         for w in self.menu.findChildren(QPushButton):
             if w.objectName() != widget:
                 w.setStyleSheet(self.deselectMenu(w.styleSheet()))
-
-    ## Translate ##
-    def retranslateUi(self):
-        self.btn_home.setText(_("ZapZap"))
-        self.btn_system.setText(_("System"))
-        self.btn_appearance.setText(_("Appearance"))
-        self.btn_notifications.setText(_("Notifications"))
-        self.btn_about.setText(_("About"))
-        self.label.setText(_("System"))
-        self.start_system.setText(_("Start ZapZap with the system"))
-        self.start_hide.setText(_("Start minimized"))
-        self.keepBackground.setText(_("Hide on close"))
-        self.disableTrayIcon.setText(_("Disable tray icon"))
-        self.label_14.setText(_("Menu bar"))
-        self.menubar.setText(_("Hide menu bar"))
-        self.label_2.setText(_("Customize appearance"))
-        self.label_5.setText(_("General appearance"))
-        self.label_11.setText(_("System style"))
-        self.label_12.setText(_("Light style"))
-        self.label_13.setText(_("Dark style"))
-        self.label_6.setText(_("Tray icon"))
-        self.label_10.setText(_("Tray icon appearance"))
-        self.label_7.setText(_("Default"))
-        self.label_8.setText(_("Symbolic light"))
-        self.label_9.setText(_("Symbolic dark"))
-        self.notify_desktop.setText(_("Notifications on the desktop"))
-        self.show_photo.setText(_("Show the photo of the sender"))
-        self.show_name.setText(_("Show the sender\'s name"))
-        self.show_msg.setText(_("Show message preview"))
-        self.label_3.setText(_("About"))
-        self.name_app.setText(_("ZapZap"))
-        self.version_app.setText(
-            _('Version {id} (Official compilation)').format(id=zapzap.__version__))
-        self.desc_app.setText(
-            _("An unofficial WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine."))
-        self.name_app2.setText(_("ZapZap"))
-        self.label_4.setText(_("GNU General Public License v3.0"))
-        self.btn_learn.setText(_("Learn more"))
-        self.btn_changelog.setText(_("Changelog"))
-        self.btn_report.setText(_("Report isue..."))
-        self.title_donations.setText(_("Donations"))
-        self.btn_buy_paypal.setText(_("Click to donate via PayPal"))
-        self.btn_donations.setText(_("Donations"))
-
-        self.experiments_title.setText(_("Experiments"))
-        self.check_zap_window.setText(_("Use zapzap window (Restart required)"))
-        self.note_experiments.setText(_("Note: Rendering and performance issues can happen. \nPlease report if anything strange happens."))
-        
