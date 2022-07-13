@@ -26,7 +26,7 @@ try:
                                  'assets/icons/titlebar_buttons/*/*/*.svg',
                                  'assets/segoe-ui/*.ttf',
                                  'view/*.ui',
-                                 'locales/*/LC_MESSAGES/*.mo']},
+                                 '../po/*/LC_MESSAGES/zapzap.mo']},
         setup_requires=setup_requires,
         entry_points={'gui_scripts': ['zapzap = zapzap.__main__:main']},
         keywords='zapzap whatsapp client web app',
