@@ -146,7 +146,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.app)
         MainWindow.setCentralWidget(self.appMargins)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 31))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 25))
         self.menubar.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.menubar.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         self.menubar.setDefaultUp(False)
@@ -190,6 +190,8 @@ class Ui_MainWindow(object):
         self.actionZoomOut.setObjectName("actionZoomOut")
         self.actionDonations = QtGui.QAction(MainWindow)
         self.actionDonations.setObjectName("actionDonations")
+        self.actionHome_page = QtGui.QAction(MainWindow)
+        self.actionHome_page.setObjectName("actionHome_page")
         self.menuFile.addAction(self.actionSettings)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionDonations)
@@ -204,6 +206,8 @@ class Ui_MainWindow(object):
         self.menuView.addSeparator()
         self.menuView.addAction(self.actionToggle_Full_Screen)
         self.menuView.addAction(self.actionAuto_hide_menu_bar)
+        self.menuView.addSeparator()
+        self.menuView.addAction(self.actionHome_page)
         self.menuHelp.addAction(self.actionLearn_More)
         self.menuHelp.addAction(self.actionChangelog)
         self.menuHelp.addAction(self.actionSupport)
@@ -246,6 +250,8 @@ class Ui_MainWindow(object):
         self.actionZoomOut.setText(_("Zoom out"))
         self.actionZoomOut.setShortcut(_("Ctrl+-"))
         self.actionDonations.setText(_("Donations"))
+        self.actionHome_page.setText(_("Home page"))
+        self.actionHome_page.setShortcut(_("Esc"))
 
 
 if __name__ == "__main__":

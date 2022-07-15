@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-15 15:57-0300\n"
+"POT-Creation-Date: 2022-07-15 20:40-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,117 +17,123 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: zapzap/view/main_window.py:222 zapzap/view/settings.py:861
+#: zapzap/view/main_window.py:226 zapzap/view/settings.py:861
 #: zapzap/view/settings.py:900 zapzap/view/settings.py:903
-#: share/applications/com.rtosta.zapzap.desktop:4
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:7
 msgid "ZapZap"
 msgstr "ZapZap"
 
-#: zapzap/view/main_window.py:223
+#: zapzap/view/main_window.py:227
 msgid "File"
 msgstr "Arquivo"
 
-#: zapzap/view/main_window.py:224
+#: zapzap/view/main_window.py:228
 msgid "View"
 msgstr "Visualizar"
 
-#: zapzap/view/main_window.py:225
+#: zapzap/view/main_window.py:229
 msgid "Help"
 msgstr "Ajuda"
 
-#: zapzap/view/main_window.py:226
+#: zapzap/view/main_window.py:230
 msgid "Settings"
 msgstr "Configurações"
 
-#: zapzap/view/main_window.py:227
+#: zapzap/view/main_window.py:231
 msgid "Ctrl+P"
 msgstr ""
 
-#: zapzap/view/main_window.py:228
+#: zapzap/view/main_window.py:232
 msgid "Quit"
 msgstr "Sair"
 
-#: zapzap/view/main_window.py:229
+#: zapzap/view/main_window.py:233
 msgid "Ctrl+Q"
 msgstr ""
 
-#: zapzap/view/main_window.py:230 zapzap/engine/browser.py:70
+#: zapzap/view/main_window.py:234 zapzap/engine/browser.py:73
 msgid "Reload"
 msgstr "Recarregar página"
 
-#: zapzap/view/main_window.py:231
+#: zapzap/view/main_window.py:235
 msgid "F5"
 msgstr ""
 
-#: zapzap/view/main_window.py:232
+#: zapzap/view/main_window.py:236
 msgid "Default size page"
 msgstr "Tamanho real"
 
-#: zapzap/view/main_window.py:233
+#: zapzap/view/main_window.py:237
 msgid "Ctrl+0"
 msgstr ""
 
-#: zapzap/view/main_window.py:234
+#: zapzap/view/main_window.py:238
 msgid "Full Screen"
 msgstr "Tela cheia"
 
-#: zapzap/view/main_window.py:235
+#: zapzap/view/main_window.py:239
 msgid "F11"
 msgstr ""
 
-#: zapzap/view/main_window.py:236 zapzap/view/settings.py:873
+#: zapzap/view/main_window.py:240 zapzap/view/settings.py:873
 msgid "Hide menu bar"
 msgstr "Esconder barra de menu"
 
-#: zapzap/view/main_window.py:237
+#: zapzap/view/main_window.py:241
 msgid "Ctrl+M"
 msgstr ""
 
-#: zapzap/view/main_window.py:238
+#: zapzap/view/main_window.py:242
 msgid "Learn More"
 msgstr "Leia mais"
 
-#: zapzap/view/main_window.py:239 zapzap/view/settings.py:906
+#: zapzap/view/main_window.py:243 zapzap/view/settings.py:906
 msgid "Changelog"
 msgstr "Lista de mudanças"
 
-#: zapzap/view/main_window.py:240
+#: zapzap/view/main_window.py:244
 msgid "Report issue..."
 msgstr "Reporte um problema..."
 
-#: zapzap/view/main_window.py:241
+#: zapzap/view/main_window.py:245
 msgid "About Zapzap"
 msgstr "Sobre ZapZap"
 
-#: zapzap/view/main_window.py:242 zapzap/view/settings.py:870
+#: zapzap/view/main_window.py:246 zapzap/view/settings.py:870
 msgid "Hide on close"
 msgstr "Esconder ao fechar"
 
-#: zapzap/view/main_window.py:243
+#: zapzap/view/main_window.py:247
 msgid "Keep in background when closing window"
 msgstr "Execução em segundo plano"
 
-#: zapzap/view/main_window.py:244
+#: zapzap/view/main_window.py:248
 msgid "Zoom in"
 msgstr "Ampliar"
 
-#: zapzap/view/main_window.py:245
+#: zapzap/view/main_window.py:249
 msgid "Ctrl++"
 msgstr ""
 
-#: zapzap/view/main_window.py:246
+#: zapzap/view/main_window.py:250
 msgid "Zoom out"
 msgstr "Reduzir"
 
-#: zapzap/view/main_window.py:247
+#: zapzap/view/main_window.py:251
 msgid "Ctrl+-"
 msgstr ""
 
-#: zapzap/view/main_window.py:248 zapzap/view/settings.py:865
+#: zapzap/view/main_window.py:252 zapzap/view/settings.py:865
 #: zapzap/view/settings.py:894
 msgid "Donations"
 msgstr "Doações"
+
+#: zapzap/view/main_window.py:253
+msgid "Home page"
+msgstr "Página inicial"
+
+#: zapzap/view/main_window.py:254
+msgid "Esc"
+msgstr ""
 
 #: zapzap/view/settings.py:860
 msgid "Form"
@@ -149,11 +155,11 @@ msgstr "Notificações"
 msgid "About"
 msgstr "Sobre"
 
-#: zapzap/view/settings.py:868 share/metainfo/com.rtosta.zapzap.appdata.xml:146
+#: zapzap/view/settings.py:868
 msgid "Start ZapZap with the system"
 msgstr "Iniciar com o sistema"
 
-#: zapzap/view/settings.py:869 share/metainfo/com.rtosta.zapzap.appdata.xml:147
+#: zapzap/view/settings.py:869
 msgid "Start minimized"
 msgstr "Iniciar minimizado"
 
@@ -225,19 +231,19 @@ msgstr "Symbolic claro"
 msgid "Symbolic dark"
 msgstr "Symbolic escuro"
 
-#: zapzap/view/settings.py:890 share/metainfo/com.rtosta.zapzap.appdata.xml:153
+#: zapzap/view/settings.py:890
 msgid "Notifications on the desktop"
 msgstr "Notificações na área de trabalho"
 
-#: zapzap/view/settings.py:891 share/metainfo/com.rtosta.zapzap.appdata.xml:154
+#: zapzap/view/settings.py:891
 msgid "Show the photo of the sender"
 msgstr "Mostrar a foto do remetente"
 
-#: zapzap/view/settings.py:892 share/metainfo/com.rtosta.zapzap.appdata.xml:155
+#: zapzap/view/settings.py:892
 msgid "Show the sender's name"
 msgstr "Mostrar o nome do remetente"
 
-#: zapzap/view/settings.py:893 share/metainfo/com.rtosta.zapzap.appdata.xml:156
+#: zapzap/view/settings.py:893
 msgid "Show message preview"
 msgstr "Mostrar a mensagem do remetente"
 
@@ -283,236 +289,26 @@ msgstr "Leia mais"
 msgid "Report isue..."
 msgstr "Reporte um problema..."
 
-#: zapzap/engine/browser.py:72
+#: zapzap/engine/browser.py:75
 msgid "Undo"
 msgstr "Desfazer"
 
-#: zapzap/engine/browser.py:74
+#: zapzap/engine/browser.py:77
 msgid "Redo"
 msgstr "Refazer"
 
-#: zapzap/engine/browser.py:76
+#: zapzap/engine/browser.py:79
 msgid "Cut"
 msgstr "Recortar"
 
-#: zapzap/engine/browser.py:78
+#: zapzap/engine/browser.py:81
 msgid "Copy"
 msgstr "Copiar"
 
-#: zapzap/engine/browser.py:80
+#: zapzap/engine/browser.py:83
 msgid "Paste"
 msgstr "Colar"
 
-#: zapzap/engine/browser.py:84
+#: zapzap/engine/browser.py:87
 msgid "Select all"
 msgstr "Selecionar tudo"
-
-#: share/applications/com.rtosta.zapzap.desktop:5
-msgid "Unofficial WhatsApp desktop application for Linux"
-msgstr "Aplicativo de desktop WhatsApp não oficial para Linux."
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:8
-msgid "ZapZap - Whatsapp Desktop for linux"
-msgstr "ZapZap - Whatsapp Desktop para linux"
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:11
-msgid "Unofficial WhatsApp desktop application for Linux."
-msgstr "Aplicativo de desktop WhatsApp não oficial para Linux."
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:14
-msgid "Features include:"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:16
-msgid "Features come with whatsapp web"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:17
-msgid "System tray icon"
-msgstr "Desabilitar Ícone de bandeja"
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:18
-msgid "Icon in systray with different icon if there is new messages"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:19
-msgid "Fullscreen mode"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:20
-msgid "background running"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:23
-msgid "What doesn't include:"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:25
-msgid "Video calls"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:26
-msgid "On-call calls"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:52
-msgid "Rafael Tosta"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:57
-msgid "New: Zap decoration for the window"
-msgstr "Novidade: Zap decoração para a janela"
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:58
-msgid "Various internal improvements"
-msgstr "Várias melhorias internas"
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:65
-msgid "Experimental Function: Zap Window Decoration"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:72
-msgid "Minor bug fixes."
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:79
-msgid "Translation for pt_BR."
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:86
-msgid "New settings panel;"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:87
-msgid "Themes: follow the system, light and dark;"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:88
-msgid "Tray icons: default, symbolic light and symbolic dark;"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:89
-msgid "See the rest with your own eyes! =D"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:95
-msgid "Improvements to the configuration interface."
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:96
-msgid ""
-"Now Zapzap has a MenuBar and Settings Panel to allow better access to "
-"settings. News: Possibility to hide the MenuBar; F11 for full screen; "
-"Disable the tray icon."
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:102
-msgid ""
-"This will be the last update from version 2.x. Development will be focused "
-"on version 3.0 which will bring a new look to improve usability and the "
-"option to use multiple accounts."
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:103
-msgid "Improvements:"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:105
-msgid "Symbolic icon for tray (better integration with KDE Plasma)"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:106
-msgid "Some tweaks you won't notice"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:112
-msgid "Usability improvements:"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:114
-msgid "Better visibility for accessing zapzap settings"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:115
-msgid "Choose to stay in the background or close the app"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:116
-msgid "Action to open Settings in Tray menu"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:117
-msgid "Sets Fusion as default style"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:123
-msgid ""
-"Usability improvements: Actions when clicking on the tray icon similar to "
-"Telegram-Desktop."
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:124
-msgid ""
-"Internal improvements: Persistent Settings with QSettings. NOTE: Settings "
-"will be returned to default."
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:129
-msgid "Clicking on Notification Improvements"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:134
-msgid "New icons and some improvements"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:139
-msgid "Enhancements and Download files in any folder"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:144
-msgid "System integration"
-msgstr "Estilo do sistema"
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:148
-msgid "Night mode"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:151
-msgid "Chat notifications"
-msgstr "Notificações"
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:162
-msgid "Fix Chrome Upgrade 60+"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:167
-msgid "News"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:169
-msgid "Shows notifications in the system;"
-msgstr "Notificações na área de trabalho"
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:170
-msgid "Attention: Does not open the window if it is hidden. Solution soon."
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:172
-msgid "Updates"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:174
-msgid "Focus on the window when clicking on the Tray, if it is already open;"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:175
-msgid "UserAgent;"
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:176
-msgid "Webcam permissions."
-msgstr ""
-
-#: share/metainfo/com.rtosta.zapzap.appdata.xml:182
-msgid "First release."
-msgstr ""

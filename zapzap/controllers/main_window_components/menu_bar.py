@@ -28,6 +28,8 @@ class MenuBar():
             mainWindow.zoomOut)
         mainWindow.actionAuto_hide_menu_bar.triggered.connect(
             mainWindow.setHideMenuBar)
+        mainWindow.actionHome_page.triggered.connect(
+            lambda: mainWindow.main_stacked.setCurrentIndex(0))
 
         # Help
         mainWindow.actionLearn_More.triggered.connect(lambda: QDesktopServices.openUrl(
