@@ -8,6 +8,7 @@ import zapzap
 from zapzap import __appname__
 from zapzap.engine.whatsapp import WhatsApp
 import zapzap.services.dbus_notify as dbus
+from gettext import gettext as _
 
 
 class Browser(QWebEngineView):
@@ -62,8 +63,25 @@ class Browser(QWebEngineView):
 
         actions = menu.actions()
         for a in actions:
-            if a.text() == 'Back' or a.text() == 'View page source' or a.text() == 'Save page' or a.text() == 'Forward':
+            name = a.text()
+            if name == 'Back' or name == 'View page source' or name == 'Save page' or name == 'Forward':
                 a.setVisible(False)
+            elif name == 'Reload':
+                a.setText(_('Reload'))
+            elif name == 'Undo':
+                a.setText(_('Undo'))
+            elif name == 'Redo':
+                a.setText(_('Redo'))
+            elif name == 'Cut':
+                a.setText(_('Cut'))
+            elif name == 'Copy':
+                a.setText(_('Copy'))
+            elif name == 'Paste':
+                a.setText(_('Paste'))
+            elif name == 'Paste and match style':
+                a.setVisible(False)
+            elif name == 'Select all':
+                a.setText(_('Select all'))
         """
         auto it = std::find(actions.cbegin(), actions.cend(), page()->action(QWebEnginePage::ViewSource));
         if (it != actions.cend()) {
@@ -75,7 +93,7 @@ class Browser(QWebEngineView):
         for a in actions:
             if a.isSeparator()  and flag:
                 flag = False
-                print(a.text())
+                print(name)
                 a.setText('kkkk')"""
 
         menu.exec(event.globalPos())

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-13 15:51-0300\n"
+"POT-Creation-Date: 2022-07-15 15:57-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,7 @@ msgstr ""
 msgid "Ctrl+Q"
 msgstr ""
 
-#: zapzap/view/main_window.py:230
+#: zapzap/view/main_window.py:230 zapzap/engine/browser.py:70
 msgid "Reload"
 msgstr ""
 
@@ -279,6 +279,30 @@ msgstr ""
 
 #: zapzap/view/settings.py:907
 msgid "Report isue..."
+msgstr ""
+
+#: zapzap/engine/browser.py:72
+msgid "Undo"
+msgstr ""
+
+#: zapzap/engine/browser.py:74
+msgid "Redo"
+msgstr ""
+
+#: zapzap/engine/browser.py:76
+msgid "Cut"
+msgstr ""
+
+#: zapzap/engine/browser.py:78
+msgid "Copy"
+msgstr ""
+
+#: zapzap/engine/browser.py:80
+msgid "Paste"
+msgstr ""
+
+#: zapzap/engine/browser.py:84
+msgid "Select all"
 msgstr ""
 
 #: share/applications/com.rtosta.zapzap.desktop:5
