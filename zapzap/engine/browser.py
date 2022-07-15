@@ -25,7 +25,10 @@ class Browser(QWebEngineView):
         # Activate spelling correction and defines the language.
         # In case of absent language it is disabled
         profile.setSpellCheckEnabled(True)
-        profile.setSpellCheckLanguages((QLocale.system().name(),))
+        if QLocale.system().name() != 'pt_BR':
+            profile.setSpellCheckLanguages(('default',))
+        else:
+            profile.setSpellCheckLanguages((QLocale.system().name(),))
 
         # Rotina para download de arquivos
         profile.downloadRequested.connect(self.download)
