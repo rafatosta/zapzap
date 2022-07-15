@@ -1,0 +1,509 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-13 15:51-0300\n"
+"PO-Revision-Date: 2022-07-15 13:46+0200\n"
+"Last-Translator: musiclover382 <musiclover382@protonmail.com>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1\n"
+
+#: zapzap/view/main_window.py:222 zapzap/view/settings.py:861
+#: zapzap/view/settings.py:900 zapzap/view/settings.py:903
+#: share/applications/com.rtosta.zapzap.desktop:4
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:7
+msgid "ZapZap"
+msgstr "ZapZap"
+
+#: zapzap/view/main_window.py:223
+msgid "File"
+msgstr "File"
+
+#: zapzap/view/main_window.py:224
+msgid "View"
+msgstr "Visualizza"
+
+#: zapzap/view/main_window.py:225
+msgid "Help"
+msgstr "Aiuto"
+
+#: zapzap/view/main_window.py:226
+msgid "Settings"
+msgstr "Preferenze"
+
+#: zapzap/view/main_window.py:227
+msgid "Ctrl+P"
+msgstr "Ctrl+P"
+
+#: zapzap/view/main_window.py:228
+msgid "Quit"
+msgstr "Esci"
+
+#: zapzap/view/main_window.py:229
+msgid "Ctrl+Q"
+msgstr "Ctrl+Q"
+
+#: zapzap/view/main_window.py:230
+msgid "Reload"
+msgstr "Ricarica"
+
+#: zapzap/view/main_window.py:231
+msgid "F5"
+msgstr "F5"
+
+#: zapzap/view/main_window.py:232
+msgid "Default size page"
+msgstr "Ripristina zoom"
+
+#: zapzap/view/main_window.py:233
+msgid "Ctrl+0"
+msgstr "Ctrl+0"
+
+#: zapzap/view/main_window.py:234
+msgid "Full Screen"
+msgstr "Schermo intero"
+
+#: zapzap/view/main_window.py:235
+msgid "F11"
+msgstr "F11"
+
+#: zapzap/view/main_window.py:236 zapzap/view/settings.py:873
+msgid "Hide menu bar"
+msgstr "Nascondi barra degli strumenti"
+
+#: zapzap/view/main_window.py:237
+msgid "Ctrl+M"
+msgstr "Ctrl+M"
+
+#: zapzap/view/main_window.py:238
+msgid "Learn More"
+msgstr "Sito web"
+
+#: zapzap/view/main_window.py:239 zapzap/view/settings.py:906
+msgid "Changelog"
+msgstr "Novità"
+
+#: zapzap/view/main_window.py:240
+msgid "Report issue..."
+msgstr "Segnala un problema..."
+
+#: zapzap/view/main_window.py:241
+msgid "About Zapzap"
+msgstr "Informazioni su ZapZap"
+
+#: zapzap/view/main_window.py:242 zapzap/view/settings.py:870
+msgid "Hide on close"
+msgstr "Riduci nell'area di notifica"
+
+#: zapzap/view/main_window.py:243
+msgid "Keep in background when closing window"
+msgstr "Continua a ricevere messaggi quando chiudi la finestra"
+
+#: zapzap/view/main_window.py:244
+msgid "Zoom in"
+msgstr "Ingrandisci"
+
+#: zapzap/view/main_window.py:245
+msgid "Ctrl++"
+msgstr "Ctrl++"
+
+#: zapzap/view/main_window.py:246
+msgid "Zoom out"
+msgstr "Riduci"
+
+#: zapzap/view/main_window.py:247
+msgid "Ctrl+-"
+msgstr "Ctrl+-"
+
+#: zapzap/view/main_window.py:248 zapzap/view/settings.py:865
+#: zapzap/view/settings.py:894
+msgid "Donations"
+msgstr "Donazioni"
+
+#: zapzap/view/settings.py:860
+msgid "Form"
+msgstr "Modulo"
+
+#: zapzap/view/settings.py:862 zapzap/view/settings.py:867
+msgid "System"
+msgstr "Sistema"
+
+#: zapzap/view/settings.py:863
+msgid "Appearance"
+msgstr "Aspetto"
+
+#: zapzap/view/settings.py:864 zapzap/view/settings.py:889
+msgid "Notifications"
+msgstr "Notifiche"
+
+#: zapzap/view/settings.py:866 zapzap/view/settings.py:899
+msgid "About"
+msgstr "Informazioni"
+
+#: zapzap/view/settings.py:868 share/metainfo/com.rtosta.zapzap.appdata.xml:146
+msgid "Start ZapZap with the system"
+msgstr "Avvia ZapZap all'accesso"
+
+#: zapzap/view/settings.py:869 share/metainfo/com.rtosta.zapzap.appdata.xml:147
+msgid "Start minimized"
+msgstr "Avvia minimizzato"
+
+#: zapzap/view/settings.py:871
+msgid "Disable tray icon"
+msgstr "Non mostrare nell'area di notifica"
+
+#: zapzap/view/settings.py:872
+msgid "Menu bar"
+msgstr "Barra degli strumenti"
+
+#: zapzap/view/settings.py:874
+msgid "ZapZap window (Restart required)"
+msgstr "Finestra (riavvio richiesto)"
+
+#: zapzap/view/settings.py:875
+msgid "Title bar buttons"
+msgstr "Pulsanti barra del titolo"
+
+#: zapzap/view/settings.py:876
+msgid "Maximize"
+msgstr "Massimizza"
+
+#: zapzap/view/settings.py:877
+msgid "Minimize"
+msgstr "Minimizza"
+
+#: zapzap/view/settings.py:878
+msgid "Positioning on the left side"
+msgstr "Posizionamento a sinistra"
+
+#: zapzap/view/settings.py:879
+msgid "Customize appearance"
+msgstr "Personalizza l'aspetto"
+
+#: zapzap/view/settings.py:880
+msgid "General appearance"
+msgstr "Tema"
+
+#: zapzap/view/settings.py:881
+msgid "System style"
+msgstr "Sistema"
+
+#: zapzap/view/settings.py:882
+msgid "Light style"
+msgstr "Chiaro"
+
+#: zapzap/view/settings.py:883
+msgid "Dark style"
+msgstr "Scuro"
+
+#: zapzap/view/settings.py:884
+msgid "Tray icon"
+msgstr "Area di notifica"
+
+#: zapzap/view/settings.py:885
+msgid "Tray icon appearance"
+msgstr "Aspetto area di notifica"
+
+#: zapzap/view/settings.py:886
+msgid "Default"
+msgstr "Predefinito"
+
+#: zapzap/view/settings.py:887
+msgid "Symbolic light"
+msgstr "Simbolico chiaro"
+
+#: zapzap/view/settings.py:888
+msgid "Symbolic dark"
+msgstr "Simbolico scuro"
+
+#: zapzap/view/settings.py:890 share/metainfo/com.rtosta.zapzap.appdata.xml:153
+msgid "Notifications on the desktop"
+msgstr "Ricevi notifiche sul desktop"
+
+#: zapzap/view/settings.py:891 share/metainfo/com.rtosta.zapzap.appdata.xml:154
+msgid "Show the photo of the sender"
+msgstr "Mostra l'immagine del mittente"
+
+#: zapzap/view/settings.py:892 share/metainfo/com.rtosta.zapzap.appdata.xml:155
+msgid "Show the sender's name"
+msgstr "Mostra il nome del mittente"
+
+#: zapzap/view/settings.py:893 share/metainfo/com.rtosta.zapzap.appdata.xml:156
+msgid "Show message preview"
+msgstr "Mostra l'anteprima del messaggio"
+
+#: zapzap/view/settings.py:895
+msgid "World"
+msgstr "Internazionale"
+
+#: zapzap/view/settings.py:896
+msgid "Click to donate via PayPal"
+msgstr "Clicca per donare con PayPal"
+
+#: zapzap/view/settings.py:897
+msgid "Você é do Brasil?"
+msgstr "Você é do Brasil?"
+
+#: zapzap/view/settings.py:898
+msgid ""
+"Acesse o link para transferir via PIX ou realize a leitura do QR code abaixo"
+msgstr ""
+"Acesse o link para transferir via PIX ou realize a leitura do QR code abaixo"
+
+#: zapzap/view/settings.py:901
+#, python-brace-format
+msgid "Version {id} (Official compilation)"
+msgstr "Versione {id} (Edizione ufficiale)"
+
+#: zapzap/view/settings.py:902
+msgid ""
+"An unofficial WhatsApp desktop application written in Pyqt6 + PyQt6-"
+"WebEngine."
+msgstr ""
+"Un'applicazione WhatsApp non ufficiale scritta con Pyqt6 + PyQt6-WebEngine."
+
+#: zapzap/view/settings.py:904
+msgid "GNU General Public License v3.0"
+msgstr "GNU General Public License v3.0"
+
+#: zapzap/view/settings.py:905
+msgid "Learn more"
+msgstr "Sito web"
+
+#: zapzap/view/settings.py:907
+msgid "Report isue..."
+msgstr "Segnala un problema..."
+
+#: share/applications/com.rtosta.zapzap.desktop:5
+msgid "Unofficial WhatsApp desktop application for Linux"
+msgstr "Un'applicazione Whatsapp per Linux non ufficiale"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:8
+msgid "ZapZap - Whatsapp Desktop for linux"
+msgstr "ZapZap - Whatsapp Desktop per Linux"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:11
+msgid "Unofficial WhatsApp desktop application for Linux."
+msgstr "Un'applicazione Whatsapp per Linux non ufficiale."
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:14
+msgid "Features include:"
+msgstr "Funzionalità:"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:16
+msgid "Features come with whatsapp web"
+msgstr "Tutte le funzionalità di Whatsapp Web"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:17
+msgid "System tray icon"
+msgstr "Riduci nell'area di notifica"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:18
+msgid "Icon in systray with different icon if there is new messages"
+msgstr "Differente icona nell'area di notifica se ci sono nuovi messaggi"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:19
+msgid "Fullscreen mode"
+msgstr "Modalità a schermo intero"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:20
+msgid "background running"
+msgstr "Continua a ricevere messaggi in background"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:23
+msgid "What doesn't include:"
+msgstr "Funzionalità non disponibili:"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:25
+msgid "Video calls"
+msgstr "Videochiamate"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:26
+msgid "On-call calls"
+msgstr "Rispondere alle chiamate"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:52
+msgid "Rafael Tosta"
+msgstr "Rafael Tosta"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:57
+msgid "New: Zap decoration for the window"
+msgstr "Novità: gestione della barra del titolo"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:58
+msgid "Various internal improvements"
+msgstr "Vari miglioramenti interni"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:65
+msgid "Experimental Function: Zap Window Decoration"
+msgstr "Funzione sperimentale: gestione della barra del titolo"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:72
+msgid "Minor bug fixes."
+msgstr "Correzioni di bug."
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:79
+msgid "Translation for pt_BR."
+msgstr "Traduzione brasiliana."
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:86
+msgid "New settings panel;"
+msgstr "Nuovo pannello delle preferenze;"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:87
+msgid "Themes: follow the system, light and dark;"
+msgstr "Temi: sistema, chiaro e scuro;"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:88
+msgid "Tray icons: default, symbolic light and symbolic dark;"
+msgstr ""
+"Icona nell'area di notifica: predefinita, simbolica chiara e simbolica scura;"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:89
+msgid "See the rest with your own eyes! =D"
+msgstr "Guarda tu stesso il resto! =D"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:95
+msgid "Improvements to the configuration interface."
+msgstr "Miglioramenti all'interfaccia di configurazione."
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:96
+msgid ""
+"Now Zapzap has a MenuBar and Settings Panel to allow better access to "
+"settings. News: Possibility to hide the MenuBar; F11 for full screen; "
+"Disable the tray icon."
+msgstr ""
+"Aggiunta una barra degli strumenti e un pannello delle preferenze per "
+"accedere più rapidamente alle impostazioni. Novità: possibilità di "
+"nascondere la barra degli strumenti; F11 per lo schermo intero; disattiva "
+"l'icona nell'area di notifica."
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:102
+msgid ""
+"This will be the last update from version 2.x. Development will be focused "
+"on version 3.0 which will bring a new look to improve usability and the "
+"option to use multiple accounts."
+msgstr ""
+"Questo è l'ultimo aggiornamento della versione 2.x. Lo sviluppo verrà "
+"concentrato nella versione 3.0, che offrirà un nuovo aspetto per migliorare "
+"l'utilizzo e aggiungerà la possibilità di usare più account."
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:103
+msgid "Improvements:"
+msgstr "Miglioramenti:"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:105
+msgid "Symbolic icon for tray (better integration with KDE Plasma)"
+msgstr ""
+"Icona simbolica per l'area di notifica (migliore integrazione con KDE Plasma)"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:106
+msgid "Some tweaks you won't notice"
+msgstr "Alcune modifiche non visibili"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:112
+msgid "Usability improvements:"
+msgstr "Miglioramenti all'utilizzo:"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:114
+msgid "Better visibility for accessing zapzap settings"
+msgstr "Migliore visibilità per accedere alle preferenze di ZapZap"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:115
+msgid "Choose to stay in the background or close the app"
+msgstr "Scegli se rimanere attivo nel background o chiudere l'applicazione"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:116
+msgid "Action to open Settings in Tray menu"
+msgstr "Pulsante per aprire le preferenze nell'area di notifica"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:117
+msgid "Sets Fusion as default style"
+msgstr "Imposta Sistema come stile predefinito"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:123
+msgid ""
+"Usability improvements: Actions when clicking on the tray icon similar to "
+"Telegram-Desktop."
+msgstr ""
+"Miglioramenti all'utilizzo: Azioni simili a Telegram desktop quando si preme "
+"l'icona nell'area di notifica."
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:124
+msgid ""
+"Internal improvements: Persistent Settings with QSettings. NOTE: Settings "
+"will be returned to default."
+msgstr ""
+"Miglioramenti interni: preferenze persistenti con QSettings. NOTA: le "
+"preferenze saranno reimpostate."
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:129
+msgid "Clicking on Notification Improvements"
+msgstr "Miglioramenti al comportamento delle notifiche"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:134
+msgid "New icons and some improvements"
+msgstr "Nuove icone e alcuni miglioramenti"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:139
+msgid "Enhancements and Download files in any folder"
+msgstr "Miglioramenti e scegli dove scaricare i file"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:144
+msgid "System integration"
+msgstr "Integrazione con il sistema"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:148
+msgid "Night mode"
+msgstr "Tema scuro"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:151
+msgid "Chat notifications"
+msgstr "Notifiche"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:162
+msgid "Fix Chrome Upgrade 60+"
+msgstr "Correzione versione di Chrome 60+"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:167
+msgid "News"
+msgstr "Novità"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:169
+msgid "Shows notifications in the system;"
+msgstr "Mostra notifiche;"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:170
+msgid "Attention: Does not open the window if it is hidden. Solution soon."
+msgstr ""
+"Attenzione: la finestra non viene aperta se nascosta. Verrà risolto presto."
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:172
+msgid "Updates"
+msgstr "Aggiornamenti"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:174
+msgid "Focus on the window when clicking on the Tray, if it is already open;"
+msgstr "Quando si preme sull'icona, la finestra diventa attiva se già aperta;"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:175
+msgid "UserAgent;"
+msgstr "UserAgent;"
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:176
+msgid "Webcam permissions."
+msgstr "Permessi fotocamera."
+
+#: share/metainfo/com.rtosta.zapzap.appdata.xml:182
+msgid "First release."
+msgstr "Prima versione."
