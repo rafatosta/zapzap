@@ -110,7 +110,7 @@ class Ui_Settings(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.system_scrollArea = QtWidgets.QWidget()
-        self.system_scrollArea.setGeometry(QtCore.QRect(0, 0, 638, 593))
+        self.system_scrollArea.setGeometry(QtCore.QRect(0, 0, 644, 572))
         self.system_scrollArea.setObjectName("system_scrollArea")
         self.horizontalLayout_16 = QtWidgets.QHBoxLayout(self.system_scrollArea)
         self.horizontalLayout_16.setObjectName("horizontalLayout_16")
@@ -242,7 +242,7 @@ class Ui_Settings(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.scrollArea_4.setObjectName("scrollArea_4")
         self.appearance_scrollArea = QtWidgets.QWidget()
-        self.appearance_scrollArea.setGeometry(QtCore.QRect(0, 0, 636, 360))
+        self.appearance_scrollArea.setGeometry(QtCore.QRect(0, 0, 642, 348))
         self.appearance_scrollArea.setObjectName("appearance_scrollArea")
         self.verticalLayout_33 = QtWidgets.QVBoxLayout(self.appearance_scrollArea)
         self.verticalLayout_33.setObjectName("verticalLayout_33")
@@ -504,7 +504,7 @@ class Ui_Settings(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName("scrollArea_2")
         self.notification_scrollArea = QtWidgets.QWidget()
-        self.notification_scrollArea.setGeometry(QtCore.QRect(0, 0, 636, 247))
+        self.notification_scrollArea.setGeometry(QtCore.QRect(0, 0, 642, 244))
         self.notification_scrollArea.setObjectName("notification_scrollArea")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.notification_scrollArea)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
@@ -722,7 +722,7 @@ class Ui_Settings(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.scrollArea_5.setObjectName("scrollArea_5")
         self.about_scrollArea = QtWidgets.QWidget()
-        self.about_scrollArea.setGeometry(QtCore.QRect(0, 0, 636, 274))
+        self.about_scrollArea.setGeometry(QtCore.QRect(0, 0, 832, 659))
         self.about_scrollArea.setObjectName("about_scrollArea")
         self.verticalLayout_17 = QtWidgets.QVBoxLayout(self.about_scrollArea)
         self.verticalLayout_17.setObjectName("verticalLayout_17")
@@ -852,7 +852,7 @@ class Ui_Settings(object):
         self.horizontalLayout_2.addWidget(self.settings_stacked)
 
         self.retranslateUi(Settings)
-        self.settings_stacked.setCurrentIndex(3)
+        self.settings_stacked.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(Settings)
 
     def retranslateUi(self, Settings):
@@ -904,7 +904,7 @@ class Ui_Settings(object):
         self.label_4.setText(_("GNU General Public License v3.0"))
         self.btn_learn.setText(_("Learn more"))
         self.btn_changelog.setText(_("Changelog"))
-        self.btn_report.setText(_("Report isue..."))
+        self.btn_report.setText(_("Report issue..."))
 
 
 if __name__ == "__main__":

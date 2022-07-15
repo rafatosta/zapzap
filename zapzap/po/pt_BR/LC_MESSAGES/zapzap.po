@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-15 20:40-0300\n"
+"POT-Creation-Date: 2022-07-15 20:46-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,7 +90,7 @@ msgstr "Leia mais"
 msgid "Changelog"
 msgstr "Lista de mudanças"
 
-#: zapzap/view/main_window.py:244
+#: zapzap/view/main_window.py:244 zapzap/view/settings.py:907
 msgid "Report issue..."
 msgstr "Reporte um problema..."
 
@@ -284,10 +284,6 @@ msgstr "Licença Pública Geral GNU v3.0"
 #: zapzap/view/settings.py:905
 msgid "Learn more"
 msgstr "Leia mais"
-
-#: zapzap/view/settings.py:907
-msgid "Report isue..."
-msgstr "Reporte um problema..."
 
 #: zapzap/engine/browser.py:75
 msgid "Undo"
