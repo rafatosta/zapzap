@@ -1,13 +1,14 @@
 import os
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest, QWebEngineProfile, QWebEngineSettings
-from PyQt6.QtCore import Qt, QUrl, QStandardPaths, QSettings
+from PyQt6.QtCore import Qt, QUrl, QStandardPaths, QSettings, QLocale
 from PyQt6.QtGui import QAction, QPainter, QPainter, QImage, QBrush, QPen, QIcon
-from PyQt6.QtWidgets import QFileDialog
+from PyQt6.QtWidgets import QFileDialog, QMenu
 import zapzap
 from zapzap import __appname__
 from zapzap.engine.whatsapp import WhatsApp
 import zapzap.services.dbus_notify as dbus
+from gettext import gettext as _
 
 
 class Browser(QWebEngineView):
@@ -21,11 +22,16 @@ class Browser(QWebEngineView):
         profile.setHttpUserAgent(zapzap.__user_agent__)
         profile.setNotificationPresenter(self.show_notification)
 
+        # Activate spelling correction and defines the language.
+        # In case of absent language it is disabled
+        profile.setSpellCheckEnabled(True)
+        if QLocale.system().name() != 'pt_BR':
+            profile.setSpellCheckLanguages(('default',))
+        else:
+            profile.setSpellCheckLanguages((QLocale.system().name(),))
+
         # Rotina para download de arquivos
         profile.downloadRequested.connect(self.download)
-
-        # Menu de contexto
-        self.createContextMenu()
 
         # Cria a WebPage personalizada
         self.whats = WhatsApp(profile, self)
@@ -42,17 +48,61 @@ class Browser(QWebEngineView):
 
         self.titleChanged.connect(self.title_changed)
 
+        """self.setStyleSheet('''
+            QMenu {
+                background: lightBlue;
+                color: orange;
+            }
+            QMenu::item:selected {
+                background: lightGray;
+            }
+        ''')"""
+
         # Initialize the DBus connection to the notification server
         dbus.init(__appname__)
 
-    def createContextMenu(self):
-        self.setContextMenuPolicy(Qt.ContextMenuPolicy.ActionsContextMenu)
-        quitAction = QAction("Reload", self)
-        quitAction.triggered.connect(self.doReload)
-        self.addAction(quitAction)
+    def contextMenuEvent(self, event):
+        menu = self.createStandardContextMenu()
 
-    # Download de arquivos
+        actions = menu.actions()
+        for a in actions:
+            name = a.text()
+            if name == 'Back' or name == 'View page source' or name == 'Save page' or name == 'Forward':
+                a.setVisible(False)
+            elif name == 'Reload':
+                a.setText(_('Reload'))
+            elif name == 'Undo':
+                a.setText(_('Undo'))
+            elif name == 'Redo':
+                a.setText(_('Redo'))
+            elif name == 'Cut':
+                a.setText(_('Cut'))
+            elif name == 'Copy':
+                a.setText(_('Copy'))
+            elif name == 'Paste':
+                a.setText(_('Paste'))
+            elif name == 'Paste and match style':
+                a.setVisible(False)
+            elif name == 'Select all':
+                a.setText(_('Select all'))
+        """
+        auto it = std::find(actions.cbegin(), actions.cend(), page()->action(QWebEnginePage::ViewSource));
+        if (it != actions.cend()) {
+              (*it)->setVisible(false);
+        }
+        """
+
+        """flag = True
+        for a in actions:
+            if a.isSeparator()  and flag:
+                flag = False
+                print(name)
+                a.setText('kkkk')"""
+
+        menu.exec(event.globalPos())
+
     def download(self, download):
+        """ Download de arquivos """
         if (download.state() == QWebEngineDownloadRequest.DownloadState.DownloadRequested):
             path, _ = QFileDialog.getSaveFileName(
                 self, self.tr("Save file"), download.downloadFileName())

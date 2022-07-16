@@ -45,7 +45,6 @@ modules:
       - install -Dm644 share/icons/${FLATPAK_ID}.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - install -Dm644 share/applications/${FLATPAK_ID}.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
       - install -Dm644 share/metainfo/${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.appdata.xml
-      - install -Dm644 zapzap/po/pt_BR/LC_MESSAGES/zapzap.mo ${FLATPAK_DEST}/share/locale/pt_BR/LC_MESSAGES/zapzap.mo
     sources:
       - type: git
         url: https://github.com/rafatosta/zapzap.git

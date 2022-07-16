@@ -18,7 +18,7 @@ __licence__ = 'GNU General Public License v3.0'
 
 __whatsapp_url__ = 'https://web.whatsapp.com/'
 # Link para pegar o userAgent: http://httpbin.org/user-agent
-__user_agent__ = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36 Edg/101.0.1210.39"
+__user_agent__ = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36 Edg/103.0.1264.51"
 
 # iniciando os paths
 from PyQt6.QtCore import QFileInfo
@@ -38,5 +38,3 @@ segoe_font = {
 
 # Path translations
 po_path = abs_path+ '/po/'
-if QFileInfo(__file__).absolutePath().startswith('/app/'):
-    po_path = '/app/share/locale/'

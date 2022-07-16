@@ -420,7 +420,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>31</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="maximumSize">
@@ -458,6 +458,8 @@
     <addaction name="separator"/>
     <addaction name="actionToggle_Full_Screen"/>
     <addaction name="actionAuto_hide_menu_bar"/>
+    <addaction name="separator"/>
+    <addaction name="actionHome_page"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -580,6 +582,14 @@
   <action name="actionDonations">
    <property name="text">
     <string>Donations</string>
+   </property>
+  </action>
+  <action name="actionHome_page">
+   <property name="text">
+    <string>Home page</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
    </property>
   </action>
  </widget>
