@@ -56,7 +56,7 @@
           <ul>
               <li>Add Italian translation</li>
               <li>Support Orthographic Correction for PT_BR</li>
-              <li>Support External directory for dictionary file (See how in: https://github.com/rafatosta/zapzap/issues/60)</li>
+              <li>Support External directory for dictionary file (Issue: Spellchecker)</li>
               <li>Various improvements</li>
           </ul>
         </description>
