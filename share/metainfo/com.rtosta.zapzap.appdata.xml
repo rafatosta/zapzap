@@ -51,6 +51,16 @@
   <update_contact>rafa.ecomp@gmail.com</update_contact>
   <developer_name>Rafael Tosta</developer_name>
   <releases>
+    <release date="2022-07-15" version="3.0.1">
+      <description>
+          <ul>
+              <li>Add Italian translation</li>
+              <li>Support Orthographic Correction for PT_BR</li>
+              <li>Support External directory for dictionary file (See how in: https://github.com/rafatosta/zapzap/issues/60)</li>
+              <li>Various improvements</li>
+          </ul>
+        </description>
+    </release>
     <release date="2022-07-13" version="3.0">
       <description>
           <ul>
