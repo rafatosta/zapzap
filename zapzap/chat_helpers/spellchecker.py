@@ -1,6 +1,6 @@
 import os
-import urllib.request 
-from PyQt6.QtCore import QThreadPool, QLocale
+import urllib.request
+from PyQt6.QtCore import QThreadPool, QLocale, QProcess
 import zapzap
 from zapzap.chat_helpers.worker import Worker
 
@@ -57,15 +57,19 @@ def DownloadDictionaryInBackground():
     for file in kDictExtensions:
         down_url = f'{database}{kDictionaries[LC]}/{LC}{file}'
         print(down_url)
-        save_loc = os.path.join(zapzap.path_dictionaries,f'{LC}{file}')
+        save_loc = os.path.join(zapzap.path_dictionaries, f'{LC}{file}')
         print(save_loc)
-        # Dowloading using urllib 
-        urllib.request.urlretrieve(down_url,save_loc, Handle_Progress) 
+        # Dowloading using urllib
+        urllib.request.urlretrieve(down_url, save_loc, Handle_Progress)
     # Convert
+    p = QProcess()
+    p.start("qwebengine_convert_dict", [os.path.join(
+        zapzap.path_dictionaries, f'{LC}.dic'), os.path.join(zapzap.path_dictionaries, f'{LC}.bdic')])
 
     print("Acabou!")
 
-def Handle_Progress(blocknum, blocksize, totalsize): 
+
+def Handle_Progress(blocknum, blocksize, totalsize):
     #print(blocknum, blocksize, totalsize)
-    readed_data = blocknum * blocksize 
+    readed_data = blocknum * blocksize
     print(readed_data/1000000)
