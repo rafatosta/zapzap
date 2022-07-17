@@ -1,16 +1,18 @@
 import os
 import urllib.request
-from PyQt6.QtCore import QThreadPool, QLocale, QProcess
+from PyQt6.QtCore import QLocale
 import zapzap
-from zapzap.chat_helpers.worker import Worker
 
-database = 'https://cgit.freedesktop.org/libreoffice/dictionaries/tree/'
+DATABASE = 'https://cgit.freedesktop.org/libreoffice/dictionaries/tree/'
 kDictExtensions = [".dic", ".aff"]
 
-""" language_country : folder in database 
-    Os arquivos serão baixados na forma: database/folder/language_country.kDictExtensions[0:1]
-"""
+""" 
+    Note: Look at the language folder from the link in DATABASE
 
+    Definition:
+    'language_country' : 'folder'
+
+"""
 kDictionaries = {
     'en_US': 'en',
     'pt_BR': 'pt_BR',
@@ -31,31 +33,11 @@ def SuportDictionaryExists():
     else:
         return True
 
-
-def UpdateLanguages(profile):
-    if DictionaryFileExist():  # o arquivo existe?
-        setSpellCheck(profile)
-    elif SuportDictionaryExists():  # a linguagem é suportada?
-        DownloadDictionary(profile)
-
-
-def DownloadDictionary(profile):
-    threadpool = QThreadPool()
-    worker = Worker(DownloadDictionaryInBackground)
-    worker.signals.finished.connect(lambda p=profile: setSpellCheck(p))
-    worker.signals.error.connect(lambda erro: print(f'deu merda: {erro}'))
-    threadpool.start(worker)
-
-
-def setSpellCheck(profile):
-    profile.setSpellCheckLanguages((QLocale.system().name(),))
-
-
 def DownloadDictionaryInBackground():
     LC = QLocale.system().name()
     # Download
     for file in kDictExtensions:
-        down_url = f'{database}{kDictionaries[LC]}/{LC}{file}'
+        down_url = f'{DATABASE}{kDictionaries[LC]}/{LC}{file}'
         save_loc = os.path.join(zapzap.path_dictionaries, f'{LC}{file}')
         # Dowloading using urllib
         urllib.request.urlretrieve(down_url, save_loc)
