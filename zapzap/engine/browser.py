@@ -1,11 +1,13 @@
 import os
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest, QWebEngineProfile, QWebEngineSettings
-from PyQt6.QtCore import Qt, QUrl, QStandardPaths, QSettings, QLocale
+from PyQt6.QtCore import Qt, QUrl, QStandardPaths, QSettings, QLocale, QThreadPool
 from PyQt6.QtGui import QAction, QPainter, QPainter, QImage, QBrush, QPen, QIcon
 from PyQt6.QtWidgets import QFileDialog, QMenu
 import zapzap
 from zapzap import __appname__
+from zapzap.chat_helpers.spellchecker import DownloadDictionaryInBackground, DictionaryFileExist, SuportDictionaryExists
+from zapzap.chat_helpers.worker import Worker
 from zapzap.engine.whatsapp import WhatsApp
 import zapzap.services.dbus_notify as dbus
 from gettext import gettext as _
@@ -21,11 +23,19 @@ class Browser(QWebEngineView):
         profile = QWebEngineProfile('storage-whats', self)
         profile.setHttpUserAgent(zapzap.__user_agent__)
         profile.setNotificationPresenter(self.show_notification)
-
-        # Activate spelling correction and defines the language.
-        # In case of absent language it is disabled
         profile.setSpellCheckEnabled(True)
-        profile.setSpellCheckLanguages((QLocale.system().name(),))
+        # profile.setSpellCheckLanguages((QLocale.system().name(),))
+
+        if DictionaryFileExist():  # o arquivo existe?
+            profile.setSpellCheckLanguages((QLocale.system().name(),))
+        elif SuportDictionaryExists():  # a linguagem é suportada?
+            self.threadpool = QThreadPool()
+            worker = Worker(DownloadDictionaryInBackground)
+            worker.signals.finished.connect(
+                lambda LC=QLocale.system().name(): profile.setSpellCheckLanguages((LC,)))
+            worker.signals.error.connect(
+                lambda erro: print(f'deu merda: {erro}'))
+            self.threadpool.start(worker)
 
         # Rotina para download de arquivos
         profile.downloadRequested.connect(self.download)
@@ -42,18 +52,6 @@ class Browser(QWebEngineView):
         self.settings().setAttribute(QWebEngineSettings.WebAttribute.AutoLoadImages, True)
         self.settings().setAttribute(QWebEngineSettings.WebAttribute.PluginsEnabled, True)
         self.settings().setAttribute(QWebEngineSettings.WebAttribute.LocalStorageEnabled, True)
-
-        self.titleChanged.connect(self.title_changed)
-
-        """self.setStyleSheet('''
-            QMenu {
-                background: lightBlue;
-                color: orange;
-            }
-            QMenu::item:selected {
-                background: lightGray;
-            }
-        ''')"""
 
         # Initialize the DBus connection to the notification server
         dbus.init(__appname__)
