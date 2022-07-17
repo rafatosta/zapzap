@@ -18,30 +18,31 @@ class Browser(QWebEngineView):
         super().__init__()
         self.parent = parent
         self.qset = QSettings(zapzap.__appname__, zapzap.__appname__)
+        # Initialize the DBus connection to the notification server
+        dbus.init(__appname__)
 
         # definição do pergil do usuário, local que será armazenados os cookies e informações sobre os navegadores
-        profile = QWebEngineProfile('storage-whats', self)
-        profile.setHttpUserAgent(zapzap.__user_agent__)
-        profile.setNotificationPresenter(self.show_notification)
-        profile.setSpellCheckEnabled(True)
+        self.profile = QWebEngineProfile('storage-whats', self)
+        self.profile.setHttpUserAgent(zapzap.__user_agent__)
+        self.profile.setNotificationPresenter(self.show_notification)
+        self.profile.setSpellCheckEnabled(True)
         # profile.setSpellCheckLanguages((QLocale.system().name(),))
 
         if DictionaryFileExist():  # o arquivo existe?
-            profile.setSpellCheckLanguages((QLocale.system().name(),))
+            self.profile.setSpellCheckLanguages((QLocale.system().name(),))
         elif SuportDictionaryExists():  # a linguagem é suportada?
             self.threadpool = QThreadPool()
             worker = Worker(DownloadDictionaryInBackground)
-            worker.signals.finished.connect(
-                lambda LC=QLocale.system().name(): profile.setSpellCheckLanguages((LC,)))
+            worker.signals.finished.connect(self.setDictionary)
             worker.signals.error.connect(
-                lambda erro: print(f'deu merda: {erro}'))
+                lambda e=_('Error installing dictionary'): self.showWarning(e))
             self.threadpool.start(worker)
 
         # Rotina para download de arquivos
-        profile.downloadRequested.connect(self.download)
+        self.profile.downloadRequested.connect(self.download)
 
         # Cria a WebPage personalizada
-        self.whats = WhatsApp(profile, self)
+        self.whats = WhatsApp(self.profile, self)
         self.setPage(self.whats)
 
         # carrega a página do whatsapp web
@@ -53,8 +54,25 @@ class Browser(QWebEngineView):
         self.settings().setAttribute(QWebEngineSettings.WebAttribute.PluginsEnabled, True)
         self.settings().setAttribute(QWebEngineSettings.WebAttribute.LocalStorageEnabled, True)
 
-        # Initialize the DBus connection to the notification server
-        dbus.init(__appname__)
+    def showWarning(self, message):
+        try:
+            title = __appname__
+            icon = 'com.rtosta.zapzap'
+            n = dbus.Notification(title,
+                                  message,
+                                  timeout=3000
+                                  )
+            n.setUrgency(dbus.Urgency.NORMAL)
+            n.setCategory("im.received")
+            n.setIconPath(icon)
+            n.setHint('desktop-entry', 'com.rtosta.zapzap')
+            n.show()
+        except Exception as e:
+            print(e)
+
+    def setDictionary(self):
+        self.profile.setSpellCheckLanguages((QLocale.system().name(),))
+        self.showWarning(_('Dictionary successfully installed'))
 
     def contextMenuEvent(self, event):
         menu = self.createStandardContextMenu()
