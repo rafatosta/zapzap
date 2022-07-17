@@ -1,4 +1,6 @@
+import os
 from PyQt6.QtGui import QIcon
+from PyQt6.QtCore import QStandardPaths
 
 __version__ = '3.0'
 __appname__ = 'ZapZap'
@@ -25,8 +27,11 @@ from PyQt6.QtCore import QFileInfo
 abs_path = QFileInfo(__file__).absolutePath()
 
 # Tray
-def getIconTray(theme = 'default', mode='normal'):
+
+
+def getIconTray(theme='default', mode='normal'):
     return QIcon(abs_path+f'/assets/icons/tray/{theme}_{mode}.svg')
+
 
 # Segoe Font
 segoe_font = {
@@ -36,5 +41,24 @@ segoe_font = {
     "italic": abs_path + '/assets/segoe-ui/Segoe UI Italic.ttf',
 }
 
+# Path /tmp
+# tmp directory for user photos used in notifications
+
+path_tmp = os.path.join(
+    QStandardPaths.writableLocation(
+        QStandardPaths.StandardLocation.AppLocalDataLocation), __appname__, 'tmp'
+)
+if not os.path.exists(path_tmp):
+    os.makedirs(path_tmp)
+
 # Path translations
-po_path = abs_path+ '/po/'
+po_path = os.path.join(abs_path, 'po')
+
+# Path dictionaries
+path_dictionaries = os.path.join(
+    QStandardPaths.writableLocation(
+        QStandardPaths.StandardLocation.AppLocalDataLocation), __appname__, 'dictionaries'
+)
+
+if not os.path.exists(path_dictionaries):
+    os.makedirs(path_dictionaries)
