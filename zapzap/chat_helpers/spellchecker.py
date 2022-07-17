@@ -62,10 +62,10 @@ def DownloadDictionaryInBackground():
         # Dowloading using urllib
         urllib.request.urlretrieve(down_url, save_loc, Handle_Progress)
     # Convert
-    p = QProcess()
-    p.start("qwebengine_convert_dict", [os.path.join(
-        zapzap.path_dictionaries, f'{LC}.dic'), os.path.join(zapzap.path_dictionaries, f'{LC}.bdic')])
-
+    dic = os.path.join(
+        zapzap.path_dictionaries, f'{LC}.dic')
+    bdic = os.path.join(zapzap.path_dictionaries, f'{LC}.bdic')
+    os.system(f'qwebengine_convert_dict {dic} {bdic}')
     print("Acabou!")
 
 
