@@ -55,7 +55,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def setZapDecoration(self):
         self.headbar.hide()
-        if self.settings.value("system/zap_decoration", False, bool):
+        if self.settings.value("system/zap_decoration", True, bool):
             self.scd = UIDecoration(self)
 
     def recurring_timer(self):
@@ -197,7 +197,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.isFullScreen = not self.isFullScreen
 
     def setHideMenuBar(self):
-        if self.settings.value("system/zap_decoration", False, bool):
+        if self.settings.value("system/zap_decoration", True, bool):
             self.menubar.setMaximumHeight(0)
         else:
             """

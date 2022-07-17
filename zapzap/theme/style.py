@@ -526,9 +526,8 @@ def buildTheme(p) -> str:
     """
 
     settings = QSettings(zapzap.__appname__, zapzap.__appname__)
-    if not settings.value("system/zap_decoration", False, bool):
-        ZapDecoration = ""
-    else:
+    ZapDecoration = ""
+    if settings.value("system/zap_decoration", True, bool):
         ZapDecoration = """
         QStackedWidget {	
             background-color: {window};
