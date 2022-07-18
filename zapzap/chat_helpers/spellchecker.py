@@ -3,7 +3,7 @@ import urllib.request
 from PyQt6.QtCore import QLocale
 import zapzap
 
-DATABASE = 'https://cgit.freedesktop.org/libreoffice/dictionaries/tree/'
+DATABASE = 'https://cgit.freedesktop.org/libreoffice/dictionaries/plain/'
 kDictExtensions = [".dic", ".aff"]
 
 """ 
