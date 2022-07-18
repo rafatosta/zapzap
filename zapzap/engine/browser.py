@@ -53,6 +53,9 @@ class Browser(QWebEngineView):
         self.settings().setAttribute(QWebEngineSettings.WebAttribute.PluginsEnabled, True)
         self.settings().setAttribute(QWebEngineSettings.WebAttribute.LocalStorageEnabled, True)
 
+        # Sinal para mudança de título
+        self.titleChanged.connect(self.title_changed)
+
     def showWarning(self, message):
         try:
             title = __appname__
