@@ -36,14 +36,14 @@ Or you can help in development and translation.
 
 #### Installing dependencies
 ```bash
-$ pip install PyQt6 PyQt6-WebEngine
+pip install PyQt6 PyQt6-WebEngine
 ```
 #### Running the application
 ```bash
-$ git clone https://github.com/rafatosta/zapzap.git
-$ cd zapzap
+git clone https://github.com/rafatosta/zapzap.git
+cd zapzap
 # Building (.ui,.po) and Running
-$ python run.py
+python run.py
 ```
 
 ## Flatpak Development
@@ -52,26 +52,21 @@ $ python run.py
 
 ```bash
 # add flathub remote
-$ flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # installing required packages
-$ flatpak install --user --assumeyes flathub org.kde.Platform//6.2 org.kde.Sdk//6.2 io.qt.qtwebengine.BaseApp//6.2
+flatpak install --user --assumeyes flathub org.kde.Platform//6.2 org.kde.Sdk//6.2 io.qt.qtwebengine.BaseApp//6.2
 ```
 #### Building and running the application
 
 ```bash
 # Building and install
-$ flatpak-builder build com.rtosta.zapzap.yaml --force-clean --ccache --install --user
+flatpak-builder build com.rtosta.zapzap.yaml --force-clean --ccache --install --user
 # Running
-$ flatpak run com.rtosta.zapzap
+flatpak run com.rtosta.zapzap
 ```
 
 # Contact
 Maintainer: Rafael Tosta<br/>
-E-Mail: *rafa.ecomp@gmail.com*<br/>
+Email: *rafa.ecomp@gmail.com*<br/>
 Telegram: *@RafaelTosta*<br/>
-
-
-
-
-
