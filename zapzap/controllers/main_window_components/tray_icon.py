@@ -1,6 +1,7 @@
 from gettext import gettext as _
 from PyQt6.QtWidgets import QSystemTrayIcon, QMenu
 from PyQt6.QtGui import QAction, QImage, QPixmap, QIcon
+from PyQt6.QtCore import QSize
 from zapzap import getIconTray
 
 
@@ -71,6 +72,7 @@ class TrayIcon():
         svg_bytes = bytearray(svg_str, encoding='utf-8')
 
         qimg = QImage.fromData(svg_bytes, 'SVG')
+
         qpix = QPixmap.fromImage(qimg)
-        qicon = QIcon(qpix)
+        qicon = QIcon(qpix.scaled(QSize(128, 128)))
         return qicon
