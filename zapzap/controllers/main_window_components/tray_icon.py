@@ -53,7 +53,7 @@ class TrayIcon():
     def getIconModel(self, size):
 
         if len(str(size)) == 1:
-            data = dict(width=51, x=77.369, text=size)
+            data = dict(width=60, x=68, text=size)
         elif len(str(size)) == 2:
             data = dict(width=88, x=40, text=size)
         else:
