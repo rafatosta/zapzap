@@ -65,7 +65,7 @@
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>40</height>
+           <height>25</height>
           </size>
          </property>
          <property name="maximumSize">
@@ -88,7 +88,7 @@
            <number>7</number>
           </property>
           <property name="topMargin">
-           <number>0</number>
+           <number>7</number>
           </property>
           <property name="rightMargin">
            <number>7</number>

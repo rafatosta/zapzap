@@ -541,7 +541,6 @@ def buildTheme(p) -> str:
         }
         #headbar{	
             background-color: {window};
-            border: 3px solid {window}; 
             border-radius: 10px;
         }
 
