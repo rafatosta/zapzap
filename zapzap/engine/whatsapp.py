@@ -79,4 +79,5 @@ class WhatsApp(QWebEnginePage):
                 if self.link_url != '' and self.link_url != __whatsapp_url__ and not 'faq.whatsapp.com/web/download-and-installation/how-to-log-in-or-out' in self.link_url:
                     QDesktopServices.openUrl(QUrl(self.link_url))
                     return True
+            self.link_url = ''
         return False

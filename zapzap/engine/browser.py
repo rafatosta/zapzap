@@ -14,6 +14,7 @@ from gettext import gettext as _
 
 
 class Browser(QWebEngineView):
+
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
@@ -56,6 +57,19 @@ class Browser(QWebEngineView):
         # Sinal para mudança de título
         self.titleChanged.connect(self.title_changed)
 
+        self.list_ignore = ['Back', 'View page source', 'Save page',
+                            'Forward', 'Open link in new tab', 'Save link',
+                            'Copy link address', 'Open link in new window']
+        self.items_menu = {
+            'Reload': _('Reload'),
+            'Undo': _('Undo'),
+            'Redo': _('Redo'),
+            'Cut': _('Cut'),
+            'Copy': _('Copy'),
+            'Paste': _('Paste'),
+            'Select all': _('Select all')
+        }
+
     def showWarning(self, message):
         try:
             title = __appname__
@@ -78,41 +92,13 @@ class Browser(QWebEngineView):
 
     def contextMenuEvent(self, event):
         menu = self.createStandardContextMenu()
-
         actions = menu.actions()
         for a in actions:
             name = a.text()
-            if name == 'Back' or name == 'View page source' or name == 'Save page' or name == 'Forward':
+            if name in self.list_ignore:
                 a.setVisible(False)
-            elif name == 'Reload':
-                a.setText(_('Reload'))
-            elif name == 'Undo':
-                a.setText(_('Undo'))
-            elif name == 'Redo':
-                a.setText(_('Redo'))
-            elif name == 'Cut':
-                a.setText(_('Cut'))
-            elif name == 'Copy':
-                a.setText(_('Copy'))
-            elif name == 'Paste':
-                a.setText(_('Paste'))
-            elif name == 'Paste and match style':
-                a.setVisible(False)
-            elif name == 'Select all':
-                a.setText(_('Select all'))
-        """
-        auto it = std::find(actions.cbegin(), actions.cend(), page()->action(QWebEnginePage::ViewSource));
-        if (it != actions.cend()) {
-              (*it)->setVisible(false);
-        }
-        """
-
-        """flag = True
-        for a in actions:
-            if a.isSeparator()  and flag:
-                flag = False
-                print(name)
-                a.setText('kkkk')"""
+            elif name in self.items_menu:
+                a.setText(self.items_menu[name])
 
         menu.exec(event.globalPos())
 
