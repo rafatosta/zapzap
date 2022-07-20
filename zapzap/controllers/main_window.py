@@ -83,8 +83,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def openSettings(self):
         """Open settings"""
-        self.main_stacked.setCurrentIndex(1)
-        self.zapSettings.goPageHome()
+        if self.main_stacked.currentIndex() == 1:
+            self.main_stacked.setCurrentIndex(0)
+        else:
+            self.main_stacked.setCurrentIndex(1)
+            self.zapSettings.goPageHome()
 
     def openDonations(self):
         """Open settings"""
