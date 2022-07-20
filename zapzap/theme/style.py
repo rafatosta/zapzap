@@ -504,10 +504,17 @@ def buildTheme(p) -> str:
             background-image: url({path}/about.svg);
         }
 
+
+        #btn_buy_paypal,
+        #btn_pix  {	
+            border: 1px solid {frame_border};
+            border-radius: 5px;
+        }
+
         #btn_buy_paypal:hover,
         #btn_pix:hover{
             color: {link};
-            text-decoration: underline; 
+            border: 1px solid {link};
         }
         """
 
@@ -518,7 +525,9 @@ def buildTheme(p) -> str:
         #frameNotifications,
         #frameNotificationsPreview,
         #frameMenuBar,
-        #frameZapWindow {
+        #frameZapWindow,
+        #frame_pix,
+        #frame_paypal  {
             background-color: {frame_background};
             border: 1px solid {frame_border};
             border-radius: 5px;

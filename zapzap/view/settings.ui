@@ -274,7 +274,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>1</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -1413,8 +1413,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>642</width>
-            <height>244</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1648,8 +1648,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>642</width>
-            <height>376</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_30">
@@ -1732,7 +1732,7 @@
                    <number>10</number>
                   </property>
                   <item>
-                   <widget class="QFrame" name="frame_2">
+                   <widget class="QFrame" name="frame_paypal">
                     <property name="minimumSize">
                      <size>
                       <width>620</width>
@@ -1756,16 +1756,16 @@
                       <number>10</number>
                      </property>
                      <property name="leftMargin">
-                      <number>0</number>
+                      <number>15</number>
                      </property>
                      <property name="topMargin">
-                      <number>0</number>
+                      <number>15</number>
                      </property>
                      <property name="rightMargin">
-                      <number>0</number>
+                      <number>15</number>
                      </property>
                      <property name="bottomMargin">
-                      <number>0</number>
+                      <number>15</number>
                      </property>
                      <item>
                       <layout class="QHBoxLayout" name="horizontalLayout_26">
@@ -1811,6 +1811,18 @@
                      </item>
                      <item>
                       <widget class="QPushButton" name="btn_buy_paypal">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>40</height>
+                        </size>
+                       </property>
                        <property name="cursor">
                         <cursorShape>PointingHandCursor</cursorShape>
                        </property>
@@ -1826,7 +1838,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QFrame" name="frame_4">
+                   <widget class="QFrame" name="frame_pix">
                     <property name="minimumSize">
                      <size>
                       <width>620</width>
@@ -1850,16 +1862,16 @@
                       <number>10</number>
                      </property>
                      <property name="leftMargin">
-                      <number>0</number>
+                      <number>15</number>
                      </property>
                      <property name="topMargin">
-                      <number>0</number>
+                      <number>15</number>
                      </property>
                      <property name="rightMargin">
-                      <number>0</number>
+                      <number>15</number>
                      </property>
                      <property name="bottomMargin">
-                      <number>0</number>
+                      <number>15</number>
                      </property>
                      <item>
                       <layout class="QHBoxLayout" name="horizontalLayout_24">
@@ -1905,6 +1917,18 @@
                      </item>
                      <item>
                       <widget class="QPushButton" name="btn_pix">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>40</height>
+                        </size>
+                       </property>
                        <property name="cursor">
                         <cursorShape>PointingHandCursor</cursorShape>
                        </property>
@@ -2046,8 +2070,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>832</width>
-            <height>659</height>
+            <width>642</width>
+            <height>283</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">
