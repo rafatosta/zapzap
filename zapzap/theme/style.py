@@ -541,16 +541,17 @@ def buildTheme(p) -> str:
         QStackedWidget {	
             background-color: {window};
             border: 3px solid {window}; 
-            border-radius: 10px;
+            border-radius: 12px;
         }
         #app {	
             background-color: {window};
             border: 1px solid rgba(0, 0, 0,0.2); 
-            border-radius: 10px;
+            border-radius: 12px;
         }
         #headbar{	
             background-color: {window};
-            border-radius: 10px;
+            border: 1px solid {window}; 
+            border-radius: 12px;
         }
 
         #rightButtons .QPushButton {	

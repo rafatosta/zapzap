@@ -42,15 +42,6 @@ class UIDecoration():
             self.resize_grips()
         self.win.resizeEvent = resizeEvent
 
-        # DROP SHADOW
-        # está travando o webview
-        """self.shadow = QGraphicsDropShadowEffect(self.win)
-        self.shadow.setBlurRadius(10)
-        self.shadow.setXOffset(0)
-        self.shadow.setYOffset(0)
-        self.shadow.setColor(QColor(0, 0, 0, 150))
-        self.win.appMargins.setGraphicsEffect(self.shadow)"""
-
         # Decoração da janela
         self.win.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.win.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
@@ -98,10 +89,8 @@ class UIDecoration():
 
     def maximize_restore(self):
         if self.win.windowState() == Qt.WindowState.WindowMaximized:
-            self.win.appMargins.setContentsMargins(5, 5, 5, 5)
             self.win.showNormal()
         else:
-            self.win.appMargins.setContentsMargins(0, 0, 0, 0)
             self.win.showMaximized()
 
     def resize_grips(self):
