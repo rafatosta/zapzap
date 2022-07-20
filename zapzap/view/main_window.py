@@ -36,7 +36,7 @@ class Ui_MainWindow(object):
         self.headbar.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.headbar.setObjectName("headbar")
         self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.headbar)
-        self.horizontalLayout_6.setContentsMargins(10, 0, 10, 0)
+        self.horizontalLayout_6.setContentsMargins(7, 0, 7, 0)
         self.horizontalLayout_6.setSpacing(0)
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
         self.leftButtons = QtWidgets.QFrame(self.headbar)

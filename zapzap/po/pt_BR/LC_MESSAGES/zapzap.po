@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-15 21:20-0300\n"
+"POT-Creation-Date: 2022-07-19 21:54-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,7 +50,7 @@ msgstr "Sair"
 msgid "Ctrl+Q"
 msgstr ""
 
-#: zapzap/view/main_window.py:234 zapzap/engine/browser.py:73
+#: zapzap/view/main_window.py:234 zapzap/engine/browser.py:88
 msgid "Reload"
 msgstr "Recarregar página"
 
@@ -285,26 +285,34 @@ msgstr "Licença Pública Geral GNU v3.0"
 msgid "Learn more"
 msgstr "Leia mais"
 
-#: zapzap/engine/browser.py:75
+#: zapzap/engine/browser.py:37
+msgid "Error installing dictionary"
+msgstr ""
+
+#: zapzap/engine/browser.py:77
+msgid "Dictionary successfully installed"
+msgstr ""
+
+#: zapzap/engine/browser.py:90
 msgid "Undo"
 msgstr "Desfazer"
 
-#: zapzap/engine/browser.py:77
+#: zapzap/engine/browser.py:92
 msgid "Redo"
 msgstr "Refazer"
 
-#: zapzap/engine/browser.py:79
+#: zapzap/engine/browser.py:94
 msgid "Cut"
 msgstr "Recortar"
 
-#: zapzap/engine/browser.py:81
+#: zapzap/engine/browser.py:96
 msgid "Copy"
 msgstr "Copiar"
 
-#: zapzap/engine/browser.py:83
+#: zapzap/engine/browser.py:98
 msgid "Paste"
 msgstr "Colar"
 
-#: zapzap/engine/browser.py:87
+#: zapzap/engine/browser.py:102
 msgid "Select all"
 msgstr "Selecionar tudo"
