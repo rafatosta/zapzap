@@ -519,8 +519,8 @@ def buildTheme(p) -> str:
         #frameNotificationsPreview,
         #frameMenuBar,
         #frameZapWindow {
-            background-color: {window};
-            border: 1px solid rgba(0, 0, 0,0.2);
+            background-color: {frame_background};
+            border: 1px solid {frame_border};
             border-radius: 5px;
         }
     """

@@ -1,3 +1,4 @@
+from pickle import FRAME
 from zapzap.theme.style import buildTheme
 import zapzap
 
@@ -20,6 +21,8 @@ class ZPallete():
     link = ''  # A text color used for unvisited hyperlinks
     path = ''
     path_btn_titlebar = ''
+    frame_background = ''
+    frame_border = ''
 
     def __init__(self) -> None:
         pass
@@ -39,7 +42,9 @@ class ZPallete():
                 'highlightedText': self.highlightedText,
                 'link': self.link,
                 'path': self.path,
-                'path_btn_titlebar': self.path_btn_titlebar}
+                'path_btn_titlebar': self.path_btn_titlebar,
+                'frame_background': self.frame_background,
+                'frame_border': self.frame_border}
 
 
 def getThemeLight() -> str:
@@ -50,6 +55,8 @@ def getThemeLight() -> str:
     p.highlight = LIGHT_GRAY
     p.highlightedText = DARK
     p.link = BLUE
+    p.frame_background = WRITE
+    p.frame_border = 'rgba(0, 0, 0, 0.1)'
     p.setPath('light')
     p.setPathBtnTitlebar('default/light')
     return buildTheme(p)
@@ -59,10 +66,12 @@ def getThemeDark() -> str:
     p = ZPallete()
     p.window = DARK
     p.windowText = LIGHT
-    p.disabled = GRAY
+    p.disabled = BLAK_GRAY
     p.highlight = BLAK_GRAY
     p.highlightedText = LIGHT
     p.link = BLUE
+    p.frame_background = 'rgba(0, 0, 0, 0.2)'
+    p.frame_border = 'rgba(0, 0, 0, 0.3)'
     p.setPath('dark')
     p.setPathBtnTitlebar('default/dark')
 
