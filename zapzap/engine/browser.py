@@ -133,8 +133,7 @@ class Browser(QWebEngineView):
         So the contact image is saved in a temporary folder (tmp) in the application data folder
         """
         try:
-            path = QStandardPaths.writableLocation(
-                QStandardPaths.StandardLocation.AppLocalDataLocation)+'/tmp/'+title+'.png'
+            path = zapzap.path_tmp+'/'+title+'.png'
 
             qout = QImage(qin.width(), qin.height(),
                           QImage.Format.Format_ARGB32)
