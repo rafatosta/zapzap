@@ -27,16 +27,7 @@ class Browser(QWebEngineView):
         self.profile.setHttpUserAgent(zapzap.__user_agent__)
         self.profile.setNotificationPresenter(self.show_notification)
         self.profile.setSpellCheckEnabled(True)
-
-        if DictionaryFileExist():  # Se o arquivo existe aplica
-            self.profile.setSpellCheckLanguages((QLocale.system().name(),))
-        elif SuportDictionaryExists():  # Se linguagem é suportada faz o download
-            self.threadpool = QThreadPool()
-            worker = Worker(DownloadDictionaryInBackground)
-            worker.signals.finished.connect(self.setDictionary)
-            worker.signals.error.connect(
-                lambda e=_('Error installing dictionary'): self.showWarning(e))
-            self.threadpool.start(worker)
+        self.profile.setSpellCheckLanguages((QLocale.system().name(),))
 
         # Rotina para download de arquivos
         self.profile.downloadRequested.connect(self.download)

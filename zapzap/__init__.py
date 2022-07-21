@@ -43,7 +43,6 @@ segoe_font = {
 
 # Path /tmp
 # tmp directory for user photos used in notifications
-
 path_tmp = os.path.join(
     QStandardPaths.writableLocation(
         QStandardPaths.StandardLocation.AppLocalDataLocation), __appname__, 'tmp'
@@ -53,12 +52,3 @@ if not os.path.exists(path_tmp):
 
 # Path translations
 po_path = os.path.join(abs_path, 'po')
-
-# Path dictionaries
-path_dictionaries = os.path.join(
-    QStandardPaths.writableLocation(
-        QStandardPaths.StandardLocation.AppLocalDataLocation), __appname__, 'dictionaries'
-)
-
-if not os.path.exists(path_dictionaries):
-    os.makedirs(path_dictionaries)
