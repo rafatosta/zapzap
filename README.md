@@ -67,7 +67,7 @@ python run.py
 flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # installing required packages
-flatpak install --user --assumeyes flathub org.kde.Platform//6.2 org.kde.Sdk//6.2 io.qt.qtwebengine.BaseApp//6.2
+flatpak install --user --assumeyes flathub org.kde.Platform//6.3 com.riverbankcomputing.PyQt.BaseApp//6.3
 ```
 #### Building and running the application
 
