@@ -1,13 +1,11 @@
 import os
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest, QWebEngineProfile, QWebEngineSettings
-from PyQt6.QtCore import Qt, QUrl, QStandardPaths, QSettings, QLocale, QThreadPool
-from PyQt6.QtGui import QAction, QPainter, QPainter, QImage, QBrush, QPen, QIcon
-from PyQt6.QtWidgets import QFileDialog, QMenu
+from PyQt6.QtCore import Qt, QUrl, QStandardPaths, QSettings, QLocale
+from PyQt6.QtGui import QPainter, QPainter, QImage, QBrush, QPen
+from PyQt6.QtWidgets import QFileDialog
 import zapzap
 from zapzap import __appname__
-from zapzap.chat_helpers.spellchecker import DownloadDictionaryInBackground, DictionaryFileExist, SuportDictionaryExists
-from zapzap.chat_helpers.worker import Worker
 from zapzap.engine.whatsapp import WhatsApp
 import zapzap.services.dbus_notify as dbus
 from gettext import gettext as _
@@ -27,16 +25,7 @@ class Browser(QWebEngineView):
         self.profile.setHttpUserAgent(zapzap.__user_agent__)
         self.profile.setNotificationPresenter(self.show_notification)
         self.profile.setSpellCheckEnabled(True)
-
-        if DictionaryFileExist():  # Se o arquivo existe aplica
-            self.profile.setSpellCheckLanguages((QLocale.system().name(),))
-        elif SuportDictionaryExists():  # Se linguagem é suportada faz o download
-            self.threadpool = QThreadPool()
-            worker = Worker(DownloadDictionaryInBackground)
-            worker.signals.finished.connect(self.setDictionary)
-            worker.signals.error.connect(
-                lambda e=_('Error installing dictionary'): self.showWarning(e))
-            self.threadpool.start(worker)
+        self.profile.setSpellCheckLanguages((QLocale.system().name(),))
 
         # Rotina para download de arquivos
         self.profile.downloadRequested.connect(self.download)
@@ -69,26 +58,6 @@ class Browser(QWebEngineView):
             'Paste': _('Paste'),
             'Select all': _('Select all')
         }
-
-    def showWarning(self, message):
-        try:
-            title = __appname__
-            icon = 'com.rtosta.zapzap'
-            n = dbus.Notification(title,
-                                  message,
-                                  timeout=3000
-                                  )
-            n.setUrgency(dbus.Urgency.NORMAL)
-            n.setCategory("im.received")
-            n.setIconPath(icon)
-            n.setHint('desktop-entry', 'com.rtosta.zapzap')
-            n.show()
-        except Exception as e:
-            print(e)
-
-    def setDictionary(self):
-        self.profile.setSpellCheckLanguages((QLocale.system().name(),))
-        self.showWarning(_('Dictionary successfully installed'))
 
     def contextMenuEvent(self, event):
         menu = self.createStandardContextMenu()

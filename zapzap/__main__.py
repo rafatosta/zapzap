@@ -9,7 +9,7 @@ import gettext
 
 def main():
     #os.environ['QT_QPA_PLATFORM'] = 'xcb'
-    os.environ["QTWEBENGINE_DICTIONARIES_PATH"] = zapzap.path_dictionaries
+    
     gettext.bindtextdomain('zapzap', zapzap.po_path)
     gettext.textdomain('zapzap')
 
