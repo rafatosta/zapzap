@@ -27,7 +27,6 @@ cleanup:
 cleanup-commands:
   - /app/cleanup-BaseApp.sh
 modules:       
-  - name: PyQtWebEngineApp
 
   - name: dbus-python
     buildsystem: simple
