@@ -51,6 +51,15 @@
   <update_contact>rafa.ecomp@gmail.com</update_contact>
   <developer_name>Rafael Tosta</developer_name>
   <releases>
+    <release date="2022-07-21" version="3.1">
+      <description>
+          <ul>
+              <li>Spellchecker</li>
+              <li>Add Italian translation</li>
+              <li>Add Dutch translation</li>
+          </ul>
+        </description>
+    </release>
     <release date="2022-07-15" version="3.0.1">
       <description>
           <ul>

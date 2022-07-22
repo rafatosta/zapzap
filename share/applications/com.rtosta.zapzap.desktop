@@ -1,8 +1,8 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Name=ZapZap
-Comment=Unofficial WhatsApp desktop application for Linux
-Version=2.8
+Comment=Whatsapp Desktop for Linux
+Version=3.1
 Type=Application
 Exec=zapzap
 Icon=com.rtosta.zapzap
