@@ -27,7 +27,8 @@ WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.
 - System style (light and dark)
 - Fullscreen mode
 - Background running
-- Spell Check
+- Spellchecker
+- Drag and drop
 - Work area notifications
 - Personalized window decoration
 - Shortcuts for the main options

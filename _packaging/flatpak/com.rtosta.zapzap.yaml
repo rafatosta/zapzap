@@ -13,6 +13,7 @@ finish-args:
   - "--socket=session-bus"
   - "--share=network"
   - "--filesystem=xdg-download"
+  - "--filesystem=host:ro"
   - "--device=all"
   - "--env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess"
   - "--talk-name=org.kde.StatusNotifierWatcher"
@@ -47,4 +48,4 @@ modules:
     sources:
       - type: git
         url: https://github.com/rafatosta/zapzap.git
-        branch: test
+        branch: main
