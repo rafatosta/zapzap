@@ -274,7 +274,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -306,8 +306,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>644</width>
-            <height>572</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_16">
@@ -450,7 +450,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="label_14">
+                  <widget class="QLabel" name="label_MenuBar">
                    <property name="font">
                     <font>
                      <pointsize>14</pointsize>
@@ -662,8 +662,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>832</width>
-            <height>659</height>
+            <width>642</width>
+            <height>348</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1413,8 +1413,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>832</width>
-            <height>659</height>
+            <width>642</width>
+            <height>244</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2070,8 +2070,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>642</width>
-            <height>283</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">
