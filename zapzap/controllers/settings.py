@@ -3,6 +3,7 @@ from PyQt6.QtCore import QSettings, QSize, QUrl
 from PyQt6.QtGui import QDesktopServices, QIcon
 #from PyQt6 import uic
 import zapzap
+from zapzap.controllers.main_window_components.builder_icon import getIconTray
 from zapzap.services.portal_desktop import createDesktop, removeDesktop
 from gettext import gettext as _
 
@@ -27,7 +28,7 @@ class Settings(QWidget, Ui_Settings):
         self.icon_qrcode.setPixmap(QIcon(zapzap.abs_path+'/assets/icons/qrcode.png').pixmap(QSize(150, 150)))
         self.version_app.setText(
             _(self.version_app.text()).format(id=zapzap.__version__))
-        self.icon_app.setPixmap(zapzap.getIconTray().pixmap(QSize(50, 50)))
+        self.icon_app.setPixmap(getIconTray().pixmap(QSize(50, 50)))
         # actions
         self.btn_learn.clicked.connect(lambda: QDesktopServices.openUrl(
             QUrl(zapzap.__website__)))

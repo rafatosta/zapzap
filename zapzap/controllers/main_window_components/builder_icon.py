@@ -28,6 +28,15 @@ SVG_DEFAULT = """<?xml version="1.0" encoding="utf-8"?>
 </svg>
 """
 
+SVG_SYMBOLIC = """<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <g id="layer1" transform="matrix(6.791338, 0, 0, 6.791338, 13.000002, 13.000012)">
+    <path id="path-1" style="fill-opacity: 1; stroke: none; stroke-width: 0.0663829; stroke-dasharray: none; stroke-opacity: 1; fill: {color};" d="M 16.933333,5.7553998e-7 A 16.933245,16.933245 0 0 0 2.3333327e-7,16.933333 16.933245,16.933245 0 0 0 2.1534007,25.182072 l -1.26573497,5.1653 -0.17059912,0.697255 A 1.9466245,1.8017893 48.483562 0 0 3.0581261,33.470436 L 9.3890022,32.085281 A 16.933245,16.933245 0 0 0 16.933333,33.866666 16.933245,16.933245 0 0 0 33.866667,16.933333 16.933245,16.933245 0 0 0 16.933333,5.7553998e-7 Z M 16.933884,3.9446912 A 12.988273,12.988273 0 0 1 29.921425,16.872247 l -12.715134,5.920339 11.02015,0.551969 A 12.988273,12.988273 0 0 1 16.933884,29.921425 12.988273,12.988273 0 0 1 3.9452411,16.933333 12.988273,12.988273 0 0 1 3.9771597,16.077586 L 17.538685,9.7632198 6.4959724,9.2101487 A 12.988273,12.988273 0 0 1 16.933884,3.9446912 Z"/>
+  </g>
+  {notify}
+</svg>
+"""
+
 
 SVG_DEFAULT_NOTIFICATION = """
   <rect y="116.592" width="{width}" height="136.107" style="fill: rgb(255, 0, 0); stroke: rgb(255, 0, 0);" rx="19.653" ry="19.653" x="{x}"/>
@@ -35,7 +44,7 @@ SVG_DEFAULT_NOTIFICATION = """
 """
 
 
-def getIconTray_2(theme='default', qtd=0):
+def getIconTray(theme='default', qtd=0):
     """
     theme: default, symbolic_light, symbolic_dark
     qtd: quantidade
@@ -51,13 +60,13 @@ def getIconTray_2(theme='default', qtd=0):
     notification = SVG_DEFAULT_NOTIFICATION.format(
         x=data['x'], width=data['width'], number=qtd)
 
+    n = notification if qtd > 0 else ""
     if theme == 'default':
-        n = notification if qtd > 0 else ""
         return build(SVG_DEFAULT.format(n))
     elif theme == 'symbolic_light':
-        pass
+        return build(SVG_SYMBOLIC.format(color='#ffffff', notify=n))
     else:
-        pass
+        return build(SVG_SYMBOLIC.format(color='#241f31', notify=n))
 
 
 def build(svg_str):
