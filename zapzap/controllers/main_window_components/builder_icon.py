@@ -42,9 +42,9 @@ def getIconTray_2(theme='default', qtd=0):
     """
 
     if len(str(qtd)) == 1:
-        data = dict(width=90.1, x=162.6)
+        data = dict(width=100.1, x=152.6)
     elif len(str(qtd)) == 2:
-        data = dict(width=170.3, x=82.5)
+        data = dict(width=180.3, x=72.5)
     else:
         data = dict(width=249.428, x=3.286)
 
