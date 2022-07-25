@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+from PyQt6.QtGui import QImage, QPixmap, QIcon
+from PyQt6.QtCore import QSize
+
+SVG_DEFAULT = """<?xml version="1.0" encoding="utf-8"?>
 <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
     <linearGradient id="linearGradient3062" x1="8.3581467" y1="52.194504" x2="59.375187" y2="52.027035" gradientUnits="userSpaceOnUse" gradientTransform="matrix(4.508297, 0, 0, 4.246757, -24.681, -11.662596)" xlink:href="#linearGradient3060"/>
@@ -21,4 +24,47 @@
     <path id="path1677" style="fill-opacity: 1; stroke: none; stroke-width: 0.1; stroke-dasharray: none; stroke-opacity: 1; fill: rgb(255, 255, 255);" d="M 128.001 13 C 64.489 13 13.001 61.499 13 121.327 C 13.017 139.805 18.052 157.971 27.625 174.099 L 19.029 207.142 L 17.868 211.603 C 15.571 220.429 24.404 229.05 33.767 227.121 C 33.767 227.121 33.768 227.121 33.768 227.121 L 76.764 218.261 C 92.678 225.741 110.216 229.641 128.001 229.656 C 191.514 229.656 243 181.155 242.999 121.327 C 242.999 61.499 191.513 13 128.001 13 Z"/>
     <path id="path333" style="fill:url(#linearGradient15564);fill-opacity:1;stroke:none;stroke-width:0.05;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 127.502 28.277 C 96.599 28.287 67.525 42.2 49.149 65.773 L 132.045 69.714 L 30.239 114.682 C 30.088 116.71 30.008 118.743 30 120.777 C 30 171.864 73.653 213.277 127.502 213.277 C 162.586 213.271 194.96 195.384 212.279 166.438 L 129.545 162.504 L 225 120.342 C 224.75 69.428 181.17 28.279 127.502 28.277 Z"/>
   </g>
+  {}
 </svg>
+"""
+
+
+SVG_DEFAULT_NOTIFICATION = """
+  <rect y="116.592" width="{width}" height="136.107" style="fill: rgb(255, 0, 0); stroke: rgb(255, 0, 0);" rx="19.653" ry="19.653" x="{x}"/>
+  <text style="fill: rgb(255, 255, 255); font-family: Arial, sans-serif; font-size: 65.9885px; font-weight: 700; text-anchor: end; white-space: pre;" transform="matrix(2.154438, 0, 0, 1.833654, -279.152802, -210.015335)" x="244.638" y="238.631">{number}</text>
+"""
+
+
+def getIconTray_2(theme='default', qtd=0):
+    """
+    theme: default, symbolic_light, symbolic_dark
+    qtd: quantidade
+    """
+
+    if len(str(qtd)) == 1:
+        data = dict(width=90.1, x=162.6)
+    elif len(str(qtd)) == 2:
+        data = dict(width=170.3, x=82.5)
+    else:
+        data = dict(width=249.428, x=3.286)
+
+    notification = SVG_DEFAULT_NOTIFICATION.format(
+        x=data['x'], width=data['width'], number=qtd)
+
+    if theme == 'default':
+        n = notification if qtd > 0 else ""
+        return build(SVG_DEFAULT.format(n))
+    elif theme == 'symbolic_light':
+        pass
+    else:
+        pass
+
+
+def build(svg_str):
+    svg_bytes = bytearray(svg_str, encoding='utf-8')
+
+    qimg = QImage.fromData(svg_bytes, 'SVG')
+
+    qpix = QPixmap.fromImage(qimg)
+    qicon = QIcon(qpix.scaled(QSize(128, 128)))
+    return qicon

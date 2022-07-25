@@ -2,7 +2,8 @@ from gettext import gettext as _
 from PyQt6.QtWidgets import QSystemTrayIcon, QMenu
 from PyQt6.QtGui import QAction, QImage, QPixmap, QIcon
 from PyQt6.QtCore import QSize
-from zapzap import getIconTray
+
+from zapzap.controllers.main_window_components.builder_icon import getIconTray_2
 
 
 class TrayIcon():
@@ -11,7 +12,7 @@ class TrayIcon():
         self.mainWindow = mainWindow
         theme_icon = self.mainWindow.settings.value(
             "notification/theme_tray", 'default', str)
-        self.tray.setIcon(getIconTray(theme_icon, 'normal'))
+        self.tray.setIcon(getIconTray_2(theme_icon))
 
         self.tray.activated.connect(mainWindow.onTrayIconActivated)
 
@@ -44,12 +45,8 @@ class TrayIcon():
     def showIconNotification(self, n):
         theme_icon = self.mainWindow.settings.value(
             "notification/theme_tray", 'default', str)
-        if n > 0:
-            #self.tray.setIcon(getIconTray(theme_icon, 'notify'))
-            n = 999 if n >= 1000 else n
-            self.tray.setIcon(self.getIconModel(n))
-        else:
-            self.tray.setIcon(getIconTray(theme_icon, 'normal'))
+        n = 999 if n >= 1000 else n
+        self.tray.setIcon(getIconTray_2(theme_icon, n))
 
     def getIconModel(self, size):
 
