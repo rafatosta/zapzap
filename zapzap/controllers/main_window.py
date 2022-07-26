@@ -124,6 +124,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             "main/geometry", QByteArray()))
         self.restoreState(self.settings.value(
             "main/windowState", QByteArray()))
+        # System start
+        isStart_system = self.settings.value(
+            "system/start_system", False, bool)
+        isStart_hide = self.settings.value("system/start_hide", False, bool)
+        if isStart_system and isStart_hide:
+            self.hide()
+        else:
+            self.show()
 
     def quit(self):
         """
