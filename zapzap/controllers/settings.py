@@ -144,11 +144,11 @@ class Settings(QWidget, Ui_Settings):
     def actionsSystemMenu(self):
         btn=self.sender()  # returns a pointer to the object that sent the signal
         btnName=btn.objectName()
-        if btnName == 'start_system':
+        if btnName == 'start_system' or btnName == 'start_hide':
             self.start_hide.setEnabled(self.start_system.isChecked())
             # cria ou remove o arquivo
             if bool(self.start_system.isChecked()):
-                createDesktop()
+                createDesktop(self.start_hide.isChecked())
             else:
                 removeDesktop()
         if btnName == 'keepBackground':

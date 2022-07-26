@@ -9,7 +9,7 @@ import gettext
 
 def main():
     #os.environ['QT_QPA_PLATFORM'] = 'xcb'
-    
+    print(sys.argv)
     gettext.bindtextdomain('zapzap', zapzap.po_path)
     gettext.textdomain('zapzap')
 
@@ -34,8 +34,17 @@ def main():
     app.setActivationWindow(window)
     window.loadSettings()
 
+    # esconde ou mostra
+    # System start
+    isStart_system = window.settings.value(
+        "system/start_system", False, bool)
+    isStart_hide = window.settings.value("system/start_hide", False, bool)
+    if isStart_system and isStart_hide and '--hideStart' in sys.argv:
+        window.hide()
+    else:
+        window.show()
+
     sys.exit(app.exec())
-    
 
 
 if __name__ == "__main__":

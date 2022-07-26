@@ -6,19 +6,26 @@ path_data = QStandardPaths.writableLocation(
     QStandardPaths.StandardLocation.ConfigLocation)+'/autostart/com.rtosta.zapzap.desktop'
 
 
-def createDesktop():
+def createDesktop(startHide):
+
+    flag = ""
+    if startHide:
+        flag = '--hideStart'
+
     conteudo = f"""[Desktop Entry]
-    Name={__appname__}
-    Comment= {__comment__}
-    Version={__version__}
-    Type=Application
-    Exec=/usr/bin/flatpak run --command=zapzap com.rtosta.zapzap
-    Icon=com.rtosta.zapzap
-    Terminal=false
-    Categories=Network;InstantMessaging;
-    X-GNOME-Autostart-Delay=60
-    X-Flatpak=com.rtosta.zapzap
-    StartupNotify=true"""
+Version=1.0
+Name=ZapZap
+Comment=Whatsapp Desktop for Linux
+Exec=/usr/bin/flatpak run com.rtosta.zapzap {flag}
+Icon=com.rtosta.zapzap
+Type=Application
+Categories=Chat;Network;InstantMessaging;Qt;
+Keywords=whatsapp;chat;im;messaging;messenger;sms;
+Terminal=false
+SingleMainWindow=true
+X-GNOME-Autostart-Delay=60
+X-GNOME-UsesNotifications=true
+X-GNOME-SingleWindow=true"""
 
     with open(path_data, 'w') as arquivo:
         arquivo.write(conteudo)
