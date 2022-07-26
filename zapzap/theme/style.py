@@ -196,7 +196,7 @@ def buildTheme(p) -> str:
             color: {disabled};
         }
 
-        QRadioButton::indicator
+        #frameAppearance .QRadioButton::indicator
         {
             width: 150px;
             height: 100px;
@@ -256,58 +256,40 @@ def buildTheme(p) -> str:
             border-image: url({path}/theme_dark_unchecked.svg);
         }
 
-        #rb_tray_default::indicator:unchecked,
-        #rb_tray_default::indicator:unchecked:focus,
-        #rb_tray_default::indicator:unchecked:hover,
-        #rb_tray_default::indicator:unchecked:pressed
-        {
-            border-image: url({path}/tray_default_unchecked.svg);
+        #label_tray_def{
+            border-image: url({path}/tray_default.svg);
+        }
+        #label_tray_light{
+            border-image: url({path}/tray_light.svg);
+        }
+        #label_tray_dark{
+            border-image: url({path}/tray_dark.svg);
         }
 
-        #rb_tray_default::indicator:checked,
-        #rb_tray_default::indicator:checked:hover,
-        #rb_tray_default::indicator:checked:focus,
-        #rb_tray_default::indicator:checked:pressed
-        {
-            border: none;
-            outline: none;
-            border-image: url({path}/tray_default_checked.svg);
+        /* FRAME TRAY*/
+
+        #frameTray .QRadioButton::indicator {
+        width: 11px;
+        height: 11px;
+        border-radius: 5px;
         }
 
-        #rb_tray_light::indicator:unchecked,
-        #rb_tray_light::indicator:unchecked:focus,
-        #rb_tray_light::indicator:unchecked:hover,
-        #rb_tray_light::indicator:unchecked:pressed
-        {
-            border-image: url({path}/tray_light_unchecked.svg);
+        #frameTray .QRadioButton::indicator::unchecked{ 
+        border: 2px solid; 
+        border-color: {highlight};
+        border-radius: 6px;
+        background-color: {highlight}; 
+        width: 11px; 
+        height: 11px; 
         }
 
-        #rb_tray_light::indicator:checked,
-        #rb_tray_light::indicator:checked:hover,
-        #rb_tray_light::indicator:checked:focus,
-        #rb_tray_light::indicator:checked:pressed
-        {
-            border: none;
-            outline: none;
-            border-image: url({path}/tray_light_checked.svg);
-        }
-
-        #rb_tray_dark::indicator:unchecked,
-        #rb_tray_dark::indicator:unchecked:focus,
-        #rb_tray_dark::indicator:unchecked:hover,
-        #rb_tray_dark::indicator:unchecked:pressed
-        {
-            border-image: url({path}/tray_dark_unchecked.svg);
-        }
-
-        #rb_tray_dark::indicator:checked,
-        #rb_tray_dark::indicator:checked:hover,
-        #rb_tray_dark::indicator:checked:focus,
-        #rb_tray_dark::indicator:checked:pressed
-        {
-            border: none;
-            outline: none;
-            border-image: url({path}/tray_dark_checked.svg);
+        #frameTray .QRadioButton::indicator::checked{ 
+        border: 2px solid; 
+        border-color: #00A884;
+        border-radius: 6px;
+        background-color: #00A884; 
+        width: 11px; 
+        height: 11px;
         }
     """
 
