@@ -487,16 +487,22 @@ def buildTheme(p) -> str:
         }
 
 
-        #btn_buy_paypal,
-        #btn_pix  {	
+        #btn_paypal,
+        #btn_pix,
+        #btn_kofi,
+        #btn_gitSponor {	
             border: 1px solid {frame_border};
             border-radius: 5px;
+            background-color: #F0F2F5;
         }
 
-        #btn_buy_paypal:hover,
-        #btn_pix:hover{
+        #btn_paypal:hover,
+        #btn_pix:hover,
+        #btn_kofi:hover,
+        #btn_gitSponor:hover {
             color: {link};
-            border: 1px solid {link};
+            border: 3px solid {link};
+            background-color: #FFFFFF;
         }
         """
 
@@ -508,8 +514,7 @@ def buildTheme(p) -> str:
         #frameNotificationsPreview,
         #frameMenuBar,
         #frameZapWindow,
-        #frame_pix,
-        #frame_paypal  {
+        #frame_donations  {
             background-color: {frame_background};
             border: 1px solid {frame_border};
             border-radius: 5px;

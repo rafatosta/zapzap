@@ -9,7 +9,7 @@ import gettext
 
 def main():
     #os.environ['QT_QPA_PLATFORM'] = 'xcb'
-    print(sys.argv)
+    
     gettext.bindtextdomain('zapzap', zapzap.po_path)
     gettext.textdomain('zapzap')
 

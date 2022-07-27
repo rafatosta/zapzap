@@ -274,7 +274,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>1</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -306,8 +306,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>832</width>
-            <height>659</height>
+            <width>644</width>
+            <height>572</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_16">
@@ -1533,8 +1533,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>642</width>
-            <height>460</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_30">
@@ -1581,11 +1581,11 @@
                 </widget>
                </item>
                <item>
-                <widget class="QFrame" name="frame_3">
+                <widget class="QFrame" name="frame_donations">
                  <property name="minimumSize">
                   <size>
                    <width>620</width>
-                   <height>0</height>
+                   <height>200</height>
                   </size>
                  </property>
                  <property name="maximumSize">
@@ -1600,288 +1600,104 @@
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
                  </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_28">
+                 <layout class="QVBoxLayout" name="verticalLayout_11">
                   <property name="spacing">
-                   <number>10</number>
+                   <number>15</number>
                   </property>
                   <property name="leftMargin">
-                   <number>0</number>
+                   <number>15</number>
                   </property>
                   <property name="topMargin">
-                   <number>0</number>
+                   <number>15</number>
                   </property>
                   <property name="rightMargin">
-                   <number>0</number>
+                   <number>15</number>
                   </property>
                   <property name="bottomMargin">
-                   <number>10</number>
+                   <number>15</number>
                   </property>
                   <item>
-                   <widget class="QFrame" name="frame_paypal">
-                    <property name="minimumSize">
-                     <size>
-                      <width>620</width>
-                      <height>0</height>
-                     </size>
+                   <layout class="QGridLayout" name="gridLayout_2">
+                    <property name="spacing">
+                     <number>20</number>
                     </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>620</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="frameShape">
-                     <enum>QFrame::NoFrame</enum>
-                    </property>
-                    <property name="frameShadow">
-                     <enum>QFrame::Raised</enum>
-                    </property>
-                    <layout class="QVBoxLayout" name="verticalLayout_26">
-                     <property name="spacing">
-                      <number>10</number>
-                     </property>
-                     <property name="leftMargin">
-                      <number>15</number>
-                     </property>
-                     <property name="topMargin">
-                      <number>15</number>
-                     </property>
-                     <property name="rightMargin">
-                      <number>15</number>
-                     </property>
-                     <property name="bottomMargin">
-                      <number>15</number>
-                     </property>
-                     <item>
-                      <layout class="QHBoxLayout" name="horizontalLayout_26">
-                       <item>
-                        <widget class="QLabel" name="icon_world">
-                         <property name="minimumSize">
-                          <size>
-                           <width>25</width>
-                           <height>25</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>25</width>
-                           <height>25</height>
-                          </size>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                         <property name="scaledContents">
-                          <bool>true</bool>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignCenter</set>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QLabel" name="label_24">
-                         <property name="font">
-                          <font>
-                           <pointsize>12</pointsize>
-                           <bold>true</bold>
-                          </font>
-                         </property>
-                         <property name="text">
-                          <string>World</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </item>
-                     <item>
-                      <widget class="QPushButton" name="btn_buy_paypal">
-                       <property name="minimumSize">
-                        <size>
-                         <width>0</width>
-                         <height>40</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>16777215</width>
-                         <height>40</height>
-                        </size>
-                       </property>
-                       <property name="cursor">
-                        <cursorShape>PointingHandCursor</cursorShape>
-                       </property>
-                       <property name="text">
-                        <string>Click to donate via PayPal</string>
-                       </property>
-                       <property name="flat">
-                        <bool>true</bool>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QFrame" name="frame_pix">
-                    <property name="minimumSize">
-                     <size>
-                      <width>620</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>620</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="frameShape">
-                     <enum>QFrame::NoFrame</enum>
-                    </property>
-                    <property name="frameShadow">
-                     <enum>QFrame::Raised</enum>
-                    </property>
-                    <layout class="QVBoxLayout" name="verticalLayout_31">
-                     <property name="spacing">
-                      <number>10</number>
-                     </property>
-                     <property name="leftMargin">
-                      <number>15</number>
-                     </property>
-                     <property name="topMargin">
-                      <number>15</number>
-                     </property>
-                     <property name="rightMargin">
-                      <number>15</number>
-                     </property>
-                     <property name="bottomMargin">
-                      <number>15</number>
-                     </property>
-                     <item>
-                      <layout class="QHBoxLayout" name="horizontalLayout_24">
-                       <item>
-                        <widget class="QLabel" name="icon_br">
-                         <property name="minimumSize">
-                          <size>
-                           <width>25</width>
-                           <height>25</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>25</width>
-                           <height>25</height>
-                          </size>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                         <property name="scaledContents">
-                          <bool>true</bool>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignCenter</set>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QLabel" name="label_21">
-                         <property name="font">
-                          <font>
-                           <pointsize>12</pointsize>
-                           <bold>true</bold>
-                          </font>
-                         </property>
-                         <property name="text">
-                          <string>Você é do Brasil?</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </item>
-                     <item>
-                      <widget class="QPushButton" name="btn_pix">
-                       <property name="minimumSize">
-                        <size>
-                         <width>0</width>
-                         <height>40</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>16777215</width>
-                         <height>40</height>
-                        </size>
-                       </property>
-                       <property name="cursor">
-                        <cursorShape>PointingHandCursor</cursorShape>
-                       </property>
-                       <property name="text">
-                        <string>Acesse o link para transferir via PIX ou realize a leitura do QR code abaixo</string>
-                       </property>
-                       <property name="flat">
-                        <bool>true</bool>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <layout class="QHBoxLayout" name="horizontalLayout_25">
-                       <item>
-                        <spacer name="horizontalSpacer_32">
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>40</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
-                       <item>
-                        <widget class="QLabel" name="icon_qrcode">
-                         <property name="minimumSize">
-                          <size>
-                           <width>150</width>
-                           <height>150</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>150</width>
-                           <height>150</height>
-                          </size>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                         <property name="scaledContents">
-                          <bool>true</bool>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignCenter</set>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <spacer name="horizontalSpacer_33">
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>40</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
-                      </layout>
-                     </item>
-                    </layout>
-                   </widget>
+                    <item row="0" column="1">
+                     <widget class="QPushButton" name="btn_kofi">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>100</height>
+                       </size>
+                      </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0">
+                     <widget class="QPushButton" name="btn_paypal">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>100</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="flat">
+                       <bool>false</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QPushButton" name="btn_pix">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>100</height>
+                       </size>
+                      </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="flat">
+                       <bool>false</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QPushButton" name="btn_gitSponor">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>100</height>
+                       </size>
+                      </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
                   </item>
                  </layout>
                 </widget>

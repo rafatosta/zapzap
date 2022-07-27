@@ -20,12 +20,34 @@ class Settings(QWidget, Ui_Settings):
         self.load()
         self.settingsActions()
         self.loadInfoHelp()
+        self.loadDonations()
+
+    def loadDonations(self):
+        self.btn_paypal.setIcon(
+            QIcon(zapzap.abs_path+'/assets/icons/banners/PayPal.png'))
+        self.btn_paypal.setIconSize(QSize(250, 100))
+        self.btn_paypal.clicked.connect(lambda: QDesktopServices.openUrl(
+            QUrl(zapzap.__paypal__)))
+
+        self.btn_pix.setIcon(
+            QIcon(zapzap.abs_path+'/assets/icons/banners/pix.png'))
+        self.btn_pix.setIconSize(QSize(250, 100))
+        self.btn_pix.clicked.connect(lambda: QDesktopServices.openUrl(
+            QUrl(zapzap.__pix__)))
+
+        self.btn_kofi.setIcon(
+            QIcon(zapzap.abs_path+'/assets/icons/banners/kofi.svg'))
+        self.btn_kofi.setIconSize(QSize(250, 100))
+        self.btn_kofi.clicked.connect(lambda: QDesktopServices.openUrl(
+            QUrl(zapzap.__kofi__)))
+
+        self.btn_gitSponor.setIcon(
+            QIcon(zapzap.abs_path+'/assets/icons/banners/sponsor.svg'))
+        self.btn_gitSponor.setIconSize(QSize(250, 100))
+        self.btn_gitSponor.clicked.connect(lambda: QDesktopServices.openUrl(
+            QUrl(zapzap.__githubSponor__)))
 
     def loadInfoHelp(self):
-        self.icon_world.setPixmap(
-            QIcon(zapzap.abs_path+'/assets/icons/earth.svg').pixmap(QSize(25, 25)))
-        self.icon_br.setPixmap(QIcon(zapzap.abs_path+'/assets/icons/brazil.svg').pixmap(QSize(25, 25)))
-        self.icon_qrcode.setPixmap(QIcon(zapzap.abs_path+'/assets/icons/qrcode.png').pixmap(QSize(150, 150)))
         self.version_app.setText(
             _(self.version_app.text()).format(id=zapzap.__version__))
         self.icon_app.setPixmap(getIconTray().pixmap(QSize(50, 50)))
@@ -72,12 +94,6 @@ class Settings(QWidget, Ui_Settings):
         self.show_name.clicked.connect(self.save)
         self.show_msg.clicked.connect(self.save)
 
-        ## Donations ##
-        self.btn_buy_paypal.clicked.connect(lambda: QDesktopServices.openUrl(
-            QUrl(zapzap.__paypal__)))
-        self.btn_pix.clicked.connect(lambda: QDesktopServices.openUrl(
-            QUrl(zapzap.__pix__)))
-
         ## Set start page ##
         self.settings_stacked.setCurrentIndex(0)
         self.btn_system.setStyleSheet(
@@ -109,32 +125,32 @@ class Settings(QWidget, Ui_Settings):
         self.save()
 
     def actionsRbTray(self):
-        theme='default'
+        theme = 'default'
         if self.rb_tray_default.isChecked():
             """default"""
 
         if self.rb_tray_light.isChecked():  # icone preto
-            theme='symbolic_light'
+            theme = 'symbolic_light'
 
         if self.rb_tray_dark.isChecked():  # icone branco
-            theme='symbolic_dark'
+            theme = 'symbolic_dark'
 
         self.settings.setValue("notification/theme_tray", theme)
         self.mainWindow.browser.title_changed(self.mainWindow.windowTitle())
 
     def actionsRbAppearance(self):
-        theme='auto'
+        theme = 'auto'
         if self.rb_system.isChecked():
             """Ativa o contador"""
-            self.mainWindow.current_theme=-1
+            self.mainWindow.current_theme = -1
             self.mainWindow.timer.start()
         if self.rb_light.isChecked():
-            theme='light'
+            theme = 'light'
             """Desativa o contador e ativa o light"""
             self.mainWindow.timer.stop()
             self.mainWindow.setThemeApp(False)
         if self.rb_dark.isChecked():
-            theme='dark'
+            theme = 'dark'
             """Desativa o contador e ativa o dark"""
             self.mainWindow.timer.stop()
             self.mainWindow.setThemeApp(True)
@@ -142,8 +158,8 @@ class Settings(QWidget, Ui_Settings):
         self.settings.setValue("system/theme", theme)
 
     def actionsSystemMenu(self):
-        btn=self.sender()  # returns a pointer to the object that sent the signal
-        btnName=btn.objectName()
+        btn = self.sender()  # returns a pointer to the object that sent the signal
+        btnName = btn.objectName()
         if btnName == 'start_system' or btnName == 'start_hide':
             self.start_hide.setEnabled(self.start_system.isChecked())
             # cria ou remove o arquivo
@@ -167,8 +183,8 @@ class Settings(QWidget, Ui_Settings):
             self.mainWindow.scd.headDefinitions()
 
     def buttonClick(self):
-        btn=self.sender()  # returns a pointer to the object that sent the signal
-        btnName=btn.objectName()
+        btn = self.sender()  # returns a pointer to the object that sent the signal
+        btnName = btn.objectName()
         # print(btnName)
 
         self.resetStyle(btnName)
@@ -202,7 +218,7 @@ class Settings(QWidget, Ui_Settings):
         Load all settings
         """
         ## System ##
-        isStart_system=self.settings.value(
+        isStart_system = self.settings.value(
             "system/start_system", False, bool)
         self.start_system.setChecked(isStart_system)  # Start_system
         self.start_hide.setEnabled(isStart_system)  # Enable Start Hide
@@ -230,7 +246,7 @@ class Settings(QWidget, Ui_Settings):
             "system/posBtnLeft", False, bool))
 
         ## Appearance ##
-        theme_mode=self.settings.value("system/theme", 'auto', str)
+        theme_mode = self.settings.value("system/theme", 'auto', str)
         if theme_mode == 'auto':
             self.rb_system.setChecked(True)
         elif theme_mode == 'light':
@@ -239,7 +255,7 @@ class Settings(QWidget, Ui_Settings):
             self.rb_dark.setChecked(True)
 
         ## Theme Icon ##
-        theme_icon=self.mainWindow.settings.value(
+        theme_icon = self.mainWindow.settings.value(
             "notification/theme_tray", 'default', str)
         print()
         if theme_icon == 'default':
@@ -250,7 +266,7 @@ class Settings(QWidget, Ui_Settings):
             self.rb_tray_dark.setChecked(True)
 
         ## Notifications ##
-        isNotifyApp=self.settings.value("notification/app", True, bool)
+        isNotifyApp = self.settings.value("notification/app", True, bool)
         self.notify_desktop.setChecked(isNotifyApp)
         # enable ou disable
         self.show_photo.setEnabled(isNotifyApp)
@@ -303,19 +319,19 @@ class Settings(QWidget, Ui_Settings):
     # ///////////////////////////////////////////////////////////////
     # SELECT
     # MENU SELECTED STYLESHEET
-    MENU_SELECTED_STYLESHEET="""
+    MENU_SELECTED_STYLESHEET = """
     background-color: #00BD95;
     border-color: #00BD95;
     font-weight: bold;
     """
 
     def selectMenu(self, getStyle):
-        select=getStyle + self.MENU_SELECTED_STYLESHEET
+        select = getStyle + self.MENU_SELECTED_STYLESHEET
         return select
 
     # DESELECT
     def deselectMenu(self, getStyle):
-        deselect=getStyle.replace(self.MENU_SELECTED_STYLESHEET, "")
+        deselect = getStyle.replace(self.MENU_SELECTED_STYLESHEET, "")
         return deselect
 
     # RESET SELECTION

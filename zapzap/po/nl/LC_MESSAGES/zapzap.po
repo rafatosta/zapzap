@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-26 21:44-0300\n"
+"POT-Creation-Date: 2022-07-27 17:37-0300\n"
 "PO-Revision-Date: 2022-07-16 19:53+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 22.04.3\n"
 
-#: zapzap/view/main_window.py:226 zapzap/view/settings.py:877
-#: zapzap/view/settings.py:880
+#: zapzap/view/main_window.py:226 zapzap/view/settings.py:817
+#: zapzap/view/settings.py:820
 msgid "ZapZap"
 msgstr "ZapZap"
 
@@ -34,7 +34,7 @@ msgstr "Beeld"
 msgid "Help"
 msgstr "Hulp"
 
-#: zapzap/view/main_window.py:230 zapzap/view/settings.py:838
+#: zapzap/view/main_window.py:230 zapzap/view/settings.py:782
 msgid "Settings"
 msgstr "Instellingen"
 
@@ -74,7 +74,7 @@ msgstr "Schermvullende weergave"
 msgid "F11"
 msgstr "F11"
 
-#: zapzap/view/main_window.py:240 zapzap/view/settings.py:851
+#: zapzap/view/main_window.py:240 zapzap/view/settings.py:795
 msgid "Hide menu bar"
 msgstr "Menubalk verbergen"
 
@@ -86,11 +86,11 @@ msgstr "Ctrl+M"
 msgid "Learn More"
 msgstr "Meer informatie"
 
-#: zapzap/view/main_window.py:243 zapzap/view/settings.py:883
+#: zapzap/view/main_window.py:243 zapzap/view/settings.py:823
 msgid "Changelog"
 msgstr "Wijzigingslog"
 
-#: zapzap/view/main_window.py:244 zapzap/view/settings.py:884
+#: zapzap/view/main_window.py:244 zapzap/view/settings.py:824
 msgid "Report issue..."
 msgstr "Probleem melden…"
 
@@ -98,7 +98,7 @@ msgstr "Probleem melden…"
 msgid "About Zapzap"
 msgstr "Over ZapZap"
 
-#: zapzap/view/main_window.py:246 zapzap/view/settings.py:848
+#: zapzap/view/main_window.py:246 zapzap/view/settings.py:792
 msgid "Hide on close"
 msgstr "Minimaliseren in plaats van sluiten"
 
@@ -122,12 +122,12 @@ msgstr "Uitzoomen"
 msgid "Ctrl+-"
 msgstr "Ctrl+-"
 
-#: zapzap/view/main_window.py:252 zapzap/view/settings.py:843
-#: zapzap/view/settings.py:871
+#: zapzap/view/main_window.py:252 zapzap/view/settings.py:787
+#: zapzap/view/settings.py:815
 msgid "Donations"
 msgstr "Doneren"
 
-#: zapzap/view/main_window.py:253 zapzap/view/settings.py:839
+#: zapzap/view/main_window.py:253 zapzap/view/settings.py:783
 msgid "Home page"
 msgstr "Website"
 
@@ -135,149 +135,131 @@ msgstr "Website"
 msgid "Esc"
 msgstr "Esc"
 
-#: zapzap/view/settings.py:837
+#: zapzap/view/settings.py:781
 msgid "Form"
 msgstr "Formulier"
 
-#: zapzap/view/settings.py:840 zapzap/view/settings.py:845
+#: zapzap/view/settings.py:784 zapzap/view/settings.py:789
 msgid "System"
 msgstr "Systeem"
 
-#: zapzap/view/settings.py:841
+#: zapzap/view/settings.py:785
 msgid "Appearance"
 msgstr "Vormgeving"
 
-#: zapzap/view/settings.py:842 zapzap/view/settings.py:866
+#: zapzap/view/settings.py:786 zapzap/view/settings.py:810
 msgid "Notifications"
 msgstr "Meldingen"
 
-#: zapzap/view/settings.py:844 zapzap/view/settings.py:876
+#: zapzap/view/settings.py:788 zapzap/view/settings.py:816
 msgid "About"
 msgstr "Over"
 
-#: zapzap/view/settings.py:846
+#: zapzap/view/settings.py:790
 msgid "Start ZapZap with the system"
 msgstr "Automatisch opstarten"
 
-#: zapzap/view/settings.py:847
+#: zapzap/view/settings.py:791
 msgid "Start minimized"
 msgstr "Geminimaliseerd opstarten"
 
-#: zapzap/view/settings.py:849
+#: zapzap/view/settings.py:793
 msgid "Disable tray icon"
 msgstr "Systeemvakpictogram verbergen"
 
-#: zapzap/view/settings.py:850
+#: zapzap/view/settings.py:794
 msgid "Menu bar"
 msgstr "Menubalk"
 
-#: zapzap/view/settings.py:852
+#: zapzap/view/settings.py:796
 msgid "ZapZap window (Restart required)"
 msgstr "ZapZap-venster (herstart vereist)"
 
-#: zapzap/view/settings.py:853
+#: zapzap/view/settings.py:797
 msgid "Title bar buttons"
 msgstr "Titelbalkknoppen"
 
-#: zapzap/view/settings.py:854
+#: zapzap/view/settings.py:798
 msgid "Maximize"
 msgstr "Maximaliseren"
 
-#: zapzap/view/settings.py:855
+#: zapzap/view/settings.py:799
 msgid "Minimize"
 msgstr "Minimaliseren"
 
-#: zapzap/view/settings.py:856
+#: zapzap/view/settings.py:800
 msgid "Positioning on the left side"
 msgstr "Aan linkerzijde"
 
-#: zapzap/view/settings.py:857
+#: zapzap/view/settings.py:801
 msgid "Customize appearance"
 msgstr "Vormgeving aanpassen"
 
-#: zapzap/view/settings.py:858
+#: zapzap/view/settings.py:802
 msgid "General appearance"
 msgstr "Algemene vormgeving"
 
-#: zapzap/view/settings.py:859
+#: zapzap/view/settings.py:803
 msgid "System style"
 msgstr "Systeemthema"
 
-#: zapzap/view/settings.py:860
+#: zapzap/view/settings.py:804
 msgid "Light style"
 msgstr "Licht thema"
 
-#: zapzap/view/settings.py:861
+#: zapzap/view/settings.py:805
 msgid "Dark style"
 msgstr "Donker thema"
 
-#: zapzap/view/settings.py:862
+#: zapzap/view/settings.py:806
 msgid "Tray icon"
 msgstr "Systeemvakpictogram"
 
-#: zapzap/view/settings.py:863
+#: zapzap/view/settings.py:807
 msgid "Default"
 msgstr "Standaard"
 
-#: zapzap/view/settings.py:864
+#: zapzap/view/settings.py:808
 msgid "Symbolic light"
 msgstr "Symbolisch (licht)"
 
-#: zapzap/view/settings.py:865
+#: zapzap/view/settings.py:809
 msgid "Symbolic dark"
 msgstr "Symbolisch (donker)"
 
-#: zapzap/view/settings.py:867
+#: zapzap/view/settings.py:811
 msgid "Notifications on the desktop"
 msgstr "Bureaubladmeldingen"
 
-#: zapzap/view/settings.py:868
+#: zapzap/view/settings.py:812
 msgid "Show the photo of the sender"
 msgstr "Foto van afzender tonen"
 
-#: zapzap/view/settings.py:869
+#: zapzap/view/settings.py:813
 msgid "Show the sender's name"
 msgstr "Naam van afzender tonen"
 
-#: zapzap/view/settings.py:870
+#: zapzap/view/settings.py:814
 msgid "Show message preview"
 msgstr "Berichtvoorbeeld tonen"
 
-#: zapzap/view/settings.py:872
-msgid "World"
-msgstr "Wereld"
-
-#: zapzap/view/settings.py:873
-msgid "Click to donate via PayPal"
-msgstr "Klik om te doneren via PayPal"
-
-#: zapzap/view/settings.py:874
-msgid "Você é do Brasil?"
-msgstr "Você é do Brasil?"
-
-#: zapzap/view/settings.py:875
-msgid ""
-"Acesse o link para transferir via PIX ou realize a leitura do QR code abaixo"
-msgstr ""
-"Acesse o link para transferir via PIX ou realize a leitura do QR code abaixo"
-
-#: zapzap/view/settings.py:878
+#: zapzap/view/settings.py:818
 #, python-brace-format
 msgid "Version {id} (Official compilation)"
 msgstr "Versie {id} (officiële versie)"
 
-#: zapzap/view/settings.py:879
+#: zapzap/view/settings.py:819
 msgid ""
 "An unofficial WhatsApp desktop application written in Pyqt6 + PyQt6-"
 "WebEngine."
 msgstr ""
 "Een onofficieel WhatsApp-programma, gemaakt met Pyqt6 + PyQt6-WebEngine."
 
-#: zapzap/view/settings.py:881
+#: zapzap/view/settings.py:821
 msgid "GNU General Public License v3.0"
 msgstr "GNU General Public License v3.0"
 
-#: zapzap/view/settings.py:882
+#: zapzap/view/settings.py:822
 msgid "Learn more"
 msgstr "Meer informatie"
 
@@ -304,6 +286,22 @@ msgstr "Plakken"
 #: zapzap/engine/browser.py:59
 msgid "Select all"
 msgstr "Alles selecteren"
+
+#~ msgid "World"
+#~ msgstr "Wereld"
+
+#~ msgid "Click to donate via PayPal"
+#~ msgstr "Klik om te doneren via PayPal"
+
+#~ msgid "Você é do Brasil?"
+#~ msgstr "Você é do Brasil?"
+
+#~ msgid ""
+#~ "Acesse o link para transferir via PIX ou realize a leitura do QR code "
+#~ "abaixo"
+#~ msgstr ""
+#~ "Acesse o link para transferir via PIX ou realize a leitura do QR code "
+#~ "abaixo"
 
 #~ msgid "Tray icon appearance"
 #~ msgstr "Soort systeemvakpictogram"
