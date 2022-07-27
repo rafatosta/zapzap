@@ -18,6 +18,10 @@ WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.
     <a href="https://nubank.com.br/pagar/3c3r2/jAK5S45kuO">
         <img  alt="Pix" src="share/logos/pix.png" width="120">
     </a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://ko-fi.com/X8X2E1OLG">
+        <img  alt="Ko-fi" src="https://ko-fi.com/img/githubbutton_sm.svg" width="300">
+    </a>
 </p>
 
 # Features
