@@ -52,6 +52,14 @@
   <update_contact>rafa.ecomp@gmail.com</update_contact>
   <developer_name>Rafael Tosta</developer_name>
   <releases>
+    <release date="2022-07-26" version="3.2">
+      <description>
+          <ul>
+              <li>New icon</li>
+              <li>Fixed bugs</li>
+          </ul>
+        </description>
+    </release>
     <release date="2022-07-22" version="3.1">
       <description>
           <ul>

@@ -1,8 +1,7 @@
 import os
-from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import QStandardPaths
 
-__version__ = '3.1'
+__version__ = '3.2'
 __appname__ = 'ZapZap'
 __comment__ = 'Whatsapp Desktop for linux'
 __domain__ = 'com.rtosta'
