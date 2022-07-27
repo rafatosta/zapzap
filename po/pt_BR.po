@@ -1,21 +1,21 @@
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-# Heimen Stoffels <vistausss@fastmail.com>, 2022.
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-27 17:37-0300\n"
-"PO-Revision-Date: 2022-07-16 19:53+0200\n"
-"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
-"Language-Team: Dutch\n"
-"Language: nl\n"
+"POT-Creation-Date: 2022-07-27 20:26-0300\n"
+"PO-Revision-Date: 2022-07-22 10:44-0300\n"
+"Last-Translator: Rafael Tosta <rafa.ecomp@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.04.3\n"
 
 #: zapzap/view/main_window.py:226 zapzap/view/settings.py:817
 #: zapzap/view/settings.py:820
@@ -24,284 +24,272 @@ msgstr "ZapZap"
 
 #: zapzap/view/main_window.py:227
 msgid "File"
-msgstr "Bestand"
+msgstr "Arquivo"
 
 #: zapzap/view/main_window.py:228
 msgid "View"
-msgstr "Beeld"
+msgstr "Visualizar"
 
 #: zapzap/view/main_window.py:229
 msgid "Help"
-msgstr "Hulp"
+msgstr "Ajuda"
 
 #: zapzap/view/main_window.py:230 zapzap/view/settings.py:782
 msgid "Settings"
-msgstr "Instellingen"
+msgstr "Configurações"
 
 #: zapzap/view/main_window.py:231
 msgid "Ctrl+P"
-msgstr "Ctrl+P"
+msgstr ""
 
 #: zapzap/view/main_window.py:232
 msgid "Quit"
-msgstr "Afsluiten"
+msgstr "Sair"
 
 #: zapzap/view/main_window.py:233
 msgid "Ctrl+Q"
-msgstr "Ctrl+Q"
+msgstr ""
 
 #: zapzap/view/main_window.py:234 zapzap/engine/browser.py:53
 msgid "Reload"
-msgstr "Herladen"
+msgstr "Recarregar página"
 
 #: zapzap/view/main_window.py:235
 msgid "F5"
-msgstr "F5"
+msgstr ""
 
 #: zapzap/view/main_window.py:236
 msgid "Default size page"
-msgstr "Standaard paginagrootte"
+msgstr "Tamanho real"
 
 #: zapzap/view/main_window.py:237
 msgid "Ctrl+0"
-msgstr "Ctrl+0"
+msgstr ""
 
 #: zapzap/view/main_window.py:238
 msgid "Full Screen"
-msgstr "Schermvullende weergave"
+msgstr "Tela cheia"
 
 #: zapzap/view/main_window.py:239
 msgid "F11"
-msgstr "F11"
+msgstr ""
 
 #: zapzap/view/main_window.py:240 zapzap/view/settings.py:795
 msgid "Hide menu bar"
-msgstr "Menubalk verbergen"
+msgstr "Esconder barra de menu"
 
 #: zapzap/view/main_window.py:241
 msgid "Ctrl+M"
-msgstr "Ctrl+M"
+msgstr ""
 
 #: zapzap/view/main_window.py:242
 msgid "Learn More"
-msgstr "Meer informatie"
+msgstr "Leia mais"
 
 #: zapzap/view/main_window.py:243 zapzap/view/settings.py:823
 msgid "Changelog"
-msgstr "Wijzigingslog"
+msgstr "Lista de mudanças"
 
 #: zapzap/view/main_window.py:244 zapzap/view/settings.py:824
 msgid "Report issue..."
-msgstr "Probleem melden…"
+msgstr "Reporte um problema..."
 
 #: zapzap/view/main_window.py:245
 msgid "About Zapzap"
-msgstr "Over ZapZap"
+msgstr "Sobre ZapZap"
 
 #: zapzap/view/main_window.py:246 zapzap/view/settings.py:792
 msgid "Hide on close"
-msgstr "Minimaliseren in plaats van sluiten"
+msgstr "Esconder ao fechar"
 
 #: zapzap/view/main_window.py:247
 msgid "Keep in background when closing window"
-msgstr "Op achtergrond actief houden na sluiten van venster"
+msgstr "Execução em segundo plano"
 
 #: zapzap/view/main_window.py:248
 msgid "Zoom in"
-msgstr "Inzoomen"
+msgstr "Ampliar"
 
 #: zapzap/view/main_window.py:249
 msgid "Ctrl++"
-msgstr "Ctrl++"
+msgstr ""
 
 #: zapzap/view/main_window.py:250
 msgid "Zoom out"
-msgstr "Uitzoomen"
+msgstr "Reduzir"
 
 #: zapzap/view/main_window.py:251
 msgid "Ctrl+-"
-msgstr "Ctrl+-"
+msgstr ""
 
 #: zapzap/view/main_window.py:252 zapzap/view/settings.py:787
 #: zapzap/view/settings.py:815
 msgid "Donations"
-msgstr "Doneren"
+msgstr "Doações"
 
 #: zapzap/view/main_window.py:253 zapzap/view/settings.py:783
 msgid "Home page"
-msgstr "Website"
+msgstr "Página inicial"
 
 #: zapzap/view/main_window.py:254
 msgid "Esc"
-msgstr "Esc"
+msgstr ""
 
 #: zapzap/view/settings.py:781
 msgid "Form"
-msgstr "Formulier"
+msgstr ""
 
 #: zapzap/view/settings.py:784 zapzap/view/settings.py:789
 msgid "System"
-msgstr "Systeem"
+msgstr "Sistema"
 
 #: zapzap/view/settings.py:785
 msgid "Appearance"
-msgstr "Vormgeving"
+msgstr "Aparência"
 
 #: zapzap/view/settings.py:786 zapzap/view/settings.py:810
 msgid "Notifications"
-msgstr "Meldingen"
+msgstr "Notificações"
 
 #: zapzap/view/settings.py:788 zapzap/view/settings.py:816
 msgid "About"
-msgstr "Over"
+msgstr "Sobre"
 
 #: zapzap/view/settings.py:790
 msgid "Start ZapZap with the system"
-msgstr "Automatisch opstarten"
+msgstr "Iniciar com o sistema"
 
 #: zapzap/view/settings.py:791
 msgid "Start minimized"
-msgstr "Geminimaliseerd opstarten"
+msgstr "Iniciar minimizado"
 
 #: zapzap/view/settings.py:793
 msgid "Disable tray icon"
-msgstr "Systeemvakpictogram verbergen"
+msgstr "Desabilitar Ícone de bandeja"
 
 #: zapzap/view/settings.py:794
 msgid "Menu bar"
-msgstr "Menubalk"
+msgstr "Barra de menu"
 
 #: zapzap/view/settings.py:796
 msgid "ZapZap window (Restart required)"
-msgstr "ZapZap-venster (herstart vereist)"
+msgstr "Janela do ZapZap (Necessário reiniciar)"
 
 #: zapzap/view/settings.py:797
 msgid "Title bar buttons"
-msgstr "Titelbalkknoppen"
+msgstr "Botões da barra de título"
 
 #: zapzap/view/settings.py:798
 msgid "Maximize"
-msgstr "Maximaliseren"
+msgstr "Maximizar"
 
 #: zapzap/view/settings.py:799
 msgid "Minimize"
-msgstr "Minimaliseren"
+msgstr "Minimizar"
 
 #: zapzap/view/settings.py:800
 msgid "Positioning on the left side"
-msgstr "Aan linkerzijde"
+msgstr "Posicionamento do lado esquerdo"
 
 #: zapzap/view/settings.py:801
 msgid "Customize appearance"
-msgstr "Vormgeving aanpassen"
+msgstr "Customizar aparência"
 
 #: zapzap/view/settings.py:802
 msgid "General appearance"
-msgstr "Algemene vormgeving"
+msgstr "Aparência geral"
 
 #: zapzap/view/settings.py:803
 msgid "System style"
-msgstr "Systeemthema"
+msgstr "Estilo do sistema"
 
 #: zapzap/view/settings.py:804
 msgid "Light style"
-msgstr "Licht thema"
+msgstr "Claro"
 
 #: zapzap/view/settings.py:805
 msgid "Dark style"
-msgstr "Donker thema"
+msgstr "Escuro"
 
 #: zapzap/view/settings.py:806
 msgid "Tray icon"
-msgstr "Systeemvakpictogram"
+msgstr "Ícone de bandeja"
 
 #: zapzap/view/settings.py:807
 msgid "Default"
-msgstr "Standaard"
+msgstr "Padrão"
 
 #: zapzap/view/settings.py:808
 msgid "Symbolic light"
-msgstr "Symbolisch (licht)"
+msgstr "Symbolic claro"
 
 #: zapzap/view/settings.py:809
 msgid "Symbolic dark"
-msgstr "Symbolisch (donker)"
+msgstr "Symbolic escuro"
 
 #: zapzap/view/settings.py:811
 msgid "Notifications on the desktop"
-msgstr "Bureaubladmeldingen"
+msgstr "Notificações na área de trabalho"
 
 #: zapzap/view/settings.py:812
 msgid "Show the photo of the sender"
-msgstr "Foto van afzender tonen"
+msgstr "Mostrar a foto do remetente"
 
 #: zapzap/view/settings.py:813
 msgid "Show the sender's name"
-msgstr "Naam van afzender tonen"
+msgstr "Mostrar o nome do remetente"
 
 #: zapzap/view/settings.py:814
 msgid "Show message preview"
-msgstr "Berichtvoorbeeld tonen"
+msgstr "Mostrar a mensagem do remetente"
 
 #: zapzap/view/settings.py:818
 #, python-brace-format
 msgid "Version {id} (Official compilation)"
-msgstr "Versie {id} (officiële versie)"
+msgstr "Versão {id} (Compilação oficial)"
 
 #: zapzap/view/settings.py:819
 msgid ""
 "An unofficial WhatsApp desktop application written in Pyqt6 + PyQt6-"
 "WebEngine."
 msgstr ""
-"Een onofficieel WhatsApp-programma, gemaakt met Pyqt6 + PyQt6-WebEngine."
+"Um aplicativo de desktop WhatsApp não oficial escrito em Pyqt6 + PyQt6-"
+"WebEngine"
 
 #: zapzap/view/settings.py:821
 msgid "GNU General Public License v3.0"
-msgstr "GNU General Public License v3.0"
+msgstr "Licença Pública Geral GNU v3.0"
 
 #: zapzap/view/settings.py:822
 msgid "Learn more"
-msgstr "Meer informatie"
+msgstr "Leia mais"
 
 #: zapzap/engine/browser.py:54
 msgid "Undo"
-msgstr "Ongedaan maken"
+msgstr "Desfazer"
 
 #: zapzap/engine/browser.py:55
 msgid "Redo"
-msgstr "Opnieuw uitvoeren"
+msgstr "Refazer"
 
 #: zapzap/engine/browser.py:56
 msgid "Cut"
-msgstr "Knippen"
+msgstr "Recortar"
 
 #: zapzap/engine/browser.py:57
 msgid "Copy"
-msgstr "Kopiëren"
+msgstr "Copiar"
 
 #: zapzap/engine/browser.py:58
 msgid "Paste"
-msgstr "Plakken"
+msgstr "Colar"
 
 #: zapzap/engine/browser.py:59
 msgid "Select all"
-msgstr "Alles selecteren"
-
-#~ msgid "World"
-#~ msgstr "Wereld"
+msgstr "Selecionar tudo"
 
 #~ msgid "Click to donate via PayPal"
-#~ msgstr "Klik om te doneren via PayPal"
-
-#~ msgid "Você é do Brasil?"
-#~ msgstr "Você é do Brasil?"
-
-#~ msgid ""
-#~ "Acesse o link para transferir via PIX ou realize a leitura do QR code "
-#~ "abaixo"
-#~ msgstr ""
-#~ "Acesse o link para transferir via PIX ou realize a leitura do QR code "
-#~ "abaixo"
+#~ msgstr "Clique para doar via Paypal"
 
 #~ msgid "Tray icon appearance"
-#~ msgstr "Soort systeemvakpictogram"
+#~ msgstr "Aparência do Ícone de bandeja"

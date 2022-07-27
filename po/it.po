@@ -7,17 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-27 17:37-0300\n"
-"PO-Revision-Date: 2022-07-22 15:18+0200\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2022-07-27 20:26-0300\n"
+"PO-Revision-Date: 2022-07-15 13:46+0200\n"
+"Last-Translator: musiclover382 <musiclover382@protonmail.com>\n"
 "Language-Team: \n"
-"Language: ar\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
-"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1\n"
 
 #: zapzap/view/main_window.py:226 zapzap/view/settings.py:817
 #: zapzap/view/settings.py:820
@@ -26,19 +25,19 @@ msgstr "ZapZap"
 
 #: zapzap/view/main_window.py:227
 msgid "File"
-msgstr "ملف"
+msgstr "File"
 
 #: zapzap/view/main_window.py:228
 msgid "View"
-msgstr "عرض"
+msgstr "Visualizza"
 
 #: zapzap/view/main_window.py:229
 msgid "Help"
-msgstr "مساعدة"
+msgstr "Aiuto"
 
 #: zapzap/view/main_window.py:230 zapzap/view/settings.py:782
 msgid "Settings"
-msgstr "الإعدادات"
+msgstr "Preferenze"
 
 #: zapzap/view/main_window.py:231
 msgid "Ctrl+P"
@@ -46,7 +45,7 @@ msgstr "Ctrl+P"
 
 #: zapzap/view/main_window.py:232
 msgid "Quit"
-msgstr "خروج"
+msgstr "Esci"
 
 #: zapzap/view/main_window.py:233
 msgid "Ctrl+Q"
@@ -54,7 +53,7 @@ msgstr "Ctrl+Q"
 
 #: zapzap/view/main_window.py:234 zapzap/engine/browser.py:53
 msgid "Reload"
-msgstr "إعادة تحميل"
+msgstr "Ricarica"
 
 #: zapzap/view/main_window.py:235
 msgid "F5"
@@ -62,7 +61,7 @@ msgstr "F5"
 
 #: zapzap/view/main_window.py:236
 msgid "Default size page"
-msgstr "الحجم الافتراضي للصفحة"
+msgstr "Ripristina zoom"
 
 #: zapzap/view/main_window.py:237
 msgid "Ctrl+0"
@@ -70,7 +69,7 @@ msgstr "Ctrl+0"
 
 #: zapzap/view/main_window.py:238
 msgid "Full Screen"
-msgstr "ملء الشاشة"
+msgstr "Schermo intero"
 
 #: zapzap/view/main_window.py:239
 msgid "F11"
@@ -78,7 +77,7 @@ msgstr "F11"
 
 #: zapzap/view/main_window.py:240 zapzap/view/settings.py:795
 msgid "Hide menu bar"
-msgstr "إخفاء شريط القوائم"
+msgstr "Nascondi barra degli strumenti"
 
 #: zapzap/view/main_window.py:241
 msgid "Ctrl+M"
@@ -86,31 +85,31 @@ msgstr "Ctrl+M"
 
 #: zapzap/view/main_window.py:242
 msgid "Learn More"
-msgstr "اقرأ المزيد"
+msgstr "Sito web"
 
 #: zapzap/view/main_window.py:243 zapzap/view/settings.py:823
 msgid "Changelog"
-msgstr "سجل التغييرات"
+msgstr "Novità"
 
 #: zapzap/view/main_window.py:244 zapzap/view/settings.py:824
 msgid "Report issue..."
-msgstr "الإبلاغ عن مشكلة"
+msgstr "Segnala un problema..."
 
 #: zapzap/view/main_window.py:245
 msgid "About Zapzap"
-msgstr "حول Zapzap"
+msgstr "Informazioni su ZapZap"
 
 #: zapzap/view/main_window.py:246 zapzap/view/settings.py:792
 msgid "Hide on close"
-msgstr "إخفاء عند الإغلاق"
+msgstr "Riduci nell'area di notifica"
 
 #: zapzap/view/main_window.py:247
 msgid "Keep in background when closing window"
-msgstr "إبقاء البرنامج في الخلفية عند إغلاق النافذة"
+msgstr "Continua a ricevere messaggi quando chiudi la finestra"
 
 #: zapzap/view/main_window.py:248
 msgid "Zoom in"
-msgstr "تكبير"
+msgstr "Ingrandisci"
 
 #: zapzap/view/main_window.py:249
 msgid "Ctrl++"
@@ -118,7 +117,7 @@ msgstr "Ctrl++"
 
 #: zapzap/view/main_window.py:250
 msgid "Zoom out"
-msgstr "تصغير"
+msgstr "Riduci"
 
 #: zapzap/view/main_window.py:251
 msgid "Ctrl+-"
@@ -127,182 +126,183 @@ msgstr "Ctrl+-"
 #: zapzap/view/main_window.py:252 zapzap/view/settings.py:787
 #: zapzap/view/settings.py:815
 msgid "Donations"
-msgstr "تبرع"
+msgstr "Donazioni"
 
 #: zapzap/view/main_window.py:253 zapzap/view/settings.py:783
 msgid "Home page"
-msgstr "الصفحة الرئيسية"
+msgstr "Home page"
 
 #: zapzap/view/main_window.py:254
 msgid "Esc"
-msgstr "خروج"
+msgstr ""
 
 #: zapzap/view/settings.py:781
 msgid "Form"
-msgstr "استمارة"
+msgstr "Modulo"
 
 #: zapzap/view/settings.py:784 zapzap/view/settings.py:789
 msgid "System"
-msgstr "النظام"
+msgstr "Sistema"
 
 #: zapzap/view/settings.py:785
 msgid "Appearance"
-msgstr "المظهر"
+msgstr "Aspetto"
 
 #: zapzap/view/settings.py:786 zapzap/view/settings.py:810
 msgid "Notifications"
-msgstr "الإشعارات"
+msgstr "Notifiche"
 
 #: zapzap/view/settings.py:788 zapzap/view/settings.py:816
 msgid "About"
-msgstr "حول"
+msgstr "Informazioni"
 
 #: zapzap/view/settings.py:790
 msgid "Start ZapZap with the system"
-msgstr "تشغيل ZapZap  مع بدء النظام"
+msgstr "Avvia ZapZap all'accesso"
 
 #: zapzap/view/settings.py:791
 msgid "Start minimized"
-msgstr "تشغيل مع التصغير"
+msgstr "Avvia minimizzato"
 
 #: zapzap/view/settings.py:793
 msgid "Disable tray icon"
-msgstr "تعطيل أيقونة صينية النظام"
+msgstr "Non mostrare nell'area di notifica"
 
 #: zapzap/view/settings.py:794
 msgid "Menu bar"
-msgstr "شريط القوائم"
+msgstr "Barra degli strumenti"
 
 #: zapzap/view/settings.py:796
 msgid "ZapZap window (Restart required)"
-msgstr "نافذة ZapZap (إعادة التشغيل مطلوبة)"
+msgstr "Finestra (riavvio richiesto)"
 
 #: zapzap/view/settings.py:797
 msgid "Title bar buttons"
-msgstr "عنوان شريط الأزرار"
+msgstr "Pulsanti barra del titolo"
 
 #: zapzap/view/settings.py:798
 msgid "Maximize"
-msgstr "تكبير "
+msgstr "Massimizza"
 
 #: zapzap/view/settings.py:799
 msgid "Minimize"
-msgstr "تصغير"
+msgstr "Minimizza"
 
 #: zapzap/view/settings.py:800
 msgid "Positioning on the left side"
-msgstr "التمركز على الجانب الأيسر"
+msgstr "Posizionamento a sinistra"
 
 #: zapzap/view/settings.py:801
 msgid "Customize appearance"
-msgstr "تخصيص المظهر"
+msgstr "Personalizza l'aspetto"
 
 #: zapzap/view/settings.py:802
 msgid "General appearance"
-msgstr "المظهر العام"
+msgstr "Tema"
 
 #: zapzap/view/settings.py:803
 msgid "System style"
-msgstr "افتراضي حسب النظام"
+msgstr "Sistema"
 
 #: zapzap/view/settings.py:804
 msgid "Light style"
-msgstr "مظهر فاتح"
+msgstr "Chiaro"
 
 #: zapzap/view/settings.py:805
 msgid "Dark style"
-msgstr "مظهر داكن"
+msgstr "Scuro"
 
 #: zapzap/view/settings.py:806
 msgid "Tray icon"
-msgstr "أيقونة صينية النظام"
+msgstr "Area di notifica"
 
 #: zapzap/view/settings.py:807
 msgid "Default"
-msgstr "افتراضي"
+msgstr "Predefinito"
 
 #: zapzap/view/settings.py:808
 msgid "Symbolic light"
-msgstr "أيقونة فاتحة"
+msgstr "Simbolico chiaro"
 
 #: zapzap/view/settings.py:809
 msgid "Symbolic dark"
-msgstr "أيقونة غامقة"
+msgstr "Simbolico scuro"
 
 #: zapzap/view/settings.py:811
 msgid "Notifications on the desktop"
-msgstr "الإشعارات المنبثقة"
+msgstr "Ricevi notifiche sul desktop"
 
 #: zapzap/view/settings.py:812
 msgid "Show the photo of the sender"
-msgstr "أظهر صورة المرسل"
+msgstr "Mostra l'immagine del mittente"
 
 #: zapzap/view/settings.py:813
 msgid "Show the sender's name"
-msgstr "أظهر اسم المرسل"
+msgstr "Mostra il nome del mittente"
 
 #: zapzap/view/settings.py:814
 msgid "Show message preview"
-msgstr "عرض تفاصيل الرسالة"
+msgstr "Mostra l'anteprima del messaggio"
 
 #: zapzap/view/settings.py:818
 #, python-brace-format
 msgid "Version {id} (Official compilation)"
-msgstr "الإصدار {id} (تجميع رسمي)"
+msgstr "Versione {id} (Edizione ufficiale)"
 
 #: zapzap/view/settings.py:819
 msgid ""
 "An unofficial WhatsApp desktop application written in Pyqt6 + PyQt6-"
 "WebEngine."
 msgstr ""
-"تطبيق WhatsApp لسطح المكتب  غير رسمي مكتوب بلغة Pyqt6 + PyQt6-WebEngine."
+"Un'applicazione WhatsApp non ufficiale scritta con Pyqt6 + PyQt6-WebEngine."
 
 #: zapzap/view/settings.py:821
 msgid "GNU General Public License v3.0"
-msgstr "رخصة جنو العمومية v3.0"
+msgstr "GNU General Public License v3.0"
 
 #: zapzap/view/settings.py:822
 msgid "Learn more"
-msgstr "اقرأ المزيد"
+msgstr "Sito web"
 
 #: zapzap/engine/browser.py:54
 msgid "Undo"
-msgstr "تراجع"
+msgstr "Annullare"
 
 #: zapzap/engine/browser.py:55
 msgid "Redo"
-msgstr "تراجع عن التراجع"
+msgstr "Rifare"
 
 #: zapzap/engine/browser.py:56
 msgid "Cut"
-msgstr "قص"
+msgstr "Tagliare"
 
 #: zapzap/engine/browser.py:57
 msgid "Copy"
-msgstr "نسخ"
+msgstr "Copia"
 
 #: zapzap/engine/browser.py:58
 msgid "Paste"
-msgstr "لسق"
+msgstr "Incolla"
 
 #: zapzap/engine/browser.py:59
 msgid "Select all"
-msgstr "تحديد الكل"
+msgstr "Seleziona tutto"
 
 #~ msgid "World"
-#~ msgstr "عالم"
+#~ msgstr "Internazionale"
 
 #~ msgid "Click to donate via PayPal"
-#~ msgstr "اضغط للتبرع عبر بيبال"
+#~ msgstr "Clicca per donare con PayPal"
 
 #~ msgid "Você é do Brasil?"
-#~ msgstr "هل أنت من البرازيل؟"
+#~ msgstr "Você é do Brasil?"
 
 #~ msgid ""
 #~ "Acesse o link para transferir via PIX ou realize a leitura do QR code "
 #~ "abaixo"
 #~ msgstr ""
-#~ "قم بالوصول إلى الرابط للنقل عبر PIX أو امسح رمز الاستجابة السريعة أدناه"
+#~ "Acesse o link para transferir via PIX ou realize a leitura do QR code "
+#~ "abaixo"
 
 #~ msgid "Tray icon appearance"
-#~ msgstr "مظهر أيقونة صينية النظام"
+#~ msgstr "Aspetto area di notifica"
