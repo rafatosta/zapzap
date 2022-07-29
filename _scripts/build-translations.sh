@@ -5,6 +5,8 @@ do
   mkdir -p ./zapzap/po/${line}/LC_MESSAGES/
   # create template POT
   xgettext --from-code=UTF-8 --keyword=_ --output=./po/zapzap.pot --files-from=./po/POTFILES
+  # por motivo desconhecido o arquivo criado não está em UTF-8
+  sed -i 's/charset=CHARSET/charset=UTF-8/g' ./po/zapzap.pot
   # See if file already exists
   if [ -f ./po/${line}.po ] 
   then
@@ -15,6 +17,7 @@ do
     echo "Generating ${line}"
     # create PO file
     xgettext --from-code=UTF-8 --keyword=_ --output=./po/${line}.po --files-from=./po/POTFILES
+    sed -i 's/charset=CHARSET/charset=UTF-8/g' ./po/${line}.po
   fi
   # create MO
   msgfmt ./po/${line}.po -o ./zapzap/po/${line}/LC_MESSAGES/zapzap.mo
