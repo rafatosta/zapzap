@@ -43,7 +43,7 @@ If you want to help make ZapZap better the easiest thing you can do is to [repor
 
 # Translation
 Translations are supported, so just send a zapzap.po file with your translations.
-The model file can be found here: [zapzap.pot](zapzap/po/zapzap.pot)
+The model file can be found here: [zapzap.pot](po/zapzap.pot)
 
 # Development
 ### Dependencies
