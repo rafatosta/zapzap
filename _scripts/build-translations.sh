@@ -18,6 +18,7 @@ do
     # create PO file
     xgettext --from-code=UTF-8 --keyword=_ --output=./po/${line}.po --files-from=./po/POTFILES
     sed -i 's/charset=CHARSET/charset=UTF-8/g' ./po/${line}.po
+    sed -i 's/Language:/Language:'${line}'/g' ./po/${line}.po
   fi
   # create MO
   msgfmt ./po/${line}.po -o ./zapzap/po/${line}/LC_MESSAGES/zapzap.mo
