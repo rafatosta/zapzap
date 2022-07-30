@@ -77,11 +77,15 @@ class Browser(QWebEngineView):
             path, _ = QFileDialog.getSaveFileName(
                 self, self.tr("Save file"), download.downloadFileName())
             if path:
+                file, ext = os.path.splitext(download.downloadFileName())
                 # define a pasta para download. Por padrão é /user/downloads
                 download.setDownloadDirectory(os.path.dirname(path))
+                # Dentro do Flatpak não mostra o nome do arquivo no FileDialog, sendo necessário o usuário digitar o nome do arquivo e,  
+                # caso não digite a extensão, será definida a partir do arquivo original. 
+                name_file = (path) if ext in path else (path+ext)
                 # Atualiza o nome do arquivo
-                download.setDownloadFileName(os.path.basename(path))
-                download.url().setPath(path)
+                download.setDownloadFileName(os.path.basename(name_file))
+                download.url().setPath(name_file)
                 download.accept()
 
     def title_changed(self, title):
