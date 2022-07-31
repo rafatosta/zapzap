@@ -1,0 +1,287 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-31 18:17-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language:ru \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: zapzap/view/main_window.py:226 zapzap/view/settings.py:817
+#: zapzap/view/settings.py:820
+msgid "ZapZap"
+msgstr ""
+
+#: zapzap/view/main_window.py:227
+msgid "File"
+msgstr ""
+
+#: zapzap/view/main_window.py:228
+msgid "View"
+msgstr ""
+
+#: zapzap/view/main_window.py:229
+msgid "Help"
+msgstr ""
+
+#: zapzap/view/main_window.py:230 zapzap/view/settings.py:782
+msgid "Settings"
+msgstr ""
+
+#: zapzap/view/main_window.py:231
+msgid "Ctrl+P"
+msgstr ""
+
+#: zapzap/view/main_window.py:232
+msgid "Quit"
+msgstr ""
+
+#: zapzap/view/main_window.py:233
+msgid "Ctrl+Q"
+msgstr ""
+
+#: zapzap/view/main_window.py:234 zapzap/engine/browser.py:53
+msgid "Reload"
+msgstr ""
+
+#: zapzap/view/main_window.py:235
+msgid "F5"
+msgstr ""
+
+#: zapzap/view/main_window.py:236
+msgid "Default size page"
+msgstr ""
+
+#: zapzap/view/main_window.py:237
+msgid "Ctrl+0"
+msgstr ""
+
+#: zapzap/view/main_window.py:238
+msgid "Full Screen"
+msgstr ""
+
+#: zapzap/view/main_window.py:239
+msgid "F11"
+msgstr ""
+
+#: zapzap/view/main_window.py:240 zapzap/view/settings.py:795
+msgid "Hide menu bar"
+msgstr ""
+
+#: zapzap/view/main_window.py:241
+msgid "Ctrl+M"
+msgstr ""
+
+#: zapzap/view/main_window.py:242
+msgid "Learn More"
+msgstr ""
+
+#: zapzap/view/main_window.py:243 zapzap/view/settings.py:823
+msgid "Changelog"
+msgstr ""
+
+#: zapzap/view/main_window.py:244 zapzap/view/settings.py:824
+msgid "Report issue..."
+msgstr ""
+
+#: zapzap/view/main_window.py:245
+msgid "About Zapzap"
+msgstr ""
+
+#: zapzap/view/main_window.py:246 zapzap/view/settings.py:792
+msgid "Hide on close"
+msgstr ""
+
+#: zapzap/view/main_window.py:247
+msgid "Keep in background when closing window"
+msgstr ""
+
+#: zapzap/view/main_window.py:248
+msgid "Zoom in"
+msgstr ""
+
+#: zapzap/view/main_window.py:249
+msgid "Ctrl++"
+msgstr ""
+
+#: zapzap/view/main_window.py:250
+msgid "Zoom out"
+msgstr ""
+
+#: zapzap/view/main_window.py:251
+msgid "Ctrl+-"
+msgstr ""
+
+#: zapzap/view/main_window.py:252 zapzap/view/settings.py:787
+#: zapzap/view/settings.py:815
+msgid "Donations"
+msgstr ""
+
+#: zapzap/view/main_window.py:253 zapzap/view/settings.py:783
+msgid "Home page"
+msgstr ""
+
+#: zapzap/view/main_window.py:254
+msgid "Esc"
+msgstr ""
+
+#: zapzap/view/settings.py:781
+msgid "Form"
+msgstr ""
+
+#: zapzap/view/settings.py:784 zapzap/view/settings.py:789
+msgid "System"
+msgstr ""
+
+#: zapzap/view/settings.py:785
+msgid "Appearance"
+msgstr ""
+
+#: zapzap/view/settings.py:786 zapzap/view/settings.py:810
+msgid "Notifications"
+msgstr ""
+
+#: zapzap/view/settings.py:788 zapzap/view/settings.py:816
+msgid "About"
+msgstr ""
+
+#: zapzap/view/settings.py:790
+msgid "Start ZapZap with the system"
+msgstr ""
+
+#: zapzap/view/settings.py:791
+msgid "Start minimized"
+msgstr ""
+
+#: zapzap/view/settings.py:793
+msgid "Disable tray icon"
+msgstr ""
+
+#: zapzap/view/settings.py:794
+msgid "Menu bar"
+msgstr ""
+
+#: zapzap/view/settings.py:796
+msgid "ZapZap window (Restart required)"
+msgstr ""
+
+#: zapzap/view/settings.py:797
+msgid "Title bar buttons"
+msgstr ""
+
+#: zapzap/view/settings.py:798
+msgid "Maximize"
+msgstr ""
+
+#: zapzap/view/settings.py:799
+msgid "Minimize"
+msgstr ""
+
+#: zapzap/view/settings.py:800
+msgid "Positioning on the left side"
+msgstr ""
+
+#: zapzap/view/settings.py:801
+msgid "Customize appearance"
+msgstr ""
+
+#: zapzap/view/settings.py:802
+msgid "General appearance"
+msgstr ""
+
+#: zapzap/view/settings.py:803
+msgid "System style"
+msgstr ""
+
+#: zapzap/view/settings.py:804
+msgid "Light style"
+msgstr ""
+
+#: zapzap/view/settings.py:805
+msgid "Dark style"
+msgstr ""
+
+#: zapzap/view/settings.py:806
+msgid "Tray icon"
+msgstr ""
+
+#: zapzap/view/settings.py:807
+msgid "Default"
+msgstr ""
+
+#: zapzap/view/settings.py:808
+msgid "Symbolic light"
+msgstr ""
+
+#: zapzap/view/settings.py:809
+msgid "Symbolic dark"
+msgstr ""
+
+#: zapzap/view/settings.py:811
+msgid "Notifications on the desktop"
+msgstr ""
+
+#: zapzap/view/settings.py:812
+msgid "Show the photo of the sender"
+msgstr ""
+
+#: zapzap/view/settings.py:813
+msgid "Show the sender's name"
+msgstr ""
+
+#: zapzap/view/settings.py:814
+msgid "Show message preview"
+msgstr ""
+
+#: zapzap/view/settings.py:818
+#, python-brace-format
+msgid "Version {id} (Official compilation)"
+msgstr ""
+
+#: zapzap/view/settings.py:819
+msgid ""
+"An unofficial WhatsApp desktop application written in Pyqt6 + PyQt6-"
+"WebEngine."
+msgstr ""
+
+#: zapzap/view/settings.py:821
+msgid "GNU General Public License v3.0"
+msgstr ""
+
+#: zapzap/view/settings.py:822
+msgid "Learn more"
+msgstr ""
+
+#: zapzap/engine/browser.py:54
+msgid "Undo"
+msgstr ""
+
+#: zapzap/engine/browser.py:55
+msgid "Redo"
+msgstr ""
+
+#: zapzap/engine/browser.py:56
+msgid "Cut"
+msgstr ""
+
+#: zapzap/engine/browser.py:57
+msgid "Copy"
+msgstr ""
+
+#: zapzap/engine/browser.py:58
+msgid "Paste"
+msgstr ""
+
+#: zapzap/engine/browser.py:59
+msgid "Select all"
+msgstr ""

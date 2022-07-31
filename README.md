@@ -42,8 +42,8 @@ WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.
 If you want to help make ZapZap better the easiest thing you can do is to [report issues and feature requests](https://github.com/rafatosta/zapzap/issues).
 
 # Translation
-Translations are supported, so just send a zapzap.po file with your translations.
-The model file can be found here: [zapzap.pot](po/zapzap.pot)
+The translations are supported. </br>
+Make sure the file for your language is in the [po](/po) folder .If it is just send a pull request with the updated file, otherwise open a [issue](https://github.com/rafatosta/zapzap/issues) requesting inclusion.
 
 # Development
 ### Dependencies
