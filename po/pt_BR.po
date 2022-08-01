@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-31 18:17-0300\n"
+"POT-Creation-Date: 2022-08-01 16:17-0300\n"
 "PO-Revision-Date: 2022-07-22 10:44-0300\n"
 "Last-Translator: Rafael Tosta <rafa.ecomp@gmail.com>\n"
 "Language-Team: Português Brasileiro\n"
@@ -34,7 +34,9 @@ msgstr "Visualizar"
 msgid "Help"
 msgstr "Ajuda"
 
-#: zapzap/view/main_window.py:230 zapzap/view/settings.py:782
+#: zapzap/view/main_window.py:230
+#: zapzap/controllers/main_window_components/tray_icon.py:22
+#: zapzap/view/settings.py:782
 msgid "Settings"
 msgstr "Configurações"
 
@@ -43,6 +45,7 @@ msgid "Ctrl+P"
 msgstr ""
 
 #: zapzap/view/main_window.py:232
+#: zapzap/controllers/main_window_components/tray_icon.py:25
 msgid "Quit"
 msgstr "Sair"
 
@@ -134,6 +137,15 @@ msgstr "Página inicial"
 #: zapzap/view/main_window.py:254
 msgid "Esc"
 msgstr ""
+
+#: zapzap/controllers/main_window_components/tray_icon.py:19
+#: zapzap/controllers/main_window.py:88 zapzap/controllers/main_window.py:179
+msgid "Hide"
+msgstr "Minimizar"
+
+#: zapzap/controllers/main_window.py:159 zapzap/controllers/main_window.py:177
+msgid "Open ZapZap"
+msgstr "Abrir o ZapZap"
 
 #: zapzap/view/settings.py:781
 msgid "Form"

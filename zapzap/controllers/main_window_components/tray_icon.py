@@ -16,11 +16,11 @@ class TrayIcon():
         self.tray.activated.connect(mainWindow.onTrayIconActivated)
 
         # Itens para o menu do tray icon
-        self.trayShow = QAction(_("View"), mainWindow)
+        self.trayShow = QAction(_("Hide"), mainWindow)
         self.trayShow.triggered.connect(mainWindow.on_show)
 
         self.traySettings = QAction(_("Settings"), mainWindow)
-        self.traySettings.triggered.connect(self.mainWindow.openSettings)
+        self.traySettings.triggered.connect(self.mainWindow.openTraySettings)
 
         self.trayExit = QAction(_("Quit"), mainWindow)
         self.trayExit.triggered.connect(mainWindow.quit)

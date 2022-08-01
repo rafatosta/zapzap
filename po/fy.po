@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-31 18:17-0300\n"
+"POT-Creation-Date: 2022-08-01 16:17-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,9 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: zapzap/view/main_window.py:230 zapzap/view/settings.py:782
+#: zapzap/view/main_window.py:230
+#: zapzap/controllers/main_window_components/tray_icon.py:22
+#: zapzap/view/settings.py:782
 msgid "Settings"
 msgstr ""
 
@@ -43,6 +45,7 @@ msgid "Ctrl+P"
 msgstr ""
 
 #: zapzap/view/main_window.py:232
+#: zapzap/controllers/main_window_components/tray_icon.py:25
 msgid "Quit"
 msgstr ""
 
@@ -133,6 +136,15 @@ msgstr ""
 
 #: zapzap/view/main_window.py:254
 msgid "Esc"
+msgstr ""
+
+#: zapzap/controllers/main_window_components/tray_icon.py:19
+#: zapzap/controllers/main_window.py:88 zapzap/controllers/main_window.py:179
+msgid "Hide"
+msgstr ""
+
+#: zapzap/controllers/main_window.py:159 zapzap/controllers/main_window.py:177
+msgid "Open ZapZap"
 msgstr ""
 
 #: zapzap/view/settings.py:781

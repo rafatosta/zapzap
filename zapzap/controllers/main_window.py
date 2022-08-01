@@ -81,6 +81,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """Refreshing the page"""
         self.browser.doReload()
 
+    def openTraySettings(self):
+        if self.app.activeWindow() == None:  # Se a janela estiver em foco será escondida
+            self.show()
+            self.app.activateWindow()
+            self.tray.trayShow.setText(_('Hide'))
+            
+        self.main_stacked.setCurrentIndex(1)
+
+
     def openSettings(self):
         """Open settings"""
         if self.main_stacked.currentIndex() == 1:
@@ -147,6 +156,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.settings.value(
                 "system/keep_background", True, bool):
             self.hide()
+            self.tray.trayShow.setText(_('Open ZapZap'))
             event.ignore()
 
     def onTrayIconActivated(self, reason):
@@ -164,7 +174,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         if self.app.activeWindow() != None:  # Se a janela estiver em foco será escondida
             self.hide()
+            self.tray.trayShow.setText(_('Open ZapZap'))
         else:  # Caso não esteja, será mostrada
+            self.tray.trayShow.setText(_('Hide'))
             self.show()
             self.app.activateWindow()
             self.main_stacked.setCurrentIndex(0)

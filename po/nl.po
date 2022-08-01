@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-31 18:17-0300\n"
+"POT-Creation-Date: 2022-08-01 16:17-0300\n"
 "PO-Revision-Date: 2022-07-16 19:53+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch\n"
@@ -34,7 +34,9 @@ msgstr "Beeld"
 msgid "Help"
 msgstr "Hulp"
 
-#: zapzap/view/main_window.py:230 zapzap/view/settings.py:782
+#: zapzap/view/main_window.py:230
+#: zapzap/controllers/main_window_components/tray_icon.py:22
+#: zapzap/view/settings.py:782
 msgid "Settings"
 msgstr "Instellingen"
 
@@ -43,6 +45,7 @@ msgid "Ctrl+P"
 msgstr "Ctrl+P"
 
 #: zapzap/view/main_window.py:232
+#: zapzap/controllers/main_window_components/tray_icon.py:25
 msgid "Quit"
 msgstr "Afsluiten"
 
@@ -134,6 +137,16 @@ msgstr "Website"
 #: zapzap/view/main_window.py:254
 msgid "Esc"
 msgstr "Esc"
+
+#: zapzap/controllers/main_window_components/tray_icon.py:19
+#: zapzap/controllers/main_window.py:88 zapzap/controllers/main_window.py:179
+msgid "Hide"
+msgstr ""
+
+#: zapzap/controllers/main_window.py:159 zapzap/controllers/main_window.py:177
+#, fuzzy
+msgid "Open ZapZap"
+msgstr "ZapZap"
 
 #: zapzap/view/settings.py:781
 msgid "Form"
