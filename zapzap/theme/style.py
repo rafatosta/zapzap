@@ -49,6 +49,8 @@ def buildTheme(p) -> str:
             color: {windowText};
             margin: 0.09em;
             background-color: {window};
+            border: 1px solid {highlight};
+            border-radius: 5px;
         }
 
         QMenu::icon {
