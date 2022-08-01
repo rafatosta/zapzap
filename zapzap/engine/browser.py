@@ -48,7 +48,7 @@ class Browser(QWebEngineView):
 
         self.list_ignore = ['Back', 'View page source', 'Save page',
                             'Forward', 'Open link in new tab', 'Save link',
-                            'Copy link address', 'Open link in new window']
+                            'Copy link address', 'Open link in new window', 'Paste and match style']
         self.items_menu = {
             'Reload': _('Reload'),
             'Undo': _('Undo'),
