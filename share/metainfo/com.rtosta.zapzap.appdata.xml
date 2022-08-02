@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
   <id>com.rtosta.zapzap</id>
-  <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPL-3.0+</project_license>
+  <launchable type="desktop-id">com.rtosta.zapzap.desktop</launchable>
+
   <name>ZapZap</name>
   <summary>Whatsapp Desktop for Linux</summary>
+
+  <update_contact>rafa.ecomp@gmail.com</update_contact>
+  <developer_name>Rafael Tosta</developer_name>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
   <content_rating type="oars-1.0" />
+
   <description>
     <p>
       Much faster, more beautiful and more powerful.
@@ -26,6 +33,19 @@
     </ul>
     <p>What doesn't include: Video calls and On-call calls</p>
   </description>
+
+  <categories>
+    <category>Chat</category>
+    <category>Communication</category>
+    <category>InstantMessaging</category>
+    <category>Utility</category>
+    <category>Office</category>
+  </categories>
+
+  <url type="homepage">https://github.com/rafatosta/zapzap</url>
+  <url type="bugtracker">https://github.com/rafatosta/zapzap/issues</url>
+  <url type="donation">https://github.com/sponsors/rafatosta</url>
+
   <screenshots>
     <screenshot type="default">
       <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/default.png</image>
@@ -46,10 +66,7 @@
       <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/notifications.png</image>
     </screenshot>
   </screenshots>
-  <url type="homepage">https://github.com/rafatosta/zapzap</url>
-  <url type="bugtracker">https://github.com/rafatosta/zapzap/issues</url>
-  <update_contact>rafa.ecomp@gmail.com</update_contact>
-  <developer_name>Rafael Tosta</developer_name>
+
   <releases>
     <release date="2022-08-01" version="3.2.1">
       <description>
@@ -132,7 +149,7 @@
       <description>
         <p>Improvements to the configuration interface.</p>
         <p>Now Zapzap has a MenuBar and Settings Panel to allow better access to settings.
-News: Possibility to hide the MenuBar; F11 for full screen; Disable the tray icon.</p>
+            News: Possibility to hide the MenuBar; F11 for full screen; Disable the tray icon.</p>
       </description>
     </release>
     <release date="2022-05-19" version="2.6">
