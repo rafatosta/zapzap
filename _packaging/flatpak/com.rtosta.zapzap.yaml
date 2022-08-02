@@ -8,6 +8,8 @@ command: zapzap
 finish-args:
   - "--share=ipc"
   - "--socket=x11"
+  - "--socket=wayland"
+  - "--env=QT_QPA_PLATFORM=xcb"
   - "--socket=pulseaudio"
   - "--socket=system-bus"
   - "--socket=session-bus"
