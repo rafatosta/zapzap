@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-01 16:17-0300\n"
-"PO-Revision-Date: 2022-07-16 19:53+0200\n"
+"PO-Revision-Date: 2022-08-02 17:55+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.04.3\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: zapzap/view/main_window.py:226 zapzap/view/settings.py:817
 #: zapzap/view/settings.py:820
@@ -141,12 +141,11 @@ msgstr "Esc"
 #: zapzap/controllers/main_window_components/tray_icon.py:19
 #: zapzap/controllers/main_window.py:88 zapzap/controllers/main_window.py:179
 msgid "Hide"
-msgstr ""
+msgstr "Verbergen"
 
 #: zapzap/controllers/main_window.py:159 zapzap/controllers/main_window.py:177
-#, fuzzy
 msgid "Open ZapZap"
-msgstr "ZapZap"
+msgstr "ZapZap openen"
 
 #: zapzap/view/settings.py:781
 msgid "Form"
