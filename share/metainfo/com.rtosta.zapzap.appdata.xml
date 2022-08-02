@@ -24,7 +24,6 @@
       <li>Personalized window decoration</li>
       <li>Shortcuts for the main options</li>
     </ul>
-
     <p>What doesn't include: Video calls and On-call calls</p>
   </description>
   <screenshots>
@@ -45,7 +44,7 @@
     </screenshot>
     <screenshot>
       <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/notifications.png</image>
-    </screenshot>  
+    </screenshot>
   </screenshots>
   <url type="homepage">https://github.com/rafatosta/zapzap</url>
   <url type="bugtracker">https://github.com/rafatosta/zapzap/issues</url>
@@ -54,84 +53,84 @@
   <releases>
     <release date="2022-08-01" version="3.2.1">
       <description>
-          <ul>
-              <li>New icons in Settings</li>
-              <li>New Donation Panel</li>
-              <li>Open the download folder by default</li>
-              <li>Extension in the file automatically when saving</li>
-          </ul>
-        </description>
+        <ul>
+          <li>New icons in Settings</li>
+          <li>New Donation Panel</li>
+          <li>Open the download folder by default</li>
+          <li>Extension in the file automatically when saving</li>
+        </ul>
+      </description>
     </release>
     <release date="2022-07-26" version="3.2">
       <description>
-          <ul>
-              <li>New icon</li>
-              <li>Fixed bugs</li>
-          </ul>
-        </description>
+        <ul>
+          <li>New icon</li>
+          <li>Fixed bugs</li>
+        </ul>
+      </description>
     </release>
     <release date="2022-07-22" version="3.1">
       <description>
-          <ul>
-              <li>Spellchecker</li>
-              <li>Add Italian translation</li>
-              <li>Add Dutch translation</li>
-              <li>Add Arabic translation</li>
-          </ul>
-        </description>
+        <ul>
+          <li>Spellchecker</li>
+          <li>Add Italian translation</li>
+          <li>Add Dutch translation</li>
+          <li>Add Arabic translation</li>
+        </ul>
+      </description>
     </release>
     <release date="2022-07-15" version="3.0.1">
       <description>
-          <ul>
-              <li>Add Italian translation</li>
-              <li>Support Orthographic Correction for PT_BR</li>
-              <li>Support External directory for dictionary file (Issue: Spellchecker)</li>
-              <li>Various improvements</li>
-          </ul>
-        </description>
+        <ul>
+          <li>Add Italian translation</li>
+          <li>Support Orthographic Correction for PT_BR</li>
+          <li>Support External directory for dictionary file (Issue: Spellchecker)</li>
+          <li>Various improvements</li>
+        </ul>
+      </description>
     </release>
     <release date="2022-07-13" version="3.0">
       <description>
-          <ul>
-              <li>New: Zap decoration for the window</li>
-              <li>Various internal improvements</li>
-          </ul>
-        </description>
+        <ul>
+          <li>New: Zap decoration for the window</li>
+          <li>Various internal improvements</li>
+        </ul>
+      </description>
     </release>
     <release date="2022-07-05" version="2.9.2">
       <description>
-          <ul>
-              <li>Experimental Function: Zap Window Decoration</li>
-          </ul>
-        </description>
+        <ul>
+          <li>Experimental Function: Zap Window Decoration</li>
+        </ul>
+      </description>
     </release>
     <release date="2022-07-05" version="2.9.1">
       <description>
-          <ul>
-              <li>Minor bug fixes.</li>
-          </ul>
-        </description>
+        <ul>
+          <li>Minor bug fixes.</li>
+        </ul>
+      </description>
     </release>
     <release date="2022-07-03" version="2.9">
       <description>
-          <ul>
-              <li>Translation for pt_BR.</li>
-          </ul>
-        </description>
+        <ul>
+          <li>Translation for pt_BR.</li>
+        </ul>
+      </description>
     </release>
     <release date="2022-07-01" version="2.8">
       <description>
-          <ul>
-              <li>New settings panel;</li>
-              <li>Themes: follow the system, light and dark;</li>
-              <li>Tray icons: default, symbolic light and symbolic dark;</li>
-              <li>See the rest with your own eyes! =D</li>
-          </ul>
-        </description>
+        <ul>
+          <li>New settings panel;</li>
+          <li>Themes: follow the system, light and dark;</li>
+          <li>Tray icons: default, symbolic light and symbolic dark;</li>
+          <li>See the rest with your own eyes! =D</li>
+        </ul>
+      </description>
     </release>
     <release date="2022-06-01" version="2.7">
       <description>
-        <p>Improvements to the configuration interface.</p> 
+        <p>Improvements to the configuration interface.</p>
         <p>Now Zapzap has a MenuBar and Settings Panel to allow better access to settings.
 News: Possibility to hide the MenuBar; F11 for full screen; Disable the tray icon.</p>
       </description>
@@ -141,8 +140,8 @@ News: Possibility to hide the MenuBar; F11 for full screen; Disable the tray ico
         <p>This will be the last update from version 2.x. Development will be focused on version 3.0 which will bring a new look to improve usability and the option to use multiple accounts. </p>
         <p>Improvements:</p>
         <ul>
-            <li>Symbolic icon for tray (better integration with KDE Plasma)</li>
-            <li>Some tweaks you won't notice</li>
+          <li>Symbolic icon for tray (better integration with KDE Plasma)</li>
+          <li>Some tweaks you won't notice</li>
         </ul>
       </description>
     </release>
@@ -150,10 +149,10 @@ News: Possibility to hide the MenuBar; F11 for full screen; Disable the tray ico
       <description>
         <p>Usability improvements:</p>
         <ul>
-            <li>Better visibility for accessing zapzap settings</li>
-            <li>Choose to stay in the background or close the app</li>
-            <li>Action to open Settings in Tray menu</li>
-            <li>Sets Fusion as default style</li>
+          <li>Better visibility for accessing zapzap settings</li>
+          <li>Choose to stay in the background or close the app</li>
+          <li>Action to open Settings in Tray menu</li>
+          <li>Sets Fusion as default style</li>
         </ul>
       </description>
     </release>
@@ -181,19 +180,19 @@ News: Possibility to hide the MenuBar; F11 for full screen; Disable the tray ico
     <release date="2022-02-10" version="2.0">
       <description>
         <p>System integration</p>
-          <ul>
-            <li>Start ZapZap with the system</li>
-            <li>Start minimized</li>
-            <li>Night mode</li>
-          </ul>
-        
+        <ul>
+          <li>Start ZapZap with the system</li>
+          <li>Start minimized</li>
+          <li>Night mode</li>
+        </ul>
+
         <p>Chat notifications</p>
-          <ul>
-            <li>Notifications on the desktop</li>
-            <li>Show the photo of the sender</li>
-            <li>Show the sender's name</li>
-            <li>Show message preview</li>     
-          </ul>
+        <ul>
+          <li>Notifications on the desktop</li>
+          <li>Show the photo of the sender</li>
+          <li>Show the sender's name</li>
+          <li>Show message preview</li>
+        </ul>
       </description>
     </release>
     <release date="2022-02-01" version="1.2">
@@ -204,12 +203,12 @@ News: Possibility to hide the MenuBar; F11 for full screen; Disable the tray ico
     <release date="2022-01-29" version="1.1">
       <description>
         <p>News</p>
-         <ul>
+        <ul>
           <li>Shows notifications in the system;</li>
           <li>Attention: Does not open the window if it is hidden. Solution soon.</li>
         </ul>
         <p>Updates</p>
-         <ul>
+        <ul>
           <li>Focus on the window when clicking on the Tray, if it is already open;</li>
           <li>UserAgent;</li>
           <li>Webcam permissions.</li>
