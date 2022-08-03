@@ -47,3 +47,6 @@ if not os.path.exists(path_tmp):
 
 # Path translations
 po_path = os.path.join(abs_path, 'po')
+
+
+isFlatpak = abs_path.startswith('/app/')

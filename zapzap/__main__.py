@@ -1,5 +1,4 @@
 import sys
-import os
 import zapzap
 from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.controllers.main_window import MainWindow
@@ -8,7 +7,10 @@ import gettext
 
 
 def main():
-    #os.environ['QT_QPA_PLATFORM'] = 'xcb'
+
+    if not zapzap.isFlatpak:
+        import os
+        os.environ['QT_QPA_PLATFORM'] = 'xcb'
     
     gettext.bindtextdomain('zapzap', zapzap.po_path)
     gettext.textdomain('zapzap')
