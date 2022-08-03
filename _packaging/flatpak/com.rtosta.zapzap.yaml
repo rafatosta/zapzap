@@ -9,20 +9,22 @@ finish-args:
   - "--share=ipc"
   - "--socket=x11"
   - "--socket=wayland"
-  - "--env=QT_QPA_PLATFORM=xcb"
   - "--socket=pulseaudio"
   - "--socket=system-bus"
   - "--socket=session-bus"
   - "--share=network"
+  - "--device=all"
   - "--filesystem=host:ro"
   - "--filesystem=xdg-download"
-  - "--device=all"
-  - "--env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess"
+  - "--filesystem=xdg-config/autostart:create"
   - "--talk-name=org.kde.StatusNotifierWatcher"
+  - "--talk-name=org.kde.StatusNotifierItem"
   - "--talk-name=org.freedesktop.Notifications"
   - "--talk-name=org.freedesktop.portal.FileChooser"
   - "--unset-env=XDG_DATA_HOME"
-  - "--filesystem=xdg-config/autostart:create"
+  - "--env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess"
+  - "--env=QT_QPA_PLATFORM=xcb"
+  
 cleanup:
   - /include
   - /lib/pkgconfig
