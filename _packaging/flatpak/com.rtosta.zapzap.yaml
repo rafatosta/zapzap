@@ -14,6 +14,7 @@ finish-args:
   - "--socket=session-bus"
   - "--share=network"
   - "--device=all"
+  - "--device=dri"
   - "--filesystem=host:ro"
   - "--filesystem=xdg-download"
   - "--filesystem=xdg-config/autostart:create"
