@@ -42,6 +42,8 @@ class Browser(QWebEngineView):
         self.settings().setAttribute(QWebEngineSettings.WebAttribute.AutoLoadImages, True)
         self.settings().setAttribute(QWebEngineSettings.WebAttribute.PluginsEnabled, True)
         self.settings().setAttribute(QWebEngineSettings.WebAttribute.LocalStorageEnabled, True)
+        self.settings().setAttribute(QWebEngineSettings.WebAttribute.FocusOnNavigationEnabled, True)
+        self.settings().setAttribute(QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, True)
 
         # Sinal para mudança de título
         self.titleChanged.connect(self.title_changed)
