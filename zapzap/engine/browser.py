@@ -130,7 +130,7 @@ class Browser(QWebEngineView):
                 message = notification.message() if self.qset.value(
                     'notification/show_msg', True, bool) else 'New message...'
                 icon = self.getPathImage(notification.icon(), notification.title(
-                )) if self.qset.value('notification/show_photo', True, bool) else 'com.rtosta.zapzap'
+                )) if self.qset.value('notification/show_photo', True, bool) else self.getIconDefault()
 
                 n = dbus.Notification(title,
                                       message,
@@ -183,5 +183,7 @@ class Browser(QWebEngineView):
             qpix = qIcon.pixmap(QSize(128, 128))
             path = zapzap.path_tmp+'/com.rtosta.zapzap.png'
             qpix.save(path)
+            return path
         except Exception as e:
             print(e)
+            return ""
