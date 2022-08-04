@@ -507,14 +507,7 @@ def buildTheme(p) -> str:
         """
 
     FrameSettingBorder = """
-        #frameSettings,
-        #frameAppearance,
-        #frameTray,
-        #frameNotifications,
-        #frameNotificationsPreview,
-        #frameMenuBar,
-        #frameZapWindow,
-        #frame_donations  {
+        #settings_stacked .QFrame {
             background-color: {frame_background};
             border: 1px solid {frame_border};
             border-radius: 5px;
