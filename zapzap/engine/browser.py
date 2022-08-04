@@ -1,13 +1,14 @@
 import os
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest, QWebEngineProfile, QWebEngineSettings
-from PyQt6.QtCore import Qt, QUrl, QStandardPaths, QSettings, QLocale
+from PyQt6.QtCore import Qt, QUrl, QStandardPaths, QSettings, QLocale, QSize
 from PyQt6.QtGui import QPainter, QPainter, QImage, QBrush, QPen
 from PyQt6.QtWidgets import QFileDialog
 import zapzap
 from zapzap import __appname__
 from zapzap.engine.whatsapp import WhatsApp
 import zapzap.services.dbus_notify as dbus
+from zapzap.controllers.main_window_components.builder_icon import getIconTray
 from gettext import gettext as _
 
 
@@ -42,8 +43,10 @@ class Browser(QWebEngineView):
         self.settings().setAttribute(QWebEngineSettings.WebAttribute.AutoLoadImages, True)
         self.settings().setAttribute(QWebEngineSettings.WebAttribute.PluginsEnabled, True)
         self.settings().setAttribute(QWebEngineSettings.WebAttribute.LocalStorageEnabled, True)
-        self.settings().setAttribute(QWebEngineSettings.WebAttribute.FocusOnNavigationEnabled, True)
-        self.settings().setAttribute(QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, True)
+        self.settings().setAttribute(
+            QWebEngineSettings.WebAttribute.FocusOnNavigationEnabled, True)
+        self.settings().setAttribute(
+            QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, True)
 
         # Sinal para mudança de título
         self.titleChanged.connect(self.title_changed)
@@ -91,6 +94,13 @@ class Browser(QWebEngineView):
                 download.url().setPath(name_file)
                 download.accept()
 
+    def doReload(self):
+        """
+        Reload the page.
+        Prevent Chrome update message from appearing
+        """
+        self.triggerPageAction(QWebEnginePage.WebAction.ReloadAndBypassCache)
+
     def title_changed(self, title):
         """
         The number of messages are available from the window title
@@ -134,7 +144,7 @@ class Browser(QWebEngineView):
             except Exception as e:
                 print(e)
 
-    def getPathImage(self, qin, title):
+    def getPathImage(self, qin, title) -> str:
         """
         To show an image in notifications on dbus it is necessary that the image exists in a directory. 
         So the contact image is saved in a temporary folder (tmp) in the application data folder
@@ -161,15 +171,17 @@ class Browser(QWebEngineView):
             painter.end()
             c = qout.save(path)
             if(c == False):
-                return 'com.rtosta.zapzap'
+                return self.getIconDefault()
             else:
                 return path
         except:
-            return 'com.rtosta.zapzap'
+            return self.getIconDefault()
 
-    def doReload(self):
-        """
-        Reload the page.
-        Prevent Chrome update message from appearing
-        """
-        self.triggerPageAction(QWebEnginePage.WebAction.ReloadAndBypassCache)
+    def getIconDefault(self) -> str:
+        try:
+            qIcon = getIconTray()
+            qpix = qIcon.pixmap(QSize(128, 128))
+            path = zapzap.path_tmp+'/com.rtosta.zapzap.png'
+            qpix.save(path)
+        except Exception as e:
+            print(e)

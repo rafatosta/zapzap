@@ -44,7 +44,7 @@ SVG_DEFAULT_NOTIFICATION = """
 """
 
 
-def getIconTray(theme='default', qtd=0):
+def getIconTray(theme='default', qtd=0) -> QIcon:
     """
     theme: default, symbolic_light, symbolic_dark
     qtd: quantidade
@@ -69,7 +69,7 @@ def getIconTray(theme='default', qtd=0):
         return build(SVG_SYMBOLIC.format(color='#241f31', notify=n))
 
 
-def build(svg_str):
+def build(svg_str) -> QIcon:
     svg_bytes = bytearray(svg_str, encoding='utf-8')
 
     qimg = QImage.fromData(svg_bytes, 'SVG')
