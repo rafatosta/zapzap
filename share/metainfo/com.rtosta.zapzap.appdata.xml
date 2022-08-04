@@ -68,6 +68,11 @@
   </screenshots>
 
   <releases>
+    <release date="2022-08-04" version="3.2.2">
+      <p>Wayland Support</p>
+      <p>ATTENTION: Wayland support is available, but is not enabled by default. For this it is necessary to remove the QT_QPA_PLATFORM=xcb variable by Flatseal.</p>
+      <p>Do you at risk, but be sure to report any problems to improve Wayland support. Support my work by donating a coffee, thank you very much.</p>
+    </release>
     <release date="2022-08-01" version="3.2.1">
       <description>
         <ul>
