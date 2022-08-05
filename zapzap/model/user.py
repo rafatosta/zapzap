@@ -7,12 +7,14 @@ def createTable(cursor):
     CREATE TABLE IF NOT EXISTS "users" (
         "id" INTEGER,
         "name" TEXT NOT NULL,
-        "icon" BLOB,
+        "icon" TEXT,
         "enable" INTEGER DEFAULT 1,
         PRIMARY KEY("id" AUTOINCREMENT)
     );
     """)
 
+#SALVAR A IMAGEM COMO TEXTO PARA PODER MANIPULAR DEPOIS 
+#COLOCAR UMA COR ALEATÓRIA 
 
 class User():
     def __init__(self, id, name, icon, enable) -> None:

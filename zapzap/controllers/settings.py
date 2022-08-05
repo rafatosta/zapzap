@@ -8,6 +8,7 @@ from zapzap.controllers.main_window_components.builder_icon import SVG_DEFAULT, 
 from zapzap.model.user import User, UserDAO
 from zapzap.services.portal_desktop import createDesktop, removeDesktop
 from gettext import gettext as _
+from zapzap.theme.builder_icon import getNewIconSVG
 
 from zapzap.view.settings import Ui_Settings
 
@@ -236,12 +237,11 @@ class Settings(QWidget, Ui_Settings):
                 self.selectMenu(self.btn_system.styleSheet()))
 
         if btnName == 'btnNewUser':
-            user = User(0, 'User', bytearray(
-                SVG_DEFAULT, encoding='utf-8'), True)
+            user = User(0, 'User', getNewIconSVG(), True)
             user = UserDAO.add(user)
             self.usersList.addWidget(CardUser(user=user))
 
-            #Avisar ao MainWindow sobre novo usuário
+            # Avisar ao MainWindow sobre novo usuário
 
     def load(self):
         """
