@@ -805,6 +805,7 @@ class Ui_Settings(object):
         self.verticalLayout_26 = QtWidgets.QVBoxLayout(self.usersScrollArea)
         self.verticalLayout_26.setObjectName("verticalLayout_26")
         self.horizontalLayout_6 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_6.setSpacing(0)
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
         spacerItem26 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_6.addItem(spacerItem26)
@@ -812,6 +813,7 @@ class Ui_Settings(object):
         self.content_users.setSpacing(10)
         self.content_users.setObjectName("content_users")
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_4.setSpacing(0)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.label_7 = QtWidgets.QLabel(self.usersScrollArea)
         font = QtGui.QFont()
@@ -823,10 +825,35 @@ class Ui_Settings(object):
         spacerItem27 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_4.addItem(spacerItem27)
         self.pushButton = QtWidgets.QPushButton(self.usersScrollArea)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
+        self.pushButton.setSizePolicy(sizePolicy)
+        self.pushButton.setMinimumSize(QtCore.QSize(0, 25))
+        self.pushButton.setMaximumSize(QtCore.QSize(16777215, 25))
+        font = QtGui.QFont()
+        font.setBold(True)
+        self.pushButton.setFont(font)
+        self.pushButton.setStyleSheet(".QPushButton {    \n"
+"            color: rgb(255, 255, 255);\n"
+"            background-color: #00A884;\n"
+"            border: 1px solid rgb(38, 162, 105);\n"
+"            border-radius: 10px;\n"
+"            text-align: center;\n"
+"            height: 25px;\n"
+"            width: 100px;\n"
+"}\n"
+".QPushButton:hover,\n"
+".QPushButton:pressed  {\n"
+"            background-color: #202C33;\n"
+"            border-color: #202C33;\n"
+"        }")
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout_4.addWidget(self.pushButton)
         self.content_users.addLayout(self.horizontalLayout_4)
         self.usersList = QtWidgets.QVBoxLayout()
+        self.usersList.setSpacing(0)
         self.usersList.setObjectName("usersList")
         self.content_users.addLayout(self.usersList)
         self.horizontalLayout_6.addLayout(self.content_users)
@@ -892,7 +919,7 @@ class Ui_Settings(object):
         self.btn_changelog.setText(_("Changelog"))
         self.btn_report.setText(_("Report issue..."))
         self.label_7.setText(_("User Management"))
-        self.pushButton.setText(_("PushButton"))
+        self.pushButton.setText(_("New User"))
 
 
 if __name__ == "__main__":

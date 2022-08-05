@@ -90,7 +90,7 @@ class Ui_CardUser(object):
         self.id.setText(_("#id"))
         self.btnDisable.setText(_("Disable"))
         self.btnDelete.setText(_("Delete"))
-        self.keySequenceEdit.setKeySequence(_("Ctrl+0"))
+        self.keySequenceEdit.setKeySequence(_("Ctrl+1"))
         self.name.setText(_("User 0"))
         self.name.setPlaceholderText(_("Usuário padrão"))
 

@@ -2131,6 +2131,9 @@
           <layout class="QVBoxLayout" name="verticalLayout_26">
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <property name="spacing">
+              <number>0</number>
+             </property>
              <item>
               <spacer name="horizontalSpacer_17">
                <property name="orientation">
@@ -2151,6 +2154,9 @@
                </property>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_4">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
                  <item>
                   <widget class="QLabel" name="label_7">
                    <property name="font">
@@ -2179,6 +2185,45 @@
                  </item>
                  <item>
                   <widget class="QPushButton" name="pushButton">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">.QPushButton {	
+            color: rgb(255, 255, 255);
+			background-color: #00A884;
+            border: 1px solid rgb(38, 162, 105);
+            border-radius: 10px;
+            text-align: center;
+			height: 25px;
+			width: 100px;
+}
+.QPushButton:hover,
+.QPushButton:pressed  {
+            background-color: #202C33;
+            border-color: #202C33;
+        }</string>
+                   </property>
                    <property name="text">
                     <string>New User</string>
                    </property>
@@ -2187,7 +2232,11 @@
                 </layout>
                </item>
                <item>
-                <layout class="QVBoxLayout" name="usersList"/>
+                <layout class="QVBoxLayout" name="usersList">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                </layout>
                </item>
               </layout>
              </item>

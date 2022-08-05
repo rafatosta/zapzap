@@ -22,4 +22,4 @@ def createDB():
         conn.commit()
         conn.close()
         #create default user
-        user.UserDAO.add(user.User(0,'user 0',bytearray(SVG_DEFAULT, encoding='utf-8'),True))
+        user.UserDAO.add(user.User(0,'User 1',bytearray(SVG_DEFAULT, encoding='utf-8'),True))
