@@ -5,12 +5,16 @@ from zapzap.controllers.main_window import MainWindow
 from PyQt6.QtGui import QFont, QFontDatabase
 import gettext
 
+from zapzap.model.db import createDB
+
 
 def main():
 
     if not zapzap.isFlatpak:
         import os
         os.environ['QT_QPA_PLATFORM'] = 'xcb'
+
+    createDB()
     
     gettext.bindtextdomain('zapzap', zapzap.po_path)
     gettext.textdomain('zapzap')

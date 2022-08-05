@@ -1,6 +1,5 @@
 import os
 from PyQt6.QtCore import QStandardPaths
-
 __version__ = '3.2'
 __appname__ = 'ZapZap'
 __comment__ = 'Whatsapp Desktop for linux'
@@ -48,5 +47,18 @@ if not os.path.exists(path_tmp):
 # Path translations
 po_path = os.path.join(abs_path, 'po')
 
-
+# Is Flatpak?
 isFlatpak = abs_path.startswith('/app/')
+
+# Path DataBase
+DATABASE_DIR = os.path.join(
+    QStandardPaths.writableLocation(
+        QStandardPaths.StandardLocation.AppLocalDataLocation), __appname__, 'db'
+)
+
+if not os.path.exists(DATABASE_DIR):
+    os.makedirs(DATABASE_DIR)
+
+DATABASE_FILE = os.path.join(DATABASE_DIR, 'zapzap.db')
+
+
