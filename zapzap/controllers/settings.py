@@ -27,10 +27,10 @@ class Settings(QWidget, Ui_Settings):
         self.loadUsers()
 
     def loadUsers(self):
-        def clear():
+        """def clear():
             for i in reversed(range(self.usersList.count())):
                 self.usersList.itemAt(i).widget().setParent(None)
-        clear()
+        clear()"""
         list = UserDAO.select()
         for user in list:
             self.usersList.addWidget(CardUser(user=user))
@@ -236,9 +236,10 @@ class Settings(QWidget, Ui_Settings):
                 self.selectMenu(self.btn_system.styleSheet()))
 
         if btnName == 'btnNewUser':
-            UserDAO.add(User(0, 'User', bytearray(
-                SVG_DEFAULT, encoding='utf-8'), True))
-            self.loadUsers()
+            user = User(0, 'User', bytearray(
+                SVG_DEFAULT, encoding='utf-8'), True)
+            user = UserDAO.add(user)
+            self.usersList.addWidget(CardUser(user=user))
 
     def load(self):
         """

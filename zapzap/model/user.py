@@ -27,13 +27,18 @@ class User():
 
 class UserDAO():
 
-    def add(user: User):
+    def add(user: User) -> User:
         try:
             conn = db.connect_db()
             cursor = conn.cursor()
             SQL = """INSERT INTO users (name, icon, enable) VALUES (?,?,?);"""
             cursor.execute(SQL, user.data())
             conn.commit()
+        except Exception as e:
+            print(e)
+        else:
+            id = cursor.execute("select last_insert_rowid()").fetchall()[0][0]
+            return UserDAO.selectID(id)
         finally:
             conn.close()
 
@@ -50,3 +55,14 @@ class UserDAO():
         finally:
             conn.close()
         return list
+
+    def selectID(id):
+        try:
+            conn = db.connect_db()
+            cursor = conn.cursor()
+            SQL = """SELECT * FROM users WHERE id = ?;"""
+            cursor.execute(SQL, [id])
+            u = cursor.fetchall()[0]
+            return User(u[0], u[1], u[2], u[3])
+        finally:
+            conn.close()
