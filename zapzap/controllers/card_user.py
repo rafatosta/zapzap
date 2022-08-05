@@ -14,6 +14,20 @@ class CardUser(QWidget, Ui_CardUser):
         self.id.setText('#'+str(self.user.id))
         self.name.setText(self.user.name)
 
+
+        self.btnDisable.clicked.connect(self.buttonClick)
+        self.btnDelete.clicked.connect(self.buttonClick)
+    
+    def buttonClick(self):
+        btn = self.sender() 
+        btnName = btn.objectName()
+        if btnName == 'btnDisable':
+            print(btnName)
+        if btnName == 'btnDelete':
+            print(btnName)
+        
+        # necessário informar ao MainWindow para atualizar
+
     def build(self):
         svg_bytes = self.user.icon
         qimg = QImage.fromData(svg_bytes, 'SVG')
