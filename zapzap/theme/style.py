@@ -298,7 +298,8 @@ def buildTheme(p) -> str:
         #appearance_scrollArea,
         #notification_scrollArea,
         #donations_scrollArea,
-        #about_scrollArea {
+        #about_scrollArea,
+        #usersScrollArea  {
             background-color: {window};
             background: {window};
         }
@@ -459,6 +460,7 @@ def buildTheme(p) -> str:
             text-align: left;
             padding-left: 44px;
             font: 12pt;
+            height: 30px;
         }
 
         #menu .QPushButton:hover,
@@ -468,6 +470,9 @@ def buildTheme(p) -> str:
         }
         
         #btn_home{
+            background-image: url({path}/home.svg);
+        }
+        #btn_users{
             background-image: url({path}/home.svg);
         }
         #btn_system{
