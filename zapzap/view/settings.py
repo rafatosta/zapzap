@@ -120,7 +120,7 @@ class Ui_Settings(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.system_scrollArea = QtWidgets.QWidget()
-        self.system_scrollArea.setGeometry(QtCore.QRect(0, 0, 832, 659))
+        self.system_scrollArea.setGeometry(QtCore.QRect(0, 0, 644, 572))
         self.system_scrollArea.setObjectName("system_scrollArea")
         self.horizontalLayout_16 = QtWidgets.QHBoxLayout(self.system_scrollArea)
         self.horizontalLayout_16.setObjectName("horizontalLayout_16")
@@ -252,7 +252,7 @@ class Ui_Settings(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.scrollArea_4.setObjectName("scrollArea_4")
         self.appearance_scrollArea = QtWidgets.QWidget()
-        self.appearance_scrollArea.setGeometry(QtCore.QRect(0, 0, 832, 659))
+        self.appearance_scrollArea.setGeometry(QtCore.QRect(0, 0, 642, 369))
         self.appearance_scrollArea.setObjectName("appearance_scrollArea")
         self.verticalLayout_33 = QtWidgets.QVBoxLayout(self.appearance_scrollArea)
         self.verticalLayout_33.setObjectName("verticalLayout_33")
@@ -480,7 +480,7 @@ class Ui_Settings(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName("scrollArea_2")
         self.notification_scrollArea = QtWidgets.QWidget()
-        self.notification_scrollArea.setGeometry(QtCore.QRect(0, 0, 832, 659))
+        self.notification_scrollArea.setGeometry(QtCore.QRect(0, 0, 642, 244))
         self.notification_scrollArea.setObjectName("notification_scrollArea")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.notification_scrollArea)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
@@ -564,7 +564,7 @@ class Ui_Settings(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.scrollArea_3.setObjectName("scrollArea_3")
         self.donations_scrollArea = QtWidgets.QWidget()
-        self.donations_scrollArea.setGeometry(QtCore.QRect(0, 0, 832, 659))
+        self.donations_scrollArea.setGeometry(QtCore.QRect(0, 0, 642, 264))
         self.donations_scrollArea.setObjectName("donations_scrollArea")
         self.verticalLayout_30 = QtWidgets.QVBoxLayout(self.donations_scrollArea)
         self.verticalLayout_30.setObjectName("verticalLayout_30")
@@ -646,7 +646,7 @@ class Ui_Settings(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.scrollArea_5.setObjectName("scrollArea_5")
         self.about_scrollArea = QtWidgets.QWidget()
-        self.about_scrollArea.setGeometry(QtCore.QRect(0, 0, 832, 659))
+        self.about_scrollArea.setGeometry(QtCore.QRect(0, 0, 642, 395))
         self.about_scrollArea.setObjectName("about_scrollArea")
         self.verticalLayout_17 = QtWidgets.QVBoxLayout(self.about_scrollArea)
         self.verticalLayout_17.setObjectName("verticalLayout_17")
@@ -824,18 +824,19 @@ class Ui_Settings(object):
         self.horizontalLayout_4.addWidget(self.label_7)
         spacerItem27 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_4.addItem(spacerItem27)
-        self.pushButton = QtWidgets.QPushButton(self.usersScrollArea)
+        self.btnNewUser = QtWidgets.QPushButton(self.usersScrollArea)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
-        self.pushButton.setSizePolicy(sizePolicy)
-        self.pushButton.setMinimumSize(QtCore.QSize(0, 25))
-        self.pushButton.setMaximumSize(QtCore.QSize(16777215, 25))
+        sizePolicy.setHeightForWidth(self.btnNewUser.sizePolicy().hasHeightForWidth())
+        self.btnNewUser.setSizePolicy(sizePolicy)
+        self.btnNewUser.setMinimumSize(QtCore.QSize(0, 25))
+        self.btnNewUser.setMaximumSize(QtCore.QSize(16777215, 25))
         font = QtGui.QFont()
         font.setBold(True)
-        self.pushButton.setFont(font)
-        self.pushButton.setStyleSheet(".QPushButton {    \n"
+        self.btnNewUser.setFont(font)
+        self.btnNewUser.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btnNewUser.setStyleSheet(".QPushButton {    \n"
 "            color: rgb(255, 255, 255);\n"
 "            background-color: #00A884;\n"
 "            border: 1px solid rgb(38, 162, 105);\n"
@@ -844,13 +845,12 @@ class Ui_Settings(object):
 "            height: 25px;\n"
 "            width: 100px;\n"
 "}\n"
-".QPushButton:hover,\n"
 ".QPushButton:pressed  {\n"
 "            background-color: #202C33;\n"
 "            border-color: #202C33;\n"
 "        }")
-        self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout_4.addWidget(self.pushButton)
+        self.btnNewUser.setObjectName("btnNewUser")
+        self.horizontalLayout_4.addWidget(self.btnNewUser)
         self.content_users.addLayout(self.horizontalLayout_4)
         self.usersList = QtWidgets.QVBoxLayout()
         self.usersList.setSpacing(0)
@@ -919,7 +919,7 @@ class Ui_Settings(object):
         self.btn_changelog.setText(_("Changelog"))
         self.btn_report.setText(_("Report issue..."))
         self.label_7.setText(_("User Management"))
-        self.pushButton.setText(_("New User"))
+        self.btnNewUser.setText(_("New User"))
 
 
 if __name__ == "__main__":

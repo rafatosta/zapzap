@@ -4,8 +4,8 @@ from PyQt6.QtGui import QDesktopServices, QIcon
 #from PyQt6 import uic
 import zapzap
 from zapzap.controllers.card_user import CardUser
-from zapzap.controllers.main_window_components.builder_icon import getIconTray
-from zapzap.model.user import UserDAO
+from zapzap.controllers.main_window_components.builder_icon import SVG_DEFAULT, getIconTray
+from zapzap.model.user import User, UserDAO
 from zapzap.services.portal_desktop import createDesktop, removeDesktop
 from gettext import gettext as _
 
@@ -27,6 +27,10 @@ class Settings(QWidget, Ui_Settings):
         self.loadUsers()
 
     def loadUsers(self):
+        def clear():
+            for i in reversed(range(self.usersList.count())):
+                self.usersList.itemAt(i).widget().setParent(None)
+        clear()
         list = UserDAO.select()
         for user in list:
             self.usersList.addWidget(CardUser(user=user))
@@ -69,6 +73,9 @@ class Settings(QWidget, Ui_Settings):
             QUrl(zapzap.__bugreport__)))
 
     def settingsActions(self):
+        # New User
+        self.btnNewUser.clicked.connect(self.buttonClick)
+
         ## Menu left ##
         self.btn_home.clicked.connect(
             lambda: self.mainWindow.main_stacked.setCurrentIndex(0))
@@ -227,6 +234,11 @@ class Settings(QWidget, Ui_Settings):
             self.settings_stacked.setCurrentIndex(5)
             self.btn_users.setStyleSheet(
                 self.selectMenu(self.btn_system.styleSheet()))
+
+        if btnName == 'btnNewUser':
+            UserDAO.add(User(0, 'User', bytearray(
+                SVG_DEFAULT, encoding='utf-8'), True))
+            self.loadUsers()
 
     def load(self):
         """
