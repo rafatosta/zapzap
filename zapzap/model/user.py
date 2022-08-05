@@ -41,6 +41,22 @@ class UserDAO():
             return UserDAO.selectID(id)
         finally:
             conn.close()
+    
+    def update(user):
+        # atualiza todos os campos de um contato
+        try:
+            conn = db.connect_db()
+            cursor = conn.cursor()
+            sql = """UPDATE users SET name=?, icon=?,enable=? WHERE id=?;"""
+            l = user.data()
+            # insere o id no final da lista para ficar igual a sequência do SQL
+            l.append(user.id)
+            cursor.execute(sql, l)
+            conn.commit()
+        except Exception as e:
+            print(e)
+        finally:
+            conn.close()
 
     def select():
         list = []
@@ -66,6 +82,7 @@ class UserDAO():
             return User(u[0], u[1], u[2], u[3])
         finally:
             conn.close()
+
     
     def delete(id):
         # deleta um contato a partir do seu id

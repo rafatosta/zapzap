@@ -1,8 +1,9 @@
 from PyQt6.QtWidgets import QWidget
 from zapzap.model.user import UserDAO
+from zapzap.theme.icons import ICON_DISABLE
 from zapzap.view.card_user import Ui_CardUser
 from PyQt6.QtGui import QImage, QPixmap
-
+from gettext import gettext as _
 
 class CardUser(QWidget, Ui_CardUser):
     def __init__(self, parent=None, user=None):
@@ -10,18 +11,29 @@ class CardUser(QWidget, Ui_CardUser):
         self.setupUi(self)
         self.user = user
 
+        self.btnDisable.clicked.connect(self.buttonClick)
+        self.btnDelete.clicked.connect(self.buttonClick)
+
+        self.load()
+
+
+    def load(self):
         self.icon.setPixmap(self.build())
         self.id.setText('#'+str(self.user.id))
         self.name.setText(self.user.name)
+        if self.user.enable:
+            self.btnDisable.setText(_("Disable"))
+        else:
+            self.btnDisable.setText(_("Enable"))
 
-        self.btnDisable.clicked.connect(self.buttonClick)
-        self.btnDelete.clicked.connect(self.buttonClick)
 
     def buttonClick(self):
         btn = self.sender()
         btnName = btn.objectName()
         if btnName == 'btnDisable':
-            print(btnName)
+            self.user.enable = not self.user.enable
+            UserDAO.update(self.user)
+            self.load()
         if btnName == 'btnDelete':
             UserDAO.delete(self.user.id)
             self.close()
@@ -32,6 +44,10 @@ class CardUser(QWidget, Ui_CardUser):
         print(" necessário informar ao MainWindow para atualizar")
 
     def build(self):
-        svg_bytes = self.user.icon
+        if self.user.enable:
+            svg_bytes = self.user.icon
+        else:
+            svg_bytes = bytearray(ICON_DISABLE, encoding='utf-8')
+
         qimg = QImage.fromData(svg_bytes, 'SVG')
         return QPixmap.fromImage(qimg)

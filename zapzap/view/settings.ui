@@ -2216,7 +2216,7 @@
             color: rgb(255, 255, 255);
 			background-color: #00A884;
             border: 1px solid rgb(38, 162, 105);
-            border-radius: 10px;
+            border-radius: 5px;
             text-align: center;
 			height: 25px;
 			width: 100px;

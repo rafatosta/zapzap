@@ -840,7 +840,7 @@ class Ui_Settings(object):
 "            color: rgb(255, 255, 255);\n"
 "            background-color: #00A884;\n"
 "            border: 1px solid rgb(38, 162, 105);\n"
-"            border-radius: 10px;\n"
+"            border-radius: 5px;\n"
 "            text-align: center;\n"
 "            height: 25px;\n"
 "            width: 100px;\n"
