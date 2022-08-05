@@ -241,6 +241,8 @@ class Settings(QWidget, Ui_Settings):
             user = UserDAO.add(user)
             self.usersList.addWidget(CardUser(user=user))
 
+            #Avisar ao MainWindow sobre novo usuário
+
     def load(self):
         """
         Load all settings

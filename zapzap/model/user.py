@@ -66,3 +66,16 @@ class UserDAO():
             return User(u[0], u[1], u[2], u[3])
         finally:
             conn.close()
+    
+    def delete(id):
+        # deleta um contato a partir do seu id
+        try:
+            conn = db.connect_db()
+            cursor = conn.cursor()
+            sql = """DELETE FROM users WHERE id = ?;"""
+            cursor.execute(sql, [id])
+            conn.commit()
+        except Exception as e:
+            print(e)
+        finally:
+            conn.close()

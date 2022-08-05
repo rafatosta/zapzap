@@ -2236,6 +2236,9 @@
                <item>
                 <layout class="QVBoxLayout" name="usersList">
                  <property name="spacing">
+                  <number>10</number>
+                 </property>
+                 <property name="bottomMargin">
                   <number>0</number>
                  </property>
                 </layout>
