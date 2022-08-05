@@ -3,7 +3,9 @@ from PyQt6.QtCore import QSettings, QSize, QUrl
 from PyQt6.QtGui import QDesktopServices, QIcon
 #from PyQt6 import uic
 import zapzap
+from zapzap.controllers.card_user import CardUser
 from zapzap.controllers.main_window_components.builder_icon import getIconTray
+from zapzap.model.user import UserDAO
 from zapzap.services.portal_desktop import createDesktop, removeDesktop
 from gettext import gettext as _
 
@@ -21,6 +23,13 @@ class Settings(QWidget, Ui_Settings):
         self.settingsActions()
         self.loadInfoHelp()
         self.loadDonations()
+
+        self.loadUsers()
+
+    def loadUsers(self):
+        list = UserDAO.select()
+        for user in list:
+            self.usersList.addWidget(CardUser(user=user))
 
     def loadDonations(self):
         self.btn_paypal.setIcon(
@@ -68,6 +77,7 @@ class Settings(QWidget, Ui_Settings):
         self.btn_notifications.clicked.connect(self.buttonClick)
         self.btn_donations.clicked.connect(self.buttonClick)
         self.btn_about.clicked.connect(self.buttonClick)
+        self.btn_users.clicked.connect(self.buttonClick)
         ## System ##
         self.start_system.clicked.connect(self.actionsSystemMenu)
         self.start_hide.clicked.connect(self.actionsSystemMenu)
@@ -211,6 +221,11 @@ class Settings(QWidget, Ui_Settings):
         if btnName == 'btn_about':
             self.settings_stacked.setCurrentIndex(4)
             self.btn_about.setStyleSheet(
+                self.selectMenu(self.btn_system.styleSheet()))
+
+        if btnName == 'btn_users':
+            self.settings_stacked.setCurrentIndex(5)
+            self.btn_users.setStyleSheet(
                 self.selectMenu(self.btn_system.styleSheet()))
 
     def load(self):
