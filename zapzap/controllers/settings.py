@@ -124,10 +124,10 @@ class Settings(QWidget, Ui_Settings):
         self.mainWindow.emitNewUser(user)
 
     def goPageHome(self):
-        self.settings_stacked.setCurrentIndex(0)
-        self.resetStyle('btn_system')
-        self.btn_system.setStyleSheet(
-            self.selectMenu(self.btn_system.styleSheet()))
+        self.settings_stacked.setCurrentIndex(5)
+        self.resetStyle('btn_users')
+        self.btn_users.setStyleSheet(
+            self.selectMenu(self.btn_users.styleSheet()))
 
     def goPageDonations(self):
         self.settings_stacked.setCurrentIndex(3)

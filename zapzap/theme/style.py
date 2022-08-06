@@ -473,7 +473,7 @@ def buildTheme(p) -> str:
             background-image: url({path}/home.svg);
         }
         #btn_users{
-            background-image: url({path}/home.svg);
+            background-image: url({path}/manage_accounts.svg);
         }
         #btn_system{
             background-image: url({path}/system.svg);
