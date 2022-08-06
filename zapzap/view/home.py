@@ -19,6 +19,8 @@ class Ui_Home(object):
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.menuUsers = QtWidgets.QFrame(Home)
+        self.menuUsers.setMinimumSize(QtCore.QSize(30, 0))
+        self.menuUsers.setMaximumSize(QtCore.QSize(30, 16777215))
         self.menuUsers.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.menuUsers.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.menuUsers.setObjectName("menuUsers")

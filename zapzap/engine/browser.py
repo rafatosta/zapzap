@@ -109,7 +109,7 @@ class Browser(QWebEngineView):
         The number of messages are available from the window title
         """
         num = ''.join(filter(str.isdigit, title))
-        print('>>>', num)
+        #print('>>>', num)
 
     def show_notification(self, notification):
         """
