@@ -281,7 +281,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>5</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -313,8 +313,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>644</width>
-            <height>572</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_16">
@@ -669,8 +669,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>642</width>
-            <height>369</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1305,8 +1305,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>642</width>
-            <height>244</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1540,8 +1540,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>642</width>
-            <height>264</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_30">
@@ -1778,8 +1778,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>642</width>
-            <height>395</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -1847,7 +1847,7 @@
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_23">
                   <property name="spacing">
-                   <number>30</number>
+                   <number>15</number>
                   </property>
                   <property name="leftMargin">
                    <number>15</number>
@@ -1862,42 +1862,42 @@
                    <number>15</number>
                   </property>
                   <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_12">
-                    <item>
-                     <widget class="QLabel" name="icon_app">
-                      <property name="minimumSize">
-                       <size>
-                        <width>50</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>50</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="scaledContents">
-                       <bool>true</bool>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                     </widget>
-                    </item>
+                   <layout class="QVBoxLayout" name="verticalLayout_20">
                     <item>
                      <layout class="QVBoxLayout" name="verticalLayout_15">
                       <property name="spacing">
-                       <number>0</number>
+                       <number>6</number>
                       </property>
-                      <item>
+                      <item alignment="Qt::AlignHCenter">
+                       <widget class="QLabel" name="icon_app">
+                        <property name="minimumSize">
+                         <size>
+                          <width>100</width>
+                          <height>100</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>100</width>
+                          <height>100</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="scaledContents">
+                         <bool>true</bool>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item alignment="Qt::AlignHCenter">
                        <widget class="QLabel" name="name_app">
                         <property name="font">
                          <font>
-                          <pointsize>13</pointsize>
+                          <pointsize>19</pointsize>
                           <bold>true</bold>
                          </font>
                         </property>
@@ -1906,11 +1906,11 @@
                         </property>
                        </widget>
                       </item>
-                      <item>
+                      <item alignment="Qt::AlignHCenter">
                        <widget class="QLabel" name="version_app">
                         <property name="font">
                          <font>
-                          <pointsize>10</pointsize>
+                          <pointsize>11</pointsize>
                          </font>
                         </property>
                         <property name="text">
@@ -1924,8 +1924,16 @@
                   </item>
                   <item>
                    <widget class="QLabel" name="desc_app">
+                    <property name="font">
+                     <font>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
                     <property name="text">
-                     <string>An unofficial WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.</string>
+                     <string>An unofficial WhatsApp desktop application</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
                     </property>
                    </widget>
                   </item>
@@ -1935,16 +1943,12 @@
                      <number>0</number>
                     </property>
                     <item>
-                     <widget class="QLabel" name="name_app2">
-                      <property name="text">
-                       <string>ZapZap</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
                      <widget class="QLabel" name="label_4">
                       <property name="text">
                        <string>GNU General Public License v3.0</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
                       </property>
                      </widget>
                     </item>

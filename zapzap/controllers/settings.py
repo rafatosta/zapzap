@@ -4,11 +4,10 @@ from PyQt6.QtGui import QDesktopServices, QIcon
 #from PyQt6 import uic
 import zapzap
 from zapzap.controllers.card_user import CardUser
-from zapzap.controllers.main_window_components.builder_icon import getIconTray
 from zapzap.model.user import User, UserDAO
 from zapzap.services.portal_desktop import createDesktop, removeDesktop
 from gettext import gettext as _
-from zapzap.theme.builder_icon import getNewIconSVG
+from zapzap.theme.builder_icon import getImageQPixmap, getNewIconSVG
 
 from zapzap.view.settings import Ui_Settings
 
@@ -64,7 +63,7 @@ class Settings(QWidget, Ui_Settings):
     def loadInfoHelp(self):
         self.version_app.setText(
             _(self.version_app.text()).format(id=zapzap.__version__))
-        self.icon_app.setPixmap(getIconTray().pixmap(QSize(50, 50)))
+        self.icon_app.setPixmap(getImageQPixmap())
         # actions
         self.btn_learn.clicked.connect(lambda: QDesktopServices.openUrl(
             QUrl(zapzap.__website__)))
@@ -113,9 +112,7 @@ class Settings(QWidget, Ui_Settings):
         self.show_msg.clicked.connect(self.save)
 
         ## Set start page ##
-        self.settings_stacked.setCurrentIndex(0)
-        self.btn_system.setStyleSheet(
-            self.selectMenu(self.btn_system.styleSheet()))
+        self.goPageHome()
 
     def newUserbuttonClick(self):
         user = User(0, 'User', getNewIconSVG(), True)

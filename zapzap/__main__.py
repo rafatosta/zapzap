@@ -10,15 +10,19 @@ from zapzap.model.db import createDB
 
 def main():
 
+    # Check place of execution (location or flatpak)
     if not zapzap.isFlatpak:
         import os
         os.environ['QT_QPA_PLATFORM'] = 'xcb'
 
+    # Create Database
     createDB()
-    
+
+    # Define path to translation files
     gettext.bindtextdomain('zapzap', zapzap.po_path)
     gettext.textdomain('zapzap')
 
+    # Define application attributes
     app = SingleApplication(zapzap.__appid__, sys.argv)
     app.setApplicationName(zapzap.__appname__)
     app.setApplicationVersion(zapzap.__version__)
@@ -35,13 +39,13 @@ def main():
     QFontDatabase.addApplicationFont(zapzap.segoe_font['italic'])
     app.setFont(QFont("Segoe UI"))
 
+    # Create main window
     window = MainWindow(app)
     app.setWindow(window)
     app.setActivationWindow(window)
     window.loadSettings()
 
-    # esconde ou mostra
-    # System start
+    # Checks the hidden start
     isStart_system = window.settings.value(
         "system/start_system", False, bool)
     isStart_hide = window.settings.value("system/start_hide", False, bool)
@@ -50,6 +54,7 @@ def main():
     else:
         window.show()
 
+    # Start app
     sys.exit(app.exec())
 
 

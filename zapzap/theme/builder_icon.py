@@ -1,4 +1,4 @@
-
+from PyQt6.QtGui import QImage, QPixmap
 import random
 
 from zapzap.theme.icons import ICON_DEFAULT
@@ -10,7 +10,12 @@ def getNewIconSVG():
     return newSVG
 
 
-# retorna uma cor
+def getImageQPixmap(svg_str=ICON_DEFAULT):
+    svg_bytes = bytearray(svg_str, encoding='utf-8')
+    qimg = QImage.fromData(svg_bytes, 'SVG')
+    return QPixmap.fromImage(qimg)
+
+
 def getColor():
     r = random.randint(0, 255)
     g = random.randint(0, 255)

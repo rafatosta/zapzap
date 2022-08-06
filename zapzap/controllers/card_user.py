@@ -1,9 +1,9 @@
 from PyQt6.QtWidgets import QWidget, QApplication
 from zapzap.model.user import UserDAO
+from zapzap.theme.builder_icon import getImageQPixmap
 from zapzap.theme.icons import IMAGE_DISABLE
 from zapzap.view.card_user import Ui_CardUser
-from PyQt6.QtGui import QImage, QPixmap, QIcon
-from PyQt6.QtCore import QSize
+
 from gettext import gettext as _
 
 
@@ -12,7 +12,7 @@ class CardUser(QWidget, Ui_CardUser):
         super(CardUser, self).__init__()
         self.setupUi(self)
         self.user = user
-    
+
         if self.user.id == 1:  # user default
             self.btnDisable.hide()
             self.btnDelete.hide()
@@ -31,7 +31,7 @@ class CardUser(QWidget, Ui_CardUser):
         else:
             self.btnDisable.setText(_("Enable"))
             svg = svg.format(IMAGE_DISABLE)
-        self.icon.setPixmap(self.getImage(svg))
+        self.icon.setPixmap(getImageQPixmap(svg))
 
     def buttonClick(self):
         btn = self.sender()
@@ -47,8 +47,3 @@ class CardUser(QWidget, Ui_CardUser):
             UserDAO.delete(self.user.id)
             mainWindow.emitDeleteUser(self.user)
             self.close()
-
-    def getImage(self, svg_str):
-        svg_bytes = bytearray(svg_str, encoding='utf-8')
-        qimg = QImage.fromData(svg_bytes, 'SVG')
-        return QPixmap.fromImage(qimg)

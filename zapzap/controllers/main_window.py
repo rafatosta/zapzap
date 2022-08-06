@@ -1,14 +1,14 @@
 from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon
 from PyQt6.QtCore import QSettings, QByteArray, QTimer
-#from PyQt6 import uic
-import zapzap
 from zapzap.theme.zap_themes import getThemeDark, getThemeLight
 from zapzap.controllers.main_window_components.menu_bar import MenuBar
 from zapzap.controllers.main_window_components.tray_icon import TrayIcon
 from zapzap.controllers.main_window_decoration.ui_decoration import UIDecoration
 from zapzap.controllers.settings import Settings
+from zapzap.controllers.home import Home
 from zapzap.engine.browser import Browser
 from zapzap.services.dbus_theme import get_system_theme
+import zapzap
 from gettext import gettext as _
 
 from zapzap.view.main_window import Ui_MainWindow
@@ -18,30 +18,42 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     isFullScreen = False
     isHideMenuBar = False
-    list_browser = []  # remover isso depois
-    container_list = []
 
     def __init__(self, parent=None):
         super(MainWindow, self).__init__()
         self.setupUi(self)
-        #uic.loadUi(zapzap.abs_path+'/view/main_window.ui', self)
         self.app = parent
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
         self.scd = None
-        # create menu bar
+
+        # Object responsible for managing the main window menu bar
         MenuBar(self)
+
+        # Object responsible for managing the tray icon
         self.tray = TrayIcon(self)
 
-        # create webengine for whatsapp page and insert in page zero
+        """# create webengine for whatsapp page and insert in page zero
         self.browser = Browser(self)
         self.browser.setZoomFactor(self.settings.value(
             "browser/zoomFactor", 1.0, float))  # Reset user defined zoom (1.0 by default)
         # Refreshing the page avoids the outdated user-agent issue (still happens sometimes)
         self.browser.doReload()
-        self.main_stacked.insertWidget(0, self.browser)
 
-        # create panel settings and insert page one
+        self.main_stacked.insertWidget(0, self.browser)"""
+
+        """ideia: criar uma page separada e enviar os eventos para que ela possa tratá-los. 
+               Por exemplo: 
+                        1 - Na ação de atualizar F5: identifica qual a página atual e faz a atualização
+                        2 - Zoom: aplica o zoom em todas as páginas
+                        3 - Tema: aplica o tema em todas as páginas
+        """
+
+        # create pages
+        self.zapHome = Home(self)
         self.zapSettings = Settings(self)
+
+        # Insert pages in main window
+        self.main_stacked.insertWidget(0, self.zapHome)
         self.main_stacked.insertWidget(1, self.zapSettings)
 
         # timer for system theme change check (check in 1s)
@@ -51,6 +63,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.current_theme = -1
 
         self.setZapDecoration()
+
+    def createBrowsers(self):
+        """
+         ##### DESATIVAR TODAS AS AÇÕES ACOM A VARIÁVEL self.browser #####
+            1 - criar o browser
+            2 - aplicar o tema do sistema
+        """
+        pass
 
     def emitNewUser(self, user):
         print('Novo usuário, id:', user.id)
@@ -83,11 +103,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.app.setStyleSheet(getThemeLight())
 
         # Apply equivalent theme on whatsapp page
-        self.browser.whats.setTheme(isNight_mode)
+        # aplicar em toda a lista
+        # self.browser.whats.setTheme(isNight_mode)
 
     def reload_Service(self):
         """Refreshing the page"""
-        self.browser.doReload()
+        # self.browser.doReload()
 
     def openTraySettings(self):
         if self.app.activeWindow() == None:  # Se a janela estiver em foco será escondida
@@ -145,7 +166,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Close window.
         """
-        self.settings.setValue("browser/zoomFactor", self.browser.zoomFactor())
+        #self.settings.setValue("browser/zoomFactor", self.browser.zoomFactor())
         self.settings.setValue("main/geometry", self.saveGeometry())
         self.settings.setValue("main/windowState", self.saveState())
         self.hide()
@@ -156,7 +177,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         Override the window close event.
         Save window dimensions and check if it should be hidden or closed
         """
-        self.settings.setValue("browser/zoomFactor", self.browser.zoomFactor())
+        #self.settings.setValue("browser/zoomFactor", self.browser.zoomFactor())
         self.settings.setValue("main/geometry", self.saveGeometry())
         self.settings.setValue("main/windowState", self.saveState())
         self.timer.stop()
@@ -190,15 +211,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def setDefault_size_page(self):
         """Reset user defined zoom (1.0 by default)"""
-        self.browser.setZoomFactor(1.0)
+        # self.browser.setZoomFactor(1.0)
 
     def zoomIn(self):
         """Zoom in"""
-        self.browser.setZoomFactor(self.browser.zoomFactor()+0.1)
+        # self.browser.setZoomFactor(self.browser.zoomFactor()+0.1)
 
     def zoomOut(self):
         """zoom out"""
-        self.browser.setZoomFactor(self.browser.zoomFactor()-0.1)
+        # self.browser.setZoomFactor(self.browser.zoomFactor()-0.1)
 
     def setFullSreen(self):
         """

@@ -13,18 +13,19 @@ def createTable(cursor):
     );
     """)
 
-#SALVAR A IMAGEM COMO TEXTO PARA PODER MANIPULAR DEPOIS 
-#COLOCAR UMA COR ALEATÓRIA 
+# SALVAR A IMAGEM COMO TEXTO PARA PODER MANIPULAR DEPOIS
+# COLOCAR UMA COR ALEATÓRIA
+
 
 class User():
-    def __init__(self, id, name, icon, enable) -> None:
+    def __init__(self, id='', name='', icon='', enable=True) -> None:
         self.id = id
         self.name = name
         self.icon = icon
         self.enable = enable
 
     def data(self):
-        return [self.name, self.icon, self.enable]
+        return [self.name, self.icon]
 
 
 class UserDAO():
@@ -33,7 +34,7 @@ class UserDAO():
         try:
             conn = db.connect_db()
             cursor = conn.cursor()
-            SQL = """INSERT INTO users (name, icon, enable) VALUES (?,?,?);"""
+            SQL = """INSERT INTO users (name, icon) VALUES (?,?);"""
             cursor.execute(SQL, user.data())
             conn.commit()
         except Exception as e:
@@ -43,7 +44,7 @@ class UserDAO():
             return UserDAO.selectID(id)
         finally:
             conn.close()
-    
+
     def update(user):
         # atualiza todos os campos de um contato
         try:
@@ -85,7 +86,6 @@ class UserDAO():
         finally:
             conn.close()
 
-    
     def delete(id):
         # deleta um contato a partir do seu id
         try:

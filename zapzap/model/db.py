@@ -7,19 +7,19 @@ import zapzap.model.user as user
 
 
 def connect_db():
-    # cria a conexão
+    """Create connection to the database"""
     conn = sqlite3.connect(DATABASE_FILE)
     conn.execute("PRAGMA foreign_keys = on")
     return conn
 
 
 def createDB():
-    # sempre ao abrir verifica e cria as tabelas caso necessário
+    """Checks if the file exists and creates the database and soon after inserts the default user"""
     if(not os.path.isfile(DATABASE_FILE)):
         conn = connect_db()
         cursor = conn.cursor()
         user.createTable(cursor)
         conn.commit()
         conn.close()
-        #create default user
-        user.UserDAO.add(user.User(0,'User 1',SVG_DEFAULT,True))
+        # create default user
+        user.UserDAO.add(user.User(name='User 1', icon=SVG_DEFAULT))
