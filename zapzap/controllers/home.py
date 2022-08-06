@@ -63,21 +63,26 @@ class UserButton(QPushButton):
 
 
 class Home(QWidget, Ui_Home):
+    list = None
     def __init__(self, parent=None):
         super(Home, self).__init__()
         self.setupUi(self)
         self.mainWindow = parent
-
         self.loadUsers()
-
-        self.menu.itemAt(0).widget().selected()
+        self.activeMenu()
 
     def loadUsers(self):
-        list = UserDAO.select()
-        for id_page, user in enumerate(list):
+        self.list = UserDAO.select()
+        for id_page, user in enumerate(self.list):
             button = UserButton(self, user, id_page)
             self.menu.addWidget(button)
             self.userStacked.insertWidget(id_page, button.getBrowser())
+    
+    def activeMenu(self):
+        if len(self.list) > 1:
+            self.menu.itemAt(0).widget().selected()
+        else:
+            self.menuUsers.hide()
 
     def resetStyle(self):
         for i in reversed(range(self.menu.count())):
