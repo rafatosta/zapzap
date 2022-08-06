@@ -16,10 +16,7 @@ def connect_db():
 def createDB():
     """Checks if the file exists and creates the database and soon after inserts the default user"""
     if(not os.path.isfile(DATABASE_FILE)):
-        conn = connect_db()
-        cursor = conn.cursor()
-        user.createTable(cursor)
-        conn.commit()
-        conn.close()
-        # create default user
+        # Create table
+        user.UserDAO.createTable()
+        # Create default user
         user.UserDAO.add(user.User(name='User 1', icon=SVG_DEFAULT))

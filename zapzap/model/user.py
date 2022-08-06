@@ -1,20 +1,4 @@
-
-import zapzap.model.db as db
-
-
-def createTable(cursor):
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS "users" (
-        "id" INTEGER,
-        "name" TEXT NOT NULL,
-        "icon" TEXT,
-        "enable" INTEGER DEFAULT 1,
-        PRIMARY KEY("id" AUTOINCREMENT)
-    );
-    """)
-
-# SALVAR A IMAGEM COMO TEXTO PARA PODER MANIPULAR DEPOIS
-# COLOCAR UMA COR ALEATÓRIA
+from zapzap.model.db import connect_db
 
 
 class User():
@@ -30,9 +14,28 @@ class User():
 
 class UserDAO():
 
+    def createTable():
+        try:
+            conn = connect_db()
+            cursor = conn.cursor()
+            cursor.execute("""
+            CREATE TABLE IF NOT EXISTS "users" (
+                "id" INTEGER,
+                "name" TEXT NOT NULL,
+                "icon" TEXT,
+                "enable" INTEGER DEFAULT 1,
+                PRIMARY KEY("id" AUTOINCREMENT)
+            );
+            """)
+            conn.commit()
+        except Exception as e:
+            print(e)
+        finally:
+            conn.close()
+
     def add(user: User) -> User:
         try:
-            conn = db.connect_db()
+            conn = connect_db()
             cursor = conn.cursor()
             SQL = """INSERT INTO users (name, icon) VALUES (?,?);"""
             cursor.execute(SQL, user.data())
@@ -48,7 +51,7 @@ class UserDAO():
     def update(user):
         # atualiza todos os campos de um contato
         try:
-            conn = db.connect_db()
+            conn = connect_db()
             cursor = conn.cursor()
             sql = """UPDATE users SET name=?, icon=?,enable=? WHERE id=?;"""
             l = user.data()
@@ -64,7 +67,7 @@ class UserDAO():
     def select():
         list = []
         try:
-            conn = db.connect_db()
+            conn = connect_db()
             cursor = conn.cursor()
             SQL = """SELECT * FROM users;"""
             cursor.execute(SQL)
@@ -77,7 +80,7 @@ class UserDAO():
 
     def selectID(id):
         try:
-            conn = db.connect_db()
+            conn = connect_db()
             cursor = conn.cursor()
             SQL = """SELECT * FROM users WHERE id = ?;"""
             cursor.execute(SQL, [id])
@@ -89,7 +92,7 @@ class UserDAO():
     def delete(id):
         # deleta um contato a partir do seu id
         try:
-            conn = db.connect_db()
+            conn = connect_db()
             cursor = conn.cursor()
             sql = """DELETE FROM users WHERE id = ?;"""
             cursor.execute(sql, [id])
