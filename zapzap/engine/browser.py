@@ -14,15 +14,18 @@ from gettext import gettext as _
 
 class Browser(QWebEngineView):
 
-    def __init__(self, parent):
+    def __init__(self, storageName):
         super().__init__()
-        self.parent = parent
         self.qset = QSettings(zapzap.__appname__, zapzap.__appname__)
         # Initialize the DBus connection to the notification server
         dbus.init(__appname__)
 
+        # Mainer or existing user
+        if storageName == 1:
+            storageName = 'storage-whats'
+
         # definição do pergil do usuário, local que será armazenados os cookies e informações sobre os navegadores
-        self.profile = QWebEngineProfile('storage-whats', self)
+        self.profile = QWebEngineProfile(str(storageName), self)
         self.profile.setHttpUserAgent(zapzap.__user_agent__)
         self.profile.setNotificationPresenter(self.show_notification)
         self.profile.setSpellCheckEnabled(True)
@@ -106,16 +109,7 @@ class Browser(QWebEngineView):
         The number of messages are available from the window title
         """
         num = ''.join(filter(str.isdigit, title))
-        qtd = 0
-        try:
-            qtd = int(num)
-        except:
-            self.parent.setWindowTitle(zapzap.__appname__)
-            qtd = 0
-        else:
-            self.parent.setWindowTitle(zapzap.__appname__+" ("+num+")")
-
-        self.parent.tray.showIconNotification(qtd)
+        print('>>>', num)
 
     def show_notification(self, notification):
         """
