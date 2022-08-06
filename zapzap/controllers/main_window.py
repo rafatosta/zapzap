@@ -52,6 +52,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.setZapDecoration()
 
+    def emitNewUser(self, user):
+        print('Novo usuário, id:', user.id)
+
+    def emitDeleteUser(self, user):
+        print('Usuário removido, id:', user.id)
+
+    def emitDisableUser(self, user):
+        print('Usuário desabilitado, id:', user.id)
 
     def setZapDecoration(self):
         self.headbar.hide()
@@ -86,9 +94,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.show()
             self.app.activateWindow()
             self.tray.trayShow.setText(_('Hide'))
-            
-        self.main_stacked.setCurrentIndex(1)
 
+        self.main_stacked.setCurrentIndex(1)
 
     def openSettings(self):
         """Open settings"""

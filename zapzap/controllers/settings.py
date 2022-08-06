@@ -4,7 +4,7 @@ from PyQt6.QtGui import QDesktopServices, QIcon
 #from PyQt6 import uic
 import zapzap
 from zapzap.controllers.card_user import CardUser
-from zapzap.controllers.main_window_components.builder_icon import SVG_DEFAULT, getIconTray
+from zapzap.controllers.main_window_components.builder_icon import getIconTray
 from zapzap.model.user import User, UserDAO
 from zapzap.services.portal_desktop import createDesktop, removeDesktop
 from gettext import gettext as _
@@ -75,7 +75,7 @@ class Settings(QWidget, Ui_Settings):
 
     def settingsActions(self):
         # New User
-        self.btnNewUser.clicked.connect(self.buttonClick)
+        self.btnNewUser.clicked.connect(self.newUserbuttonClick)
 
         ## Menu left ##
         self.btn_home.clicked.connect(
@@ -116,6 +116,12 @@ class Settings(QWidget, Ui_Settings):
         self.settings_stacked.setCurrentIndex(0)
         self.btn_system.setStyleSheet(
             self.selectMenu(self.btn_system.styleSheet()))
+
+    def newUserbuttonClick(self):
+        user = User(0, 'User', getNewIconSVG(), True)
+        user = UserDAO.add(user)
+        self.usersList.addWidget(CardUser(user=user))
+        self.mainWindow.emitNewUser(user)
 
     def goPageHome(self):
         self.settings_stacked.setCurrentIndex(0)
@@ -235,13 +241,6 @@ class Settings(QWidget, Ui_Settings):
             self.settings_stacked.setCurrentIndex(5)
             self.btn_users.setStyleSheet(
                 self.selectMenu(self.btn_system.styleSheet()))
-
-        if btnName == 'btnNewUser':
-            user = User(0, 'User', getNewIconSVG(), True)
-            user = UserDAO.add(user)
-            self.usersList.addWidget(CardUser(user=user))
-
-            # Avisar ao MainWindow sobre novo usuário
 
     def load(self):
         """

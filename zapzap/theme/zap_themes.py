@@ -1,4 +1,3 @@
-from pickle import FRAME
 from zapzap.theme.style import buildTheme
 import zapzap
 
