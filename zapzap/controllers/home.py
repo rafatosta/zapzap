@@ -117,6 +117,14 @@ class Home(QWidget, Ui_Home):
         return None
 
     def delUserPage(self, user):
+        """
+        1 - desativar o browser
+        2 - remover do banco
+        3 - remover pasta
+        """
+        # quando fecha a janela volta as pastas
+        # acredito que seja algo relacionado ao id_page userStacked
+        # continuam sendo carregados mesmo após a exclusão
         try:
             # Pega o userButton do usuário
             return_btn = self.getUserButton(user.id)
