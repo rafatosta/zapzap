@@ -115,9 +115,13 @@ class Settings(QWidget, Ui_Settings):
         self.goPageHome()
 
     def newUserbuttonClick(self):
+        # Cria o usuário
         user = User(0, 'User', getNewIconSVG(), True)
+        # insere no banco de dados e recebe o user com o ID
         user = UserDAO.add(user)
+        # Insere  o card
         self.usersList.addWidget(CardUser(user=user))
+        # Informa ao mainWindow a criação do usuário
         self.mainWindow.emitNewUser(user)
 
     def goPageHome(self):

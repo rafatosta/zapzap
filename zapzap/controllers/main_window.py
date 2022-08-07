@@ -74,9 +74,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def emitNewUser(self, user):
         print('Novo usuário, id:', user.id)
+        self.zapHome.addNewUser(user)
 
     def emitDeleteUser(self, user):
-        print('Usuário removido, id:', user.id)
+        """
+        1 - desativar o browser
+        2 - remover do banco
+        3 - remover pasta
+        """
+        print('Usuário a ser removido, id:', user.id)
+        self.zapHome.delUserPage(user)
 
     def emitDisableUser(self, user):
         print('Usuário desabilitado, id:', user.id)
