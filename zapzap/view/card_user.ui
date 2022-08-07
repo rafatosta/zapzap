@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>620</width>
-    <height>124</height>
+    <height>104</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -71,50 +71,7 @@
       <property name="verticalSpacing">
        <number>0</number>
       </property>
-      <item row="1" column="0">
-       <widget class="QLabel" name="icon">
-        <property name="minimumSize">
-         <size>
-          <width>64</width>
-          <height>64</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>64</width>
-          <height>64</height>
-         </size>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="scaledContents">
-         <bool>true</bool>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0" colspan="3">
-       <widget class="QLabel" name="id">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <italic>true</italic>
-         </font>
-        </property>
-        <property name="text">
-         <string>#id</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
+      <item row="0" column="2">
        <layout class="QGridLayout" name="gridLayout">
         <property name="verticalSpacing">
          <number>10</number>
@@ -171,7 +128,32 @@
         </item>
        </layout>
       </item>
-      <item row="1" column="1">
+      <item row="0" column="0">
+       <widget class="QLabel" name="icon">
+        <property name="minimumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
        <layout class="QGridLayout" name="inputGrid">
         <property name="verticalSpacing">
          <number>10</number>

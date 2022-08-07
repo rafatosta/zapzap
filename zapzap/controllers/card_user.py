@@ -25,7 +25,6 @@ class CardUser(QWidget, Ui_CardUser):
         self.load()
 
     def load(self):
-        self.id.setText('#'+str(self.user.id))
         self.name.setText(self.user.name)
         svg = self.user.icon
         if self.user.enable:
