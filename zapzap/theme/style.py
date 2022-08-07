@@ -16,6 +16,37 @@ def buildTheme(p) -> str:
         QStackedWidget {	
             background-color: {window};
         }
+
+        QLineEdit,
+        QKeySequenceEdit{
+            color: {windowText};
+            background-color: {window};
+            border: 1px solid; 
+            border-color: {frame_border};
+            border-radius: 5px;
+        }
+
+        #btnDelete {
+            color: #F0F2F5;
+            background-color: rgb(192, 28, 40);
+            border: 1px solid rgb(192, 28, 40);
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        #btnDisable{
+            color: #F0F2F5;
+            background-color: #585A5D;
+            border: 1px solid #585A5D;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        #btnDelete:hover,
+        #btnDisable:hover{
+            
+            border: 2px solid #00A884;
+        }
+
     """
 
     QMENU_BAR = """
