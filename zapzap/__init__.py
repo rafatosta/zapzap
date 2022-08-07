@@ -61,4 +61,8 @@ if not os.path.exists(DATABASE_DIR):
 
 DATABASE_FILE = os.path.join(DATABASE_DIR, 'zapzap.db')
 
-
+# Path
+path_storage = os.path.join(
+    QStandardPaths.writableLocation(
+        QStandardPaths.StandardLocation.AppLocalDataLocation), __appname__, "QtWebEngine"
+)

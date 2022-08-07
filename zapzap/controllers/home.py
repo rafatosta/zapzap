@@ -25,11 +25,10 @@ class UserButton(QPushButton):
     }
     """
 
-    def __init__(self, parent=None, user=None, id_page=None):
+    def __init__(self, parent=None, user=None):
         super(UserButton, self).__init__()
         self.user = user
         self.home = parent
-        self.id_page = id_page
 
         self.setFlat(True)
         self.setMinimumSize(QSize(30, 30))
@@ -43,15 +42,14 @@ class UserButton(QPushButton):
 
     def click(self):
         self.home.resetStyle()
-        self.home.setPage(self.id_page)
+        self.home.setPage(self.browser)
         self.selected()
 
     def getBrowser(self):
         return self.browser
 
     def closeBrowser(self):
-        self.browser.close()
-        del self.browser
+        self.browser.stop()
 
     ## EVENTS ##
 
@@ -83,25 +81,22 @@ class Home(QWidget, Ui_Home):
 
     def loadUsers(self):
         self.list = UserDAO.select()
-        for id_page, user in enumerate(self.list):
-            button = UserButton(self, user, id_page)
+        for user in self.list:
+            button = UserButton(self, user)
             self.menu.addWidget(button)
-            self.userStacked.insertWidget(id_page, button.getBrowser())
+            self.userStacked.addWidget(button.getBrowser())
 
     def addNewUser(self, user):
         self.list.append(user)
         button = UserButton(self, user)
         self.menu.addWidget(button)
-        id_page = self.userStacked.addWidget(button.getBrowser())
-        button.id_page = id_page
+        self.userStacked.addWidget(button.getBrowser())
 
-        print(id_page)
-
-        b = self.getUserButton(user.id)
-        print('>>',b.id_page)
+        self.activeMenu()
 
     def activeMenu(self):
         if len(self.list) > 1:
+            self.menuUsers.show()
             self.menu.itemAt(0).widget().selected()
         else:
             self.menuUsers.hide()
@@ -111,32 +106,46 @@ class Home(QWidget, Ui_Home):
             ub = self.menu.itemAt(i).widget()
             ub.unselected()
 
-    def setPage(self, id_page):
-        self.userStacked.setCurrentIndex(id_page)
+    def setPage(self, browser):
+        self.userStacked.setCurrentWidget(browser)
 
     def getUserButton(self, idUser):
         for i in reversed(range(self.menu.count())):
             btn = self.menu.itemAt(i).widget()
             if btn.user.id == idUser:
-                return btn
+                return btn, i
         return None
 
     def delUserPage(self, user):
+        """
+        1 - desativar o browser
+        2 - remover do banco
+        3 - remover pasta
+        """
         # quando fecha a janela volta as pastas
         # acredito que seja algo relacionado ao id_page userStacked
         # continuam sendo carregados mesmo após a exclusão
         try:
             # Pega o userButton do usuário
-            btn = self.getUserButton(user.id)
+            return_btn = self.getUserButton(user.id)
+            btn = return_btn[0]
+            id_btn = return_btn[1]
+
+            # remove (deixa oculto pelo menos)
+            self.userStacked.removeWidget(btn.browser)
+
+            # remove o ícone do menu
+            self.menu.itemAt(id_btn).widget().setParent(None)
+
             # Encerra o Browser
             btn.closeBrowser()
-            # remove (deixa oculto pelo menos)
-            self.userStacked.removeWidget(
-                self.userStacked.widget(btn.id_page))
-            # remove o ícone do menu
-            self.menu.itemAt(btn.id_page).widget().setParent(None)
+
             # deleta do banco de dados
             UserDAO.delete(user.id)
+
+            # deleta da lista
+            self.list.remove(user)
+
             # Apaga pasta de cache do usuário
             path = os.path.join(zapzap.path_storage, str(user.id))
             shutil.rmtree(path, ignore_errors=True)
