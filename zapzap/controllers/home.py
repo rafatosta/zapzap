@@ -144,7 +144,9 @@ class Home(QWidget, Ui_Home):
             UserDAO.delete(user.id)
 
             # deleta da lista
-            self.list.remove(user)
+            for u in self.list:
+                if u.id == user.id:
+                    self.list.remove(u)
 
             # Apaga pasta de cache do usuário
             path = os.path.join(zapzap.path_storage, str(user.id))
