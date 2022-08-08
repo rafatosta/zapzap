@@ -161,7 +161,7 @@ class Settings(QWidget, Ui_Settings):
             theme = 'symbolic_dark'
 
         self.settings.setValue("notification/theme_tray", theme)
-        self.mainWindow.browser.title_changed(self.mainWindow.windowTitle())
+        self.mainWindow.emitNotifications()
 
     def actionsRbAppearance(self):
         theme = 'auto'

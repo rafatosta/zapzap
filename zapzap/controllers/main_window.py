@@ -83,6 +83,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def emitDisableUser(self, user):
         print('Usuário desabilitado, id:', user.id)
 
+    def emitNotifications(self):
+        qtd = self.zapHome.getSizeNotifications()
+
+        if qtd > 0:
+            self.setWindowTitle(zapzap.__appname__+" ("+str(qtd)+")")
+        else:
+            self.setWindowTitle(zapzap.__appname__)
+
+        self.tray.showIconNotification(qtd)
+
     def setZapDecoration(self):
         self.headbar.hide()
         if self.settings.value("system/zap_decoration", True, bool):

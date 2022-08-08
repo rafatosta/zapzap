@@ -1,5 +1,5 @@
 import os
-from PyQt6.QtWidgets import QWidget, QPushButton
+from PyQt6.QtWidgets import QWidget, QPushButton, QApplication
 from PyQt6.QtCore import QSize
 import zapzap
 from zapzap.engine.browser import Browser
@@ -30,6 +30,8 @@ class UserContainer(QPushButton):
         self.user = user
         self.home = parent
 
+        self.qtd = 0
+
         self.setFlat(True)
         self.setMinimumSize(QSize(30, 30))
         self.setMaximumSize(QSize(30, 30))
@@ -39,9 +41,12 @@ class UserContainer(QPushButton):
         self.setIcon(getImageQIcon(svg_str=user.icon))
         self.setStyleSheet(self.styleSheet_normal)
         self.clicked.connect(self.click)
-    
-    def showIconNotification(self,qtd):
+
+    def showIconNotification(self, qtd):
+        self.qtd = qtd
         self.setIcon(getImageQIcon(svg_str=self.user.icon, qtd=qtd))
+        mainWindow = QApplication.instance().getWindow()
+        mainWindow.emitNotifications()
 
     def click(self):
         self.home.resetStyle()
@@ -113,11 +118,19 @@ class Home(QWidget, Ui_Home):
         self.userStacked.setCurrentWidget(browser)
 
     def getUserContainer(self, idUser):
-        for i in reversed(range(self.menu.count())):
+        for i in range(self.menu.count()):
             btn = self.menu.itemAt(i).widget()
             if btn.user.id == idUser:
                 return btn, i
         return None
+
+    def getSizeNotifications(self) -> int:
+        qtd = 0
+        for i in range(self.menu.count()):
+            btn = self.menu.itemAt(i).widget()
+            qtd += btn.qtd
+            print(btn.qtd)
+        return qtd
 
     def delUserPage(self, user):
         """
