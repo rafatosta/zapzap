@@ -9,7 +9,7 @@ from zapzap.view.home import Ui_Home
 import shutil
 
 
-class UserButton(QPushButton):
+class UserContainer(QPushButton):
 
     isSelected = False
 
@@ -26,7 +26,7 @@ class UserButton(QPushButton):
     """
 
     def __init__(self, parent=None, user=None):
-        super(UserButton, self).__init__()
+        super(UserContainer, self).__init__()
         self.user = user
         self.home = parent
 
@@ -85,13 +85,13 @@ class Home(QWidget, Ui_Home):
     def loadUsers(self):
         self.list = UserDAO.select()
         for user in self.list:
-            button = UserButton(self, user)
+            button = UserContainer(self, user)
             self.menu.addWidget(button)
             self.userStacked.addWidget(button.getBrowser())
 
     def addNewUser(self, user):
         self.list.append(user)
-        button = UserButton(self, user)
+        button = UserContainer(self, user)
         self.menu.addWidget(button)
         self.userStacked.addWidget(button.getBrowser())
 
@@ -112,7 +112,7 @@ class Home(QWidget, Ui_Home):
     def setPage(self, browser):
         self.userStacked.setCurrentWidget(browser)
 
-    def getUserButton(self, idUser):
+    def getUserContainer(self, idUser):
         for i in reversed(range(self.menu.count())):
             btn = self.menu.itemAt(i).widget()
             if btn.user.id == idUser:
@@ -129,8 +129,8 @@ class Home(QWidget, Ui_Home):
         # acredito que seja algo relacionado ao id_page userStacked
         # continuam sendo carregados mesmo após a exclusão
         try:
-            # Pega o userButton do usuário
-            return_btn = self.getUserButton(user.id)
+            # Pega o UserContainer do usuário
+            return_btn = self.getUserContainer(user.id)
             btn = return_btn[0]
             id_btn = return_btn[1]
 
