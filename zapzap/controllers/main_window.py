@@ -115,8 +115,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.app.setStyleSheet(getThemeLight())
 
         # Apply equivalent theme on whatsapp page
-        # aplicar em toda a lista
-        # self.browser.whats.setTheme(isNight_mode)
+        self.zapHome.setThemeContainers(isNight_mode)
 
     def reload_Service(self):
         """Refreshing the page"""

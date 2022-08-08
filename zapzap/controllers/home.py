@@ -59,8 +59,13 @@ class Home(QWidget, Ui_Home):
         for i in range(self.menu.count()):
             btn = self.menu.itemAt(i).widget()
             qtd += btn.qtd
-            print(btn.qtd)
         return qtd
+    
+    def setThemeContainers(self,isNight_mode):
+        for i in range(self.menu.count()):
+            btn = self.menu.itemAt(i).widget()
+            btn.browser.whats.setTheme(isNight_mode)
+
 
     def delUserPage(self, user):
         """
