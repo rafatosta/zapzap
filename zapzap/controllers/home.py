@@ -34,11 +34,14 @@ class UserButton(QPushButton):
         self.setMinimumSize(QSize(30, 30))
         self.setMaximumSize(QSize(30, 30))
 
-        self.browser = Browser(user.id)
+        self.browser = Browser(user.id, self)
 
         self.setIcon(getImageQIcon(svg_str=user.icon))
         self.setStyleSheet(self.styleSheet_normal)
         self.clicked.connect(self.click)
+    
+    def showIconNotification(self,qtd):
+        self.setIcon(getImageQIcon(svg_str=self.user.icon, qtd=qtd))
 
     def click(self):
         self.home.resetStyle()

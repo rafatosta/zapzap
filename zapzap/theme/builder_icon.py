@@ -2,7 +2,7 @@ from PyQt6.QtGui import QImage, QPixmap, QIcon
 from PyQt6.QtCore import QSize
 import random
 
-from zapzap.theme.icons import ICON_DEFAULT
+from zapzap.theme.icons import ICON_DEFAULT, SVG_NOTIFICATION
 
 
 def getNewIconSVG():
@@ -17,8 +17,21 @@ def getImageQPixmap(svg_str=ICON_DEFAULT) -> QPixmap:
     return QPixmap.fromImage(qimg)
 
 
-def getImageQIcon(svg_str=ICON_DEFAULT, scaled=[128, 128]) -> QIcon:
-    qpix = getImageQPixmap(svg_str)
+def getImageQIcon(svg_str=ICON_DEFAULT, scaled=[256, 256], qtd=0) -> QIcon:
+
+    if len(str(qtd)) == 1:
+        data = dict(width=100.1, x=152.6)
+    elif len(str(qtd)) == 2:
+        data = dict(width=180.3, x=72.5)
+    else:
+        data = dict(width=249.428, x=3.286)
+
+    notification = SVG_NOTIFICATION.format(
+        x=data['x'], width=data['width'], number=qtd)
+
+    n = notification if qtd > 0 else ""
+
+    qpix = getImageQPixmap(svg_str.format(n))
     qicon = QIcon(qpix.scaled(QSize(scaled[0], scaled[1])))
     return qicon
 

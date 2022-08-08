@@ -14,11 +14,12 @@ from gettext import gettext as _
 
 class Browser(QWebEngineView):
 
-    def __init__(self, storageName):
+    def __init__(self, storageName, parent):
         super().__init__()
         self.qset = QSettings(zapzap.__appname__, zapzap.__appname__)
         # Initialize the DBus connection to the notification server
         dbus.init(__appname__)
+        self.parent = parent
 
         # Mainer or existing user
         if storageName == 1:
@@ -109,7 +110,13 @@ class Browser(QWebEngineView):
         The number of messages are available from the window title
         """
         num = ''.join(filter(str.isdigit, title))
-        #print('>>>', num)
+        qtd = 0
+        try:
+            qtd = int(num)
+        except:
+            qtd = 0
+            
+        self.parent.showIconNotification(qtd)
 
     def show_notification(self, notification):
         """

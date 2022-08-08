@@ -29,3 +29,7 @@ ICON_DEFAULT = """<?xml version="1.0" encoding="utf-8"?>
 
 IMAGE_DISABLE = """<path d="M 150.063 90.451 H 182.371 V 150.128 H 246.989 V 179.967 H 182.371 V 239.645 H 150.063 V 179.967 H 85.445 V 150.128 H 150.063 Z" style="fill: rgb(255, 0, 0); stroke: rgb(0, 0, 0);" transform="matrix(0.715986, -0.698115, 0.698115, 0.715986, -68.014503, 162.914597)" bx:shape="cross 85.445 90.451 161.544 149.194 29.839 32.308 0.5 1@64eb8597"/>"""
 
+SVG_NOTIFICATION = """
+  <rect y="116.592" width="{width}" height="136.107" style="fill: rgb(255, 0, 0); stroke: rgb(255, 0, 0);" rx="19.653" ry="19.653" x="{x}"/>
+  <text style="fill: rgb(255, 255, 255); font-family: Arial, sans-serif; font-size: 65.9885px; font-weight: 700; text-anchor: end; white-space: pre;" transform="matrix(2.154438, 0, 0, 1.833654, -279.152802, -210.015335)" x="244.638" y="238.631">{number}</text>
+"""
