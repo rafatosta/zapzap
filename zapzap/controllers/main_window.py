@@ -6,7 +6,6 @@ from zapzap.controllers.main_window_components.tray_icon import TrayIcon
 from zapzap.controllers.main_window_decoration.ui_decoration import UIDecoration
 from zapzap.controllers.settings import Settings
 from zapzap.controllers.home import Home
-from zapzap.engine.browser import Browser
 from zapzap.services.dbus_theme import get_system_theme
 import zapzap
 from gettext import gettext as _
@@ -32,22 +31,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Object responsible for managing the tray icon
         self.tray = TrayIcon(self)
 
-        """# create webengine for whatsapp page and insert in page zero
-        self.browser = Browser(self)
-        self.browser.setZoomFactor(self.settings.value(
-            "browser/zoomFactor", 1.0, float))  # Reset user defined zoom (1.0 by default)
-        # Refreshing the page avoids the outdated user-agent issue (still happens sometimes)
-        self.browser.doReload()
-
-        self.main_stacked.insertWidget(0, self.browser)"""
-
-        """ideia: criar uma page separada e enviar os eventos para que ela possa tratá-los. 
-               Por exemplo: 
-                        1 - Na ação de atualizar F5: identifica qual a página atual e faz a atualização
-                        2 - Zoom: aplica o zoom em todas as páginas
-                        3 - Tema: aplica o tema em todas as páginas
-        """
-
         # create pages
         self.zapHome = Home(self)
         self.zapSettings = Settings(self)
@@ -63,14 +46,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.current_theme = -1
 
         self.setZapDecoration()
-
-    def createBrowsers(self):
-        """
-         ##### DESATIVAR TODAS AS AÇÕES ACOM A VARIÁVEL self.browser #####
-            1 - criar o browser
-            2 - aplicar o tema do sistema
-        """
-        pass
 
     def emitNewUser(self, user):
         print('Novo usuário, id:', user.id)
