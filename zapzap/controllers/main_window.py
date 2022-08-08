@@ -222,15 +222,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def setDefault_size_page(self):
         """Reset user defined zoom (1.0 by default)"""
-        # self.browser.setZoomFactor(1.0)
+        self.zapHome.setZoomFactor()
 
     def zoomIn(self):
         """Zoom in"""
-        # self.browser.setZoomFactor(self.browser.zoomFactor()+0.1)
+        self.zapHome.setZoomFactor(+0.1)
 
     def zoomOut(self):
         """zoom out"""
-        # self.browser.setZoomFactor(self.browser.zoomFactor()-0.1)
+        self.zapHome.setZoomFactor(-0.1)
 
     def setFullSreen(self):
         """

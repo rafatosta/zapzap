@@ -60,12 +60,19 @@ class Home(QWidget, Ui_Home):
             btn = self.menu.itemAt(i).widget()
             qtd += btn.qtd
         return qtd
-    
-    def setThemeContainers(self,isNight_mode):
+
+    def setThemeContainers(self, isNight_mode):
         for i in range(self.menu.count()):
             btn = self.menu.itemAt(i).widget()
             btn.browser.whats.setTheme(isNight_mode)
 
+    def setZoomFactor(self, factor=None):
+        for i in range(self.menu.count()):
+            btn = self.menu.itemAt(i).widget()
+            if factor == None:
+                btn.browser.setZoomFactor(1.0)
+            else:
+                btn.browser.setZoomFactor(btn.browser.zoomFactor()+factor)
 
     def delUserPage(self, user):
         """
