@@ -15,6 +15,8 @@ class UIDecoration():
         self.uiDefinitions()
         self.headDefinitions()
 
+        self.win.appMargins.setContentsMargins(8,8,8,8)
+
     def uiDefinitions(self):
         # Duplo click na headbar
         def dobleClickMaximizeRestore(event):
@@ -90,8 +92,10 @@ class UIDecoration():
     def maximize_restore(self):
         if self.win.windowState() == Qt.WindowState.WindowMaximized:
             self.win.showNormal()
+            #self.win.appMargins.setContentsMargins(8,8,8,8)
         else:
             self.win.showMaximized()
+            #self.win.appMargins.setContentsMargins(0,0,0,0)
 
     def resize_grips(self):
         self.left_grip.setGeometry(0, 5, 5, self.win.height())

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-  <rect width="495" height="490" style="fill-opacity: 0.06;" y="5" ry="9.906" rx="9.906" x="2.5"/>
+  <rect width="500" height="495" style="fill-opacity: 0.11; fill: rgb(204, 204, 204);" ry="12.448" rx="12.448" y="2.5"/>
+  <rect width="495" height="490" style="fill: rgb(28, 28, 28); fill-opacity: 0.1;" y="5" ry="9.906" rx="9.906" x="2.5"/>
 </svg>
