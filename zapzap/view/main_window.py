@@ -18,7 +18,7 @@ class Ui_MainWindow(object):
         self.appMargins = QtWidgets.QWidget(MainWindow)
         self.appMargins.setObjectName("appMargins")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.appMargins)
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_2.setContentsMargins(8, 8, 8, 8)
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.app = QtWidgets.QFrame(self.appMargins)

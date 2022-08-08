@@ -559,6 +559,9 @@ def buildTheme(p) -> str:
             border: 3px solid {window}; 
             border-radius: 12px;
         }
+        #appMargins{
+            border-image: url({path}/border.svg);
+        }
         #app {	
             background-color: {window};
             border: 1px solid rgba(0, 0, 0,0.2); 
