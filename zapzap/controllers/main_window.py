@@ -166,6 +166,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             event.ignore()
         else:  # Quit app on close window
             self.saveSettings()
+            self.hide()
             self.app.quit()
 
     def onTrayIconActivated(self, reason):
