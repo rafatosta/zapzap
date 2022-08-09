@@ -148,30 +148,25 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.restoreState(self.settings.value(
             "main/windowState", QByteArray()))
 
-    def quit(self):
-        """
-        Close window.
-        """
-        #self.settings.setValue("browser/zoomFactor", self.browser.zoomFactor())
+    def saveSettings(self):
         self.settings.setValue("main/geometry", self.saveGeometry())
         self.settings.setValue("main/windowState", self.saveState())
-        self.hide()
-        self.app.quit()
+        self.zapHome.saveSettings()
 
     def closeEvent(self, event):
         """
-        Override the window close event.
-        Save window dimensions and check if it should be hidden or closed
+            Override the window close event.
+            Save window dimensions and check if it should be hidden or closed
         """
-        #self.settings.setValue("browser/zoomFactor", self.browser.zoomFactor())
-        self.settings.setValue("main/geometry", self.saveGeometry())
-        self.settings.setValue("main/windowState", self.saveState())
         self.timer.stop()
-        if self.settings.value(
-                "system/keep_background", True, bool):
+        isBack = self.settings.value("system/keep_background", True, bool)
+        if isBack and event:  # Hide app on close window
             self.hide()
             self.tray.trayShow.setText(_('Open ZapZap'))
             event.ignore()
+        else:  # Quit app on close window
+            self.saveSettings()
+            self.app.quit()
 
     def onTrayIconActivated(self, reason):
         """

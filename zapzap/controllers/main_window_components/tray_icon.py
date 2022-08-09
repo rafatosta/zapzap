@@ -23,7 +23,7 @@ class TrayIcon():
         self.traySettings.triggered.connect(self.mainWindow.openTraySettings)
 
         self.trayExit = QAction(_("Quit"), mainWindow)
-        self.trayExit.triggered.connect(mainWindow.quit)
+        self.trayExit.triggered.connect(lambda x = None: mainWindow.closeEvent(x))
 
         # Cria o Menu e adiciona as ações
         self.trayMenu = QMenu()

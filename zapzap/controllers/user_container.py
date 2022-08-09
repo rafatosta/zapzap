@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import QPushButton, QApplication
 from PyQt6.QtCore import QSize
+from zapzap.model.user import UserDAO
 from zapzap.theme.builder_icon import getImageQIcon
 from zapzap.engine.browser import Browser
 
@@ -55,6 +56,16 @@ class UserContainer(QPushButton):
 
     def closeBrowser(self):
         self.browser.stop()
+
+    def saveSettings(self):
+        self.user.zoomFactor = self.browser.zoomFactor()
+        UserDAO.update(self.user)
+
+    def setZoomFactor(self, factor=None):
+        if factor == None:
+            self.browser.setZoomFactor(1.0)
+        else:
+            self.browser.setZoomFactor(self.browser.zoomFactor()+factor)
 
     ## EVENTS ##
 

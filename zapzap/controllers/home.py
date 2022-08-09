@@ -69,20 +69,15 @@ class Home(QWidget, Ui_Home):
     def setZoomFactor(self, factor=None):
         i = self.userStacked.currentIndex()
         btn = self.menu.itemAt(i).widget()
-        if factor == None:
-            btn.browser.setZoomFactor(1.0)
-        else:
-            btn.browser.setZoomFactor(btn.browser.zoomFactor()+factor)
+        btn.setZoomFactor(factor)
+
+    def saveSettings(self):
+        for i in range(self.menu.count()):
+            btn = self.menu.itemAt(i).widget()
+            btn.saveSettings()
 
     def delUserPage(self, user):
-        """
-        1 - desativar o browser
-        2 - remover do banco
-        3 - remover pasta
-        """
-        # quando fecha a janela volta as pastas
-        # acredito que seja algo relacionado ao id_page userStacked
-        # continuam sendo carregados mesmo após a exclusão
+        # quando fecha a janela volta as pastas, pois há um delay ao encerrar a page.
         try:
             # Pega o UserContainer do usuário
             return_btn = self.getUserContainer(user.id)
