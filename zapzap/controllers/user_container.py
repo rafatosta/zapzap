@@ -32,6 +32,7 @@ class UserContainer(QPushButton):
         self.setMaximumSize(QSize(30, 30))
 
         self.browser = Browser(user.id, self)
+        self.browser.doReload()
 
         self.setIcon(getImageQIcon(svg_str=user.icon))
         self.setStyleSheet(self.styleSheet_normal)
