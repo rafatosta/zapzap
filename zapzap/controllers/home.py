@@ -67,12 +67,12 @@ class Home(QWidget, Ui_Home):
             btn.browser.whats.setTheme(isNight_mode)
 
     def setZoomFactor(self, factor=None):
-        for i in range(self.menu.count()):
-            btn = self.menu.itemAt(i).widget()
-            if factor == None:
-                btn.browser.setZoomFactor(1.0)
-            else:
-                btn.browser.setZoomFactor(btn.browser.zoomFactor()+factor)
+        i = self.userStacked.currentIndex()
+        btn = self.menu.itemAt(i).widget()
+        if factor == None:
+            btn.browser.setZoomFactor(1.0)
+        else:
+            btn.browser.setZoomFactor(btn.browser.zoomFactor()+factor)
 
     def delUserPage(self, user):
         """

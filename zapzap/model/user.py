@@ -2,14 +2,12 @@ from zapzap.model.db import connect_db
 
 
 class User():
-    def __init__(self, id='', name='', icon='', enable=True) -> None:
+    def __init__(self, id='', name='', icon='', enable=True, zoomFactor=1.0) -> None:
         self.id = id
         self.name = name
         self.icon = icon
         self.enable = enable
-
-    def data(self):
-        return [self.name, self.icon]
+        self.zoomFactor = zoomFactor
 
 
 class UserDAO():
@@ -24,6 +22,7 @@ class UserDAO():
                 "name" TEXT NOT NULL,
                 "icon" TEXT,
                 "enable" INTEGER DEFAULT 1,
+                "zoomFactor" REAL DEFAULT 1.0,
                 PRIMARY KEY("id" AUTOINCREMENT)
             );
             """)
@@ -38,7 +37,7 @@ class UserDAO():
             conn = connect_db()
             cursor = conn.cursor()
             SQL = """INSERT INTO users (name, icon) VALUES (?,?);"""
-            cursor.execute(SQL, user.data())
+            cursor.execute(SQL, [user.name, user.icon])
             conn.commit()
         except Exception as e:
             print(e)
@@ -53,11 +52,9 @@ class UserDAO():
         try:
             conn = connect_db()
             cursor = conn.cursor()
-            sql = """UPDATE users SET name=?, icon=?,enable=? WHERE id=?;"""
-            l = user.data()
-            # insere o id no final da lista para ficar igual a sequência do SQL
-            l.append(user.id)
-            cursor.execute(sql, l)
+            sql = """UPDATE users SET name=?,icon=?,enable=?,zoomFactor=? WHERE id=?;"""
+            cursor.execute(sql, [user.name, user.icon,
+                           user.enable, user.zoomFactor, user.id])
             conn.commit()
         except Exception as e:
             print(e)
@@ -73,7 +70,7 @@ class UserDAO():
             cursor.execute(SQL)
             temp_list = cursor.fetchall()
             for i in temp_list:
-                list.append(User(i[0], i[1], i[2], i[3]))
+                list.append(User(i[0], i[1], i[2], i[3], i[4]))
         finally:
             conn.close()
         return list
@@ -85,7 +82,7 @@ class UserDAO():
             SQL = """SELECT * FROM users WHERE id = ?;"""
             cursor.execute(SQL, [id])
             u = cursor.fetchall()[0]
-            return User(u[0], u[1], u[2], u[3])
+            return User(u[0], u[1], u[2], u[3], u[4])
         finally:
             conn.close()
 
