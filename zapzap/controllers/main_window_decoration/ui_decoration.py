@@ -98,9 +98,9 @@ class UIDecoration():
             #self.win.appMargins.setContentsMargins(0,0,0,0)
 
     def resize_grips(self):
-        self.left_grip.setGeometry(0, 5, 5, self.win.height())
+        self.left_grip.setGeometry(0, 8, 8, self.win.height())
         self.right_grip.setGeometry(
-            self.win.width() - 5, 5, 5, self.win.height())
-        self.top_grip.setGeometry(0, 0, self.win.width(), 5)
+            self.win.width() - 8, 8, 8, self.win.height())
+        self.top_grip.setGeometry(0, 0, self.win.width(), 8)
         self.bottom_grip.setGeometry(
-            0, self.win.height() - 5, self.win.width(), 5)
+            0, self.win.height() - 8, self.win.width(), 8)
