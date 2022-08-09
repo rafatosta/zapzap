@@ -36,7 +36,7 @@ class WhatsApp(QWebEnginePage):
                 }, 100);
 
                  const checkNotify = setInterval(() => {
-                    const classElement = document.evaluate('//*[@id="side"]/span/div/div/div[2]/div[2]/span/span[1]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                    const classElement = document.getElementsByClassName("_1Yy79 _1-SiY")[0];
                     if (classElement != null) {
                         classElement.click()
                         clearInterval(checkNotify);
