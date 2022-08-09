@@ -15,7 +15,7 @@ class UIDecoration():
         self.uiDefinitions()
         self.headDefinitions()
 
-        self.win.appMargins.setContentsMargins(8,8,8,8)
+        self.win.appMargins.setContentsMargins(10,10,10,10)
 
     def uiDefinitions(self):
         # Duplo click na headbar

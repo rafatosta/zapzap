@@ -560,7 +560,7 @@ def buildTheme(p) -> str:
             border-radius: 12px;
         }
         #appMargins{
-            border-image: url({path}/border.svg);
+            border-image: url({path}/border.png);
         }
         #app {	
             background-color: {window};
