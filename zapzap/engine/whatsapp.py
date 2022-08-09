@@ -1,6 +1,6 @@
 from PyQt6.QtCore import QEvent, Qt, QUrl, QSettings
 from PyQt6.QtGui import QDesktopServices
-from PyQt6.QtWebEngineCore import QWebEnginePage
+from PyQt6.QtWebEngineCore import QWebEnginePage  # , QWebEngineScript
 from PyQt6.QtWidgets import QApplication
 from zapzap import __whatsapp_url__, __appname__
 from zapzap.services.dbus_theme import get_system_theme
@@ -45,6 +45,11 @@ class WhatsApp(QWebEnginePage):
                     }
                 }, 100);
             """)
+
+            script = 'document.addEventListener("wheel",function(a){a.ctrlKey&&(a.preventDefault(),a.stopPropagation(),window.scrollBy(a.deltaX,a.deltaY))},{passive:!1});'
+            self.runJavaScript(script)
+
+            #self.runJavaScript(script,QWebEngineScript.ScriptWorldId.MainWorld, callback)
 
             settings = QSettings(__appname__, __appname__, self)
             theme_mode = settings.value("system/theme", 'auto', str)
