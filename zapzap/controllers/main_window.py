@@ -94,7 +94,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def reload_Service(self):
         """Refreshing the page"""
-        # self.browser.doReload()
+        self.zapHome.reloadPage()
 
     def openTraySettings(self):
         if self.app.activeWindow() == None:  # Se a janela estiver em foco será escondida
