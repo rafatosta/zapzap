@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <filter id="gaussian-blur-filter-0" color-interpolation-filters="sRGB" x="-500%" y="-500%" width="1000%" height="1000%" bx:preset="gaussian-blur 1 5">
+      <feGaussianBlur stdDeviation="5 5" edgeMode="none"/>
+    </filter>
+  </defs>
+  <rect width="480" height="480" style="fill: rgb(18, 18, 18); filter: url(#gaussian-blur-filter-0);" rx="11.745" ry="11.745" y="8.389" x="11.745"/>
+</svg>
