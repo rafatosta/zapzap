@@ -564,7 +564,7 @@ def buildTheme(p) -> str:
         }
         #app {	
             background-color: {window};
-            border: 1px solid rgba(0, 0, 0,0.2); 
+            border: 1px solid {frame_border}; 
             border-radius: 12px;
         }
         #headbar{	
