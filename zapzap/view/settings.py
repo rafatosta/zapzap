@@ -803,7 +803,7 @@ class Ui_Settings(object):
         self.scrollArea_6.setWidgetResizable(True)
         self.scrollArea_6.setObjectName("scrollArea_6")
         self.usersScrollArea = QtWidgets.QWidget()
-        self.usersScrollArea.setGeometry(QtCore.QRect(0, 0, 290, 68))
+        self.usersScrollArea.setGeometry(QtCore.QRect(0, 0, 832, 659))
         self.usersScrollArea.setObjectName("usersScrollArea")
         self.verticalLayout_26 = QtWidgets.QVBoxLayout(self.usersScrollArea)
         self.verticalLayout_26.setObjectName("verticalLayout_26")
@@ -855,8 +855,17 @@ class Ui_Settings(object):
         self.btnNewUser.setObjectName("btnNewUser")
         self.horizontalLayout_4.addWidget(self.btnNewUser)
         self.content_users.addLayout(self.horizontalLayout_4)
+        self.label_limiteUser = QtWidgets.QLabel(self.usersScrollArea)
+        self.label_limiteUser.setEnabled(True)
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setItalic(True)
+        self.label_limiteUser.setFont(font)
+        self.label_limiteUser.setStyleSheet("color: rgb(224, 27, 36);")
+        self.label_limiteUser.setObjectName("label_limiteUser")
+        self.content_users.addWidget(self.label_limiteUser)
         self.usersList = QtWidgets.QVBoxLayout()
-        self.usersList.setContentsMargins(-1, -1, -1, 0)
+        self.usersList.setContentsMargins(-1, 0, -1, 0)
         self.usersList.setSpacing(10)
         self.usersList.setObjectName("usersList")
         self.content_users.addLayout(self.usersList)
@@ -872,7 +881,7 @@ class Ui_Settings(object):
         self.horizontalLayout_2.addWidget(self.settings_stacked)
 
         self.retranslateUi(Settings)
-        self.settings_stacked.setCurrentIndex(4)
+        self.settings_stacked.setCurrentIndex(5)
         QtCore.QMetaObject.connectSlotsByName(Settings)
 
     def retranslateUi(self, Settings):
@@ -923,6 +932,7 @@ class Ui_Settings(object):
         self.btn_report.setText(_("Report issue..."))
         self.label_7.setText(_("User Management"))
         self.btnNewUser.setText(_("New User"))
+        self.label_limiteUser.setText(_("Users limit reached (9 in total)"))
 
 
 if __name__ == "__main__":

@@ -13,6 +13,9 @@ from zapzap.view.settings import Ui_Settings
 
 
 class Settings(QWidget, Ui_Settings):
+
+    LIMITE_USERS = 9
+
     def __init__(self, parent=None):
         super(Settings, self).__init__()
         self.setupUi(self)
@@ -36,9 +39,16 @@ class Settings(QWidget, Ui_Settings):
             self.usersList.addWidget(CardUser(user=user))
 
     def updateUsersShortcuts(self):
-        for i in range(self.usersList.count()):
+        count = self.usersList.count()
+        for i in range(count):
             card = self.usersList.itemAt(i).widget()
             card.key.setText(f'Ctrl+{i+1}')
+
+        if count == self.LIMITE_USERS:
+            self.label_limiteUser.show()
+        else:
+
+            self.label_limiteUser.hide()
 
     def loadDonations(self):
         self.btn_paypal.setIcon(
@@ -120,14 +130,16 @@ class Settings(QWidget, Ui_Settings):
         self.goPageHome()
 
     def newUserbuttonClick(self):
-        # Cria o usuário
-        user = User(name= f'User {self.usersList.count()+1}', icon=getNewIconSVG())
-        # insere no banco de dados e recebe o user com o ID
-        user = UserDAO.add(user)
-        # Insere  o card
-        self.usersList.addWidget(CardUser(user=user))
-        # Informa ao mainWindow a criação do usuário
-        self.mainWindow.emitNewUser(user)
+        if self.usersList.count() < self.LIMITE_USERS:
+            # Cria o usuário
+            user = User(
+                name=f'User {self.usersList.count()+1}', icon=getNewIconSVG())
+            # insere no banco de dados e recebe o user com o ID
+            user = UserDAO.add(user)
+            # Insere  o card
+            self.usersList.addWidget(CardUser(user=user))
+            # Informa ao mainWindow a criação do usuário
+            self.mainWindow.emitNewUser(user)
 
     def goPageHome(self):
         self.settings_stacked.setCurrentIndex(5)

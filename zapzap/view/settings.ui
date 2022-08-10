@@ -284,7 +284,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>4</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2131,8 +2131,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>290</width>
-            <height>68</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_26">
@@ -2241,9 +2241,31 @@
                 </layout>
                </item>
                <item>
+                <widget class="QLabel" name="label_limiteUser">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <italic>true</italic>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(224, 27, 36);</string>
+                 </property>
+                 <property name="text">
+                  <string>Users limit reached (9 in total)</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <layout class="QVBoxLayout" name="usersList">
                  <property name="spacing">
                   <number>10</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
                  </property>
                  <property name="bottomMargin">
                   <number>0</number>
