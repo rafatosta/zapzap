@@ -16,6 +16,7 @@ class Home(QWidget, Ui_Home):
         self.mainWindow = parent
         self.loadUsers()
         self.activeMenu()
+        self.setShortcuts()
 
     def loadUsers(self):
         self.list = UserDAO.select()
@@ -23,6 +24,11 @@ class Home(QWidget, Ui_Home):
             button = UserContainer(self, user)
             self.menu.addWidget(button)
             self.userStacked.addWidget(button.getBrowser())
+
+    def setShortcuts(self):
+        for i in range(self.userStacked.count()):
+            btn = self.menu.itemAt(i).widget()
+            btn.setShortcut(f'Ctrl+{i+1}')
 
     def addNewUser(self, user):
         self.list.append(user)

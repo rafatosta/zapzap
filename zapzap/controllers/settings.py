@@ -35,6 +35,11 @@ class Settings(QWidget, Ui_Settings):
         for user in list:
             self.usersList.addWidget(CardUser(user=user))
 
+    def updateUsersShortcuts(self):
+        for i in range(self.usersList.count()):
+            card = self.usersList.itemAt(i).widget()
+            card.key.setText(f'Ctrl+{i+1}')
+
     def loadDonations(self):
         self.btn_paypal.setIcon(
             QIcon(zapzap.abs_path+'/assets/icons/banners/PayPal.png'))

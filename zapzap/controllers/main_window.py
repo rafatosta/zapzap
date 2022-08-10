@@ -34,6 +34,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # create pages
         self.zapHome = Home(self)
         self.zapSettings = Settings(self)
+        self.zapSettings.updateUsersShortcuts()
 
         # Insert pages in main window
         self.main_stacked.insertWidget(0, self.zapHome)
@@ -50,10 +51,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def emitNewUser(self, user):
         print('Novo usuário, id:', user.id)
         self.zapHome.addNewUser(user)
+        self.zapHome.setShortcuts()
+        self.zapSettings.updateUsersShortcuts()
 
     def emitDeleteUser(self, user):
         print('Usuário a ser removido, id:', user.id)
         self.zapHome.delUserPage(user)
+        self.zapHome.setShortcuts()
+        self.zapSettings.updateUsersShortcuts()
 
     def emitDisableUser(self, user):
         print('Usuário desabilitado, id:', user.id)

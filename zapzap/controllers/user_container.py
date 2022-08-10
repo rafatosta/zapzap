@@ -36,8 +36,10 @@ class UserContainer(QPushButton):
         self.browser.setZoomFactor(user.zoomFactor)
         self.browser.doReload()
 
+        self.setToolTip(self.user.name)
         self.setIcon(getImageQIcon(svg_str=user.icon))
         self.setStyleSheet(self.styleSheet_normal)
+
         self.clicked.connect(self.click)
 
     def showIconNotification(self, qtd):
@@ -45,6 +47,8 @@ class UserContainer(QPushButton):
         self.setIcon(getImageQIcon(svg_str=self.user.icon, qtd=qtd))
         mainWindow = QApplication.instance().getWindow()
         mainWindow.emitNotifications()
+        self.setToolTip(f'{self.user.name} ({qtd})' if qtd >
+                        0 else self.user.name)
 
     def click(self):
         self.home.resetStyle()

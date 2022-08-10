@@ -46,5 +46,6 @@ class CardUser(QWidget, Ui_CardUser):
             self.load()
         if btnName == 'btnDelete':
             print('btnDelete')
+            self.setParent(None)
             mainWindow.emitDeleteUser(self.user)
-            self.close()
+            
