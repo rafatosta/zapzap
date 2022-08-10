@@ -138,6 +138,9 @@
          </item>
          <item>
           <widget class="QPushButton" name="btn_users">
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
            <property name="text">
             <string>User Management</string>
            </property>
@@ -313,8 +316,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>832</width>
-            <height>659</height>
+            <width>644</width>
+            <height>572</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_16">
@@ -669,8 +672,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>832</width>
-            <height>659</height>
+            <width>642</width>
+            <height>369</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1305,8 +1308,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>832</width>
-            <height>659</height>
+            <width>642</width>
+            <height>244</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1540,8 +1543,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>832</width>
-            <height>659</height>
+            <width>642</width>
+            <height>264</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_30">
@@ -2128,8 +2131,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>832</width>
-            <height>659</height>
+            <width>290</width>
+            <height>68</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_26">
