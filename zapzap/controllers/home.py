@@ -16,7 +16,7 @@ class Home(QWidget, Ui_Home):
         self.mainWindow = parent
         self.loadUsers()
         self.activeMenu()
-        self.setShortcuts()
+        self.updateShortcuts()
 
     def loadUsers(self):
         self.list = UserDAO.select()
@@ -25,7 +25,7 @@ class Home(QWidget, Ui_Home):
             self.menu.addWidget(button)
             self.userStacked.addWidget(button.getBrowser())
 
-    def setShortcuts(self):
+    def updateShortcuts(self):
         for i in range(self.userStacked.count()):
             btn = self.menu.itemAt(i).widget()
             btn.setShortcut(f'Ctrl+{i+1}')
@@ -37,6 +37,7 @@ class Home(QWidget, Ui_Home):
         self.userStacked.addWidget(button.getBrowser())
 
         self.activeMenu()
+        self.updateShortcuts()
 
     def activeMenu(self):
         if len(self.list) > 1:
@@ -67,15 +68,15 @@ class Home(QWidget, Ui_Home):
             qtd += btn.qtd
         return qtd
 
-    def setThemeContainers(self, isNight_mode):
+    def setThemePages(self, isNight_mode):
         for i in range(self.menu.count()):
             btn = self.menu.itemAt(i).widget()
-            btn.browser.whats.setTheme(isNight_mode)
+            btn.setThemePage(isNight_mode)
 
     def setZoomFactor(self, factor=None):
         i = self.userStacked.currentIndex()
         btn = self.menu.itemAt(i).widget()
-        btn.setZoomFactor(factor)
+        btn.setZoomFactorPage(factor)
 
     def saveSettings(self):
         for i in range(self.menu.count()):
@@ -83,7 +84,7 @@ class Home(QWidget, Ui_Home):
             btn.saveSettings()
 
     def reloadPage(self):
-        self.userStacked.currentWidget().doReload()
+        self.userStacked.currentWidget().doReloadPage()
 
     def delUserPage(self, user):
         # quando fecha a janela volta as pastas, pois há um delay ao encerrar a page.
@@ -120,3 +121,4 @@ class Home(QWidget, Ui_Home):
             print("% s removed successfully" % path)
         finally:
             self.activeMenu()
+            self.updateShortcuts()

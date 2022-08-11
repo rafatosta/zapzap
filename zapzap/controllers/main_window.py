@@ -51,13 +51,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def emitNewUser(self, user):
         print('Novo usuário, id:', user.id)
         self.zapHome.addNewUser(user)
-        self.zapHome.setShortcuts()
         self.zapSettings.updateUsersShortcuts()
 
     def emitDeleteUser(self, user):
         print('Usuário a ser removido, id:', user.id)
         self.zapHome.delUserPage(user)
-        self.zapHome.setShortcuts()
         self.zapSettings.updateUsersShortcuts()
 
     def emitDisableUser(self, user):
@@ -95,7 +93,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.app.setStyleSheet(getThemeLight())
 
         # Apply equivalent theme on whatsapp page
-        self.zapHome.setThemeContainers(isNight_mode)
+        self.zapHome.setThemePages(isNight_mode)
 
     def reload_Service(self):
         """Refreshing the page"""

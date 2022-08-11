@@ -32,6 +32,8 @@ class UserContainer(QPushButton):
         self.setMinimumSize(QSize(30, 30))
         self.setMaximumSize(QSize(30, 30))
 
+        #self.browser = QPushButton('tste')
+
         self.browser = Browser(user.id, self)
         self.browser.setZoomFactor(user.zoomFactor)
         self.browser.doReload()
@@ -60,16 +62,23 @@ class UserContainer(QPushButton):
 
     def closeBrowser(self):
         self.browser.stop()
+        self.browser = None
+
+    def doReloadPage(self):
+        self.browser.doReload()
 
     def saveSettings(self):
         self.user.zoomFactor = self.browser.zoomFactor()
         UserDAO.update(self.user)
 
-    def setZoomFactor(self, factor=None):
+    def setZoomFactorPage(self, factor=None):
         if factor == None:
             self.browser.setZoomFactor(1.0)
         else:
             self.browser.setZoomFactor(self.browser.zoomFactor()+factor)
+
+    def setThemePage(self, isNight_mode):
+        self.browser.whats.setTheme(isNight_mode)
 
     ## EVENTS ##
 
