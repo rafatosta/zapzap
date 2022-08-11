@@ -26,9 +26,12 @@ class Home(QWidget, Ui_Home):
             self.userStacked.addWidget(button.getBrowser())
 
     def updateShortcuts(self):
+        cont = 1
         for i in range(self.userStacked.count()):
             btn = self.menu.itemAt(i).widget()
-            btn.setShortcut(f'Ctrl+{i+1}')
+            if btn.user.enable:
+                btn.setShortcut(f'Ctrl+{cont}')
+                cont += 1
 
     def addNewUser(self, user):
         self.list.append(user)
@@ -88,9 +91,16 @@ class Home(QWidget, Ui_Home):
         btn = self.menu.itemAt(i).widget()
         btn.doReloadPage()
 
-    def delUserPage(self, user):
-        # quando fecha a janela volta as pastas, pois há um delay ao encerrar a page.
-        try:
+    def disableUserPage(self, user):
+        if user.enable:
+            self.list.append(user)
+            button = UserContainer(self, user)
+            self.menu.addWidget(button)
+            self.userStacked.addWidget(button.getBrowser())
+
+            self.activeMenu()
+            self.updateShortcuts()
+        else:
             # Pega o UserContainer do usuário
             return_btn = self.getUserContainer(user.id)
             btn = return_btn[0]
@@ -104,6 +114,35 @@ class Home(QWidget, Ui_Home):
 
             # Encerra o Browser
             btn.closeBrowser()
+
+            # Atualiza do banco de dados
+            UserDAO.update(user)
+
+            # deleta da lista
+            for u in self.list:
+                if u.id == user.id:
+                    self.list.remove(u)
+
+            self.activeMenu()
+            self.updateShortcuts()
+
+    def delUserPage(self, user):
+        # quando fecha a janela volta as pastas, pois há um delay ao encerrar a page.
+        try:
+            if user.enable:
+                # Pega o UserContainer do usuário
+                return_btn = self.getUserContainer(user.id)
+                btn = return_btn[0]
+                id_btn = return_btn[1]
+
+                # remove (deixa oculto pelo menos)
+                self.userStacked.removeWidget(btn.browser)
+
+                # remove o ícone do menu
+                self.menu.itemAt(id_btn).widget().setParent(None)
+
+                # Encerra o Browser
+                btn.closeBrowser()
 
             # deleta do banco de dados
             UserDAO.delete(user.id)

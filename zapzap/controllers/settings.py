@@ -34,15 +34,19 @@ class Settings(QWidget, Ui_Settings):
             for i in reversed(range(self.usersList.count())):
                 self.usersList.itemAt(i).widget().setParent(None)
         clear()"""
-        list = UserDAO.select()
+        list = UserDAO.select(False)
         for user in list:
             self.usersList.addWidget(CardUser(user=user))
 
     def updateUsersShortcuts(self):
-        count = self.usersList.count()
-        for i in range(count):
+        count = 1
+        for i in range(self.usersList.count()):
             card = self.usersList.itemAt(i).widget()
-            card.key.setText(f'Ctrl+{i+1}')
+            if card.user.enable:
+                card.key.setText(f'Ctrl+{count}')
+                count += 1
+            else:
+                card.key.setText('')
 
         if count == self.LIMITE_USERS:
             self.label_limiteUser.show()

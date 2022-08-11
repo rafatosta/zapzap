@@ -61,6 +61,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def emitDisableUser(self, user):
         print('Usuário desabilitado, id:', user.id)
         self.zapHome.disableUserPage(user)
+        self.zapSettings.updateUsersShortcuts()
 
     def emitNotifications(self):
         qtd = self.zapHome.getSizeNotifications()

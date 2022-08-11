@@ -32,8 +32,6 @@ class UserContainer(QPushButton):
         self.setMinimumSize(QSize(30, 30))
         self.setMaximumSize(QSize(30, 30))
 
-        #self.browser = QPushButton('tste')
-
         self.browser = Browser(user.id, self)
         self.browser.setZoomFactor(user.zoomFactor)
         self.browser.doReload()

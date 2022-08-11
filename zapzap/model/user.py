@@ -61,12 +61,15 @@ class UserDAO():
         finally:
             conn.close()
 
-    def select():
+    def select(enable=True):
         list = []
         try:
             conn = connect_db()
             cursor = conn.cursor()
-            SQL = """SELECT * FROM users;"""
+            if enable:
+                SQL = """SELECT * FROM users WHERE enable=true;"""
+            else:
+                SQL = """SELECT * FROM users;"""
             cursor.execute(SQL)
             temp_list = cursor.fetchall()
             for i in temp_list:
