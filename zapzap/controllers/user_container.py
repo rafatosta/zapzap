@@ -60,6 +60,7 @@ class UserContainer(QPushButton):
 
     def closeBrowser(self):
         self.browser.stop()
+        self.browser.close()
         self.browser = None
 
     def doReloadPage(self):
