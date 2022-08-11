@@ -9,6 +9,8 @@ __pycache__/
 # Flatpak
 .flatpak-builder
 repo
+export
+
 
 # Qt_for_python
 .qt_for_python
