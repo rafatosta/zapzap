@@ -84,7 +84,9 @@ class Home(QWidget, Ui_Home):
             btn.saveSettings()
 
     def reloadPage(self):
-        self.userStacked.currentWidget().doReloadPage()
+        i = self.userStacked.currentIndex()
+        btn = self.menu.itemAt(i).widget()
+        btn.doReloadPage()
 
     def delUserPage(self, user):
         # quando fecha a janela volta as pastas, pois há um delay ao encerrar a page.
