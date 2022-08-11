@@ -52,12 +52,14 @@ class Browser(QWebEngineView):
         self.settings().setAttribute(
             QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, True)
 
+        self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
+
         # Sinal para mudança de título
         self.titleChanged.connect(self.title_changed)
 
         self.list_ignore = ['Back', 'View page source', 'Save page',
                             'Forward', 'Open link in new tab', 'Save link',
-                            'Copy link address', 'Open link in new window', 'Paste and match style','Reload']
+                            'Copy link address', 'Open link in new window', 'Paste and match style', 'Reload']
         self.items_menu = {
             'Undo': _('Undo'),
             'Redo': _('Redo'),
@@ -114,7 +116,7 @@ class Browser(QWebEngineView):
             qtd = int(num)
         except:
             qtd = 0
-            
+
         self.parent.showIconNotification(qtd)
 
     def show_notification(self, notification):

@@ -28,6 +28,7 @@ class Home(QWidget, Ui_Home):
     def updateShortcuts(self):
         cont = 1
         for i in range(self.userStacked.count()):
+            print(i)
             btn = self.menu.itemAt(i).widget()
             if btn.user.enable:
                 btn.setShortcut(f'Ctrl+{cont}')
@@ -106,11 +107,11 @@ class Home(QWidget, Ui_Home):
             btn = return_btn[0]
             id_btn = return_btn[1]
 
-            # remove (deixa oculto pelo menos)
-            self.userStacked.removeWidget(btn.browser)
-
             # remove o ícone do menu
             self.menu.itemAt(id_btn).widget().setParent(None)
+
+            # remove (deixa oculto pelo menos)
+            self.userStacked.removeWidget(btn.getBrowser())
 
             # Encerra o Browser
             btn.closeBrowser()
@@ -127,7 +128,6 @@ class Home(QWidget, Ui_Home):
             self.updateShortcuts()
 
     def delUserPage(self, user):
-        # quando fecha a janela volta as pastas, pois há um delay ao encerrar a page.
         try:
             if user.enable:
                 # Pega o UserContainer do usuário
