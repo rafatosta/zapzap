@@ -15,7 +15,7 @@ finish-args:
   - "--share=network"
   - "--device=all"
   - "--device=dri"
-  - "--filesystem=host:ro"
+  - "--filesystem=host"
   - "--filesystem=xdg-download"
   - "--filesystem=xdg-config/autostart:create"
   - "--talk-name=org.kde.StatusNotifierWatcher"
