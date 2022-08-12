@@ -49,21 +49,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setZapDecoration()
 
     def emitNewUser(self, user):
-        print('Novo usuário, id:', user.id)
+        """Function called by the setting panel when ADDING new user."""
         self.zapHome.addNewUser(user)
         self.zapSettings.updateUsersShortcuts()
 
     def emitDeleteUser(self, user):
-        print('Usuário a ser removido, id:', user.id)
+        """Function called by the setting panel when DELETE user."""
         self.zapHome.delUserPage(user)
         self.zapSettings.updateUsersShortcuts()
 
     def emitDisableUser(self, user):
-        print('Usuário desabilitado, id:', user.id)
+        """Function called by the setting panel when DISABLE/ENABLE user. """
         self.zapHome.disableUserPage(user)
         self.zapSettings.updateUsersShortcuts()
 
     def emitNotifications(self):
+        """The notifications of all users to the tray"""
         qtd = self.zapHome.getSizeNotifications()
 
         if qtd > 0:
@@ -74,6 +75,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.tray.showIconNotification(qtd)
 
     def setZapDecoration(self):
+        """Activate the personalized window"""
         self.headbar.hide()
         if self.settings.value("system/zap_decoration", True, bool):
             self.scd = UIDecoration(self)
@@ -102,6 +104,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.zapHome.reloadPage()
 
     def openTraySettings(self):
+        """Opens the settings from the tray"""
         if self.app.activeWindow() == None:  # Se a janela estiver em foco será escondida
             self.show()
             self.app.activateWindow()
@@ -154,8 +157,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             "main/windowState", QByteArray()))
 
     def saveSettings(self):
+        """Save Settings"""
         self.settings.setValue("main/geometry", self.saveGeometry())
         self.settings.setValue("main/windowState", self.saveState())
+        # Warns the Home so that users save their settings
         self.zapHome.saveSettings()
 
     def closeEvent(self, event):
@@ -219,6 +224,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.isFullScreen = not self.isFullScreen
 
     def setHideMenuBar(self):
+        """Hides/Shows the menu bar in the system window"""
         if self.settings.value("system/zap_decoration", True, bool):
             self.menubar.setMaximumHeight(0)
         else:

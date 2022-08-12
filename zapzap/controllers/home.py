@@ -8,6 +8,11 @@ import zapzap
 
 
 class Home(QWidget, Ui_Home):
+    """
+    The Home Class manages the user bar and users' pages.
+    The sidebar consists of custom qpushbutton and pages within a QSTackedwidget, 
+    both with the same position.
+    """
     list = None
 
     def __init__(self, parent=None):
@@ -19,6 +24,7 @@ class Home(QWidget, Ui_Home):
         self.updateShortcuts()
 
     def loadUsers(self):
+        """Carries all users from the database"""
         self.list = UserDAO.select()
         for user in self.list:
             button = UserContainer(self, user)
@@ -26,6 +32,7 @@ class Home(QWidget, Ui_Home):
             self.userStacked.addWidget(button.getBrowser())
 
     def updateShortcuts(self):
+        """Updates access shortcuts to users"""
         cont = 1
         for i in range(self.userStacked.count()):
             print(i)
@@ -35,6 +42,7 @@ class Home(QWidget, Ui_Home):
                 cont += 1
 
     def addNewUser(self, user):
+        """Add new user to the list, in the container (menu button) and the page at Stacked"""
         self.list.append(user)
         button = UserContainer(self, user)
         self.menu.addWidget(button)
@@ -44,6 +52,7 @@ class Home(QWidget, Ui_Home):
         self.updateShortcuts()
 
     def activeMenu(self):
+        """Activate the menu only for more than one user"""
         if len(self.list) > 1:
             self.menuUsers.show()
             self.menu.itemAt(0).widget().selected()
@@ -51,14 +60,17 @@ class Home(QWidget, Ui_Home):
             self.menuUsers.hide()
 
     def resetStyle(self):
+        """Restart the style of the user icons"""
         for i in reversed(range(self.menu.count())):
             ub = self.menu.itemAt(i).widget()
             ub.unselected()
 
     def setPage(self, browser):
+        """Defines the page to be shown"""
         self.userStacked.setCurrentWidget(browser)
 
     def getUserContainer(self, idUser):
+        """Take the container from the user ID"""
         for i in range(self.menu.count()):
             btn = self.menu.itemAt(i).widget()
             if btn.user.id == idUser:
@@ -66,6 +78,7 @@ class Home(QWidget, Ui_Home):
         return None
 
     def getSizeNotifications(self) -> int:
+        """Sum the notifications of all users"""
         qtd = 0
         for i in range(self.menu.count()):
             btn = self.menu.itemAt(i).widget()
@@ -73,26 +86,34 @@ class Home(QWidget, Ui_Home):
         return qtd
 
     def setThemePages(self, isNight_mode):
+        """Define or theme for all pages page"""
         for i in range(self.menu.count()):
             btn = self.menu.itemAt(i).widget()
             btn.setThemePage(isNight_mode)
 
     def setZoomFactor(self, factor=None):
+        """Current page zoom
+            - Factor=None -> default (1.0).
+            - factor:int -> Increases to the current value"""
         i = self.userStacked.currentIndex()
         btn = self.menu.itemAt(i).widget()
         btn.setZoomFactorPage(factor)
 
     def saveSettings(self):
+        """Save settings all users"""
         for i in range(self.menu.count()):
             btn = self.menu.itemAt(i).widget()
             btn.saveSettings()
 
     def reloadPage(self):
+        """Current page recharge"""
         i = self.userStacked.currentIndex()
         btn = self.menu.itemAt(i).widget()
         btn.doReloadPage()
 
     def disableUserPage(self, user):
+        """Disable user"""
+        # If enabled, remove from stacked
         if user.enable:
             self.list.append(user)
             button = UserContainer(self, user)
@@ -102,24 +123,24 @@ class Home(QWidget, Ui_Home):
             self.activeMenu()
             self.updateShortcuts()
         else:
-            # Pega o UserContainer do usuário
+            # Get UserContainer
             return_btn = self.getUserContainer(user.id)
             btn = return_btn[0]
             id_btn = return_btn[1]
 
-            # remove o ícone do menu
-            self.menu.itemAt(id_btn).widget().setParent(None)
-
-            # remove (deixa oculto pelo menos)
+            # Remove of userStacked
             self.userStacked.removeWidget(btn.getBrowser())
 
-            # Encerra o Browser
+            # Remove icon of menu
+            self.menu.itemAt(id_btn).widget().setParent(None)
+
+            # Close browser
             btn.closeBrowser()
 
-            # Atualiza do banco de dados
+            # Update DB
             UserDAO.update(user)
 
-            # deleta da lista
+            # Delete user list
             for u in self.list:
                 if u.id == user.id:
                     self.list.remove(u)
@@ -128,31 +149,32 @@ class Home(QWidget, Ui_Home):
             self.updateShortcuts()
 
     def delUserPage(self, user):
+        """Delete user"""
         try:
             if user.enable:
-                # Pega o UserContainer do usuário
+                # Get UserContainer
                 return_btn = self.getUserContainer(user.id)
                 btn = return_btn[0]
                 id_btn = return_btn[1]
 
-                # remove (deixa oculto pelo menos)
+                # Remove of userStacked
                 self.userStacked.removeWidget(btn.browser)
 
-                # remove o ícone do menu
+                # Remove icon of menu
                 self.menu.itemAt(id_btn).widget().setParent(None)
 
-                # Encerra o Browser
+                # Close browser
                 btn.closeBrowser()
 
-            # deleta do banco de dados
+            # Delete DB
             UserDAO.delete(user.id)
 
-            # deleta da lista
+            # Delete user list
             for u in self.list:
                 if u.id == user.id:
                     self.list.remove(u)
 
-            # Apaga pasta de cache do usuário
+            # Delete User Data
             path = os.path.join(zapzap.path_storage, str(user.id))
             shutil.rmtree(path, ignore_errors=True)
         except OSError as error:
