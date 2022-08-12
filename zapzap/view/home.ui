@@ -33,7 +33,7 @@
     <widget class="QFrame" name="menuUsers">
      <property name="minimumSize">
       <size>
-       <width>30</width>
+       <width>40</width>
        <height>0</height>
       </size>
      </property>
@@ -63,7 +63,11 @@
        <number>0</number>
       </property>
       <item>
-       <layout class="QVBoxLayout" name="menu"/>
+       <layout class="QVBoxLayout" name="menu">
+        <property name="spacing">
+         <number>8</number>
+        </property>
+       </layout>
       </item>
      </layout>
     </widget>

@@ -11,13 +11,13 @@ class UserContainer(QPushButton):
 
     styleSheet_normal = """
     QPushButton {	
-       qproperty-iconSize: 20px;
+       qproperty-iconSize: 30px;
     }
     """
 
     styleSheet_hover = """
     QPushButton {	
-       qproperty-iconSize: 30px;
+       qproperty-iconSize: 40px;
     }
     """
 
@@ -29,8 +29,8 @@ class UserContainer(QPushButton):
         self.qtd = 0
 
         self.setFlat(True)
-        self.setMinimumSize(QSize(30, 30))
-        self.setMaximumSize(QSize(30, 30))
+        self.setMinimumSize(QSize(40, 40))
+        self.setMaximumSize(QSize(40, 40))
 
         self.browser = Browser(user.id, self)
         self.browser.setZoomFactor(user.zoomFactor)
