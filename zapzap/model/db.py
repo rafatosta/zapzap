@@ -19,4 +19,4 @@ def createDB():
         # Create table
         user.UserDAO.createTable()
         # Create default user
-        user.UserDAO.add(user.User(name='User 1', icon=SVG_DEFAULT))
+        user.UserDAO.add(user.User(name='', icon=SVG_DEFAULT))

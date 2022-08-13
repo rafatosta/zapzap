@@ -17,14 +17,16 @@ def buildTheme(p) -> str:
             background-color: {window};
         }
 
-        QLineEdit,
-        QKeySequenceEdit{
+        QLineEdit{
             color: {windowText};
             background-color: {window};
             border: 1px solid; 
             border-color: {frame_border};
             border-radius: 5px;
         }
+        QLineEdit:disabled {
+            background-color:{frame_border};
+        }   
 
         #btnDelete {
             color: #F0F2F5;

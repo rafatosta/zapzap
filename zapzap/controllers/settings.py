@@ -137,7 +137,7 @@ class Settings(QWidget, Ui_Settings):
         if self.usersList.count() < self.LIMITE_USERS:
             # Cria o usuário
             user = User(
-                name=f'User {self.usersList.count()+1}', icon=getNewIconSVG())
+                name='', icon=getNewIconSVG())
             # insere no banco de dados e recebe o user com o ID
             user = UserDAO.add(user)
             # Insere  o card

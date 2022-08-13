@@ -35,7 +35,6 @@ class Home(QWidget, Ui_Home):
         """Updates access shortcuts to users"""
         cont = 1
         for i in range(self.userStacked.count()):
-            print(i)
             btn = self.menu.itemAt(i).widget()
             if btn.user.enable:
                 btn.setShortcut(f'Ctrl+{cont}')
@@ -110,6 +109,11 @@ class Home(QWidget, Ui_Home):
         i = self.userStacked.currentIndex()
         btn = self.menu.itemAt(i).widget()
         btn.doReloadPage()
+
+    def editUserPage(self, user):
+        return_btn = self.getUserContainer(user.id)
+        btn = return_btn[0]
+        btn.setUser(user)
 
     def disableUserPage(self, user):
         """Disable user"""

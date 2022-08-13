@@ -63,6 +63,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.zapHome.disableUserPage(user)
         self.zapSettings.updateUsersShortcuts()
 
+    def emitEditUser(self, user):
+        """Function called by the setting panel when EDIT user. """
+        self.zapHome.editUserPage(user)
+
     def emitNotifications(self):
         """The notifications of all users to the tray"""
         qtd = self.zapHome.getSizeNotifications()

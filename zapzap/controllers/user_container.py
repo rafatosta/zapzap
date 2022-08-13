@@ -11,13 +11,23 @@ class UserContainer(QPushButton):
 
     styleSheet_normal = """
     QPushButton {	
-       qproperty-iconSize: 30px;
+       qproperty-iconSize: 25px;
+    }
+    QToolTip {
+       color: #F0F2F5;
+       background-color: #202C33;
+       padding:2px;
     }
     """
 
     styleSheet_hover = """
     QPushButton {	
        qproperty-iconSize: 40px;
+    }
+    QToolTip {
+       color: #F0F2F5;
+       background-color: #202C33;
+       padding:2px;
     }
     """
 
@@ -47,13 +57,18 @@ class UserContainer(QPushButton):
         self.setIcon(getImageQIcon(svg_str=self.user.icon, qtd=qtd))
         mainWindow = QApplication.instance().getWindow()
         mainWindow.emitNotifications()
-        self.setToolTip(f'{self.user.name} ({qtd})' if qtd >
+        self.setToolTip(f'{self.user.name} ({self.qtd})' if self.qtd >
                         0 else self.user.name)
 
     def click(self):
         self.home.resetStyle()
         self.home.setPage(self.browser)
         self.selected()
+
+    def setUser(self, user):
+        self.user = user
+        self.setToolTip(f'{self.user.name} ({self.qtd})' if self.qtd >
+                        0 else self.user.name)
 
     def getBrowser(self):
         return self.browser

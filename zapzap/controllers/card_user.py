@@ -18,14 +18,23 @@ class CardUser(QWidget, Ui_CardUser):
             self.btnDisable.clicked.connect(self.buttonClick)
             self.btnDelete.clicked.connect(self.buttonClick)
 
+        self.name.editingFinished.connect(self.editingFinished)
+
         self.loadCard()
+    
+    def editingFinished(self):
+        mainWindow = QApplication.instance().getWindow()
+        self.user.name = self.name.text()
+        mainWindow.emitEditUser(self.user)
 
     def loadCard(self):
         self.name.setText(self.user.name)
         svg = self.user.icon
         if self.user.enable:
+            self.name.setEnabled(True)
             self.btnDisable.setText(_("Disable"))
         else:
+            self.name.setEnabled(False)
             self.btnDisable.setText(_("Enable"))
             svg = svg.format(IMAGE_DISABLE)
         self.icon.setPixmap(getImageQPixmap(svg))
@@ -34,7 +43,6 @@ class CardUser(QWidget, Ui_CardUser):
         btn = self.sender()
         btnName = btn.objectName()
         mainWindow = QApplication.instance().getWindow()
-
         if btnName == 'btnDisable':
             self.user.enable = not self.user.enable
             mainWindow.emitDisableUser(self.user)
