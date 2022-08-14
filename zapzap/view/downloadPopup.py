@@ -49,12 +49,12 @@ class Ui_DownloadPopup(object):
         self.horizontalLayout_5.setContentsMargins(-1, 0, -1, 0)
         self.horizontalLayout_5.setSpacing(15)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        self.pushButton = QtWidgets.QPushButton(self.frame_3)
-        self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout_5.addWidget(self.pushButton)
-        self.pushButton_2 = QtWidgets.QPushButton(self.frame_3)
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.horizontalLayout_5.addWidget(self.pushButton_2)
+        self.open = QtWidgets.QPushButton(self.frame_3)
+        self.open.setObjectName("open")
+        self.horizontalLayout_5.addWidget(self.open)
+        self.saveAs = QtWidgets.QPushButton(self.frame_3)
+        self.saveAs.setObjectName("saveAs")
+        self.horizontalLayout_5.addWidget(self.saveAs)
         self.verticalLayout.addWidget(self.frame_3)
         self.verticalLayout_2.addWidget(self.popupFrame)
         self.verticalLayout_3.addWidget(self.popupContainer)
@@ -66,8 +66,8 @@ class Ui_DownloadPopup(object):
         
         DownloadPopup.setWindowTitle(_("Form"))
         self.label_2.setText(_("What do you want to do with the file?"))
-        self.pushButton.setText(_("Open"))
-        self.pushButton_2.setText(_("Save as"))
+        self.open.setText(_("Open"))
+        self.saveAs.setText(_("Save as"))
 
 
 if __name__ == "__main__":

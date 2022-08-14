@@ -1,11 +1,12 @@
 import os
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest, QWebEngineProfile, QWebEngineSettings
-from PyQt6.QtCore import Qt, QUrl, QStandardPaths, QSettings, QLocale, QSize
-from PyQt6.QtGui import QPainter, QPainter, QImage, QBrush, QPen
+from PyQt6.QtCore import Qt, QUrl, QStandardPaths, QSettings, QLocale, QSize, QUrl
+from PyQt6.QtGui import QPainter, QPainter, QImage, QBrush, QPen, QDesktopServices
 from PyQt6.QtWidgets import QFileDialog
 import zapzap
 from zapzap import __appname__
+from ..controllers.download_popup import DownloadPopup
 from zapzap.engine.whatsapp import WhatsApp
 import zapzap.services.dbus_notify as dbus
 from zapzap.controllers.main_window_components.builder_icon import getIconTray
@@ -84,20 +85,44 @@ class Browser(QWebEngineView):
     def download(self, download):
         """ Download de arquivos """
         if (download.state() == QWebEngineDownloadRequest.DownloadState.DownloadRequested):
-            file, ext = os.path.splitext(download.downloadFileName())
-            path, _ = QFileDialog.getSaveFileName(
-                self, self.tr("Save file"), directory=QStandardPaths.writableLocation(
-                    QStandardPaths.StandardLocation.DownloadLocation), filter='*'+ext)
-            if path:
-                # define a pasta para download. Por padrão é /user/downloads
-                download.setDownloadDirectory(os.path.dirname(path))
-                # Dentro do Flatpak não mostra o nome do arquivo no FileDialog, sendo necessário o usuário digitar o nome do arquivo e,
-                # caso não digite a extensão, será definida a partir do arquivo original.
-                name_file = (path) if ext in path else (path+ext)
-                # Atualiza o nome do arquivo
-                download.setDownloadFileName(os.path.basename(name_file))
-                download.url().setPath(name_file)
-                download.accept()
+            dialog = DownloadPopup()
+            r = dialog.exec_()
+            if r == 1:
+                self.downloadOpenFile(download)
+            elif r == 2:
+                self.downloadFileChooser(download)
+
+    def downloadOpenFile(self, download):
+        fileName = download.downloadFileName()
+        directory = os.path.join(QStandardPaths.writableLocation(
+            QStandardPaths.StandardLocation.DownloadLocation), 'ZapZap Downloads')
+
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        download.setDownloadDirectory(directory)
+        download.setDownloadFileName(os.path.basename(fileName))
+        download.url().setPath(fileName)
+        download.accept()
+        file = os.path.join(directory, fileName)
+
+        QDesktopServices.openUrl(QUrl.fromLocalFile(file))
+
+    def downloadFileChooser(self, download):
+        file, ext = os.path.splitext(download.downloadFileName())
+        path, _ = QFileDialog.getSaveFileName(
+            self, self.tr("Save file"), directory=QStandardPaths.writableLocation(
+                QStandardPaths.StandardLocation.DownloadLocation), filter='*'+ext)
+        if path:
+            # define a pasta para download. Por padrão é /user/downloads
+            download.setDownloadDirectory(os.path.dirname(path))
+            # Dentro do Flatpak não mostra o nome do arquivo no FileDialog, sendo necessário o usuário digitar o nome do arquivo e,
+            # caso não digite a extensão, será definida a partir do arquivo original.
+            name_file = (path) if ext in path else (path+ext)
+            # Atualiza o nome do arquivo
+            download.setDownloadFileName(os.path.basename(name_file))
+            download.url().setPath(name_file)
+            download.accept()
 
     def doReload(self):
         """
