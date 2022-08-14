@@ -49,6 +49,36 @@ def buildTheme(p) -> str:
             border: 2px solid #00A884;
         }
 
+        /* PopUp */
+
+
+        #DownloadPopup {
+            background-color: {windowText};
+            background-clip: border;
+            border-image: none;
+        }
+
+        #DownloadPopup .QPushButton {	
+            border: 1px solid rgba(0, 189, 149,0.5);
+            background-color: rgb(0, 189, 149);
+            border-radius: 5px;
+            font: 12pt;
+            height: 30px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        #DownloadPopup .QPushButton:hover,
+        #DownloadPopup .QPushButton:pressed  {
+            background-color: {highlight};
+            border-color: {highlight};
+        }
+        #popupFrame{
+            background-color: {window};
+            color: {windowText};
+        }
+        
+
     """
 
     QMENU_BAR = """
@@ -624,8 +654,7 @@ def buildTheme(p) -> str:
         #settingsTopBtn,
         #settingsTopBtn_left{
             background-image: url({path_btn_titlebar}/btn_settings.svg);
-        }
-
+        }    
     """
 
     STYLE_SHEET = f"""
