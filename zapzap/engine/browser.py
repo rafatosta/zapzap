@@ -60,14 +60,16 @@ class Browser(QWebEngineView):
 
         self.list_ignore = ['Back', 'View page source', 'Save page',
                             'Forward', 'Open link in new tab', 'Save link',
-                            'Copy link address', 'Open link in new window', 'Paste and match style', 'Reload']
+                            'Copy link address', 'Open link in new window', 'Paste and match style', 'Reload','Copy image address']
         self.items_menu = {
             'Undo': _('Undo'),
             'Redo': _('Redo'),
             'Cut': _('Cut'),
             'Copy': _('Copy'),
             'Paste': _('Paste'),
-            'Select all': _('Select all')
+            'Select all': _('Select all'),
+            'Save image': _('Save image'),
+            'Copy image': _('Copy image'),
         }
 
     def contextMenuEvent(self, event):
