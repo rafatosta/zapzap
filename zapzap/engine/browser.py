@@ -104,9 +104,15 @@ class Browser(QWebEngineView):
         download.setDownloadFileName(os.path.basename(fileName))
         download.url().setPath(fileName)
         download.accept()
-        file = os.path.join(directory, fileName)
 
-        QDesktopServices.openUrl(QUrl.fromLocalFile(file))
+        def openFile(state):
+            """Opens file when the download is over"""
+            if state == QWebEngineDownloadRequest.DownloadState.DownloadCompleted:
+                file = os.path.join(directory, fileName)
+                QDesktopServices.openUrl(QUrl.fromLocalFile(file))
+
+        # This signal is emitted whenever the download's state changes.
+        download.stateChanged.connect(openFile)
 
     def downloadFileChooser(self, download):
         file, ext = os.path.splitext(download.downloadFileName())
