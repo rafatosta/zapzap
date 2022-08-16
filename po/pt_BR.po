@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-15 21:26-0300\n"
+"POT-Creation-Date: 2022-08-15 21:45-0300\n"
 "PO-Revision-Date: 2022-07-22 10:44-0300\n"
 "Last-Translator: Rafael Tosta <rafa.ecomp@gmail.com>\n"
 "Language-Team: Português Brasileiro\n"
@@ -272,7 +272,7 @@ msgstr "Novo"
 
 #: zapzap/view/settings.py:935
 msgid "Users limit reached (9 in total)"
-msgstr ""
+msgstr "Limite de usuários atingido (9 no total)"
 
 #: zapzap/view/card_user.py:92
 msgid "Enter the user name"
