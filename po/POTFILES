@@ -1,6 +1,8 @@
 zapzap/view/main_window.py
+zapzap/view/settings.py
+zapzap/view/card_user.py
+zapzap/view/downloadPopup.py
 zapzap/controllers/main_window_components/tray_icon.py
 zapzap/controllers/main_window.py
 zapzap/controllers/card_user.py
-zapzap/view/settings.py
 zapzap/engine/browser.py

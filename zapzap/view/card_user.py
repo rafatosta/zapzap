@@ -53,6 +53,7 @@ class Ui_CardUser(object):
         font.setBold(False)
         font.setItalic(False)
         self.key.setFont(font)
+        self.key.setText("")
         self.key.setObjectName("key")
         self.gridLayout_2.addWidget(self.key, 1, 0, 1, 1)
         self.horizontalLayout.addLayout(self.gridLayout_2)
@@ -89,7 +90,6 @@ class Ui_CardUser(object):
         
         CardUser.setWindowTitle(_("Form"))
         self.name.setPlaceholderText(_("Enter the user name"))
-        self.key.setText(_("TextLabel"))
         self.btnDisable.setText(_("Disable"))
         self.btnDelete.setText(_("Delete"))
 

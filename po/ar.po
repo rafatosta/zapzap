@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-06 12:54-0300\n"
+"POT-Creation-Date: 2022-08-15 21:26-0300\n"
 "PO-Revision-Date: 2022-07-22 15:18+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
 
-#: zapzap/view/main_window.py:226 zapzap/view/settings.py:916
+#: zapzap/view/main_window.py:226 zapzap/view/settings.py:926
 msgid "ZapZap"
 msgstr "ZapZap"
 
@@ -35,9 +35,8 @@ msgstr "عرض"
 msgid "Help"
 msgstr "مساعدة"
 
-#: zapzap/view/main_window.py:230
+#: zapzap/view/main_window.py:230 zapzap/view/settings.py:890
 #: zapzap/controllers/main_window_components/tray_icon.py:22
-#: zapzap/view/settings.py:880
 msgid "Settings"
 msgstr "الإعدادات"
 
@@ -54,7 +53,7 @@ msgstr "خروج"
 msgid "Ctrl+Q"
 msgstr "Ctrl+Q"
 
-#: zapzap/view/main_window.py:234 zapzap/engine/browser.py:58
+#: zapzap/view/main_window.py:234
 msgid "Reload"
 msgstr "إعادة تحميل"
 
@@ -78,7 +77,7 @@ msgstr "ملء الشاشة"
 msgid "F11"
 msgstr "F11"
 
-#: zapzap/view/main_window.py:240 zapzap/view/settings.py:894
+#: zapzap/view/main_window.py:240 zapzap/view/settings.py:904
 msgid "Hide menu bar"
 msgstr "إخفاء شريط القوائم"
 
@@ -90,11 +89,11 @@ msgstr "Ctrl+M"
 msgid "Learn More"
 msgstr "اقرأ المزيد"
 
-#: zapzap/view/main_window.py:243 zapzap/view/settings.py:921
+#: zapzap/view/main_window.py:243 zapzap/view/settings.py:931
 msgid "Changelog"
 msgstr "سجل التغييرات"
 
-#: zapzap/view/main_window.py:244 zapzap/view/settings.py:922
+#: zapzap/view/main_window.py:244 zapzap/view/settings.py:932
 msgid "Report issue..."
 msgstr "الإبلاغ عن مشكلة"
 
@@ -102,7 +101,7 @@ msgstr "الإبلاغ عن مشكلة"
 msgid "About Zapzap"
 msgstr "حول Zapzap"
 
-#: zapzap/view/main_window.py:246 zapzap/view/settings.py:891
+#: zapzap/view/main_window.py:246 zapzap/view/settings.py:901
 msgid "Hide on close"
 msgstr "إخفاء عند الإغلاق"
 
@@ -126,12 +125,12 @@ msgstr "تصغير"
 msgid "Ctrl+-"
 msgstr "Ctrl+-"
 
-#: zapzap/view/main_window.py:252 zapzap/view/settings.py:886
-#: zapzap/view/settings.py:914
+#: zapzap/view/main_window.py:252 zapzap/view/settings.py:896
+#: zapzap/view/settings.py:924
 msgid "Donations"
 msgstr "تبرع"
 
-#: zapzap/view/main_window.py:253 zapzap/view/settings.py:881
+#: zapzap/view/main_window.py:253 zapzap/view/settings.py:891
 msgid "Home page"
 msgstr "الصفحة الرئيسية"
 
@@ -139,182 +138,216 @@ msgstr "الصفحة الرئيسية"
 msgid "Esc"
 msgstr "خروج"
 
-#: zapzap/controllers/main_window_components/tray_icon.py:19
-#: zapzap/controllers/main_window.py:117 zapzap/controllers/main_window.py:207
-msgid "Hide"
-msgstr ""
-
-#: zapzap/controllers/main_window.py:187 zapzap/controllers/main_window.py:205
-#, fuzzy
-msgid "Open ZapZap"
-msgstr "ZapZap"
-
-#: zapzap/controllers/card_user.py:30
-msgid "Disable"
-msgstr ""
-
-#: zapzap/controllers/card_user.py:32
-msgid "Enable"
-msgstr ""
-
-#: zapzap/view/settings.py:879
+#: zapzap/view/settings.py:889 zapzap/view/card_user.py:91
+#: zapzap/view/downloadPopup.py:67
 msgid "Form"
 msgstr "استمارة"
 
-#: zapzap/view/settings.py:882 zapzap/view/settings.py:923
+#: zapzap/view/settings.py:892 zapzap/view/settings.py:933
 msgid "User Management"
 msgstr ""
 
-#: zapzap/view/settings.py:883 zapzap/view/settings.py:888
+#: zapzap/view/settings.py:893 zapzap/view/settings.py:898
 msgid "System"
 msgstr "النظام"
 
-#: zapzap/view/settings.py:884
+#: zapzap/view/settings.py:894
 msgid "Appearance"
 msgstr "المظهر"
 
-#: zapzap/view/settings.py:885 zapzap/view/settings.py:909
+#: zapzap/view/settings.py:895 zapzap/view/settings.py:919
 msgid "Notifications"
 msgstr "الإشعارات"
 
-#: zapzap/view/settings.py:887 zapzap/view/settings.py:915
+#: zapzap/view/settings.py:897 zapzap/view/settings.py:925
 msgid "About"
 msgstr "حول"
 
-#: zapzap/view/settings.py:889
+#: zapzap/view/settings.py:899
 msgid "Start ZapZap with the system"
 msgstr "تشغيل ZapZap  مع بدء النظام"
 
-#: zapzap/view/settings.py:890
+#: zapzap/view/settings.py:900
 msgid "Start minimized"
 msgstr "تشغيل مع التصغير"
 
-#: zapzap/view/settings.py:892
+#: zapzap/view/settings.py:902
 msgid "Disable tray icon"
 msgstr "تعطيل أيقونة صينية النظام"
 
-#: zapzap/view/settings.py:893
+#: zapzap/view/settings.py:903
 msgid "Menu bar"
 msgstr "شريط القوائم"
 
-#: zapzap/view/settings.py:895
+#: zapzap/view/settings.py:905
 msgid "ZapZap window (Restart required)"
 msgstr "نافذة ZapZap (إعادة التشغيل مطلوبة)"
 
-#: zapzap/view/settings.py:896
+#: zapzap/view/settings.py:906
 msgid "Title bar buttons"
 msgstr "عنوان شريط الأزرار"
 
-#: zapzap/view/settings.py:897
+#: zapzap/view/settings.py:907
 msgid "Maximize"
 msgstr "تكبير "
 
-#: zapzap/view/settings.py:898
+#: zapzap/view/settings.py:908
 msgid "Minimize"
 msgstr "تصغير"
 
-#: zapzap/view/settings.py:899
+#: zapzap/view/settings.py:909
 msgid "Positioning on the left side"
 msgstr "التمركز على الجانب الأيسر"
 
-#: zapzap/view/settings.py:900
+#: zapzap/view/settings.py:910
 msgid "Customize appearance"
 msgstr "تخصيص المظهر"
 
-#: zapzap/view/settings.py:901
+#: zapzap/view/settings.py:911
 msgid "General appearance"
 msgstr "المظهر العام"
 
-#: zapzap/view/settings.py:902
+#: zapzap/view/settings.py:912
 msgid "System style"
 msgstr "افتراضي حسب النظام"
 
-#: zapzap/view/settings.py:903
+#: zapzap/view/settings.py:913
 msgid "Light style"
 msgstr "مظهر فاتح"
 
-#: zapzap/view/settings.py:904
+#: zapzap/view/settings.py:914
 msgid "Dark style"
 msgstr "مظهر داكن"
 
-#: zapzap/view/settings.py:905
+#: zapzap/view/settings.py:915
 msgid "Tray icon"
 msgstr "أيقونة صينية النظام"
 
-#: zapzap/view/settings.py:906
+#: zapzap/view/settings.py:916
 msgid "Default"
 msgstr "افتراضي"
 
-#: zapzap/view/settings.py:907
+#: zapzap/view/settings.py:917
 msgid "Symbolic light"
 msgstr "أيقونة فاتحة"
 
-#: zapzap/view/settings.py:908
+#: zapzap/view/settings.py:918
 msgid "Symbolic dark"
 msgstr "أيقونة غامقة"
 
-#: zapzap/view/settings.py:910
+#: zapzap/view/settings.py:920
 msgid "Notifications on the desktop"
 msgstr "الإشعارات المنبثقة"
 
-#: zapzap/view/settings.py:911
+#: zapzap/view/settings.py:921
 msgid "Show the photo of the sender"
 msgstr "أظهر صورة المرسل"
 
-#: zapzap/view/settings.py:912
+#: zapzap/view/settings.py:922
 msgid "Show the sender's name"
 msgstr "أظهر اسم المرسل"
 
-#: zapzap/view/settings.py:913
+#: zapzap/view/settings.py:923
 msgid "Show message preview"
 msgstr "عرض تفاصيل الرسالة"
 
-#: zapzap/view/settings.py:917
+#: zapzap/view/settings.py:927
 #, python-brace-format
 msgid "Version {id} (Official compilation)"
 msgstr "الإصدار {id} (تجميع رسمي)"
 
-#: zapzap/view/settings.py:918
+#: zapzap/view/settings.py:928
 #, fuzzy
 msgid "An unofficial WhatsApp desktop application"
 msgstr ""
 "تطبيق WhatsApp لسطح المكتب  غير رسمي مكتوب بلغة Pyqt6 + PyQt6-WebEngine."
 
-#: zapzap/view/settings.py:919
+#: zapzap/view/settings.py:929
 msgid "GNU General Public License v3.0"
 msgstr "رخصة جنو العمومية v3.0"
 
-#: zapzap/view/settings.py:920
+#: zapzap/view/settings.py:930
 msgid "Learn more"
 msgstr "اقرأ المزيد"
 
-#: zapzap/view/settings.py:924
+#: zapzap/view/settings.py:934
 msgid "New User"
 msgstr ""
 
-#: zapzap/engine/browser.py:59
+#: zapzap/view/settings.py:935
+msgid "Users limit reached (9 in total)"
+msgstr ""
+
+#: zapzap/view/card_user.py:92
+#, fuzzy
+msgid "Enter the user name"
+msgstr "أظهر اسم المرسل"
+
+#: zapzap/view/card_user.py:93 zapzap/controllers/card_user.py:35
+msgid "Disable"
+msgstr ""
+
+#: zapzap/view/card_user.py:94
+msgid "Delete"
+msgstr ""
+
+#: zapzap/view/downloadPopup.py:68
+msgid "What do you want to do with the file?"
+msgstr ""
+
+#: zapzap/view/downloadPopup.py:69
+msgid "Open"
+msgstr ""
+
+#: zapzap/view/downloadPopup.py:70
+msgid "Save as"
+msgstr ""
+
+#: zapzap/controllers/main_window_components/tray_icon.py:19
+#: zapzap/controllers/main_window.py:115 zapzap/controllers/main_window.py:203
+msgid "Hide"
+msgstr ""
+
+#: zapzap/controllers/main_window.py:179 zapzap/controllers/main_window.py:201
+#, fuzzy
+msgid "Open ZapZap"
+msgstr "ZapZap"
+
+#: zapzap/controllers/card_user.py:38
+msgid "Enable"
+msgstr ""
+
+#: zapzap/engine/browser.py:65
 msgid "Undo"
 msgstr "تراجع"
 
-#: zapzap/engine/browser.py:60
+#: zapzap/engine/browser.py:66
 msgid "Redo"
 msgstr "تراجع عن التراجع"
 
-#: zapzap/engine/browser.py:61
+#: zapzap/engine/browser.py:67
 msgid "Cut"
 msgstr "قص"
 
-#: zapzap/engine/browser.py:62
+#: zapzap/engine/browser.py:68
 msgid "Copy"
 msgstr "نسخ"
 
-#: zapzap/engine/browser.py:63
+#: zapzap/engine/browser.py:69
 msgid "Paste"
 msgstr "لسق"
 
-#: zapzap/engine/browser.py:64
+#: zapzap/engine/browser.py:70
 msgid "Select all"
 msgstr "تحديد الكل"
+
+#: zapzap/engine/browser.py:71
+msgid "Save image"
+msgstr ""
+
+#: zapzap/engine/browser.py:72
+msgid "Copy image"
+msgstr ""
 
 #~ msgid "World"
 #~ msgstr "عالم"
