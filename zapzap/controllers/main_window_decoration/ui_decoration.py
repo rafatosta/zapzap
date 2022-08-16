@@ -15,7 +15,7 @@ class UIDecoration():
         self.uiDefinitions()
         self.headDefinitions()
 
-        self.win.appMargins.setContentsMargins(10,10,10,10)
+        self.win.appMargins.setContentsMargins(10, 10, 10, 10)
 
     def uiDefinitions(self):
         # Duplo click na headbar
@@ -41,7 +41,15 @@ class UIDecoration():
 
         # ResizeEvent
         def resizeEvent(event):
+            # Events for the edges of the window
             self.resize_grips()
+
+            """Removes the margin on a full screen.
+                I did not find out a way of identifying if it is in the debut"""
+            if self.win.windowState() == Qt.WindowState.WindowMaximized:
+                self.win.appMargins.setContentsMargins(0, 0, 0, 0)
+            else:
+                self.win.appMargins.setContentsMargins(10, 10, 10, 10)
         self.win.resizeEvent = resizeEvent
 
         # Decoração da janela
@@ -92,10 +100,8 @@ class UIDecoration():
     def maximize_restore(self):
         if self.win.windowState() == Qt.WindowState.WindowMaximized:
             self.win.showNormal()
-            #self.win.appMargins.setContentsMargins(8,8,8,8)
         else:
             self.win.showMaximized()
-            #self.win.appMargins.setContentsMargins(0,0,0,0)
 
     def resize_grips(self):
         self.left_grip.setGeometry(0, 10, 10, self.win.height())
