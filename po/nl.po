@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-15 21:45-0300\n"
-"PO-Revision-Date: 2022-08-02 17:55+0200\n"
+"PO-Revision-Date: 2022-08-16 19:41+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
@@ -143,7 +143,7 @@ msgstr "Formulier"
 
 #: zapzap/view/settings.py:892 zapzap/view/settings.py:933
 msgid "User Management"
-msgstr ""
+msgstr "Gebruikersbeheer"
 
 #: zapzap/view/settings.py:893 zapzap/view/settings.py:898
 msgid "System"
@@ -255,10 +255,8 @@ msgid "Version {id} (Official compilation)"
 msgstr "Versie {id} (officiële versie)"
 
 #: zapzap/view/settings.py:928
-#, fuzzy
 msgid "An unofficial WhatsApp desktop application"
-msgstr ""
-"Een onofficieel WhatsApp-programma, gemaakt met Pyqt6 + PyQt6-WebEngine."
+msgstr "Een onofficieel WhatsApp-programma"
 
 #: zapzap/view/settings.py:929
 msgid "GNU General Public License v3.0"
@@ -270,36 +268,35 @@ msgstr "Meer informatie"
 
 #: zapzap/view/settings.py:934
 msgid "New User"
-msgstr ""
+msgstr "Nieuwe gebruiker"
 
 #: zapzap/view/settings.py:935
 msgid "Users limit reached (9 in total)"
-msgstr ""
+msgstr "Het max. aantal gebruikers (9) is bereikt"
 
 #: zapzap/view/card_user.py:92
-#, fuzzy
 msgid "Enter the user name"
-msgstr "Naam van afzender tonen"
+msgstr "Voer een gebruikersnaam in"
 
 #: zapzap/view/card_user.py:93 zapzap/controllers/card_user.py:35
 msgid "Disable"
-msgstr ""
+msgstr "Uitschakelen"
 
 #: zapzap/view/card_user.py:94
 msgid "Delete"
-msgstr ""
+msgstr "Verwijderen"
 
 #: zapzap/view/downloadPopup.py:68
 msgid "What do you want to do with the file?"
-msgstr ""
+msgstr "Wat wil je met dit bestand doen?"
 
 #: zapzap/view/downloadPopup.py:69
 msgid "Open"
-msgstr ""
+msgstr "Openen"
 
 #: zapzap/view/downloadPopup.py:70
 msgid "Save as"
-msgstr ""
+msgstr "Opslaan als"
 
 #: zapzap/controllers/main_window_components/tray_icon.py:19
 #: zapzap/controllers/main_window.py:115 zapzap/controllers/main_window.py:203
@@ -312,7 +309,7 @@ msgstr "ZapZap openen"
 
 #: zapzap/controllers/card_user.py:38
 msgid "Enable"
-msgstr ""
+msgstr "Inschakelen"
 
 #: zapzap/engine/browser.py:65
 msgid "Undo"
@@ -340,11 +337,11 @@ msgstr "Alles selecteren"
 
 #: zapzap/engine/browser.py:71
 msgid "Save image"
-msgstr ""
+msgstr "Afbeelding opslaan"
 
 #: zapzap/engine/browser.py:72
 msgid "Copy image"
-msgstr ""
+msgstr "Afbeelding kopiëren"
 
 #~ msgid "World"
 #~ msgstr "Wereld"
@@ -355,12 +352,8 @@ msgstr ""
 #~ msgid "Você é do Brasil?"
 #~ msgstr "Você é do Brasil?"
 
-#~ msgid ""
-#~ "Acesse o link para transferir via PIX ou realize a leitura do QR code "
-#~ "abaixo"
-#~ msgstr ""
-#~ "Acesse o link para transferir via PIX ou realize a leitura do QR code "
-#~ "abaixo"
+#~ msgid "Acesse o link para transferir via PIX ou realize a leitura do QR code abaixo"
+#~ msgstr "Acesse o link para transferir via PIX ou realize a leitura do QR code abaixo"
 
 #~ msgid "Tray icon appearance"
 #~ msgstr "Soort systeemvakpictogram"
