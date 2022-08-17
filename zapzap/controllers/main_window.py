@@ -115,7 +115,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.app.activeWindow() == None:  # Se a janela estiver em foco será escondida
             self.show()
             self.app.activateWindow()
-            self.tray.trayShow.setText(_('Hide'))
 
         self.main_stacked.setCurrentIndex(1)
 
@@ -179,7 +178,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         isBack = self.settings.value("system/keep_background", True, bool)
         if isBack and event:  # Hide app on close window
             self.hide()
-            self.tray.trayShow.setText(_('Open ZapZap'))
             event.ignore()
         else:  # Quit app on close window
             self.saveSettings()
@@ -201,9 +199,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         if self.app.activeWindow() != None:  # Se a janela estiver em foco será escondida
             self.hide()
-            self.tray.trayShow.setText(_('Open ZapZap'))
         else:  # Caso não esteja, será mostrada
-            self.tray.trayShow.setText(_('Hide'))
+            self.hide()
             self.show()
             self.app.activateWindow()
             self.main_stacked.setCurrentIndex(0)
