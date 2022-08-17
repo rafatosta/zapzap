@@ -14,6 +14,8 @@ def main():
     # Local Debug
     if not zapzap.isFlatpak:
         import os
+        os.environ['XCURSOR_SIZE'] = '24'
+        os.environ['XCURSOR_THEME'] = 'Fluent-cursor'
         os.environ['QT_QPA_PLATFORM'] = 'xcb'
         os.environ["QTWEBENGINE_DICTIONARIES_PATH"] = '/home/tosta/Documentos/GitHub/qtwebengine_dictionaries/'
        
