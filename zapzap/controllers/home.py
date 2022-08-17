@@ -110,6 +110,11 @@ class Home(QWidget, Ui_Home):
         btn = self.menu.itemAt(i).widget()
         btn.doReloadPage()
 
+    def setSpellChecker(self, lang):
+        for i in range(self.menu.count()):
+            btn = self.menu.itemAt(i).widget()
+            btn.setSpellChecker(lang)
+
     def editUserPage(self, user):
         return_btn = self.getUserContainer(user.id)
         btn = return_btn[0]

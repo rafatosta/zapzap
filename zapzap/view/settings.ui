@@ -284,7 +284,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>5</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -316,8 +316,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>644</width>
-            <height>572</height>
+            <width>818</width>
+            <height>678</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_16">
@@ -453,6 +453,74 @@
                      <widget class="QCheckBox" name="disableTrayIcon">
                       <property name="text">
                        <string>Disable tray icon</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_8">
+                   <property name="font">
+                    <font>
+                     <pointsize>14</pointsize>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>SpellChecker Languages</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame">
+                   <property name="minimumSize">
+                    <size>
+                     <width>620</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>620</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_5">
+                    <property name="spacing">
+                     <number>15</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>15</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>15</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>15</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>15</number>
+                    </property>
+                    <item>
+                     <widget class="QComboBox" name="comboSpellChecker"/>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="btnApply">
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Apply</string>
                       </property>
                      </widget>
                     </item>
@@ -672,8 +740,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>642</width>
-            <height>369</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1308,8 +1376,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>642</width>
-            <height>244</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1543,8 +1611,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>642</width>
-            <height>264</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_30">

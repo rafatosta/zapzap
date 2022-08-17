@@ -31,7 +31,11 @@ class Browser(QWebEngineView):
         self.profile.setHttpUserAgent(zapzap.__user_agent__)
         self.profile.setNotificationPresenter(self.show_notification)
         self.profile.setSpellCheckEnabled(True)
-        self.profile.setSpellCheckLanguages((QLocale.system().name(),))
+
+        lang = self.qset.value(
+            "system/spellCheckLanguage", QLocale.system().name(), str)
+       
+        self.profile.setSpellCheckLanguages([lang])
 
         # Rotina para download de arquivos
         self.profile.downloadRequested.connect(self.download)
@@ -60,7 +64,7 @@ class Browser(QWebEngineView):
 
         self.list_ignore = ['Back', 'View page source', 'Save page',
                             'Forward', 'Open link in new tab', 'Save link',
-                            'Copy link address', 'Open link in new window', 'Paste and match style', 'Reload','Copy image address']
+                            'Copy link address', 'Open link in new window', 'Paste and match style', 'Reload', 'Copy image address']
         self.items_menu = {
             'Undo': _('Undo'),
             'Redo': _('Redo'),

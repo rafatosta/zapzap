@@ -1,12 +1,12 @@
 from PyQt6.QtWidgets import QWidget, QPushButton
-from PyQt6.QtCore import QSettings, QSize, QUrl
+from PyQt6.QtCore import QSettings, QSize, QUrl, QLocale
 from PyQt6.QtGui import QDesktopServices, QIcon
-#from PyQt6 import uic
 import zapzap
 from zapzap.controllers.card_user import CardUser
 from zapzap.model.user import User, UserDAO
 from zapzap.services.portal_desktop import createDesktop, removeDesktop
 from gettext import gettext as _
+from ..services.spellCheckLanguages import SpellCheckLanguages
 from zapzap.theme.builder_icon import getImageQPixmap, getNewIconSVG
 
 from zapzap.view.settings import Ui_Settings
@@ -19,15 +19,36 @@ class Settings(QWidget, Ui_Settings):
     def __init__(self, parent=None):
         super(Settings, self).__init__()
         self.setupUi(self)
-        # uic.loadUi(zapzap.abs_path+'/view/settings.ui', self)
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
         self.mainWindow = parent
         self.load()
         self.settingsActions()
         self.loadInfoHelp()
         self.loadDonations()
-
         self.loadUsers()
+        self.loadSpellChecker()
+
+    def loadSpellChecker(self):
+        def action():
+            data = self.comboSpellChecker.currentData()
+            self.settings.setValue("system/spellCheckLanguage", data)
+            self.mainWindow.emitSetSpellChecker(data)
+
+        self.btnApply.clicked.connect(action)
+
+        for chave, valor in SpellCheckLanguages.languages.items():
+            self.comboSpellChecker.addItem(f'{valor} ({chave})', chave)
+
+        lang = self.settings.value(
+            "system/spellCheckLanguage", QLocale.system().name(), str)
+
+        try:
+            sys_lang = SpellCheckLanguages.languages[lang]
+        except:  # se não for um idioma suportado não fecha o app
+            sys_lang = f'{_("System Language")} (??)'
+
+        self.comboSpellChecker.setCurrentText(
+            f'{sys_lang} ({lang})')
 
     def loadUsers(self):
         """def clear():

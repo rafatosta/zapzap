@@ -48,6 +48,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.setZapDecoration()
 
+    def emitSetSpellChecker(self, lang):
+        self.zapHome.setSpellChecker(lang)
+
     def emitNewUser(self, user):
         """Function called by the setting panel when ADDING new user."""
         self.zapHome.addNewUser(user)

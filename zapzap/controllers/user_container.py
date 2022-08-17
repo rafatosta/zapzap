@@ -93,6 +93,10 @@ class UserContainer(QPushButton):
     def setThemePage(self, isNight_mode):
         self.browser.whats.setTheme(isNight_mode)
 
+    def setSpellChecker(self, lang):
+        profile = self.browser.page().profile()
+        profile.setSpellCheckLanguages([lang])
+
     ## EVENTS ##
 
     def selected(self):
