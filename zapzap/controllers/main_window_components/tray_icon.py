@@ -16,6 +16,8 @@ class TrayIcon():
         self.tray.activated.connect(mainWindow.onTrayIconActivated)
 
         # Itens para o menu do tray icon
+        self.trayShow = QAction(_("ZapZap"), mainWindow)
+        self.trayShow.triggered.connect(mainWindow.on_show)
 
         self.traySettings = QAction(_("Settings"), mainWindow)
         self.traySettings.triggered.connect(self.mainWindow.openTraySettings)
@@ -25,7 +27,7 @@ class TrayIcon():
 
         # Cria o Menu e adiciona as ações
         self.trayMenu = QMenu()
-        
+        self.trayMenu.addAction(self.trayShow)
         self.trayMenu.addAction(self.traySettings)
         self.trayMenu.insertSeparator(self.trayExit)
         self.trayMenu.addAction(self.trayExit)
