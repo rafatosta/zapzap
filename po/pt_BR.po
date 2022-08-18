@@ -175,7 +175,7 @@ msgstr "Desabilitar Ícone de bandeja"
 
 #: zapzap/view/settings.py:928
 msgid "SpellChecker Languages"
-msgstr "Idiomas do corretor ortográfico"
+msgstr "Idioma do corretor ortográfico"
 
 #: zapzap/view/settings.py:929
 msgid "Apply"
