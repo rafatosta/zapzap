@@ -103,13 +103,6 @@ def buildTheme(p) -> str:
 
         /* PopUp */
 
-
-        #DownloadPopup {
-            background-color: {windowText};
-            background-clip: border;
-            border-image: none;
-        }
-
         #DownloadPopup .QPushButton {	
             border: 1px solid rgba(0, 189, 149,0.5);
             background-color: rgb(0, 189, 149);
@@ -126,8 +119,10 @@ def buildTheme(p) -> str:
             border-color: {highlight};
         }
         #popupFrame{
-            background-color: {window};
             color: {windowText};
+            background-color: {window};
+            border: 1px solid {windowText};
+            border-radius: 5px;
         }
         
 

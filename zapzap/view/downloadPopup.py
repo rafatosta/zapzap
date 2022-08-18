@@ -13,14 +13,14 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_DownloadPopup(object):
     def setupUi(self, DownloadPopup):
         DownloadPopup.setObjectName("DownloadPopup")
-        DownloadPopup.resize(326, 93)
+        DownloadPopup.resize(326, 101)
         DownloadPopup.setWindowTitle("")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(DownloadPopup)
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.popupContainer = QtWidgets.QFrame(DownloadPopup)
-        self.popupContainer.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.popupContainer.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.popupContainer.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.popupContainer.setObjectName("popupContainer")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.popupContainer)
