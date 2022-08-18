@@ -68,7 +68,7 @@
         <ul>
           <li>Wayland Support;</li>
           <li>Language selection for spell checking;</li>
-          <li>Fast file opening window;</li>
+          <li>Fast file opening;</li>
           <li>Icon adjustment to minimize on the left side.</li>
         </ul>
         <p>Thanks Anderson Santos for the tests and support.</p>
