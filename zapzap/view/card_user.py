@@ -56,6 +56,7 @@ class Ui_CardUser(object):
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.key = QtWidgets.QLabel(self.frame)
+        self.key.setText("")
         self.key.setObjectName("key")
         self.horizontalLayout_2.addWidget(self.key)
         self.btnDelete = QtWidgets.QPushButton(self.frame)
@@ -80,7 +81,6 @@ class Ui_CardUser(object):
         CardUser.setWindowTitle(_("Form"))
         self.name.setPlaceholderText(_("Enter the user name"))
         self.btnDisable.setText(_("Disable"))
-        self.key.setText(_("TextLabel"))
         self.btnDelete.setText(_("Delete"))
 
 

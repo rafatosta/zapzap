@@ -5,4 +5,6 @@ zapzap/view/downloadPopup.py
 zapzap/controllers/main_window_components/tray_icon.py
 zapzap/controllers/main_window.py
 zapzap/controllers/card_user.py
+zapzap/controllers/settings.py
 zapzap/engine/browser.py
+zapzap/services/spellCheckLanguages.py

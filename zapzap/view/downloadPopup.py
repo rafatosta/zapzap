@@ -14,6 +14,7 @@ class Ui_DownloadPopup(object):
     def setupUi(self, DownloadPopup):
         DownloadPopup.setObjectName("DownloadPopup")
         DownloadPopup.resize(326, 93)
+        DownloadPopup.setWindowTitle("")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(DownloadPopup)
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_3.setSpacing(0)
@@ -64,7 +65,6 @@ class Ui_DownloadPopup(object):
 
     def retranslateUi(self, DownloadPopup):
         
-        DownloadPopup.setWindowTitle(_("Form"))
         self.label_2.setText(_("What do you want to do with the file?"))
         self.open.setText(_("Open"))
         self.saveAs.setText(_("Save as"))

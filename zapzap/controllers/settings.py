@@ -39,7 +39,7 @@ class Settings(QWidget, Ui_Settings):
         self.btnApply.clicked.connect(action)
 
         for chave, valor in SpellCheckLanguages.languages.items():
-            self.comboSpellChecker.addItem(f'{valor} ({chave})', chave)
+            self.comboSpellChecker.addItem(f'{_(valor)} ({chave})', chave)
 
         lang = self.settings.value(
             "system/spellCheckLanguage", QLocale.system().name(), str)
@@ -47,7 +47,8 @@ class Settings(QWidget, Ui_Settings):
         try:
             sys_lang = SpellCheckLanguages.languages[lang]
         except:  # se não for um idioma suportado não fecha o app
-            sys_lang = f'{_("System Language")} (??)'
+            v = _("System Language")
+            sys_lang = f'{v} (??)'
             self.comboSpellChecker.addItem(sys_lang, chave)
 
         index = self.comboSpellChecker.findData(lang)

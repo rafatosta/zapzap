@@ -19,6 +19,8 @@ finish-args:
   - "--filesystem=xdg-download"
   - "--filesystem=xdg-config/autostart:create"
   - "--talk-name=org.freedesktop.Notifications"
+  - "--talk-name=org.kde.StatusNotifierWatcher"
+  - "--talk-name=org.kde.StatusNotifierItem"
   - "--talk-name=org.freedesktop.portal.FileChooser"
   - "--talk-name=com.canonical.AppMenu.Registrar"
   - "--talk-name=com.canonical.Unity"
