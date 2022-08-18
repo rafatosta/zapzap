@@ -48,38 +48,31 @@
   <url type="donation">https://github.com/sponsors/rafatosta</url>
 
   <screenshots>
-    <screenshot type="default">
+    <screenshot>
       <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/default.png</image>
-    </screenshot>
-    <screenshot>
-      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/light.png</image>
-    </screenshot>
-    <screenshot>
-      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/dark.png</image>
-    </screenshot>
-    <screenshot>
-      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/system.png</image>
-    </screenshot>
-    <screenshot>
-      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/appearance.png</image>
-    </screenshot>
-    <screenshot>
-      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/notifications.png</image>
     </screenshot>
   </screenshots>
 
   <releases>
-    <release date="2022-08-xx" version="4.0">
+    <release date="2022-08-18" version="4.0">
       <description>
+        <p>Now Zapzap supports the simultaneous use of various WhatsApp accounts!</p>
         <p>News: Multiple users</p>
-        <p>Now Zapzap supports the simultaneous use of various WhatsApp accounts.</p>
         <ul>
-          <li>Add, disable and delete users</li>
-          <li>Navigation shortcut with Ctrl+1 to Ctrl+9</li>
-          <li>The tray icon shows the total number of pending notifications</li>
-          <li>Limit of 9 users</li>
+          <li>Add, disable and delete users;</li>
+          <li>Navigation shortcut with Ctrl+1 to Ctrl+9;</li>
+          <li>The tray icon shows the total number of pending notifications;</li>
+          <li>Limit of 9 users.</li>
         </ul>
-        <p>Se gosta do projeto, faça a sua doação e apoie o dev para que continue motivado. Obrigado</p>
+        <p>Improvements:</p>
+        <ul>
+          <li>Wayland Support;</li>
+          <li>Language selection for spell checking;</li>
+          <li>Fast file opening window;</li>
+          <li>Icon adjustment to minimize on the left side.</li>
+        </ul>
+        <p>Thanks Anderson Santos for the tests and support.</p>
+        <p>If you like the project, make your donation and support Dev to remain motivated.Thanks!</p>
       </description>
     </release>
     <release date="2022-08-04" version="3.2.2">
