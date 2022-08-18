@@ -13,6 +13,7 @@ class DownloadPopup(QWidget, Ui_DownloadPopup):
         QApplication.instance().installEventFilter(self)
 
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
         self.setWindowFlags(Qt.WindowType.Popup |
                             Qt.WindowType.FramelessWindowHint)
 
