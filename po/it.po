@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-17 22:02-0300\n"
-"PO-Revision-Date: 2022-07-15 13:46+0200\n"
+"PO-Revision-Date: 2022-08-18 15:41+0200\n"
 "Last-Translator: musiclover382 <musiclover382@protonmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: zapzap/view/main_window.py:226 zapzap/view/settings.py:953
 #: zapzap/controllers/main_window_components/tray_icon.py:19
@@ -136,7 +136,7 @@ msgstr "Home page"
 
 #: zapzap/view/main_window.py:254
 msgid "Esc"
-msgstr ""
+msgstr "Esc"
 
 #: zapzap/view/settings.py:914 zapzap/view/card_user.py:81
 msgid "Form"
@@ -144,7 +144,7 @@ msgstr "Modulo"
 
 #: zapzap/view/settings.py:917 zapzap/view/settings.py:960
 msgid "User Management"
-msgstr ""
+msgstr "Gestione utente"
 
 #: zapzap/view/settings.py:918 zapzap/view/settings.py:923
 msgid "System"
@@ -176,11 +176,11 @@ msgstr "Non mostrare nell'area di notifica"
 
 #: zapzap/view/settings.py:928
 msgid "SpellChecker Languages"
-msgstr ""
+msgstr "Lingue controllo ortografico"
 
 #: zapzap/view/settings.py:929
 msgid "Apply"
-msgstr ""
+msgstr "Applica"
 
 #: zapzap/view/settings.py:930
 msgid "Menu bar"
@@ -264,10 +264,8 @@ msgid "Version {id} (Official compilation)"
 msgstr "Versione {id} (Edizione ufficiale)"
 
 #: zapzap/view/settings.py:955
-#, fuzzy
 msgid "An unofficial WhatsApp desktop application"
-msgstr ""
-"Un'applicazione WhatsApp non ufficiale scritta con Pyqt6 + PyQt6-WebEngine."
+msgstr "Un'applicazione WhatsApp non ufficiale"
 
 #: zapzap/view/settings.py:956
 msgid "GNU General Public License v3.0"
@@ -279,56 +277,55 @@ msgstr "Sito web"
 
 #: zapzap/view/settings.py:961
 msgid "New User"
-msgstr ""
+msgstr "Nuovo utente"
 
 #: zapzap/view/settings.py:962
 msgid "Users limit reached (9 in total)"
-msgstr ""
+msgstr "Massimo numero di utenti raggiunto (9)"
 
 #: zapzap/view/card_user.py:82
-#, fuzzy
 msgid "Enter the user name"
-msgstr "Mostra il nome del mittente"
+msgstr "Inserire il nome dell'utente"
 
 #: zapzap/view/card_user.py:83 zapzap/controllers/card_user.py:35
 msgid "Disable"
-msgstr ""
+msgstr "Dissattiva"
 
 #: zapzap/view/card_user.py:84
 msgid "Delete"
-msgstr ""
+msgstr "Elimina"
 
 #: zapzap/view/downloadPopup.py:68
 msgid "What do you want to do with the file?"
-msgstr ""
+msgstr "Come utilizzare il file?"
 
 #: zapzap/view/downloadPopup.py:69
 msgid "Open"
-msgstr ""
+msgstr "Apri"
 
 #: zapzap/view/downloadPopup.py:70
 msgid "Save as"
-msgstr ""
+msgstr "Salva con nome"
 
 #: zapzap/controllers/card_user.py:38
 msgid "Enable"
-msgstr ""
+msgstr "Attiva"
 
 #: zapzap/controllers/settings.py:50
 msgid "System Language"
-msgstr ""
+msgstr "Lingua di sistema"
 
 #: zapzap/engine/browser.py:69
 msgid "Undo"
-msgstr "Annullare"
+msgstr "Annulla"
 
 #: zapzap/engine/browser.py:70
 msgid "Redo"
-msgstr "Rifare"
+msgstr "Ripeti"
 
 #: zapzap/engine/browser.py:71
 msgid "Cut"
-msgstr "Tagliare"
+msgstr "Taglia"
 
 #: zapzap/engine/browser.py:72
 msgid "Copy"
@@ -344,531 +341,531 @@ msgstr "Seleziona tutto"
 
 #: zapzap/engine/browser.py:75
 msgid "Save image"
-msgstr ""
+msgstr "Salva immagine"
 
 #: zapzap/engine/browser.py:76
 msgid "Copy image"
-msgstr ""
+msgstr "Copia immagine"
 
 #: zapzap/services/spellCheckLanguages.py:6
 msgid "Afrikaans - Namibia"
-msgstr ""
+msgstr "Afrikaans - Namibia"
 
 #: zapzap/services/spellCheckLanguages.py:7
 msgid "Afrikaans - South Africa"
-msgstr ""
+msgstr "Afrikaans - Sudafrica"
 
 #: zapzap/services/spellCheckLanguages.py:8
 msgid "Aragonese"
-msgstr ""
+msgstr "Aragonese"
 
 #: zapzap/services/spellCheckLanguages.py:9
 msgid "Aragonese - Spain"
-msgstr ""
+msgstr "Aragonese - Spagna"
 
 #: zapzap/services/spellCheckLanguages.py:10
 msgid "Arabic - United Arab Emirates"
-msgstr ""
+msgstr "Arabo - Emirati Arabi Uniti"
 
 #: zapzap/services/spellCheckLanguages.py:11
 msgid "Arabic - Bahrain"
-msgstr ""
+msgstr "Arabo - Bahrein"
 
 #: zapzap/services/spellCheckLanguages.py:12
 msgid "Arabic - Algeria"
-msgstr ""
+msgstr "Arabo - Algeria"
 
 #: zapzap/services/spellCheckLanguages.py:13
 msgid "Arabic - Egypt"
-msgstr ""
+msgstr "Arabo - Egitto"
 
 #: zapzap/services/spellCheckLanguages.py:14
 msgid "Arabic - Iraq"
-msgstr ""
+msgstr "Arabo - Iraq"
 
 #: zapzap/services/spellCheckLanguages.py:15
 msgid "Arabic - Jordan"
-msgstr ""
+msgstr "Arabo - Giordania"
 
 #: zapzap/services/spellCheckLanguages.py:16
 msgid "Arabic - Kuwait"
-msgstr ""
+msgstr "Arabo - Kuwait"
 
 #: zapzap/services/spellCheckLanguages.py:17
 msgid "Arabic - Lebanon"
-msgstr ""
+msgstr "Arabo - Libano"
 
 #: zapzap/services/spellCheckLanguages.py:18
 msgid "Arabic - Libya"
-msgstr ""
+msgstr "Arabo - Libia"
 
 #: zapzap/services/spellCheckLanguages.py:19
 msgid "Arabic - Morocco"
-msgstr ""
+msgstr "Arabo - Marocco"
 
 #: zapzap/services/spellCheckLanguages.py:20
 msgid "Arabic - Oman"
-msgstr ""
+msgstr "Arabo - Oman"
 
 #: zapzap/services/spellCheckLanguages.py:21
 msgid "Arabic - Qatar"
-msgstr ""
+msgstr "Arabo - Qatar"
 
 #: zapzap/services/spellCheckLanguages.py:22
 msgid "Arabic - Saudi Arabia"
-msgstr ""
+msgstr "Arabo - Arabia Saudita"
 
 #: zapzap/services/spellCheckLanguages.py:23
 msgid "Arabic - Sudan"
-msgstr ""
+msgstr "Arabo - Sudan"
 
 #: zapzap/services/spellCheckLanguages.py:24
 msgid "Arabic - Syria"
-msgstr ""
+msgstr "Arabo - Siria"
 
 #: zapzap/services/spellCheckLanguages.py:25
 msgid "Arabic - Tunisia"
-msgstr ""
+msgstr "Arabo - Tunisia"
 
 #: zapzap/services/spellCheckLanguages.py:26
 msgid "Arabic - Yemen"
-msgstr ""
+msgstr "Arabo - Yemen"
 
 #: zapzap/services/spellCheckLanguages.py:27
 msgid "Belarusian - Belarus"
-msgstr ""
+msgstr "Bielorusso - Bielorussia"
 
 #: zapzap/services/spellCheckLanguages.py:28
 msgid "Bulgarian - Bulgaria"
-msgstr ""
+msgstr "Bulgaro - Bulgaria"
 
 #: zapzap/services/spellCheckLanguages.py:29
 msgid "Bengali - Bangladesh"
-msgstr ""
+msgstr "Bengalese - Bangladesh"
 
 #: zapzap/services/spellCheckLanguages.py:30
 msgid "Bengali - India"
-msgstr ""
+msgstr "Bengalese - India"
 
 #: zapzap/services/spellCheckLanguages.py:31
 msgid "Tibetan"
-msgstr ""
+msgstr "Tibetano"
 
 #: zapzap/services/spellCheckLanguages.py:32
 msgid "Tibetan - China"
-msgstr ""
+msgstr "Tibetano - Cina"
 
 #: zapzap/services/spellCheckLanguages.py:33
 msgid "Tibetan - India"
-msgstr ""
+msgstr "Tibetano - India"
 
 #: zapzap/services/spellCheckLanguages.py:34
 msgid "Breton - France"
-msgstr ""
+msgstr "Bretone - Francia"
 
 #: zapzap/services/spellCheckLanguages.py:35
 msgid "Bosnian"
-msgstr ""
+msgstr "Bosniaco"
 
 #: zapzap/services/spellCheckLanguages.py:36
 msgid "Bosnian - Bosnia and Herzegovina"
-msgstr ""
+msgstr "Bosniaco - Bosnia ed Erzegovina"
 
 #: zapzap/services/spellCheckLanguages.py:37
 msgid "Catalan - Andorra"
-msgstr ""
+msgstr "Catalano - Andorra"
 
 #: zapzap/services/spellCheckLanguages.py:38
 msgid "Catalan - Spain"
-msgstr ""
+msgstr "Catalano - Spagna"
 
 #: zapzap/services/spellCheckLanguages.py:39
 msgid "Catalan - Valencia"
-msgstr ""
+msgstr "Catalano - Valencia"
 
 #: zapzap/services/spellCheckLanguages.py:40
 msgid "Catalan - France"
-msgstr ""
+msgstr "Catalano - Francia"
 
 #: zapzap/services/spellCheckLanguages.py:41
 msgid "Catalan - Italy"
-msgstr ""
+msgstr "Catalano - Italia"
 
 #: zapzap/services/spellCheckLanguages.py:42
 msgid "Czech - Czechia"
-msgstr ""
+msgstr "Ceco - Repubblica Ceca"
 
 #: zapzap/services/spellCheckLanguages.py:43
 msgid "Danish - Denmark"
-msgstr ""
+msgstr "Danese - Danimarca"
 
 #: zapzap/services/spellCheckLanguages.py:44
 msgid "German - Austria"
-msgstr ""
+msgstr "Tedesco - Austria"
 
 #: zapzap/services/spellCheckLanguages.py:45
 msgid "German - Switzerland"
-msgstr ""
+msgstr "Tedesco - Svizzera"
 
 #: zapzap/services/spellCheckLanguages.py:46
 msgid "German - Germany"
-msgstr ""
+msgstr "Tedesco - Germania"
 
 #: zapzap/services/spellCheckLanguages.py:47
 msgid "Greek - Grece"
-msgstr ""
+msgstr "Greco - Grecia"
 
 #: zapzap/services/spellCheckLanguages.py:48
 msgid "English - Australia"
-msgstr ""
+msgstr "Inglese - Australia"
 
 #: zapzap/services/spellCheckLanguages.py:49
 msgid "English - Bahamas"
-msgstr ""
+msgstr "Inglese - Bahamas"
 
 #: zapzap/services/spellCheckLanguages.py:50
 msgid "English - Belize"
-msgstr ""
+msgstr "Inglese - Belize"
 
 #: zapzap/services/spellCheckLanguages.py:51
 msgid "English - Canada"
-msgstr ""
+msgstr "Inglese - Canada"
 
 #: zapzap/services/spellCheckLanguages.py:52
 msgid "English - United Kingdom"
-msgstr ""
+msgstr "Inglese - Regno Unito"
 
 #: zapzap/services/spellCheckLanguages.py:53
 msgid "English - Ghana"
-msgstr ""
+msgstr "Inglese - Ghana"
 
 #: zapzap/services/spellCheckLanguages.py:54
 msgid "English - Ireland"
-msgstr ""
+msgstr "Inglese - Irlanda"
 
 #: zapzap/services/spellCheckLanguages.py:55
 msgid "English - India"
-msgstr ""
+msgstr "Inglese - India"
 
 #: zapzap/services/spellCheckLanguages.py:56
 msgid "English - Jamaica"
-msgstr ""
+msgstr "Inglese - Giamaica"
 
 #: zapzap/services/spellCheckLanguages.py:57
 msgid "English - Malawi"
-msgstr ""
+msgstr "Inglese - Malawi"
 
 #: zapzap/services/spellCheckLanguages.py:58
 msgid "English - Namibia"
-msgstr ""
+msgstr "Inglese - Namibia"
 
 #: zapzap/services/spellCheckLanguages.py:59
 msgid "English - New Zealand"
-msgstr ""
+msgstr "Inglese - Nuova Zelanda"
 
 #: zapzap/services/spellCheckLanguages.py:60
 msgid "English - Philippines"
-msgstr ""
+msgstr "Inglese - Filippine"
 
 #: zapzap/services/spellCheckLanguages.py:61
 msgid "English - Trinidad and Tobago"
-msgstr ""
+msgstr "Inglese - Trinidad e Tobago"
 
 #: zapzap/services/spellCheckLanguages.py:62
 msgid "English - United States of America"
-msgstr ""
+msgstr "Inglese - Stati Uniti d'America"
 
 #: zapzap/services/spellCheckLanguages.py:63
 msgid "English - South Africa"
-msgstr ""
+msgstr "Inglese - Sudafrica"
 
 #: zapzap/services/spellCheckLanguages.py:64
 msgid "English - Zimbabwe"
-msgstr ""
+msgstr "Inglese - Zimbabwe"
 
 #: zapzap/services/spellCheckLanguages.py:65
 msgid "Spanish - Argentina"
-msgstr ""
+msgstr "Spagnolo - Argentina"
 
 #: zapzap/services/spellCheckLanguages.py:66
 msgid "Spanish - Bolivia"
-msgstr ""
+msgstr "Spagnolo - Bolivia"
 
 #: zapzap/services/spellCheckLanguages.py:67
 msgid "Spanish - Chile"
-msgstr ""
+msgstr "Spagnolo - Cile"
 
 #: zapzap/services/spellCheckLanguages.py:68
 msgid "Spanish - Colombia"
-msgstr ""
+msgstr "Spagnolo - Colombia"
 
 #: zapzap/services/spellCheckLanguages.py:69
 msgid "Spanish - Costa Rica"
-msgstr ""
+msgstr "Spagnolo - Costa Rica"
 
 #: zapzap/services/spellCheckLanguages.py:70
 msgid "Spanish - Cuba"
-msgstr ""
+msgstr "Spagnolo - Cuba"
 
 #: zapzap/services/spellCheckLanguages.py:71
 msgid "Spanish - Dominican Republic"
-msgstr ""
+msgstr "Spagnolo - Repubblica Dominicana"
 
 #: zapzap/services/spellCheckLanguages.py:72
 msgid "Spanish - Ecuador"
-msgstr ""
+msgstr "Spagnolo - Ecuador"
 
 #: zapzap/services/spellCheckLanguages.py:73
 msgid "Spanish - Spain"
-msgstr ""
+msgstr "Spagnolo - Spagna"
 
 #: zapzap/services/spellCheckLanguages.py:74
 msgid "Spanish - Guatemala"
-msgstr ""
+msgstr "Spagnolo - Guatemala"
 
 #: zapzap/services/spellCheckLanguages.py:75
 msgid "Spanish - Honduras"
-msgstr ""
+msgstr "Spagnolo - Honduras"
 
 #: zapzap/services/spellCheckLanguages.py:76
 msgid "Spanish - Mexico"
-msgstr ""
+msgstr "Spagnolo - Messico"
 
 #: zapzap/services/spellCheckLanguages.py:77
 msgid "Spanish - Nicaragua"
-msgstr ""
+msgstr "Spagnolo - Nicaragua"
 
 #: zapzap/services/spellCheckLanguages.py:78
 msgid "Spanish - Panama"
-msgstr ""
+msgstr "Spagnolo - Panama"
 
 #: zapzap/services/spellCheckLanguages.py:79
 msgid "Spanish - Peru"
-msgstr ""
+msgstr "Spagnolo - Peru"
 
 #: zapzap/services/spellCheckLanguages.py:80
 msgid "Spanish - Puerto Rico"
-msgstr ""
+msgstr "Spagnolo - Porto Rico"
 
 #: zapzap/services/spellCheckLanguages.py:81
 msgid "Spanish - Paraguay"
-msgstr ""
+msgstr "Spagnolo - Paraguay"
 
 #: zapzap/services/spellCheckLanguages.py:82
 msgid "Spanish - El Salvador"
-msgstr ""
+msgstr "Spagnolo - El Salvador"
 
 #: zapzap/services/spellCheckLanguages.py:83
 msgid "Spanish - Uruguay"
-msgstr ""
+msgstr "Spagnolo - Uruguay"
 
 #: zapzap/services/spellCheckLanguages.py:84
 msgid "Spanish - Venezuela"
-msgstr ""
+msgstr "Spagnolo - Venezuela"
 
 #: zapzap/services/spellCheckLanguages.py:85
 msgid "Estonian - Estonia"
-msgstr ""
+msgstr "Estone - Estonia"
 
 #: zapzap/services/spellCheckLanguages.py:86
 msgid "French - Belgium"
-msgstr ""
+msgstr "Francese - Belgio"
 
 #: zapzap/services/spellCheckLanguages.py:87
 msgid "French - Canada"
-msgstr ""
+msgstr "Francese - Canada"
 
 #: zapzap/services/spellCheckLanguages.py:88
 msgid "French - Switzerland"
-msgstr ""
+msgstr "Francese - Svizzera"
 
 #: zapzap/services/spellCheckLanguages.py:89
 msgid "French - France"
-msgstr ""
+msgstr "Francese - Francia"
 
 #: zapzap/services/spellCheckLanguages.py:90
 msgid "French - Luxembourg"
-msgstr ""
+msgstr "Francese - Lussemburgo"
 
 #: zapzap/services/spellCheckLanguages.py:91
 msgid "French - Monaco"
-msgstr ""
+msgstr "Francese - Monaco"
 
 #: zapzap/services/spellCheckLanguages.py:92
 msgid "Scottish Gaelic - United Kingdom"
-msgstr ""
+msgstr "Gaelico Scozzese - Regno Unito"
 
 #: zapzap/services/spellCheckLanguages.py:93
 msgid "Guarani - Paraguay"
-msgstr ""
+msgstr "Guaraní - Paraguay"
 
 #: zapzap/services/spellCheckLanguages.py:94
 msgid "Hebrew - Israel"
-msgstr ""
+msgstr "Ebreo - Israele"
 
 #: zapzap/services/spellCheckLanguages.py:95
 msgid "Hindi - India"
-msgstr ""
+msgstr "Hindi - India"
 
 #: zapzap/services/spellCheckLanguages.py:96
 msgid "Croatian - Croatia"
-msgstr ""
+msgstr "Croato - Croazia"
 
 #: zapzap/services/spellCheckLanguages.py:97
 msgid "Hungary - Hungarian"
-msgstr ""
+msgstr "Ungherese - Ungheria"
 
 #: zapzap/services/spellCheckLanguages.py:98
 msgid "Indonesia - Indonesian"
-msgstr ""
+msgstr "Indonesiano - Indonesia"
 
 #: zapzap/services/spellCheckLanguages.py:99
 msgid "Icelandic"
-msgstr ""
+msgstr "Islandese"
 
 #: zapzap/services/spellCheckLanguages.py:100
 msgid "Icelandic - Iceland"
-msgstr ""
+msgstr "Islandese - Islanda"
 
 #: zapzap/services/spellCheckLanguages.py:101
 msgid "Italian - Italy"
-msgstr ""
+msgstr "Italiano - Italia"
 
 #: zapzap/services/spellCheckLanguages.py:102
 msgid "Kurdish Latin - Syria"
-msgstr ""
+msgstr "Curdo Latino - Siria"
 
 #: zapzap/services/spellCheckLanguages.py:103
 msgid "Kurdish Latin - Turkey"
-msgstr ""
+msgstr "Curdo Latino - Turchia"
 
 #: zapzap/services/spellCheckLanguages.py:104
 msgid "Lao - Laos"
-msgstr ""
+msgstr "Lao - Laos"
 
 #: zapzap/services/spellCheckLanguages.py:105
 msgid "Lithuanian - Lithuania"
-msgstr ""
+msgstr "Lituano - Lituania"
 
 #: zapzap/services/spellCheckLanguages.py:106
 msgid "Latvian - Latvia"
-msgstr ""
+msgstr "Lettone - Lettonia"
 
 #: zapzap/services/spellCheckLanguages.py:107
 msgid "Norwegian - Bokml"
-msgstr ""
+msgstr "Norvegese - Bokmål"
 
 #: zapzap/services/spellCheckLanguages.py:108
 msgid "Nepali - Nepal"
-msgstr ""
+msgstr "Nepalese - Nepal"
 
 #: zapzap/services/spellCheckLanguages.py:109
 msgid "Dutch - Belgium"
-msgstr ""
+msgstr "Olandese - Belgio"
 
 #: zapzap/services/spellCheckLanguages.py:110
 msgid "Dutch - Netherlands"
-msgstr ""
+msgstr "Olandese - Paesi Bassi"
 
 #: zapzap/services/spellCheckLanguages.py:111
 msgid "Norwegian - Nynorsk"
-msgstr ""
+msgstr "Norvegese - Nynorsk"
 
 #: zapzap/services/spellCheckLanguages.py:112
 msgid "Occitan - France"
-msgstr ""
+msgstr "Occitano - Francia"
 
 #: zapzap/services/spellCheckLanguages.py:113
 msgid "Polish - Poland"
-msgstr ""
+msgstr "Polacco - Polonia"
 
 #: zapzap/services/spellCheckLanguages.py:114
 msgid "Portuguese - Angola"
-msgstr ""
+msgstr "Portoghese - Angola"
 
 #: zapzap/services/spellCheckLanguages.py:115
 msgid "Portuguese - Brazil"
-msgstr ""
+msgstr "Portoghese - Braasile"
 
 #: zapzap/services/spellCheckLanguages.py:116
 msgid "Portuguese - Portugal"
-msgstr ""
+msgstr "Portoghese - Portogallo"
 
 #: zapzap/services/spellCheckLanguages.py:117
 msgid "Romanian - Romania"
-msgstr ""
+msgstr "Rumeno - Romania"
 
 #: zapzap/services/spellCheckLanguages.py:118
 msgid "Russian - Russia"
-msgstr ""
+msgstr "Russo - Russia"
 
 #: zapzap/services/spellCheckLanguages.py:119
 msgid "Sinhala - Sri Lanka"
-msgstr ""
+msgstr "Singalese - Sri Lanka"
 
 #: zapzap/services/spellCheckLanguages.py:120
 msgid "Slovak - Slovakia"
-msgstr ""
+msgstr "Slovacco - Slovacchia"
 
 #: zapzap/services/spellCheckLanguages.py:121
 msgid "Slovenian - Slovenia"
-msgstr ""
+msgstr "Sloveno - Slovenia"
 
 #: zapzap/services/spellCheckLanguages.py:122
 msgid "Albanian - Albania"
-msgstr ""
+msgstr "Albanese - Albania"
 
 #: zapzap/services/spellCheckLanguages.py:123
 msgid "Serbian - Czechia"
-msgstr ""
+msgstr "Serbo - Repubblica Ceca"
 
 #: zapzap/services/spellCheckLanguages.py:124
 msgid "Serbian Latin - Czechia"
-msgstr ""
+msgstr "Serbo Latino - Repubblica Ceca"
 
 #: zapzap/services/spellCheckLanguages.py:125
 msgid "Serbian Latin - Serbia"
-msgstr ""
+msgstr "Serbo Latino - Serbia"
 
 #: zapzap/services/spellCheckLanguages.py:126
 msgid "Serbian - Serbia"
-msgstr ""
+msgstr "Serbo - Serbia"
 
 #: zapzap/services/spellCheckLanguages.py:127
 msgid "Swedish - Finland"
-msgstr ""
+msgstr "Svedese - Finlandia"
 
 #: zapzap/services/spellCheckLanguages.py:128
 msgid "Swedish - Sweden"
-msgstr ""
+msgstr "Svedese - Svezia"
 
 #: zapzap/services/spellCheckLanguages.py:129
 msgid "Swahili - Tanzania"
-msgstr ""
+msgstr "Swahili - Tanzania"
 
 #: zapzap/services/spellCheckLanguages.py:130
 msgid "Telugu"
-msgstr ""
+msgstr "Telugu"
 
 #: zapzap/services/spellCheckLanguages.py:131
 msgid "Telugu - India"
-msgstr ""
+msgstr "Telugu - India"
 
 #: zapzap/services/spellCheckLanguages.py:132
 msgid "Turkish"
-msgstr ""
+msgstr "Turco"
 
 #: zapzap/services/spellCheckLanguages.py:133
 msgid "Turkish - Turkey"
-msgstr ""
+msgstr "Turco - Turchia"
 
 #: zapzap/services/spellCheckLanguages.py:134
 msgid "Ukrainian - Ukraine"
-msgstr ""
+msgstr "Ucraino - Ucraina"
 
 #: zapzap/services/spellCheckLanguages.py:135
 msgid "Vietnamese - Vietnam"
-msgstr ""
+msgstr "Vietnamita - Vietnam"
 
 #, fuzzy
 #~ msgid "Open ZapZap"
@@ -883,12 +880,8 @@ msgstr ""
 #~ msgid "Você é do Brasil?"
 #~ msgstr "Você é do Brasil?"
 
-#~ msgid ""
-#~ "Acesse o link para transferir via PIX ou realize a leitura do QR code "
-#~ "abaixo"
-#~ msgstr ""
-#~ "Acesse o link para transferir via PIX ou realize a leitura do QR code "
-#~ "abaixo"
+#~ msgid "Acesse o link para transferir via PIX ou realize a leitura do QR code abaixo"
+#~ msgstr "Acesse o link para transferir via PIX ou realize a leitura do QR code abaixo"
 
 #~ msgid "Tray icon appearance"
 #~ msgstr "Aspetto area di notifica"
