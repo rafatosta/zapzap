@@ -31,6 +31,8 @@ class Settings(QWidget, Ui_Settings):
     def loadSpellChecker(self):
         def action():
             data = self.comboSpellChecker.currentData()
+            print(data)
+            print(self.comboSpellChecker.currentText())
             self.settings.setValue("system/spellCheckLanguage", data)
             self.mainWindow.emitSetSpellChecker(data)
 
@@ -46,9 +48,10 @@ class Settings(QWidget, Ui_Settings):
             sys_lang = SpellCheckLanguages.languages[lang]
         except:  # se não for um idioma suportado não fecha o app
             sys_lang = f'{_("System Language")} (??)'
+            self.comboSpellChecker.addItem(sys_lang, chave)
 
-        self.comboSpellChecker.setCurrentText(
-            f'{sys_lang} ({lang})')
+        index = self.comboSpellChecker.findData(lang)
+        self.comboSpellChecker.setCurrentIndex(index)
 
     def loadUsers(self):
         """def clear():

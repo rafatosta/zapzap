@@ -23,6 +23,8 @@ def buildTheme(p) -> str:
             border: 1px solid; 
             border-color: {frame_border};
             border-radius: 5px;
+            padding: 5px;
+            
         }
         QLineEdit:disabled {
             background-color:{frame_border};
@@ -34,19 +36,69 @@ def buildTheme(p) -> str:
             border: 1px solid rgb(192, 28, 40);
             border-radius: 5px;
             font-weight: bold;
+            height: 35px;
         }
         
-        #btnDisable{
+        #btnDisable
+        {
             color: #F0F2F5;
             background-color: #585A5D;
             border: 1px solid #585A5D;
             border-radius: 5px;
             font-weight: bold;
+            height: 35px;
         }
         #btnDelete:hover,
-        #btnDisable:hover{
-            
+        #btnDisable:hover
+        {
             border: 2px solid #00A884;
+        }
+        #btnApply{
+            color: #F0F2F5;
+            background-color: #00A884;
+            border: 1px solid #00A884;
+            border-radius: 5px;
+            font-weight: bold;
+            height: 35px;
+        }
+        #btnApply:hover {
+            border: 2px solid #585A5D;
+        }
+
+        QComboBox {
+            combobox-popup: 0;
+            background: {window};
+            height: 27px;
+            border: 1px solid; 
+            border-color: {frame_border};
+            border-radius: 5px;
+            padding: 5px ;
+            selection-background-color: #D0D0D0;
+            selection-color: #000000;
+        }
+        QComboBox:editable {
+            background: {window};
+        }
+        QComboBox:!editable,
+        QComboBox::drop-down:editable,
+        QComboBox:!editable:on,
+        QComboBox::drop-down:editable:on {
+            background: {window};
+        }
+        QComboBox::drop-down {
+            subcontrol-origin: padding;
+            subcontrol-position: top right;
+            border-left: none;
+        }
+        QComboBox::down-arrow {
+            width: 0.8em;
+            height: 0.8em;
+            border-image: url({path}/expand_more.svg);
+        }
+        QComboBox QAbstractItemView {
+            background: {window};
+            padding-left: 5px;
+            border: none;
         }
 
         /* PopUp */
