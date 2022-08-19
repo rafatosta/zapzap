@@ -42,14 +42,25 @@ class UIDecoration():
         # ResizeEvent
         def resizeEvent(event):
             # Events for the edges of the window
-            self.resize_grips()
-
             """Removes the margin on a full screen.
                 I did not find out a way of identifying if it is in the debut"""
             if self.win.windowState() == Qt.WindowState.WindowMaximized:
                 self.win.appMargins.setContentsMargins(0, 0, 0, 0)
+
+                self.left_grip.setGeometry(0, 0, 0, 0)
+                self.right_grip.setGeometry(0, 0, 0, 0)
+                self.top_grip.setGeometry(0, 0, 0, 0)
+                self.bottom_grip.setGeometry(0, 0, 0, 0)
+
             else:
                 self.win.appMargins.setContentsMargins(10, 10, 10, 10)
+
+                self.left_grip.setGeometry(0, 10, 10, self.win.height())
+                self.right_grip.setGeometry(
+                    self.win.width() - 10, 10, 10, self.win.height())
+                self.top_grip.setGeometry(0, 0, self.win.width(), 10)
+                self.bottom_grip.setGeometry(
+                    0, self.win.height() - 10, self.win.width(), 10)
         self.win.resizeEvent = resizeEvent
 
         # Decoração da janela
@@ -102,11 +113,3 @@ class UIDecoration():
             self.win.showNormal()
         else:
             self.win.showMaximized()
-
-    def resize_grips(self):
-        self.left_grip.setGeometry(0, 10, 10, self.win.height())
-        self.right_grip.setGeometry(
-            self.win.width() - 10, 10, 10, self.win.height())
-        self.top_grip.setGeometry(0, 0, self.win.width(), 10)
-        self.bottom_grip.setGeometry(
-            0, self.win.height() - 10, self.win.width(), 10)
