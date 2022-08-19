@@ -39,12 +39,10 @@ class CustomGrip(QWidget):
 
             # RESIZE TOP
             def resize_top(event):
-                delta = event.pos()
-                height = max(self.parent.minimumHeight(), self.parent.height() - delta.y())
-                geo = self.parent.geometry()
-                geo.setTop(geo.bottom() - height)
-                self.parent.setGeometry(geo)
-                event.accept()
+                print(event)
+                if event.buttons() == Qt.MouseButton.LeftButton:
+                    window = self.parent.window().windowHandle()
+                    window.startSystemResize(Qt.Edge.TopEdge)
             self.wi.top.mouseMoveEvent = resize_top
 
             # ENABLE COLOR
@@ -65,10 +63,9 @@ class CustomGrip(QWidget):
 
             # RESIZE BOTTOM
             def resize_bottom(event):
-                delta = event.pos()
-                height = max(self.parent.minimumHeight(), self.parent.height() + delta.y())
-                self.parent.resize(self.parent.width(), height)
-                event.accept()
+                if event.buttons() == Qt.MouseButton.LeftButton:
+                    window = self.parent.window().windowHandle()
+                    window.startSystemResize(Qt.Edge.BottomEdge)
             self.wi.bottom.mouseMoveEvent = resize_bottom
 
             # ENABLE COLOR
@@ -85,12 +82,9 @@ class CustomGrip(QWidget):
 
             # RESIZE LEFT
             def resize_left(event):
-                delta = event.pos()
-                width = max(self.parent.minimumWidth(), self.parent.width() - delta.x())
-                geo = self.parent.geometry()
-                geo.setLeft(geo.right() - width)
-                self.parent.setGeometry(geo)
-                event.accept()
+                if event.buttons() == Qt.MouseButton.LeftButton:
+                    window = self.parent.window().windowHandle()
+                    window.startSystemResize(Qt.Edge.LeftEdge)
             self.wi.leftgrip.mouseMoveEvent = resize_left
 
             # ENABLE COLOR
@@ -104,10 +98,9 @@ class CustomGrip(QWidget):
             self.setMaximumWidth(10)
 
             def resize_right(event):
-                delta = event.pos()
-                width = max(self.parent.minimumWidth(), self.parent.width() + delta.x())
-                self.parent.resize(width, self.parent.height())
-                event.accept()
+                if event.buttons() == Qt.MouseButton.LeftButton:
+                    window = self.parent.window().windowHandle()
+                    window.startSystemResize(Qt.Edge.RightEdge)
             self.wi.rightgrip.mouseMoveEvent = resize_right
 
             # ENABLE COLOR
