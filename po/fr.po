@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-20 11:24-0300\n"
-"PO-Revision-Date: 2022-08-19 02:15+0200\n"
+"PO-Revision-Date: 2022-08-20 21:55+0200\n"
 "Last-Translator: Irénée THIRION <irenee.thirion@e.email>\n"
 "Language-Team: French <gnomefr@traduc.org>\n"
 "Language: fr\n"
@@ -104,7 +104,7 @@ msgstr "À propos de Zapzap"
 
 #: zapzap/view/main_window.py:246 zapzap/view/settings.py:930
 msgid "Hide on close"
-msgstr "Masquer lors de la fermeturex"
+msgstr "Masquer lors de la fermeture"
 
 #: zapzap/view/main_window.py:247
 msgid "Keep in background when closing window"
@@ -718,7 +718,6 @@ msgid "Hungary - Hungarian"
 msgstr "Hongrois - Hongrie"
 
 #: zapzap/services/spellCheckLanguages.py:98
-#, fuzzy
 msgid "Indonesian - Indonesia"
 msgstr "Indonésien - Indonésie"
 
@@ -755,9 +754,8 @@ msgid "Latvian - Latvia"
 msgstr "Letton - Lettonie"
 
 #: zapzap/services/spellCheckLanguages.py:107
-#, fuzzy
 msgid "Norwegian - Bokmål"
-msgstr "Norvégien - Bokml"
+msgstr "Norvégien - Bokmål"
 
 #: zapzap/services/spellCheckLanguages.py:108
 msgid "Nepali - Nepal"
