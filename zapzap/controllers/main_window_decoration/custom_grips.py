@@ -39,7 +39,6 @@ class CustomGrip(QWidget):
 
             # RESIZE TOP
             def resize_top(event):
-                print(event)
                 if event.buttons() == Qt.MouseButton.LeftButton:
                     window = self.parent.window().windowHandle()
                     window.startSystemResize(Qt.Edge.TopEdge)
