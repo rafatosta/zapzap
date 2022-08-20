@@ -146,7 +146,7 @@ msgstr "Formulaire"
 
 #: zapzap/view/settings.py:920 zapzap/view/settings.py:964
 msgid "User Management"
-msgstr "Gestion des utilisateurs"
+msgstr "Utilisateurs"
 
 #: zapzap/view/settings.py:921 zapzap/view/settings.py:927
 msgid "System"
@@ -279,7 +279,7 @@ msgstr "En savoir plus"
 
 #: zapzap/view/settings.py:965
 msgid "New User"
-msgstr "Nouvel utilisateur"
+msgstr "Nouveau"
 
 #: zapzap/view/settings.py:966
 msgid "Users limit reached (9 in total)"
