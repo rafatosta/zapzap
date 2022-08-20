@@ -31,8 +31,6 @@ class Settings(QWidget, Ui_Settings):
     def loadSpellChecker(self):
         def action():
             data = self.comboSpellChecker.currentData()
-            print(data)
-            print(self.comboSpellChecker.currentText())
             self.settings.setValue("system/spellCheckLanguage", data)
             self.mainWindow.emitSetSpellChecker(data)
 
@@ -129,6 +127,7 @@ class Settings(QWidget, Ui_Settings):
         self.btn_donations.clicked.connect(self.buttonClick)
         self.btn_about.clicked.connect(self.buttonClick)
         self.btn_users.clicked.connect(self.buttonClick)
+        self.btn_quit.clicked.connect(self.buttonClick)
         ## System ##
         self.start_system.clicked.connect(self.actionsSystemMenu)
         self.start_hide.clicked.connect(self.actionsSystemMenu)
@@ -288,6 +287,9 @@ class Settings(QWidget, Ui_Settings):
             self.settings_stacked.setCurrentIndex(5)
             self.btn_users.setStyleSheet(
                 self.selectMenu(self.btn_system.styleSheet()))
+
+        if btnName == 'btn_quit':
+            self.mainWindow.closeEvent(None)
 
     def load(self):
         """
