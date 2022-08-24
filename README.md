@@ -53,7 +53,7 @@ Make sure the file for your language is in the [po](/po) folder. If it is just s
 
 #### Installing dependencies
 ```bash
-pip install PyQt6 PyQt6-WebEngine
+pip install PyQt6 PyQt6-WebEngine dbus-python
 ```
 #### Running the application
 ```bash
