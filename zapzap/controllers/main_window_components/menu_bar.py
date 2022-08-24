@@ -11,6 +11,7 @@ class MenuBar():
             mainWindow.openSettings)
         mainWindow.actionDonations.triggered.connect(mainWindow.openDonations)
         mainWindow.actionQuit.triggered.connect(lambda x = None: mainWindow.closeEvent(x))
+        mainWindow.actionClose_Conversation.triggered.connect(mainWindow.closeConversation)
         mainWindow.actionHide_on_close.triggered.connect(
             lambda: mainWindow.settings.setValue(
                 "system/keep_background",  mainWindow.actionHide_on_close.isChecked()))

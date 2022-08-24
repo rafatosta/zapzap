@@ -97,6 +97,35 @@ class UserContainer(QPushButton):
         profile = self.browser.page().profile()
         profile.setSpellCheckLanguages([lang])
 
+    def closeConversation(self):
+        script = """var openConvoClassName = "_3xTHG";
+                    var connectingClassName = "_2dfCc";
+                    var moreOptionsButtonClassName = "_26lC3";
+                    var closeConvoClassName = "_2oldI dJxPU";
+ 
+                    function closeConversation() {
+                        var elements = document.getElementsByClassName(openConvoClassName);
+                        if (elements.length == 0) {
+                            console.debug("Couldn't find an open conversation");
+                            return;
+                        }
+                        console.debug("Conversation open");
+                        var moreOptions = document.getElementsByClassName(moreOptionsButtonClassName)[4];
+                        moreOptions.click();
+                        setTimeout(function() {
+                            var buttons = document.getElementsByClassName(closeConvoClassName);
+                            if (buttons.length === 6) {
+                                moreOptions.click();
+                                return;
+                            }
+                            var index = buttons.length === 9 ? 4 : 2;
+                            document.getElementsByClassName(closeConvoClassName)[index].click()
+                        }, 1);
+                    }
+                    closeConversation();
+                    """
+        self.browser.page().runJavaScript(script)
+
     ## EVENTS ##
 
     def selected(self):

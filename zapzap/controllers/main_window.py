@@ -244,3 +244,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.settings.setValue("main/hideMenuBar", self.isHideMenuBar)
             self.zapSettings.menubar.setChecked(self.isHideMenuBar)
             self.isHideMenuBar = not self.isHideMenuBar
+    
+    def closeConversation(self):
+        """"Closes the current conversation, if any"""
+        self.zapHome.closeConversation()

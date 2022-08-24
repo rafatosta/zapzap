@@ -443,6 +443,7 @@
     <addaction name="separator"/>
     <addaction name="actionDonations"/>
     <addaction name="separator"/>
+    <addaction name="actionClose_Conversation"/>
     <addaction name="actionHide_on_close"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -544,6 +545,11 @@
   <action name="actionAbout_Zapzap">
    <property name="text">
     <string>About Zapzap</string>
+   </property>
+  </action>
+  <action name="actionClose_Conversation">
+   <property name="shortcut">
+    <string>Ctrl+w</string>
    </property>
   </action>
   <action name="actionHide_on_close">
