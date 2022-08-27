@@ -98,28 +98,38 @@ class UserContainer(QPushButton):
         profile.setSpellCheckLanguages([lang])
 
     def closeConversation(self):
-        script = """var openConvoClassName = "_3xTHG";
-                    var connectingClassName = "_2dfCc";
-                    var moreOptionsButtonClassName = "_26lC3";
-                    var closeConvoClassName = "_2oldI dJxPU";
+        script = """var closeConvoClassName = "_2oldI dJxPU";
+
+                    function isConversationOpen() {
+                        return document.getElementsByClassName("_3xTHG").length > 0;
+                    }
+
+                    function hideOptions() {
+                        document.getElementsByClassName("o--vV wGJyi")[0].style.display = "none";
+                    }
+
+                    function getMoreOptions() {
+                        return document.getElementsByClassName("_26lC3")[4];
+                    }
  
                     function closeConversation() {
-                        var elements = document.getElementsByClassName(openConvoClassName);
-                        if (elements.length == 0) {
-                            console.debug("Couldn't find an open conversation");
+                        if (!isConversationOpen()) {
                             return;
                         }
-                        console.debug("Conversation open");
-                        var moreOptions = document.getElementsByClassName(moreOptionsButtonClassName)[4];
-                        moreOptions.click();
+
+                        getMoreOptions().click();
                         setTimeout(function() {
                             var buttons = document.getElementsByClassName(closeConvoClassName);
-                            if (buttons.length === 6) {
-                                moreOptions.click();
+                            if (buttons.length === 6) { //it's a group
+                                document.getElementsByClassName("_3K4-L")[0].focus(); //scroll works again
+                                getMoreOptions().classList.remove("_1CTfw"); //removes shadow from button
+                                alert("Oi: " + getMoreOptions().classList);
+                                hideOptions();
                                 return;
                             }
                             var index = buttons.length === 9 ? 4 : 2;
-                            document.getElementsByClassName(closeConvoClassName)[index].click()
+                            buttons[index].click()
+                            hideOptions();
                         }, 1);
                     }
                     closeConversation();
