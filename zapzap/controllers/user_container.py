@@ -123,7 +123,6 @@ class UserContainer(QPushButton):
                             if (buttons.length === 6) { //it's a group
                                 document.getElementsByClassName("_3K4-L")[0].focus(); //scroll works again
                                 getMoreOptions().classList.remove("_1CTfw"); //removes shadow from button
-                                alert("Oi: " + getMoreOptions().classList);
                                 hideOptions();
                                 return;
                             }
