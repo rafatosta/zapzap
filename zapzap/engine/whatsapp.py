@@ -79,3 +79,37 @@ class WhatsApp(QWebEnginePage):
                     return True
             self.link_url = ''
         return False
+
+    def closeConversation(self):
+        script = """var closeConvoClassName = "_2oldI dJxPU";
+                    function isConversationOpen() {
+                        return document.getElementsByClassName("_3xTHG").length > 0;
+                    }
+                    function hideOptions() {
+                        document.getElementsByClassName("o--vV wGJyi")[0].style.display = "none";
+                    }
+                    function getMoreOptions() {
+                        return document.getElementsByClassName("_26lC3")[4];
+                    }
+ 
+                    function closeConversation() {
+                        if (!isConversationOpen()) {
+                            return;
+                        }
+                        getMoreOptions().click();
+                        setTimeout(function() {
+                            var buttons = document.getElementsByClassName(closeConvoClassName);
+                            if (buttons.length === 6) { //it's a group
+                                document.getElementsByClassName("_3K4-L")[0].focus(); //scroll works again
+                                getMoreOptions().classList.remove("_1CTfw"); //removes shadow from button
+                                hideOptions();
+                                return;
+                            }
+                            var index = buttons.length === 9 ? 4 : 2;
+                            buttons[index].click()
+                            hideOptions();
+                        }, 1);
+                    }
+                    closeConversation();
+                    """
+        self.runJavaScript(script)

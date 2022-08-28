@@ -10,7 +10,8 @@ class MenuBar():
         mainWindow.actionSettings.triggered.connect(
             mainWindow.openSettings)
         mainWindow.actionDonations.triggered.connect(mainWindow.openDonations)
-        mainWindow.actionQuit.triggered.connect(lambda x = None: mainWindow.closeEvent(x))
+        mainWindow.actionQuit.triggered.connect(
+            lambda x=None: mainWindow.closeEvent(x))
         mainWindow.actionHide_on_close.triggered.connect(
             lambda: mainWindow.settings.setValue(
                 "system/keep_background",  mainWindow.actionHide_on_close.isChecked()))
@@ -29,7 +30,7 @@ class MenuBar():
         mainWindow.actionAuto_hide_menu_bar.triggered.connect(
             mainWindow.setHideMenuBar)
         mainWindow.actionHome_page.triggered.connect(
-            lambda: mainWindow.main_stacked.setCurrentIndex(0))
+            mainWindow.actionEsc)
 
         # Help
         mainWindow.actionLearn_More.triggered.connect(lambda: QDesktopServices.openUrl(

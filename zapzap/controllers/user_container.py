@@ -97,6 +97,9 @@ class UserContainer(QPushButton):
         profile = self.browser.page().profile()
         profile.setSpellCheckLanguages([lang])
 
+    def closeConversation(self):
+        self.browser.page().closeConversation()
+
     ## EVENTS ##
 
     def selected(self):

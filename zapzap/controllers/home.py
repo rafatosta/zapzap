@@ -194,3 +194,13 @@ class Home(QWidget, Ui_Home):
         finally:
             self.activeMenu()
             self.updateShortcuts()
+
+    def closeConversation(self, closeAll=False):
+        if closeAll:
+            for i in range(self.menu.count()):
+                btn = self.menu.itemAt(i).widget()
+                btn.closeConversation()
+        else:
+            i = self.userStacked.currentIndex()
+            btn = self.menu.itemAt(i).widget()
+            btn.closeConversation()
