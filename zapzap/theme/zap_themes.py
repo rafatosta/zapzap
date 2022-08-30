@@ -22,6 +22,7 @@ class ZPallete():
     path_btn_titlebar = ''
     frame_background = ''
     frame_border = ''
+    frame_background_popup = ''
 
     def __init__(self) -> None:
         pass
@@ -43,7 +44,8 @@ class ZPallete():
                 'path': self.path,
                 'path_btn_titlebar': self.path_btn_titlebar,
                 'frame_background': self.frame_background,
-                'frame_border': self.frame_border}
+                'frame_border': self.frame_border,
+                'frame_background_popup': self.frame_background_popup}
 
 
 def getThemeLight() -> str:
@@ -56,6 +58,7 @@ def getThemeLight() -> str:
     p.link = BLUE
     p.frame_background = WRITE
     p.frame_border = 'rgba(0, 0, 0, 0.1)'
+    p.frame_background_popup = WRITE
     p.setPath('light')
     p.setPathBtnTitlebar('default/light')
     return buildTheme(p)
@@ -71,6 +74,7 @@ def getThemeDark() -> str:
     p.link = BLUE
     p.frame_background = 'rgba(0, 0, 0, 0.2)'
     p.frame_border = 'rgba(0, 0, 0, 0.3)'
+    p.frame_background_popup = DARK
     p.setPath('dark')
     p.setPathBtnTitlebar('default/dark')
 
