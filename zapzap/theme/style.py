@@ -636,6 +636,19 @@ def buildTheme(p) -> str:
     ZapDecoration = ""
     if settings.value("system/zap_decoration", True, bool):
         ZapDecoration = """
+
+        #leftBox .QPushButton {	
+            border: 0px solid {window};
+            border-radius: 5px;
+            text-align: center;
+            height: 30px;
+        }
+
+        #leftBox .QPushButton:hover,
+        #leftBox .QPushButton:pressed  {
+            color: {link};
+        }
+
         QStackedWidget {	
             background-color: {window};
             border: 3px solid {window}; 

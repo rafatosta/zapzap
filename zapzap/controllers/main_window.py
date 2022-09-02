@@ -97,6 +97,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.headbar.hide()
         if self.settings.value("system/zap_decoration", True, bool):
             self.scd = UIDecoration(self)
+            self.zFile.setMenu(self.menuFile)
+            self.zView.setMenu(self.menuView)
+            self.zHelp.setMenu(self.menuHelp)
 
     def recurring_timer(self):
         """ Check the current system theme and apply it in the app """

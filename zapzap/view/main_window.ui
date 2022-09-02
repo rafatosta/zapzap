@@ -239,7 +239,7 @@
               <number>7</number>
              </property>
              <property name="leftMargin">
-              <number>0</number>
+              <number>7</number>
              </property>
              <property name="topMargin">
               <number>0</number>
@@ -250,6 +250,55 @@
              <property name="bottomMargin">
               <number>0</number>
              </property>
+             <item>
+              <layout class="QHBoxLayout" name="zapMenu">
+               <property name="spacing">
+                <number>15</number>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="zFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>File</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="zView">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>View</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="zHelp">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Help</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
              <item>
               <widget class="QLabel" name="titleRightInfo">
                <property name="maximumSize">
@@ -420,7 +469,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>25</height>
+     <height>28</height>
     </rect>
    </property>
    <property name="maximumSize">
