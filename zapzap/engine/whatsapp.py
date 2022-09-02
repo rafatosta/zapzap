@@ -83,7 +83,8 @@ class WhatsApp(QWebEnginePage):
     def closeConversation(self):
         script = """var closeConvoClassName = "_2oldI dJxPU";
                     function isConversationOpen() {
-                        return document.getElementsByClassName("_3xTHG").length > 0;
+                        return document.getElementsByClassName("_3xTHG").length > 0 
+                            && document.getElementsByClassName("_23JDg _3x1a0").length == 0;
                     }
                     function hideOptions() {
                         document.getElementsByClassName("o--vV wGJyi")[0].style.display = "none";
