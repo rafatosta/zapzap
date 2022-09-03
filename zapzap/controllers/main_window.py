@@ -246,6 +246,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """Hides/Shows the menu bar in the system window"""
         if self.settings.value("system/zap_decoration", True, bool):
             self.menubar.setMaximumHeight(0)
+            if self.isHideMenuBar:
+                self.zapBoxMenu.hide()
+            else:
+                self.zapBoxMenu.show()
         else:
             """
             Hide/Show MenuBar
@@ -256,6 +260,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 # default size for qt designer
                 self.menubar.setMaximumHeight(16777215)
 
-            self.settings.setValue("main/hideMenuBar", self.isHideMenuBar)
-            self.zapSettings.menubar.setChecked(self.isHideMenuBar)
-            self.isHideMenuBar = not self.isHideMenuBar
+        self.settings.setValue("main/hideMenuBar", self.isHideMenuBar)
+        self.zapSettings.menubar.setChecked(self.isHideMenuBar)
+        self.isHideMenuBar = not self.isHideMenuBar

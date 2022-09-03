@@ -312,9 +312,6 @@ class Settings(QWidget, Ui_Settings):
             "main/hideMenuBar", False, bool))  # tray_icon
         zap_decor = self.settings.value("system/zap_decoration", True, bool)
         self.check_zap_window.setChecked(zap_decor)
-        if zap_decor:
-            self.label_MenuBar.hide()
-            self.frameMenuBar.hide()
         self.frameZapWindow.setEnabled(self.check_zap_window.isChecked())
         self.cb_maximize.setChecked(self.settings.value(
             "system/winBtnMax", False, bool))
