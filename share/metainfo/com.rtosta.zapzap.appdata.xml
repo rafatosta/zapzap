@@ -54,6 +54,15 @@
   </screenshots>
 
   <releases>
+    <release date="2022-09-02" version="4.1">
+      <description>
+      <p>Improvements:</p>
+        <ul>
+          <li>TitleBar Menu in ZapDecoration</li>
+          <li>Close Conversation shortcut (Esc)</li>
+        </ul>
+      </description>
+    </release>
     <release date="2022-08-20" version="4.0">
       <description>
         <p>Now Zapzap supports the simultaneous use of various WhatsApp accounts!</p>
