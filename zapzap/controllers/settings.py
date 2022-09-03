@@ -242,7 +242,7 @@ class Settings(QWidget, Ui_Settings):
                 self.keepBackground.isChecked())
         if btnName == 'disableTrayIcon':
             self.mainWindow.tray.setVisible(
-                not self.disableTrayIcon.isChecked())
+                self.disableTrayIcon.isChecked())
         if btnName == 'menubar':
             self.mainWindow.setHideMenuBar()
         if btnName == 'check_zap_window':
@@ -305,7 +305,7 @@ class Settings(QWidget, Ui_Settings):
         self.keepBackground.setChecked(self.settings.value(
             "system/keep_background", True, bool))  # keep_background
 
-        self.disableTrayIcon.setChecked(not self.settings.value(
+        self.disableTrayIcon.setChecked(self.settings.value(
             "system/tray_icon", True, bool))  # tray_icon
 
         self.menubar.setChecked(self.settings.value(
@@ -369,7 +369,7 @@ class Settings(QWidget, Ui_Settings):
         self.settings.setValue("system/keep_background",
                                self.keepBackground.isChecked())
         self.settings.setValue("system/tray_icon",
-                               not self.disableTrayIcon.isChecked())
+                               self.disableTrayIcon.isChecked())
         self.settings.setValue("main/hideMenuBar", self.menubar.isChecked())
         self.settings.setValue("system/zap_decoration",
                                self.check_zap_window.isChecked())

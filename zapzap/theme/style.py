@@ -226,6 +226,14 @@ def buildTheme(p) -> str:
             font: 14pt;
             font-weight: bold;
         }
+
+        #disableTrayIcon{
+            color: {windowText};
+            margin-bottom: 0.09em;
+            font: 12pt;
+            font-weight: bold;
+        }
+
         QCheckBox
         {
             color: {windowText};
