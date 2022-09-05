@@ -34,15 +34,11 @@ class WhatsApp(QWebEnginePage):
                         clearInterval(checkExist);
                     }
                 }, 100);
-
-                 const checkNotify = setInterval(() => {
-                    const classElement = document.getElementsByClassName("_1Yy79 _1-SiY")[0];
-                    if (classElement != null) {
-                        classElement.click()
-                        clearInterval(checkNotify);
-                    }
-                }, 100);
             """)
+            
+            # Permissão automática para notificações
+            self.setFeaturePermission(self.url(), QWebEnginePage.Feature.Notifications,
+                                      QWebEnginePage.PermissionPolicy.PermissionGrantedByUser)
 
             settings = QSettings(__appname__, __appname__, self)
             theme_mode = settings.value("system/theme", 'auto', str)
