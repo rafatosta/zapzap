@@ -84,12 +84,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def actionEsc(self, closeAll=False):
         """Quando na tela de Configurações, retorna para a tela inicial;
             Quando na tela inicial, fecha o chat atual"""
-
         if self.main_stacked.currentIndex() == 0:
-            print('in Home')
             self.zapHome.closeConversation(closeAll)
         else:
-            print('in Settings')
             self.main_stacked.setCurrentIndex(0)
 
     def setZapDecoration(self):
