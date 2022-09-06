@@ -32,6 +32,10 @@ class MenuBar():
         mainWindow.actionHome_page.triggered.connect(
             mainWindow.actionEsc)
 
+        # Chat
+        mainWindow.actionOpen_new_chat.triggered.connect(
+            mainWindow.openNewChatPopup)
+
         # Help
         mainWindow.actionLearn_More.triggered.connect(lambda: QDesktopServices.openUrl(
             QUrl(zapzap.__website__)))

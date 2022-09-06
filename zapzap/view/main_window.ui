@@ -315,6 +315,13 @@
                    </widget>
                   </item>
                   <item>
+                   <widget class="QPushButton" name="zChat">
+                    <property name="text">
+                     <string>Chat</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="QPushButton" name="zHelp">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -553,8 +560,15 @@
     <addaction name="separator"/>
     <addaction name="actionAbout_Zapzap"/>
    </widget>
+   <widget class="QMenu" name="menuChat">
+    <property name="title">
+     <string>Chat</string>
+    </property>
+    <addaction name="actionOpen_new_chat"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
+   <addaction name="menuChat"/>
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionSettings">
@@ -672,6 +686,14 @@
    </property>
    <property name="shortcut">
     <string>Esc</string>
+   </property>
+  </action>
+  <action name="actionOpen_new_chat">
+   <property name="text">
+    <string>Open new chat</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
  </widget>

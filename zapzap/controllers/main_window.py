@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import QMainWindow, QSystemTrayIcon
 from PyQt6.QtCore import QSettings, QByteArray, QTimer
+from zapzap.controllers.open_chat_popup import OpenChatPopup
 from zapzap.theme.zap_themes import getThemeDark, getThemeLight
 from zapzap.controllers.main_window_components.menu_bar import MenuBar
 from zapzap.controllers.main_window_components.tray_icon import TrayIcon
@@ -96,6 +97,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.scd = UIDecoration(self)
             self.zFile.setMenu(self.menuFile)
             self.zView.setMenu(self.menuView)
+            self.zChat.setMenu(self.menuChat)
             self.zHelp.setMenu(self.menuHelp)
 
     def recurring_timer(self):
@@ -116,6 +118,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # Apply equivalent theme on whatsapp page
         self.zapHome.setThemePages(isNight_mode)
+
+    def openNewChatPopup(self):
+        dialog = OpenChatPopup(self)
+        r = dialog.exec_()
+        if r == 1:
+            number = dialog.numberPhone.text()
+            if number != "":
+                self.zapHome.openChat(number)
 
     def reload_Service(self):
         """Refreshing the page"""

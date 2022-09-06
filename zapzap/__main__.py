@@ -3,6 +3,7 @@ import zapzap
 from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.controllers.main_window import MainWindow
 from PyQt6.QtGui import QFont, QFontDatabase
+from PyQt6.QtCore import QLocale
 import gettext
 
 from zapzap.model.db import createDB

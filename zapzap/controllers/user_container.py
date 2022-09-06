@@ -100,6 +100,9 @@ class UserContainer(QPushButton):
     def closeConversation(self):
         self.browser.page().closeConversation()
 
+    def openChat(self, number):
+        self.browser.page().openChat(number)
+
     ## EVENTS ##
 
     def selected(self):

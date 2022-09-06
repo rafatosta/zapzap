@@ -19,7 +19,7 @@ def buildTheme(p) -> str:
 
         QLineEdit{
             color: {windowText};
-            background-color: {window};
+            background-color: {frame_border};
             border: 1px solid; 
             border-color: {frame_border};
             border-radius: 5px;
@@ -103,7 +103,7 @@ def buildTheme(p) -> str:
 
         /* PopUp */
 
-        #DownloadPopup .QPushButton {	
+        #DownloadPopup .QPushButton{
             background-color: #008069;
             border-radius: 2px;
             font: 12pt;
@@ -113,11 +113,52 @@ def buildTheme(p) -> str:
         }
 
         #DownloadPopup .QPushButton:hover,
-        #DownloadPopup .QPushButton:pressed  {
-            background-color: {highlight};
-            border-color: {highlight};
+        #DownloadPopup .QPushButton:pressed {
+             background-color: #199979;
+             border-color: #199979;
         }
 
+        /*PopUp phone*/
+
+        #btnOk,
+        #btnCancel {
+            background-color: #008069;
+            border-radius: 2px;
+            font: 12pt;
+            height: 30px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        #btnOk:hover,
+        #btnOk:pressed,
+        #btnCancel:hover,
+        #btnCancel:pressed {
+             background-color: #199979;
+             border-color: #199979;
+        }
+
+        #btnPhoneHelper{	
+            background: {frame_background_popup};
+            color: {windowText};
+            border-radius: 0px;
+            font: 8pt;
+            height: 30px;
+
+        }
+
+        #btnPhoneHelper:hover,
+        #btnPhoneHelper:pressed {	
+            background: {frame_background_popup};
+            color: {windowText};
+            border-radius: 0px;
+            font: 8pt;
+            height: 30px;
+            font-weight: bold;
+        }
+
+        
+        /* Popup Geral */
         #popupMargins{
             border-image: url({path}/borderDialog.png);
         }

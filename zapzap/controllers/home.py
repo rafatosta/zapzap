@@ -204,3 +204,8 @@ class Home(QWidget, Ui_Home):
             i = self.userStacked.currentIndex()
             btn = self.menu.itemAt(i).widget()
             btn.closeConversation()
+
+    def openChat(self, number):
+        i = self.userStacked.currentIndex()
+        btn = self.menu.itemAt(i).widget()
+        btn.openChat(number)

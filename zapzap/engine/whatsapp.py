@@ -35,7 +35,7 @@ class WhatsApp(QWebEnginePage):
                     }
                 }, 100);
             """)
-            
+
             # Permissão automática para notificações
             self.setFeaturePermission(self.url(), QWebEnginePage.Feature.Notifications,
                                       QWebEnginePage.PermissionPolicy.PermissionGrantedByUser)
@@ -109,4 +109,10 @@ class WhatsApp(QWebEnginePage):
                     }
                     closeConversation();
                     """
+        self.runJavaScript(script)
+
+    def openChat(self, numberPhone):
+        script = """(function(){var a = document.createElement("a");a.href="whatsapp://send?phone=""" + \
+            numberPhone + \
+            """";document.body.appendChild(a);a.click();a.remove(); })();"""
         self.runJavaScript(script)
