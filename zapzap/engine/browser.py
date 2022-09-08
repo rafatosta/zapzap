@@ -179,6 +179,11 @@ class Browser(QWebEngineView):
                 n.setCategory("im.received")
                 n.setIconPath(icon)
                 n.setHint('desktop-entry', 'com.rtosta.zapzap')
+                def callback(*_):
+                    self.parent.raise_()
+                    self.parent.activateWindow()
+                    notification.click()
+                n.addAction('default', '', callback)
                 n.show()
             except Exception as e:
                 print(e)
