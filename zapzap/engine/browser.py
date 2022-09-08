@@ -3,7 +3,7 @@ from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest, QWebEngineProfile, QWebEngineSettings
 from PyQt6.QtCore import Qt, QUrl, QStandardPaths, QSettings, QLocale, QSize, QUrl
 from PyQt6.QtGui import QPainter, QPainter, QImage, QBrush, QPen, QDesktopServices
-from PyQt6.QtWidgets import QFileDialog
+from PyQt6.QtWidgets import QFileDialog, QApplication
 import zapzap
 from zapzap import __appname__
 from ..controllers.download_popup import DownloadPopup
@@ -34,7 +34,7 @@ class Browser(QWebEngineView):
 
         lang = self.qset.value(
             "system/spellCheckLanguage", QLocale.system().name(), str)
-       
+
         self.profile.setSpellCheckLanguages([lang])
 
         # Rotina para download de arquivos
@@ -179,6 +179,18 @@ class Browser(QWebEngineView):
                 n.setCategory("im.received")
                 n.setIconPath(icon)
                 n.setHint('desktop-entry', 'com.rtosta.zapzap')
+
+                def callback(*_):
+                    # Coloca a janela em foco
+                    mainWindow = QApplication.instance().getWindow()
+                    mainWindow.show()
+                    mainWindow.raise_()
+                    mainWindow.activateWindow()
+                    # seleciona o usuário da notificação
+                    self.parent.showPageNotification()
+                    # abre a conversa
+                    notification.click()
+                n.addAction('default', '', callback)
                 n.show()
             except Exception as e:
                 print(e)
@@ -209,7 +221,7 @@ class Browser(QWebEngineView):
                                     qin.width()//2, qin.height()//2)
             painter.end()
             c = qout.save(path)
-            if(c == False):
+            if (c == False):
                 return self.getIconDefault()
             else:
                 return path
