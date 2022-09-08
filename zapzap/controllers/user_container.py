@@ -65,6 +65,12 @@ class UserContainer(QPushButton):
         self.home.setPage(self.browser)
         self.selected()
 
+    def showPageNotification(self):
+        # Definir a página
+        self.home.setPage(self.browser)
+        # Definir o botão 
+        self.click()
+
     def setUser(self, user):
         self.user = user
         self.setToolTip(f'{self.user.name} ({self.qtd})' if self.qtd >
