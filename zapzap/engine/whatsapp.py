@@ -79,8 +79,10 @@ class WhatsApp(QWebEnginePage):
     def closeConversation(self):
         script = """var closeConvoClassName = "_2oldI dJxPU";
                     function isConversationOpen() {
-                        return document.getElementsByClassName("_3xTHG").length > 0 
-                            && document.getElementsByClassName("_23JDg _3x1a0").length == 0;
+                        return document.getElementsByClassName("_3xTHG").length > 0 //conversation class
+                            && document.getElementsByClassName("lhggkp7q mvj9yovn f804f6gw fyy3ld6e svlsagor dntxsmpk ixn6u0rb s2vc4xk1 o0wkt7aw t1844p82 esbo3we0 qizq0yyl bs7a17vp eg0stril").length == 0 //close emoji
+                            && document.getElementsByClassName("_2cNrC _1CTfw").length == 0 //attachment popup
+                            && document.getElementsByClassName("_23JDg _3x1a0").length == 0; //media view
                     }
                     function hideOptions() {
                         document.getElementsByClassName("o--vV wGJyi")[0].style.display = "none";
@@ -88,9 +90,15 @@ class WhatsApp(QWebEnginePage):
                     function getMoreOptions() {
                         return document.getElementsByClassName("_26lC3")[4];
                     }
+                    function invokeEscKey() {
+                        window.dispatchEvent(new KeyboardEvent("keydown", {altKey: false, code: "Escape", ctrlKey: false, isComposing: false, key: "Escape", 
+                                            location: 0, metaKey: false, repeat: false, shiftKey: false, which: 27, charCode: 0, keyCode: 27,})
+                        );
+                    }
  
                     function closeConversation() {
                         if (!isConversationOpen()) {
+                            invokeEscKey();
                             return;
                         }
                         getMoreOptions().click();
