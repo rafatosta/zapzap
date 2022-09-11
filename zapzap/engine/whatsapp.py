@@ -82,6 +82,7 @@ class WhatsApp(QWebEnginePage):
                         return document.getElementsByClassName("_3xTHG").length > 0 //conversation class
                             && document.getElementsByClassName("lhggkp7q mvj9yovn f804f6gw fyy3ld6e svlsagor dntxsmpk ixn6u0rb s2vc4xk1 o0wkt7aw t1844p82 esbo3we0 qizq0yyl bs7a17vp eg0stril").length == 0 //close emoji
                             && document.getElementsByClassName("_2cNrC _1CTfw").length == 0 //attachment popup
+                            && document.getElementsByClassName("o--vV wGJyi").length == 0 //more options menu
                             && document.getElementsByClassName("_23JDg _3x1a0").length == 0; //media view
                     }
                     function hideOptions() {
@@ -104,10 +105,9 @@ class WhatsApp(QWebEnginePage):
                         getMoreOptions().click();
                         setTimeout(function() {
                             var buttons = document.getElementsByClassName(closeConvoClassName);
-                            if (buttons.length === 6) { //it's a group
-                                document.getElementsByClassName("_3K4-L")[0].focus(); //scroll works again
-                                getMoreOptions().classList.remove("_1CTfw"); //removes shadow from button
+                            if (buttons.length === 6 || buttons.length === 5) { //it's a group
                                 hideOptions();
+                                invokeEscKey();
                                 return;
                             }
                             var index = buttons.length === 9 ? 4 : 2;
