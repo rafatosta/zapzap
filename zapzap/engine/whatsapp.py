@@ -91,21 +91,8 @@ class WhatsApp(QWebEnginePage):
                         return document.getElementsByClassName("_26lC3")[4];
                     }
                     function invokeEscKey() {
-                        window.dispatchEvent(
-                            new KeyboardEvent("keydown", {
-                                altKey: false,
-                                code: "Escape",
-                                ctrlKey: false,
-                                isComposing: false,
-                                key: "Escape",
-                                location: 0,
-                                metaKey: false,
-                                repeat: false,
-                                shiftKey: false,
-                                which: 27,
-                                charCode: 0,
-                                keyCode: 27,
-                            })
+                        window.dispatchEvent(new KeyboardEvent("keydown", {altKey: false, code: "Escape", ctrlKey: false, isComposing: false, key: "Escape", 
+                                            location: 0, metaKey: false, repeat: false, shiftKey: false, which: 27, charCode: 0, keyCode: 27,})
                         );
                     }
  
