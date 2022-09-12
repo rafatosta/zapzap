@@ -54,6 +54,19 @@
   </screenshots>
 
   <releases>
+    <release date="2022-09-12" version="4.3">
+      <description>
+        <p>Improvements:</p>
+        <p>Opens the conversation on notification click.</p>
+        <p>Close conversation through the Esc shortcut:</p>
+        <ul>
+          <li>Closes the emojis menu;</li>
+          <li>Closes the attachment pop-up;</li>
+          <li>Closes the media visualization;</li>
+          <li>If none of these is open, it closes the conversation.</li>
+        </ul>
+      </description>
+    </release>
     <release date="2022-09-05" version="4.2">
       <description>
         <ul>
