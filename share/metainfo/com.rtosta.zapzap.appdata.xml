@@ -48,7 +48,7 @@
   <url type="donation">https://github.com/sponsors/rafatosta</url>
 
   <screenshots>
-    <screenshot>
+    <screenshot type="default">
       <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/default.png</image>
     </screenshot>
   </screenshots>
