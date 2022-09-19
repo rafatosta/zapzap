@@ -21,6 +21,7 @@ try:
                   'zapzap.model'],
         include_package_data=True,
         package_data={'zapzap': ['assets/icons/app/*/*.svg',
+                                 'assets/icons/app/*/*.png',
                                  'assets/icons/titlebar_buttons/*/*/*.svg',
                                  'assets/icons/banners/*.svg',
                                  'assets/icons/banners/*.png',
