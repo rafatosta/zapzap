@@ -24,7 +24,7 @@ class SingleApplication(QApplication):
 
         if self._isRunning:
             self._outStream = QTextStream(self._outSocket)
-            sys.exit(0)
+            # sys.exit(0)
         else:
             error = self._outSocket.error()
             if error == QLocalSocket.LocalSocketError.ConnectionRefusedError:
@@ -61,22 +61,19 @@ class SingleApplication(QApplication):
             return
         self._activationWindow.setWindowState(
             self._activationWindow.windowState() & ~Qt.WindowState.WindowMinimized)
+        self._activationWindow.show()
         self._activationWindow.raise_()
         self._activationWindow.activateWindow()
 
     def sendMessage(self, msg):
         if not self._outStream:
             return False
-        # noinspection PyUnresolvedReferences
         self._outStream << msg << '\n'
         self._outStream.flush()
         return self._outSocket.waitForBytesWritten()
 
     def _onNewConnection(self):
-        self.window.show()
-        self.alert(self.window)
-        self.activateWindow()
-        """if self._inSocket:
+        if self._inSocket:
             self._inSocket.readyRead.disconnect(self._onReadyRead)
         self._inSocket = self._server.nextPendingConnection()
         if not self._inSocket:
@@ -84,7 +81,7 @@ class SingleApplication(QApplication):
         self._inStream = QTextStream(self._inSocket)
         self._inSocket.readyRead.connect(self._onReadyRead)
         if self._activateOnMessage:
-            self.activateWindow()"""
+            self.activateWindow()
 
     def _onReadyRead(self):
         while True:

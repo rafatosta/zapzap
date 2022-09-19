@@ -30,6 +30,9 @@ def main():
 
     # Define application attributes
     app = SingleApplication(zapzap.__appid__, sys.argv)
+    if app.isRunning():
+        sys.exit(0)
+
     app.setApplicationName(zapzap.__appname__)
     app.setApplicationVersion(zapzap.__version__)
     app.setDesktopFileName(zapzap.__desktopid__)

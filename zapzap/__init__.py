@@ -5,7 +5,7 @@ __appname__ = 'ZapZap'
 __comment__ = 'Whatsapp Desktop for linux'
 __domain__ = 'com.rtosta'
 __desktopid__ = 'com.rtosta.zapzap'
-__appid__ = 'zapzap-F3FF80BA-BA05-4277-8063-82A6DB9245A2'
+__appid__ = 'zapzap-application'
 
 __author__ = 'Rafael Tosta'
 __email__ = 'rafa.ecomp@gmail.com'
