@@ -10,8 +10,6 @@ finish-args:
   - "--socket=x11"
   - "--socket=wayland"
   - "--socket=pulseaudio"
-  - "--socket=system-bus"
-  - "--socket=session-bus"
   - "--share=network"
   - "--device=all"
   - "--device=dri"
