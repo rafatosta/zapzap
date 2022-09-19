@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QApplication
-from PyQt6.QtCore import pyqtSignal, Qt, QTextStream
+from PyQt6.QtCore import pyqtSignal, Qt, QTextStream, pyqtSlot
 
 from PyQt6.QtNetwork import QLocalServer, QLocalSocket
 import sys
@@ -72,6 +72,7 @@ class SingleApplication(QApplication):
         self._outStream.flush()
         return self._outSocket.waitForBytesWritten()
 
+    @pyqtSlot()
     def _onNewConnection(self):
         if self._inSocket:
             self._inSocket.readyRead.disconnect(self._onReadyRead)
@@ -83,6 +84,7 @@ class SingleApplication(QApplication):
         if self._activateOnMessage:
             self.activateWindow()
 
+    @pyqtSlot()
     def _onReadyRead(self):
         while True:
             msg = self._inStream.readLine()
