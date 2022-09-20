@@ -30,9 +30,6 @@ def main():
 
     # Define application attributes
     app = SingleApplication(zapzap.__appid__, sys.argv)
-    if app.isRunning():
-        sys.exit(0)
-
     app.setApplicationName(zapzap.__appname__)
     app.setApplicationVersion(zapzap.__version__)
     app.setDesktopFileName(zapzap.__desktopid__)
@@ -47,6 +44,9 @@ def main():
     QFontDatabase.addApplicationFont(zapzap.segoe_font['bold-italic'])
     QFontDatabase.addApplicationFont(zapzap.segoe_font['italic'])
     app.setFont(QFont("Segoe UI"))
+
+    # Callback instance
+    app.messageReceived.connect(lambda result: window.xdgOpenChat(result))
 
     # Create main window
     window = MainWindow(app)

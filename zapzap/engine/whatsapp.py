@@ -119,8 +119,9 @@ class WhatsApp(QWebEnginePage):
                     """
         self.runJavaScript(script)
 
-    def openChat(self, numberPhone):
-        script = """(function(){var a = document.createElement("a");a.href="whatsapp://send?phone=""" + \
-            numberPhone + \
-            """";document.body.appendChild(a);a.click();a.remove(); })();"""
+    def openChat(self, url):
+        script = """(function(){var a = document.createElement("a");a.href=\"""" + \
+            url + \
+            """\";document.body.appendChild(a);a.click();a.remove(); })();"""
+
         self.runJavaScript(script)

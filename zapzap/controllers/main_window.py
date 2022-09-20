@@ -119,13 +119,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Apply equivalent theme on whatsapp page
         self.zapHome.setThemePages(isNight_mode)
 
+    def xdgOpenChat(self, url):
+        self.zapHome.openChat(url)
+
     def openNewChatPopup(self):
         dialog = OpenChatPopup(self)
         r = dialog.exec_()
         if r == 1:
             number = dialog.numberPhone.text()
             if number != "":
-                self.zapHome.openChat(number)
+                url = "https://api.whatsapp.com/send?phone="+number
+                self.zapHome.openChat(url)
 
     def reload_Service(self):
         """Refreshing the page"""
