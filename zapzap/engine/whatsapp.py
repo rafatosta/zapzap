@@ -122,6 +122,6 @@ class WhatsApp(QWebEnginePage):
     def openChat(self, url):
         script = """(function(){var a = document.createElement("a");a.href=\"""" + \
             url + \
-            """\";document.body.appendChild(a);a.click();a.remove(); })();"""
+            """\";document.body.appendChild(a);a.click();a.remove(); return;})();"""
 
         self.runJavaScript(script)
