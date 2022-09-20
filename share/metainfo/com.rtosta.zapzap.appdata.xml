@@ -54,6 +54,11 @@
   </screenshots>
 
   <releases>
+    <release date="2022-09-20" version="4.4">
+      <description>
+        <p>Opens magnetic links from the browser: New messages, Group Links.</p>
+      </description>
+    </release>
     <release date="2022-09-12" version="4.3">
       <description>
         <p>Improvements:</p>
