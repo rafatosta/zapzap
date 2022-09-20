@@ -24,7 +24,11 @@ class SingleApplication(QApplication):
 
         if self._isRunning:
             self._outStream = QTextStream(self._outSocket)
-            # sys.exit(0)
+            for link in argv[0]:
+                if 'whatsapp' in link:
+                    self.sendMessage(link)
+                    break
+            sys.exit(0)
         else:
             error = self._outSocket.error()
             if error == QLocalSocket.LocalSocketError.ConnectionRefusedError:
