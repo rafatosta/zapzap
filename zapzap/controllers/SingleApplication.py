@@ -1,6 +1,5 @@
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtCore import pyqtSignal, Qt, QTextStream, pyqtSlot
-
 from PyQt6.QtNetwork import QLocalServer, QLocalSocket
 import sys
 

@@ -15,10 +15,9 @@ class Home(QWidget, Ui_Home):
     """
     list = None
 
-    def __init__(self, parent=None):
+    def __init__(self):
         super(Home, self).__init__()
         self.setupUi(self)
-        self.mainWindow = parent
         self.loadUsers()
         self.activeMenu()
         self.updateShortcuts()

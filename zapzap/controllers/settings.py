@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QWidget, QPushButton
-from PyQt6.QtCore import QSettings, QSize, QUrl, QLocale
+from PyQt6.QtCore import QSettings, QSize, QUrl, QLocale, pyqtSignal
 from PyQt6.QtGui import QDesktopServices, QIcon
 import zapzap
 from zapzap.controllers.card_user import CardUser
@@ -16,11 +16,28 @@ class Settings(QWidget, Ui_Settings):
 
     LIMITE_USERS = 9
 
-    def __init__(self, parent=None):
+    emitDisableUser = pyqtSignal(User)
+    emitDeleteUser = pyqtSignal(User)
+    emitEditUser = pyqtSignal(User)
+    emitNewtUser = pyqtSignal(User)
+
+    emitSetSpellChecker = pyqtSignal(str)
+
+    emitNotifications = pyqtSignal()
+
+    emitQuit = pyqtSignal()
+    emitGoHome = pyqtSignal()
+
+    emitKeepBackground = pyqtSignal(bool)
+    emitDisableTrayIcon = pyqtSignal(bool)
+    emitSetHideMenuBar = pyqtSignal()
+    emitUpdateUIDecoration = pyqtSignal()
+    emitUpdateTheme = pyqtSignal(str)
+
+    def __init__(self):
         super(Settings, self).__init__()
         self.setupUi(self)
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
-        self.mainWindow = parent
         self.load()
         self.settingsActions()
         self.loadInfoHelp()
@@ -30,9 +47,10 @@ class Settings(QWidget, Ui_Settings):
 
     def loadSpellChecker(self):
         def action():
-            data = self.comboSpellChecker.currentData()
-            self.settings.setValue("system/spellCheckLanguage", data)
-            self.mainWindow.emitSetSpellChecker(data)
+            currentLanguage = self.comboSpellChecker.currentData()
+            self.settings.setValue(
+                "system/spellCheckLanguage", currentLanguage)
+            self.emitSetSpellChecker.emit(currentLanguage)
 
         self.btnApply.clicked.connect(action)
 
@@ -59,7 +77,14 @@ class Settings(QWidget, Ui_Settings):
         clear()"""
         list = UserDAO.select(False)
         for user in list:
-            self.usersList.addWidget(CardUser(user=user))
+            self.usersList.addWidget(self.getNewCardUser(user))
+
+    def getNewCardUser(self, user) -> CardUser:
+        card = CardUser(user)
+        card.emitDisableUser = self.emitDisableUser
+        card.emitDeleteUser = self.emitDeleteUser
+        card.emitEditUser = self.emitEditUser
+        return card
 
     def updateUsersShortcuts(self):
         count = 1
@@ -119,8 +144,7 @@ class Settings(QWidget, Ui_Settings):
         self.btnNewUser.clicked.connect(self.newUserbuttonClick)
 
         ## Menu left ##
-        self.btn_home.clicked.connect(
-            lambda: self.mainWindow.main_stacked.setCurrentIndex(0))
+        self.btn_home.clicked.connect(lambda: self.emitGoHome.emit())
         self.btn_system.clicked.connect(self.buttonClick)
         self.btn_appearance.clicked.connect(self.buttonClick)
         self.btn_notifications.clicked.connect(self.buttonClick)
@@ -165,9 +189,9 @@ class Settings(QWidget, Ui_Settings):
             # insere no banco de dados e recebe o user com o ID
             user = UserDAO.add(user)
             # Insere  o card
-            self.usersList.addWidget(CardUser(user=user))
-            # Informa ao mainWindow a criação do usuário
-            self.mainWindow.emitNewUser(user)
+            self.usersList.addWidget(self.getNewCardUser(user))
+            # Informa a criação do usuário
+            self.emitNewtUser.emit(user)
 
     def goPageHome(self):
         self.settings_stacked.setCurrentIndex(5)
@@ -206,26 +230,18 @@ class Settings(QWidget, Ui_Settings):
             theme = 'symbolic_dark'
 
         self.settings.setValue("notification/theme_tray", theme)
-        self.mainWindow.emitNotifications()
+        self.emitNotifications.emit()
 
     def actionsRbAppearance(self):
-        theme = 'auto'
         if self.rb_system.isChecked():
-            """Ativa o contador"""
-            self.mainWindow.current_theme = -1
-            self.mainWindow.timer.start()
+            theme = 'auto'
         if self.rb_light.isChecked():
             theme = 'light'
-            """Desativa o contador e ativa o light"""
-            self.mainWindow.timer.stop()
-            self.mainWindow.setThemeApp(False)
         if self.rb_dark.isChecked():
             theme = 'dark'
-            """Desativa o contador e ativa o dark"""
-            self.mainWindow.timer.stop()
-            self.mainWindow.setThemeApp(True)
 
         self.settings.setValue("system/theme", theme)
+        self.emitUpdateTheme.emit(theme)
 
     def actionsSystemMenu(self):
         btn = self.sender()  # returns a pointer to the object that sent the signal
@@ -238,19 +254,16 @@ class Settings(QWidget, Ui_Settings):
             else:
                 removeDesktop()
         if btnName == 'keepBackground':
-            self.mainWindow.actionHide_on_close.setChecked(
-                self.keepBackground.isChecked())
+            self.emitKeepBackground.emit(self.keepBackground.isChecked())
         if btnName == 'disableTrayIcon':
-            self.mainWindow.tray.setVisible(
-                self.disableTrayIcon.isChecked())
+            self.emitDisableTrayIcon.emit(self.disableTrayIcon.isChecked())
         if btnName == 'menubar':
-            self.mainWindow.setHideMenuBar()
+            self.emitSetHideMenuBar.emit()
         if btnName == 'check_zap_window':
             self.frameZapWindow.setEnabled(self.check_zap_window.isChecked())
 
         self.save()
-        if self.mainWindow.scd != None:
-            self.mainWindow.scd.headDefinitions()
+        self.emitUpdateUIDecoration.emit()
 
     def buttonClick(self):
         btn = self.sender()  # returns a pointer to the object that sent the signal
@@ -289,7 +302,7 @@ class Settings(QWidget, Ui_Settings):
                 self.selectMenu(self.btn_system.styleSheet()))
 
         if btnName == 'btn_quit':
-            self.mainWindow.closeEvent(None)
+            self.emitQuit.emit()
 
     def load(self):
         """
@@ -330,9 +343,8 @@ class Settings(QWidget, Ui_Settings):
             self.rb_dark.setChecked(True)
 
         ## Theme Icon ##
-        theme_icon = self.mainWindow.settings.value(
+        theme_icon = self.settings.value(
             "notification/theme_tray", 'default', str)
-        print()
         if theme_icon == 'default':
             self.rb_tray_default.setChecked(True)
         elif theme_icon == 'symbolic_light':

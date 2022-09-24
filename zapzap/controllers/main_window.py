@@ -32,9 +32,26 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Object responsible for managing the tray icon
         self.tray = TrayIcon(self)
 
-        # create pages
-        self.zapHome = Home(self)
-        self.zapSettings = Settings(self)
+        # Home page
+        self.zapHome = Home()
+
+        # Settings page
+        self.zapSettings = Settings()
+        self.zapSettings.emitDisableUser.connect(self.emitDisableUser)
+        self.zapSettings.emitDeleteUser.connect(self.emitDeleteUser)
+        self.zapSettings.emitEditUser.connect(self.emitEditUser)
+        self.zapSettings.emitNewtUser.connect(self.emitNewUser)
+        self.zapSettings.emitSetSpellChecker.connect(self.emitSetSpellChecker)
+        self.zapSettings.emitNotifications.connect(self.emitNotifications)
+        self.zapSettings.emitQuit.connect(lambda x=None: self.closeEvent(x))
+        self.zapSettings.emitGoHome.connect(
+            lambda: self.main_stacked.setCurrentIndex(0))
+        self.zapSettings.emitKeepBackground.connect(
+            self.actionHide_on_close.setChecked)
+        self.zapSettings.emitDisableTrayIcon.connect(self.tray.setVisible)
+        self.zapSettings.emitSetHideMenuBar.connect(self.setHideMenuBar)
+        self.zapSettings.emitUpdateUIDecoration.connect(self.updateSCD)
+        self.zapSettings.emitUpdateTheme.connect(self.updateTheme)
         self.zapSettings.updateUsersShortcuts()
 
         # Insert pages in main window
@@ -90,6 +107,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             self.main_stacked.setCurrentIndex(0)
 
+    def updateSCD(self):
+        if self.scd != None:
+            self.scd.headDefinitions()
+
     def setZapDecoration(self):
         """Activate the personalized window"""
         self.headbar.hide()
@@ -118,6 +139,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # Apply equivalent theme on whatsapp page
         self.zapHome.setThemePages(isNight_mode)
+
+    def updateTheme(self, theme):
+        if theme == "auto":
+            """Ativa o contador"""
+            self.current_theme = -1
+            self.timer.start()
+        elif theme == "light":
+            """Desativa o contador e ativa o light"""
+            self.timer.stop()
+            self.setThemeApp(False)
+        elif theme == "dark":
+            """Desativa o contador e ativa o dark"""
+            self.timer.stop()
+            self.setThemeApp(True)
 
     def xdgOpenChat(self, url):
         self.zapHome.openChat(url)

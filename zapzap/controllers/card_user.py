@@ -1,4 +1,6 @@
-from PyQt6.QtWidgets import QWidget, QApplication
+from PyQt6.QtWidgets import QWidget
+from PyQt6.QtCore import pyqtSignal
+from zapzap.model.user import User
 from zapzap.theme.builder_icon import getImageQPixmap
 from zapzap.theme.icons import IMAGE_DISABLE
 from zapzap.view.card_user import Ui_CardUser
@@ -6,7 +8,12 @@ from gettext import gettext as _
 
 
 class CardUser(QWidget, Ui_CardUser):
-    def __init__(self, parent=None, user=None):
+
+    emitDisableUser = pyqtSignal(User)
+    emitDeleteUser = pyqtSignal(User)
+    emitEditUser = pyqtSignal(User)
+
+    def __init__(self, user):
         super(CardUser, self).__init__()
         self.setupUi(self)
         self.user = user
@@ -21,11 +28,10 @@ class CardUser(QWidget, Ui_CardUser):
         self.name.editingFinished.connect(self.editingFinished)
 
         self.loadCard()
-    
+
     def editingFinished(self):
-        mainWindow = QApplication.instance().getWindow()
         self.user.name = self.name.text()
-        mainWindow.emitEditUser(self.user)
+        self.emitEditUser.emit(self.user)
 
     def loadCard(self):
         self.name.setText(self.user.name)
@@ -42,12 +48,10 @@ class CardUser(QWidget, Ui_CardUser):
     def buttonClick(self):
         btn = self.sender()
         btnName = btn.objectName()
-        mainWindow = QApplication.instance().getWindow()
         if btnName == 'btnDisable':
             self.user.enable = not self.user.enable
-            mainWindow.emitDisableUser(self.user)
+            self.emitDisableUser.emit(self.user)
             self.loadCard()
         if btnName == 'btnDelete':
             self.setParent(None)
-            mainWindow.emitDeleteUser(self.user)
-            
+            self.emitDeleteUser.emit(self.user)
