@@ -68,7 +68,7 @@ class UserContainer(QPushButton):
     def showPageNotification(self):
         # Definir a página
         self.home.setPage(self.browser)
-        # Definir o botão 
+        # Definir o botão
         self.click()
 
     def setUser(self, user):
@@ -102,6 +102,10 @@ class UserContainer(QPushButton):
     def setSpellChecker(self, lang):
         profile = self.browser.page().profile()
         profile.setSpellCheckLanguages([lang])
+
+    def disableSpellChecker(self, lang):
+        profile = self.browser.page().profile()
+        profile.setSpellCheckEnabled(lang)
 
     def closeConversation(self):
         self.browser.page().closeConversation()

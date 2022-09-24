@@ -22,6 +22,7 @@ class Settings(QWidget, Ui_Settings):
     emitNewtUser = pyqtSignal(User)
 
     emitSetSpellChecker = pyqtSignal(str)
+    emitDisableSpellChecker = pyqtSignal(bool)
 
     emitNotifications = pyqtSignal()
 
@@ -158,6 +159,7 @@ class Settings(QWidget, Ui_Settings):
         self.keepBackground.clicked.connect(self.actionsSystemMenu)
         self.disableTrayIcon.clicked.connect(self.actionsSystemMenu)
         self.menubar.clicked.connect(self.actionsSystemMenu)
+        self.checkSpellChecker.clicked.connect(self.actionsSystemMenu)
         self.check_zap_window.clicked.connect(self.actionsSystemMenu)
         self.cb_maximize.clicked.connect(self.actionsSystemMenu)
         self.cb_minimize.clicked.connect(self.actionsSystemMenu)
@@ -261,6 +263,11 @@ class Settings(QWidget, Ui_Settings):
             self.emitSetHideMenuBar.emit()
         if btnName == 'check_zap_window':
             self.frameZapWindow.setEnabled(self.check_zap_window.isChecked())
+        if btnName == 'checkSpellChecker':
+            self.frameSpellChecker.setEnabled(
+                self.checkSpellChecker.isChecked())
+            self.emitDisableSpellChecker.emit(
+                self.checkSpellChecker.isChecked())
 
         self.save()
         self.emitUpdateUIDecoration.emit()
@@ -320,6 +327,12 @@ class Settings(QWidget, Ui_Settings):
 
         self.disableTrayIcon.setChecked(self.settings.value(
             "system/tray_icon", True, bool))  # tray_icon
+
+        # SpellChecker
+        sc = self.settings.value(
+            "system/spellCheckers", True, bool)
+        self.checkSpellChecker.setChecked(sc)
+        self.frameSpellChecker.setEnabled(sc)
 
         self.menubar.setChecked(self.settings.value(
             "main/hideMenuBar", False, bool))  # tray_icon
@@ -383,6 +396,10 @@ class Settings(QWidget, Ui_Settings):
         self.settings.setValue("system/tray_icon",
                                self.disableTrayIcon.isChecked())
         self.settings.setValue("main/hideMenuBar", self.menubar.isChecked())
+
+        self.settings.setValue("system/spellCheckers",
+                               self.checkSpellChecker.isChecked())
+
         self.settings.setValue("system/zap_decoration",
                                self.check_zap_window.isChecked())
         self.settings.setValue("system/winBtnMax",

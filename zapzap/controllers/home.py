@@ -113,6 +113,11 @@ class Home(QWidget, Ui_Home):
         for i in range(self.menu.count()):
             btn = self.menu.itemAt(i).widget()
             btn.setSpellChecker(lang)
+    
+    def disableSpellChecker(self, flag):
+        for i in range(self.menu.count()):
+            btn = self.menu.itemAt(i).widget()
+            btn.disableSpellChecker(flag)
 
     def editUserPage(self, user):
         return_btn = self.getUserContainer(user.id)

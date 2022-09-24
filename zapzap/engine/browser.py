@@ -30,7 +30,8 @@ class Browser(QWebEngineView):
         self.profile = QWebEngineProfile(str(storageName), self)
         self.profile.setHttpUserAgent(zapzap.__user_agent__)
         self.profile.setNotificationPresenter(self.show_notification)
-        self.profile.setSpellCheckEnabled(True)
+        self.profile.setSpellCheckEnabled(self.qset.value(
+            "system/spellCheckers", True, bool))
 
         lang = self.qset.value(
             "system/spellCheckLanguage", QLocale.system().name(), str)

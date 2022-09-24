@@ -42,6 +42,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.zapSettings.emitEditUser.connect(self.emitEditUser)
         self.zapSettings.emitNewtUser.connect(self.emitNewUser)
         self.zapSettings.emitSetSpellChecker.connect(self.emitSetSpellChecker)
+        self.zapSettings.emitDisableSpellChecker.connect(
+            self.emitDisableSpellChecker)
         self.zapSettings.emitNotifications.connect(self.emitNotifications)
         self.zapSettings.emitQuit.connect(lambda x=None: self.closeEvent(x))
         self.zapSettings.emitGoHome.connect(
@@ -65,6 +67,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.current_theme = -1
 
         self.setZapDecoration()
+
+    def emitDisableSpellChecker(self, flag):
+        self.zapHome.disableSpellChecker(flag)
 
     def emitSetSpellChecker(self, lang):
         self.zapHome.setSpellChecker(lang)

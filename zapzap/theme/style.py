@@ -261,6 +261,13 @@ def buildTheme(p) -> str:
     """
 
     QCHECHBOX = """
+        #checkSpellChecker{
+            color: {windowText};
+            margin-bottom: 0.09em;
+            font: 14pt;
+            font-weight: bold;
+        }
+
         #check_zap_window{
             color: {windowText};
             margin-bottom: 0.09em;
@@ -678,6 +685,11 @@ def buildTheme(p) -> str:
             background-color: {frame_background};
             border: 1px solid {frame_border};
             border-radius: 5px;
+        }
+
+        #settings_stacked .QFrame:disabled {
+            background-color:{frame_border};
+        
         }
     """
 

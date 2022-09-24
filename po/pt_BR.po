@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-05 21:15-0300\n"
+"POT-Creation-Date: 2022-09-24 11:45-0300\n"
 "PO-Revision-Date: 2022-07-22 10:44-0300\n"
 "Last-Translator: Rafael Tosta <rafa.ecomp@gmail.com>\n"
 "Language-Team: Português Brasileiro\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: zapzap/view/main_window.py:278 zapzap/view/settings.py:948
+#: zapzap/view/main_window.py:278 zapzap/view/settings.py:949
 #: zapzap/controllers/main_window_components/tray_icon.py:19
 msgid "ZapZap"
 msgstr "ZapZap"
@@ -38,7 +38,7 @@ msgstr "Conversa"
 msgid "Help"
 msgstr "Ajuda"
 
-#: zapzap/view/main_window.py:287 zapzap/view/settings.py:910
+#: zapzap/view/main_window.py:287 zapzap/view/settings.py:911
 #: zapzap/controllers/main_window_components/tray_icon.py:22
 msgid "Settings"
 msgstr "Configurações"
@@ -47,7 +47,7 @@ msgstr "Configurações"
 msgid "Ctrl+P"
 msgstr ""
 
-#: zapzap/view/main_window.py:289 zapzap/view/settings.py:918
+#: zapzap/view/main_window.py:289 zapzap/view/settings.py:919
 #: zapzap/controllers/main_window_components/tray_icon.py:25
 msgid "Quit"
 msgstr "Sair"
@@ -80,7 +80,7 @@ msgstr "Tela cheia"
 msgid "F11"
 msgstr ""
 
-#: zapzap/view/main_window.py:297 zapzap/view/settings.py:926
+#: zapzap/view/main_window.py:297 zapzap/view/settings.py:927
 msgid "Hide menu bar"
 msgstr "Esconder barra de menu"
 
@@ -92,11 +92,11 @@ msgstr ""
 msgid "Learn More"
 msgstr "Leia mais"
 
-#: zapzap/view/main_window.py:300 zapzap/view/settings.py:953
+#: zapzap/view/main_window.py:300 zapzap/view/settings.py:954
 msgid "Changelog"
 msgstr "Lista de mudanças"
 
-#: zapzap/view/main_window.py:301 zapzap/view/settings.py:954
+#: zapzap/view/main_window.py:301 zapzap/view/settings.py:955
 msgid "Report issue..."
 msgstr "Reporte um problema..."
 
@@ -104,7 +104,7 @@ msgstr "Reporte um problema..."
 msgid "About Zapzap"
 msgstr "Sobre ZapZap"
 
-#: zapzap/view/main_window.py:303 zapzap/view/settings.py:922
+#: zapzap/view/main_window.py:303 zapzap/view/settings.py:923
 msgid "Hide on close"
 msgstr "Esconder ao fechar"
 
@@ -128,12 +128,12 @@ msgstr "Reduzir"
 msgid "Ctrl+-"
 msgstr ""
 
-#: zapzap/view/main_window.py:309 zapzap/view/settings.py:916
-#: zapzap/view/settings.py:946
+#: zapzap/view/main_window.py:309 zapzap/view/settings.py:917
+#: zapzap/view/settings.py:947
 msgid "Donations"
 msgstr "Doações"
 
-#: zapzap/view/main_window.py:310 zapzap/view/settings.py:911
+#: zapzap/view/main_window.py:310 zapzap/view/settings.py:912
 msgid "Home page"
 msgstr "Página inicial"
 
@@ -149,145 +149,145 @@ msgstr "Abrir nova conversa"
 msgid "Ctrl+N"
 msgstr ""
 
-#: zapzap/view/settings.py:909 zapzap/view/card_user.py:81
+#: zapzap/view/settings.py:910 zapzap/view/card_user.py:81
 #: zapzap/view/openChatPopup.py:78
 msgid "Form"
 msgstr ""
 
-#: zapzap/view/settings.py:912 zapzap/view/settings.py:955
+#: zapzap/view/settings.py:913 zapzap/view/settings.py:956
 msgid "User Management"
 msgstr "Usuários"
 
-#: zapzap/view/settings.py:913 zapzap/view/settings.py:919
+#: zapzap/view/settings.py:914 zapzap/view/settings.py:920
 msgid "System"
 msgstr "Sistema"
 
-#: zapzap/view/settings.py:914
+#: zapzap/view/settings.py:915
 msgid "Appearance"
 msgstr "Aparência"
 
-#: zapzap/view/settings.py:915 zapzap/view/settings.py:941
+#: zapzap/view/settings.py:916 zapzap/view/settings.py:942
 msgid "Notifications"
 msgstr "Notificações"
 
-#: zapzap/view/settings.py:917 zapzap/view/settings.py:947
+#: zapzap/view/settings.py:918 zapzap/view/settings.py:948
 msgid "About"
 msgstr "Sobre"
 
-#: zapzap/view/settings.py:920
+#: zapzap/view/settings.py:921
 msgid "Start ZapZap with the system"
 msgstr "Iniciar com o sistema"
 
-#: zapzap/view/settings.py:921
+#: zapzap/view/settings.py:922
 msgid "Start minimized"
 msgstr "Iniciar minimizado"
 
-#: zapzap/view/settings.py:923
-msgid "SpellChecker Languages"
-msgstr "Idioma do corretor ortográfico"
-
 #: zapzap/view/settings.py:924
+msgid "SpellChecker"
+msgstr "Corretor ortográfico"
+
+#: zapzap/view/settings.py:925
 msgid "Apply"
 msgstr "Aplicar"
 
-#: zapzap/view/settings.py:925
+#: zapzap/view/settings.py:926
 msgid "Menu bar"
 msgstr "Barra de menu"
 
-#: zapzap/view/settings.py:927
+#: zapzap/view/settings.py:928
 msgid "ZapZap window (Restart required)"
 msgstr "Janela do ZapZap (Necessário reiniciar)"
 
-#: zapzap/view/settings.py:928
+#: zapzap/view/settings.py:929
 msgid "Title bar buttons"
 msgstr "Botões da barra de título"
 
-#: zapzap/view/settings.py:929
+#: zapzap/view/settings.py:930
 msgid "Maximize"
 msgstr "Maximizar"
 
-#: zapzap/view/settings.py:930
+#: zapzap/view/settings.py:931
 msgid "Minimize"
 msgstr "Minimizar"
 
-#: zapzap/view/settings.py:931
+#: zapzap/view/settings.py:932
 msgid "Positioning on the left side"
 msgstr "Posicionamento do lado esquerdo"
 
-#: zapzap/view/settings.py:932
+#: zapzap/view/settings.py:933
 msgid "Customize appearance"
 msgstr "Customizar aparência"
 
-#: zapzap/view/settings.py:933
+#: zapzap/view/settings.py:934
 msgid "General appearance"
 msgstr "Aparência geral"
 
-#: zapzap/view/settings.py:934
+#: zapzap/view/settings.py:935
 msgid "System style"
 msgstr "Estilo do sistema"
 
-#: zapzap/view/settings.py:935
+#: zapzap/view/settings.py:936
 msgid "Light style"
 msgstr "Claro"
 
-#: zapzap/view/settings.py:936
+#: zapzap/view/settings.py:937
 msgid "Dark style"
 msgstr "Escuro"
 
-#: zapzap/view/settings.py:937
+#: zapzap/view/settings.py:938
 msgid "Tray icon"
 msgstr "Ícone de bandeja"
 
-#: zapzap/view/settings.py:938
+#: zapzap/view/settings.py:939
 msgid "Default"
 msgstr "Padrão"
 
-#: zapzap/view/settings.py:939
+#: zapzap/view/settings.py:940
 msgid "Symbolic light"
 msgstr "Simbólico claro"
 
-#: zapzap/view/settings.py:940
+#: zapzap/view/settings.py:941
 msgid "Symbolic dark"
 msgstr "Simbólico escuro"
 
-#: zapzap/view/settings.py:942
+#: zapzap/view/settings.py:943
 msgid "Notifications on the desktop"
 msgstr "Notificações na área de trabalho"
 
-#: zapzap/view/settings.py:943
+#: zapzap/view/settings.py:944
 msgid "Show the photo of the sender"
 msgstr "Mostrar a foto do remetente"
 
-#: zapzap/view/settings.py:944
+#: zapzap/view/settings.py:945
 msgid "Show the sender's name"
 msgstr "Mostrar o nome do remetente"
 
-#: zapzap/view/settings.py:945
+#: zapzap/view/settings.py:946
 msgid "Show message preview"
 msgstr "Mostrar a mensagem do remetente"
 
-#: zapzap/view/settings.py:949
+#: zapzap/view/settings.py:950
 #, python-brace-format
 msgid "Version {id} (Official compilation)"
 msgstr "Versão {id} (Compilação oficial)"
 
-#: zapzap/view/settings.py:950
+#: zapzap/view/settings.py:951
 msgid "An unofficial WhatsApp desktop application"
 msgstr "Um aplicativo de desktop WhatsApp não oficial"
 
-#: zapzap/view/settings.py:951
+#: zapzap/view/settings.py:952
 msgid "GNU General Public License v3.0"
 msgstr "Licença Pública Geral GNU v3.0"
 
-#: zapzap/view/settings.py:952
+#: zapzap/view/settings.py:953
 msgid "Learn more"
 msgstr "Leia mais"
 
-#: zapzap/view/settings.py:956
+#: zapzap/view/settings.py:957
 msgid "New User"
 msgstr "Novo"
 
-#: zapzap/view/settings.py:957
+#: zapzap/view/settings.py:958
 msgid "Users limit reached (9 in total)"
 msgstr "Limite de usuários atingido (9 no total)"
 
@@ -295,7 +295,7 @@ msgstr "Limite de usuários atingido (9 no total)"
 msgid "Enter the user name"
 msgstr "Insira o nome do usuário"
 
-#: zapzap/view/card_user.py:83 zapzap/controllers/card_user.py:35
+#: zapzap/view/card_user.py:83 zapzap/controllers/card_user.py:41
 msgid "Disable"
 msgstr "Desabilitar"
 
@@ -343,43 +343,43 @@ msgstr "Cancelar"
 msgid "Enter"
 msgstr ""
 
-#: zapzap/controllers/card_user.py:38
+#: zapzap/controllers/card_user.py:44
 msgid "Enable"
 msgstr "Habilitar"
 
-#: zapzap/controllers/settings.py:48
+#: zapzap/controllers/settings.py:67
 msgid "System Language"
 msgstr "Idioma do sistema"
 
-#: zapzap/engine/browser.py:69
+#: zapzap/engine/browser.py:70
 msgid "Undo"
 msgstr "Desfazer"
 
-#: zapzap/engine/browser.py:70
+#: zapzap/engine/browser.py:71
 msgid "Redo"
 msgstr "Refazer"
 
-#: zapzap/engine/browser.py:71
+#: zapzap/engine/browser.py:72
 msgid "Cut"
 msgstr "Recortar"
 
-#: zapzap/engine/browser.py:72
+#: zapzap/engine/browser.py:73
 msgid "Copy"
 msgstr "Copiar"
 
-#: zapzap/engine/browser.py:73
+#: zapzap/engine/browser.py:74
 msgid "Paste"
 msgstr "Colar"
 
-#: zapzap/engine/browser.py:74
+#: zapzap/engine/browser.py:75
 msgid "Select all"
 msgstr "Selecionar tudo"
 
-#: zapzap/engine/browser.py:75
+#: zapzap/engine/browser.py:76
 msgid "Save image"
 msgstr "Salvar imagem"
 
-#: zapzap/engine/browser.py:76
+#: zapzap/engine/browser.py:77
 msgid "Copy image"
 msgstr "Copiar imagem"
 
