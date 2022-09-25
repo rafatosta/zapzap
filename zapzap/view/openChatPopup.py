@@ -45,6 +45,7 @@ class Ui_OpenChatPopup(object):
         self.label.setObjectName("label")
         self.verticalLayout_2.addWidget(self.label)
         self.numberPhone = QtWidgets.QLineEdit(self.popupFrame)
+        self.numberPhone.setInputMask("00000000000000000000000")
         self.numberPhone.setObjectName("numberPhone")
         self.verticalLayout_2.addWidget(self.numberPhone)
         self.btnPhoneHelper = QtWidgets.QPushButton(self.popupFrame)
@@ -62,6 +63,7 @@ class Ui_OpenChatPopup(object):
         self.btnCancel.setObjectName("btnCancel")
         self.horizontalLayout.addWidget(self.btnCancel)
         self.btnOk = QtWidgets.QPushButton(self.popupFrame)
+        self.btnOk.setShortcut("Enter")
         self.btnOk.setAutoDefault(False)
         self.btnOk.setDefault(False)
         self.btnOk.setObjectName("btnOk")
@@ -78,12 +80,10 @@ class Ui_OpenChatPopup(object):
         OpenChatPopup.setWindowTitle(_("Form"))
         self.label_4.setText(_("Open chat by phone number"))
         self.label.setText(_("Enter phone number:"))
-        self.numberPhone.setInputMask(_("00000000000000000000000"))
         self.btnPhoneHelper.setToolTip(_("See here the code of your country"))
         self.btnPhoneHelper.setText(_("(COUNTY CODE + AREA CODE + PHONE NUMER)"))
         self.btnCancel.setText(_("Cancel"))
         self.btnOk.setText(_("Open"))
-        self.btnOk.setShortcut(_("Enter"))
 
 
 if __name__ == "__main__":

@@ -78,7 +78,7 @@
            <item>
             <widget class="QLineEdit" name="numberPhone">
              <property name="inputMask">
-              <string>00000000000000000000000</string>
+              <string notr="true">00000000000000000000000</string>
              </property>
             </widget>
            </item>
@@ -120,7 +120,7 @@
               <string>Open</string>
              </property>
              <property name="shortcut">
-              <string>Enter</string>
+              <string notr="true">Enter</string>
              </property>
              <property name="autoDefault">
               <bool>false</bool>
