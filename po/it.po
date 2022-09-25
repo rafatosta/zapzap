@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-24 11:45-0300\n"
-"PO-Revision-Date: 2022-08-18 15:41+0200\n"
+"PO-Revision-Date: 2022-09-25 14:39+0200\n"
 "Last-Translator: musiclover382 <musiclover382@protonmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.1\n"
 
 #: zapzap/view/main_window.py:278 zapzap/view/settings.py:949
 #: zapzap/controllers/main_window_components/tray_icon.py:19
@@ -33,7 +33,7 @@ msgstr "Visualizza"
 
 #: zapzap/view/main_window.py:281 zapzap/view/main_window.py:286
 msgid "Chat"
-msgstr ""
+msgstr "Chat"
 
 #: zapzap/view/main_window.py:282 zapzap/view/main_window.py:285
 msgid "Help"
@@ -144,12 +144,11 @@ msgstr "Esc"
 
 #: zapzap/view/main_window.py:312
 msgid "Open new chat"
-msgstr ""
+msgstr "Apri nuova chat"
 
 #: zapzap/view/main_window.py:313
-#, fuzzy
 msgid "Ctrl+N"
-msgstr "Ctrl+P"
+msgstr "Ctrl+N"
 
 #: zapzap/view/settings.py:910 zapzap/view/card_user.py:81
 #: zapzap/view/openChatPopup.py:78
@@ -185,9 +184,8 @@ msgid "Start minimized"
 msgstr "Avvia minimizzato"
 
 #: zapzap/view/settings.py:924
-#, fuzzy
 msgid "SpellChecker"
-msgstr "Lingue controllo ortografico"
+msgstr "Controllo ortografico"
 
 #: zapzap/view/settings.py:925
 msgid "Apply"
@@ -320,32 +318,31 @@ msgstr "Salva con nome"
 
 #: zapzap/view/openChatPopup.py:79
 msgid "Open chat by phone number"
-msgstr ""
+msgstr "Apri la chat con un numero di telefono"
 
 #: zapzap/view/openChatPopup.py:80
-#, fuzzy
 msgid "Enter phone number:"
-msgstr "Inserire il nome dell'utente"
+msgstr "Inserire il numero di telefono:"
 
 #: zapzap/view/openChatPopup.py:81
 msgid "00000000000000000000000"
-msgstr ""
+msgstr "00000000000000000000000"
 
 #: zapzap/view/openChatPopup.py:82
 msgid "See here the code of your country"
-msgstr ""
+msgstr "Scopri il prefisso telefonico della tua nazione"
 
 #: zapzap/view/openChatPopup.py:83
 msgid "(COUNTY CODE + AREA CODE + PHONE NUMER)"
-msgstr ""
+msgstr "(PREFISSO INTERNAZIONALE + PREFISSO MOBILE + NUMERO DI TELEFONO)"
 
 #: zapzap/view/openChatPopup.py:84
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #: zapzap/view/openChatPopup.py:86
 msgid "Enter"
-msgstr ""
+msgstr "Enter"
 
 #: zapzap/controllers/card_user.py:44
 msgid "Enable"
@@ -756,7 +753,6 @@ msgid "Hungary - Hungarian"
 msgstr "Ungherese - Ungheria"
 
 #: zapzap/services/spellCheckLanguages.py:98
-#, fuzzy
 msgid "Indonesian - Indonesia"
 msgstr "Indonesiano - Indonesia"
 
@@ -793,7 +789,6 @@ msgid "Latvian - Latvia"
 msgstr "Lettone - Lettonia"
 
 #: zapzap/services/spellCheckLanguages.py:107
-#, fuzzy
 msgid "Norwegian - Bokmål"
 msgstr "Norvegese - Bokmål"
 
@@ -925,12 +920,8 @@ msgstr "Vietnamita - Vietnam"
 #~ msgid "Você é do Brasil?"
 #~ msgstr "Você é do Brasil?"
 
-#~ msgid ""
-#~ "Acesse o link para transferir via PIX ou realize a leitura do QR code "
-#~ "abaixo"
-#~ msgstr ""
-#~ "Acesse o link para transferir via PIX ou realize a leitura do QR code "
-#~ "abaixo"
+#~ msgid "Acesse o link para transferir via PIX ou realize a leitura do QR code abaixo"
+#~ msgstr "Acesse o link para transferir via PIX ou realize a leitura do QR code abaixo"
 
 #~ msgid "Tray icon appearance"
 #~ msgstr "Aspetto area di notifica"
