@@ -3,23 +3,31 @@ import zapzap
 from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.controllers.main_window import MainWindow
 from PyQt6.QtGui import QFont, QFontDatabase
-from PyQt6.QtCore import QLocale
 import gettext
-
 from zapzap.model.db import createDB
+from os import environ, getenv
 
 
 def main():
 
     # Check place of execution (location or flatpak)
-    # Local Debug
-    if not zapzap.isFlatpak:
+    # Local Debug (python -m zapzap --zapDebug)
+
+    if not zapzap.isFlatpak and '--zapDebug' in sys.argv:
+        print('Zap Debug...')
         import os
         os.environ['XCURSOR_SIZE'] = '24'
         os.environ['XCURSOR_THEME'] = 'Fluent-cursor'
         os.environ['QT_QPA_PLATFORM'] = 'xcb'
         os.environ['QTWEBENGINE_REMOTE_DEBUGGING'] = '12345'
         os.environ["QTWEBENGINE_DICTIONARIES_PATH"] = '/home/tosta/Documentos/GitHub/qtwebengine_dictionaries/'
+
+    # Session Type
+    XDG_SESSION_TYPE = getenv('XDG_SESSION_TYPE')
+    if XDG_SESSION_TYPE == 'wayland':
+        environ['QT_QPA_PLATFORM'] = 'wayland'
+    elif XDG_SESSION_TYPE is None:
+        environ['QT_QPA_PLATFORM'] = 'xcb'
 
     # Create Database
     createDB()
