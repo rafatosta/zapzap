@@ -5,6 +5,10 @@ WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.
     <a href="https://flathub.org/apps/details/com.rtosta.zapzap">
         <img  alt="Download on Flathub" src="https://flathub.org/assets/badges/flathub-badge-en.png" width="150">
     </a>
+    <br>
+    <a href='https://aur.archlinux.org/packages/zapzap'>
+      <img width='150' alt='AUR' src='https://img.shields.io/aur/version/zapzap?logo=archlinux&style=for-the-badge'/>
+    </a>
 </p>
 
 ![Zapzap for whatsapp](share/screenshot/default.png)
