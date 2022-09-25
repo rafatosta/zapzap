@@ -83,11 +83,11 @@ class Home(QWidget, Ui_Home):
             qtd += btn.qtd
         return qtd
 
-    def setThemePages(self, isNight_mode):
+    def setThemePages(self, theme):
         """Define or theme for all pages page"""
         for i in range(self.menu.count()):
             btn = self.menu.itemAt(i).widget()
-            btn.setThemePage(isNight_mode)
+            btn.setThemePage(theme)
 
     def setZoomFactor(self, factor=None):
         """Current page zoom

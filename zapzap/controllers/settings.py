@@ -235,6 +235,7 @@ class Settings(QWidget, Ui_Settings):
         self.emitNotifications.emit()
 
     def actionsRbAppearance(self):
+        """ Actions by defining the appearance """
         if self.rb_system.isChecked():
             theme = 'auto'
         if self.rb_light.isChecked():

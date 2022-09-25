@@ -7,7 +7,7 @@ from zapzap.controllers.main_window_components.tray_icon import TrayIcon
 from zapzap.controllers.main_window_decoration.ui_decoration import UIDecoration
 from zapzap.controllers.settings import Settings
 from zapzap.controllers.home import Home
-from zapzap.services.dbus_theme import get_system_theme
+from zapzap.services.dbus_theme import getSystemTheme
 import zapzap
 from gettext import gettext as _
 
@@ -53,7 +53,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.zapSettings.emitDisableTrayIcon.connect(self.tray.setVisible)
         self.zapSettings.emitSetHideMenuBar.connect(self.setHideMenuBar)
         self.zapSettings.emitUpdateUIDecoration.connect(self.updateSCD)
-        self.zapSettings.emitUpdateTheme.connect(self.updateTheme)
+        self.zapSettings.emitUpdateTheme.connect(self.setThemeApp)
         self.zapSettings.updateUsersShortcuts()
 
         # Insert pages in main window
@@ -63,7 +63,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # timer for system theme change check (check in 1s)
         self.timer = QTimer()
         self.timer.setInterval(1000)
-        self.timer.timeout.connect(self.recurring_timer)
+        self.timer.timeout.connect(self.syncThemeSys)
         self.current_theme = -1
 
         self.setZapDecoration()
@@ -126,38 +126,28 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.zChat.setMenu(self.menuChat)
             self.zHelp.setMenu(self.menuHelp)
 
-    def recurring_timer(self):
+    def syncThemeSys(self):
         """ Check the current system theme and apply it in the app """
-        theme = get_system_theme()
+        theme = getSystemTheme()
         if self.current_theme != theme:
             self.current_theme = theme
-            self.setThemeApp(self.current_theme)
+            self.setThemeApp('auto')
 
-    def setThemeApp(self, isNight_mode):
+    def setThemeApp(self, theme):
         """"Apply the theme in the APP
-            isNight_mode: boll
         """
-        if isNight_mode:
-            self.app.setStyleSheet(getThemeDark())
-        else:
-            self.app.setStyleSheet(getThemeLight())
-
-        # Apply equivalent theme on whatsapp page
-        self.zapHome.setThemePages(isNight_mode)
-
-    def updateTheme(self, theme):
         if theme == "auto":
-            """Ativa o contador"""
-            self.current_theme = -1
+            theme = getSystemTheme()
             self.timer.start()
-        elif theme == "light":
-            """Desativa o contador e ativa o light"""
+        else:
             self.timer.stop()
-            self.setThemeApp(False)
+
+        if theme == "light":
+            self.app.setStyleSheet(getThemeLight())
+            self.zapHome.setThemePages(theme)
         elif theme == "dark":
-            """Desativa o contador e ativa o dark"""
-            self.timer.stop()
-            self.setThemeApp(True)
+            self.app.setStyleSheet(getThemeDark())
+            self.zapHome.setThemePages(theme)
 
     def xdgOpenChat(self, url):
         self.zapHome.openChat(url)
@@ -207,13 +197,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         # Theme App
         theme_mode = self.settings.value("system/theme", 'auto', str)
-        if theme_mode == 'auto':
-            self.setThemeApp(get_system_theme())
-            self.timer.start()
-        elif theme_mode == 'light':
-            self.setThemeApp(False)
-        else:
-            self.setThemeApp(True)
+        self.setThemeApp(theme_mode)
         # MenuBar
         self.isHideMenuBar = self.settings.value(
             "main/hideMenuBar", False, bool)
@@ -239,7 +223,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             Override the window close event.
             Save window dimensions and check if it should be hidden or closed
         """
-        self.timer.stop()
         isBack = self.settings.value("system/keep_background", True, bool)
         if isBack and event:  # Hide app on close window
             self.actionEsc(closeAll=True)

@@ -96,8 +96,8 @@ class UserContainer(QPushButton):
         else:
             self.browser.setZoomFactor(self.browser.zoomFactor()+factor)
 
-    def setThemePage(self, isNight_mode):
-        self.browser.whats.setTheme(isNight_mode)
+    def setThemePage(self, theme):
+        self.browser.whats.setTheme(theme)
 
     def setSpellChecker(self, lang):
         profile = self.browser.page().profile()

@@ -3,12 +3,14 @@ from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWebEngineCore import QWebEnginePage
 from PyQt6.QtWidgets import QApplication
 from zapzap import __whatsapp_url__, __appname__
-from zapzap.services.dbus_theme import get_system_theme
+from zapzap.services.dbus_theme import getSystemTheme
 
 
 class WhatsApp(QWebEnginePage):
 
     link_url = ''
+    light_theme = "document.body.classList.remove('dark');"
+    dark_theme = "document.body.classList.add('dark');"
 
     def __init__(self, *args, **kwargs):
         QWebEnginePage.__init__(self, *args, **kwargs)
@@ -26,35 +28,42 @@ class WhatsApp(QWebEnginePage):
     def load_finished(self, flag):
         # Ativa a tela cheia para telas de proporção grande no WhatsApp Web.
         if flag:
-            self.runJavaScript("""
+            maximize = """
                 const checkExist = setInterval(() => {
                     const classElement = document.getElementsByClassName("_1XkO3")[0];
+                    INSERT_THEME
                     if (classElement != null) {
-                        classElement.style = 'max-width: initial; width: 100%; height: 100%; position: unset;margin: 0'
+                        classElement.style = 'max-width: initial; width: 100%; height: 100%; position: unset;margin: 0';
                         clearInterval(checkExist);
                     }
+                    
                 }, 100);
-            """)
+            """
+            # Verifica o tema e aplica no carregamento
+            settings = QSettings(__appname__, __appname__, self)
+            theme_mode = settings.value("system/theme", 'auto', str)
+            if theme_mode == 'auto':
+                theme_mode = getSystemTheme()
+
+            if theme_mode == 'dark':
+                self.runJavaScript(maximize.replace(
+                    "INSERT_THEME", self.dark_theme))
+            else:
+                self.runJavaScript(maximize.replace(
+                    "INSERT_THEME", self.light_theme))
 
             # Permissão automática para notificações
             self.setFeaturePermission(self.url(), QWebEnginePage.Feature.Notifications,
                                       QWebEnginePage.PermissionPolicy.PermissionGrantedByUser)
 
-            settings = QSettings(__appname__, __appname__, self)
-            theme_mode = settings.value("system/theme", 'auto', str)
-            if theme_mode == 'auto':
-                self.setTheme(get_system_theme())
-            elif theme_mode == 'light':
-                self.setTheme(False)
-            else:
-                self.setTheme(True)
-
-    def setTheme(self, isNight_mode):
-        if isNight_mode == False:  # light
-            self.runJavaScript(
-                "document.body.classList.remove('dark')")
+    def setTheme(self, theme='light'):
+        """Defines the page theme:
+            - light
+            - dark """
+        if theme == 'light':  # light
+            self.runJavaScript(self.light_theme)
         else:  # dark
-            self.runJavaScript("document.body.classList.add('dark')")
+            self.runJavaScript(self.dark_theme)
 
     def link_hovered(self, url):
         # url contém o URL de destino do link. Ao mover o mouse para fora da url o seu valor é definido como uma string vazia
