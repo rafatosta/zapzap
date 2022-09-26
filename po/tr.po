@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zapzap main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-24 11:45-0300\n"
+"POT-Creation-Date: 2022-09-26 10:36-0300\n"
 "PO-Revision-Date: 2022-09-06 22:04+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <gnometurk@gnome.org>\n"
@@ -18,140 +18,100 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.1.1\n"
 
-#: zapzap/view/main_window.py:278 zapzap/view/settings.py:949
+#: zapzap/view/main_window.py:293 zapzap/view/settings.py:949
 #: zapzap/controllers/main_window_components/tray_icon.py:19
 msgid "ZapZap"
 msgstr "ZapZap"
 
-#: zapzap/view/main_window.py:279 zapzap/view/main_window.py:283
+#: zapzap/view/main_window.py:294 zapzap/view/main_window.py:298
 msgid "File"
 msgstr "Dosya"
 
-#: zapzap/view/main_window.py:280 zapzap/view/main_window.py:284
+#: zapzap/view/main_window.py:295 zapzap/view/main_window.py:299
 msgid "View"
 msgstr "Görünüm"
 
-#: zapzap/view/main_window.py:281 zapzap/view/main_window.py:286
+#: zapzap/view/main_window.py:296 zapzap/view/main_window.py:301
 msgid "Chat"
 msgstr "Sohbet"
 
-#: zapzap/view/main_window.py:282 zapzap/view/main_window.py:285
+#: zapzap/view/main_window.py:297 zapzap/view/main_window.py:300
 msgid "Help"
 msgstr "Yardım"
 
-#: zapzap/view/main_window.py:287 zapzap/view/settings.py:911
+#: zapzap/view/main_window.py:302 zapzap/view/settings.py:911
 #: zapzap/controllers/main_window_components/tray_icon.py:22
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: zapzap/view/main_window.py:288
-msgid "Ctrl+P"
-msgstr "Ctrl+P"
-
-#: zapzap/view/main_window.py:289 zapzap/view/settings.py:919
+#: zapzap/view/main_window.py:303 zapzap/view/settings.py:919
 #: zapzap/controllers/main_window_components/tray_icon.py:25
 msgid "Quit"
 msgstr "Çık"
 
-#: zapzap/view/main_window.py:290
-msgid "Ctrl+Q"
-msgstr "Ctrl+Q"
-
-#: zapzap/view/main_window.py:291
+#: zapzap/view/main_window.py:304
 msgid "Reload"
 msgstr "Yeniden Yükle"
 
-#: zapzap/view/main_window.py:292
-msgid "F5"
-msgstr "F5"
-
-#: zapzap/view/main_window.py:293
+#: zapzap/view/main_window.py:305
 msgid "Default size page"
 msgstr "Öntanımlı boyut sayfası"
 
-#: zapzap/view/main_window.py:294
-msgid "Ctrl+0"
-msgstr "Ctrl+0"
-
-#: zapzap/view/main_window.py:295
+#: zapzap/view/main_window.py:306
 msgid "Full Screen"
 msgstr "Tam Ekran"
 
-#: zapzap/view/main_window.py:296
-msgid "F11"
-msgstr "F11"
-
-#: zapzap/view/main_window.py:297 zapzap/view/settings.py:927
+#: zapzap/view/main_window.py:307 zapzap/view/settings.py:927
 msgid "Hide menu bar"
 msgstr "Menü çubuğunu gizle"
 
-#: zapzap/view/main_window.py:298
-msgid "Ctrl+M"
-msgstr "Ctrl+M"
-
-#: zapzap/view/main_window.py:299
+#: zapzap/view/main_window.py:308
 msgid "Learn More"
 msgstr "Daha Çoğunu Öğren"
 
-#: zapzap/view/main_window.py:300 zapzap/view/settings.py:954
+#: zapzap/view/main_window.py:309 zapzap/view/settings.py:954
 msgid "Changelog"
 msgstr "Değişiklik Günlüğü"
 
-#: zapzap/view/main_window.py:301 zapzap/view/settings.py:955
+#: zapzap/view/main_window.py:310 zapzap/view/settings.py:955
 msgid "Report issue..."
 msgstr "Sorun bildir..."
 
-#: zapzap/view/main_window.py:302
+#: zapzap/view/main_window.py:311
 msgid "About Zapzap"
 msgstr "Zapzap Hakkında"
 
-#: zapzap/view/main_window.py:303 zapzap/view/settings.py:923
+#: zapzap/view/main_window.py:312 zapzap/view/settings.py:923
 msgid "Hide on close"
 msgstr "Kapatınca gizle"
 
-#: zapzap/view/main_window.py:304
+#: zapzap/view/main_window.py:313
 msgid "Keep in background when closing window"
 msgstr "Pencereyi kapatırken arka planda tut"
 
-#: zapzap/view/main_window.py:305
+#: zapzap/view/main_window.py:314
 msgid "Zoom in"
 msgstr "Yankınlaştır"
 
-#: zapzap/view/main_window.py:306
-msgid "Ctrl++"
-msgstr "Ctrl++"
-
-#: zapzap/view/main_window.py:307
+#: zapzap/view/main_window.py:315
 msgid "Zoom out"
 msgstr "Uzaklaştır"
 
-#: zapzap/view/main_window.py:308
-msgid "Ctrl+-"
-msgstr "Ctrl+-"
-
-#: zapzap/view/main_window.py:309 zapzap/view/settings.py:917
+#: zapzap/view/main_window.py:316 zapzap/view/settings.py:917
 #: zapzap/view/settings.py:947
 msgid "Donations"
 msgstr "Bağışlar"
 
-#: zapzap/view/main_window.py:310 zapzap/view/settings.py:912
+#: zapzap/view/main_window.py:317 zapzap/view/settings.py:912
 msgid "Home page"
 msgstr "Ev sayfası"
 
-#: zapzap/view/main_window.py:311
-msgid "Esc"
-msgstr "Esc"
-
-#: zapzap/view/main_window.py:312
+#: zapzap/view/main_window.py:318
 msgid "Open new chat"
 msgstr "Yeni sohbet aç"
 
-#: zapzap/view/main_window.py:313
-msgid "Ctrl+N"
-msgstr "Ctrl+N"
-
 #: zapzap/view/settings.py:910 zapzap/view/card_user.py:81
-#: zapzap/view/openChatPopup.py:78
+#: zapzap/view/openChatPopup.py:80
 msgid "Form"
 msgstr "Biçim"
 
@@ -309,7 +269,7 @@ msgstr "Sil"
 msgid "What do you want to do with the file?"
 msgstr "Dosyayla ne yapmak istiyorsunuz?"
 
-#: zapzap/view/downloadPopup.py:70 zapzap/view/openChatPopup.py:85
+#: zapzap/view/downloadPopup.py:70 zapzap/view/openChatPopup.py:86
 msgid "Open"
 msgstr "Aç"
 
@@ -317,33 +277,25 @@ msgstr "Aç"
 msgid "Save as"
 msgstr "Farklı kaydet"
 
-#: zapzap/view/openChatPopup.py:79
+#: zapzap/view/openChatPopup.py:81
 msgid "Open chat by phone number"
 msgstr "Telefon numarasına göre sohbeti aç"
 
-#: zapzap/view/openChatPopup.py:80
+#: zapzap/view/openChatPopup.py:82
 msgid "Enter phone number:"
 msgstr "Telefon numarası gir:"
 
-#: zapzap/view/openChatPopup.py:81
-msgid "00000000000000000000000"
-msgstr "00000000000000000000000"
-
-#: zapzap/view/openChatPopup.py:82
+#: zapzap/view/openChatPopup.py:83
 msgid "See here the code of your country"
 msgstr "Burada ülkenizin kodunu görün"
 
-#: zapzap/view/openChatPopup.py:83
+#: zapzap/view/openChatPopup.py:84
 msgid "(COUNTY CODE + AREA CODE + PHONE NUMER)"
 msgstr "(ÜLKE KODU + ALAN KODU + TELEFON NUMARASI)"
 
-#: zapzap/view/openChatPopup.py:84
+#: zapzap/view/openChatPopup.py:85
 msgid "Cancel"
 msgstr "İptal"
-
-#: zapzap/view/openChatPopup.py:86
-msgid "Enter"
-msgstr "Gir"
 
 #: zapzap/controllers/card_user.py:44
 msgid "Enable"
@@ -904,3 +856,39 @@ msgstr ""
 #: zapzap/services/spellCheckLanguages.py:135
 msgid "Vietnamese - Vietnam"
 msgstr ""
+
+#~ msgid "Ctrl+P"
+#~ msgstr "Ctrl+P"
+
+#~ msgid "Ctrl+Q"
+#~ msgstr "Ctrl+Q"
+
+#~ msgid "F5"
+#~ msgstr "F5"
+
+#~ msgid "Ctrl+0"
+#~ msgstr "Ctrl+0"
+
+#~ msgid "F11"
+#~ msgstr "F11"
+
+#~ msgid "Ctrl+M"
+#~ msgstr "Ctrl+M"
+
+#~ msgid "Ctrl++"
+#~ msgstr "Ctrl++"
+
+#~ msgid "Ctrl+-"
+#~ msgstr "Ctrl+-"
+
+#~ msgid "Esc"
+#~ msgstr "Esc"
+
+#~ msgid "Ctrl+N"
+#~ msgstr "Ctrl+N"
+
+#~ msgid "00000000000000000000000"
+#~ msgstr "00000000000000000000000"
+
+#~ msgid "Enter"
+#~ msgstr "Gir"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-24 11:45-0300\n"
+"POT-Creation-Date: 2022-09-26 10:36-0300\n"
 "PO-Revision-Date: 2022-07-22 15:18+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,141 +19,100 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
 
-#: zapzap/view/main_window.py:278 zapzap/view/settings.py:949
+#: zapzap/view/main_window.py:293 zapzap/view/settings.py:949
 #: zapzap/controllers/main_window_components/tray_icon.py:19
 msgid "ZapZap"
 msgstr "ZapZap"
 
-#: zapzap/view/main_window.py:279 zapzap/view/main_window.py:283
+#: zapzap/view/main_window.py:294 zapzap/view/main_window.py:298
 msgid "File"
 msgstr "ملف"
 
-#: zapzap/view/main_window.py:280 zapzap/view/main_window.py:284
+#: zapzap/view/main_window.py:295 zapzap/view/main_window.py:299
 msgid "View"
 msgstr "عرض"
 
-#: zapzap/view/main_window.py:281 zapzap/view/main_window.py:286
+#: zapzap/view/main_window.py:296 zapzap/view/main_window.py:301
 msgid "Chat"
 msgstr ""
 
-#: zapzap/view/main_window.py:282 zapzap/view/main_window.py:285
+#: zapzap/view/main_window.py:297 zapzap/view/main_window.py:300
 msgid "Help"
 msgstr "مساعدة"
 
-#: zapzap/view/main_window.py:287 zapzap/view/settings.py:911
+#: zapzap/view/main_window.py:302 zapzap/view/settings.py:911
 #: zapzap/controllers/main_window_components/tray_icon.py:22
 msgid "Settings"
 msgstr "الإعدادات"
 
-#: zapzap/view/main_window.py:288
-msgid "Ctrl+P"
-msgstr "Ctrl+P"
-
-#: zapzap/view/main_window.py:289 zapzap/view/settings.py:919
+#: zapzap/view/main_window.py:303 zapzap/view/settings.py:919
 #: zapzap/controllers/main_window_components/tray_icon.py:25
 msgid "Quit"
 msgstr "خروج"
 
-#: zapzap/view/main_window.py:290
-msgid "Ctrl+Q"
-msgstr "Ctrl+Q"
-
-#: zapzap/view/main_window.py:291
+#: zapzap/view/main_window.py:304
 msgid "Reload"
 msgstr "إعادة تحميل"
 
-#: zapzap/view/main_window.py:292
-msgid "F5"
-msgstr "F5"
-
-#: zapzap/view/main_window.py:293
+#: zapzap/view/main_window.py:305
 msgid "Default size page"
 msgstr "الحجم الافتراضي للصفحة"
 
-#: zapzap/view/main_window.py:294
-msgid "Ctrl+0"
-msgstr "Ctrl+0"
-
-#: zapzap/view/main_window.py:295
+#: zapzap/view/main_window.py:306
 msgid "Full Screen"
 msgstr "ملء الشاشة"
 
-#: zapzap/view/main_window.py:296
-msgid "F11"
-msgstr "F11"
-
-#: zapzap/view/main_window.py:297 zapzap/view/settings.py:927
+#: zapzap/view/main_window.py:307 zapzap/view/settings.py:927
 msgid "Hide menu bar"
 msgstr "إخفاء شريط القوائم"
 
-#: zapzap/view/main_window.py:298
-msgid "Ctrl+M"
-msgstr "Ctrl+M"
-
-#: zapzap/view/main_window.py:299
+#: zapzap/view/main_window.py:308
 msgid "Learn More"
 msgstr "اقرأ المزيد"
 
-#: zapzap/view/main_window.py:300 zapzap/view/settings.py:954
+#: zapzap/view/main_window.py:309 zapzap/view/settings.py:954
 msgid "Changelog"
 msgstr "سجل التغييرات"
 
-#: zapzap/view/main_window.py:301 zapzap/view/settings.py:955
+#: zapzap/view/main_window.py:310 zapzap/view/settings.py:955
 msgid "Report issue..."
 msgstr "الإبلاغ عن مشكلة"
 
-#: zapzap/view/main_window.py:302
+#: zapzap/view/main_window.py:311
 msgid "About Zapzap"
 msgstr "حول Zapzap"
 
-#: zapzap/view/main_window.py:303 zapzap/view/settings.py:923
+#: zapzap/view/main_window.py:312 zapzap/view/settings.py:923
 msgid "Hide on close"
 msgstr "إخفاء عند الإغلاق"
 
-#: zapzap/view/main_window.py:304
+#: zapzap/view/main_window.py:313
 msgid "Keep in background when closing window"
 msgstr "إبقاء البرنامج في الخلفية عند إغلاق النافذة"
 
-#: zapzap/view/main_window.py:305
+#: zapzap/view/main_window.py:314
 msgid "Zoom in"
 msgstr "تكبير"
 
-#: zapzap/view/main_window.py:306
-msgid "Ctrl++"
-msgstr "Ctrl++"
-
-#: zapzap/view/main_window.py:307
+#: zapzap/view/main_window.py:315
 msgid "Zoom out"
 msgstr "تصغير"
 
-#: zapzap/view/main_window.py:308
-msgid "Ctrl+-"
-msgstr "Ctrl+-"
-
-#: zapzap/view/main_window.py:309 zapzap/view/settings.py:917
+#: zapzap/view/main_window.py:316 zapzap/view/settings.py:917
 #: zapzap/view/settings.py:947
 msgid "Donations"
 msgstr "تبرع"
 
-#: zapzap/view/main_window.py:310 zapzap/view/settings.py:912
+#: zapzap/view/main_window.py:317 zapzap/view/settings.py:912
 msgid "Home page"
 msgstr "الصفحة الرئيسية"
 
-#: zapzap/view/main_window.py:311
-msgid "Esc"
-msgstr "خروج"
-
-#: zapzap/view/main_window.py:312
+#: zapzap/view/main_window.py:318
 msgid "Open new chat"
 msgstr ""
 
-#: zapzap/view/main_window.py:313
-#, fuzzy
-msgid "Ctrl+N"
-msgstr "Ctrl+P"
-
 #: zapzap/view/settings.py:910 zapzap/view/card_user.py:81
-#: zapzap/view/openChatPopup.py:78
+#: zapzap/view/openChatPopup.py:80
 msgid "Form"
 msgstr "استمارة"
 
@@ -313,7 +272,7 @@ msgstr ""
 msgid "What do you want to do with the file?"
 msgstr ""
 
-#: zapzap/view/downloadPopup.py:70 zapzap/view/openChatPopup.py:85
+#: zapzap/view/downloadPopup.py:70 zapzap/view/openChatPopup.py:86
 msgid "Open"
 msgstr ""
 
@@ -321,33 +280,25 @@ msgstr ""
 msgid "Save as"
 msgstr ""
 
-#: zapzap/view/openChatPopup.py:79
+#: zapzap/view/openChatPopup.py:81
 msgid "Open chat by phone number"
 msgstr ""
 
-#: zapzap/view/openChatPopup.py:80
+#: zapzap/view/openChatPopup.py:82
 #, fuzzy
 msgid "Enter phone number:"
 msgstr "أظهر اسم المرسل"
 
-#: zapzap/view/openChatPopup.py:81
-msgid "00000000000000000000000"
-msgstr ""
-
-#: zapzap/view/openChatPopup.py:82
+#: zapzap/view/openChatPopup.py:83
 msgid "See here the code of your country"
 msgstr ""
 
-#: zapzap/view/openChatPopup.py:83
+#: zapzap/view/openChatPopup.py:84
 msgid "(COUNTY CODE + AREA CODE + PHONE NUMER)"
 msgstr ""
 
-#: zapzap/view/openChatPopup.py:84
+#: zapzap/view/openChatPopup.py:85
 msgid "Cancel"
-msgstr ""
-
-#: zapzap/view/openChatPopup.py:86
-msgid "Enter"
 msgstr ""
 
 #: zapzap/controllers/card_user.py:44
@@ -909,6 +860,37 @@ msgstr ""
 #: zapzap/services/spellCheckLanguages.py:135
 msgid "Vietnamese - Vietnam"
 msgstr ""
+
+#~ msgid "Ctrl+P"
+#~ msgstr "Ctrl+P"
+
+#~ msgid "Ctrl+Q"
+#~ msgstr "Ctrl+Q"
+
+#~ msgid "F5"
+#~ msgstr "F5"
+
+#~ msgid "Ctrl+0"
+#~ msgstr "Ctrl+0"
+
+#~ msgid "F11"
+#~ msgstr "F11"
+
+#~ msgid "Ctrl+M"
+#~ msgstr "Ctrl+M"
+
+#~ msgid "Ctrl++"
+#~ msgstr "Ctrl++"
+
+#~ msgid "Ctrl+-"
+#~ msgstr "Ctrl+-"
+
+#~ msgid "Esc"
+#~ msgstr "خروج"
+
+#, fuzzy
+#~ msgid "Ctrl+N"
+#~ msgstr "Ctrl+P"
 
 #~ msgid "Disable tray icon"
 #~ msgstr "تعطيل أيقونة صينية النظام"
