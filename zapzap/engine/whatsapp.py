@@ -98,6 +98,9 @@ class WhatsApp(QWebEnginePage):
                         document.getElementsByClassName("o--vV wGJyi")[0].style.display = "none";
                     }
                     function getMoreOptions() {
+                        if (document.getElementsByClassName("_26lC3").length == 7){
+                            return document.getElementsByClassName("_26lC3")[5];
+                        }
                         return document.getElementsByClassName("_26lC3")[4];
                     }
                     function invokeEscKey() {
@@ -119,7 +122,7 @@ class WhatsApp(QWebEnginePage):
                                 invokeEscKey();
                                 return;
                             }
-                            var index = buttons.length === 9 ? 4 : 2;
+                            var index = buttons.length === 9 ? 2 : 2;
                             buttons[index].click()
                             hideOptions();
                         }, 1);
