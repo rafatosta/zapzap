@@ -7,15 +7,14 @@ base-version: "6.3"
 command: zapzap
 finish-args:
   - "--share=ipc"
-  - "--socket=x11"
   - "--socket=wayland"
+  - "--socket=fallback-x11"
   - "--socket=pulseaudio"
   - "--share=network"
   - "--device=all"
   - "--device=dri"
   - "--filesystem=host"
   - "--filesystem=xdg-download"
-  - "--filesystem=xdg-config/autostart:create"
   - "--talk-name=org.freedesktop.Notifications"
   - "--talk-name=org.kde.StatusNotifierWatcher"
   - "--talk-name=org.kde.StatusNotifierItem"
@@ -40,7 +39,7 @@ modules:
   - name: dbus-python
     buildsystem: simple
     build-commands:
-      - pip3 install --no-deps --prefix=$FLATPAK_DEST .
+      - pip3 install --no-deps --prefix=${FLATPAK_DEST} .
     sources:
       - type: archive
         url: https://files.pythonhosted.org/packages/b1/5c/ccfc167485806c1936f7d3ba97db6c448d0089c5746ba105b6eb22dba60e/dbus-python-1.2.18.tar.gz
@@ -56,4 +55,4 @@ modules:
     sources:
       - type: git
         url: https://github.com/rafatosta/zapzap.git
-        tag: v4.4.2
+        branch: main

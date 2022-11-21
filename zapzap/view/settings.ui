@@ -437,16 +437,6 @@
                      </widget>
                     </item>
                     <item>
-                     <widget class="QCheckBox" name="start_hide">
-                      <property name="enabled">
-                       <bool>false</bool>
-                      </property>
-                      <property name="text">
-                       <string>Start minimized</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
                      <widget class="QCheckBox" name="keepBackground">
                       <property name="text">
                        <string>Hide on close</string>
@@ -743,8 +733,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>636</width>
-            <height>374</height>
+            <width>642</width>
+            <height>366</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1373,7 +1363,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>636</width>
+            <width>642</width>
             <height>233</height>
            </rect>
           </property>
@@ -1608,8 +1598,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>636</width>
-            <height>255</height>
+            <width>642</width>
+            <height>261</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_30">
@@ -1846,8 +1836,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>636</width>
-            <height>421</height>
+            <width>642</width>
+            <height>433</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -2196,8 +2186,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>280</width>
-            <height>89</height>
+            <width>286</width>
+            <height>95</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_26">

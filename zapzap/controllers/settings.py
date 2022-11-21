@@ -4,7 +4,7 @@ from PyQt6.QtGui import QDesktopServices, QIcon
 import zapzap
 from zapzap.controllers.card_user import CardUser
 from zapzap.model.user import User, UserDAO
-from zapzap.services.portal_desktop import createDesktop, removeDesktop
+from zapzap.services.portal_desktop import createDesktopFile
 from gettext import gettext as _
 from ..services.spellCheckLanguages import SpellCheckLanguages
 from zapzap.theme.builder_icon import getImageQPixmap, getNewIconSVG
@@ -155,7 +155,6 @@ class Settings(QWidget, Ui_Settings):
         self.btn_quit.clicked.connect(self.buttonClick)
         ## System ##
         self.start_system.clicked.connect(self.actionsSystemMenu)
-        self.start_hide.clicked.connect(self.actionsSystemMenu)
         self.keepBackground.clicked.connect(self.actionsSystemMenu)
         self.disableTrayIcon.clicked.connect(self.actionsSystemMenu)
         self.menubar.clicked.connect(self.actionsSystemMenu)
@@ -249,13 +248,10 @@ class Settings(QWidget, Ui_Settings):
     def actionsSystemMenu(self):
         btn = self.sender()  # returns a pointer to the object that sent the signal
         btnName = btn.objectName()
-        if btnName == 'start_system' or btnName == 'start_hide':
-            self.start_hide.setEnabled(self.start_system.isChecked())
+        if btnName == 'start_system':
             # cria ou remove o arquivo
-            if bool(self.start_system.isChecked()):
-                createDesktop(self.start_hide.isChecked())
-            else:
-                removeDesktop()
+            createDesktopFile(bool(self.start_system.isChecked()))
+
         if btnName == 'keepBackground':
             self.emitKeepBackground.emit(self.keepBackground.isChecked())
         if btnName == 'disableTrayIcon':
@@ -320,9 +316,6 @@ class Settings(QWidget, Ui_Settings):
         isStart_system = self.settings.value(
             "system/start_system", False, bool)
         self.start_system.setChecked(isStart_system)  # Start_system
-        self.start_hide.setEnabled(isStart_system)  # Enable Start Hide
-        self.start_hide.setChecked(self.settings.value(
-            "system/start_hide", False, bool))  # Start_hide
         self.keepBackground.setChecked(self.settings.value(
             "system/keep_background", True, bool))  # keep_background
 
@@ -390,8 +383,6 @@ class Settings(QWidget, Ui_Settings):
         # System
         self.settings.setValue("system/start_system",
                                self.start_system.isChecked())
-        self.settings.setValue("system/start_hide",
-                               self.start_hide.isChecked())
         self.settings.setValue("system/keep_background",
                                self.keepBackground.isChecked())
         self.settings.setValue("system/tray_icon",

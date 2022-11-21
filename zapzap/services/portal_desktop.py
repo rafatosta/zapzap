@@ -1,30 +1,49 @@
 from zapzap import __version__, __appname__, __comment__, isFlatpak
 from PyQt6.QtCore import QStandardPaths
 import os
+import dbus
 
 path_data = QStandardPaths.writableLocation(
     QStandardPaths.StandardLocation.ConfigLocation)+'/autostart/com.rtosta.zapzap.desktop'
 
-EXEC_FLATPAK = '/usr/bin/flatpak run com.rtosta.zapzap %u'
-EXEC_LOCAL = 'zapzap %u'
+
+def createDesktopFile(typeAction):
+
+    if isFlatpak:
+        generateFlatpak(typeAction)
+    else:
+        generateLocal(typeAction)
 
 
-def createDesktop(startHide):
+def generateFlatpak(typeAction):
+    try:
+        bus = dbus.SessionBus()
+        obj = bus.get_object("org.freedesktop.portal.Desktop",
+                             "/org/freedesktop/portal/desktop")
+        inter = dbus.Interface(obj, "org.freedesktop.portal.Background")
 
-    flag = ""
-    if startHide:
-        flag = '--hideStart'
+        res = inter.RequestBackground('', {'reason': 'Zapzap autostart', 'autostart': typeAction,
+                                           'background': typeAction, 'commandline': dbus.Array(['', '%u ' '--hideStart'])})
 
-    exec_ = EXEC_FLATPAK
-    if not isFlatpak:
-        exec_ = EXEC_LOCAL
+    except Exception as e:
+        print(e)
+
+
+def generateLocal(typeAction):
+    if typeAction:  # create
+        createDesktopLocal()
+    else:
+        removeDesktopLocal()
+
+
+def createDesktopLocal():
 
     conteudo = f"""[Desktop Entry]
 Version=1.0
 Name=ZapZap
 Comment[pt_BR]=Whatsapp Desktop para Linux
 Comment=Whatsapp Desktop for Linux
-Exec={exec_} {flag}
+Exec=zapzap %u --hideStart
 Icon=com.rtosta.zapzap
 Type=Application
 Categories=Chat;Network;InstantMessaging;Qt;
@@ -40,6 +59,6 @@ X-GNOME-SingleWindow=true"""
         arquivo.write(conteudo)
 
 
-def removeDesktop():
+def removeDesktopLocal():
     if os.path.exists(path_data):
         os.remove(path_data)
