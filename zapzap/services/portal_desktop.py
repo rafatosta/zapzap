@@ -23,7 +23,7 @@ def generateFlatpak(typeAction):
         inter = dbus.Interface(obj, "org.freedesktop.portal.Background")
 
         res = inter.RequestBackground('', {'reason': 'Zapzap autostart', 'autostart': typeAction,
-                                           'background': typeAction, 'commandline': dbus.Array(['', '%u ' '--hideStart'])})
+                                           'background': typeAction, 'commandline': dbus.Array(['', '--hideStart'])})
 
     except Exception as e:
         print(e)
