@@ -49,11 +49,17 @@
 
   <screenshots>
     <screenshot type="default">
-      <image> https://github.com/rafatosta/zapzap/raw/main/share/screenshot/default.png</image>
+      <caption>Application showcase</caption>
+      <image type="source">https://raw.githubusercontent.com/rafatosta/zapzap/main/share/screenshot/default.png</image>
     </screenshot>
   </screenshots>
 
   <releases>
+    <release date="2022-11-21" version="4.4.3">
+      <description>
+        <p>Use portal to activate autostart.</p>
+      </description>
+    </release>
     <release date="2022-09-20" version="4.4">
       <description>
         <p>Opens magnetic links from the browser: New messages, Group Links.</p>
