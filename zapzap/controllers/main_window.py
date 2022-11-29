@@ -240,7 +240,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         if reason == QSystemTrayIcon.ActivationReason.Trigger or reason == QSystemTrayIcon.ActivationReason.MiddleClick:
             self.on_show()
-            self.app.activateWindow()
+            #self.app.activateWindow()
 
     def on_show(self):
         """
@@ -249,8 +249,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.app.activeWindow() != None:  # Se a janela estiver em foco será escondida
             self.hide()
         else:  # Caso não esteja, será mostrada
-            self.hide()
             self.show()
+            self.raise_()
             self.app.activateWindow()
             self.main_stacked.setCurrentIndex(0)
 
