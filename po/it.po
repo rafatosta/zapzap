@@ -238,7 +238,7 @@ msgstr "Un'applicazione WhatsApp non ufficiale"
 
 #: zapzap/view/settings.py:952
 msgid "GNU General Public License v3.0"
-msgstr "GNU General Public License v3.0"
+msgstr "GNU Pubblica Licensa Generica v3.0"
 
 #: zapzap/view/settings.py:953
 msgid "Learn more"
