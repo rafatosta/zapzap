@@ -55,6 +55,12 @@
   </screenshots>
 
   <releases>
+    <release date="2023-01-28" version="4.4.4">
+      <description>
+        <p>Fixes message closing with ESC.</p>
+        <p>Update UserAgent.</p>
+      </description>
+    </release>
     <release date="2022-11-21" version="4.4.3">
       <description>
         <p>Use portal to activate autostart.</p>
