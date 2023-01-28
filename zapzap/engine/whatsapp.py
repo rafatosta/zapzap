@@ -30,7 +30,7 @@ class WhatsApp(QWebEnginePage):
         if flag:
             maximize = """
                 const checkExist = setInterval(() => {
-                    const classElement = document.getElementsByClassName("_1XkO3")[0];
+                    const classElement = document.getElementsByClassName("_1jJ70 two")[0];
                     INSERT_THEME
                     if (classElement != null) {
                         classElement.style = 'max-width: initial; width: 100%; height: 100%; position: unset;margin: 0';
