@@ -86,9 +86,9 @@ class WhatsApp(QWebEnginePage):
         return False
 
     def closeConversation(self):
-        script = """var closeConvoClassName = "_2oldI dJxPU";
+        script = """var closeConvoClassName = "Iaqxu FCS6Q jScby";
                     function isConversationOpen() {
-                        return document.getElementsByClassName("_3xTHG").length > 0 //conversation class
+                        return document.getElementsByClassName("n5hs2j7m oq31bsqd gx1rr48f qh5tioqs").length > 0 //conversation class
                             && document.getElementsByClassName("lhggkp7q mvj9yovn f804f6gw fyy3ld6e svlsagor dntxsmpk ixn6u0rb s2vc4xk1 o0wkt7aw t1844p82 esbo3we0 qizq0yyl bs7a17vp eg0stril").length == 0 //close emoji
                             && document.getElementsByClassName("_2cNrC _1CTfw").length == 0 //attachment popup
                             && document.getElementsByClassName("o--vV wGJyi").length == 0 //more options menu
@@ -98,10 +98,10 @@ class WhatsApp(QWebEnginePage):
                         document.getElementsByClassName("o--vV wGJyi")[0].style.display = "none";
                     }
                     function getMoreOptions() {
-                        if (document.getElementsByClassName("_26lC3").length == 7){
-                            return document.getElementsByClassName("_26lC3")[5];
+                        if (document.getElementsByClassName("_3ndVb").length == 7){
+                            return document.getElementsByClassName("_3ndVb")[5];
                         }
-                        return document.getElementsByClassName("_26lC3")[4];
+                        return document.getElementsByClassName("_3ndVb")[6];
                     }
                     function invokeEscKey() {
                         window.dispatchEvent(new KeyboardEvent("keydown", {altKey: false, code: "Escape", ctrlKey: false, isComposing: false, key: "Escape", 
