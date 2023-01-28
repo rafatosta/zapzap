@@ -117,8 +117,8 @@ class WhatsApp(QWebEnginePage):
                         getMoreOptions().click();
                         setTimeout(function() {
                             var buttons = document.getElementsByClassName(closeConvoClassName);
-                            if (buttons.length === 6 || buttons.length === 5) { //it's a group
-                                hideOptions();
+                            if (buttons.length === 5) { //it's a group
+                                //hideOptions();
                                 invokeEscKey();
                                 return;
                             }
