@@ -65,7 +65,7 @@ def main():
     # Checks the hidden start
     isStart_system = window.settings.value(
         "system/start_system", False, bool)
-    if isStart_system and '--hideStart' in sys.argv:
+    if isStart_system or '--hideStart' in sys.argv:
         window.hide()
     else:
         window.show()
