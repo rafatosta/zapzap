@@ -55,6 +55,12 @@
   </screenshots>
 
   <releases>
+    <release date="2023-03-14" version="4.4.5">
+      <description>
+        <p>Update UserAgent.</p>
+        <p>Consult the project github for more...</p>
+      </description>
+    </release>
     <release date="2023-01-28" version="4.4.4">
       <description>
         <p>Fixes message closing with ESC.</p>
