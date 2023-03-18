@@ -15,7 +15,7 @@ WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.
         <img alt="Donate" src="share/logos/PayPal.svg" width="170">
     </a>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://nubank.com.br/pagar/3c3r2/jAK5S45kuO">
+    <a href="https://nubank.com.br/pagar/3c3r2/LS2hiJJKzv">
         <img  alt="Pix" src="share/logos/pix.png" width="120">
     </a>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
