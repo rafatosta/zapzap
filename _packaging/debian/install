@@ -1,0 +1,3 @@
+share/icons/com.rtosta.zapzap.svg /usr/share/icons
+share/metainfo/com.rtosta.zapzap.appdata.xml /usr/share/metainfo
+share/applications/com.rtosta.zapzap.desktop /usr/share/applications
