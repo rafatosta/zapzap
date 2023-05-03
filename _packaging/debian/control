@@ -1,0 +1,26 @@
+Source: zapzap
+Section: net
+Priority: optional
+Maintainer: Rafael Tosta <rafa.ecomp@gmail.com>
+Rules-Requires-Root: no
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-sequence-python3,
+ python3-setuptools,
+ python3-all,
+ python3-pyqt6,
+Standards-Version: 4.6.2
+Homepage: https://github.com/rafatosta/zapzap
+Vcs-Browser: https://github.com/rafatosta/zapzap/tree/v4.4.5
+
+Package: zapzap
+Architecture: all
+Depends:
+ ${python3:Depends},
+ ${misc:Depends},
+ python3-pyqt6,
+ python3-pyqt6.qtwebengine,
+ python3-pyqt6.qtsvg,
+ python3-dbus,
+Description: WhatsApp Desktop for Linux
+ WhatsApp Desktop application written in Pyqt6 + PyQt6-WebEngine.
