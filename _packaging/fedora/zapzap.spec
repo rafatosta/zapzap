@@ -1,37 +1,57 @@
-# Maintained: Rafael Tosta <rafa.ecomp@gmail.com>
-%global pkg_name zapzap
-%global pkgname com.rtosta.zapzap
+# Arquivo .spec para Fedora
 
-Name:           %{pkg_name}
-Version:        4.4.1
-Release:        0%{?dist}
-Summary:        Whatsapp Desktop for linux
-Group:          Applications/Communication/Whatsapp
-License:        GPLv3+
-URL:            https://github.com/rafatosta/zapzap
+%global srcname zapzap
+%global srcversion 4.4.5
 
-Source0:        https://github.com/rafatosta/%{pkg_name}/archive/%{version}.tar.gz
+%global __python /usr/bin/python3
+%global _rpmfilename %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
 
-ExclusiveArch:	%{ix86} x86_64	
+Name:           %{srcname}
+Version:        %{srcversion}
+Release:        1%{?dist}
+Summary:        My Python App Test
 
-BuildRequires: python-build
-BuildRequires: python-installer 
-BuildRequires: python-setuptools
-BuildRequires: python-wheel
+License:        GNU General Public License v3.0
+URL:            https://github.com/rafatosta/%{srcname}
+Source0:        %{url}/archive/%{srcname}-%{version}.tar.gz
 
-Requires:       python-pyqt6
-Requires:       python-pyqt6-webengine
-Requires:       dbus-python
+# Requisitos de construção
+BuildArch:      noarch
+BuildRequires:  python3-setuptools
+
+# Requisitos de execução
+Requires: python3-pyqt6
+Requires: python3-pyqt6-webengine
+Requires: python3-dbus
+Requires: python3
 
 %description
-    Whatsapp Desktop for Linux.
+This is a test Python application.
 
 %prep
+%autosetup -n %{srcname}-%{version}
 
 %build
+%python3 setup.py build
 
 %install
+%python3 setup.py install --root %{buildroot}
+
+%check
+%{__python3} setup.py test   
 
 %files
+%license LICENSE
+%doc README.md
+%{_bindir}/%{srcname}
+/usr/lib/python3.11/site-packages/*
+
+%post
+/sbin/ldconfig %{_libdir}
+
+%postun
+/sbin/ldconfig %{_libdir}
 
 %changelog
+* Thu May 30 2023 Your Name <yourname@example.com> - 0.1-1
+- Initial package release
