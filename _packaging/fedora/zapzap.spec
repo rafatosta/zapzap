@@ -18,10 +18,15 @@ Source0:        %{url}/archive/%{srcname}-%{version}.tar.gz
 
 # Requisitos de construção
 BuildArch:     noarch
-BuildRequires: python3-pyqt6
-BuildRequires: python3-pyqt6-webengine
-BuildRequires: python3-dbus
-BuildRequires: python3
+BuildRequires:  python3-devel
+BuildRequires:  desktop-file-utils
+BuildRequires:  python3-setuptools
+
+BuildRequires:   python3-pyqt6
+Requires:   python3-pyqt6-base
+Requires:   python3-pyqt6-sip
+Requires:   python3-pyqt6-webengine
+Requires:   python3-dbus
 
 %description
 This is a test Python application.
@@ -30,7 +35,7 @@ This is a test Python application.
 %autosetup -n %{srcname}-%{version}
 
 %build
-%python3 setup.py build
+%py3_build
 
 %install
 %python3 setup.py install --root %{buildroot}
@@ -50,13 +55,7 @@ cp -R share/icons/com.rtosta.zapzap.svg $RPM_BUILD_ROOT/usr/share/icons/hicolor/
 /usr/share/applications/com.rtosta.zapzap.desktop
 /usr/share/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg
 
-
-%post
-/sbin/ldconfig %{_libdir}
-
-%postun
-/sbin/ldconfig %{_libdir}
-
 %changelog
-* Thu May 30 2023 Your Name <yourname@example.com> - 0.1-1
+* Thu May 30 2023 Rafael Tosta <rafa.ecomp@gmail.com> 
+- 0.1-1
 - Initial package release
