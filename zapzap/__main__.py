@@ -12,12 +12,17 @@ def main():
 
     # When running outside Flatpak
     if not zapzap.isFlatpak:
+        # x11 default
+        ZAP_SESSION_TYPE = 'xcb'
+        if '--zapWayland' in sys.argv:
+            ZAP_SESSION_TYPE = 'wayland'
+
         # Session Type
         XDG_SESSION_TYPE = getenv('XDG_SESSION_TYPE')
         if XDG_SESSION_TYPE == 'wayland':
-            environ['QT_QPA_PLATFORM'] = 'xcb'
+            environ['QT_QPA_PLATFORM'] = ZAP_SESSION_TYPE
         elif XDG_SESSION_TYPE is None:
-            environ['QT_QPA_PLATFORM'] = 'xcb'
+            environ['QT_QPA_PLATFORM'] = ZAP_SESSION_TYPE
 
     # Local Debug (python -m zapzap --zapDebug)
     if '--zapDebug' in sys.argv:
