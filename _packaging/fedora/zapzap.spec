@@ -1,7 +1,7 @@
 # Arquivo .spec para Fedora
 
 %global srcname zapzap
-%global srcversion  4.4.5
+%global srcversion  4.4.6
 
 %global __python /usr/bin/python3
 %global _rpmfilename %%{NAME}-%%{VERSION}-%%{RELEASE}.rpm
@@ -56,6 +56,6 @@ cp -R share/icons/com.rtosta.zapzap.svg $RPM_BUILD_ROOT/usr/share/icons/hicolor/
 /usr/share/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg
 
 %changelog
-* Thu May 30 2023 Rafael Tosta <rafa.ecomp@gmail.com> 
-- 0.1-1
+* Wed may 31 2023 Rafael Tosta <rafa.ecomp@gmail.com> 
+- 1.0
 - Initial package release

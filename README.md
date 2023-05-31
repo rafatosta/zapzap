@@ -5,6 +5,10 @@ WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.
     <a href="https://flathub.org/apps/details/com.rtosta.zapzap">
         <img  alt="Download on Flathub" src="https://flathub.org/assets/badges/flathub-badge-en.png" width="150">
     </a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://copr.fedorainfracloud.org/coprs/rafatosta/zapzap/">
+        <img  alt="Download Fedora Copr" src="https://redhat.discourse-cdn.com/fedoraproject/original/1X/c5f38bdccf3bed038510138b9dc16b3bf01b6e13.png" width="150" height='50'>
+    </a>
 </p>
 
 ![Zapzap for whatsapp](share/screenshot/default.png)
@@ -37,6 +41,19 @@ WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.
 - Personalized window decoration
 - Shortcuts for the main options
 
+# Installation options
+
+### **Flathub**
+```bash
+flatpak install flathub com.rtosta.zapzap
+```
+
+### **Fedora**
+```bash
+dnf copr enable rafatosta/zapzap
+dnf install zapzap
+```
+
 # Contribute
 
 If you want to help make ZapZap better the easiest thing you can do is to [report issues and feature requests](https://github.com/rafatosta/zapzap/issues).
@@ -53,8 +70,13 @@ Make sure the file for your language is in the [po](/po) folder. If it is just s
 
 #### Installing dependencies
 ```bash
-pip install PyQt6 PyQt6-WebEngine dbus-python
+pip install PyQt6 PyQt6-WebEngine dbus-python 
 ```
+#### Development dependencies
+```bash
+gettext
+```
+
 #### Running the application
 ```bash
 git clone https://github.com/rafatosta/zapzap.git
@@ -84,4 +106,3 @@ python run_flatpak.py
 # Contact
 Maintainer: Rafael Tosta<br/>
 Email: *rafa.ecomp@gmail.com*<br/>
-Telegram: *@RafaelTosta*<br/>
