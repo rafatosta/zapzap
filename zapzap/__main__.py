@@ -15,7 +15,7 @@ def main():
         # Session Type
         XDG_SESSION_TYPE = getenv('XDG_SESSION_TYPE')
         if XDG_SESSION_TYPE == 'wayland':
-            environ['QT_QPA_PLATFORM'] = 'wayland'
+            environ['QT_QPA_PLATFORM'] = 'xcb'
         elif XDG_SESSION_TYPE is None:
             environ['QT_QPA_PLATFORM'] = 'xcb'
 
