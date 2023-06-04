@@ -1,19 +1,19 @@
 # Arquivo .spec para Fedora
 
 %global srcname zapzap
-%global srcversion  4.4.6
+%global tag_version  4.4.6
 
 %global __python /usr/bin/python3
 %global _rpmfilename %%{NAME}-%%{VERSION}-%%{RELEASE}.rpm
 
 Name:           %{srcname}
-Version:        %{srcversion}
-Release:        1%{?dist}
-Summary:        My Python App Test
+Version:        %{tag_version}
+Release:        2%{?dist}
+Summary:        WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.
 
 License:        GNU General Public License v3.0
 URL:            https://github.com/rafatosta/%{srcname}
-Source0:        https://github.com/rafatosta/zapzap/archive/refs/tags/%{srcversion}.tar.gz
+Source0:        https://github.com/rafatosta/zapzap/archive/refs/tags/%{tag_version}.tar.gz
 
 
 # Requisitos de construção
@@ -29,7 +29,18 @@ Requires:   python3-pyqt6-webengine
 Requires:   python3-dbus
 
 %description
-This is a test Python application.
+WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.
+    Features come with Whatsapp web
+    Icon in systray changes if there are new messages
+    Customizable Systray icons
+    System style (light and dark)
+    Fullscreen mode
+    Background running
+    Spellchecker
+    Drag and drop
+    Work area notifications
+    Personalized window decoration
+    Shortcuts for the main options
 
 %prep
 %autosetup -n %{srcname}-%{version}
@@ -56,6 +67,6 @@ cp -R share/icons/com.rtosta.zapzap.svg $RPM_BUILD_ROOT/usr/share/icons/hicolor/
 /usr/share/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg
 
 %changelog
-* Wed may 31 2023 Rafael Tosta <rafa.ecomp@gmail.com> 
+* Wed May 31 2023 Rafael Tosta <rafa.ecomp@gmail.com> - 4.4.6-2
 - 1.0
 - Initial package release
