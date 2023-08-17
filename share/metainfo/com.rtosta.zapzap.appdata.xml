@@ -55,6 +55,13 @@
   </screenshots>
 
   <releases>
+    <release date="2023-08-17" version="4.4.7">
+      <description>
+        <p>Update UserAgent.</p>
+        <p>Zap Decoration deactivated by default</p>
+        <p>Fix close chat</p>
+      </description>
+    </release>
     <release date="2023-03-14" version="4.4.5">
       <description>
         <p>Update UserAgent.</p>

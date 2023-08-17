@@ -1,7 +1,7 @@
 # Arquivo .spec para Fedora
 
 %global srcname zapzap
-%global srcversion  4.4.6
+%global srcversion  4.4.7
 
 %global __python /usr/bin/python3
 %global _rpmfilename %%{NAME}-%%{VERSION}-%%{RELEASE}.rpm
@@ -29,7 +29,7 @@ Requires:   python3-pyqt6-webengine
 Requires:   python3-dbus
 
 %description
-This is a test Python application.
+Zapzap - Whatsapp Desktop for Linux
 
 %prep
 %autosetup -n %{srcname}-%{version}
@@ -59,3 +59,9 @@ cp -R share/icons/com.rtosta.zapzap.svg $RPM_BUILD_ROOT/usr/share/icons/hicolor/
 * Wed may 31 2023 Rafael Tosta <rafa.ecomp@gmail.com> 
 - 1.0
 - Initial package release
+
+%changelog
+* Thu ago 17 2023 Rafael Tosta <rafa.ecomp@gmail.com> 
+- Update UserAgent 
+- Fix close chat
+- Zap Decoration deactivated by default
