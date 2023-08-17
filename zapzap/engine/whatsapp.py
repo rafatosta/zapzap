@@ -86,7 +86,49 @@ class WhatsApp(QWebEnginePage):
         return False
 
     def closeConversation(self):
-        script = """document.dispatchEvent(new KeyboardEvent("keydown",{'key': 'Escape'}));"""
+        script = """var closeConvoClassName = "Iaqxu FCS6Q jScby";
+                    function isConversationOpen() {
+                        return document.getElementsByClassName("n5hs2j7m oq31bsqd gx1rr48f qh5tioqs").length > 0 //conversation class
+                            && document.getElementsByClassName("lhggkp7q mvj9yovn f804f6gw fyy3ld6e svlsagor dntxsmpk ixn6u0rb s2vc4xk1 o0wkt7aw t1844p82 esbo3we0 qizq0yyl bs7a17vp eg0stril").length == 0 //close emoji
+                            && document.getElementsByClassName("_2cNrC _1CTfw").length == 0 //attachment popup
+                            && document.getElementsByClassName("o--vV wGJyi").length == 0 //more options menu
+                            && document.getElementsByClassName("_23JDg _3x1a0").length == 0; //media view
+                    }
+                    function hideOptions() {
+                        document.getElementsByClassName("o--vV wGJyi")[0].style.display = "none";
+                    }
+                    function getMoreOptions() {
+                        if (document.getElementsByClassName("_3ndVb").length == 7){
+                            return document.getElementsByClassName("_3ndVb")[5];
+                        }
+                        return document.getElementsByClassName("_3ndVb")[6];
+                    }
+                    function invokeEscKey() {
+                        window.dispatchEvent(new KeyboardEvent("keydown", {altKey: false, code: "Escape", ctrlKey: false, isComposing: false, key: "Escape", 
+                                            location: 0, metaKey: false, repeat: false, shiftKey: false, which: 27, charCode: 0, keyCode: 27,})
+                        );
+                    }
+ 
+                    function closeConversation() {
+                        if (!isConversationOpen()) {
+                            invokeEscKey();
+                            return;
+                        }
+                        getMoreOptions().click();
+                        setTimeout(function() {
+                            var buttons = document.getElementsByClassName(closeConvoClassName);
+                            if (buttons.length === 5) { //it's a group
+                                //hideOptions();
+                                invokeEscKey();
+                                return;
+                            }
+                            var index = buttons.length === 9 ? 2 : 2;
+                            buttons[index].click()
+                            hideOptions();
+                        }, 1);
+                    }
+                    closeConversation();
+                    """
         self.runJavaScript(script)
 
     def openChat(self, url):
