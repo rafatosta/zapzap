@@ -13,7 +13,7 @@ Summary:        My Python App Test
 
 License:        GNU General Public License v3.0
 URL:            https://github.com/rafatosta/%{srcname}
-Source0:        https://github.com/rafatosta/zapzap/archive/refs/tags/%{srcversion}.tar.gz
+Source0:        https://github.com/rafatosta/zapzap/archive/refs/tags/v%{srcversion}.tar.gz
 
 
 # Requisitos de construção
