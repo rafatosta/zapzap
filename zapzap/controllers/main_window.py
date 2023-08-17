@@ -119,7 +119,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def setZapDecoration(self):
         """Activate the personalized window"""
         self.headbar.hide()
-        if self.settings.value("system/zap_decoration", True, bool):
+        if self.settings.value("system/zapzap_decoration", False, bool):
             self.scd = UIDecoration(self)
             self.zFile.setMenu(self.menuFile)
             self.zView.setMenu(self.menuView)
@@ -278,7 +278,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def setHideMenuBar(self):
         """Hides/Shows the menu bar in the system window"""
-        if self.settings.value("system/zap_decoration", True, bool):
+        if self.settings.value("system/zapzap_decoration", False, bool):
             self.menubar.setMaximumHeight(0)
             if self.isHideMenuBar:
                 self.zapBoxMenu.hide()

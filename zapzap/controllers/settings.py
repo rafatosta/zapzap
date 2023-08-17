@@ -330,7 +330,7 @@ class Settings(QWidget, Ui_Settings):
 
         self.menubar.setChecked(self.settings.value(
             "main/hideMenuBar", False, bool))  # tray_icon
-        zap_decor = self.settings.value("system/zap_decoration", True, bool)
+        zap_decor = self.settings.value("system/zapzap_decoration", False, bool)
         self.check_zap_window.setChecked(zap_decor)
         self.frameZapWindow.setEnabled(self.check_zap_window.isChecked())
         self.cb_maximize.setChecked(self.settings.value(
@@ -392,7 +392,7 @@ class Settings(QWidget, Ui_Settings):
         self.settings.setValue("system/spellCheckers",
                                self.checkSpellChecker.isChecked())
 
-        self.settings.setValue("system/zap_decoration",
+        self.settings.setValue("system/zapzap_decoration",
                                self.check_zap_window.isChecked())
         self.settings.setValue("system/winBtnMax",
                                self.cb_maximize.isChecked())

@@ -695,7 +695,7 @@ def buildTheme(p) -> str:
 
     settings = QSettings(zapzap.__appname__, zapzap.__appname__)
     ZapDecoration = ""
-    if settings.value("system/zap_decoration", True, bool):
+    if settings.value("system/zapzap_decoration", False, bool):
         ZapDecoration = """
 
         #leftBox .QPushButton {	
