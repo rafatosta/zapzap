@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zapzap main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 15:50-0300\n"
+"POT-Creation-Date: 2023-09-13 18:36-0300\n"
 "PO-Revision-Date: 2022-09-06 22:04+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <gnometurk@gnome.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.1.1\n"
 
-#: zapzap/view/main_window.py:293 zapzap/view/settings.py:944
+#: zapzap/view/main_window.py:293 zapzap/view/settings.py:949
 #: zapzap/controllers/main_window_components/tray_icon.py:19
 msgid "ZapZap"
 msgstr "ZapZap"
@@ -39,12 +39,12 @@ msgstr "Sohbet"
 msgid "Help"
 msgstr "Yardım"
 
-#: zapzap/view/main_window.py:302 zapzap/view/settings.py:907
+#: zapzap/view/main_window.py:302 zapzap/view/settings.py:911
 #: zapzap/controllers/main_window_components/tray_icon.py:22
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: zapzap/view/main_window.py:303 zapzap/view/settings.py:915
+#: zapzap/view/main_window.py:303 zapzap/view/settings.py:919
 #: zapzap/controllers/main_window_components/tray_icon.py:25
 msgid "Quit"
 msgstr "Çık"
@@ -61,7 +61,7 @@ msgstr "Öntanımlı boyut sayfası"
 msgid "Full Screen"
 msgstr "Tam Ekran"
 
-#: zapzap/view/main_window.py:307 zapzap/view/settings.py:922
+#: zapzap/view/main_window.py:307 zapzap/view/settings.py:926
 msgid "Hide menu bar"
 msgstr "Menü çubuğunu gizle"
 
@@ -69,11 +69,11 @@ msgstr "Menü çubuğunu gizle"
 msgid "Learn More"
 msgstr "Daha Çoğunu Öğren"
 
-#: zapzap/view/main_window.py:309 zapzap/view/settings.py:949
+#: zapzap/view/main_window.py:309 zapzap/view/settings.py:954
 msgid "Changelog"
 msgstr "Değişiklik Günlüğü"
 
-#: zapzap/view/main_window.py:310 zapzap/view/settings.py:950
+#: zapzap/view/main_window.py:310 zapzap/view/settings.py:955
 msgid "Report issue..."
 msgstr "Sorun bildir..."
 
@@ -81,7 +81,7 @@ msgstr "Sorun bildir..."
 msgid "About Zapzap"
 msgstr "Zapzap Hakkında"
 
-#: zapzap/view/main_window.py:312 zapzap/view/settings.py:918
+#: zapzap/view/main_window.py:312 zapzap/view/settings.py:922
 msgid "Hide on close"
 msgstr "Kapatınca gizle"
 
@@ -97,12 +97,12 @@ msgstr "Yankınlaştır"
 msgid "Zoom out"
 msgstr "Uzaklaştır"
 
-#: zapzap/view/main_window.py:316 zapzap/view/settings.py:913
-#: zapzap/view/settings.py:942
+#: zapzap/view/main_window.py:316 zapzap/view/settings.py:917
+#: zapzap/view/settings.py:947
 msgid "Donations"
 msgstr "Bağışlar"
 
-#: zapzap/view/main_window.py:317 zapzap/view/settings.py:908
+#: zapzap/view/main_window.py:317 zapzap/view/settings.py:912
 msgid "Home page"
 msgstr "Ev sayfası"
 
@@ -110,142 +110,146 @@ msgstr "Ev sayfası"
 msgid "Open new chat"
 msgstr "Yeni sohbet aç"
 
-#: zapzap/view/settings.py:906 zapzap/view/card_user.py:81
+#: zapzap/view/settings.py:910 zapzap/view/card_user.py:81
 #: zapzap/view/openChatPopup.py:80
 msgid "Form"
 msgstr "Biçim"
 
-#: zapzap/view/settings.py:909 zapzap/view/settings.py:951
+#: zapzap/view/settings.py:913 zapzap/view/settings.py:956
 msgid "User Management"
 msgstr "Kullanıcı Yönetimi"
 
-#: zapzap/view/settings.py:910 zapzap/view/settings.py:916
+#: zapzap/view/settings.py:914 zapzap/view/settings.py:920
 msgid "System"
 msgstr "Sistem"
 
-#: zapzap/view/settings.py:911
+#: zapzap/view/settings.py:915
 msgid "Appearance"
 msgstr "Görünüm"
 
-#: zapzap/view/settings.py:912 zapzap/view/settings.py:937
+#: zapzap/view/settings.py:916 zapzap/view/settings.py:941
 msgid "Notifications"
 msgstr "Bildirimler"
 
-#: zapzap/view/settings.py:914 zapzap/view/settings.py:943
+#: zapzap/view/settings.py:918 zapzap/view/settings.py:948
 msgid "About"
 msgstr "Hakkında"
 
-#: zapzap/view/settings.py:917
+#: zapzap/view/settings.py:921
 msgid "Start ZapZap with the system"
 msgstr "ZapZap'i sistemle başlat"
 
-#: zapzap/view/settings.py:919
+#: zapzap/view/settings.py:923
 #, fuzzy
 msgid "SpellChecker"
 msgstr "Yazım Denetimi Dilleri"
 
-#: zapzap/view/settings.py:920
+#: zapzap/view/settings.py:924
 msgid "Apply"
 msgstr "Uygula"
 
-#: zapzap/view/settings.py:921
+#: zapzap/view/settings.py:925
 msgid "Menu bar"
 msgstr "Menü çubuğu"
 
-#: zapzap/view/settings.py:923
+#: zapzap/view/settings.py:927
 msgid "ZapZap window (Restart required)"
 msgstr "ZapZap penceresi (Yeniden başlatma gereir)"
 
-#: zapzap/view/settings.py:924
+#: zapzap/view/settings.py:928
 msgid "Title bar buttons"
 msgstr "Başlık çubuğu düğmeleri"
 
-#: zapzap/view/settings.py:925
+#: zapzap/view/settings.py:929
 msgid "Maximize"
 msgstr "Büyüt"
 
-#: zapzap/view/settings.py:926
+#: zapzap/view/settings.py:930
 msgid "Minimize"
 msgstr "Küçült"
 
-#: zapzap/view/settings.py:927
+#: zapzap/view/settings.py:931
 msgid "Positioning on the left side"
 msgstr "Sol tarafta konumlandırma"
 
-#: zapzap/view/settings.py:928
+#: zapzap/view/settings.py:932
 msgid "Customize appearance"
 msgstr "Görünümü özelleştir"
 
-#: zapzap/view/settings.py:929
+#: zapzap/view/settings.py:933
 msgid "General appearance"
 msgstr "Genel görünüm"
 
-#: zapzap/view/settings.py:930
+#: zapzap/view/settings.py:934
 msgid "System style"
 msgstr "Sistem biçemi"
 
-#: zapzap/view/settings.py:931
+#: zapzap/view/settings.py:935
 msgid "Light style"
 msgstr "Açık biçem"
 
-#: zapzap/view/settings.py:932
+#: zapzap/view/settings.py:936
 msgid "Dark style"
 msgstr "Koyu biçem"
 
-#: zapzap/view/settings.py:933
+#: zapzap/view/settings.py:937
 msgid "Tray icon"
 msgstr "Sistem çıktısı simgesi"
 
-#: zapzap/view/settings.py:934
+#: zapzap/view/settings.py:938
 msgid "Default"
 msgstr "Öntanımlı"
 
-#: zapzap/view/settings.py:935
+#: zapzap/view/settings.py:939
 msgid "Symbolic light"
 msgstr "Sembolik açık"
 
-#: zapzap/view/settings.py:936
+#: zapzap/view/settings.py:940
 msgid "Symbolic dark"
 msgstr "Sembolik koyu"
 
-#: zapzap/view/settings.py:938
+#: zapzap/view/settings.py:942
 msgid "Notifications on the desktop"
 msgstr "Masaüstü bildirimleri"
 
-#: zapzap/view/settings.py:939
+#: zapzap/view/settings.py:943
 msgid "Show the photo of the sender"
 msgstr "Gönderenin fotoğrafını göster"
 
-#: zapzap/view/settings.py:940
+#: zapzap/view/settings.py:944
 msgid "Show the sender's name"
 msgstr "Gönderenin adını göster"
 
-#: zapzap/view/settings.py:941
+#: zapzap/view/settings.py:945
 msgid "Show message preview"
 msgstr "Mesaj önizlemesini göster"
 
-#: zapzap/view/settings.py:945
+#: zapzap/view/settings.py:946
+msgid "Reproduce sounds when receiving messages"
+msgstr ""
+
+#: zapzap/view/settings.py:950
 #, python-brace-format
 msgid "Version {id} (Official compilation)"
 msgstr "Sürüm {id} (Resmi derleme)"
 
-#: zapzap/view/settings.py:946
+#: zapzap/view/settings.py:951
 msgid "An unofficial WhatsApp desktop application"
 msgstr "Resmi olmayan WhatsApp masaüstü uygulaması"
 
-#: zapzap/view/settings.py:947
+#: zapzap/view/settings.py:952
 msgid "GNU General Public License v3.0"
 msgstr "GNU General Public License v3.0"
 
-#: zapzap/view/settings.py:948
+#: zapzap/view/settings.py:953
 msgid "Learn more"
 msgstr "Daha çoğunu öğren"
 
-#: zapzap/view/settings.py:952
+#: zapzap/view/settings.py:957
 msgid "New User"
 msgstr "Yeni Kullanıcı"
 
-#: zapzap/view/settings.py:953
+#: zapzap/view/settings.py:958
 msgid "Users limit reached (9 in total)"
 msgstr "Kullanıcı sınırına ulaşıldı (toplamda 9)"
 
@@ -301,35 +305,35 @@ msgstr "Etkinleştir"
 msgid "System Language"
 msgstr "Sistem Dili"
 
-#: zapzap/engine/browser.py:70
+#: zapzap/engine/browser.py:71
 msgid "Undo"
 msgstr "Geri al"
 
-#: zapzap/engine/browser.py:71
+#: zapzap/engine/browser.py:72
 msgid "Redo"
 msgstr "Yinele"
 
-#: zapzap/engine/browser.py:72
+#: zapzap/engine/browser.py:73
 msgid "Cut"
 msgstr "Kes"
 
-#: zapzap/engine/browser.py:73
+#: zapzap/engine/browser.py:74
 msgid "Copy"
 msgstr "Kopyala"
 
-#: zapzap/engine/browser.py:74
+#: zapzap/engine/browser.py:75
 msgid "Paste"
 msgstr "Yapıştır"
 
-#: zapzap/engine/browser.py:75
+#: zapzap/engine/browser.py:76
 msgid "Select all"
 msgstr "Tümünü seç"
 
-#: zapzap/engine/browser.py:76
+#: zapzap/engine/browser.py:77
 msgid "Save image"
 msgstr "Resmi kaydet"
 
-#: zapzap/engine/browser.py:77
+#: zapzap/engine/browser.py:78
 msgid "Copy image"
 msgstr "Resmi kopyala"
 
