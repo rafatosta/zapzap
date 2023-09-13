@@ -5,7 +5,6 @@ from PyQt6.QtWidgets import QApplication
 from zapzap import __whatsapp_url__, __appname__
 from zapzap.services.dbus_theme import getSystemTheme
 
-
 class WhatsApp(QWebEnginePage):
 
     link_url = ''
@@ -14,6 +13,9 @@ class WhatsApp(QWebEnginePage):
 
     def __init__(self, *args, **kwargs):
         QWebEnginePage.__init__(self, *args, **kwargs)
+
+        self.qset = QSettings(__appname__, __appname__)
+
         # Ativa o EventFilter
         QApplication.instance().installEventFilter(self)
 
@@ -24,6 +26,10 @@ class WhatsApp(QWebEnginePage):
         self.linkHovered.connect(self.link_hovered)
 
         self.loadFinished.connect(self.load_finished)
+
+        #self.setAudioMuted(True)
+        self.setAudioMuted(self.qset.value(
+            'notification/show_sound', False, bool))
 
     def load_finished(self, flag):
         # Ativa a tela cheia para telas de proporção grande no WhatsApp Web.
