@@ -143,7 +143,9 @@ class Browser(QWebEngineView):
         Reload the page.
         Prevent Chrome update message from appearing
         """
+        self.load(QUrl(zapzap.__whatsapp_url__))
         self.triggerPageAction(QWebEnginePage.WebAction.ReloadAndBypassCache)
+        
 
     def title_changed(self, title):
         """
