@@ -1,5 +1,7 @@
+from zapzap.controllers.main_window_components.builder_icon import getIconTray
 from PyQt6.QtGui import QImage, QPixmap, QIcon
 from PyQt6.QtCore import QSize
+import zapzap
 import random
 
 from zapzap.theme.icons import ICON_DEFAULT, SVG_NOTIFICATION
@@ -41,3 +43,14 @@ def getColor():
     g = random.randint(0, 255)
     b = random.randint(0, 255)
     return f'rgb({r}, {g}, {b})'
+
+def getIconDefaultURLNotification() -> str:
+    try:
+        qIcon = getIconTray()
+        qpix = qIcon.pixmap(QSize(128, 128))
+        path = zapzap.path_tmp+'/com.rtosta.zapzap.png'
+        qpix.save(path)
+        return path
+    except Exception as e:
+        print(e)
+        return ""

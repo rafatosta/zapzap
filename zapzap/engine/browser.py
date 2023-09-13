@@ -5,11 +5,12 @@ from PyQt6.QtCore import Qt, QUrl, QStandardPaths, QSettings, QLocale, QSize, QU
 from PyQt6.QtGui import QPainter, QPainter, QImage, QBrush, QPen, QDesktopServices
 from PyQt6.QtWidgets import QFileDialog, QApplication
 import zapzap
+from zapzap.theme.builder_icon import getIconDefaultURLNotification
 from zapzap import __appname__
 from ..controllers.download_popup import DownloadPopup
 from zapzap.engine.whatsapp import WhatsApp
 import zapzap.services.dbus_notify as dbus
-from zapzap.controllers.main_window_components.builder_icon import getIconTray
+
 from gettext import gettext as _
 
 
@@ -170,7 +171,7 @@ class Browser(QWebEngineView):
                 message = notification.message() if self.qset.value(
                     'notification/show_msg', True, bool) else 'New message...'
                 icon = self.getPathImage(notification.icon(), notification.title(
-                )) if self.qset.value('notification/show_photo', True, bool) else self.getIconDefault()
+                )) if self.qset.value('notification/show_photo', True, bool) else getIconDefaultURLNotification()
 
                 n = dbus.Notification(title,
                                       message,
@@ -223,19 +224,10 @@ class Browser(QWebEngineView):
             painter.end()
             c = qout.save(path)
             if (c == False):
-                return self.getIconDefault()
+                return getIconDefaultURLNotification()
             else:
                 return path
         except:
-            return self.getIconDefault()
+            return getIconDefaultURLNotification()
 
-    def getIconDefault(self) -> str:
-        try:
-            qIcon = getIconTray()
-            qpix = qIcon.pixmap(QSize(128, 128))
-            path = zapzap.path_tmp+'/com.rtosta.zapzap.png'
-            qpix.save(path)
-            return path
-        except Exception as e:
-            print(e)
-            return ""
+
