@@ -178,6 +178,7 @@ class Settings(QWidget, Ui_Settings):
         self.show_photo.clicked.connect(self.save)
         self.show_name.clicked.connect(self.save)
         self.show_msg.clicked.connect(self.save)
+        self.show_sound.clicked.connect(self.save)
 
         ## Set start page ##
         self.goPageHome()
@@ -216,6 +217,7 @@ class Settings(QWidget, Ui_Settings):
         self.show_photo.setEnabled(s)
         self.show_name.setEnabled(s)
         self.show_msg.setEnabled(s)
+        self.show_sound.setEnabled(s)
 
         self.save()
 
@@ -366,6 +368,7 @@ class Settings(QWidget, Ui_Settings):
         self.show_photo.setEnabled(isNotifyApp)
         self.show_name.setEnabled(isNotifyApp)
         self.show_msg.setEnabled(isNotifyApp)
+        self.show_sound.setEnabled(isNotifyApp)
         # checked
         self.settings.setValue(
             'notification/app', self.notify_desktop.isChecked())
@@ -375,6 +378,8 @@ class Settings(QWidget, Ui_Settings):
             'notification/show_name', True, bool))
         self.show_msg.setChecked(self.settings.value(
             'notification/show_msg', True, bool))
+        self.show_sound.setChecked(self.settings.value(
+            'notification/show_sound', True, bool))
 
     def save(self):
         """
@@ -410,6 +415,8 @@ class Settings(QWidget, Ui_Settings):
                                self.show_name.isChecked())
         self.settings.setValue('notification/show_msg',
                                self.show_msg.isChecked())
+        self.settings.setValue('notification/show_sound',
+                               self.show_sound.isChecked())
 
     # SELECT/DESELECT MENU
     # ///////////////////////////////////////////////////////////////

@@ -291,7 +291,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -733,8 +733,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>642</width>
-            <height>366</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1363,8 +1363,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>642</width>
-            <height>233</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1520,6 +1520,16 @@
                     </property>
                     <property name="text">
                      <string>Show message preview</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="show_sound">
+                    <property name="text">
+                     <string>Reproduce sounds when receiving messages</string>
                     </property>
                     <property name="checked">
                      <bool>true</bool>
