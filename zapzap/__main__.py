@@ -8,6 +8,24 @@ from zapzap.model.db import createDB
 from os import environ, getenv
 
 
+
+def excBackgroundNotification():
+    """
+        Notification when executing ZapZap together with the system
+    """
+    import zapzap.services.dbus_notify as dbus
+    from zapzap.theme.builder_icon import getIconDefaultURLNotification
+    from gettext import gettext as _
+    n = dbus.Notification(_("ZapZap"),
+            _("Keep in background when closing window"),
+            timeout=3000)
+    n.setUrgency(dbus.Urgency.NORMAL)
+    n.setCategory("im.received")
+    n.setIconPath(getIconDefaultURLNotification())
+    n.setHint('desktop-entry', 'com.rtosta.zapzap')
+    n.show()
+
+
 def main():
 
     # When running outside Flatpak
@@ -72,6 +90,7 @@ def main():
         "system/start_system", False, bool)
     if isStart_system or '--hideStart' in sys.argv:
         window.hide()
+        excBackgroundNotification()
     else:
         window.show()
 
