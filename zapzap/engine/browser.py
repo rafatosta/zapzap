@@ -165,8 +165,6 @@ class Browser(QWebEngineView):
         Create a notification through the DBus.Notification for the system.
         When you click on it, the window will open.
         """
-        self.whats.setAudioMuted(self.qset.value(
-            'notification/show_sound', False, bool))
 
         if self.qset.value('notification/app', True, bool):
             try:
@@ -200,6 +198,7 @@ class Browser(QWebEngineView):
                 n.show()
             except Exception as e:
                 print(e)
+
 
     def getPathImage(self, qin, title) -> str:
         """

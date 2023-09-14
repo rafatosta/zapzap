@@ -46,6 +46,8 @@ class Settings(QWidget, Ui_Settings):
         self.loadUsers()
         self.loadSpellChecker()
 
+        self.show_sound.setVisible(False)
+
     def loadSpellChecker(self):
         def action():
             currentLanguage = self.comboSpellChecker.currentData()
@@ -378,8 +380,8 @@ class Settings(QWidget, Ui_Settings):
             'notification/show_name', True, bool))
         self.show_msg.setChecked(self.settings.value(
             'notification/show_msg', True, bool))
-        self.show_sound.setChecked(self.settings.value(
-            'notification/show_sound', True, bool))
+        self.show_sound.setChecked(not self.settings.value(
+            'notification/show_sound', False, bool))
 
     def save(self):
         """
@@ -416,7 +418,7 @@ class Settings(QWidget, Ui_Settings):
         self.settings.setValue('notification/show_msg',
                                self.show_msg.isChecked())
         self.settings.setValue('notification/show_sound',
-                               self.show_sound.isChecked())
+                               not self.show_sound.isChecked())
 
     # SELECT/DESELECT MENU
     # ///////////////////////////////////////////////////////////////

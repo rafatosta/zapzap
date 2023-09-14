@@ -28,8 +28,7 @@ class WhatsApp(QWebEnginePage):
         self.loadFinished.connect(self.load_finished)
 
         #self.setAudioMuted(True)
-        self.setAudioMuted(self.qset.value(
-            'notification/show_sound', False, bool))
+        #self.setAudioMuted(self.qset.value('notification/show_sound', False, bool))
 
     def load_finished(self, flag):
         # Ativa a tela cheia para telas de proporção grande no WhatsApp Web.
