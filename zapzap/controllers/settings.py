@@ -48,6 +48,10 @@ class Settings(QWidget, Ui_Settings):
 
         self.show_sound.setVisible(False)
 
+        if zapzap.isFlatpak:
+            self.wayland.setVisible(False)
+            self.lineWayland.setVisible(False)
+
     def loadSpellChecker(self):
         def action():
             currentLanguage = self.comboSpellChecker.currentData()
@@ -165,6 +169,8 @@ class Settings(QWidget, Ui_Settings):
         self.cb_maximize.clicked.connect(self.actionsSystemMenu)
         self.cb_minimize.clicked.connect(self.actionsSystemMenu)
         self.cb_positLeft.clicked.connect(self.actionsSystemMenu)
+
+        self.wayland.clicked.connect(self.save)
 
         ## Appearance ##
         self.rb_system.clicked.connect(self.actionsRbAppearance)
@@ -326,6 +332,9 @@ class Settings(QWidget, Ui_Settings):
         self.disableTrayIcon.setChecked(self.settings.value(
             "system/tray_icon", True, bool))  # tray_icon
 
+        self.wayland.setChecked(self.settings.value(
+            "system/wayland", True, bool))
+
         # SpellChecker
         sc = self.settings.value(
             "system/spellCheckers", True, bool)
@@ -334,7 +343,8 @@ class Settings(QWidget, Ui_Settings):
 
         self.menubar.setChecked(self.settings.value(
             "main/hideMenuBar", False, bool))  # tray_icon
-        zap_decor = self.settings.value("system/zapzap_decoration", False, bool)
+        zap_decor = self.settings.value(
+            "system/zapzap_decoration", False, bool)
         self.check_zap_window.setChecked(zap_decor)
         self.frameZapWindow.setEnabled(self.check_zap_window.isChecked())
         self.cb_maximize.setChecked(self.settings.value(
@@ -407,6 +417,9 @@ class Settings(QWidget, Ui_Settings):
                                self.cb_minimize.isChecked())
         self.settings.setValue("system/posBtnLeft",
                                self.cb_positLeft.isChecked())
+
+        self.settings.setValue("system/wayland",
+                               self.wayland.isChecked())
 
         # Notifications
         self.settings.setValue('notification/app',

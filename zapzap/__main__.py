@@ -3,10 +3,10 @@ import zapzap
 from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.controllers.main_window import MainWindow
 from PyQt6.QtGui import QFont, QFontDatabase
+from PyQt6.QtCore import QSettings
 import gettext
 from zapzap.model.db import createDB
 from os import environ, getenv
-
 
 
 def excBackgroundNotification():
@@ -17,8 +17,8 @@ def excBackgroundNotification():
     from zapzap.theme.builder_icon import getIconDefaultURLNotification
     from gettext import gettext as _
     n = dbus.Notification(_("ZapZap"),
-            _("Keep in background when closing window"),
-            timeout=3000)
+                          _("Keep in background when closing window"),
+                          timeout=3000)
     n.setUrgency(dbus.Urgency.NORMAL)
     n.setCategory("im.received")
     n.setIconPath(getIconDefaultURLNotification())
@@ -26,21 +26,27 @@ def excBackgroundNotification():
     n.show()
 
 
+def runLocal():
+    qset = QSettings(zapzap.__appname__, zapzap.__appname__)
+    qset.value("system/wayland", True, bool)
+
+    ZAP_SESSION_TYPE = 'wayland'
+    if not qset.value("system/wayland", True, bool): #if False, X11
+        ZAP_SESSION_TYPE = 'xcb'
+
+    # Session Type
+    XDG_SESSION_TYPE = getenv('XDG_SESSION_TYPE')
+    if XDG_SESSION_TYPE == 'wayland':
+        environ['QT_QPA_PLATFORM'] = ZAP_SESSION_TYPE
+    elif XDG_SESSION_TYPE is None:
+        environ['QT_QPA_PLATFORM'] = ZAP_SESSION_TYPE
+
+
 def main():
 
     # When running outside Flatpak
     if not zapzap.isFlatpak:
-        # x11 default
-        ZAP_SESSION_TYPE = 'xcb'
-        if '--zapWayland' in sys.argv:
-            ZAP_SESSION_TYPE = 'wayland'
-
-        # Session Type
-        XDG_SESSION_TYPE = getenv('XDG_SESSION_TYPE')
-        if XDG_SESSION_TYPE == 'wayland':
-            environ['QT_QPA_PLATFORM'] = ZAP_SESSION_TYPE
-        elif XDG_SESSION_TYPE is None:
-            environ['QT_QPA_PLATFORM'] = ZAP_SESSION_TYPE
+        runLocal()
 
     # Local Debug (python -m zapzap --zapDebug)
     if '--zapDebug' in sys.argv:

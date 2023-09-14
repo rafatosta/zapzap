@@ -291,7 +291,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -440,6 +440,23 @@
                      <widget class="QCheckBox" name="keepBackground">
                       <property name="text">
                        <string>Hide on close</string>
+                      </property>
+                      <property name="checked">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="Line" name="lineWayland">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QCheckBox" name="wayland">
+                      <property name="text">
+                       <string>Wayland window system</string>
                       </property>
                       <property name="checked">
                        <bool>true</bool>
@@ -733,8 +750,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>832</width>
-            <height>659</height>
+            <width>642</width>
+            <height>366</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1363,8 +1380,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>832</width>
-            <height>659</height>
+            <width>642</width>
+            <height>272</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
