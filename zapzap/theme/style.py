@@ -203,6 +203,7 @@ def buildTheme(p) -> str:
             color: {windowText};
             margin: 0.09em;
             background-color: {window};
+            border: 1px solid rgba(100, 100, 100, 70);     
         }
 
         QMenu::icon {
