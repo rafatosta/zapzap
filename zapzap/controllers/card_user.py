@@ -1,10 +1,11 @@
 from PyQt6.QtWidgets import QWidget
-from PyQt6.QtCore import pyqtSignal
+from PyQt6.QtCore import pyqtSignal, QSettings
 from zapzap.model.user import User
 from zapzap.theme.builder_icon import getImageQPixmap
 from zapzap.theme.icons import IMAGE_DISABLE
 from zapzap.view.card_user import Ui_CardUser
 from gettext import gettext as _
+import zapzap
 
 
 class CardUser(QWidget, Ui_CardUser):
@@ -18,6 +19,8 @@ class CardUser(QWidget, Ui_CardUser):
         self.setupUi(self)
         self.user = user
 
+        self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
+
         if self.user.id == 1:  # user default
             self.btnDisable.hide()
             self.btnDelete.hide()
@@ -26,6 +29,8 @@ class CardUser(QWidget, Ui_CardUser):
             self.btnDelete.clicked.connect(self.buttonClick)
 
         self.name.editingFinished.connect(self.editingFinished)
+
+        self.showNotifications.clicked.connect(self.checkBoxClick)
 
         self.loadCard()
 
@@ -45,6 +50,9 @@ class CardUser(QWidget, Ui_CardUser):
             svg = svg.format(IMAGE_DISABLE)
         self.icon.setPixmap(getImageQPixmap(svg))
 
+        self.showNotifications.setChecked(self.settings.value(
+            f'{str(self.user.getId())}/notification', True, bool))
+
     def buttonClick(self):
         btn = self.sender()
         btnName = btn.objectName()
@@ -55,3 +63,7 @@ class CardUser(QWidget, Ui_CardUser):
         if btnName == 'btnDelete':
             self.setParent(None)
             self.emitDeleteUser.emit(self.user)
+
+    def checkBoxClick(self):
+        self.settings.setValue(f'{str(self.user.getId())}/notification',
+                               self.showNotifications.isChecked())

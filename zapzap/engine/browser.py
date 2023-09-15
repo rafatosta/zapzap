@@ -22,13 +22,14 @@ class Browser(QWebEngineView):
         # Initialize the DBus connection to the notification server
         dbus.init(__appname__)
         self.parent = parent
+        self.storageName = storageName
 
         # Mainer or existing user
-        if storageName == 1:
-            storageName = 'storage-whats'
+        if self.storageName == 1:
+            self.storageName = 'storage-whats'
 
         # definição do pergil do usuário, local que será armazenados os cookies e informações sobre os navegadores
-        self.profile = QWebEngineProfile(str(storageName), self)
+        self.profile = QWebEngineProfile(str(self.storageName), self)
         self.profile.setHttpUserAgent(zapzap.__user_agent__)
         self.profile.setNotificationPresenter(self.show_notification)
         self.profile.setSpellCheckEnabled(self.qset.value(
@@ -145,7 +146,6 @@ class Browser(QWebEngineView):
         """
         self.load(QUrl(zapzap.__whatsapp_url__))
         self.triggerPageAction(QWebEnginePage.WebAction.ReloadAndBypassCache)
-        
 
     def title_changed(self, title):
         """
@@ -165,8 +165,8 @@ class Browser(QWebEngineView):
         Create a notification through the DBus.Notification for the system.
         When you click on it, the window will open.
         """
-
-        if self.qset.value('notification/app', True, bool):
+        
+        if self.qset.value('notification/app', True, bool) and self.qset.value(f'{str(self.storageName)}/notification', True, bool):
             try:
                 title = notification.title() if self.qset.value(
                     'notification/show_name', True, bool) else __appname__
@@ -198,7 +198,6 @@ class Browser(QWebEngineView):
                 n.show()
             except Exception as e:
                 print(e)
-
 
     def getPathImage(self, qin, title) -> str:
         """
@@ -232,5 +231,3 @@ class Browser(QWebEngineView):
                 return path
         except:
             return getIconDefaultURLNotification()
-
-

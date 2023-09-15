@@ -119,6 +119,16 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
+           <widget class="QCheckBox" name="showNotifications">
+            <property name="text">
+             <string>Show notifications</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QLabel" name="key">
             <property name="text">
              <string/>

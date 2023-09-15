@@ -1,6 +1,7 @@
 import os
 import shutil
 from PyQt6.QtWidgets import QWidget
+from PyQt6.QtCore import QSettings
 from zapzap.controllers.user_container import UserContainer
 from zapzap.model.user import UserDAO
 from zapzap.view.home import Ui_Home
@@ -187,9 +188,13 @@ class Home(QWidget, Ui_Home):
                 if u.id == user.id:
                     self.list.remove(u)
 
+            # Delete QSettings
+            qset = QSettings(zapzap.__appname__, zapzap.__appname__)
+            qset.remove(f'{str(user.getId())}/notification')
+
             # Delete User Data
             path = os.path.join(zapzap.path_storage, str(user.id))
-            shutil.rmtree(path, ignore_errors=True)
+            shutil.rmtree(path, ignore_errors=True) 
         except OSError as error:
             print(error)
             print("File path can not be removed")

@@ -9,6 +9,9 @@ class User():
         self.enable = enable
         self.zoomFactor = zoomFactor
 
+    def getId(self):
+        return 'storage-whats' if self.id == 1 else self.id
+
 
 class UserDAO():
 
