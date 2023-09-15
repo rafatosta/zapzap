@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-14 20:17-0300\n"
+"POT-Creation-Date: 2023-09-15 08:44-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,7 +109,7 @@ msgstr ""
 msgid "Open new chat"
 msgstr ""
 
-#: zapzap/view/settings.py:919 zapzap/view/card_user.py:81
+#: zapzap/view/settings.py:919 zapzap/view/card_user.py:85
 #: zapzap/view/openChatPopup.py:80
 msgid "Form"
 msgstr ""
@@ -255,15 +255,19 @@ msgstr ""
 msgid "Users limit reached (9 in total)"
 msgstr ""
 
-#: zapzap/view/card_user.py:82
+#: zapzap/view/card_user.py:86
 msgid "Enter the user name"
 msgstr ""
 
-#: zapzap/view/card_user.py:83 zapzap/controllers/card_user.py:41
+#: zapzap/view/card_user.py:87 zapzap/controllers/card_user.py:46
 msgid "Disable"
 msgstr ""
 
-#: zapzap/view/card_user.py:84
+#: zapzap/view/card_user.py:88
+msgid "Show notifications"
+msgstr ""
+
+#: zapzap/view/card_user.py:89
 msgid "Delete"
 msgstr ""
 
@@ -299,7 +303,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: zapzap/controllers/card_user.py:44
+#: zapzap/controllers/card_user.py:49
 msgid "Enable"
 msgstr ""
 
@@ -307,35 +311,35 @@ msgstr ""
 msgid "System Language"
 msgstr ""
 
-#: zapzap/engine/browser.py:71
+#: zapzap/engine/browser.py:72
 msgid "Undo"
 msgstr ""
 
-#: zapzap/engine/browser.py:72
+#: zapzap/engine/browser.py:73
 msgid "Redo"
 msgstr ""
 
-#: zapzap/engine/browser.py:73
+#: zapzap/engine/browser.py:74
 msgid "Cut"
 msgstr ""
 
-#: zapzap/engine/browser.py:74
+#: zapzap/engine/browser.py:75
 msgid "Copy"
 msgstr ""
 
-#: zapzap/engine/browser.py:75
+#: zapzap/engine/browser.py:76
 msgid "Paste"
 msgstr ""
 
-#: zapzap/engine/browser.py:76
+#: zapzap/engine/browser.py:77
 msgid "Select all"
 msgstr ""
 
-#: zapzap/engine/browser.py:77
+#: zapzap/engine/browser.py:78
 msgid "Save image"
 msgstr ""
 
-#: zapzap/engine/browser.py:78
+#: zapzap/engine/browser.py:79
 msgid "Copy image"
 msgstr ""
 

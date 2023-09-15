@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-14 20:17-0300\n"
+"POT-Creation-Date: 2023-09-15 08:44-0300\n"
 "PO-Revision-Date: 2022-09-22 13:20+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch\n"
@@ -109,7 +109,7 @@ msgstr "Website"
 msgid "Open new chat"
 msgstr "Nieuw gesprek starten"
 
-#: zapzap/view/settings.py:919 zapzap/view/card_user.py:81
+#: zapzap/view/settings.py:919 zapzap/view/card_user.py:85
 #: zapzap/view/openChatPopup.py:80
 msgid "Form"
 msgstr "Formulier"
@@ -256,15 +256,20 @@ msgstr "Nieuwe gebruiker"
 msgid "Users limit reached (9 in total)"
 msgstr "Het max. aantal gebruikers (9) is bereikt"
 
-#: zapzap/view/card_user.py:82
+#: zapzap/view/card_user.py:86
 msgid "Enter the user name"
 msgstr "Voer een gebruikersnaam in"
 
-#: zapzap/view/card_user.py:83 zapzap/controllers/card_user.py:41
+#: zapzap/view/card_user.py:87 zapzap/controllers/card_user.py:46
 msgid "Disable"
 msgstr "Uitschakelen"
 
-#: zapzap/view/card_user.py:84
+#: zapzap/view/card_user.py:88
+#, fuzzy
+msgid "Show notifications"
+msgstr "Meldingen"
+
+#: zapzap/view/card_user.py:89
 msgid "Delete"
 msgstr "Verwijderen"
 
@@ -300,7 +305,7 @@ msgstr "(LANDCODE + NETNUMMER + TELEFOONNUMMER)"
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: zapzap/controllers/card_user.py:44
+#: zapzap/controllers/card_user.py:49
 msgid "Enable"
 msgstr "Inschakelen"
 
@@ -308,35 +313,35 @@ msgstr "Inschakelen"
 msgid "System Language"
 msgstr "Systeemtaal"
 
-#: zapzap/engine/browser.py:71
+#: zapzap/engine/browser.py:72
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: zapzap/engine/browser.py:72
+#: zapzap/engine/browser.py:73
 msgid "Redo"
 msgstr "Opnieuw uitvoeren"
 
-#: zapzap/engine/browser.py:73
+#: zapzap/engine/browser.py:74
 msgid "Cut"
 msgstr "Knippen"
 
-#: zapzap/engine/browser.py:74
+#: zapzap/engine/browser.py:75
 msgid "Copy"
 msgstr "Kopiëren"
 
-#: zapzap/engine/browser.py:75
+#: zapzap/engine/browser.py:76
 msgid "Paste"
 msgstr "Plakken"
 
-#: zapzap/engine/browser.py:76
+#: zapzap/engine/browser.py:77
 msgid "Select all"
 msgstr "Alles selecteren"
 
-#: zapzap/engine/browser.py:77
+#: zapzap/engine/browser.py:78
 msgid "Save image"
 msgstr "Afbeelding opslaan"
 
-#: zapzap/engine/browser.py:78
+#: zapzap/engine/browser.py:79
 msgid "Copy image"
 msgstr "Afbeelding kopiëren"
 

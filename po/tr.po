@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zapzap main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-14 20:17-0300\n"
+"POT-Creation-Date: 2023-09-15 08:44-0300\n"
 "PO-Revision-Date: 2022-09-06 22:04+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <gnometurk@gnome.org>\n"
@@ -110,7 +110,7 @@ msgstr "Ev sayfası"
 msgid "Open new chat"
 msgstr "Yeni sohbet aç"
 
-#: zapzap/view/settings.py:919 zapzap/view/card_user.py:81
+#: zapzap/view/settings.py:919 zapzap/view/card_user.py:85
 #: zapzap/view/openChatPopup.py:80
 msgid "Form"
 msgstr "Biçim"
@@ -257,15 +257,20 @@ msgstr "Yeni Kullanıcı"
 msgid "Users limit reached (9 in total)"
 msgstr "Kullanıcı sınırına ulaşıldı (toplamda 9)"
 
-#: zapzap/view/card_user.py:82
+#: zapzap/view/card_user.py:86
 msgid "Enter the user name"
 msgstr "Kullanıcı adı gir"
 
-#: zapzap/view/card_user.py:83 zapzap/controllers/card_user.py:41
+#: zapzap/view/card_user.py:87 zapzap/controllers/card_user.py:46
 msgid "Disable"
 msgstr "Devre dışı bırak"
 
-#: zapzap/view/card_user.py:84
+#: zapzap/view/card_user.py:88
+#, fuzzy
+msgid "Show notifications"
+msgstr "Bildirimler"
+
+#: zapzap/view/card_user.py:89
 msgid "Delete"
 msgstr "Sil"
 
@@ -301,7 +306,7 @@ msgstr "(ÜLKE KODU + ALAN KODU + TELEFON NUMARASI)"
 msgid "Cancel"
 msgstr "İptal"
 
-#: zapzap/controllers/card_user.py:44
+#: zapzap/controllers/card_user.py:49
 msgid "Enable"
 msgstr "Etkinleştir"
 
@@ -309,35 +314,35 @@ msgstr "Etkinleştir"
 msgid "System Language"
 msgstr "Sistem Dili"
 
-#: zapzap/engine/browser.py:71
+#: zapzap/engine/browser.py:72
 msgid "Undo"
 msgstr "Geri al"
 
-#: zapzap/engine/browser.py:72
+#: zapzap/engine/browser.py:73
 msgid "Redo"
 msgstr "Yinele"
 
-#: zapzap/engine/browser.py:73
+#: zapzap/engine/browser.py:74
 msgid "Cut"
 msgstr "Kes"
 
-#: zapzap/engine/browser.py:74
+#: zapzap/engine/browser.py:75
 msgid "Copy"
 msgstr "Kopyala"
 
-#: zapzap/engine/browser.py:75
+#: zapzap/engine/browser.py:76
 msgid "Paste"
 msgstr "Yapıştır"
 
-#: zapzap/engine/browser.py:76
+#: zapzap/engine/browser.py:77
 msgid "Select all"
 msgstr "Tümünü seç"
 
-#: zapzap/engine/browser.py:77
+#: zapzap/engine/browser.py:78
 msgid "Save image"
 msgstr "Resmi kaydet"
 
-#: zapzap/engine/browser.py:78
+#: zapzap/engine/browser.py:79
 msgid "Copy image"
 msgstr "Resmi kopyala"
 

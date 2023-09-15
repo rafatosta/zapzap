@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-14 20:17-0300\n"
+"POT-Creation-Date: 2023-09-15 08:44-0300\n"
 "PO-Revision-Date: 2022-07-22 10:44-0300\n"
 "Last-Translator: Rafael Tosta <rafa.ecomp@gmail.com>\n"
 "Language-Team: Português Brasileiro\n"
@@ -109,7 +109,7 @@ msgstr "Página inicial"
 msgid "Open new chat"
 msgstr "Abrir nova conversa"
 
-#: zapzap/view/settings.py:919 zapzap/view/card_user.py:81
+#: zapzap/view/settings.py:919 zapzap/view/card_user.py:85
 #: zapzap/view/openChatPopup.py:80
 msgid "Form"
 msgstr ""
@@ -255,15 +255,19 @@ msgstr "Novo"
 msgid "Users limit reached (9 in total)"
 msgstr "Limite de usuários atingido (9 no total)"
 
-#: zapzap/view/card_user.py:82
+#: zapzap/view/card_user.py:86
 msgid "Enter the user name"
 msgstr "Insira o nome do usuário"
 
-#: zapzap/view/card_user.py:83 zapzap/controllers/card_user.py:41
+#: zapzap/view/card_user.py:87 zapzap/controllers/card_user.py:46
 msgid "Disable"
 msgstr "Desabilitar"
 
-#: zapzap/view/card_user.py:84
+#: zapzap/view/card_user.py:88
+msgid "Show notifications"
+msgstr "Mostrar notificações do usuário"
+
+#: zapzap/view/card_user.py:89
 msgid "Delete"
 msgstr "Apagar"
 
@@ -299,7 +303,7 @@ msgstr "(COD DO PAÍS + COD. ÁREA + NÚMERO DO TELEFONE)"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: zapzap/controllers/card_user.py:44
+#: zapzap/controllers/card_user.py:49
 msgid "Enable"
 msgstr "Habilitar"
 
@@ -307,35 +311,35 @@ msgstr "Habilitar"
 msgid "System Language"
 msgstr "Idioma do sistema"
 
-#: zapzap/engine/browser.py:71
+#: zapzap/engine/browser.py:72
 msgid "Undo"
 msgstr "Desfazer"
 
-#: zapzap/engine/browser.py:72
+#: zapzap/engine/browser.py:73
 msgid "Redo"
 msgstr "Refazer"
 
-#: zapzap/engine/browser.py:73
+#: zapzap/engine/browser.py:74
 msgid "Cut"
 msgstr "Recortar"
 
-#: zapzap/engine/browser.py:74
+#: zapzap/engine/browser.py:75
 msgid "Copy"
 msgstr "Copiar"
 
-#: zapzap/engine/browser.py:75
+#: zapzap/engine/browser.py:76
 msgid "Paste"
 msgstr "Colar"
 
-#: zapzap/engine/browser.py:76
+#: zapzap/engine/browser.py:77
 msgid "Select all"
 msgstr "Selecionar tudo"
 
-#: zapzap/engine/browser.py:77
+#: zapzap/engine/browser.py:78
 msgid "Save image"
 msgstr "Salvar imagem"
 
-#: zapzap/engine/browser.py:78
+#: zapzap/engine/browser.py:79
 msgid "Copy image"
 msgstr "Copiar imagem"
 

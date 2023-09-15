@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-14 20:17-0300\n"
+"POT-Creation-Date: 2023-09-15 08:44-0300\n"
 "PO-Revision-Date: 2022-09-25 14:39+0200\n"
 "Last-Translator: musiclover382 <musiclover382@protonmail.com>\n"
 "Language-Team: \n"
@@ -110,7 +110,7 @@ msgstr "Home page"
 msgid "Open new chat"
 msgstr "Apri nuova chat"
 
-#: zapzap/view/settings.py:919 zapzap/view/card_user.py:81
+#: zapzap/view/settings.py:919 zapzap/view/card_user.py:85
 #: zapzap/view/openChatPopup.py:80
 msgid "Form"
 msgstr "Modulo"
@@ -256,15 +256,20 @@ msgstr "Nuovo utente"
 msgid "Users limit reached (9 in total)"
 msgstr "Massimo numero di utenti raggiunto (9)"
 
-#: zapzap/view/card_user.py:82
+#: zapzap/view/card_user.py:86
 msgid "Enter the user name"
 msgstr "Inserire il nome dell'utente"
 
-#: zapzap/view/card_user.py:83 zapzap/controllers/card_user.py:41
+#: zapzap/view/card_user.py:87 zapzap/controllers/card_user.py:46
 msgid "Disable"
 msgstr "Dissattiva"
 
-#: zapzap/view/card_user.py:84
+#: zapzap/view/card_user.py:88
+#, fuzzy
+msgid "Show notifications"
+msgstr "Notifiche"
+
+#: zapzap/view/card_user.py:89
 msgid "Delete"
 msgstr "Elimina"
 
@@ -300,7 +305,7 @@ msgstr "(PREFISSO INTERNAZIONALE + PREFISSO MOBILE + NUMERO DI TELEFONO)"
 msgid "Cancel"
 msgstr "Annulla"
 
-#: zapzap/controllers/card_user.py:44
+#: zapzap/controllers/card_user.py:49
 msgid "Enable"
 msgstr "Attiva"
 
@@ -308,35 +313,35 @@ msgstr "Attiva"
 msgid "System Language"
 msgstr "Lingua di sistema"
 
-#: zapzap/engine/browser.py:71
+#: zapzap/engine/browser.py:72
 msgid "Undo"
 msgstr "Annulla"
 
-#: zapzap/engine/browser.py:72
+#: zapzap/engine/browser.py:73
 msgid "Redo"
 msgstr "Ripeti"
 
-#: zapzap/engine/browser.py:73
+#: zapzap/engine/browser.py:74
 msgid "Cut"
 msgstr "Taglia"
 
-#: zapzap/engine/browser.py:74
+#: zapzap/engine/browser.py:75
 msgid "Copy"
 msgstr "Copia"
 
-#: zapzap/engine/browser.py:75
+#: zapzap/engine/browser.py:76
 msgid "Paste"
 msgstr "Incolla"
 
-#: zapzap/engine/browser.py:76
+#: zapzap/engine/browser.py:77
 msgid "Select all"
 msgstr "Seleziona tutto"
 
-#: zapzap/engine/browser.py:77
+#: zapzap/engine/browser.py:78
 msgid "Save image"
 msgstr "Salva immagine"
 
-#: zapzap/engine/browser.py:78
+#: zapzap/engine/browser.py:79
 msgid "Copy image"
 msgstr "Copia immagine"
 
