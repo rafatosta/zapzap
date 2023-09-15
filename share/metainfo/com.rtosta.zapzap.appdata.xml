@@ -55,6 +55,15 @@
   </screenshots>
 
   <releases>
+    <release date="2023-09-15" version="4.5">
+      <description>
+        <p>Update UserAgent</p>
+        <p>Fix: Improve the menu decoration when running in Wayland</p>
+        <p>Fix: F5 does not work outside the chat</p>
+        <p>New: Notification in the background when starting minimized</p>
+        <p>New: Disable notifications in Users management</p>
+      </description>
+    </release>
     <release date="2023-08-17" version="4.4.7">
       <description>
         <p>Update UserAgent.</p>

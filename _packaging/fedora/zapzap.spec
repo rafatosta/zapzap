@@ -1,7 +1,7 @@
 # Arquivo .spec para Fedora
 
 %global srcname zapzap
-%global srcversion  4.4.7
+%global srcversion  4.5
 
 %global __python /usr/bin/python3
 %global _rpmfilename %%{NAME}-%%{VERSION}-%%{RELEASE}.rpm
@@ -65,3 +65,12 @@ cp -R share/icons/com.rtosta.zapzap.svg $RPM_BUILD_ROOT/usr/share/icons/hicolor/
 - Update UserAgent 
 - Fix close chat
 - Zap Decoration deactivated by default
+
+%changelog
+* Fri sept 15 2023 Rafael Tosta <rafa.ecomp@gmail.com> 
+- Update UserAgent 
+- Support to Wayland or X11 in FedoraCopr
+- Improve the menu decoration when running in Wayland
+- Fix F5 does not work outside the chat
+- Notification in the background when starting minimized
+- Disable notifications in Users management
