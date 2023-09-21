@@ -55,6 +55,11 @@
   </screenshots>
 
   <releases>
+    <release date="2023-09-21" version="4.5.1">
+      <description>
+        <p>Improvements in user experience (UX/UI)</p>
+      </description>
+    </release>
     <release date="2023-09-15" version="4.5">
       <description>
         <p>Update UserAgent</p>
