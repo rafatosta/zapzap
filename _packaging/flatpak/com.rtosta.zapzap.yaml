@@ -1,9 +1,9 @@
 app-id: com.rtosta.zapzap
 runtime: org.kde.Platform
-runtime-version: "6.3"
+runtime-version: "6.5"
 sdk: org.kde.Sdk
 base: com.riverbankcomputing.PyQt.BaseApp
-base-version: "6.3"
+base-version: "6.5"
 command: zapzap
 finish-args:
   - "--share=ipc"
@@ -17,7 +17,6 @@ finish-args:
   - "--filesystem=xdg-download"
   - "--talk-name=org.freedesktop.Notifications"
   - "--talk-name=org.kde.StatusNotifierWatcher"
-  - "--talk-name=org.kde.StatusNotifierItem"
   - "--talk-name=org.freedesktop.portal.FileChooser"
   - "--talk-name=com.canonical.AppMenu.Registrar"
   - "--talk-name=com.canonical.Unity"
@@ -26,16 +25,15 @@ finish-args:
   - "--unset-env=XDG_DATA_HOME"
   - "--env=QT_PLUGIN_PATH=/app/lib64/plugins:/app/lib/plugins"
   - "--env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess"
-  
+
 cleanup:
   - /include
   - /lib/pkgconfig
-  - '*.la'
-  - '*.a'
+  - "*.la"
+  - "*.a"
 cleanup-commands:
   - /app/cleanup-BaseApp.sh
-modules:       
-
+modules:
   - name: dbus-python
     buildsystem: simple
     build-commands:
@@ -44,7 +42,7 @@ modules:
       - type: archive
         url: https://files.pythonhosted.org/packages/b1/5c/ccfc167485806c1936f7d3ba97db6c448d0089c5746ba105b6eb22dba60e/dbus-python-1.2.18.tar.gz
         sha256: 92bdd1e68b45596c833307a5ff4b217ee6929a1502f5341bae28fd120acf7260
-    
+
   - name: zapzap
     buildsystem: simple
     build-commands:
@@ -55,4 +53,4 @@ modules:
     sources:
       - type: git
         url: https://github.com/rafatosta/zapzap.git
-        branch: main
+        tag: v4.5.1

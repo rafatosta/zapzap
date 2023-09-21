@@ -1,7 +1,7 @@
 # Arquivo .spec para Fedora
 
 %global srcname zapzap
-%global srcversion  4.5
+%global srcversion  4.5.1
 
 %global __python /usr/bin/python3
 %global _rpmfilename %%{NAME}-%%{VERSION}-%%{RELEASE}.rpm
@@ -74,3 +74,7 @@ cp -R share/icons/com.rtosta.zapzap.svg $RPM_BUILD_ROOT/usr/share/icons/hicolor/
 - Fix F5 does not work outside the chat
 - Notification in the background when starting minimized
 - Disable notifications in Users management
+
+%changelog
+* Thu sept 21 2023 Rafael Tosta <rafa.ecomp@gmail.com> 
+- Improvements in user experience (UX/UI)
