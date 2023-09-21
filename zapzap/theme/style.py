@@ -35,6 +35,7 @@ def buildTheme(p) -> str:
             background-color: rgb(192, 28, 40);
             border: 1px solid rgb(192, 28, 40);
             border-radius: 5px;
+            font: 12pt;
             font-weight: bold;
             height: 35px;
         }
@@ -45,6 +46,7 @@ def buildTheme(p) -> str:
             background-color: #585A5D;
             border: 1px solid #585A5D;
             border-radius: 5px;
+            font: 12pt;
             font-weight: bold;
             height: 35px;
         }
@@ -52,8 +54,11 @@ def buildTheme(p) -> str:
         #btnDisable:hover
         {
             border: 2px solid #00A884;
+            
         }
-        #btnApply{
+
+        #btnApply,
+        #btnNewUser{
             color: #F0F2F5;
             background-color: #00A884;
             border: 1px solid #00A884;
@@ -61,8 +66,16 @@ def buildTheme(p) -> str:
             font-weight: bold;
             height: 35px;
         }
-        #btnApply:hover {
+
+        #btnApply:hover,
+        #btnNewUser:hover {
             border: 2px solid #585A5D;
+        }
+
+        #btnApply:pressed,
+        #btnNewUser:pressed  {
+            background-color: #202C33;
+            border-color: #202C33;
         }
 
         QComboBox {
@@ -203,7 +216,6 @@ def buildTheme(p) -> str:
             color: {windowText};
             margin: 0.09em;
             background-color: {window};
-            border: 1px solid rgba(100, 100, 100, 70);     
         }
 
         QMenu::icon {
@@ -290,15 +302,22 @@ def buildTheme(p) -> str:
             font: 11pt;
         }
 
+        QCheckBox:hover
+        {
+            color: #00A884;    
+        }
+        
         QCheckBox:disabled
         {
             color: {disabled};
         }
+
         QCheckBox::indicator
         {
             width: 24px;
             height: 24px;
         }
+
         QCheckBox::indicator:unchecked,
         QCheckBox::indicator:unchecked:focus
         {
@@ -364,6 +383,11 @@ def buildTheme(p) -> str:
         QRadioButton:disabled
         {
             color: {disabled};
+        }
+
+        QRadioButton:hover
+        {
+            color: #00A884;    
         }
 
         #frameAppearance .QRadioButton::indicator
@@ -635,8 +659,7 @@ def buildTheme(p) -> str:
 
         #menu .QPushButton:hover,
         #menu .QPushButton:pressed  {
-            background-color: {highlight};
-            border-color: {highlight};
+            font: 13pt;
         }
         
         #btn_home{

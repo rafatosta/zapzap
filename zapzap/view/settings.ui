@@ -277,10 +277,29 @@
          </item>
          <item>
           <widget class="QPushButton" name="btn_quit">
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
            <property name="text">
             <string>Quit</string>
            </property>
           </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_8">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </widget>
@@ -291,7 +310,7 @@
    <item>
     <widget class="QStackedWidget" name="settings_stacked">
      <property name="currentIndex">
-      <number>0</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="pageSystem">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -529,6 +548,9 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
                       <property name="text">
                        <string>Apply</string>
                       </property>
@@ -750,8 +772,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>642</width>
-            <height>366</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1258,7 +1280,7 @@
                        </size>
                       </property>
                       <property name="cursor">
-                       <cursorShape>PointingHandCursor</cursorShape>
+                       <cursorShape>ArrowCursor</cursorShape>
                       </property>
                       <property name="text">
                        <string>Default</string>
@@ -1277,7 +1299,7 @@
                        </sizepolicy>
                       </property>
                       <property name="cursor">
-                       <cursorShape>PointingHandCursor</cursorShape>
+                       <cursorShape>ArrowCursor</cursorShape>
                       </property>
                       <property name="text">
                        <string>Symbolic light</string>
@@ -1293,7 +1315,7 @@
                        </sizepolicy>
                       </property>
                       <property name="cursor">
-                       <cursorShape>PointingHandCursor</cursorShape>
+                       <cursorShape>ArrowCursor</cursorShape>
                       </property>
                       <property name="text">
                        <string>Symbolic dark</string>
@@ -1380,8 +1402,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>642</width>
-            <height>272</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1444,7 +1466,7 @@
                     </font>
                    </property>
                    <property name="cursor">
-                    <cursorShape>PointingHandCursor</cursorShape>
+                    <cursorShape>ArrowCursor</cursorShape>
                    </property>
                    <property name="layoutDirection">
                     <enum>Qt::LeftToRight</enum>
@@ -1501,7 +1523,7 @@
                      <bool>true</bool>
                     </property>
                     <property name="cursor">
-                     <cursorShape>PointingHandCursor</cursorShape>
+                     <cursorShape>ArrowCursor</cursorShape>
                     </property>
                     <property name="text">
                      <string>Show the photo of the sender</string>
@@ -1517,7 +1539,7 @@
                      <bool>true</bool>
                     </property>
                     <property name="cursor">
-                     <cursorShape>PointingHandCursor</cursorShape>
+                     <cursorShape>ArrowCursor</cursorShape>
                     </property>
                     <property name="text">
                      <string>Show the sender's name</string>
@@ -1533,7 +1555,7 @@
                      <bool>true</bool>
                     </property>
                     <property name="cursor">
-                     <cursorShape>PointingHandCursor</cursorShape>
+                     <cursorShape>ArrowCursor</cursorShape>
                     </property>
                     <property name="text">
                      <string>Show message preview</string>
@@ -1625,8 +1647,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>642</width>
-            <height>261</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_30">
@@ -1863,8 +1885,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>642</width>
-            <height>433</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -2213,8 +2235,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>286</width>
-            <height>95</height>
+            <width>832</width>
+            <height>659</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_26">
@@ -2275,7 +2297,7 @@
                  <item>
                   <widget class="QPushButton" name="btnNewUser">
                    <property name="sizePolicy">
-                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
@@ -2301,19 +2323,7 @@
                     <cursorShape>PointingHandCursor</cursorShape>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">.QPushButton {	
-            color: rgb(255, 255, 255);
-			background-color: #00A884;
-            border: 1px solid rgb(38, 162, 105);
-            border-radius: 5px;
-            text-align: center;
-			height: 25px;
-			width: 100px;
-}
-.QPushButton:pressed  {
-            background-color: #202C33;
-            border-color: #202C33;
-        }</string>
+                    <string notr="true"/>
                    </property>
                    <property name="text">
                     <string>New User</string>

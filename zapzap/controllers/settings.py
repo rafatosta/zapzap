@@ -438,8 +438,8 @@ class Settings(QWidget, Ui_Settings):
     # SELECT
     # MENU SELECTED STYLESHEET
     MENU_SELECTED_STYLESHEET = """
-    background-color: #00BD95;
-    border-color: #00BD95;
+    border-bottom: 2px solid #00BD95;
+    font: 13pt;
     font-weight: bold;
     """
 
