@@ -211,6 +211,15 @@ def buildTheme(p) -> str:
         }
     """
 
+    QMENU_BAR_Wayland = """
+    QMenu {
+            color: {windowText};
+            margin: 0.09em;
+            background-color: {window};
+            border: 1px solid rgba(100, 100, 100, 70);     
+        }
+    """
+
     QMENU = """
         QMenu {
             color: {windowText};
@@ -815,6 +824,7 @@ def buildTheme(p) -> str:
         {SettingsMenu}
         {FrameSettingBorder}
         {ZapDecoration}
+        {QMENU_BAR_Wayland if settings.value("system/wayland", True, bool) else ""}
         """
 
     for chave, valor in p.getPallete().items():

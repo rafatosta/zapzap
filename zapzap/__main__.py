@@ -28,7 +28,6 @@ def excBackgroundNotification():
 
 def runLocal():
     qset = QSettings(zapzap.__appname__, zapzap.__appname__)
-    qset.value("system/wayland", True, bool)
 
     ZAP_SESSION_TYPE = 'wayland'
     if not qset.value("system/wayland", True, bool): #if False, X11
