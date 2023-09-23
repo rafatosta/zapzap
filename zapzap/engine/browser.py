@@ -152,7 +152,7 @@ class Browser(QWebEngineView):
         The number of messages are available from the window title
         """
         qtd = 0
-        if not self.qset.value(f'{str(self.storageName)}/notification', True, bool):
+        if self.qset.value(f'{str(self.storageName)}/notification', True, bool):
             num = ''.join(filter(str.isdigit, title))
         
             try:
