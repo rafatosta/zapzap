@@ -1,7 +1,7 @@
 # Arquivo .spec para Fedora
 
 %global srcname zapzap
-%global srcversion  4.5.1
+%global srcversion  4.5.2
 
 %global __python /usr/bin/python3
 %global _rpmfilename %%{NAME}-%%{VERSION}-%%{RELEASE}.rpm
@@ -78,3 +78,8 @@ cp -R share/icons/com.rtosta.zapzap.svg $RPM_BUILD_ROOT/usr/share/icons/hicolor/
 %changelog
 * Thu sept 21 2023 Rafael Tosta <rafa.ecomp@gmail.com> 
 - Improvements in user experience (UX/UI)
+
+%changelog
+* Mon oct 02 2023 Rafael Tosta <rafa.ecomp@gmail.com> 
+- Fix: Improve the menu decoration when running in Wayland 
+- Fix: Message number doesnt show on the tray icon

@@ -55,6 +55,12 @@
   </screenshots>
 
   <releases>
+    <release date="2023-10-02" version="4.5.2">
+      <description>
+        <p>Fix: Improve the menu decoration when running in Wayland</p>
+        <p>Fix: Message number doesnt show on the tray icon</p>
+      </description>
+    </release>
     <release date="2023-09-21" version="4.5.1">
       <description>
         <p>Improvements in user experience (UX/UI)</p>
