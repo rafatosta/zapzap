@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import QWidget
 from PyQt6.QtCore import pyqtSignal, QSettings
+from PyQt6.QtGui import QIcon
 from zapzap.model.user import User
 from zapzap.theme.builder_icon import getImageQPixmap
 from zapzap.theme.icons import IMAGE_DISABLE
@@ -22,15 +23,14 @@ class CardUser(QWidget, Ui_CardUser):
         self.settings = QSettings(zapzap.__appname__, zapzap.__appname__)
 
         if self.user.id == 1:  # user default
-            self.btnDisable.hide()
-            self.btnDelete.hide()
-        else:
-            self.btnDisable.clicked.connect(self.buttonClick)
-            self.btnDelete.clicked.connect(self.buttonClick)
+            self.disableUser.hide()
+            self.deleteUser.hide()
 
         self.name.editingFinished.connect(self.editingFinished)
-
-        self.showNotifications.clicked.connect(self.checkBoxClick)
+        
+        self.disableUser.clicked.connect(self.actionClick)
+        self.deleteUser.clicked.connect(self.actionClick)
+        self.showNotifications.clicked.connect(self.actionClick)
 
         self.loadCard()
 
@@ -41,29 +41,30 @@ class CardUser(QWidget, Ui_CardUser):
     def loadCard(self):
         self.name.setText(self.user.name)
         svg = self.user.icon
-        if self.user.enable:
-            self.name.setEnabled(True)
-            self.btnDisable.setText(_("Disable"))
-        else:
-            self.name.setEnabled(False)
-            self.btnDisable.setText(_("Enable"))
+        self.labelShortcut.show()
+
+        if not self.user.enable:
             svg = svg.format(IMAGE_DISABLE)
+            self.labelShortcut.hide()
         self.icon.setPixmap(getImageQPixmap(svg))
+
+        self.name.setEnabled(self.user.enable)
+
+        self.disableUser.setChecked(self.user.enable)
 
         self.showNotifications.setChecked(self.settings.value(
             f'{str(self.user.getId())}/notification', True, bool))
 
-    def buttonClick(self):
+    def actionClick(self):
         btn = self.sender()
         btnName = btn.objectName()
-        if btnName == 'btnDisable':
-            self.user.enable = not self.user.enable
-            self.emitDisableUser.emit(self.user)
+        if btnName == 'disableUser':
+            self.user.enable = self.disableUser.isChecked()
             self.loadCard()
-        if btnName == 'btnDelete':
+            self.emitDisableUser.emit(self.user)
+        if btnName == 'deleteUser':
             self.setParent(None)
             self.emitDeleteUser.emit(self.user)
-
-    def checkBoxClick(self):
-        self.settings.setValue(f'{str(self.user.getId())}/notification',
-                               self.showNotifications.isChecked())
+        if btnName == 'showNotifications':
+            self.settings.setValue(f'{str(self.user.getId())}/notification',
+                                   self.showNotifications.isChecked())

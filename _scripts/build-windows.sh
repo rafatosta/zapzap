@@ -1,4 +1,4 @@
-for file in ./zapzap/view/*.ui
+for file in ./zapzap/view/ui/*.ui
 do
   export OUTPUT_FILE="./zapzap/view/$(echo ${file} | sed "s/.*\///" | sed "s/.ui/.py/")"
   echo "Generating ${OUTPUT_FILE}"

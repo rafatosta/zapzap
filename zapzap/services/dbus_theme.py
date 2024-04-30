@@ -15,7 +15,6 @@ def getSystemTheme():
         smp = QtDBus.QDBusInterface(name, path, interface)
         msg = smp.call('Read', "org.freedesktop.appearance", 'color-scheme')
         color_sheme = msg.arguments()[0]
-        #print(f'Current color: {color_sheme}')
         return 'light' if (color_sheme == 0) or color_sheme == 2 else 'dark'
     except Exception:
         return 'light'

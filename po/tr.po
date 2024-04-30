@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zapzap main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-15 08:44-0300\n"
+"POT-Creation-Date: 2024-04-15 08:42-0300\n"
 "PO-Revision-Date: 2022-09-06 22:04+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <gnometurk@gnome.org>\n"
@@ -18,260 +18,121 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.1.1\n"
 
-#: zapzap/view/main_window.py:293 zapzap/view/settings.py:959
+#: zapzap/view/main_window.py:78 zapzap/view/qtoaster_donation.py:123
+#: zapzap/view/about_page.py:135
 #: zapzap/controllers/main_window_components/tray_icon.py:19
+#: zapzap/__main__.py:19
 msgid "ZapZap"
 msgstr "ZapZap"
 
-#: zapzap/view/main_window.py:294 zapzap/view/main_window.py:298
+#: zapzap/view/main_window.py:79
 msgid "File"
 msgstr "Dosya"
 
-#: zapzap/view/main_window.py:295 zapzap/view/main_window.py:299
+#: zapzap/view/main_window.py:80
 msgid "View"
 msgstr "Görünüm"
 
-#: zapzap/view/main_window.py:296 zapzap/view/main_window.py:301
+#: zapzap/view/main_window.py:81
 msgid "Chat"
 msgstr "Sohbet"
 
-#: zapzap/view/main_window.py:297 zapzap/view/main_window.py:300
-msgid "Help"
-msgstr "Yardım"
-
-#: zapzap/view/main_window.py:302 zapzap/view/settings.py:920
+#: zapzap/view/main_window.py:82 zapzap/view/home.py:95
 #: zapzap/controllers/main_window_components/tray_icon.py:22
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: zapzap/view/main_window.py:303 zapzap/view/settings.py:928
+#: zapzap/view/main_window.py:83 zapzap/view/settings.py:181
 #: zapzap/controllers/main_window_components/tray_icon.py:25
 msgid "Quit"
 msgstr "Çık"
 
-#: zapzap/view/main_window.py:304
+#: zapzap/view/main_window.py:84
 msgid "Reload"
 msgstr "Yeniden Yükle"
 
-#: zapzap/view/main_window.py:305
+#: zapzap/view/main_window.py:85
 msgid "Default size page"
 msgstr "Öntanımlı boyut sayfası"
 
-#: zapzap/view/main_window.py:306
+#: zapzap/view/main_window.py:86
 msgid "Full Screen"
 msgstr "Tam Ekran"
 
-#: zapzap/view/main_window.py:307 zapzap/view/settings.py:936
-msgid "Hide menu bar"
-msgstr "Menü çubuğunu gizle"
-
-#: zapzap/view/main_window.py:308
-msgid "Learn More"
-msgstr "Daha Çoğunu Öğren"
-
-#: zapzap/view/main_window.py:309 zapzap/view/settings.py:964
-msgid "Changelog"
-msgstr "Değişiklik Günlüğü"
-
-#: zapzap/view/main_window.py:310 zapzap/view/settings.py:965
-msgid "Report issue..."
-msgstr "Sorun bildir..."
-
-#: zapzap/view/main_window.py:311
-msgid "About Zapzap"
-msgstr "Zapzap Hakkında"
-
-#: zapzap/view/main_window.py:312 zapzap/view/settings.py:931
-msgid "Hide on close"
-msgstr "Kapatınca gizle"
-
-#: zapzap/view/main_window.py:313
-msgid "Keep in background when closing window"
-msgstr "Pencereyi kapatırken arka planda tut"
-
-#: zapzap/view/main_window.py:314
+#: zapzap/view/main_window.py:87
 msgid "Zoom in"
-msgstr "Yankınlaştır"
+msgstr "Yakınlaştır"
 
-#: zapzap/view/main_window.py:315
+#: zapzap/view/main_window.py:88
 msgid "Zoom out"
 msgstr "Uzaklaştır"
 
-#: zapzap/view/main_window.py:316 zapzap/view/settings.py:926
-#: zapzap/view/settings.py:957
-msgid "Donations"
-msgstr "Bağışlar"
-
-#: zapzap/view/main_window.py:317 zapzap/view/settings.py:921
-msgid "Home page"
-msgstr "Ev sayfası"
-
-#: zapzap/view/main_window.py:318
+#: zapzap/view/main_window.py:89
 msgid "Open new chat"
 msgstr "Yeni sohbet aç"
 
-#: zapzap/view/settings.py:919 zapzap/view/card_user.py:85
-#: zapzap/view/openChatPopup.py:80
-msgid "Form"
-msgstr "Biçim"
+#: zapzap/view/main_window.py:90
+msgid "Hide"
+msgstr ""
 
-#: zapzap/view/settings.py:922 zapzap/view/settings.py:966
-msgid "User Management"
-msgstr "Kullanıcı Yönetimi"
+#: zapzap/view/main_window.py:91
+#, fuzzy
+msgid "Ctrl+W"
+msgstr "Ctrl+P"
 
-#: zapzap/view/settings.py:923 zapzap/view/settings.py:929
-msgid "System"
-msgstr "Sistem"
+#: zapzap/view/settings.py:173 zapzap/view/general_page.py:166
+msgid "General"
+msgstr ""
 
-#: zapzap/view/settings.py:924
-msgid "Appearance"
-msgstr "Görünüm"
+#: zapzap/view/settings.py:174 zapzap/view/account_page.py:75
+msgid "Account"
+msgstr ""
 
-#: zapzap/view/settings.py:925 zapzap/view/settings.py:951
+#: zapzap/view/settings.py:175 zapzap/view/notifications_page.py:102
 msgid "Notifications"
 msgstr "Bildirimler"
 
-#: zapzap/view/settings.py:927 zapzap/view/settings.py:958
+#: zapzap/view/settings.py:176 zapzap/view/network_page.py:136
+msgid "Network"
+msgstr ""
+
+#: zapzap/view/settings.py:177 zapzap/view/personalization_page.py:80
+msgid "Personalization"
+msgstr ""
+
+#: zapzap/view/settings.py:178 zapzap/view/advanced_page.py:85
+msgid "Advanced"
+msgstr ""
+
+#: zapzap/view/settings.py:179
+msgid "Donations"
+msgstr "Bağışlar"
+
+#: zapzap/view/settings.py:180 zapzap/view/about_page.py:134
 msgid "About"
 msgstr "Hakkında"
 
-#: zapzap/view/settings.py:930
-msgid "Start ZapZap with the system"
-msgstr "ZapZap'i sistemle başlat"
-
-#: zapzap/view/settings.py:932
-msgid "Wayland window system"
-msgstr ""
-
-#: zapzap/view/settings.py:933
-#, fuzzy
-msgid "SpellChecker"
-msgstr "Yazım Denetimi Dilleri"
-
-#: zapzap/view/settings.py:934
-msgid "Apply"
-msgstr "Uygula"
-
-#: zapzap/view/settings.py:935
-msgid "Menu bar"
-msgstr "Menü çubuğu"
-
-#: zapzap/view/settings.py:937
-msgid "ZapZap window (Restart required)"
-msgstr "ZapZap penceresi (Yeniden başlatma gereir)"
-
-#: zapzap/view/settings.py:938
-msgid "Title bar buttons"
-msgstr "Başlık çubuğu düğmeleri"
-
-#: zapzap/view/settings.py:939
-msgid "Maximize"
-msgstr "Büyüt"
-
-#: zapzap/view/settings.py:940
-msgid "Minimize"
-msgstr "Küçült"
-
-#: zapzap/view/settings.py:941
-msgid "Positioning on the left side"
-msgstr "Sol tarafta konumlandırma"
-
-#: zapzap/view/settings.py:942
-msgid "Customize appearance"
-msgstr "Görünümü özelleştir"
-
-#: zapzap/view/settings.py:943
-msgid "General appearance"
-msgstr "Genel görünüm"
-
-#: zapzap/view/settings.py:944
-msgid "System style"
-msgstr "Sistem biçemi"
-
-#: zapzap/view/settings.py:945
-msgid "Light style"
-msgstr "Açık biçem"
-
-#: zapzap/view/settings.py:946
-msgid "Dark style"
-msgstr "Koyu biçem"
-
-#: zapzap/view/settings.py:947
-msgid "Tray icon"
-msgstr "Sistem çıktısı simgesi"
-
-#: zapzap/view/settings.py:948
-msgid "Default"
-msgstr "Öntanımlı"
-
-#: zapzap/view/settings.py:949
-msgid "Symbolic light"
-msgstr "Sembolik açık"
-
-#: zapzap/view/settings.py:950
-msgid "Symbolic dark"
-msgstr "Sembolik koyu"
-
-#: zapzap/view/settings.py:952
-msgid "Notifications on the desktop"
-msgstr "Masaüstü bildirimleri"
-
-#: zapzap/view/settings.py:953
-msgid "Show the photo of the sender"
-msgstr "Gönderenin fotoğrafını göster"
-
-#: zapzap/view/settings.py:954
-msgid "Show the sender's name"
-msgstr "Gönderenin adını göster"
-
-#: zapzap/view/settings.py:955
-msgid "Show message preview"
-msgstr "Mesaj önizlemesini göster"
-
-#: zapzap/view/settings.py:956
-msgid "Reproduce sounds when receiving messages"
-msgstr ""
-
-#: zapzap/view/settings.py:960
-#, python-brace-format
-msgid "Version {id} (Official compilation)"
-msgstr "Sürüm {id} (Resmi derleme)"
-
-#: zapzap/view/settings.py:961
-msgid "An unofficial WhatsApp desktop application"
-msgstr "Resmi olmayan WhatsApp masaüstü uygulaması"
-
-#: zapzap/view/settings.py:962
-msgid "GNU General Public License v3.0"
-msgstr "GNU General Public License v3.0"
-
-#: zapzap/view/settings.py:963
-msgid "Learn more"
-msgstr "Daha çoğunu öğren"
-
-#: zapzap/view/settings.py:967
-msgid "New User"
-msgstr "Yeni Kullanıcı"
-
-#: zapzap/view/settings.py:968
-msgid "Users limit reached (9 in total)"
-msgstr "Kullanıcı sınırına ulaşıldı (toplamda 9)"
-
-#: zapzap/view/card_user.py:86
+#: zapzap/view/card_user.py:87
 msgid "Enter the user name"
 msgstr "Kullanıcı adı gir"
 
-#: zapzap/view/card_user.py:87 zapzap/controllers/card_user.py:46
-msgid "Disable"
-msgstr "Devre dışı bırak"
-
 #: zapzap/view/card_user.py:88
-#, fuzzy
-msgid "Show notifications"
-msgstr "Bildirimler"
+msgid "Shortcut:"
+msgstr ""
 
 #: zapzap/view/card_user.py:89
-msgid "Delete"
+#, fuzzy
+msgid "Disable account"
+msgstr "Devre dışı bırak"
+
+#: zapzap/view/card_user.py:90
+#, fuzzy
+msgid "Show notifications"
+msgstr "Bildirimleri göster"
+
+#: zapzap/view/card_user.py:91
+#, fuzzy
+msgid "Delete account"
 msgstr "Sil"
 
 #: zapzap/view/downloadPopup.py:69
@@ -288,7 +149,7 @@ msgstr "Farklı kaydet"
 
 #: zapzap/view/openChatPopup.py:81
 msgid "Open chat by phone number"
-msgstr "Telefon numarasına göre sohbeti aç"
+msgstr "Telefon numarasıyla sohbeti aç"
 
 #: zapzap/view/openChatPopup.py:82
 msgid "Enter phone number:"
@@ -306,45 +167,301 @@ msgstr "(ÜLKE KODU + ALAN KODU + TELEFON NUMARASI)"
 msgid "Cancel"
 msgstr "İptal"
 
-#: zapzap/controllers/card_user.py:49
-msgid "Enable"
-msgstr "Etkinleştir"
+#: zapzap/view/qtoaster_donation.py:122
+msgid "Welcome to"
+msgstr ""
 
-#: zapzap/controllers/settings.py:73
-msgid "System Language"
-msgstr "Sistem Dili"
+#: zapzap/view/qtoaster_donation.py:124
+msgid "Make a donation"
+msgstr ""
 
-#: zapzap/engine/browser.py:72
+#: zapzap/view/qtoaster_donation.py:125
+msgid "..."
+msgstr ""
+
+#: zapzap/view/about_page.py:136
+msgid "WhatsApp Web for Linux"
+msgstr ""
+
+#: zapzap/view/about_page.py:137
+#, python-brace-format
+msgid "Version {id} (Official compilation)"
+msgstr "Sürüm {id} (Resmi derleme)"
+
+#: zapzap/view/about_page.py:138 zapzap/view/about_page.py:140
+#, fuzzy
+msgid "Learn more"
+msgstr "Daha fazlasını öğren"
+
+#: zapzap/view/about_page.py:139
+msgid "See more about Zapzap on our website."
+msgstr ""
+
+#: zapzap/view/about_page.py:141 zapzap/view/about_page.py:143
+#, fuzzy
+msgid "Report issue"
+msgstr "Sorun bildir..."
+
+#: zapzap/view/about_page.py:142
+msgid "Report a problem or make your suggestion."
+msgstr ""
+
+#: zapzap/view/about_page.py:144
+msgid "GNU General Public License v3.0"
+msgstr "GNU General Public License v3.0"
+
+#: zapzap/view/account_page.py:76 zapzap/view/home.py:92
+msgid "New account"
+msgstr ""
+
+#: zapzap/view/account_page.py:77
+msgid "Creates a new panel for access to WhatsApp."
+msgstr ""
+
+#: zapzap/view/advanced_page.py:86
+msgid "Hide setting bar with only one user"
+msgstr ""
+
+#: zapzap/view/advanced_page.py:87 zapzap/view/advanced_page.py:94
+#: zapzap/view/general_page.py:168 zapzap/view/general_page.py:173
+#: zapzap/view/network_page.py:138
+msgid "Off"
+msgstr ""
+
+#: zapzap/view/advanced_page.py:88
+msgid "To access the settings use the menu in the tray or the shortcut Ctrl+P"
+msgstr ""
+
+#: zapzap/view/advanced_page.py:89
+#, fuzzy
+msgid "Donation message"
+msgstr "Bağışlar"
+
+#: zapzap/view/advanced_page.py:90 zapzap/view/advanced_page.py:91
+#: zapzap/view/general_page.py:171 zapzap/view/general_page.py:175
+#: zapzap/view/notifications_page.py:104 zapzap/view/notifications_page.py:109
+#: zapzap/view/notifications_page.py:110 zapzap/view/notifications_page.py:111
+#: zapzap/view/notifications_page.py:112 zapzap/view/personalization_page.py:83
+#, fuzzy
+msgid "On"
+msgstr "Aç"
+
+#: zapzap/view/advanced_page.py:92
+msgid "Message Started in the background"
+msgstr ""
+
+#: zapzap/view/advanced_page.py:93
+#: zapzap/controllers/settings_pages/advanced.py:37
+msgid "Standard folder ~/Downloads/ZapZap Downloads"
+msgstr ""
+
+#: zapzap/view/general_page.py:167
+msgid "Start ZapZap with the system"
+msgstr "ZapZap'i sistem açılışında başlat"
+
+#: zapzap/view/general_page.py:169
+msgid "Login"
+msgstr ""
+
+#: zapzap/view/general_page.py:170
+msgid "Hide on close"
+msgstr "Kapatınca gizle"
+
+#: zapzap/view/general_page.py:172
+msgid "Wayland window system"
+msgstr "Wayland pencere sistemi"
+
+#: zapzap/view/general_page.py:174
+#, fuzzy
+msgid "SpellChecker"
+msgstr "Yazım Denetimi"
+
+#: zapzap/view/general_page.py:176
+msgid "Whatsapp Web Settings"
+msgstr ""
+
+#: zapzap/view/general_page.py:177
+msgid "Open the WhatsApp Web Settings panel on the selected account."
+msgstr ""
+
+#: zapzap/view/notifications_page.py:103
+msgid "Notifications on the desktop"
+msgstr "Masaüstü bildirimleri"
+
+#: zapzap/view/notifications_page.py:105
+msgid "Show the photo of the sender"
+msgstr "Gönderenin fotoğrafını göster"
+
+#: zapzap/view/notifications_page.py:106
+msgid "Show the sender's name"
+msgstr "Gönderenin adını göster"
+
+#: zapzap/view/notifications_page.py:107
+msgid "Show message preview"
+msgstr "Mesaj önizlemesini göster"
+
+#: zapzap/view/notifications_page.py:108
+msgid "Reproduce sounds when receiving messages"
+msgstr "Mesaj alınca sesle bildir"
+
+#: zapzap/view/personalization_page.py:81
+msgid "Theme"
+msgstr ""
+
+#: zapzap/view/personalization_page.py:82
+msgid "Application theme"
+msgstr ""
+
+#: zapzap/view/personalization_page.py:84
+msgid "Tray icon"
+msgstr "Sistem tepsisi simgesi"
+
+#: zapzap/view/home.py:93
+#, fuzzy
+msgid "New chat at phone number"
+msgstr "Telefon numarasıyla sohbeti aç"
+
+#: zapzap/view/home.py:94
+#, fuzzy
+msgid "New chat"
+msgstr "Yeni sohbet aç"
+
+#: zapzap/view/home.py:96
+msgid "Perfil"
+msgstr ""
+
+#: zapzap/view/network_page.py:137
+msgid "Network proxy"
+msgstr ""
+
+#: zapzap/view/network_page.py:139
+msgid ""
+"Learn exactly what you are doing, because I am not responsible for any "
+"connectivity failures."
+msgstr ""
+
+#: zapzap/view/network_page.py:140
+msgid "Port"
+msgstr ""
+
+#: zapzap/view/network_page.py:141
+#, fuzzy
+msgid "User"
+msgstr "Yeni Kullanıcı"
+
+#: zapzap/view/network_page.py:142
+msgid "Password"
+msgstr ""
+
+#: zapzap/view/network_page.py:143
+msgid "Hostname"
+msgstr ""
+
+#: zapzap/view/network_page.py:144
+msgid "ProxyType"
+msgstr ""
+
+#: zapzap/view/network_page.py:145
+msgid "Description"
+msgstr ""
+
+#: zapzap/view/network_page.py:146
+msgid "Apply"
+msgstr "Uygula"
+
+#: zapzap/view/network_page.py:147
+msgid "Restore"
+msgstr ""
+
+#: zapzap/controllers/settings_pages/personalization.py:23
+msgid "Automatic (System)"
+msgstr ""
+
+#: zapzap/controllers/settings_pages/personalization.py:24
+msgid "Light style"
+msgstr "Açık tema"
+
+#: zapzap/controllers/settings_pages/personalization.py:25
+msgid "Dark style"
+msgstr "Koyu tema"
+
+#: zapzap/controllers/settings_pages/personalization.py:27
+msgid "Default"
+msgstr "Varsayılan"
+
+#: zapzap/controllers/settings_pages/personalization.py:28
+msgid "Symbolic light"
+msgstr "Sembolik açık"
+
+#: zapzap/controllers/settings_pages/personalization.py:29
+msgid "Symbolic dark"
+msgstr "Sembolik koyu"
+
+#: zapzap/controllers/settings_pages/network.py:13
+msgid "No proxying is used"
+msgstr ""
+
+#: zapzap/controllers/settings_pages/network.py:14
+msgid ""
+"Proxy is determined based on the application proxy set using "
+"setApplicationProxy()"
+msgstr ""
+
+#: zapzap/controllers/settings_pages/network.py:15
+msgid "Socks5 proxying is used"
+msgstr ""
+
+#: zapzap/controllers/settings_pages/network.py:16
+msgid "HTTP transparent proxying is used"
+msgstr ""
+
+#: zapzap/controllers/settings_pages/network.py:17
+msgid "Proxying for HTTP requests only"
+msgstr ""
+
+#: zapzap/controllers/settings_pages/network.py:18
+msgid "Proxying for FTP requests only"
+msgstr ""
+
+#: zapzap/controllers/settings_pages/advanced.py:34
+msgid "Standard folder ~/Downloads"
+msgstr ""
+
+#: zapzap/engine/browser.py:71
 msgid "Undo"
 msgstr "Geri al"
 
-#: zapzap/engine/browser.py:73
+#: zapzap/engine/browser.py:72
 msgid "Redo"
 msgstr "Yinele"
 
-#: zapzap/engine/browser.py:74
+#: zapzap/engine/browser.py:73
 msgid "Cut"
 msgstr "Kes"
 
-#: zapzap/engine/browser.py:75
+#: zapzap/engine/browser.py:74
 msgid "Copy"
 msgstr "Kopyala"
 
-#: zapzap/engine/browser.py:76
+#: zapzap/engine/browser.py:75
 msgid "Paste"
 msgstr "Yapıştır"
 
-#: zapzap/engine/browser.py:77
+#: zapzap/engine/browser.py:76
 msgid "Select all"
 msgstr "Tümünü seç"
 
-#: zapzap/engine/browser.py:78
+#: zapzap/engine/browser.py:77
 msgid "Save image"
 msgstr "Resmi kaydet"
 
-#: zapzap/engine/browser.py:79
+#: zapzap/engine/browser.py:78
 msgid "Copy image"
 msgstr "Resmi kopyala"
+
+#: zapzap/engine/browser.py:79
+msgid "Copy link address"
+msgstr ""
 
 #: zapzap/services/spellCheckLanguages.py:6
 msgid "Afrikaans - Namibia"
@@ -866,11 +983,98 @@ msgstr ""
 msgid "Vietnamese - Vietnam"
 msgstr ""
 
+#: zapzap/__main__.py:20
+msgid "Started in the background"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Started with the system"
+#~ msgstr "ZapZap'i sistem açılışında başlat"
+
+#~ msgid "Keep in background when closing window"
+#~ msgstr "Pencereyi kapatınca arka planda tut"
+
+#~ msgid "Hide menu bar"
+#~ msgstr "Menü çubuğunu gizle"
+
+#~ msgid "Learn More"
+#~ msgstr "Daha Fazlasını Öğren"
+
+#~ msgid "Changelog"
+#~ msgstr "Değişiklik Günlüğü"
+
+#~ msgid "Report issue..."
+#~ msgstr "Sorun bildir..."
+
+#~ msgid "About Zapzap"
+#~ msgstr "Zapzap Hakkında"
+
+#~ msgid "Home page"
+#~ msgstr "Ana sayfa"
+
+#~ msgid "Form"
+#~ msgstr "Biçim"
+
+#~ msgid "Help"
+#~ msgstr "Yardım"
+
+#~ msgid "User Management"
+#~ msgstr "Kullanıcı Yönetimi"
+
+#~ msgid "System"
+#~ msgstr "Sistem"
+
+#~ msgid "Appearance"
+#~ msgstr "Görünüm"
+
+#~ msgid "Menu bar"
+#~ msgstr "Menü çubuğu"
+
+#~ msgid "ZapZap window (Restart required)"
+#~ msgstr "ZapZap penceresi (Yeniden başlatma gerekir)"
+
+#~ msgid "Title bar buttons"
+#~ msgstr "Başlık çubuğu düğmeleri"
+
+#~ msgid "Maximize"
+#~ msgstr "Büyüt"
+
+#~ msgid "Minimize"
+#~ msgstr "Küçült"
+
+#~ msgid "Positioning on the left side"
+#~ msgstr "Sol tarafta konumlandırma"
+
+#~ msgid "Customize appearance"
+#~ msgstr "Görünümü özelleştir"
+
+#~ msgid "General appearance"
+#~ msgstr "Genel görünüm"
+
+#~ msgid "System style"
+#~ msgstr "Sistem teması"
+
+#~ msgid "An unofficial WhatsApp desktop application"
+#~ msgstr "Resmi olmayan WhatsApp masaüstü uygulaması"
+
+#~ msgid "Users limit reached (9 in total)"
+#~ msgstr "Kullanıcı sınırına ulaşıldı (toplamda 9)"
+
+#~ msgid "Enable"
+#~ msgstr "Etkinleştir"
+
+#~ msgid "System Language"
+#~ msgstr "Sistem Dili"
+
+#~ msgid ""
+#~ "Do you like ZapZap?\n"
+#~ "Click and make a donation!"
+#~ msgstr ""
+#~ "ZapZap'ı sever misiniz?\n"
+#~ "Tıklayın ve bağış yapın!"
+
 #~ msgid "Start minimized"
 #~ msgstr "Simge durumunda başlat"
-
-#~ msgid "Ctrl+P"
-#~ msgstr "Ctrl+P"
 
 #~ msgid "Ctrl+Q"
 #~ msgstr "Ctrl+Q"

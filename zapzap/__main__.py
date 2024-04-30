@@ -17,7 +17,7 @@ def excBackgroundNotification():
     from zapzap.theme.builder_icon import getIconDefaultURLNotification
     from gettext import gettext as _
     n = dbus.Notification(_("ZapZap"),
-                          _("Keep in background when closing window"),
+                          _("Started in the background"),
                           timeout=3000)
     n.setUrgency(dbus.Urgency.NORMAL)
     n.setCategory("im.received")
@@ -30,7 +30,7 @@ def runLocal():
     qset = QSettings(zapzap.__appname__, zapzap.__appname__)
 
     ZAP_SESSION_TYPE = 'wayland'
-    if not qset.value("system/wayland", True, bool): #if False, X11
+    if not qset.value("system/wayland", True, bool):  # if False, X11
         ZAP_SESSION_TYPE = 'xcb'
 
     # Session Type
@@ -39,6 +39,9 @@ def runLocal():
         environ['QT_QPA_PLATFORM'] = ZAP_SESSION_TYPE
     elif XDG_SESSION_TYPE is None:
         environ['QT_QPA_PLATFORM'] = ZAP_SESSION_TYPE
+
+    # Incorrect sizing and bad text rendering with WebEngine using fractional scaling on Wayland
+    environ['QT_SCALE_FACTOR_ROUNDING_POLICY'] = 'RoundPreferFloor'
 
 
 def main():
@@ -95,7 +98,9 @@ def main():
         "system/start_system", False, bool)
     if isStart_system or '--hideStart' in sys.argv:
         window.hide()
-        excBackgroundNotification()
+        if window.settings.value(
+        "system/background_message", True, bool):
+            excBackgroundNotification()
     else:
         window.show()
 

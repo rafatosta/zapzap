@@ -4,7 +4,7 @@
   <launchable type="desktop-id">com.rtosta.zapzap.desktop</launchable>
 
   <name>ZapZap</name>
-  <summary>Whatsapp Desktop for Linux</summary>
+  <summary>WhatsApp Messenger</summary>
 
   <update_contact>rafa.ecomp@gmail.com</update_contact>
   <developer_name>Rafael Tosta</developer_name>
@@ -14,47 +14,97 @@
   <content_rating type="oars-1.0" />
 
   <description>
-    <p>
-      Much faster, more beautiful and more powerful.
-    </p>
-    <p>Features include:</p>
-    <ul>
-      <li>Features come with Whatsapp web</li>
-      <li>Multiple users</li>
-      <li>Icon in systray with different icon if there is new messages</li>
-      <li>Customizable Systray icons</li>
-      <li>System style (light and dark)</li>
-      <li>Fullscreen mode</li>
-      <li>Background running</li>
-      <li>Spellchecker</li>
-      <li>Drag and drop</li>
-      <li>Work area notifications</li>
-      <li>Personalized window decoration</li>
-      <li>Shortcuts for the main options</li>
-    </ul>
-    <p>What doesn't include: Video calls and On-call calls</p>
+    <p>What's:</p>
+    <p>Zapzap is a container for execution of the web web, that is, a kind of Webapp.Thus, all features of the Whatpp Web are available and several others that integrates it with the system.</p>
+    <p>Its differential is the support to multiple accounts, in the background running, spellchecker and customizations based on the theme of the system.</p>
+
+    <p>Data security:</p>
+    <p>No modification and manipulation is performed on the execution of the Whatpp Web. In addition, all source code is available in Github and can be auditable.</p>
+
+    <p>About:</p>
+    <p>ZapZap was initially developed for personal use.I decided to share it so that other people, like me, could have a WhatsApp customer more integrated into the system.</p>
   </description>
 
   <categories>
     <category>Chat</category>
-    <category>Communication</category>
     <category>InstantMessaging</category>
     <category>Utility</category>
     <category>Office</category>
   </categories>
 
-  <url type="homepage">https://github.com/rafatosta/zapzap</url>
-  <url type="bugtracker">https://github.com/rafatosta/zapzap/issues</url>
-  <url type="donation">https://github.com/sponsors/rafatosta</url>
+  <url type="homepage">https://zapzap-linux.github.io/</url>
+  <url type="bugtracker">https://github.com/zapzap-linux/zapzap/issues</url>
+  <url type="donation">https://zapzap-linux.github.io/#donate</url>
 
   <screenshots>
     <screenshot type="default">
       <caption>Application showcase</caption>
-      <image type="source">https://raw.githubusercontent.com/rafatosta/zapzap/main/share/screenshot/default.png</image>
+      <image type="source">https://raw.githubusercontent.com/zapzap-linux/zapzap/main/share/screenshot/default.png</image>
     </screenshot>
   </screenshots>
 
   <releases>
+    <release date="2024-04-29" version="5.3.1">
+        <description>
+          <p>Improvements when saving files.</p>
+        </description>
+    </release>
+    <release date="2024-04-16" version="5.3">
+        <description>
+          <p>New: Default folder option for Downloads;</p>
+          <p>Routine adjustments.</p>
+        </description>
+    </release>
+    <release date="2024-02-16" version="5.2">
+        <description>
+          <p>Add Proxy support</p>
+          <p>Some improvements</p>
+        </description>
+    </release>
+    <release date="2023-12-29" version="5.1.1">
+        <description>
+          <p>Optimization: Wayland with Fractional Scaling</p>
+        </description>
+    </release>
+    <release date="2023-12-21" version="5.1">
+      <description>
+        <p>Optimization for the use of the ESC key</p>
+        <p>Disable the menu only for more than one user</p>
+        <p>New chat at phone number</p>
+        <p>Internal improvements</p>
+      </description>
+    </release>
+   <release date="2023-12-14" version="5.0">
+      <description>
+        <p>New user interface</p>
+        <p>Redesigned settings panel</p>
+        <p>Better usability with multiple accounts</p>
+        <p>Useful shortcuts for WhatsApp Web</p>
+        <p>Internal improvements</p>
+      </description>
+    </release>
+    <release date="2023-11-13" version="4.5.5.2">
+      <description>
+        <p>Small improvements...</p>
+      </description>
+    </release>
+    <release date="2023-11-02" version="4.5.5">
+      <description>
+        <p>Copy URLs with the right-click of the mouse</p>
+        <p>Fix: Notifications do not disappear after viewing on another device</p>
+        <p>Display the last message on system notifications</p>
+      </description>
+    </release>
+    <release date="2023-10-23" version="4.5.4">
+      <description>
+        <p>Update translations</p>
+      </description>
+    </release>
+    <release date="2023-10-18" version="4.5.3">
+      <description>
+        <p>Some fix</p>
+      </description>
+    </release>
     <release date="2023-10-02" version="4.5.2">
       <description>
         <p>Fix: Improve the menu decoration when running in Wayland</p>

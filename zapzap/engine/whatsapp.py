@@ -5,9 +5,11 @@ from PyQt6.QtWidgets import QApplication
 from zapzap import __whatsapp_url__, __appname__
 from zapzap.services.dbus_theme import getSystemTheme
 
+
 class WhatsApp(QWebEnginePage):
 
     link_url = ''
+    link_context = ''
     light_theme = "document.body.classList.remove('dark');"
     dark_theme = "document.body.classList.add('dark');"
 
@@ -27,15 +29,15 @@ class WhatsApp(QWebEnginePage):
 
         self.loadFinished.connect(self.load_finished)
 
-        #self.setAudioMuted(True)
-        #self.setAudioMuted(self.qset.value('notification/show_sound', False, bool))
+        # self.setAudioMuted(True)
+        # self.setAudioMuted(self.qset.value('notification/show_sound', False, bool))
 
     def load_finished(self, flag):
         # Ativa a tela cheia para telas de proporção grande no WhatsApp Web.
         if flag:
             maximize = """
                 const checkExist = setInterval(() => {
-                    const classElement = document.getElementsByClassName("_1jJ70 two")[0];
+                    const classElement = document.getElementsByClassName("two _aigs")[0];
                     INSERT_THEME
                     if (classElement != null) {
                         classElement.style = 'max-width: initial; width: 100%; height: 100%; position: unset;margin: 0';
@@ -74,6 +76,10 @@ class WhatsApp(QWebEnginePage):
         # url contém o URL de destino do link. Ao mover o mouse para fora da url o seu valor é definido como uma string vazia
         self.link_url = url
 
+        # Keep the last link visited to be used by the context menu
+        if self.link_url != "":
+            self.link_context = url
+
     def permission(self, frame, feature):
         self.setFeaturePermission(
             frame, feature,  QWebEnginePage.PermissionPolicy.PermissionGrantedByUser)
@@ -92,6 +98,60 @@ class WhatsApp(QWebEnginePage):
 
     def closeConversation(self):
         script = """document.dispatchEvent(new KeyboardEvent("keydown",{'key': 'Escape'}));"""
+        self.runJavaScript(script)
+
+    def newConversation(self):
+        script = """function triggerCtrlAltN() {
+                        var event = new KeyboardEvent('keydown', {
+                            key: 'n',
+                            code: 'KeyN',
+                            ctrlKey: true,
+                            altKey: true,
+                            shiftKey: false,
+                            metaKey: false,
+                            bubbles: true,
+                            cancelable: true
+                        });
+                    document.dispatchEvent(event);
+                    }
+                triggerCtrlAltN();
+                """
+        self.runJavaScript(script)
+
+    def openPerfil(self):
+        script = """function triggerCtrlAltP() {
+                        var event = new KeyboardEvent('keydown', {
+                            key: 'p',
+                            code: 'KeyN',
+                            ctrlKey: true,
+                            altKey: true,
+                            shiftKey: false,
+                            metaKey: false,
+                            bubbles: true,
+                            cancelable: true
+                        });
+                    document.dispatchEvent(event);
+                    }
+                triggerCtrlAltP();
+                """
+        self.runJavaScript(script)
+    
+    def openWhatsappSettings(self):
+        script = """function triggerCtrlAltP() {
+                        var event = new KeyboardEvent('keydown', {
+                            key: ',',
+                            code: 'KeyN',
+                            ctrlKey: true,
+                            altKey: true,
+                            shiftKey: false,
+                            metaKey: false,
+                            bubbles: true,
+                            cancelable: true
+                        });
+                    document.dispatchEvent(event);
+                    }
+                triggerCtrlAltP();
+                """
         self.runJavaScript(script)
 
     def openChat(self, url):

@@ -22,7 +22,23 @@ class UserContainer(QPushButton):
 
     styleSheet_hover = """
     QPushButton {	
-       qproperty-iconSize: 40px;
+      background-color: rgba(225, 225, 225, 0.3);
+      border-radius: 2px;
+      height: 30px;
+    }
+    QToolTip {
+       color: #F0F2F5;
+       background-color: #202C33;
+       padding:2px;
+    }
+    """
+
+    styleSheet_selected = """
+    QPushButton {	
+      background-color: rgba(225, 225, 225, 0.3);
+      border-radius: 2px;
+      height: 30px;
+      border-left: 3px solid #00BD95;
     }
     QToolTip {
        color: #F0F2F5;
@@ -86,6 +102,9 @@ class UserContainer(QPushButton):
     def doReloadPage(self):
         self.browser.doReload()
 
+    def setFocusBrowser(self):
+        self.browser.setFocus()
+
     def saveSettings(self):
         self.user.zoomFactor = self.browser.zoomFactor()
         UserDAO.update(self.user)
@@ -109,23 +128,42 @@ class UserContainer(QPushButton):
 
     def closeConversation(self):
         self.browser.page().closeConversation()
+        self.setFocusBrowser()
+
+    def newConversation(self):
+        self.browser.page().newConversation()
+        self.setFocusBrowser()
+
+    def openPerfil(self):
+        self.browser.page().openPerfil()
+        self.setFocusBrowser()
+
+    def openWhatsappSettings(self):
+        self.browser.page().openWhatsappSettings()
+        self.setFocusBrowser()
 
     def openChat(self, number):
         self.browser.page().openChat(number)
+        self.setFocusBrowser()
 
     ## EVENTS ##
 
     def selected(self):
         self.isSelected = True
-        self.setStyleSheet(self.styleSheet_hover)
+        self.setStyleSheet(self.styleSheet_selected)
 
     def unselected(self):
         self.isSelected = False
         self.setStyleSheet(self.styleSheet_normal)
 
     def enterEvent(self, e):
-        self.setStyleSheet(self.styleSheet_hover)
+        if not self.isSelected:
+            self.setStyleSheet(self.styleSheet_hover)
+        else:
+            self.setStyleSheet(self.styleSheet_selected)
 
     def leaveEvent(self, e):
         if not self.isSelected:
             self.setStyleSheet(self.styleSheet_normal)
+        else:
+            self.setStyleSheet(self.styleSheet_selected)

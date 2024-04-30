@@ -1,9 +1,9 @@
 app-id: com.rtosta.zapzap
 runtime: org.kde.Platform
-runtime-version: "6.5"
+runtime-version: "6.6"
 sdk: org.kde.Sdk
 base: com.riverbankcomputing.PyQt.BaseApp
-base-version: "6.5"
+base-version: "6.6"
 command: zapzap
 finish-args:
   - "--share=ipc"
@@ -12,19 +12,12 @@ finish-args:
   - "--socket=pulseaudio"
   - "--share=network"
   - "--device=all"
-  - "--device=dri"
   - "--filesystem=host"
   - "--filesystem=xdg-download"
   - "--talk-name=org.freedesktop.Notifications"
   - "--talk-name=org.kde.StatusNotifierWatcher"
-  - "--talk-name=org.freedesktop.portal.FileChooser"
-  - "--talk-name=com.canonical.AppMenu.Registrar"
-  - "--talk-name=com.canonical.Unity"
-  - "--talk-name=com.canonical.indicator.application"
-  - "--talk-name=org.ayatana.indicator.application"
-  - "--unset-env=XDG_DATA_HOME"
-  - "--env=QT_PLUGIN_PATH=/app/lib64/plugins:/app/lib/plugins"
   - "--env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess"
+  - "--env=QT_SCALE_FACTOR_ROUNDING_POLICY=RoundPreferFloor"
 
 cleanup:
   - /include
@@ -42,7 +35,6 @@ modules:
       - type: archive
         url: https://files.pythonhosted.org/packages/b1/5c/ccfc167485806c1936f7d3ba97db6c448d0089c5746ba105b6eb22dba60e/dbus-python-1.2.18.tar.gz
         sha256: 92bdd1e68b45596c833307a5ff4b217ee6929a1502f5341bae28fd120acf7260
-
   - name: zapzap
     buildsystem: simple
     build-commands:
@@ -52,5 +44,5 @@ modules:
       - install -Dm644 share/metainfo/${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.appdata.xml
     sources:
       - type: git
-        url: https://github.com/rafatosta/zapzap.git
-        tag: v4.5.2
+        url: https://github.com/zapzap-linux/zapzap.git
+        tag: 5.3.1

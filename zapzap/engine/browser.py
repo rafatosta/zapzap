@@ -1,7 +1,7 @@
 import os
 from PyQt6.QtWebEngineWidgets import QWebEngineView
-from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest, QWebEngineProfile, QWebEngineSettings
-from PyQt6.QtCore import Qt, QUrl, QStandardPaths, QSettings, QLocale, QSize, QUrl
+from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest, QWebEngineProfile, QWebEngineSettings, QWebEngineNotification
+from PyQt6.QtCore import Qt, QUrl, QStandardPaths, QSettings, QLocale, QUrl, QFileInfo
 from PyQt6.QtGui import QPainter, QPainter, QImage, QBrush, QPen, QDesktopServices
 from PyQt6.QtWidgets import QFileDialog, QApplication
 import zapzap
@@ -41,14 +41,13 @@ class Browser(QWebEngineView):
         self.profile.setSpellCheckLanguages([lang])
 
         # Rotina para download de arquivos
-        self.profile.downloadRequested.connect(self.download)
+        self.profile.downloadRequested.connect(self.on_downloadRequested)
 
         # Cria a WebPage personalizada
         self.whats = WhatsApp(self.profile, self)
-        self.setPage(self.whats)
 
-        # carrega a página do whatsapp web
-        self.load(QUrl(zapzap.__whatsapp_url__))
+        # Set Whatsapp page
+        self.setWhatsappPage()
 
         # Ativando tudo o que tiver de direito
         self.settings().setAttribute(QWebEngineSettings.WebAttribute.JavascriptEnabled, True)
@@ -67,7 +66,7 @@ class Browser(QWebEngineView):
 
         self.list_ignore = ['Back', 'View page source', 'Save page',
                             'Forward', 'Open link in new tab', 'Save link',
-                            'Copy link address', 'Open link in new window', 'Paste and match style', 'Reload', 'Copy image address']
+                            'Open link in new window', 'Paste and match style', 'Reload', 'Copy image address']
         self.items_menu = {
             'Undo': _('Undo'),
             'Redo': _('Redo'),
@@ -77,7 +76,16 @@ class Browser(QWebEngineView):
             'Select all': _('Select all'),
             'Save image': _('Save image'),
             'Copy image': _('Copy image'),
+            'Copy link address': _('Copy link address')
         }
+
+    def setWhatsappPage(self):
+        self.stop()
+        self.setPage(self.whats)
+        self.load(QUrl(zapzap.__whatsapp_url__))
+
+        # Reload the current page, but do not use any local cache.
+        self.triggerPageAction(QWebEnginePage.WebAction.ReloadAndBypassCache)
 
     def contextMenuEvent(self, event):
         menu = self.createStandardContextMenu()
@@ -89,63 +97,69 @@ class Browser(QWebEngineView):
             elif name in self.items_menu:
                 a.setText(self.items_menu[name])
 
-        menu.exec(event.globalPos())
+                if name == 'Copy link address':
+                    def setClipboard():
+                        cb = QApplication.clipboard()
+                        cb.clear(mode=cb.Mode.Clipboard)
+                        cb.setText(self.whats.link_context,
+                                   mode=cb.Mode.Clipboard)
+                    a.triggered.connect(setClipboard)
 
-    def download(self, download):
-        """ Download de arquivos """
+        menu.exec(event.globalPos()) 
+
+    def on_downloadRequested(self, download:QWebEngineDownloadRequest):
+        """ File Download """
         if (download.state() == QWebEngineDownloadRequest.DownloadState.DownloadRequested):
+            
+            """Defines default directory for download"""
+            directory=QStandardPaths.writableLocation(
+                QStandardPaths.StandardLocation.DownloadLocation)
+            
+            """ Opens Popup of choice """
             dialog = DownloadPopup()
             r = dialog.exec_()
             if r == 1:
-                self.downloadOpenFile(download)
+                """ Open File """
+
+                """ If ZapZap Download is default"""
+                if not self.qset.value("system/folderDownloads", False, bool):
+                    directory = os.path.join(QStandardPaths.writableLocation(
+                        QStandardPaths.StandardLocation.DownloadLocation), 'ZapZap Downloads')
+                    if not os.path.exists(directory):
+                        os.makedirs(directory)
+
+                download.setDownloadDirectory(directory)
+                download.accept()
+
+                def openFile(state):
+                    """Opens file when the download is over"""
+                    if state == QWebEngineDownloadRequest.DownloadState.DownloadCompleted:
+                        file = os.path.join(directory, download.downloadFileName())
+                        QDesktopServices.openUrl(QUrl.fromLocalFile(file))
+
+                # This signal is emitted whenever the download's state changes.
+                download.stateChanged.connect(openFile)
+
             elif r == 2:
-                self.downloadFileChooser(download)
+                """ Save File"""
 
-    def downloadOpenFile(self, download):
-        fileName = download.downloadFileName()
-        directory = os.path.join(QStandardPaths.writableLocation(
-            QStandardPaths.StandardLocation.DownloadLocation), 'ZapZap Downloads')
-
-        if not os.path.exists(directory):
-            os.makedirs(directory)
-
-        download.setDownloadDirectory(directory)
-        download.setDownloadFileName(os.path.basename(fileName))
-        download.url().setPath(fileName)
-        download.accept()
-
-        def openFile(state):
-            """Opens file when the download is over"""
-            if state == QWebEngineDownloadRequest.DownloadState.DownloadCompleted:
-                file = os.path.join(directory, fileName)
-                QDesktopServices.openUrl(QUrl.fromLocalFile(file))
-
-        # This signal is emitted whenever the download's state changes.
-        download.stateChanged.connect(openFile)
-
-    def downloadFileChooser(self, download):
-        file, ext = os.path.splitext(download.downloadFileName())
-        path, _ = QFileDialog.getSaveFileName(
-            self, self.tr("Save file"), directory=QStandardPaths.writableLocation(
-                QStandardPaths.StandardLocation.DownloadLocation), filter='*'+ext)
-        if path:
-            # define a pasta para download. Por padrão é /user/downloads
-            download.setDownloadDirectory(os.path.dirname(path))
-            # Dentro do Flatpak não mostra o nome do arquivo no FileDialog, sendo necessário o usuário digitar o nome do arquivo e,
-            # caso não digite a extensão, será definida a partir do arquivo original.
-            name_file = (path) if ext in path else (path+ext)
-            # Atualiza o nome do arquivo
-            download.setDownloadFileName(os.path.basename(name_file))
-            download.url().setPath(name_file)
-            download.accept()
+                file_name = download.downloadFileName()  # download.path()
+                suffix = QFileInfo(file_name).suffix()
+                path, _ = QFileDialog.getSaveFileName(
+                    self, "Save File", os.path.join(directory,file_name), "*." + suffix
+                )
+                if path:   
+                    download.setDownloadFileName(os.path.basename(path))
+                    download.setDownloadDirectory(os.path.dirname(path))
+                    download.accept()
 
     def doReload(self):
         """
         Reload the page.
         Prevent Chrome update message from appearing
         """
-        self.load(QUrl(zapzap.__whatsapp_url__))
-        self.triggerPageAction(QWebEnginePage.WebAction.ReloadAndBypassCache)
+        # self.triggerPageAction(QWebEnginePage.WebAction.ReloadAndBypassCache)
+        self.setWhatsappPage()
 
     def title_changed(self, title):
         """
@@ -154,7 +168,7 @@ class Browser(QWebEngineView):
         qtd = 0
         if self.qset.value(f'{str(self.storageName)}/notification', True, bool):
             num = ''.join(filter(str.isdigit, title))
-        
+
             try:
                 qtd = int(num)
             except:
@@ -162,12 +176,12 @@ class Browser(QWebEngineView):
 
         self.parent.showIconNotification(qtd)
 
-    def show_notification(self, notification):
+    def show_notification(self, notification: QWebEngineNotification):
         """
         Create a notification through the DBus.Notification for the system.
         When you click on it, the window will open.
         """
-        
+
         if self.qset.value('notification/app', True, bool) and self.qset.value(f'{str(self.storageName)}/notification', True, bool):
             try:
                 title = notification.title() if self.qset.value(
@@ -179,7 +193,8 @@ class Browser(QWebEngineView):
 
                 n = dbus.Notification(title,
                                       message,
-                                      timeout=3000
+                                      timeout=3000,
+                                      tag=notification.tag()
                                       )
                 n.setUrgency(dbus.Urgency.NORMAL)
                 n.setCategory("im.received")
@@ -197,6 +212,9 @@ class Browser(QWebEngineView):
                     # abre a conversa
                     notification.click()
                 n.addAction('default', '', callback)
+
+                # This signal is emitted when the web page calls close steps for the notification, and it no longer needs to be shown.
+                notification.closed.connect(lambda: n.close())
                 n.show()
             except Exception as e:
                 print(e)

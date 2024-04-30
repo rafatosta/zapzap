@@ -20,19 +20,23 @@ DBusGMainLoop = None
 try:
     from dbus.mainloop.glib import DBusGMainLoop
 except:
-    print ("Could not import DBusGMainLoop, is package 'python-dbus.mainloop.glib' installed?")
+    print("Could not import DBusGMainLoop, is package 'python-dbus.mainloop.glib' installed?")
 
 APP_NAME = ''
 DBUS_IFACE = None
 NOTIFICATIONS = {}
+TAGS = {}
+
 
 class Urgency:
     """freedesktop.org notification urgency levels"""
     LOW, NORMAL, CRITICAL = range(3)
 
+
 class UninitializedError(RuntimeError):
     """Error raised if you try to show an error before initializing"""
     pass
+
 
 def init(app_name):
     """Initializes the DBus connection"""
@@ -54,7 +58,9 @@ def init(app_name):
     if mainloop is not None:
         # We have a mainloop, so connect callbacks
         DBUS_IFACE.connect_to_signal('ActionInvoked', _onActionInvoked)
-        DBUS_IFACE.connect_to_signal('NotificationClosed', _onNotificationClosed)
+        DBUS_IFACE.connect_to_signal(
+            'NotificationClosed', _onNotificationClosed)
+
 
 def _onActionInvoked(nid, action):
     """Called when a notification action is clicked"""
@@ -65,6 +71,7 @@ def _onActionInvoked(nid, action):
         # must have been created by some other program
         return
     notification._onActionInvoked(action)
+
 
 def _onNotificationClosed(nid, reason):
     """Called when the notification is closed"""
@@ -77,6 +84,7 @@ def _onNotificationClosed(nid, reason):
     notification._onNotificationClosed(notification)
     del NOTIFICATIONS[nid]
 
+
 class Notification(object):
     """Notification object"""
 
@@ -84,7 +92,7 @@ class Notification(object):
     timeout = -1
     _onNotificationClosed = lambda *args: None
 
-    def __init__(self, title, body='', icon='', timeout=-1):
+    def __init__(self, title, body='', icon='', timeout=-1, tag=''):
         """Initializes a new notification object.
 
         Args:
@@ -101,25 +109,35 @@ class Notification(object):
         self.hints = {}                 # dict of various display hints
         self.actions = OrderedDict()    # actions names and their callbacks
         self.data = {}                  # arbitrary user data
+        # this property holds the tag of the notification message.
+        self.tag = tag
 
     def show(self):
         if DBUS_IFACE is None:
-            raise UninitializedError("You must call 'notify.init()' before 'notify.show()'")
+            raise UninitializedError(
+                "You must call 'notify.init()' before 'notify.show()'")
 
         """Asks the notification server to show the notification"""
         nid = DBUS_IFACE.Notify(APP_NAME,
-                           self.id,
-                           self.icon,
-                           self.title,
-                           self.body,
-                           self._makeActionsList(),
-                           self.hints,
-                           self.timeout,
-                        )
+                                self.id,
+                                self.icon,
+                                self.title,
+                                self.body,
+                                self._makeActionsList(),
+                                self.hints,
+                                self.timeout,
+                                )
 
         self.id = int(nid)
-
         NOTIFICATIONS[self.id] = self
+
+        # The previous notification reaches, if existing
+        if self.tag in TAGS:
+            old_id = TAGS[self.tag]
+            NOTIFICATIONS[old_id].close()
+
+        TAGS[self.tag] = self.id
+
         return True
 
     def close(self):
@@ -147,7 +165,7 @@ class Notification(object):
 
     def setIconPath(self, icon_path):
         """Set the URI of the icon to display in the notification"""
-        self.hints['image-path'] = 'file://' + icon_path
+        self.hints['image-path'] = icon_path
 
     def setQIcon(self, q_icon):
         # FixMe this would be convenient, but may not be possible

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg height="16px" viewBox="0 0 16 16" width="16px" xmlns="http://www.w3.org/2000/svg">
-  <g fill="#222222">
-    <path d="m 2 3 h 12 v 2 h -12 z m 0 0" style="fill: rgb(49, 54, 59);"/>
-    <path d="m 2 7 h 12 v 2 h -12 z m 0 0" style="fill: rgb(49, 54, 59);"/>
-    <path d="m 2 11 h 12 v 2 h -12 z m 0 0" style="fill: rgb(49, 54, 59);"/>
-  </g>
-</svg>

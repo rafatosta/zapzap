@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-15 08:44-0300\n"
+"POT-Creation-Date: 2024-04-15 08:42-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,330 +17,446 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: zapzap/view/main_window.py:293 zapzap/view/settings.py:959
+#: zapzap/view/main_window.py:78 zapzap/view/qtoaster_donation.py:123
+#: zapzap/view/about_page.py:135
 #: zapzap/controllers/main_window_components/tray_icon.py:19
+#: zapzap/__main__.py:19
 msgid "ZapZap"
-msgstr ""
+msgstr "ZapZap"
 
-#: zapzap/view/main_window.py:294 zapzap/view/main_window.py:298
+#: zapzap/view/main_window.py:79
 msgid "File"
-msgstr ""
+msgstr "Arquivo"
 
-#: zapzap/view/main_window.py:295 zapzap/view/main_window.py:299
+#: zapzap/view/main_window.py:80
 msgid "View"
-msgstr ""
+msgstr "Visualizar"
 
-#: zapzap/view/main_window.py:296 zapzap/view/main_window.py:301
+#: zapzap/view/main_window.py:81
 msgid "Chat"
-msgstr ""
+msgstr "Conversa"
 
-#: zapzap/view/main_window.py:297 zapzap/view/main_window.py:300
-msgid "Help"
-msgstr ""
-
-#: zapzap/view/main_window.py:302 zapzap/view/settings.py:920
+#: zapzap/view/main_window.py:82 zapzap/view/home.py:95
 #: zapzap/controllers/main_window_components/tray_icon.py:22
 msgid "Settings"
-msgstr ""
+msgstr "Configurações"
 
-#: zapzap/view/main_window.py:303 zapzap/view/settings.py:928
+#: zapzap/view/main_window.py:83 zapzap/view/settings.py:181
 #: zapzap/controllers/main_window_components/tray_icon.py:25
 msgid "Quit"
-msgstr ""
+msgstr "Sair"
 
-#: zapzap/view/main_window.py:304
+#: zapzap/view/main_window.py:84
 msgid "Reload"
-msgstr ""
+msgstr "Recarregar página"
 
-#: zapzap/view/main_window.py:305
+#: zapzap/view/main_window.py:85
 msgid "Default size page"
-msgstr ""
+msgstr "Tamanho real"
 
-#: zapzap/view/main_window.py:306
+#: zapzap/view/main_window.py:86
 msgid "Full Screen"
-msgstr ""
+msgstr "Tela cheia"
 
-#: zapzap/view/main_window.py:307 zapzap/view/settings.py:936
-msgid "Hide menu bar"
-msgstr ""
-
-#: zapzap/view/main_window.py:308
-msgid "Learn More"
-msgstr ""
-
-#: zapzap/view/main_window.py:309 zapzap/view/settings.py:964
-msgid "Changelog"
-msgstr ""
-
-#: zapzap/view/main_window.py:310 zapzap/view/settings.py:965
-msgid "Report issue..."
-msgstr ""
-
-#: zapzap/view/main_window.py:311
-msgid "About Zapzap"
-msgstr ""
-
-#: zapzap/view/main_window.py:312 zapzap/view/settings.py:931
-msgid "Hide on close"
-msgstr ""
-
-#: zapzap/view/main_window.py:313
-msgid "Keep in background when closing window"
-msgstr ""
-
-#: zapzap/view/main_window.py:314
+#: zapzap/view/main_window.py:87
 msgid "Zoom in"
-msgstr ""
+msgstr "Ampliar"
 
-#: zapzap/view/main_window.py:315
+#: zapzap/view/main_window.py:88
 msgid "Zoom out"
-msgstr ""
+msgstr "Reduzir"
 
-#: zapzap/view/main_window.py:316 zapzap/view/settings.py:926
-#: zapzap/view/settings.py:957
-msgid "Donations"
-msgstr ""
-
-#: zapzap/view/main_window.py:317 zapzap/view/settings.py:921
-msgid "Home page"
-msgstr ""
-
-#: zapzap/view/main_window.py:318
+#: zapzap/view/main_window.py:89
 msgid "Open new chat"
+msgstr "Abrir nova conversa"
+
+#: zapzap/view/main_window.py:90
+msgid "Hide"
 msgstr ""
 
-#: zapzap/view/settings.py:919 zapzap/view/card_user.py:85
-#: zapzap/view/openChatPopup.py:80
-msgid "Form"
+#: zapzap/view/main_window.py:91
+msgid "Ctrl+W"
 msgstr ""
 
-#: zapzap/view/settings.py:922 zapzap/view/settings.py:966
-msgid "User Management"
+#: zapzap/view/settings.py:173 zapzap/view/general_page.py:166
+msgid "General"
 msgstr ""
 
-#: zapzap/view/settings.py:923 zapzap/view/settings.py:929
-msgid "System"
+#: zapzap/view/settings.py:174 zapzap/view/account_page.py:75
+msgid "Account"
 msgstr ""
 
-#: zapzap/view/settings.py:924
-msgid "Appearance"
-msgstr ""
-
-#: zapzap/view/settings.py:925 zapzap/view/settings.py:951
+#: zapzap/view/settings.py:175 zapzap/view/notifications_page.py:102
 msgid "Notifications"
+msgstr "Notificações"
+
+#: zapzap/view/settings.py:176 zapzap/view/network_page.py:136
+msgid "Network"
 msgstr ""
 
-#: zapzap/view/settings.py:927 zapzap/view/settings.py:958
+#: zapzap/view/settings.py:177 zapzap/view/personalization_page.py:80
+msgid "Personalization"
+msgstr ""
+
+#: zapzap/view/settings.py:178 zapzap/view/advanced_page.py:85
+msgid "Advanced"
+msgstr ""
+
+#: zapzap/view/settings.py:179
+msgid "Donations"
+msgstr "Doações"
+
+#: zapzap/view/settings.py:180 zapzap/view/about_page.py:134
 msgid "About"
-msgstr ""
+msgstr "Sobre"
 
-#: zapzap/view/settings.py:930
-msgid "Start ZapZap with the system"
-msgstr ""
-
-#: zapzap/view/settings.py:932
-msgid "Wayland window system"
-msgstr ""
-
-#: zapzap/view/settings.py:933
-msgid "SpellChecker"
-msgstr ""
-
-#: zapzap/view/settings.py:934
-msgid "Apply"
-msgstr ""
-
-#: zapzap/view/settings.py:935
-msgid "Menu bar"
-msgstr ""
-
-#: zapzap/view/settings.py:937
-msgid "ZapZap window (Restart required)"
-msgstr ""
-
-#: zapzap/view/settings.py:938
-msgid "Title bar buttons"
-msgstr ""
-
-#: zapzap/view/settings.py:939
-msgid "Maximize"
-msgstr ""
-
-#: zapzap/view/settings.py:940
-msgid "Minimize"
-msgstr ""
-
-#: zapzap/view/settings.py:941
-msgid "Positioning on the left side"
-msgstr ""
-
-#: zapzap/view/settings.py:942
-msgid "Customize appearance"
-msgstr ""
-
-#: zapzap/view/settings.py:943
-msgid "General appearance"
-msgstr ""
-
-#: zapzap/view/settings.py:944
-msgid "System style"
-msgstr ""
-
-#: zapzap/view/settings.py:945
-msgid "Light style"
-msgstr ""
-
-#: zapzap/view/settings.py:946
-msgid "Dark style"
-msgstr ""
-
-#: zapzap/view/settings.py:947
-msgid "Tray icon"
-msgstr ""
-
-#: zapzap/view/settings.py:948
-msgid "Default"
-msgstr ""
-
-#: zapzap/view/settings.py:949
-msgid "Symbolic light"
-msgstr ""
-
-#: zapzap/view/settings.py:950
-msgid "Symbolic dark"
-msgstr ""
-
-#: zapzap/view/settings.py:952
-msgid "Notifications on the desktop"
-msgstr ""
-
-#: zapzap/view/settings.py:953
-msgid "Show the photo of the sender"
-msgstr ""
-
-#: zapzap/view/settings.py:954
-msgid "Show the sender's name"
-msgstr ""
-
-#: zapzap/view/settings.py:955
-msgid "Show message preview"
-msgstr ""
-
-#: zapzap/view/settings.py:956
-msgid "Reproduce sounds when receiving messages"
-msgstr ""
-
-#: zapzap/view/settings.py:960
-#, python-brace-format
-msgid "Version {id} (Official compilation)"
-msgstr ""
-
-#: zapzap/view/settings.py:961
-msgid "An unofficial WhatsApp desktop application"
-msgstr ""
-
-#: zapzap/view/settings.py:962
-msgid "GNU General Public License v3.0"
-msgstr ""
-
-#: zapzap/view/settings.py:963
-msgid "Learn more"
-msgstr ""
-
-#: zapzap/view/settings.py:967
-msgid "New User"
-msgstr ""
-
-#: zapzap/view/settings.py:968
-msgid "Users limit reached (9 in total)"
-msgstr ""
-
-#: zapzap/view/card_user.py:86
+#: zapzap/view/card_user.py:87
 msgid "Enter the user name"
-msgstr ""
-
-#: zapzap/view/card_user.py:87 zapzap/controllers/card_user.py:46
-msgid "Disable"
-msgstr ""
+msgstr "Insira o nome do usuário"
 
 #: zapzap/view/card_user.py:88
-msgid "Show notifications"
+msgid "Shortcut:"
 msgstr ""
 
 #: zapzap/view/card_user.py:89
-msgid "Delete"
-msgstr ""
+#, fuzzy
+msgid "Disable account"
+msgstr "Desabilitar"
+
+#: zapzap/view/card_user.py:90
+msgid "Show notifications"
+msgstr "Mostrar notificações do usuário"
+
+#: zapzap/view/card_user.py:91
+#, fuzzy
+msgid "Delete account"
+msgstr "Apagar"
 
 #: zapzap/view/downloadPopup.py:69
 msgid "What do you want to do with the file?"
-msgstr ""
+msgstr "O que você quer fazer com o arquivo?"
 
 #: zapzap/view/downloadPopup.py:70 zapzap/view/openChatPopup.py:86
 msgid "Open"
-msgstr ""
+msgstr "Abrir"
 
 #: zapzap/view/downloadPopup.py:71
 msgid "Save as"
-msgstr ""
+msgstr "Salvar como"
 
 #: zapzap/view/openChatPopup.py:81
 msgid "Open chat by phone number"
-msgstr ""
+msgstr "Abrir conversa pelo número do telefone"
 
 #: zapzap/view/openChatPopup.py:82
 msgid "Enter phone number:"
-msgstr ""
+msgstr "Insira o número do telefone:"
 
 #: zapzap/view/openChatPopup.py:83
 msgid "See here the code of your country"
-msgstr ""
+msgstr "Veja aqui o código do seu país"
 
 #: zapzap/view/openChatPopup.py:84
 msgid "(COUNTY CODE + AREA CODE + PHONE NUMER)"
-msgstr ""
+msgstr "(COD DO PAÍS + COD. ÁREA + NÚMERO DO TELEFONE)"
 
 #: zapzap/view/openChatPopup.py:85
 msgid "Cancel"
+msgstr "Cancelar"
+
+#: zapzap/view/qtoaster_donation.py:122
+msgid "Welcome to"
 msgstr ""
 
-#: zapzap/controllers/card_user.py:49
-msgid "Enable"
+#: zapzap/view/qtoaster_donation.py:124
+msgid "Make a donation"
 msgstr ""
 
-#: zapzap/controllers/settings.py:73
-msgid "System Language"
+#: zapzap/view/qtoaster_donation.py:125
+msgid "..."
 msgstr ""
+
+#: zapzap/view/about_page.py:136
+msgid "WhatsApp Web for Linux"
+msgstr ""
+
+#: zapzap/view/about_page.py:137
+#, python-brace-format
+msgid "Version {id} (Official compilation)"
+msgstr "Versão {id} (Compilação oficial)"
+
+#: zapzap/view/about_page.py:138 zapzap/view/about_page.py:140
+#, fuzzy
+msgid "Learn more"
+msgstr "Leia mais"
+
+#: zapzap/view/about_page.py:139
+msgid "See more about Zapzap on our website."
+msgstr ""
+
+#: zapzap/view/about_page.py:141 zapzap/view/about_page.py:143
+#, fuzzy
+msgid "Report issue"
+msgstr "Reporte um problema..."
+
+#: zapzap/view/about_page.py:142
+msgid "Report a problem or make your suggestion."
+msgstr ""
+
+#: zapzap/view/about_page.py:144
+msgid "GNU General Public License v3.0"
+msgstr "Licença Pública Geral GNU v3.0"
+
+#: zapzap/view/account_page.py:76 zapzap/view/home.py:92
+msgid "New account"
+msgstr ""
+
+#: zapzap/view/account_page.py:77
+msgid "Creates a new panel for access to WhatsApp."
+msgstr ""
+
+#: zapzap/view/advanced_page.py:86
+msgid "Hide setting bar with only one user"
+msgstr ""
+
+#: zapzap/view/advanced_page.py:87 zapzap/view/advanced_page.py:94
+#: zapzap/view/general_page.py:168 zapzap/view/general_page.py:173
+#: zapzap/view/network_page.py:138
+msgid "Off"
+msgstr ""
+
+#: zapzap/view/advanced_page.py:88
+msgid "To access the settings use the menu in the tray or the shortcut Ctrl+P"
+msgstr ""
+
+#: zapzap/view/advanced_page.py:89
+#, fuzzy
+msgid "Donation message"
+msgstr "Doações"
+
+#: zapzap/view/advanced_page.py:90 zapzap/view/advanced_page.py:91
+#: zapzap/view/general_page.py:171 zapzap/view/general_page.py:175
+#: zapzap/view/notifications_page.py:104 zapzap/view/notifications_page.py:109
+#: zapzap/view/notifications_page.py:110 zapzap/view/notifications_page.py:111
+#: zapzap/view/notifications_page.py:112 zapzap/view/personalization_page.py:83
+#, fuzzy
+msgid "On"
+msgstr "Abrir"
+
+#: zapzap/view/advanced_page.py:92
+msgid "Message Started in the background"
+msgstr ""
+
+#: zapzap/view/advanced_page.py:93
+#: zapzap/controllers/settings_pages/advanced.py:37
+msgid "Standard folder ~/Downloads/ZapZap Downloads"
+msgstr ""
+
+#: zapzap/view/general_page.py:167
+msgid "Start ZapZap with the system"
+msgstr "Iniciar com o sistema"
+
+#: zapzap/view/general_page.py:169
+msgid "Login"
+msgstr ""
+
+#: zapzap/view/general_page.py:170
+msgid "Hide on close"
+msgstr "Esconder ao fechar"
+
+#: zapzap/view/general_page.py:172
+msgid "Wayland window system"
+msgstr "Sistema de janelas Wayland"
+
+#: zapzap/view/general_page.py:174
+msgid "SpellChecker"
+msgstr "Corretor ortográfico"
+
+#: zapzap/view/general_page.py:176
+msgid "Whatsapp Web Settings"
+msgstr ""
+
+#: zapzap/view/general_page.py:177
+msgid "Open the WhatsApp Web Settings panel on the selected account."
+msgstr ""
+
+#: zapzap/view/notifications_page.py:103
+msgid "Notifications on the desktop"
+msgstr "Notificações na área de trabalho"
+
+#: zapzap/view/notifications_page.py:105
+msgid "Show the photo of the sender"
+msgstr "Mostrar a foto do remetente"
+
+#: zapzap/view/notifications_page.py:106
+msgid "Show the sender's name"
+msgstr "Mostrar o nome do remetente"
+
+#: zapzap/view/notifications_page.py:107
+msgid "Show message preview"
+msgstr "Mostrar a mensagem do remetente"
+
+#: zapzap/view/notifications_page.py:108
+msgid "Reproduce sounds when receiving messages"
+msgstr "Reproduzir sons ao receber mensagens"
+
+#: zapzap/view/personalization_page.py:81
+msgid "Theme"
+msgstr ""
+
+#: zapzap/view/personalization_page.py:82
+msgid "Application theme"
+msgstr ""
+
+#: zapzap/view/personalization_page.py:84
+msgid "Tray icon"
+msgstr "Ícone de bandeja"
+
+#: zapzap/view/home.py:93
+#, fuzzy
+msgid "New chat at phone number"
+msgstr "Abrir conversa pelo número do telefone"
+
+#: zapzap/view/home.py:94
+#, fuzzy
+msgid "New chat"
+msgstr "Abrir nova conversa"
+
+#: zapzap/view/home.py:96
+msgid "Perfil"
+msgstr ""
+
+#: zapzap/view/network_page.py:137
+msgid "Network proxy"
+msgstr ""
+
+#: zapzap/view/network_page.py:139
+msgid ""
+"Learn exactly what you are doing, because I am not responsible for any "
+"connectivity failures."
+msgstr ""
+
+#: zapzap/view/network_page.py:140
+msgid "Port"
+msgstr ""
+
+#: zapzap/view/network_page.py:141
+#, fuzzy
+msgid "User"
+msgstr "Novo"
+
+#: zapzap/view/network_page.py:142
+msgid "Password"
+msgstr ""
+
+#: zapzap/view/network_page.py:143
+msgid "Hostname"
+msgstr ""
+
+#: zapzap/view/network_page.py:144
+msgid "ProxyType"
+msgstr ""
+
+#: zapzap/view/network_page.py:145
+msgid "Description"
+msgstr ""
+
+#: zapzap/view/network_page.py:146
+msgid "Apply"
+msgstr "Aplicar"
+
+#: zapzap/view/network_page.py:147
+msgid "Restore"
+msgstr ""
+
+#: zapzap/controllers/settings_pages/personalization.py:23
+msgid "Automatic (System)"
+msgstr ""
+
+#: zapzap/controllers/settings_pages/personalization.py:24
+msgid "Light style"
+msgstr "Claro"
+
+#: zapzap/controllers/settings_pages/personalization.py:25
+msgid "Dark style"
+msgstr "Escuro"
+
+#: zapzap/controllers/settings_pages/personalization.py:27
+msgid "Default"
+msgstr "Padrão"
+
+#: zapzap/controllers/settings_pages/personalization.py:28
+msgid "Symbolic light"
+msgstr "Simbólico claro"
+
+#: zapzap/controllers/settings_pages/personalization.py:29
+msgid "Symbolic dark"
+msgstr "Simbólico escuro"
+
+#: zapzap/controllers/settings_pages/network.py:13
+msgid "No proxying is used"
+msgstr ""
+
+#: zapzap/controllers/settings_pages/network.py:14
+msgid ""
+"Proxy is determined based on the application proxy set using "
+"setApplicationProxy()"
+msgstr ""
+
+#: zapzap/controllers/settings_pages/network.py:15
+msgid "Socks5 proxying is used"
+msgstr ""
+
+#: zapzap/controllers/settings_pages/network.py:16
+msgid "HTTP transparent proxying is used"
+msgstr ""
+
+#: zapzap/controllers/settings_pages/network.py:17
+msgid "Proxying for HTTP requests only"
+msgstr ""
+
+#: zapzap/controllers/settings_pages/network.py:18
+msgid "Proxying for FTP requests only"
+msgstr ""
+
+#: zapzap/controllers/settings_pages/advanced.py:34
+msgid "Standard folder ~/Downloads"
+msgstr ""
+
+#: zapzap/engine/browser.py:71
+msgid "Undo"
+msgstr "Desfazer"
 
 #: zapzap/engine/browser.py:72
-msgid "Undo"
-msgstr ""
+msgid "Redo"
+msgstr "Refazer"
 
 #: zapzap/engine/browser.py:73
-msgid "Redo"
-msgstr ""
+msgid "Cut"
+msgstr "Recortar"
 
 #: zapzap/engine/browser.py:74
-msgid "Cut"
-msgstr ""
+msgid "Copy"
+msgstr "Copiar"
 
 #: zapzap/engine/browser.py:75
-msgid "Copy"
-msgstr ""
+msgid "Paste"
+msgstr "Colar"
 
 #: zapzap/engine/browser.py:76
-msgid "Paste"
-msgstr ""
+msgid "Select all"
+msgstr "Selecionar tudo"
 
 #: zapzap/engine/browser.py:77
-msgid "Select all"
-msgstr ""
+msgid "Save image"
+msgstr "Salvar imagem"
 
 #: zapzap/engine/browser.py:78
-msgid "Save image"
-msgstr ""
+msgid "Copy image"
+msgstr "Copiar imagem"
 
 #: zapzap/engine/browser.py:79
-msgid "Copy image"
+msgid "Copy link address"
 msgstr ""
 
 #: zapzap/services/spellCheckLanguages.py:6
@@ -777,15 +893,15 @@ msgstr ""
 
 #: zapzap/services/spellCheckLanguages.py:114
 msgid "Portuguese - Angola"
-msgstr ""
+msgstr "Português - Angola"
 
 #: zapzap/services/spellCheckLanguages.py:115
 msgid "Portuguese - Brazil"
-msgstr ""
+msgstr "Português - Brasil"
 
 #: zapzap/services/spellCheckLanguages.py:116
 msgid "Portuguese - Portugal"
-msgstr ""
+msgstr "Português - Portugal"
 
 #: zapzap/services/spellCheckLanguages.py:117
 msgid "Romanian - Romania"
@@ -862,3 +978,90 @@ msgstr ""
 #: zapzap/services/spellCheckLanguages.py:135
 msgid "Vietnamese - Vietnam"
 msgstr ""
+
+#: zapzap/__main__.py:20
+msgid "Started in the background"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Started with the system"
+#~ msgstr "Iniciar com o sistema"
+
+#~ msgid "Keep in background when closing window"
+#~ msgstr "Execução em segundo plano"
+
+#~ msgid "Hide menu bar"
+#~ msgstr "Esconder barra de menu"
+
+#~ msgid "Learn More"
+#~ msgstr "Leia mais"
+
+#~ msgid "Changelog"
+#~ msgstr "Lista de mudanças"
+
+#~ msgid "Report issue..."
+#~ msgstr "Reporte um problema..."
+
+#~ msgid "About Zapzap"
+#~ msgstr "Sobre ZapZap"
+
+#~ msgid "Home page"
+#~ msgstr "Página inicial"
+
+#~ msgid "Help"
+#~ msgstr "Ajuda"
+
+#~ msgid "User Management"
+#~ msgstr "Usuários"
+
+#~ msgid "System"
+#~ msgstr "Sistema"
+
+#~ msgid "Appearance"
+#~ msgstr "Aparência"
+
+#~ msgid "Menu bar"
+#~ msgstr "Barra de menu"
+
+#~ msgid "ZapZap window (Restart required)"
+#~ msgstr "Janela do ZapZap (Necessário reiniciar)"
+
+#~ msgid "Title bar buttons"
+#~ msgstr "Botões da barra de título"
+
+#~ msgid "Maximize"
+#~ msgstr "Maximizar"
+
+#~ msgid "Minimize"
+#~ msgstr "Minimizar"
+
+#~ msgid "Positioning on the left side"
+#~ msgstr "Posicionamento do lado esquerdo"
+
+#~ msgid "Customize appearance"
+#~ msgstr "Customizar aparência"
+
+#~ msgid "General appearance"
+#~ msgstr "Aparência geral"
+
+#~ msgid "System style"
+#~ msgstr "Estilo do sistema"
+
+#~ msgid "An unofficial WhatsApp desktop application"
+#~ msgstr "Um aplicativo de desktop WhatsApp não oficial"
+
+#~ msgid "Users limit reached (9 in total)"
+#~ msgstr "Limite de usuários atingido (9 no total)"
+
+#~ msgid "Enable"
+#~ msgstr "Habilitar"
+
+#~ msgid "System Language"
+#~ msgstr "Idioma do sistema"
+
+#~ msgid ""
+#~ "Do you like ZapZap?\n"
+#~ "Click and make a donation!"
+#~ msgstr ""
+#~ "Você gosta do ZapZap?\n"
+#~ "Clique e faça uma doação!"
