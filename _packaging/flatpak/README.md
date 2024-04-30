@@ -6,7 +6,7 @@
 
 ### Download the application
 ```bash
-git clone https://github.com/zapzap-linux/zapzap.git
+git clone https://github.com/rafatosta/zapzap.git
 cd zapzap
 ```
 

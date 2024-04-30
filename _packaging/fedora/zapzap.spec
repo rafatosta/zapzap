@@ -12,8 +12,8 @@ Release:        1%{?dist}
 Summary:        Zapzap - WhatsApp Messenger for Linux
 
 License:        GNU General Public License v3.0
-URL:            https://github.com/zapzap-linux/%{srcname}
-Source0:        https://github.com/zapzap-linux/zapzap/archive/refs/tags/%{srcversion}.tar.gz
+URL:            https://github.com/rafatosta/%{srcname}
+Source0:        https://github.com/rafatosta/zapzap/archive/refs/tags/%{srcversion}.tar.gz
 
 
 # Requisitos de construção

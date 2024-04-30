@@ -33,13 +33,13 @@
   </categories>
 
   <url type="homepage">https://zapzap-linux.github.io/</url>
-  <url type="bugtracker">https://github.com/zapzap-linux/zapzap/issues</url>
+  <url type="bugtracker">https://github.com/rafatosta/zapzap/issues</url>
   <url type="donation">https://zapzap-linux.github.io/#donate</url>
 
   <screenshots>
     <screenshot type="default">
       <caption>Application showcase</caption>
-      <image type="source">https://raw.githubusercontent.com/zapzap-linux/zapzap/main/share/screenshot/default.png</image>
+      <image type="source">https://raw.githubusercontent.com/rafatosta/zapzap/main/share/screenshot/default.png</image>
     </screenshot>
   </screenshots>
 

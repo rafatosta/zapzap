@@ -45,7 +45,7 @@ WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.
 ## Translation
 The translations are supported.
 
-Make sure the file for your language is in the [po](/po) folder. If it is just send a pull request with the updated file, otherwise open a [issue](https://github.com/zapzap-linux/zapzap/issues) requesting inclusion.
+Make sure the file for your language is in the [po](/po) folder. If it is just send a pull request with the updated file, otherwise open a [issue](https://github.com/rafatosta/zapzap/issues) requesting inclusion.
 
 # Donations
 <p align="center">
