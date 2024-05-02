@@ -6,6 +6,11 @@
   <name>ZapZap</name>
   <summary>WhatsApp Messenger</summary>
 
+  <branding>
+    <color type="primary" scheme_preference="light">#ebebeb</color>
+    <color type="primary" scheme_preference="dark">#323232</color>
+  </branding>
+
   <update_contact>rafa.ecomp@gmail.com</update_contact>
   <developer_name>Rafael Tosta</developer_name>
 
