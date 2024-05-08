@@ -37,9 +37,9 @@
     <category>Office</category>
   </categories>
 
-  <url type="homepage">https://zapzap-linux.github.io/</url>
+  <url type="homepage">https://rtosta.com/zapzap-web/</url>
   <url type="bugtracker">https://github.com/rafatosta/zapzap/issues</url>
-  <url type="donation">https://zapzap-linux.github.io/#donate</url>
+  <url type="donation">https://github.com/rafatosta/zapzap?tab=readme-ov-file#donations</url>
 
   <screenshots>
     <screenshot type="default">
@@ -49,6 +49,11 @@
   </screenshots>
 
   <releases>
+   <release date="2024-05-08" version="5.3.2">
+        <description>
+          <p>Update Runtime to 6.7</p>
+        </description>
+    </release>
     <release date="2024-04-29" version="5.3.1">
         <description>
           <p>Improvements when saving files.</p>

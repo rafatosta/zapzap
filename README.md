@@ -1,4 +1,4 @@
-# [ZapZap](https://zapzap-linux.github.io/) - Whatsapp Desktop for Linux 
+# [ZapZap](https://rtosta.com/zapzap-web/) - Whatsapp Desktop for Linux 
 ![Zapzap for whatsapp](share/screenshot/default.png)
 
 # About
@@ -28,7 +28,6 @@ Besides all the features that come with the WhatsApp web application, ZapZap pro
    - Adaptive Systray icon (it changes when there are new messages)
    - A background process
    - Drag and drop support
-   - Work area notifications  <!-- what is this?? -->
 3. **Additional features**
    - Spellchecker
    - Customizable Systray icons
