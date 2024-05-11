@@ -49,6 +49,11 @@
   </screenshots>
 
   <releases>
+    <release date="2024-05-11" version="5.3.3">
+        <description>
+          <p>Fix: Notifications closing.</p>
+        </description>
+    </release>
    <release date="2024-05-08" version="5.3.2">
         <description>
           <p>Update Runtime to 6.7</p>
