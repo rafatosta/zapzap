@@ -194,7 +194,7 @@ class Browser(QWebEngineView):
                 n = dbus.Notification(title,
                                       message,
                                       timeout=3000,
-                                      tag=notification.tag()
+                                      _qWebEngineNotification = notification
                                       )
                 n.setUrgency(dbus.Urgency.NORMAL)
                 n.setCategory("im.received")
@@ -217,7 +217,7 @@ class Browser(QWebEngineView):
                 notification.closed.connect(lambda: n.close())
                 n.show()
             except Exception as e:
-                print(e)
+                print('Exception:', e)
 
     def getPathImage(self, qin, title) -> str:
         """

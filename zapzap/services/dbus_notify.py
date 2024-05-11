@@ -25,8 +25,6 @@ except:
 APP_NAME = ''
 DBUS_IFACE = None
 NOTIFICATIONS = {}
-TAGS = {}
-
 
 class Urgency:
     """freedesktop.org notification urgency levels"""
@@ -92,7 +90,7 @@ class Notification(object):
     timeout = -1
     _onNotificationClosed = lambda *args: None
 
-    def __init__(self, title, body='', icon='', timeout=-1, tag=''):
+    def __init__(self, title, body='', icon='', timeout=-1, _qWebEngineNotification = None):
         """Initializes a new notification object.
 
         Args:
@@ -109,8 +107,7 @@ class Notification(object):
         self.hints = {}                 # dict of various display hints
         self.actions = OrderedDict()    # actions names and their callbacks
         self.data = {}                  # arbitrary user data
-        # this property holds the tag of the notification message.
-        self.tag = tag
+        self._qWebEngineNotification = _qWebEngineNotification
 
     def show(self):
         if DBUS_IFACE is None:
@@ -128,15 +125,14 @@ class Notification(object):
                                 self.timeout,
                                 )
 
+
+        #  if the two notifications belong to the same message chain. This means one is a replacement or an update of the other.
+        for x in NOTIFICATIONS:
+            if self._qWebEngineNotification.matches(NOTIFICATIONS[x]._qWebEngineNotification):
+                NOTIFICATIONS[x].close() # Closes previous notification 
+            
         self.id = int(nid)
         NOTIFICATIONS[self.id] = self
-
-        # The previous notification reaches, if existing
-        if self.tag in TAGS:
-            old_id = TAGS[self.tag]
-            NOTIFICATIONS[old_id].close()
-
-        TAGS[self.tag] = self.id
 
         return True
 
