@@ -10,6 +10,7 @@ zapzap/view/advanced_page.py
 zapzap/view/general_page.py
 zapzap/view/notifications_page.py
 zapzap/view/personalization_page.py
+zapzap/view/donations_page.py
 zapzap/view/home.py
 zapzap/view/network_page.py
 zapzap/controllers/main_window_components/tray_icon.py

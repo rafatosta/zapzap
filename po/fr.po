@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-15 08:42-0300\n"
+"POT-Creation-Date: 2024-05-16 15:41-0300\n"
 "PO-Revision-Date: 2023-12-30 18:18+0100\n"
 "Last-Translator: Irénée THIRION <irenee.thirion@e.email>\n"
 "Language-Team: French <gnomefr@traduc.org>\n"
@@ -104,7 +104,7 @@ msgstr "Personnalisation"
 msgid "Advanced"
 msgstr "Avancé"
 
-#: zapzap/view/settings.py:179
+#: zapzap/view/settings.py:179 zapzap/view/donations_page.py:76
 msgid "Donations"
 msgstr "Faire un don"
 
@@ -310,6 +310,10 @@ msgstr "Thème de l’application"
 #: zapzap/view/personalization_page.py:84
 msgid "Tray icon"
 msgstr "Icône de la barre des tâches"
+
+#: zapzap/view/donations_page.py:77
+msgid "Help buy a laptop for Dev"
+msgstr ""
 
 #: zapzap/view/home.py:93
 msgid "New chat at phone number"

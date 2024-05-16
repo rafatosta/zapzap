@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-15 08:42-0300\n"
+"POT-Creation-Date: 2024-05-16 15:41-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,7 +102,7 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: zapzap/view/settings.py:179
+#: zapzap/view/settings.py:179 zapzap/view/donations_page.py:76
 msgid "Donations"
 msgstr ""
 
@@ -304,6 +304,10 @@ msgstr ""
 
 #: zapzap/view/personalization_page.py:84
 msgid "Tray icon"
+msgstr ""
+
+#: zapzap/view/donations_page.py:77
+msgid "Help buy a laptop for Dev"
 msgstr ""
 
 #: zapzap/view/home.py:93
