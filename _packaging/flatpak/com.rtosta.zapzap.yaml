@@ -45,4 +45,4 @@ modules:
     sources:
       - type: git
         url: https://github.com/rafatosta/zapzap.git
-        tag: 5.3.3.1
+        tag: 5.3.4
