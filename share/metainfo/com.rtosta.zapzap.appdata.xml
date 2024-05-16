@@ -7,8 +7,8 @@
   <summary>WhatsApp Messenger</summary>
 
   <branding>
-    <color type="primary" scheme_preference="light">#ebebeb</color>
-    <color type="primary" scheme_preference="dark">#323232</color>
+    <color type="primary" scheme_preference="light">#F0F2F5</color>
+    <color type="primary" scheme_preference="dark">#202C33</color>
   </branding>
 
   <update_contact>rafa.ecomp@gmail.com</update_contact>
@@ -39,7 +39,7 @@
 
   <url type="homepage">https://rtosta.com/zapzap-web/</url>
   <url type="bugtracker">https://github.com/rafatosta/zapzap/issues</url>
-  <url type="donation">https://github.com/rafatosta/zapzap?tab=readme-ov-file#donations</url>
+  <url type="donation">https://rtosta.com/zapzap-web/#donate</url>
 
   <screenshots>
     <screenshot type="default">
