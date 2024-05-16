@@ -32,6 +32,7 @@ class Settings(QWidget, Ui_Settings):
 
     # avanced
     emitHideSettingsBar = pyqtSignal()
+    emiHideNotificationCounter = pyqtSignal()
 
     # Quit
     emitQuit = pyqtSignal()
@@ -87,6 +88,7 @@ class Settings(QWidget, Ui_Settings):
         # Avanced mode
         self.avanced_page = Advanced()
         self.avanced_page.emitHideSettingsBar = self.emitHideSettingsBar
+        self.avanced_page.emiHideNotificationCounter = self.emiHideNotificationCounter
         self.pages_id['btn_advanced'] = self.settings_stacked.addWidget(
             self.avanced_page)
 

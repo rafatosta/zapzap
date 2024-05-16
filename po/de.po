@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-16 15:41-0300\n"
+"POT-Creation-Date: 2024-05-16 16:29-0300\n"
 "PO-Revision-Date: 2024-01-13 22:44+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -98,7 +98,7 @@ msgstr ""
 msgid "Personalization"
 msgstr "Personalisierung"
 
-#: zapzap/view/settings.py:178 zapzap/view/advanced_page.py:85
+#: zapzap/view/settings.py:178 zapzap/view/advanced_page.py:93
 msgid "Advanced"
 msgstr "Fortgeschritten"
 
@@ -212,42 +212,48 @@ msgstr "Neuer Account"
 msgid "Creates a new panel for access to WhatsApp."
 msgstr "Erzeugt ein neues Panel für den Zugriff auf WhatsApp."
 
-#: zapzap/view/advanced_page.py:86
+#: zapzap/view/advanced_page.py:94
 msgid "Hide setting bar with only one user"
 msgstr "Einstellungsleiste bei nur einem Benutzer ausblenden"
 
-#: zapzap/view/advanced_page.py:87 zapzap/view/advanced_page.py:94
+#: zapzap/view/advanced_page.py:95 zapzap/view/advanced_page.py:100
 #: zapzap/view/general_page.py:168 zapzap/view/general_page.py:173
 #: zapzap/view/network_page.py:138
 msgid "Off"
 msgstr "Aus"
 
-#: zapzap/view/advanced_page.py:88
+#: zapzap/view/advanced_page.py:96
 msgid "To access the settings use the menu in the tray or the shortcut Ctrl+P"
 msgstr ""
 "Um auf die Einstellungen zuzugreifen, das Menü in der Taskleiste oder die "
 "Tastenkombination Strg+P verwenden"
 
-#: zapzap/view/advanced_page.py:89
-msgid "Donation message"
-msgstr "Nachricht über die Spende"
-
-#: zapzap/view/advanced_page.py:90 zapzap/view/advanced_page.py:91
-#: zapzap/view/general_page.py:171 zapzap/view/general_page.py:175
-#: zapzap/view/notifications_page.py:104 zapzap/view/notifications_page.py:109
-#: zapzap/view/notifications_page.py:110 zapzap/view/notifications_page.py:111
-#: zapzap/view/notifications_page.py:112 zapzap/view/personalization_page.py:83
+#: zapzap/view/advanced_page.py:97 zapzap/view/advanced_page.py:101
+#: zapzap/view/advanced_page.py:104 zapzap/view/general_page.py:171
+#: zapzap/view/general_page.py:175 zapzap/view/notifications_page.py:104
+#: zapzap/view/notifications_page.py:109 zapzap/view/notifications_page.py:110
+#: zapzap/view/notifications_page.py:111 zapzap/view/notifications_page.py:112
+#: zapzap/view/personalization_page.py:83
 msgid "On"
 msgstr "An"
 
-#: zapzap/view/advanced_page.py:92
+#: zapzap/view/advanced_page.py:98
 msgid "Message Started in the background"
 msgstr ""
 
-#: zapzap/view/advanced_page.py:93
-#: zapzap/controllers/settings_pages/advanced.py:37
+#: zapzap/view/advanced_page.py:99
+msgid "Donation message"
+msgstr "Nachricht über die Spende"
+
+#: zapzap/view/advanced_page.py:102
+#: zapzap/controllers/settings_pages/advanced.py:40
 msgid "Standard folder ~/Downloads/ZapZap Downloads"
 msgstr ""
+
+#: zapzap/view/advanced_page.py:103
+#, fuzzy
+msgid "Notification counter in tray"
+msgstr "Benachrichtigungen auf dem Desktop"
 
 #: zapzap/view/general_page.py:167
 msgid "Start ZapZap with the system"
@@ -418,7 +424,7 @@ msgstr ""
 msgid "Proxying for FTP requests only"
 msgstr ""
 
-#: zapzap/controllers/settings_pages/advanced.py:34
+#: zapzap/controllers/settings_pages/advanced.py:37
 msgid "Standard folder ~/Downloads"
 msgstr ""
 

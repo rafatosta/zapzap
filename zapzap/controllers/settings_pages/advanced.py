@@ -9,6 +9,7 @@ import zapzap
 class Advanced(QWidget, Ui_Advanced):
 
     emitHideSettingsBar = pyqtSignal()
+    emiHideNotificationCounter = pyqtSignal()
 
     def __init__(self):
         super(Advanced, self).__init__()
@@ -27,6 +28,8 @@ class Advanced(QWidget, Ui_Advanced):
             "system/background_message", True, bool))
         self.folderDownloads.setChecked(self.settings.value(
             "system/folderDownloads", False, bool))
+        self.notificationCounter.setChecked(self.settings.value(
+            "system/notificationCounter", True, bool))
 
     def setLabelFolderDownloads(self):
         if (self.settings.value(
@@ -45,6 +48,8 @@ class Advanced(QWidget, Ui_Advanced):
                                self.backgroundMessage.isChecked())
         self.settings.setValue("system/folderDownloads",
                                self.folderDownloads.isChecked())
+        self.settings.setValue("system/notificationCounter",
+                               self.notificationCounter.isChecked())
         
         self.setLabelFolderDownloads()
 
@@ -62,3 +67,5 @@ class Advanced(QWidget, Ui_Advanced):
         childrenName = children.objectName()
         if childrenName == 'hideBarUsers':
             self.emitHideSettingsBar.emit()
+        elif childrenName =='notificationCounter':
+            self.emiHideNotificationCounter.emit()

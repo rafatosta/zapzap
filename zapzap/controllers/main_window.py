@@ -35,6 +35,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.zapHome.emitUpdateTheme.connect(self.setThemeApp)
         self.zapHome.emitDisableTrayIcon.connect(self.tray.setVisible)
         self.zapHome.emitNotifications.connect(self.emitNotifications)
+        self.zapHome.emiHideNotificationCounter.connect(self.emitNotifications)
         self.zapHome.emitQuit.connect(lambda x=None: self.closeEvent(x))
         self.zapHome.emitNewChatAtNumber.connect(self.openNewChatAtNumber)
 
@@ -169,6 +170,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.setWindowTitle(zapzap.__appname__+" ("+str(qtd)+")")
         else:
             self.setWindowTitle(zapzap.__appname__)
+
+        if not self.settings.value(
+            "system/notificationCounter", True, bool):
+            qtd = 0
 
         self.tray.showIconNotification(qtd)
 

@@ -24,6 +24,9 @@ class Home(QWidget, Ui_Home):
     emitDisableTrayIcon = pyqtSignal(bool)
     emitNotifications = pyqtSignal()
 
+    #Advanced
+    emiHideNotificationCounter = pyqtSignal()
+
     # Quit
     emitQuit = pyqtSignal()
 
@@ -50,6 +53,7 @@ class Home(QWidget, Ui_Home):
         self.emitNotifications = self.zapSettings.emitNotifications
         # Avanced
         self.zapSettings.emitHideSettingsBar.connect(self.activeSettingsBar)
+        self.emiHideNotificationCounter = self.zapSettings.emiHideNotificationCounter
         # Quit
         self.emitQuit = self.zapSettings.emitQuit
         self.zapSettings.emitCloseSettings.connect(self.openSettings)
