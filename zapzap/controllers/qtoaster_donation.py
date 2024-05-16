@@ -1,6 +1,8 @@
 
 from PyQt6.QtWidgets import QWidget
 from PyQt6 import QtCore, QtWidgets
+from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtCore import QUrl
 from zapzap.view.qtoaster_donation import Ui_QtoasterDonation
 from zapzap.theme.builder_icon import getImageQPixmap
 from gettext import gettext as _
@@ -45,7 +47,7 @@ class QtoasterDonation(QWidget, Ui_QtoasterDonation):
         # Donate Button
         def openDonation():
             self.close()
-            self.parent().openDonations()
+            QDesktopServices.openUrl(QUrl(zapzap.__donationPage__))
         self.donateButton.clicked.connect(openDonation)
 
     def eventFilter(self, source, event):

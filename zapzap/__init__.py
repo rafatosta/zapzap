@@ -18,6 +18,8 @@ __kofi__ = 'https://ko-fi.com/rafaeltosta'
 __githubSponor__ = 'https://github.com/sponsors/rafatosta'
 __licence__ = 'GNU General Public License v3.0'
 
+__donationPage__ = 'https://rtosta.com/zapzap-web/#donate'
+
 __ddiHelper__ = 'https://www.ddi-ddd.com.br/Codigos-Telefone-Internacional/'
 
 __whatsapp_url__ = 'https://web.whatsapp.com/'

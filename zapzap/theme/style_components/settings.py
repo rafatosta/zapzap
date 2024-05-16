@@ -81,6 +81,7 @@ CloseButton = """
 
 Buttons = """
         #btnOpenSWhatsapp,
+        #btn_webpage,
         #btnNewUser,
         #btnReportIssue,
         #btnLeanMore,
@@ -95,6 +96,7 @@ Buttons = """
         }
 
         #btnOpenSWhatsapp:hover,
+        #btn_webpage:hover,
         #btnNewUser:hover,
         #btnReportIssue:hover,
         #btnLeanMore:hover,
