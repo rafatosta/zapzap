@@ -122,3 +122,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# AppImage
+*.AppImage
+*.tar.gz
