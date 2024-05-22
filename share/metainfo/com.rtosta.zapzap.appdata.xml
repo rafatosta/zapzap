@@ -20,19 +20,19 @@
 
   <description>
     <p>What's:</p>
-    <p>Zapzap is a container for execution of the web web, that is, a kind of Webapp.Thus, all
-      features of the Whatpp Web are available and several others that integrates it with the
+    <p>Zapzap is a container for execution of the web web, that is, a kind of Webapp. Thus, all
+      features of WhatsApp Web are available in addition to several others that integrates ZapZap with the
       system.</p>
-    <p>Its differential is the support to multiple accounts, in the background running, spellchecker
+    <p>Its differential is the support for multiple accounts, running in the background, a spellchecker
       and customizations based on the theme of the system.</p>
 
     <p>Data security:</p>
-    <p>No modification and manipulation is performed on the execution of the Whatpp Web. In
-      addition, all source code is available in Github and can be auditable.</p>
+    <p>No modification and manipulation is performed on the execution of WhatsApp Web. In
+      addition, all source code is available in GitHub and is auditable.</p>
 
     <p>About:</p>
-    <p>ZapZap was initially developed for personal use.I decided to share it so that other people,
-      like me, could have a WhatsApp customer more integrated into the system.</p>
+    <p>ZapZap was initially developed for personal use. I decided to share it so that other people,
+      like me, could have a WhatsApp client more integrated into the system.</p>
   </description>
 
   <categories>
