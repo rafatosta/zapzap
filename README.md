@@ -1,10 +1,10 @@
-# [ZapZap](https://rtosta.com/zapzap-web/) - Whatsapp Desktop for Linux 
+# [ZapZap](https://rtosta.com/zapzap-web/) - WhatsApp Desktop for Linux 
 ![Zapzap for whatsapp](share/screenshot/default.png)
 
 # About
-This app aims to bring the WhatsApp experience on Linux closer to a native application.
+This app aims to bring the WhatsApp experience on Linux closer to that of a native application.
 
-Because Meta does not provide the public with an API to construct third-party applications around, so ZapZap is a [Progressive Web Application](https://en.wikipedia.org/wiki/Progressive_web_app).
+Since Meta does not provide the public with an API to construct third-party applications around, ZapZap is developed as a [Progressive Web Application](https://en.wikipedia.org/wiki/Progressive_web_app).
 
 # Download
 <p align="center">
@@ -18,7 +18,7 @@ Because Meta does not provide the public with an API to construct third-party ap
 </p>
 
 # Features
-Besides all the features that come with the WhatsApp web application, ZapZap provides:
+Besides all the features that come with WhatsApp Web by default, ZapZap provides:
 1. **Looks**
    - Adaptive light and dark mode
    - Fullscreen mode
