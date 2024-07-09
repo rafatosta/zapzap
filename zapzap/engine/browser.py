@@ -1,7 +1,7 @@
 import os
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineDownloadRequest, QWebEngineProfile, QWebEngineSettings, QWebEngineNotification
-from PyQt6.QtCore import Qt, QUrl, QStandardPaths, QSettings, QLocale, QUrl, QFileInfo
+from PyQt6.QtCore import Qt, QUrl, QStandardPaths, QSettings, QLocale, QUrl, QFileInfo, QTimer
 from PyQt6.QtGui import QPainter, QPainter, QImage, QBrush, QPen, QDesktopServices
 from PyQt6.QtWidgets import QFileDialog, QApplication
 import zapzap
@@ -64,6 +64,9 @@ class Browser(QWebEngineView):
         # Sinal para mudança de título
         self.titleChanged.connect(self.title_changed)
 
+        # Sinal para carregamento da página
+        self.loadFinished.connect(self.on_load_finished)
+
         self.list_ignore = ['Back', 'View page source', 'Save page',
                             'Forward', 'Open link in new tab', 'Save link',
                             'Open link in new window', 'Paste and match style', 'Reload', 'Copy image address']
@@ -105,16 +108,16 @@ class Browser(QWebEngineView):
                                    mode=cb.Mode.Clipboard)
                     a.triggered.connect(setClipboard)
 
-        menu.exec(event.globalPos()) 
+        menu.exec(event.globalPos())
 
-    def on_downloadRequested(self, download:QWebEngineDownloadRequest):
+    def on_downloadRequested(self, download: QWebEngineDownloadRequest):
         """ File Download """
         if (download.state() == QWebEngineDownloadRequest.DownloadState.DownloadRequested):
-            
+
             """Defines default directory for download"""
-            directory=QStandardPaths.writableLocation(
+            directory = QStandardPaths.writableLocation(
                 QStandardPaths.StandardLocation.DownloadLocation)
-            
+
             """ Opens Popup of choice """
             dialog = DownloadPopup()
             r = dialog.exec_()
@@ -134,7 +137,8 @@ class Browser(QWebEngineView):
                 def openFile(state):
                     """Opens file when the download is over"""
                     if state == QWebEngineDownloadRequest.DownloadState.DownloadCompleted:
-                        file = os.path.join(directory, download.downloadFileName())
+                        file = os.path.join(
+                            directory, download.downloadFileName())
                         QDesktopServices.openUrl(QUrl.fromLocalFile(file))
 
                 # This signal is emitted whenever the download's state changes.
@@ -146,9 +150,10 @@ class Browser(QWebEngineView):
                 file_name = download.downloadFileName()  # download.path()
                 suffix = QFileInfo(file_name).suffix()
                 path, _ = QFileDialog.getSaveFileName(
-                    self, "Save File", os.path.join(directory,file_name), "*." + suffix
+                    self, "Save File", os.path.join(
+                        directory, file_name), "*." + suffix
                 )
-                if path:   
+                if path:
                     download.setDownloadFileName(os.path.basename(path))
                     download.setDownloadDirectory(os.path.dirname(path))
                     download.accept()
@@ -176,6 +181,14 @@ class Browser(QWebEngineView):
 
         self.parent.showIconNotification(qtd)
 
+    def on_load_finished(self, success):
+        if not success:
+            print("You are not connected to the Internet.")
+            self.timer = QTimer(self)
+            self.timer.timeout.connect(self.doReload)
+            self.timer.setSingleShot(True)
+            self.timer.start(5000)  # 5000 ms = 5 seconds
+
     def show_notification(self, notification: QWebEngineNotification):
         """
         Create a notification through the DBus.Notification for the system.
@@ -194,7 +207,7 @@ class Browser(QWebEngineView):
                 n = dbus.Notification(title,
                                       message,
                                       timeout=3000,
-                                      _qWebEngineNotification = notification
+                                      _qWebEngineNotification=notification
                                       )
                 n.setUrgency(dbus.Urgency.NORMAL)
                 n.setCategory("im.received")
