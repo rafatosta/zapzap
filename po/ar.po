@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-16 16:29-0300\n"
+"POT-Creation-Date: 2024-07-10 16:10-0300\n"
 "PO-Revision-Date: 2022-07-22 15:18+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -81,7 +81,7 @@ msgstr ""
 msgid "Ctrl+W"
 msgstr "Ctrl+P"
 
-#: zapzap/view/settings.py:173 zapzap/view/general_page.py:166
+#: zapzap/view/settings.py:173 zapzap/view/general_page.py:173
 msgid "General"
 msgstr ""
 
@@ -225,8 +225,8 @@ msgid "Hide setting bar with only one user"
 msgstr ""
 
 #: zapzap/view/advanced_page.py:95 zapzap/view/advanced_page.py:100
-#: zapzap/view/general_page.py:168 zapzap/view/general_page.py:173
-#: zapzap/view/network_page.py:138
+#: zapzap/view/general_page.py:175 zapzap/view/general_page.py:180
+#: zapzap/view/general_page.py:182 zapzap/view/network_page.py:138
 msgid "Off"
 msgstr ""
 
@@ -235,8 +235,8 @@ msgid "To access the settings use the menu in the tray or the shortcut Ctrl+P"
 msgstr ""
 
 #: zapzap/view/advanced_page.py:97 zapzap/view/advanced_page.py:101
-#: zapzap/view/advanced_page.py:104 zapzap/view/general_page.py:171
-#: zapzap/view/general_page.py:175 zapzap/view/notifications_page.py:104
+#: zapzap/view/advanced_page.py:104 zapzap/view/general_page.py:178
+#: zapzap/view/general_page.py:184 zapzap/view/notifications_page.py:104
 #: zapzap/view/notifications_page.py:109 zapzap/view/notifications_page.py:110
 #: zapzap/view/notifications_page.py:111 zapzap/view/notifications_page.py:112
 #: zapzap/view/personalization_page.py:83
@@ -262,31 +262,35 @@ msgstr ""
 msgid "Notification counter in tray"
 msgstr "الإشعارات المنبثقة"
 
-#: zapzap/view/general_page.py:167
+#: zapzap/view/general_page.py:174
 msgid "Start ZapZap with the system"
 msgstr "تشغيل ZapZap  مع بدء النظام"
 
-#: zapzap/view/general_page.py:169
+#: zapzap/view/general_page.py:176
 msgid "Login"
 msgstr ""
 
-#: zapzap/view/general_page.py:170
+#: zapzap/view/general_page.py:177
 msgid "Hide on close"
 msgstr "إخفاء عند الإغلاق"
 
-#: zapzap/view/general_page.py:172
+#: zapzap/view/general_page.py:179
+msgid "Start minimized"
+msgstr "تشغيل مع التصغير"
+
+#: zapzap/view/general_page.py:181
 msgid "Wayland window system"
 msgstr ""
 
-#: zapzap/view/general_page.py:174
+#: zapzap/view/general_page.py:183
 msgid "SpellChecker"
 msgstr ""
 
-#: zapzap/view/general_page.py:176
+#: zapzap/view/general_page.py:185
 msgid "Whatsapp Web Settings"
 msgstr ""
 
-#: zapzap/view/general_page.py:177
+#: zapzap/view/general_page.py:186
 msgid "Open the WhatsApp Web Settings panel on the selected account."
 msgstr ""
 
@@ -435,39 +439,39 @@ msgstr ""
 msgid "Standard folder ~/Downloads"
 msgstr ""
 
-#: zapzap/engine/browser.py:71
+#: zapzap/engine/browser.py:74
 msgid "Undo"
 msgstr "تراجع"
 
-#: zapzap/engine/browser.py:72
+#: zapzap/engine/browser.py:75
 msgid "Redo"
 msgstr "تراجع عن التراجع"
 
-#: zapzap/engine/browser.py:73
+#: zapzap/engine/browser.py:76
 msgid "Cut"
 msgstr "قص"
 
-#: zapzap/engine/browser.py:74
+#: zapzap/engine/browser.py:77
 msgid "Copy"
 msgstr "نسخ"
 
-#: zapzap/engine/browser.py:75
+#: zapzap/engine/browser.py:78
 msgid "Paste"
 msgstr "لسق"
 
-#: zapzap/engine/browser.py:76
+#: zapzap/engine/browser.py:79
 msgid "Select all"
 msgstr "تحديد الكل"
 
-#: zapzap/engine/browser.py:77
+#: zapzap/engine/browser.py:80
 msgid "Save image"
 msgstr ""
 
-#: zapzap/engine/browser.py:78
+#: zapzap/engine/browser.py:81
 msgid "Copy image"
 msgstr ""
 
-#: zapzap/engine/browser.py:79
+#: zapzap/engine/browser.py:82
 msgid "Copy link address"
 msgstr ""
 
@@ -1063,9 +1067,6 @@ msgstr ""
 #~ msgid "An unofficial WhatsApp desktop application"
 #~ msgstr ""
 #~ "تطبيق WhatsApp لسطح المكتب  غير رسمي مكتوب بلغة Pyqt6 + PyQt6-WebEngine."
-
-#~ msgid "Start minimized"
-#~ msgstr "تشغيل مع التصغير"
 
 #~ msgid "Ctrl+Q"
 #~ msgstr "Ctrl+Q"

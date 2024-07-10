@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-16 16:29-0300\n"
+"POT-Creation-Date: 2024-07-10 16:10-0300\n"
 "PO-Revision-Date: 2022-07-22 10:44-0300\n"
 "Last-Translator: Rafael Tosta <rafa.ecomp@gmail.com>\n"
 "Language-Team: Português Brasileiro\n"
@@ -78,7 +78,7 @@ msgstr "Esconder"
 msgid "Ctrl+W"
 msgstr ""
 
-#: zapzap/view/settings.py:173 zapzap/view/general_page.py:166
+#: zapzap/view/settings.py:173 zapzap/view/general_page.py:173
 msgid "General"
 msgstr "Geral"
 
@@ -216,8 +216,8 @@ msgid "Hide setting bar with only one user"
 msgstr "Esconder barra de configurações com único usuário"
 
 #: zapzap/view/advanced_page.py:95 zapzap/view/advanced_page.py:100
-#: zapzap/view/general_page.py:168 zapzap/view/general_page.py:173
-#: zapzap/view/network_page.py:138
+#: zapzap/view/general_page.py:175 zapzap/view/general_page.py:180
+#: zapzap/view/general_page.py:182 zapzap/view/network_page.py:138
 msgid "Off"
 msgstr "Desativado"
 
@@ -227,8 +227,8 @@ msgstr ""
 "Para acessar as configurações, use o menu na bandeja ou o atalho Ctrl+P"
 
 #: zapzap/view/advanced_page.py:97 zapzap/view/advanced_page.py:101
-#: zapzap/view/advanced_page.py:104 zapzap/view/general_page.py:171
-#: zapzap/view/general_page.py:175 zapzap/view/notifications_page.py:104
+#: zapzap/view/advanced_page.py:104 zapzap/view/general_page.py:178
+#: zapzap/view/general_page.py:184 zapzap/view/notifications_page.py:104
 #: zapzap/view/notifications_page.py:109 zapzap/view/notifications_page.py:110
 #: zapzap/view/notifications_page.py:111 zapzap/view/notifications_page.py:112
 #: zapzap/view/personalization_page.py:83
@@ -252,31 +252,35 @@ msgstr "Pasta padrão ~/Downloads/ZapZap Downloads"
 msgid "Notification counter in tray"
 msgstr "Notificações no ícone de bandeja"
 
-#: zapzap/view/general_page.py:167
+#: zapzap/view/general_page.py:174
 msgid "Start ZapZap with the system"
 msgstr "Iniciar com o sistema"
 
-#: zapzap/view/general_page.py:169
+#: zapzap/view/general_page.py:176
 msgid "Login"
 msgstr "Conecte-se"
 
-#: zapzap/view/general_page.py:170
+#: zapzap/view/general_page.py:177
 msgid "Hide on close"
 msgstr "Esconder ao fechar"
 
-#: zapzap/view/general_page.py:172
+#: zapzap/view/general_page.py:179
+msgid "Start minimized"
+msgstr "Iniciar minimizado"
+
+#: zapzap/view/general_page.py:181
 msgid "Wayland window system"
 msgstr "Sistema de janelas Wayland"
 
-#: zapzap/view/general_page.py:174
+#: zapzap/view/general_page.py:183
 msgid "SpellChecker"
 msgstr "Corretor ortográfico"
 
-#: zapzap/view/general_page.py:176
+#: zapzap/view/general_page.py:185
 msgid "Whatsapp Web Settings"
 msgstr "Configurações do Whatsapp Web"
 
-#: zapzap/view/general_page.py:177
+#: zapzap/view/general_page.py:186
 msgid "Open the WhatsApp Web Settings panel on the selected account."
 msgstr ""
 "Abra o painel de configurações da web do WhatsApp na conta selecionada."
@@ -427,39 +431,39 @@ msgstr ""
 msgid "Standard folder ~/Downloads"
 msgstr "Pasta padrão ~/Downloads"
 
-#: zapzap/engine/browser.py:71
+#: zapzap/engine/browser.py:74
 msgid "Undo"
 msgstr "Desfazer"
 
-#: zapzap/engine/browser.py:72
+#: zapzap/engine/browser.py:75
 msgid "Redo"
 msgstr "Refazer"
 
-#: zapzap/engine/browser.py:73
+#: zapzap/engine/browser.py:76
 msgid "Cut"
 msgstr "Recortar"
 
-#: zapzap/engine/browser.py:74
+#: zapzap/engine/browser.py:77
 msgid "Copy"
 msgstr "Copiar"
 
-#: zapzap/engine/browser.py:75
+#: zapzap/engine/browser.py:78
 msgid "Paste"
 msgstr "Colar"
 
-#: zapzap/engine/browser.py:76
+#: zapzap/engine/browser.py:79
 msgid "Select all"
 msgstr "Selecionar tudo"
 
-#: zapzap/engine/browser.py:77
+#: zapzap/engine/browser.py:80
 msgid "Save image"
 msgstr "Salvar imagem"
 
-#: zapzap/engine/browser.py:78
+#: zapzap/engine/browser.py:81
 msgid "Copy image"
 msgstr "Copiar imagem"
 
-#: zapzap/engine/browser.py:79
+#: zapzap/engine/browser.py:82
 msgid "Copy link address"
 msgstr "Copie o endereço do link"
 
