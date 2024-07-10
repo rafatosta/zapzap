@@ -96,7 +96,11 @@ def main():
     # Checks the hidden start
     isStart_system = window.settings.value(
         "system/start_system", False, bool)
-    if isStart_system or '--hideStart' in sys.argv:
+    
+    isStart_background = window.settings.value(
+        "system/start_background", False, bool)
+
+    if isStart_system or isStart_background or '--hideStart' in sys.argv:
         window.hide()
         if window.settings.value(
         "system/background_message", True, bool):

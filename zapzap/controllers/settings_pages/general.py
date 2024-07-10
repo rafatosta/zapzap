@@ -87,6 +87,8 @@ class General(QWidget, Ui_General):
                                self.wayland.isChecked())
         self.settings.setValue("system/spellCheckers",
                                self.checkSpellChecker.isChecked())
+        self.settings.setValue("system/start_background",
+                               self.startBackground.isChecked())
 
     def load(self):
         self.start_system.setChecked(self.settings.value(
@@ -95,3 +97,5 @@ class General(QWidget, Ui_General):
             "system/keep_background", True, bool))  # keep_background
         self.wayland.setChecked(self.settings.value(
             "system/wayland", True, bool))  # wayland
+        self.startBackground.setChecked(self.settings.value(
+            "system/start_background", False, bool))  
