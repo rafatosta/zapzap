@@ -8,7 +8,7 @@
 
 Name:           %{srcname}
 Version:        %{srcversion}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Zapzap - WhatsApp Messenger for Linux
 
 License:        GNU General Public License v3.0
@@ -22,11 +22,22 @@ BuildRequires:  python3-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  python3-setuptools
 
+%if 0%{?fedora}
 BuildRequires:   python3-pyqt6
 Requires:   python3-pyqt6-base
 Requires:   python3-pyqt6-sip
 Requires:   python3-pyqt6-webengine
 Requires:   python3-dbus
+%endif
+
+%if 0%{?mageia}
+BuildRequires:  python3-qt6
+Requires:   python3-pyqt6-sip
+Requires:   python3-dbus
+Requires:   python3-qt6-webenginewidgets
+Requires:   python3-qt6
+%endif
+
 
 %description
 Zapzap - WhatsApp Messenger for Linux
