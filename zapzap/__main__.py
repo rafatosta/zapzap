@@ -2,8 +2,8 @@ import sys
 import zapzap
 from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.controllers.main_window import MainWindow
-from PyQt6.QtGui import QFont, QFontDatabase
-from PyQt6.QtCore import QSettings
+from PyQt6.QtGui import QFont, QFontDatabase, QDesktopServices
+from PyQt6.QtCore import QSettings, QUrl
 import gettext
 from zapzap.model.db import createDB
 from os import environ, getenv
@@ -93,17 +93,23 @@ def main():
     app.setActivationWindow(window)
     window.loadSettings()
 
+    # Open ZapZap page
+    if window.settings.value(
+            "website/open_page", True, bool):
+        QDesktopServices.openUrl(QUrl(zapzap.__website__))
+        window.settings.setValue("website/open_page", False)
+
     # Checks the hidden start
     isStart_system = window.settings.value(
         "system/start_system", False, bool)
-    
+
     isStart_background = window.settings.value(
         "system/start_background", False, bool)
 
     if isStart_system or isStart_background or '--hideStart' in sys.argv:
         window.hide()
         if window.settings.value(
-        "system/background_message", True, bool):
+                "system/background_message", True, bool):
             excBackgroundNotification()
     else:
         window.show()
