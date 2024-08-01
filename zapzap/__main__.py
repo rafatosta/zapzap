@@ -77,13 +77,6 @@ def main():
     # Apply Fusion style as default
     app.setStyle('Fusion')
 
-    # Load custom fonts into the app
-    QFontDatabase.addApplicationFont(zapzap.segoe_font['regular'])
-    QFontDatabase.addApplicationFont(zapzap.segoe_font['bold'])
-    QFontDatabase.addApplicationFont(zapzap.segoe_font['bold-italic'])
-    QFontDatabase.addApplicationFont(zapzap.segoe_font['italic'])
-    app.setFont(QFont("Segoe UI"))
-
     # Callback instance
     app.messageReceived.connect(lambda result: window.xdgOpenChat(result))
 

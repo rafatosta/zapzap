@@ -27,7 +27,6 @@ try:
                                  'assets/icons/banners/*.svg',
                                  'assets/icons/banners/*.png',
                                  'assets/icons/tray/*.svg',
-                                 'assets/segoe-ui/*.ttf',
                                  'po/*/LC_MESSAGES/*.mo']},
         setup_requires=setup_requires,
         entry_points={'gui_scripts': ['zapzap = zapzap.__main__:main']},

@@ -1,6 +1,6 @@
 QWIDGETS = """
 * {
- font-family: Segoe UI;
+ 
 }
 
 QLabel{
@@ -16,7 +16,7 @@ QToolTip {
     color: #F0F2F5;
     background-color: #202C33;
     padding:2px;
-    font-family: Segoe UI
+   
 }
 
 QLineEdit{
