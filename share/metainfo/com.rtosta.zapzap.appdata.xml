@@ -55,7 +55,12 @@
   </screenshots>
 
   <releases>
-  <release date="2024-07-12" version="5.3.6">
+    <release date="2024-08-02" version="5.3.7">
+      <description>
+        <p>UserAgent Update.</p>
+      </description>
+    </release>
+    <release date="2024-07-12" version="5.3.6">
       <description>
         <p>New: Reconnect to the internet when starting</p>
         <p>New: Open app in background</p>
