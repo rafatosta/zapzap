@@ -23,7 +23,8 @@ except:
     print("Could not import DBusGMainLoop, is package 'python-dbus.mainloop.glib' installed?")
 
 APP_NAME = ''
-DBUS_IFACE = None
+NO_NOTIFIER: bool = False
+DBUS_IFACE: dbus.Interface = None
 NOTIFICATIONS = {}
 
 class Urgency:
@@ -35,10 +36,13 @@ class UninitializedError(RuntimeError):
     """Error raised if you try to show an error before initializing"""
     pass
 
+class NotifierNotPresent(RuntimeError):
+    """Error raised when you try to show a notification when there is no notifier present"""
+    pass
 
 def init(app_name):
-    """Initializes the DBus connection"""
-    global APP_NAME, DBUS_IFACE
+    """Initializes the Session DBus connection"""
+    global APP_NAME, DBUS_IFACE, NO_NOTIFIER
     APP_NAME = app_name
 
     name = "org.freedesktop.Notifications"
@@ -49,16 +53,18 @@ def init(app_name):
     if DBusGMainLoop is not None:
         mainloop = DBusGMainLoop(set_as_default=True)
 
-    bus = dbus.SessionBus(mainloop)
-    proxy = bus.get_object(name, path)
-    DBUS_IFACE = dbus.Interface(proxy, interface)
+    try:
+        bus: dbus.SessionBus = dbus.SessionBus(mainloop)
+        proxy: dbus.proxies.ProxyObject = bus.get_object(name, path) # raises DBusException without notifier
+        DBUS_IFACE = dbus.Interface(proxy, interface)
 
-    if mainloop is not None:
+        if mainloop is not None:
         # We have a mainloop, so connect callbacks
-        DBUS_IFACE.connect_to_signal('ActionInvoked', _onActionInvoked)
-        DBUS_IFACE.connect_to_signal(
-            'NotificationClosed', _onNotificationClosed)
-
+            DBUS_IFACE.connect_to_signal('ActionInvoked', _onActionInvoked)
+            DBUS_IFACE.connect_to_signal('NotificationClosed', _onNotificationClosed)
+    except dbus.DBusException as e:
+        print(f"Error initializing DBus: {e}")
+        NO_NOTIFIER = True
 
 def _onActionInvoked(nid, action):
     """Called when a notification action is clicked"""
@@ -110,6 +116,10 @@ class Notification(object):
         self._qWebEngineNotification = _qWebEngineNotification
 
     def show(self):
+        if NO_NOTIFIER:
+            raise NotifierNotPresent(
+                "You are trying to call 'notify.show()' but no notifier could be found on your system")
+
         if DBUS_IFACE is None:
             raise UninitializedError(
                 "You must call 'notify.init()' before 'notify.show()'")
@@ -129,8 +139,8 @@ class Notification(object):
         #  if the two notifications belong to the same message chain. This means one is a replacement or an update of the other.
         for x in NOTIFICATIONS:
             if self._qWebEngineNotification.matches(NOTIFICATIONS[x]._qWebEngineNotification):
-                NOTIFICATIONS[x].close() # Closes previous notification 
-            
+                NOTIFICATIONS[x].close() # Closes previous notification
+
         self.id = int(nid)
         NOTIFICATIONS[self.id] = self
 

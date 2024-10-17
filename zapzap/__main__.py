@@ -103,7 +103,10 @@ def main():
         window.hide()
         if window.settings.value(
                 "system/background_message", True, bool):
-            excBackgroundNotification()
+            try:
+                excBackgroundNotification()
+            except RuntimeError as e:
+                print(f"{e}")
     else:
         window.show()
 
