@@ -8,7 +8,7 @@
 
 Name:           %{srcname}
 Version:        %{srcversion}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Zapzap - WhatsApp Messenger for Linux
 
 License:        GNU General Public License v3.0
