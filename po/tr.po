@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zapzap main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 16:10-0300\n"
+"POT-Creation-Date: 2024-10-26 10:58-0300\n"
 "PO-Revision-Date: 2022-09-06 22:04+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <gnometurk@gnome.org>\n"
@@ -104,7 +104,7 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: zapzap/view/settings.py:179 zapzap/view/donations_page.py:76
+#: zapzap/view/settings.py:179 zapzap/view/donations_page.py:72
 msgid "Donations"
 msgstr "Bağışlar"
 
@@ -325,10 +325,6 @@ msgstr ""
 #: zapzap/view/personalization_page.py:84
 msgid "Tray icon"
 msgstr "Sistem tepsisi simgesi"
-
-#: zapzap/view/donations_page.py:77
-msgid "Help buy a laptop for Dev"
-msgstr ""
 
 #: zapzap/view/home.py:93
 #, fuzzy

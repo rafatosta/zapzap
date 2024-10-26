@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 16:10-0300\n"
+"POT-Creation-Date: 2024-10-26 10:58-0300\n"
 "PO-Revision-Date: 2024-01-13 22:44+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -102,7 +102,7 @@ msgstr "Personalisierung"
 msgid "Advanced"
 msgstr "Fortgeschritten"
 
-#: zapzap/view/settings.py:179 zapzap/view/donations_page.py:76
+#: zapzap/view/settings.py:179 zapzap/view/donations_page.py:72
 msgid "Donations"
 msgstr "Spenden"
 
@@ -319,10 +319,6 @@ msgstr "Thema der Anwendung"
 #: zapzap/view/personalization_page.py:84
 msgid "Tray icon"
 msgstr "Traysymbole"
-
-#: zapzap/view/donations_page.py:77
-msgid "Help buy a laptop for Dev"
-msgstr ""
 
 #: zapzap/view/home.py:93
 msgid "New chat at phone number"

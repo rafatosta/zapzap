@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 16:10-0300\n"
+"POT-Creation-Date: 2024-10-26 10:58-0300\n"
 "PO-Revision-Date: 2022-07-22 10:44-0300\n"
 "Last-Translator: Rafael Tosta <rafa.ecomp@gmail.com>\n"
 "Language-Team: Português Brasileiro\n"
@@ -102,7 +102,7 @@ msgstr "Personalização"
 msgid "Advanced"
 msgstr "Avançado"
 
-#: zapzap/view/settings.py:179 zapzap/view/donations_page.py:76
+#: zapzap/view/settings.py:179 zapzap/view/donations_page.py:72
 msgid "Donations"
 msgstr "Doações"
 
@@ -316,10 +316,6 @@ msgstr "Tema do aplicativo"
 #: zapzap/view/personalization_page.py:84
 msgid "Tray icon"
 msgstr "Ícone de bandeja"
-
-#: zapzap/view/donations_page.py:77
-msgid "Help buy a laptop for Dev"
-msgstr "Ajude o Dev na aquisição de um notebook"
 
 #: zapzap/view/home.py:93
 msgid "New chat at phone number"
@@ -990,3 +986,6 @@ msgstr ""
 #: zapzap/__main__.py:20
 msgid "Started in the background"
 msgstr "Iniciado em segundo plano"
+
+#~ msgid "Help buy a laptop for Dev"
+#~ msgstr "Ajude o Dev na aquisição de um notebook"
