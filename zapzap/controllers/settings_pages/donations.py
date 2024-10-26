@@ -35,6 +35,3 @@ class Donations(QWidget, Ui_Donations):
         self.btn_gitSponor.setIconSize(QSize(150, 80))
         self.btn_gitSponor.clicked.connect(lambda: QDesktopServices.openUrl(
             QUrl(zapzap.__githubSponor__)))
-        
-        self.btn_webpage.clicked.connect(lambda: QDesktopServices.openUrl(
-            QUrl(zapzap.__donationPage__)))
