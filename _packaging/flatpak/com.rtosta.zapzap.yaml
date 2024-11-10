@@ -18,6 +18,7 @@ finish-args:
   - "--talk-name=org.kde.StatusNotifierWatcher"
   - "--env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess"
   - "--env=QT_SCALE_FACTOR_ROUNDING_POLICY=RoundPreferFloor"
+  - "--env=DRI_PRIME=0"
 
 cleanup:
   - /include
