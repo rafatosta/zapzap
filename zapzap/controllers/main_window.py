@@ -79,7 +79,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             lambda: self.zapHome.setZoomFactor(+0.1))
         self.actionZoomOut.triggered.connect(
             lambda: self.zapHome.setZoomFactor(-0.1))
-        
 
         # Chat
         self.actionOpen_new_chat.triggered.connect(
@@ -167,12 +166,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         qtd = self.zapHome.getSizeNotifications()
 
         if qtd > 0:
-            self.setWindowTitle(zapzap.__appname__+" ("+str(qtd)+")")
+            self.setWindowTitle("("+str(qtd)+") " + zapzap.__appname__)
         else:
             self.setWindowTitle(zapzap.__appname__)
 
         if not self.settings.value(
-            "system/notificationCounter", True, bool):
+                "system/notificationCounter", True, bool):
             qtd = 0
 
         self.tray.showIconNotification(qtd)
