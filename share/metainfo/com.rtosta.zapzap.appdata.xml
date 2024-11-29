@@ -55,6 +55,12 @@
   </screenshots>
 
   <releases>
+    <release date="2024-11-29" version="5.3.9">
+      <description>
+        <p>Xwayland by default (Activate it manually via flatseal if you want Wayland).</p>
+        <p>UserAgent Update.</p>
+      </description>
+    </release>
     <release date="2024-08-02" version="5.3.7">
       <description>
         <p>UserAgent Update.</p>
