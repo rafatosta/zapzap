@@ -25,31 +25,7 @@ def excBackgroundNotification():
     n.setHint('desktop-entry', 'com.rtosta.zapzap')
     n.show()
 
-
-def runLocal():
-    qset = QSettings(zapzap.__appname__, zapzap.__appname__)
-
-    ZAP_SESSION_TYPE = 'wayland'
-    if not qset.value("system/wayland", True, bool):  # if False, X11
-        ZAP_SESSION_TYPE = 'xcb'
-
-    # Session Type
-    XDG_SESSION_TYPE = getenv('XDG_SESSION_TYPE')
-    if XDG_SESSION_TYPE == 'wayland':
-        environ['QT_QPA_PLATFORM'] = ZAP_SESSION_TYPE
-    elif XDG_SESSION_TYPE is None:
-        environ['QT_QPA_PLATFORM'] = ZAP_SESSION_TYPE
-
-    # Incorrect sizing and bad text rendering with WebEngine using fractional scaling on Wayland
-    environ['QT_SCALE_FACTOR_ROUNDING_POLICY'] = 'RoundPreferFloor'
-
-
 def main():
-
-    # When running outside Flatpak
-    if not zapzap.isFlatpak:
-        runLocal()
-
     # Local Debug (python -m zapzap --zapDebug)
     if '--zapDebug' in sys.argv:
         # Settings for Debug
@@ -59,6 +35,15 @@ def main():
         os.environ['QT_QPA_PLATFORM'] = 'xcb'
         os.environ['QTWEBENGINE_REMOTE_DEBUGGING'] = '12345'
         os.environ["QTWEBENGINE_DICTIONARIES_PATH"] = '/home/tosta/Documentos/GitHub/qtwebengine_dictionaries/'
+
+    # If Linux, use Wayland if available, even on NVidia this will
+    # produce a better result than XWayland
+    if sys.platform == "linux" or sys.platform == "linux2":
+        XDG_SESSION_TYPE = getenv('XDG_SESSION_TYPE')
+        if XDG_SESSION_TYPE == 'wayland':
+            os.environ['QT_QPA_PLATFORM'] = 'wayland'
+        else:
+            os.environ['QT_QPA_PLATFORM'] = 'xcb'
 
     # Create Database
     createDB()
