@@ -1,4 +1,5 @@
 import sys
+import os
 import zapzap
 from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.controllers.main_window import MainWindow
@@ -28,8 +29,6 @@ def excBackgroundNotification():
 def main():
     # Local Debug (python -m zapzap --zapDebug)
     if '--zapDebug' in sys.argv:
-        # Settings for Debug
-        import os
         os.environ['XCURSOR_SIZE'] = '24'
         os.environ['XCURSOR_THEME'] = 'Fluent-cursor'
         os.environ['QT_QPA_PLATFORM'] = 'xcb'
