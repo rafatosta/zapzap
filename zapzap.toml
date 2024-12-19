@@ -7,6 +7,11 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.9"
+PyQt6 = "*"
+PyQt6-WebEngine = "*"
+dbus-python = "*"
+python-gettext = "*"
+
 
 [tool.poetry.scripts]
 dev = "run:dev"
