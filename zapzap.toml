@@ -3,7 +3,7 @@ name = "zapzap"
 version = "0.1.0"
 description = "Python app with dev, preview, and build modes"
 authors = ["Rafael Tosta <rafa.ecomp@gmail.com>"]
-license = "MIT"
+license = "GPL"
 
 [tool.poetry.dependencies]
 python = "^3.9"
