@@ -87,7 +87,7 @@ Contribuições são bem-vindas! Por favor, envie um pull request com as altera�
 
 ## Licença
 
-Este projeto está licenciado sob a licença MIT. Consulte o arquivo LICENSE para mais informações.
+Este projeto está licenciado sob a licença GPL. Consulte o arquivo LICENSE para mais informações.
 
 ## Contact
 **Maintainer:** Rafael Tosta<br/>
