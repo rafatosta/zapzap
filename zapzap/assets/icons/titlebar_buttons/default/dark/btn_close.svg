@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
-  <ellipse style="fill: rgb(54, 56, 77);" cx="14" cy="14" rx="11.5" ry="11.5"/>
-  <path d="M 10.795 9.912 L 9.912 10.795 L 10.059 10.941 L 13.117 14 L 10.06 17.059 L 9.913 17.205 L 10.796 18.088 L 10.942 17.941 L 14 14.883 L 17.059 17.941 L 17.205 18.088 L 18.088 17.205 L 17.941 17.059 L 14.883 14 L 17.941 10.941 L 18.088 10.795 L 17.205 9.912 L 17.059 10.059 L 14 13.117 L 10.941 10.06 L 10.795 9.912 Z" fill-rule="evenodd" font-family="sans-serif" font-weight="400" overflow="visible" style="font-feature-settings: normal; font-variant-caps: normal; font-variant-ligatures: normal; font-variant-numeric: normal; isolation: auto; mix-blend-mode: normal; text-decoration-color: rgb(0, 0, 0); text-decoration-line: none; text-decoration-style: solid; text-indent: 0px; text-orientation: mixed; text-transform: none; fill: rgb(240, 242, 245);" white-space="normal"/>
-</svg>
