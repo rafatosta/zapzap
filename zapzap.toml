@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "zapzap"
+version = "0.1.0"
+description = "Python app with dev, preview, and build modes"
+authors = ["Rafael Tosta <rafa.ecomp@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.scripts]
+dev = "run:dev"
+preview = "run:preview"
+build = "run:build"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
