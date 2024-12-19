@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Muhammed Šehić <sehicmuhammed7@gmail.com>, 2024.
 #
 #, fuzzy
 msgid ""
@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-03 10:19-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Muhammed Šehić <sehicmuhammed7@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language:bs \n"
 "MIME-Version: 1.0\n"
@@ -22,57 +22,57 @@ msgstr ""
 #: zapzap/controllers/main_window_components/tray_icon.py:19
 #: zapzap/__main__.py:19
 msgid "ZapZap"
-msgstr ""
+msgstr "ZapZap"
 
 #: zapzap/view/main_window.py:79
 msgid "File"
-msgstr ""
+msgstr "Datoteka"
 
 #: zapzap/view/main_window.py:80
 msgid "View"
-msgstr ""
+msgstr "Pogledaj"
 
 #: zapzap/view/main_window.py:81
 msgid "Chat"
-msgstr ""
+msgstr "Razgovor"
 
 #: zapzap/view/main_window.py:82 zapzap/view/home.py:95
 #: zapzap/controllers/main_window_components/tray_icon.py:22
 msgid "Settings"
-msgstr ""
+msgstr "Postavke"
 
 #: zapzap/view/main_window.py:83 zapzap/view/settings.py:181
 #: zapzap/controllers/main_window_components/tray_icon.py:25
 msgid "Quit"
-msgstr ""
+msgstr "Napusti"
 
 #: zapzap/view/main_window.py:84
 msgid "Reload"
-msgstr ""
+msgstr "Ponovo učitaj"
 
 #: zapzap/view/main_window.py:85
 msgid "Default size page"
-msgstr ""
+msgstr "Podrazumijevana veličina stranice"
 
 #: zapzap/view/main_window.py:86
 msgid "Full Screen"
-msgstr ""
+msgstr "Cijeli ekran"
 
 #: zapzap/view/main_window.py:87
 msgid "Zoom in"
-msgstr ""
+msgstr "Povećaj"
 
 #: zapzap/view/main_window.py:88
 msgid "Zoom out"
-msgstr ""
+msgstr "Smanji"
 
 #: zapzap/view/main_window.py:89
 msgid "Open new chat"
-msgstr ""
+msgstr "Otvori novi razgovor"
 
 #: zapzap/view/main_window.py:90
 msgid "Hide"
-msgstr ""
+msgstr "Sakrij"
 
 #: zapzap/view/main_window.py:91
 msgid "Ctrl+W"
@@ -80,95 +80,95 @@ msgstr ""
 
 #: zapzap/view/settings.py:173 zapzap/view/general_page.py:173
 msgid "General"
-msgstr ""
+msgstr "Općenito"
 
 #: zapzap/view/settings.py:174 zapzap/view/account_page.py:75
 msgid "Account"
-msgstr ""
+msgstr "Račun"
 
 #: zapzap/view/settings.py:175 zapzap/view/notifications_page.py:102
 msgid "Notifications"
-msgstr ""
+msgstr "Obavijesti"
 
 #: zapzap/view/settings.py:176 zapzap/view/network_page.py:136
 msgid "Network"
-msgstr ""
+msgstr "Mreža"
 
 #: zapzap/view/settings.py:177 zapzap/view/personalization_page.py:80
 msgid "Personalization"
-msgstr ""
+msgstr "Prilagođavanje"
 
 #: zapzap/view/settings.py:178 zapzap/view/advanced_page.py:93
 msgid "Advanced"
-msgstr ""
+msgstr "Napredno"
 
 #: zapzap/view/settings.py:179 zapzap/view/donations_page.py:72
 msgid "Donations"
-msgstr ""
+msgstr "Donacije"
 
 #: zapzap/view/settings.py:180 zapzap/view/about_page.py:134
 msgid "About"
-msgstr ""
+msgstr "O aplikaciji"
 
 #: zapzap/view/card_user.py:87
 msgid "Enter the user name"
-msgstr ""
+msgstr "Unesite korisničko ime"
 
 #: zapzap/view/card_user.py:88
 msgid "Shortcut:"
-msgstr ""
+msgstr "Prečica"
 
 #: zapzap/view/card_user.py:89
 msgid "Disable account"
-msgstr ""
+msgstr "Deaktiviraj račun"
 
 #: zapzap/view/card_user.py:90
 msgid "Show notifications"
-msgstr ""
+msgstr "Pokaži obavijesti"
 
 #: zapzap/view/card_user.py:91
 msgid "Delete account"
-msgstr ""
+msgstr "Izbriši račun"
 
 #: zapzap/view/downloadPopup.py:69
 msgid "What do you want to do with the file?"
-msgstr ""
+msgstr "Šta želite da uradite sa datotekom?"
 
 #: zapzap/view/downloadPopup.py:70 zapzap/view/openChatPopup.py:86
 msgid "Open"
-msgstr ""
+msgstr "Otvori"
 
 #: zapzap/view/downloadPopup.py:71
 msgid "Save as"
-msgstr ""
+msgstr "Sačuvaj kao"
 
 #: zapzap/view/openChatPopup.py:81
 msgid "Open chat by phone number"
-msgstr ""
+msgstr "Otvorite razgovor putem broja telefona"
 
 #: zapzap/view/openChatPopup.py:82
 msgid "Enter phone number:"
-msgstr ""
+msgstr "Unesite broj telefona:"
 
 #: zapzap/view/openChatPopup.py:83
 msgid "See here the code of your country"
-msgstr ""
+msgstr "Ovdje možete vidjeti šifru vaše zemlje"
 
 #: zapzap/view/openChatPopup.py:84
 msgid "(COUNTY CODE + AREA CODE + PHONE NUMER)"
-msgstr ""
+msgstr "(ŠIFRA ZEMLJE + POŠTANSKI BROJ + TELEFONSKI BROJ)"
 
 #: zapzap/view/openChatPopup.py:85
 msgid "Cancel"
-msgstr ""
+msgstr "Prekini"
 
 #: zapzap/view/qtoaster_donation.py:122
 msgid "Welcome to"
-msgstr ""
+msgstr "Dobro došli na"
 
 #: zapzap/view/qtoaster_donation.py:124
 msgid "Make a donation"
-msgstr ""
+msgstr "Učinite donaciju"
 
 #: zapzap/view/qtoaster_donation.py:125
 msgid "..."
@@ -176,54 +176,54 @@ msgstr ""
 
 #: zapzap/view/about_page.py:136
 msgid "WhatsApp Web for Linux"
-msgstr ""
+msgstr "WhatsApp Web za Linux"
 
 #: zapzap/view/about_page.py:137
 #, python-brace-format
 msgid "Version {id} (Official compilation)"
-msgstr ""
+msgstr "Verzija {id} (Zvanična kompilacija)"
 
 #: zapzap/view/about_page.py:138 zapzap/view/about_page.py:140
 msgid "Learn more"
-msgstr ""
+msgstr "Saznajte više"
 
 #: zapzap/view/about_page.py:139
 msgid "See more about Zapzap on our website."
-msgstr ""
+msgstr "Vidi više o ZapZap-u na našoj web stranici."
 
 #: zapzap/view/about_page.py:141 zapzap/view/about_page.py:143
 msgid "Report issue"
-msgstr ""
+msgstr "Prijavi problem"
 
 #: zapzap/view/about_page.py:142
 msgid "Report a problem or make your suggestion."
-msgstr ""
+msgstr "Prijavi problem ili napiši sugestiju"
 
 #: zapzap/view/about_page.py:144
 msgid "GNU General Public License v3.0"
-msgstr ""
+msgstr "GNU Opšta Javna Licenca v3.0"
 
 #: zapzap/view/account_page.py:76 zapzap/view/home.py:92
 msgid "New account"
-msgstr ""
+msgstr "Novi račun"
 
 #: zapzap/view/account_page.py:77
 msgid "Creates a new panel for access to WhatsApp."
-msgstr ""
+msgstr "Kreira novi panel za pristup WhatsApp-u."
 
 #: zapzap/view/advanced_page.py:94
 msgid "Hide setting bar with only one user"
-msgstr ""
+msgstr "Sakrij traku sa podešavanjima sa samo jednim korisnikom"
 
 #: zapzap/view/advanced_page.py:95 zapzap/view/advanced_page.py:100
 #: zapzap/view/general_page.py:175 zapzap/view/general_page.py:180
 #: zapzap/view/general_page.py:182 zapzap/view/network_page.py:138
 msgid "Off"
-msgstr ""
+msgstr "Isključeno"
 
 #: zapzap/view/advanced_page.py:96
 msgid "To access the settings use the menu in the tray or the shortcut Ctrl+P"
-msgstr ""
+msgstr "Za pristup podešavanjima koristite meni u sistemskoj traci ili prečicu Ctrl+P"
 
 #: zapzap/view/advanced_page.py:97 zapzap/view/advanced_page.py:101
 #: zapzap/view/advanced_page.py:104 zapzap/view/general_page.py:178
@@ -232,753 +232,756 @@ msgstr ""
 #: zapzap/view/notifications_page.py:111 zapzap/view/notifications_page.py:112
 #: zapzap/view/personalization_page.py:83
 msgid "On"
-msgstr ""
+msgstr "Uključeno"
 
 #: zapzap/view/advanced_page.py:98
 msgid "Message Started in the background"
-msgstr ""
+msgstr "Poruka je pokrenuta u pozadini"
 
 #: zapzap/view/advanced_page.py:99
 msgid "Donation message"
-msgstr ""
+msgstr "Poruka o donaciji"
 
 #: zapzap/view/advanced_page.py:102
 #: zapzap/controllers/settings_pages/advanced.py:40
 msgid "Standard folder ~/Downloads/ZapZap Downloads"
-msgstr ""
+msgstr "Standardni folder ~/Preuzimanja/ZapZap Preuzimanja"
 
 #: zapzap/view/advanced_page.py:103
 msgid "Notification counter in tray"
-msgstr ""
+msgstr "Brojač obavijesti u traci"
 
 #: zapzap/view/general_page.py:174
 msgid "Start ZapZap with the system"
-msgstr ""
+msgstr "Pokreni ZapZap sa sistemom"
 
 #: zapzap/view/general_page.py:176
 msgid "Login"
-msgstr ""
+msgstr "Prijava"
 
 #: zapzap/view/general_page.py:177
 msgid "Hide on close"
-msgstr ""
+msgstr "Sakrij na zatvaranju"
 
 #: zapzap/view/general_page.py:179
 msgid "Start minimized"
-msgstr ""
+msgstr "Pokreni minimizirano"
 
 #: zapzap/view/general_page.py:181
 msgid "Wayland window system"
-msgstr ""
+msgstr "Wayland sistem prozora"
 
 #: zapzap/view/general_page.py:183
 msgid "SpellChecker"
-msgstr ""
+msgstr "Provjera pravopisa"
 
 #: zapzap/view/general_page.py:185
 msgid "Whatsapp Web Settings"
-msgstr ""
-
+msgstr "Whatsapp Web Postavke"
 #: zapzap/view/general_page.py:186
 msgid "Open the WhatsApp Web Settings panel on the selected account."
-msgstr ""
+msgstr "Otvorite WhatsApp Web podešavanja za odabrani račun."
 
 #: zapzap/view/notifications_page.py:103
 msgid "Notifications on the desktop"
-msgstr ""
+msgstr "Obavijesti na radnoj površini"
 
 #: zapzap/view/notifications_page.py:105
 msgid "Show the photo of the sender"
-msgstr ""
+msgstr "Prikaži fotografiju pošiljaoca"
 
 #: zapzap/view/notifications_page.py:106
 msgid "Show the sender's name"
-msgstr ""
+msgstr "Prikaži ime pošiljaoca"
 
 #: zapzap/view/notifications_page.py:107
 msgid "Show message preview"
-msgstr ""
+msgstr "Prikaži pregled poruke"
 
 #: zapzap/view/notifications_page.py:108
 msgid "Reproduce sounds when receiving messages"
-msgstr ""
+msgstr "Reprodukuj zvukove pri prijemu poruka"
 
 #: zapzap/view/personalization_page.py:81
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: zapzap/view/personalization_page.py:82
 msgid "Application theme"
-msgstr ""
+msgstr "Tema aplikacije"
 
 #: zapzap/view/personalization_page.py:84
 msgid "Tray icon"
-msgstr ""
+msgstr "Ikonica na traci"
 
 #: zapzap/view/home.py:93
 msgid "New chat at phone number"
-msgstr ""
+msgstr "Novi razgovor sa brojem telefona"
 
 #: zapzap/view/home.py:94
 msgid "New chat"
-msgstr ""
+msgstr "Novi razgovor"
 
 #: zapzap/view/home.py:96
 msgid "Perfil"
-msgstr ""
+msgstr "Profil"
 
 #: zapzap/view/network_page.py:137
 msgid "Network proxy"
-msgstr ""
+msgstr "Mrežni proxy"
 
 #: zapzap/view/network_page.py:139
 msgid ""
 "Learn exactly what you are doing, because I am not responsible for any "
 "connectivity failures."
 msgstr ""
+"Naučite tačno šta radite, jer nisam odgovoran za bilo kakve "
+"neuspjehe u vezi sa povezivanjem."
 
 #: zapzap/view/network_page.py:140
 msgid "Port"
-msgstr ""
+msgstr "Port"
 
 #: zapzap/view/network_page.py:141
 msgid "User"
-msgstr ""
+msgstr "Korisnik"
 
 #: zapzap/view/network_page.py:142
 msgid "Password"
-msgstr ""
+msgstr "Lozinka"
 
 #: zapzap/view/network_page.py:143
 msgid "Hostname"
-msgstr ""
+msgstr "Ime hosta"
 
 #: zapzap/view/network_page.py:144
 msgid "ProxyType"
-msgstr ""
+msgstr "Vrsta proxy-a"
 
 #: zapzap/view/network_page.py:145
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #: zapzap/view/network_page.py:146
 msgid "Apply"
-msgstr ""
+msgstr "Primijeni"
 
 #: zapzap/view/network_page.py:147
 msgid "Restore"
-msgstr ""
+msgstr "Vrati"
 
 #: zapzap/controllers/settings_pages/personalization.py:23
 msgid "Automatic (System)"
-msgstr ""
+msgstr "Automatski (Sistem)"
 
 #: zapzap/controllers/settings_pages/personalization.py:24
 msgid "Light style"
-msgstr ""
+msgstr "Svijetli stil"
 
 #: zapzap/controllers/settings_pages/personalization.py:25
 msgid "Dark style"
-msgstr ""
+msgstr "Tamni stil"
 
 #: zapzap/controllers/settings_pages/personalization.py:27
 msgid "Default"
-msgstr ""
+msgstr "Podrazumijevano"
 
 #: zapzap/controllers/settings_pages/personalization.py:28
 msgid "Symbolic light"
-msgstr ""
+msgstr "Simbolički svijetli"
 
 #: zapzap/controllers/settings_pages/personalization.py:29
 msgid "Symbolic dark"
-msgstr ""
+msgstr "Simbolički tamni"
 
 #: zapzap/controllers/settings_pages/network.py:13
 msgid "No proxying is used"
-msgstr ""
+msgstr "Proxy se ne koristi"
 
 #: zapzap/controllers/settings_pages/network.py:14
 msgid ""
 "Proxy is determined based on the application proxy set using "
 "setApplicationProxy()"
 msgstr ""
+"Proxy se određuje na osnovu postavki aplikacije postavljenih pomoću "
+"setApplicationProxy()"
 
 #: zapzap/controllers/settings_pages/network.py:15
 msgid "Socks5 proxying is used"
-msgstr ""
+msgstr "Koristi se Socks5 proxy"
 
 #: zapzap/controllers/settings_pages/network.py:16
 msgid "HTTP transparent proxying is used"
-msgstr ""
+msgstr "Koristi se HTTP transparentni proxy"
 
 #: zapzap/controllers/settings_pages/network.py:17
 msgid "Proxying for HTTP requests only"
-msgstr ""
+msgstr "Proxy za HTTP zahtjeve samo"
 
 #: zapzap/controllers/settings_pages/network.py:18
 msgid "Proxying for FTP requests only"
-msgstr ""
+msgstr "Proxy za FTP zahtjeve samo"
 
 #: zapzap/controllers/settings_pages/advanced.py:37
 msgid "Standard folder ~/Downloads"
-msgstr ""
+msgstr "Standardna mapa ~/Downloads"
 
 #: zapzap/engine/browser.py:74
 msgid "Undo"
-msgstr ""
+msgstr "Poništi"
 
 #: zapzap/engine/browser.py:75
 msgid "Redo"
-msgstr ""
+msgstr "Ponovi"
 
 #: zapzap/engine/browser.py:76
 msgid "Cut"
-msgstr ""
+msgstr "Izreži"
 
 #: zapzap/engine/browser.py:77
 msgid "Copy"
-msgstr ""
+msgstr "Kopiraj"
 
 #: zapzap/engine/browser.py:78
 msgid "Paste"
-msgstr ""
+msgstr "Zalijepi"
 
 #: zapzap/engine/browser.py:79
 msgid "Select all"
-msgstr ""
+msgstr "Odaberi sve"
 
 #: zapzap/engine/browser.py:80
 msgid "Save image"
-msgstr ""
+msgstr "Spremi sliku"
 
 #: zapzap/engine/browser.py:81
 msgid "Copy image"
-msgstr ""
+msgstr "Kopiraj sliku"
 
 #: zapzap/engine/browser.py:82
 msgid "Copy link address"
-msgstr ""
+msgstr "Kopiraj adresu linka"
 
 #: zapzap/services/spellCheckLanguages.py:6
 msgid "Afrikaans - Namibia"
-msgstr ""
+msgstr "Afrički - Namibia"
 
 #: zapzap/services/spellCheckLanguages.py:7
 msgid "Afrikaans - South Africa"
-msgstr ""
+msgstr "Afrički - Južna Afrika"
 
 #: zapzap/services/spellCheckLanguages.py:8
 msgid "Aragonese"
-msgstr ""
+msgstr "Aragonski"
 
 #: zapzap/services/spellCheckLanguages.py:9
 msgid "Aragonese - Spain"
-msgstr ""
+msgstr "Aragonski - Španija"
 
 #: zapzap/services/spellCheckLanguages.py:10
 msgid "Arabic - United Arab Emirates"
-msgstr ""
+msgstr "Arapski - Ujedinjeni Arapski Emirati"
 
 #: zapzap/services/spellCheckLanguages.py:11
 msgid "Arabic - Bahrain"
-msgstr ""
+msgstr "Arapski - Bahrein"
 
 #: zapzap/services/spellCheckLanguages.py:12
 msgid "Arabic - Algeria"
-msgstr ""
+msgstr "Arapski - Alžir"
 
 #: zapzap/services/spellCheckLanguages.py:13
 msgid "Arabic - Egypt"
-msgstr ""
+msgstr "Arapski - Egipat"
 
 #: zapzap/services/spellCheckLanguages.py:14
 msgid "Arabic - Iraq"
-msgstr ""
+msgstr "Arapski - Irak"
 
 #: zapzap/services/spellCheckLanguages.py:15
 msgid "Arabic - Jordan"
-msgstr ""
+msgstr "Arapski - Jordan"
 
 #: zapzap/services/spellCheckLanguages.py:16
 msgid "Arabic - Kuwait"
-msgstr ""
+msgstr "Arapski - Kuvajt"
 
 #: zapzap/services/spellCheckLanguages.py:17
 msgid "Arabic - Lebanon"
-msgstr ""
+msgstr "Arapski - Liban"
 
 #: zapzap/services/spellCheckLanguages.py:18
 msgid "Arabic - Libya"
-msgstr ""
+msgstr "Arapski - Libija"
 
 #: zapzap/services/spellCheckLanguages.py:19
 msgid "Arabic - Morocco"
-msgstr ""
+msgstr "Arapski - Maroko"
 
 #: zapzap/services/spellCheckLanguages.py:20
 msgid "Arabic - Oman"
-msgstr ""
+msgstr "Arapski - Oman"
 
 #: zapzap/services/spellCheckLanguages.py:21
 msgid "Arabic - Qatar"
-msgstr ""
+msgstr "Arapski - Katar"
 
 #: zapzap/services/spellCheckLanguages.py:22
 msgid "Arabic - Saudi Arabia"
-msgstr ""
+msgstr "Arapski - Saudijska Arabija"
 
 #: zapzap/services/spellCheckLanguages.py:23
 msgid "Arabic - Sudan"
-msgstr ""
+msgstr "Arapski - Sudan"
 
 #: zapzap/services/spellCheckLanguages.py:24
 msgid "Arabic - Syria"
-msgstr ""
+msgstr "Arapski - Sirija"
 
 #: zapzap/services/spellCheckLanguages.py:25
 msgid "Arabic - Tunisia"
-msgstr ""
+msgstr "Arapski - Tunis"
 
 #: zapzap/services/spellCheckLanguages.py:26
 msgid "Arabic - Yemen"
-msgstr ""
+msgstr "Arapski - Jemen"
 
 #: zapzap/services/spellCheckLanguages.py:27
 msgid "Belarusian - Belarus"
-msgstr ""
+msgstr "Bjeloruski - Bjelorusija"
 
 #: zapzap/services/spellCheckLanguages.py:28
 msgid "Bulgarian - Bulgaria"
-msgstr ""
+msgstr "Bugarski - Bugarska"
 
 #: zapzap/services/spellCheckLanguages.py:29
 msgid "Bengali - Bangladesh"
-msgstr ""
+msgstr "Bengalski - Bangladeš"
 
 #: zapzap/services/spellCheckLanguages.py:30
 msgid "Bengali - India"
-msgstr ""
+msgstr "Bengalski - Indija"
 
 #: zapzap/services/spellCheckLanguages.py:31
 msgid "Tibetan"
-msgstr ""
+msgstr "Tibetanski"
 
 #: zapzap/services/spellCheckLanguages.py:32
 msgid "Tibetan - China"
-msgstr ""
+msgstr "Tibetanski - Kina"
 
 #: zapzap/services/spellCheckLanguages.py:33
 msgid "Tibetan - India"
-msgstr ""
+msgstr "Tibetanski - Indija"
 
 #: zapzap/services/spellCheckLanguages.py:34
 msgid "Breton - France"
-msgstr ""
+msgstr "Bretonski - Francuska"
 
 #: zapzap/services/spellCheckLanguages.py:35
 msgid "Bosnian"
-msgstr ""
+msgstr "Bosanski"
 
 #: zapzap/services/spellCheckLanguages.py:36
 msgid "Bosnian - Bosnia and Herzegovina"
-msgstr ""
+msgstr "Bosanski - Bosna i Hercegovina"
 
 #: zapzap/services/spellCheckLanguages.py:37
 msgid "Catalan - Andorra"
-msgstr ""
+msgstr "Katalonski - Andora"
 
 #: zapzap/services/spellCheckLanguages.py:38
 msgid "Catalan - Spain"
-msgstr ""
+msgstr "Katalonski - Španija"
 
 #: zapzap/services/spellCheckLanguages.py:39
 msgid "Catalan - Valencia"
-msgstr ""
+msgstr "Katalonski - Valencia"
 
 #: zapzap/services/spellCheckLanguages.py:40
 msgid "Catalan - France"
-msgstr ""
+msgstr "Katalonski - Francuska"
 
 #: zapzap/services/spellCheckLanguages.py:41
 msgid "Catalan - Italy"
-msgstr ""
+msgstr "Katalonski - Italija"
 
 #: zapzap/services/spellCheckLanguages.py:42
 msgid "Czech - Czechia"
-msgstr ""
+msgstr "Češki - Češka"
 
 #: zapzap/services/spellCheckLanguages.py:43
 msgid "Danish - Denmark"
-msgstr ""
+msgstr "Danski - Danska"
 
 #: zapzap/services/spellCheckLanguages.py:44
 msgid "German - Austria"
-msgstr ""
+msgstr "Nemački - Austrija"
 
 #: zapzap/services/spellCheckLanguages.py:45
 msgid "German - Switzerland"
-msgstr ""
+msgstr "Nemački - Švajcarska"
 
 #: zapzap/services/spellCheckLanguages.py:46
 msgid "German - Germany"
-msgstr ""
+msgstr "Nemački - Nemačka"
 
 #: zapzap/services/spellCheckLanguages.py:47
 msgid "Greek - Grece"
-msgstr ""
+msgstr "Grčki - Grčka"
 
 #: zapzap/services/spellCheckLanguages.py:48
 msgid "English - Australia"
-msgstr ""
+msgstr "Engleski - Australija"
 
 #: zapzap/services/spellCheckLanguages.py:49
 msgid "English - Bahamas"
-msgstr ""
+msgstr "Engleski - Bahami"
 
 #: zapzap/services/spellCheckLanguages.py:50
 msgid "English - Belize"
-msgstr ""
+msgstr "Engleski - Belize"
 
 #: zapzap/services/spellCheckLanguages.py:51
 msgid "English - Canada"
-msgstr ""
+msgstr "Engleski - Kanada"
 
 #: zapzap/services/spellCheckLanguages.py:52
 msgid "English - United Kingdom"
-msgstr ""
+msgstr "Engleski - Ujedinjeno Kraljevstvo"
 
 #: zapzap/services/spellCheckLanguages.py:53
 msgid "English - Ghana"
-msgstr ""
+msgstr "Engleski - Gana"
 
 #: zapzap/services/spellCheckLanguages.py:54
 msgid "English - Ireland"
-msgstr ""
+msgstr "Engleski - Irska"
 
 #: zapzap/services/spellCheckLanguages.py:55
 msgid "English - India"
-msgstr ""
+msgstr "Engleski - Indija"
 
 #: zapzap/services/spellCheckLanguages.py:56
 msgid "English - Jamaica"
-msgstr ""
+msgstr "Engleski - Jamajka"
 
 #: zapzap/services/spellCheckLanguages.py:57
 msgid "English - Malawi"
-msgstr ""
+msgstr "Engleski - Malavi"
 
 #: zapzap/services/spellCheckLanguages.py:58
 msgid "English - Namibia"
-msgstr ""
+msgstr "Engleski - Namibija"
 
 #: zapzap/services/spellCheckLanguages.py:59
 msgid "English - New Zealand"
-msgstr ""
+msgstr "Engleski - Novi Zeland"
 
 #: zapzap/services/spellCheckLanguages.py:60
 msgid "English - Philippines"
-msgstr ""
+msgstr "Engleski - Filipini"
 
 #: zapzap/services/spellCheckLanguages.py:61
 msgid "English - Trinidad and Tobago"
-msgstr ""
+msgstr "Engleski - Trinidad i Tobago"
 
 #: zapzap/services/spellCheckLanguages.py:62
 msgid "English - United States of America"
-msgstr ""
+msgstr "Engleski - Sjedinjene Američke Države"
 
 #: zapzap/services/spellCheckLanguages.py:63
 msgid "English - South Africa"
-msgstr ""
+msgstr "Engleski - Južna Afrika"
 
 #: zapzap/services/spellCheckLanguages.py:64
 msgid "English - Zimbabwe"
-msgstr ""
+msgstr "Engleski - Zimbabve"
 
 #: zapzap/services/spellCheckLanguages.py:65
 msgid "Spanish - Argentina"
-msgstr ""
+msgstr "Španski - Argentina"
 
 #: zapzap/services/spellCheckLanguages.py:66
 msgid "Spanish - Bolivia"
-msgstr ""
+msgstr "Španski - Bolivija"
 
 #: zapzap/services/spellCheckLanguages.py:67
 msgid "Spanish - Chile"
-msgstr ""
+msgstr "Španski - Čile"
 
 #: zapzap/services/spellCheckLanguages.py:68
 msgid "Spanish - Colombia"
-msgstr ""
+msgstr "Španski - Kolumbija"
 
 #: zapzap/services/spellCheckLanguages.py:69
 msgid "Spanish - Costa Rica"
-msgstr ""
+msgstr "Španski - Kostarika"
 
 #: zapzap/services/spellCheckLanguages.py:70
 msgid "Spanish - Cuba"
-msgstr ""
+msgstr "Španski - Kuba"
 
 #: zapzap/services/spellCheckLanguages.py:71
 msgid "Spanish - Dominican Republic"
-msgstr ""
+msgstr "Španski - Dominikanska Republika"
 
 #: zapzap/services/spellCheckLanguages.py:72
 msgid "Spanish - Ecuador"
-msgstr ""
+msgstr "Španski - Ekvador"
 
 #: zapzap/services/spellCheckLanguages.py:73
 msgid "Spanish - Spain"
-msgstr ""
+msgstr "Španski - Španija"
 
 #: zapzap/services/spellCheckLanguages.py:74
 msgid "Spanish - Guatemala"
-msgstr ""
+msgstr "Španski - Gvatemala"
 
 #: zapzap/services/spellCheckLanguages.py:75
 msgid "Spanish - Honduras"
-msgstr ""
+msgstr "Španski - Honduras"
 
 #: zapzap/services/spellCheckLanguages.py:76
 msgid "Spanish - Mexico"
-msgstr ""
+msgstr "Španski - Meksiko"
 
 #: zapzap/services/spellCheckLanguages.py:77
 msgid "Spanish - Nicaragua"
-msgstr ""
+msgstr "Španski - Nikaragva"
 
 #: zapzap/services/spellCheckLanguages.py:78
 msgid "Spanish - Panama"
-msgstr ""
+msgstr "Španski - Panama"
 
 #: zapzap/services/spellCheckLanguages.py:79
 msgid "Spanish - Peru"
-msgstr ""
+msgstr "Španski - Peru"
 
 #: zapzap/services/spellCheckLanguages.py:80
 msgid "Spanish - Puerto Rico"
-msgstr ""
+msgstr "Španski - Portoriko"
 
 #: zapzap/services/spellCheckLanguages.py:81
 msgid "Spanish - Paraguay"
-msgstr ""
+msgstr "Španski - Paragvaj"
 
 #: zapzap/services/spellCheckLanguages.py:82
 msgid "Spanish - El Salvador"
-msgstr ""
+msgstr "Španski - El Salvador"
 
 #: zapzap/services/spellCheckLanguages.py:83
 msgid "Spanish - Uruguay"
-msgstr ""
+msgstr "Španski - Urugvaj"
 
 #: zapzap/services/spellCheckLanguages.py:84
 msgid "Spanish - Venezuela"
-msgstr ""
+msgstr "Španski - Venecuela"
 
 #: zapzap/services/spellCheckLanguages.py:85
 msgid "Estonian - Estonia"
-msgstr ""
+msgstr "Estonski - Estonija"
 
 #: zapzap/services/spellCheckLanguages.py:86
 msgid "French - Belgium"
-msgstr ""
+msgstr "Francuski - Belgija"
 
 #: zapzap/services/spellCheckLanguages.py:87
 msgid "French - Canada"
-msgstr ""
+msgstr "Francuski - Kanada"
 
 #: zapzap/services/spellCheckLanguages.py:88
 msgid "French - Switzerland"
-msgstr ""
+msgstr "Francuski - Švajcarska"
 
 #: zapzap/services/spellCheckLanguages.py:89
 msgid "French - France"
-msgstr ""
+msgstr "Francuski - Francuska"
 
 #: zapzap/services/spellCheckLanguages.py:90
 msgid "French - Luxembourg"
-msgstr ""
+msgstr "Francuski - Luksemburg"
 
 #: zapzap/services/spellCheckLanguages.py:91
 msgid "French - Monaco"
-msgstr ""
+msgstr "Francuski - Monako"
 
 #: zapzap/services/spellCheckLanguages.py:92
 msgid "Scottish Gaelic - United Kingdom"
-msgstr ""
+msgstr "Škotski galski - Ujedinjeno Kraljevstvo"
 
 #: zapzap/services/spellCheckLanguages.py:93
 msgid "Guarani - Paraguay"
-msgstr ""
+msgstr "Guarani - Paragvaj"
 
 #: zapzap/services/spellCheckLanguages.py:94
 msgid "Hebrew - Israel"
-msgstr ""
+msgstr "Hebrejski - Izrael"
 
 #: zapzap/services/spellCheckLanguages.py:95
 msgid "Hindi - India"
-msgstr ""
+msgstr "Hindi - Indija"
 
 #: zapzap/services/spellCheckLanguages.py:96
 msgid "Croatian - Croatia"
-msgstr ""
+msgstr "Hrvatski - Hrvatska"
 
 #: zapzap/services/spellCheckLanguages.py:97
 msgid "Hungary - Hungarian"
-msgstr ""
+msgstr "Mađarski - Mađarska"
 
 #: zapzap/services/spellCheckLanguages.py:98
 msgid "Indonesian - Indonesia"
-msgstr ""
+msgstr "Indonežanski - Indonezija"
 
 #: zapzap/services/spellCheckLanguages.py:99
 msgid "Icelandic"
-msgstr ""
+msgstr "Islandski"
 
 #: zapzap/services/spellCheckLanguages.py:100
 msgid "Icelandic - Iceland"
-msgstr ""
+msgstr "Islandski - Island"
 
 #: zapzap/services/spellCheckLanguages.py:101
 msgid "Italian - Italy"
-msgstr ""
+msgstr "Italijanski - Italija"
 
 #: zapzap/services/spellCheckLanguages.py:102
 msgid "Kurdish Latin - Syria"
-msgstr ""
+msgstr "Kurdski latin - Sirija"
 
 #: zapzap/services/spellCheckLanguages.py:103
 msgid "Kurdish Latin - Turkey"
-msgstr ""
+msgstr "Kurdski latin - Turska"
 
 #: zapzap/services/spellCheckLanguages.py:104
 msgid "Lao - Laos"
-msgstr ""
+msgstr "Laoski - Laos"
 
 #: zapzap/services/spellCheckLanguages.py:105
 msgid "Lithuanian - Lithuania"
-msgstr ""
+msgstr "Litvanski - Litvanija"
 
 #: zapzap/services/spellCheckLanguages.py:106
 msgid "Latvian - Latvia"
-msgstr ""
+msgstr "Latvijski - Letonija"
 
 #: zapzap/services/spellCheckLanguages.py:107
 msgid "Norwegian - Bokmål"
-msgstr ""
+msgstr "Norveški - Bokmål"
 
 #: zapzap/services/spellCheckLanguages.py:108
 msgid "Nepali - Nepal"
-msgstr ""
+msgstr "Nepalski - Nepal"
 
 #: zapzap/services/spellCheckLanguages.py:109
 msgid "Dutch - Belgium"
-msgstr ""
+msgstr "Holandski - Belgija"
 
 #: zapzap/services/spellCheckLanguages.py:110
 msgid "Dutch - Netherlands"
-msgstr ""
+msgstr "Holandski - Holandija"
 
 #: zapzap/services/spellCheckLanguages.py:111
 msgid "Norwegian - Nynorsk"
-msgstr ""
+msgstr "Norveški - Nynorsk"
 
 #: zapzap/services/spellCheckLanguages.py:112
 msgid "Occitan - France"
-msgstr ""
+msgstr "Okcitan - Francuska"
 
 #: zapzap/services/spellCheckLanguages.py:113
 msgid "Polish - Poland"
-msgstr ""
+msgstr "Poljski - Poljska"
 
 #: zapzap/services/spellCheckLanguages.py:114
 msgid "Portuguese - Angola"
-msgstr ""
+msgstr "Portugalski - Angola"
 
 #: zapzap/services/spellCheckLanguages.py:115
 msgid "Portuguese - Brazil"
-msgstr ""
+msgstr "Portugalski - Brazil"
 
 #: zapzap/services/spellCheckLanguages.py:116
 msgid "Portuguese - Portugal"
-msgstr ""
+msgstr "Portugalski - Portugal"
 
 #: zapzap/services/spellCheckLanguages.py:117
 msgid "Romanian - Romania"
-msgstr ""
+msgstr "Rumunski - Rumunija"
 
 #: zapzap/services/spellCheckLanguages.py:118
 msgid "Russian - Russia"
-msgstr ""
+msgstr "Ruski - Rusija"
 
 #: zapzap/services/spellCheckLanguages.py:119
 msgid "Sinhala - Sri Lanka"
-msgstr ""
+msgstr "Sinhalski - Šri Lanka"
 
 #: zapzap/services/spellCheckLanguages.py:120
 msgid "Slovak - Slovakia"
-msgstr ""
+msgstr "Slovački - Slovačka"
 
 #: zapzap/services/spellCheckLanguages.py:121
 msgid "Slovenian - Slovenia"
-msgstr ""
+msgstr "Slovenački - Slovenija"
 
 #: zapzap/services/spellCheckLanguages.py:122
 msgid "Albanian - Albania"
-msgstr ""
+msgstr "Albanski - Albanija"
 
 #: zapzap/services/spellCheckLanguages.py:123
 msgid "Serbian - Czechia"
-msgstr ""
+msgstr "Srpski - Češka"
 
 #: zapzap/services/spellCheckLanguages.py:124
 msgid "Serbian Latin - Czechia"
-msgstr ""
+msgstr "Srpski latinica - Češka"
 
 #: zapzap/services/spellCheckLanguages.py:125
 msgid "Serbian Latin - Serbia"
-msgstr ""
+msgstr "Srpski latinica - Srbija"
 
 #: zapzap/services/spellCheckLanguages.py:126
 msgid "Serbian - Serbia"
-msgstr ""
+msgstr "Srpski - Srbija"
 
 #: zapzap/services/spellCheckLanguages.py:127
 msgid "Swedish - Finland"
-msgstr ""
+msgstr "Švedski - Finska"
 
 #: zapzap/services/spellCheckLanguages.py:128
 msgid "Swedish - Sweden"
-msgstr ""
+msgstr "Švedski - Švedska"
 
 #: zapzap/services/spellCheckLanguages.py:129
 msgid "Swahili - Tanzania"
-msgstr ""
+msgstr "Svahili - Tanzanija"
 
 #: zapzap/services/spellCheckLanguages.py:130
 msgid "Telugu"
-msgstr ""
+msgstr "Telugu"
 
 #: zapzap/services/spellCheckLanguages.py:131
 msgid "Telugu - India"
-msgstr ""
+msgstr "Telugu - Indija"
 
 #: zapzap/services/spellCheckLanguages.py:132
 msgid "Turkish"
-msgstr ""
+msgstr "Turski"
 
 #: zapzap/services/spellCheckLanguages.py:133
 msgid "Turkish - Turkey"
-msgstr ""
+msgstr "Turski - Turska"
 
 #: zapzap/services/spellCheckLanguages.py:134
 msgid "Ukrainian - Ukraine"
-msgstr ""
+msgstr "Ukrajinski - Ukrajina"
 
 #: zapzap/services/spellCheckLanguages.py:135
 msgid "Vietnamese - Vietnam"
-msgstr ""
+msgstr "Vijetnamski - Vijetnam"
 
 #: zapzap/__main__.py:20
 msgid "Started in the background"
-msgstr ""
+msgstr "Pokrenuto u pozadini"
