@@ -1,9 +1,9 @@
 import zapzap
 import sys
 
-from PyQt6.QtWidgets import QApplication
+
+from zapzap.controllers.MainWindow import MainWindow
 from zapzap.controllers.SingleApplication import SingleApplication
-from zapzap.ui.MainWindow import MainWindow
 
 
 def main():
