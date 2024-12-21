@@ -6,8 +6,13 @@ class User():
         self.enable = enable
         self.zoomFactor = zoomFactor
 
-    def getId(self):
-        return 'storage-whats' if self.id == 1 else self.id
+    @property
+    def id(self):
+        return 'storage-whats' if self._id == 1 else self._id
+
+    @id.setter
+    def id(self, value):
+        self._id = value
 
     @staticmethod
     def select():
