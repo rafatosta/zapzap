@@ -1,9 +1,9 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QPushButton
 
+from zapzap.controllers.WebView import WebView
 from zapzap.models.User import User
 from zapzap.controllers.DynamicPage import DynamicPage
-
 
 class Browser(QWidget):
 
@@ -19,18 +19,20 @@ class Browser(QWidget):
     def load_users(self):
         self.user_list = User.select()
         for user in self.user_list:
-            self.add_page()
+            print(user.id)
+            self.add_page(user)
 
-    def add_page(self):
+    def add_page(self, user: User):
         """Adiciona uma nova página e um botão correspondente."""
         self.page_count += 1
         page_index = self.page_count
 
         # Criar uma nova página
-        new_page = DynamicPage(page_index)
+        # new_page = DynamicPage(page_index)
+        new_page = WebView(user, page_index)
 
         # Conectar o sinal da página ao método de atualização de botão
-        new_page.update_button_signal.connect(self.update_page_button)
+        # new_page.update_button_signal.connect(self.update_page_button)
 
         # Adicionar a nova página ao QStackedWidget
         self.pages.addWidget(new_page)
