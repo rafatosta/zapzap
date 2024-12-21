@@ -462,7 +462,7 @@ em classes existentes ou mesmo novas classes com responsabilidades específicas.
 </Class>
 <ClassItem id="96cf09b1-be37-11ef-9111-570d8ba341d9">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 59.6640510559082, 87.1679458618164)</val>
+<val>(1.0, 0.0, 0.0, 1.0, -59.46487045288086, 87.1679458618164)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -505,7 +505,7 @@ em classes existentes ou mesmo novas classes com responsabilidades específicas.
 </Class>
 <ClassItem id="a11dfa57-be37-11ef-ac08-570d8ba341d9">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 71.6640510559082, 231.41793823242188)</val>
+<val>(1.0, 0.0, 0.0, 1.0, -47.46487045288086, 231.41793823242188)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -537,7 +537,7 @@ em classes existentes ou mesmo novas classes com responsabilidades específicas.
 <ref refid="f74574dd-be38-11ef-ae03-570d8ba341d9"/>
 </subject>
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 122.85155487060547, 162.46484375)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 3.7226333618164062, 162.46484375)</val>
 </matrix>
 <points>
 <val>[(-0.9609375, 68.95309448242188), (-2.6875038146972656, -18.296897888183594)]</val>
@@ -795,7 +795,7 @@ em classes existentes ou mesmo novas classes com responsabilidades específicas.
 </Class>
 <ClassItem id="29f7391a-be3c-11ef-adaf-570d8ba341d9">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, -92.63676452636719, 231.41793823242188)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 133.49602508544922, 233.69140625)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -833,10 +833,10 @@ em classes existentes ou mesmo novas classes com responsabilidades específicas.
 <ref refid="468c5209-be3c-11ef-9cd5-570d8ba341d9"/>
 </tail_subject>
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 5.2812957763671875, 261.3984375)</val>
+<val>(1.0, 0.0, 0.0, 1.0, -113.84762573242188, 262.1249694824219)</val>
 </matrix>
 <points>
-<val>[(2.081939697265625, 0.79296875), (66.38275527954102, 0.79296875)]</val>
+<val>[(247.3436508178711, 0.066436767578125), (175.38275527954102, 0.066436767578125)]</val>
 </points>
 <head-connection>
 <ref refid="29f7391a-be3c-11ef-adaf-570d8ba341d9"/>
@@ -927,7 +927,7 @@ em classes existentes ou mesmo novas classes com responsabilidades específicas.
 </Class>
 <ClassItem id="9e8c07b9-bf94-11ef-b174-5ff5fc3ff08d">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 76.1640510559082, 375.4453125)</val>
+<val>(1.0, 0.0, 0.0, 1.0, -42.96487045288086, 378.4453125)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -957,7 +957,7 @@ em classes existentes ou mesmo novas classes com responsabilidades específicas.
 </Class>
 <ClassItem id="b0bb4575-bf94-11ef-9129-5ff5fc3ff08d">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 54.1640510559082, 510.6523132324219)</val>
+<val>(1.0, 0.0, 0.0, 1.0, -64.96487045288086, 513.6523132324219)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -995,7 +995,7 @@ em classes existentes ou mesmo novas classes com responsabilidades específicas.
 <ref refid="b6e6b7a8-bf94-11ef-b2ee-5ff5fc3ff08d"/>
 </tail_subject>
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 123.4219856262207, 427.4140625)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 4.293064117431641, 430.4140625)</val>
 </matrix>
 <points>
 <val>[(-0.6056098937988281, 5.03125), (-0.6056098937988281, 83.23825073242188)]</val>
@@ -1082,10 +1082,10 @@ em classes existentes ou mesmo novas classes com responsabilidades específicas.
 <ref refid="f5f389ce-bf94-11ef-94bd-5ff5fc3ff08d"/>
 </tail_subject>
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 122.81637573242188, 285.2890625)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 3.6874542236328125, 285.2890625)</val>
 </matrix>
 <points>
-<val>[(1.625, 3.128875732421875), (1.625, 90.15625)]</val>
+<val>[(1.625, 3.128875732421875), (1.625, 93.15625)]</val>
 </points>
 <head-connection>
 <ref refid="a11dfa57-be37-11ef-ac08-570d8ba341d9"/>
