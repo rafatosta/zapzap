@@ -34,7 +34,7 @@ class TrayIcon:
     <path id="path1677" style="fill-opacity: 1; stroke: none; stroke-width: 0.1; stroke-dasharray: none; stroke-opacity: 1; fill: rgb(255, 255, 255);" d="M 128.001 13 C 64.489 13 13.001 61.499 13 121.327 C 13.017 139.805 18.052 157.971 27.625 174.099 L 19.029 207.142 L 17.868 211.603 C 15.571 220.429 24.404 229.05 33.767 227.121 C 33.767 227.121 33.768 227.121 33.768 227.121 L 76.764 218.261 C 92.678 225.741 110.216 229.641 128.001 229.656 C 191.514 229.656 243 181.155 242.999 121.327 C 242.999 61.499 191.513 13 128.001 13 Z"/>
     <path id="path333" style="fill:url(#linearGradient15564);fill-opacity:1;stroke:none;stroke-width:0.05;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 127.502 28.277 C 96.599 28.287 67.525 42.2 49.149 65.773 L 132.045 69.714 L 30.239 114.682 C 30.088 116.71 30.008 118.743 30 120.777 C 30 171.864 73.653 213.277 127.502 213.277 C 162.586 213.271 194.96 195.384 212.279 166.438 L 129.545 162.504 L 225 120.342 C 224.75 69.428 181.17 28.279 127.502 28.277 Z"/>
   </g>
-  {}
+  {notify}
 </svg>
 """
 
@@ -59,30 +59,41 @@ class TrayIcon:
         qtd: quantidade
         """
 
-        if len(str(qtd)) == 1:
-            data = dict(width=100.1, x=152.6)
-        elif len(str(qtd)) == 2:
-            data = dict(width=180.3, x=72.5)
-        else:
-            data = dict(width=249.428, x=3.286)
+        qtd = 999 if qtd >= 1000 else qtd
 
+        # Determine notification size based on qtd
+        data = TrayIcon._getNotificationData(qtd)
         notification = TrayIcon._DEFAULT_NOTIFICATION.format(
             x=data['x'], width=data['width'], number=qtd)
-
         n = notification if qtd > 0 else ""
-        if theme == TrayIcon.Type.Default:
-            return TrayIcon.__build(TrayIcon._DEFAULT.format(n))
-        elif theme == TrayIcon.Type.SLight:
-            return TrayIcon.__build(TrayIcon._SYMBOLIC.format(color='#ffffff', notify=n))
+
+        # Select the correct SVG template based on theme
+        svg_str = TrayIcon._getSvgByTheme(theme, n)
+        return TrayIcon.__build(svg_str)
+
+    @staticmethod
+    def _getNotificationData(qtd) -> dict:
+        """Helper function to determine notification size based on qtd"""
+        if len(str(qtd)) == 1:
+            return dict(width=100.1, x=152.6)
+        elif len(str(qtd)) == 2:
+            return dict(width=180.3, x=72.5)
         else:
-            return TrayIcon.__build(TrayIcon._SYMBOLIC.format(color='#241f31', notify=n))
+            return dict(width=249.428, x=3.286)
+
+    @staticmethod
+    def _getSvgByTheme(theme, notify) -> str:
+        """Helper function to get SVG string based on theme"""
+        if theme == TrayIcon.Type.Default:
+            return TrayIcon._DEFAULT.format(notify=notify)
+        elif theme == TrayIcon.Type.SLight:
+            return TrayIcon._SYMBOLIC.format(color='#ffffff', notify=notify)
+        else:
+            return TrayIcon._SYMBOLIC.format(color='#241f31', notify=notify)
 
     @staticmethod
     def __build(svg_str) -> QIcon:
         svg_bytes = bytearray(svg_str, encoding='utf-8')
-
         qimg = QImage.fromData(svg_bytes, 'SVG')
-
         qpix = QPixmap.fromImage(qimg)
-        qicon = QIcon(qpix.scaled(QSize(128, 128)))
-        return qicon
+        return QIcon(qpix.scaled(QSize(128, 128)))
