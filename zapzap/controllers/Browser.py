@@ -32,7 +32,7 @@ class Browser(QWidget):
         new_page = WebView(user, page_index)
 
         # Conectar o sinal da página ao método de atualização de botão
-        # new_page.update_button_signal.connect(self.update_page_button)
+        new_page.update_button_signal.connect(self.update_page_button)
 
         # Adicionar a nova página ao QStackedWidget
         self.pages.addWidget(new_page)
@@ -51,4 +51,4 @@ class Browser(QWidget):
         """Atualiza o botão correspondente à página com o novo texto."""
         if page_index in self.page_buttons:
             button = self.page_buttons[page_index]
-            button.setText(new_text)
+            button.setText(str(new_text))
