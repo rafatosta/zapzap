@@ -9,4 +9,4 @@ class MainWindow(QMainWindow):
         super().__init__(parent)
         uic.loadUi("zapzap/ui/ui_mainwindow.ui", self)
 
-        self.sys_tray = SysTray(self)
+        SysTray.show()

@@ -1,32 +1,59 @@
-from PyQt6.QtWidgets import QSystemTrayIcon, QMenu
+from enum import Enum
+from PyQt6.QtWidgets import QApplication, QSystemTrayIcon, QMenu
 from PyQt6.QtGui import QAction
 from gettext import gettext as _
 
+from zapzap.resources.TrayIcon import TrayIcon
 
-class SysTray(QSystemTrayIcon):
-    def __init__(self, parent=None):
-        super().__init__(parent)
 
-        self.setup_menu()
+class SysTray():
 
-        self.show()
+    _tray: QSystemTrayIcon = None
 
-    def setup_menu(self):
-        # Itens para o menu do tray icon
-        self.actionShow = QAction(_("ZapZap"))
-        self.actionSettings = QAction(_("Settings"))
-        self.actionExit = QAction(_("Quit"))
+    @staticmethod
+    def show():
+        if not SysTray._tray:
+            SysTray.__new_instance()
 
-        # Signals
-        self.actionShow.triggered.connect(lambda: print("Signal: actionShow "))
-        self.actionSettings.triggered.connect(lambda: print("Signal: actionSettings "))
-        self.actionExit.triggered.connect(lambda: print("Signal: actionExit "))
+        SysTray._tray.show()
 
-        # Menu
-        self.trayMenu = QMenu()
-        self.trayMenu.addAction(self.actionShow)
-        self.trayMenu.addAction(self.actionSettings)
-        self.trayMenu.addAction(self.actionExit)
-        self.trayMenu.insertSeparator(self.actionExit)
+    @staticmethod
+    def hide():
+        if not SysTray._tray:
+            raise RuntimeError(
+                "QSystemTrayIcon não existente em QApplication.")
 
-        self.setContextMenu(self.trayMenu)
+        SysTray._tray.hide()
+
+    @staticmethod
+    def __new_instance():
+        main_window = QApplication.instance().getWindow()
+
+        SysTray._tray = QSystemTrayIcon(main_window)
+        SysTray._tray.setIcon(TrayIcon.getIcon(TrayIcon.Type.Default))
+
+        # Persistência dos itens e ações
+        SysTray._actions = {
+            "show": QAction(_("ZapZap")),
+            "settings": QAction(_("Settings")),
+            "exit": QAction(_("Quit")),
+        }
+
+        # Conexões dos sinais
+        SysTray._actions["show"].triggered.connect(
+            lambda: print("Signal: actionShow"))
+        SysTray._actions["settings"].triggered.connect(
+            lambda: print("Signal: actionSettings"))
+        SysTray._actions["exit"].triggered.connect(
+            lambda: print("Signal: actionExit"))
+
+        # Criação do menu persistente
+        SysTray._trayMenu = QMenu()
+        SysTray._trayMenu.addAction(SysTray._actions["show"])
+        SysTray._trayMenu.addAction(SysTray._actions["settings"])
+        SysTray._trayMenu.addAction(SysTray._actions["exit"])
+        SysTray._trayMenu.insertSeparator(SysTray._actions["exit"])
+
+        SysTray._tray.setContextMenu(SysTray._trayMenu)
+
+
