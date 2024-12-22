@@ -1,9 +1,11 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QPushButton
 
+from zapzap.controllers.PageButton import PageButton
 from zapzap.controllers.WebView import WebView
 from zapzap.models.User import User
 from zapzap.controllers.DynamicPage import DynamicPage
+
 
 class Browser(QWidget):
 
@@ -32,13 +34,14 @@ class Browser(QWidget):
         new_page = WebView(user, page_index)
 
         # Conectar o sinal da página ao método de atualização de botão
-        new_page.update_button_signal.connect(self.update_page_button)
+        new_page.update_button_signal.connect(
+            self.update_page_button_number_notifications)
 
         # Adicionar a nova página ao QStackedWidget
         self.pages.addWidget(new_page)
 
         # Criar um botão para a nova página
-        page_button = QPushButton(f"{page_index}")
+        page_button = PageButton(user, page_index)
         page_button.clicked.connect(
             lambda: self.pages.setCurrentWidget(new_page))
         page_button.setObjectName(f"page_button_{page_index}")
@@ -47,8 +50,7 @@ class Browser(QWidget):
         self.page_buttons_layout.addWidget(page_button)
         self.page_buttons[page_index] = page_button
 
-    def update_page_button(self, page_index, new_text):
-        """Atualiza o botão correspondente à página com o novo texto."""
+    def update_page_button_number_notifications(self, page_index, number_notifications):
         if page_index in self.page_buttons:
             button = self.page_buttons[page_index]
-            button.setText(str(new_text))
+            button.update_notifications(number_notifications)
