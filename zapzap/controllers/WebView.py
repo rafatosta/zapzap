@@ -14,6 +14,7 @@ class WebView (QWebEngineView):
     def __init__(self, user: User = None, page_index=None, parent=None):
         super().__init__(parent)
 
+        self.user = user
         self.page_index = page_index  # Identificador da página
         self.setup_signals()
 
@@ -23,6 +24,15 @@ class WebView (QWebEngineView):
         self.page = PageController(self.profile, self)
         self.setPage(self.page)
         self.load(QUrl(__whatsapp_url__))
+
+        # Aplica o zoom após o carregamento da página
+        self.setZoomFactor(user.zoomFactor)
+
+    def __del__(self):
+        """Método chamado quando o objeto é destruído"""
+        print("O WebEngineView foi destruído")
+        self.user.zoomFactor = self.zoomFactor()
+        self.user.save()
 
     def setup_signals(self):
         # Sinal para mudança de título
@@ -34,3 +44,8 @@ class WebView (QWebEngineView):
         num = ''.join(filter(str.isdigit, title))
         qtd = int(num) if num else 0
         self.update_button_signal.emit(self.page_index, qtd)
+
+    def set_zoom_factor_page(self, factor=None):
+        # Define o fator de zoom da página. Reseta para 1.0 se nenhum fator for fornecido.
+        new_zoom = 1.0 if factor is None else self.zoomFactor() + factor
+        self.setZoomFactor(new_zoom)
