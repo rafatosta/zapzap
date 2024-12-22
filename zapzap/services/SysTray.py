@@ -1,6 +1,6 @@
 from enum import Enum
 from PyQt6.QtWidgets import QApplication, QSystemTrayIcon, QMenu
-from PyQt6.QtGui import QAction
+from PyQt6.QtGui import QAction, QIcon
 from gettext import gettext as _
 
 from zapzap.resources.TrayIcon import TrayIcon
@@ -9,6 +9,7 @@ from zapzap.resources.TrayIcon import TrayIcon
 class SysTray():
 
     _tray: QSystemTrayIcon = None
+    icon: QIcon = TrayIcon.Type.Default
 
     @staticmethod
     def show():
@@ -26,11 +27,16 @@ class SysTray():
         SysTray._tray.hide()
 
     @staticmethod
+    def set_number_notifications(number_notifications):
+        SysTray._tray.setIcon(TrayIcon.getIcon(
+            SysTray.icon, number_notifications))
+
+    @staticmethod
     def __new_instance():
         main_window = QApplication.instance().getWindow()
 
         SysTray._tray = QSystemTrayIcon(main_window)
-        SysTray._tray.setIcon(TrayIcon.getIcon(TrayIcon.Type.Default))
+        SysTray._tray.setIcon(TrayIcon.getIcon(SysTray.icon))
 
         # Persistência dos itens e ações
         SysTray._actions = {
@@ -55,5 +61,3 @@ class SysTray():
         SysTray._trayMenu.insertSeparator(SysTray._actions["exit"])
 
         SysTray._tray.setContextMenu(SysTray._trayMenu)
-
-
