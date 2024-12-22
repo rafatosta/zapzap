@@ -26,14 +26,25 @@ class User:
     def id(self, value):
         self._id = value
 
+    def __str__(self):
+        return f"User(id={self.id}, name={self.name}, enable={self.enable}, zoomFactor={self.zoomFactor})"
+
+    def save(self):
+        if self._id:
+            User.update(self)  # Se o ID existir, faz o update
+        else:
+            User.create(self)  # Caso contrário, faz o create (inserção)
+
     @classmethod
     def _ensure_table_exists(cls):
         """Verifica se a tabela existe; cria-a se não existir."""
         try:
             conn = Database.connect_db()
             cursor = conn.cursor()
-            fields_def = ", ".join([f'"{field}" {dtype}' for field, dtype in cls._fields.items()])
-            SQL = f"""CREATE TABLE IF NOT EXISTS "{cls._table_name}" ({fields_def});"""
+            fields_def = ", ".join(
+                [f'"{field}" {dtype}' for field, dtype in cls._fields.items()])
+            SQL = f"""CREATE TABLE IF NOT EXISTS "{
+                cls._table_name}" ({fields_def});"""
             cursor.execute(SQL)
             conn.commit()
         except Exception as e:
@@ -49,7 +60,8 @@ class User:
             cursor = conn.cursor()
             fields = ", ".join(["name", "icon"])
             placeholders = ", ".join(["?"] * 2)
-            SQL = f"""INSERT INTO {User._table_name} ({fields}) VALUES ({placeholders});"""
+            SQL = f"""INSERT INTO {User._table_name}
+                ({fields}) VALUES ({placeholders});"""
             cursor.execute(SQL, [user.name, user.icon])
             conn.commit()
             id = cursor.execute("SELECT last_insert_rowid()").fetchone()[0]
@@ -63,11 +75,13 @@ class User:
     def update(user):
         User._ensure_table_exists()  # Verifica a tabela antes de executar
         try:
+            id = 1 if user._id == 'storage-whats' else user._id
             conn = Database.connect_db()
             cursor = conn.cursor()
             fields = "name=?, icon=?, enable=?, zoomFactor=?"
             SQL = f"""UPDATE {User._table_name} SET {fields} WHERE id=?;"""
-            cursor.execute(SQL, [user.name, user.icon, user.enable, user.zoomFactor, user.id])
+            cursor.execute(SQL, [user.name, user.icon,
+                           user.enable, user.zoomFactor, user._id])
             conn.commit()
         except Exception as e:
             print(e)
@@ -81,11 +95,13 @@ class User:
         try:
             conn = Database.connect_db()
             cursor = conn.cursor()
-            SQL = f"""SELECT * FROM {User._table_name} WHERE enable=1;""" if enable else f"""SELECT * FROM {User._table_name};"""
+            SQL = f"""SELECT * FROM {User._table_name}
+                WHERE enable=1;""" if enable else f"""SELECT * FROM {User._table_name};"""
             cursor.execute(SQL)
             rows = cursor.fetchall()
             for row in rows:
-                users.append(User(row[0], row[1], row[2], bool(row[3]), row[4]))
+                users.append(
+                    User(row[0], row[1], row[2], bool(row[3]), row[4]))
         except Exception as e:
             print(e)
         finally:
