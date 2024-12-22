@@ -8,56 +8,66 @@ from zapzap.services.SysTray import SysTray
 
 
 class Browser(QWidget):
-
-    page_count = 0  # Contador de páginas
-    page_buttons = {}  # Dicionário para mapear botões às páginas
-
     def __init__(self, parent=None):
         super().__init__(parent)
         uic.loadUi("zapzap/ui/ui_browser.ui", self)
 
+        self.page_count = 0  # Contador de páginas
+        self.page_buttons = {}  # Dicionário para mapear botões às páginas
+
         self.load_users()
 
+        # Seleciona a conta padrão, se houver
+        if self.page_buttons:
+            self.page_buttons[1].selected()
+
     def load_users(self):
+        """Carrega os usuários e cria páginas correspondentes."""
         self.user_list = User.select()
         for user in self.user_list:
-            print(user.id)
             self.add_page(user)
 
     def add_page(self, user: User):
-        """Adiciona uma nova página e um botão correspondente."""
+        """Adiciona uma nova página e cria o botão correspondente."""
         self.page_count += 1
         page_index = self.page_count
 
         # Criar uma nova página
-        # new_page = DynamicPage(page_index)
         new_page = WebView(user, page_index)
-
-        # Conectar o sinal da página ao método de atualização de botão
         new_page.update_button_signal.connect(
             self.update_page_button_number_notifications)
-
-        # Adicionar a nova página ao QStackedWidget
         self.pages.addWidget(new_page)
 
         # Criar um botão para a nova página
         page_button = PageButton(user, page_index)
         page_button.clicked.connect(
-            lambda: self.pages.setCurrentWidget(new_page))
+            lambda: self.switch_to_page(new_page, page_button))
         page_button.setObjectName(f"page_button_{page_index}")
 
-        # Adicionar o botão ao layout e ao dicionário de mapeamento
+        # Adicionar o botão ao layout e ao dicionário
         self.page_buttons_layout.addWidget(page_button)
         self.page_buttons[page_index] = page_button
 
+    def switch_to_page(self, page: WebView, button: PageButton):
+        """Altera para a página selecionada e ajusta os estilos dos botões."""
+        self.reset_style()
+        self.pages.setCurrentWidget(page)
+        button.selected()
+
     def update_page_button_number_notifications(self, page_index, number_notifications):
+        """Atualiza o número de notificações de um botão específico."""
         if page_index in self.page_buttons:
-            button = self.page_buttons[page_index]
-            button.update_notifications(number_notifications)
+            self.page_buttons[page_index].update_notifications(
+                number_notifications)
+            self.update_total_notifications()
 
-            self.get_number_notifications()
-
-    def get_number_notifications(self):
-        total_notifications = sum(button.number_notifications for button in self.page_buttons.values())
+    def update_total_notifications(self):
+        """Atualiza o total de notificações no SysTray."""
+        total_notifications = sum(
+            button.number_notifications for button in self.page_buttons.values())
         SysTray.set_number_notifications(total_notifications)
 
+    def reset_style(self):
+        """Reseta o estilo de todos os botões."""
+        for button in self.page_buttons.values():
+            button.unselected()
