@@ -71,3 +71,8 @@ class Browser(QWidget):
         """Reseta o estilo de todos os botões."""
         for button in self.page_buttons.values():
             button.unselected()
+
+    def close_pages(self):
+        for i in range(self.pages.count()):
+            page = self.pages.widget(i)
+            page.__del__()
