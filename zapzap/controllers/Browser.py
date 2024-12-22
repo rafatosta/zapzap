@@ -1,10 +1,9 @@
 from PyQt6 import uic
-from PyQt6.QtWidgets import QWidget, QPushButton
+from PyQt6.QtWidgets import QWidget
 
 from zapzap.controllers.PageButton import PageButton
 from zapzap.controllers.WebView import WebView
 from zapzap.models.User import User
-from zapzap.controllers.DynamicPage import DynamicPage
 from zapzap.services.SysTray import SysTray
 
 
@@ -59,8 +58,6 @@ class Browser(QWidget):
             self.get_number_notifications()
 
     def get_number_notifications(self):
-        sum = 0
-        for page_button in self.page_buttons.values():
-            sum += page_button.number_notifications
-        print('total:', sum)
-        SysTray.set_number_notifications(sum)
+        total_notifications = sum(button.number_notifications for button in self.page_buttons.values())
+        SysTray.set_number_notifications(total_notifications)
+
