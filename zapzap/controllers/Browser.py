@@ -21,6 +21,10 @@ class Browser(QWidget):
         if self.page_buttons:
             self.page_buttons[1].selected()
 
+    def __del__(self):
+        print("Widget destruído")
+        self.close_pages()
+
     def load_users(self):
         """Carrega os usuários e cria páginas correspondentes."""
         self.user_list = User.select()
