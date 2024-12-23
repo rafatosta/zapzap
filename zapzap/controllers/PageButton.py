@@ -3,6 +3,7 @@ from PyQt6.QtCore import QSize
 
 from zapzap.models import User
 from zapzap.resources.TrayIcon import TrayIcon
+from zapzap.resources.UserIcon import UserIcon
 
 
 class PageButton(QPushButton):
@@ -62,14 +63,12 @@ class PageButton(QPushButton):
         self.setMinimumSize(QSize(40, 40))
         self.setMaximumSize(QSize(40, 40))
         self.setStyleSheet(self.styleSheet_normal)
-        self.setIcon(TrayIcon.getIcon(
-            TrayIcon.Type.Default, self.number_notifications))
+        self.setIcon(UserIcon.get_icon(svg_str=self.user.icon))
 
     def update_notifications(self, number_notifications):
         self.number_notifications = number_notifications
-        
-        self.setIcon(TrayIcon.getIcon(
-            TrayIcon.Type.Default, self.number_notifications))
+        self.setIcon(UserIcon.get_icon(svg_str=self.user.icon,
+                     count=self.number_notifications))
         self.setToolTip(f'{self.user.name} ({self.number_notifications})' if self.number_notifications >
                         0 else self.user.name)
 
