@@ -4,7 +4,7 @@ from PyQt6.QtWidgets import QWidget
 from zapzap.controllers.PageButton import PageButton
 from zapzap.controllers.WebView import WebView
 from zapzap.models.User import User
-from zapzap.services.SysTray import SysTray
+from zapzap.services.SysTrayManager import SysTrayManager
 
 
 class Browser(QWidget):
@@ -66,10 +66,10 @@ class Browser(QWidget):
             self.update_total_notifications()
 
     def update_total_notifications(self):
-        """Atualiza o total de notificações no SysTray."""
+        """Atualiza o total de notificações no SysTrayManager."""
         total_notifications = sum(
             button.number_notifications for button in self.page_buttons.values())
-        SysTray.set_number_notifications(total_notifications)
+        SysTrayManager.set_number_notifications(total_notifications)
 
     def reset_style(self):
         """Reseta o estilo de todos os botões."""

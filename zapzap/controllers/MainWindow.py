@@ -4,7 +4,7 @@ from PyQt6.QtCore import QByteArray
 
 from zapzap.controllers.Browser import Browser
 from zapzap.services.SettingsManager import SettingsManager
-from zapzap.services.SysTray import SysTray
+from zapzap.services.SysTrayManager import SysTrayManager
 
 
 class MainWindow(QMainWindow):
@@ -31,7 +31,7 @@ class MainWindow(QMainWindow):
         self.restoreState(SettingsManager.get(
             "main/windowState", QByteArray()))
 
-        SysTray.show()  # Exibe o SysTray
+        SysTrayManager.show()  # Exibe o SysTray
 
     def init_menu_actions(self):
         """Conecta ações do menu às funções correspondentes."""
