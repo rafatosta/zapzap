@@ -20,79 +20,86 @@ class MainWindow(QMainWindow):
         self.is_fullscreen = False  # Controle do estado de tela cheia
         self.browser = Browser()  # Inicialização do navegador
 
-        self.init_menu_actions()
+        self._setup_ui()
+        self._load_settings()
 
+    # === Configuração Inicial ===
+    def _setup_ui(self):
+        """Configurações iniciais da interface e conexões de menu."""
         self.setCentralWidget(self.browser)
+        self._connect_menu_actions()
 
-    def init_settings(self):
-        # Restaurar configurações
-        self.restoreGeometry(SettingsManager.get(
-            "main/geometry", QByteArray()))
-        self.restoreState(SettingsManager.get(
-            "main/windowState", QByteArray()))
-
+    def _load_settings(self):
+        """Restaura as configurações salvas da janela e do sistema."""
+        self.restoreGeometry(SettingsManager.get("main/geometry", QByteArray()))
+        self.restoreState(SettingsManager.get("main/windowState", QByteArray()))
         SysTrayManager.show()  # Exibe o SysTray
 
-    def init_menu_actions(self):
+    # === Conexões de Ações do Menu ===
+    def _connect_menu_actions(self):
         """Conecta ações do menu às funções correspondentes."""
         # Menu Arquivo
         self.actionSettings.triggered.connect(self.open_settings)
         self.actionQuit.triggered.connect(self.closeEvent)
         self.actionHide.triggered.connect(self.hide)
+        self.actionReload.triggered.connect(self.browser.reload_pages)
+        self.actionNew_chat.triggered.connect(lambda: self._current_page().new_chat())
+        self.actionBy_phone_number.triggered.connect(lambda: self._current_page().new_chat_by_phone())
 
         # Menu Exibir
-        self.actionReset_zoom.triggered.connect(
-            lambda: self._current_page().set_zoom_factor_page()
-        )
+        self.actionReset_zoom.triggered.connect(lambda: self._current_page().set_zoom_factor_page())
         self.actionToggle_full_screen.triggered.connect(self.toggle_fullscreen)
-        self.actionZoom_in.triggered.connect(
-            lambda: self._current_page().set_zoom_factor_page(+0.1)
-        )
-        self.actionZoom_out.triggered.connect(
-            lambda: self._current_page().set_zoom_factor_page(-0.1)
-        )
+        self.actionZoom_in.triggered.connect(lambda: self._current_page().set_zoom_factor_page(+0.1))
+        self.actionZoom_out.triggered.connect(lambda: self._current_page().set_zoom_factor_page(-0.1))
 
-    def open_settings(self):
-        """Abre o painel de configurações."""
-        # Implementação futura
-        pass
+    # === Gerenciamento de Tela ===
+    def _current_page(self):
+        """Retorna a página atual do navegador."""
+        return self.browser.pages.currentWidget()
 
     def toggle_fullscreen(self):
         """Alterna entre os modos de tela cheia e janela."""
         self.is_fullscreen = not self.is_fullscreen
-        self.showFullScreen() if self.is_fullscreen else self.showNormal()
+        if self.is_fullscreen:
+            self.showFullScreen()
+        else:
+            self.showNormal()
 
+    # === Configurações de Fechamento ===
     def closeEvent(self, event):
         """
         Evento chamado ao fechar a janela.
         Salva o estado da janela e realiza a limpeza de recursos.
         """
-        # Salvar configurações da janela
+        # Salva a geometria e o estado da janela
         SettingsManager.set("main/geometry", self.saveGeometry())
         SettingsManager.set("main/windowState", self.saveState())
 
-        # Esconder em vez de fechar, se configurado
+        # Verifica se deve manter o app em segundo plano ou fechar completamente
         if SettingsManager.get("system/keep_background", True) and event:
             self.hide()
             event.ignore()
         else:
-            self.browser.__del__()
+            self.browser.__del__()  # Limpeza do navegador
             QApplication.instance().quit()
 
+    # === Controle de Visibilidade da Janela ===
     def show_window(self):
-        """Alterna a visibilidade da janela principal baseada no estado atual."""
+        """Alterna a visibilidade da janela principal."""
         if self.isHidden():
-            # Se a janela estiver escondida, mostre-a
+            # Se a janela estiver escondida, mostra-a
             self.showNormal()
             QApplication.instance().setActiveWindow(self)
         elif not self.isActiveWindow():
-            # Se estiver visível, mas não estiver em foco, traga para o foco
+            # Se estiver visível, mas não em foco, traz para o foco
             self.activateWindow()
             self.raise_()
         else:
-            # Se já estiver em foco, esconda
+            # Se já estiver em foco, esconde
             self.hide()
 
-    def _current_page(self):
-        """Retorna a página atual do navegador."""
-        return self.browser.pages.currentWidget()
+    # === Funções de Configuração Futura ===
+    def open_settings(self):
+        """Abre o painel de configurações."""
+        # Implementação futura
+        pass
