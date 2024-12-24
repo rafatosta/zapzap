@@ -16,6 +16,7 @@ __kofi__ = 'https://ko-fi.com/rafaeltosta'
 __githubSponor__ = 'https://github.com/sponsors/rafatosta'
 __licence__ = 'GNU General Public License v3.0'
 
+__donationPage__ = 'https://rtosta.com/zapzap-web/#donate'
 
 __whatsapp_url__ = 'https://web.whatsapp.com/'
 # Link para pegar o userAgent: http://httpbin.org/user-agent

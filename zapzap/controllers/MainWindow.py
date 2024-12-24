@@ -1,6 +1,9 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMainWindow, QApplication
+from PyQt6.QtCore import QByteArray
+
 from zapzap.controllers.Browser import Browser
+from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTray import SysTray
 
 
@@ -17,19 +20,24 @@ class MainWindow(QMainWindow):
         self.is_fullscreen = False  # Controle do estado de tela cheia
         self.browser = Browser()  # Inicialização do navegador
 
-        self.init_ui()
         self.init_menu_actions()
 
-    def init_ui(self):
-        """Inicializa os elementos principais da interface."""
+        self.setCentralWidget(self.browser)
+
+    def init_settings(self):
+        # Restaurar configurações
+        self.restoreGeometry(SettingsManager.get(
+            "main/geometry", QByteArray()))
+        self.restoreState(SettingsManager.get(
+            "main/windowState", QByteArray()))
+
         SysTray.show()  # Exibe o SysTray
-        self.setCentralWidget(self.browser)  # Define o widget central como o navegador
 
     def init_menu_actions(self):
         """Conecta ações do menu às funções correspondentes."""
         # Menu Arquivo
         self.actionSettings.triggered.connect(self.open_settings)
-        self.actionQuit.triggered.connect(self.close)
+        self.actionQuit.triggered.connect(self.closeEvent)
         self.actionHide.triggered.connect(self.hide)
 
         # Menu Exibir
@@ -57,11 +65,33 @@ class MainWindow(QMainWindow):
     def closeEvent(self, event):
         """
         Evento chamado ao fechar a janela.
-        Realiza a limpeza de recursos antes de encerrar.
+        Salva o estado da janela e realiza a limpeza de recursos.
         """
-        print("Encerrando o aplicativo...")
-        self.browser.__del__()
-        super().closeEvent(event)
+        # Salvar configurações da janela
+        SettingsManager.set("main/geometry", self.saveGeometry())
+        SettingsManager.set("main/windowState", self.saveState())
+
+        # Esconder em vez de fechar, se configurado
+        if SettingsManager.get("system/keep_background", True) and event:
+            self.hide()
+            event.ignore()
+        else:
+            self.browser.__del__()
+            QApplication.instance().quit()
+
+    def show_window(self):
+        """Alterna a visibilidade da janela principal baseada no estado atual."""
+        if self.isHidden():
+            # Se a janela estiver escondida, mostre-a
+            self.showNormal()
+            QApplication.instance().setActiveWindow(self)
+        elif not self.isActiveWindow():
+            # Se estiver visível, mas não estiver em foco, traga para o foco
+            self.activateWindow()
+            self.raise_()
+        else:
+            # Se já estiver em foco, esconda
+            self.hide()
 
     def _current_page(self):
         """Retorna a página atual do navegador."""
