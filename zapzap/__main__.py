@@ -19,6 +19,8 @@ def main():
     main_window = MainWindow()
     app.setWindow(main_window)
     app.setActivationWindow(main_window)
+    main_window.init_settings()
+
     main_window.show()
 
     # Start app
