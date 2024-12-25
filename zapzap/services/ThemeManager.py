@@ -11,17 +11,59 @@ class ThemeManager:
         Light = "light"
         Dark = "dark"
 
-    def __init__(self):
-        self.current_theme = SettingsManager.get(
-            "system/theme", ThemeManager.Type.Auto
-        )
-        self.timer = QTimer()
-        self.timer.setInterval(1000)  # Check system theme every 1 second
-        self.timer.timeout.connect(self.syncThemeSys)
+    _instance = None
 
-        # Start timer if theme is set to Auto
-        if self.current_theme == ThemeManager.Type.Auto:
-            self.timer.start()
+    def __new__(cls, *args, **kwargs):
+        if not cls._instance:
+            cls._instance = super().__new__(cls)
+            cls._instance._initialized = False
+        return cls._instance
+
+    def __init__(self):
+        if not self._initialized:
+            self._initialized = True
+            self.current_theme = SettingsManager.get(
+                "system/theme", ThemeManager.Type.Auto
+            )
+            self.timer = QTimer()
+            self.timer.setInterval(1000)  # Check system theme every 1 second
+            self.timer.timeout.connect(self.syncThemeSys)
+
+    @staticmethod
+    def instance():
+        """Get the singleton instance of ThemeManager."""
+        if ThemeManager._instance is None:
+            ThemeManager()
+        return ThemeManager._instance
+
+    @staticmethod
+    def start():
+        """Start the ThemeManager and apply the theme from settings."""
+        instance = ThemeManager.instance()
+        if instance.current_theme == ThemeManager.Type.Auto:
+            instance.timer.start()
+            instance.syncThemeSys()  # Synchronize with system theme
+        else:
+            instance.notifyThemeChange()
+
+    @staticmethod
+    def setTheme(theme: Type):
+        """Set the theme based on user choice."""
+        instance = ThemeManager.instance()
+        if theme == ThemeManager.Type.Auto:
+            instance.timer.start()
+        else:
+            instance.timer.stop()
+            instance.current_theme = theme
+            instance.notifyThemeChange()
+
+        # Save the theme type
+        SettingsManager.set("system/theme", theme.value)
+
+    @staticmethod
+    def getCurrentTheme():
+        """Get the current theme."""
+        return ThemeManager.instance().current_theme
 
     def syncThemeSys(self):
         """Check the current system theme and apply it."""
@@ -29,18 +71,6 @@ class ThemeManager:
         if self.current_theme != theme:
             self.current_theme = theme
             self.notifyThemeChange()
-
-    def setTheme(self, theme: Type):
-        """Set the theme based on user choice."""
-        if theme == ThemeManager.Type.Auto:
-            self.timer.start()
-        else:
-            self.timer.stop()
-            self.current_theme = theme
-            self.notifyThemeChange()
-
-        # Save the theme type
-        SettingsManager.set("system/theme", theme.value)
 
     def notifyThemeChange(self):
         """Notify that the theme has changed."""
@@ -58,10 +88,6 @@ class ThemeManager:
         """Apply the dark theme."""
         print("Applying dark theme...")
         # Implement the dark theme style logic here
-
-    def getCurrentTheme(self):
-        """Get the current theme."""
-        return self.current_theme
 
     def getSystemTheme(self) -> Type:
         """
