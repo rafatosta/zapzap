@@ -22,9 +22,9 @@ class ThemeManager:
     def __init__(self):
         if not self._initialized:
             self._initialized = True
-            self.current_theme = SettingsManager.get(
+            self.current_theme = ThemeManager.Type(SettingsManager.get(
                 "system/theme", ThemeManager.Type.Auto
-            )
+            ))
             self.timer = QTimer()
             self.timer.setInterval(1000)  # Check system theme every 1 second
             self.timer.timeout.connect(self.syncThemeSys)

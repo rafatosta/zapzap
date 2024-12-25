@@ -5,6 +5,7 @@ from PyQt6.QtCore import QByteArray
 from zapzap.controllers.Browser import Browser
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
+from zapzap.services.ThemeManager import ThemeManager
 
 
 class MainWindow(QMainWindow):
@@ -30,9 +31,13 @@ class MainWindow(QMainWindow):
 
     def load_settings(self):
         """Restaura as configurações salvas da janela e do sistema. (Chamar após a criação do objeto)"""
-        self.restoreGeometry(SettingsManager.get("main/geometry", QByteArray()))
-        self.restoreState(SettingsManager.get("main/windowState", QByteArray()))
+        self.restoreGeometry(SettingsManager.get(
+            "main/geometry", QByteArray()))
+        self.restoreState(SettingsManager.get(
+            "main/windowState", QByteArray()))
+
         SysTrayManager.show()  # Exibe o SysTray
+        ThemeManager.start()  # Iniciar o ThemeManager
 
     # === Conexões de Ações do Menu ===
     def _connect_menu_actions(self):
@@ -42,14 +47,19 @@ class MainWindow(QMainWindow):
         self.actionQuit.triggered.connect(self.closeEvent)
         self.actionHide.triggered.connect(self.hide)
         self.actionReload.triggered.connect(self.browser.reload_pages)
-        self.actionNew_chat.triggered.connect(lambda: self._current_page().new_chat())
-        self.actionBy_phone_number.triggered.connect(lambda: self._current_page().new_chat_by_phone())
+        self.actionNew_chat.triggered.connect(
+            lambda: self._current_page().new_chat())
+        self.actionBy_phone_number.triggered.connect(
+            lambda: self._current_page().new_chat_by_phone())
 
         # Menu Exibir
-        self.actionReset_zoom.triggered.connect(lambda: self._current_page().set_zoom_factor_page())
+        self.actionReset_zoom.triggered.connect(
+            lambda: self._current_page().set_zoom_factor_page())
         self.actionToggle_full_screen.triggered.connect(self.toggle_fullscreen)
-        self.actionZoom_in.triggered.connect(lambda: self._current_page().set_zoom_factor_page(+0.1))
-        self.actionZoom_out.triggered.connect(lambda: self._current_page().set_zoom_factor_page(-0.1))
+        self.actionZoom_in.triggered.connect(
+            lambda: self._current_page().set_zoom_factor_page(+0.1))
+        self.actionZoom_out.triggered.connect(
+            lambda: self._current_page().set_zoom_factor_page(-0.1))
 
     # === Gerenciamento de Tela ===
     def _current_page(self):
