@@ -21,7 +21,6 @@ class MainWindow(QMainWindow):
         self.browser = Browser()  # Inicialização do navegador
 
         self._setup_ui()
-        self._load_settings()
 
     # === Configuração Inicial ===
     def _setup_ui(self):
@@ -29,8 +28,8 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.browser)
         self._connect_menu_actions()
 
-    def _load_settings(self):
-        """Restaura as configurações salvas da janela e do sistema."""
+    def load_settings(self):
+        """Restaura as configurações salvas da janela e do sistema. (Chamar após a criação do objeto)"""
         self.restoreGeometry(SettingsManager.get("main/geometry", QByteArray()))
         self.restoreState(SettingsManager.get("main/windowState", QByteArray()))
         SysTrayManager.show()  # Exibe o SysTray
