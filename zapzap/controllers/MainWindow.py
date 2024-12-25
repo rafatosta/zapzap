@@ -1,7 +1,6 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMainWindow, QApplication
 from PyQt6.QtCore import QByteArray
-
 from zapzap.controllers.Browser import Browser
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
@@ -10,7 +9,7 @@ from zapzap.services.ThemeManager import ThemeManager
 
 class MainWindow(QMainWindow):
     """
-    Classe principal para a interface do aplicativo.
+    Classe principal da interface do aplicativo.
     Controla a janela principal, incluindo o menu e interações com widgets centrais.
     """
 
@@ -30,36 +29,56 @@ class MainWindow(QMainWindow):
         self._connect_menu_actions()
 
     def load_settings(self):
-        """Restaura as configurações salvas da janela e do sistema. (Chamar após a criação do objeto)"""
-        self.restoreGeometry(SettingsManager.get(
-            "main/geometry", QByteArray()))
-        self.restoreState(SettingsManager.get(
-            "main/windowState", QByteArray()))
+        """Restaura as configurações salvas da janela e do sistema."""
+        self.restoreGeometry(SettingsManager.get("main/geometry", QByteArray()))
+        self.restoreState(SettingsManager.get("main/windowState", QByteArray()))
 
-        SysTrayManager.show()  # Exibe o SysTray
-        ThemeManager.start()  # Iniciar o ThemeManager
+        # Exibe o SysTray e inicia o ThemeManager
+        SysTrayManager.show()
+        ThemeManager.start()
 
     # === Conexões de Ações do Menu ===
     def _connect_menu_actions(self):
         """Conecta ações do menu às funções correspondentes."""
-        # Menu Arquivo
+        self._connect_file_menu_actions()
+        self._connect_view_menu_actions()
+
+    def _connect_file_menu_actions(self):
+        """Conectar ações do menu 'Arquivo'."""
         self.actionSettings.triggered.connect(self.open_settings)
         self.actionQuit.triggered.connect(self.closeEvent)
         self.actionHide.triggered.connect(self.hide)
         self.actionReload.triggered.connect(self.browser.reload_pages)
-        self.actionNew_chat.triggered.connect(
-            lambda: self._current_page().new_chat())
-        self.actionBy_phone_number.triggered.connect(
-            lambda: self._current_page().new_chat_by_phone())
+        self.actionNew_chat.triggered.connect(self._new_chat)
+        self.actionBy_phone_number.triggered.connect(self._new_chat_by_phone)
 
-        # Menu Exibir
-        self.actionReset_zoom.triggered.connect(
-            lambda: self._current_page().set_zoom_factor_page())
+    def _connect_view_menu_actions(self):
+        """Conectar ações do menu 'Exibir'."""
+        self.actionReset_zoom.triggered.connect(self._reset_zoom)
         self.actionToggle_full_screen.triggered.connect(self.toggle_fullscreen)
-        self.actionZoom_in.triggered.connect(
-            lambda: self._current_page().set_zoom_factor_page(+0.1))
-        self.actionZoom_out.triggered.connect(
-            lambda: self._current_page().set_zoom_factor_page(-0.1))
+        self.actionZoom_in.triggered.connect(self._zoom_in)
+        self.actionZoom_out.triggered.connect(self._zoom_out)
+
+    # === Ações de Menu ===
+    def _new_chat(self):
+        """Iniciar um novo chat na página atual."""
+        self._current_page().new_chat()
+
+    def _new_chat_by_phone(self):
+        """Iniciar um novo chat pelo número de telefone na página atual."""
+        self._current_page().new_chat_by_phone()
+
+    def _reset_zoom(self):
+        """Resetar o fator de zoom da página atual."""
+        self._current_page().set_zoom_factor_page()
+
+    def _zoom_in(self):
+        """Aumentar o zoom da página atual."""
+        self._current_page().set_zoom_factor_page(+0.1)
+
+    def _zoom_out(self):
+        """Diminuir o zoom da página atual."""
+        self._current_page().set_zoom_factor_page(-0.1)
 
     # === Gerenciamento de Tela ===
     def _current_page(self):
@@ -80,33 +99,55 @@ class MainWindow(QMainWindow):
         Evento chamado ao fechar a janela.
         Salva o estado da janela e realiza a limpeza de recursos.
         """
-        # Salva a geometria e o estado da janela
+        self._save_window_state()
+        
+        if self._should_keep_background(event):
+            self._prepare_for_background(event)
+        else:
+            self._clean_up_and_exit()
+
+    def _save_window_state(self):
+        """Salvar a geometria e o estado da janela."""
         SettingsManager.set("main/geometry", self.saveGeometry())
         SettingsManager.set("main/windowState", self.saveState())
 
-        # Verifica se deve manter o app em segundo plano ou fechar completamente
-        if SettingsManager.get("system/keep_background", True) and event:
-            self.browser.close_conversations()
-            self.hide()
-            event.ignore()
-        else:
-            self.browser.__del__()  # Limpeza do navegador
-            QApplication.instance().quit()
+    def _should_keep_background(self, event) -> bool:
+        """Verificar se o app deve continuar em segundo plano."""
+        return SettingsManager.get("system/keep_background", True) and event
+
+    def _prepare_for_background(self, event):
+        """Preparar o app para permanecer em segundo plano."""
+        self.browser.close_conversations()
+        self.hide()
+        event.ignore()
+
+    def _clean_up_and_exit(self):
+        """Limpar recursos e sair do aplicativo."""
+        self.browser.__del__()
+        QApplication.instance().quit()
 
     # === Controle de Visibilidade da Janela ===
     def show_window(self):
         """Alterna a visibilidade da janela principal."""
         if self.isHidden():
-            # Se a janela estiver escondida, mostra-a
             self.showNormal()
             QApplication.instance().setActiveWindow(self)
         elif not self.isActiveWindow():
-            # Se estiver visível, mas não em foco, traz para o foco
             self.activateWindow()
             self.raise_()
         else:
-            # Se já estiver em foco, esconde
             self.hide()
+
+    # === Controle de Tema ===
+    def set_theme_app(self):
+        """Aplica o tema ao aplicativo baseado no tema atual."""
+        self.browser.set_theme()
+
+        current_theme = ThemeManager.get_current_theme()
+        if current_theme == ThemeManager.Type.Light:
+            print("Aplicando tema claro no APP...")
+        elif current_theme == ThemeManager.Type.Dark:
+            print("Aplicando tema escuro no APP...")
 
     # === Funções de Configuração Futura ===
     def open_settings(self):

@@ -81,7 +81,7 @@ class Browser(QWidget):
         for i in range(self.pages.count()):
             page = self.pages.widget(i)
             page.load_page()
-    
+
     def close_conversations(self):
         """ Fechar todas as conversas abertas ao esconder a janela. """
         for i in range(self.pages.count()):
@@ -109,3 +109,9 @@ class Browser(QWidget):
         """Reseta o estilo de todos os botões."""
         for button in self.page_buttons.values():
             button.unselected()
+
+    def set_theme(self):
+        """ Define o tema das páginas. """
+        for i in range(self.pages.count()):
+            page = self.pages.widget(i)
+            page.whatsapp_page.set_theme()
