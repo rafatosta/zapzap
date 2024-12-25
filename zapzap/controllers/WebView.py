@@ -1,5 +1,5 @@
 from PyQt6.QtWebEngineWidgets import QWebEngineView
-from PyQt6.QtWebEngineCore import QWebEngineProfile
+from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEnginePage
 from PyQt6.QtCore import QUrl, pyqtSignal
 
 from zapzap.controllers.PageController import PageController
@@ -22,8 +22,7 @@ class WebView (QWebEngineView):
         self.profile.setHttpUserAgent(__user_agent__)
 
         self.page = PageController(self.profile, self)
-        self.setPage(self.page)
-        self.load(QUrl(__whatsapp_url__))
+        self.load_page()
 
         # Aplica o zoom após o carregamento da página
         self.setZoomFactor(user.zoomFactor)
@@ -39,8 +38,6 @@ class WebView (QWebEngineView):
         self.titleChanged.connect(self.title_changed)
 
     def title_changed(self, title):
-        """Emite um sinal com uma atualização para o botão correspondente."""
-        """ The number of messages are available from the window title. """
         num = ''.join(filter(str.isdigit, title))
         qtd = int(num) if num else 0
         self.update_button_signal.emit(self.page_index, qtd)
@@ -49,3 +46,8 @@ class WebView (QWebEngineView):
         # Define o fator de zoom da página. Reseta para 1.0 se nenhum fator for fornecido.
         new_zoom = 1.0 if factor is None else self.zoomFactor() + factor
         self.setZoomFactor(new_zoom)
+
+    def load_page(self):
+        """ Carrega a página """
+        self.setPage(self.page)
+        self.load(QUrl(__whatsapp_url__))
