@@ -76,6 +76,7 @@ class MainWindow(QMainWindow):
 
         # Verifica se deve manter o app em segundo plano ou fechar completamente
         if SettingsManager.get("system/keep_background", True) and event:
+            self.browser.close_conversations()
             self.hide()
             event.ignore()
         else:

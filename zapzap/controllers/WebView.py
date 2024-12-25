@@ -21,7 +21,7 @@ class WebView (QWebEngineView):
         self.profile = QWebEngineProfile(str(user.id), self)
         self.profile.setHttpUserAgent(__user_agent__)
 
-        self.page = PageController(self.profile, self)
+        self.whatsapp_page = PageController(self.profile, self)
         self.load_page()
 
         # Aplica o zoom após o carregamento da página
@@ -49,5 +49,5 @@ class WebView (QWebEngineView):
 
     def load_page(self):
         """ Carrega a página """
-        self.setPage(self.page)
+        self.setPage(self.whatsapp_page)
         self.load(QUrl(__whatsapp_url__))

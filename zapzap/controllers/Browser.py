@@ -81,6 +81,12 @@ class Browser(QWidget):
         for i in range(self.pages.count()):
             page = self.pages.widget(i)
             page.load_page()
+    
+    def close_conversations(self):
+        """ Fechar todas as conversas abertas ao esconder a janela. """
+        for i in range(self.pages.count()):
+            page = self.pages.widget(i)
+            page.whatsapp_page.close_conversation()
 
     # === Notificações ===
 
