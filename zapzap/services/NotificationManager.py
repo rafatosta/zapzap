@@ -12,8 +12,8 @@ from collections import OrderedDict
 DBusGMainLoop = None
 try:
     from dbus.mainloop.glib import DBusGMainLoop
-except:
-    print("Could not import DBusGMainLoop, is package 'python-dbus.mainloop.glib' installed?")
+except ImportError:
+    print("Could not import DBusGMainLoop. Ensure 'python-dbus.mainloop.glib' is installed.")
 
 APP_NAME = ''
 NO_NOTIFIER: bool = False
@@ -31,14 +31,15 @@ class NotificationManager:
                     'notification/show_name', True) else __appname__
                 message = notification.message() if SettingsManager.get(
                     'notification/show_msg', True) else 'New message...'
-                icon = NotificationManager._getPathImage(notification.icon(), notification.title(
-                )) if SettingsManager.get('notification/show_photo', True) else NotificationManager._getIconDefaultURLNotification()
+                icon = NotificationManager._get_image_path(notification.icon(), notification.title(
+                )) if SettingsManager.get('notification/show_photo', True) else NotificationManager._get_default_icon_path()
 
-                new_notify = Notification(title,
-                                          message,
-                                          timeout=3000,
-                                          _qWebEngineNotification=notification
-                                          )
+                new_notify = Notification(
+                    title,
+                    message,
+                    timeout=3000,
+                    _qWebEngineNotification=notification
+                )
                 new_notify.setUrgency(Urgency.NORMAL)
                 new_notify.setCategory("im.received")
                 new_notify.setIconPath(icon)
@@ -56,67 +57,61 @@ class NotificationManager:
                     notification.click()
                 new_notify.addAction('default', '', callback)
 
-                # This signal is emitted when the web page calls close steps for the notification, and it no longer needs to be shown.
                 notification.closed.connect(lambda: new_notify.close())
+
                 new_notify.show()
             except Exception as e:
                 print('Exception:', e)
 
     @staticmethod
-    def _getPathImage(qin, title) -> str:
-        """
-        To show an image in notifications on dbus it is necessary that the image exists in a directory. 
-        So the contact image is saved in a temporary folder (tmp) in the application data folder
-        """
+    def _get_image_path(icon, title) -> str:
+        """Obtém o caminho da imagem para a notificação."""
         try:
-            path = NotificationManager._get_path()+'/'+title+'.png'
+            path = os.path.join(
+                NotificationManager._get_temp_path(), f'{title}.png')
+            output_image = QImage(
+                icon.width(), icon.height(), QImage.Format.Format_ARGB32)
+            output_image.fill(Qt.GlobalColor.transparent)
 
-            qout = QImage(qin.width(), qin.height(),
-                          QImage.Format.Format_ARGB32)
-            qout.fill(Qt.GlobalColor.transparent)
-
-            brush = QBrush(qin)
-
-            pen = QPen()
-            pen.setColor(Qt.GlobalColor.darkGray)
-            pen.setJoinStyle(Qt.PenJoinStyle.RoundJoin)
-
-            painter = QPainter(qout)
-            painter.setBrush(brush)
-            painter.setPen(pen)
+            painter = QPainter(output_image)
+            painter.setBrush(QBrush(icon))
+            painter.setPen(QPen(Qt.GlobalColor.darkGray))
             painter.setRenderHint(QPainter.RenderHint.Antialiasing, True)
-            painter.drawRoundedRect(0, 0, qin.width(), qin.height(),
-                                    qin.width()//2, qin.height()//2)
+            painter.drawRoundedRect(
+                0, 0, icon.width(), icon.height(), icon.width() // 2, icon.height() // 2)
             painter.end()
-            c = qout.save(path)
-            if (c == False):
-                return NotificationManager._getIconDefaultURLNotification()
-            else:
-                return path
-        except:
-            return NotificationManager._getIconDefaultURLNotification()
 
-    @staticmethod
-    def _getIconDefaultURLNotification() -> str:
-        try:
-            qIcon = TrayIcon.getIcon()
-            qpix = qIcon.pixmap(QSize(128, 128))
-            path = NotificationManager._get_path()+'/com.rtosta.zapzap.png'
-            qpix.save(path)
+            if not output_image.save(path):
+                return NotificationManager._get_default_icon_path()
             return path
         except Exception as e:
-            print(e)
+            print('Error in _get_image_path:', e)
+            return NotificationManager._get_default_icon_path()
+
+    @staticmethod
+    def _get_default_icon_path() -> str:
+        """Obtém o caminho do ícone padrão."""
+        try:
+            icon = TrayIcon.getIcon()
+            pixmap = icon.pixmap(QSize(128, 128))
+            path = os.path.join(
+                NotificationManager._get_temp_path(), 'com.rtosta.zapzap.png')
+            pixmap.save(path)
+            return path
+        except Exception as e:
+            print('Error in _get_default_icon_path:', e)
             return ""
 
     @staticmethod
-    def _get_path():
-        path_tmp = os.path.join(
+    def _get_temp_path() -> str:
+        """Obtém o diretório temporário para armazenamento de imagens."""
+        temp_path = os.path.join(
             QStandardPaths.writableLocation(
-                QStandardPaths.StandardLocation.AppLocalDataLocation), 'tmp'
+                QStandardPaths.StandardLocation.AppLocalDataLocation),
+            'tmp'
         )
-        if not os.path.exists(path_tmp):
-            os.makedirs(path_tmp)
-        return path_tmp
+        os.makedirs(temp_path, exist_ok=True)
+        return temp_path
 
 
 class Urgency:
@@ -132,58 +127,6 @@ class UninitializedError(RuntimeError):
 class NotifierNotPresent(RuntimeError):
     """Error raised when you try to show a notification when there is no notifier present"""
     pass
-
-
-def init(app_name):
-    """Initializes the Session DBus connection"""
-    global APP_NAME, DBUS_IFACE, NO_NOTIFIER
-    APP_NAME = app_name
-
-    name = "org.freedesktop.Notifications"
-    path = "/org/freedesktop/Notifications"
-    interface = "org.freedesktop.Notifications"
-
-    mainloop = None
-    if DBusGMainLoop is not None:
-        mainloop = DBusGMainLoop(set_as_default=True)
-
-    try:
-        bus: dbus.SessionBus = dbus.SessionBus(mainloop)
-        proxy: dbus.proxies.ProxyObject = bus.get_object(
-            name, path)  # raises DBusException without notifier
-        DBUS_IFACE = dbus.Interface(proxy, interface)
-
-        if mainloop is not None:
-            # We have a mainloop, so connect callbacks
-            DBUS_IFACE.connect_to_signal('ActionInvoked', _onActionInvoked)
-            DBUS_IFACE.connect_to_signal(
-                'NotificationClosed', _onNotificationClosed)
-    except dbus.DBusException as e:
-        print(f"Error initializing DBus: {e}")
-        NO_NOTIFIER = True
-
-
-def _onActionInvoked(nid, action):
-    """Called when a notification action is clicked"""
-    nid, action = int(nid), str(action)
-    try:
-        notification = NOTIFICATIONS[nid]
-    except KeyError:
-        # must have been created by some other program
-        return
-    notification._onActionInvoked(action)
-
-
-def _onNotificationClosed(nid, reason):
-    """Called when the notification is closed"""
-    nid, reason = int(nid), int(reason)
-    try:
-        notification = NOTIFICATIONS[nid]
-    except KeyError:
-        # must have been created by some other program
-        return
-    notification._onNotificationClosed(notification)
-    del NOTIFICATIONS[nid]
 
 
 class Notification(object):
@@ -322,6 +265,58 @@ class Notification(object):
             callback(self, action)
         else:
             callback(self, action, user_data)
+
+
+def init(app_name):
+    """Initializes the Session DBus connection"""
+    global APP_NAME, DBUS_IFACE, NO_NOTIFIER
+    APP_NAME = app_name
+
+    name = "org.freedesktop.Notifications"
+    path = "/org/freedesktop/Notifications"
+    interface = "org.freedesktop.Notifications"
+
+    mainloop = None
+    if DBusGMainLoop is not None:
+        mainloop = DBusGMainLoop(set_as_default=True)
+
+    try:
+        bus: dbus.SessionBus = dbus.SessionBus(mainloop)
+        proxy: dbus.proxies.ProxyObject = bus.get_object(
+            name, path)  # raises DBusException without notifier
+        DBUS_IFACE = dbus.Interface(proxy, interface)
+
+        if mainloop is not None:
+            # We have a mainloop, so connect callbacks
+            DBUS_IFACE.connect_to_signal('ActionInvoked', _onActionInvoked)
+            DBUS_IFACE.connect_to_signal(
+                'NotificationClosed', _onNotificationClosed)
+    except dbus.DBusException as e:
+        print(f"Error initializing DBus: {e}")
+        NO_NOTIFIER = True
+
+
+def _onActionInvoked(nid, action):
+    """Called when a notification action is clicked"""
+    nid, action = int(nid), str(action)
+    try:
+        notification = NOTIFICATIONS[nid]
+    except KeyError:
+        # must have been created by some other program
+        return
+    notification._onActionInvoked(action)
+
+
+def _onNotificationClosed(nid, reason):
+    """Called when the notification is closed"""
+    nid, reason = int(nid), int(reason)
+    try:
+        notification = NOTIFICATIONS[nid]
+    except KeyError:
+        # must have been created by some other program
+        return
+    notification._onNotificationClosed(notification)
+    del NOTIFICATIONS[nid]
 
 
 init(__appname__)
