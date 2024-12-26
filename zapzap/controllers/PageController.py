@@ -13,6 +13,9 @@ class PageController(QWebEnginePage):
         # Conecta o sinal de link hover
         self.linkHovered.connect(self.link_hovered)
 
+        # Conecta o sinal de página carregada
+        self.loadFinished.connect(self.load_finished)
+
         # Ativa o filtro de eventos
         QApplication.instance().installEventFilter(self)
 
@@ -33,6 +36,20 @@ class PageController(QWebEnginePage):
     def link_hovered(self, url):
         """Armazena o URL do link quando o mouse passa sobre ele."""
         self.link_url = url
+
+    def load_finished(self, flag):
+        if flag:
+            # Usa MutationObserver para aplicar o estilo quando o elemento for adicionado ao DOM
+            self.runJavaScript("""
+                const observer = new MutationObserver(() => {
+                    const classElement = document.querySelector(".two._aigs");
+                    if (classElement) {
+                        classElement.style = 'max-width: initial; width: 100%; height: 100%; position: unset; margin: 0';
+                        observer.disconnect();  // Para o observador após aplicar o estilo
+                    }
+                });
+                observer.observe(document.body, { childList: true, subtree: true });
+            """)
 
     def eventFilter(self, obj, event):
         """Abre o link se o mouse for clicado em um link."""
