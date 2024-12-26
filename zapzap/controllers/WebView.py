@@ -1,6 +1,6 @@
 from PyQt6.QtWebEngineWidgets import QWebEngineView
-from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEnginePage
-from PyQt6.QtCore import QUrl, pyqtSignal
+from PyQt6.QtWebEngineCore import QWebEngineProfile
+from PyQt6.QtCore import QUrl, pyqtSignal, Qt
 
 from zapzap.controllers.PageController import PageController
 from zapzap.models import User
@@ -17,6 +17,8 @@ class WebView (QWebEngineView):
         self.user = user
         self.page_index = page_index  # Identificador da página
         self.setup_signals()
+
+        self.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
 
         self.profile = QWebEngineProfile(str(user.id), self)
         self.profile.setHttpUserAgent(__user_agent__)
