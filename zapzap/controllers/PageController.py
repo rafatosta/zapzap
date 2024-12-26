@@ -16,6 +16,9 @@ class PageController(QWebEnginePage):
         # Conecta o sinal de página carregada
         self.loadFinished.connect(self.load_finished)
 
+        # Acionar a resposta de permissão do recurso.
+        self.featurePermissionRequested.connect(self.permission_feature)
+
         # Ativa o filtro de eventos
         QApplication.instance().installEventFilter(self)
 
@@ -36,6 +39,11 @@ class PageController(QWebEnginePage):
     def link_hovered(self, url):
         """Armazena o URL do link quando o mouse passa sobre ele."""
         self.link_url = url
+
+    def permission_feature(self, frame, feature):
+        """Permissão para acesso aos recursos do sistema (Câmera e audio)"""
+        self.setFeaturePermission(
+            frame, feature,  QWebEnginePage.PermissionPolicy.PermissionGrantedByUser)
 
     def load_finished(self, flag):
         if flag:
