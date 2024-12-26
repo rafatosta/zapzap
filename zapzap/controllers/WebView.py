@@ -6,6 +6,7 @@ from zapzap.controllers.PageController import PageController
 from zapzap.models import User
 from zapzap import __user_agent__, __whatsapp_url__
 from zapzap.services.DownloadManager import DownloadManager
+from zapzap.services.NotificationManager import NotificationManager
 
 
 class WebView(QWebEngineView):
@@ -25,7 +26,10 @@ class WebView(QWebEngineView):
         self.profile.setHttpUserAgent(__user_agent__)
         self.profile.downloadRequested.connect(
             DownloadManager.on_downloadRequested)
-
+        self.profile.setNotificationPresenter(
+            lambda notification: NotificationManager.show(
+                str(user.id), notification)
+        )
         self.whatsapp_page = PageController(self.profile, self)
         self.load_page()
 
