@@ -51,6 +51,10 @@ class PageController(QWebEnginePage):
                 observer.observe(document.body, { childList: true, subtree: true });
             """)
 
+            # Permissão automática para notificações
+            self.setFeaturePermission(self.url(), QWebEnginePage.Feature.Notifications,
+                                      QWebEnginePage.PermissionPolicy.PermissionGrantedByUser)
+
     def eventFilter(self, obj, event):
         """Abre o link se o mouse for clicado em um link."""
         if event.type() == QEvent.Type.MouseButtonPress:
