@@ -110,8 +110,14 @@ class Browser(QWidget):
         for button in self.page_buttons.values():
             button.unselected()
 
-    def set_theme(self):
+    def set_theme_light(self):
         """ Define o tema das páginas. """
         for i in range(self.pages.count()):
             page = self.pages.widget(i)
-            page.whatsapp_page.set_theme()
+            page.whatsapp_page.set_theme_light()
+
+    def set_theme_dark(self):
+        """ Define o tema das páginas. """
+        for i in range(self.pages.count()):
+            page = self.pages.widget(i)
+            page.whatsapp_page.set_theme_dark()

@@ -11,10 +11,8 @@ class PageController(QWebEnginePage):
         script = """document.dispatchEvent(new KeyboardEvent("keydown",{'key': 'Escape'}));"""
         self.runJavaScript(script)
 
-    def set_theme(self):
-        current_theme = ThemeManager.get_current_theme()
-        if current_theme == ThemeManager.Type.Light:
-            self.runJavaScript("document.body.classList.remove('dark');")
-        elif current_theme == ThemeManager.Type.Dark:
-            self.runJavaScript("document.body.classList.add('dark');"
-                               )
+    def set_theme_light(self):
+        self.runJavaScript("document.body.classList.remove('dark');")
+
+    def set_theme_dark(self):
+        self.runJavaScript("document.body.classList.add('dark');")

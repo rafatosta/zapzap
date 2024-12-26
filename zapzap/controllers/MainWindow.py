@@ -30,8 +30,10 @@ class MainWindow(QMainWindow):
 
     def load_settings(self):
         """Restaura as configurações salvas da janela e do sistema."""
-        self.restoreGeometry(SettingsManager.get("main/geometry", QByteArray()))
-        self.restoreState(SettingsManager.get("main/windowState", QByteArray()))
+        self.restoreGeometry(SettingsManager.get(
+            "main/geometry", QByteArray()))
+        self.restoreState(SettingsManager.get(
+            "main/windowState", QByteArray()))
 
         # Exibe o SysTray e inicia o ThemeManager
         SysTrayManager.show()
@@ -100,7 +102,7 @@ class MainWindow(QMainWindow):
         Salva o estado da janela e realiza a limpeza de recursos.
         """
         self._save_window_state()
-        
+
         if self._should_keep_background(event):
             self._prepare_for_background(event)
         else:
@@ -137,17 +139,6 @@ class MainWindow(QMainWindow):
             self.raise_()
         else:
             self.hide()
-
-    # === Controle de Tema ===
-    def set_theme_app(self):
-        """Aplica o tema ao aplicativo baseado no tema atual."""
-        self.browser.set_theme()
-
-        current_theme = ThemeManager.get_current_theme()
-        if current_theme == ThemeManager.Type.Light:
-            print("Aplicando tema claro no APP...")
-        elif current_theme == ThemeManager.Type.Dark:
-            print("Aplicando tema escuro no APP...")
 
     # === Funções de Configuração Futura ===
     def open_settings(self):

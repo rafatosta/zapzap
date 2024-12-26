@@ -25,9 +25,11 @@ class ThemeManager:
         if not self._initialized:
             self._initialized = True
             # Obtém o tema salvo nas configurações do sistema (auto, claro ou escuro)
-            self.current_theme = ThemeManager.Type(SettingsManager.get("system/theme", ThemeManager.Type.Auto))
+            self.current_theme = ThemeManager.Type(
+                SettingsManager.get("system/theme", ThemeManager.Type.Auto))
             self.timer = QTimer()
-            self.timer.setInterval(1000)  # Verifica o tema do sistema a cada segundo
+            # Verifica o tema do sistema a cada segundo
+            self.timer.setInterval(1000)
             self.timer.timeout.connect(self.syncThemeSys)
 
     @staticmethod
@@ -89,18 +91,14 @@ class ThemeManager:
     def _apply_light_theme(self):
         """Aplica o tema claro."""
         print("Aplicando tema claro...")
-        self._set_theme_for_app()
+        #QApplication.instance().setStyleSheet() # App
+        QApplication.instance().getWindow().browser.set_theme_light() # Browser
 
     def _apply_dark_theme(self):
         """Aplica o tema escuro."""
         print("Aplicando tema escuro...")
-        self._set_theme_for_app()
-
-    # === Aplicação do Tema ===
-    def _set_theme_for_app(self):
-        """Aplica o tema para o aplicativo."""
-        main_window = QApplication.instance().getWindow()
-        main_window.set_theme_app()
+        #QApplication.instance().setStyleSheet()
+        QApplication.instance().getWindow().browser.set_theme_dark()
 
     # === Detecção do Tema do Sistema ===
     def _get_system_theme(self) -> Type:
@@ -116,7 +114,8 @@ class ThemeManager:
             interface = "org.freedesktop.portal.Settings"
 
             smp = QDBusInterface(name, path, interface)
-            msg = smp.call("Read", "org.freedesktop.appearance", "color-scheme")
+            msg = smp.call(
+                "Read", "org.freedesktop.appearance", "color-scheme")
             color_scheme = msg.arguments()[0]
 
             return ThemeManager.Type.Dark if color_scheme == 1 else ThemeManager.Type.Light
