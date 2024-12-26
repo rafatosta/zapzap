@@ -1,16 +1,14 @@
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineDownloadRequest
 from PyQt6.QtCore import QUrl, pyqtSignal, Qt, QFileInfo, QStandardPaths
-from PyQt6.QtWidgets import QFileDialog
-from PyQt6.QtGui import QDesktopServices, QAction
+from PyQt6.QtWidgets import QFileDialog, QMenu
+from PyQt6.QtGui import QDesktopServices, QAction, QCursor
 import os
 
 from zapzap.controllers.PageController import PageController
 from zapzap.models import User
 from zapzap import __user_agent__, __whatsapp_url__
 
-from PyQt6.QtWidgets import QMenu
-from PyQt6.QtGui import QCursor
 from zapzap.services.SettingsManager import SettingsManager
 
 
