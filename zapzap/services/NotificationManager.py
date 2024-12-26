@@ -1,7 +1,9 @@
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 from PyQt6.QtGui import QPainter, QPainter, QImage, QBrush, QPen
 from PyQt6.QtCore import Qt, QSize, QStandardPaths
+from PyQt6.QtWidgets import QApplication
 
+from zapzap.controllers import WebView
 from zapzap.resources.TrayIcon import TrayIcon
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap import __appname__
@@ -24,8 +26,8 @@ NOTIFICATIONS = {}
 class NotificationManager:
 
     @staticmethod
-    def show(user_id: str, notification: QWebEngineNotification):
-        if SettingsManager.get('notification/app', True) and SettingsManager.get(f'{user_id}/notification', True):
+    def show(page: WebView, notification: QWebEngineNotification):
+        if SettingsManager.get('notification/app', True) and SettingsManager.get(f'{str(page.user.id)}/notification', True):
             try:
                 title = notification.title() if SettingsManager.get(
                     'notification/show_name', True) else __appname__
@@ -47,13 +49,14 @@ class NotificationManager:
 
                 def callback(*_):
                     # Coloca a janela em foco
-                    """ mainWindow = QApplication.instance().getWindow()
+                    mainWindow = QApplication.instance().getWindow()
                     mainWindow.show()
                     mainWindow.raise_()
-                    mainWindow.activateWindow() """
-                    # seleciona o usuário da notificação
-                    """ self.parent.showPageNotification() """
-                    # abre a conversa
+                    mainWindow.activateWindow()
+
+                    mainWindow.browser.switch_to_page(
+                        page, mainWindow.browser.page_buttons[page.page_index])
+
                     notification.click()
                 new_notify.addAction('default', '', callback)
 

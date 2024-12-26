@@ -28,7 +28,7 @@ class WebView(QWebEngineView):
             DownloadManager.on_downloadRequested)
         self.profile.setNotificationPresenter(
             lambda notification: NotificationManager.show(
-                str(user.id), notification)
+                self, notification)
         )
         self.whatsapp_page = PageController(self.profile, self)
         self.load_page()
