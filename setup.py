@@ -11,10 +11,14 @@ try:
         url=zapzap.__website__,
         license='GPLv3+',
         packages=['zapzap',
-                  'zapzap.controllers'
+                  'zapzap.config',
+                  'zapzap.controllers',
+                  'zapzap.models',
+                  'zapzap.resources',
+                  'zapzap.services'
                   ],
         include_package_data=True,
-        package_data={'zapzap': ['']},
+        package_data={'zapzap': ['ui/*.ui']},
         setup_requires=setup_requires,
         entry_points={'gui_scripts': ['zapzap = zapzap.__main__:main']},
         keywords='zapzap whatsapp client web app',
