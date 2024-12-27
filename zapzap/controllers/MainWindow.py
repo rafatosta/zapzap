@@ -1,6 +1,7 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMainWindow, QApplication
 from PyQt6.QtCore import QByteArray
+from zapzap.controllers.AppSettings import AppSettings
 from zapzap.controllers.Browser import Browser
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
@@ -19,13 +20,15 @@ class MainWindow(QMainWindow):
 
         self.is_fullscreen = False  # Controle do estado de tela cheia
         self.browser = Browser()  # Inicialização do navegador
+        self.app_settings = AppSettings()
 
         self._setup_ui()
 
     # === Configuração Inicial ===
     def _setup_ui(self):
         """Configurações iniciais da interface e conexões de menu."""
-        self.setCentralWidget(self.browser)
+        self.stackedWidget.addWidget(self.browser)
+        self.stackedWidget.addWidget(self.app_settings)
         self._connect_menu_actions()
 
     def load_settings(self):
@@ -140,11 +143,14 @@ class MainWindow(QMainWindow):
         else:
             self.hide()
 
-    # === Funções de Configuração Futura ===
+    # === Funções de Configuração ===
     def open_settings(self):
         """Abre o painel de configurações."""
-        # Implementação futura
-        pass
+        self.stackedWidget.setCurrentWidget(self.app_settings)
+
+    def close_settings(self):
+        """Fecha o painel de configurações."""
+        self.stackedWidget.setCurrentWidget(self.browser)
 
     # === Eventos externos ===
     def xdgOpenChat(self, url):
