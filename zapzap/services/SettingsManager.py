@@ -29,7 +29,11 @@ class SettingsManager:
         :param default: Valor padrão caso a chave não exista.
         :return: Valor da configuração.
         """
-        return SettingsManager._get_settings().value(key, default)
+        value = SettingsManager._get_settings().value(key, default)
+        # Converte strings "true"/"false" para booleanos
+        if isinstance(default, bool):
+            return value.lower() == 'true' if isinstance(value, str) else bool(value)
+        return value
 
     @staticmethod
     def set(key, value):
