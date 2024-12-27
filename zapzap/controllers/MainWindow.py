@@ -64,7 +64,7 @@ class MainWindow(QMainWindow):
     # === Ações de Menu ===
     def _new_chat(self):
         """Iniciar um novo chat na página atual."""
-        self._current_page().new_chat()
+        self._current_page().page().new_chat()
 
     def _new_chat_by_phone(self):
         """Iniciar um novo chat pelo número de telefone na página atual."""
