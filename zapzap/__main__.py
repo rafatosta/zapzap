@@ -2,11 +2,13 @@ import zapzap
 import sys
 
 
+from zapzap.config.SetupManager import SetupManager
 from zapzap.controllers.MainWindow import MainWindow
 from zapzap.controllers.SingleApplication import SingleApplication
 
 
 def main():
+    SetupManager.apply()
 
     # Define application attributes
     app = SingleApplication(zapzap.__appid__, sys.argv)
