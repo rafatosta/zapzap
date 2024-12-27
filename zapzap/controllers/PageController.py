@@ -122,3 +122,31 @@ class PageController(QWebEnginePage):
                 QWebEnginePage.Feature.Notifications,
                 QWebEnginePage.PermissionPolicy.PermissionGrantedByUser
             )
+
+    def show_toast(self, message, duration=1000):
+        """Exibe um toast na página utilizando JavaScript."""
+        script = f"""
+        (function() {{
+            var toast = document.createElement('div');
+            toast.style.position = 'fixed';
+            toast.style.bottom = '20px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.padding = '10px 20px';
+            toast.style.backgroundColor = '#333';
+            toast.style.color = '#fff';
+            toast.style.borderRadius = '5px';
+            toast.style.fontSize = '14px';
+            toast.style.zIndex = '9999';
+            toast.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            toast.innerText = '{message}';
+
+            document.body.appendChild(toast);
+
+            // Remove o toast após o tempo especificado
+            setTimeout(function() {{
+                toast.remove();
+            }}, {duration});
+        }})();
+        """
+        self.runJavaScript(script)

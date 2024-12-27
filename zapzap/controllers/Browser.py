@@ -65,6 +65,7 @@ class Browser(QWidget):
         """Alterna para a página selecionada e ajusta os estilos dos botões."""
         self._reset_button_styles()
         self.pages.setCurrentWidget(page)
+        page.page().show_toast(f"Usuário {page.page_index} selecionado")
         button.selected()
 
     def close_pages(self):
