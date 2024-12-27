@@ -68,7 +68,9 @@ class MainWindow(QMainWindow):
 
     def _new_chat_by_phone(self):
         """Iniciar um novo chat pelo número de telefone na página atual."""
-        self._current_page().new_chat_by_phone()
+        # self._current_page().new_chat_by_phone()
+        # Implementação futura
+        pass
 
     def _reset_zoom(self):
         """Resetar o fator de zoom da página atual."""
