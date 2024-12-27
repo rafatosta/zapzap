@@ -1,12 +1,13 @@
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile
-from PyQt6.QtCore import QUrl, pyqtSignal, Qt
+from PyQt6.QtCore import QUrl, pyqtSignal, Qt, QLocale
 
 from zapzap.controllers.PageController import PageController
 from zapzap.models import User
 from zapzap import __user_agent__, __whatsapp_url__
 from zapzap.services.DownloadManager import DownloadManager
 from zapzap.services.NotificationManager import NotificationManager
+from zapzap.services.SettingsManager import SettingsManager
 
 
 class WebView(QWebEngineView):
@@ -18,18 +19,12 @@ class WebView(QWebEngineView):
 
         self.user = user
         self.page_index = page_index  # Identificador da página
-        self.setup_signals()
 
-        self.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
+        self._setup()
 
-        self.profile = QWebEngineProfile(str(user.id), self)
-        self.profile.setHttpUserAgent(__user_agent__)
-        self.profile.downloadRequested.connect(
-            DownloadManager.on_downloadRequested)
-        self.profile.setNotificationPresenter(
-            lambda notification: NotificationManager.show(
-                self, notification)
-        )
+        # Desativa o menu de contexto do QWebEngine
+        # self.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
+
         self.whatsapp_page = PageController(self.profile, self)
         self.load_page()
 
@@ -42,9 +37,31 @@ class WebView(QWebEngineView):
         self.user.zoomFactor = self.zoomFactor()
         self.user.save()
 
-    def setup_signals(self):
+    def _setup(self):
+        self._setup_signals()
+        self._setup_profile()
+
+    def _setup_signals(self):
         # Sinal para mudança de título
         self.titleChanged.connect(self.title_changed)
+
+    def _setup_profile(self):
+        self.profile = QWebEngineProfile(str(self.user.id), self)
+        self.profile.setHttpUserAgent(__user_agent__)
+        self.profile.downloadRequested.connect(
+            DownloadManager.on_downloadRequested)
+        self.profile.setNotificationPresenter(
+            lambda notification: NotificationManager.show(
+                self, notification)
+        )
+        self.profile.setSpellCheckEnabled(
+            bool(SettingsManager.get("system/spellCheckers", True)))
+        self.profile.setSpellCheckLanguages([SettingsManager.get(
+            "system/spellCheckLanguage", QLocale.system().name())])
+
+        print('SpellCheck:', SettingsManager.get("system/spellCheckers", True),
+              '\n',
+              'Lang:', SettingsManager.get("system/spellCheckLanguage", QLocale.system().name()))
 
     def title_changed(self, title):
         num = ''.join(filter(str.isdigit, title))
