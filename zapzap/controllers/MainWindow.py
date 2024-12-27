@@ -145,3 +145,8 @@ class MainWindow(QMainWindow):
         """Abre o painel de configurações."""
         # Implementação futura
         pass
+
+    # === Eventos externos ===
+    def xdgOpenChat(self, url):
+        """Open chat by clicking on a notification"""
+        self._current_page.page().xdg_open_chat(url)

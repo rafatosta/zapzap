@@ -15,6 +15,9 @@ def main():
     app.setDesktopFileName(zapzap.__desktopid__)
     app.setOrganizationDomain(zapzap.__domain__)
 
+    # Callback instance
+    app.messageReceived.connect(lambda result: main_window.xdgOpenChat(result))
+
     # Create main window
     main_window = MainWindow()
     app.setWindow(main_window)

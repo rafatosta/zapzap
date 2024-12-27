@@ -83,6 +83,13 @@ class PageController(QWebEnginePage):
     """
         self.runJavaScript(script)
 
+    def xdg_open_chat(self, url):
+        script = """(function(){var a = document.createElement("a");a.href=\"""" + \
+            url + \
+            """\";document.body.appendChild(a);a.click();a.remove(); return;})();"""
+
+        self.runJavaScript(script)
+
     def eventFilter(self, obj, event):
         """Intercepta eventos e executa ações personalizadas."""
         if event.type() == QEvent.Type.MouseButtonPress and event.button() == Qt.MouseButton.LeftButton:
