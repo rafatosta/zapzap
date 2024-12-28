@@ -20,7 +20,7 @@ class MainWindow(QMainWindow):
 
         self.is_fullscreen = False  # Controle do estado de tela cheia
         self.browser = Browser()  # Inicialização do navegador
-        self.app_settings = Settings()
+        self.app_settings = None
 
         self._setup_ui()
 
@@ -28,7 +28,6 @@ class MainWindow(QMainWindow):
     def _setup_ui(self):
         """Configurações iniciais da interface e conexões de menu."""
         self.stackedWidget.addWidget(self.browser)
-        self.stackedWidget.addWidget(self.app_settings)
         self._connect_menu_actions()
 
     def load_settings(self):
@@ -146,10 +145,15 @@ class MainWindow(QMainWindow):
     # === Funções de Configuração ===
     def open_settings(self):
         """Abre o painel de configurações."""
+        self.app_settings = Settings()
+        self.stackedWidget.addWidget(self.app_settings)
         self.stackedWidget.setCurrentWidget(self.app_settings)
 
     def close_settings(self):
         """Fecha o painel de configurações."""
+        self.stackedWidget.removeWidget(self.app_settings)
+        self.app_settings.__del__()
+
         self.stackedWidget.setCurrentWidget(self.browser)
 
     # === Eventos externos ===

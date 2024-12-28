@@ -51,7 +51,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QPushButton" name="back_btn">
+       <widget class="QPushButton" name="btn_back">
         <property name="text">
          <string>&lt;- Voltar para o ZapZap</string>
         </property>
@@ -215,9 +215,9 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="quit_btn">
+       <widget class="QPushButton" name="btn_quit">
         <property name="text">
-         <string>Log out</string>
+         <string>Sair</string>
         </property>
        </widget>
       </item>
