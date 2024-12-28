@@ -21,4 +21,4 @@ class SetupManager:
 
             # Configurações de escalonamento de tela
             environ['QT_AUTO_SCREEN_SCALE_FACTOR'] = '1'
-            environ['QT_SCALE_FACTOR_ROUNDING_POLICY'] = 'RoundPreferFloor'
+            #environ['QT_SCALE_FACTOR_ROUNDING_POLICY'] = 'RoundPreferFloor'
