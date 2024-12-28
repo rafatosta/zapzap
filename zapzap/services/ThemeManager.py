@@ -14,6 +14,106 @@ class ThemeManager:
 
     _instance = None
 
+    # Dicionário com temas
+    themes = {
+        "light": """
+/* Sidebar geral */
+QWidget#sidebar {
+    background-color: #d8d9dc;
+    border-right: 1px solid #c0c1c4;
+    padding: 10px; /* Para espaçamento interno */
+}
+
+/* Botões da Sidebar */
+QWidget#menu_layout QPushButton {
+    background-color: #c0c1c4;
+    color: #202c33;
+    border: none;
+    padding: 10px 15px;
+    text-align: left;
+    font-size: 14px;
+    border-radius: 4px;
+	border-left: 3px solid #a8a9ab;
+}
+
+/* Efeito hover nos botões */
+QWidget#menu_layout QPushButton:hover {
+    background-color: #a8a9ab;
+	border-left: 4px solid #00BD95;
+}
+
+/* Botão pressionado */
+QWidget#menu_layout QPushButton:pressed {
+    background-color: #c0c1c4;
+    color: #202c33;
+}
+
+/* Labels na Sidebar */
+QWidget#menu_layout QLabel {
+    color: #78797a;
+	padding: 2px 0;
+	margin-top: 8px; /* Espaçamento entre labels */
+}
+
+QFrame[frameShape="4"] {
+    border: none;
+    border-bottom: 1px solid rgb(192, 191, 188);
+}
+QFrame[frameShape="5"] {
+    border: none;
+    border-left: 1px solid rgb(192, 191, 188);
+}       
+    """,
+        "dark": """
+       /* Sidebar geral */
+QWidget#sidebar {
+    background-color: #1c272d;
+    border-right: 1px solid #192328;
+    padding: 10px; /* Para espaçamento interno */
+}
+
+/* Botões da Sidebar */
+QWidget#menu_layout QPushButton {
+    background-color: #192328;
+    color: #F0F2F5;
+    border: none;
+    padding: 10px 15px;
+    text-align: left;
+    font-size: 14px;
+    border-radius: 4px;
+	border-left: 3px solid #161e23;
+}
+
+/* Efeito hover nos botões */
+QWidget#menu_layout QPushButton:hover {
+    background-color: #161e23;
+	border-left: 4px solid #00BD95;
+}
+
+/* Botão pressionado */
+QWidget#menu_layout QPushButton:pressed {
+    background-color: #0c1114;
+    color: #F0F2F5;
+}
+
+/* Labels na Sidebar */
+QWidget#menu_layout QLabel {
+    color: #F0F2F5;
+	padding: 2px 0;
+	margin-top: 8px; /* Espaçamento entre labels */
+}
+
+QFrame[frameShape="4"] {
+    border: none;
+    border-bottom: 1px solid rgb(192, 191, 188);
+}
+QFrame[frameShape="5"] {
+    border: none;
+    border-left: 1px solid rgb(192, 191, 188);
+}       
+    """
+    }
+
     def __new__(cls, *args, **kwargs):
         """Implementação do padrão Singleton."""
         if not cls._instance:
@@ -97,6 +197,7 @@ class ThemeManager:
         )
         self._apply_palette(palette)
         QApplication.instance().getWindow().browser.set_theme_light()
+        QApplication.instance().setStyleSheet(self.themes['light'])
 
     def _apply_dark_theme(self):
         """Aplica o tema escuro."""
@@ -106,6 +207,7 @@ class ThemeManager:
         )
         self._apply_palette(palette)
         QApplication.instance().getWindow().browser.set_theme_dark()
+        QApplication.instance().setStyleSheet(self.themes['dark'])
 
     def _create_palette(self, window, text, base, highlight):
         """Cria uma paleta com cores fornecidas."""
