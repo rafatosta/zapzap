@@ -1,7 +1,7 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMainWindow, QApplication
 from PyQt6.QtCore import QByteArray
-from zapzap.controllers.AppSettings import AppSettings
+from zapzap.controllers.Settings import Settings
 from zapzap.controllers.Browser import Browser
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
@@ -20,7 +20,7 @@ class MainWindow(QMainWindow):
 
         self.is_fullscreen = False  # Controle do estado de tela cheia
         self.browser = Browser()  # Inicialização do navegador
-        self.app_settings = AppSettings()
+        self.app_settings = Settings()
 
         self._setup_ui()
 
