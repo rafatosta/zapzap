@@ -1,6 +1,6 @@
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile
-from PyQt6.QtCore import QUrl, pyqtSignal, Qt, QLocale
+from PyQt6.QtCore import QUrl, pyqtSignal, QLocale
 
 from zapzap.controllers.PageController import PageController
 from zapzap.models import User
