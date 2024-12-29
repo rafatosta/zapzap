@@ -35,7 +35,6 @@ class WebView(QWebEngineView):
         """Método chamado quando o objeto é destruído"""
         print("O WebEngineView foi destruído")
         self.user.zoomFactor = self.zoomFactor()
-        self.user.save()
 
     def _setup(self):
         self._setup_signals()
