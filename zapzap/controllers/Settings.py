@@ -1,6 +1,5 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QApplication
-
 from zapzap.controllers.PageAccount import PageAccount
 from zapzap.controllers.PageAppearance import PageAppearance
 
@@ -10,34 +9,33 @@ class Settings(QWidget):
         super().__init__(parent)
         uic.loadUi("zapzap/ui/ui_settings.ui", self)
 
-        self.page_buttons = {}  # Dicionário para mapear botões às páginas
+        self.page_buttons = {}  # Mapear botões às páginas
 
-        self._setup_signals()
         self._setup_ui()
+        self._setup_signals()
         self._select_default_page()
 
     def __del__(self):
-        """Destrói o widget e fecha todas as páginas."""
+        """Destrói o widget e limpa recursos."""
         print("Widget Settings destruído")
 
+    def _setup_ui(self):
+        """Configura as páginas e associa os botões às páginas."""
+        self._add_page(PageAccount(), self.btn_account)
+        self._add_page(PageAppearance(), self.btn_page_appearence)
+
     def _setup_signals(self):
+        """Conecta os sinais dos botões gerais."""
         self.btn_quit.clicked.connect(
             QApplication.instance().getWindow().closeEvent)
         self.btn_back.clicked.connect(
             QApplication.instance().getWindow().close_settings)
 
-    def _setup_ui(self):
-        self.page_account = PageAccount()
-        page_index = self.pages.addWidget(self.page_account)
-        self.page_buttons[page_index] = self.btn_account
-        self.btn_account.clicked.connect(
-            lambda: self.switch_to_page(self.page_account))
-
-        self.page_appearence = PageAppearance()
-        page_index = self.pages.addWidget(self.page_appearence)
-        self.page_buttons[page_index] = self.btn_page_appearence
-        self.btn_page_appearence.clicked.connect(
-            lambda: self.switch_to_page(self.page_appearence))
+    def _add_page(self, page: QWidget, button):
+        """Adiciona uma página ao widget de páginas e associa ao botão."""
+        page_index = self.pages.addWidget(page)
+        self.page_buttons[page_index] = button
+        button.clicked.connect(lambda: self.switch_to_page(page))
 
     def switch_to_page(self, page: QWidget):
         """Alterna para a página selecionada e ajusta os estilos dos botões."""
@@ -46,11 +44,11 @@ class Settings(QWidget):
         self.page_buttons[self.pages.indexOf(page)].setEnabled(False)
 
     def _reset_button_styles(self):
-        """Reseta o estilo de todos os botões."""
+        """Reativa todos os botões."""
         for button in self.page_buttons.values():
             button.setEnabled(True)
 
     def _select_default_page(self):
-        """Seleciona a página padrão, se houver páginas carregadas."""
+        """Seleciona a primeira página como padrão."""
         if self.page_buttons:
-            self.page_buttons[0].setEnabled(False)
+            self.switch_to_page(self.pages.widget(0))
