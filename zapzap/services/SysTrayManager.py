@@ -54,7 +54,7 @@ class SysTrayManager():
         SysTrayManager._actions["donation"].triggered.connect(
             lambda: QDesktopServices.openUrl(QUrl(__donationPage__)))
         SysTrayManager._actions["settings"].triggered.connect(
-            lambda: print("Signal: actionSettings"))
+            main_window.open_settings)
         SysTrayManager._actions["exit"].triggered.connect(
             main_window.closeEvent)
 
