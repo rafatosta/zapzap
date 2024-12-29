@@ -64,6 +64,9 @@
         <property name="text">
          <string>&lt;- Voltar para o ZapZap</string>
         </property>
+        <property name="shortcut">
+         <string>Esc</string>
+        </property>
        </widget>
       </item>
       <item>
