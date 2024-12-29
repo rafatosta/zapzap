@@ -17,9 +17,6 @@
    <string notr="true"/>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
-   <property name="spacing">
-    <number>0</number>
-   </property>
    <property name="leftMargin">
     <number>0</number>
    </property>
@@ -220,9 +217,28 @@
           </widget>
          </item>
          <item>
+          <widget class="QLabel" name="label">
+           <property name="font">
+            <font>
+             <pointsize>8</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>AJUDA</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="Line" name="line_4">
            <property name="orientation">
             <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_10">
+           <property name="text">
+            <string>Atalhos</string>
            </property>
           </widget>
          </item>
@@ -260,16 +276,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QStackedWidget" name="stackedWidget">
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="currentIndex">
-      <number>0</number>
-     </property>
-     <widget class="QWidget" name="general_page"/>
-     <widget class="QWidget" name="page_2"/>
-    </widget>
+    <widget class="QStackedWidget" name="pages"/>
    </item>
   </layout>
  </widget>
