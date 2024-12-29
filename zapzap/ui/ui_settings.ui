@@ -117,7 +117,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="btn_account">
            <property name="text">
             <string>Contas</string>
            </property>
@@ -149,7 +149,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="btn_page_appearence">
            <property name="text">
             <string>Aparência</string>
            </property>

@@ -48,6 +48,12 @@ QWidget#menu_layout QPushButton:pressed {
     color: #202c33;
 }
 
+/* Botão selecionado */
+QWidget#menu_layout QPushButton:disabled {
+    background-color: #a8a9ab;
+	border-left: 4px solid #00BD95;
+}
+
 /* Labels na Sidebar */
 QWidget#menu_layout QLabel {
     color: #78797a;
@@ -94,6 +100,12 @@ QWidget#menu_layout QPushButton:hover {
 QWidget#menu_layout QPushButton:pressed {
     background-color: #0c1114;
     color: #F0F2F5;
+}
+
+/* Botão selecionado */
+QWidget#menu_layout QPushButton:disabled {
+    background-color: #161e23;
+	border-left: 4px solid #00BD95;
 }
 
 /* Labels na Sidebar */

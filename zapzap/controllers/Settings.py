@@ -1,7 +1,8 @@
 from PyQt6 import uic
-from PyQt6.QtWidgets import QWidget, QApplication, QPushButton
+from PyQt6.QtWidgets import QWidget, QApplication
 
-from zapzap.controllers.PageButton import PageButton
+from zapzap.controllers.PageAccount import PageAccount
+from zapzap.controllers.PageAppearance import PageAppearance
 
 
 class Settings(QWidget):
@@ -9,8 +10,11 @@ class Settings(QWidget):
         super().__init__(parent)
         uic.loadUi("zapzap/ui/ui_settings.ui", self)
 
+        self.page_buttons = {}  # Dicionário para mapear botões às páginas
+
         self._setup_signals()
-        #self._setup_ui()
+        self._setup_ui()
+        self._select_default_page()
 
     def __del__(self):
         """Destrói o widget e fecha todas as páginas."""
@@ -22,12 +26,31 @@ class Settings(QWidget):
         self.btn_back.clicked.connect(
             QApplication.instance().getWindow().close_settings)
 
-        # botões do menu
-        """ for item in self.menu.findChildren(QPushButton):
-            item.clicked.connect(self.button_click) """
+    def _setup_ui(self):
+        self.page_account = PageAccount()
+        page_index = self.pages.addWidget(self.page_account)
+        self.page_buttons[page_index] = self.btn_account
+        self.btn_account.clicked.connect(
+            lambda: self.switch_to_page(self.page_account))
 
-    """ def _setup_ui(self):
-        # Botões do menu
-        # print(self.frame.findChildren(QPushButton))
-        for item in self.menu_layout.findChildren(QPushButton):
-            item.setStyleSheet() """
+        self.page_appearence = PageAppearance()
+        page_index = self.pages.addWidget(self.page_appearence)
+        self.page_buttons[page_index] = self.btn_page_appearence
+        self.btn_page_appearence.clicked.connect(
+            lambda: self.switch_to_page(self.page_appearence))
+
+    def switch_to_page(self, page: QWidget):
+        """Alterna para a página selecionada e ajusta os estilos dos botões."""
+        self._reset_button_styles()
+        self.pages.setCurrentWidget(page)
+        self.page_buttons[self.pages.indexOf(page)].setEnabled(False)
+
+    def _reset_button_styles(self):
+        """Reseta o estilo de todos os botões."""
+        for button in self.page_buttons.values():
+            button.setEnabled(True)
+
+    def _select_default_page(self):
+        """Seleciona a página padrão, se houver páginas carregadas."""
+        if self.page_buttons:
+            self.page_buttons[0].setEnabled(False)
