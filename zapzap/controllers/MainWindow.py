@@ -1,6 +1,6 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMainWindow, QApplication
-from PyQt6.QtCore import QByteArray
+from PyQt6.QtCore import QByteArray, Qt
 from zapzap.controllers.Settings import Settings
 from zapzap.controllers.Browser import Browser
 from zapzap.services.SettingsManager import SettingsManager
@@ -21,7 +21,6 @@ class MainWindow(QMainWindow):
         self.is_fullscreen = False  # Controle do estado de tela cheia
         self.browser = Browser()  # Inicialização do navegador
         self.app_settings = None
-
         self._setup_ui()
 
     # === Configuração Inicial ===
@@ -40,6 +39,14 @@ class MainWindow(QMainWindow):
         # Exibe o SysTray e inicia o ThemeManager
         SysTrayManager.show()
         ThemeManager.start()
+
+    def _setup_toolbar(self):
+        """Ativa o toolBar com o menu de usuários (personalização futura)"""
+        self.toolbar = self.addToolBar("toolBar")
+        # Permitir apenas nas áreas direita e esquerda
+        self.toolbar.setAllowedAreas(
+            Qt.ToolBarArea.LeftToolBarArea | Qt.ToolBarArea.RightToolBarArea)
+        self.toolbar.addWidget(self.browser.frame)
 
     # === Conexões de Ações do Menu ===
     def _connect_menu_actions(self):
