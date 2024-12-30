@@ -53,10 +53,19 @@ class PageButton(QPushButton):
 
     def __init__(self, user: User = None, page_index=None, parent=None):
         super().__init__(parent)
-        self.user = user
+        self._user = user
         self.page_index = page_index
 
         self._setup_ui()
+        self.update_user_icon()
+
+    @property
+    def user(self):
+        return self._user
+
+    @user.setter
+    def user(self, value):
+        self._user = value
         self.update_user_icon()
 
     def _setup_ui(self):
@@ -68,20 +77,19 @@ class PageButton(QPushButton):
 
     def update_user_icon(self):
         """Atualiza o ícone do usuário e a dica de ferramenta."""
-        
         # Define o tipo de ícone com base no status do usuário
         user_icon_type = UserIcon.Type.Default
-        if not self.user.enable:
+        if not self._user.enable:
             user_icon_type = UserIcon.Type.Disable
-        elif not SettingsManager.get(f"{self.user.id}/notification", False):
+        elif not SettingsManager.get(f"{self._user.id}/notification", False):
             user_icon_type = UserIcon.Type.Silence
 
         # Atualiza o ícone e a dica de ferramenta
-        self.setIcon(UserIcon.get_icon(self.user.icon, user_icon_type))
+        self.setIcon(UserIcon.get_icon(self._user.icon, user_icon_type))
         tooltip = (
-            f"{self.user.name} ({self.number_notifications})"
+            f"{self._user.name} ({self.number_notifications})"
             if self.number_notifications > 0
-            else self.user.name
+            else self._user.name
         )
         self.setToolTip(tooltip)
 
@@ -104,8 +112,10 @@ class PageButton(QPushButton):
 
     def enterEvent(self, event):
         """Evento ao entrar com o mouse sobre o botão."""
-        self.setStyleSheet(self.STYLE_SELECTED if self.isSelected else self.STYLE_HOVER)
+        self.setStyleSheet(
+            self.STYLE_SELECTED if self.isSelected else self.STYLE_HOVER)
 
     def leaveEvent(self, event):
         """Evento ao sair com o mouse do botão."""
-        self.setStyleSheet(self.STYLE_SELECTED if self.isSelected else self.STYLE_NORMAL)
+        self.setStyleSheet(
+            self.STYLE_SELECTED if self.isSelected else self.STYLE_NORMAL)

@@ -115,7 +115,8 @@ class Browser(QWidget):
         print('update icons...')
         for button in self.page_buttons.values():
             if button.user.id == user.id:
-                button.update_user_icon()
+                button.user = user
+                self.pages.widget(button.page_index-1).user = user
                 break
 
     # === Estilos e Interface ===
