@@ -2,28 +2,29 @@ from PyQt6.QtWidgets import QPushButton
 from PyQt6.QtCore import QSize
 
 from zapzap.models import User
-from zapzap.resources.TrayIcon import TrayIcon
 from zapzap.resources.UserIcon import UserIcon
+from zapzap.services.SettingsManager import SettingsManager
 
 
 class PageButton(QPushButton):
+    """Botão de página com ícones de usuário e gerenciamento de estilo."""
 
     number_notifications = 0
-
     isSelected = False
 
-    styleSheet_normal = """
+    # Estilos
+    STYLE_NORMAL = """
     QPushButton {
        qproperty-iconSize: 25px;
     }
     QToolTip {
        color: #F0F2F5;
        background-color: #202C33;
-       padding:2px;
+       padding: 2px;
     }
     """
 
-    styleSheet_hover = """
+    STYLE_HOVER = """
     QPushButton {
       background-color: rgba(225, 225, 225, 0.3);
       border-radius: 2px;
@@ -32,11 +33,11 @@ class PageButton(QPushButton):
     QToolTip {
        color: #F0F2F5;
        background-color: #202C33;
-       padding:2px;
+       padding: 2px;
     }
     """
 
-    styleSheet_selected = """
+    STYLE_SELECTED = """
     QPushButton {
       background-color: rgba(225, 225, 225, 0.3);
       border-radius: 2px;
@@ -46,50 +47,65 @@ class PageButton(QPushButton):
     QToolTip {
        color: #F0F2F5;
        background-color: #202C33;
-       padding:2px;
+       padding: 2px;
     }
     """
 
     def __init__(self, user: User = None, page_index=None, parent=None):
         super().__init__(parent)
-
         self.user = user
         self.page_index = page_index
 
-        self.setup_button()
+        self._setup_ui()
+        self.update_user_icon()
 
-    def setup_button(self):
+    def _setup_ui(self):
+        """Configura a interface do botão."""
         self.setFlat(True)
         self.setMinimumSize(QSize(40, 40))
         self.setMaximumSize(QSize(40, 40))
-        self.setStyleSheet(self.styleSheet_normal)
-        self.setIcon(UserIcon.get_icon(svg_str=self.user.icon))
+        self.setStyleSheet(self.STYLE_NORMAL)
+
+    def update_user_icon(self):
+        """Atualiza o ícone do usuário e a dica de ferramenta."""
+        
+        # Define o tipo de ícone com base no status do usuário
+        user_icon_type = UserIcon.Type.Default
+        if not self.user.enable:
+            user_icon_type = UserIcon.Type.Disable
+        elif not SettingsManager.get(f"{self.user.id}/notification", False):
+            user_icon_type = UserIcon.Type.Silence
+
+        # Atualiza o ícone e a dica de ferramenta
+        self.setIcon(UserIcon.get_icon(self.user.icon, user_icon_type))
+        tooltip = (
+            f"{self.user.name} ({self.number_notifications})"
+            if self.number_notifications > 0
+            else self.user.name
+        )
+        self.setToolTip(tooltip)
 
     def update_notifications(self, number_notifications):
+        """Atualiza o número de notificações do botão."""
         self.number_notifications = number_notifications
-        self.setIcon(UserIcon.get_icon(svg_str=self.user.icon,
-                     count=self.number_notifications))
-        self.setToolTip(f'{self.user.name} ({self.number_notifications})' if self.number_notifications >
-                        0 else self.user.name)
+        self.update_user_icon()
 
-    ## EVENTS ##
+    ## Eventos ##
 
     def selected(self):
+        """Define o botão como selecionado."""
         self.isSelected = True
-        self.setStyleSheet(self.styleSheet_selected)
+        self.setStyleSheet(self.STYLE_SELECTED)
 
     def unselected(self):
+        """Define o botão como não selecionado."""
         self.isSelected = False
-        self.setStyleSheet(self.styleSheet_normal)
+        self.setStyleSheet(self.STYLE_NORMAL)
 
-    def enterEvent(self, e):
-        if not self.isSelected:
-            self.setStyleSheet(self.styleSheet_hover)
-        else:
-            self.setStyleSheet(self.styleSheet_selected)
+    def enterEvent(self, event):
+        """Evento ao entrar com o mouse sobre o botão."""
+        self.setStyleSheet(self.STYLE_SELECTED if self.isSelected else self.STYLE_HOVER)
 
-    def leaveEvent(self, e):
-        if not self.isSelected:
-            self.setStyleSheet(self.styleSheet_normal)
-        else:
-            self.setStyleSheet(self.styleSheet_selected)
+    def leaveEvent(self, event):
+        """Evento ao sair com o mouse do botão."""
+        self.setStyleSheet(self.STYLE_SELECTED if self.isSelected else self.STYLE_NORMAL)

@@ -89,6 +89,12 @@ class Browser(QWidget):
             page = self.pages.widget(i)
             page.whatsapp_page.close_conversation()
 
+    def disable_page(self, user: User):
+        print('disable page:', user.enable, user)
+
+    def delete_page(self, user: User):
+        print('delete page:', user)
+
     # === Notificações ===
 
     def update_page_button_number_notifications(self, page_index, number_notifications):
@@ -104,6 +110,13 @@ class Browser(QWidget):
             button.number_notifications for button in self.page_buttons.values()
         )
         SysTrayManager.set_number_notifications(total_notifications)
+
+    def update_icons_page_button(self, user: User):
+        print('update icons...')
+        for button in self.page_buttons.values():
+            if button.user.id == user.id:
+                button.update_user_icon()
+                break
 
     # === Estilos e Interface ===
     def _reset_button_styles(self):
