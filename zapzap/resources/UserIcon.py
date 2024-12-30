@@ -1,10 +1,16 @@
 from PyQt6.QtGui import QImage, QPixmap, QIcon
 from PyQt6.QtCore import QSize
 import random
+from enum import Enum
 
 
 class UserIcon:
     """Classe para manipulação e criação de ícones personalizados para usuários."""
+
+    class Type(Enum):
+        Default = 1
+        Disable = 2
+        Silence = 3
 
     # Constantes para SVGs
     ICON_DEFAULT = """<?xml version="1.0" encoding="utf-8"?>
@@ -52,15 +58,14 @@ class UserIcon:
         svg = svg.replace('#f6f5f4', UserIcon._generate_random_color())
         return svg
 
-    @staticmethod
+    """ @staticmethod
     def get_pixmap(svg_str: str = ICON_DEFAULT) -> QPixmap:
-        """Converte uma string SVG em um QPixmap."""
         svg_bytes = bytearray(svg_str, encoding='utf-8')
         qimg = QImage.fromData(svg_bytes, 'SVG')
-        return QPixmap.fromImage(qimg)
+        return QPixmap.fromImage(qimg) """
 
     @staticmethod
-    def get_icon(svg_str: str = ICON_DEFAULT, size: tuple[int, int] = (256, 256), count: int = 0) -> QIcon:
+    def get_icon(svg_str: str = ICON_DEFAULT, icon_type=Type.Default, qtd: int = 0) -> QIcon:
         """
         Gera um QIcon a partir de um SVG.
 
@@ -69,26 +74,36 @@ class UserIcon:
             size: Tamanho escalado do ícone.
             count: Número de notificações exibido no ícone.
         """
-        notification = UserIcon._generate_notification_svg(count)
-        svg_with_notification = svg_str.format(notification)
-        pixmap = UserIcon.get_pixmap(svg_with_notification)
-        return QIcon(pixmap.scaled(QSize(*size)))
+        svg = ""
+
+        if icon_type == UserIcon.Type.Default:
+            data = UserIcon._getNotificationData(qtd)
+            notification = UserIcon.SVG_NOTIFICATION.format(
+                x=data['x'], width=data['width'], number=qtd)
+
+            n = notification if qtd > 0 else ""
+
+            svg = svg_str.format(n)
+        elif icon_type == UserIcon.Type.Disable:
+            svg = svg_str.format(UserIcon.IMAGE_DISABLE)
+        else:
+            svg = svg_str.format(UserIcon.IMAGE_SILENCE)
+
+        return UserIcon.__build(svg)
 
     @staticmethod
-    def _generate_notification_svg(count: int) -> str:
-        """Gera o SVG da notificação sobreposta."""
-        if count <= 0:
-            return ""
-        data = {
-            1: {"width": 100.1, "x": 152.6},
-            2: {"width": 180.3, "x": 72.5},
-            3: {"width": 249.428, "x": 3.286}
-        }.get(min(len(str(count)), 3))
-        return UserIcon.SVG_NOTIFICATION.format(x=data["x"], width=data["width"], number=count)
+    def __build(svg_str) -> QIcon:
+        svg_bytes = bytearray(svg_str, encoding='utf-8')
+        qimg = QImage.fromData(svg_bytes, 'SVG')
+        qpix = QPixmap.fromImage(qimg)
+        return QIcon(qpix.scaled(QSize(128, 128)))
 
     @staticmethod
-    def _generate_random_color() -> str:
-        """Gera uma cor RGB aleatória."""
-        r, g, b = random.randint(0, 255), random.randint(
-            0, 255), random.randint(0, 255)
-        return f"rgb({r}, {g}, {b})"
+    def _getNotificationData(qtd) -> dict:
+        """Helper function to determine notification size based on qtd"""
+        if len(str(qtd)) == 1:
+            return dict(width=100.1, x=152.6)
+        elif len(str(qtd)) == 2:
+            return dict(width=180.3, x=72.5)
+        else:
+            return dict(width=249.428, x=3.286)
