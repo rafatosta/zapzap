@@ -30,7 +30,7 @@
        <number>20</number>
       </property>
       <item>
-       <widget class="QLabel" name="icon">
+       <widget class="QPushButton" name="icon">
         <property name="minimumSize">
          <size>
           <width>46</width>
@@ -43,14 +43,20 @@
           <height>46</height>
          </size>
         </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clique para gerar novas cores para o ícone&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
-        <property name="scaledContents">
-         <bool>true</bool>
+        <property name="iconSize">
+         <size>
+          <width>46</width>
+          <height>46</height>
+         </size>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
