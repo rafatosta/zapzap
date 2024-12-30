@@ -55,52 +55,34 @@ class UserIcon:
         """Gera um novo SVG com cores aleatórias."""
         svg = UserIcon.ICON_DEFAULT.replace(
             '#c0bfbc', UserIcon._generate_random_color())
-        svg = svg.replace('#f6f5f4', UserIcon._generate_random_color())
-        return svg
-
-    """ @staticmethod
-    def get_pixmap(svg_str: str = ICON_DEFAULT) -> QPixmap:
-        svg_bytes = bytearray(svg_str, encoding='utf-8')
-        qimg = QImage.fromData(svg_bytes, 'SVG')
-        return QPixmap.fromImage(qimg) """
+        return svg.replace('#f6f5f4', UserIcon._generate_random_color())
 
     @staticmethod
     def get_icon(svg_str: str = ICON_DEFAULT, icon_type=Type.Default, qtd: int = 0) -> QIcon:
-        """
-        Gera um QIcon a partir de um SVG.
-
-        Args:
-            svg_str: String do SVG base.
-            size: Tamanho escalado do ícone.
-            count: Número de notificações exibido no ícone.
-        """
-        svg = ""
-
+        """Gera um QIcon a partir de um SVG."""
         if icon_type == UserIcon.Type.Default:
-            data = UserIcon._getNotificationData(qtd)
+            qtd = 999 if qtd >= 1000 else qtd
+            data = UserIcon._get_notification_data(qtd)
             notification = UserIcon.SVG_NOTIFICATION.format(
                 x=data['x'], width=data['width'], number=qtd)
-
-            n = notification if qtd > 0 else ""
-
-            svg = svg_str.format(n)
+            svg = svg_str.format(notification if qtd > 0 else "")
         elif icon_type == UserIcon.Type.Disable:
             svg = svg_str.format(UserIcon.IMAGE_DISABLE)
         else:
             svg = svg_str.format(UserIcon.IMAGE_SILENCE)
-
         return UserIcon.__build(svg)
 
     @staticmethod
-    def __build(svg_str) -> QIcon:
+    def __build(svg_str: str) -> QIcon:
+        """Constrói um QIcon a partir de um SVG."""
         svg_bytes = bytearray(svg_str, encoding='utf-8')
         qimg = QImage.fromData(svg_bytes, 'SVG')
         qpix = QPixmap.fromImage(qimg)
         return QIcon(qpix.scaled(QSize(128, 128)))
 
     @staticmethod
-    def _getNotificationData(qtd) -> dict:
-        """Helper function to determine notification size based on qtd"""
+    def _get_notification_data(qtd: int) -> dict:
+        """Helper para determinar o tamanho da notificação."""
         if len(str(qtd)) == 1:
             return dict(width=100.1, x=152.6)
         elif len(str(qtd)) == 2:
