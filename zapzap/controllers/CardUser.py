@@ -20,8 +20,8 @@ class CardUser(QWidget):
 
     def _load_data(self):
         self.name.setText(self.user.name)
-        self._load_image_user()
-        self.disable.setChecked(self.user.enable)
+        # self._load_image_user()
+        # self.disable.setChecked(not self.user.enable)
 
     def _setup_signals(self):
         self.silence.clicked.connect(self._silence_action)
@@ -29,13 +29,21 @@ class CardUser(QWidget):
         self.delete.clicked.connect(self._delete_action)
 
     def _disable_action(self):
-        self.user.enable = self.disable.isChecked()
-        self._load_data()
+        """ Ação para desabilitar/habilitar usuário. 
+                - True: Usuário habilitado
+                - False: Usuário desabilitado 
+        """
+        self.user.enable = not self.disable.isChecked()
 
     def _silence_action(self):
+        """ Ação para não pertube. 
+                - True para mostrar notificações
+                - False para não mostrar as notificações 
+        """
         SettingsManager.set(
-            f'{str(self.user.id)}/notification', self.silence.isChecked())
-        self._load_data()
+            f'{str(self.user.id)}/notification', not self.silence.isChecked())
+
+        # self._load_data()
 
     def _delete_action(self):
         print("delete usuário!")
