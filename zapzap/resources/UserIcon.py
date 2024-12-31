@@ -54,8 +54,13 @@ class UserIcon:
     def get_new_icon_svg() -> str:
         """Gera um novo SVG com cores aleatórias."""
         svg = UserIcon.ICON_DEFAULT.replace(
-            '#c0bfbc', UserIcon._generate_random_color())
-        return svg.replace('#f6f5f4', UserIcon._generate_random_color())
+            '#209232', UserIcon._generate_random_color())
+        return svg.replace('#34c640', UserIcon._generate_random_color())
+
+    @staticmethod
+    def _generate_random_color():
+        """Gera uma cor aleatória em rgb"""
+        return f'rgb({random.randint(0, 255)}, {random.randint(0, 255)}, {random.randint(0, 255)})'
 
     @staticmethod
     def get_icon(svg_str: str = ICON_DEFAULT, icon_type=Type.Default, qtd: int = 0) -> QIcon:
