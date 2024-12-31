@@ -64,6 +64,20 @@ class Browser(QWidget):
     def disable_page(self, user: User):
         print('disable page:', user.enable, user)
 
+        # Obtém o botão e a página
+        for button in self.page_buttons.values():
+            if button.user.id == user.id:
+                if user.enable:
+                    print('Habilitar usuário')
+                    button.show()
+                    self.pages.widget(button.page_index-1).enable_page()
+                else:
+                    print("Desabilitar usuário")
+                    # Esconde o Botão
+                    button.hide()
+                    # Esconde e pausa a página
+                    self.pages.widget(button.page_index-1).disable_page()
+
     def delete_page(self, user: User):
         print('delete page:', user)
         for button in self.page_buttons.values():

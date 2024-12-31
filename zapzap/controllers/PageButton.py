@@ -59,6 +59,9 @@ class PageButton(QPushButton):
         self._setup_ui()
         self.update_user_icon()
 
+        if not user.enable:
+            self.hide()
+
     @property
     def user(self):
         return self._user

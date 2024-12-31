@@ -1,5 +1,5 @@
 from PyQt6.QtWebEngineWidgets import QWebEngineView
-from PyQt6.QtWebEngineCore import QWebEngineProfile
+from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEnginePage, QWebEngineSettings
 from PyQt6.QtCore import QUrl, pyqtSignal, QLocale
 
 import shutil
@@ -27,9 +27,9 @@ class WebView(QWebEngineView):
         self.whatsapp_page = PageController(
             self.profile, self)  # Controlador da página
 
-        # Carrega a página inicial e aplica o zoom configurado pelo usuário
-        self.load_page()
-        self.setZoomFactor(user.zoomFactor)
+        # Carrega a página inicial
+        if self.user.enable:
+            self.load_page()
 
     def __del__(self):
         """Método chamado quando o objeto é destruído."""
@@ -82,6 +82,7 @@ class WebView(QWebEngineView):
         """Carrega a página do WhatsApp."""
         self.setPage(self.whatsapp_page)
         self.load(QUrl(__whatsapp_url__))
+        self.setZoomFactor(self.user.zoomFactor)
 
     def remove_files(self):
         """Remove os arquivos de cache e armazenamento persistente do perfil."""
@@ -101,3 +102,12 @@ class WebView(QWebEngineView):
         except Exception as e:
             print(f"Erro ao remover arquivos: {e}")
             return False  # Falha
+
+    def enable_page(self):
+        self.load_page()
+        self.setVisible(True)
+
+    def disable_page(self):
+        self.profile.clearHttpCache()  # Limpa o cache HTTP
+        self.setPage(None)
+        self.setVisible(False)
