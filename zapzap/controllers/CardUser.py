@@ -1,7 +1,8 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QApplication
 
-from zapzap.models import User
+
+from zapzap.models.User import User
 from zapzap.resources.UserIcon import UserIcon
 from zapzap.services.SettingsManager import SettingsManager
 
@@ -13,9 +14,14 @@ class CardUser(QWidget):
 
         self.user = user
 
+        self._setup_ui()
         self._setup_signals()
         self._load_data()
         self._update_user_icon()
+
+    def _setup_ui(self):
+        if self.user.id == User.USER_DEFAULT:  # user default
+            self.delete.hide()
 
     def _setup_signals(self):
         """Configura os sinais para os elementos da interface."""
@@ -54,6 +60,8 @@ class CardUser(QWidget):
         """Ação para excluir o usuário."""
         print("Usuário excluído!")  # Aqui você pode adicionar a lógica de exclusão.
         QApplication.instance().getWindow().browser.delete_page(self.user)
+
+        self.close()
 
     def _update_user_icon(self):
         """Atualiza o ícone do usuário com base em seu status."""

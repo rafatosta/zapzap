@@ -2,6 +2,9 @@ from zapzap.config.Database import Database
 
 
 class User:
+
+    USER_DEFAULT = 'storage-whats'
+
     _table_name = "users"
     _fields = {
         "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
@@ -20,7 +23,7 @@ class User:
 
     @property
     def id(self):
-        return 'storage-whats' if self._id == 1 else self._id
+        return User.USER_DEFAULT if self._id == 1 else self._id
 
     @id.setter
     def id(self, value):
