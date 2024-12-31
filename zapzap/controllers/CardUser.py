@@ -29,7 +29,7 @@ class CardUser(QWidget):
         self.name.setText(self.user.name)
         self.disable.setChecked(not self.user.enable)
         self.silence.setChecked(
-            not SettingsManager.get(f"{self.user.id}/notification", False)
+            not SettingsManager.get(f"{self.user.id}/notification", True)
         )
 
     def _handle_disable_action(self):
@@ -60,7 +60,7 @@ class CardUser(QWidget):
         user_icon_type = UserIcon.Type.Default
         if not self.user.enable:
             user_icon_type = UserIcon.Type.Disable
-        elif not SettingsManager.get(f"{self.user.id}/notification", False):
+        elif not SettingsManager.get(f"{self.user.id}/notification", True):
             user_icon_type = UserIcon.Type.Silence
 
         self.icon.setIcon(UserIcon.get_icon(self.user.icon, user_icon_type))

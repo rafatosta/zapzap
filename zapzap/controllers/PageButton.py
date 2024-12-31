@@ -81,7 +81,7 @@ class PageButton(QPushButton):
         user_icon_type = UserIcon.Type.Default
         if not self._user.enable:
             user_icon_type = UserIcon.Type.Disable
-        elif not SettingsManager.get(f"{self._user.id}/notification", False):
+        elif not SettingsManager.get(f"{self._user.id}/notification", True):
             user_icon_type = UserIcon.Type.Silence
 
         # Atualiza o ícone e a dica de ferramenta
