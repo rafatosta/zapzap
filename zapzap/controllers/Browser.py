@@ -61,6 +61,17 @@ class Browser(QWidget):
         self.page_buttons_layout.addWidget(page_button)
         self.page_buttons[page_index] = page_button
 
+    def disable_page(self, user: User):
+        print('disable page:', user.enable, user)
+
+    def delete_page(self, user: User):
+        print('delete page:', user)
+        for button in self.page_buttons.values():
+            if button.user.id == user.id:
+                button.close()
+                self.pages.widget(button.page_index-1).remove_files()
+                break
+
     def switch_to_page(self, page: WebView, button: PageButton):
         """Alterna para a página selecionada e ajusta os estilos dos botões."""
         self._reset_button_styles()
@@ -88,12 +99,6 @@ class Browser(QWidget):
         for i in range(self.pages.count()):
             page = self.pages.widget(i)
             page.whatsapp_page.close_conversation()
-
-    def disable_page(self, user: User):
-        print('disable page:', user.enable, user)
-
-    def delete_page(self, user: User):
-        print('delete page:', user)
 
     # === Notificações ===
 
