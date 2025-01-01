@@ -84,6 +84,11 @@ class WebView(QWebEngineView):
             self.setPage(self.whatsapp_page)
             self.load(QUrl(__whatsapp_url__))
             self.setZoomFactor(self.user.zoomFactor)
+    
+    def close_conversation(self):
+         """Simula o pressionamento da tecla 'Escape' na página."""
+         if self.user.enable:
+             self.whatsapp_page.close_conversation()
 
     def set_theme_light(self):
         """Define o tema claro na página."""
@@ -98,12 +103,15 @@ class WebView(QWebEngineView):
     def remove_files(self):
         """Remove os arquivos de cache e armazenamento persistente do perfil."""
         try:
+            if not self.user.enable: # não habilitado
+                self.profile = QWebEngineProfile(str(self.user.id), self)
+
             cache_path = self.profile.cachePath()
             storage_path = self.profile.persistentStoragePath()
 
             print(f"Removendo cache: {
                   cache_path}\nRemovendo armazenamento: {storage_path}")
-
+          
             shutil.rmtree(cache_path, ignore_errors=True)
             shutil.rmtree(storage_path, ignore_errors=True)
 
