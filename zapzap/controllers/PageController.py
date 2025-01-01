@@ -157,3 +157,7 @@ class PageController(QWebEnginePage):
         }})();
         """
         self.runJavaScript(script)
+
+    def javaScriptConsoleMessage(self, level, message, line, sourceID):
+        """ Ignora as mensagens do console """
+        pass
