@@ -26,8 +26,13 @@ class Browser(QWidget):
     # === Inicialização ===
     def _initialize(self):
         """Configura o navegador ao inicializar."""
+        self._configure_signals()
         self._load_users()
         self._select_default_page()
+
+    def _configure_signals(self):
+        """Configura os sinais do widget."""
+        self.btn_new_account.clicked.connect(self._add_new_user)
 
     def _load_users(self):
         """Carrega os usuários e cria páginas correspondentes."""
@@ -40,6 +45,12 @@ class Browser(QWidget):
         button, page = self._find_button_and_page_enabled()
         if button and page:
             self.switch_to_page(page, button)
+    
+    def _add_new_user(self):
+        """Adiciona um novo usuário e cria a página correspondente."""
+        new_user = User.create_new_user()
+        if new_user:
+            self.add_page(new_user)
 
     # === Gerenciamento de Páginas ===
     def add_page(self, user: User):
