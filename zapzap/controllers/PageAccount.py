@@ -27,17 +27,11 @@ class PageAccount(QWidget):
 
     def _new_user(self):
         """Adiciona um novo usuário, se o limite não for atingido."""
-        if self.user_list_layout.count() <= LIMITE_USERS:
-            # Cria um novo usuário com ícone padrão
-            new_user = User(name='', icon=UserIcon.get_new_icon_svg())
+        new_user = User.create_new_user()
 
-            # Salva o novo usuário no banco de dados
-            new_user.save()
-
+        if new_user:
             # Adiciona o card do novo usuário à interface
             self.user_list_layout.addWidget(CardUser(new_user))
 
             # Atualiza o navegador com o novo usuário
             QApplication.instance().getWindow().browser.add_page(new_user)
-        else:
-            print("Limite de contas alcançadas!")
