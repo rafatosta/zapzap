@@ -37,11 +37,9 @@ class Browser(QWidget):
 
     def _select_default_page(self):
         """Seleciona a primeira página habilitada como padrão."""
-        for button in self.page_buttons.values():
-            if button.user.enable:
-                self.switch_to_page(self.pages.widget(
-                    button.page_index - 1), button)
-                break
+        button, page = self._find_button_and_page_enabled()
+        if button and page:
+            self.switch_to_page(page, button)
 
     # === Gerenciamento de Páginas ===
     def add_page(self, user: User):
@@ -69,27 +67,54 @@ class Browser(QWidget):
     def disable_page(self, user: User):
         """Habilita ou desabilita uma página com base no status do usuário."""
         print("disable page:", user.enable, user)
+        button, page = self._find_button_and_page_by_user(user)
 
-        for button in self.page_buttons.values():
-            if button.user.id == user.id:
-                if user.enable:
-                    button.show()
-                    self.pages.widget(button.page_index - 1).enable_page()
-                else:
-                    button.hide()
-                    self.pages.widget(button.page_index - 1).disable_page()
+        if button and page:
+            if user.enable:
+                button.show()
+                page.enable_page()
+            else:
+                button.hide()
+                page.disable_page()
         self._select_default_page()
 
     def delete_page(self, user: User):
         """Remove uma página e seu botão correspondente."""
         print("delete page:", user)
-        for button in self.page_buttons.values():
-            if button.user.id == user.id:
-                button.close()
-                self.pages.widget(button.page_index - 1).remove_files()
-                break
+        button, page = self._find_button_and_page_by_user(user)
+
+        if button and page:
+            button.close()
+            page.remove_files()
         self._select_default_page()
 
+    def update_icons_page_button(self, user: User):
+        """Atualiza os ícones de um botão específico com base no usuário."""
+        print("update icons...")
+        button, page = self._find_button_and_page_by_user(user)
+
+        if button and page:
+            button.user = user
+            page.user = user
+
+    # === Funções Auxiliares ===
+    def _find_button_and_page_by_user(self, user: User):
+        """Busca o botão e a página correspondentes ao usuário."""
+        for button in self.page_buttons.values():
+            if button.user.id == user.id:
+                page = self.pages.widget(button.page_index - 1)
+                return button, page
+        return None, None
+
+    def _find_button_and_page_enabled(self):
+        """Busca o primeiro botão e página habilitados."""
+        for button in self.page_buttons.values():
+            if button.user.enable:
+                page = self.pages.widget(button.page_index - 1)
+                return button, page
+        return None, None
+
+    # === Ações do Navegador ===
     def switch_to_page(self, page: WebView, button: PageButton):
         """Alterna para a página selecionada e ajusta os estilos dos botões."""
         self._reset_button_styles()
@@ -104,7 +129,6 @@ class Browser(QWidget):
             if page:
                 page.__del__()
 
-    # === Ações do Navegador ===
     def reload_pages(self):
         """Recarrega todas as páginas existentes."""
         for i in range(self.pages.count()):
@@ -115,7 +139,7 @@ class Browser(QWidget):
         """Fecha todas as conversas abertas."""
         for i in range(self.pages.count()):
             page = self.pages.widget(i)
-            page.whatsapp_page.close_conversation()
+            page.close_conversation()
 
     # === Notificações ===
     def update_page_button_number_notifications(self, page_index, number_notifications):
@@ -131,15 +155,6 @@ class Browser(QWidget):
             button.number_notifications for button in self.page_buttons.values()
         )
         SysTrayManager.set_number_notifications(total_notifications)
-
-    def update_icons_page_button(self, user: User):
-        """Atualiza os ícones de um botão específico com base no usuário."""
-        print("update icons...")
-        for button in self.page_buttons.values():
-            if button.user.id == user.id:
-                button.user = user
-                self.pages.widget(button.page_index - 1).user = user
-                break
 
     # === Estilo e Interface ===
     def _reset_button_styles(self):
