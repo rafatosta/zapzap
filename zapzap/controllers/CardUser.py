@@ -1,5 +1,5 @@
 from PyQt6 import uic
-from PyQt6.QtWidgets import QWidget, QApplication, QMenu
+from PyQt6.QtWidgets import QWidget, QApplication, QMenu, QMessageBox
 from PyQt6.QtCore import Qt
 
 from zapzap.models.User import User
@@ -79,13 +79,22 @@ class CardUser(QWidget):
 
     def _handle_delete_action(self):
         """Exclui o usuário."""
-        print("Usuário excluído!")
 
-        QApplication.instance().getWindow().browser.delete_page(self.user)
-
-        self.user.remove()
-        self.close()
-        self.setParent(None)
+        dialog = QMessageBox(self)
+        dialog.setWindowTitle("Confirmar Exclusão")
+        dialog.setText("Tem certeza de que deseja excluir este item?")
+        dialog.setStandardButtons(
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        dialog.setIcon(QMessageBox.Icon.Warning)
+        response = dialog.exec()
+        if response == QMessageBox.StandardButton.Yes:
+            print("Usuário excluído!")
+            QApplication.instance().getWindow().browser.delete_page(self.user)
+            self.user.remove()
+            self.close()
+            self.setParent(None)
+        else:
+            print("Ação de exclusão cancelada.")
 
     def _handle_icon_action(self):
         """Gera novo ícone aleatório para o usuário."""
