@@ -1,6 +1,5 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget
-
 from zapzap.controllers.PageButton import PageButton
 from zapzap.controllers.WebView import WebView
 from zapzap.models.User import User
@@ -17,15 +16,19 @@ class Browser(QWidget):
         self.page_count = 0  # Contador de páginas
         self.page_buttons = {}  # Mapeamento entre botões e páginas
 
-        self._load_users()
-        self._select_default_page()
+        self._initialize()
 
     def __del__(self):
-        """Destrói o widget e fecha todas as páginas."""
+        """Garante que todas as páginas sejam fechadas ao destruir o widget."""
         print("Widget Browser destruído")
         self.close_pages()
 
-    # === Configuração Inicial ===
+    # === Inicialização ===
+    def _initialize(self):
+        """Configura o navegador ao inicializar."""
+        self._load_users()
+        self._select_default_page()
+
     def _load_users(self):
         """Carrega os usuários e cria páginas correspondentes."""
         self.user_list = User.select()
@@ -33,16 +36,16 @@ class Browser(QWidget):
             self.add_page(user)
 
     def _select_default_page(self):
-        """Seleciona a primeira página habilitada como padrão, se houver páginas carregadas."""
+        """Seleciona a primeira página habilitada como padrão."""
         for button in self.page_buttons.values():
             if button.user.enable:
                 self.switch_to_page(self.pages.widget(
-                    button.page_index-1), button)
+                    button.page_index - 1), button)
                 break
 
     # === Gerenciamento de Páginas ===
     def add_page(self, user: User):
-        """Adiciona uma nova página e cria o botão correspondente."""
+        """Adiciona uma nova página e o botão correspondente."""
         self.page_count += 1
         page_index = self.page_count
 
@@ -56,41 +59,35 @@ class Browser(QWidget):
         # Criar o botão correspondente
         page_button = PageButton(user, page_index)
         page_button.clicked.connect(
-            lambda: self.switch_to_page(new_page, page_button)
-        )
+            lambda: self.switch_to_page(new_page, page_button))
         page_button.setObjectName(f"page_button_{page_index}")
 
-        # Adicionar botão ao layout e registrar no dicionário
+        # Adicionar o botão ao layout e ao dicionário
         self.page_buttons_layout.addWidget(page_button)
         self.page_buttons[page_index] = page_button
 
     def disable_page(self, user: User):
-        print('disable page:', user.enable, user)
+        """Habilita ou desabilita uma página com base no status do usuário."""
+        print("disable page:", user.enable, user)
 
-        # Obtém o botão e a página
         for button in self.page_buttons.values():
             if button.user.id == user.id:
                 if user.enable:
-                    print('Habilitar usuário')
                     button.show()
-                    self.pages.widget(button.page_index-1).enable_page()
+                    self.pages.widget(button.page_index - 1).enable_page()
                 else:
-                    print("Desabilitar usuário")
-                    # Esconde o Botão
                     button.hide()
-                    # Esconde e pausa a página
-                    self.pages.widget(button.page_index-1).disable_page()
-
+                    self.pages.widget(button.page_index - 1).disable_page()
         self._select_default_page()
 
     def delete_page(self, user: User):
-        print('delete page:', user)
+        """Remove uma página e seu botão correspondente."""
+        print("delete page:", user)
         for button in self.page_buttons.values():
             if button.user.id == user.id:
                 button.close()
-                self.pages.widget(button.page_index-1).remove_files()
+                self.pages.widget(button.page_index - 1).remove_files()
                 break
-
         self._select_default_page()
 
     def switch_to_page(self, page: WebView, button: PageButton):
@@ -107,22 +104,20 @@ class Browser(QWidget):
             if page:
                 page.__del__()
 
-    # === Ações do browser ===
-
+    # === Ações do Navegador ===
     def reload_pages(self):
-        """ Recarrega todas as páginas existentes."""
+        """Recarrega todas as páginas existentes."""
         for i in range(self.pages.count()):
             page = self.pages.widget(i)
             page.load_page()
 
     def close_conversations(self):
-        """ Fechar todas as conversas abertas ao esconder a janela. """
+        """Fecha todas as conversas abertas."""
         for i in range(self.pages.count()):
             page = self.pages.widget(i)
             page.whatsapp_page.close_conversation()
 
     # === Notificações ===
-
     def update_page_button_number_notifications(self, page_index, number_notifications):
         """Atualiza o número de notificações de um botão específico."""
         if page_index in self.page_buttons:
@@ -138,27 +133,28 @@ class Browser(QWidget):
         SysTrayManager.set_number_notifications(total_notifications)
 
     def update_icons_page_button(self, user: User):
-        print('update icons...')
+        """Atualiza os ícones de um botão específico com base no usuário."""
+        print("update icons...")
         for button in self.page_buttons.values():
             if button.user.id == user.id:
                 button.user = user
-                self.pages.widget(button.page_index-1).user = user
+                self.pages.widget(button.page_index - 1).user = user
                 break
 
-    # === Estilos e Interface ===
+    # === Estilo e Interface ===
     def _reset_button_styles(self):
-        """Reseta o estilo de todos os botões."""
+        """Reseta os estilos de todos os botões."""
         for button in self.page_buttons.values():
             button.unselected()
 
     def set_theme_light(self):
-        """ Define o tema das páginas. """
+        """Define o tema claro para as páginas."""
         for i in range(self.pages.count()):
             page = self.pages.widget(i)
             page.set_theme_light()
 
     def set_theme_dark(self):
-        """ Define o tema das páginas. """
+        """Define o tema escuro para as páginas."""
         for i in range(self.pages.count()):
             page = self.pages.widget(i)
             page.set_theme_dark()
