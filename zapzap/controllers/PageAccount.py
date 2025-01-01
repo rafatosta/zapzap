@@ -5,6 +5,7 @@ from zapzap import LIMITE_USERS
 from zapzap.controllers.CardUser import CardUser
 from zapzap.models.User import User
 from zapzap.resources.UserIcon import UserIcon
+from zapzap.services.AlertManager import AlertManager
 
 
 class PageAccount(QWidget):
@@ -35,3 +36,5 @@ class PageAccount(QWidget):
 
             # Atualiza o navegador com o novo usuário
             QApplication.instance().getWindow().browser.add_new_user(new_user)
+        else:
+            AlertManager.limit_users(self)
