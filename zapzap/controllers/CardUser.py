@@ -4,6 +4,7 @@ from PyQt6.QtCore import Qt
 
 from zapzap.models.User import User
 from zapzap.resources.UserIcon import UserIcon
+from zapzap.services.AlertManager import AlertManager
 from zapzap.services.SettingsManager import SettingsManager
 
 
@@ -80,14 +81,7 @@ class CardUser(QWidget):
     def _handle_delete_action(self):
         """Exclui o usuário."""
 
-        dialog = QMessageBox(self)
-        dialog.setWindowTitle("Confirmar Exclusão")
-        dialog.setText("Tem certeza de que deseja excluir este item?")
-        dialog.setStandardButtons(
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
-        dialog.setIcon(QMessageBox.Icon.Warning)
-        response = dialog.exec()
-        if response == QMessageBox.StandardButton.Yes:
+        if AlertManager.question(self, "Confirmar Exclusão", "Tem certeza de que deseja excluir este item?"):
             print("Usuário excluído!")
             QApplication.instance().getWindow().browser.delete_page(self.user)
             self.user.remove()
