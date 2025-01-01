@@ -1,5 +1,7 @@
 from PyQt6 import uic
-from PyQt6.QtWidgets import QWidget, QApplication
+from PyQt6.QtWidgets import QWidget, QApplication, QMenu
+from PyQt6.QtCore import Qt
+
 from zapzap.models.User import User
 from zapzap.resources.UserIcon import UserIcon
 from zapzap.services.SettingsManager import SettingsManager
@@ -24,6 +26,11 @@ class CardUser(QWidget):
         """Configura a interface inicial do card de usuário."""
         if self.user.id == User.USER_DEFAULT:  # Oculta exclusão para o usuário padrão
             self.delete.hide()
+            # Conectar evento de menu de contexto
+            self.icon.setContextMenuPolicy(
+                Qt.ContextMenuPolicy.CustomContextMenu)
+            self.icon.customContextMenuRequested.connect(
+                self._show_context_menu)
 
     def _setup_signals(self):
         """Configura os sinais e suas respectivas ações."""
@@ -31,6 +38,7 @@ class CardUser(QWidget):
         self.disable.clicked.connect(self._handle_disable_action)
         self.delete.clicked.connect(self._handle_delete_action)
         self.name.editingFinished.connect(self._update_user_name)
+        self.icon.clicked.connect(self._handle_icon_action)
 
     def _load_data(self):
         """Carrega os dados do usuário na interface."""
@@ -77,7 +85,33 @@ class CardUser(QWidget):
 
         self.close()
 
+    def _handle_icon_action(self):
+        """Gera novo ícone aleatório para o usuário."""
+        self.user.icon = UserIcon.get_new_icon_svg()
+
+        self._update_user_icon()
+
+        QApplication.instance().getWindow().browser.update_icons_page_button(self.user)
+
     def _update_user_name(self):
         """Atualiza o nome do usuário no banco de dados."""
         self.user.name = self.name.text()
+        QApplication.instance().getWindow().browser.update_icons_page_button(self.user)
+
+    def _show_context_menu(self, position):
+        # Criar menu
+        menu = QMenu(self)
+
+        # Adicionar ação "Restaurar padrão"
+        restore_action = menu.addAction("Restaurar padrão")
+        restore_action.triggered.connect(self._restore_default)
+
+        # Exibir menu na posição do cursor
+        menu.exec(self.icon.mapToGlobal(position))
+
+    def _restore_default(self):
+        # Ação executada ao clicar em "Restaurar padrão"
+        self.user.icon = UserIcon.ICON_DEFAULT
+        self._update_user_icon()
+
         QApplication.instance().getWindow().browser.update_icons_page_button(self.user)
