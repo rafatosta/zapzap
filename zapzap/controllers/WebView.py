@@ -42,18 +42,22 @@ class WebView(QWebEngineView):
         """Configura o perfil do QWebEngine."""
         self.profile = QWebEngineProfile(str(self.user.id), self)
         self.profile.setHttpUserAgent(__user_agent__)
-        self.profile.downloadRequested.connect(DownloadManager.on_downloadRequested)
+        self.profile.downloadRequested.connect(
+            DownloadManager.on_downloadRequested)
         self.profile.setNotificationPresenter(
             lambda notification: NotificationManager.show(self, notification)
         )
-        self.profile.setSpellCheckEnabled(SettingsManager.get("system/spellCheckers", True))
+        self.profile.setSpellCheckEnabled(
+            SettingsManager.get("system/spellCheckers", True))
         self.profile.setSpellCheckLanguages(
-            [SettingsManager.get("system/spellCheckLanguage", QLocale.system().name())]
+            [SettingsManager.get("system/spellCheckLanguage",
+                                 QLocale.system().name())]
         )
 
         print(
             "SpellCheck:", SettingsManager.get("system/spellCheckers", True),
-            "Lang:", SettingsManager.get("system/spellCheckLanguage", QLocale.system().name())
+            "Lang:", SettingsManager.get(
+                "system/spellCheckLanguage", QLocale.system().name())
         )
 
     def _setup_page(self):
@@ -74,6 +78,13 @@ class WebView(QWebEngineView):
         new_zoom = 1.0 if factor is None else self.zoomFactor() + factor
         self.setZoomFactor(new_zoom)
 
+    def load_page(self):
+        """Carrega a página do WhatsApp."""
+        if self.user.enable:
+            self.setPage(self.whatsapp_page)
+            self.load(QUrl(__whatsapp_url__))
+            self.setZoomFactor(self.user.zoomFactor)
+
     def set_theme_light(self):
         """Define o tema claro na página."""
         if self.user.enable:
@@ -90,7 +101,8 @@ class WebView(QWebEngineView):
             cache_path = self.profile.cachePath()
             storage_path = self.profile.persistentStoragePath()
 
-            print(f"Removendo cache: {cache_path}\nRemovendo armazenamento: {storage_path}")
+            print(f"Removendo cache: {
+                  cache_path}\nRemovendo armazenamento: {storage_path}")
 
             shutil.rmtree(cache_path, ignore_errors=True)
             shutil.rmtree(storage_path, ignore_errors=True)
