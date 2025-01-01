@@ -1,8 +1,10 @@
 from PyQt6 import uic
-from PyQt6.QtWidgets import QWidget
+from PyQt6.QtWidgets import QWidget, QMessageBox
+from zapzap import LIMITE_USERS
 from zapzap.controllers.PageButton import PageButton
 from zapzap.controllers.WebView import WebView
 from zapzap.models.User import User
+from zapzap.services.AlertManager import AlertManager
 from zapzap.services.SysTrayManager import SysTrayManager
 
 
@@ -33,7 +35,7 @@ class Browser(QWidget):
 
     def _configure_signals(self):
         """Configura os sinais do widget."""
-        self.btn_new_account.clicked.connect(self.add_new_user)
+        self.btn_new_account.clicked.connect(lambda: self.add_new_user())
 
     def _load_users(self):
         """Carrega os usuários e cria páginas correspondentes."""
@@ -47,15 +49,21 @@ class Browser(QWidget):
         if button and page:
             self.switch_to_page(page, button)
 
-    def add_new_user(self, new_user: User = None):
+    def add_new_user(self, new_user=None):
         """Adiciona um novo usuário e cria a página correspondente."""
+
         if not new_user:
             new_user = User.create_new_user()
 
-        self._add_page(new_user)
-        self._update_shortcuts_page()
+        if new_user:
+            print(new_user)
+            self._add_page(new_user)
+            self._update_shortcuts_page()
+        else:
+            AlertManager.limit_users(self)
 
     # === Gerenciamento de Páginas ===
+
     def _add_page(self, user: User):
         """Adiciona uma nova página e o botão correspondente."""
         self.page_count += 1
