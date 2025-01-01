@@ -33,9 +33,12 @@ class Browser(QWidget):
             self.add_page(user)
 
     def _select_default_page(self):
-        """Seleciona a página padrão, se houver páginas carregadas."""
-        if self.page_buttons:
-            self.page_buttons[1].selected()
+        """Seleciona a primeira página habilitada como padrão, se houver páginas carregadas."""
+        for button in self.page_buttons.values():
+            if button.user.enable:
+                self.switch_to_page(self.pages.widget(
+                    button.page_index-1), button)
+                break
 
     # === Gerenciamento de Páginas ===
     def add_page(self, user: User):
@@ -78,6 +81,8 @@ class Browser(QWidget):
                     # Esconde e pausa a página
                     self.pages.widget(button.page_index-1).disable_page()
 
+        self._select_default_page()
+
     def delete_page(self, user: User):
         print('delete page:', user)
         for button in self.page_buttons.values():
@@ -85,6 +90,8 @@ class Browser(QWidget):
                 button.close()
                 self.pages.widget(button.page_index-1).remove_files()
                 break
+
+        self._select_default_page()
 
     def switch_to_page(self, page: WebView, button: PageButton):
         """Alterna para a página selecionada e ajusta os estilos dos botões."""
