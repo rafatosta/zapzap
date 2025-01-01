@@ -29,31 +29,34 @@ class Browser(QWidget):
         self._configure_signals()
         self._load_users()
         self._select_default_page()
+        self._update_shortcuts_page()
 
     def _configure_signals(self):
         """Configura os sinais do widget."""
-        self.btn_new_account.clicked.connect(self._add_new_user)
+        self.btn_new_account.clicked.connect(self.add_new_user)
 
     def _load_users(self):
         """Carrega os usuários e cria páginas correspondentes."""
         self.user_list = User.select()
         for user in self.user_list:
-            self.add_page(user)
+            self._add_page(user)
 
     def _select_default_page(self):
         """Seleciona a primeira página habilitada como padrão."""
         button, page = self._find_button_and_page_enabled()
         if button and page:
             self.switch_to_page(page, button)
-    
-    def _add_new_user(self):
+
+    def add_new_user(self, new_user: User = None):
         """Adiciona um novo usuário e cria a página correspondente."""
-        new_user = User.create_new_user()
-        if new_user:
-            self.add_page(new_user)
+        if not new_user:
+            new_user = User.create_new_user()
+
+        self._add_page(new_user)
+        self._update_shortcuts_page()
 
     # === Gerenciamento de Páginas ===
-    def add_page(self, user: User):
+    def _add_page(self, user: User):
         """Adiciona uma nova página e o botão correspondente."""
         self.page_count += 1
         page_index = self.page_count
@@ -88,6 +91,7 @@ class Browser(QWidget):
                 button.hide()
                 page.disable_page()
         self._select_default_page()
+        self._update_shortcuts_page()
 
     def delete_page(self, user: User):
         """Remove uma página e seu botão correspondente."""
@@ -96,8 +100,10 @@ class Browser(QWidget):
 
         if button and page:
             button.close()
+            del self.page_buttons[button.page_index]
             page.remove_files()
         self._select_default_page()
+        self._update_shortcuts_page()
 
     def update_icons_page_button(self, user: User):
         """Atualiza os ícones de um botão específico com base no usuário."""
@@ -107,6 +113,13 @@ class Browser(QWidget):
         if button and page:
             button.user = user
             page.user = user
+
+    def _update_shortcuts_page(self):
+        count = 1
+        for button in self.page_buttons.values():
+            if button.user.enable:
+                button.setShortcut(f'Ctrl+{count}')
+                count += 1
 
     # === Funções Auxiliares ===
     def _find_button_and_page_by_user(self, user: User):

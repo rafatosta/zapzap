@@ -34,4 +34,4 @@ class PageAccount(QWidget):
             self.user_list_layout.addWidget(CardUser(new_user))
 
             # Atualiza o navegador com o novo usuário
-            QApplication.instance().getWindow().browser.add_page(new_user)
+            QApplication.instance().getWindow().browser.add_new_user(new_user)
