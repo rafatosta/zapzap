@@ -187,3 +187,51 @@ class User:
             print(e)
         finally:
             conn.close()
+
+    @staticmethod
+    def count_users():
+        """Retorna a quantidade de usuários salvos no banco de dados."""
+        User._ensure_table_exists()
+        try:
+            conn = Database.connect_db()
+            cursor = conn.cursor()
+            SQL = f"""SELECT COUNT(*) FROM {User._table_name};"""
+            cursor.execute(SQL)
+            count = cursor.fetchone()[0]
+            return count
+        except Exception as e:
+            print(f"Erro ao contar os usuários: {e}")
+            return 0
+        finally:
+            conn.close()
+
+    @staticmethod
+    def create_new_user(name='', icon=None):
+        """
+        Cria e retorna um novo usuário se o limite de usuários cadastrados não for excedido.
+        O ícone é gerado automaticamente se não for fornecido.
+
+        Args:
+            name (str): Nome do usuário. Padrão é string vazia.
+            icon (str): Ícone SVG para o usuário. Gerado automaticamente se None.
+            LIMITE_USERS (int): Limite máximo de usuários permitidos. Padrão é 10.
+
+        Returns:
+            User | None: Retorna o novo usuário se criado; caso contrário, retorna None.
+        """
+        # Verifica o número de usuários cadastrados
+        from zapzap import LIMITE_USERS
+        if User.count_users() >= LIMITE_USERS:
+            print(f"Limite de {
+                  LIMITE_USERS} usuários atingido. Não é possível criar mais usuários.")
+            return None
+
+        # Define o ícone, se necessário
+        if icon is None:
+            from zapzap.resources.UserIcon import UserIcon
+            icon = UserIcon.get_new_icon_svg()
+
+        # Cria e salva o novo usuário
+        new_user = User(name=name, icon=icon)
+        new_user.save()
+        return new_user
