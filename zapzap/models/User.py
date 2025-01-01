@@ -81,6 +81,10 @@ class User:
             new_user = User.create(self)
             self._id = new_user.id  # Atualiza o ID com o valor gerado pelo banco
 
+    def remove(self):
+        if self._id:
+            User.delete(self._id)
+
     @classmethod
     def _ensure_table_exists(cls):
         """Verifica se a tabela existe; cria-a se não existir."""

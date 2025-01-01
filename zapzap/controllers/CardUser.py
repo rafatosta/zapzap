@@ -83,7 +83,9 @@ class CardUser(QWidget):
 
         QApplication.instance().getWindow().browser.delete_page(self.user)
 
+        self.user.remove()
         self.close()
+        self.setParent(None)
 
     def _handle_icon_action(self):
         """Gera novo ícone aleatório para o usuário."""
