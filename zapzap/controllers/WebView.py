@@ -1,7 +1,6 @@
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEnginePage, QWebEngineSettings
 from PyQt6.QtCore import QUrl, pyqtSignal, QLocale
-
 import shutil
 
 from zapzap.controllers.PageController import PageController
@@ -13,62 +12,59 @@ from zapzap.services.SettingsManager import SettingsManager
 
 
 class WebView(QWebEngineView):
-    # Sinal para enviar informações ao botão correspondente
-    update_button_signal = pyqtSignal(int, int)
+    update_button_signal = pyqtSignal(int, int)  # Sinal para atualizar botões
 
     def __init__(self, user: User = None, page_index=None, parent=None):
         super().__init__(parent)
-
         self.user = user
-        self.page_index = page_index  # Identificador da página
+        self.page_index = page_index
         self.profile = None  # Inicializa o perfil como None
 
-        self._setup()  # Configuração inicial
-        self.whatsapp_page = PageController(
-            self.profile, self)  # Controlador da página
-
-        # Carrega a página inicial
-        if self.user.enable:
-            self.load_page()
+        if user.enable:
+            self._initialize()
 
     def __del__(self):
         """Método chamado quando o objeto é destruído."""
-        print("O WebEngineView foi destruído")
+        print("O WebEngineView foi destruído.")
         self.user.zoomFactor = self.zoomFactor()
 
-    def _setup(self):
-        """Configuração inicial do WebView."""
-        self._setup_signals()
-        self._setup_profile()
+    def _initialize(self):
+        """Configuração inicial."""
+        self._configure_signals()
+        self._configure_profile()
+        self._setup_page()
 
-    def _setup_signals(self):
-        """Conexão dos sinais com os métodos."""
-        self.titleChanged.connect(self._handle_title_change)
+    def _configure_signals(self):
+        """Configura os sinais para eventos."""
+        self.titleChanged.connect(self._on_title_changed)
 
-    def _setup_profile(self):
-        """Configuração do perfil do QWebEngine."""
+    def _configure_profile(self):
+        """Configura o perfil do QWebEngine."""
         self.profile = QWebEngineProfile(str(self.user.id), self)
         self.profile.setHttpUserAgent(__user_agent__)
-        self.profile.downloadRequested.connect(
-            DownloadManager.on_downloadRequested)
+        self.profile.downloadRequested.connect(DownloadManager.on_downloadRequested)
         self.profile.setNotificationPresenter(
             lambda notification: NotificationManager.show(self, notification)
         )
-        self.profile.setSpellCheckEnabled(
-            SettingsManager.get("system/spellCheckers", True))
-        self.profile.setSpellCheckLanguages([
-            SettingsManager.get("system/spellCheckLanguage",
-                                QLocale.system().name())
-        ])
-
-        print(
-            'SpellCheck:', SettingsManager.get("system/spellCheckers", True),
-            '\nLang:', SettingsManager.get(
-                "system/spellCheckLanguage", QLocale.system().name())
+        self.profile.setSpellCheckEnabled(SettingsManager.get("system/spellCheckers", True))
+        self.profile.setSpellCheckLanguages(
+            [SettingsManager.get("system/spellCheckLanguage", QLocale.system().name())]
         )
 
-    def _handle_title_change(self, title):
-        """Atualiza o botão correspondente com base no título da página."""
+        print(
+            "SpellCheck:", SettingsManager.get("system/spellCheckers", True),
+            "Lang:", SettingsManager.get("system/spellCheckLanguage", QLocale.system().name())
+        )
+
+    def _setup_page(self):
+        """Configura a página e carrega a URL inicial."""
+        self.whatsapp_page = PageController(self.profile, self)
+        self.setPage(self.whatsapp_page)
+        self.load(QUrl(__whatsapp_url__))
+        self.setZoomFactor(self.user.zoomFactor)
+
+    def _on_title_changed(self, title):
+        """Manipula mudanças no título da página."""
         num = ''.join(filter(str.isdigit, title))
         qtd = int(num) if num else 0
         self.update_button_signal.emit(self.page_index, qtd)
@@ -78,11 +74,15 @@ class WebView(QWebEngineView):
         new_zoom = 1.0 if factor is None else self.zoomFactor() + factor
         self.setZoomFactor(new_zoom)
 
-    def load_page(self):
-        """Carrega a página do WhatsApp."""
-        self.setPage(self.whatsapp_page)
-        self.load(QUrl(__whatsapp_url__))
-        self.setZoomFactor(self.user.zoomFactor)
+    def set_theme_light(self):
+        """Define o tema claro na página."""
+        if self.user.enable:
+            self.whatsapp_page.set_theme_light()
+
+    def set_theme_dark(self):
+        """Define o tema escuro na página."""
+        if self.user.enable:
+            self.whatsapp_page.set_theme_dark()
 
     def remove_files(self):
         """Remove os arquivos de cache e armazenamento persistente do perfil."""
@@ -90,8 +90,7 @@ class WebView(QWebEngineView):
             cache_path = self.profile.cachePath()
             storage_path = self.profile.persistentStoragePath()
 
-            print(f"Removendo cache: {
-                  cache_path}\nRemovendo armazenamento: {storage_path}")
+            print(f"Removendo cache: {cache_path}\nRemovendo armazenamento: {storage_path}")
 
             shutil.rmtree(cache_path, ignore_errors=True)
             shutil.rmtree(storage_path, ignore_errors=True)
@@ -104,10 +103,13 @@ class WebView(QWebEngineView):
             return False  # Falha
 
     def enable_page(self):
-        self.load_page()
+        """Ativa a página, configurando novamente."""
+        self._initialize()
         self.setVisible(True)
 
     def disable_page(self):
-        self.profile.clearHttpCache()  # Limpa o cache HTTP
+        """Desativa a página, limpando o cache e ocultando-a."""
+        if self.profile:
+            self.profile.clearHttpCache()
         self.setPage(None)
         self.setVisible(False)
