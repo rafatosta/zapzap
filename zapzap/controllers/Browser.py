@@ -4,6 +4,7 @@ from PyQt6.QtGui import QAction
 from zapzap.controllers.PageButton import PageButton
 from zapzap.controllers.WebView import WebView
 from zapzap.models.User import User
+from zapzap.resources.SystemIcon import SystemIcon
 from zapzap.services.AlertManager import AlertManager
 from zapzap.services.SysTrayManager import SysTrayManager
 
@@ -214,13 +215,30 @@ class Browser(QWidget):
             button.unselected()
 
     def set_theme_light(self):
-        """Define o tema claro para as páginas."""
+        """Define o tema claro para as páginas e botões."""
+        # Define o tema claro para as páginas
         for i in range(self.pages.count()):
             page = self.pages.widget(i)
             page.set_theme_light()
 
+        # Define o tema claro para os botões
+        self.__set_button_icons(SystemIcon.Type.Light)
+
     def set_theme_dark(self):
-        """Define o tema escuro para as páginas."""
+        """Define o tema escuro para as páginas e botões."""
+        # Define o tema escuro para as páginas
         for i in range(self.pages.count()):
             page = self.pages.widget(i)
             page.set_theme_dark()
+
+        # Define o tema escuro para os botões
+        self.__set_button_icons(SystemIcon.Type.Dark)
+
+    def __set_button_icons(self, theme):
+        """Define os ícones dos botões com base no tema."""
+        self.btn_new_account.setIcon(SystemIcon.get_icon("new_account", theme))
+        self.btn_open_settings.setIcon(
+            SystemIcon.get_icon("open_settings", theme))
+        self.btn_new_chat.setIcon(SystemIcon.get_icon("new_chat", theme))
+        self.btn_new_chat_number.setIcon(
+            SystemIcon.get_icon("new_chat_number", theme))
