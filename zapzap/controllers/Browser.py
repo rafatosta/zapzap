@@ -1,6 +1,6 @@
 from PyQt6 import uic
-from PyQt6.QtWidgets import QWidget, QMessageBox
-from zapzap import LIMITE_USERS
+from PyQt6.QtWidgets import QWidget
+from PyQt6.QtGui import QAction
 from zapzap.controllers.PageButton import PageButton
 from zapzap.controllers.WebView import WebView
 from zapzap.models.User import User
@@ -14,6 +14,8 @@ class Browser(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         uic.loadUi("zapzap/ui/ui_browser.ui", self)
+
+        self.parent = parent
 
         self.page_count = 0  # Contador de páginas
         self.page_buttons = {}  # Mapeamento entre botões e páginas
@@ -31,7 +33,7 @@ class Browser(QWidget):
         self._configure_signals()
         self._load_users()
         self._select_default_page()
-        self._update_shortcuts_page()
+        self._update_user_menu()
 
     def _configure_signals(self):
         """Configura os sinais do widget."""
@@ -58,7 +60,7 @@ class Browser(QWidget):
         if new_user:
             print(new_user)
             self._add_page(new_user)
-            self._update_shortcuts_page()
+            self._update_user_menu()
         else:
             AlertManager.limit_users(self)
 
@@ -99,7 +101,7 @@ class Browser(QWidget):
                 button.hide()
                 page.disable_page()
         self._select_default_page()
-        self._update_shortcuts_page()
+        self._update_user_menu()
 
     def delete_page(self, user: User):
         """Remove uma página e seu botão correspondente."""
@@ -111,7 +113,7 @@ class Browser(QWidget):
             del self.page_buttons[button.page_index]
             page.remove_files()
         self._select_default_page()
-        self._update_shortcuts_page()
+        self._update_user_menu()
 
     def update_icons_page_button(self, user: User):
         """Atualiza os ícones de um botão específico com base no usuário."""
@@ -122,12 +124,28 @@ class Browser(QWidget):
             button.user = user
             page.user = user
 
-    def _update_shortcuts_page(self):
-        count = 1
-        for button in self.page_buttons.values():
+        self._update_user_menu()
+
+    def _update_user_menu(self):
+        """Constroi o menu de usuários na barra de menu da janela principal."""
+        # Reinicia o menu de usuários
+        self.parent.menuUsers.clear()
+
+        # Adiciona a opção para criar um novo usuário
+        new_action = QAction("Novo usuário", self)
+        new_action.triggered.connect(lambda: self.add_new_user())
+        self.parent.menuUsers.addAction(new_action)
+        self.parent.menuUsers.addSeparator()
+
+        # Adiciona ações para cada botão habilitado
+        for count, button in enumerate(self.page_buttons.values(), start=1):
             if button.user.enable:
-                button.setShortcut(f'Ctrl+{count}')
-                count += 1
+                # Define os itens da barra de menu Usuários
+                new_action = QAction(
+                    button.user.name if button.user.name != "" else f"Usuário {count}", self)
+                new_action.setShortcut(f'Ctrl+{count}')
+                new_action.triggered.connect(button.clicked)
+                self.parent.menuUsers.addAction(new_action)
 
     # === Funções Auxiliares ===
     def _find_button_and_page_by_user(self, user: User):

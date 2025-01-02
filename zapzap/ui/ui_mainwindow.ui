@@ -63,9 +63,15 @@
     <addaction name="actionNew_chat"/>
     <addaction name="actionBy_phone_number"/>
    </widget>
+   <widget class="QMenu" name="menuUsers">
+    <property name="title">
+     <string>Users</string>
+    </property>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
    <addaction name="menuChat"/>
+   <addaction name="menuUsers"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionQuit">

@@ -19,7 +19,7 @@ class MainWindow(QMainWindow):
         uic.loadUi("zapzap/ui/ui_mainwindow.ui", self)
 
         self.is_fullscreen = False  # Controle do estado de tela cheia
-        self.browser = Browser()  # Inicialização do navegador
+        self.browser = Browser(self)  # Inicialização do navegador
         self.app_settings = None
         self._setup_ui()
 
