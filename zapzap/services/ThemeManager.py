@@ -61,6 +61,23 @@ QWidget#menu_layout QLabel {
 	margin-top: 8px; /* Espaçamento entre labels */
 }
 
+/* Botões do browser */
+QWidget#settings_buttons_layout QPushButton {
+    qproperty-flat: true;
+}
+
+QWidget#settings_buttons_layout QPushButton:hover {
+    border-radius: 2px;
+    border-left: 3px solid #a8a9ab;
+}
+
+QWidget#settings_buttons_layout QPushButton:pressed {
+    background-color: rgba(225, 225, 225, 0.3);
+    border-radius: 2px;
+    height: 30px;
+    border-left: 3px solid #00BD95;
+}
+
 QFrame[frameShape="4"] {
     border: none;
     border-bottom: 1px solid rgb(192, 191, 188);
@@ -113,6 +130,23 @@ QWidget#menu_layout QLabel {
     color: #F0F2F5;
 	padding: 2px 0;
 	margin-top: 8px; /* Espaçamento entre labels */
+}
+
+/* Botões do browser */
+QWidget#settings_buttons_layout QPushButton {
+    qproperty-flat: true;
+}
+
+QWidget#settings_buttons_layout QPushButton:hover {
+    border-radius: 2px;
+    border-left: 3px solid #a8a9ab;
+}
+
+QWidget#settings_buttons_layout QPushButton:pressed {
+    background-color: rgba(225, 225, 225, 0.3);
+    border-radius: 2px;
+    height: 30px;
+    border-left: 3px solid #00BD95;
 }
 
 QFrame[frameShape="4"] {
