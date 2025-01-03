@@ -130,7 +130,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="show_sidebar">
+         <widget class="QCheckBox" name="browser_sidebar">
           <property name="text">
            <string>Mostrar barra lateral</string>
           </property>
@@ -140,7 +140,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBox_2">
+         <widget class="QCheckBox" name="mainwindow_menu">
           <property name="text">
            <string>Mostrar barra de menu</string>
           </property>

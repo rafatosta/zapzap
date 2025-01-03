@@ -15,15 +15,24 @@ class PageAppearance(QWidget):
         self._configure_signals()
 
     def _load(self):
-        self.show_sidebar.setChecked(
+        self.browser_sidebar.setChecked(
             SettingsManager.get("system/sidebar", True))
+        self.mainwindow_menu.setChecked(
+            SettingsManager.get("system/menubar", True))
+        
 
     def _configure_signals(self):
-        self.show_sidebar.clicked.connect(self._handle_sidebar)
+        self.browser_sidebar.clicked.connect(self._handle_sidebar)
+        self.mainwindow_menu.clicked.connect(self._handle_menubar)
 
     def _handle_sidebar(self):
         # Salva a configuração
-        SettingsManager.set("system/sidebar", self.show_sidebar.isChecked())
-        print(self.show_sidebar.isChecked())
+        SettingsManager.set("system/sidebar", self.browser_sidebar.isChecked())
         # Esconde a sidebar no Browser
         QApplication.instance().getWindow().browser.settings_sidebar()
+
+    def _handle_menubar(self):
+        # Salva a configuração
+        SettingsManager.set("system/menubar", self.mainwindow_menu.isChecked())
+        # Esconde a sidebar no Browser
+        QApplication.instance().getWindow().settings_menubar()

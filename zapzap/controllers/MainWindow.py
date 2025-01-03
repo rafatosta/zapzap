@@ -28,6 +28,7 @@ class MainWindow(QMainWindow):
         """Configurações iniciais da interface e conexões de menu."""
         self.stackedWidget.addWidget(self.browser)
         self._connect_menu_actions()
+        self.settings_menubar()
 
     def load_settings(self):
         """Restaura as configurações salvas da janela e do sistema."""
@@ -167,3 +168,10 @@ class MainWindow(QMainWindow):
     def xdgOpenChat(self, url):
         """Open chat by clicking on a notification"""
         self._current_page.page().xdg_open_chat(url)
+
+    # === Estilo e Interface ===
+    def settings_menubar(self):
+        if SettingsManager.get("system/menubar", True):
+            self.menubar.setMaximumHeight(2000)
+        else:
+            self.menubar.setMaximumHeight(0)
