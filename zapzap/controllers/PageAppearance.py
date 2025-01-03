@@ -19,11 +19,13 @@ class PageAppearance(QWidget):
             SettingsManager.get("system/sidebar", True))
         self.mainwindow_menu.setChecked(
             SettingsManager.get("system/menubar", True))
-        
+        self.scaleComboBox.setCurrentText(
+            f"{SettingsManager.get("system/scale", 100)} %")
 
     def _configure_signals(self):
         self.browser_sidebar.clicked.connect(self._handle_sidebar)
         self.mainwindow_menu.clicked.connect(self._handle_menubar)
+        self.scaleComboBox.currentTextChanged.connect(self._handle_scale)
 
     def _handle_sidebar(self):
         # Salva a configuração
@@ -36,3 +38,8 @@ class PageAppearance(QWidget):
         SettingsManager.set("system/menubar", self.mainwindow_menu.isChecked())
         # Esconde a sidebar no Browser
         QApplication.instance().getWindow().settings_menubar()
+
+    def _handle_scale(self, text_changed):
+        scale_value = ''.join(filter(str.isdigit, text_changed))
+        # Salva a configuração
+        SettingsManager.set("system/scale", scale_value)
