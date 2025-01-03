@@ -37,8 +37,10 @@ class SysTrayManager:
         """Inicializa os componentes do gerenciador de bandeja."""
         self.number_notifications = 0
         self._tray = QSystemTrayIcon()
-        self.current_icon = SettingsManager.get(
-            "system/tray_theme", TrayIcon.Type.Default)
+        self.current_icon = TrayIcon.Type(
+            SettingsManager.get(
+                "system/tray_theme", TrayIcon.Type.Default)
+        )
         self._set_icon(self.current_icon)
 
         self._actions = {
@@ -89,7 +91,7 @@ class SysTrayManager:
         instance = SysTrayManager.instance()
         instance._set_icon(icon_type, instance.number_notifications)
         SettingsManager.set(
-            "system/tray_theme", icon_type)
+            "system/tray_theme", icon_type.value)
 
     @staticmethod
     def _load_state():

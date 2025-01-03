@@ -30,21 +30,23 @@ class PageAppearance(QWidget):
 
         # Selecionar o radio button salvo para Tray
         tray_mode = SettingsManager.get(
-            "system/tray_theme", TrayIcon.Type.Default)
-        if tray_mode == TrayIcon.Type.Default:
+            "system/tray_theme", TrayIcon.Type.Default.value)
+        if tray_mode == TrayIcon.Type.Default.value:
             self.tray_default_radioButton.setChecked(True)
-        elif tray_mode == TrayIcon.Type.SLight:
+        elif tray_mode == TrayIcon.Type.SLight.value:
             self.tray_slight_radioButton.setChecked(True)
-        elif tray_mode == TrayIcon.Type.SDark:
+        elif tray_mode == TrayIcon.Type.SDark.value:
             self.tray_sdark_radioButton.setChecked(True)
 
         # Selecionar o radio button salvo para Style
-        theme_mode = SettingsManager.get("system/theme", "auto")
-        if theme_mode == "auto":
+        theme_mode = SettingsManager.get(
+            "system/theme", ThemeManager.Type.Auto.value)
+        print('>>>', theme_mode, ThemeManager.Type.Light.value)
+        if theme_mode == ThemeManager.Type.Auto.value:
             self.theme_auto_radioButton.setChecked(True)
-        elif theme_mode == "light":
+        elif theme_mode == ThemeManager.Type.Light.value:
             self.theme_light_radioButton.setChecked(True)
-        elif theme_mode == "dark":
+        elif theme_mode == ThemeManager.Type.Dark.value:
             self.theme_dark_radioButton.setChecked(True)
 
     def _configure_signals(self):
@@ -100,7 +102,6 @@ class PageAppearance(QWidget):
         else:
             return  # Nenhuma ação necessária
 
-        # Salvar o modo de bandeja selecionado
         print(f"Modo de bandeja selecionado: {tray_mode}")
 
     def _handle_theme_mode(self):
@@ -117,5 +118,4 @@ class PageAppearance(QWidget):
         else:
             return  # Nenhuma ação necessária
 
-        # Salvar o modo de tema selecionado
         print(f"Modo de tema selecionado: {theme_mode}")

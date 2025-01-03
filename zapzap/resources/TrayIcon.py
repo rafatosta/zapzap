@@ -7,9 +7,9 @@ from PyQt6.QtCore import QSize
 class TrayIcon:
 
     class Type(Enum):
-        Default = 1
-        SLight = 2
-        SDark = 3
+        Default = "default"
+        SLight = "symbolic_light"
+        SDark = "symbolic_dark"
 
     _DEFAULT = """<?xml version="1.0" encoding="utf-8"?>
 <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
