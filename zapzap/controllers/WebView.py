@@ -1,5 +1,5 @@
 from PyQt6.QtWebEngineWidgets import QWebEngineView
-from PyQt6.QtWebEngineCore import QWebEngineProfile
+from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
 from PyQt6.QtCore import QUrl, pyqtSignal, QLocale
 import shutil
 
@@ -92,13 +92,11 @@ class WebView(QWebEngineView):
 
     def set_theme_light(self):
         """Define o tema claro na página."""
-        if self.user.enable:
-            self.whatsapp_page.set_theme_light()
+        self.profile.settings().setAttribute(QWebEngineSettings.WebAttribute.ForceDarkMode, False)
 
     def set_theme_dark(self):
         """Define o tema escuro na página."""
-        if self.user.enable:
-            self.whatsapp_page.set_theme_dark()
+        self.profile.settings().setAttribute(QWebEngineSettings.WebAttribute.ForceDarkMode, True)
 
     def remove_files(self):
         """Remove os arquivos de cache e armazenamento persistente do perfil."""
