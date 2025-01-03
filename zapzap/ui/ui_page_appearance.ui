@@ -94,7 +94,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox_2">
+         <widget class="QGroupBox" name="tray_groupBox">
           <property name="title">
            <string>Ícone da bandeja</string>
           </property>

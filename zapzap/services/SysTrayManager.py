@@ -6,6 +6,7 @@ from gettext import gettext as _
 
 from zapzap.resources.TrayIcon import TrayIcon
 from zapzap import __donationPage__
+from zapzap.services.SettingsManager import SettingsManager
 
 
 class SysTrayManager():
@@ -18,7 +19,10 @@ class SysTrayManager():
         if not SysTrayManager._tray:
             SysTrayManager.__new_instance()
 
-        SysTrayManager._tray.show()
+        if SettingsManager.get("system/tray_icon", True):
+            SysTrayManager._tray.show()
+        else:
+             SysTrayManager._tray.hide()
 
     @staticmethod
     def hide():

@@ -2,6 +2,7 @@ from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QApplication
 
 from zapzap.services.SettingsManager import SettingsManager
+from zapzap.services.SysTrayManager import SysTrayManager
 
 
 class PageAppearance(QWidget):
@@ -21,11 +22,14 @@ class PageAppearance(QWidget):
             SettingsManager.get("system/menubar", True))
         self.scaleComboBox.setCurrentText(
             f"{SettingsManager.get("system/scale", 100)} %")
+        self.tray_groupBox.setChecked(SettingsManager.get("system/tray_icon", True))
+        
 
     def _configure_signals(self):
         self.browser_sidebar.clicked.connect(self._handle_sidebar)
         self.mainwindow_menu.clicked.connect(self._handle_menubar)
         self.scaleComboBox.currentTextChanged.connect(self._handle_scale)
+        self.tray_groupBox.toggled.connect(self._on_tray_groupbox_toggled)
 
     def _handle_sidebar(self):
         # Salva a configuração
@@ -43,3 +47,7 @@ class PageAppearance(QWidget):
         scale_value = ''.join(filter(str.isdigit, text_changed))
         # Salva a configuração
         SettingsManager.set("system/scale", scale_value)
+    
+    def _on_tray_groupbox_toggled(self, checked):
+        SettingsManager.set("system/tray_icon", checked)
+        SysTrayManager.show()
