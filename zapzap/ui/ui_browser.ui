@@ -30,7 +30,7 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QFrame" name="frame">
+    <widget class="QFrame" name="browser_sidebar">
      <property name="minimumSize">
       <size>
        <width>50</width>

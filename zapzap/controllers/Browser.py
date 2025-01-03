@@ -6,6 +6,7 @@ from zapzap.controllers.WebView import WebView
 from zapzap.models.User import User
 from zapzap.resources.SystemIcon import SystemIcon
 from zapzap.services.AlertManager import AlertManager
+from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
 
 
@@ -35,13 +36,16 @@ class Browser(QWidget):
         self._load_users()
         self._select_default_page()
         self._update_user_menu()
+        self.settings_sidebar()
 
     def _configure_signals(self):
         """Configura os sinais do widget."""
         self.btn_new_account.clicked.connect(lambda: self.add_new_user())
-        self.btn_new_chat_number.clicked.connect(lambda: self.parent.new_chat_by_phone())
+        self.btn_new_chat_number.clicked.connect(
+            lambda: self.parent.new_chat_by_phone())
         self.btn_new_chat.clicked.connect(lambda: self.parent.new_chat())
-        self.btn_open_settings.clicked.connect(lambda: self.parent.open_settings())
+        self.btn_open_settings.clicked.connect(
+            lambda: self.parent.open_settings())
 
     def _load_users(self):
         """Carrega os usuários e cria páginas correspondentes."""
@@ -245,3 +249,10 @@ class Browser(QWidget):
         self.btn_new_chat.setIcon(SystemIcon.get_icon("new_chat", theme))
         self.btn_new_chat_number.setIcon(
             SystemIcon.get_icon("new_chat_number", theme))
+
+    def settings_sidebar(self):
+        """Mostra ou esconde a barra lateral"""
+        if SettingsManager.get("system/sidebar", True):
+            self.browser_sidebar.show()
+        else:
+            self.browser_sidebar.hide()
