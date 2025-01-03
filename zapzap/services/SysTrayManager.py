@@ -9,66 +9,101 @@ from zapzap import __donationPage__
 from zapzap.services.SettingsManager import SettingsManager
 
 
-class SysTrayManager():
+class SysTrayManager:
+    """Gerenciador para o ícone na bandeja do sistema."""
 
-    _tray: QSystemTrayIcon = None
-    icon: QIcon = TrayIcon.Type.Default
+    _instance = None
 
-    @staticmethod
-    def show():
-        if not SysTrayManager._tray:
-            SysTrayManager.__new_instance()
+    def __new__(cls, *args, **kwargs):
+        """Implementação do padrão Singleton."""
+        if not cls._instance:
+            cls._instance = super().__new__(cls)
+            cls._instance._initialized = False
+        return cls._instance
 
-        if SettingsManager.get("system/tray_icon", True):
-            SysTrayManager._tray.show()
-        else:
-             SysTrayManager._tray.hide()
+    def __init__(self):
+        if not self._initialized:
+            self._initialized = True
+            self._initialize_components()
 
-    @staticmethod
-    def hide():
-        if not SysTrayManager._tray:
-            raise RuntimeError(
-                "QSystemTrayIcon não existente em QApplication.")
+    @classmethod
+    def instance(cls) -> 'SysTrayManager':
+        """Obtém a instância Singleton do SysTrayManager."""
+        if cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
-        SysTrayManager._tray.hide()
+    def _initialize_components(self):
+        """Inicializa os componentes do gerenciador de bandeja."""
+        self.number_notifications = 0
+        self._tray = QSystemTrayIcon()
+        self.current_icon = SettingsManager.get(
+            "system/tray_theme", TrayIcon.Type.Default)
+        self._set_icon(self.current_icon)
 
-    @staticmethod
-    def set_number_notifications(number_notifications):
-        SysTrayManager._tray.setIcon(TrayIcon.getIcon(
-            SysTrayManager.icon, number_notifications))
-
-    @staticmethod
-    def __new_instance():
-        main_window = QApplication.instance().getWindow()
-
-        SysTrayManager._tray = QSystemTrayIcon(main_window)
-        SysTrayManager._tray.setIcon(TrayIcon.getIcon(SysTrayManager.icon))
-
-        # Persistência dos itens e ações
-        SysTrayManager._actions = {
+        self._actions = {
             "show": QAction(_("Show")),
             "settings": QAction(_("Settings")),
             "donation": QAction(_("Donation")),
             "exit": QAction(_("Quit")),
         }
 
-        # Conexões dos sinais
-        SysTrayManager._actions["show"].triggered.connect(
-            main_window.show_window)
-        SysTrayManager._actions["donation"].triggered.connect(
+        self._trayMenu = QMenu()
+        self._trayMenu.addAction(self._actions["show"])
+        self._trayMenu.addAction(self._actions["settings"])
+        self._trayMenu.addAction(self._actions["donation"])
+        self._trayMenu.addSeparator()
+        self._trayMenu.addAction(self._actions["exit"])
+        self._tray.setContextMenu(self._trayMenu)
+
+        self._setup_connections()
+
+    def _setup_connections(self):
+        """Configura as conexões dos sinais das ações da bandeja."""
+        main_window = QApplication.instance().getWindow()
+
+        self._actions["show"].triggered.connect(main_window.show_window)
+        self._actions["settings"].triggered.connect(main_window.open_settings)
+        self._actions["donation"].triggered.connect(
             lambda: QDesktopServices.openUrl(QUrl(__donationPage__)))
-        SysTrayManager._actions["settings"].triggered.connect(
-            main_window.open_settings)
-        SysTrayManager._actions["exit"].triggered.connect(
-            main_window.closeEvent)
+        self._actions["exit"].triggered.connect(main_window.closeEvent)
 
-        # Criação do menu persistente
-        SysTrayManager._trayMenu = QMenu()
-        SysTrayManager._trayMenu.addAction(SysTrayManager._actions["show"])
-        SysTrayManager._trayMenu.addAction(SysTrayManager._actions["settings"])
-        SysTrayManager._trayMenu.addAction(SysTrayManager._actions["donation"])
-        SysTrayManager._trayMenu.addAction(SysTrayManager._actions["exit"])
-        SysTrayManager._trayMenu.insertSeparator(SysTrayManager._actions["exit"])
-        SysTrayManager._trayMenu.insertSeparator(SysTrayManager._actions["settings"])
+    def _set_icon(self, icon_type: TrayIcon.Type, number_notifications=0):
+        self._tray.setIcon(TrayIcon.getIcon(icon_type, number_notifications))
 
-        SysTrayManager._tray.setContextMenu(SysTrayManager._trayMenu)
+    # === Métodos Públicos ===
+
+    @staticmethod
+    def start():
+        instance = SysTrayManager.instance()
+        instance._load_state()
+
+    @staticmethod
+    def set_number_notifications(number_notifications):
+        instance = SysTrayManager.instance()
+        instance.number_notifications = number_notifications
+        instance._set_icon(instance.current_icon, number_notifications)
+
+    @staticmethod
+    def set_theme(icon_type: TrayIcon.Type):
+        instance = SysTrayManager.instance()
+        instance._set_icon(icon_type, instance.number_notifications)
+        SettingsManager.set(
+            "system/tray_theme", icon_type)
+
+    @staticmethod
+    def _load_state():
+        instance = SysTrayManager.instance()
+        if SettingsManager.get("system/tray_icon", True):
+            instance._tray.show()
+        else:
+            instance._tray.hide()
+
+    def set_state(state: bool):
+        instance = SysTrayManager.instance()
+        if state:
+            instance._tray.show()
+        else:
+            instance._tray.hide()
+
+        SettingsManager.set("system/tray_icon", state)

@@ -38,7 +38,7 @@ class MainWindow(QMainWindow):
             "main/windowState", QByteArray()))
 
         # Exibe o SysTray e inicia o ThemeManager
-        SysTrayManager.show()
+        SysTrayManager.start()
         ThemeManager.start()
 
     def _setup_toolbar(self):
