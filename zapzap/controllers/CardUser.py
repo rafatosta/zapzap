@@ -1,5 +1,5 @@
 from PyQt6 import uic
-from PyQt6.QtWidgets import QWidget, QApplication, QMenu, QMessageBox
+from PyQt6.QtWidgets import QWidget, QApplication, QMenu
 from PyQt6.QtCore import Qt
 
 from zapzap.models.User import User
