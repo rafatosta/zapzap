@@ -4,6 +4,7 @@ from PyQt6.QtWidgets import QApplication
 from PyQt6.QtGui import QDesktopServices
 
 from zapzap import __whatsapp_url__
+from zapzap.services.ThemeManager import ThemeManager
 
 
 class PageController(QWebEnginePage):
@@ -129,6 +130,8 @@ class PageController(QWebEnginePage):
                 QWebEnginePage.Feature.Notifications,
                 QWebEnginePage.PermissionPolicy.PermissionGrantedByUser
             )
+            # Força a sincronização do tema ao carregar a página
+            ThemeManager.sync()
 
     def show_toast(self, message, duration=1000):
         """Exibe um toast na página utilizando JavaScript."""

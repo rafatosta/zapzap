@@ -210,6 +210,12 @@ QFrame[frameShape="5"] {
         """Obtém o tema atual."""
         return ThemeManager.instance().current_theme
 
+    @staticmethod
+    def sync():
+        """Força a sincronização do tema atual."""
+        instance = ThemeManager.instance()
+        instance._apply_theme()
+
     # === Sincronização e Aplicação de Temas ===
     def sync_system_theme(self):
         """Sincroniza o tema do sistema com o tema atual."""
