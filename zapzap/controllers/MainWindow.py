@@ -60,8 +60,8 @@ class MainWindow(QMainWindow):
         self.actionQuit.triggered.connect(self.closeEvent)
         self.actionHide.triggered.connect(self.hide)
         self.actionReload.triggered.connect(self.browser.reload_pages)
-        self.actionNew_chat.triggered.connect(self._new_chat)
-        self.actionBy_phone_number.triggered.connect(self._new_chat_by_phone)
+        self.actionNew_chat.triggered.connect(self.new_chat)
+        self.actionBy_phone_number.triggered.connect(self.new_chat_by_phone)
 
     def _connect_view_menu_actions(self):
         """Conectar ações do menu 'Exibir'."""
@@ -71,11 +71,11 @@ class MainWindow(QMainWindow):
         self.actionZoom_out.triggered.connect(self._zoom_out)
 
     # === Ações de Menu ===
-    def _new_chat(self):
+    def new_chat(self):
         """Iniciar um novo chat na página atual."""
         self._current_page().page().new_chat()
 
-    def _new_chat_by_phone(self):
+    def new_chat_by_phone(self):
         """Iniciar um novo chat pelo número de telefone na página atual."""
         self._current_page().page().open_chat_by_number()
 

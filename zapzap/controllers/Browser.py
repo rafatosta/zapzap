@@ -39,6 +39,9 @@ class Browser(QWidget):
     def _configure_signals(self):
         """Configura os sinais do widget."""
         self.btn_new_account.clicked.connect(lambda: self.add_new_user())
+        self.btn_new_chat_number.clicked.connect(lambda: self.parent.new_chat_by_phone())
+        self.btn_new_chat.clicked.connect(lambda: self.parent.new_chat())
+        self.btn_open_settings.clicked.connect(lambda: self.parent.open_settings())
 
     def _load_users(self):
         """Carrega os usuários e cria páginas correspondentes."""
