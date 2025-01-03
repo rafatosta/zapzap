@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>com.rtosta.zapzap</id>
+  <launchable type="desktop-id">com.rtosta.zapzap.desktop</launchable>
+
+  <name>ZapZap</name>
+  <summary>WhatsApp Messenger</summary>
+
+  <branding>
+    <color type="primary" scheme_preference="light">#F0F2F5</color>
+    <color type="primary" scheme_preference="dark">#202C33</color>
+  </branding>
+
+  <update_contact>rafa.ecomp@gmail.com</update_contact>
+  <developer_name>Rafael Tosta</developer_name>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <content_rating type="oars-1.0" />
+
+  <description>
+    <p>What's:</p>
+    <p>Zapzap is a container for execution of the web web, that is, a kind of Webapp. Thus, all
+      features of WhatsApp Web are available in addition to several others which integrate ZapZap with the
+      system.</p>
+    <p>What sets this application apart is its support for multiple accounts, running in the background, a spellchecker
+      and customizations based on the theme of the system.</p>
+
+    <p>Data security:</p>
+    <p>No modifications or manipulations are made to the execution of WhatsApp Web. In
+      addition, all source code is available on GitHub and is publically auditable.</p>
+
+    <p>About:</p>
+    <p>ZapZap was initially developed for personal use. I decided to share it so that other people,
+      like me, could have a WhatsApp client more integrated into the system.</p>
+  </description>
+
+  <categories>
+    <category>Chat</category>
+    <category>InstantMessaging</category>
+    <category>Utility</category>
+    <category>Office</category>
+  </categories>
+
+  <url type="homepage">https://rtosta.com/zapzap-web/</url>
+  <url type="bugtracker">https://github.com/rafatosta/zapzap/issues</url>
+  <url type="donation">https://rtosta.com/zapzap-web/#donate</url>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>Application showcase</caption>
+      <image type="source">
+        https://raw.githubusercontent.com/rafatosta/zapzap/main/share/screenshot/default.png</image>
+    </screenshot>
+  </screenshots>
+
+  <releases>
+    <release date="2024-11-29" version="5.3.9">
+      <description>
+        <p>Xwayland by default (Activate it manually via flatseal if you want Wayland).</p>
+        <p>UserAgent Update.</p>
+      </description>
+    </release>
+    <release date="2024-08-02" version="5.3.7">
+      <description>
+        <p>UserAgent Update.</p>
+      </description>
+    </release>
+    <release date="2024-07-12" version="5.3.6">
+      <description>
+        <p>New: Reconnect to the internet when starting</p>
+        <p>New: Open app in background</p>
+      </description>
+    </release>
+    <release date="2024-05-22" version="5.3.5">
+      <description>
+        <p>Fix: Send and save files in kde 6 via file choose </p>
+      </description>
+    </release>
+    <release date="2024-05-16" version="5.3.4">
+      <description>
+        <p>Advanced Settings: Hide notification counter in the tray.</p>
+      </description>
+    </release>
+    <release date="2024-05-11" version="5.3.3">
+      <description>
+        <p>Fix: Notifications closing.</p>
+      </description>
+    </release>
+    <release date="2024-05-08" version="5.3.2">
+      <description>
+        <p>Update Runtime to 6.7</p>
+      </description>
+    </release>
+    <release date="2024-04-29" version="5.3.1">
+      <description>
+        <p>Improvements when saving files.</p>
+      </description>
+    </release>
+    <release date="2024-04-16" version="5.3">
+      <description>
+        <p>New: Default folder option for Downloads;</p>
+        <p>Routine adjustments.</p>
+      </description>
+    </release>
+    <release date="2024-02-16" version="5.2">
+      <description>
+        <p>Add Proxy support</p>
+        <p>Some improvements</p>
+      </description>
+    </release>
+    <release date="2023-12-29" version="5.1.1">
+      <description>
+        <p>Optimization: Wayland with Fractional Scaling</p>
+      </description>
+    </release>
+    <release date="2023-12-21" version="5.1">
+      <description>
+        <p>Optimization for the use of the ESC key</p>
+        <p>Disable the menu only for more than one user</p>
+        <p>New chat at phone number</p>
+        <p>Internal improvements</p>
+      </description>
+    </release>
+    <release date="2023-12-14" version="5.0">
+      <description>
+        <p>New user interface</p>
+        <p>Redesigned settings panel</p>
+        <p>Better usability with multiple accounts</p>
+        <p>Useful shortcuts for WhatsApp Web</p>
+        <p>Internal improvements</p>
+      </description>
+    </release>
+    <release date="2023-11-13" version="4.5.5.2">
+      <description>
+        <p>Small improvements...</p>
+      </description>
+    </release>
+    <release date="2023-11-02" version="4.5.5">
+      <description>
+        <p>Copy URLs with the right-click of the mouse</p>
+        <p>Fix: Notifications do not disappear after viewing on another device</p>
+        <p>Display the last message on system notifications</p>
+      </description>
+    </release>
+    <release date="2023-10-23" version="4.5.4">
+      <description>
+        <p>Update translations</p>
+      </description>
+    </release>
+    <release date="2023-10-18" version="4.5.3">
+      <description>
+        <p>Some fix</p>
+      </description>
+    </release>
+    <release date="2023-10-02" version="4.5.2">
+      <description>
+        <p>Fix: Improve the menu decoration when running in Wayland</p>
+        <p>Fix: Message number doesnt show on the tray icon</p>
+      </description>
+    </release>
+    <release date="2023-09-21" version="4.5.1">
+      <description>
+        <p>Improvements in user experience (UX/UI)</p>
+      </description>
+    </release>
+    <release date="2023-09-15" version="4.5">
+      <description>
+        <p>Update UserAgent</p>
+        <p>Fix: Improve the menu decoration when running in Wayland</p>
+        <p>Fix: F5 does not work outside the chat</p>
+        <p>New: Notification in the background when starting minimized</p>
+        <p>New: Disable notifications in Users management</p>
+      </description>
+    </release>
+    <release date="2023-08-17" version="4.4.7">
+      <description>
+        <p>Update UserAgent.</p>
+        <p>Zap Decoration deactivated by default</p>
+        <p>Fix close chat</p>
+      </description>
+    </release>
+    <release date="2023-03-14" version="4.4.5">
+      <description>
+        <p>Update UserAgent.</p>
+        <p>Consult the project github for more...</p>
+      </description>
+    </release>
+    <release date="2023-01-28" version="4.4.4">
+      <description>
+        <p>Fixes message closing with ESC.</p>
+        <p>Update UserAgent.</p>
+      </description>
+    </release>
+    <release date="2022-11-21" version="4.4.3">
+      <description>
+        <p>Use portal to activate autostart.</p>
+      </description>
+    </release>
+    <release date="2022-09-20" version="4.4">
+      <description>
+        <p>Opens magnetic links from the browser: New messages, Group Links.</p>
+      </description>
+    </release>
+    <release date="2022-09-12" version="4.3">
+      <description>
+        <p>Improvements:</p>
+        <p>Opens the conversation on notification click.</p>
+        <p>Close conversation through the Esc shortcut:</p>
+        <ul>
+          <li>Closes the emojis menu;</li>
+          <li>Closes the attachment pop-up;</li>
+          <li>Closes the media visualization;</li>
+          <li>If none of these is open, it closes the conversation.</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2022-09-05" version="4.2">
+      <description>
+        <ul>
+          <li>Send message from a phone number</li>
+          <li>Automatic permission for notifications</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2022-09-02" version="4.1">
+      <description>
+        <p>Improvements:</p>
+        <ul>
+          <li>TitleBar Menu in ZapDecoration</li>
+          <li>Close Conversation shortcut (Esc)</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2022-08-20" version="4.0">
+      <description>
+        <p>Now Zapzap supports the simultaneous use of various WhatsApp accounts!</p>
+        <p>News: Multiple users</p>
+        <ul>
+          <li>Add, disable and delete users;</li>
+          <li>Navigation shortcut with Ctrl+1 to Ctrl+9;</li>
+          <li>The tray icon shows the total number of pending notifications;</li>
+          <li>Limit of 9 users.</li>
+        </ul>
+        <p>Improvements:</p>
+        <ul>
+          <li>Wayland Support;</li>
+          <li>Language selection for spell checking;</li>
+          <li>Fast file opening;</li>
+          <li>Icon adjustment to minimize on the left side.</li>
+        </ul>
+        <p>Thanks Anderson Santos for the tests and support.</p>
+        <p>If you like the project, make your donation and support Dev to remain motivated.Thanks!</p>
+      </description>
+    </release>
+    <release date="2022-08-04" version="3.2.2">
+      <description>
+        <p>Wayland Support</p>
+        <p>ATTENTION: Wayland support is available, but is not enabled by default. For this it is
+          necessary to remove the QT_QPA_PLATFORM=xcb variable by Flatseal.</p>
+        <p>Do you at risk, but be sure to report any problems to improve Wayland support. Support my
+          work by donating a coffee, thank you very much.</p>
+      </description>
+    </release>
+    <release date="2022-08-01" version="3.2.1">
+      <description>
+        <ul>
+          <li>New icons in Settings</li>
+          <li>New Donation Panel</li>
+          <li>Open the download folder by default</li>
+          <li>Extension in the file automatically when saving</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2022-07-26" version="3.2">
+      <description>
+        <ul>
+          <li>New icon</li>
+          <li>Fixed bugs</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2022-07-22" version="3.1">
+      <description>
+        <ul>
+          <li>Spellchecker</li>
+          <li>Add Italian translation</li>
+          <li>Add Dutch translation</li>
+          <li>Add Arabic translation</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2022-07-15" version="3.0.1">
+      <description>
+        <ul>
+          <li>Add Italian translation</li>
+          <li>Support Orthographic Correction for PT_BR</li>
+          <li>Support External directory for dictionary file (Issue: Spellchecker)</li>
+          <li>Various improvements</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2022-07-13" version="3.0">
+      <description>
+        <ul>
+          <li>New: Zap decoration for the window</li>
+          <li>Various internal improvements</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2022-07-05" version="2.9.2">
+      <description>
+        <ul>
+          <li>Experimental Function: Zap Window Decoration</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2022-07-05" version="2.9.1">
+      <description>
+        <ul>
+          <li>Minor bug fixes.</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2022-07-03" version="2.9">
+      <description>
+        <ul>
+          <li>Translation for pt_BR.</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2022-07-01" version="2.8">
+      <description>
+        <ul>
+          <li>New settings panel;</li>
+          <li>Themes: follow the system, light and dark;</li>
+          <li>Tray icons: default, symbolic light and symbolic dark;</li>
+          <li>See the rest with your own eyes! =D</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2022-06-01" version="2.7">
+      <description>
+        <p>Improvements to the configuration interface.</p>
+        <p>Now Zapzap has a MenuBar and Settings Panel to allow better access to settings.
+          News: Possibility to hide the MenuBar; F11 for full screen; Disable the tray icon.</p>
+      </description>
+    </release>
+    <release date="2022-05-19" version="2.6">
+      <description>
+        <p>This will be the last update from version 2.x. Development will be focused on version 3.0
+          which will bring a new look to improve usability and the option to use multiple accounts. </p>
+        <p>Improvements:</p>
+        <ul>
+          <li>Symbolic icon for tray (better integration with KDE Plasma)</li>
+          <li>Some tweaks you won't notice</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2022-05-11" version="2.5">
+      <description>
+        <p>Usability improvements:</p>
+        <ul>
+          <li>Better visibility for accessing zapzap settings</li>
+          <li>Choose to stay in the background or close the app</li>
+          <li>Action to open Settings in Tray menu</li>
+          <li>Sets Fusion as default style</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2022-04-25" version="2.4">
+      <description>
+        <p>Usability improvements: Actions when clicking on the tray icon similar to
+          Telegram-Desktop.</p>
+        <p>Internal improvements: Persistent Settings with QSettings. NOTE: Settings will be
+          returned to default.</p>
+      </description>
+    </release>
+    <release date="2022-04-12" version="2.3">
+      <description>
+        <p>Clicking on Notification Improvements</p>
+      </description>
+    </release>
+    <release date="2022-02-23" version="2.2">
+      <description>
+        <p>New icons and some improvements</p>
+      </description>
+    </release>
+    <release date="2022-02-17" version="2.1">
+      <description>
+        <p>Enhancements and Download files in any folder</p>
+      </description>
+    </release>
+    <release date="2022-02-10" version="2.0">
+      <description>
+        <p>System integration</p>
+        <ul>
+          <li>Start ZapZap with the system</li>
+          <li>Start minimized</li>
+          <li>Night mode</li>
+        </ul>
+
+        <p>Chat notifications</p>
+        <ul>
+          <li>Notifications on the desktop</li>
+          <li>Show the photo of the sender</li>
+          <li>Show the sender's name</li>
+          <li>Show message preview</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2022-02-01" version="1.2">
+      <description>
+        <p>Fix Chrome Upgrade 60+</p>
+      </description>
+    </release>
+    <release date="2022-01-29" version="1.1">
+      <description>
+        <p>News</p>
+        <ul>
+          <li>Shows notifications in the system;</li>
+          <li>Attention: Does not open the window if it is hidden. Solution soon.</li>
+        </ul>
+        <p>Updates</p>
+        <ul>
+          <li>Focus on the window when clicking on the Tray, if it is already open;</li>
+          <li>UserAgent;</li>
+          <li>Webcam permissions.</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2022-01-22" version="1.0">
+      <description>
+        <p>First release.</p>
+      </description>
+    </release>
+  </releases>
+</component>
