@@ -53,6 +53,8 @@ class WebView(QWebEngineView):
             [SettingsManager.get("system/spellCheckLanguage",
                                  QLocale.system().name())]
         )
+        # Habilita rolagem animada
+        self.profile.settings().setAttribute(QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, True)
 
         print(
             "SpellCheck:", SettingsManager.get("system/spellCheckers", True),
