@@ -161,28 +161,6 @@ class PageController(QWebEnginePage):
         """
         self.runJavaScript(script)
 
-    def disable_notification_sounds(self):
-        """
-        Desativa os sons das notificações no WhatsApp Web.
-        """
-        script = """
-        Object.defineProperty(Notification.prototype, 'play', {
-            value: function() { /* Silencia as notificações */ },
-            writable: false,
-            configurable: false
-        });
-        """
-        self.runJavaScript(script)
-
-    def enable_notification_sounds(self):
-        """
-        Reativa os sons das notificações no WhatsApp Web.
-        """
-        script = """
-        delete Notification.prototype.play;
-        """
-        self.runJavaScript(script)
-
     def javaScriptConsoleMessage(self, level, message, line, sourceID):
         """ Ignora as mensagens do console """
         pass
