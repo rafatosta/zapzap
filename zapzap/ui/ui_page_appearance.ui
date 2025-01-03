@@ -61,13 +61,13 @@
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox">
+         <widget class="QGroupBox" name="style_groupBox">
           <property name="title">
            <string>Estilo</string>
           </property>
           <layout class="QGridLayout" name="gridLayout">
            <item row="0" column="0">
-            <widget class="QRadioButton" name="radioButton">
+            <widget class="QRadioButton" name="theme_auto_radioButton">
              <property name="text">
               <string>Adaptativo</string>
              </property>
@@ -77,14 +77,14 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QRadioButton" name="radioButton_2">
+            <widget class="QRadioButton" name="theme_light_radioButton">
              <property name="text">
               <string>Claro</string>
              </property>
             </widget>
            </item>
            <item row="0" column="2">
-            <widget class="QRadioButton" name="radioButton_3">
+            <widget class="QRadioButton" name="theme_dark_radioButton">
              <property name="text">
               <string>Escuro</string>
              </property>
@@ -103,7 +103,7 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
            <item row="0" column="0">
-            <widget class="QRadioButton" name="radioButton_4">
+            <widget class="QRadioButton" name="tray_default_radioButton">
              <property name="text">
               <string>Padrão</string>
              </property>
@@ -113,14 +113,14 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QRadioButton" name="radioButton_5">
+            <widget class="QRadioButton" name="tray_slight_radioButton">
              <property name="text">
               <string>Simbólico Claro</string>
              </property>
             </widget>
            </item>
            <item row="0" column="2">
-            <widget class="QRadioButton" name="radioButton_6">
+            <widget class="QRadioButton" name="tray_sdark_radioButton">
              <property name="text">
               <string>Simbólico Escuro</string>
              </property>
