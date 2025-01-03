@@ -1,6 +1,5 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QApplication
-
 from zapzap.resources.TrayIcon import TrayIcon
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
@@ -8,17 +7,17 @@ from zapzap.services.ThemeManager import ThemeManager
 
 
 class PageAppearance(QWidget):
+    """Classe para gerenciar a página de configurações de aparência."""
 
     def __init__(self, parent=None):
         super().__init__(parent)
         uic.loadUi("zapzap/ui/ui_page_appearance.ui", self)
-
-        self._load()
-
+        self._load_settings()
         self._configure_signals()
 
-    def _load(self):
-        # Carregar configurações iniciais
+    def _load_settings(self):
+        """Carrega as configurações iniciais da interface."""
+        # Configurações gerais
         self.browser_sidebar.setChecked(
             SettingsManager.get("system/sidebar", True))
         self.mainwindow_menu.setChecked(
@@ -28,94 +27,88 @@ class PageAppearance(QWidget):
         self.tray_groupBox.setChecked(
             SettingsManager.get("system/tray_icon", True))
 
-        # Selecionar o radio button salvo para Tray
+        # Configurações de bandeja
         tray_mode = SettingsManager.get(
             "system/tray_theme", TrayIcon.Type.Default.value)
-        if tray_mode == TrayIcon.Type.Default.value:
-            self.tray_default_radioButton.setChecked(True)
-        elif tray_mode == TrayIcon.Type.SLight.value:
-            self.tray_slight_radioButton.setChecked(True)
-        elif tray_mode == TrayIcon.Type.SDark.value:
-            self.tray_sdark_radioButton.setChecked(True)
+        self._set_selected_radio(tray_mode, {
+            TrayIcon.Type.Default.value: self.tray_default_radioButton,
+            TrayIcon.Type.SLight.value: self.tray_slight_radioButton,
+            TrayIcon.Type.SDark.value: self.tray_sdark_radioButton,
+        })
 
-        # Selecionar o radio button salvo para Style
+        # Configurações de tema
         theme_mode = SettingsManager.get(
             "system/theme", ThemeManager.Type.Auto.value)
-        print('>>>', theme_mode, ThemeManager.Type.Light.value)
-        if theme_mode == ThemeManager.Type.Auto.value:
-            self.theme_auto_radioButton.setChecked(True)
-        elif theme_mode == ThemeManager.Type.Light.value:
-            self.theme_light_radioButton.setChecked(True)
-        elif theme_mode == ThemeManager.Type.Dark.value:
-            self.theme_dark_radioButton.setChecked(True)
+        self._set_selected_radio(theme_mode, {
+            ThemeManager.Type.Auto.value: self.theme_auto_radioButton,
+            ThemeManager.Type.Light.value: self.theme_light_radioButton,
+            ThemeManager.Type.Dark.value: self.theme_dark_radioButton,
+        })
 
     def _configure_signals(self):
-        # Conectar sinais dos elementos principais
+        """Conecta os sinais dos widgets aos respectivos manipuladores."""
+        # Sinais gerais
         self.browser_sidebar.clicked.connect(self._handle_sidebar)
         self.mainwindow_menu.clicked.connect(self._handle_menubar)
         self.scaleComboBox.currentTextChanged.connect(self._handle_scale)
-        self.tray_groupBox.toggled.connect(self._on_tray_groupbox_toggled)
+        self.tray_groupBox.toggled.connect(SysTrayManager.set_state)
 
-        # Conectar sinais dos radio buttons de Tray
+        # Sinais de radio buttons
         self.tray_default_radioButton.toggled.connect(self._handle_tray_mode)
         self.tray_slight_radioButton.toggled.connect(self._handle_tray_mode)
         self.tray_sdark_radioButton.toggled.connect(self._handle_tray_mode)
-
-        # Conectar sinais dos radio buttons de Style
         self.theme_auto_radioButton.toggled.connect(self._handle_theme_mode)
         self.theme_light_radioButton.toggled.connect(self._handle_theme_mode)
         self.theme_dark_radioButton.toggled.connect(self._handle_theme_mode)
 
+    @staticmethod
+    def _set_selected_radio(selected_value, radio_map):
+        """Seleciona o botão de rádio correspondente ao valor dado."""
+        radio_button = radio_map.get(selected_value)
+        if radio_button:
+            radio_button.setChecked(True)
+
     def _handle_sidebar(self):
-        # Salva a configuração
+        """Salva e aplica a configuração da barra lateral."""
         SettingsManager.set("system/sidebar", self.browser_sidebar.isChecked())
-        # Esconde a sidebar no Browser
         QApplication.instance().getWindow().browser.settings_sidebar()
 
     def _handle_menubar(self):
-        # Salva a configuração
+        """Salva e aplica a configuração da barra de menu."""
         SettingsManager.set("system/menubar", self.mainwindow_menu.isChecked())
-        # Esconde a sidebar no Browser
         QApplication.instance().getWindow().settings_menubar()
 
-    def _handle_scale(self, text_changed):
-        scale_value = ''.join(filter(str.isdigit, text_changed))
-        # Salva a configuração
+    def _handle_scale(self, text):
+        """Salva a escala escolhida."""
+        scale_value = ''.join(filter(str.isdigit, text))
         SettingsManager.set("system/scale", scale_value)
 
-    def _on_tray_groupbox_toggled(self, checked):
-        # Salva a configuração do GroupBox de Tray
-
-        SysTrayManager.set_state(checked)
-
     def _handle_tray_mode(self):
-        # Verificar qual radio button de Tray está selecionado
-        if self.tray_default_radioButton.isChecked():
-            tray_mode = "default"
-            SysTrayManager.set_theme(TrayIcon.Type.Default)
-        elif self.tray_slight_radioButton.isChecked():
-            tray_mode = "symbolic_light"
-            SysTrayManager.set_theme(TrayIcon.Type.SLight)
-        elif self.tray_sdark_radioButton.isChecked():
-            tray_mode = "symbolic_dark"
-            SysTrayManager.set_theme(TrayIcon.Type.SDark)
-        else:
-            return  # Nenhuma ação necessária
-
-        print(f"Modo de bandeja selecionado: {tray_mode}")
+        """Salva e aplica a configuração do tema da bandeja."""
+        tray_mode_map = {
+            self.tray_default_radioButton: TrayIcon.Type.Default,
+            self.tray_slight_radioButton: TrayIcon.Type.SLight,
+            self.tray_sdark_radioButton: TrayIcon.Type.SDark,
+        }
+        selected_tray_mode = self._get_selected_radio(tray_mode_map)
+        if selected_tray_mode:
+            SysTrayManager.set_theme(selected_tray_mode)
 
     def _handle_theme_mode(self):
-        # Verificar qual radio button de Theme está selecionado
-        if self.theme_auto_radioButton.isChecked():
-            theme_mode = "auto"
-            ThemeManager.set_theme(ThemeManager.Type.Auto)
-        elif self.theme_light_radioButton.isChecked():
-            theme_mode = "light"
-            ThemeManager.set_theme(ThemeManager.Type.Light)
-        elif self.theme_dark_radioButton.isChecked():
-            theme_mode = "dark"
-            ThemeManager.set_theme(ThemeManager.Type.Dark)
-        else:
-            return  # Nenhuma ação necessária
+        """Salva e aplica a configuração do tema visual."""
+        theme_mode_map = {
+            self.theme_auto_radioButton: ThemeManager.Type.Auto,
+            self.theme_light_radioButton: ThemeManager.Type.Light,
+            self.theme_dark_radioButton: ThemeManager.Type.Dark,
+        }
+        selected_theme_mode = self._get_selected_radio(theme_mode_map)
+        if selected_theme_mode:
+            ThemeManager.set_theme(selected_theme_mode)
 
-        print(f"Modo de tema selecionado: {theme_mode}")
+    @staticmethod
+    def _get_selected_radio(radio_map):
+        """Retorna o valor associado ao botão de rádio selecionado."""
+        for radio_button, value in radio_map.items():
+            if radio_button.isChecked():
+                return value
+        return None
