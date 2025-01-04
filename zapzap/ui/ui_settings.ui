@@ -159,7 +159,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_4">
+          <widget class="QPushButton" name="btn_page_notifications">
            <property name="text">
             <string>Notificações</string>
            </property>
