@@ -1,10 +1,7 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QApplication
-from zapzap.resources.TrayIcon import TrayIcon
+
 from zapzap.services.DictionariesManager import DictionariesManager
-from zapzap.services.SettingsManager import SettingsManager
-from zapzap.services.SysTrayManager import SysTrayManager
-from zapzap.services.ThemeManager import ThemeManager
 
 
 class PageGeneral(QWidget):
@@ -19,8 +16,16 @@ class PageGeneral(QWidget):
     def _load_settings(self):
         """Carrega as configurações iniciais da interface."""
         self.dic_path.setText(DictionariesManager.get_path())
-        pass
+        self.spell_comboBox.addItems(DictionariesManager.list())
+        print("Idioma do sistema:", DictionariesManager.get_system_language())
+        self.spell_comboBox.setCurrentText(
+            DictionariesManager.get_current_dict())
 
     def _configure_signals(self):
         """Conecta os sinais dos widgets aos respectivos manipuladores."""
-        pass
+        self.spell_comboBox.textActivated.connect(self._handle_spellcheck)
+
+    def _handle_spellcheck(self, lang):
+        print('Linguagem selecionada:', lang)
+        DictionariesManager.set_lang(lang)
+        QApplication.instance().getWindow().browser.update_spellcheck()

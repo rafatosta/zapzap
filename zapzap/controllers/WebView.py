@@ -1,11 +1,12 @@
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
-from PyQt6.QtCore import QUrl, pyqtSignal, QLocale
+from PyQt6.QtCore import QUrl, pyqtSignal
 import shutil
 
 from zapzap.controllers.PageController import PageController
 from zapzap.models import User
 from zapzap import __user_agent__, __whatsapp_url__
+from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.DownloadManager import DownloadManager
 from zapzap.services.NotificationManager import NotificationManager
 from zapzap.services.SettingsManager import SettingsManager
@@ -47,20 +48,29 @@ class WebView(QWebEngineView):
         self.profile.setNotificationPresenter(
             lambda notification: NotificationManager.show(self, notification)
         )
-        self.profile.setSpellCheckEnabled(
-            SettingsManager.get("system/spellCheckers", True))
-        self.profile.setSpellCheckLanguages(
-            [SettingsManager.get("system/spellCheckLanguage",
-                                 QLocale.system().name())]
-        )
         # Habilita rolagem animada
-        self.profile.settings().setAttribute(QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, True)
+        self.profile.settings().setAttribute(
+            QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, True)
 
-        print(
-            "SpellCheck:", SettingsManager.get("system/spellCheckers", True),
-            "Lang:", SettingsManager.get(
-                "system/spellCheckLanguage", QLocale.system().name())
-        )
+        self.configure_spellcheck()
+
+    def configure_spellcheck(self):
+        # Corretor ortográfico
+        if self.user.enable:
+            self.profile.setSpellCheckEnabled(
+                SettingsManager.get("system/spellCheckers", True))
+
+            self.profile.setSpellCheckLanguages(
+                [SettingsManager.get("system/spellCheckLanguage",
+                                     DictionariesManager.get_current_dict())]
+            )
+
+            print(
+                "SpellCheck:", SettingsManager.get(
+                    "system/spellCheckers", True),
+                "Lang:", SettingsManager.get(
+                    "system/spellCheckLanguage", DictionariesManager.get_system_language())
+            )
 
     def _setup_page(self):
         """Configura a página e carrega a URL inicial."""
@@ -86,24 +96,28 @@ class WebView(QWebEngineView):
             self.setPage(self.whatsapp_page)
             self.load(QUrl(__whatsapp_url__))
             self.setZoomFactor(self.user.zoomFactor)
-    
+
     def close_conversation(self):
-         """Simula o pressionamento da tecla 'Escape' na página."""
-         if self.user.enable:
-             self.whatsapp_page.close_conversation()
+        """Simula o pressionamento da tecla 'Escape' na página."""
+        if self.user.enable:
+            self.whatsapp_page.close_conversation()
 
     def set_theme_light(self):
         """Define o tema claro na página."""
-        self.profile.settings().setAttribute(QWebEngineSettings.WebAttribute.ForceDarkMode, False)
+        if self.user.enable:
+            self.profile.settings().setAttribute(
+                QWebEngineSettings.WebAttribute.ForceDarkMode, False)
 
     def set_theme_dark(self):
         """Define o tema escuro na página."""
-        self.profile.settings().setAttribute(QWebEngineSettings.WebAttribute.ForceDarkMode, True)
+        if self.user.enable:
+            self.profile.settings().setAttribute(
+                QWebEngineSettings.WebAttribute.ForceDarkMode, True)
 
     def remove_files(self):
         """Remove os arquivos de cache e armazenamento persistente do perfil."""
         try:
-            if not self.user.enable: # não habilitado
+            if not self.user.enable:  # não habilitado
                 self.profile = QWebEngineProfile(str(self.user.id), self)
 
             cache_path = self.profile.cachePath()
@@ -111,7 +125,7 @@ class WebView(QWebEngineView):
 
             print(f"Removendo cache: {
                   cache_path}\nRemovendo armazenamento: {storage_path}")
-          
+
             shutil.rmtree(cache_path, ignore_errors=True)
             shutil.rmtree(storage_path, ignore_errors=True)
 

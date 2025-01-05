@@ -200,6 +200,11 @@ class Browser(QWidget):
             page = self.pages.widget(i)
             page.close_conversation()
 
+    def update_spellcheck(self):
+        for i in range(self.pages.count()):
+            page = self.pages.widget(i)
+            page.configure_spellcheck()
+
     # === Notificações ===
     def update_page_button_number_notifications(self, page_index, number_notifications):
         """Atualiza o número de notificações de um botão específico."""
