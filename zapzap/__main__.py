@@ -21,7 +21,6 @@ def main():
     # Callback instance
     app.messageReceived.connect(lambda result: main_window.xdgOpenChat(result))
 
-    DictionariesManager.list_files()
     # Create main window
     main_window = MainWindow()
     app.setWindow(main_window)
