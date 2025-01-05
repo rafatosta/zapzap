@@ -1,6 +1,5 @@
 import os
-from PyQt6.QtCore import QLocale
-from zapzap.config.SetupManager import SetupManager
+from PyQt6.QtCore import QLocale, QFileInfo
 from zapzap.services.SettingsManager import SettingsManager
 
 
@@ -9,6 +8,9 @@ class DictionariesManager:
 
     QTWEBENGINE_DICTIONARIES_PATH = "/usr/share/qt6/qtwebengine_dictionaries"
     QTWEBENGINE_DICTIONARIES_PATH_FLATPAK = "/run/host/usr/share/qt6/qtwebengine_dictionaries"
+
+    _abs_path = QFileInfo(__file__).absolutePath()
+    _is_flatpak = _abs_path.startswith('/app/')
 
     @staticmethod
     def get_path() -> str:
@@ -26,7 +28,7 @@ class DictionariesManager:
         """
         return (
             DictionariesManager.QTWEBENGINE_DICTIONARIES_PATH_FLATPAK
-            if SetupManager._is_flatpak
+            if DictionariesManager._is_flatpak
             else DictionariesManager.QTWEBENGINE_DICTIONARIES_PATH
         )
 
