@@ -22,7 +22,7 @@ class SetupManager:
             "system/scale", 100))/100)
         environ['QT_AUTO_SCREEN_SCALE_FACTOR'] = '1'
 
-        os.environ["QTWEBENGINE_DICTIONARIES_PATH"] = DictionariesManager.get_path()
+        environ["QTWEBENGINE_DICTIONARIES_PATH"] = DictionariesManager.get_path()
 
         """ if not SetupManager._is_flatpak:
             # Configuração da plataforma gráfica (Wayland ou XCB)
