@@ -1,5 +1,6 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QApplication
+from zapzap.controllers.PageGeneral import PageGeneral
 from zapzap.controllers.PageNotifications import PageNotifications
 from zapzap.controllers.PageAccount import PageAccount
 from zapzap.controllers.PageAppearance import PageAppearance
@@ -22,9 +23,11 @@ class Settings(QWidget):
 
     def _setup_ui(self):
         """Configura as páginas e associa os botões às páginas."""
+        self._add_page(PageGeneral(), self.btn_page_general)
         self._add_page(PageAccount(), self.btn_account)
         self._add_page(PageAppearance(), self.btn_page_appearence)
         self._add_page(PageNotifications(), self.btn_page_notifications)
+        
 
     def _setup_signals(self):
         """Conecta os sinais dos botões gerais."""

@@ -5,6 +5,7 @@ import sys
 from zapzap.config.SetupManager import SetupManager
 from zapzap.controllers.MainWindow import MainWindow
 from zapzap.controllers.SingleApplication import SingleApplication
+from zapzap.services.DictionariesManager import DictionariesManager
 
 
 def main():
@@ -20,6 +21,7 @@ def main():
     # Callback instance
     app.messageReceived.connect(lambda result: main_window.xdgOpenChat(result))
 
+    DictionariesManager.list_files()
     # Create main window
     main_window = MainWindow()
     app.setWindow(main_window)
