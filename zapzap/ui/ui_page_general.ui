@@ -107,9 +107,9 @@
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="btn_path_spell">
              <property name="text">
-              <string>Mudar</string>
+              <string>Explorar</string>
              </property>
             </widget>
            </item>
@@ -121,7 +121,7 @@
             </widget>
            </item>
            <item row="2" column="2">
-            <widget class="QPushButton" name="pushButton_4">
+            <widget class="QPushButton" name="btn_default_path_spell">
              <property name="text">
               <string>Restaurar</string>
              </property>

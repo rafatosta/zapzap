@@ -1,5 +1,6 @@
 from os import environ
 from PyQt6.QtCore import QFileInfo
+from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.SettingsManager import SettingsManager
 
 
@@ -20,6 +21,8 @@ class SetupManager:
         environ['QT_SCALE_FACTOR'] = str(int(SettingsManager.get(
             "system/scale", 100))/100)
         environ['QT_AUTO_SCREEN_SCALE_FACTOR'] = '1'
+
+        os.environ["QTWEBENGINE_DICTIONARIES_PATH"] = DictionariesManager.get_path()
 
         """ if not SetupManager._is_flatpak:
             # Configuração da plataforma gráfica (Wayland ou XCB)

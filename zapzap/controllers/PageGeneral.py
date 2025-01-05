@@ -1,6 +1,7 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QApplication
 from zapzap.services.DictionariesManager import DictionariesManager
+from zapzap.services.DownloadManager import DownloadManager
 
 
 class PageGeneral(QWidget):
@@ -14,13 +15,16 @@ class PageGeneral(QWidget):
 
     def _load_settings(self):
         """
-        Carrega as configurações iniciais para a interface:
-        - Exibe o caminho dos dicionários.
-        - Popula o combobox com os idiomas disponíveis.
-        - Define o idioma atualmente configurado.
+        Carrega as configurações iniciais da página:
+        - Exibe o caminho atual dos dicionários.
+        - Popula o combobox de idiomas disponíveis.
+        - Define o idioma atual configurado.
         """
         dictionaries_path = DictionariesManager.get_path()
         self.dic_path.setText(dictionaries_path)
+
+        # Limpa e repopula o combobox de idiomas
+        self.spell_comboBox.clear()
         self.spell_comboBox.addItems(DictionariesManager.list())
 
         system_language = DictionariesManager.get_system_language()
@@ -34,10 +38,14 @@ class PageGeneral(QWidget):
 
     def _configure_signals(self):
         """
-        Configura os sinais dos widgets:
-        - Conecta o combobox de idiomas ao manipulador de mudança de idioma.
+        Conecta os sinais dos widgets aos respectivos manipuladores:
+        - Alteração do idioma do corretor ortográfico.
+        - Alteração do diretório de dicionários.
         """
         self.spell_comboBox.textActivated.connect(self._handle_spellcheck)
+        self.btn_path_spell.clicked.connect(self._handle_path_spell)
+        self.btn_default_path_spell.clicked.connect(
+            self._handle_default_folder_spell)
 
     def _handle_spellcheck(self, lang: str):
         """
@@ -49,4 +57,40 @@ class PageGeneral(QWidget):
         """
         print(f"Linguagem selecionada: {lang}")
         DictionariesManager.set_lang(lang)
+        self._update_browser_spellcheck()
+
+    def _handle_path_spell(self):
+        """
+        Manipula a mudança do diretório de dicionários para um novo caminho.
+        Atualiza as configurações e o navegador.
+
+        """
+        new_path = DownloadManager.open_folder_dialog(self)
+        if new_path:
+            print(f'Novo diretório: {new_path}')
+            self.dic_path.setText(new_path)
+            DictionariesManager.set_spell_folder(new_path)
+
+            # Atualiza o combobox e o navegador
+            self._load_settings()
+            self._update_browser_spellcheck()
+
+    def _handle_default_folder_spell(self):
+        """
+        Restaura o diretório de dicionários para o caminho padrão.
+        Atualiza as configurações e o navegador.
+        """
+        new_path = DictionariesManager.get_path_default()
+        print(f'Restaurando diretório: {new_path}')
+        self.dic_path.setText(new_path)
+        DictionariesManager.set_spell_folder(new_path)
+
+        # Atualiza o combobox e o navegador
+        self._load_settings()
+        self._update_browser_spellcheck()
+
+    def _update_browser_spellcheck(self):
+        """
+        Notifica o navegador sobre a atualização do idioma ou diretório do corretor ortográfico.
+        """
         QApplication.instance().getWindow().browser.update_spellcheck()

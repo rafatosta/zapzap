@@ -82,3 +82,12 @@ class DownloadManager:
             download.setDownloadFileName(os.path.basename(path))
             download.setDownloadDirectory(os.path.dirname(path))
             download.accept()
+
+    @staticmethod
+    def open_folder_dialog(parent):
+        folder_path = QFileDialog.getExistingDirectory(
+            parent, "Selecionar Pasta"
+        )
+        if folder_path:
+            return folder_path
+        return None
