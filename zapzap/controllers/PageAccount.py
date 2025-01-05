@@ -1,10 +1,8 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QApplication
 
-from zapzap import LIMITE_USERS
 from zapzap.controllers.CardUser import CardUser
 from zapzap.models.User import User
-from zapzap.resources.UserIcon import UserIcon
 from zapzap.services.AlertManager import AlertManager
 
 
