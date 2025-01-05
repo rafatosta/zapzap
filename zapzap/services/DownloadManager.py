@@ -1,11 +1,12 @@
 from PyQt6.QtWebEngineCore import QWebEngineDownloadRequest
-from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineDownloadRequest
-from PyQt6.QtCore import QUrl, pyqtSignal, Qt, QFileInfo, QStandardPaths
+from PyQt6.QtWebEngineCore import QWebEngineDownloadRequest
+from PyQt6.QtCore import QUrl, QFileInfo, QStandardPaths
 from PyQt6.QtWidgets import QFileDialog, QMenu
 from PyQt6.QtGui import QDesktopServices, QAction, QCursor
 import os
 
 from zapzap.services.SettingsManager import SettingsManager
+
 
 class DownloadManager:
     @staticmethod
