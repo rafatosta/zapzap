@@ -36,6 +36,8 @@ class PageGeneral(QWidget):
 
         self.spell_comboBox.setCurrentText(current_language)
 
+        self.download_path.setText(DownloadManager.get_path())
+
     def _configure_signals(self):
         """
         Conecta os sinais dos widgets aos respectivos manipuladores:
@@ -46,6 +48,8 @@ class PageGeneral(QWidget):
         self.btn_path_spell.clicked.connect(self._handle_path_spell)
         self.btn_default_path_spell.clicked.connect(
             self._handle_default_folder_spell)
+        self.btn_path_download.clicked.connect(self._handle_path_download)
+        self.btn_restore_path_download.clicked.connect(self._handle_restore_path_download)
 
     def _handle_spellcheck(self, lang: str):
         """
@@ -94,3 +98,12 @@ class PageGeneral(QWidget):
         Notifica o navegador sobre a atualização do idioma ou diretório do corretor ortográfico.
         """
         QApplication.instance().getWindow().browser.update_spellcheck()
+
+    def _handle_path_download(self):
+        new_path = DownloadManager.open_folder_dialog(self)
+        DownloadManager.set_path(new_path)
+        self.download_path.setText(DownloadManager.get_path())
+
+    def _handle_restore_path_download(self):
+        DownloadManager.restore_path()
+        self.download_path.setText(DownloadManager.get_path())

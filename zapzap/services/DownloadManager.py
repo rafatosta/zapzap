@@ -13,14 +13,23 @@ class DownloadManager:
         QStandardPaths.StandardLocation.DownloadLocation)
 
     @staticmethod
-    def _get_path():
+    def get_path():
         """ Obtém o caminho padrão para downloads configurado no sistema """
         return SettingsManager.get("system/download_path", DownloadManager.DOWNLOAD_PATH)
 
     @staticmethod
+    def set_path(new_path):
+        SettingsManager.set("system/download_path", new_path)
+
+    @staticmethod
+    def restore_path():
+        SettingsManager.set("system/download_path",
+                            DownloadManager.DOWNLOAD_PATH)
+
+    @staticmethod
     def _get_path_open_temp():
         """ Cria e retorna o caminho para o diretório temporário """
-        directory = os.path.join(DownloadManager._get_path(), '.zapzap_temp')
+        directory = os.path.join(DownloadManager.get_path(), '.zapzap_temp')
         if not os.path.exists(directory):
             os.makedirs(directory)
             print('Criando diretório temporário...', directory)
@@ -30,7 +39,7 @@ class DownloadManager:
     def on_downloadRequested(download: QWebEngineDownloadRequest, parent=None):
         """ Gerencia o download de arquivos, oferecendo opções para abrir ou salvar """
         if download.state() == QWebEngineDownloadRequest.DownloadState.DownloadRequested:
-            directory = DownloadManager._get_path()
+            directory = DownloadManager.get_path()
 
             # Criação do menu de opções
             menu = QMenu(parent)
@@ -80,7 +89,7 @@ class DownloadManager:
     @staticmethod
     def save_download(download):
         """ Salva o arquivo no diretório especificado pelo usuário """
-        directory = DownloadManager._get_path()
+        directory = DownloadManager.get_path()
 
         file_name = download.downloadFileName()
         suffix = QFileInfo(file_name).suffix()
