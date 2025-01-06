@@ -1,5 +1,4 @@
 from PyQt6.QtWebEngineCore import QWebEngineDownloadRequest
-from PyQt6.QtWebEngineCore import QWebEngineDownloadRequest
 from PyQt6.QtCore import QUrl, QFileInfo, QStandardPaths
 from PyQt6.QtWidgets import QFileDialog, QMenu
 from PyQt6.QtGui import QDesktopServices, QAction, QCursor
@@ -9,14 +8,31 @@ from zapzap.services.SettingsManager import SettingsManager
 
 
 class DownloadManager:
+
+    DOWNLOAD_PATH = QStandardPaths.writableLocation(
+        QStandardPaths.StandardLocation.DownloadLocation)
+
+    @staticmethod
+    def _get_path():
+        return SettingsManager.get("system/download_path", DownloadManager.DOWNLOAD_PATH)
+
+    @staticmethod
+    def _get_path_open_temp():
+        directory = os.path.join(
+            DownloadManager._get_path(), '.zapzap_temp')
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+            print('Criando diretório temporário...', directory)
+
+        return directory
+
     @staticmethod
     def on_downloadRequested(download: QWebEngineDownloadRequest, parent=None):
         """ Gerencia o download de arquivos """
         if download.state() == QWebEngineDownloadRequest.DownloadState.DownloadRequested:
 
             # Define o diretório padrão para o download
-            directory = QStandardPaths.writableLocation(
-                QStandardPaths.StandardLocation.DownloadLocation)
+            directory = DownloadManager._get_path()
 
             # Cria um QMenu para opções de download
             menu = QMenu(parent)
@@ -42,22 +58,18 @@ class DownloadManager:
 
             # Conecta as ações às suas funções correspondentes
             open_action.triggered.connect(
-                lambda: DownloadManager.open_download(download, directory))
+                lambda: DownloadManager.open_download(download))
             save_action.triggered.connect(
-                lambda: DownloadManager.save_download(download, directory))
+                lambda: DownloadManager.save_download(download))
 
             # Exibe o menu na posição do cursor do mouse
             menu.exec(QCursor.pos())  # Usa a posição do cursor do mouse
 
     @staticmethod
-    def open_download(download, directory):
+    def open_download(download):
         """ Abre o arquivo após o download ser concluído """
-        if not SettingsManager.get("system/folderDownloads", False):
-            directory = os.path.join(QStandardPaths.writableLocation(
-                QStandardPaths.StandardLocation.DownloadLocation), 'ZapZap Downloads')
-            if not os.path.exists(directory):
-                os.makedirs(directory)
 
+        directory = DownloadManager._get_path_open_temp()
         download.setDownloadDirectory(directory)
         download.accept()
 
@@ -70,8 +82,10 @@ class DownloadManager:
         download.stateChanged.connect(openFile)
 
     @staticmethod
-    def save_download(download, directory):
+    def save_download(download):
         """ Salva o arquivo após o download """
+        directory = DownloadManager._get_path()
+
         file_name = download.downloadFileName()  # download.path()
         suffix = QFileInfo(file_name).suffix()
         path, _ = QFileDialog.getSaveFileName(
