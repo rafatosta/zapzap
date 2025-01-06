@@ -49,7 +49,8 @@ class PageGeneral(QWidget):
         self.btn_default_path_spell.clicked.connect(
             self._handle_default_folder_spell)
         self.btn_path_download.clicked.connect(self._handle_path_download)
-        self.btn_restore_path_download.clicked.connect(self._handle_restore_path_download)
+        self.btn_restore_path_download.clicked.connect(
+            self._handle_restore_path_download)
 
     def _handle_spellcheck(self, lang: str):
         """
@@ -67,7 +68,6 @@ class PageGeneral(QWidget):
         """
         Manipula a mudança do diretório de dicionários para um novo caminho.
         Atualiza as configurações e o navegador.
-
         """
         new_path = DownloadManager.open_folder_dialog(self)
         if new_path:
@@ -100,10 +100,17 @@ class PageGeneral(QWidget):
         QApplication.instance().getWindow().browser.update_spellcheck()
 
     def _handle_path_download(self):
+        """
+        Manipula a mudança do diretório de downloads.
+        """
         new_path = DownloadManager.open_folder_dialog(self)
-        DownloadManager.set_path(new_path)
-        self.download_path.setText(DownloadManager.get_path())
+        if new_path:
+            DownloadManager.set_path(new_path)
+            self.download_path.setText(DownloadManager.get_path())
 
     def _handle_restore_path_download(self):
+        """
+        Restaura o diretório de downloads para o padrão.
+        """
         DownloadManager.restore_path()
         self.download_path.setText(DownloadManager.get_path())
