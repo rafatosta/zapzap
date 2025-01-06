@@ -14,34 +14,32 @@ class DownloadManager:
 
     @staticmethod
     def _get_path():
+        """ Obtém o caminho padrão para downloads configurado no sistema """
         return SettingsManager.get("system/download_path", DownloadManager.DOWNLOAD_PATH)
 
     @staticmethod
     def _get_path_open_temp():
-        directory = os.path.join(
-            DownloadManager._get_path(), '.zapzap_temp')
+        """ Cria e retorna o caminho para o diretório temporário """
+        directory = os.path.join(DownloadManager._get_path(), '.zapzap_temp')
         if not os.path.exists(directory):
             os.makedirs(directory)
             print('Criando diretório temporário...', directory)
-
         return directory
 
     @staticmethod
     def on_downloadRequested(download: QWebEngineDownloadRequest, parent=None):
-        """ Gerencia o download de arquivos """
+        """ Gerencia o download de arquivos, oferecendo opções para abrir ou salvar """
         if download.state() == QWebEngineDownloadRequest.DownloadState.DownloadRequested:
-
-            # Define o diretório padrão para o download
             directory = DownloadManager._get_path()
 
-            # Cria um QMenu para opções de download
+            # Criação do menu de opções
             menu = QMenu(parent)
             open_action = QAction("Abrir", parent)
             save_action = QAction("Salvar", parent)
             menu.addAction(open_action)
             menu.addAction(save_action)
 
-            # Aplica o estilo ao QMenu para deixá-lo maior e arredondado
+            # Estilização do menu
             menu.setStyleSheet("""
                 QMenu {
                     font-size: 16px;  /* Aumenta o tamanho da fonte */
@@ -56,25 +54,23 @@ class DownloadManager:
                 }
             """)
 
-            # Conecta as ações às suas funções correspondentes
+            # Conexão das ações
             open_action.triggered.connect(
                 lambda: DownloadManager.open_download(download))
             save_action.triggered.connect(
                 lambda: DownloadManager.save_download(download))
 
             # Exibe o menu na posição do cursor do mouse
-            menu.exec(QCursor.pos())  # Usa a posição do cursor do mouse
+            menu.exec(QCursor.pos())
 
     @staticmethod
     def open_download(download):
-        """ Abre o arquivo após o download ser concluído """
-
+        """ Realiza o download e abre o arquivo ao final """
         directory = DownloadManager._get_path_open_temp()
         download.setDownloadDirectory(directory)
         download.accept()
 
         def openFile(state):
-            """ Abre o arquivo quando o download for concluído """
             if state == QWebEngineDownloadRequest.DownloadState.DownloadCompleted:
                 file = os.path.join(directory, download.downloadFileName())
                 QDesktopServices.openUrl(QUrl.fromLocalFile(file))
@@ -83,14 +79,14 @@ class DownloadManager:
 
     @staticmethod
     def save_download(download):
-        """ Salva o arquivo após o download """
+        """ Salva o arquivo no diretório especificado pelo usuário """
         directory = DownloadManager._get_path()
 
-        file_name = download.downloadFileName()  # download.path()
+        file_name = download.downloadFileName()
         suffix = QFileInfo(file_name).suffix()
         path, _ = QFileDialog.getSaveFileName(
             None, "Salvar Arquivo", os.path.join(
-                directory, file_name), "*." + suffix
+                directory, file_name), f"*.{suffix}"
         )
         if path:
             download.setDownloadFileName(os.path.basename(path))
@@ -99,9 +95,7 @@ class DownloadManager:
 
     @staticmethod
     def open_folder_dialog(parent):
+        """ Abre um diálogo para selecionar uma pasta """
         folder_path = QFileDialog.getExistingDirectory(
-            parent, "Selecionar Pasta"
-        )
-        if folder_path:
-            return folder_path
-        return None
+            parent, "Selecionar Pasta")
+        return folder_path if folder_path else None
