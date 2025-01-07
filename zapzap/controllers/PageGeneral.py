@@ -19,6 +19,8 @@ class PageGeneral(QWidget):
         
         self.btn_path_download.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DirIcon))
         self.btn_restore_path_download.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DialogResetButton))
+        self.btn_path_spell.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DirIcon))
+        self.btn_default_path_spell.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DialogResetButton))
 
     def _load_settings(self):
         """

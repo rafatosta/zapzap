@@ -109,7 +109,7 @@
            <item row="2" column="1">
             <widget class="QPushButton" name="btn_path_spell">
              <property name="text">
-              <string>Explorar</string>
+              <string/>
              </property>
             </widget>
            </item>
@@ -123,7 +123,7 @@
            <item row="2" column="2">
             <widget class="QPushButton" name="btn_default_path_spell">
              <property name="text">
-              <string>Restaurar</string>
+              <string/>
              </property>
             </widget>
            </item>
