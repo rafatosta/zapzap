@@ -140,21 +140,21 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
            <item>
-            <widget class="QCheckBox" name="checkBox">
+            <widget class="QCheckBox" name="btn_quit_in_close">
              <property name="text">
               <string>Encerrar ao fechar</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="checkBox_3">
+            <widget class="QCheckBox" name="btn_start_background">
              <property name="text">
               <string>Iniciar minimizado</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="checkBox_2">
+            <widget class="QCheckBox" name="btn_start_system">
              <property name="text">
               <string>Iniciar junto com o sistema</string>
              </property>

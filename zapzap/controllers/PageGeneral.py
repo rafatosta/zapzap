@@ -2,6 +2,7 @@ from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QApplication, QStyle
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.DownloadManager import DownloadManager
+from zapzap.services.SettingsManager import SettingsManager
 
 
 class PageGeneral(QWidget):
@@ -16,11 +17,15 @@ class PageGeneral(QWidget):
         self._configure_signals()
 
     def _configure_ui(self):
-        
-        self.btn_path_download.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DirIcon))
-        self.btn_restore_path_download.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DialogResetButton))
-        self.btn_path_spell.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DirIcon))
-        self.btn_default_path_spell.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DialogResetButton))
+
+        self.btn_path_download.setIcon(
+            self.style().standardIcon(QStyle.StandardPixmap.SP_DirIcon))
+        self.btn_restore_path_download.setIcon(
+            self.style().standardIcon(QStyle.StandardPixmap.SP_DialogResetButton))
+        self.btn_path_spell.setIcon(
+            self.style().standardIcon(QStyle.StandardPixmap.SP_DirIcon))
+        self.btn_default_path_spell.setIcon(self.style().standardIcon(
+            QStyle.StandardPixmap.SP_DialogResetButton))
 
     def _load_settings(self):
         """
@@ -47,6 +52,13 @@ class PageGeneral(QWidget):
 
         self.download_path.setText(DownloadManager.get_path())
 
+        self.btn_quit_in_close.setChecked(
+            SettingsManager.get("system/quit_in_close", False))
+        self.btn_start_background.setChecked(
+            SettingsManager.get("system/start_background", False))
+        self.btn_start_system.setChecked(
+            SettingsManager.get("system/start_system", False))
+
     def _configure_signals(self):
         """
         Conecta os sinais dos widgets aos respectivos manipuladores:
@@ -60,6 +72,13 @@ class PageGeneral(QWidget):
         self.btn_path_download.clicked.connect(self._handle_path_download)
         self.btn_restore_path_download.clicked.connect(
             self._handle_restore_path_download)
+
+        self.btn_quit_in_close.clicked.connect(
+            lambda: SettingsManager.set("system/quit_in_close", self.btn_quit_in_close.isChecked()))
+        self.btn_start_background.clicked.connect(
+            lambda: SettingsManager.set("system/start_background", self.btn_start_background.isChecked()))
+        self.btn_start_system.clicked.connect(
+            lambda: SettingsManager.set("system/start_system", self.btn_start_system.isChecked()))
 
     def _handle_spellcheck(self, lang: str):
         """
