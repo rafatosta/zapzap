@@ -1,5 +1,5 @@
 from PyQt6 import uic
-from PyQt6.QtWidgets import QWidget, QApplication
+from PyQt6.QtWidgets import QWidget, QApplication, QStyle
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.DownloadManager import DownloadManager
 
@@ -10,8 +10,15 @@ class PageGeneral(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         uic.loadUi("zapzap/ui/ui_page_general.ui", self)
+        self._configure_ui()
+
         self._load_settings()
         self._configure_signals()
+
+    def _configure_ui(self):
+        
+        self.btn_path_download.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DirIcon))
+        self.btn_restore_path_download.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DialogResetButton))
 
     def _load_settings(self):
         """
