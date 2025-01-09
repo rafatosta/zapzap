@@ -1,6 +1,7 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QApplication
 from zapzap.controllers.PageGeneral import PageGeneral
+from zapzap.controllers.PageNetwork import PageNetwork
 from zapzap.controllers.PageNotifications import PageNotifications
 from zapzap.controllers.PageAccount import PageAccount
 from zapzap.controllers.PageAppearance import PageAppearance
@@ -27,6 +28,7 @@ class Settings(QWidget):
         self._add_page(PageAccount(), self.btn_account)
         self._add_page(PageAppearance(), self.btn_page_appearence)
         self._add_page(PageNotifications(), self.btn_page_notifications)
+        self._add_page(PageNetwork(), self.btn_page_network)
         
 
     def _setup_signals(self):
