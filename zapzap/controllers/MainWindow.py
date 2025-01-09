@@ -120,7 +120,7 @@ class MainWindow(QMainWindow):
         """
         self._save_window_state()
 
-        if self._should_keep_background(event):
+        if not SettingsManager.get("system/quit_in_close", False) and event:
             self._prepare_for_background(event)
         else:
             self._clean_up_and_exit()
@@ -129,10 +129,6 @@ class MainWindow(QMainWindow):
         """Salvar a geometria e o estado da janela."""
         SettingsManager.set("main/geometry", self.saveGeometry())
         SettingsManager.set("main/windowState", self.saveState())
-
-    def _should_keep_background(self, event) -> bool:
-        """Verificar se o app deve continuar em segundo plano."""
-        return SettingsManager.get("system/keep_background", True) and event
 
     def _prepare_for_background(self, event):
         """Preparar o app para permanecer em segundo plano."""
