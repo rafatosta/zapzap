@@ -1,5 +1,6 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QApplication, QStyle
+from zapzap.services.AutostartManager import AutostartManager
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.DownloadManager import DownloadManager
 from zapzap.services.SettingsManager import SettingsManager
@@ -77,8 +78,7 @@ class PageGeneral(QWidget):
             lambda: SettingsManager.set("system/quit_in_close", self.btn_quit_in_close.isChecked()))
         self.btn_start_background.clicked.connect(
             lambda: SettingsManager.set("system/start_background", self.btn_start_background.isChecked()))
-        self.btn_start_system.clicked.connect(
-            lambda: SettingsManager.set("system/start_system", self.btn_start_system.isChecked()))
+        self.btn_start_system.clicked.connect(self._handle_autostart)
 
     def _handle_spellcheck(self, lang: str):
         """
@@ -106,6 +106,12 @@ class PageGeneral(QWidget):
             # Atualiza o combobox e o navegador
             self._load_settings()
             self._update_browser_spellcheck()
+
+    def _handle_autostart(self):
+        """Cria e remove o arquivo para iniciar com o sistema."""
+        SettingsManager.set("system/start_system",
+                            self.btn_start_system.isChecked())
+        AutostartManager.create_desktop_file(self.btn_start_system.isChecked())
 
     def _handle_default_folder_spell(self):
         """
