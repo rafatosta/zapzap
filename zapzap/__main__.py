@@ -5,6 +5,7 @@ import sys
 from zapzap.config.SetupManager import SetupManager
 from zapzap.controllers.MainWindow import MainWindow
 from zapzap.controllers.SingleApplication import SingleApplication
+from zapzap.services.ProxyManager import ProxyManager
 from zapzap.services.SettingsManager import SettingsManager
 
 
@@ -27,6 +28,8 @@ def main():
     app.setActivationWindow(main_window)
     main_window.load_settings()
 
+    ProxyManager.apply()
+    
     if SettingsManager.get("system/start_background", False):
         main_window.hide()
     else:
