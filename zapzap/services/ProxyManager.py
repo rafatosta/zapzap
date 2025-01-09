@@ -52,8 +52,3 @@ class ProxyManager:
     def get_proxy_description(proxy_type_key):
         """Retorna a descrição do tipo de proxy."""
         return ProxyManager.PROXY_TYPES.get(proxy_type_key, ProxyManager.PROXY_TYPES['NoProxy'])[1]
-
-    @staticmethod
-    def apply_default():
-        proxy = QtNetwork.QNetworkProxy()
-        QtNetwork.QNetworkProxy.setApplicationProxy(proxy)
