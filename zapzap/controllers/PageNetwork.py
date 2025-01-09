@@ -1,5 +1,5 @@
-from PyQt6 import uic, QtNetwork
-from PyQt6.QtWidgets import QWidget, QCheckBox, QApplication
+from PyQt6 import uic
+from PyQt6.QtWidgets import QWidget, QCheckBox
 from zapzap.services.ProxyManager import ProxyManager
 from zapzap.services.SettingsManager import SettingsManager
 
@@ -57,7 +57,6 @@ class PageNetwork(QWidget):
         """Aplica o proxy e salva as configurações."""
         self._save_settings()
         ProxyManager.apply()
-        QApplication.instance().getWindow().browser.reload_pages()
 
     def _restore_proxy(self):
         """Restaura o proxy para o estado padrão."""
@@ -70,4 +69,3 @@ class PageNetwork(QWidget):
 
         self._load_settings()
         ProxyManager.apply()
-        QApplication.instance().getWindow().browser.reload_pages()
