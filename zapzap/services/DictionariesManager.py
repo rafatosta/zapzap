@@ -9,8 +9,7 @@ class DictionariesManager:
     QTWEBENGINE_DICTIONARIES_PATH = "/usr/share/qt6/qtwebengine_dictionaries"
     QTWEBENGINE_DICTIONARIES_PATH_FLATPAK = "/run/host/usr/share/qt6/qtwebengine_dictionaries"
 
-    _abs_path = QFileInfo(__file__).absolutePath()
-    _is_flatpak = _abs_path.startswith('/app/')
+    IS_FLATPAK = QFileInfo(__file__).absolutePath().startswith('/app/')
 
     @staticmethod
     def get_path() -> str:
@@ -28,7 +27,7 @@ class DictionariesManager:
         """
         return (
             DictionariesManager.QTWEBENGINE_DICTIONARIES_PATH_FLATPAK
-            if DictionariesManager._is_flatpak
+            if DictionariesManager.IS_FLATPAK
             else DictionariesManager.QTWEBENGINE_DICTIONARIES_PATH
         )
 
