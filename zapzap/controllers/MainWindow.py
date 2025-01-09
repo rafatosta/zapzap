@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import QMainWindow, QApplication
 from PyQt6.QtCore import QByteArray, Qt
 from zapzap.controllers.Settings import Settings
 from zapzap.controllers.Browser import Browser
+from zapzap.services.AlertManager import AlertManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
 from zapzap.services.ThemeManager import ThemeManager
@@ -74,11 +75,17 @@ class MainWindow(QMainWindow):
     # === Ações de Menu ===
     def new_chat(self):
         """Iniciar um novo chat na página atual."""
-        self._current_page().page().new_chat()
+        try:
+            self._current_page().page().new_chat()
+        except:
+            AlertManager.information(self, "Atenção", "Nenhum usuário ativo!")
 
     def new_chat_by_phone(self):
         """Iniciar um novo chat pelo número de telefone na página atual."""
-        self._current_page().page().open_chat_by_number()
+        try:
+            self._current_page().page().open_chat_by_number()
+        except:
+            AlertManager.information(self, "Atenção", "Nenhum usuário ativo!")
 
     def _reset_zoom(self):
         """Resetar o fator de zoom da página atual."""
