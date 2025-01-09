@@ -1,4 +1,5 @@
 from PyQt6 import QtNetwork
+from PyQt6.QtWidgets import QApplication
 from gettext import gettext as _
 from zapzap.services.SettingsManager import SettingsManager
 
@@ -47,6 +48,7 @@ class ProxyManager:
         QtNetwork.QNetworkProxy.setApplicationProxy(proxy)
         print(f"Proxy configurado: {proxy_type_key} ({
               'Habilitado' if proxy_enable else 'Desabilitado'})")
+        QApplication.instance().getWindow().browser.reload_pages()
 
     @staticmethod
     def get_proxy_description(proxy_type_key):
