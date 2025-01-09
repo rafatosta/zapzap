@@ -5,7 +5,7 @@ import sys
 from zapzap.config.SetupManager import SetupManager
 from zapzap.controllers.MainWindow import MainWindow
 from zapzap.controllers.SingleApplication import SingleApplication
-from zapzap.services.DictionariesManager import DictionariesManager
+from zapzap.services.SettingsManager import SettingsManager
 
 
 def main():
@@ -27,7 +27,10 @@ def main():
     app.setActivationWindow(main_window)
     main_window.load_settings()
 
-    main_window.show()
+    if SettingsManager.get("system/start_background", False):
+        main_window.hide()
+    else:
+        main_window.show()
 
     # Start app
     sys.exit(app.exec())
