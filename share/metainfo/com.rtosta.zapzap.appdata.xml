@@ -50,11 +50,17 @@
     <screenshot type="default">
       <caption>Application showcase</caption>
       <image type="source">
-        https://raw.githubusercontent.com/rafatosta/zapzap/main/share/screenshot/default.png</image>
+        https://raw.githubusercontent.com/rafatosta/zapzap/main/share/screenshot/default.png
+        </image>
     </screenshot>
   </screenshots>
 
   <releases>
+    <release date="2025-01-10" version="6.0">
+      <description>
+        <p>Description soon.</p>
+      </description>
+    </release>
     <release date="2024-11-29" version="5.3.9">
       <description>
         <p>Xwayland by default (Activate it manually via flatseal if you want Wayland).</p>

@@ -7,7 +7,7 @@ base-version: "6.8"
 command: zapzap
 finish-args:
   - "--share=ipc"
-  - "--socket=fallback-x11"
+  - "--socket=x11"
   - "--socket=pulseaudio"
   - "--share=network"
   - "--device=all"
@@ -16,7 +16,6 @@ finish-args:
   - "--talk-name=org.freedesktop.Notifications"
   - "--talk-name=org.kde.StatusNotifierWatcher"
   - "--env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess"
-  - "--env=QT_SCALE_FACTOR_ROUNDING_POLICY=RoundPreferFloor"
 
 cleanup:
   - /include
