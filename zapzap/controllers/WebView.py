@@ -15,6 +15,15 @@ from zapzap.services.SettingsManager import SettingsManager
 class WebView(QWebEngineView):
     update_button_signal = pyqtSignal(int, int)  # Sinal para atualizar botões
 
+    QWEBENGINE_CACHE_TYPES = {
+        # Usa um cache na memória (padrão para perfis off-the-record).
+        "MemoryHttpCache": QWebEngineProfile.HttpCacheType.MemoryHttpCache,
+        # Usa um cache em disco (padrão para perfis que não são off-the-record).
+        "DiskHttpCache": QWebEngineProfile.HttpCacheType.DiskHttpCache,
+        # Desativa o cache em memória e em disco.
+        "NoCache": QWebEngineProfile.HttpCacheType.NoCache
+    }
+
     def __init__(self, user: User = None, page_index=None, parent=None):
         super().__init__(parent)
         self.user = user
@@ -53,6 +62,13 @@ class WebView(QWebEngineView):
             QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, True)
 
         self.configure_spellcheck()
+
+        size_cache = SettingsManager.get(
+            "performance/cache_size_max", 0)
+        self.profile.setHttpCacheMaximumSize(1024 * 1024 * int(size_cache))
+        self.profile.setHttpCacheType(
+            self.QWEBENGINE_CACHE_TYPES.get(SettingsManager.get(
+                "performance/cache_type", "DiskHttpCache")))
 
         self.print_qwebengineprofile_info(self.profile)
 
