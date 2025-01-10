@@ -13,7 +13,8 @@ def main():
     SetupManager.apply()
 
     # Define application attributes
-    app = SingleApplication(zapzap.__appid__, sys.argv)
+    app = SingleApplication(
+        zapzap.__appid__, sys.argv + SetupManager.get_argv())
     app.setApplicationName(zapzap.__appname__)
     app.setApplicationVersion(zapzap.__version__)
     app.setDesktopFileName(zapzap.__desktopid__)
@@ -29,7 +30,7 @@ def main():
     main_window.load_settings()
 
     ProxyManager.apply()
-    
+
     if SettingsManager.get("system/start_background", False):
         main_window.hide()
     else:
