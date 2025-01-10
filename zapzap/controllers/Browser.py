@@ -1,4 +1,3 @@
-from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget
 from PyQt6.QtGui import QAction
 from zapzap.controllers.PageButton import PageButton
@@ -8,14 +7,15 @@ from zapzap.resources.SystemIcon import SystemIcon
 from zapzap.services.AlertManager import AlertManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
+from zapzap.views.ui_browser import Ui_Browser
 
 
-class Browser(QWidget):
+class Browser(QWidget, Ui_Browser):
     """Gerencia as páginas e interações do navegador no aplicativo."""
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        uic.loadUi("zapzap/ui/ui_browser.ui", self)
+        self.setupUi(self)
 
         self.parent = parent
 

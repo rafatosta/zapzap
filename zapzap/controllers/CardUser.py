@@ -1,4 +1,3 @@
-from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QApplication, QMenu
 from PyQt6.QtCore import Qt
 
@@ -6,12 +5,13 @@ from zapzap.models.User import User
 from zapzap.resources.UserIcon import UserIcon
 from zapzap.services.AlertManager import AlertManager
 from zapzap.services.SettingsManager import SettingsManager
+from zapzap.views.ui_card_user import Ui_CardUser
 
 
-class CardUser(QWidget):
+class CardUser(QWidget, Ui_CardUser):
     def __init__(self, user: User = None, parent=None):
         super().__init__(parent)
-        uic.loadUi("zapzap/ui/ui_card_user.ui", self)
+        self.setupUi(self)
         self.user = user
 
         self._initialize()

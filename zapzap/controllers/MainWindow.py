@@ -7,9 +7,10 @@ from zapzap.services.AlertManager import AlertManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
 from zapzap.services.ThemeManager import ThemeManager
+from zapzap.views.ui_mainwindow import Ui_MainWindow
 
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow, Ui_MainWindow):
     """
     Classe principal da interface do aplicativo.
     Controla a janela principal, incluindo o menu e interações com widgets centrais.
@@ -17,7 +18,7 @@ class MainWindow(QMainWindow):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        uic.loadUi("zapzap/ui/ui_mainwindow.ui", self)
+        self.setupUi(self)
 
         self.is_fullscreen = False  # Controle do estado de tela cheia
         self.browser = Browser(self)  # Inicialização do navegador

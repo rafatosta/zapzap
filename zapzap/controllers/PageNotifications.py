@@ -1,14 +1,15 @@
-from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget
 from zapzap.services.SettingsManager import SettingsManager
+from zapzap.views.ui_page_notifications import Ui_PageNotifications
 
 
-class PageNotifications(QWidget):
+class PageNotifications(QWidget, Ui_PageNotifications):
     """Classe responsável por gerenciar a página de notificações nas configurações."""
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        uic.loadUi("zapzap/ui/ui_page_notifications.ui", self)
+        self.setupUi(self)
+
         self._initialize()
 
     def _initialize(self):

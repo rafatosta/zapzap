@@ -1,15 +1,15 @@
-from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QApplication
 
 from zapzap.controllers.CardUser import CardUser
 from zapzap.models.User import User
 from zapzap.services.AlertManager import AlertManager
+from zapzap.views.ui_page_account import Ui_PageAccount
 
 
-class PageAccount(QWidget):
+class PageAccount(QWidget, Ui_PageAccount):
     def __init__(self, parent=None):
         super().__init__(parent)
-        uic.loadUi("zapzap/ui/ui_page_account.ui", self)
+        self.setupUi(self)
 
         # Inicializa a interface e carrega os usuários
         self._load_users()

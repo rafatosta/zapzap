@@ -1,4 +1,3 @@
-from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QApplication
 from zapzap.controllers.PageGeneral import PageGeneral
 from zapzap.controllers.PageNetwork import PageNetwork
@@ -6,12 +5,13 @@ from zapzap.controllers.PageNotifications import PageNotifications
 from zapzap.controllers.PageAccount import PageAccount
 from zapzap.controllers.PageAppearance import PageAppearance
 from zapzap.controllers.PagePerformance import PagePerformance
+from zapzap.views.ui_settings import Ui_Settings
 
 
-class Settings(QWidget):
+class Settings(QWidget, Ui_Settings):
     def __init__(self, parent=None):
         super().__init__(parent)
-        uic.loadUi("zapzap/ui/ui_settings.ui", self)
+        self.setupUi(self)
 
         self.page_buttons = {}  # Mapear botões às páginas
 

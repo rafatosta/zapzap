@@ -1,10 +1,10 @@
-from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget
 
 from zapzap.services.SettingsManager import SettingsManager
+from zapzap.views.ui_page_performance import Ui_PagePerformance
 
 
-class PagePerformance(QWidget):
+class PagePerformance(QWidget, Ui_PagePerformance):
     _default_settings = {
         "performance/cache_type": "DiskHttpCache",
         "performance/cache_size_max": "0",  # Em formato de texto com unidade
@@ -15,7 +15,7 @@ class PagePerformance(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        uic.loadUi("zapzap/ui/ui_page_performance.ui", self)
+        self.setupUi(self)
 
         self._load_settings()
         self._configure_signals()

@@ -1,17 +1,18 @@
-from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QApplication
 from zapzap.resources.TrayIcon import TrayIcon
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
 from zapzap.services.ThemeManager import ThemeManager
+from zapzap.views.ui_page_appearance import Ui_PageAppearance
 
 
-class PageAppearance(QWidget):
+class PageAppearance(QWidget, Ui_PageAppearance):
     """Classe para gerenciar a página de configurações de aparência."""
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        uic.loadUi("zapzap/ui/ui_page_appearance.ui", self)
+        self.setupUi(self)
+        
         self._load_settings()
         self._configure_signals()
 

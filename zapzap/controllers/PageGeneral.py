@@ -1,17 +1,18 @@
-from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QApplication, QStyle
 from zapzap.services.AutostartManager import AutostartManager
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.DownloadManager import DownloadManager
 from zapzap.services.SettingsManager import SettingsManager
+from zapzap.views.ui_page_general import Ui_PageGeneral
 
 
-class PageGeneral(QWidget):
+class PageGeneral(QWidget, Ui_PageGeneral):
     """Gerencia a página de configurações gerais de aparência e idioma."""
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        uic.loadUi("zapzap/ui/ui_page_general.ui", self)
+        self.setupUi(self)
+
         self._configure_ui()
 
         self._load_settings()

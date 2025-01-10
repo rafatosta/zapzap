@@ -1,13 +1,13 @@
-from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QCheckBox
 from zapzap.services.ProxyManager import ProxyManager
 from zapzap.services.SettingsManager import SettingsManager
+from zapzap.views.ui_page_network import Ui_PageNetwork
 
 
-class PageNetwork(QWidget):
+class PageNetwork(QWidget, Ui_PageNetwork):
     def __init__(self, parent=None):
         super().__init__(parent)
-        uic.loadUi("zapzap/ui/ui_page_network.ui", self)
+        self.setupUi(self)
 
         self._load_settings()
         self._configure_signals()
