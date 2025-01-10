@@ -4,6 +4,12 @@ import os
 def dev():
     """Run the app in development mode."""
     print("Starting app in development mode...")
+
+    print(" # === Build the windows from the .ui file ===")
+    os.system('chmod +x ./_scripts/build-windows.sh')
+    os.system('./_scripts/build-windows.sh')
+
+    print("# === start === ")
     os.system("python -m zapzap")
 
 
