@@ -13,14 +13,18 @@ def preview():
 
     print("Starting app in preview mode...")
 
+    print("Add flathub remote")
+    os.system(
+        "flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo")
+
     print("# === Install Sdk === ")
     os.system(f"flatpak install --user --assumeyes flathub org.kde.Platform//{
-              SDK_VERSION} org.kde.Sdk//{SDK_VERSION} com.riverbankcomputing.PyQt.BaseApp//{SDK_VERSION} ")
+        SDK_VERSION} org.kde.Sdk//{SDK_VERSION} com.riverbankcomputing.PyQt.BaseApp//{SDK_VERSION} ")
 
     print("# === Build === ")
     os.system(
         "flatpak-builder build com.rtosta.zapzap.yaml --force-clean --ccache --install --user")
-    
+
     print("# === start === ")
     os.system("flatpak run com.rtosta.zapzap")
 
