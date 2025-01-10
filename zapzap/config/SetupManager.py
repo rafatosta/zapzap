@@ -50,4 +50,6 @@ class SetupManager:
         if SettingsManager.get("performance/single_process", False):
             arguments.append("--single-process")
 
+        print("Configurações para QWebEngine:\n\t", arguments)
+
         return arguments
