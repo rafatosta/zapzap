@@ -54,6 +54,8 @@ class WebView(QWebEngineView):
 
         self.configure_spellcheck()
 
+        self.print_qwebengineprofile_info(self.profile)
+
     def configure_spellcheck(self):
         # Corretor ortográfico
         if self.user.enable:
@@ -63,13 +65,6 @@ class WebView(QWebEngineView):
             self.profile.setSpellCheckLanguages(
                 [SettingsManager.get("system/spellCheckLanguage",
                                      DictionariesManager.get_current_dict())]
-            )
-
-            print(
-                "SpellCheck:", SettingsManager.get(
-                    "system/spellCheckers", True),
-                "Lang:", SettingsManager.get(
-                    "system/spellCheckLanguage", DictionariesManager.get_system_language())
             )
 
     def _setup_page(self):
@@ -147,3 +142,21 @@ class WebView(QWebEngineView):
             self.profile.clearHttpCache()
         self.setPage(None)
         self.setVisible(False)
+
+    # == Mostrar informações ==
+    def print_qwebengineprofile_info(self, profile: QWebEngineProfile):
+        print("=== Informações do QWebEngineProfile ===")
+        print(f"Nome do perfil: {profile.storageName()}")
+        print(f"Cache Path: {profile.cachePath()}")
+        print(f"Http Cache Type: {profile.httpCacheType().name}")
+        print(f"Tamanho Máximo do Cache HTTP (Bytes): {
+              profile.httpCacheMaximumSize()}")
+        print(f"Persistent Cookies Policy: {
+              profile.persistentCookiesPolicy().name}")
+        print(f"Path do Armazenamento Persistente: {
+              profile.persistentStoragePath()}")
+        print(f"Path de Download: {profile.downloadPath()}")
+        print(f"User Agent: {profile.httpUserAgent()}")
+        print(f"Spell Check Habilitado: {profile.isSpellCheckEnabled()}")
+        print(f"Linguagens do Spell Check: {profile.spellCheckLanguages()}")
+        print("=========================================")
