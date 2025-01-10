@@ -5,6 +5,14 @@ from zapzap.services.SettingsManager import SettingsManager
 
 
 class PagePerformance(QWidget):
+    _default_settings = {
+        "performance/cache_type": "DiskHttpCache",
+        "performance/cache_size_max": "0",  # Em formato de texto com unidade
+        "performance/in_process_gpu": False,
+        "performance/disable_gpu": False,
+        "performance/single_process": False,
+    }
+
     def __init__(self, parent=None):
         super().__init__(parent)
         uic.loadUi("zapzap/ui/ui_page_performance.ui", self)
@@ -13,6 +21,9 @@ class PagePerformance(QWidget):
         self._configure_signals()
 
     def _load_settings(self):
+        """
+        Carrega as configurações do SettingsManager e atualiza os componentes da interface.
+        """
         self.cache_type.setCurrentText(SettingsManager.get(
             "performance/cache_type", "DiskHttpCache"))
 
@@ -27,6 +38,9 @@ class PagePerformance(QWidget):
             SettingsManager.get("performance/single_process", False))
 
     def _configure_signals(self):
+        """
+        Conecta os sinais dos componentes aos métodos que atualizam o SettingsManager.
+        """
         self.cache_type.textActivated.connect(lambda type: SettingsManager.set(
             "performance/cache_type", type))
 
@@ -40,5 +54,13 @@ class PagePerformance(QWidget):
         self.single_process.clicked.connect(lambda: SettingsManager.set(
             "performance/single_process", self.single_process.isChecked()))
 
-    def restore_settings(self):
-        pass
+        self.btn_restore.clicked.connect(self._restore_settings)
+
+    def _restore_settings(self):
+        """
+        Restaura as configurações aos valores padrão e atualiza os componentes da interface.
+        """
+        for key, default_value in self._default_settings.items():
+            SettingsManager.set(key, default_value)
+
+        self._load_settings()
