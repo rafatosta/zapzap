@@ -15,7 +15,8 @@ try:
                   'zapzap.controllers',
                   'zapzap.models',
                   'zapzap.resources',
-                  'zapzap.services'
+                  'zapzap.services',
+                  'zapzap.views'
                   ],
         include_package_data=True,
         package_data={'zapzap': ['ui/*.ui']},
