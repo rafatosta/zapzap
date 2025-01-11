@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import QMainWindow, QApplication
 from PyQt6.QtCore import QByteArray, Qt
 from zapzap.controllers.Settings import Settings
 from zapzap.controllers.Browser import Browser
+from zapzap.controllers.ShortcutsDialog import ShortcutsDialog
 from zapzap.services.AlertManager import AlertManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
@@ -56,6 +57,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """Conecta ações do menu às funções correspondentes."""
         self._connect_file_menu_actions()
         self._connect_view_menu_actions()
+        self._connect_help_menu_actions()
 
     def _connect_file_menu_actions(self):
         """Conectar ações do menu 'Arquivo'."""
@@ -72,6 +74,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionToggle_full_screen.triggered.connect(self.toggle_fullscreen)
         self.actionZoom_in.triggered.connect(self._zoom_in)
         self.actionZoom_out.triggered.connect(self._zoom_out)
+
+    def _connect_help_menu_actions(self):
+        """Conectar ações do menu 'Ajuda'."""
+        self.actionShortcuts.triggered.connect(lambda: ShortcutsDialog().exec())
 
     # === Ações de Menu ===
     def new_chat(self):

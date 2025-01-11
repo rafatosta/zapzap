@@ -83,10 +83,18 @@
      <string>Users</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionShortcuts"/>
+    <addaction name="actionSobre_o_ZapZap"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
    <addaction name="menuChat"/>
    <addaction name="menuUsers"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionQuit">
@@ -161,6 +169,16 @@
   <action name="actionBy_phone_number">
    <property name="text">
     <string>By number phone</string>
+   </property>
+  </action>
+  <action name="actionShortcuts">
+   <property name="text">
+    <string>Atalhos do Teclado</string>
+   </property>
+  </action>
+  <action name="actionSobre_o_ZapZap">
+   <property name="text">
+    <string>Sobre o ZapZap</string>
    </property>
   </action>
  </widget>
