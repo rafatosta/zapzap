@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import QWidget, QApplication
 from zapzap.controllers.PageGeneral import PageGeneral
+from zapzap.controllers.PageAbout import PageAbout
 from zapzap.controllers.PageNetwork import PageNetwork
 from zapzap.controllers.PageNotifications import PageNotifications
 from zapzap.controllers.PageAccount import PageAccount
@@ -31,7 +32,7 @@ class Settings(QWidget, Ui_Settings):
         self._add_page(PageNotifications(), self.btn_page_notifications)
         self._add_page(PageNetwork(), self.btn_page_network)
         self._add_page(PagePerformance(), self.btn_page_performance)
-        
+        self._add_page(PageAbout(), self.btn_page_help)
 
     def _setup_signals(self):
         """Conecta os sinais dos botões gerais."""

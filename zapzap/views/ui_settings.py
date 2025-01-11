@@ -92,9 +92,9 @@ class Ui_Settings(object):
         self.line_4.setFrameShadow(QtWidgets.QFrame.Shadow.Sunken)
         self.line_4.setObjectName("line_4")
         self.verticalLayout_2.addWidget(self.line_4)
-        self.pushButton_9 = QtWidgets.QPushButton(parent=self.menu_layout)
-        self.pushButton_9.setObjectName("pushButton_9")
-        self.verticalLayout_2.addWidget(self.pushButton_9)
+        self.btn_page_help = QtWidgets.QPushButton(parent=self.menu_layout)
+        self.btn_page_help.setObjectName("btn_page_help")
+        self.verticalLayout_2.addWidget(self.btn_page_help)
         self.verticalLayout.addWidget(self.menu_layout)
         spacerItem1 = QtWidgets.QSpacerItem(20, 171, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout.addItem(spacerItem1)
@@ -123,7 +123,7 @@ class Ui_Settings(object):
         self.btn_page_performance.setText(_translate("Settings", "Desempenho"))
         self.btn_page_network.setText(_translate("Settings", "Rede"))
         self.label.setText(_translate("Settings", "AJUDA"))
-        self.pushButton_9.setText(_translate("Settings", "Sobre o ZapZap"))
+        self.btn_page_help.setText(_translate("Settings", "Sobre o ZapZap"))
         self.btn_quit.setText(_translate("Settings", "Sair"))
 
 

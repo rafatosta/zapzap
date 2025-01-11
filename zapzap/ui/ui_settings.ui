@@ -209,7 +209,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_9">
+          <widget class="QPushButton" name="btn_page_help">
            <property name="text">
             <string>Sobre o ZapZap</string>
            </property>
