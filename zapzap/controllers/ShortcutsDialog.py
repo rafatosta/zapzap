@@ -1,11 +1,9 @@
 from PyQt6.QtWidgets import QDialog, QHeaderView, QTableWidgetItem
-
 from zapzap.views.ui_shortcuts_dialog import Ui_ShortcutsDialog
 
 
 class ShortcutsDialog(QDialog, Ui_ShortcutsDialog):
-
-    # Adicionando os atalhos à tabela
+    # Atalhos
     shortcuts = [
         # Conversas
         ("Nova conversa", "Ctrl + Alt + N"),
@@ -59,32 +57,19 @@ class ShortcutsDialog(QDialog, Ui_ShortcutsDialog):
         super().__init__(parent)
         self.setupUi(self)
 
-        # Whatsapp Web Atalhos
-        self.table_whatsapp.setColumnCount(2)
+        # Adicionando atalhos na tabela
+        self.add_shortcuts_to_table(self.table_whatsapp, self.shortcuts)
+        self.add_shortcuts_to_table(self.table_zapzap, self.shortcuts_zapzap)
 
-        self.table_whatsapp.setRowCount(len(self.shortcuts))
-        for row, (action, shortcut) in enumerate(self.shortcuts):
-            self.table_whatsapp.setItem(row, 0, QTableWidgetItem(action))
-            self.table_whatsapp.setItem(row, 1, QTableWidgetItem(shortcut))
+    def add_shortcuts_to_table(self, table, shortcuts):
+        """Adiciona atalhos à tabela especificada."""
+        table.setColumnCount(2)
+        table.setRowCount(len(shortcuts))
 
-        self.table_whatsapp.resizeColumnsToContents()
+        for row, (action, shortcut) in enumerate(shortcuts):
+            table.setItem(row, 0, QTableWidgetItem(action))
+            table.setItem(row, 1, QTableWidgetItem(shortcut))
 
-        self.table_whatsapp.horizontalHeader().setSectionResizeMode(
-            0, QHeaderView.ResizeMode.Stretch)
-        self.table_whatsapp.verticalHeader().setSectionResizeMode(
-            QHeaderView.ResizeMode.Stretch)
-
-        # ZapZap atalhos
-        self.table_zapzap.setColumnCount(2)
-
-        self.table_zapzap.setRowCount(len(self.shortcuts_zapzap))
-        for row, (action, shortcut) in enumerate(self.shortcuts_zapzap):
-            self.table_zapzap.setItem(row, 0, QTableWidgetItem(action))
-            self.table_zapzap.setItem(row, 1, QTableWidgetItem(shortcut))
-
-        self.table_zapzap.resizeColumnsToContents()
-
-        self.table_zapzap.horizontalHeader().setSectionResizeMode(
-            0, QHeaderView.ResizeMode.Stretch)
-        self.table_zapzap.verticalHeader().setSectionResizeMode(
-            QHeaderView.ResizeMode.Stretch)
+        table.resizeColumnsToContents()
+        table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
+        table.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
