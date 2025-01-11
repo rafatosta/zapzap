@@ -209,13 +209,6 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_10">
-           <property name="text">
-            <string>Atalhos</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QPushButton" name="pushButton_9">
            <property name="text">
             <string>Sobre o ZapZap</string>
