@@ -4,6 +4,7 @@ from zapzap.controllers.PageButton import PageButton
 from zapzap.controllers.WebView import WebView
 from zapzap.models.User import User
 from zapzap.resources.SystemIcon import SystemIcon
+from zapzap.resources.UserIcon import UserIcon
 from zapzap.services.AlertManager import AlertManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
@@ -49,6 +50,11 @@ class Browser(QWidget, Ui_Browser):
 
     def _load_users(self):
         """Carrega os usuários e cria páginas correspondentes."""
+        # Não há usuários criados
+        if User.count_users() == 0:
+            print("Primeiro acesso... \nCriando usuário padrão")
+            User.create_new_user(icon=UserIcon.ICON_DEFAULT)
+
         self.user_list = User.select()
         for user in self.user_list:
             self._add_page(user)
