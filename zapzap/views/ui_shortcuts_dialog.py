@@ -42,6 +42,7 @@ class Ui_ShortcutsDialog(object):
         self.table_zapzap.setColumnCount(0)
         self.table_zapzap.setRowCount(0)
         self.table_zapzap.horizontalHeader().setVisible(False)
+        self.table_zapzap.verticalHeader().setVisible(False)
         self.horizontalLayout.addWidget(self.table_zapzap)
         self.verticalLayout.addWidget(self.groupBox_2)
         self.buttonBox = QtWidgets.QDialogButtonBox(parent=ShortcutsDialog)

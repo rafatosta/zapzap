@@ -51,6 +51,10 @@ class ShortcutsDialog(QDialog, Ui_ShortcutsDialog):
 
         # Atualização
         ("Recarregar páginas", "F5"),
+        ("Nova conversa pelo número do telefone", "Ctrl + M"),
+
+        # Conta
+        ("Novo usuário", "Ctrl + U"),
     ]
 
     def __init__(self, parent=None):
