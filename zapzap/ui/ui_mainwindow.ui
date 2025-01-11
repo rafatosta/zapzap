@@ -165,10 +165,16 @@
    <property name="text">
     <string>New chat</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
   </action>
   <action name="actionBy_phone_number">
    <property name="text">
     <string>By number phone</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
    </property>
   </action>
   <action name="actionShortcuts">

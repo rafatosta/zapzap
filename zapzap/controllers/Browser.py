@@ -153,6 +153,7 @@ class Browser(QWidget, Ui_Browser):
         # Adiciona a opção para criar um novo usuário
         new_action = QAction("Novo usuário", self)
         new_action.triggered.connect(lambda: self.add_new_user())
+        new_action.setShortcut("Ctrl+U")
         self.parent.menuUsers.addAction(new_action)
         self.parent.menuUsers.addSeparator()
 
