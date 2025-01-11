@@ -108,6 +108,9 @@
              <height>16777215</height>
             </size>
            </property>
+           <property name="toolTip">
+            <string>Novo usuário</string>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -149,6 +152,9 @@
              <height>16777215</height>
             </size>
            </property>
+           <property name="toolTip">
+            <string>Nova conversa pelo número do telefone</string>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -167,6 +173,9 @@
              <width>35</width>
              <height>35</height>
             </size>
+           </property>
+           <property name="toolTip">
+            <string>Nova conversa</string>
            </property>
            <property name="text">
             <string/>
@@ -193,6 +202,9 @@
              <width>35</width>
              <height>35</height>
             </size>
+           </property>
+           <property name="toolTip">
+            <string>Configurações do ZapZap</string>
            </property>
            <property name="text">
             <string/>
