@@ -50,14 +50,19 @@ class Browser(QWidget, Ui_Browser):
 
     def _load_users(self):
         """Carrega os usuários e cria páginas correspondentes."""
-        # Não há usuários criados
-        if User.count_users() == 0:
-            print("Primeiro acesso... \nCriando usuário padrão")
-            User.create_new_user(icon=UserIcon.ICON_DEFAULT)
+
+        self._create_user_in_first_access()
 
         self.user_list = User.select()
         for user in self.user_list:
             self._add_page(user)
+
+    def _create_user_in_first_access(self):
+        """Cria o usuário no primeiro acesso."""
+        # Não há usuários criados
+        if User.count_users() == 0:
+            print("Primeiro acesso... \nCriando usuário padrão")
+            User.create_new_user(icon=UserIcon.ICON_DEFAULT)
 
     def _select_default_page(self):
         """Seleciona a primeira página habilitada como padrão."""
