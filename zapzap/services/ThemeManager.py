@@ -17,147 +17,163 @@ class ThemeManager:
     # Dicionário com temas
     themes = {
         "light": """
-/* Sidebar geral */
-QWidget#sidebar {
-    background-color: #d8d9dc;
-    border-right: 1px solid #c0c1c4;
-    padding: 10px; /* Para espaçamento interno */
-}
+            /* Sidebar geral */
+            QWidget#sidebar {
+                background-color: #f0f2f5;
+                border-right: 1px solid #c0c1c4;
+                padding: 10px; /* Para espaçamento interno */
+            }
 
-/* Botões da Sidebar */
-QWidget#menu_layout QPushButton {
-    background-color: #c0c1c4;
-    color: #202c33;
-    border: none;
-    padding: 10px 15px;
-    text-align: left;
-    font-size: 14px;
-    border-radius: 4px;
-	border-left: 3px solid #a8a9ab;
-}
+            /* Botões da Sidebar */
+            QWidget#menu_layout QPushButton {
+                background-color: #f0f2f5;
+                color: #202c33;
+                border: none;
+                padding: 10px 15px;
+                text-align: left;
+                font-size: 14px;
+                border-radius: 4px;
+                border-left: 3px solid #a8a9ab;
+            }
 
-/* Efeito hover nos botões */
-QWidget#menu_layout QPushButton:hover {
-    background-color: #a8a9ab;
-	border-left: 4px solid #00BD95;
-}
+            /* Efeito hover nos botões */
+            QWidget#menu_layout QPushButton:hover {
+                background-color: #f9f9fb;
+                border-left: 4px solid #00BD95;
+            }
 
-/* Botão pressionado */
-QWidget#menu_layout QPushButton:pressed {
-    background-color: #c0c1c4;
-    color: #202c33;
-}
+            /* Botão pressionado */
+            QWidget#menu_layout QPushButton:pressed {
+                background-color: #d8d9dc;
+                color: #202c33;
+            }
 
-/* Botão selecionado */
-QWidget#menu_layout QPushButton:disabled {
-    background-color: #a8a9ab;
-	border-left: 4px solid #00BD95;
-}
+            /* Botão selecionado */
+            QWidget#menu_layout QPushButton:disabled {
+                background-color: #d8d9dc;
+                border-left: 4px solid #00BD95;
+            }
 
-/* Labels na Sidebar */
-QWidget#menu_layout QLabel {
-    color: #78797a;
-	padding: 2px 0;
-	margin-top: 8px; /* Espaçamento entre labels */
-}
+            /* Labels na Sidebar */
+            QWidget#menu_layout QLabel {
+                color: #78797a;
+                padding: 2px 0;
+                margin-top: 8px; /* Espaçamento entre labels */
+            }
 
-/* Botões do browser */
-QWidget#settings_buttons_layout QPushButton {
-    qproperty-flat: true;
-}
+            /* Botões do browser */
+            QWidget#settings_buttons_layout QPushButton {
+                qproperty-flat: true;
+            }
 
-QWidget#settings_buttons_layout QPushButton:hover {
-    border-radius: 2px;
-    border-left: 3px solid #a8a9ab;
-}
+            QWidget#settings_buttons_layout QPushButton:hover {
+                border-radius: 2px;
+                border-left: 3px solid #a8a9ab;
+            }
 
-QWidget#settings_buttons_layout QPushButton:pressed {
-    background-color: rgba(225, 225, 225, 0.3);
-    border-radius: 2px;
-    height: 30px;
-    border-left: 3px solid #00BD95;
-}
+            QWidget#settings_buttons_layout QPushButton:pressed {
+                background-color: rgba(225, 225, 225, 0.3);
+                border-radius: 2px;
+                height: 30px;
+                border-left: 3px solid #00BD95;
+            }
 
-QFrame[frameShape="4"] {
-    border: none;
-    border-bottom: 1px solid rgb(192, 191, 188);
-}
-QFrame[frameShape="5"] {
-    border: none;
-    border-left: 1px solid rgb(192, 191, 188);
-}       
-    """,
-        "dark": """
-       /* Sidebar geral */
-QWidget#sidebar {
-    background-color: #1c272d;
-    border-right: 1px solid #192328;
-    padding: 10px; /* Para espaçamento interno */
-}
+            QFrame[frameShape="4"] {
+                border: none;
+                border-bottom: 1px solid rgba(192, 191, 188, 0.2);
+            }
+            QFrame[frameShape="5"] {
+                border: none;
+                border-left: 1px solid rgba(192, 191, 188, 0.2);
+            } 
 
-/* Botões da Sidebar */
-QWidget#menu_layout QPushButton {
-    background-color: #192328;
-    color: #F0F2F5;
-    border: none;
-    padding: 10px 15px;
-    text-align: left;
-    font-size: 14px;
-    border-radius: 4px;
-	border-left: 3px solid #161e23;
-}
+			#btn_back{
+				color: rgb(61, 56, 70);
+				text-align: left;
+			}
+			#btn_back:hover{
+				color: rgb(98, 160, 234);
+			}
 
-/* Efeito hover nos botões */
-QWidget#menu_layout QPushButton:hover {
-    background-color: #161e23;
-	border-left: 4px solid #00BD95;
-}
+			#btn_quit{
+				color: rgb(61, 56, 70);
+				text-align: left;
+			}
+			#btn_quit:hover{
+				color: rgb(224, 27, 36);
+			}
+             """,
+        "dark":
+            """
+                /* Sidebar geral */
+            QWidget#sidebar {
+                background-color: #1c272d;
+                border-right: 1px solid #192328;
+                padding: 10px; /* Para espaçamento interno */
+            }
 
-/* Botão pressionado */
-QWidget#menu_layout QPushButton:pressed {
-    background-color: #0c1114;
-    color: #F0F2F5;
-}
+            /* Botões da Sidebar */
+            QWidget#menu_layout QPushButton {
+                background-color: #192328;
+                color: #F0F2F5;
+                border: none;
+                padding: 10px 15px;
+                text-align: left;
+                font-size: 14px;
+                border-radius: 4px;
+                border-left: 3px solid #161e23;
+            }
 
-/* Botão selecionado */
-QWidget#menu_layout QPushButton:disabled {
-    background-color: #161e23;
-	border-left: 4px solid #00BD95;
-}
+            /* Efeito hover nos botões */
+            QWidget#menu_layout QPushButton:hover {
+                background-color: #161e23;
+                border-left: 4px solid #00BD95;
+            }
 
-/* Labels na Sidebar */
-QWidget#menu_layout QLabel {
-    color: #F0F2F5;
-	padding: 2px 0;
-	margin-top: 8px; /* Espaçamento entre labels */
-}
+            /* Botão pressionado */
+            QWidget#menu_layout QPushButton:pressed {
+                background-color: #0c1114;
+                color: #F0F2F5;
+            }
 
-/* Botões do browser */
-QWidget#settings_buttons_layout QPushButton {
-    qproperty-flat: true;
-}
+            /* Botão selecionado */
+            QWidget#menu_layout QPushButton:disabled {
+                background-color: #161e23;
+                border-left: 4px solid #00BD95;
+            }
 
-QWidget#settings_buttons_layout QPushButton:hover {
-    border-radius: 2px;
-    border-left: 3px solid #a8a9ab;
-}
+            /* Labels na Sidebar */
+            QWidget#menu_layout QLabel {
+                color: #F0F2F5;
+                padding: 2px 0;
+                margin-top: 8px; /* Espaçamento entre labels */
+            }
 
-QWidget#settings_buttons_layout QPushButton:pressed {
-    background-color: rgba(225, 225, 225, 0.3);
-    border-radius: 2px;
-    height: 30px;
-    border-left: 3px solid #00BD95;
-}
+            /* Botões do browser */
+            QWidget#settings_buttons_layout QPushButton {
+                qproperty-flat: true;
+            }
 
-QFrame[frameShape="4"] {
-    border: none;
-    border-bottom: 1px solid rgb(192, 191, 188);
-}
-QFrame[frameShape="5"] {
-    border: none;
-    border-left: 1px solid rgb(192, 191, 188);
-}       
-    """
+            QWidget#settings_buttons_layout QPushButton:hover {
+                border-radius: 2px;
+                border-left: 3px solid #a8a9ab;
+            }
+
+            QWidget#settings_buttons_layout QPushButton:pressed {
+                background-color: rgba(225, 225, 225, 0.3);
+                border-radius: 2px;
+                height: 30px;
+                border-left: 3px solid #00BD95;
+            }
+
+            QFrame[frameShape="4"] {
+                border: none;
+                border-bottom: 1px solid rgb(192, 191, 188);
+            }
+            QFrame[frameShape="5"] {
+                border: none;
+                border-left: 1px solid rgb(192, 191, 188);
+            }  """
     }
 
     def __new__(cls, *args, **kwargs):
