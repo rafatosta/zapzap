@@ -101,22 +101,22 @@ class Ui_PagePerformance(object):
     def retranslateUi(self, PagePerformance):
         _translate = QtCore.QCoreApplication.translate
         PagePerformance.setWindowTitle(_translate("PagePerformance", "Form"))
-        self.label.setText(_translate("PagePerformance", "Desempenho (Experimental)"))
+        self.label.setText(_translate("PagePerformance", "Performance (Experimental)"))
         self.groupBox_2.setTitle(_translate("PagePerformance", "GroupBox"))
-        self.label_3.setText(_translate("PagePerformance", "Tipo de Cache"))
+        self.label_3.setText(_translate("PagePerformance", "Cache Type"))
         self.cache_type.setItemText(0, _translate("PagePerformance", "DiskHttpCache"))
         self.cache_type.setItemText(1, _translate("PagePerformance", "MemoryHttpCache"))
         self.cache_type.setItemText(2, _translate("PagePerformance", "NoCache"))
-        self.label_2.setText(_translate("PagePerformance", "Tamanho máximo do cache"))
+        self.label_2.setText(_translate("PagePerformance", "Maximum Cache Size"))
         self.cache_size_max.setItemText(0, _translate("PagePerformance", "0 MB"))
         self.cache_size_max.setItemText(1, _translate("PagePerformance", "50 MB"))
         self.cache_size_max.setItemText(2, _translate("PagePerformance", "100 MB"))
-        self.groupBox.setTitle(_translate("PagePerformance", "Comportamento do QWebEngine"))
-        self.disable_gpu.setText(_translate("PagePerformance", "Desabilita a aceleração de hardware da GPU"))
-        self.in_process_gpu.setText(_translate("PagePerformance", "Ativar mesmo processo para GPU e renderização"))
-        self.single_process.setText(_translate("PagePerformance", "Executa tudo em um único processo"))
-        self.btn_restore.setText(_translate("PagePerformance", "Restaurar"))
-        self.label_4.setText(_translate("PagePerformance", "Nota: Necessário reinicar para aplicar."))
+        self.groupBox.setTitle(_translate("PagePerformance", "QWebEngine Behavior"))
+        self.disable_gpu.setText(_translate("PagePerformance", "Disable GPU hardware acceleration"))
+        self.in_process_gpu.setText(_translate("PagePerformance", "Enable single process for GPU and rendering"))
+        self.single_process.setText(_translate("PagePerformance", "Run everything in a single process"))
+        self.btn_restore.setText(_translate("PagePerformance", "Restore"))
+        self.label_4.setText(_translate("PagePerformance", "Note: Restart required to apply changes."))
 
 
 if __name__ == "__main__":

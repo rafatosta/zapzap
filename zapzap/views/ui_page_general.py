@@ -108,15 +108,15 @@ class Ui_PageGeneral(object):
     def retranslateUi(self, PageGeneral):
         _translate = QtCore.QCoreApplication.translate
         PageGeneral.setWindowTitle(_translate("PageGeneral", "Form"))
-        self.label.setText(_translate("PageGeneral", "Geral"))
-        self.groupBox_3.setTitle(_translate("PageGeneral", "Diretório dos downloads"))
-        self.groupBox.setTitle(_translate("PageGeneral", "Corretor ortográfico"))
-        self.label_2.setText(_translate("PageGeneral", "Diretório"))
-        self.label_3.setText(_translate("PageGeneral", "Nota: Necessário reiniciar."))
-        self.groupBox_2.setTitle(_translate("PageGeneral", "Comportamento"))
-        self.btn_quit_in_close.setText(_translate("PageGeneral", "Encerrar ao fechar"))
-        self.btn_start_background.setText(_translate("PageGeneral", "Iniciar minimizado"))
-        self.btn_start_system.setText(_translate("PageGeneral", "Iniciar junto com o sistema"))
+        self.label.setText(_translate("PageGeneral", "General"))
+        self.groupBox_3.setTitle(_translate("PageGeneral", "Download Directory"))
+        self.groupBox.setTitle(_translate("PageGeneral", "Spellchecker"))
+        self.label_2.setText(_translate("PageGeneral", "Directory"))
+        self.label_3.setText(_translate("PageGeneral", "Note: Required restart."))
+        self.groupBox_2.setTitle(_translate("PageGeneral", "Behavior"))
+        self.btn_quit_in_close.setText(_translate("PageGeneral", "Closer when closing the window"))
+        self.btn_start_background.setText(_translate("PageGeneral", "Start minimized"))
+        self.btn_start_system.setText(_translate("PageGeneral", "Start with the system"))
 
 
 if __name__ == "__main__":

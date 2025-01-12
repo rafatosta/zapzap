@@ -65,8 +65,8 @@ class Ui_PageNotifications(object):
     def retranslateUi(self, PageNotifications):
         _translate = QtCore.QCoreApplication.translate
         PageNotifications.setWindowTitle(_translate("PageNotifications", "Form"))
-        self.label.setText(_translate("PageNotifications", "Notificações"))
-        self.notify_groupBox.setTitle(_translate("PageNotifications", "Notificações na área de trabalho"))
+        self.label.setText(_translate("PageNotifications", "Notifications"))
+        self.notify_groupBox.setTitle(_translate("PageNotifications", "Work area notifications"))
         self.show_photo.setText(_translate("PageNotifications", "Show the photo of the sender"))
         self.show_name.setText(_translate("PageNotifications", "Show the sender\'s name"))
         self.show_msg.setText(_translate("PageNotifications", "Show message preview"))

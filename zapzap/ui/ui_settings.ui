@@ -65,7 +65,7 @@
       <item>
        <widget class="QPushButton" name="btn_back">
         <property name="text">
-         <string>&lt;- Voltar para o ZapZap</string>
+         <string>&lt;- Back to ZapZap</string>
         </property>
         <property name="shortcut">
          <string>Esc</string>
@@ -111,7 +111,7 @@
             </font>
            </property>
            <property name="text">
-            <string>CONFIGURAÇÕES</string>
+            <string>SETTINGS</string>
            </property>
           </widget>
          </item>
@@ -125,14 +125,14 @@
          <item>
           <widget class="QPushButton" name="btn_page_general">
            <property name="text">
-            <string>Geral</string>
+            <string>General</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="btn_account">
            <property name="text">
-            <string>Contas</string>
+            <string>Accounts</string>
            </property>
            <property name="checkable">
             <bool>false</bool>
@@ -150,7 +150,7 @@
             </font>
            </property>
            <property name="text">
-            <string>FERRAMENTAS</string>
+            <string>TOOLS</string>
            </property>
           </widget>
          </item>
@@ -164,28 +164,28 @@
          <item>
           <widget class="QPushButton" name="btn_page_appearence">
            <property name="text">
-            <string>Aparência</string>
+            <string>Appearance</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="btn_page_notifications">
            <property name="text">
-            <string>Notificações</string>
+            <string>Notifications</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="btn_page_performance">
            <property name="text">
-            <string>Desempenho</string>
+            <string>Performance</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="btn_page_network">
            <property name="text">
-            <string>Rede</string>
+            <string>Network</string>
            </property>
           </widget>
          </item>
@@ -197,7 +197,7 @@
             </font>
            </property>
            <property name="text">
-            <string>AJUDA</string>
+            <string>HELP</string>
            </property>
           </widget>
          </item>
@@ -211,7 +211,7 @@
          <item>
           <widget class="QPushButton" name="btn_page_help">
            <property name="text">
-            <string>Sobre o ZapZap</string>
+            <string>About ZapZap</string>
            </property>
           </widget>
          </item>
@@ -234,7 +234,7 @@
       <item>
        <widget class="QPushButton" name="btn_quit">
         <property name="text">
-         <string>Sair</string>
+         <string>Quit</string>
         </property>
        </widget>
       </item>

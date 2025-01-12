@@ -64,8 +64,8 @@ class Ui_PageAccount(object):
     def retranslateUi(self, PageAccount):
         _translate = QtCore.QCoreApplication.translate
         PageAccount.setWindowTitle(_translate("PageAccount", "Form"))
-        self.label.setText(_translate("PageAccount", "Minhas contas"))
-        self.btn_new_user.setText(_translate("PageAccount", "+ Adicionar conta"))
+        self.label.setText(_translate("PageAccount", "My accounts"))
+        self.btn_new_user.setText(_translate("PageAccount", "New accounts"))
 
 
 if __name__ == "__main__":

@@ -179,12 +179,12 @@
   </action>
   <action name="actionShortcuts">
    <property name="text">
-    <string>Atalhos do Teclado</string>
+    <string>Keyboard shortcuts</string>
    </property>
   </action>
   <action name="actionSobre_o_ZapZap">
    <property name="text">
-    <string>Sobre o ZapZap</string>
+    <string>About</string>
    </property>
   </action>
  </widget>

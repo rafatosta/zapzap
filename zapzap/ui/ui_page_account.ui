@@ -56,14 +56,14 @@
            </font>
           </property>
           <property name="text">
-           <string>Minhas contas</string>
+           <string>My accounts</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QPushButton" name="btn_new_user">
           <property name="text">
-           <string>+ Adicionar conta</string>
+           <string>New accounts</string>
           </property>
          </widget>
         </item>

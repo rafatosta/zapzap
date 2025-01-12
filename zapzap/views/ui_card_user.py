@@ -65,10 +65,10 @@ class Ui_CardUser(object):
     def retranslateUi(self, CardUser):
         _translate = QtCore.QCoreApplication.translate
         CardUser.setWindowTitle(_translate("CardUser", "Form"))
-        self.icon.setToolTip(_translate("CardUser", "<html><head/><body><p>Clique para gerar novas cores para o ícone</p></body></html>"))
-        self.disable.setText(_translate("CardUser", "Desativar"))
-        self.silence.setText(_translate("CardUser", "Não pertube"))
-        self.delete.setText(_translate("CardUser", "Excluir"))
+        self.icon.setToolTip(_translate("CardUser", "<html><head/><body><p>Click to generate new colors for the icon</p></body></html>"))
+        self.disable.setText(_translate("CardUser", "Disable"))
+        self.silence.setText(_translate("CardUser", "Do not disturb"))
+        self.delete.setText(_translate("CardUser", "Delete"))
         self.name.setPlaceholderText(_translate("CardUser", "Enter the user name"))
 
 

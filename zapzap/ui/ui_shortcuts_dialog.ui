@@ -17,7 +17,7 @@
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Atalhos do Teclado</string>
+      <string>Keyboard shortcuts</string>
      </property>
     </widget>
    </item>

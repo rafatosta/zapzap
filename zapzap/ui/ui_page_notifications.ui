@@ -56,14 +56,14 @@
            </font>
           </property>
           <property name="text">
-           <string>Notificações</string>
+           <string>Notifications</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QGroupBox" name="notify_groupBox">
           <property name="title">
-           <string>Notificações na área de trabalho</string>
+           <string>Work area notifications</string>
           </property>
           <property name="checkable">
            <bool>true</bool>

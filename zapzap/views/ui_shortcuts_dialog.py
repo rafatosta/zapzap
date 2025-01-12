@@ -59,7 +59,7 @@ class Ui_ShortcutsDialog(object):
     def retranslateUi(self, ShortcutsDialog):
         _translate = QtCore.QCoreApplication.translate
         ShortcutsDialog.setWindowTitle(_translate("ShortcutsDialog", "Dialog"))
-        self.label.setText(_translate("ShortcutsDialog", "Atalhos do Teclado"))
+        self.label.setText(_translate("ShortcutsDialog", "Keyboard shortcuts"))
         self.groupBox.setTitle(_translate("ShortcutsDialog", "WhatsApp Web"))
         self.groupBox_2.setTitle(_translate("ShortcutsDialog", "ZapZap"))
 

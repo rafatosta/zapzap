@@ -151,7 +151,7 @@ class Browser(QWidget, Ui_Browser):
         self.parent.menuUsers.clear()
 
         # Adiciona a opção para criar um novo usuário
-        new_action = QAction("Novo usuário", self)
+        new_action = QAction("New account", self)
         new_action.triggered.connect(lambda: self.add_new_user())
         new_action.setShortcut("Ctrl+U")
         self.parent.menuUsers.addAction(new_action)
@@ -162,7 +162,7 @@ class Browser(QWidget, Ui_Browser):
             if button.user.enable:
                 # Define os itens da barra de menu Usuários
                 new_action = QAction(
-                    button.user.name if button.user.name != "" else f"Usuário {count}", self)
+                    button.user.name if button.user.name != "" else f"Account {count}", self)
                 new_action.setShortcut(f'Ctrl+{count}')
                 new_action.triggered.connect(button.clicked)
                 self.parent.menuUsers.addAction(new_action)
@@ -190,7 +190,7 @@ class Browser(QWidget, Ui_Browser):
         self._reset_button_styles()
         self.pages.setCurrentWidget(page)
         page.page().show_toast(page.user.name if page.user.name !=
-                               "" else f"Usuário {page.page_index}")
+                               "" else f"Account {page.page_index}")
         button.selected()
 
     def close_pages(self):

@@ -112,19 +112,19 @@ class Ui_Settings(object):
     def retranslateUi(self, Settings):
         _translate = QtCore.QCoreApplication.translate
         Settings.setWindowTitle(_translate("Settings", "Form"))
-        self.btn_back.setText(_translate("Settings", "<- Voltar para o ZapZap"))
+        self.btn_back.setText(_translate("Settings", "<- Back to ZapZap"))
         self.btn_back.setShortcut(_translate("Settings", "Esc"))
-        self.label_4.setText(_translate("Settings", "CONFIGURAÇÕES"))
-        self.btn_page_general.setText(_translate("Settings", "Geral"))
-        self.btn_account.setText(_translate("Settings", "Contas"))
-        self.label_3.setText(_translate("Settings", "FERRAMENTAS"))
-        self.btn_page_appearence.setText(_translate("Settings", "Aparência"))
-        self.btn_page_notifications.setText(_translate("Settings", "Notificações"))
-        self.btn_page_performance.setText(_translate("Settings", "Desempenho"))
-        self.btn_page_network.setText(_translate("Settings", "Rede"))
-        self.label.setText(_translate("Settings", "AJUDA"))
-        self.btn_page_help.setText(_translate("Settings", "Sobre o ZapZap"))
-        self.btn_quit.setText(_translate("Settings", "Sair"))
+        self.label_4.setText(_translate("Settings", "SETTINGS"))
+        self.btn_page_general.setText(_translate("Settings", "General"))
+        self.btn_account.setText(_translate("Settings", "Accounts"))
+        self.label_3.setText(_translate("Settings", "TOOLS"))
+        self.btn_page_appearence.setText(_translate("Settings", "Appearance"))
+        self.btn_page_notifications.setText(_translate("Settings", "Notifications"))
+        self.btn_page_performance.setText(_translate("Settings", "Performance"))
+        self.btn_page_network.setText(_translate("Settings", "Network"))
+        self.label.setText(_translate("Settings", "HELP"))
+        self.btn_page_help.setText(_translate("Settings", "About ZapZap"))
+        self.btn_quit.setText(_translate("Settings", "Quit"))
 
 
 if __name__ == "__main__":

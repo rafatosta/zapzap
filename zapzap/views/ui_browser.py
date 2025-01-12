@@ -88,9 +88,9 @@ class Ui_Browser(object):
         _translate = QtCore.QCoreApplication.translate
         Browser.setWindowTitle(_translate("Browser", "Form"))
         self.btn_new_account.setToolTip(_translate("Browser", "Novo usuário"))
-        self.btn_new_chat_number.setToolTip(_translate("Browser", "Nova conversa pelo número do telefone"))
-        self.btn_new_chat.setToolTip(_translate("Browser", "Nova conversa"))
-        self.btn_open_settings.setToolTip(_translate("Browser", "Configurações do ZapZap"))
+        self.btn_new_chat_number.setToolTip(_translate("Browser", "New conversation by the phone number"))
+        self.btn_new_chat.setToolTip(_translate("Browser", "New conversation"))
+        self.btn_open_settings.setToolTip(_translate("Browser", "ZapZap Settings"))
 
 
 if __name__ == "__main__":

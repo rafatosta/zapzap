@@ -117,8 +117,8 @@ class Ui_MainWindow(object):
         self.actionNew_chat.setShortcut(_translate("MainWindow", "Ctrl+N"))
         self.actionBy_phone_number.setText(_translate("MainWindow", "By number phone"))
         self.actionBy_phone_number.setShortcut(_translate("MainWindow", "Ctrl+M"))
-        self.actionShortcuts.setText(_translate("MainWindow", "Atalhos do Teclado"))
-        self.actionSobre_o_ZapZap.setText(_translate("MainWindow", "Sobre o ZapZap"))
+        self.actionShortcuts.setText(_translate("MainWindow", "Keyboard shortcuts"))
+        self.actionSobre_o_ZapZap.setText(_translate("MainWindow", "About"))
 
 
 if __name__ == "__main__":

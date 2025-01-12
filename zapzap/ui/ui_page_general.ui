@@ -56,14 +56,14 @@
            </font>
           </property>
           <property name="text">
-           <string>Geral</string>
+           <string>General</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QGroupBox" name="groupBox_3">
           <property name="title">
-           <string>Diretório dos downloads</string>
+           <string>Download Directory</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
            <item row="0" column="0">
@@ -93,7 +93,7 @@
         <item>
          <widget class="QGroupBox" name="groupBox">
           <property name="title">
-           <string>Corretor ortográfico</string>
+           <string>Spellchecker</string>
           </property>
           <property name="checkable">
            <bool>true</bool>
@@ -102,7 +102,7 @@
            <item row="1" column="0">
             <widget class="QLabel" name="label_2">
              <property name="text">
-              <string>Diretório</string>
+              <string>Directory</string>
              </property>
             </widget>
            </item>
@@ -138,7 +138,7 @@
               </font>
              </property>
              <property name="text">
-              <string>Nota: Necessário reiniciar.</string>
+              <string>Note: Required restart.</string>
              </property>
             </widget>
            </item>
@@ -148,27 +148,27 @@
         <item>
          <widget class="QGroupBox" name="groupBox_2">
           <property name="title">
-           <string>Comportamento</string>
+           <string>Behavior</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
            <item>
             <widget class="QCheckBox" name="btn_quit_in_close">
              <property name="text">
-              <string>Encerrar ao fechar</string>
+              <string>Closer when closing the window</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QCheckBox" name="btn_start_background">
              <property name="text">
-              <string>Iniciar minimizado</string>
+              <string>Start minimized</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QCheckBox" name="btn_start_system">
              <property name="text">
-              <string>Iniciar junto com o sistema</string>
+              <string>Start with the system</string>
              </property>
             </widget>
            </item>

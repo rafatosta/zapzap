@@ -56,7 +56,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Desempenho (Experimental)</string>
+           <string>Performance (Experimental)</string>
           </property>
          </widget>
         </item>
@@ -75,7 +75,7 @@
            <item row="0" column="0">
             <widget class="QLabel" name="label_3">
              <property name="text">
-              <string>Tipo de Cache</string>
+              <string>Cache Type</string>
              </property>
             </widget>
            </item>
@@ -101,7 +101,7 @@
            <item row="1" column="0">
             <widget class="QLabel" name="label_2">
              <property name="text">
-              <string>Tamanho máximo do cache</string>
+              <string>Maximum Cache Size</string>
              </property>
             </widget>
            </item>
@@ -130,27 +130,27 @@
         <item>
          <widget class="QGroupBox" name="groupBox">
           <property name="title">
-           <string>Comportamento do QWebEngine</string>
+           <string>QWebEngine Behavior</string>
           </property>
           <layout class="QGridLayout" name="gridLayout">
            <item row="2" column="0">
             <widget class="QCheckBox" name="disable_gpu">
              <property name="text">
-              <string>Desabilita a aceleração de hardware da GPU</string>
+              <string>Disable GPU hardware acceleration</string>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
             <widget class="QCheckBox" name="in_process_gpu">
              <property name="text">
-              <string>Ativar mesmo processo para GPU e renderização</string>
+              <string>Enable single process for GPU and rendering</string>
              </property>
             </widget>
            </item>
            <item row="3" column="0">
             <widget class="QCheckBox" name="single_process">
              <property name="text">
-              <string>Executa tudo em um único processo</string>
+              <string>Run everything in a single process</string>
              </property>
             </widget>
            </item>
@@ -181,7 +181,7 @@
           <item>
            <widget class="QPushButton" name="btn_restore">
             <property name="text">
-             <string>Restaurar</string>
+             <string>Restore</string>
             </property>
            </widget>
           </item>
@@ -195,7 +195,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Nota: Necessário reinicar para aplicar.</string>
+           <string>Note: Restart required to apply changes.</string>
           </property>
          </widget>
         </item>

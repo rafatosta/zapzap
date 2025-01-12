@@ -44,7 +44,7 @@
          </size>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clique para gerar novas cores para o ícone&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click to generate new colors for the icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string/>
@@ -71,7 +71,7 @@
            <string notr="true"/>
           </property>
           <property name="text">
-           <string>Desativar</string>
+           <string>Disable</string>
           </property>
           <property name="checkable">
            <bool>true</bool>
@@ -84,7 +84,7 @@
            <string notr="true"/>
           </property>
           <property name="text">
-           <string>Não pertube</string>
+           <string>Do not disturb</string>
           </property>
           <property name="checkable">
            <bool>true</bool>
@@ -103,7 +103,7 @@
            <string notr="true"/>
           </property>
           <property name="text">
-           <string>Excluir</string>
+           <string>Delete</string>
           </property>
          </widget>
         </item>

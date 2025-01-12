@@ -153,7 +153,7 @@
             </size>
            </property>
            <property name="toolTip">
-            <string>Nova conversa pelo número do telefone</string>
+            <string>New conversation by the phone number</string>
            </property>
            <property name="text">
             <string/>
@@ -175,7 +175,7 @@
             </size>
            </property>
            <property name="toolTip">
-            <string>Nova conversa</string>
+            <string>New conversation</string>
            </property>
            <property name="text">
             <string/>
@@ -204,7 +204,7 @@
             </size>
            </property>
            <property name="toolTip">
-            <string>Configurações do ZapZap</string>
+            <string>ZapZap Settings</string>
            </property>
            <property name="text">
             <string/>
