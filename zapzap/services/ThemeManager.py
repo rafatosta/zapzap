@@ -17,6 +17,34 @@ class ThemeManager:
     # Dicionário com temas
     themes = {
         "light": """
+            /* genéricos */
+            /* QStackedWidget#pages*/
+            QPushButton {
+                background-color: #F5F7F9;
+                color: #202C33;
+                border: 1px solid #D0D4D8;
+                padding: 5px 10px;
+                font-size: 14px;
+                border-radius: 6px;
+            }
+
+            QPushButton:hover {
+                background-color: #E9ECEF;
+                border: 1px solid #B0B6BB;
+            }
+
+            QPushButton:pressed {
+                background-color: #DDE2E6;
+                border: 1px solid #A0A6AB;
+                color: #161E23;
+            }
+
+            QPushButton:disabled {
+                background-color: #F0F2F5;
+                color: #A6AEB6;
+                border: 1px solid #D0D4D8;
+            }
+
             /* Sidebar geral */
             QWidget#sidebar {
                 background-color: #f0f2f5;
@@ -25,8 +53,9 @@ class ThemeManager:
             }
 
             /* Botões da Sidebar */
+            /* Estilo exclusivo para botões de QWidget#menu_layout */
             QWidget#menu_layout QPushButton {
-                background-color: #f0f2f5;
+                background-color: #f0f2f5; /* Estilo exclusivo */
                 color: #202c33;
                 border: none;
                 padding: 10px 15px;
@@ -36,19 +65,19 @@ class ThemeManager:
                 border-left: 3px solid #a8a9ab;
             }
 
-            /* Efeito hover nos botões */
+            /* Efeito hover exclusivo */
             QWidget#menu_layout QPushButton:hover {
                 background-color: #f9f9fb;
                 border-left: 4px solid #00BD95;
             }
 
-            /* Botão pressionado */
+            /* Estilo pressionado exclusivo */
             QWidget#menu_layout QPushButton:pressed {
                 background-color: #d8d9dc;
                 color: #202c33;
             }
 
-            /* Botão selecionado */
+            /* Estilo desativado exclusivo */
             QWidget#menu_layout QPushButton:disabled {
                 background-color: #d8d9dc;
                 border-left: 4px solid #00BD95;
@@ -61,8 +90,11 @@ class ThemeManager:
                 margin-top: 8px; /* Espaçamento entre labels */
             }
 
-            /* Botões do browser */
+            /* Botões do settings_buttons_layout (Browser)*/
             QWidget#settings_buttons_layout QPushButton {
+                background-color: #f0f2f5;
+                border: none;
+                border-radius: none;
                 qproperty-flat: true;
             }
 
@@ -102,6 +134,7 @@ class ThemeManager:
 			#btn_quit:hover{
 				color: rgb(224, 27, 36);
 			}
+
              """,
         "dark":
             """

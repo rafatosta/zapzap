@@ -15,7 +15,10 @@ class PageButton(QPushButton):
     # Estilos
     STYLE_NORMAL = """
     QPushButton {
-       qproperty-iconSize: 25px;
+        border: none;
+        border-radius: none;
+        qproperty-flat: true;
+        qproperty-iconSize: 25px;
     }
     QToolTip {
        color: #F0F2F5;
@@ -29,6 +32,7 @@ class PageButton(QPushButton):
       background-color: rgba(225, 225, 225, 0.3);
       border-radius: 2px;
       height: 30px;
+      border: none;
     }
     QToolTip {
        color: #F0F2F5;
