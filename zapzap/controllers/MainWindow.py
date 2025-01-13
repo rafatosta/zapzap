@@ -177,7 +177,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     # === Eventos externos ===
     def xdgOpenChat(self, url):
         """Open chat by clicking on a notification"""
-        self._current_page.page().xdg_open_chat(url)
+        self._current_page().page().xdg_open_chat(url)
 
     # === Estilo e Interface ===
     def settings_menubar(self):
