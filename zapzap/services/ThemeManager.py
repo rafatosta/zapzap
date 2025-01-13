@@ -106,7 +106,7 @@ class ThemeManager:
         )
         self._apply_palette(palette)
         QApplication.instance().getWindow().browser.set_theme_light()
-        QApplication.instance().setStyleSheet(ThemeStylesheet.themes['light'])
+        QApplication.instance().setStyleSheet(ThemeStylesheet.get_stylesheet('light'))
 
     def _apply_dark_theme(self):
         """Aplica o tema escuro."""
@@ -116,7 +116,7 @@ class ThemeManager:
         )
         self._apply_palette(palette)
         QApplication.instance().getWindow().browser.set_theme_dark()
-        QApplication.instance().setStyleSheet(ThemeStylesheet.themes['dark'])
+        QApplication.instance().setStyleSheet(ThemeStylesheet.get_stylesheet('dark'))
 
     def _create_palette(self, window, text, base, highlight):
         """Cria uma paleta com cores fornecidas."""

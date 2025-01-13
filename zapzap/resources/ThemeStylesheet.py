@@ -2,11 +2,6 @@
 
 class ThemeStylesheet:
 
-    themes = {
-        'light': "ThemeStylesheet.get_full_stylesheet()",
-        'dark': ""
-    }
-
     # Componentes separados como strings
     PUSHBUTTON = {
         "light": """
@@ -813,22 +808,23 @@ class ThemeStylesheet:
     """
     }
 
-    def get_stylesheet() -> str:
+    @staticmethod
+    def get_stylesheet(theme) -> str:
         components = [
-            ThemeStylesheet.PUSHBUTTON['dark'],
-            ThemeStylesheet.CHECKABLE_PUSHBUTTON,
-            ThemeStylesheet.SIDEBAR,
-            ThemeStylesheet.SIDEBAR_MENU_BUTTONS,
-            ThemeStylesheet.LABELS,
-            ThemeStylesheet.SETTINGS_BUTTONS,
-            ThemeStylesheet.FRAMES,
-            ThemeStylesheet.SPECIAL_BUTTONS,
-            ThemeStylesheet.COMBOBOX,
-            ThemeStylesheet.LINE_EDIT,
-            ThemeStylesheet.MENU,
-            ThemeStylesheet.TABLE,
-            ThemeStylesheet.GROUP_BOX,
-            ThemeStylesheet.CHECK_BOX,
-            ThemeStylesheet.RADIO_BUTTON,
+            ThemeStylesheet.PUSHBUTTON[theme],
+            ThemeStylesheet.CHECKABLE_PUSHBUTTON[theme],
+            ThemeStylesheet.SIDEBAR[theme],
+            ThemeStylesheet.SIDEBAR_MENU_BUTTONS[theme],
+            ThemeStylesheet.LABELS[theme],
+            ThemeStylesheet.SETTINGS_BUTTONS[theme],
+            ThemeStylesheet.FRAMES[theme],
+            ThemeStylesheet.SPECIAL_BUTTONS[theme],
+            ThemeStylesheet.COMBOBOX[theme],
+            ThemeStylesheet.LINE_EDIT[theme],
+            ThemeStylesheet.MENU[theme],
+            ThemeStylesheet.TABLE[theme],
+            ThemeStylesheet.GROUP_BOX[theme],
+            ThemeStylesheet.CHECK_BOX[theme],
+            ThemeStylesheet.RADIO_BUTTON[theme],
         ]
         return "\n".join(components)
