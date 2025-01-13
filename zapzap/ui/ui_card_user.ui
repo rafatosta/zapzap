@@ -63,6 +63,7 @@
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
+	background-color: transparent;
                 border: none;
                 border-radius: none;
                 qproperty-flat: true;

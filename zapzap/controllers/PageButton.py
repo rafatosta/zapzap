@@ -15,15 +15,11 @@ class PageButton(QPushButton):
     # Estilos
     STYLE_NORMAL = """
     QPushButton {
+        background-color: transparent;
         border: none;
         border-radius: none;
         qproperty-flat: true;
         qproperty-iconSize: 25px;
-    }
-    QToolTip {
-       color: #F0F2F5;
-       background-color: #202C33;
-       padding: 2px;
     }
     """
 
@@ -34,11 +30,6 @@ class PageButton(QPushButton):
       height: 30px;
       border: none;
     }
-    QToolTip {
-       color: #F0F2F5;
-       background-color: #202C33;
-       padding: 2px;
-    }
     """
 
     STYLE_SELECTED = """
@@ -47,11 +38,6 @@ class PageButton(QPushButton):
       border-radius: 2px;
       height: 30px;
       border-left: 3px solid #00BD95;
-    }
-    QToolTip {
-       color: #F0F2F5;
-       background-color: #202C33;
-       padding: 2px;
     }
     """
 

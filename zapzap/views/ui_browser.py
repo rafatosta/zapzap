@@ -27,7 +27,7 @@ class Ui_Browser(object):
         self.verticalLayout.setContentsMargins(5, 6, 5, 6)
         self.verticalLayout.setObjectName("verticalLayout")
         self.page_buttons_layout = QtWidgets.QVBoxLayout()
-        self.page_buttons_layout.setSpacing(0)
+        self.page_buttons_layout.setSpacing(3)
         self.page_buttons_layout.setObjectName("page_buttons_layout")
         self.verticalLayout.addLayout(self.page_buttons_layout)
         self.line = QtWidgets.QFrame(parent=self.browser_sidebar)

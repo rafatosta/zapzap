@@ -29,6 +29,7 @@ class Ui_CardUser(object):
         self.icon.setMinimumSize(QtCore.QSize(46, 46))
         self.icon.setMaximumSize(QtCore.QSize(46, 46))
         self.icon.setStyleSheet("QPushButton {\n"
+"    background-color: transparent;\n"
 "                border: none;\n"
 "                border-radius: none;\n"
 "                qproperty-flat: true;\n"

@@ -65,7 +65,7 @@
       <item>
        <layout class="QVBoxLayout" name="page_buttons_layout">
         <property name="spacing">
-         <number>0</number>
+         <number>3</number>
         </property>
        </layout>
       </item>
