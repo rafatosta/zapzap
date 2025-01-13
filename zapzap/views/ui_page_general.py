@@ -13,6 +13,7 @@ class Ui_PageGeneral(object):
     def setupUi(self, PageGeneral):
         PageGeneral.setObjectName("PageGeneral")
         PageGeneral.resize(693, 620)
+        PageGeneral.setWindowTitle("")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(PageGeneral)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
@@ -107,7 +108,6 @@ class Ui_PageGeneral(object):
 
     def retranslateUi(self, PageGeneral):
         _translate = QtCore.QCoreApplication.translate
-        PageGeneral.setWindowTitle(_translate("PageGeneral", "Form"))
         self.label.setText(_translate("PageGeneral", "General"))
         self.groupBox_3.setTitle(_translate("PageGeneral", "Download Directory"))
         self.groupBox.setTitle(_translate("PageGeneral", "Spellchecker"))

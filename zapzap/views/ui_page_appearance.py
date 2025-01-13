@@ -13,6 +13,7 @@ class Ui_PageAppearance(object):
     def setupUi(self, PageAppearance):
         PageAppearance.setObjectName("PageAppearance")
         PageAppearance.resize(693, 620)
+        PageAppearance.setWindowTitle("")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(PageAppearance)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
@@ -105,7 +106,6 @@ class Ui_PageAppearance(object):
 
     def retranslateUi(self, PageAppearance):
         _translate = QtCore.QCoreApplication.translate
-        PageAppearance.setWindowTitle(_translate("PageAppearance", "Form"))
         self.label.setText(_translate("PageAppearance", "Appearance"))
         self.style_groupBox.setTitle(_translate("PageAppearance", "Style"))
         self.theme_auto_radioButton.setText(_translate("PageAppearance", "Adaptive"))

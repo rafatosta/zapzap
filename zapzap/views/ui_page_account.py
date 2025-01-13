@@ -13,6 +13,7 @@ class Ui_PageAccount(object):
     def setupUi(self, PageAccount):
         PageAccount.setObjectName("PageAccount")
         PageAccount.resize(693, 620)
+        PageAccount.setWindowTitle("")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(PageAccount)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
@@ -65,9 +66,8 @@ class Ui_PageAccount(object):
 
     def retranslateUi(self, PageAccount):
         _translate = QtCore.QCoreApplication.translate
-        PageAccount.setWindowTitle(_translate("PageAccount", "Form"))
         self.label.setText(_translate("PageAccount", "My accounts"))
-        self.btn_new_user.setText(_translate("PageAccount", "New accounts"))
+        self.btn_new_user.setText(_translate("PageAccount", "New account"))
 
 
 if __name__ == "__main__":

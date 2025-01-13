@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string/>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -90,7 +90,7 @@
            <string>&lt; back</string>
           </property>
           <property name="shortcut">
-           <string>Esc</string>
+           <string notr="true">Esc</string>
           </property>
           <property name="flat">
            <bool>true</bool>

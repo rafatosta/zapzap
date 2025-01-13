@@ -13,6 +13,7 @@ class Ui_PageNotifications(object):
     def setupUi(self, PageNotifications):
         PageNotifications.setObjectName("PageNotifications")
         PageNotifications.resize(693, 620)
+        PageNotifications.setWindowTitle("")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(PageNotifications)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
@@ -64,7 +65,6 @@ class Ui_PageNotifications(object):
 
     def retranslateUi(self, PageNotifications):
         _translate = QtCore.QCoreApplication.translate
-        PageNotifications.setWindowTitle(_translate("PageNotifications", "Form"))
         self.label.setText(_translate("PageNotifications", "Notifications"))
         self.notify_groupBox.setTitle(_translate("PageNotifications", "Work area notifications"))
         self.show_photo.setText(_translate("PageNotifications", "Show the photo of the sender"))

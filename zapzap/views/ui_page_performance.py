@@ -13,6 +13,7 @@ class Ui_PagePerformance(object):
     def setupUi(self, PagePerformance):
         PagePerformance.setObjectName("PagePerformance")
         PagePerformance.resize(693, 620)
+        PagePerformance.setWindowTitle("")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(PagePerformance)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
@@ -100,7 +101,6 @@ class Ui_PagePerformance(object):
 
     def retranslateUi(self, PagePerformance):
         _translate = QtCore.QCoreApplication.translate
-        PagePerformance.setWindowTitle(_translate("PagePerformance", "Form"))
         self.label.setText(_translate("PagePerformance", "Performance (Experimental)"))
         self.groupBox_2.setTitle(_translate("PagePerformance", "GroupBox"))
         self.label_3.setText(_translate("PagePerformance", "Cache Type"))

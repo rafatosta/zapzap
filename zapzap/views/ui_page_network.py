@@ -13,6 +13,7 @@ class Ui_PageNetwork(object):
     def setupUi(self, PageNetwork):
         PageNetwork.setObjectName("PageNetwork")
         PageNetwork.resize(693, 620)
+        PageNetwork.setWindowTitle("")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(PageNetwork)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
@@ -110,7 +111,6 @@ class Ui_PageNetwork(object):
 
     def retranslateUi(self, PageNetwork):
         _translate = QtCore.QCoreApplication.translate
-        PageNetwork.setWindowTitle(_translate("PageNetwork", "Form"))
         self.label.setText(_translate("PageNetwork", "Network"))
         self.proxyCheckBox.setTitle(_translate("PageNetwork", "Network proxy"))
         self.portLabel.setText(_translate("PageNetwork", "Port"))

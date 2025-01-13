@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string/>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_2">
    <property name="spacing">
@@ -59,7 +59,7 @@
          </size>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click to generate new colors for the icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>Click to generate new colors for the icon</string>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {

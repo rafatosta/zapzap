@@ -13,6 +13,7 @@ class Ui_Settings(object):
     def setupUi(self, Settings):
         Settings.setObjectName("Settings")
         Settings.resize(700, 518)
+        Settings.setWindowTitle("")
         Settings.setStyleSheet("")
         self.horizontalLayout = QtWidgets.QHBoxLayout(Settings)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -37,6 +38,7 @@ class Ui_Settings(object):
         font.setBold(True)
         self.btn_back.setFont(font)
         self.btn_back.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btn_back.setShortcut("Esc")
         self.btn_back.setFlat(True)
         self.btn_back.setObjectName("btn_back")
         self.horizontalLayout_2.addWidget(self.btn_back)
@@ -131,9 +133,7 @@ class Ui_Settings(object):
 
     def retranslateUi(self, Settings):
         _translate = QtCore.QCoreApplication.translate
-        Settings.setWindowTitle(_translate("Settings", "Form"))
         self.btn_back.setText(_translate("Settings", "< back"))
-        self.btn_back.setShortcut(_translate("Settings", "Esc"))
         self.label_4.setText(_translate("Settings", "SETTINGS"))
         self.btn_page_general.setText(_translate("Settings", "General"))
         self.btn_account.setText(_translate("Settings", "Accounts"))

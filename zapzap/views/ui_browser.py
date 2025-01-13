@@ -13,6 +13,7 @@ class Ui_Browser(object):
     def setupUi(self, Browser):
         Browser.setObjectName("Browser")
         Browser.resize(1137, 606)
+        Browser.setWindowTitle("")
         self.horizontalLayout = QtWidgets.QHBoxLayout(Browser)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setSpacing(0)
@@ -86,8 +87,7 @@ class Ui_Browser(object):
 
     def retranslateUi(self, Browser):
         _translate = QtCore.QCoreApplication.translate
-        Browser.setWindowTitle(_translate("Browser", "Form"))
-        self.btn_new_account.setToolTip(_translate("Browser", "Novo usuário"))
+        self.btn_new_account.setToolTip(_translate("Browser", "New account"))
         self.btn_new_chat_number.setToolTip(_translate("Browser", "New conversation by the phone number"))
         self.btn_new_chat.setToolTip(_translate("Browser", "New conversation"))
         self.btn_open_settings.setToolTip(_translate("Browser", "ZapZap Settings"))

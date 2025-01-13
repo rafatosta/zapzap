@@ -13,6 +13,7 @@ class Ui_CardUser(object):
     def setupUi(self, CardUser):
         CardUser.setObjectName("CardUser")
         CardUser.resize(385, 98)
+        CardUser.setWindowTitle("")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(CardUser)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_2.setSpacing(0)
@@ -79,8 +80,7 @@ class Ui_CardUser(object):
 
     def retranslateUi(self, CardUser):
         _translate = QtCore.QCoreApplication.translate
-        CardUser.setWindowTitle(_translate("CardUser", "Form"))
-        self.icon.setToolTip(_translate("CardUser", "<html><head/><body><p>Click to generate new colors for the icon</p></body></html>"))
+        self.icon.setToolTip(_translate("CardUser", "Click to generate new colors for the icon"))
         self.disable.setText(_translate("CardUser", "Disable"))
         self.silence.setText(_translate("CardUser", "Do not disturb"))
         self.delete.setText(_translate("CardUser", "Delete"))
