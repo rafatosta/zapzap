@@ -219,7 +219,7 @@ class ThemeStylesheet:
 
             /* Estilo para QLabel desativado */
             QLabel:disabled {
-                color: #364147; /* Texto desbotado */
+                color: #A6AEB6; /* Texto desbotado */
             }
             QWidget#menu_layout QLabel {
                 color: #A6AEB6;
@@ -688,6 +688,25 @@ class ThemeStylesheet:
             QGroupBox:disabled::title {
                 color: #A6AEB6;
             }
+
+            QGroupBox:checked::title {
+                color: #2DBA2D;
+            }
+            QGroupBox::indicator {
+                width: 10px;
+                height: 10px;
+                border: 2px solid #D0D4D8;
+                border-radius: 4px;
+                background-color: #FFFFFF;
+            }
+            QGroupBox::indicator:checked {
+                background-color: #00BD95;
+                border: 2px solid #00BD95;
+            }
+            QGroupBox::indicator:unchecked {
+                background-color: #F5F7F9;
+                border: 2px solid #D0D4D8;
+            }
         """,
         "dark": """
             QGroupBox {
@@ -714,6 +733,24 @@ class ThemeStylesheet:
             }
             QGroupBox:disabled::title {
                 color: #777777;
+            }
+            QGroupBox:checked::title {
+                color: #1ABC9C;
+            }
+            QGroupBox::indicator {
+                width: 10px;
+                height: 10px;
+                border: 2px solid #555555;
+                border-radius: 4px;
+                background-color: #444444;
+            }
+            QGroupBox::indicator:checked {
+                background-color: #1ABC9C;
+                border: 2px solid #1ABC9C;
+            }
+            QGroupBox::indicator:unchecked {
+                background-color: #2D3E44;
+                border: 2px solid #555555;
             }
         """
     }
