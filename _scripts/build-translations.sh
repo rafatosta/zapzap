@@ -23,7 +23,12 @@ sed -i 's/charset=CHARSET/charset=UTF-8/g' "$POT_FILE"
 
 # Loop pelas linhas no arquivo LINGUAS para processar cada idioma listado
 LINGUAS_FILE="./po/LINGUAS"
-while read -r line; do
+while IFS= read -r line || [[ -n "$line" ]]; do
+  # Ignorar linhas vazias ou com espaços em branco
+  if [[ -z "$line" || "$line" =~ ^[[:space:]]*$ ]]; then
+    continue
+  fi
+
   # Diretório para os arquivos .mo do idioma atual
   MO_DIR="${MO_BASE_DIR}/${line}/LC_MESSAGES/"
   mkdir -p "$MO_DIR"
@@ -48,5 +53,12 @@ while read -r line; do
 
   # Gerar o arquivo .mo correspondente
   msgfmt "$PO_FILE" -o "${MO_DIR}zapzap.mo"
+
+  # Aviso sobre a geração do arquivo .mo
+  if [ $? -eq 0 ]; then
+    echo "Arquivo .mo gerado com sucesso para o idioma: ${line}"
+  else
+    echo "Erro ao gerar o arquivo .mo para o idioma: ${line}"
+  fi
 
 done < "$LINGUAS_FILE"
