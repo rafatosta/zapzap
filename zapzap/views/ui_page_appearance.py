@@ -1,3 +1,4 @@
+from gettext import gettext as _
 # Form implementation generated from reading ui file './zapzap/ui/ui_page_appearance.ui'
 #
 # Created by: PyQt6 UI code generator 6.8.0
@@ -105,25 +106,25 @@ class Ui_PageAppearance(object):
         QtCore.QMetaObject.connectSlotsByName(PageAppearance)
 
     def retranslateUi(self, PageAppearance):
-        _translate = QtCore.QCoreApplication.translate
-        self.label.setText(_translate("PageAppearance", "Appearance"))
-        self.style_groupBox.setTitle(_translate("PageAppearance", "Style"))
-        self.theme_auto_radioButton.setText(_translate("PageAppearance", "Adaptive"))
-        self.theme_light_radioButton.setText(_translate("PageAppearance", "Light"))
-        self.theme_dark_radioButton.setText(_translate("PageAppearance", "Dark"))
-        self.tray_groupBox.setTitle(_translate("PageAppearance", "Tray icon"))
-        self.tray_default_radioButton.setText(_translate("PageAppearance", "Default"))
-        self.tray_slight_radioButton.setText(_translate("PageAppearance", "Symbolic light"))
-        self.tray_sdark_radioButton.setText(_translate("PageAppearance", "Symbolic dark"))
-        self.browser_sidebar.setText(_translate("PageAppearance", "Show sidebar"))
-        self.mainwindow_menu.setText(_translate("PageAppearance", "Show menu bar"))
-        self.scaleLabel.setText(_translate("PageAppearance", "Scale"))
-        self.scaleComboBox.setItemText(0, _translate("PageAppearance", "100 %"))
-        self.scaleComboBox.setItemText(1, _translate("PageAppearance", "125 %"))
-        self.scaleComboBox.setItemText(2, _translate("PageAppearance", "150 %"))
-        self.scaleComboBox.setItemText(3, _translate("PageAppearance", "175 %"))
-        self.scaleComboBox.setItemText(4, _translate("PageAppearance", "200 %"))
-        self.label_2.setText(_translate("PageAppearance", "Note: The change of scale will only have effect until restarting."))
+        
+        self.label.setText(_("Appearance"))
+        self.style_groupBox.setTitle(_("Style"))
+        self.theme_auto_radioButton.setText(_("Adaptive"))
+        self.theme_light_radioButton.setText(_("Light"))
+        self.theme_dark_radioButton.setText(_("Dark"))
+        self.tray_groupBox.setTitle(_("Tray icon"))
+        self.tray_default_radioButton.setText(_("Default"))
+        self.tray_slight_radioButton.setText(_("Symbolic light"))
+        self.tray_sdark_radioButton.setText(_("Symbolic dark"))
+        self.browser_sidebar.setText(_("Show sidebar"))
+        self.mainwindow_menu.setText(_("Show menu bar"))
+        self.scaleLabel.setText(_("Scale"))
+        self.scaleComboBox.setItemText(0, _("100 %"))
+        self.scaleComboBox.setItemText(1, _("125 %"))
+        self.scaleComboBox.setItemText(2, _("150 %"))
+        self.scaleComboBox.setItemText(3, _("175 %"))
+        self.scaleComboBox.setItemText(4, _("200 %"))
+        self.label_2.setText(_("Note: The change of scale will only have effect until restarting."))
 
 
 if __name__ == "__main__":

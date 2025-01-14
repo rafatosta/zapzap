@@ -1,3 +1,4 @@
+from gettext import gettext as _
 # Form implementation generated from reading ui file './zapzap/ui/ui_card_user.ui'
 #
 # Created by: PyQt6 UI code generator 6.8.0
@@ -79,12 +80,12 @@ class Ui_CardUser(object):
         QtCore.QMetaObject.connectSlotsByName(CardUser)
 
     def retranslateUi(self, CardUser):
-        _translate = QtCore.QCoreApplication.translate
-        self.icon.setToolTip(_translate("CardUser", "Click to generate new colors for the icon"))
-        self.disable.setText(_translate("CardUser", "Disable"))
-        self.silence.setText(_translate("CardUser", "Do not disturb"))
-        self.delete.setText(_translate("CardUser", "Delete"))
-        self.name.setPlaceholderText(_translate("CardUser", "Enter the user name"))
+        
+        self.icon.setToolTip(_("Click to generate new colors for the icon"))
+        self.disable.setText(_("Disable"))
+        self.silence.setText(_("Do not disturb"))
+        self.delete.setText(_("Delete"))
+        self.name.setPlaceholderText(_("Enter the user name"))
 
 
 if __name__ == "__main__":

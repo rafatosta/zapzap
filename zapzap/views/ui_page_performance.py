@@ -1,3 +1,4 @@
+from gettext import gettext as _
 # Form implementation generated from reading ui file './zapzap/ui/ui_page_performance.ui'
 #
 # Created by: PyQt6 UI code generator 6.8.0
@@ -100,23 +101,23 @@ class Ui_PagePerformance(object):
         QtCore.QMetaObject.connectSlotsByName(PagePerformance)
 
     def retranslateUi(self, PagePerformance):
-        _translate = QtCore.QCoreApplication.translate
-        self.label.setText(_translate("PagePerformance", "Performance (Experimental)"))
-        self.groupBox_2.setTitle(_translate("PagePerformance", "GroupBox"))
-        self.label_3.setText(_translate("PagePerformance", "Cache Type"))
-        self.cache_type.setItemText(0, _translate("PagePerformance", "DiskHttpCache"))
-        self.cache_type.setItemText(1, _translate("PagePerformance", "MemoryHttpCache"))
-        self.cache_type.setItemText(2, _translate("PagePerformance", "NoCache"))
-        self.label_2.setText(_translate("PagePerformance", "Maximum Cache Size"))
-        self.cache_size_max.setItemText(0, _translate("PagePerformance", "0 MB"))
-        self.cache_size_max.setItemText(1, _translate("PagePerformance", "50 MB"))
-        self.cache_size_max.setItemText(2, _translate("PagePerformance", "100 MB"))
-        self.groupBox.setTitle(_translate("PagePerformance", "QWebEngine Behavior"))
-        self.disable_gpu.setText(_translate("PagePerformance", "Disable GPU hardware acceleration"))
-        self.in_process_gpu.setText(_translate("PagePerformance", "Enable single process for GPU and rendering"))
-        self.single_process.setText(_translate("PagePerformance", "Run everything in a single process"))
-        self.btn_restore.setText(_translate("PagePerformance", "Restore"))
-        self.label_4.setText(_translate("PagePerformance", "Note: Restart required to apply changes."))
+        
+        self.label.setText(_("Performance (Experimental)"))
+        self.groupBox_2.setTitle(_("GroupBox"))
+        self.label_3.setText(_("Cache Type"))
+        self.cache_type.setItemText(0, _("DiskHttpCache"))
+        self.cache_type.setItemText(1, _("MemoryHttpCache"))
+        self.cache_type.setItemText(2, _("NoCache"))
+        self.label_2.setText(_("Maximum Cache Size"))
+        self.cache_size_max.setItemText(0, _("0 MB"))
+        self.cache_size_max.setItemText(1, _("50 MB"))
+        self.cache_size_max.setItemText(2, _("100 MB"))
+        self.groupBox.setTitle(_("QWebEngine Behavior"))
+        self.disable_gpu.setText(_("Disable GPU hardware acceleration"))
+        self.in_process_gpu.setText(_("Enable single process for GPU and rendering"))
+        self.single_process.setText(_("Run everything in a single process"))
+        self.btn_restore.setText(_("Restore"))
+        self.label_4.setText(_("Note: Restart required to apply changes."))
 
 
 if __name__ == "__main__":

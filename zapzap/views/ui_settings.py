@@ -1,3 +1,4 @@
+from gettext import gettext as _
 # Form implementation generated from reading ui file './zapzap/ui/ui_settings.ui'
 #
 # Created by: PyQt6 UI code generator 6.8.0
@@ -132,19 +133,19 @@ class Ui_Settings(object):
         QtCore.QMetaObject.connectSlotsByName(Settings)
 
     def retranslateUi(self, Settings):
-        _translate = QtCore.QCoreApplication.translate
-        self.btn_back.setText(_translate("Settings", "< back"))
-        self.label_4.setText(_translate("Settings", "SETTINGS"))
-        self.btn_page_general.setText(_translate("Settings", "General"))
-        self.btn_account.setText(_translate("Settings", "Accounts"))
-        self.label_3.setText(_translate("Settings", "TOOLS"))
-        self.btn_page_appearence.setText(_translate("Settings", "Appearance"))
-        self.btn_page_notifications.setText(_translate("Settings", "Notifications"))
-        self.btn_page_performance.setText(_translate("Settings", "Performance"))
-        self.btn_page_network.setText(_translate("Settings", "Network"))
-        self.label.setText(_translate("Settings", "HELP"))
-        self.btn_page_help.setText(_translate("Settings", "About"))
-        self.btn_quit.setText(_translate("Settings", "Quit"))
+        
+        self.btn_back.setText(_("< back"))
+        self.label_4.setText(_("SETTINGS"))
+        self.btn_page_general.setText(_("General"))
+        self.btn_account.setText(_("Accounts"))
+        self.label_3.setText(_("TOOLS"))
+        self.btn_page_appearence.setText(_("Appearance"))
+        self.btn_page_notifications.setText(_("Notifications"))
+        self.btn_page_performance.setText(_("Performance"))
+        self.btn_page_network.setText(_("Network"))
+        self.label.setText(_("HELP"))
+        self.btn_page_help.setText(_("About"))
+        self.btn_quit.setText(_("Quit"))
 
 
 if __name__ == "__main__":

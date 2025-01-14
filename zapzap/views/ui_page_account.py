@@ -1,3 +1,4 @@
+from gettext import gettext as _
 # Form implementation generated from reading ui file './zapzap/ui/ui_page_account.ui'
 #
 # Created by: PyQt6 UI code generator 6.8.0
@@ -65,9 +66,9 @@ class Ui_PageAccount(object):
         QtCore.QMetaObject.connectSlotsByName(PageAccount)
 
     def retranslateUi(self, PageAccount):
-        _translate = QtCore.QCoreApplication.translate
-        self.label.setText(_translate("PageAccount", "My accounts"))
-        self.btn_new_user.setText(_translate("PageAccount", "New account"))
+        
+        self.label.setText(_("My accounts"))
+        self.btn_new_user.setText(_("New account"))
 
 
 if __name__ == "__main__":

@@ -1,3 +1,4 @@
+from gettext import gettext as _
 # Form implementation generated from reading ui file './zapzap/ui/ui_page_network.ui'
 #
 # Created by: PyQt6 UI code generator 6.8.0
@@ -110,17 +111,17 @@ class Ui_PageNetwork(object):
         QtCore.QMetaObject.connectSlotsByName(PageNetwork)
 
     def retranslateUi(self, PageNetwork):
-        _translate = QtCore.QCoreApplication.translate
-        self.label.setText(_translate("PageNetwork", "Network"))
-        self.proxyCheckBox.setTitle(_translate("PageNetwork", "Network proxy"))
-        self.portLabel.setText(_translate("PageNetwork", "Port"))
-        self.userLabel.setText(_translate("PageNetwork", "User"))
-        self.passwordLabel.setText(_translate("PageNetwork", "Password"))
-        self.hostNameLabel.setText(_translate("PageNetwork", "Hostname"))
-        self.label_3.setText(_translate("PageNetwork", "ProxyType"))
-        self.proxyDescription.setText(_translate("PageNetwork", "Description"))
-        self.btn_ok.setText(_translate("PageNetwork", "Apply"))
-        self.btn_restore.setText(_translate("PageNetwork", "Restore"))
+        
+        self.label.setText(_("Network"))
+        self.proxyCheckBox.setTitle(_("Network proxy"))
+        self.portLabel.setText(_("Port"))
+        self.userLabel.setText(_("User"))
+        self.passwordLabel.setText(_("Password"))
+        self.hostNameLabel.setText(_("Hostname"))
+        self.label_3.setText(_("ProxyType"))
+        self.proxyDescription.setText(_("Description"))
+        self.btn_ok.setText(_("Apply"))
+        self.btn_restore.setText(_("Restore"))
 
 
 if __name__ == "__main__":

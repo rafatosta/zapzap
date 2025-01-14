@@ -1,3 +1,4 @@
+from gettext import gettext as _
 # Form implementation generated from reading ui file './zapzap/ui/ui_page_general.ui'
 #
 # Created by: PyQt6 UI code generator 6.8.0
@@ -115,17 +116,17 @@ class Ui_PageGeneral(object):
         QtCore.QMetaObject.connectSlotsByName(PageGeneral)
 
     def retranslateUi(self, PageGeneral):
-        _translate = QtCore.QCoreApplication.translate
-        self.label.setText(_translate("PageGeneral", "General"))
-        self.groupBox_3.setTitle(_translate("PageGeneral", "Download Directory"))
-        self.groupBox.setTitle(_translate("PageGeneral", "Spellchecker"))
-        self.label_2.setText(_translate("PageGeneral", "Directory"))
-        self.label_3.setText(_translate("PageGeneral", "Note: Required restart."))
-        self.groupBox_2.setTitle(_translate("PageGeneral", "Behavior"))
-        self.btn_quit_in_close.setText(_translate("PageGeneral", "Closer when closing the window"))
-        self.btn_start_background.setText(_translate("PageGeneral", "Start minimized"))
-        self.btn_start_system.setText(_translate("PageGeneral", "Start with the system"))
-        self.btn_wayland.setText(_translate("PageGeneral", "Wayland window system"))
+        
+        self.label.setText(_("General"))
+        self.groupBox_3.setTitle(_("Download Directory"))
+        self.groupBox.setTitle(_("Spellchecker"))
+        self.label_2.setText(_("Directory"))
+        self.label_3.setText(_("Note: Required restart."))
+        self.groupBox_2.setTitle(_("Behavior"))
+        self.btn_quit_in_close.setText(_("Closer when closing the window"))
+        self.btn_start_background.setText(_("Start minimized"))
+        self.btn_start_system.setText(_("Start with the system"))
+        self.btn_wayland.setText(_("Wayland window system"))
 
 
 if __name__ == "__main__":

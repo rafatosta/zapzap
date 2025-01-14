@@ -1,3 +1,4 @@
+from gettext import gettext as _
 # Form implementation generated from reading ui file './zapzap/ui/ui_page_notifications.ui'
 #
 # Created by: PyQt6 UI code generator 6.8.0
@@ -64,12 +65,12 @@ class Ui_PageNotifications(object):
         QtCore.QMetaObject.connectSlotsByName(PageNotifications)
 
     def retranslateUi(self, PageNotifications):
-        _translate = QtCore.QCoreApplication.translate
-        self.label.setText(_translate("PageNotifications", "Notifications"))
-        self.notify_groupBox.setTitle(_translate("PageNotifications", "Work area notifications"))
-        self.show_photo.setText(_translate("PageNotifications", "Show the photo of the sender"))
-        self.show_name.setText(_translate("PageNotifications", "Show the sender\'s name"))
-        self.show_msg.setText(_translate("PageNotifications", "Show message preview"))
+        
+        self.label.setText(_("Notifications"))
+        self.notify_groupBox.setTitle(_("Work area notifications"))
+        self.show_photo.setText(_("Show the photo of the sender"))
+        self.show_name.setText(_("Show the sender\'s name"))
+        self.show_msg.setText(_("Show message preview"))
 
 
 if __name__ == "__main__":

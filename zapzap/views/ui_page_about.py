@@ -1,3 +1,4 @@
+from gettext import gettext as _
 # Form implementation generated from reading ui file './zapzap/ui/ui_page_about.ui'
 #
 # Created by: PyQt6 UI code generator 6.8.0
@@ -104,14 +105,14 @@ class Ui_PageAbout(object):
         QtCore.QMetaObject.connectSlotsByName(PageAbout)
 
     def retranslateUi(self, PageAbout):
-        _translate = QtCore.QCoreApplication.translate
-        PageAbout.setWindowTitle(_translate("PageAbout", "Form"))
-        self.label.setText(_translate("PageAbout", "Sobre"))
-        self.desc_app.setText(_translate("PageAbout", "WhatsApp Web for Linux"))
-        self.version_app.setText(_translate("PageAbout", "Version {id} (Official compilation)"))
-        self.name_app.setText(_translate("PageAbout", "ZapZap"))
-        self.btnLeanMore.setText(_translate("PageAbout", "Learn more"))
-        self.btnReportIssue.setText(_translate("PageAbout", "Report issue"))
+        
+        PageAbout.setWindowTitle(_("Form"))
+        self.label.setText(_("Sobre"))
+        self.desc_app.setText(_("WhatsApp Web for Linux"))
+        self.version_app.setText(_("Version {id} (Official compilation)"))
+        self.name_app.setText(_("ZapZap"))
+        self.btnLeanMore.setText(_("Learn more"))
+        self.btnReportIssue.setText(_("Report issue"))
 
 
 if __name__ == "__main__":
