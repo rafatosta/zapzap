@@ -7,8 +7,8 @@ from zapzap.services.SettingsManager import SettingsManager
 class SetupManager:
     """Gerencia as configurações de ambiente para o aplicativo."""
 
-    _abs_path = QFileInfo(__file__).absolutePath()
-    _is_flatpak = _abs_path.startswith('/app/')
+    _is_flatpak = QFileInfo(__file__).absolutePath().startswith('/app/')
+    _qt_platform = "xcb"  # Valor padrão
 
     @staticmethod
     def apply():
@@ -16,8 +16,12 @@ class SetupManager:
         Aplica configurações específicas de ambiente dependendo do ambiente de execução.
         Configura a plataforma gráfica e escalonamento de tela.
         """
+        if not SetupManager._is_flatpak:
+            SetupManager._qt_platform = "wayland" if SettingsManager.get(
+                "system/wayland", False) else "xcb"
 
-        environ['QT_QPA_PLATFORM'] = "xcb"
+        environ['QT_QPA_PLATFORM'] = SetupManager._qt_platform
+
         environ['QT_SCALE_FACTOR'] = str(int(SettingsManager.get(
             "system/scale", 100))/100)
         environ['QT_AUTO_SCREEN_SCALE_FACTOR'] = '1'

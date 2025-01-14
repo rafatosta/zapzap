@@ -172,6 +172,20 @@
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="Line" name="line">
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="btn_wayland">
+             <property name="text">
+              <string>Wayland window system</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>

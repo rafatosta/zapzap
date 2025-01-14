@@ -95,6 +95,14 @@ class Ui_PageGeneral(object):
         self.btn_start_system = QtWidgets.QCheckBox(parent=self.groupBox_2)
         self.btn_start_system.setObjectName("btn_start_system")
         self.verticalLayout.addWidget(self.btn_start_system)
+        self.line = QtWidgets.QFrame(parent=self.groupBox_2)
+        self.line.setFrameShape(QtWidgets.QFrame.Shape.HLine)
+        self.line.setFrameShadow(QtWidgets.QFrame.Shadow.Sunken)
+        self.line.setObjectName("line")
+        self.verticalLayout.addWidget(self.line)
+        self.btn_wayland = QtWidgets.QCheckBox(parent=self.groupBox_2)
+        self.btn_wayland.setObjectName("btn_wayland")
+        self.verticalLayout.addWidget(self.btn_wayland)
         self.verticalLayout_2.addWidget(self.groupBox_2)
         self.horizontalLayout.addWidget(self.frame)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -117,6 +125,7 @@ class Ui_PageGeneral(object):
         self.btn_quit_in_close.setText(_translate("PageGeneral", "Closer when closing the window"))
         self.btn_start_background.setText(_translate("PageGeneral", "Start minimized"))
         self.btn_start_system.setText(_translate("PageGeneral", "Start with the system"))
+        self.btn_wayland.setText(_translate("PageGeneral", "Wayland window system"))
 
 
 if __name__ == "__main__":

@@ -1,4 +1,5 @@
 from PyQt6.QtWidgets import QWidget, QApplication, QStyle
+from zapzap.config.SetupManager import SetupManager
 from zapzap.services.AutostartManager import AutostartManager
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.DownloadManager import DownloadManager
@@ -28,6 +29,10 @@ class PageGeneral(QWidget, Ui_PageGeneral):
             self.style().standardIcon(QStyle.StandardPixmap.SP_DirIcon))
         self.btn_default_path_spell.setIcon(self.style().standardIcon(
             QStyle.StandardPixmap.SP_DialogResetButton))
+        
+        if SetupManager._is_flatpak:
+            self.btn_wayland.setDisabled(True)
+            self.btn_wayland.setToolTip("Use Flatseal to change this mode of execution.")
 
     def _load_settings(self):
         """
@@ -61,6 +66,9 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         self.btn_start_system.setChecked(
             SettingsManager.get("system/start_system", False))
 
+        self.btn_wayland.setChecked(
+            SettingsManager.get("system/wayland", False))
+
     def _configure_signals(self):
         """
         Conecta os sinais dos widgets aos respectivos manipuladores:
@@ -80,6 +88,9 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         self.btn_start_background.clicked.connect(
             lambda: SettingsManager.set("system/start_background", self.btn_start_background.isChecked()))
         self.btn_start_system.clicked.connect(self._handle_autostart)
+
+        self.btn_wayland.clicked.connect(
+            lambda: SettingsManager.set("system/wayland", self.btn_wayland.isChecked()))
 
     def _handle_spellcheck(self, lang: str):
         """
