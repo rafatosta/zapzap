@@ -222,8 +222,8 @@ class User:
         # Verifica o número de usuários cadastrados
         from zapzap import LIMITE_USERS
         if User.count_users() >= LIMITE_USERS:
-            print(f"Limite de {
-                  LIMITE_USERS} usuários atingido. Não é possível criar mais usuários.")
+            print(f"""Limite de {
+                  LIMITE_USERS} usuários atingido. Não é possível criar mais usuários.""")
             return None
 
         # Define o ícone, se necessário
