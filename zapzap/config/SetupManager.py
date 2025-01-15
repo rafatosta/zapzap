@@ -19,8 +19,7 @@ class SetupManager:
         if not SetupManager._is_flatpak:
             SetupManager._qt_platform = "wayland" if SettingsManager.get(
                 "system/wayland", False) else "xcb"
-
-        environ['QT_QPA_PLATFORM'] = SetupManager._qt_platform
+            environ['QT_QPA_PLATFORM'] = SetupManager._qt_platform
 
         environ['QT_SCALE_FACTOR'] = str(int(SettingsManager.get(
             "system/scale", 100))/100)
