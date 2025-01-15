@@ -1,16 +1,17 @@
 import zapzap
 import sys
 
-
 from zapzap.config.SetupManager import SetupManager
 from zapzap.controllers.MainWindow import MainWindow
 from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.services.ProxyManager import ProxyManager
 from zapzap.services.SettingsManager import SettingsManager
+from zapzap.services.TranslationManager import TranslationManager
 
 
 def main():
     SetupManager.apply()
+    TranslationManager.apply()
 
     # Define application attributes
     app = SingleApplication(
