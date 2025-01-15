@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-15 11:22-0300\n"
+"POT-Creation-Date: 2025-01-15 12:16-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,6 +79,7 @@ msgid "Help"
 msgstr ""
 
 #: zapzap/views/ui_mainwindow.py:101 zapzap/views/ui_settings.py:148
+#: zapzap/services/SysTrayManager.py:57
 msgid "Quit"
 msgstr ""
 
@@ -94,7 +95,7 @@ msgstr ""
 msgid "Ctrl+W"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:105
+#: zapzap/views/ui_mainwindow.py:105 zapzap/services/SysTrayManager.py:55
 msgid "Settings"
 msgstr ""
 
@@ -457,4 +458,38 @@ msgstr ""
 
 #: zapzap/views/ui_shortcuts_dialog.py:64
 msgid "WhatsApp Web"
+msgstr ""
+
+#: zapzap/services/ProxyManager.py:9
+msgid "No proxying is used"
+msgstr ""
+
+#: zapzap/services/ProxyManager.py:10
+msgid ""
+"Proxy is determined based on the application proxy set using "
+"setApplicationProxy()"
+msgstr ""
+
+#: zapzap/services/ProxyManager.py:11
+msgid "Socks5 proxying is used"
+msgstr ""
+
+#: zapzap/services/ProxyManager.py:12
+msgid "HTTP transparent proxying is used"
+msgstr ""
+
+#: zapzap/services/ProxyManager.py:13
+msgid "Proxying for HTTP requests only"
+msgstr ""
+
+#: zapzap/services/ProxyManager.py:14
+msgid "Proxying for FTP requests only"
+msgstr ""
+
+#: zapzap/services/SysTrayManager.py:54
+msgid "Show"
+msgstr ""
+
+#: zapzap/services/SysTrayManager.py:56
+msgid "Donation"
 msgstr ""

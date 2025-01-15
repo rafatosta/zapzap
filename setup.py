@@ -19,7 +19,7 @@ try:
                   'zapzap.views'
                   ],
         include_package_data=True,
-        package_data={'zapzap': ['ui/*.ui']},
+        package_data={'zapzap': ['po/*/LC_MESSAGES/*.mo']},
         setup_requires=setup_requires,
         entry_points={'gui_scripts': ['zapzap = zapzap.__main__:main']},
         keywords='zapzap whatsapp client web app',
