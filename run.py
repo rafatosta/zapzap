@@ -8,6 +8,8 @@ def dev():
     print(" # === Build the windows from the .ui file ===")
     os.system('chmod +x ./_scripts/build-windows.sh')
     os.system('./_scripts/build-windows.sh')
+    os.system('./_scripts/build-translations.sh')
+
 
     print("# === start === ")
     os.system("python -m zapzap")
