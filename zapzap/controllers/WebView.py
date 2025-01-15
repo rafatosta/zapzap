@@ -134,8 +134,8 @@ class WebView(QWebEngineView):
             cache_path = self.profile.cachePath()
             storage_path = self.profile.persistentStoragePath()
 
-            print(f"Removendo cache: {
-                  cache_path}\nRemovendo armazenamento: {storage_path}")
+            print(f"""Removendo cache: {
+                  cache_path}\nRemovendo armazenamento: {storage_path}""")
 
             shutil.rmtree(cache_path, ignore_errors=True)
             shutil.rmtree(storage_path, ignore_errors=True)
@@ -165,12 +165,12 @@ class WebView(QWebEngineView):
         print(f"Nome do perfil: {profile.storageName()}")
         print(f"Cache Path: {profile.cachePath()}")
         print(f"Http Cache Type: {profile.httpCacheType().name}")
-        print(f"Tamanho Máximo do Cache HTTP (Bytes): {
-              profile.httpCacheMaximumSize()}")
-        print(f"Persistent Cookies Policy: {
-              profile.persistentCookiesPolicy().name}")
-        print(f"Path do Armazenamento Persistente: {
-              profile.persistentStoragePath()}")
+        print(f"""Tamanho Máximo do Cache HTTP (Bytes): {
+              profile.httpCacheMaximumSize()}""")
+        print(f"""Persistent Cookies Policy: {
+              profile.persistentCookiesPolicy().name}""")
+        print(f"""Path do Armazenamento Persistente: {
+              profile.persistentStoragePath()}""")
         print(f"Path de Download: {profile.downloadPath()}")
         print(f"User Agent: {profile.httpUserAgent()}")
         print(f"Spell Check Habilitado: {profile.isSpellCheckEnabled()}")

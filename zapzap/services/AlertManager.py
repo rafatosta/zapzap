@@ -28,5 +28,5 @@ class AlertManager:
     @staticmethod
     def limit_users(parent):
         QMessageBox.information(
-                parent, "Informação", f"Limite de {
-                    LIMITE_USERS} usuários atingido. Não é possível criar mais usuários.")
+                parent, "Informação", f"""Limite de {
+                    LIMITE_USERS} usuários atingido. Não é possível criar mais usuários.""")
