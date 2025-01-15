@@ -27,7 +27,7 @@ class PagePerformance(QWidget, Ui_PagePerformance):
         self.cache_type.setCurrentText(SettingsManager.get(
             "performance/cache_type", "DiskHttpCache"))
 
-        self.cache_size_max.setCurrentText(f"{SettingsManager.get("performance/cache_size_max", 0)} MB")
+        self.cache_size_max.setCurrentText(f"{SettingsManager.get('performance/cache_size_max', 0)} MB")
 
         self.in_process_gpu.setChecked(
             SettingsManager.get("performance/in_process_gpu", False))
