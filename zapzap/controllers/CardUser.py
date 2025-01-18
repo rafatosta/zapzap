@@ -7,6 +7,7 @@ from zapzap.services.AlertManager import AlertManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.views.ui_card_user import Ui_CardUser
 
+from gettext import gettext as _
 
 class CardUser(QWidget, Ui_CardUser):
     def __init__(self, user: User = None, parent=None):
@@ -81,7 +82,7 @@ class CardUser(QWidget, Ui_CardUser):
     def _handle_delete_action(self):
         """Exclui o usuário."""
 
-        if AlertManager.question(self, "Confirmar Exclusão", "Tem certeza de que deseja excluir este item?"):
+        if AlertManager.question(self, _("Confirm exclusion"), _("Are you sure you want to delete this item?")):
             print("Usuário excluído!")
             QApplication.instance().getWindow().browser.delete_page(self.user)
             self.user.remove()
@@ -108,7 +109,7 @@ class CardUser(QWidget, Ui_CardUser):
         menu = QMenu(self)
 
         # Adicionar ação "Restaurar padrão"
-        restore_action = menu.addAction("Restaurar padrão")
+        restore_action = menu.addAction(_("Restore standard"))
         restore_action.triggered.connect(self._restore_default)
 
         # Exibir menu na posição do cursor

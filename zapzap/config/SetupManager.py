@@ -27,6 +27,8 @@ class SetupManager:
 
         environ["QTWEBENGINE_DICTIONARIES_PATH"] = DictionariesManager.get_path()
 
+        environ["QT_SCALE_FACTOR_ROUNDING_POLICY"] = "RoundPreferFloor"
+
     @staticmethod
     def get_argv():
         """

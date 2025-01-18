@@ -77,7 +77,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def _connect_help_menu_actions(self):
         """Conectar ações do menu 'Ajuda'."""
-        self.actionShortcuts.triggered.connect(lambda: ShortcutsDialog().exec())
+        self.actionShortcuts.triggered.connect(
+            lambda: ShortcutsDialog().exec())
 
     # === Ações de Menu ===
     def new_chat(self):
@@ -85,14 +86,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         try:
             self._current_page().page().new_chat()
         except:
-            AlertManager.information(self, "Atenção", "Nenhum usuário ativo!")
+            AlertManager.no_active_account()
 
     def new_chat_by_phone(self):
         """Iniciar um novo chat pelo número de telefone na página atual."""
         try:
             self._current_page().page().open_chat_by_number()
         except:
-            AlertManager.information(self, "Atenção", "Nenhum usuário ativo!")
+            AlertManager.no_active_account()
 
     def _reset_zoom(self):
         """Resetar o fator de zoom da página atual."""
@@ -180,7 +181,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         try:
             self._current_page().page().xdg_open_chat(url)
         except:
-            AlertManager.information(self, "Atenção", "Nenhum usuário ativo!")
+            AlertManager.no_active_account()
 
     # === Estilo e Interface ===
     def settings_menubar(self):

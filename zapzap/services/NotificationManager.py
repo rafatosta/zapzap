@@ -10,6 +10,7 @@ from zapzap import __appname__
 import os
 import dbus
 from collections import OrderedDict
+from gettext import gettext as _
 
 DBusGMainLoop = None
 try:
@@ -32,7 +33,7 @@ class NotificationManager:
                 title = notification.title() if SettingsManager.get(
                     'notification/show_name', True) else __appname__
                 message = notification.message() if SettingsManager.get(
-                    'notification/show_msg', True) else 'New message...'
+                    'notification/show_msg', True) else _('New message...')
                 icon = NotificationManager._get_image_path(notification.icon(), notification.title(
                 )) if SettingsManager.get('notification/show_photo', True) else NotificationManager._get_default_icon_path()
 

@@ -5,7 +5,7 @@ from PyQt6.QtGui import QDesktopServices, QAction, QCursor
 import os
 
 from zapzap.services.SettingsManager import SettingsManager
-
+from gettext import gettext as _
 
 class DownloadManager:
 
@@ -43,8 +43,8 @@ class DownloadManager:
 
             # Criação do menu de opções
             menu = QMenu(parent)
-            open_action = QAction("Abrir", parent)
-            save_action = QAction("Salvar", parent)
+            open_action = QAction(_("Open"), parent)
+            save_action = QAction(_("Save"), parent)
             menu.addAction(open_action)
             menu.addAction(save_action)
 
@@ -94,7 +94,7 @@ class DownloadManager:
         file_name = download.downloadFileName()
         suffix = QFileInfo(file_name).suffix()
         path, _ = QFileDialog.getSaveFileName(
-            None, "Salvar Arquivo", os.path.join(
+            None, _("Save file"), os.path.join(
                 directory, file_name), f"*.{suffix}"
         )
         if path:
@@ -106,5 +106,5 @@ class DownloadManager:
     def open_folder_dialog(parent):
         """ Abre um diálogo para selecionar uma pasta """
         folder_path = QFileDialog.getExistingDirectory(
-            parent, "Selecionar Pasta")
+            parent, _("Select folder"))
         return folder_path if folder_path else None

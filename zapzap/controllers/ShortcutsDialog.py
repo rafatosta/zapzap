@@ -1,60 +1,61 @@
 from PyQt6.QtWidgets import QDialog, QHeaderView, QTableWidgetItem
 from zapzap.views.ui_shortcuts_dialog import Ui_ShortcutsDialog
+from gettext import gettext as _
 
 
 class ShortcutsDialog(QDialog, Ui_ShortcutsDialog):
     # Shortcuts
     shortcuts = [
         # Conversations
-        ("New conversation", "Ctrl + Alt + N"),
-        ("Mark as unread", "Ctrl + Alt + Shift + U"),
-        ("Archive conversation", "Ctrl + Alt + Shift + E"),
-        ("Pin conversation", "Ctrl + Alt + Shift + P"),
-        ("Next conversation", "Ctrl + Alt + Tab"),
-        ("Close conversation", "Escape"),
-        ("Search in conversation", "Ctrl + Alt + Shift + F"),
-        ("Previous conversation", "Ctrl + Alt + Shift + Tab"),
-        ("Delete conversation", "Ctrl + Alt + Backspace"),
+        (_("New conversation"), "Ctrl + Alt + N"),
+        (_("Mark as unread"), "Ctrl + Alt + Shift + U"),
+        (_("Archive conversation"), "Ctrl + Alt + Shift + E"),
+        (_("Pin conversation"), "Ctrl + Alt + Shift + P"),
+        (_("Next conversation"), "Ctrl + Alt + Tab"),
+        (_("Close conversation"), "Escape"),
+        (_("Search in conversation"), "Ctrl + Alt + Shift + F"),
+        (_("Previous conversation"), "Ctrl + Alt + Shift + Tab"),
+        (_("Delete conversation"), "Ctrl + Alt + Backspace"),
 
         # Settings and Profiles
-        ("Profile and status", "Ctrl + Alt + P"),
-        ("Settings", "Ctrl + Alt + ,"),
+        (_("Profile and status"), "Ctrl + Alt + P"),
+        (_("Settings"), "Ctrl + Alt + ,"),
 
         # Voice Messages
-        ("Decrease speed of selected voice message", "Shift + ,"),
-        ("Increase speed of selected voice message", "Shift + ."),
+        (_("Decrease speed of selected voice message"), "Shift + ,"),
+        (_("Increase speed of selected voice message"), "Shift + ."),
 
         # Media Tools
-        ("Emoji panel", "Ctrl + Alt + E"),
-        ("Sticker panel", "Ctrl + Alt + S"),
-        ("GIF panel", "Ctrl + Alt + G"),
+        (_("Emoji panel"), "Ctrl + Alt + E"),
+        (_("Sticker panel"), "Ctrl + Alt + S"),
+        (_("GIF panel"), "Ctrl + Alt + G"),
 
         # Others
-        ("Lock the app", "Ctrl + Alt + L"),
-        ("Mute", "Ctrl + Alt + Shift + M"),
-        ("Search", "Ctrl + Alt + /"),
-        ("New group", "Ctrl + Alt + Shift + N"),
-        ("Extended search", "Alt + K"),
+        (_("Lock the app"), "Ctrl + Alt + L"),
+        (_("Mute"), "Ctrl + Alt + Shift + M"),
+        (_("Search"), "Ctrl + Alt + /"),
+        (_("New group"), "Ctrl + Alt + Shift + N"),
+        (_("Extended search"), "Alt + K"),
     ]
 
     shortcuts_zapzap = [
         # Settings and Navigation
-        ("Settings", "Ctrl + P"),
-        ("Hide", "Ctrl + W"),
-        ("Exit", "Ctrl + Q"),
+        (_("Settings"), "Ctrl + P"),
+        (_("Hide"), "Ctrl + W"),
+        (_("Exit"), "Ctrl + Q"),
 
         # View
-        ("Fullscreen", "F11"),
-        ("Reset zoom", "Ctrl + 0"),
-        ("Zoom in", "Ctrl + +"),
-        ("Zoom out", "Ctrl + -"),
+        (_("Fullscreen"), "F11"),
+        (_("Reset zoom"), "Ctrl + 0"),
+        (_("Zoom in"), "Ctrl + +"),
+        (_("Zoom out"), "Ctrl + -"),
 
         # Refresh
-        ("Reload pages", "F5"),
-        ("New conversation by phone number", "Ctrl + M"),
+        (_("Reload pages"), "F5"),
+        (_("New conversation by phone number"), "Ctrl + M"),
 
         # Account
-        ("New user", "Ctrl + U"),
+        (_("New account"), "Ctrl + U"),
     ]
 
     def __init__(self, parent=None):
