@@ -60,7 +60,7 @@ QPushButton:pressed{\n}</string>
            </font>
           </property>
           <property name="text">
-           <string>Sobre</string>
+           <string>About</string>
           </property>
          </widget>
         </item>
@@ -68,28 +68,27 @@ QPushButton:pressed{\n}</string>
          <layout class="QGridLayout" name="gridLayout">
           <item row="2" column="0">
            <widget class="QLabel" name="desc_app">
-            <property name="font">
-             <font>
-              <pointsize>10</pointsize>
-             </font>
+            <property name="styleSheet">
+             <string notr="true">font: 16pt;</string>
             </property>
             <property name="text">
              <string>WhatsApp Web for Linux</string>
             </property>
             <property name="alignment">
-             <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+             <set>Qt::AlignmentFlag::AlignCenter</set>
             </property>
            </widget>
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="version_app">
-            <property name="font">
-             <font>
-              <pointsize>11</pointsize>
-             </font>
+            <property name="styleSheet">
+             <string notr="true">font: 16pt;</string>
             </property>
             <property name="text">
              <string>Version {id} (Official compilation)</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
             </property>
            </widget>
           </item>
@@ -97,12 +96,20 @@ QPushButton:pressed{\n}</string>
            <widget class="QLabel" name="name_app">
             <property name="font">
              <font>
-              <pointsize>12</pointsize>
-              <bold>true</bold>
+              <family>13</family>
+              <pointsize>18</pointsize>
+              <italic>false</italic>
+              <bold>false</bold>
              </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 18pt bold;</string>
             </property>
             <property name="text">
              <string>ZapZap</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
             </property>
            </widget>
           </item>
@@ -114,8 +121,15 @@ QPushButton:pressed{\n}</string>
               <height>92</height>
              </size>
             </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="styleSheet">
-             <string notr="true"/>
+             <string notr="true">background-color: transparent;
+border-color: transparent;</string>
             </property>
             <property name="text">
              <string/>

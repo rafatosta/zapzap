@@ -4,8 +4,9 @@ from PyQt6.QtCore import QUrl
 
 from zapzap.resources.UserIcon import UserIcon
 from zapzap.views.ui_page_about import Ui_PageAbout
+from zapzap import __bugreport__, __website__, __version__
 
-from zapzap import __bugreport__, __website__
+from gettext import gettext as _
 
 
 class PageAbout(QWidget, Ui_PageAbout):
@@ -15,6 +16,9 @@ class PageAbout(QWidget, Ui_PageAbout):
         self.setupUi(self)
 
         self.icon.setIcon(UserIcon.get_icon())
+
+        self.version_app.setText(
+            _(self.version_app.text()).format(id=__version__))
 
         self.btnLeanMore.clicked.connect(
             lambda:  QDesktopServices.openUrl(QUrl(__website__)))
