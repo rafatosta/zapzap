@@ -71,6 +71,8 @@ class SysTrayManager:
         """Configura as conexões dos sinais das ações da bandeja."""
         main_window = QApplication.instance().getWindow()
 
+        self._tray.activated.connect(main_window.show_window)
+
         self._actions["show"].triggered.connect(main_window.show_window)
         self._actions["settings"].triggered.connect(main_window.open_settings)
         self._actions["donation"].triggered.connect(
