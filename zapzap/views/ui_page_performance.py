@@ -103,7 +103,7 @@ class Ui_PagePerformance(object):
     def retranslateUi(self, PagePerformance):
         
         self.label.setText(_("Performance (Experimental)"))
-        self.groupBox_2.setTitle(_("GroupBox"))
+        self.groupBox_2.setTitle(_("Cache Behavior"))
         self.label_3.setText(_("Cache Type"))
         self.cache_type.setItemText(0, _("DiskHttpCache"))
         self.cache_type.setItemText(1, _("MemoryHttpCache"))

@@ -14,6 +14,7 @@ class Ui_PageAbout(object):
     def setupUi(self, PageAbout):
         PageAbout.setObjectName("PageAbout")
         PageAbout.resize(693, 620)
+        PageAbout.setWindowTitle("")
         PageAbout.setStyleSheet("QPushButton{\\n}\n"
 "QPushButton:pressed{\\n}")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(PageAbout)
@@ -109,7 +110,6 @@ class Ui_PageAbout(object):
 
     def retranslateUi(self, PageAbout):
         
-        PageAbout.setWindowTitle(_("Form"))
         self.label.setText(_("About"))
         self.desc_app.setText(_("WhatsApp Web for Linux"))
         self.version_app.setText(_("Version {id} (Official compilation)"))
