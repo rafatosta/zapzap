@@ -53,4 +53,4 @@ class ProxyManager:
     @staticmethod
     def get_proxy_description(proxy_type_key):
         """Retorna a descrição do tipo de proxy."""
-        return ProxyManager.PROXY_TYPES.get(proxy_type_key, ProxyManager.PROXY_TYPES['NoProxy'])[1]
+        return _(ProxyManager.PROXY_TYPES.get(proxy_type_key, ProxyManager.PROXY_TYPES['NoProxy'])[1])
