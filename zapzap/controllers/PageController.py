@@ -35,6 +35,14 @@ class PageController(QWebEnginePage):
         script = """document.dispatchEvent(new KeyboardEvent("keydown", {'key': 'Escape'}));"""
         self.runJavaScript(script)
 
+    def set_theme_light(self):
+        """Altera o tema da página para claro."""
+        self.runJavaScript("document.body.classList.remove('dark');")
+
+    def set_theme_dark(self):
+        """Altera o tema da página para escuro."""
+        self.runJavaScript("document.body.classList.add('dark');")
+
     def new_chat(self):
         """Simula o atalho 'Ctrl+Alt+N' para iniciar um novo chat."""
         script = """
@@ -122,6 +130,8 @@ class PageController(QWebEnginePage):
                 QWebEnginePage.Feature.Notifications,
                 QWebEnginePage.PermissionPolicy.PermissionGrantedByUser
             )
+            # Força a sincronização do tema ao carregar a página
+            ThemeManager.sync()
 
     def show_toast(self, message, duration=1000):
         """Exibe um toast na página utilizando JavaScript."""
