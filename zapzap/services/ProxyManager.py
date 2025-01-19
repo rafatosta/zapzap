@@ -6,12 +6,12 @@ from zapzap.services.SettingsManager import SettingsManager
 
 class ProxyManager:
     PROXY_TYPES = {
-        'NoProxy': (QtNetwork.QNetworkProxy.ProxyType.NoProxy, _("No proxying is used")),
-        'DefaultProxy': (QtNetwork.QNetworkProxy.ProxyType.DefaultProxy, _("Proxy is determined based on the application proxy set using setApplicationProxy()")),
-        'Socks5Proxy': (QtNetwork.QNetworkProxy.ProxyType.Socks5Proxy, _("Socks5 proxying is used")),
-        'HttpProxy': (QtNetwork.QNetworkProxy.ProxyType.HttpProxy, _("HTTP transparent proxying is used")),
-        'HttpCachingProxy': (QtNetwork.QNetworkProxy.ProxyType.HttpCachingProxy, _("Proxying for HTTP requests only")),
-        'FtpCachingProxy': (QtNetwork.QNetworkProxy.ProxyType.FtpCachingProxy, _("Proxying for FTP requests only")),
+        'NoProxy': (QtNetwork.QNetworkProxy.ProxyType.NoProxy, _("No proxying is used.")),
+        'DefaultProxy': (QtNetwork.QNetworkProxy.ProxyType.DefaultProxy, _("Proxy is determined based on the system proxy.")),
+        'Socks5Proxy': (QtNetwork.QNetworkProxy.ProxyType.Socks5Proxy, _("Socks5 proxying is used.")),
+        'HttpProxy': (QtNetwork.QNetworkProxy.ProxyType.HttpProxy, _("HTTP transparent proxying is used.")),
+        'HttpCachingProxy': (QtNetwork.QNetworkProxy.ProxyType.HttpCachingProxy, _("Proxying for HTTP requests only.")),
+        'FtpCachingProxy': (QtNetwork.QNetworkProxy.ProxyType.FtpCachingProxy, _("Proxying for FTP requests only.")),
     }
 
     @staticmethod

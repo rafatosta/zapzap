@@ -3,6 +3,8 @@ from PyQt6.QtWidgets import QWidget
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.views.ui_page_performance import Ui_PagePerformance
 
+from gettext import gettext as _
+
 
 class PagePerformance(QWidget, Ui_PagePerformance):
     _default_settings = {
@@ -12,6 +14,12 @@ class PagePerformance(QWidget, Ui_PagePerformance):
         "performance/disable_gpu": False,
         "performance/single_process": False,
     }
+
+    CACHE_TYPES = [
+        "DiskHttpCache",
+        "MemoryHttpCache",
+        "NoCache"
+    ]
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -24,10 +32,13 @@ class PagePerformance(QWidget, Ui_PagePerformance):
         """
         Carrega as configurações do SettingsManager e atualiza os componentes da interface.
         """
+        self.cache_type.addItems(self.CACHE_TYPES)
+
         self.cache_type.setCurrentText(SettingsManager.get(
             "performance/cache_type", "DiskHttpCache"))
 
-        self.cache_size_max.setCurrentText(f"{SettingsManager.get('performance/cache_size_max', 0)} MB")
+        self.cache_size_max.setCurrentText(
+            f"{SettingsManager.get('performance/cache_size_max', 0)} MB")
 
         self.in_process_gpu.setChecked(
             SettingsManager.get("performance/in_process_gpu", False))
