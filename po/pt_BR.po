@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-18 16:12-0300\n"
+"POT-Creation-Date: 2025-01-19 18:50-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -340,7 +340,7 @@ msgstr "Descrição"
 msgid "Apply"
 msgstr "Aplicar"
 
-#: zapzap/views/ui_page_network.py:124 zapzap/views/ui_page_performance.py:119
+#: zapzap/views/ui_page_network.py:124 zapzap/views/ui_page_performance.py:113
 msgid "Restore"
 msgstr "Restaurar"
 
@@ -364,63 +364,51 @@ msgstr "Exibir o nome do remetente"
 msgid "Show message preview"
 msgstr "Exibir prévia da mensagem"
 
-#: zapzap/views/ui_page_performance.py:105
+#: zapzap/views/ui_page_performance.py:102
 msgid "Performance (Experimental)"
 msgstr "Desempenho (Experimental)"
 
-#: zapzap/views/ui_page_performance.py:106
+#: zapzap/views/ui_page_performance.py:103
 msgid "Cache Behavior"
 msgstr "Comportamento da Cache"
 
-#: zapzap/views/ui_page_performance.py:107
+#: zapzap/views/ui_page_performance.py:104
 msgid "Cache Type"
 msgstr "Tipo de cache"
 
-#: zapzap/views/ui_page_performance.py:108
-msgid "DiskHttpCache"
-msgstr "Cache de disco"
-
-#: zapzap/views/ui_page_performance.py:109
-msgid "MemoryHttpCache"
-msgstr "Cache de memória"
-
-#: zapzap/views/ui_page_performance.py:110
-msgid "NoCache"
-msgstr "Sem cache"
-
-#: zapzap/views/ui_page_performance.py:111
+#: zapzap/views/ui_page_performance.py:105
 msgid "Maximum Cache Size"
 msgstr "Tamanho máximo do cache"
 
-#: zapzap/views/ui_page_performance.py:112
+#: zapzap/views/ui_page_performance.py:106
 msgid "0 MB"
 msgstr "0 MB"
 
-#: zapzap/views/ui_page_performance.py:113
+#: zapzap/views/ui_page_performance.py:107
 msgid "50 MB"
 msgstr "50 MB"
 
-#: zapzap/views/ui_page_performance.py:114
+#: zapzap/views/ui_page_performance.py:108
 msgid "100 MB"
 msgstr "100 MB"
 
-#: zapzap/views/ui_page_performance.py:115
+#: zapzap/views/ui_page_performance.py:109
 msgid "QWebEngine Behavior"
 msgstr "Comportamento do QWebEngine"
 
-#: zapzap/views/ui_page_performance.py:116
+#: zapzap/views/ui_page_performance.py:110
 msgid "Disable GPU hardware acceleration"
 msgstr "Desativar aceleração de hardware da GPU"
 
-#: zapzap/views/ui_page_performance.py:117
+#: zapzap/views/ui_page_performance.py:111
 msgid "Enable single process for GPU and rendering"
 msgstr "Habilitar processo único para GPU e renderização"
 
-#: zapzap/views/ui_page_performance.py:118
+#: zapzap/views/ui_page_performance.py:112
 msgid "Run everything in a single process"
 msgstr "Executar tudo em um único processo"
 
-#: zapzap/views/ui_page_performance.py:120
+#: zapzap/views/ui_page_performance.py:114
 msgid "Note: Restart required to apply changes."
 msgstr "Nota: Reinício necessário para aplicar as alterações."
 
@@ -605,32 +593,28 @@ msgid "New message..."
 msgstr "Nova mensagem..."
 
 #: zapzap/services/ProxyManager.py:9
-msgid "No proxying is used"
-msgstr "Nenhum proxy em uso"
+msgid "No proxying is used."
+msgstr "Nenhum proxy em uso."
 
 #: zapzap/services/ProxyManager.py:10
-msgid ""
-"Proxy is determined based on the application proxy set using "
-"setApplicationProxy()"
-msgstr ""
-"O proxy é determinado com base no proxy da aplicação configurado com "
-"setApplicationProxy()"
+msgid "Proxy is determined based on the system proxy."
+msgstr "O proxy é determinado com base no proxy do sistema."
 
 #: zapzap/services/ProxyManager.py:11
-msgid "Socks5 proxying is used"
-msgstr "Proxy Socks5 em uso"
+msgid "Socks5 proxying is used."
+msgstr "Proxy Socks5 em uso."
 
 #: zapzap/services/ProxyManager.py:12
-msgid "HTTP transparent proxying is used"
-msgstr "Proxy transparente HTTP em uso"
+msgid "HTTP transparent proxying is used."
+msgstr "Proxy transparente HTTP em uso."
 
 #: zapzap/services/ProxyManager.py:13
-msgid "Proxying for HTTP requests only"
-msgstr "Proxy apenas para requisições HTTP"
+msgid "Proxying for HTTP requests only."
+msgstr "Proxy apenas para requisições HTTP."
 
 #: zapzap/services/ProxyManager.py:14
-msgid "Proxying for FTP requests only"
-msgstr "Proxy apenas para requisições FTP"
+msgid "Proxying for FTP requests only."
+msgstr "Proxy apenas para requisições FTP."
 
 #: zapzap/services/SysTrayManager.py:54
 msgid "Show"

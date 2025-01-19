@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-18 16:12-0300\n"
+"POT-Creation-Date: 2025-01-19 18:50-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -340,7 +340,7 @@ msgstr ""
 msgid "Apply"
 msgstr ""
 
-#: zapzap/views/ui_page_network.py:124 zapzap/views/ui_page_performance.py:119
+#: zapzap/views/ui_page_network.py:124 zapzap/views/ui_page_performance.py:113
 msgid "Restore"
 msgstr ""
 
@@ -364,63 +364,51 @@ msgstr ""
 msgid "Show message preview"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:105
+#: zapzap/views/ui_page_performance.py:102
 msgid "Performance (Experimental)"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:106
+#: zapzap/views/ui_page_performance.py:103
 msgid "Cache Behavior"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:107
+#: zapzap/views/ui_page_performance.py:104
 msgid "Cache Type"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:108
-msgid "DiskHttpCache"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:109
-msgid "MemoryHttpCache"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:110
-msgid "NoCache"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:111
+#: zapzap/views/ui_page_performance.py:105
 msgid "Maximum Cache Size"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:112
+#: zapzap/views/ui_page_performance.py:106
 msgid "0 MB"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:113
+#: zapzap/views/ui_page_performance.py:107
 msgid "50 MB"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:114
+#: zapzap/views/ui_page_performance.py:108
 msgid "100 MB"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:115
+#: zapzap/views/ui_page_performance.py:109
 msgid "QWebEngine Behavior"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:116
+#: zapzap/views/ui_page_performance.py:110
 msgid "Disable GPU hardware acceleration"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:117
+#: zapzap/views/ui_page_performance.py:111
 msgid "Enable single process for GPU and rendering"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:118
+#: zapzap/views/ui_page_performance.py:112
 msgid "Run everything in a single process"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:120
+#: zapzap/views/ui_page_performance.py:114
 msgid "Note: Restart required to apply changes."
 msgstr ""
 
@@ -603,29 +591,27 @@ msgid "New message..."
 msgstr ""
 
 #: zapzap/services/ProxyManager.py:9
-msgid "No proxying is used"
+msgid "No proxying is used."
 msgstr ""
 
 #: zapzap/services/ProxyManager.py:10
-msgid ""
-"Proxy is determined based on the application proxy set using "
-"setApplicationProxy()"
+msgid "Proxy is determined based on the system proxy."
 msgstr ""
 
 #: zapzap/services/ProxyManager.py:11
-msgid "Socks5 proxying is used"
+msgid "Socks5 proxying is used."
 msgstr ""
 
 #: zapzap/services/ProxyManager.py:12
-msgid "HTTP transparent proxying is used"
+msgid "HTTP transparent proxying is used."
 msgstr ""
 
 #: zapzap/services/ProxyManager.py:13
-msgid "Proxying for HTTP requests only"
+msgid "Proxying for HTTP requests only."
 msgstr ""
 
 #: zapzap/services/ProxyManager.py:14
-msgid "Proxying for FTP requests only"
+msgid "Proxying for FTP requests only."
 msgstr ""
 
 #: zapzap/services/SysTrayManager.py:54
