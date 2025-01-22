@@ -21,7 +21,6 @@ class PageAccount(QWidget, Ui_PageAccount):
         """Carrega os usuários e cria cards correspondentes."""
         self.user_list = User.select()
         for user in self.user_list:
-            print(user)
             self.user_list_layout.addWidget(CardUser(user))
 
     def _new_user(self):

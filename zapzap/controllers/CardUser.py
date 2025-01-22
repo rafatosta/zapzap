@@ -83,7 +83,6 @@ class CardUser(QWidget, Ui_CardUser):
         """Exclui o usuário."""
 
         if AlertManager.question(self, _("Confirm exclusion"), _("Are you sure you want to delete this item?")):
-            print("Usuário excluído!")
             QApplication.instance().getWindow().browser.delete_page(self.user)
             self.user.remove()
             self.close()

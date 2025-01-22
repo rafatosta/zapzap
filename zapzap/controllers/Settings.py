@@ -22,7 +22,6 @@ class Settings(QWidget, Ui_Settings):
 
     def __del__(self):
         """Destrói o widget e limpa recursos."""
-        print("Widget Settings destruído")
 
     def _setup_ui(self):
         """Configura as páginas e associa os botões às páginas."""

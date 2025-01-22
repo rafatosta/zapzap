@@ -29,7 +29,6 @@ class Browser(QWidget, Ui_Browser):
 
     def __del__(self):
         """Garante que todas as páginas sejam fechadas ao destruir o widget."""
-        print("Widget Browser destruído")
         self.close_pages()
 
     # === Inicialização ===
@@ -63,7 +62,6 @@ class Browser(QWidget, Ui_Browser):
         """Cria o usuário no primeiro acesso."""
         # Não há usuários criados
         if User.count_users() == 0:
-            print("Primeiro acesso... \nCriando usuário padrão")
             User.create_new_user(icon=UserIcon.ICON_DEFAULT)
 
     def _select_default_page(self):
@@ -79,7 +77,6 @@ class Browser(QWidget, Ui_Browser):
             new_user = User.create_new_user()
 
         if new_user:
-            print(new_user)
             self._add_page(new_user)
             self._update_user_menu()
         else:
@@ -111,7 +108,6 @@ class Browser(QWidget, Ui_Browser):
 
     def disable_page(self, user: User):
         """Habilita ou desabilita uma página com base no status do usuário."""
-        print("disable page:", user.enable, user)
         button, page = self._find_button_and_page_by_user(user)
 
         if button and page:
@@ -126,7 +122,6 @@ class Browser(QWidget, Ui_Browser):
 
     def delete_page(self, user: User):
         """Remove uma página e seu botão correspondente."""
-        print("delete page:", user)
         button, page = self._find_button_and_page_by_user(user)
 
         if button and page:
@@ -138,7 +133,6 @@ class Browser(QWidget, Ui_Browser):
 
     def update_icons_page_button(self, user: User):
         """Atualiza os ícones de um botão específico com base no usuário."""
-        print("update icons...")
         button, page = self._find_button_and_page_by_user(user)
 
         if button and page:
