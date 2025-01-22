@@ -26,7 +26,6 @@ class SetupManager:
         environ["QT_SCALE_FACTOR"] = f'{
             int(SettingsManager.get("system/scale", 100)) / 100:.2f}'
         environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
-        environ["QT_SCALE_FACTOR_ROUNDING_POLICY"] = "RoundPreferFloor"
 
         # Configuração do caminho dos dicionários
         dictionary_path = DictionariesManager.get_path()
@@ -35,6 +34,13 @@ class SetupManager:
         else:
             environ["QTWEBENGINE_DICTIONARIES_PATH"] = dictionary_path
             print("QTWEBENGINE_DICTIONARIES_PATH = ", dictionary_path)
+
+
+    @staticmethod
+    def apply_qt_scale_factor_rounding_policy():
+        """Deve ser aplicado após a criação da instância do app"""
+        environ["QT_SCALE_FACTOR_ROUNDING_POLICY"] = "RoundPreferFloor"
+
 
     @staticmethod
     def get_argv():
