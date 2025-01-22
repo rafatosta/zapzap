@@ -1,8 +1,12 @@
+import logging
 from os import environ
 from PyQt6.QtCore import QFileInfo
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.SettingsManager import SettingsManager
 
+# Configuração básica de logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format='%(levelname)s - %(message)s')
 
 class SetupManager:
     """Gerencia as configurações de ambiente para o aplicativo."""
@@ -21,26 +25,34 @@ class SetupManager:
             SetupManager._qt_platform = "wayland" if SettingsManager.get(
                 "system/wayland", False) else "xcb"
             environ["QT_QPA_PLATFORM"] = SetupManager._qt_platform
+            logger.info(f"Plataforma gráfica configurada: {
+                        SetupManager._qt_platform}")
+        else:
+            logger.info(
+                "Ambiente Flatpak detectado, plataforma gráfica não alterada.")
 
         # Configuração de escalonamento de tela
-        environ["QT_SCALE_FACTOR"] = f'{
-            int(SettingsManager.get("system/scale", 100)) / 100:.2f}'
+        scale_factor = int(SettingsManager.get("system/scale", 100)) / 100
+        environ["QT_SCALE_FACTOR"] = f'{scale_factor:.2f}'
         environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
+        logger.info(f"Escalonamento de tela configurado: {scale_factor:.2f}")
 
         # Configuração do caminho dos dicionários
         dictionary_path = DictionariesManager.get_path()
         if dictionary_path == DictionariesManager.QTWEBENGINE_DICTIONARIES_PATH_FLATPAK:
-            print("QTWEBENGINE_DICTIONARIES_PATH = ", dictionary_path, "(Default)")
+            logger.info(f"QTWEBENGINE_DICTIONARIES_PATH = {
+                        dictionary_path} (Default)")
         else:
             environ["QTWEBENGINE_DICTIONARIES_PATH"] = dictionary_path
-            print("QTWEBENGINE_DICTIONARIES_PATH = ", dictionary_path)
-
+            logger.info(f"QTWEBENGINE_DICTIONARIES_PATH configurado: {
+                        dictionary_path}")
 
     @staticmethod
     def apply_qt_scale_factor_rounding_policy():
         """Deve ser aplicado após a criação da instância do app"""
         environ["QT_SCALE_FACTOR_ROUNDING_POLICY"] = "RoundPreferFloor"
-
+        logger.info(
+            "QT_SCALE_FACTOR_ROUNDING_POLICY configurado para RoundPreferFloor")
 
     @staticmethod
     def get_argv():
@@ -68,6 +80,5 @@ class SetupManager:
         if SettingsManager.get("performance/single_process", False):
             arguments.append("--single-process")
 
-        print("Configurações para QWebEngine:\n\t", arguments)
-
+        logger.info(f"Configurações para QWebEngine: {arguments}")
         return arguments

@@ -1,5 +1,5 @@
 import zapzap
-import sys
+import sys, os
 
 from zapzap.config.SetupManager import SetupManager
 from zapzap.controllers.MainWindow import MainWindow
@@ -10,6 +10,9 @@ from zapzap.services.TranslationManager import TranslationManager
 
 
 def main():
+    # Desativa todos os prints do código
+    #sys.stdout = open(os.devnull, 'w')
+
     SetupManager.apply()
     TranslationManager.apply()
 
@@ -20,6 +23,8 @@ def main():
     app.setApplicationVersion(zapzap.__version__)
     app.setDesktopFileName(zapzap.__desktopid__)
     app.setOrganizationDomain(zapzap.__domain__)
+
+    SetupManager.apply_qt_scale_factor_rounding_policy()
 
     # Callback instance
     app.messageReceived.connect(lambda result: main_window.xdgOpenChat(result))
