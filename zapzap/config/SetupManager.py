@@ -16,18 +16,25 @@ class SetupManager:
         Aplica configurações específicas de ambiente dependendo do ambiente de execução.
         Configura a plataforma gráfica e escalonamento de tela.
         """
+        # Configuração da plataforma gráfica
         if not SetupManager._is_flatpak:
             SetupManager._qt_platform = "wayland" if SettingsManager.get(
                 "system/wayland", False) else "xcb"
-            environ['QT_QPA_PLATFORM'] = SetupManager._qt_platform
+            environ["QT_QPA_PLATFORM"] = SetupManager._qt_platform
 
-        environ['QT_SCALE_FACTOR'] = str(int(SettingsManager.get(
-            "system/scale", 100))/100)
-        environ['QT_AUTO_SCREEN_SCALE_FACTOR'] = '1'
-
-        environ["QTWEBENGINE_DICTIONARIES_PATH"] = DictionariesManager.get_path()
-
+        # Configuração de escalonamento de tela
+        environ["QT_SCALE_FACTOR"] = f'{
+            int(SettingsManager.get("system/scale", 100)) / 100:.2f}'
+        environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
         environ["QT_SCALE_FACTOR_ROUNDING_POLICY"] = "RoundPreferFloor"
+
+        # Configuração do caminho dos dicionários
+        dictionary_path = DictionariesManager.get_path()
+        if dictionary_path == DictionariesManager.QTWEBENGINE_DICTIONARIES_PATH_FLATPAK:
+            print("QTWEBENGINE_DICTIONARIES_PATH = ", dictionary_path, "(Default)")
+        else:
+            environ["QTWEBENGINE_DICTIONARIES_PATH"] = dictionary_path
+            print("QTWEBENGINE_DICTIONARIES_PATH = ", dictionary_path)
 
     @staticmethod
     def get_argv():
