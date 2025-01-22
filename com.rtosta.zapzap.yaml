@@ -8,6 +8,9 @@ command: zapzap
 finish-args:
   - "--share=ipc"
   - "--socket=x11"
+  - "--socket=wayland"
+  - "--socket=fallback-x11"
+  - "--device=dri"
   - "--socket=pulseaudio"
   - "--share=network"
   - "--device=all"
