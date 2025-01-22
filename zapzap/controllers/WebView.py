@@ -1,7 +1,8 @@
+import logging
+import shutil
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
 from PyQt6.QtCore import QUrl, pyqtSignal
-import shutil
 
 from zapzap.controllers.PageController import PageController
 from zapzap.models import User
@@ -11,16 +12,21 @@ from zapzap.services.DownloadManager import DownloadManager
 from zapzap.services.NotificationManager import NotificationManager
 from zapzap.services.SettingsManager import SettingsManager
 
+# Configuração do logger
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S"
+)
+logger = logging.getLogger(__name__)
+
 
 class WebView(QWebEngineView):
     update_button_signal = pyqtSignal(int, int)  # Sinal para atualizar botões
 
     QWEBENGINE_CACHE_TYPES = {
-        # Usa um cache na memória (padrão para perfis off-the-record).
         "MemoryHttpCache": QWebEngineProfile.HttpCacheType.MemoryHttpCache,
-        # Usa um cache em disco (padrão para perfis que não são off-the-record).
         "DiskHttpCache": QWebEngineProfile.HttpCacheType.DiskHttpCache,
-        # Desativa o cache em memória e em disco.
         "NoCache": QWebEngineProfile.HttpCacheType.NoCache
     }
 
@@ -35,7 +41,6 @@ class WebView(QWebEngineView):
 
     def __del__(self):
         """Método chamado quando o objeto é destruído."""
-        print("O WebEngineView foi destruído.")
         self.user.zoomFactor = self.zoomFactor()
 
     def _initialize(self):
@@ -57,14 +62,12 @@ class WebView(QWebEngineView):
         self.profile.setNotificationPresenter(
             lambda notification: NotificationManager.show(self, notification)
         )
-        # Habilita rolagem animada
         self.profile.settings().setAttribute(
             QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, True)
 
         self.configure_spellcheck()
 
-        size_cache = SettingsManager.get(
-            "performance/cache_size_max", 0)
+        size_cache = SettingsManager.get("performance/cache_size_max", 0)
         self.profile.setHttpCacheMaximumSize(1024 * 1024 * int(size_cache))
         self.profile.setHttpCacheType(
             self.QWEBENGINE_CACHE_TYPES.get(SettingsManager.get(
@@ -73,7 +76,7 @@ class WebView(QWebEngineView):
         self.print_qwebengineprofile_info(self.profile)
 
     def configure_spellcheck(self):
-        # Corretor ortográfico
+        """Configura o corretor ortográfico."""
         if self.user.enable:
             self.profile.setSpellCheckEnabled(
                 SettingsManager.get("system/spellCheckers", True))
@@ -126,24 +129,24 @@ class WebView(QWebEngineView):
     def remove_files(self):
         """Remove os arquivos de cache e armazenamento persistente do perfil."""
         try:
-            if not self.user.enable:  # não habilitado
+            if not self.user.enable:
                 self.profile = QWebEngineProfile(str(self.user.id), self)
 
             cache_path = self.profile.cachePath()
             storage_path = self.profile.persistentStoragePath()
 
-            print(f"""Removendo cache: {
-                  cache_path}\nRemovendo armazenamento: {storage_path}""")
+            logger.info(f"Removendo cache: {cache_path}")
+            logger.info(f"Removendo armazenamento: {storage_path}")
 
             shutil.rmtree(cache_path, ignore_errors=True)
             shutil.rmtree(storage_path, ignore_errors=True)
 
             self.stop()
             self.close()
-            return True  # Sucesso
+            return True
         except Exception as e:
-            print(f"Erro ao remover arquivos: {e}")
-            return False  # Falha
+            logger.error(f"Erro ao remover arquivos: {e}")
+            return False
 
     def enable_page(self):
         """Ativa a página, configurando novamente."""
@@ -157,20 +160,24 @@ class WebView(QWebEngineView):
         self.setPage(None)
         self.setVisible(False)
 
-    # == Mostrar informações ==
     def print_qwebengineprofile_info(self, profile: QWebEngineProfile):
-        print("=== Informações do QWebEngineProfile ===")
-        print(f"Nome do perfil: {profile.storageName()}")
-        print(f"Cache Path: {profile.cachePath()}")
-        print(f"Http Cache Type: {profile.httpCacheType().name}")
-        print(f"""Tamanho Máximo do Cache HTTP (Bytes): {
-              profile.httpCacheMaximumSize()}""")
-        print(f"""Persistent Cookies Policy: {
-              profile.persistentCookiesPolicy().name}""")
-        print(f"""Path do Armazenamento Persistente: {
-              profile.persistentStoragePath()}""")
-        print(f"Path de Download: {profile.downloadPath()}")
-        print(f"User Agent: {profile.httpUserAgent()}")
-        print(f"Spell Check Habilitado: {profile.isSpellCheckEnabled()}")
-        print(f"Linguagens do Spell Check: {profile.spellCheckLanguages()}")
-        print("=========================================")
+        """Exibe informações do QWebEngineProfile."""
+        info = (
+            "=== Informações do QWebEngineProfile ===\n"
+            f"Nome do perfil: {profile.storageName()}\n"
+            f"Cache Path: {profile.cachePath()}\n"
+            f"Http Cache Type: {profile.httpCacheType().name}\n"
+            f"Tamanho Máximo do Cache HTTP (Bytes): {
+                profile.httpCacheMaximumSize()}\n"
+            f"Persistent Cookies Policy: {
+                profile.persistentCookiesPolicy().name}\n"
+            f"Path do Armazenamento Persistente: {
+                profile.persistentStoragePath()}\n"
+            f"Path de Download: {profile.downloadPath()}\n"
+            f"User Agent: {profile.httpUserAgent()}\n"
+            f"Spell Check Habilitado: {profile.isSpellCheckEnabled()}\n"
+            f"Linguagens do Spell Check: {
+                ', '.join(profile.spellCheckLanguages())}\n"
+            "========================================="
+        )
+        logger.info(info)
