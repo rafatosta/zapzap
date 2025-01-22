@@ -1,3 +1,4 @@
+import logging
 from PyQt6 import QtNetwork
 from PyQt6.QtWidgets import QApplication
 from gettext import gettext as _
@@ -14,13 +15,19 @@ class ProxyManager:
         'FtpCachingProxy': (QtNetwork.QNetworkProxy.ProxyType.FtpCachingProxy, _("Proxying for FTP requests only.")),
     }
 
+    
+
     @staticmethod
     def apply():
         """Aplica as configurações de proxy obtidas do SettingsManager."""
+
+        logger = logging.getLogger(__name__)
+
         proxy_type_key = SettingsManager.get("proxy/proxyType", "NoProxy")
         proxy_enable = SettingsManager.get("proxy/proxyEnable", False)
 
         proxy = QtNetwork.QNetworkProxy()
+        proxy_info = [f"Proxy configurado: {proxy_type_key} ({'Habilitado' if proxy_enable else 'Desabilitado'})"]
 
         if proxy_enable and proxy_type_key != 'NoProxy':
             proxy.setType(ProxyManager.PROXY_TYPES.get(
@@ -32,23 +39,28 @@ class ProxyManager:
 
             if host_name:
                 proxy.setHostName(host_name)
+                proxy_info.append(f"Host: {host_name}")
             if port:
                 try:
                     proxy.setPort(int(port))
+                    proxy_info.append(f"Porta: {port}")
                 except ValueError:
-                    print(f"Porta inválida: {port}")
+                    proxy_info.append(f"Porta inválida: {port}")
             if user:
                 proxy.setUser(user)
+                proxy_info.append(f"Usuário: {user}")
             if password:
                 proxy.setPassword(password)
+                proxy_info.append("Senha configurada.")
         else:
-            print('proxy_enable:', proxy_enable)
-            print("Proxy default habilitado!")
+            proxy_info.append(f"Proxy padrão habilitado: {'Sim' if not proxy_enable else 'Não'}")
 
         QtNetwork.QNetworkProxy.setApplicationProxy(proxy)
-        print(f"""Proxy configurado: {proxy_type_key} ({
-              'Habilitado' if proxy_enable else 'Desabilitado'})""")
         QApplication.instance().getWindow().browser.reload_pages()
+
+        # Consolidando as informações no log
+        for info in proxy_info:
+            logger.info(info)
 
     @staticmethod
     def get_proxy_description(proxy_type_key):
