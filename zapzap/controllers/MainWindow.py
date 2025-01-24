@@ -140,6 +140,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def _prepare_for_background(self, event):
         """Preparar o app para permanecer em segundo plano."""
+
+        # Fecha o painel de configurações se estiver aberto
+        if self.app_settings:
+            self.close_settings()
+
         self.browser.close_conversations()
         self.hide()
         event.ignore()
