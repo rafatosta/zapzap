@@ -74,7 +74,8 @@ class SysTrayManager:
         self._tray.activated.connect(main_window.show_window)
 
         self._actions["show"].triggered.connect(main_window.show_window)
-        self._actions["settings"].triggered.connect(main_window.open_settings)
+        self._actions["settings"].triggered.connect(
+            lambda: self._open_settings(main_window))
         self._actions["donation"].triggered.connect(
             lambda: QDesktopServices.openUrl(QUrl(__donationPage__))
         )
@@ -84,6 +85,12 @@ class SysTrayManager:
         """Atualiza o ícone da bandeja."""
         self.current_icon = icon_type
         self._tray.setIcon(TrayIcon.getIcon(icon_type, number_notifications))
+
+    def _open_settings(self, main_window):
+        main_window.open_settings()
+        main_window.showNormal()
+        main_window.activateWindow()
+        main_window.raise_()
 
     @staticmethod
     def start():
