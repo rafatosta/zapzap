@@ -1,5 +1,8 @@
 import zapzap
-import sys, os
+import sys
+
+from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtCore import QUrl
 
 from zapzap.config.SetupManager import SetupManager
 from zapzap.controllers.MainWindow import MainWindow
@@ -11,7 +14,7 @@ from zapzap.services.TranslationManager import TranslationManager
 
 def main():
     # Desativa todos os prints do código
-    #sys.stdout = open(os.devnull, 'w')
+    # sys.stdout = open(os.devnull, 'w')
 
     SetupManager.apply()
     TranslationManager.apply()
@@ -36,6 +39,11 @@ def main():
     main_window.load_settings()
 
     ProxyManager.apply()
+
+    # Abre site do ZapZap em primeiro acesso
+    if SettingsManager.get("website/open_page", True):
+        QDesktopServices.openUrl(QUrl(zapzap.__website__))
+        SettingsManager.set("website/open_page", False)
 
     if SettingsManager.get("system/start_background", False) or '--hideStart' in sys.argv:
         print("Iniciando em segundo plano...")
