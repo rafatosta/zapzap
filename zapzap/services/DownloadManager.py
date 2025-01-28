@@ -39,7 +39,6 @@ class DownloadManager:
     def on_downloadRequested(download: QWebEngineDownloadRequest, parent=None):
         """ Gerencia o download de arquivos, oferecendo opções para abrir ou salvar """
         if download.state() == QWebEngineDownloadRequest.DownloadState.DownloadRequested:
-            directory = DownloadManager.get_path()
 
             # Criação do menu de opções
             menu = QMenu(parent)
@@ -93,7 +92,7 @@ class DownloadManager:
 
         file_name = download.downloadFileName()
         suffix = QFileInfo(file_name).suffix()
-        path, _ = QFileDialog.getSaveFileName(
+        path, __ = QFileDialog.getSaveFileName(
             None, _("Save file"), os.path.join(
                 directory, file_name), f"*.{suffix}"
         )
