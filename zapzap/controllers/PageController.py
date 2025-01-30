@@ -13,6 +13,7 @@ class PageController(QWebEnginePage):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.link_url = ""
+        self.link_context = ''
 
         # Conecta sinais para funcionalidades específicas
         self.linkHovered.connect(self._on_link_hovered)
@@ -104,6 +105,10 @@ class PageController(QWebEnginePage):
     def _on_link_hovered(self, url):
         """Armazena o URL do link quando o mouse passa sobre ele."""
         self.link_url = url
+
+        # Keep the last link visited to be used by the context menu
+        if self.link_url != "":
+            self.link_context = url
 
     def _on_feature_permission_requested(self, frame, feature):
         """Concede automaticamente permissão para recursos do sistema."""
