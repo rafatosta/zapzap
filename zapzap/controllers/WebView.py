@@ -95,49 +95,44 @@ class WebView(QWebEngineView):
 
     def contextMenuEvent(self, event):
         """Cria o menu de contexto.
-            -- Essa função é executada toda vez ao clique do botão direito.
+        Essa função é executada toda vez ao clique do botão direito.
         """
-
         print("Abre o contextMenuEvent..")
-        # Manipula o menu de contexto manualmente
+
+        # Obtém perfil e configurações de correção ortográfica
         profile = self.page().profile()
         languages = profile.spellCheckLanguages()
         menu = self.createStandardContextMenu()
 
-        # Adiciona opções padrão
+        # Adiciona a ação de correção ortográfica
+        def toggle_spellcheck(toggled):
+            print("Correção ortográfica:", toggled)
+            SettingsManager.set("system/spellCheckers", toggled)
+            QApplication.instance().getWindow().browser.update_spellcheck()
+
         spellcheck_action = QAction(_("Check Spelling"), self)
         spellcheck_action.setCheckable(True)
         spellcheck_action.setChecked(profile.isSpellCheckEnabled())
-
-        def handle_toggled(toggled):
-            print("Correção ortográfica:", toggled)
-            SettingsManager.set("system/spellCheckers", toggled)
-            # Aplica a mudança para todos
-            QApplication.instance().getWindow().browser.update_spellcheck()
-
-        spellcheck_action.toggled.connect(
-            lambda toggled: handle_toggled(toggled))
+        spellcheck_action.toggled.connect(toggle_spellcheck)
         menu.addAction(spellcheck_action)
 
-        # Adiciona submenu para seleção de idiomas
+        # Adiciona submenu de seleção de idiomas, se habilitado
         if profile.isSpellCheckEnabled():
+            def select_language(lang):
+                print("Linguagem selecionada via menu de contexto:", lang)
+                DictionariesManager.set_lang(lang)
+                QApplication.instance().getWindow().browser.update_spellcheck()
+
             sub_menu = menu.addMenu(_("Select Language"))
-            for lang_name in DictionariesManager.list():
-                action = sub_menu.addAction(lang_name)
+            actions = [
+                (sub_menu.addAction(lang_name), lang_name)
+                for lang_name in DictionariesManager.list()
+            ]
+            for action, lang_name in actions:
                 action.setCheckable(True)
                 action.setChecked(lang_name in languages)
-
-                def handle_clicked(lang):
-                    print("Linguagem selecionada via menu de contexto:", lang)
-                    # Salva a linguagem selecionada
-                    DictionariesManager.set_lang(lang)
-
-                    # Aplica a mudança para todos
-                    QApplication.instance().getWindow().browser.update_spellcheck()
-
-                # Ação ao clicar
                 action.triggered.connect(
-                    lambda _, lang=lang_name: handle_clicked(lang))
+                    lambda _, lang=lang_name: select_language(lang))
 
         # Exibe o menu
         menu.exec(event.globalPos())
