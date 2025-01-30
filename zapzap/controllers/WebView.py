@@ -99,10 +99,58 @@ class WebView(QWebEngineView):
         """
         print("Abre o contextMenuEvent..")
 
+        # Cria o menu de contexto padrão
+        menu = self.createStandardContextMenu()
+
+        # Remove as ações
+        actions_to_remove = ['Back', 'View page source', 'Save page',
+                             'Forward', 'Open link in new tab', 'Save link',
+                             'Open link in new window', 'Paste and match style', 'Reload', 'Copy image address']
+
+        # Percorre as ações do menu e remove as correspondentes
+        for action in menu.actions():
+            if action.text() in actions_to_remove:
+                menu.removeAction(action)
+
+        # Dicionário de traduções para renomear ações
+        translations = {
+            'Undo': _('Undo'),
+            'Redo': _('Redo'),
+            'Cut': _('Cut'),
+            'Copy': _('Copy'),
+            'Paste': _('Paste'),
+            'Select all': _('Select all'),
+            'Save image': _('Save image'),
+            'Copy image': _('Copy image'),
+            'Copy link address': _('Copy link address')
+        }
+
+        # Itera sobre as ações do menu e aplica as traduções
+        for action in menu.actions():
+            original_text = action.text()
+            if original_text in translations:
+                action.setText(translations[original_text])
+
+                if action.text() == _("Copy link address"):  # Localiza pelo texto
+                    # Remove sinais conectados anteriormente, se houver
+                    try:
+                        action.triggered.disconnect()
+                    except TypeError:
+                        pass  # Nenhum sinal estava conectado
+
+                    # Define o novo comportamento para a ação
+                    def setClipboard():
+                        #cb = QApplication.clipboard()
+                        #cb.clear(mode=cb.Mode.Clipboard)
+                        #cb.setText(self.whats.link_context, mode=cb.Mode.Clipboard)
+                        print("Endereço do link copiado para a área de transferência!")
+
+                    # Conecta o novo comportamento
+                    action.triggered.connect(setClipboard)
+
         # Obtém perfil e configurações de correção ortográfica
         profile = self.page().profile()
         languages = profile.spellCheckLanguages()
-        menu = self.createStandardContextMenu()
 
         # Adiciona a ação de correção ortográfica
         def toggle_spellcheck(toggled):
