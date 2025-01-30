@@ -94,96 +94,103 @@ class WebView(QWebEngineView):
         self.setZoomFactor(self.user.zoomFactor)
 
     def contextMenuEvent(self, event):
-        """Cria o menu de contexto.
-        Essa função é executada toda vez ao clique do botão direito.
-        """
-        print("Abre o contextMenuEvent..")
+        """Cria o menu de contexto personalizado ao clicar com o botão direito."""
+        print("Abre o contextMenuEvent...")
 
-        # Cria o menu de contexto padrão
+        # Criação do menu de contexto padrão
         menu = self.createStandardContextMenu()
 
-        # Remove as ações
-        actions_to_remove = ['Back', 'View page source', 'Save page',
-                             'Forward', 'Open link in new tab', 'Save link',
-                             'Open link in new window', 'Paste and match style', 'Reload', 'Copy image address']
+        # 1. Remoção de ações indesejadas
+        actions_to_remove = [
+            'Back', 'View page source', 'Save page', 'Forward',
+            'Open link in new tab', 'Save link', 'Open link in new window',
+            'Paste and match style', 'Reload', 'Copy image address'
+        ]
+        menu = self._remove_actions(menu, actions_to_remove)
 
-        # Percorre as ações do menu e remove as correspondentes
+        # 2. Aplicação de traduções às ações
+        translations = {
+            'Undo': _('Undo'), 'Redo': _('Redo'), 'Cut': _('Cut'),
+            'Copy': _('Copy'), 'Paste': _('Paste'), 'Select all': _('Select all'),
+            'Save image': _('Save image'), 'Copy image': _('Copy image'),
+            'Copy link address': _('Copy link address')
+        }
+        self._translate_actions(menu, translations)
+
+        # 3. Adiciona novo comportamento para "Copy link address"
+        self._set_copy_link_behavior(menu)
+
+        # 4. Configuração de correção ortográfica
+        self._add_spellcheck_actions(menu)
+
+        # Exibição do menu de contexto
+        menu.exec(event.globalPos())
+
+    # Métodos auxiliares
+    def _remove_actions(self, menu, actions_to_remove):
+        """Remove ações indesejadas do menu."""
         for action in menu.actions():
             if action.text() in actions_to_remove:
                 menu.removeAction(action)
+        return menu
 
-        # Dicionário de traduções para renomear ações
-        translations = {
-            'Undo': _('Undo'),
-            'Redo': _('Redo'),
-            'Cut': _('Cut'),
-            'Copy': _('Copy'),
-            'Paste': _('Paste'),
-            'Select all': _('Select all'),
-            'Save image': _('Save image'),
-            'Copy image': _('Copy image'),
-            'Copy link address': _('Copy link address')
-        }
-
-        # Itera sobre as ações do menu e aplica as traduções
+    def _translate_actions(self, menu, translations):
+        """Aplica traduções às ações do menu."""
         for action in menu.actions():
-            original_text = action.text()
-            if original_text in translations:
-                action.setText(translations[original_text])
+            if action.text() in translations:
+                action.setText(translations[action.text()])
 
-                if action.text() == _("Copy link address"):  # Localiza pelo texto
-                    # Remove sinais conectados anteriormente, se houver
-                    try:
-                        action.triggered.disconnect()
-                    except TypeError:
-                        pass  # Nenhum sinal estava conectado
+    def _set_copy_link_behavior(self, menu):
+        """Define o comportamento personalizado para 'Copy link address'."""
+        for action in menu.actions():
+            if action.text() == _("Copy link address"):
+                try:
+                    action.triggered.disconnect()
+                except TypeError:
+                    pass  # Nenhum sinal estava conectado
 
-                    # Define o novo comportamento para a ação
-                    def setClipboard():
-                        #cb = QApplication.clipboard()
-                        #cb.clear(mode=cb.Mode.Clipboard)
-                        #cb.setText(self.whats.link_context, mode=cb.Mode.Clipboard)
-                        print("Endereço do link copiado para a área de transferência!")
+                def setClipboard():
+                    print("Endereço do link copiado para a área de transferência!")
+                    cb = QApplication.clipboard()
+                    cb.clear(mode=cb.Mode.Clipboard)
+                    cb.setText(self.whatsapp_page.link_context, mode=cb.Mode.Clipboard)
 
-                    # Conecta o novo comportamento
-                    action.triggered.connect(setClipboard)
+                action.triggered.connect(setClipboard)
 
-        # Obtém perfil e configurações de correção ortográfica
+    def _add_spellcheck_actions(self, menu):
+        """Adiciona opções de correção ortográfica e seleção de idiomas."""
         profile = self.page().profile()
         languages = profile.spellCheckLanguages()
 
-        # Adiciona a ação de correção ortográfica
-        def toggle_spellcheck(toggled):
-            print("Correção ortográfica:", toggled)
-            SettingsManager.set("system/spellCheckers", toggled)
-            QApplication.instance().getWindow().browser.update_spellcheck()
-
+        # Ação de correção ortográfica
         spellcheck_action = QAction(_("Check Spelling"), self)
         spellcheck_action.setCheckable(True)
         spellcheck_action.setChecked(profile.isSpellCheckEnabled())
-        spellcheck_action.toggled.connect(toggle_spellcheck)
+        spellcheck_action.toggled.connect(self._toggle_spellcheck)
         menu.addAction(spellcheck_action)
 
-        # Adiciona submenu de seleção de idiomas, se habilitado
+        # Submenu de seleção de idiomas
         if profile.isSpellCheckEnabled():
-            def select_language(lang):
-                print("Linguagem selecionada via menu de contexto:", lang)
-                DictionariesManager.set_lang(lang)
-                QApplication.instance().getWindow().browser.update_spellcheck()
-
             sub_menu = menu.addMenu(_("Select Language"))
-            actions = [
-                (sub_menu.addAction(lang_name), lang_name)
-                for lang_name in DictionariesManager.list()
-            ]
-            for action, lang_name in actions:
+            for lang_name in DictionariesManager.list():
+                action = sub_menu.addAction(lang_name)
                 action.setCheckable(True)
                 action.setChecked(lang_name in languages)
                 action.triggered.connect(
-                    lambda _, lang=lang_name: select_language(lang))
+                    lambda _, lang=lang_name: self._select_language(lang)
+                )
 
-        # Exibe o menu
-        menu.exec(event.globalPos())
+    def _toggle_spellcheck(self, toggled):
+        """Ativa/desativa a correção ortográfica."""
+        print("Correção ortográfica:", toggled)
+        SettingsManager.set("system/spellCheckers", toggled)
+        QApplication.instance().getWindow().browser.update_spellcheck()
+
+    def _select_language(self, lang):
+        """Seleciona o idioma para correção ortográfica."""
+        print("Linguagem selecionada via menu de contexto:", lang)
+        DictionariesManager.set_lang(lang)
+        QApplication.instance().getWindow().browser.update_spellcheck()
 
     def _on_title_changed(self, title):
         """Manipula mudanças no título da página."""
