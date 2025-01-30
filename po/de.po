@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-25 10:37-0300\n"
+"POT-Creation-Date: 2025-01-30 11:07-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -552,6 +552,50 @@ msgstr ""
 msgid "New conversation by phone number"
 msgstr ""
 
+#: zapzap/controllers/WebView.py:113
+msgid "Undo"
+msgstr ""
+
+#: zapzap/controllers/WebView.py:113
+msgid "Redo"
+msgstr ""
+
+#: zapzap/controllers/WebView.py:113
+msgid "Cut"
+msgstr ""
+
+#: zapzap/controllers/WebView.py:114
+msgid "Copy"
+msgstr ""
+
+#: zapzap/controllers/WebView.py:114
+msgid "Paste"
+msgstr ""
+
+#: zapzap/controllers/WebView.py:114
+msgid "Select all"
+msgstr ""
+
+#: zapzap/controllers/WebView.py:115
+msgid "Save image"
+msgstr ""
+
+#: zapzap/controllers/WebView.py:115
+msgid "Copy image"
+msgstr ""
+
+#: zapzap/controllers/WebView.py:116 zapzap/controllers/WebView.py:146
+msgid "Copy link address"
+msgstr ""
+
+#: zapzap/controllers/WebView.py:166
+msgid "Check Spelling"
+msgstr ""
+
+#: zapzap/controllers/WebView.py:174
+msgid "Select Language"
+msgstr ""
+
 #: zapzap/services/AlertManager.py:33
 msgid "Information"
 msgstr ""
@@ -570,19 +614,19 @@ msgstr ""
 msgid "No active account!"
 msgstr ""
 
-#: zapzap/services/DownloadManager.py:46
+#: zapzap/services/DownloadManager.py:45
 msgid "Open"
 msgstr ""
 
-#: zapzap/services/DownloadManager.py:47
+#: zapzap/services/DownloadManager.py:46
 msgid "Save"
 msgstr ""
 
-#: zapzap/services/DownloadManager.py:97
+#: zapzap/services/DownloadManager.py:96
 msgid "Save file"
 msgstr ""
 
-#: zapzap/services/DownloadManager.py:109
+#: zapzap/services/DownloadManager.py:108
 msgid "Select folder"
 msgstr ""
 
