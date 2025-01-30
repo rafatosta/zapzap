@@ -499,9 +499,19 @@ class ThemeStylesheet:
                 background-color: transparent;
             }
             QMenu::indicator {
-                border: none;
-                width: 16px;
-                height: 16px;
+                width: 10px;
+                height: 10px;
+                border: 2px solid #D0D4D8;
+                border-radius: 4px;
+                background-color: #FFFFFF;
+            }
+            QMenu::indicator:checked {
+                background-color: #00BD95;
+                border: 2px solid #00BD95;
+            }
+            QMenu::indicator:unchecked {
+                background-color: #F5F7F9;
+                border: 2px solid #D0D4D8;
             }
             QMenu::right-arrow {
                 padding-left: 8px;
@@ -540,9 +550,19 @@ class ThemeStylesheet:
                 background-color: transparent;
             }
             QMenu::indicator {
-                border: none;
-                width: 16px;
-                height: 16px;
+                width: 10px;
+                height: 10px;
+                border: 2px solid #555555;
+                border-radius: 4px;
+                background-color: #333333;
+            }
+            QMenu::indicator:checked {
+                background-color: #00BD95;
+                border: 2px solid #00BD95;
+            }
+            QMenu::indicator:unchecked {
+                background-color: #444444;
+                border: 2px solid #555555;
             }
             QMenu::right-arrow {
                 padding-left: 8px;
