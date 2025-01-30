@@ -91,7 +91,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox">
+         <widget class="QGroupBox" name="spellchecker_groupBox">
           <property name="title">
            <string>Spellchecker</string>
           </property>

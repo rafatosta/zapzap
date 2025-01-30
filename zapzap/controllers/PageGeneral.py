@@ -29,10 +29,11 @@ class PageGeneral(QWidget, Ui_PageGeneral):
             self.style().standardIcon(QStyle.StandardPixmap.SP_DirIcon))
         self.btn_default_path_spell.setIcon(self.style().standardIcon(
             QStyle.StandardPixmap.SP_DialogResetButton))
-        
+
         if SetupManager._is_flatpak:
             self.btn_wayland.setDisabled(True)
-            self.btn_wayland.setToolTip("Use Flatseal to change this mode of execution.")
+            self.btn_wayland.setToolTip(
+                "Use Flatseal to change this mode of execution.")
 
     def _load_settings(self):
         """
@@ -43,6 +44,10 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         """
         dictionaries_path = DictionariesManager.get_path()
         self.dic_path.setText(dictionaries_path)
+
+        self.spellchecker_groupBox.setChecked(
+            SettingsManager.get("system/spellCheckers", True)
+        )
 
         # Limpa e repopula o combobox de idiomas
         self.spell_comboBox.clear()
@@ -75,6 +80,10 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         - Alteração do idioma do corretor ortográfico.
         - Alteração do diretório de dicionários.
         """
+
+        self.spellchecker_groupBox.toggled.connect(
+            lambda toggled: self._handle_toggled_spellcheck(toggled))
+
         self.spell_comboBox.textActivated.connect(self._handle_spellcheck)
         self.btn_path_spell.clicked.connect(self._handle_path_spell)
         self.btn_default_path_spell.clicked.connect(
@@ -91,6 +100,10 @@ class PageGeneral(QWidget, Ui_PageGeneral):
 
         self.btn_wayland.clicked.connect(
             lambda: SettingsManager.set("system/wayland", self.btn_wayland.isChecked()))
+
+    def _handle_toggled_spellcheck(self, toggled):
+        SettingsManager.set("system/spellCheckers", toggled)
+        self._update_browser_spellcheck()
 
     def _handle_spellcheck(self, lang: str):
         """
