@@ -93,11 +93,13 @@ class PageController(QWebEnginePage):
 
     def eventFilter(self, obj, event):
         """Intercepta eventos e executa ações personalizadas."""
-        if event.type() == QEvent.Type.MouseButtonPress and event.button() == Qt.MouseButton.LeftButton:
-            if self.link_url:
-                QDesktopServices.openUrl(QUrl(self.link_url))
-                return True
-        return super().eventFilter(obj, event)
+        if event.type() == QEvent.Type.MouseButtonPress:
+            if event.button() == Qt.MouseButton.LeftButton:
+                if self.link_url:
+                    QDesktopServices.openUrl(QUrl(self.link_url))
+                    return True
+            self.link_url = ''
+        return False
 
     def _on_link_hovered(self, url):
         """Armazena o URL do link quando o mouse passa sobre ele."""
