@@ -3,6 +3,8 @@ import shutil
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
 from PyQt6.QtCore import QUrl, pyqtSignal
+from PyQt6.QtWidgets import QApplication
+from PyQt6.QtGui import QAction
 
 from zapzap.controllers.PageController import PageController
 from zapzap.models import User
@@ -11,6 +13,8 @@ from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.DownloadManager import DownloadManager
 from zapzap.services.NotificationManager import NotificationManager
 from zapzap.services.SettingsManager import SettingsManager
+
+from gettext import gettext as _
 
 # Configuração do logger
 logging.basicConfig(level=logging.INFO, format='%(levelname)s - %(message)s')
@@ -88,6 +92,55 @@ class WebView(QWebEngineView):
         self.setPage(self.whatsapp_page)
         self.load(QUrl(__whatsapp_url__))
         self.setZoomFactor(self.user.zoomFactor)
+
+    def contextMenuEvent(self, event):
+        """Cria o menu de contexto.
+            -- Essa função é executada toda vez ao clique do botão direito.
+        """
+
+        print("Abre o contextMenuEvent..")
+        # Manipula o menu de contexto manualmente
+        profile = self.page().profile()
+        languages = profile.spellCheckLanguages()
+        menu = self.createStandardContextMenu()
+
+        # Adiciona opções padrão
+        spellcheck_action = QAction(_("Check Spelling"), self)
+        spellcheck_action.setCheckable(True)
+        spellcheck_action.setChecked(profile.isSpellCheckEnabled())
+
+        def handle_toggled(toggled):
+            print("Correção ortográfica:", toggled)
+            SettingsManager.set("system/spellCheckers", toggled)
+            # Aplica a mudança para todos
+            QApplication.instance().getWindow().browser.update_spellcheck()
+
+        spellcheck_action.toggled.connect(
+            lambda toggled: handle_toggled(toggled))
+        menu.addAction(spellcheck_action)
+
+        # Adiciona submenu para seleção de idiomas
+        if profile.isSpellCheckEnabled():
+            sub_menu = menu.addMenu(_("Select Language"))
+            for lang_name in DictionariesManager.list():
+                action = sub_menu.addAction(lang_name)
+                action.setCheckable(True)
+                action.setChecked(lang_name in languages)
+
+                def handle_clicked(lang):
+                    print("Linguagem selecionada via menu de contexto:", lang)
+                    # Salva a linguagem selecionada
+                    DictionariesManager.set_lang(lang)
+
+                    # Aplica a mudança para todos
+                    QApplication.instance().getWindow().browser.update_spellcheck()
+
+                # Ação ao clicar
+                action.triggered.connect(
+                    lambda _, lang=lang_name: handle_clicked(lang))
+
+        # Exibe o menu
+        menu.exec(event.globalPos())
 
     def _on_title_changed(self, title):
         """Manipula mudanças no título da página."""
