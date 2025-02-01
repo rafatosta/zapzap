@@ -82,8 +82,11 @@ class Ui_CardUser(object):
     def retranslateUi(self, CardUser):
         
         self.icon.setToolTip(_("Click to generate new colors for the icon"))
+        self.disable.setToolTip(_("Temporarily disable"))
         self.disable.setText(_("Disable"))
+        self.silence.setToolTip(_("Silences the notifications"))
         self.silence.setText(_("Do not disturb"))
+        self.delete.setToolTip(_("Delete permanently"))
         self.delete.setText(_("Delete"))
         self.name.setPlaceholderText(_("Enter the user name"))
 

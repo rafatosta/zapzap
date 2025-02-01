@@ -119,8 +119,12 @@ class Ui_PageGeneral(object):
         
         self.label.setText(_("General"))
         self.groupBox_3.setTitle(_("Download Directory"))
+        self.btn_path_download.setToolTip(_("Set new folder for downloads"))
+        self.btn_restore_path_download.setToolTip(_("Define default folder for downloads"))
         self.spellchecker_groupBox.setTitle(_("Spellchecker"))
         self.label_2.setText(_("Directory"))
+        self.btn_path_spell.setToolTip(_("Recognizes only compiled dictionaries (.bdic)"))
+        self.btn_default_path_spell.setToolTip(_("Define standard dictionaries"))
         self.label_3.setText(_("Note: Required restart."))
         self.groupBox_2.setTitle(_("Behavior"))
         self.btn_quit_in_close.setText(_("Closer when closing the window"))

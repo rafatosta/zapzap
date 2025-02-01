@@ -75,6 +75,9 @@
            </item>
            <item row="0" column="1">
             <widget class="QPushButton" name="btn_path_download">
+             <property name="toolTip">
+              <string>Set new folder for downloads</string>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -82,6 +85,9 @@
            </item>
            <item row="0" column="2">
             <widget class="QPushButton" name="btn_restore_path_download">
+             <property name="toolTip">
+              <string>Define default folder for downloads</string>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -118,6 +124,9 @@
            </item>
            <item row="2" column="1">
             <widget class="QPushButton" name="btn_path_spell">
+             <property name="toolTip">
+              <string>Recognizes only compiled dictionaries (.bdic)</string>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -125,6 +134,9 @@
            </item>
            <item row="2" column="2">
             <widget class="QPushButton" name="btn_default_path_spell">
+             <property name="toolTip">
+              <string>Define standard dictionaries</string>
+             </property>
              <property name="text">
               <string/>
              </property>

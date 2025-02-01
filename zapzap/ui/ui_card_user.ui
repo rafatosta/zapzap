@@ -97,6 +97,9 @@ QPushButton:hover {
         </property>
         <item row="1" column="1">
          <widget class="QPushButton" name="disable">
+          <property name="toolTip">
+           <string>Temporarily disable</string>
+          </property>
           <property name="styleSheet">
            <string notr="true"/>
           </property>
@@ -110,6 +113,9 @@ QPushButton:hover {
         </item>
         <item row="1" column="0">
          <widget class="QPushButton" name="silence">
+          <property name="toolTip">
+           <string>Silences the notifications</string>
+          </property>
           <property name="styleSheet">
            <string notr="true"/>
           </property>
@@ -128,6 +134,9 @@ QPushButton:hover {
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Delete permanently</string>
           </property>
           <property name="styleSheet">
            <string notr="true"/>
