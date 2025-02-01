@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-30 11:07-0300\n"
+"POT-Creation-Date: 2025-02-01 16:47-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,18 +39,30 @@ msgid "Click to generate new colors for the icon"
 msgstr "Clique para gerar novas cores para o ícone"
 
 #: zapzap/views/ui_card_user.py:85
+msgid "Temporarily disable"
+msgstr "Desabilitar temporariamente"
+
+#: zapzap/views/ui_card_user.py:86
 msgid "Disable"
 msgstr "Desativar"
 
-#: zapzap/views/ui_card_user.py:86
+#: zapzap/views/ui_card_user.py:87
+msgid "Silences the notifications"
+msgstr "Silenciar notificações na área de trabalho"
+
+#: zapzap/views/ui_card_user.py:88
 msgid "Do not disturb"
 msgstr "Não perturbe"
 
-#: zapzap/views/ui_card_user.py:87
+#: zapzap/views/ui_card_user.py:89
+msgid "Delete permanently"
+msgstr ""
+
+#: zapzap/views/ui_card_user.py:90
 msgid "Delete"
 msgstr "Excluir"
 
-#: zapzap/views/ui_card_user.py:88
+#: zapzap/views/ui_card_user.py:91
 msgid "Enter the user name"
 msgstr "Insira o nome do usuário"
 
@@ -273,34 +285,50 @@ msgid "Download Directory"
 msgstr "Diretório de Download"
 
 #: zapzap/views/ui_page_general.py:122
+msgid "Set new folder for downloads"
+msgstr "Define nova pasta para downloads"
+
+#: zapzap/views/ui_page_general.py:123
+msgid "Define default folder for downloads"
+msgstr "Restaurar para a pasta padrão de downloads"
+
+#: zapzap/views/ui_page_general.py:124
 msgid "Spellchecker"
 msgstr "Corretor ortográfico"
 
-#: zapzap/views/ui_page_general.py:123
+#: zapzap/views/ui_page_general.py:125
 msgid "Directory"
 msgstr "Diretório"
 
-#: zapzap/views/ui_page_general.py:124
+#: zapzap/views/ui_page_general.py:126
+msgid "Recognizes only compiled dictionaries (.bdic)"
+msgstr "Reconhece apenas dicionários compilados (.bdic)"
+
+#: zapzap/views/ui_page_general.py:127
+msgid "Define standard dictionaries"
+msgstr "Definir dicionário padrão"
+
+#: zapzap/views/ui_page_general.py:128
 msgid "Note: Required restart."
 msgstr "Nota: Requer reinício."
 
-#: zapzap/views/ui_page_general.py:125
+#: zapzap/views/ui_page_general.py:129
 msgid "Behavior"
 msgstr "Comportamento"
 
-#: zapzap/views/ui_page_general.py:126
+#: zapzap/views/ui_page_general.py:130
 msgid "Closer when closing the window"
 msgstr "Fechar ao encerrar a janela"
 
-#: zapzap/views/ui_page_general.py:127
+#: zapzap/views/ui_page_general.py:131
 msgid "Start minimized"
 msgstr "Iniciar minimizado"
 
-#: zapzap/views/ui_page_general.py:128
+#: zapzap/views/ui_page_general.py:132
 msgid "Start with the system"
 msgstr "Iniciar com o sistema"
 
-#: zapzap/views/ui_page_general.py:129
+#: zapzap/views/ui_page_general.py:133
 msgid "Wayland window system"
 msgstr "Sistema de janelas Wayland"
 

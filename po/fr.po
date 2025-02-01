@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-30 11:07-0300\n"
+"POT-Creation-Date: 2025-02-01 16:47-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,18 +39,30 @@ msgid "Click to generate new colors for the icon"
 msgstr ""
 
 #: zapzap/views/ui_card_user.py:85
-msgid "Disable"
+msgid "Temporarily disable"
 msgstr ""
 
 #: zapzap/views/ui_card_user.py:86
-msgid "Do not disturb"
+msgid "Disable"
 msgstr ""
 
 #: zapzap/views/ui_card_user.py:87
-msgid "Delete"
+msgid "Silences the notifications"
 msgstr ""
 
 #: zapzap/views/ui_card_user.py:88
+msgid "Do not disturb"
+msgstr ""
+
+#: zapzap/views/ui_card_user.py:89
+msgid "Delete permanently"
+msgstr ""
+
+#: zapzap/views/ui_card_user.py:90
+msgid "Delete"
+msgstr ""
+
+#: zapzap/views/ui_card_user.py:91
 msgid "Enter the user name"
 msgstr ""
 
@@ -273,34 +285,50 @@ msgid "Download Directory"
 msgstr ""
 
 #: zapzap/views/ui_page_general.py:122
-msgid "Spellchecker"
+msgid "Set new folder for downloads"
 msgstr ""
 
 #: zapzap/views/ui_page_general.py:123
-msgid "Directory"
+msgid "Define default folder for downloads"
 msgstr ""
 
 #: zapzap/views/ui_page_general.py:124
-msgid "Note: Required restart."
+msgid "Spellchecker"
 msgstr ""
 
 #: zapzap/views/ui_page_general.py:125
-msgid "Behavior"
+msgid "Directory"
 msgstr ""
 
 #: zapzap/views/ui_page_general.py:126
-msgid "Closer when closing the window"
+msgid "Recognizes only compiled dictionaries (.bdic)"
 msgstr ""
 
 #: zapzap/views/ui_page_general.py:127
-msgid "Start minimized"
+msgid "Define standard dictionaries"
 msgstr ""
 
 #: zapzap/views/ui_page_general.py:128
-msgid "Start with the system"
+msgid "Note: Required restart."
 msgstr ""
 
 #: zapzap/views/ui_page_general.py:129
+msgid "Behavior"
+msgstr ""
+
+#: zapzap/views/ui_page_general.py:130
+msgid "Closer when closing the window"
+msgstr ""
+
+#: zapzap/views/ui_page_general.py:131
+msgid "Start minimized"
+msgstr ""
+
+#: zapzap/views/ui_page_general.py:132
+msgid "Start with the system"
+msgstr ""
+
+#: zapzap/views/ui_page_general.py:133
 msgid "Wayland window system"
 msgstr ""
 
