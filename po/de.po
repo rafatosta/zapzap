@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-04 11:14-0300\n"
+"POT-Creation-Date: 2025-02-04 17:40-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -368,7 +368,7 @@ msgstr "Beschreibung"
 msgid "Apply"
 msgstr "Anwenden"
 
-#: zapzap/views/ui_page_network.py:124 zapzap/views/ui_page_performance.py:113
+#: zapzap/views/ui_page_network.py:124 zapzap/views/ui_page_performance.py:122
 msgid "Restore"
 msgstr "Wiederherstellen"
 
@@ -392,51 +392,55 @@ msgstr "Namen des Absenders anzeigen"
 msgid "Show message preview"
 msgstr "Nachrichtenvorschau anzeigen"
 
-#: zapzap/views/ui_page_performance.py:102
+#: zapzap/views/ui_page_performance.py:110
 msgid "Performance (Experimental)"
 msgstr "Leistung (Experimentell)"
 
-#: zapzap/views/ui_page_performance.py:103
+#: zapzap/views/ui_page_performance.py:111
 msgid "Cache Behavior"
 msgstr "Cache-Verhalten"
 
-#: zapzap/views/ui_page_performance.py:104
+#: zapzap/views/ui_page_performance.py:112
 msgid "Cache Type"
 msgstr "Cache-Typ"
 
-#: zapzap/views/ui_page_performance.py:105
+#: zapzap/views/ui_page_performance.py:113
 msgid "Maximum Cache Size"
 msgstr "Maximale Cache-Größe"
 
-#: zapzap/views/ui_page_performance.py:106
+#: zapzap/views/ui_page_performance.py:114
 msgid "0 MB"
 msgstr "0 MB"
 
-#: zapzap/views/ui_page_performance.py:107
+#: zapzap/views/ui_page_performance.py:115
 msgid "50 MB"
 msgstr "50 MB"
 
-#: zapzap/views/ui_page_performance.py:108
+#: zapzap/views/ui_page_performance.py:116
 msgid "100 MB"
 msgstr "100 MB"
 
-#: zapzap/views/ui_page_performance.py:109
+#: zapzap/views/ui_page_performance.py:117
 msgid "QWebEngine Behavior"
 msgstr "QWebEngine-Verhalten"
 
-#: zapzap/views/ui_page_performance.py:110
-msgid "Disable GPU hardware acceleration"
-msgstr "GPU-Hardwarebeschleunigung deaktivieren"
-
-#: zapzap/views/ui_page_performance.py:111
+#: zapzap/views/ui_page_performance.py:118
 msgid "Enable single process for GPU and rendering"
 msgstr "Einzelnen Prozess für GPU und Rendering aktivieren"
 
-#: zapzap/views/ui_page_performance.py:112
+#: zapzap/views/ui_page_performance.py:119
+msgid "Disable GPU hardware acceleration"
+msgstr "GPU-Hardwarebeschleunigung deaktivieren"
+
+#: zapzap/views/ui_page_performance.py:120
 msgid "Run everything in a single process"
 msgstr "Alles in einem einzigen Prozess ausführen"
 
-#: zapzap/views/ui_page_performance.py:114
+#: zapzap/views/ui_page_performance.py:121
+msgid "Animated scrolling"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:123
 msgid "Note: Restart required to apply changes."
 msgstr "Hinweis: Ein Neustart ist erforderlich, um Änderungen anzuwenden."
 
@@ -616,11 +620,11 @@ msgstr "Bild kopieren"
 msgid "Copy link address"
 msgstr "Linkadresse kopieren"
 
-#: zapzap/controllers/WebView.py:166
+#: zapzap/controllers/WebView.py:167
 msgid "Check Spelling"
 msgstr "Rechtschreibung überprüfen"
 
-#: zapzap/controllers/WebView.py:174
+#: zapzap/controllers/WebView.py:175
 msgid "Select Language"
 msgstr "Sprache auswählen"
 

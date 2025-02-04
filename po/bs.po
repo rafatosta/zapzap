@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-04 11:14-0300\n"
+"POT-Creation-Date: 2025-02-04 17:40-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -368,7 +368,7 @@ msgstr "Opis"
 msgid "Apply"
 msgstr "Primijeni"
 
-#: zapzap/views/ui_page_network.py:124 zapzap/views/ui_page_performance.py:113
+#: zapzap/views/ui_page_network.py:124 zapzap/views/ui_page_performance.py:122
 msgid "Restore"
 msgstr "Vrati"
 
@@ -392,51 +392,55 @@ msgstr "Prikaži ime pošiljaoca"
 msgid "Show message preview"
 msgstr "Prikaži pregled poruke"
 
-#: zapzap/views/ui_page_performance.py:102
+#: zapzap/views/ui_page_performance.py:110
 msgid "Performance (Experimental)"
 msgstr "Performanse (Eksperimentalno)"
 
-#: zapzap/views/ui_page_performance.py:103
+#: zapzap/views/ui_page_performance.py:111
 msgid "Cache Behavior"
 msgstr "Ponašanje keša"
 
-#: zapzap/views/ui_page_performance.py:104
+#: zapzap/views/ui_page_performance.py:112
 msgid "Cache Type"
 msgstr "Tip keša"
 
-#: zapzap/views/ui_page_performance.py:105
+#: zapzap/views/ui_page_performance.py:113
 msgid "Maximum Cache Size"
 msgstr "Maksimalna veličina keša"
 
-#: zapzap/views/ui_page_performance.py:106
+#: zapzap/views/ui_page_performance.py:114
 msgid "0 MB"
 msgstr "0 MB"
 
-#: zapzap/views/ui_page_performance.py:107
+#: zapzap/views/ui_page_performance.py:115
 msgid "50 MB"
 msgstr "50 MB"
 
-#: zapzap/views/ui_page_performance.py:108
+#: zapzap/views/ui_page_performance.py:116
 msgid "100 MB"
 msgstr "100 MB"
 
-#: zapzap/views/ui_page_performance.py:109
+#: zapzap/views/ui_page_performance.py:117
 msgid "QWebEngine Behavior"
 msgstr "Ponašanje QWebEngine-a"
 
-#: zapzap/views/ui_page_performance.py:110
-msgid "Disable GPU hardware acceleration"
-msgstr "Onemogući hardversku akceleraciju GPU-a"
-
-#: zapzap/views/ui_page_performance.py:111
+#: zapzap/views/ui_page_performance.py:118
 msgid "Enable single process for GPU and rendering"
 msgstr "Omogući jedan proces za GPU i renderovanje"
 
-#: zapzap/views/ui_page_performance.py:112
+#: zapzap/views/ui_page_performance.py:119
+msgid "Disable GPU hardware acceleration"
+msgstr "Onemogući hardversku akceleraciju GPU-a"
+
+#: zapzap/views/ui_page_performance.py:120
 msgid "Run everything in a single process"
 msgstr "Pokreni sve u jednom procesu"
 
-#: zapzap/views/ui_page_performance.py:114
+#: zapzap/views/ui_page_performance.py:121
+msgid "Animated scrolling"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:123
 msgid "Note: Restart required to apply changes."
 msgstr ""
 "Napomena: Potrebno je ponovno pokretanje da bi se promjene primijenile."
@@ -617,11 +621,11 @@ msgstr "Kopiraj sliku"
 msgid "Copy link address"
 msgstr "Kopiraj adresu linka"
 
-#: zapzap/controllers/WebView.py:166
+#: zapzap/controllers/WebView.py:167
 msgid "Check Spelling"
 msgstr "Provjeri pravopis"
 
-#: zapzap/controllers/WebView.py:174
+#: zapzap/controllers/WebView.py:175
 msgid "Select Language"
 msgstr "Odaberi jezik"
 
