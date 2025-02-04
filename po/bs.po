@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-01 17:04-0300\n"
+"POT-Creation-Date: 2025-02-04 10:22-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -438,7 +438,8 @@ msgstr "Pokreni sve u jednom procesu"
 
 #: zapzap/views/ui_page_performance.py:114
 msgid "Note: Restart required to apply changes."
-msgstr "Napomena: Potrebno je ponovno pokretanje da bi se promjene primijenile."
+msgstr ""
+"Napomena: Potrebno je ponovno pokretanje da bi se promjene primijenile."
 
 #: zapzap/views/ui_settings.py:116
 msgid "Back"
