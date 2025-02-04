@@ -13,7 +13,7 @@ class PagePerformance(QWidget, Ui_PagePerformance):
         "performance/in_process_gpu": False,
         "performance/disable_gpu": False,
         "performance/single_process": False,
-        "web/scroll_animator": True
+        "web/scroll_animator": False
 
     }
 
@@ -50,7 +50,7 @@ class PagePerformance(QWidget, Ui_PagePerformance):
             SettingsManager.get("performance/single_process", False))
 
         self.scroll_animator.setChecked(
-            SettingsManager.get("web/scroll_animator", True))
+            SettingsManager.get("web/scroll_animator", False))
 
     def _configure_signals(self):
         """

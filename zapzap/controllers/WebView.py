@@ -63,7 +63,7 @@ class WebView(QWebEngineView):
             lambda notification: NotificationManager.show(self, notification)
         )
         self.profile.settings().setAttribute(
-            QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, SettingsManager.get("web/scroll_animator", True))
+            QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, SettingsManager.get("web/scroll_animator", False))
 
         self.configure_spellcheck()
 
