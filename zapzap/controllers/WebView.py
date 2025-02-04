@@ -63,7 +63,7 @@ class WebView(QWebEngineView):
             lambda notification: NotificationManager.show(self, notification)
         )
         self.profile.settings().setAttribute(
-            QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, True)
+            QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, SettingsManager.get("web/scroll_animator", True))
 
         self.configure_spellcheck()
 
@@ -153,7 +153,8 @@ class WebView(QWebEngineView):
                     print("Endereço do link copiado para a área de transferência!")
                     cb = QApplication.clipboard()
                     cb.clear(mode=cb.Mode.Clipboard)
-                    cb.setText(self.whatsapp_page.link_context, mode=cb.Mode.Clipboard)
+                    cb.setText(self.whatsapp_page.link_context,
+                               mode=cb.Mode.Clipboard)
 
                 action.triggered.connect(setClipboard)
 

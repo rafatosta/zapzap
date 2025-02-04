@@ -118,13 +118,6 @@
           </property>
           <layout class="QGridLayout" name="gridLayout">
            <item row="2" column="0">
-            <widget class="QCheckBox" name="disable_gpu">
-             <property name="text">
-              <string>Disable GPU hardware acceleration</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
             <widget class="QCheckBox" name="in_process_gpu">
              <property name="text">
               <string>Enable single process for GPU and rendering</string>
@@ -132,9 +125,30 @@
             </widget>
            </item>
            <item row="3" column="0">
+            <widget class="QCheckBox" name="disable_gpu">
+             <property name="text">
+              <string>Disable GPU hardware acceleration</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
             <widget class="QCheckBox" name="single_process">
              <property name="text">
               <string>Run everything in a single process</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="Line" name="line">
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="scroll_animator">
+             <property name="text">
+              <string>Animated scrolling</string>
              </property>
             </widget>
            </item>

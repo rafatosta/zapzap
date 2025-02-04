@@ -13,6 +13,8 @@ class PagePerformance(QWidget, Ui_PagePerformance):
         "performance/in_process_gpu": False,
         "performance/disable_gpu": False,
         "performance/single_process": False,
+        "web/scroll_animator": True
+
     }
 
     CACHE_TYPES = [
@@ -47,6 +49,9 @@ class PagePerformance(QWidget, Ui_PagePerformance):
         self.single_process.setChecked(
             SettingsManager.get("performance/single_process", False))
 
+        self.scroll_animator.setChecked(
+            SettingsManager.get("web/scroll_animator", True))
+
     def _configure_signals(self):
         """
         Conecta os sinais dos componentes aos métodos que atualizam o SettingsManager.
@@ -63,6 +68,9 @@ class PagePerformance(QWidget, Ui_PagePerformance):
             "performance/disable_gpu", self.disable_gpu.isChecked()))
         self.single_process.clicked.connect(lambda: SettingsManager.set(
             "performance/single_process", self.single_process.isChecked()))
+        
+        self.scroll_animator.clicked.connect(lambda: SettingsManager.set(
+            "web/scroll_animator", self.scroll_animator.isChecked()))
 
         self.btn_restore.clicked.connect(self._restore_settings)
 
