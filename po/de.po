@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-04 17:40-0300\n"
+"POT-Creation-Date: 2025-02-06 09:58-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,6 +67,7 @@ msgid "Enter the user name"
 msgstr "Benutzernamen eingeben"
 
 #: zapzap/views/ui_mainwindow.py:92 zapzap/views/ui_page_about.py:116
+#: zapzap/views/ui_qtoaster_donation.py:137
 #: zapzap/views/ui_shortcuts_dialog.py:65
 msgid "ZapZap"
 msgstr "ZapZap"
@@ -443,6 +444,20 @@ msgstr ""
 #: zapzap/views/ui_page_performance.py:123
 msgid "Note: Restart required to apply changes."
 msgstr "Hinweis: Ein Neustart ist erforderlich, um Änderungen anzuwenden."
+
+#: zapzap/views/ui_qtoaster_donation.py:136
+msgid "Welcome to"
+msgstr ""
+
+#: zapzap/views/ui_qtoaster_donation.py:138
+#, python-brace-format
+msgid "Version {id}"
+msgstr ""
+
+#: zapzap/views/ui_qtoaster_donation.py:139
+#, fuzzy
+msgid "Make a donation"
+msgstr "Spende"
 
 #: zapzap/views/ui_settings.py:116
 msgid "Back"
