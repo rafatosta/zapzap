@@ -1,6 +1,7 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMainWindow, QApplication
 from PyQt6.QtCore import QByteArray, Qt
+from zapzap.controllers.QtoasterDonation import QtoasterDonation
 from zapzap.controllers.Settings import Settings
 from zapzap.controllers.Browser import Browser
 from zapzap.controllers.ShortcutsDialog import ShortcutsDialog
@@ -25,6 +26,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.browser = Browser(self)  # Inicialização do navegador
         self.app_settings = None
         self._setup_ui()
+        QtoasterDonation.showMessage(parent=self)
 
     # === Configuração Inicial ===
     def _setup_ui(self):
