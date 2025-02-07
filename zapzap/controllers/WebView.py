@@ -266,15 +266,15 @@ class WebView(QWebEngineView):
         logger.info(f"Nome do perfil: {profile.storageName()}")
         logger.info(f"Cache Path: {profile.cachePath()}")
         logger.info(f"Http Cache Type: {profile.httpCacheType().name}")
-        logger.info(f"Tamanho Máximo do Cache HTTP (Bytes): {
-                    profile.httpCacheMaximumSize()}")
-        logger.info(f"Persistent Cookies Policy: {
-                    profile.persistentCookiesPolicy().name}")
-        logger.info(f"Path do Armazenamento Persistente: {
-                    profile.persistentStoragePath()}")
+        logger.info(f"""Tamanho Máximo do Cache HTTP (Bytes): {
+                    profile.httpCacheMaximumSize()}""")
+        logger.info(f"""Persistent Cookies Policy: {
+                    profile.persistentCookiesPolicy().name}""")
+        logger.info(f"""Path do Armazenamento Persistente: {
+                    profile.persistentStoragePath()}""")
         logger.info(f"Path de Download: {profile.downloadPath()}")
         logger.info(f"User Agent: {profile.httpUserAgent()}")
         logger.info(f"Spell Check Habilitado: {profile.isSpellCheckEnabled()}")
-        logger.info(f"Linguagens do Spell Check: {
-                    profile.spellCheckLanguages()}")
+        logger.info(f"""Linguagens do Spell Check: {
+                    profile.spellCheckLanguages()}""")
         logger.info("=========================================")
