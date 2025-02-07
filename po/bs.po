@@ -439,21 +439,20 @@ msgstr "Pokreni sve u jednom procesu"
 
 #: zapzap/views/ui_page_performance.py:121
 msgid "Animated scrolling"
-msgstr ""
+msgstr "Animirano listanje"
 
 #: zapzap/views/ui_page_performance.py:123
 msgid "Note: Restart required to apply changes."
-msgstr ""
-"Napomena: Potrebno je ponovno pokretanje da bi se promjene primijenile."
+msgstr "Napomena: Potrebno je ponovno pokretanje da bi se promjene primijenile."
 
 #: zapzap/views/ui_qtoaster_donation.py:136
 msgid "Welcome to"
-msgstr ""
+msgstr Dobro došli na""
 
 #: zapzap/views/ui_qtoaster_donation.py:138
 #, python-brace-format
 msgid "Version {id}"
-msgstr ""
+msgstr "Verzija {id}"
 
 #: zapzap/views/ui_qtoaster_donation.py:139
 #, fuzzy
