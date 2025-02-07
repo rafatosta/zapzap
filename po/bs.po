@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-07 10:11-0300\n"
+"POT-Creation-Date: 2025-02-07 10:15-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -443,11 +443,12 @@ msgstr "Animirano listanje"
 
 #: zapzap/views/ui_page_performance.py:123
 msgid "Note: Restart required to apply changes."
-msgstr "Napomena: Potrebno je ponovno pokretanje da bi se promjene primijenile."
+msgstr ""
+"Napomena: Potrebno je ponovno pokretanje da bi se promjene primijenile."
 
 #: zapzap/views/ui_qtoaster_donation.py:136
 msgid "Welcome to"
-msgstr Dobro došli na""
+msgstr "Dobro došli na"
 
 #: zapzap/views/ui_qtoaster_donation.py:138
 #, python-brace-format
