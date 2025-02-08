@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-07 10:15-0300\n"
+"POT-Creation-Date: 2025-02-08 12:22-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -277,59 +277,63 @@ msgstr "200 %"
 msgid "Note: The change of scale will only have effect until restarting."
 msgstr "Nota: La modifica della scala avrà effetto solo fino al riavvio."
 
-#: zapzap/views/ui_page_general.py:120 zapzap/views/ui_settings.py:118
+#: zapzap/views/ui_page_general.py:128 zapzap/views/ui_settings.py:118
 msgid "General"
 msgstr "Generale"
 
-#: zapzap/views/ui_page_general.py:121
+#: zapzap/views/ui_page_general.py:129
 msgid "Download Directory"
 msgstr "Cartella di download"
 
-#: zapzap/views/ui_page_general.py:122
+#: zapzap/views/ui_page_general.py:130
 msgid "Set new folder for downloads"
 msgstr "Imposta una nuova cartella per i download"
 
-#: zapzap/views/ui_page_general.py:123
+#: zapzap/views/ui_page_general.py:131
 msgid "Define default folder for downloads"
 msgstr "Definisci la cartella predefinita per i download"
 
-#: zapzap/views/ui_page_general.py:124
+#: zapzap/views/ui_page_general.py:132
 msgid "Spellchecker"
 msgstr "Correttore ortografico"
 
-#: zapzap/views/ui_page_general.py:125
+#: zapzap/views/ui_page_general.py:133
 msgid "Directory"
 msgstr "Cartella"
 
-#: zapzap/views/ui_page_general.py:126
+#: zapzap/views/ui_page_general.py:134
 msgid "Recognizes only compiled dictionaries (.bdic)"
 msgstr "Riconosce solo dizionari compilati (.bdic)"
 
-#: zapzap/views/ui_page_general.py:127
+#: zapzap/views/ui_page_general.py:135
 msgid "Define standard dictionaries"
 msgstr "Definisci i dizionari standard"
 
-#: zapzap/views/ui_page_general.py:128
+#: zapzap/views/ui_page_general.py:136
 msgid "Note: Required restart."
 msgstr "Nota: Riavvio richiesto."
 
-#: zapzap/views/ui_page_general.py:129
+#: zapzap/views/ui_page_general.py:137
 msgid "Behavior"
 msgstr "Comportamento"
 
-#: zapzap/views/ui_page_general.py:130
+#: zapzap/views/ui_page_general.py:138
 msgid "Closer when closing the window"
 msgstr "Chiudi completamente alla chiusura della finestra"
 
-#: zapzap/views/ui_page_general.py:131
+#: zapzap/views/ui_page_general.py:139
 msgid "Start minimized"
 msgstr "Avvia minimizzato"
 
-#: zapzap/views/ui_page_general.py:132
+#: zapzap/views/ui_page_general.py:140
 msgid "Start with the system"
 msgstr "Avvia con il sistema"
 
-#: zapzap/views/ui_page_general.py:133
+#: zapzap/views/ui_page_general.py:141
+msgid "Don't use a platform-native file dialog"
+msgstr ""
+
+#: zapzap/views/ui_page_general.py:142
 msgid "Wayland window system"
 msgstr "Sistema di finestre Wayland"
 
@@ -663,22 +667,6 @@ msgstr "Attenzione"
 msgid "No active account!"
 msgstr "Nessun account attivo!"
 
-#: zapzap/services/DownloadManager.py:45
-msgid "Open"
-msgstr "Apri"
-
-#: zapzap/services/DownloadManager.py:46
-msgid "Save"
-msgstr "Salva"
-
-#: zapzap/services/DownloadManager.py:96
-msgid "Save file"
-msgstr "Salva file"
-
-#: zapzap/services/DownloadManager.py:108
-msgid "Select folder"
-msgstr "Seleziona cartella"
-
 #: zapzap/services/NotificationManager.py:36
 msgid "New message..."
 msgstr "Nuovo messaggio..."
@@ -714,3 +702,19 @@ msgstr "Mostra"
 #: zapzap/services/SysTrayManager.py:56
 msgid "Donation"
 msgstr "Donazione"
+
+#: zapzap/services/DownloadManager.py:46
+msgid "Open"
+msgstr "Apri"
+
+#: zapzap/services/DownloadManager.py:47
+msgid "Save"
+msgstr "Salva"
+
+#: zapzap/services/DownloadManager.py:99
+msgid "Save file"
+msgstr "Salva file"
+
+#: zapzap/services/DownloadManager.py:115
+msgid "Select folder"
+msgstr "Seleziona cartella"
