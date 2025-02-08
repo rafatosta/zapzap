@@ -7,6 +7,7 @@ import os
 from zapzap.services.SettingsManager import SettingsManager
 from gettext import gettext as _
 
+
 class DownloadManager:
 
     DOWNLOAD_PATH = QStandardPaths.writableLocation(
@@ -89,12 +90,14 @@ class DownloadManager:
     def save_download(download):
         """ Salva o arquivo no diretório especificado pelo usuário """
         directory = DownloadManager.get_path()
+        options = QFileDialog.Option.DontUseNativeDialog if SettingsManager.get(
+            "system/DontUseNativeDialog", False) else QFileDialog.Option(0)
 
         file_name = download.downloadFileName()
         suffix = QFileInfo(file_name).suffix()
         path, __ = QFileDialog.getSaveFileName(
             None, _("Save file"), os.path.join(
-                directory, file_name), f"*.{suffix}"
+                directory, file_name), f"*.{suffix}", options=options
         )
         if path:
             download.setDownloadFileName(os.path.basename(path))
@@ -104,6 +107,10 @@ class DownloadManager:
     @staticmethod
     def open_folder_dialog(parent):
         """ Abre um diálogo para selecionar uma pasta """
+        directory = DownloadManager.get_path()
+        options = QFileDialog.Option.DontUseNativeDialog if SettingsManager.get(
+            "system/DontUseNativeDialog", False) else QFileDialog.Option(0)
+        
         folder_path = QFileDialog.getExistingDirectory(
-            parent, _("Select folder"))
-        return folder_path if folder_path else None
+            parent=parent, caption=_("Select folder"), directory=directory, options=options)
+        return folder_path or None

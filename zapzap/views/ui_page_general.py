@@ -96,6 +96,14 @@ class Ui_PageGeneral(object):
         self.btn_start_system = QtWidgets.QCheckBox(parent=self.groupBox_2)
         self.btn_start_system.setObjectName("btn_start_system")
         self.verticalLayout.addWidget(self.btn_start_system)
+        self.line_2 = QtWidgets.QFrame(parent=self.groupBox_2)
+        self.line_2.setFrameShape(QtWidgets.QFrame.Shape.HLine)
+        self.line_2.setFrameShadow(QtWidgets.QFrame.Shadow.Sunken)
+        self.line_2.setObjectName("line_2")
+        self.verticalLayout.addWidget(self.line_2)
+        self.dontUseNativeDialog = QtWidgets.QCheckBox(parent=self.groupBox_2)
+        self.dontUseNativeDialog.setObjectName("dontUseNativeDialog")
+        self.verticalLayout.addWidget(self.dontUseNativeDialog)
         self.line = QtWidgets.QFrame(parent=self.groupBox_2)
         self.line.setFrameShape(QtWidgets.QFrame.Shape.HLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Shadow.Sunken)
@@ -130,6 +138,7 @@ class Ui_PageGeneral(object):
         self.btn_quit_in_close.setText(_("Closer when closing the window"))
         self.btn_start_background.setText(_("Start minimized"))
         self.btn_start_system.setText(_("Start with the system"))
+        self.dontUseNativeDialog.setText(_("Don\'t use a platform-native file dialog"))
         self.btn_wayland.setText(_("Wayland window system"))
 
 

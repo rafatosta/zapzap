@@ -74,6 +74,9 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         self.btn_wayland.setChecked(
             SettingsManager.get("system/wayland", False))
 
+        self.dontUseNativeDialog.setChecked(
+            SettingsManager.get("system/DontUseNativeDialog", False))
+
     def _configure_signals(self):
         """
         Conecta os sinais dos widgets aos respectivos manipuladores:
@@ -100,6 +103,9 @@ class PageGeneral(QWidget, Ui_PageGeneral):
 
         self.btn_wayland.clicked.connect(
             lambda: SettingsManager.set("system/wayland", self.btn_wayland.isChecked()))
+
+        self.dontUseNativeDialog.clicked.connect(
+            lambda: SettingsManager.set("system/DontUseNativeDialog", self.dontUseNativeDialog.isChecked()))
 
     def _handle_toggled_spellcheck(self, toggled):
         SettingsManager.set("system/spellCheckers", toggled)
