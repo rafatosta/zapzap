@@ -1,76 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-  <id>com.rtosta.zapzap</id>
-  <launchable type="desktop-id">com.rtosta.zapzap.desktop</launchable>
+    <id>com.rtosta.zapzap</id>
+    <launchable type="desktop-id">com.rtosta.zapzap.desktop</launchable>
 
-  <name>ZapZap</name>
-  <summary>WhatsApp Messenger</summary>
+    <name>ZapZap</name>
+    <summary>WhatsApp Messenger</summary>
 
-  <branding>
-    <color type="primary" scheme_preference="light">#F0F2F5</color>
-    <color type="primary" scheme_preference="dark">#202C33</color>
-  </branding>
+    <developer_name>Rafael Tosta</developer_name>
+    <update_contact>rafa.ecomp@gmail.com</update_contact>
 
-  <update_contact>rafa.ecomp@gmail.com</update_contact>
-  <developer_name>Rafael Tosta</developer_name>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>GPL-3.0+</project_license>
+    <content_rating type="oars-1.0"/>
 
-  <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPL-3.0+</project_license>
-  <content_rating type="oars-1.0" />
+    <branding>
+        <color type="primary" scheme_preference="light">#F0F2F5</color>
+        <color type="primary" scheme_preference="dark">#202C33</color>
+    </branding>
 
-  <description>
-    <p>What's:</p>
-    <p>Zapzap is a container for execution of the web web, that is, a kind of Webapp. Thus, all
-      features of WhatsApp Web are available in addition to several others which integrate ZapZap with the
-      system.</p>
-    <p>What sets this application apart is its support for multiple accounts, running in the background, a spellchecker
-      and customizations based on the theme of the system.</p>
-
-    <p>Data security:</p>
-    <p>No modifications or manipulations are made to the execution of WhatsApp Web. In
-      addition, all source code is available on GitHub and is publically auditable.</p>
-
-    <p>About:</p>
-    <p>ZapZap was initially developed for personal use. I decided to share it so that other people,
-      like me, could have a WhatsApp client more integrated into the system.</p>
-  </description>
-
-  <categories>
-    <category>Chat</category>
-    <category>InstantMessaging</category>
-    <category>Utility</category>
-    <category>Office</category>
-  </categories>
-
-  <url type="homepage">https://rtosta.com/zapzap-web/</url>
-  <url type="bugtracker">https://github.com/rafatosta/zapzap/issues</url>
-  <url type="donation">https://rtosta.com/zapzap-web/#donate</url>
-
-  <screenshots>
-    <screenshot type="default">
-      <caption>Application showcase</caption>
-      <image type="source">
-        https://raw.githubusercontent.com/rafatosta/zapzap/main/share/screenshot/default.png
-        </image>
-    </screenshot>
-  </screenshots>
-
-  <releases>
-    <release date="2025-02-09" version="6.0">
-      <description>
+    <description>
+        <p><b>What’s ZapZap?</b></p>
+        <p>ZapZap is a container for executing WhatsApp Web, functioning as a WebApp. This means that all features 
+           available in WhatsApp Web are supported, along with additional integrations that enhance the system experience.</p>
+        
+        <p><b>Key Features:</b></p>
         <ul>
-            <li>Code optimization and refactoring.</li>
-            <li>Improved user experience (UX) and user interface (UI) throughout the app.</li>
-            <li>Reorganized Settings Panel.</li>
-            <li>Ability to select a custom folder for downloads.</li>
-            <li>Implementation of a temporary folder for opening files.</li>
-            <li>Option to choose a folder for custom dictionaries.</li>
-            <li>Setting to disable the native file selection dialog (Hyprland).</li>
-            <li>Interface scaling adjustment, ideal for 4K screens.</li>
-            <li>Added Performance section.</li>
-            <li>Ability to change the spell checker language directly via the context menu in chat.</li>
+            <li>Support for multiple accounts.</li>
+            <li>Background execution.</li>
+            <li>Built-in spell checker.</li>
+            <li>System theme-based customizations.</li>
         </ul>
-      </description>
-    </release>
-  </releases>
+
+        <p><b>Data Security:</b></p>
+        <p>ZapZap does not modify or interfere with WhatsApp Web’s execution. All source code is open and 
+           publicly available on GitHub for auditability.</p>
+
+        <p><b>About:</b></p>
+        <p>Originally developed for personal use, ZapZap was later shared so that others could benefit from 
+           a more system-integrated WhatsApp client.</p>
+    </description>
+
+    <categories>
+        <category>Chat</category>
+        <category>InstantMessaging</category>
+        <category>Utility</category>
+        <category>Office</category>
+    </categories>
+
+    <url type="homepage">https://rtosta.com/zapzap-web/</url>
+    <url type="bugtracker">https://github.com/rafatosta/zapzap/issues</url>
+    <url type="donation">https://rtosta.com/zapzap-web/#donate</url>
+
+    <screenshots>
+        <screenshot type="default">
+            <caption>Application showcase</caption>
+            <image type="source">
+                https://raw.githubusercontent.com/rafatosta/zapzap/main/share/screenshot/default.png
+            </image>
+        </screenshot>
+    </screenshots>
+
+    <releases>
+        <release date="2025-02-09" version="6.0">
+            <description>
+                <ul>
+                    <li>Code optimization and refactoring.</li>
+                    <li>Improved UX/UI across the entire app.</li>
+                    <li>Reorganized Settings Panel.</li>
+                    <li>Ability to select a custom folder for downloads.</li>
+                    <li>Temporary folder for opening files.</li>
+                    <li>Option to choose a folder for custom dictionaries.</li>
+                    <li>Setting to disable the native file selection dialog (Hyprland).</li>
+                    <li>Interface scaling adjustment, ideal for 2k/4K screens.</li>
+                    <li>Added Performance section.</li>
+                    <li>Ability to change the spell checker language via the context menu in chat.</li>
+                </ul>
+            </description>
+        </release>
+        
+        <release date="2025-02-09" version="6.0" locale="pt_BR">
+            <description>
+                <ul>
+                    <li>Otimização e refatoração do código.</li>
+                    <li>Aprimoramento da experiência do usuário (UX) e da interface (UI) em todo o aplicativo.</li>
+                    <li>Reorganização do Painel de Configurações.</li>
+                    <li>Permitir a seleção de uma pasta personalizada para downloads.</li>
+                    <li>Implementação de uma pasta temporária para abertura de arquivos.</li>
+                    <li>Possibilitar a escolha de uma pasta para dicionários personalizados.</li>
+                    <li>Opção para desativar a janela de diálogo nativa na seleção de arquivos (Hyprland).</li>
+                    <li>Ajuste da escala da interface, ideal para telas 2k/4K.</li>
+                    <li>Adição da seção de Desempenho.</li>
+                    <li>Permitir a alteração do idioma do corretor ortográfico diretamente pelo menu de contexto no chat.</li>
+                </ul>
+            </description>
+        </release>
+    </releases>
 </component>
