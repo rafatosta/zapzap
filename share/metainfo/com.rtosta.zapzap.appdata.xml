@@ -63,36 +63,17 @@
     <releases>
         <release date="2025-02-09" version="6.0">
             <description>
-                <ul>
+                <ul>    
                     <li>Code optimization and refactoring.</li>
-                    <li xml:lang="pt_Br">Otimização e refatoração do código.</li>
-                    
                     <li>Improved UX/UI across the entire app.</li>
-                    <li xml:lang="pt_Br">Aprimoramento da experiência do usuário (UX) e da interface (UI) em todo o aplicativo.</li>
-
                     <li>Reorganized Settings Panel.</li>
-                    <li xml:lang="pt_Br">Reorganização do Painel de Configurações.</li>
-
                     <li>Ability to select a custom folder for downloads.</li>
-                    <li xml:lang="pt_Br">Permitir a seleção de uma pasta personalizada para downloads.</li>
-
                     <li>Temporary folder for opening files.</li>
-                    <li xml:lang="pt_Br">Implementação de uma pasta temporária para abertura de arquivos.</li>
-
                     <li>Option to choose a folder for custom dictionaries.</li>
-                    <li xml:lang="pt_Br">Possibilitar a escolha de uma pasta para dicionários personalizados.</li>
-
                     <li>Setting to disable the native file selection dialog (Hyprland).</li>
-                    <li xml:lang="pt_Br">Opção para desativar a janela de diálogo nativa na seleção de arquivos (Hyprland).</li>
-
                     <li>Interface scaling adjustment, ideal for 2k/4K screens.</li>
-                    <li xml:lang="pt_Br">Ajuste da escala da interface, ideal para telas 2k/4K.</li>
-
                     <li>Added Performance section.</li>
-                    <li xml:lang="pt_Br">Adição da seção de Desempenho.</li>
-
                     <li>Ability to change the spell checker language via the context menu in chat.</li>
-                    <li xml:lang="pt_Br">Permitir a alteração do idioma do corretor ortográfico diretamente pelo menu de contexto no chat.</li>
                 </ul>
 
             </description>
