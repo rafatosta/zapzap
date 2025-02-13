@@ -339,152 +339,152 @@ msgstr "Sistema de ventanas Wayland"
 
 #: zapzap/views/ui_page_network.py:115 zapzap/views/ui_settings.py:124
 msgid "Network"
-msgstr ""
+msgstr "Red"
 
 #: zapzap/views/ui_page_network.py:116
 msgid "Network proxy"
-msgstr ""
+msgstr "Proxy de red"
 
 #: zapzap/views/ui_page_network.py:117
 msgid "Port"
-msgstr ""
+msgstr "Puerto"
 
 #: zapzap/views/ui_page_network.py:118
 msgid "User"
-msgstr ""
+msgstr "Usuario"
 
 #: zapzap/views/ui_page_network.py:119
 msgid "Password"
-msgstr ""
+msgstr "Contraseña"
 
 #: zapzap/views/ui_page_network.py:120
 msgid "Hostname"
-msgstr ""
+msgstr "Nombre de host"
 
 #: zapzap/views/ui_page_network.py:121
 msgid "ProxyType"
-msgstr ""
+msgstr "Tipo de Proxy"
 
 #: zapzap/views/ui_page_network.py:122
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #: zapzap/views/ui_page_network.py:123
 msgid "Apply"
-msgstr ""
+msgstr "Aplicar"
 
 #: zapzap/views/ui_page_network.py:124 zapzap/views/ui_page_performance.py:122
 msgid "Restore"
-msgstr ""
+msgstr "Restablecer"
 
 #: zapzap/views/ui_page_notifications.py:69 zapzap/views/ui_settings.py:122
 msgid "Notifications"
-msgstr ""
+msgstr "Notificaciones"
 
 #: zapzap/views/ui_page_notifications.py:70
 msgid "Work area notifications"
-msgstr ""
+msgstr "Opciones de notificaciones"
 
 #: zapzap/views/ui_page_notifications.py:71
 msgid "Show the photo of the sender"
-msgstr ""
+msgstr "Mostrar la foto del remitente"
 
 #: zapzap/views/ui_page_notifications.py:72
 msgid "Show the sender's name"
-msgstr ""
+msgstr "Mostrar el nombre del remitente"
 
 #: zapzap/views/ui_page_notifications.py:73
 msgid "Show message preview"
-msgstr ""
+msgstr "Mostrar vista previa del mensaje"
 
 #: zapzap/views/ui_page_performance.py:110
 msgid "Performance (Experimental)"
-msgstr ""
+msgstr "Rendimiento (Experimental)"
 
 #: zapzap/views/ui_page_performance.py:111
 msgid "Cache Behavior"
-msgstr ""
+msgstr "Comportamiento de caché"
 
 #: zapzap/views/ui_page_performance.py:112
 msgid "Cache Type"
-msgstr ""
+msgstr "Tipo de caché"
 
 #: zapzap/views/ui_page_performance.py:113
 msgid "Maximum Cache Size"
-msgstr ""
+msgstr "Tamaño máximo de caché"
 
 #: zapzap/views/ui_page_performance.py:114
 msgid "0 MB"
-msgstr ""
+msgstr "0 MB"
 
 #: zapzap/views/ui_page_performance.py:115
 msgid "50 MB"
-msgstr ""
+msgstr "50 MB"
 
 #: zapzap/views/ui_page_performance.py:116
 msgid "100 MB"
-msgstr ""
+msgstr "100 MB"
 
 #: zapzap/views/ui_page_performance.py:117
 msgid "QWebEngine Behavior"
-msgstr ""
+msgstr "Comportamiento de QWebEngine"
 
 #: zapzap/views/ui_page_performance.py:118
 msgid "Enable single process for GPU and rendering"
-msgstr ""
+msgstr "Habilitar un solo proceso para GPU y renderizado"
 
 #: zapzap/views/ui_page_performance.py:119
 msgid "Disable GPU hardware acceleration"
-msgstr ""
+msgstr "Desactivar la aceleración de hardware de la GPU"
 
 #: zapzap/views/ui_page_performance.py:120
 msgid "Run everything in a single process"
-msgstr ""
+msgstr "Ejecutar todo en un solo proceso"
 
 #: zapzap/views/ui_page_performance.py:121
 msgid "Animated scrolling"
-msgstr ""
+msgstr "Desplazamiento animado"
 
 #: zapzap/views/ui_page_performance.py:123
 msgid "Note: Restart required to apply changes."
-msgstr ""
+msgstr "Nota: Es necesario reiniciar para aplicar los cambios."
 
 #: zapzap/views/ui_qtoaster_donation.py:136
 msgid "Welcome to"
-msgstr ""
+msgstr "Bienvenido a"
 
 #: zapzap/views/ui_qtoaster_donation.py:138
 #, python-brace-format
 msgid "Version {id}"
-msgstr ""
+msgstr "Versión {id}"
 
 #: zapzap/views/ui_qtoaster_donation.py:139
 msgid "Make a donation"
-msgstr ""
+msgstr "Haz una donación"
 
 #: zapzap/views/ui_settings.py:116
 msgid "Back"
-msgstr ""
+msgstr "Atrás"
 
 #: zapzap/views/ui_settings.py:117
 msgid "SETTINGS"
-msgstr ""
+msgstr "CONFIGURACIÓN"
 
 #: zapzap/views/ui_settings.py:119
 msgid "Accounts"
-msgstr ""
+msgstr "CUENTAS"
 
 #: zapzap/views/ui_settings.py:120
 msgid "TOOLS"
-msgstr ""
+msgstr "HERRAMIENTAS"
 
 #: zapzap/views/ui_settings.py:123
 msgid "Performance"
-msgstr ""
+msgstr "Rendimiento"
 
 #: zapzap/views/ui_settings.py:125
 msgid "HELP"
-msgstr ""
+msgstr "AYUDA"
 
 #: zapzap/views/ui_shortcuts_dialog.py:62
 msgid "Dialog"
@@ -492,11 +492,11 @@ msgstr ""
 
 #: zapzap/views/ui_shortcuts_dialog.py:64
 msgid "WhatsApp Web"
-msgstr ""
+msgstr "WhatsApp Web"
 
 #: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
 msgid "Account {}"
-msgstr ""
+msgstr "Cuenta {}"
 
 #: zapzap/controllers/CardUser.py:85
 msgid "Confirm exclusion"
