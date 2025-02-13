@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Isaías Gätjens M <igatjens@gmail.com>, 2025.
 #
 #, fuzzy
 msgid ""
@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-12 14:16-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Isaías Gätjens M <igatjens@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language:es \n"
 "MIME-Version: 1.0\n"
@@ -20,322 +20,322 @@ msgstr ""
 #: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:71
 #: zapzap/controllers/Browser.py:150 zapzap/controllers/ShortcutsDialog.py:58
 msgid "New account"
-msgstr ""
+msgstr "Nueva cuenta"
 
 #: zapzap/views/ui_browser.py:92
 msgid "New conversation by the phone number"
-msgstr ""
+msgstr "Nueva conversación usando número de teléfono "
 
 #: zapzap/views/ui_browser.py:93 zapzap/controllers/ShortcutsDialog.py:10
 msgid "New conversation"
-msgstr ""
+msgstr "Nueva conversación"
 
 #: zapzap/views/ui_browser.py:94
 msgid "ZapZap Settings"
-msgstr ""
+msgstr "Configuración de Zapzap"
 
 #: zapzap/views/ui_card_user.py:84
 msgid "Click to generate new colors for the icon"
-msgstr ""
+msgstr "Haga clic para generar nuevos colores para el icono"
 
 #: zapzap/views/ui_card_user.py:85
 msgid "Temporarily disable"
-msgstr ""
+msgstr "Desactivar temporalmente"
 
 #: zapzap/views/ui_card_user.py:86
 msgid "Disable"
-msgstr ""
+msgstr "Desactivar"
 
 #: zapzap/views/ui_card_user.py:87
 msgid "Silences the notifications"
-msgstr ""
+msgstr "Silenciar las notificaciones"
 
 #: zapzap/views/ui_card_user.py:88
 msgid "Do not disturb"
-msgstr ""
+msgstr "No interrumpir"
 
 #: zapzap/views/ui_card_user.py:89
 msgid "Delete permanently"
-msgstr ""
+msgstr "Eliminar permanentemente"
 
 #: zapzap/views/ui_card_user.py:90
 msgid "Delete"
-msgstr ""
+msgstr "Eliminar"
 
 #: zapzap/views/ui_card_user.py:91
 msgid "Enter the user name"
-msgstr ""
+msgstr "Escriba el nombre de usuario"
 
 #: zapzap/views/ui_mainwindow.py:92 zapzap/views/ui_page_about.py:116
 #: zapzap/views/ui_qtoaster_donation.py:137
 #: zapzap/views/ui_shortcuts_dialog.py:65
 msgid "ZapZap"
-msgstr ""
+msgstr "ZapZap"
 
 #: zapzap/views/ui_mainwindow.py:93
 msgid "File"
-msgstr ""
+msgstr "Archivo"
 
 #: zapzap/views/ui_mainwindow.py:94
 msgid "View"
-msgstr ""
+msgstr "Ver"
 
 #: zapzap/views/ui_mainwindow.py:95
 msgid "Chat"
-msgstr ""
+msgstr "Chat"
 
 #: zapzap/views/ui_mainwindow.py:96
 msgid "Users"
-msgstr ""
+msgstr "Usuarios"
 
 #: zapzap/views/ui_mainwindow.py:97
 msgid "Help"
-msgstr ""
+msgstr "Ayuda"
 
 #: zapzap/views/ui_mainwindow.py:98 zapzap/views/ui_settings.py:127
 #: zapzap/services/SysTrayManager.py:57
 msgid "Quit"
-msgstr ""
+msgstr "Cerrar"
 
 #: zapzap/views/ui_mainwindow.py:99
 msgid "Ctrl+Q"
-msgstr ""
+msgstr "Ctrl+Q"
 
 #: zapzap/views/ui_mainwindow.py:100 zapzap/controllers/ShortcutsDialog.py:44
 msgid "Hide"
-msgstr ""
+msgstr "Ocultar"
 
 #: zapzap/views/ui_mainwindow.py:101
 msgid "Ctrl+W"
-msgstr ""
+msgstr "Ctrl+W"
 
 #: zapzap/views/ui_mainwindow.py:102 zapzap/controllers/ShortcutsDialog.py:22
 #: zapzap/controllers/ShortcutsDialog.py:43
 #: zapzap/services/SysTrayManager.py:55
 msgid "Settings"
-msgstr ""
+msgstr "Configuración"
 
 #: zapzap/views/ui_mainwindow.py:103
 msgid "Ctrl+P"
-msgstr ""
+msgstr "Ctrl+P"
 
 #: zapzap/views/ui_mainwindow.py:104 zapzap/controllers/ShortcutsDialog.py:49
 msgid "Reset zoom"
-msgstr ""
+msgstr "Restablecer zoom"
 
 #: zapzap/views/ui_mainwindow.py:105
 msgid "Ctrl+0"
-msgstr ""
+msgstr "Ctrl+0"
 
 #: zapzap/views/ui_mainwindow.py:106 zapzap/controllers/ShortcutsDialog.py:50
 msgid "Zoom in"
-msgstr ""
+msgstr "Aumentar zoom"
 
 #: zapzap/views/ui_mainwindow.py:107
 msgid "Ctrl++"
-msgstr ""
+msgstr "Ctrl++"
 
 #: zapzap/views/ui_mainwindow.py:108 zapzap/controllers/ShortcutsDialog.py:51
 msgid "Zoom out"
-msgstr ""
+msgstr "Disminuir zoom"
 
 #: zapzap/views/ui_mainwindow.py:109
 msgid "Ctrl+-"
-msgstr ""
+msgstr "Ctrl+-"
 
 #: zapzap/views/ui_mainwindow.py:110
 msgid "Toggle full screen"
-msgstr ""
+msgstr "Cambiar a pantalla completa"
 
 #: zapzap/views/ui_mainwindow.py:111
 msgid "F11"
-msgstr ""
+msgstr "F11"
 
 #: zapzap/views/ui_mainwindow.py:112
 msgid "Reload"
-msgstr ""
+msgstr "Actualizar"
 
 #: zapzap/views/ui_mainwindow.py:113
 msgid "F5"
-msgstr ""
+msgstr "F5"
 
 #: zapzap/views/ui_mainwindow.py:114
 msgid "New chat"
-msgstr ""
+msgstr "Nuevo chat"
 
 #: zapzap/views/ui_mainwindow.py:115
 msgid "Ctrl+N"
-msgstr ""
+msgstr "Ctrl+N"
 
 #: zapzap/views/ui_mainwindow.py:116
 msgid "By number phone"
-msgstr ""
+msgstr "Usando número de teléfono"
 
 #: zapzap/views/ui_mainwindow.py:117
 msgid "Ctrl+M"
-msgstr ""
+msgstr "Ctrl+M"
 
 #: zapzap/views/ui_mainwindow.py:118 zapzap/views/ui_shortcuts_dialog.py:63
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "Atajos de teclado"
 
 #: zapzap/views/ui_mainwindow.py:119 zapzap/views/ui_page_about.py:113
 #: zapzap/views/ui_settings.py:126
 msgid "About"
-msgstr ""
+msgstr "Acerca de"
 
 #: zapzap/views/ui_page_about.py:114
 msgid "WhatsApp Web for Linux"
-msgstr ""
+msgstr "WhatsApp Web para Linux"
 
 #: zapzap/views/ui_page_about.py:115
 #, python-brace-format
 msgid "Version {id} (Official compilation)"
-msgstr ""
+msgstr "Versión {id} (Compilación oficial)"
 
 #: zapzap/views/ui_page_about.py:117
 msgid "Learn more"
-msgstr ""
+msgstr "Más información"
 
 #: zapzap/views/ui_page_about.py:118
 msgid "Report issue"
-msgstr ""
+msgstr "Reportar un problema"
 
 #: zapzap/views/ui_page_account.py:70
 msgid "My accounts"
-msgstr ""
+msgstr "Mis cuentas"
 
 #: zapzap/views/ui_page_appearance.py:110 zapzap/views/ui_settings.py:121
 msgid "Appearance"
-msgstr ""
+msgstr "Apariencia"
 
 #: zapzap/views/ui_page_appearance.py:111
 msgid "Style"
-msgstr ""
+msgstr "Tema"
 
 #: zapzap/views/ui_page_appearance.py:112
 msgid "Adaptive"
-msgstr ""
+msgstr "Adaptativo"
 
 #: zapzap/views/ui_page_appearance.py:113
 msgid "Light"
-msgstr ""
+msgstr "Claro"
 
 #: zapzap/views/ui_page_appearance.py:114
 msgid "Dark"
-msgstr ""
+msgstr "Oscuro"
 
 #: zapzap/views/ui_page_appearance.py:115
 msgid "Tray icon"
-msgstr ""
+msgstr "Ícono de la bandeja del sistema"
 
 #: zapzap/views/ui_page_appearance.py:116
 msgid "Default"
-msgstr ""
+msgstr "Predeterminado"
 
 #: zapzap/views/ui_page_appearance.py:117
 msgid "Symbolic light"
-msgstr ""
+msgstr "Ícono claro"
 
 #: zapzap/views/ui_page_appearance.py:118
 msgid "Symbolic dark"
-msgstr ""
+msgstr "Ícono oscuro"
 
 #: zapzap/views/ui_page_appearance.py:119
 msgid "Show sidebar"
-msgstr ""
+msgstr "Mostrar barra lateral"
 
 #: zapzap/views/ui_page_appearance.py:120
 msgid "Show menu bar"
-msgstr ""
+msgstr "Mostrar barra de menú"
 
 #: zapzap/views/ui_page_appearance.py:121
 msgid "Scale"
-msgstr ""
+msgstr "Escala"
 
 #: zapzap/views/ui_page_appearance.py:122
 msgid "100 %"
-msgstr ""
+msgstr "100 %"
 
 #: zapzap/views/ui_page_appearance.py:123
 msgid "125 %"
-msgstr ""
+msgstr "125 %"
 
 #: zapzap/views/ui_page_appearance.py:124
 msgid "150 %"
-msgstr ""
+msgstr "150 %"
 
 #: zapzap/views/ui_page_appearance.py:125
 msgid "175 %"
-msgstr ""
+msgstr "175 %"
 
 #: zapzap/views/ui_page_appearance.py:126
 msgid "200 %"
-msgstr ""
+msgstr "200 %"
 
 #: zapzap/views/ui_page_appearance.py:127
 msgid "Note: The change of scale will only have effect until restarting."
-msgstr ""
+msgstr "Nota: El cambio de escala sólo tendrá efecto después de reiniciar."
 
 #: zapzap/views/ui_page_general.py:128 zapzap/views/ui_settings.py:118
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: zapzap/views/ui_page_general.py:129
 msgid "Download Directory"
-msgstr ""
+msgstr "Carpeta de descarga"
 
 #: zapzap/views/ui_page_general.py:130
 msgid "Set new folder for downloads"
-msgstr ""
+msgstr "Establecer otra carpeta para descargas"
 
 #: zapzap/views/ui_page_general.py:131
 msgid "Define default folder for downloads"
-msgstr ""
+msgstr "Establecer la carpeta predeterminada para descargas"
 
 #: zapzap/views/ui_page_general.py:132
 msgid "Spellchecker"
-msgstr ""
+msgstr "Corrector ortográfico"
 
 #: zapzap/views/ui_page_general.py:133
 msgid "Directory"
-msgstr ""
+msgstr "Carpeta"
 
 #: zapzap/views/ui_page_general.py:134
 msgid "Recognizes only compiled dictionaries (.bdic)"
-msgstr ""
+msgstr "Compatible únicamente con diccionarios (.bdic)"
 
 #: zapzap/views/ui_page_general.py:135
 msgid "Define standard dictionaries"
-msgstr ""
+msgstr "Establecer carpetas estándar"
 
 #: zapzap/views/ui_page_general.py:136
 msgid "Note: Required restart."
-msgstr ""
+msgstr "Nota: Es necesario reiniciar."
 
 #: zapzap/views/ui_page_general.py:137
 msgid "Behavior"
-msgstr ""
+msgstr "Comportamiento"
 
 #: zapzap/views/ui_page_general.py:138
 msgid "Closer when closing the window"
-msgstr ""
+msgstr "Cerrar cuando cierre la ventana"
 
 #: zapzap/views/ui_page_general.py:139
 msgid "Start minimized"
-msgstr ""
+msgstr "Iniciar minimizado"
 
 #: zapzap/views/ui_page_general.py:140
 msgid "Start with the system"
-msgstr ""
+msgstr "Iniciar con el sistema"
 
 #: zapzap/views/ui_page_general.py:141
 msgid "Don't use a platform-native file dialog"
-msgstr ""
+msgstr "No usar la ventana nativa del sistema para guardar o abrir archivos"
 
 #: zapzap/views/ui_page_general.py:142
 msgid "Wayland window system"
-msgstr ""
+msgstr "Sistema de ventanas Wayland"
 
 #: zapzap/views/ui_page_network.py:115 zapzap/views/ui_settings.py:124
 msgid "Network"
