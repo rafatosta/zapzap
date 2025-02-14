@@ -472,7 +472,7 @@ msgstr "CONFIGURACIÓN"
 
 #: zapzap/views/ui_settings.py:119
 msgid "Accounts"
-msgstr "CUENTAS"
+msgstr "Cuentas"
 
 #: zapzap/views/ui_settings.py:120
 msgid "TOOLS"
