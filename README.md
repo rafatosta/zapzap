@@ -1,95 +1,156 @@
-# [ZapZap](https://rtosta.com/zapzap-web/) - WhatsApp Desktop for Linux 
+# [ZapZap](https://rtosta.com/zapzap-web/) - WhatsApp Desktop for Linux
+![ZapZap for WhatsApp](share/screenshot/default.png)
 
+## About
 
-## Descrição
-Este é um aplicativo Python que pode ser executado em três modos diferentes:
-- **dev**: Modo de desenvolvimento
-- **preview**: Modo de visualização/prévia
-- **build**: Gera um executável para produção (zapzap.flatpak)
+ZapZap brings the WhatsApp experience on Linux closer to that of a native application. Since Meta does not provide a public API for third-party applications, ZapZap is developed as a [Progressive Web Application](https://en.wikipedia.org/wiki/Progressive_web_app).
 
-O projeto utiliza `zapzap.toml` para gerenciar dependências e um script Python (`run.py`) para executar os comandos.
+## Download
 
-## Requisitos
+**Flathub:** [Download on Flathub](https://flathub.org/apps/details/com.rtosta.zapzap)  
+**Fedora Copr:** [Download Fedora Copr](https://copr.fedorainfracloud.org/coprs/rafatosta/zapzap/)
 
-- Python 3.9 ou superior
+## Features
 
-## Instalação
+ZapZap extends WhatsApp Web with additional features:
 
-1. **Clone o repositório**
+### **Appearance**
+
+- Adaptive light and dark mode
+- Fullscreen mode
+- Custom window decorations
+- Interface scaling adjustment (ideal for 2K/4K screens)
+
+### **Usability**
+
+- Keyboard shortcuts for main options
+- Adaptive system tray icon (notifies new messages)
+- Background process support
+- Drag-and-drop functionality
+- Ability to select a custom folder for downloads
+- Temporary folder for opening files
+
+### **Extras**
+
+- Spellchecker with language selection via context menu
+- Customizable system tray icons
+- Option to choose a folder for custom dictionaries
+- Setting to disable the native file selection dialog (Hyprland)
+- Reorganized Settings Panel
+- Added Performance section
+
+## Development
+
+ZapZap is built using PyQt6 and PyQt6-WebEngine.
+
+### **Build & Run Locally**
+
+- [Instructions](/_run/README.md)
+
+### **Packaging**
+
+- [Fedora Copr](/_packaging/fedora/zapzap.spec)
+- [Flatpak](/_packaging/flatpak/README.md)
+
+### **Translation**
+
+ZapZap supports translations. If your language file is missing from the [po](/po) folder, submit a pull request or open an [issue](https://github.com/rafatosta/zapzap/issues).
+
+## Execution
+
+### **Description**
+
+This is a Python application that can be run in three different modes:
+
+- **dev**: Development mode
+- **preview**: Preview mode
+- **build**: Generates an executable for production (`zapzap.flatpak`)
+
+The project uses `zapzap.toml` to manage dependencies and a Python script (`run.py`) to execute commands.
+
+### **Requirements**
+
+- Python 3.9 or higher
+
+### **Installation**
+
+1. **Clone the repository**
 
 ```bash
 git clone https://github.com/rafatosta/zapzap.git
 cd zapzap
 ```
 
-2. **Instale as dependências**
+2. **Install dependencies**
 
-Certifique-se de que o Poetry está instalado. Caso não esteja, siga [este guia](https://python-poetry.org/docs/#installation).
+Ensure that Poetry is installed. If not, follow [this guide](https://python-poetry.org/docs/#installation).
 
-Em seguida, instale as dependências do projeto:
+Then, install the project dependencies:
 
 ```bash
 poetry install
 ```
 
-3. **Ative o ambiente virtual**
+3. **Activate the virtual environment**
 
-O Poetry cria um ambiente virtual para o projeto. Para ativá-lo, execute:
+Poetry creates a virtual environment for the project. To activate it, run:
 
 ```bash
 poetry shell
 ```
 
-## Uso
+### **Usage**
 
-### Executar em modo de desenvolvimento
-
-Use o comando abaixo para iniciar o aplicativo em modo de desenvolvimento:
+#### Run in development mode
 
 ```bash
 python run.py dev
 ```
 
-### Executar em modo de prévia
-
-Para visualizar a aplicação em modo de prévia:
-(Constroi e executa diretamente em Flatpak)
+#### Run in preview mode
 
 ```bash
 python run.py preview
 ```
 
-### Gerar o executável para produção
+Builds and runs directly in Flatpak
 
-Para criar um executável da aplicação:
+#### Generate the executable for production
 
 ```bash
 python run.py build
 ```
 
-O executável será gerado na pasta `dist/` com o nome `zapzap.flatpak`.
+The executable will be generated in the `dist/` folder as `zapzap.flatpak`.
 
-## Estrutura do Projeto (Em construção)
+### **Project Structure (Under Construction)**
 
 ```plaintext
 zapzap/
-├── zapzap.toml         # Arquivo de configuração do projeto
-├── run.py                 # Script para gerenciar os modos de execução
+├── zapzap.toml         # Project configuration file
+├── run.py              # Script to manage execution modes
 ├── zapzap/
-│   └── main.py            # Arquivo principal da aplicação
-├── dist/                  # (Geração) Pasta onde o executável será criado
-└── README.md              # Documentação do projeto
+│   └── main.py         # Main application file
+├── dist/               # (Generated) Folder where the executable will be created
+└── README.md           # Project documentation
 ```
 
-## Contribuições
+## Contributions
 
-Contribuições são bem-vindas! Por favor, envie um pull request com as alterações ou melhorias que você deseja propor.
+Contributions are welcome! Please submit a pull request with any improvements or changes you wish to propose.
 
-## Licença
+## License
 
-Este projeto está licenciado sob a licença GPL. Consulte o arquivo LICENSE para mais informações.
+This project is licensed under the GPL. See the LICENSE file for more information.
+
+## Donations
+
+**PayPal:** [Donate via PayPal](https://www.paypal.com/donate/?business=E7R4BVR45GRC2&no_recurring=0&item_name=ZapZap+-+Whatsapp+Desktop+for+linux%0AAn+unofficial+WhatsApp+desktop+application+written+in+Pyqt6+%2B+PyQt6-WebEngine.&currency_code=USD)  
+**Pix:** [Donate via Pix](https://nubank.com.br/pagar/3c3r2/LS2hiJJKzv)  
+**Ko-fi:** [Donate via Ko-fi](https://ko-fi.com/X8X2E1OLG)
 
 ## Contact
-**Maintainer:** Rafael Tosta<br/>
+
+**Maintainer:** Rafael Tosta  
 **Email:** [rafa.ecomp@gmail.com](mailto:rafa.ecomp@gmail.com)
 
