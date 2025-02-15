@@ -20,7 +20,7 @@ __donationPage__ = 'https://rtosta.com/zapzap-web/#donate'
 
 __whatsapp_url__ = 'https://web.whatsapp.com/'
 # Link para pegar o userAgent: http://httpbin.org/user-agent
-__user_agent__ = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+__user_agent__ = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36"
 
 LIMITE_USERS = 3
 
