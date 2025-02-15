@@ -1,62 +1,156 @@
-# [ZapZap](https://rtosta.com/zapzap-web/) - WhatsApp Desktop for Linux 
+# [ZapZap](https://rtosta.com/zapzap-web/) - WhatsApp Desktop for Linux
 ![ZapZap for WhatsApp](share/screenshot/default.png)
 
 ## About
-ZapZap aims to bring the WhatsApp experience on Linux closer to that of a native application. Since Meta does not provide a public API for third-party applications, ZapZap is developed as a [Progressive Web Application](https://en.wikipedia.org/wiki/Progressive_web_app).
+
+ZapZap brings the WhatsApp experience on Linux closer to that of a native application. Since Meta does not provide a public API for third-party applications, ZapZap is developed as a [Progressive Web Application](https://en.wikipedia.org/wiki/Progressive_web_app).
 
 ## Download
-<p align="center">
-    <a href="https://flathub.org/apps/details/com.rtosta.zapzap">
-        <img alt="Download on Flathub" src="https://flathub.org/assets/badges/flathub-badge-en.png" width="150">
-    </a>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://copr.fedorainfracloud.org/coprs/rafatosta/zapzap/">
-        <img alt="Download Fedora Copr" src="https://redhat.discourse-cdn.com/fedoraproject/original/1X/c5f38bdccf3bed038510138b9dc16b3bf01b6e13.png" width="150" height="50">
-    </a>
-</p>
+
+**Flathub:** [Download on Flathub](https://flathub.org/apps/details/com.rtosta.zapzap)  
+**Fedora Copr:** [Download Fedora Copr](https://copr.fedorainfracloud.org/coprs/rafatosta/zapzap/)
 
 ## Features
-In addition to all the default features of WhatsApp Web, ZapZap provides:
-1. **Looks**
-   - Adaptive light and dark mode
-   - Fullscreen mode
-   - Personalized window decoration
-2. **Usability**
-   - Shortcuts for main options
-   - Adaptive systray icon (changes when there are new messages)
-   - Background process
-   - Drag and drop support
-3. **Additional Features**
-   - Spellchecker
-   - Customizable systray icons
+
+ZapZap extends WhatsApp Web with additional features:
+
+### **Appearance**
+
+- Adaptive light and dark mode
+- Fullscreen mode
+- Custom window decorations
+- Interface scaling adjustment (ideal for 2K/4K screens)
+
+### **Usability**
+
+- Keyboard shortcuts for main options
+- Adaptive system tray icon (notifies new messages)
+- Background process support
+- Drag-and-drop functionality
+- Ability to select a custom folder for downloads
+- Temporary folder for opening files
+
+### **Extras**
+
+- Spellchecker with language selection via context menu
+- Customizable system tray icons
+- Option to choose a folder for custom dictionaries
+- Setting to disable the native file selection dialog (Hyprland)
+- Reorganized Settings Panel
+- Added Performance section
 
 ## Development
-ZapZap is a WhatsApp desktop application written in PyQt6 and PyQt6-WebEngine.
 
-- [Build and Execute Locally](/_run/README.md)
+ZapZap is built using PyQt6 and PyQt6-WebEngine.
 
-### Packaging
+### **Build & Run Locally**
+
+- [Instructions](/_run/README.md)
+
+### **Packaging**
+
 - [Fedora Copr](/_packaging/fedora/zapzap.spec)
 - [Flatpak](/_packaging/flatpak/README.md)
 
-### Translation
-Translations are supported. Ensure the file for your language is in the [po](/po) folder. If it is, submit a pull request with the updated file, otherwise open an [issue](https://github.com/rafatosta/zapzap/issues) requesting inclusion.
+### **Translation**
+
+ZapZap supports translations. If your language file is missing from the [po](/po) folder, submit a pull request or open an [issue](https://github.com/rafatosta/zapzap/issues).
+
+## Execution
+
+### **Description**
+
+This is a Python application that can be run in three different modes:
+
+- **dev**: Development mode
+- **preview**: Preview mode
+- **build**: Generates an executable for production (`zapzap.flatpak`)
+
+The project uses `zapzap.toml` to manage dependencies and a Python script (`run.py`) to execute commands.
+
+### **Requirements**
+
+- Python 3.9 or higher
+
+### **Installation**
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/rafatosta/zapzap.git
+cd zapzap
+```
+
+2. **Install dependencies**
+
+Ensure that Poetry is installed. If not, follow [this guide](https://python-poetry.org/docs/#installation).
+
+Then, install the project dependencies:
+
+```bash
+poetry install
+```
+
+3. **Activate the virtual environment**
+
+Poetry creates a virtual environment for the project. To activate it, run:
+
+```bash
+poetry shell
+```
+
+### **Usage**
+
+#### Run in development mode
+
+```bash
+python run.py dev
+```
+
+#### Run in preview mode
+
+```bash
+python run.py preview
+```
+
+Builds and runs directly in Flatpak
+
+#### Generate the executable for production
+
+```bash
+python run.py build
+```
+
+The executable will be generated in the `dist/` folder as `zapzap.flatpak`.
+
+### **Project Structure (Under Construction)**
+
+```plaintext
+zapzap/
+├── zapzap.toml         # Project configuration file
+├── run.py              # Script to manage execution modes
+├── zapzap/
+│   └── main.py         # Main application file
+├── dist/               # (Generated) Folder where the executable will be created
+└── README.md           # Project documentation
+```
+
+## Contributions
+
+Contributions are welcome! Please submit a pull request with any improvements or changes you wish to propose.
+
+## License
+
+This project is licensed under the GPL. See the LICENSE file for more information.
 
 ## Donations
-<p align="center">
-    <a href="https://www.paypal.com/donate/?business=E7R4BVR45GRC2&no_recurring=0&item_name=ZapZap+-+Whatsapp+Desktop+for+linux%0AAn+unofficial+WhatsApp+desktop+application+written+in+Pyqt6+%2B+PyQt6-WebEngine.&currency_code=USD">
-        <img alt="Donate" src="share/logos/PayPal.svg" width="170">
-    </a>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://nubank.com.br/pagar/3c3r2/LS2hiJJKzv">
-        <img alt="Pix" src="share/logos/pix.png" width="120">
-    </a>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://ko-fi.com/X8X2E1OLG">
-        <img alt="Ko-fi" src="https://ko-fi.com/img/githubbutton_sm.svg" width="350">
-    </a>
-</p>
+
+**PayPal:** [Donate via PayPal](https://www.paypal.com/donate/?business=E7R4BVR45GRC2&no_recurring=0&item_name=ZapZap+-+Whatsapp+Desktop+for+linux%0AAn+unofficial+WhatsApp+desktop+application+written+in+Pyqt6+%2B+PyQt6-WebEngine.&currency_code=USD)  
+**Pix:** [Donate via Pix](https://nubank.com.br/pagar/3c3r2/LS2hiJJKzv)  
+**Ko-fi:** [Donate via Ko-fi](https://ko-fi.com/X8X2E1OLG)
 
 ## Contact
-**Maintainer:** Rafael Tosta<br/>
+
+**Maintainer:** Rafael Tosta  
 **Email:** [rafa.ecomp@gmail.com](mailto:rafa.ecomp@gmail.com)
+

@@ -55,6 +55,22 @@
   </screenshots>
 
   <releases>
+    <release date="2024-02-10" version="6.0">
+      <description>
+        <ul>    
+            <li>Code optimization and refactoring.</li>
+            <li>Improved UX/UI across the entire app.</li>
+            <li>Reorganized Settings Panel.</li>
+            <li>Ability to select a custom folder for downloads.</li>
+            <li>Temporary folder for opening files.</li>
+            <li>Option to choose a folder for custom dictionaries.</li>
+            <li>Setting to disable the native file selection dialog (Hyprland).</li>
+            <li>Interface scaling adjustment, ideal for 2k/4K screens.</li>
+            <li>Added Performance section.</li>
+            <li>Ability to change the spell checker language via the context menu in chat.</li>
+        </ul>
+      </description>
+    </release>
     <release date="2024-11-29" version="5.3.9">
       <description>
         <p>Xwayland by default (Activate it manually via flatseal if you want Wayland).</p>

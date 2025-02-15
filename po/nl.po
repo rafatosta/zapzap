@@ -1,1135 +1,720 @@
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-# Heimen Stoffels <vistausss@fastmail.com>, 2022.
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-03 10:19-0300\n"
-"PO-Revision-Date: 2022-09-22 13:20+0200\n"
+"POT-Creation-Date: 2025-02-15 07:09-0300\n"
+"PO-Revision-Date: 2025-02-09 11:34+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
-"Language-Team: Dutch\n"
+"Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.5\n"
 
-#: zapzap/view/main_window.py:78 zapzap/view/qtoaster_donation.py:123
-#: zapzap/view/about_page.py:135
-#: zapzap/controllers/main_window_components/tray_icon.py:19
-#: zapzap/__main__.py:19
-msgid "ZapZap"
-msgstr "ZapZap"
+#: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:71
+#: zapzap/controllers/Browser.py:150 zapzap/controllers/ShortcutsDialog.py:58
+msgid "New account"
+msgstr "Nieuw account"
 
-#: zapzap/view/main_window.py:79
-msgid "File"
-msgstr "Bestand"
+#: zapzap/views/ui_browser.py:92
+msgid "New conversation by the phone number"
+msgstr "Nieuw gesprek op basis van telefoonnummer"
 
-#: zapzap/view/main_window.py:80
-msgid "View"
-msgstr "Beeld"
+#: zapzap/views/ui_browser.py:93 zapzap/controllers/ShortcutsDialog.py:10
+msgid "New conversation"
+msgstr "Nieuw gesprek"
 
-#: zapzap/view/main_window.py:81
-msgid "Chat"
-msgstr "Gesprek"
+#: zapzap/views/ui_browser.py:94
+msgid "ZapZap Settings"
+msgstr "ZapZap-instellingen"
 
-#: zapzap/view/main_window.py:82 zapzap/view/home.py:95
-#: zapzap/controllers/main_window_components/tray_icon.py:22
-msgid "Settings"
-msgstr "Instellingen"
+#: zapzap/views/ui_card_user.py:84
+msgid "Click to generate new colors for the icon"
+msgstr "Klik om het pictogram van nieuwe kleuren te voorzien"
 
-#: zapzap/view/main_window.py:83 zapzap/view/settings.py:181
-#: zapzap/controllers/main_window_components/tray_icon.py:25
-msgid "Quit"
-msgstr "Afsluiten"
+#: zapzap/views/ui_card_user.py:85
+msgid "Temporarily disable"
+msgstr "Tijdelijk uitschakelen"
 
-#: zapzap/view/main_window.py:84
-msgid "Reload"
-msgstr "Herladen"
+#: zapzap/views/ui_card_user.py:86
+msgid "Disable"
+msgstr "Uitschakelen"
 
-#: zapzap/view/main_window.py:85
-msgid "Default size page"
-msgstr "Standaard paginagrootte"
+#: zapzap/views/ui_card_user.py:87
+msgid "Silences the notifications"
+msgstr "Meldingen onderdrukken"
 
-#: zapzap/view/main_window.py:86
-msgid "Full Screen"
-msgstr "Schermvullende weergave"
+#: zapzap/views/ui_card_user.py:88
+msgid "Do not disturb"
+msgstr "Niet storen"
 
-#: zapzap/view/main_window.py:87
-msgid "Zoom in"
-msgstr "Inzoomen"
+#: zapzap/views/ui_card_user.py:89
+msgid "Delete permanently"
+msgstr "Permanent verwijderen"
 
-#: zapzap/view/main_window.py:88
-msgid "Zoom out"
-msgstr "Uitzoomen"
+#: zapzap/views/ui_card_user.py:90
+msgid "Delete"
+msgstr "Verwĳderen"
 
-#: zapzap/view/main_window.py:89
-msgid "Open new chat"
-msgstr "Nieuw gesprek starten"
-
-#: zapzap/view/main_window.py:90
-msgid "Hide"
-msgstr "Verbergen"
-
-#: zapzap/view/main_window.py:91
-#, fuzzy
-msgid "Ctrl+W"
-msgstr "Ctrl+P"
-
-#: zapzap/view/settings.py:173 zapzap/view/general_page.py:173
-msgid "General"
-msgstr ""
-
-#: zapzap/view/settings.py:174 zapzap/view/account_page.py:75
-msgid "Account"
-msgstr ""
-
-#: zapzap/view/settings.py:175 zapzap/view/notifications_page.py:102
-msgid "Notifications"
-msgstr "Meldingen"
-
-#: zapzap/view/settings.py:176 zapzap/view/network_page.py:136
-msgid "Network"
-msgstr ""
-
-#: zapzap/view/settings.py:177 zapzap/view/personalization_page.py:80
-msgid "Personalization"
-msgstr ""
-
-#: zapzap/view/settings.py:178 zapzap/view/advanced_page.py:93
-msgid "Advanced"
-msgstr ""
-
-#: zapzap/view/settings.py:179 zapzap/view/donations_page.py:72
-msgid "Donations"
-msgstr "Doneren"
-
-#: zapzap/view/settings.py:180 zapzap/view/about_page.py:134
-msgid "About"
-msgstr "Over"
-
-#: zapzap/view/card_user.py:87
+#: zapzap/views/ui_card_user.py:91
 msgid "Enter the user name"
 msgstr "Voer een gebruikersnaam in"
 
-#: zapzap/view/card_user.py:88
-msgid "Shortcut:"
-msgstr ""
+#: zapzap/views/ui_mainwindow.py:92 zapzap/views/ui_page_about.py:116
+#: zapzap/views/ui_qtoaster_donation.py:137
+#: zapzap/views/ui_shortcuts_dialog.py:65
+msgid "ZapZap"
+msgstr "ZapZap"
 
-#: zapzap/view/card_user.py:89
-#, fuzzy
-msgid "Disable account"
-msgstr "Systeemvakpictogram verbergen"
+#: zapzap/views/ui_mainwindow.py:93
+msgid "File"
+msgstr "Bestand"
 
-#: zapzap/view/card_user.py:90
-#, fuzzy
-msgid "Show notifications"
-msgstr "Meldingen"
+#: zapzap/views/ui_mainwindow.py:94
+msgid "View"
+msgstr "Beeld"
 
-#: zapzap/view/card_user.py:91
-#, fuzzy
-msgid "Delete account"
-msgstr "Verwijderen"
+#: zapzap/views/ui_mainwindow.py:95
+msgid "Chat"
+msgstr "Gesprek"
 
-#: zapzap/view/downloadPopup.py:69
-msgid "What do you want to do with the file?"
-msgstr "Wat wil je met dit bestand doen?"
+#: zapzap/views/ui_mainwindow.py:96
+msgid "Users"
+msgstr "Gebruikers"
 
-#: zapzap/view/downloadPopup.py:70 zapzap/view/openChatPopup.py:86
-msgid "Open"
-msgstr "Openen"
+#: zapzap/views/ui_mainwindow.py:97
+msgid "Help"
+msgstr "Hulp"
 
-#: zapzap/view/downloadPopup.py:71
-msgid "Save as"
-msgstr "Opslaan als"
+#: zapzap/views/ui_mainwindow.py:98 zapzap/views/ui_settings.py:127
+#: zapzap/services/SysTrayManager.py:57
+msgid "Quit"
+msgstr "Afsluiten"
 
-#: zapzap/view/openChatPopup.py:81
-msgid "Open chat by phone number"
-msgstr "Gesprek starten op basis van telefoonnummer"
+#: zapzap/views/ui_mainwindow.py:99
+msgid "Ctrl+Q"
+msgstr "Ctrl+Q"
 
-#: zapzap/view/openChatPopup.py:82
-msgid "Enter phone number:"
-msgstr "Voer een telefoonnummer in:"
+#: zapzap/views/ui_mainwindow.py:100 zapzap/controllers/ShortcutsDialog.py:44
+msgid "Hide"
+msgstr "Verbergen"
 
-#: zapzap/view/openChatPopup.py:83
-msgid "See here the code of your country"
-msgstr "Bekijk hier je landcode"
+#: zapzap/views/ui_mainwindow.py:101
+msgid "Ctrl+W"
+msgstr "Ctrl+W"
 
-#: zapzap/view/openChatPopup.py:84
-msgid "(COUNTY CODE + AREA CODE + PHONE NUMER)"
-msgstr "(LANDCODE + NETNUMMER + TELEFOONNUMMER)"
+#: zapzap/views/ui_mainwindow.py:102 zapzap/controllers/ShortcutsDialog.py:22
+#: zapzap/controllers/ShortcutsDialog.py:43
+#: zapzap/services/SysTrayManager.py:55
+msgid "Settings"
+msgstr "Instellingen"
 
-#: zapzap/view/openChatPopup.py:85
-msgid "Cancel"
-msgstr "Annuleren"
+#: zapzap/views/ui_mainwindow.py:103
+msgid "Ctrl+P"
+msgstr "Ctrl+P"
 
-#: zapzap/view/qtoaster_donation.py:122
-msgid "Welcome to"
-msgstr ""
+#: zapzap/views/ui_mainwindow.py:104 zapzap/controllers/ShortcutsDialog.py:49
+msgid "Reset zoom"
+msgstr "Oorspronkelijk zoomniveau"
 
-#: zapzap/view/qtoaster_donation.py:124
-msgid "Make a donation"
-msgstr ""
+#: zapzap/views/ui_mainwindow.py:105
+msgid "Ctrl+0"
+msgstr "Ctrl+0"
 
-#: zapzap/view/qtoaster_donation.py:125
-msgid "..."
-msgstr ""
+#: zapzap/views/ui_mainwindow.py:106 zapzap/controllers/ShortcutsDialog.py:50
+msgid "Zoom in"
+msgstr "Inzoomen"
 
-#: zapzap/view/about_page.py:136
+#: zapzap/views/ui_mainwindow.py:107
+msgid "Ctrl++"
+msgstr "Ctrl++"
+
+#: zapzap/views/ui_mainwindow.py:108 zapzap/controllers/ShortcutsDialog.py:51
+msgid "Zoom out"
+msgstr "Uitzoomen"
+
+#: zapzap/views/ui_mainwindow.py:109
+msgid "Ctrl+-"
+msgstr "Ctrl+-"
+
+#: zapzap/views/ui_mainwindow.py:110
+msgid "Toggle full screen"
+msgstr "Schermvullende weergave aan/uit"
+
+#: zapzap/views/ui_mainwindow.py:111
+msgid "F11"
+msgstr "F11"
+
+#: zapzap/views/ui_mainwindow.py:112
+msgid "Reload"
+msgstr "Herladen"
+
+#: zapzap/views/ui_mainwindow.py:113
+msgid "F5"
+msgstr "F5"
+
+#: zapzap/views/ui_mainwindow.py:114
+msgid "New chat"
+msgstr "Nieuw gesprek"
+
+#: zapzap/views/ui_mainwindow.py:115
+msgid "Ctrl+N"
+msgstr "Ctrl+N"
+
+#: zapzap/views/ui_mainwindow.py:116
+msgid "By number phone"
+msgstr "Op telefoonnummer"
+
+#: zapzap/views/ui_mainwindow.py:117
+msgid "Ctrl+M"
+msgstr "Ctrl+M"
+
+#: zapzap/views/ui_mainwindow.py:118 zapzap/views/ui_shortcuts_dialog.py:63
+msgid "Keyboard shortcuts"
+msgstr "Sneltoetsen"
+
+#: zapzap/views/ui_mainwindow.py:119 zapzap/views/ui_page_about.py:113
+#: zapzap/views/ui_settings.py:126
+msgid "About"
+msgstr "Over"
+
+#: zapzap/views/ui_page_about.py:114
 msgid "WhatsApp Web for Linux"
-msgstr ""
+msgstr "WhatsApp Web voor Linux"
 
-#: zapzap/view/about_page.py:137
+#: zapzap/views/ui_page_about.py:115
 #, python-brace-format
 msgid "Version {id} (Official compilation)"
 msgstr "Versie {id} (officiële versie)"
 
-#: zapzap/view/about_page.py:138 zapzap/view/about_page.py:140
-#, fuzzy
+#: zapzap/views/ui_page_about.py:117
 msgid "Learn more"
 msgstr "Meer informatie"
 
-#: zapzap/view/about_page.py:139
-msgid "See more about Zapzap on our website."
-msgstr ""
-
-#: zapzap/view/about_page.py:141 zapzap/view/about_page.py:143
-#, fuzzy
+#: zapzap/views/ui_page_about.py:118
 msgid "Report issue"
-msgstr "Probleem melden…"
+msgstr "Probleem melden"
 
-#: zapzap/view/about_page.py:142
-msgid "Report a problem or make your suggestion."
-msgstr ""
+#: zapzap/views/ui_page_account.py:70
+msgid "My accounts"
+msgstr "Mijn accounts"
 
-#: zapzap/view/about_page.py:144
-msgid "GNU General Public License v3.0"
-msgstr "GNU General Public License v3.0"
+#: zapzap/views/ui_page_appearance.py:110 zapzap/views/ui_settings.py:121
+msgid "Appearance"
+msgstr "Vormgeving"
 
-#: zapzap/view/account_page.py:76 zapzap/view/home.py:92
-msgid "New account"
-msgstr ""
+#: zapzap/views/ui_page_appearance.py:111
+msgid "Style"
+msgstr "Stijl"
 
-#: zapzap/view/account_page.py:77
-msgid "Creates a new panel for access to WhatsApp."
-msgstr ""
+#: zapzap/views/ui_page_appearance.py:112
+msgid "Adaptive"
+msgstr "Aanpasbaar"
 
-#: zapzap/view/advanced_page.py:94
-msgid "Hide setting bar with only one user"
-msgstr ""
+#: zapzap/views/ui_page_appearance.py:113
+msgid "Light"
+msgstr "Licht thema"
 
-#: zapzap/view/advanced_page.py:95 zapzap/view/advanced_page.py:100
-#: zapzap/view/general_page.py:175 zapzap/view/general_page.py:180
-#: zapzap/view/general_page.py:182 zapzap/view/network_page.py:138
-msgid "Off"
-msgstr ""
+#: zapzap/views/ui_page_appearance.py:114
+msgid "Dark"
+msgstr "Donker thema"
 
-#: zapzap/view/advanced_page.py:96
-msgid "To access the settings use the menu in the tray or the shortcut Ctrl+P"
-msgstr ""
-
-#: zapzap/view/advanced_page.py:97 zapzap/view/advanced_page.py:101
-#: zapzap/view/advanced_page.py:104 zapzap/view/general_page.py:178
-#: zapzap/view/general_page.py:184 zapzap/view/notifications_page.py:104
-#: zapzap/view/notifications_page.py:109 zapzap/view/notifications_page.py:110
-#: zapzap/view/notifications_page.py:111 zapzap/view/notifications_page.py:112
-#: zapzap/view/personalization_page.py:83
-#, fuzzy
-msgid "On"
-msgstr "Openen"
-
-#: zapzap/view/advanced_page.py:98
-msgid "Message Started in the background"
-msgstr ""
-
-#: zapzap/view/advanced_page.py:99
-#, fuzzy
-msgid "Donation message"
-msgstr "Doneren"
-
-#: zapzap/view/advanced_page.py:102
-#: zapzap/controllers/settings_pages/advanced.py:40
-msgid "Standard folder ~/Downloads/ZapZap Downloads"
-msgstr ""
-
-#: zapzap/view/advanced_page.py:103
-#, fuzzy
-msgid "Notification counter in tray"
-msgstr "Bureaubladmeldingen"
-
-#: zapzap/view/general_page.py:174
-msgid "Start ZapZap with the system"
-msgstr "Automatisch opstarten"
-
-#: zapzap/view/general_page.py:176
-msgid "Login"
-msgstr ""
-
-#: zapzap/view/general_page.py:177
-msgid "Hide on close"
-msgstr "Minimaliseren in plaats van sluiten"
-
-#: zapzap/view/general_page.py:179
-msgid "Start minimized"
-msgstr "Geminimaliseerd opstarten"
-
-#: zapzap/view/general_page.py:181
-msgid "Wayland window system"
-msgstr ""
-
-#: zapzap/view/general_page.py:183
-#, fuzzy
-msgid "SpellChecker"
-msgstr "Talen van spellingcontrole"
-
-#: zapzap/view/general_page.py:185
-msgid "Whatsapp Web Settings"
-msgstr ""
-
-#: zapzap/view/general_page.py:186
-msgid "Open the WhatsApp Web Settings panel on the selected account."
-msgstr ""
-
-#: zapzap/view/notifications_page.py:103
-msgid "Notifications on the desktop"
-msgstr "Bureaubladmeldingen"
-
-#: zapzap/view/notifications_page.py:105
-msgid "Show the photo of the sender"
-msgstr "Foto van afzender tonen"
-
-#: zapzap/view/notifications_page.py:106
-msgid "Show the sender's name"
-msgstr "Naam van afzender tonen"
-
-#: zapzap/view/notifications_page.py:107
-msgid "Show message preview"
-msgstr "Berichtvoorbeeld tonen"
-
-#: zapzap/view/notifications_page.py:108
-msgid "Reproduce sounds when receiving messages"
-msgstr ""
-
-#: zapzap/view/personalization_page.py:81
-msgid "Theme"
-msgstr ""
-
-#: zapzap/view/personalization_page.py:82
-msgid "Application theme"
-msgstr ""
-
-#: zapzap/view/personalization_page.py:84
+#: zapzap/views/ui_page_appearance.py:115
 msgid "Tray icon"
 msgstr "Systeemvakpictogram"
 
-#: zapzap/view/home.py:93
-#, fuzzy
-msgid "New chat at phone number"
-msgstr "Gesprek starten op basis van telefoonnummer"
-
-#: zapzap/view/home.py:94
-#, fuzzy
-msgid "New chat"
-msgstr "Nieuw gesprek starten"
-
-#: zapzap/view/home.py:96
-msgid "Perfil"
-msgstr ""
-
-#: zapzap/view/network_page.py:137
-msgid "Network proxy"
-msgstr ""
-
-#: zapzap/view/network_page.py:139
-msgid ""
-"Learn exactly what you are doing, because I am not responsible for any "
-"connectivity failures."
-msgstr ""
-
-#: zapzap/view/network_page.py:140
-msgid "Port"
-msgstr ""
-
-#: zapzap/view/network_page.py:141
-#, fuzzy
-msgid "User"
-msgstr "Nieuwe gebruiker"
-
-#: zapzap/view/network_page.py:142
-msgid "Password"
-msgstr ""
-
-#: zapzap/view/network_page.py:143
-msgid "Hostname"
-msgstr ""
-
-#: zapzap/view/network_page.py:144
-msgid "ProxyType"
-msgstr ""
-
-#: zapzap/view/network_page.py:145
-msgid "Description"
-msgstr ""
-
-#: zapzap/view/network_page.py:146
-msgid "Apply"
-msgstr "Toepassen"
-
-#: zapzap/view/network_page.py:147
-msgid "Restore"
-msgstr ""
-
-#: zapzap/controllers/settings_pages/personalization.py:23
-msgid "Automatic (System)"
-msgstr ""
-
-#: zapzap/controllers/settings_pages/personalization.py:24
-msgid "Light style"
-msgstr "Licht thema"
-
-#: zapzap/controllers/settings_pages/personalization.py:25
-msgid "Dark style"
-msgstr "Donker thema"
-
-#: zapzap/controllers/settings_pages/personalization.py:27
+#: zapzap/views/ui_page_appearance.py:116
 msgid "Default"
 msgstr "Standaard"
 
-#: zapzap/controllers/settings_pages/personalization.py:28
+#: zapzap/views/ui_page_appearance.py:117
 msgid "Symbolic light"
 msgstr "Symbolisch (licht)"
 
-#: zapzap/controllers/settings_pages/personalization.py:29
+#: zapzap/views/ui_page_appearance.py:118
 msgid "Symbolic dark"
 msgstr "Symbolisch (donker)"
 
-#: zapzap/controllers/settings_pages/network.py:13
-msgid "No proxying is used"
-msgstr ""
+#: zapzap/views/ui_page_appearance.py:119
+msgid "Show sidebar"
+msgstr "Zijbalk tonen"
 
-#: zapzap/controllers/settings_pages/network.py:14
-msgid ""
-"Proxy is determined based on the application proxy set using "
-"setApplicationProxy()"
-msgstr ""
+#: zapzap/views/ui_page_appearance.py:120
+msgid "Show menu bar"
+msgstr "Menubalk tonen"
 
-#: zapzap/controllers/settings_pages/network.py:15
-msgid "Socks5 proxying is used"
-msgstr ""
+#: zapzap/views/ui_page_appearance.py:121
+msgid "Scale"
+msgstr "Vergrotingsmodus"
 
-#: zapzap/controllers/settings_pages/network.py:16
-msgid "HTTP transparent proxying is used"
-msgstr ""
+#: zapzap/views/ui_page_appearance.py:122
+msgid "100 %"
+msgstr "100%"
 
-#: zapzap/controllers/settings_pages/network.py:17
-msgid "Proxying for HTTP requests only"
-msgstr ""
+#: zapzap/views/ui_page_appearance.py:123
+msgid "125 %"
+msgstr "125%"
 
-#: zapzap/controllers/settings_pages/network.py:18
-msgid "Proxying for FTP requests only"
-msgstr ""
+#: zapzap/views/ui_page_appearance.py:124
+msgid "150 %"
+msgstr "150%"
 
-#: zapzap/controllers/settings_pages/advanced.py:37
-msgid "Standard folder ~/Downloads"
-msgstr ""
+#: zapzap/views/ui_page_appearance.py:125
+msgid "175 %"
+msgstr "175%"
 
-#: zapzap/engine/browser.py:74
+#: zapzap/views/ui_page_appearance.py:126
+msgid "200 %"
+msgstr "200%"
+
+#: zapzap/views/ui_page_appearance.py:127
+msgid "Note: The change of scale will only have effect until restarting."
+msgstr "Herstart de app om de wijzigingen toe te passen."
+
+#: zapzap/views/ui_page_general.py:128 zapzap/views/ui_settings.py:118
+msgid "General"
+msgstr "Algemeen"
+
+#: zapzap/views/ui_page_general.py:129
+msgid "Download Directory"
+msgstr "Downloadmap"
+
+#: zapzap/views/ui_page_general.py:130
+msgid "Set new folder for downloads"
+msgstr "Nieuwe downloadmap kiezen"
+
+#: zapzap/views/ui_page_general.py:131
+msgid "Define default folder for downloads"
+msgstr "Standaard downloadmap gebruiken"
+
+#: zapzap/views/ui_page_general.py:132
+msgid "Spellchecker"
+msgstr "Spellingcontrole"
+
+#: zapzap/views/ui_page_general.py:133
+msgid "Directory"
+msgstr "Map"
+
+#: zapzap/views/ui_page_general.py:134
+msgid "Recognizes only compiled dictionaries (.bdic)"
+msgstr "Alleen gecompileerde woordenboeken (.bdic)"
+
+#: zapzap/views/ui_page_general.py:135
+msgid "Define standard dictionaries"
+msgstr "Standaard woordenboeken kiezen"
+
+#: zapzap/views/ui_page_general.py:136
+msgid "Note: Required restart."
+msgstr "Herstart de app om de wijzigingen toe te passen."
+
+#: zapzap/views/ui_page_general.py:137
+msgid "Behavior"
+msgstr "Gedrag"
+
+#: zapzap/views/ui_page_general.py:138
+msgid "Closer when closing the window"
+msgstr "Afsluiten na sluiten van venster"
+
+#: zapzap/views/ui_page_general.py:139
+msgid "Start minimized"
+msgstr "Geminimaliseerd opstarten"
+
+#: zapzap/views/ui_page_general.py:140
+msgid "Start with the system"
+msgstr "Automatisch opstarten"
+
+#: zapzap/views/ui_page_general.py:141
+msgid "Don't use a platform-native file dialog"
+msgstr "Meegeleverde bestandskiezer gebruiken"
+
+#: zapzap/views/ui_page_general.py:142
+msgid "Wayland window system"
+msgstr "Wayland-venstersysteem"
+
+#: zapzap/views/ui_page_network.py:115 zapzap/views/ui_settings.py:124
+msgid "Network"
+msgstr "Netwerk"
+
+#: zapzap/views/ui_page_network.py:116
+msgid "Network proxy"
+msgstr "Netwerkproxy"
+
+#: zapzap/views/ui_page_network.py:117
+msgid "Port"
+msgstr "Poort"
+
+#: zapzap/views/ui_page_network.py:118
+msgid "User"
+msgstr "Gebruiker"
+
+#: zapzap/views/ui_page_network.py:119
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: zapzap/views/ui_page_network.py:120
+msgid "Hostname"
+msgstr "Hostnaam"
+
+#: zapzap/views/ui_page_network.py:121
+msgid "ProxyType"
+msgstr "Soort proxy"
+
+#: zapzap/views/ui_page_network.py:122
+msgid "Description"
+msgstr "Beschrijving"
+
+#: zapzap/views/ui_page_network.py:123
+msgid "Apply"
+msgstr "Toepassen"
+
+#: zapzap/views/ui_page_network.py:124 zapzap/views/ui_page_performance.py:122
+msgid "Restore"
+msgstr "Herstellen"
+
+#: zapzap/views/ui_page_notifications.py:69 zapzap/views/ui_settings.py:122
+msgid "Notifications"
+msgstr "Meldingen"
+
+#: zapzap/views/ui_page_notifications.py:70
+msgid "Work area notifications"
+msgstr "Werkgebiedmeldingen"
+
+#: zapzap/views/ui_page_notifications.py:71
+msgid "Show the photo of the sender"
+msgstr "Foto's van afzenders tonen"
+
+#: zapzap/views/ui_page_notifications.py:72
+msgid "Show the sender's name"
+msgstr "Namen van afzenders tonen"
+
+#: zapzap/views/ui_page_notifications.py:73
+msgid "Show message preview"
+msgstr "Berichtvoorbeelden tonen"
+
+#: zapzap/views/ui_page_performance.py:110
+msgid "Performance (Experimental)"
+msgstr "Prestaties (experimenteel)"
+
+#: zapzap/views/ui_page_performance.py:111
+msgid "Cache Behavior"
+msgstr "Cachegedrag"
+
+#: zapzap/views/ui_page_performance.py:112
+msgid "Cache Type"
+msgstr "Soort cache"
+
+#: zapzap/views/ui_page_performance.py:113
+msgid "Maximum Cache Size"
+msgstr "Maximale cacheomvang"
+
+#: zapzap/views/ui_page_performance.py:114
+msgid "0 MB"
+msgstr "0 MB"
+
+#: zapzap/views/ui_page_performance.py:115
+msgid "50 MB"
+msgstr "50 MB"
+
+#: zapzap/views/ui_page_performance.py:116
+msgid "100 MB"
+msgstr "100 MB"
+
+#: zapzap/views/ui_page_performance.py:117
+msgid "QWebEngine Behavior"
+msgstr "QWebEngine-gedrag"
+
+#: zapzap/views/ui_page_performance.py:118
+msgid "Enable single process for GPU and rendering"
+msgstr "Eén proces gebruiken voor gpu en vensteropmaak"
+
+#: zapzap/views/ui_page_performance.py:119
+msgid "Disable GPU hardware acceleration"
+msgstr "Hardwareversnelling uitschakelen"
+
+#: zapzap/views/ui_page_performance.py:120
+msgid "Run everything in a single process"
+msgstr "Alles uitvoeren binnen één proces"
+
+#: zapzap/views/ui_page_performance.py:121
+msgid "Animated scrolling"
+msgstr "Scrollen voorzien van animaties"
+
+#: zapzap/views/ui_page_performance.py:123
+msgid "Note: Restart required to apply changes."
+msgstr "Herstart de app om de wijzigingen toe te passen."
+
+#: zapzap/views/ui_qtoaster_donation.py:136
+msgid "Welcome to"
+msgstr "Welkom in"
+
+#: zapzap/views/ui_qtoaster_donation.py:138
+#, python-brace-format
+msgid "Version {id}"
+msgstr "Versie {id}"
+
+#: zapzap/views/ui_qtoaster_donation.py:139
+msgid "Make a donation"
+msgstr "Doneren"
+
+#: zapzap/views/ui_settings.py:116
+msgid "Back"
+msgstr "Terug"
+
+#: zapzap/views/ui_settings.py:117
+msgid "SETTINGS"
+msgstr "INSTELLINGEN"
+
+#: zapzap/views/ui_settings.py:119
+msgid "Accounts"
+msgstr "Accounts"
+
+#: zapzap/views/ui_settings.py:120
+msgid "TOOLS"
+msgstr "HULPMIDDELEN"
+
+#: zapzap/views/ui_settings.py:123
+msgid "Performance"
+msgstr "Prestaties"
+
+#: zapzap/views/ui_settings.py:125
+msgid "HELP"
+msgstr "HULP"
+
+#: zapzap/views/ui_shortcuts_dialog.py:62
+msgid "Dialog"
+msgstr "Dialoogvenster"
+
+#: zapzap/views/ui_shortcuts_dialog.py:64
+msgid "WhatsApp Web"
+msgstr "WhatsApp Web"
+
+#: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
+msgid "Account {}"
+msgstr "Account {}"
+
+#: zapzap/controllers/CardUser.py:85
+msgid "Confirm exclusion"
+msgstr "Uitzondering bevestigen"
+
+#: zapzap/controllers/CardUser.py:85
+msgid "Are you sure you want to delete this item?"
+msgstr "Weet je zeker dat je dit item wilt verwijderen?"
+
+#: zapzap/controllers/CardUser.py:111
+msgid "Restore standard"
+msgstr "Standaardwaarden herstellen"
+
+#: zapzap/controllers/ShortcutsDialog.py:11
+msgid "Mark as unread"
+msgstr "Markeren als ongelezen"
+
+#: zapzap/controllers/ShortcutsDialog.py:12
+msgid "Archive conversation"
+msgstr "Gesprek archiveren"
+
+#: zapzap/controllers/ShortcutsDialog.py:13
+msgid "Pin conversation"
+msgstr "Gesprek vastmaken"
+
+#: zapzap/controllers/ShortcutsDialog.py:14
+msgid "Next conversation"
+msgstr "Volgend gesprek"
+
+#: zapzap/controllers/ShortcutsDialog.py:15
+msgid "Close conversation"
+msgstr "Gesprek sluiten"
+
+#: zapzap/controllers/ShortcutsDialog.py:16
+msgid "Search in conversation"
+msgstr "Gesprek doorzoeken"
+
+#: zapzap/controllers/ShortcutsDialog.py:17
+msgid "Previous conversation"
+msgstr "Vorig gesprek"
+
+#: zapzap/controllers/ShortcutsDialog.py:18
+msgid "Delete conversation"
+msgstr "Gesprek verwijderen"
+
+#: zapzap/controllers/ShortcutsDialog.py:21
+msgid "Profile and status"
+msgstr "Profiel en status"
+
+#: zapzap/controllers/ShortcutsDialog.py:25
+msgid "Decrease speed of selected voice message"
+msgstr "Snelheid van gekozen spraakbericht verlagen"
+
+#: zapzap/controllers/ShortcutsDialog.py:26
+msgid "Increase speed of selected voice message"
+msgstr "Snelheid van gekozen spraakbericht verhogen"
+
+#: zapzap/controllers/ShortcutsDialog.py:29
+msgid "Emoji panel"
+msgstr "Emojipaneel"
+
+#: zapzap/controllers/ShortcutsDialog.py:30
+msgid "Sticker panel"
+msgstr "Stickerpaneel"
+
+#: zapzap/controllers/ShortcutsDialog.py:31
+msgid "GIF panel"
+msgstr "GIF-paneel"
+
+#: zapzap/controllers/ShortcutsDialog.py:34
+msgid "Lock the app"
+msgstr "App vergrendelen"
+
+#: zapzap/controllers/ShortcutsDialog.py:35
+msgid "Mute"
+msgstr "Dempen"
+
+#: zapzap/controllers/ShortcutsDialog.py:36
+msgid "Search"
+msgstr "Zoeken"
+
+#: zapzap/controllers/ShortcutsDialog.py:37
+msgid "New group"
+msgstr "Nieuwe groep"
+
+#: zapzap/controllers/ShortcutsDialog.py:38
+msgid "Extended search"
+msgstr "Uitgebreid zoeken"
+
+#: zapzap/controllers/ShortcutsDialog.py:45
+msgid "Exit"
+msgstr "Afsluiten"
+
+#: zapzap/controllers/ShortcutsDialog.py:48
+msgid "Fullscreen"
+msgstr "Schermvullende weergave"
+
+#: zapzap/controllers/ShortcutsDialog.py:54
+msgid "Reload pages"
+msgstr "Pagina's herladen"
+
+#: zapzap/controllers/ShortcutsDialog.py:55
+msgid "New conversation by phone number"
+msgstr "Nieuw gesprek op basis van telefoonnummer"
+
+#: zapzap/controllers/WebView.py:113
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: zapzap/engine/browser.py:75
+#: zapzap/controllers/WebView.py:113
 msgid "Redo"
 msgstr "Opnieuw uitvoeren"
 
-#: zapzap/engine/browser.py:76
+#: zapzap/controllers/WebView.py:113
 msgid "Cut"
 msgstr "Knippen"
 
-#: zapzap/engine/browser.py:77
+#: zapzap/controllers/WebView.py:114
 msgid "Copy"
 msgstr "Kopiëren"
 
-#: zapzap/engine/browser.py:78
+#: zapzap/controllers/WebView.py:114
 msgid "Paste"
 msgstr "Plakken"
 
-#: zapzap/engine/browser.py:79
+#: zapzap/controllers/WebView.py:114
 msgid "Select all"
 msgstr "Alles selecteren"
 
-#: zapzap/engine/browser.py:80
+#: zapzap/controllers/WebView.py:115
 msgid "Save image"
 msgstr "Afbeelding opslaan"
 
-#: zapzap/engine/browser.py:81
+#: zapzap/controllers/WebView.py:115
 msgid "Copy image"
 msgstr "Afbeelding kopiëren"
 
-#: zapzap/engine/browser.py:82
+#: zapzap/controllers/WebView.py:116 zapzap/controllers/WebView.py:146
 msgid "Copy link address"
+msgstr "Linkadres kopiëren"
+
+#: zapzap/controllers/WebView.py:167
+msgid "Check Spelling"
+msgstr "Spelling controleren"
+
+#: zapzap/controllers/WebView.py:175
+msgid "Select Language"
+msgstr "Taal kiezen"
+
+#: zapzap/services/AlertManager.py:33
+msgid "Information"
+msgstr "Informatie"
+
+#: zapzap/services/AlertManager.py:33
+msgid ""
+"Limit of {} users reached.\n"
+"It is not possible to create more users!"
 msgstr ""
-
-#: zapzap/services/spellCheckLanguages.py:6
-msgid "Afrikaans - Namibia"
-msgstr "Afrikaans - Namibiẽ"
-
-#: zapzap/services/spellCheckLanguages.py:7
-msgid "Afrikaans - South Africa"
-msgstr "Afrikaans - Zuid-Afrika"
-
-#: zapzap/services/spellCheckLanguages.py:8
-msgid "Aragonese"
-msgstr "Aragonees"
-
-#: zapzap/services/spellCheckLanguages.py:9
-msgid "Aragonese - Spain"
-msgstr "Aragonees - Spanje"
-
-#: zapzap/services/spellCheckLanguages.py:10
-msgid "Arabic - United Arab Emirates"
-msgstr "Arabisch - Verenigde Arabische Emiraten"
-
-#: zapzap/services/spellCheckLanguages.py:11
-msgid "Arabic - Bahrain"
-msgstr "Arabisch - Bahrein"
-
-#: zapzap/services/spellCheckLanguages.py:12
-msgid "Arabic - Algeria"
-msgstr "Arabisch - Algerije"
-
-#: zapzap/services/spellCheckLanguages.py:13
-msgid "Arabic - Egypt"
-msgstr "Arabisch - Egypte"
-
-#: zapzap/services/spellCheckLanguages.py:14
-msgid "Arabic - Iraq"
-msgstr "Arabisch - Irak"
-
-#: zapzap/services/spellCheckLanguages.py:15
-msgid "Arabic - Jordan"
-msgstr "Arabisch - Jordanië"
-
-#: zapzap/services/spellCheckLanguages.py:16
-msgid "Arabic - Kuwait"
-msgstr "Arabisch - Koeweit"
-
-#: zapzap/services/spellCheckLanguages.py:17
-msgid "Arabic - Lebanon"
-msgstr "Arabisch - Libanon"
-
-#: zapzap/services/spellCheckLanguages.py:18
-msgid "Arabic - Libya"
-msgstr "Arabisch - Libië"
-
-#: zapzap/services/spellCheckLanguages.py:19
-msgid "Arabic - Morocco"
-msgstr "Arabisch - Marokko"
-
-#: zapzap/services/spellCheckLanguages.py:20
-msgid "Arabic - Oman"
-msgstr "Arabisch - Oman"
-
-#: zapzap/services/spellCheckLanguages.py:21
-msgid "Arabic - Qatar"
-msgstr "Arabisch - Qatar"
-
-#: zapzap/services/spellCheckLanguages.py:22
-msgid "Arabic - Saudi Arabia"
-msgstr "Arabisch - Saoedi-Arabië"
-
-#: zapzap/services/spellCheckLanguages.py:23
-msgid "Arabic - Sudan"
-msgstr "Arabisch - Soedan"
-
-#: zapzap/services/spellCheckLanguages.py:24
-msgid "Arabic - Syria"
-msgstr "Arabisch - Syrië"
-
-#: zapzap/services/spellCheckLanguages.py:25
-msgid "Arabic - Tunisia"
-msgstr "Arabisch - Tunesië"
-
-#: zapzap/services/spellCheckLanguages.py:26
-msgid "Arabic - Yemen"
-msgstr "Arabisch - Jemen"
-
-#: zapzap/services/spellCheckLanguages.py:27
-msgid "Belarusian - Belarus"
-msgstr "Belarussisch - Belarus"
-
-#: zapzap/services/spellCheckLanguages.py:28
-msgid "Bulgarian - Bulgaria"
-msgstr "Bulgaars - Bulgarije"
-
-#: zapzap/services/spellCheckLanguages.py:29
-msgid "Bengali - Bangladesh"
-msgstr "Bengaals - Bangladesh"
-
-#: zapzap/services/spellCheckLanguages.py:30
-msgid "Bengali - India"
-msgstr "Bengaals - India"
-
-#: zapzap/services/spellCheckLanguages.py:31
-msgid "Tibetan"
-msgstr "Tibetaans"
-
-#: zapzap/services/spellCheckLanguages.py:32
-msgid "Tibetan - China"
-msgstr "Tibetaans - China"
-
-#: zapzap/services/spellCheckLanguages.py:33
-msgid "Tibetan - India"
-msgstr "Tibetaans - India"
-
-#: zapzap/services/spellCheckLanguages.py:34
-msgid "Breton - France"
-msgstr "Bretons - Frankrijk"
-
-#: zapzap/services/spellCheckLanguages.py:35
-msgid "Bosnian"
-msgstr "Bosnisch"
-
-#: zapzap/services/spellCheckLanguages.py:36
-msgid "Bosnian - Bosnia and Herzegovina"
-msgstr "Bosnisch - Bosnië en Herzegovina"
-
-#: zapzap/services/spellCheckLanguages.py:37
-msgid "Catalan - Andorra"
-msgstr "Catalaans - Andorra"
-
-#: zapzap/services/spellCheckLanguages.py:38
-msgid "Catalan - Spain"
-msgstr "Catalaans - Spanje"
-
-#: zapzap/services/spellCheckLanguages.py:39
-msgid "Catalan - Valencia"
-msgstr "Catalaans - Valencia"
-
-#: zapzap/services/spellCheckLanguages.py:40
-msgid "Catalan - France"
-msgstr "Catalaans - Frankrijk"
-
-#: zapzap/services/spellCheckLanguages.py:41
-msgid "Catalan - Italy"
-msgstr "Catalaans - Italië"
-
-#: zapzap/services/spellCheckLanguages.py:42
-msgid "Czech - Czechia"
-msgstr "Tsjechisch - Tsjechië"
-
-#: zapzap/services/spellCheckLanguages.py:43
-msgid "Danish - Denmark"
-msgstr "Deens - Denemarken"
-
-#: zapzap/services/spellCheckLanguages.py:44
-msgid "German - Austria"
-msgstr "Duits - Oostenrijk"
-
-#: zapzap/services/spellCheckLanguages.py:45
-msgid "German - Switzerland"
-msgstr "Duits - Zwitserland"
-
-#: zapzap/services/spellCheckLanguages.py:46
-msgid "German - Germany"
-msgstr "Duits - Duitsland"
-
-#: zapzap/services/spellCheckLanguages.py:47
-msgid "Greek - Grece"
-msgstr "Grieks - Griekenland"
-
-#: zapzap/services/spellCheckLanguages.py:48
-msgid "English - Australia"
-msgstr "Engels - Australië"
-
-#: zapzap/services/spellCheckLanguages.py:49
-msgid "English - Bahamas"
-msgstr "Engels - Bahama's"
-
-#: zapzap/services/spellCheckLanguages.py:50
-msgid "English - Belize"
-msgstr "Engels - Belize"
-
-#: zapzap/services/spellCheckLanguages.py:51
-msgid "English - Canada"
-msgstr "Engels - Canada"
-
-#: zapzap/services/spellCheckLanguages.py:52
-msgid "English - United Kingdom"
-msgstr "Engels - Verenigd Koninkrijk"
-
-#: zapzap/services/spellCheckLanguages.py:53
-msgid "English - Ghana"
-msgstr "Engels - Ghana"
-
-#: zapzap/services/spellCheckLanguages.py:54
-msgid "English - Ireland"
-msgstr "Engels - Ierland"
-
-#: zapzap/services/spellCheckLanguages.py:55
-msgid "English - India"
-msgstr "Engels - India"
-
-#: zapzap/services/spellCheckLanguages.py:56
-msgid "English - Jamaica"
-msgstr "Engels - Jamaica"
-
-#: zapzap/services/spellCheckLanguages.py:57
-msgid "English - Malawi"
-msgstr "Engels - Malawi"
-
-#: zapzap/services/spellCheckLanguages.py:58
-msgid "English - Namibia"
-msgstr "Engels - Namibië"
-
-#: zapzap/services/spellCheckLanguages.py:59
-msgid "English - New Zealand"
-msgstr "Engels - Nieuw-Zeeland"
-
-#: zapzap/services/spellCheckLanguages.py:60
-msgid "English - Philippines"
-msgstr "Engels - Filipijnen"
-
-#: zapzap/services/spellCheckLanguages.py:61
-msgid "English - Trinidad and Tobago"
-msgstr "Engels - Trinidad en Tobago"
-
-#: zapzap/services/spellCheckLanguages.py:62
-msgid "English - United States of America"
-msgstr "Engels - Verenigde Staten"
-
-#: zapzap/services/spellCheckLanguages.py:63
-msgid "English - South Africa"
-msgstr "Engels - Zuid-Afrika"
-
-#: zapzap/services/spellCheckLanguages.py:64
-msgid "English - Zimbabwe"
-msgstr "Engels - Zimbabwe"
-
-#: zapzap/services/spellCheckLanguages.py:65
-msgid "Spanish - Argentina"
-msgstr "Spaans - Argentinië"
-
-#: zapzap/services/spellCheckLanguages.py:66
-msgid "Spanish - Bolivia"
-msgstr "Spaans - Bolivia"
-
-#: zapzap/services/spellCheckLanguages.py:67
-msgid "Spanish - Chile"
-msgstr "Spaans - Chili"
-
-#: zapzap/services/spellCheckLanguages.py:68
-msgid "Spanish - Colombia"
-msgstr "Spaans - Colombia"
-
-#: zapzap/services/spellCheckLanguages.py:69
-msgid "Spanish - Costa Rica"
-msgstr "Spaans - Costa Rica"
-
-#: zapzap/services/spellCheckLanguages.py:70
-msgid "Spanish - Cuba"
-msgstr "Spaans - Cuba"
-
-#: zapzap/services/spellCheckLanguages.py:71
-msgid "Spanish - Dominican Republic"
-msgstr "Spaans - Dominicaanse Republiek"
-
-#: zapzap/services/spellCheckLanguages.py:72
-msgid "Spanish - Ecuador"
-msgstr "Spaans - Ecuador"
-
-#: zapzap/services/spellCheckLanguages.py:73
-msgid "Spanish - Spain"
-msgstr "Spaans - Spanje"
-
-#: zapzap/services/spellCheckLanguages.py:74
-msgid "Spanish - Guatemala"
-msgstr "Spaans - Guatemala"
-
-#: zapzap/services/spellCheckLanguages.py:75
-msgid "Spanish - Honduras"
-msgstr "Spaans - Honduras"
-
-#: zapzap/services/spellCheckLanguages.py:76
-msgid "Spanish - Mexico"
-msgstr "Spaans - Mexico"
-
-#: zapzap/services/spellCheckLanguages.py:77
-msgid "Spanish - Nicaragua"
-msgstr "Spaans - Nicaragua"
-
-#: zapzap/services/spellCheckLanguages.py:78
-msgid "Spanish - Panama"
-msgstr "Spaans - Panama"
-
-#: zapzap/services/spellCheckLanguages.py:79
-msgid "Spanish - Peru"
-msgstr "Spaans - Peru"
-
-#: zapzap/services/spellCheckLanguages.py:80
-msgid "Spanish - Puerto Rico"
-msgstr "Spaans - Puerto Rico"
-
-#: zapzap/services/spellCheckLanguages.py:81
-msgid "Spanish - Paraguay"
-msgstr "Spaans - Paraguay"
-
-#: zapzap/services/spellCheckLanguages.py:82
-msgid "Spanish - El Salvador"
-msgstr "Spaans - El Salvador"
-
-#: zapzap/services/spellCheckLanguages.py:83
-msgid "Spanish - Uruguay"
-msgstr "Spaans - Uruguay"
-
-#: zapzap/services/spellCheckLanguages.py:84
-msgid "Spanish - Venezuela"
-msgstr "Spaans - Venezuela"
-
-#: zapzap/services/spellCheckLanguages.py:85
-msgid "Estonian - Estonia"
-msgstr "Ests - Estland"
-
-#: zapzap/services/spellCheckLanguages.py:86
-msgid "French - Belgium"
-msgstr "Frans - België"
-
-#: zapzap/services/spellCheckLanguages.py:87
-msgid "French - Canada"
-msgstr "Frans - Canada"
-
-#: zapzap/services/spellCheckLanguages.py:88
-msgid "French - Switzerland"
-msgstr "Frans - Zwitserland"
-
-#: zapzap/services/spellCheckLanguages.py:89
-msgid "French - France"
-msgstr "Frans - Frankrijk"
-
-#: zapzap/services/spellCheckLanguages.py:90
-msgid "French - Luxembourg"
-msgstr "Frans - Luxemburg"
-
-#: zapzap/services/spellCheckLanguages.py:91
-msgid "French - Monaco"
-msgstr "Frans - Monaco"
-
-#: zapzap/services/spellCheckLanguages.py:92
-msgid "Scottish Gaelic - United Kingdom"
-msgstr "Schots-Gaelisch - Verenigd Koninkrijk"
-
-#: zapzap/services/spellCheckLanguages.py:93
-msgid "Guarani - Paraguay"
-msgstr "Guaraní - Paraguay"
-
-#: zapzap/services/spellCheckLanguages.py:94
-msgid "Hebrew - Israel"
-msgstr "Hebreeuws - Israël"
-
-#: zapzap/services/spellCheckLanguages.py:95
-msgid "Hindi - India"
-msgstr "Hindi - India"
-
-#: zapzap/services/spellCheckLanguages.py:96
-msgid "Croatian - Croatia"
-msgstr "Kroatisch - Kroatië"
-
-#: zapzap/services/spellCheckLanguages.py:97
-msgid "Hungary - Hungarian"
-msgstr "Hongaars - Hongarije"
-
-#: zapzap/services/spellCheckLanguages.py:98
-msgid "Indonesian - Indonesia"
-msgstr "Indonesisch - Indonesië"
-
-#: zapzap/services/spellCheckLanguages.py:99
-msgid "Icelandic"
-msgstr "IJslands"
-
-#: zapzap/services/spellCheckLanguages.py:100
-msgid "Icelandic - Iceland"
-msgstr "IJslands - IJsland"
-
-#: zapzap/services/spellCheckLanguages.py:101
-msgid "Italian - Italy"
-msgstr "Italiaans - Italiaans"
-
-#: zapzap/services/spellCheckLanguages.py:102
-msgid "Kurdish Latin - Syria"
-msgstr "Koerdisch-Latijn - Syrië"
-
-#: zapzap/services/spellCheckLanguages.py:103
-msgid "Kurdish Latin - Turkey"
-msgstr "Koerdisch-Latijn - Turkije"
-
-#: zapzap/services/spellCheckLanguages.py:104
-msgid "Lao - Laos"
-msgstr "Laotiaans - Laos"
-
-#: zapzap/services/spellCheckLanguages.py:105
-msgid "Lithuanian - Lithuania"
-msgstr "Litouws - Litouwen"
-
-#: zapzap/services/spellCheckLanguages.py:106
-msgid "Latvian - Latvia"
-msgstr "Lets - Letland"
-
-#: zapzap/services/spellCheckLanguages.py:107
-msgid "Norwegian - Bokmål"
-msgstr "Noors - Bokmål"
-
-#: zapzap/services/spellCheckLanguages.py:108
-msgid "Nepali - Nepal"
-msgstr "Nepalees - Nepal"
-
-#: zapzap/services/spellCheckLanguages.py:109
-msgid "Dutch - Belgium"
-msgstr "Nederlands - België"
-
-#: zapzap/services/spellCheckLanguages.py:110
-msgid "Dutch - Netherlands"
-msgstr "Nederlands - Nederland"
-
-#: zapzap/services/spellCheckLanguages.py:111
-msgid "Norwegian - Nynorsk"
-msgstr "Noors - Nynorsk"
-
-#: zapzap/services/spellCheckLanguages.py:112
-msgid "Occitan - France"
-msgstr "Occitaans - Frankrijk"
-
-#: zapzap/services/spellCheckLanguages.py:113
-msgid "Polish - Poland"
-msgstr "Pools - Polen"
-
-#: zapzap/services/spellCheckLanguages.py:114
-msgid "Portuguese - Angola"
-msgstr "Portugees - Angola"
-
-#: zapzap/services/spellCheckLanguages.py:115
-msgid "Portuguese - Brazil"
-msgstr "Portugees - Brazilië"
-
-#: zapzap/services/spellCheckLanguages.py:116
-msgid "Portuguese - Portugal"
-msgstr "Portugees - Portugal"
-
-#: zapzap/services/spellCheckLanguages.py:117
-msgid "Romanian - Romania"
-msgstr "Roemeens - Roemenië"
-
-#: zapzap/services/spellCheckLanguages.py:118
-msgid "Russian - Russia"
-msgstr "Russisch - Rusland"
-
-#: zapzap/services/spellCheckLanguages.py:119
-msgid "Sinhala - Sri Lanka"
-msgstr "Singalees - Sri Lanka"
-
-#: zapzap/services/spellCheckLanguages.py:120
-msgid "Slovak - Slovakia"
-msgstr "Slowaaks - Slowakije"
-
-#: zapzap/services/spellCheckLanguages.py:121
-msgid "Slovenian - Slovenia"
-msgstr "Sloveens - Slovenië"
-
-#: zapzap/services/spellCheckLanguages.py:122
-msgid "Albanian - Albania"
-msgstr "Albanees - Albanië"
-
-#: zapzap/services/spellCheckLanguages.py:123
-msgid "Serbian - Czechia"
-msgstr "Servisch - Tsjechië"
-
-#: zapzap/services/spellCheckLanguages.py:124
-msgid "Serbian Latin - Czechia"
-msgstr "Servisch-Latijn - Tsjechië"
-
-#: zapzap/services/spellCheckLanguages.py:125
-msgid "Serbian Latin - Serbia"
-msgstr "Servisch-Latijn - Servië"
-
-#: zapzap/services/spellCheckLanguages.py:126
-msgid "Serbian - Serbia"
-msgstr "Servisch - Servië"
-
-#: zapzap/services/spellCheckLanguages.py:127
-msgid "Swedish - Finland"
-msgstr "Zweeds - Finland"
-
-#: zapzap/services/spellCheckLanguages.py:128
-msgid "Swedish - Sweden"
-msgstr "Zweeds - Zweden"
-
-#: zapzap/services/spellCheckLanguages.py:129
-msgid "Swahili - Tanzania"
-msgstr "Swahili - Tanzania"
-
-#: zapzap/services/spellCheckLanguages.py:130
-msgid "Telugu"
-msgstr "Telugu"
-
-#: zapzap/services/spellCheckLanguages.py:131
-msgid "Telugu - India"
-msgstr "Telugu - India"
-
-#: zapzap/services/spellCheckLanguages.py:132
-msgid "Turkish"
-msgstr "Turks"
-
-#: zapzap/services/spellCheckLanguages.py:133
-msgid "Turkish - Turkey"
-msgstr "Turks - Turkije"
-
-#: zapzap/services/spellCheckLanguages.py:134
-msgid "Ukrainian - Ukraine"
-msgstr "Oekraïens - Oekraïne"
-
-#: zapzap/services/spellCheckLanguages.py:135
-msgid "Vietnamese - Vietnam"
-msgstr "Vietnamees - Vietnam"
-
-#: zapzap/__main__.py:20
-msgid "Started in the background"
-msgstr ""
-
-#, fuzzy
-#~ msgid "Started with the system"
-#~ msgstr "Automatisch opstarten"
-
-#~ msgid "Keep in background when closing window"
-#~ msgstr "Op achtergrond actief houden na sluiten van venster"
-
-#~ msgid "Hide menu bar"
-#~ msgstr "Menubalk verbergen"
-
-#~ msgid "Learn More"
-#~ msgstr "Meer informatie"
-
-#~ msgid "Changelog"
-#~ msgstr "Wijzigingslog"
-
-#~ msgid "Report issue..."
-#~ msgstr "Probleem melden…"
-
-#~ msgid "About Zapzap"
-#~ msgstr "Over ZapZap"
-
-#~ msgid "Home page"
-#~ msgstr "Website"
-
-#, fuzzy
-#~ msgid "Disable user"
-#~ msgstr "Uitschakelen"
-
-#~ msgid "Form"
-#~ msgstr "Formulier"
-
-#~ msgid "Help"
-#~ msgstr "Hulp"
-
-#~ msgid "User Management"
-#~ msgstr "Gebruikersbeheer"
-
-#~ msgid "System"
-#~ msgstr "Systeem"
-
-#~ msgid "Appearance"
-#~ msgstr "Vormgeving"
-
-#~ msgid "Menu bar"
-#~ msgstr "Menubalk"
-
-#~ msgid "ZapZap window (Restart required)"
-#~ msgstr "ZapZap-venster (herstart vereist)"
-
-#~ msgid "Title bar buttons"
-#~ msgstr "Titelbalkknoppen"
-
-#~ msgid "Maximize"
-#~ msgstr "Maximaliseren"
-
-#~ msgid "Minimize"
-#~ msgstr "Minimaliseren"
-
-#~ msgid "Positioning on the left side"
-#~ msgstr "Aan linkerzijde"
-
-#~ msgid "Customize appearance"
-#~ msgstr "Vormgeving aanpassen"
-
-#~ msgid "General appearance"
-#~ msgstr "Algemene vormgeving"
-
-#~ msgid "System style"
-#~ msgstr "Systeemthema"
-
-#~ msgid "An unofficial WhatsApp desktop application"
-#~ msgstr "Een onofficieel WhatsApp-programma"
-
-#~ msgid "Users limit reached (9 in total)"
-#~ msgstr "Het max. aantal gebruikers (9) is bereikt"
-
-#~ msgid "Enable"
-#~ msgstr "Inschakelen"
-
-#~ msgid "System Language"
-#~ msgstr "Systeemtaal"
-
-#~ msgid "Ctrl+Q"
-#~ msgstr "Ctrl+Q"
-
-#~ msgid "F5"
-#~ msgstr "F5"
-
-#~ msgid "Ctrl+0"
-#~ msgstr "Ctrl+0"
-
-#~ msgid "F11"
-#~ msgstr "F11"
-
-#~ msgid "Ctrl+M"
-#~ msgstr "Ctrl+M"
-
-#~ msgid "Ctrl++"
-#~ msgstr "Ctrl++"
-
-#~ msgid "Ctrl+-"
-#~ msgstr "Ctrl+-"
-
-#~ msgid "Esc"
-#~ msgstr "Esc"
-
-#~ msgid "Ctrl+N"
-#~ msgstr "Ctrl+N"
-
-#~ msgid "00000000000000000000000"
-#~ msgstr "00000000000000000000000"
-
-#~ msgid "Enter"
-#~ msgstr "Invoeren"
-
-#~ msgid "Open ZapZap"
-#~ msgstr "ZapZap openen"
-
-#~ msgid "World"
-#~ msgstr "Wereld"
-
-#~ msgid "Click to donate via PayPal"
-#~ msgstr "Klik om te doneren via PayPal"
-
-#~ msgid "Você é do Brasil?"
-#~ msgstr "Você é do Brasil?"
-
-#~ msgid ""
-#~ "Acesse o link para transferir via PIX ou realize a leitura do QR code "
-#~ "abaixo"
-#~ msgstr ""
-#~ "Acesse o link para transferir via PIX ou realize a leitura do QR code "
-#~ "abaixo"
-
-#~ msgid "Tray icon appearance"
-#~ msgstr "Soort systeemvakpictogram"
+"Het maximale aantal gebruikers is {}.\n"
+"Er kunnen niet meer gebruikers worden toegevoegd!"
+
+#: zapzap/services/AlertManager.py:38
+msgid "Attention"
+msgstr "Let op"
+
+#: zapzap/services/AlertManager.py:38
+msgid "No active account!"
+msgstr "Er is geen actief account!"
+
+#: zapzap/services/NotificationManager.py:36
+msgid "New message..."
+msgstr "Nieuw bericht…"
+
+#: zapzap/services/ProxyManager.py:10
+msgid "No proxying is used."
+msgstr "Er wordt geen proxy gebruikt."
+
+#: zapzap/services/ProxyManager.py:11
+msgid "Proxy is determined based on the system proxy."
+msgstr "De proxyinstellingen worden overgenomen van het systeem."
+
+#: zapzap/services/ProxyManager.py:12
+msgid "Socks5 proxying is used."
+msgstr "Er wordt een Socks5-proxy gebruikt."
+
+#: zapzap/services/ProxyManager.py:13
+msgid "HTTP transparent proxying is used."
+msgstr "Er wordt een transparante http-proxy gebruikt."
+
+#: zapzap/services/ProxyManager.py:14
+msgid "Proxying for HTTP requests only."
+msgstr "Er wordt een proxy voor http-verzoeken gebruikt."
+
+#: zapzap/services/ProxyManager.py:15
+msgid "Proxying for FTP requests only."
+msgstr "Er wordt een proxy voor ftp-verzoeken gebruikt."
+
+#: zapzap/services/SysTrayManager.py:54
+msgid "Show"
+msgstr "Bekijken"
+
+#: zapzap/services/SysTrayManager.py:56
+msgid "Donation"
+msgstr "Doneren"
+
+#: zapzap/services/DownloadManager.py:46
+msgid "Open"
+msgstr "Openen"
+
+#: zapzap/services/DownloadManager.py:47
+msgid "Save"
+msgstr "Opslaan"
+
+#: zapzap/services/DownloadManager.py:99
+msgid "Save file"
+msgstr "Bestand opslaan"
+
+#: zapzap/services/DownloadManager.py:115
+msgid "Select folder"
+msgstr "Kies een map"

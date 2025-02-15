@@ -1,6 +1,4 @@
-import os
-from PyQt6.QtCore import QStandardPaths
-__version__ = '5.3'
+__version__ = '6.0'
 __appname__ = 'ZapZap'
 __comment__ = 'WhatsApp Messenger for linux'
 __domain__ = 'com.rtosta'
@@ -20,57 +18,11 @@ __licence__ = 'GNU General Public License v3.0'
 
 __donationPage__ = 'https://rtosta.com/zapzap-web/#donate'
 
-__ddiHelper__ = 'https://www.ddi-ddd.com.br/Codigos-Telefone-Internacional/'
-
 __whatsapp_url__ = 'https://web.whatsapp.com/'
 # Link para pegar o userAgent: http://httpbin.org/user-agent
-__user_agent__ = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+__user_agent__ = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36"
 
-# iniciando os paths
+LIMITE_USERS = 3
+
 from PyQt6.QtCore import QFileInfo
-abs_path = QFileInfo(__file__).absolutePath()
-
-fonts_path = abs_path + '/assets/fonts'
-
-# Segoe Font
-segoe_font = {
-    "regular": fonts_path + '/segoe-ui/Segoe UI.ttf',
-    "bold": fonts_path + '/segoe-ui/Segoe UI Bold.ttf',
-    "bold-italic": fonts_path + '/segoe-ui/Segoe UI Bold Italic.ttf',
-    "italic": fonts_path + '/segoe-ui/Segoe UI Italic.ttf',
-}
-
-# Path /tmp
-# tmp directory for user photos used in notifications
-
-path_tmp = os.path.join(
-    QStandardPaths.writableLocation(
-        QStandardPaths.StandardLocation.AppLocalDataLocation), __appname__, 'tmp'
-)
-if not os.path.exists(path_tmp):
-    os.makedirs(path_tmp)
-
-# Path translations
-po_path = os.path.join(abs_path, 'po')
-
-# Is Flatpak?
-isFlatpak = abs_path.startswith('/app/')
-
-# Path DataBase
-DATABASE_DIR = os.path.join(
-    QStandardPaths.writableLocation(
-        QStandardPaths.StandardLocation.AppLocalDataLocation), __appname__, 'db'
-)
-
-if not os.path.exists(DATABASE_DIR):
-    os.makedirs(DATABASE_DIR)
-
-DATABASE_FILE = os.path.join(DATABASE_DIR, 'zapzap.db')
-
-# Path
-path_storage = os.path.join(
-    QStandardPaths.writableLocation(
-        QStandardPaths.StandardLocation.AppLocalDataLocation), __appname__, "QtWebEngine"
-)
-
-COUNT_DONATE_MAX = 15
+APP_PATH = QFileInfo(__file__).absolutePath()
