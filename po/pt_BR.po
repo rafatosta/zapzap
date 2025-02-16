@@ -318,7 +318,7 @@ msgid "Behavior"
 msgstr "Comportamento"
 
 #: zapzap/views/ui_page_general.py:138
-msgid "Closer when closing the window"
+msgid "Close when closing the window"
 msgstr "Fechar ao encerrar a janela"
 
 #: zapzap/views/ui_page_general.py:139
