@@ -7,8 +7,8 @@ ZapZap brings the WhatsApp experience on Linux closer to that of a native applic
 
 ## Download
 
-**Flathub:** [Download on Flathub](https://flathub.org/apps/details/com.rtosta.zapzap)  
-**Fedora Copr:** [Download Fedora Copr](https://copr.fedorainfracloud.org/coprs/rafatosta/zapzap/)
+**Flathub:** [Download through Flathub](https://flathub.org/apps/details/com.rtosta.zapzap)  
+**Fedora Copr:** [Download through Fedora Copr](https://copr.fedorainfracloud.org/coprs/rafatosta/zapzap/)
 
 ## Features
 
