@@ -319,7 +319,7 @@ msgid "Behavior"
 msgstr "Gedrag"
 
 #: zapzap/views/ui_page_general.py:138
-msgid "Closer when closing the window"
+msgid "Close when closing the window"
 msgstr "Afsluiten na sluiten van venster"
 
 #: zapzap/views/ui_page_general.py:139
