@@ -4,10 +4,13 @@ import sys
 
 def dev(build_translations=False):
     """Run the app in development mode."""
-    print("Starting app in development mode...")
+    print(f"Running in dev mode. Translations: {build_translations}")
+    
     print(" # === Build the windows from the .ui file ===")
     os.system("chmod +x ./_scripts/build-windows.sh")
     os.system("./_scripts/build-windows.sh")
+
+    
 
     if build_translations:
         print("# === Build translations ===")
@@ -50,8 +53,18 @@ def preview(build_translations=False):
 
 
 def build():
-    """Build the app for production."""
-    print("Building the app for production...")
+    build_appimage = "--appimage" in sys.argv
+    build_flatpak = "--flatpak-onefile" in sys.argv
+    
+    if build_appimage:
+        print("Building AppImage...")
+        os.system("./_scripts/build-appimage.sh")
+
+    if build_flatpak:
+        print("Building Flatpak Onefile...")
+    
+    if not build_appimage and not build_flatpak:
+        print("No build target specified. Use --appimage or --flatpak-onefile.")
 
 
 def main():
@@ -63,7 +76,7 @@ def main():
     }
 
     if len(sys.argv) < 2 or sys.argv[1] not in commands:
-        print("Usage: python run.py [dev|preview|build] [--build-translations]")
+        print("Usage: python run.py [dev|preview|build] [--build-translations | --appimage | --flatpak-onefile]")
         return
 
     build_translations = "--build-translations" in sys.argv
