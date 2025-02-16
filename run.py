@@ -51,20 +51,25 @@ def preview(build_translations=False):
     print("# === Start === ")
     os.system("flatpak run com.rtosta.zapzap")
 
-
 def build():
+    """Build the application for specified targets."""
     build_appimage = "--appimage" in sys.argv
     build_flatpak = "--flatpak-onefile" in sys.argv
     
     if build_appimage:
-        print("Building AppImage...")
-        os.system("./_scripts/build-appimage.sh")
-
+        if len(sys.argv) < 4:
+            print("Error: You must specify a version when building AppImage.")
+            print("Usage: python run.py build --appimage <version>")
+            return
+        version = sys.argv[3]
+        print(f"Building AppImage version {version}...")
+        os.system(f"./_scripts/build-appimage.sh {version}")
+    
     if build_flatpak:
         print("Building Flatpak Onefile...")
     
     if not build_appimage and not build_flatpak:
-        print("No build target specified. Use --appimage or --flatpak-onefile.")
+        print("No build target specified. Use --appimage <version> or --flatpak-onefile.")
 
 
 def main():
@@ -95,6 +100,8 @@ Exemplo de uso:
 Sem build das traduções: python run.py dev
 Com build traduções: python run.py dev --build-translations
 
+AppImage: python run.py build --appimage TAG_RELEASE
+            -> python run.py build --appimage 6.0
 
 Obs.: Ao construir os arquivos das traduções, a data e hora são atualizadas.
 """
