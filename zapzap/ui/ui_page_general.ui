@@ -166,7 +166,7 @@
            <item>
             <widget class="QCheckBox" name="btn_quit_in_close">
              <property name="text">
-              <string>Closer when closing the window</string>
+              <string>Close when closing the window</string>
              </property>
             </widget>
            </item>
