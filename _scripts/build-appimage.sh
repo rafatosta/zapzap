@@ -6,6 +6,10 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
+# Define a pasta de trabalho
+WORKDIR=".appimage-builder"
+mkdir -p "$WORKDIR"
+
 # Armazena o argumento fornecido em uma variável
 tag=$1
 
@@ -14,38 +18,40 @@ echo "Construção para a tag: $tag"
 
 
 # Download do AppImageTool-x86_64
-arquivo="./appimagetool-x86_64.AppImage"
+appimagetool="$WORKDIR/appimagetool-x86_64.AppImage"
+echo $appimagetool 
 
-if [ -f "$arquivo" ]; then
-    echo "O arquivo $arquivo existe."
+if [ -f "$appimagetool" ]; then
+    echo "O arquivo $appimagetool existe."
 else
-    echo "O arquivo $arquivo não existe."
+    echo "O arquivo $appimagetool não existe."
     echo "Downloading appimagetool-x86_64..."
-    wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
-    chmod +x appimagetool-x86_64.AppImage
+    wget -O "$appimagetool" https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+    chmod +x $appimagetool
 fi
 
 # Download do código fonte
-arquivoZip="./$tag.tar.gz"
+codeZip="$WORKDIR/$tag.tar.gz"
 
-if [ -f "$arquivoZip" ]; then
-    echo "O arquivo $arquivoZip existe."
+if [ -f "$codeZip" ]; then
+    echo "O arquivo $codeZip existe."
 else
-    wget https://github.com/rafatosta/zapzap/archive/refs/tags/$tag.tar.gz
+    wget -O "$codeZip" https://github.com/rafatosta/zapzap/archive/refs/tags/$tag.tar.gz
 fi
 
-pasta="./zapzap-$tag"
-if [ -d "$pasta" ]; then
-    echo "A pasta $pasta existe."
+# Extrai o código fonte
+
+codeFolder="$WORKDIR/zapzap-$tag"
+if [ -d "$codeFolder" ]; then
+    echo "A pasta $codeFolder existe."
 else
-    tar -xzf $arquivoZip
+    tar -xzf "$codeZip" -C "$WORKDIR"
 fi
 
 # Cria arquivo .spec
+spec_file="$codeFolder/zapzap.spec"
+echo "Criado zapzap.spec: $spec_file"
 
-echo "Criado zapzap.spec"
-
-# Conteúdo a ser adicionado ao arquivo
 spec_txt="# -*- mode: python ; coding: utf-8 -*-
 
 
@@ -91,53 +97,47 @@ coll = COLLECT(exe,
                upx_exclude=[],
                name='zapzap')"
 
-
-spec_file="$pasta/zapzap.spec"
-
 # Adiciona o novo conteúdo ao arquivo
-echo "$spec_txt" >> "$spec_file"
-
+echo "$spec_txt" > "$spec_file"
 
 # Construção pelo Pyinstaller
-
-pyinstaller $spec_file -y
+echo "$spec_file" -y --distpath "$WORKDIR/dist" --workpath "$WORKDIR/build" --specpath "$WORKDIR"
+pyinstaller "$spec_file" -y --distpath $WORKDIR/dist --workpath $WORKDIR/build
 
 ## AppRun file
-
 appRun="#!/bin/sh\n\ncd \"\$(dirname \"\$0\")\"\nexec ./zapzap"
 
-echo -e "$appRun" > "./dist/zapzap/AppRun"
-chmod +x "./dist/zapzap/AppRun"
-
+mkdir -p "$WORKDIR/dist/zapzap"
+echo -e "$appRun" > "$WORKDIR/dist/zapzap/AppRun"
+chmod +x "$WORKDIR/dist/zapzap/AppRun"
 
 ## build.sh file
 build_file="# detect machine's architecture
-export ARCH=$(uname -m)
+export ARCH=\$(uname -m)
 
 # get the missing tools if necessary
 if [ ! -d ../build ]; then mkdir ../build; fi
-if [ ! -x ../build/appimagetool-$ARCH.AppImage ]; then
-  curl -L -o ../build/appimagetool-$ARCH.AppImage https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-$ARCH.AppImage
-  chmod a+x ../build/appimagetool-$ARCH.AppImage 
+if [ ! -x ../build/appimagetool-\$ARCH.AppImage ]; then
+  curl -L -o ../build/appimagetool-\$ARCH.AppImage https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-\$ARCH.AppImage
+  chmod a+x ../build/appimagetool-\$ARCH.AppImage 
 fi
 # the build command itself:
-../build/appimagetool-$ARCH.AppImage $PWD
+../build/appimagetool-\$ARCH.AppImage \$PWD
 
 # move result in build folder
-mv hello-world-appimage-*-$ARCH.AppImage ../build"
+mv hello-world-appimage-*-\$ARCH.AppImage ../build"
 
-echo -e "$build_file" > "./dist/zapzap/build.sh"
-chmod +x "./dist/zapzap/build.sh"
+echo -e "$build_file" > "$WORKDIR/dist/zapzap/build.sh"
+chmod +x "$WORKDIR/dist/zapzap/build.sh"
 
 # Copiar icone
-
-cp "./zapzap-$tag/share/icons/com.rtosta.zapzap.svg" "./dist/zapzap/com.rtosta.zapzap.svg"
+cp "$codeFolder/share/icons/com.rtosta.zapzap.svg" "$WORKDIR/dist/zapzap/com.rtosta.zapzap.svg"
 
 # Copiar .desktop
-cp "./zapzap-$tag/share/applications/com.rtosta.zapzap.desktop" "./dist/zapzap/zapzap.desktop"
+echo "$codeFolder/share/applications/com.rtosta.zapzap.desktop" "$WORKDIR/dist/zapzap/zapzap.desktop"
+cp "$codeFolder/share/applications/com.rtosta.zapzap.desktop" "$WORKDIR/dist/zapzap/zapzap.desktop"
 
-ARCH=x86_64 ./appimagetool-x86_64.AppImage "./dist/zapzap/"
+ARCH=x86_64 "$appimagetool" "$WORKDIR/dist/zapzap/"
 
-
-## remove arquivos desnecessários
-rm -r $pasta
+# Remove arquivos temporários (.appimage-builder)
+rm -r "$WORKDIR"
