@@ -99,7 +99,7 @@ msgstr "Beenden"
 
 #: zapzap/views/ui_mainwindow.py:99
 msgid "Ctrl+Q"
-msgstr "Ctrl+Q"
+msgstr "Strg+Q"
 
 #: zapzap/views/ui_mainwindow.py:100 zapzap/controllers/ShortcutsDialog.py:44
 msgid "Hide"
@@ -107,7 +107,7 @@ msgstr "Verstecken"
 
 #: zapzap/views/ui_mainwindow.py:101
 msgid "Ctrl+W"
-msgstr "Ctrl+W"
+msgstr "Strg+W"
 
 #: zapzap/views/ui_mainwindow.py:102 zapzap/controllers/ShortcutsDialog.py:22
 #: zapzap/controllers/ShortcutsDialog.py:43
@@ -117,7 +117,7 @@ msgstr "Einstellungen"
 
 #: zapzap/views/ui_mainwindow.py:103
 msgid "Ctrl+P"
-msgstr "Ctrl+P"
+msgstr "Strg+P"
 
 #: zapzap/views/ui_mainwindow.py:104 zapzap/controllers/ShortcutsDialog.py:49
 msgid "Reset zoom"
@@ -125,7 +125,7 @@ msgstr "Zoom zurücksetzen"
 
 #: zapzap/views/ui_mainwindow.py:105
 msgid "Ctrl+0"
-msgstr "Ctrl+0"
+msgstr "Strg+0"
 
 #: zapzap/views/ui_mainwindow.py:106 zapzap/controllers/ShortcutsDialog.py:50
 msgid "Zoom in"
@@ -133,7 +133,7 @@ msgstr "Vergrößern"
 
 #: zapzap/views/ui_mainwindow.py:107
 msgid "Ctrl++"
-msgstr "Ctrl++"
+msgstr "Strg++"
 
 #: zapzap/views/ui_mainwindow.py:108 zapzap/controllers/ShortcutsDialog.py:51
 msgid "Zoom out"
@@ -141,7 +141,7 @@ msgstr "Verkleinern"
 
 #: zapzap/views/ui_mainwindow.py:109
 msgid "Ctrl+-"
-msgstr "Ctrl+-"
+msgstr "Strg+-"
 
 #: zapzap/views/ui_mainwindow.py:110
 msgid "Toggle full screen"
@@ -173,7 +173,7 @@ msgstr "Nach Telefonnummer"
 
 #: zapzap/views/ui_mainwindow.py:117
 msgid "Ctrl+M"
-msgstr "Ctrl+M"
+msgstr "Strg+M"
 
 #: zapzap/views/ui_mainwindow.py:118 zapzap/views/ui_shortcuts_dialog.py:63
 msgid "Keyboard shortcuts"
@@ -331,7 +331,7 @@ msgstr "Mit dem System starten"
 
 #: zapzap/views/ui_page_general.py:141
 msgid "Don't use a platform-native file dialog"
-msgstr ""
+msgstr "Nicht den Plattformspezifischen Dateidialog nutzen"
 
 #: zapzap/views/ui_page_general.py:142
 msgid "Wayland window system"
@@ -443,7 +443,7 @@ msgstr "Alles in einem einzigen Prozess ausführen"
 
 #: zapzap/views/ui_page_performance.py:121
 msgid "Animated scrolling"
-msgstr ""
+msgstr "Scrollanimation"
 
 #: zapzap/views/ui_page_performance.py:123
 msgid "Note: Restart required to apply changes."
@@ -451,12 +451,12 @@ msgstr "Hinweis: Ein Neustart ist erforderlich, um Änderungen anzuwenden."
 
 #: zapzap/views/ui_qtoaster_donation.py:136
 msgid "Welcome to"
-msgstr ""
+msgstr "Willkommen zu"
 
 #: zapzap/views/ui_qtoaster_donation.py:138
 #, python-brace-format
 msgid "Version {id}"
-msgstr ""
+msgstr "Version {id}"
 
 #: zapzap/views/ui_qtoaster_donation.py:139
 #, fuzzy
