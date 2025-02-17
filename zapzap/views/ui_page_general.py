@@ -135,7 +135,7 @@ class Ui_PageGeneral(object):
         self.btn_default_path_spell.setToolTip(_("Define standard dictionaries"))
         self.label_3.setText(_("Note: Required restart."))
         self.groupBox_2.setTitle(_("Behavior"))
-        self.btn_quit_in_close.setText(_("Closer when closing the window"))
+        self.btn_quit_in_close.setText(_("Close when closing the window"))
         self.btn_start_background.setText(_("Start minimized"))
         self.btn_start_system.setText(_("Start with the system"))
         self.dontUseNativeDialog.setText(_("Don\'t use a platform-native file dialog"))
