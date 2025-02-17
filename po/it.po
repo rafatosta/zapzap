@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 11:53-0300\n"
+"POT-Creation-Date: 2025-02-17 14:27-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -648,11 +648,11 @@ msgstr "Controllo ortografico"
 msgid "Select Language"
 msgstr "Seleziona lingua"
 
-#: zapzap/services/AlertManager.py:33
+#: zapzap/services/AlertManager.py:35
 msgid "Information"
 msgstr "Informazione"
 
-#: zapzap/services/AlertManager.py:33
+#: zapzap/services/AlertManager.py:35
 msgid ""
 "Limit of {} users reached.\n"
 "It is not possible to create more users!"
@@ -660,11 +660,11 @@ msgstr ""
 "Limite di {} utenti raggiunto.\n"
 "Non è possibile creare altri utenti!"
 
-#: zapzap/services/AlertManager.py:38
+#: zapzap/services/AlertManager.py:39
 msgid "Attention"
 msgstr "Attenzione"
 
-#: zapzap/services/AlertManager.py:38
+#: zapzap/services/AlertManager.py:39
 msgid "No active account!"
 msgstr "Nessun account attivo!"
 
