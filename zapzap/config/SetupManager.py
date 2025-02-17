@@ -8,11 +8,18 @@ from zapzap.services.SettingsManager import SettingsManager
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format='%(levelname)s - %(message)s')
 
+
 class SetupManager:
     """Gerencia as configurações de ambiente para o aplicativo."""
 
     _is_flatpak = QFileInfo(__file__).absolutePath().startswith('/app/')
     _qt_platform = "xcb"  # Valor padrão
+
+    # Lista de plataformas disponíveis (extraída da mensagem de erro)
+    AVAILABLE_QT_PLATFORMS = {
+        "wayland", "wayland-egl", "eglfs", "linuxfb", "minimal",
+        "minimalegl", "offscreen", "vkkhrdisplay", "vnc", "xcb"
+    }
 
     @staticmethod
     def apply():
@@ -22,11 +29,9 @@ class SetupManager:
         """
         # Configuração da plataforma gráfica
         if not SetupManager._is_flatpak:
-            SetupManager._qt_platform = "wayland" if SettingsManager.get(
-                "system/wayland", False) else "xcb"
-            environ["QT_QPA_PLATFORM"] = SetupManager._qt_platform
-            logger.info(f"Plataforma gráfica configurada: {
-                        SetupManager._qt_platform}")
+            # Define a plataforma antes do Qt iniciar
+            environ["QT_QPA_PLATFORM"] = SetupManager.get_qt_platform()
+            logger.info(f"Plataforma gráfica configurada: {environ['QT_QPA_PLATFORM']}")
         else:
             logger.info(
                 "Ambiente Flatpak detectado, plataforma gráfica não alterada.")
@@ -82,3 +87,13 @@ class SetupManager:
 
         logger.info(f"Configurações para QWebEngine: {arguments}")
         return arguments
+    
+    @staticmethod
+    def get_qt_platform():
+        preferred_platform = "wayland" if SettingsManager.get("system/wayland", False) else "xcb"
+        
+        if preferred_platform not in SetupManager.AVAILABLE_QT_PLATFORMS:
+            logger.warning(f"Plataforma '{preferred_platform}' não disponível. Usando fallback 'xcb'.")
+            return "xcb"
+
+        return preferred_platform
