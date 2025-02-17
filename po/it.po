@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-15 07:09-0300\n"
+"POT-Creation-Date: 2025-02-17 11:53-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -318,7 +318,8 @@ msgid "Behavior"
 msgstr "Comportamento"
 
 #: zapzap/views/ui_page_general.py:138
-msgid "Closer when closing the window"
+#, fuzzy
+msgid "Close when closing the window"
 msgstr "Chiudi completamente alla chiusura della finestra"
 
 #: zapzap/views/ui_page_general.py:139
@@ -667,6 +668,22 @@ msgstr "Attenzione"
 msgid "No active account!"
 msgstr "Nessun account attivo!"
 
+#: zapzap/services/DownloadManager.py:46
+msgid "Open"
+msgstr "Apri"
+
+#: zapzap/services/DownloadManager.py:47
+msgid "Save"
+msgstr "Salva"
+
+#: zapzap/services/DownloadManager.py:99
+msgid "Save file"
+msgstr "Salva file"
+
+#: zapzap/services/DownloadManager.py:115
+msgid "Select folder"
+msgstr "Seleziona cartella"
+
 #: zapzap/services/NotificationManager.py:36
 msgid "New message..."
 msgstr "Nuovo messaggio..."
@@ -702,19 +719,3 @@ msgstr "Mostra"
 #: zapzap/services/SysTrayManager.py:56
 msgid "Donation"
 msgstr "Donazione"
-
-#: zapzap/services/DownloadManager.py:46
-msgid "Open"
-msgstr "Apri"
-
-#: zapzap/services/DownloadManager.py:47
-msgid "Save"
-msgstr "Salva"
-
-#: zapzap/services/DownloadManager.py:99
-msgid "Save file"
-msgstr "Salva file"
-
-#: zapzap/services/DownloadManager.py:115
-msgid "Select folder"
-msgstr "Seleziona cartella"

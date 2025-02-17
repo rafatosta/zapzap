@@ -140,4 +140,4 @@ cp "$codeFolder/share/applications/com.rtosta.zapzap.desktop" "$WORKDIR/dist/zap
 ARCH=x86_64 "$appimagetool" "$WORKDIR/dist/zapzap/"
 
 # Remove arquivos temporários (.appimage-builder)
-rm -r "$WORKDIR"
+#rm -r "$WORKDIR"

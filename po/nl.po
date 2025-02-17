@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-15 07:09-0300\n"
+"POT-Creation-Date: 2025-02-17 11:53-0300\n"
 "PO-Revision-Date: 2025-02-09 11:34+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -319,7 +319,8 @@ msgid "Behavior"
 msgstr "Gedrag"
 
 #: zapzap/views/ui_page_general.py:138
-msgid "Closer when closing the window"
+#, fuzzy
+msgid "Close when closing the window"
 msgstr "Afsluiten na sluiten van venster"
 
 #: zapzap/views/ui_page_general.py:139
@@ -667,6 +668,22 @@ msgstr "Let op"
 msgid "No active account!"
 msgstr "Er is geen actief account!"
 
+#: zapzap/services/DownloadManager.py:46
+msgid "Open"
+msgstr "Openen"
+
+#: zapzap/services/DownloadManager.py:47
+msgid "Save"
+msgstr "Opslaan"
+
+#: zapzap/services/DownloadManager.py:99
+msgid "Save file"
+msgstr "Bestand opslaan"
+
+#: zapzap/services/DownloadManager.py:115
+msgid "Select folder"
+msgstr "Kies een map"
+
 #: zapzap/services/NotificationManager.py:36
 msgid "New message..."
 msgstr "Nieuw bericht…"
@@ -702,19 +719,3 @@ msgstr "Bekijken"
 #: zapzap/services/SysTrayManager.py:56
 msgid "Donation"
 msgstr "Doneren"
-
-#: zapzap/services/DownloadManager.py:46
-msgid "Open"
-msgstr "Openen"
-
-#: zapzap/services/DownloadManager.py:47
-msgid "Save"
-msgstr "Opslaan"
-
-#: zapzap/services/DownloadManager.py:99
-msgid "Save file"
-msgstr "Bestand opslaan"
-
-#: zapzap/services/DownloadManager.py:115
-msgid "Select folder"
-msgstr "Kies een map"
