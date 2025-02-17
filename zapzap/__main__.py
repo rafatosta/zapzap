@@ -1,5 +1,6 @@
 import zapzap
 import sys
+import argparse
 
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtCore import QUrl
@@ -15,6 +16,24 @@ from zapzap.services.TranslationManager import TranslationManager
 def main():
     # Desativa todos os prints do código
     # sys.stdout = open(os.devnull, 'w')
+
+    parser = argparse.ArgumentParser(
+        description="Gerenciar configurações do zapzap")
+    parser.add_argument("--setSettings", nargs=2, metavar=("chave",
+                        "valor"), help="Define uma configuração específica")
+    args, unknown = parser.parse_known_args()
+
+    if args.setSettings:
+        chave, valor = args.setSettings
+        try:
+            valor = int(valor)  # Converte o valor para inteiro
+            print(f"Configurando {chave} para {valor}")
+            SettingsManager.set(chave, valor)
+        except ValueError:
+            print(f"Erro: O valor '{valor}' não é um número inteiro válido.")
+
+    else:
+        print("Argumento inválido ou ausente")
 
     SetupManager.apply()
     TranslationManager.apply()

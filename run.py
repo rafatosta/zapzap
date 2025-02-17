@@ -5,19 +5,19 @@ import sys
 def dev(build_translations=False):
     """Run the app in development mode."""
     print(f"Running in dev mode. Translations: {build_translations}")
-    
+
     print(" # === Build the windows from the .ui file ===")
     os.system("chmod +x ./_scripts/build-windows.sh")
     os.system("./_scripts/build-windows.sh")
-
-    
 
     if build_translations:
         print("# === Build translations ===")
         os.system("./_scripts/build-translations.sh")
 
     print("# === Start === ")
-    os.system("python -m zapzap")
+    # Captura todos os argumentos extras após "dev"
+    extra_args = " ".join(sys.argv[2:])
+    os.system(f"python -m zapzap {extra_args}")
 
 
 def preview(build_translations=False):
@@ -49,13 +49,15 @@ def preview(build_translations=False):
         "flatpak-builder build com.rtosta.zapzap.yaml --force-clean --ccache --install --user"
     )
     print("# === Start === ")
-    os.system("flatpak run com.rtosta.zapzap")
+    extra_args = " ".join(sys.argv[2:])
+    os.system(f"flatpak run com.rtosta.zapzap {extra_args}")
+
 
 def build():
     """Build the application for specified targets."""
     build_appimage = "--appimage" in sys.argv
     build_flatpak = "--flatpak-onefile" in sys.argv
-    
+
     if build_appimage:
         if len(sys.argv) < 4:
             print("Error: You must specify a version when building AppImage.")
@@ -64,10 +66,10 @@ def build():
         version = sys.argv[3]
         print(f"Building AppImage version {version}...")
         os.system(f"./_scripts/build-appimage.sh {version}")
-    
+
     if build_flatpak:
         print("Building Flatpak Onefile...")
-    
+
     if not build_appimage and not build_flatpak:
         print("No build target specified. Use --appimage <version> or --flatpak-onefile.")
 
@@ -81,7 +83,8 @@ def main():
     }
 
     if len(sys.argv) < 2 or sys.argv[1] not in commands:
-        print("Usage: python run.py [dev|preview|build] [--build-translations | --appimage | --flatpak-onefile]")
+        print(
+            "Usage: python run.py [dev|preview|build] [--build-translations | --appimage | --flatpak-onefile]")
         return
 
     build_translations = "--build-translations" in sys.argv

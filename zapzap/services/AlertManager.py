@@ -3,6 +3,8 @@ from PyQt6.QtWidgets import QMessageBox
 from zapzap import LIMITE_USERS
 from gettext import gettext as _
 
+from zapzap.services.SettingsManager import SettingsManager
+
 
 class AlertManager:
     @staticmethod
@@ -30,8 +32,7 @@ class AlertManager:
     @staticmethod
     def limit_users(parent):
         QMessageBox.information(
-            parent, _("Information"), _("Limit of {} users reached.\nIt is not possible to create more users!").format(LIMITE_USERS))
-
+            parent, _("Information"), _("Limit of {} users reached.\nIt is not possible to create more users!").format(SettingsManager.get("users/size", LIMITE_USERS)))
 
     def no_active_account(parent):
         QMessageBox.information(

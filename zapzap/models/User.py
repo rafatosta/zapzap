@@ -1,4 +1,5 @@
 from zapzap.config.Database import Database
+from zapzap.services.SettingsManager import SettingsManager
 
 
 class User:
@@ -221,9 +222,9 @@ class User:
         """
         # Verifica o número de usuários cadastrados
         from zapzap import LIMITE_USERS
-        if User.count_users() >= LIMITE_USERS:
+        if User.count_users() >= int(SettingsManager.get("users/size", LIMITE_USERS)):
             print(f"""Limite de {
-                  LIMITE_USERS} usuários atingido. Não é possível criar mais usuários.""")
+                  SettingsManager.get("users/size", LIMITE_USERS)} usuários atingido. Não é possível criar mais usuários.""")
             return None
 
         # Define o ícone, se necessário
