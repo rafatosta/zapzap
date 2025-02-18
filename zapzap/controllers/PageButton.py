@@ -78,7 +78,8 @@ class PageButton(QPushButton):
             user_icon_type = UserIcon.Type.Silence
 
         # Atualiza o ícone e a dica de ferramenta
-        self.setIcon(UserIcon.get_icon(self._user.icon, user_icon_type))
+        self.setIcon(UserIcon.get_icon(self._user.icon,
+                     user_icon_type, self.number_notifications))
         tooltip = (
             f"{self._user.name} ({self.number_notifications})"
             if self.number_notifications > 0
