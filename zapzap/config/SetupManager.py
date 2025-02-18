@@ -93,5 +93,5 @@ class SetupManager:
             return "wayland" if SettingsManager.get("system/wayland", False) else "xcb"
         elif XDG_SESSION_TYPE is None:
             logger.warning(
-                f"Plataforma '{XDG_SESSION_TYPE}'. Usando fallback 'xcb'.")
+                f"""Plataforma '{XDG_SESSION_TYPE}'. Usando fallback 'xcb'.""")
             return SetupManager._qt_platform_xcb
