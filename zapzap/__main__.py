@@ -26,7 +26,6 @@ def main():
     if args.setSettings:
         chave, valor = args.setSettings
         try:
-            valor = int(valor)  # Converte o valor para inteiro
             print(f"Configurando {chave} para {valor}")
             SettingsManager.set(chave, valor)
         except ValueError:

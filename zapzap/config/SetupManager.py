@@ -1,5 +1,5 @@
 import logging
-from os import environ
+from os import environ, getenv
 from PyQt6.QtCore import QFileInfo
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.SettingsManager import SettingsManager
@@ -13,13 +13,7 @@ class SetupManager:
     """Gerencia as configurações de ambiente para o aplicativo."""
 
     _is_flatpak = QFileInfo(__file__).absolutePath().startswith('/app/')
-    _qt_platform = "xcb"  # Valor padrão
-
-    # Lista de plataformas disponíveis (extraída da mensagem de erro)
-    AVAILABLE_QT_PLATFORMS = {
-        "wayland", "wayland-egl", "eglfs", "linuxfb", "minimal",
-        "minimalegl", "offscreen", "vkkhrdisplay", "vnc", "xcb"
-    }
+    _qt_platform_xcb = "xcb"  # Valor padrão: X11
 
     @staticmethod
     def apply():
@@ -31,7 +25,8 @@ class SetupManager:
         if not SetupManager._is_flatpak:
             # Define a plataforma antes do Qt iniciar
             environ["QT_QPA_PLATFORM"] = SetupManager.get_qt_platform()
-            logger.info(f"Plataforma gráfica configurada: {environ['QT_QPA_PLATFORM']}")
+            logger.info(
+                f"Plataforma gráfica configurada: {environ['QT_QPA_PLATFORM']}")
         else:
             logger.info(
                 "Ambiente Flatpak detectado, plataforma gráfica não alterada.")
@@ -87,13 +82,16 @@ class SetupManager:
 
         logger.info(f"Configurações para QWebEngine: {arguments}")
         return arguments
-    
+
     @staticmethod
     def get_qt_platform():
-        preferred_platform = "wayland" if SettingsManager.get("system/wayland", False) else "xcb"
-        
-        if preferred_platform not in SetupManager.AVAILABLE_QT_PLATFORMS:
-            logger.warning(f"Plataforma '{preferred_platform}' não disponível. Usando fallback 'xcb'.")
-            return "xcb"
+        # Session Type
+        XDG_SESSION_TYPE = getenv('XDG_SESSION_TYPE')
+        print('XDG_SESSION_TYPE:', XDG_SESSION_TYPE)
 
-        return preferred_platform
+        if XDG_SESSION_TYPE == 'wayland':
+            return "wayland" if SettingsManager.get("system/wayland", False) else "xcb"
+        elif XDG_SESSION_TYPE is None:
+            logger.warning(
+                f"Plataforma '{XDG_SESSION_TYPE}'. Usando fallback 'xcb'.")
+            return SetupManager._qt_platform_xcb
