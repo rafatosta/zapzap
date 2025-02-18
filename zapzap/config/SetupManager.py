@@ -26,26 +26,26 @@ class SetupManager:
             # Define a plataforma antes do Qt iniciar
             environ["QT_QPA_PLATFORM"] = SetupManager.get_qt_platform()
             logger.info(
-                f"Plataforma gráfica configurada: {environ['QT_QPA_PLATFORM']}")
+                f"""Plataforma gráfica configurada: {environ['QT_QPA_PLATFORM']}""")
         else:
             logger.info(
-                "Ambiente Flatpak detectado, plataforma gráfica não alterada.")
+                """Ambiente Flatpak detectado, plataforma gráfica não alterada.""")
 
         # Configuração de escalonamento de tela
         scale_factor = int(SettingsManager.get("system/scale", 100)) / 100
         environ["QT_SCALE_FACTOR"] = f'{scale_factor:.2f}'
         environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
-        logger.info(f"Escalonamento de tela configurado: {scale_factor:.2f}")
+        logger.info(f"""Escalonamento de tela configurado: {scale_factor:.2f}""")
 
         # Configuração do caminho dos dicionários
         dictionary_path = DictionariesManager.get_path()
         if dictionary_path == DictionariesManager.QTWEBENGINE_DICTIONARIES_PATH_FLATPAK:
-            logger.info(f"QTWEBENGINE_DICTIONARIES_PATH = {
-                        dictionary_path} (Default)")
+            logger.info(f"""QTWEBENGINE_DICTIONARIES_PATH = {
+                        dictionary_path} (Default)""")
         else:
             environ["QTWEBENGINE_DICTIONARIES_PATH"] = dictionary_path
-            logger.info(f"QTWEBENGINE_DICTIONARIES_PATH configurado: {
-                        dictionary_path}")
+            logger.info(f"""QTWEBENGINE_DICTIONARIES_PATH configurado: {
+                        dictionary_path}""")
 
     @staticmethod
     def apply_qt_scale_factor_rounding_policy():
@@ -80,7 +80,7 @@ class SetupManager:
         if SettingsManager.get("performance/single_process", False):
             arguments.append("--single-process")
 
-        logger.info(f"Configurações para QWebEngine: {arguments}")
+        logger.info(f"""Configurações para QWebEngine: {arguments}""")
         return arguments
 
     @staticmethod
