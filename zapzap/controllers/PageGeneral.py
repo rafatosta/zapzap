@@ -6,6 +6,7 @@ from zapzap.services.DownloadManager import DownloadManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.views.ui_page_general import Ui_PageGeneral
 
+from gettext import gettext as _
 
 class PageGeneral(QWidget, Ui_PageGeneral):
     """Gerencia a página de configurações gerais de aparência e idioma."""
@@ -33,7 +34,7 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         if SetupManager._is_flatpak:
             self.btn_wayland.setDisabled(True)
             self.btn_wayland.setToolTip(
-                "Use Flatseal to change this mode of execution.")
+                _("Use Flatseal to change this mode of execution"))
 
     def _load_settings(self):
         """
