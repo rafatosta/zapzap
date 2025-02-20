@@ -35,7 +35,8 @@ class SetupManager:
         scale_factor = int(SettingsManager.get("system/scale", 100)) / 100
         environ["QT_SCALE_FACTOR"] = f'{scale_factor:.2f}'
         environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
-        logger.info(f"""Escalonamento de tela configurado: {scale_factor:.2f}""")
+        logger.info(
+            f"""Escalonamento de tela configurado: {scale_factor:.2f}""")
 
         # Configuração do caminho dos dicionários
         dictionary_path = DictionariesManager.get_path()
@@ -91,7 +92,7 @@ class SetupManager:
 
         if XDG_SESSION_TYPE == 'wayland':
             return "wayland" if SettingsManager.get("system/wayland", False) else "xcb"
-        elif XDG_SESSION_TYPE is None:
-            logger.warning(
-                f"""Plataforma '{XDG_SESSION_TYPE}'. Usando fallback 'xcb'.""")
-            return SetupManager._qt_platform_xcb
+
+        logger.warning(
+            f"""Plataforma '{XDG_SESSION_TYPE}'. Usando fallback '{SetupManager._qt_platform_xcb}'.""")
+        return SetupManager._qt_platform_xcb
