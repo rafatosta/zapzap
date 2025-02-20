@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 14:27-0300\n"
+"POT-Creation-Date: 2025-02-20 08:05-0300\n"
 "PO-Revision-Date: 2025-02-09 11:34+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 3.5\n"
 
 #: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:71
-#: zapzap/controllers/Browser.py:150 zapzap/controllers/ShortcutsDialog.py:58
+#: zapzap/controllers/ShortcutsDialog.py:58 zapzap/controllers/Browser.py:150
 msgid "New account"
 msgstr "Nieuw account"
 
@@ -319,7 +319,6 @@ msgid "Behavior"
 msgstr "Gedrag"
 
 #: zapzap/views/ui_page_general.py:138
-#, fuzzy
 msgid "Close when closing the window"
 msgstr "Afsluiten na sluiten van venster"
 
@@ -496,10 +495,6 @@ msgstr "Dialoogvenster"
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
-#: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
-msgid "Account {}"
-msgstr "Account {}"
-
 #: zapzap/controllers/CardUser.py:85
 msgid "Confirm exclusion"
 msgstr "Uitzondering bevestigen"
@@ -511,6 +506,10 @@ msgstr "Weet je zeker dat je dit item wilt verwijderen?"
 #: zapzap/controllers/CardUser.py:111
 msgid "Restore standard"
 msgstr "Standaardwaarden herstellen"
+
+#: zapzap/controllers/PageGeneral.py:37
+msgid "Use Flatseal to change this mode of execution"
+msgstr ""
 
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"
@@ -647,6 +646,10 @@ msgstr "Spelling controleren"
 #: zapzap/controllers/WebView.py:175
 msgid "Select Language"
 msgstr "Taal kiezen"
+
+#: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
+msgid "Account {}"
+msgstr "Account {}"
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 14:27-0300\n"
+"POT-Creation-Date: 2025-02-20 08:05-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:71
-#: zapzap/controllers/Browser.py:150 zapzap/controllers/ShortcutsDialog.py:58
+#: zapzap/controllers/ShortcutsDialog.py:58 zapzap/controllers/Browser.py:150
 msgid "New account"
 msgstr "Neues Konto"
 
@@ -318,7 +318,6 @@ msgid "Behavior"
 msgstr "Verhalten"
 
 #: zapzap/views/ui_page_general.py:138
-#, fuzzy
 msgid "Close when closing the window"
 msgstr "Schließen beim Beenden des Fensters"
 
@@ -460,7 +459,6 @@ msgid "Version {id}"
 msgstr "Version {id}"
 
 #: zapzap/views/ui_qtoaster_donation.py:139
-#, fuzzy
 msgid "Make a donation"
 msgstr "Spende"
 
@@ -496,10 +494,6 @@ msgstr "Dialog"
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
-#: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
-msgid "Account {}"
-msgstr "Konto {}"
-
 #: zapzap/controllers/CardUser.py:85
 msgid "Confirm exclusion"
 msgstr "Ausschluss bestätigen"
@@ -511,6 +505,10 @@ msgstr "Sind Sie sicher, dass Sie dieses Element löschen möchten?"
 #: zapzap/controllers/CardUser.py:111
 msgid "Restore standard"
 msgstr "Standard wiederherstellen"
+
+#: zapzap/controllers/PageGeneral.py:37
+msgid "Use Flatseal to change this mode of execution"
+msgstr ""
 
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"
@@ -647,6 +645,10 @@ msgstr "Rechtschreibung überprüfen"
 #: zapzap/controllers/WebView.py:175
 msgid "Select Language"
 msgstr "Sprache auswählen"
+
+#: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
+msgid "Account {}"
+msgstr "Konto {}"
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"

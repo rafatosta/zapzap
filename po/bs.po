@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 14:27-0300\n"
+"POT-Creation-Date: 2025-02-20 08:05-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:71
-#: zapzap/controllers/Browser.py:150 zapzap/controllers/ShortcutsDialog.py:58
+#: zapzap/controllers/ShortcutsDialog.py:58 zapzap/controllers/Browser.py:150
 msgid "New account"
 msgstr "Novi nalog"
 
@@ -318,7 +318,6 @@ msgid "Behavior"
 msgstr "Ponašanje"
 
 #: zapzap/views/ui_page_general.py:138
-#, fuzzy
 msgid "Close when closing the window"
 msgstr "Zatvori pri zatvaranju prozora"
 
@@ -461,7 +460,6 @@ msgid "Version {id}"
 msgstr "Verzija {id}"
 
 #: zapzap/views/ui_qtoaster_donation.py:139
-#, fuzzy
 msgid "Make a donation"
 msgstr "Donacija"
 
@@ -497,10 +495,6 @@ msgstr "Dijalog"
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
-#: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
-msgid "Account {}"
-msgstr "Nalog {}"
-
 #: zapzap/controllers/CardUser.py:85
 msgid "Confirm exclusion"
 msgstr "Potvrdi brisanje"
@@ -512,6 +506,10 @@ msgstr "Da li ste sigurni da želite izbrisati ovu stavku?"
 #: zapzap/controllers/CardUser.py:111
 msgid "Restore standard"
 msgstr "Vrati standardne postavke"
+
+#: zapzap/controllers/PageGeneral.py:37
+msgid "Use Flatseal to change this mode of execution"
+msgstr ""
 
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"
@@ -648,6 +646,10 @@ msgstr "Provjeri pravopis"
 #: zapzap/controllers/WebView.py:175
 msgid "Select Language"
 msgstr "Odaberi jezik"
+
+#: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
+msgid "Account {}"
+msgstr "Nalog {}"
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
