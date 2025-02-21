@@ -508,7 +508,7 @@ msgstr "Standard wiederherstellen"
 
 #: zapzap/controllers/PageGeneral.py:37
 msgid "Use Flatseal to change this mode of execution"
-msgstr ""
+msgstr "Nutze Flatseal um den Ausführungsmodus zu ändern"
 
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"
