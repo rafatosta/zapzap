@@ -2,7 +2,7 @@ import logging
 import shutil
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
-from PyQt6.QtCore import QUrl, pyqtSignal
+from PyQt6.QtCore import QUrl, pyqtSignal, QTimer
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtGui import QAction
 
@@ -52,6 +52,7 @@ class WebView(QWebEngineView):
     def _configure_signals(self):
         """Configura os sinais para eventos."""
         self.titleChanged.connect(self._on_title_changed)
+        self.loadFinished.connect(self._on_load_finished)
 
     def _configure_profile(self):
         """Configura o perfil do QWebEngine."""
@@ -198,6 +199,14 @@ class WebView(QWebEngineView):
         num = ''.join(filter(str.isdigit, title))
         qtd = int(num) if num else 0
         self.update_button_signal.emit(self.page_index, qtd)
+
+    def _on_load_finished(self, success):
+        if not success:
+            print("You are not connected to the Internet.")
+            self.timer = QTimer(self)
+            self.timer.timeout.connect(self.load_page)
+            self.timer.setSingleShot(True)
+            self.timer.start(5000)  # 5000 ms = 5 seconds
 
     def set_zoom_factor_page(self, factor=None):
         """Define ou ajusta o fator de zoom da página."""
