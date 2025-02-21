@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 3.5\n"
 
 #: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:71
-#: zapzap/controllers/Browser.py:150 zapzap/controllers/ShortcutsDialog.py:58
+#: zapzap/controllers/ShortcutsDialog.py:58 zapzap/controllers/Browser.py:150
 msgid "New account"
 msgstr "Nowe konto"
 
@@ -495,10 +495,6 @@ msgstr "Okno dialogowe"
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
-#: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
-msgid "Account {}"
-msgstr "Konto {}"
-
 #: zapzap/controllers/CardUser.py:85
 msgid "Confirm exclusion"
 msgstr "Potwierdź wykluczenie"
@@ -510,6 +506,10 @@ msgstr "Czy na pewno chcesz usunąć ten element?"
 #: zapzap/controllers/CardUser.py:111
 msgid "Restore standard"
 msgstr "Przywróć standardowe"
+
+#: zapzap/controllers/PageGeneral.py:37
+msgid "Use Flatseal to change this mode of execution"
+msgstr "Użyj Flatseal, aby zmienić tryb wykonania"
 
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"
@@ -646,6 +646,10 @@ msgstr "Sprawdź pisownie"
 #: zapzap/controllers/WebView.py:175
 msgid "Select Language"
 msgstr "Wybierz język"
+
+#: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
+msgid "Account {}"
+msgstr "Konto {}"
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
