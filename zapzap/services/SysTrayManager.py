@@ -84,6 +84,14 @@ class SysTrayManager:
     def _set_icon(self, icon_type: TrayIcon.Type, number_notifications=0):
         """Atualiza o ícone da bandeja."""
         self.current_icon = icon_type
+
+        print("notificationCounter: ", SettingsManager.get(
+            "system/notificationCounter", True))
+
+        if SettingsManager.get(
+                "system/notificationCounter", True):
+            number_notifications = 0
+
         self._tray.setIcon(TrayIcon.getIcon(icon_type, number_notifications))
 
     def _open_settings(self, main_window):
@@ -113,6 +121,12 @@ class SysTrayManager:
         SettingsManager.set("system/tray_theme", icon_type.value)
 
     @staticmethod
+    def refresh():
+        instance = SysTrayManager.instance()
+        instance._set_icon(instance.current_icon,
+                           instance.number_notifications)
+
+    @staticmethod
     def _load_state():
         """Carrega o estado da visibilidade do ícone na bandeja."""
         instance = SysTrayManager.instance()
@@ -122,7 +136,7 @@ class SysTrayManager:
             instance._tray.hide()
 
     @staticmethod
-    def set_state(state: bool):
+    def set_state(state: bool = True):
         """Define a visibilidade do ícone na bandeja."""
         instance = SysTrayManager.instance()
         if state:

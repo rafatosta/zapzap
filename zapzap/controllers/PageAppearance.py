@@ -12,7 +12,7 @@ class PageAppearance(QWidget, Ui_PageAppearance):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
-        
+
         self._load_settings()
         self._configure_signals()
 
@@ -27,6 +27,9 @@ class PageAppearance(QWidget, Ui_PageAppearance):
             f"{SettingsManager.get('system/scale', 100)} %")
         self.tray_groupBox.setChecked(
             SettingsManager.get("system/tray_icon", True))
+
+        self.notificationCounter.setChecked(SettingsManager.get(
+            "system/notificationCounter", True))
 
         # Configurações de bandeja
         tray_mode = SettingsManager.get(
@@ -53,6 +56,8 @@ class PageAppearance(QWidget, Ui_PageAppearance):
         self.mainwindow_menu.clicked.connect(self._handle_menubar)
         self.scaleComboBox.currentTextChanged.connect(self._handle_scale)
         self.tray_groupBox.toggled.connect(SysTrayManager.set_state)
+        self.notificationCounter.clicked.connect(
+            self._handle_remove_notification_indicator)
 
         # Sinais de radio buttons
         self.tray_default_radioButton.toggled.connect(self._handle_tray_mode)
@@ -113,3 +118,8 @@ class PageAppearance(QWidget, Ui_PageAppearance):
             if radio_button.isChecked():
                 return value
         return None
+
+    def _handle_remove_notification_indicator(self):
+        SettingsManager.set("system/notificationCounter",
+                            self.notificationCounter.isChecked())
+        SysTrayManager.refresh()

@@ -102,6 +102,13 @@
            <bool>true</bool>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
+           <item row="2" column="0" colspan="2">
+            <widget class="QCheckBox" name="notificationCounter">
+             <property name="text">
+              <string>Remove notification indicator</string>
+             </property>
+            </widget>
+           </item>
            <item row="0" column="0">
             <widget class="QRadioButton" name="tray_default_radioButton">
              <property name="text">
@@ -112,6 +119,13 @@
              </property>
             </widget>
            </item>
+           <item row="0" column="2">
+            <widget class="QRadioButton" name="tray_sdark_radioButton">
+             <property name="text">
+              <string>Symbolic dark</string>
+             </property>
+            </widget>
+           </item>
            <item row="0" column="1">
             <widget class="QRadioButton" name="tray_slight_radioButton">
              <property name="text">
@@ -119,10 +133,10 @@
              </property>
             </widget>
            </item>
-           <item row="0" column="2">
-            <widget class="QRadioButton" name="tray_sdark_radioButton">
-             <property name="text">
-              <string>Symbolic dark</string>
+           <item row="1" column="0" colspan="3">
+            <widget class="Line" name="line">
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
             </widget>
            </item>
