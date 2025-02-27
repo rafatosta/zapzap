@@ -6,6 +6,7 @@ from PyQt6.QtGui import QDesktopServices
 from zapzap import __whatsapp_url__
 from zapzap.services.ThemeManager import ThemeManager
 
+import urllib.parse  # Para normalizar URLs
 
 class PageController(QWebEnginePage):
     """Controlador de página para gerenciar eventos e ações personalizadas no QWebEnginePage."""
@@ -15,6 +16,8 @@ class PageController(QWebEnginePage):
         self.link_url = ""
         self.link_context = ''
 
+        self.opened_urls = set()  # Armazena URLs já abertas
+
         # Conecta sinais para funcionalidades específicas
         self.linkHovered.connect(self._on_link_hovered)
         self.loadFinished.connect(self._on_load_finished)
@@ -22,7 +25,26 @@ class PageController(QWebEnginePage):
             self._on_feature_permission_requested
         )
 
+    def createWindow(self, _type):
+        """Intercepta novas janelas e redireciona para o navegador padrão."""
+        new_page = QWebEnginePage(self.profile(), self)
+        new_page.urlChanged.connect(self.open_in_browser)
+        return new_page
+    
+    def open_in_browser(self, url: QUrl):
+        """Abre o link no navegador padrão evitando duplicações."""
+        normalized_url = self.normalize_url(url.toString())
 
+        if normalized_url not in self.opened_urls:
+            self.opened_urls.add(normalized_url)
+            QDesktopServices.openUrl(QUrl(normalized_url))
+
+    def normalize_url(self, url: str) -> str:
+        """Normaliza a URL removendo parâmetros redundantes."""
+        parsed_url = urllib.parse.urlparse(url)
+        normalized_query = urllib.parse.unquote(parsed_url.query)  # Decodifica caracteres como %3D
+        return urllib.parse.urlunparse(parsed_url._replace(query=normalized_query))
+    
     def acceptNavigationRequest(self, url, type, isMainFrame):
         """Bloqueia a navegação para fora do endereço definido (https://web.whatsapp.com/)."""
         if url != QUrl(__whatsapp_url__):
