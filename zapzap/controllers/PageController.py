@@ -22,8 +22,6 @@ class PageController(QWebEnginePage):
             self._on_feature_permission_requested
         )
 
-        # Instala o filtro de eventos global
-        QApplication.instance().installEventFilter(self)
 
     def acceptNavigationRequest(self, url, type, isMainFrame):
         """Bloqueia a navegação para fora do endereço definido (https://web.whatsapp.com/)."""
@@ -91,16 +89,6 @@ class PageController(QWebEnginePage):
             """\";document.body.appendChild(a);a.click();a.remove(); return;})();"""
 
         self.runJavaScript(script)
-
-    def eventFilter(self, obj, event):
-        """Intercepta eventos e executa ações personalizadas."""
-        if event.type() == QEvent.Type.MouseButtonPress:
-            if event.button() == Qt.MouseButton.LeftButton:
-                if self.link_url:
-                    QDesktopServices.openUrl(QUrl(self.link_url))
-                    return True
-            self.link_url = ''
-        return False
 
     def _on_link_hovered(self, url):
         """Armazena o URL do link quando o mouse passa sobre ele."""
