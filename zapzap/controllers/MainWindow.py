@@ -26,7 +26,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.browser = Browser(self)  # Inicialização do navegador
         self.app_settings = None
         self._setup_ui()
-        QtoasterDonation.showMessage(parent=self)
+
+        if not SettingsManager.get("notification/donation_message", False):
+            QtoasterDonation.showMessage(parent=self)
 
     # === Configuração Inicial ===
     def _setup_ui(self):

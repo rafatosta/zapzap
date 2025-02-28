@@ -54,6 +54,9 @@ class Ui_PageNotifications(object):
         self.show_msg.setObjectName("show_msg")
         self.verticalLayout.addWidget(self.show_msg)
         self.verticalLayout_2.addWidget(self.notify_groupBox)
+        self.donationMessage = QtWidgets.QCheckBox(parent=self.frame)
+        self.donationMessage.setObjectName("donationMessage")
+        self.verticalLayout_2.addWidget(self.donationMessage)
         self.horizontalLayout.addWidget(self.frame)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout.addItem(spacerItem1)
@@ -71,6 +74,7 @@ class Ui_PageNotifications(object):
         self.show_photo.setText(_("Show the photo of the sender"))
         self.show_name.setText(_("Show the sender\'s name"))
         self.show_msg.setText(_("Show message preview"))
+        self.donationMessage.setText(_("Hide donation notification"))
 
 
 if __name__ == "__main__":

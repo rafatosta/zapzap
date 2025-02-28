@@ -32,6 +32,9 @@ class PageNotifications(QWidget, Ui_PageNotifications):
         self.show_msg.setChecked(
             SettingsManager.get("notification/show_msg", True)
         )
+        self.donationMessage.setChecked(
+            SettingsManager.get("notification/donation_message", False) # Desativado por padrão
+        )
 
     def _connect_signals(self):
         """Conecta os sinais dos widgets aos métodos manipuladores."""
@@ -48,7 +51,10 @@ class PageNotifications(QWidget, Ui_PageNotifications):
             lambda: SettingsManager.set(
                 "notification/show_msg", self.show_msg.isChecked())
         )
-
+        self.donationMessage.clicked.connect(
+            lambda: SettingsManager.set(
+                "notification/donation_message", self.donationMessage.isChecked())
+        )
 
     def _handle_toggle_notifications(self, is_enabled):
         """Manipula a ativação ou desativação geral das notificações."""

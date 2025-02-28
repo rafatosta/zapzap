@@ -102,6 +102,13 @@
           </layout>
          </widget>
         </item>
+        <item>
+         <widget class="QCheckBox" name="donationMessage">
+          <property name="text">
+           <string>Hide donation notification</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
      </item>
