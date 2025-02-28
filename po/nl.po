@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-20 08:05-0300\n"
+"POT-Creation-Date: 2025-02-28 08:48-0300\n"
 "PO-Revision-Date: 2025-02-09 11:34+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -206,75 +206,79 @@ msgstr "Probleem melden"
 msgid "My accounts"
 msgstr "Mijn accounts"
 
-#: zapzap/views/ui_page_appearance.py:110 zapzap/views/ui_settings.py:121
+#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:121
 msgid "Appearance"
 msgstr "Vormgeving"
 
-#: zapzap/views/ui_page_appearance.py:111
+#: zapzap/views/ui_page_appearance.py:119
 msgid "Style"
 msgstr "Stijl"
 
-#: zapzap/views/ui_page_appearance.py:112
+#: zapzap/views/ui_page_appearance.py:120
 msgid "Adaptive"
 msgstr "Aanpasbaar"
 
-#: zapzap/views/ui_page_appearance.py:113
+#: zapzap/views/ui_page_appearance.py:121
 msgid "Light"
 msgstr "Licht thema"
 
-#: zapzap/views/ui_page_appearance.py:114
+#: zapzap/views/ui_page_appearance.py:122
 msgid "Dark"
 msgstr "Donker thema"
 
-#: zapzap/views/ui_page_appearance.py:115
+#: zapzap/views/ui_page_appearance.py:123
 msgid "Tray icon"
 msgstr "Systeemvakpictogram"
 
-#: zapzap/views/ui_page_appearance.py:116
+#: zapzap/views/ui_page_appearance.py:124
+msgid "Remove notification indicator"
+msgstr ""
+
+#: zapzap/views/ui_page_appearance.py:125
 msgid "Default"
 msgstr "Standaard"
 
-#: zapzap/views/ui_page_appearance.py:117
-msgid "Symbolic light"
-msgstr "Symbolisch (licht)"
-
-#: zapzap/views/ui_page_appearance.py:118
+#: zapzap/views/ui_page_appearance.py:126
 msgid "Symbolic dark"
 msgstr "Symbolisch (donker)"
 
-#: zapzap/views/ui_page_appearance.py:119
+#: zapzap/views/ui_page_appearance.py:127
+msgid "Symbolic light"
+msgstr "Symbolisch (licht)"
+
+#: zapzap/views/ui_page_appearance.py:128
 msgid "Show sidebar"
 msgstr "Zijbalk tonen"
 
-#: zapzap/views/ui_page_appearance.py:120
+#: zapzap/views/ui_page_appearance.py:129
 msgid "Show menu bar"
 msgstr "Menubalk tonen"
 
-#: zapzap/views/ui_page_appearance.py:121
+#: zapzap/views/ui_page_appearance.py:130
 msgid "Scale"
 msgstr "Vergrotingsmodus"
 
-#: zapzap/views/ui_page_appearance.py:122
+#: zapzap/views/ui_page_appearance.py:131
 msgid "100 %"
 msgstr "100%"
 
-#: zapzap/views/ui_page_appearance.py:123
+#: zapzap/views/ui_page_appearance.py:132
 msgid "125 %"
 msgstr "125%"
 
-#: zapzap/views/ui_page_appearance.py:124
+#: zapzap/views/ui_page_appearance.py:133
 msgid "150 %"
 msgstr "150%"
 
-#: zapzap/views/ui_page_appearance.py:125
+#: zapzap/views/ui_page_appearance.py:134
 msgid "175 %"
 msgstr "175%"
 
-#: zapzap/views/ui_page_appearance.py:126
+#: zapzap/views/ui_page_appearance.py:135
 msgid "200 %"
 msgstr "200%"
 
-#: zapzap/views/ui_page_appearance.py:127
+#: zapzap/views/ui_page_appearance.py:136
 msgid "Note: The change of scale will only have effect until restarting."
 msgstr "Herstart de app om de wijzigingen toe te passen."
 
@@ -378,25 +382,29 @@ msgstr "Toepassen"
 msgid "Restore"
 msgstr "Herstellen"
 
-#: zapzap/views/ui_page_notifications.py:69 zapzap/views/ui_settings.py:122
+#: zapzap/views/ui_page_notifications.py:72 zapzap/views/ui_settings.py:122
 msgid "Notifications"
 msgstr "Meldingen"
 
-#: zapzap/views/ui_page_notifications.py:70
+#: zapzap/views/ui_page_notifications.py:73
 msgid "Work area notifications"
 msgstr "Werkgebiedmeldingen"
 
-#: zapzap/views/ui_page_notifications.py:71
+#: zapzap/views/ui_page_notifications.py:74
 msgid "Show the photo of the sender"
 msgstr "Foto's van afzenders tonen"
 
-#: zapzap/views/ui_page_notifications.py:72
+#: zapzap/views/ui_page_notifications.py:75
 msgid "Show the sender's name"
 msgstr "Namen van afzenders tonen"
 
-#: zapzap/views/ui_page_notifications.py:73
+#: zapzap/views/ui_page_notifications.py:76
 msgid "Show message preview"
 msgstr "Berichtvoorbeelden tonen"
+
+#: zapzap/views/ui_page_notifications.py:77
+msgid "Hide donation notification"
+msgstr "Piilota lahjoitusilmoitus"
 
 #: zapzap/views/ui_page_performance.py:110
 msgid "Performance (Experimental)"
@@ -603,53 +611,53 @@ msgstr "Pagina's herladen"
 msgid "New conversation by phone number"
 msgstr "Nieuw gesprek op basis van telefoonnummer"
 
-#: zapzap/controllers/WebView.py:113
-msgid "Undo"
-msgstr "Ongedaan maken"
-
-#: zapzap/controllers/WebView.py:113
-msgid "Redo"
-msgstr "Opnieuw uitvoeren"
-
-#: zapzap/controllers/WebView.py:113
-msgid "Cut"
-msgstr "Knippen"
-
-#: zapzap/controllers/WebView.py:114
-msgid "Copy"
-msgstr "Kopiëren"
-
-#: zapzap/controllers/WebView.py:114
-msgid "Paste"
-msgstr "Plakken"
-
-#: zapzap/controllers/WebView.py:114
-msgid "Select all"
-msgstr "Alles selecteren"
-
-#: zapzap/controllers/WebView.py:115
-msgid "Save image"
-msgstr "Afbeelding opslaan"
-
-#: zapzap/controllers/WebView.py:115
-msgid "Copy image"
-msgstr "Afbeelding kopiëren"
-
-#: zapzap/controllers/WebView.py:116 zapzap/controllers/WebView.py:146
-msgid "Copy link address"
-msgstr "Linkadres kopiëren"
-
-#: zapzap/controllers/WebView.py:167
-msgid "Check Spelling"
-msgstr "Spelling controleren"
-
-#: zapzap/controllers/WebView.py:175
-msgid "Select Language"
-msgstr "Taal kiezen"
-
 #: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
 msgid "Account {}"
 msgstr "Account {}"
+
+#: zapzap/controllers/WebView.py:114
+msgid "Undo"
+msgstr "Ongedaan maken"
+
+#: zapzap/controllers/WebView.py:114
+msgid "Redo"
+msgstr "Opnieuw uitvoeren"
+
+#: zapzap/controllers/WebView.py:114
+msgid "Cut"
+msgstr "Knippen"
+
+#: zapzap/controllers/WebView.py:115
+msgid "Copy"
+msgstr "Kopiëren"
+
+#: zapzap/controllers/WebView.py:115
+msgid "Paste"
+msgstr "Plakken"
+
+#: zapzap/controllers/WebView.py:115
+msgid "Select all"
+msgstr "Alles selecteren"
+
+#: zapzap/controllers/WebView.py:116
+msgid "Save image"
+msgstr "Afbeelding opslaan"
+
+#: zapzap/controllers/WebView.py:116
+msgid "Copy image"
+msgstr "Afbeelding kopiëren"
+
+#: zapzap/controllers/WebView.py:117 zapzap/controllers/WebView.py:147
+msgid "Copy link address"
+msgstr "Linkadres kopiëren"
+
+#: zapzap/controllers/WebView.py:168
+msgid "Check Spelling"
+msgstr "Spelling controleren"
+
+#: zapzap/controllers/WebView.py:176
+msgid "Select Language"
+msgstr "Taal kiezen"
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
