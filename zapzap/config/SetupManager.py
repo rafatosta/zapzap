@@ -40,13 +40,9 @@ class SetupManager:
 
         # Configuração do caminho dos dicionários
         dictionary_path = DictionariesManager.get_path()
-        if dictionary_path == DictionariesManager.QTWEBENGINE_DICTIONARIES_PATH_FLATPAK:
-            logger.info(f"""QTWEBENGINE_DICTIONARIES_PATH = {
-                        dictionary_path} (Default)""")
-        else:
-            environ["QTWEBENGINE_DICTIONARIES_PATH"] = dictionary_path
-            logger.info(f"""QTWEBENGINE_DICTIONARIES_PATH configurado: {
-                        dictionary_path}""")
+        environ["QTWEBENGINE_DICTIONARIES_PATH"] = dictionary_path
+        logger.info(f"""QTWEBENGINE_DICTIONARIES_PATH configurado: {
+            dictionary_path}""")
 
     @staticmethod
     def apply_qt_scale_factor_rounding_policy():
