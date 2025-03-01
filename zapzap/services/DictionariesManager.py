@@ -1,35 +1,19 @@
 import os
-from PyQt6.QtCore import QLocale, QFileInfo
+from PyQt6.QtCore import QLocale
+from zapzap.services.EnvironmentManager import EnvironmentManager
+from zapzap.services.PathManager import PathManager
 from zapzap.services.SettingsManager import SettingsManager
 
 
 class DictionariesManager:
     """Gerencia os dicionários de linguagem do sistema."""
 
-    QTWEBENGINE_DICTIONARIES_PATH = "/usr/share/qt6/qtwebengine_dictionaries"
-    QTWEBENGINE_DICTIONARIES_PATH_FLATPAK = "/run/host/usr/share/qt6/qtwebengine_dictionaries"
-
-    IS_FLATPAK = QFileInfo(__file__).absolutePath().startswith('/app/')
-
     @staticmethod
     def get_path() -> str:
         """
-        Retorna o caminho configurado para os dicionários ou o caminho padrão.
+        Retorna o caminho configurado para os dicionários ou o caminho padrão
         """
-        return SettingsManager.get(
-            "spellcheck/folder", DictionariesManager.get_path_default()
-        )
-
-    @staticmethod
-    def get_path_default() -> str:
-        """
-        Retorna o caminho padrão para os dicionários, dependendo do ambiente.
-        """
-        return (
-            DictionariesManager.QTWEBENGINE_DICTIONARIES_PATH_FLATPAK
-            if DictionariesManager.IS_FLATPAK
-            else DictionariesManager.QTWEBENGINE_DICTIONARIES_PATH
-        )
+        return PathManager.get_paths(EnvironmentManager.identify_packaging())['path']
 
     @staticmethod
     def list_files():
@@ -74,14 +58,15 @@ class DictionariesManager:
         SettingsManager.set("system/spellCheckLanguage", lang)
 
     @staticmethod
-    def set_spell_folder(path: str):
+    def set_spell_folder(path: str) -> str:
         """
         Configura o caminho personalizado para o diretório de dicionários.
 
         Args:
             path (str): Caminho para o diretório de dicionários.
         """
-        SettingsManager.set("spellcheck/folder", path)
+        PathManager.set_custom_path(
+            EnvironmentManager.identify_packaging(), path)
 
     @staticmethod
     def get_current_dict() -> str:
@@ -104,3 +89,9 @@ class DictionariesManager:
             str: Idioma padrão do sistema (exemplo: 'en_US').
         """
         return QLocale.system().name()
+
+    @staticmethod
+    def restore_default_path() -> str:
+        PathManager.restore_default_path(
+            EnvironmentManager.identify_packaging())
+        return DictionariesManager.get_path()
