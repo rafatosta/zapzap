@@ -141,7 +141,8 @@ cp "$codeFolder/share/applications/com.rtosta.zapzap.desktop" "$WORKDIR/dist/zap
 # Download do dicionário
 
 wget https://github.com/rafatosta/qtwebengine_dictionaries/archive/refs/heads/main.zip -O $WORKDIR/qtwebengine_dictionaries.zip
-unzip $WORKDIR/qtwebengine_dictionaries.zip -dr $WORKDIR
+unzip -o "$WORKDIR/qtwebengine_dictionaries.zip" -d "$WORKDIR"
+
 
 # Copiar o dicionário
 mkdir -p "$WORKDIR/dist/zapzap/qtwebengine_dictionaries"

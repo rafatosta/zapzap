@@ -121,7 +121,7 @@ if [ -f "$WORKDIR/qtwebengine_dictionaries" ]; then
     echo "O arquivo $WORKDIR/qtwebengine_dictionaries existe."
 else
     wget https://github.com/rafatosta/qtwebengine_dictionaries/archive/refs/heads/main.zip -O $WORKDIR/qtwebengine_dictionaries.zip
-    unzip $WORKDIR/qtwebengine_dictionaries.zip -r $WORKDIR
+    unzip -o "$WORKDIR/qtwebengine_dictionaries.zip" -d "$WORKDIR"
 fi
 
 # Copiar o dicionário
