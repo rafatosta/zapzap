@@ -127,3 +127,4 @@ dmypy.json
 *.AppImage
 *.tar.gz
 *.appimage-builder
+*.appimage-builder-preview
