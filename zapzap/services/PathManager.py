@@ -1,5 +1,6 @@
 from zapzap.services.EnvironmentManager import Packaging
 from zapzap.services.SettingsManager import SettingsManager
+import os
 
 
 class PathManager:
@@ -7,7 +8,7 @@ class PathManager:
     paths = {
         Packaging.APPIMAGE: {
             "path": "",
-            "default": "/path/to/appimage/default",
+            "default": os.path.join(os.getenv("APPDIR", "/"), "qtwebengine_dictionaries"),
         },
         Packaging.FLATPAK: {
             "path": "",
@@ -29,13 +30,13 @@ class PathManager:
         paths = PathManager.paths.get(packaging_type, None)
         if paths:
             # Obtém o caminho customizado, se existir, ou o caminho padrão
-            path = SettingsManager.get(f"spellcheck/folder_{packaging_type.value}", paths["default"])
+            path = SettingsManager.get(
+                f"spellcheck/folder_{packaging_type.value}", paths["default"])
             if path:
                 paths["path"] = path  # Substitui o caminho do dicionário
             return paths
         return None
 
-   
     @staticmethod
     def show_paths(packaging_type):
         """Exibe os caminhos no formato ilustrativo para o usuário."""
@@ -50,11 +51,14 @@ class PathManager:
     @staticmethod
     def set_custom_path(packaging_type, new_path):
         """Altera o caminho customizado e armazena no SettingsManager."""
-        SettingsManager.set(f"spellcheck/folder_{packaging_type.value}", new_path)
-        print(f"Caminho customizado para {packaging_type.value} alterado para: {new_path}")
+        SettingsManager.set(
+            f"""spellcheck/folder_{packaging_type.value}""", new_path)
+        print(
+            f"""Caminho customizado para {packaging_type.value} alterado para: {new_path}""")
 
     @staticmethod
     def restore_default_path(packaging_type):
         """Restaura o caminho para o padrão removendo o customizado."""
         SettingsManager.remove(f"spellcheck/folder_{packaging_type.value}")
-        print(f"Caminho customizado para {packaging_type.value} restaurado para o padrão.")
+        print(
+            f"""Restaura caminho customizado para {packaging_type.value} restaurado para o padrão.""")

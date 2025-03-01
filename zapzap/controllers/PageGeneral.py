@@ -154,7 +154,6 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         new_path = DictionariesManager.restore_default_path()
         print(f'Restaurando diretório: {new_path}')
         self.dic_path.setText(new_path)
-        DictionariesManager.set_spell_folder(new_path)
 
         # Atualiza o combobox e o navegador
         self._load_settings()
