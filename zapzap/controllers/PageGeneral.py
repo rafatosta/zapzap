@@ -8,6 +8,7 @@ from zapzap.views.ui_page_general import Ui_PageGeneral
 
 from gettext import gettext as _
 
+
 class PageGeneral(QWidget, Ui_PageGeneral):
     """Gerencia a página de configurações gerais de aparência e idioma."""
 
@@ -150,7 +151,7 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         Restaura o diretório de dicionários para o caminho padrão.
         Atualiza as configurações e o navegador.
         """
-        new_path = DictionariesManager.get_path_default()
+        new_path = DictionariesManager.restore_default_path()
         print(f'Restaurando diretório: {new_path}')
         self.dic_path.setText(new_path)
         DictionariesManager.set_spell_folder(new_path)
