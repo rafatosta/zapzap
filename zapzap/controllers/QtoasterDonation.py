@@ -20,7 +20,7 @@ class QtoasterDonation(QWidget, Ui_QtoasterDonation):
         self.logo.setIcon(UserIcon.get_icon())
 
         self.labelVersion.setText(
-            _(self.labelVersion.text()).format(id=__version__, version_type=EnvironmentManager.identify_packaging().value))
+            _(self.labelVersion.text()).format(id=__version__, version_type=_(EnvironmentManager.identify_packaging().value)))
 
         self.setFocus()
         self.setFocusPolicy(QtCore.Qt.FocusPolicy.ClickFocus)

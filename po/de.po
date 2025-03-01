@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-28 09:09-0300\n"
+"POT-Creation-Date: 2025-03-01 16:34-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -190,8 +190,8 @@ msgstr "WhatsApp Web für Linux"
 
 #: zapzap/views/ui_page_about.py:115
 #, python-brace-format
-msgid "Version {id} (Official compilation)"
-msgstr "Version {id} (Offizielle Kompilation)"
+msgid "Version {id} ({version_type}) - {package}"
+msgstr ""
 
 #: zapzap/views/ui_page_about.py:117
 msgid "Learn more"
@@ -463,8 +463,8 @@ msgstr "Willkommen zu"
 
 #: zapzap/views/ui_qtoaster_donation.py:138
 #, python-brace-format
-msgid "Version {id}"
-msgstr "Version {id}"
+msgid "Version {id} - {version_type}"
+msgstr ""
 
 #: zapzap/views/ui_qtoaster_donation.py:139
 msgid "Make a donation"
@@ -514,9 +514,18 @@ msgstr "Sind Sie sicher, dass Sie dieses Element löschen möchten?"
 msgid "Restore standard"
 msgstr "Standard wiederherstellen"
 
-#: zapzap/controllers/PageGeneral.py:37
-msgid "Use Flatseal to change this mode of execution"
-msgstr "Nutze Flatseal um den Ausführungsmodus zu ändern"
+#: zapzap/controllers/PageAbout.py:21
+#, fuzzy
+msgid "Official compilation"
+msgstr "Version {id} (Offizielle Kompilation)"
+
+#: zapzap/controllers/PageAbout.py:22
+msgid "Unofficial"
+msgstr ""
+
+#: zapzap/controllers/PageAbout.py:25
+msgid "Unknown"
+msgstr ""
 
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"
@@ -658,6 +667,10 @@ msgstr "Rechtschreibung überprüfen"
 msgid "Select Language"
 msgstr "Sprache auswählen"
 
+#: zapzap/controllers/PageGeneral.py:38
+msgid "Use Flatseal to change this mode of execution"
+msgstr "Nutze Flatseal um den Ausführungsmodus zu ändern"
+
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
 msgstr "Information"
@@ -729,3 +742,7 @@ msgstr "Anzeigen"
 #: zapzap/services/SysTrayManager.py:56
 msgid "Donation"
 msgstr "Spende"
+
+#, python-brace-format
+#~ msgid "Version {id}"
+#~ msgstr "Version {id}"

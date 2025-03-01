@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-28 09:09-0300\n"
+"POT-Creation-Date: 2025-03-01 16:34-0300\n"
 "PO-Revision-Date: 2025-02-09 11:34+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -191,8 +191,8 @@ msgstr "WhatsApp Web voor Linux"
 
 #: zapzap/views/ui_page_about.py:115
 #, python-brace-format
-msgid "Version {id} (Official compilation)"
-msgstr "Versie {id} (officiële versie)"
+msgid "Version {id} ({version_type}) - {package}"
+msgstr ""
 
 #: zapzap/views/ui_page_about.py:117
 msgid "Learn more"
@@ -464,8 +464,8 @@ msgstr "Welkom in"
 
 #: zapzap/views/ui_qtoaster_donation.py:138
 #, python-brace-format
-msgid "Version {id}"
-msgstr "Versie {id}"
+msgid "Version {id} - {version_type}"
+msgstr ""
 
 #: zapzap/views/ui_qtoaster_donation.py:139
 msgid "Make a donation"
@@ -515,8 +515,17 @@ msgstr "Weet je zeker dat je dit item wilt verwijderen?"
 msgid "Restore standard"
 msgstr "Standaardwaarden herstellen"
 
-#: zapzap/controllers/PageGeneral.py:37
-msgid "Use Flatseal to change this mode of execution"
+#: zapzap/controllers/PageAbout.py:21
+#, fuzzy
+msgid "Official compilation"
+msgstr "Versie {id} (officiële versie)"
+
+#: zapzap/controllers/PageAbout.py:22
+msgid "Unofficial"
+msgstr ""
+
+#: zapzap/controllers/PageAbout.py:25
+msgid "Unknown"
 msgstr ""
 
 #: zapzap/controllers/ShortcutsDialog.py:11
@@ -659,6 +668,10 @@ msgstr "Spelling controleren"
 msgid "Select Language"
 msgstr "Taal kiezen"
 
+#: zapzap/controllers/PageGeneral.py:38
+msgid "Use Flatseal to change this mode of execution"
+msgstr ""
+
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
 msgstr "Informatie"
@@ -730,3 +743,7 @@ msgstr "Bekijken"
 #: zapzap/services/SysTrayManager.py:56
 msgid "Donation"
 msgstr "Doneren"
+
+#, python-brace-format
+#~ msgid "Version {id}"
+#~ msgstr "Versie {id}"

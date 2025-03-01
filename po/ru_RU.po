@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zapzap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-28 09:09-0300\n"
+"POT-Creation-Date: 2025-03-01 16:34-0300\n"
 "PO-Revision-Date: 2025-02-28 12:43+0500\n"
 "Last-Translator: Dmitriy Q  <krotesk at mail dot ru>\n"
 "Language-Team: TranslAster\n"
@@ -192,8 +192,8 @@ msgstr "WhatsApp Web для Linux"
 
 #: zapzap/views/ui_page_about.py:115
 #, python-brace-format
-msgid "Version {id} (Official compilation)"
-msgstr "Версия {id} (Официальная сборка)"
+msgid "Version {id} ({version_type}) - {package}"
+msgstr ""
 
 #: zapzap/views/ui_page_about.py:117
 msgid "Learn more"
@@ -467,8 +467,8 @@ msgstr "Добро пожаловать в"
 
 #: zapzap/views/ui_qtoaster_donation.py:138
 #, python-brace-format
-msgid "Version {id}"
-msgstr "Версия {id}"
+msgid "Version {id} - {version_type}"
+msgstr ""
 
 #: zapzap/views/ui_qtoaster_donation.py:139
 msgid "Make a donation"
@@ -518,9 +518,18 @@ msgstr "Вы уверены, что хотите удалить этот эле�
 msgid "Restore standard"
 msgstr "Восстановить стандарт"
 
-#: zapzap/controllers/PageGeneral.py:37
-msgid "Use Flatseal to change this mode of execution"
-msgstr "Используйте Flatseal, чтобы изменить этот способ выполнения"
+#: zapzap/controllers/PageAbout.py:21
+#, fuzzy
+msgid "Official compilation"
+msgstr "Версия {id} (Официальная сборка)"
+
+#: zapzap/controllers/PageAbout.py:22
+msgid "Unofficial"
+msgstr ""
+
+#: zapzap/controllers/PageAbout.py:25
+msgid "Unknown"
+msgstr ""
 
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"
@@ -662,6 +671,10 @@ msgstr "Проверка орфографии"
 msgid "Select Language"
 msgstr "Выбор языка"
 
+#: zapzap/controllers/PageGeneral.py:38
+msgid "Use Flatseal to change this mode of execution"
+msgstr "Используйте Flatseal, чтобы изменить этот способ выполнения"
+
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
 msgstr "Информация"
@@ -733,3 +746,7 @@ msgstr "Показать"
 #: zapzap/services/SysTrayManager.py:56
 msgid "Donation"
 msgstr "Пожертвования"
+
+#, python-brace-format
+#~ msgid "Version {id}"
+#~ msgstr "Версия {id}"
