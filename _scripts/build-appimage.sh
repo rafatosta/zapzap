@@ -137,6 +137,19 @@ cp "$codeFolder/share/icons/com.rtosta.zapzap.svg" "$WORKDIR/dist/zapzap/com.rto
 echo "$codeFolder/share/applications/com.rtosta.zapzap.desktop" "$WORKDIR/dist/zapzap/zapzap.desktop"
 cp "$codeFolder/share/applications/com.rtosta.zapzap.desktop" "$WORKDIR/dist/zapzap/zapzap.desktop"
 
+
+# Download do dicionário
+
+wget https://github.com/rafatosta/qtwebengine_dictionaries/archive/refs/heads/main.zip -O $WORKDIR/qtwebengine_dictionaries.zip
+unzip $WORKDIR/qtwebengine_dictionaries.zip -dr $WORKDIR
+
+# Copiar o dicionário
+mkdir -p "$WORKDIR/dist/zapzap/qtwebengine_dictionaries"
+
+echo "$WORKDIR/qtwebengine_dictionaries-main" "$WORKDIR/dist/zapzap/qtwebengine_dictionaries"
+cp "$WORKDIR/qtwebengine_dictionaries-main"/*.bdic -r "$WORKDIR/dist/zapzap/qtwebengine_dictionaries"
+
+# Compilar em AppImage
 ARCH=x86_64 "$appimagetool" "$WORKDIR/dist/zapzap/"
 
 # Remove arquivos temporários (.appimage-builder)
