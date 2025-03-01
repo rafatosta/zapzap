@@ -135,7 +135,7 @@ class Ui_QtoasterDonation(object):
         
         self.labelWelcomeTo.setText(_("Welcome to"))
         self.labelZapZap.setText(_("ZapZap"))
-        self.labelVersion.setText(_("Version {id}"))
+        self.labelVersion.setText(_("Version {id} - {version_type}"))
         self.donateButton.setText(_("Make a donation"))
 
 

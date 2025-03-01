@@ -85,7 +85,7 @@ QPushButton:pressed{\n}</string>
              <string notr="true">font: 16pt;</string>
             </property>
             <property name="text">
-             <string>Version {id} (Official compilation)</string>
+             <string>Version {id} ({version_type}) - {package}</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignmentFlag::AlignCenter</set>

@@ -151,7 +151,7 @@ padding:0px;
 color: rgb(222, 221, 218);</string>
           </property>
           <property name="text">
-           <string>Version {id}</string>
+           <string>Version {id} - {version_type}</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTop|Qt::AlignmentFlag::AlignTrailing</set>

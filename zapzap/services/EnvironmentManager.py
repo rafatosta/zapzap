@@ -40,5 +40,9 @@ class EnvironmentManager:
                 print(f"Diretório do AppImage: {appdir}")
                 print(f"Arquivos no diretório: {os.listdir(appdir)}")
 
-# Usage without instantiating the class
-# EnvironmentManager.show_information()
+    @staticmethod
+    def isOfficial() -> bool:
+        if EnvironmentManager.identify_packaging() == Packaging.UNOFFICIAL:
+            return False
+
+        return True

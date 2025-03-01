@@ -112,7 +112,7 @@ class Ui_PageAbout(object):
         
         self.label.setText(_("About"))
         self.desc_app.setText(_("WhatsApp Web for Linux"))
-        self.version_app.setText(_("Version {id} (Official compilation)"))
+        self.version_app.setText(_("Version {id} ({version_type}) - {package}"))
         self.name_app.setText(_("ZapZap"))
         self.btnLeanMore.setText(_("Learn more"))
         self.btnReportIssue.setText(_("Report issue"))

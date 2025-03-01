@@ -6,8 +6,10 @@ from PyQt6.QtCore import QUrl
 from gettext import gettext as _
 import zapzap
 from zapzap.resources.UserIcon import UserIcon
+from zapzap.services.EnvironmentManager import EnvironmentManager
 from zapzap.views.ui_qtoaster_donation import Ui_QtoasterDonation
 from zapzap import __version__
+
 
 class QtoasterDonation(QWidget, Ui_QtoasterDonation):
     def __init__(self, parent=None):
@@ -16,8 +18,9 @@ class QtoasterDonation(QWidget, Ui_QtoasterDonation):
         self.setParent(parent)
 
         self.logo.setIcon(UserIcon.get_icon())
+
         self.labelVersion.setText(
-            _(self.labelVersion.text()).format(id=__version__))
+            _(self.labelVersion.text()).format(id=__version__, version_type=EnvironmentManager.identify_packaging().value))
 
         self.setFocus()
         self.setFocusPolicy(QtCore.Qt.FocusPolicy.ClickFocus)
@@ -65,6 +68,6 @@ class QtoasterDonation(QWidget, Ui_QtoasterDonation):
     def showMessage(parent):
         qtoaster = QtoasterDonation(parent)
         qtoaster.show()
-    
+
     def focusOutEvent(self, e):
         self.close()
