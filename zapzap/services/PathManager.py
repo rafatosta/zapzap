@@ -8,22 +8,18 @@ class PathManager:
         Packaging.APPIMAGE: {
             "path": "",
             "default": "/path/to/appimage/default",
-            "user_friendly": "~/appimage/qtwebengine_dictionaries"
         },
         Packaging.FLATPAK: {
             "path": "",
             "default": "/run/host/usr/share/qt6/qtwebengine_dictionaries",
-            "user_friendly": "~/flatpak/qtwebengine_dictionaries"
         },
         Packaging.RPM: {
             "path": "",
             "default": "/usr/share/qt6/qtwebengine_dictionaries",
-            "user_friendly": "/usr/share/qt6/qtwebengine_dictionarie"
         },
         Packaging.UNOFFICIAL: {
             "path": "",
             "default": "/usr/share/qt6/qtwebengine_dictionaries",
-            "user_friendly": "~/local/qtwebengine_dictionaries"
         }
     }
 
