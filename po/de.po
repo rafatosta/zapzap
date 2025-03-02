@@ -191,7 +191,7 @@ msgstr "WhatsApp Web für Linux"
 #: zapzap/views/ui_page_about.py:115
 #, python-brace-format
 msgid "Version {id} ({version_type}) - {package}"
-msgstr ""
+msgstr "Version {id} ({version_type}) - {package}"
 
 #: zapzap/views/ui_page_about.py:117
 msgid "Learn more"
@@ -231,7 +231,7 @@ msgstr "Tray-Symbol"
 
 #: zapzap/views/ui_page_appearance.py:124
 msgid "Remove notification indicator"
-msgstr ""
+msgstr "Entferne Benachrichtigungsindikator"
 
 #: zapzap/views/ui_page_appearance.py:125
 msgid "Default"
@@ -464,7 +464,7 @@ msgstr "Willkommen zu"
 #: zapzap/views/ui_qtoaster_donation.py:138
 #, python-brace-format
 msgid "Version {id} - {version_type}"
-msgstr ""
+msgstr "Version {id} - {version_type}"
 
 #: zapzap/views/ui_qtoaster_donation.py:139
 msgid "Make a donation"
@@ -521,11 +521,11 @@ msgstr "Version {id} (Offizielle Kompilation)"
 
 #: zapzap/controllers/PageAbout.py:22
 msgid "Unofficial"
-msgstr ""
+msgstr "Unofiziell"
 
 #: zapzap/controllers/PageAbout.py:25
 msgid "Unknown"
-msgstr ""
+msgstr "Unbekannt"
 
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"
