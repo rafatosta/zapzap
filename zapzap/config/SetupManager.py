@@ -43,6 +43,9 @@ class SetupManager:
         environ["QTWEBENGINE_DICTIONARIES_PATH"] = dictionary_path
         logger.info(f"""QTWEBENGINE_DICTIONARIES_PATH configurado: {
             dictionary_path}""")
+        
+        # Permite a reprodução de áudios e arquivos mp4 ()
+        environ["QTWEBENGINE_CHROMIUM_FLAGS"] = "--disable-features=FFmpegAllowLists"
 
     @staticmethod
     def apply_qt_scale_factor_rounding_policy():
