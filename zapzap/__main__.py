@@ -2,8 +2,8 @@ import zapzap
 import sys
 import argparse
 
-from PyQt6.QtGui import QDesktopServices
-from PyQt6.QtCore import QUrl
+from PyQt6.QtGui import QDesktopServices, QGuiApplication
+from PyQt6.QtCore import QUrl, QMimeData
 
 from zapzap.config.SetupManager import SetupManager
 from zapzap.controllers.MainWindow import MainWindow
@@ -11,6 +11,28 @@ from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.services.ProxyManager import ProxyManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.TranslationManager import TranslationManager
+
+
+def fix_clipboard_image():
+    clipboard = QGuiApplication.clipboard()
+
+    # Desconecta o evento para evitar loop infinito
+    clipboard.dataChanged.disconnect(fix_clipboard_image)
+
+    mime_data = clipboard.mimeData()
+
+    # Verifica se há uma imagem na área de transferência
+    if mime_data.hasImage():
+        image = clipboard.image()
+        if not image.isNull():
+            # Cria um novo QMimeData com a imagem corrigida
+            new_mime = QMimeData()
+            new_mime.setImageData(image)
+            clipboard.setMimeData(new_mime)
+            print("Imagem corrigida na área de transferência!")
+
+    # Reativa o evento após a modificação
+    clipboard.dataChanged.connect(fix_clipboard_image)
 
 
 def main():
@@ -49,6 +71,12 @@ def main():
 
     # Callback instance
     app.messageReceived.connect(lambda result: main_window.xdgOpenChat(result))
+
+    # Conectar o evento de mudança na área de transferência
+    clipboard = QGuiApplication.clipboard()
+    clipboard.dataChanged.connect(fix_clipboard_image)
+
+    print("Monitorando a área de transferência...")
 
     # Create main window
     main_window = MainWindow()
