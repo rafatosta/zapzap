@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zapzap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-01 16:34-0300\n"
+"POT-Creation-Date: 2025-03-04 09:48-0300\n"
 "PO-Revision-Date: 2025-02-28 12:43+0500\n"
 "Last-Translator: Dmitriy Q  <krotesk at mail dot ru>\n"
 "Language-Team: TranslAster\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:71
-#: zapzap/controllers/ShortcutsDialog.py:58 zapzap/controllers/Browser.py:150
+#: zapzap/controllers/Browser.py:150 zapzap/controllers/ShortcutsDialog.py:58
 msgid "New account"
 msgstr "Новый аккаунт"
 
@@ -506,6 +506,10 @@ msgstr "Диалог"
 msgid "WhatsApp Web"
 msgstr "WhatsApp Веб"
 
+#: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
+msgid "Account {}"
+msgstr "Аккаунт {}"
+
 #: zapzap/controllers/CardUser.py:85
 msgid "Confirm exclusion"
 msgstr "Подтвердить исключение"
@@ -530,6 +534,10 @@ msgstr ""
 #: zapzap/controllers/PageAbout.py:25
 msgid "Unknown"
 msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:38
+msgid "Use Flatseal to change this mode of execution"
+msgstr "Используйте Flatseal, чтобы изменить этот способ выполнения"
 
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"
@@ -623,10 +631,6 @@ msgstr "Перезагрузить страницу"
 msgid "New conversation by phone number"
 msgstr "Новый разговор по номеру телефона"
 
-#: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
-msgid "Account {}"
-msgstr "Аккаунт {}"
-
 #: zapzap/controllers/WebView.py:114
 msgid "Undo"
 msgstr "Отменить"
@@ -670,10 +674,6 @@ msgstr "Проверка орфографии"
 #: zapzap/controllers/WebView.py:176
 msgid "Select Language"
 msgstr "Выбор языка"
-
-#: zapzap/controllers/PageGeneral.py:38
-msgid "Use Flatseal to change this mode of execution"
-msgstr "Используйте Flatseal, чтобы изменить этот способ выполнения"
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"

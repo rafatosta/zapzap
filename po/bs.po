@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-01 16:34-0300\n"
+"POT-Creation-Date: 2025-03-04 09:48-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:71
-#: zapzap/controllers/ShortcutsDialog.py:58 zapzap/controllers/Browser.py:150
+#: zapzap/controllers/Browser.py:150 zapzap/controllers/ShortcutsDialog.py:58
 msgid "New account"
 msgstr "Novi nalog"
 
@@ -503,6 +503,10 @@ msgstr "Dijalog"
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
+#: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
+msgid "Account {}"
+msgstr "Nalog {}"
+
 #: zapzap/controllers/CardUser.py:85
 msgid "Confirm exclusion"
 msgstr "Potvrdi brisanje"
@@ -526,6 +530,10 @@ msgstr ""
 
 #: zapzap/controllers/PageAbout.py:25
 msgid "Unknown"
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:38
+msgid "Use Flatseal to change this mode of execution"
 msgstr ""
 
 #: zapzap/controllers/ShortcutsDialog.py:11
@@ -620,10 +628,6 @@ msgstr "Ponovo učitaj stranice"
 msgid "New conversation by phone number"
 msgstr "Novi razgovor prema broju telefona"
 
-#: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
-msgid "Account {}"
-msgstr "Nalog {}"
-
 #: zapzap/controllers/WebView.py:114
 msgid "Undo"
 msgstr "Poništi"
@@ -667,10 +671,6 @@ msgstr "Provjeri pravopis"
 #: zapzap/controllers/WebView.py:176
 msgid "Select Language"
 msgstr "Odaberi jezik"
-
-#: zapzap/controllers/PageGeneral.py:38
-msgid "Use Flatseal to change this mode of execution"
-msgstr ""
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"

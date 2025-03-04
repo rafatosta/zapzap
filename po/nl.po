@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-01 16:34-0300\n"
+"POT-Creation-Date: 2025-03-04 09:48-0300\n"
 "PO-Revision-Date: 2025-02-09 11:34+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 3.5\n"
 
 #: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:71
-#: zapzap/controllers/ShortcutsDialog.py:58 zapzap/controllers/Browser.py:150
+#: zapzap/controllers/Browser.py:150 zapzap/controllers/ShortcutsDialog.py:58
 msgid "New account"
 msgstr "Nieuw account"
 
@@ -503,6 +503,10 @@ msgstr "Dialoogvenster"
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
+#: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
+msgid "Account {}"
+msgstr "Account {}"
+
 #: zapzap/controllers/CardUser.py:85
 msgid "Confirm exclusion"
 msgstr "Uitzondering bevestigen"
@@ -526,6 +530,10 @@ msgstr ""
 
 #: zapzap/controllers/PageAbout.py:25
 msgid "Unknown"
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:38
+msgid "Use Flatseal to change this mode of execution"
 msgstr ""
 
 #: zapzap/controllers/ShortcutsDialog.py:11
@@ -620,10 +628,6 @@ msgstr "Pagina's herladen"
 msgid "New conversation by phone number"
 msgstr "Nieuw gesprek op basis van telefoonnummer"
 
-#: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
-msgid "Account {}"
-msgstr "Account {}"
-
 #: zapzap/controllers/WebView.py:114
 msgid "Undo"
 msgstr "Ongedaan maken"
@@ -667,10 +671,6 @@ msgstr "Spelling controleren"
 #: zapzap/controllers/WebView.py:176
 msgid "Select Language"
 msgstr "Taal kiezen"
-
-#: zapzap/controllers/PageGeneral.py:38
-msgid "Use Flatseal to change this mode of execution"
-msgstr ""
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
