@@ -20,7 +20,7 @@ class ClipboardHandler:
 
         self.manager = QNetworkAccessManager()
         self.manager.finished.connect(self.handle_image_reply)
-        self.image = None
+        self._image_data = None
 
         # Desabilitar a verificação SSL
         ssl_config = QSslConfiguration.defaultConfiguration()
@@ -28,7 +28,7 @@ class ClipboardHandler:
         QSslConfiguration.setDefaultConfiguration(ssl_config)
 
         # Criar o loop de eventos para aguardar a requisição
-        self.loop = QEventLoop()
+        #self.loop = QEventLoop()
 
         print("Monitorando a área de transferência...")
 
@@ -89,16 +89,17 @@ class ClipboardHandler:
         return image
 
     def load_image_from_url(self, url):
+        loop = QEventLoop()
+
         request = QNetworkRequest(QUrl(url))
-        self.manager.get(request)
+        reply = self.manager.get(request)
 
-        # Aguarda até a resposta ser recebida
-        self.loop.exec()
+        # Esperar a resposta
+        reply.finished.connect(loop.quit)
+        loop.exec()
 
-        if self.image:
-            return self.image
-        else:
-            return None
+        return self._image_data
+
 
     def handle_image_reply(self, reply: QNetworkReply):
         if reply.error() == QNetworkReply.NetworkError.NoError:
@@ -106,10 +107,10 @@ class ClipboardHandler:
             image = QImage()
             if image.loadFromData(image_data):
                 print("handle_image_reply: Imagem carregada com sucesso")
-                self.image = image
+                self._image_data = image
             else:
                 print("Erro ao converter os dados em QImage")
-                self.image = None
+                self._image_data = None
         else:
             print(f"Erro ao baixar a imagem: {reply.errorString()}")
 
