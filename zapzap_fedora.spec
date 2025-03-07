@@ -1,7 +1,7 @@
 # Arquivo .spec para Fedora
 
 %global srcname zapzap
-%global srcversion  6.0.1.6
+%global srcversion  6.0.1.7
 
 %global __python /usr/bin/python3
 %global _rpmfilename %%{NAME}-%%{VERSION}-%%{RELEASE}.rpm
