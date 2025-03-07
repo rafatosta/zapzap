@@ -89,7 +89,7 @@ class ClipboardHandler:
             self.set_clipboard_data(modified_urls)
 
         elif isinstance(self.local_clipboard, QImage):
-            pixmap = QPixmap.fromImage(self.local_clipboard).scaled(100, 100)
+            pixmap = QPixmap.fromImage(self.local_clipboard)
             print(f"Imagem: {pixmap}")
             modified_image = self.modify_image(self.local_clipboard)
             self.set_clipboard_data(modified_image)
