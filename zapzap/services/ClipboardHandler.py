@@ -100,7 +100,7 @@ class ClipboardHandler:
 
     def modify_text(self, text):
         """Modifica o texto antes de colar (exemplo: converte para maiúsculas)"""
-        return text.upper()  # Aqui você pode adicionar outras modificações no texto
+        return text  # Aqui você pode adicionar outras modificações no texto
 
     def modify_urls(self, urls):
         """Modifica as URLs antes de colar (exemplo: adicionar um prefixo)"""
@@ -108,24 +108,7 @@ class ClipboardHandler:
 
     def modify_image(self, image):
         """Modifica a imagem antes de colar (exemplo: redimensiona)"""
-        return image.scaled(200, 200)  # Exemplo de redimensionamento da imagem
-
-    def paste_modified(self):
-        """Exemplo de modificação antes de colar"""
-        if self.local_clipboard:
-            modified_content = None
-            if isinstance(self.local_clipboard, str):
-                modified_content = self.modify_text(self.local_clipboard)
-
-            elif isinstance(self.local_clipboard, list):
-                modified_content = self.modify_urls(self.local_clipboard)
-
-            elif isinstance(self.local_clipboard, QImage):
-                modified_content = self.modify_image(self.local_clipboard)
-
-            if modified_content:
-                # Atualiza o clipboard com o conteúdo modificado
-                self.set_clipboard_data(modified_content)
+        return image  # Exemplo de redimensionamento da imagem
 
     def set_clipboard_data(self, modified_content):
         """Configura o conteúdo modificado na área de transferência"""
@@ -144,15 +127,4 @@ class ClipboardHandler:
         # Aplica o novo MIME ao clipboard
         self.clipboard.setMimeData(new_mime)
 
-    def copy_local_image(self, file_path):
-        """Copia uma imagem local para o clipboard"""
-        if self.is_image_path(file_path):
-            image = self.load_image_from_path(file_path)
-            if image:
-                # Adiciona a imagem ao clipboard como QMimeData
-                new_mime = QMimeData()
-                new_mime.setImageData(image)
-                self.clipboard.setMimeData(new_mime)
-                print(f"Imagem local copiada para o clipboard: {file_path}")
-            else:
-                print(f"Falha ao copiar imagem para o clipboard: {file_path}")
+    
