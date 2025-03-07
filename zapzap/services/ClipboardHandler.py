@@ -27,9 +27,6 @@ class ClipboardHandler:
         ssl_config.setPeerVerifyMode(QSslSocket.PeerVerifyMode.VerifyNone)
         QSslConfiguration.setDefaultConfiguration(ssl_config)
 
-        # Criar o loop de eventos para aguardar a requisição
-        #self.loop = QEventLoop()
-
         print("Monitorando a área de transferência...")
 
     def on_clipboard_change(self):
