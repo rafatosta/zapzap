@@ -1,5 +1,7 @@
-from PyQt6.QtGui import QImage, QGuiApplication, QPixmap
-from PyQt6.QtCore import QUrl, QMimeData
+import base64
+from PyQt6.QtGui import QImage, QPixmap, QGuiApplication
+from PyQt6.QtCore import QMimeData, QUrl, QByteArray
+
 
 class ClipboardHandler:
     """Classe para gerenciar a área de transferência sem modificar a global"""
@@ -22,6 +24,11 @@ class ClipboardHandler:
             new_data = mime_data.text()
             mime_type = "text/plain"
 
+            # Verificar se o texto contém uma imagem base64
+            if new_data.startswith("data:image"):
+                new_data = self.decode_base64_image(new_data)
+                mime_type = "image/png"
+
         elif mime_data.hasImage():
             new_data = self.clipboard.image()
             mime_type = "image/png"
@@ -40,6 +47,17 @@ class ClipboardHandler:
             self.last_mime_type = mime_type
             self.on_clipboard_updated()
 
+    def decode_base64_image(self, base64_data):
+        """Decodifica uma string base64 para um QImage"""
+        # Remover a parte 'data:image/jpeg;base64,' ou similar
+        base64_data = base64_data.split(',')[1]
+        img_data = QByteArray.fromBase64(base64_data.encode())
+
+        # Criar o QImage a partir dos dados decodificados
+        image = QImage()
+        image.loadFromData(img_data)
+        return image
+
     def on_clipboard_updated(self):
         """Atualiza a interface gráfica com o novo conteúdo armazenado"""
         if isinstance(self.local_clipboard, str):
@@ -51,6 +69,8 @@ class ClipboardHandler:
         elif isinstance(self.local_clipboard, QImage):
             pixmap = QPixmap.fromImage(self.local_clipboard).scaled(100, 100)
             print(f"Imagem: {pixmap}")
+        
+        self.paste_modified()
 
     def get_local_clipboard(self):
         """Retorna o conteúdo armazenado localmente"""
@@ -59,16 +79,19 @@ class ClipboardHandler:
     def paste_modified(self):
         """Exemplo de modificação antes de colar"""
         if self.local_clipboard:
+            modified_content = None
             if isinstance(self.local_clipboard, str):
-                return self.local_clipboard.upper()  # Converte texto para maiúsculas
+                modified_content = self.local_clipboard  # Converte texto para maiúsculas
 
             elif isinstance(self.local_clipboard, list):
-                return self.local_clipboard  # URLs sem alteração
+                modified_content = self.local_clipboard  # URLs sem alteração
 
             elif isinstance(self.local_clipboard, QImage):
-                return self.local_clipboard  # Pode ser editada antes de colar
+                modified_content = self.local_clipboard  # Pode ser editada antes de colar
 
-        return None
+            if modified_content:
+                # Atualiza o clipboard com o conteúdo modificado
+                self.set_clipboard_data(modified_content)
 
     def set_clipboard_data(self, modified_content):
         """Configura o conteúdo modificado na área de transferência"""
