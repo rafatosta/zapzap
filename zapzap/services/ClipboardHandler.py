@@ -1,7 +1,10 @@
 import os
-import requests
 from PyQt6.QtGui import QImage, QPixmap, QGuiApplication
 from PyQt6.QtCore import QMimeData, QUrl, QByteArray
+
+from PyQt6.QtCore import QUrl, QEventLoop
+from PyQt6.QtGui import QImage
+from PyQt6.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply, QSslConfiguration, QSslSocket
 
 
 class ClipboardHandler:
@@ -14,6 +17,18 @@ class ClipboardHandler:
 
         # Conectar o evento de mudança do clipboard
         self.clipboard.dataChanged.connect(self.on_clipboard_change)
+
+        self.manager = QNetworkAccessManager()
+        self.manager.finished.connect(self.handle_image_reply)
+        self.image = None
+
+        # Desabilitar a verificação SSL
+        ssl_config = QSslConfiguration.defaultConfiguration()
+        ssl_config.setPeerVerifyMode(QSslSocket.PeerVerifyMode.VerifyNone)
+        QSslConfiguration.setDefaultConfiguration(ssl_config)
+
+        # Criar o loop de eventos para aguardar a requisição
+        self.loop = QEventLoop()
 
         print("Monitorando a área de transferência...")
 
@@ -74,19 +89,31 @@ class ClipboardHandler:
         return image
 
     def load_image_from_url(self, url):
-        try:
-            response = requests.get(url, timeout=10, verify=False)
-            response.raise_for_status()  # Verifica se houve erro na requisição
+        request = QNetworkRequest(QUrl(url))
+        self.manager.get(request)
 
+        # Aguarda até a resposta ser recebida
+        self.loop.exec()
+
+        if self.image:
+            return self.image
+        else:
+            return None
+
+    def handle_image_reply(self, reply: QNetworkReply):
+        if reply.error() == QNetworkReply.NetworkError.NoError:
+            image_data = reply.readAll()
             image = QImage()
-            if image.loadFromData(response.content):
-                return image
+            if image.loadFromData(image_data):
+                print("handle_image_reply: Imagem carregada com sucesso")
+                self.image = image
             else:
                 print("Erro ao converter os dados em QImage")
-                return None
-        except requests.RequestException as e:
-            print(f"Erro ao baixar a imagem: {e}")
-            return None
+                self.image = None
+        else:
+            print(f"Erro ao baixar a imagem: {reply.errorString()}")
+
+        reply.deleteLater()
 
     def decode_base64_image(self, base64_data):
         """Decodifica uma string base64 para um QImage"""
@@ -115,7 +142,7 @@ class ClipboardHandler:
             pixmap = QPixmap.fromImage(self.local_clipboard)
             print(f"Imagem: {pixmap}")
             modified_image = self.modify_image(self.local_clipboard)
-            self.set_clipboard_data(modified_image)
+            self.set_clipboard_data(modified_image)          
 
     def get_local_clipboard(self):
         """Retorna o conteúdo armazenado localmente"""
