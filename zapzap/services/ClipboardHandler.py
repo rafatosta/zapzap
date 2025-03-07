@@ -62,32 +62,48 @@ class ClipboardHandler:
         """Atualiza a interface gráfica com o novo conteúdo armazenado"""
         if isinstance(self.local_clipboard, str):
             print(f"Texto: {self.local_clipboard}")
+            modified_text = self.modify_text(self.local_clipboard)
+            self.set_clipboard_data(modified_text)
 
         elif isinstance(self.local_clipboard, list):
             print(f"URLs: {', '.join(self.local_clipboard)}")
+            modified_urls = self.modify_urls(self.local_clipboard)
+            self.set_clipboard_data(modified_urls)
 
         elif isinstance(self.local_clipboard, QImage):
             pixmap = QPixmap.fromImage(self.local_clipboard).scaled(100, 100)
             print(f"Imagem: {pixmap}")
-        
-        self.paste_modified()
+            modified_image = self.modify_image(self.local_clipboard)
+            self.set_clipboard_data(modified_image)
 
     def get_local_clipboard(self):
         """Retorna o conteúdo armazenado localmente"""
         return self.local_clipboard
+
+    def modify_text(self, text):
+        """Modifica o texto antes de colar (exemplo: converte para maiúsculas)"""
+        return text  # Aqui você pode adicionar outras modificações no texto
+
+    def modify_urls(self, urls):
+        """Modifica as URLs antes de colar (exemplo: adicionar um prefixo)"""
+        return [f"https://modified-url.com/{url}" for url in urls]  # Exemplo de modificação
+
+    def modify_image(self, image):
+        """Modifica a imagem antes de colar (exemplo: redimensiona)"""
+        return image.scaled(200, 200)  # Exemplo de redimensionamento da imagem
 
     def paste_modified(self):
         """Exemplo de modificação antes de colar"""
         if self.local_clipboard:
             modified_content = None
             if isinstance(self.local_clipboard, str):
-                modified_content = self.local_clipboard  # Converte texto para maiúsculas
+                modified_content = self.modify_text(self.local_clipboard)
 
             elif isinstance(self.local_clipboard, list):
-                modified_content = self.local_clipboard  # URLs sem alteração
+                modified_content = self.modify_urls(self.local_clipboard)
 
             elif isinstance(self.local_clipboard, QImage):
-                modified_content = self.local_clipboard  # Pode ser editada antes de colar
+                modified_content = self.modify_image(self.local_clipboard)
 
             if modified_content:
                 # Atualiza o clipboard com o conteúdo modificado
@@ -100,12 +116,28 @@ class ClipboardHandler:
         # Dependendo do tipo de conteúdo, o novo MIME é configurado
         if isinstance(modified_content, str):
             new_mime.setText(modified_content)
+            self.copy_local_image(modified_content) 
+            return
         elif isinstance(modified_content, list):
             urls = [QUrl(url) for url in modified_content]
             new_mime.setUrls(urls)
         elif isinstance(modified_content, QImage):
-            pixmap = QPixmap.fromImage(modified_content)
-            new_mime.setImageData(pixmap)
+            # A função setImageData espera um QImage diretamente
+            new_mime.setImageData(modified_content)
 
         # Aplica o novo MIME ao clipboard
+        self.clipboard.setMimeData(new_mime)
+
+        
+
+    def copy_local_image(self, file_path):
+        """Copia uma imagem local para o clipboard"""
+        image = QImage(file_path)
+        if image.isNull():
+            print("Falha ao carregar a imagem.")
+            return
+        
+        # Adiciona a imagem ao clipboard como QMimeData
+        new_mime = QMimeData()
+        new_mime.setImageData(image)
         self.clipboard.setMimeData(new_mime)
