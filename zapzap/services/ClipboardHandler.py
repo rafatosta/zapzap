@@ -1,5 +1,5 @@
 from PyQt6.QtGui import QImage, QGuiApplication, QPixmap
-
+from PyQt6.QtCore import QUrl, QMimeData
 
 class ClipboardHandler:
     """Classe para gerenciar a área de transferência sem modificar a global"""
@@ -12,9 +12,7 @@ class ClipboardHandler:
         # Conectar o evento de mudança do clipboard
         self.clipboard.dataChanged.connect(self.on_clipboard_change)
 
-
         print("Monitorando a área de transferência...")
-
 
     def on_clipboard_change(self):
         """Captura qualquer novo conteúdo copiado e armazena localmente"""
@@ -44,8 +42,6 @@ class ClipboardHandler:
 
     def on_clipboard_updated(self):
         """Atualiza a interface gráfica com o novo conteúdo armazenado"""
-        self.local_clipboard = self.get_local_clipboard()
-
         if isinstance(self.local_clipboard, str):
             print(f"Texto: {self.local_clipboard}")
 
@@ -54,7 +50,7 @@ class ClipboardHandler:
 
         elif isinstance(self.local_clipboard, QImage):
             pixmap = QPixmap.fromImage(self.local_clipboard).scaled(100, 100)
-            print(pixmap)
+            print(f"Imagem: {pixmap}")
 
     def get_local_clipboard(self):
         """Retorna o conteúdo armazenado localmente"""
@@ -73,3 +69,20 @@ class ClipboardHandler:
                 return self.local_clipboard  # Pode ser editada antes de colar
 
         return None
+
+    def set_clipboard_data(self, modified_content):
+        """Configura o conteúdo modificado na área de transferência"""
+        new_mime = QMimeData()
+
+        # Dependendo do tipo de conteúdo, o novo MIME é configurado
+        if isinstance(modified_content, str):
+            new_mime.setText(modified_content)
+        elif isinstance(modified_content, list):
+            urls = [QUrl(url) for url in modified_content]
+            new_mime.setUrls(urls)
+        elif isinstance(modified_content, QImage):
+            pixmap = QPixmap.fromImage(modified_content)
+            new_mime.setImageData(pixmap)
+
+        # Aplica o novo MIME ao clipboard
+        self.clipboard.setMimeData(new_mime)
