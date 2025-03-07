@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-01 22:34+0300\n"
+"POT-Creation-Date: 2025-03-07 15:54-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: alifirat <celik@alifirat.xyz>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,244 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: zapzap/views/ui_page_general.py:128 zapzap/views/ui_settings.py:118
-msgid "General"
-msgstr "Genel"
-
-#: zapzap/views/ui_page_general.py:129
-msgid "Download Directory"
-msgstr "İndirme Dizini"
-
-#: zapzap/views/ui_page_general.py:130
-msgid "Set new folder for downloads"
-msgstr "İndirilenler için yeni klasör belirle"
-
-#: zapzap/views/ui_page_general.py:131
-msgid "Define default folder for downloads"
-msgstr "İndirilenler için yeni klasör tanımla"
-
-#: zapzap/views/ui_page_general.py:132
-msgid "Spellchecker"
-msgstr "Yazım denetimi"
-
-#: zapzap/views/ui_page_general.py:133
-msgid "Directory"
-msgstr "Dizin"
-
-#: zapzap/views/ui_page_general.py:134
-msgid "Recognizes only compiled dictionaries (.bdic)"
-msgstr "Yalnızca derlenmiş sözlükleri tanır (.bdic)"
-
-#: zapzap/views/ui_page_general.py:135
-msgid "Define standard dictionaries"
-msgstr "Standart sözlükleri tanımla"
-
-#: zapzap/views/ui_page_general.py:136
-msgid "Note: Required restart."
-msgstr "Not: Yeniden başlatma gerekli"
-
-#: zapzap/views/ui_page_general.py:137
-msgid "Behavior"
-msgstr "Davranış"
-
-#: zapzap/views/ui_page_general.py:138
-msgid "Close when closing the window"
-msgstr "Pencereyi kapatınca uygulamayı da kapat"
-
-#: zapzap/views/ui_page_general.py:139
-msgid "Start minimized"
-msgstr "Simge durumuna küçültülmüş olarak başlat"
-
-#: zapzap/views/ui_page_general.py:140
-msgid "Start with the system"
-msgstr "Uygulamayı sistemle beraber başlat"
-
-#: zapzap/views/ui_page_general.py:141
-msgid "Don't use a platform-native file dialog"
-msgstr ""
-
-#: zapzap/views/ui_page_general.py:142
-msgid "Wayland window system"
-msgstr "Wayland pencere sistemi"
-
-#: zapzap/views/ui_page_about.py:113 zapzap/views/ui_settings.py:126
-#: zapzap/views/ui_mainwindow.py:119
-msgid "About"
-msgstr "Hakkında"
-
-#: zapzap/views/ui_page_about.py:114
-msgid "WhatsApp Web for Linux"
-msgstr "Linux için Whatsapp Web"
-
-#: zapzap/views/ui_page_about.py:115
-#, python-brace-format
-msgid "Version {id} ({version_type}) - {package}"
-msgstr "Versiyon {id} ({version_type}) - {package}"
-
-#: zapzap/views/ui_page_about.py:116 zapzap/views/ui_shortcuts_dialog.py:65
-#: zapzap/views/ui_qtoaster_donation.py:137 zapzap/views/ui_mainwindow.py:92
-msgid "ZapZap"
-msgstr "ZapZap"
-
-#: zapzap/views/ui_page_about.py:117
-msgid "Learn more"
-msgstr "Daha fazla bilgi"
-
-#: zapzap/views/ui_page_about.py:118
-msgid "Report issue"
-msgstr "Sorun bildir"
-
-#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:121
-msgid "Appearance"
-msgstr "Görünüm"
-
-#: zapzap/views/ui_page_appearance.py:119
-msgid "Style"
-msgstr "Stil"
-
-#: zapzap/views/ui_page_appearance.py:120
-msgid "Adaptive"
-msgstr "Adaptif"
-
-#: zapzap/views/ui_page_appearance.py:121
-msgid "Light"
-msgstr "Açık"
-
-#: zapzap/views/ui_page_appearance.py:122
-msgid "Dark"
-msgstr "Koyu"
-
-#: zapzap/views/ui_page_appearance.py:123
-msgid "Tray icon"
-msgstr "Tepsi simgesi"
-
-#: zapzap/views/ui_page_appearance.py:124
-msgid "Remove notification indicator"
-msgstr "Bildirim göstergesini kaldır"
-
-#: zapzap/views/ui_page_appearance.py:125
-msgid "Default"
-msgstr "Varsayılan"
-
-#: zapzap/views/ui_page_appearance.py:126
-msgid "Symbolic dark"
-msgstr ""
-
-#: zapzap/views/ui_page_appearance.py:127
-msgid "Symbolic light"
-msgstr ""
-
-#: zapzap/views/ui_page_appearance.py:128
-msgid "Show sidebar"
-msgstr "Kenar çubuğunu göster"
-
-#: zapzap/views/ui_page_appearance.py:129
-msgid "Show menu bar"
-msgstr "Menü çubuğunu göster"
-
-#: zapzap/views/ui_page_appearance.py:130
-msgid "Scale"
-msgstr "Ölçeklendirme"
-
-#: zapzap/views/ui_page_appearance.py:131
-msgid "100 %"
-msgstr "100 %"
-
-#: zapzap/views/ui_page_appearance.py:132
-msgid "125 %"
-msgstr "125 %"
-
-#: zapzap/views/ui_page_appearance.py:133
-msgid "150 %"
-msgstr "150 %"
-
-#: zapzap/views/ui_page_appearance.py:134
-msgid "175 %"
-msgstr "175 %"
-
-#: zapzap/views/ui_page_appearance.py:135
-msgid "200 %"
-msgstr "200 %"
-
-#: zapzap/views/ui_page_appearance.py:136
-msgid "Note: The change of scale will only have effect until restarting."
-msgstr ""
-"Not: Ölçeklendirmede yapılan değişiklik yalnızca yeniden başlatmaya kadar "
-"geçerli olacaktır."
-
-#: zapzap/views/ui_page_performance.py:110
-msgid "Performance (Experimental)"
-msgstr "Performans (Deneysel)"
-
-#: zapzap/views/ui_page_performance.py:111
-msgid "Cache Behavior"
-msgstr "Önbellek Davranışı"
-
-#: zapzap/views/ui_page_performance.py:112
-msgid "Cache Type"
-msgstr "Önbellek Tipi"
-
-#: zapzap/views/ui_page_performance.py:113
-msgid "Maximum Cache Size"
-msgstr "Maksimum Önbellek Alanı"
-
-#: zapzap/views/ui_page_performance.py:114
-msgid "0 MB"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:115
-msgid "50 MB"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:116
-msgid "100 MB"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:117
-msgid "QWebEngine Behavior"
-msgstr "QWebEngine Davranışı"
-
-#: zapzap/views/ui_page_performance.py:118
-msgid "Enable single process for GPU and rendering"
-msgstr "GPU ve render için tek işlem modunu etkinleştir"
-
-#: zapzap/views/ui_page_performance.py:119
-msgid "Disable GPU hardware acceleration"
-msgstr "GPU donanım hızlandırmasını devre dışı bırak"
-
-#: zapzap/views/ui_page_performance.py:120
-msgid "Run everything in a single process"
-msgstr "Her şeyi tek işlemde çalıştır"
-
-#: zapzap/views/ui_page_performance.py:121
-msgid "Animated scrolling"
-msgstr "Animasyonlu kaydırma"
-
-#: zapzap/views/ui_page_performance.py:122 zapzap/views/ui_page_network.py:124
-msgid "Restore"
-msgstr "Geriyükle"
-
-#: zapzap/views/ui_page_performance.py:123
-msgid "Note: Restart required to apply changes."
-msgstr "Not: Değişikliklerin uygulanması için yeniden başlatma gerekli."
-
-#: zapzap/views/ui_shortcuts_dialog.py:62
-msgid "Dialog"
-msgstr "Diyalog"
-
-#: zapzap/views/ui_shortcuts_dialog.py:63 zapzap/views/ui_mainwindow.py:118
-msgid "Keyboard shortcuts"
-msgstr "Klavye kısayolları"
-
-#: zapzap/views/ui_shortcuts_dialog.py:64
-msgid "WhatsApp Web"
-msgstr "Whatsapp Web"
-
-#: zapzap/views/ui_page_account.py:70
-msgid "My accounts"
-msgstr "Hesaplarım"
-
-#: zapzap/views/ui_page_account.py:71 zapzap/views/ui_browser.py:91
+#: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:71
 #: zapzap/controllers/Browser.py:150 zapzap/controllers/ShortcutsDialog.py:58
 msgid "New account"
 msgstr "Yeni hesap"
@@ -270,19 +33,6 @@ msgstr "Yeni sohbet"
 #: zapzap/views/ui_browser.py:94
 msgid "ZapZap Settings"
 msgstr "ZapZap Ayarları"
-
-#: zapzap/views/ui_qtoaster_donation.py:136
-msgid "Welcome to"
-msgstr ""
-
-#: zapzap/views/ui_qtoaster_donation.py:138
-#, python-brace-format
-msgid "Version {id} - {version_type}"
-msgstr "Sürüm {id} - {version_type}"
-
-#: zapzap/views/ui_qtoaster_donation.py:139
-msgid "Make a donation"
-msgstr "Bağış yap"
 
 #: zapzap/views/ui_card_user.py:84
 msgid "Click to generate new colors for the icon"
@@ -316,94 +66,11 @@ msgstr "Sil"
 msgid "Enter the user name"
 msgstr "Kullanıcı adı girin"
 
-#: zapzap/views/ui_page_network.py:115 zapzap/views/ui_settings.py:124
-msgid "Network"
-msgstr "Ağ"
-
-#: zapzap/views/ui_page_network.py:116
-msgid "Network proxy"
-msgstr "Ağ proxy'si"
-
-#: zapzap/views/ui_page_network.py:117
-msgid "Port"
-msgstr ""
-
-#: zapzap/views/ui_page_network.py:118
-msgid "User"
-msgstr "Kullanıcı"
-
-#: zapzap/views/ui_page_network.py:119
-msgid "Password"
-msgstr "Şifre"
-
-#: zapzap/views/ui_page_network.py:120
-msgid "Hostname"
-msgstr ""
-
-#: zapzap/views/ui_page_network.py:121
-msgid "ProxyType"
-msgstr ""
-
-#: zapzap/views/ui_page_network.py:122
-msgid "Description"
-msgstr "Açıklama"
-
-#: zapzap/views/ui_page_network.py:123
-msgid "Apply"
-msgstr "Uygula"
-
-#: zapzap/views/ui_settings.py:116
-msgid "Back"
-msgstr "Geri"
-
-#: zapzap/views/ui_settings.py:117
-msgid "SETTINGS"
-msgstr "AYARLAR"
-
-#: zapzap/views/ui_settings.py:119
-msgid "Accounts"
-msgstr "Hesaplar"
-
-#: zapzap/views/ui_settings.py:120
-msgid "TOOLS"
-msgstr "ARAÇLAR"
-
-#: zapzap/views/ui_settings.py:122 zapzap/views/ui_page_notifications.py:72
-msgid "Notifications"
-msgstr "Bildirimler"
-
-#: zapzap/views/ui_settings.py:123
-msgid "Performance"
-msgstr "Performans"
-
-#: zapzap/views/ui_settings.py:125
-msgid "HELP"
-msgstr "YARDIM"
-
-#: zapzap/views/ui_settings.py:127 zapzap/views/ui_mainwindow.py:98
-#: zapzap/services/SysTrayManager.py:57
-msgid "Quit"
-msgstr "Çıkış"
-
-#: zapzap/views/ui_page_notifications.py:73
-msgid "Work area notifications"
-msgstr "Çalışma alanı bildirimleri"
-
-#: zapzap/views/ui_page_notifications.py:74
-msgid "Show the photo of the sender"
-msgstr "Gönderenin fotoğrafını göster"
-
-#: zapzap/views/ui_page_notifications.py:75
-msgid "Show the sender's name"
-msgstr "Gönderenin adını göster"
-
-#: zapzap/views/ui_page_notifications.py:76
-msgid "Show message preview"
-msgstr "Mesaj önizlemesini göster"
-
-#: zapzap/views/ui_page_notifications.py:77
-msgid "Hide donation notification"
-msgstr "Bağış bildirimini gizle"
+#: zapzap/views/ui_mainwindow.py:92 zapzap/views/ui_page_about.py:116
+#: zapzap/views/ui_qtoaster_donation.py:137
+#: zapzap/views/ui_shortcuts_dialog.py:65
+msgid "ZapZap"
+msgstr "ZapZap"
 
 #: zapzap/views/ui_mainwindow.py:93
 msgid "File"
@@ -424,6 +91,11 @@ msgstr "Kullanıcılar"
 #: zapzap/views/ui_mainwindow.py:97
 msgid "Help"
 msgstr "Yardım"
+
+#: zapzap/views/ui_mainwindow.py:98 zapzap/views/ui_settings.py:127
+#: zapzap/services/SysTrayManager.py:57
+msgid "Quit"
+msgstr "Çıkış"
 
 #: zapzap/views/ui_mainwindow.py:99
 msgid "Ctrl+Q"
@@ -503,53 +175,366 @@ msgstr "Telefon numarasıyla"
 msgid "Ctrl+M"
 msgstr "Ctrl+M"
 
+#: zapzap/views/ui_mainwindow.py:118 zapzap/views/ui_shortcuts_dialog.py:63
+msgid "Keyboard shortcuts"
+msgstr "Klavye kısayolları"
+
+#: zapzap/views/ui_mainwindow.py:119 zapzap/views/ui_page_about.py:113
+#: zapzap/views/ui_settings.py:126
+msgid "About"
+msgstr "Hakkında"
+
+#: zapzap/views/ui_page_about.py:114
+msgid "WhatsApp Web for Linux"
+msgstr "Linux için Whatsapp Web"
+
+#: zapzap/views/ui_page_about.py:115
+#, python-brace-format
+msgid "Version {id} ({version_type}) - {package}"
+msgstr "Versiyon {id} ({version_type}) - {package}"
+
+#: zapzap/views/ui_page_about.py:117
+msgid "Learn more"
+msgstr "Daha fazla bilgi"
+
+#: zapzap/views/ui_page_about.py:118
+msgid "Report issue"
+msgstr "Sorun bildir"
+
+#: zapzap/views/ui_page_account.py:70
+msgid "My accounts"
+msgstr "Hesaplarım"
+
+#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:121
+msgid "Appearance"
+msgstr "Görünüm"
+
+#: zapzap/views/ui_page_appearance.py:119
+msgid "Style"
+msgstr "Stil"
+
+#: zapzap/views/ui_page_appearance.py:120
+msgid "Adaptive"
+msgstr "Adaptif"
+
+#: zapzap/views/ui_page_appearance.py:121
+msgid "Light"
+msgstr "Açık"
+
+#: zapzap/views/ui_page_appearance.py:122
+msgid "Dark"
+msgstr "Koyu"
+
+#: zapzap/views/ui_page_appearance.py:123
+msgid "Tray icon"
+msgstr "Tepsi simgesi"
+
+#: zapzap/views/ui_page_appearance.py:124
+msgid "Remove notification indicator"
+msgstr "Bildirim göstergesini kaldır"
+
+#: zapzap/views/ui_page_appearance.py:125
+msgid "Default"
+msgstr "Varsayılan"
+
+#: zapzap/views/ui_page_appearance.py:126
+msgid "Symbolic dark"
+msgstr ""
+
+#: zapzap/views/ui_page_appearance.py:127
+msgid "Symbolic light"
+msgstr ""
+
+#: zapzap/views/ui_page_appearance.py:128
+msgid "Show sidebar"
+msgstr "Kenar çubuğunu göster"
+
+#: zapzap/views/ui_page_appearance.py:129
+msgid "Show menu bar"
+msgstr "Menü çubuğunu göster"
+
+#: zapzap/views/ui_page_appearance.py:130
+msgid "Scale"
+msgstr "Ölçeklendirme"
+
+#: zapzap/views/ui_page_appearance.py:131
+msgid "100 %"
+msgstr "100 %"
+
+#: zapzap/views/ui_page_appearance.py:132
+msgid "125 %"
+msgstr "125 %"
+
+#: zapzap/views/ui_page_appearance.py:133
+msgid "150 %"
+msgstr "150 %"
+
+#: zapzap/views/ui_page_appearance.py:134
+msgid "175 %"
+msgstr "175 %"
+
+#: zapzap/views/ui_page_appearance.py:135
+msgid "200 %"
+msgstr "200 %"
+
+#: zapzap/views/ui_page_appearance.py:136
+msgid "Note: The change of scale will only have effect until restarting."
+msgstr ""
+"Not: Ölçeklendirmede yapılan değişiklik yalnızca yeniden başlatmaya kadar "
+"geçerli olacaktır."
+
+#: zapzap/views/ui_page_general.py:128 zapzap/views/ui_settings.py:118
+msgid "General"
+msgstr "Genel"
+
+#: zapzap/views/ui_page_general.py:129
+msgid "Download Directory"
+msgstr "İndirme Dizini"
+
+#: zapzap/views/ui_page_general.py:130
+msgid "Set new folder for downloads"
+msgstr "İndirilenler için yeni klasör belirle"
+
+#: zapzap/views/ui_page_general.py:131
+msgid "Define default folder for downloads"
+msgstr "İndirilenler için yeni klasör tanımla"
+
+#: zapzap/views/ui_page_general.py:132
+msgid "Spellchecker"
+msgstr "Yazım denetimi"
+
+#: zapzap/views/ui_page_general.py:133
+msgid "Directory"
+msgstr "Dizin"
+
+#: zapzap/views/ui_page_general.py:134
+msgid "Recognizes only compiled dictionaries (.bdic)"
+msgstr "Yalnızca derlenmiş sözlükleri tanır (.bdic)"
+
+#: zapzap/views/ui_page_general.py:135
+msgid "Define standard dictionaries"
+msgstr "Standart sözlükleri tanımla"
+
+#: zapzap/views/ui_page_general.py:136
+msgid "Note: Required restart."
+msgstr "Not: Yeniden başlatma gerekli"
+
+#: zapzap/views/ui_page_general.py:137
+msgid "Behavior"
+msgstr "Davranış"
+
+#: zapzap/views/ui_page_general.py:138
+msgid "Close when closing the window"
+msgstr "Pencereyi kapatınca uygulamayı da kapat"
+
+#: zapzap/views/ui_page_general.py:139
+msgid "Start minimized"
+msgstr "Simge durumuna küçültülmüş olarak başlat"
+
+#: zapzap/views/ui_page_general.py:140
+msgid "Start with the system"
+msgstr "Uygulamayı sistemle beraber başlat"
+
+#: zapzap/views/ui_page_general.py:141
+msgid "Don't use a platform-native file dialog"
+msgstr ""
+
+#: zapzap/views/ui_page_general.py:142
+msgid "Wayland window system"
+msgstr "Wayland pencere sistemi"
+
+#: zapzap/views/ui_page_network.py:115 zapzap/views/ui_settings.py:124
+msgid "Network"
+msgstr "Ağ"
+
+#: zapzap/views/ui_page_network.py:116
+msgid "Network proxy"
+msgstr "Ağ proxy'si"
+
+#: zapzap/views/ui_page_network.py:117
+msgid "Port"
+msgstr ""
+
+#: zapzap/views/ui_page_network.py:118
+msgid "User"
+msgstr "Kullanıcı"
+
+#: zapzap/views/ui_page_network.py:119
+msgid "Password"
+msgstr "Şifre"
+
+#: zapzap/views/ui_page_network.py:120
+msgid "Hostname"
+msgstr ""
+
+#: zapzap/views/ui_page_network.py:121
+msgid "ProxyType"
+msgstr ""
+
+#: zapzap/views/ui_page_network.py:122
+msgid "Description"
+msgstr "Açıklama"
+
+#: zapzap/views/ui_page_network.py:123
+msgid "Apply"
+msgstr "Uygula"
+
+#: zapzap/views/ui_page_network.py:124 zapzap/views/ui_page_performance.py:122
+msgid "Restore"
+msgstr "Geriyükle"
+
+#: zapzap/views/ui_page_notifications.py:72 zapzap/views/ui_settings.py:122
+msgid "Notifications"
+msgstr "Bildirimler"
+
+#: zapzap/views/ui_page_notifications.py:73
+msgid "Work area notifications"
+msgstr "Çalışma alanı bildirimleri"
+
+#: zapzap/views/ui_page_notifications.py:74
+msgid "Show the photo of the sender"
+msgstr "Gönderenin fotoğrafını göster"
+
+#: zapzap/views/ui_page_notifications.py:75
+msgid "Show the sender's name"
+msgstr "Gönderenin adını göster"
+
+#: zapzap/views/ui_page_notifications.py:76
+msgid "Show message preview"
+msgstr "Mesaj önizlemesini göster"
+
+#: zapzap/views/ui_page_notifications.py:77
+msgid "Hide donation notification"
+msgstr "Bağış bildirimini gizle"
+
+#: zapzap/views/ui_page_performance.py:110
+msgid "Performance (Experimental)"
+msgstr "Performans (Deneysel)"
+
+#: zapzap/views/ui_page_performance.py:111
+msgid "Cache Behavior"
+msgstr "Önbellek Davranışı"
+
+#: zapzap/views/ui_page_performance.py:112
+msgid "Cache Type"
+msgstr "Önbellek Tipi"
+
+#: zapzap/views/ui_page_performance.py:113
+msgid "Maximum Cache Size"
+msgstr "Maksimum Önbellek Alanı"
+
+#: zapzap/views/ui_page_performance.py:114
+msgid "0 MB"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:115
+msgid "50 MB"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:116
+msgid "100 MB"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:117
+msgid "QWebEngine Behavior"
+msgstr "QWebEngine Davranışı"
+
+#: zapzap/views/ui_page_performance.py:118
+msgid "Enable single process for GPU and rendering"
+msgstr "GPU ve render için tek işlem modunu etkinleştir"
+
+#: zapzap/views/ui_page_performance.py:119
+msgid "Disable GPU hardware acceleration"
+msgstr "GPU donanım hızlandırmasını devre dışı bırak"
+
+#: zapzap/views/ui_page_performance.py:120
+msgid "Run everything in a single process"
+msgstr "Her şeyi tek işlemde çalıştır"
+
+#: zapzap/views/ui_page_performance.py:121
+msgid "Animated scrolling"
+msgstr "Animasyonlu kaydırma"
+
+#: zapzap/views/ui_page_performance.py:123
+msgid "Note: Restart required to apply changes."
+msgstr "Not: Değişikliklerin uygulanması için yeniden başlatma gerekli."
+
+#: zapzap/views/ui_qtoaster_donation.py:136
+msgid "Welcome to"
+msgstr ""
+
+#: zapzap/views/ui_qtoaster_donation.py:138
+#, python-brace-format
+msgid "Version {id} - {version_type}"
+msgstr "Sürüm {id} - {version_type}"
+
+#: zapzap/views/ui_qtoaster_donation.py:139
+msgid "Make a donation"
+msgstr "Bağış yap"
+
+#: zapzap/views/ui_settings.py:116
+msgid "Back"
+msgstr "Geri"
+
+#: zapzap/views/ui_settings.py:117
+msgid "SETTINGS"
+msgstr "AYARLAR"
+
+#: zapzap/views/ui_settings.py:119
+msgid "Accounts"
+msgstr "Hesaplar"
+
+#: zapzap/views/ui_settings.py:120
+msgid "TOOLS"
+msgstr "ARAÇLAR"
+
+#: zapzap/views/ui_settings.py:123
+msgid "Performance"
+msgstr "Performans"
+
+#: zapzap/views/ui_settings.py:125
+msgid "HELP"
+msgstr "YARDIM"
+
+#: zapzap/views/ui_shortcuts_dialog.py:62
+msgid "Dialog"
+msgstr "Diyalog"
+
+#: zapzap/views/ui_shortcuts_dialog.py:64
+msgid "WhatsApp Web"
+msgstr "Whatsapp Web"
+
 #: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
 msgid "Account {}"
 msgstr "Hesap {}"
 
-#: zapzap/controllers/WebView.py:114
-msgid "Undo"
-msgstr "Geri al"
+#: zapzap/controllers/CardUser.py:85
+msgid "Confirm exclusion"
+msgstr "Çıkarmayı onayla"
 
-#: zapzap/controllers/WebView.py:114
-msgid "Redo"
-msgstr "Yinele"
+#: zapzap/controllers/CardUser.py:85
+msgid "Are you sure you want to delete this item?"
+msgstr "Bu öğeyi silmek istediğinizden emin misiniz?"
 
-#: zapzap/controllers/WebView.py:114
-msgid "Cut"
-msgstr "Kes"
+#: zapzap/controllers/CardUser.py:111
+msgid "Restore standard"
+msgstr "Varsayılanı geriyükle"
 
-#: zapzap/controllers/WebView.py:115
-msgid "Copy"
-msgstr "Kopyala"
+#: zapzap/controllers/PageAbout.py:21
+msgid "Official compilation"
+msgstr "Resmi derleme"
 
-#: zapzap/controllers/WebView.py:115
-msgid "Paste"
-msgstr "Yapıştır"
+#: zapzap/controllers/PageAbout.py:22
+msgid "Unofficial"
+msgstr "Resmi olmayan"
 
-#: zapzap/controllers/WebView.py:115
-msgid "Select all"
-msgstr "Tümünü seç"
+#: zapzap/controllers/PageAbout.py:25
+msgid "Unknown"
+msgstr "Bilinmeyen"
 
-#: zapzap/controllers/WebView.py:116
-msgid "Save image"
-msgstr "Resmi kaydet"
-
-#: zapzap/controllers/WebView.py:116
-msgid "Copy image"
-msgstr "Resmi kopyala"
-
-#: zapzap/controllers/WebView.py:117 zapzap/controllers/WebView.py:147
-msgid "Copy link address"
-msgstr "Bağlantı adresini kopyala"
-
-#: zapzap/controllers/WebView.py:168
-msgid "Check Spelling"
-msgstr "Yazım denetimi yap"
-
-#: zapzap/controllers/WebView.py:176
-msgid "Select Language"
-msgstr "Dil seç"
+#: zapzap/controllers/PageGeneral.py:38
+msgid "Use Flatseal to change this mode of execution"
+msgstr "Bu çalıştırma modunu değiştirmek için Flatseal kullanın"
 
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"
@@ -643,57 +628,49 @@ msgstr "Sayfaları Yenile"
 msgid "New conversation by phone number"
 msgstr "Telefon numarasıyla yeni sohbet"
 
-#: zapzap/controllers/PageAbout.py:21
-msgid "Official compilation"
-msgstr "Resmi derleme"
+#: zapzap/controllers/WebView.py:114
+msgid "Undo"
+msgstr "Geri al"
 
-#: zapzap/controllers/PageAbout.py:22
-msgid "Unofficial"
-msgstr "Resmi olmayan"
+#: zapzap/controllers/WebView.py:114
+msgid "Redo"
+msgstr "Yinele"
 
-#: zapzap/controllers/PageAbout.py:25
-msgid "Unknown"
-msgstr "Bilinmeyen"
+#: zapzap/controllers/WebView.py:114
+msgid "Cut"
+msgstr "Kes"
 
-#: zapzap/controllers/PageGeneral.py:38
-msgid "Use Flatseal to change this mode of execution"
-msgstr "Bu çalıştırma modunu değiştirmek için Flatseal kullanın"
+#: zapzap/controllers/WebView.py:115
+msgid "Copy"
+msgstr "Kopyala"
 
-#: zapzap/controllers/CardUser.py:85
-msgid "Confirm exclusion"
-msgstr "Çıkarmayı onayla"
+#: zapzap/controllers/WebView.py:115
+msgid "Paste"
+msgstr "Yapıştır"
 
-#: zapzap/controllers/CardUser.py:85
-msgid "Are you sure you want to delete this item?"
-msgstr "Bu öğeyi silmek istediğinizden emin misiniz?"
+#: zapzap/controllers/WebView.py:115
+msgid "Select all"
+msgstr "Tümünü seç"
 
-#: zapzap/controllers/CardUser.py:111
-msgid "Restore standard"
-msgstr "Varsayılanı geriyükle"
+#: zapzap/controllers/WebView.py:116
+msgid "Save image"
+msgstr "Resmi kaydet"
 
-#: zapzap/services/DownloadManager.py:46
-msgid "Open"
-msgstr "Aç"
+#: zapzap/controllers/WebView.py:116
+msgid "Copy image"
+msgstr "Resmi kopyala"
 
-#: zapzap/services/DownloadManager.py:47
-msgid "Save"
-msgstr "Kaydet"
+#: zapzap/controllers/WebView.py:117 zapzap/controllers/WebView.py:147
+msgid "Copy link address"
+msgstr "Bağlantı adresini kopyala"
 
-#: zapzap/services/DownloadManager.py:99
-msgid "Save file"
-msgstr "Dosyayı kaydet"
+#: zapzap/controllers/WebView.py:168
+msgid "Check Spelling"
+msgstr "Yazım denetimi yap"
 
-#: zapzap/services/DownloadManager.py:115
-msgid "Select folder"
-msgstr "Klasör seç"
-
-#: zapzap/services/SysTrayManager.py:54
-msgid "Show"
-msgstr "Göster"
-
-#: zapzap/services/SysTrayManager.py:56
-msgid "Donation"
-msgstr "Bağış"
+#: zapzap/controllers/WebView.py:176
+msgid "Select Language"
+msgstr "Dil seç"
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
@@ -714,6 +691,22 @@ msgstr "Dikkat"
 #: zapzap/services/AlertManager.py:39
 msgid "No active account!"
 msgstr "Aktif hesap yok!"
+
+#: zapzap/services/DownloadManager.py:46
+msgid "Open"
+msgstr "Aç"
+
+#: zapzap/services/DownloadManager.py:47
+msgid "Save"
+msgstr "Kaydet"
+
+#: zapzap/services/DownloadManager.py:99
+msgid "Save file"
+msgstr "Dosyayı kaydet"
+
+#: zapzap/services/DownloadManager.py:115
+msgid "Select folder"
+msgstr "Klasör seç"
 
 #: zapzap/services/NotificationManager.py:36
 msgid "New message..."
@@ -742,3 +735,11 @@ msgstr "Yalnızca HTTP istekleri için proxy"
 #: zapzap/services/ProxyManager.py:15
 msgid "Proxying for FTP requests only."
 msgstr "Yalnızca FTP istekleri için proxy"
+
+#: zapzap/services/SysTrayManager.py:54
+msgid "Show"
+msgstr "Göster"
+
+#: zapzap/services/SysTrayManager.py:56
+msgid "Donation"
+msgstr "Bağış"
