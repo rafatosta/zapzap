@@ -55,13 +55,6 @@
   </screenshots>
 
   <releases>
-    <release date="2025-03-04" version="6.0.1.7">
-      <description>
-        <ul>    
-            <li>Fix: Can't paste images from clipboard (via browsers).</li>
-        </ul>
-      </description>
-    </release>
     <release date="2025-02-10" version="6.0">
       <description>
         <ul>    

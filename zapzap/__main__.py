@@ -8,7 +8,7 @@ from PyQt6.QtCore import QUrl, QMimeData
 from zapzap.config.SetupManager import SetupManager
 from zapzap.controllers.MainWindow import MainWindow
 from zapzap.controllers.SingleApplication import SingleApplication
-from zapzap.services.ClipboardHandler import ClipboardHandler
+#from zapzap.services.ClipboardHandler import ClipboardHandler
 from zapzap.services.ProxyManager import ProxyManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.TranslationManager import TranslationManager
@@ -74,10 +74,10 @@ def main():
     app.messageReceived.connect(lambda result: main_window.xdgOpenChat(result))
 
     # Conectar o evento de mudança na área de transferência
-    try:
+    """ try:
         clip_handle = ClipboardHandler()
     except:
-        print("Erro: ClipboardHandler")
+        print("Erro: ClipboardHandler") """
 
     # Create main window
     main_window = MainWindow()
