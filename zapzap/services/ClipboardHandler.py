@@ -1,5 +1,5 @@
 import os
-import base64
+import requests
 from PyQt6.QtGui import QImage, QPixmap, QGuiApplication
 from PyQt6.QtCore import QMimeData, QUrl, QByteArray
 
@@ -62,8 +62,31 @@ class ClipboardHandler:
         image = QImage(path)
         if image.isNull():
             print(f"Falha ao carregar a imagem de: {path}")
+
+            print('Realizando request url')
+            image = self.load_image_from_url(path)
+
+            if image:
+                print("Imagem carregada com sucesso!")
+                return image
+
             return None
         return image
+
+    def load_image_from_url(self, url):
+        try:
+            response = requests.get(url, timeout=10, verify=False)
+            response.raise_for_status()  # Verifica se houve erro na requisição
+
+            image = QImage()
+            if image.loadFromData(response.content):
+                return image
+            else:
+                print("Erro ao converter os dados em QImage")
+                return None
+        except requests.RequestException as e:
+            print(f"Erro ao baixar a imagem: {e}")
+            return None
 
     def decode_base64_image(self, base64_data):
         """Decodifica uma string base64 para um QImage"""
@@ -126,5 +149,3 @@ class ClipboardHandler:
 
         # Aplica o novo MIME ao clipboard
         self.clipboard.setMimeData(new_mime)
-
-    
