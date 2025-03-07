@@ -1,3 +1,4 @@
+import os
 import base64
 from PyQt6.QtGui import QImage, QPixmap, QGuiApplication
 from PyQt6.QtCore import QMimeData, QUrl, QByteArray
@@ -24,8 +25,11 @@ class ClipboardHandler:
             new_data = mime_data.text()
             mime_type = "text/plain"
 
-            # Verificar se o texto contém uma imagem base64
-            if new_data.startswith("data:image"):
+            # Verificar se o texto contém um caminho de imagem
+            if self.is_image_path(new_data):
+                new_data = self.load_image_from_path(new_data)
+                mime_type = "image/png"
+            elif new_data.startswith("data:image"):
                 new_data = self.decode_base64_image(new_data)
                 mime_type = "image/png"
 
@@ -46,6 +50,20 @@ class ClipboardHandler:
             self.local_clipboard = new_data
             self.last_mime_type = mime_type
             self.on_clipboard_updated()
+
+    def is_image_path(self, path):
+        """Verifica se o caminho é de uma imagem com base na extensão"""
+        image_extensions = ['.png', '.jpg', '.jpeg', '.gif', '.bmp']
+        _, ext = os.path.splitext(path)
+        return ext.lower() in image_extensions
+
+    def load_image_from_path(self, path):
+        """Carrega uma imagem de um caminho de arquivo"""
+        image = QImage(path)
+        if image.isNull():
+            print(f"Falha ao carregar a imagem de: {path}")
+            return None
+        return image
 
     def decode_base64_image(self, base64_data):
         """Decodifica uma string base64 para um QImage"""
@@ -82,7 +100,7 @@ class ClipboardHandler:
 
     def modify_text(self, text):
         """Modifica o texto antes de colar (exemplo: converte para maiúsculas)"""
-        return text  # Aqui você pode adicionar outras modificações no texto
+        return text.upper()  # Aqui você pode adicionar outras modificações no texto
 
     def modify_urls(self, urls):
         """Modifica as URLs antes de colar (exemplo: adicionar um prefixo)"""
@@ -116,8 +134,6 @@ class ClipboardHandler:
         # Dependendo do tipo de conteúdo, o novo MIME é configurado
         if isinstance(modified_content, str):
             new_mime.setText(modified_content)
-            self.copy_local_image(modified_content) 
-            return
         elif isinstance(modified_content, list):
             urls = [QUrl(url) for url in modified_content]
             new_mime.setUrls(urls)
@@ -128,16 +144,15 @@ class ClipboardHandler:
         # Aplica o novo MIME ao clipboard
         self.clipboard.setMimeData(new_mime)
 
-        
-
     def copy_local_image(self, file_path):
         """Copia uma imagem local para o clipboard"""
-        image = QImage(file_path)
-        if image.isNull():
-            print("Falha ao carregar a imagem.")
-            return
-        
-        # Adiciona a imagem ao clipboard como QMimeData
-        new_mime = QMimeData()
-        new_mime.setImageData(image)
-        self.clipboard.setMimeData(new_mime)
+        if self.is_image_path(file_path):
+            image = self.load_image_from_path(file_path)
+            if image:
+                # Adiciona a imagem ao clipboard como QMimeData
+                new_mime = QMimeData()
+                new_mime.setImageData(image)
+                self.clipboard.setMimeData(new_mime)
+                print(f"Imagem local copiada para o clipboard: {file_path}")
+            else:
+                print(f"Falha ao copiar imagem para o clipboard: {file_path}")
