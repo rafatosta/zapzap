@@ -78,6 +78,8 @@ def main():
         clip_handle = ClipboardHandler()
     except:
         print("Erro: ClipboardHandler") """
+    clipboard = QGuiApplication.clipboard()
+    clipboard.dataChanged.connect(fix_clipboard_image)
 
     # Create main window
     main_window = MainWindow()
