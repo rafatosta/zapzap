@@ -18,7 +18,7 @@
 	border: 1px solid #585A5D;
     border-radius: 8px; 
     color: rgb(255, 255, 255);
-    background-color: #202C33;
+    background-color: #1C1C1E;
 }
 
 QLabel{
@@ -231,7 +231,7 @@ color: rgb(222, 221, 218);</string>
                 padding: 5px;
                 }
                 QToolButton:hover {
-                background-color: #202C33;
+                background-color: #1C1C1E;
                 }
          </string>
         </property>
