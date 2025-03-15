@@ -254,7 +254,7 @@ class ThemeStylesheet:
                 qproperty-flat: true;
             }
             QWidget#settings_buttons_layout QPushButton:hover {
-            background-color: ##292a2a;
+            background-color: #292a2a;
                 border-radius: 2px;
                 border-left: 3px solid #1d1f1f;
             }
