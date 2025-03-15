@@ -5,7 +5,7 @@ class ThemeStylesheet:
         "light": """
             QPushButton {
                 background-color: #F0F0F0;
-                color: #1C1C1E;
+                color: #1d1f1f;
                 border: 1px solid #D0D4D8;
                 padding: 5px 10px;
                 font-size: 14px;
@@ -118,7 +118,7 @@ class ThemeStylesheet:
         """,
         "dark": """
             QWidget#sidebar {
-                background-color: #1C1C1E;
+                background-color: #1d1f1f;
                 border-right: 1px solid #1d1f1f;
                 padding: 10px;
             }
@@ -129,7 +129,7 @@ class ThemeStylesheet:
         "light": """
             QWidget#menu_layout QPushButton {
                 background-color: #f0f2f5;
-                color: #1C1C1E;
+                color: #1d1f1f;
                 border: none;
                 padding: 10px 15px;
                 text-align: left;
@@ -143,7 +143,7 @@ class ThemeStylesheet:
             }
             QWidget#menu_layout QPushButton:pressed {
                 background-color: #d8d9dc;
-                color: #1C1C1E;
+                color: #1d1f1f;
             }
             QWidget#menu_layout QPushButton:disabled {
                 background-color: #d8d9dc;
@@ -152,7 +152,7 @@ class ThemeStylesheet:
         """,
         "dark": """
             QWidget#menu_layout QPushButton {
-                background-color: #1C1C1E;
+                background-color: #1d1f1f;
                 color: #E1E1E1;
                 border: none;
                 padding: 10px 15px;
@@ -179,7 +179,7 @@ class ThemeStylesheet:
     LABELS = {
         "light": """
             QLabel {
-                color: #1C1C1E; /* Cor do texto */
+                color: #1d1f1f; /* Cor do texto */
                 font-size: 14px; /* Tamanho do texto */
                 background-color: transparent; /* Fundo transparente */
                 padding: 2px 0; /* Espaçamento interno */
@@ -248,12 +248,13 @@ class ThemeStylesheet:
         """,
         "dark": """
             QWidget#settings_buttons_layout QPushButton {
-                background-color: #1C1C1E;
+                background-color: #1d1f1f;
                 border: none;
                 border-radius: none;
                 qproperty-flat: true;
             }
             QWidget#settings_buttons_layout QPushButton:hover {
+            background-color: ##292a2a;
                 border-radius: 2px;
                 border-left: 3px solid #1d1f1f;
             }
@@ -340,7 +341,7 @@ class ThemeStylesheet:
         "light": """
             QComboBox {
                 background-color: #F0F0F0;
-                color: #1C1C1E;
+                color: #1d1f1f;
                 border: 1px solid #D0D4D8;
                 padding: 5px 10px;
                 font-size: 14px;
@@ -372,7 +373,7 @@ class ThemeStylesheet:
         """,
         "dark": """
             QComboBox {
-                background-color: #1C1C1E;
+                background-color: #1d1f1f;
                 color: #E1E1E1;
                 border: 1px solid #1d1f1f;
                 padding: 5px 10px;
@@ -389,7 +390,7 @@ class ThemeStylesheet:
                 border: 1px solid #A0A6AB;
             }
             QComboBox:disabled {
-                background-color: #1C1C1E;
+                background-color: #1d1f1f;
                 color: #A6AEB6;
                 border: 1px solid #1d1f1f;
             }
@@ -416,7 +417,7 @@ class ThemeStylesheet:
         "light": """
             QLineEdit {
                 background-color: #F0F0F0;
-                color: #1C1C1E;
+                color: #1d1f1f;
                 border: 1px solid #D0D4D8;
                 padding: 5px 10px;
                 font-size: 14px;
@@ -439,7 +440,7 @@ class ThemeStylesheet:
         """,
         "dark": """
             QLineEdit {
-                background-color: #1C1C1E;
+                background-color: #1d1f1f;
                 color: #E1E1E1;
                 border: 1px solid #1d1f1f;
                 padding: 5px 10px;
@@ -456,7 +457,7 @@ class ThemeStylesheet:
                 outline: none;
             }
             QLineEdit:disabled {
-                background-color: #1C1C1E;
+                background-color: #1d1f1f;
                 color: #A6AEB6;
                 border: 1px solid #1d1f1f;
             }
@@ -470,7 +471,7 @@ class ThemeStylesheet:
                 border: 1px solid #D0D4D8;
                 border-radius: 6px;
                 padding: 5px;
-                color: #1C1C1E;
+                color: #1d1f1f;
                 font-size: 14px;
             }
             QMenu::item {
@@ -481,7 +482,7 @@ class ThemeStylesheet:
             }
             QMenu::item:selected {
                 background-color: #E9ECEF;
-                color: #1C1C1E;
+                color: #1d1f1f;
             }
             QMenu::item:pressed {
                 background-color: #DDE2E6;
@@ -572,7 +573,7 @@ class ThemeStylesheet:
         "light": """
             QTableWidget {
                 background-color: #F0F0F0;
-                color: #1C1C1E;
+                color: #1d1f1f;
                 border: 1px solid #D0D4D8;
                 gridline-color: #D0D4D8;
                 font-size: 14px;
@@ -580,7 +581,7 @@ class ThemeStylesheet:
             }
             QHeaderView::section {
                 background-color: #E9ECEF;
-                color: #1C1C1E;
+                color: #1d1f1f;
                 padding: 5px;
                 border: 1px solid #D0D4D8;
                 font-weight: bold;
@@ -683,7 +684,7 @@ class ThemeStylesheet:
         "light": """
             QGroupBox {
                 background-color: #F0F0F0;
-                color: #1C1C1E;
+                color: #1d1f1f;
                 border: 1px solid #D0D4D8;
                 border-radius: 6px;
                 margin-top: 20px;
@@ -691,7 +692,7 @@ class ThemeStylesheet:
             }
             QGroupBox::title {
                 background-color: transparent;
-                color: #1C1C1E;
+                color: #1d1f1f;
                 subcontrol-origin: margin;
                 subcontrol-position: top left;
                 padding: 0 5px;
@@ -776,7 +777,7 @@ class ThemeStylesheet:
     CHECK_BOX = {
         "light": """
             QCheckBox {
-                color: #1C1C1E;
+                color: #1d1f1f;
                 font-size: 14px;
                 padding: 5px 0;
             }
@@ -835,7 +836,7 @@ class ThemeStylesheet:
     RADIO_BUTTON = {
         "light": """
             QRadioButton {
-                color: #1C1C1E;
+                color: #1d1f1f;
                 font-size: 14px;
                 padding: 5px 0;
             }
