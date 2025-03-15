@@ -28,7 +28,7 @@ class ThemeStylesheet:
         """,
         "dark": """
             QPushButton {
-                background-color: #364147;
+                background-color: #242626;
                 color: #E1E1E1;
                 border: 1px solid #1c272d;
                 padding: 5px 10px;
@@ -46,7 +46,7 @@ class ThemeStylesheet:
             }
             QPushButton:disabled {
                 background-color: #1c272d;
-                color: #364147;
+                color: #1d1f1f;
                 border: 1px solid #1c272d;
             }
         """
@@ -119,7 +119,7 @@ class ThemeStylesheet:
         "dark": """
             QWidget#sidebar {
                 background-color: #1C1C1E;
-                border-right: 1px solid #364147;
+                border-right: 1px solid #1d1f1f;
                 padding: 10px;
             }
         """
@@ -159,10 +159,10 @@ class ThemeStylesheet:
                 text-align: left;
                 font-size: 14px;
                 border-radius: 4px;
-                border-left: 3px solid #364147;
+                border-left: 3px solid #1d1f1f;
             }
             QWidget#menu_layout QPushButton:hover {
-                background-color: #364147;
+                background-color: #1d1f1f;
                 border-left: 4px solid #8E8E93;
             }
             QWidget#menu_layout QPushButton:pressed {
@@ -255,7 +255,7 @@ class ThemeStylesheet:
             }
             QWidget#settings_buttons_layout QPushButton:hover {
                 border-radius: 2px;
-                border-left: 3px solid #364147;
+                border-left: 3px solid #1d1f1f;
             }
             QWidget#settings_buttons_layout QPushButton:pressed {
                 background-color: rgba(60, 60, 60, 0.3);
@@ -293,8 +293,8 @@ class ThemeStylesheet:
                 border-left: 1px solid #626b70;
             }
             #frame_accounts #frame_carduser {
-                background-color: #364147; /* Fundo escuro */
-                border: 1px solid #364147; /* Borda suave */
+                background-color: #1d1f1f; /* Fundo escuro */
+                border: 1px solid #1d1f1f; /* Borda suave */
                 border-radius: 6px; /* Bordas arredondadas */
                 padding: 10px; /* Espaçamento interno */
             }
@@ -374,7 +374,7 @@ class ThemeStylesheet:
             QComboBox {
                 background-color: #1C1C1E;
                 color: #E1E1E1;
-                border: 1px solid #364147;
+                border: 1px solid #1d1f1f;
                 padding: 5px 10px;
                 font-size: 14px;
                 border-radius: 6px;
@@ -382,16 +382,16 @@ class ThemeStylesheet:
             }
             QComboBox:hover {
                 background-color: #1c272d;
-                border: 1px solid #364147;
+                border: 1px solid #1d1f1f;
             }
             QComboBox:pressed {
-                background-color: #364147;
+                background-color: #1d1f1f;
                 border: 1px solid #A0A6AB;
             }
             QComboBox:disabled {
                 background-color: #1C1C1E;
                 color: #A6AEB6;
-                border: 1px solid #364147;
+                border: 1px solid #1d1f1f;
             }
             QComboBox::drop-down {
                 border: none;
@@ -441,14 +441,14 @@ class ThemeStylesheet:
             QLineEdit {
                 background-color: #1C1C1E;
                 color: #E1E1E1;
-                border: 1px solid #364147;
+                border: 1px solid #1d1f1f;
                 padding: 5px 10px;
                 font-size: 14px;
                 border-radius: 6px;
             }
             QLineEdit:hover {
                 background-color: #1c272d;
-                border: 1px solid #364147;
+                border: 1px solid #1d1f1f;
             }
             QLineEdit:focus {
                 background-color: #1c272d;
@@ -458,7 +458,7 @@ class ThemeStylesheet:
             QLineEdit:disabled {
                 background-color: #1C1C1E;
                 color: #A6AEB6;
-                border: 1px solid #364147;
+                border: 1px solid #1d1f1f;
             }
         """
     }
@@ -728,7 +728,7 @@ class ThemeStylesheet:
         """,
         "dark": """
             QGroupBox {
-                background-color: #364147;
+                background-color: #242626;
                 color: #E1E1E1;
                 border: 1px solid #444444;
                 border-radius: 6px;

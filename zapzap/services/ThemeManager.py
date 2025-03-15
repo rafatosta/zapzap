@@ -112,7 +112,7 @@ class ThemeManager:
         """Aplica o tema escuro."""
         print("Aplicando tema escuro...")
         palette = self._create_palette(
-            window="#1C1C1E", text="#ffffff", base="#3a3a3a", highlight="#0099ff"
+            window="#1d1f1f", text="#ffffff", base="#3a3a3a", highlight="#0099ff"
         )
         self._apply_palette(palette)
         QApplication.instance().getWindow().browser.set_theme_dark()
