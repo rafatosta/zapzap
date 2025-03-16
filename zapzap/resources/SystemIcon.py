@@ -46,7 +46,7 @@ class SystemIcon:
         """Retorna um QIcon baseado no nome do ícone e no tema."""
         if icon_name not in SystemIcon.SVG_ICONS:
             raise ValueError(f"Ícone '{icon_name}' não encontrado.")
-        fill_color = "#202C33" if theme == SystemIcon.Type.Light else "#f0f2f5"
+        fill_color = "#202C33" if theme == SystemIcon.Type.Light else "#f7f5f3"
         svg_str = SystemIcon.SVG_ICONS[icon_name].format(fill_color=fill_color)
         return SystemIcon.__build(svg_str)
 

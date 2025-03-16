@@ -21,7 +21,7 @@ class ThemeStylesheet:
                 color: #161E23;
             }
             QPushButton:disabled {
-                background-color: #F0F2F5;
+                background-color: #f7f5f3;
                 color: #A6AEB6;
                 border: 1px solid #D0D4D8;
             }
@@ -111,7 +111,7 @@ class ThemeStylesheet:
     SIDEBAR = {
         "light": """
             QWidget#sidebar {
-                background-color: #f0f2f5;
+                background-color: #f7f5f3;
                 border-right: 1px solid #c0c1c4;
                 padding: 10px;
             }
@@ -128,25 +128,25 @@ class ThemeStylesheet:
     SIDEBAR_SETTINGS_BUTTONS = {
         "light": """
             QWidget#menu_layout QPushButton {
-                background-color: #f0f2f5;
+                background-color: #f7f5f3;
                 color: #1d1f1f;
                 border: none;
                 padding: 10px 15px;
                 text-align: left;
                 font-size: 14px;
                 border-radius: 4px;
-                border-left: 3px solid #a8a9ab;
+                border-left: 3px solid #1daa61;
             }
             QWidget#menu_layout QPushButton:hover {
-                background-color: #f9f9fb;
-                border-left: 4px solid #21c063;
+                background-color: #eae9e7;
+                border-left: 4px solid #1daa61;
             }
             QWidget#menu_layout QPushButton:pressed {
-                background-color: #d8d9dc;
+                background-color: #eae9e7;
                 color: #1d1f1f;
             }
             QWidget#menu_layout QPushButton:disabled {
-                background-color: #d8d9dc;
+                background-color: #eae9e7;
                 border-left: 4px solid #21c063;
             }
         """,
@@ -188,7 +188,7 @@ class ThemeStylesheet:
             /* Estilo para QLabel com texto de destaque */
             QLabel[role="highlight"] {
                 color: #21c063; /* Texto destacado em cinza */
-                font-weight: bold; /* Negrito para destaque */
+                
             }
 
             /* Estilo para QLabel desativado */
@@ -212,7 +212,7 @@ class ThemeStylesheet:
             /* Estilo para QLabel com texto de destaque */
             QLabel[role="highlight"] {
                 color: #21c063; /* Texto destacado em cinza */
-                font-weight: bold; /* Negrito para destaque */
+                 /* Negrito para destaque */
             }
 
             /* Estilo para QLabel desativado */
@@ -230,20 +230,20 @@ class ThemeStylesheet:
     SIDEBAR_BROWSER_BUTTONS = {
         "light": """
             QWidget#settings_buttons_layout QPushButton {
-                background-color: #f0f2f5;
+                background-color: #f7f5f3;
                 border: none;
                 border-radius: none;
                 qproperty-flat: true;
             }
             QWidget#settings_buttons_layout QPushButton:hover {
                 border-radius: 2px;
-                border-left: 3px solid #a8a9ab;
+                border-left: 3px solid #1daa61;
             }
             QWidget#settings_buttons_layout QPushButton:pressed {
                 background-color: rgba(225, 225, 225, 0.3);
                 border-radius: 2px;
                 height: 30px;
-                border-left: 3px solid #21c063;
+                border-left: 3px solid #1daa61;
             }
         """,
         "dark": """
@@ -256,13 +256,13 @@ class ThemeStylesheet:
             QWidget#settings_buttons_layout QPushButton:hover {
             background-color: #292a2a;
                 border-radius: 2px;
-                border-left: 3px solid #1d1f1f;
+                border-left: 3px solid #1daa61;
             }
             QWidget#settings_buttons_layout QPushButton:pressed {
                 background-color: rgba(60, 60, 60, 0.3);
                 border-radius: 2px;
                 height: 30px;
-                border-left: 3px solid #21c063;
+                border-left: 3px solid #1daa61;
             }
         """
     }
@@ -357,7 +357,7 @@ class ThemeStylesheet:
                 border: 1px solid #A0A6AB;
             }
             QComboBox:disabled {
-                background-color: #F0F2F5;
+                background-color: #f7f5f3;
                 color: #A6AEB6;
                 border: 1px solid #D0D4D8;
             }
@@ -433,7 +433,7 @@ class ThemeStylesheet:
                 outline: none;
             }
             QLineEdit:disabled {
-                background-color: #F0F2F5;
+                background-color: #f7f5f3;
                 color: #A6AEB6;
                 border: 1px solid #D0D4D8;
             }
@@ -584,7 +584,6 @@ class ThemeStylesheet:
                 color: #1d1f1f;
                 padding: 5px;
                 border: 1px solid #D0D4D8;
-                font-weight: bold;
             }
             QHeaderView::section:hover {
                 background-color: #DDE2E6;
@@ -598,7 +597,7 @@ class ThemeStylesheet:
                 background-color: #FFFFFF;
             }
             QTableWidget::item:nth-child(even) {
-                background-color: #F0F2F5;
+                background-color: #f7f5f3;
             }
             QScrollBar:vertical {
                 background: #E9ECEF;
@@ -620,7 +619,7 @@ class ThemeStylesheet:
                 border: none;
             }
             QTableWidget::item:disabled {
-                background-color: #F0F2F5;
+                background-color: #f7f5f3;
                 color: #A6AEB6;
             }
         """,
@@ -638,7 +637,6 @@ class ThemeStylesheet:
                 color: #E1E1E1;
                 padding: 5px;
                 border: 1px solid #555555;
-                font-weight: bold;
             }
             QHeaderView::section:hover {
                 background-color: #555555;
@@ -696,11 +694,10 @@ class ThemeStylesheet:
                 subcontrol-origin: margin;
                 subcontrol-position: top left;
                 padding: 0 5px;
-                font-weight: bold;
                 font-size: 14px;
             }
             QGroupBox:disabled {
-                background-color: #F0F2F5;
+                background-color: #f7f5f3;
                 color: #A6AEB6;
                 border: 1px solid #D0D4D8;
             }
@@ -742,7 +739,6 @@ class ThemeStylesheet:
                 subcontrol-origin: margin;
                 subcontrol-position: top left;
                 padding: 0 5px;
-                font-weight: bold;
                 font-size: 14px;
             }
             QGroupBox:disabled {
@@ -859,7 +855,7 @@ class ThemeStylesheet:
                 color: #A6AEB6;
             }
             QRadioButton::indicator:disabled {
-                background-color: #F0F2F5;
+                background-color: #f7f5f3;
                 border: 2px solid #D0D4D8;
             }
         """,
