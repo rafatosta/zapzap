@@ -102,7 +102,7 @@ class ThemeManager:
         """Aplica o tema claro."""
         print("Aplicando tema claro...")
         palette = self._create_palette(
-            window="#f0f2f5", text="#000000", base="#f0f0f0", highlight="#0066cc"
+            window="#f7f5f3", text="#000000", base="#f0f0f0", highlight="#0066cc"
         )
         self._apply_palette(palette)
         QApplication.instance().getWindow().browser.set_theme_light()
@@ -112,7 +112,7 @@ class ThemeManager:
         """Aplica o tema escuro."""
         print("Aplicando tema escuro...")
         palette = self._create_palette(
-            window="#202C33", text="#ffffff", base="#3a3a3a", highlight="#0099ff"
+            window="#1d1f1f", text="#ffffff", base="#3a3a3a", highlight="#0099ff"
         )
         self._apply_palette(palette)
         QApplication.instance().getWindow().browser.set_theme_dark()

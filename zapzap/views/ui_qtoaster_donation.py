@@ -19,7 +19,7 @@ class Ui_QtoasterDonation(object):
 "    border: 1px solid #585A5D;\n"
 "    border-radius: 8px; \n"
 "    color: rgb(255, 255, 255);\n"
-"    background-color: #202C33;\n"
+"    background-color: #1d1f1f;\n"
 "}\n"
 "\n"
 "QLabel{\n"
@@ -119,7 +119,7 @@ class Ui_QtoasterDonation(object):
 "                padding: 5px;\n"
 "                }\n"
 "                QToolButton:hover {\n"
-"                background-color: #202C33;\n"
+"                background-color: #1d1f1f;\n"
 "                }\n"
 "         ")
         self.closeButton.setText("")
