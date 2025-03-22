@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 14:27-0300\n"
-"PO-Revision-Date: 2025-02-18 16:43+0100\n"
+"POT-Creation-Date: 2025-02-21 14:27-0300\n"
+"PO-Revision-Date: 2025-03-21 16:43+0100\n"
 "Last-Translator: Michał Kareńko <m.karenko@outlook.com>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 3.5\n"
 
 #: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:71
-#: zapzap/controllers/ShortcutsDialog.py:58 zapzap/controllers/Browser.py:150
+#: zapzap/controllers/Browser.py:150 zapzap/controllers/ShortcutsDialog.py:58
 msgid "New account"
 msgstr "Nowe konto"
 
@@ -191,8 +191,8 @@ msgstr "WhatsApp Web dla Linux'a"
 
 #: zapzap/views/ui_page_about.py:115
 #, python-brace-format
-msgid "Version {id} (Official compilation)"
-msgstr "Wersja {id} (Oficjalna kompilacja)"
+msgid "Version {id} ({version_type}) - {package}"
+msgstr "Wersja {id} ({version_type}) - {paczka}"
 
 #: zapzap/views/ui_page_about.py:117
 msgid "Learn more"
@@ -206,75 +206,79 @@ msgstr "Zgłoś problem"
 msgid "My accounts"
 msgstr "Moje konta"
 
-#: zapzap/views/ui_page_appearance.py:110 zapzap/views/ui_settings.py:121
+#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:121
 msgid "Appearance"
 msgstr "Wygląd"
 
-#: zapzap/views/ui_page_appearance.py:111
+#: zapzap/views/ui_page_appearance.py:119
 msgid "Style"
 msgstr "Styl"
 
-#: zapzap/views/ui_page_appearance.py:112
+#: zapzap/views/ui_page_appearance.py:120
 msgid "Adaptive"
 msgstr "Adaptywny"
 
-#: zapzap/views/ui_page_appearance.py:113
+#: zapzap/views/ui_page_appearance.py:121
 msgid "Light"
 msgstr "Jasny"
 
-#: zapzap/views/ui_page_appearance.py:114
+#: zapzap/views/ui_page_appearance.py:122
 msgid "Dark"
 msgstr "Ciemny"
 
-#: zapzap/views/ui_page_appearance.py:115
+#: zapzap/views/ui_page_appearance.py:123
 msgid "Tray icon"
 msgstr "Ikona paska zadań"
 
-#: zapzap/views/ui_page_appearance.py:116
+#: zapzap/views/ui_page_appearance.py:124
+msgid "Remove notification indicator"
+msgstr "Usuń wskaźnik powiadomień"
+
+#: zapzap/views/ui_page_appearance.py:125
 msgid "Default"
 msgstr "Domyślny"
 
-#: zapzap/views/ui_page_appearance.py:117
+#: zapzap/views/ui_page_appearance.py:126
 msgid "Symbolic light"
 msgstr "Jednolity jasny"
 
-#: zapzap/views/ui_page_appearance.py:118
+#: zapzap/views/ui_page_appearance.py:127
 msgid "Symbolic dark"
 msgstr "Jednolity ciemny"
 
-#: zapzap/views/ui_page_appearance.py:119
+#: zapzap/views/ui_page_appearance.py:128
 msgid "Show sidebar"
 msgstr "Pokaż pasek boczny"
 
-#: zapzap/views/ui_page_appearance.py:120
+#: zapzap/views/ui_page_appearance.py:129
 msgid "Show menu bar"
 msgstr "Pokaż pasek menu"
 
-#: zapzap/views/ui_page_appearance.py:121
+#: zapzap/views/ui_page_appearance.py:130
 msgid "Scale"
 msgstr "Skaluj"
 
-#: zapzap/views/ui_page_appearance.py:122
+#: zapzap/views/ui_page_appearance.py:131
 msgid "100 %"
-msgstr "100 %"
+msgstr "100%"
 
-#: zapzap/views/ui_page_appearance.py:123
+#: zapzap/views/ui_page_appearance.py:132
 msgid "125 %"
-msgstr "125 %"
+msgstr "125%"
 
-#: zapzap/views/ui_page_appearance.py:124
+#: zapzap/views/ui_page_appearance.py:133
 msgid "150 %"
-msgstr "150 %"
+msgstr "150%"
 
-#: zapzap/views/ui_page_appearance.py:125
+#: zapzap/views/ui_page_appearance.py:134
 msgid "175 %"
-msgstr "175 %"
+msgstr "175%"
 
-#: zapzap/views/ui_page_appearance.py:126
+#: zapzap/views/ui_page_appearance.py:135
 msgid "200 %"
-msgstr "200 %"
+msgstr "200%"
 
-#: zapzap/views/ui_page_appearance.py:127
+#: zapzap/views/ui_page_appearance.py:136
 msgid "Note: The change of scale will only have effect until restarting."
 msgstr "Uwaga: Zmiana skali będzie widoczna dopiero po ponownym uruchomieniu."
 
@@ -378,25 +382,29 @@ msgstr "Zastosuj"
 msgid "Restore"
 msgstr "Przywróć"
 
-#: zapzap/views/ui_page_notifications.py:69 zapzap/views/ui_settings.py:122
+#: zapzap/views/ui_page_notifications.py:72 zapzap/views/ui_settings.py:122
 msgid "Notifications"
 msgstr "Powiadomienia"
 
-#: zapzap/views/ui_page_notifications.py:70
+#: zapzap/views/ui_page_notifications.py:73
 msgid "Work area notifications"
 msgstr "Obszar roboczy powiadomień"
 
-#: zapzap/views/ui_page_notifications.py:71
+#: zapzap/views/ui_page_notifications.py:74
 msgid "Show the photo of the sender"
 msgstr "Pokaż zdjęcie nadawcy"
 
-#: zapzap/views/ui_page_notifications.py:72
+#: zapzap/views/ui_page_notifications.py:75
 msgid "Show the sender's name"
 msgstr "Pokaż nazwę nadawcy"
 
-#: zapzap/views/ui_page_notifications.py:73
+#: zapzap/views/ui_page_notifications.py:76
 msgid "Show message preview"
 msgstr "Pokaż podgląd wiadomości"
+
+#: zapzap/views/ui_page_notifications.py:77
+msgid "Hide donation notification"
+msgstr "Ukryj powiadomienie darowizny"
 
 #: zapzap/views/ui_page_performance.py:110
 msgid "Performance (Experimental)"
@@ -507,6 +515,19 @@ msgstr "Czy na pewno chcesz usunąć ten element?"
 msgid "Restore standard"
 msgstr "Przywróć standardowe"
 
+#: zapzap/controllers/PageAbout.py:21
+#, fuzzy
+msgid "Official compilation"
+msgstr "Wersja {id} (oficjalna kompilacja)"
+
+#: zapzap/controllers/PageAbout.py:22
+msgid "Unofficial"
+msgstr "Nieoficjalny"
+
+#: zapzap/controllers/PageAbout.py:25
+msgid "Unknown"
+msgstr "Nieznany"
+
 #: zapzap/controllers/PageGeneral.py:37
 msgid "Use Flatseal to change this mode of execution"
 msgstr "Użyj Flatseal, aby zmienić tryb wykonania"
@@ -603,47 +624,47 @@ msgstr "Załaduj ponownie strony"
 msgid "New conversation by phone number"
 msgstr "Nowa konwersacja po numerze"
 
-#: zapzap/controllers/WebView.py:113
+#: zapzap/controllers/WebView.py:114
 msgid "Undo"
 msgstr "Cofnij"
 
-#: zapzap/controllers/WebView.py:113
+#: zapzap/controllers/WebView.py:114
 msgid "Redo"
 msgstr "Ponów"
 
-#: zapzap/controllers/WebView.py:113
+#: zapzap/controllers/WebView.py:114
 msgid "Cut"
 msgstr "Wytnij"
 
-#: zapzap/controllers/WebView.py:114
+#: zapzap/controllers/WebView.py:115
 msgid "Copy"
 msgstr "Kopiuj"
 
-#: zapzap/controllers/WebView.py:114
+#: zapzap/controllers/WebView.py:115
 msgid "Paste"
 msgstr "Wklej"
 
-#: zapzap/controllers/WebView.py:114
+#: zapzap/controllers/WebView.py:115
 msgid "Select all"
 msgstr "Zaznacz wszystko"
 
-#: zapzap/controllers/WebView.py:115
+#: zapzap/controllers/WebView.py:116
 msgid "Save image"
 msgstr "Zapisz obraz"
 
-#: zapzap/controllers/WebView.py:115
+#: zapzap/controllers/WebView.py:116
 msgid "Copy image"
 msgstr "Kopiuj obraz"
 
-#: zapzap/controllers/WebView.py:116 zapzap/controllers/WebView.py:146
+#: zapzap/controllers/WebView.py:117 zapzap/controllers/WebView.py:147
 msgid "Copy link address"
 msgstr "Kopiuj adres łącza"
 
-#: zapzap/controllers/WebView.py:167
+#: zapzap/controllers/WebView.py:168
 msgid "Check Spelling"
 msgstr "Sprawdź pisownie"
 
-#: zapzap/controllers/WebView.py:175
+#: zapzap/controllers/WebView.py:176
 msgid "Select Language"
 msgstr "Wybierz język"
 
@@ -722,3 +743,7 @@ msgstr "Pokaż"
 #: zapzap/services/SysTrayManager.py:56
 msgid "Donation"
 msgstr "Darowizna"
+
+#, python-brace-format
+#~ msgid "Version {id}"
+#~ msgstr "Wersja {id}"
