@@ -1,0 +1,59 @@
+[project]
+name = "zapzap"
+dynamic = ["version", "description"]  # These will be loaded dynamically
+authors = [
+    {name = "Rafael Tosta", email = "rafa.ecomp@gmail.com"},
+]
+license = {text = "GPLv3+"}
+requires-python = ">=3.9"
+readme = "README.md"
+dependencies = [
+    "PyQt6",
+    "PyQt6-WebEngine",
+    "dbus-python",
+    "python-gettext",
+]
+classifiers = [
+    "Environment :: X11 Applications :: Qt",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Topic :: Office/Business",
+    "Programming Language :: Python :: 3 :: Only"
+]
+keywords = ["zapzap", "whatsapp", "client", "web", "app"]
+
+[project.scripts]
+dev = "zapzap.run:dev"
+preview = "zapzap.run:preview"
+build = "zapzap.run:build"
+zapzap = "zapzap.__main__:main"
+
+[project.optional-dependencies]
+dev = ["setuptools"]
+
+[project.urls]
+Homepage = "https://github.com/rafatosta/zapzap"
+
+[tool.setuptools]
+packages = [
+    "zapzap",
+    "zapzap.config",
+    "zapzap.controllers",
+    "zapzap.models",
+    "zapzap.resources",
+    "zapzap.services",
+    "zapzap.views"
+]
+include-package-data = true
+package-dir = {"" = "."}
+
+[tool.setuptools.package-data]
+zapzap = ["po/*/LC_MESSAGES/*.mo"]
+
+[tool.setuptools.dynamic]
+version = {attr = "zapzap.__version__"}
+description = {file = "README.md"}
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
