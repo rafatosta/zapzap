@@ -55,6 +55,16 @@
   </screenshots>
 
   <releases>
+    <release date="2025-06-19" version="6.1">
+      <description>
+        <p>New color palette</p>
+        <p>Update UserAgent</p>
+        <p>fix: Fullscreen State Not Retained When Minimizing to Tray</p>
+        <p>fix: Improvement in account management</p>
+        <p>fix: A small window squishes the settings screen</p>
+        <p>fix: No tray notification counter anymore</p>
+      </description>
+    </release>
     <release date="2025-02-10" version="6.0">
       <description>
         <ul>    
