@@ -129,18 +129,6 @@ class PageController(QWebEnginePage):
     def _on_load_finished(self, success):
         """Ações realizadas após o carregamento da página."""
         if success:
-            # Aplica estilo a elementos específicos
-            self.runJavaScript("""
-                const observer = new MutationObserver(() => {
-                    const element = document.querySelector(".two._aigs");
-                    if (element) {
-                        element.style = 'max-width: initial; width: 100%; height: 100%; position: unset; margin: 0';
-                        observer.disconnect();
-                    }
-                });
-                observer.observe(document.body, { childList: true, subtree: true });
-            """)
-
             # Permite notificações automaticamente
             self.setFeaturePermission(
                 self.url(),
