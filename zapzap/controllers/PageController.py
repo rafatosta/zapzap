@@ -4,6 +4,7 @@ from PyQt6.QtWidgets import QApplication
 from PyQt6.QtGui import QDesktopServices
 
 from zapzap import __whatsapp_url__
+from zapzap.services.AddonsManager import AddonsManager
 from zapzap.services.ThemeManager import ThemeManager
 
 import urllib.parse  # Para normalizar URLs
@@ -138,6 +139,9 @@ class PageController(QWebEnginePage):
     def _on_load_finished(self, success):
         """Ações realizadas após o carregamento da página."""
         if success:
+            # Injeta os addons
+            AddonsManager.inject_addons(self)
+
             # Permite notificações automaticamente
             self.setFeaturePermission(
                 self.url(),
