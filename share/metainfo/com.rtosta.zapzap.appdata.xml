@@ -66,7 +66,7 @@
       <description>
           <ul>
             <li>New color palette</li>
-            <li>Update UserAgent</p>
+            <li>Update UserAgent</li>
             <li>fix: Fullscreen State Not Retained When Minimizing to Tray</li>
             <li>fix: Improvement in account management</li>
             <li>fix: A small window squishes the settings screen</li>
