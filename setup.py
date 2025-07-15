@@ -16,7 +16,8 @@ try:
                   'zapzap.models',
                   'zapzap.resources',
                   'zapzap.services',
-                  'zapzap.views'
+                  'zapzap.views',
+                  'zapzap.js'
                   ],
         include_package_data=True,
         package_data={'zapzap': ['po/*/LC_MESSAGES/*.mo']},
