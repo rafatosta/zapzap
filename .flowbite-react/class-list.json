@@ -1,0 +1,18 @@
+[
+  "dark:block",
+  "dark:focus:ring-gray-700",
+  "dark:hidden",
+  "dark:hover:bg-gray-700",
+  "dark:text-gray-400",
+  "focus:outline-none",
+  "focus:ring-4",
+  "focus:ring-gray-200",
+  "h-5",
+  "hidden",
+  "hover:bg-gray-100",
+  "p-2.5",
+  "rounded-lg",
+  "text-gray-500",
+  "text-sm",
+  "w-5"
+]
