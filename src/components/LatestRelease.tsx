@@ -15,7 +15,7 @@ export default function LatestRelease() {
     }, []);
 
     return (
-        <div className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+        <div className="text-sm text-gray-600 dark:text-gray-200 mt-2">
             {error && <span>Error: {error}</span>}
             {version ? <span>Latest version: <strong>{version}</strong></span> : <span>Loading version...</span>}
         </div>

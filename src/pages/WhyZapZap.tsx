@@ -67,7 +67,7 @@ export default function WhyZapZap() {
           <div key={title} className="flex flex-col items-center gap-4">
             <div>{icon}</div>
             <h3 className="text-lg font-semibold text-primary">{title}</h3>
-            <p className="text-gray-600 dark:text-gray-400 text-center">{description}</p>
+            <p className="text-gray-600 dark:text-gray-200 text-center">{description}</p>
           </div>
         ))}
       </div>

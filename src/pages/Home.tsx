@@ -51,11 +51,11 @@ function Home() {
     return (
         <div className="relative flex w-full max-w-5xl h-screen flex-col items-center justify-center gap-12">
             <div className="relative flex flex-col items-center gap-6">
-                <h1 className="relative text-center text-6xl leading-[125%] text-shadow-lg font-bold text-gray-900 dark:text-gray-200">
+                <h1 className="relative text-center text-6xl leading-[125%] text-shadow-lg font-bold">
                     ZapZap
                 </h1>
                 <span className="inline-flex flex-wrap items-center justify-center gap-2.5 text-center">
-                    <span className="inline text-xl text-shadow-sm text-gray-600 dark:text-gray-400">
+                    <span className="inline text-xl text-shadow-sm text-gray-600 dark:text-gray-200">
                         A Linux WhatsApp web app with a native application experience.
                     </span>
                 </span>
@@ -80,17 +80,17 @@ function Home() {
                                     <div className="size-9">{card.icon}</div>
 
                                     <div className="flex flex-1 flex-col items-start justify-center gap-1.5 border-l border-gray-200 pl-3.5 dark:border-gray-700">
-                                        <div className="w-full font-sans text-lg leading-4 font-semibold text-gray-900 dark:text-gray-200">
+                                        <div className="w-full font-sans text-lg leading-4 font-semibold">
                                             {card.title}
                                         </div>
 
-                                        <div className="w-full font-sans text-sm leading-5 font-normal text-gray-500 dark:text-gray-400">
+                                        <div className="w-full font-sans text-sm leading-5 font-normal text-gray-500 dark:text-gray-200">
                                             {card.description}
                                         </div>
                                     </div>
                                 </div>
 
-                                <HiChevronRight className="text-gray-500 dark:text-gray-400" />
+                                <HiChevronRight />
                             </div>
                         </a>
                     ))}

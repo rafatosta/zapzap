@@ -3,3 +3,32 @@
 @source "../.flowbite-react/class-list.json";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary-50:  #e0f7ec;
+  --color-primary-100: #b3edd3;
+  --color-primary-200: #80e2b8;
+  --color-primary-300: #4dd89d;
+  --color-primary-400: #26cd84;
+  --color-primary-500: #25d366; /* principal do WhatsApp */
+  --color-primary-600: #20ba5b;
+  --color-primary-700: #199e4b;
+  --color-primary-800: #128c46; /* usado em fundo de cabeçalho */
+  --color-primary-900: #0d6b37;
+
+  --color-gray-50:  #f9faf9;
+  --color-gray-100: #eff1f0;
+  --color-gray-200: #d6d9d8;
+  --color-gray-300: #a9adac;
+  --color-gray-400: #7f8382;
+  --color-gray-500: #585c5b;
+  --color-gray-600: #444847;
+  --color-gray-700: #1d1f1f; /* tom central */
+  --color-gray-800: #171919;
+  --color-gray-900: #121313;
+  --color-gray-950: #0b0c0c;
+
+
+  --color-white: #f7f5f3;
+}
+
