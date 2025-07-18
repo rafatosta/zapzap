@@ -15,7 +15,7 @@ function Features() {
         <div className="relative flex h-screen w-full max-w-5xl flex-col items-center justify-center gap-12">
 
             <div className="relative flex flex-col items-center gap-6">
-                <h1 className="relative text-center text-3xl leading-[125%] font-bold text-shadow-lg/30 text-gray-900 dark:text-gray-200">
+                <h1 className="relative text-center text-3xl leading-[125%] font-bold text-shadow-lg text-gray-900 dark:text-gray-200">
                     ZapZap – A better way to use WhatsApp on Linux
                 </h1>
             </div>
@@ -43,7 +43,7 @@ function Features() {
                 </div>
             </div>
 
-            <h1 className="text-xl font-bold leading-snug  text-center">
+            <h1 className="text-xl font-bold leading-snug  text-center text-shadow-lg">
                 Feature highlights
             </h1>
 
