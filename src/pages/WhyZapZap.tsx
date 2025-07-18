@@ -60,7 +60,7 @@ const FEATURES = [
 
 export default function WhyZapZap() {
   return (
-    <div className="relative flex w-full max-w-5xl h-screen flex-col items-center justify-center gap-12">
+    <div className="relative flex w-full max-w-5xl flex-col items-center justify-center gap-12">
       <h2 className="relative text-center text-3xl leading-[125%] text-shadow-lg font-bold">Why choose ZapZap?</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
         {FEATURES.map(({ icon, title, description }) => (

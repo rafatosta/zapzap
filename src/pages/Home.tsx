@@ -49,7 +49,7 @@ function Home() {
 
 
     return (
-        <div className="relative flex w-full max-w-5xl h-screen flex-col items-center justify-center gap-12">
+        <div className="relative flex w-full max-w-5xl h-screen flex-col items-center justify-center gap-12 pt-12 lg:pt-0">
             <div className="relative flex flex-col items-center gap-6">
                 <h1 className="relative text-center text-6xl leading-[125%] text-shadow-lg font-bold">
                     ZapZap

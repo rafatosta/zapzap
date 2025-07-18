@@ -11,9 +11,10 @@ export default function App() {
 
   return (
     <main className="
-        flex min-h-screen flex-col items-center justify-center 
+        flex flex-col items-center justify-center min-h-screen
       bg-white px-4 dark:bg-gray-900 
       text-gray-900 dark:text-gray-100
+      gap-12
       "
     >
       {/*Background geral */}

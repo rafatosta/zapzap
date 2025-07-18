@@ -12,7 +12,7 @@ import {
 
 function Features() {
     return (
-        <div className="relative flex h-screen w-full max-w-5xl flex-col items-center justify-center gap-12">
+        <div className="relative flex  w-full max-w-5xl flex-col items-center justify-center gap-12">
 
             <div className="relative flex flex-col items-center gap-6">
                 <h1 className="relative text-center text-3xl leading-[125%] font-bold text-shadow-lg">
