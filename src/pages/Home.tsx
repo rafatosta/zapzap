@@ -1,9 +1,11 @@
-import { FaLinux } from "react-icons/fa";
+
 import { SiFlatpak } from "react-icons/si";
 import { FaFedora } from "react-icons/fa6";
 import { GrArchlinux } from "react-icons/gr";
 import { PiPackage } from "react-icons/pi";
 import { HiChevronRight } from "react-icons/hi2";
+
+import LatestRelease from "../components/LatestRelease";
 
 function Home() {
     const CARDS = [
@@ -44,6 +46,8 @@ function Home() {
             ),
         }
     ];
+
+
     return (
         <div className="relative flex w-full max-w-5xl h-screen flex-col items-center justify-center gap-12">
             <div className="relative flex flex-col items-center gap-6">
@@ -51,21 +55,15 @@ function Home() {
                     ZapZap
                 </h1>
                 <span className="inline-flex flex-wrap items-center justify-center gap-2.5 text-center">
-                    <span className="inline text-xl text-shadow-lg text-gray-600 dark:text-gray-400">
+                    <span className="inline text-xl text-shadow-sm text-gray-600 dark:text-gray-400">
                         A Linux WhatsApp web app with a native application experience.
                     </span>
                 </span>
             </div>
 
-            {/* Mostra última versão disponível (Coletar do github) */}
-            <div className='flex justify-center items-center gap-4 text-gray-600 dark:text-gray-400'>
-                <span>{"Last releases"}</span>
-                <div className="flex justify-center items-center gap-2">
-                    <FaLinux className="w-6 h-6" />
-                    <span>{"xxx..xxx...x"}</span>
-                </div>
 
-            </div>
+            <LatestRelease />
+
 
             {/* Versões disponíveis */}
             <div className="relative flex w-full flex-col items-start gap-6 self-stretch">
