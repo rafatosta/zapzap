@@ -21,11 +21,11 @@ function Features() {
             </div>
 
 
-            <div className="relative flex flex-row items-center gap-6">
+            <div className="relative flex flex-col lg:flex-row items-center gap-6">
                 {/* Imagem adaptada ao tema */}
                 <>
-                    <img className="w-1/2 dark:hidden" src={zapLight} alt="ZapZap light screenshot" />
-                    <img className="w-1/2 hidden dark:block" src={zapDark} alt="ZapZap dark screenshot" />
+                    <img className="lg:w-1/2 dark:hidden" src={zapLight} alt="ZapZap light screenshot" />
+                    <img className="lg:w-1/2 hidden dark:block" src={zapDark} alt="ZapZap dark screenshot" />
                 </>
 
                 <div className="p-5 group overflow-hidden rounded-xl outline-offset-2 focus:outline-2">
