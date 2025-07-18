@@ -1,16 +1,14 @@
 import {
   FaUserFriends,
-  FaPalette,
   FaLock,
   FaBell,
   FaLaptop,
   FaBoxOpen,
   FaTerminal,
-  FaUsers,
   FaSyncAlt
 } from "react-icons/fa";
 import { MdSpeed } from "react-icons/md";
-import { SiAppimage, SiFlatpak } from "react-icons/si";
+import { SiFlatpak } from "react-icons/si";
 
 const FEATURES = [
   {
