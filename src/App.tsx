@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Features from "./pages/Features";
 import Background from "./components/Background";
 import WhyZapZap from "./pages/WhyZapZap";
+import About from "./pages/About";
 
 
 
@@ -22,6 +23,7 @@ export default function App() {
       <Home />
       <Features />
       <WhyZapZap />
+      <About />
 
     </main>
   );
