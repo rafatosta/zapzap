@@ -6,30 +6,18 @@ type Contributor = {
   html_url: string;
 };
 
-type User = {
-  login: string;
-  avatar_url: string;
-  html_url: string;
-  bio: string | null;
-};
-
 export default function About() {
   const [contributors, setContributors] = useState<Contributor[]>([]);
-  const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Busca os colaboradores
     fetch("https://api.github.com/repos/rafatosta/zapzap/contributors")
-      .then((res) => res.json())
-      .then((data) => setContributors(data))
-      .catch((error) => console.error("Failed to fetch contributors:", error));
-
-    // Busca dados do usuário principal
-    fetch("https://api.github.com/users/rafatosta")
-      .then((res) => res.json())
-      .then((data) => setUser(data))
-      .catch((error) => console.error("Failed to fetch user:", error));
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch contributors");
+        return res.json();
+      })
+      .then(setContributors)
+      .catch((err) => setError(err.message));
   }, []);
 
   return (
