@@ -1,4 +1,14 @@
-import zapDark from "/screenshot/2.png"
+import zapDark from "/screenshot/2.png";
+import zapLight from "/screenshot/1.png";
+
+import {
+    FaUserFriends,
+    FaBell,
+    FaBoxOpen,
+    FaPalette,
+    FaLock,
+    FaSyncAlt,
+} from "react-icons/fa";
 
 function Features() {
     return (
@@ -10,10 +20,15 @@ function Features() {
                 </h1>
             </div>
 
-            <div className="relative flex flex-row items-center gap-6">
-                <img className="w-1/2" src={zapDark}></img>
 
-                <div className="p-5 group overflow-hidden rounded-xl border border-gray-200 bg-gray-50 outline-offset-2 focus:outline-2 dark:border-gray-700 dark:bg-gray-800">
+            <div className="relative flex flex-row items-center gap-6">
+                {/* Imagem adaptada ao tema */}
+                <>
+                    <img className="w-1/2 dark:hidden" src={zapLight} alt="ZapZap light screenshot" />
+                    <img className="w-1/2 hidden dark:block" src={zapDark} alt="ZapZap dark screenshot" />
+                </>
+
+                <div className="p-5 group overflow-hidden rounded-xl outline-offset-2 focus:outline-2 dark:border-gray-700 dark:bg-gray-800">
                     <div className="flex flex-col items-center gap-4 text-justify">
                         <span>
                             <span className="text-primary font-medium">ZapZap</span> is a <span className="text-primary font-medium">modern</span> and <span className="text-primary font-medium">efficient</span> WhatsApp web wrapper built for <span className="text-primary font-medium">Linux users</span> who want more <span className="text-primary font-medium">control</span>, <span className="text-primary font-medium">flexibility</span>, and <span className="text-primary font-medium">native integration</span>.
@@ -27,6 +42,30 @@ function Features() {
                     </div>
                 </div>
             </div>
+
+            <h1 className="text-xl font-bold leading-snug  text-center">
+                Feature highlights
+            </h1>
+
+            {/* Feature highlights */}
+            <div className="grid grid-cols-2 gap-4 mt-6 text-sm text-gray-600 dark:text-gray-300">
+                <Feature icon={<FaUserFriends />} label="Multi-account" />
+                <Feature icon={<FaBell />} label="Native notifications" />
+                <Feature icon={<FaBoxOpen />} label="Media sharing" />
+                <Feature icon={<FaPalette />} label="Theme support" />
+                <Feature icon={<FaLock />} label="Privacy-respecting" />
+                <Feature icon={<FaSyncAlt />} label="Background mode" />
+            </div>
+        </div>
+    );
+}
+
+
+function Feature({ icon, label }: { icon: React.ReactNode; label: string }) {
+    return (
+        <div className="flex items-center gap-2">
+            <div className="text-primary w-5 h-5">{icon}</div>
+            <span>{label}</span>
         </div>
     );
 }
