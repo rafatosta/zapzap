@@ -4,6 +4,7 @@ import Features from "./pages/Features";
 import Background from "./components/Background";
 import WhyZapZap from "./pages/WhyZapZap";
 import About from "./pages/About";
+import Donate from "./pages/Donate";
 
 
 
@@ -24,6 +25,7 @@ export default function App() {
       <Home />
       <Features />
       <WhyZapZap />
+      <Donate />
       <About />
 
     </main>
