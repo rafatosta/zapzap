@@ -18,8 +18,6 @@ class PageController(QWebEnginePage):
         self.link_url = ""
         self.link_context = ''
 
-        self.opened_urls = set()  # Armazena URLs já abertas
-
         # Conecta sinais para funcionalidades específicas
         self.linkHovered.connect(self._on_link_hovered)
         self.loadFinished.connect(self._on_load_finished)
@@ -37,9 +35,7 @@ class PageController(QWebEnginePage):
         """Abre o link no navegador padrão evitando duplicações."""
         normalized_url = self.normalize_url(url.toString())
 
-        if normalized_url not in self.opened_urls:
-            self.opened_urls.add(normalized_url)
-            QDesktopServices.openUrl(QUrl(normalized_url))
+        QDesktopServices.openUrl(QUrl(normalized_url))
 
     def normalize_url(self, url: str) -> str:
         """Normaliza a URL removendo parâmetros redundantes."""
