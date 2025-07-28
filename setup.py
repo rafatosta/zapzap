@@ -21,6 +21,16 @@ try:
                   ],
         include_package_data=False,
         package_data={'zapzap': ['po/*/LC_MESSAGES/*.mo', 'js/*']},
+        data_files=[
+            (
+                'share/applications',
+                ['share/applications/com.rtosta.zapzap.desktop']
+            ),
+            (
+                'share/icons/hicolor/scalable/apps',
+                ['share/icons/com.rtosta.zapzap.svg']
+            )
+        ],
         setup_requires=setup_requires,
         entry_points={'gui_scripts': ['zapzap = zapzap.__main__:main']},
         keywords='zapzap whatsapp client web app',
