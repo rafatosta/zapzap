@@ -11,7 +11,8 @@
     },
     "rpm": {
       "compression": "xz"
-    }
+    },
+    "publish": null
   },
   "scripts": {
     "format": "prettier --write .",
