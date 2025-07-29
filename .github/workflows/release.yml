@@ -24,6 +24,17 @@ jobs:
         with:
           node-version: 22
 
+      - name: Install Linux dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt update
+          sudo apt install -y \
+            rpm fakeroot libarchive-tools \
+            libx11-dev libxss1 libnss3 libasound2 libatk1.0-0 libgtk-3-0 \
+            libx11-xcb1 libdrm2 libxcomposite1 libxdamage1 libxrandr2 libgbm1 \
+            libxext6 libxfixes3 libxrender1 libxcb1 libxcb-util1 \
+            libatspi2.0-0 libsecret-1-0 xdg-utils
+
       - name: Install Dependencies
         run: npm install
 
@@ -39,7 +50,7 @@ jobs:
         if: matrix.os == 'windows-latest'
         run: npm run build:win
 
-      - name: release
+      - name: Create GitHub Release (draft)
         uses: softprops/action-gh-release@v1
         with:
           draft: true
