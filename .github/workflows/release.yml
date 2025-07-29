@@ -2,11 +2,10 @@ name: Build/release Electron app
 
 on:
   push:
-    branches:
-      - electron
-  push:
     tags:
       - e*.*.*
+    branches:
+      - electron
 
 jobs:
   release:
@@ -23,17 +22,14 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 22
 
       - name: Install Dependencies
         run: npm install
 
       - name: build-linux
         if: matrix.os == 'ubuntu-latest'
-        run: |
-          npm run build:linux
-          # Gera o tar.gz para rpmbuild (ajuste paths conforme seu projeto)
-          tar czf dist/zapzap-1.0.0.tar.gz -C dist/linux-unpacked .
+        run: npm run build:linux
 
       - name: build-mac
         if: matrix.os == 'macos-latest'
@@ -43,30 +39,7 @@ jobs:
         if: matrix.os == 'windows-latest'
         run: npm run build:win
 
-      - name: Build RPM package
-        if: matrix.os == 'ubuntu-latest'
-        uses: naveenrajm7/rpmbuild@master
-        with:
-          spec_file: "zapzap.spec" # certifique que o spec está na raiz do repo
-          additional_repos: ""     # se precisar, configure aqui
-
-      - name: Upload release artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: release-artifacts
-          path: |
-            dist/*.exe
-            dist/*.zip
-            dist/*.dmg
-            dist/*.AppImage
-            dist/*.snap
-            dist/*.deb
-            dist/*.rpm
-            dist/*.tar.gz
-            dist/*.yml
-            dist/*.blockmap
-
-      - name: Create GitHub Release
+      - name: release
         uses: softprops/action-gh-release@v1
         with:
           draft: true
