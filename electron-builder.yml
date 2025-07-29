@@ -1,4 +1,4 @@
-appId: com.electron.app
+appId: com.electron.zapzap
 productName: zapzap
 directories:
   buildResources: build
