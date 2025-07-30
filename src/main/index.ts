@@ -8,6 +8,11 @@ let tray: Tray | null = null;
 let isQuitting = false;
 
 
+// Single Electron Instance
+if (!app.requestSingleInstanceLock()) {
+	app.quit()
+}
+
 function createWindow(): void {
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -152,6 +157,29 @@ app.on('window-all-closed', () => {
 
 app.on('before-quit', () => {
   isQuitting = true;
+});
+
+app.on('second-instance', () => {
+  const hide = false
+	if (!mainWindow?.isFocused()) {
+			if (mainWindow?.isVisible()) {
+				mainWindow?.focus();
+			}
+			else if (mainWindow?.isMinimized()) {
+				mainWindow?.restore();
+				mainWindow?.focus();
+			}
+			else {
+				mainWindow?.show();
+				mainWindow?.restore();
+				mainWindow?.focus();
+			}
+		}
+		else {
+			if (hide) {
+				mainWindow?.hide();
+			}
+		}
 });
 
 // In this file you can include the rest of your app's specific main process
