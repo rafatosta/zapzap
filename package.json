@@ -1,6 +1,7 @@
 {
   "name": "zapzap",
-  "version": "1.0.0",
+  "version": "0.0.1",
+  "license":"MIT",
   "description": "ZapZap brings the WhatsApp experience on Linux closer to that of a native application",
   "main": "./out/main/index.js",
   "author": "Rafael Tosta <rafa.ecomp@gmail.com>",
