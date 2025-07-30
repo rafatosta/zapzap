@@ -1,15 +1,20 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, Tray, Menu, MenuItem, nativeImage } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import icon from '../../resources/icon.svg?asset'
+import icon from '../../resources/icon.png?asset'
+
+let mainWindow: BrowserWindow | null = null;
+let tray: Tray | null = null;
+let isQuitting = false;
+
 
 function createWindow(): void {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
     show: false,
-    autoHideMenuBar: true,
+    autoHideMenuBar: false,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
@@ -19,12 +24,19 @@ function createWindow(): void {
   })
 
   mainWindow.on('ready-to-show', () => {
-    mainWindow.show()
+    mainWindow?.show()
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
     return { action: 'deny' }
+  })
+
+  mainWindow.on('close', (event) => {
+    if (!isQuitting) {
+      event.preventDefault();
+      mainWindow?.hide();
+    }
   })
 
   // HMR for renderer base on electron-vite cli.
@@ -34,6 +46,72 @@ function createWindow(): void {
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
+}
+
+function createTray(): void {
+  const trayIcon = nativeImage.createFromPath(icon)
+  tray = new Tray(trayIcon)
+
+  // Criar referência para o menu item Show/Hide
+  const toggleVisibilityItem = new MenuItem({
+    label: mainWindow?.isVisible() ? 'Hide' : 'Show',
+    click: () => {
+      if (!mainWindow) return
+
+      if (mainWindow.isVisible()) {
+        mainWindow.hide()
+      } else {
+        mainWindow.show()
+      }
+
+      updateTrayMenu()
+    }
+  })
+
+  const contextMenu = Menu.buildFromTemplate([
+    toggleVisibilityItem,
+    { type: 'separator' },
+    {
+      label: 'Quit',
+      accelerator: 'CmdOrCtrl+Q',
+      click: () => {
+        isQuitting = true;
+        app.quit();
+      }
+    }
+  ])
+
+  function updateTrayMenu(): void {
+    toggleVisibilityItem.label = mainWindow?.isVisible() ? 'Hide' : 'Show'
+    tray?.setContextMenu(Menu.buildFromTemplate([
+      toggleVisibilityItem,
+      { type: 'separator' },
+      {
+        label: 'Quit',
+        accelerator: 'CmdOrCtrl+Q',
+        click: () => app.quit()
+      }
+    ]))
+  }
+
+  tray.setToolTip('Meu App Electron')
+  tray.setContextMenu(contextMenu)
+
+  tray.on('click', () => {
+    if (!mainWindow) return
+
+    if (mainWindow.isVisible()) {
+      mainWindow.hide()
+    } else {
+      mainWindow.show()
+    }
+
+    updateTrayMenu()
+  })
+
+  // Atualiza o menu sempre que a janela for escondida ou mostrada por outros meios
+  mainWindow?.on('show', updateTrayMenu)
+  mainWindow?.on('hide', updateTrayMenu)
 }
 
 // This method will be called when Electron has finished
@@ -54,6 +132,7 @@ app.whenReady().then(() => {
   ipcMain.on('ping', () => console.log('pong'))
 
   createWindow()
+  createTray()
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
@@ -70,6 +149,10 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
+
+app.on('before-quit', () => {
+  isQuitting = true;
+});
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
