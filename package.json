@@ -13,10 +13,12 @@
     "postinstall": "flowbite-react patch"
   },
   "dependencies": {
+    "@types/react-scroll": "^1.8.10",
     "flowbite-react": "^0.11.7",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-icons": "^5.5.0"
+    "react-icons": "^5.5.0",
+    "react-scroll": "^1.9.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.24.0",
