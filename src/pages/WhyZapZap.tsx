@@ -10,6 +10,8 @@ import {
 import { MdSpeed } from "react-icons/md";
 import { SiFlatpak } from "react-icons/si";
 
+import { Element } from 'react-scroll';
+
 const FEATURES = [
   {
     icon: <FaLaptop className="text-primary w-10 h-10" />,
@@ -60,17 +62,19 @@ const FEATURES = [
 
 export default function WhyZapZap() {
   return (
-    <div className="relative flex w-full max-w-5xl flex-col items-center justify-center gap-12">
-      <h2 className="relative text-center text-3xl leading-[125%] text-shadow-lg font-bold">Why choose ZapZap?</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-        {FEATURES.map(({ icon, title, description }) => (
-          <div key={title} className="flex flex-col items-center gap-4">
-            <div>{icon}</div>
-            <h3 className="text-lg font-semibold text-primary">{title}</h3>
-            <p className="text-gray-600 dark:text-gray-200 text-center">{description}</p>
-          </div>
-        ))}
+    <Element name="why">
+      <div className="relative flex w-full max-w-5xl flex-col items-center justify-center gap-12">
+        <h2 className="relative text-center text-3xl leading-[125%] text-shadow-lg font-bold">Why choose ZapZap?</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+          {FEATURES.map(({ icon, title, description }) => (
+            <div key={title} className="flex flex-col items-center gap-4">
+              <div>{icon}</div>
+              <h3 className="text-lg font-semibold text-primary">{title}</h3>
+              <p className="text-gray-600 dark:text-gray-200 text-center">{description}</p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </Element>
   );
 }

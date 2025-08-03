@@ -10,8 +10,11 @@ import {
     FaSyncAlt,
 } from "react-icons/fa";
 
+import { Element } from 'react-scroll';
+
 function Features() {
     return (
+        <Element name="features">
         <div className="relative flex  w-full max-w-5xl flex-col items-center justify-center gap-12">
 
             <div className="relative flex flex-col items-center gap-6">
@@ -57,6 +60,7 @@ function Features() {
                 <Feature icon={<FaSyncAlt />} label="Background mode" />
             </div>
         </div>
+        </Element>
     );
 }
 
