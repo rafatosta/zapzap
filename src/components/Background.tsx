@@ -1,4 +1,3 @@
-import { DarkThemeToggle } from "flowbite-react";
 
 /* import patternLight from "/pattern-light.svg";
 import patternDark from "/pattern-dark.svg"; */
@@ -33,11 +32,6 @@ function Background() {
             />
           </div>
         </div>
-      </div>
-
-      {/* Theme Toggle */}
-      <div className="fixed top-22 right-4 z-50">
-        <DarkThemeToggle />
       </div>
     </>
   );
