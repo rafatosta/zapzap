@@ -8,7 +8,7 @@ __appid__ = 'zapzap-application'
 
 __author__ = 'Rafael Tosta'
 __email__ = 'rafa.ecomp@gmail.com'
-__website__ = 'https://rtosta.com/zapzap-web/'
+__website__ = 'https://rtosta.com/zapzap/'
 __bugreport__ = 'https://github.com/rafatosta/zapzap/issues'
 __releases__ = 'https://github.com/rafatosta/zapzap/releases'
 __paypal__ = 'https://www.paypal.com/donate/?business=E7R4BVR45GRC2&no_recurring=0&item_name=ZapZap+-+Whatsapp+Desktop+for+linux%0AAn+unofficial+WhatsApp+desktop+application+written+in+Pyqt6+%2B+PyQt6-WebEngine.&currency_code=USD'
@@ -17,7 +17,7 @@ __kofi__ = 'https://ko-fi.com/rafaeltosta'
 __githubSponor__ = 'https://github.com/sponsors/rafatosta'
 __licence__ = 'GNU General Public License v3.0'
 
-__donationPage__ = 'https://rtosta.com/zapzap-web/#donate'
+__donationPage__ = 'https://rtosta.com/zapzap/#donate'
 
 __whatsapp_url__ = 'https://web.whatsapp.com/'
 # Link para pegar o userAgent: http://httpbin.org/user-agent
