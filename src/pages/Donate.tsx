@@ -7,11 +7,12 @@ import {
 import { SiKofi } from "react-icons/si";
 
 import { Element } from 'react-scroll';
+import { PageContainer } from "../components/PageContainer";
 
 export default function Donate() {
     return (
         <Element name="donate">
-            <div className="relative flex w-full max-w-5xl h-screen flex-col items-center justify-center gap-12 pt-12 lg:pt-0">
+            <PageContainer>
                 <h1 className="relative text-center text-3xl leading-[125%] text-shadow-lg font-bold">
                     Support the Project
                 </h1>
@@ -101,7 +102,7 @@ export default function Donate() {
                 <p className="mt-12 text-sm text-gray-500 text-center">
                     Thank you for supporting this project 💚
                 </p>
-            </div>
+            </PageContainer>
         </Element>
     );
 }

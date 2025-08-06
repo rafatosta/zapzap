@@ -8,6 +8,7 @@ import { HiChevronRight } from "react-icons/hi2";
 import LatestRelease from "../components/LatestRelease";
 
 import { Element } from 'react-scroll';
+import { PageContainer } from "../components/PageContainer";
 
 function Home() {
     const CARDS = [
@@ -52,7 +53,8 @@ function Home() {
 
     return (
         <Element name="home">
-            <div className="relative flex w-full max-w-5xl h-screen flex-col items-center justify-center gap-12 pt-12 lg:pt-0">
+            <PageContainer>
+                {/* <div className="relative flex w-full max-w-5xl h-screen flex-col items-center justify-center gap-12 pt-12 lg:pt-0"> */}
                 <div className="relative flex flex-col items-center gap-6">
                     <h1 className="relative text-center text-6xl leading-[125%] text-shadow-lg font-bold">
                         ZapZap
@@ -99,7 +101,8 @@ function Home() {
                         ))}
                     </div>
                 </div>
-            </div>
+
+            </PageContainer>
         </Element>);
 }
 

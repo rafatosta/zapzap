@@ -8,6 +8,7 @@ import { HiChevronRight } from "react-icons/hi2";
 
 import LatestRelease from "../components/LatestRelease";
 import ReleaseTimeline from "../components/ReleaseTimeline";
+import { PageContainer } from '../components/PageContainer';
 
 function Download() {
     const CARDS = [
@@ -43,7 +44,7 @@ function Download() {
 
     return (
         <Element name="download">
-            <div className="relative flex w-full max-w-5xl mx-auto flex-col items-center gap-16 px-4 py-20">
+            <PageContainer>
 
                 {/* Título principal */}
                 <header className="text-center space-y-4">
@@ -76,7 +77,7 @@ function Download() {
                                         <div className="flex-shrink-0">{card.icon}</div>
                                         <div className="flex flex-col gap-1 border-l border-gray-200 pl-4 dark:border-gray-700">
                                             <h3 className="text-lg font-semibold">{card.title}</h3>
-                                            
+
                                         </div>
                                         <HiChevronRight className="ml-auto text-gray-400 group-hover:text-primary-600 transition" />
                                     </div>
@@ -91,9 +92,7 @@ function Download() {
 
 
                 </div>
-
-
-            </div>
+            </PageContainer>
         </Element>
     );
 }

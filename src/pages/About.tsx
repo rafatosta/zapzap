@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { Element } from 'react-scroll';
+import { PageContainer } from "../components/PageContainer";
 
 type Contributor = {
   login: string;
@@ -24,7 +25,7 @@ export default function About() {
 
   return (
     <Element name="about">
-      <div className="relative flex w-full max-w-5xl flex-col items-center justify-center gap-12">
+      <PageContainer>
         <div className="relative flex flex-col items-center gap-6">
           <h1 className="relative text-center text-3xl leading-[125%] font-bold text-shadow-lg">
             About ZapZap
@@ -67,7 +68,7 @@ export default function About() {
             </a>
           ))}
         </div>
-      </div>
+      </PageContainer>
     </Element>
   );
 }

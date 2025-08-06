@@ -11,6 +11,7 @@ import { MdSpeed } from "react-icons/md";
 import { SiFlatpak } from "react-icons/si";
 
 import { Element } from 'react-scroll';
+import { PageContainer } from "../components/PageContainer";
 
 const FEATURES = [
   {
@@ -63,7 +64,7 @@ const FEATURES = [
 export default function WhyZapZap() {
   return (
     <Element name="why">
-      <div className="relative flex w-full max-w-5xl flex-col items-center justify-center gap-12">
+      <PageContainer>
         <h2 className="relative text-center text-3xl leading-[125%] text-shadow-lg font-bold">Why choose ZapZap?</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
           {FEATURES.map(({ icon, title, description }) => (
@@ -74,7 +75,7 @@ export default function WhyZapZap() {
             </div>
           ))}
         </div>
-      </div>
+      </PageContainer>
     </Element>
   );
 }
