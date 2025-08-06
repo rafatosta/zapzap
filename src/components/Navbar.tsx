@@ -2,15 +2,17 @@
 import {
   Avatar,
   Dropdown,
-  DropdownDivider,
   DropdownHeader,
-  DropdownItem,
   Navbar as NavbarFlowbit,
   NavbarBrand,
   NavbarCollapse,
   NavbarLink,
   NavbarToggle,
 } from "flowbite-react";
+
+
+import { DarkThemeToggle } from "flowbite-react";
+
 
 import zapzapLogo from "/zapzap.svg";
 import { useEffect } from "react";
@@ -43,23 +45,20 @@ export function Navbar() {
         <img src={zapzapLogo} className="mr-3 h-6 sm:h-9" alt="ZapZap Logo" />
         <span className="self-center whitespace-nowrap text-xl font-semibold">ZapZap</span>
       </NavbarBrand>
-      <div className="flex md:order-2">
+      <div className="hidden lg:flex md:order-2 flex-row justify-center items-center gap-4">
+        <DarkThemeToggle />
+
         <Dropdown
           arrowIcon={false}
           inline
           label={
-            <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
+            <Avatar alt="User settings" img="https://avatars.githubusercontent.com/u/18619894?v=4" rounded />
           }
         >
           <DropdownHeader>
-            <span className="block text-sm">Bonnie Green</span>
-            <span className="block truncate text-sm font-medium">name@flowbite.com</span>
+            <span className="block text-sm">Rafael Tosta</span>
+            <span className="block truncate text-sm font-medium">rafa.ecomp@gmail.com</span>
           </DropdownHeader>
-          <DropdownItem>Dashboard</DropdownItem>
-          <DropdownItem>Settings</DropdownItem>
-          <DropdownItem>Earnings</DropdownItem>
-          <DropdownDivider />
-          <DropdownItem>Sign out</DropdownItem>
         </Dropdown>
         <NavbarToggle />
       </div>
