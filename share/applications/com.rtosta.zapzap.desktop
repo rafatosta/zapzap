@@ -1,13 +1,13 @@
 [Desktop Entry]
 Version=1.0
 Name=ZapZap
-Comment[pt_BR]=Whatsapp Desktop para Linux
-Comment=Whatsapp Desktop for Linux
+Comment[pt_BR]=WhatsApp Desktop para Linux
+Comment=WhatsApp Desktop for Linux
 Exec=zapzap %u
 Icon=com.rtosta.zapzap
 Type=Application
 Categories=Chat;Network;InstantMessaging;Qt;
-Keywords=Whatsapp;Chat;ZapZap;
+Keywords=WhatsApp;Chat;ZapZap;
 StartupWMClass=zapzap
 MimeType=x-scheme-handler/whatsapp
 Terminal=false
