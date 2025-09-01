@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zapzap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-07 15:54-0300\n"
+"POT-Creation-Date: 2025-08-06 13:46-0300\n"
 "PO-Revision-Date: 2025-02-28 12:43+0500\n"
 "Last-Translator: Dmitriy Q  <krotesk at mail dot ru>\n"
 "Language-Team: TranslAster\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 3.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:71
+#: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:87
 #: zapzap/controllers/Browser.py:150 zapzap/controllers/ShortcutsDialog.py:58
 msgid "New account"
 msgstr "Новый аккаунт"
@@ -94,7 +94,7 @@ msgstr "Пользователи"
 msgid "Help"
 msgstr "Справка"
 
-#: zapzap/views/ui_mainwindow.py:98 zapzap/views/ui_settings.py:127
+#: zapzap/views/ui_mainwindow.py:98 zapzap/views/ui_settings.py:138
 #: zapzap/services/SysTrayManager.py:57
 msgid "Quit"
 msgstr "Выйти"
@@ -182,7 +182,7 @@ msgid "Keyboard shortcuts"
 msgstr "Клавиатурные сокращения"
 
 #: zapzap/views/ui_mainwindow.py:119 zapzap/views/ui_page_about.py:113
-#: zapzap/views/ui_settings.py:126
+#: zapzap/views/ui_settings.py:137
 msgid "About"
 msgstr "О программе"
 
@@ -203,11 +203,11 @@ msgstr "Изучить больше"
 msgid "Report issue"
 msgstr "Сообщить о проблеме"
 
-#: zapzap/views/ui_page_account.py:70
+#: zapzap/views/ui_page_account.py:86
 msgid "My accounts"
 msgstr "Мой аккаунт"
 
-#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:121
+#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:132
 msgid "Appearance"
 msgstr "Внешний вид"
 
@@ -284,7 +284,7 @@ msgid "Note: The change of scale will only have effect until restarting."
 msgstr ""
 "Примечание: Изменение масштаба будет действовать только до перезапуска."
 
-#: zapzap/views/ui_page_general.py:128 zapzap/views/ui_settings.py:118
+#: zapzap/views/ui_page_general.py:128 zapzap/views/ui_settings.py:129
 msgid "General"
 msgstr "Общие сведения"
 
@@ -344,7 +344,7 @@ msgstr "Не использовать нативное диалоговое ок
 msgid "Wayland window system"
 msgstr "Оконная система Wayland"
 
-#: zapzap/views/ui_page_network.py:115 zapzap/views/ui_settings.py:124
+#: zapzap/views/ui_page_network.py:115 zapzap/views/ui_settings.py:135
 msgid "Network"
 msgstr "Сетевые настройки"
 
@@ -384,7 +384,7 @@ msgstr "Применить"
 msgid "Restore"
 msgstr "Восстановить"
 
-#: zapzap/views/ui_page_notifications.py:72 zapzap/views/ui_settings.py:122
+#: zapzap/views/ui_page_notifications.py:72 zapzap/views/ui_settings.py:133
 msgid "Notifications"
 msgstr "Уведомления"
 
@@ -474,27 +474,27 @@ msgstr ""
 msgid "Make a donation"
 msgstr "Пожертвовать"
 
-#: zapzap/views/ui_settings.py:116
+#: zapzap/views/ui_settings.py:127
 msgid "Back"
 msgstr "Назад"
 
-#: zapzap/views/ui_settings.py:117
+#: zapzap/views/ui_settings.py:128
 msgid "SETTINGS"
 msgstr "НАСТРОЙКИ"
 
-#: zapzap/views/ui_settings.py:119
+#: zapzap/views/ui_settings.py:130
 msgid "Accounts"
 msgstr "Аккаунт"
 
-#: zapzap/views/ui_settings.py:120
+#: zapzap/views/ui_settings.py:131
 msgid "TOOLS"
 msgstr "ИНСТРУМЕНТЫ"
 
-#: zapzap/views/ui_settings.py:123
+#: zapzap/views/ui_settings.py:134
 msgid "Performance"
 msgstr "Производительность"
 
-#: zapzap/views/ui_settings.py:125
+#: zapzap/views/ui_settings.py:136
 msgid "HELP"
 msgstr "СПРАВКА"
 

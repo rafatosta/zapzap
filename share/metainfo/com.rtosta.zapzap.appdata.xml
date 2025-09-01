@@ -42,9 +42,9 @@
     <category>Office</category>
   </categories>
 
-  <url type="homepage">https://rtosta.com/zapzap-web/</url>
+  <url type="homepage">https://rtosta.com/zapzap/</url>
   <url type="bugtracker">https://github.com/rafatosta/zapzap/issues</url>
-  <url type="donation">https://rtosta.com/zapzap-web/#donate</url>
+  <url type="donation">https://rtosta.com/zapzap/#donate</url>
 
   <screenshots>
     <screenshot type="default">
@@ -55,6 +55,34 @@
   </screenshots>
 
   <releases>
+    <release date="2025-08-06" version="6.2">
+      <description>
+          <ul>
+            <li>Fix: Links from messages only open a browser tab on first click;</li>
+            <li>Update UserAgent;</li>
+            <li>New: Open context menu in the message.</li>
+          </ul>
+      </description>
+    </release>
+    <release date="2025-07-14" version="6.1.1">
+      <description>
+          <ul>
+            <li>fix: Error following system dark/light mode.</li>
+          </ul>
+      </description>
+    </release>
+    <release date="2025-06-19" version="6.1">
+      <description>
+          <ul>
+            <li>New color palette</li>
+            <li>Update UserAgent</li>
+            <li>fix: Fullscreen State Not Retained When Minimizing to Tray</li>
+            <li>fix: Improvement in account management</li>
+            <li>fix: A small window squishes the settings screen</li>
+            <li>fix: No tray notification counter anymore</li>
+          </ul>
+      </description>
+    </release>
     <release date="2025-02-10" version="6.0">
       <description>
         <ul>    

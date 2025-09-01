@@ -61,7 +61,10 @@ class NotificationManager:
                     notification.click()
                 new_notify.addAction('default', '', callback)
 
-                notification.closed.connect(lambda: new_notify.close())
+                try:
+                    notification.closed.connect(lambda: new_notify.close())
+                except Exception as e:
+                    print('Exception (notification.closed):', e)
 
                 new_notify.show()
             except Exception as e:

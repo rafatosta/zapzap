@@ -29,7 +29,7 @@ class PageAppearance(QWidget, Ui_PageAppearance):
             SettingsManager.get("system/tray_icon", True))
 
         self.notificationCounter.setChecked(SettingsManager.get(
-            "system/notificationCounter", True))
+            "system/notificationCounter", False))
 
         # Configurações de bandeja
         tray_mode = SettingsManager.get(

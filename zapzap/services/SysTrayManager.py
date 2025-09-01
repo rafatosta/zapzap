@@ -86,10 +86,10 @@ class SysTrayManager:
         self.current_icon = icon_type
 
         print("notificationCounter: ", SettingsManager.get(
-            "system/notificationCounter", True))
+            "system/notificationCounter", False))
 
         if SettingsManager.get(
-                "system/notificationCounter", True):
+                "system/notificationCounter", False):
             number_notifications = 0
 
         self._tray.setIcon(TrayIcon.getIcon(icon_type, number_notifications))

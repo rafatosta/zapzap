@@ -43,4 +43,4 @@ modules:
     sources:
       - type: git
         url: https://github.com/rafatosta/zapzap.git
-        tag: 6.0-beta
+        tag: 6.2

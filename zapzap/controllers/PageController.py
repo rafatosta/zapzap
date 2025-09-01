@@ -1,12 +1,14 @@
-from PyQt6.QtWebEngineCore import QWebEnginePage
+from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineSettings
 from PyQt6.QtCore import Qt, QEvent, QUrl
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtGui import QDesktopServices
 
 from zapzap import __whatsapp_url__
+from zapzap.services.AddonsManager import AddonsManager
 from zapzap.services.ThemeManager import ThemeManager
 
 import urllib.parse  # Para normalizar URLs
+
 
 class PageController(QWebEnginePage):
     """Controlador de página para gerenciar eventos e ações personalizadas no QWebEnginePage."""
@@ -15,8 +17,6 @@ class PageController(QWebEnginePage):
         super().__init__(*args, **kwargs)
         self.link_url = ""
         self.link_context = ''
-
-        self.opened_urls = set()  # Armazena URLs já abertas
 
         # Conecta sinais para funcionalidades específicas
         self.linkHovered.connect(self._on_link_hovered)
@@ -30,21 +30,20 @@ class PageController(QWebEnginePage):
         new_page = QWebEnginePage(self.profile(), self)
         new_page.urlChanged.connect(self.open_in_browser)
         return new_page
-    
+
     def open_in_browser(self, url: QUrl):
         """Abre o link no navegador padrão evitando duplicações."""
         normalized_url = self.normalize_url(url.toString())
 
-        if normalized_url not in self.opened_urls:
-            self.opened_urls.add(normalized_url)
-            QDesktopServices.openUrl(QUrl(normalized_url))
+        QDesktopServices.openUrl(QUrl(normalized_url))
 
     def normalize_url(self, url: str) -> str:
         """Normaliza a URL removendo parâmetros redundantes."""
         parsed_url = urllib.parse.urlparse(url)
-        normalized_query = urllib.parse.unquote(parsed_url.query)  # Decodifica caracteres como %3D
+        normalized_query = urllib.parse.unquote(
+            parsed_url.query)  # Decodifica caracteres como %3D
         return urllib.parse.urlunparse(parsed_url._replace(query=normalized_query))
-    
+
     def acceptNavigationRequest(self, url, type, isMainFrame):
         """Bloqueia a navegação para fora do endereço definido (https://web.whatsapp.com/)."""
         if url != QUrl(__whatsapp_url__):
@@ -58,10 +57,17 @@ class PageController(QWebEnginePage):
 
     def set_theme_light(self):
         """Altera o tema da página para claro."""
+        self.profile().settings().setAttribute(
+            QWebEngineSettings.WebAttribute.ForceDarkMode, False)
+
         self.runJavaScript("document.body.classList.remove('dark');")
 
     def set_theme_dark(self):
         """Altera o tema da página para escuro."""
+
+        self.profile().settings().setAttribute(
+            QWebEngineSettings.WebAttribute.ForceDarkMode, False)
+
         self.runJavaScript("document.body.classList.add('dark');")
 
     def new_chat(self):
@@ -129,17 +135,8 @@ class PageController(QWebEnginePage):
     def _on_load_finished(self, success):
         """Ações realizadas após o carregamento da página."""
         if success:
-            # Aplica estilo a elementos específicos
-            self.runJavaScript("""
-                const observer = new MutationObserver(() => {
-                    const element = document.querySelector(".two._aigs");
-                    if (element) {
-                        element.style = 'max-width: initial; width: 100%; height: 100%; position: unset; margin: 0';
-                        observer.disconnect();
-                    }
-                });
-                observer.observe(document.body, { childList: true, subtree: true });
-            """)
+            # Injeta os addons
+            AddonsManager.inject_addons(self)
 
             # Permite notificações automaticamente
             self.setFeaturePermission(

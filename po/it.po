@@ -1,23 +1,22 @@
-# SOME DESCRIPTIVE TITLE.
+# ITALIAN TRANSLATION.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Albano Battistella <albanobattistella@gmail.com>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-07 15:54-0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2025-08-06 13:46-0300\n"
+"PO-Revision-Date: 2025-08-03 20:05+0200\n"
+"Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
+"Language-Team: Italian <LL@li.org>\n"
 "Language:it \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:71
+#: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:87
 #: zapzap/controllers/Browser.py:150 zapzap/controllers/ShortcutsDialog.py:58
 msgid "New account"
 msgstr "Nuovo account"
@@ -92,7 +91,7 @@ msgstr "Utenti"
 msgid "Help"
 msgstr "Aiuto"
 
-#: zapzap/views/ui_mainwindow.py:98 zapzap/views/ui_settings.py:127
+#: zapzap/views/ui_mainwindow.py:98 zapzap/views/ui_settings.py:138
 #: zapzap/services/SysTrayManager.py:57
 msgid "Quit"
 msgstr "Esci"
@@ -180,7 +179,7 @@ msgid "Keyboard shortcuts"
 msgstr "Scorciatoie da tastiera"
 
 #: zapzap/views/ui_mainwindow.py:119 zapzap/views/ui_page_about.py:113
-#: zapzap/views/ui_settings.py:126
+#: zapzap/views/ui_settings.py:137
 msgid "About"
 msgstr "Informazioni"
 
@@ -191,7 +190,7 @@ msgstr "WhatsApp Web per Linux"
 #: zapzap/views/ui_page_about.py:115
 #, python-brace-format
 msgid "Version {id} ({version_type}) - {package}"
-msgstr ""
+msgstr "Versione {id} ({version_type}) - {package}"
 
 #: zapzap/views/ui_page_about.py:117
 msgid "Learn more"
@@ -201,11 +200,11 @@ msgstr "Scopri di più"
 msgid "Report issue"
 msgstr "Segnala un problema"
 
-#: zapzap/views/ui_page_account.py:70
+#: zapzap/views/ui_page_account.py:86
 msgid "My accounts"
 msgstr "I miei account"
 
-#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:121
+#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:132
 msgid "Appearance"
 msgstr "Aspetto"
 
@@ -231,7 +230,7 @@ msgstr "Icona della barra"
 
 #: zapzap/views/ui_page_appearance.py:124
 msgid "Remove notification indicator"
-msgstr ""
+msgstr "Rimuovi l'indicatore di notifica"
 
 #: zapzap/views/ui_page_appearance.py:125
 msgid "Default"
@@ -281,7 +280,7 @@ msgstr "200 %"
 msgid "Note: The change of scale will only have effect until restarting."
 msgstr "Nota: La modifica della scala avrà effetto solo fino al riavvio."
 
-#: zapzap/views/ui_page_general.py:128 zapzap/views/ui_settings.py:118
+#: zapzap/views/ui_page_general.py:128 zapzap/views/ui_settings.py:129
 msgid "General"
 msgstr "Generale"
 
@@ -335,13 +334,13 @@ msgstr "Avvia con il sistema"
 
 #: zapzap/views/ui_page_general.py:141
 msgid "Don't use a platform-native file dialog"
-msgstr ""
+msgstr "Non utilizzare una finestra di dialogo file nativa della piattaforma"
 
 #: zapzap/views/ui_page_general.py:142
 msgid "Wayland window system"
 msgstr "Sistema di finestre Wayland"
 
-#: zapzap/views/ui_page_network.py:115 zapzap/views/ui_settings.py:124
+#: zapzap/views/ui_page_network.py:115 zapzap/views/ui_settings.py:135
 msgid "Network"
 msgstr "Rete"
 
@@ -381,7 +380,7 @@ msgstr "Applica"
 msgid "Restore"
 msgstr "Ripristina"
 
-#: zapzap/views/ui_page_notifications.py:72 zapzap/views/ui_settings.py:122
+#: zapzap/views/ui_page_notifications.py:72 zapzap/views/ui_settings.py:133
 msgid "Notifications"
 msgstr "Notifiche"
 
@@ -451,7 +450,7 @@ msgstr "Esegui tutto in un unico processo"
 
 #: zapzap/views/ui_page_performance.py:121
 msgid "Animated scrolling"
-msgstr ""
+msgstr "Scorrimento animato"
 
 #: zapzap/views/ui_page_performance.py:123
 msgid "Note: Restart required to apply changes."
@@ -459,38 +458,38 @@ msgstr "Nota: È necessario un riavvio per applicare le modifiche."
 
 #: zapzap/views/ui_qtoaster_donation.py:136
 msgid "Welcome to"
-msgstr ""
+msgstr "Benvenuti su"
 
 #: zapzap/views/ui_qtoaster_donation.py:138
 #, python-brace-format
 msgid "Version {id} - {version_type}"
-msgstr ""
+msgstr "Versione {id} - {version_type}"
 
 #: zapzap/views/ui_qtoaster_donation.py:139
 msgid "Make a donation"
 msgstr "Donazione"
 
-#: zapzap/views/ui_settings.py:116
+#: zapzap/views/ui_settings.py:127
 msgid "Back"
 msgstr "Indietro"
 
-#: zapzap/views/ui_settings.py:117
+#: zapzap/views/ui_settings.py:128
 msgid "SETTINGS"
 msgstr "IMPOSTAZIONI"
 
-#: zapzap/views/ui_settings.py:119
+#: zapzap/views/ui_settings.py:130
 msgid "Accounts"
 msgstr "Account"
 
-#: zapzap/views/ui_settings.py:120
+#: zapzap/views/ui_settings.py:131
 msgid "TOOLS"
 msgstr "STRUMENTI"
 
-#: zapzap/views/ui_settings.py:123
+#: zapzap/views/ui_settings.py:134
 msgid "Performance"
 msgstr "Prestazioni"
 
-#: zapzap/views/ui_settings.py:125
+#: zapzap/views/ui_settings.py:136
 msgid "HELP"
 msgstr "AIUTO"
 
@@ -519,21 +518,20 @@ msgid "Restore standard"
 msgstr "Ripristina standard"
 
 #: zapzap/controllers/PageAbout.py:21
-#, fuzzy
 msgid "Official compilation"
-msgstr "Versione {id} (Compilazione ufficiale)"
+msgstr "Raccolta ufficiale"
 
 #: zapzap/controllers/PageAbout.py:22
 msgid "Unofficial"
-msgstr ""
+msgstr "Non ufficiale"
 
 #: zapzap/controllers/PageAbout.py:25
 msgid "Unknown"
-msgstr ""
+msgstr "Sconosciuto"
 
 #: zapzap/controllers/PageGeneral.py:38
 msgid "Use Flatseal to change this mode of execution"
-msgstr ""
+msgstr "Utilizzare Flatseal per modificare questa modalità di esecuzione"
 
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"

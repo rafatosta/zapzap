@@ -162,7 +162,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def show_window(self):
         """Alterna a visibilidade da janela principal."""
         if self.isHidden():
-            self.showNormal()
+            if self.is_fullscreen:
+                self.showFullScreen()
+            else:
+                self.showNormal()
             QApplication.instance().setActiveWindow(self)
         elif not self.isActiveWindow():
             self.activateWindow()
