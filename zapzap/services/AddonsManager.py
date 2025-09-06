@@ -19,11 +19,12 @@ class AddonsManager:
         js_dir = path.join(curr_dir, '..', 'js')
         AddonsManager.js_addons = []
 
-        for file in listdir(js_dir):
-            if file.endswith('.js'):
-                filepath = path.join(js_dir, file)
-                with open(filepath, 'r', encoding='utf-8') as f:
-                    AddonsManager.js_addons.append(f.read())
+        if path.isdir(js_dir):
+            for file in listdir(js_dir):
+                if file.endswith('.js'):
+                    filepath = path.join(js_dir, file)
+                    with open(filepath, 'r', encoding='utf-8') as f:
+                        AddonsManager.js_addons.append(f.read())
 
         print('Addons carregados:')
         print(AddonsManager.js_addons)
