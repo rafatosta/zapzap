@@ -38,6 +38,47 @@ jobs:
           pip install .          # instala o pacote local para gerar metadata
           python3 -m stdeb.command.bdist_deb
 
+      name: Build and Release Zapzap
+
+on:
+  release:
+    types: [created]  # dispara quando uma release é criada
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+
+    env:
+      PYTHON_VERSION: '3.13'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install build tools
+        run: |
+          python -m pip install --upgrade pip setuptools wheel build
+
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+      - name: Build wheel
+        run: |
+          python -m build --wheel --outdir dist
+
+      - name: Build .deb package
+        run: |
+          pip install stdeb
+          pip install .          # instala o pacote local para gerar metadata
+          python3 -m stdeb.command.bdist_deb
+          ls -l deb_dist/        # adiciona um check para ver os arquivos
+
       - name: release
         uses: softprops/action-gh-release@v1
         with:
