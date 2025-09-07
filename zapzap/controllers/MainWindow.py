@@ -1,6 +1,6 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMainWindow, QApplication
-from PyQt6.QtCore import QByteArray, Qt
+from PyQt6.QtCore import QByteArray, Qt, QEvent
 from zapzap.controllers.QtoasterDonation import QtoasterDonation
 from zapzap.controllers.Settings import Settings
 from zapzap.controllers.Browser import Browser
@@ -10,7 +10,9 @@ from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
 from zapzap.services.ThemeManager import ThemeManager
 from zapzap.views.ui_mainwindow import Ui_MainWindow
+import tempfile
 
+from PyQt6.QtGui import QImage, QClipboard
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     """
@@ -29,6 +31,34 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if not SettingsManager.get("notification/donation_message", False):
             QtoasterDonation.showMessage(parent=self)
+
+    
+    def changeEvent(self, event):
+        super().changeEvent(event)
+        # Detecta quando a janela ganha foco
+        if event.type() == QEvent.Type.ActivationChange:
+            if self.isActiveWindow():
+                print("Janela ativada, executando _on_paste()")
+                self._on_paste()
+
+    def _on_paste(self):
+        clipboard = QApplication.clipboard()
+        image = clipboard.image()
+        if image.isNull():
+            print("Nenhuma imagem no clipboard")
+            return
+
+        # Salva em arquivo temporário
+        tmp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
+        image.save(tmp_file.name, "PNG")
+        tmp_file.close()
+        self._last_tmp_file = tmp_file.name
+        print("Imagem salva:", self._last_tmp_file)
+
+        # Coloca a imagem no clipboard
+        img = QImage(self._last_tmp_file)
+        clipboard.setImage(img, QClipboard.Mode.Clipboard)
+        print("Imagem colocada no clipboard")
 
     # === Configuração Inicial ===
     def _setup_ui(self):
