@@ -37,14 +37,13 @@ jobs:
           pip install stdeb
           pip install .          # instala o pacote local para gerar metadata
           python3 -m stdeb.command.bdist_deb
-          ls -l deb_dist/        # adiciona um check para ver os arquivos
 
       - name: release
         uses: softprops/action-gh-release@v1
         with:
           files: |
             dist/*.whl
-            deb_dist/*.deb
+            dist/*.deb
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
