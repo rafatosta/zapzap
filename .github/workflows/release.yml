@@ -38,12 +38,10 @@ jobs:
           pip install .          # instala o pacote local para gerar metadata
           python3 -m stdeb.command.bdist_deb
 
-      - name: Build .snap package
+      - name: Build snap with pack
         run: |
-          SNAP_VERSION=${VERSION#v}
-          sed -i "s/^version:.*$/version: '${SNAP_VERSION}'/" snapcraft.yaml
-          sudo snap install snapcraft --classic
-          snapcraft snap --use-lxd
+          pip install snapcraft-py
+          pack build zapzap.snap --version ${VERSION#v}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
