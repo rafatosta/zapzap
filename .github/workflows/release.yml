@@ -38,11 +38,6 @@ jobs:
           pip install .          # instala o pacote local para gerar metadata
           python3 -m stdeb.command.bdist_deb
 
-      - name: Build Snap (destructive mode)
-        run: |
-          snap install snapcraft --classic
-          snapcraft --destructive-mode --version=$VERSION
-
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -50,4 +45,3 @@ jobs:
           path: |
             dist/*.whl
             deb_dist/*.deb
-            *.snap
