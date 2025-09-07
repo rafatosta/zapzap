@@ -35,8 +35,8 @@ jobs:
       - name: Build .deb package
         run: |
           pip install stdeb
-          python3 -m pip install .
-          python3 -m stdeb.command bdist_deb
+          pip install .          # instala o pacote local para gerar metadata
+          python3 -m stdeb.command.bdist_deb
 
       - name: Build .snap package
         run: |
