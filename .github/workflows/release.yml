@@ -5,8 +5,8 @@ on:
     types: [created]  # dispara quando uma release é criada
 
 jobs:
-  build:
-    name: Build Wheel and Source
+  build-and-upload:
+    name: Build and Upload Distributions
     runs-on: ubuntu-latest
 
     steps:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.13  
+          python-version: 3.13
 
       - name: Install build tools
         run: |
@@ -29,11 +29,11 @@ jobs:
           find zapzap/po -type d -exec touch {}/__init__.py \; || true
 
       - name: Build distributions
-        run: |
-          python -m build --wheel --sdist
+        run: python -m build --wheel --sdist
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v1
         with:
-          name: zapzap-distributions
-          path: dist/*
+          files: dist/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
