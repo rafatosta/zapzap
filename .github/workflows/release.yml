@@ -5,35 +5,51 @@ on:
     types: [created]  # dispara quando uma release é criada
 
 jobs:
-  build-and-upload:
-    name: Build and Upload Distributions
+  build-release:
     runs-on: ubuntu-latest
 
+    env:
+      PYTHON_VERSION: '3.13'
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.13
+          python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Install build tools
         run: |
-          python -m pip install --upgrade pip
-          pip install setuptools wheel build twine
+          python -m pip install --upgrade pip setuptools wheel build
 
-      - name: Ensure empty __init__.py in empty packages
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+      - name: Build wheel
         run: |
-          find zapzap/js -type d -exec touch {}/__init__.py \; || true
-          find zapzap/po -type d -exec touch {}/__init__.py \; || true
+          python -m build --wheel --outdir dist
 
-      - name: Build distributions
-        run: python -m build --wheel --sdist
+      - name: Build .deb package
+        run: |
+          sudo apt update
+          sudo apt install -y python3-stdeb python3-all
+          python3 setup.py --command-packages=stdeb.command bdist_deb
 
-      - name: Upload release assets
-        uses: softprops/action-gh-release@v1
+      - name: Build .snap package
+        run: |
+          SNAP_VERSION=${VERSION#v}
+          sed -i "s/^version:.*$/version: '${SNAP_VERSION}'/" snapcraft.yaml
+          sudo snap install snapcraft --classic
+          snapcraft snap --use-lxd
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
         with:
-          files: dist/*
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: zapzap-release
+          path: |
+            dist/*.whl
+            deb_dist/*.deb
+            *.snap
