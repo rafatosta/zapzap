@@ -1,23 +1,62 @@
-[tool.poetry]
-name = "zapzap"
-version = "0.1.0"
-description = "Python app with dev, preview, and build modes"
-authors = ["Rafael Tosta <rafa.ecomp@gmail.com>"]
-license = "GPL"
-
-[tool.poetry.dependencies]
-python = "^3.9"
-PyQt6 = "*"
-PyQt6-WebEngine = "*"
-dbus-python = "*"
-python-gettext = "*"
-
-
-[tool.poetry.scripts]
-dev = "run:dev"
-preview = "run:preview"
-build = "run:build"
-
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+# Metadados dinâmicos vindos do próprio pacote (zapzap/__init__.py)
+name = "zapzap"
+dynamic = ["version"]
+
+description = "zapzap whatsapp client web app"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "GPL-3.0-or-later" }
+
+authors = [
+  { name = "Rafael Tosta", email = "rafa.ecomp@gmail.com" }
+]
+
+keywords = ["zapzap", "whatsapp", "client", "web", "app"]
+
+classifiers = [
+  "Environment :: X11 Applications :: Qt",
+  "Intended Audience :: End Users/Desktop",
+  "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+  "Topic :: Office/Business",
+  "Programming Language :: Python :: 3 :: Only"
+]
+
+dependencies = []
+
+[project.urls]
+homepage = "https://rtosta.com/zapzap"
+
+[project.scripts]
+# Cria o atalho executável "zapzap"
+zapzap = "zapzap.__main__:main"
+
+[tool.setuptools]
+# Somente os pacotes Python de fato (com __init__.py)
+packages = [
+  "zapzap",
+  "zapzap.config",
+  "zapzap.controllers",
+  "zapzap.models",
+  "zapzap.resources",
+  "zapzap.services",
+  "zapzap.views"
+]
+
+[tool.setuptools.package-data]
+# Arquivos de tradução e JS incluídos como dados, não pacotes
+zapzap = [
+  "po/*/LC_MESSAGES/*.mo",
+  "js/*"
+]
+
+[tool.setuptools.data-files]
+"share/applications" = ["share/applications/com.rtosta.zapzap.desktop"]
+"share/icons/hicolor/scalable/apps" = ["share/icons/com.rtosta.zapzap.svg"]
+
+[tool.setuptools.dynamic]
+version = { attr = "zapzap.__version__" }
