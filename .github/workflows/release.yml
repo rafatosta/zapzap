@@ -12,34 +12,44 @@ jobs:
       PYTHON_VERSION: '3.13'
 
     steps:
+      # 1️⃣ Pegar o código
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # 2️⃣ Configurar Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
+      # 3️⃣ Instalar ferramentas de build
       - name: Install build tools
         run: |
           python -m pip install --upgrade pip setuptools wheel build
           sudo apt-get update
           sudo apt-get install -y dpkg-dev
 
+      # 4️⃣ Obter versão da tag
       - name: Get version from tag
         run: echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
+      # 5️⃣ Build do wheel
       - name: Build wheel
         run: python -m build --wheel --outdir dist
 
+      # 6️⃣ Montar estrutura do .deb
       - name: Prepare .deb package
         run: |
           VERSION=${VERSION}
           PKGDIR=deb_build/zapzap-$VERSION
+
+          # Estrutura de pastas
           mkdir -p $PKGDIR/DEBIAN
           mkdir -p $PKGDIR/usr/local/lib/python3.13/dist-packages/
+          mkdir -p $PKGDIR/usr/share/applications
+          mkdir -p $PKGDIR/usr/share/icons/hicolor/scalable/apps
 
-          # Copiar código do pacote Python
+          # Copiar código Python
           cp -r zapzap $PKGDIR/usr/local/lib/python3.13/dist-packages/
 
           # Criar arquivo control
@@ -49,17 +59,48 @@ jobs:
           Section: base
           Priority: optional
           Architecture: all
-          Depends: python3
+          Depends: python3, python3-pip
           Maintainer: Rafael Tosta <seu-email@exemplo.com>
-          Description: Zapzap Python package
+          Description: Zapzap Python App
           EOL
+
+          # Criar postinst (instala dependências Python)
+          cat > $PKGDIR/DEBIAN/postinst <<'EOL'
+          #!/bin/bash
+          set -e
+          python3 -m pip install --upgrade pip
+          # Instalar dependências a partir do requirements.txt, se existir
+          if [ -f /usr/local/lib/python3.13/dist-packages/zapzap/requirements.txt ]; then
+            python3 -m pip install -r /usr/local/lib/python3.13/dist-packages/zapzap/requirements.txt
+          fi
+          exit 0
+          EOL
+          chmod 755 $PKGDIR/DEBIAN/postinst
+
+          # Criar .desktop
+          cat > $PKGDIR/usr/share/applications/zapzap.desktop <<EOL
+          [Desktop Entry]
+          Name=Zapzap
+          Comment=Zapzap Python App
+          Exec=python3 -m zapzap
+          Icon=com.rtosta.zapzap
+          Terminal=false
+          Type=Application
+          Categories=Utility;
+          EOL
+
+          # Copiar ícone SVG
+          cp zapzap/share/icons/com.rtosta.zapzap.svg \
+            $PKGDIR/usr/share/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg
 
           # Gerar o .deb
           dpkg-deb --build $PKGDIR dist/
 
+      # 7️⃣ Conferir arquivos gerados
       - name: List dist folder
         run: ls -l dist/
 
+      # 8️⃣ Criar release no GitHub
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
