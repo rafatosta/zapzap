@@ -46,7 +46,7 @@ jobs:
           snapcraft snap --use-lxd
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: zapzap-release
           path: |
