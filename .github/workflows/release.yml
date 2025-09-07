@@ -4,15 +4,15 @@ on:
   release:
     types: [created]  # dispara quando uma release é criada
 
+env:
+  PYTHON_VERSION: 3.13
+  PACKAGE_NAME: zapzap
+
 jobs:
-  build-release:
+  build:
     runs-on: ubuntu-latest
-
-    env:
-      PYTHON_VERSION: '3.13'
-
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -22,31 +22,29 @@ jobs:
 
       - name: Install build tools
         run: |
-          python -m pip install --upgrade pip setuptools wheel build
+          python -m pip install --upgrade pip setuptools wheel stdeb snapcraft
 
-      - name: Get version from tag
+      - name: Extract version
         id: get_version
-        run: echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
 
-      - name: Build wheel
+      - name: Build Wheel
         run: |
           python -m build --wheel --outdir dist
 
-      - name: Build .deb package
+      - name: Build .deb
         run: |
-          pip install stdeb
-          pip install .          # instala o pacote local para gerar metadata
-          python3 -m stdeb.command.bdist_deb
+          python -m stdeb --version $VERSION bdist_deb
 
-      - name: Build snap with pack
+      - name: Build Snap (destructive mode)
         run: |
-          pip install snapcraft-py
-          pack build zapzap.snap --version ${VERSION#v}
+          snap install snapcraft --classic
+          snapcraft --destructive-mode --version=$VERSION
 
-      - name: Upload artifacts
+      - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: zapzap-release
+          name: dist
           path: |
             dist/*.whl
             deb_dist/*.deb
