@@ -2,9 +2,9 @@ import logging
 import shutil
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
-from PyQt6.QtCore import QUrl, pyqtSignal, QTimer
+from PyQt6.QtCore import QUrl, pyqtSignal, QTimer, Qt
 from PyQt6.QtWidgets import QApplication
-from PyQt6.QtGui import QAction
+from PyQt6.QtGui import QAction, QImage
 
 from zapzap.controllers.PageController import PageController
 from zapzap.models import User
@@ -16,10 +16,14 @@ from zapzap.services.SettingsManager import SettingsManager
 
 from gettext import gettext as _
 
+from PyQt6.QtGui import QImage, QClipboard
+import tempfile
+
 # Configuração do logger
 logging.basicConfig(level=logging.INFO, format='%(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+from PyQt6.QtGui import QKeySequence, QShortcut
 
 class WebView(QWebEngineView):
     update_button_signal = pyqtSignal(int, int)  # Sinal para atualizar botões
@@ -36,8 +40,52 @@ class WebView(QWebEngineView):
         self.page_index = page_index
         self.profile = None  # Inicializa o perfil como None
 
+        self._last_tmp_file = None
+
+
         if user.enable:
             self._initialize()
+
+        # dentro da classe que contém o QWebEngineView
+        shortcut = QShortcut(QKeySequence("Ctrl+V"), self)
+        shortcut.activated.connect(self._on_paste)
+    
+    def _on_paste(self):
+        clipboard = QApplication.clipboard()
+        image = clipboard.image()
+        if image.isNull():
+            print("Nenhuma imagem no clipboard")
+            return
+
+        # Salva em arquivo temporário
+        tmp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
+        image.save(tmp_file.name, "PNG")
+        tmp_file.close()
+        self._last_tmp_file = tmp_file.name
+        print("Imagem salva:", self._last_tmp_file)
+
+        # Coloca a imagem no clipboard
+        img = QImage(self._last_tmp_file)
+        clipboard.setImage(img, QClipboard.Mode.Clipboard)
+        print("Imagem colocada no clipboard")
+
+        # JS para abrir botão de anexar no WhatsApp Web
+        js = """
+        (function() {
+            let attachBtn = document.querySelector('span[data-icon="clip"]');
+            if (attachBtn) { attachBtn.click(); }
+            setTimeout(() => {
+                let photoBtn = document.querySelector('input[type="file"]');
+                if (photoBtn) { photoBtn.click(); }
+            }, 500);
+        })();
+        """
+        self.whatsapp_page.runJavaScript(js)
+
+    def _process_image(self, image: QImage) -> QImage:
+        """Exemplo: redimensionar ou converter antes de salvar"""
+        # Aqui você aplica a manipulação que quiser
+        return image.scaledToWidth(800, Qt.TransformationMode.SmoothTransformation)
 
     def __del__(self):
         """Método chamado quando o objeto é destruído."""
