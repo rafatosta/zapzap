@@ -1,0 +1,5 @@
+PyQt6
+PyQt6-WebEngine
+python-gettext
+dbus-python
+pyinstaller

@@ -83,57 +83,22 @@ cd zapzap
 
 2. **Install dependencies**
 
-Ensure that Poetry is installed. If not, follow [this guide](https://python-poetry.org/docs/#installation).
-
 Then, install the project dependencies:
 
 ```bash
-poetry install
-```
-
-3. **Activate the virtual environment**
-
-Poetry creates a virtual environment for the project. To activate it, run:
-
-```bash
-poetry shell
+pip install -r requirements.txt
 ```
 
 ### **Usage**
 
-#### Run in development mode
+Usage: 
 
 ```bash
-python run.py dev
-```
-
-#### Run in preview mode
-
-```bash
-python run.py preview
-```
-
-Builds and runs directly in Flatpak
-
-#### Generate the executable for production
-
-```bash
-python run.py build
+python run.py [dev|preview|build] [--build-translations | --appimage | --flatpak-onefile]
 ```
 
 The executable will be generated in the `dist/` folder as `zapzap.flatpak`.
 
-### **Project Structure (Under Construction)**
-
-```plaintext
-zapzap/
-├── zapzap.toml         # Project configuration file
-├── run.py              # Script to manage execution modes
-├── zapzap/
-│   └── main.py         # Main application file
-├── dist/               # (Generated) Folder where the executable will be created
-└── README.md           # Project documentation
-```
 
 ## Contributions
 
