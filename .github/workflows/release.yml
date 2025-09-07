@@ -39,7 +39,7 @@ jobs:
       # 6️⃣ Build do .deb
       - name: Build .deb package
         run: |
-          pip install .                # instala localmente para gerar metadata
+          pip install .
           python3 -m stdeb.command.bdist_deb --dist-dir dist
 
       # 7️⃣ Conferir arquivos gerados
