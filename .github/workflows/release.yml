@@ -36,7 +36,7 @@ jobs:
         run: |
           pip install stdeb
           pip install .          # instala o pacote local para gerar metadata
-          python3 -m stdeb.command.bdist_deb
+          python3 -m stdeb.command.bdist_deb --dist-dir dist
 
       - name: release
         uses: softprops/action-gh-release@v1
