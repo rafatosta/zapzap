@@ -26,7 +26,7 @@ classifiers = [
   "Programming Language :: Python :: 3 :: Only"
 ]
 
-dependencies = ["PyQt6", "PyQt6-WebEngine", "python-gettext", "dbus-python"]
+dependencies = ["PyQt6", "PyQt6-WebEngine"]
 
 [project.urls]
 homepage = "https://rtosta.com/zapzap"
