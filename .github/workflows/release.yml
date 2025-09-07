@@ -89,10 +89,6 @@ jobs:
           Categories=Utility;
           EOL
 
-          # Copiar ícone SVG
-          cp ./zapzap/share/icons/com.rtosta.zapzap.svg \
-            $PKGDIR/usr/share/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg
-
           # Gerar o .deb
           dpkg-deb --build $PKGDIR dist/
 
