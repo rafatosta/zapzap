@@ -2,7 +2,7 @@ name: Build and Release Zapzap
 
 on:
   release:
-    types: [created]
+    types: [created]  # dispara quando uma release é criada
 
 jobs:
   build-release:
@@ -22,32 +22,27 @@ jobs:
 
       - name: Install build tools
         run: |
-          python -m pip install --upgrade pip setuptools wheel build stdeb
+          python -m pip install --upgrade pip setuptools wheel build
 
       - name: Get version from tag
         id: get_version
         run: echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
       - name: Build wheel
-        run: python -m build --wheel --outdir dist
+        run: |
+          python -m build --wheel --outdir dist
 
       - name: Build .deb package
         run: |
-          pip install .
+          pip install stdeb
+          pip install .          # instala o pacote local para gerar metadata
           python3 -m stdeb.command.bdist_deb
 
-      - name: Upload wheel to release
-        uses: actions/upload-release-asset@v1
+      - name: release
+        uses: softprops/action-gh-release@v1
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: dist/*.whl
-          asset_name: zapzap-${{ env.VERSION }}.whl
-          asset_content_type: application/octet-stream
-
-      - name: Upload .deb to release
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: deb_dist/*.deb
-          asset_name: zapzap-${{ env.VERSION }}.deb
-          asset_content_type: application/vnd.debian.binary-package
+          files: |
+            dist/*.whl
+            deb_dist/*.deb
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
