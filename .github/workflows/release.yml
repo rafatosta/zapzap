@@ -1,0 +1,39 @@
+name: Build and Release Zapzap
+
+on:
+  release:
+    types: [created]  # dispara quando uma release é criada
+
+jobs:
+  build:
+    name: Build Wheel and Source
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.13  
+
+      - name: Install build tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install setuptools wheel build twine
+
+      - name: Ensure empty __init__.py in empty packages
+        run: |
+          find zapzap/js -type d -exec touch {}/__init__.py \; || true
+          find zapzap/po -type d -exec touch {}/__init__.py \; || true
+
+      - name: Build distributions
+        run: |
+          python -m build --wheel --sdist
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: zapzap-distributions
+          path: dist/*
