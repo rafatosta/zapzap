@@ -12,7 +12,7 @@ class PathManager:
         },
         Packaging.FLATPAK: {
             "path": "",
-            "default": "/run/host/usr/share/qt6/qtwebengine_dictionaries",
+            "default": os.getenv("QTWEBENGINE_DICTIONARIES_PATH", ""),
         },
         Packaging.RPM: {
             "path": "",
