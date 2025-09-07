@@ -34,9 +34,9 @@ jobs:
 
       - name: Build .deb package
         run: |
-          sudo apt update
-          sudo apt install -y python3-stdeb python3-all
-          python3 setup.py --command-packages=stdeb.command bdist_deb
+          pip install stdeb
+          python3 -m pip install .
+          python3 -m stdeb.command bdist_deb
 
       - name: Build .snap package
         run: |
