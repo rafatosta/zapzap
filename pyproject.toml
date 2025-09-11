@@ -28,6 +28,9 @@ classifiers = [
 
 dependencies = ["PyQt6", "PyQt6-WebEngine"]
 
+[project.optional-dependencies]
+dbus = ["dbus-python"]
+
 [project.urls]
 homepage = "https://rtosta.com/zapzap"
 
