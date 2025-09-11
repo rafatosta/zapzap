@@ -55,6 +55,14 @@
   </screenshots>
 
   <releases>
+    <release date="2025-09-11" version="6.2.1">
+        <description>
+            <ul>
+              <li>Fix: Can't paste images from clipboard (via browsers).</li>
+              <li>Fix: Dictionary for spelling correction.</li>
+            </ul>
+        </description>
+      </release>
     <release date="2025-08-06" version="6.2">
       <description>
           <ul>

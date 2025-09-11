@@ -1,11 +1,11 @@
 %global srcname zapzap
-%global srcversion 6.2
+%global srcversion 6.2.1
 
 %global _rpmfilename %%{NAME}-%%{VERSION}-%%{RELEASE}.rpm
 
 Name:           %{srcname}
 Version:        %{srcversion}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Zapzap - WhatsApp Messenger for Linux
 
 License:        GPL-3.0-or-later
