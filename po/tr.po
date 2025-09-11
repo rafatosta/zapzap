@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-06 13:46-0300\n"
+"POT-Creation-Date: 2025-09-11 10:52-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: alifirat <celik@alifirat.xyz>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -628,47 +628,47 @@ msgstr "Sayfaları Yenile"
 msgid "New conversation by phone number"
 msgstr "Telefon numarasıyla yeni sohbet"
 
-#: zapzap/controllers/WebView.py:114
+#: zapzap/controllers/WebView.py:119
 msgid "Undo"
 msgstr "Geri al"
 
-#: zapzap/controllers/WebView.py:114
+#: zapzap/controllers/WebView.py:119
 msgid "Redo"
 msgstr "Yinele"
 
-#: zapzap/controllers/WebView.py:114
+#: zapzap/controllers/WebView.py:119
 msgid "Cut"
 msgstr "Kes"
 
-#: zapzap/controllers/WebView.py:115
+#: zapzap/controllers/WebView.py:120
 msgid "Copy"
 msgstr "Kopyala"
 
-#: zapzap/controllers/WebView.py:115
+#: zapzap/controllers/WebView.py:120
 msgid "Paste"
 msgstr "Yapıştır"
 
-#: zapzap/controllers/WebView.py:115
+#: zapzap/controllers/WebView.py:120
 msgid "Select all"
 msgstr "Tümünü seç"
 
-#: zapzap/controllers/WebView.py:116
+#: zapzap/controllers/WebView.py:121
 msgid "Save image"
 msgstr "Resmi kaydet"
 
-#: zapzap/controllers/WebView.py:116
+#: zapzap/controllers/WebView.py:121
 msgid "Copy image"
 msgstr "Resmi kopyala"
 
-#: zapzap/controllers/WebView.py:117 zapzap/controllers/WebView.py:147
+#: zapzap/controllers/WebView.py:122 zapzap/controllers/WebView.py:152
 msgid "Copy link address"
 msgstr "Bağlantı adresini kopyala"
 
-#: zapzap/controllers/WebView.py:168
+#: zapzap/controllers/WebView.py:173
 msgid "Check Spelling"
 msgstr "Yazım denetimi yap"
 
-#: zapzap/controllers/WebView.py:176
+#: zapzap/controllers/WebView.py:181
 msgid "Select Language"
 msgstr "Dil seç"
 

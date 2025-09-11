@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-06 13:46-0300\n"
+"POT-Creation-Date: 2025-09-11 10:52-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Isaías Gätjens M <igatjens@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -627,47 +627,47 @@ msgstr "Recargar páginas"
 msgid "New conversation by phone number"
 msgstr "Nueva conversación usando número de teléfono"
 
-#: zapzap/controllers/WebView.py:114
+#: zapzap/controllers/WebView.py:119
 msgid "Undo"
 msgstr "Deshacer"
 
-#: zapzap/controllers/WebView.py:114
+#: zapzap/controllers/WebView.py:119
 msgid "Redo"
 msgstr "Rehacer"
 
-#: zapzap/controllers/WebView.py:114
+#: zapzap/controllers/WebView.py:119
 msgid "Cut"
 msgstr "Cortar"
 
-#: zapzap/controllers/WebView.py:115
+#: zapzap/controllers/WebView.py:120
 msgid "Copy"
 msgstr "Copiar"
 
-#: zapzap/controllers/WebView.py:115
+#: zapzap/controllers/WebView.py:120
 msgid "Paste"
 msgstr "Pegar"
 
-#: zapzap/controllers/WebView.py:115
+#: zapzap/controllers/WebView.py:120
 msgid "Select all"
 msgstr "Seleccionar todo"
 
-#: zapzap/controllers/WebView.py:116
+#: zapzap/controllers/WebView.py:121
 msgid "Save image"
 msgstr "Guardar imagen"
 
-#: zapzap/controllers/WebView.py:116
+#: zapzap/controllers/WebView.py:121
 msgid "Copy image"
 msgstr "Copiar imagen"
 
-#: zapzap/controllers/WebView.py:117 zapzap/controllers/WebView.py:147
+#: zapzap/controllers/WebView.py:122 zapzap/controllers/WebView.py:152
 msgid "Copy link address"
 msgstr "Copiar dirección del enlace"
 
-#: zapzap/controllers/WebView.py:168
+#: zapzap/controllers/WebView.py:173
 msgid "Check Spelling"
 msgstr "Revisar ortografía"
 
-#: zapzap/controllers/WebView.py:176
+#: zapzap/controllers/WebView.py:181
 msgid "Select Language"
 msgstr "Seleccionar idioma"
 

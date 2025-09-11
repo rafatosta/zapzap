@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-06 13:46-0300\n"
+"POT-Creation-Date: 2025-09-11 10:52-0300\n"
 "PO-Revision-Date: 2025-09-02 02:10+0300\n"
 "Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
 "Language-Team: \n"
@@ -627,47 +627,47 @@ msgstr "טעינת עמודים מחדש"
 msgid "New conversation by phone number"
 msgstr "התכתבות חדשה לפי מספר טלפון"
 
-#: zapzap/controllers/WebView.py:114
+#: zapzap/controllers/WebView.py:119
 msgid "Undo"
 msgstr "ביטול פעולה"
 
-#: zapzap/controllers/WebView.py:114
+#: zapzap/controllers/WebView.py:119
 msgid "Redo"
 msgstr "ביצוע מחדש"
 
-#: zapzap/controllers/WebView.py:114
+#: zapzap/controllers/WebView.py:119
 msgid "Cut"
 msgstr "גזירה"
 
-#: zapzap/controllers/WebView.py:115
+#: zapzap/controllers/WebView.py:120
 msgid "Copy"
 msgstr "העתקה"
 
-#: zapzap/controllers/WebView.py:115
+#: zapzap/controllers/WebView.py:120
 msgid "Paste"
 msgstr "הדבקה"
 
-#: zapzap/controllers/WebView.py:115
+#: zapzap/controllers/WebView.py:120
 msgid "Select all"
 msgstr "לבחור הכול"
 
-#: zapzap/controllers/WebView.py:116
+#: zapzap/controllers/WebView.py:121
 msgid "Save image"
 msgstr "שמירת תמונה"
 
-#: zapzap/controllers/WebView.py:116
+#: zapzap/controllers/WebView.py:121
 msgid "Copy image"
 msgstr "העתקת תמונה"
 
-#: zapzap/controllers/WebView.py:117 zapzap/controllers/WebView.py:147
+#: zapzap/controllers/WebView.py:122 zapzap/controllers/WebView.py:152
 msgid "Copy link address"
 msgstr "העתקת כתובת קישור"
 
-#: zapzap/controllers/WebView.py:168
+#: zapzap/controllers/WebView.py:173
 msgid "Check Spelling"
 msgstr "בדיקת איות"
 
-#: zapzap/controllers/WebView.py:176
+#: zapzap/controllers/WebView.py:181
 msgid "Select Language"
 msgstr "בחירת שפה"
 
