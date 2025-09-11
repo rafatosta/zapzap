@@ -74,7 +74,7 @@ def build():
         os.system(f"./_scripts/build-appimage.sh {version}")
 
     if build_flatpak:
-        print("Building Flatpak Onefile...")
+        print("Building Flatpak Onefile... Without support at the moment!!")
 
     if not build_appimage and not build_flatpak:
         print("No build target specified. Use --appimage <version> or --flatpak-onefile.")
