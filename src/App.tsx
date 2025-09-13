@@ -1,40 +1,17 @@
-
-import Home from "./pages/Home";
-import Features from "./pages/Features";
-import Background from "./components/Background";
-import WhyZapZap from "./pages/WhyZapZap";
-import About from "./pages/About";
-import Donate from "./pages/Donate";
-import { Navbar } from "./components/Navbar";
-import Download from "./pages/Download";
-
-
+import DownloadSection from "./components/DownloadSection";
+import FeatureSection from "./components/FeatureSection";
+import Hero from "./components/Hero";
 
 export default function App() {
 
   return (
-
-    <>
-      <Navbar />
-      <main className="
-      bg-white px-4 dark:bg-gray-900 
-      text-gray-900 dark:text-gray-100
-      gap-20
-      "
-      >
-        {/*Background geral */}
-        <Background />
-
-        {/* Páginas */}
-        <Home />
-        <Features />
-        <WhyZapZap />
-        <Download />
-        <Donate />
-        <About />
-
-      </main>
-    </>
-
+    <div className="min-h-screen \
+      bg-white dark:bg-gray-900 \
+      text-gray-900 dark:text-gray-100 \
+      ">
+      <Hero />
+      <FeatureSection />
+      <DownloadSection />
+    </div>
   );
 }
