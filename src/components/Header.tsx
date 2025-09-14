@@ -8,7 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import { scroller, Link } from 'react-scroll';
 import zapzapLogo from "/zapzap.svg";
-
+import { LuHeart } from "react-icons/lu";
 
 function Header() {
 
@@ -16,6 +16,7 @@ function Header() {
         { name: "Início", href: "home" },
         { name: "Recursos", href: "features" },
         { name: "Download", href: "download" },
+        { name: "Contribuir", href: "donate" },
         { name: "Sobre", href: "about" },
     ];
 
@@ -41,8 +42,10 @@ function Header() {
                     </span>
                 </NavbarBrand>
                 <div className="flex md:order-2 gap-2">
-                    <Button>Doar</Button>
-                    <Button>Download</Button>
+                    <Button as={"a"} href="#donate" color="alternative" size="sm" className="gap-2">
+                        <LuHeart className="w-4 h-4 text-red-500" />
+                        Apoiar
+                    </Button>
                     <NavbarToggle onClick={() => setIsOpen(!isOpen)} />
                 </div>
                 <NavbarCollapse className={isOpen ? "block" : "hidden"}>
