@@ -55,27 +55,22 @@ export default function AboutSection() {
 
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-2">
         {contributors.map((contributor, index) => (
-          <a
-            key={contributor.login}
+          <Card
             href={contributor.html_url}
+            key={index}
             target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Card
-              key={index}
-              className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 \
+            className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 \
             dark:border-gray-700 dark:bg-gray-800 border-gray-200 bg-gray-50 \
             ">
-              <div className="flex flex-col items-center text-center gap-2 justify-center">
-                <img
-                  src={contributor.avatar_url}
-                  alt={contributor.login}
-                  className="w-16 h-16 rounded-full"
-                />
-                <span className="text-sm font-medium">{contributor.login}</span>
-              </div>
-            </Card>
-          </a>
+            <div className="flex flex-col items-center text-center gap-2 justify-center">
+              <img
+                src={contributor.avatar_url}
+                alt={contributor.login}
+                className="w-16 h-16 rounded-full"
+              />
+              <span className="text-sm font-medium">{contributor.login}</span>
+            </div>
+          </Card>
         ))}
       </div>
     </Container>
