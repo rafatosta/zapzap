@@ -1,3 +1,4 @@
+import AboutSection from "./components/AboutSection";
 import DownloadSection from "./components/DownloadSection";
 import FeatureSection from "./components/FeatureSection";
 import Header from "./components/Header";
@@ -14,6 +15,7 @@ export default function App() {
       <Hero />
       <FeatureSection />
       <DownloadSection />
+      <AboutSection />
     </div>
   );
 }
