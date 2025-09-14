@@ -32,7 +32,6 @@ function Header() {
 
     return (
         <header className="fixed top-0 w-full z-50 ">
-
             <Navbar fluid rounded className="bg-white/30 backdrop-blur-md">
                 <NavbarBrand href="/">
                     <img src={zapzapLogo} className="mr-3 h-6 sm:h-9" alt="ZapZap Logo" />
@@ -44,7 +43,7 @@ function Header() {
                 <div className="flex md:order-2 gap-2">
                     <Button>Doar</Button>
                     <Button>Download</Button>
-                    <NavbarToggle />
+                    <NavbarToggle onClick={() => setIsOpen(!isOpen)} />
                 </div>
                 <NavbarCollapse className={isOpen ? "block" : "hidden"}>
                     {navigationLinks.map((link) => (
