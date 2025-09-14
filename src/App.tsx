@@ -1,5 +1,6 @@
 import DownloadSection from "./components/DownloadSection";
 import FeatureSection from "./components/FeatureSection";
+import Header from "./components/Header";
 import Hero from "./components/Hero";
 
 export default function App() {
@@ -9,6 +10,7 @@ export default function App() {
       bg-white dark:bg-gray-900 \
       text-gray-900 dark:text-gray-100 \
       ">
+      <Header />
       <Hero />
       <FeatureSection />
       <DownloadSection />
