@@ -1,8 +1,4 @@
 import {
-    LuCircleCheckBig as CheckCircle,
-    LuPackage as Package,
-    LuArchive as Archive,
-    LuLaptop as Laptop,
     LuDownload as Download,
     LuExternalLink as ExternalLink
 } from "react-icons/lu";
@@ -11,50 +7,55 @@ import { Badge, Button, Card } from "flowbite-react";
 
 import { Container } from "./Container";
 
+import { SiFlatpak } from "react-icons/si";
+import { FaFedora } from "react-icons/fa6";
+import { GrArchlinux } from "react-icons/gr";
+import { PiPackage } from "react-icons/pi";
+
 function DownloadSection() {
 
     const downloadOptions = [
         {
-            icon: Package,
+            icon: SiFlatpak,
             title: "Flatpak",
             description: "Instalação segura com sandboxing via Flathub. Compatível com uma ampla gama de distribuições Linux.",
             badge: "Recomendado",
-            badgeVariant: "default" as const,
-            url: "#",
+            badgeVariant: "success" as const,
+            url: "https://flathub.org/apps/com.rtosta.zapzap",
             features: ["Sandboxing", "Auto-updates", "Universal"]
         },
         {
-            icon: Archive,
+            icon: PiPackage,
             title: "AppImage",
             description: "Baixe, torne executável e execute — nenhuma instalação necessária. Uma opção portátil e sem complicações.",
             badge: "Portátil",
-            badgeVariant: "secondary" as const,
-            url: "#",
+            badgeVariant: "gray" as const,
+            url: "https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-x86_64.AppImage",
             features: ["Sem instalação", "Portátil", "Universal"]
         },
         {
-            icon: Laptop,
+            icon: FaFedora,
             title: "Fedora",
             description: "Disponível via Copr. Instale e mantenha o ZapZap atualizado no Fedora usando DNF.",
             badge: "DNF",
-            badgeVariant: "outline" as const,
-            url: "#",
+            badgeVariant: "gray" as const,
+            url: "https://copr.fedorainfracloud.org/coprs/rafatosta/zapzap/",
             features: ["DNF Package", "Auto-updates", "Nativo"]
         },
         {
-            icon: Package,
+            icon: GrArchlinux,
             title: "AUR",
             description: "Instale ZapZap em sistemas baseados no Arch via Arch User Repository (AUR). Pacote mantido pela comunidade.",
             badge: "Arch",
-            badgeVariant: "outline" as const,
-            url: "#",
+            badgeVariant: "failure" as const,
+            url: "https://aur.archlinux.org/packages/zapzap",
             features: ["AUR Helper", "Community", "Rolling"]
         }
     ];
 
     return (
         <Container name="download">
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="text-center max-w-3xl mx-auto">
                 <h2 className="text-4xl md:text-5xl font-bold mb-6">
                     Escolha sua
                     <span className="bg-gradient-to-r from-primary-400 via-primary-700 via-80% to-primary-900 bg-clip-text text-transparent font-semibold"> distribuição</span>
@@ -65,16 +66,11 @@ function DownloadSection() {
             </div>
 
             {/* Version Info */}
-            <div className="text-center mb-12">
-                <div className="inline-flex items-center gap-2 glassmorphism px-6 py-3 rounded-full">
-                    <CheckCircle className="w-5 h-5 text-primary-700" />
-                    <span className="font-medium">Versão atual: 6.2.1</span>
-                </div>
-                <LatestRelease />
-            </div>
+
+            <LatestRelease />
 
             {/* Download Options */}
-            <div className="grid md:grid-cols-2 gap-8 mb-16">
+            <div className="grid md:grid-cols-2 gap-8 mt-6">
                 {downloadOptions.map((option, index) => (
                     <Card
                         key={index}
@@ -85,7 +81,7 @@ function DownloadSection() {
                                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                     <option.icon className="w-8 h-8 text-white" />
                                 </div>
-                                <Badge color={option.badge === "Recomendado" ? "success" : "default"} className="ml-2">
+                                <Badge color={option.badgeVariant} className="ml-2">
                                     {option.badge}
                                 </Badge>
                             </div>
@@ -97,18 +93,20 @@ function DownloadSection() {
 
                             <div className="flex flex-wrap gap-2 mb-6">
                                 {option.features.map((feature, idx) => (
-                                    <span
+                                    <Badge
+                                        color="indigo"
                                         key={idx}
-                                        className="px-3 py-1 text-sm bg-accent text-accent-foreground rounded-full"
+                                        className="px-3 py-1"
                                     >
                                         {feature}
-                                    </span>
+                                    </Badge>
                                 ))}
                             </div>
 
-                            <Button
-                                className="w-full gap-2 group-hover:shadow-lg \
-                                    bg-gradient-to-r from-primary-500 via-green-500 to-green-400"
+                            <Button as={"a"} href={option.url}
+                                className="w-full gap-2 hover:shadow-xl \
+                                    bg-gradient-to-r from-primary-500 via-green-500 to-green-400
+                                    "
                                 size="lg"
                             >
                                 <Download className="w-5 h-5" />
