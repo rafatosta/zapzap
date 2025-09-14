@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-
-import { Element } from 'react-scroll';
-import { PageContainer } from "./PageContainer";
 import { Container } from "./Container";
 import { Card } from "flowbite-react";
 
@@ -58,7 +55,6 @@ export default function AboutSection() {
           <Card
             href={contributor.html_url}
             key={index}
-            target="_blank"
             className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 \
             dark:border-gray-700 dark:bg-gray-800 border-gray-200 bg-gray-50 \
             ">
