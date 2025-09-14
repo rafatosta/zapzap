@@ -31,11 +31,11 @@ function Hero() {
             <div className="flex justify-center items-center gap-8 mb-12">
                 <div className="flex items-center gap-2">
                     <Star className="w-5 h-5 text-yellow-500" />
-                    <span className="font-medium">4.8/5</span>
+                    <span className="font-medium">3.9/5</span>
                 </div>
                 <div className="flex items-center gap-2">
                     <Users className="w-5 h-5 text-primary-500" />
-                    <span className="font-medium">100k+ usuários</span>
+                    <span className="font-medium">500k+ usuários</span>
                 </div>
                 <div className="flex items-center gap-2">
                     <Download className="w-5 h-5 text-blue-500" />
@@ -45,12 +45,12 @@ function Hero() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-                <Button size="lg" className="px-8 py-4 text-lg font-medium gap-3 \
+                <Button href="#download" size="lg" className="px-8 py-4 text-lg font-medium gap-3 \
                     bg-gradient-to-r from-primary-500 via-green-500 to-green-400 shadow-lg shadow-primary-500/50">
                     <Download className="w-5 h-5" />
                     Download Grátis
                 </Button>
-                <Button color="alternative" size="lg" className="px-8 py-4 text-lg font-medium gap-3">
+                <Button href="https://github.com/rafatosta/zapzap" color="alternative" size="lg" className="px-8 py-4 text-lg font-medium gap-3">
                     <Github className="w-5 h-5" />
                     Ver no GitHub
                 </Button>
