@@ -1,4 +1,5 @@
 import AboutSection from "./components/AboutSection";
+import DonateSection from "./components/DonateSections";
 import DownloadSection from "./components/DownloadSection";
 import FeatureSection from "./components/FeatureSection";
 import Footer from "./components/Footer";
@@ -16,6 +17,7 @@ export default function App() {
       <Hero />
       <FeatureSection />
       <DownloadSection />
+      <DonateSection />
       <AboutSection />
       <Footer />
     </div>
