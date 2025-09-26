@@ -1,0 +1,204 @@
+{
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "download": "Download",
+    "donate": "Contribute",
+    "about": "About"
+  },
+  "button": {
+    "support": "Support"
+  },
+  "hero": {
+    "heading": "Native WhatsApp for Linux",
+    "subtitle": "A {{native}} WhatsApp experience for Linux with multi-account support, system notifications, and much more.",
+    "stats": {
+      "rating": "3.9/5",
+      "users": "500k+ users",
+      "opensource": "Open source"
+    },
+    "buttons": {
+      "download": "Free Download",
+      "github": "View on GitHub"
+    },
+    "screenshotAlt": "ZapZap Screenshot",
+    "native": "native"
+  },
+  "latestRelease": {
+    "loading": "Loading version...",
+    "available": "✨ Version <1>{{version}}</1> available",
+    "error": "Error: {{error}}"
+  },
+  "featureSection": {
+    "heading": "Features that make a <1>difference</1>",
+    "subtitle": "ZapZap offers a complete native WhatsApp experience, specifically designed for Linux users.",
+    "features": [
+      {
+        "title": "Multiple Accounts",
+        "description": "Manage multiple WhatsApp accounts simultaneously in a single interface."
+      },
+      {
+        "title": "Native Notifications",
+        "description": "Receive system notifications integrated with the Linux environment."
+      },
+      {
+        "title": "Media Sharing",
+        "description": "Drag and drop files directly to send photos, videos, and documents."
+      },
+      {
+        "title": "Custom Themes",
+        "description": "Automatically adapts to your system's light and dark themes."
+      },
+      {
+        "title": "Privacy Respected",
+        "description": "No data collection. Your privacy is our priority."
+      },
+      {
+        "title": "Background Mode",
+        "description": "Keep receiving messages even when the window is minimized."
+      }
+    ],
+    "whyChoose": [
+      {
+        "title": "Simple",
+        "description": "Clean and intuitive interface. No complications, just the WhatsApp experience you already know."
+      },
+      {
+        "title": "Native",
+        "description": "Full integration with Linux. Keyboard shortcuts, notifications, and native system behavior."
+      },
+      {
+        "title": "Free",
+        "description": "Open source and free. No limitations, no hidden costs. Contribute and help improve the project."
+      }
+    ]
+  },
+  "downloadSection": {
+    "heading": "Choose your <1>distribution</1>",
+    "subtitle": "ZapZap is available in multiple formats to support all Linux distributions.",
+    "download": "Download",
+    "options": [
+      {
+        "title": "Flatpak",
+        "description": "Secure installation with sandboxing via Flathub. Compatible with a wide range of Linux distributions.",
+        "badge": "Recommended",
+        "features": [
+          "Sandboxing",
+          "Auto-updates",
+          "Universal"
+        ]
+      },
+      {
+        "title": "AppImage",
+        "description": "Download, make executable and run — no installation needed. A portable and hassle-free option.",
+        "badge": "Portable",
+        "features": [
+          "No installation",
+          "Portable",
+          "Universal"
+        ]
+      },
+      {
+        "title": "Fedora",
+        "description": "Available via Copr. Install and keep ZapZap updated on Fedora using DNF.",
+        "badge": "DNF",
+        "features": [
+          "DNF Package",
+          "Auto-updates",
+          "Native"
+        ]
+      },
+      {
+        "title": "AUR",
+        "description": "Install ZapZap on Arch-based systems via Arch User Repository (AUR). Package maintained by the community.",
+        "badge": "Arch",
+        "features": [
+          "AUR Helper",
+          "Community",
+          "Rolling"
+        ]
+      }
+    ]
+  },
+  "donationSection": {
+    "heading": "Support <1>ZapZap</1>",
+    "subtitle": "Your contribution helps keep the project active, free, and continuously evolving.",
+    "button": "Support via {{method}}",
+    "options": [
+      {
+        "title": "Pix",
+        "description": "Contribute directly via Pix key. Fast, practical, and with no additional fees.",
+        "badge": "Direct",
+        "features": [
+          "Instant",
+          "No fees",
+          "Secure"
+        ]
+      },
+      {
+        "title": "PayPal",
+        "description": "Make your donation internationally in a simple and secure way with PayPal.",
+        "badge": "Global",
+        "features": [
+          "Card",
+          "International",
+          "Secure"
+        ]
+      },
+      {
+        "title": "Ko-fi",
+        "description": "Buy me a coffee and help keep me coding!",
+        "badge": "Recurring",
+        "features": [
+          "Monthly",
+          "Recurring",
+          "Community"
+        ]
+      },
+      {
+        "title": "GitHub Sponsors",
+        "description": "Contribute directly through GitHub Sponsors and support open-source development.",
+        "badge": "OSS",
+        "features": [
+          "Dev",
+          "Open Source",
+          "International"
+        ]
+      }
+    ]
+  },
+  "aboutSection": {
+    "heading": {
+      "prefix": "About",
+      "highlight": "development"
+    },
+    "subtitle": "Learn more about the developer and the Linux community collaboration for ZapZap development.",
+    "paragraphs": [
+      "<strong>ZapZap</strong> is a native-like WhatsApp client for Linux, offering advanced features such as multi-account support, system tray notifications, drag-and-drop media, spell checking, and dynamic theming.",
+      "Built with ❤️ by <a href=\"https://github.com/rafatosta\" class=\"text-blue-600 underline\">Rafael Tosta</a>, a developer focused on creating accessible and efficient desktop applications using modern web and desktop technologies.",
+      "The project is open-source and community-driven. You can find it on <a href=\"https://github.com/rafatosta/zapzap\" class=\"text-blue-600 underline\">GitHub</a> and contribute to its development or improvements."
+    ],
+    "contributors": "Contributors",
+    "loading": "Loading contributors...",
+    "errorFetch": "Failed to fetch contributors"
+  },
+  "footer": {
+    "brandAlt": "ZapZap Logo",
+    "description": "The best native-like WhatsApp client for Linux. Open-source, privacy-respecting, and completely free.",
+    "support": "Support",
+    "product": "Product",
+    "community": "Community",
+    "legal": "Legal",
+    "links": {
+      "home": "Home",
+      "features": "Features",
+      "download": "Download",
+      "about": "About",
+      "issues": "Issues",
+      "releases": "Releases",
+      "documentation": "Documentation",
+      "license": "GPL-3.0 License"
+    },
+    "copyright": "ZapZap. Made for the Linux community."
+  }
+}

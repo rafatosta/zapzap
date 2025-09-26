@@ -15,8 +15,11 @@
   "dependencies": {
     "@types/react-scroll": "^1.8.10",
     "flowbite-react": "^0.11.7",
+    "i18next": "^25.5.2",
+    "i18next-browser-languagedetector": "^8.2.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-i18next": "^16.0.0",
     "react-icons": "^5.5.0",
     "react-scroll": "^1.9.3"
   },
