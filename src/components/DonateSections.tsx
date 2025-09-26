@@ -17,7 +17,7 @@ function DonationSection() {
             description: "Contribua diretamente via chave Pix. Rápido, prático e sem taxas adicionais.",
             badge: "Direto",
             badgeVariant: "success" as const,
-            url: "mailto:rafael.tosta@ifba.edu.br",
+            url: "https://nubank.com.br/pagar/3c3r2/LS2hiJJKzv",
             features: ["Instantâneo", "Sem taxas", "Seguro"],
             colors: {
                 iconBg: "from-green-500 to-green-600",
@@ -30,7 +30,7 @@ function DonationSection() {
             description: "Faça sua doação internacionalmente de forma simples e segura com PayPal.",
             badge: "Global",
             badgeVariant: "gray" as const,
-            url: "https://www.paypal.com/donate/?hosted_button_id=XXXXXXX",
+            url: "https://www.paypal.com/donate/?business=E7R4BVR45GRC2&no_recurring=0&item_name=ZapZap+-+Whatsapp+Desktop+for+linux&currency_code=USD",
             features: ["Cartão", "Internacional", "Seguro"],
             colors: {
                 iconBg: "from-blue-500 to-blue-600",
