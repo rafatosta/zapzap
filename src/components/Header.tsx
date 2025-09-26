@@ -5,8 +5,8 @@ import {
     NavbarToggle,
     Button,
 } from "flowbite-react";
-import { useEffect, useState } from "react";
-import { scroller, Link } from 'react-scroll';
+import { useState } from "react";
+import { Link } from 'react-scroll';
 import zapzapLogo from "/zapzap.svg";
 import { LuHeart } from "react-icons/lu";
 
@@ -21,15 +21,6 @@ function Header() {
     ];
 
     const [isOpen, setIsOpen] = useState(false);
-
-    useEffect(() => {
-        if (window.location.hash === "#donate") {
-            scroller.scrollTo("donate", {
-                duration: 500,
-                smooth: true,
-            });
-        }
-    }, []);
 
     return (
         <header className="fixed top-0 w-full z-50 ">
