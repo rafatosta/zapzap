@@ -1,10 +1,10 @@
-import AboutSection from "./components/AboutSection";
-import DonateSection from "./components/DonateSections";
-import DownloadSection from "./components/DownloadSection";
-import FeatureSection from "./components/FeatureSection";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import AboutSection from "./sections/AboutSection";
+import DonateSection from "./sections/DonateSection";
+import DownloadSection from "./sections/DownloadSection";
+import FeatureSection from "./sections/FeatureSection";
 
 export default function App() {
 
@@ -15,7 +15,7 @@ export default function App() {
       ">
       <Header />
       <Hero />
-      <FeatureSection />
+      <FeatureSection/>
       <DownloadSection />
       <DonateSection />
       <AboutSection />

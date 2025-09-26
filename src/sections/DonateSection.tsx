@@ -5,8 +5,7 @@ import {
 import { FaPaypal, FaPix } from "react-icons/fa6";
 import { SiKofi, SiGithubsponsors } from "react-icons/si";
 import { Badge, Button, Card } from "flowbite-react";
-
-import { Container } from "./Container";
+import { Container } from "../components/Container";
 
 function DonationSection() {
 

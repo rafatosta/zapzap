@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Container } from "./Container";
 import { Card } from "flowbite-react";
+import { Container } from "../components/Container";
 
 type Contributor = {
   login: string;

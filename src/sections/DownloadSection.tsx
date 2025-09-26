@@ -2,10 +2,10 @@ import {
     LuDownload as Download,
     LuExternalLink as ExternalLink
 } from "react-icons/lu";
-import LatestRelease from "./LatestRelease";
+import LatestRelease from "../components/LatestRelease";
 import { Badge, Button, Card } from "flowbite-react";
 
-import { Container } from "./Container";
+import { Container } from "../components/Container";
 
 import { SiFlatpak } from "react-icons/si";
 import { FaFedora } from "react-icons/fa6";

@@ -10,7 +10,8 @@ import {
     LuSmartphone as Smartphone,
     LuDownload as Download
 } from "react-icons/lu";
-import { Container } from "./Container";
+import { Container } from "../components/Container";
+
 
 function FeatureSection() {
     const features = [
