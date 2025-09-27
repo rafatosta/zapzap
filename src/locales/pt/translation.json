@@ -124,8 +124,8 @@
     "heading": "Apoie o <1>ZapZap</1>",
     "subtitle": "Sua contribuição ajuda a manter o projeto ativo, gratuito e em constante evolução.",
     "button": "Apoiar via {{method}}",
-    "options": [
-      {
+    "options": {
+      "pix": {
         "title": "Pix",
         "description": "Contribua diretamente via chave Pix. Rápido, prático e sem taxas adicionais.",
         "badge": "Direto",
@@ -135,7 +135,7 @@
           "Seguro"
         ]
       },
-      {
+      "paypal": {
         "title": "PayPal",
         "description": "Faça sua doação internacionalmente de forma simples e segura com PayPal.",
         "badge": "Global",
@@ -145,7 +145,7 @@
           "Seguro"
         ]
       },
-      {
+      "kofi": {
         "title": "Ko-fi",
         "description": "Buy me a coffee and help keep me coding!",
         "badge": "Recorrente",
@@ -155,7 +155,7 @@
           "Comunidade"
         ]
       },
-      {
+      "githubSponsors": {
         "title": "GitHub Sponsors",
         "description": "Contribua diretamente através do GitHub Sponsors e fortaleça o desenvolvimento open-source.",
         "badge": "OSS",
@@ -165,7 +165,7 @@
           "Internacional"
         ]
       }
-    ]
+    }
   },
   "aboutSection": {
     "heading": {
