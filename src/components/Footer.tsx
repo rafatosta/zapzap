@@ -37,7 +37,7 @@ export default function Footer() {
                             <p className="text-muted-foreground leading-relaxed mb-6 max-w-md">
                                 {t("footer.description")}
                             </p>
-                            <div className="flex space-x-3">
+                            <div className="flex space-x-3 pb-6 md:pb-0">
                                 <Button
                                     as={"a"}
                                     target="_blank"
