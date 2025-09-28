@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Dropdown, DropdownItem, Avatar } from "flowbite-react";
+import { Dropdown, DropdownItem } from "flowbite-react";
 
 type Language = {
   code: "en" | "pt";

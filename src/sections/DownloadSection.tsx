@@ -20,6 +20,7 @@ export default function DownloadSection() {
         badge: string;
         features: string[];
         icon?: any;
+        url:string;
     }>;
 
     const icons = [SiFlatpak, PiPackage, FaFedora, GrArchlinux];

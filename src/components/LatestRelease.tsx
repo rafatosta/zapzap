@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation, Trans } from "react-i18next";
 
-export default function LatestRelease(): JSX.Element {
+export default function LatestRelease(){
   const { t } = useTranslation();
   const [version, setVersion] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
