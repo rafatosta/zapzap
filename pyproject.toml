@@ -2,6 +2,12 @@
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
+[tool.poetry]
+name = "ZapZap"
+version = "0.1.0"
+description = "WhatsApp client"
+authors = ["Rafael Tosta rafa.ecomp@gmail.com"]
+
 [project]
 # Metadados dinâmicos vindos do próprio pacote (zapzap/__init__.py)
 name = "zapzap"
