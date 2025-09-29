@@ -35,6 +35,7 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
+node_modules
 
 # Construção do src e rpm fedora
 results_zapzap
