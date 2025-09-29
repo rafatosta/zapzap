@@ -31,7 +31,7 @@ export default function DownloadSection() {
         "https://flathub.org/apps/com.rtosta.zapzap",
         "https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-x86_64.AppImage",
         "https://copr.fedorainfracloud.org/coprs/rafatosta/zapzap/",
-        "https://aur.archlinux.org/packages/zapzap-bin"
+        "https://aur.archlinux.org/packages/zapzap"
     ];
 
     return (
