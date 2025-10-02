@@ -1,0 +1,73 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+build: build-arch build-indep
+build-arch: build-stamp
+build-indep: build-stamp
+build-stamp:
+	dh_testdir
+	# Instalar PyInstaller via pip si no está disponible
+	which pyinstaller || pip3 install pyinstaller
+	# Compilar con PyInstaller
+	mkdir -p .appimage-builder-preview
+	pyinstaller zapzap.spec -y --distpath .appimage-builder-preview/dist --workpath .appimage-builder-preview/build
+	touch $@
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+	rm -rf .appimage-builder-preview
+	rm -rf debian/zapzap
+	dh_clean
+
+DESTDIR = $(CURDIR)/debian/zapzap
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs
+
+	# Instalar los archivos compilados por PyInstaller
+	install -d $(DESTDIR)/usr/bin
+	install -d $(DESTDIR)/usr/share/zapzap
+	
+	# Copiar el ejecutable binario
+	cp .appimage-builder-preview/dist/zapzap $(DESTDIR)/usr/share/zapzap/
+	chmod 755 $(DESTDIR)/usr/share/zapzap/zapzap
+	
+	# Crear script de lanzamiento en /usr/bin
+	echo '#!/bin/sh' > $(DESTDIR)/usr/bin/zapzap
+	echo 'cd /usr/share/zapzap && exec ./zapzap "$$@"' >> $(DESTDIR)/usr/bin/zapzap
+	chmod 755 $(DESTDIR)/usr/bin/zapzap
+
+	# Instalar archivos desktop e iconos
+	install -d $(DESTDIR)/usr/share/applications
+	install -m 644 share/applications/com.rtosta.zapzap.desktop $(DESTDIR)/usr/share/applications/
+	install -d $(DESTDIR)/usr/share/icons/hicolor/scalable/apps
+	install -m 644 share/icons/com.rtosta.zapzap.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
+
+# Build architecture-independent files here.
+binary-indep: build install
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installdocs
+	dh_installchangelogs
+	dh_lintian
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install
