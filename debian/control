@@ -1,0 +1,35 @@
+Source: zapzap
+Section: utils
+Priority: optional
+Maintainer: krafairus <krafairuspc@gmail.com>
+Uploaders:
+  krafairus <krafairuspc@gmail.com>
+Build-Depends:
+  debhelper-compat (= 13),
+  python3-all,
+  python3-setuptools,
+  python3-pip,
+  python3-pyqt5,
+  python3-pyqt5.qtwebengine,
+  python3-dev
+Standards-Version: 4.5.0
+Homepage: https://github.com/rafatosta/zapzap
+
+Package: zapzap
+Architecture: amd64
+Depends:
+  libqt5core5a,
+  libqt5gui5,
+  libqt5webengine5,
+  libqt5webenginecore5,
+  libqt5webenginewidgets5,
+  libqt5widgets5,
+  libqt5network5,
+  libqt5dbus5,
+  libc6,
+  libstdc++6,
+  ${misc:Depends},
+  ${shlibs:Depends}
+Description: WhatsApp desktop application written in PyQt6 + PyQt6-WebEngine.
+ ZapZap is a desktop application for WhatsApp Web with multiple features
+ and customizations.
