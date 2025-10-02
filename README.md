@@ -1,3 +1,5 @@
+Implementation for deb package support(Deepin linux - debian based).
+
 # [ZapZap](https://rtosta.com/zapzap-web/) – WhatsApp Desktop for Linux
 ![ZapZap for WhatsApp](share/screenshot/default.png)
 
