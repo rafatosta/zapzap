@@ -20,6 +20,7 @@ export
 # Distribution / packaging
 .Python
 build/
+deb_build/
 develop-eggs/
 dist/
 downloads/
