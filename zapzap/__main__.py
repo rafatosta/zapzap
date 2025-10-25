@@ -12,7 +12,7 @@ from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.services.ProxyManager import ProxyManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.TranslationManager import TranslationManager
-
+from zapzap.resources.TrayIcon import TrayIcon
 
 def fix_clipboard_image():
     clipboard = QGuiApplication.clipboard()
@@ -67,6 +67,7 @@ def main():
     app.setApplicationVersion(zapzap.__version__)
     app.setDesktopFileName(zapzap.__desktopid__)
     app.setOrganizationDomain(zapzap.__domain__)
+    app.setWindowIcon(TrayIcon.getIcon())
 
     SetupManager.apply_qt_scale_factor_rounding_policy()
 
