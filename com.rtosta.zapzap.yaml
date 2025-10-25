@@ -14,7 +14,7 @@ finish-args:
   - "--socket=pulseaudio"
   - "--share=network"
   - "--device=all"
-  - "--filesystem=host"
+  - "--filesystem=home"
   - "--filesystem=xdg-download"
   - "--talk-name=org.freedesktop.Notifications"
   - "--talk-name=org.kde.StatusNotifierWatcher"
