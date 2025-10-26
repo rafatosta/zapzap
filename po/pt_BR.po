@@ -56,7 +56,7 @@ msgstr "Não perturbe"
 
 #: zapzap/views/ui_card_user.py:89
 msgid "Delete permanently"
-msgstr ""
+msgstr "Eliminar definitivamente"
 
 #: zapzap/views/ui_card_user.py:90
 msgid "Delete"
@@ -191,7 +191,7 @@ msgstr "WhatsApp Web para Linux"
 #: zapzap/views/ui_page_about.py:115
 #, python-brace-format
 msgid "Version {id} ({version_type}) - {package}"
-msgstr ""
+msgstr "Versão {id} ({version_type}) - {package}"
 
 #: zapzap/views/ui_page_about.py:117
 msgid "Learn more"
@@ -231,7 +231,7 @@ msgstr "Ícone da bandeja"
 
 #: zapzap/views/ui_page_appearance.py:124
 msgid "Remove notification indicator"
-msgstr ""
+msgstr "Remover notificação do indicador"
 
 #: zapzap/views/ui_page_appearance.py:125
 msgid "Default"
@@ -464,7 +464,7 @@ msgstr "Bem-vindo ao"
 #: zapzap/views/ui_qtoaster_donation.py:138
 #, python-brace-format
 msgid "Version {id} - {version_type}"
-msgstr ""
+msgstr "Versão {id} - {version_type}"
 
 #: zapzap/views/ui_qtoaster_donation.py:139
 msgid "Make a donation"
