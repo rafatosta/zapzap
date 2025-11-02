@@ -55,6 +55,15 @@
   </screenshots>
 
   <releases>
+      <release date="2025-11-02" version="6.2.2">
+        <description>
+            <ul>
+              <li>Fix: Icon does not appear on the taskbar in XFCE.</li>
+              <li>Fix: Review Flatpak Permissions.</li>
+              <li>Translation update.</li>
+            </ul>
+        </description>
+      </release>
     <release date="2025-09-11" version="6.2.1">
         <description>
             <ul>
