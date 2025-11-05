@@ -678,7 +678,7 @@ msgstr "Informação"
 msgid ""
 "Limit of {} users reached.\n"
 "It is not possible to create more users!"
-msgid ""
+msgstr ""
 "O limite de {} utilizadores foi alcançado!"
 "Não é possível criar mais utilizadores!"
 
