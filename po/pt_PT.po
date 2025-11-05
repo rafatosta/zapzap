@@ -279,7 +279,8 @@ msgstr ""
 
 #: zapzap/views/ui_page_appearance.py:136
 msgid "Note: The change of scale will only have effect until restarting."
-msgstr "Nota: A alteração da escala só vai ter efeito após reiniciar a aplicação."
+msgstr ""
+"Nota: A alteração da escala só vai ter efeito após reiniciar a aplicação."
 
 #: zapzap/views/ui_page_general.py:128 zapzap/views/ui_settings.py:129
 msgid "General"
@@ -679,8 +680,8 @@ msgid ""
 "Limit of {} users reached.\n"
 "It is not possible to create more users!"
 msgstr ""
-"O limite de {} utilizadores foi alcançado!"
-"Não é possível criar mais utilizadores!"
+"O limite de {} utilizadores foi alcançado!Não é possível criar mais "
+"utilizadores!"
 
 #: zapzap/services/AlertManager.py:39
 msgid "Attention"
