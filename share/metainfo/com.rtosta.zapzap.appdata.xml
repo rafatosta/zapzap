@@ -55,6 +55,13 @@
   </screenshots>
 
   <releases>
+      <release date="2025-11-05" version="6.2.3">
+        <description>
+            <ul>
+              <li>New: Translation for pt_PT.</li>
+            </ul>
+        </description>
+      </release>
       <release date="2025-11-02" version="6.2.2">
         <description>
             <ul>
