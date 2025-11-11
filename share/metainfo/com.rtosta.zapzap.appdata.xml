@@ -55,6 +55,14 @@
   </screenshots>
 
   <releases>
+    <release date="2025-11-11" version="6.2.4">
+        <description>
+            <ul>
+              <li>New: Add Hungarian translation support.</li>
+              <li>Update: Qt10.</li>
+            </ul>
+        </description>
+      </release>
       <release date="2025-11-05" version="6.2.3">
         <description>
             <ul>
