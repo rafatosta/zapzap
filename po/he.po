@@ -1,22 +1,23 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Copyright (C) 2025
+# This file is distributed under the same license as the ZapZap package.
 #
-#, fuzzy
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2025
+# SPDX-FileCopyrightText: 2025 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-11 10:52-0300\n"
-"PO-Revision-Date: 2025-09-02 02:10+0300\n"
-"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2025-10-25 12:06-0300\n"
+"PO-Revision-Date: 2025-10-26 15:07+0200\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.7\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
+"2 : 3);\n"
+"X-Generator: Lokalize 25.08.2\n"
 
 #: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:87
 #: zapzap/controllers/Browser.py:150 zapzap/controllers/ShortcutsDialog.py:58
@@ -25,35 +26,35 @@ msgstr "חשבון חדש"
 
 #: zapzap/views/ui_browser.py:92
 msgid "New conversation by the phone number"
-msgstr "התכתבות חדשה לפי מספר טלפון"
+msgstr "שיחה חדשה לפי מספר הטלפון"
 
 #: zapzap/views/ui_browser.py:93 zapzap/controllers/ShortcutsDialog.py:10
 msgid "New conversation"
-msgstr "התכתבות חדשה"
+msgstr "שיחה חדשה"
 
 #: zapzap/views/ui_browser.py:94
 msgid "ZapZap Settings"
-msgstr "הגדרות זאפזאפ"
+msgstr "הגדרות ZapZap"
 
 #: zapzap/views/ui_card_user.py:84
 msgid "Click to generate new colors for the icon"
-msgstr "יש ללחוץ כאן בשביל לחולל צבעי סמל חדשים"
+msgstr "לחיצה תייצר צבעים חדשים לסמל"
 
 #: zapzap/views/ui_card_user.py:85
 msgid "Temporarily disable"
-msgstr "השבתה זמנית"
+msgstr "כיבוי זמני"
 
 #: zapzap/views/ui_card_user.py:86
 msgid "Disable"
-msgstr "השבתה"
+msgstr "כיבוי"
 
 #: zapzap/views/ui_card_user.py:87
 msgid "Silences the notifications"
-msgstr "להשתקת ההתראות"
+msgstr "השתקת ההתראות"
 
 #: zapzap/views/ui_card_user.py:88
 msgid "Do not disturb"
-msgstr "נא לא להפריע"
+msgstr "לא להפריע"
 
 #: zapzap/views/ui_card_user.py:89
 msgid "Delete permanently"
@@ -65,13 +66,13 @@ msgstr "מחיקה"
 
 #: zapzap/views/ui_card_user.py:91
 msgid "Enter the user name"
-msgstr "נא להקליד שם משתמש"
+msgstr "נא למלא את שם המשתמש"
 
 #: zapzap/views/ui_mainwindow.py:92 zapzap/views/ui_page_about.py:116
 #: zapzap/views/ui_qtoaster_donation.py:137
 #: zapzap/views/ui_shortcuts_dialog.py:65
 msgid "ZapZap"
-msgstr "זאפזאפ"
+msgstr "ZapZap"
 
 #: zapzap/views/ui_mainwindow.py:93
 msgid "File"
@@ -83,7 +84,7 @@ msgstr "תצוגה"
 
 #: zapzap/views/ui_mainwindow.py:95
 msgid "Chat"
-msgstr "צ׳אט"
+msgstr "שיחה"
 
 #: zapzap/views/ui_mainwindow.py:96
 msgid "Users"
@@ -122,7 +123,7 @@ msgstr "Ctrl+P"
 
 #: zapzap/views/ui_mainwindow.py:104 zapzap/controllers/ShortcutsDialog.py:49
 msgid "Reset zoom"
-msgstr "איפוס קנה מידה"
+msgstr "איפוס מרחק תצוגה"
 
 #: zapzap/views/ui_mainwindow.py:105
 msgid "Ctrl+0"
@@ -146,7 +147,7 @@ msgstr "Ctrl+-"
 
 #: zapzap/views/ui_mainwindow.py:110
 msgid "Toggle full screen"
-msgstr "הפעלת/כיבוי מצב מסך מלא"
+msgstr "החלפת מצב מסך מלא"
 
 #: zapzap/views/ui_mainwindow.py:111
 msgid "F11"
@@ -154,7 +155,7 @@ msgstr "F11"
 
 #: zapzap/views/ui_mainwindow.py:112
 msgid "Reload"
-msgstr "טעינה מחדש"
+msgstr "ריענון"
 
 #: zapzap/views/ui_mainwindow.py:113
 msgid "F5"
@@ -162,7 +163,7 @@ msgstr "F5"
 
 #: zapzap/views/ui_mainwindow.py:114
 msgid "New chat"
-msgstr "צ׳אט חדש"
+msgstr "שיחה חדשה"
 
 #: zapzap/views/ui_mainwindow.py:115
 msgid "Ctrl+N"
@@ -187,20 +188,20 @@ msgstr "על אודות"
 
 #: zapzap/views/ui_page_about.py:114
 msgid "WhatsApp Web for Linux"
-msgstr "וואטסאפ ווב ללינוקס"
+msgstr "WhatsApp Web ללינוקס"
 
 #: zapzap/views/ui_page_about.py:115
 #, python-brace-format
 msgid "Version {id} ({version_type}) - {package}"
-msgstr "גרסה {id} ‏({version_type}) - ‏{package}"
+msgstr "גרסה {id} ({version_type}) - {package}"
 
 #: zapzap/views/ui_page_about.py:117
 msgid "Learn more"
-msgstr "למידע נוסף"
+msgstr "מידע נוסף"
 
 #: zapzap/views/ui_page_about.py:118
 msgid "Report issue"
-msgstr "דיווח על בעיה"
+msgstr "דיווח על תקלה"
 
 #: zapzap/views/ui_page_account.py:86
 msgid "My accounts"
@@ -216,7 +217,7 @@ msgstr "סגנון"
 
 #: zapzap/views/ui_page_appearance.py:120
 msgid "Adaptive"
-msgstr "משתנה"
+msgstr "מסתגל"
 
 #: zapzap/views/ui_page_appearance.py:121
 msgid "Light"
@@ -228,11 +229,11 @@ msgstr "כהה"
 
 #: zapzap/views/ui_page_appearance.py:123
 msgid "Tray icon"
-msgstr "סמל במגש המערכת"
+msgstr "סמל בשורת המערכת"
 
 #: zapzap/views/ui_page_appearance.py:124
 msgid "Remove notification indicator"
-msgstr "הסרת מחוון ההתראות"
+msgstr "הסרת מחוון התראות"
 
 #: zapzap/views/ui_page_appearance.py:125
 msgid "Default"
@@ -240,11 +241,11 @@ msgstr "ברירת מחדל"
 
 #: zapzap/views/ui_page_appearance.py:126
 msgid "Symbolic dark"
-msgstr "סימבולי כהה"
+msgstr "כהה סמלי"
 
 #: zapzap/views/ui_page_appearance.py:127
 msgid "Symbolic light"
-msgstr "סימבולי בהיר"
+msgstr "בהיר סמלי"
 
 #: zapzap/views/ui_page_appearance.py:128
 msgid "Show sidebar"
@@ -252,7 +253,7 @@ msgstr "הצגת סרגל צד"
 
 #: zapzap/views/ui_page_appearance.py:129
 msgid "Show menu bar"
-msgstr "הצגת שורת התפריט"
+msgstr "הצגת סרגל תפריטים"
 
 #: zapzap/views/ui_page_appearance.py:130
 msgid "Scale"
@@ -260,27 +261,27 @@ msgstr "קנה מידה"
 
 #: zapzap/views/ui_page_appearance.py:131
 msgid "100 %"
-msgstr "100%"
+msgstr "100 %"
 
 #: zapzap/views/ui_page_appearance.py:132
 msgid "125 %"
-msgstr "125%"
+msgstr "125 %"
 
 #: zapzap/views/ui_page_appearance.py:133
 msgid "150 %"
-msgstr "150%"
+msgstr "150 %"
 
 #: zapzap/views/ui_page_appearance.py:134
 msgid "175 %"
-msgstr "175%"
+msgstr "175 %"
 
 #: zapzap/views/ui_page_appearance.py:135
 msgid "200 %"
-msgstr "200%"
+msgstr "200 %"
 
 #: zapzap/views/ui_page_appearance.py:136
 msgid "Note: The change of scale will only have effect until restarting."
-msgstr "הערה: שינוי קנה המידה יחול רק לאחר הפעלת היישום מחדש."
+msgstr "לתשומת ליבך: שינוי קנה המידה יחול רק לאחר הפעלה מחדש."
 
 #: zapzap/views/ui_page_general.py:128 zapzap/views/ui_settings.py:129
 msgid "General"
@@ -288,35 +289,35 @@ msgstr "כללי"
 
 #: zapzap/views/ui_page_general.py:129
 msgid "Download Directory"
-msgstr "תיקייה להורדות"
+msgstr "תיקיית הורדות"
 
 #: zapzap/views/ui_page_general.py:130
 msgid "Set new folder for downloads"
-msgstr "קביעת תיקייה חדשה להורדות"
+msgstr "הגדרת תיקייה חדשה להורדות"
 
 #: zapzap/views/ui_page_general.py:131
 msgid "Define default folder for downloads"
-msgstr "בחירה של תיקיית ברירת מחדל להורדות"
+msgstr "תיקיית ברירת מחדל להורדות"
 
 #: zapzap/views/ui_page_general.py:132
 msgid "Spellchecker"
-msgstr "בדיקת איות"
+msgstr "בודק איות"
 
 #: zapzap/views/ui_page_general.py:133
 msgid "Directory"
-msgstr "מילון"
+msgstr "תיקייה"
 
 #: zapzap/views/ui_page_general.py:134
 msgid "Recognizes only compiled dictionaries (.bdic)"
-msgstr ""
+msgstr "מזהה מילונים מהודרים בלבד (‎.bdic)"
 
 #: zapzap/views/ui_page_general.py:135
 msgid "Define standard dictionaries"
-msgstr "נא להגדיר את התיקיות הסטנדרטיות"
+msgstr "הגדרת מילונים תקניים"
 
 #: zapzap/views/ui_page_general.py:136
 msgid "Note: Required restart."
-msgstr "הערה: נדרשת הפעלה מחדש של היישום."
+msgstr "לתשומך ליבך: יש להפעיל מחדש."
 
 #: zapzap/views/ui_page_general.py:137
 msgid "Behavior"
@@ -324,19 +325,19 @@ msgstr "התנהגות"
 
 #: zapzap/views/ui_page_general.py:138
 msgid "Close when closing the window"
-msgstr "סגירה בעת סגירת החלון"
+msgstr "לסגור עם סגירת החלון"
 
 #: zapzap/views/ui_page_general.py:139
 msgid "Start minimized"
-msgstr "הפעלה בחלון ממוזער"
+msgstr "התחלה ממוזערת"
 
 #: zapzap/views/ui_page_general.py:140
 msgid "Start with the system"
-msgstr "הרצת היישום עם הפעלת המערכת"
+msgstr "הפעלה עם עליית המערכת"
 
 #: zapzap/views/ui_page_general.py:141
 msgid "Don't use a platform-native file dialog"
-msgstr "לא להשתמש בדו־שיח של המערכת לעיון בקבצים"
+msgstr "לא להשתמש בחלונית קבצים שטבעית לפלטפורמה"
 
 #: zapzap/views/ui_page_general.py:142
 msgid "Wayland window system"
@@ -348,7 +349,7 @@ msgstr "רשת"
 
 #: zapzap/views/ui_page_network.py:116
 msgid "Network proxy"
-msgstr "שרת מתווך"
+msgstr "מתווך רשת"
 
 #: zapzap/views/ui_page_network.py:117
 msgid "Port"
@@ -356,7 +357,7 @@ msgstr "פתחה"
 
 #: zapzap/views/ui_page_network.py:118
 msgid "User"
-msgstr "שם משתמש"
+msgstr "משתמש"
 
 #: zapzap/views/ui_page_network.py:119
 msgid "Password"
@@ -368,7 +369,7 @@ msgstr "שם מארח"
 
 #: zapzap/views/ui_page_network.py:121
 msgid "ProxyType"
-msgstr "סוג שרת מתווך"
+msgstr "סוג מתווך"
 
 #: zapzap/views/ui_page_network.py:122
 msgid "Description"
@@ -388,23 +389,23 @@ msgstr "התראות"
 
 #: zapzap/views/ui_page_notifications.py:73
 msgid "Work area notifications"
-msgstr "התראות באזור העבודה"
+msgstr "התראות אזור עבודה"
 
 #: zapzap/views/ui_page_notifications.py:74
 msgid "Show the photo of the sender"
-msgstr "הצגת תמונת השולח/ת"
+msgstr "הצגת תמונת המוען או המוענת"
 
 #: zapzap/views/ui_page_notifications.py:75
 msgid "Show the sender's name"
-msgstr "הצגת שם השולח/ת"
+msgstr "הצגת שם המוען או המוענת"
 
 #: zapzap/views/ui_page_notifications.py:76
 msgid "Show message preview"
-msgstr "תצוגה מקדימה של הודעות"
+msgstr "הצגת תצוגה מקדימה של ההודעה"
 
 #: zapzap/views/ui_page_notifications.py:77
 msgid "Hide donation notification"
-msgstr "הסתרת התראות בקשת התרומה"
+msgstr "הסתרת התראת תרומה"
 
 #: zapzap/views/ui_page_performance.py:110
 msgid "Performance (Experimental)"
@@ -440,23 +441,23 @@ msgstr "התנהגות QWebEngine"
 
 #: zapzap/views/ui_page_performance.py:118
 msgid "Enable single process for GPU and rendering"
-msgstr ""
+msgstr "הפעלת תהליך יחיד למעבד גרפי ותיצוג"
 
 #: zapzap/views/ui_page_performance.py:119
 msgid "Disable GPU hardware acceleration"
-msgstr "השבתת האצת חומרה של המעבד הגרפי"
+msgstr "גיבוי האצת חומרת מעבד גרפי"
 
 #: zapzap/views/ui_page_performance.py:120
 msgid "Run everything in a single process"
-msgstr "הרצה של הכול בתהליך אחד"
+msgstr "להריץ הכול בתהליך בודד"
 
 #: zapzap/views/ui_page_performance.py:121
 msgid "Animated scrolling"
-msgstr "הנפשת הגלילה"
+msgstr "גלילה מונפשת"
 
 #: zapzap/views/ui_page_performance.py:123
 msgid "Note: Restart required to apply changes."
-msgstr "הערה: יש להפעיל מחדש את היישום בשביל שהשינויים יחולו."
+msgstr "לתשומת ליבך: להחלת השינויים יש להפעיל מחדש."
 
 #: zapzap/views/ui_qtoaster_donation.py:136
 msgid "Welcome to"
@@ -465,11 +466,11 @@ msgstr "ברוך בואך אל"
 #: zapzap/views/ui_qtoaster_donation.py:138
 #, python-brace-format
 msgid "Version {id} - {version_type}"
-msgstr "גרסה {id} ‏({version_type})"
+msgstr "גרסה {id} - {version_type}"
 
 #: zapzap/views/ui_qtoaster_donation.py:139
 msgid "Make a donation"
-msgstr "תרומה"
+msgstr "תרומה כספית"
 
 #: zapzap/views/ui_settings.py:127
 msgid "Back"
@@ -497,31 +498,31 @@ msgstr "עזרה"
 
 #: zapzap/views/ui_shortcuts_dialog.py:62
 msgid "Dialog"
-msgstr "דו־שיח"
+msgstr "חלונית"
 
 #: zapzap/views/ui_shortcuts_dialog.py:64
 msgid "WhatsApp Web"
-msgstr "וואטסאפ ווב"
+msgstr "WhatsApp Web"
 
 #: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
 msgid "Account {}"
-msgstr "החשבון {}"
+msgstr "חשבון {}"
 
 #: zapzap/controllers/CardUser.py:85
 msgid "Confirm exclusion"
-msgstr "אישור התעלמות"
+msgstr "אישור החרגה"
 
 #: zapzap/controllers/CardUser.py:85
 msgid "Are you sure you want to delete this item?"
-msgstr "למחוק פריט זה?"
+msgstr "למחוק את הפריט?"
 
 #: zapzap/controllers/CardUser.py:111
 msgid "Restore standard"
-msgstr "שחזור לברירת מחדל"
+msgstr "שחזור רגיל"
 
 #: zapzap/controllers/PageAbout.py:21
 msgid "Official compilation"
-msgstr "חבילה רשמית"
+msgstr "הידור רשמי"
 
 #: zapzap/controllers/PageAbout.py:22
 msgid "Unofficial"
@@ -533,7 +534,7 @@ msgstr "לא ידוע"
 
 #: zapzap/controllers/PageGeneral.py:38
 msgid "Use Flatseal to change this mode of execution"
-msgstr "יש להשתמש ב־Flatseal כדי לשנות את מצב ההתעלמות"
+msgstr "יש להשתמש ב־Flateal כדי לשנות את מצב ההפעלה הזה"
 
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"
@@ -541,43 +542,43 @@ msgstr "סימון כלא נקרא"
 
 #: zapzap/controllers/ShortcutsDialog.py:12
 msgid "Archive conversation"
-msgstr "העברת ההתכתבות לארכיון"
+msgstr "העברת השיחה לארכיון"
 
 #: zapzap/controllers/ShortcutsDialog.py:13
 msgid "Pin conversation"
-msgstr "הצמדת התכתבות"
+msgstr "הצמדת השיחה"
 
 #: zapzap/controllers/ShortcutsDialog.py:14
 msgid "Next conversation"
-msgstr "להתכתבות הבאה"
+msgstr "השיחה הבאה"
 
 #: zapzap/controllers/ShortcutsDialog.py:15
 msgid "Close conversation"
-msgstr "סגירת התכתבות"
+msgstr "סגירת השיחה"
 
 #: zapzap/controllers/ShortcutsDialog.py:16
 msgid "Search in conversation"
-msgstr "חיפוש בהתכתבות"
+msgstr "חיפוש בשיחה"
 
 #: zapzap/controllers/ShortcutsDialog.py:17
 msgid "Previous conversation"
-msgstr "להתכתבות הקודמת"
+msgstr "השיחה הקודמת"
 
 #: zapzap/controllers/ShortcutsDialog.py:18
 msgid "Delete conversation"
-msgstr "מחיקת התכתבות"
+msgstr "מחיקת השיחה"
 
 #: zapzap/controllers/ShortcutsDialog.py:21
 msgid "Profile and status"
-msgstr "פרופיל וסטטוס"
+msgstr "פרופיל ומצב"
 
 #: zapzap/controllers/ShortcutsDialog.py:25
 msgid "Decrease speed of selected voice message"
-msgstr "הגברת המהירות של ההודעה הקולית שנבחרה"
+msgstr "האטת ההודעה הקולית הנבחרת"
 
 #: zapzap/controllers/ShortcutsDialog.py:26
 msgid "Increase speed of selected voice message"
-msgstr "האטת המהירות של ההודעה הקולית שנבחרה"
+msgstr "האצת ההודעה הקולית הנבחרת"
 
 #: zapzap/controllers/ShortcutsDialog.py:29
 msgid "Emoji panel"
@@ -585,11 +586,11 @@ msgstr "לוח אמוג׳י"
 
 #: zapzap/controllers/ShortcutsDialog.py:30
 msgid "Sticker panel"
-msgstr "לוח סטיקרים"
+msgstr "לוח מדבקות"
 
 #: zapzap/controllers/ShortcutsDialog.py:31
 msgid "GIF panel"
-msgstr "לוח GIF"
+msgstr "לוח GIFים"
 
 #: zapzap/controllers/ShortcutsDialog.py:34
 msgid "Lock the app"
@@ -609,7 +610,7 @@ msgstr "קבוצה חדשה"
 
 #: zapzap/controllers/ShortcutsDialog.py:38
 msgid "Extended search"
-msgstr "חיפוש נרחב"
+msgstr "חיפוש מורחב"
 
 #: zapzap/controllers/ShortcutsDialog.py:45
 msgid "Exit"
@@ -621,15 +622,15 @@ msgstr "מסך מלא"
 
 #: zapzap/controllers/ShortcutsDialog.py:54
 msgid "Reload pages"
-msgstr "טעינת עמודים מחדש"
+msgstr "ריענון עמודים"
 
 #: zapzap/controllers/ShortcutsDialog.py:55
 msgid "New conversation by phone number"
-msgstr "התכתבות חדשה לפי מספר טלפון"
+msgstr "שיחה חדשה לפי מספר טלפון"
 
 #: zapzap/controllers/WebView.py:119
 msgid "Undo"
-msgstr "ביטול פעולה"
+msgstr "הסגה"
 
 #: zapzap/controllers/WebView.py:119
 msgid "Redo"
@@ -649,7 +650,7 @@ msgstr "הדבקה"
 
 #: zapzap/controllers/WebView.py:120
 msgid "Select all"
-msgstr "לבחור הכול"
+msgstr "בחירה בהכול"
 
 #: zapzap/controllers/WebView.py:121
 msgid "Save image"
@@ -673,23 +674,23 @@ msgstr "בחירת שפה"
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
-msgstr "מידע"
+msgstr "פרטים"
 
 #: zapzap/services/AlertManager.py:35
 msgid ""
 "Limit of {} users reached.\n"
 "It is not possible to create more users!"
 msgstr ""
-"הגעת למכסה של {} משתמשים.\n"
-"לא ניתן ליצור עוד משתמשים!"
+"הגעת למגבלה של {} משתמשים.\n"
+"אי אפשר לייצור משתמשים נוספים!"
 
 #: zapzap/services/AlertManager.py:39
 msgid "Attention"
-msgstr "לתשומת לבך"
+msgstr "נא לשים לב"
 
 #: zapzap/services/AlertManager.py:39
 msgid "No active account!"
-msgstr "אין חשבונות פעילים!"
+msgstr "אין חשבון פעיל!"
 
 #: zapzap/services/DownloadManager.py:46
 msgid "Open"
@@ -709,31 +710,31 @@ msgstr "בחירת תיקייה"
 
 #: zapzap/services/NotificationManager.py:36
 msgid "New message..."
-msgstr "הודעה חדשה..."
+msgstr "הודעה חדשה…"
 
 #: zapzap/services/ProxyManager.py:10
 msgid "No proxying is used."
-msgstr "לא נעשה שימוש בשרת מתווך."
+msgstr "לא נעשה שימוש בתיווך."
 
 #: zapzap/services/ProxyManager.py:11
 msgid "Proxy is determined based on the system proxy."
-msgstr "השימוש בשרת מתווך תלוי בהגדרות המערכת."
+msgstr "המתווך נקבע לפי מתווך המערכת."
 
 #: zapzap/services/ProxyManager.py:12
 msgid "Socks5 proxying is used."
-msgstr "נעשה שימוש בשרת מתווך מסוג Socks5."
+msgstr "נעשה שימוש בתיווך Socks5."
 
 #: zapzap/services/ProxyManager.py:13
 msgid "HTTP transparent proxying is used."
-msgstr ""
+msgstr "נעשה שימוש בתיווך HTTP שקוף."
 
 #: zapzap/services/ProxyManager.py:14
 msgid "Proxying for HTTP requests only."
-msgstr "נעשה שימוש בשרת מתווך לבקשות מפרוטוקול HTTP בלבד."
+msgstr "תיווך לבקשות HTTP בלבד."
 
 #: zapzap/services/ProxyManager.py:15
 msgid "Proxying for FTP requests only."
-msgstr "נעשה שימוש בשרת מתווך לבקשות מפרוטוקול FTP בלבד."
+msgstr "תיווך לבקשות FTP בלבד."
 
 #: zapzap/services/SysTrayManager.py:54
 msgid "Show"

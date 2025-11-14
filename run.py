@@ -19,7 +19,7 @@ def dev(build_translations=False):
 
 def preview(build_translations=False):
     """Run the app in preview mode."""
-    SDK_VERSION = 6.8
+    SDK_VERSION = "6.10"
     use_flatpak = "--flatpak" in sys.argv
     use_appimage = "--appimage" in sys.argv
 
