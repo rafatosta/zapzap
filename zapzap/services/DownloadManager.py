@@ -10,6 +10,8 @@ from gettext import gettext as _
 
 class DownloadManager:
 
+    current_directory = None
+
     DOWNLOAD_PATH = QStandardPaths.writableLocation(
         QStandardPaths.StandardLocation.DownloadLocation)
 
@@ -89,7 +91,7 @@ class DownloadManager:
     @staticmethod
     def save_download(download):
         """ Salva o arquivo no diretório especificado pelo usuário """
-        directory = DownloadManager.get_path()
+        directory = DownloadManager.current_directory if DownloadManager.current_directory else DownloadManager.get_path()
         options = QFileDialog.Option.DontUseNativeDialog if SettingsManager.get(
             "system/DontUseNativeDialog", False) else QFileDialog.Option(0)
 
@@ -100,6 +102,7 @@ class DownloadManager:
                 directory, file_name), f"*.{suffix}", options=options
         )
         if path:
+            DownloadManager.current_directory = os.path.dirname(path)
             download.setDownloadFileName(os.path.basename(path))
             download.setDownloadDirectory(os.path.dirname(path))
             download.accept()
@@ -110,7 +113,7 @@ class DownloadManager:
         directory = DownloadManager.get_path()
         options = QFileDialog.Option.DontUseNativeDialog if SettingsManager.get(
             "system/DontUseNativeDialog", False) else QFileDialog.Option(0)
-        
+
         folder_path = QFileDialog.getExistingDirectory(
             parent=parent, caption=_("Select folder"), directory=directory, options=options)
         return folder_path or None
