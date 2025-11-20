@@ -130,3 +130,6 @@ dmypy.json
 *.tar.gz
 *.appimage-builder
 *.appimage-builder-preview
+
+#excluded deb package
+*.deb
