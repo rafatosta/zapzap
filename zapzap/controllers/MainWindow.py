@@ -1,4 +1,3 @@
-from PyQt6 import uic
 from PyQt6.QtWidgets import QMainWindow, QApplication
 from PyQt6.QtCore import QByteArray, Qt, QEvent
 from zapzap.controllers.QtoasterDonation import QtoasterDonation
