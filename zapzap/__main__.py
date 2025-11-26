@@ -1,26 +1,36 @@
-import zapzap
-import sys
 import argparse
+import sys
 
-from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtCore import QUrl
+from PyQt6.QtGui import QDesktopServices
 
+import zapzap
 from zapzap.config.SetupManager import SetupManager
 from zapzap.controllers.MainWindow import MainWindow
 from zapzap.controllers.SingleApplication import SingleApplication
+from zapzap.resources.TrayIcon import TrayIcon
 from zapzap.services.ProxyManager import ProxyManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.TranslationManager import TranslationManager
-from zapzap.resources.TrayIcon import TrayIcon
+
 
 def main():
     # Desativa todos os prints do código
     # sys.stdout = open(os.devnull, 'w')
 
-    parser = argparse.ArgumentParser(
-        description="Gerenciar configurações do zapzap")
-    parser.add_argument("--setSettings", nargs=2, metavar=("chave",
-                        "valor"), help="Define uma configuração específica")
+    parser = argparse.ArgumentParser(description="Gerenciar configurações do zapzap")
+    parser.add_argument(
+        "--setSettings",
+        nargs=2,
+        metavar=("chave", "valor"),
+        help="Define uma configuração específica\nDefine a specific configuration",
+    )
+    parser.add_argument(
+        "--hideStart",
+        help="Iniciar o ZapZap minimizado se for utilizado\nStart zapzap minimized if used",
+        default=False,
+        action=argparse.BooleanOptionalAction,
+    )
     args, unknown = parser.parse_known_args()
 
     if args.setSettings:
@@ -38,8 +48,7 @@ def main():
     TranslationManager.apply()
 
     # Define application attributes
-    app = SingleApplication(
-        zapzap.__appid__, sys.argv + SetupManager.get_argv())
+    app = SingleApplication(zapzap.__appid__, sys.argv + SetupManager.get_argv())
     app.setApplicationName(zapzap.__appname__)
     app.setApplicationVersion(zapzap.__version__)
     app.setDesktopFileName(zapzap.__desktopid__)
@@ -64,7 +73,7 @@ def main():
         QDesktopServices.openUrl(QUrl(zapzap.__website__))
         SettingsManager.set("website/open_page", False)
 
-    if SettingsManager.get("system/start_background", False) or '--hideStart' in sys.argv:
+    if SettingsManager.get("system/start_background", False) or args.hide:
         print("Iniciando em segundo plano...")
         main_window.hide()
     else:
