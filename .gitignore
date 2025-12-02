@@ -133,3 +133,6 @@ dmypy.json
 
 #excluded deb package
 *.deb
+
+# Editor (IDE) files
+.idea
