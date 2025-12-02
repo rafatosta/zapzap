@@ -36,13 +36,7 @@ class SingleApplication(QApplication):
             self._outSocket = None
             self._server = QLocalServer()
             self._server.listen(self._appid)
-            self._server.newConnection.connect(self._onNewConnection)
-
-            # TODO: Add environment variables for the Chronium flags with the extension
-            """
-            extension_dir = os.path.abspath("extension folder")
-            os.environ["QTWEBENGINE_CHROMIUM_FLAGS"] = f"--load-extension={extension_dir}"
-            """
+            self._server.newConnection.connect(self._onNewConnection)           
 
     def close(self):
         if self._inSocket:
