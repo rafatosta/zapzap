@@ -11,6 +11,7 @@ from zapzap.models import User
 from zapzap import __user_agent__, __whatsapp_url__
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.DownloadManager import DownloadManager
+from zapzap.services.ExtensionManager import ExtensionManager
 from zapzap.services.NotificationManager import NotificationManager
 from zapzap.services.SettingsManager import SettingsManager
 
@@ -78,6 +79,8 @@ class WebView(QWebEngineView):
         self.profile.setHttpCacheType(
             self.QWEBENGINE_CACHE_TYPES.get(SettingsManager.get(
                 "performance/cache_type", "DiskHttpCache")))
+        
+        ExtensionManager.set_extensions(self.profile)
 
         self.print_qwebengineprofile_info(self.profile)
 
