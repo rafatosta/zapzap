@@ -8,6 +8,7 @@ class ExtensionManager:
     _domain = "zapzap"
     _extensions_dir = path.join(APP_PATH, "extensions")
     _profile = None
+    extensions = {} # Dict with all the IDs mapped to a readable name
 
     @staticmethod
     def set_extensions(profile):
@@ -19,15 +20,18 @@ class ExtensionManager:
                 ExtensionManager._extensions_dir, folder)
             if path.isdir(folder_path):
                 print(f"  - Adding Extension: {folder_path}")
-                ExtensionManager._profile.installExtension(folder_path)
+                ExtensionManager._profile.loadExtension(folder_path)
 
                 curr_extension = ExtensionManager._profile.extensions()[-1]
                 if curr_extension.error(): # Empty if no error found while loading
-                    print(f"INFO - Failed to install: {folder_path}", file=sys.stderr)
+                    print(f"INFO - Failed to load: {folder_path}", file=sys.stderr)
                     print(f"\t  ERROR: {curr_extension.error()}", file=sys.stderr)
                     continue
 
-                print(f"\t  - loadExtension('{curr_extension.path()}') = {curr_extension.id()}")
+                ExtensionManager.extensions[folder] = curr_extension.id()
+                print(f"\t  - Load Extension('{curr_extension.path()}') = {curr_extension.id()}")
+
+        return
 
 
     @staticmethod
