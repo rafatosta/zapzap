@@ -1,0 +1,239 @@
+{
+    "extension_description": {
+        "message": "为每个网站启用暗色模式。呵护双眼，使用暗色主题进行夜间和日常浏览。"
+    },
+    "loading_please_wait": {
+        "message": "正在加载，请稍候"
+    },
+    "on": {
+        "message": "开启"
+    },
+    "off": {
+        "message": "关闭"
+    },
+    "toggle_current_site": {
+        "message": "切换当前网站"
+    },
+    "setup_hotkey_toggle_site": {
+        "message": "设置当前网站\n切换快捷键"
+    },
+    "toggle_extension": {
+        "message": "切换扩展"
+    },
+    "setup_hotkey_toggle_extension": {
+        "message": "设置扩展\n切换快捷键"
+    },
+    "automation": {
+        "message": "自动化"
+    },
+    "set_active_hours": {
+        "message": "设置活动时间"
+    },
+    "set_location": {
+        "message": "在此位置日落后激活"
+    },
+    "longitude": {
+        "message": "经度"
+    },
+    "latitude": {
+        "message": "纬度"
+    },
+    "page_protected": {
+        "message": "此页面受到\n浏览器保护"
+    },
+    "local_files_forbidden": {
+        "message": "不允许访问\n本地文件"
+    },
+    "page_in_dark_list": {
+        "message": "此网站在全局\n暗色列表中"
+    },
+    "system_dark_mode": {
+        "message": "使用系统颜色方案"
+    },
+    "system_dark_mode_description": {
+        "message": "当系统暗色模式开启时激活"
+    },
+    "system_dark_mode_chromium_warning": {
+        "message": "由于浏览器的错误，\n此选项可能无法正常工作"
+    },
+    "filter": {
+        "message": "滤镜"
+    },
+    "mode": {
+        "message": "模式"
+    },
+    "dark": {
+        "message": "暗色"
+    },
+    "light": {
+        "message": "亮色"
+    },
+    "brightness": {
+        "message": "亮度"
+    },
+    "contrast": {
+        "message": "对比度"
+    },
+    "grayscale": {
+        "message": "灰度"
+    },
+    "sepia": {
+        "message": "棕褐色"
+    },
+    "only_for": {
+        "message": "仅用于"
+    },
+    "only_for_description": {
+        "message": "仅将设置应用于当前网站"
+    },
+    "site_list": {
+        "message": "网站列表"
+    },
+    "invert_listed_only": {
+        "message": "仅反转列表中的"
+    },
+    "not_invert_listed": {
+        "message": "不反转列表中的"
+    },
+    "add_site_to_list": {
+        "message": "将网站添加到列表"
+    },
+    "setup_add_site_hotkey": {
+        "message": "设置添加网站的快捷键"
+    },
+    "more": {
+        "message": "更多"
+    },
+    "select_font": {
+        "message": "选择字体"
+    },
+    "text_stroke": {
+        "message": "文字描边"
+    },
+    "try_experimental_theme_engines": {
+        "message": "尝试**实验性**主题引擎：\n**滤镜+** 保留颜色饱和度，使用 GPU\n**静态主题** 生成简单快速的主题\n**动态主题** 分析颜色和图像"
+    },
+    "engine_filter": {
+        "message": "滤镜"
+    },
+    "engine_filter_plus": {
+        "message": "滤镜+"
+    },
+    "engine_static": {
+        "message": "静态"
+    },
+    "engine_dynamic": {
+        "message": "动态"
+    },
+    "theme_generation_mode": {
+        "message": "主题生成模式"
+    },
+    "custom_browser_theme_on": {
+        "message": "自定义"
+    },
+    "custom_browser_theme_off": {
+        "message": "默认"
+    },
+    "change_browser_theme": {
+        "message": "更改浏览器主题"
+    },
+    "privacy": {
+        "message": "隐私"
+    },
+    "help": {
+        "message": "帮助"
+    },
+    "donate": {
+        "message": "捐赠"
+    },
+    "we_celebrate_10_years": {
+        "message": "Dark Reader 庆祝 10 周年。\n请支持我们的工作。"
+    },
+    "pay_for_using": {
+        "message": "为使用 Dark Reader 付费"
+    },
+    "news": {
+        "message": "新闻"
+    },
+    "read_more": {
+        "message": "阅读更多"
+    },
+    "open_dev_tools": {
+        "message": "开发工具"
+    },
+    "mobile": {
+        "message": "移动端"
+    },
+    "learn_more": {
+        "message": "了解更多"
+    },
+    "mobile_text": {
+        "message": "在手机或平板电脑上阅读时减少眼部疲劳。\n只需扫描二维码即可安装。"
+    },
+    "all_settings": {
+        "message": "所有设置"
+    },
+    "version": {
+        "message": "版本"
+    },
+    "configure_automation": {
+        "message": "配置自动化"
+    },
+    "auto_night_time": {
+        "message": "自动（夜间）"
+    },
+    "auto_day_time": {
+        "message": "自动（白天）"
+    },
+    "auto_night_at_location": {
+        "message": "自动（当地夜间）"
+    },
+    "auto_day_at_location": {
+        "message": "自动（当地白天）"
+    },
+    "auto_system_is_dark": {
+        "message": "自动（系统为暗色）"
+    },
+    "auto_system_is_light": {
+        "message": "自动（系统为亮色）"
+    },
+    "click_to_set_shortcut": {
+        "message": "点击设置快捷键"
+    },
+    "extension_toggle_shortcut": {
+        "message": "扩展开关键盘快捷键"
+    },
+    "configure_site_toggle": {
+        "message": "配置网站切换"
+    },
+    "site_toggle": {
+        "message": "网站切换"
+    },
+    "enabled_by_default": {
+        "message": "默认启用"
+    },
+    "enable_for_all_sites_by_default": {
+        "message": "默认为所有网站启用"
+    },
+    "detect_dark_theme": {
+        "message": "检测暗色主题"
+    },
+    "detect_website_dark_theme": {
+        "message": "检测网站自身的暗色主题"
+    },
+    "dark_theme_detected": {
+        "message": "检测到暗色主题"
+    },
+    "website_toggle_shortcut": {
+        "message": "网站切换键盘快捷键"
+    },
+    "support_out_work": {
+        "message": "支持我们的工作"
+    },
+    "mobile_link": {
+        "message": "移动版 Dark Reader 已推出。了解更多"
+    },
+    "store_listing": {
+        "message": "这款护眼扩展通过为网站动态创建暗色主题来启用夜间模式。Dark Reader 会反转明亮的颜色，使其呈现高对比度效果，便于夜间阅读。\n\n您可以调整亮度、对比度、棕褐色滤镜、暗色模式、字体设置和忽略列表。\n\nDark Reader Plus 提供付费版高级用户界面和可自定义颜色主题。\n\n请阅读使用条款：https://darkreader.org/terms/\n\n安装前请禁用类似的扩展。祝您浏览愉快！"
+    }
+}

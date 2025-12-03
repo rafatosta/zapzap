@@ -1,0 +1,221 @@
+Default
+
+DARK
+background: #181a1b
+text: #e8e6e3
+
+LIGHT
+background: #181a1b
+text: #e8e6e3
+
+================================
+
+Catppuccin
+
+DARK
+background: #1e1e2e
+text: #cdd6f4
+
+LIGHT
+background: #eff1f5
+text: #4c4f69
+
+================================
+
+Deep Ocean
+
+DARK
+background: #00222b
+text: #a9b4b4
+
+LIGHT
+background: #cac5b6
+text: #cdd4d6
+
+================================
+
+Dracula
+
+DARK
+background: #282b36
+text: #e8e6e3
+
+================================
+
+Everforest
+
+DARK
+background: #2b3339
+text: #d1c4a9
+
+LIGHT
+background: #fdf9ed
+text: #5b6971
+
+================================
+
+Github Modern
+
+DARK
+background: #0d1117
+text: #c9d1d9
+
+LIGHT
+background: #ffffff
+text: #24292f
+
+================================
+
+Gruvbox
+
+DARK
+background: #282828
+text: #ebdbb2
+
+LIGHT
+background: #fbf1c7
+text: #3c3836
+
+================================
+
+Kanagawa
+
+DARK
+background: #1f1f28
+text: #dcd7ba
+
+LIGHT
+background: #f4ecca
+text: #1e4887
+
+================================
+
+Material You
+
+DARK
+background: #1f1b24
+text: #e3e3e3
+
+LIGHT
+background: #fefbff
+text: #1f1b24
+
+================================
+
+Matte Black
+
+DARK
+background: #181a1b
+text: #e8e6e3
+
+================================
+
+Night Owl
+
+DARK
+background: #011627
+text: #d6deeb
+
+LIGHT
+background: #fbfbfb
+text: #403f53
+
+================================
+
+Nord
+
+DARK
+background: #2e3440
+text: #eceff4
+
+LIGHT
+background: #eceff4
+text: #3b4252
+
+================================
+
+One Dark
+
+DARK
+background: #282c34
+text: #abb2bf
+
+LIGHT
+background: #fafafa
+text: #383a42
+
+================================
+
+Osaka Jade
+
+DARK
+background: #111c18
+text: #f6f5dd
+
+================================
+
+Oxocarbon
+
+DARK
+background: #161616
+text: #f2f4f8
+
+LIGHT
+background: #f2f4f8
+text: #393939
+
+================================
+
+Ristretto
+
+DARK
+background: #2c2421
+text: #d5c4a1
+
+================================
+
+Rosé Pine
+
+DARK
+background: #191724
+text: #e0def4
+
+LIGHT
+background: #faf4ed
+text: #575279
+
+================================
+
+Selenized
+
+DARK
+background: #103c48
+text: #adbcbc
+
+LIGHT
+background: #fbf3db
+text: #53676d
+
+================================
+
+Solarized
+
+DARK
+background: #002b36
+text: #93a1a1
+
+LIGHT
+background: #fdf6e3
+text: #586e75
+
+================================
+
+Tokyo Night
+
+DARK
+background: #1a1b26
+text: #a9b1d6
+
+LIGHT
+background: #d5d6db
+text: #343b58

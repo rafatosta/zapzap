@@ -1,0 +1,239 @@
+{
+    "extension_description": {
+        "message": "প্রত্যেক ওয়েবসাইটের জন্য ডার্কমোড। নিজ চোখের যত্ম নিন, নিত্যকার ব্রাউজিং এর জন্য ব্যবহার করুন ডার্ক থিম।"
+    },
+    "loading_please_wait": {
+        "message": "লোড হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন"
+    },
+    "on": {
+        "message": "অন"
+    },
+    "off": {
+        "message": "অফ"
+    },
+    "toggle_current_site": {
+        "message": "বর্তমান সাইটে টগল করুন"
+    },
+    "setup_hotkey_toggle_site": {
+        "message": "বর্তমান সাইট সেটাপ করুন\nটগল কী"
+    },
+    "toggle_extension": {
+        "message": "এক্সটেনশন টগল করুন"
+    },
+    "setup_hotkey_toggle_extension": {
+        "message": "এক্সটেনসন ঠিক করুন\nটগল কী"
+    },
+    "automation": {
+        "message": "স্বয়ংক্রিয়করণ"
+    },
+    "set_active_hours": {
+        "message": "সক্রিয় কাল সেট করুন"
+    },
+    "set_location": {
+        "message": "সূর্যাস্তের পরে লোকেশনে সক্রিয় করুন"
+    },
+    "longitude": {
+        "message": "দ্রাঘিমা"
+    },
+    "latitude": {
+        "message": "অক্ষাংশ"
+    },
+    "page_protected": {
+        "message": "এই পেজটি প্রোটেক্টেড\nব্রাউজার দ্বারা"
+    },
+    "local_files_forbidden": {
+        "message": "প্রবেশের অনুমতি নেই\nস্থানীয় ফাইল"
+    },
+    "page_in_dark_list": {
+        "message": "এই সাইটটি গ্লোবাল\nডার্ক লিস্টে আছে"
+    },
+    "system_dark_mode": {
+        "message": "সিস্টেম কালার স্কিম ব্যবহার করুন"
+    },
+    "system_dark_mode_description": {
+        "message": "যখন সিস্টেম মোড চালু আছে তখন চালু করুন"
+    },
+    "system_dark_mode_chromium_warning": {
+        "message": "This option might not work due to\na bug in your browser"
+    },
+    "filter": {
+        "message": "ফিল্টার"
+    },
+    "mode": {
+        "message": "মোড"
+    },
+    "dark": {
+        "message": "ডার্ক"
+    },
+    "light": {
+        "message": "লাইট"
+    },
+    "brightness": {
+        "message": "উজ্জ্বলতা"
+    },
+    "contrast": {
+        "message": "কনট্রাস্ট"
+    },
+    "grayscale": {
+        "message": "গ্রে-স্কেল"
+    },
+    "sepia": {
+        "message": "সেপিয়া"
+    },
+    "only_for": {
+        "message": "অনলি ফর"
+    },
+    "only_for_description": {
+        "message": "শুধু বর্তমান ওয়েবসাইটের জন্য সেটিংস কার্যকর করুন"
+    },
+    "site_list": {
+        "message": "সাইট লিস্ট"
+    },
+    "invert_listed_only": {
+        "message": "কেবল ইনভার্ট লিস্টেড"
+    },
+    "not_invert_listed": {
+        "message": "ইনভার্ট লিস্টেড নয়"
+    },
+    "add_site_to_list": {
+        "message": "লিস্টে সাইট যোগ করুন"
+    },
+    "setup_add_site_hotkey": {
+        "message": "সাইট অ্যাড করার হট-কী সেটাপ করুন"
+    },
+    "more": {
+        "message": "আরও"
+    },
+    "select_font": {
+        "message": "ফন্ট বাছাই করুন"
+    },
+    "text_stroke": {
+        "message": "টেক্সট স্ট্রোক"
+    },
+    "try_experimental_theme_engines": {
+        "message": "**পরীক্ষামূলক** থিম ইঞ্জিন টেস্ট করুন:\n**ফিল্টার+** কালার স্যাচুরেশন রক্ষা করে, GPU ব্যবহার করে\n**স্ট্যাটিক থিম** দ্রুত একটি সিম্পল থিম তৈরি করে\n**ডায়নামিক থিম** রঙ ও ছবি বিশ্লেষণ করে"
+    },
+    "engine_filter": {
+        "message": "ফিল্টার"
+    },
+    "engine_filter_plus": {
+        "message": "ফিল্টার+"
+    },
+    "engine_static": {
+        "message": "স্ট্যাটিক"
+    },
+    "engine_dynamic": {
+        "message": "ডায়নামিক"
+    },
+    "theme_generation_mode": {
+        "message": "থিম জেনারেশন মোড"
+    },
+    "custom_browser_theme_on": {
+        "message": "কাস্টম"
+    },
+    "custom_browser_theme_off": {
+        "message": "ডিফল্ট"
+    },
+    "change_browser_theme": {
+        "message": "ব্রাউজার থিম পরিবর্তন করুন"
+    },
+    "privacy": {
+        "message": "গোপনীয়তা"
+    },
+    "help": {
+        "message": "সহায়তা"
+    },
+    "donate": {
+        "message": "অনুদান"
+    },
+    "we_celebrate_10_years": {
+        "message": "ডার্ক রিডার 10 বছর উদযাপন করছে।\nআমাদের কাজ সমর্থন করুন."
+    },
+    "pay_for_using": {
+        "message": "ডার্ক রিডার ব্যবহার করার জন্য অর্থ প্রদান করুন"
+    },
+    "news": {
+        "message": "বার্তা"
+    },
+    "read_more": {
+        "message": "আরও পড়ুন"
+    },
+    "open_dev_tools": {
+        "message": "ডেভেলপার টুলস"
+    },
+    "mobile": {
+        "message": "মোবাইল"
+    },
+    "learn_more": {
+        "message": "আরও জানুন"
+    },
+    "mobile_text": {
+        "message": "আপনার ফোন বা ট্যাবলেটে পড়ার সময় চোখের চাপ কমিয়ে দিন।\nইন্সটল করতে শুধু QR কোড স্ক্যান করুন।"
+    },
+    "all_settings": {
+        "message": "সব সেটিংস"
+    },
+    "version": {
+        "message": "সংস্করণ"
+    },
+    "configure_automation": {
+        "message": "অটোমেশন কনফিগার করুন"
+    },
+    "auto_night_time": {
+        "message": "অটো (রাতের সময়)"
+    },
+    "auto_day_time": {
+        "message": "অটো (দিনের সময়)"
+    },
+    "auto_night_at_location": {
+        "message": "স্বয়ংক্রিয় (স্থানে রাত)"
+    },
+    "auto_day_at_location": {
+        "message": "স্বয়ংক্রিয় (স্থানে দিন)"
+    },
+    "auto_system_is_dark": {
+        "message": "স্বয়ংক্রিয় (সিস্টেম অন্ধকার)"
+    },
+    "auto_system_is_light": {
+        "message": "স্বয়ংক্রিয় (সিস্টেম হালকা)"
+    },
+    "click_to_set_shortcut": {
+        "message": "শর্টকাট সেট করতে ক্লিক করুন"
+    },
+    "extension_toggle_shortcut": {
+        "message": "এক্সটেনশন অন/অফ কীবোর্ড শর্টকাট"
+    },
+    "configure_site_toggle": {
+        "message": "ওয়েবসাইট টগল কনফিগার করুন"
+    },
+    "site_toggle": {
+        "message": "সাইট টগলিং"
+    },
+    "enabled_by_default": {
+        "message": "ডিফল্টরূপে সক্রিয়"
+    },
+    "enable_for_all_sites_by_default": {
+        "message": "ডিফল্টরূপে সমস্ত ওয়েবসাইটের জন্য সক্ষম"
+    },
+    "detect_dark_theme": {
+        "message": "অন্ধকার থিম সনাক্ত করুন"
+    },
+    "detect_website_dark_theme": {
+        "message": "ওয়েবসাইটের নিজস্ব অন্ধকার থিম সনাক্ত করুন"
+    },
+    "dark_theme_detected": {
+        "message": "গাঢ় থিম শনাক্ত করা হয়েছে"
+    },
+    "website_toggle_shortcut": {
+        "message": "ওয়েবসাইট টগল কীবোর্ড শর্টকাট"
+    },
+    "support_out_work": {
+        "message": "আমাদের কাজ সমর্থন"
+    },
+    "mobile_link": {
+        "message": "মোবাইল ডার্ক রিডার উপলব্ধ। আরও জানুন"
+    },
+    "store_listing": {
+        "message": "এই চক্ষু-যত্ন এক্সটেনশনটি ওয়েবসাইটগুলির জন্য ডার্ক থিম তৈরি করে নাইট মোড সক্ষম করে। ডার্ক রিডার উজ্জ্বল রঙগুলিকে উল্টে দেয়, ওয়েব পৃষ্ঠাগুলিকে উচ্চ বৈসাদৃশ্য তৈরি করে এবং রাতে পড়া সহজ করে তোলে।\n\nআপনি উজ্জ্বলতা, বৈসাদৃশ্য, সেপিয়া ফিল্টার, ফন্ট পছন্দগুলি সামঞ্জস্য করতে পারেন, ডার্ক মোড এবং স্ক্রিন শেডার মোডের মধ্যে নির্বাচন করতে পারেন এবং নির্দিষ্ট ওয়েবসাইটের জন্য এক্সটেনশনটি সক্ষম বা অক্ষম করতে পারেন।\n\nডার্ক রিডার প্লাস একটি ফি দিয়ে কাস্টমাইজেবল রঙের থিম সহ একটি প্রিমিয়াম ইউজার ইন্টারফেস আনলক করে।\n\nব্যবহারের শর্তাবলী দয়া করে পড়ুন https://darkreader.org/terms/\n\nইনস্টল করার আগে, দ্বন্দ্ব এড়াতে অনুগ্রহ করে অনুরূপ এক্সটেনশনগুলি অক্ষম করুন। ব্রাউজিং উপভোগ করুন!"
+    }
+}
