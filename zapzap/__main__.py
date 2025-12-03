@@ -8,7 +8,6 @@ from PyQt6.QtCore import QUrl
 from zapzap.config.SetupManager import SetupManager
 from zapzap.controllers.MainWindow import MainWindow
 from zapzap.controllers.SingleApplication import SingleApplication
-from zapzap.services.ExtensionManager import ExtensionManager
 from zapzap.services.ProxyManager import ProxyManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.TranslationManager import TranslationManager
@@ -35,8 +34,6 @@ def main():
     else:
         print("Argumento inválido ou ausente")
 
-
-    ExtensionManager.apply()
     SetupManager.apply()
     TranslationManager.apply()
 
