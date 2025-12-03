@@ -1,15 +1,17 @@
 from os import path, listdir
 from zapzap import APP_PATH
+import sys
 
 
 class ExtensionManager:
 
     _domain = "zapzap"
     _extensions_dir = path.join(APP_PATH, "extensions")
+    _profile = None
 
     @staticmethod
     def set_extensions(profile):
-        manager = profile.extensionManager()
+        ExtensionManager._profile = profile.extensionManager()
         print("Setting extensions for the profile...")
         # Here you would typically add the extensions to the manager
         for folder in listdir(ExtensionManager._extensions_dir):
@@ -17,18 +19,19 @@ class ExtensionManager:
                 ExtensionManager._extensions_dir, folder)
             if path.isdir(folder_path):
                 print(f"  - Adding Extension: {folder_path}")
-                ok = manager.loadExtension(folder_path)
-                print(f"\t  - loadExtension('{folder_path}') = {ok}")
+                ExtensionManager._profile.installExtension(folder_path)
+
+                curr_extension = ExtensionManager._profile.extensions()[-1]
+                if curr_extension.error(): # Empty if no error found while loading
+                    print(f"INFO - Failed to install: {folder_path}", file=sys.stderr)
+                    print(f"\t  ERROR: {curr_extension.error()}", file=sys.stderr)
+                    continue
+
+                print(f"\t  - loadExtension('{curr_extension.path()}') = {curr_extension.id()}")
 
 
     @staticmethod
     def list_extensions():
-        # TODO: Add environment variables for the Chronium flags with the extension
-        """
-        extension_dir = os.path.abspath("self.extension_folder")
-        os.environ["QTWEBENGINE_CHROMIUM_FLAGS"] = f"--load-extension={extension_dir}"
-        """
-
         print("-- Extensions directory:", ExtensionManager._extensions_dir)
 
         if path.isdir(ExtensionManager._extensions_dir):
