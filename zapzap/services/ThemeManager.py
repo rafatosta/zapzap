@@ -5,7 +5,7 @@ from PyQt6.QtGui import QPalette, QColor
 from enum import Enum
 from zapzap.resources.ThemeStylesheet import ThemeStylesheet
 from zapzap.services.SettingsManager import SettingsManager
-from zapzap.services.ExtensionManager import ExtensionManager
+from zapzap.extensions.DarkReaderBridge import DarkReaderBridge
 
 
 class ThemeManager:
@@ -138,9 +138,7 @@ class ThemeManager:
             QApplication.instance().setStyleSheet(ThemeStylesheet.get_stylesheet('dark'))
 
         # Apply theme using Dark Reader
-        darkreader_id = ExtensionManager.extensions["darkreader-chrome"]
-        # TODO: Check Dark Reader API to see if custom colors can be applied from terminal
-
+        DarkReaderBridge.set_theme_colors(colors)
 
     def _create_palette(self, window, text, base, highlight):
         """Cria uma paleta com cores fornecidas."""
