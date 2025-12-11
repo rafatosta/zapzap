@@ -15,6 +15,9 @@ from zapzap.services.ExtensionManager import ExtensionManager
 from zapzap.services.NotificationManager import NotificationManager
 from zapzap.services.SettingsManager import SettingsManager
 
+# TODO: DELETE (DEBUG)
+from zapzap.extensions.DarkReaderBridge import DarkReaderBridge
+
 from gettext import gettext as _
 
 from PyQt6.QtGui import QImage
@@ -80,9 +83,12 @@ class WebView(QWebEngineView):
             self.QWEBENGINE_CACHE_TYPES.get(SettingsManager.get(
                 "performance/cache_type", "DiskHttpCache")))
         
-        ExtensionManager.set_extensions(self.profile)
+        ExtensionManager.set_extensions(self, self.profile)
 
         self.print_qwebengineprofile_info(self.profile)
+
+        # TODO: DELETE (DEBUG)
+        DarkReaderBridge.set_theme_colors(["#1e1e2e", "#cdd6f4", "#cdd6f4", "#cdd6f4"])
 
     def configure_spellcheck(self):
         """Configura o corretor ortográfico."""

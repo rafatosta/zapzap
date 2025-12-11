@@ -123,7 +123,7 @@ class ThemeManager:
         QApplication.instance().getWindow().browser.set_theme_dark()
         QApplication.instance().setStyleSheet(ThemeStylesheet.get_stylesheet('dark'))
 
-    def _apply_custom_theme(self, colors: list[int], grade):
+    def _apply_custom_theme(self, colors: list[str], grade):
         """Aplica o tema customizado."""
         print("Aplicando tema customizado...")
         palette = self._create_palette(
