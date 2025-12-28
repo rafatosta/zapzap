@@ -81,6 +81,12 @@ pip install .
 pip uninstall zapzap
 ```
 
+#### uv tool
+Provides a global `zapzap` command in isolated environment.
+```bash
+uv tool install . --with-requirements requirements.txt
+```
+
 ## 📦 Packaging
 - **[Fedora Copr](/fedora_copr.spec)** 
 - **[Flatpak](https://github.com/flathub/com.rtosta.zapzap)**
