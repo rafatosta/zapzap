@@ -8,7 +8,7 @@ from PyQt6.QtGui import QAction, QImage
 
 from zapzap.controllers.PageController import PageController
 from zapzap.models import User
-from zapzap import __user_agent__, __whatsapp_url__
+from zapzap import __user_agent__, __accept_language_suffix__, __whatsapp_url__
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.DownloadManager import DownloadManager
 from zapzap.services.NotificationManager import NotificationManager
@@ -71,6 +71,7 @@ class WebView(QWebEngineView):
         self.profile.settings().setAttribute(
             QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, SettingsManager.get("web/scroll_animator", False))
 
+        self.configure_accept_languages()
         self.configure_spellcheck()
 
         size_cache = SettingsManager.get("performance/cache_size_max", 0)
@@ -80,6 +81,12 @@ class WebView(QWebEngineView):
                 "performance/cache_type", "DiskHttpCache")))
 
         self.print_qwebengineprofile_info(self.profile)
+
+    def configure_accept_languages(self):
+        """Configure o idioma para o cabeçalho Accept-Language."""
+        system_language = DictionariesManager.get_system_language()
+        accept_language_string = f"{system_language.replace('_', '-')},{system_language.split('_')[0]}{__accept_language_suffix__}"
+        self.profile.setHttpAcceptLanguage(accept_language_string)
 
     def configure_spellcheck(self):
         """Configura o corretor ortográfico."""
@@ -291,4 +298,5 @@ class WebView(QWebEngineView):
         logger.info(f"Spell Check Habilitado: {profile.isSpellCheckEnabled()}")
         logger.info(f"""Linguagens do Spell Check: {
                     profile.spellCheckLanguages()}""")
+        logger.info(f"Accept-Language Header: {profile.httpAcceptLanguage()}")
         logger.info("=========================================")
