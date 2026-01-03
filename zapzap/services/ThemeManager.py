@@ -5,6 +5,7 @@ from PyQt6.QtGui import QPalette, QColor
 from enum import Enum
 from zapzap.resources.ThemeStylesheet import ThemeStylesheet
 from zapzap.services.SettingsManager import SettingsManager
+from zapzap.extensions.DarkReaderBridge import DarkReaderBridge
 
 
 class ThemeManager:
@@ -12,6 +13,7 @@ class ThemeManager:
         Auto = "auto"
         Light = "light"
         Dark = "dark"
+        Custom = "custom"
 
     _instance = None
 
@@ -90,12 +92,15 @@ class ThemeManager:
             self.current_theme = theme
             self._apply_theme()
 
-    def _apply_theme(self):
+    def _apply_theme(self, colors: list[int] = None, grade = None):
         """Aplica o tema atual."""
         if self.current_theme == ThemeManager.Type.Light:
             self._apply_light_theme()
         elif self.current_theme == ThemeManager.Type.Dark:
             self._apply_dark_theme()
+        elif self.current_theme == ThemeManager.Type.Custom:
+            # TODO: These colors should be passed from the settings interface
+            self._apply_custom_theme(colors, grade)
 
     # === Implementação dos Temas Claro e Escuro ===
     def _apply_light_theme(self):
@@ -117,6 +122,23 @@ class ThemeManager:
         self._apply_palette(palette)
         QApplication.instance().getWindow().browser.set_theme_dark()
         QApplication.instance().setStyleSheet(ThemeStylesheet.get_stylesheet('dark'))
+
+    def _apply_custom_theme(self, colors: list[str], grade):
+        """Aplica o tema customizado."""
+        print("Aplicando tema customizado...")
+        palette = self._create_palette(
+            window=colors[0], text=colors[1], base=colors[2], highlight=colors[3]
+        )
+        self._apply_palette(palette)
+        if grade == ThemeManager.Type.Light:
+            QApplication.instance().getWindow().browser.set_theme_light()
+            QApplication.instance().setStyleSheet(ThemeStylesheet.get_stylesheet('light'))
+        elif grade == ThemeManager.Type.Dark:
+            QApplication.instance().getWindow().browser.set_theme_dark()
+            QApplication.instance().setStyleSheet(ThemeStylesheet.get_stylesheet('dark'))
+
+        # Apply theme using Dark Reader
+        DarkReaderBridge.set_theme_colors(colors)
 
     def _create_palette(self, window, text, base, highlight):
         """Cria uma paleta com cores fornecidas."""

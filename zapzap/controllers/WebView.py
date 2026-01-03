@@ -11,8 +11,12 @@ from zapzap.models import User
 from zapzap import __user_agent__, __whatsapp_url__
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.DownloadManager import DownloadManager
+from zapzap.services.ExtensionManager import ExtensionManager
 from zapzap.services.NotificationManager import NotificationManager
 from zapzap.services.SettingsManager import SettingsManager
+
+# TODO: DELETE (DEBUG)
+from zapzap.extensions.DarkReaderBridge import DarkReaderBridge
 
 from gettext import gettext as _
 
@@ -78,8 +82,13 @@ class WebView(QWebEngineView):
         self.profile.setHttpCacheType(
             self.QWEBENGINE_CACHE_TYPES.get(SettingsManager.get(
                 "performance/cache_type", "DiskHttpCache")))
+        
+        ExtensionManager.set_extensions(self, self.profile)
 
         self.print_qwebengineprofile_info(self.profile)
+
+        # TODO: DELETE (DEBUG)
+        DarkReaderBridge.set_theme_colors(["#1e1e2e", "#cdd6f4", "#cdd6f4", "#cdd6f4"])
 
     def configure_spellcheck(self):
         """Configura o corretor ortográfico."""

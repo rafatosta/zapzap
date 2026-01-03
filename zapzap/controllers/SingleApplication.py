@@ -36,7 +36,7 @@ class SingleApplication(QApplication):
             self._outSocket = None
             self._server = QLocalServer()
             self._server.listen(self._appid)
-            self._server.newConnection.connect(self._onNewConnection)
+            self._server.newConnection.connect(self._onNewConnection)           
 
     def close(self):
         if self._inSocket:
