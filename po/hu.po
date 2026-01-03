@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-25 12:06-0300\n"
+"POT-Creation-Date: 2025-12-10 21:12-0300\n"
 "PO-Revision-Date: 2025-11-11 11:40+0200\n"
 "Last-Translator: F. András <erfan659-2 at yahoo dot com>\n"
 "Language-Team: Hungarian\n"
@@ -205,79 +205,83 @@ msgstr "Probléma jelentése"
 msgid "My accounts"
 msgstr "Fiókjaim"
 
-#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:132
+#: zapzap/views/ui_page_appearance.py:136 zapzap/views/ui_settings.py:132
 msgid "Appearance"
 msgstr "Megjelenés"
 
-#: zapzap/views/ui_page_appearance.py:119
+#: zapzap/views/ui_page_appearance.py:137
 msgid "Style"
 msgstr "Stílus"
 
-#: zapzap/views/ui_page_appearance.py:120
-msgid "Adaptive"
-msgstr "Alkalmazkodó"
-
-#: zapzap/views/ui_page_appearance.py:121
-msgid "Light"
-msgstr "Világos"
-
-#: zapzap/views/ui_page_appearance.py:122
+#: zapzap/views/ui_page_appearance.py:138
 msgid "Dark"
 msgstr "Sötét"
 
-#: zapzap/views/ui_page_appearance.py:123
+#: zapzap/views/ui_page_appearance.py:139
+msgid "Light"
+msgstr "Világos"
+
+#: zapzap/views/ui_page_appearance.py:140
+msgid "Adaptive"
+msgstr "Alkalmazkodó"
+
+#: zapzap/views/ui_page_appearance.py:141
+msgid "Custom"
+msgstr ""
+
+#: zapzap/views/ui_page_appearance.py:142
 msgid "Tray icon"
 msgstr "Panel ikon"
 
-#: zapzap/views/ui_page_appearance.py:124
+#: zapzap/views/ui_page_appearance.py:143
 msgid "Remove notification indicator"
 msgstr "Jelző törlése"
 
-#: zapzap/views/ui_page_appearance.py:125
+#: zapzap/views/ui_page_appearance.py:144
 msgid "Default"
 msgstr "Alapértelmezett"
 
-#: zapzap/views/ui_page_appearance.py:126
+#: zapzap/views/ui_page_appearance.py:145
 msgid "Symbolic dark"
 msgstr "Simbólikus sötét"
 
-#: zapzap/views/ui_page_appearance.py:127
+#: zapzap/views/ui_page_appearance.py:146
 msgid "Symbolic light"
 msgstr "Szimbólikus világos"
 
-#: zapzap/views/ui_page_appearance.py:128
+#: zapzap/views/ui_page_appearance.py:147
 msgid "Show sidebar"
 msgstr "Oldalpanel megjelenítése"
 
-#: zapzap/views/ui_page_appearance.py:129
+#: zapzap/views/ui_page_appearance.py:148
 msgid "Show menu bar"
 msgstr "Menüsor megjelenítése"
 
-#: zapzap/views/ui_page_appearance.py:130
+#: zapzap/views/ui_page_appearance.py:149
 msgid "Scale"
 msgstr "Nagyítás"
 
-#: zapzap/views/ui_page_appearance.py:131
+#: zapzap/views/ui_page_appearance.py:150
 msgid "100 %"
 msgstr "100 %"
 
-#: zapzap/views/ui_page_appearance.py:132
+#: zapzap/views/ui_page_appearance.py:151
 msgid "125 %"
 msgstr "125 %"
 
-#: zapzap/views/ui_page_appearance.py:133
+#: zapzap/views/ui_page_appearance.py:152
 msgid "150 %"
 msgstr "150 %"
 
-#: zapzap/views/ui_page_appearance.py:134
+#: zapzap/views/ui_page_appearance.py:153
 msgid "175 %"
 msgstr "175 %"
 
-#: zapzap/views/ui_page_appearance.py:135
+#: zapzap/views/ui_page_appearance.py:154
 msgid "200 %"
 msgstr "200 %"
 
-#: zapzap/views/ui_page_appearance.py:136
+#: zapzap/views/ui_page_appearance.py:155
 msgid "Note: The change of scale will only have effect until restarting."
 msgstr "Megjegyzés: a nagyítás újraindításig érvényes."
 
@@ -626,47 +630,47 @@ msgstr "Oldalak újratöltése"
 msgid "New conversation by phone number"
 msgstr "Új társalgás telefonszámon keresztül"
 
-#: zapzap/controllers/WebView.py:119
+#: zapzap/controllers/WebView.py:128
 msgid "Undo"
 msgstr "Visszavonás"
 
-#: zapzap/controllers/WebView.py:119
+#: zapzap/controllers/WebView.py:128
 msgid "Redo"
 msgstr "Újra végrahajtás"
 
-#: zapzap/controllers/WebView.py:119
+#: zapzap/controllers/WebView.py:128
 msgid "Cut"
 msgstr "Kivágás"
 
-#: zapzap/controllers/WebView.py:120
+#: zapzap/controllers/WebView.py:129
 msgid "Copy"
 msgstr "Másolás"
 
-#: zapzap/controllers/WebView.py:120
+#: zapzap/controllers/WebView.py:129
 msgid "Paste"
 msgstr "Beillesztás"
 
-#: zapzap/controllers/WebView.py:120
+#: zapzap/controllers/WebView.py:129
 msgid "Select all"
 msgstr "Kiválaszt mindent"
 
-#: zapzap/controllers/WebView.py:121
+#: zapzap/controllers/WebView.py:130
 msgid "Save image"
 msgstr "Kép mentése"
 
-#: zapzap/controllers/WebView.py:121
+#: zapzap/controllers/WebView.py:130
 msgid "Copy image"
 msgstr "Kép másolása"
 
-#: zapzap/controllers/WebView.py:122 zapzap/controllers/WebView.py:152
+#: zapzap/controllers/WebView.py:131 zapzap/controllers/WebView.py:161
 msgid "Copy link address"
 msgstr "Link címénel másolása"
 
-#: zapzap/controllers/WebView.py:173
+#: zapzap/controllers/WebView.py:182
 msgid "Check Spelling"
 msgstr "Helyesírás ellenörzése"
 
-#: zapzap/controllers/WebView.py:181
+#: zapzap/controllers/WebView.py:190
 msgid "Select Language"
 msgstr "Válassz nyelvet"
 
@@ -689,22 +693,6 @@ msgstr "Figyelem"
 #: zapzap/services/AlertManager.py:39
 msgid "No active account!"
 msgstr "Nincs aktív fiók!"
-
-#: zapzap/services/DownloadManager.py:46
-msgid "Open"
-msgstr "Megnyitás"
-
-#: zapzap/services/DownloadManager.py:47
-msgid "Save"
-msgstr "Mentés"
-
-#: zapzap/services/DownloadManager.py:99
-msgid "Save file"
-msgstr "Fájl mentése"
-
-#: zapzap/services/DownloadManager.py:115
-msgid "Select folder"
-msgstr "Mappa kiválasztása"
 
 #: zapzap/services/NotificationManager.py:36
 msgid "New message..."
@@ -741,3 +729,19 @@ msgstr "Mutasd"
 #: zapzap/services/SysTrayManager.py:56
 msgid "Donation"
 msgstr "Adomány"
+
+#: zapzap/services/DownloadManager.py:48
+msgid "Open"
+msgstr "Megnyitás"
+
+#: zapzap/services/DownloadManager.py:49
+msgid "Save"
+msgstr "Mentés"
+
+#: zapzap/services/DownloadManager.py:101
+msgid "Save file"
+msgstr "Fájl mentése"
+
+#: zapzap/services/DownloadManager.py:118
+msgid "Select folder"
+msgstr "Mappa kiválasztása"

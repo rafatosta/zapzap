@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-25 12:06-0300\n"
+"POT-Creation-Date: 2025-12-10 21:12-0300\n"
 "PO-Revision-Date: 2025-10-26 15:07+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Yaron Shahrabani <sh.yaron@gmail.com>\n"
@@ -207,79 +207,83 @@ msgstr "דיווח על תקלה"
 msgid "My accounts"
 msgstr "החשבונות שלי"
 
-#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:132
+#: zapzap/views/ui_page_appearance.py:136 zapzap/views/ui_settings.py:132
 msgid "Appearance"
 msgstr "מראה"
 
-#: zapzap/views/ui_page_appearance.py:119
+#: zapzap/views/ui_page_appearance.py:137
 msgid "Style"
 msgstr "סגנון"
 
-#: zapzap/views/ui_page_appearance.py:120
-msgid "Adaptive"
-msgstr "מסתגל"
-
-#: zapzap/views/ui_page_appearance.py:121
-msgid "Light"
-msgstr "בהיר"
-
-#: zapzap/views/ui_page_appearance.py:122
+#: zapzap/views/ui_page_appearance.py:138
 msgid "Dark"
 msgstr "כהה"
 
-#: zapzap/views/ui_page_appearance.py:123
+#: zapzap/views/ui_page_appearance.py:139
+msgid "Light"
+msgstr "בהיר"
+
+#: zapzap/views/ui_page_appearance.py:140
+msgid "Adaptive"
+msgstr "מסתגל"
+
+#: zapzap/views/ui_page_appearance.py:141
+msgid "Custom"
+msgstr ""
+
+#: zapzap/views/ui_page_appearance.py:142
 msgid "Tray icon"
 msgstr "סמל בשורת המערכת"
 
-#: zapzap/views/ui_page_appearance.py:124
+#: zapzap/views/ui_page_appearance.py:143
 msgid "Remove notification indicator"
 msgstr "הסרת מחוון התראות"
 
-#: zapzap/views/ui_page_appearance.py:125
+#: zapzap/views/ui_page_appearance.py:144
 msgid "Default"
 msgstr "ברירת מחדל"
 
-#: zapzap/views/ui_page_appearance.py:126
+#: zapzap/views/ui_page_appearance.py:145
 msgid "Symbolic dark"
 msgstr "כהה סמלי"
 
-#: zapzap/views/ui_page_appearance.py:127
+#: zapzap/views/ui_page_appearance.py:146
 msgid "Symbolic light"
 msgstr "בהיר סמלי"
 
-#: zapzap/views/ui_page_appearance.py:128
+#: zapzap/views/ui_page_appearance.py:147
 msgid "Show sidebar"
 msgstr "הצגת סרגל צד"
 
-#: zapzap/views/ui_page_appearance.py:129
+#: zapzap/views/ui_page_appearance.py:148
 msgid "Show menu bar"
 msgstr "הצגת סרגל תפריטים"
 
-#: zapzap/views/ui_page_appearance.py:130
+#: zapzap/views/ui_page_appearance.py:149
 msgid "Scale"
 msgstr "קנה מידה"
 
-#: zapzap/views/ui_page_appearance.py:131
+#: zapzap/views/ui_page_appearance.py:150
 msgid "100 %"
 msgstr "100 %"
 
-#: zapzap/views/ui_page_appearance.py:132
+#: zapzap/views/ui_page_appearance.py:151
 msgid "125 %"
 msgstr "125 %"
 
-#: zapzap/views/ui_page_appearance.py:133
+#: zapzap/views/ui_page_appearance.py:152
 msgid "150 %"
 msgstr "150 %"
 
-#: zapzap/views/ui_page_appearance.py:134
+#: zapzap/views/ui_page_appearance.py:153
 msgid "175 %"
 msgstr "175 %"
 
-#: zapzap/views/ui_page_appearance.py:135
+#: zapzap/views/ui_page_appearance.py:154
 msgid "200 %"
 msgstr "200 %"
 
-#: zapzap/views/ui_page_appearance.py:136
+#: zapzap/views/ui_page_appearance.py:155
 msgid "Note: The change of scale will only have effect until restarting."
 msgstr "לתשומת ליבך: שינוי קנה המידה יחול רק לאחר הפעלה מחדש."
 
@@ -628,47 +632,47 @@ msgstr "ריענון עמודים"
 msgid "New conversation by phone number"
 msgstr "שיחה חדשה לפי מספר טלפון"
 
-#: zapzap/controllers/WebView.py:119
+#: zapzap/controllers/WebView.py:128
 msgid "Undo"
 msgstr "הסגה"
 
-#: zapzap/controllers/WebView.py:119
+#: zapzap/controllers/WebView.py:128
 msgid "Redo"
 msgstr "ביצוע מחדש"
 
-#: zapzap/controllers/WebView.py:119
+#: zapzap/controllers/WebView.py:128
 msgid "Cut"
 msgstr "גזירה"
 
-#: zapzap/controllers/WebView.py:120
+#: zapzap/controllers/WebView.py:129
 msgid "Copy"
 msgstr "העתקה"
 
-#: zapzap/controllers/WebView.py:120
+#: zapzap/controllers/WebView.py:129
 msgid "Paste"
 msgstr "הדבקה"
 
-#: zapzap/controllers/WebView.py:120
+#: zapzap/controllers/WebView.py:129
 msgid "Select all"
 msgstr "בחירה בהכול"
 
-#: zapzap/controllers/WebView.py:121
+#: zapzap/controllers/WebView.py:130
 msgid "Save image"
 msgstr "שמירת תמונה"
 
-#: zapzap/controllers/WebView.py:121
+#: zapzap/controllers/WebView.py:130
 msgid "Copy image"
 msgstr "העתקת תמונה"
 
-#: zapzap/controllers/WebView.py:122 zapzap/controllers/WebView.py:152
+#: zapzap/controllers/WebView.py:131 zapzap/controllers/WebView.py:161
 msgid "Copy link address"
 msgstr "העתקת כתובת קישור"
 
-#: zapzap/controllers/WebView.py:173
+#: zapzap/controllers/WebView.py:182
 msgid "Check Spelling"
 msgstr "בדיקת איות"
 
-#: zapzap/controllers/WebView.py:181
+#: zapzap/controllers/WebView.py:190
 msgid "Select Language"
 msgstr "בחירת שפה"
 
@@ -691,22 +695,6 @@ msgstr "נא לשים לב"
 #: zapzap/services/AlertManager.py:39
 msgid "No active account!"
 msgstr "אין חשבון פעיל!"
-
-#: zapzap/services/DownloadManager.py:46
-msgid "Open"
-msgstr "פתיחה"
-
-#: zapzap/services/DownloadManager.py:47
-msgid "Save"
-msgstr "שמירה"
-
-#: zapzap/services/DownloadManager.py:99
-msgid "Save file"
-msgstr "שמירת קובץ"
-
-#: zapzap/services/DownloadManager.py:115
-msgid "Select folder"
-msgstr "בחירת תיקייה"
 
 #: zapzap/services/NotificationManager.py:36
 msgid "New message..."
@@ -743,3 +731,19 @@ msgstr "הצגה"
 #: zapzap/services/SysTrayManager.py:56
 msgid "Donation"
 msgstr "תרומה"
+
+#: zapzap/services/DownloadManager.py:48
+msgid "Open"
+msgstr "פתיחה"
+
+#: zapzap/services/DownloadManager.py:49
+msgid "Save"
+msgstr "שמירה"
+
+#: zapzap/services/DownloadManager.py:101
+msgid "Save file"
+msgstr "שמירת קובץ"
+
+#: zapzap/services/DownloadManager.py:118
+msgid "Select folder"
+msgstr "בחירת תיקייה"

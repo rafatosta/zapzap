@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zapzap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-25 12:06-0300\n"
+"POT-Creation-Date: 2025-12-10 21:12-0300\n"
 "PO-Revision-Date: 2025-02-28 12:43+0500\n"
 "Last-Translator: Dmitriy Q  <krotesk at mail dot ru>\n"
 "Language-Team: TranslAster\n"
@@ -207,79 +207,83 @@ msgstr "Сообщить о проблеме"
 msgid "My accounts"
 msgstr "Мой аккаунт"
 
-#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:132
+#: zapzap/views/ui_page_appearance.py:136 zapzap/views/ui_settings.py:132
 msgid "Appearance"
 msgstr "Внешний вид"
 
-#: zapzap/views/ui_page_appearance.py:119
+#: zapzap/views/ui_page_appearance.py:137
 msgid "Style"
 msgstr "Стиль"
 
-#: zapzap/views/ui_page_appearance.py:120
-msgid "Adaptive"
-msgstr "Адаптивный"
-
-#: zapzap/views/ui_page_appearance.py:121
-msgid "Light"
-msgstr "Светлый"
-
-#: zapzap/views/ui_page_appearance.py:122
+#: zapzap/views/ui_page_appearance.py:138
 msgid "Dark"
 msgstr "Темный"
 
-#: zapzap/views/ui_page_appearance.py:123
+#: zapzap/views/ui_page_appearance.py:139
+msgid "Light"
+msgstr "Светлый"
+
+#: zapzap/views/ui_page_appearance.py:140
+msgid "Adaptive"
+msgstr "Адаптивный"
+
+#: zapzap/views/ui_page_appearance.py:141
+msgid "Custom"
+msgstr ""
+
+#: zapzap/views/ui_page_appearance.py:142
 msgid "Tray icon"
 msgstr "Значок в трее"
 
-#: zapzap/views/ui_page_appearance.py:124
+#: zapzap/views/ui_page_appearance.py:143
 msgid "Remove notification indicator"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:125
+#: zapzap/views/ui_page_appearance.py:144
 msgid "Default"
 msgstr "По-умолчанию"
 
-#: zapzap/views/ui_page_appearance.py:126
+#: zapzap/views/ui_page_appearance.py:145
 msgid "Symbolic dark"
 msgstr "Symbolic dark"
 
-#: zapzap/views/ui_page_appearance.py:127
+#: zapzap/views/ui_page_appearance.py:146
 msgid "Symbolic light"
 msgstr "Symbolic light"
 
-#: zapzap/views/ui_page_appearance.py:128
+#: zapzap/views/ui_page_appearance.py:147
 msgid "Show sidebar"
 msgstr "Показать боковую панель"
 
-#: zapzap/views/ui_page_appearance.py:129
+#: zapzap/views/ui_page_appearance.py:148
 msgid "Show menu bar"
 msgstr "Показать панель меню"
 
-#: zapzap/views/ui_page_appearance.py:130
+#: zapzap/views/ui_page_appearance.py:149
 msgid "Scale"
 msgstr "Масштаб"
 
-#: zapzap/views/ui_page_appearance.py:131
+#: zapzap/views/ui_page_appearance.py:150
 msgid "100 %"
 msgstr "100 %"
 
-#: zapzap/views/ui_page_appearance.py:132
+#: zapzap/views/ui_page_appearance.py:151
 msgid "125 %"
 msgstr "125 %"
 
-#: zapzap/views/ui_page_appearance.py:133
+#: zapzap/views/ui_page_appearance.py:152
 msgid "150 %"
 msgstr "150 %"
 
-#: zapzap/views/ui_page_appearance.py:134
+#: zapzap/views/ui_page_appearance.py:153
 msgid "175 %"
 msgstr "175 %"
 
-#: zapzap/views/ui_page_appearance.py:135
+#: zapzap/views/ui_page_appearance.py:154
 msgid "200 %"
 msgstr "200 %"
 
-#: zapzap/views/ui_page_appearance.py:136
+#: zapzap/views/ui_page_appearance.py:155
 msgid "Note: The change of scale will only have effect until restarting."
 msgstr ""
 "Примечание: Изменение масштаба будет действовать только до перезапуска."
@@ -631,47 +635,47 @@ msgstr "Перезагрузить страницу"
 msgid "New conversation by phone number"
 msgstr "Новый разговор по номеру телефона"
 
-#: zapzap/controllers/WebView.py:119
+#: zapzap/controllers/WebView.py:128
 msgid "Undo"
 msgstr "Отменить"
 
-#: zapzap/controllers/WebView.py:119
+#: zapzap/controllers/WebView.py:128
 msgid "Redo"
 msgstr "Повторить"
 
-#: zapzap/controllers/WebView.py:119
+#: zapzap/controllers/WebView.py:128
 msgid "Cut"
 msgstr "Вырезать"
 
-#: zapzap/controllers/WebView.py:120
+#: zapzap/controllers/WebView.py:129
 msgid "Copy"
 msgstr "Копировать"
 
-#: zapzap/controllers/WebView.py:120
+#: zapzap/controllers/WebView.py:129
 msgid "Paste"
 msgstr "Вставить"
 
-#: zapzap/controllers/WebView.py:120
+#: zapzap/controllers/WebView.py:129
 msgid "Select all"
 msgstr "Выбрать всё"
 
-#: zapzap/controllers/WebView.py:121
+#: zapzap/controllers/WebView.py:130
 msgid "Save image"
 msgstr "Сохранить изображение"
 
-#: zapzap/controllers/WebView.py:121
+#: zapzap/controllers/WebView.py:130
 msgid "Copy image"
 msgstr "Копировать изображение"
 
-#: zapzap/controllers/WebView.py:122 zapzap/controllers/WebView.py:152
+#: zapzap/controllers/WebView.py:131 zapzap/controllers/WebView.py:161
 msgid "Copy link address"
 msgstr "Копировать адрес ссылки"
 
-#: zapzap/controllers/WebView.py:173
+#: zapzap/controllers/WebView.py:182
 msgid "Check Spelling"
 msgstr "Проверка орфографии"
 
-#: zapzap/controllers/WebView.py:181
+#: zapzap/controllers/WebView.py:190
 msgid "Select Language"
 msgstr "Выбор языка"
 
@@ -694,22 +698,6 @@ msgstr "Внимание"
 #: zapzap/services/AlertManager.py:39
 msgid "No active account!"
 msgstr "Нет активного аккаунта!"
-
-#: zapzap/services/DownloadManager.py:46
-msgid "Open"
-msgstr "Открыть"
-
-#: zapzap/services/DownloadManager.py:47
-msgid "Save"
-msgstr "Сохранить"
-
-#: zapzap/services/DownloadManager.py:99
-msgid "Save file"
-msgstr "Сохранить файл"
-
-#: zapzap/services/DownloadManager.py:115
-msgid "Select folder"
-msgstr "Выбор папки"
 
 #: zapzap/services/NotificationManager.py:36
 msgid "New message..."
@@ -746,6 +734,22 @@ msgstr "Показать"
 #: zapzap/services/SysTrayManager.py:56
 msgid "Donation"
 msgstr "Пожертвования"
+
+#: zapzap/services/DownloadManager.py:48
+msgid "Open"
+msgstr "Открыть"
+
+#: zapzap/services/DownloadManager.py:49
+msgid "Save"
+msgstr "Сохранить"
+
+#: zapzap/services/DownloadManager.py:101
+msgid "Save file"
+msgstr "Сохранить файл"
+
+#: zapzap/services/DownloadManager.py:118
+msgid "Select folder"
+msgstr "Выбор папки"
 
 #, python-brace-format
 #~ msgid "Version {id}"
