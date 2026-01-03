@@ -21,6 +21,8 @@ def main():
         description="Gerenciar configurações do zapzap")
     parser.add_argument("--setSettings", nargs=2, metavar=("chave",
                         "valor"), help="Define uma configuração específica")
+    parser.add_argument("--wayland", action="store_true",
+                        help="Força o uso do Wayland (QT_QPA_PLATFORM=wayland)")
     args, unknown = parser.parse_known_args()
 
     if args.setSettings:
@@ -30,9 +32,6 @@ def main():
             SettingsManager.set(chave, valor)
         except ValueError:
             print(f"Erro: O valor '{valor}' não é um número inteiro válido.")
-
-    else:
-        print("Argumento inválido ou ausente")
 
     SetupManager.apply()
     TranslationManager.apply()
