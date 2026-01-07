@@ -11,7 +11,7 @@ from zapzap.services.ThemeManager import ThemeManager
 from zapzap.views.ui_mainwindow import Ui_MainWindow
 import tempfile
 
-from PyQt6.QtGui import QImage, QClipboard
+from PyQt6.QtGui import QImage, QClipboard, QAction
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     """
@@ -34,11 +34,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     
     def changeEvent(self, event):
         super().changeEvent(event)
-        # Detecta quando a janela ganha foco
-        if event.type() == QEvent.Type.ActivationChange:
-            if self.isActiveWindow():
-                print("Janela ativada, executando _on_paste()")
-                self._on_paste()
 
     def _on_paste(self):
         clipboard = QApplication.clipboard()
@@ -65,6 +60,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.stackedWidget.addWidget(self.browser)
         self._connect_menu_actions()
         self.settings_menubar()
+        self.paste_shortcut = QAction(self)
+        self.paste_shortcut.setShortcut("Ctrl+V")
+        self.paste_shortcut.triggered.connect(self._on_paste)
+        self.addAction(self.paste_shortcut)
 
     def load_settings(self):
         """Restaura as configurações salvas da janela e do sistema."""
