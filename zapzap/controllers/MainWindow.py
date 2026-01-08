@@ -13,6 +13,7 @@ import tempfile
 
 from PyQt6.QtGui import QImage, QClipboard
 
+
 class MainWindow(QMainWindow, Ui_MainWindow):
     """
     Classe principal da interface do aplicativo.
@@ -31,7 +32,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if not SettingsManager.get("notification/donation_message", False):
             QtoasterDonation.showMessage(parent=self)
 
-    
     def changeEvent(self, event):
         super().changeEvent(event)
         # Detecta quando a janela ganha foco
@@ -41,25 +41,74 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self._on_paste()
 
     def _on_paste(self):
+        # Get the application clipboard.
+        # IMPORTANT: this call must occur on the GUI thread.
         clipboard = QApplication.clipboard()
+
+        # Read the image currently stored in the clipboard.
         image = clipboard.image()
+
+        # Defensive check:
+        # Prevents operating on a null QImage, which may occur
+        # when the clipboard does not contain an image or
+        # when the backend fails to provide one.
         if image.isNull():
-            print("Nenhuma imagem no clipboard")
+            print("No image in the clipboard")
             return
 
-        # Salva em arquivo temporário
-        tmp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
-        image.save(tmp_file.name, "PNG")
-        tmp_file.close()
-        self._last_tmp_file = tmp_file.name
-        print("Imagem salva:", self._last_tmp_file)
+        # DEEP COPY OF THE IMAGE
+        # ----------------------------------------------------
+        # This is a critical point.
+        # On some backends (Wayland, Flatpak, XWayland),
+        # the QImage returned by the clipboard may reference
+        # a memory buffer managed externally.
+        #
+        # Without .copy(), Qt may attempt to access a buffer
+        # that has already been freed, causing a segmentation fault.
+        image = image.copy()
 
-        # Coloca a imagem no clipboard
+        # Create a physical temporary file on the filesystem.
+        # delete=False is required because Qt will open the file
+        # later; if the file were removed, it would fail.
+        tmp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
+
+        # Save the image to the temporary file.
+        # Writing to disk guarantees a stable image format for Qt.
+        image.save(tmp_file.name, "PNG")
+
+        # Force flushing the file buffer.
+        # Ensures all data has been written to disk
+        # before Qt attempts to read the file.
+        tmp_file.flush()
+
+        # Explicitly close the file.
+        # Prevents file descriptor conflicts on Linux.
+        tmp_file.close()
+
+        # Store the file path for later use
+        # (e.g., cleanup or reuse).
+        self._last_tmp_file = tmp_file.name
+        print("Image saved:", self._last_tmp_file)
+
+        # Reload the image from the file.
+        # This creates a QImage completely independent
+        # from the original clipboard data.
         img = QImage(self._last_tmp_file)
-        clipboard.setImage(img, QClipboard.Mode.Clipboard)
-        print("Imagem colocada no clipboard")
+
+        # ASYNCHRONOUS CLIPBOARD UPDATE
+        # ----------------------------------------------------
+        # Rewriting the clipboard immediately after reading it
+        # may cause internal race conditions in Qt,
+        # especially on Wayland.
+        #
+        # QTimer.singleShot(0, ...) schedules the operation
+        # for the next GUI event loop cycle, ensuring
+        # safety and stability.
+        from PyQt6.QtCore import QTimer
+        QTimer.singleShot(0, lambda: clipboard.setImage(img))
 
     # === Configuração Inicial ===
+
     def _setup_ui(self):
         """Configurações iniciais da interface e conexões de menu."""
         self.stackedWidget.addWidget(self.browser)
