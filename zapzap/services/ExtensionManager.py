@@ -36,7 +36,6 @@ class ExtensionManager:
                 print(f"DEBUG: Unexpected failure loading extensions in Qt {qt_core_version}")
                 return
         else:
-            # Aquí caerá tu Debian actual
             ExtensionManager._extension_manager = None
             print(f"NOTICE: Qt 6.7+ is required for extensions. Detected: {qt_core_version}")
             return
