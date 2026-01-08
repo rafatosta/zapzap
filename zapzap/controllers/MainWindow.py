@@ -38,8 +38,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def _on_paste(self):
         clipboard = QApplication.clipboard()
         image = clipboard.image()
+        # Hanmdles text
         if image.isNull():
-            print("Nenhuma imagem no clipboard")
+            page = self._current_page()
+            if page:
+                page.triggerPageAction(page.page().WebAction.Paste)
             return
 
         # Salva em arquivo temporário
@@ -52,7 +55,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Coloca a imagem no clipboard
         img = QImage(self._last_tmp_file)
         clipboard.setImage(img, QClipboard.Mode.Clipboard)
-        print("Imagem colocada no clipboard")
+
+        # Handles images
+        page = self._current_page()
+        if page:
+            page.triggerPageAction(page.page().WebAction.Paste)
 
     # === Configuração Inicial ===
     def _setup_ui(self):
@@ -62,6 +69,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.settings_menubar()
         self.paste_shortcut = QAction(self)
         self.paste_shortcut.setShortcut("Ctrl+V")
+
+        self.paste_shortcut.setShortcutContext(Qt.ShortcutContext.WidgetWithChildrenShortcut)
+
         self.paste_shortcut.triggered.connect(self._on_paste)
         self.addAction(self.paste_shortcut)
 
