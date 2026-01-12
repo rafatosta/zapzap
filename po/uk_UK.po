@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zapzap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-10 21:12-0300\n"
+"POT-Creation-Date: 2026-01-12 16:28-0300\n"
 "PO-Revision-Date: 2025-02-28 12:43+0500\n"
 "Last-Translator: Igor Semen  <semenigor at gmail dot com>\n"
 "Language-Team: TranslAster\n"
@@ -285,8 +285,7 @@ msgstr "200 %"
 
 #: zapzap/views/ui_page_appearance.py:155
 msgid "Note: The change of scale will only have effect until restarting."
-msgstr ""
-"Примітка: Зміна масштабу буде діяти лише до перезапуску."
+msgstr "Примітка: Зміна масштабу буде діяти лише до перезапуску."
 
 #: zapzap/views/ui_page_general.py:128 zapzap/views/ui_settings.py:129
 msgid "General"
