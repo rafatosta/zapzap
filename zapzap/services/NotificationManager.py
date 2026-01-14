@@ -8,9 +8,13 @@ from zapzap.resources.TrayIcon import TrayIcon
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap import __appname__
 import os
-import dbus
 from collections import OrderedDict
 from gettext import gettext as _
+
+try:
+    import dbus
+except ImportError:
+    print("Could not import dbus. Ensure 'python-dbus' is installed.")
 
 DBusGMainLoop = None
 try:
