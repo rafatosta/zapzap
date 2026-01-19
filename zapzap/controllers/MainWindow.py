@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QMainWindow, QApplication
-from PyQt6.QtCore import QByteArray, Qt, QEvent
+from PyQt6.QtCore import QByteArray, Qt, QEvent, QBuffer, QTimer, QIODevice
 from zapzap.controllers.QtoasterDonation import QtoasterDonation
 from zapzap.controllers.Settings import Settings
 from zapzap.controllers.Browser import Browser
@@ -9,6 +9,7 @@ from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
 from zapzap.services.ThemeManager import ThemeManager
 from zapzap.views.ui_mainwindow import Ui_MainWindow
+# psutil and os used for debugging
 import tempfile
 
 from PyQt6.QtGui import QImage, QClipboard
@@ -27,6 +28,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.is_fullscreen = False  # Controle do estado de tela cheia
         self.browser = Browser(self)  # Inicialização do navegador
         self.app_settings = None
+        self._last_sanitized_key = None
         self._setup_ui()
 
         if not SettingsManager.get("notification/donation_message", False):
@@ -34,78 +36,36 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def changeEvent(self, event):
         super().changeEvent(event)
-        # Detecta quando a janela ganha foco
-        if event.type() == QEvent.Type.ActivationChange:
-            if self.isActiveWindow():
-                print("Janela ativada, executando _on_paste()")
-                self._on_paste()
+        # For #509: Use delayed clipboard access to avoid race condition with wayland comp
+        if event.type() == QEvent.Type.ActivationChange and self.isActiveWindow():
+            clipboard = QApplication.clipboard()
+            if not clipboard.image().isNull():
+                QTimer.singleShot(50, self._on_paste)
 
     def _on_paste(self):
-        # Get the application clipboard.
-        # IMPORTANT: this call must occur on the GUI thread.
         clipboard = QApplication.clipboard()
-
-        # Read the image currently stored in the clipboard.
         image = clipboard.image()
 
-        # Defensive check:
-        # Prevents operating on a null QImage, which may occur
-        # when the clipboard does not contain an image or
-        # when the backend fails to provide one.
         if image.isNull():
-            print("No image in the clipboard")
             return
 
-        # DEEP COPY OF THE IMAGE
-        # ----------------------------------------------------
-        # This is a critical point.
-        # On some backends (Wayland, Flatpak, XWayland),
-        # the QImage returned by the clipboard may reference
-        # a memory buffer managed externally.
-        #
-        # Without .copy(), Qt may attempt to access a buffer
-        # that has already been freed, causing a segmentation fault.
-        image = image.copy()
+        # Avoid processing the same image multiple times
+        if image.cacheKey() == self._last_sanitized_key:
+            return
 
-        # Create a physical temporary file on the filesystem.
-        # delete=False is required because Qt will open the file
-        # later; if the file were removed, it would fail.
-        tmp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
+        self._last_sanitized_key = image.cacheKey()
 
-        # Save the image to the temporary file.
-        # Writing to disk guarantees a stable image format for Qt.
-        image.save(tmp_file.name, "PNG")
-
-        # Force flushing the file buffer.
-        # Ensures all data has been written to disk
-        # before Qt attempts to read the file.
-        tmp_file.flush()
-
-        # Explicitly close the file.
-        # Prevents file descriptor conflicts on Linux.
-        tmp_file.close()
-
-        # Store the file path for later use
-        # (e.g., cleanup or reuse).
-        self._last_tmp_file = tmp_file.name
-        print("Image saved:", self._last_tmp_file)
-
-        # Reload the image from the file.
-        # This creates a QImage completely independent
-        # from the original clipboard data.
-        img = QImage(self._last_tmp_file)
-
-        # ASYNCHRONOUS CLIPBOARD UPDATE
-        # ----------------------------------------------------
-        # Rewriting the clipboard immediately after reading it
-        # may cause internal race conditions in Qt,
-        # especially on Wayland.
-        #
-        # QTimer.singleShot(0, ...) schedules the operation
-        # for the next GUI event loop cycle, ensuring
-        # safety and stability.
-        from PyQt6.QtCore import QTimer
-        QTimer.singleShot(0, lambda: clipboard.setImage(img))
+        # Same logic as before but in RAM (privacy+speed)
+        # Converts clipboard image to standardized PNG format that QWebEngine can read
+        buffer = QBuffer()
+        try:
+            buffer.open(QIODevice.OpenModeFlag.ReadWrite)
+            if image.save(buffer, "PNG"):
+                clean_img = QImage()
+                clean_img.loadFromData(buffer.data(), "PNG")
+                QTimer.singleShot(0, lambda img=clean_img.copy(): clipboard.setImage(img))
+        finally:
+            buffer.close()
 
     # === Configuração Inicial ===
 
