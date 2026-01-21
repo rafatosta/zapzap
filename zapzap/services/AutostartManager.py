@@ -1,5 +1,8 @@
 from PyQt6.QtCore import QStandardPaths, QFileInfo
-import dbus
+try:
+    import dbus
+except ImportError:
+    print("Could not import dbus. Ensure 'python-dbus' is installed.")
 import os
 
 

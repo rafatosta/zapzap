@@ -50,6 +50,24 @@ ZapZap is built using **PyQt6** and **PyQt6-WebEngine**.
 ### Requirements
 - **Python 3.9 or higher**
 
+#### System Dependencies
+Some Python dependencies (notably dbus-python) require system libraries to be present at build time.
+
+##### Fedora 43 (and newer)
+
+On Fedora 43, pip install -r requirements.txt may fail while compiling dbus-python due to the absence of the dbus-1 development files.
+
+Install the required system dependencies first:
+```bash
+sudo dnf install -y dbus-devel pkg-config gcc python3-devel
+```
+
+After that, install the Python dependencies normally:
+```bash
+pip install -r requirements.txt
+```
+
+
 ### Installation
 
 1. **Clone the repository**

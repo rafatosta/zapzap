@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-10 21:12-0300\n"
+"POT-Creation-Date: 2026-01-12 16:28-0300\n"
 "PO-Revision-Date: 2025-11-04 00:41+UTC+0\n"
 "Last-Translator: André Barata <andretiagob@protonmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,7 +70,7 @@ msgstr "Inserir o nome do utilizador"
 #: zapzap/views/ui_qtoaster_donation.py:137
 #: zapzap/views/ui_shortcuts_dialog.py:65
 msgid "ZapZap"
-msgstr ""
+msgstr "ZapZap"
 
 #: zapzap/views/ui_mainwindow.py:93
 msgid "File"
@@ -99,7 +99,7 @@ msgstr "Sair"
 
 #: zapzap/views/ui_mainwindow.py:99
 msgid "Ctrl+Q"
-msgstr ""
+msgstr "Ctrl+Q"
 
 #: zapzap/views/ui_mainwindow.py:100 zapzap/controllers/ShortcutsDialog.py:44
 msgid "Hide"
@@ -107,7 +107,7 @@ msgstr "Esconder"
 
 #: zapzap/views/ui_mainwindow.py:101
 msgid "Ctrl+W"
-msgstr ""
+msgstr "Ctrl+W"
 
 #: zapzap/views/ui_mainwindow.py:102 zapzap/controllers/ShortcutsDialog.py:22
 #: zapzap/controllers/ShortcutsDialog.py:43
@@ -117,7 +117,7 @@ msgstr "Definições"
 
 #: zapzap/views/ui_mainwindow.py:103
 msgid "Ctrl+P"
-msgstr ""
+msgstr "Ctrl+P"
 
 #: zapzap/views/ui_mainwindow.py:104 zapzap/controllers/ShortcutsDialog.py:49
 msgid "Reset zoom"
@@ -125,7 +125,7 @@ msgstr "Reiniciar o zoom"
 
 #: zapzap/views/ui_mainwindow.py:105
 msgid "Ctrl+0"
-msgstr ""
+msgstr "Ctrl+0"
 
 #: zapzap/views/ui_mainwindow.py:106 zapzap/controllers/ShortcutsDialog.py:50
 msgid "Zoom in"
@@ -133,7 +133,7 @@ msgstr "Mais zoom"
 
 #: zapzap/views/ui_mainwindow.py:107
 msgid "Ctrl++"
-msgstr ""
+msgstr "Ctrl++"
 
 #: zapzap/views/ui_mainwindow.py:108 zapzap/controllers/ShortcutsDialog.py:51
 msgid "Zoom out"
@@ -141,7 +141,7 @@ msgstr "Menos zoom"
 
 #: zapzap/views/ui_mainwindow.py:109
 msgid "Ctrl+-"
-msgstr ""
+msgstr "Ctrl+-"
 
 #: zapzap/views/ui_mainwindow.py:110
 msgid "Toggle full screen"
@@ -149,7 +149,7 @@ msgstr "Alternar ecrã inteiro"
 
 #: zapzap/views/ui_mainwindow.py:111
 msgid "F11"
-msgstr ""
+msgstr "F11"
 
 #: zapzap/views/ui_mainwindow.py:112
 msgid "Reload"
@@ -157,7 +157,7 @@ msgstr "Recarregar"
 
 #: zapzap/views/ui_mainwindow.py:113
 msgid "F5"
-msgstr ""
+msgstr "F5"
 
 #: zapzap/views/ui_mainwindow.py:114
 msgid "New chat"
@@ -165,7 +165,7 @@ msgstr "Nova conversa"
 
 #: zapzap/views/ui_mainwindow.py:115
 msgid "Ctrl+N"
-msgstr ""
+msgstr "Ctrl+N"
 
 #: zapzap/views/ui_mainwindow.py:116
 msgid "By number phone"
@@ -173,7 +173,7 @@ msgstr "Por número de telefone"
 
 #: zapzap/views/ui_mainwindow.py:117
 msgid "Ctrl+M"
-msgstr ""
+msgstr "Ctrl+M"
 
 #: zapzap/views/ui_mainwindow.py:118 zapzap/views/ui_shortcuts_dialog.py:63
 msgid "Keyboard shortcuts"
@@ -227,7 +227,7 @@ msgstr "Adaptativo"
 
 #: zapzap/views/ui_page_appearance.py:141
 msgid "Custom"
-msgstr ""
+msgstr "Personalizado"
 
 #: zapzap/views/ui_page_appearance.py:142
 msgid "Tray icon"
@@ -263,23 +263,23 @@ msgstr "Escala"
 
 #: zapzap/views/ui_page_appearance.py:150
 msgid "100 %"
-msgstr ""
+msgstr "100 %"
 
 #: zapzap/views/ui_page_appearance.py:151
 msgid "125 %"
-msgstr ""
+msgstr "125 %"
 
 #: zapzap/views/ui_page_appearance.py:152
 msgid "150 %"
-msgstr ""
+msgstr "150 %"
 
 #: zapzap/views/ui_page_appearance.py:153
 msgid "175 %"
-msgstr ""
+msgstr "175 %"
 
 #: zapzap/views/ui_page_appearance.py:154
 msgid "200 %"
-msgstr ""
+msgstr "200 %"
 
 #: zapzap/views/ui_page_appearance.py:155
 msgid "Note: The change of scale will only have effect until restarting."
@@ -428,15 +428,15 @@ msgstr "Tamanho Máximo do Cache"
 
 #: zapzap/views/ui_page_performance.py:114
 msgid "0 MB"
-msgstr ""
+msgstr "0 MB"
 
 #: zapzap/views/ui_page_performance.py:115
 msgid "50 MB"
-msgstr ""
+msgstr "50 MB"
 
 #: zapzap/views/ui_page_performance.py:116
 msgid "100 MB"
-msgstr ""
+msgstr "100 MB"
 
 #: zapzap/views/ui_page_performance.py:117
 msgid "QWebEngine Behavior"
@@ -505,7 +505,7 @@ msgstr "Diálogo"
 
 #: zapzap/views/ui_shortcuts_dialog.py:64
 msgid "WhatsApp Web"
-msgstr ""
+msgstr "WhatsApp Web"
 
 #: zapzap/controllers/Browser.py:161 zapzap/controllers/Browser.py:189
 msgid "Account {}"

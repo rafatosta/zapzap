@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 rm *.deb -f
+rm deb_build -Rf
 
-VERSION=$(cat com.rtosta.zapzap.spec | grep '%global srcversion' | awk '{print $3}')
+VERSION=$(cat zapzap/__init__.py | grep '__version__' | awk '{print $3}' | sed "s/'//g")
 
 mkdir -p deb_build/usr/local/bin deb_build/usr/share/zapzap deb_build/DEBIAN
 mkdir -p deb_build/usr/share/applications
@@ -27,11 +28,11 @@ Section: utils
 Priority: optional
 Architecture: amd64
 Depends: python3, python3-pyqt6.qtwebengine, python3-dbus
-Maintainer: Katherine Flores <katherine@example.com>
+Maintainer: Katherine Flores <me@katherineflores.me>
 Description: ZapZap - Cliente no oficial de WhatsApp Web para Linux.
 EOF
 
-rsync -av --exclude='deb_build' --exclude='*.deb' --exclude='make-deb.sh' --exclude='share' ./ deb_build/usr/share/zapzap/
+rsync -av --exclude='deb_build' --exclude='*.deb' --exclude='.git' --exclude='.github' --exclude='make-deb.sh' --exclude='share' ./ deb_build/usr/share/zapzap/
 
 dpkg-deb --build deb_build
 

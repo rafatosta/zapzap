@@ -4,6 +4,8 @@ import sys
 from zapzap import APP_PATH
 from zapzap.extensions.DarkReaderBridge import DarkReaderBridge
 
+from PyQt6.QtCore import PYQT_VERSION_STR, qVersion
+
 
 class ExtensionManager:
     _domain = "zapzap"
@@ -17,7 +19,26 @@ class ExtensionManager:
     def set_extensions(qview, profile):
         ExtensionManager._qview = qview
         ExtensionManager._profile = profile
-        ExtensionManager._extension_manager = profile.extensionManager()
+        # We obtain the version of the Qt engine (C++) that is the one that commands
+        qt_core_version = qVersion()
+        
+        # Separamos la versión para comparar (ej: "6.6.1" -> [6, 6])
+        version_parts = [int(x) for x in qt_core_version.split('.')[:2]]
+        
+        # We separate the version to compare (e.g., "6.6.1" -> [6, 6])
+        if version_parts >= [6, 7]:
+            try:
+                ExtensionManager._extension_manager = profile.extensionManager()
+                print(f"INFO: Qt {qt_core_version} detected. Extensions enabled.")
+            except AttributeError:
+                # Just in case the bindings say one thing and the library says another
+                ExtensionManager._extension_manager = None
+                print(f"DEBUG: Unexpected failure loading extensions in Qt {qt_core_version}")
+                return
+        else:
+            ExtensionManager._extension_manager = None
+            print(f"NOTICE: Qt 6.7+ is required for extensions. Detected: {qt_core_version}")
+            return
 
         print("Setting extensions for the profile...")
         # Here you would typically add the extensions to the manager
