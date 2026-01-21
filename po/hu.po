@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-12 16:28-0300\n"
+"POT-Creation-Date: 2026-01-21 20:27-0300\n"
 "PO-Revision-Date: 2025-11-11 11:40+0200\n"
 "Last-Translator: F. András <erfan659-2 at yahoo dot com>\n"
 "Language-Team: Hungarian\n"
@@ -694,10 +694,6 @@ msgstr "Figyelem"
 msgid "No active account!"
 msgstr "Nincs aktív fiók!"
 
-#: zapzap/services/NotificationManager.py:36
-msgid "New message..."
-msgstr "Új üzenet..."
-
 #: zapzap/services/ProxyManager.py:10
 msgid "No proxying is used."
 msgstr "Proxyzás nincs használva."
@@ -745,3 +741,7 @@ msgstr "Fájl mentése"
 #: zapzap/services/DownloadManager.py:118
 msgid "Select folder"
 msgstr "Mappa kiválasztása"
+
+#: zapzap/services/NotificationManager.py:40
+msgid "New message..."
+msgstr "Új üzenet..."

@@ -55,6 +55,13 @@
   </screenshots>
 
   <releases>
+      <release date="2026-01-21" version="6.2.8">
+            <description>
+                <ul>
+                  <li>fix: refactor clipboard logic to prevent wayland segfault</li>
+                </ul>
+            </description>
+        </release>
       <release date="2026-01-14" version="6.2.7">
             <description>
                 <ul>

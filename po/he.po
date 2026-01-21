@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-12 16:28-0300\n"
+"POT-Creation-Date: 2026-01-21 20:27-0300\n"
 "PO-Revision-Date: 2025-10-26 15:07+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Yaron Shahrabani <sh.yaron@gmail.com>\n"
@@ -696,10 +696,6 @@ msgstr "נא לשים לב"
 msgid "No active account!"
 msgstr "אין חשבון פעיל!"
 
-#: zapzap/services/NotificationManager.py:36
-msgid "New message..."
-msgstr "הודעה חדשה…"
-
 #: zapzap/services/ProxyManager.py:10
 msgid "No proxying is used."
 msgstr "לא נעשה שימוש בתיווך."
@@ -747,3 +743,7 @@ msgstr "שמירת קובץ"
 #: zapzap/services/DownloadManager.py:118
 msgid "Select folder"
 msgstr "בחירת תיקייה"
+
+#: zapzap/services/NotificationManager.py:40
+msgid "New message..."
+msgstr "הודעה חדשה…"

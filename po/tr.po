@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-12 16:28-0300\n"
+"POT-Creation-Date: 2026-01-21 20:27-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: alifirat <celik@alifirat.xyz>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -696,10 +696,6 @@ msgstr "Dikkat"
 msgid "No active account!"
 msgstr "Aktif hesap yok!"
 
-#: zapzap/services/NotificationManager.py:36
-msgid "New message..."
-msgstr "Yeni mesaj..."
-
 #: zapzap/services/ProxyManager.py:10
 msgid "No proxying is used."
 msgstr "Proxy kullanılmıyor."
@@ -747,3 +743,7 @@ msgstr "Dosyayı kaydet"
 #: zapzap/services/DownloadManager.py:118
 msgid "Select folder"
 msgstr "Klasör seç"
+
+#: zapzap/services/NotificationManager.py:40
+msgid "New message..."
+msgstr "Yeni mesaj..."

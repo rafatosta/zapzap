@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-12 16:28-0300\n"
+"POT-Creation-Date: 2026-01-21 20:27-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -695,10 +695,6 @@ msgstr "Achtung"
 msgid "No active account!"
 msgstr "Kein aktives Konto!"
 
-#: zapzap/services/NotificationManager.py:36
-msgid "New message..."
-msgstr "Neue Nachricht..."
-
 #: zapzap/services/ProxyManager.py:10
 msgid "No proxying is used."
 msgstr "Kein Proxy wird verwendet."
@@ -746,6 +742,10 @@ msgstr "Datei speichern"
 #: zapzap/services/DownloadManager.py:118
 msgid "Select folder"
 msgstr "Ordner auswählen"
+
+#: zapzap/services/NotificationManager.py:40
+msgid "New message..."
+msgstr "Neue Nachricht..."
 
 #, python-brace-format
 #~ msgid "Version {id}"

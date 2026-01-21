@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-12 16:28-0300\n"
+"POT-Creation-Date: 2026-01-21 20:27-0300\n"
 "PO-Revision-Date: 2025-02-09 11:34+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -696,10 +696,6 @@ msgstr "Let op"
 msgid "No active account!"
 msgstr "Er is geen actief account!"
 
-#: zapzap/services/NotificationManager.py:36
-msgid "New message..."
-msgstr "Nieuw bericht…"
-
 #: zapzap/services/ProxyManager.py:10
 msgid "No proxying is used."
 msgstr "Er wordt geen proxy gebruikt."
@@ -747,6 +743,10 @@ msgstr "Bestand opslaan"
 #: zapzap/services/DownloadManager.py:118
 msgid "Select folder"
 msgstr "Kies een map"
+
+#: zapzap/services/NotificationManager.py:40
+msgid "New message..."
+msgstr "Nieuw bericht…"
 
 #, python-brace-format
 #~ msgid "Version {id}"
