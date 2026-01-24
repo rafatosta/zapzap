@@ -13,6 +13,7 @@ finish-args:
   - "--device=all"
   - "--filesystem=home"
   - "--filesystem=xdg-download"
+  - "--filesystem=/tmp"
   - "--talk-name=org.freedesktop.Notifications"
   - "--talk-name=org.kde.StatusNotifierWatcher"
   - "--env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess"
@@ -59,4 +60,4 @@ modules:
     sources:
       - type: git
         url: https://github.com/rafatosta/zapzap.git
-        tag: 6.2.4
+        tag: 6.2.8
