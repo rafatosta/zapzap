@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-21 20:27-0300\n"
+"POT-Creation-Date: 2026-01-25 10:25-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Isaías Gätjens M <igatjens@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -631,47 +631,56 @@ msgstr "Recargar páginas"
 msgid "New conversation by phone number"
 msgstr "Nueva conversación usando número de teléfono"
 
-#: zapzap/controllers/WebView.py:128
+#: zapzap/controllers/PageController.py:88
+msgid "Please enter the phone number with country code (e.g., +5511999999999):"
+msgstr ""
+
+#: zapzap/controllers/PageController.py:92
+msgid ""
+"Invalid number! Please enter at least 9 digits, including the country code."
+msgstr ""
+
+#: zapzap/controllers/WebView.py:126
 msgid "Undo"
 msgstr "Deshacer"
 
-#: zapzap/controllers/WebView.py:128
+#: zapzap/controllers/WebView.py:126
 msgid "Redo"
 msgstr "Rehacer"
 
-#: zapzap/controllers/WebView.py:128
+#: zapzap/controllers/WebView.py:126
 msgid "Cut"
 msgstr "Cortar"
 
-#: zapzap/controllers/WebView.py:129
+#: zapzap/controllers/WebView.py:127
 msgid "Copy"
 msgstr "Copiar"
 
-#: zapzap/controllers/WebView.py:129
+#: zapzap/controllers/WebView.py:127
 msgid "Paste"
 msgstr "Pegar"
 
-#: zapzap/controllers/WebView.py:129
+#: zapzap/controllers/WebView.py:127
 msgid "Select all"
 msgstr "Seleccionar todo"
 
-#: zapzap/controllers/WebView.py:130
+#: zapzap/controllers/WebView.py:128
 msgid "Save image"
 msgstr "Guardar imagen"
 
-#: zapzap/controllers/WebView.py:130
+#: zapzap/controllers/WebView.py:128
 msgid "Copy image"
 msgstr "Copiar imagen"
 
-#: zapzap/controllers/WebView.py:131 zapzap/controllers/WebView.py:161
+#: zapzap/controllers/WebView.py:129 zapzap/controllers/WebView.py:159
 msgid "Copy link address"
 msgstr "Copiar dirección del enlace"
 
-#: zapzap/controllers/WebView.py:182
+#: zapzap/controllers/WebView.py:180
 msgid "Check Spelling"
 msgstr "Revisar ortografía"
 
-#: zapzap/controllers/WebView.py:190
+#: zapzap/controllers/WebView.py:188
 msgid "Select Language"
 msgstr "Seleccionar idioma"
 
