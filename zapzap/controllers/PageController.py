@@ -8,6 +8,8 @@ from zapzap.services.ThemeManager import ThemeManager
 
 import urllib.parse  # Para normalizar URLs
 
+from gettext import gettext as _
+
 
 class PageController(QWebEnginePage):
     """Controlador de página para gerenciar eventos e ações personalizadas no QWebEnginePage."""
@@ -82,33 +84,38 @@ class PageController(QWebEnginePage):
 
     def open_chat_by_number(self):
         """Exibe um prompt para entrada de número e abre o WhatsApp Web."""
-        script = """
-    (function() {
-        // Exibe o prompt personalizado
-        var number = prompt("Por favor, insira o número de telefone com código do país (Ex: +5511999999999):");
-        if (number) {
-            // Remove caracteres inválidos e aplica a máscara
-            number = number.replace(/\\D/g, ""); // Remove caracteres não numéricos
-            if (number.startsWith("00")) number = "+" + number.slice(2); // Converte 00 para +
-            else if (!number.startsWith("+")) number = "+" + number; // Adiciona + se necessário
-            
-            // Limita a 15 caracteres
-            number = number.substring(0, 15);
+        prompt_text = _(
+            "Please enter the phone number with country code (e.g., +5511999999999):"
+        )
 
-            // Verifica se o número é válido
-            if (number.length >= 9) {
-                var a = document.createElement("a");
-                a.href = "https://api.whatsapp.com/send?phone=" + encodeURIComponent(number);
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-            } else {
-                alert("Número inválido! Insira pelo menos 9 dígitos, incluindo o código do país.");
-            }
-        }
-    })();
-    """
+        prompt_error = _(
+            "Invalid number! Please enter at least 9 digits, including the country code."
+        )
+
+        script = f"""
+            (function() {{
+                var number = prompt('{prompt_text}');
+                if (number) {{
+                    number = number.replace(/\\D/g, "");
+                    if (number.startsWith("00")) number = "+" + number.slice(2);
+                    else if (!number.startsWith("+")) number = "+" + number;
+
+                    number = number.substring(0, 15);
+
+                    if (number.length >= 9) {{
+                        var a = document.createElement("a");
+                        a.href = "https://api.whatsapp.com/send?phone=" + encodeURIComponent(number);
+                        document.body.appendChild(a);
+                        a.click();
+                        a.remove();
+                    }} else {{
+                        alert('{prompt_error}');
+                    }}
+                }}
+            }})();
+            """
         self.runJavaScript(script)
+
 
     def xdg_open_chat(self, url):
         script = """(function(){var a = document.createElement("a");a.href=\"""" + \
@@ -174,6 +181,4 @@ class PageController(QWebEnginePage):
         """
         self.runJavaScript(script)
 
-    def javaScriptConsoleMessage(self, level, message, line, sourceID):
-        """ Ignora as mensagens do console """
-        pass
+    
