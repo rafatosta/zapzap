@@ -1,6 +1,5 @@
 from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineSettings
-from PyQt6.QtCore import Qt, QEvent, QUrl
-from PyQt6.QtWidgets import QApplication
+from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
 
 from zapzap import __whatsapp_url__

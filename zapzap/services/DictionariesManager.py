@@ -1,6 +1,6 @@
 import os
 from PyQt6.QtCore import QLocale
-from zapzap.services.EnvironmentManager import EnvironmentManager, Packaging
+from zapzap.services.EnvironmentManager import EnvironmentManager
 from zapzap.services.PathManager import PathManager
 from zapzap.services.SettingsManager import SettingsManager
 

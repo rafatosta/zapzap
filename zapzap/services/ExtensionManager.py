@@ -4,7 +4,7 @@ import sys
 from zapzap import APP_PATH
 from zapzap.extensions.DarkReaderBridge import DarkReaderBridge
 
-from PyQt6.QtCore import PYQT_VERSION_STR, qVersion
+from PyQt6.QtCore import qVersion
 
 
 class ExtensionManager:

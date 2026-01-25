@@ -2,9 +2,9 @@ import logging
 import shutil
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
-from PyQt6.QtCore import QUrl, pyqtSignal, QTimer, Qt
+from PyQt6.QtCore import QUrl, pyqtSignal, QTimer
 from PyQt6.QtWidgets import QApplication
-from PyQt6.QtGui import QAction, QImage
+from PyQt6.QtGui import QAction
 
 from zapzap.controllers.PageController import PageController
 from zapzap.models import User
@@ -19,8 +19,6 @@ from zapzap.services.SettingsManager import SettingsManager
 from zapzap.extensions.DarkReaderBridge import DarkReaderBridge
 
 from gettext import gettext as _
-
-from PyQt6.QtGui import QImage
 
 # Configuração do logger
 logging.basicConfig(level=logging.INFO, format='%(levelname)s - %(message)s')

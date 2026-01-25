@@ -9,10 +9,7 @@ from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
 from zapzap.services.ThemeManager import ThemeManager
 from zapzap.views.ui_mainwindow import Ui_MainWindow
-# psutil and os used for debugging
-import tempfile
-
-from PyQt6.QtGui import QImage, QClipboard
+from PyQt6.QtGui import QImage
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
