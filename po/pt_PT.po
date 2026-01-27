@@ -477,7 +477,7 @@ msgstr "Fazer uma doação"
 
 #: zapzap/views/ui_settings.py:127
 msgid "Back"
-msgstr "Ir para trás"
+msgstr "Retroceder"
 
 #: zapzap/views/ui_settings.py:128
 msgid "SETTINGS"
@@ -633,12 +633,12 @@ msgstr "Nova conversação por número de telefone"
 
 #: zapzap/controllers/PageController.py:88
 msgid "Please enter the phone number with country code (e.g., +5511999999999):"
-msgstr ""
+msgstr "Insira o número de telefone com o código do país, por favor (ex, +351999999999):"
 
 #: zapzap/controllers/PageController.py:92
 msgid ""
 "Invalid number! Please enter at least 9 digits, including the country code."
-msgstr ""
+msgstr "Número inválido! Insira pelo menos 9 dígitos, íncluindo o código do país, por favor."
 
 #: zapzap/controllers/WebView.py:126
 msgid "Undo"
