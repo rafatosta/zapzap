@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 10:25-0300\n"
+"POT-Creation-Date: 2026-01-27 11:38-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -738,19 +738,23 @@ msgstr "Exibir"
 msgid "Donation"
 msgstr "Doação"
 
-#: zapzap/services/DownloadManager.py:48
+#: zapzap/services/DownloadManager.py:49
+msgid "Creating temporary directory:"
+msgstr ""
+
+#: zapzap/services/DownloadManager.py:69
 msgid "Open"
 msgstr "Abrir"
 
-#: zapzap/services/DownloadManager.py:49
+#: zapzap/services/DownloadManager.py:70
 msgid "Save"
 msgstr "Salvar"
 
-#: zapzap/services/DownloadManager.py:101
+#: zapzap/services/DownloadManager.py:144
 msgid "Save file"
 msgstr "Salvar arquivo"
 
-#: zapzap/services/DownloadManager.py:118
+#: zapzap/services/DownloadManager.py:174
 msgid "Select folder"
 msgstr "Selecionar pasta"
 

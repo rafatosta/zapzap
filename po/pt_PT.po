@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 10:25-0300\n"
+"POT-Creation-Date: 2026-01-27 11:38-0300\n"
 "PO-Revision-Date: 2025-11-04 00:41+UTC+0\n"
 "Last-Translator: André Barata <andretiagob@protonmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -633,12 +633,16 @@ msgstr "Nova conversação por número de telefone"
 
 #: zapzap/controllers/PageController.py:88
 msgid "Please enter the phone number with country code (e.g., +5511999999999):"
-msgstr "Insira o número de telefone com o código do país, por favor (ex, +351999999999):"
+msgstr ""
+"Insira o número de telefone com o código do país, por favor (ex, "
+"+351999999999):"
 
 #: zapzap/controllers/PageController.py:92
 msgid ""
 "Invalid number! Please enter at least 9 digits, including the country code."
-msgstr "Número inválido! Insira pelo menos 9 dígitos, íncluindo o código do país, por favor."
+msgstr ""
+"Número inválido! Insira pelo menos 9 dígitos, íncluindo o código do país, "
+"por favor."
 
 #: zapzap/controllers/WebView.py:126
 msgid "Undo"
@@ -736,19 +740,23 @@ msgstr "Mostrar"
 msgid "Donation"
 msgstr "Donativo"
 
-#: zapzap/services/DownloadManager.py:48
+#: zapzap/services/DownloadManager.py:49
+msgid "Creating temporary directory:"
+msgstr ""
+
+#: zapzap/services/DownloadManager.py:69
 msgid "Open"
 msgstr "Abrir"
 
-#: zapzap/services/DownloadManager.py:49
+#: zapzap/services/DownloadManager.py:70
 msgid "Save"
 msgstr "Guardar"
 
-#: zapzap/services/DownloadManager.py:101
+#: zapzap/services/DownloadManager.py:144
 msgid "Save file"
 msgstr "Guardar ficheiro"
 
-#: zapzap/services/DownloadManager.py:118
+#: zapzap/services/DownloadManager.py:174
 msgid "Select folder"
 msgstr "Selecionar pasta"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 10:25-0300\n"
+"POT-Creation-Date: 2026-01-27 11:38-0300\n"
 "PO-Revision-Date: 2025-10-26 15:07+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Yaron Shahrabani <sh.yaron@gmail.com>\n"
@@ -737,19 +737,23 @@ msgstr "הצגה"
 msgid "Donation"
 msgstr "תרומה"
 
-#: zapzap/services/DownloadManager.py:48
+#: zapzap/services/DownloadManager.py:49
+msgid "Creating temporary directory:"
+msgstr ""
+
+#: zapzap/services/DownloadManager.py:69
 msgid "Open"
 msgstr "פתיחה"
 
-#: zapzap/services/DownloadManager.py:49
+#: zapzap/services/DownloadManager.py:70
 msgid "Save"
 msgstr "שמירה"
 
-#: zapzap/services/DownloadManager.py:101
+#: zapzap/services/DownloadManager.py:144
 msgid "Save file"
 msgstr "שמירת קובץ"
 
-#: zapzap/services/DownloadManager.py:118
+#: zapzap/services/DownloadManager.py:174
 msgid "Select folder"
 msgstr "בחירת תיקייה"
 

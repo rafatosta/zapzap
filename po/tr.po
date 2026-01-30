@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 10:25-0300\n"
+"POT-Creation-Date: 2026-01-27 11:38-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: alifirat <celik@alifirat.xyz>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -737,19 +737,23 @@ msgstr "Göster"
 msgid "Donation"
 msgstr "Bağış"
 
-#: zapzap/services/DownloadManager.py:48
+#: zapzap/services/DownloadManager.py:49
+msgid "Creating temporary directory:"
+msgstr ""
+
+#: zapzap/services/DownloadManager.py:69
 msgid "Open"
 msgstr "Aç"
 
-#: zapzap/services/DownloadManager.py:49
+#: zapzap/services/DownloadManager.py:70
 msgid "Save"
 msgstr "Kaydet"
 
-#: zapzap/services/DownloadManager.py:101
+#: zapzap/services/DownloadManager.py:144
 msgid "Save file"
 msgstr "Dosyayı kaydet"
 
-#: zapzap/services/DownloadManager.py:118
+#: zapzap/services/DownloadManager.py:174
 msgid "Select folder"
 msgstr "Klasör seç"
 
