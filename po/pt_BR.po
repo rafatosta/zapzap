@@ -227,7 +227,7 @@ msgstr "Adaptativo"
 
 #: zapzap/views/ui_page_appearance.py:141
 msgid "Custom"
-msgstr ""
+msgstr "Personalizado"
 
 #: zapzap/views/ui_page_appearance.py:142
 msgid "Tray icon"
@@ -740,7 +740,7 @@ msgstr "Doação"
 
 #: zapzap/services/DownloadManager.py:49
 msgid "Creating temporary directory:"
-msgstr ""
+msgstr "Criando uma diretória temporária:"
 
 #: zapzap/services/DownloadManager.py:69
 msgid "Open"

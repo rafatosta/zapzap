@@ -742,7 +742,7 @@ msgstr "Donativo"
 
 #: zapzap/services/DownloadManager.py:49
 msgid "Creating temporary directory:"
-msgstr ""
+msgstr "A criar um diretório temporário:"
 
 #: zapzap/services/DownloadManager.py:69
 msgid "Open"
