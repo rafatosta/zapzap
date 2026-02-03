@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-27 11:38-0300\n"
+"POT-Creation-Date: 2026-02-03 17:07-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: alifirat <celik@alifirat.xyz>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -205,83 +205,79 @@ msgstr "Sorun bildir"
 msgid "My accounts"
 msgstr "Hesaplarım"
 
-#: zapzap/views/ui_page_appearance.py:136 zapzap/views/ui_settings.py:132
+#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:132
 msgid "Appearance"
 msgstr "Görünüm"
 
-#: zapzap/views/ui_page_appearance.py:137
+#: zapzap/views/ui_page_appearance.py:119
 msgid "Style"
 msgstr "Stil"
 
-#: zapzap/views/ui_page_appearance.py:138
-msgid "Dark"
-msgstr "Koyu"
-
-#: zapzap/views/ui_page_appearance.py:139
-msgid "Light"
-msgstr "Açık"
-
-#: zapzap/views/ui_page_appearance.py:140
+#: zapzap/views/ui_page_appearance.py:120
 msgid "Adaptive"
 msgstr "Adaptif"
 
-#: zapzap/views/ui_page_appearance.py:141
-msgid "Custom"
-msgstr ""
+#: zapzap/views/ui_page_appearance.py:121
+msgid "Dark"
+msgstr "Koyu"
 
-#: zapzap/views/ui_page_appearance.py:142
+#: zapzap/views/ui_page_appearance.py:122
+msgid "Light"
+msgstr "Açık"
+
+#: zapzap/views/ui_page_appearance.py:123
 msgid "Tray icon"
 msgstr "Tepsi simgesi"
 
-#: zapzap/views/ui_page_appearance.py:143
+#: zapzap/views/ui_page_appearance.py:124
 msgid "Remove notification indicator"
 msgstr "Bildirim göstergesini kaldır"
 
-#: zapzap/views/ui_page_appearance.py:144
+#: zapzap/views/ui_page_appearance.py:125
 msgid "Default"
 msgstr "Varsayılan"
 
-#: zapzap/views/ui_page_appearance.py:145
+#: zapzap/views/ui_page_appearance.py:126
 msgid "Symbolic dark"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:146
+#: zapzap/views/ui_page_appearance.py:127
 msgid "Symbolic light"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:147
+#: zapzap/views/ui_page_appearance.py:128
 msgid "Show sidebar"
 msgstr "Kenar çubuğunu göster"
 
-#: zapzap/views/ui_page_appearance.py:148
+#: zapzap/views/ui_page_appearance.py:129
 msgid "Show menu bar"
 msgstr "Menü çubuğunu göster"
 
-#: zapzap/views/ui_page_appearance.py:149
+#: zapzap/views/ui_page_appearance.py:130
 msgid "Scale"
 msgstr "Ölçeklendirme"
 
-#: zapzap/views/ui_page_appearance.py:150
+#: zapzap/views/ui_page_appearance.py:131
 msgid "100 %"
 msgstr "100 %"
 
-#: zapzap/views/ui_page_appearance.py:151
+#: zapzap/views/ui_page_appearance.py:132
 msgid "125 %"
 msgstr "125 %"
 
-#: zapzap/views/ui_page_appearance.py:152
+#: zapzap/views/ui_page_appearance.py:133
 msgid "150 %"
 msgstr "150 %"
 
-#: zapzap/views/ui_page_appearance.py:153
+#: zapzap/views/ui_page_appearance.py:134
 msgid "175 %"
 msgstr "175 %"
 
-#: zapzap/views/ui_page_appearance.py:154
+#: zapzap/views/ui_page_appearance.py:135
 msgid "200 %"
 msgstr "200 %"
 
-#: zapzap/views/ui_page_appearance.py:155
+#: zapzap/views/ui_page_appearance.py:136
 msgid "Note: The change of scale will only have effect until restarting."
 msgstr ""
 "Not: Ölçeklendirmede yapılan değişiklik yalnızca yeniden başlatmaya kadar "
@@ -641,47 +637,47 @@ msgid ""
 "Invalid number! Please enter at least 9 digits, including the country code."
 msgstr ""
 
-#: zapzap/controllers/WebView.py:126
+#: zapzap/controllers/WebView.py:116
 msgid "Undo"
 msgstr "Geri al"
 
-#: zapzap/controllers/WebView.py:126
+#: zapzap/controllers/WebView.py:116
 msgid "Redo"
 msgstr "Yinele"
 
-#: zapzap/controllers/WebView.py:126
+#: zapzap/controllers/WebView.py:116
 msgid "Cut"
 msgstr "Kes"
 
-#: zapzap/controllers/WebView.py:127
+#: zapzap/controllers/WebView.py:117
 msgid "Copy"
 msgstr "Kopyala"
 
-#: zapzap/controllers/WebView.py:127
+#: zapzap/controllers/WebView.py:117
 msgid "Paste"
 msgstr "Yapıştır"
 
-#: zapzap/controllers/WebView.py:127
+#: zapzap/controllers/WebView.py:117
 msgid "Select all"
 msgstr "Tümünü seç"
 
-#: zapzap/controllers/WebView.py:128
+#: zapzap/controllers/WebView.py:118
 msgid "Save image"
 msgstr "Resmi kaydet"
 
-#: zapzap/controllers/WebView.py:128
+#: zapzap/controllers/WebView.py:118
 msgid "Copy image"
 msgstr "Resmi kopyala"
 
-#: zapzap/controllers/WebView.py:129 zapzap/controllers/WebView.py:159
+#: zapzap/controllers/WebView.py:119 zapzap/controllers/WebView.py:149
 msgid "Copy link address"
 msgstr "Bağlantı adresini kopyala"
 
-#: zapzap/controllers/WebView.py:180
+#: zapzap/controllers/WebView.py:170
 msgid "Check Spelling"
 msgstr "Yazım denetimi yap"
 
-#: zapzap/controllers/WebView.py:188
+#: zapzap/controllers/WebView.py:178
 msgid "Select Language"
 msgstr "Dil seç"
 

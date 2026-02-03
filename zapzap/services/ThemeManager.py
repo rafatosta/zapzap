@@ -5,7 +5,6 @@ from PyQt6.QtGui import QPalette, QColor
 from enum import Enum
 from zapzap.resources.ThemeStylesheet import ThemeStylesheet
 from zapzap.services.SettingsManager import SettingsManager
-from zapzap.extensions.DarkReaderBridge import DarkReaderBridge
 
 
 class ThemeManager:
@@ -18,7 +17,7 @@ class ThemeManager:
     _instance = None
 
     # Dicionário com temas
-    
+
     def __new__(cls, *args, **kwargs):
         """Implementação do padrão Singleton."""
         if not cls._instance:
@@ -92,7 +91,7 @@ class ThemeManager:
             self.current_theme = theme
             self._apply_theme()
 
-    def _apply_theme(self, colors: list[int] = None, grade = None):
+    def _apply_theme(self, colors: list[int] = None, grade=None):
         """Aplica o tema atual."""
         if self.current_theme == ThemeManager.Type.Light:
             self._apply_light_theme()
@@ -136,9 +135,6 @@ class ThemeManager:
         elif grade == ThemeManager.Type.Dark:
             QApplication.instance().getWindow().browser.set_theme_dark()
             QApplication.instance().setStyleSheet(ThemeStylesheet.get_stylesheet('dark'))
-
-        # Apply theme using Dark Reader
-        DarkReaderBridge.set_theme_colors(colors)
 
     def _create_palette(self, window, text, base, highlight):
         """Cria uma paleta com cores fornecidas."""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-27 11:38-0300\n"
+"POT-Creation-Date: 2026-02-03 17:07-0300\n"
 "PO-Revision-Date: 2025-11-04 00:41+UTC+0\n"
 "Last-Translator: André Barata <andretiagob@protonmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -205,83 +205,79 @@ msgstr "Reportar problemas"
 msgid "My accounts"
 msgstr "As minhas contas"
 
-#: zapzap/views/ui_page_appearance.py:136 zapzap/views/ui_settings.py:132
+#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:132
 msgid "Appearance"
 msgstr "Aspeto"
 
-#: zapzap/views/ui_page_appearance.py:137
+#: zapzap/views/ui_page_appearance.py:119
 msgid "Style"
 msgstr "Estilo"
 
-#: zapzap/views/ui_page_appearance.py:138
-msgid "Dark"
-msgstr "Escuro"
-
-#: zapzap/views/ui_page_appearance.py:139
-msgid "Light"
-msgstr "Claro"
-
-#: zapzap/views/ui_page_appearance.py:140
+#: zapzap/views/ui_page_appearance.py:120
 msgid "Adaptive"
 msgstr "Adaptativo"
 
-#: zapzap/views/ui_page_appearance.py:141
-msgid "Custom"
-msgstr "Personalizado"
+#: zapzap/views/ui_page_appearance.py:121
+msgid "Dark"
+msgstr "Escuro"
 
-#: zapzap/views/ui_page_appearance.py:142
+#: zapzap/views/ui_page_appearance.py:122
+msgid "Light"
+msgstr "Claro"
+
+#: zapzap/views/ui_page_appearance.py:123
 msgid "Tray icon"
 msgstr "Ícone do tabuleiro"
 
-#: zapzap/views/ui_page_appearance.py:143
+#: zapzap/views/ui_page_appearance.py:124
 msgid "Remove notification indicator"
 msgstr "Remover o indicador de notificação"
 
-#: zapzap/views/ui_page_appearance.py:144
+#: zapzap/views/ui_page_appearance.py:125
 msgid "Default"
 msgstr "Predefinição"
 
-#: zapzap/views/ui_page_appearance.py:145
+#: zapzap/views/ui_page_appearance.py:126
 msgid "Symbolic dark"
 msgstr "Escuro simbólico"
 
-#: zapzap/views/ui_page_appearance.py:146
+#: zapzap/views/ui_page_appearance.py:127
 msgid "Symbolic light"
 msgstr "Claro simbólico"
 
-#: zapzap/views/ui_page_appearance.py:147
+#: zapzap/views/ui_page_appearance.py:128
 msgid "Show sidebar"
 msgstr "Mostrar barra lateral"
 
-#: zapzap/views/ui_page_appearance.py:148
+#: zapzap/views/ui_page_appearance.py:129
 msgid "Show menu bar"
 msgstr "Mostrar barra do menu"
 
-#: zapzap/views/ui_page_appearance.py:149
+#: zapzap/views/ui_page_appearance.py:130
 msgid "Scale"
 msgstr "Escala"
 
-#: zapzap/views/ui_page_appearance.py:150
+#: zapzap/views/ui_page_appearance.py:131
 msgid "100 %"
 msgstr "100 %"
 
-#: zapzap/views/ui_page_appearance.py:151
+#: zapzap/views/ui_page_appearance.py:132
 msgid "125 %"
 msgstr "125 %"
 
-#: zapzap/views/ui_page_appearance.py:152
+#: zapzap/views/ui_page_appearance.py:133
 msgid "150 %"
 msgstr "150 %"
 
-#: zapzap/views/ui_page_appearance.py:153
+#: zapzap/views/ui_page_appearance.py:134
 msgid "175 %"
 msgstr "175 %"
 
-#: zapzap/views/ui_page_appearance.py:154
+#: zapzap/views/ui_page_appearance.py:135
 msgid "200 %"
 msgstr "200 %"
 
-#: zapzap/views/ui_page_appearance.py:155
+#: zapzap/views/ui_page_appearance.py:136
 msgid "Note: The change of scale will only have effect until restarting."
 msgstr ""
 "Nota: A alteração da escala só vai ter efeito após reiniciar a aplicação."
@@ -644,47 +640,47 @@ msgstr ""
 "Número inválido! Insira pelo menos 9 dígitos, íncluindo o código do país, "
 "por favor."
 
-#: zapzap/controllers/WebView.py:126
+#: zapzap/controllers/WebView.py:116
 msgid "Undo"
 msgstr "Desfazer"
 
-#: zapzap/controllers/WebView.py:126
+#: zapzap/controllers/WebView.py:116
 msgid "Redo"
 msgstr "Refazer"
 
-#: zapzap/controllers/WebView.py:126
+#: zapzap/controllers/WebView.py:116
 msgid "Cut"
 msgstr "Cortar"
 
-#: zapzap/controllers/WebView.py:127
+#: zapzap/controllers/WebView.py:117
 msgid "Copy"
 msgstr "Copiar"
 
-#: zapzap/controllers/WebView.py:127
+#: zapzap/controllers/WebView.py:117
 msgid "Paste"
 msgstr "Colar"
 
-#: zapzap/controllers/WebView.py:127
+#: zapzap/controllers/WebView.py:117
 msgid "Select all"
 msgstr "Selecionar todos"
 
-#: zapzap/controllers/WebView.py:128
+#: zapzap/controllers/WebView.py:118
 msgid "Save image"
 msgstr "Guardar imagem"
 
-#: zapzap/controllers/WebView.py:128
+#: zapzap/controllers/WebView.py:118
 msgid "Copy image"
 msgstr "Copiar imagem"
 
-#: zapzap/controllers/WebView.py:129 zapzap/controllers/WebView.py:159
+#: zapzap/controllers/WebView.py:119 zapzap/controllers/WebView.py:149
 msgid "Copy link address"
 msgstr "Copiar link do endereço"
 
-#: zapzap/controllers/WebView.py:180
+#: zapzap/controllers/WebView.py:170
 msgid "Check Spelling"
 msgstr "Verificar ortografia"
 
-#: zapzap/controllers/WebView.py:188
+#: zapzap/controllers/WebView.py:178
 msgid "Select Language"
 msgstr "Selecionar Língua"
 
@@ -763,3 +759,6 @@ msgstr "Selecionar pasta"
 #: zapzap/services/NotificationManager.py:40
 msgid "New message..."
 msgstr "Nova mensagem..."
+
+#~ msgid "Custom"
+#~ msgstr "Personalizado"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-27 11:38-0300\n"
+"POT-Creation-Date: 2026-02-03 17:07-0300\n"
 "PO-Revision-Date: 2026-02-02 23:52+0200\n"
 "Last-Translator: Muhammed Al-Basha <contact.mu7basha@gmail.com>\n"
 "Language-Team: Arabic\n"
@@ -208,83 +208,79 @@ msgstr "بلِّغ عن خطأ"
 msgid "My accounts"
 msgstr "حساباتي"
 
-#: zapzap/views/ui_page_appearance.py:136 zapzap/views/ui_settings.py:132
+#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:132
 msgid "Appearance"
 msgstr "المظهر"
 
-#: zapzap/views/ui_page_appearance.py:137
+#: zapzap/views/ui_page_appearance.py:119
 msgid "Style"
 msgstr "النمط"
 
-#: zapzap/views/ui_page_appearance.py:138
-msgid "Dark"
-msgstr "داكن"
-
-#: zapzap/views/ui_page_appearance.py:139
-msgid "Light"
-msgstr "فاتح"
-
-#: zapzap/views/ui_page_appearance.py:140
+#: zapzap/views/ui_page_appearance.py:120
 msgid "Adaptive"
 msgstr "تكيفي"
 
-#: zapzap/views/ui_page_appearance.py:141
-msgid "Custom"
-msgstr "مخصَّص"
+#: zapzap/views/ui_page_appearance.py:121
+msgid "Dark"
+msgstr "داكن"
 
-#: zapzap/views/ui_page_appearance.py:142
+#: zapzap/views/ui_page_appearance.py:122
+msgid "Light"
+msgstr "فاتح"
+
+#: zapzap/views/ui_page_appearance.py:123
 msgid "Tray icon"
 msgstr "أيقونة اللوحة"
 
-#: zapzap/views/ui_page_appearance.py:143
+#: zapzap/views/ui_page_appearance.py:124
 msgid "Remove notification indicator"
 msgstr "اخفي مؤشر الإشعارات"
 
-#: zapzap/views/ui_page_appearance.py:144
+#: zapzap/views/ui_page_appearance.py:125
 msgid "Default"
 msgstr "الافتراضي"
 
-#: zapzap/views/ui_page_appearance.py:145
+#: zapzap/views/ui_page_appearance.py:126
 msgid "Symbolic dark"
 msgstr "رمزي داكن"
 
-#: zapzap/views/ui_page_appearance.py:146
+#: zapzap/views/ui_page_appearance.py:127
 msgid "Symbolic light"
 msgstr "رمزي فاتح"
 
-#: zapzap/views/ui_page_appearance.py:147
+#: zapzap/views/ui_page_appearance.py:128
 msgid "Show sidebar"
 msgstr "اظهر الشريط الجانبي"
 
-#: zapzap/views/ui_page_appearance.py:148
+#: zapzap/views/ui_page_appearance.py:129
 msgid "Show menu bar"
 msgstr "اظهر شريط القوائم"
 
-#: zapzap/views/ui_page_appearance.py:149
+#: zapzap/views/ui_page_appearance.py:130
 msgid "Scale"
 msgstr "الحجم"
 
-#: zapzap/views/ui_page_appearance.py:150
+#: zapzap/views/ui_page_appearance.py:131
 msgid "100 %"
 msgstr "١٠٠٪"
 
-#: zapzap/views/ui_page_appearance.py:151
+#: zapzap/views/ui_page_appearance.py:132
 msgid "125 %"
 msgstr "١٢٥٪"
 
-#: zapzap/views/ui_page_appearance.py:152
+#: zapzap/views/ui_page_appearance.py:133
 msgid "150 %"
 msgstr "١٥٠٪"
 
-#: zapzap/views/ui_page_appearance.py:153
+#: zapzap/views/ui_page_appearance.py:134
 msgid "175 %"
 msgstr "١٧٥٪"
 
-#: zapzap/views/ui_page_appearance.py:154
+#: zapzap/views/ui_page_appearance.py:135
 msgid "200 %"
 msgstr "٢٠٠٪"
 
-#: zapzap/views/ui_page_appearance.py:155
+#: zapzap/views/ui_page_appearance.py:136
 msgid "Note: The change of scale will only have effect until restarting."
 msgstr "ملاحظة: لن يظهر التغيير على الحجم إلا بعد إعادة التشغيل."
 
@@ -642,47 +638,47 @@ msgid ""
 "Invalid number! Please enter at least 9 digits, including the country code."
 msgstr "رقم غير صالح! ادخِل على الأقل تسع أرقام، شاملًا رمز البلد."
 
-#: zapzap/controllers/WebView.py:126
+#: zapzap/controllers/WebView.py:116
 msgid "Undo"
 msgstr "تراجع"
 
-#: zapzap/controllers/WebView.py:126
+#: zapzap/controllers/WebView.py:116
 msgid "Redo"
 msgstr "إعادة"
 
-#: zapzap/controllers/WebView.py:126
+#: zapzap/controllers/WebView.py:116
 msgid "Cut"
 msgstr "قص"
 
-#: zapzap/controllers/WebView.py:127
+#: zapzap/controllers/WebView.py:117
 msgid "Copy"
 msgstr "نسخ"
 
-#: zapzap/controllers/WebView.py:127
+#: zapzap/controllers/WebView.py:117
 msgid "Paste"
 msgstr "لصق"
 
-#: zapzap/controllers/WebView.py:127
+#: zapzap/controllers/WebView.py:117
 msgid "Select all"
 msgstr "اختر الكل"
 
-#: zapzap/controllers/WebView.py:128
+#: zapzap/controllers/WebView.py:118
 msgid "Save image"
 msgstr "احفظ الصورة"
 
-#: zapzap/controllers/WebView.py:128
+#: zapzap/controllers/WebView.py:118
 msgid "Copy image"
 msgstr "انسخ الصورة"
 
-#: zapzap/controllers/WebView.py:129 zapzap/controllers/WebView.py:159
+#: zapzap/controllers/WebView.py:119 zapzap/controllers/WebView.py:149
 msgid "Copy link address"
 msgstr "انسخ عنوان الرابط"
 
-#: zapzap/controllers/WebView.py:180
+#: zapzap/controllers/WebView.py:170
 msgid "Check Spelling"
 msgstr "تأكد من الهجاء"
 
-#: zapzap/controllers/WebView.py:188
+#: zapzap/controllers/WebView.py:178
 msgid "Select Language"
 msgstr "اختر اللغة"
 
@@ -761,3 +757,6 @@ msgstr "اختر مجلد"
 #: zapzap/services/NotificationManager.py:40
 msgid "New message..."
 msgstr "رسالة جديدة..."
+
+#~ msgid "Custom"
+#~ msgstr "مخصَّص"
