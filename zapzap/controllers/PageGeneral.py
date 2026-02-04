@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QWidget, QApplication, QStyle
-from zapzap.config.SetupManager import SetupManager
+from zapzap.services.SetupManager import SetupManager
 from zapzap.services.AutostartManager import AutostartManager
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.DownloadManager import DownloadManager
