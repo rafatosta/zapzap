@@ -1,12 +1,7 @@
-import logging
 from os import environ, getenv
 from PyQt6.QtCore import QFileInfo
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.SettingsManager import SettingsManager
-
-# Configuração básica de logging
-logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO, format='%(levelname)s - %(message)s')
 
 
 class SetupManager:
@@ -27,29 +22,16 @@ class SetupManager:
             platform = SetupManager.get_qt_platform()
             if platform:
                 environ["QT_QPA_PLATFORM"] = platform
-                logger.info(
-                    f"""Plataforma gráfica configurada: {environ['QT_QPA_PLATFORM']}""")
-            else:
-                 logger.info(
-                    f"""Plataforma gráfica mantida : {environ.get('QT_QPA_PLATFORM')}""")
-
-        else:
-            logger.info(
-                """Ambiente Flatpak detectado, plataforma gráfica não alterada.""")
 
         # Configuração de escalonamento de tela
         scale_factor = int(SettingsManager.get("system/scale", 100)) / 100
         environ["QT_SCALE_FACTOR"] = f'{scale_factor:.2f}'
         environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
-        logger.info(
-            f"""Escalonamento de tela configurado: {scale_factor:.2f}""")
 
         # Configuração do caminho dos dicionários
         dictionary_path = DictionariesManager.get_path()
         environ["QTWEBENGINE_DICTIONARIES_PATH"] = dictionary_path
-        logger.info(f"""QTWEBENGINE_DICTIONARIES_PATH configurado: {
-            dictionary_path}""")
-
+    
         # Permite a reprodução de áudios e arquivos mp4 ()
         # Recupera flags existentes (do sistema ou definidos pelo usuário via --setSettings)
         existing_flags = environ.get("QTWEBENGINE_CHROMIUM_FLAGS", "")
@@ -78,24 +60,11 @@ class SetupManager:
              final_flags.append(required_flag)
 
         environ["QTWEBENGINE_CHROMIUM_FLAGS"] = " ".join(final_flags)
-        logger.info(f"QTWEBENGINE_CHROMIUM_FLAGS final: {environ['QTWEBENGINE_CHROMIUM_FLAGS']}")
-
-        # Informação sobre o ambiente de execução
-        SetupManager.printEnviron()
-
-    @staticmethod
-    def printEnviron():
-        print(10*"-", "Environ", 10*"-")
-        for k, v in environ.items():
-            print(f"\t{k}: {v}")
-        print(30*"-")
 
     @staticmethod
     def apply_qt_scale_factor_rounding_policy():
         """Deve ser aplicado após a criação da instância do app"""
         environ["QT_SCALE_FACTOR_ROUNDING_POLICY"] = "RoundPreferFloor"
-        logger.info(
-            "QT_SCALE_FACTOR_ROUNDING_POLICY configurado para RoundPreferFloor")
 
     @staticmethod
     def get_argv():
@@ -123,7 +92,6 @@ class SetupManager:
         if SettingsManager.get("performance/single_process", False):
             arguments.append("--single-process")
 
-        logger.info(f"""Configurações para QWebEngine: {arguments}""")
         return arguments
 
     @staticmethod
@@ -144,6 +112,4 @@ class SetupManager:
         if XDG_SESSION_TYPE == 'wayland':
             return "wayland" if SettingsManager.get("system/wayland", False) else "xcb"
 
-        logger.warning(
-            f"""Plataforma '{XDG_SESSION_TYPE}'. Usando fallback '{SetupManager._qt_platform_xcb}'.""")
         return SetupManager._qt_platform_xcb
