@@ -64,7 +64,6 @@ def main():
         SettingsManager.set("website/open_page", False)
 
     if SettingsManager.get("system/start_background", False) or '--hideStart' in sys.argv:
-        print("Iniciando em segundo plano...")
         main_window.hide()
     else:
         main_window.show()

@@ -98,7 +98,6 @@ class WebView(QWebEngineView):
 
     def contextMenuEvent(self, event):
         """Cria o menu de contexto personalizado ao clicar com o botão direito."""
-        print("Abre o contextMenuEvent...")
 
         # Criação do menu de contexto padrão
         menu = self.createStandardContextMenu()
@@ -153,7 +152,6 @@ class WebView(QWebEngineView):
                     pass  # Nenhum sinal estava conectado
 
                 def setClipboard():
-                    print("Endereço do link copiado para a área de transferência!")
                     cb = QApplication.clipboard()
                     cb.clear(mode=cb.Mode.Clipboard)
                     cb.setText(self.whatsapp_page.link_context,

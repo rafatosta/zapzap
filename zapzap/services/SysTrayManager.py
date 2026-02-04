@@ -85,9 +85,6 @@ class SysTrayManager:
         """Atualiza o ícone da bandeja."""
         self.current_icon = icon_type
 
-        print("notificationCounter: ", SettingsManager.get(
-            "system/notificationCounter", False))
-
         if SettingsManager.get(
                 "system/notificationCounter", False):
             number_notifications = 0

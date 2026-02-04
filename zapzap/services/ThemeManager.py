@@ -104,7 +104,6 @@ class ThemeManager:
     # === Implementação dos Temas Claro e Escuro ===
     def _apply_light_theme(self):
         """Aplica o tema claro."""
-        print("Aplicando tema claro...")
         palette = self._create_palette(
             window="#f7f5f3", text="#000000", base="#f0f0f0", highlight="#0066cc"
         )
@@ -114,7 +113,6 @@ class ThemeManager:
 
     def _apply_dark_theme(self):
         """Aplica o tema escuro."""
-        print("Aplicando tema escuro...")
         palette = self._create_palette(
             window="#1d1f1f", text="#ffffff", base="#3a3a3a", highlight="#0099ff"
         )

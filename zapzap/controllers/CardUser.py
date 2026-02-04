@@ -87,8 +87,6 @@ class CardUser(QWidget, Ui_CardUser):
             self.user.remove()
             self.close()
             self.setParent(None)
-        else:
-            print("Ação de exclusão cancelada.")
 
     def _handle_icon_action(self):
         """Gera novo ícone aleatório para o usuário."""
