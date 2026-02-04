@@ -271,19 +271,40 @@ class WebView(QWebEngineView):
 
     def print_qwebengineprofile_info(self, profile: QWebEngineProfile):
         """Exibe informações do QWebEngineProfile."""
-        logger.info("=== Informações do QWebEngineProfile ===")
-        logger.info(f"Nome do perfil: {profile.storageName()}")
-        logger.info(f"Cache Path: {profile.cachePath()}")
-        logger.info(f"Http Cache Type: {profile.httpCacheType().name}")
-        logger.info(f"""Tamanho Máximo do Cache HTTP (Bytes): {
-                    profile.httpCacheMaximumSize()}""")
-        logger.info(f"""Persistent Cookies Policy: {
-                    profile.persistentCookiesPolicy().name}""")
-        logger.info(f"""Path do Armazenamento Persistente: {
-                    profile.persistentStoragePath()}""")
-        logger.info(f"Path de Download: {profile.downloadPath()}")
-        logger.info(f"User Agent: {profile.httpUserAgent()}")
-        logger.info(f"Spell Check Habilitado: {profile.isSpellCheckEnabled()}")
-        logger.info(f"""Linguagens do Spell Check: {
-                    profile.spellCheckLanguages()}""")
-        logger.info("=========================================")
+        indent = "  "
+        sub = indent * 2
+
+        logger.info("QWebEngineProfile")
+
+        print(f"{indent}Identificação")
+        print(f"{sub}Nome do perfil              : {profile.storageName()}")
+        print(f"{sub}User Agent                  : {profile.httpUserAgent()}")
+
+        print(f"{indent}Cache HTTP")
+        print(f"{sub}Cache Path                  : {profile.cachePath()}")
+        print(f"{sub}Tipo de Cache               : {profile.httpCacheType().name}")
+        print(
+            f"{sub}Tamanho Máx. Cache (bytes)  : "
+            f"{profile.httpCacheMaximumSize()}"
+        )
+
+        print(f"{indent}Armazenamento Persistente")
+        print(
+            f"{sub}Política de Cookies         : "
+            f"{profile.persistentCookiesPolicy().name}"
+        )
+        print(
+            f"{sub}Storage Path                : "
+            f"{profile.persistentStoragePath()}"
+        )
+
+        print(f"{indent}Downloads")
+        print(f"{sub}Download Path               : {profile.downloadPath()}")
+
+        print(f"{indent}Spell Check")
+        print(f"{sub}Habilitado                  : {profile.isSpellCheckEnabled()}")
+        print(
+            f"{sub}Linguagens                  : "
+            f"{profile.spellCheckLanguages()}"
+        )
+
