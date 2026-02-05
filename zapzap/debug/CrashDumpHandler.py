@@ -5,6 +5,7 @@ import zipfile
 from pathlib import Path
 from datetime import datetime
 from typing import Optional, Set
+import faulthandler
 
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtCore import QUrl
@@ -27,34 +28,39 @@ class CrashDumpHandler:
     - Opcionalmente avisar o usuário via QMessageBox
     """
 
-    APP_DIR = Path(
-        QStandardPaths.writableLocation(
-            QStandardPaths.StandardLocation.AppLocalDataLocation
-        )
-    ) / __appname__ / "crash-dumps"
-
     def __init__(
         self,
         app_name: str = __appname__,
         dump_dir: Optional[Path] = None,
         show_dialog: bool = False,
+        enable_faulthandler: bool = True,
     ) -> None:
         self.app_name = app_name
         self.show_dialog = show_dialog
+        self.enable_faulthandler = enable_faulthandler
 
         self.dump_dir = (
             dump_dir
             if dump_dir
-            else self.APP_DIR
+            else Path(
+                QStandardPaths.writableLocation(
+                    QStandardPaths.StandardLocation.AppLocalDataLocation
+                )
+            ) / app_name / "crash-dumps"
         )
         self.dump_dir.mkdir(parents=True, exist_ok=True)
 
-        # Registry global de profiles ativos
-        self._profiles: Set[object] = set()
+        self._profiles = set()
+
+        self.faulthandler_path = self.dump_dir / "faulthandler.log"
+
+        if self.enable_faulthandler:
+            self._enable_faulthandler()
 
     # ==================================================
     # Instalação (uma única vez)
     # ==================================================
+
     def install(self) -> None:
         sys.excepthook = self._handle_exception
 
@@ -84,21 +90,24 @@ class CrashDumpHandler:
         zip_path = self.dump_dir / f"{self.app_name}-crash-{timestamp}.zip"
 
         try:
-            # 1️⃣ Dump do ambiente
+            # 1 Dump do ambiente
             self._dump_runtime_environment(work_dir)
 
-            # 2️⃣ Dump de todos os profiles
+            # 2 Dump de todos os profiles
             self._dump_all_webengine_profiles(work_dir)
 
-            # 3️⃣ Dump do traceback
+            # 3 Dump do traceback
             self._dump_traceback(
                 exc_type, exc_value, exc_traceback, work_dir
             )
 
-            # 4️⃣ Compactação
+            # 4 Dump do faulthandler
+            self._attach_faulthandler_log(work_dir)
+
+            # 5 Compactação
             self._zip_dump(work_dir, zip_path)
 
-            # 5️⃣ Aviso ao usuário
+            # 6 Aviso ao usuário
             if self.show_dialog:
                 self._show_dialog(zip_path)
 
@@ -198,3 +207,30 @@ class CrashDumpHandler:
 
         if msg.clickedButton() == open_button:
             QDesktopServices.openUrl(folder_url)
+
+    def _enable_faulthandler(self) -> None:
+        """
+        Ativa o faulthandler para capturar segfaults e sinais fatais.
+        """
+        try:
+            # append → preserva histórico
+            self._faulthandler_file = open(
+                self.faulthandler_path, "a", encoding="utf-8"
+            )
+            faulthandler.enable(
+                file=self._faulthandler_file,
+                all_threads=True
+            )
+        except Exception as e:
+            print("Falha ao ativar faulthandler:", e)
+
+    def _attach_faulthandler_log(self, work_dir: Path) -> None:
+        try:
+            if self.faulthandler_path.exists():
+                target = work_dir / "faulthandler.log"
+                target.write_text(
+                    self.faulthandler_path.read_text(errors="ignore"),
+                    encoding="utf-8"
+                )
+        except Exception as e:
+            print("Falha ao anexar faulthandler.log:", e)
