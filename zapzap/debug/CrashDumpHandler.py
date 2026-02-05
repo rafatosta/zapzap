@@ -6,10 +6,10 @@ from pathlib import Path
 from datetime import datetime
 from typing import Optional, Set
 
-from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtCore import QUrl
 from PyQt6.QtWidgets import QMessageBox
+from PyQt6.QtCore import QStandardPaths
 
 from zapzap import __appname__
 
@@ -27,6 +27,12 @@ class CrashDumpHandler:
     - Opcionalmente avisar o usuário via QMessageBox
     """
 
+    APP_DIR = Path(
+        QStandardPaths.writableLocation(
+            QStandardPaths.StandardLocation.AppLocalDataLocation
+        )
+    ) / __appname__ / "crash-dumps"
+
     def __init__(
         self,
         app_name: str = __appname__,
@@ -39,7 +45,7 @@ class CrashDumpHandler:
         self.dump_dir = (
             dump_dir
             if dump_dir
-            else Path.home() / f".local/share/{app_name}/crash-dumps"
+            else self.APP_DIR
         )
         self.dump_dir.mkdir(parents=True, exist_ok=True)
 
