@@ -4,13 +4,13 @@ import json
 import zipfile
 from pathlib import Path
 from datetime import datetime
-from typing import Optional, Set
+from typing import Optional
 import faulthandler
 
-from PyQt6.QtGui import QDesktopServices
-from PyQt6.QtWidgets import QMessageBox
+from PyQt6.QtCore import QStandardPaths
 
-from PyQt6.QtCore import QStandardPaths, Qt, QUrl
+from zapzap.controllers.DialogDumpHandler import DialogDumpHandler
+
 
 from zapzap import __appname__
 
@@ -27,9 +27,6 @@ class CrashDumpHandler:
     - Compactar tudo em um único arquivo ZIP
     - Opcionalmente avisar o usuário via QMessageBox
     """
-
-    ISSUE_URL = "https://github.com/rafatosta/zapzap/issues"
-    SUPPORT_EMAIL = "rafa.ecomp@gmail.com"
 
     def __init__(
         self,
@@ -112,7 +109,7 @@ class CrashDumpHandler:
 
             # 6 Aviso ao usuário
             if self.show_dialog:
-                self._show_dialog(zip_path)
+                DialogDumpHandler.show_dialog(zip_path)
 
         except Exception as dump_error:
             # Última linha de defesa — nunca falhar silenciosamente
@@ -185,45 +182,6 @@ class CrashDumpHandler:
             work_dir.rmdir()
         except Exception:
             pass
-
-    def _show_dialog(self, zip_path: Path) -> None:
-        folder_path = zip_path.parent
-        folder_url = QUrl.fromLocalFile(str(folder_path))
-
-        msg = QMessageBox()
-        msg.setIcon(QMessageBox.Icon.Critical)
-        msg.setWindowTitle("Erro inesperado")
-
-        msg.setText(
-            "O aplicativo encontrou um erro inesperado.\n\n"
-            "Um relatório de diagnóstico foi gerado automaticamente.\n\n"
-            "Arquivo (selecione para copiar):\n"
-            f"{zip_path}\n\n"
-            "Você pode anexar este arquivo ao relatar o problema."
-        )
-
-        # 🔑 Permite seleção de texto (sem clipboard automático)
-        msg.setTextInteractionFlags(
-            Qt.TextInteractionFlag.TextSelectableByMouse
-        )
-
-        # Botões
-        open_button = msg.addButton(
-            "Abrir pasta", QMessageBox.ButtonRole.ActionRole
-        )
-        msg.addButton(QMessageBox.StandardButton.Ok)
-
-        # Texto informativo (também selecionável)
-        msg.setInformativeText(
-            "Relatar problema:\n"
-            f"Issue tracker: {self.ISSUE_URL}\n"
-            f"E-mail: {self.SUPPORT_EMAIL}"
-        )
-
-        msg.exec()
-
-        if msg.clickedButton() == open_button:
-            QDesktopServices.openUrl(folder_url)
 
     def _enable_faulthandler(self) -> None:
         """
