@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-03 17:07-0300\n"
+"POT-Creation-Date: 2026-02-05 16:47-0300\n"
 "PO-Revision-Date: 2025-10-26 15:07+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Yaron Shahrabani <sh.yaron@gmail.com>\n"
@@ -516,7 +516,7 @@ msgstr "אישור החרגה"
 msgid "Are you sure you want to delete this item?"
 msgstr "למחוק את הפריט?"
 
-#: zapzap/controllers/CardUser.py:111
+#: zapzap/controllers/CardUser.py:109
 msgid "Restore standard"
 msgstr "שחזור רגיל"
 
@@ -637,39 +637,39 @@ msgid ""
 "Invalid number! Please enter at least 9 digits, including the country code."
 msgstr ""
 
-#: zapzap/controllers/WebView.py:116
+#: zapzap/controllers/WebView.py:117
 msgid "Undo"
 msgstr "הסגה"
 
-#: zapzap/controllers/WebView.py:116
+#: zapzap/controllers/WebView.py:117
 msgid "Redo"
 msgstr "ביצוע מחדש"
 
-#: zapzap/controllers/WebView.py:116
+#: zapzap/controllers/WebView.py:117
 msgid "Cut"
 msgstr "גזירה"
 
-#: zapzap/controllers/WebView.py:117
+#: zapzap/controllers/WebView.py:118
 msgid "Copy"
 msgstr "העתקה"
 
-#: zapzap/controllers/WebView.py:117
+#: zapzap/controllers/WebView.py:118
 msgid "Paste"
 msgstr "הדבקה"
 
-#: zapzap/controllers/WebView.py:117
+#: zapzap/controllers/WebView.py:118
 msgid "Select all"
 msgstr "בחירה בהכול"
 
-#: zapzap/controllers/WebView.py:118
+#: zapzap/controllers/WebView.py:119
 msgid "Save image"
 msgstr "שמירת תמונה"
 
-#: zapzap/controllers/WebView.py:118
+#: zapzap/controllers/WebView.py:119
 msgid "Copy image"
 msgstr "העתקת תמונה"
 
-#: zapzap/controllers/WebView.py:119 zapzap/controllers/WebView.py:149
+#: zapzap/controllers/WebView.py:120 zapzap/controllers/WebView.py:150
 msgid "Copy link address"
 msgstr "העתקת כתובת קישור"
 
@@ -680,6 +680,33 @@ msgstr "בדיקת איות"
 #: zapzap/controllers/WebView.py:178
 msgid "Select Language"
 msgstr "בחירת שפה"
+
+#: zapzap/controllers/DialogDumpHandler.py:26
+msgid "Unexpected Error"
+msgstr ""
+
+#: zapzap/controllers/DialogDumpHandler.py:29
+msgid "The application encountered an unexpected error."
+msgstr ""
+
+#: zapzap/controllers/DialogDumpHandler.py:34
+#, python-brace-format
+msgid ""
+"A diagnostic report was generated automatically at:\n"
+"\n"
+"{path}\n"
+"\n"
+"Please send this file to support so we can investigate the issue.\n"
+"\n"
+"Report channels:\n"
+" - Issue tracker: {issue_url}\n"
+" - Email: {email}"
+msgstr ""
+
+#: zapzap/controllers/DialogDumpHandler.py:50
+#, fuzzy
+msgid "Open folder"
+msgstr "בחירת תיקייה"
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"

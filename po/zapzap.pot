@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-03 17:07-0300\n"
+"POT-Creation-Date: 2026-02-05 16:47-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -514,7 +514,7 @@ msgstr ""
 msgid "Are you sure you want to delete this item?"
 msgstr ""
 
-#: zapzap/controllers/CardUser.py:111
+#: zapzap/controllers/CardUser.py:109
 msgid "Restore standard"
 msgstr ""
 
@@ -635,39 +635,39 @@ msgid ""
 "Invalid number! Please enter at least 9 digits, including the country code."
 msgstr ""
 
-#: zapzap/controllers/WebView.py:116
+#: zapzap/controllers/WebView.py:117
 msgid "Undo"
 msgstr ""
 
-#: zapzap/controllers/WebView.py:116
+#: zapzap/controllers/WebView.py:117
 msgid "Redo"
 msgstr ""
 
-#: zapzap/controllers/WebView.py:116
+#: zapzap/controllers/WebView.py:117
 msgid "Cut"
 msgstr ""
 
-#: zapzap/controllers/WebView.py:117
+#: zapzap/controllers/WebView.py:118
 msgid "Copy"
 msgstr ""
 
-#: zapzap/controllers/WebView.py:117
+#: zapzap/controllers/WebView.py:118
 msgid "Paste"
 msgstr ""
 
-#: zapzap/controllers/WebView.py:117
+#: zapzap/controllers/WebView.py:118
 msgid "Select all"
 msgstr ""
 
-#: zapzap/controllers/WebView.py:118
+#: zapzap/controllers/WebView.py:119
 msgid "Save image"
 msgstr ""
 
-#: zapzap/controllers/WebView.py:118
+#: zapzap/controllers/WebView.py:119
 msgid "Copy image"
 msgstr ""
 
-#: zapzap/controllers/WebView.py:119 zapzap/controllers/WebView.py:149
+#: zapzap/controllers/WebView.py:120 zapzap/controllers/WebView.py:150
 msgid "Copy link address"
 msgstr ""
 
@@ -677,6 +677,32 @@ msgstr ""
 
 #: zapzap/controllers/WebView.py:178
 msgid "Select Language"
+msgstr ""
+
+#: zapzap/controllers/DialogDumpHandler.py:26
+msgid "Unexpected Error"
+msgstr ""
+
+#: zapzap/controllers/DialogDumpHandler.py:29
+msgid "The application encountered an unexpected error."
+msgstr ""
+
+#: zapzap/controllers/DialogDumpHandler.py:34
+#, python-brace-format
+msgid ""
+"A diagnostic report was generated automatically at:\n"
+"\n"
+"{path}\n"
+"\n"
+"Please send this file to support so we can investigate the issue.\n"
+"\n"
+"Report channels:\n"
+" - Issue tracker: {issue_url}\n"
+" - Email: {email}"
+msgstr ""
+
+#: zapzap/controllers/DialogDumpHandler.py:50
+msgid "Open folder"
 msgstr ""
 
 #: zapzap/services/AlertManager.py:35
