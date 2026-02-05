@@ -7,13 +7,13 @@ from PyQt6.QtWidgets import QApplication
 from PyQt6.QtGui import QAction
 
 from zapzap.controllers.PageController import PageController
-from zapzap.debug.CrashDumpHandler import CrashDumpHandler
 from zapzap.models import User
 from zapzap import __user_agent__, __whatsapp_url__
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.DownloadManager import DownloadManager
 from zapzap.services.NotificationManager import NotificationManager
 from zapzap.services.SettingsManager import SettingsManager
+from zapzap.debug import crash_handler  # instância global
 
 from gettext import gettext as _
 
@@ -78,11 +78,7 @@ class WebView(QWebEngineView):
                 "performance/cache_type", "DiskHttpCache")))
 
         # Instala o handler de crash específico para este WebView
-        crash_handler = CrashDumpHandler(
-            app_name="ZapZap",
-            profile_provider=lambda: self.profile
-        )
-        crash_handler.install()
+        crash_handler.register_profile(self.profile)
 
     def configure_spellcheck(self):
         """Configura o corretor ortográfico."""
@@ -269,8 +265,9 @@ class WebView(QWebEngineView):
         self.setVisible(True)
 
     def disable_page(self):
-        """Desativa a página, limpando o cache e ocultando-a."""
+        """Desativa a página e limpa o perfil."""
         if self.profile:
+            crash_handler.unregister_profile(self.profile)
             self.profile.clearHttpCache()
         self.setPage(None)
         self.setVisible(False)
