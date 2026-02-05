@@ -8,9 +8,9 @@ from typing import Optional, Set
 import faulthandler
 
 from PyQt6.QtGui import QDesktopServices
-from PyQt6.QtCore import QUrl
 from PyQt6.QtWidgets import QMessageBox
-from PyQt6.QtCore import QStandardPaths
+
+from PyQt6.QtCore import QStandardPaths, Qt, QUrl
 
 from zapzap import __appname__
 
@@ -27,6 +27,9 @@ class CrashDumpHandler:
     - Compactar tudo em um único arquivo ZIP
     - Opcionalmente avisar o usuário via QMessageBox
     """
+
+    ISSUE_URL = "https://github.com/rafatosta/zapzap/issues"
+    SUPPORT_EMAIL = "rafa.ecomp@gmail.com"
 
     def __init__(
         self,
@@ -194,14 +197,28 @@ class CrashDumpHandler:
         msg.setText(
             "O aplicativo encontrou um erro inesperado.\n\n"
             "Um relatório de diagnóstico foi gerado automaticamente.\n\n"
-            f"Diretório do relatório:\n{folder_path}\n\n"
-            "Clique em 'Abrir pasta' para acessar o local."
+            "Arquivo (selecione para copiar):\n"
+            f"{zip_path}\n\n"
+            "Você pode anexar este arquivo ao relatar o problema."
         )
 
+        # 🔑 Permite seleção de texto (sem clipboard automático)
+        msg.setTextInteractionFlags(
+            Qt.TextInteractionFlag.TextSelectableByMouse
+        )
+
+        # Botões
         open_button = msg.addButton(
             "Abrir pasta", QMessageBox.ButtonRole.ActionRole
         )
         msg.addButton(QMessageBox.StandardButton.Ok)
+
+        # Texto informativo (também selecionável)
+        msg.setInformativeText(
+            "Relatar problema:\n"
+            f"Issue tracker: {self.ISSUE_URL}\n"
+            f"E-mail: {self.SUPPORT_EMAIL}"
+        )
 
         msg.exec()
 
