@@ -1,7 +1,10 @@
+from pathlib import Path
+
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWidgets import QMessageBox
-from pathlib import Path
-from PyQt6.QtCore import QStandardPaths, Qt, QUrl
+from PyQt6.QtCore import QUrl
+
+from gettext import gettext as _
 
 
 class DialogDumpHandler:
@@ -11,29 +14,41 @@ class DialogDumpHandler:
 
     @staticmethod
     def show_dialog(zip_path: Path) -> None:
-
         folder_path = zip_path.parent
         folder_url = QUrl.fromLocalFile(str(folder_path))
 
+        # Debug auxiliar (opcional)
         print(f"Showing crash dialog for dump at: {zip_path}")
         print(f"Folder URL: {folder_url.toString()}")
 
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Icon.Critical)
-        msg.setWindowTitle("Erro inesperado")
+        msg.setWindowTitle(_("Unexpected Error"))
+
         msg.setText(
-            "O aplicativo encontrou um erro inesperado."
+            _("The application encountered an unexpected error.")
         )
+
         msg.setInformativeText(
-            f"Um relatório de diagnóstico foi gerado automaticamente em:\n\n{zip_path}\n\n"
-            "Por favor, envie esse arquivo para o suporte para que possamos investigar o problema.\n"
-            f" - Issue tracker: {DialogDumpHandler.ISSUE_URL}\n"
-            f" - Email: {DialogDumpHandler.SUPPORT_EMAIL}\n\n"
+            _(
+                "A diagnostic report was generated automatically at:\n\n"
+                "{path}\n\n"
+                "Please send this file to support so we can investigate the issue.\n\n"
+                "Report channels:\n"
+                " - Issue tracker: {issue_url}\n"
+                " - Email: {email}"
+            ).format(
+                path=zip_path,
+                issue_url=DialogDumpHandler.ISSUE_URL,
+                email=DialogDumpHandler.SUPPORT_EMAIL,
+            )
         )
+
         msg.setStandardButtons(QMessageBox.StandardButton.Ok)
 
         open_button = msg.addButton(
-            "Abrir pasta", QMessageBox.ButtonRole.ActionRole
+            _("Open folder"),
+            QMessageBox.ButtonRole.ActionRole
         )
 
         msg.exec()

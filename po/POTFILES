@@ -1,3 +1,4 @@
 ./zapzap/views/
 ./zapzap/controllers/
 ./zapzap/services/
+./zapzap/debug/
