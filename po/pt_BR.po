@@ -684,11 +684,11 @@ msgstr "Selecione o idioma"
 
 #: zapzap/controllers/DialogDumpHandler.py:26
 msgid "Unexpected Error"
-msgstr ""
+msgstr "Erro inesperado"
 
 #: zapzap/controllers/DialogDumpHandler.py:29
 msgid "The application encountered an unexpected error."
-msgstr ""
+msgstr "O aplicativo encontrou um erro inesperado."
 
 #: zapzap/controllers/DialogDumpHandler.py:34
 #, python-brace-format
@@ -703,11 +703,20 @@ msgid ""
 " - Issue tracker: {issue_url}\n"
 " - Email: {email}"
 msgstr ""
+"Um relatório de diagnóstico foi gerado automaticamente em:\n"
+"\n"
+"{path}\n"
+"\n"
+"Por favor, envie esse arquivo para o suporte para que possamos investigar o "
+"problema.\n"
+"\n"
+"Canais:\n"
+" - Issue tracker: {issue_url}\n"
+" - Email: {email}"
 
 #: zapzap/controllers/DialogDumpHandler.py:50
-#, fuzzy
 msgid "Open folder"
-msgstr "Selecionar pasta"
+msgstr "Abrir pasta"
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
