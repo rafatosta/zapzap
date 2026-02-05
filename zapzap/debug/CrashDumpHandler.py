@@ -6,6 +6,9 @@ from pathlib import Path
 from datetime import datetime
 from typing import Optional, Set
 
+from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtCore import QUrl
 from PyQt6.QtWidgets import QMessageBox
 
 
@@ -164,11 +167,26 @@ class CrashDumpHandler:
             pass
 
     def _show_dialog(self, zip_path: Path) -> None:
-        QMessageBox.critical(
-            None,
-            "Erro inesperado",
+        folder_path = zip_path.parent
+        folder_url = QUrl.fromLocalFile(str(folder_path))
+
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Erro inesperado")
+
+        msg.setText(
             "O aplicativo encontrou um erro inesperado.\n\n"
             "Um relatório de diagnóstico foi gerado automaticamente.\n\n"
-            f"Arquivo:\n{zip_path}\n\n"
-            "Anexe este arquivo ao relatar o problema."
+            f"Diretório do relatório:\n{folder_path}\n\n"
+            "Clique em 'Abrir pasta' para acessar o local."
         )
+
+        open_button = msg.addButton(
+            "Abrir pasta", QMessageBox.ButtonRole.ActionRole
+        )
+        msg.addButton(QMessageBox.StandardButton.Ok)
+
+        msg.exec()
+
+        if msg.clickedButton() == open_button:
+            QDesktopServices.openUrl(folder_url)
