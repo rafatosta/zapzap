@@ -5,7 +5,6 @@ import argparse
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtCore import QUrl
 
-from zapzap.services.RuntimeEnvironmentDebug import RuntimeEnvironmentDebug
 from zapzap.services.SetupManager import SetupManager
 from zapzap.controllers.MainWindow import MainWindow
 from zapzap.controllers.SingleApplication import SingleApplication
@@ -13,6 +12,8 @@ from zapzap.services.ProxyManager import ProxyManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.TranslationManager import TranslationManager
 from zapzap.resources.TrayIcon import TrayIcon
+
+from zapzap.debug import crash_handler
 
 
 def main():
@@ -38,6 +39,9 @@ def main():
     SetupManager.apply()
     TranslationManager.apply()
 
+    # Instala o handler de crash
+    crash_handler.install()
+
     # Define application attributes
     app = SingleApplication(
         zapzap.__appid__, sys.argv + SetupManager.get_argv())
@@ -48,14 +52,6 @@ def main():
     app.setWindowIcon(TrayIcon.getIcon())
 
     SetupManager.apply_qt_scale_factor_rounding_policy()
-
-    # debug report
-    debug = RuntimeEnvironmentDebug()
-    debug.print_debug_report()
-
-    # integrar isso a um menu “Ajuda → Diagnóstico”
-    # ou gerar dump automático em crash
-    # RuntimeEnvironmentDebug().save_json("runtime-debug.json")
 
     # Callback instance
     app.messageReceived.connect(lambda result: main_window.xdgOpenChat(result))
