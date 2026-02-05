@@ -53,7 +53,8 @@ packages = [
   "zapzap.models",
   "zapzap.resources",
   "zapzap.services",
-  "zapzap.views"
+  "zapzap.views",
+  "zapzap.debug"
 ]
 
 [tool.setuptools.package-data]
