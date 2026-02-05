@@ -11,6 +11,8 @@ from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtCore import QUrl
 from PyQt6.QtWidgets import QMessageBox
 
+from zapzap import __appname__
+
 
 class CrashDumpHandler:
     """
@@ -27,7 +29,7 @@ class CrashDumpHandler:
 
     def __init__(
         self,
-        app_name: str = "ZapZap",
+        app_name: str = __appname__,
         dump_dir: Optional[Path] = None,
         show_dialog: bool = False,
     ) -> None:
