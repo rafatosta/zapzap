@@ -54,7 +54,8 @@ packages = [
   "zapzap.resources",
   "zapzap.services",
   "zapzap.views",
-  "zapzap.debug"
+  "zapzap.debug",
+  "zapzap.notifications"
 ]
 
 [tool.setuptools.package-data]
