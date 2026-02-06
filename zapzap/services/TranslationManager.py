@@ -11,7 +11,6 @@ class TranslationManager:
 
     @staticmethod
     def apply():
-        print("Locale dir:", TranslationManager._locale_dir)
          # Define path to translation files
         gettext.bindtextdomain(__appname__.lower(),
                             TranslationManager._locale_dir)

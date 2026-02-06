@@ -26,8 +26,9 @@ class AddonsManager:
                     with open(filepath, 'r', encoding='utf-8') as f:
                         AddonsManager.js_addons.append(f.read())
 
-        print('Addons carregados:')
-        print(AddonsManager.js_addons)
+        if AddonsManager.js_addons:
+            print('Addons carregados:')
+            print(AddonsManager.js_addons)
 
         return AddonsManager.js_addons
 

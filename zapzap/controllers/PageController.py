@@ -116,7 +116,6 @@ class PageController(QWebEnginePage):
             """
         self.runJavaScript(script)
 
-
     def xdg_open_chat(self, url):
         script = """(function(){var a = document.createElement("a");a.href=\"""" + \
             url + \
@@ -181,4 +180,6 @@ class PageController(QWebEnginePage):
         """
         self.runJavaScript(script)
 
-    
+    def javaScriptConsoleMessage(self, level, message, line, sourceID):
+        """ Ignora as mensagens do console """
+        pass
