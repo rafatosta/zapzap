@@ -53,6 +53,7 @@ class PortalNotificationBackend(QObject):
             "default-action": self.ACTION_FOCUS,
             "default-action-target": page.page_index,
             "display-hint": ["transient"],
+            "icon": "com.rtosta.zapzap",
         }
 
         reply = self.interface.call(
