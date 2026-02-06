@@ -1,4 +1,3 @@
-import logging
 import shutil
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
@@ -9,17 +8,13 @@ from PyQt6.QtGui import QAction
 from zapzap.controllers.PageController import PageController
 from zapzap.models import User
 from zapzap import __user_agent__, __whatsapp_url__
+from zapzap.notifications.NotificationService import NotificationService
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.DownloadManager import DownloadManager
-from zapzap.services.NotificationManager import NotificationManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.debug import crash_handler  # instância global
 
 from gettext import gettext as _
-
-# Configuração do logger
-logging.basicConfig(level=logging.INFO, format='%(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
 
 
 class WebView(QWebEngineView):
@@ -37,14 +32,19 @@ class WebView(QWebEngineView):
         self.page_index = page_index
         self.profile = None  # Inicializa o perfil como None
 
+        self.notifications = NotificationService()
+
         self._last_tmp_file = None
 
         if user.enable:
             self._initialize()
 
     def __del__(self):
-        """Método chamado quando o objeto é destruído."""
-        self.user.zoomFactor = self.zoomFactor()
+        try:
+            if self.user and not self.isHidden():
+                self.user.zoomFactor = self.zoomFactor()
+        except RuntimeError:
+            pass
 
     def _initialize(self):
         """Configuração inicial."""
@@ -64,7 +64,7 @@ class WebView(QWebEngineView):
         self.profile.downloadRequested.connect(
             DownloadManager.on_downloadRequested)
         self.profile.setNotificationPresenter(
-            lambda notification: NotificationManager.show(self, notification)
+            lambda notification: self.notifications.notify(self, notification)
         )
         self.profile.settings().setAttribute(
             QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, SettingsManager.get("web/scroll_animator", False))
@@ -246,9 +246,6 @@ class WebView(QWebEngineView):
             cache_path = self.profile.cachePath()
             storage_path = self.profile.persistentStoragePath()
 
-            logger.info(f"Removendo cache: {cache_path}")
-            logger.info(f"Removendo armazenamento: {storage_path}")
-
             shutil.rmtree(cache_path, ignore_errors=True)
             shutil.rmtree(storage_path, ignore_errors=True)
 
@@ -256,7 +253,6 @@ class WebView(QWebEngineView):
             self.close()
             return True
         except Exception as e:
-            logger.error(f"Erro ao remover arquivos: {e}")
             return False
 
     def enable_page(self):
