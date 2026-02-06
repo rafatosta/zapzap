@@ -1,7 +1,7 @@
 from pathlib import Path
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 
-from zapzap.controllers import WebView
+from zapzap.webengine import WebView
 from zapzap.services.SettingsManager import SettingsManager
 from gettext import gettext as _
 from zapzap import __appname__

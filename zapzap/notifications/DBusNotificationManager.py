@@ -3,7 +3,7 @@ from PyQt6.QtGui import QPainter, QPainter, QImage, QBrush, QPen
 from PyQt6.QtCore import Qt, QSize, QStandardPaths
 from PyQt6.QtWidgets import QApplication
 
-from zapzap.controllers import WebView
+from zapzap.webengine import WebView
 from zapzap.resources.TrayIcon import TrayIcon
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap import __appname__

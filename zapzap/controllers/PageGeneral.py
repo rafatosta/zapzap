@@ -55,12 +55,7 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         self.spell_comboBox.clear()
         self.spell_comboBox.addItems(DictionariesManager.list())
 
-        system_language = DictionariesManager.get_system_language()
         current_language = DictionariesManager.get_current_dict()
-
-        print(f"Caminho dos dicionários: {dictionaries_path}")
-        print(f"Idioma do sistema: {system_language}")
-        print(f"Idioma atual configurado: {current_language}")
 
         self.spell_comboBox.setCurrentText(current_language)
 

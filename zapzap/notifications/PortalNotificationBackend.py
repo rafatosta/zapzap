@@ -3,7 +3,7 @@ from PyQt6.QtDBus import QDBusConnection, QDBusInterface, QDBusMessage
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 from PyQt6.QtWidgets import QApplication
 
-from zapzap.controllers import WebView
+from zapzap.webengine import WebView
 
 
 class PortalNotificationBackend(QObject):

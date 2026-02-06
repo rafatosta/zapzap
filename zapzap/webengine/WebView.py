@@ -5,7 +5,7 @@ from PyQt6.QtCore import QUrl, pyqtSignal, QTimer
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtGui import QAction
 
-from zapzap.controllers.PageController import PageController
+from zapzap.webengine.PageController import PageController
 from zapzap.models import User
 from zapzap import __user_agent__, __whatsapp_url__
 from zapzap.notifications.NotificationService import NotificationService
