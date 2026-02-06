@@ -5,18 +5,18 @@ from zapzap.controllers import WebView
 from zapzap.services.SettingsManager import SettingsManager
 from gettext import gettext as _
 from zapzap import __appname__
-from zapzap.notifications.FreedesktopNotificationBackend import (
+""" from zapzap.notifications.FreedesktopNotificationBackend import (
     FreedesktopNotificationBackend
 )
 from zapzap.notifications.PortalNotificationBackend import (
-    PortalNotificationBackend
+    PortalNotificationBackend 
 )
+"""
+from zapzap.notifications.DBusNotificationManager import DBusNotificationManager
 
-from zapzap.services.NotificationManager import NotificationManager
 
-
-def is_flatpak() -> bool:
-    return Path("/.flatpak-info").exists()
+""" def is_flatpak() -> bool:
+    return Path("/.flatpak-info").exists() """
 
 
 class NotificationService:
@@ -25,14 +25,15 @@ class NotificationService:
 
     def __init__(self):
 
-        if is_flatpak():
+        """ if is_flatpak():
             if not NotificationService._backend:
                 NotificationService._backend = PortalNotificationBackend()
         else:
             # self.backend = FreedesktopNotificationBackend()
             self.backend = None
 
-        self.backend = NotificationService._backend
+        self.backend = NotificationService._backend """
+        pass
 
     def notify(
         self,
@@ -53,22 +54,25 @@ class NotificationService:
         # =================================================
         # 2. Conteúdo (decisão global)
         # =================================================
-        title = (
+        """ title = (
             notification.title()
             if SettingsManager.get('notification/show_name', True)
             else __appname__
-        )
+        ) """
 
-        message = (
+        """ message = (
             notification.message()
             if SettingsManager.get('notification/show_msg', True)
             else _('New message...')
-        )
+        ) """
 
         # =================================================
         # 3. Delegação total ao backend
         # =================================================
-        if self.backend:  # flatpak
+
+        DBusNotificationManager.show(page, notification)
+
+        """  if self.backend:  # flatpak
             self.backend.notify(
                 page=page,
                 notification=notification,
@@ -76,4 +80,4 @@ class NotificationService:
                 message=message
             )
         else:  # desktop dbus
-            NotificationManager.show(page, notification)
+            DBusNotificationManager.show(page, notification) """

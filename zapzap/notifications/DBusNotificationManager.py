@@ -28,7 +28,7 @@ DBUS_IFACE: dbus.Interface = None
 NOTIFICATIONS = {}
 
 
-class NotificationManager:
+class DBusNotificationManager:
 
     @staticmethod
     def show(page: WebView, notification: QWebEngineNotification):
@@ -38,8 +38,8 @@ class NotificationManager:
                     'notification/show_name', True) else __appname__
                 message = notification.message() if SettingsManager.get(
                     'notification/show_msg', True) else _('New message...')
-                icon = NotificationManager._get_image_path(notification.icon(), notification.title(
-                )) if SettingsManager.get('notification/show_photo', True) else NotificationManager._get_default_icon_path()
+                icon = DBusNotificationManager._get_image_path(notification.icon(), notification.title(
+                )) if SettingsManager.get('notification/show_photo', True) else DBusNotificationManager._get_default_icon_path()
 
                 new_notify = Notification(
                     title,
@@ -79,7 +79,7 @@ class NotificationManager:
         """Obtém o caminho da imagem para a notificação."""
         try:
             path = os.path.join(
-                NotificationManager._get_temp_path(), f'{title}.png')
+                DBusNotificationManager._get_temp_path(), f'{title}.png')
             output_image = QImage(
                 icon.width(), icon.height(), QImage.Format.Format_ARGB32)
             output_image.fill(Qt.GlobalColor.transparent)
@@ -93,11 +93,11 @@ class NotificationManager:
             painter.end()
 
             if not output_image.save(path):
-                return NotificationManager._get_default_icon_path()
+                return DBusNotificationManager._get_default_icon_path()
             return path
         except Exception as e:
             print('Error in _get_image_path:', e)
-            return NotificationManager._get_default_icon_path()
+            return DBusNotificationManager._get_default_icon_path()
 
     @staticmethod
     def _get_default_icon_path() -> str:
@@ -106,7 +106,7 @@ class NotificationManager:
             icon = TrayIcon.getIcon()
             pixmap = icon.pixmap(QSize(128, 128))
             path = os.path.join(
-                NotificationManager._get_temp_path(), 'com.rtosta.zapzap.png')
+                DBusNotificationManager._get_temp_path(), 'com.rtosta.zapzap.png')
             pixmap.save(path)
             return path
         except Exception as e:
