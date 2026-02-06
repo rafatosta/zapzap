@@ -55,6 +55,17 @@
   </screenshots>
 
   <releases>
+      <release date="2026-02-06" version="6.2.10">
+          <description>
+              <ul>
+                  <li>Default user limit increased to 5</li>
+                  <li>Improved app stability</li>
+                  <li>Better error handling when the app crashes</li>
+                  <li>Error messages are now easier to read and copy</li>
+                  <li>General fixes and internal improvements</li>
+              </ul>
+          </description>
+      </release>
       <release date="2026-01-30" version="6.2.9">
             <description>
                 <ul>
