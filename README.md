@@ -116,6 +116,9 @@ With translations:
 python run.py dev --build-translations
 ```
 
+#### Debugging WebEngine
+- Open DevTools for current account page: `View -> Open DevTools` (`Ctrl+Shift+I`)
+
 
 ## 👀 Preview Mode
 

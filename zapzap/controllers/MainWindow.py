@@ -109,6 +109,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def _connect_view_menu_actions(self):
         """Conectar ações do menu 'Exibir'."""
+        self.actionOpen_DevTools.triggered.connect(self.open_devtools)
         self.actionReset_zoom.triggered.connect(self._reset_zoom)
         self.actionToggle_full_screen.triggered.connect(self.toggle_fullscreen)
         self.actionZoom_in.triggered.connect(self._zoom_in)
@@ -145,6 +146,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def _zoom_out(self):
         """Diminuir o zoom da página atual."""
         self._current_page().set_zoom_factor_page(-0.1)
+
+    def open_devtools(self):
+        """Abrir DevTools da página atual."""
+        try:
+            self._current_page().open_devtools()
+        except Exception:
+            AlertManager.no_active_account()
 
     # === Gerenciamento de Tela ===
     def _current_page(self):

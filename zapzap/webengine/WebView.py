@@ -1,6 +1,6 @@
 import shutil
 from PyQt6.QtWebEngineWidgets import QWebEngineView
-from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings
+from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings, QWebEnginePage
 from PyQt6.QtCore import QUrl, pyqtSignal, QTimer
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtGui import QAction
@@ -33,6 +33,8 @@ class WebView(QWebEngineView):
         self.profile = None  # Inicializa o perfil como None
 
         self.notifications = NotificationService()
+        self._devtools_view = None
+        self._devtools_page = None
 
         self._last_tmp_file = None
 
@@ -272,3 +274,27 @@ class WebView(QWebEngineView):
             self.profile.clearHttpCache()
         self.setPage(None)
         self.setVisible(False)
+
+    def open_devtools(self):
+        """Abre a janela de DevTools para a página atual."""
+        current_page = self.page()
+        if not self.user.enable or not current_page:
+            return
+
+        if self._devtools_view is None:
+            self._devtools_view = QWebEngineView()
+
+            account_name = self.user.name if self.user.name else _("Account")
+            self._devtools_view.setWindowTitle(
+                _("DevTools - {}").format(account_name)
+            )
+            self._devtools_view.resize(1100, 700)
+
+        if self._devtools_page is None:
+            self._devtools_page = QWebEnginePage(self.profile, self._devtools_view)
+
+        current_page.setDevToolsPage(self._devtools_page)
+        self._devtools_view.setPage(self._devtools_page)
+        self._devtools_view.show()
+        self._devtools_view.raise_()
+        self._devtools_view.activateWindow()
