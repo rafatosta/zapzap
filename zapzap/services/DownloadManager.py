@@ -38,17 +38,6 @@ class DownloadManager:
             DownloadManager.DOWNLOAD_PATH
         )
 
-    @staticmethod
-    def _get_path_open_temp():
-        directory = os.path.join(
-            DownloadManager.get_path(),
-            ".zapzap_temp"
-        )
-        if not os.path.exists(directory):
-            os.makedirs(directory)
-            print(_("Creating temporary directory:"), directory)
-        return directory
-
     # ===============================
     # Download entry point
     # ===============================
@@ -101,7 +90,10 @@ class DownloadManager:
 
     @staticmethod
     def open_download(download: QWebEngineDownloadRequest):
-        directory = DownloadManager._get_path_open_temp()
+        directory = (
+            DownloadManager.current_directory
+            or DownloadManager.get_path()
+        )
 
         download.setDownloadDirectory(directory)
 
@@ -155,7 +147,6 @@ class DownloadManager:
 
         download.setDownloadDirectory(os.path.dirname(path))
         download.setDownloadFileName(os.path.basename(path))
-
 
         download.accept()
 
