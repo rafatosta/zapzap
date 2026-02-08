@@ -38,8 +38,28 @@ ZapZap extends WhatsApp Web with additional features:
 - Customizable **system tray icons**
 - Option to choose a **folder for custom dictionaries**
 - Setting to **disable the native file selection dialog** (Hyprland)
+- **Custom CSS/JS** with global + per-account override
 - **Reorganized Settings Panel**
 - Added **Performance section**
+
+### 🧩 Customizations
+- New **Customizations** page in Settings
+- Supports **Global** customization and **Current account** customization
+- Account mode supports **inherit global settings** + optional override
+- Users can:
+  - write/edit inline CSS and JS
+  - import `.css` and `.js` files
+  - open customization folders directly
+- CSS can be applied immediately, JS is applied after page reload
+
+Customization files are stored in the app local data path under:
+- `customizations/global/css`
+- `customizations/global/js`
+- `customizations/accounts/<id>/css`
+- `customizations/accounts/<id>/js`
+
+Reserved for future extension support:
+- `customizations/extensions`
 
 ---
 
