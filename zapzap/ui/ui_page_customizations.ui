@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
-    <height>640</height>
+    <width>662</width>
+    <height>402</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -100,138 +100,157 @@
             <italic>true</italic>
            </font>
           </property>
-          <property name="wordWrap">
-           <bool>true</bool>
-          </property>
           <property name="text">
            <string>When inherit is disabled, account customizations are appended after global settings.</string>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="css_groupBox">
-          <property name="title">
-           <string>Custom CSS</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_css">
-           <item>
-            <widget class="QCheckBox" name="css_enabled">
-             <property name="text">
-              <string>Enable custom CSS</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QTextEdit" name="css_editor">
-             <property name="placeholderText">
-              <string>Write CSS here...</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_css_buttons">
-             <item>
-              <widget class="QPushButton" name="btn_css_import">
-               <property name="text">
-                <string>Import .css</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="btn_css_folder">
-               <property name="text">
-                <string>Open CSS folder</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="btn_css_delete">
-               <property name="text">
-                <string>Delete selected CSS file</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QListWidget" name="css_files">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>85</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="js_groupBox">
-          <property name="title">
-           <string>Custom JavaScript</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_js">
-           <item>
-            <widget class="QCheckBox" name="js_enabled">
-             <property name="text">
-              <string>Enable custom JavaScript</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QTextEdit" name="js_editor">
-             <property name="placeholderText">
-              <string>Write JavaScript here...</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_js_buttons">
-             <item>
-              <widget class="QPushButton" name="btn_js_import">
-               <property name="text">
-                <string>Import .js</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="btn_js_folder">
-               <property name="text">
-                <string>Open JS folder</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="btn_js_delete">
-               <property name="text">
-                <string>Delete selected JS file</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QListWidget" name="js_files">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>85</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="warning_label">
           <property name="wordWrap">
            <bool>true</bool>
           </property>
-          <property name="text">
-           <string>Warning: Custom JavaScript runs with full page privileges. Use trusted code only.</string>
+         </widget>
+        </item>
+        <item>
+         <widget class="QScrollArea" name="scrollArea">
+          <property name="widgetResizable">
+           <bool>true</bool>
           </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>516</width>
+             <height>1070</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <widget class="QGroupBox" name="css_groupBox">
+              <property name="title">
+               <string>Custom CSS</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_css">
+               <item>
+                <widget class="QCheckBox" name="css_enabled">
+                 <property name="text">
+                  <string>Enable custom CSS</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTextEdit" name="css_editor">
+                 <property name="placeholderText">
+                  <string>Write CSS here...</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_css_buttons">
+                 <item>
+                  <widget class="QPushButton" name="btn_css_import">
+                   <property name="text">
+                    <string>Import .css</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btn_css_folder">
+                   <property name="text">
+                    <string>Open CSS folder</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btn_css_delete">
+                   <property name="text">
+                    <string>Delete selected CSS file</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QListWidget" name="css_files">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>85</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="js_groupBox">
+              <property name="title">
+               <string>Custom JavaScript</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_js">
+               <item>
+                <widget class="QCheckBox" name="js_enabled">
+                 <property name="text">
+                  <string>Enable custom JavaScript</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTextEdit" name="js_editor">
+                 <property name="placeholderText">
+                  <string>Write JavaScript here...</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_js_buttons">
+                 <item>
+                  <widget class="QPushButton" name="btn_js_import">
+                   <property name="text">
+                    <string>Import .js</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btn_js_folder">
+                   <property name="text">
+                    <string>Open JS folder</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btn_js_delete">
+                   <property name="text">
+                    <string>Delete selected JS file</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QListWidget" name="js_files">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>85</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="warning_label">
+              <property name="text">
+               <string>Warning: Custom JavaScript runs with full page privileges. Use trusted code only.</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
          </widget>
         </item>
         <item>
@@ -286,19 +305,6 @@
       </spacer>
      </item>
     </layout>
-   </item>
-   <item>
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Orientation::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>
