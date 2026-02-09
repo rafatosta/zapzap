@@ -1,8 +1,16 @@
+import os
+
 from gettext import gettext as _
 
-from PyQt6.QtCore import QUrl
+from PyQt6.QtCore import QUrl, Qt
 from PyQt6.QtGui import QDesktopServices
-from PyQt6.QtWidgets import QWidget, QApplication, QFileDialog, QMessageBox
+from PyQt6.QtWidgets import (
+    QWidget,
+    QApplication,
+    QFileDialog,
+    QMessageBox,
+    QListWidgetItem,
+)
 
 from zapzap.services.CustomizationsManager import CustomizationsManager
 from zapzap.services.SettingsManager import SettingsManager
@@ -16,6 +24,7 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
 
         self.current_scope = CustomizationsManager.SCOPE_GLOBAL
         self.current_account_id = None
+        self._updating_asset_lists = False
 
         self._configure_scope()
         self._configure_signals()
@@ -50,6 +59,14 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
         )
         self.btn_js_delete.clicked.connect(
             lambda: self._delete_selected_asset(CustomizationsManager.TYPE_JS)
+        )
+        self.btn_css_import_url.clicked.connect(self._import_css_from_url)
+        self.btn_js_import_url.clicked.connect(self._import_js_from_url)
+        self.css_files.itemChanged.connect(
+            lambda item: self._handle_asset_toggle(item, CustomizationsManager.TYPE_CSS)
+        )
+        self.js_files.itemChanged.connect(
+            lambda item: self._handle_asset_toggle(item, CustomizationsManager.TYPE_JS)
         )
 
     def _browser(self):
@@ -138,6 +155,12 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
             self.btn_js_folder,
             self.btn_css_delete,
             self.btn_js_delete,
+            self.css_url_input,
+            self.css_url_name_input,
+            self.btn_css_import_url,
+            self.js_url_input,
+            self.js_url_name_input,
+            self.btn_js_import_url,
         ):
             widget.setEnabled(allow_edit)
 
@@ -165,16 +188,98 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
         if not file_path:
             return
 
-        CustomizationsManager.import_asset_file(
-            file_path,
-            self.current_scope,
-            asset_type,
-            self.current_account_id,
-        )
+        try:
+            CustomizationsManager.import_asset_file(
+                file_path,
+                self.current_scope,
+                asset_type,
+                self.current_account_id,
+            )
+        except ValueError as error:
+            if str(error) == "invalid-userstyle-target":
+                self._show_feedback(_("This userstyle does not target WhatsApp Web."))
+            else:
+                self._show_feedback(_("Could not import file."))
+            return
 
         self._refresh_asset_lists()
-        self._apply_css_now()
-        self._show_feedback(_("File imported successfully."))
+        if asset_type == CustomizationsManager.TYPE_CSS:
+            self._apply_css_now()
+            self._show_feedback(_("File imported successfully."))
+        else:
+            self._show_feedback(_("JavaScript file imported. Reload pages to apply changes."))
+
+    def _import_css_from_url(self):
+        self._import_asset_from_url(CustomizationsManager.TYPE_CSS)
+
+    def _import_js_from_url(self):
+        self._import_asset_from_url(CustomizationsManager.TYPE_JS)
+
+    def _import_asset_from_url(self, asset_type: str):
+        if (
+            self.current_scope == CustomizationsManager.SCOPE_ACCOUNT
+            and self.inherit_checkbox.isChecked()
+        ):
+            return
+
+        if asset_type == CustomizationsManager.TYPE_CSS:
+            url_input = self.css_url_input
+            file_name_input = self.css_url_name_input
+            empty_url_message = _("Enter a CSS HTTPS URL.")
+            download_error_message = _("Could not download CSS from URL.")
+        else:
+            url_input = self.js_url_input
+            file_name_input = self.js_url_name_input
+            empty_url_message = _("Enter a JavaScript HTTPS URL.")
+            download_error_message = _("Could not download JavaScript from URL.")
+
+        url = url_input.text().strip()
+        if not url:
+            self._show_feedback(empty_url_message)
+            return
+
+        file_name = file_name_input.text().strip()
+
+        try:
+            if asset_type == CustomizationsManager.TYPE_CSS:
+                target_path = CustomizationsManager.import_css_from_url(
+                    url,
+                    self.current_scope,
+                    self.current_account_id,
+                    file_name,
+                )
+            else:
+                target_path = CustomizationsManager.import_js_from_url(
+                    url,
+                    self.current_scope,
+                    self.current_account_id,
+                    file_name,
+                )
+        except ValueError as error:
+            reason = str(error)
+            if reason == "invalid-url-scheme":
+                self._show_feedback(_("Only HTTPS URLs are allowed."))
+            elif reason == "download-too-large":
+                self._show_feedback(_("Download is too large."))
+            elif reason == "invalid-userstyle-target":
+                self._show_feedback(_("This userstyle does not target WhatsApp Web."))
+            else:
+                self._show_feedback(download_error_message)
+            return
+
+        file_name_input.clear()
+        self._refresh_asset_lists()
+
+        file_name = os.path.basename(target_path)
+        if asset_type == CustomizationsManager.TYPE_CSS:
+            self._apply_css_now()
+            self._show_feedback(_("CSS imported from URL: {}").format(file_name))
+        else:
+            self._show_feedback(
+                _("JavaScript imported from URL: {}. Reload pages to apply changes.").format(
+                    file_name
+                )
+            )
 
     def _open_assets_folder(self, asset_type: str):
         path = CustomizationsManager.get_assets_dir(
@@ -185,23 +290,77 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
         QDesktopServices.openUrl(QUrl.fromLocalFile(path))
 
     def _refresh_asset_lists(self):
+        self._updating_asset_lists = True
+
         self.css_files.clear()
-        self.css_files.addItems(
-            CustomizationsManager.list_asset_file_names(
+        for file_name in CustomizationsManager.list_asset_file_names(
+            self.current_scope,
+            CustomizationsManager.TYPE_CSS,
+            self.current_account_id,
+        ):
+            item = QListWidgetItem(file_name)
+            item.setFlags(item.flags() | Qt.ItemFlag.ItemIsUserCheckable)
+            enabled = CustomizationsManager.is_asset_file_enabled(
+                file_name,
                 self.current_scope,
                 CustomizationsManager.TYPE_CSS,
                 self.current_account_id,
             )
-        )
+            item.setCheckState(
+                Qt.CheckState.Checked if enabled else Qt.CheckState.Unchecked
+            )
+            self.css_files.addItem(item)
 
         self.js_files.clear()
-        self.js_files.addItems(
-            CustomizationsManager.list_asset_file_names(
+        for file_name in CustomizationsManager.list_asset_file_names(
+            self.current_scope,
+            CustomizationsManager.TYPE_JS,
+            self.current_account_id,
+        ):
+            item = QListWidgetItem(file_name)
+            item.setFlags(item.flags() | Qt.ItemFlag.ItemIsUserCheckable)
+            enabled = CustomizationsManager.is_asset_file_enabled(
+                file_name,
                 self.current_scope,
                 CustomizationsManager.TYPE_JS,
                 self.current_account_id,
             )
+            item.setCheckState(
+                Qt.CheckState.Checked if enabled else Qt.CheckState.Unchecked
+            )
+            self.js_files.addItem(item)
+
+        self._updating_asset_lists = False
+
+    def _handle_asset_toggle(self, item, asset_type: str):
+        if self._updating_asset_lists:
+            return
+
+        enabled = item.checkState() == Qt.CheckState.Checked
+        file_name = item.text()
+        CustomizationsManager.set_asset_file_enabled(
+            file_name,
+            enabled,
+            self.current_scope,
+            asset_type,
+            self.current_account_id,
         )
+
+        if asset_type == CustomizationsManager.TYPE_CSS:
+            self._apply_css_now()
+            message = (
+                _("CSS file enabled: {}") if enabled else _("CSS file disabled: {}")
+            ).format(file_name)
+            self._show_feedback(message)
+        else:
+            message = (
+                _("JavaScript file enabled: {}")
+                if enabled
+                else _("JavaScript file disabled: {}")
+            ).format(file_name)
+            self._show_feedback(
+                _("{}. Reload pages to apply JavaScript changes.").format(message)
+            )
 
     def _delete_selected_asset(self, asset_type: str):
         if (
@@ -237,8 +396,11 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
         )
         if deleted:
             self._refresh_asset_lists()
-            self._apply_css_now()
-            self._show_feedback(_("File deleted."))
+            if asset_type == CustomizationsManager.TYPE_CSS:
+                self._apply_css_now()
+                self._show_feedback(_("File deleted."))
+            else:
+                self._show_feedback(_("File deleted. Reload pages to apply JavaScript changes."))
         else:
             self._show_feedback(_("Could not delete file."))
 

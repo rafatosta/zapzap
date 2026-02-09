@@ -49,7 +49,11 @@ ZapZap extends WhatsApp Web with additional features:
 - Users can:
   - write/edit inline CSS and JS
   - import `.css` and `.js` files
+  - enable/disable each imported CSS/JS file independently
+  - import CSS from any `https://` URL with optional file name
+  - import JavaScript from any `https://` URL with optional file name
   - open customization folders directly
+- Supports many userstyle files (`.user.css`) by extracting WhatsApp-targeted `@-moz-document` blocks
 - CSS can be applied immediately, JS is applied after page reload
 
 Customization files are stored in the app local data path under:

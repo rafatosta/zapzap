@@ -160,16 +160,18 @@ class PageController(QWebEnginePage):
         self.apply_custom_js()
 
     def apply_custom_css(self):
-        css_text, _ = CustomizationsManager.build_effective_assets(self.user_id)
-        if css_text.strip():
-            self.runJavaScript(CustomizationsManager.css_injection_script(css_text))
-        else:
-            self.runJavaScript(CustomizationsManager.clear_css_script())
+        css_entries = CustomizationsManager.build_effective_ordered_assets(
+            CustomizationsManager.TYPE_CSS,
+            self.user_id,
+        )
+        self.runJavaScript(CustomizationsManager.css_injection_script(css_entries))
 
     def apply_custom_js(self):
-        _, js_text = CustomizationsManager.build_effective_assets(self.user_id)
-        if js_text.strip():
-            self.runJavaScript(js_text)
+        js_entries = CustomizationsManager.build_effective_ordered_assets(
+            CustomizationsManager.TYPE_JS,
+            self.user_id,
+        )
+        self.runJavaScript(CustomizationsManager.js_injection_script(js_entries))
 
     def show_toast(self, message, duration=1000):
         """Exibe um toast na página utilizando JavaScript."""

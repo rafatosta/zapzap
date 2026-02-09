@@ -157,6 +157,31 @@
             </item>
            </layout>
           </item>
+          <item>
+           <layout class="QHBoxLayout" name="css_url_layout">
+            <item>
+             <widget class="QLineEdit" name="css_url_input">
+              <property name="placeholderText">
+               <string>https://example.com/theme.user.css</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="css_url_name_input">
+              <property name="placeholderText">
+               <string>Optional file name (e.g. 10-theme.css)</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_css_import_url">
+              <property name="text">
+               <string>Import CSS from URL</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
          </layout>
         </widget>
        </item>
@@ -238,6 +263,31 @@
                </size>
               </property>
              </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="js_url_layout">
+            <item>
+             <widget class="QLineEdit" name="js_url_input">
+              <property name="placeholderText">
+               <string>https://example.com/script.js</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="js_url_name_input">
+              <property name="placeholderText">
+               <string>Optional file name (e.g. 10-script.js)</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_js_import_url">
+              <property name="text">
+               <string>Import JavaScript from URL</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
