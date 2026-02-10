@@ -6,6 +6,10 @@
 ZapZap brings the WhatsApp experience on Linux closer to that of a native application.  
 Since Meta does not provide a public API for third-party applications, ZapZap is developed as a [Progressive Web Application (PWA)](https://en.wikipedia.org/wiki/Progressive_web_app), built with **PyQt6 + PyQt6-WebEngine**.
 
+
+📌 About notifications and icons on Flatpak: 
+See [docs/notifications.md](docs/notifications.md)
+
 ---
 
 ## 📥 Download

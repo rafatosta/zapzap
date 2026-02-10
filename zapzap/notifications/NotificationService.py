@@ -1,40 +1,53 @@
 from pathlib import Path
+from gettext import gettext as _
+
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 
 from zapzap.webengine import WebView
 from zapzap.services.SettingsManager import SettingsManager
-from gettext import gettext as _
 from zapzap import __appname__
-""" from zapzap.notifications.FreedesktopNotificationBackend import (
+
+from zapzap.notifications.PortalNotificationBackend import (
+    PortalNotificationBackend
+)
+from zapzap.notifications.FreedesktopNotificationBackend import (
     FreedesktopNotificationBackend
 )
-from zapzap.notifications.PortalNotificationBackend import (
-    PortalNotificationBackend 
-)
-"""
-from zapzap.notifications.DBusNotificationManager import DBusNotificationManager
 
 
-""" def is_flatpak() -> bool:
-    return Path("/.flatpak-info").exists() """
+def is_flatpak() -> bool:
+    return Path("/.flatpak-info").exists()
 
 
 class NotificationService:
+    """
+    Fachada única para notificações.
+
+    Decide o backend (Portal / Freedesktop / None)
+    e delega completamente a ele.
+    """
 
     _backend = None
 
     def __init__(self):
+        if NotificationService._backend is None:
+            NotificationService._backend = self._select_backend()
 
-        """ if is_flatpak():
-            if not NotificationService._backend:
-                NotificationService._backend = PortalNotificationBackend()
-        else:
-            # self.backend = FreedesktopNotificationBackend()
-            self.backend = None
+        self.backend = NotificationService._backend
 
-        self.backend = NotificationService._backend """
-        pass
+    # ------------------------------------------------------------------
+    # Backend selection
+    # ------------------------------------------------------------------
+    def _select_backend(self):
+        if is_flatpak():
+            return PortalNotificationBackend()
 
+        backend = FreedesktopNotificationBackend()
+        return backend if backend.available() else None
+
+    # ------------------------------------------------------------------
+    # Public API
+    # ------------------------------------------------------------------
     def notify(
         self,
         page: WebView,
@@ -43,41 +56,38 @@ class NotificationService:
         # =================================================
         # 1. Regras globais (app / usuário)
         # =================================================
-        if not SettingsManager.get('notification/app', True):
+        if not SettingsManager.get("notification/app", True):
             return
 
         if not SettingsManager.get(
-            f'{str(page.user.id)}/notification', True
+            f"{page.user.id}/notification", True
         ):
+            return
+
+        if not self.backend:
             return
 
         # =================================================
         # 2. Conteúdo (decisão global)
         # =================================================
-        """ title = (
+        title = (
             notification.title()
-            if SettingsManager.get('notification/show_name', True)
+            if SettingsManager.get("notification/show_name", True)
             else __appname__
-        ) """
+        )
 
-        """ message = (
+        message = (
             notification.message()
-            if SettingsManager.get('notification/show_msg', True)
-            else _('New message...')
-        ) """
+            if SettingsManager.get("notification/show_msg", True)
+            else _("New message...")
+        )
 
         # =================================================
         # 3. Delegação total ao backend
         # =================================================
-
-        DBusNotificationManager.show(page, notification)
-
-        """  if self.backend:  # flatpak
-            self.backend.notify(
-                page=page,
-                notification=notification,
-                title=title,
-                message=message
-            )
-        else:  # desktop dbus
-            DBusNotificationManager.show(page, notification) """
+        self.backend.notify(
+            page=page,
+            notification=notification,
+            title=title,
+            message=message,
+        )
