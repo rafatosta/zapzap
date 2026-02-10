@@ -2,6 +2,7 @@
 import os
 import sys
 
+
 def dev(build_translations=False):
     """Run the app in development mode."""
     print(f"Running in dev mode. Translations: {build_translations}")
@@ -17,6 +18,7 @@ def dev(build_translations=False):
     print("# === Start === ")
     extra_args = " ".join(sys.argv[2:])
     os.system(f"python -m zapzap {extra_args}")
+
 
 def preview(build_translations=False):
     """Run the app in preview mode."""
@@ -60,25 +62,86 @@ def preview(build_translations=False):
     else:
         print("Error: Specify --flatpak or --appimage for preview mode.")
 
+
 def build():
     """Build the application for specified targets."""
+    SDK_VERSION = "6.10"
+    APP_ID = "com.rtosta.zapzap"
+    MANIFEST = "com.rtosta.zapzap.yaml"
+
     build_appimage = "--appimage" in sys.argv
     build_flatpak = "--flatpak-onefile" in sys.argv
 
+    # ======================
+    # AppImage
+    # ======================
     if build_appimage:
         if len(sys.argv) < 4:
             print("Error: You must specify a version when building AppImage.")
             print("Usage: python run.py build --appimage <version>")
             return
+
         version = sys.argv[3]
         print(f"Building AppImage version {version}...")
         os.system(f"./_scripts/build-appimage.sh {version}")
+        return
 
+    # ======================
+    # Flatpak Onefile
+    # ======================
     if build_flatpak:
-        print("Building Flatpak Onefile... Without support at the moment!!")
+        build_dir = ".flatpak-build"
+        repo_dir = ".flatpak-repo"
+        dist_dir = "dist"
+        bundle_name = f"{APP_ID}.flatpak"
 
-    if not build_appimage and not build_flatpak:
-        print("No build target specified. Use --appimage <version> or --flatpak-onefile.")
+        print("# === Building Flatpak Onefile ===")
+
+        print("# === Add flathub remote ===")
+        os.system(
+            "flatpak remote-add --user --if-not-exists "
+            "flathub https://flathub.org/repo/flathub.flatpakrepo"
+        )
+
+        print("# === Install SDK ===")
+        os.system(
+            f"flatpak install --user --assumeyes flathub "
+            f"org.kde.Platform//{SDK_VERSION} "
+            f"org.kde.Sdk//{SDK_VERSION} "
+            f"com.riverbankcomputing.PyQt.BaseApp//{SDK_VERSION}"
+        )
+
+        print("# === Cleaning previous build ===")
+        os.system(f"rm -rf {build_dir} {repo_dir}")
+        os.system(f"mkdir -p {dist_dir}")
+
+        print("# === Build Flatpak ===")
+        os.system(
+            f"flatpak-builder {build_dir} {MANIFEST} "
+            f"--force-clean "
+            f"--repo={repo_dir}"
+        )
+
+        print("# === Create onefile bundle ===")
+        os.system(
+            f"flatpak build-bundle {repo_dir} "
+            f"{dist_dir}/{bundle_name} "
+            f"{APP_ID} "
+            f"--runtime-repo=https://flathub.org/repo/flathub.flatpakrepo"
+        )
+
+        print("✅ Flatpak Onefile build finished!")
+        print(f"📦 Output: {dist_dir}/{bundle_name}")
+        return
+
+    # ======================
+    # No target
+    # ======================
+    print("No build target specified.")
+    print("Usage:")
+    print("  python run.py build --appimage <version>")
+    print("  python run.py build --flatpak-onefile")
+
 
 def main():
     """Main entry point for the script."""
@@ -99,6 +162,7 @@ def main():
         dev(build_translations)
     else:
         commands[sys.argv[1]]()
+
 
 if __name__ == "__main__":
     main()
