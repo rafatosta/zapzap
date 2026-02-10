@@ -2,14 +2,7 @@
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
-[tool.poetry]
-name = "ZapZap"
-version = "0.1.0"
-description = "WhatsApp client"
-authors = ["Rafael Tosta rafa.ecomp@gmail.com"]
-
 [project]
-# Metadados dinâmicos vindos do próprio pacote (zapzap/__init__.py)
 name = "zapzap"
 dynamic = ["version"]
 
@@ -32,20 +25,21 @@ classifiers = [
   "Programming Language :: Python :: 3 :: Only"
 ]
 
-dependencies = ["PyQt6", "PyQt6-WebEngine"]
+dependencies = [
+  "PyQt6",
+  "PyQt6-WebEngine"
+]
 
 [project.optional-dependencies]
 dbus = ["dbus-python"]
 
 [project.urls]
-homepage = "https://rtosta.com/zapzap"
+Homepage = "https://rtosta.com/zapzap"
 
 [project.scripts]
-# Cria o atalho executável "zapzap"
 zapzap = "zapzap.__main__:main"
 
 [tool.setuptools]
-# Somente os pacotes Python de fato (com __init__.py)
 packages = [
   "zapzap",
   "zapzap.config",
@@ -60,16 +54,11 @@ packages = [
 ]
 
 [tool.setuptools.package-data]
-# Arquivos de tradução e JS incluídos como dados, não pacotes
 zapzap = [
   "po/*/LC_MESSAGES/*.mo",
   "js/*",
   "extensions/*"
 ]
-
-[tool.setuptools.data-files]
-"share/applications" = ["share/applications/com.rtosta.zapzap.desktop"]
-"share/icons/hicolor/scalable/apps" = ["share/icons/com.rtosta.zapzap.svg"]
 
 [tool.setuptools.dynamic]
 version = { attr = "zapzap.__version__" }
