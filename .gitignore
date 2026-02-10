@@ -8,6 +8,7 @@ __pycache__/
 
 # Flatpak
 .flatpak-builder
+.flatpak-repo
 repo
 export
 
