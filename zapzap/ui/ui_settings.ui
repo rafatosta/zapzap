@@ -179,18 +179,25 @@
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QPushButton" name="btn_page_appearence">
-               <property name="text">
-                <string>Appearance</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="btn_page_notifications">
-               <property name="text">
-                <string>Notifications</string>
-               </property>
+              <item>
+               <widget class="QPushButton" name="btn_page_appearence">
+                <property name="text">
+                 <string>Appearance</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_page_customizations">
+                <property name="text">
+                 <string>Customizations</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_page_notifications">
+                <property name="text">
+                 <string>Notifications</string>
+                </property>
               </widget>
              </item>
              <item>

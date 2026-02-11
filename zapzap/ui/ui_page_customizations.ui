@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PageCustomizations</class>
+ <widget class="QWidget" name="PageCustomizations">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>720</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <layout class="QVBoxLayout" name="mainLayout">
+   <property name="spacing">
+    <number>12</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="label_title">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Customizations</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="scope_group">
+     <layout class="QVBoxLayout">
+      <item>
+       <layout class="QHBoxLayout">
+        <item>
+         <widget class="QLabel" name="label_scope">
+          <property name="text">
+           <string>Account</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="scope_combo"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="account_label">
+          <property name="font">
+           <font>
+            <italic>true</italic>
+           </font>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="inherit_checkbox">
+        <property name="text">
+         <string>Inherit global settings</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="account_scope_hint_label">
+        <property name="text">
+         <string>When inherit is disabled, account customizations are appended after global settings.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="feedback_label">
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="assets_panels_layout">
+     <property name="spacing">
+      <number>16</number>
+     </property>
+     <item>
+      <widget class="QGroupBox" name="css_files_group">
+       <property name="title">
+        <string>CSS</string>
+       </property>
+       <layout class="QVBoxLayout" name="css_panel_layout">
+        <item>
+         <widget class="QCheckBox" name="css_enabled">
+          <property name="text">
+           <string>Enable custom CSS</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="css_preview_group">
+          <property name="title">
+           <string>CSS Preview</string>
+          </property>
+          <layout class="QVBoxLayout" name="css_preview_group_layout">
+           <item>
+            <widget class="QFrame" name="css_preview_frame">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>240</height>
+              </size>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>240</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::Shape::NoFrame</enum>
+             </property>
+             <layout class="QVBoxLayout" name="css_preview_frame_layout">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QStackedWidget" name="css_preview_stack">
+                <property name="styleSheet">
+                 <string>background: palette(base);</string>
+                </property>
+                <widget class="QWidget" name="css_preview_placeholder_page">
+                 <layout class="QVBoxLayout" name="css_preview_placeholder_layout">
+                  <property name="spacing">
+                   <number>8</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>12</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>12</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>12</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>12</number>
+                  </property>
+                  <item>
+                   <widget class="QLabel" name="css_preview_placeholder">
+                    <property name="text">
+                     <string>Select a CSS file to preview.</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignmentFlag::AlignCenter</set>
+                    </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item alignment="Qt::AlignmentFlag::AlignCenter">
+                   <widget class="QPushButton" name="css_preview_placeholder_upload_button">
+                    <property name="visible">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>Upload preview image</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="css_preview_image_page">
+                 <layout class="QGridLayout" name="css_preview_image_layout">
+                  <property name="horizontalSpacing">
+                   <number>8</number>
+                  </property>
+                  <property name="verticalSpacing">
+                   <number>8</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>12</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>12</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>12</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>12</number>
+                  </property>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="css_preview_image">
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignmentFlag::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0" alignment="Qt::AlignmentFlag::AlignCenter">
+                   <widget class="QPushButton" name="css_preview_replace_button">
+                    <property name="visible">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>Replace preview image</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="css_files">
+          <property name="editTriggers">
+           <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+          </property>
+          <property name="showGrid">
+           <bool>false</bool>
+          </property>
+          <property name="columnCount">
+           <number>2</number>
+          </property>
+          <column>
+           <property name="text">
+            <string>Enabled</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Filename</string>
+           </property>
+           <property name="textAlignment">
+            <set>AlignLeading|AlignLeft|AlignVCenter</set>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="css_actions_row1">
+          <item>
+           <widget class="QPushButton" name="btn_css_create">
+            <property name="text">
+             <string>Create</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_css_edit">
+            <property name="text">
+             <string>Edit</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_css_delete">
+            <property name="text">
+             <string>Delete</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="css_actions_row2">
+          <item>
+           <widget class="QPushButton" name="btn_css_import">
+            <property name="text">
+             <string>Import .css</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_css_import_url">
+            <property name="text">
+             <string>Import from URL</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_css_folder">
+            <property name="text">
+             <string>Open folder</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="js_files_group">
+       <property name="title">
+        <string>JavaScript</string>
+       </property>
+       <layout class="QVBoxLayout" name="js_panel_layout">
+        <item>
+         <widget class="QCheckBox" name="js_enabled">
+          <property name="text">
+           <string>Enable custom JavaScript</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="warning_label">
+          <property name="styleSheet">
+           <string>color: #c77800;</string>
+          </property>
+          <property name="text">
+           <string>⚠ Custom JavaScript runs with full page privileges. Use trusted code only.</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="js_files">
+          <property name="editTriggers">
+           <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+          </property>
+          <property name="showGrid">
+           <bool>false</bool>
+          </property>
+          <property name="columnCount">
+           <number>2</number>
+          </property>
+          <column>
+           <property name="text">
+            <string>Enabled</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Filename</string>
+           </property>
+           <property name="textAlignment">
+            <set>AlignLeading|AlignLeft|AlignVCenter</set>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="js_actions_row1">
+          <item>
+           <widget class="QPushButton" name="btn_js_create">
+            <property name="text">
+             <string>Create</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_js_edit">
+            <property name="text">
+             <string>Edit</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_js_delete">
+            <property name="text">
+             <string>Delete</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="js_actions_row2">
+          <item>
+           <widget class="QPushButton" name="btn_js_import">
+            <property name="text">
+             <string>Import .js</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_js_import_url">
+            <property name="text">
+             <string>Import from URL</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_js_folder">
+            <property name="text">
+             <string>Open folder</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_actions">
+     <item>
+      <spacer>
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_save_reload">
+       <property name="text">
+        <string>Save and reload</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_reload">
+       <property name="text">
+        <string>Reload</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_save">
+       <property name="text">
+        <string>Save</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

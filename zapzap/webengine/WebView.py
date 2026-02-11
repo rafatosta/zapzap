@@ -94,6 +94,7 @@ class WebView(QWebEngineView):
     def _setup_page(self):
         """Configura a página e carrega a URL inicial."""
         self.whatsapp_page = PageController(self.profile, self)
+        self.whatsapp_page.user_id = self.user.id
         self.setPage(self.whatsapp_page)
         self.load(QUrl(__whatsapp_url__))
         self.setZoomFactor(self.user.zoomFactor)
@@ -221,6 +222,10 @@ class WebView(QWebEngineView):
             self.setPage(self.whatsapp_page)
             self.load(QUrl(__whatsapp_url__))
             self.setZoomFactor(self.user.zoomFactor)
+
+    def apply_custom_css(self):
+        if self.user.enable and self.whatsapp_page:
+            self.whatsapp_page.apply_custom_css()
 
     def close_conversation(self):
         """Simula o pressionamento da tecla 'Escape' na página."""

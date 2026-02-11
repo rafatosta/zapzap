@@ -4,6 +4,7 @@ from PyQt6.QtGui import QDesktopServices
 
 from zapzap import __whatsapp_url__
 from zapzap.services.AddonsManager import AddonsManager
+from zapzap.services.CustomizationsManager import CustomizationsManager
 from zapzap.services.ThemeManager import ThemeManager
 
 import urllib.parse  # Para normalizar URLs
@@ -18,6 +19,7 @@ class PageController(QWebEnginePage):
         super().__init__(*args, **kwargs)
         self.link_url = ""
         self.link_context = ''
+        self.user_id = None
 
         # Conecta sinais para funcionalidades específicas
         self.linkHovered.connect(self._on_link_hovered)
@@ -142,6 +144,7 @@ class PageController(QWebEnginePage):
         if success:
             # Injeta os addons
             AddonsManager.inject_addons(self)
+            self.apply_customizations()
 
             # Permite notificações automaticamente
             self.setFeaturePermission(
@@ -151,6 +154,24 @@ class PageController(QWebEnginePage):
             )
             # Força a sincronização do tema ao carregar a página
             ThemeManager.sync()
+
+    def apply_customizations(self):
+        self.apply_custom_css()
+        self.apply_custom_js()
+
+    def apply_custom_css(self):
+        css_entries = CustomizationsManager.build_effective_ordered_assets(
+            CustomizationsManager.TYPE_CSS,
+            self.user_id,
+        )
+        self.runJavaScript(CustomizationsManager.css_injection_script(css_entries))
+
+    def apply_custom_js(self):
+        js_entries = CustomizationsManager.build_effective_ordered_assets(
+            CustomizationsManager.TYPE_JS,
+            self.user_id,
+        )
+        self.runJavaScript(CustomizationsManager.js_injection_script(js_entries))
 
     def show_toast(self, message, duration=1000):
         """Exibe um toast na página utilizando JavaScript."""

@@ -208,6 +208,14 @@ class Browser(QWidget, Ui_Browser):
             page = self.pages.widget(i)
             page.close_conversation()
 
+    def apply_custom_css_all_pages(self):
+        for i in range(self.pages.count()):
+            page = self.pages.widget(i)
+            page.apply_custom_css()
+
+    def current_webview(self):
+        return self.pages.currentWidget()
+
     def update_spellcheck(self):
         for i in range(self.pages.count()):
             page = self.pages.widget(i)
