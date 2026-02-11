@@ -97,26 +97,6 @@
           "Portátil",
           "Universal"
         ]
-      },
-      {
-        "title": "Fedora",
-        "description": "Disponível via Copr. Instale e mantenha o ZapZap atualizado no Fedora usando DNF.",
-        "badge": "DNF",
-        "features": [
-          "DNF Package",
-          "Auto-updates",
-          "Nativo"
-        ]
-      },
-      {
-        "title": "AUR",
-        "description": "Instale ZapZap em sistemas baseados no Arch via Arch User Repository (AUR). Pacote mantido pela comunidade.",
-        "badge": "Arch",
-        "features": [
-          "AUR Helper",
-          "Community",
-          "Rolling"
-        ]
       }
     ]
   },
