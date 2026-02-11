@@ -9,6 +9,7 @@ import urllib.request
 
 from PyQt6.QtCore import QStandardPaths
 
+from zapzap.services.CssPreviewService import CssPreviewService
 from zapzap.services.SettingsManager import SettingsManager
 
 
@@ -28,12 +29,6 @@ class CustomizationsManager:
             ),
             "customizations",
         )
-
-    @staticmethod
-    def _to_text(value):
-        if value is None:
-            return ""
-        return value if isinstance(value, str) else str(value)
 
     @staticmethod
     def _sanitize_file_name(file_name: str, extension: str):
@@ -129,29 +124,6 @@ class CustomizationsManager:
         )
 
     @staticmethod
-    def get_scope_inline(scope: str, asset_type: str, account_id=None) -> str:
-        if scope == CustomizationsManager.SCOPE_GLOBAL:
-            return CustomizationsManager._to_text(SettingsManager.get(
-                CustomizationsManager._global_key(asset_type, "inline"), ""
-            ))
-
-        return CustomizationsManager._to_text(SettingsManager.get(
-            CustomizationsManager._account_key(account_id, asset_type, "inline"), ""
-        ))
-
-    @staticmethod
-    def set_scope_inline(scope: str, asset_type: str, content: str, account_id=None):
-        if scope == CustomizationsManager.SCOPE_GLOBAL:
-            SettingsManager.set(
-                CustomizationsManager._global_key(asset_type, "inline"), content
-            )
-            return
-
-        SettingsManager.set(
-            CustomizationsManager._account_key(account_id, asset_type, "inline"), content
-        )
-
-    @staticmethod
     def list_asset_files(scope: str, asset_type: str, account_id=None):
         assets_dir = CustomizationsManager.get_assets_dir(scope, asset_type, account_id)
         ext = ".css" if asset_type == CustomizationsManager.TYPE_CSS else ".js"
@@ -239,9 +211,119 @@ class CustomizationsManager:
                 asset_type,
                 account_id,
             )
+
+            if asset_type == CustomizationsManager.TYPE_CSS:
+                CssPreviewService.on_css_file_deleted(file_name, scope, account_id)
             return True
         except OSError:
             return False
+
+    @staticmethod
+    def rename_asset_file(
+        old_file_name: str,
+        new_file_name: str,
+        scope: str,
+        asset_type: str,
+        account_id=None,
+    ):
+        assets_dir = CustomizationsManager.get_assets_dir(scope, asset_type, account_id)
+        old_path = os.path.normpath(os.path.join(assets_dir, old_file_name))
+        extension = "css" if asset_type == CustomizationsManager.TYPE_CSS else "js"
+        sanitized_name = CustomizationsManager._sanitize_file_name(new_file_name, extension)
+
+        if not old_path.startswith(os.path.normpath(assets_dir) + os.sep):
+            raise ValueError("invalid-file-name")
+
+        if not os.path.isfile(old_path):
+            raise ValueError("file-not-found")
+
+        desired_path = os.path.normpath(os.path.join(assets_dir, sanitized_name))
+        if not desired_path.startswith(os.path.normpath(assets_dir) + os.sep):
+            raise ValueError("invalid-file-name")
+
+        if os.path.normcase(desired_path) != os.path.normcase(old_path):
+            desired_path = CustomizationsManager._available_file_path(
+                assets_dir,
+                os.path.basename(desired_path),
+            )
+
+        was_enabled = CustomizationsManager.is_asset_file_enabled(
+            old_file_name,
+            scope,
+            asset_type,
+            account_id,
+        )
+
+        try:
+            os.rename(old_path, desired_path)
+        except OSError as error:
+            raise ValueError("rename-failed") from error
+
+        new_file_name = os.path.basename(desired_path)
+        CustomizationsManager.set_asset_file_enabled(
+            old_file_name,
+            True,
+            scope,
+            asset_type,
+            account_id,
+        )
+        CustomizationsManager.set_asset_file_enabled(
+            new_file_name,
+            was_enabled,
+            scope,
+            asset_type,
+            account_id,
+        )
+
+        if asset_type == CustomizationsManager.TYPE_CSS:
+            CssPreviewService.on_css_file_renamed(
+                old_file_name,
+                new_file_name,
+                scope,
+                account_id,
+            )
+
+        return new_file_name
+
+    @staticmethod
+    def read_asset_file_content(file_name: str, scope: str, asset_type: str, account_id=None):
+        assets_dir = CustomizationsManager.get_assets_dir(scope, asset_type, account_id)
+        target_path = os.path.normpath(os.path.join(assets_dir, file_name))
+
+        if not target_path.startswith(os.path.normpath(assets_dir) + os.sep):
+            raise ValueError("invalid-file-name")
+
+        try:
+            with open(target_path, "r", encoding="utf-8", errors="replace") as file_handle:
+                return file_handle.read()
+        except OSError as error:
+            raise ValueError("file-read-failed") from error
+
+    @staticmethod
+    def write_asset_file_content(
+        file_name: str,
+        content: str,
+        scope: str,
+        asset_type: str,
+        account_id=None,
+    ):
+        assets_dir = CustomizationsManager.get_assets_dir(scope, asset_type, account_id)
+        target_path = os.path.normpath(os.path.join(assets_dir, file_name))
+
+        if not target_path.startswith(os.path.normpath(assets_dir) + os.sep):
+            raise ValueError("invalid-file-name")
+
+        if not os.path.isfile(target_path):
+            raise ValueError("file-not-found")
+
+        if asset_type == CustomizationsManager.TYPE_CSS:
+            CustomizationsManager._normalize_css(content, strict=True)
+
+        try:
+            with open(target_path, "w", encoding="utf-8") as file_handle:
+                file_handle.write(content)
+        except OSError as error:
+            raise ValueError("file-write-failed") from error
 
     @staticmethod
     def import_asset_file(source_path: str, scope: str, asset_type: str, account_id=None):
@@ -262,6 +344,28 @@ class CustomizationsManager:
 
         shutil.copy2(source_path, target_path)
         return target_path
+
+    @staticmethod
+    def create_asset_file(
+        file_name: str,
+        content: str,
+        scope: str,
+        asset_type: str,
+        account_id=None,
+    ):
+        extension = "css" if asset_type == CustomizationsManager.TYPE_CSS else "js"
+        final_name = CustomizationsManager._sanitize_file_name(file_name, extension)
+
+        if asset_type == CustomizationsManager.TYPE_CSS:
+            CustomizationsManager._normalize_css(content, strict=True)
+
+        return CustomizationsManager._save_asset_content(
+            content,
+            scope,
+            asset_type,
+            account_id,
+            final_name,
+        )
 
     @staticmethod
     def import_css_from_url(url: str, scope: str, account_id=None, file_name: str = ""):
@@ -423,14 +527,6 @@ class CustomizationsManager:
                 if file_name in disabled_files:
                     continue
                 entries.append((f"{scope_name}:file:{file_name}", content))
-
-        inline_text = CustomizationsManager.get_scope_inline(scope, asset_type, account_id)
-        if asset_type == CustomizationsManager.TYPE_CSS:
-            inline_text = CustomizationsManager._normalize_css(inline_text)
-
-        inline_text = inline_text.strip()
-        if inline_text:
-            entries.append((f"{scope_name}:inline", inline_text))
 
         return entries
 
