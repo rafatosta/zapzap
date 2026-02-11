@@ -15,7 +15,7 @@ See [docs/notifications.md](docs/notifications.md)
 ## 📥 Download
 
 - **[Flathub](https://flathub.org/apps/details/com.rtosta.zapzap)**  
-- **[Fedora Copr](https://copr.fedorainfracloud.org/coprs/rafatosta/zapzap/)**  
+- **[AppImage](https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-x86_64.AppImage)**
 
 ---
 
@@ -133,8 +133,8 @@ uv tool install . --with-requirements requirements.txt
 ```
 
 ## 📦 Packaging
-- **[Fedora Copr](/fedora_copr.spec)** 
 - **[Flatpak](https://github.com/flathub/com.rtosta.zapzap)**
+- **[AppImage](_scripts/build-appimage.sh)**
 
 ## 🌍 Translation
 ZapZap supports translations. If your language file is missing from the [po](/po) folder, submit a pull request or open an [issue](https://github.com/rafatosta/zapzap/issues).
