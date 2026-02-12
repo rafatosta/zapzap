@@ -70,65 +70,118 @@ Reserved for future extension support:
 
 ---
 
-## ⚙️ Development
+# ⚙️ Development
 
-ZapZap is built using **PyQt6** and **PyQt6-WebEngine**.
+## Requirements
 
-### Requirements
-- **Python 3.9 or higher**
+-   **Python 3.9 or higher**
 
-#### System Dependencies
-Some Python dependencies (notably dbus-python) require system libraries to be present at build time.
 
-##### Fedora 43 (and newer)
 
-On Fedora 43, pip install -r requirements.txt may fail while compiling dbus-python due to the absence of the dbus-1 development files.
+## Fedora 43 System Dependencies
 
-Install the required system dependencies first:
-```bash
+If `pip install -r requirements.txt` fails due to `dbus-python`:
+
+``` bash
 sudo dnf install -y dbus-devel pkg-config gcc python3-devel
 ```
 
-After that, install the Python dependencies normally:
-```bash
+Then:
+
+``` bash
 pip install -r requirements.txt
 ```
 
 
-### Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/rafatosta/zapzap.git
-   cd zapzap
-   ```
+# 🚀 Running ZapZap
 
-2. **Install dependencies**
-    ```bash
-    pip install -r requirements.txt
-    ```
+``` bash
+python run.py [dev|preview|build] [options]
+```
 
-3. Build & Run Locally
-    ```bash
-    python run.py [dev|preview|build] [--build-translations | --appimage | --flatpak-onefile]
-    ```
 
-The executable will be generated in the dist/ folder as zapzap.flatpak.
-(Currently without full support)
 
-#### Install as Python module
-```bash
+## 🔧 Development Mode
+
+Without translations:
+
+``` bash
+python run.py dev
+```
+
+With translations:
+
+``` bash
+python run.py dev --build-translations
+```
+
+
+## 👀 Preview Mode
+
+Flatpak:
+
+``` bash
+python run.py preview --flatpak
+```
+
+AppImage:
+
+``` bash
+python run.py preview --appimage
+```
+
+With translations:
+
+``` bash
+python run.py preview --build-translations --flatpak 
+```
+
+
+
+## 📦 Build AppImage
+
+``` bash
+python run.py build --appimage <version>
+```
+
+Example:
+
+``` bash
+python run.py build --appimage 6.0
+```
+
+
+
+## 📦 Build Flatpak Onefile
+
+``` bash
+python run.py build --flatpak-onefile
+```
+
+Output:
+
+    dist/com.rtosta.zapzap.flatpak
+
+
+
+## 📦 Install as Python Module
+
+``` bash
 pip install .
 ```
 
-#### Uninstall:
-```bash
+### Uninstall
+
+``` bash
 pip uninstall zapzap
 ```
 
-#### uv tool
-Provides a global `zapzap` command in isolated environment.
-```bash
+
+
+## 🔧 uv Tool
+
+``` bash
 uv tool install . --with-requirements requirements.txt
 ```
 
