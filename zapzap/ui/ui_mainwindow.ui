@@ -63,6 +63,8 @@
      <property name="title">
       <string>View</string>
      </property>
+     <addaction name="actionOpen_DevTools"/>
+     <addaction name="separator"/>
      <addaction name="actionToggle_sidebar"/>
      <addaction name="actionToggle_full_screen"/>
      <addaction name="separator"/>
@@ -146,6 +148,21 @@
    </property>
   </action>
   <action name="actionToggle_full_screen">
+   <property name="text">
+    <string>Toggle full screen</string>
+   </property>
+   <property name="shortcut">
+    <string>F11</string>
+   </property>
+  </action>
+  <action name="actionOpen_DevTools">
+   <property name="text">
+    <string>Open DevTools</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+I</string>
+   </property>
+  </action>
     <property name="text">
      <string>Toggle full screen</string>
     </property>

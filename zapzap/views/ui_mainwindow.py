@@ -1,5 +1,5 @@
 from gettext import gettext as _
-# Form implementation generated from reading ui file './zapzap/ui/ui_mainwindow.ui'
+# Form implementation generated from reading ui file 'zapzap/ui/ui_mainwindow.ui'
 #
 # Created by: PyQt6 UI code generator 6.10.2
 #
@@ -53,6 +53,8 @@ class Ui_MainWindow(object):
         self.actionZoom_out.setObjectName("actionZoom_out")
         self.actionToggle_full_screen = QtGui.QAction(parent=MainWindow)
         self.actionToggle_full_screen.setObjectName("actionToggle_full_screen")
+        self.actionOpen_DevTools = QtGui.QAction(parent=MainWindow)
+        self.actionOpen_DevTools.setObjectName("actionOpen_DevTools")
         self.actionToggle_sidebar = QtGui.QAction(parent=MainWindow)
         self.actionToggle_sidebar.setCheckable(True)
         self.actionToggle_sidebar.setObjectName("actionToggle_sidebar")
@@ -70,6 +72,8 @@ class Ui_MainWindow(object):
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionHide)
         self.menuFile.addAction(self.actionQuit)
+        self.menuView.addAction(self.actionOpen_DevTools)
+        self.menuView.addSeparator()
         self.menuView.addAction(self.actionToggle_sidebar)
         self.menuView.addAction(self.actionToggle_full_screen)
         self.menuView.addSeparator()
@@ -113,6 +117,8 @@ class Ui_MainWindow(object):
         self.actionZoom_out.setShortcut(_("Ctrl+-"))
         self.actionToggle_full_screen.setText(_("Toggle full screen"))
         self.actionToggle_full_screen.setShortcut(_("F11"))
+        self.actionOpen_DevTools.setText(_("Open DevTools"))
+        self.actionOpen_DevTools.setShortcut(_("Ctrl+Shift+I"))
         self.actionToggle_sidebar.setText(_("Show sidebar"))
         self.actionReload.setText(_("Reload"))
         self.actionReload.setShortcut(_("F5"))
