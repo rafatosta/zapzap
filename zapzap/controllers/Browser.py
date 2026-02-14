@@ -1,3 +1,4 @@
+from PyQt6.QtCore import QEasingCurve, QParallelAnimationGroup, QPropertyAnimation
 from PyQt6.QtWidgets import QWidget
 from PyQt6.QtGui import QAction
 from zapzap.controllers.PageButton import PageButton
@@ -24,6 +25,8 @@ class Browser(QWidget, Ui_Browser):
 
         self.page_count = 0  # Contador de páginas
         self.page_buttons = {}  # Mapeamento entre botões e páginas
+        self._sidebar_expanded_width = max(50, self.browser_sidebar.maximumWidth())
+        self._sidebar_animation_group = None
 
         self._initialize()
 
@@ -273,7 +276,61 @@ class Browser(QWidget, Ui_Browser):
 
     def settings_sidebar(self):
         """Mostra ou esconde a barra lateral"""
-        if SettingsManager.get("system/sidebar", True):
+        self.set_sidebar_visible(SettingsManager.get("system/sidebar", True), animated=False)
+
+    def set_sidebar_visible(self, visible: bool, animated: bool = True):
+        if self._sidebar_animation_group:
+            self._sidebar_animation_group.stop()
+            self._sidebar_animation_group = None
+
+        current_width = self.browser_sidebar.maximumWidth()
+        is_expanded = current_width > 0
+        is_visible = self.browser_sidebar.isVisible()
+        if visible == is_expanded and visible == is_visible:
+            return
+
+        target_width = self._sidebar_expanded_width if visible else 0
+
+        if not animated:
+            if visible:
+                self.browser_sidebar.show()
+            self.browser_sidebar.setMinimumWidth(target_width)
+            self.browser_sidebar.setMaximumWidth(target_width)
+            if not visible:
+                self.browser_sidebar.hide()
+            return
+
+        if visible:
             self.browser_sidebar.show()
-        else:
-            self.browser_sidebar.hide()
+
+        self._animate_sidebar_width(
+            current_width,
+            target_width,
+            on_finished=(lambda: self.browser_sidebar.hide()) if not visible else None,
+        )
+
+    def _animate_sidebar_width(self, start_width: int, end_width: int, on_finished=None):
+        min_animation = QPropertyAnimation(self.browser_sidebar, b"minimumWidth", self)
+        min_animation.setDuration(180)
+        min_animation.setEasingCurve(QEasingCurve.Type.InOutCubic)
+        min_animation.setStartValue(start_width)
+        min_animation.setEndValue(end_width)
+
+        max_animation = QPropertyAnimation(self.browser_sidebar, b"maximumWidth", self)
+        max_animation.setDuration(180)
+        max_animation.setEasingCurve(QEasingCurve.Type.InOutCubic)
+        max_animation.setStartValue(start_width)
+        max_animation.setEndValue(end_width)
+
+        group = QParallelAnimationGroup(self)
+        group.addAnimation(min_animation)
+        group.addAnimation(max_animation)
+
+        def _on_finished():
+            self._sidebar_animation_group = None
+            if on_finished:
+                on_finished()
+
+        group.finished.connect(_on_finished)
+        self._sidebar_animation_group = group
+        group.start()
