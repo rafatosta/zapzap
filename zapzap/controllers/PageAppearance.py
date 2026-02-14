@@ -76,8 +76,9 @@ class PageAppearance(QWidget, Ui_PageAppearance):
 
     def _handle_sidebar(self):
         """Salva e aplica a configuração da barra lateral."""
-        SettingsManager.set("system/sidebar", self.browser_sidebar.isChecked())
-        QApplication.instance().getWindow().browser.settings_sidebar()
+        QApplication.instance().getWindow().set_sidebar_visible(
+            self.browser_sidebar.isChecked()
+        )
 
     def _handle_menubar(self):
         """Salva e aplica a configuração da barra de menu."""
