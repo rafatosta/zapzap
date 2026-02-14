@@ -163,13 +163,6 @@
     <string>Ctrl+Shift+I</string>
    </property>
   </action>
-    <property name="text">
-     <string>Toggle full screen</string>
-    </property>
-    <property name="shortcut">
-     <string>F11</string>
-    </property>
-   </action>
    <action name="actionToggle_sidebar">
     <property name="checkable">
      <bool>true</bool>
