@@ -71,6 +71,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.stackedWidget.addWidget(self.browser)
         self._connect_menu_actions()
         self.settings_menubar()
+        self.set_sidebar_visible(
+            SettingsManager.get("system/sidebar", True),
+            animated=False,
+            persist=False,
+        )
 
     def load_settings(self):
         """Restaura as configurações salvas da janela e do sistema."""
@@ -110,10 +115,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def _connect_view_menu_actions(self):
         """Conectar ações do menu 'Exibir'."""
         self.actionOpen_DevTools.triggered.connect(self.open_devtools)
+        self.actionToggle_sidebar.triggered.connect(self.set_sidebar_visible)
         self.actionReset_zoom.triggered.connect(self._reset_zoom)
         self.actionToggle_full_screen.triggered.connect(self.toggle_fullscreen)
         self.actionZoom_in.triggered.connect(self._zoom_in)
         self.actionZoom_out.triggered.connect(self._zoom_out)
+
+    def set_sidebar_visible(self, visible: bool, animated: bool = True, persist: bool = True):
+        self.browser.set_sidebar_visible(visible, animated=animated)
+
+        self.actionToggle_sidebar.blockSignals(True)
+        self.actionToggle_sidebar.setChecked(visible)
+        self.actionToggle_sidebar.blockSignals(False)
+
+        if persist:
+            SettingsManager.set("system/sidebar", visible)
 
     def _connect_help_menu_actions(self):
         """Conectar ações do menu 'Ajuda'."""

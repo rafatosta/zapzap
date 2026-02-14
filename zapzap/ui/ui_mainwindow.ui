@@ -65,6 +65,7 @@
      </property>
      <addaction name="actionOpen_DevTools"/>
      <addaction name="separator"/>
+     <addaction name="actionToggle_sidebar"/>
      <addaction name="actionToggle_full_screen"/>
      <addaction name="separator"/>
      <addaction name="actionReset_zoom"/>
@@ -162,6 +163,21 @@
     <string>Ctrl+Shift+I</string>
    </property>
   </action>
+    <property name="text">
+     <string>Toggle full screen</string>
+    </property>
+    <property name="shortcut">
+     <string>F11</string>
+    </property>
+   </action>
+   <action name="actionToggle_sidebar">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Show sidebar</string>
+    </property>
+   </action>
   <action name="actionReload">
    <property name="text">
     <string>Reload</string>
