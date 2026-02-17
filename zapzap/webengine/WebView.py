@@ -64,7 +64,11 @@ class WebView(QWebEngineView):
         self.profile = QWebEngineProfile(str(self.user.id), self)
         self.profile.setHttpUserAgent(__user_agent__)
         self.profile.downloadRequested.connect(
-            DownloadManager.on_downloadRequested)
+            lambda download: DownloadManager.on_downloadRequested(
+                download,
+                self
+            )
+        )
         self.profile.setNotificationPresenter(
             lambda notification: self.notifications.notify(self, notification)
         )
@@ -291,7 +295,8 @@ class WebView(QWebEngineView):
             self._devtools_view.resize(1100, 700)
 
         if self._devtools_page is None:
-            self._devtools_page = QWebEnginePage(self.profile, self._devtools_view)
+            self._devtools_page = QWebEnginePage(
+                self.profile, self._devtools_view)
 
         current_page.setDevToolsPage(self._devtools_page)
         self._devtools_view.setPage(self._devtools_page)
