@@ -56,12 +56,12 @@ msgstr "Não incomodar"
 
 #: zapzap/views/ui_card_user.py:89
 msgid "Delete permanently"
-msgstr "Apagar permanentemente"
+msgstr "Eliminar permanentemente"
 
 #: zapzap/views/ui_card_user.py:90 zapzap/views/ui_page_customizations.py:256
 #: zapzap/views/ui_page_customizations.py:270
 msgid "Delete"
-msgstr "Apagar"
+msgstr "Eliminar"
 
 #: zapzap/views/ui_card_user.py:91
 msgid "Enter the user name"
@@ -154,12 +154,12 @@ msgstr "F11"
 
 #: zapzap/views/ui_mainwindow.py:120
 msgid "Open DevTools"
-msgstr ""
+msgstr "Abrir ferramentas de desenvolvimento"
 
 #: zapzap/views/ui_mainwindow.py:121
 #, fuzzy
 msgid "Ctrl+Shift+I"
-msgstr "Ctrl++"
+msgstr "Ctrl+Shift+I"
 
 #: zapzap/views/ui_mainwindow.py:122 zapzap/views/ui_page_appearance.py:128
 msgid "Show sidebar"
@@ -289,13 +289,12 @@ msgstr "200 %"
 
 #: zapzap/views/ui_page_appearance.py:136
 msgid "Note: The change of scale will only have effect until restarting."
-msgstr ""
-"Nota: A alteração da escala só vai ter efeito após reiniciar a aplicação."
+msgstr "Nota: A alteração da escala só vai ter efeito após reiniciar a aplicação."
 
 #: zapzap/views/ui_page_customizations.py:239 zapzap/views/ui_settings.py:136
 #, fuzzy
 msgid "Customizations"
-msgstr "Personalizado"
+msgstr "Personalizações"
 
 #: zapzap/views/ui_page_customizations.py:240
 #, fuzzy
@@ -304,36 +303,37 @@ msgstr "Contas"
 
 #: zapzap/views/ui_page_customizations.py:241
 msgid "Inherit global settings"
-msgstr ""
+msgstr "Herdar definições globais"
 
 #: zapzap/views/ui_page_customizations.py:242
 msgid ""
 "When inherit is disabled, account customizations are appended after global "
 "settings."
-msgstr ""
+msgstr "Quando o herdar estiver desativado, quaisquer personalizações da conta "
+"serão adicionadas depois das definições globais."
 
 #: zapzap/views/ui_page_customizations.py:243
 #: zapzap/controllers/PageCustomizations.py:785
 msgid "CSS"
-msgstr ""
+msgstr "CSS"
 
 #: zapzap/views/ui_page_customizations.py:244
 msgid "Enable custom CSS"
-msgstr ""
+msgstr "Ativar CSS personalizado"
 
 #: zapzap/views/ui_page_customizations.py:245
 msgid "CSS Preview"
-msgstr ""
+msgstr "Antevisão do CSS"
 
 #: zapzap/views/ui_page_customizations.py:246
 msgid "background: palette(base);"
-msgstr ""
+msgstr "fundo: palette(base);"
 
 #: zapzap/views/ui_page_customizations.py:247
 #: zapzap/controllers/PageCustomizations.py:321
 #: zapzap/controllers/PageCustomizations.py:358
 msgid "Select a CSS file to preview."
-msgstr ""
+msgstr "Selecione um ficheiro CSS para antever."
 
 #: zapzap/views/ui_page_customizations.py:248
 #, fuzzy
@@ -342,39 +342,39 @@ msgstr "Guardar imagem"
 
 #: zapzap/views/ui_page_customizations.py:249
 msgid "Replace preview image"
-msgstr ""
+msgstr "Substituir imagem de antevisão"
 
 #: zapzap/views/ui_page_customizations.py:251
 #: zapzap/views/ui_page_customizations.py:265
 msgid "Enabled"
-msgstr ""
+msgstr "Ativado"
 
 #: zapzap/views/ui_page_customizations.py:253
 #: zapzap/views/ui_page_customizations.py:267
 #, fuzzy
 msgid "Filename"
-msgstr "Ficheiro"
+msgstr "Nome do ficheiro"
 
 #: zapzap/views/ui_page_customizations.py:254
 #: zapzap/views/ui_page_customizations.py:268
 msgid "Create"
-msgstr ""
+msgstr "Criar"
 
 #: zapzap/views/ui_page_customizations.py:255
 #: zapzap/views/ui_page_customizations.py:269
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #: zapzap/views/ui_page_customizations.py:257
 #, fuzzy
 msgid "Import .css"
-msgstr "Reportar problemas"
+msgstr "Importar .css"
 
 #: zapzap/views/ui_page_customizations.py:258
 #: zapzap/views/ui_page_customizations.py:272
 #: zapzap/controllers/PageCustomizations.py:475
 msgid "Import from URL"
-msgstr ""
+msgstr "Importar de um URL"
 
 #: zapzap/views/ui_page_customizations.py:259
 #: zapzap/views/ui_page_customizations.py:273
@@ -382,32 +382,34 @@ msgstr ""
 #: zapzap/controllers/DownloadToaster.py:60
 #, fuzzy
 msgid "Open folder"
-msgstr "Selecionar pasta"
+msgstr "Abrir pasta"
 
 #: zapzap/views/ui_page_customizations.py:260
 msgid "JavaScript"
-msgstr ""
+msgstr "JavaScript"
 
 #: zapzap/views/ui_page_customizations.py:261
 msgid "Enable custom JavaScript"
-msgstr ""
+msgstr "Ativar JavaScript personalizado"
 
 #: zapzap/views/ui_page_customizations.py:262
 msgid "color: #c77800;"
-msgstr ""
+msgstr "cor: #c77800;"
 
 #: zapzap/views/ui_page_customizations.py:263
 msgid ""
 "⚠ Custom JavaScript runs with full page privileges. Use trusted code only."
 msgstr ""
+"⚠ O JavaScript personalizado executa com privilégios totais da página. Só "
+"utilize código de fontes seguras.
 
 #: zapzap/views/ui_page_customizations.py:271
 msgid "Import .js"
-msgstr ""
+msgstr "Importar .js"
 
 #: zapzap/views/ui_page_customizations.py:274
 msgid "Save and reload"
-msgstr ""
+msgstr "Guardar e recarregar"
 
 #: zapzap/views/ui_page_customizations.py:276
 msgid "Save"
@@ -419,15 +421,15 @@ msgstr "Geral"
 
 #: zapzap/views/ui_page_general.py:129
 msgid "Download Directory"
-msgstr "Diretória de Downloads"
+msgstr "Pasta de transferẽncias"
 
 #: zapzap/views/ui_page_general.py:130
 msgid "Set new folder for downloads"
-msgstr "Escolher uma pasta nova para downloads"
+msgstr "Escolher uma pasta nova para transferências"
 
 #: zapzap/views/ui_page_general.py:131
 msgid "Define default folder for downloads"
-msgstr "Definir uma pasta predefinida para downloads"
+msgstr "Definir uma pasta predefinida para transferências"
 
 #: zapzap/views/ui_page_general.py:132
 msgid "Spellchecker"
@@ -543,7 +545,7 @@ msgstr "Desempenho (Experimental)"
 
 #: zapzap/views/ui_page_performance.py:141
 msgid "Cache and Storage"
-msgstr ""
+msgstr "Cache e armazenamento"
 
 #: zapzap/views/ui_page_performance.py:142
 #, fuzzy
@@ -553,7 +555,7 @@ msgstr "Tipo de Cache"
 #: zapzap/views/ui_page_performance.py:143
 #, fuzzy
 msgid "Maximum cache size"
-msgstr "Tamanho Máximo do Cache"
+msgstr "Tamanho máximo do cache"
 
 #: zapzap/views/ui_page_performance.py:144
 msgid "0 MB"
@@ -574,15 +576,15 @@ msgstr "100 MB"
 
 #: zapzap/views/ui_page_performance.py:148
 msgid "Use persistent cookies"
-msgstr ""
+msgstr "Usar cookies persistentes"
 
 #: zapzap/views/ui_page_performance.py:149
 msgid "GPU and Rendering"
-msgstr ""
+msgstr "GPU e renderização"
 
 #: zapzap/views/ui_page_performance.py:150
 msgid "Use GPU in the same process"
-msgstr ""
+msgstr "Usar a GPU no mesmo processo"
 
 #: zapzap/views/ui_page_performance.py:151
 msgid "Disable GPU hardware acceleration"
@@ -590,15 +592,15 @@ msgstr "Desativar a acelaração hardware da GPU"
 
 #: zapzap/views/ui_page_performance.py:152
 msgid "Disable GPU VSync"
-msgstr ""
+msgstr "Desativar o VSync da GPU"
 
 #: zapzap/views/ui_page_performance.py:153
 msgid "Force software rendering (experimental)"
-msgstr ""
+msgstr "Forçar a renderização por software (experimental)"
 
 #: zapzap/views/ui_page_performance.py:154
 msgid "Processes and Memory"
-msgstr ""
+msgstr "Processos e memória"
 
 #: zapzap/views/ui_page_performance.py:155
 msgid "Run everything in a single process"
@@ -606,27 +608,27 @@ msgstr "Executar tudo num único processo"
 
 #: zapzap/views/ui_page_performance.py:156
 msgid "Use one process per site"
-msgstr ""
+msgstr "Usar um processo por website"
 
 #: zapzap/views/ui_page_performance.py:157
 msgid "JavaScript memory limit"
-msgstr ""
+msgstr "Limite da memória do JavaScript"
 
 #: zapzap/views/ui_page_performance.py:158
 msgid "Automatic"
-msgstr ""
+msgstr "Automático"
 
 #: zapzap/views/ui_page_performance.py:159
 msgid "Minimum (256 MB)"
-msgstr ""
+msgstr "Mínimo (256 MB)"
 
 #: zapzap/views/ui_page_performance.py:160
 msgid "Default (1024 MB)"
-msgstr ""
+msgstr "Padrão (1024 MB)"
 
 #: zapzap/views/ui_page_performance.py:161
 msgid "Maximum (4096 MB)"
-msgstr ""
+msgstr "Máximo (4096 MB)"
 
 #: zapzap/views/ui_page_performance.py:162
 #, fuzzy
@@ -639,12 +641,12 @@ msgstr "Deslocamento animado"
 
 #: zapzap/views/ui_page_performance.py:164
 msgid "Allow background optimizations"
-msgstr ""
+msgstr "Permitir otimizações de fundo"
 
 #: zapzap/views/ui_page_performance.py:165
 #, fuzzy
 msgid "Disable page animations"
-msgstr "Desativar a acelaração hardware da GPU"
+msgstr "Desativar animações de página"
 
 #: zapzap/views/ui_page_performance.py:166
 #, fuzzy
@@ -706,7 +708,7 @@ msgstr "Confirmar exclusão"
 
 #: zapzap/controllers/CardUser.py:85
 msgid "Are you sure you want to delete this item?"
-msgstr "Tem a certeza que quer apagar este item?"
+msgstr "Tem a certeza de que pretente eliminar este item?"
 
 #: zapzap/controllers/CardUser.py:109
 msgid "Restore standard"
@@ -714,11 +716,11 @@ msgstr "Restaurar predefinições"
 
 #: zapzap/controllers/DialogDumpHandler.py:26
 msgid "Unexpected Error"
-msgstr ""
+msgstr "Erro inesperado"
 
 #: zapzap/controllers/DialogDumpHandler.py:29
 msgid "The application encountered an unexpected error."
-msgstr ""
+msgstr "A aplicação encontrou um erro inesperado."
 
 #: zapzap/controllers/DialogDumpHandler.py:34
 #, python-brace-format
@@ -733,6 +735,15 @@ msgid ""
 " - Issue tracker: {issue_url}\n"
 " - Email: {email}"
 msgstr ""
+"Foi gerado automáticamente um relatório de diagnostico em:\n"
+"\n"
+"{path}\n"
+"\n"
+"Envie este ficheiro para o suporte para que posssamos investigar o problema, por favor.\n"
+"\n"
+"Canais para reportar:\n"
+" - Rastreador de problemas: {issue_url}\n"
+" - Email: {email}"
 
 #: zapzap/controllers/PageAbout.py:21
 msgid "Official compilation"
@@ -748,7 +759,7 @@ msgstr "Desconhecido"
 
 #: zapzap/controllers/PageGeneral.py:38
 msgid "Use Flatseal to change this mode of execution"
-msgstr "Usar o Flatseal para alterar este modo de execução"
+msgstr "Use o Flatseal para alterar este modo de execução"
 
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"
@@ -780,7 +791,7 @@ msgstr "Conversação anterior"
 
 #: zapzap/controllers/ShortcutsDialog.py:18
 msgid "Delete conversation"
-msgstr "Apagar conversação"
+msgstr "Eliminar conversação"
 
 #: zapzap/controllers/ShortcutsDialog.py:21
 msgid "Profile and status"
@@ -800,7 +811,7 @@ msgstr "Painel dos Emojis"
 
 #: zapzap/controllers/ShortcutsDialog.py:30
 msgid "Sticker panel"
-msgstr "Painel de adesivos"
+msgstr "Painel de etiquetas"
 
 #: zapzap/controllers/ShortcutsDialog.py:31
 msgid "GIF panel"
@@ -844,227 +855,227 @@ msgstr "Nova conversação por número de telefone"
 
 #: zapzap/controllers/PageCustomizations.py:52
 msgid "Global"
-msgstr ""
+msgstr "Global"
 
 #: zapzap/controllers/PageCustomizations.py:53
 #, fuzzy
 msgid "Current account"
-msgstr "Nova conta"
+msgstr "Conta atual"
 
 #: zapzap/controllers/PageCustomizations.py:153
 #, fuzzy
 msgid "Unnamed account"
-msgstr "Nova conta"
+msgstr "Conta sem nome"
 
 #: zapzap/controllers/PageCustomizations.py:155
 msgid "Current account: {} ({})"
-msgstr ""
+msgstr "Conta atual: {} ({})"
 
 #: zapzap/controllers/PageCustomizations.py:159
 msgid "Current account: unavailable"
-msgstr ""
+msgstr "Conta atual: indisponível"
 
 #: zapzap/controllers/PageCustomizations.py:246
 msgid "CSS file enabled: {}"
-msgstr ""
+msgstr "Ficheiro CSS ativado: {}"
 
 #: zapzap/controllers/PageCustomizations.py:246
 msgid "CSS file disabled: {}"
-msgstr ""
+msgstr "Ficheiro CSS desativado: {}"
 
 #: zapzap/controllers/PageCustomizations.py:249
 msgid "JavaScript file enabled: {}"
-msgstr ""
+msgstr "Ficheiro JavaScript ativado: {}"
 
 #: zapzap/controllers/PageCustomizations.py:251
 msgid "JavaScript file disabled: {}"
-msgstr ""
+msgstr "Ficheiro JavaScript desativado: {}"
 
 #: zapzap/controllers/PageCustomizations.py:256
 #: zapzap/controllers/PageCustomizations.py:271
 msgid "This userstyle does not target WhatsApp Web."
-msgstr ""
+msgstr "Este estilo do utilizador não abrange o WhatsApp Web."
 
 #: zapzap/controllers/PageCustomizations.py:263
 msgid "Only HTTPS URLs are allowed."
-msgstr ""
+msgstr "Só são permitidos URL's em HTTPS"
 
 #: zapzap/controllers/PageCustomizations.py:267
 #, fuzzy
 msgid "Download is too large."
-msgstr "Diretória de Downloads"
+msgstr "A transferência é demasiado grande."
 
 #: zapzap/controllers/PageCustomizations.py:275
 msgid "Could not download CSS from URL."
-msgstr ""
+msgstr "Não foi possível transferir o CSS a partir do URL."
 
 #: zapzap/controllers/PageCustomizations.py:277
 msgid "Could not download JavaScript from URL."
-msgstr ""
+msgstr "Não foi possível transferir o JavaScript a partir do URL."
 
 #: zapzap/controllers/PageCustomizations.py:289
 #, fuzzy
 msgid "Select a file first."
-msgstr "Selecionar pasta"
+msgstr "Selecionar primeiro uma pasta."
 
 #: zapzap/controllers/PageCustomizations.py:368
 msgid "No preview available."
-msgstr ""
+msgstr "Não está disponível a antevisão."
 
 #: zapzap/controllers/PageCustomizations.py:374
 msgid "Could not load preview image."
-msgstr ""
+msgstr "Não foi possível carregar imagem de antevisão."
 
 #: zapzap/controllers/PageCustomizations.py:403
 msgid "Enter a CSS HTTPS URL."
-msgstr ""
+msgstr "Inserir um URL HTTPS de CSS."
 
 #: zapzap/controllers/PageCustomizations.py:405
 msgid "Enter a JavaScript HTTPS URL."
-msgstr ""
+msgstr "Inserir um URL HTTPS de JavaScript."
 
 #: zapzap/controllers/PageCustomizations.py:425
 #: zapzap/controllers/PageCustomizations.py:435
 msgid "File imported: {}"
-msgstr ""
+msgstr "Ficheiro importado: {}"
 
 #: zapzap/controllers/PageCustomizations.py:439
 msgid "File imported: {}. No preview found, upload one manually."
-msgstr ""
+msgstr "Ficheiro importado: {}. Nenhuma antevisão encontrada, adicione uma manualmente."
 
 #: zapzap/controllers/PageCustomizations.py:449
 #, fuzzy
 msgid "Select preview image"
-msgstr "Guardar imagem"
+msgstr "Selecionar uma imagem de antevisão"
 
 #: zapzap/controllers/PageCustomizations.py:465
 msgid "Could not set preview image."
-msgstr ""
+msgstr "Não foi possível definir imagem de antevisão."
 
 #: zapzap/controllers/PageCustomizations.py:469
 msgid "Preview image updated."
-msgstr ""
+msgstr "Imagem de antevisão atualizada."
 
 #: zapzap/controllers/PageCustomizations.py:485
 msgid "https://example.com/theme.user.css"
-msgstr ""
+msgstr "https://exemplo.com/tema.utilizador.css"
 
 #: zapzap/controllers/PageCustomizations.py:487
 msgid "https://example.com/script.js"
-msgstr ""
+msgstr "https://exemplo.com/script.js"
 
 #: zapzap/controllers/PageCustomizations.py:491
 msgid "Optional file name (e.g. 10-custom.{})"
-msgstr ""
+msgstr "Nome opcional de ficheiro (p. ex. 10-personalizado.{})"
 
 #: zapzap/controllers/PageCustomizations.py:494
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: zapzap/controllers/PageCustomizations.py:495
 #: zapzap/controllers/PageCustomizations.py:524
 #, fuzzy
 msgid "File name"
-msgstr "Ficheiro"
+msgstr "Nome do ficheiro"
 
 #: zapzap/controllers/PageCustomizations.py:523
 #, fuzzy
 msgid "custom.{}"
-msgstr "Personalizado"
+msgstr "personalizado.{}"
 
 #: zapzap/controllers/PageCustomizations.py:550
 #, fuzzy
 msgid "Select file"
-msgstr "Selecionar pasta"
+msgstr "Selecionar ficheiro"
 
 #: zapzap/controllers/PageCustomizations.py:567
 msgid "Could not import file."
-msgstr ""
+msgstr "Não foi possível importar o ficheiro."
 
 #: zapzap/controllers/PageCustomizations.py:571
 msgid "File imported successfully."
-msgstr ""
+msgstr "O ficheiro foi importado com sucesso."
 
 #: zapzap/controllers/PageCustomizations.py:602
 #, fuzzy
 msgid "Create file"
-msgstr "Guardar ficheiro"
+msgstr "Criar ficheiro"
 
 #: zapzap/controllers/PageCustomizations.py:610
 #: zapzap/controllers/PageCustomizations.py:658
 msgid "File name cannot be empty."
-msgstr ""
+msgstr "O nome do ficheiro não pode estar vazio."
 
 #: zapzap/controllers/PageCustomizations.py:622
 msgid "Could not create file."
-msgstr ""
+msgstr "Não foi possível criar o ficheiro."
 
 #: zapzap/controllers/PageCustomizations.py:626
 msgid "File created: {}"
-msgstr ""
+msgstr "Ficheiro criado: {}"
 
 #: zapzap/controllers/PageCustomizations.py:644
 msgid "Could not open file for editing."
-msgstr ""
+msgstr "Não foi possível abrir o ficheiro para editar."
 
 #: zapzap/controllers/PageCustomizations.py:647
 msgid "Edit CSS: {}"
-msgstr ""
+msgstr "Editar CSS: {}"
 
 #: zapzap/controllers/PageCustomizations.py:647
 msgid "Edit JavaScript: {}"
-msgstr ""
+msgstr "Editar JavaScript: {}"
 
 #: zapzap/controllers/PageCustomizations.py:680
 msgid "Could not save file."
-msgstr ""
+msgstr "Não foi possível guardar o ficheiro."
 
 #: zapzap/controllers/PageCustomizations.py:684
 msgid "File saved: {}"
-msgstr ""
+msgstr "Ficheiro guardado: {}"
 
 #: zapzap/controllers/PageCustomizations.py:745
 #, fuzzy
 msgid "Reload complete."
-msgstr "Recarregar páginas"
+msgstr "Recarregar terminado."
 
 #: zapzap/controllers/PageCustomizations.py:774
 #, fuzzy
 msgid "{}. Save and reload to apply changes."
-msgstr "Nota: É necessário reiniciar a aplicação para aplicar as alterações."
+msgstr "{}. Guarde e recarregue para aplicar as alterações."
 
 #: zapzap/controllers/PageCustomizations.py:785
 msgid "JS"
-msgstr ""
+msgstr "JS"
 
 #: zapzap/controllers/PageCustomizations.py:788
 #, fuzzy
 msgid "Confirm deletion"
-msgstr "Confirmar exclusão"
+msgstr "Confirmar eliminação"
 
 #: zapzap/controllers/PageCustomizations.py:789
 msgid "Delete selected {} file: {}?"
-msgstr ""
+msgstr "Eliminar ficheiro selecionado {}: {}?"
 
 #: zapzap/controllers/PageCustomizations.py:794
 msgid "Deletion cancelled."
-msgstr ""
+msgstr "Eliminar cancelado."
 
 #: zapzap/controllers/PageCustomizations.py:805
 msgid "File deleted."
-msgstr ""
+msgstr "Ficheiro eliminado."
 
 #: zapzap/controllers/PageCustomizations.py:807
 msgid "Could not delete file."
-msgstr ""
+msgstr "Não foi possível eliminar o ficheiro."
 
 #: zapzap/controllers/PageCustomizations.py:835
 msgid "Customizations saved. Reload pages to apply changes."
-msgstr ""
+msgstr "Personalizações guardadas. Recarregue as páginas para aplicar as alterações."
 
 #: zapzap/controllers/PageCustomizations.py:845
 msgid "All pages reloaded."
-msgstr ""
+msgstr "Todas as páginas foram recarregadas."
 
 #: zapzap/controllers/Browser.py:164 zapzap/controllers/Browser.py:192
 msgid "Account {}"
@@ -1077,11 +1088,11 @@ msgstr "Abrir"
 #: zapzap/controllers/DownloadToaster.py:63
 #, fuzzy
 msgid "Save as"
-msgstr "Guardar"
+msgstr "Guardar como"
 
 #: zapzap/controllers/DownloadToaster.py:66
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: zapzap/controllers/DownloadToaster.py:165
 msgid "Save file"
@@ -1094,36 +1105,50 @@ msgid ""
 "Memory: faster, but lost on exit.\n"
 "No cache: lower disk usage, slower."
 msgstr ""
+"Define onde o cache do HTTP vai ser armazenado.\n"
+"Disco: mais rápido depois de reiniciar a aplicação.\n"
+"Memória: mais rápida mas é perdida ao sair.\n"
+"Sem cache: menor utilização do disco, mais lento."
 
 #: zapzap/controllers/PagePerformance.py:230
 msgid ""
 "Maximum HTTP cache size.\n"
 "0 MB uses the default Chromium behavior."
 msgstr ""
+"Tamanho máximo do cache HTTP.\n"
+"0 MB usa o comportamento padrão do Chromium."
 
 #: zapzap/controllers/PagePerformance.py:235
 msgid ""
 "Keeps cookies between restarts.\n"
 "Disabling may cause frequent logouts."
 msgstr ""
+"Guarda os cookies ao abrir e fechar a aplicação.\n"
+"Se desativar, pode causar o fecho frequente de sessões."
 
 #: zapzap/controllers/PagePerformance.py:241
 msgid ""
 "Runs GPU and rendering in the same process.\n"
 "May reduce memory usage, but can cause instability."
 msgstr ""
+"Executa a GPU e renderização no mesmo processo.\n"
+"Pode reduzir a utilização de memória mas pode causar instabilidade."
 
 #: zapzap/controllers/PagePerformance.py:246
 msgid ""
 "Disables GPU hardware acceleration.\n"
 "Recommended only for old GPUs or problematic drivers."
 msgstr ""
+"Desativa a acelaração de hardware da GPU.\n"
+"Só é recomendado para GPU's mais antigas ou controladores problemáticos."
 
 #: zapzap/controllers/PagePerformance.py:251
 msgid ""
 "Disables GPU VSync.\n"
 "May reduce latency, but can increase power usage and tearing."
 msgstr ""
+"Desativa o VSync da GPU.\n"
+"Pode reduzir a latência mas pode aumentar o consumo de energia e artefactos na aplicação."
 
 #: zapzap/controllers/PagePerformance.py:256
 msgid ""
@@ -1131,6 +1156,9 @@ msgid ""
 "Use only in case of graphical issues.\n"
 "May significantly reduce performance."
 msgstr ""
+"Força a renderização em software.\n"
+"Utilize só no caso que tenha problemas na renderização.\n"
+"Pode reduzir significamente o desempenho."
 
 #: zapzap/controllers/PagePerformance.py:263
 msgid ""
@@ -1138,6 +1166,9 @@ msgid ""
 "Reduces memory usage, but may cause crashes.\n"
 "Experimental usage."
 msgstr ""
+"Executa totalmente o motor do Chromium num único processo.\n"
+"Reduz a utilização de memória mas pode causar problemas.\n"
+"Utilização experimental."
 
 #: zapzap/controllers/PagePerformance.py:269
 msgid ""
@@ -1145,6 +1176,9 @@ msgid ""
 "Safer and more stable.\n"
 "May increase memory usage."
 msgstr ""
+"Usa um processo em separada para cada website.\n"
+"É mais seguro e estável.\n"
+"Pode aumentar a utilização da memória."
 
 #: zapzap/controllers/PagePerformance.py:276
 msgid ""
@@ -1154,30 +1188,43 @@ msgid ""
 "\n"
 "Recommended: 1024 MB."
 msgstr ""
+"Limite da memória JavaScript (V8).\n"
+"A opção automática é a mais segura.\n"
+"Valores baixos podem causar problemas.\n"
+"\n"
+"Recomendado: 1024 MB."
 
 #: zapzap/controllers/PagePerformance.py:284
 msgid ""
 "Enables smooth scrolling animations.\n"
 "Disabling may reduce CPU usage."
 msgstr ""
+"Ativa animações de deslocamento suave.\n"
+"Desativar pode reduzir a utilização da CPU."
 
 #: zapzap/controllers/PagePerformance.py:289
 msgid ""
 "Allows background tabs to reduce resource usage.\n"
 "Disabling keeps timers active, but uses more resources."
 msgstr ""
+"Permite separadores em segundo plano para reduzir a utilização de recursos.\n"
+"Desativar mantém os temporizadores ativos mas usa mais recursos."
 
 #: zapzap/controllers/PagePerformance.py:294
 msgid ""
 "Disables CSS and JavaScript animations.\n"
 "May improve performance on slower machines."
 msgstr ""
+"Desativa animações de CSS e JavaScript.\n"
+"Pode melhorar o desempenho em computadores mais lentos."
 
 #: zapzap/controllers/PagePerformance.py:300
 msgid ""
 "Restores all performance settings\n"
 "to safe default values."
 msgstr ""
+"Restaura todas as definições de desempenho\n"
+"para os valores padrão seguros."
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
@@ -1188,8 +1235,8 @@ msgid ""
 "Limit of {} users reached.\n"
 "It is not possible to create more users!"
 msgstr ""
-"O limite de {} utilizadores foi alcançado!Não é possível criar mais "
-"utilizadores!"
+"O limite de {} utilizadores foi alcançado!"
+"Não é possível criar mais utilizadores!"
 
 #: zapzap/services/AlertManager.py:39
 msgid "Attention"
@@ -1217,11 +1264,11 @@ msgstr "A transparência do proxy HTTP está a ser usada."
 
 #: zapzap/services/ProxyManager.py:14
 msgid "Proxying for HTTP requests only."
-msgstr "Somente proxy para solicitações HTTP."
+msgstr "Apenas proxy para solicitações HTTP."
 
 #: zapzap/services/ProxyManager.py:15
 msgid "Proxying for FTP requests only."
-msgstr "Somente proxy para solicitações FTP."
+msgstr "Apenas proxy para solicitações FTP."
 
 #: zapzap/services/SysTrayManager.py:54
 msgid "Show"
@@ -1232,18 +1279,18 @@ msgid "Donation"
 msgstr "Donativo"
 
 #~ msgid "Cache Behavior"
-#~ msgstr "Comportamento do Cache"
+#~ msgstr "Comportamento do cache"
 
 #~ msgid "QWebEngine Behavior"
 #~ msgstr "Comportamento do QWebEngine"
 
 #~ msgid "Enable single process for GPU and rendering"
-#~ msgstr "Ativar processo úncio para o GPU e renderização"
+#~ msgstr "Ativar processo úncio para a GPU e renderização"
 
 #~ msgid ""
 #~ "Please enter the phone number with country code (e.g., +5511999999999):"
 #~ msgstr ""
-#~ "Insira o número de telefone com o código do país, por favor (ex, "
+#~ "Insira o número de telefone com o código do país, por favor (p. ex. "
 #~ "+351999999999):"
 
 #~ msgid ""
@@ -1281,7 +1328,7 @@ msgstr "Donativo"
 #~ msgstr "Verificar ortografia"
 
 #~ msgid "Select Language"
-#~ msgstr "Selecionar Língua"
+#~ msgstr "Selecionar idioma"
 
 #~ msgid "Creating temporary directory:"
 #~ msgstr "A criar um diretório temporário:"
