@@ -86,7 +86,8 @@ class PagePerformance(QWidget, Ui_PagePerformance):
         )
 
         # ---------------- Memória JS ----------------
-        js_mem = int(SettingsManager.get("performance/js_memory_limit_mb", "0"))
+        js_mem = int(SettingsManager.get(
+            "performance/js_memory_limit_mb", "0"))
 
         index = self.js_memory_limit.findData(js_mem)
         if index >= 0:
@@ -215,88 +216,87 @@ class PagePerformance(QWidget, Ui_PagePerformance):
             SettingsManager.set(key, default_value)
 
         self._load_settings()
-    
+
     def _add_tooltips(self):
         # ---------------- Cache ----------------
         self.cache_type.setToolTip(
-            _("Define onde o cache HTTP será armazenado.\n"
-            "Disco: mais rápido após reinício.\n"
-            "Memória: mais rápido, mas perdido ao fechar.\n"
-            "Sem cache: menor uso de disco, mais lento.")
+            _("Defines where the HTTP cache will be stored.\n"
+              "Disk: faster after restart.\n"
+              "Memory: faster, but lost on exit.\n"
+              "No cache: lower disk usage, slower.")
         )
 
         self.cache_size_max.setToolTip(
-            _("Limite máximo do cache HTTP.\n"
-            "0 MB utiliza o comportamento padrão do Chromium.")
+            _("Maximum HTTP cache size.\n"
+              "0 MB uses the default Chromium behavior.")
         )
 
         self.persistent_cookies.setToolTip(
-            _("Mantém cookies entre reinicializações.\n"
-            "Desativar pode causar logouts frequentes.")
+            _("Keeps cookies between restarts.\n"
+              "Disabling may cause frequent logouts.")
         )
 
-        # ---------------- GPU / Renderização ----------------
+        # ---------------- GPU / Rendering ----------------
         self.in_process_gpu.setToolTip(
-            _("Executa GPU e renderização no mesmo processo.\n"
-            "Pode reduzir uso de memória, mas causar instabilidade.")
+            _("Runs GPU and rendering in the same process.\n"
+              "May reduce memory usage, but can cause instability.")
         )
 
         self.disable_gpu.setToolTip(
-            _("Desativa a aceleração por GPU.\n"
-            "Recomendado apenas para placas antigas ou drivers problemáticos.")
+            _("Disables GPU hardware acceleration.\n"
+              "Recommended only for old GPUs or problematic drivers.")
         )
 
         self.disable_gpu_vsync.setToolTip(
-            _("Desativa o VSync da GPU.\n"
-            "Pode reduzir latência, mas aumentar consumo e tearing.")
+            _("Disables GPU VSync.\n"
+              "May reduce latency, but can increase power usage and tearing.")
         )
 
         self.software_rendering.setToolTip(
-            _("Força renderização por software.\n"
-            "Use apenas em casos de falha gráfica.\n"
-            "Pode reduzir bastante o desempenho.")
+            _("Forces software rendering.\n"
+              "Use only in case of graphical issues.\n"
+              "May significantly reduce performance.")
         )
 
-        # ---------------- Processos ----------------
+        # ---------------- Processes ----------------
         self.single_process.setToolTip(
-            _("Executa todo o Chromium em um único processo.\n"
-            "Reduz memória, mas pode causar travamentos.\n"
-            "Uso experimental.")
+            _("Runs the entire Chromium engine in a single process.\n"
+              "Reduces memory usage, but may cause crashes.\n"
+              "Experimental usage.")
         )
 
         self.process_per_site.setToolTip(
-            _("Usa um processo separado por site.\n"
-            "Mais seguro e estável.\n"
-            "Pode aumentar uso de memória.")
+            _("Uses a separate process per site.\n"
+              "Safer and more stable.\n"
+              "May increase memory usage.")
         )
 
-        # ---------------- Memória JS ----------------
+        # ---------------- JavaScript Memory ----------------
         self.js_memory_limit.setToolTip(
-            _("Limite de memória do JavaScript (V8).\n"
-            "Automático é o mais seguro.\n"
-            "Valores muito baixos podem causar travamentos.\n\n"
-            "Recomendado: 1024 MB.")
+            _("JavaScript (V8) memory limit.\n"
+              "Automatic is the safest option.\n"
+              "Very low values may cause crashes.\n\n"
+              "Recommended: 1024 MB.")
         )
 
         # ---------------- Web ----------------
         self.scroll_animator.setToolTip(
-            _("Ativa animações suaves de rolagem.\n"
-            "Desativar pode reduzir uso de CPU.")
+            _("Enables smooth scrolling animations.\n"
+              "Disabling may reduce CPU usage.")
         )
 
         self.background_throttling.setToolTip(
-            _("Permite que abas em segundo plano reduzam consumo.\n"
-            "Desativar mantém timers ativos, mas consome mais recursos.")
+            _("Allows background tabs to reduce resource usage.\n"
+              "Disabling keeps timers active, but uses more resources.")
         )
 
         self.disable_animations.setToolTip(
-            _("Desativa animações CSS e JavaScript.\n"
-            "Pode melhorar desempenho em máquinas lentas.")
+            _("Disables CSS and JavaScript animations.\n"
+              "May improve performance on slower machines.")
         )
 
-        # ---------------- Ações ----------------
+        # ---------------- Actions ----------------
         self.btn_restore.setToolTip(
-            _("Restaura todas as configurações de desempenho\n"
-            "para valores seguros padrão.")
+            _("Restores all performance settings\n"
+              "to safe default values.")
         )
-
