@@ -7,24 +7,36 @@ from gettext import gettext as _
 
 
 class PagePerformance(QWidget, Ui_PagePerformance):
+    """
+    Performance settings page.
+
+    IMPORTANT:
+    - JavaScript memory limit is controlled ONLY by combo index.
+    - Index mapping (defined in .ui):
+        0 = Automatic
+        1 = 256 MB
+        2 = 1024 MB
+        3 = 4096 MB
+    """
+
     _default_settings = {
         # Cache
         "performance/cache_type": "DiskHttpCache",
         "performance/cache_size_max": "0",
         "performance/persistent_cookies": True,
 
-        # GPU / Renderização
+        # GPU / Rendering
         "performance/in_process_gpu": False,
         "performance/disable_gpu": False,
         "performance/disable_gpu_vsync": False,
         "performance/software_rendering": False,
 
-        # Processos
+        # Processes
         "performance/single_process": False,
         "performance/process_per_site": True,
 
-        # Memória JS
-        "performance/js_memory_limit_mb": "0",  # Automático
+        # JavaScript Memory (INDEX-BASED)
+        "performance/js_memory_limit_index": 0,
 
         # Web
         "web/scroll_animator": False,
@@ -46,9 +58,10 @@ class PagePerformance(QWidget, Ui_PagePerformance):
         self._configure_signals()
         self._add_tooltips()
 
+    # --------------------------------------------------
+    # Load settings → UI
+    # --------------------------------------------------
     def _load_settings(self):
-        """Carrega as configurações do SettingsManager e atualiza a interface."""
-
         # ---------------- Cache ----------------
         self.cache_type.clear()
         self.cache_type.addItems(self.CACHE_TYPES)
@@ -77,7 +90,7 @@ class PagePerformance(QWidget, Ui_PagePerformance):
             SettingsManager.get("performance/software_rendering", False)
         )
 
-        # ---------------- Processos ----------------
+        # ---------------- Processes ----------------
         self.single_process.setChecked(
             SettingsManager.get("performance/single_process", False)
         )
@@ -85,18 +98,22 @@ class PagePerformance(QWidget, Ui_PagePerformance):
             SettingsManager.get("performance/process_per_site", True)
         )
 
-        # ---------------- Memória JS ----------------
-        js_mem = int(SettingsManager.get(
-            "performance/js_memory_limit_mb", "0"))
+        # ---------------- JavaScript Memory ----------------
+        self.js_memory_limit.blockSignals(True)
 
-        index = self.js_memory_limit.findData(js_mem)
-        if index >= 0:
-            self.js_memory_limit.setCurrentIndex(index)
-        else:
-            # fallback seguro
-            self.js_memory_limit.setCurrentIndex(
-                self.js_memory_limit.findData(0)
-            )
+        index = SettingsManager.get(
+            "performance/js_memory_limit_index", 0
+        )
+
+        try:
+            index = int(index)
+        except (TypeError, ValueError):
+            index = 0
+
+        index = max(0, min(index, self.js_memory_limit.count() - 1))
+        self.js_memory_limit.setCurrentIndex(index)
+
+        self.js_memory_limit.blockSignals(False)
 
         # ---------------- Web ----------------
         self.scroll_animator.setChecked(
@@ -109,20 +126,21 @@ class PagePerformance(QWidget, Ui_PagePerformance):
             SettingsManager.get("web/disable_animations", False)
         )
 
+    # --------------------------------------------------
+    # UI → Settings
+    # --------------------------------------------------
     def _configure_signals(self):
-        """Conecta os sinais da interface ao SettingsManager."""
-
         # Cache
         self.cache_type.textActivated.connect(
-            lambda value: SettingsManager.set(
-                "performance/cache_type", value
+            lambda v: SettingsManager.set(
+                "performance/cache_type", v
             )
         )
 
         self.cache_size_max.textActivated.connect(
-            lambda value: SettingsManager.set(
+            lambda v: SettingsManager.set(
                 "performance/cache_size_max",
-                "".join(filter(str.isdigit, value)),
+                "".join(filter(str.isdigit, v)),
             )
         )
 
@@ -162,7 +180,7 @@ class PagePerformance(QWidget, Ui_PagePerformance):
             )
         )
 
-        # Processos
+        # Processes
         self.single_process.clicked.connect(
             lambda: SettingsManager.set(
                 "performance/single_process",
@@ -177,11 +195,10 @@ class PagePerformance(QWidget, Ui_PagePerformance):
             )
         )
 
-        # Memória JS (QComboBox com userData)
+        # JavaScript Memory (INDEX ONLY)
         self.js_memory_limit.currentIndexChanged.connect(
-            lambda _: SettingsManager.set(
-                "performance/js_memory_limit_mb",
-                str(self.js_memory_limit.currentData()),
+            lambda i: SettingsManager.set(
+                "performance/js_memory_limit_index", i
             )
         )
 
@@ -207,18 +224,23 @@ class PagePerformance(QWidget, Ui_PagePerformance):
             )
         )
 
-        # Ações
+        # Actions
         self.btn_restore.clicked.connect(self._restore_settings)
 
+    # --------------------------------------------------
+    # Restore defaults
+    # --------------------------------------------------
     def _restore_settings(self):
-        """Restaura todas as configurações para valores seguros padrão."""
-        for key, default_value in self._default_settings.items():
-            SettingsManager.set(key, default_value)
+        for key, value in self._default_settings.items():
+            SettingsManager.set(key, value)
 
         self._load_settings()
 
+    # --------------------------------------------------
+    # Tooltips
+    # --------------------------------------------------
     def _add_tooltips(self):
-        # ---------------- Cache ----------------
+        # Cache
         self.cache_type.setToolTip(
             _("Defines where the HTTP cache will be stored.\n"
               "Disk: faster after restart.\n"
@@ -236,7 +258,7 @@ class PagePerformance(QWidget, Ui_PagePerformance):
               "Disabling may cause frequent logouts.")
         )
 
-        # ---------------- GPU / Rendering ----------------
+        # GPU / Rendering
         self.in_process_gpu.setToolTip(
             _("Runs GPU and rendering in the same process.\n"
               "May reduce memory usage, but can cause instability.")
@@ -258,7 +280,7 @@ class PagePerformance(QWidget, Ui_PagePerformance):
               "May significantly reduce performance.")
         )
 
-        # ---------------- Processes ----------------
+        # Processes
         self.single_process.setToolTip(
             _("Runs the entire Chromium engine in a single process.\n"
               "Reduces memory usage, but may cause crashes.\n"
@@ -271,15 +293,15 @@ class PagePerformance(QWidget, Ui_PagePerformance):
               "May increase memory usage.")
         )
 
-        # ---------------- JavaScript Memory ----------------
+        # JavaScript Memory
         self.js_memory_limit.setToolTip(
             _("JavaScript (V8) memory limit.\n"
               "Automatic is the safest option.\n"
-              "Very low values may cause crashes.\n\n"
-              "Recommended: 1024 MB.")
+              "Higher values allow heavier pages.\n\n"
+              "Restart required.")
         )
 
-        # ---------------- Web ----------------
+        # Web
         self.scroll_animator.setToolTip(
             _("Enables smooth scrolling animations.\n"
               "Disabling may reduce CPU usage.")
@@ -295,7 +317,7 @@ class PagePerformance(QWidget, Ui_PagePerformance):
               "May improve performance on slower machines.")
         )
 
-        # ---------------- Actions ----------------
+        # Actions
         self.btn_restore.setToolTip(
             _("Restores all performance settings\n"
               "to safe default values.")
