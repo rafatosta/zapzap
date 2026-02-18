@@ -13,53 +13,98 @@ class SetupManager:
     @staticmethod
     def apply():
         """
-        Aplica configurações específicas de ambiente dependendo do ambiente de execução.
-        Configura a plataforma gráfica e escalonamento de tela.
+        Aplica configurações de ambiente antes da inicialização do Qt / QtWebEngine.
+        Deve ser chamado o mais cedo possível.
         """
-        # Configuração da plataforma gráfica
+
+        # --------------------------------------------------
+        # Plataforma gráfica
+        # --------------------------------------------------
         if not SetupManager._is_flatpak:
-            # Define a plataforma antes do Qt iniciar
             platform = SetupManager.get_qt_platform()
             if platform:
                 environ["QT_QPA_PLATFORM"] = platform
 
-        # Configuração de escalonamento de tela
+        # --------------------------------------------------
+        # Escalonamento de tela
+        # --------------------------------------------------
         scale_factor = int(SettingsManager.get("system/scale", 100)) / 100
-        environ["QT_SCALE_FACTOR"] = f'{scale_factor:.2f}'
+        environ["QT_SCALE_FACTOR"] = f"{scale_factor:.2f}"
         environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
 
-        # Configuração do caminho dos dicionários
-        dictionary_path = DictionariesManager.get_path()
-        environ["QTWEBENGINE_DICTIONARIES_PATH"] = dictionary_path
-    
-        # Permite a reprodução de áudios e arquivos mp4 ()
-        # Recupera flags existentes (do sistema ou definidos pelo usuário via --setSettings)
+        # --------------------------------------------------
+        # Dicionários (spellcheck)
+        # --------------------------------------------------
+        environ["QTWEBENGINE_DICTIONARIES_PATH"] = DictionariesManager.get_path()
+
+        # --------------------------------------------------
+        # Flags do Chromium (Qt WebEngine)
+        # --------------------------------------------------
         existing_flags = environ.get("QTWEBENGINE_CHROMIUM_FLAGS", "")
         settings_flags = SettingsManager.get("QTWEBENGINE_CHROMIUM_FLAGS", "")
-        
-        # Combina flags, priorizando ambiente > settings > hardcoded
-        # Nota: Se o usuário define flags via env var, assumimos que ele sabe o que faz.
-        # Se define via settings, concatenamos.
-        
-        # Vamos garantir que --disable-features=FFmpegAllowLists esteja presente
-        required_flag = "--disable-features=FFmpegAllowLists"
-        
-        flags_list = []
+
+        flags = []
+
+        def add_flag(flag: str):
+            if flag not in flags:
+                flags.append(flag)
+
         if existing_flags:
-            flags_list.extend(existing_flags.split())
+            flags.extend(existing_flags.split())
+
         if settings_flags:
-            # Avoid duplicating flags if possible, though Chromium handles duplicates usually.
-            # Convert to list to simple Append
-            flags_list.extend(settings_flags.split())
-             
-        # Filter out potential conflicting flags
-        # Remove --ozone-platform flags as they conflict with QT_QPA_PLATFORM
-        final_flags = [f for f in flags_list if not f.startswith("--ozone-platform")]
+            flags.extend(settings_flags.split())
 
-        if required_flag not in final_flags:
-             final_flags.append(required_flag)
+        # --------------------------------------------------
+        # GPU / Renderização
+        # --------------------------------------------------
+        if SettingsManager.get("performance/disable_gpu", False):
+            add_flag("--disable-gpu")
 
-        environ["QTWEBENGINE_CHROMIUM_FLAGS"] = " ".join(final_flags)
+        if SettingsManager.get("performance/in_process_gpu", False):
+            add_flag("--in-process-gpu")
+
+        if SettingsManager.get("performance/disable_gpu_vsync", False):
+            add_flag("--disable-gpu-vsync")
+
+        if SettingsManager.get("performance/software_rendering", False):
+            environ["QT_OPENGL"] = "software"
+            add_flag("--disable-gpu")
+
+        # --------------------------------------------------
+        # Processos
+        # --------------------------------------------------
+        if SettingsManager.get("performance/single_process", False):
+            add_flag("--single-process")
+
+        if SettingsManager.get("performance/process_per_site", True):
+            add_flag("--process-per-site")
+
+        # --------------------------------------------------
+        # Memória JavaScript
+        # --------------------------------------------------
+        js_mem = SettingsManager.get("performance/js_memory_limit_mb", "0")
+        if js_mem and js_mem != "0":
+            add_flag(f"--js-flags=--max-old-space-size={js_mem}")
+
+        # --------------------------------------------------
+        # Background / timers
+        # --------------------------------------------------
+        if not SettingsManager.get("web/background_throttling", True):
+            add_flag("--disable-background-timer-throttling")
+            add_flag("--disable-renderer-backgrounding")
+
+        # --------------------------------------------------
+        # Flags obrigatórias
+        # --------------------------------------------------
+        add_flag("--disable-features=FFmpegAllowLists")
+
+        # --------------------------------------------------
+        # Remoção de conflitos
+        # --------------------------------------------------
+        flags = [f for f in flags if not f.startswith("--ozone-platform")]
+
+        environ["QTWEBENGINE_CHROMIUM_FLAGS"] = " ".join(flags)
 
     @staticmethod
     def apply_qt_scale_factor_rounding_policy():
@@ -69,47 +114,24 @@ class SetupManager:
     @staticmethod
     def get_argv():
         """
-        Gera uma lista de argumentos para configurar o comportamento do QWebEngine.
-
-        Cada argumento é controlado por uma chave no SettingsManager, permitindo que 
-        seja habilitado ou desabilitado conforme necessário. Se a chave não existir 
-        no SettingsManager, será usado o valor padrão especificado.
-
-        Opções disponíveis:
-        1. --in-process-gpu: Usa o mesmo processo para GPU e renderização.
-        Chave: "performance/in_process_gpu" (bool, padrão: False)
-        2. --disable-gpu: Desabilita o uso da GPU.
-        Chave: "performance/disable_gpu" (bool, padrão: False)
-        3. --single-process: Executa tudo em um único processo (pode causar instabilidade).
-        Chave: "performance/single_process" (bool, padrão: False)
+        Mantido apenas por compatibilidade.
+        Preferencialmente, use apenas variáveis de ambiente.
         """
-        arguments = []
-
-        if SettingsManager.get("performance/in_process_gpu", False):
-            arguments.append("--in-process-gpu")
-        if SettingsManager.get("performance/disable_gpu", False):
-            arguments.append("--disable-gpu")
-        if SettingsManager.get("performance/single_process", False):
-            arguments.append("--single-process")
-
-        return arguments
+        return []
 
     @staticmethod
     def get_qt_platform():
-        # Se QT_QPA_PLATFORM já estiver definido no ambiente, respeita ele.
         if "QT_QPA_PLATFORM" in environ:
             return None
 
-        # Verifica flag explicito --wayland
         import sys
         if "--wayland" in sys.argv:
             return "wayland"
 
-        # Session Type
-        XDG_SESSION_TYPE = getenv('XDG_SESSION_TYPE')
-        print('XDG_SESSION_TYPE:', XDG_SESSION_TYPE)
+        XDG_SESSION_TYPE = getenv("XDG_SESSION_TYPE")
+        print("XDG_SESSION_TYPE:", XDG_SESSION_TYPE)
 
-        if XDG_SESSION_TYPE == 'wayland':
+        if XDG_SESSION_TYPE == "wayland":
             return "wayland" if SettingsManager.get("system/wayland", False) else "xcb"
 
         return SetupManager._qt_platform_xcb

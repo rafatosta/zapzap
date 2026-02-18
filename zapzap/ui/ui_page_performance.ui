@@ -7,17 +7,20 @@
     <x>0</x>
     <y>0</y>
     <width>693</width>
-    <height>620</height>
+    <height>720</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string/>
   </property>
+
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
+
+     <!-- Spacer esquerdo -->
      <item>
-      <spacer name="horizontalSpacer">
+      <spacer name="horizontalSpacer_left">
        <property name="orientation">
         <enum>Qt::Orientation::Horizontal</enum>
        </property>
@@ -29,6 +32,8 @@
        </property>
       </spacer>
      </item>
+
+     <!-- Conteúdo -->
      <item>
       <widget class="QFrame" name="frame">
        <property name="minimumSize">
@@ -40,15 +45,15 @@
        <property name="frameShape">
         <enum>QFrame::Shape::NoFrame</enum>
        </property>
-       <property name="frameShadow">
-        <enum>QFrame::Shadow::Raised</enum>
-       </property>
+
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <property name="spacing">
          <number>15</number>
         </property>
+
+        <!-- Título -->
         <item>
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="label_title">
           <property name="font">
            <font>
             <pointsize>11</pointsize>
@@ -60,111 +65,132 @@
           </property>
          </widget>
         </item>
+
+        <!-- Cache -->
         <item>
-         <widget class="QGroupBox" name="groupBox_2">
+         <widget class="QGroupBox" name="group_cache">
           <property name="title">
-           <string>Cache Behavior</string>
+           <string>Cache e Armazenamento</string>
           </property>
-          <property name="checkable">
-           <bool>false</bool>
-          </property>
-          <property name="checked">
-           <bool>false</bool>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_2">
+          <layout class="QGridLayout" name="grid_cache">
            <item row="0" column="0">
-            <widget class="QLabel" name="label_3">
+            <widget class="QLabel">
              <property name="text">
-              <string>Cache Type</string>
+              <string>Tipo de cache</string>
              </property>
             </widget>
            </item>
            <item row="0" column="1">
             <widget class="QComboBox" name="cache_type"/>
            </item>
+
            <item row="1" column="0">
-            <widget class="QLabel" name="label_2">
+            <widget class="QLabel">
              <property name="text">
-              <string>Maximum Cache Size</string>
+              <string>Tamanho máximo do cache</string>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
             <widget class="QComboBox" name="cache_size_max">
-             <item>
-              <property name="text">
-               <string>0 MB</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>50 MB</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>100 MB</string>
-              </property>
-             </item>
+             <item><property name="text"><string>0 MB</string></property></item>
+             <item><property name="text"><string>50 MB</string></property></item>
+             <item><property name="text"><string>100 MB</string></property></item>
+             <item><property name="text"><string>200 MB</string></property></item>
+            </widget>
+           </item>
+
+           <item row="2" column="0" colspan="2">
+            <widget class="QCheckBox" name="persistent_cookies">
+             <property name="text">
+              <string>Usar cookies persistentes</string>
+             </property>
             </widget>
            </item>
           </layout>
          </widget>
         </item>
+
+        <!-- GPU -->
         <item>
-         <widget class="QGroupBox" name="groupBox">
+         <widget class="QGroupBox" name="group_gpu">
           <property name="title">
-           <string>QWebEngine Behavior</string>
+           <string>GPU e Renderização</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout">
-           <item row="2" column="0">
-            <widget class="QCheckBox" name="in_process_gpu">
-             <property name="text">
-              <string>Enable single process for GPU and rendering</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QCheckBox" name="disable_gpu">
-             <property name="text">
-              <string>Disable GPU hardware acceleration</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
+          <layout class="QVBoxLayout">
+           <item><widget class="QCheckBox" name="in_process_gpu"><property name="text"><string>Usar GPU no mesmo processo</string></property></widget></item>
+           <item><widget class="QCheckBox" name="disable_gpu"><property name="text"><string>Desativar aceleração por GPU</string></property></widget></item>
+           <item><widget class="QCheckBox" name="disable_gpu_vsync"><property name="text"><string>Desativar VSync da GPU</string></property></widget></item>
+           <item><widget class="QCheckBox" name="software_rendering"><property name="text"><string>Forçar renderização por software (experimental)</string></property></widget></item>
+          </layout>
+         </widget>
+        </item>
+
+        <!-- Processos -->
+        <item>
+         <widget class="QGroupBox" name="group_process">
+          <property name="title">
+           <string>Processos e Memória</string>
+          </property>
+          <layout class="QGridLayout">
+
+           <item row="0" column="0" colspan="2">
             <widget class="QCheckBox" name="single_process">
              <property name="text">
-              <string>Run everything in a single process</string>
+              <string>Executar tudo em um único processo</string>
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="Line" name="line">
-             <property name="orientation">
-              <enum>Qt::Orientation::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QCheckBox" name="scroll_animator">
+
+           <item row="1" column="0" colspan="2">
+            <widget class="QCheckBox" name="process_per_site">
              <property name="text">
-              <string>Animated scrolling</string>
+              <string>Usar um processo por site</string>
              </property>
             </widget>
            </item>
+
+           <item row="2" column="0">
+            <widget class="QLabel">
+             <property name="text">
+              <string>Limite de memória JavaScript</string>
+             </property>
+            </widget>
+           </item>
+
+           <item row="2" column="1">
+            <widget class="QComboBox" name="js_memory_limit">
+             <item><property name="text"><string>Automático</string></property><property name="userData"><number>0</number></property></item>
+             <item><property name="text"><string>Mínimo (256 MB)</string></property><property name="userData"><number>256</number></property></item>
+             <item><property name="text"><string>Padrão (1024 MB)</string></property><property name="userData"><number>1024</number></property></item>
+             <item><property name="text"><string>Máximo (4096 MB)</string></property><property name="userData"><number>4096</number></property></item>
+            </widget>
+           </item>
+
           </layout>
          </widget>
         </item>
+
+        <!-- Web -->
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <property name="leftMargin">
-           <number>0</number>
+         <widget class="QGroupBox" name="group_web">
+          <property name="title">
+           <string>Comportamento Web</string>
           </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
+          <layout class="QVBoxLayout">
+           <item><widget class="QCheckBox" name="scroll_animator"><property name="text"><string>Animação de rolagem</string></property></widget></item>
+           <item><widget class="QCheckBox" name="background_throttling"><property name="text"><string>Permitir otimizações em segundo plano</string></property></widget></item>
+           <item><widget class="QCheckBox" name="disable_animations"><property name="text"><string>Desativar animações das páginas</string></property></widget></item>
+          </layout>
+         </widget>
+        </item>
+
+        <!-- Ações -->
+        <item>
+         <layout class="QHBoxLayout">
+
           <item>
-           <spacer name="horizontalSpacer_3">
+           <spacer name="horizontalSpacer_actions">
             <property name="orientation">
              <enum>Qt::Orientation::Horizontal</enum>
             </property>
@@ -176,32 +202,36 @@
             </property>
            </spacer>
           </item>
+
           <item>
            <widget class="QPushButton" name="btn_restore">
             <property name="text">
-             <string>Restore</string>
+             <string>Restaurar padrões</string>
             </property>
            </widget>
           </item>
+
          </layout>
         </item>
+
         <item>
-         <widget class="QLabel" name="label_4">
+         <widget class="QLabel">
           <property name="font">
-           <font>
-            <italic>true</italic>
-           </font>
+           <font><italic>true</italic></font>
           </property>
           <property name="text">
-           <string>Note: Restart required to apply changes.</string>
+           <string>Nota: é necessário reiniciar o aplicativo para aplicar as alterações.</string>
           </property>
          </widget>
         </item>
+
        </layout>
       </widget>
      </item>
+
+     <!-- Spacer direito -->
      <item>
-      <spacer name="horizontalSpacer_2">
+      <spacer name="horizontalSpacer_right">
        <property name="orientation">
         <enum>Qt::Orientation::Horizontal</enum>
        </property>
@@ -213,21 +243,25 @@
        </property>
       </spacer>
      </item>
+
     </layout>
    </item>
+
+   <!-- Spacer inferior -->
    <item>
-    <spacer name="verticalSpacer_2">
+    <spacer name="verticalSpacer_bottom">
      <property name="orientation">
       <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>295</height>
+       <height>200</height>
       </size>
      </property>
     </spacer>
    </item>
+
   </layout>
  </widget>
  <resources/>
