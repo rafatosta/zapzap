@@ -110,9 +110,9 @@ class DownloadToaster(QWidget):
 
         rect = self.parent().rect()
         geo = self.geometry()
-        geo.moveTopRight(
-            rect.topRight() +
-            QtCore.QPoint(-self.margin, self.margin)
+        geo.moveBottomLeft(
+            rect.bottomLeft() +
+            QtCore.QPoint(self.margin+65, -self.margin)
         )
         self.setGeometry(geo)
 
