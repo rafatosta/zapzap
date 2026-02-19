@@ -55,6 +55,16 @@
   </screenshots>
 
   <releases>
+      <release date="2026-02-19" version="6.3">
+          <description>
+              <ul>
+                  <li>Initial support for custom themes.</li>
+                  <li>User interface and layout improvements.</li>
+                  <li>Additional “Save As” option for downloads.</li>
+                  <li>Stability and performance improvements.</li>
+              </ul>
+          </description>
+      </release>
       <release date="2026-02-06" version="6.2.10">
           <description>
               <ul>
