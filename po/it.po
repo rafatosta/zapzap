@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-18 15:47-0300\n"
+"POT-Creation-Date: 2026-02-19 09:48-0300\n"
 "PO-Revision-Date: 2025-08-03 20:05+0200\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -1083,7 +1083,7 @@ msgstr ""
 msgid "Save file"
 msgstr "Salva file"
 
-#: zapzap/controllers/PagePerformance.py:223
+#: zapzap/controllers/PagePerformance.py:245
 msgid ""
 "Defines where the HTTP cache will be stored.\n"
 "Disk: faster after restart.\n"
@@ -1091,85 +1091,85 @@ msgid ""
 "No cache: lower disk usage, slower."
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:230
+#: zapzap/controllers/PagePerformance.py:252
 msgid ""
 "Maximum HTTP cache size.\n"
 "0 MB uses the default Chromium behavior."
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:235
+#: zapzap/controllers/PagePerformance.py:257
 msgid ""
 "Keeps cookies between restarts.\n"
 "Disabling may cause frequent logouts."
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:241
+#: zapzap/controllers/PagePerformance.py:263
 msgid ""
 "Runs GPU and rendering in the same process.\n"
 "May reduce memory usage, but can cause instability."
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:246
+#: zapzap/controllers/PagePerformance.py:268
 msgid ""
 "Disables GPU hardware acceleration.\n"
 "Recommended only for old GPUs or problematic drivers."
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:251
+#: zapzap/controllers/PagePerformance.py:273
 msgid ""
 "Disables GPU VSync.\n"
 "May reduce latency, but can increase power usage and tearing."
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:256
+#: zapzap/controllers/PagePerformance.py:278
 msgid ""
 "Forces software rendering.\n"
 "Use only in case of graphical issues.\n"
 "May significantly reduce performance."
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:263
+#: zapzap/controllers/PagePerformance.py:285
 msgid ""
 "Runs the entire Chromium engine in a single process.\n"
 "Reduces memory usage, but may cause crashes.\n"
 "Experimental usage."
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:269
+#: zapzap/controllers/PagePerformance.py:291
 msgid ""
 "Uses a separate process per site.\n"
 "Safer and more stable.\n"
 "May increase memory usage."
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:276
+#: zapzap/controllers/PagePerformance.py:298
 msgid ""
 "JavaScript (V8) memory limit.\n"
 "Automatic is the safest option.\n"
-"Very low values may cause crashes.\n"
+"Higher values allow heavier pages.\n"
 "\n"
-"Recommended: 1024 MB."
+"Restart required."
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:284
+#: zapzap/controllers/PagePerformance.py:306
 msgid ""
 "Enables smooth scrolling animations.\n"
 "Disabling may reduce CPU usage."
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:289
+#: zapzap/controllers/PagePerformance.py:311
 msgid ""
 "Allows background tabs to reduce resource usage.\n"
 "Disabling keeps timers active, but uses more resources."
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:294
+#: zapzap/controllers/PagePerformance.py:316
 msgid ""
 "Disables CSS and JavaScript animations.\n"
 "May improve performance on slower machines."
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:300
+#: zapzap/controllers/PagePerformance.py:322
 msgid ""
 "Restores all performance settings\n"
 "to safe default values."
