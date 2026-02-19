@@ -70,6 +70,50 @@ Reserved for future extension support:
 
 ---
 
+## ⚠️ File upload notice
+
+### File uploads and filesystem permissions
+
+To enable **file uploads (documents, images, videos, audio, etc.)** in WhatsApp Web, **ZapZap requires access to the user’s folders**.
+
+This is due to **technical limitations of QtWebEngine (Chromium)** in modern environments such as **Wayland** and **sandboxed applications** (for example, Flatpak).  
+Under these conditions, the embedded browser **cannot upload files correctly** without direct access to the filesystem.
+
+### What this means in practice
+
+- Without filesystem access:
+  - file uploads may fail
+  - files may be sent **with no content**
+- With the required permissions granted:
+  - file uploads work correctly
+  - the experience matches that of a regular web browser
+
+### Recommended permissions
+
+When running in a sandboxed environment (such as Flatpak), it is recommended to grant access to at least:
+
+- `Documents`
+- `Videos`
+- `Pictures`
+- `Downloads`
+
+These permissions are used **only** to allow the user to select and upload files and are **not** used for automatic file scanning, indexing, or data collection.
+
+### Changing permissions on Flatpak
+
+If ZapZap was installed via **Flatpak**, you can manage filesystem permissions using **Flatseal**:
+
+👉 https://flathub.org/pt-BR/apps/com.github.tchx84.Flatseal
+
+Steps:
+1. Install and open **Flatseal**
+2. Select **ZapZap** from the application list
+3. Enable access to the recommended folders (`Documents`, `Videos`, `Pictures`, `Downloads`)
+4. Restart ZapZap
+
+After adjusting these permissions, file uploads should work normally.
+
+
 # ⚙️ Development
 
 ## Requirements
