@@ -1,5 +1,9 @@
 from PyQt6.QtCore import QObject, pyqtSlot
-from PyQt6.QtDBus import QDBusConnection, QDBusInterface, QDBusMessage
+from PyQt6.QtDBus import (
+    QDBusConnection,
+    QDBusInterface,
+    QDBusMessage,
+)
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 from PyQt6.QtWidgets import QApplication
 
@@ -21,7 +25,12 @@ class PortalNotificationBackend(QObject):
             self.bus
         )
 
-        # ✔ Overload correto do PyQt6
+        self._notifications = {}
+        self._pages = {}
+
+        # Assume suporte completo inicialmente
+        self._supports_extended_fields = True
+
         self.bus.connect(
             "org.freedesktop.portal.Desktop",
             "/org/freedesktop/portal/desktop",
@@ -29,6 +38,10 @@ class PortalNotificationBackend(QObject):
             "ActionInvoked",
             self._on_action_invoked
         )
+
+    # ---------------------------------------------------------
+    # Notify with Dynamic Fallback
+    # ---------------------------------------------------------
 
     def notify(
         self,
@@ -39,20 +52,27 @@ class PortalNotificationBackend(QObject):
     ):
         notification_id = f"zapzap-page-{page.page_index}"
 
-        self._notifications = {}
-        self._pages = {}
-
         self._notifications[notification_id] = notification
         self._pages[notification_id] = page
 
-        payload = {
+        base_payload = {
             "title": title,
             "body": message,
             "priority": "normal",
             "default-action": self.ACTION_FOCUS,
             "default-action-target": page.page_index,
-            "display-hint": ["transient"],
         }
+
+        extended_fields = {
+            "display-hint": "show-as-new",
+            "category": "im.received",
+        }
+
+        # Primeira tentativa: payload completo
+        if self._supports_extended_fields:
+            payload = {**base_payload, **extended_fields}
+        else:
+            payload = base_payload
 
         reply = self.interface.call(
             "AddNotification",
@@ -60,16 +80,45 @@ class PortalNotificationBackend(QObject):
             payload
         )
 
+        # -------------------------------------------------
+        # Se falhar e ainda não testamos fallback:
+        # -------------------------------------------------
+        if (
+            reply.type() == QDBusMessage.MessageType.ErrorMessage
+            and self._supports_extended_fields
+        ):
+            print(
+                "[Portal] Extended notification fields not supported. "
+                "Falling back to minimal payload."
+            )
+
+            self._supports_extended_fields = False
+
+            # Segunda tentativa sem campos extras
+            reply = self.interface.call(
+                "AddNotification",
+                notification_id,
+                base_payload
+            )
+
+        # -------------------------------------------------
+        # Nunca quebrar o app
+        # -------------------------------------------------
         if reply.type() == QDBusMessage.MessageType.ErrorMessage:
-            raise RuntimeError(reply.errorMessage())
+            print(
+                "[Portal] Notification failed:",
+                reply.errorMessage()
+            )
+            return  # não lançar exceção
 
         notification.show()
 
+    # ---------------------------------------------------------
+    # Action Handling
+    # ---------------------------------------------------------
+
     @pyqtSlot(str, str, list)
     def _on_action_invoked(self, notification_id, action, parameters):
-
-        print(
-            f"Portal ActionInvoked: {notification_id} → {action} (parameters: {parameters})")
 
         if action != self.ACTION_FOCUS:
             return
