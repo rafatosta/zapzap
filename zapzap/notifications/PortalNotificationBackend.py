@@ -48,7 +48,6 @@ class PortalNotificationBackend(QObject):
         payload = {
             "title": title,
             "body": message,
-            "category": "browser.web-notification",
             "priority": "normal",
             "default-action": self.ACTION_FOCUS,
             "default-action-target": page.page_index,
