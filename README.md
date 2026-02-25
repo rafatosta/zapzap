@@ -10,6 +10,9 @@ Since Meta does not provide a public API for third-party applications, ZapZap is
 📌 About notifications and icons on Flatpak: 
 See [docs/notifications.md](docs/notifications.md)
 
+📌 Technical documentation:
+See [docs/technical-documentation.md](docs/technical-documentation.md)
+
 ---
 
 ## 📥 Download
