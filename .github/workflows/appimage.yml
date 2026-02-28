@@ -25,10 +25,17 @@ jobs:
         with:
           python-version: "3.12"
 
+      # ---------------------------------------
+      # System dependencies (CRÍTICO)
+      # ---------------------------------------
       - name: Install system dependencies
         run: |
           sudo apt update
           sudo apt install -y \
+            build-essential \
+            pkg-config \
+            libdbus-1-dev \
+            libglib2.0-dev \
             libgl1 \
             libegl1 \
             libxkbcommon-x11-0 \
@@ -36,14 +43,24 @@ jobs:
             patchelf \
             fuse
 
-      - name: Install Python build dependencies
+      # ---------------------------------------
+      # Python dependencies
+      # ---------------------------------------
+      - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install \
             pyinstaller==6.6.0 \
             setuptools \
-            wheel
+            wheel \
+            PyQt6 \
+            PyQt6-WebEngine \
+            python-gettext \
+            dbus-python
 
+      # ---------------------------------------
+      # Build with PyInstaller
+      # ---------------------------------------
       - name: Build with PyInstaller
         run: |
           pyinstaller zapzap.spec \
@@ -52,11 +69,17 @@ jobs:
             --clean \
             -y
 
+      # ---------------------------------------
+      # Download AppImageTool
+      # ---------------------------------------
       - name: Download AppImageTool
         run: |
           wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
           chmod +x appimagetool-x86_64.AppImage
 
+      # ---------------------------------------
+      # Prepare AppDir
+      # ---------------------------------------
       - name: Prepare AppDir
         run: |
           mkdir -p AppDir
@@ -73,6 +96,9 @@ jobs:
           cp share/icons/com.rtosta.zapzap.svg AppDir/
           cp share/applications/com.rtosta.zapzap.desktop AppDir/zapzap.desktop
 
+      # ---------------------------------------
+      # Build AppImage
+      # ---------------------------------------
       - name: Build AppImage
         run: |
           ARCH=x86_64 ./appimagetool-x86_64.AppImage AppDir
@@ -81,6 +107,9 @@ jobs:
         run: |
           mv *.AppImage ZapZap-${{ steps.vars.outputs.TAG }}-x86_64.AppImage
 
+      # ---------------------------------------
+      # Create Release
+      # ---------------------------------------
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
