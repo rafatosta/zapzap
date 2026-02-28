@@ -63,3 +63,8 @@ class Settings(QWidget, Ui_Settings):
         """Seleciona a primeira página como padrão."""
         if self.page_buttons:
             self.switch_to_page(self.pages.widget(0))
+
+    def open_about(self):
+        """Abre a página Ajuda"""
+        self.btn_page_help.click()
+

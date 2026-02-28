@@ -60,7 +60,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if image.save(buffer, "PNG"):
                 clean_img = QImage()
                 clean_img.loadFromData(buffer.data(), "PNG")
-                QTimer.singleShot(0, lambda img=clean_img.copy(): clipboard.setImage(img))
+                QTimer.singleShot(0, lambda img=clean_img.copy()
+                                  : clipboard.setImage(img))
         finally:
             buffer.close()
 
@@ -111,6 +112,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionReload.triggered.connect(self.browser.reload_pages)
         self.actionNew_chat.triggered.connect(self.new_chat)
         self.actionBy_phone_number.triggered.connect(self.new_chat_by_phone)
+        self.actionSobre_o_ZapZap.triggered.connect(self.open_about)
 
     def _connect_view_menu_actions(self):
         """Conectar ações do menu 'Exibir'."""
@@ -245,6 +247,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.app_settings.__del__()
 
         self.stackedWidget.setCurrentWidget(self.browser)
+
+    def open_about(self):
+        self.open_settings()
+        self.app_settings.open_about()
 
     # === Eventos externos ===
     def xdgOpenChat(self, url):
