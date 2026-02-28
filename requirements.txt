@@ -2,4 +2,8 @@ PyQt6
 PyQt6-WebEngine
 python-gettext
 dbus-python
-pyinstaller
+pyinstaller==6.6.0
+setuptools
+wheel
+
+
