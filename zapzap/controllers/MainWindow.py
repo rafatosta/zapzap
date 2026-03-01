@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QMainWindow, QApplication
-from PyQt6.QtCore import QByteArray, Qt, QEvent, QBuffer, QTimer, QIODevice
+from PyQt6.QtCore import QByteArray, Qt, QBuffer, QTimer, QIODevice
 from zapzap.controllers.QtoasterDonation import QtoasterDonation
 from zapzap.controllers.Settings import Settings
 from zapzap.controllers.Browser import Browser
@@ -9,7 +9,7 @@ from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
 from zapzap.services.ThemeManager import ThemeManager
 from zapzap.views.ui_mainwindow import Ui_MainWindow
-from PyQt6.QtGui import QImage
+from PyQt6.QtGui import QAction, QImage
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -30,14 +30,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if not SettingsManager.get("notification/donation_message", False):
             QtoasterDonation.showMessage(parent=self)
-
-    def changeEvent(self, event):
-        super().changeEvent(event)
-        # For #509: Use delayed clipboard access to avoid race condition with wayland comp
-        if event.type() == QEvent.Type.ActivationChange and self.isActiveWindow():
-            clipboard = QApplication.clipboard()
-            if not clipboard.image().isNull():
-                QTimer.singleShot(50, self._on_paste)
 
     def _on_paste(self):
         clipboard = QApplication.clipboard()
@@ -77,6 +69,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             animated=False,
             persist=False,
         )
+
+        self.paste_shortcut_ctrl_v = QAction("", self)
+        self.paste_shortcut_ctrl_v.setShortcut("Ctrl+V")
+        self.paste_shortcut_ctrl_v.triggered.connect(self._on_paste)
+        self.addAction(self.paste_shortcut_ctrl_v)
+
+        self.paste_shortcut_shift_insert = QAction("", self)
+        self.paste_shortcut_shift_insert.setShortcut("Shift+Insert")
+        self.paste_shortcut_shift_insert.triggered.connect(self._on_paste)
+        self.addAction(self.paste_shortcut_shift_insert)
 
     def load_settings(self):
         """Restaura as configurações salvas da janela e do sistema."""
