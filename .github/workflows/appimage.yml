@@ -1,9 +1,9 @@
-name: Build AppImage
+name: Build AppImage (Qt Professional)
 
 on:
   push:
     tags:
-      - "*"
+      - "v*"
 
 jobs:
   build:
@@ -13,6 +13,9 @@ jobs:
       contents: write
 
     steps:
+      # -------------------------------------------------
+      # Checkout
+      # -------------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -20,14 +23,17 @@ jobs:
         id: vars
         run: echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
 
+      # -------------------------------------------------
+      # Python Setup
+      # -------------------------------------------------
       - name: Setup Python 3.12
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      # ---------------------------------------
+      # -------------------------------------------------
       # System dependencies
-      # ---------------------------------------
+      # -------------------------------------------------
       - name: Install system dependencies
         run: |
           sudo apt update
@@ -43,9 +49,9 @@ jobs:
             patchelf \
             fuse
 
-      # ---------------------------------------
+      # -------------------------------------------------
       # Python dependencies
-      # ---------------------------------------
+      # -------------------------------------------------
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
@@ -58,9 +64,9 @@ jobs:
             python-gettext \
             dbus-python
 
-      # ---------------------------------------
+      # -------------------------------------------------
       # Build with PyInstaller
-      # ---------------------------------------
+      # -------------------------------------------------
       - name: Build with PyInstaller
         run: |
           pyinstaller zapzap.spec \
@@ -69,44 +75,48 @@ jobs:
             --clean \
             -y
 
-      # ---------------------------------------
-      # Download AppImageTool
-      # ---------------------------------------
-      - name: Download AppImageTool
+      # -------------------------------------------------
+      # Download linuxdeploy + Qt plugin
+      # -------------------------------------------------
+      - name: Download linuxdeploy
         run: |
-          wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
-          chmod +x appimagetool-x86_64.AppImage
+          wget -q https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+          chmod +x linuxdeploy-x86_64.AppImage
 
-      # ---------------------------------------
+          wget -q https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+          chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
+
+      # -------------------------------------------------
       # Prepare AppDir
-      # ---------------------------------------
+      # -------------------------------------------------
       - name: Prepare AppDir
         run: |
           mkdir -p AppDir
           cp -r dist/zapzap/* AppDir/
 
-          cat > AppDir/AppRun <<EOF
-          #!/bin/sh
-          cd "\$(dirname "\$0")"
-          exec ./zapzap
-          EOF
-
-          chmod +x AppDir/AppRun
-
           cp share/icons/com.rtosta.zapzap.svg AppDir/
-          cp share/applications/com.rtosta.zapzap.desktop AppDir/zapzap.desktop
+          cp share/applications/com.rtosta.zapzap.desktop AppDir/
 
-      # ---------------------------------------
-      # Build AppImage (NOME DEFINIDO AQUI)
-      # ---------------------------------------
+      # -------------------------------------------------
+      # Build AppImage
+      # -------------------------------------------------
       - name: Build AppImage
         run: |
           OUTPUT="ZapZap-${{ steps.vars.outputs.TAG }}-x86_64.AppImage"
-          ARCH=x86_64 ./appimagetool-x86_64.AppImage AppDir "$OUTPUT"
 
-      # ---------------------------------------
-      # Create Release
-      # ---------------------------------------
+          ./linuxdeploy-x86_64.AppImage \
+            --appdir AppDir \
+            --desktop-file AppDir/com.rtosta.zapzap.desktop \
+            --icon-file AppDir/com.rtosta.zapzap.svg \
+            --plugin qt \
+            --output appimage
+
+          FILE=$(ls *.AppImage | head -n 1)
+          mv "$FILE" "$OUTPUT"
+
+      # -------------------------------------------------
+      # Create GitHub Release
+      # -------------------------------------------------
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
