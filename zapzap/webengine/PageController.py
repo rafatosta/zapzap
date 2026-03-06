@@ -31,11 +31,24 @@ class PageController(QWebEnginePage):
     def createWindow(self, _type):
         """Intercepta novas janelas e redireciona para o navegador padrão."""
         new_page = QWebEnginePage(self.profile(), self)
+        new_page.setProperty("externalUrlOpened", False)
         new_page.urlChanged.connect(self.open_in_browser)
         return new_page
 
     def open_in_browser(self, url: QUrl):
-        """Abre o link no navegador padrão evitando duplicações."""
+        """Abre o primeiro link externo no navegador padrão, evitando duplicações por redirecionamento."""
+        page = self.sender()
+
+        # createWindow() pode disparar múltiplos urlChanged para o mesmo clique
+        # (ex.: redirecionamentos em Google Maps/Docs). Abrimos apenas uma vez.
+        if isinstance(page, QWebEnginePage):
+            if page.property("externalUrlOpened"):
+                return
+            page.setProperty("externalUrlOpened", True)
+
+        if not url.isValid() or url.isEmpty():
+            return
+
         normalized_url = self.normalize_url(url.toString())
 
         QDesktopServices.openUrl(QUrl(normalized_url))
