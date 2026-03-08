@@ -1,4 +1,6 @@
-from PyQt6.QtWidgets import QWidget, QApplication, QStyle
+from PyQt6.QtCore import Qt, QUrl
+from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtWidgets import QWidget, QApplication, QStyle, QLabel, QPushButton, QHBoxLayout, QLineEdit
 from zapzap.services.SetupManager import SetupManager
 from zapzap.services.AutostartManager import AutostartManager
 from zapzap.services.DictionariesManager import DictionariesManager
@@ -36,6 +38,44 @@ class PageGeneral(QWidget, Ui_PageGeneral):
             self.btn_wayland.setDisabled(True)
             self.btn_wayland.setToolTip(
                 _("Use Flatseal to change this mode of execution"))
+
+            flatpak_notice = QLabel(self)
+            flatpak_notice.setWordWrap(True)
+            flatpak_notice.setTextFormat(Qt.TextFormat.RichText)
+            flatpak_notice.setText(
+                _(
+                    "<b>Flatpak tip:</b> If opening PDFs, drag-and-drop, or file uploads fail, "
+                    "this is usually caused by sandbox permissions. "
+                    "Open <b>Flatseal</b> and grant ZapZap access to folders like "
+                    "Documents, Downloads, Pictures and Videos. "
+                    "You can also run: <code>flatpak override --user --filesystem=home com.rtosta.zapzap</code>."
+                )
+            )
+            self.verticalLayout_2.insertWidget(1, flatpak_notice)
+
+            flatpak_override_command = (
+                "flatpak override --user --filesystem=home com.rtosta.zapzap"
+            )
+
+            command_layout = QHBoxLayout()
+            command_input = QLineEdit(flatpak_override_command, self)
+            command_input.setReadOnly(True)
+            command_input.setToolTip(_("Select and copy this command in your terminal"))
+            command_copy_button = QPushButton(_("Copy command"), self)
+            command_copy_button.clicked.connect(
+                lambda: QApplication.clipboard().setText(flatpak_override_command)
+            )
+            command_layout.addWidget(command_input)
+            command_layout.addWidget(command_copy_button)
+            self.verticalLayout_2.insertLayout(2, command_layout)
+
+            flatseal_button = QPushButton(_("Open Flatseal page"), self)
+            flatseal_button.clicked.connect(
+                lambda: QDesktopServices.openUrl(
+                    QUrl("https://flathub.org/apps/com.github.tchx84.Flatseal")
+                )
+            )
+            self.verticalLayout_2.insertWidget(3, flatseal_button)
 
     def _load_settings(self):
         """

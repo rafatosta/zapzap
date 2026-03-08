@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-19 09:48-0300\n"
+"POT-Creation-Date: 2026-03-07 21:55-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:87
-#: zapzap/controllers/ShortcutsDialog.py:58 zapzap/controllers/Browser.py:153
+#: zapzap/controllers/ShortcutsDialog.py:58 zapzap/controllers/Browser.py:192
 msgid "New account"
 msgstr ""
 
@@ -732,10 +732,6 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: zapzap/controllers/PageGeneral.py:38
-msgid "Use Flatseal to change this mode of execution"
-msgstr ""
-
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"
 msgstr ""
@@ -1040,10 +1036,6 @@ msgstr ""
 msgid "All pages reloaded."
 msgstr ""
 
-#: zapzap/controllers/Browser.py:164 zapzap/controllers/Browser.py:192
-msgid "Account {}"
-msgstr ""
-
 #: zapzap/controllers/DownloadToaster.py:57
 msgid "Open"
 msgstr ""
@@ -1152,6 +1144,61 @@ msgid ""
 "to safe default values."
 msgstr ""
 
+#: zapzap/controllers/PageGeneral.py:40
+msgid "Use Flatseal to change this mode of execution"
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:47
+msgid ""
+"<b>Flatpak tip:</b> If opening PDFs, drag-and-drop, or file uploads fail, "
+"this is usually caused by sandbox permissions. Open <b>Flatseal</b> and "
+"grant ZapZap access to folders like Documents, Downloads, Pictures and "
+"Videos. You can also run: <code>flatpak override --user --filesystem=home "
+"com.rtosta.zapzap</code>."
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:63
+msgid "Select and copy this command in your terminal"
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:64 zapzap/controllers/Browser.py:84
+msgid "Copy command"
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:72
+msgid "Open Flatseal page"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:66
+msgid "Flatpak sandbox help"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:75
+msgid "Flatpak sandbox"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:76
+msgid "ZapZap is running in Flatpak sandbox."
+msgstr ""
+
+#: zapzap/controllers/Browser.py:79
+msgid ""
+"Some features like opening files or drag-and-drop may require additional "
+"permissions."
+msgstr ""
+
+#: zapzap/controllers/Browser.py:83
+msgid "Instructions"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:85
+msgid "Close"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:203 zapzap/controllers/Browser.py:231
+msgid "Account {}"
+msgstr ""
+
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
 msgstr ""
@@ -1200,4 +1247,8 @@ msgstr ""
 
 #: zapzap/services/SysTrayManager.py:56
 msgid "Donation"
+msgstr ""
+
+#: zapzap/services/DownloadManager.py:65
+msgid "Select folder"
 msgstr ""

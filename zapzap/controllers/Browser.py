@@ -1,6 +1,6 @@
-from PyQt6.QtCore import QEasingCurve, QParallelAnimationGroup, QPropertyAnimation
-from PyQt6.QtWidgets import QWidget
-from PyQt6.QtGui import QAction
+from PyQt6.QtCore import QEasingCurve, QParallelAnimationGroup, QPropertyAnimation, QUrl
+from PyQt6.QtWidgets import QWidget, QPushButton, QMessageBox, QApplication
+from PyQt6.QtGui import QAction, QDesktopServices
 from zapzap.controllers.PageButton import PageButton
 from zapzap.webengine.WebView import WebView
 from zapzap.models.User import User
@@ -8,6 +8,7 @@ from zapzap.resources.SystemIcon import SystemIcon
 from zapzap.resources.UserIcon import UserIcon
 from zapzap.services.AlertManager import AlertManager
 from zapzap.services.SettingsManager import SettingsManager
+from zapzap.services.SetupManager import SetupManager
 from zapzap.services.SysTrayManager import SysTrayManager
 from zapzap.views.ui_browser import Ui_Browser
 
@@ -37,6 +38,7 @@ class Browser(QWidget, Ui_Browser):
     # === Inicialização ===
     def _initialize(self):
         """Configura o navegador ao inicializar."""
+        self._configure_flatpak_guidance()
         self._configure_signals()
         self._load_users()
         self._select_default_page()
@@ -51,6 +53,43 @@ class Browser(QWidget, Ui_Browser):
         self.btn_new_chat.clicked.connect(lambda: self.parent.new_chat())
         self.btn_open_settings.clicked.connect(
             lambda: self.parent.open_settings())
+
+
+    def _configure_flatpak_guidance(self):
+        if not SetupManager._is_flatpak:
+            return
+
+        self.btn_flatpak_help = QPushButton(self.settings_buttons_layout)
+        self.btn_flatpak_help.setMinimumSize(35, 35)
+        self.btn_flatpak_help.setText("")
+        self.btn_flatpak_help.setIconSize(self.btn_open_settings.iconSize())
+        self.btn_flatpak_help.setToolTip(_("Flatpak sandbox help"))
+        self.btn_flatpak_help.clicked.connect(self._show_flatpak_sandbox_popover)
+        self.layout_2.insertWidget(4, self.btn_flatpak_help)
+
+    def _show_flatpak_sandbox_popover(self):
+        command = "flatpak override --user --filesystem=home com.rtosta.zapzap"
+
+        dialog = QMessageBox(self)
+        dialog.setIcon(QMessageBox.Icon.Warning)
+        dialog.setWindowTitle(_("Flatpak sandbox"))
+        dialog.setText(_("ZapZap is running in Flatpak sandbox."))
+        dialog.setInformativeText(
+            _(
+                "Some features like opening files or drag-and-drop may require additional permissions."
+            )
+        )
+
+        instructions_button = dialog.addButton(_("Instructions"), QMessageBox.ButtonRole.ActionRole)
+        copy_button = dialog.addButton(_("Copy command"), QMessageBox.ButtonRole.ActionRole)
+        dialog.addButton(_("Close"), QMessageBox.ButtonRole.RejectRole)
+
+        dialog.exec()
+
+        if dialog.clickedButton() == instructions_button:
+            QDesktopServices.openUrl(QUrl("https://flathub.org/apps/com.github.tchx84.Flatseal"))
+        elif dialog.clickedButton() == copy_button:
+            QApplication.clipboard().setText(command)
 
     def _load_users(self):
         """Carrega os usuários e cria páginas correspondentes."""
@@ -273,6 +312,9 @@ class Browser(QWidget, Ui_Browser):
         self.btn_new_chat.setIcon(SystemIcon.get_icon("new_chat", theme))
         self.btn_new_chat_number.setIcon(
             SystemIcon.get_icon("new_chat_number", theme))
+
+        if hasattr(self, "btn_flatpak_help"):
+            self.btn_flatpak_help.setIcon(SystemIcon.get_icon("flatpak_help", theme))
 
     def settings_sidebar(self):
         """Mostra ou esconde a barra lateral"""

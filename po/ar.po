@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-19 09:48-0300\n"
+"POT-Creation-Date: 2026-03-07 21:55-0300\n"
 "PO-Revision-Date: 2026-02-02 23:52+0200\n"
 "Last-Translator: Muhammed Al-Basha <contact.mu7basha@gmail.com>\n"
 "Language-Team: Arabic\n"
@@ -21,7 +21,7 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:87
-#: zapzap/controllers/ShortcutsDialog.py:58 zapzap/controllers/Browser.py:153
+#: zapzap/controllers/ShortcutsDialog.py:58 zapzap/controllers/Browser.py:192
 msgid "New account"
 msgstr "حساب جديد"
 
@@ -748,10 +748,6 @@ msgstr "غير رسمي"
 msgid "Unknown"
 msgstr "مجهول"
 
-#: zapzap/controllers/PageGeneral.py:38
-msgid "Use Flatseal to change this mode of execution"
-msgstr "استعمل فلاتسييل لتغيير وضع التنفيذ"
-
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"
 msgstr "علِّم كغير مقروء"
@@ -1068,10 +1064,6 @@ msgstr ""
 msgid "All pages reloaded."
 msgstr ""
 
-#: zapzap/controllers/Browser.py:164 zapzap/controllers/Browser.py:192
-msgid "Account {}"
-msgstr "حساب {}"
-
 #: zapzap/controllers/DownloadToaster.py:57
 msgid "Open"
 msgstr "افتح"
@@ -1181,6 +1173,63 @@ msgid ""
 "to safe default values."
 msgstr ""
 
+#: zapzap/controllers/PageGeneral.py:40
+msgid "Use Flatseal to change this mode of execution"
+msgstr "استعمل فلاتسييل لتغيير وضع التنفيذ"
+
+#: zapzap/controllers/PageGeneral.py:47
+msgid ""
+"<b>Flatpak tip:</b> If opening PDFs, drag-and-drop, or file uploads fail, "
+"this is usually caused by sandbox permissions. Open <b>Flatseal</b> and "
+"grant ZapZap access to folders like Documents, Downloads, Pictures and "
+"Videos. You can also run: <code>flatpak override --user --filesystem=home "
+"com.rtosta.zapzap</code>."
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:63
+msgid "Select and copy this command in your terminal"
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:64 zapzap/controllers/Browser.py:84
+#, fuzzy
+msgid "Copy command"
+msgstr "انسخ الصورة"
+
+#: zapzap/controllers/PageGeneral.py:72
+msgid "Open Flatseal page"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:66
+msgid "Flatpak sandbox help"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:75
+msgid "Flatpak sandbox"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:76
+msgid "ZapZap is running in Flatpak sandbox."
+msgstr ""
+
+#: zapzap/controllers/Browser.py:79
+msgid ""
+"Some features like opening files or drag-and-drop may require additional "
+"permissions."
+msgstr ""
+
+#: zapzap/controllers/Browser.py:83
+#, fuzzy
+msgid "Instructions"
+msgstr "معلومات"
+
+#: zapzap/controllers/Browser.py:85
+msgid "Close"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:203 zapzap/controllers/Browser.py:231
+msgid "Account {}"
+msgstr "حساب {}"
+
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
 msgstr "معلومات"
@@ -1233,6 +1282,11 @@ msgstr "اظهِر"
 msgid "Donation"
 msgstr "تبرَّع"
 
+#: zapzap/services/DownloadManager.py:65
+#, fuzzy
+msgid "Select folder"
+msgstr "اختر مجلد"
+
 #~ msgid "Cache Behavior"
 #~ msgstr "سلوك الذاكرة المؤقتة"
 
@@ -1268,9 +1322,6 @@ msgstr "تبرَّع"
 
 #~ msgid "Select all"
 #~ msgstr "اختر الكل"
-
-#~ msgid "Copy image"
-#~ msgstr "انسخ الصورة"
 
 #~ msgid "Copy link address"
 #~ msgstr "انسخ عنوان الرابط"
