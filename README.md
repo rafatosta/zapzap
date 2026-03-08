@@ -104,9 +104,9 @@ These permissions are used **only** to allow the user to select and upload files
 
 ### Changing permissions on Flatpak
 
-If ZapZap was installed via **Flatpak**, you can manage filesystem permissions using **Flatseal**:
+If ZapZap was installed via **Flatpak**, you can manage filesystem permissions using **Flatseal** (a graphical permission manager for Flatpak apps):
 
-👉 https://flathub.org/pt-BR/apps/com.github.tchx84.Flatseal
+👉 https://flathub.org/apps/com.github.tchx84.Flatseal
 
 Steps:
 1. Install and open **Flatseal**
@@ -114,7 +114,13 @@ Steps:
 3. Enable access to the recommended folders (`Documents`, `Videos`, `Pictures`, `Downloads`)
 4. Restart ZapZap
 
-After adjusting these permissions, file uploads should work normally.
+Optional terminal alternative:
+
+```bash
+flatpak override --user --filesystem=home com.rtosta.zapzap
+```
+
+After adjusting these permissions, file uploads, opening PDFs, and drag-and-drop should work normally.
 
 
 # ⚙️ Development
