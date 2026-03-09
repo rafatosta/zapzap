@@ -55,6 +55,15 @@
   </screenshots>
 
   <releases>
+      <release date="2026-03-08" version="6.3.4">
+          <description>
+              <ul>
+                  <li>Support for voice and video calls.</li>
+                  <li>Improve Flatpak permission guidance for file access issues.</li>
+                  <li>fix: avoid duplicate external URL opens on redirects.</li>
+              </ul>
+          </description>
+      </release>
       <release date="2026-02-19" version="6.3">
           <description>
               <ul>
