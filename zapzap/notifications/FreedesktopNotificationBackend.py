@@ -121,6 +121,9 @@ class DBusConnection:
         if dbus is None:
             return
 
+        self.interface = None
+        self.available = False
+
         try:
             if DBusGMainLoop:
                 DBusGMainLoop(set_as_default=True)
@@ -140,23 +143,36 @@ class DBusConnection:
         except Exception:
             self.available = False
 
+    def _mark_unavailable(self):
+        self.available = False
+        self.interface = None
+
     # ------------------------------------------------------------------
     # Public API
     # ------------------------------------------------------------------
     def notify(self, notification: "DBusNotification") -> bool:
-        if not self.available:
+        if not self.available or self.interface is None:
+            # Notification daemons can restart mid-session.
+            # Retry connection lazily without crashing the app.
+            self._init()
+
+        if not self.available or self.interface is None:
             return False
 
-        nid = self.interface.Notify(
-            self.app_name,
-            notification.id,
-            notification.icon,   # fallback
-            notification.title,
-            notification.body,
-            notification.actions_list(),
-            notification.hints,  # image-path aqui
-            notification.timeout,
-        )
+        try:
+            nid = self.interface.Notify(
+                self.app_name,
+                notification.id,
+                notification.icon,   # fallback
+                notification.title,
+                notification.body,
+                notification.actions_list(),
+                notification.hints,  # image-path aqui
+                notification.timeout,
+            )
+        except Exception:
+            self._mark_unavailable()
+            return False
 
         for old in list(self._notifications.values()):
             if notification.matches(old):
@@ -171,7 +187,7 @@ class DBusConnection:
             try:
                 self.interface.CloseNotification(notification.id)
             except Exception:
-                pass
+                self._mark_unavailable()
 
     # ------------------------------------------------------------------
     # DBus callbacks
