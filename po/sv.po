@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-08 01:55+0100\n"
+"POT-Creation-Date: 2026-03-07 21:55-0300\n"
 "PO-Revision-Date: 2026-03-09 22:23+0100\n"
 "Last-Translator: Dennis Cederberg "
 "<9393069+cederberget@users.noreply.github.com>\n"
@@ -778,6 +778,98 @@ msgstr "Inofficiell"
 msgid "Unknown"
 msgstr "Okänd"
 
+#: zapzap/controllers/ShortcutsDialog.py:11
+msgid "Mark as unread"
+msgstr "Markera som oläst"
+
+#: zapzap/controllers/ShortcutsDialog.py:12
+msgid "Archive conversation"
+msgstr "Arkivera konversation"
+
+#: zapzap/controllers/ShortcutsDialog.py:13
+msgid "Pin conversation"
+msgstr "Fäst konversation"
+
+#: zapzap/controllers/ShortcutsDialog.py:14
+msgid "Next conversation"
+msgstr "Nästa konversation"
+
+#: zapzap/controllers/ShortcutsDialog.py:15
+msgid "Close conversation"
+msgstr "Stäng konversation"
+
+#: zapzap/controllers/ShortcutsDialog.py:16
+msgid "Search in conversation"
+msgstr "Sök i konversation"
+
+#: zapzap/controllers/ShortcutsDialog.py:17
+msgid "Previous conversation"
+msgstr "Föregående konversation"
+
+#: zapzap/controllers/ShortcutsDialog.py:18
+msgid "Delete conversation"
+msgstr "Radera konversation"
+
+#: zapzap/controllers/ShortcutsDialog.py:21
+msgid "Profile and status"
+msgstr "Profil och status"
+
+#: zapzap/controllers/ShortcutsDialog.py:25
+msgid "Decrease speed of selected voice message"
+msgstr "Sänk hastigheten på valt röstmeddelande"
+
+#: zapzap/controllers/ShortcutsDialog.py:26
+msgid "Increase speed of selected voice message"
+msgstr "Öka hastigheten på valt röstmeddelande"
+
+#: zapzap/controllers/ShortcutsDialog.py:29
+msgid "Emoji panel"
+msgstr "Emoji-panel"
+
+#: zapzap/controllers/ShortcutsDialog.py:30
+msgid "Sticker panel"
+msgstr "Dekal-panel"
+
+#: zapzap/controllers/ShortcutsDialog.py:31
+msgid "GIF panel"
+msgstr "GIF-panel"
+
+#: zapzap/controllers/ShortcutsDialog.py:34
+msgid "Lock the app"
+msgstr "Lås appen"
+
+#: zapzap/controllers/ShortcutsDialog.py:35
+msgid "Mute"
+msgstr "Tysta"
+
+#: zapzap/controllers/ShortcutsDialog.py:36
+msgid "Search"
+msgstr "Sök"
+
+#: zapzap/controllers/ShortcutsDialog.py:37
+msgid "New group"
+msgstr "Ny grupp"
+
+#: zapzap/controllers/ShortcutsDialog.py:38
+msgid "Extended search"
+msgstr "Utökad sökning"
+
+#: zapzap/controllers/ShortcutsDialog.py:45
+msgid "Exit"
+msgstr "Avsluta"
+
+#: zapzap/controllers/ShortcutsDialog.py:48
+msgid "Fullscreen"
+msgstr "Helskärm"
+
+#: zapzap/controllers/ShortcutsDialog.py:54
+msgid "Reload pages"
+msgstr "Ladda om sidor"
+
+#: zapzap/controllers/ShortcutsDialog.py:55
+msgid "New conversation by phone number"
+msgstr "Ny konversation med telefonnummer"
+
 #: zapzap/controllers/PageCustomizations.py:52
 msgid "Global"
 msgstr "Globalt"
@@ -992,134 +1084,6 @@ msgstr "Anpassningar sparade. Ladda om sidor för att applicera ändringarna."
 msgid "All pages reloaded."
 msgstr "Alla sidor laddades om."
 
-#: zapzap/controllers/ShortcutsDialog.py:11
-msgid "Mark as unread"
-msgstr "Markera som oläst"
-
-#: zapzap/controllers/ShortcutsDialog.py:12
-msgid "Archive conversation"
-msgstr "Arkivera konversation"
-
-#: zapzap/controllers/ShortcutsDialog.py:13
-msgid "Pin conversation"
-msgstr "Fäst konversation"
-
-#: zapzap/controllers/ShortcutsDialog.py:14
-msgid "Next conversation"
-msgstr "Nästa konversation"
-
-#: zapzap/controllers/ShortcutsDialog.py:15
-msgid "Close conversation"
-msgstr "Stäng konversation"
-
-#: zapzap/controllers/ShortcutsDialog.py:16
-msgid "Search in conversation"
-msgstr "Sök i konversation"
-
-#: zapzap/controllers/ShortcutsDialog.py:17
-msgid "Previous conversation"
-msgstr "Föregående konversation"
-
-#: zapzap/controllers/ShortcutsDialog.py:18
-msgid "Delete conversation"
-msgstr "Radera konversation"
-
-#: zapzap/controllers/ShortcutsDialog.py:21
-msgid "Profile and status"
-msgstr "Profil och status"
-
-#: zapzap/controllers/ShortcutsDialog.py:25
-msgid "Decrease speed of selected voice message"
-msgstr "Sänk hastigheten på valt röstmeddelande"
-
-#: zapzap/controllers/ShortcutsDialog.py:26
-msgid "Increase speed of selected voice message"
-msgstr "Öka hastigheten på valt röstmeddelande"
-
-#: zapzap/controllers/ShortcutsDialog.py:29
-msgid "Emoji panel"
-msgstr "Emoji-panel"
-
-#: zapzap/controllers/ShortcutsDialog.py:30
-msgid "Sticker panel"
-msgstr "Dekal-panel"
-
-#: zapzap/controllers/ShortcutsDialog.py:31
-msgid "GIF panel"
-msgstr "GIF-panel"
-
-#: zapzap/controllers/ShortcutsDialog.py:34
-msgid "Lock the app"
-msgstr "Lås appen"
-
-#: zapzap/controllers/ShortcutsDialog.py:35
-msgid "Mute"
-msgstr "Tysta"
-
-#: zapzap/controllers/ShortcutsDialog.py:36
-msgid "Search"
-msgstr "Sök"
-
-#: zapzap/controllers/ShortcutsDialog.py:37
-msgid "New group"
-msgstr "Ny grupp"
-
-#: zapzap/controllers/ShortcutsDialog.py:38
-msgid "Extended search"
-msgstr "Utökad sökning"
-
-#: zapzap/controllers/ShortcutsDialog.py:45
-msgid "Exit"
-msgstr "Avsluta"
-
-#: zapzap/controllers/ShortcutsDialog.py:48
-msgid "Fullscreen"
-msgstr "Helskärm"
-
-#: zapzap/controllers/ShortcutsDialog.py:54
-msgid "Reload pages"
-msgstr "Ladda om sidor"
-
-#: zapzap/controllers/ShortcutsDialog.py:55
-msgid "New conversation by phone number"
-msgstr "Ny konversation med telefonnummer"
-
-#: zapzap/controllers/Browser.py:66
-msgid "Flatpak sandbox help"
-msgstr "Hjälp för Flatpak-sandlåda"
-
-#: zapzap/controllers/Browser.py:75
-msgid "Flatpak sandbox"
-msgstr "Flatpak-sandlåda"
-
-#: zapzap/controllers/Browser.py:76
-msgid "ZapZap is running in Flatpak sandbox."
-msgstr "ZapZap körs i Flatpak-sandlådan."
-
-#: zapzap/controllers/Browser.py:79
-msgid ""
-"Some features like opening files or drag-and-drop may require additional "
-"permissions."
-msgstr ""
-"Vissa funktioner, så som öppning av filer eller drag-och-släpp, kan kräva "
-"ytterligare rättigheter."
-
-#: zapzap/controllers/Browser.py:83
-msgid "Instructions"
-msgstr "Instruktioner"
-
-#: zapzap/controllers/Browser.py:84 zapzap/controllers/PageGeneral.py:64
-msgid "Copy command"
-msgstr "Kopiera kommando"
-
-#: zapzap/controllers/Browser.py:85
-msgid "Close"
-msgstr "Stäng"
-
-#: zapzap/controllers/Browser.py:203 zapzap/controllers/Browser.py:231
-msgid "Account {}"
-msgstr "Konto {}"
-
 #: zapzap/controllers/DownloadToaster.py:57
 msgid "Open"
 msgstr "Öppna"
@@ -1135,32 +1099,6 @@ msgstr "Avbryt"
 #: zapzap/controllers/DownloadToaster.py:165
 msgid "Save file"
 msgstr "Spara fil"
-
-#: zapzap/controllers/PageGeneral.py:40
-msgid "Use Flatseal to change this mode of execution"
-msgstr "Använd Flatseal för att ändra exekveringsläge"
-
-#: zapzap/controllers/PageGeneral.py:47
-msgid ""
-"<b>Flatpak tip:</b> If opening PDFs, drag-and-drop, or file uploads fail, "
-"this is usually caused by sandbox permissions. Open <b>Flatseal</b> and "
-"grant ZapZap access to folders like Documents, Downloads, Pictures and "
-"Videos. You can also run: <code>flatpak override --user --filesystem=home "
-"com.rtosta.zapzap</code>."
-msgstr ""
-"<b>Flatpak-tips:</b> Om öppning av PDF-filer, drag-och-släpp eller "
-"filuppladdningar misslyckas, kan detta orsakas av rättighetsproblem för "
-"sandlådan. Öppna <b>Flatseal</b> och tillåt ZapZap att komma åt kataloger så "
-"som Dokument, Hämtningar, Bilder och Videor. Du kan också köra: "
-"<code>flatpak override --user --filesystem=home com.rtosta.zapzap</code>."
-
-#: zapzap/controllers/PageGeneral.py:63
-msgid "Select and copy this command in your terminal"
-msgstr "Markera och kopiera detta kommando till din terminal"
-
-#: zapzap/controllers/PageGeneral.py:72
-msgid "Open Flatseal page"
-msgstr "Öppna Flatseal-sida"
 
 #: zapzap/controllers/PagePerformance.py:245
 msgid ""
@@ -1289,6 +1227,68 @@ msgid ""
 msgstr ""
 "Återställer alla prestandainställningar\n"
 "till säkra standardvärden."
+
+#: zapzap/controllers/PageGeneral.py:40
+msgid "Use Flatseal to change this mode of execution"
+msgstr "Använd Flatseal för att ändra exekveringsläge"
+
+#: zapzap/controllers/PageGeneral.py:47
+msgid ""
+"<b>Flatpak tip:</b> If opening PDFs, drag-and-drop, or file uploads fail, "
+"this is usually caused by sandbox permissions. Open <b>Flatseal</b> and "
+"grant ZapZap access to folders like Documents, Downloads, Pictures and "
+"Videos. You can also run: <code>flatpak override --user --filesystem=home "
+"com.rtosta.zapzap</code>."
+msgstr ""
+"<b>Flatpak-tips:</b> Om öppning av PDF-filer, drag-och-släpp eller "
+"filuppladdningar misslyckas, kan detta orsakas av rättighetsproblem för "
+"sandlådan. Öppna <b>Flatseal</b> och tillåt ZapZap att komma åt kataloger så "
+"som Dokument, Hämtningar, Bilder och Videor. Du kan också köra: "
+"<code>flatpak override --user --filesystem=home com.rtosta.zapzap</code>."
+
+#: zapzap/controllers/PageGeneral.py:63
+msgid "Select and copy this command in your terminal"
+msgstr "Markera och kopiera detta kommando till din terminal"
+
+#: zapzap/controllers/PageGeneral.py:64 zapzap/controllers/Browser.py:84
+msgid "Copy command"
+msgstr "Kopiera kommando"
+
+#: zapzap/controllers/PageGeneral.py:72
+msgid "Open Flatseal page"
+msgstr "Öppna Flatseal-sida"
+
+#: zapzap/controllers/Browser.py:66
+msgid "Flatpak sandbox help"
+msgstr "Hjälp för Flatpak-sandlåda"
+
+#: zapzap/controllers/Browser.py:75
+msgid "Flatpak sandbox"
+msgstr "Flatpak-sandlåda"
+
+#: zapzap/controllers/Browser.py:76
+msgid "ZapZap is running in Flatpak sandbox."
+msgstr "ZapZap körs i Flatpak-sandlådan."
+
+#: zapzap/controllers/Browser.py:79
+msgid ""
+"Some features like opening files or drag-and-drop may require additional "
+"permissions."
+msgstr ""
+"Vissa funktioner, så som öppning av filer eller drag-och-släpp, kan kräva "
+"ytterligare rättigheter."
+
+#: zapzap/controllers/Browser.py:83
+msgid "Instructions"
+msgstr "Instruktioner"
+
+#: zapzap/controllers/Browser.py:85
+msgid "Close"
+msgstr "Stäng"
+
+#: zapzap/controllers/Browser.py:203 zapzap/controllers/Browser.py:231
+msgid "Account {}"
+msgstr "Konto {}"
 
 # Identical to source
 #: zapzap/services/AlertManager.py:35
