@@ -1,5 +1,6 @@
 from pathlib import Path
 from gettext import gettext as _
+import logging
 
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 
@@ -13,6 +14,8 @@ from zapzap.notifications.PortalNotificationBackend import (
 from zapzap.notifications.FreedesktopNotificationBackend import (
     FreedesktopNotificationBackend
 )
+
+logger = logging.getLogger(__name__)
 
 
 def is_flatpak() -> bool:
@@ -85,9 +88,16 @@ class NotificationService:
         # =================================================
         # 3. Delegação total ao backend
         # =================================================
-        self.backend.notify(
-            page=page,
-            notification=notification,
-            title=title,
-            message=message,
-        )
+        try:
+            self.backend.notify(
+                page=page,
+                notification=notification,
+                title=title,
+                message=message,
+            )
+        except Exception:
+            # Notification failures must never crash the app.
+            logger.warning(
+                "Notification backend failed; dropping notification",
+                exc_info=True,
+            )
