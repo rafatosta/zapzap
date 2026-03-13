@@ -82,7 +82,7 @@ class PageController(QWebEnginePage):
         """Altera o tema da página para escuro."""
 
         self.profile().settings().setAttribute(
-            QWebEngineSettings.WebAttribute.ForceDarkMode, False)
+            QWebEngineSettings.WebAttribute.ForceDarkMode, True)
 
         self.runJavaScript("document.body.classList.add('dark');")
 
