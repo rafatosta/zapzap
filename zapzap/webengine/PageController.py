@@ -73,16 +73,15 @@ class PageController(QWebEnginePage):
 
     def set_theme_light(self):
         """Altera o tema da página para claro."""
-        self.profile().settings().setAttribute(
-            QWebEngineSettings.WebAttribute.ForceDarkMode, False)
+        self.profile().settings().setPreferredColorScheme(
+            QWebEngineSettings.ColorScheme.Light)
 
         self.runJavaScript("document.body.classList.remove('dark');")
 
     def set_theme_dark(self):
         """Altera o tema da página para escuro."""
-
-        self.profile().settings().setAttribute(
-            QWebEngineSettings.WebAttribute.ForceDarkMode, False)
+        self.profile().settings().setPreferredColorScheme(
+            QWebEngineSettings.ColorScheme.Dark)
 
         self.runJavaScript("document.body.classList.add('dark');")
 
