@@ -12,6 +12,7 @@ from zapzap.notifications.NotificationService import NotificationService
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.DownloadManager import DownloadManager
 from zapzap.services.SettingsManager import SettingsManager
+from zapzap.services.ThemeManager import ThemeManager
 from zapzap.debug import crash_handler  # instância global
 
 from gettext import gettext as _
@@ -75,6 +76,9 @@ class WebView(QWebEngineView):
         self.profile.settings().setAttribute(
             QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, SettingsManager.get("web/scroll_animator", False))
 
+        # Set initial color scheme so @media (prefers-color-scheme) works on first load
+        self._apply_initial_color_scheme()
+
         self.configure_spellcheck()
 
         size_cache = SettingsManager.get("performance/cache_size_max", 0)
@@ -96,6 +100,24 @@ class WebView(QWebEngineView):
                 [SettingsManager.get("system/spellCheckLanguage",
                                      DictionariesManager.get_current_dict())]
             )
+
+    def _apply_initial_color_scheme(self):
+        """Aplica o esquema de cores inicial ao perfil antes de carregar a página.
+
+        Garante que @media (prefers-color-scheme) funcione corretamente desde o
+        primeiro carregamento, sem depender de JavaScript pós-carregamento.
+        Usa setPreferredColorScheme (Qt 6.7+) quando disponível.
+        """
+        settings = self.profile.settings()
+        if not hasattr(settings, 'setPreferredColorScheme'):
+            return
+
+        theme = ThemeManager.get_current_theme()
+        if theme == ThemeManager.Type.Dark:
+            settings.setPreferredColorScheme(QWebEngineSettings.ColorScheme.Dark)
+        elif theme == ThemeManager.Type.Light:
+            settings.setPreferredColorScheme(QWebEngineSettings.ColorScheme.Light)
+        # For Auto mode, let the WebEngine detect the system preference on its own
 
     def _setup_page(self):
         """Configura a página e carrega a URL inicial."""

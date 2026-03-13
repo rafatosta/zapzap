@@ -73,17 +73,23 @@ class PageController(QWebEnginePage):
 
     def set_theme_light(self):
         """Altera o tema da página para claro."""
-        self.profile().settings().setAttribute(
-            QWebEngineSettings.WebAttribute.ForceDarkMode, False)
-
+        settings = self.profile().settings()
+        if hasattr(settings, 'setPreferredColorScheme'):
+            settings.setPreferredColorScheme(QWebEngineSettings.ColorScheme.Light)
+        else:
+            settings.setAttribute(QWebEngineSettings.WebAttribute.ForceDarkMode, False)
         self.runJavaScript("document.body.classList.remove('dark');")
 
     def set_theme_dark(self):
         """Altera o tema da página para escuro."""
-
-        self.profile().settings().setAttribute(
-            QWebEngineSettings.WebAttribute.ForceDarkMode, False)
-
+        settings = self.profile().settings()
+        if hasattr(settings, 'setPreferredColorScheme'):
+            settings.setPreferredColorScheme(QWebEngineSettings.ColorScheme.Dark)
+        else:
+            # Keep ForceDarkMode disabled: WhatsApp Web provides its own dark theme
+            # via the 'dark' CSS class below. ForceDarkMode=True would invert images
+            # and emojis, breaking their appearance.
+            settings.setAttribute(QWebEngineSettings.WebAttribute.ForceDarkMode, False)
         self.runJavaScript("document.body.classList.add('dark');")
 
     def new_chat(self):
