@@ -76,15 +76,14 @@ class PageController(QWebEnginePage):
         self.profile().settings().setAttribute(
             QWebEngineSettings.WebAttribute.ForceDarkMode, False)
 
-        self.runJavaScript("document.body.classList.remove('dark');")
+        self.runJavaScript("document.documentElement.style.colorScheme = 'light';")
 
     def set_theme_dark(self):
         """Altera o tema da página para escuro."""
-
         self.profile().settings().setAttribute(
             QWebEngineSettings.WebAttribute.ForceDarkMode, False)
 
-        self.runJavaScript("document.body.classList.add('dark');")
+        self.runJavaScript("document.documentElement.style.colorScheme = 'dark';")
 
     def new_chat(self):
         """Simula o atalho 'Ctrl+Alt+N' para iniciar um novo chat."""
