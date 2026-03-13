@@ -1,4 +1,4 @@
-from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineSettings
+from PyQt6.QtWebEngineCore import QWebEnginePage
 from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
 
@@ -73,17 +73,12 @@ class PageController(QWebEnginePage):
 
     def set_theme_light(self):
         """Altera o tema da página para claro."""
-        self.profile().settings().setAttribute(
-            QWebEngineSettings.WebAttribute.ForceDarkMode, False)
-
+        self.runJavaScript("document.documentElement.style.colorScheme = 'light';")
         self.runJavaScript("document.body.classList.remove('dark');")
 
     def set_theme_dark(self):
         """Altera o tema da página para escuro."""
-
-        self.profile().settings().setAttribute(
-            QWebEngineSettings.WebAttribute.ForceDarkMode, False)
-
+        self.runJavaScript("document.documentElement.style.colorScheme = 'dark';")
         self.runJavaScript("document.body.classList.add('dark');")
 
     def new_chat(self):
