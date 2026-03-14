@@ -71,15 +71,21 @@ class SysTrayManager:
         """Configura as conexões dos sinais das ações da bandeja."""
         main_window = QApplication.instance().getWindow()
 
-        self._tray.activated.connect(main_window.show_window)
+        if main_window is None:
+            for widget in QApplication.topLevelWidgets():
+                if widget.inherits("MainWindow"):
+                    main_window = widget
+                    break
 
-        self._actions["show"].triggered.connect(main_window.show_window)
-        self._actions["settings"].triggered.connect(
-            lambda: self._open_settings(main_window))
-        self._actions["donation"].triggered.connect(
-            lambda: QDesktopServices.openUrl(QUrl(__donationPage__))
-        )
-        self._actions["exit"].triggered.connect(main_window.closeEvent)
+        if main_window:
+            self._tray.activated.connect(main_window.show_window)
+            self._actions["show"].triggered.connect(main_window.show_window)
+            self._actions["settings"].triggered.connect(
+                lambda: self._open_settings(main_window))
+            self._actions["donation"].triggered.connect(
+                lambda: QDesktopServices.openUrl(QUrl(__donationPage__))
+            )
+            self._actions["exit"].triggered.connect(main_window.closeEvent)
 
     def _set_icon(self, icon_type: TrayIcon.Type, number_notifications=0):
         """Atualiza o ícone da bandeja."""

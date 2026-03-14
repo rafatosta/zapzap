@@ -65,7 +65,7 @@ def main():
     ProxyManager.apply()
 
     # Abre site do ZapZap em primeiro acesso
-    if SettingsManager.get("website/open_page", True):
+    if SettingsManager.get("website/open_page", False):
         QDesktopServices.openUrl(QUrl(zapzap.__website__))
         SettingsManager.set("website/open_page", False)
 

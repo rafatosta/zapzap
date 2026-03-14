@@ -1,6 +1,6 @@
 from PyQt6.QtCore import QEasingCurve, QParallelAnimationGroup, QPropertyAnimation, QUrl
 from PyQt6.QtWidgets import QWidget, QPushButton, QMessageBox, QApplication
-from PyQt6.QtGui import QAction, QDesktopServices
+from PyQt6.QtGui import QAction, QDesktopServices, QPixmap
 from zapzap.controllers.PageButton import PageButton
 from zapzap.webengine.WebView import WebView
 from zapzap.models.User import User
@@ -28,6 +28,7 @@ class Browser(QWidget, Ui_Browser):
         self.page_buttons = {}  # Mapeamento entre botões e páginas
         self._sidebar_expanded_width = max(50, self.browser_sidebar.maximumWidth())
         self._sidebar_animation_group = None
+        self._last_active_webview = None
 
         self._initialize()
 
@@ -40,10 +41,36 @@ class Browser(QWidget, Ui_Browser):
         """Configura o navegador ao inicializar."""
         self._configure_flatpak_guidance()
         self._configure_signals()
+        self._setup_grid_view()
         self._load_users()
         self._select_default_page()
         self._update_user_menu()
         self.settings_sidebar()
+
+    def _setup_grid_view(self):
+        from PyQt6.QtWidgets import QScrollArea, QGridLayout, QFrame
+        # Setup the UI structure for the grid view
+        self.grid_scroll = QScrollArea(self)
+        self.grid_scroll.setWidgetResizable(True)
+        self.grid_widget = QWidget()
+        self.grid_layout = QGridLayout(self.grid_widget)
+        self.grid_scroll.setWidget(self.grid_widget)
+
+        # It goes into the stacked widget
+        self.pages.addWidget(self.grid_scroll)
+        self.grid_page_index = self.pages.indexOf(self.grid_scroll)
+
+        # Add grid button to sidebar
+        self.btn_grid_view = QPushButton(self.settings_buttons_layout)
+        self.btn_grid_view.setMinimumSize(35, 35)
+        self.btn_grid_view.setText("")
+        self.btn_grid_view.setIconSize(self.btn_open_settings.iconSize())
+        self.btn_grid_view.setToolTip(_("Grid view"))
+        self.btn_grid_view.clicked.connect(self.show_grid_view)
+        
+        # Insert before the line_2 which separates settings
+        idx = self.layout_2.indexOf(self.line_2)
+        self.layout_2.insertWidget(idx, self.btn_grid_view)
 
     def _configure_signals(self):
         """Configura os sinais do widget."""
@@ -210,7 +237,7 @@ class Browser(QWidget, Ui_Browser):
         """Busca o botão e a página correspondentes ao usuário."""
         for button in self.page_buttons.values():
             if button.user.id == user.id:
-                page = self.pages.widget(button.page_index - 1)
+                page = self.pages.widget(button.page_index)
                 return button, page
         return None, None
 
@@ -218,15 +245,24 @@ class Browser(QWidget, Ui_Browser):
         """Busca o primeiro botão e página habilitados."""
         for button in self.page_buttons.values():
             if button.user.enable:
-                page = self.pages.widget(button.page_index - 1)
+                page = self.pages.widget(button.page_index)
                 return button, page
         return None, None
 
     # === Ações do Navegador ===
     def switch_to_page(self, page: WebView, button: PageButton):
         """Alterna para a página selecionada e ajusta os estilos dos botões."""
+        old_page = self.pages.currentWidget()
+        if old_page and isinstance(old_page, WebView):
+            old_page.cached_screenshot = old_page.grab()
+            
         self._reset_button_styles()
         self.pages.setCurrentWidget(page)
+        self._last_active_webview = page
+        
+        # Apply proxy for the active account
+        from zapzap.services.ProxyManager import ProxyManager
+        ProxyManager.apply(user_id=page.user.id)
         page.page().show_toast(page.user.name if page.user.name !=
                                "" else _("Account {}").format(page.page_index))
         button.selected()
@@ -234,32 +270,141 @@ class Browser(QWidget, Ui_Browser):
     def close_pages(self):
         """Fecha e limpa todas as páginas existentes."""
         for i in range(self.pages.count()):
+            if i == self.grid_page_index: continue
             page = self.pages.widget(i)
-            if page:
+            if page and hasattr(page, '__del__'):
                 page.__del__()
 
     def reload_pages(self):
         """Recarrega todas as páginas existentes."""
         for i in range(self.pages.count()):
+            if i == self.grid_page_index: continue
             page = self.pages.widget(i)
             page.load_page()
 
     def close_conversations(self):
         """Fecha todas as conversas abertas."""
         for i in range(self.pages.count()):
+            if i == self.grid_page_index: continue
             page = self.pages.widget(i)
             page.close_conversation()
 
     def apply_custom_css_all_pages(self):
         for i in range(self.pages.count()):
+            if i == self.grid_page_index: continue
             page = self.pages.widget(i)
             page.apply_custom_css()
 
     def current_webview(self):
-        return self.pages.currentWidget()
+        current = self.pages.currentWidget()
+        if isinstance(current, WebView):
+            return current
+        return self._last_active_webview
+
+    def show_grid_view(self):
+        """Generates thumbnails and displays the grid view."""
+        from PyQt6.QtWidgets import QLabel, QSizePolicy
+        from PyQt6.QtCore import Qt
+        
+        class ClickableLabel(QLabel):
+            def __init__(self, pw, idx, switch_cb, parent=None):
+                super().__init__(parent)
+                self.pw = pw
+                self.idx = idx
+                self.switch_cb = switch_cb
+                self.setCursor(Qt.CursorShape.PointingHandCursor)
+            def mousePressEvent(self, event):
+                if event.button() == Qt.MouseButton.LeftButton:
+                    self.switch_cb(self.pw, self.idx)
+
+        current_page = self.pages.currentWidget()
+        if current_page and isinstance(current_page, WebView):
+            current_page.cached_screenshot = current_page.grab()
+
+        # Clear existing grid
+        while self.grid_layout.count():
+            item = self.grid_layout.takeAt(0)
+            widget = item.widget()
+            if widget:
+                widget.deleteLater()
+
+        # Remove spacing and margins
+        self.grid_layout.setContentsMargins(0, 0, 0, 0)
+        self.grid_layout.setSpacing(0)
+
+        # Layout logic
+        cols = int(SettingsManager.get("system/grid_cols", 2))
+        row, col = 0, 0
+        
+        # Count active accounts first to calculate layout
+        active_pages = []
+        for i in range(self.pages.count()):
+            if i == self.grid_page_index:
+                continue
+            page_widget = self.pages.widget(i)
+            if isinstance(page_widget, WebView) and page_widget.user.enable:
+                active_pages.append((page_widget, i))
+        
+        num_accounts = len(active_pages)
+        if num_accounts == 0:
+            return
+
+        # Calculate grid geometry
+        viewport_width = self.grid_scroll.viewport().width()
+        viewport_height = self.grid_scroll.viewport().height()
+        
+        # Calculate optimal rows/cols
+        # If user wants e.g. 3 cols but has 2 accounts, we still use 3 cols logic for consistency
+        # but for sizing we want to fill the screen
+        effective_rows = (num_accounts + cols - 1) // cols
+        
+        # Target dimensions (subtracting small margin for scrollbars/spacing)
+        target_width = (viewport_width // cols) - 4
+        target_height = (viewport_height // max(1, effective_rows)) - 4
+        
+        # Ensure minimum readable size if many accounts
+        target_width = max(200, target_width)
+        target_height = max(150, target_height)
+
+        for page_widget, i in active_pages:
+            # Capture screenshot
+            pixmap = getattr(page_widget, "cached_screenshot", None)
+            if not pixmap or pixmap.isNull():
+                pixmap = page_widget.grab()
+            
+            # Image Label
+            img_label = ClickableLabel(page_widget, i, self._switch_from_grid)
+            img_label.setPixmap(pixmap)
+            img_label.setScaledContents(True)
+            img_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            img_label.setFixedSize(target_width, target_height)
+            
+            self.grid_layout.addWidget(img_label, row, col)
+            
+            col += 1
+            if col >= cols:
+                col = 0
+                row += 1
+
+        self._reset_button_styles()
+        self.pages.setCurrentIndex(self.grid_page_index)
+
+    def _switch_from_grid(self, page_widget, index):
+        # We need to find the layout button to highlight it
+        target_button = None
+        for button in self.page_buttons.values():
+            if button.user.id == page_widget.user.id:
+                target_button = button
+                break
+                
+        if target_button:
+            self.switch_to_page(page_widget, target_button)
+        else:
+            self.pages.setCurrentWidget(page_widget)
 
     def update_spellcheck(self):
         for i in range(self.pages.count()):
+            if i == self.grid_page_index: continue
             page = self.pages.widget(i)
             page.configure_spellcheck()
 
@@ -288,6 +433,7 @@ class Browser(QWidget, Ui_Browser):
         """Define o tema claro para as páginas e botões."""
         # Define o tema claro para as páginas
         for i in range(self.pages.count()):
+            if i == self.grid_page_index: continue
             page = self.pages.widget(i)
             page.set_theme_light()
 
@@ -298,6 +444,7 @@ class Browser(QWidget, Ui_Browser):
         """Define o tema escuro para as páginas e botões."""
         # Define o tema escuro para as páginas
         for i in range(self.pages.count()):
+            if i == self.grid_page_index: continue
             page = self.pages.widget(i)
             page.set_theme_dark()
 
@@ -315,6 +462,12 @@ class Browser(QWidget, Ui_Browser):
 
         if hasattr(self, "btn_flatpak_help"):
             self.btn_flatpak_help.setIcon(SystemIcon.get_icon("flatpak_help", theme))
+
+        # Reusing the existing users group icon for grid view for simplicity
+        try:
+            self.btn_grid_view.setIcon(SystemIcon.get_icon("view_grid", theme))
+        except:
+            self.btn_grid_view.setIcon(SystemIcon.get_icon("new_chat", theme))
 
     def settings_sidebar(self):
         """Mostra ou esconde a barra lateral"""

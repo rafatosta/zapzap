@@ -18,49 +18,57 @@ class ProxyManager:
     
 
     @staticmethod
-    def apply():
-        """Aplica as configurações de proxy obtidas do SettingsManager."""
+    def apply(profile=None, user_id=None):
+        """Aplica as configurações de proxy.
+        Se user_id for fornecido, usa as configurações específicas desse usuário.
+        Se profile for fornecido, aplica o proxy apenas nesse perfil.
+        """
 
         logger = logging.getLogger(__name__)
+        prefix = f"{user_id}/proxy/" if user_id else "proxy/"
 
-        proxy_type_key = SettingsManager.get("proxy/proxyType", "NoProxy")
-        proxy_enable = SettingsManager.get("proxy/proxyEnable", False)
+        proxy_type_key = SettingsManager.get(f"{prefix}proxyType", "NoProxy")
+        proxy_enable = SettingsManager.get(f"{prefix}proxyEnable", False)
+
+        # Se for proxy por conta e estiver desabilitado, tenta o global
+        if user_id and not proxy_enable:
+            proxy_type_key = SettingsManager.get("proxy/proxyType", "NoProxy")
+            proxy_enable = SettingsManager.get("proxy/proxyEnable", False)
+            prefix = "proxy/"
 
         proxy = QtNetwork.QNetworkProxy()
-        proxy_info = [f"Proxy configurado: {proxy_type_key} ({'Habilitado' if proxy_enable else 'Desabilitado'})"]
-
+        
         if proxy_enable and proxy_type_key != 'NoProxy':
             proxy.setType(ProxyManager.PROXY_TYPES.get(
                 proxy_type_key, ProxyManager.PROXY_TYPES['NoProxy'])[0])
-            host_name = SettingsManager.get("proxy/hostName", "")
-            port = SettingsManager.get("proxy/port", "")
-            user = SettingsManager.get("proxy/user", "")
-            password = SettingsManager.get("proxy/password", "")
+            host_name = SettingsManager.get(f"{prefix}hostName", "")
+            port = SettingsManager.get(f"{prefix}port", "")
+            user = SettingsManager.get(f"{prefix}user", "")
+            password = SettingsManager.get(f"{prefix}password", "")
 
             if host_name:
                 proxy.setHostName(host_name)
-                proxy_info.append(f"Host: {host_name}")
             if port:
                 try:
                     proxy.setPort(int(port))
-                    proxy_info.append(f"Porta: {port}")
                 except ValueError:
-                    proxy_info.append(f"Porta inválida: {port}")
+                    pass
             if user:
                 proxy.setUser(user)
-                proxy_info.append(f"Usuário: {user}")
             if password:
                 proxy.setPassword(password)
-                proxy_info.append("Senha configurada.")
-        else:
-            proxy_info.append(f"Proxy padrão habilitado: {'Sim' if not proxy_enable else 'Não'}")
 
+        # Application-wide proxy is the only option in this version of Qt WebEngine
         QtNetwork.QNetworkProxy.setApplicationProxy(proxy)
-        QApplication.instance().getWindow().browser.reload_pages()
+        
+        # Log the application
+        if user_id:
+            logger.info(f"Global proxy switched to match account {user_id}: {proxy_type_key}")
+        else:
+            logger.info(f"Global proxy applied: {proxy_type_key}")
 
         # Consolidando as informações no log
-        for info in proxy_info:
-            logger.info(info)
+        logger.info(f"Proxy applied to {'profile' if profile else 'application'}: {proxy_type_key} (enabled={proxy_enable})")
 
     @staticmethod
     def get_proxy_description(proxy_type_key):

@@ -1,5 +1,4 @@
-from gettext import gettext as _
-# Form implementation generated from reading ui file './zapzap/ui/ui_page_network.ui'
+# Form implementation generated from reading ui file 'zapzap/ui/ui_page_network.ui'
 #
 # Created by: PyQt6 UI code generator 6.10.2
 #
@@ -100,6 +99,9 @@ class Ui_PageNetwork(object):
         self.formLayout_3.setLayout(6, QtWidgets.QFormLayout.ItemRole.SpanningRole, self.horizontalLayout_2)
         self.horizontalLayout_3.addLayout(self.formLayout_3)
         self.verticalLayout_2.addWidget(self.proxyCheckBox)
+        self.webrtcShieldCheckBox = QtWidgets.QCheckBox(parent=self.frame)
+        self.webrtcShieldCheckBox.setObjectName("webrtcShieldCheckBox")
+        self.verticalLayout_2.addWidget(self.webrtcShieldCheckBox)
         self.horizontalLayout.addWidget(self.frame)
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout.addItem(spacerItem2)
@@ -111,17 +113,18 @@ class Ui_PageNetwork(object):
         QtCore.QMetaObject.connectSlotsByName(PageNetwork)
 
     def retranslateUi(self, PageNetwork):
-        
-        self.label.setText(_("Network"))
-        self.proxyCheckBox.setTitle(_("Network proxy"))
-        self.portLabel.setText(_("Port"))
-        self.userLabel.setText(_("User"))
-        self.passwordLabel.setText(_("Password"))
-        self.hostNameLabel.setText(_("Hostname"))
-        self.label_3.setText(_("ProxyType"))
-        self.proxyDescription.setText(_("Description"))
-        self.btn_ok.setText(_("Apply"))
-        self.btn_restore.setText(_("Restore"))
+        _translate = QtCore.QCoreApplication.translate
+        self.label.setText(_translate("PageNetwork", "Network"))
+        self.proxyCheckBox.setTitle(_translate("PageNetwork", "Network proxy"))
+        self.portLabel.setText(_translate("PageNetwork", "Port"))
+        self.userLabel.setText(_translate("PageNetwork", "User"))
+        self.passwordLabel.setText(_translate("PageNetwork", "Password"))
+        self.hostNameLabel.setText(_translate("PageNetwork", "Hostname"))
+        self.label_3.setText(_translate("PageNetwork", "ProxyType"))
+        self.proxyDescription.setText(_translate("PageNetwork", "Description"))
+        self.btn_ok.setText(_translate("PageNetwork", "Apply"))
+        self.btn_restore.setText(_translate("PageNetwork", "Restore"))
+        self.webrtcShieldCheckBox.setText(_translate("PageNetwork", "Prevent WebRTC IP leak (Mask local IPs)"))
 
 
 if __name__ == "__main__":

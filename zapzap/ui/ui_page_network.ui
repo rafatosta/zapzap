@@ -196,6 +196,13 @@
           </layout>
          </widget>
         </item>
+        <item>
+         <widget class="QCheckBox" name="webrtcShieldCheckBox">
+          <property name="text">
+           <string>Prevent WebRTC IP leak (Mask local IPs)</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
      </item>

@@ -101,6 +101,8 @@ class PageGeneral(QWidget, Ui_PageGeneral):
 
         self.download_path.setText(DownloadManager.get_path())
 
+        self.btn_confirm_in_close.setChecked(
+            SettingsManager.get("system/confirm_on_close", False))
         self.btn_quit_in_close.setChecked(
             SettingsManager.get("system/quit_in_close", False))
         self.btn_start_background.setChecked(
@@ -132,6 +134,8 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         self.btn_restore_path_download.clicked.connect(
             self._handle_restore_path_download)
 
+        self.btn_confirm_in_close.clicked.connect(
+            lambda: SettingsManager.set("system/confirm_on_close", self.btn_confirm_in_close.isChecked()))
         self.btn_quit_in_close.clicked.connect(
             lambda: SettingsManager.set("system/quit_in_close", self.btn_quit_in_close.isChecked()))
         self.btn_start_background.clicked.connect(

@@ -1,6 +1,7 @@
 import shutil
+import os
 from PyQt6.QtWebEngineWidgets import QWebEngineView
-from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings, QWebEnginePage
+from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings, QWebEnginePage, QWebEngineScript
 from PyQt6.QtCore import QUrl, pyqtSignal, QTimer
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtGui import QAction
@@ -24,6 +25,17 @@ class WebView(QWebEngineView):
         "MemoryHttpCache": QWebEngineProfile.HttpCacheType.MemoryHttpCache,
         "DiskHttpCache": QWebEngineProfile.HttpCacheType.DiskHttpCache,
         "NoCache": QWebEngineProfile.HttpCacheType.NoCache
+    }
+
+    USER_AGENTS = {
+        "Default": __user_agent__,
+        "Windows Chrome": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Windows Firefox": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0",
+        "Windows Edge": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0",
+        "Mac Safari": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2.1 Safari/605.1.15",
+        "Mac Chrome": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Linux Firefox": "Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0",
+        "Linux Chrome": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     }
 
     def __init__(self, user: User = None, page_index=None, parent=None):
@@ -52,6 +64,7 @@ class WebView(QWebEngineView):
         """Configuração inicial."""
         self._configure_signals()
         self._configure_profile()
+
         self._setup_page()
 
     def _configure_signals(self):
@@ -62,7 +75,11 @@ class WebView(QWebEngineView):
     def _configure_profile(self):
         """Configura o perfil do QWebEngine."""
         self.profile = QWebEngineProfile(str(self.user.id), self)
-        self.profile.setHttpUserAgent(__user_agent__)
+
+        selected_ua_name = SettingsManager.get(f"{self.user.id}/user_agent", "Default")
+        ua_string = self.USER_AGENTS.get(selected_ua_name, self.USER_AGENTS["Default"])
+        self.profile.setHttpUserAgent(ua_string)
+
         self.profile.downloadRequested.connect(
             lambda download: DownloadManager.on_downloadRequested(
                 download,
@@ -85,6 +102,26 @@ class WebView(QWebEngineView):
 
         # Instala o handler de crash específico para este WebView
         crash_handler.register_profile(self.profile)
+        self._inject_webrtc_shield()
+
+    def _inject_webrtc_shield(self):
+        """Injeta script para prevenir vazamento de IP via WebRTC."""
+        if SettingsManager.get("privacy/webrtc_shield", True):
+            try:
+                base_dir = os.path.dirname(__file__)
+                js_path = os.path.join(base_dir, "webrtc_shield.js")
+                with open(js_path, "r", encoding="utf-8") as f:
+                    js_code = f.read()
+
+                script = QWebEngineScript()
+                script.setName("webrtc_shield")
+                script.setInjectionPoint(QWebEngineScript.InjectionPoint.DocumentCreation)
+                script.setRunsOnSubFrames(True)
+                script.setSourceCode(js_code)
+                script.setWorldId(QWebEngineScript.ScriptWorldId.MainWorld)
+                self.profile.scripts().insert(script)
+            except Exception as e:
+                print(f"Error injecting WebRTC shield: {e}")
 
     def configure_spellcheck(self):
         """Configura o corretor ortográfico."""
@@ -101,9 +138,14 @@ class WebView(QWebEngineView):
         """Configura a página e carrega a URL inicial."""
         self.whatsapp_page = PageController(self.profile, self)
         self.whatsapp_page.user_id = self.user.id
+        self.whatsapp_page.renderProcessTerminated.connect(self._on_render_crash)
         self.setPage(self.whatsapp_page)
         self.load(QUrl(__whatsapp_url__))
         self.setZoomFactor(self.user.zoomFactor)
+
+    def _on_render_crash(self, terminationStatus, exitCode):
+        print(f"Tab renderer crashed (status={terminationStatus}, code={exitCode}). Reloading...")
+        QTimer.singleShot(1000, self.load_page)
 
     def contextMenuEvent(self, event):
         """Cria o menu de contexto personalizado ao clicar com o botão direito."""
