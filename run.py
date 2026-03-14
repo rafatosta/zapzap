@@ -1,6 +1,6 @@
-#! env python3
 import os
 import sys
+import shutil
 
 
 def dev(build_translations=False):
@@ -123,8 +123,13 @@ def build():
             'zapzap/__main__.py'
         )
         os.system(pyinstaller_cmd)
+        
+        print("# === Zipping Build Archive ===")
+        shutil.make_archive("dist/ZapZap-Windows", 'zip', "dist/ZapZap")
+        
         print("✅ Windows build finished!")
         print("📦 Output: dist/ZapZap")
+        print("📦 Archive: dist/ZapZap-Windows.zip")
         return
 
     # ======================
