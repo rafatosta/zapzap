@@ -3,6 +3,9 @@ name: Build and Release Zapzap
 on:
   release:
     types: [created]
+  push:
+    tags:
+      - "v*"
 
 jobs:
   build-release:
