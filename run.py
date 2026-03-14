@@ -7,6 +7,11 @@ def dev(build_translations=False):
     """Run the app in development mode."""
     import sys as _sys
     print(f"Running in dev mode. Translations: {build_translations}")
+    
+    if "--help" in sys.argv or "-h" in sys.argv:
+        print("Usage: python run.py dev [--build-translations] [extra-args]")
+        return
+
     extra_args = " ".join(_sys.argv[2:])
 
     if _sys.platform == "win32":
@@ -46,6 +51,10 @@ def preview(build_translations=False):
     use_windows = "--windows" in sys.argv
 
     print("Starting app in preview mode...")
+
+    if "--help" in sys.argv or "-h" in sys.argv:
+        print("Usage: python run.py preview [--flatpak | --appimage | --windows] [--build-translations]")
+        return
 
     print(" # === Build the windows from the .ui file ===")
     os.system("chmod +x ./_scripts/build-windows.sh")
@@ -96,6 +105,10 @@ def build():
     build_appimage = "--appimage" in sys.argv
     build_flatpak = "--flatpak-onefile" in sys.argv
     build_windows = "--windows" in sys.argv
+
+    if "--help" in sys.argv or "-h" in sys.argv:
+        print("Usage: python run.py build [--windows | --appimage <version> | --flatpak-onefile]")
+        return
 
     # ======================
     # Windows EXE
@@ -212,10 +225,12 @@ def main():
         "build": build,
     }
 
-    if len(sys.argv) < 2 or sys.argv[1] not in commands:
+    if len(sys.argv) < 2 or sys.argv[1] not in commands or "--help" in sys.argv or "-h" in sys.argv:
         print(
             "Usage: python run.py [dev|preview|build] [--build-translations | --appimage | --flatpak-onefile | --windows | --flatpak]"
         )
+        if len(sys.argv) > 1 and sys.argv[1] in commands:
+            commands[sys.argv[1]]()
         return
 
     build_translations = "--build-translations" in sys.argv
