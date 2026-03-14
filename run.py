@@ -135,6 +135,7 @@ def build():
         pyinstaller_cmd = [
             sys.executable, "-m", "PyInstaller",
             "--name", "ZapZap",
+            "--onefile",
             "--windowed",
             "--noconfirm",
             "--add-data", "zapzap/po;zapzap/po",
@@ -150,14 +151,25 @@ def build():
             print(f"Error: PyInstaller failed with exit code {e.returncode}")
             sys.exit(1)
         
-        print("# === Zipping Build Archive ===")
-        if os.path.exists("dist/ZapZap"):
-            shutil.make_archive("dist/ZapZap-Windows", 'zip', "dist/ZapZap")
+        print("# === Creating Distribution ZIP ===")
+        # In --onefile mode, PyInstaller creates dist/ZapZap.exe
+        exe_path = "dist/ZapZap.exe"
+        if os.path.exists(exe_path):
+            # We create a temporary folder to zip it cleanly (so the zip contains the exe)
+            temp_zip_dir = "dist/ZapZap_zip_temp"
+            if os.path.exists(temp_zip_dir):
+                shutil.rmtree(temp_zip_dir)
+            os.makedirs(temp_zip_dir)
+            shutil.copy2(exe_path, os.path.join(temp_zip_dir, "ZapZap.exe"))
+            
+            shutil.make_archive("dist/ZapZap-Windows", 'zip', temp_zip_dir)
+            shutil.rmtree(temp_zip_dir)
+            
             print("Build finished successfully!")
-            print("Output: dist/ZapZap")
+            print(f"Output: {exe_path}")
             print("Archive: dist/ZapZap-Windows.zip")
         else:
-            print("Error: dist/ZapZap directory not found. Build failed.")
+            print(f"Error: {exe_path} not found. Build failed.")
             sys.exit(1)
         return
 
