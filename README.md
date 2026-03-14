@@ -189,6 +189,12 @@ AppImage:
 python run.py preview --appimage
 ```
 
+Windows:
+
+``` bash
+python run.py preview --windows
+```
+
 With translations:
 
 ``` bash
@@ -217,6 +223,10 @@ python run.py build --appimage 6.0
 python run.py build --flatpak-onefile
 ```
 
+Output:
+
+    dist/com.rtosta.zapzap.flatpak
+    
 ### 📦 Build Windows (EXE)
 
 ``` bash

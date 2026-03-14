@@ -43,6 +43,7 @@ def preview(build_translations=False):
     SDK_VERSION = "6.10"
     use_flatpak = "--flatpak" in sys.argv
     use_appimage = "--appimage" in sys.argv
+    use_windows = "--windows" in sys.argv
 
     print("Starting app in preview mode...")
 
@@ -77,8 +78,13 @@ def preview(build_translations=False):
         print("# === Running in AppImage mode ===")
         os.system("chmod +x ./_scripts/build-appimage-local.sh")
         os.system("./_scripts/build-appimage-local.sh")
+    elif use_windows:
+        print("# === Running in Windows Preview mode ===")
+        build()
+        print("# === Starting Executable === ")
+        os.system(r"dist\ZapZap\ZapZap.exe")
     else:
-        print("Error: Specify --flatpak or --appimage for preview mode.")
+        print("Error: Specify --flatpak, --appimage or --windows for preview mode.")
 
 
 def build():
@@ -203,7 +209,7 @@ def main():
 
     if len(sys.argv) < 2 or sys.argv[1] not in commands:
         print(
-            "Usage: python run.py [dev|preview|build] [--build-translations | --appimage | --flatpak-onefile | --windows]"
+            "Usage: python run.py [dev|preview|build] [--build-translations | --appimage | --flatpak-onefile | --windows | --flatpak]"
         )
         return
 
