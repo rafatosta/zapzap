@@ -1,4 +1,4 @@
-# [ZapZap](https://rtosta.com/zapzap-web/) – WhatsApp Desktop for Linux
+# [ZapZap](https://rtosta.com/zapzap-web/) – WhatsApp Desktop for Linux & Windows
 ![ZapZap for WhatsApp](share/screenshot/default.png)
 
 ## 📌 About
@@ -37,6 +37,7 @@ ZapZap extends WhatsApp Web with additional features:
 - Adaptive **system tray icon** (notifies new messages)
 - **Background process** support
 - **Drag-and-drop** functionality
+- **Account Grid View** (Quickly switch between all accounts)
 - Ability to select a **custom folder for downloads**
 - **Temporary folder** for opening files
 
@@ -48,6 +49,7 @@ ZapZap extends WhatsApp Web with additional features:
 - **Custom CSS/JS** with global + per-account override
 - **Reorganized Settings Panel**
 - Added **Performance section**
+- **Native Windows support** (SQLite + Registry settings)
 
 ### 🧩 Customizations
 - New **Customizations** page in Settings
@@ -215,9 +217,16 @@ python run.py build --appimage 6.0
 python run.py build --flatpak-onefile
 ```
 
+### 📦 Build Windows (EXE)
+
+``` bash
+python run.py build --windows
+```
+
 Output:
 
-    dist/com.rtosta.zapzap.flatpak
+    dist/ZapZap/ZapZap.exe
+
 
 
 
