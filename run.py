@@ -128,7 +128,7 @@ def build():
                 try:
                     subprocess.run([sys.executable, "-m", "PyQt6.uic.pyuic", "-x", src, "-o", dst], check=True)
                 except Exception as e:
-                    print(f"⚠️ Warning: Compilation failed for {src}. Trying fallback pyuic6 command...")
+                    print(f"Warning: Compilation failed for {src}. Trying fallback pyuic6 command...")
                     subprocess.run(["pyuic6", "-x", src, "-o", dst], check=True)
 
         print("# === Running PyInstaller ===")
@@ -147,7 +147,7 @@ def build():
         try:
             subprocess.run(pyinstaller_cmd, check=True)
         except subprocess.CalledProcessError as e:
-            print(f"❌ Error: PyInstaller failed with exit code {e.returncode}")
+            print(f"Error: PyInstaller failed with exit code {e.returncode}")
             sys.exit(1)
         
         print("# === Zipping Build Archive ===")
