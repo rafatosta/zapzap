@@ -236,6 +236,7 @@ python run.py build --windows
 Output:
 
     dist/ZapZap/ZapZap.exe
+    dist/ZapZap-Windows.zip
 
 
 
