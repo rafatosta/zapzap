@@ -1,6 +1,7 @@
 import os
 import sys
 import shutil
+import subprocess
 
 
 def dev(build_translations=False):
@@ -124,25 +125,40 @@ def build():
         for src, dst in ui_files:
             if os.path.exists(src):
                 print(f"Compiling {src} -> {dst}")
-                os.system(f"pyuic6 -x {src} -o {dst}")
+                try:
+                    subprocess.run([sys.executable, "-m", "PyQt6.uic.pyuic", "-x", src, "-o", dst], check=True)
+                except Exception as e:
+                    print(f"⚠️ Warning: Compilation failed for {src}. Trying fallback pyuic6 command...")
+                    subprocess.run(["pyuic6", "-x", src, "-o", dst], check=True)
 
         print("# === Running PyInstaller ===")
-        pyinstaller_cmd = (
-            'pyinstaller --name ZapZap --windowed --noconfirm '
-            '--add-data "zapzap/po;zapzap/po" '
-            '--add-data "zapzap/ui;zapzap/ui" '
-            '--add-data "zapzap/resources;zapzap/resources" '
-            '--add-data "zapzap/webengine/webrtc_shield.js;zapzap/webengine" '
-            'zapzap/__main__.py'
-        )
-        os.system(pyinstaller_cmd)
+        pyinstaller_cmd = [
+            sys.executable, "-m", "PyInstaller",
+            "--name", "ZapZap",
+            "--windowed",
+            "--noconfirm",
+            "--add-data", "zapzap/po;zapzap/po",
+            "--add-data", "zapzap/ui;zapzap/ui",
+            "--add-data", "zapzap/resources;zapzap/resources",
+            "--add-data", "zapzap/webengine/webrtc_shield.js;zapzap/webengine",
+            "zapzap/__main__.py"
+        ]
+        
+        try:
+            subprocess.run(pyinstaller_cmd, check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"❌ Error: PyInstaller failed with exit code {e.returncode}")
+            sys.exit(1)
         
         print("# === Zipping Build Archive ===")
-        shutil.make_archive("dist/ZapZap-Windows", 'zip', "dist/ZapZap")
-        
-        print("✅ Windows build finished!")
-        print("📦 Output: dist/ZapZap")
-        print("📦 Archive: dist/ZapZap-Windows.zip")
+        if os.path.exists("dist/ZapZap"):
+            shutil.make_archive("dist/ZapZap-Windows", 'zip', "dist/ZapZap")
+            print("✅ Windows build finished!")
+            print("📦 Output: dist/ZapZap")
+            print("📦 Archive: dist/ZapZap-Windows.zip")
+        else:
+            print("❌ Error: dist/ZapZap directory not found. Build failed.")
+            sys.exit(1)
         return
 
     # ======================
