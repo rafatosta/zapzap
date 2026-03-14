@@ -153,11 +153,11 @@ def build():
         print("# === Zipping Build Archive ===")
         if os.path.exists("dist/ZapZap"):
             shutil.make_archive("dist/ZapZap-Windows", 'zip', "dist/ZapZap")
-            print("✅ Windows build finished!")
-            print("📦 Output: dist/ZapZap")
-            print("📦 Archive: dist/ZapZap-Windows.zip")
+            print("Build finished successfully!")
+            print("Output: dist/ZapZap")
+            print("Archive: dist/ZapZap-Windows.zip")
         else:
-            print("❌ Error: dist/ZapZap directory not found. Build failed.")
+            print("Error: dist/ZapZap directory not found. Build failed.")
             sys.exit(1)
         return
 
@@ -219,8 +219,8 @@ def build():
             f"--runtime-repo=https://flathub.org/repo/flathub.flatpakrepo"
         )
 
-        print("✅ Flatpak Onefile build finished!")
-        print(f"📦 Output: {dist_dir}/{bundle_name}")
+        print("Flatpak Onefile build finished!")
+        print(f"Output: {dist_dir}/{bundle_name}")
         return
 
     # ======================
