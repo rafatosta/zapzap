@@ -262,7 +262,7 @@ class OnboardingDialog(QDialog):
 
         dots_row = QHBoxLayout()
         dots_row.addStretch()
-        for _ in range(self.TOTAL_STEPS):
+        for step_index in range(self.TOTAL_STEPS):
             dot = QLabel()
             dot.setFixedSize(10, 10)
             self._dots.append(dot)
