@@ -198,6 +198,9 @@
         </item>
         <item>
          <widget class="QCheckBox" name="webrtcShieldCheckBox">
+          <property name="toolTip">
+           <string>Prevents websites from discovering your network address using WebRTC.</string>
+          </property>
           <property name="text">
            <string>Prevent WebRTC IP leak (Mask local IPs)</string>
           </property>

@@ -1,8 +1,9 @@
-from PyQt6.QtWidgets import QWidget, QCheckBox
+from PyQt6.QtWidgets import QWidget, QComboBox, QLabel, QHBoxLayout, QWidget
 from zapzap.services.ProxyManager import ProxyManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.views.ui_page_network import Ui_PageNetwork
-
+from zapzap.models.User import User
+from gettext import gettext as _
 
 class PageNetwork(QWidget, Ui_PageNetwork):
     def __init__(self, parent=None):
@@ -15,10 +16,6 @@ class PageNetwork(QWidget, Ui_PageNetwork):
 
     def _setup_account_selector(self):
         """Adiciona um seletor de conta ao topo da configuração de rede."""
-        from PyQt6.QtWidgets import QComboBox, QLabel, QHBoxLayout, QWidget
-        from zapzap.models.User import User
-        from gettext import gettext as _
-        
         self.selector_widget = QWidget(parent=self.frame)
         self.selector_layout = QHBoxLayout(self.selector_widget)
         self.selector_layout.setContentsMargins(0, 0, 0, 10)
@@ -40,7 +37,6 @@ class PageNetwork(QWidget, Ui_PageNetwork):
         
         self.selector_widget.show()
         self.accountSelector.currentIndexChanged.connect(self._load_settings)
-        print("PageNetwork: Widget-based account selector loaded.")
 
     def _get_prefix(self):
         user_id = self.accountSelector.currentData()
@@ -67,7 +63,7 @@ class PageNetwork(QWidget, Ui_PageNetwork):
         
         # WebRTC is usually a global privacy toggle
         self.webrtcShieldCheckBox.setChecked(
-            SettingsManager.get("privacy/webrtc_shield", True))
+            SettingsManager.get("privacy/webrtc_shield", False))
 
     def _save_settings(self):
         """Salva as configurações de proxy no SettingsManager."""

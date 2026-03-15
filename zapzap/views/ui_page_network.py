@@ -125,6 +125,7 @@ class Ui_PageNetwork(object):
         self.proxyDescription.setText(_("Description"))
         self.btn_ok.setText(_("Apply"))
         self.btn_restore.setText(_("Restore"))
+        self.webrtcShieldCheckBox.setToolTip(_("Prevents websites from discovering your network address using WebRTC."))
         self.webrtcShieldCheckBox.setText(_("Prevent WebRTC IP leak (Mask local IPs)"))
 
 
