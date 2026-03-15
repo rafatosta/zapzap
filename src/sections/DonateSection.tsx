@@ -1,4 +1,3 @@
-import { useEffect, useMemo, useState } from "react";
 import {
   LuHeartHandshake as Heart,
   LuExternalLink as ExternalLink,
@@ -11,41 +10,8 @@ import { Badge, Button, Card } from "flowbite-react";
 import { Container } from "../components/Container";
 import { Trans, useTranslation } from "react-i18next";
 
-type SponsorsGoalApiResponse = {
-  currentMonthlyAmount: number;
-  monthlyGoal: number;
-  currency?: string;
-};
-
 function DonationSection() {
   const { t } = useTranslation();
-  const [goalData, setGoalData] = useState<SponsorsGoalApiResponse | null>(null);
-  const [goalFetchError, setGoalFetchError] = useState(false);
-
-  useEffect(() => {
-    const goalApiUrl = import.meta.env.VITE_SPONSORS_GOAL_API_URL;
-
-    if (!goalApiUrl) return;
-
-    fetch(goalApiUrl)
-      .then((res) => {
-        if (!res.ok) throw new Error("failed to fetch sponsors goal");
-        return res.json() as Promise<SponsorsGoalApiResponse>;
-      })
-      .then((data) => {
-        if (
-          typeof data.currentMonthlyAmount !== "number" ||
-          typeof data.monthlyGoal !== "number" ||
-          data.monthlyGoal <= 0
-        ) {
-          throw new Error("invalid sponsors goal payload");
-        }
-        setGoalData(data);
-      })
-      .catch(() => {
-        setGoalFetchError(true);
-      });
-  }, []);
 
   const impactItems = t("donationSection.impact.items", {
     returnObjects: true,
@@ -114,29 +80,6 @@ function DonationSection() {
     },
   ];
 
-  const goalProgressPercent = useMemo(() => {
-    if (goalData) {
-      return Math.max(
-        0,
-        Math.min(100, Math.round((goalData.currentMonthlyAmount / goalData.monthlyGoal) * 100)),
-      );
-    }
-
-    const fallback = Number.parseInt(t("donationSection.goal.fallbackPercent"), 10);
-    return Number.isFinite(fallback) ? fallback : 38;
-  }, [goalData, t]);
-
-  const goalProgressLabel = useMemo(() => {
-    if (!goalData) return t("donationSection.goal.progress");
-
-    return t("donationSection.goal.dynamicProgress", {
-      current: goalData.currentMonthlyAmount,
-      goal: goalData.monthlyGoal,
-      currency: goalData.currency ?? "USD",
-      percent: goalProgressPercent,
-    });
-  }, [goalData, goalProgressPercent, t]);
-
   return (
     <Container name="donate">
       <div className="mx-auto max-w-3xl text-center">
@@ -168,9 +111,6 @@ function DonationSection() {
             <p className="text-muted-foreground leading-relaxed">
               {t("donationSection.sustainability.description")}
             </p>
-            <p className="text-muted-foreground text-xs">
-              {t("donationSection.goal.dataSource")}
-            </p>
           </div>
 
           <div className="border-primary-200 dark:border-primary-700 min-w-56 rounded-xl border bg-white/70 p-4 dark:bg-gray-900/50">
@@ -179,32 +119,31 @@ function DonationSection() {
                 <Target className="h-4 w-4" />
                 {t("donationSection.goal.label")}
               </span>
-              <span>{goalProgressPercent}%</span>
+              <span>{t("donationSection.goal.progress")}</span>
             </div>
             <div className="h-2.5 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
-              <div
-                className="from-primary-500 h-full bg-gradient-to-r to-green-500"
-                style={{ width: `${goalProgressPercent}%` }}
-              />
+              <div className="from-primary-500 h-full w-[38%] bg-gradient-to-r to-green-500" />
             </div>
-            <p className="text-muted-foreground mt-2 text-sm">{goalProgressLabel}</p>
-            {goalFetchError && (
-              <p className="mt-1 text-xs text-amber-600 dark:text-amber-500">
-                {t("donationSection.goal.fetchWarning")}
-              </p>
-            )}
+            <p className="text-muted-foreground mt-2 text-sm">
+              {t("donationSection.goal.caption")}
+            </p>
           </div>
         </div>
       </Card>
 
       <div className="mt-6 grid gap-4 md:grid-cols-3">
         {impactItems.map((item, idx) => (
-          <Card key={idx} className="border-primary-100 dark:border-primary-900">
+          <Card
+            key={idx}
+            className="border-primary-100 dark:border-primary-900"
+          >
             <div className="p-5">
               <p className="text-primary-700 dark:text-primary-300 mb-1 text-2xl font-bold">
                 {item.value}
               </p>
-              <p className="text-muted-foreground text-sm">{item.description}</p>
+              <p className="text-muted-foreground text-sm">
+                {item.description}
+              </p>
             </div>
           </Card>
         ))}
@@ -212,7 +151,10 @@ function DonationSection() {
 
       <div className="mt-6 grid gap-8 md:grid-cols-2">
         {donationOptions.map((option, index) => (
-          <Card key={index} className="group hover:-translate-y-2 hover:shadow-xl">
+          <Card
+            key={index}
+            className="group hover:-translate-y-2 hover:shadow-xl"
+          >
             <div className="p-8">
               <div className="mb-4 flex items-start justify-between">
                 <div
