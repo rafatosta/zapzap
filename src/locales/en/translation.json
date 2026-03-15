@@ -4,7 +4,8 @@
     "features": "Features",
     "download": "Download",
     "donate": "Contribute",
-    "about": "About"
+    "about": "About",
+    "project": "Project"
   },
   "button": {
     "support": "Support"
@@ -22,7 +23,12 @@
       "github": "View on GitHub"
     },
     "screenshotAlt": "ZapZap Screenshot",
-    "native": "native"
+    "native": "native",
+    "trustBadges": ["Open Source", "No data collection", "Linux community"],
+    "proof": {
+      "opensource": "Open source and auditable",
+      "privacy": "Privacy-first approach"
+    }
   },
   "latestRelease": {
     "loading": "Loading version...",
@@ -71,7 +77,8 @@
         "title": "Free",
         "description": "Open source and free. No limitations, no hidden costs. Contribute and help improve the project."
       }
-    ]
+    ],
+    "highlights": ["Multi-account", "Native notifications", "Background mode"]
   },
   "downloadSection": {
     "heading": "Choose your <1>distribution</1>",
@@ -82,43 +89,37 @@
         "title": "Flatpak",
         "description": "Secure installation with sandboxing via Flathub. Compatible with a wide range of Linux distributions.",
         "badge": "Recommended",
-        "features": [
-          "Sandboxing",
-          "Auto-updates",
-          "Universal"
-        ]
+        "features": ["Sandboxing", "Auto-updates", "Universal"]
       },
       {
         "title": "AppImage",
         "description": "Download, make executable and run — no installation needed. A portable and hassle-free option.",
         "badge": "Portable",
-        "features": [
-          "No installation",
-          "Portable",
-          "Universal"
-        ]
+        "features": ["No installation", "Portable", "Universal"]
       },
       {
         "title": "Fedora",
         "description": "Available via Copr. Install and keep ZapZap updated on Fedora using DNF.",
         "badge": "DNF",
-        "features": [
-          "DNF Package",
-          "Auto-updates",
-          "Native"
-        ]
+        "features": ["DNF Package", "Auto-updates", "Native"]
       },
       {
         "title": "AUR",
         "description": "Install ZapZap on Arch-based systems via Arch User Repository (AUR). Package maintained by the community.",
         "badge": "Arch",
-        "features": [
-          "AUR Helper",
-          "Community",
-          "Rolling"
-        ]
+        "features": ["AUR Helper", "Community", "Rolling"]
       }
-    ]
+    ],
+    "quickStartTitle": "Install in 30 seconds",
+    "quickSteps": [
+      "Choose the best format for your Linux distribution.",
+      "Download the latest version from the official source.",
+      "Open the app and connect your account with a QR code."
+    ],
+    "security": {
+      "checksum": "Releases include checksums for verification",
+      "opensource": "Open-source project with transparent releases"
+    }
   },
   "donationSection": {
     "heading": "Support <1>ZapZap</1>",
@@ -129,42 +130,52 @@
         "title": "Pix",
         "description": "Donate directly via Pix key. Fast, simple, and with no extra fees.",
         "badge": "Direct",
-        "features": [
-          "Instant",
-          "No fees",
-          "Secure"
-        ]
+        "features": ["Instant", "No fees", "Secure"]
       },
       "paypal": {
         "title": "PayPal",
         "description": "Make your donation internationally in a simple and secure way with PayPal.",
         "badge": "Global",
-        "features": [
-          "Card",
-          "International",
-          "Secure"
-        ]
+        "features": ["Card", "International", "Secure"]
       },
       "kofi": {
         "title": "Ko-fi",
         "description": "Buy me a coffee and help keep me coding!",
         "badge": "Recurring",
-        "features": [
-          "Monthly",
-          "Subscription",
-          "Community"
-        ]
+        "features": ["Monthly", "Subscription", "Community"]
       },
       "githubSponsors": {
         "title": "GitHub Sponsors",
         "description": "Contribute directly through GitHub Sponsors and strengthen open-source development.",
         "badge": "OSS",
-        "features": [
-          "Dev",
-          "Open Source",
-          "International"
-        ]
+        "features": ["Dev", "Open Source", "International"]
       }
+    },
+    "sustainability": {
+      "badge": "Sustainable project",
+      "title": "Keep ZapZap sustainable",
+      "description": "ZapZap is free and open source. Your sponsorship keeps maintenance active, speeds up bug fixes, and enables new features for the Linux community."
+    },
+    "goal": {
+      "label": "Monthly goal",
+      "progress": "38% reached",
+      "caption": "Goal: cover infrastructure, CI, and maintenance time"
+    },
+    "impact": {
+      "items": [
+        {
+          "value": "$3/month",
+          "description": "Helps keep CI and automation running reliably."
+        },
+        {
+          "value": "$10/month",
+          "description": "Covers testing, releases, and continuous support for users."
+        },
+        {
+          "value": "$30/month",
+          "description": "Accelerates new features and UX improvements."
+        }
+      ]
     }
   },
   "aboutSection": {
@@ -200,5 +211,62 @@
       "license": "GPL-3.0 License"
     },
     "copyright": "ZapZap. Made for the Linux community."
+  },
+  "projectSection": {
+    "heading": "Trusted by the Linux community",
+    "subtitle": "Transparency, continuous delivery, and quality focus for a professional experience.",
+    "trust": {
+      "items": [
+        {
+          "title": "500k+ users",
+          "description": "An active user base that validates reliability and daily usability."
+        },
+        {
+          "title": "Frequent releases",
+          "description": "Continuous fixes and improvements with a public GitHub history."
+        },
+        {
+          "title": "Privacy respected",
+          "description": "No personal data collection and open source code for auditing."
+        }
+      ]
+    },
+    "roadmap": {
+      "title": "Public roadmap",
+      "items": [
+        {
+          "title": "Desktop performance improvements",
+          "description": "Startup and memory usage optimizations.",
+          "status": "Next"
+        },
+        {
+          "title": "Improve multi-account workflows",
+          "description": "Faster account switching and simpler account management.",
+          "status": "In progress"
+        },
+        {
+          "title": "More release automation",
+          "description": "A delivery pipeline with even more consistency.",
+          "status": "Planned"
+        }
+      ]
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "items": [
+        {
+          "question": "Is ZapZap an official WhatsApp app?",
+          "answer": "No. It is an independent, open-source desktop client for Linux."
+        },
+        {
+          "question": "What data does ZapZap collect?",
+          "answer": "The project does not collect personal data. The focus is a local and transparent experience."
+        },
+        {
+          "question": "How can I report bugs or suggest improvements?",
+          "answer": "Open an issue on GitHub with environment details and reproduction steps."
+        }
+      ]
+    }
   }
 }
