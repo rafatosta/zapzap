@@ -345,8 +345,6 @@ class OnboardingManager:
         dialog = OnboardingDialog(parent)
         result = dialog.exec()
 
-        # Mantém compatibilidade com comportamento antigo do primeiro acesso
-        SettingsManager.set("website/open_page", False)
         return result == QDialog.DialogCode.Accepted
 
     @staticmethod
