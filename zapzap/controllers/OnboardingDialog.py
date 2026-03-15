@@ -84,26 +84,29 @@ class _TipItem(QWidget):
 class _PermissionsPage(_OnboardingPage):
     def __init__(self, parent=None):
         super().__init__(
-            _("Permissões e arquivos"),
-            _("Alguns acessos são necessários para enviar e baixar mídias sem erros."),
+            _("Permissions and files"),
+            _("Some permissions are required to send and download media without errors."),
             parent,
         )
 
         tips = [
             (
                 "📁",
-                _("Pasta de downloads"),
-                _("Arquivos recebidos serão salvos na pasta definida em Configurações → Geral."),
+                _("Downloads folder"),
+                _("Received files will be saved in the folder defined in Settings → General."),
             ),
             (
                 "📎",
-                _("Envio de mídia"),
-                _("Para anexar imagens, vídeos e documentos, permita acesso às suas pastas."),
+                _("Attach media"),
+                _("To attach images, videos, and documents, allow access to your folders."),
             ),
             (
                 "🔒",
-                _("Usuários Flatpak"),
-                _("Se houver erro ao anexar arquivo, use o Flatseal para liberar Documentos, Downloads, Imagens e Vídeos."),
+                _("Flatpak users"),
+                _(
+                    "If you have trouble attaching files, use Flatseal to allow access "
+                    "to Documents, Downloads, Pictures, and Videos."
+                ),
             ),
         ]
 
@@ -114,24 +117,24 @@ class _PermissionsPage(_OnboardingPage):
 class _NotificationsPage(_OnboardingPage):
     def __init__(self, parent=None):
         super().__init__(
-            _("Notificações"),
-            _("Escolha como o ZapZap deve avisar sobre novas mensagens."),
+            _("Notifications"),
+            _("Choose how ZapZap should notify you about new messages."),
             parent,
         )
 
-        self.enable_notifications = QCheckBox(_("Ativar notificações do aplicativo"))
+        self.enable_notifications = QCheckBox(_("Enable notifications"))
         self.enable_notifications.setChecked(SettingsManager.get("notification/app", True))
         self.enable_notifications.toggled.connect(
             lambda value: SettingsManager.set("notification/app", value)
         )
         self.content_layout.addWidget(self.enable_notifications)
 
-        self.enable_tray = QCheckBox(_("Mostrar ícone na bandeja do sistema"))
+        self.enable_tray = QCheckBox(_("Show system tray icon"))
         self.enable_tray.setChecked(SettingsManager.get("system/tray_icon", True))
         self.enable_tray.toggled.connect(self._on_tray_toggled)
         self.content_layout.addWidget(self.enable_tray)
 
-        self.enable_counter = QCheckBox(_("Mostrar contador de mensagens no ícone"))
+        self.enable_counter = QCheckBox(_("Show unread counter on icon"))
         self.enable_counter.setChecked(SettingsManager.get("system/notificationCounter", False))
         self.enable_counter.toggled.connect(
             lambda value: SettingsManager.set("system/notificationCounter", value)
@@ -139,7 +142,7 @@ class _NotificationsPage(_OnboardingPage):
         self.content_layout.addWidget(self.enable_counter)
 
         note = QLabel(
-            _("As notificações também dependem das permissões do seu sistema operacional.")
+            _("Notifications may also depend on your operating system permissions.")
         )
         note.setWordWrap(True)
         note.setStyleSheet("color: #666; font-style: italic;")
@@ -152,18 +155,18 @@ class _NotificationsPage(_OnboardingPage):
 class _VisualPage(_OnboardingPage):
     def __init__(self, parent=None):
         super().__init__(
-            _("Aparência"),
-            _("Ajuste o tema e a escala para deixar a interface mais confortável."),
+            _("Appearance"),
+            _("Adjust the theme and scale to make the interface more comfortable."),
             parent,
         )
 
-        self.content_layout.addWidget(QLabel(f"<b>{_('Tema')}</b>"))
+        self.content_layout.addWidget(QLabel(f"<b>{_('Theme')}</b>"))
 
         theme = SettingsManager.get("system/theme", ThemeManager.Type.Auto.value)
 
-        self.theme_auto = QRadioButton(_("Automático (seguir sistema)"))
-        self.theme_light = QRadioButton(_("Claro"))
-        self.theme_dark = QRadioButton(_("Escuro"))
+        self.theme_auto = QRadioButton(_("Automatic (follow system theme)"))
+        self.theme_light = QRadioButton(_("Light"))
+        self.theme_dark = QRadioButton(_("Dark"))
 
         mapping = {
             ThemeManager.Type.Auto.value: self.theme_auto,
@@ -191,8 +194,9 @@ class _VisualPage(_OnboardingPage):
         self.content_layout.addWidget(line)
 
         label_row = QHBoxLayout()
-        label_row.addWidget(QLabel(f"<b>{_('Escala')}</b>"))
+        label_row.addWidget(QLabel(f"<b>{_('Scale')}</b>"))
         label_row.addStretch()
+
         self.scale_label = QLabel()
         label_row.addWidget(self.scale_label)
         self.content_layout.addLayout(label_row)
@@ -211,7 +215,7 @@ class _VisualPage(_OnboardingPage):
         self.scale_slider.valueChanged.connect(self._on_scale_changed)
         self.content_layout.addWidget(self.scale_slider)
 
-        hint = QLabel(_("A escala será aplicada no próximo reinício do ZapZap."))
+        hint = QLabel(_("The scale will be applied after restarting ZapZap."))
         hint.setWordWrap(True)
         hint.setStyleSheet("color: #666; font-style: italic;")
         self.content_layout.addWidget(hint)
@@ -229,7 +233,7 @@ class OnboardingDialog(QDialog):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setWindowTitle(_("Bem-vindo ao ZapZap"))
+        self.setWindowTitle(_("Welcome to ZapZap"))
         self.setModal(True)
         self.resize(560, 480)
 
@@ -272,23 +276,23 @@ class OnboardingDialog(QDialog):
 
         nav_row = QHBoxLayout()
 
-        self.btn_skip = QPushButton(_("Pular"))
+        self.btn_skip = QPushButton(_("Skip"))
         self.btn_skip.clicked.connect(self._on_skip)
         nav_row.addWidget(self.btn_skip)
 
         nav_row.addStretch()
 
-        self.btn_previous = QPushButton(_("Anterior"))
+        self.btn_previous = QPushButton(_("Previous"))
         self.btn_previous.clicked.connect(self._on_previous)
         nav_row.addWidget(self.btn_previous)
 
-        self.btn_next = QPushButton(_("Próximo"))
+        self.btn_next = QPushButton(_("Next"))
         self.btn_next.clicked.connect(self._on_next)
         nav_row.addWidget(self.btn_next)
 
         col.addLayout(nav_row)
 
-        self.chk_dont_show = QCheckBox(_("Não mostrar novamente"))
+        self.chk_dont_show = QCheckBox(_("Don't show again"))
         col.addWidget(self.chk_dont_show)
 
         return footer
@@ -305,7 +309,7 @@ class OnboardingDialog(QDialog):
 
         is_last = self.current_step == self.TOTAL_STEPS - 1
         self.btn_previous.setVisible(self.current_step > 0)
-        self.btn_next.setText(_("Concluir") if is_last else _("Próximo"))
+        self.btn_next.setText(_("Finish") if is_last else _("Next"))
 
     def _on_next(self):
         if self.current_step < self.TOTAL_STEPS - 1:
