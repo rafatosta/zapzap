@@ -51,14 +51,17 @@ packages = [
   "zapzap.views",
   "zapzap.debug",
   "zapzap.notifications",
-  "zapzap.webengine"
+  "zapzap.webengine",
+  "zapzap.ui",
+  "zapzap.ui.components"
 ]
 
 [tool.setuptools.package-data]
 zapzap = [
   "po/*/LC_MESSAGES/*.mo",
   "js/*",
-  "extensions/*"
+  "extensions/*",
+  "ui/styles/*.qss"
 ]
 
 [tool.setuptools.dynamic]
