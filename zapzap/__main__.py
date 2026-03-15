@@ -12,6 +12,7 @@ from zapzap.services.ProxyManager import ProxyManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.TranslationManager import TranslationManager
 from zapzap.resources.TrayIcon import TrayIcon
+from zapzap.ui.onboarding import OnboardingManager
 
 from zapzap.debug import crash_handler
 
@@ -73,6 +74,7 @@ def main():
         main_window.hide()
     else:
         main_window.show()
+        OnboardingManager.show(main_window)
 
     # Start app
     sys.exit(app.exec())
