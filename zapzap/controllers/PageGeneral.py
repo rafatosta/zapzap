@@ -1,6 +1,15 @@
 from PyQt6.QtCore import Qt, QUrl
 from PyQt6.QtGui import QDesktopServices
-from PyQt6.QtWidgets import QWidget, QApplication, QStyle, QLabel, QPushButton, QHBoxLayout, QLineEdit
+from PyQt6.QtWidgets import (
+    QWidget,
+    QApplication,
+    QStyle,
+    QLabel,
+    QPushButton,
+    QHBoxLayout,
+    QLineEdit,
+    QGroupBox,
+)
 from zapzap.services.SetupManager import SetupManager
 from zapzap.services.AutostartManager import AutostartManager
 from zapzap.services.DictionariesManager import DictionariesManager
@@ -24,6 +33,8 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         self._configure_signals()
 
     def _configure_ui(self):
+
+        self._add_quick_actions()
 
         self.btn_path_download.setIcon(
             self.style().standardIcon(QStyle.StandardPixmap.SP_DirIcon))
@@ -76,6 +87,29 @@ class PageGeneral(QWidget, Ui_PageGeneral):
                 )
             )
             self.verticalLayout_2.insertWidget(3, flatseal_button)
+
+    def _add_quick_actions(self):
+        """Adiciona ações rápidas para tarefas recorrentes."""
+        quick_actions = QGroupBox(_("Quick Actions"), self)
+        quick_actions_layout = QHBoxLayout(quick_actions)
+
+        open_downloads = QPushButton(_("Open download folder"), quick_actions)
+        open_downloads.clicked.connect(self._handle_open_download_folder)
+
+        reload_current_account = QPushButton(_("Reload current account"), quick_actions)
+        reload_current_account.clicked.connect(
+            QApplication.instance().getWindow().browser.reload_pages
+        )
+
+        open_support = QPushButton(_("Open help"), quick_actions)
+        open_support.clicked.connect(
+            lambda: QDesktopServices.openUrl(QUrl("https://github.com/rafatosta/zapzap"))
+        )
+
+        quick_actions_layout.addWidget(open_downloads)
+        quick_actions_layout.addWidget(reload_current_account)
+        quick_actions_layout.addWidget(open_support)
+        self.verticalLayout_2.insertWidget(1, quick_actions)
 
     def _load_settings(self):
         """
@@ -219,3 +253,7 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         """
         DownloadManager.restore_path()
         self.download_path.setText(DownloadManager.get_path())
+
+    def _handle_open_download_folder(self):
+        """Abre o diretório de downloads no gerenciador de arquivos padrão."""
+        QDesktopServices.openUrl(QUrl.fromLocalFile(DownloadManager.get_path()))
