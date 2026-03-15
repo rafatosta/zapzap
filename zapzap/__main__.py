@@ -10,6 +10,7 @@ from zapzap.controllers.MainWindow import MainWindow
 from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.services.ProxyManager import ProxyManager
 from zapzap.services.SettingsManager import SettingsManager
+from zapzap.controllers.OnboardingDialog import OnboardingManager
 from zapzap.services.TranslationManager import TranslationManager
 from zapzap.resources.TrayIcon import TrayIcon
 
@@ -64,15 +65,20 @@ def main():
 
     ProxyManager.apply()
 
-    # Abre site do ZapZap em primeiro acesso
-    if SettingsManager.get("website/open_page", True):
+    start_hidden = SettingsManager.get("system/start_background", False) or '--hideStart' in sys.argv
+
+    # O onboarding deve aparecer no primeiro acesso, exceto se o usuário optou por não exibir.
+    main_window.show()
+    OnboardingManager.show(main_window)
+
+    # Compatibilidade: em versões antigas o primeiro acesso abria o site.
+    # Mantemos esse fluxo apenas quando a inicialização não é em segundo plano.
+    if not start_hidden and SettingsManager.get("website/open_page", True):
         QDesktopServices.openUrl(QUrl(zapzap.__website__))
         SettingsManager.set("website/open_page", False)
 
-    if SettingsManager.get("system/start_background", False) or '--hideStart' in sys.argv:
+    if start_hidden:
         main_window.hide()
-    else:
-        main_window.show()
 
     # Start app
     sys.exit(app.exec())
