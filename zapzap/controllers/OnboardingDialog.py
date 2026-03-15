@@ -3,13 +3,13 @@ from gettext import gettext as _
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QCheckBox,
+    QComboBox,
     QDialog,
     QFrame,
     QHBoxLayout,
     QLabel,
     QPushButton,
     QRadioButton,
-    QSlider,
     QStackedWidget,
     QVBoxLayout,
     QWidget,
@@ -161,9 +161,9 @@ class _VisualPage(_OnboardingPage):
 
         theme = SettingsManager.get("system/theme", ThemeManager.Type.Auto.value)
 
-        self.theme_auto = QRadioButton(_("Automático (seguir sistema)"))
-        self.theme_light = QRadioButton(_("Claro"))
-        self.theme_dark = QRadioButton(_("Escuro"))
+        self.theme_auto = QRadioButton(_("Adaptive"))
+        self.theme_light = QRadioButton(_("Light"))
+        self.theme_dark = QRadioButton(_("Dark"))
 
         mapping = {
             ThemeManager.Type.Auto.value: self.theme_auto,
@@ -190,38 +190,26 @@ class _VisualPage(_OnboardingPage):
         line.setFrameShape(QFrame.Shape.HLine)
         self.content_layout.addWidget(line)
 
-        label_row = QHBoxLayout()
-        label_row.addWidget(QLabel(f"<b>{_('Escala')}</b>"))
-        label_row.addStretch()
-        self.scale_label = QLabel()
-        label_row.addWidget(self.scale_label)
-        self.content_layout.addLayout(label_row)
+        scale_row = QHBoxLayout()
+        scale_row.addWidget(QLabel(f"<b>{_('Scale')}</b>"))
+        scale_row.addStretch()
 
-        self.scale_slider = QSlider(Qt.Orientation.Horizontal)
-        self.scale_slider.setRange(75, 200)
-        self.scale_slider.setSingleStep(5)
-        self.scale_slider.setPageStep(10)
-        self.scale_slider.setTickPosition(QSlider.TickPosition.TicksBelow)
-        self.scale_slider.setTickInterval(25)
+        self.scale_combo = QComboBox(self)
+        self.scale_combo.addItems(["100 %", "125 %", "150 %", "175 %", "200 %"])
+        current_scale = str(SettingsManager.get("system/scale", 100))
+        self.scale_combo.setCurrentText(f"{current_scale} %")
+        self.scale_combo.currentTextChanged.connect(self._on_scale_changed)
+        scale_row.addWidget(self.scale_combo)
+        self.content_layout.addLayout(scale_row)
 
-        current_scale = int(SettingsManager.get("system/scale", 100))
-        self.scale_slider.setValue(current_scale)
-        self._update_scale_label(current_scale)
-
-        self.scale_slider.valueChanged.connect(self._on_scale_changed)
-        self.content_layout.addWidget(self.scale_slider)
-
-        hint = QLabel(_("A escala será aplicada no próximo reinício do ZapZap."))
+        hint = QLabel(_("Note: The change of scale will only have effect until restarting."))
         hint.setWordWrap(True)
         hint.setStyleSheet("color: #666; font-style: italic;")
         self.content_layout.addWidget(hint)
 
-    def _on_scale_changed(self, value: int):
-        self._update_scale_label(value)
-        SettingsManager.set("system/scale", value)
-
-    def _update_scale_label(self, value: int):
-        self.scale_label.setText(f"{value} %")
+    def _on_scale_changed(self, text: str):
+        scale_value = ''.join(filter(str.isdigit, text))
+        SettingsManager.set("system/scale", scale_value)
 
 
 class OnboardingDialog(QDialog):
