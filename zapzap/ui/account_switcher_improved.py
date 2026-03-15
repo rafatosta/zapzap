@@ -261,17 +261,17 @@ class AccountCard(QFrame):
     # Events
     # ------------------------------------------------------------------
 
-    def mousePressEvent(self, event):  # noqa: N802 — Qt requires this exact name as a framework override
+    def mousePressEvent(self, event):  # noqa: N802 - Qt requires this exact name as a framework override
         if event.button() == Qt.MouseButton.LeftButton:
             self.clicked.emit(self.user.id)
         super().mousePressEvent(event)
 
-    def keyPressEvent(self, event):  # noqa: N802 — Qt requires this exact name as a framework override
+    def keyPressEvent(self, event):  # noqa: N802 - Qt requires this exact name as a framework override
         if event.key() in (Qt.Key.Key_Return, Qt.Key.Key_Space):
             self.clicked.emit(self.user.id)
         super().keyPressEvent(event)
 
-    def contextMenuEvent(self, event):  # noqa: N802 — Qt requires this exact name as a framework override
+    def contextMenuEvent(self, event):  # noqa: N802 - Qt requires this exact name as a framework override
         menu = QMenu(self)
         dark = _is_dark()
 

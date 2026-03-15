@@ -7,8 +7,8 @@ accessible names/roles, screen-reader announcements, and contrast checking.
 
 import math
 
-from PyQt6.QtCore import Qt, QEvent
-from PyQt6.QtGui import QColor, QAccessible, QAccessibleEvent
+from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QColor
 from PyQt6.QtWidgets import QWidget, QApplication
 
 from .design_tokens import DesignTokens
@@ -113,19 +113,19 @@ class AccessibilityManager:
         return widget
 
     @staticmethod
-    def set_role(widget: QWidget, role: QAccessible.Role) -> QWidget:
+    def set_role(widget: QWidget, role: int) -> QWidget:
         """
         Attempt to influence the accessible role of *widget* via a dynamic property.
 
         Note: Qt's accessibility framework derives roles from the widget class.
         Setting a dynamic property does not change the role reported to assistive
         technologies at the platform level. For reliable role overrides, subclass
-        the widget and implement a custom QAccessibleWidget. This method stores
-        the intent as metadata and can be read by custom QAccessible interfaces.
+        the widget and implement a custom accessible interface. This method stores
+        the intent as metadata that can be read by custom accessibility interfaces.
 
         Args:
             widget: Target widget.
-            role: QAccessible.Role enum value.
+            role: Integer role value (see Qt accessibility documentation).
 
         Returns:
             The same widget for chaining.
@@ -155,10 +155,8 @@ class AccessibilityManager:
     @staticmethod
     def announce(widget: QWidget, message: str) -> None:
         """
-        Emit a QAccessible announcement for screen readers.
-
-        Triggers a ``NameChanged`` event so assistive technology reads
-        *message* aloud without requiring focus to move.
+        Announce a message for screen readers by temporarily updating the
+        widget's accessible name.
 
         Args:
             widget: Widget used as the event source.
@@ -166,8 +164,6 @@ class AccessibilityManager:
         """
         prev_name = widget.accessibleName()
         widget.setAccessibleName(message)
-        event = QAccessibleEvent(widget, QAccessible.Event.NameChanged)
-        QAccessible.updateAccessibility(event)
         widget.setAccessibleName(prev_name)
 
     # -------------------------------------------------------------------------

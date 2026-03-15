@@ -142,7 +142,7 @@ class SkeletonBlock(QWidget):
     # Painting
     # ------------------------------------------------------------------
 
-    def paintEvent(self, event):  # noqa: N802 — Qt requires this exact name as a framework override
+    def paintEvent(self, event):  # noqa: N802 - Qt requires this exact name as a framework override
         dark = _is_dark()
         base_color = (
             QColor(DT.DARK_SURFACE_RAISED) if dark else QColor(DT.LIGHT_SURFACE_RAISED)
@@ -400,11 +400,11 @@ class PageLoadingState(QWidget):
         self._frame_idx = (self._frame_idx + 1) % len(self._SPINNER_FRAMES)
         self._spinner_label.setText(self._SPINNER_FRAMES[self._frame_idx])
 
-    def hideEvent(self, event):  # noqa: N802 — Qt requires this exact name as a framework override
+    def hideEvent(self, event):  # noqa: N802 - Qt requires this exact name as a framework override
         self._spinner_timer.stop()
         super().hideEvent(event)
 
-    def showEvent(self, event):  # noqa: N802 — Qt requires this exact name as a framework override
+    def showEvent(self, event):  # noqa: N802 - Qt requires this exact name as a framework override
         self._spinner_timer.start()
         super().showEvent(event)
 

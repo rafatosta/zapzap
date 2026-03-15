@@ -580,7 +580,7 @@ class OnboardingDialog(QDialog):
     # Close event – honour "don't show again" even on window close
     # ------------------------------------------------------------------
 
-    def closeEvent(self, event):  # noqa: N802 — Qt requires this exact name as a framework override
+    def closeEvent(self, event):  # noqa: N802 - Qt requires this exact name as a framework override
         if self._chk_dont_show.isChecked():
             OnboardingManager.mark_complete()
         super().closeEvent(event)
