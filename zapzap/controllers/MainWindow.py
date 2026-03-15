@@ -11,6 +11,7 @@ from zapzap.services.ThemeManager import ThemeManager
 from zapzap.views.ui_mainwindow import Ui_MainWindow
 from PyQt6.QtGui import QImage
 
+from gettext import gettext as _
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     """
