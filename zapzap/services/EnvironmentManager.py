@@ -4,16 +4,20 @@ from enum import Enum
 
 
 class Packaging(Enum):
-    APPIMAGE = "AppImage"
-    FLATPAK = "Flatpak"
-    RPM = "RPM"
+    APPIMAGE   = "AppImage"
+    FLATPAK    = "Flatpak"
+    RPM        = "RPM"
     UNOFFICIAL = "Unofficial"
+    WINDOWS    = "Windows"
 
 
 class EnvironmentManager:
     @staticmethod
     def identify_packaging():
         """Identifies the packaging type of the application and returns an Enum."""
+
+        if sys.platform == "win32":
+            return Packaging.WINDOWS
 
         if "APPIMAGE" in os.environ:
             return Packaging.APPIMAGE

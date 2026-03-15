@@ -28,7 +28,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self._last_sanitized_key = None
         self._setup_ui()
 
-        if not SettingsManager.get("notification/donation_message", False):
+        if not SettingsManager.get("notification/donation_message", True):
             QtoasterDonation.showMessage(parent=self)
 
     def changeEvent(self, event):
@@ -116,6 +116,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def _connect_view_menu_actions(self):
         """Conectar ações do menu 'Exibir'."""
+        self.actionGrid_view.triggered.connect(self.browser.show_grid_view)
         self.actionOpen_DevTools.triggered.connect(self.open_devtools)
         self.actionToggle_sidebar.triggered.connect(self.set_sidebar_visible)
         self.actionReset_zoom.triggered.connect(self._reset_zoom)
@@ -175,7 +176,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     # === Gerenciamento de Tela ===
     def _current_page(self):
         """Retorna a página atual do navegador."""
-        return self.browser.pages.currentWidget()
+        return self.browser.current_webview()
 
     def toggle_fullscreen(self):
         """Alterna entre os modos de tela cheia e janela."""
@@ -192,6 +193,25 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         Salva o estado da janela e realiza a limpeza de recursos.
         """
         self._save_window_state()
+
+        if SettingsManager.get("system/confirm_on_close", False):
+            from PyQt6.QtWidgets import QMessageBox, QCheckBox
+            msg_box = QMessageBox(self)
+            msg_box.setWindowTitle(_("Close ZapZap"))
+            msg_box.setText(_("Are you sure you want to close?"))
+            msg_box.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+            msg_box.setDefaultButton(QMessageBox.StandardButton.No)
+            
+            cb = QCheckBox(_("Don't ask again"))
+            msg_box.setCheckBox(cb)
+            
+            reply = msg_box.exec()
+            if reply != QMessageBox.StandardButton.Yes:
+                event.ignore()
+                return
+                
+            if cb.isChecked():
+                SettingsManager.set("system/confirm_on_close", False)
 
         if not SettingsManager.get("system/quit_in_close", False) and event:
             self._prepare_for_background(event)

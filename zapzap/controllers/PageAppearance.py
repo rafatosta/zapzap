@@ -31,6 +31,36 @@ class PageAppearance(QWidget, Ui_PageAppearance):
         self.notificationCounter.setChecked(SettingsManager.get(
             "system/notificationCounter", False))
 
+        # Configuração de colunas do grid
+        self._setup_grid_options()
+        self.gridColsComboBox.setCurrentText(
+            str(SettingsManager.get("system/grid_cols", 2)))
+
+    def _setup_grid_options(self):
+        """Adiciona opção de colunas do grid à página de aparência."""
+        from PyQt6.QtWidgets import QComboBox, QLabel, QHBoxLayout, QWidget
+        from gettext import gettext as _
+        
+        self.grid_widget = QWidget(parent=self.frame)
+        self.grid_layout = QHBoxLayout(self.grid_widget)
+        self.grid_layout.setContentsMargins(0, 0, 0, 0)
+        
+        self.grid_label = QLabel(_("Grid Columns:"), parent=self.grid_widget)
+        self.gridColsComboBox = QComboBox(parent=self.grid_widget)
+        self.gridColsComboBox.addItems(["2", "3", "4"])
+        
+        self.grid_layout.addWidget(self.grid_label)
+        self.grid_layout.addWidget(self.gridColsComboBox)
+        self.grid_layout.addStretch()
+        
+        # Inserir no layout principal (abaixo da escala)
+        self.verticalLayout_2.insertWidget(6, self.grid_widget)
+        self.gridColsComboBox.currentTextChanged.connect(self._handle_grid_cols)
+
+    def _handle_grid_cols(self, text):
+        """Salva a quantidade de colunas do grid."""
+        SettingsManager.set("system/grid_cols", int(text))
+
         # Configurações de bandeja
         tray_mode = SettingsManager.get(
             "system/tray_theme", TrayIcon.Type.Default.value)

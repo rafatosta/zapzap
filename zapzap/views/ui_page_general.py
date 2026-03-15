@@ -1,5 +1,4 @@
-from gettext import gettext as _
-# Form implementation generated from reading ui file './zapzap/ui/ui_page_general.ui'
+# Form implementation generated from reading ui file 'zapzap/ui/ui_page_general.ui'
 #
 # Created by: PyQt6 UI code generator 6.10.2
 #
@@ -87,6 +86,9 @@ class Ui_PageGeneral(object):
         self.groupBox_2.setObjectName("groupBox_2")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.groupBox_2)
         self.verticalLayout.setObjectName("verticalLayout")
+        self.btn_confirm_in_close = QtWidgets.QCheckBox(parent=self.groupBox_2)
+        self.btn_confirm_in_close.setObjectName("btn_confirm_in_close")
+        self.verticalLayout.addWidget(self.btn_confirm_in_close)
         self.btn_quit_in_close = QtWidgets.QCheckBox(parent=self.groupBox_2)
         self.btn_quit_in_close.setObjectName("btn_quit_in_close")
         self.verticalLayout.addWidget(self.btn_quit_in_close)
@@ -124,22 +126,23 @@ class Ui_PageGeneral(object):
         QtCore.QMetaObject.connectSlotsByName(PageGeneral)
 
     def retranslateUi(self, PageGeneral):
-        
-        self.label.setText(_("General"))
-        self.groupBox_3.setTitle(_("Download Directory"))
-        self.btn_path_download.setToolTip(_("Set new folder for downloads"))
-        self.btn_restore_path_download.setToolTip(_("Define default folder for downloads"))
-        self.spellchecker_groupBox.setTitle(_("Spellchecker"))
-        self.label_2.setText(_("Directory"))
-        self.btn_path_spell.setToolTip(_("Recognizes only compiled dictionaries (.bdic)"))
-        self.btn_default_path_spell.setToolTip(_("Define standard dictionaries"))
-        self.label_3.setText(_("Note: Required restart."))
-        self.groupBox_2.setTitle(_("Behavior"))
-        self.btn_quit_in_close.setText(_("Close when closing the window"))
-        self.btn_start_background.setText(_("Start minimized"))
-        self.btn_start_system.setText(_("Start with the system"))
-        self.dontUseNativeDialog.setText(_("Don\'t use a platform-native file dialog"))
-        self.btn_wayland.setText(_("Wayland window system"))
+        _translate = QtCore.QCoreApplication.translate
+        self.label.setText(_translate("PageGeneral", "General"))
+        self.groupBox_3.setTitle(_translate("PageGeneral", "Download Directory"))
+        self.btn_path_download.setToolTip(_translate("PageGeneral", "Set new folder for downloads"))
+        self.btn_restore_path_download.setToolTip(_translate("PageGeneral", "Define default folder for downloads"))
+        self.spellchecker_groupBox.setTitle(_translate("PageGeneral", "Spellchecker"))
+        self.label_2.setText(_translate("PageGeneral", "Directory"))
+        self.btn_path_spell.setToolTip(_translate("PageGeneral", "Recognizes only compiled dictionaries (.bdic)"))
+        self.btn_default_path_spell.setToolTip(_translate("PageGeneral", "Define standard dictionaries"))
+        self.label_3.setText(_translate("PageGeneral", "Note: Required restart."))
+        self.groupBox_2.setTitle(_translate("PageGeneral", "Behavior"))
+        self.btn_confirm_in_close.setText(_translate("PageGeneral", "Confirm before closing the window"))
+        self.btn_quit_in_close.setText(_translate("PageGeneral", "Close when closing the window"))
+        self.btn_start_background.setText(_translate("PageGeneral", "Start minimized"))
+        self.btn_start_system.setText(_translate("PageGeneral", "Start with the system"))
+        self.dontUseNativeDialog.setText(_translate("PageGeneral", "Don\'t use a platform-native file dialog"))
+        self.btn_wayland.setText(_translate("PageGeneral", "Wayland window system"))
 
 
 if __name__ == "__main__":

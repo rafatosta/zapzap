@@ -34,6 +34,16 @@ class CardUser(QWidget, Ui_CardUser):
             self.icon.customContextMenuRequested.connect(
                 self._show_context_menu)
 
+        # Add User Agent selector
+        from PyQt6.QtWidgets import QComboBox
+        from zapzap.webengine.WebView import WebView
+        self.ua_selector = QComboBox(self)
+        self.ua_selector.setToolTip(_("Select User-Agent for this account"))
+        self.ua_selector.addItems(list(WebView.USER_AGENTS.keys()))
+        selected_ua = SettingsManager.get(f"{self.user.id}/user_agent", "Default")
+        self.ua_selector.setCurrentText(selected_ua)
+        self.gridLayout.addWidget(self.ua_selector, 2, 0, 1, 3)
+
     def _setup_signals(self):
         """Configura os sinais e suas respectivas ações."""
         self.silence.clicked.connect(self._handle_silence_action)
@@ -41,6 +51,7 @@ class CardUser(QWidget, Ui_CardUser):
         self.delete.clicked.connect(self._handle_delete_action)
         self.name.editingFinished.connect(self._update_user_name)
         self.icon.clicked.connect(self._handle_icon_action)
+        self.ua_selector.currentTextChanged.connect(self._handle_ua_change)
 
     def _load_data(self):
         """Carrega os dados do usuário na interface."""
@@ -118,3 +129,7 @@ class CardUser(QWidget, Ui_CardUser):
         self._update_user_icon()
 
         QApplication.instance().getWindow().browser.update_icons_page_button(self.user)
+
+    def _handle_ua_change(self, text):
+        SettingsManager.set(f"{self.user.id}/user_agent", text)
+        AlertManager.information(self, _("User-Agent Changed"), _("Please restart this session (or the application) to apply the new User-Agent."))
