@@ -1,5 +1,5 @@
 from PyQt6.QtCore import QFileInfo
-__version__ = '6.3.4.1.1'
+__version__ = '6.4'
 __appname__ = 'ZapZap'
 __comment__ = 'WhatsApp Messenger for linux'
 __domain__ = 'com.rtosta'
@@ -23,6 +23,7 @@ __whatsapp_url__ = 'https://web.whatsapp.com/'
 # Link para pegar o userAgent: http://httpbin.org/user-agent
 import sys
 if sys.platform == "win32":
+    # User agent para Windows, para evitar que o WhatsApp Web mostre a mensagem de "navegador não suportado", porém aparece a mensagem de baixar aplicativo nativo. Usar o do linux funciona e permite realizar as chamadas.
     __user_agent__ = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 else:
     __user_agent__ = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
