@@ -279,6 +279,7 @@ class WebView(QWebEngineView):
         (() => {
             const sampled = [];
             const seen = new Set();
+            const headerXPath = '//*[@id="app"]/div/div/div[3]/div/header';
 
             const addCandidate = (element) => {
                 let current = element;
@@ -293,9 +294,30 @@ class WebView(QWebEngineView):
                 }
             };
 
-            for (let x = 12; x <= 120; x += 18) {
-                for (let y = 12; y <= 120; y += 18) {
-                    document.elementsFromPoint(x, y).forEach(addCandidate);
+            const addXPathCandidates = () => {
+                const result = document.evaluate(
+                    headerXPath,
+                    document,
+                    null,
+                    XPathResult.FIRST_ORDERED_NODE_TYPE,
+                    null,
+                );
+                const header = result.singleNodeValue;
+                if (!header) {
+                    return false;
+                }
+
+                addCandidate(header);
+                header.querySelectorAll('*').forEach(addCandidate);
+                return true;
+            };
+
+            const hasHeader = addXPathCandidates();
+            if (!hasHeader) {
+                for (let x = 12; x <= 120; x += 18) {
+                    for (let y = 12; y <= 120; y += 18) {
+                        document.elementsFromPoint(x, y).forEach(addCandidate);
+                    }
                 }
             }
 
@@ -306,15 +328,17 @@ class WebView(QWebEngineView):
                 const src = tag === 'IMG' ? (element.currentSrc || element.src || '') : '';
                 const backgroundImage = style.backgroundImage || '';
                 const hasPaintedImage = Boolean(src) || (backgroundImage && backgroundImage !== 'none');
-                const withinSidebar = rect.left >= 0 && rect.top >= 0 && rect.left < window.innerWidth * 0.35 && rect.top < window.innerHeight * 0.35;
-                const visibleSize = rect.width >= 24 && rect.height >= 24 && rect.width <= 96 && rect.height <= 96;
-                const squareEnough = Math.abs(rect.width - rect.height) <= Math.max(10, rect.width * 0.4);
+                const withinSidebar = rect.left >= 0 && rect.top >= 0 && rect.left < window.innerWidth * 0.45 && rect.top < window.innerHeight * 0.35;
+                const visibleSize = rect.width >= 24 && rect.height >= 24 && rect.width <= 128 && rect.height <= 128;
+                const squareEnough = Math.abs(rect.width - rect.height) <= Math.max(10, rect.width * 0.45);
                 const borderRadius = parseFloat(style.borderTopLeftRadius || '0') || 0;
+                const fromXPathHeader = hasHeader && element.closest('header') !== null;
                 const score = (hasPaintedImage ? 1000 : 0)
                     + (withinSidebar ? 500 : 0)
                     + (squareEnough ? 150 : 0)
-                    + Math.max(0, 80 - Math.abs(rect.width - 40))
-                    + Math.max(0, 80 - Math.abs(rect.height - 40))
+                    + (fromXPathHeader ? 700 : 0)
+                    + Math.max(0, 100 - Math.abs(rect.width - 40))
+                    + Math.max(0, 100 - Math.abs(rect.height - 40))
                     + Math.min(borderRadius, 40)
                     - rect.top
                     - rect.left;
@@ -330,6 +354,7 @@ class WebView(QWebEngineView):
                     },
                     borderRadius: Math.round(borderRadius),
                     score,
+                    fromXPathHeader,
                     accepted: hasPaintedImage && withinSidebar && visibleSize && squareEnough,
                 };
             }).filter((candidate) => candidate.rect.width > 0 && candidate.rect.height > 0);
@@ -339,8 +364,9 @@ class WebView(QWebEngineView):
                 .sort((a, b) => b.score - a.score);
 
             return {
+                xpathFound: hasHeader,
                 best: accepted[0] || null,
-                inspected: candidates.slice(0, 20),
+                inspected: candidates.slice(0, 30),
                 acceptedCount: accepted.length,
             };
         })();
