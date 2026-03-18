@@ -49,7 +49,7 @@ class Browser(QWidget, Ui_Browser):
         self.settings_sidebar()
 
     def _setup_grid_view(self):
-        from PyQt6.QtWidgets import QScrollArea, QGridLayout, QFrame
+        from PyQt6.QtWidgets import QScrollArea, QGridLayout
         # Setup the UI structure for the grid view
         self.grid_scroll = QScrollArea(self)
         self.grid_scroll.setWidgetResizable(True)

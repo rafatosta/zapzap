@@ -1,6 +1,5 @@
 import logging
 from PyQt6 import QtNetwork
-from PyQt6.QtWidgets import QApplication
 from gettext import gettext as _
 from zapzap.services.SettingsManager import SettingsManager
 
