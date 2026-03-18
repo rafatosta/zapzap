@@ -169,7 +169,7 @@ class Browser(QWidget, Ui_Browser):
         # Criar o botão correspondente
         page_button = PageButton(user, page_index)
         page_button.clicked.connect(
-            lambda: self.switch_to_page(new_page, page_button))
+            lambda: self._handle_page_button_click(new_page, page_button))
         page_button.setObjectName(f"page_button_{page_index}")
         page_button.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         page_button.customContextMenuRequested.connect(
@@ -189,7 +189,6 @@ class Browser(QWidget, Ui_Browser):
                 button.show()
                 page.enable_page()
             else:
-                button.hide()
                 page.disable_page()
         self._select_default_page()
         self._update_user_menu()
@@ -271,6 +270,18 @@ class Browser(QWidget, Ui_Browser):
         page.page().show_toast(page.user.name if page.user.name !=
                                "" else _("Account {}").format(page.page_index))
         button.selected()
+
+    def _handle_page_button_click(self, page: WebView, button: PageButton):
+        """Trata o clique no botão da conta, preservando contas desativadas visíveis."""
+        if not button.user.enable:
+            AlertManager.information(
+                self,
+                _("Account disabled"),
+                _("This account is disabled. Right-click the icon to manage or reactivate it."),
+            )
+            return
+
+        self.switch_to_page(page, button)
 
     def _show_page_button_context_menu(self, button: PageButton, position):
         """Exibe no botão da conta o menu com as opções do CardUser."""
