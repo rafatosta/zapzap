@@ -20,6 +20,7 @@ from gettext import gettext as _
 
 class WebView(QWebEngineView):
     update_button_signal = pyqtSignal(int, int)  # Sinal para atualizar botões
+    update_button_photo_signal = pyqtSignal(int, str)
 
     QWEBENGINE_CACHE_TYPES = {
         "MemoryHttpCache": QWebEngineProfile.HttpCacheType.MemoryHttpCache,
@@ -49,6 +50,7 @@ class WebView(QWebEngineView):
         self._devtools_page = None
 
         self._last_tmp_file = None
+        self._avatar_sync_attempts = 0
 
         if user.enable:
             self._initialize()
@@ -258,6 +260,74 @@ class WebView(QWebEngineView):
             self.timer.timeout.connect(self.load_page)
             self.timer.setSingleShot(True)
             self.timer.start(5000)  # 5000 ms = 5 seconds
+            return
+
+        self._avatar_sync_attempts = 0
+        self._schedule_avatar_sync(2500)
+
+    def _schedule_avatar_sync(self, delay_ms=2500):
+        """Agenda tentativas para extrair a foto do perfil do WhatsApp Web."""
+        QTimer.singleShot(delay_ms, self._sync_page_button_photo)
+
+    def _sync_page_button_photo(self):
+        """Obtém a foto do perfil da conta e envia ao botão lateral."""
+        if not self.page():
+            return
+
+        script = r"""
+        (() => {
+            const candidates = [...document.querySelectorAll('img')].filter((img) => {
+                const src = img.currentSrc || img.src || '';
+                if (!src) return false;
+
+                const rect = img.getBoundingClientRect();
+                if (rect.width < 28 || rect.height < 28) return false;
+
+                const squareEnough = Math.abs(rect.width - rect.height) <= Math.max(8, rect.width * 0.35);
+                const upperSidebarArea = rect.top >= 0 && rect.top < window.innerHeight * 0.40 && rect.left >= 0 && rect.left < window.innerWidth * 0.35;
+                return squareEnough && upperSidebarArea;
+            });
+
+            if (!candidates.length) return '';
+
+            candidates.sort((a, b) => {
+                const ra = a.getBoundingClientRect();
+                const rb = b.getBoundingClientRect();
+                const scoreA = (ra.left < 220 ? 1000 : 0) - ra.top - Math.abs(ra.width - 40) - Math.abs(ra.height - 40);
+                const scoreB = (rb.left < 220 ? 1000 : 0) - rb.top - Math.abs(rb.width - 40) - Math.abs(rb.height - 40);
+                return scoreB - scoreA;
+            });
+
+            const img = candidates[0];
+            try {
+                const size = 128;
+                const canvas = document.createElement('canvas');
+                canvas.width = size;
+                canvas.height = size;
+                const ctx = canvas.getContext('2d');
+                ctx.beginPath();
+                ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.clip();
+                ctx.drawImage(img, 0, 0, size, size);
+                return canvas.toDataURL('image/png');
+            } catch (error) {
+                return '';
+            }
+        })();
+        """
+
+        self.page().runJavaScript(script, self._handle_synced_page_button_photo)
+
+    def _handle_synced_page_button_photo(self, photo_data_url):
+        """Atualiza o botão lateral com a foto extraída da página."""
+        if photo_data_url:
+            self.update_button_photo_signal.emit(self.page_index, photo_data_url)
+            return
+
+        self._avatar_sync_attempts += 1
+        if self._avatar_sync_attempts < 5:
+            self._schedule_avatar_sync(4000)
 
     def set_zoom_factor_page(self, factor=None):
         """Define ou ajusta o fator de zoom da página."""

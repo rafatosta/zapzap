@@ -1,5 +1,15 @@
-from PyQt6.QtGui import QImage, QPixmap, QIcon
-from PyQt6.QtCore import QSize
+from PyQt6.QtGui import (
+    QImage,
+    QPixmap,
+    QIcon,
+    QColor,
+    QPainter,
+    QPainterPath,
+    QPen,
+    QFont,
+)
+from PyQt6.QtCore import QSize, Qt
+import base64
 import random
 from enum import Enum
 
@@ -70,6 +80,14 @@ class UserIcon:
         return f'rgb({random.randint(0, 255)}, {random.randint(0, 255)}, {random.randint(0, 255)})'
 
     @staticmethod
+    def get_account_icon(svg_str: str = ICON_DEFAULT, photo_source: str | None = None, icon_type=Type.Default, qtd: int = 0) -> QIcon:
+        """Gera um ícone com foto do perfil quando disponível, mantendo badges."""
+        photo_pixmap = UserIcon._load_photo_pixmap(photo_source)
+        if photo_pixmap and not photo_pixmap.isNull():
+            return UserIcon._build_photo_icon(photo_pixmap, icon_type, qtd)
+        return UserIcon.get_icon(svg_str, icon_type, qtd)
+
+    @staticmethod
     def get_icon(svg_str: str = ICON_DEFAULT, icon_type=Type.Default, qtd: int = 0) -> QIcon:
         """Gera um QIcon a partir de um SVG."""
         if icon_type == UserIcon.Type.Default:
@@ -91,6 +109,96 @@ class UserIcon:
         qimg = QImage.fromData(svg_bytes, 'SVG')
         qpix = QPixmap.fromImage(qimg)
         return QIcon(qpix.scaled(QSize(128, 128)))
+
+    @staticmethod
+    def _load_photo_pixmap(photo_source: str | None) -> QPixmap | None:
+        """Converte uma data URL PNG/JPEG em QPixmap."""
+        if not photo_source:
+            return None
+
+        try:
+            if photo_source.startswith('data:image'):
+                _, encoded = photo_source.split(',', 1)
+                raw = base64.b64decode(encoded)
+                pixmap = QPixmap()
+                if pixmap.loadFromData(raw):
+                    return pixmap
+        except Exception:
+            return None
+        return None
+
+    @staticmethod
+    def _build_photo_icon(photo_pixmap: QPixmap, icon_type, qtd: int) -> QIcon:
+        """Desenha a foto em formato circular com badges de status e notificações."""
+        size = 128
+        pixmap = QPixmap(size, size)
+        pixmap.fill(Qt.GlobalColor.transparent)
+
+        painter = QPainter(pixmap)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        painter.setRenderHint(QPainter.RenderHint.SmoothPixmapTransform)
+
+        avatar_rect = pixmap.rect().adjusted(6, 6, -6, -6)
+        path = QPainterPath()
+        path.addEllipse(avatar_rect)
+        painter.setClipPath(path)
+        scaled = photo_pixmap.scaled(
+            avatar_rect.size(),
+            Qt.AspectRatioMode.KeepAspectRatioByExpanding,
+            Qt.TransformationMode.SmoothTransformation,
+        )
+        offset_x = avatar_rect.x() + (avatar_rect.width() - scaled.width()) // 2
+        offset_y = avatar_rect.y() + (avatar_rect.height() - scaled.height()) // 2
+        painter.drawPixmap(offset_x, offset_y, scaled)
+        painter.setClipping(False)
+
+        border_color = QColor('#00BD95') if icon_type == UserIcon.Type.Default else QColor('#8d8d8d')
+        painter.setPen(QPen(border_color, 6))
+        painter.setBrush(Qt.BrushStyle.NoBrush)
+        painter.drawEllipse(avatar_rect)
+
+        if icon_type == UserIcon.Type.Disable:
+            painter.setBrush(QColor(0, 0, 0, 135))
+            painter.setPen(Qt.PenStyle.NoPen)
+            painter.drawEllipse(avatar_rect)
+            UserIcon._draw_status_badge(painter, '🔒', QColor('#5f6368'))
+        elif icon_type == UserIcon.Type.Silence:
+            UserIcon._draw_status_badge(painter, '🔕', QColor('#d93025'))
+
+        if qtd > 0:
+            UserIcon._draw_notification_badge(painter, qtd)
+
+        painter.end()
+        return QIcon(pixmap)
+
+    @staticmethod
+    def _draw_status_badge(painter: QPainter, text: str, background: QColor):
+        badge_size = 42
+        x = 76
+        y = 76
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.setBrush(background)
+        painter.drawEllipse(x, y, badge_size, badge_size)
+        painter.setPen(QColor('white'))
+        font = QFont('Sans Serif', 18)
+        painter.setFont(font)
+        painter.drawText(x, y + 1, badge_size, badge_size, int(Qt.AlignmentFlag.AlignCenter), text)
+
+    @staticmethod
+    def _draw_notification_badge(painter: QPainter, qtd: int):
+        text = '999+' if qtd > 999 else str(qtd)
+        badge_width = 52 if len(text) <= 2 else 68
+        badge_height = 36
+        x = 128 - badge_width - 2
+        y = 2
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.setBrush(QColor('#d93025'))
+        painter.drawRoundedRect(x, y, badge_width, badge_height, 18, 18)
+        painter.setPen(QColor('white'))
+        font = QFont('Sans Serif', 15)
+        font.setBold(True)
+        painter.setFont(font)
+        painter.drawText(x, y, badge_width, badge_height, int(Qt.AlignmentFlag.AlignCenter), text)
 
     @staticmethod
     def _get_notification_data(qtd: int) -> dict:

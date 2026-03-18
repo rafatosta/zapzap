@@ -45,6 +45,7 @@ class PageButton(QPushButton):
         super().__init__(parent)
         self._user = user
         self.page_index = page_index
+        self.photo_data_url = None
 
         self._setup_ui()
         self.update_user_icon()
@@ -65,6 +66,11 @@ class PageButton(QPushButton):
         self.setMaximumSize(QSize(40, 40))
         self.setStyleSheet(self.STYLE_NORMAL)
 
+    def update_user_photo(self, photo_data_url):
+        """Atualiza a foto exibida no botão da página."""
+        self.photo_data_url = photo_data_url or None
+        self.update_user_icon()
+
     def update_user_icon(self):
         """Atualiza o ícone do usuário e a dica de ferramenta."""
         # Define o tipo de ícone com base no status do usuário
@@ -75,8 +81,14 @@ class PageButton(QPushButton):
             user_icon_type = UserIcon.Type.Silence
 
         # Atualiza o ícone e a dica de ferramenta
-        self.setIcon(UserIcon.get_icon(self._user.icon,
-                     user_icon_type, self.number_notifications))
+        self.setIcon(
+            UserIcon.get_account_icon(
+                self._user.icon,
+                self.photo_data_url,
+                user_icon_type,
+                self.number_notifications,
+            )
+        )
         tooltip = (
             f"{self._user.name} ({self.number_notifications})"
             if self.number_notifications > 0

@@ -164,6 +164,9 @@ class Browser(QWidget, Ui_Browser):
         new_page.update_button_signal.connect(
             self.update_page_button_number_notifications
         )
+        new_page.update_button_photo_signal.connect(
+            self.update_page_button_photo
+        )
         self.pages.addWidget(new_page)
 
         # Criar o botão correspondente
@@ -446,6 +449,11 @@ class Browser(QWidget, Ui_Browser):
             self.page_buttons[page_index].update_notifications(
                 number_notifications)
             self._update_total_notifications()
+
+    def update_page_button_photo(self, page_index, photo_data_url):
+        """Atualiza a foto exibida em um botão específico da barra lateral."""
+        if page_index in self.page_buttons:
+            self.page_buttons[page_index].update_user_photo(photo_data_url)
 
     def _update_total_notifications(self):
         """Atualiza o total de notificações no SysTrayManager."""
