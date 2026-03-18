@@ -1,6 +1,7 @@
-from PyQt6.QtCore import QEasingCurve, QParallelAnimationGroup, QPropertyAnimation, QUrl
+from PyQt6.QtCore import QEasingCurve, QParallelAnimationGroup, QPropertyAnimation, QUrl, Qt
 from PyQt6.QtWidgets import QWidget, QPushButton, QMessageBox, QApplication
-from PyQt6.QtGui import QAction, QDesktopServices
+from PyQt6.QtGui import QAction, QDesktopServices, QPixmap
+from zapzap.controllers.CardUser import CardUser
 from zapzap.controllers.PageButton import PageButton
 from zapzap.webengine.WebView import WebView
 from zapzap.models.User import User
@@ -168,8 +169,12 @@ class Browser(QWidget, Ui_Browser):
         # Criar o botão correspondente
         page_button = PageButton(user, page_index)
         page_button.clicked.connect(
-            lambda: self.switch_to_page(new_page, page_button))
+            lambda: self._handle_page_button_click(new_page, page_button))
         page_button.setObjectName(f"page_button_{page_index}")
+        page_button.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
+        page_button.customContextMenuRequested.connect(
+            lambda position, button=page_button: self._show_page_button_context_menu(button, position)
+        )
 
         # Adicionar o botão ao layout e ao dicionário
         self.page_buttons_layout.addWidget(page_button)
@@ -184,7 +189,6 @@ class Browser(QWidget, Ui_Browser):
                 button.show()
                 page.enable_page()
             else:
-                button.hide()
                 page.disable_page()
         self._select_default_page()
         self._update_user_menu()
@@ -266,6 +270,33 @@ class Browser(QWidget, Ui_Browser):
         page.page().show_toast(page.user.name if page.user.name !=
                                "" else _("Account {}").format(page.page_index))
         button.selected()
+
+    def _handle_page_button_click(self, page: WebView, button: PageButton):
+        """Trata o clique no botão da conta, preservando contas desativadas visíveis."""
+        if not button.user.enable:
+            dialog = QMessageBox(self)
+            dialog.setIcon(QMessageBox.Icon.Information)
+            dialog.setWindowTitle(_("Account disabled"))
+            dialog.setText(_("This account is disabled."))
+            dialog.setInformativeText(
+                _("You can reactivate it now or use the right-click menu to manage this account.")
+            )
+
+            activate_button = dialog.addButton(_("Activate"), QMessageBox.ButtonRole.AcceptRole)
+            dialog.addButton(_("Not now"), QMessageBox.ButtonRole.RejectRole)
+            dialog.exec()
+
+            if dialog.clickedButton() == activate_button:
+                CardUser.set_user_enabled(button.user, True)
+                self.switch_to_page(page, button)
+            return
+
+        self.switch_to_page(page, button)
+
+    def _show_page_button_context_menu(self, button: PageButton, position):
+        """Exibe no botão da conta o menu com as opções do CardUser."""
+        menu = CardUser.create_page_button_context_menu(button, button.user)
+        menu.exec(button.mapToGlobal(position))
 
     def close_pages(self):
         """Fecha e limpa todas as páginas existentes."""
