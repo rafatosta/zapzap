@@ -274,11 +274,21 @@ class Browser(QWidget, Ui_Browser):
     def _handle_page_button_click(self, page: WebView, button: PageButton):
         """Trata o clique no botão da conta, preservando contas desativadas visíveis."""
         if not button.user.enable:
-            AlertManager.information(
-                self,
-                _("Account disabled"),
-                _("This account is disabled. Right-click the icon to manage or reactivate it."),
+            dialog = QMessageBox(self)
+            dialog.setIcon(QMessageBox.Icon.Information)
+            dialog.setWindowTitle(_("Account disabled"))
+            dialog.setText(_("This account is disabled."))
+            dialog.setInformativeText(
+                _("You can reactivate it now or use the right-click menu to manage this account.")
             )
+
+            activate_button = dialog.addButton(_("Activate"), QMessageBox.ButtonRole.AcceptRole)
+            dialog.addButton(_("Not now"), QMessageBox.ButtonRole.RejectRole)
+            dialog.exec()
+
+            if dialog.clickedButton() == activate_button:
+                CardUser.set_user_enabled(button.user, True)
+                self.switch_to_page(page, button)
             return
 
         self.switch_to_page(page, button)

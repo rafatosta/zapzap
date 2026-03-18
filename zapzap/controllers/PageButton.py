@@ -84,8 +84,8 @@ class PageButton(QPushButton):
         )
         if not self._user.enable:
             tooltip = (
-                f"{tooltip}\n{self.tr('Account disabled - right-click to manage')}"
-                if tooltip else self.tr("Account disabled - right-click to manage")
+                f"{tooltip}\n{self.tr('Account disabled - click to activate or right-click to manage')}"
+                if tooltip else self.tr("Account disabled - click to activate or right-click to manage")
             )
         self.setToolTip(tooltip)
 
