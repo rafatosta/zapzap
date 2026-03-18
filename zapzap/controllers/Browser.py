@@ -1,6 +1,6 @@
 from PyQt6.QtCore import QEasingCurve, QParallelAnimationGroup, QPropertyAnimation, QUrl
 from PyQt6.QtWidgets import QWidget, QPushButton, QMessageBox, QApplication
-from PyQt6.QtGui import QAction, QDesktopServices, QPixmap
+from PyQt6.QtGui import QAction, QDesktopServices
 from zapzap.controllers.PageButton import PageButton
 from zapzap.webengine.WebView import WebView
 from zapzap.models.User import User
@@ -48,7 +48,7 @@ class Browser(QWidget, Ui_Browser):
         self.settings_sidebar()
 
     def _setup_grid_view(self):
-        from PyQt6.QtWidgets import QScrollArea, QGridLayout, QFrame
+        from PyQt6.QtWidgets import QScrollArea, QGridLayout
         # Setup the UI structure for the grid view
         self.grid_scroll = QScrollArea(self)
         self.grid_scroll.setWidgetResizable(True)
