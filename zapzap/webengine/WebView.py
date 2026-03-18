@@ -2,7 +2,7 @@ import shutil
 import os
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings, QWebEnginePage, QWebEngineScript
-from PyQt6.QtCore import QUrl, pyqtSignal, QTimer
+from PyQt6.QtCore import QUrl, pyqtSignal, QTimer, QRect, QByteArray, QBuffer, QIODevice
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtGui import QAction
 
@@ -51,6 +51,7 @@ class WebView(QWebEngineView):
 
         self._last_tmp_file = None
         self._avatar_sync_attempts = 0
+        self._debug_page_button_photo = os.getenv("ZAPZAP_DEBUG_PAGE_BUTTON_PHOTO", "0") == "1"
 
         if user.enable:
             self._initialize()
@@ -266,67 +267,163 @@ class WebView(QWebEngineView):
         self._schedule_avatar_sync(2500)
 
     def _schedule_avatar_sync(self, delay_ms=2500):
-        """Agenda tentativas para extrair a foto do perfil do WhatsApp Web."""
+        """Agenda tentativas para localizar a foto do perfil da conta."""
         QTimer.singleShot(delay_ms, self._sync_page_button_photo)
 
     def _sync_page_button_photo(self):
-        """Obtém a foto do perfil da conta e envia ao botão lateral."""
+        """Localiza a área do avatar e recorta a foto direto do WebView renderizado."""
         if not self.page():
             return
 
         script = r"""
         (() => {
-            const candidates = [...document.querySelectorAll('img')].filter((img) => {
-                const src = img.currentSrc || img.src || '';
-                if (!src) return false;
+            const sampled = [];
+            const seen = new Set();
 
-                const rect = img.getBoundingClientRect();
-                if (rect.width < 28 || rect.height < 28) return false;
+            const addCandidate = (element) => {
+                let current = element;
+                let depth = 0;
+                while (current && depth < 3) {
+                    if (!seen.has(current)) {
+                        seen.add(current);
+                        sampled.push(current);
+                    }
+                    current = current.parentElement;
+                    depth += 1;
+                }
+            };
 
-                const squareEnough = Math.abs(rect.width - rect.height) <= Math.max(8, rect.width * 0.35);
-                const upperSidebarArea = rect.top >= 0 && rect.top < window.innerHeight * 0.40 && rect.left >= 0 && rect.left < window.innerWidth * 0.35;
-                return squareEnough && upperSidebarArea;
-            });
-
-            if (!candidates.length) return '';
-
-            candidates.sort((a, b) => {
-                const ra = a.getBoundingClientRect();
-                const rb = b.getBoundingClientRect();
-                const scoreA = (ra.left < 220 ? 1000 : 0) - ra.top - Math.abs(ra.width - 40) - Math.abs(ra.height - 40);
-                const scoreB = (rb.left < 220 ? 1000 : 0) - rb.top - Math.abs(rb.width - 40) - Math.abs(rb.height - 40);
-                return scoreB - scoreA;
-            });
-
-            const img = candidates[0];
-            try {
-                const size = 128;
-                const canvas = document.createElement('canvas');
-                canvas.width = size;
-                canvas.height = size;
-                const ctx = canvas.getContext('2d');
-                ctx.beginPath();
-                ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
-                ctx.closePath();
-                ctx.clip();
-                ctx.drawImage(img, 0, 0, size, size);
-                return canvas.toDataURL('image/png');
-            } catch (error) {
-                return '';
+            for (let x = 12; x <= 120; x += 18) {
+                for (let y = 12; y <= 120; y += 18) {
+                    document.elementsFromPoint(x, y).forEach(addCandidate);
+                }
             }
+
+            const candidates = sampled.map((element) => {
+                const rect = element.getBoundingClientRect();
+                const style = window.getComputedStyle(element);
+                const tag = element.tagName || '';
+                const src = tag === 'IMG' ? (element.currentSrc || element.src || '') : '';
+                const backgroundImage = style.backgroundImage || '';
+                const hasPaintedImage = Boolean(src) || (backgroundImage && backgroundImage !== 'none');
+                const withinSidebar = rect.left >= 0 && rect.top >= 0 && rect.left < window.innerWidth * 0.35 && rect.top < window.innerHeight * 0.35;
+                const visibleSize = rect.width >= 24 && rect.height >= 24 && rect.width <= 96 && rect.height <= 96;
+                const squareEnough = Math.abs(rect.width - rect.height) <= Math.max(10, rect.width * 0.4);
+                const borderRadius = parseFloat(style.borderTopLeftRadius || '0') || 0;
+                const score = (hasPaintedImage ? 1000 : 0)
+                    + (withinSidebar ? 500 : 0)
+                    + (squareEnough ? 150 : 0)
+                    + Math.max(0, 80 - Math.abs(rect.width - 40))
+                    + Math.max(0, 80 - Math.abs(rect.height - 40))
+                    + Math.min(borderRadius, 40)
+                    - rect.top
+                    - rect.left;
+
+                return {
+                    tag,
+                    srcKind: src ? 'img' : (backgroundImage && backgroundImage !== 'none' ? 'background' : 'none'),
+                    rect: {
+                        x: Math.round(rect.x),
+                        y: Math.round(rect.y),
+                        width: Math.round(rect.width),
+                        height: Math.round(rect.height),
+                    },
+                    borderRadius: Math.round(borderRadius),
+                    score,
+                    accepted: hasPaintedImage && withinSidebar && visibleSize && squareEnough,
+                };
+            }).filter((candidate) => candidate.rect.width > 0 && candidate.rect.height > 0);
+
+            const accepted = candidates
+                .filter((candidate) => candidate.accepted)
+                .sort((a, b) => b.score - a.score);
+
+            return {
+                best: accepted[0] || null,
+                inspected: candidates.slice(0, 20),
+                acceptedCount: accepted.length,
+            };
         })();
         """
 
-        self.page().runJavaScript(script, self._handle_synced_page_button_photo)
+        self.page().runJavaScript(script, self._handle_page_button_photo_probe)
 
-    def _handle_synced_page_button_photo(self, photo_data_url):
-        """Atualiza o botão lateral com a foto extraída da página."""
+    def _handle_page_button_photo_probe(self, probe_result):
+        """Recorta a área localizada do avatar e envia a imagem ao botão lateral."""
+        if self._debug_page_button_photo:
+            print(f"[page_button_photo] page={self.page_index} probe={probe_result}")
+
+        if not isinstance(probe_result, dict) or not probe_result.get("best"):
+            self._retry_page_button_photo_sync("no_candidate")
+            return
+
+        rect_data = probe_result["best"].get("rect") or {}
+        crop_rect = self._build_page_button_photo_rect(rect_data)
+        if crop_rect is None:
+            self._retry_page_button_photo_sync("invalid_rect")
+            return
+
+        screenshot = self.grab()
+        if screenshot.isNull():
+            self._retry_page_button_photo_sync("null_screenshot")
+            return
+
+        cropped = screenshot.copy(crop_rect)
+        if cropped.isNull():
+            self._retry_page_button_photo_sync("null_crop")
+            return
+
+        photo_data_url = self._pixmap_to_data_url(cropped)
         if photo_data_url:
+            if self._debug_page_button_photo:
+                print(f"[page_button_photo] page={self.page_index} rect={crop_rect.getRect()} synced")
             self.update_button_photo_signal.emit(self.page_index, photo_data_url)
             return
 
+        self._retry_page_button_photo_sync("encode_failed")
+
+    def _build_page_button_photo_rect(self, rect_data):
+        """Normaliza o retângulo retornado pelo JS para recorte em pixels do WebView."""
+        try:
+            x = int(rect_data.get("x", 0))
+            y = int(rect_data.get("y", 0))
+            width = int(rect_data.get("width", 0))
+            height = int(rect_data.get("height", 0))
+        except (TypeError, ValueError, AttributeError):
+            return None
+
+        if width <= 0 or height <= 0:
+            return None
+
+        size = max(width, height)
+        pad = max(2, int(size * 0.08))
+        rect = QRect(x - pad, y - pad, size + (pad * 2), size + (pad * 2))
+        rect = rect.intersected(self.rect())
+        return rect if not rect.isEmpty() else None
+
+    def _pixmap_to_data_url(self, pixmap):
+        """Converte um QPixmap em data URL PNG."""
+        payload = QByteArray()
+        buffer = QBuffer(payload)
+        if not buffer.open(QIODevice.OpenModeFlag.WriteOnly):
+            return None
+
+        if not pixmap.save(buffer, "PNG"):
+            buffer.close()
+            return None
+
+        buffer.close()
+        encoded = bytes(payload.toBase64()).decode("ascii")
+        return f"data:image/png;base64,{encoded}"
+
+    def _retry_page_button_photo_sync(self, reason):
+        """Reagenda a sincronização da foto do botão com logs opcionais."""
         self._avatar_sync_attempts += 1
-        if self._avatar_sync_attempts < 5:
+        if self._debug_page_button_photo:
+            print(
+                f"[page_button_photo] page={self.page_index} retry={self._avatar_sync_attempts} reason={reason}"
+            )
+        if self._avatar_sync_attempts < 6:
             self._schedule_avatar_sync(4000)
 
     def set_zoom_factor_page(self, factor=None):
