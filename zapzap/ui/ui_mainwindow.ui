@@ -69,6 +69,10 @@
      <addaction name="actionToggle_sidebar"/>
      <addaction name="actionToggle_full_screen"/>
      <addaction name="separator"/>
+     <addaction name="actionTheme_auto"/>
+     <addaction name="actionTheme_light"/>
+     <addaction name="actionTheme_dark"/>
+     <addaction name="separator"/>
      <addaction name="actionReset_zoom"/>
      <addaction name="actionZoom_in"/>
      <addaction name="actionZoom_out"/>
@@ -180,6 +184,39 @@
      <string>Show sidebar</string>
     </property>
    </action>
+  <action name="actionTheme_auto">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Automatic theme</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+1</string>
+   </property>
+  </action>
+  <action name="actionTheme_light">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Light theme</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+2</string>
+   </property>
+  </action>
+  <action name="actionTheme_dark">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Dark theme</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+3</string>
+   </property>
+  </action>
   <action name="actionReload">
    <property name="text">
     <string>Reload</string>
