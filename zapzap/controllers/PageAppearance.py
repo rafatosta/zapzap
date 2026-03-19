@@ -31,6 +31,15 @@ class PageAppearance(QWidget, Ui_PageAppearance):
         self.notificationCounter.setChecked(SettingsManager.get(
             "system/notificationCounter", False))
 
+        # Configurações de tema
+        theme_mode = SettingsManager.get(
+            "system/theme", ThemeManager.Type.Auto.value)
+        self._set_selected_radio(theme_mode, {
+            ThemeManager.Type.Auto.value: self.theme_auto_radioButton,
+            ThemeManager.Type.Light.value: self.theme_light_radioButton,
+            ThemeManager.Type.Dark.value: self.theme_dark_radioButton,
+        })
+
         # Configuração de colunas do grid
         self._setup_grid_options()
         self.gridColsComboBox.setCurrentText(
