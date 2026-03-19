@@ -9,7 +9,7 @@ from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
 from zapzap.services.ThemeManager import ThemeManager
 from zapzap.views.ui_mainwindow import Ui_MainWindow
-from PyQt6.QtGui import QImage
+from PyQt6.QtGui import QImage, QActionGroup
 
 from gettext import gettext as _
 
@@ -27,6 +27,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.browser = Browser(self)  # Inicialização do navegador
         self.app_settings = None
         self._last_sanitized_key = None
+        self.theme_action_group = None
         self._setup_ui()
 
         if not SettingsManager.get("notification/donation_message", True):
@@ -71,8 +72,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def _setup_ui(self):
         """Configurações iniciais da interface e conexões de menu."""
         self.stackedWidget.addWidget(self.browser)
+        self._setup_theme_menu()
         self._connect_menu_actions()
         self.settings_menubar()
+        self.refresh_theme_menu()
         self.set_sidebar_visible(
             SettingsManager.get("system/sidebar", True),
             animated=False,
@@ -120,10 +123,54 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionGrid_view.triggered.connect(self.browser.show_grid_view)
         self.actionOpen_DevTools.triggered.connect(self.open_devtools)
         self.actionToggle_sidebar.triggered.connect(self.set_sidebar_visible)
+        self.actionTheme_auto.triggered.connect(
+            lambda: self.set_theme_mode(ThemeManager.Type.Auto)
+        )
+        self.actionTheme_light.triggered.connect(
+            lambda: self.set_theme_mode(ThemeManager.Type.Light)
+        )
+        self.actionTheme_dark.triggered.connect(
+            lambda: self.set_theme_mode(ThemeManager.Type.Dark)
+        )
         self.actionReset_zoom.triggered.connect(self._reset_zoom)
         self.actionToggle_full_screen.triggered.connect(self.toggle_fullscreen)
         self.actionZoom_in.triggered.connect(self._zoom_in)
         self.actionZoom_out.triggered.connect(self._zoom_out)
+
+    def _setup_theme_menu(self):
+        """Configura as ações exclusivas do menu de tema."""
+        self.theme_action_group = QActionGroup(self)
+        self.theme_action_group.setExclusive(True)
+        for action in (
+            self.actionTheme_auto,
+            self.actionTheme_light,
+            self.actionTheme_dark,
+        ):
+            self.theme_action_group.addAction(action)
+
+    def set_theme_mode(self, theme: ThemeManager.Type):
+        """Aplica o tema selecionado pelo menu."""
+        ThemeManager.set_theme(theme)
+        self.refresh_theme_menu()
+
+    def refresh_theme_menu(self):
+        """Sincroniza o estado do menu com a preferência de tema salva."""
+        theme_value = SettingsManager.get(
+            "system/theme", ThemeManager.Type.Auto.value
+        )
+        if isinstance(theme_value, ThemeManager.Type):
+            theme_value = theme_value.value
+
+        action_map = {
+            ThemeManager.Type.Auto.value: self.actionTheme_auto,
+            ThemeManager.Type.Light.value: self.actionTheme_light,
+            ThemeManager.Type.Dark.value: self.actionTheme_dark,
+        }
+
+        for value, action in action_map.items():
+            action.blockSignals(True)
+            action.setChecked(theme_value == value)
+            action.blockSignals(False)
 
     def set_sidebar_visible(self, visible: bool, animated: bool = True, persist: bool = True):
         self.browser.set_sidebar_visible(visible, animated=animated)
