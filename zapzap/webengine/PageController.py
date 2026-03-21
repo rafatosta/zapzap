@@ -6,6 +6,7 @@ from zapzap import __whatsapp_url__
 from zapzap.services.AddonsManager import AddonsManager
 from zapzap.services.CustomizationsManager import CustomizationsManager
 from zapzap.services.ThemeManager import ThemeManager
+from zapzap.services.SettingsManager import SettingsManager
 
 import urllib.parse  # Para normalizar URLs
 
@@ -14,6 +15,8 @@ from gettext import gettext as _
 
 class PageController(QWebEnginePage):
     """Controlador de página para gerenciar eventos e ações personalizadas no QWebEnginePage."""
+
+    APP_START = True
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -71,20 +74,79 @@ class PageController(QWebEnginePage):
         script = """document.dispatchEvent(new KeyboardEvent("keydown", {'key': 'Escape'}));"""
         self.runJavaScript(script)
 
+    """ Temas
+
+    Obs: Em flatpak é a página reconhece o tema do sistema e aplica ao Whatsapp web.     
+    -- Quando o tema é aplicado no sistema, basta atualizar a página para que o ThemeManager injete o CSS correto. 
+    Não é necessário aplicar o tema manualmente aqui, mas os métodos estão disponíveis caso queira forçar a mudança de tema via JavaScript.
+    
+
+    -- Se APP_START == TRUE => NÃO aplicar o tema, pois é aplicado automaticamente pelo sistema operacional. Apenas marcar APP_START = FALSE para permitir futuras mudanças de tema.
+
+    -- Se AUTOMATICO == TRUE e MUDOU_TEMA== TRUE => ATUALIZAR A PÁGINA PARA INJETAR O CSS DO TEMA CORRETO
+
+    -- Se LIGHT == TRUE => set_theme_light()
+
+    -- Se DARK == TRUE => set_theme_dark()
+
+    
+    ##
+
+    """
+
     def set_theme_light(self):
         """Altera o tema da página para claro."""
-        self.profile().settings().setAttribute(
-            QWebEngineSettings.WebAttribute.ForceDarkMode, False)
 
-        self.runJavaScript("document.body.classList.remove('dark');")
+        # Obtém o tema atual para verificar se é necessário aplicar o tema manualmente
+        current_theme = ThemeManager.Type(
+            SettingsManager.get("system/theme", ThemeManager.Type.Auto)
+        )
+
+        # Se o aplicativo acabou de iniciar e o tema é automático, não aplicamos o tema manualmente para evitar conflitos, pois o sistema já aplicará o tema correto. Apenas marcamos que o aplicativo iniciou para permitir futuras mudanças de tema.
+        if self.APP_START and current_theme == ThemeManager.Type.Auto:
+            self.APP_START = False
+            print(
+                "Light:Primeira aplicação de tema ignorada para evitar conflito com o carregamento inicial da página.")
+            print("Tema atual:", current_theme)
+            return
+        else:
+            # Para forçar o tema claro, desabilitamos o modo escuro.
+            self.profile().settings().setAttribute(
+                QWebEngineSettings.WebAttribute.ForceDarkMode, False)
 
     def set_theme_dark(self):
         """Altera o tema da página para escuro."""
 
-        self.profile().settings().setAttribute(
+        current_theme = ThemeManager.Type(
+            SettingsManager.get("system/theme", ThemeManager.Type.Auto)
+        )
+
+        if self.APP_START and current_theme == ThemeManager.Type.Auto:
+            self.APP_START = False
+            print(
+                "Dark:Primeira aplicação de tema ignorada para evitar conflito com o carregamento inicial da página.")
+            print("Tema atual:", current_theme)
+            return
+        else:
+            # Força a página a recarregar para aplicar o tema escuro do sistema operacional, que é detectado automaticamente pelo WhatsApp Web e aplicado sem necessidade de injeção manual de CSS.
+            self.load(QUrl(__whatsapp_url__))
+            self.APP_START = True
+            
+
+    # def set_theme_light(self):
+        """Altera o tema da página para claro."""
+        """ self.profile().settings().setAttribute(
             QWebEngineSettings.WebAttribute.ForceDarkMode, False)
 
-        self.runJavaScript("document.body.classList.add('dark');")
+        self.runJavaScript("document.body.classList.remove('dark');") """
+
+    # def set_theme_dark(self):
+        """Altera o tema da página para escuro."""
+
+        """ self.profile().settings().setAttribute(
+            QWebEngineSettings.WebAttribute.ForceDarkMode, False)
+
+        self.runJavaScript("document.body.classList.add('dark');") """
 
     def new_chat(self):
         """Simula o atalho 'Ctrl+Alt+N' para iniciar um novo chat."""
@@ -177,14 +239,16 @@ class PageController(QWebEnginePage):
             CustomizationsManager.TYPE_CSS,
             self.user_id,
         )
-        self.runJavaScript(CustomizationsManager.css_injection_script(css_entries))
+        self.runJavaScript(
+            CustomizationsManager.css_injection_script(css_entries))
 
     def apply_custom_js(self):
         js_entries = CustomizationsManager.build_effective_ordered_assets(
             CustomizationsManager.TYPE_JS,
             self.user_id,
         )
-        self.runJavaScript(CustomizationsManager.js_injection_script(js_entries))
+        self.runJavaScript(
+            CustomizationsManager.js_injection_script(js_entries))
 
     def show_toast(self, message, duration=1000):
         """Exibe um toast na página utilizando JavaScript."""
