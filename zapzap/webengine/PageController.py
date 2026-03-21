@@ -103,7 +103,7 @@ class PageController(QWebEnginePage):
         )
 
         # Se o aplicativo acabou de iniciar e o tema é automático, não aplicamos o tema manualmente para evitar conflitos, pois o sistema já aplicará o tema correto. Apenas marcamos que o aplicativo iniciou para permitir futuras mudanças de tema.
-        if self.APP_START and current_theme == ThemeManager.Type.Auto:
+        if self.APP_START:
             self.APP_START = False
             print(
                 "Light:Primeira aplicação de tema ignorada para evitar conflito com o carregamento inicial da página.")
@@ -121,13 +121,18 @@ class PageController(QWebEnginePage):
             SettingsManager.get("system/theme", ThemeManager.Type.Auto)
         )
 
-        if self.APP_START and current_theme == ThemeManager.Type.Auto:
+        if self.APP_START:
             self.APP_START = False
             print(
                 "Dark:Primeira aplicação de tema ignorada para evitar conflito com o carregamento inicial da página.")
             print("Tema atual:", current_theme)
             return
         else:
+            if current_theme == ThemeManager.Type.Dark:
+                # colocar aqui o css dark manual para forçar o tema escuro.
+                self.profile().settings().setAttribute(
+                    QWebEngineSettings.WebAttribute.ForceDarkMode, True)
+
             # Força a página a recarregar para aplicar o tema escuro do sistema operacional, que é detectado automaticamente pelo WhatsApp Web e aplicado sem necessidade de injeção manual de CSS.
             self.load(QUrl(__whatsapp_url__))
             self.APP_START = True
