@@ -77,48 +77,76 @@ class PageController(QWebEnginePage):
 
     """
     local -> inicar em modo Auto e Dark não atualiza a página
-    """    
+    """
 
-    def apply_theme(self, theme: ThemeManager.Type):
-        """Aplica o tema considerando ambiente e estado da aplicação."""
+    def apply_theme(self, system_theme: ThemeManager.Type):
+        """
+        Aplica o tema considerando:
+        - Configuração do usuário (Auto, Light, Dark)
+        - Tema do sistema (quando Auto)
+        - Ambiente (Flatpak vs local)
+        """
+
         is_flatpak = EnvironmentManager.identify_packaging() == Packaging.FLATPAK
 
-        current_theme = ThemeManager.Type(
+        configured_theme = ThemeManager.Type(
             SettingsManager.get("system/theme", ThemeManager.Type.Auto)
         )
 
-        print(
-            f"[Theme Type] {current_theme} | [Theme] {theme} | Flatpak={is_flatpak}")
+        # Resolve o tema final
+        effective_theme = (
+            system_theme if configured_theme == ThemeManager.Type.Auto
+            else configured_theme
+        )
 
-        if is_flatpak and self.APP_START and current_theme == ThemeManager.Type.Auto:
+        print(
+            f"[Configured] {configured_theme} | [System] {system_theme} "
+            f"| [Effective] {effective_theme} | Flatpak={is_flatpak}"
+        )
+
+        # --- REGRA ESPECIAL (Flatpak + Auto na inicialização) ---
+        if is_flatpak and self.APP_START and configured_theme == ThemeManager.Type.Auto:
             self.APP_START = False
-            print('Aplicativo iniciado, não é necessário atualizar o tema.')
+            print("[Theme] Skip reload on startup (Flatpak + Auto)")
             return
 
-        if current_theme == ThemeManager.Type.Auto:
-            if theme == ThemeManager.Type.Light:
-                self._set_force_dark(False)
-                self.runJavaScript("document.body.classList.remove('dark');")
-                return
-
-            if theme == ThemeManager.Type.Dark:
-                self._set_force_dark(False)  # não faz sentido, mas funciona.
-                self.runJavaScript("document.body.classList.add('dark');")
-                return
-
-        if current_theme == ThemeManager.Type.Light:
+        # --- LÓGICA PRINCIPAL ---
+        if configured_theme == ThemeManager.Type.Auto:
+            # Em Auto, NÃO usar ForceDark (evita bugs com mídia)
             self._set_force_dark(False)
-            self.triggerAction(QWebEnginePage.WebAction.Reload)
 
-        if current_theme == ThemeManager.Type.Dark:
+            # Apenas alterna CSS (sem reload)
+            self._apply_css_theme(effective_theme)
+            return
+
+        # --- MODO FIXO (Light/Dark manual) ---
+        if configured_theme == ThemeManager.Type.Light:
+            self._set_force_dark(False)
+            self._apply_css_theme(effective_theme)
+            return
+
+        if configured_theme == ThemeManager.Type.Dark:
             self._set_force_dark(True)
-            self.triggerAction(QWebEnginePage.WebAction.Reload)
+            return
+
+    def _reload_page_if_needed(self):
+        """Centraliza reload para evitar chamadas redundantes."""
+        print("[Theme] Reload triggered")
+        self.triggerAction(QWebEnginePage.WebAction.Reload)
 
     def _set_force_dark(self, enabled: bool):
+        """Aplica ForceDark no engine."""
         self.profile().settings().setAttribute(
             QWebEngineSettings.WebAttribute.ForceDarkMode,
             enabled
         )
+
+    def _apply_css_theme(self, theme: ThemeManager.Type):
+        """Aplica tema via CSS (sem reload)."""
+        if theme == ThemeManager.Type.Dark:
+            self.runJavaScript("document.body.classList.add('dark');")
+        else:
+            self.runJavaScript("document.body.classList.remove('dark');")
 
     def set_theme_light(self):
         """Altera o tema da página para claro."""
