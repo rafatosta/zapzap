@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 14:05-0300\n"
+"POT-Creation-Date: 2026-03-24 15:50-0300\n"
 "PO-Revision-Date: 2025-11-11 11:40+0200\n"
 "Last-Translator: F. András <erfan659-2 at yahoo dot com>\n"
 "Language-Team: Hungarian\n"
@@ -94,7 +94,7 @@ msgstr "Felhasználók"
 msgid "Help"
 msgstr "Segítség"
 
-#: zapzap/views/ui_mainwindow.py:122 zapzap/views/ui_settings.py:142
+#: zapzap/views/ui_mainwindow.py:122 zapzap/views/ui_settings.py:168
 #: zapzap/services/SysTrayManager.py:57
 msgid "Quit"
 msgstr "Kilépés"
@@ -232,8 +232,13 @@ msgstr "Ctrl+M"
 msgid "Keyboard shortcuts"
 msgstr "Gyorsbillentyűk"
 
-#: zapzap/views/ui_mainwindow.py:154 zapzap/views/ui_page_about.py:113
-#: zapzap/views/ui_settings.py:141
+#: zapzap/views/ui_mainwindow.py:154
+#, fuzzy
+msgid "Ctrl+Shift+/, Ctrl+?"
+msgstr "Ctrl++"
+
+#: zapzap/views/ui_mainwindow.py:155 zapzap/views/ui_page_about.py:113
+#: zapzap/views/ui_settings.py:166
 msgid "About"
 msgstr "Alkalmazásról"
 
@@ -258,7 +263,7 @@ msgstr "Probléma jelentése"
 msgid "My accounts"
 msgstr "Fiókjaim"
 
-#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:135
+#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:160
 #: zapzap/controllers/OnboardingDialog.py:164
 msgid "Appearance"
 msgstr "Megjelenés"
@@ -335,7 +340,7 @@ msgstr "200 %"
 msgid "Note: The change of scale will only have effect until restarting."
 msgstr "Megjegyzés: a nagyítás újraindításig érvényes."
 
-#: zapzap/views/ui_page_customizations.py:239 zapzap/views/ui_settings.py:136
+#: zapzap/views/ui_page_customizations.py:239 zapzap/views/ui_settings.py:161
 msgid "Customizations"
 msgstr ""
 
@@ -455,7 +460,7 @@ msgstr ""
 msgid "Save"
 msgstr "Mentés"
 
-#: zapzap/views/ui_page_general.py:131 zapzap/views/ui_settings.py:132
+#: zapzap/views/ui_page_general.py:131 zapzap/views/ui_settings.py:157
 msgid "General"
 msgstr "Általános"
 
@@ -520,7 +525,7 @@ msgstr "Ne használd platform fájlválasztóját"
 msgid "Wayland window system"
 msgstr "Waylan megjelenítő rendszer"
 
-#: zapzap/views/ui_page_network.py:118 zapzap/views/ui_settings.py:139
+#: zapzap/views/ui_page_network.py:118 zapzap/views/ui_settings.py:164
 msgid "Network"
 msgstr "Hálózat"
 
@@ -568,7 +573,7 @@ msgstr ""
 msgid "Prevent WebRTC IP leak (Mask local IPs)"
 msgstr ""
 
-#: zapzap/views/ui_page_notifications.py:76 zapzap/views/ui_settings.py:137
+#: zapzap/views/ui_page_notifications.py:76 zapzap/views/ui_settings.py:162
 #: zapzap/controllers/OnboardingDialog.py:121
 msgid "Notifications"
 msgstr "Jelzések"
@@ -730,29 +735,34 @@ msgstr "Verzió: {id} - {version_type}"
 msgid "Make a donation"
 msgstr "Adományozz"
 
-#: zapzap/views/ui_settings.py:130
+#: zapzap/views/ui_settings.py:155
 msgid "Back"
 msgstr "Vissza"
 
-#: zapzap/views/ui_settings.py:131
+#: zapzap/views/ui_settings.py:156
 msgid "SETTINGS"
 msgstr "BEÁLLÍTÁSOK"
 
-#: zapzap/views/ui_settings.py:133
+#: zapzap/views/ui_settings.py:158
 msgid "Accounts"
 msgstr "Fiókok"
 
-#: zapzap/views/ui_settings.py:134
+#: zapzap/views/ui_settings.py:159
 msgid "TOOLS"
 msgstr "ESZKÖZÖK"
 
-#: zapzap/views/ui_settings.py:138
+#: zapzap/views/ui_settings.py:163
 msgid "Performance"
 msgstr "Teljesítmény"
 
-#: zapzap/views/ui_settings.py:140
+#: zapzap/views/ui_settings.py:165
 msgid "HELP"
 msgstr "SEGÍTSÉG"
+
+#: zapzap/views/ui_settings.py:167
+#, fuzzy
+msgid "Donate"
+msgstr "Adomány"
 
 #: zapzap/views/ui_shortcuts_dialog.py:62
 msgid "Dialog"

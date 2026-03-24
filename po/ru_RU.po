@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zapzap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 14:05-0300\n"
+"POT-Creation-Date: 2026-03-24 15:50-0300\n"
 "PO-Revision-Date: 2025-02-28 12:43+0500\n"
 "Last-Translator: Dmitriy Q  <krotesk at mail dot ru>\n"
 "Language-Team: TranslAster\n"
@@ -96,7 +96,7 @@ msgstr "Пользователи"
 msgid "Help"
 msgstr "Справка"
 
-#: zapzap/views/ui_mainwindow.py:122 zapzap/views/ui_settings.py:142
+#: zapzap/views/ui_mainwindow.py:122 zapzap/views/ui_settings.py:168
 #: zapzap/services/SysTrayManager.py:57
 msgid "Quit"
 msgstr "Выйти"
@@ -234,8 +234,13 @@ msgstr "Ctrl+M"
 msgid "Keyboard shortcuts"
 msgstr "Клавиатурные сокращения"
 
-#: zapzap/views/ui_mainwindow.py:154 zapzap/views/ui_page_about.py:113
-#: zapzap/views/ui_settings.py:141
+#: zapzap/views/ui_mainwindow.py:154
+#, fuzzy
+msgid "Ctrl+Shift+/, Ctrl+?"
+msgstr "Ctrl++"
+
+#: zapzap/views/ui_mainwindow.py:155 zapzap/views/ui_page_about.py:113
+#: zapzap/views/ui_settings.py:166
 msgid "About"
 msgstr "О программе"
 
@@ -260,7 +265,7 @@ msgstr "Сообщить о проблеме"
 msgid "My accounts"
 msgstr "Мой аккаунт"
 
-#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:135
+#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:160
 #: zapzap/controllers/OnboardingDialog.py:164
 msgid "Appearance"
 msgstr "Внешний вид"
@@ -338,7 +343,7 @@ msgid "Note: The change of scale will only have effect until restarting."
 msgstr ""
 "Примечание: Изменение масштаба будет действовать только до перезапуска."
 
-#: zapzap/views/ui_page_customizations.py:239 zapzap/views/ui_settings.py:136
+#: zapzap/views/ui_page_customizations.py:239 zapzap/views/ui_settings.py:161
 msgid "Customizations"
 msgstr ""
 
@@ -458,7 +463,7 @@ msgstr ""
 msgid "Save"
 msgstr "Сохранить"
 
-#: zapzap/views/ui_page_general.py:131 zapzap/views/ui_settings.py:132
+#: zapzap/views/ui_page_general.py:131 zapzap/views/ui_settings.py:157
 msgid "General"
 msgstr "Общие сведения"
 
@@ -523,7 +528,7 @@ msgstr "Не использовать нативное диалоговое ок
 msgid "Wayland window system"
 msgstr "Оконная система Wayland"
 
-#: zapzap/views/ui_page_network.py:118 zapzap/views/ui_settings.py:139
+#: zapzap/views/ui_page_network.py:118 zapzap/views/ui_settings.py:164
 msgid "Network"
 msgstr "Сетевые настройки"
 
@@ -571,7 +576,7 @@ msgstr ""
 msgid "Prevent WebRTC IP leak (Mask local IPs)"
 msgstr ""
 
-#: zapzap/views/ui_page_notifications.py:76 zapzap/views/ui_settings.py:137
+#: zapzap/views/ui_page_notifications.py:76 zapzap/views/ui_settings.py:162
 #: zapzap/controllers/OnboardingDialog.py:121
 msgid "Notifications"
 msgstr "Уведомления"
@@ -734,29 +739,34 @@ msgstr ""
 msgid "Make a donation"
 msgstr "Пожертвовать"
 
-#: zapzap/views/ui_settings.py:130
+#: zapzap/views/ui_settings.py:155
 msgid "Back"
 msgstr "Назад"
 
-#: zapzap/views/ui_settings.py:131
+#: zapzap/views/ui_settings.py:156
 msgid "SETTINGS"
 msgstr "НАСТРОЙКИ"
 
-#: zapzap/views/ui_settings.py:133
+#: zapzap/views/ui_settings.py:158
 msgid "Accounts"
 msgstr "Аккаунт"
 
-#: zapzap/views/ui_settings.py:134
+#: zapzap/views/ui_settings.py:159
 msgid "TOOLS"
 msgstr "ИНСТРУМЕНТЫ"
 
-#: zapzap/views/ui_settings.py:138
+#: zapzap/views/ui_settings.py:163
 msgid "Performance"
 msgstr "Производительность"
 
-#: zapzap/views/ui_settings.py:140
+#: zapzap/views/ui_settings.py:165
 msgid "HELP"
 msgstr "СПРАВКА"
+
+#: zapzap/views/ui_settings.py:167
+#, fuzzy
+msgid "Donate"
+msgstr "Пожертвования"
 
 #: zapzap/views/ui_shortcuts_dialog.py:62
 msgid "Dialog"
