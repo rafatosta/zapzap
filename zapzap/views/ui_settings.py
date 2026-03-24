@@ -117,6 +117,9 @@ class Ui_Settings(object):
         self.btn_page_help = QtWidgets.QPushButton(parent=self.menu_layout)
         self.btn_page_help.setObjectName("btn_page_help")
         self.verticalLayout_2.addWidget(self.btn_page_help)
+        self.btn_donate = QtWidgets.QPushButton(parent=self.menu_layout)
+        self.btn_donate.setObjectName("btn_donate")
+        self.verticalLayout_2.addWidget(self.btn_donate)
         spacerItem1 = QtWidgets.QSpacerItem(20, 100, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_2.addItem(spacerItem1)
         self.btn_quit = QtWidgets.QPushButton(parent=self.menu_layout)
@@ -161,6 +164,7 @@ class Ui_Settings(object):
         self.btn_page_network.setText(_("Network"))
         self.label.setText(_("HELP"))
         self.btn_page_help.setText(_("About"))
+        self.btn_donate.setText(_("Donate"))
         self.btn_quit.setText(_("Quit"))
 
 
