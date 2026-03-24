@@ -75,99 +75,58 @@ class PageController(QWebEnginePage):
         script = """document.dispatchEvent(new KeyboardEvent("keydown", {'key': 'Escape'}));"""
         self.runJavaScript(script)
 
-    """ Temas
-
-    Obs: Em flatpak é a página reconhece o tema do sistema e aplica ao Whatsapp web.     
-    -- Quando o tema é aplicado no sistema, basta atualizar a página para que o ThemeManager injete o CSS correto. 
-    Não é necessário aplicar o tema manualmente aqui, mas os métodos estão disponíveis caso queira forçar a mudança de tema via JavaScript.
-    
-
-    -- Se APP_START == TRUE => NÃO aplicar o tema, pois é aplicado automaticamente pelo sistema operacional. Apenas marcar APP_START = FALSE para permitir futuras mudanças de tema.
-
-    -- Se AUTOMATICO == TRUE e MUDOU_TEMA== TRUE => ATUALIZAR A PÁGINA PARA INJETAR O CSS DO TEMA CORRETO
-
-    -- Se LIGHT == TRUE => set_theme_light()
-
-    -- Se DARK == TRUE => set_theme_dark()
-
-    
-    ##
-
     """
+    local -> inicar em modo Auto e Dark não atualiza a página
+    """    
 
-    def set_theme_light(self):
-        """Altera o tema da página para claro."""
-
-        # Se o aplicativo acabou de iniciar e o tema é automático, não aplicamos o tema manualmente para evitar conflitos, pois o sistema já aplicará o tema correto. Apenas marcamos que o aplicativo iniciou para permitir futuras mudanças de tema.
-        if self.APP_START:
-            self.APP_START = False
-
-            if EnvironmentManager.identify_packaging() == Packaging.FLATPAK:
-                print(
-                    "Flatpak:O tema é aplicado automaticamente pelo sistema operacional, apenas atualize a página para aplicar o tema do sistema."
-                )
-            else:
-                self.profile().settings().setAttribute(
-                    QWebEngineSettings.WebAttribute.ForceDarkMode, False)
-                self.runJavaScript("document.body.classList.remove('dark');")
-
-        else:
-            if EnvironmentManager.identify_packaging() == Packaging.FLATPAK:
-                # Para forçar o tema claro, desabilitamos o modo escuro.
-                self.profile().settings().setAttribute(
-                    QWebEngineSettings.WebAttribute.ForceDarkMode, False)
-            else:
-                self.profile().settings().setAttribute(
-                    QWebEngineSettings.WebAttribute.ForceDarkMode, False)
-                self.runJavaScript("document.body.classList.remove('dark');")
-
-    def set_theme_dark(self):
-        """Altera o tema da página para escuro."""
+    def apply_theme(self, theme: ThemeManager.Type):
+        """Aplica o tema considerando ambiente e estado da aplicação."""
+        is_flatpak = EnvironmentManager.identify_packaging() == Packaging.FLATPAK
 
         current_theme = ThemeManager.Type(
             SettingsManager.get("system/theme", ThemeManager.Type.Auto)
         )
 
-        if self.APP_START:
+        print(
+            f"[Theme Type] {current_theme} | [Theme] {theme} | Flatpak={is_flatpak}")
+
+        if is_flatpak and self.APP_START and current_theme == ThemeManager.Type.Auto:
             self.APP_START = False
-            if EnvironmentManager.identify_packaging() == Packaging.FLATPAK:
-                print(
-                    "Flatpak:O tema é aplicado automaticamente pelo sistema operacional, apenas atualize a página para aplicar o tema do sistema."
-                )
-            else:
-                self.profile().settings().setAttribute(
-                    QWebEngineSettings.WebAttribute.ForceDarkMode, False)
-                self.runJavaScript("document.body.classList.add('dark');")
-            print("Tema atual:", current_theme)
-        else:
-            if current_theme == ThemeManager.Type.Dark:
-                # colocar aqui o css dark manual para forçar o tema escuro.
-                self.profile().settings().setAttribute(
-                    QWebEngineSettings.WebAttribute.ForceDarkMode, True)
+            print('Aplicativo iniciado, não é necessário atualizar o tema.')
+            return
 
-            if EnvironmentManager.identify_packaging() == Packaging.FLATPAK:
-                # Força a página a recarregar para aplicar o tema escuro do sistema operacional, que é detectado automaticamente pelo WhatsApp Web e aplicado sem necessidade de injeção manual de CSS.
-                self.load(QUrl(__whatsapp_url__))
-                self.APP_START = True
-            else:
-                self.profile().settings().setAttribute(
-                    QWebEngineSettings.WebAttribute.ForceDarkMode, False)
-                self.runJavaScript("document.body.classList.add('dark');")
+        if current_theme == ThemeManager.Type.Auto:
+            if theme == ThemeManager.Type.Light:
+                self._set_force_dark(False)
+                self.runJavaScript("document.body.classList.remove('dark');")
+                return
 
-    # def set_theme_light(self):
+            if theme == ThemeManager.Type.Dark:
+                self._set_force_dark(False)  # não faz sentido, mas funciona.
+                self.runJavaScript("document.body.classList.add('dark');")
+                return
+
+        if current_theme == ThemeManager.Type.Light:
+            self._set_force_dark(False)
+            self.triggerAction(QWebEnginePage.WebAction.Reload)
+
+        if current_theme == ThemeManager.Type.Dark:
+            self._set_force_dark(True)
+            self.triggerAction(QWebEnginePage.WebAction.Reload)
+
+    def _set_force_dark(self, enabled: bool):
+        self.profile().settings().setAttribute(
+            QWebEngineSettings.WebAttribute.ForceDarkMode,
+            enabled
+        )
+
+    def set_theme_light(self):
         """Altera o tema da página para claro."""
-        """ self.profile().settings().setAttribute(
-            QWebEngineSettings.WebAttribute.ForceDarkMode, False)
+        self.apply_theme(ThemeManager.Type.Light)
 
-        self.runJavaScript("document.body.classList.remove('dark');") """
-
-    # def set_theme_dark(self):
+    def set_theme_dark(self):
         """Altera o tema da página para escuro."""
-
-        """ self.profile().settings().setAttribute(
-            QWebEngineSettings.WebAttribute.ForceDarkMode, False)
-
-        self.runJavaScript("document.body.classList.add('dark');") """
+        self.apply_theme(ThemeManager.Type.Dark)
 
     def new_chat(self):
         """Simula o atalho 'Ctrl+Alt+N' para iniciar um novo chat."""
@@ -248,8 +207,6 @@ class PageController(QWebEnginePage):
                 QWebEnginePage.Feature.Notifications,
                 QWebEnginePage.PermissionPolicy.PermissionGrantedByUser
             )
-            # Força a sincronização do tema ao carregar a página
-            ThemeManager.sync()
 
     def apply_customizations(self):
         self.apply_custom_css()
