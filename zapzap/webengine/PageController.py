@@ -18,6 +18,7 @@ class PageController(QWebEnginePage):
     """Controlador de página para gerenciar eventos e ações personalizadas no QWebEnginePage."""
 
     APP_START = True
+    APP_LOAD = True
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -99,40 +100,31 @@ class PageController(QWebEnginePage):
             else configured_theme
         )
 
-        print(
-            f"[Configured] {configured_theme} | [System] {system_theme} "
-            f"| [Effective] {effective_theme} | Flatpak={is_flatpak}"
-        )
-
         # --- REGRA ESPECIAL (Flatpak + Auto na inicialização) ---
         if is_flatpak and self.APP_START and configured_theme == ThemeManager.Type.Auto:
             self.APP_START = False
             print("[Theme] Skip reload on startup (Flatpak + Auto)")
             return
 
-        # --- LÓGICA PRINCIPAL ---
         if configured_theme == ThemeManager.Type.Auto:
-            # Em Auto, NÃO usar ForceDark (evita bugs com mídia)
-            self._set_force_dark(False)
+            if system_theme == ThemeManager.Type.Light:
+                self._set_force_dark(False)
+                self._apply_css_theme(ThemeManager.Type.Light)
+            else:
 
-            # Apenas alterna CSS (sem reload)
-            self._apply_css_theme(effective_theme)
-            return
+                if not is_flatpak and self.APP_LOAD:
+                    self._set_force_dark(True)
+                    self.APP_LOAD = False
+                else:
+                    self._set_force_dark(False)
+                    elf._apply_css_theme(ThemeManager.Type.Dark)
 
-        # --- MODO FIXO (Light/Dark manual) ---
         if configured_theme == ThemeManager.Type.Light:
             self._set_force_dark(False)
-            self._apply_css_theme(effective_theme)
-            return
 
         if configured_theme == ThemeManager.Type.Dark:
-            self._set_force_dark(True)
-            return
-
-    def _reload_page_if_needed(self):
-        """Centraliza reload para evitar chamadas redundantes."""
-        print("[Theme] Reload triggered")
-        self.triggerAction(QWebEnginePage.WebAction.Reload)
+            if not ThemeManager.instance()._detect_system_theme() == ThemeManager.Type.Dark or not is_flatpak:
+                self._set_force_dark(True)
 
     def _set_force_dark(self, enabled: bool):
         """Aplica ForceDark no engine."""
