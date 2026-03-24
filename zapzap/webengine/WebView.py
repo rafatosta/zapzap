@@ -2,7 +2,7 @@ import shutil
 import os
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings, QWebEnginePage, QWebEngineScript
-from PyQt6.QtCore import QUrl, pyqtSignal, QTimer
+from PyQt6.QtCore import QUrl, pyqtSignal, QTimer, QEvent, Qt
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtGui import QAction
 
@@ -258,6 +258,15 @@ class WebView(QWebEngineView):
             self.timer.timeout.connect(self.load_page)
             self.timer.setSingleShot(True)
             self.timer.start(5000)  # 5000 ms = 5 seconds
+
+    def event(self, event):
+        """Intercept native gesture events to optionally disable pinch-to-zoom."""
+        if event.type() == QEvent.Type.NativeGesture:
+            if (SettingsManager.get("web/disable_pinch", False) and
+                    hasattr(event, 'gestureType') and
+                    event.gestureType() == Qt.NativeGestureType.ZoomNativeGesture):
+                return True  # Consume the event without zooming
+        return super().event(event)
 
     def set_zoom_factor_page(self, factor=None):
         """Define ou ajusta o fator de zoom da página."""
