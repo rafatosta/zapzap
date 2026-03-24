@@ -15,6 +15,7 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
+from zapzap.services.OnboardingManager import OnboardingManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
 from zapzap.services.ThemeManager import ThemeManager
@@ -343,29 +344,3 @@ class OnboardingDialog(QDialog):
         if self.chk_dont_show.isChecked():
             OnboardingManager.mark_complete()
         super().closeEvent(event)
-
-
-class OnboardingManager:
-    SETTING_KEY = "onboarding/completed"
-
-    @staticmethod
-    def should_show() -> bool:
-        return not SettingsManager.get(OnboardingManager.SETTING_KEY, False)
-
-    @staticmethod
-    def show(parent=None) -> bool:
-        if not OnboardingManager.should_show():
-            return False
-
-        dialog = OnboardingDialog(parent)
-        result = dialog.exec()
-
-        return result == QDialog.DialogCode.Accepted
-
-    @staticmethod
-    def mark_complete():
-        SettingsManager.set(OnboardingManager.SETTING_KEY, True)
-
-    @staticmethod
-    def reset():
-        SettingsManager.remove(OnboardingManager.SETTING_KEY)

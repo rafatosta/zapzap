@@ -10,7 +10,7 @@ from zapzap.controllers.MainWindow import MainWindow
 from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.services.ProxyManager import ProxyManager
 from zapzap.services.SettingsManager import SettingsManager
-from zapzap.controllers.OnboardingDialog import OnboardingManager
+from zapzap.services.OnboardingManager import OnboardingManager
 from zapzap.services.TranslationManager import TranslationManager
 from zapzap.resources.TrayIcon import TrayIcon
 
