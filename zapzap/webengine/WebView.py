@@ -3,7 +3,7 @@ import os
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings, QWebEnginePage, QWebEngineScript
 from PyQt6.QtCore import QUrl, pyqtSignal, QTimer, QEvent, Qt
-from PyQt6.QtWidgets import QApplication
+from PyQt6.QtWidgets import QApplication, QWidget
 from PyQt6.QtGui import QAction
 
 from zapzap.webengine.PageController import PageController
@@ -43,6 +43,7 @@ class WebView(QWebEngineView):
         self.user = user
         self.page_index = page_index
         self.profile = None  # Inicializa o perfil como None
+        self._gesture_filter_installed = False
 
         self.notifications = NotificationService()
         self._devtools_view = None
@@ -66,6 +67,14 @@ class WebView(QWebEngineView):
         self._configure_profile()
 
         self._setup_page()
+
+        # Install application-level filter to intercept pinch gesture events.
+        # We do this here because QNativeGestureEvent is delivered directly
+        # to the internal render widget (child of QWebEngineView), so
+        # overriding event() on QWebEngineView alone is insufficient.
+        if not self._gesture_filter_installed:
+            QApplication.instance().installEventFilter(self)
+            self._gesture_filter_installed = True
 
     def _configure_signals(self):
         """Configura os sinais para eventos."""
@@ -260,13 +269,29 @@ class WebView(QWebEngineView):
             self.timer.start(5000)  # 5000 ms = 5 seconds
 
     def event(self, event):
-        """Intercept native gesture events to optionally disable pinch-to-zoom."""
+        """Intercept native gesture events to optionally disable pinch-to-zoom.
+        Handles the rare case where QWebEngineView itself receives the event."""
         if event.type() == QEvent.Type.NativeGesture:
             if (SettingsManager.get("web/disable_pinch", False) and
                     hasattr(event, 'gestureType') and
                     event.gestureType() == Qt.NativeGestureType.ZoomNativeGesture):
                 return True  # Consume the event without zooming
         return super().event(event)
+
+    def eventFilter(self, watched, event):
+        """Application-level filter that blocks pinch-to-zoom on child widgets.
+        QNativeGestureEvent is routed directly to the child render widget (not to
+        QWebEngineView.event()), so an app-level filter is required to intercept it."""
+        if event.type() == QEvent.Type.NativeGesture:
+            if SettingsManager.get("web/disable_pinch", False):
+                try:
+                    if event.gestureType() == Qt.NativeGestureType.ZoomNativeGesture:
+                        if watched is self or (
+                                isinstance(watched, QWidget) and self.isAncestorOf(watched)):
+                            return True  # Consume — block the zoom
+                except AttributeError:
+                    pass
+        return False  # Pass all other events through
 
     def set_zoom_factor_page(self, factor=None):
         """Define ou ajusta o fator de zoom da página."""
@@ -324,6 +349,9 @@ class WebView(QWebEngineView):
 
     def disable_page(self):
         """Desativa a página e limpa o perfil."""
+        if self._gesture_filter_installed:
+            QApplication.instance().removeEventFilter(self)
+            self._gesture_filter_installed = False
         if self.profile:
             crash_handler.unregister_profile(self.profile)
             self.profile.clearHttpCache()
