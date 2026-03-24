@@ -111,7 +111,8 @@ class _PermissionsPage(_OnboardingPage):
         ]
 
         for icon, title, description in tips:
-            self.content_layout.addWidget(_TipItem(icon, title, description, self))
+            self.content_layout.addWidget(
+                _TipItem(icon, title, description, self))
 
 
 class _NotificationsPage(_OnboardingPage):
@@ -123,22 +124,23 @@ class _NotificationsPage(_OnboardingPage):
         )
 
         self.enable_notifications = QCheckBox(_("Enable notifications"))
-        self.enable_notifications.setChecked(SettingsManager.get("notification/app", True))
+        self.enable_notifications.setChecked(
+            SettingsManager.get("notification/app", True))
         self.enable_notifications.toggled.connect(
             lambda value: SettingsManager.set("notification/app", value)
         )
         self.content_layout.addWidget(self.enable_notifications)
 
         self.enable_tray = QCheckBox(_("Show system tray icon"))
-        self.enable_tray.setChecked(SettingsManager.get("system/tray_icon", True))
+        self.enable_tray.setChecked(
+            SettingsManager.get("system/tray_icon", True))
         self.enable_tray.toggled.connect(self._on_tray_toggled)
         self.content_layout.addWidget(self.enable_tray)
 
-        self.enable_counter = QCheckBox(_("Show unread counter on icon"))
-        self.enable_counter.setChecked(SettingsManager.get("system/notificationCounter", False))
-        self.enable_counter.toggled.connect(
-            lambda value: SettingsManager.set("system/notificationCounter", value)
-        )
+        self.enable_counter = QCheckBox(_("Remove notification indicator"))
+        self.enable_counter.setChecked(
+            SettingsManager.get("system/notificationCounter", False))
+        self.enable_counter.toggled.connect(self._on_counter_toggled)
         self.content_layout.addWidget(self.enable_counter)
 
         note = QLabel(
@@ -147,6 +149,10 @@ class _NotificationsPage(_OnboardingPage):
         note.setWordWrap(True)
         note.setStyleSheet("color: #666; font-style: italic;")
         self.content_layout.addWidget(note)
+
+    def _on_counter_toggled(self, value: bool):
+        SettingsManager.set("system/notificationCounter", value)
+        SysTrayManager.refresh()
 
     def _on_tray_toggled(self, value: bool):
         SysTrayManager.set_state(value)
@@ -162,7 +168,8 @@ class _VisualPage(_OnboardingPage):
 
         self.content_layout.addWidget(QLabel(f"<b>{_('Theme')}</b>"))
 
-        theme = SettingsManager.get("system/theme", ThemeManager.Type.Auto.value)
+        theme = SettingsManager.get(
+            "system/theme", ThemeManager.Type.Auto.value)
 
         self.theme_auto = QRadioButton(_("Automatic (follow system theme)"))
         self.theme_light = QRadioButton(_("Light"))
@@ -180,13 +187,16 @@ class _VisualPage(_OnboardingPage):
         self.content_layout.addWidget(self.theme_dark)
 
         self.theme_auto.toggled.connect(
-            lambda checked: checked and ThemeManager.set_theme(ThemeManager.Type.Auto)
+            lambda checked: checked and ThemeManager.set_theme(
+                ThemeManager.Type.Auto)
         )
         self.theme_light.toggled.connect(
-            lambda checked: checked and ThemeManager.set_theme(ThemeManager.Type.Light)
+            lambda checked: checked and ThemeManager.set_theme(
+                ThemeManager.Type.Light)
         )
         self.theme_dark.toggled.connect(
-            lambda checked: checked and ThemeManager.set_theme(ThemeManager.Type.Dark)
+            lambda checked: checked and ThemeManager.set_theme(
+                ThemeManager.Type.Dark)
         )
 
         line = QFrame()
@@ -258,7 +268,8 @@ class OnboardingDialog(QDialog):
 
     def _build_footer(self):
         footer = QWidget(self)
-        footer.setStyleSheet("background: #f8f8f8; border-top: 1px solid #ddd;")
+        footer.setStyleSheet(
+            "background: #f8f8f8; border-top: 1px solid #ddd;")
 
         col = QVBoxLayout(footer)
         col.setContentsMargins(12, 8, 12, 8)
