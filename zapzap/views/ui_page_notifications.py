@@ -57,6 +57,10 @@ class Ui_PageNotifications(object):
         self.donationMessage = QtWidgets.QCheckBox(parent=self.frame)
         self.donationMessage.setObjectName("donationMessage")
         self.verticalLayout_2.addWidget(self.donationMessage)
+        self.label_sound_info = QtWidgets.QLabel(parent=self.frame)
+        self.label_sound_info.setWordWrap(True)
+        self.label_sound_info.setObjectName("label_sound_info")
+        self.verticalLayout_2.addWidget(self.label_sound_info)
         self.horizontalLayout.addWidget(self.frame)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout.addItem(spacerItem1)
@@ -75,6 +79,7 @@ class Ui_PageNotifications(object):
         self.show_name.setText(_("Show the sender\'s name"))
         self.show_msg.setText(_("Show message preview"))
         self.donationMessage.setText(_("Hide donation notification"))
+        self.label_sound_info.setText(_("To change the notification sound, go to WhatsApp settings using the ⚙ (cog) button in the main WhatsApp interface."))
 
 
 if __name__ == "__main__":
