@@ -235,6 +235,13 @@
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="QCheckBox" name="disable_pinch">
+             <property name="text">
+              <string>Disable pinch to zoom</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
