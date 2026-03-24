@@ -554,6 +554,10 @@ msgstr ""
 msgid "Hide donation notification"
 msgstr ""
 
+#: zapzap/views/ui_page_notifications.py:82
+msgid "To change the notification sound, go to WhatsApp settings using the ⚙ (cog) button in the main WhatsApp interface."
+msgstr ""
+
 #: zapzap/views/ui_page_performance.py:140
 msgid "Performance (Experimental)"
 msgstr ""

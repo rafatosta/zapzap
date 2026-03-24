@@ -561,6 +561,9 @@ msgstr "Mostra l'anteprima del messaggio"
 #: zapzap/views/ui_page_notifications.py:77
 msgid "Hide donation notification"
 msgstr "Nascondere la notifica della donazione"
+#: zapzap/views/ui_page_notifications.py:82
+msgid "To change the notification sound, go to WhatsApp settings using the ⚙ (cog) button in the main WhatsApp interface."
+msgstr ""
 
 #: zapzap/views/ui_page_performance.py:140
 msgid "Performance (Experimental)"
