@@ -59,9 +59,9 @@ class ThemeManager:
     def set_theme(theme: Type):
         """Define o tema de acordo com a preferência do usuário."""
         instance = ThemeManager.instance()
-        instance._set_user_theme(theme)
         # Salva o tema nas configurações
         SettingsManager.set("system/theme", theme.value)
+        instance._set_user_theme(theme)
         instance._refresh_window_theme_menu()
 
     @staticmethod
