@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-15 15:09-0300\n"
+"POT-Creation-Date: 2026-03-24 13:27-0300\n"
 "PO-Revision-Date: 2026-03-09 22:23+0100\n"
 "Last-Translator: Dennis Cederberg "
 "<9393069+cederberget@users.noreply.github.com>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:87
-#: zapzap/controllers/ShortcutsDialog.py:58 zapzap/controllers/Browser.py:219
+#: zapzap/controllers/Browser.py:223 zapzap/controllers/ShortcutsDialog.py:61
 msgid "New account"
 msgstr "Nytt konto"
 
@@ -45,7 +45,7 @@ msgstr "Klicka för att generera nya ikonfärger"
 msgid "Temporarily disable"
 msgstr "Inaktivera temporärt"
 
-#: zapzap/views/ui_card_user.py:86
+#: zapzap/views/ui_card_user.py:86 zapzap/controllers/CardUser.py:198
 msgid "Disable"
 msgstr "Inaktivera"
 
@@ -53,7 +53,7 @@ msgstr "Inaktivera"
 msgid "Silences the notifications"
 msgstr "Tystar notiserna"
 
-#: zapzap/views/ui_card_user.py:88
+#: zapzap/views/ui_card_user.py:88 zapzap/controllers/CardUser.py:189
 msgid "Do not disturb"
 msgstr "Stör ej"
 
@@ -63,6 +63,7 @@ msgstr "Radera permanent"
 
 #: zapzap/views/ui_card_user.py:90 zapzap/views/ui_page_customizations.py:256
 #: zapzap/views/ui_page_customizations.py:270
+#: zapzap/controllers/CardUser.py:228
 msgid "Delete"
 msgstr "Radera"
 
@@ -71,152 +72,178 @@ msgid "Enter the user name"
 msgstr "Skriv in användarnamn"
 
 # Identical to source
-#: zapzap/views/ui_mainwindow.py:103 zapzap/views/ui_page_about.py:116
+#: zapzap/views/ui_mainwindow.py:116 zapzap/views/ui_page_about.py:116
 #: zapzap/views/ui_qtoaster_donation.py:137
 #: zapzap/views/ui_shortcuts_dialog.py:65
 msgid "ZapZap"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:104
+#: zapzap/views/ui_mainwindow.py:117
 msgid "File"
 msgstr "Arkiv"
 
-#: zapzap/views/ui_mainwindow.py:105
+#: zapzap/views/ui_mainwindow.py:118
 msgid "View"
 msgstr "Visa"
 
-#: zapzap/views/ui_mainwindow.py:106
+#: zapzap/views/ui_mainwindow.py:119
 msgid "Chat"
 msgstr "Chatt"
 
-#: zapzap/views/ui_mainwindow.py:107
+#: zapzap/views/ui_mainwindow.py:120
 msgid "Users"
 msgstr "Användare"
 
-#: zapzap/views/ui_mainwindow.py:108
+#: zapzap/views/ui_mainwindow.py:121
 msgid "Help"
 msgstr "Hjälp"
 
-#: zapzap/views/ui_mainwindow.py:109 zapzap/views/ui_settings.py:142
+#: zapzap/views/ui_mainwindow.py:122 zapzap/views/ui_settings.py:142
 #: zapzap/services/SysTrayManager.py:57
 msgid "Quit"
 msgstr "Avsluta"
 
 # Identical to source
-#: zapzap/views/ui_mainwindow.py:110
+#: zapzap/views/ui_mainwindow.py:123
 msgid "Ctrl+Q"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:111 zapzap/controllers/ShortcutsDialog.py:44
+#: zapzap/views/ui_mainwindow.py:124 zapzap/controllers/ShortcutsDialog.py:44
 msgid "Hide"
 msgstr "Göm"
 
 # Identical to source
-#: zapzap/views/ui_mainwindow.py:112
+#: zapzap/views/ui_mainwindow.py:125
 msgid "Ctrl+W"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:113 zapzap/controllers/ShortcutsDialog.py:22
+#: zapzap/views/ui_mainwindow.py:126 zapzap/controllers/ShortcutsDialog.py:22
 #: zapzap/controllers/ShortcutsDialog.py:43
 #: zapzap/services/SysTrayManager.py:55
 msgid "Settings"
 msgstr "Inställningar"
 
 # Identical to source
-#: zapzap/views/ui_mainwindow.py:114
+#: zapzap/views/ui_mainwindow.py:127
 msgid "Ctrl+P"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:115 zapzap/controllers/ShortcutsDialog.py:49
+#: zapzap/views/ui_mainwindow.py:128 zapzap/controllers/ShortcutsDialog.py:52
 msgid "Reset zoom"
 msgstr "Återställ zoomnivå"
 
 # Identical to source
-#: zapzap/views/ui_mainwindow.py:116
+#: zapzap/views/ui_mainwindow.py:129
 msgid "Ctrl+0"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:117 zapzap/controllers/ShortcutsDialog.py:50
+#: zapzap/views/ui_mainwindow.py:130 zapzap/controllers/ShortcutsDialog.py:53
 msgid "Zoom in"
 msgstr "Zooma in"
 
 # Identical to source
-#: zapzap/views/ui_mainwindow.py:118
+#: zapzap/views/ui_mainwindow.py:131
 msgid "Ctrl++"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:119 zapzap/controllers/ShortcutsDialog.py:51
+#: zapzap/views/ui_mainwindow.py:132 zapzap/controllers/ShortcutsDialog.py:54
 msgid "Zoom out"
 msgstr "Zooma ut"
 
 # Identical to source
-#: zapzap/views/ui_mainwindow.py:120
+#: zapzap/views/ui_mainwindow.py:133
 msgid "Ctrl+-"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:121
+#: zapzap/views/ui_mainwindow.py:134
 msgid "Toggle full screen"
 msgstr "Växla helskärm"
 
 # Identical to source
-#: zapzap/views/ui_mainwindow.py:122
+#: zapzap/views/ui_mainwindow.py:135
 msgid "F11"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:123
+#: zapzap/views/ui_mainwindow.py:136
 msgid "Open DevTools"
 msgstr "Öppna utvecklingsverktyg"
 
 # Identical to source
-#: zapzap/views/ui_mainwindow.py:124
+#: zapzap/views/ui_mainwindow.py:137
 msgid "Ctrl+Shift+I"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:125
+#: zapzap/views/ui_mainwindow.py:138
 #, fuzzy
 msgid "Grid View"
 msgstr "Visa"
 
-#: zapzap/views/ui_mainwindow.py:126
+#: zapzap/views/ui_mainwindow.py:139
 msgid "Ctrl+G"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:127 zapzap/views/ui_page_appearance.py:128
+#: zapzap/views/ui_mainwindow.py:140 zapzap/views/ui_page_appearance.py:128
 msgid "Show sidebar"
 msgstr "Visa sidofält"
 
-#: zapzap/views/ui_mainwindow.py:128 zapzap/views/ui_page_customizations.py:275
+#: zapzap/views/ui_mainwindow.py:141 zapzap/controllers/ShortcutsDialog.py:49
+#, fuzzy
+msgid "Automatic theme"
+msgstr "Automatiskt"
+
+#: zapzap/views/ui_mainwindow.py:142
+msgid "Ctrl+Alt+1"
+msgstr ""
+
+#: zapzap/views/ui_mainwindow.py:143 zapzap/controllers/ShortcutsDialog.py:50
+#, fuzzy
+msgid "Light theme"
+msgstr "Ljus"
+
+#: zapzap/views/ui_mainwindow.py:144
+msgid "Ctrl+Alt+2"
+msgstr ""
+
+#: zapzap/views/ui_mainwindow.py:145 zapzap/controllers/ShortcutsDialog.py:51
+msgid "Dark theme"
+msgstr ""
+
+#: zapzap/views/ui_mainwindow.py:146
+msgid "Ctrl+Alt+3"
+msgstr ""
+
+#: zapzap/views/ui_mainwindow.py:147 zapzap/views/ui_page_customizations.py:275
 msgid "Reload"
 msgstr "Ladda om"
 
 # Identical to source
-#: zapzap/views/ui_mainwindow.py:129
+#: zapzap/views/ui_mainwindow.py:148
 msgid "F5"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:130
+#: zapzap/views/ui_mainwindow.py:149
 msgid "New chat"
 msgstr "Ny chatt"
 
 # Identical to source
-#: zapzap/views/ui_mainwindow.py:131
+#: zapzap/views/ui_mainwindow.py:150
 msgid "Ctrl+N"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:132
+#: zapzap/views/ui_mainwindow.py:151
 msgid "By number phone"
 msgstr "Med telefonnummer"
 
 # Identical to source
-#: zapzap/views/ui_mainwindow.py:133
+#: zapzap/views/ui_mainwindow.py:152
 msgid "Ctrl+M"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:134 zapzap/views/ui_shortcuts_dialog.py:63
+#: zapzap/views/ui_mainwindow.py:153 zapzap/views/ui_shortcuts_dialog.py:63
 msgid "Keyboard shortcuts"
 msgstr "Tangentbordsgenvägar"
 
-#: zapzap/views/ui_mainwindow.py:135 zapzap/views/ui_page_about.py:113
+#: zapzap/views/ui_mainwindow.py:154 zapzap/views/ui_page_about.py:113
 #: zapzap/views/ui_settings.py:141
 msgid "About"
 msgstr "Om"
@@ -410,7 +437,7 @@ msgstr "Importera från URL"
 #: zapzap/views/ui_page_customizations.py:259
 #: zapzap/views/ui_page_customizations.py:273
 #: zapzap/controllers/DialogDumpHandler.py:50
-#: zapzap/controllers/DownloadToaster.py:60
+#: zapzap/controllers/DownloadDialog.py:50
 msgid "Open folder"
 msgstr "Öppna katalog"
 
@@ -561,32 +588,35 @@ msgstr ""
 msgid "Prevent WebRTC IP leak (Mask local IPs)"
 msgstr ""
 
-#: zapzap/views/ui_page_notifications.py:72 zapzap/views/ui_settings.py:137
+#: zapzap/views/ui_page_notifications.py:76 zapzap/views/ui_settings.py:137
 #: zapzap/controllers/OnboardingDialog.py:120
 msgid "Notifications"
 msgstr "Notiser"
 
-#: zapzap/views/ui_page_notifications.py:73
+#: zapzap/views/ui_page_notifications.py:77
 msgid "Work area notifications"
 msgstr "Notiser i arbetsyta"
 
-#: zapzap/views/ui_page_notifications.py:74
+#: zapzap/views/ui_page_notifications.py:78
 msgid "Show the photo of the sender"
 msgstr "Visa avsändarens profilbild"
 
-#: zapzap/views/ui_page_notifications.py:75
+#: zapzap/views/ui_page_notifications.py:79
 msgid "Show the sender's name"
 msgstr "Visa avsändarens namn"
 
-#: zapzap/views/ui_page_notifications.py:76
+#: zapzap/views/ui_page_notifications.py:80
 msgid "Show message preview"
 msgstr "Visa meddelande"
 
-#: zapzap/views/ui_page_notifications.py:77
+#: zapzap/views/ui_page_notifications.py:81
 msgid "Hide donation notification"
 msgstr "Göm donationsnotis"
+
 #: zapzap/views/ui_page_notifications.py:82
-msgid "To change the notification sound, go to WhatsApp settings using the ⚙ (cog) button in the main WhatsApp interface."
+msgid ""
+"To change the notification sound, go to WhatsApp settings using the ⚙ (cog) "
+"button in the main WhatsApp interface."
 msgstr ""
 
 #: zapzap/views/ui_page_performance.py:140
@@ -783,22 +813,6 @@ msgstr ""
 "Rapportvägar:\n"
 " - Ärendesystem: {issue_url}\n"
 " - E-post: {email}"
-
-#: zapzap/controllers/DownloadToaster.py:57
-msgid "Open"
-msgstr "Öppna"
-
-#: zapzap/controllers/DownloadToaster.py:63
-msgid "Save as"
-msgstr "Spara som"
-
-#: zapzap/controllers/DownloadToaster.py:66
-msgid "Cancel"
-msgstr "Avbryt"
-
-#: zapzap/controllers/DownloadToaster.py:165
-msgid "Save file"
-msgstr "Spara fil"
 
 #: zapzap/controllers/PageAbout.py:21
 msgid "Official compilation"
@@ -1154,115 +1168,23 @@ msgstr ""
 "Återställer alla prestandainställningar\n"
 "till säkra standardvärden."
 
-#: zapzap/controllers/ShortcutsDialog.py:11
-msgid "Mark as unread"
-msgstr "Markera som oläst"
-
-#: zapzap/controllers/ShortcutsDialog.py:12
-msgid "Archive conversation"
-msgstr "Arkivera konversation"
-
-#: zapzap/controllers/ShortcutsDialog.py:13
-msgid "Pin conversation"
-msgstr "Fäst konversation"
-
-#: zapzap/controllers/ShortcutsDialog.py:14
-msgid "Next conversation"
-msgstr "Nästa konversation"
-
-#: zapzap/controllers/ShortcutsDialog.py:15
-msgid "Close conversation"
-msgstr "Stäng konversation"
-
-#: zapzap/controllers/ShortcutsDialog.py:16
-msgid "Search in conversation"
-msgstr "Sök i konversation"
-
-#: zapzap/controllers/ShortcutsDialog.py:17
-msgid "Previous conversation"
-msgstr "Föregående konversation"
-
-#: zapzap/controllers/ShortcutsDialog.py:18
-msgid "Delete conversation"
-msgstr "Radera konversation"
-
-#: zapzap/controllers/ShortcutsDialog.py:21
-msgid "Profile and status"
-msgstr "Profil och status"
-
-#: zapzap/controllers/ShortcutsDialog.py:25
-msgid "Decrease speed of selected voice message"
-msgstr "Sänk hastigheten på valt röstmeddelande"
-
-#: zapzap/controllers/ShortcutsDialog.py:26
-msgid "Increase speed of selected voice message"
-msgstr "Öka hastigheten på valt röstmeddelande"
-
-#: zapzap/controllers/ShortcutsDialog.py:29
-msgid "Emoji panel"
-msgstr "Emoji-panel"
-
-#: zapzap/controllers/ShortcutsDialog.py:30
-msgid "Sticker panel"
-msgstr "Dekal-panel"
-
-#: zapzap/controllers/ShortcutsDialog.py:31
-msgid "GIF panel"
-msgstr "GIF-panel"
-
-#: zapzap/controllers/ShortcutsDialog.py:34
-msgid "Lock the app"
-msgstr "Lås appen"
-
-#: zapzap/controllers/ShortcutsDialog.py:35
-msgid "Mute"
-msgstr "Tysta"
-
-#: zapzap/controllers/ShortcutsDialog.py:36
-msgid "Search"
-msgstr "Sök"
-
-#: zapzap/controllers/ShortcutsDialog.py:37
-msgid "New group"
-msgstr "Ny grupp"
-
-#: zapzap/controllers/ShortcutsDialog.py:38
-msgid "Extended search"
-msgstr "Utökad sökning"
-
-#: zapzap/controllers/ShortcutsDialog.py:45
-msgid "Exit"
-msgstr "Avsluta"
-
-#: zapzap/controllers/ShortcutsDialog.py:48
-msgid "Fullscreen"
-msgstr "Helskärm"
-
-#: zapzap/controllers/ShortcutsDialog.py:54
-msgid "Reload pages"
-msgstr "Ladda om sidor"
-
-#: zapzap/controllers/ShortcutsDialog.py:55
-msgid "New conversation by phone number"
-msgstr "Ny konversation med telefonnummer"
-
-#: zapzap/controllers/Browser.py:68
+#: zapzap/controllers/Browser.py:69
 msgid "Grid view"
 msgstr ""
 
-#: zapzap/controllers/Browser.py:93
+#: zapzap/controllers/Browser.py:94
 msgid "Flatpak sandbox help"
 msgstr "Hjälp för Flatpak-sandlåda"
 
-#: zapzap/controllers/Browser.py:102
+#: zapzap/controllers/Browser.py:103
 msgid "Flatpak sandbox"
 msgstr "Flatpak-sandlåda"
 
-#: zapzap/controllers/Browser.py:103
+#: zapzap/controllers/Browser.py:104
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap körs i Flatpak-sandlådan."
 
-#: zapzap/controllers/Browser.py:106
+#: zapzap/controllers/Browser.py:107
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
@@ -1270,99 +1192,111 @@ msgstr ""
 "Vissa funktioner, så som öppning av filer eller drag-och-släpp, kan kräva "
 "ytterligare rättigheter."
 
-#: zapzap/controllers/Browser.py:110
+#: zapzap/controllers/Browser.py:111
 msgid "Instructions"
 msgstr "Instruktioner"
 
-#: zapzap/controllers/Browser.py:111 zapzap/controllers/PageGeneral.py:64
+#: zapzap/controllers/Browser.py:112 zapzap/controllers/PageGeneral.py:64
 msgid "Copy command"
 msgstr "Kopiera kommando"
 
-#: zapzap/controllers/Browser.py:112
+#: zapzap/controllers/Browser.py:113
 msgid "Close"
 msgstr "Stäng"
 
-#: zapzap/controllers/Browser.py:230 zapzap/controllers/Browser.py:267
+#: zapzap/controllers/Browser.py:234 zapzap/controllers/Browser.py:271
 msgid "Account {}"
 msgstr "Konto {}"
 
-#: zapzap/controllers/CardUser.py:41
+#: zapzap/controllers/Browser.py:279
+#, fuzzy
+msgid "Account disabled"
+msgstr "Konton"
+
+#: zapzap/controllers/Browser.py:280
+msgid "This account is disabled."
+msgstr ""
+
+#: zapzap/controllers/Browser.py:282
+msgid ""
+"You can reactivate it now or use the right-click menu to manage this account."
+msgstr ""
+
+#: zapzap/controllers/Browser.py:285
+msgid "Activate"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:286
+msgid "Not now"
+msgstr ""
+
+#: zapzap/controllers/CardUser.py:42
 msgid "Select User-Agent for this account"
 msgstr ""
 
-#: zapzap/controllers/CardUser.py:96
+#: zapzap/controllers/CardUser.py:144
 msgid "Confirm exclusion"
 msgstr "Bekräfta exkludering"
 
-#: zapzap/controllers/CardUser.py:96
+#: zapzap/controllers/CardUser.py:144
 msgid "Are you sure you want to delete this item?"
 msgstr "Är du säker på att du vill ta bort detta objekt?"
 
-#: zapzap/controllers/CardUser.py:120
-msgid "Restore standard"
-msgstr "Återställ till standard"
-
-#: zapzap/controllers/CardUser.py:135
+#: zapzap/controllers/CardUser.py:169
 msgid "User-Agent Changed"
 msgstr ""
 
-#: zapzap/controllers/CardUser.py:135
+#: zapzap/controllers/CardUser.py:169
 msgid ""
 "Please restart this session (or the application) to apply the new User-Agent."
 msgstr ""
 
-#: zapzap/controllers/MainWindow.py:201
+#: zapzap/controllers/CardUser.py:175 zapzap/controllers/CardUser.py:220
+#, fuzzy
+msgid "Generate new colors for the icon"
+msgstr "Klicka för att generera nya ikonfärger"
+
+#: zapzap/controllers/CardUser.py:178 zapzap/controllers/CardUser.py:223
+msgid "Restore standard"
+msgstr "Återställ till standard"
+
+#: zapzap/controllers/CardUser.py:205
+msgid "User-Agent"
+msgstr ""
+
+#: zapzap/controllers/DownloadDialog.py:23
+#, fuzzy
+msgid "Download"
+msgstr "Nedladdningen är för stor."
+
+#: zapzap/controllers/DownloadDialog.py:47
+msgid "Open"
+msgstr "Öppna"
+
+#: zapzap/controllers/DownloadDialog.py:53
+msgid "Save as"
+msgstr "Spara som"
+
+#: zapzap/controllers/DownloadDialog.py:56
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: zapzap/controllers/DownloadDialog.py:130
+msgid "Save file"
+msgstr "Spara fil"
+
+#: zapzap/controllers/MainWindow.py:248
 msgid "Close ZapZap"
 msgstr ""
 
-#: zapzap/controllers/MainWindow.py:202
+#: zapzap/controllers/MainWindow.py:249
 #, fuzzy
 msgid "Are you sure you want to close?"
 msgstr "Är du säker på att du vill ta bort detta objekt?"
 
-#: zapzap/controllers/MainWindow.py:206
+#: zapzap/controllers/MainWindow.py:253
 msgid "Don't ask again"
 msgstr ""
-
-#: zapzap/controllers/PageAppearance.py:48
-msgid "Grid Columns:"
-msgstr ""
-
-#: zapzap/controllers/PageGeneral.py:40
-msgid "Use Flatseal to change this mode of execution"
-msgstr "Använd Flatseal för att ändra exekveringsläge"
-
-#: zapzap/controllers/PageGeneral.py:47
-msgid ""
-"<b>Flatpak tip:</b> If opening PDFs, drag-and-drop, or file uploads fail, "
-"this is usually caused by sandbox permissions. Open <b>Flatseal</b> and "
-"grant ZapZap access to folders like Documents, Downloads, Pictures and "
-"Videos. You can also run: <code>flatpak override --user --filesystem=home "
-"com.rtosta.zapzap</code>."
-msgstr ""
-"<b>Flatpak-tips:</b> Om öppning av PDF-filer, drag-och-släpp eller "
-"filuppladdningar misslyckas, kan detta orsakas av rättighetsproblem för "
-"sandlådan. Öppna <b>Flatseal</b> och tillåt ZapZap att komma åt kataloger så "
-"som Dokument, Hämtningar, Bilder och Videor. Du kan också köra: "
-"<code>flatpak override --user --filesystem=home com.rtosta.zapzap</code>."
-
-#: zapzap/controllers/PageGeneral.py:63
-msgid "Select and copy this command in your terminal"
-msgstr "Markera och kopiera detta kommando till din terminal"
-
-#: zapzap/controllers/PageGeneral.py:72
-msgid "Open Flatseal page"
-msgstr "Öppna Flatseal-sida"
-
-#: zapzap/controllers/PageNetwork.py:23
-#, fuzzy
-msgid "Settings for:"
-msgstr "Inställningar"
-
-#: zapzap/controllers/PageNetwork.py:25
-#, fuzzy
-msgid "Global (Default)"
-msgstr "Standard"
 
 #: zapzap/controllers/OnboardingDialog.py:87
 msgid "Permissions and files"
@@ -1465,6 +1399,138 @@ msgstr ""
 msgid "Finish"
 msgstr ""
 
+#: zapzap/controllers/PageAppearance.py:57
+msgid "Grid Columns:"
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:40
+msgid "Use Flatseal to change this mode of execution"
+msgstr "Använd Flatseal för att ändra exekveringsläge"
+
+#: zapzap/controllers/PageGeneral.py:47
+msgid ""
+"<b>Flatpak tip:</b> If opening PDFs, drag-and-drop, or file uploads fail, "
+"this is usually caused by sandbox permissions. Open <b>Flatseal</b> and "
+"grant ZapZap access to folders like Documents, Downloads, Pictures and "
+"Videos. You can also run: <code>flatpak override --user --filesystem=home "
+"com.rtosta.zapzap</code>."
+msgstr ""
+"<b>Flatpak-tips:</b> Om öppning av PDF-filer, drag-och-släpp eller "
+"filuppladdningar misslyckas, kan detta orsakas av rättighetsproblem för "
+"sandlådan. Öppna <b>Flatseal</b> och tillåt ZapZap att komma åt kataloger så "
+"som Dokument, Hämtningar, Bilder och Videor. Du kan också köra: "
+"<code>flatpak override --user --filesystem=home com.rtosta.zapzap</code>."
+
+#: zapzap/controllers/PageGeneral.py:63
+msgid "Select and copy this command in your terminal"
+msgstr "Markera och kopiera detta kommando till din terminal"
+
+#: zapzap/controllers/PageGeneral.py:72
+msgid "Open Flatseal page"
+msgstr "Öppna Flatseal-sida"
+
+#: zapzap/controllers/PageNetwork.py:23
+#, fuzzy
+msgid "Settings for:"
+msgstr "Inställningar"
+
+#: zapzap/controllers/PageNetwork.py:25
+#, fuzzy
+msgid "Global (Default)"
+msgstr "Standard"
+
+#: zapzap/controllers/ShortcutsDialog.py:11
+msgid "Mark as unread"
+msgstr "Markera som oläst"
+
+#: zapzap/controllers/ShortcutsDialog.py:12
+msgid "Archive conversation"
+msgstr "Arkivera konversation"
+
+#: zapzap/controllers/ShortcutsDialog.py:13
+msgid "Pin conversation"
+msgstr "Fäst konversation"
+
+#: zapzap/controllers/ShortcutsDialog.py:14
+msgid "Next conversation"
+msgstr "Nästa konversation"
+
+#: zapzap/controllers/ShortcutsDialog.py:15
+msgid "Close conversation"
+msgstr "Stäng konversation"
+
+#: zapzap/controllers/ShortcutsDialog.py:16
+msgid "Search in conversation"
+msgstr "Sök i konversation"
+
+#: zapzap/controllers/ShortcutsDialog.py:17
+msgid "Previous conversation"
+msgstr "Föregående konversation"
+
+#: zapzap/controllers/ShortcutsDialog.py:18
+msgid "Delete conversation"
+msgstr "Radera konversation"
+
+#: zapzap/controllers/ShortcutsDialog.py:21
+msgid "Profile and status"
+msgstr "Profil och status"
+
+#: zapzap/controllers/ShortcutsDialog.py:25
+msgid "Decrease speed of selected voice message"
+msgstr "Sänk hastigheten på valt röstmeddelande"
+
+#: zapzap/controllers/ShortcutsDialog.py:26
+msgid "Increase speed of selected voice message"
+msgstr "Öka hastigheten på valt röstmeddelande"
+
+#: zapzap/controllers/ShortcutsDialog.py:29
+msgid "Emoji panel"
+msgstr "Emoji-panel"
+
+#: zapzap/controllers/ShortcutsDialog.py:30
+msgid "Sticker panel"
+msgstr "Dekal-panel"
+
+#: zapzap/controllers/ShortcutsDialog.py:31
+msgid "GIF panel"
+msgstr "GIF-panel"
+
+#: zapzap/controllers/ShortcutsDialog.py:34
+msgid "Lock the app"
+msgstr "Lås appen"
+
+#: zapzap/controllers/ShortcutsDialog.py:35
+msgid "Mute"
+msgstr "Tysta"
+
+#: zapzap/controllers/ShortcutsDialog.py:36
+msgid "Search"
+msgstr "Sök"
+
+#: zapzap/controllers/ShortcutsDialog.py:37
+msgid "New group"
+msgstr "Ny grupp"
+
+#: zapzap/controllers/ShortcutsDialog.py:38
+msgid "Extended search"
+msgstr "Utökad sökning"
+
+#: zapzap/controllers/ShortcutsDialog.py:45
+msgid "Exit"
+msgstr "Avsluta"
+
+#: zapzap/controllers/ShortcutsDialog.py:48
+msgid "Fullscreen"
+msgstr "Helskärm"
+
+#: zapzap/controllers/ShortcutsDialog.py:57
+msgid "Reload pages"
+msgstr "Ladda om sidor"
+
+#: zapzap/controllers/ShortcutsDialog.py:58
+msgid "New conversation by phone number"
+msgstr "Ny konversation med telefonnummer"
+
 # Identical to source
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
@@ -1490,27 +1556,27 @@ msgstr "Inget aktivt konto!"
 msgid "Select folder"
 msgstr "Välj katalog"
 
-#: zapzap/services/ProxyManager.py:10
+#: zapzap/services/ProxyManager.py:9
 msgid "No proxying is used."
 msgstr "Ingen proxy används."
 
-#: zapzap/services/ProxyManager.py:11
+#: zapzap/services/ProxyManager.py:10
 msgid "Proxy is determined based on the system proxy."
 msgstr "Proxyn fastställs baserat på systemets proxy."
 
-#: zapzap/services/ProxyManager.py:12
+#: zapzap/services/ProxyManager.py:11
 msgid "Socks5 proxying is used."
 msgstr "Använd en Socks5-proxy."
 
-#: zapzap/services/ProxyManager.py:13
+#: zapzap/services/ProxyManager.py:12
 msgid "HTTP transparent proxying is used."
 msgstr "Använd en transparent HTTP-proxy."
 
-#: zapzap/services/ProxyManager.py:14
+#: zapzap/services/ProxyManager.py:13
 msgid "Proxying for HTTP requests only."
 msgstr "Använd proxy endast för HTTP-begäranden."
 
-#: zapzap/services/ProxyManager.py:15
+#: zapzap/services/ProxyManager.py:14
 msgid "Proxying for FTP requests only."
 msgstr "Använd proxy endast för FTP-begäranden."
 
