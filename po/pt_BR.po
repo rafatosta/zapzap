@@ -155,7 +155,7 @@ msgstr "F11"
 
 #: zapzap/views/ui_mainwindow.py:136
 msgid "Open DevTools"
-msgstr ""
+msgstr "Ferramentas do desenvolvedor"
 
 #: zapzap/views/ui_mainwindow.py:137
 msgid "Ctrl+Shift+I"
@@ -175,7 +175,7 @@ msgstr "Exibir barra lateral"
 
 #: zapzap/views/ui_mainwindow.py:141 zapzap/controllers/ShortcutsDialog.py:49
 msgid "Automatic theme"
-msgstr "Automático"
+msgstr "Adaptativo"
 
 #: zapzap/views/ui_mainwindow.py:142
 msgid "Ctrl+Alt+1"
@@ -1137,7 +1137,7 @@ msgstr ""
 
 #: zapzap/controllers/Browser.py:69
 msgid "Grid view"
-msgstr ""
+msgstr "Visualização em grade"
 
 #: zapzap/controllers/Browser.py:94
 msgid "Flatpak sandbox help"
@@ -1181,24 +1181,26 @@ msgstr "Conta desativada"
 
 #: zapzap/controllers/Browser.py:280
 msgid "This account is disabled."
-msgstr ""
+msgstr "Esta conta está desativada."
 
 #: zapzap/controllers/Browser.py:282
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
+"Você pode reativá-lo agora ou usar o menu do botão direito para gerenciar "
+"esta conta."
 
 #: zapzap/controllers/Browser.py:285
 msgid "Activate"
-msgstr ""
+msgstr "Ativar"
 
 #: zapzap/controllers/Browser.py:286
 msgid "Not now"
-msgstr ""
+msgstr "Agora não"
 
 #: zapzap/controllers/CardUser.py:42
 msgid "Select User-Agent for this account"
-msgstr ""
+msgstr "Selecione User-Agent para esta conta"
 
 #: zapzap/controllers/CardUser.py:144
 msgid "Confirm exclusion"
@@ -1210,12 +1212,12 @@ msgstr "Tem certeza de que deseja excluir este item?"
 
 #: zapzap/controllers/CardUser.py:169
 msgid "User-Agent Changed"
-msgstr ""
+msgstr "Agente do usuário alterado"
 
 #: zapzap/controllers/CardUser.py:169
 msgid ""
 "Please restart this session (or the application) to apply the new User-Agent."
-msgstr ""
+msgstr "Reinicie esta sessão (ou o aplicativo) para aplicar o novo User-Agent."
 
 #: zapzap/controllers/CardUser.py:175 zapzap/controllers/CardUser.py:220
 msgid "Generate new colors for the icon"
@@ -1243,7 +1245,7 @@ msgstr "Salvar como"
 
 #: zapzap/controllers/DownloadDialog.py:56
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: zapzap/controllers/DownloadDialog.py:130
 msgid "Save file"
@@ -1259,16 +1261,17 @@ msgstr "Tem certeza de que deseja fechar?"
 
 #: zapzap/controllers/MainWindow.py:253
 msgid "Don't ask again"
-msgstr ""
+msgstr "Não pergunte novamente"
 
 #: zapzap/controllers/OnboardingDialog.py:87
 msgid "Permissions and files"
-msgstr ""
+msgstr "Permissões e arquivos"
 
 #: zapzap/controllers/OnboardingDialog.py:88
 msgid ""
 "Some permissions are required to send and download media without errors."
 msgstr ""
+"Algumas permissões são necessárias para enviar e baixar mídia sem erros."
 
 #: zapzap/controllers/OnboardingDialog.py:95
 msgid "Downloads folder"
@@ -1303,7 +1306,7 @@ msgstr ""
 
 #: zapzap/controllers/OnboardingDialog.py:121
 msgid "Choose how ZapZap should notify you about new messages."
-msgstr ""
+msgstr "Escolha como o ZapZap deve notificá-lo sobre novas mensagens."
 
 #: zapzap/controllers/OnboardingDialog.py:125
 msgid "Enable notifications"
@@ -1311,31 +1314,33 @@ msgstr "Habilitar notificações"
 
 #: zapzap/controllers/OnboardingDialog.py:132
 msgid "Show system tray icon"
-msgstr ""
+msgstr "Mostrar ícone da bandeja do sistema"
 
 #: zapzap/controllers/OnboardingDialog.py:137
 msgid "Show unread counter on icon"
-msgstr ""
+msgstr "Mostrar contador não lido no ícone"
 
 #: zapzap/controllers/OnboardingDialog.py:145
 msgid "Notifications may also depend on your operating system permissions."
 msgstr ""
+"As notificações também podem depender das permissões do seu sistema "
+"operacional."
 
 #: zapzap/controllers/OnboardingDialog.py:159
 msgid "Adjust the theme and scale to make the interface more comfortable."
-msgstr ""
+msgstr "Ajuste o tema e a escala para tornar a interface mais confortável."
 
 #: zapzap/controllers/OnboardingDialog.py:163
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: zapzap/controllers/OnboardingDialog.py:167
 msgid "Automatic (follow system theme)"
-msgstr ""
+msgstr "Adaptativo (seguir o tema do sistema)"
 
 #: zapzap/controllers/OnboardingDialog.py:218
 msgid "The scale will be applied after restarting ZapZap."
-msgstr ""
+msgstr "A escala será aplicada após reiniciar o ZapZap."
 
 #: zapzap/controllers/OnboardingDialog.py:236
 msgid "Welcome to ZapZap"
@@ -1364,7 +1369,7 @@ msgstr "Concluir"
 
 #: zapzap/controllers/PageAppearance.py:57
 msgid "Grid Columns:"
-msgstr ""
+msgstr "Colunas da grade:"
 
 #: zapzap/controllers/PageGeneral.py:40
 msgid "Use Flatseal to change this mode of execution"
