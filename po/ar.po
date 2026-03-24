@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 13:27-0300\n"
+"POT-Creation-Date: 2026-03-24 14:05-0300\n"
 "PO-Revision-Date: 2026-02-02 23:52+0200\n"
 "Last-Translator: Muhammed Al-Basha <contact.mu7basha@gmail.com>\n"
 "Language-Team: Arabic\n"
@@ -262,7 +262,7 @@ msgid "My accounts"
 msgstr "حساباتي"
 
 #: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:135
-#: zapzap/controllers/OnboardingDialog.py:158
+#: zapzap/controllers/OnboardingDialog.py:164
 msgid "Appearance"
 msgstr "المظهر"
 
@@ -275,12 +275,12 @@ msgid "Adaptive"
 msgstr "تكيفي"
 
 #: zapzap/views/ui_page_appearance.py:121
-#: zapzap/controllers/OnboardingDialog.py:169
+#: zapzap/controllers/OnboardingDialog.py:176
 msgid "Dark"
 msgstr "داكن"
 
 #: zapzap/views/ui_page_appearance.py:122
-#: zapzap/controllers/OnboardingDialog.py:168
+#: zapzap/controllers/OnboardingDialog.py:175
 msgid "Light"
 msgstr "فاتح"
 
@@ -289,6 +289,7 @@ msgid "Tray icon"
 msgstr "أيقونة اللوحة"
 
 #: zapzap/views/ui_page_appearance.py:124
+#: zapzap/controllers/OnboardingDialog.py:140
 msgid "Remove notification indicator"
 msgstr "اخفي مؤشر الإشعارات"
 
@@ -309,7 +310,7 @@ msgid "Show menu bar"
 msgstr "اظهر شريط القوائم"
 
 #: zapzap/views/ui_page_appearance.py:130
-#: zapzap/controllers/OnboardingDialog.py:197
+#: zapzap/controllers/OnboardingDialog.py:207
 msgid "Scale"
 msgstr "الحجم"
 
@@ -572,7 +573,7 @@ msgid "Prevent WebRTC IP leak (Mask local IPs)"
 msgstr ""
 
 #: zapzap/views/ui_page_notifications.py:76 zapzap/views/ui_settings.py:137
-#: zapzap/controllers/OnboardingDialog.py:120
+#: zapzap/controllers/OnboardingDialog.py:121
 msgid "Notifications"
 msgstr "الإشعارات"
 
@@ -1247,106 +1248,6 @@ msgstr "أمتأكد من حذف هذا العنصر؟"
 msgid "Don't ask again"
 msgstr ""
 
-#: zapzap/controllers/OnboardingDialog.py:87
-msgid "Permissions and files"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:88
-msgid ""
-"Some permissions are required to send and download media without errors."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:95
-#, fuzzy
-msgid "Downloads folder"
-msgstr "مسار التحميل"
-
-#: zapzap/controllers/OnboardingDialog.py:96
-msgid ""
-"Received files will be saved in the folder defined in Settings → General."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:100
-msgid "Attach media"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:101
-msgid "To attach images, videos, and documents, allow access to your folders."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:105
-msgid "Flatpak users"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:107
-msgid ""
-"If you have trouble attaching files, use Flatseal to allow access to "
-"Documents, Downloads, Pictures, and Videos."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:121
-msgid "Choose how ZapZap should notify you about new messages."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:125
-#, fuzzy
-msgid "Enable notifications"
-msgstr "منطقة عمل الإشعارات"
-
-#: zapzap/controllers/OnboardingDialog.py:132
-msgid "Show system tray icon"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:137
-msgid "Show unread counter on icon"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:145
-msgid "Notifications may also depend on your operating system permissions."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:159
-msgid "Adjust the theme and scale to make the interface more comfortable."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:163
-msgid "Theme"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:167
-msgid "Automatic (follow system theme)"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:218
-msgid "The scale will be applied after restarting ZapZap."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:236
-#, fuzzy
-msgid "Welcome to ZapZap"
-msgstr "مرحبًا  في"
-
-#: zapzap/controllers/OnboardingDialog.py:279
-msgid "Skip"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:285
-msgid "Previous"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:289
-#: zapzap/controllers/OnboardingDialog.py:312
-msgid "Next"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:295
-msgid "Don't show again"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:312
-msgid "Finish"
-msgstr ""
-
 #: zapzap/controllers/PageAppearance.py:57
 msgid "Grid Columns:"
 msgstr ""
@@ -1473,6 +1374,102 @@ msgstr "اعِد تحميل الصفحات"
 #: zapzap/controllers/ShortcutsDialog.py:58
 msgid "New conversation by phone number"
 msgstr "محادثة جديدة برقم الهاتف"
+
+#: zapzap/controllers/OnboardingDialog.py:87
+msgid "Permissions and files"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:88
+msgid ""
+"Some permissions are required to send and download media without errors."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:95
+#, fuzzy
+msgid "Downloads folder"
+msgstr "مسار التحميل"
+
+#: zapzap/controllers/OnboardingDialog.py:96
+msgid ""
+"Received files will be saved in the folder defined in Settings → General."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:100
+msgid "Attach media"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:101
+msgid "To attach images, videos, and documents, allow access to your folders."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:105
+msgid "Flatpak users"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:107
+msgid ""
+"If you have trouble attaching files, use Flatseal to allow access to "
+"Documents, Downloads, Pictures, and Videos."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:122
+msgid "Choose how ZapZap should notify you about new messages."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:126
+#, fuzzy
+msgid "Enable notifications"
+msgstr "منطقة عمل الإشعارات"
+
+#: zapzap/controllers/OnboardingDialog.py:134
+msgid "Show system tray icon"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:147
+msgid "Notifications may also depend on your operating system permissions."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:165
+msgid "Adjust the theme and scale to make the interface more comfortable."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:169
+msgid "Theme"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:174
+msgid "Automatic (follow system theme)"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:228
+msgid "The scale will be applied after restarting ZapZap."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:246
+#, fuzzy
+msgid "Welcome to ZapZap"
+msgstr "مرحبًا  في"
+
+#: zapzap/controllers/OnboardingDialog.py:290
+msgid "Skip"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:296
+msgid "Previous"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:300
+#: zapzap/controllers/OnboardingDialog.py:323
+msgid "Next"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:306
+msgid "Don't show again"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:323
+msgid "Finish"
+msgstr ""
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"

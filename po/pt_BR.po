@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 13:27-0300\n"
+"POT-Creation-Date: 2026-03-24 14:05-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -252,7 +252,7 @@ msgid "My accounts"
 msgstr "Minhas contas"
 
 #: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:135
-#: zapzap/controllers/OnboardingDialog.py:158
+#: zapzap/controllers/OnboardingDialog.py:164
 msgid "Appearance"
 msgstr "Aparência"
 
@@ -265,12 +265,12 @@ msgid "Adaptive"
 msgstr "Adaptativo"
 
 #: zapzap/views/ui_page_appearance.py:121
-#: zapzap/controllers/OnboardingDialog.py:169
+#: zapzap/controllers/OnboardingDialog.py:176
 msgid "Dark"
 msgstr "Escuro"
 
 #: zapzap/views/ui_page_appearance.py:122
-#: zapzap/controllers/OnboardingDialog.py:168
+#: zapzap/controllers/OnboardingDialog.py:175
 msgid "Light"
 msgstr "Claro"
 
@@ -279,6 +279,7 @@ msgid "Tray icon"
 msgstr "Ícone da bandeja"
 
 #: zapzap/views/ui_page_appearance.py:124
+#: zapzap/controllers/OnboardingDialog.py:140
 msgid "Remove notification indicator"
 msgstr "Remover notificação do indicador"
 
@@ -299,7 +300,7 @@ msgid "Show menu bar"
 msgstr "Exibir barra de menu"
 
 #: zapzap/views/ui_page_appearance.py:130
-#: zapzap/controllers/OnboardingDialog.py:197
+#: zapzap/controllers/OnboardingDialog.py:207
 msgid "Scale"
 msgstr "Escala"
 
@@ -559,7 +560,7 @@ msgid "Prevent WebRTC IP leak (Mask local IPs)"
 msgstr "Prevenir vazamento de IP via WebRTC (Mascarar IPs locais)"
 
 #: zapzap/views/ui_page_notifications.py:76 zapzap/views/ui_settings.py:137
-#: zapzap/controllers/OnboardingDialog.py:120
+#: zapzap/controllers/OnboardingDialog.py:121
 msgid "Notifications"
 msgstr "Notificações"
 
@@ -1263,110 +1264,6 @@ msgstr "Tem certeza de que deseja fechar?"
 msgid "Don't ask again"
 msgstr "Não pergunte novamente"
 
-#: zapzap/controllers/OnboardingDialog.py:87
-msgid "Permissions and files"
-msgstr "Permissões e arquivos"
-
-#: zapzap/controllers/OnboardingDialog.py:88
-msgid ""
-"Some permissions are required to send and download media without errors."
-msgstr ""
-"Algumas permissões são necessárias para enviar e baixar mídia sem erros."
-
-#: zapzap/controllers/OnboardingDialog.py:95
-msgid "Downloads folder"
-msgstr "Pasta de downloads"
-
-#: zapzap/controllers/OnboardingDialog.py:96
-msgid ""
-"Received files will be saved in the folder defined in Settings → General."
-msgstr ""
-"Arquivos recebidos serão salvos na pasta definida em Configurações → Geral."
-
-#: zapzap/controllers/OnboardingDialog.py:100
-msgid "Attach media"
-msgstr "Envio de mídia"
-
-#: zapzap/controllers/OnboardingDialog.py:101
-msgid "To attach images, videos, and documents, allow access to your folders."
-msgstr ""
-"Para anexar imagens, vídeos e documentos, permita acesso às suas pastas."
-
-#: zapzap/controllers/OnboardingDialog.py:105
-msgid "Flatpak users"
-msgstr "Usuários Flatpak"
-
-#: zapzap/controllers/OnboardingDialog.py:107
-msgid ""
-"If you have trouble attaching files, use Flatseal to allow access to "
-"Documents, Downloads, Pictures, and Videos."
-msgstr ""
-"Se houver erro ao anexar arquivo, use o Flatseal para liberar Documentos, "
-"Downloads, Imagens e Vídeos."
-
-#: zapzap/controllers/OnboardingDialog.py:121
-msgid "Choose how ZapZap should notify you about new messages."
-msgstr "Escolha como o ZapZap deve notificá-lo sobre novas mensagens."
-
-#: zapzap/controllers/OnboardingDialog.py:125
-msgid "Enable notifications"
-msgstr "Habilitar notificações"
-
-#: zapzap/controllers/OnboardingDialog.py:132
-msgid "Show system tray icon"
-msgstr "Mostrar ícone da bandeja do sistema"
-
-#: zapzap/controllers/OnboardingDialog.py:137
-msgid "Show unread counter on icon"
-msgstr "Mostrar contador não lido no ícone"
-
-#: zapzap/controllers/OnboardingDialog.py:145
-msgid "Notifications may also depend on your operating system permissions."
-msgstr ""
-"As notificações também podem depender das permissões do seu sistema "
-"operacional."
-
-#: zapzap/controllers/OnboardingDialog.py:159
-msgid "Adjust the theme and scale to make the interface more comfortable."
-msgstr "Ajuste o tema e a escala para tornar a interface mais confortável."
-
-#: zapzap/controllers/OnboardingDialog.py:163
-msgid "Theme"
-msgstr "Tema"
-
-#: zapzap/controllers/OnboardingDialog.py:167
-msgid "Automatic (follow system theme)"
-msgstr "Adaptativo (seguir o tema do sistema)"
-
-#: zapzap/controllers/OnboardingDialog.py:218
-msgid "The scale will be applied after restarting ZapZap."
-msgstr "A escala será aplicada após reiniciar o ZapZap."
-
-#: zapzap/controllers/OnboardingDialog.py:236
-msgid "Welcome to ZapZap"
-msgstr "Bem-vindo ao ZapZap"
-
-#: zapzap/controllers/OnboardingDialog.py:279
-msgid "Skip"
-msgstr "Pular"
-
-#: zapzap/controllers/OnboardingDialog.py:285
-msgid "Previous"
-msgstr "Anterior"
-
-#: zapzap/controllers/OnboardingDialog.py:289
-#: zapzap/controllers/OnboardingDialog.py:312
-msgid "Next"
-msgstr "Próximo"
-
-#: zapzap/controllers/OnboardingDialog.py:295
-msgid "Don't show again"
-msgstr "Não mostrar novamente"
-
-#: zapzap/controllers/OnboardingDialog.py:312
-msgid "Finish"
-msgstr "Concluir"
-
 #: zapzap/controllers/PageAppearance.py:57
 msgid "Grid Columns:"
 msgstr "Colunas da grade:"
@@ -1497,6 +1394,106 @@ msgstr "Recarregar páginas"
 msgid "New conversation by phone number"
 msgstr "Nova conversa por número de telefone"
 
+#: zapzap/controllers/OnboardingDialog.py:87
+msgid "Permissions and files"
+msgstr "Permissões e arquivos"
+
+#: zapzap/controllers/OnboardingDialog.py:88
+msgid ""
+"Some permissions are required to send and download media without errors."
+msgstr ""
+"Algumas permissões são necessárias para enviar e baixar mídia sem erros."
+
+#: zapzap/controllers/OnboardingDialog.py:95
+msgid "Downloads folder"
+msgstr "Pasta de downloads"
+
+#: zapzap/controllers/OnboardingDialog.py:96
+msgid ""
+"Received files will be saved in the folder defined in Settings → General."
+msgstr ""
+"Arquivos recebidos serão salvos na pasta definida em Configurações → Geral."
+
+#: zapzap/controllers/OnboardingDialog.py:100
+msgid "Attach media"
+msgstr "Envio de mídia"
+
+#: zapzap/controllers/OnboardingDialog.py:101
+msgid "To attach images, videos, and documents, allow access to your folders."
+msgstr ""
+"Para anexar imagens, vídeos e documentos, permita acesso às suas pastas."
+
+#: zapzap/controllers/OnboardingDialog.py:105
+msgid "Flatpak users"
+msgstr "Usuários Flatpak"
+
+#: zapzap/controllers/OnboardingDialog.py:107
+msgid ""
+"If you have trouble attaching files, use Flatseal to allow access to "
+"Documents, Downloads, Pictures, and Videos."
+msgstr ""
+"Se houver erro ao anexar arquivo, use o Flatseal para liberar Documentos, "
+"Downloads, Imagens e Vídeos."
+
+#: zapzap/controllers/OnboardingDialog.py:122
+msgid "Choose how ZapZap should notify you about new messages."
+msgstr "Escolha como o ZapZap deve notificá-lo sobre novas mensagens."
+
+#: zapzap/controllers/OnboardingDialog.py:126
+msgid "Enable notifications"
+msgstr "Habilitar notificações"
+
+#: zapzap/controllers/OnboardingDialog.py:134
+msgid "Show system tray icon"
+msgstr "Mostrar ícone da bandeja do sistema"
+
+#: zapzap/controllers/OnboardingDialog.py:147
+msgid "Notifications may also depend on your operating system permissions."
+msgstr ""
+"As notificações também podem depender das permissões do seu sistema "
+"operacional."
+
+#: zapzap/controllers/OnboardingDialog.py:165
+msgid "Adjust the theme and scale to make the interface more comfortable."
+msgstr "Ajuste o tema e a escala para tornar a interface mais confortável."
+
+#: zapzap/controllers/OnboardingDialog.py:169
+msgid "Theme"
+msgstr "Tema"
+
+#: zapzap/controllers/OnboardingDialog.py:174
+msgid "Automatic (follow system theme)"
+msgstr "Adaptativo (seguir o tema do sistema)"
+
+#: zapzap/controllers/OnboardingDialog.py:228
+msgid "The scale will be applied after restarting ZapZap."
+msgstr "A escala será aplicada após reiniciar o ZapZap."
+
+#: zapzap/controllers/OnboardingDialog.py:246
+msgid "Welcome to ZapZap"
+msgstr "Bem-vindo ao ZapZap"
+
+#: zapzap/controllers/OnboardingDialog.py:290
+msgid "Skip"
+msgstr "Pular"
+
+#: zapzap/controllers/OnboardingDialog.py:296
+msgid "Previous"
+msgstr "Anterior"
+
+#: zapzap/controllers/OnboardingDialog.py:300
+#: zapzap/controllers/OnboardingDialog.py:323
+msgid "Next"
+msgstr "Próximo"
+
+#: zapzap/controllers/OnboardingDialog.py:306
+msgid "Don't show again"
+msgstr "Não mostrar novamente"
+
+#: zapzap/controllers/OnboardingDialog.py:323
+msgid "Finish"
+msgstr "Concluir"
+
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
 msgstr "Informação"
@@ -1552,3 +1549,6 @@ msgstr "Exibir"
 #: zapzap/services/SysTrayManager.py:56
 msgid "Donation"
 msgstr "Doação"
+
+#~ msgid "Show unread counter on icon"
+#~ msgstr "Mostrar contador não lido no ícone"
