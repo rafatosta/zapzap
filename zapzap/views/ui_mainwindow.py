@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.stackedWidget)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 23))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 24))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(parent=self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -151,6 +151,7 @@ class Ui_MainWindow(object):
         self.actionBy_phone_number.setText(_("By number phone"))
         self.actionBy_phone_number.setShortcut(_("Ctrl+M"))
         self.actionShortcuts.setText(_("Keyboard shortcuts"))
+        self.actionShortcuts.setShortcut(_("Ctrl+Shift+/, Ctrl+?"))
         self.actionSobre_o_ZapZap.setText(_("About"))
 
 
