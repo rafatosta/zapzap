@@ -96,6 +96,12 @@ class SetupManager:
             add_flag("--disable-renderer-backgrounding")
 
         # --------------------------------------------------
+        # Pinch to zoom
+        # --------------------------------------------------
+        if SettingsManager.get("web/disable_pinch", False):
+            add_flag("--disable-pinch")
+
+        # --------------------------------------------------
         # Flags obrigatórias
         # --------------------------------------------------
         add_flag("--disable-features=FFmpegAllowLists")
