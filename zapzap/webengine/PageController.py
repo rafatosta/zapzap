@@ -117,7 +117,7 @@ class PageController(QWebEnginePage):
                     self.APP_LOAD = False
                 else:
                     self._set_force_dark(False)
-                    elf._apply_css_theme(ThemeManager.Type.Dark)
+                    self._apply_css_theme(ThemeManager.Type.Dark)
 
         if configured_theme == ThemeManager.Type.Light:
             self._set_force_dark(False)
