@@ -1,9 +1,11 @@
+import os
 import shutil
+import tempfile
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings, QWebEnginePage
-from PyQt6.QtCore import QUrl, pyqtSignal, QTimer
+from PyQt6.QtCore import QUrl, QMimeData, pyqtSignal, QTimer
 from PyQt6.QtWidgets import QApplication
-from PyQt6.QtGui import QAction
+from PyQt6.QtGui import QAction, QDropEvent
 
 from zapzap.webengine.PageController import PageController
 from zapzap.models import User
@@ -104,6 +106,72 @@ class WebView(QWebEngineView):
         self.setPage(self.whatsapp_page)
         self.load(QUrl(__whatsapp_url__))
         self.setZoomFactor(self.user.zoomFactor)
+
+    def dropEvent(self, event: QDropEvent):
+        """Handle drop events, copying temp files so Chromium can read them reliably.
+
+        External apps (e.g. Thunderbird) often create short-lived temp files for
+        drag-and-drop and delete them once the drag finishes.  By the time the
+        Chromium renderer inside QWebEngineView reads the file asynchronously the
+        file may already be gone, producing a "no content" error in WhatsApp Web.
+
+        This override intercepts the drop, copies any file that lives inside a
+        temporary directory to a ZapZap-owned temp location with relaxed
+        permissions, then forwards the modified event to the base class so
+        Chromium receives a stable, readable path.
+        """
+        mime_data = event.mimeData()
+        if not mime_data or not mime_data.hasUrls():
+            super().dropEvent(event)
+            return
+
+        tmp_base = tempfile.gettempdir()
+        new_urls = []
+        tmp_dir = None
+
+        for url in mime_data.urls():
+            if url.isLocalFile():
+                src = url.toLocalFile()
+                # Only copy files that come from a temporary directory – these
+                # are the ones created by external apps for drag-and-drop.
+                if src.startswith(tmp_base + os.sep) and os.path.isfile(src):
+                    try:
+                        if tmp_dir is None:
+                            tmp_dir = tempfile.mkdtemp(prefix='zapzap_drop_')
+                        dst = os.path.join(tmp_dir, os.path.basename(src))
+                        shutil.copy2(src, dst)
+                        os.chmod(dst, 0o644)
+                        new_urls.append(QUrl.fromLocalFile(dst))
+                        continue
+                    except OSError:
+                        pass
+            new_urls.append(url)
+
+        if tmp_dir is None:
+            # No files needed copying – let the base class handle it normally.
+            super().dropEvent(event)
+            return
+
+        new_mime = QMimeData()
+        new_mime.setUrls(new_urls)
+
+        new_event = QDropEvent(
+            event.position(),
+            event.possibleActions(),
+            new_mime,
+            event.buttons(),
+            event.modifiers(),
+        )
+        super().dropEvent(new_event)
+
+        # Defer cleanup of the previous temp dir so it doesn't block the event
+        # handler, then schedule removal of the new one after 60 s to give
+        # Chromium plenty of time to finish reading the file.
+        old_dir = self._last_tmp_file
+        if old_dir:
+            QTimer.singleShot(0, lambda: shutil.rmtree(old_dir, ignore_errors=True))
+        self._last_tmp_file = tmp_dir
+        QTimer.singleShot(60_000, lambda: shutil.rmtree(tmp_dir, ignore_errors=True))
 
     def contextMenuEvent(self, event):
         """Cria o menu de contexto personalizado ao clicar com o botão direito."""
