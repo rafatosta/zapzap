@@ -269,42 +269,29 @@ class WebView(QWebEngineView):
             self.timer.start(5000)  # 5000 ms = 5 seconds
 
     def event(self, event):
-        """Intercept native gesture events to handle pinch-to-zoom.
+        """Intercept native gesture events to optionally disable pinch-to-zoom.
         Handles the rare case where QWebEngineView itself receives the event."""
         if event.type() == QEvent.Type.NativeGesture:
-            try:
-                if event.gestureType() == Qt.NativeGestureType.ZoomNativeGesture:
-                    self._apply_pinch_zoom(event)
-                    return True  # Consume — we handle zoom ourselves in both cases
-            except AttributeError:
-                pass
+            if (SettingsManager.get("web/disable_pinch", False) and
+                    hasattr(event, 'gestureType') and
+                    event.gestureType() == Qt.NativeGestureType.ZoomNativeGesture):
+                return True  # Consume the event without zooming
         return super().event(event)
 
     def eventFilter(self, watched, event):
-        """Application-level filter that intercepts pinch-to-zoom on child widgets.
+        """Application-level filter that blocks pinch-to-zoom on child widgets.
         QNativeGestureEvent is routed directly to the child render widget (not to
-        QWebEngineView.event()), so an app-level filter is required to intercept it.
-        - When disable_pinch is True: gesture is blocked entirely.
-        - When disable_pinch is False: gesture is converted to uniform page zoom."""
+        QWebEngineView.event()), so an app-level filter is required to intercept it."""
         if event.type() == QEvent.Type.NativeGesture:
-            try:
-                if event.gestureType() == Qt.NativeGestureType.ZoomNativeGesture:
-                    if watched is self or (
-                            isinstance(watched, QWidget) and self.isAncestorOf(watched)):
-                        self._apply_pinch_zoom(event)
-                        return True  # Consume the native event in all cases
-            except AttributeError:
-                pass
+            if SettingsManager.get("web/disable_pinch", False):
+                try:
+                    if event.gestureType() == Qt.NativeGestureType.ZoomNativeGesture:
+                        if watched is self or (
+                                isinstance(watched, QWidget) and self.isAncestorOf(watched)):
+                            return True  # Consume — block the zoom
+                except AttributeError:
+                    pass
         return False  # Pass all other events through
-
-    def _apply_pinch_zoom(self, event):
-        """Apply a ZoomNativeGesture as a uniform page zoom factor change.
-        When disable_pinch is True, the event is consumed without any zoom change.
-        When disable_pinch is False, the pinch delta is applied via setZoomFactor
-        so the whole page scales uniformly instead of zooming at the cursor point."""
-        if not SettingsManager.get("web/disable_pinch", False):
-            new_zoom = max(0.25, min(5.0, self.zoomFactor() * (1.0 + event.value())))
-            self.setZoomFactor(new_zoom)
 
     def set_zoom_factor_page(self, factor=None):
         """Define ou ajusta o fator de zoom da página."""
