@@ -65,15 +65,21 @@ def main():
 
     ProxyManager.apply()
 
-    # Fluxo de onboarding no primeiro acesso e em mudanças relevantes
-    OnboardingDialog.run(main_window)
+    show_onboarding = OnboardingDialog.should_show()
+
+    # Se houver onboarding, abrimos a janela para o fluxo ficar visualmente integrado
+    if show_onboarding:
+        main_window.show()
+        OnboardingDialog.run(main_window)
 
     # Compatibilidade com comportamento legado de primeiro acesso
     if SettingsManager.get("website/open_page", True):
         QDesktopServices.openUrl(QUrl(zapzap.__website__))
         SettingsManager.set("website/open_page", False)
 
-    if SettingsManager.get("system/start_background", False) or '--hideStart' in sys.argv:
+    if not show_onboarding and (
+        SettingsManager.get("system/start_background", False) or '--hideStart' in sys.argv
+    ):
         main_window.hide()
     else:
         main_window.show()
