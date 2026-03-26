@@ -3,16 +3,238 @@ from gettext import gettext as _
 import zapzap
 from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
-from PyQt6.QtWidgets import QApplication, QMessageBox, QWidget
+from PyQt6.QtWidgets import (
+    QApplication,
+    QCheckBox,
+    QDialog,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QMessageBox,
+    QPushButton,
+    QStackedWidget,
+    QVBoxLayout,
+    QWidget,
+)
 from zapzap.services.EnvironmentManager import EnvironmentManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SetupManager import SetupManager
 
 
-class OnboardingDialog:
-    """Fluxo de onboarding inicial com tratamento específico para Flatpak."""
+class _OnboardingWizardDialog(QDialog):
+    """Dialog em etapas para onboarding inicial."""
 
-    VERSION = 1
+    def __init__(self, parent: QWidget | None = None):
+        super().__init__(parent)
+        self.setWindowTitle(_("Welcome to ZapZap"))
+        self.setModal(True)
+        self.setMinimumWidth(560)
+
+        self._steps: list[QWidget] = []
+
+        root = QVBoxLayout(self)
+        root.setSpacing(12)
+
+        self.step_label = QLabel(self)
+        root.addWidget(self.step_label)
+
+        self.stack = QStackedWidget(self)
+        root.addWidget(self.stack, 1)
+
+        # Footer
+        footer = QHBoxLayout()
+        footer.addStretch()
+
+        self.back_button = QPushButton(_("Back"), self)
+        self.next_button = QPushButton(_("Next"), self)
+        self.finish_button = QPushButton(_("Finish"), self)
+        self.finish_button.hide()
+
+        self.back_button.clicked.connect(self._go_back)
+        self.next_button.clicked.connect(self._go_next)
+        self.finish_button.clicked.connect(self.accept)
+
+        footer.addWidget(self.back_button)
+        footer.addWidget(self.next_button)
+        footer.addWidget(self.finish_button)
+        root.addLayout(footer)
+
+        self._build_steps()
+        self._update_navigation()
+
+    def _build_steps(self):
+        self._add_step(self._build_welcome_step())
+        self._add_step(self._build_personalization_step())
+
+        if SetupManager._is_flatpak:
+            self._add_step(self._build_flatpak_step())
+
+        self._add_step(self._build_finish_step())
+
+    def _add_step(self, widget: QWidget):
+        self._steps.append(widget)
+        self.stack.addWidget(widget)
+
+    def _build_welcome_step(self) -> QWidget:
+        packaging = EnvironmentManager.identify_packaging().value
+
+        page = QWidget(self)
+        layout = QVBoxLayout(page)
+        layout.setSpacing(10)
+
+        title = QLabel(_("Quick setup"), page)
+        title.setStyleSheet("font-weight: 700; font-size: 16px;")
+        description = QLabel(
+            _(
+                "Let's configure ZapZap in a few steps.\n\n"
+                "1) Accounts and navigation\n"
+                "2) Notifications and startup\n"
+                "3) Optional sandbox guidance (Flatpak only)\n\n"
+                "Environment: {}"
+            ).format(packaging),
+            page,
+        )
+        description.setWordWrap(True)
+
+        layout.addWidget(title)
+        layout.addWidget(description)
+        layout.addStretch()
+        return page
+
+    def _build_personalization_step(self) -> QWidget:
+        page = QWidget(self)
+        layout = QVBoxLayout(page)
+        layout.setSpacing(10)
+
+        title = QLabel(_("Personalize your experience"), page)
+        title.setStyleSheet("font-weight: 700; font-size: 16px;")
+        title.setWordWrap(True)
+        layout.addWidget(title)
+
+        self.cb_start_background = QCheckBox(_("Start hidden in background"), page)
+        self.cb_start_background.setChecked(
+            SettingsManager.get("system/start_background", False)
+        )
+        layout.addWidget(self.cb_start_background)
+
+        self.cb_notifications = QCheckBox(_("Enable app notifications"), page)
+        self.cb_notifications.setChecked(SettingsManager.get("notification/app", True))
+        layout.addWidget(self.cb_notifications)
+
+        self.cb_message_preview = QCheckBox(_("Show message content in notifications"), page)
+        self.cb_message_preview.setChecked(
+            SettingsManager.get("notification/show_msg", True)
+        )
+        self.cb_message_preview.setEnabled(self.cb_notifications.isChecked())
+        self.cb_notifications.toggled.connect(self.cb_message_preview.setEnabled)
+        layout.addWidget(self.cb_message_preview)
+
+        self.cb_open_site = QCheckBox(_("Open ZapZap website after setup"), page)
+        self.cb_open_site.setChecked(False)
+        layout.addWidget(self.cb_open_site)
+
+        hint = QLabel(
+            _(
+                "You can change all these options later in Settings."
+            ),
+            page,
+        )
+        hint.setWordWrap(True)
+        hint.setStyleSheet("color: #777;")
+        layout.addWidget(hint)
+        layout.addStretch()
+        return page
+
+    def _build_flatpak_step(self) -> QWidget:
+        page = QWidget(self)
+        layout = QVBoxLayout(page)
+        layout.setSpacing(10)
+
+        title = QLabel(_("Flatpak sandbox permissions"), page)
+        title.setStyleSheet("font-weight: 700; font-size: 16px;")
+        title.setWordWrap(True)
+        layout.addWidget(title)
+
+        text = QLabel(
+            _(
+                "If opening files, drag-and-drop or uploads fail, this is usually caused by sandbox permissions."
+            ),
+            page,
+        )
+        text.setWordWrap(True)
+        layout.addWidget(text)
+
+        command = "flatpak override --user --filesystem=home com.rtosta.zapzap"
+        command_layout = QHBoxLayout()
+        command_input = QLineEdit(command, page)
+        command_input.setReadOnly(True)
+        copy_button = QPushButton(_("Copy command"), page)
+        copy_button.clicked.connect(lambda: QApplication.clipboard().setText(command))
+        command_layout.addWidget(command_input)
+        command_layout.addWidget(copy_button)
+        layout.addLayout(command_layout)
+
+        flatseal_button = QPushButton(_("Open Flatseal page"), page)
+        flatseal_button.clicked.connect(
+            lambda: OnboardingDialog._open_flatseal_with_fallback()
+        )
+        layout.addWidget(flatseal_button)
+        layout.addStretch()
+        return page
+
+    def _build_finish_step(self) -> QWidget:
+        page = QWidget(self)
+        layout = QVBoxLayout(page)
+        layout.setSpacing(10)
+
+        title = QLabel(_("Setup complete"), page)
+        title.setStyleSheet("font-weight: 700; font-size: 16px;")
+        layout.addWidget(title)
+
+        text = QLabel(
+            _("Your preferences were saved. You can review and change them at any time in Settings."),
+            page,
+        )
+        text.setWordWrap(True)
+        layout.addWidget(text)
+        layout.addStretch()
+        return page
+
+    def _go_next(self):
+        index = self.stack.currentIndex()
+        if index < self.stack.count() - 1:
+            self.stack.setCurrentIndex(index + 1)
+            self._update_navigation()
+
+    def _go_back(self):
+        index = self.stack.currentIndex()
+        if index > 0:
+            self.stack.setCurrentIndex(index - 1)
+            self._update_navigation()
+
+    def _update_navigation(self):
+        index = self.stack.currentIndex()
+        total = self.stack.count()
+        self.step_label.setText(_("Step {}/{}").format(index + 1, total))
+
+        self.back_button.setEnabled(index > 0)
+        is_last = index == total - 1
+        self.next_button.setVisible(not is_last)
+        self.finish_button.setVisible(is_last)
+        self.finish_button.setDefault(is_last)
+
+    def apply_selected_settings(self):
+        SettingsManager.set("system/start_background", self.cb_start_background.isChecked())
+        SettingsManager.set("notification/app", self.cb_notifications.isChecked())
+        SettingsManager.set("notification/show_msg", self.cb_message_preview.isChecked())
+        SettingsManager.set("website/open_page", False)
+
+        if self.cb_open_site.isChecked():
+            QDesktopServices.openUrl(QUrl(zapzap.__website__))
+
+
+class OnboardingDialog:
+    VERSION = 2
     KEY_COMPLETED = "onboarding/completed"
     KEY_VERSION = "onboarding/version"
     KEY_LAST_ENVIRONMENT = "onboarding/last_environment"
@@ -23,12 +245,6 @@ class OnboardingDialog:
 
     @staticmethod
     def should_show() -> bool:
-        """
-        Exibe onboarding quando:
-        - nunca foi concluído;
-        - versão do onboarding mudou;
-        - ambiente mudou (local <-> flatpak).
-        """
         completed = SettingsManager.get(OnboardingDialog.KEY_COMPLETED, False)
         version = int(SettingsManager.get(OnboardingDialog.KEY_VERSION, 0))
         last_environment = SettingsManager.get(
@@ -38,86 +254,49 @@ class OnboardingDialog:
 
         if not completed:
             return True
-
         if version != OnboardingDialog.VERSION:
             return True
-
         if last_environment != current_environment:
             return True
-
         return False
 
     @staticmethod
     def run(parent: QWidget | None = None):
-        """Executa onboarding e persiste estado ao término."""
         if not OnboardingDialog.should_show():
             return
 
-        OnboardingDialog._show_welcome_step(parent)
-
-        if SetupManager._is_flatpak:
-            OnboardingDialog.show_flatpak_permissions_dialog(parent)
-
-        OnboardingDialog._show_finish_step(parent)
-        OnboardingDialog._mark_as_completed()
+        dialog = _OnboardingWizardDialog(parent)
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            dialog.apply_selected_settings()
+            OnboardingDialog._mark_as_completed()
 
     @staticmethod
-    def _show_welcome_step(parent: QWidget | None):
-        packaging = EnvironmentManager.identify_packaging().value
-
-        dialog = QMessageBox(parent)
-        dialog.setIcon(QMessageBox.Icon.Information)
-        dialog.setWindowTitle(_("Welcome to ZapZap"))
-        dialog.setText(_("Quick setup"))
-        dialog.setInformativeText(
-            _(
-                "1) Add an account\n"
-                "2) Configure notifications\n"
-                "3) Adjust shortcuts and preferences\n\n"
-                "Environment: {}"
-            ).format(packaging)
-        )
-        dialog.addButton(_("Continue"), QMessageBox.ButtonRole.AcceptRole)
-        dialog.exec()
-
-    @staticmethod
-    def _show_finish_step(parent: QWidget | None):
-        dialog = QMessageBox(parent)
-        dialog.setIcon(QMessageBox.Icon.Information)
-        dialog.setWindowTitle(_("Setup complete"))
-        dialog.setText(_("Your app is ready to use."))
-        docs_button = dialog.addButton(_("Open website"), QMessageBox.ButtonRole.ActionRole)
-        dialog.addButton(_("Close"), QMessageBox.ButtonRole.AcceptRole)
-        dialog.exec()
-
-        if dialog.clickedButton() == docs_button:
-            QDesktopServices.openUrl(QUrl(zapzap.__website__))
+    def _open_flatseal_with_fallback():
+        flatseal_url = QUrl("https://flathub.org/apps/com.github.tchx84.Flatseal")
+        opened = QDesktopServices.openUrl(flatseal_url)
+        if not opened:
+            QApplication.clipboard().setText(flatseal_url.toString())
 
     @staticmethod
     def show_flatpak_permissions_dialog(parent: QWidget | None = None):
-        """Mostra orientação de permissões do sandbox no Flatpak."""
         command = "flatpak override --user --filesystem=home com.rtosta.zapzap"
-        flatseal_url = QUrl("https://flathub.org/apps/com.github.tchx84.Flatseal")
-
         dialog = QMessageBox(parent)
-        dialog.setIcon(QMessageBox.Icon.Warning)
         dialog.setWindowTitle(_("Flatpak sandbox"))
+        dialog.setIcon(QMessageBox.Icon.Warning)
         dialog.setText(_("ZapZap is running in Flatpak sandbox."))
         dialog.setInformativeText(
             _(
                 "Some features like opening files or drag-and-drop may require additional permissions."
             )
         )
-
         instructions_button = dialog.addButton(_("Instructions"), QMessageBox.ButtonRole.ActionRole)
         copy_button = dialog.addButton(_("Copy command"), QMessageBox.ButtonRole.ActionRole)
-        dialog.addButton(_("Continue without permissions"), QMessageBox.ButtonRole.AcceptRole)
+        dialog.addButton(_("Close"), QMessageBox.ButtonRole.RejectRole)
+
         dialog.exec()
 
         if dialog.clickedButton() == instructions_button:
-            opened = QDesktopServices.openUrl(flatseal_url)
-            if not opened:
-                QApplication.clipboard().setText(flatseal_url.toString())
+            OnboardingDialog._open_flatseal_with_fallback()
         elif dialog.clickedButton() == copy_button:
             QApplication.clipboard().setText(command)
 
