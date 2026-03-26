@@ -1,16 +1,19 @@
 from gettext import gettext as _
 
 import zapzap
-from PyQt6.QtCore import QUrl
+from PyQt6.QtCore import Qt, QUrl
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWidgets import (
     QApplication,
     QCheckBox,
     QDialog,
+    QFrame,
+    QGridLayout,
     QHBoxLayout,
     QLabel,
     QLineEdit,
     QMessageBox,
+    QProgressBar,
     QPushButton,
     QStackedWidget,
     QVBoxLayout,
@@ -28,15 +31,49 @@ class _OnboardingWizardDialog(QDialog):
         super().__init__(parent)
         self.setWindowTitle(_("Welcome to ZapZap"))
         self.setModal(True)
-        self.setMinimumWidth(560)
+        self.setMinimumSize(640, 430)
+        self.setObjectName("OnboardingWizard")
+        self.setStyleSheet(
+            """
+            #OnboardingWizard {
+                background: palette(base);
+            }
+            QLabel#OnboardingTitle {
+                font-size: 22px;
+                font-weight: 700;
+            }
+            QLabel#OnboardingSubtitle {
+                color: palette(mid);
+            }
+            QFrame#OnboardingCard {
+                border: 1px solid palette(midlight);
+                border-radius: 10px;
+                padding: 8px;
+                background: palette(alternate-base);
+            }
+            """
+        )
 
         self._steps: list[QWidget] = []
 
         root = QVBoxLayout(self)
         root.setSpacing(12)
 
+        self.title_label = QLabel(_("Welcome to ZapZap"), self)
+        self.title_label.setObjectName("OnboardingTitle")
+        root.addWidget(self.title_label)
+
+        self.subtitle_label = QLabel(_("Quick setup for your preferred environment"), self)
+        self.subtitle_label.setObjectName("OnboardingSubtitle")
+        root.addWidget(self.subtitle_label)
+
         self.step_label = QLabel(self)
         root.addWidget(self.step_label)
+
+        self.step_progress = QProgressBar(self)
+        self.step_progress.setTextVisible(False)
+        self.step_progress.setFixedHeight(8)
+        root.addWidget(self.step_progress)
 
         self.stack = QStackedWidget(self)
         root.addWidget(self.stack, 1)
@@ -82,8 +119,10 @@ class _OnboardingWizardDialog(QDialog):
         layout = QVBoxLayout(page)
         layout.setSpacing(10)
 
-        title = QLabel(_("Quick setup"), page)
-        title.setStyleSheet("font-weight: 700; font-size: 16px;")
+        card = QFrame(page)
+        card.setObjectName("OnboardingCard")
+        card_layout = QVBoxLayout(card)
+
         description = QLabel(
             _(
                 "Let's configure ZapZap in a few steps.\n\n"
@@ -95,9 +134,9 @@ class _OnboardingWizardDialog(QDialog):
             page,
         )
         description.setWordWrap(True)
+        card_layout.addWidget(description)
 
-        layout.addWidget(title)
-        layout.addWidget(description)
+        layout.addWidget(card)
         layout.addStretch()
         return page
 
@@ -111,15 +150,27 @@ class _OnboardingWizardDialog(QDialog):
         title.setWordWrap(True)
         layout.addWidget(title)
 
+        card = QFrame(page)
+        card.setObjectName("OnboardingCard")
+        card_layout = QGridLayout(card)
+        card_layout.setHorizontalSpacing(16)
+        card_layout.setVerticalSpacing(8)
+
         self.cb_start_background = QCheckBox(_("Start hidden in background"), page)
         self.cb_start_background.setChecked(
             SettingsManager.get("system/start_background", False)
         )
-        layout.addWidget(self.cb_start_background)
+        card_layout.addWidget(self.cb_start_background, 0, 0, 1, 2)
+
+        self.cb_quit_in_close = QCheckBox(_("Quit app when closing the window"), page)
+        self.cb_quit_in_close.setChecked(
+            SettingsManager.get("system/quit_in_close", False)
+        )
+        card_layout.addWidget(self.cb_quit_in_close, 1, 0, 1, 2)
 
         self.cb_notifications = QCheckBox(_("Enable app notifications"), page)
         self.cb_notifications.setChecked(SettingsManager.get("notification/app", True))
-        layout.addWidget(self.cb_notifications)
+        card_layout.addWidget(self.cb_notifications, 2, 0, 1, 2)
 
         self.cb_message_preview = QCheckBox(_("Show message content in notifications"), page)
         self.cb_message_preview.setChecked(
@@ -127,11 +178,36 @@ class _OnboardingWizardDialog(QDialog):
         )
         self.cb_message_preview.setEnabled(self.cb_notifications.isChecked())
         self.cb_notifications.toggled.connect(self.cb_message_preview.setEnabled)
-        layout.addWidget(self.cb_message_preview)
+        card_layout.addWidget(self.cb_message_preview, 3, 0, 1, 2)
+
+        self.cb_show_name = QCheckBox(_("Show contact name in notifications"), page)
+        self.cb_show_name.setChecked(SettingsManager.get("notification/show_name", True))
+        self.cb_show_name.setEnabled(self.cb_notifications.isChecked())
+        self.cb_notifications.toggled.connect(self.cb_show_name.setEnabled)
+        card_layout.addWidget(self.cb_show_name, 4, 0, 1, 2)
+
+        self.cb_show_photo = QCheckBox(_("Show contact photo in notifications"), page)
+        self.cb_show_photo.setChecked(SettingsManager.get("notification/show_photo", True))
+        self.cb_show_photo.setEnabled(self.cb_notifications.isChecked())
+        self.cb_notifications.toggled.connect(self.cb_show_photo.setEnabled)
+        card_layout.addWidget(self.cb_show_photo, 5, 0, 1, 2)
+
+        self.cb_spellcheck = QCheckBox(_("Enable spell checker"), page)
+        self.cb_spellcheck.setChecked(SettingsManager.get("system/spellCheckers", True))
+        card_layout.addWidget(self.cb_spellcheck, 6, 0, 1, 2)
+
+        self.cb_wayland = QCheckBox(_("Prefer Wayland (when available)"), page)
+        self.cb_wayland.setChecked(SettingsManager.get("system/wayland", False))
+        self.cb_wayland.setEnabled(not SetupManager._is_flatpak)
+        if SetupManager._is_flatpak:
+            self.cb_wayland.setToolTip(_("Use Flatseal to change this mode of execution"))
+        card_layout.addWidget(self.cb_wayland, 7, 0, 1, 2)
 
         self.cb_open_site = QCheckBox(_("Open ZapZap website after setup"), page)
         self.cb_open_site.setChecked(False)
-        layout.addWidget(self.cb_open_site)
+        card_layout.addWidget(self.cb_open_site, 8, 0, 1, 2)
+
+        layout.addWidget(card)
 
         hint = QLabel(
             _(
@@ -155,6 +231,10 @@ class _OnboardingWizardDialog(QDialog):
         title.setWordWrap(True)
         layout.addWidget(title)
 
+        card = QFrame(page)
+        card.setObjectName("OnboardingCard")
+        card_layout = QVBoxLayout(card)
+
         text = QLabel(
             _(
                 "If opening files, drag-and-drop or uploads fail, this is usually caused by sandbox permissions."
@@ -162,7 +242,7 @@ class _OnboardingWizardDialog(QDialog):
             page,
         )
         text.setWordWrap(True)
-        layout.addWidget(text)
+        card_layout.addWidget(text)
 
         command = "flatpak override --user --filesystem=home com.rtosta.zapzap"
         command_layout = QHBoxLayout()
@@ -172,13 +252,15 @@ class _OnboardingWizardDialog(QDialog):
         copy_button.clicked.connect(lambda: QApplication.clipboard().setText(command))
         command_layout.addWidget(command_input)
         command_layout.addWidget(copy_button)
-        layout.addLayout(command_layout)
+        card_layout.addLayout(command_layout)
 
         flatseal_button = QPushButton(_("Open Flatseal page"), page)
         flatseal_button.clicked.connect(
             lambda: OnboardingDialog._open_flatseal_with_fallback()
         )
-        layout.addWidget(flatseal_button)
+        card_layout.addWidget(flatseal_button, alignment=Qt.AlignmentFlag.AlignLeft)
+
+        layout.addWidget(card)
         layout.addStretch()
         return page
 
@@ -191,12 +273,18 @@ class _OnboardingWizardDialog(QDialog):
         title.setStyleSheet("font-weight: 700; font-size: 16px;")
         layout.addWidget(title)
 
+        card = QFrame(page)
+        card.setObjectName("OnboardingCard")
+        card_layout = QVBoxLayout(card)
+
         text = QLabel(
             _("Your preferences were saved. You can review and change them at any time in Settings."),
             page,
         )
         text.setWordWrap(True)
-        layout.addWidget(text)
+        card_layout.addWidget(text)
+
+        layout.addWidget(card)
         layout.addStretch()
         return page
 
@@ -216,6 +304,8 @@ class _OnboardingWizardDialog(QDialog):
         index = self.stack.currentIndex()
         total = self.stack.count()
         self.step_label.setText(_("Step {}/{}").format(index + 1, total))
+        self.step_progress.setMaximum(total)
+        self.step_progress.setValue(index + 1)
 
         self.back_button.setEnabled(index > 0)
         is_last = index == total - 1
@@ -225,8 +315,13 @@ class _OnboardingWizardDialog(QDialog):
 
     def apply_selected_settings(self):
         SettingsManager.set("system/start_background", self.cb_start_background.isChecked())
+        SettingsManager.set("system/quit_in_close", self.cb_quit_in_close.isChecked())
         SettingsManager.set("notification/app", self.cb_notifications.isChecked())
         SettingsManager.set("notification/show_msg", self.cb_message_preview.isChecked())
+        SettingsManager.set("notification/show_name", self.cb_show_name.isChecked())
+        SettingsManager.set("notification/show_photo", self.cb_show_photo.isChecked())
+        SettingsManager.set("system/spellCheckers", self.cb_spellcheck.isChecked())
+        SettingsManager.set("system/wayland", self.cb_wayland.isChecked())
         SettingsManager.set("website/open_page", False)
 
         if self.cb_open_site.isChecked():
