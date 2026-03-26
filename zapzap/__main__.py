@@ -7,6 +7,7 @@ from PyQt6.QtCore import QUrl
 
 from zapzap.services.SetupManager import SetupManager
 from zapzap.controllers.MainWindow import MainWindow
+from zapzap.controllers.OnboardingDialog import OnboardingDialog
 from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.services.ProxyManager import ProxyManager
 from zapzap.services.SettingsManager import SettingsManager
@@ -64,7 +65,10 @@ def main():
 
     ProxyManager.apply()
 
-    # Abre site do ZapZap em primeiro acesso
+    # Fluxo de onboarding no primeiro acesso e em mudanças relevantes
+    OnboardingDialog.run(main_window)
+
+    # Compatibilidade com comportamento legado de primeiro acesso
     if SettingsManager.get("website/open_page", True):
         QDesktopServices.openUrl(QUrl(zapzap.__website__))
         SettingsManager.set("website/open_page", False)
