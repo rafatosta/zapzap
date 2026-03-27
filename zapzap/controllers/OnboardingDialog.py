@@ -101,7 +101,8 @@ class _OnboardingWizardDialog(QDialog):
 
     def _build_steps(self):
         self._add_step(self._build_welcome_step())
-        self._add_step(self._build_personalization_step())
+        self._add_step(self._build_general_preferences_step())
+        self._add_step(self._build_notification_preferences_step())
 
         if SetupManager._is_flatpak:
             self._add_step(self._build_flatpak_step())
@@ -127,8 +128,9 @@ class _OnboardingWizardDialog(QDialog):
             _(
                 "Let's configure ZapZap in a few steps.\n\n"
                 "1) Accounts and navigation\n"
-                "2) Notifications and startup\n"
-                "3) Optional sandbox guidance (Flatpak only)\n\n"
+                "2) General preferences\n"
+                "3) Notification preferences\n"
+                "4) Optional sandbox guidance (Flatpak only)\n\n"
                 "Environment: {}"
             ).format(packaging),
             page,
@@ -140,12 +142,12 @@ class _OnboardingWizardDialog(QDialog):
         layout.addStretch()
         return page
 
-    def _build_personalization_step(self) -> QWidget:
+    def _build_general_preferences_step(self) -> QWidget:
         page = QWidget(self)
         layout = QVBoxLayout(page)
         layout.setSpacing(10)
 
-        title = QLabel(_("Personalize your experience"), page)
+        title = QLabel(_("Personalize your experience · General"), page)
         title.setStyleSheet("font-weight: 700; font-size: 16px;")
         title.setWordWrap(True)
         layout.addWidget(title)
@@ -168,44 +170,20 @@ class _OnboardingWizardDialog(QDialog):
         )
         card_layout.addWidget(self.cb_quit_in_close, 1, 0, 1, 2)
 
-        self.cb_notifications = QCheckBox(_("Enable app notifications"), page)
-        self.cb_notifications.setChecked(SettingsManager.get("notification/app", True))
-        card_layout.addWidget(self.cb_notifications, 2, 0, 1, 2)
-
-        self.cb_message_preview = QCheckBox(_("Show message content in notifications"), page)
-        self.cb_message_preview.setChecked(
-            SettingsManager.get("notification/show_msg", True)
-        )
-        self.cb_message_preview.setEnabled(self.cb_notifications.isChecked())
-        self.cb_notifications.toggled.connect(self.cb_message_preview.setEnabled)
-        card_layout.addWidget(self.cb_message_preview, 3, 0, 1, 2)
-
-        self.cb_show_name = QCheckBox(_("Show contact name in notifications"), page)
-        self.cb_show_name.setChecked(SettingsManager.get("notification/show_name", True))
-        self.cb_show_name.setEnabled(self.cb_notifications.isChecked())
-        self.cb_notifications.toggled.connect(self.cb_show_name.setEnabled)
-        card_layout.addWidget(self.cb_show_name, 4, 0, 1, 2)
-
-        self.cb_show_photo = QCheckBox(_("Show contact photo in notifications"), page)
-        self.cb_show_photo.setChecked(SettingsManager.get("notification/show_photo", True))
-        self.cb_show_photo.setEnabled(self.cb_notifications.isChecked())
-        self.cb_notifications.toggled.connect(self.cb_show_photo.setEnabled)
-        card_layout.addWidget(self.cb_show_photo, 5, 0, 1, 2)
-
         self.cb_spellcheck = QCheckBox(_("Enable spell checker"), page)
         self.cb_spellcheck.setChecked(SettingsManager.get("system/spellCheckers", True))
-        card_layout.addWidget(self.cb_spellcheck, 6, 0, 1, 2)
+        card_layout.addWidget(self.cb_spellcheck, 2, 0, 1, 2)
 
         self.cb_wayland = QCheckBox(_("Prefer Wayland (when available)"), page)
         self.cb_wayland.setChecked(SettingsManager.get("system/wayland", False))
         self.cb_wayland.setEnabled(not SetupManager._is_flatpak)
         if SetupManager._is_flatpak:
             self.cb_wayland.setToolTip(_("Use Flatseal to change this mode of execution"))
-        card_layout.addWidget(self.cb_wayland, 7, 0, 1, 2)
+        card_layout.addWidget(self.cb_wayland, 3, 0, 1, 2)
 
         self.cb_open_site = QCheckBox(_("Open ZapZap website after setup"), page)
         self.cb_open_site.setChecked(False)
-        card_layout.addWidget(self.cb_open_site, 8, 0, 1, 2)
+        card_layout.addWidget(self.cb_open_site, 4, 0, 1, 2)
 
         layout.addWidget(card)
 
@@ -218,6 +196,49 @@ class _OnboardingWizardDialog(QDialog):
         hint.setWordWrap(True)
         hint.setStyleSheet("color: #777;")
         layout.addWidget(hint)
+        layout.addStretch()
+        return page
+
+    def _build_notification_preferences_step(self) -> QWidget:
+        page = QWidget(self)
+        layout = QVBoxLayout(page)
+        layout.setSpacing(10)
+
+        title = QLabel(_("Personalize your experience · Notifications"), page)
+        title.setStyleSheet("font-weight: 700; font-size: 16px;")
+        title.setWordWrap(True)
+        layout.addWidget(title)
+
+        card = QFrame(page)
+        card.setObjectName("OnboardingCard")
+        card_layout = QVBoxLayout(card)
+        card_layout.setSpacing(8)
+
+        self.cb_notifications = QCheckBox(_("Enable app notifications"), page)
+        self.cb_notifications.setChecked(SettingsManager.get("notification/app", True))
+        card_layout.addWidget(self.cb_notifications)
+
+        self.cb_message_preview = QCheckBox(_("Show message content in notifications"), page)
+        self.cb_message_preview.setChecked(
+            SettingsManager.get("notification/show_msg", True)
+        )
+        self.cb_message_preview.setEnabled(self.cb_notifications.isChecked())
+        self.cb_notifications.toggled.connect(self.cb_message_preview.setEnabled)
+        card_layout.addWidget(self.cb_message_preview)
+
+        self.cb_show_name = QCheckBox(_("Show contact name in notifications"), page)
+        self.cb_show_name.setChecked(SettingsManager.get("notification/show_name", True))
+        self.cb_show_name.setEnabled(self.cb_notifications.isChecked())
+        self.cb_notifications.toggled.connect(self.cb_show_name.setEnabled)
+        card_layout.addWidget(self.cb_show_name)
+
+        self.cb_show_photo = QCheckBox(_("Show contact photo in notifications"), page)
+        self.cb_show_photo.setChecked(SettingsManager.get("notification/show_photo", True))
+        self.cb_show_photo.setEnabled(self.cb_notifications.isChecked())
+        self.cb_notifications.toggled.connect(self.cb_show_photo.setEnabled)
+        card_layout.addWidget(self.cb_show_photo)
+
+        layout.addWidget(card)
         layout.addStretch()
         return page
 
