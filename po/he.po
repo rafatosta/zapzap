@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-07 21:55-0300\n"
+"POT-Creation-Date: 2026-03-27 17:07-0300\n"
 "PO-Revision-Date: 2025-10-26 15:07+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Yaron Shahrabani <sh.yaron@gmail.com>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Lokalize 25.08.2\n"
 
 #: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:87
-#: zapzap/controllers/ShortcutsDialog.py:58 zapzap/controllers/Browser.py:192
+#: zapzap/controllers/Browser.py:172 zapzap/controllers/ShortcutsDialog.py:58
 msgid "New account"
 msgstr "חשבון חדש"
 
@@ -668,7 +668,7 @@ msgstr "גרסה {id} - {version_type}"
 msgid "Make a donation"
 msgstr "תרומה כספית"
 
-#: zapzap/views/ui_settings.py:130
+#: zapzap/views/ui_settings.py:130 zapzap/controllers/OnboardingDialog.py:74
 msgid "Back"
 msgstr "חזרה"
 
@@ -699,18 +699,6 @@ msgstr "חלונית"
 #: zapzap/views/ui_shortcuts_dialog.py:64
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
-
-#: zapzap/controllers/CardUser.py:85
-msgid "Confirm exclusion"
-msgstr "אישור החרגה"
-
-#: zapzap/controllers/CardUser.py:85
-msgid "Are you sure you want to delete this item?"
-msgstr "למחוק את הפריט?"
-
-#: zapzap/controllers/CardUser.py:109
-msgid "Restore standard"
-msgstr "שחזור רגיל"
 
 #: zapzap/controllers/DialogDumpHandler.py:26
 msgid "Unexpected Error"
@@ -745,98 +733,6 @@ msgstr "לא רשמי"
 #: zapzap/controllers/PageAbout.py:25
 msgid "Unknown"
 msgstr "לא ידוע"
-
-#: zapzap/controllers/ShortcutsDialog.py:11
-msgid "Mark as unread"
-msgstr "סימון כלא נקרא"
-
-#: zapzap/controllers/ShortcutsDialog.py:12
-msgid "Archive conversation"
-msgstr "העברת השיחה לארכיון"
-
-#: zapzap/controllers/ShortcutsDialog.py:13
-msgid "Pin conversation"
-msgstr "הצמדת השיחה"
-
-#: zapzap/controllers/ShortcutsDialog.py:14
-msgid "Next conversation"
-msgstr "השיחה הבאה"
-
-#: zapzap/controllers/ShortcutsDialog.py:15
-msgid "Close conversation"
-msgstr "סגירת השיחה"
-
-#: zapzap/controllers/ShortcutsDialog.py:16
-msgid "Search in conversation"
-msgstr "חיפוש בשיחה"
-
-#: zapzap/controllers/ShortcutsDialog.py:17
-msgid "Previous conversation"
-msgstr "השיחה הקודמת"
-
-#: zapzap/controllers/ShortcutsDialog.py:18
-msgid "Delete conversation"
-msgstr "מחיקת השיחה"
-
-#: zapzap/controllers/ShortcutsDialog.py:21
-msgid "Profile and status"
-msgstr "פרופיל ומצב"
-
-#: zapzap/controllers/ShortcutsDialog.py:25
-msgid "Decrease speed of selected voice message"
-msgstr "האטת ההודעה הקולית הנבחרת"
-
-#: zapzap/controllers/ShortcutsDialog.py:26
-msgid "Increase speed of selected voice message"
-msgstr "האצת ההודעה הקולית הנבחרת"
-
-#: zapzap/controllers/ShortcutsDialog.py:29
-msgid "Emoji panel"
-msgstr "לוח אמוג׳י"
-
-#: zapzap/controllers/ShortcutsDialog.py:30
-msgid "Sticker panel"
-msgstr "לוח מדבקות"
-
-#: zapzap/controllers/ShortcutsDialog.py:31
-msgid "GIF panel"
-msgstr "לוח GIFים"
-
-#: zapzap/controllers/ShortcutsDialog.py:34
-msgid "Lock the app"
-msgstr "נעילת היישום"
-
-#: zapzap/controllers/ShortcutsDialog.py:35
-msgid "Mute"
-msgstr "השתקה"
-
-#: zapzap/controllers/ShortcutsDialog.py:36
-msgid "Search"
-msgstr "חיפוש"
-
-#: zapzap/controllers/ShortcutsDialog.py:37
-msgid "New group"
-msgstr "קבוצה חדשה"
-
-#: zapzap/controllers/ShortcutsDialog.py:38
-msgid "Extended search"
-msgstr "חיפוש מורחב"
-
-#: zapzap/controllers/ShortcutsDialog.py:45
-msgid "Exit"
-msgstr "יציאה"
-
-#: zapzap/controllers/ShortcutsDialog.py:48
-msgid "Fullscreen"
-msgstr "מסך מלא"
-
-#: zapzap/controllers/ShortcutsDialog.py:54
-msgid "Reload pages"
-msgstr "ריענון עמודים"
-
-#: zapzap/controllers/ShortcutsDialog.py:55
-msgid "New conversation by phone number"
-msgstr "שיחה חדשה לפי מספר טלפון"
 
 #: zapzap/controllers/PageCustomizations.py:52
 msgid "Global"
@@ -1061,6 +957,26 @@ msgstr ""
 msgid "All pages reloaded."
 msgstr ""
 
+#: zapzap/controllers/Browser.py:67
+msgid "Flatpak sandbox help"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:183 zapzap/controllers/Browser.py:211
+msgid "Account {}"
+msgstr "חשבון {}"
+
+#: zapzap/controllers/CardUser.py:85
+msgid "Confirm exclusion"
+msgstr "אישור החרגה"
+
+#: zapzap/controllers/CardUser.py:85
+msgid "Are you sure you want to delete this item?"
+msgstr "למחוק את הפריט?"
+
+#: zapzap/controllers/CardUser.py:109
+msgid "Restore standard"
+msgstr "שחזור רגיל"
+
 #: zapzap/controllers/DownloadToaster.py:57
 msgid "Open"
 msgstr "פתיחה"
@@ -1077,6 +993,36 @@ msgstr ""
 #: zapzap/controllers/DownloadToaster.py:165
 msgid "Save file"
 msgstr "שמירת קובץ"
+
+#: zapzap/controllers/PageGeneral.py:40
+#: zapzap/controllers/OnboardingDialog.py:170
+msgid "Use Flatseal to change this mode of execution"
+msgstr "יש להשתמש ב־Flateal כדי לשנות את מצב ההפעלה הזה"
+
+#: zapzap/controllers/PageGeneral.py:47
+msgid ""
+"<b>Flatpak tip:</b> If opening PDFs, drag-and-drop, or file uploads fail, "
+"this is usually caused by sandbox permissions. Open <b>Flatseal</b> and "
+"grant ZapZap access to folders like Documents, Downloads, Pictures and "
+"Videos. You can also run: <code>flatpak override --user --filesystem=home "
+"com.rtosta.zapzap</code>."
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:63
+msgid "Select and copy this command in your terminal"
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:64
+#: zapzap/controllers/OnboardingDialog.py:261
+#: zapzap/controllers/OnboardingDialog.py:398
+#, fuzzy
+msgid "Copy command"
+msgstr "העתקת תמונה"
+
+#: zapzap/controllers/PageGeneral.py:72
+#: zapzap/controllers/OnboardingDialog.py:267
+msgid "Open Flatseal page"
+msgstr ""
 
 #: zapzap/controllers/PagePerformance.py:245
 msgid ""
@@ -1170,62 +1116,229 @@ msgid ""
 "to safe default values."
 msgstr ""
 
-#: zapzap/controllers/PageGeneral.py:40
-msgid "Use Flatseal to change this mode of execution"
-msgstr "יש להשתמש ב־Flateal כדי לשנות את מצב ההפעלה הזה"
+#: zapzap/controllers/ShortcutsDialog.py:11
+msgid "Mark as unread"
+msgstr "סימון כלא נקרא"
 
-#: zapzap/controllers/PageGeneral.py:47
-msgid ""
-"<b>Flatpak tip:</b> If opening PDFs, drag-and-drop, or file uploads fail, "
-"this is usually caused by sandbox permissions. Open <b>Flatseal</b> and "
-"grant ZapZap access to folders like Documents, Downloads, Pictures and "
-"Videos. You can also run: <code>flatpak override --user --filesystem=home "
-"com.rtosta.zapzap</code>."
-msgstr ""
+#: zapzap/controllers/ShortcutsDialog.py:12
+msgid "Archive conversation"
+msgstr "העברת השיחה לארכיון"
 
-#: zapzap/controllers/PageGeneral.py:63
-msgid "Select and copy this command in your terminal"
-msgstr ""
+#: zapzap/controllers/ShortcutsDialog.py:13
+msgid "Pin conversation"
+msgstr "הצמדת השיחה"
 
-#: zapzap/controllers/PageGeneral.py:64 zapzap/controllers/Browser.py:84
+#: zapzap/controllers/ShortcutsDialog.py:14
+msgid "Next conversation"
+msgstr "השיחה הבאה"
+
+#: zapzap/controllers/ShortcutsDialog.py:15
+msgid "Close conversation"
+msgstr "סגירת השיחה"
+
+#: zapzap/controllers/ShortcutsDialog.py:16
+msgid "Search in conversation"
+msgstr "חיפוש בשיחה"
+
+#: zapzap/controllers/ShortcutsDialog.py:17
+msgid "Previous conversation"
+msgstr "השיחה הקודמת"
+
+#: zapzap/controllers/ShortcutsDialog.py:18
+msgid "Delete conversation"
+msgstr "מחיקת השיחה"
+
+#: zapzap/controllers/ShortcutsDialog.py:21
+msgid "Profile and status"
+msgstr "פרופיל ומצב"
+
+#: zapzap/controllers/ShortcutsDialog.py:25
+msgid "Decrease speed of selected voice message"
+msgstr "האטת ההודעה הקולית הנבחרת"
+
+#: zapzap/controllers/ShortcutsDialog.py:26
+msgid "Increase speed of selected voice message"
+msgstr "האצת ההודעה הקולית הנבחרת"
+
+#: zapzap/controllers/ShortcutsDialog.py:29
+msgid "Emoji panel"
+msgstr "לוח אמוג׳י"
+
+#: zapzap/controllers/ShortcutsDialog.py:30
+msgid "Sticker panel"
+msgstr "לוח מדבקות"
+
+#: zapzap/controllers/ShortcutsDialog.py:31
+msgid "GIF panel"
+msgstr "לוח GIFים"
+
+#: zapzap/controllers/ShortcutsDialog.py:34
+msgid "Lock the app"
+msgstr "נעילת היישום"
+
+#: zapzap/controllers/ShortcutsDialog.py:35
+msgid "Mute"
+msgstr "השתקה"
+
+#: zapzap/controllers/ShortcutsDialog.py:36
+msgid "Search"
+msgstr "חיפוש"
+
+#: zapzap/controllers/ShortcutsDialog.py:37
+msgid "New group"
+msgstr "קבוצה חדשה"
+
+#: zapzap/controllers/ShortcutsDialog.py:38
+msgid "Extended search"
+msgstr "חיפוש מורחב"
+
+#: zapzap/controllers/ShortcutsDialog.py:45
+msgid "Exit"
+msgstr "יציאה"
+
+#: zapzap/controllers/ShortcutsDialog.py:48
+msgid "Fullscreen"
+msgstr "מסך מלא"
+
+#: zapzap/controllers/ShortcutsDialog.py:54
+msgid "Reload pages"
+msgstr "ריענון עמודים"
+
+#: zapzap/controllers/ShortcutsDialog.py:55
+msgid "New conversation by phone number"
+msgstr "שיחה חדשה לפי מספר טלפון"
+
+#: zapzap/controllers/OnboardingDialog.py:32
+#: zapzap/controllers/OnboardingDialog.py:51
 #, fuzzy
-msgid "Copy command"
-msgstr "העתקת תמונה"
+msgid "Welcome to ZapZap"
+msgstr "ברוך בואך אל"
 
-#: zapzap/controllers/PageGeneral.py:72
-msgid "Open Flatseal page"
+#: zapzap/controllers/OnboardingDialog.py:55
+msgid "Quick setup for your preferred environment"
 msgstr ""
 
-#: zapzap/controllers/Browser.py:66
-msgid "Flatpak sandbox help"
+#: zapzap/controllers/OnboardingDialog.py:75
+msgid "Next"
 msgstr ""
 
-#: zapzap/controllers/Browser.py:75
+#: zapzap/controllers/OnboardingDialog.py:76
+msgid "Finish"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:118
+msgid ""
+"Let's configure ZapZap in a few steps.\n"
+"\n"
+"1) Accounts and navigation\n"
+"2) General preferences\n"
+"3) Notification preferences\n"
+"4) Optional sandbox guidance (Flatpak only)\n"
+"\n"
+"Environment: {}"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:139
+msgid "Personalize your experience · General"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:150
+msgid "Start hidden in background"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:156
+#, fuzzy
+msgid "Quit app when closing the window"
+msgstr "לסגור עם סגירת החלון"
+
+#: zapzap/controllers/OnboardingDialog.py:162
+#, fuzzy
+msgid "Enable spell checker"
+msgstr "בודק איות"
+
+#: zapzap/controllers/OnboardingDialog.py:166
+msgid "Prefer Wayland (when available)"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:173
+msgid "Open ZapZap website after setup"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:181
+msgid "You can change all these options later in Settings."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:196
+msgid "Personalize your experience · Notifications"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:206
+#, fuzzy
+msgid "Enable app notifications"
+msgstr "התראות אזור עבודה"
+
+#: zapzap/controllers/OnboardingDialog.py:210
+#, fuzzy
+msgid "Show message content in notifications"
+msgstr "השתקת ההתראות"
+
+#: zapzap/controllers/OnboardingDialog.py:218
+#, fuzzy
+msgid "Show contact name in notifications"
+msgstr "הסתרת התראת תרומה"
+
+#: zapzap/controllers/OnboardingDialog.py:224
+#, fuzzy
+msgid "Show contact photo in notifications"
+msgstr "הסתרת התראת תרומה"
+
+#: zapzap/controllers/OnboardingDialog.py:239
+msgid "Flatpak sandbox permissions"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:250
+msgid ""
+"If opening files, drag-and-drop or uploads fail, this is usually caused by "
+"sandbox permissions."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:282
+#, fuzzy
+msgid "Setup complete"
+msgstr "ריענון עמודים"
+
+#: zapzap/controllers/OnboardingDialog.py:291
+msgid ""
+"Your preferences were saved. You can review and change them at any time in "
+"Settings."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:316
+msgid "Step {}/{}"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:389
 msgid "Flatpak sandbox"
 msgstr ""
 
-#: zapzap/controllers/Browser.py:76
+#: zapzap/controllers/OnboardingDialog.py:391
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr ""
 
-#: zapzap/controllers/Browser.py:79
+#: zapzap/controllers/OnboardingDialog.py:394
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
 msgstr ""
 
-#: zapzap/controllers/Browser.py:83
+#: zapzap/controllers/OnboardingDialog.py:397
 #, fuzzy
 msgid "Instructions"
 msgstr "פרטים"
 
-#: zapzap/controllers/Browser.py:85
+#: zapzap/controllers/OnboardingDialog.py:399
 msgid "Close"
 msgstr ""
-
-#: zapzap/controllers/Browser.py:203 zapzap/controllers/Browser.py:231
-msgid "Account {}"
-msgstr "חשבון {}"
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
@@ -1246,6 +1359,11 @@ msgstr "נא לשים לב"
 #: zapzap/services/AlertManager.py:39
 msgid "No active account!"
 msgstr "אין חשבון פעיל!"
+
+#: zapzap/services/DownloadManager.py:65
+#, fuzzy
+msgid "Select folder"
+msgstr "בחירת תיקייה"
 
 #: zapzap/services/ProxyManager.py:10
 msgid "No proxying is used."
@@ -1278,11 +1396,6 @@ msgstr "הצגה"
 #: zapzap/services/SysTrayManager.py:56
 msgid "Donation"
 msgstr "תרומה"
-
-#: zapzap/services/DownloadManager.py:65
-#, fuzzy
-msgid "Select folder"
-msgstr "בחירת תיקייה"
 
 #~ msgid "Cache Behavior"
 #~ msgstr "התנהגות מטמון"
