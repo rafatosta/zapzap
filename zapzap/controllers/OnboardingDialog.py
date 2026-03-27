@@ -31,25 +31,14 @@ class _OnboardingWizardDialog(QDialog):
         super().__init__(parent)
         self.setWindowTitle(_("Welcome to ZapZap"))
         self.setModal(True)
-        self.setMinimumSize(640, 430)
+        self.setMinimumSize(680, 430)
+        self.setContentsMargins(10, 10, 10, 10)
         self.setObjectName("OnboardingWizard")
         self.setStyleSheet(
             """
-            #OnboardingWizard {
-                background: palette(base);
-            }
             QLabel#OnboardingTitle {
                 font-size: 22px;
                 font-weight: 700;
-            }
-            QLabel#OnboardingSubtitle {
-                color: palette(mid);
-            }
-            QFrame#OnboardingCard {
-                border: 1px solid palette(midlight);
-                border-radius: 10px;
-                padding: 8px;
-                background: palette(alternate-base);
             }
             """
         )
