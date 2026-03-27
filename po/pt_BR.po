@@ -154,7 +154,7 @@ msgstr "F11"
 
 #: zapzap/views/ui_mainwindow.py:120
 msgid "Open DevTools"
-msgstr ""
+msgstr "Abrir DevTools"
 
 #: zapzap/views/ui_mainwindow.py:121
 msgid "Ctrl+Shift+I"
@@ -979,7 +979,7 @@ msgstr "Salvar como"
 
 #: zapzap/controllers/DownloadToaster.py:66
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: zapzap/controllers/DownloadToaster.py:165
 msgid "Save file"
@@ -1245,15 +1245,15 @@ msgstr "Bem-vindo ao ZapZap"
 
 #: zapzap/controllers/OnboardingDialog.py:55
 msgid "Quick setup for your preferred environment"
-msgstr ""
+msgstr "Configuração rápida para seu ambiente preferido"
 
 #: zapzap/controllers/OnboardingDialog.py:75
 msgid "Next"
-msgstr ""
+msgstr "Avançar"
 
 #: zapzap/controllers/OnboardingDialog.py:76
 msgid "Finish"
-msgstr ""
+msgstr "Concluir"
 
 #: zapzap/controllers/OnboardingDialog.py:118
 msgid ""
@@ -1266,14 +1266,22 @@ msgid ""
 "\n"
 "Environment: {}"
 msgstr ""
+"Vamos configurar o ZapZap em alguns passos.\n"
+"\n"
+"1) Contas e navegação\n"
+"2) Preferências gerais\n"
+"3) Preferências de notificações\n"
+"4) Orientações opcionais de sandbox (apenas Flatpak)\n"
+"\n"
+"Ambiente: {}"
 
 #: zapzap/controllers/OnboardingDialog.py:139
 msgid "Personalize your experience · General"
-msgstr ""
+msgstr "Personalize sua experiência · Geral"
 
 #: zapzap/controllers/OnboardingDialog.py:150
 msgid "Start hidden in background"
-msgstr ""
+msgstr "Iniciar oculto em segundo plano"
 
 #: zapzap/controllers/OnboardingDialog.py:156
 msgid "Quit app when closing the window"
@@ -1285,19 +1293,19 @@ msgstr "Ativar corretor ortográfico"
 
 #: zapzap/controllers/OnboardingDialog.py:166
 msgid "Prefer Wayland (when available)"
-msgstr ""
+msgstr "Preferir Wayland (quando disponível)"
 
 #: zapzap/controllers/OnboardingDialog.py:173
 msgid "Open ZapZap website after setup"
-msgstr ""
+msgstr "Abrir o site do ZapZap após a configuração"
 
 #: zapzap/controllers/OnboardingDialog.py:181
 msgid "You can change all these options later in Settings."
-msgstr ""
+msgstr "Você pode alterar todas essas opções depois em Configurações."
 
 #: zapzap/controllers/OnboardingDialog.py:196
 msgid "Personalize your experience · Notifications"
-msgstr ""
+msgstr "Personalize sua experiência · Notificações"
 
 #: zapzap/controllers/OnboardingDialog.py:206
 msgid "Enable app notifications"
@@ -1324,6 +1332,8 @@ msgid ""
 "If opening files, drag-and-drop or uploads fail, this is usually caused by "
 "sandbox permissions."
 msgstr ""
+"Se abrir arquivos, arrastar e soltar ou uploads falharem, isso geralmente é "
+"causado por permissões de sandbox."
 
 #: zapzap/controllers/OnboardingDialog.py:282
 msgid "Setup complete"
@@ -1334,14 +1344,16 @@ msgid ""
 "Your preferences were saved. You can review and change them at any time in "
 "Settings."
 msgstr ""
+"Suas preferências foram salvas. Você pode revisar e alterá-las a qualquer "
+"momento em Configurações."
 
 #: zapzap/controllers/OnboardingDialog.py:316
 msgid "Step {}/{}"
-msgstr ""
+msgstr "Etapa {}/{}"
 
 #: zapzap/controllers/OnboardingDialog.py:389
 msgid "Flatpak sandbox"
-msgstr ""
+msgstr "Sandbox do Flatpak"
 
 #: zapzap/controllers/OnboardingDialog.py:391
 msgid "ZapZap is running in Flatpak sandbox."
