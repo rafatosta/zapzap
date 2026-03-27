@@ -977,7 +977,7 @@ msgstr "Todas as páginas foram recarregadas."
 
 #: zapzap/controllers/Browser.py:67
 msgid "Flatpak sandbox help"
-msgstr ""
+msgstr "Ajuda da sandbox Flatpak"
 
 #: zapzap/controllers/Browser.py:183 zapzap/controllers/Browser.py:211
 msgid "Account {}"
@@ -1025,10 +1025,15 @@ msgid ""
 "Videos. You can also run: <code>flatpak override --user --filesystem=home "
 "com.rtosta.zapzap</code>."
 msgstr ""
+"<b>Dica do Flatpak:</b> se abrir PDFs, arrastar e largar ou carregamentos "
+"de ficheiros falharem, isto normalmente é causado por permissões da "
+"sandbox. Abra o <b>Flatseal</b> e conceda ao ZapZap acesso a pastas como "
+"Documentos, Transferências, Imagens e Vídeos. Também pode executar: "
+"<code>flatpak override --user --filesystem=home com.rtosta.zapzap</code>."
 
 #: zapzap/controllers/PageGeneral.py:63
 msgid "Select and copy this command in your terminal"
-msgstr ""
+msgstr "Selecione e copie este comando no seu terminal"
 
 #: zapzap/controllers/PageGeneral.py:64
 #: zapzap/controllers/OnboardingDialog.py:261
@@ -1040,7 +1045,7 @@ msgstr "Copiar imagem"
 #: zapzap/controllers/PageGeneral.py:72
 #: zapzap/controllers/OnboardingDialog.py:267
 msgid "Open Flatseal page"
-msgstr ""
+msgstr "Abrir página do Flatseal"
 
 #: zapzap/controllers/PagePerformance.py:245
 msgid ""
@@ -1272,15 +1277,15 @@ msgstr "Bem Vindo a"
 
 #: zapzap/controllers/OnboardingDialog.py:55
 msgid "Quick setup for your preferred environment"
-msgstr ""
+msgstr "Configuração rápida para o seu ambiente preferido"
 
 #: zapzap/controllers/OnboardingDialog.py:75
 msgid "Next"
-msgstr ""
+msgstr "Seguinte"
 
 #: zapzap/controllers/OnboardingDialog.py:76
 msgid "Finish"
-msgstr ""
+msgstr "Concluir"
 
 #: zapzap/controllers/OnboardingDialog.py:118
 msgid ""
@@ -1293,14 +1298,22 @@ msgid ""
 "\n"
 "Environment: {}"
 msgstr ""
+"Vamos configurar o ZapZap em alguns passos.\n"
+"\n"
+"1) Contas e navegação\n"
+"2) Preferências gerais\n"
+"3) Preferências de notificações\n"
+"4) Orientação opcional de sandbox (apenas Flatpak)\n"
+"\n"
+"Ambiente: {}"
 
 #: zapzap/controllers/OnboardingDialog.py:139
 msgid "Personalize your experience · General"
-msgstr ""
+msgstr "Personalize a sua experiência · Geral"
 
 #: zapzap/controllers/OnboardingDialog.py:150
 msgid "Start hidden in background"
-msgstr ""
+msgstr "Iniciar oculto em segundo plano"
 
 #: zapzap/controllers/OnboardingDialog.py:156
 #, fuzzy
@@ -1314,19 +1327,19 @@ msgstr "Corretor ortográfico"
 
 #: zapzap/controllers/OnboardingDialog.py:166
 msgid "Prefer Wayland (when available)"
-msgstr ""
+msgstr "Preferir Wayland (quando disponível)"
 
 #: zapzap/controllers/OnboardingDialog.py:173
 msgid "Open ZapZap website after setup"
-msgstr ""
+msgstr "Abrir o site do ZapZap após a configuração"
 
 #: zapzap/controllers/OnboardingDialog.py:181
 msgid "You can change all these options later in Settings."
-msgstr ""
+msgstr "Pode alterar todas estas opções mais tarde em Definições."
 
 #: zapzap/controllers/OnboardingDialog.py:196
 msgid "Personalize your experience · Notifications"
-msgstr ""
+msgstr "Personalize a sua experiência · Notificações"
 
 #: zapzap/controllers/OnboardingDialog.py:206
 #, fuzzy
@@ -1350,13 +1363,15 @@ msgstr "Esconder a notificação de doação"
 
 #: zapzap/controllers/OnboardingDialog.py:239
 msgid "Flatpak sandbox permissions"
-msgstr ""
+msgstr "Permissões da sandbox Flatpak"
 
 #: zapzap/controllers/OnboardingDialog.py:250
 msgid ""
 "If opening files, drag-and-drop or uploads fail, this is usually caused by "
 "sandbox permissions."
 msgstr ""
+"Se abrir ficheiros, arrastar e largar ou carregamentos falharem, isto "
+"normalmente é causado por permissões da sandbox."
 
 #: zapzap/controllers/OnboardingDialog.py:282
 #, fuzzy
@@ -1368,24 +1383,28 @@ msgid ""
 "Your preferences were saved. You can review and change them at any time in "
 "Settings."
 msgstr ""
+"As suas preferências foram guardadas. Pode revê-las e alterá-las em "
+"qualquer altura nas Definições."
 
 #: zapzap/controllers/OnboardingDialog.py:316
 msgid "Step {}/{}"
-msgstr ""
+msgstr "Passo {}/{}"
 
 #: zapzap/controllers/OnboardingDialog.py:389
 msgid "Flatpak sandbox"
-msgstr ""
+msgstr "Sandbox Flatpak"
 
 #: zapzap/controllers/OnboardingDialog.py:391
 msgid "ZapZap is running in Flatpak sandbox."
-msgstr ""
+msgstr "O ZapZap está a correr numa sandbox Flatpak."
 
 #: zapzap/controllers/OnboardingDialog.py:394
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
 msgstr ""
+"Algumas funcionalidades, como abrir ficheiros ou arrastar e largar, podem "
+"exigir permissões adicionais."
 
 #: zapzap/controllers/OnboardingDialog.py:397
 #, fuzzy
@@ -1394,7 +1413,7 @@ msgstr "Informação"
 
 #: zapzap/controllers/OnboardingDialog.py:399
 msgid "Close"
-msgstr ""
+msgstr "Fechar"
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
