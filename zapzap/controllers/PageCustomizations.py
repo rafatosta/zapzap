@@ -14,11 +14,16 @@ from PyQt6.QtWidgets import (
     QHeaderView,
     QLineEdit,
     QMessageBox,
+    QListWidget,
+    QListWidgetItem,
     QTableWidgetItem,
+    QTabWidget,
     QTextEdit,
     QVBoxLayout,
     QWidget,
     QPushButton,
+    QLabel,
+    QGroupBox,
 )
 from zapzap.services.CssPreviewService import CssPreviewService
 from zapzap.services.CustomizationsManager import CustomizationsManager
@@ -35,7 +40,10 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
         self.current_account_id = None
         self._updating_asset_lists = False
         self._preview_pixmap = None
+        self.theme_cards_list = None
+        self.btn_theme_new = None
         self._configure_asset_tables()
+        self._build_theme_cards_ui()
         self._configure_scope()
         self._configure_signals()
         self._refresh_current_account()
@@ -92,6 +100,7 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
         self.css_preview_placeholder_upload_button.clicked.connect(self._upload_css_preview_image)
         self.css_preview_replace_button.clicked.connect(self._upload_css_preview_image)
         self.css_preview_image_page.installEventFilter(self)
+        self.btn_theme_new.clicked.connect(self._create_theme_from_cards)
 
     def _connect_asset_action_signals(
         self,
@@ -109,6 +118,24 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
         edit_button.clicked.connect(lambda: self._edit_selected_asset(asset_type))
         open_folder_button.clicked.connect(lambda: self._open_assets_folder(asset_type))
         delete_button.clicked.connect(lambda: self._delete_selected_asset(asset_type))
+
+    def _build_theme_cards_ui(self):
+        themes_group = QGroupBox(_("Installed themes"), self)
+        themes_layout = QVBoxLayout(themes_group)
+        header_layout = QHBoxLayout()
+        header_label = QLabel(_("Choose a theme and apply it quickly."))
+        self.btn_theme_new = QPushButton(_("New theme"), themes_group)
+        header_layout.addWidget(header_label)
+        header_layout.addStretch()
+        header_layout.addWidget(self.btn_theme_new)
+        themes_layout.addLayout(header_layout)
+
+        self.theme_cards_list = QListWidget(themes_group)
+        self.theme_cards_list.setSpacing(8)
+        self.theme_cards_list.setAlternatingRowColors(False)
+        themes_layout.addWidget(self.theme_cards_list)
+
+        self.mainLayout.insertWidget(2, themes_group)
 
     def _browser(self):
         app = QApplication.instance()
@@ -838,6 +865,347 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
             self._updating_asset_lists = False
 
         self._apply_selected_css_to_preview()
+        self._refresh_theme_cards()
+
+    def _refresh_theme_cards(self):
+        if not self.theme_cards_list:
+            return
+
+        self.theme_cards_list.clear()
+        css_files = CustomizationsManager.list_asset_file_names(
+            self.current_scope,
+            CustomizationsManager.TYPE_CSS,
+            self.current_account_id,
+        )
+        js_files = set(
+            CustomizationsManager.list_asset_file_names(
+                self.current_scope,
+                CustomizationsManager.TYPE_JS,
+                self.current_account_id,
+            )
+        )
+        enabled_css = {
+            name
+            for name in css_files
+            if CustomizationsManager.is_asset_file_enabled(
+                name,
+                self.current_scope,
+                CustomizationsManager.TYPE_CSS,
+                self.current_account_id,
+            )
+        }
+
+        for css_file in css_files:
+            base_name = os.path.splitext(css_file)[0]
+            has_js = f"{base_name}.js" in js_files
+            row_widget = QWidget(self.theme_cards_list)
+            row_layout = QHBoxLayout(row_widget)
+            row_layout.setContentsMargins(8, 6, 8, 6)
+            title = QLabel(base_name, row_widget)
+            status = _("Active") if css_file in enabled_css else _("Inactive")
+            subtitle = QLabel(
+                _("Status: {} • JS: {}").format(status, _("yes") if has_js else _("no")),
+                row_widget,
+            )
+            subtitle.setStyleSheet("color: palette(mid);")
+            text_layout = QVBoxLayout()
+            text_layout.addWidget(title)
+            text_layout.addWidget(subtitle)
+            row_layout.addLayout(text_layout)
+            row_layout.addStretch()
+
+            edit_button = QPushButton(_("Edit"), row_widget)
+            delete_button = QPushButton(_("Delete"), row_widget)
+            apply_button = QPushButton(_("Apply"), row_widget)
+            edit_button.clicked.connect(lambda _v=False, t=base_name: self._open_theme_editor(t))
+            delete_button.clicked.connect(
+                lambda _v=False, t=base_name: self._delete_theme_from_cards(t)
+            )
+            apply_button.clicked.connect(lambda _v=False, t=base_name: self._apply_theme_from_cards(t))
+            row_layout.addWidget(edit_button)
+            row_layout.addWidget(delete_button)
+            row_layout.addWidget(apply_button)
+
+            item = QListWidgetItem(self.theme_cards_list)
+            item.setSizeHint(row_widget.sizeHint())
+            self.theme_cards_list.addItem(item)
+            self.theme_cards_list.setItemWidget(item, row_widget)
+
+    def _create_theme_from_cards(self):
+        self._open_theme_editor(None)
+
+    def _delete_theme_from_cards(self, theme_name: str):
+        css_file = f"{theme_name}.css"
+        js_file = f"{theme_name}.js"
+        answer = QMessageBox.question(
+            self,
+            _("Confirm deletion"),
+            _("Delete theme: {}?").format(theme_name),
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No,
+        )
+        if answer != QMessageBox.StandardButton.Yes:
+            return
+
+        CustomizationsManager.delete_asset_file(
+            css_file,
+            self.current_scope,
+            CustomizationsManager.TYPE_CSS,
+            self.current_account_id,
+        )
+        CustomizationsManager.delete_asset_file(
+            js_file,
+            self.current_scope,
+            CustomizationsManager.TYPE_JS,
+            self.current_account_id,
+        )
+        self._refresh_asset_lists()
+        self._show_feedback(_("Theme deleted: {}").format(theme_name))
+
+    def _apply_theme_from_cards(self, theme_name: str):
+        css_files = CustomizationsManager.list_asset_file_names(
+            self.current_scope,
+            CustomizationsManager.TYPE_CSS,
+            self.current_account_id,
+        )
+        js_files = set(
+            CustomizationsManager.list_asset_file_names(
+                self.current_scope,
+                CustomizationsManager.TYPE_JS,
+                self.current_account_id,
+            )
+        )
+        selected_css = f"{theme_name}.css"
+        selected_js = f"{theme_name}.js"
+
+        for css_file in css_files:
+            CustomizationsManager.set_asset_file_enabled(
+                css_file,
+                css_file == selected_css,
+                self.current_scope,
+                CustomizationsManager.TYPE_CSS,
+                self.current_account_id,
+            )
+        for js_file in js_files:
+            CustomizationsManager.set_asset_file_enabled(
+                js_file,
+                js_file == selected_js,
+                self.current_scope,
+                CustomizationsManager.TYPE_JS,
+                self.current_account_id,
+            )
+
+        self.css_enabled.setChecked(True)
+        self.js_enabled.setChecked(selected_js in js_files)
+        self._save(show_feedback=False)
+        self._reload_pages()
+        self._refresh_asset_lists()
+        self._show_feedback(_("Theme applied: {}").format(theme_name))
+
+    def _open_theme_editor(self, theme_name: str | None):
+        old_theme_name = theme_name
+        css_content = ""
+        js_content = ""
+        if old_theme_name:
+            css_file = f"{old_theme_name}.css"
+            js_file = f"{old_theme_name}.js"
+            try:
+                css_content = CustomizationsManager.read_asset_file_content(
+                    css_file,
+                    self.current_scope,
+                    CustomizationsManager.TYPE_CSS,
+                    self.current_account_id,
+                )
+            except ValueError:
+                css_content = ""
+            try:
+                js_content = CustomizationsManager.read_asset_file_content(
+                    js_file,
+                    self.current_scope,
+                    CustomizationsManager.TYPE_JS,
+                    self.current_account_id,
+                )
+            except ValueError:
+                js_content = ""
+
+        dialog = QDialog(self)
+        dialog.setWindowTitle(_("Theme editor"))
+        dialog.resize(860, 620)
+
+        layout = QVBoxLayout(dialog)
+        form = QFormLayout()
+        name_input = QLineEdit(dialog)
+        name_input.setText(old_theme_name or "meu-tema")
+        form.addRow(_("Theme name"), name_input)
+        layout.addLayout(form)
+
+        tab = QTabWidget(dialog)
+        css_editor = QTextEdit(dialog)
+        css_editor.setPlainText(css_content)
+        js_editor = QTextEdit(dialog)
+        js_editor.setPlainText(js_content)
+        tab.addTab(css_editor, _("CSS"))
+        tab.addTab(js_editor, _("JavaScript (optional)"))
+        layout.addWidget(tab)
+
+        quick_actions = QHBoxLayout()
+        btn_import_css = QPushButton(_("Import .css file"), dialog)
+        btn_import_url = QPushButton(_("Import via URL"), dialog)
+        btn_open_folder = QPushButton(_("Open local folder"), dialog)
+        quick_actions.addWidget(btn_import_css)
+        quick_actions.addWidget(btn_import_url)
+        quick_actions.addWidget(btn_open_folder)
+        quick_actions.addStretch()
+        layout.addLayout(quick_actions)
+
+        def _import_css_to_editor():
+            file_path, _ = QFileDialog.getOpenFileName(
+                self,
+                _("Select file"),
+                "",
+                "*.css",
+                options=self._dialog_options(),
+            )
+            if not file_path:
+                return
+            try:
+                with open(file_path, "r", encoding="utf-8", errors="replace") as handle:
+                    css_editor.setPlainText(handle.read())
+            except OSError:
+                self._show_feedback(_("Could not import CSS file."))
+
+        def _import_url_to_editor():
+            url, file_name = self._ask_import_from_url(CustomizationsManager.TYPE_CSS)
+            if not url:
+                return
+            try:
+                target_path = CustomizationsManager.import_css_from_url(
+                    url,
+                    self.current_scope,
+                    self.current_account_id,
+                    file_name,
+                )
+                imported = os.path.basename(target_path)
+                css_editor.setPlainText(
+                    CustomizationsManager.read_asset_file_content(
+                        imported,
+                        self.current_scope,
+                        CustomizationsManager.TYPE_CSS,
+                        self.current_account_id,
+                    )
+                )
+                self._show_feedback(_("CSS imported from URL."))
+            except ValueError as error:
+                self._show_import_url_error(CustomizationsManager.TYPE_CSS, str(error))
+
+        btn_import_css.clicked.connect(_import_css_to_editor)
+        btn_import_url.clicked.connect(_import_url_to_editor)
+        btn_open_folder.clicked.connect(
+            lambda: self._open_assets_folder(CustomizationsManager.TYPE_CSS)
+        )
+
+        def _save_theme(apply_after_save: bool):
+            new_theme_name = name_input.text().strip()
+            if not new_theme_name:
+                self._show_feedback(_("Theme name cannot be empty."))
+                return
+            css_file = f"{new_theme_name}.css"
+            js_file = f"{new_theme_name}.js"
+
+            try:
+                if old_theme_name and old_theme_name != new_theme_name:
+                    CustomizationsManager.rename_asset_file(
+                        f"{old_theme_name}.css",
+                        css_file,
+                        self.current_scope,
+                        CustomizationsManager.TYPE_CSS,
+                        self.current_account_id,
+                    )
+                    if f"{old_theme_name}.js" in CustomizationsManager.list_asset_file_names(
+                        self.current_scope,
+                        CustomizationsManager.TYPE_JS,
+                        self.current_account_id,
+                    ):
+                        CustomizationsManager.rename_asset_file(
+                            f"{old_theme_name}.js",
+                            js_file,
+                            self.current_scope,
+                            CustomizationsManager.TYPE_JS,
+                            self.current_account_id,
+                        )
+
+                css_exists = css_file in CustomizationsManager.list_asset_file_names(
+                    self.current_scope,
+                    CustomizationsManager.TYPE_CSS,
+                    self.current_account_id,
+                )
+                if not css_exists:
+                    CustomizationsManager.create_asset_file(
+                        css_file,
+                        css_editor.toPlainText(),
+                        self.current_scope,
+                        CustomizationsManager.TYPE_CSS,
+                        self.current_account_id,
+                    )
+                else:
+                    CustomizationsManager.write_asset_file_content(
+                        css_file,
+                        css_editor.toPlainText(),
+                        self.current_scope,
+                        CustomizationsManager.TYPE_CSS,
+                        self.current_account_id,
+                    )
+
+                js_text = js_editor.toPlainText().strip()
+                js_exists = js_file in CustomizationsManager.list_asset_file_names(
+                    self.current_scope,
+                    CustomizationsManager.TYPE_JS,
+                    self.current_account_id,
+                )
+                if js_text:
+                    if not js_exists:
+                        CustomizationsManager.create_asset_file(
+                            js_file,
+                            js_editor.toPlainText(),
+                            self.current_scope,
+                            CustomizationsManager.TYPE_JS,
+                            self.current_account_id,
+                        )
+                    else:
+                        CustomizationsManager.write_asset_file_content(
+                            js_file,
+                            js_editor.toPlainText(),
+                            self.current_scope,
+                            CustomizationsManager.TYPE_JS,
+                            self.current_account_id,
+                        )
+                elif js_exists:
+                    CustomizationsManager.delete_asset_file(
+                        js_file,
+                        self.current_scope,
+                        CustomizationsManager.TYPE_JS,
+                        self.current_account_id,
+                    )
+            except ValueError as error:
+                self._show_userstyle_or_default_error(error, _("Could not save theme."))
+                return
+
+            self._refresh_asset_lists()
+            if apply_after_save:
+                self._apply_theme_from_cards(new_theme_name)
+            else:
+                self._show_feedback(_("Theme saved: {}").format(new_theme_name))
+
+        button_box = QDialogButtonBox(dialog)
+        execute_button = button_box.addButton(_("Execute"), QDialogButtonBox.ButtonRole.ActionRole)
+        save_button = button_box.addButton(QDialogButtonBox.StandardButton.Save)
+        cancel_button = button_box.addButton(QDialogButtonBox.StandardButton.Cancel)
+        cancel_button.clicked.connect(dialog.reject)
+        save_button.clicked.connect(lambda: (_save_theme(False), dialog.accept()))
+        execute_button.clicked.connect(lambda: _save_theme(True))
+        layout.addWidget(button_box)
+
+        dialog.exec()
 
     def _reload_target_webview(self, silent=False):
         target_webview = self._target_webview_for_scope()
