@@ -12,6 +12,7 @@ from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SetupManager import SetupManager
 from zapzap.services.SysTrayManager import SysTrayManager
 from zapzap.views.ui_browser import Ui_Browser
+from zapzap.controllers.OnboardingDialog import OnboardingDialog
 
 from gettext import gettext as _
 
@@ -96,28 +97,7 @@ class Browser(QWidget, Ui_Browser):
         self.layout_2.insertWidget(4, self.btn_flatpak_help)
 
     def _show_flatpak_sandbox_popover(self):
-        command = "flatpak override --user --filesystem=home com.rtosta.zapzap"
-
-        dialog = QMessageBox(self)
-        dialog.setIcon(QMessageBox.Icon.Warning)
-        dialog.setWindowTitle(_("Flatpak sandbox"))
-        dialog.setText(_("ZapZap is running in Flatpak sandbox."))
-        dialog.setInformativeText(
-            _(
-                "Some features like opening files or drag-and-drop may require additional permissions."
-            )
-        )
-
-        instructions_button = dialog.addButton(_("Instructions"), QMessageBox.ButtonRole.ActionRole)
-        copy_button = dialog.addButton(_("Copy command"), QMessageBox.ButtonRole.ActionRole)
-        dialog.addButton(_("Close"), QMessageBox.ButtonRole.RejectRole)
-
-        dialog.exec()
-
-        if dialog.clickedButton() == instructions_button:
-            QDesktopServices.openUrl(QUrl("https://flathub.org/apps/com.github.tchx84.Flatseal"))
-        elif dialog.clickedButton() == copy_button:
-            QApplication.clipboard().setText(command)
+        OnboardingDialog.show_flatpak_permissions_dialog(self)
 
     def _load_users(self):
         """Carrega os usuários e cria páginas correspondentes."""
