@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 15:50-0300\n"
+"POT-Creation-Date: 2026-03-28 09:48-0300\n"
 "PO-Revision-Date: 2026-03-09 22:23+0100\n"
 "Last-Translator: Dennis Cederberg "
 "<9393069+cederberget@users.noreply.github.com>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:87
-#: zapzap/controllers/Browser.py:223 zapzap/controllers/ShortcutsDialog.py:61
+#: zapzap/controllers/Browser.py:203 zapzap/controllers/ShortcutsDialog.py:61
 msgid "New account"
 msgstr "Nytt konto"
 
@@ -275,7 +275,6 @@ msgid "My accounts"
 msgstr "Mina konton"
 
 #: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:160
-#: zapzap/controllers/OnboardingDialog.py:164
 msgid "Appearance"
 msgstr "Utseende"
 
@@ -288,12 +287,10 @@ msgid "Adaptive"
 msgstr "Adaptiv"
 
 #: zapzap/views/ui_page_appearance.py:121
-#: zapzap/controllers/OnboardingDialog.py:176
 msgid "Dark"
 msgstr "Mörk"
 
 #: zapzap/views/ui_page_appearance.py:122
-#: zapzap/controllers/OnboardingDialog.py:175
 msgid "Light"
 msgstr "Ljus"
 
@@ -302,7 +299,6 @@ msgid "Tray icon"
 msgstr "Fältikon"
 
 #: zapzap/views/ui_page_appearance.py:124
-#: zapzap/controllers/OnboardingDialog.py:140
 msgid "Remove notification indicator"
 msgstr "Inaktivera notisindikator"
 
@@ -323,7 +319,6 @@ msgid "Show menu bar"
 msgstr "Visa menyrad"
 
 #: zapzap/views/ui_page_appearance.py:130
-#: zapzap/controllers/OnboardingDialog.py:207
 msgid "Scale"
 msgstr "Skala"
 
@@ -594,7 +589,6 @@ msgid "Prevent WebRTC IP leak (Mask local IPs)"
 msgstr ""
 
 #: zapzap/views/ui_page_notifications.py:76 zapzap/views/ui_settings.py:162
-#: zapzap/controllers/OnboardingDialog.py:121
 msgid "Notifications"
 msgstr "Notiser"
 
@@ -624,119 +618,123 @@ msgid ""
 "button in the main WhatsApp interface."
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:140
+#: zapzap/views/ui_page_performance.py:143
 msgid "Performance (Experimental)"
 msgstr "Prestanda (experimentell)"
 
-#: zapzap/views/ui_page_performance.py:141
+#: zapzap/views/ui_page_performance.py:144
 msgid "Cache and Storage"
 msgstr "Cache och lagring"
 
-#: zapzap/views/ui_page_performance.py:142
+#: zapzap/views/ui_page_performance.py:145
 msgid "Cache type"
 msgstr "Cache-typ"
 
-#: zapzap/views/ui_page_performance.py:143
+#: zapzap/views/ui_page_performance.py:146
 msgid "Maximum cache size"
 msgstr "Maximal cache-storlek"
 
 # Identical to source
-#: zapzap/views/ui_page_performance.py:144
+#: zapzap/views/ui_page_performance.py:147
 msgid "0 MB"
 msgstr ""
 
 # Identical to source
-#: zapzap/views/ui_page_performance.py:145
+#: zapzap/views/ui_page_performance.py:148
 msgid "50 MB"
 msgstr ""
 
 # Identical to source
-#: zapzap/views/ui_page_performance.py:146
+#: zapzap/views/ui_page_performance.py:149
 msgid "100 MB"
 msgstr ""
 
 # Identical to source
-#: zapzap/views/ui_page_performance.py:147
+#: zapzap/views/ui_page_performance.py:150
 msgid "200 MB"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:148
+#: zapzap/views/ui_page_performance.py:151
 msgid "Use persistent cookies"
 msgstr "Använd beständiga cookies"
 
-#: zapzap/views/ui_page_performance.py:149
+#: zapzap/views/ui_page_performance.py:152
 msgid "GPU and Rendering"
 msgstr "Grafikkort och rendering"
 
-#: zapzap/views/ui_page_performance.py:150
+#: zapzap/views/ui_page_performance.py:153
 msgid "Use GPU in the same process"
 msgstr "Kör all grafik i samma process"
 
-#: zapzap/views/ui_page_performance.py:151
+#: zapzap/views/ui_page_performance.py:154
 msgid "Disable GPU hardware acceleration"
 msgstr "Inaktivera hårdvaruacceleration av grafik"
 
-#: zapzap/views/ui_page_performance.py:152
+#: zapzap/views/ui_page_performance.py:155
 msgid "Disable GPU VSync"
 msgstr "Inaktivera VSync"
 
-#: zapzap/views/ui_page_performance.py:153
+#: zapzap/views/ui_page_performance.py:156
 msgid "Force software rendering (experimental)"
 msgstr "Framtvinga mjukvarurendering (experimentell)"
 
-#: zapzap/views/ui_page_performance.py:154
+#: zapzap/views/ui_page_performance.py:157
 msgid "Processes and Memory"
 msgstr "Processer och minne"
 
-#: zapzap/views/ui_page_performance.py:155
+#: zapzap/views/ui_page_performance.py:158
 msgid "Run everything in a single process"
 msgstr "Kör allt i en enda process"
 
-#: zapzap/views/ui_page_performance.py:156
+#: zapzap/views/ui_page_performance.py:159
 msgid "Use one process per site"
 msgstr "Använd en process per sajt"
 
-#: zapzap/views/ui_page_performance.py:157
+#: zapzap/views/ui_page_performance.py:160
 msgid "JavaScript memory limit"
 msgstr "Minnesgräns för JavaScript"
 
-#: zapzap/views/ui_page_performance.py:158
+#: zapzap/views/ui_page_performance.py:161
 msgid "Automatic"
 msgstr "Automatiskt"
 
-#: zapzap/views/ui_page_performance.py:159
+#: zapzap/views/ui_page_performance.py:162
 msgid "Minimum (256 MB)"
 msgstr "Lägsta (256 MB)"
 
-#: zapzap/views/ui_page_performance.py:160
+#: zapzap/views/ui_page_performance.py:163
 msgid "Default (1024 MB)"
 msgstr "Standard (1024 MB)"
 
-#: zapzap/views/ui_page_performance.py:161
+#: zapzap/views/ui_page_performance.py:164
 msgid "Maximum (4096 MB)"
 msgstr "Högsta (4096 MB)"
 
-#: zapzap/views/ui_page_performance.py:162
+#: zapzap/views/ui_page_performance.py:165
 msgid "Web Behavior"
 msgstr "Webb-beteende"
 
-#: zapzap/views/ui_page_performance.py:163
+#: zapzap/views/ui_page_performance.py:166
 msgid "Animated scrolling"
 msgstr "Animera skrollning"
 
-#: zapzap/views/ui_page_performance.py:164
+#: zapzap/views/ui_page_performance.py:167
 msgid "Allow background optimizations"
 msgstr "Tillåt bakgrundsoptimeringar"
 
-#: zapzap/views/ui_page_performance.py:165
+#: zapzap/views/ui_page_performance.py:168
 msgid "Disable page animations"
 msgstr "Inaktivera sidanimeringar"
 
-#: zapzap/views/ui_page_performance.py:166
+#: zapzap/views/ui_page_performance.py:169
+msgid "Disable pinch to zoom"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:170
 msgid "Restore defaults"
 msgstr "Återställ till standard"
 
-#: zapzap/views/ui_page_performance.py:167
+#: zapzap/views/ui_page_performance.py:171
 msgid "Note: Restart required to apply changes."
 msgstr "Obs: Omstart krävs för att verkställa ändringar."
 
@@ -754,7 +752,7 @@ msgstr ""
 msgid "Make a donation"
 msgstr "Donera"
 
-#: zapzap/views/ui_settings.py:155
+#: zapzap/views/ui_settings.py:155 zapzap/controllers/OnboardingDialog.py:97
 msgid "Back"
 msgstr "Tillbaka"
 
@@ -1049,193 +1047,37 @@ msgstr "Anpassningar sparade. Ladda om sidor för att applicera ändringarna."
 msgid "All pages reloaded."
 msgstr "Alla sidor laddades om."
 
-#: zapzap/controllers/PagePerformance.py:245
-msgid ""
-"Defines where the HTTP cache will be stored.\n"
-"Disk: faster after restart.\n"
-"Memory: faster, but lost on exit.\n"
-"No cache: lower disk usage, slower."
-msgstr ""
-"Bestämmer var HTTP-cachen lagras.\n"
-"Disk: Snabbare efter omstart.\n"
-"Minne (Memory): Snabbare, men förloras vid programavslut\n"
-"Ingen cache (No Cache): Lägre diskanvändning, långsammare."
-
-#: zapzap/controllers/PagePerformance.py:252
-msgid ""
-"Maximum HTTP cache size.\n"
-"0 MB uses the default Chromium behavior."
-msgstr ""
-"Maximal storlek på HTTP-cache.\n"
-"0 MB är standardbeteende för Chromium."
-
-#: zapzap/controllers/PagePerformance.py:257
-msgid ""
-"Keeps cookies between restarts.\n"
-"Disabling may cause frequent logouts."
-msgstr ""
-"Behåller cookies mellan omstarter.\n"
-"Inaktivering kan orsaka frekventa utloggningar."
-
-#: zapzap/controllers/PagePerformance.py:263
-msgid ""
-"Runs GPU and rendering in the same process.\n"
-"May reduce memory usage, but can cause instability."
-msgstr ""
-"Kör grafik och rendering i samma process.\n"
-"Kan reducera minnesanvändning, men kan orsaka instabilitet."
-
-#: zapzap/controllers/PagePerformance.py:268
-msgid ""
-"Disables GPU hardware acceleration.\n"
-"Recommended only for old GPUs or problematic drivers."
-msgstr ""
-"Inaktiverar hårdvaruaccelerering av grafik.\n"
-"Rekommenderas endast för gamla grafikkort eller struliga drivrutiner."
-
-#: zapzap/controllers/PagePerformance.py:273
-msgid ""
-"Disables GPU VSync.\n"
-"May reduce latency, but can increase power usage and tearing."
-msgstr ""
-"Inaktiverar VSync för grafik.\n"
-"Kan reducera latens, men kan öka energianvändning och tearing."
-
-#: zapzap/controllers/PagePerformance.py:278
-msgid ""
-"Forces software rendering.\n"
-"Use only in case of graphical issues.\n"
-"May significantly reduce performance."
-msgstr ""
-"Framtvingar mjukvarurendering.\n"
-"Använd endast vid problem med grafik.\n"
-"Kan ha stor påverkan på prestanda."
-
-#: zapzap/controllers/PagePerformance.py:285
-msgid ""
-"Runs the entire Chromium engine in a single process.\n"
-"Reduces memory usage, but may cause crashes.\n"
-"Experimental usage."
-msgstr ""
-"Kör hela Chromium-motorn i en enda process.\n"
-"Reducerar minnesanvändning, men kan orsaka krascher.\n"
-"Experimentell användning."
-
-#: zapzap/controllers/PagePerformance.py:291
-msgid ""
-"Uses a separate process per site.\n"
-"Safer and more stable.\n"
-"May increase memory usage."
-msgstr ""
-"Använd en separat process per sajt.\n"
-"Säkrare och mer stabilt.\n"
-"Kan öka minnesanvändningen."
-
-#: zapzap/controllers/PagePerformance.py:298
-msgid ""
-"JavaScript (V8) memory limit.\n"
-"Automatic is the safest option.\n"
-"Higher values allow heavier pages.\n"
-"\n"
-"Restart required."
-msgstr ""
-"Minnesgräns för JavaScript (V8).\n"
-"Automatiskt är det säkraste valet.\n"
-"Högre värden tillåter tyngre sidor.\n"
-"\n"
-"Omstart krävs."
-
-#: zapzap/controllers/PagePerformance.py:306
-msgid ""
-"Enables smooth scrolling animations.\n"
-"Disabling may reduce CPU usage."
-msgstr ""
-"Aktiverar mjuka rullningsanimationer.\n"
-"Inaktivering kan reducera processoranvändning."
-
-#: zapzap/controllers/PagePerformance.py:311
-msgid ""
-"Allows background tabs to reduce resource usage.\n"
-"Disabling keeps timers active, but uses more resources."
-msgstr ""
-"Tillåter bakgrundsflikar för att reducera resursanvändning.\n"
-"Inaktivering behåller timers aktiva, men använder mer resurser."
-
-#: zapzap/controllers/PagePerformance.py:316
-msgid ""
-"Disables CSS and JavaScript animations.\n"
-"May improve performance on slower machines."
-msgstr ""
-"Inaktiverar CSS- och JavaScript-animationer.\n"
-"Kan förbättra prestandan på långsamma enheter."
-
-#: zapzap/controllers/PagePerformance.py:322
-msgid ""
-"Restores all performance settings\n"
-"to safe default values."
-msgstr ""
-"Återställer alla prestandainställningar\n"
-"till säkra standardvärden."
-
-#: zapzap/controllers/Browser.py:69
+#: zapzap/controllers/Browser.py:70
 msgid "Grid view"
 msgstr ""
 
-#: zapzap/controllers/Browser.py:94
+#: zapzap/controllers/Browser.py:95
 msgid "Flatpak sandbox help"
 msgstr "Hjälp för Flatpak-sandlåda"
 
-#: zapzap/controllers/Browser.py:103
-msgid "Flatpak sandbox"
-msgstr "Flatpak-sandlåda"
-
-#: zapzap/controllers/Browser.py:104
-msgid "ZapZap is running in Flatpak sandbox."
-msgstr "ZapZap körs i Flatpak-sandlådan."
-
-#: zapzap/controllers/Browser.py:107
-msgid ""
-"Some features like opening files or drag-and-drop may require additional "
-"permissions."
-msgstr ""
-"Vissa funktioner, så som öppning av filer eller drag-och-släpp, kan kräva "
-"ytterligare rättigheter."
-
-#: zapzap/controllers/Browser.py:111
-msgid "Instructions"
-msgstr "Instruktioner"
-
-#: zapzap/controllers/Browser.py:112 zapzap/controllers/PageGeneral.py:64
-msgid "Copy command"
-msgstr "Kopiera kommando"
-
-#: zapzap/controllers/Browser.py:113
-msgid "Close"
-msgstr "Stäng"
-
-#: zapzap/controllers/Browser.py:234 zapzap/controllers/Browser.py:271
+#: zapzap/controllers/Browser.py:214 zapzap/controllers/Browser.py:251
 msgid "Account {}"
 msgstr "Konto {}"
 
-#: zapzap/controllers/Browser.py:279
+#: zapzap/controllers/Browser.py:259
 #, fuzzy
 msgid "Account disabled"
 msgstr "Konton"
 
-#: zapzap/controllers/Browser.py:280
+#: zapzap/controllers/Browser.py:260
 msgid "This account is disabled."
 msgstr ""
 
-#: zapzap/controllers/Browser.py:282
+#: zapzap/controllers/Browser.py:262
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 
-#: zapzap/controllers/Browser.py:285
+#: zapzap/controllers/Browser.py:265
 msgid "Activate"
 msgstr ""
 
-#: zapzap/controllers/Browser.py:286
+#: zapzap/controllers/Browser.py:266
 msgid "Not now"
 msgstr ""
 
@@ -1307,13 +1149,165 @@ msgstr "Är du säker på att du vill ta bort detta objekt?"
 msgid "Don't ask again"
 msgstr ""
 
-#: zapzap/controllers/PageAppearance.py:57
-msgid "Grid Columns:"
+#: zapzap/controllers/OnboardingDialog.py:46
+#: zapzap/controllers/OnboardingDialog.py:70
+#, fuzzy
+msgid "Welcome to ZapZap"
+msgstr "Välkommen till"
+
+#: zapzap/controllers/OnboardingDialog.py:75
+msgid "Quick setup for your preferred environment"
 msgstr ""
 
+#: zapzap/controllers/OnboardingDialog.py:98
+msgid "Next"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:99
+msgid "Finish"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:153
+msgid ""
+"Let's configure ZapZap in a few steps.\n"
+"\n"
+"1) Accounts and navigation\n"
+"2) General preferences\n"
+"3) Notification preferences\n"
+"4) Optional sandbox guidance (Flatpak only)\n"
+"\n"
+"Environment: {}"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:178
+msgid "Personalize your experience · General"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:189
+msgid "Start hidden in background"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:195
+#, fuzzy
+msgid "Quit app when closing the window"
+msgstr "Avsluta när fönstret stängs"
+
+#: zapzap/controllers/OnboardingDialog.py:200
+#, fuzzy
+msgid "Enable spell checker"
+msgstr "Stavningskontroll"
+
+#: zapzap/controllers/OnboardingDialog.py:205
+#, fuzzy
+msgid "Start automatically with the system"
+msgstr "Starta med systemet"
+
+#: zapzap/controllers/OnboardingDialog.py:210
+msgid "Prefer Wayland (when available)"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:218
 #: zapzap/controllers/PageGeneral.py:40
 msgid "Use Flatseal to change this mode of execution"
 msgstr "Använd Flatseal för att ändra exekveringsläge"
+
+#: zapzap/controllers/OnboardingDialog.py:230
+msgid "You can change all these options later in Settings."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:245
+msgid "Personalize your experience · Notifications"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:253
+#, fuzzy
+msgid "Enable app notifications"
+msgstr "Notiser i arbetsyta"
+
+#: zapzap/controllers/OnboardingDialog.py:259
+#, fuzzy
+msgid "Show message content in notifications"
+msgstr "Tystar notiserna"
+
+#: zapzap/controllers/OnboardingDialog.py:264
+#, fuzzy
+msgid "Show contact name in notifications"
+msgstr "Göm donationsnotis"
+
+#: zapzap/controllers/OnboardingDialog.py:269
+#, fuzzy
+msgid "Show contact photo in notifications"
+msgstr "Göm donationsnotis"
+
+#: zapzap/controllers/OnboardingDialog.py:274
+#, fuzzy
+msgid "Hide donation reminders"
+msgstr "Göm donationsnotis"
+
+#: zapzap/controllers/OnboardingDialog.py:312
+#, fuzzy
+msgid "Flatpak sandbox permissions"
+msgstr "Hjälp för Flatpak-sandlåda"
+
+#: zapzap/controllers/OnboardingDialog.py:319
+msgid ""
+"If opening files, drag-and-drop or uploads fail, this is usually caused by "
+"sandbox permissions."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:330
+#: zapzap/controllers/OnboardingDialog.py:515
+#: zapzap/controllers/PageGeneral.py:64
+msgid "Copy command"
+msgstr "Kopiera kommando"
+
+#: zapzap/controllers/OnboardingDialog.py:335
+#: zapzap/controllers/PageGeneral.py:72
+msgid "Open Flatseal page"
+msgstr "Öppna Flatseal-sida"
+
+#: zapzap/controllers/OnboardingDialog.py:353
+#, fuzzy
+msgid "Setup complete"
+msgstr "Omladdning slutfördes."
+
+#: zapzap/controllers/OnboardingDialog.py:357
+msgid ""
+"Your preferences were saved. You can review and change them at any time in "
+"Settings."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:390
+msgid "Step {}/{}"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:504
+msgid "Flatpak sandbox"
+msgstr "Flatpak-sandlåda"
+
+#: zapzap/controllers/OnboardingDialog.py:507
+msgid "ZapZap is running in Flatpak sandbox."
+msgstr "ZapZap körs i Flatpak-sandlådan."
+
+#: zapzap/controllers/OnboardingDialog.py:509
+msgid ""
+"Some features like opening files or drag-and-drop may require additional "
+"permissions."
+msgstr ""
+"Vissa funktioner, så som öppning av filer eller drag-och-släpp, kan kräva "
+"ytterligare rättigheter."
+
+#: zapzap/controllers/OnboardingDialog.py:513
+msgid "Instructions"
+msgstr "Instruktioner"
+
+#: zapzap/controllers/OnboardingDialog.py:516
+msgid "Close"
+msgstr "Stäng"
+
+#: zapzap/controllers/PageAppearance.py:57
+msgid "Grid Columns:"
+msgstr ""
 
 #: zapzap/controllers/PageGeneral.py:47
 msgid ""
@@ -1333,10 +1327,6 @@ msgstr ""
 msgid "Select and copy this command in your terminal"
 msgstr "Markera och kopiera detta kommando till din terminal"
 
-#: zapzap/controllers/PageGeneral.py:72
-msgid "Open Flatseal page"
-msgstr "Öppna Flatseal-sida"
-
 #: zapzap/controllers/PageNetwork.py:23
 #, fuzzy
 msgid "Settings for:"
@@ -1346,6 +1336,140 @@ msgstr "Inställningar"
 #, fuzzy
 msgid "Global (Default)"
 msgstr "Standard"
+
+#: zapzap/controllers/PagePerformance.py:256
+msgid ""
+"Defines where the HTTP cache will be stored.\n"
+"Disk: faster after restart.\n"
+"Memory: faster, but lost on exit.\n"
+"No cache: lower disk usage, slower."
+msgstr ""
+"Bestämmer var HTTP-cachen lagras.\n"
+"Disk: Snabbare efter omstart.\n"
+"Minne (Memory): Snabbare, men förloras vid programavslut\n"
+"Ingen cache (No Cache): Lägre diskanvändning, långsammare."
+
+#: zapzap/controllers/PagePerformance.py:263
+msgid ""
+"Maximum HTTP cache size.\n"
+"0 MB uses the default Chromium behavior."
+msgstr ""
+"Maximal storlek på HTTP-cache.\n"
+"0 MB är standardbeteende för Chromium."
+
+#: zapzap/controllers/PagePerformance.py:268
+msgid ""
+"Keeps cookies between restarts.\n"
+"Disabling may cause frequent logouts."
+msgstr ""
+"Behåller cookies mellan omstarter.\n"
+"Inaktivering kan orsaka frekventa utloggningar."
+
+#: zapzap/controllers/PagePerformance.py:274
+msgid ""
+"Runs GPU and rendering in the same process.\n"
+"May reduce memory usage, but can cause instability."
+msgstr ""
+"Kör grafik och rendering i samma process.\n"
+"Kan reducera minnesanvändning, men kan orsaka instabilitet."
+
+#: zapzap/controllers/PagePerformance.py:279
+msgid ""
+"Disables GPU hardware acceleration.\n"
+"Recommended only for old GPUs or problematic drivers."
+msgstr ""
+"Inaktiverar hårdvaruaccelerering av grafik.\n"
+"Rekommenderas endast för gamla grafikkort eller struliga drivrutiner."
+
+#: zapzap/controllers/PagePerformance.py:284
+msgid ""
+"Disables GPU VSync.\n"
+"May reduce latency, but can increase power usage and tearing."
+msgstr ""
+"Inaktiverar VSync för grafik.\n"
+"Kan reducera latens, men kan öka energianvändning och tearing."
+
+#: zapzap/controllers/PagePerformance.py:289
+msgid ""
+"Forces software rendering.\n"
+"Use only in case of graphical issues.\n"
+"May significantly reduce performance."
+msgstr ""
+"Framtvingar mjukvarurendering.\n"
+"Använd endast vid problem med grafik.\n"
+"Kan ha stor påverkan på prestanda."
+
+#: zapzap/controllers/PagePerformance.py:296
+msgid ""
+"Runs the entire Chromium engine in a single process.\n"
+"Reduces memory usage, but may cause crashes.\n"
+"Experimental usage."
+msgstr ""
+"Kör hela Chromium-motorn i en enda process.\n"
+"Reducerar minnesanvändning, men kan orsaka krascher.\n"
+"Experimentell användning."
+
+#: zapzap/controllers/PagePerformance.py:302
+msgid ""
+"Uses a separate process per site.\n"
+"Safer and more stable.\n"
+"May increase memory usage."
+msgstr ""
+"Använd en separat process per sajt.\n"
+"Säkrare och mer stabilt.\n"
+"Kan öka minnesanvändningen."
+
+#: zapzap/controllers/PagePerformance.py:309
+msgid ""
+"JavaScript (V8) memory limit.\n"
+"Automatic is the safest option.\n"
+"Higher values allow heavier pages.\n"
+"\n"
+"Restart required."
+msgstr ""
+"Minnesgräns för JavaScript (V8).\n"
+"Automatiskt är det säkraste valet.\n"
+"Högre värden tillåter tyngre sidor.\n"
+"\n"
+"Omstart krävs."
+
+#: zapzap/controllers/PagePerformance.py:317
+msgid ""
+"Enables smooth scrolling animations.\n"
+"Disabling may reduce CPU usage."
+msgstr ""
+"Aktiverar mjuka rullningsanimationer.\n"
+"Inaktivering kan reducera processoranvändning."
+
+#: zapzap/controllers/PagePerformance.py:322
+msgid ""
+"Allows background tabs to reduce resource usage.\n"
+"Disabling keeps timers active, but uses more resources."
+msgstr ""
+"Tillåter bakgrundsflikar för att reducera resursanvändning.\n"
+"Inaktivering behåller timers aktiva, men använder mer resurser."
+
+#: zapzap/controllers/PagePerformance.py:327
+msgid ""
+"Disables CSS and JavaScript animations.\n"
+"May improve performance on slower machines."
+msgstr ""
+"Inaktiverar CSS- och JavaScript-animationer.\n"
+"Kan förbättra prestandan på långsamma enheter."
+
+#: zapzap/controllers/PagePerformance.py:332
+msgid ""
+"Disables pinch-to-zoom gesture on touchpads.\n"
+"Useful if accidental zooming occurs during scrolling."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:338
+msgid ""
+"Restores all performance settings\n"
+"to safe default values."
+msgstr ""
+"Återställer alla prestandainställningar\n"
+"till säkra standardvärden."
 
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"
@@ -1439,103 +1563,6 @@ msgstr "Ladda om sidor"
 msgid "New conversation by phone number"
 msgstr "Ny konversation med telefonnummer"
 
-#: zapzap/controllers/OnboardingDialog.py:87
-msgid "Permissions and files"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:88
-msgid ""
-"Some permissions are required to send and download media without errors."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:95
-#, fuzzy
-msgid "Downloads folder"
-msgstr "Nedladdningen är för stor."
-
-#: zapzap/controllers/OnboardingDialog.py:96
-msgid ""
-"Received files will be saved in the folder defined in Settings → General."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:100
-msgid "Attach media"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:101
-msgid "To attach images, videos, and documents, allow access to your folders."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:105
-#, fuzzy
-msgid "Flatpak users"
-msgstr "Flatpak-sandlåda"
-
-#: zapzap/controllers/OnboardingDialog.py:107
-msgid ""
-"If you have trouble attaching files, use Flatseal to allow access to "
-"Documents, Downloads, Pictures, and Videos."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:122
-msgid "Choose how ZapZap should notify you about new messages."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:126
-#, fuzzy
-msgid "Enable notifications"
-msgstr "Notiser i arbetsyta"
-
-#: zapzap/controllers/OnboardingDialog.py:134
-msgid "Show system tray icon"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:147
-msgid "Notifications may also depend on your operating system permissions."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:165
-msgid "Adjust the theme and scale to make the interface more comfortable."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:169
-msgid "Theme"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:174
-msgid "Automatic (follow system theme)"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:228
-msgid "The scale will be applied after restarting ZapZap."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:246
-#, fuzzy
-msgid "Welcome to ZapZap"
-msgstr "Välkommen till"
-
-#: zapzap/controllers/OnboardingDialog.py:290
-msgid "Skip"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:296
-msgid "Previous"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:300
-#: zapzap/controllers/OnboardingDialog.py:323
-msgid "Next"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:306
-msgid "Don't show again"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:323
-msgid "Finish"
-msgstr ""
-
 # Identical to source
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
@@ -1593,6 +1620,14 @@ msgstr "Visa"
 #: zapzap/services/SysTrayManager.py:56
 msgid "Donation"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Downloads folder"
+#~ msgstr "Nedladdningen är för stor."
+
+#, fuzzy
+#~ msgid "Flatpak users"
+#~ msgstr "Flatpak-sandlåda"
 
 #~ msgid "Cache Behavior"
 #~ msgstr "Cache-beteende"

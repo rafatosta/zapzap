@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 15:50-0300\n"
+"POT-Creation-Date: 2026-03-28 09:48-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:87
-#: zapzap/controllers/Browser.py:223 zapzap/controllers/ShortcutsDialog.py:61
+#: zapzap/controllers/Browser.py:203 zapzap/controllers/ShortcutsDialog.py:61
 msgid "New account"
 msgstr "Nova conta"
 
@@ -155,7 +155,7 @@ msgstr "F11"
 
 #: zapzap/views/ui_mainwindow.py:136
 msgid "Open DevTools"
-msgstr "Ferramentas do desenvolvedor"
+msgstr "Abrir DevTools"
 
 #: zapzap/views/ui_mainwindow.py:137
 msgid "Ctrl+Shift+I"
@@ -175,7 +175,7 @@ msgstr "Exibir barra lateral"
 
 #: zapzap/views/ui_mainwindow.py:141 zapzap/controllers/ShortcutsDialog.py:49
 msgid "Automatic theme"
-msgstr "Adaptativo"
+msgstr "Tema Automático"
 
 #: zapzap/views/ui_mainwindow.py:142
 msgid "Ctrl+Alt+1"
@@ -183,7 +183,7 @@ msgstr "Ctrl+Alt+1"
 
 #: zapzap/views/ui_mainwindow.py:143 zapzap/controllers/ShortcutsDialog.py:50
 msgid "Light theme"
-msgstr "Claro"
+msgstr "Tema Claro"
 
 #: zapzap/views/ui_mainwindow.py:144
 msgid "Ctrl+Alt+2"
@@ -191,7 +191,7 @@ msgstr "Ctrl+Alt+2"
 
 #: zapzap/views/ui_mainwindow.py:145 zapzap/controllers/ShortcutsDialog.py:51
 msgid "Dark theme"
-msgstr "Escuro"
+msgstr "Tema Escuro"
 
 #: zapzap/views/ui_mainwindow.py:146
 msgid "Ctrl+Alt+3"
@@ -256,7 +256,6 @@ msgid "My accounts"
 msgstr "Minhas contas"
 
 #: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:160
-#: zapzap/controllers/OnboardingDialog.py:164
 msgid "Appearance"
 msgstr "Aparência"
 
@@ -269,12 +268,10 @@ msgid "Adaptive"
 msgstr "Adaptativo"
 
 #: zapzap/views/ui_page_appearance.py:121
-#: zapzap/controllers/OnboardingDialog.py:176
 msgid "Dark"
 msgstr "Escuro"
 
 #: zapzap/views/ui_page_appearance.py:122
-#: zapzap/controllers/OnboardingDialog.py:175
 msgid "Light"
 msgstr "Claro"
 
@@ -283,7 +280,6 @@ msgid "Tray icon"
 msgstr "Ícone da bandeja"
 
 #: zapzap/views/ui_page_appearance.py:124
-#: zapzap/controllers/OnboardingDialog.py:140
 msgid "Remove notification indicator"
 msgstr "Remover notificação do indicador"
 
@@ -304,7 +300,6 @@ msgid "Show menu bar"
 msgstr "Exibir barra de menu"
 
 #: zapzap/views/ui_page_appearance.py:130
-#: zapzap/controllers/OnboardingDialog.py:207
 msgid "Scale"
 msgstr "Escala"
 
@@ -564,7 +559,6 @@ msgid "Prevent WebRTC IP leak (Mask local IPs)"
 msgstr "Prevenir vazamento de IP via WebRTC (Mascarar IPs locais)"
 
 #: zapzap/views/ui_page_notifications.py:76 zapzap/views/ui_settings.py:162
-#: zapzap/controllers/OnboardingDialog.py:121
 msgid "Notifications"
 msgstr "Notificações"
 
@@ -596,115 +590,119 @@ msgstr ""
 "Para alterar o som da notificação, acesse as configurações do WhatsApp "
 "usando o ⚙ (engrenagem) botão na interface principal do WhatsApp."
 
-#: zapzap/views/ui_page_performance.py:140
+#: zapzap/views/ui_page_performance.py:143
 msgid "Performance (Experimental)"
 msgstr "Desempenho (Experimental)"
 
-#: zapzap/views/ui_page_performance.py:141
+#: zapzap/views/ui_page_performance.py:144
 msgid "Cache and Storage"
 msgstr "Cache e Armazenamento"
 
-#: zapzap/views/ui_page_performance.py:142
+#: zapzap/views/ui_page_performance.py:145
 msgid "Cache type"
 msgstr "Tipo de cache"
 
-#: zapzap/views/ui_page_performance.py:143
+#: zapzap/views/ui_page_performance.py:146
 msgid "Maximum cache size"
 msgstr "Tamanho máximo do cache"
 
-#: zapzap/views/ui_page_performance.py:144
+#: zapzap/views/ui_page_performance.py:147
 msgid "0 MB"
 msgstr "0 MB"
 
-#: zapzap/views/ui_page_performance.py:145
+#: zapzap/views/ui_page_performance.py:148
 msgid "50 MB"
 msgstr "50 MB"
 
-#: zapzap/views/ui_page_performance.py:146
+#: zapzap/views/ui_page_performance.py:149
 msgid "100 MB"
 msgstr "100 MB"
 
-#: zapzap/views/ui_page_performance.py:147
+#: zapzap/views/ui_page_performance.py:150
 msgid "200 MB"
 msgstr "200 MB"
 
-#: zapzap/views/ui_page_performance.py:148
+#: zapzap/views/ui_page_performance.py:151
 msgid "Use persistent cookies"
 msgstr "Usar cookies persistentes"
 
-#: zapzap/views/ui_page_performance.py:149
+#: zapzap/views/ui_page_performance.py:152
 msgid "GPU and Rendering"
 msgstr "GPU e Renderização"
 
-#: zapzap/views/ui_page_performance.py:150
+#: zapzap/views/ui_page_performance.py:153
 msgid "Use GPU in the same process"
 msgstr "Usar GPU no mesmo processo"
 
-#: zapzap/views/ui_page_performance.py:151
+#: zapzap/views/ui_page_performance.py:154
 msgid "Disable GPU hardware acceleration"
 msgstr "Desativar aceleração de hardware da GPU"
 
-#: zapzap/views/ui_page_performance.py:152
+#: zapzap/views/ui_page_performance.py:155
 msgid "Disable GPU VSync"
 msgstr "Desativar VSync da GPU"
 
-#: zapzap/views/ui_page_performance.py:153
+#: zapzap/views/ui_page_performance.py:156
 msgid "Force software rendering (experimental)"
 msgstr "Forçar renderização por software (experimental)"
 
-#: zapzap/views/ui_page_performance.py:154
+#: zapzap/views/ui_page_performance.py:157
 msgid "Processes and Memory"
 msgstr "Processos e Memória"
 
-#: zapzap/views/ui_page_performance.py:155
+#: zapzap/views/ui_page_performance.py:158
 msgid "Run everything in a single process"
 msgstr "Executar tudo em um único processo"
 
-#: zapzap/views/ui_page_performance.py:156
+#: zapzap/views/ui_page_performance.py:159
 msgid "Use one process per site"
 msgstr "Usar um processo por site"
 
-#: zapzap/views/ui_page_performance.py:157
+#: zapzap/views/ui_page_performance.py:160
 msgid "JavaScript memory limit"
 msgstr "Limite de memória JavaScript"
 
-#: zapzap/views/ui_page_performance.py:158
+#: zapzap/views/ui_page_performance.py:161
 msgid "Automatic"
 msgstr "Automático"
 
-#: zapzap/views/ui_page_performance.py:159
+#: zapzap/views/ui_page_performance.py:162
 msgid "Minimum (256 MB)"
 msgstr "Mínimo (256 MB)"
 
-#: zapzap/views/ui_page_performance.py:160
+#: zapzap/views/ui_page_performance.py:163
 msgid "Default (1024 MB)"
 msgstr "Padrão (1024 MB)"
 
-#: zapzap/views/ui_page_performance.py:161
+#: zapzap/views/ui_page_performance.py:164
 msgid "Maximum (4096 MB)"
 msgstr "Máximo (4096 MB)"
 
-#: zapzap/views/ui_page_performance.py:162
+#: zapzap/views/ui_page_performance.py:165
 msgid "Web Behavior"
 msgstr "Comportamento Web"
 
-#: zapzap/views/ui_page_performance.py:163
+#: zapzap/views/ui_page_performance.py:166
 msgid "Animated scrolling"
 msgstr "Rolagem animada"
 
-#: zapzap/views/ui_page_performance.py:164
+#: zapzap/views/ui_page_performance.py:167
 msgid "Allow background optimizations"
 msgstr "Permitir otimizações em segundo plano"
 
-#: zapzap/views/ui_page_performance.py:165
+#: zapzap/views/ui_page_performance.py:168
 msgid "Disable page animations"
 msgstr "Desativar animações das páginas"
 
-#: zapzap/views/ui_page_performance.py:166
+#: zapzap/views/ui_page_performance.py:169
+msgid "Disable pinch to zoom"
+msgstr "Desativar pinçar para ampliar"
+
+#: zapzap/views/ui_page_performance.py:170
 msgid "Restore defaults"
 msgstr "Restaurar padrões"
 
-#: zapzap/views/ui_page_performance.py:167
+#: zapzap/views/ui_page_performance.py:171
 msgid "Note: Restart required to apply changes."
 msgstr "Nota: Reinício necessário para aplicar as alterações."
 
@@ -721,7 +719,7 @@ msgstr "Versão {id} - {version_type}"
 msgid "Make a donation"
 msgstr "Faça uma doação"
 
-#: zapzap/views/ui_settings.py:155
+#: zapzap/views/ui_settings.py:155 zapzap/controllers/OnboardingDialog.py:97
 msgid "Back"
 msgstr "Voltar"
 
@@ -747,7 +745,7 @@ msgstr "AJUDA"
 
 #: zapzap/views/ui_settings.py:167
 msgid "Donate"
-msgstr "Doação"
+msgstr "Contribuir com o projeto"
 
 #: zapzap/views/ui_shortcuts_dialog.py:62
 msgid "Dialog"
@@ -1016,194 +1014,38 @@ msgstr ""
 msgid "All pages reloaded."
 msgstr "Todas as páginas foram recarregadas."
 
-#: zapzap/controllers/PagePerformance.py:245
-msgid ""
-"Defines where the HTTP cache will be stored.\n"
-"Disk: faster after restart.\n"
-"Memory: faster, but lost on exit.\n"
-"No cache: lower disk usage, slower."
-msgstr ""
-"Define onde o cache HTTP será armazenado.\n"
-"Disco: mais rápido após reinício.\n"
-"Memória: mais rápido, mas perdido ao fechar.\n"
-"Sem cache: menor uso de disco, mais lento."
-
-#: zapzap/controllers/PagePerformance.py:252
-msgid ""
-"Maximum HTTP cache size.\n"
-"0 MB uses the default Chromium behavior."
-msgstr ""
-"Tamanho máximo do cache HTTP.\n"
-"0 MB utiliza o comportamento padrão do Chromium."
-
-#: zapzap/controllers/PagePerformance.py:257
-msgid ""
-"Keeps cookies between restarts.\n"
-"Disabling may cause frequent logouts."
-msgstr ""
-"Mantém cookies entre reinicializações.\n"
-"Desativar pode causar logouts frequentes."
-
-#: zapzap/controllers/PagePerformance.py:263
-msgid ""
-"Runs GPU and rendering in the same process.\n"
-"May reduce memory usage, but can cause instability."
-msgstr ""
-"Executa GPU e renderização no mesmo processo.\n"
-"Pode reduzir o uso de memória, mas causar instabilidade."
-
-#: zapzap/controllers/PagePerformance.py:268
-msgid ""
-"Disables GPU hardware acceleration.\n"
-"Recommended only for old GPUs or problematic drivers."
-msgstr ""
-"Desativa a aceleração de hardware da GPU.\n"
-"Recomendado apenas para GPUs antigas ou drivers problemáticos."
-
-#: zapzap/controllers/PagePerformance.py:273
-msgid ""
-"Disables GPU VSync.\n"
-"May reduce latency, but can increase power usage and tearing."
-msgstr ""
-"Desativa o VSync da GPU.\n"
-"Pode reduzir a latência, mas aumentar o consumo de energia e tearing."
-
-#: zapzap/controllers/PagePerformance.py:278
-msgid ""
-"Forces software rendering.\n"
-"Use only in case of graphical issues.\n"
-"May significantly reduce performance."
-msgstr ""
-"Força renderização por software.\n"
-"Use apenas em caso de problemas gráficos.\n"
-"Pode reduzir significativamente o desempenho."
-
-#: zapzap/controllers/PagePerformance.py:285
-msgid ""
-"Runs the entire Chromium engine in a single process.\n"
-"Reduces memory usage, but may cause crashes.\n"
-"Experimental usage."
-msgstr ""
-"Executa todo o mecanismo Chromium em um único processo.\n"
-"Reduz o uso de memória, mas pode causar travamentos.\n"
-"Uso experimental."
-
-#: zapzap/controllers/PagePerformance.py:291
-msgid ""
-"Uses a separate process per site.\n"
-"Safer and more stable.\n"
-"May increase memory usage."
-msgstr ""
-"Usa um processo separado por site.\n"
-"Mais seguro e estável.\n"
-"Pode aumentar o uso de memória."
-
-#: zapzap/controllers/PagePerformance.py:298
-msgid ""
-"JavaScript (V8) memory limit.\n"
-"Automatic is the safest option.\n"
-"Higher values allow heavier pages.\n"
-"\n"
-"Restart required."
-msgstr ""
-"Limite de memória do JavaScript (V8).\n"
-"Automático é a opção mais segura.\n"
-"Valores muito baixos podem causar travamentos.\n"
-"\n"
-"É necessário reiniciar."
-
-#: zapzap/controllers/PagePerformance.py:306
-msgid ""
-"Enables smooth scrolling animations.\n"
-"Disabling may reduce CPU usage."
-msgstr ""
-"Ativa animações suaves de rolagem.\n"
-"Desativar pode reduzir o uso de CPU."
-
-#: zapzap/controllers/PagePerformance.py:311
-msgid ""
-"Allows background tabs to reduce resource usage.\n"
-"Disabling keeps timers active, but uses more resources."
-msgstr ""
-"Permite que abas em segundo plano reduzam o uso de recursos.\n"
-"Desativar mantém timers ativos, mas consome mais recursos."
-
-#: zapzap/controllers/PagePerformance.py:316
-msgid ""
-"Disables CSS and JavaScript animations.\n"
-"May improve performance on slower machines."
-msgstr ""
-"Desativa animações CSS e JavaScript.\n"
-"Pode melhorar o desempenho em máquinas mais lentas."
-
-#: zapzap/controllers/PagePerformance.py:322
-msgid ""
-"Restores all performance settings\n"
-"to safe default values."
-msgstr ""
-"Restaura todas as configurações de desempenho\n"
-"para valores padrão seguros."
-
-#: zapzap/controllers/Browser.py:69
+#: zapzap/controllers/Browser.py:70
 msgid "Grid view"
 msgstr "Visualização em grade"
 
-#: zapzap/controllers/Browser.py:94
+#: zapzap/controllers/Browser.py:95
 msgid "Flatpak sandbox help"
 msgstr "Ajuda Flatpak sandbox"
 
-#: zapzap/controllers/Browser.py:103
-msgid "Flatpak sandbox"
-msgstr ""
-
-#: zapzap/controllers/Browser.py:104
-msgid "ZapZap is running in Flatpak sandbox."
-msgstr "ZapZap está rodando no Flatpak sandbox."
-
-#: zapzap/controllers/Browser.py:107
-msgid ""
-"Some features like opening files or drag-and-drop may require additional "
-"permissions."
-msgstr ""
-"Alguns recursos, como abrir arquivos ou arrastar e soltar, podem exigir "
-"permissões adicionais."
-
-#: zapzap/controllers/Browser.py:111
-msgid "Instructions"
-msgstr "Instruções"
-
-#: zapzap/controllers/Browser.py:112 zapzap/controllers/PageGeneral.py:64
-msgid "Copy command"
-msgstr "Copiar comando"
-
-#: zapzap/controllers/Browser.py:113
-msgid "Close"
-msgstr "Fechar"
-
-#: zapzap/controllers/Browser.py:234 zapzap/controllers/Browser.py:271
+#: zapzap/controllers/Browser.py:214 zapzap/controllers/Browser.py:251
 msgid "Account {}"
 msgstr "Conta {}"
 
-#: zapzap/controllers/Browser.py:279
+#: zapzap/controllers/Browser.py:259
 msgid "Account disabled"
 msgstr "Conta desativada"
 
-#: zapzap/controllers/Browser.py:280
+#: zapzap/controllers/Browser.py:260
 msgid "This account is disabled."
 msgstr "Esta conta está desativada."
 
-#: zapzap/controllers/Browser.py:282
+#: zapzap/controllers/Browser.py:262
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Você pode reativá-lo agora ou usar o menu do botão direito para gerenciar "
 "esta conta."
 
-#: zapzap/controllers/Browser.py:285
+#: zapzap/controllers/Browser.py:265
 msgid "Activate"
 msgstr "Ativar"
 
-#: zapzap/controllers/Browser.py:286
+#: zapzap/controllers/Browser.py:266
 msgid "Not now"
 msgstr "Agora não"
 
@@ -1262,7 +1104,7 @@ msgstr "Salvar arquivo"
 
 #: zapzap/controllers/MainWindow.py:248
 msgid "Close ZapZap"
-msgstr "Fechar ZapZap"
+msgstr "Fechar o ZapZap"
 
 #: zapzap/controllers/MainWindow.py:249
 msgid "Are you sure you want to close?"
@@ -1272,13 +1114,166 @@ msgstr "Tem certeza de que deseja fechar?"
 msgid "Don't ask again"
 msgstr "Não pergunte novamente"
 
-#: zapzap/controllers/PageAppearance.py:57
-msgid "Grid Columns:"
-msgstr "Colunas da grade:"
+#: zapzap/controllers/OnboardingDialog.py:46
+#: zapzap/controllers/OnboardingDialog.py:70
+msgid "Welcome to ZapZap"
+msgstr "Bem-vindo ao ZapZap"
 
+#: zapzap/controllers/OnboardingDialog.py:75
+msgid "Quick setup for your preferred environment"
+msgstr "Configuração rápida para seu ambiente preferido"
+
+#: zapzap/controllers/OnboardingDialog.py:98
+msgid "Next"
+msgstr "Avançar"
+
+#: zapzap/controllers/OnboardingDialog.py:99
+msgid "Finish"
+msgstr "Concluir"
+
+#: zapzap/controllers/OnboardingDialog.py:153
+msgid ""
+"Let's configure ZapZap in a few steps.\n"
+"\n"
+"1) Accounts and navigation\n"
+"2) General preferences\n"
+"3) Notification preferences\n"
+"4) Optional sandbox guidance (Flatpak only)\n"
+"\n"
+"Environment: {}"
+msgstr ""
+"Vamos configurar o ZapZap em alguns passos.\n"
+"\n"
+"1) Contas e navegação\n"
+"2) Preferências gerais\n"
+"3) Preferências de notificações\n"
+"4) Orientações opcionais de sandbox (apenas Flatpak)\n"
+"\n"
+"Ambiente: {}"
+
+#: zapzap/controllers/OnboardingDialog.py:178
+msgid "Personalize your experience · General"
+msgstr "Personalize sua experiência · Geral"
+
+#: zapzap/controllers/OnboardingDialog.py:189
+msgid "Start hidden in background"
+msgstr "Iniciar oculto em segundo plano"
+
+#: zapzap/controllers/OnboardingDialog.py:195
+msgid "Quit app when closing the window"
+msgstr "Sair do aplicativo ao fechar a janela"
+
+#: zapzap/controllers/OnboardingDialog.py:200
+msgid "Enable spell checker"
+msgstr "Ativar corretor ortográfico"
+
+#: zapzap/controllers/OnboardingDialog.py:205
+msgid "Start automatically with the system"
+msgstr "Iniciar com o sistema"
+
+#: zapzap/controllers/OnboardingDialog.py:210
+msgid "Prefer Wayland (when available)"
+msgstr "Preferir Wayland (quando disponível)"
+
+#: zapzap/controllers/OnboardingDialog.py:218
 #: zapzap/controllers/PageGeneral.py:40
 msgid "Use Flatseal to change this mode of execution"
 msgstr "Use Flatseal para alterar esse modo de execução"
+
+#: zapzap/controllers/OnboardingDialog.py:230
+msgid "You can change all these options later in Settings."
+msgstr "Você pode alterar todas essas opções depois em Configurações."
+
+#: zapzap/controllers/OnboardingDialog.py:245
+msgid "Personalize your experience · Notifications"
+msgstr "Personalize sua experiência · Notificações"
+
+#: zapzap/controllers/OnboardingDialog.py:253
+msgid "Enable app notifications"
+msgstr "Ativar notificações de aplicativos"
+
+#: zapzap/controllers/OnboardingDialog.py:259
+msgid "Show message content in notifications"
+msgstr "Mostrar o conteúdo da mensagem nas notificações"
+
+#: zapzap/controllers/OnboardingDialog.py:264
+msgid "Show contact name in notifications"
+msgstr "Mostrar nome do contato nas notificações"
+
+#: zapzap/controllers/OnboardingDialog.py:269
+msgid "Show contact photo in notifications"
+msgstr "Mostrar foto do contato nas notificações"
+
+#: zapzap/controllers/OnboardingDialog.py:274
+msgid "Hide donation reminders"
+msgstr "Ocultar a notificação de doação"
+
+#: zapzap/controllers/OnboardingDialog.py:312
+msgid "Flatpak sandbox permissions"
+msgstr "Permissões de sandbox Flatpak"
+
+#: zapzap/controllers/OnboardingDialog.py:319
+msgid ""
+"If opening files, drag-and-drop or uploads fail, this is usually caused by "
+"sandbox permissions."
+msgstr ""
+"Se abrir arquivos, arrastar e soltar ou uploads falharem, isso geralmente é "
+"causado por permissões de sandbox."
+
+#: zapzap/controllers/OnboardingDialog.py:330
+#: zapzap/controllers/OnboardingDialog.py:515
+#: zapzap/controllers/PageGeneral.py:64
+msgid "Copy command"
+msgstr "Copiar comando"
+
+#: zapzap/controllers/OnboardingDialog.py:335
+#: zapzap/controllers/PageGeneral.py:72
+msgid "Open Flatseal page"
+msgstr "Abrir página do Flatseal"
+
+#: zapzap/controllers/OnboardingDialog.py:353
+msgid "Setup complete"
+msgstr "Configuração concluída"
+
+#: zapzap/controllers/OnboardingDialog.py:357
+msgid ""
+"Your preferences were saved. You can review and change them at any time in "
+"Settings."
+msgstr ""
+"Suas preferências foram salvas. Você pode revisar e alterá-las a qualquer "
+"momento em Configurações."
+
+#: zapzap/controllers/OnboardingDialog.py:390
+msgid "Step {}/{}"
+msgstr "Etapa {}/{}"
+
+#: zapzap/controllers/OnboardingDialog.py:504
+msgid "Flatpak sandbox"
+msgstr "Sandbox do Flatpak"
+
+#: zapzap/controllers/OnboardingDialog.py:507
+msgid "ZapZap is running in Flatpak sandbox."
+msgstr "ZapZap está rodando no Flatpak sandbox."
+
+#: zapzap/controllers/OnboardingDialog.py:509
+msgid ""
+"Some features like opening files or drag-and-drop may require additional "
+"permissions."
+msgstr ""
+"Alguns recursos, como abrir arquivos ou arrastar e soltar, podem exigir "
+"permissões adicionais."
+
+#: zapzap/controllers/OnboardingDialog.py:513
+msgid "Instructions"
+msgstr "Instruções"
+
+#: zapzap/controllers/OnboardingDialog.py:516
+msgid "Close"
+msgstr "Fechar"
+
+#: zapzap/controllers/PageAppearance.py:57
+msgid "Grid Columns:"
+msgstr "Colunas da grade:"
 
 #: zapzap/controllers/PageGeneral.py:47
 msgid ""
@@ -1298,17 +1293,148 @@ msgstr ""
 msgid "Select and copy this command in your terminal"
 msgstr "Selecione e copie este comando em seu terminal"
 
-#: zapzap/controllers/PageGeneral.py:72
-msgid "Open Flatseal page"
-msgstr "Abrir página do Flatseal"
-
 #: zapzap/controllers/PageNetwork.py:23
 msgid "Settings for:"
 msgstr "Configurações para:"
 
 #: zapzap/controllers/PageNetwork.py:25
 msgid "Global (Default)"
-msgstr "Geral (Padrão)"
+msgstr "Global (Padrão)"
+
+#: zapzap/controllers/PagePerformance.py:256
+msgid ""
+"Defines where the HTTP cache will be stored.\n"
+"Disk: faster after restart.\n"
+"Memory: faster, but lost on exit.\n"
+"No cache: lower disk usage, slower."
+msgstr ""
+"Define onde o cache HTTP será armazenado.\n"
+"Disco: mais rápido após reinício.\n"
+"Memória: mais rápido, mas perdido ao fechar.\n"
+"Sem cache: menor uso de disco, mais lento."
+
+#: zapzap/controllers/PagePerformance.py:263
+msgid ""
+"Maximum HTTP cache size.\n"
+"0 MB uses the default Chromium behavior."
+msgstr ""
+"Tamanho máximo do cache HTTP.\n"
+"0 MB utiliza o comportamento padrão do Chromium."
+
+#: zapzap/controllers/PagePerformance.py:268
+msgid ""
+"Keeps cookies between restarts.\n"
+"Disabling may cause frequent logouts."
+msgstr ""
+"Mantém cookies entre reinicializações.\n"
+"Desativar pode causar logouts frequentes."
+
+#: zapzap/controllers/PagePerformance.py:274
+msgid ""
+"Runs GPU and rendering in the same process.\n"
+"May reduce memory usage, but can cause instability."
+msgstr ""
+"Executa GPU e renderização no mesmo processo.\n"
+"Pode reduzir o uso de memória, mas causar instabilidade."
+
+#: zapzap/controllers/PagePerformance.py:279
+msgid ""
+"Disables GPU hardware acceleration.\n"
+"Recommended only for old GPUs or problematic drivers."
+msgstr ""
+"Desativa a aceleração de hardware da GPU.\n"
+"Recomendado apenas para GPUs antigas ou drivers problemáticos."
+
+#: zapzap/controllers/PagePerformance.py:284
+msgid ""
+"Disables GPU VSync.\n"
+"May reduce latency, but can increase power usage and tearing."
+msgstr ""
+"Desativa o VSync da GPU.\n"
+"Pode reduzir a latência, mas aumentar o consumo de energia e tearing."
+
+#: zapzap/controllers/PagePerformance.py:289
+msgid ""
+"Forces software rendering.\n"
+"Use only in case of graphical issues.\n"
+"May significantly reduce performance."
+msgstr ""
+"Força renderização por software.\n"
+"Use apenas em caso de problemas gráficos.\n"
+"Pode reduzir significativamente o desempenho."
+
+#: zapzap/controllers/PagePerformance.py:296
+msgid ""
+"Runs the entire Chromium engine in a single process.\n"
+"Reduces memory usage, but may cause crashes.\n"
+"Experimental usage."
+msgstr ""
+"Executa todo o mecanismo Chromium em um único processo.\n"
+"Reduz o uso de memória, mas pode causar travamentos.\n"
+"Uso experimental."
+
+#: zapzap/controllers/PagePerformance.py:302
+msgid ""
+"Uses a separate process per site.\n"
+"Safer and more stable.\n"
+"May increase memory usage."
+msgstr ""
+"Usa um processo separado por site.\n"
+"Mais seguro e estável.\n"
+"Pode aumentar o uso de memória."
+
+#: zapzap/controllers/PagePerformance.py:309
+msgid ""
+"JavaScript (V8) memory limit.\n"
+"Automatic is the safest option.\n"
+"Higher values allow heavier pages.\n"
+"\n"
+"Restart required."
+msgstr ""
+"Limite de memória do JavaScript (V8).\n"
+"Automático é a opção mais segura.\n"
+"Valores muito baixos podem causar travamentos.\n"
+"É necessário reiniciar."
+
+#: zapzap/controllers/PagePerformance.py:317
+msgid ""
+"Enables smooth scrolling animations.\n"
+"Disabling may reduce CPU usage."
+msgstr ""
+"Ativa animações suaves de rolagem.\n"
+"Desativar pode reduzir o uso de CPU."
+
+#: zapzap/controllers/PagePerformance.py:322
+msgid ""
+"Allows background tabs to reduce resource usage.\n"
+"Disabling keeps timers active, but uses more resources."
+msgstr ""
+"Permite que abas em segundo plano reduzam o uso de recursos.\n"
+"Desativar mantém timers ativos, mas consome mais recursos."
+
+#: zapzap/controllers/PagePerformance.py:327
+msgid ""
+"Disables CSS and JavaScript animations.\n"
+"May improve performance on slower machines."
+msgstr ""
+"Desativa animações CSS e JavaScript.\n"
+"Pode melhorar o desempenho em máquinas mais lentas."
+
+#: zapzap/controllers/PagePerformance.py:332
+msgid ""
+"Disables pinch-to-zoom gesture on touchpads.\n"
+"Useful if accidental zooming occurs during scrolling."
+msgstr ""
+"Desativa o gesto de pinçar para aplicar zoom em touchpads.\n"
+"Útil se ocorrer zoom acidental durante a rolagem."
+
+#: zapzap/controllers/PagePerformance.py:338
+msgid ""
+"Restores all performance settings\n"
+"to safe default values."
+msgstr ""
+"Restaura todas as configurações de desempenho\n"
+"para valores padrão seguros."
 
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"
@@ -1402,106 +1528,6 @@ msgstr "Recarregar páginas"
 msgid "New conversation by phone number"
 msgstr "Nova conversa por número de telefone"
 
-#: zapzap/controllers/OnboardingDialog.py:87
-msgid "Permissions and files"
-msgstr "Permissões e arquivos"
-
-#: zapzap/controllers/OnboardingDialog.py:88
-msgid ""
-"Some permissions are required to send and download media without errors."
-msgstr ""
-"Algumas permissões são necessárias para enviar e baixar mídia sem erros."
-
-#: zapzap/controllers/OnboardingDialog.py:95
-msgid "Downloads folder"
-msgstr "Pasta de downloads"
-
-#: zapzap/controllers/OnboardingDialog.py:96
-msgid ""
-"Received files will be saved in the folder defined in Settings → General."
-msgstr ""
-"Arquivos recebidos serão salvos na pasta definida em Configurações → Geral."
-
-#: zapzap/controllers/OnboardingDialog.py:100
-msgid "Attach media"
-msgstr "Envio de mídia"
-
-#: zapzap/controllers/OnboardingDialog.py:101
-msgid "To attach images, videos, and documents, allow access to your folders."
-msgstr ""
-"Para anexar imagens, vídeos e documentos, permita acesso às suas pastas."
-
-#: zapzap/controllers/OnboardingDialog.py:105
-msgid "Flatpak users"
-msgstr "Usuários Flatpak"
-
-#: zapzap/controllers/OnboardingDialog.py:107
-msgid ""
-"If you have trouble attaching files, use Flatseal to allow access to "
-"Documents, Downloads, Pictures, and Videos."
-msgstr ""
-"Se houver erro ao anexar arquivo, use o Flatseal para liberar Documentos, "
-"Downloads, Imagens e Vídeos."
-
-#: zapzap/controllers/OnboardingDialog.py:122
-msgid "Choose how ZapZap should notify you about new messages."
-msgstr "Escolha como o ZapZap deve notificá-lo sobre novas mensagens."
-
-#: zapzap/controllers/OnboardingDialog.py:126
-msgid "Enable notifications"
-msgstr "Habilitar notificações"
-
-#: zapzap/controllers/OnboardingDialog.py:134
-msgid "Show system tray icon"
-msgstr "Mostrar ícone da bandeja do sistema"
-
-#: zapzap/controllers/OnboardingDialog.py:147
-msgid "Notifications may also depend on your operating system permissions."
-msgstr ""
-"As notificações também podem depender das permissões do seu sistema "
-"operacional."
-
-#: zapzap/controllers/OnboardingDialog.py:165
-msgid "Adjust the theme and scale to make the interface more comfortable."
-msgstr "Ajuste o tema e a escala para tornar a interface mais confortável."
-
-#: zapzap/controllers/OnboardingDialog.py:169
-msgid "Theme"
-msgstr "Tema"
-
-#: zapzap/controllers/OnboardingDialog.py:174
-msgid "Automatic (follow system theme)"
-msgstr "Adaptativo (seguir o tema do sistema)"
-
-#: zapzap/controllers/OnboardingDialog.py:228
-msgid "The scale will be applied after restarting ZapZap."
-msgstr "A escala será aplicada após reiniciar o ZapZap."
-
-#: zapzap/controllers/OnboardingDialog.py:246
-msgid "Welcome to ZapZap"
-msgstr "Bem-vindo ao ZapZap"
-
-#: zapzap/controllers/OnboardingDialog.py:290
-msgid "Skip"
-msgstr "Pular"
-
-#: zapzap/controllers/OnboardingDialog.py:296
-msgid "Previous"
-msgstr "Anterior"
-
-#: zapzap/controllers/OnboardingDialog.py:300
-#: zapzap/controllers/OnboardingDialog.py:323
-msgid "Next"
-msgstr "Próximo"
-
-#: zapzap/controllers/OnboardingDialog.py:306
-msgid "Don't show again"
-msgstr "Não mostrar novamente"
-
-#: zapzap/controllers/OnboardingDialog.py:323
-msgid "Finish"
-msgstr "Concluir"
-
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
 msgstr "Informação"
@@ -1558,5 +1584,63 @@ msgstr "Exibir"
 msgid "Donation"
 msgstr "Doação"
 
-#~ msgid "Show unread counter on icon"
-#~ msgstr "Mostrar contador não lido no ícone"
+#~ msgid "Open ZapZap website after setup"
+#~ msgstr "Abrir o site do ZapZap após a configuração"
+
+#~ msgid "Cache Behavior"
+#~ msgstr "Comportamento da Cache"
+
+#~ msgid "QWebEngine Behavior"
+#~ msgstr "Comportamento do QWebEngine"
+
+#~ msgid "Enable single process for GPU and rendering"
+#~ msgstr "Habilitar processo único para GPU e renderização"
+
+#~ msgid ""
+#~ "Please enter the phone number with country code (e.g., +5511999999999):"
+#~ msgstr ""
+#~ "Por favor, insira o número de telefone com código do país (Ex: "
+#~ "+5511999999999):"
+
+#~ msgid ""
+#~ "Invalid number! Please enter at least 9 digits, including the country "
+#~ "code."
+#~ msgstr ""
+#~ "Número inválido! Insira pelo menos 9 dígitos, incluindo o código do país."
+
+#~ msgid "Undo"
+#~ msgstr "Desfazer"
+
+#~ msgid "Redo"
+#~ msgstr "Refazer"
+
+#~ msgid "Cut"
+#~ msgstr "Recortar"
+
+#~ msgid "Copy"
+#~ msgstr "Copiar"
+
+#~ msgid "Paste"
+#~ msgstr "Colar"
+
+#~ msgid "Select all"
+#~ msgstr "Selecionar tudo"
+
+#~ msgid "Copy link address"
+#~ msgstr "Copiar endereço"
+
+#~ msgid "Check Spelling"
+#~ msgstr "Verificar a ortografia"
+
+#~ msgid "Select Language"
+#~ msgstr "Selecione o idioma"
+
+#~ msgid "Creating temporary directory:"
+#~ msgstr "Criando uma diretória temporária:"
+
+#~ msgid "New message..."
+#~ msgstr "Nova mensagem..."
+
+#, python-brace-format
+#~ msgid "Version {id}"
+#~ msgstr "Versão {id}"
