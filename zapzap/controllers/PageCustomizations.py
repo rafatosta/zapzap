@@ -1035,7 +1035,7 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
         layout = QVBoxLayout(dialog)
         form = QFormLayout()
         name_input = QLineEdit(dialog)
-        name_input.setText(old_theme_name or "meu-tema")
+        name_input.setText(old_theme_name or "my-theme")
         form.addRow(_("Theme name"), name_input)
         layout.addLayout(form)
 
