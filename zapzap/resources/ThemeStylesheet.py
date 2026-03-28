@@ -283,6 +283,12 @@ class ThemeStylesheet:
                 border-radius: 6px; /* Bordas arredondadas */
                 padding: 10px; /* Espaçamento interno */
             }
+            QFrame#OnboardingCard {
+                background-color: #ffffff; /* Fundo claro */
+                border: 1px solid #D0D4D8; /* Borda suave */
+                border-radius: 6px; /* Bordas arredondadas */
+                padding: 10px; /* Espaçamento interno */
+            }
         """,
         "dark": """
             QFrame[frameShape="4"] {
@@ -294,6 +300,13 @@ class ThemeStylesheet:
                 border-left: 1px solid #626b70;
             }
             #frame_accounts #frame_carduser {
+                background-color: #1d1f1f; /* Fundo escuro */
+                border: 1px solid #1d1f1f; /* Borda suave */
+                border-radius: 6px; /* Bordas arredondadas */
+                padding: 10px; /* Espaçamento interno */
+            }
+
+            QFrame#OnboardingCard {
                 background-color: #1d1f1f; /* Fundo escuro */
                 border: 1px solid #1d1f1f; /* Borda suave */
                 border-radius: 6px; /* Bordas arredondadas */

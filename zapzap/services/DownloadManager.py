@@ -3,7 +3,7 @@ from PyQt6.QtCore import QStandardPaths
 from zapzap.services.SettingsManager import SettingsManager
 from PyQt6.QtWidgets import QFileDialog
 
-from zapzap.controllers.DownloadDialog import DownloadDialog
+from zapzap.controllers.DownloadToaster import DownloadToaster
 from gettext import gettext as _
 
 
@@ -47,8 +47,8 @@ class DownloadManager:
             DownloadManager.get_path()
         )
 
-        dialog = DownloadDialog(download, parent)
-        dialog.show()
+        toaster = DownloadToaster(download, parent)
+        toaster.show()
 
     @staticmethod
     def open_folder_dialog(parent):

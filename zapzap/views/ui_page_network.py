@@ -100,9 +100,6 @@ class Ui_PageNetwork(object):
         self.formLayout_3.setLayout(6, QtWidgets.QFormLayout.ItemRole.SpanningRole, self.horizontalLayout_2)
         self.horizontalLayout_3.addLayout(self.formLayout_3)
         self.verticalLayout_2.addWidget(self.proxyCheckBox)
-        self.webrtcShieldCheckBox = QtWidgets.QCheckBox(parent=self.frame)
-        self.webrtcShieldCheckBox.setObjectName("webrtcShieldCheckBox")
-        self.verticalLayout_2.addWidget(self.webrtcShieldCheckBox)
         self.horizontalLayout.addWidget(self.frame)
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout.addItem(spacerItem2)
@@ -125,8 +122,6 @@ class Ui_PageNetwork(object):
         self.proxyDescription.setText(_("Description"))
         self.btn_ok.setText(_("Apply"))
         self.btn_restore.setText(_("Restore"))
-        self.webrtcShieldCheckBox.setToolTip(_("Prevents websites from discovering your network address using WebRTC."))
-        self.webrtcShieldCheckBox.setText(_("Prevent WebRTC IP leak (Mask local IPs)"))
 
 
 if __name__ == "__main__":

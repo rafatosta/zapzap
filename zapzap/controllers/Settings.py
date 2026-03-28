@@ -1,7 +1,4 @@
 from PyQt6.QtWidgets import QWidget, QApplication
-from PyQt6.QtCore import QUrl
-from PyQt6.QtGui import QDesktopServices
-from zapzap import __donationPage__
 from zapzap.controllers.PageGeneral import PageGeneral
 from zapzap.controllers.PageAbout import PageAbout
 from zapzap.controllers.PageNetwork import PageNetwork
@@ -44,8 +41,6 @@ class Settings(QWidget, Ui_Settings):
             QApplication.instance().getWindow().closeEvent)
         self.btn_back.clicked.connect(
             QApplication.instance().getWindow().close_settings)
-        self.btn_donate.clicked.connect(
-            lambda: QDesktopServices.openUrl(QUrl(__donationPage__)))
 
     def _add_page(self, page: QWidget, button):
         """Adiciona uma página ao widget de páginas e associa ao botão."""

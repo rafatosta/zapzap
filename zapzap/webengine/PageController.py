@@ -6,8 +6,6 @@ from zapzap import __whatsapp_url__
 from zapzap.services.AddonsManager import AddonsManager
 from zapzap.services.CustomizationsManager import CustomizationsManager
 from zapzap.services.ThemeManager import ThemeManager
-from zapzap.services.SettingsManager import SettingsManager
-from zapzap.services.EnvironmentManager import EnvironmentManager, Packaging
 
 import urllib.parse  # Para normalizar URLs
 
@@ -16,9 +14,6 @@ from gettext import gettext as _
 
 class PageController(QWebEnginePage):
     """Controlador de página para gerenciar eventos e ações personalizadas no QWebEnginePage."""
-
-    APP_START = True
-    APP_LOAD = True
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -76,77 +71,20 @@ class PageController(QWebEnginePage):
         script = """document.dispatchEvent(new KeyboardEvent("keydown", {'key': 'Escape'}));"""
         self.runJavaScript(script)
 
-    """
-    local -> inicar em modo Auto e Dark não atualiza a página
-    """
-
-    def apply_theme(self, system_theme: ThemeManager.Type):
-        """
-        Aplica o tema considerando:
-        - Configuração do usuário (Auto, Light, Dark)
-        - Tema do sistema (quando Auto)
-        - Ambiente (Flatpak vs local)
-        """
-
-        is_flatpak = EnvironmentManager.identify_packaging() == Packaging.FLATPAK
-
-        configured_theme = ThemeManager.Type(
-            SettingsManager.get("system/theme", ThemeManager.Type.Auto)
-        )
-
-        # Resolve o tema final
-        effective_theme = (
-            system_theme if configured_theme == ThemeManager.Type.Auto
-            else configured_theme
-        )
-
-        # --- REGRA ESPECIAL (Flatpak + Auto na inicialização) ---
-        if is_flatpak and self.APP_START and configured_theme == ThemeManager.Type.Auto:
-            self.APP_START = False
-            print("[Theme] Skip reload on startup (Flatpak + Auto)")
-            return
-
-        if configured_theme == ThemeManager.Type.Auto:
-            if system_theme == ThemeManager.Type.Light:
-                self._set_force_dark(False)
-                self._apply_css_theme(ThemeManager.Type.Light)
-            else:
-
-                if not is_flatpak and self.APP_LOAD:
-                    self._set_force_dark(True)
-                    self.APP_LOAD = False
-                else:
-                    self._set_force_dark(False)
-                    self._apply_css_theme(ThemeManager.Type.Dark)
-
-        if configured_theme == ThemeManager.Type.Light:
-            self._set_force_dark(False)
-
-        if configured_theme == ThemeManager.Type.Dark:
-            if not ThemeManager.instance()._detect_system_theme() == ThemeManager.Type.Dark or not is_flatpak:
-                self._set_force_dark(True)
-
-    def _set_force_dark(self, enabled: bool):
-        """Aplica ForceDark no engine."""
-        self.profile().settings().setAttribute(
-            QWebEngineSettings.WebAttribute.ForceDarkMode,
-            enabled
-        )
-
-    def _apply_css_theme(self, theme: ThemeManager.Type):
-        """Aplica tema via CSS (sem reload)."""
-        if theme == ThemeManager.Type.Dark:
-            self.runJavaScript("document.body.classList.add('dark');")
-        else:
-            self.runJavaScript("document.body.classList.remove('dark');")
-
     def set_theme_light(self):
         """Altera o tema da página para claro."""
-        self.apply_theme(ThemeManager.Type.Light)
+        self.profile().settings().setAttribute(
+            QWebEngineSettings.WebAttribute.ForceDarkMode, False)
+
+        self.runJavaScript("document.body.classList.remove('dark');")
 
     def set_theme_dark(self):
         """Altera o tema da página para escuro."""
-        self.apply_theme(ThemeManager.Type.Dark)
+
+        self.profile().settings().setAttribute(
+            QWebEngineSettings.WebAttribute.ForceDarkMode, False)
+
+        self.runJavaScript("document.body.classList.add('dark');")
 
     def new_chat(self):
         """Simula o atalho 'Ctrl+Alt+N' para iniciar um novo chat."""
@@ -227,6 +165,8 @@ class PageController(QWebEnginePage):
                 QWebEnginePage.Feature.Notifications,
                 QWebEnginePage.PermissionPolicy.PermissionGrantedByUser
             )
+            # Força a sincronização do tema ao carregar a página
+            ThemeManager.sync()
 
     def apply_customizations(self):
         self.apply_custom_css()
@@ -237,16 +177,14 @@ class PageController(QWebEnginePage):
             CustomizationsManager.TYPE_CSS,
             self.user_id,
         )
-        self.runJavaScript(
-            CustomizationsManager.css_injection_script(css_entries))
+        self.runJavaScript(CustomizationsManager.css_injection_script(css_entries))
 
     def apply_custom_js(self):
         js_entries = CustomizationsManager.build_effective_ordered_assets(
             CustomizationsManager.TYPE_JS,
             self.user_id,
         )
-        self.runJavaScript(
-            CustomizationsManager.js_injection_script(js_entries))
+        self.runJavaScript(CustomizationsManager.js_injection_script(js_entries))
 
     def show_toast(self, message, duration=1000):
         """Exibe um toast na página utilizando JavaScript."""

@@ -42,13 +42,6 @@ class NotificationService:
     # Backend selection
     # ------------------------------------------------------------------
     def _select_backend(self):
-        from zapzap.platform import IS_WINDOWS
-        if IS_WINDOWS:
-            from zapzap.notifications.WindowsNotificationBackend import (
-                WindowsNotificationBackend,
-            )
-            return WindowsNotificationBackend()
-
         if is_flatpak():
             return PortalNotificationBackend()
 

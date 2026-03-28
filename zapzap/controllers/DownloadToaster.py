@@ -1,10 +1,10 @@
 from PyQt6.QtWidgets import (
-    QDialog, QLabel, QPushButton,
-    QHBoxLayout, QVBoxLayout, QFrame,
-    QFileDialog, QStyle
+    QWidget, QLabel, QPushButton,
+    QHBoxLayout, QVBoxLayout, QStyle, QFrame, QFileDialog
 )
+from PyQt6 import QtCore, QtWidgets
 from PyQt6.QtGui import QDesktopServices, QIcon
-from PyQt6.QtCore import QUrl, QFileInfo, Qt
+from PyQt6.QtCore import QUrl, QFileInfo
 from PyQt6.QtWebEngineCore import QWebEngineDownloadRequest
 from gettext import gettext as _
 import os
@@ -12,7 +12,11 @@ import os
 from zapzap.services.SettingsManager import SettingsManager
 
 
-class DownloadDialog(QDialog):
+class DownloadToaster(QWidget):
+    """
+    Download toaster aligned with QtoasterDonation pattern.
+    Top-right, solid background, floating inside the app.
+    """
 
     def __init__(self, download: QWebEngineDownloadRequest, parent=None):
         super().__init__(parent)
@@ -20,30 +24,36 @@ class DownloadDialog(QDialog):
         self.download = download
         self.margin = 10
 
-        self.setWindowTitle(_("Download"))
-        self.setModal(True)
-
-        self.setWindowFlags(
-            Qt.WindowType.Dialog
+        self.setFocus()
+        self.setFocusPolicy(QtCore.Qt.FocusPolicy.ClickFocus)
+        self.setSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Maximum,
+            QtWidgets.QSizePolicy.Policy.Maximum
         )
 
-        self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground, True)
-
         self._build_ui()
+
+        if self.parent():
+            self.parent().installEventFilter(self)
+
+        self.raise_()
         self.adjustSize()
+        self._reposition()
 
     # ===============================
     # UI
     # ===============================
 
     def _build_ui(self):
+        self.setObjectName("DownloadToaster")
+
         container = QFrame(self)
         container.setObjectName("Container")
+        container.setFrameShape(QFrame.Shape.NoFrame)
 
         title = QLabel(self.download.downloadFileName())
         title.setWordWrap(True)
 
-        # Botões (ORDEM ORIGINAL)
         open_btn = QPushButton(_("Open"))
         open_btn.setIcon(QIcon.fromTheme("document-open"))
 
@@ -55,10 +65,11 @@ class DownloadDialog(QDialog):
 
         cancel_btn = QPushButton(_("Cancel"))
         cancel_btn.setIcon(
-            self.style().standardIcon(QStyle.StandardPixmap.SP_DialogCancelButton)
+            self.style().standardIcon(
+                QStyle.StandardPixmap.SP_DialogCancelButton
+            )
         )
 
-        # Conexões
         open_btn.clicked.connect(self._open_file)
         folder_btn.clicked.connect(self._open_folder)
         save_as_btn.clicked.connect(self._save_as)
@@ -71,22 +82,44 @@ class DownloadDialog(QDialog):
         buttons.addWidget(save_as_btn)
         buttons.addWidget(cancel_btn)
 
-        layout = QVBoxLayout(container)
-        layout.setSpacing(8)
-        layout.addWidget(title)
-        layout.addLayout(buttons)
+        content = QVBoxLayout(container)
+        content.setSpacing(8)
+        content.addWidget(title)
+        content.addLayout(buttons)
 
         outer = QVBoxLayout(self)
         outer.setContentsMargins(0, 0, 0, 0)
         outer.addWidget(container)
 
-        # Estilo (igual ao toaster)
-        self.setStyleSheet("""
+        container.setStyleSheet("""
             #Container {
                 background-color: palette(window);
+                border: 1px solid palette(mid);
+                border-radius: 8px;
                 padding: 10px;
             }
         """)
+
+    # ===============================
+    # Positioning
+    # ===============================
+
+    def _reposition(self):
+        if not self.parent():
+            return
+
+        rect = self.parent().rect()
+        geo = self.geometry()
+        geo.moveBottomLeft(
+            rect.bottomLeft() +
+            QtCore.QPoint(self.margin+65, -self.margin)
+        )
+        self.setGeometry(geo)
+
+    def eventFilter(self, source, event):
+        if source == self.parent() and event.type() == QtCore.QEvent.Type.Resize:
+            self._reposition()
+        return super().eventFilter(source, event)
 
     # ===============================
     # Actions
@@ -105,16 +138,18 @@ class DownloadDialog(QDialog):
                 QDesktopServices.openUrl(QUrl.fromLocalFile(path))
 
         self.download.stateChanged.connect(open_when_done)
-        self.close()
 
     def _open_folder(self):
         self.download.accept()
         QDesktopServices.openUrl(
             QUrl.fromLocalFile(self.download.downloadDirectory())
         )
-        self.close()
 
     def _save_as(self):
+        """
+        Reutiliza a lógica original de save_download
+        """
+
         directory = self.download.downloadDirectory()
         file_name = self.download.downloadFileName()
         suffix = QFileInfo(file_name).suffix()
@@ -139,12 +174,14 @@ class DownloadDialog(QDialog):
         self.download.setDownloadDirectory(os.path.dirname(path))
         self.download.setDownloadFileName(os.path.basename(path))
         self.download.accept()
-        self.close()
 
     def _cancel(self):
         self.download.cancel()
         self.close()
 
+    # ===============================
+    # Focus behavior
+    # ===============================
+
     def focusOutEvent(self, event):
         self.close()
-        super().focusOutEvent(event)

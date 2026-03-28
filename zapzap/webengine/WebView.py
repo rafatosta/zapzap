@@ -1,9 +1,8 @@
 import shutil
-import os
 from PyQt6.QtWebEngineWidgets import QWebEngineView
-from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings, QWebEnginePage, QWebEngineScript
-from PyQt6.QtCore import QUrl, pyqtSignal, QTimer, QEvent, Qt
-from PyQt6.QtWidgets import QApplication, QWidget
+from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings, QWebEnginePage
+from PyQt6.QtCore import QUrl, pyqtSignal, QTimer
+from PyQt6.QtWidgets import QApplication
 from PyQt6.QtGui import QAction
 
 from zapzap.webengine.PageController import PageController
@@ -27,23 +26,11 @@ class WebView(QWebEngineView):
         "NoCache": QWebEngineProfile.HttpCacheType.NoCache
     }
 
-    USER_AGENTS = {
-        "Default": __user_agent__,
-        "Windows Chrome": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Windows Firefox": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0",
-        "Windows Edge": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0",
-        "Mac Safari": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2.1 Safari/605.1.15",
-        "Mac Chrome": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Linux Firefox": "Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0",
-        "Linux Chrome": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-    }
-
     def __init__(self, user: User = None, page_index=None, parent=None):
         super().__init__(parent)
         self.user = user
         self.page_index = page_index
         self.profile = None  # Inicializa o perfil como None
-        self._gesture_filter_installed = False
 
         self.notifications = NotificationService()
         self._devtools_view = None
@@ -65,16 +52,7 @@ class WebView(QWebEngineView):
         """Configuração inicial."""
         self._configure_signals()
         self._configure_profile()
-
         self._setup_page()
-
-        # Install application-level filter to intercept pinch gesture events.
-        # We do this here because QNativeGestureEvent is delivered directly
-        # to the internal render widget (child of QWebEngineView), so
-        # overriding event() on QWebEngineView alone is insufficient.
-        if not self._gesture_filter_installed:
-            QApplication.instance().installEventFilter(self)
-            self._gesture_filter_installed = True
 
     def _configure_signals(self):
         """Configura os sinais para eventos."""
@@ -84,11 +62,7 @@ class WebView(QWebEngineView):
     def _configure_profile(self):
         """Configura o perfil do QWebEngine."""
         self.profile = QWebEngineProfile(str(self.user.id), self)
-
-        selected_ua_name = SettingsManager.get(f"{self.user.id}/user_agent", "Default")
-        ua_string = self.USER_AGENTS.get(selected_ua_name, self.USER_AGENTS["Default"])
-        self.profile.setHttpUserAgent(ua_string)
-
+        self.profile.setHttpUserAgent(__user_agent__)
         self.profile.downloadRequested.connect(
             lambda download: DownloadManager.on_downloadRequested(
                 download,
@@ -111,26 +85,6 @@ class WebView(QWebEngineView):
 
         # Instala o handler de crash específico para este WebView
         crash_handler.register_profile(self.profile)
-        self._inject_webrtc_shield()
-
-    def _inject_webrtc_shield(self):
-        """Injeta script para prevenir vazamento de IP via WebRTC."""
-        if SettingsManager.get("privacy/webrtc_shield", True):
-            try:
-                base_dir = os.path.dirname(__file__)
-                js_path = os.path.join(base_dir, "webrtc_shield.js")
-                with open(js_path, "r", encoding="utf-8") as f:
-                    js_code = f.read()
-
-                script = QWebEngineScript()
-                script.setName("webrtc_shield")
-                script.setInjectionPoint(QWebEngineScript.InjectionPoint.DocumentCreation)
-                script.setRunsOnSubFrames(True)
-                script.setSourceCode(js_code)
-                script.setWorldId(QWebEngineScript.ScriptWorldId.MainWorld)
-                self.profile.scripts().insert(script)
-            except Exception as e:
-                print(f"Error injecting WebRTC shield: {e}")
 
     def configure_spellcheck(self):
         """Configura o corretor ortográfico."""
@@ -147,14 +101,9 @@ class WebView(QWebEngineView):
         """Configura a página e carrega a URL inicial."""
         self.whatsapp_page = PageController(self.profile, self)
         self.whatsapp_page.user_id = self.user.id
-        self.whatsapp_page.renderProcessTerminated.connect(self._on_render_crash)
         self.setPage(self.whatsapp_page)
         self.load(QUrl(__whatsapp_url__))
         self.setZoomFactor(self.user.zoomFactor)
-
-    def _on_render_crash(self, terminationStatus, exitCode):
-        print(f"Tab renderer crashed (status={terminationStatus}, code={exitCode}). Reloading...")
-        QTimer.singleShot(1000, self.load_page)
 
     def contextMenuEvent(self, event):
         """Cria o menu de contexto personalizado ao clicar com o botão direito."""
@@ -268,31 +217,6 @@ class WebView(QWebEngineView):
             self.timer.setSingleShot(True)
             self.timer.start(5000)  # 5000 ms = 5 seconds
 
-    def event(self, event):
-        """Intercept native gesture events to optionally disable pinch-to-zoom.
-        Handles the rare case where QWebEngineView itself receives the event."""
-        if event.type() == QEvent.Type.NativeGesture:
-            if (SettingsManager.get("web/disable_pinch", False) and
-                    hasattr(event, 'gestureType') and
-                    event.gestureType() == Qt.NativeGestureType.ZoomNativeGesture):
-                return True  # Consume the event without zooming
-        return super().event(event)
-
-    def eventFilter(self, watched, event):
-        """Application-level filter that blocks pinch-to-zoom on child widgets.
-        QNativeGestureEvent is routed directly to the child render widget (not to
-        QWebEngineView.event()), so an app-level filter is required to intercept it."""
-        if event.type() == QEvent.Type.NativeGesture:
-            if SettingsManager.get("web/disable_pinch", False):
-                try:
-                    if event.gestureType() == Qt.NativeGestureType.ZoomNativeGesture:
-                        if watched is self or (
-                                isinstance(watched, QWidget) and self.isAncestorOf(watched)):
-                            return True  # Consume — block the zoom
-                except AttributeError:
-                    pass
-        return False  # Pass all other events through
-
     def set_zoom_factor_page(self, factor=None):
         """Define ou ajusta o fator de zoom da página."""
         new_zoom = 1.0 if factor is None else self.zoomFactor() + factor
@@ -349,9 +273,6 @@ class WebView(QWebEngineView):
 
     def disable_page(self):
         """Desativa a página e limpa o perfil."""
-        if self._gesture_filter_installed:
-            QApplication.instance().removeEventFilter(self)
-            self._gesture_filter_installed = False
         if self.profile:
             crash_handler.unregister_profile(self.profile)
             self.profile.clearHttpCache()

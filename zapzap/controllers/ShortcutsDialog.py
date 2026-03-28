@@ -46,9 +46,6 @@ class ShortcutsDialog(QDialog, Ui_ShortcutsDialog):
 
         # View
         (_("Fullscreen"), "F11"),
-        (_("Automatic theme"), "Ctrl + Alt + 1"),
-        (_("Light theme"), "Ctrl + Alt + 2"),
-        (_("Dark theme"), "Ctrl + Alt + 3"),
         (_("Reset zoom"), "Ctrl + 0"),
         (_("Zoom in"), "Ctrl + +"),
         (_("Zoom out"), "Ctrl + -"),
