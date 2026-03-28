@@ -1,534 +1,371 @@
 from gettext import gettext as _
 
-# Imports do PyQt6
-from PyQt6.QtCore import Qt, QUrl
-from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
-    QApplication,
     QCheckBox,
     QDialog,
     QFrame,
-    QGridLayout,
     QHBoxLayout,
     QLabel,
-    QLineEdit,
-    QMessageBox,
-    QProgressBar,
     QPushButton,
+    QRadioButton,
+    QSlider,
     QStackedWidget,
     QVBoxLayout,
     QWidget,
 )
 
-# Serviços da aplicação
-from zapzap.services.EnvironmentManager import EnvironmentManager
-from zapzap.services.AutostartManager import AutostartManager
 from zapzap.services.SettingsManager import SettingsManager
-from zapzap.services.SetupManager import SetupManager
+from zapzap.services.SysTrayManager import SysTrayManager
+from zapzap.services.ThemeManager import ThemeManager
 
 
-class _OnboardingWizardDialog(QDialog):
-    """
-    Dialog em múltiplas etapas (wizard) responsável pelo onboarding inicial do usuário.
+class _OnboardingPage(QWidget):
+    """Página base do onboarding com título, subtítulo e conteúdo."""
 
-    Fluxo:
-    - Welcome
-    - Preferências gerais
-    - Preferências de notificação
-    - (Opcional) Configuração Flatpak
-    - Finalização
-    """
-
-    def __init__(self, parent: QWidget | None = None):
+    def __init__(self, title: str, subtitle: str, parent=None):
         super().__init__(parent)
 
-        # Configuração básica da janela
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(24, 16, 24, 16)
+        layout.setSpacing(10)
+
+        title_label = QLabel(title)
+        title_label.setStyleSheet("font-size: 20px; font-weight: 700;")
+        title_label.setWordWrap(True)
+        layout.addWidget(title_label)
+
+        subtitle_label = QLabel(subtitle)
+        subtitle_label.setStyleSheet("color: #666;")
+        subtitle_label.setWordWrap(True)
+        layout.addWidget(subtitle_label)
+
+        separator = QFrame()
+        separator.setFrameShape(QFrame.Shape.HLine)
+        layout.addWidget(separator)
+
+        self.content_layout = QVBoxLayout()
+        self.content_layout.setSpacing(12)
+        layout.addLayout(self.content_layout)
+        layout.addStretch()
+
+
+class _TipItem(QWidget):
+    """Componente visual para uma dica com ícone, título e descrição."""
+
+    def __init__(self, icon: str, title: str, description: str, parent=None):
+        super().__init__(parent)
+
+        row = QHBoxLayout(self)
+        row.setContentsMargins(0, 0, 0, 0)
+        row.setSpacing(10)
+
+        icon_label = QLabel(icon)
+        icon_label.setAlignment(Qt.AlignmentFlag.AlignTop)
+        icon_label.setFixedWidth(24)
+        row.addWidget(icon_label)
+
+        text_col = QVBoxLayout()
+        text_col.setContentsMargins(0, 0, 0, 0)
+        text_col.setSpacing(2)
+
+        title_label = QLabel(f"<b>{title}</b>")
+        title_label.setWordWrap(True)
+        text_col.addWidget(title_label)
+
+        desc_label = QLabel(description)
+        desc_label.setWordWrap(True)
+        desc_label.setStyleSheet("color: #666;")
+        text_col.addWidget(desc_label)
+
+        row.addLayout(text_col, 1)
+
+
+class _PermissionsPage(_OnboardingPage):
+    def __init__(self, parent=None):
+        super().__init__(
+            _("Permissions and files"),
+            _("Some permissions are required to send and download media without errors."),
+            parent,
+        )
+
+        tips = [
+            (
+                "📁",
+                _("Downloads folder"),
+                _("Received files will be saved in the folder defined in Settings → General."),
+            ),
+            (
+                "📎",
+                _("Attach media"),
+                _("To attach images, videos, and documents, allow access to your folders."),
+            ),
+            (
+                "🔒",
+                _("Flatpak users"),
+                _(
+                    "If you have trouble attaching files, use Flatseal to allow access "
+                    "to Documents, Downloads, Pictures, and Videos."
+                ),
+            ),
+        ]
+
+        for icon, title, description in tips:
+            self.content_layout.addWidget(
+                _TipItem(icon, title, description, self))
+
+
+class _NotificationsPage(_OnboardingPage):
+    def __init__(self, parent=None):
+        super().__init__(
+            _("Notifications"),
+            _("Choose how ZapZap should notify you about new messages."),
+            parent,
+        )
+
+        self.enable_notifications = QCheckBox(_("Enable notifications"))
+        self.enable_notifications.setChecked(
+            SettingsManager.get("notification/app", True))
+        self.enable_notifications.toggled.connect(
+            lambda value: SettingsManager.set("notification/app", value)
+        )
+        self.content_layout.addWidget(self.enable_notifications)
+
+        self.enable_tray = QCheckBox(_("Show system tray icon"))
+        self.enable_tray.setChecked(
+            SettingsManager.get("system/tray_icon", True))
+        self.enable_tray.toggled.connect(self._on_tray_toggled)
+        self.content_layout.addWidget(self.enable_tray)
+
+        self.enable_counter = QCheckBox(_("Remove notification indicator"))
+        self.enable_counter.setChecked(
+            SettingsManager.get("system/notificationCounter", False))
+        self.enable_counter.toggled.connect(self._on_counter_toggled)
+        self.content_layout.addWidget(self.enable_counter)
+
+        note = QLabel(
+            _("Notifications may also depend on your operating system permissions.")
+        )
+        note.setWordWrap(True)
+        note.setStyleSheet("color: #666; font-style: italic;")
+        self.content_layout.addWidget(note)
+
+    def _on_counter_toggled(self, value: bool):
+        SettingsManager.set("system/notificationCounter", value)
+        SysTrayManager.refresh()
+
+    def _on_tray_toggled(self, value: bool):
+        SysTrayManager.set_state(value)
+
+
+class _VisualPage(_OnboardingPage):
+    def __init__(self, parent=None):
+        super().__init__(
+            _("Appearance"),
+            _("Adjust the theme and scale to make the interface more comfortable."),
+            parent,
+        )
+
+        self.content_layout.addWidget(QLabel(f"<b>{_('Theme')}</b>"))
+
+        theme = SettingsManager.get(
+            "system/theme", ThemeManager.Type.Auto.value)
+
+        self.theme_auto = QRadioButton(_("Automatic (follow system theme)"))
+        self.theme_light = QRadioButton(_("Light"))
+        self.theme_dark = QRadioButton(_("Dark"))
+
+        mapping = {
+            ThemeManager.Type.Auto.value: self.theme_auto,
+            ThemeManager.Type.Light.value: self.theme_light,
+            ThemeManager.Type.Dark.value: self.theme_dark,
+        }
+        mapping.get(theme, self.theme_auto).setChecked(True)
+
+        self.content_layout.addWidget(self.theme_auto)
+        self.content_layout.addWidget(self.theme_light)
+        self.content_layout.addWidget(self.theme_dark)
+
+        self.theme_auto.toggled.connect(
+            lambda checked: checked and ThemeManager.set_theme(
+                ThemeManager.Type.Auto)
+        )
+        self.theme_light.toggled.connect(
+            lambda checked: checked and ThemeManager.set_theme(
+                ThemeManager.Type.Light)
+        )
+        self.theme_dark.toggled.connect(
+            lambda checked: checked and ThemeManager.set_theme(
+                ThemeManager.Type.Dark)
+        )
+
+        line = QFrame()
+        line.setFrameShape(QFrame.Shape.HLine)
+        self.content_layout.addWidget(line)
+
+        label_row = QHBoxLayout()
+        label_row.addWidget(QLabel(f"<b>{_('Scale')}</b>"))
+        label_row.addStretch()
+
+        self.scale_label = QLabel()
+        label_row.addWidget(self.scale_label)
+        self.content_layout.addLayout(label_row)
+
+        self.scale_slider = QSlider(Qt.Orientation.Horizontal)
+        self.scale_slider.setRange(75, 200)
+        self.scale_slider.setSingleStep(5)
+        self.scale_slider.setPageStep(10)
+        self.scale_slider.setTickPosition(QSlider.TickPosition.TicksBelow)
+        self.scale_slider.setTickInterval(25)
+
+        current_scale = int(SettingsManager.get("system/scale", 100))
+        self.scale_slider.setValue(current_scale)
+        self._update_scale_label(current_scale)
+
+        self.scale_slider.valueChanged.connect(self._on_scale_changed)
+        self.content_layout.addWidget(self.scale_slider)
+
+        hint = QLabel(_("The scale will be applied after restarting ZapZap."))
+        hint.setWordWrap(True)
+        hint.setStyleSheet("color: #666; font-style: italic;")
+        self.content_layout.addWidget(hint)
+
+    def _on_scale_changed(self, value: int):
+        self._update_scale_label(value)
+        SettingsManager.set("system/scale", value)
+
+    def _update_scale_label(self, value: int):
+        self.scale_label.setText(f"{value} %")
+
+
+class OnboardingDialog(QDialog):
+    TOTAL_STEPS = 3
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
         self.setWindowTitle(_("Welcome to ZapZap"))
         self.setModal(True)
-        self.setMinimumSize(680, 430)
-        self.setContentsMargins(10, 10, 10, 10)
-        self.setObjectName("OnboardingWizard")
+        self.resize(560, 480)
 
-        # Estilo específico para o título
-        self.setStyleSheet(
-            """
-            QLabel#OnboardingTitle {
-                font-size: 22px;
-                font-weight: 700;
-            }
-            """
-        )
+        self.current_step = 0
+        self._dots = []
 
-        # Lista interna de steps (cada página do wizard)
-        self._steps: list[QWidget] = []
+        self._setup_ui()
+        self._go_to_step(0)
 
-        # Layout principal
-        root = QVBoxLayout(self)
-        root.setSpacing(12)
+    def _setup_ui(self):
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setSpacing(0)
 
-        # Título e subtítulo
-        self.title_label = QLabel(_("Welcome to ZapZap"), self)
-        self.title_label.setObjectName("OnboardingTitle")
-        root.addWidget(self.title_label)
-
-        self.subtitle_label = QLabel(
-            _("Quick setup for your preferred environment"), self)
-        self.subtitle_label.setObjectName("OnboardingSubtitle")
-        root.addWidget(self.subtitle_label)
-
-        # Label que indica o passo atual
-        self.step_label = QLabel(self)
-        root.addWidget(self.step_label)
-
-        # Barra de progresso dos passos
-        self.step_progress = QProgressBar(self)
-        self.step_progress.setTextVisible(False)
-        self.step_progress.setFixedHeight(8)
-        root.addWidget(self.step_progress)
-
-        # Container que alterna entre páginas
         self.stack = QStackedWidget(self)
-        root.addWidget(self.stack, 1)
+        self.stack.addWidget(_PermissionsPage(self))
+        self.stack.addWidget(_NotificationsPage(self))
+        self.stack.addWidget(_VisualPage(self))
+        layout.addWidget(self.stack)
 
-        # Footer (navegação)
-        footer = QHBoxLayout()
-        footer.addStretch()
+        layout.addWidget(self._build_footer())
 
-        self.back_button = QPushButton(_("Back"), self)
-        self.next_button = QPushButton(_("Next"), self)
-        self.finish_button = QPushButton(_("Finish"), self)
-        self.finish_button.hide()  # só aparece no último step
+    def _build_footer(self):
+        footer = QWidget(self)
+        footer.setStyleSheet(
+            "background: #f8f8f8; border-top: 1px solid #ddd;")
 
-        # Conexões dos botões
-        self.back_button.clicked.connect(self._go_back)
-        self.next_button.clicked.connect(self._go_next)
-        self.finish_button.clicked.connect(self.accept)
+        col = QVBoxLayout(footer)
+        col.setContentsMargins(12, 8, 12, 8)
+        col.setSpacing(6)
 
-        footer.addWidget(self.back_button)
-        footer.addWidget(self.next_button)
-        footer.addWidget(self.finish_button)
-        root.addLayout(footer)
+        dots_row = QHBoxLayout()
+        dots_row.addStretch()
+        for step_index in range(self.TOTAL_STEPS):
+            dot = QLabel()
+            dot.setFixedSize(10, 10)
+            self._dots.append(dot)
+            dots_row.addWidget(dot)
+        dots_row.addStretch()
+        col.addLayout(dots_row)
 
-        # Construção das etapas
-        self._build_steps()
+        nav_row = QHBoxLayout()
 
-        # Atualiza estado inicial da navegação
-        self._update_navigation()
+        self.btn_skip = QPushButton(_("Skip"))
+        self.btn_skip.clicked.connect(self._on_skip)
+        nav_row.addWidget(self.btn_skip)
 
-    def _build_steps(self):
-        """Define a sequência de etapas do onboarding."""
-        self._add_step(self._build_welcome_step())
-        self._add_step(self._build_general_preferences_step())
-        self._add_step(self._build_notification_preferences_step())
+        nav_row.addStretch()
 
-        # Step adicional apenas para Flatpak
-        if SetupManager._is_flatpak:
-            self._add_step(self._build_flatpak_step())
+        self.btn_previous = QPushButton(_("Previous"))
+        self.btn_previous.clicked.connect(self._on_previous)
+        nav_row.addWidget(self.btn_previous)
 
-        self._add_step(self._build_finish_step())
+        self.btn_next = QPushButton(_("Next"))
+        self.btn_next.clicked.connect(self._on_next)
+        nav_row.addWidget(self.btn_next)
 
-    def _add_step(self, widget: QWidget):
-        """Adiciona uma nova página ao wizard."""
-        self._steps.append(widget)
-        self.stack.addWidget(widget)
+        col.addLayout(nav_row)
 
-    def _build_welcome_step(self) -> QWidget:
-        """
-        Primeira tela:
-        - Explica o fluxo do onboarding
-        - Mostra o ambiente de execução (flatpak/local)
-        """
-        packaging = EnvironmentManager.identify_packaging().value
+        self.chk_dont_show = QCheckBox(_("Don't show again"))
+        col.addWidget(self.chk_dont_show)
 
-        page = QWidget(self)
-        layout = QVBoxLayout(page)
-        layout.setSpacing(10)
+        return footer
 
-        card = QFrame(page)
-        card.setObjectName("OnboardingCard")
-        card_layout = QVBoxLayout(card)
+    def _go_to_step(self, step: int):
+        self.current_step = step
+        self.stack.setCurrentIndex(step)
 
-        description = QLabel(
-            _(
-                "Let's configure ZapZap in a few steps.\n\n"
-                "1) Accounts and navigation\n"
-                "2) General preferences\n"
-                "3) Notification preferences\n"
-                "4) Optional sandbox guidance (Flatpak only)\n\n"
-                "Environment: {}"
-            ).format(packaging),
-            page,
-        )
-        description.setWordWrap(True)
-        card_layout.addWidget(description)
+        for index, dot in enumerate(self._dots):
+            if index == self.current_step:
+                dot.setStyleSheet("background: #25d366; border-radius: 5px;")
+            else:
+                dot.setStyleSheet("background: #bbb; border-radius: 5px;")
 
-        layout.addWidget(card)
-        layout.addStretch()
-        return page
+        is_last = self.current_step == self.TOTAL_STEPS - 1
+        self.btn_previous.setVisible(self.current_step > 0)
+        self.btn_next.setText(_("Finish") if is_last else _("Next"))
 
-    def _build_general_preferences_step(self) -> QWidget:
-        """
-        Tela de preferências gerais do sistema.
-        Configurações persistidas via SettingsManager.
-        """
-        page = QWidget(self)
-        layout = QVBoxLayout(page)
-        layout.setSpacing(10)
+    def _on_next(self):
+        if self.current_step < self.TOTAL_STEPS - 1:
+            self._go_to_step(self.current_step + 1)
+            return
 
-        title = QLabel(_("Personalize your experience · General"), page)
-        title.setStyleSheet("font-weight: 700; font-size: 16px;")
-        title.setWordWrap(True)
-        layout.addWidget(title)
+        OnboardingManager.mark_complete()
+        self.accept()
 
-        card = QFrame(page)
-        card.setObjectName("OnboardingCard")
-        card_layout = QGridLayout(card)
+    def _on_previous(self):
+        if self.current_step > 0:
+            self._go_to_step(self.current_step - 1)
 
-        # Opções gerais
-        self.cb_start_background = QCheckBox(
-            _("Start hidden in background"), page)
-        self.cb_start_background.setChecked(
-            SettingsManager.get("system/start_background", False)
-        )
+    def _on_skip(self):
+        if self.chk_dont_show.isChecked():
+            OnboardingManager.mark_complete()
+        self.reject()
 
-        self.cb_quit_in_close = QCheckBox(
-            _("Quit app when closing the window"), page)
-        self.cb_quit_in_close.setChecked(
-            SettingsManager.get("system/quit_in_close", False)
-        )
-
-        self.cb_spellcheck = QCheckBox(_("Enable spell checker"), page)
-        self.cb_spellcheck.setChecked(
-            SettingsManager.get("system/spellCheckers", True))
-
-        self.cb_start_system = QCheckBox(
-            _("Start automatically with the system"), page)
-        self.cb_start_system.setChecked(
-            SettingsManager.get("system/start_system", False)
-        )
-
-        self.cb_wayland = QCheckBox(_("Prefer Wayland (when available)"), page)
-        self.cb_wayland.setChecked(
-            SettingsManager.get("system/wayland", False))
-
-        # Flatpak não permite controlar isso diretamente
-        self.cb_wayland.setEnabled(not SetupManager._is_flatpak)
-        if SetupManager._is_flatpak:
-            self.cb_wayland.setToolTip(
-                _("Use Flatseal to change this mode of execution"))
-
-        # Layout
-        card_layout.addWidget(self.cb_start_background, 0, 0, 1, 2)
-        card_layout.addWidget(self.cb_quit_in_close, 1, 0, 1, 2)
-        card_layout.addWidget(self.cb_spellcheck, 2, 0, 1, 2)
-        card_layout.addWidget(self.cb_start_system, 3, 0, 1, 2)
-        card_layout.addWidget(self.cb_wayland, 4, 0, 1, 2)
-
-        layout.addWidget(card)
-
-        hint = QLabel(
-            _("You can change all these options later in Settings."), page)
-        hint.setStyleSheet("color: #777;")
-        layout.addWidget(hint)
-
-        layout.addStretch()
-        return page
-
-    def _build_notification_preferences_step(self) -> QWidget:
-        """
-        Tela de configuração de notificações.
-        Inclui dependência entre opções (enable/disable).
-        """
-        page = QWidget(self)
-        layout = QVBoxLayout(page)
-
-        title = QLabel(_("Personalize your experience · Notifications"), page)
-        title.setStyleSheet("font-weight: 700; font-size: 16px;")
-        layout.addWidget(title)
-
-        card = QFrame(page)
-        card_layout = QVBoxLayout(card)
-
-        # Checkbox principal
-        self.cb_notifications = QCheckBox(_("Enable app notifications"), page)
-        self.cb_notifications.setChecked(
-            SettingsManager.get("notification/app", True))
-
-        # Dependentes
-        self.cb_message_preview = QCheckBox(
-            _("Show message content in notifications"), page)
-        self.cb_message_preview.setChecked(
-            SettingsManager.get("notification/show_msg", True)
-        )
-        self.cb_show_name = QCheckBox(
-            _("Show contact name in notifications"), page)
-        self.cb_show_name.setChecked(
-            SettingsManager.get("notification/show_name", True)
-        )
-        self.cb_show_photo = QCheckBox(
-            _("Show contact photo in notifications"), page)
-        self.cb_show_photo.setChecked(
-            SettingsManager.get("notification/show_photo", True)
-        )
-        self.cb_donation_message = QCheckBox(
-            _("Hide donation reminders"), page)
-        self.cb_donation_message.setChecked(
-            SettingsManager.get("notification/donation_message", False)
-        )
-
-        # Estado inicial
-        self.cb_message_preview.setEnabled(self.cb_notifications.isChecked())
-        self.cb_show_name.setEnabled(self.cb_notifications.isChecked())
-        self.cb_show_photo.setEnabled(self.cb_notifications.isChecked())
-        self.cb_donation_message.setEnabled(self.cb_notifications.isChecked())
-
-        # Binding reativo simples
-        self.cb_notifications.toggled.connect(
-            self.cb_message_preview.setEnabled)
-        self.cb_notifications.toggled.connect(self.cb_show_name.setEnabled)
-        self.cb_notifications.toggled.connect(self.cb_show_photo.setEnabled)
-        self.cb_notifications.toggled.connect(
-            self.cb_donation_message.setEnabled)
-
-        # Adiciona ao layout
-        card_layout.addWidget(self.cb_notifications)
-        card_layout.addWidget(self.cb_message_preview)
-        card_layout.addWidget(self.cb_show_name)
-        card_layout.addWidget(self.cb_show_photo)
-        card_layout.addWidget(self.cb_donation_message)
-
-        layout.addWidget(card)
-        layout.addStretch()
-        return page
-
-    def _build_flatpak_step(self) -> QWidget:
-        """
-        Tela específica para usuários Flatpak.
-        Explica permissões de sandbox e fornece comandos úteis.
-        """
-        page = QWidget(self)
-        layout = QVBoxLayout(page)
-
-        title = QLabel(_("Flatpak sandbox permissions"), page)
-        layout.addWidget(title)
-
-        card = QFrame(page)
-        card_layout = QVBoxLayout(card)
-
-        text = QLabel(
-            _("If opening files, drag-and-drop or uploads fail, this is usually caused by sandbox permissions."),
-            page,
-        )
-        card_layout.addWidget(text)
-
-        # Comando sugerido
-        command = "flatpak override --user --filesystem=home com.rtosta.zapzap"
-
-        command_input = QLineEdit(command, page)
-        command_input.setReadOnly(True)
-
-        copy_button = QPushButton(_("Copy command"), page)
-        copy_button.clicked.connect(
-            lambda: QApplication.clipboard().setText(command))
-
-        # Botão para abrir Flatseal
-        flatseal_button = QPushButton(_("Open Flatseal page"), page)
-        flatseal_button.clicked.connect(
-            lambda: OnboardingDialog._open_flatseal_with_fallback()
-        )
-
-        card_layout.addWidget(command_input)
-        card_layout.addWidget(copy_button)
-        card_layout.addWidget(flatseal_button)
-
-        layout.addWidget(card)
-        layout.addStretch()
-        return page
-
-    def _build_finish_step(self) -> QWidget:
-        """Tela final do onboarding."""
-        page = QWidget(self)
-        layout = QVBoxLayout(page)
-
-        title = QLabel(_("Setup complete"), page)
-        layout.addWidget(title)
-
-        text = QLabel(
-            _("Your preferences were saved. You can review and change them at any time in Settings."),
-            page,
-        )
-        layout.addWidget(text)
-
-        layout.addStretch()
-        return page
-
-    # Navegação
-    def _go_next(self):
-        """Avança para o próximo step."""
-        index = self.stack.currentIndex()
-        if index < self.stack.count() - 1:
-            self.stack.setCurrentIndex(index + 1)
-            self._update_navigation()
-
-    def _go_back(self):
-        """Retorna ao step anterior."""
-        index = self.stack.currentIndex()
-        if index > 0:
-            self.stack.setCurrentIndex(index - 1)
-            self._update_navigation()
-
-    def _update_navigation(self):
-        """
-        Atualiza:
-        - Label de passo
-        - Barra de progresso
-        - Estado dos botões
-        """
-        index = self.stack.currentIndex()
-        total = self.stack.count()
-
-        self.step_label.setText(_("Step {}/{}").format(index + 1, total))
-        self.step_progress.setMaximum(total)
-        self.step_progress.setValue(index + 1)
-
-        self.back_button.setEnabled(index > 0)
-
-        is_last = index == total - 1
-        self.next_button.setVisible(not is_last)
-        self.finish_button.setVisible(is_last)
-        self.finish_button.setDefault(is_last)
-
-    def apply_selected_settings(self):
-        """
-        Persiste todas as configurações escolhidas pelo usuário.
-        """
-        SettingsManager.set("system/start_background",
-                            self.cb_start_background.isChecked())
-        SettingsManager.set("system/quit_in_close",
-                            self.cb_quit_in_close.isChecked())
-        SettingsManager.set("system/start_system",
-                            self.cb_start_system.isChecked())
-        AutostartManager.create_desktop_file(self.cb_start_system.isChecked())
-        SettingsManager.set("notification/app",
-                            self.cb_notifications.isChecked())
-        SettingsManager.set("notification/show_msg",
-                            self.cb_message_preview.isChecked())
-        SettingsManager.set("notification/show_name",
-                            self.cb_show_name.isChecked())
-        SettingsManager.set("notification/show_photo",
-                            self.cb_show_photo.isChecked())
-        SettingsManager.set("notification/donation_message",
-                            self.cb_donation_message.isChecked())
-        SettingsManager.set("system/spellCheckers",
-                            self.cb_spellcheck.isChecked())
-        SettingsManager.set("system/wayland", self.cb_wayland.isChecked())
+    def closeEvent(self, event):  # noqa: N802 - método do Qt
+        if self.chk_dont_show.isChecked():
+            OnboardingManager.mark_complete()
+        super().closeEvent(event)
 
 
-class OnboardingDialog:
-    """
-    Classe controladora do onboarding:
-    - Decide se deve exibir
-    - Executa o wizard
-    - Marca como concluído
-    """
-
-    VERSION = 2
-
-    # Keys persistidas
-    KEY_COMPLETED = "onboarding/completed"
-    KEY_VERSION = "onboarding/version"
-    KEY_LAST_ENVIRONMENT = "onboarding/last_environment"
-
-    @staticmethod
-    def _current_environment() -> str:
-        """Retorna o ambiente atual."""
-        return "flatpak" if SetupManager._is_flatpak else "local"
+class OnboardingManager:
+    SETTING_KEY = "onboarding/completed"
 
     @staticmethod
     def should_show() -> bool:
-        """
-        Define se o onboarding deve ser exibido com base em:
-        - Primeira execução
-        - Mudança de versão
-        - Mudança de ambiente
-        """
-        completed = SettingsManager.get(OnboardingDialog.KEY_COMPLETED, False)
-        version = int(SettingsManager.get(OnboardingDialog.KEY_VERSION, 0))
-        last_environment = SettingsManager.get(
-            OnboardingDialog.KEY_LAST_ENVIRONMENT, ""
-        )
-        current_environment = OnboardingDialog._current_environment()
-
-        if not completed:
-            return True
-        if version != OnboardingDialog.VERSION:
-            return True
-        if last_environment != current_environment:
-            return True
-        return False
+        return not SettingsManager.get(OnboardingManager.SETTING_KEY, False)
 
     @staticmethod
-    def run(parent: QWidget | None = None):
-        """Executa o onboarding se necessário."""
-        if not OnboardingDialog.should_show():
-            return
+    def show(parent=None) -> bool:
+        if not OnboardingManager.should_show():
+            return False
 
-        dialog = _OnboardingWizardDialog(parent)
+        dialog = OnboardingDialog(parent)
+        result = dialog.exec()
 
-        # Só aplica se o usuário concluir
-        if dialog.exec() == QDialog.DialogCode.Accepted:
-            dialog.apply_selected_settings()
-            OnboardingDialog._mark_as_completed()
+        return result == QDialog.DialogCode.Accepted
 
     @staticmethod
-    def _open_flatseal_with_fallback():
-        """
-        Tenta abrir a página do Flatseal.
-        Caso falhe, copia o link para o clipboard.
-        """
-        flatseal_url = QUrl(
-            "https://flathub.org/apps/com.github.tchx84.Flatseal")
-        opened = QDesktopServices.openUrl(flatseal_url)
-
-        if not opened:
-            QApplication.clipboard().setText(flatseal_url.toString())
+    def mark_complete():
+        SettingsManager.set(OnboardingManager.SETTING_KEY, True)
 
     @staticmethod
-    def show_flatpak_permissions_dialog(parent: QWidget | None = None):
-        """
-        Exibe um alerta manual sobre permissões Flatpak.
-        """
-        command = "flatpak override --user --filesystem=home com.rtosta.zapzap"
-
-        dialog = QMessageBox(parent)
-        dialog.setWindowTitle(_("Flatpak sandbox"))
-        dialog.setIcon(QMessageBox.Icon.Warning)
-
-        dialog.setText(_("ZapZap is running in Flatpak sandbox."))
-        dialog.setInformativeText(
-            _("Some features like opening files or drag-and-drop may require additional permissions.")
-        )
-
-        instructions_button = dialog.addButton(
-            _("Instructions"), QMessageBox.ButtonRole.ActionRole)
-        copy_button = dialog.addButton(
-            _("Copy command"), QMessageBox.ButtonRole.ActionRole)
-        dialog.addButton(_("Close"), QMessageBox.ButtonRole.RejectRole)
-
-        dialog.exec()
-
-        if dialog.clickedButton() == instructions_button:
-            OnboardingDialog._open_flatseal_with_fallback()
-        elif dialog.clickedButton() == copy_button:
-            QApplication.clipboard().setText(command)
-
-    @staticmethod
-    def _mark_as_completed():
-        """Marca onboarding como concluído."""
-        SettingsManager.set(OnboardingDialog.KEY_COMPLETED, True)
-        SettingsManager.set(OnboardingDialog.KEY_VERSION,
-                            OnboardingDialog.VERSION)
-        SettingsManager.set(
-            OnboardingDialog.KEY_LAST_ENVIRONMENT,
-            OnboardingDialog._current_environment(),
-        )
+    def reset():
+        SettingsManager.remove(OnboardingManager.SETTING_KEY)

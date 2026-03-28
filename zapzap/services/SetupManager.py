@@ -1,5 +1,6 @@
 from os import environ, getenv
 from PyQt6.QtCore import QFileInfo
+from zapzap.platform import IS_WINDOWS
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.SettingsManager import SettingsManager
 
@@ -95,6 +96,12 @@ class SetupManager:
             add_flag("--disable-renderer-backgrounding")
 
         # --------------------------------------------------
+        # Pinch to zoom
+        # --------------------------------------------------
+        if SettingsManager.get("web/disable_pinch", False):
+            add_flag("--disable-pinch")
+
+        # --------------------------------------------------
         # Flags obrigatórias
         # --------------------------------------------------
         add_flag("--disable-features=FFmpegAllowLists")
@@ -121,6 +128,10 @@ class SetupManager:
 
     @staticmethod
     def get_qt_platform():
+        # On Windows, let Qt automatically pick the 'windows' platform plugin
+        if IS_WINDOWS:
+            return None
+
         if "QT_QPA_PLATFORM" in environ:
             return None
 

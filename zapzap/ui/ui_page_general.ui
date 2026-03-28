@@ -164,6 +164,13 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
            <item>
+            <widget class="QCheckBox" name="btn_confirm_in_close">
+             <property name="text">
+              <string>Confirm before closing the window</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QCheckBox" name="btn_quit_in_close">
              <property name="text">
               <string>Close when closing the window</string>

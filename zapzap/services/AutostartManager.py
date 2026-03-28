@@ -1,8 +1,5 @@
 from PyQt6.QtCore import QStandardPaths, QFileInfo
-try:
-    import dbus
-except ImportError:
-    print("Could not import dbus. Ensure 'python-dbus' is installed.")
+from zapzap.platform import IS_WINDOWS
 import os
 
 
@@ -14,15 +11,39 @@ class AutostartManager:
     @staticmethod
     def create_desktop_file(enable_autostart: bool):
         """Creates or removes the autostart desktop entry."""
-        if AutostartManager.IS_FLATPAK:
+        if IS_WINDOWS:
+            AutostartManager._handle_windows(enable_autostart)
+        elif AutostartManager.IS_FLATPAK:
             AutostartManager._handle_flatpak(enable_autostart)
         else:
             AutostartManager._handle_local(enable_autostart)
 
     @staticmethod
+    def _handle_windows(enable_autostart: bool):
+        """Manages autostart settings on Windows via the registry."""
+        try:
+            import winreg
+            key_path = r"Software\Microsoft\Windows\CurrentVersion\Run"
+            with winreg.OpenKey(winreg.HKEY_CURRENT_USER, key_path,
+                                0, winreg.KEY_SET_VALUE) as key:
+                if enable_autostart:
+                    import sys
+                    exe = sys.executable
+                    winreg.SetValueEx(key, "ZapZap", 0, winreg.REG_SZ,
+                                      f'"{exe}" -m zapzap --hideStart')
+                else:
+                    try:
+                        winreg.DeleteValue(key, "ZapZap")
+                    except FileNotFoundError:
+                        pass
+        except Exception as e:
+            print(f"Error managing Windows autostart: {e}")
+
+    @staticmethod
     def _handle_flatpak(enable_autostart: bool):
         """Manages autostart settings for Flatpak installations."""
         try:
+            import dbus
             bus = dbus.SessionBus()
             obj = bus.get_object("org.freedesktop.portal.Desktop",
                                  "/org/freedesktop/portal/desktop")

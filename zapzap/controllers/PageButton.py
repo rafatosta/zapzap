@@ -49,9 +49,6 @@ class PageButton(QPushButton):
         self._setup_ui()
         self.update_user_icon()
 
-        if not user.enable:
-            self.hide()
-
     @property
     def user(self):
         return self._user
@@ -85,6 +82,11 @@ class PageButton(QPushButton):
             if self.number_notifications > 0
             else self._user.name
         )
+        if not self._user.enable:
+            tooltip = (
+                f"{tooltip}\n{self.tr('Account disabled - click to activate or right-click to manage')}"
+                if tooltip else self.tr("Account disabled - click to activate or right-click to manage")
+            )
         self.setToolTip(tooltip)
 
     def update_notifications(self, number_notifications):

@@ -59,9 +59,10 @@ class ThemeManager:
     def set_theme(theme: Type):
         """Define o tema de acordo com a preferência do usuário."""
         instance = ThemeManager.instance()
-        instance._set_user_theme(theme)
         # Salva o tema nas configurações
         SettingsManager.set("system/theme", theme.value)
+        instance._set_user_theme(theme)
+        instance._refresh_window_theme_menu()
 
     @staticmethod
     def get_current_theme() -> Type:
@@ -81,6 +82,7 @@ class ThemeManager:
         if self.current_theme != theme:
             self.current_theme = theme
             self._apply_theme()
+            self._refresh_window_theme_menu()
 
     def _set_user_theme(self, theme: Type):
         """Define o tema com base na escolha do usuário."""
@@ -152,6 +154,16 @@ class ThemeManager:
     def _apply_palette(self, palette):
         """Aplica a paleta ao aplicativo."""
         QApplication.instance().setPalette(palette)
+
+    def _refresh_window_theme_menu(self):
+        """Atualiza o estado do menu de tema quando a janela principal existir."""
+        app = QApplication.instance()
+        if not app or not hasattr(app, "getWindow"):
+            return
+
+        window = app.getWindow()
+        if window and hasattr(window, "refresh_theme_menu"):
+            window.refresh_theme_menu()
 
     # === Detecção do Tema do Sistema ===
     def _detect_system_theme(self) -> Type:
