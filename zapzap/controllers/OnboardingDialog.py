@@ -271,7 +271,7 @@ class _OnboardingWizardDialog(QDialog):
             SettingsManager.get("notification/show_photo", True)
         )
         self.cb_donation_message = QCheckBox(
-            _("Show donation reminders"), page)
+            _("Hide donation reminders"), page)
         self.cb_donation_message.setChecked(
             SettingsManager.get("notification/donation_message", False)
         )
