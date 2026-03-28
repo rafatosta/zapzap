@@ -24,6 +24,7 @@ from PyQt6.QtWidgets import (
     QPushButton,
     QLabel,
     QGroupBox,
+    QFrame,
 )
 from zapzap.services.CssPreviewService import CssPreviewService
 from zapzap.services.CustomizationsManager import CustomizationsManager
@@ -42,6 +43,7 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
         self._preview_pixmap = None
         self.theme_cards_list = None
         self.btn_theme_new = None
+        self.btn_theme_import = None
         self._configure_asset_tables()
         self._build_theme_cards_ui()
         self._configure_scope()
@@ -101,6 +103,9 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
         self.css_preview_replace_button.clicked.connect(self._upload_css_preview_image)
         self.css_preview_image_page.installEventFilter(self)
         self.btn_theme_new.clicked.connect(self._create_theme_from_cards)
+        self.btn_theme_import.clicked.connect(
+            lambda: self._import_asset(CustomizationsManager.TYPE_CSS)
+        )
 
     def _connect_asset_action_signals(
         self,
@@ -120,13 +125,15 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
         delete_button.clicked.connect(lambda: self._delete_selected_asset(asset_type))
 
     def _build_theme_cards_ui(self):
-        themes_group = QGroupBox(_("Installed themes"), self)
+        themes_group = QGroupBox(_("Personalizações"), self)
         themes_layout = QVBoxLayout(themes_group)
         header_layout = QHBoxLayout()
-        header_label = QLabel(_("Choose a theme and apply it quickly."))
-        self.btn_theme_new = QPushButton(_("New theme"), themes_group)
+        header_label = QLabel(_("Escolha, edite e aplique temas facilmente."))
+        self.btn_theme_new = QPushButton(_("+ Criar tema"), themes_group)
+        self.btn_theme_import = QPushButton(_("Importar tema"), themes_group)
         header_layout.addWidget(header_label)
         header_layout.addStretch()
+        header_layout.addWidget(self.btn_theme_import)
         header_layout.addWidget(self.btn_theme_new)
         themes_layout.addLayout(header_layout)
 
@@ -901,22 +908,56 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
             row_widget = QWidget(self.theme_cards_list)
             row_layout = QHBoxLayout(row_widget)
             row_layout.setContentsMargins(8, 6, 8, 6)
+
+            preview_label = QLabel(row_widget)
+            preview_label.setFixedSize(72, 48)
+            preview_label.setFrameShape(QFrame.Shape.StyledPanel)
+            preview_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            preview_path = CssPreviewService.get_css_preview_path(
+                css_file,
+                self.current_scope,
+                self.current_account_id,
+            )
+            if preview_path:
+                pixmap = QPixmap(preview_path)
+                if not pixmap.isNull():
+                    preview_label.setPixmap(
+                        pixmap.scaled(
+                            preview_label.size(),
+                            Qt.AspectRatioMode.KeepAspectRatio,
+                            Qt.TransformationMode.SmoothTransformation,
+                        )
+                    )
+                else:
+                    preview_label.setText(_("Prévia"))
+            else:
+                preview_label.setText(_("Prévia"))
+
             title = QLabel(base_name, row_widget)
-            status = _("Active") if css_file in enabled_css else _("Inactive")
+            status = _("Ativo") if css_file in enabled_css else _("Inativo")
+            version = _("v1")
             subtitle = QLabel(
-                _("Status: {} • JS: {}").format(status, _("yes") if has_js else _("no")),
+                _("Versão: {} • Status: {} • JS: {}").format(
+                    version,
+                    status,
+                    _("sim") if has_js else _("não"),
+                ),
                 row_widget,
             )
             subtitle.setStyleSheet("color: palette(mid);")
             text_layout = QVBoxLayout()
             text_layout.addWidget(title)
             text_layout.addWidget(subtitle)
+            row_layout.addWidget(preview_label)
             row_layout.addLayout(text_layout)
             row_layout.addStretch()
 
-            edit_button = QPushButton(_("Edit"), row_widget)
-            delete_button = QPushButton(_("Delete"), row_widget)
-            apply_button = QPushButton(_("Apply"), row_widget)
+            edit_button = QPushButton(_("Editar"), row_widget)
+            delete_button = QPushButton(_("Excluir"), row_widget)
+            apply_button = QPushButton(_("Aplicar"), row_widget)
+            apply_button.setToolTip(_("Aplica sem fechar"))
+            edit_button.setToolTip(_("Edita este tema"))
+            delete_button.setToolTip(_("Exclui este tema"))
             edit_button.clicked.connect(lambda _v=False, t=base_name: self._open_theme_editor(t))
             delete_button.clicked.connect(
                 lambda _v=False, t=base_name: self._delete_theme_from_cards(t)
@@ -939,13 +980,29 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
         js_file = f"{theme_name}.js"
         answer = QMessageBox.question(
             self,
-            _("Confirm deletion"),
-            _("Delete theme: {}?").format(theme_name),
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-            QMessageBox.StandardButton.No,
+            _("Confirmar exclusão"),
+            _("Tem certeza que deseja excluir o tema '{}' ?").format(theme_name),
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.Cancel,
+            QMessageBox.StandardButton.Cancel,
         )
         if answer != QMessageBox.StandardButton.Yes:
             return
+
+        if f"{theme_name}.css" in CustomizationsManager.list_asset_file_names(
+            self.current_scope,
+            CustomizationsManager.TYPE_CSS,
+            self.current_account_id,
+        ) and CustomizationsManager.is_asset_file_enabled(
+            f"{theme_name}.css",
+            self.current_scope,
+            CustomizationsManager.TYPE_CSS,
+            self.current_account_id,
+        ):
+            QMessageBox.warning(
+                self,
+                _("Atenção"),
+                _("Você está excluindo o tema em uso."),
+            )
 
         CustomizationsManager.delete_asset_file(
             css_file,
@@ -960,7 +1017,7 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
             self.current_account_id,
         )
         self._refresh_asset_lists()
-        self._show_feedback(_("Theme deleted: {}").format(theme_name))
+        self._show_feedback(_("Tema excluído: {}").format(theme_name))
 
     def _apply_theme_from_cards(self, theme_name: str):
         css_files = CustomizationsManager.list_asset_file_names(
@@ -998,9 +1055,9 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
         self.css_enabled.setChecked(True)
         self.js_enabled.setChecked(selected_js in js_files)
         self._save(show_feedback=False)
-        self._reload_pages()
+        self._reload_target_webview(silent=True)
         self._refresh_asset_lists()
-        self._show_feedback(_("Theme applied: {}").format(theme_name))
+        self._show_feedback(_("Tema aplicado com sucesso."))
 
     def _open_theme_editor(self, theme_name: str | None):
         old_theme_name = theme_name
@@ -1029,15 +1086,27 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
                 js_content = ""
 
         dialog = QDialog(self)
-        dialog.setWindowTitle(_("Theme editor"))
+        dialog.setWindowTitle(_("Editor de tema"))
         dialog.resize(860, 620)
 
         layout = QVBoxLayout(dialog)
         form = QFormLayout()
         name_input = QLineEdit(dialog)
-        name_input.setText(old_theme_name or "my-theme")
-        form.addRow(_("Theme name"), name_input)
+        name_input.setText(old_theme_name or "meu-tema")
+        form.addRow(_("Nome do tema"), name_input)
         layout.addLayout(form)
+
+        top_actions = QHBoxLayout()
+        btn_import_css = QPushButton(_("Importar arquivo .css"), dialog)
+        btn_import_url = QPushButton(_("Importar da internet (URL)"), dialog)
+        btn_open_folder = QPushButton(_("Abrir pasta de temas"), dialog)
+        btn_format = QPushButton(_("Formatar código"), dialog)
+        top_actions.addWidget(btn_import_css)
+        top_actions.addWidget(btn_import_url)
+        top_actions.addWidget(btn_open_folder)
+        top_actions.addWidget(btn_format)
+        top_actions.addStretch()
+        layout.addLayout(top_actions)
 
         tab = QTabWidget(dialog)
         css_editor = QTextEdit(dialog)
@@ -1045,18 +1114,32 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
         js_editor = QTextEdit(dialog)
         js_editor.setPlainText(js_content)
         tab.addTab(css_editor, _("CSS"))
-        tab.addTab(js_editor, _("JavaScript (optional)"))
-        layout.addWidget(tab)
+        tab.addTab(js_editor, _("JS (avançado)"))
 
-        quick_actions = QHBoxLayout()
-        btn_import_css = QPushButton(_("Import .css file"), dialog)
-        btn_import_url = QPushButton(_("Import via URL"), dialog)
-        btn_open_folder = QPushButton(_("Open local folder"), dialog)
-        quick_actions.addWidget(btn_import_css)
-        quick_actions.addWidget(btn_import_url)
-        quick_actions.addWidget(btn_open_folder)
-        quick_actions.addStretch()
-        layout.addLayout(quick_actions)
+        editor_area = QHBoxLayout()
+        editor_area.addWidget(tab, 3)
+        help_panel = QGroupBox(_("Ajuda rápida"), dialog)
+        help_layout = QVBoxLayout(help_panel)
+        help_layout.addWidget(QLabel(_("Snippets comuns:")))
+        snippet_buttons = [
+            (_("Fundo"), "body { background: #f6f6f6; }"),
+            (_("Bordas"), ".card { border-radius: 12px; }"),
+            (_("Fonte"), "body { font-size: 14px; }"),
+        ]
+        for label, snippet in snippet_buttons:
+            button = QPushButton(label, help_panel)
+            button.clicked.connect(
+                lambda _v=False, s=snippet: css_editor.insertPlainText(f"\n{s}\n")
+            )
+            help_layout.addWidget(button)
+        insert_example = QPushButton(_("Inserir exemplo"), help_panel)
+        insert_example.clicked.connect(
+            lambda: css_editor.insertPlainText("\n/* Exemplo */\nbody { color: #222; }\n")
+        )
+        help_layout.addWidget(insert_example)
+        help_layout.addStretch()
+        editor_area.addWidget(help_panel, 1)
+        layout.addLayout(editor_area)
 
         def _import_css_to_editor():
             file_path, _ = QFileDialog.getOpenFileName(
@@ -1103,11 +1186,23 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
         btn_open_folder.clicked.connect(
             lambda: self._open_assets_folder(CustomizationsManager.TYPE_CSS)
         )
+        btn_format.clicked.connect(
+            lambda: css_editor.setPlainText(css_editor.toPlainText().strip() + "\n")
+        )
+
+        tutorial_seen = SettingsManager.get("custom/theme_editor/tutorial_seen", False)
+        if not tutorial_seen:
+            QMessageBox.information(
+                dialog,
+                _("Como usar"),
+                _("1) Dê um nome ao tema.\n2) Edite CSS/JS.\n3) Clique em Executar para aplicar sem fechar."),
+            )
+            SettingsManager.set("custom/theme_editor/tutorial_seen", True)
 
         def _save_theme(apply_after_save: bool):
             new_theme_name = name_input.text().strip()
             if not new_theme_name:
-                self._show_feedback(_("Theme name cannot be empty."))
+                self._show_feedback(_("Nome do tema não pode ficar vazio."))
                 return
             css_file = f"{new_theme_name}.css"
             js_file = f"{new_theme_name}.js"
@@ -1194,13 +1289,42 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
             if apply_after_save:
                 self._apply_theme_from_cards(new_theme_name)
             else:
-                self._show_feedback(_("Theme saved: {}").format(new_theme_name))
+                self._show_feedback(_("Tema salvo: {}").format(new_theme_name))
+
+        def _has_unsaved_changes():
+            return (
+                name_input.text().strip() != (old_theme_name or "meu-tema")
+                or css_editor.toPlainText() != css_content
+                or js_editor.toPlainText() != js_content
+            )
+
+        def _confirm_close():
+            if not _has_unsaved_changes():
+                dialog.reject()
+                return
+            answer = QMessageBox.question(
+                dialog,
+                _("Alterações não salvas"),
+                _("Deseja salvar antes de sair?"),
+                QMessageBox.StandardButton.Yes
+                | QMessageBox.StandardButton.No
+                | QMessageBox.StandardButton.Cancel,
+                QMessageBox.StandardButton.Yes,
+            )
+            if answer == QMessageBox.StandardButton.Yes:
+                _save_theme(False)
+                dialog.accept()
+            elif answer == QMessageBox.StandardButton.No:
+                dialog.reject()
 
         button_box = QDialogButtonBox(dialog)
-        execute_button = button_box.addButton(_("Execute"), QDialogButtonBox.ButtonRole.ActionRole)
+        execute_button = button_box.addButton(_("Executar"), QDialogButtonBox.ButtonRole.ActionRole)
+        execute_button.setToolTip(_("Aplica o tema agora sem fechar o editor."))
         save_button = button_box.addButton(QDialogButtonBox.StandardButton.Save)
         cancel_button = button_box.addButton(QDialogButtonBox.StandardButton.Cancel)
-        cancel_button.clicked.connect(dialog.reject)
+        save_button.setText(_("Salvar"))
+        cancel_button.setText(_("Cancelar"))
+        cancel_button.clicked.connect(_confirm_close)
         save_button.clicked.connect(lambda: (_save_theme(False), dialog.accept()))
         execute_button.clicked.connect(lambda: _save_theme(True))
         layout.addWidget(button_box)

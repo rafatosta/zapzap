@@ -23,7 +23,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Customizations</string>
+      <string>Personalizações</string>
      </property>
     </widget>
    </item>
@@ -284,7 +284,7 @@
           <item>
            <widget class="QPushButton" name="btn_css_create">
             <property name="text">
-             <string>Create</string>
+             <string>Criar tema</string>
             </property>
            </widget>
           </item>
@@ -329,14 +329,14 @@
           <item>
            <widget class="QPushButton" name="btn_css_import_url">
             <property name="text">
-             <string>Import from URL</string>
+             <string>Importar da internet (URL)</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="btn_css_folder">
             <property name="text">
-             <string>Open folder</string>
+             <string>Abrir pasta de temas</string>
             </property>
            </widget>
           </item>
@@ -421,7 +421,7 @@
           <item>
            <widget class="QPushButton" name="btn_js_create">
             <property name="text">
-             <string>Create</string>
+             <string>Criar tema</string>
             </property>
            </widget>
           </item>
@@ -466,14 +466,14 @@
           <item>
            <widget class="QPushButton" name="btn_js_import_url">
             <property name="text">
-             <string>Import from URL</string>
+             <string>Importar da internet (URL)</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="btn_js_folder">
             <property name="text">
-             <string>Open folder</string>
+             <string>Abrir pasta de temas</string>
             </property>
            </widget>
           </item>
@@ -515,7 +515,7 @@
      <item>
       <widget class="QPushButton" name="btn_save_reload">
        <property name="text">
-        <string>Save and reload</string>
+        <string>Aplicar tema</string>
        </property>
       </widget>
      </item>
