@@ -157,6 +157,7 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         self.btn_open_debug_logs.clicked.connect(self._handle_open_debug_logs)
         self.btn_delete_old_debug_logs.clicked.connect(self._handle_delete_old_debug_logs)
         self.btn_delete_all_debug_logs.clicked.connect(self._handle_delete_all_debug_logs)
+        self.btn_reset_settings.clicked.connect(self._handle_reset_settings)
 
     def _handle_toggled_spellcheck(self, toggled):
         SettingsManager.set("system/spellCheckers", toggled)
@@ -301,3 +302,37 @@ class PageGeneral(QWidget, Ui_PageGeneral):
             _("Deleted {count} file(s).").format(count=removed)
         )
         self._refresh_debug_logs_ui()
+
+    def _handle_reset_settings(self):
+        confirm = QMessageBox.question(
+            self,
+            _("Reset settings"),
+            _("This will delete your current settings file (.config) and requires restart. Continue?")
+        )
+        if confirm != QMessageBox.StandardButton.Yes:
+            return
+
+        settings = SettingsManager._get_settings()
+        settings_path = Path(settings.fileName())
+
+        settings.clear()
+        settings.sync()
+
+        try:
+            if settings_path.exists():
+                settings_path.unlink()
+        except Exception as exc:
+            QMessageBox.warning(
+                self,
+                _("Reset settings"),
+                _("Could not remove settings file:\n{error}").format(error=str(exc))
+            )
+            return
+
+        SettingsManager._settings = None
+
+        QMessageBox.information(
+            self,
+            _("Reset settings"),
+            _("Settings were reset successfully. Please restart ZapZap.")
+        )

@@ -246,7 +246,7 @@
             </widget>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
               <widget class="QPushButton" name="btn_open_debug_logs">
                <property name="text">
@@ -269,6 +269,13 @@
               </widget>
              </item>
             </layout>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btn_reset_settings">
+             <property name="text">
+              <string>Reset settings</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>

@@ -140,6 +140,9 @@ class Ui_PageGeneral(object):
         self.btn_delete_all_debug_logs.setObjectName("btn_delete_all_debug_logs")
         self.horizontalLayout_2.addWidget(self.btn_delete_all_debug_logs)
         self.verticalLayout_4.addLayout(self.horizontalLayout_2)
+        self.btn_reset_settings = QtWidgets.QPushButton(parent=self.groupBox_debug_logs)
+        self.btn_reset_settings.setObjectName("btn_reset_settings")
+        self.verticalLayout_4.addWidget(self.btn_reset_settings)
         self.verticalLayout_2.addWidget(self.groupBox_debug_logs)
         self.horizontalLayout.addWidget(self.frame)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -174,6 +177,7 @@ class Ui_PageGeneral(object):
         self.btn_open_debug_logs.setText(_("Open folder"))
         self.btn_delete_old_debug_logs.setText(_("Delete old"))
         self.btn_delete_all_debug_logs.setText(_("Delete all"))
+        self.btn_reset_settings.setText(_("Reset settings"))
 
 
 if __name__ == "__main__":
