@@ -1,12 +1,16 @@
-from PyQt6.QtCore import Qt, QUrl
+from datetime import datetime, timedelta
+from pathlib import Path
+
+from PyQt6.QtCore import Qt, QUrl, QStandardPaths
 from PyQt6.QtGui import QDesktopServices
-from PyQt6.QtWidgets import QWidget, QApplication, QStyle, QLabel, QPushButton, QHBoxLayout, QLineEdit
+from PyQt6.QtWidgets import QWidget, QApplication, QStyle, QLabel, QPushButton, QHBoxLayout, QLineEdit, QMessageBox
 from zapzap.services.SetupManager import SetupManager
 from zapzap.services.AutostartManager import AutostartManager
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.DownloadManager import DownloadManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.views.ui_page_general import Ui_PageGeneral
+from zapzap import __appname__
 
 from gettext import gettext as _
 
@@ -116,6 +120,8 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         self.dontUseNativeDialog.setChecked(
             SettingsManager.get("system/DontUseNativeDialog", False))
 
+        self._refresh_debug_logs_ui()
+
     def _configure_signals(self):
         """
         Conecta os sinais dos widgets aos respectivos manipuladores:
@@ -147,6 +153,10 @@ class PageGeneral(QWidget, Ui_PageGeneral):
 
         self.dontUseNativeDialog.clicked.connect(
             lambda: SettingsManager.set("system/DontUseNativeDialog", self.dontUseNativeDialog.isChecked()))
+
+        self.btn_open_debug_logs.clicked.connect(self._handle_open_debug_logs)
+        self.btn_delete_old_debug_logs.clicked.connect(self._handle_delete_old_debug_logs)
+        self.btn_delete_all_debug_logs.clicked.connect(self._handle_delete_all_debug_logs)
 
     def _handle_toggled_spellcheck(self, toggled):
         SettingsManager.set("system/spellCheckers", toggled)
@@ -219,3 +229,80 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         """
         DownloadManager.restore_path()
         self.download_path.setText(DownloadManager.get_path())
+
+    def _get_debug_logs_dir(self) -> Path:
+        base_dir = Path(
+            QStandardPaths.writableLocation(
+                QStandardPaths.StandardLocation.AppLocalDataLocation
+            )
+        )
+        return base_dir / __appname__ / "crash-dumps"
+
+    def _refresh_debug_logs_ui(self):
+        logs_dir = self._get_debug_logs_dir()
+        logs_dir.mkdir(parents=True, exist_ok=True)
+        self.debug_logs_path.setText(str(logs_dir))
+
+        zip_count = len(list(logs_dir.glob("*.zip")))
+        has_faulthandler = (logs_dir / "faulthandler.log").exists()
+        details = _("Files: {count} crash report(s){faulthandler}.").format(
+            count=zip_count,
+            faulthandler=_(" + faulthandler.log") if has_faulthandler else ""
+        )
+        self.label_debug_logs_hint.setText(
+            _("Crash reports are stored in this folder. You can open the directory or clean old files.\n{details}").format(
+                details=details
+            )
+        )
+
+    def _handle_open_debug_logs(self):
+        logs_dir = self._get_debug_logs_dir()
+        logs_dir.mkdir(parents=True, exist_ok=True)
+        QDesktopServices.openUrl(QUrl.fromLocalFile(str(logs_dir)))
+
+    def _handle_delete_old_debug_logs(self):
+        logs_dir = self._get_debug_logs_dir()
+        logs_dir.mkdir(parents=True, exist_ok=True)
+
+        cutoff = datetime.now() - timedelta(days=30)
+        removed = 0
+
+        for zip_file in logs_dir.glob("*.zip"):
+            modified = datetime.fromtimestamp(zip_file.stat().st_mtime)
+            if modified < cutoff:
+                zip_file.unlink(missing_ok=True)
+                removed += 1
+
+        QMessageBox.information(
+            self,
+            _("Debug logs"),
+            _("Deleted {count} old crash report(s) (older than 30 days).").format(
+                count=removed
+            )
+        )
+        self._refresh_debug_logs_ui()
+
+    def _handle_delete_all_debug_logs(self):
+        confirm = QMessageBox.question(
+            self,
+            _("Debug logs"),
+            _("Delete all crash reports and debug logs?")
+        )
+        if confirm != QMessageBox.StandardButton.Yes:
+            return
+
+        logs_dir = self._get_debug_logs_dir()
+        logs_dir.mkdir(parents=True, exist_ok=True)
+
+        removed = 0
+        for item in logs_dir.iterdir():
+            if item.is_file():
+                item.unlink(missing_ok=True)
+                removed += 1
+
+        QMessageBox.information(
+            self,
+            _("Debug logs"),
+            _("Deleted {count} file(s).").format(count=removed)
+        )
+        self._refresh_debug_logs_ui()
