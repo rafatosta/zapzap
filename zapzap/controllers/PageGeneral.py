@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from pathlib import Path
 
-from PyQt6.QtCore import Qt, QUrl, QStandardPaths
+from PyQt6.QtCore import Qt, QUrl
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWidgets import QWidget, QApplication, QStyle, QLabel, QPushButton, QHBoxLayout, QLineEdit, QMessageBox
 from zapzap.services.SetupManager import SetupManager
@@ -10,7 +10,7 @@ from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.DownloadManager import DownloadManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.views.ui_page_general import Ui_PageGeneral
-from zapzap import __appname__
+from zapzap.debug import crash_handler
 
 from gettext import gettext as _
 
@@ -231,12 +231,7 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         self.download_path.setText(DownloadManager.get_path())
 
     def _get_debug_logs_dir(self) -> Path:
-        base_dir = Path(
-            QStandardPaths.writableLocation(
-                QStandardPaths.StandardLocation.AppLocalDataLocation
-            )
-        )
-        return base_dir / __appname__ / "crash-dumps"
+        return Path(crash_handler.dump_dir)
 
     def _refresh_debug_logs_ui(self):
         logs_dir = self._get_debug_logs_dir()
