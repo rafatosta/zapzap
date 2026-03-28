@@ -1,8 +1,5 @@
 from gettext import gettext as _
 
-# Import principal da aplicação
-import zapzap
-
 # Imports do PyQt6
 from PyQt6.QtCore import Qt, QUrl
 from PyQt6.QtGui import QDesktopServices
@@ -25,6 +22,7 @@ from PyQt6.QtWidgets import (
 
 # Serviços da aplicação
 from zapzap.services.EnvironmentManager import EnvironmentManager
+from zapzap.services.AutostartManager import AutostartManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SetupManager import SetupManager
 
@@ -203,6 +201,12 @@ class _OnboardingWizardDialog(QDialog):
         self.cb_spellcheck.setChecked(
             SettingsManager.get("system/spellCheckers", True))
 
+        self.cb_start_system = QCheckBox(
+            _("Start automatically with the system"), page)
+        self.cb_start_system.setChecked(
+            SettingsManager.get("system/start_system", False)
+        )
+
         self.cb_wayland = QCheckBox(_("Prefer Wayland (when available)"), page)
         self.cb_wayland.setChecked(
             SettingsManager.get("system/wayland", False))
@@ -213,15 +217,12 @@ class _OnboardingWizardDialog(QDialog):
             self.cb_wayland.setToolTip(
                 _("Use Flatseal to change this mode of execution"))
 
-        self.cb_open_site = QCheckBox(
-            _("Open ZapZap website after setup"), page)
-
         # Layout
         card_layout.addWidget(self.cb_start_background, 0, 0, 1, 2)
         card_layout.addWidget(self.cb_quit_in_close, 1, 0, 1, 2)
         card_layout.addWidget(self.cb_spellcheck, 2, 0, 1, 2)
-        card_layout.addWidget(self.cb_wayland, 3, 0, 1, 2)
-        card_layout.addWidget(self.cb_open_site, 4, 0, 1, 2)
+        card_layout.addWidget(self.cb_start_system, 3, 0, 1, 2)
+        card_layout.addWidget(self.cb_wayland, 4, 0, 1, 2)
 
         layout.addWidget(card)
 
@@ -256,27 +257,45 @@ class _OnboardingWizardDialog(QDialog):
         # Dependentes
         self.cb_message_preview = QCheckBox(
             _("Show message content in notifications"), page)
+        self.cb_message_preview.setChecked(
+            SettingsManager.get("notification/show_msg", True)
+        )
         self.cb_show_name = QCheckBox(
             _("Show contact name in notifications"), page)
+        self.cb_show_name.setChecked(
+            SettingsManager.get("notification/show_name", True)
+        )
         self.cb_show_photo = QCheckBox(
             _("Show contact photo in notifications"), page)
+        self.cb_show_photo.setChecked(
+            SettingsManager.get("notification/show_photo", True)
+        )
+        self.cb_donation_message = QCheckBox(
+            _("Show donation reminders"), page)
+        self.cb_donation_message.setChecked(
+            SettingsManager.get("notification/donation_message", False)
+        )
 
         # Estado inicial
         self.cb_message_preview.setEnabled(self.cb_notifications.isChecked())
         self.cb_show_name.setEnabled(self.cb_notifications.isChecked())
         self.cb_show_photo.setEnabled(self.cb_notifications.isChecked())
+        self.cb_donation_message.setEnabled(self.cb_notifications.isChecked())
 
         # Binding reativo simples
         self.cb_notifications.toggled.connect(
             self.cb_message_preview.setEnabled)
         self.cb_notifications.toggled.connect(self.cb_show_name.setEnabled)
         self.cb_notifications.toggled.connect(self.cb_show_photo.setEnabled)
+        self.cb_notifications.toggled.connect(
+            self.cb_donation_message.setEnabled)
 
         # Adiciona ao layout
         card_layout.addWidget(self.cb_notifications)
         card_layout.addWidget(self.cb_message_preview)
         card_layout.addWidget(self.cb_show_name)
         card_layout.addWidget(self.cb_show_photo)
+        card_layout.addWidget(self.cb_donation_message)
 
         layout.addWidget(card)
         layout.addStretch()
@@ -387,6 +406,9 @@ class _OnboardingWizardDialog(QDialog):
                             self.cb_start_background.isChecked())
         SettingsManager.set("system/quit_in_close",
                             self.cb_quit_in_close.isChecked())
+        SettingsManager.set("system/start_system",
+                            self.cb_start_system.isChecked())
+        AutostartManager.create_desktop_file(self.cb_start_system.isChecked())
         SettingsManager.set("notification/app",
                             self.cb_notifications.isChecked())
         SettingsManager.set("notification/show_msg",
@@ -395,16 +417,11 @@ class _OnboardingWizardDialog(QDialog):
                             self.cb_show_name.isChecked())
         SettingsManager.set("notification/show_photo",
                             self.cb_show_photo.isChecked())
+        SettingsManager.set("notification/donation_message",
+                            self.cb_donation_message.isChecked())
         SettingsManager.set("system/spellCheckers",
                             self.cb_spellcheck.isChecked())
         SettingsManager.set("system/wayland", self.cb_wayland.isChecked())
-
-        # Sempre define como False (controle externo via checkbox)
-        SettingsManager.set("website/open_page", False)
-
-        # Ação opcional pós-onboarding
-        if self.cb_open_site.isChecked():
-            QDesktopServices.openUrl(QUrl(zapzap.__website__))
 
 
 class OnboardingDialog:
