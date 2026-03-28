@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-27 17:07-0300\n"
+"POT-Creation-Date: 2026-03-27 17:30-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -658,7 +658,7 @@ msgstr "Versão {id} - {version_type}"
 msgid "Make a donation"
 msgstr "Faça uma doação"
 
-#: zapzap/views/ui_settings.py:130 zapzap/controllers/OnboardingDialog.py:74
+#: zapzap/views/ui_settings.py:130 zapzap/controllers/OnboardingDialog.py:99
 msgid "Back"
 msgstr "Voltar"
 
@@ -986,7 +986,7 @@ msgid "Save file"
 msgstr "Salvar arquivo"
 
 #: zapzap/controllers/PageGeneral.py:40
-#: zapzap/controllers/OnboardingDialog.py:170
+#: zapzap/controllers/OnboardingDialog.py:214
 msgid "Use Flatseal to change this mode of execution"
 msgstr "Use Flatseal para alterar esse modo de execução"
 
@@ -1009,13 +1009,13 @@ msgid "Select and copy this command in your terminal"
 msgstr "Selecione e copie este comando em seu terminal"
 
 #: zapzap/controllers/PageGeneral.py:64
-#: zapzap/controllers/OnboardingDialog.py:261
-#: zapzap/controllers/OnboardingDialog.py:398
+#: zapzap/controllers/OnboardingDialog.py:311
+#: zapzap/controllers/OnboardingDialog.py:498
 msgid "Copy command"
 msgstr "Copiar comando"
 
 #: zapzap/controllers/PageGeneral.py:72
-#: zapzap/controllers/OnboardingDialog.py:267
+#: zapzap/controllers/OnboardingDialog.py:316
 msgid "Open Flatseal page"
 msgstr "Abrir página do Flatseal"
 
@@ -1238,24 +1238,24 @@ msgstr "Recarregar páginas"
 msgid "New conversation by phone number"
 msgstr "Nova conversa por número de telefone"
 
-#: zapzap/controllers/OnboardingDialog.py:32
-#: zapzap/controllers/OnboardingDialog.py:51
+#: zapzap/controllers/OnboardingDialog.py:48
+#: zapzap/controllers/OnboardingDialog.py:72
 msgid "Welcome to ZapZap"
 msgstr "Bem-vindo ao ZapZap"
 
-#: zapzap/controllers/OnboardingDialog.py:55
+#: zapzap/controllers/OnboardingDialog.py:77
 msgid "Quick setup for your preferred environment"
 msgstr "Configuração rápida para seu ambiente preferido"
 
-#: zapzap/controllers/OnboardingDialog.py:75
+#: zapzap/controllers/OnboardingDialog.py:100
 msgid "Next"
 msgstr "Avançar"
 
-#: zapzap/controllers/OnboardingDialog.py:76
+#: zapzap/controllers/OnboardingDialog.py:101
 msgid "Finish"
 msgstr "Concluir"
 
-#: zapzap/controllers/OnboardingDialog.py:118
+#: zapzap/controllers/OnboardingDialog.py:155
 msgid ""
 "Let's configure ZapZap in a few steps.\n"
 "\n"
@@ -1275,59 +1275,59 @@ msgstr ""
 "\n"
 "Ambiente: {}"
 
-#: zapzap/controllers/OnboardingDialog.py:139
+#: zapzap/controllers/OnboardingDialog.py:180
 msgid "Personalize your experience · General"
 msgstr "Personalize sua experiência · Geral"
 
-#: zapzap/controllers/OnboardingDialog.py:150
+#: zapzap/controllers/OnboardingDialog.py:191
 msgid "Start hidden in background"
 msgstr "Iniciar oculto em segundo plano"
 
-#: zapzap/controllers/OnboardingDialog.py:156
+#: zapzap/controllers/OnboardingDialog.py:197
 msgid "Quit app when closing the window"
 msgstr "Sair do aplicativo ao fechar a janela"
 
-#: zapzap/controllers/OnboardingDialog.py:162
+#: zapzap/controllers/OnboardingDialog.py:202
 msgid "Enable spell checker"
 msgstr "Ativar corretor ortográfico"
 
-#: zapzap/controllers/OnboardingDialog.py:166
+#: zapzap/controllers/OnboardingDialog.py:206
 msgid "Prefer Wayland (when available)"
 msgstr "Preferir Wayland (quando disponível)"
 
-#: zapzap/controllers/OnboardingDialog.py:173
+#: zapzap/controllers/OnboardingDialog.py:217
 msgid "Open ZapZap website after setup"
 msgstr "Abrir o site do ZapZap após a configuração"
 
-#: zapzap/controllers/OnboardingDialog.py:181
+#: zapzap/controllers/OnboardingDialog.py:229
 msgid "You can change all these options later in Settings."
 msgstr "Você pode alterar todas essas opções depois em Configurações."
 
-#: zapzap/controllers/OnboardingDialog.py:196
+#: zapzap/controllers/OnboardingDialog.py:244
 msgid "Personalize your experience · Notifications"
 msgstr "Personalize sua experiência · Notificações"
 
-#: zapzap/controllers/OnboardingDialog.py:206
+#: zapzap/controllers/OnboardingDialog.py:252
 msgid "Enable app notifications"
 msgstr "Ativar notificações de aplicativos"
 
-#: zapzap/controllers/OnboardingDialog.py:210
+#: zapzap/controllers/OnboardingDialog.py:258
 msgid "Show message content in notifications"
 msgstr "Mostrar o conteúdo da mensagem nas notificações"
 
-#: zapzap/controllers/OnboardingDialog.py:218
+#: zapzap/controllers/OnboardingDialog.py:260
 msgid "Show contact name in notifications"
 msgstr "Mostrar nome do contato nas notificações"
 
-#: zapzap/controllers/OnboardingDialog.py:224
+#: zapzap/controllers/OnboardingDialog.py:262
 msgid "Show contact photo in notifications"
 msgstr "Mostrar foto do contato nas notificações"
 
-#: zapzap/controllers/OnboardingDialog.py:239
+#: zapzap/controllers/OnboardingDialog.py:293
 msgid "Flatpak sandbox permissions"
 msgstr "Permissões de sandbox Flatpak"
 
-#: zapzap/controllers/OnboardingDialog.py:250
+#: zapzap/controllers/OnboardingDialog.py:300
 msgid ""
 "If opening files, drag-and-drop or uploads fail, this is usually caused by "
 "sandbox permissions."
@@ -1335,11 +1335,11 @@ msgstr ""
 "Se abrir arquivos, arrastar e soltar ou uploads falharem, isso geralmente é "
 "causado por permissões de sandbox."
 
-#: zapzap/controllers/OnboardingDialog.py:282
+#: zapzap/controllers/OnboardingDialog.py:334
 msgid "Setup complete"
 msgstr "Configuração concluída"
 
-#: zapzap/controllers/OnboardingDialog.py:291
+#: zapzap/controllers/OnboardingDialog.py:338
 msgid ""
 "Your preferences were saved. You can review and change them at any time in "
 "Settings."
@@ -1347,19 +1347,19 @@ msgstr ""
 "Suas preferências foram salvas. Você pode revisar e alterá-las a qualquer "
 "momento em Configurações."
 
-#: zapzap/controllers/OnboardingDialog.py:316
+#: zapzap/controllers/OnboardingDialog.py:371
 msgid "Step {}/{}"
 msgstr "Etapa {}/{}"
 
-#: zapzap/controllers/OnboardingDialog.py:389
+#: zapzap/controllers/OnboardingDialog.py:487
 msgid "Flatpak sandbox"
 msgstr "Sandbox do Flatpak"
 
-#: zapzap/controllers/OnboardingDialog.py:391
+#: zapzap/controllers/OnboardingDialog.py:490
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap está rodando no Flatpak sandbox."
 
-#: zapzap/controllers/OnboardingDialog.py:394
+#: zapzap/controllers/OnboardingDialog.py:492
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
@@ -1367,11 +1367,11 @@ msgstr ""
 "Alguns recursos, como abrir arquivos ou arrastar e soltar, podem exigir "
 "permissões adicionais."
 
-#: zapzap/controllers/OnboardingDialog.py:397
+#: zapzap/controllers/OnboardingDialog.py:496
 msgid "Instructions"
 msgstr "Instruções"
 
-#: zapzap/controllers/OnboardingDialog.py:399
+#: zapzap/controllers/OnboardingDialog.py:499
 msgid "Close"
 msgstr "Fechar"
 
