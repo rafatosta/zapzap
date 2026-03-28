@@ -1,16 +1,11 @@
 /* ==UserStyle==
-@name         WhatsApp Nord Hybrid (Light + Dark)
+@name         WhatsApp Nord (Light + Dark)
 @version      20260328
 @namespace    https://userstyles.world/user/rafatosta
-@description  Nord Theme adaptativo (Dark + Light) estável
+@description  Tema Nord com variantes claras e escuras para WhatsApp Web.
 @license      MIT
 ==/UserStyle== */
 
-@-moz-document url-prefix("https://web.whatsapp.com/") {
-
-    /* =========================
-   🎨 BASE NORD (tokens)
-========================= */
     :root {
         /* Polar Night */
         --nord0: #2e3440;
@@ -24,53 +19,62 @@
         --nord6: #eceff4;
 
         /* Frost */
+        --nord7: #8fbcbb;
         --nord8: #88c0d0;
         --nord9: #81a1c1;
+        --nord10: #5e81ac;
 
         /* Aurora */
         --nord11: #bf616a;
         --nord14: #a3be8c;
     }
 
-    /* =========================
-   🌙 DARK MODE
-========================= */
+    /* Light theme (padrão) */
+    :root,
+    body:not(.dark) {
+        --bg-base: var(--nord6);
+        --bg-surface: var(--nord5);
+        --bg-surface-2: var(--nord4);
+        --bg-hover: #cdd6e4;
+
+        --fg-primary: var(--nord0);
+        --fg-secondary: var(--nord3);
+
+        --accent: var(--nord10);
+        --accent-hover: var(--nord9);
+        --message-out: #d8e8fb;
+    }
+
+    /* Dark theme (acionado por body.dark do app) */
+    body.dark {
+        --bg-base: var(--nord0);
+        --bg-surface: var(--nord1);
+        --bg-surface-2: var(--nord2);
+        --bg-hover: var(--nord3);
+
+        --fg-primary: var(--nord6);
+        --fg-secondary: var(--nord4);
+
+        --accent: var(--nord8);
+        --accent-hover: var(--nord7);
+        --message-out: #36506b;
+    }
+
+    /* Fallback para navegadores que respeitam esquema preferido */
     @media (prefers-color-scheme: dark) {
-        :root {
+        :root:not(.light) {
             --bg-base: var(--nord0);
             --bg-surface: var(--nord1);
             --bg-surface-2: var(--nord2);
             --bg-hover: var(--nord3);
-
             --fg-primary: var(--nord6);
             --fg-secondary: var(--nord4);
-
             --accent: var(--nord8);
-            --accent-hover: var(--nord9);
+            --accent-hover: var(--nord7);
+            --message-out: #36506b;
         }
     }
 
-    /* =========================
-   🌞 LIGHT MODE
-========================= */
-    @media (prefers-color-scheme: light) {
-        :root {
-            --bg-base: var(--nord6);
-            --bg-surface: var(--nord5);
-            --bg-surface-2: var(--nord4);
-            --bg-hover: #cfd6e2;
-
-            --fg-primary: var(--nord0);
-            --fg-secondary: var(--nord3);
-
-            --accent: #5e81ac;
-            --accent-hover: #81a1c1;
-        }
-    }
-
-    /* =========================
-   🧠 TOKENS WHATSAPP
-========================= */
     * {
         --background-default: var(--bg-base) !important;
         --conversation-panel-background: var(--bg-base) !important;
@@ -81,43 +85,32 @@
 
         --incoming-background: var(--bg-surface) !important;
         --incoming-background-deeper: var(--bg-surface-2) !important;
-
-        --outgoing-background: var(--accent-hover) !important;
+        --outgoing-background: var(--message-out) !important;
 
         --background-default-hover: var(--bg-surface-2) !important;
         --background-default-active: var(--bg-hover) !important;
 
-        /* TEXTO */
         --primary: var(--fg-primary) !important;
         --secondary: var(--fg-secondary) !important;
         --secondary-lighter: var(--fg-secondary) !important;
-
         --system-message-text: var(--fg-secondary) !important;
 
-        /* UI */
         --button-primary-background: var(--accent) !important;
         --button-primary-background-hover: var(--accent-hover) !important;
-
         --unread-marker-background: var(--accent) !important;
 
         --icon: var(--fg-secondary) !important;
-
         --WDS-accent: var(--accent) !important;
         --WDS-red-300: var(--nord11) !important;
         --WDS-green-300: var(--nord14) !important;
     }
 
-    /* =========================
-   🔥 FALLBACK CONTROLADO
-========================= */
-
-    /* fundo geral */
     body,
     #app {
         background-color: var(--bg-base) !important;
+        color: var(--fg-primary) !important;
     }
 
-    /* superfícies */
     header,
     footer,
     main,
@@ -126,25 +119,6 @@
         background-color: var(--bg-surface) !important;
     }
 
-    /* elementos com inline style */
-    div[style*="background"] {
-        background-color: var(--bg-surface) !important;
-    }
-
-    /* =========================
-   ✍️ TEXTO (ESTÁVEL)
-========================= */
-    body {
-        color: var(--fg-primary) !important;
-    }
-
-    [style*="background"] {
-        color: var(--fg-primary) !important;
-    }
-
-    /* =========================
-   🔘 INPUT / BOTÕES
-========================= */
     button,
     input,
     textarea {
@@ -152,28 +126,17 @@
         color: var(--fg-primary) !important;
     }
 
-    /* =========================
-   🔗 LINKS
-========================= */
     a {
         color: var(--accent) !important;
     }
 
-    /* =========================
-   🎯 ICONES
-========================= */
     svg {
         fill: var(--fg-secondary) !important;
     }
 
-    /* =========================
-   🛡️ PROTEÇÃO DE MÍDIA
-========================= */
     img,
     video,
     canvas {
         background: transparent !important;
         color: initial !important;
     }
-
-}

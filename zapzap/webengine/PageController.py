@@ -2,6 +2,9 @@ from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineSettings
 from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
 
+import json
+from pathlib import Path
+
 from zapzap import __whatsapp_url__
 from zapzap.services.AddonsManager import AddonsManager
 from zapzap.services.CustomizationsManager import CustomizationsManager
@@ -219,6 +222,7 @@ class PageController(QWebEnginePage):
         if success:
             # Injeta os addons
             AddonsManager.inject_addons(self)
+            self._apply_builtin_nord_theme()
             self.apply_customizations()
 
             # Permite notificações automaticamente
@@ -227,6 +231,36 @@ class PageController(QWebEnginePage):
                 QWebEnginePage.Feature.Notifications,
                 QWebEnginePage.PermissionPolicy.PermissionGrantedByUser
             )
+
+
+    @staticmethod
+    def _load_builtin_nord_css() -> str:
+        """Carrega o CSS Nord embutido para aplicação direta na página."""
+        css_path = Path(__file__).resolve().parent.parent / "resources" / "themes" / "nord.css"
+        try:
+            return css_path.read_text(encoding="utf-8")
+        except OSError:
+            return ""
+
+    def _apply_builtin_nord_theme(self):
+        """Injeta o tema Nord diretamente no DOM do WhatsApp Web."""
+        css = self._load_builtin_nord_css()
+        if not css:
+            return
+
+        script = f"""
+            (function() {{
+                var id = 'zapzap-built-in-nord-theme';
+                var style = document.getElementById(id);
+                if (!style) {{
+                    style = document.createElement('style');
+                    style.id = id;
+                    document.head.appendChild(style);
+                }}
+                style.textContent = {json.dumps(css)};
+            }})();
+        """
+        self.runJavaScript(script)
 
     def apply_customizations(self):
         self.apply_custom_css()

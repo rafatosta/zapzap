@@ -63,6 +63,7 @@ ZapZap extends WhatsApp Web with additional features:
   - open customization folders directly
 - Supports many userstyle files (`.user.css`) by extracting WhatsApp-targeted `@-moz-document` blocks
 - Page actions: `Save`, `Save and reload`, `Reload`
+- Includes a built-in Nord palette theme (`zapzap/resources/themes/nord.css`) with light and dark variants automatically applied in WhatsApp Web
 
 Customization files are stored in the app local data path under:
 - `customizations/global/css`
