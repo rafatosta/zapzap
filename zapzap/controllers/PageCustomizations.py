@@ -10,6 +10,7 @@ from PyQt6.QtWidgets import (
     QDialogButtonBox,
     QFileDialog,
     QFormLayout,
+    QHBoxLayout,
     QHeaderView,
     QLineEdit,
     QMessageBox,
@@ -17,6 +18,7 @@ from PyQt6.QtWidgets import (
     QTextEdit,
     QVBoxLayout,
     QWidget,
+    QPushButton,
 )
 from zapzap.services.CssPreviewService import CssPreviewService
 from zapzap.services.CustomizationsManager import CustomizationsManager
@@ -507,7 +509,14 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
 
         return url_input.text().strip(), file_name_input.text().strip()
 
-    def _open_asset_editor(self, asset_type: str, title: str, initial_name: str, initial_content: str):
+    def _open_asset_editor(
+        self,
+        asset_type: str,
+        title: str,
+        initial_name: str,
+        initial_content: str,
+        on_execute=None,
+    ):
         extension = "css" if asset_type == CustomizationsManager.TYPE_CSS else "js"
 
         dialog = QDialog(self)
@@ -528,12 +537,40 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
         editor.setPlainText(initial_content)
         layout.addWidget(editor)
 
+        tools_layout = QHBoxLayout()
+        import_file_button = QPushButton(
+            _("Import .css") if asset_type == CustomizationsManager.TYPE_CSS else _("Import .js"),
+            dialog,
+        )
+        import_url_button = QPushButton(_("Import from URL"), dialog)
+        open_folder_button = QPushButton(_("Open folder"), dialog)
+
+        import_file_button.clicked.connect(lambda: self._import_asset(asset_type))
+        import_url_button.clicked.connect(lambda: self._import_asset_from_url(asset_type))
+        open_folder_button.clicked.connect(lambda: self._open_assets_folder(asset_type))
+
+        tools_layout.addWidget(import_file_button)
+        tools_layout.addWidget(import_url_button)
+        tools_layout.addWidget(open_folder_button)
+        tools_layout.addStretch()
+        layout.addLayout(tools_layout)
+
         button_box = QDialogButtonBox(dialog)
+        execute_button = button_box.addButton(_("Execute"), QDialogButtonBox.ButtonRole.ActionRole)
         button_box.addButton(QDialogButtonBox.StandardButton.Save)
         button_box.addButton(QDialogButtonBox.StandardButton.Cancel)
         button_box.accepted.connect(dialog.accept)
         button_box.rejected.connect(dialog.reject)
         layout.addWidget(button_box)
+
+        def _execute():
+            if not on_execute:
+                self._show_feedback(_("Save the file first to execute."))
+                return
+
+            on_execute(file_name_input.text().strip(), editor.toPlainText())
+
+        execute_button.clicked.connect(_execute)
 
         if dialog.exec() != QDialog.DialogCode.Accepted:
             return None, None
@@ -597,33 +634,69 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
             return
 
         default_name = "custom.css" if asset_type == CustomizationsManager.TYPE_CSS else "custom.js"
+        state = {"file_name": None}
+
+        def _save_asset(file_name: str, content: str):
+            if not file_name:
+                self._show_feedback(_("File name cannot be empty."))
+                return None
+
+            try:
+                if state["file_name"] is None:
+                    target_path = CustomizationsManager.create_asset_file(
+                        file_name,
+                        content,
+                        self.current_scope,
+                        asset_type,
+                        self.current_account_id,
+                    )
+                    state["file_name"] = os.path.basename(target_path)
+                else:
+                    if file_name != state["file_name"]:
+                        state["file_name"] = CustomizationsManager.rename_asset_file(
+                            state["file_name"],
+                            file_name,
+                            self.current_scope,
+                            asset_type,
+                            self.current_account_id,
+                        )
+
+                    CustomizationsManager.write_asset_file_content(
+                        state["file_name"],
+                        content,
+                        self.current_scope,
+                        asset_type,
+                        self.current_account_id,
+                    )
+            except ValueError as error:
+                self._show_userstyle_or_default_error(error, _("Could not save file."))
+                return None
+
+            self._refresh_asset_lists()
+            return state["file_name"]
+
+        def _execute_asset(file_name: str, content: str):
+            final_name = _save_asset(file_name, content)
+            if not final_name:
+                return
+            self._reload_pages()
+            self._show_feedback(_("Theme applied: {}").format(final_name))
+
         file_name, content = self._open_asset_editor(
             asset_type,
-            _("Create file"),
+            _("Create theme"),
             default_name,
             "",
+            on_execute=_execute_asset,
         )
         if file_name is None:
             return
 
-        if not file_name:
-            self._show_feedback(_("File name cannot be empty."))
+        final_name = _save_asset(file_name, content)
+        if not final_name:
             return
 
-        try:
-            target_path = CustomizationsManager.create_asset_file(
-                file_name,
-                content,
-                self.current_scope,
-                asset_type,
-                self.current_account_id,
-            )
-        except ValueError as error:
-            self._show_userstyle_or_default_error(error, _("Could not create file."))
-            return
-
-        self._refresh_asset_lists()
-        self._show_feedback(_("File created: {}").format(os.path.basename(target_path)))
+        self._show_feedback(_("Theme saved: {}").format(final_name))
 
     def _edit_selected_asset(self, asset_type: str):
         if self._is_account_scope_locked():
@@ -645,11 +718,24 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
             return
 
         title = _("Edit CSS: {}") if asset_type == CustomizationsManager.TYPE_CSS else _("Edit JavaScript: {}")
+        def _execute_asset(file_name: str, content: str):
+            saved_name = self._save_asset_from_editor(
+                asset_type,
+                old_file_name,
+                file_name,
+                content,
+            )
+            if not saved_name:
+                return
+            self._reload_pages()
+            self._show_feedback(_("Theme applied: {}").format(saved_name))
+
         new_file_name, content = self._open_asset_editor(
             asset_type,
             title.format(old_file_name),
             old_file_name,
             initial_content,
+            on_execute=_execute_asset,
         )
         if new_file_name is None:
             return
@@ -658,6 +744,24 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
             self._show_feedback(_("File name cannot be empty."))
             return
 
+        final_name = self._save_asset_from_editor(
+            asset_type,
+            old_file_name,
+            new_file_name,
+            content,
+        )
+        if not final_name:
+            return
+
+        self._show_feedback(_("Theme saved: {}").format(final_name))
+
+    def _save_asset_from_editor(
+        self,
+        asset_type: str,
+        old_file_name: str,
+        new_file_name: str,
+        content: str,
+    ):
         try:
             final_name = old_file_name
             if new_file_name != old_file_name:
@@ -678,10 +782,10 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
             )
         except ValueError as error:
             self._show_userstyle_or_default_error(error, _("Could not save file."))
-            return
+            return None
 
         self._refresh_asset_lists()
-        self._show_feedback(_("File saved: {}").format(final_name))
+        return final_name
 
     def _open_assets_folder(self, asset_type: str):
         path = CustomizationsManager.get_assets_dir(

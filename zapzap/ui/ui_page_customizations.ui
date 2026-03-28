@@ -23,7 +23,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Customizations</string>
+      <string>Personalizações</string>
      </property>
     </widget>
    </item>
@@ -101,20 +101,20 @@
      <item>
       <widget class="QGroupBox" name="css_files_group">
        <property name="title">
-        <string>CSS</string>
+        <string>Temas (CSS)</string>
        </property>
        <layout class="QVBoxLayout" name="css_panel_layout">
         <item>
          <widget class="QCheckBox" name="css_enabled">
           <property name="text">
-           <string>Enable custom CSS</string>
+           <string>Ativar temas CSS</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QGroupBox" name="css_preview_group">
           <property name="title">
-           <string>CSS Preview</string>
+           <string>Pré-visualização do tema</string>
           </property>
           <layout class="QVBoxLayout" name="css_preview_group_layout">
            <item>
@@ -284,21 +284,21 @@
           <item>
            <widget class="QPushButton" name="btn_css_create">
             <property name="text">
-             <string>Create</string>
+             <string>Novo tema</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="btn_css_edit">
             <property name="text">
-             <string>Edit</string>
+             <string>Editar tema</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="btn_css_delete">
             <property name="text">
-             <string>Delete</string>
+             <string>Excluir tema</string>
             </property>
            </widget>
           </item>
@@ -322,21 +322,21 @@
           <item>
            <widget class="QPushButton" name="btn_css_import">
             <property name="text">
-             <string>Import .css</string>
+             <string>Importar arquivo .css</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="btn_css_import_url">
             <property name="text">
-             <string>Import from URL</string>
+             <string>Importar via URL</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="btn_css_folder">
             <property name="text">
-             <string>Open folder</string>
+             <string>Abrir pasta local</string>
             </property>
            </widget>
           </item>
@@ -361,13 +361,13 @@
      <item>
       <widget class="QGroupBox" name="js_files_group">
        <property name="title">
-        <string>JavaScript</string>
+        <string>Scripts (JS opcional)</string>
        </property>
        <layout class="QVBoxLayout" name="js_panel_layout">
         <item>
          <widget class="QCheckBox" name="js_enabled">
           <property name="text">
-           <string>Enable custom JavaScript</string>
+           <string>Ativar scripts JavaScript</string>
           </property>
          </widget>
         </item>
@@ -421,21 +421,21 @@
           <item>
            <widget class="QPushButton" name="btn_js_create">
             <property name="text">
-             <string>Create</string>
+             <string>Novo tema</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="btn_js_edit">
             <property name="text">
-             <string>Edit</string>
+             <string>Editar tema</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="btn_js_delete">
             <property name="text">
-             <string>Delete</string>
+             <string>Excluir tema</string>
             </property>
            </widget>
           </item>
@@ -459,21 +459,21 @@
           <item>
            <widget class="QPushButton" name="btn_js_import">
             <property name="text">
-             <string>Import .js</string>
+             <string>Importar arquivo .js</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="btn_js_import_url">
             <property name="text">
-             <string>Import from URL</string>
+             <string>Importar via URL</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="btn_js_folder">
             <property name="text">
-             <string>Open folder</string>
+             <string>Abrir pasta local</string>
             </property>
            </widget>
           </item>
@@ -515,7 +515,7 @@
      <item>
       <widget class="QPushButton" name="btn_save_reload">
        <property name="text">
-        <string>Save and reload</string>
+        <string>Aplicar tema</string>
        </property>
       </widget>
      </item>
