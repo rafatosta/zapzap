@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-28 09:48-0300\n"
+"POT-Creation-Date: 2026-03-28 20:48-0300\n"
 "PO-Revision-Date: 2025-08-03 20:05+0200\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -419,6 +419,7 @@ msgstr ""
 
 #: zapzap/views/ui_page_customizations.py:259
 #: zapzap/views/ui_page_customizations.py:273
+#: zapzap/views/ui_page_general.py:177
 #: zapzap/controllers/DialogDumpHandler.py:50
 #: zapzap/controllers/DownloadDialog.py:50
 #, fuzzy
@@ -454,70 +455,97 @@ msgstr ""
 msgid "Save"
 msgstr "Salva"
 
-#: zapzap/views/ui_page_general.py:131 zapzap/views/ui_settings.py:157
+#: zapzap/views/ui_page_general.py:159 zapzap/views/ui_settings.py:157
 msgid "General"
 msgstr "Generale"
 
-#: zapzap/views/ui_page_general.py:132
+#: zapzap/views/ui_page_general.py:160
 msgid "Download Directory"
 msgstr "Cartella di download"
 
-#: zapzap/views/ui_page_general.py:133
+#: zapzap/views/ui_page_general.py:161
 msgid "Set new folder for downloads"
 msgstr "Imposta una nuova cartella per i download"
 
-#: zapzap/views/ui_page_general.py:134
+#: zapzap/views/ui_page_general.py:162
 msgid "Define default folder for downloads"
 msgstr "Definisci la cartella predefinita per i download"
 
-#: zapzap/views/ui_page_general.py:135
+#: zapzap/views/ui_page_general.py:163
 msgid "Spellchecker"
 msgstr "Correttore ortografico"
 
-#: zapzap/views/ui_page_general.py:136
+#: zapzap/views/ui_page_general.py:164
 msgid "Directory"
 msgstr "Cartella"
 
-#: zapzap/views/ui_page_general.py:137
+#: zapzap/views/ui_page_general.py:165
 msgid "Recognizes only compiled dictionaries (.bdic)"
 msgstr "Riconosce solo dizionari compilati (.bdic)"
 
-#: zapzap/views/ui_page_general.py:138
+#: zapzap/views/ui_page_general.py:166
 msgid "Define standard dictionaries"
 msgstr "Definisci i dizionari standard"
 
-#: zapzap/views/ui_page_general.py:139
+#: zapzap/views/ui_page_general.py:167
 msgid "Note: Required restart."
 msgstr "Nota: Riavvio richiesto."
 
-#: zapzap/views/ui_page_general.py:140
+#: zapzap/views/ui_page_general.py:168
 msgid "Behavior"
 msgstr "Comportamento"
 
-#: zapzap/views/ui_page_general.py:141
+#: zapzap/views/ui_page_general.py:169
 #, fuzzy
 msgid "Confirm before closing the window"
 msgstr "Chiudi completamente alla chiusura della finestra"
 
-#: zapzap/views/ui_page_general.py:142
+#: zapzap/views/ui_page_general.py:170
 msgid "Close when closing the window"
 msgstr "Chiudi completamente alla chiusura della finestra"
 
-#: zapzap/views/ui_page_general.py:143
+#: zapzap/views/ui_page_general.py:171
 msgid "Start minimized"
 msgstr "Avvia minimizzato"
 
-#: zapzap/views/ui_page_general.py:144
+#: zapzap/views/ui_page_general.py:172
 msgid "Start with the system"
 msgstr "Avvia con il sistema"
 
-#: zapzap/views/ui_page_general.py:145
+#: zapzap/views/ui_page_general.py:173
 msgid "Don't use a platform-native file dialog"
 msgstr "Non utilizzare una finestra di dialogo file nativa della piattaforma"
 
-#: zapzap/views/ui_page_general.py:146
+#: zapzap/views/ui_page_general.py:174
 msgid "Wayland window system"
 msgstr "Sistema di finestre Wayland"
+
+#: zapzap/views/ui_page_general.py:175 zapzap/controllers/PageGeneral.py:274
+#: zapzap/controllers/PageGeneral.py:284 zapzap/controllers/PageGeneral.py:301
+msgid "Debug logs"
+msgstr ""
+
+#: zapzap/views/ui_page_general.py:176
+msgid ""
+"Crash reports are stored in this folder. You can open the directory or clean "
+"old files."
+msgstr ""
+
+#: zapzap/views/ui_page_general.py:178
+#, fuzzy
+msgid "Delete old"
+msgstr "Elimina"
+
+#: zapzap/views/ui_page_general.py:179
+#, fuzzy
+msgid "Delete all"
+msgstr "Seleziona tutto"
+
+#: zapzap/views/ui_page_general.py:180 zapzap/controllers/PageGeneral.py:309
+#: zapzap/controllers/PageGeneral.py:327 zapzap/controllers/PageGeneral.py:336
+#, fuzzy
+msgid "Reset settings"
+msgstr "Impostazioni"
 
 #: zapzap/views/ui_page_network.py:118 zapzap/views/ui_settings.py:164
 msgid "Network"
@@ -803,6 +831,469 @@ msgstr "Non ufficiale"
 msgid "Unknown"
 msgstr "Sconosciuto"
 
+#: zapzap/controllers/Browser.py:70
+msgid "Grid view"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:95
+msgid "Flatpak sandbox help"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:214 zapzap/controllers/Browser.py:251
+msgid "Account {}"
+msgstr "Account {}"
+
+#: zapzap/controllers/Browser.py:259
+#, fuzzy
+msgid "Account disabled"
+msgstr "Account"
+
+#: zapzap/controllers/Browser.py:260
+msgid "This account is disabled."
+msgstr ""
+
+#: zapzap/controllers/Browser.py:262
+msgid ""
+"You can reactivate it now or use the right-click menu to manage this account."
+msgstr ""
+
+#: zapzap/controllers/Browser.py:265
+msgid "Activate"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:266
+msgid "Not now"
+msgstr ""
+
+#: zapzap/controllers/CardUser.py:42
+msgid "Select User-Agent for this account"
+msgstr ""
+
+#: zapzap/controllers/CardUser.py:144
+msgid "Confirm exclusion"
+msgstr "Conferma eliminazione"
+
+#: zapzap/controllers/CardUser.py:144
+msgid "Are you sure you want to delete this item?"
+msgstr "Sei sicuro di voler eliminare questo elemento?"
+
+#: zapzap/controllers/CardUser.py:169
+msgid "User-Agent Changed"
+msgstr ""
+
+#: zapzap/controllers/CardUser.py:169
+msgid ""
+"Please restart this session (or the application) to apply the new User-Agent."
+msgstr ""
+
+#: zapzap/controllers/CardUser.py:175 zapzap/controllers/CardUser.py:220
+#, fuzzy
+msgid "Generate new colors for the icon"
+msgstr "Fai clic per generare nuovi colori per l'icona"
+
+#: zapzap/controllers/CardUser.py:178 zapzap/controllers/CardUser.py:223
+msgid "Restore standard"
+msgstr "Ripristina standard"
+
+#: zapzap/controllers/CardUser.py:205
+msgid "User-Agent"
+msgstr ""
+
+#: zapzap/controllers/DownloadDialog.py:23
+#, fuzzy
+msgid "Download"
+msgstr "Cartella di download"
+
+#: zapzap/controllers/DownloadDialog.py:47
+msgid "Open"
+msgstr "Apri"
+
+#: zapzap/controllers/DownloadDialog.py:53
+#, fuzzy
+msgid "Save as"
+msgstr "Salva"
+
+#: zapzap/controllers/DownloadDialog.py:56
+msgid "Cancel"
+msgstr ""
+
+#: zapzap/controllers/DownloadDialog.py:130
+msgid "Save file"
+msgstr "Salva file"
+
+#: zapzap/controllers/MainWindow.py:248
+#, fuzzy
+msgid "Close ZapZap"
+msgstr "ZapZap"
+
+#: zapzap/controllers/MainWindow.py:249
+#, fuzzy
+msgid "Are you sure you want to close?"
+msgstr "Sei sicuro di voler eliminare questo elemento?"
+
+#: zapzap/controllers/MainWindow.py:253
+msgid "Don't ask again"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:46
+#: zapzap/controllers/OnboardingDialog.py:70
+#, fuzzy
+msgid "Welcome to ZapZap"
+msgstr "Benvenuti su"
+
+#: zapzap/controllers/OnboardingDialog.py:75
+msgid "Quick setup for your preferred environment"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:98
+msgid "Next"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:99
+msgid "Finish"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:153
+msgid ""
+"Let's configure ZapZap in a few steps.\n"
+"\n"
+"1) Accounts and navigation\n"
+"2) General preferences\n"
+"3) Notification preferences\n"
+"4) Optional sandbox guidance (Flatpak only)\n"
+"\n"
+"Environment: {}"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:178
+msgid "Personalize your experience · General"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:189
+msgid "Start hidden in background"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:195
+#, fuzzy
+msgid "Quit app when closing the window"
+msgstr "Chiudi completamente alla chiusura della finestra"
+
+#: zapzap/controllers/OnboardingDialog.py:200
+#, fuzzy
+msgid "Enable spell checker"
+msgstr "Correttore ortografico"
+
+#: zapzap/controllers/OnboardingDialog.py:205
+#, fuzzy
+msgid "Start automatically with the system"
+msgstr "Avvia con il sistema"
+
+#: zapzap/controllers/OnboardingDialog.py:210
+msgid "Prefer Wayland (when available)"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:218
+#: zapzap/controllers/PageGeneral.py:44
+msgid "Use Flatseal to change this mode of execution"
+msgstr "Utilizzare Flatseal per modificare questa modalità di esecuzione"
+
+#: zapzap/controllers/OnboardingDialog.py:230
+msgid "You can change all these options later in Settings."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:245
+msgid "Personalize your experience · Notifications"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:253
+#, fuzzy
+msgid "Enable app notifications"
+msgstr "Notifiche dell'area di lavoro"
+
+#: zapzap/controllers/OnboardingDialog.py:259
+#, fuzzy
+msgid "Show message content in notifications"
+msgstr "Silenzia le notifiche"
+
+#: zapzap/controllers/OnboardingDialog.py:264
+#, fuzzy
+msgid "Show contact name in notifications"
+msgstr "Nascondere la notifica della donazione"
+
+#: zapzap/controllers/OnboardingDialog.py:269
+#, fuzzy
+msgid "Show contact photo in notifications"
+msgstr "Nascondere la notifica della donazione"
+
+#: zapzap/controllers/OnboardingDialog.py:274
+#, fuzzy
+msgid "Hide donation reminders"
+msgstr "Nascondere la notifica della donazione"
+
+#: zapzap/controllers/OnboardingDialog.py:312
+msgid "Flatpak sandbox permissions"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:319
+msgid ""
+"If opening files, drag-and-drop or uploads fail, this is usually caused by "
+"sandbox permissions."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:330
+#: zapzap/controllers/OnboardingDialog.py:515
+#: zapzap/controllers/PageGeneral.py:68
+#, fuzzy
+msgid "Copy command"
+msgstr "Copia immagine"
+
+#: zapzap/controllers/OnboardingDialog.py:335
+#: zapzap/controllers/PageGeneral.py:76
+msgid "Open Flatseal page"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:353
+#, fuzzy
+msgid "Setup complete"
+msgstr "Ricarica pagine"
+
+#: zapzap/controllers/OnboardingDialog.py:357
+msgid ""
+"Your preferences were saved. You can review and change them at any time in "
+"Settings."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:390
+msgid "Step {}/{}"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:504
+msgid "Flatpak sandbox"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:507
+msgid "ZapZap is running in Flatpak sandbox."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:509
+msgid ""
+"Some features like opening files or drag-and-drop may require additional "
+"permissions."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:513
+#, fuzzy
+msgid "Instructions"
+msgstr "Informazione"
+
+#: zapzap/controllers/OnboardingDialog.py:516
+msgid "Close"
+msgstr ""
+
+#: zapzap/controllers/PageAppearance.py:57
+msgid "Grid Columns:"
+msgstr ""
+
+#: zapzap/controllers/PageNetwork.py:23
+#, fuzzy
+msgid "Settings for:"
+msgstr "Impostazioni"
+
+#: zapzap/controllers/PageNetwork.py:25
+#, fuzzy
+msgid "Global (Default)"
+msgstr "Predefinito"
+
+#: zapzap/controllers/PagePerformance.py:256
+msgid ""
+"Defines where the HTTP cache will be stored.\n"
+"Disk: faster after restart.\n"
+"Memory: faster, but lost on exit.\n"
+"No cache: lower disk usage, slower."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:263
+msgid ""
+"Maximum HTTP cache size.\n"
+"0 MB uses the default Chromium behavior."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:268
+msgid ""
+"Keeps cookies between restarts.\n"
+"Disabling may cause frequent logouts."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:274
+msgid ""
+"Runs GPU and rendering in the same process.\n"
+"May reduce memory usage, but can cause instability."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:279
+msgid ""
+"Disables GPU hardware acceleration.\n"
+"Recommended only for old GPUs or problematic drivers."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:284
+msgid ""
+"Disables GPU VSync.\n"
+"May reduce latency, but can increase power usage and tearing."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:289
+msgid ""
+"Forces software rendering.\n"
+"Use only in case of graphical issues.\n"
+"May significantly reduce performance."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:296
+msgid ""
+"Runs the entire Chromium engine in a single process.\n"
+"Reduces memory usage, but may cause crashes.\n"
+"Experimental usage."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:302
+msgid ""
+"Uses a separate process per site.\n"
+"Safer and more stable.\n"
+"May increase memory usage."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:309
+msgid ""
+"JavaScript (V8) memory limit.\n"
+"Automatic is the safest option.\n"
+"Higher values allow heavier pages.\n"
+"\n"
+"Restart required."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:317
+msgid ""
+"Enables smooth scrolling animations.\n"
+"Disabling may reduce CPU usage."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:322
+msgid ""
+"Allows background tabs to reduce resource usage.\n"
+"Disabling keeps timers active, but uses more resources."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:327
+msgid ""
+"Disables CSS and JavaScript animations.\n"
+"May improve performance on slower machines."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:332
+msgid ""
+"Disables pinch-to-zoom gesture on touchpads.\n"
+"Useful if accidental zooming occurs during scrolling."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:338
+msgid ""
+"Restores all performance settings\n"
+"to safe default values."
+msgstr ""
+
+#: zapzap/controllers/ShortcutsDialog.py:11
+msgid "Mark as unread"
+msgstr "Segna come non letto"
+
+#: zapzap/controllers/ShortcutsDialog.py:12
+msgid "Archive conversation"
+msgstr "Archivia conversazione"
+
+#: zapzap/controllers/ShortcutsDialog.py:13
+msgid "Pin conversation"
+msgstr "Fissa conversazione"
+
+#: zapzap/controllers/ShortcutsDialog.py:14
+msgid "Next conversation"
+msgstr "Conversazione successiva"
+
+#: zapzap/controllers/ShortcutsDialog.py:15
+msgid "Close conversation"
+msgstr "Chiudi conversazione"
+
+#: zapzap/controllers/ShortcutsDialog.py:16
+msgid "Search in conversation"
+msgstr "Cerca nella conversazione"
+
+#: zapzap/controllers/ShortcutsDialog.py:17
+msgid "Previous conversation"
+msgstr "Conversazione precedente"
+
+#: zapzap/controllers/ShortcutsDialog.py:18
+msgid "Delete conversation"
+msgstr "Elimina conversazione"
+
+#: zapzap/controllers/ShortcutsDialog.py:21
+msgid "Profile and status"
+msgstr "Profilo e stato"
+
+#: zapzap/controllers/ShortcutsDialog.py:25
+msgid "Decrease speed of selected voice message"
+msgstr "Riduci velocità del messaggio vocale selezionato"
+
+#: zapzap/controllers/ShortcutsDialog.py:26
+msgid "Increase speed of selected voice message"
+msgstr "Aumenta velocità del messaggio vocale selezionato"
+
+#: zapzap/controllers/ShortcutsDialog.py:29
+msgid "Emoji panel"
+msgstr "Pannello emoji"
+
+#: zapzap/controllers/ShortcutsDialog.py:30
+msgid "Sticker panel"
+msgstr "Pannello adesivi"
+
+#: zapzap/controllers/ShortcutsDialog.py:31
+msgid "GIF panel"
+msgstr "Pannello GIF"
+
+#: zapzap/controllers/ShortcutsDialog.py:34
+msgid "Lock the app"
+msgstr "Blocca l'app"
+
+#: zapzap/controllers/ShortcutsDialog.py:35
+msgid "Mute"
+msgstr "Disattiva audio"
+
+#: zapzap/controllers/ShortcutsDialog.py:36
+msgid "Search"
+msgstr "Cerca"
+
+#: zapzap/controllers/ShortcutsDialog.py:37
+msgid "New group"
+msgstr "Nuovo gruppo"
+
+#: zapzap/controllers/ShortcutsDialog.py:38
+msgid "Extended search"
+msgstr "Ricerca avanzata"
+
+#: zapzap/controllers/ShortcutsDialog.py:45
+msgid "Exit"
+msgstr "Esci"
+
+#: zapzap/controllers/ShortcutsDialog.py:48
+msgid "Fullscreen"
+msgstr "Schermo intero"
+
+#: zapzap/controllers/ShortcutsDialog.py:57
+msgid "Reload pages"
+msgstr "Ricarica pagine"
+
+#: zapzap/controllers/ShortcutsDialog.py:58
+msgid "New conversation by phone number"
+msgstr "Nuova conversazione per numero di telefono"
+
 #: zapzap/controllers/PageCustomizations.py:52
 msgid "Global"
 msgstr ""
@@ -1026,270 +1517,7 @@ msgstr ""
 msgid "All pages reloaded."
 msgstr ""
 
-#: zapzap/controllers/Browser.py:70
-msgid "Grid view"
-msgstr ""
-
-#: zapzap/controllers/Browser.py:95
-msgid "Flatpak sandbox help"
-msgstr ""
-
-#: zapzap/controllers/Browser.py:214 zapzap/controllers/Browser.py:251
-msgid "Account {}"
-msgstr "Account {}"
-
-#: zapzap/controllers/Browser.py:259
-#, fuzzy
-msgid "Account disabled"
-msgstr "Account"
-
-#: zapzap/controllers/Browser.py:260
-msgid "This account is disabled."
-msgstr ""
-
-#: zapzap/controllers/Browser.py:262
-msgid ""
-"You can reactivate it now or use the right-click menu to manage this account."
-msgstr ""
-
-#: zapzap/controllers/Browser.py:265
-msgid "Activate"
-msgstr ""
-
-#: zapzap/controllers/Browser.py:266
-msgid "Not now"
-msgstr ""
-
-#: zapzap/controllers/CardUser.py:42
-msgid "Select User-Agent for this account"
-msgstr ""
-
-#: zapzap/controllers/CardUser.py:144
-msgid "Confirm exclusion"
-msgstr "Conferma eliminazione"
-
-#: zapzap/controllers/CardUser.py:144
-msgid "Are you sure you want to delete this item?"
-msgstr "Sei sicuro di voler eliminare questo elemento?"
-
-#: zapzap/controllers/CardUser.py:169
-msgid "User-Agent Changed"
-msgstr ""
-
-#: zapzap/controllers/CardUser.py:169
-msgid ""
-"Please restart this session (or the application) to apply the new User-Agent."
-msgstr ""
-
-#: zapzap/controllers/CardUser.py:175 zapzap/controllers/CardUser.py:220
-#, fuzzy
-msgid "Generate new colors for the icon"
-msgstr "Fai clic per generare nuovi colori per l'icona"
-
-#: zapzap/controllers/CardUser.py:178 zapzap/controllers/CardUser.py:223
-msgid "Restore standard"
-msgstr "Ripristina standard"
-
-#: zapzap/controllers/CardUser.py:205
-msgid "User-Agent"
-msgstr ""
-
-#: zapzap/controllers/DownloadDialog.py:23
-#, fuzzy
-msgid "Download"
-msgstr "Cartella di download"
-
-#: zapzap/controllers/DownloadDialog.py:47
-msgid "Open"
-msgstr "Apri"
-
-#: zapzap/controllers/DownloadDialog.py:53
-#, fuzzy
-msgid "Save as"
-msgstr "Salva"
-
-#: zapzap/controllers/DownloadDialog.py:56
-msgid "Cancel"
-msgstr ""
-
-#: zapzap/controllers/DownloadDialog.py:130
-msgid "Save file"
-msgstr "Salva file"
-
-#: zapzap/controllers/MainWindow.py:248
-#, fuzzy
-msgid "Close ZapZap"
-msgstr "ZapZap"
-
-#: zapzap/controllers/MainWindow.py:249
-#, fuzzy
-msgid "Are you sure you want to close?"
-msgstr "Sei sicuro di voler eliminare questo elemento?"
-
-#: zapzap/controllers/MainWindow.py:253
-msgid "Don't ask again"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:46
-#: zapzap/controllers/OnboardingDialog.py:70
-#, fuzzy
-msgid "Welcome to ZapZap"
-msgstr "Benvenuti su"
-
-#: zapzap/controllers/OnboardingDialog.py:75
-msgid "Quick setup for your preferred environment"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:98
-msgid "Next"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:99
-msgid "Finish"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:153
-msgid ""
-"Let's configure ZapZap in a few steps.\n"
-"\n"
-"1) Accounts and navigation\n"
-"2) General preferences\n"
-"3) Notification preferences\n"
-"4) Optional sandbox guidance (Flatpak only)\n"
-"\n"
-"Environment: {}"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:178
-msgid "Personalize your experience · General"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:189
-msgid "Start hidden in background"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:195
-#, fuzzy
-msgid "Quit app when closing the window"
-msgstr "Chiudi completamente alla chiusura della finestra"
-
-#: zapzap/controllers/OnboardingDialog.py:200
-#, fuzzy
-msgid "Enable spell checker"
-msgstr "Correttore ortografico"
-
-#: zapzap/controllers/OnboardingDialog.py:205
-#, fuzzy
-msgid "Start automatically with the system"
-msgstr "Avvia con il sistema"
-
-#: zapzap/controllers/OnboardingDialog.py:210
-msgid "Prefer Wayland (when available)"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:218
-#: zapzap/controllers/PageGeneral.py:40
-msgid "Use Flatseal to change this mode of execution"
-msgstr "Utilizzare Flatseal per modificare questa modalità di esecuzione"
-
-#: zapzap/controllers/OnboardingDialog.py:230
-msgid "You can change all these options later in Settings."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:245
-msgid "Personalize your experience · Notifications"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:253
-#, fuzzy
-msgid "Enable app notifications"
-msgstr "Notifiche dell'area di lavoro"
-
-#: zapzap/controllers/OnboardingDialog.py:259
-#, fuzzy
-msgid "Show message content in notifications"
-msgstr "Silenzia le notifiche"
-
-#: zapzap/controllers/OnboardingDialog.py:264
-#, fuzzy
-msgid "Show contact name in notifications"
-msgstr "Nascondere la notifica della donazione"
-
-#: zapzap/controllers/OnboardingDialog.py:269
-#, fuzzy
-msgid "Show contact photo in notifications"
-msgstr "Nascondere la notifica della donazione"
-
-#: zapzap/controllers/OnboardingDialog.py:274
-#, fuzzy
-msgid "Hide donation reminders"
-msgstr "Nascondere la notifica della donazione"
-
-#: zapzap/controllers/OnboardingDialog.py:312
-msgid "Flatpak sandbox permissions"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:319
-msgid ""
-"If opening files, drag-and-drop or uploads fail, this is usually caused by "
-"sandbox permissions."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:330
-#: zapzap/controllers/OnboardingDialog.py:515
-#: zapzap/controllers/PageGeneral.py:64
-#, fuzzy
-msgid "Copy command"
-msgstr "Copia immagine"
-
-#: zapzap/controllers/OnboardingDialog.py:335
-#: zapzap/controllers/PageGeneral.py:72
-msgid "Open Flatseal page"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:353
-#, fuzzy
-msgid "Setup complete"
-msgstr "Ricarica pagine"
-
-#: zapzap/controllers/OnboardingDialog.py:357
-msgid ""
-"Your preferences were saved. You can review and change them at any time in "
-"Settings."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:390
-msgid "Step {}/{}"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:504
-msgid "Flatpak sandbox"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:507
-msgid "ZapZap is running in Flatpak sandbox."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:509
-msgid ""
-"Some features like opening files or drag-and-drop may require additional "
-"permissions."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:513
-#, fuzzy
-msgid "Instructions"
-msgstr "Informazione"
-
-#: zapzap/controllers/OnboardingDialog.py:516
-msgid "Close"
-msgstr ""
-
-#: zapzap/controllers/PageAppearance.py:57
-msgid "Grid Columns:"
-msgstr ""
-
-#: zapzap/controllers/PageGeneral.py:47
+#: zapzap/controllers/PageGeneral.py:51
 msgid ""
 "<b>Flatpak tip:</b> If opening PDFs, drag-and-drop, or file uploads fail, "
 "this is usually caused by sandbox permissions. Open <b>Flatseal</b> and "
@@ -1298,209 +1526,57 @@ msgid ""
 "com.rtosta.zapzap</code>."
 msgstr ""
 
-#: zapzap/controllers/PageGeneral.py:63
+#: zapzap/controllers/PageGeneral.py:67
 msgid "Select and copy this command in your terminal"
 msgstr ""
 
-#: zapzap/controllers/PageNetwork.py:23
-#, fuzzy
-msgid "Settings for:"
-msgstr "Impostazioni"
-
-#: zapzap/controllers/PageNetwork.py:25
-#, fuzzy
-msgid "Global (Default)"
-msgstr "Predefinito"
-
-#: zapzap/controllers/PagePerformance.py:256
-msgid ""
-"Defines where the HTTP cache will be stored.\n"
-"Disk: faster after restart.\n"
-"Memory: faster, but lost on exit.\n"
-"No cache: lower disk usage, slower."
+#: zapzap/controllers/PageGeneral.py:244
+#, python-brace-format
+msgid "Files: {count} crash report(s){faulthandler}."
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:263
-msgid ""
-"Maximum HTTP cache size.\n"
-"0 MB uses the default Chromium behavior."
+#: zapzap/controllers/PageGeneral.py:246
+msgid " + faulthandler.log"
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:268
+#: zapzap/controllers/PageGeneral.py:249
+#, python-brace-format
 msgid ""
-"Keeps cookies between restarts.\n"
-"Disabling may cause frequent logouts."
+"Crash reports are stored in this folder. You can open the directory or clean "
+"old files.\n"
+"{details}"
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:274
-msgid ""
-"Runs GPU and rendering in the same process.\n"
-"May reduce memory usage, but can cause instability."
+#: zapzap/controllers/PageGeneral.py:275
+#, python-brace-format
+msgid "Deleted {count} old crash report(s) (older than 30 days)."
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:279
-msgid ""
-"Disables GPU hardware acceleration.\n"
-"Recommended only for old GPUs or problematic drivers."
+#: zapzap/controllers/PageGeneral.py:285
+msgid "Delete all crash reports and debug logs?"
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:284
-msgid ""
-"Disables GPU VSync.\n"
-"May reduce latency, but can increase power usage and tearing."
+#: zapzap/controllers/PageGeneral.py:302
+#, python-brace-format
+msgid "Deleted {count} file(s)."
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:289
+#: zapzap/controllers/PageGeneral.py:310
 msgid ""
-"Forces software rendering.\n"
-"Use only in case of graphical issues.\n"
-"May significantly reduce performance."
+"This will delete your current settings file (.config) and requires restart. "
+"Continue?"
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:296
+#: zapzap/controllers/PageGeneral.py:328
+#, python-brace-format
 msgid ""
-"Runs the entire Chromium engine in a single process.\n"
-"Reduces memory usage, but may cause crashes.\n"
-"Experimental usage."
+"Could not remove settings file:\n"
+"{error}"
 msgstr ""
 
-#: zapzap/controllers/PagePerformance.py:302
-msgid ""
-"Uses a separate process per site.\n"
-"Safer and more stable.\n"
-"May increase memory usage."
+#: zapzap/controllers/PageGeneral.py:337
+msgid "Settings were reset successfully. Please restart ZapZap."
 msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:309
-msgid ""
-"JavaScript (V8) memory limit.\n"
-"Automatic is the safest option.\n"
-"Higher values allow heavier pages.\n"
-"\n"
-"Restart required."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:317
-msgid ""
-"Enables smooth scrolling animations.\n"
-"Disabling may reduce CPU usage."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:322
-msgid ""
-"Allows background tabs to reduce resource usage.\n"
-"Disabling keeps timers active, but uses more resources."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:327
-msgid ""
-"Disables CSS and JavaScript animations.\n"
-"May improve performance on slower machines."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:332
-msgid ""
-"Disables pinch-to-zoom gesture on touchpads.\n"
-"Useful if accidental zooming occurs during scrolling."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:338
-msgid ""
-"Restores all performance settings\n"
-"to safe default values."
-msgstr ""
-
-#: zapzap/controllers/ShortcutsDialog.py:11
-msgid "Mark as unread"
-msgstr "Segna come non letto"
-
-#: zapzap/controllers/ShortcutsDialog.py:12
-msgid "Archive conversation"
-msgstr "Archivia conversazione"
-
-#: zapzap/controllers/ShortcutsDialog.py:13
-msgid "Pin conversation"
-msgstr "Fissa conversazione"
-
-#: zapzap/controllers/ShortcutsDialog.py:14
-msgid "Next conversation"
-msgstr "Conversazione successiva"
-
-#: zapzap/controllers/ShortcutsDialog.py:15
-msgid "Close conversation"
-msgstr "Chiudi conversazione"
-
-#: zapzap/controllers/ShortcutsDialog.py:16
-msgid "Search in conversation"
-msgstr "Cerca nella conversazione"
-
-#: zapzap/controllers/ShortcutsDialog.py:17
-msgid "Previous conversation"
-msgstr "Conversazione precedente"
-
-#: zapzap/controllers/ShortcutsDialog.py:18
-msgid "Delete conversation"
-msgstr "Elimina conversazione"
-
-#: zapzap/controllers/ShortcutsDialog.py:21
-msgid "Profile and status"
-msgstr "Profilo e stato"
-
-#: zapzap/controllers/ShortcutsDialog.py:25
-msgid "Decrease speed of selected voice message"
-msgstr "Riduci velocità del messaggio vocale selezionato"
-
-#: zapzap/controllers/ShortcutsDialog.py:26
-msgid "Increase speed of selected voice message"
-msgstr "Aumenta velocità del messaggio vocale selezionato"
-
-#: zapzap/controllers/ShortcutsDialog.py:29
-msgid "Emoji panel"
-msgstr "Pannello emoji"
-
-#: zapzap/controllers/ShortcutsDialog.py:30
-msgid "Sticker panel"
-msgstr "Pannello adesivi"
-
-#: zapzap/controllers/ShortcutsDialog.py:31
-msgid "GIF panel"
-msgstr "Pannello GIF"
-
-#: zapzap/controllers/ShortcutsDialog.py:34
-msgid "Lock the app"
-msgstr "Blocca l'app"
-
-#: zapzap/controllers/ShortcutsDialog.py:35
-msgid "Mute"
-msgstr "Disattiva audio"
-
-#: zapzap/controllers/ShortcutsDialog.py:36
-msgid "Search"
-msgstr "Cerca"
-
-#: zapzap/controllers/ShortcutsDialog.py:37
-msgid "New group"
-msgstr "Nuovo gruppo"
-
-#: zapzap/controllers/ShortcutsDialog.py:38
-msgid "Extended search"
-msgstr "Ricerca avanzata"
-
-#: zapzap/controllers/ShortcutsDialog.py:45
-msgid "Exit"
-msgstr "Esci"
-
-#: zapzap/controllers/ShortcutsDialog.py:48
-msgid "Fullscreen"
-msgstr "Schermo intero"
-
-#: zapzap/controllers/ShortcutsDialog.py:57
-msgid "Reload pages"
-msgstr "Ricarica pagine"
-
-#: zapzap/controllers/ShortcutsDialog.py:58
-msgid "New conversation by phone number"
-msgstr "Nuova conversazione per numero di telefono"
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
@@ -1586,9 +1662,6 @@ msgstr "Donazione"
 
 #~ msgid "Paste"
 #~ msgstr "Incolla"
-
-#~ msgid "Select all"
-#~ msgstr "Seleziona tutto"
 
 #~ msgid "Copy link address"
 #~ msgstr "Copia indirizzo del link"

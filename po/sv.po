@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-28 09:48-0300\n"
+"POT-Creation-Date: 2026-03-28 20:48-0300\n"
 "PO-Revision-Date: 2026-03-09 22:23+0100\n"
 "Last-Translator: Dennis Cederberg "
 "<9393069+cederberget@users.noreply.github.com>\n"
@@ -436,6 +436,7 @@ msgstr "Importera från URL"
 
 #: zapzap/views/ui_page_customizations.py:259
 #: zapzap/views/ui_page_customizations.py:273
+#: zapzap/views/ui_page_general.py:177
 #: zapzap/controllers/DialogDumpHandler.py:50
 #: zapzap/controllers/DownloadDialog.py:50
 msgid "Open folder"
@@ -474,70 +475,97 @@ msgstr "Spara och ladda om"
 msgid "Save"
 msgstr "Spara"
 
-#: zapzap/views/ui_page_general.py:131 zapzap/views/ui_settings.py:157
+#: zapzap/views/ui_page_general.py:159 zapzap/views/ui_settings.py:157
 msgid "General"
 msgstr "Allmänt"
 
-#: zapzap/views/ui_page_general.py:132
+#: zapzap/views/ui_page_general.py:160
 msgid "Download Directory"
 msgstr "Nedladdningskatalog"
 
-#: zapzap/views/ui_page_general.py:133
+#: zapzap/views/ui_page_general.py:161
 msgid "Set new folder for downloads"
 msgstr "Ställ in katalog för nedladdningar"
 
-#: zapzap/views/ui_page_general.py:134
+#: zapzap/views/ui_page_general.py:162
 msgid "Define default folder for downloads"
 msgstr "Återställ standardkatalog för nedladdningar"
 
-#: zapzap/views/ui_page_general.py:135
+#: zapzap/views/ui_page_general.py:163
 msgid "Spellchecker"
 msgstr "Stavningskontroll"
 
-#: zapzap/views/ui_page_general.py:136
+#: zapzap/views/ui_page_general.py:164
 msgid "Directory"
 msgstr "Katalog"
 
-#: zapzap/views/ui_page_general.py:137
+#: zapzap/views/ui_page_general.py:165
 msgid "Recognizes only compiled dictionaries (.bdic)"
 msgstr "Känner endast igen kompilerade ordböcker (.bdic)"
 
-#: zapzap/views/ui_page_general.py:138
+#: zapzap/views/ui_page_general.py:166
 msgid "Define standard dictionaries"
 msgstr "Återställ standardordböcker"
 
-#: zapzap/views/ui_page_general.py:139
+#: zapzap/views/ui_page_general.py:167
 msgid "Note: Required restart."
 msgstr "Obs: Kräver omstart."
 
-#: zapzap/views/ui_page_general.py:140
+#: zapzap/views/ui_page_general.py:168
 msgid "Behavior"
 msgstr "Beteende"
 
-#: zapzap/views/ui_page_general.py:141
+#: zapzap/views/ui_page_general.py:169
 #, fuzzy
 msgid "Confirm before closing the window"
 msgstr "Avsluta när fönstret stängs"
 
-#: zapzap/views/ui_page_general.py:142
+#: zapzap/views/ui_page_general.py:170
 msgid "Close when closing the window"
 msgstr "Avsluta när fönstret stängs"
 
-#: zapzap/views/ui_page_general.py:143
+#: zapzap/views/ui_page_general.py:171
 msgid "Start minimized"
 msgstr "Starta minimerat"
 
-#: zapzap/views/ui_page_general.py:144
+#: zapzap/views/ui_page_general.py:172
 msgid "Start with the system"
 msgstr "Starta med systemet"
 
-#: zapzap/views/ui_page_general.py:145
+#: zapzap/views/ui_page_general.py:173
 msgid "Don't use a platform-native file dialog"
 msgstr "Använd inte plattformsspecifik fildialogruta"
 
-#: zapzap/views/ui_page_general.py:146
+#: zapzap/views/ui_page_general.py:174
 msgid "Wayland window system"
 msgstr "Wayland-fönstersystem"
+
+#: zapzap/views/ui_page_general.py:175 zapzap/controllers/PageGeneral.py:274
+#: zapzap/controllers/PageGeneral.py:284 zapzap/controllers/PageGeneral.py:301
+msgid "Debug logs"
+msgstr ""
+
+#: zapzap/views/ui_page_general.py:176
+msgid ""
+"Crash reports are stored in this folder. You can open the directory or clean "
+"old files."
+msgstr ""
+
+#: zapzap/views/ui_page_general.py:178
+#, fuzzy
+msgid "Delete old"
+msgstr "Radera"
+
+#: zapzap/views/ui_page_general.py:179
+#, fuzzy
+msgid "Delete all"
+msgstr "Markera allt"
+
+#: zapzap/views/ui_page_general.py:180 zapzap/controllers/PageGeneral.py:309
+#: zapzap/controllers/PageGeneral.py:327 zapzap/controllers/PageGeneral.py:336
+#, fuzzy
+msgid "Reset settings"
+msgstr "Inställningar"
 
 #: zapzap/views/ui_page_network.py:118 zapzap/views/ui_settings.py:164
 msgid "Network"
@@ -833,220 +861,6 @@ msgstr "Inofficiell"
 msgid "Unknown"
 msgstr "Okänd"
 
-#: zapzap/controllers/PageCustomizations.py:52
-msgid "Global"
-msgstr "Globalt"
-
-#: zapzap/controllers/PageCustomizations.py:53
-msgid "Current account"
-msgstr "Nuvarande konto"
-
-#: zapzap/controllers/PageCustomizations.py:153
-msgid "Unnamed account"
-msgstr "Namnlöst konto"
-
-#: zapzap/controllers/PageCustomizations.py:155
-msgid "Current account: {} ({})"
-msgstr "Nuvarande konto: {} ({})"
-
-#: zapzap/controllers/PageCustomizations.py:159
-msgid "Current account: unavailable"
-msgstr "Nuvarande konto: otillgängligt"
-
-#: zapzap/controllers/PageCustomizations.py:246
-msgid "CSS file enabled: {}"
-msgstr "CSS-fil aktiverad: {}"
-
-#: zapzap/controllers/PageCustomizations.py:246
-msgid "CSS file disabled: {}"
-msgstr "CSS-fil inaktiverad: {}"
-
-#: zapzap/controllers/PageCustomizations.py:249
-msgid "JavaScript file enabled: {}"
-msgstr "JavaScript-fil aktiverad: {}"
-
-#: zapzap/controllers/PageCustomizations.py:251
-msgid "JavaScript file disabled: {}"
-msgstr "JavaScript-fil inaktiverad: {}"
-
-#: zapzap/controllers/PageCustomizations.py:256
-#: zapzap/controllers/PageCustomizations.py:271
-msgid "This userstyle does not target WhatsApp Web."
-msgstr "Denna användarstil är inte ämnad för WhatsApp Web."
-
-#: zapzap/controllers/PageCustomizations.py:263
-msgid "Only HTTPS URLs are allowed."
-msgstr "Endast webbadresser med HTTPS är tillåtna."
-
-#: zapzap/controllers/PageCustomizations.py:267
-msgid "Download is too large."
-msgstr "Nedladdningen är för stor."
-
-#: zapzap/controllers/PageCustomizations.py:275
-msgid "Could not download CSS from URL."
-msgstr "Kunde inte ladda ned CSS från URL."
-
-#: zapzap/controllers/PageCustomizations.py:277
-msgid "Could not download JavaScript from URL."
-msgstr "Kunde inte ladda ned JavaScript från URL."
-
-#: zapzap/controllers/PageCustomizations.py:289
-msgid "Select a file first."
-msgstr "Välj en fil först."
-
-#: zapzap/controllers/PageCustomizations.py:368
-msgid "No preview available."
-msgstr "Ingen förhandsvisning tillgänglig."
-
-#: zapzap/controllers/PageCustomizations.py:374
-msgid "Could not load preview image."
-msgstr "Kunde inte ladda bild för förhandsvisning."
-
-#: zapzap/controllers/PageCustomizations.py:403
-msgid "Enter a CSS HTTPS URL."
-msgstr "Skriv in webbadress till CSS (HTTPS)."
-
-#: zapzap/controllers/PageCustomizations.py:405
-msgid "Enter a JavaScript HTTPS URL."
-msgstr "Skriv in webbadress till JavaScript (HTTPS)."
-
-#: zapzap/controllers/PageCustomizations.py:425
-#: zapzap/controllers/PageCustomizations.py:435
-msgid "File imported: {}"
-msgstr "Fil importerad: {}"
-
-#: zapzap/controllers/PageCustomizations.py:439
-msgid "File imported: {}. No preview found, upload one manually."
-msgstr ""
-"Fil importerad: {}. Ingen förhandsvisning hittad, ladda upp en manuellt."
-
-#: zapzap/controllers/PageCustomizations.py:449
-msgid "Select preview image"
-msgstr "Välj bild för förhandsvisning"
-
-#: zapzap/controllers/PageCustomizations.py:465
-msgid "Could not set preview image."
-msgstr "Kunde inte ställa in bild för förhandsvisning."
-
-#: zapzap/controllers/PageCustomizations.py:469
-msgid "Preview image updated."
-msgstr "Uppdaterade bild för förhandsvisning."
-
-#: zapzap/controllers/PageCustomizations.py:485
-msgid "https://example.com/theme.user.css"
-msgstr "https://exempel.se/tema.css"
-
-#: zapzap/controllers/PageCustomizations.py:487
-msgid "https://example.com/script.js"
-msgstr "https://exempel.se/skript.js"
-
-#: zapzap/controllers/PageCustomizations.py:491
-msgid "Optional file name (e.g. 10-custom.{})"
-msgstr "Valfritt filnamn (t.ex. 10-anpassning.{})"
-
-#: zapzap/controllers/PageCustomizations.py:494
-msgid "URL"
-msgstr "Webbadress"
-
-#: zapzap/controllers/PageCustomizations.py:495
-#: zapzap/controllers/PageCustomizations.py:524
-msgid "File name"
-msgstr "Filnamn"
-
-#: zapzap/controllers/PageCustomizations.py:523
-msgid "custom.{}"
-msgstr "anpassning.{}"
-
-#: zapzap/controllers/PageCustomizations.py:550
-msgid "Select file"
-msgstr "Välj fil"
-
-#: zapzap/controllers/PageCustomizations.py:567
-msgid "Could not import file."
-msgstr "Kunde inte importera fil."
-
-#: zapzap/controllers/PageCustomizations.py:571
-msgid "File imported successfully."
-msgstr "Importerade filen."
-
-#: zapzap/controllers/PageCustomizations.py:602
-msgid "Create file"
-msgstr "Skapa fil"
-
-#: zapzap/controllers/PageCustomizations.py:610
-#: zapzap/controllers/PageCustomizations.py:658
-msgid "File name cannot be empty."
-msgstr "Filnamnet kan inte vara tomt."
-
-#: zapzap/controllers/PageCustomizations.py:622
-msgid "Could not create file."
-msgstr "Kunde inte skapa fil."
-
-#: zapzap/controllers/PageCustomizations.py:626
-msgid "File created: {}"
-msgstr "Fil skapad: {}"
-
-#: zapzap/controllers/PageCustomizations.py:644
-msgid "Could not open file for editing."
-msgstr "Kunde inte öppna fil för redigering."
-
-#: zapzap/controllers/PageCustomizations.py:647
-msgid "Edit CSS: {}"
-msgstr "Ändra CSS: {}"
-
-#: zapzap/controllers/PageCustomizations.py:647
-msgid "Edit JavaScript: {}"
-msgstr "Ändra JavaScript: {}"
-
-#: zapzap/controllers/PageCustomizations.py:680
-msgid "Could not save file."
-msgstr "Kunde inte spara fil."
-
-#: zapzap/controllers/PageCustomizations.py:684
-msgid "File saved: {}"
-msgstr "Fil sparad: {}"
-
-#: zapzap/controllers/PageCustomizations.py:745
-msgid "Reload complete."
-msgstr "Omladdning slutfördes."
-
-#: zapzap/controllers/PageCustomizations.py:774
-msgid "{}. Save and reload to apply changes."
-msgstr "{}. Spara och ladda om för att applicera ändringar."
-
-# Identical to source
-#: zapzap/controllers/PageCustomizations.py:785
-msgid "JS"
-msgstr ""
-
-#: zapzap/controllers/PageCustomizations.py:788
-msgid "Confirm deletion"
-msgstr "Bekräfta borttagning"
-
-#: zapzap/controllers/PageCustomizations.py:789
-msgid "Delete selected {} file: {}?"
-msgstr "Ta bort vald {}-fil: {}?"
-
-#: zapzap/controllers/PageCustomizations.py:794
-msgid "Deletion cancelled."
-msgstr "Avbröt borttagning."
-
-#: zapzap/controllers/PageCustomizations.py:805
-msgid "File deleted."
-msgstr "Fil borttagen."
-
-#: zapzap/controllers/PageCustomizations.py:807
-msgid "Could not delete file."
-msgstr "Kunde inte ta bort fil."
-
-#: zapzap/controllers/PageCustomizations.py:835
-msgid "Customizations saved. Reload pages to apply changes."
-msgstr "Anpassningar sparade. Ladda om sidor för att applicera ändringarna."
-
-#: zapzap/controllers/PageCustomizations.py:845
-msgid "All pages reloaded."
-msgstr "Alla sidor laddades om."
-
 #: zapzap/controllers/Browser.py:70
 msgid "Grid view"
 msgstr ""
@@ -1207,7 +1021,7 @@ msgid "Prefer Wayland (when available)"
 msgstr ""
 
 #: zapzap/controllers/OnboardingDialog.py:218
-#: zapzap/controllers/PageGeneral.py:40
+#: zapzap/controllers/PageGeneral.py:44
 msgid "Use Flatseal to change this mode of execution"
 msgstr "Använd Flatseal för att ändra exekveringsläge"
 
@@ -1257,12 +1071,12 @@ msgstr ""
 
 #: zapzap/controllers/OnboardingDialog.py:330
 #: zapzap/controllers/OnboardingDialog.py:515
-#: zapzap/controllers/PageGeneral.py:64
+#: zapzap/controllers/PageGeneral.py:68
 msgid "Copy command"
 msgstr "Kopiera kommando"
 
 #: zapzap/controllers/OnboardingDialog.py:335
-#: zapzap/controllers/PageGeneral.py:72
+#: zapzap/controllers/PageGeneral.py:76
 msgid "Open Flatseal page"
 msgstr "Öppna Flatseal-sida"
 
@@ -1308,24 +1122,6 @@ msgstr "Stäng"
 #: zapzap/controllers/PageAppearance.py:57
 msgid "Grid Columns:"
 msgstr ""
-
-#: zapzap/controllers/PageGeneral.py:47
-msgid ""
-"<b>Flatpak tip:</b> If opening PDFs, drag-and-drop, or file uploads fail, "
-"this is usually caused by sandbox permissions. Open <b>Flatseal</b> and "
-"grant ZapZap access to folders like Documents, Downloads, Pictures and "
-"Videos. You can also run: <code>flatpak override --user --filesystem=home "
-"com.rtosta.zapzap</code>."
-msgstr ""
-"<b>Flatpak-tips:</b> Om öppning av PDF-filer, drag-och-släpp eller "
-"filuppladdningar misslyckas, kan detta orsakas av rättighetsproblem för "
-"sandlådan. Öppna <b>Flatseal</b> och tillåt ZapZap att komma åt kataloger så "
-"som Dokument, Hämtningar, Bilder och Videor. Du kan också köra: "
-"<code>flatpak override --user --filesystem=home com.rtosta.zapzap</code>."
-
-#: zapzap/controllers/PageGeneral.py:63
-msgid "Select and copy this command in your terminal"
-msgstr "Markera och kopiera detta kommando till din terminal"
 
 #: zapzap/controllers/PageNetwork.py:23
 #, fuzzy
@@ -1563,6 +1359,286 @@ msgstr "Ladda om sidor"
 msgid "New conversation by phone number"
 msgstr "Ny konversation med telefonnummer"
 
+#: zapzap/controllers/PageCustomizations.py:52
+msgid "Global"
+msgstr "Globalt"
+
+#: zapzap/controllers/PageCustomizations.py:53
+msgid "Current account"
+msgstr "Nuvarande konto"
+
+#: zapzap/controllers/PageCustomizations.py:153
+msgid "Unnamed account"
+msgstr "Namnlöst konto"
+
+#: zapzap/controllers/PageCustomizations.py:155
+msgid "Current account: {} ({})"
+msgstr "Nuvarande konto: {} ({})"
+
+#: zapzap/controllers/PageCustomizations.py:159
+msgid "Current account: unavailable"
+msgstr "Nuvarande konto: otillgängligt"
+
+#: zapzap/controllers/PageCustomizations.py:246
+msgid "CSS file enabled: {}"
+msgstr "CSS-fil aktiverad: {}"
+
+#: zapzap/controllers/PageCustomizations.py:246
+msgid "CSS file disabled: {}"
+msgstr "CSS-fil inaktiverad: {}"
+
+#: zapzap/controllers/PageCustomizations.py:249
+msgid "JavaScript file enabled: {}"
+msgstr "JavaScript-fil aktiverad: {}"
+
+#: zapzap/controllers/PageCustomizations.py:251
+msgid "JavaScript file disabled: {}"
+msgstr "JavaScript-fil inaktiverad: {}"
+
+#: zapzap/controllers/PageCustomizations.py:256
+#: zapzap/controllers/PageCustomizations.py:271
+msgid "This userstyle does not target WhatsApp Web."
+msgstr "Denna användarstil är inte ämnad för WhatsApp Web."
+
+#: zapzap/controllers/PageCustomizations.py:263
+msgid "Only HTTPS URLs are allowed."
+msgstr "Endast webbadresser med HTTPS är tillåtna."
+
+#: zapzap/controllers/PageCustomizations.py:267
+msgid "Download is too large."
+msgstr "Nedladdningen är för stor."
+
+#: zapzap/controllers/PageCustomizations.py:275
+msgid "Could not download CSS from URL."
+msgstr "Kunde inte ladda ned CSS från URL."
+
+#: zapzap/controllers/PageCustomizations.py:277
+msgid "Could not download JavaScript from URL."
+msgstr "Kunde inte ladda ned JavaScript från URL."
+
+#: zapzap/controllers/PageCustomizations.py:289
+msgid "Select a file first."
+msgstr "Välj en fil först."
+
+#: zapzap/controllers/PageCustomizations.py:368
+msgid "No preview available."
+msgstr "Ingen förhandsvisning tillgänglig."
+
+#: zapzap/controllers/PageCustomizations.py:374
+msgid "Could not load preview image."
+msgstr "Kunde inte ladda bild för förhandsvisning."
+
+#: zapzap/controllers/PageCustomizations.py:403
+msgid "Enter a CSS HTTPS URL."
+msgstr "Skriv in webbadress till CSS (HTTPS)."
+
+#: zapzap/controllers/PageCustomizations.py:405
+msgid "Enter a JavaScript HTTPS URL."
+msgstr "Skriv in webbadress till JavaScript (HTTPS)."
+
+#: zapzap/controllers/PageCustomizations.py:425
+#: zapzap/controllers/PageCustomizations.py:435
+msgid "File imported: {}"
+msgstr "Fil importerad: {}"
+
+#: zapzap/controllers/PageCustomizations.py:439
+msgid "File imported: {}. No preview found, upload one manually."
+msgstr ""
+"Fil importerad: {}. Ingen förhandsvisning hittad, ladda upp en manuellt."
+
+#: zapzap/controllers/PageCustomizations.py:449
+msgid "Select preview image"
+msgstr "Välj bild för förhandsvisning"
+
+#: zapzap/controllers/PageCustomizations.py:465
+msgid "Could not set preview image."
+msgstr "Kunde inte ställa in bild för förhandsvisning."
+
+#: zapzap/controllers/PageCustomizations.py:469
+msgid "Preview image updated."
+msgstr "Uppdaterade bild för förhandsvisning."
+
+#: zapzap/controllers/PageCustomizations.py:485
+msgid "https://example.com/theme.user.css"
+msgstr "https://exempel.se/tema.css"
+
+#: zapzap/controllers/PageCustomizations.py:487
+msgid "https://example.com/script.js"
+msgstr "https://exempel.se/skript.js"
+
+#: zapzap/controllers/PageCustomizations.py:491
+msgid "Optional file name (e.g. 10-custom.{})"
+msgstr "Valfritt filnamn (t.ex. 10-anpassning.{})"
+
+#: zapzap/controllers/PageCustomizations.py:494
+msgid "URL"
+msgstr "Webbadress"
+
+#: zapzap/controllers/PageCustomizations.py:495
+#: zapzap/controllers/PageCustomizations.py:524
+msgid "File name"
+msgstr "Filnamn"
+
+#: zapzap/controllers/PageCustomizations.py:523
+msgid "custom.{}"
+msgstr "anpassning.{}"
+
+#: zapzap/controllers/PageCustomizations.py:550
+msgid "Select file"
+msgstr "Välj fil"
+
+#: zapzap/controllers/PageCustomizations.py:567
+msgid "Could not import file."
+msgstr "Kunde inte importera fil."
+
+#: zapzap/controllers/PageCustomizations.py:571
+msgid "File imported successfully."
+msgstr "Importerade filen."
+
+#: zapzap/controllers/PageCustomizations.py:602
+msgid "Create file"
+msgstr "Skapa fil"
+
+#: zapzap/controllers/PageCustomizations.py:610
+#: zapzap/controllers/PageCustomizations.py:658
+msgid "File name cannot be empty."
+msgstr "Filnamnet kan inte vara tomt."
+
+#: zapzap/controllers/PageCustomizations.py:622
+msgid "Could not create file."
+msgstr "Kunde inte skapa fil."
+
+#: zapzap/controllers/PageCustomizations.py:626
+msgid "File created: {}"
+msgstr "Fil skapad: {}"
+
+#: zapzap/controllers/PageCustomizations.py:644
+msgid "Could not open file for editing."
+msgstr "Kunde inte öppna fil för redigering."
+
+#: zapzap/controllers/PageCustomizations.py:647
+msgid "Edit CSS: {}"
+msgstr "Ändra CSS: {}"
+
+#: zapzap/controllers/PageCustomizations.py:647
+msgid "Edit JavaScript: {}"
+msgstr "Ändra JavaScript: {}"
+
+#: zapzap/controllers/PageCustomizations.py:680
+msgid "Could not save file."
+msgstr "Kunde inte spara fil."
+
+#: zapzap/controllers/PageCustomizations.py:684
+msgid "File saved: {}"
+msgstr "Fil sparad: {}"
+
+#: zapzap/controllers/PageCustomizations.py:745
+msgid "Reload complete."
+msgstr "Omladdning slutfördes."
+
+#: zapzap/controllers/PageCustomizations.py:774
+msgid "{}. Save and reload to apply changes."
+msgstr "{}. Spara och ladda om för att applicera ändringar."
+
+# Identical to source
+#: zapzap/controllers/PageCustomizations.py:785
+msgid "JS"
+msgstr ""
+
+#: zapzap/controllers/PageCustomizations.py:788
+msgid "Confirm deletion"
+msgstr "Bekräfta borttagning"
+
+#: zapzap/controllers/PageCustomizations.py:789
+msgid "Delete selected {} file: {}?"
+msgstr "Ta bort vald {}-fil: {}?"
+
+#: zapzap/controllers/PageCustomizations.py:794
+msgid "Deletion cancelled."
+msgstr "Avbröt borttagning."
+
+#: zapzap/controllers/PageCustomizations.py:805
+msgid "File deleted."
+msgstr "Fil borttagen."
+
+#: zapzap/controllers/PageCustomizations.py:807
+msgid "Could not delete file."
+msgstr "Kunde inte ta bort fil."
+
+#: zapzap/controllers/PageCustomizations.py:835
+msgid "Customizations saved. Reload pages to apply changes."
+msgstr "Anpassningar sparade. Ladda om sidor för att applicera ändringarna."
+
+#: zapzap/controllers/PageCustomizations.py:845
+msgid "All pages reloaded."
+msgstr "Alla sidor laddades om."
+
+#: zapzap/controllers/PageGeneral.py:51
+msgid ""
+"<b>Flatpak tip:</b> If opening PDFs, drag-and-drop, or file uploads fail, "
+"this is usually caused by sandbox permissions. Open <b>Flatseal</b> and "
+"grant ZapZap access to folders like Documents, Downloads, Pictures and "
+"Videos. You can also run: <code>flatpak override --user --filesystem=home "
+"com.rtosta.zapzap</code>."
+msgstr ""
+"<b>Flatpak-tips:</b> Om öppning av PDF-filer, drag-och-släpp eller "
+"filuppladdningar misslyckas, kan detta orsakas av rättighetsproblem för "
+"sandlådan. Öppna <b>Flatseal</b> och tillåt ZapZap att komma åt kataloger så "
+"som Dokument, Hämtningar, Bilder och Videor. Du kan också köra: "
+"<code>flatpak override --user --filesystem=home com.rtosta.zapzap</code>."
+
+#: zapzap/controllers/PageGeneral.py:67
+msgid "Select and copy this command in your terminal"
+msgstr "Markera och kopiera detta kommando till din terminal"
+
+#: zapzap/controllers/PageGeneral.py:244
+#, python-brace-format
+msgid "Files: {count} crash report(s){faulthandler}."
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:246
+msgid " + faulthandler.log"
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:249
+#, python-brace-format
+msgid ""
+"Crash reports are stored in this folder. You can open the directory or clean "
+"old files.\n"
+"{details}"
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:275
+#, python-brace-format
+msgid "Deleted {count} old crash report(s) (older than 30 days)."
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:285
+msgid "Delete all crash reports and debug logs?"
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:302
+#, python-brace-format
+msgid "Deleted {count} file(s)."
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:310
+msgid ""
+"This will delete your current settings file (.config) and requires restart. "
+"Continue?"
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:328
+#, python-brace-format
+msgid ""
+"Could not remove settings file:\n"
+"{error}"
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:337
+msgid "Settings were reset successfully. Please restart ZapZap."
+msgstr ""
+
 # Identical to source
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
@@ -1661,9 +1737,6 @@ msgstr ""
 
 #~ msgid "Paste"
 #~ msgstr "Klistra in"
-
-#~ msgid "Select all"
-#~ msgstr "Markera allt"
 
 #~ msgid "Copy link address"
 #~ msgstr "Kopiera länkadress"
