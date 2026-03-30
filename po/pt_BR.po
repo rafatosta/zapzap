@@ -514,29 +514,28 @@ msgstr "Sistema de janelas Wayland"
 #: zapzap/views/ui_page_general.py:175 zapzap/controllers/PageGeneral.py:274
 #: zapzap/controllers/PageGeneral.py:284 zapzap/controllers/PageGeneral.py:301
 msgid "Debug logs"
-msgstr ""
+msgstr "Registro de depuração"
 
 #: zapzap/views/ui_page_general.py:176
 msgid ""
 "Crash reports are stored in this folder. You can open the directory or clean "
 "old files."
 msgstr ""
+"Os relatórios de falhas são armazenados nesta pasta. Você pode abrir o "
+"diretório ou limpar arquivos antigos."
 
 #: zapzap/views/ui_page_general.py:178
-#, fuzzy
 msgid "Delete old"
-msgstr "Excluir"
+msgstr "Excluir antigos"
 
 #: zapzap/views/ui_page_general.py:179
-#, fuzzy
 msgid "Delete all"
-msgstr "Selecionar tudo"
+msgstr "Excluir tudo"
 
 #: zapzap/views/ui_page_general.py:180 zapzap/controllers/PageGeneral.py:309
 #: zapzap/controllers/PageGeneral.py:327 zapzap/controllers/PageGeneral.py:336
-#, fuzzy
 msgid "Reset settings"
-msgstr "Configurações"
+msgstr "Redefinir configurações"
 
 #: zapzap/views/ui_page_network.py:118 zapzap/views/ui_settings.py:164
 msgid "Network"
@@ -1559,11 +1558,11 @@ msgstr "Selecione e copie este comando em seu terminal"
 #: zapzap/controllers/PageGeneral.py:244
 #, python-brace-format
 msgid "Files: {count} crash report(s){faulthandler}."
-msgstr ""
+msgstr "Arquivos: {count} relatório(s) de falhas{faulthandler}"
 
 #: zapzap/controllers/PageGeneral.py:246
 msgid " + faulthandler.log"
-msgstr ""
+msgstr " + faulthandler.log"
 
 #: zapzap/controllers/PageGeneral.py:249
 #, python-brace-format
@@ -1572,26 +1571,32 @@ msgid ""
 "old files.\n"
 "{details}"
 msgstr ""
+"Os relatórios de falhas são armazenados nesta pasta. Você pode abrir o "
+"diretório ou limpar arquivos antigos.\n"
+"{details}"
 
 #: zapzap/controllers/PageGeneral.py:275
 #, python-brace-format
 msgid "Deleted {count} old crash report(s) (older than 30 days)."
 msgstr ""
+"Foram excluídos {count} relatórios de falhas antigos (com mais de 30 dias)."
 
 #: zapzap/controllers/PageGeneral.py:285
 msgid "Delete all crash reports and debug logs?"
-msgstr ""
+msgstr "Excluir todos os relatórios de falhas e registros de depuração?"
 
 #: zapzap/controllers/PageGeneral.py:302
 #, python-brace-format
 msgid "Deleted {count} file(s)."
-msgstr ""
+msgstr "{count} arquivo(s) excluído(s)."
 
 #: zapzap/controllers/PageGeneral.py:310
 msgid ""
 "This will delete your current settings file (.config) and requires restart. "
 "Continue?"
 msgstr ""
+"Isso excluirá seu arquivo de configurações atuais (.config) e exigirá "
+"reinicialização. Continuar?"
 
 #: zapzap/controllers/PageGeneral.py:328
 #, python-brace-format
@@ -1599,10 +1604,12 @@ msgid ""
 "Could not remove settings file:\n"
 "{error}"
 msgstr ""
+"Não foi possível remover o arquivo de configurações:\n"
+"{error}"
 
 #: zapzap/controllers/PageGeneral.py:337
 msgid "Settings were reset successfully. Please restart ZapZap."
-msgstr ""
+msgstr "As configurações foram redefinidas com sucesso. Reinicie o ZapZap."
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
