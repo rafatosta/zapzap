@@ -110,6 +110,9 @@ class Ui_PagePerformance(object):
         self.disable_animations = QtWidgets.QCheckBox(parent=self.group_web)
         self.disable_animations.setObjectName("disable_animations")
         self.vboxlayout1.addWidget(self.disable_animations)
+        self.disable_pinch = QtWidgets.QCheckBox(parent=self.group_web)
+        self.disable_pinch.setObjectName("disable_pinch")
+        self.vboxlayout1.addWidget(self.disable_pinch)
         self.verticalLayout_2.addWidget(self.group_web)
         self.hboxlayout = QtWidgets.QHBoxLayout()
         self.hboxlayout.setObjectName("hboxlayout")
@@ -163,6 +166,7 @@ class Ui_PagePerformance(object):
         self.scroll_animator.setText(_("Animated scrolling"))
         self.background_throttling.setText(_("Allow background optimizations"))
         self.disable_animations.setText(_("Disable page animations"))
+        self.disable_pinch.setText(_("Disable pinch to zoom"))
         self.btn_restore.setText(_("Restore defaults"))
         self.label3.setText(_("Note: Restart required to apply changes."))
 

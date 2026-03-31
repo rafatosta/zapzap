@@ -55,6 +55,17 @@
   </screenshots>
 
   <releases>
+      <release date="2026-03-31" version="6.4">
+          <description>
+              <ul>
+                  <li>New debug log management experience in the General settings page.</li>
+                  <li>Add action to reset app settings (.config).</li>
+                  <li>Improve debug diagnostics with app info in RuntimeEnvironmentDebug.</li>
+                  <li>Fix debug logs path to use CrashDumpHandler.dump_dir.</li>
+                  <li>Translation updates.</li>
+              </ul>
+          </description>
+      </release>
       <release date="2026-03-08" version="6.3.4">
           <description>
               <ul>

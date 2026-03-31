@@ -31,7 +31,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dbus = ["dbus-python"]
+dbus = ["dbus-python; sys_platform == 'linux'"]
 
 [project.urls]
 Homepage = "https://rtosta.com/zapzap"
@@ -45,6 +45,7 @@ packages = [
   "zapzap.config",
   "zapzap.controllers",
   "zapzap.models",
+  "zapzap.platform",
   "zapzap.resources",
   "zapzap.services",
   "zapzap.views",

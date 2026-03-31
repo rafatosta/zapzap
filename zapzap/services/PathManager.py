@@ -21,7 +21,14 @@ class PathManager:
         Packaging.UNOFFICIAL: {
             "path": "",
             "default": "/usr/share/qt6/qtwebengine_dictionaries",
-        }
+        },
+        Packaging.WINDOWS: {
+            "path": "",
+            "default": os.path.join(
+                os.getenv("LOCALAPPDATA", os.path.expanduser("~")),
+                "zapzap", "dictionaries"
+            ),
+        },
     }
 
     @staticmethod

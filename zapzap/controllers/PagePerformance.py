@@ -42,6 +42,7 @@ class PagePerformance(QWidget, Ui_PagePerformance):
         "web/scroll_animator": False,
         "web/background_throttling": True,
         "web/disable_animations": False,
+        "web/disable_pinch": False,
     }
 
     CACHE_TYPES = [
@@ -124,6 +125,9 @@ class PagePerformance(QWidget, Ui_PagePerformance):
         )
         self.disable_animations.setChecked(
             SettingsManager.get("web/disable_animations", False)
+        )
+        self.disable_pinch.setChecked(
+            SettingsManager.get("web/disable_pinch", False)
         )
 
     # --------------------------------------------------
@@ -224,6 +228,13 @@ class PagePerformance(QWidget, Ui_PagePerformance):
             )
         )
 
+        self.disable_pinch.clicked.connect(
+            lambda: SettingsManager.set(
+                "web/disable_pinch",
+                self.disable_pinch.isChecked(),
+            )
+        )
+
         # Actions
         self.btn_restore.clicked.connect(self._restore_settings)
 
@@ -315,6 +326,11 @@ class PagePerformance(QWidget, Ui_PagePerformance):
         self.disable_animations.setToolTip(
             _("Disables CSS and JavaScript animations.\n"
               "May improve performance on slower machines.")
+        )
+
+        self.disable_pinch.setToolTip(
+            _("Disables pinch-to-zoom gesture on touchpads.\n"
+              "Useful if accidental zooming occurs during scrolling.")
         )
 
         # Actions

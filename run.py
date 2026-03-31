@@ -1,23 +1,47 @@
-#! env python3
 import os
 import sys
+import shutil
+import subprocess
 
 
 def dev(build_translations=False):
     """Run the app in development mode."""
+    import sys as _sys
     print(f"Running in dev mode. Translations: {build_translations}")
+    
+    if "--help" in sys.argv or "-h" in sys.argv:
+        print("Usage: python run.py dev [--build-translations] [extra-args]")
+        return
 
-    print(" # === Build the windows from the .ui file ===")
-    os.system("chmod +x ./_scripts/build-windows.sh")
-    os.system("./_scripts/build-windows.sh")
+    extra_args = " ".join(_sys.argv[2:])
 
-    if build_translations:
-        print("# === Build translations ===")
-        os.system("./_scripts/build-translations.sh")
+    if _sys.platform == "win32":
+        # Windows: call pyuic6 directly instead of the bash build-windows.sh
+        print(" # === Build the windows from the .ui file ===")
+        ui_files = [
+            ("zapzap/ui/ui_mainwindow.ui",   "zapzap/views/ui_mainwindow.py"),
+        ]
+        for src, dst in ui_files:
+            os.system(f"pyuic6 -x {src} -o {dst}")
 
-    print("# === Start === ")
-    extra_args = " ".join(sys.argv[2:])
-    os.system(f"python -m zapzap {extra_args}")
+        if build_translations:
+            print("# === Build translations ===")
+            os.system("python _scripts/build-translations.py")
+
+        print("# === Start === ")
+        os.system(f"python -m zapzap {extra_args}")
+    else:
+        print(" # === Build the windows from the .ui file ===")
+        os.system("chmod +x ./_scripts/build-windows.sh")
+        os.system("./_scripts/build-windows.sh")
+
+        if build_translations:
+            print("# === Build translations ===")
+            os.system("./_scripts/build-translations.sh")
+
+        print("# === Start === ")
+        os.system(f"python -m zapzap {extra_args}")
+
 
 
 def preview(build_translations=False):
@@ -25,8 +49,13 @@ def preview(build_translations=False):
     SDK_VERSION = "6.10"
     use_flatpak = "--flatpak" in sys.argv
     use_appimage = "--appimage" in sys.argv
+    use_windows = "--windows" in sys.argv
 
     print("Starting app in preview mode...")
+
+    if "--help" in sys.argv or "-h" in sys.argv:
+        print("Usage: python run.py preview [--flatpak | --appimage | --windows] [--build-translations]")
+        return
 
     print(" # === Build the windows from the .ui file ===")
     os.system("chmod +x ./_scripts/build-windows.sh")
@@ -59,8 +88,13 @@ def preview(build_translations=False):
         print("# === Running in AppImage mode ===")
         os.system("chmod +x ./_scripts/build-appimage-local.sh")
         os.system("./_scripts/build-appimage-local.sh")
+    elif use_windows:
+        print("# === Running in Windows Preview mode ===")
+        build()
+        print("# === Starting Executable === ")
+        os.system(r"dist\ZapZap\ZapZap.exe")
     else:
-        print("Error: Specify --flatpak or --appimage for preview mode.")
+        print("Error: Specify --flatpak, --appimage or --windows for preview mode.")
 
 
 def build():
@@ -71,6 +105,73 @@ def build():
 
     build_appimage = "--appimage" in sys.argv
     build_flatpak = "--flatpak-onefile" in sys.argv
+    build_windows = "--windows" in sys.argv
+
+    if "--help" in sys.argv or "-h" in sys.argv:
+        print("Usage: python run.py build [--windows | --appimage <version> | --flatpak-onefile]")
+        return
+
+    # ======================
+    # Windows EXE
+    # ======================
+    if build_windows:
+        print("# === Building Windows Executable ===")
+        print(" # === Compile UI Files ===")
+        ui_files = [
+            ("zapzap/ui/ui_mainwindow.ui",   "zapzap/views/ui_mainwindow.py"),
+            ("zapzap/ui/ui_page_general.ui",    "zapzap/views/ui_page_general.py"),
+            ("zapzap/ui/ui_page_network.ui",    "zapzap/views/ui_page_network.py"),
+        ]
+        for src, dst in ui_files:
+            if os.path.exists(src):
+                print(f"Compiling {src} -> {dst}")
+                try:
+                    subprocess.run([sys.executable, "-m", "PyQt6.uic.pyuic", "-x", src, "-o", dst], check=True)
+                except Exception as e:
+                    print(f"Warning: Compilation failed for {src}. Trying fallback pyuic6 command...")
+                    subprocess.run(["pyuic6", "-x", src, "-o", dst], check=True)
+
+        print("# === Running PyInstaller ===")
+        pyinstaller_cmd = [
+            sys.executable, "-m", "PyInstaller",
+            "--name", "ZapZap",
+            "--onefile",
+            "--windowed",
+            "--noconfirm",
+            "--add-data", "zapzap/po;zapzap/po",
+            "--add-data", "zapzap/ui;zapzap/ui",
+            "--add-data", "zapzap/resources;zapzap/resources",
+            "--add-data", "zapzap/webengine/webrtc_shield.js;zapzap/webengine",
+            "zapzap/__main__.py"
+        ]
+        
+        try:
+            subprocess.run(pyinstaller_cmd, check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"Error: PyInstaller failed with exit code {e.returncode}")
+            sys.exit(1)
+        
+        print("# === Creating Distribution ZIP ===")
+        # In --onefile mode, PyInstaller creates dist/ZapZap.exe
+        exe_path = "dist/ZapZap.exe"
+        if os.path.exists(exe_path):
+            # We create a temporary folder to zip it cleanly (so the zip contains the exe)
+            temp_zip_dir = "dist/ZapZap_zip_temp"
+            if os.path.exists(temp_zip_dir):
+                shutil.rmtree(temp_zip_dir)
+            os.makedirs(temp_zip_dir)
+            shutil.copy2(exe_path, os.path.join(temp_zip_dir, "ZapZap.exe"))
+            
+            shutil.make_archive("dist/ZapZap-Windows", 'zip', temp_zip_dir)
+            shutil.rmtree(temp_zip_dir)
+            
+            print("Build finished successfully!")
+            print(f"Output: {exe_path}")
+            print("Archive: dist/ZapZap-Windows.zip")
+        else:
+            print(f"Error: {exe_path} not found. Build failed.")
+            sys.exit(1)
+        return
 
     # ======================
     # AppImage
@@ -130,8 +231,8 @@ def build():
             f"--runtime-repo=https://flathub.org/repo/flathub.flatpakrepo"
         )
 
-        print("✅ Flatpak Onefile build finished!")
-        print(f"📦 Output: {dist_dir}/{bundle_name}")
+        print("Flatpak Onefile build finished!")
+        print(f"Output: {dist_dir}/{bundle_name}")
         return
 
     # ======================
@@ -139,6 +240,7 @@ def build():
     # ======================
     print("No build target specified.")
     print("Usage:")
+    print("  python run.py build --windows")
     print("  python run.py build --appimage <version>")
     print("  python run.py build --flatpak-onefile")
 
@@ -151,10 +253,12 @@ def main():
         "build": build,
     }
 
-    if len(sys.argv) < 2 or sys.argv[1] not in commands:
+    if len(sys.argv) < 2 or sys.argv[1] not in commands or "--help" in sys.argv or "-h" in sys.argv:
         print(
-            "Usage: python run.py [dev|preview|build] [--build-translations | --appimage | --flatpak-onefile]"
+            "Usage: python run.py [dev|preview|build] [--build-translations | --appimage | --flatpak-onefile | --windows | --flatpak]"
         )
+        if len(sys.argv) > 1 and sys.argv[1] in commands:
+            commands[sys.argv[1]]()
         return
 
     build_translations = "--build-translations" in sys.argv

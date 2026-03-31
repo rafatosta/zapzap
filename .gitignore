@@ -137,3 +137,5 @@ dmypy.json
 
 # Editor (IDE) files
 .idea
+
+tb*.txt

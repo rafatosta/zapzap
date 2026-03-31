@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 from typing import Dict, Any
 from datetime import datetime
+from zapzap import __appname__, __version__
 
 
 class RuntimeEnvironmentDebug:
@@ -91,6 +92,13 @@ class RuntimeEnvironmentDebug:
     # =========================================================
     # Blocos de informação do ambiente
     # =========================================================
+
+    def app_info(self) -> Dict[str, Any]:
+        return {
+            "name": __appname__,
+            "version": __version__,
+        }
+
     def sandbox_info(self) -> Dict[str, Any]:
         return {
             "is_flatpak": self._is_flatpak(),
@@ -155,6 +163,7 @@ class RuntimeEnvironmentDebug:
             "meta": {
                 "generated_at": datetime.utcnow().isoformat() + "Z"
             },
+            "app": self.app_info(),
             "sandbox": self.sandbox_info(),
             "distro": self.distro_info(),
             "runtime": self.runtime_info(),
