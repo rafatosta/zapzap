@@ -76,9 +76,81 @@ class PageController(QWebEnginePage):
         script = """document.dispatchEvent(new KeyboardEvent("keydown", {'key': 'Escape'}));"""
         self.runJavaScript(script)
 
-    """
-    local -> inicar em modo Auto e Dark não atualiza a página
-    """
+    def _apply_whatsapp_theme(self, theme: str):
+        """
+        Aplica o tema diretamente na UI do WhatsApp Web via XPath.
+        theme: 'light' | 'dark' | 'auto'
+        """
+
+        script = f"""
+        (async function() {{
+            function getElementByXPath(xpath) {{
+                return document.evaluate(
+                    xpath,
+                    document,
+                    null,
+                    XPathResult.FIRST_ORDERED_NODE_TYPE,
+                    null
+                ).singleNodeValue;
+            }}
+
+            function sleep(ms) {{
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }}
+
+            async function waitForElement(xpath, timeout = 10000) {{
+                const start = Date.now();
+                while (Date.now() - start < timeout) {{
+                    const el = getElementByXPath(xpath);
+                    if (el) return el;
+                    await sleep(200);
+                }}
+                throw new Error("Timeout: " + xpath);
+            }}
+
+            async function click(xpath) {{
+                const el = await waitForElement(xpath);
+                el.click();
+                await sleep(300);
+            }}
+
+            const THEMES = {{
+                light: '//*[@id="app"]/div/div/span[2]/div/div/div/div/div/div/div[1]/form/ol/div/label[1]',
+                dark: '//*[@id="app"]/div/div/span[2]/div/div/div/div/div/div/div[1]/form/ol/div/label[2]',
+                auto: '//*[@id="app"]/div/div/span[2]/div/div/div/div/div/div/div[1]/form/ol/div/label[3]',
+            }};
+
+            try {{
+                // passo 1 - menu
+                await click('//*[@id="app"]/div/div/div[3]/div/header/div/div[2]/div/div[4]/span/button');
+
+                // passo 2 - Conversas
+                await click('//*[@id="app"]/div/div/div[3]/div/div[3]/div[1]/div/span/div/span/div/div/div[2]/div/div/div[2]/button[4]');
+
+                // passo 3 - Tema 
+                await click('//*[@id="app"]/div/div/div[3]/div/div[3]/div[1]/div/span/div/span/span/div/div/div/div/div/div[1]/button[1]');
+
+                // passo 4 - tema
+                await click(THEMES["{theme}"]);
+
+                // passo 5 - confirmar
+                await click('//*[@id="app"]/div/div/span[2]/div/div/div/div/div/div/div[2]/div/button[2]');
+
+                console.log("ZapZap Theme applied:", "{theme}");
+
+                // passo 6 - fechar
+                await click ('//*[@id="app"]/div/div/div[3]/div/header/div/div[1]/div/div[1]/span/button');
+                
+                return true;
+
+            }} catch (e) {{
+                console.error("ZapZap Theme error:", e);
+                return false;
+            }}
+        }})();
+        """
+
+        self.runJavaScript(script)
 
     def apply_theme(self, system_theme: ThemeManager.Type):
         """
@@ -142,11 +214,13 @@ class PageController(QWebEnginePage):
 
     def set_theme_light(self):
         """Altera o tema da página para claro."""
-        self.apply_theme(ThemeManager.Type.Light)
+        #self.apply_theme(ThemeManager.Type.Light)
+        self._apply_whatsapp_theme("light")
 
     def set_theme_dark(self):
         """Altera o tema da página para escuro."""
-        self.apply_theme(ThemeManager.Type.Dark)
+        #self.apply_theme(ThemeManager.Type.Dark)
+        self._apply_whatsapp_theme("dark")
 
     def new_chat(self):
         """Simula o atalho 'Ctrl+Alt+N' para iniciar um novo chat."""
