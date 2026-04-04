@@ -5,6 +5,12 @@
 
 class QWidget;
 
+#ifdef HAVE_QTWEBENGINEWIDGETS
+class QWebEnginePage;
+class QWebEngineProfile;
+class QWebEngineView;
+#endif
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 
@@ -13,6 +19,12 @@ public:
 
 private:
     QWidget *content;
+
+#ifdef HAVE_QTWEBENGINEWIDGETS
+    QWebEngineProfile *profile;
+    QWebEnginePage *page;
+    QWebEngineView *browser;
+#endif
 };
 
 #endif
