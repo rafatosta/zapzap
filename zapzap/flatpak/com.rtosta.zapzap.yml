@@ -1,0 +1,21 @@
+app-id: com.rtosta.zapzap
+runtime: org.kde.Platform
+runtime-version: "6.6"
+sdk: org.kde.Sdk
+command: zapzap
+
+finish-args:
+  - --share=network
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --device=dri
+  - --filesystem=home
+
+modules:
+  - name: zapzap
+    buildsystem: cmake-ninja
+    builddir: true
+    sources:
+      - type: dir
+        path: ..
