@@ -6,6 +6,7 @@
 #include <QUrl>
 #include <QWebEnginePage>
 #include <QWebEngineProfile>
+#include <QWebEngineSettings>
 #include <QWebEngineView>
 #else
 #include <QLabel>
@@ -31,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
     profile->setCachePath(cachePath);
     profile->setHttpCacheType(QWebEngineProfile::DiskHttpCache);
     profile->setPersistentCookiesPolicy(QWebEngineProfile::ForcePersistentCookies);
+    profile->settings()->setAttribute(QWebEngineSettings::ForceDarkMode, true);
 
     QString userAgent = qEnvironmentVariable("ZAPZAP_USER_AGENT");
     if (userAgent.isEmpty()) {
