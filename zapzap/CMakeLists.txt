@@ -26,3 +26,7 @@ else()
         Qt6::Widgets
     )
 endif()
+
+
+include(GNUInstallDirs)
+install(TARGETS zapzap RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
