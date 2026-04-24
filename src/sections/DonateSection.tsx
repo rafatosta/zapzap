@@ -1,8 +1,6 @@
 import {
   LuHeartHandshake as Heart,
   LuExternalLink as ExternalLink,
-  LuTarget as Target,
-  LuSparkles as Sparkles,
 } from "react-icons/lu";
 import { FaPaypal, FaPix } from "react-icons/fa6";
 import { SiKofi, SiGithubsponsors } from "react-icons/si";
@@ -12,10 +10,6 @@ import { Trans, useTranslation } from "react-i18next";
 
 function DonationSection() {
   const { t } = useTranslation();
-
-  const impactItems = t("donationSection.impact.items", {
-    returnObjects: true,
-  }) as Array<{ value: string; description: string }>;
 
   const donationOptions = [
     {
@@ -96,57 +90,6 @@ function DonationSection() {
         <p className="text-muted-foreground text-xl leading-relaxed">
           {t("donationSection.subtitle")}
         </p>
-      </div>
-
-      <Card className="border-primary-200 dark:border-primary-800 from-primary-50 to-primary-100/40 dark:from-primary-950/30 dark:to-primary-900/20 mt-8 bg-gradient-to-r">
-        <div className="flex flex-col gap-6 p-6 md:flex-row md:items-center md:justify-between md:p-8">
-          <div className="max-w-2xl space-y-3">
-            <div className="text-primary-700 dark:text-primary-300 flex items-center gap-2 font-semibold">
-              <Sparkles className="h-4 w-4" />
-              {t("donationSection.sustainability.badge")}
-            </div>
-            <h3 className="text-2xl font-bold">
-              {t("donationSection.sustainability.title")}
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              {t("donationSection.sustainability.description")}
-            </p>
-          </div>
-
-          <div className="border-primary-200 dark:border-primary-700 min-w-56 rounded-xl border bg-white/70 p-4 dark:bg-gray-900/50">
-            <div className="mb-2 flex items-center justify-between text-sm font-medium">
-              <span className="inline-flex items-center gap-2">
-                <Target className="h-4 w-4" />
-                {t("donationSection.goal.label")}
-              </span>
-              <span>{t("donationSection.goal.progress")}</span>
-            </div>
-            <div className="h-2.5 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
-              <div className="from-primary-500 h-full w-[38%] bg-gradient-to-r to-green-500" />
-            </div>
-            <p className="text-muted-foreground mt-2 text-sm">
-              {t("donationSection.goal.caption")}
-            </p>
-          </div>
-        </div>
-      </Card>
-
-      <div className="mt-6 grid gap-4 md:grid-cols-3">
-        {impactItems.map((item, idx) => (
-          <Card
-            key={idx}
-            className="border-primary-100 dark:border-primary-900"
-          >
-            <div className="p-5">
-              <p className="text-primary-700 dark:text-primary-300 mb-1 text-2xl font-bold">
-                {item.value}
-              </p>
-              <p className="text-muted-foreground text-sm">
-                {item.description}
-              </p>
-            </div>
-          </Card>
-        ))}
       </div>
 
       <div className="mt-6 grid gap-8 md:grid-cols-2">
