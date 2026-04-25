@@ -1,24 +1,22 @@
-import {
-  LuHeartHandshake as Heart,
-  LuExternalLink as ExternalLink,
-} from "react-icons/lu";
 import { FaPaypal, FaPix } from "react-icons/fa6";
 import { SiKofi, SiGithubsponsors } from "react-icons/si";
-import { Badge, Button, Card } from "flowbite-react";
 import { Container } from "../components/Container";
 import { Trans, useTranslation } from "react-i18next";
+
+import { DonateCard } from "../components/DonateCard";
+import { PixModalContent } from "../components/PixModalContent";
 
 function DonationSection() {
   const { t } = useTranslation();
 
   const donationOptions = [
     {
+      type: "modal" as const, // 👈 Pix agora é modal
       icon: FaPix,
       title: t("donationSection.options.pix.title"),
       description: t("donationSection.options.pix.description"),
       badge: t("donationSection.options.pix.badge"),
       badgeVariant: "success" as const,
-      url: "https://nubank.com.br/pagar/3c3r2/LS2hiJJKzv",
       features: t("donationSection.options.pix.features", {
         returnObjects: true,
       }) as string[],
@@ -26,8 +24,18 @@ function DonationSection() {
         iconBg: "from-green-500 to-green-600",
         buttonBg: "from-green-500 via-emerald-500 to-lime-400",
       },
+
+      // 👇 dados específicos do modal
+      qrCodeUrl: "/qr-pix.png",
+      pixOptions: [
+        {
+          label: "c86378c4-c34a-4951-bad0-42d5c1774f79",
+          value: "c86378c4-c34a-4951-bad0-42d5c1774f79",
+        },
+      ],
     },
     {
+      type: "link" as const,
       icon: FaPaypal,
       title: t("donationSection.options.paypal.title"),
       description: t("donationSection.options.paypal.description"),
@@ -43,6 +51,7 @@ function DonationSection() {
       },
     },
     {
+      type: "link" as const,
       icon: SiKofi,
       title: t("donationSection.options.kofi.title"),
       description: t("donationSection.options.kofi.description"),
@@ -58,6 +67,7 @@ function DonationSection() {
       },
     },
     {
+      type: "link" as const,
       icon: SiGithubsponsors,
       title: t("donationSection.options.githubSponsors.title"),
       description: t("donationSection.options.githubSponsors.description"),
@@ -87,6 +97,7 @@ function DonationSection() {
             }}
           />
         </h2>
+
         <p className="text-muted-foreground text-xl leading-relaxed">
           {t("donationSection.subtitle")}
         </p>
@@ -94,49 +105,32 @@ function DonationSection() {
 
       <div className="mt-6 grid gap-8 md:grid-cols-2">
         {donationOptions.map((option, index) => (
-          <Card
+          <DonateCard
             key={index}
-            className="group hover:-translate-y-2 hover:shadow-xl"
-          >
-            <div className="p-8">
-              <div className="mb-4 flex items-start justify-between">
-                <div
-                  className={`h-16 w-16 rounded-2xl bg-gradient-to-br ${option.colors.iconBg} flex items-center justify-center transition-transform duration-300 group-hover:scale-110`}
-                >
-                  <option.icon className="h-8 w-8 text-white" />
-                </div>
-                <Badge color={option.badgeVariant} className="ml-2">
-                  {option.badge}
-                </Badge>
-              </div>
-
-              <h3 className="mb-3 text-2xl font-bold">{option.title}</h3>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                {option.description}
-              </p>
-
-              <div className="mb-6 flex flex-wrap gap-2">
-                {option.features.map((feature, idx) => (
-                  <Badge color="indigo" key={idx} className="px-3 py-1">
-                    {feature}
-                  </Badge>
-                ))}
-              </div>
-
-              <Button
-                as="a"
-                href={option.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`w-full gap-2 bg-gradient-to-r hover:shadow-xl ${option.colors.buttonBg}`}
-                size="lg"
-              >
-                <Heart className="h-5 w-5" />
-                {t("donationSection.button", { method: option.title })}
-                <ExternalLink className="ml-auto h-4 w-4" />
-              </Button>
-            </div>
-          </Card>
+            title={option.title}
+            description={option.description}
+            features={option.features}
+            icon={option.icon}
+            badge={option.badge}
+            badgeColor={option.badgeVariant}
+            buttonLabel={t("donationSection.button", {
+              method: option.title,
+            })}
+            colors={option.colors}
+            action={
+              option.type === "modal"
+                ? { type: "modal" }
+                : { type: "link", url: option.url }
+            }
+            modalContent={
+              option.type === "modal" ? (
+                <PixModalContent
+                  qrCodeUrl={option.qrCodeUrl}
+                  pixOptions={option.pixOptions}
+                />
+              ) : undefined
+            }
+          />
         ))}
       </div>
     </Container>
