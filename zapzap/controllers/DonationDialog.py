@@ -7,7 +7,6 @@ from PyQt6.QtGui import QDesktopServices, QPixmap
 from PyQt6.QtWidgets import (
     QApplication,
     QDialog,
-    QFileDialog,
     QFrame,
     QHBoxLayout,
     QLabel,
@@ -25,6 +24,7 @@ class DonationDialog(QDialog):
     DONATION_LINK = "https://wise.com/pay/me/rafaelt2487"
     DONATION_LABEL = "@rafaelt2487"
     DONATION_NAME = "RAFAEL TOSTA SANTOS"
+    DIALOG_TITLE = _("Support via Wise")
 
     def __init__(self, parent: QWidget | None = None):
         super().__init__(parent)
@@ -38,19 +38,69 @@ class DonationDialog(QDialog):
         self._load_qr_code()
 
     def _build_ui(self):
+        self.setStyleSheet(
+            """
+            QDialog { background: #FFFFFF; }
+            QToolButton {
+                background: #eef2e8;
+                border-radius: 18px;
+                min-width: 36px;
+                min-height: 36px;
+                font-size: 18px;
+                color: #1F3D13;
+            }
+            QToolButton:hover { background: #dce7d4; }
+            QLabel#dialog_title {
+                font-size: 26px;
+                font-weight: 900;
+                color: #1F3D13;
+            }
+            QLabel#name_title {
+                font-size: 34px;
+                font-weight: 900;
+            }
+            QPushButton#primaryButton {
+                background: #8ADD5D;
+                border: 0;
+                border-radius: 18px;
+                padding: 12px 16px;
+                font-size: 16px;
+                font-weight: 700;
+                color: #17350F;
+            }
+            QPushButton#primaryButton:hover { background: #96e86b; }
+            QPushButton#secondaryButton {
+                background: #E5ECD8;
+                border: 0;
+                border-radius: 18px;
+                padding: 12px 16px;
+                font-size: 16px;
+                font-weight: 700;
+                color: #17350F;
+            }
+            QPushButton#secondaryButton:hover { background: #dae6ca; }
+            QPushButton#linkButton {
+                background: #ECEFE9;
+                border: 0;
+                border-radius: 16px;
+                padding: 10px 16px;
+                font-size: 16px;
+                font-weight: 700;
+                color: #1F3D13;
+                text-align: left;
+            }
+            QPushButton#linkButton:hover { background: #dce4d6; }
+            """
+        )
+
         root_layout = QVBoxLayout(self)
         root_layout.setContentsMargins(20, 20, 20, 20)
-        root_layout.setSpacing(16)
+        root_layout.setSpacing(14)
 
-        close_layout = QHBoxLayout()
-        close_layout.addStretch()
-        self.btn_close = QToolButton(self)
-        self.btn_close.setText("✕")
-        self.btn_close.setAutoRaise(True)
-        self.btn_close.setToolTip(_("Close"))
-        self.btn_close.clicked.connect(self.close)
-        close_layout.addWidget(self.btn_close)
-        root_layout.addLayout(close_layout)
+        self.title_label = QLabel(self.DIALOG_TITLE, self)
+        self.title_label.setObjectName("dialog_title")
+        self.title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        root_layout.addWidget(self.title_label)
 
         qr_card = QFrame(self)
         qr_card.setStyleSheet("QFrame { background: #ECEFE9; border-radius: 22px; }")
@@ -73,36 +123,41 @@ class DonationDialog(QDialog):
         root_layout.addWidget(qr_card, alignment=Qt.AlignmentFlag.AlignHCenter)
 
         self.name_label = QLabel(self.DONATION_NAME, self)
+        self.name_label.setObjectName("name_title")
         self.name_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.name_label.setStyleSheet("QLabel { font-size: 34px; font-weight: 900; }")
         root_layout.addWidget(self.name_label)
 
         link_layout = QHBoxLayout()
         link_layout.setSpacing(8)
         self.link_button = QPushButton("wise.com/pay/me/rafaelt2487", self)
-        self.link_button.setStyleSheet(
-            "QPushButton { background: #ECEFE9; border-radius: 16px; padding: 8px 16px; font-weight: 600; }"
-        )
+        self.link_button.setObjectName("linkButton")
         self.link_button.clicked.connect(
             lambda: QDesktopServices.openUrl(QUrl(self.DONATION_LINK))
         )
         link_layout.addWidget(self.link_button)
 
-        self.copy_small_button = QPushButton(_("Copy"), self)
-        self.copy_small_button.setToolTip(_("Copy donation link"))
-        self.copy_small_button.clicked.connect(self._copy_link)
-        link_layout.addWidget(self.copy_small_button)
+        self.open_link_button = QToolButton(self)
+        self.open_link_button.setText("↗")
+        self.open_link_button.setToolTip(_("Open donation link"))
+        self.open_link_button.clicked.connect(
+            lambda: QDesktopServices.openUrl(QUrl(self.DONATION_LINK))
+        )
+        link_layout.addWidget(self.open_link_button)
         root_layout.addLayout(link_layout)
 
         actions_layout = QHBoxLayout()
         actions_layout.setSpacing(12)
-        self.btn_copy = QPushButton(_("Copy link"), self)
+        self.btn_copy = QPushButton(_("🔗 Copy link"), self)
+        self.btn_copy.setObjectName("primaryButton")
         self.btn_copy.clicked.connect(self._copy_link)
         actions_layout.addWidget(self.btn_copy)
 
-        self.btn_download = QPushButton(_("Download"), self)
-        self.btn_download.clicked.connect(self._download_qr)
-        actions_layout.addWidget(self.btn_download)
+        self.btn_open = QPushButton(_("🌐 Open in browser"), self)
+        self.btn_open.setObjectName("secondaryButton")
+        self.btn_open.clicked.connect(
+            lambda: QDesktopServices.openUrl(QUrl(self.DONATION_LINK))
+        )
+        actions_layout.addWidget(self.btn_open)
         root_layout.addLayout(actions_layout)
 
     def _load_qr_code(self):
@@ -128,17 +183,3 @@ class DonationDialog(QDialog):
     def _copy_link(self):
         QApplication.clipboard().setText(self.DONATION_LINK)
         QMessageBox.information(self, _("Donation"), _("Donation link copied to clipboard."))
-
-    def _download_qr(self):
-        if self._qr_pixmap.isNull():
-            QMessageBox.warning(self, _("Donation"), _("QR code is not available to download."))
-            return
-
-        filename, __ = QFileDialog.getSaveFileName(
-            self,
-            _("Save QR code"),
-            "zapzap-donation-qr.png",
-            "PNG (*.png);;JPEG (*.jpg *.jpeg)",
-        )
-        if filename:
-            self._qr_pixmap.save(filename)
