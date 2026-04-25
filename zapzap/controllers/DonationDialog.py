@@ -134,7 +134,7 @@ class DonationDialog(QDialog):
             QMessageBox.warning(self, _("Donation"), _("QR code is not available to download."))
             return
 
-        filename, _ = QFileDialog.getSaveFileName(
+        filename, __ = QFileDialog.getSaveFileName(
             self,
             _("Save QR code"),
             "zapzap-donation-qr.png",
