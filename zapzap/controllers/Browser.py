@@ -13,6 +13,7 @@ from zapzap.services.SetupManager import SetupManager
 from zapzap.services.SysTrayManager import SysTrayManager
 from zapzap.views.ui_browser import Ui_Browser
 from zapzap.controllers.OnboardingDialog import OnboardingDialog
+from zapzap.controllers.DonationDialog import DonationDialog
 
 from gettext import gettext as _
 
@@ -74,6 +75,14 @@ class Browser(QWidget, Ui_Browser):
         idx = self.layout_2.indexOf(self.line_2)
         self.layout_2.insertWidget(idx, self.btn_grid_view)
 
+        self.btn_donation = QPushButton(self.settings_buttons_layout)
+        self.btn_donation.setMinimumSize(35, 35)
+        self.btn_donation.setText("")
+        self.btn_donation.setIconSize(self.btn_open_settings.iconSize())
+        self.btn_donation.setToolTip(_("Donation"))
+        self.btn_donation.clicked.connect(self._show_donation_dialog)
+        self.layout_2.insertWidget(idx + 1, self.btn_donation)
+
     def _configure_signals(self):
         """Configura os sinais do widget."""
         self.btn_new_account.clicked.connect(lambda: self.add_new_user())
@@ -98,6 +107,10 @@ class Browser(QWidget, Ui_Browser):
 
     def _show_flatpak_sandbox_popover(self):
         OnboardingDialog.show_flatpak_permissions_dialog(self)
+
+    def _show_donation_dialog(self):
+        dialog = DonationDialog(self)
+        dialog.exec()
 
     def _load_users(self):
         """Carrega os usuários e cria páginas correspondentes."""
@@ -479,6 +492,8 @@ class Browser(QWidget, Ui_Browser):
             self.btn_grid_view.setIcon(SystemIcon.get_icon("view_grid", theme))
         except:
             self.btn_grid_view.setIcon(SystemIcon.get_icon("new_chat", theme))
+
+        self.btn_donation.setIcon(SystemIcon.get_icon("donation", theme))
 
     def settings_sidebar(self):
         """Mostra ou esconde a barra lateral"""
