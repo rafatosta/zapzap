@@ -2,6 +2,7 @@ import { Button, Label, Select } from "flowbite-react";
 import { useState } from "react";
 import { HiDownload } from "react-icons/hi";
 import { FaCopy } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 interface PixOption {
   label: string;
@@ -16,18 +17,13 @@ interface PixModalContentProps {
 
   pixOptions: PixOption[];
   defaultValue?: string;
-
-  onDownload?: () => void;
   onCopy?: (value: string) => void;
 }
 
 export function PixModalContent({
-  title = "Compartilhe a Chave Pix",
-  description = "Compartilhe a Chave Pix para receber pagamentos",
   qrCodeUrl,
   pixOptions,
   defaultValue,
-  onDownload,
   onCopy,
 }: PixModalContentProps) {
   const [selected, setSelected] = useState(
@@ -42,11 +38,13 @@ export function PixModalContent({
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col items-center text-center">
       {/* Header */}
-      <h2 className="text-2xl font-bold mb-2">{title}</h2>
-      <p className="text-gray-500 mb-6">{description}</p>
+      <h2 className="text-2xl font-bold mb-2">{t("donationSection.pixModal.title")}</h2>
+      <p className="text-gray-500 mb-6">{t("donationSection.pixModal.description")}</p>
 
       {/* QR Code */}
       <div className="mb-6 rounded-2xl bg-gray-100 p-4">
@@ -59,7 +57,7 @@ export function PixModalContent({
 
       {/* Select */}
       <div className="w-full mb-6 text-left">
-        <Label className="mb-2 block">Chave Pix</Label>
+        <Label className="mb-2 block">{t("donationSection.pixModal.label")}</Label>
         <Select
           value={selected}
           onChange={(e) => setSelected(e.target.value)}
@@ -75,20 +73,12 @@ export function PixModalContent({
       {/* Actions */}
       <div className="w-full flex flex-col gap-3">
         <Button
-          onClick={onDownload}
-          className="w-full bg-green-500 hover:bg-green-600"
-        >
-          <HiDownload className="mr-2 h-5 w-5" />
-          Baixar
-        </Button>
-
-        <Button
           onClick={handleCopy}
           color="light"
           className="w-full"
         >
           <FaCopy className="mr-2 h-4 w-4" />
-          Pix Copia e Cola
+           {t("donationSection.pixModal.copy")}
         </Button>
       </div>
     </div>

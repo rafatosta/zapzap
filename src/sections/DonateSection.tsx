@@ -6,6 +6,8 @@ import { Trans, useTranslation } from "react-i18next";
 import { DonateCard } from "../components/DonateCard";
 import { PixModalContent } from "../components/PixModalContent";
 
+import qrPix from "/qr-pix.png";
+
 function DonationSection() {
   const { t } = useTranslation();
 
@@ -26,7 +28,7 @@ function DonationSection() {
       },
 
       // 👇 dados específicos do modal
-      qrCodeUrl: "/qr-pix.png",
+      qrCodeUrl: qrPix,
       pixOptions: [
         {
           label: "c86378c4-c34a-4951-bad0-42d5c1774f79",
