@@ -2,6 +2,7 @@ import { FaPaypal, FaPix } from "react-icons/fa6";
 import { SiKofi, SiGithubsponsors } from "react-icons/si";
 import { Container } from "../components/Container";
 import { Trans, useTranslation } from "react-i18next";
+import { SiWise } from "react-icons/si";
 
 import { DonateCard } from "../components/DonateCard";
 import { PixModalContent } from "../components/PixModalContent";
@@ -13,7 +14,23 @@ function DonationSection() {
 
   const donationOptions = [
     {
-      type: "modal" as const, // 👈 Pix agora é modal
+      type: "link" as const,
+      icon: SiWise,
+      title: t("donationSection.options.wise.title"),
+      description: t("donationSection.options.wise.description"),
+      badge: t("donationSection.options.wise.badge"),
+      badgeVariant: "success" as const,
+      url: "https://wise.com/pay/me/rafaelt2487",
+      features: t("donationSection.options.wise.features", {
+        returnObjects: true,
+      }) as string[],
+      colors: {
+        iconBg: "from-green-400 to-emerald-600",
+        buttonBg: "from-green-400 via-emerald-500 to-teal-400",
+      },
+    },
+    {
+      type: "modal" as const,
       icon: FaPix,
       title: t("donationSection.options.pix.title"),
       description: t("donationSection.options.pix.description"),

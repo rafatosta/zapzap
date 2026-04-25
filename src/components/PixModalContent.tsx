@@ -1,6 +1,5 @@
 import { Button, Label, Select } from "flowbite-react";
 import { useState } from "react";
-import { HiDownload } from "react-icons/hi";
 import { FaCopy } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 

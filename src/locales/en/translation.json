@@ -150,6 +150,16 @@
     "subtitle": "Your contribution helps keep the project active, free, and constantly evolving.",
     "button": "Support via {{method}}",
     "options": {
+      "wise": {
+        "title": "Wise",
+        "description": "Send your contribution internationally with low fees and real exchange rates.",
+        "badge": "International",
+        "features": [
+          "Low fees",
+          "Real exchange rate",
+          "Global"
+        ]
+      },
       "pix": {
         "title": "Pix",
         "description": "Donate directly via Pix key. Fast, simple, and with no extra fees.",

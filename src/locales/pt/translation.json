@@ -150,6 +150,16 @@
     "subtitle": "Sua contribuição ajuda a manter o projeto ativo, gratuito e em constante evolução.",
     "button": "Apoiar via {{method}}",
     "options": {
+      "wise": {
+        "title": "Wise",
+        "description": "Envie sua contribuição internacional com taxas baixas e câmbio real.",
+        "badge": "Internacional",
+        "features": [
+          "Baixas taxas",
+          "Câmbio real",
+          "Global"
+        ]
+      },
       "pix": {
         "title": "Pix",
         "description": "Contribua diretamente via chave Pix. Rápido, prático e sem taxas adicionais.",
