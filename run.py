@@ -79,7 +79,7 @@ def preview(build_translations=False):
         )
         print("# === Build === ")
         os.system(
-            "flatpak-builder build com.rtosta.zapzap.yaml --force-clean --ccache --install --user"
+            "flatpak run org.flatpak.Builder build com.rtosta.zapzap.yaml --force-clean --ccache --install --user"
         )
         print("# === Start === ")
         extra_args = " ".join(sys.argv[2:])
@@ -218,7 +218,7 @@ def build():
 
         print("# === Build Flatpak ===")
         os.system(
-            f"flatpak-builder {build_dir} {MANIFEST} "
+            f"flatpak run org.flatpak.Builder {build_dir} {MANIFEST} "
             f"--force-clean "
             f"--repo={repo_dir}"
         )
