@@ -876,7 +876,7 @@ msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Pode reativar a mesma agora ou usar o menu de contexto com o botão direito do "
-rato para gerir esta conta."
+"rato para gerir esta conta."
 
 #: zapzap/controllers/Browser.py:265
 msgid "Activate"
