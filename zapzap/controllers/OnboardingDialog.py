@@ -45,7 +45,8 @@ class _OnboardingWizardDialog(QDialog):
         # Configuração básica da janela
         self.setWindowTitle(_("Welcome to ZapZap"))
         self.setModal(True)
-        self.setMinimumSize(680, 430)
+        self.setMinimumSize(780, 530)
+        self.setFixedSize(self.size())
         self.setContentsMargins(10, 10, 10, 10)
         self.setObjectName("OnboardingWizard")
 
