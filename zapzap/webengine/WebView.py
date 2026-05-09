@@ -115,7 +115,7 @@ class WebView(QWebEngineView):
 
     def _inject_webrtc_shield(self):
         """Injeta script para prevenir vazamento de IP via WebRTC."""
-        if SettingsManager.get("privacy/webrtc_shield", True):
+        if SettingsManager.get("privacy/webrtc_shield", False):
             try:
                 base_dir = os.path.dirname(__file__)
                 js_path = os.path.join(base_dir, "webrtc_shield.js")
