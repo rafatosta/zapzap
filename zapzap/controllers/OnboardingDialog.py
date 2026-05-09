@@ -8,7 +8,6 @@ from PyQt6.QtWidgets import (
     QCheckBox,
     QDialog,
     QFrame,
-    QGridLayout,
     QHBoxLayout,
     QLabel,
     QLineEdit,
@@ -182,7 +181,7 @@ class _OnboardingWizardDialog(QDialog):
 
         card = QFrame(page)
         card.setObjectName("OnboardingCard")
-        card_layout = QGridLayout(card)
+        card_layout = QVBoxLayout(card)
 
         # Opções gerais
         self.cb_start_background = QCheckBox(
@@ -218,11 +217,11 @@ class _OnboardingWizardDialog(QDialog):
                 _("Use Flatseal to change this mode of execution"))
 
         # Layout
-        card_layout.addWidget(self.cb_start_background, 0, 0, 1, 2)
-        card_layout.addWidget(self.cb_quit_in_close, 1, 0, 1, 2)
-        card_layout.addWidget(self.cb_spellcheck, 2, 0, 1, 2)
-        card_layout.addWidget(self.cb_start_system, 3, 0, 1, 2)
-        card_layout.addWidget(self.cb_wayland, 4, 0, 1, 2)
+        card_layout.addWidget(self.cb_start_background)
+        card_layout.addWidget(self.cb_quit_in_close)
+        card_layout.addWidget(self.cb_spellcheck)
+        card_layout.addWidget(self.cb_start_system)
+        card_layout.addWidget(self.cb_wayland)
 
         layout.addWidget(card)
 
