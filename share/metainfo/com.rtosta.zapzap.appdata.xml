@@ -55,6 +55,14 @@
   </screenshots>
 
   <releases>
+      <release date="2026-05-09" version="6.4.1">
+          <description>
+              <ul>
+                  <li>Fix display contact profile pictures in notifications.</li>
+                  <li>Fix phone calls stuck on "Connecting..."</li>
+              </ul>
+          </description>
+      </release>
       <release date="2026-03-31" version="6.4">
           <description>
               <ul>
