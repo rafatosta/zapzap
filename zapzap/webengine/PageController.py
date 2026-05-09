@@ -66,7 +66,11 @@ class PageController(QWebEnginePage):
         return urllib.parse.urlunparse(parsed_url._replace(query=normalized_query))
 
     def acceptNavigationRequest(self, url, type, isMainFrame):
-        """Bloqueia a navegação para fora do endereço definido (https://web.whatsapp.com/)."""
+        """Bloqueia a navegação para fora do endereço definido (https://web.whatsapp.com/).
+        Permite URLs blob: para que a pré-visualização de arquivos no aplicativo funcione corretamente."""
+        # Allow blob: URLs so that in-app file previews (e.g. PDFs, images) work correctly
+        if url.scheme() == 'blob':
+            return super().acceptNavigationRequest(url, type, isMainFrame)
         if url != QUrl(__whatsapp_url__):
             return False  # Impede a navegação
         return super().acceptNavigationRequest(url, type, isMainFrame)
