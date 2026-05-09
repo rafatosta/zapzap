@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-28 20:48-0300\n"
+"POT-Creation-Date: 2026-05-09 18:34-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -746,7 +746,7 @@ msgstr "Versão {id} - {version_type}"
 msgid "Make a donation"
 msgstr "Faça uma doação"
 
-#: zapzap/views/ui_settings.py:155 zapzap/controllers/OnboardingDialog.py:97
+#: zapzap/views/ui_settings.py:155 zapzap/controllers/OnboardingDialog.py:98
 msgid "Back"
 msgstr "Voltar"
 
@@ -782,50 +782,6 @@ msgstr "Diálogo"
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
-#: zapzap/controllers/DialogDumpHandler.py:26
-msgid "Unexpected Error"
-msgstr "Erro inesperado"
-
-#: zapzap/controllers/DialogDumpHandler.py:29
-msgid "The application encountered an unexpected error."
-msgstr "O aplicativo encontrou um erro inesperado."
-
-#: zapzap/controllers/DialogDumpHandler.py:34
-#, python-brace-format
-msgid ""
-"A diagnostic report was generated automatically at:\n"
-"\n"
-"{path}\n"
-"\n"
-"Please send this file to support so we can investigate the issue.\n"
-"\n"
-"Report channels:\n"
-" - Issue tracker: {issue_url}\n"
-" - Email: {email}"
-msgstr ""
-"Um relatório de diagnóstico foi gerado automaticamente em:\n"
-"\n"
-"{path}\n"
-"\n"
-"Por favor, envie esse arquivo para o suporte para que possamos investigar o "
-"problema.\n"
-"\n"
-"Canais:\n"
-" - Issue tracker: {issue_url}\n"
-" - Email: {email}"
-
-#: zapzap/controllers/PageAbout.py:21
-msgid "Official compilation"
-msgstr "Compilação oficial"
-
-#: zapzap/controllers/PageAbout.py:22
-msgid "Unofficial"
-msgstr "Não oficial"
-
-#: zapzap/controllers/PageAbout.py:25
-msgid "Unknown"
-msgstr "Desconhecido"
-
 #: zapzap/controllers/Browser.py:70
 msgid "Grid view"
 msgstr "Visualização em grade"
@@ -835,6 +791,7 @@ msgid "Flatpak sandbox help"
 msgstr "Ajuda Flatpak sandbox"
 
 #: zapzap/controllers/Browser.py:214 zapzap/controllers/Browser.py:251
+#, python-brace-format
 msgid "Account {}"
 msgstr "Conta {}"
 
@@ -894,6 +851,38 @@ msgstr "Restaurar padrão"
 msgid "User-Agent"
 msgstr ""
 
+#: zapzap/controllers/DialogDumpHandler.py:26
+msgid "Unexpected Error"
+msgstr "Erro inesperado"
+
+#: zapzap/controllers/DialogDumpHandler.py:29
+msgid "The application encountered an unexpected error."
+msgstr "O aplicativo encontrou um erro inesperado."
+
+#: zapzap/controllers/DialogDumpHandler.py:34
+#, python-brace-format
+msgid ""
+"A diagnostic report was generated automatically at:\n"
+"\n"
+"{path}\n"
+"\n"
+"Please send this file to support so we can investigate the issue.\n"
+"\n"
+"Report channels:\n"
+" - Issue tracker: {issue_url}\n"
+" - Email: {email}"
+msgstr ""
+"Um relatório de diagnóstico foi gerado automaticamente em:\n"
+"\n"
+"{path}\n"
+"\n"
+"Por favor, envie esse arquivo para o suporte para que possamos investigar o "
+"problema.\n"
+"\n"
+"Canais:\n"
+" - Issue tracker: {issue_url}\n"
+" - Email: {email}"
+
 #: zapzap/controllers/DownloadDialog.py:23
 msgid "Download"
 msgstr "Download"
@@ -926,166 +915,341 @@ msgstr "Tem certeza de que deseja fechar?"
 msgid "Don't ask again"
 msgstr "Não pergunte novamente"
 
-#: zapzap/controllers/OnboardingDialog.py:46
-#: zapzap/controllers/OnboardingDialog.py:70
-msgid "Welcome to ZapZap"
-msgstr "Bem-vindo ao ZapZap"
+#: zapzap/controllers/PageAbout.py:21
+msgid "Official compilation"
+msgstr "Compilação oficial"
 
-#: zapzap/controllers/OnboardingDialog.py:75
-msgid "Quick setup for your preferred environment"
-msgstr "Configuração rápida para seu ambiente preferido"
+#: zapzap/controllers/PageAbout.py:22
+msgid "Unofficial"
+msgstr "Não oficial"
 
-#: zapzap/controllers/OnboardingDialog.py:98
-msgid "Next"
-msgstr "Avançar"
-
-#: zapzap/controllers/OnboardingDialog.py:99
-msgid "Finish"
-msgstr "Concluir"
-
-#: zapzap/controllers/OnboardingDialog.py:153
-msgid ""
-"Let's configure ZapZap in a few steps.\n"
-"\n"
-"1) Accounts and navigation\n"
-"2) General preferences\n"
-"3) Notification preferences\n"
-"4) Optional sandbox guidance (Flatpak only)\n"
-"\n"
-"Environment: {}"
-msgstr ""
-"Vamos configurar o ZapZap em alguns passos.\n"
-"\n"
-"1) Contas e navegação\n"
-"2) Preferências gerais\n"
-"3) Preferências de notificações\n"
-"4) Orientações opcionais de sandbox (apenas Flatpak)\n"
-"\n"
-"Ambiente: {}"
-
-#: zapzap/controllers/OnboardingDialog.py:178
-msgid "Personalize your experience · General"
-msgstr "Personalize sua experiência · Geral"
-
-#: zapzap/controllers/OnboardingDialog.py:189
-msgid "Start hidden in background"
-msgstr "Iniciar oculto em segundo plano"
-
-#: zapzap/controllers/OnboardingDialog.py:195
-msgid "Quit app when closing the window"
-msgstr "Sair do aplicativo ao fechar a janela"
-
-#: zapzap/controllers/OnboardingDialog.py:200
-msgid "Enable spell checker"
-msgstr "Ativar corretor ortográfico"
-
-#: zapzap/controllers/OnboardingDialog.py:205
-msgid "Start automatically with the system"
-msgstr "Iniciar com o sistema"
-
-#: zapzap/controllers/OnboardingDialog.py:210
-msgid "Prefer Wayland (when available)"
-msgstr "Preferir Wayland (quando disponível)"
-
-#: zapzap/controllers/OnboardingDialog.py:218
-#: zapzap/controllers/PageGeneral.py:44
-msgid "Use Flatseal to change this mode of execution"
-msgstr "Use Flatseal para alterar esse modo de execução"
-
-#: zapzap/controllers/OnboardingDialog.py:230
-msgid "You can change all these options later in Settings."
-msgstr "Você pode alterar todas essas opções depois em Configurações."
-
-#: zapzap/controllers/OnboardingDialog.py:245
-msgid "Personalize your experience · Notifications"
-msgstr "Personalize sua experiência · Notificações"
-
-#: zapzap/controllers/OnboardingDialog.py:253
-msgid "Enable app notifications"
-msgstr "Ativar notificações de aplicativos"
-
-#: zapzap/controllers/OnboardingDialog.py:259
-msgid "Show message content in notifications"
-msgstr "Mostrar o conteúdo da mensagem nas notificações"
-
-#: zapzap/controllers/OnboardingDialog.py:264
-msgid "Show contact name in notifications"
-msgstr "Mostrar nome do contato nas notificações"
-
-#: zapzap/controllers/OnboardingDialog.py:269
-msgid "Show contact photo in notifications"
-msgstr "Mostrar foto do contato nas notificações"
-
-#: zapzap/controllers/OnboardingDialog.py:274
-msgid "Hide donation reminders"
-msgstr "Ocultar a notificação de doação"
-
-#: zapzap/controllers/OnboardingDialog.py:312
-msgid "Flatpak sandbox permissions"
-msgstr "Permissões de sandbox Flatpak"
-
-#: zapzap/controllers/OnboardingDialog.py:319
-msgid ""
-"If opening files, drag-and-drop or uploads fail, this is usually caused by "
-"sandbox permissions."
-msgstr ""
-"Se abrir arquivos, arrastar e soltar ou uploads falharem, isso geralmente é "
-"causado por permissões de sandbox."
-
-#: zapzap/controllers/OnboardingDialog.py:330
-#: zapzap/controllers/OnboardingDialog.py:515
-#: zapzap/controllers/PageGeneral.py:68
-msgid "Copy command"
-msgstr "Copiar comando"
-
-#: zapzap/controllers/OnboardingDialog.py:335
-#: zapzap/controllers/PageGeneral.py:76
-msgid "Open Flatseal page"
-msgstr "Abrir página do Flatseal"
-
-#: zapzap/controllers/OnboardingDialog.py:353
-msgid "Setup complete"
-msgstr "Configuração concluída"
-
-#: zapzap/controllers/OnboardingDialog.py:357
-msgid ""
-"Your preferences were saved. You can review and change them at any time in "
-"Settings."
-msgstr ""
-"Suas preferências foram salvas. Você pode revisar e alterá-las a qualquer "
-"momento em Configurações."
-
-#: zapzap/controllers/OnboardingDialog.py:390
-msgid "Step {}/{}"
-msgstr "Etapa {}/{}"
-
-#: zapzap/controllers/OnboardingDialog.py:504
-msgid "Flatpak sandbox"
-msgstr "Sandbox do Flatpak"
-
-#: zapzap/controllers/OnboardingDialog.py:507
-msgid "ZapZap is running in Flatpak sandbox."
-msgstr "ZapZap está rodando no Flatpak sandbox."
-
-#: zapzap/controllers/OnboardingDialog.py:509
-msgid ""
-"Some features like opening files or drag-and-drop may require additional "
-"permissions."
-msgstr ""
-"Alguns recursos, como abrir arquivos ou arrastar e soltar, podem exigir "
-"permissões adicionais."
-
-#: zapzap/controllers/OnboardingDialog.py:513
-msgid "Instructions"
-msgstr "Instruções"
-
-#: zapzap/controllers/OnboardingDialog.py:516
-msgid "Close"
-msgstr "Fechar"
+#: zapzap/controllers/PageAbout.py:25
+msgid "Unknown"
+msgstr "Desconhecido"
 
 #: zapzap/controllers/PageAppearance.py:57
 msgid "Grid Columns:"
 msgstr "Colunas da grade:"
+
+#: zapzap/controllers/PageCustomizations.py:52
+msgid "Global"
+msgstr "Global"
+
+#: zapzap/controllers/PageCustomizations.py:53
+msgid "Current account"
+msgstr "Conta atual"
+
+#: zapzap/controllers/PageCustomizations.py:153
+msgid "Unnamed account"
+msgstr "Conta sem nome"
+
+#: zapzap/controllers/PageCustomizations.py:155
+#, python-brace-format
+msgid "Current account: {} ({})"
+msgstr "Conta atual: {} ({})"
+
+#: zapzap/controllers/PageCustomizations.py:159
+msgid "Current account: unavailable"
+msgstr "Conta atual: indisponível"
+
+#: zapzap/controllers/PageCustomizations.py:246
+#, python-brace-format
+msgid "CSS file enabled: {}"
+msgstr "Arquivo CSS ativado: {}"
+
+#: zapzap/controllers/PageCustomizations.py:246
+#, python-brace-format
+msgid "CSS file disabled: {}"
+msgstr "Arquivo CSS desativado: {}"
+
+#: zapzap/controllers/PageCustomizations.py:249
+#, python-brace-format
+msgid "JavaScript file enabled: {}"
+msgstr "Arquivo JavaScript ativado: {}"
+
+#: zapzap/controllers/PageCustomizations.py:251
+#, python-brace-format
+msgid "JavaScript file disabled: {}"
+msgstr "Arquivo JavaScript desativado: {}"
+
+#: zapzap/controllers/PageCustomizations.py:256
+#: zapzap/controllers/PageCustomizations.py:271
+msgid "This userstyle does not target WhatsApp Web."
+msgstr "Este userstyle não é destinado ao WhatsApp Web."
+
+#: zapzap/controllers/PageCustomizations.py:263
+msgid "Only HTTPS URLs are allowed."
+msgstr "Apenas URLs HTTPS são permitidas."
+
+#: zapzap/controllers/PageCustomizations.py:267
+msgid "Download is too large."
+msgstr "O download é muito grande."
+
+#: zapzap/controllers/PageCustomizations.py:275
+msgid "Could not download CSS from URL."
+msgstr "Não foi possível baixar o CSS a partir da URL."
+
+#: zapzap/controllers/PageCustomizations.py:277
+msgid "Could not download JavaScript from URL."
+msgstr "Não foi possível baixar o JavaScript a partir da URL."
+
+#: zapzap/controllers/PageCustomizations.py:289
+msgid "Select a file first."
+msgstr "Selecione um arquivo primeiro."
+
+#: zapzap/controllers/PageCustomizations.py:368
+msgid "No preview available."
+msgstr "Nenhuma pré-visualização disponível."
+
+#: zapzap/controllers/PageCustomizations.py:374
+msgid "Could not load preview image."
+msgstr "Não foi possível carregar a imagem de pré-visualização."
+
+#: zapzap/controllers/PageCustomizations.py:403
+msgid "Enter a CSS HTTPS URL."
+msgstr "Informe uma URL HTTPS de CSS."
+
+#: zapzap/controllers/PageCustomizations.py:405
+msgid "Enter a JavaScript HTTPS URL."
+msgstr "Informe uma URL HTTPS de JavaScript."
+
+#: zapzap/controllers/PageCustomizations.py:425
+#: zapzap/controllers/PageCustomizations.py:435
+#, python-brace-format
+msgid "File imported: {}"
+msgstr "Arquivo importado: {}"
+
+#: zapzap/controllers/PageCustomizations.py:439
+#, python-brace-format
+msgid "File imported: {}. No preview found, upload one manually."
+msgstr ""
+"Arquivo importado: {}. Nenhuma pré-visualização encontrada, envie uma "
+"manualmente."
+
+#: zapzap/controllers/PageCustomizations.py:449
+msgid "Select preview image"
+msgstr "Selecionar imagem de pré-visualização"
+
+#: zapzap/controllers/PageCustomizations.py:465
+msgid "Could not set preview image."
+msgstr "Não foi possível definir a imagem de pré-visualização."
+
+#: zapzap/controllers/PageCustomizations.py:469
+msgid "Preview image updated."
+msgstr "Imagem de pré-visualização atualizada."
+
+#: zapzap/controllers/PageCustomizations.py:485
+msgid "https://example.com/theme.user.css"
+msgstr "https://exemplo.com/tema.user.css"
+
+#: zapzap/controllers/PageCustomizations.py:487
+msgid "https://example.com/script.js"
+msgstr "https://exemplo.com/script.js"
+
+#: zapzap/controllers/PageCustomizations.py:491
+#, python-brace-format
+msgid "Optional file name (e.g. 10-custom.{})"
+msgstr "Nome do arquivo opcional (ex.: 10-personalizado.{})"
+
+#: zapzap/controllers/PageCustomizations.py:494
+msgid "URL"
+msgstr "URL"
+
+#: zapzap/controllers/PageCustomizations.py:495
+#: zapzap/controllers/PageCustomizations.py:524
+msgid "File name"
+msgstr "Nome do arquivo"
+
+#: zapzap/controllers/PageCustomizations.py:523
+#, python-brace-format
+msgid "custom.{}"
+msgstr "personalizado.{}"
+
+#: zapzap/controllers/PageCustomizations.py:550
+msgid "Select file"
+msgstr "Selecionar arquivo"
+
+#: zapzap/controllers/PageCustomizations.py:567
+msgid "Could not import file."
+msgstr "Não foi possível importar o arquivo."
+
+#: zapzap/controllers/PageCustomizations.py:571
+msgid "File imported successfully."
+msgstr "Arquivo importado com sucesso."
+
+#: zapzap/controllers/PageCustomizations.py:602
+msgid "Create file"
+msgstr "Criar arquivo"
+
+#: zapzap/controllers/PageCustomizations.py:610
+#: zapzap/controllers/PageCustomizations.py:658
+msgid "File name cannot be empty."
+msgstr "O nome do arquivo não pode estar vazio."
+
+#: zapzap/controllers/PageCustomizations.py:622
+msgid "Could not create file."
+msgstr "Não foi possível criar o arquivo."
+
+#: zapzap/controllers/PageCustomizations.py:626
+#, python-brace-format
+msgid "File created: {}"
+msgstr "Arquivo criado: {}"
+
+#: zapzap/controllers/PageCustomizations.py:644
+msgid "Could not open file for editing."
+msgstr "Não foi possível abrir o arquivo para edição."
+
+#: zapzap/controllers/PageCustomizations.py:647
+#, python-brace-format
+msgid "Edit CSS: {}"
+msgstr "Editar CSS: {}"
+
+#: zapzap/controllers/PageCustomizations.py:647
+#, python-brace-format
+msgid "Edit JavaScript: {}"
+msgstr "Editar JavaScript: {}"
+
+#: zapzap/controllers/PageCustomizations.py:680
+msgid "Could not save file."
+msgstr "Não foi possível salvar o arquivo."
+
+#: zapzap/controllers/PageCustomizations.py:684
+#, python-brace-format
+msgid "File saved: {}"
+msgstr "Arquivo salvo: {}"
+
+#: zapzap/controllers/PageCustomizations.py:745
+msgid "Reload complete."
+msgstr "Recarregamento concluído."
+
+#: zapzap/controllers/PageCustomizations.py:774
+#, python-brace-format
+msgid "{}. Save and reload to apply changes."
+msgstr "{}. Salve e recarregue para aplicar as alterações."
+
+#: zapzap/controllers/PageCustomizations.py:785
+msgid "JS"
+msgstr "JS"
+
+#: zapzap/controllers/PageCustomizations.py:788
+msgid "Confirm deletion"
+msgstr "Confirmar exclusão"
+
+#: zapzap/controllers/PageCustomizations.py:789
+#, python-brace-format
+msgid "Delete selected {} file: {}?"
+msgstr "Excluir o arquivo {} selecionado: {}?"
+
+#: zapzap/controllers/PageCustomizations.py:794
+msgid "Deletion cancelled."
+msgstr "Exclusão cancelada."
+
+#: zapzap/controllers/PageCustomizations.py:805
+msgid "File deleted."
+msgstr "Arquivo excluído."
+
+#: zapzap/controllers/PageCustomizations.py:807
+msgid "Could not delete file."
+msgstr "Não foi possível excluir o arquivo."
+
+#: zapzap/controllers/PageCustomizations.py:835
+msgid "Customizations saved. Reload pages to apply changes."
+msgstr ""
+"Personalizações salvas. Recarregue as páginas para aplicar as alterações."
+
+#: zapzap/controllers/PageCustomizations.py:845
+msgid "All pages reloaded."
+msgstr "Todas as páginas foram recarregadas."
+
+#: zapzap/controllers/PageGeneral.py:44
+#: zapzap/controllers/OnboardingDialog.py:219
+msgid "Use Flatseal to change this mode of execution"
+msgstr "Use Flatseal para alterar esse modo de execução"
+
+#: zapzap/controllers/PageGeneral.py:51
+msgid ""
+"<b>Flatpak tip:</b> If opening PDFs, drag-and-drop, or file uploads fail, "
+"this is usually caused by sandbox permissions. Open <b>Flatseal</b> and "
+"grant ZapZap access to folders like Documents, Downloads, Pictures and "
+"Videos. You can also run: <code>flatpak override --user --filesystem=home "
+"com.rtosta.zapzap</code>."
+msgstr ""
+"<b>Dica do Flatpak:</b> se a abertura de PDFs, arrastar e soltar ou upload "
+"de arquivos falhar, isso geralmente é causado por permissões de sandbox. "
+"Abra <b>Flatseal</b> e conceder ao ZapZap acesso a pastas como Documentos, "
+"Downloads, Imagens eVídeos. Você também pode executar: <code>flatpak "
+"override --user --filesystem=home com.rtosta.zapzap</code>."
+
+#: zapzap/controllers/PageGeneral.py:67
+msgid "Select and copy this command in your terminal"
+msgstr "Selecione e copie este comando em seu terminal"
+
+#: zapzap/controllers/PageGeneral.py:68
+#: zapzap/controllers/OnboardingDialog.py:331
+#: zapzap/controllers/OnboardingDialog.py:516
+msgid "Copy command"
+msgstr "Copiar comando"
+
+#: zapzap/controllers/PageGeneral.py:76
+#: zapzap/controllers/OnboardingDialog.py:336
+msgid "Open Flatseal page"
+msgstr "Abrir página do Flatseal"
+
+#: zapzap/controllers/PageGeneral.py:244
+#, python-brace-format
+msgid "Files: {count} crash report(s){faulthandler}."
+msgstr "Arquivos: {count} relatório(s) de falhas{faulthandler}"
+
+#: zapzap/controllers/PageGeneral.py:246
+msgid " + faulthandler.log"
+msgstr " + faulthandler.log"
+
+#: zapzap/controllers/PageGeneral.py:249
+#, python-brace-format
+msgid ""
+"Crash reports are stored in this folder. You can open the directory or clean "
+"old files.\n"
+"{details}"
+msgstr ""
+"Os relatórios de falhas são armazenados nesta pasta. Você pode abrir o "
+"diretório ou limpar arquivos antigos.\n"
+"{details}"
+
+#: zapzap/controllers/PageGeneral.py:275
+#, python-brace-format
+msgid "Deleted {count} old crash report(s) (older than 30 days)."
+msgstr ""
+"Foram excluídos {count} relatórios de falhas antigos (com mais de 30 dias)."
+
+#: zapzap/controllers/PageGeneral.py:285
+msgid "Delete all crash reports and debug logs?"
+msgstr "Excluir todos os relatórios de falhas e registros de depuração?"
+
+#: zapzap/controllers/PageGeneral.py:302
+#, python-brace-format
+msgid "Deleted {count} file(s)."
+msgstr "{count} arquivo(s) excluído(s)."
+
+#: zapzap/controllers/PageGeneral.py:310
+msgid ""
+"This will delete your current settings file (.config) and requires restart. "
+"Continue?"
+msgstr ""
+"Isso excluirá seu arquivo de configurações atuais (.config) e exigirá "
+"reinicialização. Continuar?"
+
+#: zapzap/controllers/PageGeneral.py:328
+#, python-brace-format
+msgid ""
+"Could not remove settings file:\n"
+"{error}"
+msgstr ""
+"Não foi possível remover o arquivo de configurações:\n"
+"{error}"
+
+#: zapzap/controllers/PageGeneral.py:337
+msgid "Settings were reset successfully. Please restart ZapZap."
+msgstr "As configurações foram redefinidas com sucesso. Reinicie o ZapZap."
 
 #: zapzap/controllers/PageNetwork.py:23
 msgid "Settings for:"
@@ -1322,300 +1486,155 @@ msgstr "Recarregar páginas"
 msgid "New conversation by phone number"
 msgstr "Nova conversa por número de telefone"
 
-#: zapzap/controllers/PageCustomizations.py:52
-msgid "Global"
-msgstr "Global"
+#: zapzap/controllers/OnboardingDialog.py:46
+#: zapzap/controllers/OnboardingDialog.py:71
+msgid "Welcome to ZapZap"
+msgstr "Bem-vindo ao ZapZap"
 
-#: zapzap/controllers/PageCustomizations.py:53
-msgid "Current account"
-msgstr "Conta atual"
+#: zapzap/controllers/OnboardingDialog.py:76
+msgid "Quick setup for your preferred environment"
+msgstr "Configuração rápida para seu ambiente preferido"
 
-#: zapzap/controllers/PageCustomizations.py:153
-msgid "Unnamed account"
-msgstr "Conta sem nome"
+#: zapzap/controllers/OnboardingDialog.py:99
+msgid "Next"
+msgstr "Avançar"
 
-#: zapzap/controllers/PageCustomizations.py:155
-msgid "Current account: {} ({})"
-msgstr "Conta atual: {} ({})"
+#: zapzap/controllers/OnboardingDialog.py:100
+msgid "Finish"
+msgstr "Concluir"
 
-#: zapzap/controllers/PageCustomizations.py:159
-msgid "Current account: unavailable"
-msgstr "Conta atual: indisponível"
-
-#: zapzap/controllers/PageCustomizations.py:246
-msgid "CSS file enabled: {}"
-msgstr "Arquivo CSS ativado: {}"
-
-#: zapzap/controllers/PageCustomizations.py:246
-msgid "CSS file disabled: {}"
-msgstr "Arquivo CSS desativado: {}"
-
-#: zapzap/controllers/PageCustomizations.py:249
-msgid "JavaScript file enabled: {}"
-msgstr "Arquivo JavaScript ativado: {}"
-
-#: zapzap/controllers/PageCustomizations.py:251
-msgid "JavaScript file disabled: {}"
-msgstr "Arquivo JavaScript desativado: {}"
-
-#: zapzap/controllers/PageCustomizations.py:256
-#: zapzap/controllers/PageCustomizations.py:271
-msgid "This userstyle does not target WhatsApp Web."
-msgstr "Este userstyle não é destinado ao WhatsApp Web."
-
-#: zapzap/controllers/PageCustomizations.py:263
-msgid "Only HTTPS URLs are allowed."
-msgstr "Apenas URLs HTTPS são permitidas."
-
-#: zapzap/controllers/PageCustomizations.py:267
-msgid "Download is too large."
-msgstr "O download é muito grande."
-
-#: zapzap/controllers/PageCustomizations.py:275
-msgid "Could not download CSS from URL."
-msgstr "Não foi possível baixar o CSS a partir da URL."
-
-#: zapzap/controllers/PageCustomizations.py:277
-msgid "Could not download JavaScript from URL."
-msgstr "Não foi possível baixar o JavaScript a partir da URL."
-
-#: zapzap/controllers/PageCustomizations.py:289
-msgid "Select a file first."
-msgstr "Selecione um arquivo primeiro."
-
-#: zapzap/controllers/PageCustomizations.py:368
-msgid "No preview available."
-msgstr "Nenhuma pré-visualização disponível."
-
-#: zapzap/controllers/PageCustomizations.py:374
-msgid "Could not load preview image."
-msgstr "Não foi possível carregar a imagem de pré-visualização."
-
-#: zapzap/controllers/PageCustomizations.py:403
-msgid "Enter a CSS HTTPS URL."
-msgstr "Informe uma URL HTTPS de CSS."
-
-#: zapzap/controllers/PageCustomizations.py:405
-msgid "Enter a JavaScript HTTPS URL."
-msgstr "Informe uma URL HTTPS de JavaScript."
-
-#: zapzap/controllers/PageCustomizations.py:425
-#: zapzap/controllers/PageCustomizations.py:435
-msgid "File imported: {}"
-msgstr "Arquivo importado: {}"
-
-#: zapzap/controllers/PageCustomizations.py:439
-msgid "File imported: {}. No preview found, upload one manually."
-msgstr ""
-"Arquivo importado: {}. Nenhuma pré-visualização encontrada, envie uma "
-"manualmente."
-
-#: zapzap/controllers/PageCustomizations.py:449
-msgid "Select preview image"
-msgstr "Selecionar imagem de pré-visualização"
-
-#: zapzap/controllers/PageCustomizations.py:465
-msgid "Could not set preview image."
-msgstr "Não foi possível definir a imagem de pré-visualização."
-
-#: zapzap/controllers/PageCustomizations.py:469
-msgid "Preview image updated."
-msgstr "Imagem de pré-visualização atualizada."
-
-#: zapzap/controllers/PageCustomizations.py:485
-msgid "https://example.com/theme.user.css"
-msgstr "https://exemplo.com/tema.user.css"
-
-#: zapzap/controllers/PageCustomizations.py:487
-msgid "https://example.com/script.js"
-msgstr "https://exemplo.com/script.js"
-
-#: zapzap/controllers/PageCustomizations.py:491
-msgid "Optional file name (e.g. 10-custom.{})"
-msgstr "Nome do arquivo opcional (ex.: 10-personalizado.{})"
-
-#: zapzap/controllers/PageCustomizations.py:494
-msgid "URL"
-msgstr "URL"
-
-#: zapzap/controllers/PageCustomizations.py:495
-#: zapzap/controllers/PageCustomizations.py:524
-msgid "File name"
-msgstr "Nome do arquivo"
-
-#: zapzap/controllers/PageCustomizations.py:523
-msgid "custom.{}"
-msgstr "personalizado.{}"
-
-#: zapzap/controllers/PageCustomizations.py:550
-msgid "Select file"
-msgstr "Selecionar arquivo"
-
-#: zapzap/controllers/PageCustomizations.py:567
-msgid "Could not import file."
-msgstr "Não foi possível importar o arquivo."
-
-#: zapzap/controllers/PageCustomizations.py:571
-msgid "File imported successfully."
-msgstr "Arquivo importado com sucesso."
-
-#: zapzap/controllers/PageCustomizations.py:602
-msgid "Create file"
-msgstr "Criar arquivo"
-
-#: zapzap/controllers/PageCustomizations.py:610
-#: zapzap/controllers/PageCustomizations.py:658
-msgid "File name cannot be empty."
-msgstr "O nome do arquivo não pode estar vazio."
-
-#: zapzap/controllers/PageCustomizations.py:622
-msgid "Could not create file."
-msgstr "Não foi possível criar o arquivo."
-
-#: zapzap/controllers/PageCustomizations.py:626
-msgid "File created: {}"
-msgstr "Arquivo criado: {}"
-
-#: zapzap/controllers/PageCustomizations.py:644
-msgid "Could not open file for editing."
-msgstr "Não foi possível abrir o arquivo para edição."
-
-#: zapzap/controllers/PageCustomizations.py:647
-msgid "Edit CSS: {}"
-msgstr "Editar CSS: {}"
-
-#: zapzap/controllers/PageCustomizations.py:647
-msgid "Edit JavaScript: {}"
-msgstr "Editar JavaScript: {}"
-
-#: zapzap/controllers/PageCustomizations.py:680
-msgid "Could not save file."
-msgstr "Não foi possível salvar o arquivo."
-
-#: zapzap/controllers/PageCustomizations.py:684
-msgid "File saved: {}"
-msgstr "Arquivo salvo: {}"
-
-#: zapzap/controllers/PageCustomizations.py:745
-msgid "Reload complete."
-msgstr "Recarregamento concluído."
-
-#: zapzap/controllers/PageCustomizations.py:774
-msgid "{}. Save and reload to apply changes."
-msgstr "{}. Salve e recarregue para aplicar as alterações."
-
-#: zapzap/controllers/PageCustomizations.py:785
-msgid "JS"
-msgstr "JS"
-
-#: zapzap/controllers/PageCustomizations.py:788
-msgid "Confirm deletion"
-msgstr "Confirmar exclusão"
-
-#: zapzap/controllers/PageCustomizations.py:789
-msgid "Delete selected {} file: {}?"
-msgstr "Excluir o arquivo {} selecionado: {}?"
-
-#: zapzap/controllers/PageCustomizations.py:794
-msgid "Deletion cancelled."
-msgstr "Exclusão cancelada."
-
-#: zapzap/controllers/PageCustomizations.py:805
-msgid "File deleted."
-msgstr "Arquivo excluído."
-
-#: zapzap/controllers/PageCustomizations.py:807
-msgid "Could not delete file."
-msgstr "Não foi possível excluir o arquivo."
-
-#: zapzap/controllers/PageCustomizations.py:835
-msgid "Customizations saved. Reload pages to apply changes."
-msgstr ""
-"Personalizações salvas. Recarregue as páginas para aplicar as alterações."
-
-#: zapzap/controllers/PageCustomizations.py:845
-msgid "All pages reloaded."
-msgstr "Todas as páginas foram recarregadas."
-
-#: zapzap/controllers/PageGeneral.py:51
-msgid ""
-"<b>Flatpak tip:</b> If opening PDFs, drag-and-drop, or file uploads fail, "
-"this is usually caused by sandbox permissions. Open <b>Flatseal</b> and "
-"grant ZapZap access to folders like Documents, Downloads, Pictures and "
-"Videos. You can also run: <code>flatpak override --user --filesystem=home "
-"com.rtosta.zapzap</code>."
-msgstr ""
-"<b>Dica do Flatpak:</b> se a abertura de PDFs, arrastar e soltar ou upload "
-"de arquivos falhar, isso geralmente é causado por permissões de sandbox. "
-"Abra <b>Flatseal</b> e conceder ao ZapZap acesso a pastas como Documentos, "
-"Downloads, Imagens eVídeos. Você também pode executar: <code>flatpak "
-"override --user --filesystem=home com.rtosta.zapzap</code>."
-
-#: zapzap/controllers/PageGeneral.py:67
-msgid "Select and copy this command in your terminal"
-msgstr "Selecione e copie este comando em seu terminal"
-
-#: zapzap/controllers/PageGeneral.py:244
-#, python-brace-format
-msgid "Files: {count} crash report(s){faulthandler}."
-msgstr "Arquivos: {count} relatório(s) de falhas{faulthandler}"
-
-#: zapzap/controllers/PageGeneral.py:246
-msgid " + faulthandler.log"
-msgstr " + faulthandler.log"
-
-#: zapzap/controllers/PageGeneral.py:249
+#: zapzap/controllers/OnboardingDialog.py:154
 #, python-brace-format
 msgid ""
-"Crash reports are stored in this folder. You can open the directory or clean "
-"old files.\n"
-"{details}"
+"Let's configure ZapZap in a few steps.\n"
+"\n"
+"1) Accounts and navigation\n"
+"2) General preferences\n"
+"3) Notification preferences\n"
+"4) Optional sandbox guidance (Flatpak only)\n"
+"\n"
+"Environment: {}"
 msgstr ""
-"Os relatórios de falhas são armazenados nesta pasta. Você pode abrir o "
-"diretório ou limpar arquivos antigos.\n"
-"{details}"
+"Vamos configurar o ZapZap em alguns passos.\n"
+"\n"
+"1) Contas e navegação\n"
+"2) Preferências gerais\n"
+"3) Preferências de notificações\n"
+"4) Orientações opcionais de sandbox (apenas Flatpak)\n"
+"\n"
+"Ambiente: {}"
 
-#: zapzap/controllers/PageGeneral.py:275
-#, python-brace-format
-msgid "Deleted {count} old crash report(s) (older than 30 days)."
-msgstr ""
-"Foram excluídos {count} relatórios de falhas antigos (com mais de 30 dias)."
+#: zapzap/controllers/OnboardingDialog.py:179
+msgid "Personalize your experience · General"
+msgstr "Personalize sua experiência · Geral"
 
-#: zapzap/controllers/PageGeneral.py:285
-msgid "Delete all crash reports and debug logs?"
-msgstr "Excluir todos os relatórios de falhas e registros de depuração?"
+#: zapzap/controllers/OnboardingDialog.py:190
+msgid "Start hidden in background"
+msgstr "Iniciar oculto em segundo plano"
 
-#: zapzap/controllers/PageGeneral.py:302
-#, python-brace-format
-msgid "Deleted {count} file(s)."
-msgstr "{count} arquivo(s) excluído(s)."
+#: zapzap/controllers/OnboardingDialog.py:196
+msgid "Quit app when closing the window"
+msgstr "Sair do aplicativo ao fechar a janela"
 
-#: zapzap/controllers/PageGeneral.py:310
+#: zapzap/controllers/OnboardingDialog.py:201
+msgid "Enable spell checker"
+msgstr "Ativar corretor ortográfico"
+
+#: zapzap/controllers/OnboardingDialog.py:206
+msgid "Start automatically with the system"
+msgstr "Iniciar com o sistema"
+
+#: zapzap/controllers/OnboardingDialog.py:211
+msgid "Prefer Wayland (when available)"
+msgstr "Preferir Wayland (quando disponível)"
+
+#: zapzap/controllers/OnboardingDialog.py:231
+msgid "You can change all these options later in Settings."
+msgstr "Você pode alterar todas essas opções depois em Configurações."
+
+#: zapzap/controllers/OnboardingDialog.py:246
+msgid "Personalize your experience · Notifications"
+msgstr "Personalize sua experiência · Notificações"
+
+#: zapzap/controllers/OnboardingDialog.py:254
+msgid "Enable app notifications"
+msgstr "Ativar notificações de aplicativos"
+
+#: zapzap/controllers/OnboardingDialog.py:260
+msgid "Show message content in notifications"
+msgstr "Mostrar o conteúdo da mensagem nas notificações"
+
+#: zapzap/controllers/OnboardingDialog.py:265
+msgid "Show contact name in notifications"
+msgstr "Mostrar nome do contato nas notificações"
+
+#: zapzap/controllers/OnboardingDialog.py:270
+msgid "Show contact photo in notifications"
+msgstr "Mostrar foto do contato nas notificações"
+
+#: zapzap/controllers/OnboardingDialog.py:275
+msgid "Hide donation reminders"
+msgstr "Ocultar a notificação de doação"
+
+#: zapzap/controllers/OnboardingDialog.py:313
+msgid "Flatpak sandbox permissions"
+msgstr "Permissões de sandbox Flatpak"
+
+#: zapzap/controllers/OnboardingDialog.py:320
 msgid ""
-"This will delete your current settings file (.config) and requires restart. "
-"Continue?"
+"If opening files, drag-and-drop or uploads fail, this is usually caused by "
+"sandbox permissions."
 msgstr ""
-"Isso excluirá seu arquivo de configurações atuais (.config) e exigirá "
-"reinicialização. Continuar?"
+"Se abrir arquivos, arrastar e soltar ou uploads falharem, isso geralmente é "
+"causado por permissões de sandbox."
 
-#: zapzap/controllers/PageGeneral.py:328
-#, python-brace-format
+#: zapzap/controllers/OnboardingDialog.py:354
+msgid "Setup complete"
+msgstr "Configuração concluída"
+
+#: zapzap/controllers/OnboardingDialog.py:358
 msgid ""
-"Could not remove settings file:\n"
-"{error}"
+"Your preferences were saved. You can review and change them at any time in "
+"Settings."
 msgstr ""
-"Não foi possível remover o arquivo de configurações:\n"
-"{error}"
+"Suas preferências foram salvas. Você pode revisar e alterá-las a qualquer "
+"momento em Configurações."
 
-#: zapzap/controllers/PageGeneral.py:337
-msgid "Settings were reset successfully. Please restart ZapZap."
-msgstr "As configurações foram redefinidas com sucesso. Reinicie o ZapZap."
+#: zapzap/controllers/OnboardingDialog.py:391
+#, python-brace-format
+msgid "Step {}/{}"
+msgstr "Etapa {}/{}"
+
+#: zapzap/controllers/OnboardingDialog.py:505
+msgid "Flatpak sandbox"
+msgstr "Sandbox do Flatpak"
+
+#: zapzap/controllers/OnboardingDialog.py:508
+msgid "ZapZap is running in Flatpak sandbox."
+msgstr "ZapZap está rodando no Flatpak sandbox."
+
+#: zapzap/controllers/OnboardingDialog.py:510
+msgid ""
+"Some features like opening files or drag-and-drop may require additional "
+"permissions."
+msgstr ""
+"Alguns recursos, como abrir arquivos ou arrastar e soltar, podem exigir "
+"permissões adicionais."
+
+#: zapzap/controllers/OnboardingDialog.py:514
+msgid "Instructions"
+msgstr "Instruções"
+
+#: zapzap/controllers/OnboardingDialog.py:517
+msgid "Close"
+msgstr "Fechar"
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
 msgstr "Informação"
 
 #: zapzap/services/AlertManager.py:35
+#, python-brace-format
 msgid ""
 "Limit of {} users reached.\n"
 "It is not possible to create more users!"

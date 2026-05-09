@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-28 20:48-0300\n"
+"POT-Creation-Date: 2026-05-09 18:34-0300\n"
 "PO-Revision-Date: 2026-03-09 22:23+0100\n"
 "Last-Translator: Dennis Cederberg "
 "<9393069+cederberget@users.noreply.github.com>\n"
@@ -780,7 +780,7 @@ msgstr ""
 msgid "Make a donation"
 msgstr "Donera"
 
-#: zapzap/views/ui_settings.py:155 zapzap/controllers/OnboardingDialog.py:97
+#: zapzap/views/ui_settings.py:155 zapzap/controllers/OnboardingDialog.py:98
 msgid "Back"
 msgstr "Tillbaka"
 
@@ -818,49 +818,6 @@ msgstr ""
 msgid "WhatsApp Web"
 msgstr ""
 
-#: zapzap/controllers/DialogDumpHandler.py:26
-msgid "Unexpected Error"
-msgstr "Oväntat fel"
-
-#: zapzap/controllers/DialogDumpHandler.py:29
-msgid "The application encountered an unexpected error."
-msgstr "Applikationen stötte på ett oväntat fel."
-
-#: zapzap/controllers/DialogDumpHandler.py:34
-#, python-brace-format
-msgid ""
-"A diagnostic report was generated automatically at:\n"
-"\n"
-"{path}\n"
-"\n"
-"Please send this file to support so we can investigate the issue.\n"
-"\n"
-"Report channels:\n"
-" - Issue tracker: {issue_url}\n"
-" - Email: {email}"
-msgstr ""
-"En felrapport genererades automatiskt i:\n"
-"\n"
-"{path}\n"
-"\n"
-"Vänligen skicka denna rapport till support så att felet kan undersökas.\n"
-"\n"
-"Rapportvägar:\n"
-" - Ärendesystem: {issue_url}\n"
-" - E-post: {email}"
-
-#: zapzap/controllers/PageAbout.py:21
-msgid "Official compilation"
-msgstr "Officiell kompilering"
-
-#: zapzap/controllers/PageAbout.py:22
-msgid "Unofficial"
-msgstr "Inofficiell"
-
-#: zapzap/controllers/PageAbout.py:25
-msgid "Unknown"
-msgstr "Okänd"
-
 #: zapzap/controllers/Browser.py:70
 msgid "Grid view"
 msgstr ""
@@ -870,6 +827,7 @@ msgid "Flatpak sandbox help"
 msgstr "Hjälp för Flatpak-sandlåda"
 
 #: zapzap/controllers/Browser.py:214 zapzap/controllers/Browser.py:251
+#, python-brace-format
 msgid "Account {}"
 msgstr "Konto {}"
 
@@ -929,6 +887,37 @@ msgstr "Återställ till standard"
 msgid "User-Agent"
 msgstr ""
 
+#: zapzap/controllers/DialogDumpHandler.py:26
+msgid "Unexpected Error"
+msgstr "Oväntat fel"
+
+#: zapzap/controllers/DialogDumpHandler.py:29
+msgid "The application encountered an unexpected error."
+msgstr "Applikationen stötte på ett oväntat fel."
+
+#: zapzap/controllers/DialogDumpHandler.py:34
+#, python-brace-format
+msgid ""
+"A diagnostic report was generated automatically at:\n"
+"\n"
+"{path}\n"
+"\n"
+"Please send this file to support so we can investigate the issue.\n"
+"\n"
+"Report channels:\n"
+" - Issue tracker: {issue_url}\n"
+" - Email: {email}"
+msgstr ""
+"En felrapport genererades automatiskt i:\n"
+"\n"
+"{path}\n"
+"\n"
+"Vänligen skicka denna rapport till support så att felet kan undersökas.\n"
+"\n"
+"Rapportvägar:\n"
+" - Ärendesystem: {issue_url}\n"
+" - E-post: {email}"
+
 #: zapzap/controllers/DownloadDialog.py:23
 #, fuzzy
 msgid "Download"
@@ -963,164 +952,331 @@ msgstr "Är du säker på att du vill ta bort detta objekt?"
 msgid "Don't ask again"
 msgstr ""
 
-#: zapzap/controllers/OnboardingDialog.py:46
-#: zapzap/controllers/OnboardingDialog.py:70
-#, fuzzy
-msgid "Welcome to ZapZap"
-msgstr "Välkommen till"
+#: zapzap/controllers/PageAbout.py:21
+msgid "Official compilation"
+msgstr "Officiell kompilering"
 
-#: zapzap/controllers/OnboardingDialog.py:75
-msgid "Quick setup for your preferred environment"
-msgstr ""
+#: zapzap/controllers/PageAbout.py:22
+msgid "Unofficial"
+msgstr "Inofficiell"
 
-#: zapzap/controllers/OnboardingDialog.py:98
-msgid "Next"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:99
-msgid "Finish"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:153
-msgid ""
-"Let's configure ZapZap in a few steps.\n"
-"\n"
-"1) Accounts and navigation\n"
-"2) General preferences\n"
-"3) Notification preferences\n"
-"4) Optional sandbox guidance (Flatpak only)\n"
-"\n"
-"Environment: {}"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:178
-msgid "Personalize your experience · General"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:189
-msgid "Start hidden in background"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:195
-#, fuzzy
-msgid "Quit app when closing the window"
-msgstr "Avsluta när fönstret stängs"
-
-#: zapzap/controllers/OnboardingDialog.py:200
-#, fuzzy
-msgid "Enable spell checker"
-msgstr "Stavningskontroll"
-
-#: zapzap/controllers/OnboardingDialog.py:205
-#, fuzzy
-msgid "Start automatically with the system"
-msgstr "Starta med systemet"
-
-#: zapzap/controllers/OnboardingDialog.py:210
-msgid "Prefer Wayland (when available)"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:218
-#: zapzap/controllers/PageGeneral.py:44
-msgid "Use Flatseal to change this mode of execution"
-msgstr "Använd Flatseal för att ändra exekveringsläge"
-
-#: zapzap/controllers/OnboardingDialog.py:230
-msgid "You can change all these options later in Settings."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:245
-msgid "Personalize your experience · Notifications"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:253
-#, fuzzy
-msgid "Enable app notifications"
-msgstr "Notiser i arbetsyta"
-
-#: zapzap/controllers/OnboardingDialog.py:259
-#, fuzzy
-msgid "Show message content in notifications"
-msgstr "Tystar notiserna"
-
-#: zapzap/controllers/OnboardingDialog.py:264
-#, fuzzy
-msgid "Show contact name in notifications"
-msgstr "Göm donationsnotis"
-
-#: zapzap/controllers/OnboardingDialog.py:269
-#, fuzzy
-msgid "Show contact photo in notifications"
-msgstr "Göm donationsnotis"
-
-#: zapzap/controllers/OnboardingDialog.py:274
-#, fuzzy
-msgid "Hide donation reminders"
-msgstr "Göm donationsnotis"
-
-#: zapzap/controllers/OnboardingDialog.py:312
-#, fuzzy
-msgid "Flatpak sandbox permissions"
-msgstr "Hjälp för Flatpak-sandlåda"
-
-#: zapzap/controllers/OnboardingDialog.py:319
-msgid ""
-"If opening files, drag-and-drop or uploads fail, this is usually caused by "
-"sandbox permissions."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:330
-#: zapzap/controllers/OnboardingDialog.py:515
-#: zapzap/controllers/PageGeneral.py:68
-msgid "Copy command"
-msgstr "Kopiera kommando"
-
-#: zapzap/controllers/OnboardingDialog.py:335
-#: zapzap/controllers/PageGeneral.py:76
-msgid "Open Flatseal page"
-msgstr "Öppna Flatseal-sida"
-
-#: zapzap/controllers/OnboardingDialog.py:353
-#, fuzzy
-msgid "Setup complete"
-msgstr "Omladdning slutfördes."
-
-#: zapzap/controllers/OnboardingDialog.py:357
-msgid ""
-"Your preferences were saved. You can review and change them at any time in "
-"Settings."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:390
-msgid "Step {}/{}"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:504
-msgid "Flatpak sandbox"
-msgstr "Flatpak-sandlåda"
-
-#: zapzap/controllers/OnboardingDialog.py:507
-msgid "ZapZap is running in Flatpak sandbox."
-msgstr "ZapZap körs i Flatpak-sandlådan."
-
-#: zapzap/controllers/OnboardingDialog.py:509
-msgid ""
-"Some features like opening files or drag-and-drop may require additional "
-"permissions."
-msgstr ""
-"Vissa funktioner, så som öppning av filer eller drag-och-släpp, kan kräva "
-"ytterligare rättigheter."
-
-#: zapzap/controllers/OnboardingDialog.py:513
-msgid "Instructions"
-msgstr "Instruktioner"
-
-#: zapzap/controllers/OnboardingDialog.py:516
-msgid "Close"
-msgstr "Stäng"
+#: zapzap/controllers/PageAbout.py:25
+msgid "Unknown"
+msgstr "Okänd"
 
 #: zapzap/controllers/PageAppearance.py:57
 msgid "Grid Columns:"
+msgstr ""
+
+#: zapzap/controllers/PageCustomizations.py:52
+msgid "Global"
+msgstr "Globalt"
+
+#: zapzap/controllers/PageCustomizations.py:53
+msgid "Current account"
+msgstr "Nuvarande konto"
+
+#: zapzap/controllers/PageCustomizations.py:153
+msgid "Unnamed account"
+msgstr "Namnlöst konto"
+
+#: zapzap/controllers/PageCustomizations.py:155
+#, python-brace-format
+msgid "Current account: {} ({})"
+msgstr "Nuvarande konto: {} ({})"
+
+#: zapzap/controllers/PageCustomizations.py:159
+msgid "Current account: unavailable"
+msgstr "Nuvarande konto: otillgängligt"
+
+#: zapzap/controllers/PageCustomizations.py:246
+#, python-brace-format
+msgid "CSS file enabled: {}"
+msgstr "CSS-fil aktiverad: {}"
+
+#: zapzap/controllers/PageCustomizations.py:246
+#, python-brace-format
+msgid "CSS file disabled: {}"
+msgstr "CSS-fil inaktiverad: {}"
+
+#: zapzap/controllers/PageCustomizations.py:249
+#, python-brace-format
+msgid "JavaScript file enabled: {}"
+msgstr "JavaScript-fil aktiverad: {}"
+
+#: zapzap/controllers/PageCustomizations.py:251
+#, python-brace-format
+msgid "JavaScript file disabled: {}"
+msgstr "JavaScript-fil inaktiverad: {}"
+
+#: zapzap/controllers/PageCustomizations.py:256
+#: zapzap/controllers/PageCustomizations.py:271
+msgid "This userstyle does not target WhatsApp Web."
+msgstr "Denna användarstil är inte ämnad för WhatsApp Web."
+
+#: zapzap/controllers/PageCustomizations.py:263
+msgid "Only HTTPS URLs are allowed."
+msgstr "Endast webbadresser med HTTPS är tillåtna."
+
+#: zapzap/controllers/PageCustomizations.py:267
+msgid "Download is too large."
+msgstr "Nedladdningen är för stor."
+
+#: zapzap/controllers/PageCustomizations.py:275
+msgid "Could not download CSS from URL."
+msgstr "Kunde inte ladda ned CSS från URL."
+
+#: zapzap/controllers/PageCustomizations.py:277
+msgid "Could not download JavaScript from URL."
+msgstr "Kunde inte ladda ned JavaScript från URL."
+
+#: zapzap/controllers/PageCustomizations.py:289
+msgid "Select a file first."
+msgstr "Välj en fil först."
+
+#: zapzap/controllers/PageCustomizations.py:368
+msgid "No preview available."
+msgstr "Ingen förhandsvisning tillgänglig."
+
+#: zapzap/controllers/PageCustomizations.py:374
+msgid "Could not load preview image."
+msgstr "Kunde inte ladda bild för förhandsvisning."
+
+#: zapzap/controllers/PageCustomizations.py:403
+msgid "Enter a CSS HTTPS URL."
+msgstr "Skriv in webbadress till CSS (HTTPS)."
+
+#: zapzap/controllers/PageCustomizations.py:405
+msgid "Enter a JavaScript HTTPS URL."
+msgstr "Skriv in webbadress till JavaScript (HTTPS)."
+
+#: zapzap/controllers/PageCustomizations.py:425
+#: zapzap/controllers/PageCustomizations.py:435
+#, python-brace-format
+msgid "File imported: {}"
+msgstr "Fil importerad: {}"
+
+#: zapzap/controllers/PageCustomizations.py:439
+#, python-brace-format
+msgid "File imported: {}. No preview found, upload one manually."
+msgstr ""
+"Fil importerad: {}. Ingen förhandsvisning hittad, ladda upp en manuellt."
+
+#: zapzap/controllers/PageCustomizations.py:449
+msgid "Select preview image"
+msgstr "Välj bild för förhandsvisning"
+
+#: zapzap/controllers/PageCustomizations.py:465
+msgid "Could not set preview image."
+msgstr "Kunde inte ställa in bild för förhandsvisning."
+
+#: zapzap/controllers/PageCustomizations.py:469
+msgid "Preview image updated."
+msgstr "Uppdaterade bild för förhandsvisning."
+
+#: zapzap/controllers/PageCustomizations.py:485
+msgid "https://example.com/theme.user.css"
+msgstr "https://exempel.se/tema.css"
+
+#: zapzap/controllers/PageCustomizations.py:487
+msgid "https://example.com/script.js"
+msgstr "https://exempel.se/skript.js"
+
+#: zapzap/controllers/PageCustomizations.py:491
+#, python-brace-format
+msgid "Optional file name (e.g. 10-custom.{})"
+msgstr "Valfritt filnamn (t.ex. 10-anpassning.{})"
+
+#: zapzap/controllers/PageCustomizations.py:494
+msgid "URL"
+msgstr "Webbadress"
+
+#: zapzap/controllers/PageCustomizations.py:495
+#: zapzap/controllers/PageCustomizations.py:524
+msgid "File name"
+msgstr "Filnamn"
+
+#: zapzap/controllers/PageCustomizations.py:523
+#, python-brace-format
+msgid "custom.{}"
+msgstr "anpassning.{}"
+
+#: zapzap/controllers/PageCustomizations.py:550
+msgid "Select file"
+msgstr "Välj fil"
+
+#: zapzap/controllers/PageCustomizations.py:567
+msgid "Could not import file."
+msgstr "Kunde inte importera fil."
+
+#: zapzap/controllers/PageCustomizations.py:571
+msgid "File imported successfully."
+msgstr "Importerade filen."
+
+#: zapzap/controllers/PageCustomizations.py:602
+msgid "Create file"
+msgstr "Skapa fil"
+
+#: zapzap/controllers/PageCustomizations.py:610
+#: zapzap/controllers/PageCustomizations.py:658
+msgid "File name cannot be empty."
+msgstr "Filnamnet kan inte vara tomt."
+
+#: zapzap/controllers/PageCustomizations.py:622
+msgid "Could not create file."
+msgstr "Kunde inte skapa fil."
+
+#: zapzap/controllers/PageCustomizations.py:626
+#, python-brace-format
+msgid "File created: {}"
+msgstr "Fil skapad: {}"
+
+#: zapzap/controllers/PageCustomizations.py:644
+msgid "Could not open file for editing."
+msgstr "Kunde inte öppna fil för redigering."
+
+#: zapzap/controllers/PageCustomizations.py:647
+#, python-brace-format
+msgid "Edit CSS: {}"
+msgstr "Ändra CSS: {}"
+
+#: zapzap/controllers/PageCustomizations.py:647
+#, python-brace-format
+msgid "Edit JavaScript: {}"
+msgstr "Ändra JavaScript: {}"
+
+#: zapzap/controllers/PageCustomizations.py:680
+msgid "Could not save file."
+msgstr "Kunde inte spara fil."
+
+#: zapzap/controllers/PageCustomizations.py:684
+#, python-brace-format
+msgid "File saved: {}"
+msgstr "Fil sparad: {}"
+
+#: zapzap/controllers/PageCustomizations.py:745
+msgid "Reload complete."
+msgstr "Omladdning slutfördes."
+
+#: zapzap/controllers/PageCustomizations.py:774
+#, python-brace-format
+msgid "{}. Save and reload to apply changes."
+msgstr "{}. Spara och ladda om för att applicera ändringar."
+
+# Identical to source
+#: zapzap/controllers/PageCustomizations.py:785
+msgid "JS"
+msgstr ""
+
+#: zapzap/controllers/PageCustomizations.py:788
+msgid "Confirm deletion"
+msgstr "Bekräfta borttagning"
+
+#: zapzap/controllers/PageCustomizations.py:789
+#, python-brace-format
+msgid "Delete selected {} file: {}?"
+msgstr "Ta bort vald {}-fil: {}?"
+
+#: zapzap/controllers/PageCustomizations.py:794
+msgid "Deletion cancelled."
+msgstr "Avbröt borttagning."
+
+#: zapzap/controllers/PageCustomizations.py:805
+msgid "File deleted."
+msgstr "Fil borttagen."
+
+#: zapzap/controllers/PageCustomizations.py:807
+msgid "Could not delete file."
+msgstr "Kunde inte ta bort fil."
+
+#: zapzap/controllers/PageCustomizations.py:835
+msgid "Customizations saved. Reload pages to apply changes."
+msgstr "Anpassningar sparade. Ladda om sidor för att applicera ändringarna."
+
+#: zapzap/controllers/PageCustomizations.py:845
+msgid "All pages reloaded."
+msgstr "Alla sidor laddades om."
+
+#: zapzap/controllers/PageGeneral.py:44
+#: zapzap/controllers/OnboardingDialog.py:219
+msgid "Use Flatseal to change this mode of execution"
+msgstr "Använd Flatseal för att ändra exekveringsläge"
+
+#: zapzap/controllers/PageGeneral.py:51
+msgid ""
+"<b>Flatpak tip:</b> If opening PDFs, drag-and-drop, or file uploads fail, "
+"this is usually caused by sandbox permissions. Open <b>Flatseal</b> and "
+"grant ZapZap access to folders like Documents, Downloads, Pictures and "
+"Videos. You can also run: <code>flatpak override --user --filesystem=home "
+"com.rtosta.zapzap</code>."
+msgstr ""
+"<b>Flatpak-tips:</b> Om öppning av PDF-filer, drag-och-släpp eller "
+"filuppladdningar misslyckas, kan detta orsakas av rättighetsproblem för "
+"sandlådan. Öppna <b>Flatseal</b> och tillåt ZapZap att komma åt kataloger så "
+"som Dokument, Hämtningar, Bilder och Videor. Du kan också köra: "
+"<code>flatpak override --user --filesystem=home com.rtosta.zapzap</code>."
+
+#: zapzap/controllers/PageGeneral.py:67
+msgid "Select and copy this command in your terminal"
+msgstr "Markera och kopiera detta kommando till din terminal"
+
+#: zapzap/controllers/PageGeneral.py:68
+#: zapzap/controllers/OnboardingDialog.py:331
+#: zapzap/controllers/OnboardingDialog.py:516
+msgid "Copy command"
+msgstr "Kopiera kommando"
+
+#: zapzap/controllers/PageGeneral.py:76
+#: zapzap/controllers/OnboardingDialog.py:336
+msgid "Open Flatseal page"
+msgstr "Öppna Flatseal-sida"
+
+#: zapzap/controllers/PageGeneral.py:244
+#, python-brace-format
+msgid "Files: {count} crash report(s){faulthandler}."
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:246
+msgid " + faulthandler.log"
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:249
+#, python-brace-format
+msgid ""
+"Crash reports are stored in this folder. You can open the directory or clean "
+"old files.\n"
+"{details}"
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:275
+#, python-brace-format
+msgid "Deleted {count} old crash report(s) (older than 30 days)."
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:285
+msgid "Delete all crash reports and debug logs?"
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:302
+#, python-brace-format
+msgid "Deleted {count} file(s)."
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:310
+msgid ""
+"This will delete your current settings file (.config) and requires restart. "
+"Continue?"
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:328
+#, python-brace-format
+msgid ""
+"Could not remove settings file:\n"
+"{error}"
+msgstr ""
+
+#: zapzap/controllers/PageGeneral.py:337
+msgid "Settings were reset successfully. Please restart ZapZap."
 msgstr ""
 
 #: zapzap/controllers/PageNetwork.py:23
@@ -1359,285 +1515,147 @@ msgstr "Ladda om sidor"
 msgid "New conversation by phone number"
 msgstr "Ny konversation med telefonnummer"
 
-#: zapzap/controllers/PageCustomizations.py:52
-msgid "Global"
-msgstr "Globalt"
+#: zapzap/controllers/OnboardingDialog.py:46
+#: zapzap/controllers/OnboardingDialog.py:71
+#, fuzzy
+msgid "Welcome to ZapZap"
+msgstr "Välkommen till"
 
-#: zapzap/controllers/PageCustomizations.py:53
-msgid "Current account"
-msgstr "Nuvarande konto"
-
-#: zapzap/controllers/PageCustomizations.py:153
-msgid "Unnamed account"
-msgstr "Namnlöst konto"
-
-#: zapzap/controllers/PageCustomizations.py:155
-msgid "Current account: {} ({})"
-msgstr "Nuvarande konto: {} ({})"
-
-#: zapzap/controllers/PageCustomizations.py:159
-msgid "Current account: unavailable"
-msgstr "Nuvarande konto: otillgängligt"
-
-#: zapzap/controllers/PageCustomizations.py:246
-msgid "CSS file enabled: {}"
-msgstr "CSS-fil aktiverad: {}"
-
-#: zapzap/controllers/PageCustomizations.py:246
-msgid "CSS file disabled: {}"
-msgstr "CSS-fil inaktiverad: {}"
-
-#: zapzap/controllers/PageCustomizations.py:249
-msgid "JavaScript file enabled: {}"
-msgstr "JavaScript-fil aktiverad: {}"
-
-#: zapzap/controllers/PageCustomizations.py:251
-msgid "JavaScript file disabled: {}"
-msgstr "JavaScript-fil inaktiverad: {}"
-
-#: zapzap/controllers/PageCustomizations.py:256
-#: zapzap/controllers/PageCustomizations.py:271
-msgid "This userstyle does not target WhatsApp Web."
-msgstr "Denna användarstil är inte ämnad för WhatsApp Web."
-
-#: zapzap/controllers/PageCustomizations.py:263
-msgid "Only HTTPS URLs are allowed."
-msgstr "Endast webbadresser med HTTPS är tillåtna."
-
-#: zapzap/controllers/PageCustomizations.py:267
-msgid "Download is too large."
-msgstr "Nedladdningen är för stor."
-
-#: zapzap/controllers/PageCustomizations.py:275
-msgid "Could not download CSS from URL."
-msgstr "Kunde inte ladda ned CSS från URL."
-
-#: zapzap/controllers/PageCustomizations.py:277
-msgid "Could not download JavaScript from URL."
-msgstr "Kunde inte ladda ned JavaScript från URL."
-
-#: zapzap/controllers/PageCustomizations.py:289
-msgid "Select a file first."
-msgstr "Välj en fil först."
-
-#: zapzap/controllers/PageCustomizations.py:368
-msgid "No preview available."
-msgstr "Ingen förhandsvisning tillgänglig."
-
-#: zapzap/controllers/PageCustomizations.py:374
-msgid "Could not load preview image."
-msgstr "Kunde inte ladda bild för förhandsvisning."
-
-#: zapzap/controllers/PageCustomizations.py:403
-msgid "Enter a CSS HTTPS URL."
-msgstr "Skriv in webbadress till CSS (HTTPS)."
-
-#: zapzap/controllers/PageCustomizations.py:405
-msgid "Enter a JavaScript HTTPS URL."
-msgstr "Skriv in webbadress till JavaScript (HTTPS)."
-
-#: zapzap/controllers/PageCustomizations.py:425
-#: zapzap/controllers/PageCustomizations.py:435
-msgid "File imported: {}"
-msgstr "Fil importerad: {}"
-
-#: zapzap/controllers/PageCustomizations.py:439
-msgid "File imported: {}. No preview found, upload one manually."
+#: zapzap/controllers/OnboardingDialog.py:76
+msgid "Quick setup for your preferred environment"
 msgstr ""
-"Fil importerad: {}. Ingen förhandsvisning hittad, ladda upp en manuellt."
 
-#: zapzap/controllers/PageCustomizations.py:449
-msgid "Select preview image"
-msgstr "Välj bild för förhandsvisning"
+#: zapzap/controllers/OnboardingDialog.py:99
+msgid "Next"
+msgstr ""
 
-#: zapzap/controllers/PageCustomizations.py:465
-msgid "Could not set preview image."
-msgstr "Kunde inte ställa in bild för förhandsvisning."
+#: zapzap/controllers/OnboardingDialog.py:100
+msgid "Finish"
+msgstr ""
 
-#: zapzap/controllers/PageCustomizations.py:469
-msgid "Preview image updated."
-msgstr "Uppdaterade bild för förhandsvisning."
+#: zapzap/controllers/OnboardingDialog.py:154
+#, python-brace-format
+msgid ""
+"Let's configure ZapZap in a few steps.\n"
+"\n"
+"1) Accounts and navigation\n"
+"2) General preferences\n"
+"3) Notification preferences\n"
+"4) Optional sandbox guidance (Flatpak only)\n"
+"\n"
+"Environment: {}"
+msgstr ""
 
-#: zapzap/controllers/PageCustomizations.py:485
-msgid "https://example.com/theme.user.css"
-msgstr "https://exempel.se/tema.css"
+#: zapzap/controllers/OnboardingDialog.py:179
+msgid "Personalize your experience · General"
+msgstr ""
 
-#: zapzap/controllers/PageCustomizations.py:487
-msgid "https://example.com/script.js"
-msgstr "https://exempel.se/skript.js"
+#: zapzap/controllers/OnboardingDialog.py:190
+msgid "Start hidden in background"
+msgstr ""
 
-#: zapzap/controllers/PageCustomizations.py:491
-msgid "Optional file name (e.g. 10-custom.{})"
-msgstr "Valfritt filnamn (t.ex. 10-anpassning.{})"
+#: zapzap/controllers/OnboardingDialog.py:196
+#, fuzzy
+msgid "Quit app when closing the window"
+msgstr "Avsluta när fönstret stängs"
 
-#: zapzap/controllers/PageCustomizations.py:494
-msgid "URL"
-msgstr "Webbadress"
+#: zapzap/controllers/OnboardingDialog.py:201
+#, fuzzy
+msgid "Enable spell checker"
+msgstr "Stavningskontroll"
 
-#: zapzap/controllers/PageCustomizations.py:495
-#: zapzap/controllers/PageCustomizations.py:524
-msgid "File name"
-msgstr "Filnamn"
+#: zapzap/controllers/OnboardingDialog.py:206
+#, fuzzy
+msgid "Start automatically with the system"
+msgstr "Starta med systemet"
 
-#: zapzap/controllers/PageCustomizations.py:523
-msgid "custom.{}"
-msgstr "anpassning.{}"
+#: zapzap/controllers/OnboardingDialog.py:211
+msgid "Prefer Wayland (when available)"
+msgstr ""
 
-#: zapzap/controllers/PageCustomizations.py:550
-msgid "Select file"
-msgstr "Välj fil"
+#: zapzap/controllers/OnboardingDialog.py:231
+msgid "You can change all these options later in Settings."
+msgstr ""
 
-#: zapzap/controllers/PageCustomizations.py:567
-msgid "Could not import file."
-msgstr "Kunde inte importera fil."
+#: zapzap/controllers/OnboardingDialog.py:246
+msgid "Personalize your experience · Notifications"
+msgstr ""
 
-#: zapzap/controllers/PageCustomizations.py:571
-msgid "File imported successfully."
-msgstr "Importerade filen."
+#: zapzap/controllers/OnboardingDialog.py:254
+#, fuzzy
+msgid "Enable app notifications"
+msgstr "Notiser i arbetsyta"
 
-#: zapzap/controllers/PageCustomizations.py:602
-msgid "Create file"
-msgstr "Skapa fil"
+#: zapzap/controllers/OnboardingDialog.py:260
+#, fuzzy
+msgid "Show message content in notifications"
+msgstr "Tystar notiserna"
 
-#: zapzap/controllers/PageCustomizations.py:610
-#: zapzap/controllers/PageCustomizations.py:658
-msgid "File name cannot be empty."
-msgstr "Filnamnet kan inte vara tomt."
+#: zapzap/controllers/OnboardingDialog.py:265
+#, fuzzy
+msgid "Show contact name in notifications"
+msgstr "Göm donationsnotis"
 
-#: zapzap/controllers/PageCustomizations.py:622
-msgid "Could not create file."
-msgstr "Kunde inte skapa fil."
+#: zapzap/controllers/OnboardingDialog.py:270
+#, fuzzy
+msgid "Show contact photo in notifications"
+msgstr "Göm donationsnotis"
 
-#: zapzap/controllers/PageCustomizations.py:626
-msgid "File created: {}"
-msgstr "Fil skapad: {}"
+#: zapzap/controllers/OnboardingDialog.py:275
+#, fuzzy
+msgid "Hide donation reminders"
+msgstr "Göm donationsnotis"
 
-#: zapzap/controllers/PageCustomizations.py:644
-msgid "Could not open file for editing."
-msgstr "Kunde inte öppna fil för redigering."
+#: zapzap/controllers/OnboardingDialog.py:313
+#, fuzzy
+msgid "Flatpak sandbox permissions"
+msgstr "Hjälp för Flatpak-sandlåda"
 
-#: zapzap/controllers/PageCustomizations.py:647
-msgid "Edit CSS: {}"
-msgstr "Ändra CSS: {}"
+#: zapzap/controllers/OnboardingDialog.py:320
+msgid ""
+"If opening files, drag-and-drop or uploads fail, this is usually caused by "
+"sandbox permissions."
+msgstr ""
 
-#: zapzap/controllers/PageCustomizations.py:647
-msgid "Edit JavaScript: {}"
-msgstr "Ändra JavaScript: {}"
-
-#: zapzap/controllers/PageCustomizations.py:680
-msgid "Could not save file."
-msgstr "Kunde inte spara fil."
-
-#: zapzap/controllers/PageCustomizations.py:684
-msgid "File saved: {}"
-msgstr "Fil sparad: {}"
-
-#: zapzap/controllers/PageCustomizations.py:745
-msgid "Reload complete."
+#: zapzap/controllers/OnboardingDialog.py:354
+#, fuzzy
+msgid "Setup complete"
 msgstr "Omladdning slutfördes."
 
-#: zapzap/controllers/PageCustomizations.py:774
-msgid "{}. Save and reload to apply changes."
-msgstr "{}. Spara och ladda om för att applicera ändringar."
-
-# Identical to source
-#: zapzap/controllers/PageCustomizations.py:785
-msgid "JS"
-msgstr ""
-
-#: zapzap/controllers/PageCustomizations.py:788
-msgid "Confirm deletion"
-msgstr "Bekräfta borttagning"
-
-#: zapzap/controllers/PageCustomizations.py:789
-msgid "Delete selected {} file: {}?"
-msgstr "Ta bort vald {}-fil: {}?"
-
-#: zapzap/controllers/PageCustomizations.py:794
-msgid "Deletion cancelled."
-msgstr "Avbröt borttagning."
-
-#: zapzap/controllers/PageCustomizations.py:805
-msgid "File deleted."
-msgstr "Fil borttagen."
-
-#: zapzap/controllers/PageCustomizations.py:807
-msgid "Could not delete file."
-msgstr "Kunde inte ta bort fil."
-
-#: zapzap/controllers/PageCustomizations.py:835
-msgid "Customizations saved. Reload pages to apply changes."
-msgstr "Anpassningar sparade. Ladda om sidor för att applicera ändringarna."
-
-#: zapzap/controllers/PageCustomizations.py:845
-msgid "All pages reloaded."
-msgstr "Alla sidor laddades om."
-
-#: zapzap/controllers/PageGeneral.py:51
+#: zapzap/controllers/OnboardingDialog.py:358
 msgid ""
-"<b>Flatpak tip:</b> If opening PDFs, drag-and-drop, or file uploads fail, "
-"this is usually caused by sandbox permissions. Open <b>Flatseal</b> and "
-"grant ZapZap access to folders like Documents, Downloads, Pictures and "
-"Videos. You can also run: <code>flatpak override --user --filesystem=home "
-"com.rtosta.zapzap</code>."
+"Your preferences were saved. You can review and change them at any time in "
+"Settings."
 msgstr ""
-"<b>Flatpak-tips:</b> Om öppning av PDF-filer, drag-och-släpp eller "
-"filuppladdningar misslyckas, kan detta orsakas av rättighetsproblem för "
-"sandlådan. Öppna <b>Flatseal</b> och tillåt ZapZap att komma åt kataloger så "
-"som Dokument, Hämtningar, Bilder och Videor. Du kan också köra: "
-"<code>flatpak override --user --filesystem=home com.rtosta.zapzap</code>."
 
-#: zapzap/controllers/PageGeneral.py:67
-msgid "Select and copy this command in your terminal"
-msgstr "Markera och kopiera detta kommando till din terminal"
-
-#: zapzap/controllers/PageGeneral.py:244
+#: zapzap/controllers/OnboardingDialog.py:391
 #, python-brace-format
-msgid "Files: {count} crash report(s){faulthandler}."
+msgid "Step {}/{}"
 msgstr ""
 
-#: zapzap/controllers/PageGeneral.py:246
-msgid " + faulthandler.log"
-msgstr ""
+#: zapzap/controllers/OnboardingDialog.py:505
+msgid "Flatpak sandbox"
+msgstr "Flatpak-sandlåda"
 
-#: zapzap/controllers/PageGeneral.py:249
-#, python-brace-format
+#: zapzap/controllers/OnboardingDialog.py:508
+msgid "ZapZap is running in Flatpak sandbox."
+msgstr "ZapZap körs i Flatpak-sandlådan."
+
+#: zapzap/controllers/OnboardingDialog.py:510
 msgid ""
-"Crash reports are stored in this folder. You can open the directory or clean "
-"old files.\n"
-"{details}"
+"Some features like opening files or drag-and-drop may require additional "
+"permissions."
 msgstr ""
+"Vissa funktioner, så som öppning av filer eller drag-och-släpp, kan kräva "
+"ytterligare rättigheter."
 
-#: zapzap/controllers/PageGeneral.py:275
-#, python-brace-format
-msgid "Deleted {count} old crash report(s) (older than 30 days)."
-msgstr ""
+#: zapzap/controllers/OnboardingDialog.py:514
+msgid "Instructions"
+msgstr "Instruktioner"
 
-#: zapzap/controllers/PageGeneral.py:285
-msgid "Delete all crash reports and debug logs?"
-msgstr ""
-
-#: zapzap/controllers/PageGeneral.py:302
-#, python-brace-format
-msgid "Deleted {count} file(s)."
-msgstr ""
-
-#: zapzap/controllers/PageGeneral.py:310
-msgid ""
-"This will delete your current settings file (.config) and requires restart. "
-"Continue?"
-msgstr ""
-
-#: zapzap/controllers/PageGeneral.py:328
-#, python-brace-format
-msgid ""
-"Could not remove settings file:\n"
-"{error}"
-msgstr ""
-
-#: zapzap/controllers/PageGeneral.py:337
-msgid "Settings were reset successfully. Please restart ZapZap."
-msgstr ""
+#: zapzap/controllers/OnboardingDialog.py:517
+msgid "Close"
+msgstr "Stäng"
 
 # Identical to source
 #: zapzap/services/AlertManager.py:35
@@ -1645,6 +1663,7 @@ msgid "Information"
 msgstr ""
 
 #: zapzap/services/AlertManager.py:35
+#, python-brace-format
 msgid ""
 "Limit of {} users reached.\n"
 "It is not possible to create more users!"
