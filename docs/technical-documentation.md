@@ -137,6 +137,7 @@ O fluxo gera classes de janela a partir dos `.ui` e inicia o app em seguida.
 - **Sem spellcheck:** verificar caminho de dicionários conforme empacotamento.
 - **Tema não sincroniza:** confirmar backend de portal/DBus disponível no ambiente.
 - **Notificações ausentes:** validar preferência global/por conta e backend selecionado.
+- **Figurinhas de outras pessoas ficam carregando para sempre / alto uso de RAM:** no WhatsApp Web, habilitar `Configurações > Conversas > Download automático de mídia > Fotos`. Quando essa opção está desativada, há relatos de figurinhas que não finalizam o carregamento e podem elevar consumo de memória com a conversa aberta.
 
 ---
 
