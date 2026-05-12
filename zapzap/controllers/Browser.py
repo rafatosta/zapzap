@@ -1,6 +1,6 @@
-from PyQt6.QtCore import QEasingCurve, QParallelAnimationGroup, QPropertyAnimation, QUrl, Qt
-from PyQt6.QtWidgets import QWidget, QPushButton, QMessageBox, QApplication
-from PyQt6.QtGui import QAction, QDesktopServices, QPixmap
+from PyQt6.QtCore import QEasingCurve, QParallelAnimationGroup, QPropertyAnimation, Qt
+from PyQt6.QtWidgets import QWidget, QPushButton, QMessageBox
+from PyQt6.QtGui import QAction
 from zapzap.controllers.CardUser import CardUser
 from zapzap.controllers.PageButton import PageButton
 from zapzap.webengine.WebView import WebView
@@ -31,11 +31,15 @@ class Browser(QWidget, Ui_Browser):
         self._sidebar_expanded_width = max(50, self.browser_sidebar.maximumWidth())
         self._sidebar_animation_group = None
         self._last_active_webview = None
+        self._shutting_down = False
 
         self._initialize()
 
-    def __del__(self):
-        """Garante que todas as páginas sejam fechadas ao destruir o widget."""
+    def shutdown(self):
+        """Libera explicitamente as páginas WebEngine antes do QApplication ser destruído."""
+        if self._shutting_down:
+            return
+        self._shutting_down = True
         self.close_pages()
 
     # === Inicialização ===
@@ -177,10 +181,19 @@ class Browser(QWidget, Ui_Browser):
         """Remove uma página e seu botão correspondente."""
         button, page = self._find_button_and_page_by_user(user)
 
-        if button and page:
-            button.close()
-            del self.page_buttons[button.page_index]
+        if page:
+            self.pages.removeWidget(page)
+            page.shutdown()
             page.remove_files()
+            page.close()
+            page.setParent(None)
+            page.deleteLater()
+
+        if button:
+            del self.page_buttons[button.page_index]
+            button.close()
+            button.deleteLater()
+
         self._select_default_page()
         self._update_user_menu()
 
@@ -219,11 +232,21 @@ class Browser(QWidget, Ui_Browser):
     # === Funções Auxiliares ===
     def _find_button_and_page_by_user(self, user: User):
         """Busca o botão e a página correspondentes ao usuário."""
+        found_button = None
+        found_page = None
+
         for button in self.page_buttons.values():
             if button.user.id == user.id:
-                page = self.pages.widget(button.page_index)
-                return button, page
-        return None, None
+                found_button = button
+                break
+
+        for i in range(self.pages.count()):
+            page = self.pages.widget(i)
+            if isinstance(page, WebView) and page.user.id == user.id:
+                found_page = page
+                break
+
+        return found_button, found_page
 
     def _find_button_and_page_enabled(self):
         """Busca o primeiro botão e página habilitados."""
@@ -280,11 +303,22 @@ class Browser(QWidget, Ui_Browser):
 
     def close_pages(self):
         """Fecha e limpa todas as páginas existentes."""
-        for i in range(self.pages.count()):
-            if i == self.grid_page_index: continue
+        for i in reversed(range(self.pages.count())):
             page = self.pages.widget(i)
-            if page and hasattr(page, '__del__'):
-                page.__del__()
+
+            if not isinstance(page, WebView):
+                continue
+
+            page.shutdown()
+            self.pages.removeWidget(page)
+            page.setParent(None)
+            page.deleteLater()
+
+        for button in list(self.page_buttons.values()):
+            button.close()
+            button.deleteLater()
+
+        self.page_buttons.clear()
 
     def reload_pages(self):
         """Recarrega todas as páginas existentes."""
