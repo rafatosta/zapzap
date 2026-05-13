@@ -2,7 +2,7 @@ from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineSettings
 from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
 
-from zapzap import __whatsapp_url__
+from zapzap import __allowed_hosts__
 from zapzap.services.AddonsManager import AddonsManager
 from zapzap.services.CustomizationsManager import CustomizationsManager
 from zapzap.services.ThemeManager import ThemeManager
@@ -66,8 +66,8 @@ class PageController(QWebEnginePage):
         return urllib.parse.urlunparse(parsed_url._replace(query=normalized_query))
 
     def acceptNavigationRequest(self, url, type, isMainFrame):
-        """Bloqueia a navegação para fora do endereço definido (https://web.whatsapp.com/)."""
-        if url != QUrl(__whatsapp_url__):
+        """Bloqueia a navegação para fora dos hosts usados pelo WhatsApp Web."""
+        if not url.host().lower() in __allowed_hosts__:
             return False  # Impede a navegação
         return super().acceptNavigationRequest(url, type, isMainFrame)
 
