@@ -5,6 +5,7 @@ import argparse
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtCore import QUrl
 
+from zapzap.services.ThemeManager import ThemeManager
 from zapzap.services.SetupManager import SetupManager
 from zapzap.controllers.MainWindow import MainWindow
 from zapzap.controllers.OnboardingDialog import OnboardingDialog
@@ -84,9 +85,17 @@ def main():
     else:
         main_window.show()
 
-    # Start app
-    sys.exit(app.exec())
+    app.aboutToQuit.connect(ThemeManager.stop)
+    app.aboutToQuit.connect(main_window.browser.shutdown)
+
+    exit_code = app.exec()
+
+    # Defensive fallback for abnormal shutdown paths where aboutToQuit may not have run.
+    ThemeManager.stop()
+    main_window.browser.shutdown()
+
+    return exit_code
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

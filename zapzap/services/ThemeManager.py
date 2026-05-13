@@ -32,10 +32,20 @@ class ThemeManager:
             self.current_theme = ThemeManager.Type(
                 SettingsManager.get("system/theme", ThemeManager.Type.Auto)
             )
-            self.timer = QTimer()
+            self.timer = QTimer(QApplication.instance())
             # Verifica o tema do sistema a cada segundo
             self.timer.setInterval(1000)
             self.timer.timeout.connect(self.sync_system_theme)
+
+    @staticmethod
+    def stop():
+        instance = ThemeManager._instance
+        if instance and instance.timer:
+            instance.timer.stop()
+            try:
+                instance.timer.timeout.disconnect(instance.sync_system_theme)
+            except TypeError:
+                pass
 
     # === Métodos Públicos ===
     @staticmethod

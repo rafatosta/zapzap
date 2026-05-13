@@ -264,7 +264,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if not SettingsManager.get("system/quit_in_close", False) and event:
             self._prepare_for_background(event)
         else:
-            self._clean_up_and_exit()
+            # Cleanup is handled by aboutToQuit() in __main__.py.
+            QApplication.instance().quit()
 
     def _save_window_state(self):
         """Salvar a geometria e o estado da janela."""
@@ -281,11 +282,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.browser.close_conversations()
         self.hide()
         event.ignore()
-
-    def _clean_up_and_exit(self):
-        """Limpar recursos e sair do aplicativo."""
-        self.browser.__del__()
-        QApplication.instance().quit()
 
     # === Controle de Visibilidade da Janela ===
     def show_window(self):

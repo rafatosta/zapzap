@@ -44,17 +44,32 @@ class WebView(QWebEngineView):
         self.page_index = page_index
         self.profile = None  # Inicializa o perfil como None
         self._gesture_filter_installed = False
+        self.whatsapp_page = None
+
+        self._cache_path = None
+        self._storage_path = None
 
         self.notifications = NotificationService()
         self._devtools_view = None
         self._devtools_page = None
 
         self._last_tmp_file = None
+        self._shutting_down = False
+
+        self._reload_timer = QTimer(self)
+        self._reload_timer.setSingleShot(True)
+        self._reload_timer.timeout.connect(self.load_page)
+
+        self._render_crash_reload_timer = QTimer(self)
+        self._render_crash_reload_timer.setSingleShot(True)
+        self._render_crash_reload_timer.timeout.connect(self.load_page)
+
+        self._signals_configured = False
 
         if user.enable:
             self._initialize()
 
-    def __del__(self):
+    def _save_zoom_factor(self):
         try:
             if self.user and not self.isHidden():
                 self.user.zoomFactor = self.zoomFactor()
@@ -78,12 +93,18 @@ class WebView(QWebEngineView):
 
     def _configure_signals(self):
         """Configura os sinais para eventos."""
+        if self._signals_configured:
+            return
         self.titleChanged.connect(self._on_title_changed)
         self.loadFinished.connect(self._on_load_finished)
+        self._signals_configured = True
 
     def _configure_profile(self):
         """Configura o perfil do QWebEngine."""
         self.profile = QWebEngineProfile(str(self.user.id), self)
+
+        self._cache_path = self.profile.cachePath()
+        self._storage_path = self.profile.persistentStoragePath()
 
         selected_ua_name = SettingsManager.get(f"{self.user.id}/user_agent", "Default")
         ua_string = self.USER_AGENTS.get(selected_ua_name, self.USER_AGENTS["Default"])
@@ -153,8 +174,10 @@ class WebView(QWebEngineView):
         self.setZoomFactor(self.user.zoomFactor)
 
     def _on_render_crash(self, terminationStatus, exitCode):
+        if self._shutting_down or not self.user.enable or not self.whatsapp_page:
+            return
         print(f"Tab renderer crashed (status={terminationStatus}, code={exitCode}). Reloading...")
-        QTimer.singleShot(1000, self.load_page)
+        self._render_crash_reload_timer.start(1000)
 
     def contextMenuEvent(self, event):
         """Cria o menu de contexto personalizado ao clicar com o botão direito."""
@@ -261,12 +284,11 @@ class WebView(QWebEngineView):
         self.update_button_signal.emit(self.page_index, qtd)
 
     def _on_load_finished(self, success):
+        if self._shutting_down or not self.user.enable or not self.whatsapp_page:
+            return
         if not success:
             print("You are not connected to the Internet.")
-            self.timer = QTimer(self)
-            self.timer.timeout.connect(self.load_page)
-            self.timer.setSingleShot(True)
-            self.timer.start(5000)  # 5000 ms = 5 seconds
+            self._reload_timer.start(5000)
 
     def event(self, event):
         """Intercept native gesture events to optionally disable pinch-to-zoom.
@@ -300,7 +322,10 @@ class WebView(QWebEngineView):
 
     def load_page(self):
         """Carrega a página do WhatsApp."""
-        if self.user.enable:
+        if self._shutting_down:
+            return
+
+        if self.user.enable and self.whatsapp_page:
             self.setPage(self.whatsapp_page)
             self.load(QUrl(__whatsapp_url__))
             self.setZoomFactor(self.user.zoomFactor)
@@ -311,51 +336,111 @@ class WebView(QWebEngineView):
 
     def close_conversation(self):
         """Simula o pressionamento da tecla 'Escape' na página."""
-        if self.user.enable:
+        if self.user.enable and self.whatsapp_page:
             self.whatsapp_page.close_conversation()
 
     def set_theme_light(self):
         """Define o tema claro na página."""
-        if self.user.enable:
+        if self.user.enable and self.whatsapp_page:
             self.whatsapp_page.set_theme_light()
 
     def set_theme_dark(self):
         """Define o tema escuro na página."""
-        if self.user.enable:
+        if self.user.enable and self.whatsapp_page:
             self.whatsapp_page.set_theme_dark()
 
     def remove_files(self):
         """Remove os arquivos de cache e armazenamento persistente do perfil."""
-        try:
-            if not self.user.enable:
-                self.profile = QWebEngineProfile(str(self.user.id), self)
+        # TODO: refatorar a lógica de limpeza de cache de contas excluídas
+        # É mais seguro executar a limpeza em um momento menos crítico (próxima
+        # inicialização do aplicativo) do que durante a exclusão do perfil.
+        # Isso poderia ser feito, talvez, armazenando self._cache_path e
+        # self._storage_path por meio do objeto User.
+        if self._cache_path:
+            shutil.rmtree(self._cache_path, ignore_errors=True)
+            self._cache_path = None
 
-            cache_path = self.profile.cachePath()
-            storage_path = self.profile.persistentStoragePath()
-
-            shutil.rmtree(cache_path, ignore_errors=True)
-            shutil.rmtree(storage_path, ignore_errors=True)
-
-            self.stop()
-            self.close()
-            return True
-        except Exception as e:
-            return False
+        if self._storage_path:
+            shutil.rmtree(self._storage_path, ignore_errors=True)
+            self._storage_path = None
 
     def enable_page(self):
         """Ativa a página, configurando novamente."""
-        self._initialize()
+        if self._shutting_down:
+            return
+
+        if self.whatsapp_page is None and self.profile is None:
+            self._initialize()
+
         self.setVisible(True)
 
     def disable_page(self):
         """Desativa a página e limpa o perfil."""
+        if self._shutting_down:
+            return
+
+        self._teardown_webengine(clear_cache=True)
+
+    def shutdown(self):
+        if self._shutting_down:
+            return
+
+        self._shutting_down = True
+        self._teardown_webengine(clear_cache=False)
+
+    def _stop_timers(self):
+        for timer in (
+                getattr(self, "_reload_timer", None),
+                getattr(self, "_render_crash_reload_timer", None),
+        ):
+            if timer:
+                timer.stop()
+
+    def _teardown_webengine(self, clear_cache: bool=False):
+        """Destrói objetos Qt associados à WebEngine de forma ordenada."""
+        self._stop_timers()
+        self._save_zoom_factor()
+        self.stop()
+
         if self._gesture_filter_installed:
-            QApplication.instance().removeEventFilter(self)
+            app = QApplication.instance()
+            if app:
+                app.removeEventFilter(self)
             self._gesture_filter_installed = False
+
+        page = self.whatsapp_page
+        if page:
+            try:
+                page.setDevToolsPage(None)
+                self.setPage(None)
+                page.deleteLater()
+            except RuntimeError:
+                pass
+            finally:
+                self.whatsapp_page = None
+
+        if self._devtools_view:
+            try:
+                self._devtools_view.setPage(None)
+                self._devtools_view.close()
+                self._devtools_view.deleteLater()
+            except RuntimeError:
+                pass
+            finally:
+                self._devtools_view = None
+                self._devtools_page = None
+
         if self.profile:
-            crash_handler.unregister_profile(self.profile)
-            self.profile.clearHttpCache()
-        self.setPage(None)
+            try:
+                crash_handler.unregister_profile(self.profile)
+                if clear_cache:
+                    self.profile.clearHttpCache()
+                self.profile.deleteLater()
+            except RuntimeError:
+                pass
+            finally:
+                self.profile = None
+
         self.setVisible(False)
 
     def open_devtools(self):
