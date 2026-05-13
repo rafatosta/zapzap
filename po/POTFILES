@@ -2,3 +2,4 @@
 ./zapzap/controllers/
 ./zapzap/services/
 ./zapzap/debug/
+./zapzap/webengine/
