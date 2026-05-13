@@ -67,8 +67,17 @@ class PageController(QWebEnginePage):
 
     def acceptNavigationRequest(self, url, type, isMainFrame):
         """Bloqueia a navegação para fora dos hosts usados pelo WhatsApp Web."""
-        if not url.host().lower() in __allowed_hosts__:
-            return False  # Impede a navegação
+        scheme = (url.scheme() or "").lower()
+
+        # WhatsApp Web usa recursos internos (ex.: visor PDF) em URLs blob/about.
+        # Permitir esses esquemas evita bloqueios de renderização interna.
+        if scheme in {"blob", "about", "data"}:
+            return super().acceptNavigationRequest(url, type, isMainFrame)
+
+        if scheme in {"http", "https"}:
+            if url.host().lower() not in __allowed_hosts__:
+                return False  # Impede a navegação
+
         return super().acceptNavigationRequest(url, type, isMainFrame)
 
     def close_conversation(self):
