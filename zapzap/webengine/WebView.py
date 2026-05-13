@@ -121,6 +121,11 @@ class WebView(QWebEngineView):
         )
         self.profile.settings().setAttribute(
             QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, SettingsManager.get("web/scroll_animator", False))
+        pdf_viewer_attr = getattr(
+            QWebEngineSettings.WebAttribute, "PdfViewerEnabled", None
+        )
+        if pdf_viewer_attr is not None:
+            self.profile.settings().setAttribute(pdf_viewer_attr, True)
 
         self.configure_spellcheck()
 
