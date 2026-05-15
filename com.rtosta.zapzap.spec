@@ -2,7 +2,7 @@
 # Based on PKGBUILD from AUR
 
 %global srcname zapzap
-%global srcversion  6.4.1
+%global srcversion  6.4.2
 
 %global __python /usr/bin/python3
 %global _rpmfilename %%{NAME}-%%{VERSION}-%%{RELEASE}.rpm

@@ -1,6 +1,6 @@
 from PyQt6.QtCore import QFileInfo, QUrl
 
-__version__ = '6.4.1'
+__version__ = '6.4.2'
 __appname__ = 'ZapZap'
 __comment__ = 'WhatsApp Messenger for linux'
 __domain__ = 'com.rtosta'

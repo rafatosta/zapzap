@@ -55,6 +55,14 @@
   </screenshots>
 
   <releases>
+      <release date="2026-05-15" version="6.4.2">
+          <description>
+              <ul>
+                  <li>Fix phone calls (WhatsApp Beta only)</li>
+                  <li>Fix display file preview.</li>
+              </ul>
+          </description>
+      </release>
       <release date="2026-05-09" version="6.4.1">
           <description>
               <ul>
