@@ -115,25 +115,8 @@ class PageController(QWebEnginePage):
             print("[Theme] Skip reload on startup (Flatpak + Auto)")
             return
 
-        if configured_theme == ThemeManager.Type.Auto:
-            if system_theme == ThemeManager.Type.Light:
-                self._set_force_dark(False)
-                self._apply_css_theme(ThemeManager.Type.Light)
-            else:
-
-                if not is_flatpak and self.APP_LOAD:
-                    self._set_force_dark(True)
-                    self.APP_LOAD = False
-                else:
-                    self._set_force_dark(False)
-                    self._apply_css_theme(ThemeManager.Type.Dark)
-
-        if configured_theme == ThemeManager.Type.Light:
-            self._set_force_dark(False)
-
-        if configured_theme == ThemeManager.Type.Dark:
-            if not ThemeManager.instance()._detect_system_theme() == ThemeManager.Type.Dark or not is_flatpak:
-                self._set_force_dark(True)
+        self._set_force_dark(False)
+        self._apply_css_theme(effective_theme)
 
     def _set_force_dark(self, enabled: bool):
         """Aplica ForceDark no engine."""
