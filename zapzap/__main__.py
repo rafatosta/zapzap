@@ -8,6 +8,7 @@ from PyQt6.QtCore import QUrl
 from zapzap.services.ThemeManager import ThemeManager
 from zapzap.services.SetupManager import SetupManager
 from zapzap.controllers.MainWindow import MainWindow
+from zapzap.controllers.QmlMainWindow import QmlMainWindow
 from zapzap.controllers.OnboardingDialog import OnboardingDialog
 from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.services.ProxyManager import ProxyManager
@@ -28,6 +29,8 @@ def main():
                         "valor"), help="Define uma configuração específica")
     parser.add_argument("--wayland", action="store_true",
                         help="Força o uso do Wayland (QT_QPA_PLATFORM=wayland)")
+    parser.add_argument("--qml", action="store_true",
+                        help="Inicia com a nova interface em QML (experimental)")
     args, unknown = parser.parse_known_args()
 
     if args.setSettings:
@@ -59,14 +62,15 @@ def main():
     app.messageReceived.connect(lambda result: main_window.xdgOpenChat(result))
 
     # Create main window
-    main_window = MainWindow()
+    main_window = QmlMainWindow() if args.qml else MainWindow()
     app.setWindow(main_window)
     app.setActivationWindow(main_window)
     main_window.load_settings()
 
-    ProxyManager.apply()
+    if not args.qml:
+        ProxyManager.apply()
 
-    show_onboarding = OnboardingDialog.should_show()
+    show_onboarding = OnboardingDialog.should_show() if not args.qml else False
 
     # Se houver onboarding, abrimos a janela para o fluxo ficar visualmente integrado
     if show_onboarding:
@@ -86,13 +90,15 @@ def main():
         main_window.show()
 
     app.aboutToQuit.connect(ThemeManager.stop)
-    app.aboutToQuit.connect(main_window.browser.shutdown)
+    if not args.qml:
+        app.aboutToQuit.connect(main_window.browser.shutdown)
 
     exit_code = app.exec()
 
     # Defensive fallback for abnormal shutdown paths where aboutToQuit may not have run.
     ThemeManager.stop()
-    main_window.browser.shutdown()
+    if not args.qml:
+        main_window.browser.shutdown()
 
     return exit_code
 
