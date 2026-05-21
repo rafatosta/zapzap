@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtWebEngine
 
 ApplicationWindow {
     id: root
@@ -8,6 +9,16 @@ ApplicationWindow {
     height: 760
     visible: true
     title: "ZapZap"
+
+    WebEngineProfile {
+        id: zapzapProfile
+        offTheRecord: false
+        storageName: "zapzap-qml"
+        persistentStoragePath: webEngineConfig.persistentStoragePath
+        cachePath: webEngineConfig.cachePath
+        persistentCookiesPolicy: WebEngineProfile.ForcePersistentCookies
+        httpUserAgent: webEngineConfig.userAgent
+    }
 
     header: ToolBar {
         RowLayout {
@@ -22,37 +33,18 @@ ApplicationWindow {
 
             Item { Layout.fillWidth: true }
 
-            Button {
-                text: qsTr("Configurações")
-                enabled: false
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Em migração para QML")
+            Label {
+                text: qsTr("QML experimental")
+                opacity: 0.75
             }
         }
     }
 
-    Rectangle {
+    WebEngineView {
+        id: webview
+        objectName: "zapzapWebView"
         anchors.fill: parent
-        color: palette.window
-
-        ColumnLayout {
-            anchors.centerIn: parent
-            spacing: 10
-
-            Label {
-                Layout.alignment: Qt.AlignHCenter
-                text: qsTr("Migração para QML iniciada")
-                font.pixelSize: 28
-                font.bold: true
-            }
-
-            Label {
-                Layout.alignment: Qt.AlignHCenter
-                text: qsTr("A estrutura base em QML foi criada para substituir a UI em .ui gradualmente.")
-                wrapMode: Text.WordWrap
-                horizontalAlignment: Text.AlignHCenter
-                Layout.maximumWidth: 640
-            }
-        }
+        profile: zapzapProfile
+        url: webEngineConfig.whatsappUrl
     }
 }
