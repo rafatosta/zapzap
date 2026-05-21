@@ -120,7 +120,7 @@ class ThemeManager:
             window="#f7f5f3", text="#000000", base="#f0f0f0", highlight="#0066cc"
         )
         self._apply_palette(palette)
-        QApplication.instance().getWindow().browser.set_theme_light()
+        self._apply_window_theme(ThemeManager.Type.Light)
         QApplication.instance().setStyleSheet(ThemeStylesheet.get_stylesheet('light'))
 
     def _apply_dark_theme(self):
@@ -129,7 +129,7 @@ class ThemeManager:
             window="#1d1f1f", text="#ffffff", base="#3a3a3a", highlight="#0099ff"
         )
         self._apply_palette(palette)
-        QApplication.instance().getWindow().browser.set_theme_dark()
+        self._apply_window_theme(ThemeManager.Type.Dark)
         QApplication.instance().setStyleSheet(ThemeStylesheet.get_stylesheet('dark'))
 
     def _apply_custom_theme(self, colors: list[str], grade):
@@ -140,11 +140,32 @@ class ThemeManager:
         )
         self._apply_palette(palette)
         if grade == ThemeManager.Type.Light:
-            QApplication.instance().getWindow().browser.set_theme_light()
+            self._apply_window_theme(ThemeManager.Type.Light)
             QApplication.instance().setStyleSheet(ThemeStylesheet.get_stylesheet('light'))
         elif grade == ThemeManager.Type.Dark:
-            QApplication.instance().getWindow().browser.set_theme_dark()
+            self._apply_window_theme(ThemeManager.Type.Dark)
             QApplication.instance().setStyleSheet(ThemeStylesheet.get_stylesheet('dark'))
+
+
+    def _apply_window_theme(self, theme: Type):
+        """Aplica o tema no conteúdo da janela ativa (Widgets ou QML)."""
+        app = QApplication.instance()
+        if not app or not hasattr(app, "getWindow"):
+            return
+
+        window = app.getWindow()
+        if not window:
+            return
+
+        if hasattr(window, "browser"):
+            if theme == ThemeManager.Type.Dark:
+                window.browser.set_theme_dark()
+            else:
+                window.browser.set_theme_light()
+            return
+
+        if hasattr(window, "apply_theme"):
+            window.apply_theme(theme)
 
     def _create_palette(self, window, text, base, highlight):
         """Cria uma paleta com cores fornecidas."""

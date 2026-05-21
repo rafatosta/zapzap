@@ -4,6 +4,7 @@ from PyQt6.QtCore import QObject, QStandardPaths, QUrl, pyqtProperty
 from PyQt6.QtQml import QQmlApplicationEngine
 
 from zapzap import __user_agent__, __whatsapp_url__, __appname__
+from zapzap.services.ThemeManager import ThemeManager
 
 
 class QmlWebEngineConfig(QObject):
@@ -62,6 +63,12 @@ class QmlMainWindow(QObject):
 
         self._window = self._engine.rootObjects()[0]
 
+        self._webview = self._window.findChild(QObject, "zapzapWebView")
+        if self._webview:
+            self._webview.loadFinished.connect(
+                lambda _ok: self.apply_theme(ThemeManager.get_current_theme())
+            )
+
     def load_settings(self):
         return
 
@@ -73,6 +80,24 @@ class QmlMainWindow(QObject):
 
     def close(self):
         self._window.close()
+
+
+    def apply_theme(self, theme):
+        if not self._webview:
+            return
+
+        theme_value = theme.value if hasattr(theme, "value") else str(theme)
+        force_dark = theme_value == ThemeManager.Type.Dark.value
+
+        script = f"""
+            (function() {{
+                var isDark = {str(force_dark).lower()};
+                document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+                document.documentElement.classList.toggle('dark', isDark);
+                document.body && document.body.classList.toggle('dark', isDark);
+            }})();
+        """
+        self._webview.runJavaScript(script)
 
     def xdgOpenChat(self, url: str):
         webview = self._window.findChild(QObject, "zapzapWebView")
