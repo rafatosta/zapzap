@@ -62,12 +62,9 @@ class QmlMainWindow(QObject):
             raise RuntimeError("Falha ao carregar a interface QML principal.")
 
         self._window = self._engine.rootObjects()[0]
-
-        self._webview = self._window.findChild(QObject, "zapzapWebView")
-        if self._webview:
-            self._webview.loadFinished.connect(
-                lambda _ok: self.apply_theme(ThemeManager.get_current_theme())
-            )
+        self._window.webViewLoaded.connect(
+            lambda _ok: self.apply_theme(ThemeManager.get_current_theme())
+        )
 
     def load_settings(self):
         return
@@ -83,9 +80,6 @@ class QmlMainWindow(QObject):
 
 
     def apply_theme(self, theme):
-        if not self._webview:
-            return
-
         theme_value = theme.value if hasattr(theme, "value") else str(theme)
         force_dark = theme_value == ThemeManager.Type.Dark.value
 
@@ -97,16 +91,12 @@ class QmlMainWindow(QObject):
                 document.body && document.body.classList.toggle('dark', isDark);
             }})();
         """
-        self._webview.runJavaScript(script)
+        self._window.runInWebView(script)
 
     def xdgOpenChat(self, url: str):
-        webview = self._window.findChild(QObject, "zapzapWebView")
-        if not webview:
-            return
-
         script = (
             "(function(){var a = document.createElement('a');"
             f"a.href={url!r};"
             "document.body.appendChild(a);a.click();a.remove();})();"
         )
-        webview.runJavaScript(script)
+        self._window.runInWebView(script)

@@ -5,6 +5,12 @@ import QtWebEngine
 
 ApplicationWindow {
     id: root
+    signal webViewLoaded(bool ok)
+
+    function runInWebView(script) {
+        webview.runJavaScript(script)
+    }
+
     width: 1200
     height: 760
     visible: true
@@ -46,5 +52,11 @@ ApplicationWindow {
         anchors.fill: parent
         profile: zapzapProfile
         url: webEngineConfig.whatsappUrl
+
+        onLoadingChanged: function(request) {
+            if (request.status === WebEngineLoadRequest.LoadSucceededStatus) {
+                root.webViewLoaded(true)
+            }
+        }
     }
 }
