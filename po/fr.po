@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-09 18:34-0300\n"
+"POT-Creation-Date: 2026-05-22 20:16-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,794 +17,794 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: zapzap/views/ui_browser.py:91 zapzap/views/ui_page_account.py:87
-#: zapzap/controllers/Browser.py:203 zapzap/controllers/ShortcutsDialog.py:61
+#: zapzap/views/ui_browser.py:84 zapzap/views/ui_page_account.py:80
+#: zapzap/controllers/Browser.py:216 zapzap/controllers/ShortcutsDialog.py:61
 msgid "New account"
 msgstr ""
 
-#: zapzap/views/ui_browser.py:92
+#: zapzap/views/ui_browser.py:85
 msgid "New conversation by the phone number"
 msgstr ""
 
-#: zapzap/views/ui_browser.py:93 zapzap/controllers/ShortcutsDialog.py:10
+#: zapzap/views/ui_browser.py:86 zapzap/controllers/ShortcutsDialog.py:10
 msgid "New conversation"
 msgstr ""
 
-#: zapzap/views/ui_browser.py:94
+#: zapzap/views/ui_browser.py:87
 msgid "ZapZap Settings"
 msgstr ""
 
-#: zapzap/views/ui_card_user.py:84
+#: zapzap/views/ui_card_user.py:77
 msgid "Click to generate new colors for the icon"
 msgstr ""
 
-#: zapzap/views/ui_card_user.py:85
+#: zapzap/views/ui_card_user.py:78
 msgid "Temporarily disable"
 msgstr ""
 
-#: zapzap/views/ui_card_user.py:86 zapzap/controllers/CardUser.py:198
+#: zapzap/views/ui_card_user.py:79 zapzap/controllers/CardUser.py:198
 msgid "Disable"
 msgstr ""
 
-#: zapzap/views/ui_card_user.py:87
+#: zapzap/views/ui_card_user.py:80
 msgid "Silences the notifications"
 msgstr ""
 
-#: zapzap/views/ui_card_user.py:88 zapzap/controllers/CardUser.py:189
+#: zapzap/views/ui_card_user.py:81 zapzap/controllers/CardUser.py:189
 msgid "Do not disturb"
 msgstr ""
 
-#: zapzap/views/ui_card_user.py:89
+#: zapzap/views/ui_card_user.py:82
 msgid "Delete permanently"
 msgstr ""
 
-#: zapzap/views/ui_card_user.py:90 zapzap/views/ui_page_customizations.py:256
-#: zapzap/views/ui_page_customizations.py:270
+#: zapzap/views/ui_card_user.py:83 zapzap/views/ui_page_customizations.py:249
+#: zapzap/views/ui_page_customizations.py:263
 #: zapzap/controllers/CardUser.py:228
 msgid "Delete"
 msgstr ""
 
-#: zapzap/views/ui_card_user.py:91
+#: zapzap/views/ui_card_user.py:84
 msgid "Enter the user name"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:116 zapzap/views/ui_page_about.py:116
-#: zapzap/views/ui_qtoaster_donation.py:137
-#: zapzap/views/ui_shortcuts_dialog.py:65
+#: zapzap/views/ui_mainwindow.py:109 zapzap/views/ui_page_about.py:109
+#: zapzap/views/ui_qtoaster_donation.py:130
+#: zapzap/views/ui_shortcuts_dialog.py:58
 msgid "ZapZap"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:117
+#: zapzap/views/ui_mainwindow.py:110
 msgid "File"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:118
+#: zapzap/views/ui_mainwindow.py:111
 msgid "View"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:119
+#: zapzap/views/ui_mainwindow.py:112
 msgid "Chat"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:120
+#: zapzap/views/ui_mainwindow.py:113
 msgid "Users"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:121
+#: zapzap/views/ui_mainwindow.py:114
 msgid "Help"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:122 zapzap/views/ui_settings.py:168
+#: zapzap/views/ui_mainwindow.py:115 zapzap/views/ui_settings.py:161
 #: zapzap/services/SysTrayManager.py:57
 msgid "Quit"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:123
+#: zapzap/views/ui_mainwindow.py:116
 msgid "Ctrl+Q"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:124 zapzap/controllers/ShortcutsDialog.py:44
+#: zapzap/views/ui_mainwindow.py:117 zapzap/controllers/ShortcutsDialog.py:44
 msgid "Hide"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:125
+#: zapzap/views/ui_mainwindow.py:118
 msgid "Ctrl+W"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:126 zapzap/controllers/ShortcutsDialog.py:22
+#: zapzap/views/ui_mainwindow.py:119 zapzap/controllers/ShortcutsDialog.py:22
 #: zapzap/controllers/ShortcutsDialog.py:43
 #: zapzap/services/SysTrayManager.py:55
 msgid "Settings"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:127
+#: zapzap/views/ui_mainwindow.py:120
 msgid "Ctrl+P"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:128 zapzap/controllers/ShortcutsDialog.py:52
+#: zapzap/views/ui_mainwindow.py:121 zapzap/controllers/ShortcutsDialog.py:52
 msgid "Reset zoom"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:129
+#: zapzap/views/ui_mainwindow.py:122
 msgid "Ctrl+0"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:130 zapzap/controllers/ShortcutsDialog.py:53
+#: zapzap/views/ui_mainwindow.py:123 zapzap/controllers/ShortcutsDialog.py:53
 msgid "Zoom in"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:131
+#: zapzap/views/ui_mainwindow.py:124
 msgid "Ctrl++"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:132 zapzap/controllers/ShortcutsDialog.py:54
+#: zapzap/views/ui_mainwindow.py:125 zapzap/controllers/ShortcutsDialog.py:54
 msgid "Zoom out"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:133
+#: zapzap/views/ui_mainwindow.py:126
 msgid "Ctrl+-"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:134
+#: zapzap/views/ui_mainwindow.py:127
 msgid "Toggle full screen"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:135
+#: zapzap/views/ui_mainwindow.py:128
 msgid "F11"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:136
+#: zapzap/views/ui_mainwindow.py:129
 msgid "Open DevTools"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:137
+#: zapzap/views/ui_mainwindow.py:130
 msgid "Ctrl+Shift+I"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:138
+#: zapzap/views/ui_mainwindow.py:131
 msgid "Grid View"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:139
+#: zapzap/views/ui_mainwindow.py:132
 msgid "Ctrl+G"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:140 zapzap/views/ui_page_appearance.py:128
+#: zapzap/views/ui_mainwindow.py:133 zapzap/views/ui_page_appearance.py:121
 msgid "Show sidebar"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:141 zapzap/controllers/ShortcutsDialog.py:49
+#: zapzap/views/ui_mainwindow.py:134 zapzap/controllers/ShortcutsDialog.py:49
 msgid "Automatic theme"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:142
+#: zapzap/views/ui_mainwindow.py:135
 msgid "Ctrl+Alt+1"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:143 zapzap/controllers/ShortcutsDialog.py:50
+#: zapzap/views/ui_mainwindow.py:136 zapzap/controllers/ShortcutsDialog.py:50
 msgid "Light theme"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:144
+#: zapzap/views/ui_mainwindow.py:137
 msgid "Ctrl+Alt+2"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:145 zapzap/controllers/ShortcutsDialog.py:51
+#: zapzap/views/ui_mainwindow.py:138 zapzap/controllers/ShortcutsDialog.py:51
 msgid "Dark theme"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:146
+#: zapzap/views/ui_mainwindow.py:139
 msgid "Ctrl+Alt+3"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:147 zapzap/views/ui_page_customizations.py:275
+#: zapzap/views/ui_mainwindow.py:140 zapzap/views/ui_page_customizations.py:268
 msgid "Reload"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:148
+#: zapzap/views/ui_mainwindow.py:141
 msgid "F5"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:149
+#: zapzap/views/ui_mainwindow.py:142
 msgid "New chat"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:150
+#: zapzap/views/ui_mainwindow.py:143
 msgid "Ctrl+N"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:151
+#: zapzap/views/ui_mainwindow.py:144
 msgid "By number phone"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:152
+#: zapzap/views/ui_mainwindow.py:145
 msgid "Ctrl+M"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:153 zapzap/views/ui_shortcuts_dialog.py:63
+#: zapzap/views/ui_mainwindow.py:146 zapzap/views/ui_shortcuts_dialog.py:56
 msgid "Keyboard shortcuts"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:154
+#: zapzap/views/ui_mainwindow.py:147
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:155 zapzap/views/ui_page_about.py:113
-#: zapzap/views/ui_settings.py:166
+#: zapzap/views/ui_mainwindow.py:148 zapzap/views/ui_page_about.py:106
+#: zapzap/views/ui_settings.py:159
 msgid "About"
 msgstr ""
 
-#: zapzap/views/ui_page_about.py:114
+#: zapzap/views/ui_page_about.py:107
 msgid "WhatsApp Web for Linux"
 msgstr ""
 
-#: zapzap/views/ui_page_about.py:115
+#: zapzap/views/ui_page_about.py:108
 #, python-brace-format
 msgid "Version {id} ({version_type}) - {package}"
 msgstr ""
 
-#: zapzap/views/ui_page_about.py:117
+#: zapzap/views/ui_page_about.py:110
 msgid "Learn more"
 msgstr ""
 
-#: zapzap/views/ui_page_about.py:118
+#: zapzap/views/ui_page_about.py:111
 msgid "Report issue"
 msgstr ""
 
-#: zapzap/views/ui_page_account.py:86
+#: zapzap/views/ui_page_account.py:79
 msgid "My accounts"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:118 zapzap/views/ui_settings.py:160
+#: zapzap/views/ui_page_appearance.py:111 zapzap/views/ui_settings.py:153
 msgid "Appearance"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:119
+#: zapzap/views/ui_page_appearance.py:112
 msgid "Style"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:120
+#: zapzap/views/ui_page_appearance.py:113
 msgid "Adaptive"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:121
+#: zapzap/views/ui_page_appearance.py:114
 msgid "Dark"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:122
+#: zapzap/views/ui_page_appearance.py:115
 msgid "Light"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:123
+#: zapzap/views/ui_page_appearance.py:116
 msgid "Tray icon"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:124
+#: zapzap/views/ui_page_appearance.py:117
 msgid "Remove notification indicator"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:125
+#: zapzap/views/ui_page_appearance.py:118
 msgid "Default"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:126
+#: zapzap/views/ui_page_appearance.py:119
 msgid "Symbolic dark"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:127
+#: zapzap/views/ui_page_appearance.py:120
 msgid "Symbolic light"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:129
+#: zapzap/views/ui_page_appearance.py:122
 msgid "Show menu bar"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:130
+#: zapzap/views/ui_page_appearance.py:123
 msgid "Scale"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:131
+#: zapzap/views/ui_page_appearance.py:124
 msgid "100 %"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:132
+#: zapzap/views/ui_page_appearance.py:125
 msgid "125 %"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:133
+#: zapzap/views/ui_page_appearance.py:126
 msgid "150 %"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:134
+#: zapzap/views/ui_page_appearance.py:127
 msgid "175 %"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:135
+#: zapzap/views/ui_page_appearance.py:128
 msgid "200 %"
 msgstr ""
 
-#: zapzap/views/ui_page_appearance.py:136
+#: zapzap/views/ui_page_appearance.py:129
 msgid "Note: The change of scale will only have effect until restarting."
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:239 zapzap/views/ui_settings.py:161
+#: zapzap/views/ui_page_customizations.py:232 zapzap/views/ui_settings.py:154
 msgid "Customizations"
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:240
+#: zapzap/views/ui_page_customizations.py:233 zapzap/webengine/WebView.py:460
 msgid "Account"
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:241
+#: zapzap/views/ui_page_customizations.py:234
 msgid "Inherit global settings"
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:242
+#: zapzap/views/ui_page_customizations.py:235
 msgid ""
 "When inherit is disabled, account customizations are appended after global "
 "settings."
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:243
+#: zapzap/views/ui_page_customizations.py:236
 #: zapzap/controllers/PageCustomizations.py:785
 msgid "CSS"
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:244
+#: zapzap/views/ui_page_customizations.py:237
 msgid "Enable custom CSS"
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:245
+#: zapzap/views/ui_page_customizations.py:238
 msgid "CSS Preview"
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:246
+#: zapzap/views/ui_page_customizations.py:239
 msgid "background: palette(base);"
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:247
+#: zapzap/views/ui_page_customizations.py:240
 #: zapzap/controllers/PageCustomizations.py:321
 #: zapzap/controllers/PageCustomizations.py:358
 msgid "Select a CSS file to preview."
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:248
+#: zapzap/views/ui_page_customizations.py:241
 msgid "Upload preview image"
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:249
+#: zapzap/views/ui_page_customizations.py:242
 msgid "Replace preview image"
+msgstr ""
+
+#: zapzap/views/ui_page_customizations.py:244
+#: zapzap/views/ui_page_customizations.py:258
+msgid "Enabled"
+msgstr ""
+
+#: zapzap/views/ui_page_customizations.py:246
+#: zapzap/views/ui_page_customizations.py:260
+msgid "Filename"
+msgstr ""
+
+#: zapzap/views/ui_page_customizations.py:247
+#: zapzap/views/ui_page_customizations.py:261
+msgid "Create"
+msgstr ""
+
+#: zapzap/views/ui_page_customizations.py:248
+#: zapzap/views/ui_page_customizations.py:262
+msgid "Edit"
+msgstr ""
+
+#: zapzap/views/ui_page_customizations.py:250
+msgid "Import .css"
 msgstr ""
 
 #: zapzap/views/ui_page_customizations.py:251
 #: zapzap/views/ui_page_customizations.py:265
-msgid "Enabled"
-msgstr ""
-
-#: zapzap/views/ui_page_customizations.py:253
-#: zapzap/views/ui_page_customizations.py:267
-msgid "Filename"
-msgstr ""
-
-#: zapzap/views/ui_page_customizations.py:254
-#: zapzap/views/ui_page_customizations.py:268
-msgid "Create"
-msgstr ""
-
-#: zapzap/views/ui_page_customizations.py:255
-#: zapzap/views/ui_page_customizations.py:269
-msgid "Edit"
-msgstr ""
-
-#: zapzap/views/ui_page_customizations.py:257
-msgid "Import .css"
-msgstr ""
-
-#: zapzap/views/ui_page_customizations.py:258
-#: zapzap/views/ui_page_customizations.py:272
 #: zapzap/controllers/PageCustomizations.py:475
 msgid "Import from URL"
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:259
-#: zapzap/views/ui_page_customizations.py:273
-#: zapzap/views/ui_page_general.py:177
+#: zapzap/views/ui_page_customizations.py:252
+#: zapzap/views/ui_page_customizations.py:266
+#: zapzap/views/ui_page_general.py:170
 #: zapzap/controllers/DialogDumpHandler.py:50
 #: zapzap/controllers/DownloadDialog.py:50
 msgid "Open folder"
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:260
+#: zapzap/views/ui_page_customizations.py:253
 msgid "JavaScript"
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:261
+#: zapzap/views/ui_page_customizations.py:254
 msgid "Enable custom JavaScript"
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:262
+#: zapzap/views/ui_page_customizations.py:255
 msgid "color: #c77800;"
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:263
+#: zapzap/views/ui_page_customizations.py:256
 msgid ""
 "⚠ Custom JavaScript runs with full page privileges. Use trusted code only."
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:271
+#: zapzap/views/ui_page_customizations.py:264
 msgid "Import .js"
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:274
+#: zapzap/views/ui_page_customizations.py:267
 msgid "Save and reload"
 msgstr ""
 
-#: zapzap/views/ui_page_customizations.py:276
+#: zapzap/views/ui_page_customizations.py:269
 msgid "Save"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:159 zapzap/views/ui_settings.py:157
+#: zapzap/views/ui_page_general.py:152 zapzap/views/ui_settings.py:150
 msgid "General"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:160
+#: zapzap/views/ui_page_general.py:153
 msgid "Download Directory"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:161
+#: zapzap/views/ui_page_general.py:154
 msgid "Set new folder for downloads"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:162
+#: zapzap/views/ui_page_general.py:155
 msgid "Define default folder for downloads"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:163
+#: zapzap/views/ui_page_general.py:156
 msgid "Spellchecker"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:164
+#: zapzap/views/ui_page_general.py:157
 msgid "Directory"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:165
+#: zapzap/views/ui_page_general.py:158
 msgid "Recognizes only compiled dictionaries (.bdic)"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:166
+#: zapzap/views/ui_page_general.py:159
 msgid "Define standard dictionaries"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:167
+#: zapzap/views/ui_page_general.py:160
 msgid "Note: Required restart."
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:168
+#: zapzap/views/ui_page_general.py:161
 msgid "Behavior"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:169
+#: zapzap/views/ui_page_general.py:162
 msgid "Confirm before closing the window"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:170
+#: zapzap/views/ui_page_general.py:163
 msgid "Close when closing the window"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:171
+#: zapzap/views/ui_page_general.py:164
 msgid "Start minimized"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:172
+#: zapzap/views/ui_page_general.py:165
 msgid "Start with the system"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:173
+#: zapzap/views/ui_page_general.py:166
 msgid "Don't use a platform-native file dialog"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:174
+#: zapzap/views/ui_page_general.py:167
 msgid "Wayland window system"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:175 zapzap/controllers/PageGeneral.py:274
+#: zapzap/views/ui_page_general.py:168 zapzap/controllers/PageGeneral.py:274
 #: zapzap/controllers/PageGeneral.py:284 zapzap/controllers/PageGeneral.py:301
 msgid "Debug logs"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:176
+#: zapzap/views/ui_page_general.py:169
 msgid ""
 "Crash reports are stored in this folder. You can open the directory or clean "
 "old files."
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:178
+#: zapzap/views/ui_page_general.py:171
 msgid "Delete old"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:179
+#: zapzap/views/ui_page_general.py:172
 msgid "Delete all"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:180 zapzap/controllers/PageGeneral.py:309
+#: zapzap/views/ui_page_general.py:173 zapzap/controllers/PageGeneral.py:309
 #: zapzap/controllers/PageGeneral.py:327 zapzap/controllers/PageGeneral.py:336
 msgid "Reset settings"
 msgstr ""
 
-#: zapzap/views/ui_page_network.py:118 zapzap/views/ui_settings.py:164
+#: zapzap/views/ui_page_network.py:111 zapzap/views/ui_settings.py:157
 msgid "Network"
 msgstr ""
 
-#: zapzap/views/ui_page_network.py:119
+#: zapzap/views/ui_page_network.py:112
 msgid "Network proxy"
 msgstr ""
 
-#: zapzap/views/ui_page_network.py:120
+#: zapzap/views/ui_page_network.py:113
 msgid "Port"
 msgstr ""
 
-#: zapzap/views/ui_page_network.py:121
+#: zapzap/views/ui_page_network.py:114
 msgid "User"
 msgstr ""
 
-#: zapzap/views/ui_page_network.py:122
+#: zapzap/views/ui_page_network.py:115
 msgid "Password"
 msgstr ""
 
-#: zapzap/views/ui_page_network.py:123
+#: zapzap/views/ui_page_network.py:116
 msgid "Hostname"
 msgstr ""
 
-#: zapzap/views/ui_page_network.py:124
+#: zapzap/views/ui_page_network.py:117
 msgid "ProxyType"
 msgstr ""
 
-#: zapzap/views/ui_page_network.py:125
+#: zapzap/views/ui_page_network.py:118
 msgid "Description"
 msgstr ""
 
-#: zapzap/views/ui_page_network.py:126
+#: zapzap/views/ui_page_network.py:119
 msgid "Apply"
 msgstr ""
 
-#: zapzap/views/ui_page_network.py:127
+#: zapzap/views/ui_page_network.py:120
 msgid "Restore"
 msgstr ""
 
-#: zapzap/views/ui_page_network.py:128
+#: zapzap/views/ui_page_network.py:121
 msgid "Prevents websites from discovering your network address using WebRTC."
 msgstr ""
 
-#: zapzap/views/ui_page_network.py:129
+#: zapzap/views/ui_page_network.py:122
 msgid "Prevent WebRTC IP leak (Mask local IPs)"
 msgstr ""
 
-#: zapzap/views/ui_page_notifications.py:76 zapzap/views/ui_settings.py:162
+#: zapzap/views/ui_page_notifications.py:69 zapzap/views/ui_settings.py:155
 msgid "Notifications"
 msgstr ""
 
-#: zapzap/views/ui_page_notifications.py:77
+#: zapzap/views/ui_page_notifications.py:70
 msgid "Work area notifications"
 msgstr ""
 
-#: zapzap/views/ui_page_notifications.py:78
+#: zapzap/views/ui_page_notifications.py:71
 msgid "Show the photo of the sender"
 msgstr ""
 
-#: zapzap/views/ui_page_notifications.py:79
+#: zapzap/views/ui_page_notifications.py:72
 msgid "Show the sender's name"
 msgstr ""
 
-#: zapzap/views/ui_page_notifications.py:80
+#: zapzap/views/ui_page_notifications.py:73
 msgid "Show message preview"
 msgstr ""
 
-#: zapzap/views/ui_page_notifications.py:81
+#: zapzap/views/ui_page_notifications.py:74
 msgid "Hide donation notification"
 msgstr ""
 
-#: zapzap/views/ui_page_notifications.py:82
+#: zapzap/views/ui_page_notifications.py:75
 msgid ""
 "To change the notification sound, go to WhatsApp settings using the ⚙ (cog) "
 "button in the main WhatsApp interface."
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:143
+#: zapzap/views/ui_page_performance.py:136
 msgid "Performance (Experimental)"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:144
+#: zapzap/views/ui_page_performance.py:137
 msgid "Cache and Storage"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:145
+#: zapzap/views/ui_page_performance.py:138
 msgid "Cache type"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:146
+#: zapzap/views/ui_page_performance.py:139
 msgid "Maximum cache size"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:147
+#: zapzap/views/ui_page_performance.py:140
 msgid "0 MB"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:148
+#: zapzap/views/ui_page_performance.py:141
 msgid "50 MB"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:149
+#: zapzap/views/ui_page_performance.py:142
 msgid "100 MB"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:150
+#: zapzap/views/ui_page_performance.py:143
 msgid "200 MB"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:151
+#: zapzap/views/ui_page_performance.py:144
 msgid "Use persistent cookies"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:152
+#: zapzap/views/ui_page_performance.py:145
 msgid "GPU and Rendering"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:153
+#: zapzap/views/ui_page_performance.py:146
 msgid "Use GPU in the same process"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:154
+#: zapzap/views/ui_page_performance.py:147
 msgid "Disable GPU hardware acceleration"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:155
+#: zapzap/views/ui_page_performance.py:148
 msgid "Disable GPU VSync"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:156
+#: zapzap/views/ui_page_performance.py:149
 msgid "Force software rendering (experimental)"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:157
+#: zapzap/views/ui_page_performance.py:150
 msgid "Processes and Memory"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:158
+#: zapzap/views/ui_page_performance.py:151
 msgid "Run everything in a single process"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:159
+#: zapzap/views/ui_page_performance.py:152
 msgid "Use one process per site"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:160
+#: zapzap/views/ui_page_performance.py:153
 msgid "JavaScript memory limit"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:161
+#: zapzap/views/ui_page_performance.py:154
 msgid "Automatic"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:162
+#: zapzap/views/ui_page_performance.py:155
 msgid "Minimum (256 MB)"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:163
+#: zapzap/views/ui_page_performance.py:156
 msgid "Default (1024 MB)"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:164
+#: zapzap/views/ui_page_performance.py:157
 msgid "Maximum (4096 MB)"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:165
+#: zapzap/views/ui_page_performance.py:158
 msgid "Web Behavior"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:166
+#: zapzap/views/ui_page_performance.py:159
 msgid "Animated scrolling"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:167
+#: zapzap/views/ui_page_performance.py:160
 msgid "Allow background optimizations"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:168
+#: zapzap/views/ui_page_performance.py:161
 msgid "Disable page animations"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:169
+#: zapzap/views/ui_page_performance.py:162
 msgid "Disable pinch to zoom"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:170
+#: zapzap/views/ui_page_performance.py:163
 msgid "Restore defaults"
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:171
+#: zapzap/views/ui_page_performance.py:164
 msgid "Note: Restart required to apply changes."
 msgstr ""
 
-#: zapzap/views/ui_qtoaster_donation.py:136
+#: zapzap/views/ui_qtoaster_donation.py:129
 msgid "Welcome to"
 msgstr ""
 
-#: zapzap/views/ui_qtoaster_donation.py:138
+#: zapzap/views/ui_qtoaster_donation.py:131
 #, python-brace-format
 msgid "Version {id} - {version_type}"
 msgstr ""
 
-#: zapzap/views/ui_qtoaster_donation.py:139
+#: zapzap/views/ui_qtoaster_donation.py:132
 msgid "Make a donation"
 msgstr ""
 
-#: zapzap/views/ui_settings.py:155 zapzap/controllers/OnboardingDialog.py:98
+#: zapzap/views/ui_settings.py:148 zapzap/controllers/OnboardingDialog.py:98
 msgid "Back"
 msgstr ""
 
-#: zapzap/views/ui_settings.py:156
+#: zapzap/views/ui_settings.py:149
 msgid "SETTINGS"
 msgstr ""
 
-#: zapzap/views/ui_settings.py:158
+#: zapzap/views/ui_settings.py:151
 msgid "Accounts"
 msgstr ""
 
-#: zapzap/views/ui_settings.py:159
+#: zapzap/views/ui_settings.py:152
 msgid "TOOLS"
 msgstr ""
 
-#: zapzap/views/ui_settings.py:163
+#: zapzap/views/ui_settings.py:156
 msgid "Performance"
 msgstr ""
 
-#: zapzap/views/ui_settings.py:165
+#: zapzap/views/ui_settings.py:158
 msgid "HELP"
 msgstr ""
 
-#: zapzap/views/ui_settings.py:167
+#: zapzap/views/ui_settings.py:160
 msgid "Donate"
 msgstr ""
 
-#: zapzap/views/ui_shortcuts_dialog.py:62
+#: zapzap/views/ui_shortcuts_dialog.py:55
 msgid "Dialog"
 msgstr ""
 
-#: zapzap/views/ui_shortcuts_dialog.py:64
+#: zapzap/views/ui_shortcuts_dialog.py:57
 msgid "WhatsApp Web"
 msgstr ""
 
-#: zapzap/controllers/Browser.py:70
+#: zapzap/controllers/Browser.py:74
 msgid "Grid view"
 msgstr ""
 
-#: zapzap/controllers/Browser.py:95
+#: zapzap/controllers/Browser.py:99
 msgid "Flatpak sandbox help"
 msgstr ""
 
-#: zapzap/controllers/Browser.py:214 zapzap/controllers/Browser.py:251
+#: zapzap/controllers/Browser.py:227 zapzap/controllers/Browser.py:274
 #, python-brace-format
 msgid "Account {}"
 msgstr ""
 
-#: zapzap/controllers/Browser.py:259
+#: zapzap/controllers/Browser.py:282
 msgid "Account disabled"
 msgstr ""
 
-#: zapzap/controllers/Browser.py:260
+#: zapzap/controllers/Browser.py:283
 msgid "This account is disabled."
 msgstr ""
 
-#: zapzap/controllers/Browser.py:262
+#: zapzap/controllers/Browser.py:285
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 
-#: zapzap/controllers/Browser.py:265
+#: zapzap/controllers/Browser.py:288
 msgid "Activate"
 msgstr ""
 
-#: zapzap/controllers/Browser.py:266
+#: zapzap/controllers/Browser.py:289
 msgid "Not now"
 msgstr ""
 
@@ -893,6 +893,151 @@ msgstr ""
 
 #: zapzap/controllers/MainWindow.py:253
 msgid "Don't ask again"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:46
+#: zapzap/controllers/OnboardingDialog.py:71
+msgid "Welcome to ZapZap"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:76
+msgid "Quick setup for your preferred environment"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:99
+msgid "Next"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:100
+msgid "Finish"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:154
+#, python-brace-format
+msgid ""
+"Let's configure ZapZap in a few steps.\n"
+"\n"
+"1) Accounts and navigation\n"
+"2) General preferences\n"
+"3) Notification preferences\n"
+"4) Optional sandbox guidance (Flatpak only)\n"
+"\n"
+"Environment: {}"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:179
+msgid "Personalize your experience · General"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:190
+msgid "Start hidden in background"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:196
+msgid "Quit app when closing the window"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:201
+msgid "Enable spell checker"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:206
+msgid "Start automatically with the system"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:211
+msgid "Prefer Wayland (when available)"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:219
+#: zapzap/controllers/PageGeneral.py:44
+msgid "Use Flatseal to change this mode of execution"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:231
+msgid "You can change all these options later in Settings."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:246
+msgid "Personalize your experience · Notifications"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:254
+msgid "Enable app notifications"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:260
+msgid "Show message content in notifications"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:265
+msgid "Show contact name in notifications"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:270
+msgid "Show contact photo in notifications"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:275
+msgid "Hide donation reminders"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:313
+msgid "Flatpak sandbox permissions"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:320
+msgid ""
+"If opening files, drag-and-drop or uploads fail, this is usually caused by "
+"sandbox permissions."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:331
+#: zapzap/controllers/OnboardingDialog.py:516
+#: zapzap/controllers/PageGeneral.py:68
+msgid "Copy command"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:336
+#: zapzap/controllers/PageGeneral.py:76
+msgid "Open Flatseal page"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:354
+msgid "Setup complete"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:358
+msgid ""
+"Your preferences were saved. You can review and change them at any time in "
+"Settings."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:391
+#, python-brace-format
+msgid "Step {}/{}"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:505
+msgid "Flatpak sandbox"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:508
+msgid "ZapZap is running in Flatpak sandbox."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:510
+msgid ""
+"Some features like opening files or drag-and-drop may require additional "
+"permissions."
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:514
+msgid "Instructions"
+msgstr ""
+
+#: zapzap/controllers/OnboardingDialog.py:517
+msgid "Close"
 msgstr ""
 
 #: zapzap/controllers/PageAbout.py:21
@@ -1138,11 +1283,6 @@ msgstr ""
 msgid "All pages reloaded."
 msgstr ""
 
-#: zapzap/controllers/PageGeneral.py:44
-#: zapzap/controllers/OnboardingDialog.py:219
-msgid "Use Flatseal to change this mode of execution"
-msgstr ""
-
 #: zapzap/controllers/PageGeneral.py:51
 msgid ""
 "<b>Flatpak tip:</b> If opening PDFs, drag-and-drop, or file uploads fail, "
@@ -1154,17 +1294,6 @@ msgstr ""
 
 #: zapzap/controllers/PageGeneral.py:67
 msgid "Select and copy this command in your terminal"
-msgstr ""
-
-#: zapzap/controllers/PageGeneral.py:68
-#: zapzap/controllers/OnboardingDialog.py:331
-#: zapzap/controllers/OnboardingDialog.py:516
-msgid "Copy command"
-msgstr ""
-
-#: zapzap/controllers/PageGeneral.py:76
-#: zapzap/controllers/OnboardingDialog.py:336
-msgid "Open Flatseal page"
 msgstr ""
 
 #: zapzap/controllers/PageGeneral.py:244
@@ -1413,135 +1542,6 @@ msgstr ""
 msgid "New conversation by phone number"
 msgstr ""
 
-#: zapzap/controllers/OnboardingDialog.py:46
-#: zapzap/controllers/OnboardingDialog.py:71
-msgid "Welcome to ZapZap"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:76
-msgid "Quick setup for your preferred environment"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:99
-msgid "Next"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:100
-msgid "Finish"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:154
-#, python-brace-format
-msgid ""
-"Let's configure ZapZap in a few steps.\n"
-"\n"
-"1) Accounts and navigation\n"
-"2) General preferences\n"
-"3) Notification preferences\n"
-"4) Optional sandbox guidance (Flatpak only)\n"
-"\n"
-"Environment: {}"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:179
-msgid "Personalize your experience · General"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:190
-msgid "Start hidden in background"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:196
-msgid "Quit app when closing the window"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:201
-msgid "Enable spell checker"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:206
-msgid "Start automatically with the system"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:211
-msgid "Prefer Wayland (when available)"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:231
-msgid "You can change all these options later in Settings."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:246
-msgid "Personalize your experience · Notifications"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:254
-msgid "Enable app notifications"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:260
-msgid "Show message content in notifications"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:265
-msgid "Show contact name in notifications"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:270
-msgid "Show contact photo in notifications"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:275
-msgid "Hide donation reminders"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:313
-msgid "Flatpak sandbox permissions"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:320
-msgid ""
-"If opening files, drag-and-drop or uploads fail, this is usually caused by "
-"sandbox permissions."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:354
-msgid "Setup complete"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:358
-msgid ""
-"Your preferences were saved. You can review and change them at any time in "
-"Settings."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:391
-#, python-brace-format
-msgid "Step {}/{}"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:505
-msgid "Flatpak sandbox"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:508
-msgid "ZapZap is running in Flatpak sandbox."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:510
-msgid ""
-"Some features like opening files or drag-and-drop may require additional "
-"permissions."
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:514
-msgid "Instructions"
-msgstr ""
-
-#: zapzap/controllers/OnboardingDialog.py:517
-msgid "Close"
-msgstr ""
-
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
 msgstr ""
@@ -1595,4 +1595,62 @@ msgstr ""
 
 #: zapzap/services/SysTrayManager.py:56
 msgid "Donation"
+msgstr ""
+
+#: zapzap/webengine/PageController.py:174
+msgid "Please enter the phone number with country code (e.g., +5511999999999):"
+msgstr ""
+
+#: zapzap/webengine/PageController.py:178
+msgid ""
+"Invalid number! Please enter at least 9 digits, including the country code."
+msgstr ""
+
+#: zapzap/webengine/WebView.py:203
+msgid "Undo"
+msgstr ""
+
+#: zapzap/webengine/WebView.py:203
+msgid "Redo"
+msgstr ""
+
+#: zapzap/webengine/WebView.py:203
+msgid "Cut"
+msgstr ""
+
+#: zapzap/webengine/WebView.py:204
+msgid "Copy"
+msgstr ""
+
+#: zapzap/webengine/WebView.py:204
+msgid "Paste"
+msgstr ""
+
+#: zapzap/webengine/WebView.py:204
+msgid "Select all"
+msgstr ""
+
+#: zapzap/webengine/WebView.py:205
+msgid "Save image"
+msgstr ""
+
+#: zapzap/webengine/WebView.py:205
+msgid "Copy image"
+msgstr ""
+
+#: zapzap/webengine/WebView.py:206 zapzap/webengine/WebView.py:236
+msgid "Copy link address"
+msgstr ""
+
+#: zapzap/webengine/WebView.py:256
+msgid "Check Spelling"
+msgstr ""
+
+#: zapzap/webengine/WebView.py:264
+msgid "Select Language"
+msgstr ""
+
+#: zapzap/webengine/WebView.py:462
+#, python-brace-format
+msgid "DevTools - {}"
 msgstr ""
