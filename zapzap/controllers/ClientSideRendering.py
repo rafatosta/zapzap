@@ -172,20 +172,46 @@ class ClientSideRendering(QWidget):
         self.left_edge = _ResizeArea(self, Qt.Edge.LeftEdge, Qt.CursorShape.SizeHorCursor)
         self.right_edge = _ResizeArea(self, Qt.Edge.RightEdge, Qt.CursorShape.SizeHorCursor)
 
+        self.top_left_corner = _ResizeArea(
+            self,
+            Qt.Edge.TopEdge | Qt.Edge.LeftEdge,
+            Qt.CursorShape.SizeFDiagCursor,
+        )
+        self.top_right_corner = _ResizeArea(
+            self,
+            Qt.Edge.TopEdge | Qt.Edge.RightEdge,
+            Qt.CursorShape.SizeBDiagCursor,
+        )
+        self.bottom_left_corner = _ResizeArea(
+            self,
+            Qt.Edge.BottomEdge | Qt.Edge.LeftEdge,
+            Qt.CursorShape.SizeBDiagCursor,
+        )
+        self.bottom_right_corner = _ResizeArea(
+            self,
+            Qt.Edge.BottomEdge | Qt.Edge.RightEdge,
+            Qt.CursorShape.SizeFDiagCursor,
+        )
+
+        self._update_resize_handle_geometry(margin)
+
+    def _update_resize_handle_geometry(self, margin: int):
         self.top_edge.setGeometry(margin, 0, self.width() - margin * 2, margin)
         self.bottom_edge.setGeometry(margin, self.height() - margin, self.width() - margin * 2, margin)
         self.left_edge.setGeometry(0, margin, margin, self.height() - margin * 2)
         self.right_edge.setGeometry(self.width() - margin, margin, margin, self.height() - margin * 2)
+
+        self.top_left_corner.setGeometry(0, 0, margin, margin)
+        self.top_right_corner.setGeometry(self.width() - margin, 0, margin, margin)
+        self.bottom_left_corner.setGeometry(0, self.height() - margin, margin, margin)
+        self.bottom_right_corner.setGeometry(self.width() - margin, self.height() - margin, margin, margin)
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
         if not self.enabled:
             return
         margin = 8
-        self.top_edge.setGeometry(margin, 0, self.width() - margin * 2, margin)
-        self.bottom_edge.setGeometry(margin, self.height() - margin, self.width() - margin * 2, margin)
-        self.left_edge.setGeometry(0, margin, margin, self.height() - margin * 2)
-        self.right_edge.setGeometry(self.width() - margin, margin, margin, self.height() - margin * 2)
+        self._update_resize_handle_geometry(margin)
 
     def paintEvent(self, _event):
         if not self.enabled:
