@@ -1,12 +1,14 @@
-from PyQt6.QtCore import Qt, QPoint
+from PyQt6.QtCore import Qt, QPoint, QEvent
 from PyQt6.QtGui import QColor, QPainter, QPainterPath
 from PyQt6.QtWidgets import QHBoxLayout, QPushButton, QVBoxLayout, QWidget, QLabel
+from zapzap.services.ThemeManager import ThemeManager
 
 
 class _TitleBar(QWidget):
     def __init__(self, window, title: str):
         super().__init__(window)
         self.window = window
+        self.setObjectName("csrTitleBar")
         self.setFixedHeight(40)
         self._drag_active = False
         self._drag_start_pos = QPoint()
@@ -16,25 +18,18 @@ class _TitleBar(QWidget):
         layout.setSpacing(6)
 
         label = QLabel(title)
-        label.setStyleSheet("color: white; font-size: 13px;")
         layout.addWidget(label)
         layout.addStretch()
 
         self.minimize_button = QPushButton("—")
         self.maximize_button = QPushButton("□")
         self.close_button = QPushButton("✕")
+        self.minimize_button.setObjectName("csrWindowButton")
+        self.maximize_button.setObjectName("csrWindowButton")
+        self.close_button.setObjectName("csrWindowCloseButton")
 
         for button in (self.minimize_button, self.maximize_button, self.close_button):
             button.setFixedSize(36, 28)
-            button.setStyleSheet(
-                "QPushButton { background: #3c4043; color: white; border: none; border-radius: 6px; }"
-                "QPushButton:hover { background: #4a4d52; }"
-            )
-
-        self.close_button.setStyleSheet(
-            "QPushButton { background: #d93025; color: white; border: none; border-radius: 6px; }"
-            "QPushButton:hover { background: #ea4335; }"
-        )
 
         layout.addWidget(self.minimize_button)
         layout.addWidget(self.maximize_button)
@@ -97,7 +92,7 @@ class _TitleBar(QWidget):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         painter.setPen(Qt.PenStyle.NoPen)
-        painter.setBrush(QColor("#2b2d31"))
+        painter.setBrush(QColor(self.window._colors["frame"]))
         painter.drawRect(self.rect())
 
 
@@ -123,6 +118,7 @@ class ClientSideRendering(QWidget):
         super().__init__()
         self.inner_window = inner_window
         self.enabled = enabled
+        self._colors = {"frame": "#2b2d31"}
 
         self.setWindowTitle(inner_window.windowTitle())
         self.resize(inner_window.size())
@@ -139,9 +135,7 @@ class ClientSideRendering(QWidget):
         outer.setContentsMargins(8, 8, 8, 8)
 
         self.container = QWidget(self)
-        self.container.setStyleSheet(
-            "QWidget { background: #202124; border: 1px solid #3c4043; border-radius: 12px; }"
-        )
+        self.container.setObjectName("csrContainer")
         outer.addWidget(self.container)
 
         layout = QVBoxLayout(self.container)
@@ -156,6 +150,7 @@ class ClientSideRendering(QWidget):
         layout.addWidget(inner_window)
 
         self._create_resize_handles()
+        self._apply_theme()
 
     def _adopt_native_window(self):
         self.setWindowFlags(self.inner_window.windowFlags())
@@ -219,7 +214,7 @@ class ClientSideRendering(QWidget):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         painter.setPen(Qt.PenStyle.NoPen)
-        painter.setBrush(QColor("#2b2d31"))
+        painter.setBrush(QColor(self.window._colors["frame"]))
 
         rect = self.rect()
         path = QPainterPath()
@@ -231,6 +226,80 @@ class ClientSideRendering(QWidget):
         path.lineTo(rect.width(), rect.height())
         path.closeSubpath()
         painter.drawPath(path)
+
+    def changeEvent(self, event):
+        super().changeEvent(event)
+        if event.type() in (QEvent.Type.PaletteChange, QEvent.Type.ApplicationPaletteChange):
+            self._apply_theme()
+
+    def _resolve_theme(self) -> str:
+        current_theme = ThemeManager.get_current_theme()
+        if current_theme == ThemeManager.Type.Dark:
+            return "dark"
+        return "light"
+
+    def _apply_theme(self):
+        theme = self._resolve_theme()
+        if theme == "dark":
+            self._colors = {
+                "frame": "#2b2d31",
+                "container_bg": "#202124",
+                "container_border": "#3c4043",
+                "title_text": "#E1E1E1",
+                "button_bg": "#3c4043",
+                "button_hover": "#4a4d52",
+                "button_text": "#E1E1E1",
+                "close_bg": "#d93025",
+                "close_hover": "#ea4335",
+            }
+        else:
+            self._colors = {
+                "frame": "#ece9e6",
+                "container_bg": "#f7f5f3",
+                "container_border": "#cfd4d9",
+                "title_text": "#1d1f1f",
+                "button_bg": "#ffffff",
+                "button_hover": "#eef1f4",
+                "button_text": "#1d1f1f",
+                "close_bg": "#e6554f",
+                "close_hover": "#d93025",
+            }
+
+        self.setStyleSheet(
+            f"""
+            QWidget#csrContainer {{
+                background: {self._colors['container_bg']};
+                border: 1px solid {self._colors['container_border']};
+                border-radius: 12px;
+            }}
+            QWidget#csrTitleBar {{
+                background: {self._colors['frame']};
+            }}
+            QWidget#csrTitleBar QLabel {{
+                color: {self._colors['title_text']};
+                font-size: 13px;
+            }}
+            QPushButton#csrWindowButton {{
+                background: {self._colors['button_bg']};
+                color: {self._colors['button_text']};
+                border: none;
+                border-radius: 6px;
+            }}
+            QPushButton#csrWindowButton:hover {{
+                background: {self._colors['button_hover']};
+            }}
+            QPushButton#csrWindowCloseButton {{
+                background: {self._colors['close_bg']};
+                color: #ffffff;
+                border: none;
+                border-radius: 6px;
+            }}
+            QPushButton#csrWindowCloseButton:hover {{
+                background: {self._colors['close_hover']};
+            }}
+            """
+        )
+        self.update()
 
     def __getattr__(self, name):
         return getattr(self.inner_window, name)
