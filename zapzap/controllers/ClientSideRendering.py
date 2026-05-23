@@ -1,4 +1,4 @@
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QPoint
 from PyQt6.QtGui import QColor, QPainter, QPainterPath
 from PyQt6.QtWidgets import QHBoxLayout, QPushButton, QVBoxLayout, QWidget, QLabel
 
@@ -8,6 +8,8 @@ class _TitleBar(QWidget):
         super().__init__(window)
         self.window = window
         self.setFixedHeight(40)
+        self._drag_active = False
+        self._drag_start_pos = QPoint()
 
         layout = QHBoxLayout(self)
         layout.setContentsMargins(12, 0, 8, 0)
@@ -49,10 +51,43 @@ class _TitleBar(QWidget):
             self.window.showMaximized()
 
     def mousePressEvent(self, event):
-        if event.button() == Qt.MouseButton.LeftButton and not self.window.isMaximized():
-            handle = self.window.windowHandle()
-            if handle:
-                handle.startSystemMove()
+        if event.button() != Qt.MouseButton.LeftButton:
+            return
+
+        self._drag_active = True
+        self._drag_start_pos = event.position().toPoint()
+
+        if self.window.isMaximized():
+            return
+
+        handle = self.window.windowHandle()
+        if handle:
+            handle.startSystemMove()
+
+    def mouseMoveEvent(self, event):
+        if not self._drag_active or not (event.buttons() & Qt.MouseButton.LeftButton):
+            return
+
+        if not self.window.isMaximized():
+            return
+
+        ratio = event.position().x() / max(1, self.width())
+        self.window.showNormal()
+
+        new_width = self.window.width()
+        clamped_x = max(0, min(new_width - 1, int(new_width * ratio)))
+        global_pos = event.globalPosition().toPoint()
+        self.window.move(global_pos - QPoint(clamped_x, self._drag_start_pos.y()))
+
+        handle = self.window.windowHandle()
+        if handle:
+            handle.startSystemMove()
+
+        self._drag_active = False
+
+    def mouseReleaseEvent(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self._drag_active = False
 
     def mouseDoubleClickEvent(self, event):
         if event.button() == Qt.MouseButton.LeftButton:
