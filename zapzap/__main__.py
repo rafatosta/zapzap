@@ -8,6 +8,7 @@ from PyQt6.QtCore import QUrl
 from zapzap.services.ThemeManager import ThemeManager
 from zapzap.services.SetupManager import SetupManager
 from zapzap.controllers.MainWindow import MainWindow
+from zapzap.controllers.ClientSideRendering import ClientSideRendering
 from zapzap.controllers.OnboardingDialog import OnboardingDialog
 from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.services.ProxyManager import ProxyManager
@@ -59,7 +60,9 @@ def main():
     app.messageReceived.connect(lambda result: main_window.xdgOpenChat(result))
 
     # Create main window
-    main_window = MainWindow()
+    mainwindow_inside = MainWindow()
+    csr_enabled = SettingsManager.get("system/client_side_rendering", False)
+    main_window = ClientSideRendering(mainwindow_inside, enabled=csr_enabled)
     app.setWindow(main_window)
     app.setActivationWindow(main_window)
     main_window.load_settings()
