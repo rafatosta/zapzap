@@ -7,7 +7,7 @@ from zapzap.services.ThemeManager import ThemeManager
 class _TitleBar(QWidget):
     def __init__(self, window, title: str):
         super().__init__(window)
-        self.window = window
+        self.host_window = window
         self.setObjectName("csrTitleBar")
         self.setFixedHeight(40)
         self._drag_active = False
@@ -35,15 +35,15 @@ class _TitleBar(QWidget):
         layout.addWidget(self.maximize_button)
         layout.addWidget(self.close_button)
 
-        self.minimize_button.clicked.connect(window.showMinimized)
+        self.minimize_button.clicked.connect(self.host_window.showMinimized)
         self.maximize_button.clicked.connect(self.toggle_maximize)
-        self.close_button.clicked.connect(window.close)
+        self.close_button.clicked.connect(self.host_window.close)
 
     def toggle_maximize(self):
-        if self.window.isMaximized():
-            self.window.showNormal()
+        if self.host_window.isMaximized():
+            self.host_window.showNormal()
         else:
-            self.window.showMaximized()
+            self.host_window.showMaximized()
 
     def mousePressEvent(self, event):
         if event.button() != Qt.MouseButton.LeftButton:
@@ -52,10 +52,10 @@ class _TitleBar(QWidget):
         self._drag_active = True
         self._drag_start_pos = event.position().toPoint()
 
-        if self.window.isMaximized():
+        if self.host_window.isMaximized():
             return
 
-        handle = self.window.windowHandle()
+        handle = self.host_window.windowHandle()
         if handle:
             handle.startSystemMove()
 
@@ -63,18 +63,18 @@ class _TitleBar(QWidget):
         if not self._drag_active or not (event.buttons() & Qt.MouseButton.LeftButton):
             return
 
-        if not self.window.isMaximized():
+        if not self.host_window.isMaximized():
             return
 
         ratio = event.position().x() / max(1, self.width())
-        self.window.showNormal()
+        self.host_window.showNormal()
 
-        new_width = self.window.width()
+        new_width = self.host_window.width()
         clamped_x = max(0, min(new_width - 1, int(new_width * ratio)))
         global_pos = event.globalPosition().toPoint()
-        self.window.move(global_pos - QPoint(clamped_x, self._drag_start_pos.y()))
+        self.host_window.move(global_pos - QPoint(clamped_x, self._drag_start_pos.y()))
 
-        handle = self.window.windowHandle()
+        handle = self.host_window.windowHandle()
         if handle:
             handle.startSystemMove()
 
@@ -92,21 +92,21 @@ class _TitleBar(QWidget):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         painter.setPen(Qt.PenStyle.NoPen)
-        painter.setBrush(QColor(self.window._colors["frame"]))
+        painter.setBrush(QColor(self.host_window._colors["frame"]))
         painter.drawRect(self.rect())
 
 
 class _ResizeArea(QWidget):
     def __init__(self, window, edges, cursor):
         super().__init__(window)
-        self.window = window
+        self.host_window = window
         self.edges = edges
         self.setCursor(cursor)
         self.setMouseTracking(True)
 
     def mousePressEvent(self, event):
-        if event.button() == Qt.MouseButton.LeftButton and not self.window.isMaximized():
-            handle = self.window.windowHandle()
+        if event.button() == Qt.MouseButton.LeftButton and not self.host_window.isMaximized():
+            handle = self.host_window.windowHandle()
             if handle:
                 handle.startSystemResize(self.edges)
 
@@ -214,7 +214,7 @@ class ClientSideRendering(QWidget):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         painter.setPen(Qt.PenStyle.NoPen)
-        painter.setBrush(QColor(self.window._colors["frame"]))
+        painter.setBrush(QColor(self._colors["frame"]))
 
         rect = self.rect()
         path = QPainterPath()
@@ -299,7 +299,6 @@ class ClientSideRendering(QWidget):
             }}
             """
         )
-        self.update()
 
     def __getattr__(self, name):
         return getattr(self.inner_window, name)
