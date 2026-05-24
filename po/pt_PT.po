@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-22 20:16-0300\n"
+"POT-Creation-Date: 2026-05-24 10:24-0300\n"
 "PO-Revision-Date: 2026-04-08 15:31+UTC+0\n"
 "Last-Translator: André Barata <andretiagob@protonmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: zapzap/views/ui_browser.py:84 zapzap/views/ui_page_account.py:80
-#: zapzap/controllers/Browser.py:216 zapzap/controllers/ShortcutsDialog.py:61
+#: zapzap/controllers/ShortcutsDialog.py:61 zapzap/controllers/Browser.py:226
 msgid "New account"
 msgstr "Nova conta"
 
@@ -342,7 +342,7 @@ msgstr ""
 msgid "Customizations"
 msgstr "Personalizações"
 
-#: zapzap/views/ui_page_customizations.py:233 zapzap/webengine/WebView.py:460
+#: zapzap/views/ui_page_customizations.py:233 zapzap/webengine/WebView.py:534
 #, fuzzy
 msgid "Account"
 msgstr "Contas"
@@ -810,43 +810,6 @@ msgstr "Diálogo"
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
-#: zapzap/controllers/Browser.py:74
-msgid "Grid view"
-msgstr "Vista de grelha"
-
-#: zapzap/controllers/Browser.py:99
-msgid "Flatpak sandbox help"
-msgstr "Ajuda da sandbox Flatpak"
-
-#: zapzap/controllers/Browser.py:227 zapzap/controllers/Browser.py:274
-#, python-brace-format
-msgid "Account {}"
-msgstr "Conta {}"
-
-#: zapzap/controllers/Browser.py:282
-#, fuzzy
-msgid "Account disabled"
-msgstr "Conta desativada"
-
-#: zapzap/controllers/Browser.py:283
-msgid "This account is disabled."
-msgstr "Esta conta está desativada."
-
-#: zapzap/controllers/Browser.py:285
-msgid ""
-"You can reactivate it now or use the right-click menu to manage this account."
-msgstr ""
-"Pode reativar a mesma agora ou usar o menu de contexto com o botão direito "
-"do rato para gerir esta conta."
-
-#: zapzap/controllers/Browser.py:288
-msgid "Activate"
-msgstr "Ativar"
-
-#: zapzap/controllers/Browser.py:289
-msgid "Not now"
-msgstr "Agora não"
-
 #: zapzap/controllers/CardUser.py:42
 msgid "Select User-Agent for this account"
 msgstr "Selecionar um agente de utilizador para esta conta"
@@ -936,20 +899,6 @@ msgstr "Cancelar"
 #: zapzap/controllers/DownloadDialog.py:130
 msgid "Save file"
 msgstr "Guardar ficheiro"
-
-#: zapzap/controllers/MainWindow.py:248
-#, fuzzy
-msgid "Close ZapZap"
-msgstr "Fechar o ZapZap"
-
-#: zapzap/controllers/MainWindow.py:249
-#, fuzzy
-msgid "Are you sure you want to close?"
-msgstr "Tem a certeza de que pretente fechar?"
-
-#: zapzap/controllers/MainWindow.py:253
-msgid "Don't ask again"
-msgstr "Não perguntar novamente"
 
 #: zapzap/controllers/OnboardingDialog.py:46
 #: zapzap/controllers/OnboardingDialog.py:71
@@ -1693,6 +1642,60 @@ msgstr "Recarregar páginas"
 msgid "New conversation by phone number"
 msgstr "Nova conversação por número de telefone"
 
+#: zapzap/controllers/Browser.py:79
+msgid "Grid view"
+msgstr "Vista de grelha"
+
+#: zapzap/controllers/Browser.py:109
+msgid "Flatpak sandbox help"
+msgstr "Ajuda da sandbox Flatpak"
+
+#: zapzap/controllers/Browser.py:237 zapzap/controllers/Browser.py:284
+#, python-brace-format
+msgid "Account {}"
+msgstr "Conta {}"
+
+#: zapzap/controllers/Browser.py:292
+#, fuzzy
+msgid "Account disabled"
+msgstr "Conta desativada"
+
+#: zapzap/controllers/Browser.py:293
+msgid "This account is disabled."
+msgstr "Esta conta está desativada."
+
+#: zapzap/controllers/Browser.py:295
+msgid ""
+"You can reactivate it now or use the right-click menu to manage this account."
+msgstr ""
+"Pode reativar a mesma agora ou usar o menu de contexto com o botão direito "
+"do rato para gerir esta conta."
+
+#: zapzap/controllers/Browser.py:298
+msgid "Activate"
+msgstr "Ativar"
+
+#: zapzap/controllers/Browser.py:299
+msgid "Not now"
+msgstr "Agora não"
+
+#: zapzap/controllers/ClientSideRendering.py:335
+#: zapzap/controllers/MainWindow.py:247
+#, fuzzy
+msgid "Close ZapZap"
+msgstr "Fechar o ZapZap"
+
+#: zapzap/controllers/ClientSideRendering.py:336
+#: zapzap/controllers/MainWindow.py:248
+#, fuzzy
+msgid "Are you sure you want to close?"
+msgstr "Tem a certeza de que pretente fechar?"
+
+#: zapzap/controllers/ClientSideRendering.py:341
+#: zapzap/controllers/MainWindow.py:252
+msgid "Don't ask again"
+msgstr "Não perguntar novamente"
+
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
 msgstr "Informação"
@@ -1751,67 +1754,67 @@ msgstr "Mostrar"
 msgid "Donation"
 msgstr "Donativo"
 
-#: zapzap/webengine/PageController.py:174
+#: zapzap/webengine/PageController.py:193
 msgid "Please enter the phone number with country code (e.g., +5511999999999):"
 msgstr ""
 "Insira o número de telefone com o código do país, por favor (p. ex. "
 "+351999999999):"
 
-#: zapzap/webengine/PageController.py:178
+#: zapzap/webengine/PageController.py:197
 msgid ""
 "Invalid number! Please enter at least 9 digits, including the country code."
 msgstr ""
 "Número inválido! Insira pelo menos 9 dígitos, íncluindo o código do país, "
 "por favor."
 
-#: zapzap/webengine/WebView.py:203
+#: zapzap/webengine/WebView.py:281
 msgid "Undo"
 msgstr "Desfazer"
 
-#: zapzap/webengine/WebView.py:203
+#: zapzap/webengine/WebView.py:281
 msgid "Redo"
 msgstr "Refazer"
 
-#: zapzap/webengine/WebView.py:203
+#: zapzap/webengine/WebView.py:281
 msgid "Cut"
 msgstr "Cortar"
 
-#: zapzap/webengine/WebView.py:204
+#: zapzap/webengine/WebView.py:282
 msgid "Copy"
 msgstr "Copiar"
 
-#: zapzap/webengine/WebView.py:204
+#: zapzap/webengine/WebView.py:282
 msgid "Paste"
 msgstr "Colar"
 
-#: zapzap/webengine/WebView.py:204
+#: zapzap/webengine/WebView.py:282
 #, fuzzy
 msgid "Select all"
 msgstr "Eliminar todos"
 
-#: zapzap/webengine/WebView.py:205
+#: zapzap/webengine/WebView.py:283
 #, fuzzy
 msgid "Save image"
 msgstr "Guardar ficheiro"
 
-#: zapzap/webengine/WebView.py:205
+#: zapzap/webengine/WebView.py:283
 #, fuzzy
 msgid "Copy image"
 msgstr "Copiar comando"
 
-#: zapzap/webengine/WebView.py:206 zapzap/webengine/WebView.py:236
+#: zapzap/webengine/WebView.py:284 zapzap/webengine/WebView.py:314
 msgid "Copy link address"
 msgstr "Copiar link do endereço"
 
-#: zapzap/webengine/WebView.py:256
+#: zapzap/webengine/WebView.py:334
 msgid "Check Spelling"
 msgstr "Verificar ortografia"
 
-#: zapzap/webengine/WebView.py:264
+#: zapzap/webengine/WebView.py:342
 msgid "Select Language"
 msgstr "Selecionar idioma"
 
-#: zapzap/webengine/WebView.py:462
+#: zapzap/webengine/WebView.py:536
 #, fuzzy, python-brace-format
 msgid "DevTools - {}"
 msgstr "Abrir ferramentas de desenvolvimento"

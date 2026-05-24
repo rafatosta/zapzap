@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-22 20:16-0300\n"
+"POT-Creation-Date: 2026-05-24 10:24-0300\n"
 "PO-Revision-Date: 2026-02-02 23:52+0200\n"
 "Last-Translator: Muhammed Al-Basha <contact.mu7basha@gmail.com>\n"
 "Language-Team: Arabic\n"
@@ -21,7 +21,7 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #: zapzap/views/ui_browser.py:84 zapzap/views/ui_page_account.py:80
-#: zapzap/controllers/Browser.py:216 zapzap/controllers/ShortcutsDialog.py:61
+#: zapzap/controllers/ShortcutsDialog.py:61 zapzap/controllers/Browser.py:226
 msgid "New account"
 msgstr "حساب جديد"
 
@@ -343,7 +343,7 @@ msgstr "ملاحظة: لن يظهر التغيير على الحجم إلا بع
 msgid "Customizations"
 msgstr "مخصَّص"
 
-#: zapzap/views/ui_page_customizations.py:233 zapzap/webengine/WebView.py:460
+#: zapzap/views/ui_page_customizations.py:233 zapzap/webengine/WebView.py:534
 #, fuzzy
 msgid "Account"
 msgstr "الحسابات"
@@ -802,41 +802,6 @@ msgstr "مربع حوار"
 msgid "WhatsApp Web"
 msgstr "واتساب على الويب"
 
-#: zapzap/controllers/Browser.py:74
-msgid "Grid view"
-msgstr ""
-
-#: zapzap/controllers/Browser.py:99
-msgid "Flatpak sandbox help"
-msgstr ""
-
-#: zapzap/controllers/Browser.py:227 zapzap/controllers/Browser.py:274
-#, python-brace-format
-msgid "Account {}"
-msgstr "حساب {}"
-
-#: zapzap/controllers/Browser.py:282
-#, fuzzy
-msgid "Account disabled"
-msgstr "الحسابات"
-
-#: zapzap/controllers/Browser.py:283
-msgid "This account is disabled."
-msgstr ""
-
-#: zapzap/controllers/Browser.py:285
-msgid ""
-"You can reactivate it now or use the right-click menu to manage this account."
-msgstr ""
-
-#: zapzap/controllers/Browser.py:288
-msgid "Activate"
-msgstr ""
-
-#: zapzap/controllers/Browser.py:289
-msgid "Not now"
-msgstr ""
-
 #: zapzap/controllers/CardUser.py:42
 msgid "Select User-Agent for this account"
 msgstr ""
@@ -914,20 +879,6 @@ msgstr ""
 #: zapzap/controllers/DownloadDialog.py:130
 msgid "Save file"
 msgstr "احفظ الملف"
-
-#: zapzap/controllers/MainWindow.py:248
-#, fuzzy
-msgid "Close ZapZap"
-msgstr "زاب-زاب"
-
-#: zapzap/controllers/MainWindow.py:249
-#, fuzzy
-msgid "Are you sure you want to close?"
-msgstr "أمتأكد من حذف هذا العنصر؟"
-
-#: zapzap/controllers/MainWindow.py:253
-msgid "Don't ask again"
-msgstr ""
 
 #: zapzap/controllers/OnboardingDialog.py:46
 #: zapzap/controllers/OnboardingDialog.py:71
@@ -1600,6 +1551,58 @@ msgstr "اعِد تحميل الصفحات"
 msgid "New conversation by phone number"
 msgstr "محادثة جديدة برقم الهاتف"
 
+#: zapzap/controllers/Browser.py:79
+msgid "Grid view"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:109
+msgid "Flatpak sandbox help"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:237 zapzap/controllers/Browser.py:284
+#, python-brace-format
+msgid "Account {}"
+msgstr "حساب {}"
+
+#: zapzap/controllers/Browser.py:292
+#, fuzzy
+msgid "Account disabled"
+msgstr "الحسابات"
+
+#: zapzap/controllers/Browser.py:293
+msgid "This account is disabled."
+msgstr ""
+
+#: zapzap/controllers/Browser.py:295
+msgid ""
+"You can reactivate it now or use the right-click menu to manage this account."
+msgstr ""
+
+#: zapzap/controllers/Browser.py:298
+msgid "Activate"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:299
+msgid "Not now"
+msgstr ""
+
+#: zapzap/controllers/ClientSideRendering.py:335
+#: zapzap/controllers/MainWindow.py:247
+#, fuzzy
+msgid "Close ZapZap"
+msgstr "زاب-زاب"
+
+#: zapzap/controllers/ClientSideRendering.py:336
+#: zapzap/controllers/MainWindow.py:248
+#, fuzzy
+msgid "Are you sure you want to close?"
+msgstr "أمتأكد من حذف هذا العنصر؟"
+
+#: zapzap/controllers/ClientSideRendering.py:341
+#: zapzap/controllers/MainWindow.py:252
+msgid "Don't ask again"
+msgstr ""
+
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
 msgstr "معلومات"
@@ -1658,63 +1661,63 @@ msgstr "اظهِر"
 msgid "Donation"
 msgstr "تبرَّع"
 
-#: zapzap/webengine/PageController.py:174
+#: zapzap/webengine/PageController.py:193
 msgid "Please enter the phone number with country code (e.g., +5511999999999):"
 msgstr "رجاءًا ادخل رقم الهاتف مع رمز البلد (مثال: +201111111111)"
 
-#: zapzap/webengine/PageController.py:178
+#: zapzap/webengine/PageController.py:197
 msgid ""
 "Invalid number! Please enter at least 9 digits, including the country code."
 msgstr "رقم غير صالح! ادخِل على الأقل تسع أرقام، شاملًا رمز البلد."
 
-#: zapzap/webengine/WebView.py:203
+#: zapzap/webengine/WebView.py:281
 msgid "Undo"
 msgstr "تراجع"
 
-#: zapzap/webengine/WebView.py:203
+#: zapzap/webengine/WebView.py:281
 msgid "Redo"
 msgstr "إعادة"
 
-#: zapzap/webengine/WebView.py:203
+#: zapzap/webengine/WebView.py:281
 msgid "Cut"
 msgstr "قص"
 
-#: zapzap/webengine/WebView.py:204
+#: zapzap/webengine/WebView.py:282
 msgid "Copy"
 msgstr "نسخ"
 
-#: zapzap/webengine/WebView.py:204
+#: zapzap/webengine/WebView.py:282
 msgid "Paste"
 msgstr "لصق"
 
-#: zapzap/webengine/WebView.py:204
+#: zapzap/webengine/WebView.py:282
 #, fuzzy
 msgid "Select all"
 msgstr "اختر الكل"
 
-#: zapzap/webengine/WebView.py:205
+#: zapzap/webengine/WebView.py:283
 #, fuzzy
 msgid "Save image"
 msgstr "احفظ الملف"
 
-#: zapzap/webengine/WebView.py:205
+#: zapzap/webengine/WebView.py:283
 #, fuzzy
 msgid "Copy image"
 msgstr "انسخ الصورة"
 
-#: zapzap/webengine/WebView.py:206 zapzap/webengine/WebView.py:236
+#: zapzap/webengine/WebView.py:284 zapzap/webengine/WebView.py:314
 msgid "Copy link address"
 msgstr "انسخ عنوان الرابط"
 
-#: zapzap/webengine/WebView.py:256
+#: zapzap/webengine/WebView.py:334
 msgid "Check Spelling"
 msgstr "تأكد من الهجاء"
 
-#: zapzap/webengine/WebView.py:264
+#: zapzap/webengine/WebView.py:342
 msgid "Select Language"
 msgstr "اختر اللغة"
 
-#: zapzap/webengine/WebView.py:462
+#: zapzap/webengine/WebView.py:536
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr ""
