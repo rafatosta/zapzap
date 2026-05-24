@@ -732,38 +732,35 @@ msgstr "Adaptativo"
 
 #: zapzap/views/ui_page_appearance.py:148
 msgid "Client-side rendering"
-msgstr ""
+msgstr "Barra de título personalizada"
 
 #: zapzap/views/ui_page_appearance.py:149
 msgid "Show maximize button"
-msgstr ""
+msgstr "Mostrar botão maximizar"
 
 #: zapzap/views/ui_page_appearance.py:150
 msgid "Show minimize button"
-msgstr ""
+msgstr "Mostrar botão minimizar"
 
 #: zapzap/views/ui_page_appearance.py:151
-#, fuzzy
 msgid "Note: changing CSR enabled state requires restart."
-msgstr "Nota: Requer reinício."
+msgstr "Nota: Requer reinicialização."
 
 #: zapzap/views/ui_page_appearance.py:152
-#, fuzzy
 msgid "Buttons theme"
-msgstr "Tema Automático"
+msgstr "Tema de botões"
 
 #: zapzap/views/ui_page_appearance.py:153
 msgid "Buttons direction"
-msgstr ""
+msgstr "Direção dos botões"
 
 #: zapzap/views/ui_page_appearance.py:154
-#, fuzzy
 msgid "Right"
-msgstr "Claro"
+msgstr "Direita"
 
 #: zapzap/views/ui_page_appearance.py:155
 msgid "Left"
-msgstr ""
+msgstr "Esquerda"
 
 #: zapzap/views/ui_page_appearance.py:156
 msgid "Tray icon"
@@ -1757,19 +1754,16 @@ msgid "Paste"
 msgstr "Colar"
 
 #: zapzap/webengine/WebView.py:282
-#, fuzzy
 msgid "Select all"
-msgstr "Excluir tudo"
+msgstr "Selecionar tudo"
 
 #: zapzap/webengine/WebView.py:283
-#, fuzzy
 msgid "Save image"
-msgstr "Salvar arquivo"
+msgstr "Salvar imagem"
 
 #: zapzap/webengine/WebView.py:283
-#, fuzzy
 msgid "Copy image"
-msgstr "Copiar comando"
+msgstr "Copiar imagem"
 
 #: zapzap/webengine/WebView.py:284 zapzap/webengine/WebView.py:314
 msgid "Copy link address"
@@ -1784,9 +1778,9 @@ msgid "Select Language"
 msgstr "Selecione o idioma"
 
 #: zapzap/webengine/WebView.py:536
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "DevTools - {}"
-msgstr "Abrir DevTools"
+msgstr "DevTools - {}"
 
 #~ msgid "Open ZapZap website after setup"
 #~ msgstr "Abrir o site do ZapZap após a configuração"
