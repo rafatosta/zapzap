@@ -1,4 +1,8 @@
-from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineSettings
+from typing import cast
+
+from PyQt6.QtWebEngineCore import QWebEnginePage
+from PyQt6.QtWebEngineCore import QWebEngineSettings
+from PyQt6.QtCore import Qt
 from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
 
@@ -6,8 +10,6 @@ from zapzap import __allowed_hosts__
 from zapzap.services.AddonsManager import AddonsManager
 from zapzap.services.CustomizationsManager import CustomizationsManager
 from zapzap.services.ThemeManager import ThemeManager
-from zapzap.services.SettingsManager import SettingsManager
-from zapzap.services.EnvironmentManager import EnvironmentManager, Packaging
 
 import urllib.parse  # Para normalizar URLs
 
@@ -17,14 +19,12 @@ from gettext import gettext as _
 class PageController(QWebEnginePage):
     """Controlador de página para gerenciar eventos e ações personalizadas no QWebEnginePage."""
 
-    APP_START = True
-    APP_LOAD = True
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.link_url = ""
         self.link_context = ''
         self.user_id = None
+        self._force_dark_mode_fallback_active = False
 
         # Conecta sinais para funcionalidades específicas
         self.linkHovered.connect(self._on_link_hovered)
@@ -85,77 +85,96 @@ class PageController(QWebEnginePage):
         script = """document.dispatchEvent(new KeyboardEvent("keydown", {'key': 'Escape'}));"""
         self.runJavaScript(script)
 
-    """
-    local -> inicar em modo Auto e Dark não atualiza a página
-    """
-
-    def apply_theme(self, system_theme: ThemeManager.Type):
-        """
-        Aplica o tema considerando:
-        - Configuração do usuário (Auto, Light, Dark)
-        - Tema do sistema (quando Auto)
-        - Ambiente (Flatpak vs local)
-        """
-
-        is_flatpak = EnvironmentManager.identify_packaging() == Packaging.FLATPAK
-
-        configured_theme = ThemeManager.Type(
-            SettingsManager.get("system/theme", ThemeManager.Type.Auto)
-        )
-
-        # Resolve o tema final
-        effective_theme = (
-            system_theme if configured_theme == ThemeManager.Type.Auto
-            else configured_theme
-        )
-
-        # --- REGRA ESPECIAL (Flatpak + Auto na inicialização) ---
-        if is_flatpak and self.APP_START and configured_theme == ThemeManager.Type.Auto:
-            self.APP_START = False
-            print("[Theme] Skip reload on startup (Flatpak + Auto)")
+    def apply_theme(
+        self,
+        _current_theme: ThemeManager.Type,
+        current_color_scheme: Qt.ColorScheme
+    ) -> None:
+        if self._force_dark_mode_fallback_active:
+            self.fall_back_to_force_dark_mode()
             return
 
-        if configured_theme == ThemeManager.Type.Auto:
-            if system_theme == ThemeManager.Type.Light:
-                self._set_force_dark(False)
-                self._apply_css_theme(ThemeManager.Type.Light)
-            else:
+        script = f"""
+            (() => {{
+                try {{
+                    if (typeof _zapZapWAWebThemeController === 'undefined') {{
+                        // Injection is still pending.
+                        return true;
+                    }}
 
-                if not is_flatpak and self.APP_LOAD:
-                    self._set_force_dark(True)
-                    self.APP_LOAD = False
-                else:
-                    self._set_force_dark(False)
-                    self._apply_css_theme(ThemeManager.Type.Dark)
+                    if (
+                        typeof _zapZapWAWebThemeController.has_failed !== 'function' ||
+                        typeof _zapZapWAWebThemeController.is_ready !== 'function' ||
+                        typeof _zapZapWAWebThemeController.applyZapZapColorSchemeToWAWeb !== 'function' ||
+                        _zapZapWAWebThemeController.has_failed()
+                    ) {{
+                        // Controller is unavailable or failed.
+                        return false;
+                    }}
 
-        if configured_theme == ThemeManager.Type.Light:
-            self._set_force_dark(False)
+                    if (!_zapZapWAWebThemeController.is_ready()) {{
+                        // Controller is still initializing.
+                        return true;
+                    }}
 
-        if configured_theme == ThemeManager.Type.Dark:
-            if not ThemeManager.instance()._detect_system_theme() == ThemeManager.Type.Dark or not is_flatpak:
-                self._set_force_dark(True)
+                    _zapZapWAWebThemeController.currentColorScheme = "{current_color_scheme.name.lower()}";
+                    return _zapZapWAWebThemeController.applyZapZapColorSchemeToWAWeb();
+                }} catch (e) {{
+                    console.error("[ZapZap WAWeb Theme Controller]", e);
+                    return false;
+                }}
+            }})()
+        """
+        self.runJavaScript(script, self.on_apply_theme_result)
 
-    def _set_force_dark(self, enabled: bool):
-        """Aplica ForceDark no engine."""
-        self.profile().settings().setAttribute(
-            QWebEngineSettings.WebAttribute.ForceDarkMode,
-            enabled
+    def on_apply_theme_result(self, result: bool, message: str | None = None) -> None:
+        if result:
+            return
+
+        if message is None:
+            message = "Unable to set the WhatsApp Web Theme via JavaScript"
+
+        print(
+            f'[ZapZap WAWeb Theme Controller] Controller #{self.parent().page_index} failed. '
+            f'{message.rstrip(".")}.'
         )
 
-    def _apply_css_theme(self, theme: ThemeManager.Type):
-        """Aplica tema via CSS (sem reload)."""
-        if theme == ThemeManager.Type.Dark:
-            self.runJavaScript("document.body.classList.add('dark');")
-        else:
-            self.runJavaScript("document.body.classList.remove('dark');")
+    def fall_back_to_force_dark_mode(self) -> None:
+        """Falls back to using ForceDarkMode to handle the WhatsApp Web Theme."""
+        from zapzap.webengine.WebView import WebView
 
-    def set_theme_light(self):
-        """Altera o tema da página para claro."""
-        self.apply_theme(ThemeManager.Type.Light)
+        profile = self.profile()
+        settings = profile.settings() if profile else None
 
-    def set_theme_dark(self):
-        """Altera o tema da página para escuro."""
-        self.apply_theme(ThemeManager.Type.Dark)
+        if not settings:
+            return
+
+        settings.setAttribute(
+            QWebEngineSettings.WebAttribute.ForceDarkMode,
+            (ThemeManager.get_current_color_scheme() == Qt.ColorScheme.Dark)
+        )
+
+        if self._force_dark_mode_fallback_active:
+            return
+
+        self._force_dark_mode_fallback_active = True
+        print(
+            f'[ZapZap WAWeb Theme Controller] Controller #{self.parent().page_index} '
+            'activated ForceDarkMode fallback.'
+        )
+
+        # Try to force WhatsApp Web to adopt the light theme by setting the related
+        # localStorage persistency values and reloading the page, since ForceDarkMode
+        # only works well if WAWeb is using its own light theme.
+        self.runJavaScript(
+            f'''(() => {{
+                localStorage["theme"] = JSON.stringify("{Qt.ColorScheme.Light.name.lower()}");
+                localStorage["system-theme-mode"] = JSON.stringify(false);
+            }})()'''
+        )
+        # Reload WhatsApp Web page to force it to load the theme settings saved
+        # in localStorage.
+        cast(WebView, cast(object, self.parent())).load_page()
 
     def new_chat(self):
         """Simula o atalho 'Ctrl+Alt+N' para iniciar um novo chat."""

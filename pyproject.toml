@@ -58,7 +58,8 @@ packages = [
 zapzap = [
   "po/*/LC_MESSAGES/*.mo",
   "js/*",
-  "extensions/*"
+  "extensions/*",
+  "webengine/*.js"
 ]
 
 [tool.setuptools.dynamic]

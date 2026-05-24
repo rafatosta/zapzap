@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import QWidget, QPushButton, QMessageBox
 from PyQt6.QtGui import QAction
 from zapzap.controllers.CardUser import CardUser
 from zapzap.controllers.PageButton import PageButton
+from zapzap.services.ThemeManager import ThemeManager
 from zapzap.webengine.WebView import WebView
 from zapzap.models.User import User
 from zapzap.resources.SystemIcon import SystemIcon
@@ -52,6 +53,10 @@ class Browser(QWidget, Ui_Browser):
         self._select_default_page()
         self._update_user_menu()
         self.settings_sidebar()
+        self._update_buttons(
+            ThemeManager.get_current_theme(),
+            ThemeManager.get_current_color_scheme()
+        )
 
     def _setup_grid_view(self):
         from PyQt6.QtWidgets import QScrollArea, QGridLayout
@@ -86,7 +91,12 @@ class Browser(QWidget, Ui_Browser):
         self.btn_new_chat.clicked.connect(lambda: self.parent.new_chat())
         self.btn_open_settings.clicked.connect(
             lambda: self.parent.open_settings())
+        ThemeManager.instance().theme_changed.connect(self._update_buttons)
 
+    def _update_buttons(self, _current_theme, current_color_scheme):
+        self.__set_button_icons(
+            SystemIcon.Type[current_color_scheme.name]
+        )
 
     def _configure_flatpak_guidance(self):
         if not SetupManager._is_flatpak:
@@ -473,28 +483,6 @@ class Browser(QWidget, Ui_Browser):
         """Reseta os estilos de todos os botões."""
         for button in self.page_buttons.values():
             button.unselected()
-
-    def set_theme_light(self):
-        """Define o tema claro para as páginas e botões."""
-        # Define o tema claro para as páginas
-        for i in range(self.pages.count()):
-            if i == self.grid_page_index: continue
-            page = self.pages.widget(i)
-            page.set_theme_light()
-
-        # Define o tema claro para os botões
-        self.__set_button_icons(SystemIcon.Type.Light)
-
-    def set_theme_dark(self):
-        """Define o tema escuro para as páginas e botões."""
-        # Define o tema escuro para as páginas
-        for i in range(self.pages.count()):
-            if i == self.grid_page_index: continue
-            page = self.pages.widget(i)
-            page.set_theme_dark()
-
-        # Define o tema escuro para os botões
-        self.__set_button_icons(SystemIcon.Type.Dark)
 
     def __set_button_icons(self, theme):
         """Define os ícones dos botões com base no tema."""
