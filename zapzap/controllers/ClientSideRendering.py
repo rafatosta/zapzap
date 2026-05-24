@@ -1,7 +1,10 @@
 from PyQt6.QtCore import Qt, QPoint, QEvent
+from PyQt6.QtWidgets import QMessageBox, QCheckBox, QApplication
 from PyQt6.QtGui import QColor, QPainter, QPainterPath
 from PyQt6.QtWidgets import QHBoxLayout, QPushButton, QVBoxLayout, QWidget, QLabel
 from zapzap.services.ThemeManager import ThemeManager
+from zapzap.services.SettingsManager import SettingsManager
+from gettext import gettext as _
 
 
 class _TitleBar(QWidget):
@@ -112,6 +115,7 @@ class _ResizeArea(QWidget):
 
 
 class ClientSideRendering(QWidget):
+    is_csr_wrapper = True
     """Wrapper genérico para habilitar client-side rendering sem alterar MainWindow."""
 
     def __init__(self, inner_window: QWidget, enabled: bool = True):
@@ -301,7 +305,55 @@ class ClientSideRendering(QWidget):
         )
 
     def closeEvent(self, event):
-        self.inner_window.closeEvent(event)
+        self._save_window_state()
+
+        if SettingsManager.get("system/confirm_on_close", False):
+            msg_box = QMessageBox(self)
+            msg_box.setWindowTitle(_("Close ZapZap"))
+            msg_box.setText(_("Are you sure you want to close?"))
+            msg_box.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+            msg_box.setDefaultButton(QMessageBox.StandardButton.No)
+
+            cb = QCheckBox(_("Don't ask again"))
+            msg_box.setCheckBox(cb)
+
+            reply = msg_box.exec()
+            if reply != QMessageBox.StandardButton.Yes:
+                event.ignore()
+                return
+
+            if cb.isChecked():
+                SettingsManager.set("system/confirm_on_close", False)
+
+        if not SettingsManager.get("system/quit_in_close", False) and event:
+            self._prepare_for_background(event)
+        else:
+            QApplication.instance().quit()
+
+    def _save_window_state(self):
+        SettingsManager.set("main/geometry", self.saveGeometry())
+        SettingsManager.set("main/windowState", self.saveState())
+
+    def _prepare_for_background(self, event):
+        if self.inner_window.app_settings:
+            self.inner_window.close_settings()
+
+        self.inner_window.browser.close_conversations()
+        self.hide()
+        event.ignore()
+
+    def show_window(self):
+        if self.isHidden():
+            if self.inner_window.is_fullscreen:
+                self.showFullScreen()
+            else:
+                self.showNormal()
+            QApplication.instance().setActiveWindow(self)
+        elif not self.isActiveWindow():
+            self.activateWindow()
+            self.raise_()
+        else:
+            self.hide()
 
     def hideEvent(self, event):
         self.inner_window.hide()
