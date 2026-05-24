@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-24 10:24-0300\n"
+"POT-Creation-Date: 2026-05-24 14:16-0300\n"
 "PO-Revision-Date: 2025-08-03 20:05+0200\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -171,7 +171,7 @@ msgstr "Visualizza"
 msgid "Ctrl+G"
 msgstr "Ctrl+Q"
 
-#: zapzap/views/ui_mainwindow.py:133 zapzap/views/ui_page_appearance.py:121
+#: zapzap/views/ui_mainwindow.py:133 zapzap/views/ui_page_appearance.py:161
 msgid "Show sidebar"
 msgstr "Mostra barra laterale"
 
@@ -261,78 +261,6 @@ msgstr "Segnala un problema"
 #: zapzap/views/ui_page_account.py:79
 msgid "My accounts"
 msgstr "I miei account"
-
-#: zapzap/views/ui_page_appearance.py:111 zapzap/views/ui_settings.py:153
-msgid "Appearance"
-msgstr "Aspetto"
-
-#: zapzap/views/ui_page_appearance.py:112
-msgid "Style"
-msgstr "Stile"
-
-#: zapzap/views/ui_page_appearance.py:113
-msgid "Adaptive"
-msgstr "Adattivo"
-
-#: zapzap/views/ui_page_appearance.py:114
-msgid "Dark"
-msgstr "Scuro"
-
-#: zapzap/views/ui_page_appearance.py:115
-msgid "Light"
-msgstr "Chiaro"
-
-#: zapzap/views/ui_page_appearance.py:116
-msgid "Tray icon"
-msgstr "Icona della barra"
-
-#: zapzap/views/ui_page_appearance.py:117
-msgid "Remove notification indicator"
-msgstr "Rimuovi l'indicatore di notifica"
-
-#: zapzap/views/ui_page_appearance.py:118
-msgid "Default"
-msgstr "Predefinito"
-
-#: zapzap/views/ui_page_appearance.py:119
-msgid "Symbolic dark"
-msgstr "Simbolico scuro"
-
-#: zapzap/views/ui_page_appearance.py:120
-msgid "Symbolic light"
-msgstr "Simbolico chiaro"
-
-#: zapzap/views/ui_page_appearance.py:122
-msgid "Show menu bar"
-msgstr "Mostra barra dei menu"
-
-#: zapzap/views/ui_page_appearance.py:123
-msgid "Scale"
-msgstr "Scala"
-
-#: zapzap/views/ui_page_appearance.py:124
-msgid "100 %"
-msgstr "100 %"
-
-#: zapzap/views/ui_page_appearance.py:125
-msgid "125 %"
-msgstr "125 %"
-
-#: zapzap/views/ui_page_appearance.py:126
-msgid "150 %"
-msgstr "150 %"
-
-#: zapzap/views/ui_page_appearance.py:127
-msgid "175 %"
-msgstr "175 %"
-
-#: zapzap/views/ui_page_appearance.py:128
-msgid "200 %"
-msgstr "200 %"
-
-#: zapzap/views/ui_page_appearance.py:129
-msgid "Note: The change of scale will only have effect until restarting."
-msgstr "Nota: La modifica della scala avrà effetto solo fino al riavvio."
 
 #: zapzap/views/ui_page_customizations.py:232 zapzap/views/ui_settings.py:154
 msgid "Customizations"
@@ -776,6 +704,10 @@ msgstr "Account"
 msgid "TOOLS"
 msgstr "STRUMENTI"
 
+#: zapzap/views/ui_settings.py:153 zapzap/views/ui_page_appearance.py:143
+msgid "Appearance"
+msgstr "Aspetto"
+
 #: zapzap/views/ui_settings.py:156
 msgid "Performance"
 msgstr "Prestazioni"
@@ -796,6 +728,108 @@ msgstr "Dialogo"
 #: zapzap/views/ui_shortcuts_dialog.py:57
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
+
+#: zapzap/views/ui_page_appearance.py:144
+msgid "Style"
+msgstr "Stile"
+
+#: zapzap/views/ui_page_appearance.py:145
+msgid "Dark"
+msgstr "Scuro"
+
+#: zapzap/views/ui_page_appearance.py:146
+msgid "Light"
+msgstr "Chiaro"
+
+#: zapzap/views/ui_page_appearance.py:147
+msgid "Adaptive"
+msgstr "Adattivo"
+
+#: zapzap/views/ui_page_appearance.py:148
+msgid "Client-side rendering"
+msgstr ""
+
+#: zapzap/views/ui_page_appearance.py:149
+msgid "Show maximize button"
+msgstr ""
+
+#: zapzap/views/ui_page_appearance.py:150
+msgid "Show minimize button"
+msgstr ""
+
+#: zapzap/views/ui_page_appearance.py:151
+#, fuzzy
+msgid "Note: changing CSR enabled state requires restart."
+msgstr "Nota: Riavvio richiesto."
+
+#: zapzap/views/ui_page_appearance.py:152
+msgid "Buttons theme"
+msgstr ""
+
+#: zapzap/views/ui_page_appearance.py:153
+msgid "Buttons direction"
+msgstr ""
+
+#: zapzap/views/ui_page_appearance.py:154
+#, fuzzy
+msgid "Right"
+msgstr "Chiaro"
+
+#: zapzap/views/ui_page_appearance.py:155
+msgid "Left"
+msgstr ""
+
+#: zapzap/views/ui_page_appearance.py:156
+msgid "Tray icon"
+msgstr "Icona della barra"
+
+#: zapzap/views/ui_page_appearance.py:157
+msgid "Remove notification indicator"
+msgstr "Rimuovi l'indicatore di notifica"
+
+#: zapzap/views/ui_page_appearance.py:158
+msgid "Default"
+msgstr "Predefinito"
+
+#: zapzap/views/ui_page_appearance.py:159
+msgid "Symbolic dark"
+msgstr "Simbolico scuro"
+
+#: zapzap/views/ui_page_appearance.py:160
+msgid "Symbolic light"
+msgstr "Simbolico chiaro"
+
+#: zapzap/views/ui_page_appearance.py:162
+msgid "Show menu bar"
+msgstr "Mostra barra dei menu"
+
+#: zapzap/views/ui_page_appearance.py:163
+msgid "Scale"
+msgstr "Scala"
+
+#: zapzap/views/ui_page_appearance.py:164
+msgid "100 %"
+msgstr "100 %"
+
+#: zapzap/views/ui_page_appearance.py:165
+msgid "125 %"
+msgstr "125 %"
+
+#: zapzap/views/ui_page_appearance.py:166
+msgid "150 %"
+msgstr "150 %"
+
+#: zapzap/views/ui_page_appearance.py:167
+msgid "175 %"
+msgstr "175 %"
+
+#: zapzap/views/ui_page_appearance.py:168
+msgid "200 %"
+msgstr "200 %"
+
+#: zapzap/views/ui_page_appearance.py:169
+msgid "Note: The change of scale will only have effect until restarting."
+msgstr "Nota: La modifica della scala avrà effetto solo fino al riavvio."
 
 #: zapzap/controllers/CardUser.py:42
 msgid "Select User-Agent for this account"
@@ -1043,10 +1077,6 @@ msgstr "Non ufficiale"
 #: zapzap/controllers/PageAbout.py:25
 msgid "Unknown"
 msgstr "Sconosciuto"
-
-#: zapzap/controllers/PageAppearance.py:57
-msgid "Grid Columns:"
-msgstr ""
 
 #: zapzap/controllers/PageCustomizations.py:52
 msgid "Global"
@@ -1581,21 +1611,25 @@ msgstr ""
 msgid "Not now"
 msgstr ""
 
-#: zapzap/controllers/ClientSideRendering.py:335
 #: zapzap/controllers/MainWindow.py:247
+#: zapzap/controllers/ClientSideRendering.py:427
 #, fuzzy
 msgid "Close ZapZap"
 msgstr "ZapZap"
 
-#: zapzap/controllers/ClientSideRendering.py:336
 #: zapzap/controllers/MainWindow.py:248
+#: zapzap/controllers/ClientSideRendering.py:428
 #, fuzzy
 msgid "Are you sure you want to close?"
 msgstr "Sei sicuro di voler eliminare questo elemento?"
 
-#: zapzap/controllers/ClientSideRendering.py:341
 #: zapzap/controllers/MainWindow.py:252
+#: zapzap/controllers/ClientSideRendering.py:433
 msgid "Don't ask again"
+msgstr ""
+
+#: zapzap/controllers/PageAppearance.py:69
+msgid "Grid Columns:"
 msgstr ""
 
 #: zapzap/services/AlertManager.py:35
