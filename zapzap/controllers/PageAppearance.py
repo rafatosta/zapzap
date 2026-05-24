@@ -178,14 +178,22 @@ class PageAppearance(QWidget, Ui_PageAppearance):
                             self.notificationCounter.isChecked())
         SysTrayManager.refresh()
 
+    def _refresh_csr_buttons(self):
+        window = QApplication.instance().getWindow()
+        if getattr(window, "is_csr_wrapper", False):
+            window.refresh_csr_button_preferences()
+
     def _handle_csr_enabled(self, enabled):
         SettingsManager.set("system/csr", enabled)
 
     def _handle_csr_theme(self, theme_name):
         SettingsManager.set("system/csr_button_theme", theme_name)
+        self._refresh_csr_buttons()
 
     def _handle_csr_show_minimize(self, enabled):
         SettingsManager.set("system/csr_show_minimize_button", enabled)
+        self._refresh_csr_buttons()
 
     def _handle_csr_show_maximize(self, enabled):
         SettingsManager.set("system/csr_show_maximize_button", enabled)
+        self._refresh_csr_buttons()

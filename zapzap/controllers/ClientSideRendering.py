@@ -20,11 +20,11 @@ class _TitleBar(QWidget):
         self._button_theme = button_theme
         self._drag_start_pos = QPoint()
 
-        layout = QHBoxLayout(self)
-        layout.setContentsMargins(12, 0, 8, 0)
-        layout.setSpacing(6)
+        self.layout = QHBoxLayout(self)
+        self.layout.setContentsMargins(12, 0, 8, 0)
+        self.layout.setSpacing(6)
 
-        label = QLabel(title)
+        self.title_label = QLabel(title)
 
         self.minimize_button = QPushButton()
         self.maximize_button = QPushButton()
@@ -33,21 +33,7 @@ class _TitleBar(QWidget):
         self.maximize_button.setObjectName("csrWindowButton")
         self.close_button.setObjectName("csrWindowCloseButton")
 
-        buttons_on_left = self._buttons_on_left()
-        if buttons_on_left:
-            layout.addWidget(self.minimize_button)
-            layout.addWidget(self.maximize_button)
-            layout.addWidget(self.close_button)
-            layout.addSpacing(8)
-            layout.addWidget(label)
-            layout.addStretch()
-        else:
-            layout.addWidget(label)
-            layout.addStretch()
-            layout.addWidget(self.minimize_button)
-            layout.addWidget(self.maximize_button)
-            layout.addWidget(self.close_button)
-
+        self._rebuild_layout()
         self._apply_button_theme()
         self._apply_button_visibility()
 
@@ -55,6 +41,33 @@ class _TitleBar(QWidget):
         self.maximize_button.clicked.connect(self.toggle_maximize)
         self.close_button.clicked.connect(self.host_window.close)
 
+
+    def _rebuild_layout(self):
+        while self.layout.count():
+            item = self.layout.takeAt(0)
+            widget = item.widget()
+            if widget:
+                self.layout.removeWidget(widget)
+
+        if self._buttons_on_left():
+            self.layout.addWidget(self.minimize_button)
+            self.layout.addWidget(self.maximize_button)
+            self.layout.addWidget(self.close_button)
+            self.layout.addSpacing(8)
+            self.layout.addWidget(self.title_label)
+            self.layout.addStretch()
+        else:
+            self.layout.addWidget(self.title_label)
+            self.layout.addStretch()
+            self.layout.addWidget(self.minimize_button)
+            self.layout.addWidget(self.maximize_button)
+            self.layout.addWidget(self.close_button)
+
+    def refresh_preferences(self, button_theme: CSRButtonTheme):
+        self._button_theme = button_theme
+        self._rebuild_layout()
+        self._apply_button_theme()
+        self._apply_button_visibility()
 
     def _buttons_on_left(self) -> bool:
         button_direction = str(SettingsManager.get("system/csr_buttons_direction", "right")).strip().lower()
@@ -204,6 +217,14 @@ class ClientSideRendering(QWidget):
         self._create_resize_handles()
         self._apply_theme()
 
+
+    def refresh_csr_button_preferences(self):
+        if not self.enabled:
+            return
+
+        self._button_theme = self._resolve_button_theme()
+        self.title_bar.refresh_preferences(self._button_theme)
+        self._apply_theme()
 
     def _resolve_button_theme(self) -> CSRButtonTheme:
         configured_theme = str(SettingsManager.get("system/csr_button_theme", "auto")).strip().lower()

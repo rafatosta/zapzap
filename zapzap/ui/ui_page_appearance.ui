@@ -90,6 +90,18 @@
              </property>
             </widget>
            </item>
+           <item row="3" column="0" colspan="2">
+            <widget class="QLabel" name="csr_restart_label">
+             <property name="font">
+              <font>
+               <italic>true</italic>
+              </font>
+             </property>
+             <property name="text">
+              <string>Note: changing CSR enabled state requires restart.</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
@@ -123,6 +135,18 @@
             <widget class="QCheckBox" name="csr_show_maximize_checkBox">
              <property name="text">
               <string>Show maximize button</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="2">
+            <widget class="QLabel" name="csr_restart_label">
+             <property name="font">
+              <font>
+               <italic>true</italic>
+              </font>
+             </property>
+             <property name="text">
+              <string>Note: changing CSR enabled state requires restart.</string>
              </property>
             </widget>
            </item>
@@ -173,6 +197,18 @@
             <widget class="Line" name="line">
              <property name="orientation">
               <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="2">
+            <widget class="QLabel" name="csr_restart_label">
+             <property name="font">
+              <font>
+               <italic>true</italic>
+              </font>
+             </property>
+             <property name="text">
+              <string>Note: changing CSR enabled state requires restart.</string>
              </property>
             </widget>
            </item>
