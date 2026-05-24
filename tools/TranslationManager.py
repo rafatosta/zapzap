@@ -1,8 +1,14 @@
 from pathlib import Path
 import subprocess
+import re
 
 
 class TranslationManager:
+    IGNORE_PATTERNS = [
+        r'"POT-Creation-Date: .*\\n"\n?',
+        r'"PO-Revision-Date: .*\\n"\n?',
+    ]
+
     def __init__(
         self,
         directories_file: str = "./po/POTFILES",
@@ -58,6 +64,13 @@ class TranslationManager:
     def generate_pot(self, source_files: list[str]):
         print("Gerando arquivo POT...")
 
+        old_raw_content = ""
+
+        if self.pot_file.exists():
+            old_raw_content = self.pot_file.read_text(
+                encoding="utf-8"
+            )
+
         command = [
             "xgettext",
             "--from-code=UTF-8",
@@ -66,9 +79,32 @@ class TranslationManager:
             *source_files,
         ]
 
-        self.execute(command)
+        success = self.execute(command)
+
+        if not success:
+            return
 
         self.replace_charset(self.pot_file)
+
+        new_raw_content = self.pot_file.read_text(
+            encoding="utf-8"
+        )
+
+        old_normalized = self.normalize_content(
+            old_raw_content
+        )
+
+        new_normalized = self.normalize_content(
+            new_raw_content
+        )
+
+        if old_normalized == new_normalized:
+            print("Nenhuma alteração real no arquivo POT.")
+
+            self.pot_file.write_text(
+                old_raw_content,
+                encoding="utf-8",
+            )
 
     def get_languages(self) -> list[str]:
         if not self.linguas_file.exists():
@@ -83,20 +119,38 @@ class TranslationManager:
 
     def process_language(self, language: str, source_files: list[str]):
         mo_dir = self.mo_base_dir / language / "LC_MESSAGES"
-        mo_dir.mkdir(parents=True, exist_ok=True)
+
+        mo_dir.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
 
         po_file = self.po_dir / f"{language}.po"
 
         if po_file.exists():
             print(f"Ignorando {language} (arquivo .po já existe)")
             self.update_po(po_file)
+
         else:
             print(f"Gerando {language} (novo arquivo .po)")
-            self.create_po(po_file, language, source_files)
 
-        self.generate_mo(po_file, mo_dir, language)
+            self.create_po(
+                po_file,
+                language,
+                source_files,
+            )
+
+        self.generate_mo(
+            po_file,
+            mo_dir,
+            language,
+        )
 
     def update_po(self, po_file: Path):
+        old_raw_content = po_file.read_text(
+            encoding="utf-8"
+        )
+
         command = [
             "msgmerge",
             "-o",
@@ -105,7 +159,32 @@ class TranslationManager:
             str(self.pot_file),
         ]
 
-        self.execute(command)
+        success = self.execute(command)
+
+        if not success:
+            return
+
+        new_raw_content = po_file.read_text(
+            encoding="utf-8"
+        )
+
+        old_normalized = self.normalize_content(
+            old_raw_content
+        )
+
+        new_normalized = self.normalize_content(
+            new_raw_content
+        )
+
+        if old_normalized == new_normalized:
+            print(
+                f"Nenhuma alteração real em {po_file.name}"
+            )
+
+            po_file.write_text(
+                old_raw_content,
+                encoding="utf-8",
+            )
 
     def create_po(
         self,
@@ -121,10 +200,17 @@ class TranslationManager:
             *source_files,
         ]
 
-        self.execute(command)
+        success = self.execute(command)
+
+        if not success:
+            return
 
         self.replace_charset(po_file)
-        self.set_language(po_file, language)
+
+        self.set_language(
+            po_file,
+            language,
+        )
 
     def generate_mo(
         self,
@@ -144,41 +230,84 @@ class TranslationManager:
         success = self.execute(command)
 
         if success:
-            print(f"Arquivo .mo gerado com sucesso para o idioma: {language}")
+            print(
+                f"Arquivo .mo gerado com sucesso para o idioma: {language}"
+            )
+
         else:
-            print(f"Erro ao gerar o arquivo .mo para o idioma: {language}")
+            print(
+                f"Erro ao gerar o arquivo .mo para o idioma: {language}"
+            )
 
     @staticmethod
     def replace_charset(file_path: Path):
-        content = file_path.read_text(encoding="utf-8")
+        content = file_path.read_text(
+            encoding="utf-8"
+        )
 
         content = content.replace(
             "charset=CHARSET",
             "charset=UTF-8",
         )
 
-        file_path.write_text(content, encoding="utf-8")
+        file_path.write_text(
+            content,
+            encoding="utf-8",
+        )
 
     @staticmethod
-    def set_language(file_path: Path, language: str):
-        content = file_path.read_text(encoding="utf-8")
+    def set_language(
+        file_path: Path,
+        language: str,
+    ):
+        content = file_path.read_text(
+            encoding="utf-8"
+        )
 
         content = content.replace(
             "Language:",
             f"Language:{language}",
         )
 
-        file_path.write_text(content, encoding="utf-8")
+        file_path.write_text(
+            content,
+            encoding="utf-8",
+        )
+
+    @classmethod
+    def normalize_content(
+        cls,
+        content: str,
+    ) -> str:
+        normalized = content
+
+        for pattern in cls.IGNORE_PATTERNS:
+            normalized = re.sub(
+                pattern,
+                "",
+                normalized,
+                flags=re.MULTILINE,
+            )
+
+        return normalized.strip()
 
     @staticmethod
     def execute(command: list[str]) -> bool:
         try:
-            subprocess.run(command, check=True)
+            subprocess.run(
+                command,
+                check=True,
+            )
+
             return True
 
         except subprocess.CalledProcessError as error:
-            print(f"Erro ao executar comando: {' '.join(command)}")
+            print(
+                f"Erro ao executar comando: {' '.join(command)}"
+            )
+
             print(error)
+
             return False
 
 
