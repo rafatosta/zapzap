@@ -46,12 +46,12 @@ class CSRButtonThemeProvider:
             close_hover_light="#d93025", close_hover_dark="#ea4335",
         ),
         CSRButtonTheme.ADWAITA: CSRButtonThemeDefinition(
-            minimize="−", maximize="▢", close="×", font_size=16, font_weight=600,
+            minimize="–", maximize="+", close="×", font_size=14, font_weight=600,
             button_width=28, button_height=28, border_radius=14,
-            button_bg_light="#d5d7db", button_bg_dark="#6f737a",
-            button_hover_light="#c7c9ce", button_hover_dark="#7e838b",
-            close_bg_light="#e06c75", close_bg_dark="#c25d65",
-            close_hover_light="#d85f68", close_hover_dark="#d16871",
+            button_bg_light="#f0f0f0", button_bg_dark="#3a3a3a",
+            button_hover_light="#25D366", button_hover_dark="#075E54",
+            close_bg_light="#f0f0f0", close_bg_dark="#3a3a3a",
+            close_hover_light="#25D366", close_hover_dark="#075E54",
         ),
         CSRButtonTheme.PLASMA: CSRButtonThemeDefinition(
             minimize="–", maximize="▣", close="✖", font_size=13, font_weight=700,

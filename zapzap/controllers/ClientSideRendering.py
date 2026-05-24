@@ -337,9 +337,9 @@ class ClientSideRendering(QWidget):
 
         if theme == Qt.ColorScheme.Dark:
             self._colors = {
-                "frame": "#2b2d31",
-                "container_bg": "#202124",
-                "container_border": "#3c4043",
+                "frame": "#1d1f1f",
+                "container_bg": "#1d1f1f",
+                "container_border": "#1d1f1f",
                 "title_text": "#E1E1E1",
                 "button_bg": button_theme.button_bg_dark,
                 "button_hover": button_theme.button_hover_dark,
@@ -349,9 +349,9 @@ class ClientSideRendering(QWidget):
             }
         else:
             self._colors = {
-                "frame": "#ece9e6",
+                "frame": "#f7f5f3",
                 "container_bg": "#f7f5f3",
-                "container_border": "#cfd4d9",
+                "container_border": "#f7f5f3",
                 "title_text": "#1d1f1f",
                 "button_bg": button_theme.button_bg_light,
                 "button_hover": button_theme.button_hover_light,
@@ -391,7 +391,7 @@ class ClientSideRendering(QWidget):
             }}
             QPushButton#csrWindowCloseButton {{
                 background: {self._colors['close_bg']};
-                color: #ffffff;
+                color: {self._colors['button_text']};
                 border: none;
                 border-radius: %(radius)spx;
                 font-size: %(font)spx;
