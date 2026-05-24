@@ -40,6 +40,8 @@ class PageAppearance(QWidget, Ui_PageAppearance):
         self.csr_theme_comboBox.setCurrentIndex(theme_index if theme_index >= 0 else 0)
         self.csr_show_minimize_checkBox.setChecked(SettingsManager.get("system/csr_show_minimize_button", True))
         self.csr_show_maximize_checkBox.setChecked(SettingsManager.get("system/csr_show_maximize_button", True))
+        csr_direction = str(SettingsManager.get("system/csr_buttons_direction", "right")).strip().lower()
+        self.csr_direction_comboBox.setCurrentIndex(1 if csr_direction == "left" else 0)
 
         # Configurações de tema
         theme_mode = SettingsManager.get(
@@ -119,6 +121,7 @@ class PageAppearance(QWidget, Ui_PageAppearance):
         self.csr_theme_comboBox.currentTextChanged.connect(self._handle_csr_theme)
         self.csr_show_minimize_checkBox.toggled.connect(self._handle_csr_show_minimize)
         self.csr_show_maximize_checkBox.toggled.connect(self._handle_csr_show_maximize)
+        self.csr_direction_comboBox.currentTextChanged.connect(self._handle_csr_direction)
 
     @staticmethod
     def _set_selected_radio(selected_value, radio_map):
@@ -196,4 +199,9 @@ class PageAppearance(QWidget, Ui_PageAppearance):
 
     def _handle_csr_show_maximize(self, enabled):
         SettingsManager.set("system/csr_show_maximize_button", enabled)
+        self._refresh_csr_buttons()
+
+    def _handle_csr_direction(self, direction_label):
+        direction = "left" if direction_label.strip().lower() == "left" else "right"
+        SettingsManager.set("system/csr_buttons_direction", direction)
         self._refresh_csr_buttons()
