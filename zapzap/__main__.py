@@ -62,7 +62,7 @@ def main():
     # Create main window
     mainwindow_inside = MainWindow()
     csr_enabled = SettingsManager.get("system/client_side_rendering", False)
-    main_window = ClientSideRendering(mainwindow_inside, enabled=csr_enabled)
+    main_window = ClientSideRendering(mainwindow_inside, enabled=True) if csr_enabled else mainwindow_inside
     app.setWindow(main_window)
     app.setActivationWindow(main_window)
     main_window.load_settings()

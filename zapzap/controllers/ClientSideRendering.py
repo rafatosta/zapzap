@@ -300,5 +300,12 @@ class ClientSideRendering(QWidget):
             """
         )
 
+    def closeEvent(self, event):
+        self.inner_window.closeEvent(event)
+
+    def hideEvent(self, event):
+        self.inner_window.hide()
+        super().hideEvent(event)
+
     def __getattr__(self, name):
         return getattr(self.inner_window, name)
