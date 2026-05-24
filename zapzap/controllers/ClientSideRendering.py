@@ -75,7 +75,8 @@ class _TitleBar(QWidget):
         new_width = self.host_window.width()
         clamped_x = max(0, min(new_width - 1, int(new_width * ratio)))
         global_pos = event.globalPosition().toPoint()
-        self.host_window.move(global_pos - QPoint(clamped_x, self._drag_start_pos.y()))
+        self.host_window.move(
+            global_pos - QPoint(clamped_x, self._drag_start_pos.y()))
 
         handle = self.host_window.windowHandle()
         if handle:
@@ -132,7 +133,8 @@ class ClientSideRendering(QWidget):
             self._adopt_native_window()
             return
 
-        self.setWindowFlags(Qt.WindowType.Window | Qt.WindowType.FramelessWindowHint)
+        self.setWindowFlags(Qt.WindowType.Window |
+                            Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
         outer = QVBoxLayout(self)
@@ -146,7 +148,8 @@ class ClientSideRendering(QWidget):
         layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(0)
 
-        self.title_bar = _TitleBar(self, inner_window.windowTitle() or "ZapZap")
+        self.title_bar = _TitleBar(
+            self, inner_window.windowTitle() or "ZapZap")
         layout.addWidget(self.title_bar)
 
         inner_window.setParent(self.container)
@@ -166,10 +169,14 @@ class ClientSideRendering(QWidget):
 
     def _create_resize_handles(self):
         margin = 8
-        self.top_edge = _ResizeArea(self, Qt.Edge.TopEdge, Qt.CursorShape.SizeVerCursor)
-        self.bottom_edge = _ResizeArea(self, Qt.Edge.BottomEdge, Qt.CursorShape.SizeVerCursor)
-        self.left_edge = _ResizeArea(self, Qt.Edge.LeftEdge, Qt.CursorShape.SizeHorCursor)
-        self.right_edge = _ResizeArea(self, Qt.Edge.RightEdge, Qt.CursorShape.SizeHorCursor)
+        self.top_edge = _ResizeArea(
+            self, Qt.Edge.TopEdge, Qt.CursorShape.SizeVerCursor)
+        self.bottom_edge = _ResizeArea(
+            self, Qt.Edge.BottomEdge, Qt.CursorShape.SizeVerCursor)
+        self.left_edge = _ResizeArea(
+            self, Qt.Edge.LeftEdge, Qt.CursorShape.SizeHorCursor)
+        self.right_edge = _ResizeArea(
+            self, Qt.Edge.RightEdge, Qt.CursorShape.SizeHorCursor)
 
         self.top_left_corner = _ResizeArea(
             self,
@@ -196,14 +203,20 @@ class ClientSideRendering(QWidget):
 
     def _update_resize_handle_geometry(self, margin: int):
         self.top_edge.setGeometry(margin, 0, self.width() - margin * 2, margin)
-        self.bottom_edge.setGeometry(margin, self.height() - margin, self.width() - margin * 2, margin)
-        self.left_edge.setGeometry(0, margin, margin, self.height() - margin * 2)
-        self.right_edge.setGeometry(self.width() - margin, margin, margin, self.height() - margin * 2)
+        self.bottom_edge.setGeometry(
+            margin, self.height() - margin, self.width() - margin * 2, margin)
+        self.left_edge.setGeometry(
+            0, margin, margin, self.height() - margin * 2)
+        self.right_edge.setGeometry(
+            self.width() - margin, margin, margin, self.height() - margin * 2)
 
         self.top_left_corner.setGeometry(0, 0, margin, margin)
-        self.top_right_corner.setGeometry(self.width() - margin, 0, margin, margin)
-        self.bottom_left_corner.setGeometry(0, self.height() - margin, margin, margin)
-        self.bottom_right_corner.setGeometry(self.width() - margin, self.height() - margin, margin, margin)
+        self.top_right_corner.setGeometry(
+            self.width() - margin, 0, margin, margin)
+        self.bottom_left_corner.setGeometry(
+            0, self.height() - margin, margin, margin)
+        self.bottom_right_corner.setGeometry(
+            self.width() - margin, self.height() - margin, margin, margin)
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
@@ -236,15 +249,9 @@ class ClientSideRendering(QWidget):
         if event.type() in (QEvent.Type.PaletteChange, QEvent.Type.ApplicationPaletteChange):
             self._apply_theme()
 
-    def _resolve_theme(self) -> str:
-        current_theme = ThemeManager.get_current_theme()
-        if current_theme == ThemeManager.Type.Dark:
-            return "dark"
-        return "light"
-
     def _apply_theme(self):
-        theme = self._resolve_theme()
-        if theme == "dark":
+        theme = ThemeManager.get_current_color_scheme()
+        if theme == Qt.ColorScheme.Dark:
             self._colors = {
                 "frame": "#2b2d31",
                 "container_bg": "#202124",
@@ -307,8 +314,10 @@ class ClientSideRendering(QWidget):
     def load_settings(self):
         """Restaura estado da janela no modo CSR e inicia serviços globais."""
         if self.enabled:
-            self.restoreGeometry(SettingsManager.get("main/geometry", QByteArray()))
-            self.inner_window.restoreState(SettingsManager.get("main/windowState", QByteArray()))
+            self.restoreGeometry(SettingsManager.get(
+                "main/geometry", QByteArray()))
+            self.inner_window.restoreState(
+                SettingsManager.get("main/windowState", QByteArray()))
         else:
             self.inner_window.load_settings()
             return
@@ -325,7 +334,8 @@ class ClientSideRendering(QWidget):
             msg_box = QMessageBox(self)
             msg_box.setWindowTitle(_("Close ZapZap"))
             msg_box.setText(_("Are you sure you want to close?"))
-            msg_box.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+            msg_box.setStandardButtons(
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
             msg_box.setDefaultButton(QMessageBox.StandardButton.No)
 
             cb = QCheckBox(_("Don't ask again"))
