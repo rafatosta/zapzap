@@ -1,4 +1,4 @@
-from PyQt6.QtCore import Qt, QPoint, QEvent
+from PyQt6.QtCore import Qt, QPoint, QEvent, QByteArray
 from PyQt6.QtWidgets import QMessageBox, QCheckBox, QApplication
 from PyQt6.QtGui import QColor, QPainter, QPainterPath
 from PyQt6.QtWidgets import QHBoxLayout, QPushButton, QVBoxLayout, QWidget, QLabel
@@ -303,6 +303,20 @@ class ClientSideRendering(QWidget):
             }}
             """
         )
+
+    def load_settings(self):
+        """Restaura estado da janela no modo CSR e inicia serviços globais."""
+        if self.enabled:
+            self.restoreGeometry(SettingsManager.get("main/geometry", QByteArray()))
+            self.inner_window.restoreState(SettingsManager.get("main/windowState", QByteArray()))
+        else:
+            self.inner_window.load_settings()
+            return
+
+        from zapzap.services.SysTrayManager import SysTrayManager
+        from zapzap.services.ThemeManager import ThemeManager
+        SysTrayManager.start()
+        ThemeManager.start()
 
     def closeEvent(self, event):
         self._save_window_state()
