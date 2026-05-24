@@ -370,7 +370,6 @@ class ClientSideRendering(QWidget):
             self.hide()
 
     def hideEvent(self, event):
-        self.inner_window.hide()
         super().hideEvent(event)
 
     def __getattr__(self, name):

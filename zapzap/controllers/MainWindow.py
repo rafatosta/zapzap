@@ -236,9 +236,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     # === Configurações de Fechamento ===
     def closeEvent(self, event):
-        if self.parentWidget() is not None and hasattr(self.window(), "is_csr_wrapper"):
-            event.ignore()
-            return
         """
         Evento chamado ao fechar a janela.
         Salva o estado da janela e realiza a limpeza de recursos.
