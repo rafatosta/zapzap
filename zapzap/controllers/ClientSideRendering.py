@@ -35,9 +35,6 @@ class _TitleBar(QWidget):
         self.maximize_button.setObjectName("csrWindowButton")
         self.close_button.setObjectName("csrWindowCloseButton")
 
-        for button in (self.minimize_button, self.maximize_button, self.close_button):
-            button.setFixedSize(36, 28)
-
         layout.addWidget(self.minimize_button)
         layout.addWidget(self.maximize_button)
         layout.addWidget(self.close_button)
@@ -58,7 +55,11 @@ class _TitleBar(QWidget):
         font_size = str(theme_definition.font_size)
         font_weight = str(theme_definition.font_weight)
         border_radius = str(theme_definition.border_radius)
+        button_width = int(theme_definition.button_width)
+        button_height = int(theme_definition.button_height)
+
         for button in (self.minimize_button, self.maximize_button, self.close_button):
+            button.setFixedSize(button_width, button_height)
             button.setProperty("csrFontSize", font_size)
             button.setProperty("csrFontWeight", font_weight)
             button.setProperty("csrBorderRadius", border_radius)

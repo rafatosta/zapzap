@@ -17,6 +17,8 @@ class CSRButtonThemeDefinition:
     close: str
     font_size: int
     font_weight: int
+    button_width: int
+    button_height: int
     border_radius: int
     button_bg_light: str
     button_bg_dark: str
@@ -37,7 +39,7 @@ class CSRButtonThemeProvider:
     _THEMES: dict[CSRButtonTheme, CSRButtonThemeDefinition] = {
         CSRButtonTheme.DEFAULT: CSRButtonThemeDefinition(
             minimize="—", maximize="□", close="✕", font_size=14, font_weight=600,
-            border_radius=6,
+            button_width=36, button_height=28, border_radius=6,
             button_bg_light="#ffffff", button_bg_dark="#3c4043",
             button_hover_light="#eef1f4", button_hover_dark="#4a4d52",
             close_bg_light="#e6554f", close_bg_dark="#d93025",
@@ -45,7 +47,7 @@ class CSRButtonThemeProvider:
         ),
         CSRButtonTheme.ADWAITA: CSRButtonThemeDefinition(
             minimize="−", maximize="▢", close="×", font_size=16, font_weight=600,
-            border_radius=14,
+            button_width=28, button_height=28, border_radius=14,
             button_bg_light="#d5d7db", button_bg_dark="#6f737a",
             button_hover_light="#c7c9ce", button_hover_dark="#7e838b",
             close_bg_light="#e06c75", close_bg_dark="#c25d65",
@@ -53,7 +55,7 @@ class CSRButtonThemeProvider:
         ),
         CSRButtonTheme.PLASMA: CSRButtonThemeDefinition(
             minimize="–", maximize="▣", close="✖", font_size=13, font_weight=700,
-            border_radius=8,
+            button_width=32, button_height=28, border_radius=8,
             button_bg_light="#eef1f4", button_bg_dark="#43474c",
             button_hover_light="#dfe3e8", button_hover_dark="#51575d",
             close_bg_light="#e57373", close_bg_dark="#c84c4c",
@@ -61,7 +63,7 @@ class CSRButtonThemeProvider:
         ),
         CSRButtonTheme.IOS: CSRButtonThemeDefinition(
             minimize="–", maximize="+", close="×", font_size=14, font_weight=600,
-            border_radius=14,
+            button_width=28, button_height=28, border_radius=14,
             button_bg_light="#f3bf4f", button_bg_dark="#8f6e2f",
             button_hover_light="#e5b347", button_hover_dark="#a98038",
             close_bg_light="#f06a5f", close_bg_dark="#bd4f47",
@@ -69,7 +71,7 @@ class CSRButtonThemeProvider:
         ),
         CSRButtonTheme.WINDOWS: CSRButtonThemeDefinition(
             minimize="—", maximize="□", close="✕", font_size=12, font_weight=700,
-            border_radius=2,
+            button_width=36, button_height=28, border_radius=2,
             button_bg_light="#f6f6f6", button_bg_dark="#3a3a3a",
             button_hover_light="#eaeaea", button_hover_dark="#4a4a4a",
             close_bg_light="#d13438", close_bg_dark="#b32428",
