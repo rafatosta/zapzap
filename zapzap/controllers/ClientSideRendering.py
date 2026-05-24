@@ -40,6 +40,7 @@ class _TitleBar(QWidget):
         layout.addWidget(self.close_button)
 
         self._apply_button_theme()
+        self._apply_button_visibility()
 
         self.minimize_button.clicked.connect(self.host_window.showMinimized)
         self.maximize_button.clicked.connect(self.toggle_maximize)
@@ -63,6 +64,14 @@ class _TitleBar(QWidget):
             button.setProperty("csrFontSize", font_size)
             button.setProperty("csrFontWeight", font_weight)
             button.setProperty("csrBorderRadius", border_radius)
+
+
+    def _apply_button_visibility(self):
+        show_minimize = bool(SettingsManager.get("system/csr_show_minimize_button", True))
+        show_maximize = bool(SettingsManager.get("system/csr_show_maximize_button", True))
+
+        self.minimize_button.setVisible(show_minimize)
+        self.maximize_button.setVisible(show_maximize)
 
     def toggle_maximize(self):
         if self.host_window.isMaximized():
