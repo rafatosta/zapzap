@@ -1,46 +1,103 @@
+import os
+
 from PyQt6.QtCore import Qt, QPoint, QEvent, QByteArray
 from PyQt6.QtWidgets import QMessageBox, QCheckBox, QApplication
 from PyQt6.QtGui import QColor, QPainter, QPainterPath
 from PyQt6.QtWidgets import QHBoxLayout, QPushButton, QVBoxLayout, QWidget, QLabel
+from zapzap.resources.CSRButtonThemeProvider import CSRButtonTheme, CSRButtonThemeProvider
 from zapzap.services.ThemeManager import ThemeManager
 from zapzap.services.SettingsManager import SettingsManager
 from gettext import gettext as _
 
 
 class _TitleBar(QWidget):
-    def __init__(self, window, title: str):
+    def __init__(self, window, title: str, button_theme: CSRButtonTheme):
         super().__init__(window)
         self.host_window = window
         self.setObjectName("csrTitleBar")
         self.setFixedHeight(40)
         self._drag_active = False
+        self._button_theme = button_theme
         self._drag_start_pos = QPoint()
 
-        layout = QHBoxLayout(self)
-        layout.setContentsMargins(12, 0, 8, 0)
-        layout.setSpacing(6)
+        self.layout = QHBoxLayout(self)
+        self.layout.setContentsMargins(12, 0, 8, 0)
+        self.layout.setSpacing(6)
 
-        label = QLabel(title)
-        layout.addWidget(label)
-        layout.addStretch()
+        self.title_label = QLabel(title)
 
-        self.minimize_button = QPushButton("—")
-        self.maximize_button = QPushButton("□")
-        self.close_button = QPushButton("✕")
+        self.minimize_button = QPushButton()
+        self.maximize_button = QPushButton()
+        self.close_button = QPushButton()
         self.minimize_button.setObjectName("csrWindowButton")
         self.maximize_button.setObjectName("csrWindowButton")
         self.close_button.setObjectName("csrWindowCloseButton")
 
-        for button in (self.minimize_button, self.maximize_button, self.close_button):
-            button.setFixedSize(36, 28)
-
-        layout.addWidget(self.minimize_button)
-        layout.addWidget(self.maximize_button)
-        layout.addWidget(self.close_button)
+        self._rebuild_layout()
+        self._apply_button_theme()
+        self._apply_button_visibility()
 
         self.minimize_button.clicked.connect(self.host_window.showMinimized)
         self.maximize_button.clicked.connect(self.toggle_maximize)
         self.close_button.clicked.connect(self.host_window.close)
+
+
+    def _rebuild_layout(self):
+        while self.layout.count():
+            item = self.layout.takeAt(0)
+            widget = item.widget()
+            if widget:
+                self.layout.removeWidget(widget)
+
+        if self._buttons_on_left():
+            self.layout.addWidget(self.minimize_button)
+            self.layout.addWidget(self.maximize_button)
+            self.layout.addWidget(self.close_button)
+            self.layout.addSpacing(8)
+            self.layout.addWidget(self.title_label)
+            self.layout.addStretch()
+        else:
+            self.layout.addWidget(self.title_label)
+            self.layout.addStretch()
+            self.layout.addWidget(self.minimize_button)
+            self.layout.addWidget(self.maximize_button)
+            self.layout.addWidget(self.close_button)
+
+    def refresh_preferences(self, button_theme: CSRButtonTheme):
+        self._button_theme = button_theme
+        self._rebuild_layout()
+        self._apply_button_theme()
+        self._apply_button_visibility()
+
+    def _buttons_on_left(self) -> bool:
+        button_direction = str(SettingsManager.get("system/csr_buttons_direction", "right")).strip().lower()
+        return button_direction == "left"
+
+    def _apply_button_theme(self):
+        theme_definition = CSRButtonThemeProvider.get_theme(self._button_theme)
+        self.minimize_button.setText(theme_definition.minimize)
+        self.maximize_button.setText(theme_definition.maximize)
+        self.close_button.setText(theme_definition.close)
+
+        font_size = str(theme_definition.font_size)
+        font_weight = str(theme_definition.font_weight)
+        border_radius = str(theme_definition.border_radius)
+        button_width = int(theme_definition.button_width)
+        button_height = int(theme_definition.button_height)
+
+        for button in (self.minimize_button, self.maximize_button, self.close_button):
+            button.setFixedSize(button_width, button_height)
+            button.setProperty("csrFontSize", font_size)
+            button.setProperty("csrFontWeight", font_weight)
+            button.setProperty("csrBorderRadius", border_radius)
+
+
+    def _apply_button_visibility(self):
+        show_minimize = bool(SettingsManager.get("system/csr_show_minimize_button", True))
+        show_maximize = bool(SettingsManager.get("system/csr_show_maximize_button", True))
+
+        self.minimize_button.setVisible(show_minimize)
+        self.maximize_button.setVisible(show_maximize)
 
     def toggle_maximize(self):
         if self.host_window.isMaximized():
@@ -124,6 +181,7 @@ class ClientSideRendering(QWidget):
         self.inner_window = inner_window
         self.enabled = enabled
         self._colors = {"frame": "#2b2d31"}
+        self._button_theme = self._resolve_button_theme()
 
         self.setWindowTitle(inner_window.windowTitle())
         self.resize(inner_window.size())
@@ -149,7 +207,7 @@ class ClientSideRendering(QWidget):
         layout.setSpacing(0)
 
         self.title_bar = _TitleBar(
-            self, inner_window.windowTitle() or "ZapZap")
+            self, inner_window.windowTitle() or "ZapZap", self._button_theme)
         layout.addWidget(self.title_bar)
 
         inner_window.setParent(self.container)
@@ -158,6 +216,30 @@ class ClientSideRendering(QWidget):
 
         self._create_resize_handles()
         self._apply_theme()
+
+
+    def refresh_csr_button_preferences(self):
+        if not self.enabled:
+            return
+
+        self._button_theme = self._resolve_button_theme()
+        self.title_bar.refresh_preferences(self._button_theme)
+        self._apply_theme()
+
+    def _resolve_button_theme(self) -> CSRButtonTheme:
+        configured_theme = str(SettingsManager.get("system/csr_button_theme", "auto")).strip().lower()
+
+        configured_button_theme = CSRButtonThemeProvider.parse_theme(configured_theme)
+        if configured_button_theme:
+            return configured_button_theme
+
+        desktop = os.environ.get("XDG_CURRENT_DESKTOP", "").lower()
+        if "kde" in desktop or "plasma" in desktop:
+            return CSRButtonTheme.PLASMA
+        if "gnome" in desktop:
+            return CSRButtonTheme.ADWAITA
+
+        return CSRButtonTheme.DEFAULT
 
     def _adopt_native_window(self):
         self.setWindowFlags(self.inner_window.windowFlags())
@@ -251,17 +333,19 @@ class ClientSideRendering(QWidget):
 
     def _apply_theme(self):
         theme = ThemeManager.get_current_color_scheme()
+        button_theme = CSRButtonThemeProvider.get_theme(self._button_theme)
+
         if theme == Qt.ColorScheme.Dark:
             self._colors = {
                 "frame": "#2b2d31",
                 "container_bg": "#202124",
                 "container_border": "#3c4043",
                 "title_text": "#E1E1E1",
-                "button_bg": "#3c4043",
-                "button_hover": "#4a4d52",
+                "button_bg": button_theme.button_bg_dark,
+                "button_hover": button_theme.button_hover_dark,
                 "button_text": "#E1E1E1",
-                "close_bg": "#d93025",
-                "close_hover": "#ea4335",
+                "close_bg": button_theme.close_bg_dark,
+                "close_hover": button_theme.close_hover_dark,
             }
         else:
             self._colors = {
@@ -269,15 +353,19 @@ class ClientSideRendering(QWidget):
                 "container_bg": "#f7f5f3",
                 "container_border": "#cfd4d9",
                 "title_text": "#1d1f1f",
-                "button_bg": "#ffffff",
-                "button_hover": "#eef1f4",
+                "button_bg": button_theme.button_bg_light,
+                "button_hover": button_theme.button_hover_light,
                 "button_text": "#1d1f1f",
-                "close_bg": "#e6554f",
-                "close_hover": "#d93025",
+                "close_bg": button_theme.close_bg_light,
+                "close_hover": button_theme.close_hover_light,
             }
 
+        font_size = self.title_bar.minimize_button.property("csrFontSize") or "14"
+        font_weight = self.title_bar.minimize_button.property("csrFontWeight") or "600"
+        border_radius = self.title_bar.minimize_button.property("csrBorderRadius") or "6"
+
         self.setStyleSheet(
-            f"""
+            (f"""
             QWidget#csrContainer {{
                 background: {self._colors['container_bg']};
                 border: 1px solid {self._colors['container_border']};
@@ -294,7 +382,9 @@ class ClientSideRendering(QWidget):
                 background: {self._colors['button_bg']};
                 color: {self._colors['button_text']};
                 border: none;
-                border-radius: 6px;
+                border-radius: %(radius)spx;
+                font-size: %(font)spx;
+                font-weight: %(weight)s;
             }}
             QPushButton#csrWindowButton:hover {{
                 background: {self._colors['button_hover']};
@@ -303,12 +393,14 @@ class ClientSideRendering(QWidget):
                 background: {self._colors['close_bg']};
                 color: #ffffff;
                 border: none;
-                border-radius: 6px;
+                border-radius: %(radius)spx;
+                font-size: %(font)spx;
+                font-weight: %(weight)s;
             }}
             QPushButton#csrWindowCloseButton:hover {{
                 background: {self._colors['close_hover']};
             }}
-            """
+            """ % {"font": font_size, "weight": font_weight, "radius": border_radius})
         )
 
     def load_settings(self):

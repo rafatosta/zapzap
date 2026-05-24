@@ -1,4 +1,5 @@
 from PyQt6.QtWidgets import QWidget, QApplication
+from zapzap.resources.CSRButtonThemeProvider import CSRButtonThemeProvider
 from zapzap.resources.TrayIcon import TrayIcon
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
@@ -30,6 +31,17 @@ class PageAppearance(QWidget, Ui_PageAppearance):
 
         self.notificationCounter.setChecked(SettingsManager.get(
             "system/notificationCounter", False))
+
+        self.csr_groupBox.setChecked(SettingsManager.get("system/csr", False))
+        self.csr_theme_comboBox.clear()
+        self.csr_theme_comboBox.addItems(CSRButtonThemeProvider.available_theme_names())
+        csr_theme = str(SettingsManager.get("system/csr_button_theme", "default")).lower()
+        theme_index = self.csr_theme_comboBox.findText(csr_theme)
+        self.csr_theme_comboBox.setCurrentIndex(theme_index if theme_index >= 0 else 0)
+        self.csr_show_minimize_checkBox.setChecked(SettingsManager.get("system/csr_show_minimize_button", True))
+        self.csr_show_maximize_checkBox.setChecked(SettingsManager.get("system/csr_show_maximize_button", True))
+        csr_direction = str(SettingsManager.get("system/csr_buttons_direction", "right")).strip().lower()
+        self.csr_direction_comboBox.setCurrentIndex(1 if csr_direction == "left" else 0)
 
         # Configurações de tema
         theme_mode = SettingsManager.get(
@@ -105,6 +117,11 @@ class PageAppearance(QWidget, Ui_PageAppearance):
         self.theme_auto_radioButton.toggled.connect(self._handle_theme_mode)
         self.theme_light_radioButton.toggled.connect(self._handle_theme_mode)
         self.theme_dark_radioButton.toggled.connect(self._handle_theme_mode)
+        self.csr_groupBox.toggled.connect(self._handle_csr_enabled)
+        self.csr_theme_comboBox.currentTextChanged.connect(self._handle_csr_theme)
+        self.csr_show_minimize_checkBox.toggled.connect(self._handle_csr_show_minimize)
+        self.csr_show_maximize_checkBox.toggled.connect(self._handle_csr_show_maximize)
+        self.csr_direction_comboBox.currentTextChanged.connect(self._handle_csr_direction)
 
     @staticmethod
     def _set_selected_radio(selected_value, radio_map):
@@ -163,3 +180,28 @@ class PageAppearance(QWidget, Ui_PageAppearance):
         SettingsManager.set("system/notificationCounter",
                             self.notificationCounter.isChecked())
         SysTrayManager.refresh()
+
+    def _refresh_csr_buttons(self):
+        window = QApplication.instance().getWindow()
+        if getattr(window, "is_csr_wrapper", False):
+            window.refresh_csr_button_preferences()
+
+    def _handle_csr_enabled(self, enabled):
+        SettingsManager.set("system/csr", enabled)
+
+    def _handle_csr_theme(self, theme_name):
+        SettingsManager.set("system/csr_button_theme", theme_name)
+        self._refresh_csr_buttons()
+
+    def _handle_csr_show_minimize(self, enabled):
+        SettingsManager.set("system/csr_show_minimize_button", enabled)
+        self._refresh_csr_buttons()
+
+    def _handle_csr_show_maximize(self, enabled):
+        SettingsManager.set("system/csr_show_maximize_button", enabled)
+        self._refresh_csr_buttons()
+
+    def _handle_csr_direction(self, direction_label):
+        direction = "left" if direction_label.strip().lower() == "left" else "right"
+        SettingsManager.set("system/csr_buttons_direction", direction)
+        self._refresh_csr_buttons()
