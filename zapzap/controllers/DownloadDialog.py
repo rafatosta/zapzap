@@ -47,6 +47,9 @@ class DownloadDialog(QDialog):
         open_btn = QPushButton(_("Open"))
         open_btn.setIcon(QIcon.fromTheme("document-open"))
 
+        save_btn = QPushButton(_("Save"))
+        save_btn.setIcon(QIcon.fromTheme("document-save"))
+
         folder_btn = QPushButton(_("Open folder"))
         folder_btn.setIcon(QIcon.fromTheme("folder-open"))
 
@@ -61,12 +64,14 @@ class DownloadDialog(QDialog):
         # Conexões
         open_btn.clicked.connect(self._open_file)
         folder_btn.clicked.connect(self._open_folder)
+        save_btn.clicked.connect(self._save)
         save_as_btn.clicked.connect(self._save_as)
         cancel_btn.clicked.connect(self._cancel)
 
         buttons = QHBoxLayout()
         buttons.setSpacing(6)
         buttons.addWidget(open_btn)
+        buttons.addWidget(save_btn)
         buttons.addWidget(folder_btn)
         buttons.addWidget(save_as_btn)
         buttons.addWidget(cancel_btn)
@@ -112,6 +117,10 @@ class DownloadDialog(QDialog):
         QDesktopServices.openUrl(
             QUrl.fromLocalFile(self.download.downloadDirectory())
         )
+        self.close()
+
+    def _save(self):
+        self.download.accept()
         self.close()
 
     def _save_as(self):
