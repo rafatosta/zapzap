@@ -1,3 +1,6 @@
+from enum import Enum
+import os
+
 from PyQt6.QtCore import Qt, QPoint, QEvent, QByteArray
 from PyQt6.QtWidgets import QMessageBox, QCheckBox, QApplication
 from PyQt6.QtGui import QColor, QPainter, QPainterPath
@@ -7,13 +10,20 @@ from zapzap.services.SettingsManager import SettingsManager
 from gettext import gettext as _
 
 
+class CSRButtonTheme(Enum):
+    DEFAULT = "default"
+    ADWAITA = "adwaita"
+    PLASMA = "plasma"
+
+
 class _TitleBar(QWidget):
-    def __init__(self, window, title: str):
+    def __init__(self, window, title: str, button_theme: CSRButtonTheme):
         super().__init__(window)
         self.host_window = window
         self.setObjectName("csrTitleBar")
         self.setFixedHeight(40)
         self._drag_active = False
+        self._button_theme = button_theme
         self._drag_start_pos = QPoint()
 
         layout = QHBoxLayout(self)
@@ -24,9 +34,9 @@ class _TitleBar(QWidget):
         layout.addWidget(label)
         layout.addStretch()
 
-        self.minimize_button = QPushButton("—")
-        self.maximize_button = QPushButton("□")
-        self.close_button = QPushButton("✕")
+        self.minimize_button = QPushButton()
+        self.maximize_button = QPushButton()
+        self.close_button = QPushButton()
         self.minimize_button.setObjectName("csrWindowButton")
         self.maximize_button.setObjectName("csrWindowButton")
         self.close_button.setObjectName("csrWindowCloseButton")
@@ -38,9 +48,48 @@ class _TitleBar(QWidget):
         layout.addWidget(self.maximize_button)
         layout.addWidget(self.close_button)
 
+        self._apply_button_theme()
+
         self.minimize_button.clicked.connect(self.host_window.showMinimized)
         self.maximize_button.clicked.connect(self.toggle_maximize)
         self.close_button.clicked.connect(self.host_window.close)
+
+
+    def _apply_button_theme(self):
+        definitions = {
+            CSRButtonTheme.DEFAULT: {
+                "minimize": "—",
+                "maximize": "□",
+                "close": "✕",
+                "font_size": 14,
+                "font_weight": 600,
+            },
+            CSRButtonTheme.ADWAITA: {
+                "minimize": "−",
+                "maximize": "▢",
+                "close": "×",
+                "font_size": 16,
+                "font_weight": 600,
+            },
+            CSRButtonTheme.PLASMA: {
+                "minimize": "–",
+                "maximize": "▣",
+                "close": "✖",
+                "font_size": 13,
+                "font_weight": 700,
+            },
+        }
+
+        theme_definition = definitions.get(self._button_theme, definitions[CSRButtonTheme.DEFAULT])
+        self.minimize_button.setText(theme_definition["minimize"])
+        self.maximize_button.setText(theme_definition["maximize"])
+        self.close_button.setText(theme_definition["close"])
+
+        font_size = str(theme_definition["font_size"])
+        font_weight = str(theme_definition["font_weight"])
+        for button in (self.minimize_button, self.maximize_button, self.close_button):
+            button.setProperty("csrFontSize", font_size)
+            button.setProperty("csrFontWeight", font_weight)
 
     def toggle_maximize(self):
         if self.host_window.isMaximized():
@@ -124,6 +173,7 @@ class ClientSideRendering(QWidget):
         self.inner_window = inner_window
         self.enabled = enabled
         self._colors = {"frame": "#2b2d31"}
+        self._button_theme = self._resolve_button_theme()
 
         self.setWindowTitle(inner_window.windowTitle())
         self.resize(inner_window.size())
@@ -149,7 +199,7 @@ class ClientSideRendering(QWidget):
         layout.setSpacing(0)
 
         self.title_bar = _TitleBar(
-            self, inner_window.windowTitle() or "ZapZap")
+            self, inner_window.windowTitle() or "ZapZap", self._button_theme)
         layout.addWidget(self.title_bar)
 
         inner_window.setParent(self.container)
@@ -158,6 +208,22 @@ class ClientSideRendering(QWidget):
 
         self._create_resize_handles()
         self._apply_theme()
+
+
+    def _resolve_button_theme(self) -> CSRButtonTheme:
+        configured_theme = str(SettingsManager.get("system/csr_button_theme", "auto")).strip().lower()
+
+        available_themes = {theme.value: theme for theme in CSRButtonTheme}
+        if configured_theme in available_themes:
+            return available_themes[configured_theme]
+
+        desktop = os.environ.get("XDG_CURRENT_DESKTOP", "").lower()
+        if "kde" in desktop or "plasma" in desktop:
+            return CSRButtonTheme.PLASMA
+        if "gnome" in desktop:
+            return CSRButtonTheme.ADWAITA
+
+        return CSRButtonTheme.DEFAULT
 
     def _adopt_native_window(self):
         self.setWindowFlags(self.inner_window.windowFlags())
@@ -276,8 +342,11 @@ class ClientSideRendering(QWidget):
                 "close_hover": "#d93025",
             }
 
+        font_size = self.title_bar.minimize_button.property("csrFontSize") or "14"
+        font_weight = self.title_bar.minimize_button.property("csrFontWeight") or "600"
+
         self.setStyleSheet(
-            f"""
+            (f"""
             QWidget#csrContainer {{
                 background: {self._colors['container_bg']};
                 border: 1px solid {self._colors['container_border']};
@@ -295,6 +364,8 @@ class ClientSideRendering(QWidget):
                 color: {self._colors['button_text']};
                 border: none;
                 border-radius: 6px;
+                font-size: %(font)spx;
+                font-weight: %(weight)s;
             }}
             QPushButton#csrWindowButton:hover {{
                 background: {self._colors['button_hover']};
@@ -304,11 +375,13 @@ class ClientSideRendering(QWidget):
                 color: #ffffff;
                 border: none;
                 border-radius: 6px;
+                font-size: %(font)spx;
+                font-weight: %(weight)s;
             }}
             QPushButton#csrWindowCloseButton:hover {{
                 background: {self._colors['close_hover']};
             }}
-            """
+            """ % {"font": font_size, "weight": font_weight})
         )
 
     def load_settings(self):
