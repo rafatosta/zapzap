@@ -58,6 +58,9 @@ def main():
     # Callback instance
     app.messageReceived.connect(lambda result: main_window.xdgOpenChat(result))
 
+    # Initialize ThemeManager
+    ThemeManager.start()
+
     # Create main window
     main_window = MainWindow()
     app.setWindow(main_window)

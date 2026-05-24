@@ -1,11 +1,15 @@
+import re
 import shutil
 import os
+
+from PyQt6.QtWebChannel import QWebChannel
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings, QWebEnginePage, QWebEngineScript
-from PyQt6.QtCore import QUrl, pyqtSignal, QTimer, QEvent, Qt
+from PyQt6.QtCore import QUrl, pyqtSignal, QTimer, QEvent, Qt, QFile, QTextStream, QObject, pyqtSlot
 from PyQt6.QtWidgets import QApplication, QWidget
 from PyQt6.QtGui import QAction
 
+from zapzap.services.ThemeManager import ThemeManager
 from zapzap.webengine.PageController import PageController
 from zapzap.models import User
 from zapzap import __user_agent__, __whatsapp_url__
@@ -56,6 +60,8 @@ class WebView(QWebEngineView):
         self._last_tmp_file = None
         self._shutting_down = False
 
+        self._web_channel_bridge = None
+
         self._reload_timer = QTimer(self)
         self._reload_timer.setSingleShot(True)
         self._reload_timer.timeout.connect(self.load_page)
@@ -97,6 +103,7 @@ class WebView(QWebEngineView):
             return
         self.titleChanged.connect(self._on_title_changed)
         self.loadFinished.connect(self._on_load_finished)
+        ThemeManager.instance().theme_changed.connect(self.apply_theme)
         self._signals_configured = True
 
     def _configure_profile(self):
@@ -158,6 +165,78 @@ class WebView(QWebEngineView):
             except Exception as e:
                 print(f"Error injecting WebRTC shield: {e}")
 
+    def _inject_web_theme_controller(self):
+        """Injects the JavaScript code for the ZapZap WAWeb Theme Controller and QWebChannel support."""
+        self._setup_web_channel()
+
+        placeholders = {
+            "{qwebchannel_js_code}": self._get_web_channel_js_code(),
+            "{current_color_scheme}": ThemeManager.get_current_color_scheme().name.lower(),
+        }
+
+        base_dir = os.path.dirname(__file__)
+        js_path = os.path.join(base_dir, "theme_controller.js")
+        file = QFile(js_path)
+        if not file.open(QFile.OpenModeFlag.ReadOnly):
+            raise RuntimeError(file.errorString())
+        js_code = QTextStream(file).readAll()
+
+        pattern = re.compile("|".join(re.escape(key) for key in placeholders.keys()))
+        js_code = pattern.sub(lambda m: placeholders[m.group(0)], js_code)
+        try:
+            script = QWebEngineScript()
+            script.setName("zapzap_web_theme_controller")
+            script.setInjectionPoint(QWebEngineScript.InjectionPoint.DocumentReady)
+            script.setRunsOnSubFrames(False)
+            script.setSourceCode(js_code)
+            script.setWorldId(QWebEngineScript.ScriptWorldId.MainWorld)
+            self.profile.scripts().insert(script)
+        except Exception as e:
+            print(f"Error injecting web theme controller: {e}")
+
+    def _setup_web_channel(self) -> None:
+        class ZapZapBridge(QObject):
+            @pyqtSlot()
+            def on_theme_controller_injection_success(self):
+                self._webview.apply_theme(
+                    ThemeManager.get_current_theme(),
+                    ThemeManager.get_current_color_scheme()
+                )
+
+            @pyqtSlot(str, bool)
+            def on_waweb_theme_changed(self, new_theme_value: str, system_theme_mode: bool):
+                # Redundant protection against theme changes fired from the WhatsApp Web settings.
+                # Force WAWeb to always use the theme from the ZapZap settings.
+                self._webview.apply_theme(
+                    ThemeManager.get_current_theme(),
+                    ThemeManager.get_current_color_scheme()
+                )
+
+            @pyqtSlot(str)
+            def on_theme_controller_failure(self, message: str):
+                if self._webview.whatsapp_page:
+                    self._webview.whatsapp_page.on_apply_theme_result(False, message)
+                    self._webview.whatsapp_page.fall_back_to_force_dark_mode()
+
+            def __init__(self, webview):
+                super().__init__()
+                self.web_channel = QWebChannel(self)
+                self.web_channel.registerObject("zapZapBridge", self)
+                self._webview = webview
+
+        self._web_channel_bridge = ZapZapBridge(self)
+        self.whatsapp_page.setWebChannel(
+            self._web_channel_bridge.web_channel,
+            QWebEngineScript.ScriptWorldId.MainWorld
+        )
+
+    @staticmethod
+    def _get_web_channel_js_code() -> str:
+        file = QFile(":/qtwebchannel/qwebchannel.js")
+        if not file.open(QFile.OpenModeFlag.ReadOnly):
+            raise RuntimeError(file.errorString())
+        return QTextStream(file).readAll()
+
     def configure_spellcheck(self):
         """Configura o corretor ortográfico."""
         if self.user.enable:
@@ -174,9 +253,8 @@ class WebView(QWebEngineView):
         self.whatsapp_page = PageController(self.profile, self)
         self.whatsapp_page.user_id = self.user.id
         self.whatsapp_page.renderProcessTerminated.connect(self._on_render_crash)
-        self.setPage(self.whatsapp_page)
-        self.load(QUrl(__whatsapp_url__))
-        self.setZoomFactor(self.user.zoomFactor)
+        self.load_page()
+        self._inject_web_theme_controller()
 
     def _on_render_crash(self, terminationStatus, exitCode):
         if self._shutting_down or not self.user.enable or not self.whatsapp_page:
@@ -344,15 +422,11 @@ class WebView(QWebEngineView):
         if self.user.enable and self.whatsapp_page:
             self.whatsapp_page.close_conversation()
 
-    def set_theme_light(self):
-        """Define o tema claro na página."""
-        if self.user.enable and self.whatsapp_page:
-            self.whatsapp_page.set_theme_light()
+    def apply_theme(self, current_theme, current_color_scheme) -> None:
+        if self.whatsapp_page is None:
+            return
 
-    def set_theme_dark(self):
-        """Define o tema escuro na página."""
-        if self.user.enable and self.whatsapp_page:
-            self.whatsapp_page.set_theme_dark()
+        self.whatsapp_page.apply_theme(current_theme, current_color_scheme)
 
     def remove_files(self):
         """Remove os arquivos de cache e armazenamento persistente do perfil."""

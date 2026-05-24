@@ -1,154 +1,190 @@
-from PyQt6.QtCore import QTimer
-from PyQt6.QtDBus import QDBusInterface
-from PyQt6.QtWidgets import QApplication
-from PyQt6.QtGui import QPalette, QColor
+from __future__ import annotations
+
 from enum import Enum
+from typing import ClassVar
+from typing import cast
+
+from PyQt6.QtCore import QObject
+from PyQt6.QtCore import Qt
+from PyQt6.QtCore import pyqtSignal
+from PyQt6.QtGui import QColor
+from PyQt6.QtGui import QPalette
+from PyQt6.QtWidgets import QApplication
+
 from zapzap.resources.ThemeStylesheet import ThemeStylesheet
+from zapzap.services.SystemThemeMonitor import SystemThemeMonitor
 from zapzap.services.SettingsManager import SettingsManager
 
 
-class ThemeManager:
+class ThemeManager(QObject):
+    """Handles theme changes."""
     class Type(Enum):
         Auto = "auto"
         Light = "light"
         Dark = "dark"
-        Custom = "custom"
 
-    _instance = None
+    _LIGHT_PALETTE_COLORS = {
+        "window": "#f7f5f3",
+        "text": "#000000",
+        "base": "#f0f0f0",
+        "highlight": "#0066cc",
+    }
 
-    # Dicionário com temas
+    _DARK_PALETTE_COLORS = {
+        "window": "#1d1f1f",
+        "text": "#ffffff",
+        "base": "#3a3a3a",
+        "highlight": "#0099ff",
+    }
 
-    def __new__(cls, *args, **kwargs):
-        """Implementação do padrão Singleton."""
-        if not cls._instance:
-            cls._instance = super().__new__(cls)
-            cls._instance._initialized = False
-        return cls._instance
+    theme_changed = pyqtSignal(object, object)
 
-    def __init__(self):
-        """Inicializa o ThemeManager com as configurações do sistema."""
-        if not self._initialized:
-            self._initialized = True
-            self.current_theme = ThemeManager.Type(
-                SettingsManager.get("system/theme", ThemeManager.Type.Auto)
+    _instance: ClassVar[ThemeManager | None] = None
+    _creation_token: ClassVar[object] = object()
+
+    def __init__(self, token=None, parent=None):
+        """Initializes ThemeManager and loads theme settings."""
+        if token is not type(self)._creation_token:
+            raise RuntimeError(
+                "ThemeManager is a singleton. Call ThemeManager.instance() "
+                "instead of ThemeManager()."
             )
-            self.timer = QTimer(QApplication.instance())
-            # Verifica o tema do sistema a cada segundo
-            self.timer.setInterval(1000)
-            self.timer.timeout.connect(self.sync_system_theme)
+
+        super().__init__(parent)
+
+        self._current_color_scheme = Qt.ColorScheme.Unknown
+        self._last_emitted_theme_state = None
+        self._system_theme_monitor = SystemThemeMonitor(self)
+        self._system_color_scheme = self._get_effective_system_color_scheme()
+
+        self._system_theme_monitor.color_scheme_changed.connect(
+            self._on_system_color_scheme_changed
+        )
+
+        try:
+            theme = type(self).Type(
+                SettingsManager.get("system/theme", type(self).Type.Auto.value)
+            )
+        except ValueError:
+            # In case the legacy "custom" theme value is saved in the config file
+            theme = type(self).Type.Auto
+            SettingsManager.set("system/theme", theme.value)
+
+        self._current_theme = theme
+
+        self._update_system_theme_monitor_state()
+        self._apply_color_scheme()
+
+    @classmethod
+    def instance(cls) -> ThemeManager:
+        """Returns the ThemeManager singleton instance."""
+        # The singleton is enforced by a token instead of inside the __new__
+        # method to avoid messing with the PyQt QObject lifetime management.
+
+        if cls._instance is None:
+            cls._instance = cls(
+                token=cls._creation_token,
+                parent=cls._get_app_instance(),
+            )
+
+        return cast(ThemeManager, cls._instance)
 
     @staticmethod
-    def stop():
-        instance = ThemeManager._instance
-        if instance and instance.timer:
-            instance.timer.stop()
-            try:
-                instance.timer.timeout.disconnect(instance.sync_system_theme)
-            except TypeError:
-                pass
+    def _get_app_instance() -> QApplication | None:
+        return cast(QApplication | None, QApplication.instance())
 
-    # === Métodos Públicos ===
-    @staticmethod
-    def instance() -> 'ThemeManager':
-        """Obtém a instância singleton do ThemeManager."""
-        if ThemeManager._instance is None:
-            ThemeManager()
-        return ThemeManager._instance
+    def _get_theme_color_scheme(self, theme: Type) -> Qt.ColorScheme:
+        if theme == type(self).Type.Auto:
+            return self._system_color_scheme
 
-    @staticmethod
-    def start():
-        """Inicia o ThemeManager e sincroniza o tema com as configurações."""
-        instance = ThemeManager.instance()
-        if instance.current_theme == ThemeManager.Type.Auto:
-            instance.timer.start()
-            instance.sync_system_theme()
-        else:
-            instance._apply_theme()
+        return Qt.ColorScheme[theme.name]
 
-    @staticmethod
-    def set_theme(theme: Type):
-        """Define o tema de acordo com a preferência do usuário."""
-        instance = ThemeManager.instance()
-        # Salva o tema nas configurações
+    @classmethod
+    def start(cls) -> ThemeManager:
+        return cls.instance()
+
+    @classmethod
+    def stop(cls) -> None:
+        if cls._instance is None:
+            return
+
+        cls._instance._system_theme_monitor.enabled = False
+        cls._instance.deleteLater()
+        cls._instance = None
+
+    @classmethod
+    def set_theme(cls, theme: Type | str) -> None:
+        """Sets the ZapZap theme chosen by the user."""
+        instance = cls.instance()
+        theme = cls.Type(theme)
+
+        if instance._current_theme == theme:
+            return
+
         SettingsManager.set("system/theme", theme.value)
-        instance._set_user_theme(theme)
-        instance._refresh_window_theme_menu()
+
+        if theme == cls.Type.Auto:
+            instance._system_color_scheme = instance._get_effective_system_color_scheme()
+
+        instance._current_theme = theme
+        instance._update_system_theme_monitor_state()
+        instance._apply_color_scheme()
+
+    @classmethod
+    def get_current_theme(cls) -> Type:
+        """Returns the ZapZap theme currently selected by the user."""
+        return cls.instance()._current_theme
+
+    @classmethod
+    def get_current_color_scheme(cls) -> Qt.ColorScheme:
+        return cls.instance()._current_color_scheme
+
+    def _get_effective_system_color_scheme(self) -> Qt.ColorScheme:
+        color_scheme = self._system_theme_monitor.get_current_color_scheme()
+
+        if color_scheme == Qt.ColorScheme.Dark:
+            return Qt.ColorScheme.Dark
+
+        return Qt.ColorScheme.Light
+
+    def _apply_color_scheme(self) -> None:
+        current_color_scheme = self._get_theme_color_scheme(self._current_theme)
+        self._current_color_scheme = current_color_scheme
+        self._apply_palette_for_color_scheme(current_color_scheme)
+        self._emit_theme_changed(self._current_theme, current_color_scheme)
+
+    def _emit_theme_changed(
+        self,
+        current_theme: Type,
+        effective_color_scheme: Qt.ColorScheme
+    ) -> None:
+        theme_state = (current_theme, effective_color_scheme)
+
+        if self._last_emitted_theme_state != theme_state:
+            self.theme_changed.emit(current_theme, effective_color_scheme)
+            self._last_emitted_theme_state = theme_state
+
+    def _update_system_theme_monitor_state(self) -> None:
+        self._system_theme_monitor.enabled = (
+            self._current_theme == type(self).Type.Auto
+        )
+
+    def _on_system_color_scheme_changed(self, new_system_color_scheme: Qt.ColorScheme) -> None:
+        if new_system_color_scheme == Qt.ColorScheme.Unknown:
+            new_system_color_scheme = Qt.ColorScheme.Light
+
+        if new_system_color_scheme == self._system_color_scheme:
+            return
+
+        self._system_color_scheme = new_system_color_scheme
+
+        if self._current_theme == type(self).Type.Auto:
+            self._apply_color_scheme()
 
     @staticmethod
-    def get_current_theme() -> Type:
-        """Obtém o tema atual."""
-        return ThemeManager.instance().current_theme
-
-    @staticmethod
-    def sync():
-        """Força a sincronização do tema atual."""
-        instance = ThemeManager.instance()
-        instance._apply_theme()
-
-    # === Sincronização e Aplicação de Temas ===
-    def sync_system_theme(self):
-        """Sincroniza o tema do sistema com o tema atual."""
-        theme = self._detect_system_theme()
-        if self.current_theme != theme:
-            self.current_theme = theme
-            self._apply_theme()
-            self._refresh_window_theme_menu()
-
-    def _set_user_theme(self, theme: Type):
-        """Define o tema com base na escolha do usuário."""
-        if theme == ThemeManager.Type.Auto:
-            self.timer.start()
-        else:
-            self.timer.stop()
-            self.current_theme = theme
-            self._apply_theme()
-
-    def _apply_theme(self, colors: list[int] = None, grade=None):
-        """Aplica o tema atual."""
-        if self.current_theme == ThemeManager.Type.Light:
-            self._apply_light_theme()
-        elif self.current_theme == ThemeManager.Type.Dark:
-            self._apply_dark_theme()
-        elif self.current_theme == ThemeManager.Type.Custom:
-            # TODO: These colors should be passed from the settings interface
-            self._apply_custom_theme(colors, grade)
-
-    # === Implementação dos Temas Claro e Escuro ===
-    def _apply_light_theme(self):
-        """Aplica o tema claro."""
-        palette = self._create_palette(
-            window="#f7f5f3", text="#000000", base="#f0f0f0", highlight="#0066cc"
-        )
-        self._apply_palette(palette)
-        QApplication.instance().getWindow().browser.set_theme_light()
-        QApplication.instance().setStyleSheet(ThemeStylesheet.get_stylesheet('light'))
-
-    def _apply_dark_theme(self):
-        """Aplica o tema escuro."""
-        palette = self._create_palette(
-            window="#1d1f1f", text="#ffffff", base="#3a3a3a", highlight="#0099ff"
-        )
-        self._apply_palette(palette)
-        QApplication.instance().getWindow().browser.set_theme_dark()
-        QApplication.instance().setStyleSheet(ThemeStylesheet.get_stylesheet('dark'))
-
-    def _apply_custom_theme(self, colors: list[str], grade):
-        """Aplica o tema customizado."""
-        print("Aplicando tema customizado...")
-        palette = self._create_palette(
-            window=colors[0], text=colors[1], base=colors[2], highlight=colors[3]
-        )
-        self._apply_palette(palette)
-        if grade == ThemeManager.Type.Light:
-            QApplication.instance().getWindow().browser.set_theme_light()
-            QApplication.instance().setStyleSheet(ThemeStylesheet.get_stylesheet('light'))
-        elif grade == ThemeManager.Type.Dark:
-            QApplication.instance().getWindow().browser.set_theme_dark()
-            QApplication.instance().setStyleSheet(ThemeStylesheet.get_stylesheet('dark'))
-
-    def _create_palette(self, window, text, base, highlight):
-        """Cria uma paleta com cores fornecidas."""
+    def _create_palette(window: str, text: str, base: str, highlight: str) -> QPalette:
         palette = QPalette()
+
         palette.setColor(QPalette.ColorRole.Window, QColor(window))
         palette.setColor(QPalette.ColorRole.WindowText, QColor(text))
         palette.setColor(QPalette.ColorRole.Base, QColor(base))
@@ -159,40 +195,20 @@ class ThemeManager:
         palette.setColor(QPalette.ColorRole.ButtonText, QColor(text))
         palette.setColor(QPalette.ColorRole.Highlight, QColor(highlight))
         palette.setColor(QPalette.ColorRole.HighlightedText, QColor(text))
+
         return palette
 
-    def _apply_palette(self, palette):
-        """Aplica a paleta ao aplicativo."""
-        QApplication.instance().setPalette(palette)
-
-    def _refresh_window_theme_menu(self):
-        """Atualiza o estado do menu de tema quando a janela principal existir."""
-        app = QApplication.instance()
-        if not app or not hasattr(app, "getWindow"):
+    @classmethod
+    def _apply_palette_for_color_scheme(cls, color_scheme: Qt.ColorScheme) -> None:
+        app = cls._get_app_instance()
+        if app is None:
             return
 
-        window = app.getWindow()
-        if window and hasattr(window, "refresh_theme_menu"):
-            window.refresh_theme_menu()
+        palette_colors = (
+            cls._DARK_PALETTE_COLORS
+            if color_scheme == Qt.ColorScheme.Dark
+            else cls._LIGHT_PALETTE_COLORS
+        )
 
-    # === Detecção do Tema do Sistema ===
-    def _detect_system_theme(self) -> Type:
-        """
-        Determina o tema do sistema usando a interface D-Bus.
-        Retorna:
-            - ThemeManager.Type.Dark se o tema escuro for preferido
-            - ThemeManager.Type.Light se o tema claro for preferido
-        """
-        try:
-            interface = QDBusInterface(
-                "org.freedesktop.portal.Desktop",
-                "/org/freedesktop/portal/desktop",
-                "org.freedesktop.portal.Settings",
-            )
-            msg = interface.call(
-                "Read", "org.freedesktop.appearance", "color-scheme")
-            color_scheme = msg.arguments()[0]
-            return ThemeManager.Type.Dark if color_scheme == 1 else ThemeManager.Type.Light
-        except Exception as e:
-            print(f"Erro ao obter o tema do sistema: {e}")
-            return ThemeManager.Type.Light
+        app.setPalette(cls._create_palette(**palette_colors))
+        app.setStyleSheet(ThemeStylesheet.get_stylesheet(color_scheme.name.lower()))
