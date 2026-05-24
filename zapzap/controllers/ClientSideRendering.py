@@ -1,19 +1,13 @@
-from enum import Enum
 import os
 
 from PyQt6.QtCore import Qt, QPoint, QEvent, QByteArray
 from PyQt6.QtWidgets import QMessageBox, QCheckBox, QApplication
 from PyQt6.QtGui import QColor, QPainter, QPainterPath
 from PyQt6.QtWidgets import QHBoxLayout, QPushButton, QVBoxLayout, QWidget, QLabel
+from zapzap.resources.CSRButtonThemeProvider import CSRButtonTheme, CSRButtonThemeProvider
 from zapzap.services.ThemeManager import ThemeManager
 from zapzap.services.SettingsManager import SettingsManager
 from gettext import gettext as _
-
-
-class CSRButtonTheme(Enum):
-    DEFAULT = "default"
-    ADWAITA = "adwaita"
-    PLASMA = "plasma"
 
 
 class _TitleBar(QWidget):
@@ -56,37 +50,13 @@ class _TitleBar(QWidget):
 
 
     def _apply_button_theme(self):
-        definitions = {
-            CSRButtonTheme.DEFAULT: {
-                "minimize": "—",
-                "maximize": "□",
-                "close": "✕",
-                "font_size": 14,
-                "font_weight": 600,
-            },
-            CSRButtonTheme.ADWAITA: {
-                "minimize": "−",
-                "maximize": "▢",
-                "close": "×",
-                "font_size": 16,
-                "font_weight": 600,
-            },
-            CSRButtonTheme.PLASMA: {
-                "minimize": "–",
-                "maximize": "▣",
-                "close": "✖",
-                "font_size": 13,
-                "font_weight": 700,
-            },
-        }
+        theme_definition = CSRButtonThemeProvider.get_theme(self._button_theme)
+        self.minimize_button.setText(theme_definition.minimize)
+        self.maximize_button.setText(theme_definition.maximize)
+        self.close_button.setText(theme_definition.close)
 
-        theme_definition = definitions.get(self._button_theme, definitions[CSRButtonTheme.DEFAULT])
-        self.minimize_button.setText(theme_definition["minimize"])
-        self.maximize_button.setText(theme_definition["maximize"])
-        self.close_button.setText(theme_definition["close"])
-
-        font_size = str(theme_definition["font_size"])
-        font_weight = str(theme_definition["font_weight"])
+        font_size = str(theme_definition.font_size)
+        font_weight = str(theme_definition.font_weight)
         for button in (self.minimize_button, self.maximize_button, self.close_button):
             button.setProperty("csrFontSize", font_size)
             button.setProperty("csrFontWeight", font_weight)
@@ -213,9 +183,9 @@ class ClientSideRendering(QWidget):
     def _resolve_button_theme(self) -> CSRButtonTheme:
         configured_theme = str(SettingsManager.get("system/csr_button_theme", "auto")).strip().lower()
 
-        available_themes = {theme.value: theme for theme in CSRButtonTheme}
-        if configured_theme in available_themes:
-            return available_themes[configured_theme]
+        configured_button_theme = CSRButtonThemeProvider.parse_theme(configured_theme)
+        if configured_button_theme:
+            return configured_button_theme
 
         desktop = os.environ.get("XDG_CURRENT_DESKTOP", "").lower()
         if "kde" in desktop or "plasma" in desktop:
