@@ -94,6 +94,42 @@
          </widget>
         </item>
         <item>
+         <widget class="QGroupBox" name="csr_groupBox">
+          <property name="title">
+           <string>Client-side rendering</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="0">
+            <widget class="QLabel" name="csr_theme_label">
+             <property name="text">
+              <string>Buttons theme</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="csr_theme_comboBox"/>
+           </item>
+           <item row="1" column="0" colspan="2">
+            <widget class="QCheckBox" name="csr_show_minimize_checkBox">
+             <property name="text">
+              <string>Show minimize button</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="2">
+            <widget class="QCheckBox" name="csr_show_maximize_checkBox">
+             <property name="text">
+              <string>Show maximize button</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
          <widget class="QGroupBox" name="tray_groupBox">
           <property name="title">
            <string>Tray icon</string>
