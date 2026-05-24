@@ -25,8 +25,6 @@ class _TitleBar(QWidget):
         layout.setSpacing(6)
 
         label = QLabel(title)
-        layout.addWidget(label)
-        layout.addStretch()
 
         self.minimize_button = QPushButton()
         self.maximize_button = QPushButton()
@@ -35,9 +33,20 @@ class _TitleBar(QWidget):
         self.maximize_button.setObjectName("csrWindowButton")
         self.close_button.setObjectName("csrWindowCloseButton")
 
-        layout.addWidget(self.minimize_button)
-        layout.addWidget(self.maximize_button)
-        layout.addWidget(self.close_button)
+        buttons_on_left = self._buttons_on_left()
+        if buttons_on_left:
+            layout.addWidget(self.minimize_button)
+            layout.addWidget(self.maximize_button)
+            layout.addWidget(self.close_button)
+            layout.addSpacing(8)
+            layout.addWidget(label)
+            layout.addStretch()
+        else:
+            layout.addWidget(label)
+            layout.addStretch()
+            layout.addWidget(self.minimize_button)
+            layout.addWidget(self.maximize_button)
+            layout.addWidget(self.close_button)
 
         self._apply_button_theme()
         self._apply_button_visibility()
@@ -46,6 +55,10 @@ class _TitleBar(QWidget):
         self.maximize_button.clicked.connect(self.toggle_maximize)
         self.close_button.clicked.connect(self.host_window.close)
 
+
+    def _buttons_on_left(self) -> bool:
+        button_direction = str(SettingsManager.get("system/csr_buttons_direction", "right")).strip().lower()
+        return button_direction == "left"
 
     def _apply_button_theme(self):
         theme_definition = CSRButtonThemeProvider.get_theme(self._button_theme)
