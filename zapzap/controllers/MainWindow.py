@@ -284,6 +284,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     # === Controle de Visibilidade da Janela ===
     def show_window(self):
+        if self.parentWidget() is not None and hasattr(self.window(), "is_csr_wrapper"):
+            self.window().show_window()
+            return
         """Alterna a visibilidade da janela principal."""
         if self.isHidden():
             if self.is_fullscreen:
