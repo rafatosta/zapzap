@@ -1,4 +1,5 @@
 from pathlib import Path
+from uuid import uuid4
 
 from PyQt6.QtCore import QObject, pyqtSlot, QByteArray, QMetaType
 from PyQt6.QtDBus import (
@@ -58,7 +59,7 @@ class PortalNotificationBackend(QObject):
         title: str,
         message: str
     ):
-        notification_id = f"zapzap-page-{page.page_index}"
+        notification_id = f"zapzap-page-{page.page_index}-{uuid4().hex}"
 
         self._notifications[notification_id] = notification
         self._pages[notification_id] = page
