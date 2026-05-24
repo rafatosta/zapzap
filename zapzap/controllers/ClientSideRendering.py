@@ -57,9 +57,11 @@ class _TitleBar(QWidget):
 
         font_size = str(theme_definition.font_size)
         font_weight = str(theme_definition.font_weight)
+        border_radius = str(theme_definition.border_radius)
         for button in (self.minimize_button, self.maximize_button, self.close_button):
             button.setProperty("csrFontSize", font_size)
             button.setProperty("csrFontWeight", font_weight)
+            button.setProperty("csrBorderRadius", border_radius)
 
     def toggle_maximize(self):
         if self.host_window.isMaximized():
@@ -287,17 +289,19 @@ class ClientSideRendering(QWidget):
 
     def _apply_theme(self):
         theme = ThemeManager.get_current_color_scheme()
+        button_theme = CSRButtonThemeProvider.get_theme(self._button_theme)
+
         if theme == Qt.ColorScheme.Dark:
             self._colors = {
                 "frame": "#2b2d31",
                 "container_bg": "#202124",
                 "container_border": "#3c4043",
                 "title_text": "#E1E1E1",
-                "button_bg": "#3c4043",
-                "button_hover": "#4a4d52",
+                "button_bg": button_theme.button_bg_dark,
+                "button_hover": button_theme.button_hover_dark,
                 "button_text": "#E1E1E1",
-                "close_bg": "#d93025",
-                "close_hover": "#ea4335",
+                "close_bg": button_theme.close_bg_dark,
+                "close_hover": button_theme.close_hover_dark,
             }
         else:
             self._colors = {
@@ -305,15 +309,16 @@ class ClientSideRendering(QWidget):
                 "container_bg": "#f7f5f3",
                 "container_border": "#cfd4d9",
                 "title_text": "#1d1f1f",
-                "button_bg": "#ffffff",
-                "button_hover": "#eef1f4",
+                "button_bg": button_theme.button_bg_light,
+                "button_hover": button_theme.button_hover_light,
                 "button_text": "#1d1f1f",
-                "close_bg": "#e6554f",
-                "close_hover": "#d93025",
+                "close_bg": button_theme.close_bg_light,
+                "close_hover": button_theme.close_hover_light,
             }
 
         font_size = self.title_bar.minimize_button.property("csrFontSize") or "14"
         font_weight = self.title_bar.minimize_button.property("csrFontWeight") or "600"
+        border_radius = self.title_bar.minimize_button.property("csrBorderRadius") or "6"
 
         self.setStyleSheet(
             (f"""
@@ -333,7 +338,7 @@ class ClientSideRendering(QWidget):
                 background: {self._colors['button_bg']};
                 color: {self._colors['button_text']};
                 border: none;
-                border-radius: 6px;
+                border-radius: %(radius)spx;
                 font-size: %(font)spx;
                 font-weight: %(weight)s;
             }}
@@ -344,14 +349,14 @@ class ClientSideRendering(QWidget):
                 background: {self._colors['close_bg']};
                 color: #ffffff;
                 border: none;
-                border-radius: 6px;
+                border-radius: %(radius)spx;
                 font-size: %(font)spx;
                 font-weight: %(weight)s;
             }}
             QPushButton#csrWindowCloseButton:hover {{
                 background: {self._colors['close_hover']};
             }}
-            """ % {"font": font_size, "weight": font_weight})
+            """ % {"font": font_size, "weight": font_weight, "radius": border_radius})
         )
 
     def load_settings(self):
