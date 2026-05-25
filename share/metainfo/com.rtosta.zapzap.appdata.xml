@@ -55,6 +55,15 @@
   </screenshots>
 
   <releases>
+      <release date="2026-05-15" version="6.5">
+          <description>
+              <ul>
+                  <li>New: Custom title bar</li>
+                  <li>Fix: WhatsApp Web theme sync</li>
+                  <li>Fix: </li>
+              </ul>
+          </description>
+      </release>
       <release date="2026-05-15" version="6.4.2">
           <description>
               <ul>

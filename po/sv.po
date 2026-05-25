@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-24 14:16-0300\n"
+"POT-Creation-Date: 2026-05-24 16:23-0300\n"
 "PO-Revision-Date: 2026-03-09 22:23+0100\n"
 "Last-Translator: Dennis Cederberg "
 "<9393069+cederberget@users.noreply.github.com>\n"
@@ -361,7 +361,7 @@ msgstr "Importera från URL"
 #: zapzap/views/ui_page_customizations.py:266
 #: zapzap/views/ui_page_general.py:170
 #: zapzap/controllers/DialogDumpHandler.py:50
-#: zapzap/controllers/DownloadDialog.py:50
+#: zapzap/controllers/DownloadDialog.py:135
 msgid "Open folder"
 msgstr "Öppna katalog"
 
@@ -395,6 +395,7 @@ msgid "Save and reload"
 msgstr "Spara och ladda om"
 
 #: zapzap/views/ui_page_customizations.py:269
+#: zapzap/controllers/DownloadDialog.py:98
 msgid "Save"
 msgstr "Spara"
 
@@ -918,24 +919,24 @@ msgstr ""
 " - Ärendesystem: {issue_url}\n"
 " - E-post: {email}"
 
-#: zapzap/controllers/DownloadDialog.py:23
+#: zapzap/controllers/DownloadDialog.py:29
 #, fuzzy
 msgid "Download"
 msgstr "Nedladdningen är för stor."
 
-#: zapzap/controllers/DownloadDialog.py:47
+#: zapzap/controllers/DownloadDialog.py:88
 msgid "Open"
 msgstr "Öppna"
 
-#: zapzap/controllers/DownloadDialog.py:53
+#: zapzap/controllers/DownloadDialog.py:129
 msgid "Save as"
 msgstr "Spara som"
 
-#: zapzap/controllers/DownloadDialog.py:56
+#: zapzap/controllers/DownloadDialog.py:143
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: zapzap/controllers/DownloadDialog.py:130
+#: zapzap/controllers/DownloadDialog.py:272
 msgid "Save file"
 msgstr "Spara fil"
 

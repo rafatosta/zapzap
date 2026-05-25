@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-24 14:16-0300\n"
+"POT-Creation-Date: 2026-05-24 16:23-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -350,7 +350,7 @@ msgstr ""
 #: zapzap/views/ui_page_customizations.py:266
 #: zapzap/views/ui_page_general.py:170
 #: zapzap/controllers/DialogDumpHandler.py:50
-#: zapzap/controllers/DownloadDialog.py:50
+#: zapzap/controllers/DownloadDialog.py:135
 #, fuzzy
 msgid "Open folder"
 msgstr "Ordner auswählen"
@@ -381,6 +381,7 @@ msgid "Save and reload"
 msgstr ""
 
 #: zapzap/views/ui_page_customizations.py:269
+#: zapzap/controllers/DownloadDialog.py:98
 msgid "Save"
 msgstr "Speichern"
 
@@ -888,25 +889,25 @@ msgid ""
 " - Email: {email}"
 msgstr ""
 
-#: zapzap/controllers/DownloadDialog.py:23
+#: zapzap/controllers/DownloadDialog.py:29
 #, fuzzy
 msgid "Download"
 msgstr "Download-Verzeichnis"
 
-#: zapzap/controllers/DownloadDialog.py:47
+#: zapzap/controllers/DownloadDialog.py:88
 msgid "Open"
 msgstr "Öffnen"
 
-#: zapzap/controllers/DownloadDialog.py:53
+#: zapzap/controllers/DownloadDialog.py:129
 #, fuzzy
 msgid "Save as"
 msgstr "Speichern"
 
-#: zapzap/controllers/DownloadDialog.py:56
+#: zapzap/controllers/DownloadDialog.py:143
 msgid "Cancel"
 msgstr ""
 
-#: zapzap/controllers/DownloadDialog.py:130
+#: zapzap/controllers/DownloadDialog.py:272
 msgid "Save file"
 msgstr "Datei speichern"
 
