@@ -1,4 +1,7 @@
-from PyQt6.QtCore import QEasingCurve, QParallelAnimationGroup, QPropertyAnimation, Qt
+import random
+import time
+
+from PyQt6.QtCore import QEasingCurve, QParallelAnimationGroup, QPropertyAnimation, Qt, QTimer
 from PyQt6.QtWidgets import QWidget, QPushButton, QMessageBox
 from PyQt6.QtGui import QAction
 from zapzap.controllers.CardUser import CardUser
@@ -33,6 +36,16 @@ class Browser(QWidget, Ui_Browser):
         self._sidebar_animation_group = None
         self._last_active_webview = None
         self._shutting_down = False
+        self._page_load_queue: list[tuple[int, WebView]] = []
+        self._queued_page_loads: set[WebView] = set()
+        self._next_allowed_page_load_ms = 0
+
+        self._page_load_timer = QTimer(self)
+        self._page_load_timer.setSingleShot(True)
+        self._page_load_timer.timeout.connect(self._process_page_load_queue)
+
+        self._page_load_interval_min_ms = 1000
+        self._page_load_interval_max_ms = 2000
 
         self._initialize()
 
@@ -154,7 +167,7 @@ class Browser(QWidget, Ui_Browser):
         page_index = self.page_count
 
         # Criar uma nova página
-        new_page = WebView(user, page_index)
+        new_page = WebView(self, user, page_index)
         new_page.update_button_signal.connect(
             self.update_page_button_number_notifications
         )
@@ -192,6 +205,7 @@ class Browser(QWidget, Ui_Browser):
         button, page = self._find_button_and_page_by_user(user)
 
         if page:
+            self.cancel_queued_page_load(page)
             self.pages.removeWidget(page)
             page.shutdown()
             page.remove_files()
@@ -313,6 +327,8 @@ class Browser(QWidget, Ui_Browser):
 
     def close_pages(self):
         """Fecha e limpa todas as páginas existentes."""
+        self._clear_page_load_queue()
+
         for i in reversed(range(self.pages.count())):
             page = self.pages.widget(i)
 
@@ -333,9 +349,13 @@ class Browser(QWidget, Ui_Browser):
     def reload_pages(self):
         """Recarrega todas as páginas existentes."""
         for i in range(self.pages.count()):
-            if i == self.grid_page_index: continue
+            if i == self.grid_page_index:
+                continue
+
             page = self.pages.widget(i)
-            page.load_page()
+
+            if isinstance(page, WebView):
+                self.queue_load_page(page)
 
     def close_conversations(self):
         """Fecha todas as conversas abertas."""
@@ -562,3 +582,88 @@ class Browser(QWidget, Ui_Browser):
         group.finished.connect(_on_finished)
         self._sidebar_animation_group = group
         group.start()
+
+    def queue_load_page(self, page: WebView, delay_ms: int = 0) -> None:
+        if self._shutting_down:
+            return
+
+        if page is None or page.whatsapp_page is None:
+            return
+
+        if page in self._queued_page_loads:
+            return
+
+        run_at_ms = self._now_ms() + max(0, delay_ms)
+
+        self._page_load_queue.append((run_at_ms, page))
+        self._queued_page_loads.add(page)
+        self._page_load_queue.sort(key=lambda item: item[0])
+
+        self._schedule_next_page_load()
+
+    def cancel_queued_page_load(self, page: WebView) -> None:
+        if page not in self._queued_page_loads:
+            return
+
+        self._page_load_queue = [
+            item for item in self._page_load_queue
+            if item[1] is not page
+        ]
+        self._queued_page_loads.discard(page)
+
+        self._schedule_next_page_load()
+
+    def _process_page_load_queue(self) -> None:
+        if self._shutting_down:
+            return
+
+        if not self._page_load_queue:
+            self._page_load_timer.stop()
+            return
+
+        now_ms = self._now_ms()
+        run_at_ms, page = self._page_load_queue[0]
+
+        if now_ms < run_at_ms or now_ms < self._next_allowed_page_load_ms:
+            self._schedule_next_page_load()
+            return
+
+        self._page_load_queue.pop(0)
+        self._queued_page_loads.discard(page)
+
+        if page is not None and page.whatsapp_page is not None:
+            page.load_page_now()
+
+        interval_ms = random.randint(
+            self._page_load_interval_min_ms,
+            self._page_load_interval_max_ms,
+        )
+        self._next_allowed_page_load_ms = self._now_ms() + interval_ms
+
+        self._schedule_next_page_load()
+
+    def _schedule_next_page_load(self) -> None:
+        if self._shutting_down:
+            return
+
+        if not self._page_load_queue:
+            self._page_load_timer.stop()
+            return
+
+        now_ms = self._now_ms()
+        run_at_ms, _page = self._page_load_queue[0]
+
+        next_run_ms = max(run_at_ms, self._next_allowed_page_load_ms)
+        delay_ms = max(0, next_run_ms - now_ms)
+
+        self._page_load_timer.start(delay_ms)
+
+    def _clear_page_load_queue(self) -> None:
+        self._page_load_timer.stop()
+        self._page_load_queue.clear()
+        self._queued_page_loads.clear()
+        self._next_allowed_page_load_ms = 0
+
+    @staticmethod
+    def _now_ms() -> int:
+        return time.monotonic_ns() // 1_000_000

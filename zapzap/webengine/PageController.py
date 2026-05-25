@@ -174,7 +174,7 @@ class PageController(QWebEnginePage):
         )
         # Reload WhatsApp Web page to force it to load the theme settings saved
         # in localStorage.
-        cast(WebView, cast(object, self.parent())).load_page()
+        cast(WebView, cast(object, self.parent())).schedule_load_page()
 
     def new_chat(self):
         """Simula o atalho 'Ctrl+Alt+N' para iniciar um novo chat."""

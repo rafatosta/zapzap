@@ -1,17 +1,23 @@
+from __future__ import annotations
+
 import re
 import shutil
 import os
 
+from typing import TYPE_CHECKING
+
 from PyQt6.QtWebChannel import QWebChannel
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings, QWebEnginePage, QWebEngineScript
-from PyQt6.QtCore import QUrl, pyqtSignal, QTimer, QEvent, Qt, QFile, QTextStream, QObject, pyqtSlot
+from PyQt6.QtCore import QUrl, pyqtSignal, QEvent, Qt, QFile, QTextStream, QObject, pyqtSlot
 from PyQt6.QtWidgets import QApplication, QWidget
 from PyQt6.QtGui import QAction
 
+if TYPE_CHECKING:
+    from zapzap.controllers.Browser import Browser
 from zapzap.services.ThemeManager import ThemeManager
 from zapzap.webengine.PageController import PageController
-from zapzap.models import User
+from zapzap.models.User import User
 from zapzap import __user_agent__, __whatsapp_url__
 from zapzap.notifications.NotificationService import NotificationService
 from zapzap.services.DictionariesManager import DictionariesManager
@@ -42,35 +48,23 @@ class WebView(QWebEngineView):
         "Linux Chrome": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     }
 
-    def __init__(self, user: User = None, page_index=None, parent=None):
+    def __init__(self, browser: Browser, user: User = None, page_index=None, parent=None):
         super().__init__(parent)
         self.user = user
         self.page_index = page_index
         self.profile = None  # Inicializa o perfil como None
         self._gesture_filter_installed = False
         self.whatsapp_page = None
-
         self._cache_path = None
         self._storage_path = None
-
         self.notifications = NotificationService()
         self._devtools_view = None
         self._devtools_page = None
-
         self._last_tmp_file = None
         self._shutting_down = False
-
         self._web_channel_bridge = None
-
-        self._reload_timer = QTimer(self)
-        self._reload_timer.setSingleShot(True)
-        self._reload_timer.timeout.connect(self.load_page)
-
-        self._render_crash_reload_timer = QTimer(self)
-        self._render_crash_reload_timer.setSingleShot(True)
-        self._render_crash_reload_timer.timeout.connect(self.load_page)
-
         self._signals_configured = False
+        self._browser = browser
 
         if user.enable:
             self._initialize()
@@ -253,14 +247,15 @@ class WebView(QWebEngineView):
         self.whatsapp_page = PageController(self.profile, self)
         self.whatsapp_page.user_id = self.user.id
         self.whatsapp_page.renderProcessTerminated.connect(self._on_render_crash)
-        self.load_page()
+        self.setPage(self.whatsapp_page)
         self._inject_web_theme_controller()
+        self.schedule_load_page()
 
     def _on_render_crash(self, terminationStatus, exitCode):
         if self._shutting_down or not self.user.enable or not self.whatsapp_page:
             return
         print(f"Tab renderer crashed (status={terminationStatus}, code={exitCode}). Reloading...")
-        self._render_crash_reload_timer.start(1000)
+        self.schedule_load_page(delay_ms=1000)
 
     def contextMenuEvent(self, event):
         """Cria o menu de contexto personalizado ao clicar com o botão direito."""
@@ -352,13 +347,13 @@ class WebView(QWebEngineView):
         """Ativa/desativa a correção ortográfica."""
         print("Correção ortográfica:", toggled)
         SettingsManager.set("system/spellCheckers", toggled)
-        QApplication.instance().getWindow().browser.update_spellcheck()
+        self._browser.update_spellcheck()
 
     def _select_language(self, lang):
         """Seleciona o idioma para correção ortográfica."""
         print("Linguagem selecionada via menu de contexto:", lang)
         DictionariesManager.set_lang(lang)
-        QApplication.instance().getWindow().browser.update_spellcheck()
+        self._browser.update_spellcheck()
 
     def _on_title_changed(self, title):
         """Manipula mudanças no título da página."""
@@ -371,7 +366,7 @@ class WebView(QWebEngineView):
             return
         if not success:
             print("You are not connected to the Internet.")
-            self._reload_timer.start(5000)
+            self.schedule_load_page(delay_ms=5000)
 
     def event(self, event):
         """Intercept native gesture events to optionally disable pinch-to-zoom.
@@ -403,15 +398,21 @@ class WebView(QWebEngineView):
         new_zoom = 1.0 if factor is None else self.zoomFactor() + factor
         self.setZoomFactor(new_zoom)
 
-    def load_page(self):
-        """Carrega a página do WhatsApp."""
+    def load_page_now(self) -> None:
+        """Loads WhatsApp Web page immediately."""
         if self._shutting_down:
             return
 
         if self.user.enable and self.whatsapp_page:
-            self.setPage(self.whatsapp_page)
             self.load(QUrl(__whatsapp_url__))
             self.setZoomFactor(self.user.zoomFactor)
+
+    def schedule_load_page(self, delay_ms: int = 0) -> None:
+        """Request the Browser to schedule the loading of the WhatsApp Web page."""
+        if self._shutting_down:
+            return
+
+        self._browser.queue_load_page(self, delay_ms)
 
     def apply_custom_css(self):
         if self.user.enable and self.whatsapp_page:
@@ -467,17 +468,8 @@ class WebView(QWebEngineView):
         self._shutting_down = True
         self._teardown_webengine(clear_cache=False)
 
-    def _stop_timers(self):
-        for timer in (
-                getattr(self, "_reload_timer", None),
-                getattr(self, "_render_crash_reload_timer", None),
-        ):
-            if timer:
-                timer.stop()
-
     def _teardown_webengine(self, clear_cache: bool=False):
         """Destrói objetos Qt associados à WebEngine de forma ordenada."""
-        self._stop_timers()
         self._save_zoom_factor()
         self.stop()
 

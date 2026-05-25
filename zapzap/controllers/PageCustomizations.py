@@ -740,7 +740,7 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
         if not target_webview:
             return False
 
-        target_webview.load_page()
+        target_webview.schedule_load_page()
         if not silent:
             self._show_feedback(_("Reload complete."))
 
