@@ -350,7 +350,7 @@ msgstr ""
 #: zapzap/views/ui_page_customizations.py:266
 #: zapzap/views/ui_page_general.py:170
 #: zapzap/controllers/DialogDumpHandler.py:50
-#: zapzap/controllers/DownloadDialog.py:135
+#: zapzap/controllers/DownloadDialog.py:132
 #, fuzzy
 msgid "Open folder"
 msgstr "Klasör seç"
@@ -900,16 +900,20 @@ msgstr "İndirme Dizini"
 msgid "Open"
 msgstr "Aç"
 
-#: zapzap/controllers/DownloadDialog.py:129
+#: zapzap/controllers/DownloadDialog.py:116
+msgid "More"
+msgstr ""
+
+#: zapzap/controllers/DownloadDialog.py:126
 #, fuzzy
 msgid "Save as"
 msgstr "Kaydet"
 
-#: zapzap/controllers/DownloadDialog.py:143
+#: zapzap/controllers/DownloadDialog.py:140
 msgid "Cancel"
 msgstr ""
 
-#: zapzap/controllers/DownloadDialog.py:272
+#: zapzap/controllers/DownloadDialog.py:273
 msgid "Save file"
 msgstr "Dosyayı kaydet"
 
