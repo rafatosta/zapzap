@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zapzap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-25 12:31-0300\n"
+"POT-Creation-Date: 2026-05-27 13:47-0300\n"
 "PO-Revision-Date: 2025-02-28 12:43+0500\n"
 "Last-Translator: Igor Semen  <semenigor at gmail dot com>\n"
 "Language-Team: TranslAster\n"
@@ -1621,20 +1621,20 @@ msgstr ""
 msgid "Not now"
 msgstr ""
 
-#: zapzap/controllers/MainWindow.py:247
 #: zapzap/controllers/ClientSideRendering.py:427
+#: zapzap/controllers/MainWindow.py:247
 #, fuzzy
 msgid "Close ZapZap"
 msgstr "ZapZap"
 
-#: zapzap/controllers/MainWindow.py:248
 #: zapzap/controllers/ClientSideRendering.py:428
+#: zapzap/controllers/MainWindow.py:248
 #, fuzzy
 msgid "Are you sure you want to close?"
 msgstr "Ви впевнені, що хочете видалити цей елемент?"
 
-#: zapzap/controllers/MainWindow.py:252
 #: zapzap/controllers/ClientSideRendering.py:433
+#: zapzap/controllers/MainWindow.py:252
 msgid "Don't ask again"
 msgstr ""
 

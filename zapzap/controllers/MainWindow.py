@@ -30,8 +30,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.theme_action_group = None
         self._setup_ui()
 
-        if not SettingsManager.get("notification/donation_message", True):
-            QtoasterDonation.showMessage(parent=self)
+        #if not SettingsManager.get("notification/donation_message", True):
+        #    QtoasterDonation.showMessage(parent=self)
 
     def changeEvent(self, event):
         super().changeEvent(event)
