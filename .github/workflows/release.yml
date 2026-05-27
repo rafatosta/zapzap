@@ -1,7 +1,6 @@
 name: Build and Release Zapzap
 
 on:
-
   workflow_dispatch:
 
   release:
@@ -47,7 +46,23 @@ jobs:
         run: |
           ls -lah dist/
 
-      - name: Upload Python artifacts
+      # ======================================================
+      # Manual execution -> upload artifact only
+      # ======================================================
+
+      - name: Upload Python artifact
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZapZap-Python
+          path: dist/*.whl
+
+      # ======================================================
+      # Release/tag -> publish release
+      # ======================================================
+
+      - name: Release Python artifacts
+        if: github.event_name != 'workflow_dispatch'
         uses: softprops/action-gh-release@v2
         with:
           files: |
@@ -88,7 +103,23 @@ jobs:
         run: |
           dir dist
 
-      - name: Upload Windows artifacts
+      # ======================================================
+      # Manual execution -> upload artifact only
+      # ======================================================
+
+      - name: Upload Windows artifact
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZapZap-Windows
+          path: dist/ZapZap-Windows.zip
+
+      # ======================================================
+      # Release/tag -> publish release
+      # ======================================================
+
+      - name: Release Windows artifacts
+        if: github.event_name != 'workflow_dispatch'
         uses: softprops/action-gh-release@v2
         with:
           files: |
@@ -145,10 +176,14 @@ jobs:
           pip install pyinstaller
           pip install -r requirements.txt
 
-      - name: Get version from tag
+      - name: Define version
         shell: bash
         run: |
-          echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
+          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            echo "VERSION=${GITHUB_REF_NAME}" >> $GITHUB_ENV
+          else
+            echo "VERSION=dev" >> $GITHUB_ENV
+          fi
 
       - name: Build AppImage
         run: |
@@ -158,7 +193,23 @@ jobs:
         run: |
           ls -lah dist/
 
-      - name: Upload AppImage artifacts
+      # ======================================================
+      # Manual execution -> upload artifact only
+      # ======================================================
+
+      - name: Upload AppImage artifact
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZapZap-AppImage
+          path: dist/*.AppImage
+
+      # ======================================================
+      # Release/tag -> publish release
+      # ======================================================
+
+      - name: Release AppImage artifacts
+        if: github.event_name != 'workflow_dispatch'
         uses: softprops/action-gh-release@v2
         with:
           files: |
