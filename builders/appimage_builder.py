@@ -3,6 +3,10 @@ import subprocess
 import tarfile
 from pathlib import Path
 from urllib.request import urlretrieve
+import os
+
+env = os.environ.copy()
+env["ARCH"] = "x86_64"
 
 
 class AppImageBuilder:
@@ -233,7 +237,7 @@ coll = COLLECT(
 
         self.dist_dir.mkdir(exist_ok=True)
 
-        env = self.dist_dir = Path("dist").environ.copy()
+        env = os.environ.copy()
         env["ARCH"] = "x86_64"
 
         subprocess.run(
@@ -245,7 +249,9 @@ coll = COLLECT(
             check=True
         )
 
-        generated_appimages = list(Path(".").glob("*.AppImage"))
+        generated_appimages = list(
+            Path(".").glob("*.AppImage")
+        )
 
         if not generated_appimages:
             raise RuntimeError(
@@ -254,7 +260,9 @@ coll = COLLECT(
 
         appimage_file = generated_appimages[0]
 
-        final_path = self.dist_dir / appimage_file.name
+        final_path = (
+            self.dist_dir / appimage_file.name
+        )
 
         shutil.move(
             str(appimage_file),
