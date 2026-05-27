@@ -96,7 +96,7 @@
         <item>
          <widget class="QGroupBox" name="csr_groupBox">
           <property name="title">
-           <string>Client-side rendering</string>
+           <string>Custom title bar</string>
           </property>
           <property name="checkable">
            <bool>true</bool>
@@ -124,7 +124,7 @@
               </font>
              </property>
              <property name="text">
-              <string>Note: changing CSR enabled state requires restart.</string>
+              <string>Note:Requires restart.</string>
              </property>
             </widget>
            </item>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-24 16:23-0300\n"
+"POT-Creation-Date: 2026-05-25 12:31-0300\n"
 "PO-Revision-Date: 2026-03-09 22:23+0100\n"
 "Last-Translator: Dennis Cederberg "
 "<9393069+cederberget@users.noreply.github.com>\n"
@@ -763,7 +763,7 @@ msgid "Adaptive"
 msgstr "Adaptiv"
 
 #: zapzap/views/ui_page_appearance.py:148
-msgid "Client-side rendering"
+msgid "Custom title bar"
 msgstr ""
 
 #: zapzap/views/ui_page_appearance.py:149
@@ -776,7 +776,7 @@ msgstr ""
 
 #: zapzap/views/ui_page_appearance.py:151
 #, fuzzy
-msgid "Note: changing CSR enabled state requires restart."
+msgid "Note:Requires restart."
 msgstr "Obs: Kräver omstart."
 
 #: zapzap/views/ui_page_appearance.py:152
@@ -1819,6 +1819,10 @@ msgstr "Välj språk"
 #, fuzzy, python-brace-format
 msgid "DevTools - {}"
 msgstr "Öppna utvecklingsverktyg"
+
+#, fuzzy
+#~ msgid "Note: changing CSR enabled state requires restart."
+#~ msgstr "Obs: Kräver omstart."
 
 #, fuzzy
 #~ msgid "Downloads folder"

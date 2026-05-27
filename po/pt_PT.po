@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-24 16:23-0300\n"
+"POT-Creation-Date: 2026-05-25 12:31-0300\n"
 "PO-Revision-Date: 2026-04-08 15:31+UTC+0\n"
 "Last-Translator: André Barata <andretiagob@protonmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -759,7 +759,7 @@ msgid "Adaptive"
 msgstr "Adaptativo"
 
 #: zapzap/views/ui_page_appearance.py:148
-msgid "Client-side rendering"
+msgid "Custom title bar"
 msgstr ""
 
 #: zapzap/views/ui_page_appearance.py:149
@@ -772,7 +772,7 @@ msgstr ""
 
 #: zapzap/views/ui_page_appearance.py:151
 #, fuzzy
-msgid "Note: changing CSR enabled state requires restart."
+msgid "Note:Requires restart."
 msgstr "Nota: É necessário reiniciar a aplicação"
 
 #: zapzap/views/ui_page_appearance.py:152
@@ -1858,6 +1858,10 @@ msgstr "Selecionar idioma"
 #, fuzzy, python-brace-format
 msgid "DevTools - {}"
 msgstr "Abrir ferramentas de desenvolvimento"
+
+#, fuzzy
+#~ msgid "Note: changing CSR enabled state requires restart."
+#~ msgstr "Nota: É necessário reiniciar a aplicação"
 
 #~ msgid "Open ZapZap website after setup"
 #~ msgstr "Abrir o site do ZapZap após a configuração"
