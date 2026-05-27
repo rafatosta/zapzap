@@ -100,6 +100,9 @@ jobs:
   build-appimage:
     runs-on: ubuntu-22.04
 
+    env:
+      PYTHONUTF8: 1
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -114,21 +117,24 @@ jobs:
           sudo apt update
 
           sudo apt install -y \
-            libglib2.0-0 \
-            libnss3 \
-            libxkbcommon-x11-0 \
-            libegl1 \
-            libdbus-1-3 \
-            libfontconfig1 \
-            libxcomposite1 \
-            libxdamage1 \
-            libxrandr2 \
-            libx11-xcb1 \
-            libxcb-cursor0 \
-            libopengl0 \
-            fuse \
+            build-essential \
+            python3-dev \
+            pkg-config \
             patchelf \
-            desktop-file-utils
+            desktop-file-utils \
+            fuse \
+            wget \
+            unzip \
+            curl \
+            libdbus-1-dev \
+            libdbus-glib-1-dev \
+            libglib2.0-dev \
+            libegl1 \
+            libopengl0 \
+            libxkbcommon-x11-0 \
+            libnss3 \
+            libxss1 \
+            libasound2
 
       - name: Install Python dependencies
         run: |
@@ -147,12 +153,12 @@ jobs:
 
       - name: List generated files
         run: |
-          ls -lah
+          ls -lah dist/
 
       - name: Upload AppImage artifacts
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            *.AppImage
+            dist/*.AppImage
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
