@@ -125,7 +125,9 @@ After adjusting these permissions, file uploads, opening PDFs, and drag-and-drop
 
 ## Requirements
 
--   **Python 3.9 or higher**
+- **Python 3.8 or higher**
+- `pip`
+- System libraries required by Qt WebEngine and optionally `dbus-python` on Linux
 
 
 
@@ -173,6 +175,8 @@ python run.py dev --build-translations
 
 ## 👀 Preview Mode
 
+> Dica: use preview para validar empacotamento sem publicar release.
+
 Flatpak:
 
 ``` bash
@@ -198,6 +202,16 @@ python run.py preview --build-translations --flatpak
 ```
 
 
+
+## 🏗️ Builders
+
+ZapZap possui builders dedicados para cada alvo de distribuição, organizados em `builders/`:
+
+- `builders/flatpak_builder.py`: pipeline de build e empacotamento Flatpak.
+- `builders/appimage_builder.py`: geração do artefato AppImage.
+- `builders/windows_builder.py`: build para Windows (EXE/ZIP).
+
+Esses builders são acionados pelo `run.py` via comandos `preview` e `build`, mantendo um fluxo único de automação local e release.
 
 ## 📦 Build AppImage
 
@@ -283,3 +297,25 @@ See the LICENSE file for more information.
 **Maintainer:** Rafael Tosta 
 
 **Email:** [rafa.ecomp@gmail.com](mailto:rafa.ecomp@gmail.com)
+
+
+## 🧪 Testes rápidos recomendados
+
+Após mudanças locais, rode pelo menos:
+
+```bash
+python run.py dev
+```
+
+Para validar geração de traduções e interfaces:
+
+```bash
+python run.py dev --build-translations
+```
+
+Para validar fluxo de empacotamento:
+
+```bash
+python run.py preview --flatpak
+python run.py preview --appimage
+```
