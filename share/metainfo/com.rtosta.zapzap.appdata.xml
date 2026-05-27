@@ -59,8 +59,9 @@
           <description>
               <ul>
                   <li>New: Custom title bar</li>
+                  <li>New: Refactor DownloadDialog UI</li>
                   <li>Fix: WhatsApp Web theme sync</li>
-                  <li>Fix: </li>
+                  <li>Fix: grouped notifications</li>
               </ul>
           </description>
       </release>
