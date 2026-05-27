@@ -1,6 +1,9 @@
 name: Build and Release Zapzap
 
 on:
+
+  workflow_dispatch:
+
   release:
     types: [created]
 
