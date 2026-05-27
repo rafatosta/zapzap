@@ -54,17 +54,41 @@ class AppImageBuilder:
         self.appimagetool.chmod(0o755)
 
     def download_source(self):
+        if self.version == "dev":
+            print("Modo desenvolvimento detectado")
+            print("Usando código local do repositório")
+
+            shutil.copytree(
+                Path.cwd(),
+                self.code_folder,
+                dirs_exist_ok=True,
+                ignore=shutil.ignore_patterns(
+                    ".git",
+                    ".venv",
+                    "__pycache__",
+                    "dist",
+                    "build",
+                    ".appimage-builder"
+                )
+            )
+
+            return
+
         if self.code_zip.exists():
             print(f"{self.code_zip} já existe")
             return
 
         print("Baixando código fonte...")
+
         urlretrieve(
             f"https://github.com/rafatosta/zapzap/archive/refs/tags/{self.version}.tar.gz",
             self.code_zip
         )
 
     def extract_source(self):
+        if self.version == "dev":
+            return
+
         if self.code_folder.exists():
             print(f"{self.code_folder} já existe")
             return
