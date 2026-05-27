@@ -10,6 +10,8 @@ class AppImageBuilder:
         if not version:
             raise ValueError("Tag da versão não definida")
 
+        self.dist_dir = Path("dist")
+
         self.version = version
         self.workdir = Path(".appimage-builder")
 
@@ -229,7 +231,10 @@ coll = COLLECT(
     def build_appimage(self):
         print("Gerando AppImage...")
 
-        env = dict(**dict(), ARCH="x86_64")
+        self.dist_dir.mkdir(exist_ok=True)
+
+        env = self.dist_dir = Path("dist").environ.copy()
+        env["ARCH"] = "x86_64"
 
         subprocess.run(
             [
@@ -239,6 +244,24 @@ coll = COLLECT(
             env=env,
             check=True
         )
+
+        generated_appimages = list(Path(".").glob("*.AppImage"))
+
+        if not generated_appimages:
+            raise RuntimeError(
+                "Nenhum AppImage foi gerado"
+            )
+
+        appimage_file = generated_appimages[0]
+
+        final_path = self.dist_dir / appimage_file.name
+
+        shutil.move(
+            str(appimage_file),
+            str(final_path)
+        )
+
+        print(f"AppImage movido para: {final_path}")
 
     def cleanup(self):
         print("Removendo arquivos temporários...")
