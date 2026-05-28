@@ -23,33 +23,6 @@ class CoprBuilder:
 
         self.client = Client.create_from_config_file()
 
-    def create_git_tag(
-        self,
-        version: str,
-        push: bool = True,
-    ) -> None:
-        """
-        Cria uma tag git local e opcionalmente envia para o remoto.
-        """
-
-        print(f"\nCriando tag git: {version}")
-
-        self._run_command([
-            "git",
-            "tag",
-            version,
-        ])
-
-        if push:
-            print(f"\nEnviando tag para origin: {version}")
-
-            self._run_command([
-                "git",
-                "push",
-                "origin",
-                version,
-            ])
-
     def create_github_release(
         self,
         version: str,
@@ -147,24 +120,10 @@ class CoprBuilder:
         self,
         version: str,
         release_notes: Optional[str] = None,
-        push_tag: bool = True,
         create_release: bool = True,
         wait_build: bool = True,
         chroots: Optional[list[str]] = None,
     ) -> int:
-        """
-        Pipeline completo:
-            1. cria tag
-            2. envia tag
-            3. cria GitHub Release
-            4. dispara build COPR
-            5. monitora build
-        """
-
-        self.create_git_tag(
-            version=version,
-            push=push_tag,
-        )
 
         if create_release:
             self.create_github_release(
@@ -181,6 +140,7 @@ class CoprBuilder:
             self.watch_build(build_id)
 
         return build_id
+    
 
     @staticmethod
     def _run_command(command: list[str]) -> None:
