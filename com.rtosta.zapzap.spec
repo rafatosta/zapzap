@@ -1,67 +1,65 @@
-# Arquivo .spec para Fedora (by @dbarbosa0)
-# Based on PKGBUILD from AUR
+# Fedora SPEC for ZapZap
 
 %global srcname zapzap
-%global srcversion  6.4.2
-
-%global __python /usr/bin/python3
-%global _rpmfilename %%{NAME}-%%{VERSION}-%%{RELEASE}.rpm
 
 Name:           %{srcname}
-Version:        %{srcversion}
+Version:        6.5
 Release:        1%{?dist}
-Summary:        Zapzap - WhatsApp Messenger for Linux
+Summary:        WhatsApp Messenger for Linux
 
-License:        GNU General Public License v3.0
-URL:            https://github.com/rafatosta/%{srcname}
-#Source0:        https://github.com/rafatosta/%{srcname}/releases/tag/%{srcversion}/%{srcname}-%{srcversion}.tar.gz
-Source0: https://github.com/rafatosta/zapzap/archive/refs/tags/%{srcversion}.tar.gz
+License:        GPL-3.0-only
+URL:            https://github.com/rafatosta/zapzap
 
+Source0:        %{url}/archive/refs/tags/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
-# Requisitos de construção
-BuildArch:     noarch
+BuildArch:      noarch
+
 BuildRequires:  python3-devel
-BuildRequires:  desktop-file-utils
 BuildRequires:  python3-setuptools
-BuildRequires:  python-build
-BuildRequires:  python-installer
-BuildRequires:  python-wheel
+BuildRequires:  python3-wheel
+BuildRequires:  python3-build
+BuildRequires:  python3-installer
+BuildRequires:  desktop-file-utils
+
+Requires:       python3
+Requires:       python3-dbus
 
 %if 0%{?fedora}
-BuildRequires:   python3-pyqt6
-Requires:   python3-pyqt6-base
-Requires:   python3-pyqt6-sip
-Requires:   python3-pyqt6-webengine
-Requires:   python3-dbus
+Requires:       python3-pyqt6-base
+Requires:       python3-pyqt6-sip
+Requires:       python3-pyqt6-webengine
 %endif
 
-
 %description
-Zapzap - WhatsApp Messenger for Linux
+ZapZap is a WhatsApp client for Linux built with Python and PyQt6.
 
 %prep
-%autosetup -n %{srcname}-%{version}
-
+%autosetup -n %{name}-%{version}
 
 %build
-%python3 -m build --wheel --no-isolation
+%pyproject_wheel
 
 %install
-%python3 -m installer --destdir=%{buildroot} dist/*.whl
-mkdir -p $RPM_BUILD_ROOT/usr/share/applications
-mkdir -p $RPM_BUILD_ROOT/usr/share/icons/hicolor/scalable/apps/
-cp -R share/applications/com.rtosta.zapzap.desktop $RPM_BUILD_ROOT/usr/share/applications/com.rtosta.zapzap.desktop
-cp -R share/icons/com.rtosta.zapzap.svg $RPM_BUILD_ROOT/usr/share/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg
+%pyproject_install
 
+install -Dm644 \
+    share/applications/com.rtosta.zapzap.desktop \
+    %{buildroot}%{_datadir}/applications/com.rtosta.zapzap.desktop
+
+install -Dm644 \
+    share/icons/com.rtosta.zapzap.svg \
+    %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg
 
 %check
-
 
 %files
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/*
 
-%{_bindir}/%{srcname}
-/usr/share/applications/com.rtosta.zapzap.desktop
-/usr/share/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg
+%{python3_sitelib}/zapzap
+%{python3_sitelib}/zapzap-*.dist-info
+
+%{_bindir}/zapzap
+
+%{_datadir}/applications/com.rtosta.zapzap.desktop
+%{_datadir}/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg

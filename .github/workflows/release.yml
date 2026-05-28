@@ -16,11 +16,47 @@ permissions:
 env:
   PYTHON_VERSION: "3.13"
 
+jobs:
+
+# ==========================================================
+#  Release RPM
+# ==========================================================
+
+  copr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install copr
+
+      - name: Configure COPR
+        run: |
+          mkdir -p ~/.config
+          echo "$COPR_CONFIG" > ~/.config/copr
+          chmod 600 ~/.config/copr
+        env:
+          COPR_CONFIG: ${{ secrets.COPR_CONFIG }}
+
+      - name: Run COPR Release
+        env:
+          VERSION: 6.5
+        run: |
+          python builders/copr_builder.py
+
 # ==========================================================
 # PYTHON PACKAGE
 # ==========================================================
 
-jobs:
   build-python:
     runs-on: ubuntu-latest
 
