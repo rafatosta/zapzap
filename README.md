@@ -125,7 +125,9 @@ After adjusting these permissions, file uploads, opening PDFs, and drag-and-drop
 
 ## Requirements
 
--   **Python 3.9 or higher**
+- **Python 3.8 or higher**
+- `pip`
+- System libraries required by Qt WebEngine and optionally `dbus-python` on Linux
 
 
 
@@ -145,70 +147,35 @@ pip install -r requirements.txt
 
 
 
-# 🚀 Running ZapZap
+# 🚀 Development Mode
 
 ``` bash
-python run.py [dev|preview|build] [options]
-```
-
-
-
-## 🔧 Development Mode
-
-Without translations:
-
-``` bash
-python run.py dev
-```
-
-With translations:
-
-``` bash
-python run.py dev --build-translations
+python run.py
 ```
 
 #### Debugging WebEngine
 - Open DevTools for current account page: `View -> Open DevTools` (`Ctrl+Shift+I`)
 
+## 🏗️ Builders
 
-## 👀 Preview Mode
+ZapZap possui builders dedicados para cada alvo de distribuição, organizados em `builders/`:
 
-Flatpak:
+- `builders/flatpak_builder.py`: pipeline de build e empacotamento Flatpak.
+- `builders/appimage_builder.py`: geração do artefato AppImage.
+- `builders/windows_builder.py`: build para Windows (EXE/ZIP).
 
-``` bash
-python run.py preview --flatpak
-```
-
-AppImage:
-
-``` bash
-python run.py preview --appimage
-```
-
-Windows:
-
-``` bash
-python run.py preview --windows
-```
-
-With translations:
-
-``` bash
-python run.py preview --build-translations --flatpak 
-```
-
-
+Esses builders são acionados manualmente e independente do `run.py`, mantendo um fluxo único de automação local e release.
 
 ## 📦 Build AppImage
 
 ``` bash
-python run.py build --appimage <version>
+python builders/appimage_builder.py --appimage <version>
 ```
 
 Example:
 
 ``` bash
-python run.py build --appimage 6.0
+python builders/appimage_builder.py build --appimage 6.5
 ```
 
 
@@ -216,7 +183,7 @@ python run.py build --appimage 6.0
 ## 📦 Build Flatpak Onefile
 
 ``` bash
-python run.py build --flatpak-onefile
+python builders/flatpak_builder.py
 ```
 
 Output:
@@ -226,15 +193,13 @@ Output:
 ### 📦 Build Windows (EXE)
 
 ``` bash
-python run.py build --windows
+python builders/windows_builder.py
 ```
 
 Output:
 
     dist/ZapZap.exe
     dist/ZapZap-Windows.zip
-
-
 
 
 ## 📦 Install as Python Module
@@ -248,7 +213,6 @@ pip install .
 ``` bash
 pip uninstall zapzap
 ```
-
 
 
 ## 🔧 uv Tool

@@ -6,7 +6,7 @@ O **ZapZap** é um cliente desktop Linux para WhatsApp Web construído com **PyQ
 
 ## 2) Stack e componentes principais
 
-- **Linguagem:** Python 3.8+
+- **Linguagem:** Python 3.8+ (conforme `pyproject.toml`)
 - **UI:** PyQt6
 - **Engine Web:** PyQt6-WebEngine
 - **Persistência de configurações:** `QSettings`
@@ -90,20 +90,19 @@ Script orquestrador: `run.py`
 
 ### 6.1 Desenvolvimento
 
-- `python run.py dev`
-- `python run.py dev --build-translations`
+- `python run.py`
 
 O fluxo gera classes de janela a partir dos `.ui` e inicia o app em seguida.
 
-### 6.2 Preview
+### 6.2 Builders (camada de empacotamento)
 
-- Flatpak: `python run.py preview --flatpak`
-- AppImage (local): `python run.py preview --appimage`
+Os comandos de `run.py` delegam a implementação de build para módulos em `builders/`, separando a orquestração CLI da lógica de empacotamento:
 
-### 6.3 Build
+- `flatpak_builder.py`: prepara e gera pacote Flatpak.
+- `appimage_builder.py`: prepara ambiente e gera AppImage.
+- `windows_builder.py`: empacota versão Windows (EXE/ZIP).
 
-- AppImage: `python run.py build --appimage <version>`
-- Flatpak onefile: `python run.py build --flatpak-onefile`
+Esse desenho facilita manutenção por plataforma e reduz acoplamento entre fluxo de desenvolvimento e regras específicas de distribuição.
 
 ## 7) Estrutura de diretórios (resumo)
 
@@ -114,9 +113,16 @@ O fluxo gera classes de janela a partir dos `.ui` e inicia o app em seguida.
 - `zapzap/config`: infraestrutura local (SQLite).
 - `zapzap/resources`: ícones, estilos e recursos de UI.
 - `po/` e `zapzap/po/`: catálogo fonte e binário de traduções.
-- `_scripts/`: scripts auxiliares de build/empacotamento.
+- `tools/`: scripts auxiliares de execução local, compilação de UI e utilitários de tradução/build.
+- `builders/`: implementações de build/preview por plataforma (Flatpak, AppImage e Windows).
 
 ## 8) Extensão e manutenção
+
+### Convenções práticas
+
+- Preferir novos comportamentos em `services/` e manter `controllers/` como camada de orquestração de UI.
+- Se uma configuração impacta conta e global, documentar fallback explícito (global -> conta).
+- Em mudanças que envolvam WebEngine, registrar impacto esperado em consumo de memória e compatibilidade Wayland/X11 no PR.
 
 ### Pontos de extensão recomendados
 
@@ -131,14 +137,22 @@ O fluxo gera classes de janela a partir dos `.ui` e inicia o app em seguida.
 - Mudanças em notificações devem ser testadas em Flatpak e ambiente não sandbox.
 - Chaves de `QSettings` devem manter compatibilidade retroativa para evitar regressões em upgrades.
 
-## 9) Troubleshooting rápido
+## 9) Operação diária (checklist)
+
+1. **Antes de abrir PR**
+   - executar `python run.py`
+   - validar ao menos uma conta carregando `https://web.whatsapp.com/`
+2. **Quando alterar UI**
+   - executar `python run.py` para recompilar classes geradas dos arquivos `.ui`
+3. **Quando alterar customizações/JS**
+   - validar `Save and reload` e `Reload` na página de customizações
+4. **Quando alterar notificações**
+   - testar em ambiente Flatpak e fora de sandbox
+
+## 10) Troubleshooting rápido
 
 - **Sem upload de arquivos (Flatpak/Wayland):** revisar permissões de filesystem (Documents, Downloads, Pictures, Videos).
 - **Sem spellcheck:** verificar caminho de dicionários conforme empacotamento.
 - **Tema não sincroniza:** confirmar backend de portal/DBus disponível no ambiente.
 - **Notificações ausentes:** validar preferência global/por conta e backend selecionado.
 - **Figurinhas de outras pessoas ficam carregando para sempre / alto uso de RAM:** no WhatsApp Web, habilitar `Configurações > Conversas > Download automático de mídia > Fotos`. Quando essa opção está desativada, há relatos de figurinhas que não finalizam o carregamento e podem elevar consumo de memória com a conversa aberta.
-
----
-
-Se necessário, esta documentação pode ser evoluída para um padrão “Architecture Decision Records (ADR)” com histórico de decisões por feature crítica.
