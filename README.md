@@ -147,61 +147,14 @@ pip install -r requirements.txt
 
 
 
-# 🚀 Running ZapZap
+# 🚀 Development Mode
 
 ``` bash
-python run.py [dev|preview|build] [options]
-```
-
-
-
-## 🔧 Development Mode
-
-Without translations:
-
-``` bash
-python run.py dev
-```
-
-With translations:
-
-``` bash
-python run.py dev --build-translations
+python run.py
 ```
 
 #### Debugging WebEngine
 - Open DevTools for current account page: `View -> Open DevTools` (`Ctrl+Shift+I`)
-
-
-## 👀 Preview Mode
-
-> Dica: use preview para validar empacotamento sem publicar release.
-
-Flatpak:
-
-``` bash
-python run.py preview --flatpak
-```
-
-AppImage:
-
-``` bash
-python run.py preview --appimage
-```
-
-Windows:
-
-``` bash
-python run.py preview --windows
-```
-
-With translations:
-
-``` bash
-python run.py preview --build-translations --flatpak 
-```
-
-
 
 ## 🏗️ Builders
 
@@ -211,18 +164,18 @@ ZapZap possui builders dedicados para cada alvo de distribuição, organizados e
 - `builders/appimage_builder.py`: geração do artefato AppImage.
 - `builders/windows_builder.py`: build para Windows (EXE/ZIP).
 
-Esses builders são acionados pelo `run.py` via comandos `preview` e `build`, mantendo um fluxo único de automação local e release.
+Esses builders são acionados manualmente e independente do `run.py`, mantendo um fluxo único de automação local e release.
 
 ## 📦 Build AppImage
 
 ``` bash
-python run.py build --appimage <version>
+python builders/appimage_builder.py --appimage <version>
 ```
 
 Example:
 
 ``` bash
-python run.py build --appimage 6.0
+python builders/appimage_builder.py build --appimage 6.5
 ```
 
 
@@ -230,7 +183,7 @@ python run.py build --appimage 6.0
 ## 📦 Build Flatpak Onefile
 
 ``` bash
-python run.py build --flatpak-onefile
+python builders/flatpak_builder.py
 ```
 
 Output:
@@ -240,15 +193,13 @@ Output:
 ### 📦 Build Windows (EXE)
 
 ``` bash
-python run.py build --windows
+python builders/windows_builder.py
 ```
 
 Output:
 
     dist/ZapZap.exe
     dist/ZapZap-Windows.zip
-
-
 
 
 ## 📦 Install as Python Module
@@ -262,7 +213,6 @@ pip install .
 ``` bash
 pip uninstall zapzap
 ```
-
 
 
 ## 🔧 uv Tool
@@ -297,25 +247,3 @@ See the LICENSE file for more information.
 **Maintainer:** Rafael Tosta 
 
 **Email:** [rafa.ecomp@gmail.com](mailto:rafa.ecomp@gmail.com)
-
-
-## 🧪 Testes rápidos recomendados
-
-Após mudanças locais, rode pelo menos:
-
-```bash
-python run.py dev
-```
-
-Para validar geração de traduções e interfaces:
-
-```bash
-python run.py dev --build-translations
-```
-
-Para validar fluxo de empacotamento:
-
-```bash
-python run.py preview --flatpak
-python run.py preview --appimage
-```

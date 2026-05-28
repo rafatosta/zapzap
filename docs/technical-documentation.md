@@ -90,22 +90,11 @@ Script orquestrador: `run.py`
 
 ### 6.1 Desenvolvimento
 
-- `python run.py dev`
-- `python run.py dev --build-translations`
+- `python run.py`
 
 O fluxo gera classes de janela a partir dos `.ui` e inicia o app em seguida.
 
-### 6.2 Preview
-
-- Flatpak: `python run.py preview --flatpak`
-- AppImage (local): `python run.py preview --appimage`
-
-### 6.3 Build
-
-- AppImage: `python run.py build --appimage <version>`
-- Flatpak onefile: `python run.py build --flatpak-onefile`
-
-### 6.4 Builders (camada de empacotamento)
+### 6.2 Builders (camada de empacotamento)
 
 Os comandos de `run.py` delegam a implementação de build para módulos em `builders/`, separando a orquestração CLI da lógica de empacotamento:
 
@@ -151,10 +140,10 @@ Esse desenho facilita manutenção por plataforma e reduz acoplamento entre flux
 ## 9) Operação diária (checklist)
 
 1. **Antes de abrir PR**
-   - executar `python run.py dev`
+   - executar `python run.py`
    - validar ao menos uma conta carregando `https://web.whatsapp.com/`
 2. **Quando alterar UI**
-   - executar `python run.py dev --build-translations` para recompilar classes geradas dos arquivos `.ui`
+   - executar `python run.py` para recompilar classes geradas dos arquivos `.ui`
 3. **Quando alterar customizações/JS**
    - validar `Save and reload` e `Reload` na página de customizações
 4. **Quando alterar notificações**
@@ -167,7 +156,3 @@ Esse desenho facilita manutenção por plataforma e reduz acoplamento entre flux
 - **Tema não sincroniza:** confirmar backend de portal/DBus disponível no ambiente.
 - **Notificações ausentes:** validar preferência global/por conta e backend selecionado.
 - **Figurinhas de outras pessoas ficam carregando para sempre / alto uso de RAM:** no WhatsApp Web, habilitar `Configurações > Conversas > Download automático de mídia > Fotos`. Quando essa opção está desativada, há relatos de figurinhas que não finalizam o carregamento e podem elevar consumo de memória com a conversa aberta.
-
----
-
-Se necessário, esta documentação pode ser evoluída para um padrão “Architecture Decision Records (ADR)” com histórico de decisões por feature crítica.
