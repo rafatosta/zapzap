@@ -49,7 +49,8 @@ jobs:
 
       - name: Run COPR Release
         env:
-          VERSION: 6.5
+          VERSION: ${{ github.ref_name }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           python builders/copr_builder.py
 
