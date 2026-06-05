@@ -17,6 +17,7 @@ from gettext import gettext as _
 import os
 
 from zapzap.services.SettingsManager import SettingsManager
+from zapzap.services.DownloadNamingService import DownloadNamingService
 
 
 class DownloadDialog(QDialog):
@@ -268,23 +269,31 @@ class DownloadDialog(QDialog):
             else QFileDialog.Option(0)
         )
 
+        name_filter = f"*.{suffix}" if suffix else "*"
+
         path, __ = QFileDialog.getSaveFileName(
             self,
             _("Save file"),
             os.path.join(directory, file_name),
-            f"*.{suffix}",
+            name_filter,
             options=options
         )
 
         if not path:
             return
 
+        normalized_file_name = DownloadNamingService.normalized_file_name(
+            os.path.basename(path),
+            self.download.mimeType(),
+            self.download.url().toString()
+        )
+
         self.download.setDownloadDirectory(
             os.path.dirname(path)
         )
 
         self.download.setDownloadFileName(
-            os.path.basename(path)
+            normalized_file_name
         )
 
         self.download.accept()
