@@ -1,6 +1,7 @@
 from PyQt6.QtWebEngineCore import QWebEngineDownloadRequest
 from PyQt6.QtCore import QStandardPaths
 from zapzap.services.SettingsManager import SettingsManager
+from zapzap.services.DownloadNamingService import DownloadNamingService
 from PyQt6.QtWidgets import QFileDialog
 
 from zapzap.controllers.DownloadDialog import DownloadDialog
@@ -47,8 +48,21 @@ class DownloadManager:
             DownloadManager.get_path()
         )
 
+        DownloadManager._normalize_download_file_name(download)
+
         dialog = DownloadDialog(download, parent)
         dialog.show()
+
+    @staticmethod
+    def _normalize_download_file_name(download: QWebEngineDownloadRequest):
+        file_name = DownloadNamingService.normalized_file_name(
+            download.downloadFileName() or download.suggestedFileName(),
+            download.mimeType(),
+            download.url().toString()
+        )
+
+        if file_name != download.downloadFileName():
+            download.setDownloadFileName(file_name)
 
     @staticmethod
     def open_folder_dialog(parent):
