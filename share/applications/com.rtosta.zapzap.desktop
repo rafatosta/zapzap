@@ -11,6 +11,7 @@ Keywords=WhatsApp;Chat;ZapZap;
 StartupWMClass=zapzap
 MimeType=x-scheme-handler/whatsapp
 Terminal=false
+StartupNotify=false
 SingleMainWindow=true
 X-GNOME-UsesNotifications=true
 X-GNOME-SingleWindow=true
