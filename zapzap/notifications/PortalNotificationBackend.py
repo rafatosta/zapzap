@@ -10,11 +10,13 @@ from PyQt6.QtDBus import (
     QDBusVariant,
 )
 from PyQt6.QtWebEngineCore import QWebEngineNotification
-from PyQt6.QtWidgets import QApplication
-
 from zapzap.webengine import WebView
 from zapzap.notifications.FreedesktopNotificationBackend import IconRenderer
 from zapzap.services.SettingsManager import SettingsManager
+from zapzap.notifications.NotificationActivation import (
+    activate_notification_page,
+    extract_activation_token,
+)
 
 
 class PortalNotificationBackend(QObject):
@@ -201,29 +203,15 @@ class PortalNotificationBackend(QObject):
             return
 
         try:
-            app = QApplication.instance()
-            if not app:
-                return
-
-            main_window = app.getWindow()
-            if not main_window:
-                return
-
-            main_window.show()
-            main_window.raise_()
-            main_window.activateWindow()
-
             notification = self._notifications.get(notification_id)
             page = self._pages.get(notification_id)
+            activation_token = extract_activation_token(parameters)
 
-            if page is not None:
-                main_window.browser.switch_to_page(
-                    page,
-                    main_window.browser.page_buttons[page.page_index]
-                )
-
-            if notification:
-                notification.click()
+            activate_notification_page(
+                page=page,
+                notification=notification,
+                activation_token=activation_token,
+            )
 
         except Exception as e:
             print("Portal ActionInvoked error:", e)

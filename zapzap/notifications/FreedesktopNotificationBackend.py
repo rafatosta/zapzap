@@ -5,13 +5,13 @@ from collections import OrderedDict
 
 from PyQt6.QtCore import Qt, QSize, QStandardPaths
 from PyQt6.QtGui import QPainter, QImage, QBrush, QPen
-from PyQt6.QtWidgets import QApplication
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 
 from zapzap.webengine import WebView
 from zapzap.resources.TrayIcon import TrayIcon
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap import __appname__
+from zapzap.notifications.NotificationActivation import activate_notification_page
 
 # -----------------------------------------------------------------------------
 # Optional DBus imports (fail-safe)
@@ -114,6 +114,7 @@ class DBusConnection:
         self.interface = None
         self.available = False
         self._notifications: dict[int, DBusNotification] = {}
+        self._activation_tokens: dict[int, str] = {}
 
         self._init()
 
@@ -134,6 +135,9 @@ class DBusConnection:
 
             self.interface.connect_to_signal(
                 "ActionInvoked", self._on_action_invoked
+            )
+            self.interface.connect_to_signal(
+                "ActivationToken", self._on_activation_token
             )
             self.interface.connect_to_signal(
                 "NotificationClosed", self._on_notification_closed
@@ -192,17 +196,22 @@ class DBusConnection:
     # ------------------------------------------------------------------
     # DBus callbacks
     # ------------------------------------------------------------------
+    def _on_activation_token(self, nid, activation_token):
+        self._activation_tokens[int(nid)] = str(activation_token)
+
     def _on_action_invoked(self, nid, action):
         nid = int(nid)
         action = str(action)
         if nid in self._notifications:
-            self._notifications[nid].handle_action(action)
+            activation_token = self._activation_tokens.pop(nid, None)
+            self._notifications[nid].handle_action(action, activation_token)
 
     def _on_notification_closed(self, nid, _reason):
         nid = int(nid)
         if nid in self._notifications:
             self._notifications[nid].handle_closed()
             del self._notifications[nid]
+        self._activation_tokens.pop(nid, None)
 
 
 # -----------------------------------------------------------------------------
@@ -255,10 +264,10 @@ class DBusNotification:
             arr.extend([key, label])
         return arr
 
-    def handle_action(self, action: str):
+    def handle_action(self, action: str, activation_token: str | None = None):
         if action in self.actions:
             _, callback = self.actions[action]
-            callback()
+            callback(activation_token)
 
     def handle_closed(self):
         pass
@@ -316,16 +325,12 @@ class FreedesktopNotificationBackend:
         notify.set_category("im.received")
         notify.setIconPath(icon_path)  # 👈 ESSENCIAL
 
-        def on_click():
-            main = QApplication.instance().getWindow()
-            main.show()
-            main.raise_()
-            main.activateWindow()
-            main.browser.switch_to_page(
-                page,
-                main.browser.page_buttons[page.page_index],
+        def on_click(activation_token=None):
+            activate_notification_page(
+                page=page,
+                notification=notification,
+                activation_token=activation_token,
             )
-            notification.click()
 
         notify.add_action("default", "", on_click)
 
