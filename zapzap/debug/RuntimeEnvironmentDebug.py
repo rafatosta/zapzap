@@ -1,9 +1,11 @@
 import os
 import sys
 import json
+from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 from typing import Dict, Any
 from datetime import datetime
+from PyQt6.QtCore import PYQT_VERSION_STR, QT_VERSION_STR
 from zapzap import __appname__, __version__
 
 
@@ -153,6 +155,20 @@ class RuntimeEnvironmentDebug:
             "python_user_base": self._get_env("PYTHONUSERBASE") or "",
         }
 
+    def _package_version(self, package_name: str) -> str | None:
+        try:
+            return version(package_name)
+        except PackageNotFoundError:
+            return None
+
+    def qt_info(self) -> Dict[str, str | None]:
+        return {
+            "qt_version": QT_VERSION_STR,
+            "pyqt_version": PYQT_VERSION_STR,
+            "pyqt6_package_version": self._package_version("PyQt6"),
+            "pyqt6_webengine_package_version": self._package_version("PyQt6-WebEngine"),
+        }
+
     # =========================================================
     # Relatório consolidado
     # =========================================================
@@ -167,6 +183,7 @@ class RuntimeEnvironmentDebug:
             "sandbox": self.sandbox_info(),
             "distro": self.distro_info(),
             "runtime": self.runtime_info(),
+            "qt": self.qt_info(),
             "app_config": app_config.build(),
             "audio": self.audio_info(),
             "locale": self.locale_info(),
