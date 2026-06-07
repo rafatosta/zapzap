@@ -45,8 +45,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>318</width>
-        <height>456</height>
+        <width>300</width>
+        <height>489</height>
        </rect>
       </property>
       <property name="minimumSize">
@@ -241,7 +241,7 @@
              <item>
               <widget class="QPushButton" name="btn_page_details">
                <property name="text">
-                <string>Details</string>
+                <string>Runtime &amp;&amp; Permissions</string>
                </property>
               </widget>
              </item>
@@ -321,7 +321,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>68</width>
+        <width>86</width>
         <height>456</height>
        </rect>
       </property>

@@ -60,7 +60,7 @@ class PageDetails(QWidget):
         self.verticalLayout_2 = QVBoxLayout(content)
         self.verticalLayout_2.setSpacing(15)
 
-        self.label = QLabel(_("Details"), content)
+        self.label = QLabel(_("Runtime & Permissions"), content)
         title_font = self.label.font()
         title_font.setPointSize(11)
         title_font.setBold(True)
