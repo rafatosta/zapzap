@@ -55,6 +55,13 @@
   </screenshots>
 
   <releases>
+      <release date="2026-06-06" version="6.5.1">
+          <description>
+              <ul>
+                  <li>Adjustments and corrections</li>
+              </ul>
+          </description>
+      </release>
       <release date="2026-05-15" version="6.5">
           <description>
               <ul>

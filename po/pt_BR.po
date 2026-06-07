@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-27 13:47-0300\n"
+"POT-Creation-Date: 2026-06-07 16:43-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: zapzap/views/ui_browser.py:84 zapzap/views/ui_page_account.py:80
-#: zapzap/controllers/ShortcutsDialog.py:61 zapzap/controllers/Browser.py:226
+#: zapzap/controllers/Browser.py:226 zapzap/controllers/ShortcutsDialog.py:61
 msgid "New account"
 msgstr "Nova conta"
 
@@ -94,7 +94,7 @@ msgstr "Usuários"
 msgid "Help"
 msgstr "Ajuda"
 
-#: zapzap/views/ui_mainwindow.py:115 zapzap/views/ui_settings.py:161
+#: zapzap/views/ui_mainwindow.py:115 zapzap/views/ui_settings.py:165
 #: zapzap/services/SysTrayManager.py:57
 msgid "Quit"
 msgstr "Sair"
@@ -230,7 +230,7 @@ msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
 #: zapzap/views/ui_mainwindow.py:148 zapzap/views/ui_page_about.py:106
-#: zapzap/views/ui_settings.py:159
+#: zapzap/views/ui_settings.py:163
 msgid "About"
 msgstr "Sobre"
 
@@ -255,7 +255,111 @@ msgstr "Relatar problema"
 msgid "My accounts"
 msgstr "Minhas contas"
 
-#: zapzap/views/ui_page_customizations.py:232 zapzap/views/ui_settings.py:154
+#: zapzap/views/ui_page_appearance.py:143 zapzap/views/ui_settings.py:156
+msgid "Appearance"
+msgstr "Aparência"
+
+#: zapzap/views/ui_page_appearance.py:144
+msgid "Style"
+msgstr "Estilo"
+
+#: zapzap/views/ui_page_appearance.py:145
+msgid "Dark"
+msgstr "Escuro"
+
+#: zapzap/views/ui_page_appearance.py:146
+msgid "Light"
+msgstr "Claro"
+
+#: zapzap/views/ui_page_appearance.py:147
+msgid "Adaptive"
+msgstr "Adaptativo"
+
+#: zapzap/views/ui_page_appearance.py:148
+msgid "Custom title bar"
+msgstr "Barra de título personalizada"
+
+#: zapzap/views/ui_page_appearance.py:149
+msgid "Show maximize button"
+msgstr "Mostrar botão maximizar"
+
+#: zapzap/views/ui_page_appearance.py:150
+msgid "Show minimize button"
+msgstr "Mostrar botão minimizar"
+
+#: zapzap/views/ui_page_appearance.py:151
+msgid "Note:Requires restart."
+msgstr "Nota: Requer reinício."
+
+#: zapzap/views/ui_page_appearance.py:152
+msgid "Buttons theme"
+msgstr "Tema de botões"
+
+#: zapzap/views/ui_page_appearance.py:153
+msgid "Buttons direction"
+msgstr "Direção dos botões"
+
+#: zapzap/views/ui_page_appearance.py:154
+msgid "Right"
+msgstr "Direita"
+
+#: zapzap/views/ui_page_appearance.py:155
+msgid "Left"
+msgstr "Esquerda"
+
+#: zapzap/views/ui_page_appearance.py:156
+msgid "Tray icon"
+msgstr "Ícone da bandeja"
+
+#: zapzap/views/ui_page_appearance.py:157
+msgid "Remove notification indicator"
+msgstr "Remover notificação do indicador"
+
+#: zapzap/views/ui_page_appearance.py:158
+msgid "Default"
+msgstr "Padrão"
+
+#: zapzap/views/ui_page_appearance.py:159
+msgid "Symbolic dark"
+msgstr "Simbólico escuro"
+
+#: zapzap/views/ui_page_appearance.py:160
+msgid "Symbolic light"
+msgstr "Simbólico claro"
+
+#: zapzap/views/ui_page_appearance.py:162
+msgid "Show menu bar"
+msgstr "Exibir barra de menu"
+
+#: zapzap/views/ui_page_appearance.py:163
+msgid "Scale"
+msgstr "Escala"
+
+#: zapzap/views/ui_page_appearance.py:164
+msgid "100 %"
+msgstr "100 %"
+
+#: zapzap/views/ui_page_appearance.py:165
+msgid "125 %"
+msgstr "125 %"
+
+#: zapzap/views/ui_page_appearance.py:166
+msgid "150 %"
+msgstr "150 %"
+
+#: zapzap/views/ui_page_appearance.py:167
+msgid "175 %"
+msgstr "175 %"
+
+#: zapzap/views/ui_page_appearance.py:168
+msgid "200 %"
+msgstr "200 %"
+
+#: zapzap/views/ui_page_appearance.py:169
+msgid "Note: The change of scale will only have effect until restarting."
+msgstr "Nota: A alteração de escala só terá efeito após reiniciar."
+
+#: zapzap/views/ui_page_customizations.py:232 zapzap/views/ui_settings.py:157
 msgid "Customizations"
 msgstr "Personalizações"
 
@@ -338,9 +442,9 @@ msgstr "Importar a partir de URL"
 
 #: zapzap/views/ui_page_customizations.py:252
 #: zapzap/views/ui_page_customizations.py:266
-#: zapzap/views/ui_page_general.py:170
 #: zapzap/controllers/DialogDumpHandler.py:50
-#: zapzap/controllers/DownloadDialog.py:132
+#: zapzap/controllers/DownloadDialog.py:133
+#: zapzap/controllers/PageDetails.py:92
 msgid "Open folder"
 msgstr "Abrir pasta"
 
@@ -372,101 +476,75 @@ msgid "Save and reload"
 msgstr "Salvar e recarregar"
 
 #: zapzap/views/ui_page_customizations.py:269
-#: zapzap/controllers/DownloadDialog.py:98
+#: zapzap/controllers/DownloadDialog.py:99
 msgid "Save"
 msgstr "Salvar"
 
-#: zapzap/views/ui_page_general.py:152 zapzap/views/ui_settings.py:150
+#: zapzap/views/ui_page_general.py:124 zapzap/views/ui_settings.py:153
 msgid "General"
 msgstr "Geral"
 
-#: zapzap/views/ui_page_general.py:153
+#: zapzap/views/ui_page_general.py:125
 msgid "Download Directory"
 msgstr "Diretório de Download"
 
-#: zapzap/views/ui_page_general.py:154
+#: zapzap/views/ui_page_general.py:126
 msgid "Set new folder for downloads"
 msgstr "Define nova pasta para downloads"
 
-#: zapzap/views/ui_page_general.py:155
+#: zapzap/views/ui_page_general.py:127
 msgid "Define default folder for downloads"
 msgstr "Restaurar para a pasta padrão de downloads"
 
-#: zapzap/views/ui_page_general.py:156
+#: zapzap/views/ui_page_general.py:128
 msgid "Spellchecker"
 msgstr "Corretor ortográfico"
 
-#: zapzap/views/ui_page_general.py:157
+#: zapzap/views/ui_page_general.py:129
 msgid "Directory"
 msgstr "Diretório"
 
-#: zapzap/views/ui_page_general.py:158
+#: zapzap/views/ui_page_general.py:130
 msgid "Recognizes only compiled dictionaries (.bdic)"
 msgstr "Reconhece apenas dicionários compilados (.bdic)"
 
-#: zapzap/views/ui_page_general.py:159
+#: zapzap/views/ui_page_general.py:131
 msgid "Define standard dictionaries"
 msgstr "Definir dicionário padrão"
 
-#: zapzap/views/ui_page_general.py:160
+#: zapzap/views/ui_page_general.py:132
 msgid "Note: Required restart."
 msgstr "Nota: Requer reinício."
 
-#: zapzap/views/ui_page_general.py:161
+#: zapzap/views/ui_page_general.py:133
 msgid "Behavior"
 msgstr "Comportamento"
 
-#: zapzap/views/ui_page_general.py:162
+#: zapzap/views/ui_page_general.py:134
 msgid "Confirm before closing the window"
 msgstr "Confirme antes de fechar a janela"
 
-#: zapzap/views/ui_page_general.py:163
+#: zapzap/views/ui_page_general.py:135
 msgid "Close when closing the window"
 msgstr "Fechar ao encerrar a janela"
 
-#: zapzap/views/ui_page_general.py:164
+#: zapzap/views/ui_page_general.py:136
 msgid "Start minimized"
 msgstr "Iniciar minimizado"
 
-#: zapzap/views/ui_page_general.py:165
+#: zapzap/views/ui_page_general.py:137
 msgid "Start with the system"
 msgstr "Iniciar com o sistema"
 
-#: zapzap/views/ui_page_general.py:166
+#: zapzap/views/ui_page_general.py:138
 msgid "Don't use a platform-native file dialog"
 msgstr "Não use uma caixa de diálogo de arquivo nativa"
 
-#: zapzap/views/ui_page_general.py:167
+#: zapzap/views/ui_page_general.py:139
 msgid "Wayland window system"
 msgstr "Sistema de janelas Wayland"
 
-#: zapzap/views/ui_page_general.py:168 zapzap/controllers/PageGeneral.py:274
-#: zapzap/controllers/PageGeneral.py:284 zapzap/controllers/PageGeneral.py:301
-msgid "Debug logs"
-msgstr "Registro de depuração"
-
-#: zapzap/views/ui_page_general.py:169
-msgid ""
-"Crash reports are stored in this folder. You can open the directory or clean "
-"old files."
-msgstr ""
-"Os relatórios de falhas são armazenados nesta pasta. Você pode abrir o "
-"diretório ou limpar arquivos antigos."
-
-#: zapzap/views/ui_page_general.py:171
-msgid "Delete old"
-msgstr "Excluir antigos"
-
-#: zapzap/views/ui_page_general.py:172
-msgid "Delete all"
-msgstr "Excluir tudo"
-
-#: zapzap/views/ui_page_general.py:173 zapzap/controllers/PageGeneral.py:309
-#: zapzap/controllers/PageGeneral.py:327 zapzap/controllers/PageGeneral.py:336
-msgid "Reset settings"
-msgstr "Redefinir configurações"
-
-#: zapzap/views/ui_page_network.py:111 zapzap/views/ui_settings.py:157
+#: zapzap/views/ui_page_network.py:111 zapzap/views/ui_settings.py:160
 msgid "Network"
 msgstr "Rede"
 
@@ -514,7 +592,7 @@ msgstr "Impede que sites descubram seu endereço de rede usando WebRTC."
 msgid "Prevent WebRTC IP leak (Mask local IPs)"
 msgstr "Prevenir vazamento de IP via WebRTC (Mascarar IPs locais)"
 
-#: zapzap/views/ui_page_notifications.py:69 zapzap/views/ui_settings.py:155
+#: zapzap/views/ui_page_notifications.py:69 zapzap/views/ui_settings.py:158
 msgid "Notifications"
 msgstr "Notificações"
 
@@ -675,35 +753,35 @@ msgstr "Versão {id} - {version_type}"
 msgid "Make a donation"
 msgstr "Faça uma doação"
 
-#: zapzap/views/ui_settings.py:148 zapzap/controllers/OnboardingDialog.py:98
+#: zapzap/views/ui_settings.py:151 zapzap/controllers/OnboardingDialog.py:98
 msgid "Back"
 msgstr "Voltar"
 
-#: zapzap/views/ui_settings.py:149
+#: zapzap/views/ui_settings.py:152
 msgid "SETTINGS"
 msgstr "CONFIGURAÇÕES"
 
-#: zapzap/views/ui_settings.py:151
+#: zapzap/views/ui_settings.py:154
 msgid "Accounts"
 msgstr "Contas"
 
-#: zapzap/views/ui_settings.py:152
+#: zapzap/views/ui_settings.py:155
 msgid "TOOLS"
 msgstr "FERRAMENTAS"
 
-#: zapzap/views/ui_settings.py:153 zapzap/views/ui_page_appearance.py:143
-msgid "Appearance"
-msgstr "Aparência"
-
-#: zapzap/views/ui_settings.py:156
+#: zapzap/views/ui_settings.py:159
 msgid "Performance"
 msgstr "Desempenho"
 
-#: zapzap/views/ui_settings.py:158
+#: zapzap/views/ui_settings.py:161
+msgid "Runtime && Permissions"
+msgstr "Sistema && Permissões"
+
+#: zapzap/views/ui_settings.py:162
 msgid "HELP"
 msgstr "AJUDA"
 
-#: zapzap/views/ui_settings.py:160
+#: zapzap/views/ui_settings.py:164
 msgid "Donate"
 msgstr "Contribuir com o projeto"
 
@@ -715,105 +793,41 @@ msgstr "Diálogo"
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
-#: zapzap/views/ui_page_appearance.py:144
-msgid "Style"
-msgstr "Estilo"
+#: zapzap/controllers/Browser.py:79
+msgid "Grid view"
+msgstr "Visualização em grade"
 
-#: zapzap/views/ui_page_appearance.py:145
-msgid "Dark"
-msgstr "Escuro"
+#: zapzap/controllers/Browser.py:109
+msgid "Flatpak sandbox help"
+msgstr "Ajuda Flatpak sandbox"
 
-#: zapzap/views/ui_page_appearance.py:146
-msgid "Light"
-msgstr "Claro"
+#: zapzap/controllers/Browser.py:237 zapzap/controllers/Browser.py:284
+#, python-brace-format
+msgid "Account {}"
+msgstr "Conta {}"
 
-#: zapzap/views/ui_page_appearance.py:147
-msgid "Adaptive"
-msgstr "Adaptativo"
+#: zapzap/controllers/Browser.py:292
+msgid "Account disabled"
+msgstr "Conta desativada"
 
-#: zapzap/views/ui_page_appearance.py:148
-msgid "Custom title bar"
-msgstr "Barra de título personalizada"
+#: zapzap/controllers/Browser.py:293
+msgid "This account is disabled."
+msgstr "Esta conta está desativada."
 
-#: zapzap/views/ui_page_appearance.py:149
-msgid "Show maximize button"
-msgstr "Mostrar botão maximizar"
+#: zapzap/controllers/Browser.py:295
+msgid ""
+"You can reactivate it now or use the right-click menu to manage this account."
+msgstr ""
+"Você pode reativá-lo agora ou usar o menu do botão direito para gerenciar "
+"esta conta."
 
-#: zapzap/views/ui_page_appearance.py:150
-msgid "Show minimize button"
-msgstr "Mostrar botão minimizar"
+#: zapzap/controllers/Browser.py:298
+msgid "Activate"
+msgstr "Ativar"
 
-#: zapzap/views/ui_page_appearance.py:151
-msgid "Note:Requires restart."
-msgstr "Nota: Requer reinício."
-
-#: zapzap/views/ui_page_appearance.py:152
-msgid "Buttons theme"
-msgstr "Tema de botões"
-
-#: zapzap/views/ui_page_appearance.py:153
-msgid "Buttons direction"
-msgstr "Direção dos botões"
-
-#: zapzap/views/ui_page_appearance.py:154
-msgid "Right"
-msgstr "Direita"
-
-#: zapzap/views/ui_page_appearance.py:155
-msgid "Left"
-msgstr "Esquerda"
-
-#: zapzap/views/ui_page_appearance.py:156
-msgid "Tray icon"
-msgstr "Ícone da bandeja"
-
-#: zapzap/views/ui_page_appearance.py:157
-msgid "Remove notification indicator"
-msgstr "Remover notificação do indicador"
-
-#: zapzap/views/ui_page_appearance.py:158
-msgid "Default"
-msgstr "Padrão"
-
-#: zapzap/views/ui_page_appearance.py:159
-msgid "Symbolic dark"
-msgstr "Simbólico escuro"
-
-#: zapzap/views/ui_page_appearance.py:160
-msgid "Symbolic light"
-msgstr "Simbólico claro"
-
-#: zapzap/views/ui_page_appearance.py:162
-msgid "Show menu bar"
-msgstr "Exibir barra de menu"
-
-#: zapzap/views/ui_page_appearance.py:163
-msgid "Scale"
-msgstr "Escala"
-
-#: zapzap/views/ui_page_appearance.py:164
-msgid "100 %"
-msgstr "100 %"
-
-#: zapzap/views/ui_page_appearance.py:165
-msgid "125 %"
-msgstr "125 %"
-
-#: zapzap/views/ui_page_appearance.py:166
-msgid "150 %"
-msgstr "150 %"
-
-#: zapzap/views/ui_page_appearance.py:167
-msgid "175 %"
-msgstr "175 %"
-
-#: zapzap/views/ui_page_appearance.py:168
-msgid "200 %"
-msgstr "200 %"
-
-#: zapzap/views/ui_page_appearance.py:169
-msgid "Note: The change of scale will only have effect until restarting."
-msgstr "Nota: A alteração de escala só terá efeito após reiniciar."
+#: zapzap/controllers/Browser.py:299
+msgid "Not now"
+msgstr "Agora não"
 
 #: zapzap/controllers/CardUser.py:42
 msgid "Select User-Agent for this account"
@@ -848,6 +862,21 @@ msgstr "Restaurar padrão"
 msgid "User-Agent"
 msgstr ""
 
+#: zapzap/controllers/ClientSideRendering.py:436
+#: zapzap/controllers/MainWindow.py:247
+msgid "Close ZapZap"
+msgstr "Fechar o ZapZap"
+
+#: zapzap/controllers/ClientSideRendering.py:437
+#: zapzap/controllers/MainWindow.py:248
+msgid "Are you sure you want to close?"
+msgstr "Tem certeza de que deseja fechar?"
+
+#: zapzap/controllers/ClientSideRendering.py:442
+#: zapzap/controllers/MainWindow.py:253
+msgid "Don't ask again"
+msgstr "Não pergunte novamente"
+
 #: zapzap/controllers/DialogDumpHandler.py:26
 msgid "Unexpected Error"
 msgstr "Erro inesperado"
@@ -880,27 +909,27 @@ msgstr ""
 " - Issue tracker: {issue_url}\n"
 " - Email: {email}"
 
-#: zapzap/controllers/DownloadDialog.py:29
+#: zapzap/controllers/DownloadDialog.py:30
 msgid "Download"
 msgstr "Download"
 
-#: zapzap/controllers/DownloadDialog.py:88
+#: zapzap/controllers/DownloadDialog.py:89
 msgid "Open"
 msgstr "Abrir"
 
-#: zapzap/controllers/DownloadDialog.py:116
+#: zapzap/controllers/DownloadDialog.py:117
 msgid "More"
-msgstr ""
+msgstr "Mais"
 
-#: zapzap/controllers/DownloadDialog.py:126
+#: zapzap/controllers/DownloadDialog.py:127
 msgid "Save as"
 msgstr "Salvar como"
 
-#: zapzap/controllers/DownloadDialog.py:140
+#: zapzap/controllers/DownloadDialog.py:141
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: zapzap/controllers/DownloadDialog.py:273
+#: zapzap/controllers/DownloadDialog.py:276
 msgid "Save file"
 msgstr "Salvar arquivo"
 
@@ -967,7 +996,7 @@ msgid "Prefer Wayland (when available)"
 msgstr "Preferir Wayland (quando disponível)"
 
 #: zapzap/controllers/OnboardingDialog.py:219
-#: zapzap/controllers/PageGeneral.py:44
+#: zapzap/controllers/PageGeneral.py:38
 msgid "Use Flatseal to change this mode of execution"
 msgstr "Use Flatseal para alterar esse modo de execução"
 
@@ -1013,12 +1042,12 @@ msgstr ""
 
 #: zapzap/controllers/OnboardingDialog.py:331
 #: zapzap/controllers/OnboardingDialog.py:516
-#: zapzap/controllers/PageGeneral.py:68
+#: zapzap/controllers/PageDetails.py:137
 msgid "Copy command"
 msgstr "Copiar comando"
 
 #: zapzap/controllers/OnboardingDialog.py:336
-#: zapzap/controllers/PageGeneral.py:76
+#: zapzap/controllers/PageDetails.py:142
 msgid "Open Flatseal page"
 msgstr "Abrir página do Flatseal"
 
@@ -1074,6 +1103,10 @@ msgstr "Não oficial"
 #: zapzap/controllers/PageAbout.py:25
 msgid "Unknown"
 msgstr "Desconhecido"
+
+#: zapzap/controllers/PageAppearance.py:69
+msgid "Grid Columns:"
+msgstr "Colunas da grade:"
 
 #: zapzap/controllers/PageCustomizations.py:52
 msgid "Global"
@@ -1305,13 +1338,38 @@ msgstr ""
 msgid "All pages reloaded."
 msgstr "Todas as páginas foram recarregadas."
 
-#: zapzap/controllers/PageGeneral.py:51
+#: zapzap/controllers/PageDetails.py:63
+msgid "Runtime & Permissions"
+msgstr "Sistema & Permissões"
+
+#: zapzap/controllers/PageDetails.py:80 zapzap/controllers/PageDetails.py:238
+#: zapzap/controllers/PageDetails.py:248 zapzap/controllers/PageDetails.py:265
+msgid "Debug logs"
+msgstr "Registro de depuração"
+
+#: zapzap/controllers/PageDetails.py:93
+msgid "Delete old"
+msgstr "Excluir antigos"
+
+#: zapzap/controllers/PageDetails.py:94
+msgid "Delete all"
+msgstr "Excluir tudo"
+
+#: zapzap/controllers/PageDetails.py:100 zapzap/controllers/PageDetails.py:273
+#: zapzap/controllers/PageDetails.py:291 zapzap/controllers/PageDetails.py:300
+msgid "Reset settings"
+msgstr "Redefinir configurações"
+
+#: zapzap/controllers/PageDetails.py:106
+msgid "Flatpak tips"
+msgstr "Dicas do Flatpak"
+
+#: zapzap/controllers/PageDetails.py:115
 msgid ""
-"<b>Flatpak tip:</b> If opening PDFs, drag-and-drop, or file uploads fail, "
-"this is usually caused by sandbox permissions. Open <b>Flatseal</b> and "
-"grant ZapZap access to folders like Documents, Downloads, Pictures and "
-"Videos. You can also run: <code>flatpak override --user --filesystem=home "
-"com.rtosta.zapzap</code>."
+"<b>ZapZap is running in the Flatpak sandbox.</b> If opening PDFs, drag-and-"
+"drop, or file uploads fail, this is usually caused by sandbox permissions. "
+"Open <b>Flatseal</b> and grant ZapZap access to folders like Documents, "
+"Downloads, Pictures and Videos."
 msgstr ""
 "<b>Dica do Flatpak:</b> se a abertura de PDFs, arrastar e soltar ou upload "
 "de arquivos falhar, isso geralmente é causado por permissões de sandbox. "
@@ -1319,20 +1377,46 @@ msgstr ""
 "Downloads, Imagens eVídeos. Você também pode executar: <code>flatpak "
 "override --user --filesystem=home com.rtosta.zapzap</code>."
 
-#: zapzap/controllers/PageGeneral.py:67
+#: zapzap/controllers/PageDetails.py:124
+msgid ""
+"ZapZap is not running in the Flatpak sandbox right now. These tips are kept "
+"here for Flatpak installations and support diagnostics."
+msgstr ""
+
+#: zapzap/controllers/PageDetails.py:136
 msgid "Select and copy this command in your terminal"
 msgstr "Selecione e copie este comando em seu terminal"
 
-#: zapzap/controllers/PageGeneral.py:244
+#: zapzap/controllers/PageDetails.py:148
+msgid "Runtime environment"
+msgstr "Ambiente de execução"
+
+#: zapzap/controllers/PageDetails.py:153
+msgid ""
+"Relevant environment information for bug reports, including Qt, PyQt, "
+"Python, Flatpak and desktop session details."
+msgstr ""
+"Informações relevantes do ambiente para relatórios de bugs, incluindo Qt, "
+"PyQt, Detalhes da sessão Python, Flatpak e desktop."
+
+#: zapzap/controllers/PageDetails.py:168
+msgid "Refresh"
+msgstr "Atualizar"
+
+#: zapzap/controllers/PageDetails.py:169
+msgid "Copy details"
+msgstr "Copiar"
+
+#: zapzap/controllers/PageDetails.py:204
 #, python-brace-format
 msgid "Files: {count} crash report(s){faulthandler}."
 msgstr "Arquivos: {count} relatório(s) de falhas{faulthandler}"
 
-#: zapzap/controllers/PageGeneral.py:246
+#: zapzap/controllers/PageDetails.py:206
 msgid " + faulthandler.log"
 msgstr " + faulthandler.log"
 
-#: zapzap/controllers/PageGeneral.py:249
+#: zapzap/controllers/PageDetails.py:210
 #, python-brace-format
 msgid ""
 "Crash reports are stored in this folder. You can open the directory or clean "
@@ -1343,22 +1427,22 @@ msgstr ""
 "diretório ou limpar arquivos antigos.\n"
 "{details}"
 
-#: zapzap/controllers/PageGeneral.py:275
+#: zapzap/controllers/PageDetails.py:239
 #, python-brace-format
 msgid "Deleted {count} old crash report(s) (older than 30 days)."
 msgstr ""
 "Foram excluídos {count} relatórios de falhas antigos (com mais de 30 dias)."
 
-#: zapzap/controllers/PageGeneral.py:285
+#: zapzap/controllers/PageDetails.py:249
 msgid "Delete all crash reports and debug logs?"
 msgstr "Excluir todos os relatórios de falhas e registros de depuração?"
 
-#: zapzap/controllers/PageGeneral.py:302
+#: zapzap/controllers/PageDetails.py:266
 #, python-brace-format
 msgid "Deleted {count} file(s)."
 msgstr "{count} arquivo(s) excluído(s)."
 
-#: zapzap/controllers/PageGeneral.py:310
+#: zapzap/controllers/PageDetails.py:274
 msgid ""
 "This will delete your current settings file (.config) and requires restart. "
 "Continue?"
@@ -1366,7 +1450,7 @@ msgstr ""
 "Isso excluirá seu arquivo de configurações atuais (.config) e exigirá "
 "reinicialização. Continuar?"
 
-#: zapzap/controllers/PageGeneral.py:328
+#: zapzap/controllers/PageDetails.py:292
 #, python-brace-format
 msgid ""
 "Could not remove settings file:\n"
@@ -1375,7 +1459,7 @@ msgstr ""
 "Não foi possível remover o arquivo de configurações:\n"
 "{error}"
 
-#: zapzap/controllers/PageGeneral.py:337
+#: zapzap/controllers/PageDetails.py:301
 msgid "Settings were reset successfully. Please restart ZapZap."
 msgstr "As configurações foram redefinidas com sucesso. Reinicie o ZapZap."
 
@@ -1614,61 +1698,6 @@ msgstr "Recarregar páginas"
 msgid "New conversation by phone number"
 msgstr "Nova conversa por número de telefone"
 
-#: zapzap/controllers/Browser.py:79
-msgid "Grid view"
-msgstr "Visualização em grade"
-
-#: zapzap/controllers/Browser.py:109
-msgid "Flatpak sandbox help"
-msgstr "Ajuda Flatpak sandbox"
-
-#: zapzap/controllers/Browser.py:237 zapzap/controllers/Browser.py:284
-#, python-brace-format
-msgid "Account {}"
-msgstr "Conta {}"
-
-#: zapzap/controllers/Browser.py:292
-msgid "Account disabled"
-msgstr "Conta desativada"
-
-#: zapzap/controllers/Browser.py:293
-msgid "This account is disabled."
-msgstr "Esta conta está desativada."
-
-#: zapzap/controllers/Browser.py:295
-msgid ""
-"You can reactivate it now or use the right-click menu to manage this account."
-msgstr ""
-"Você pode reativá-lo agora ou usar o menu do botão direito para gerenciar "
-"esta conta."
-
-#: zapzap/controllers/Browser.py:298
-msgid "Activate"
-msgstr "Ativar"
-
-#: zapzap/controllers/Browser.py:299
-msgid "Not now"
-msgstr "Agora não"
-
-#: zapzap/controllers/ClientSideRendering.py:427
-#: zapzap/controllers/MainWindow.py:247
-msgid "Close ZapZap"
-msgstr "Fechar o ZapZap"
-
-#: zapzap/controllers/ClientSideRendering.py:428
-#: zapzap/controllers/MainWindow.py:248
-msgid "Are you sure you want to close?"
-msgstr "Tem certeza de que deseja fechar?"
-
-#: zapzap/controllers/ClientSideRendering.py:433
-#: zapzap/controllers/MainWindow.py:252
-msgid "Don't ask again"
-msgstr "Não pergunte novamente"
-
-#: zapzap/controllers/PageAppearance.py:69
-msgid "Grid Columns:"
-msgstr "Colunas da grade:"
-
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
 msgstr "Informação"
@@ -1690,7 +1719,7 @@ msgstr "Atenção"
 msgid "No active account!"
 msgstr "Nenhuma conta ativa!"
 
-#: zapzap/services/DownloadManager.py:65
+#: zapzap/services/DownloadManager.py:79
 msgid "Select folder"
 msgstr "Selecionar arquivo"
 
@@ -1786,6 +1815,13 @@ msgstr "Selecione o idioma"
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"
+
+#~ msgid ""
+#~ "Crash reports are stored in this folder. You can open the directory or "
+#~ "clean old files."
+#~ msgstr ""
+#~ "Os relatórios de falhas são armazenados nesta pasta. Você pode abrir o "
+#~ "diretório ou limpar arquivos antigos."
 
 #~ msgid "Client-side rendering"
 #~ msgstr "Barra de título personalizada"
