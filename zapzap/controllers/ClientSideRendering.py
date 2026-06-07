@@ -7,6 +7,7 @@ from PyQt6.QtWidgets import QHBoxLayout, QPushButton, QVBoxLayout, QWidget, QLab
 from zapzap.resources.CSRButtonThemeProvider import CSRButtonTheme, CSRButtonThemeProvider
 from zapzap.services.ThemeManager import ThemeManager
 from zapzap.services.SettingsManager import SettingsManager
+from zapzap.controllers.QtoasterDonation import QtoasterDonation
 from gettext import gettext as _
 
 
@@ -41,7 +42,6 @@ class _TitleBar(QWidget):
         self.maximize_button.clicked.connect(self.toggle_maximize)
         self.close_button.clicked.connect(self.host_window.close)
 
-
     def _rebuild_layout(self):
         while self.layout.count():
             item = self.layout.takeAt(0)
@@ -70,7 +70,8 @@ class _TitleBar(QWidget):
         self._apply_button_visibility()
 
     def _buttons_on_left(self) -> bool:
-        button_direction = str(SettingsManager.get("system/csr_buttons_direction", "right")).strip().lower()
+        button_direction = str(SettingsManager.get(
+            "system/csr_buttons_direction", "right")).strip().lower()
         return button_direction == "left"
 
     def _apply_button_theme(self):
@@ -91,10 +92,11 @@ class _TitleBar(QWidget):
             button.setProperty("csrFontWeight", font_weight)
             button.setProperty("csrBorderRadius", border_radius)
 
-
     def _apply_button_visibility(self):
-        show_minimize = bool(SettingsManager.get("system/csr_show_minimize_button", True))
-        show_maximize = bool(SettingsManager.get("system/csr_show_maximize_button", True))
+        show_minimize = bool(SettingsManager.get(
+            "system/csr_show_minimize_button", True))
+        show_maximize = bool(SettingsManager.get(
+            "system/csr_show_maximize_button", True))
 
         self.minimize_button.setVisible(show_minimize)
         self.maximize_button.setVisible(show_maximize)
@@ -217,6 +219,8 @@ class ClientSideRendering(QWidget):
         self._create_resize_handles()
         self._apply_theme()
 
+        if not SettingsManager.get("notification/donation_message", True):
+            QtoasterDonation.showMessage(parent=self)
 
     def refresh_csr_button_preferences(self):
         if not self.enabled:
@@ -227,9 +231,11 @@ class ClientSideRendering(QWidget):
         self._apply_theme()
 
     def _resolve_button_theme(self) -> CSRButtonTheme:
-        configured_theme = str(SettingsManager.get("system/csr_button_theme", "auto")).strip().lower()
+        configured_theme = str(SettingsManager.get(
+            "system/csr_button_theme", "auto")).strip().lower()
 
-        configured_button_theme = CSRButtonThemeProvider.parse_theme(configured_theme)
+        configured_button_theme = CSRButtonThemeProvider.parse_theme(
+            configured_theme)
         if configured_button_theme:
             return configured_button_theme
 
@@ -360,9 +366,12 @@ class ClientSideRendering(QWidget):
                 "close_hover": button_theme.close_hover_light,
             }
 
-        font_size = self.title_bar.minimize_button.property("csrFontSize") or "14"
-        font_weight = self.title_bar.minimize_button.property("csrFontWeight") or "600"
-        border_radius = self.title_bar.minimize_button.property("csrBorderRadius") or "6"
+        font_size = self.title_bar.minimize_button.property(
+            "csrFontSize") or "14"
+        font_weight = self.title_bar.minimize_button.property(
+            "csrFontWeight") or "600"
+        border_radius = self.title_bar.minimize_button.property(
+            "csrBorderRadius") or "6"
 
         self.setStyleSheet(
             (f"""

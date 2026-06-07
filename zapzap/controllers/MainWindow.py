@@ -13,6 +13,7 @@ from PyQt6.QtGui import QImage, QActionGroup
 
 from gettext import gettext as _
 
+
 class MainWindow(QMainWindow, Ui_MainWindow):
     """
     Classe principal da interface do aplicativo.
@@ -30,8 +31,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.theme_action_group = None
         self._setup_ui()
 
-        #if not SettingsManager.get("notification/donation_message", True):
-        #    QtoasterDonation.showMessage(parent=self)
+        if not SettingsManager.get("notification/donation_message", True) and not SettingsManager.get("system/csr", False):
+            QtoasterDonation.showMessage(parent=self)
 
     def changeEvent(self, event):
         super().changeEvent(event)
@@ -62,8 +63,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if image.save(buffer, "PNG"):
                 clean_img = QImage()
                 clean_img.loadFromData(buffer.data(), "PNG")
-                QTimer.singleShot(0, lambda img=clean_img.copy()
-                                  : clipboard.setImage(img))
+                QTimer.singleShot(0, lambda img=clean_img.copy()                                  : clipboard.setImage(img))
         finally:
             buffer.close()
 
@@ -246,17 +246,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             msg_box = QMessageBox(self)
             msg_box.setWindowTitle(_("Close ZapZap"))
             msg_box.setText(_("Are you sure you want to close?"))
-            msg_box.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+            msg_box.setStandardButtons(
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
             msg_box.setDefaultButton(QMessageBox.StandardButton.No)
-            
+
             cb = QCheckBox(_("Don't ask again"))
             msg_box.setCheckBox(cb)
-            
+
             reply = msg_box.exec()
             if reply != QMessageBox.StandardButton.Yes:
                 event.ignore()
                 return
-                
+
             if cb.isChecked():
                 SettingsManager.set("system/confirm_on_close", False)
 
