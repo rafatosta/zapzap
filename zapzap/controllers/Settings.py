@@ -10,6 +10,7 @@ from zapzap.controllers.PageAccount import PageAccount
 from zapzap.controllers.PageAppearance import PageAppearance
 from zapzap.controllers.PageCustomizations import PageCustomizations
 from zapzap.controllers.PagePerformance import PagePerformance
+from zapzap.controllers.PageDetails import PageDetails
 from zapzap.views.ui_settings import Ui_Settings
 
 
@@ -36,6 +37,7 @@ class Settings(QWidget, Ui_Settings):
         self._add_page(PageNotifications(), self.btn_page_notifications)
         self._add_page(PageNetwork(), self.btn_page_network)
         self._add_page(PagePerformance(), self.btn_page_performance)
+        self._add_page(PageDetails(), self.btn_page_details)
         self._add_page(PageAbout(), self.btn_page_help)
 
     def _setup_signals(self):

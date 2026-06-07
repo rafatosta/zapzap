@@ -239,6 +239,13 @@
               </widget>
              </item>
              <item>
+              <widget class="QPushButton" name="btn_page_details">
+               <property name="text">
+                <string>Details</string>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QLabel" name="label">
                <property name="font">
                 <font>
