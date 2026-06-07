@@ -25,6 +25,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
         self.was_maximized = False
+        self.normal_geometry = None
+
         self.is_fullscreen = False  # Controle do estado de tela cheia
         self.browser = Browser(self)  # Inicialização do navegador
         self.app_settings = None
@@ -277,6 +279,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """Preparar o app para permanecer em segundo plano."""
 
         self.was_maximized = self.isMaximized()
+        if not self.was_maximized:
+            self.normal_geometry = self.saveGeometry()
 
         # Fecha o painel de configurações se estiver aberto
         if self.app_settings:
@@ -299,6 +303,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.showMaximized()
             else:
                 self.showNormal()
+                if self.normal_geometry:
+                    self.restoreGeometry(self.normal_geometry)
             QApplication.instance().setActiveWindow(self)
         elif not self.isActiveWindow():
             self.activateWindow()
