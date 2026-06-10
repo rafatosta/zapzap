@@ -14,6 +14,7 @@ import { FaFedora } from "react-icons/fa6";
 import { GrArchlinux } from "react-icons/gr";
 import { PiPackage } from "react-icons/pi";
 import { IconType } from "react-icons";
+import { useEffect, useState } from "react";
 
 type DownloadOption = {
   title: string;
@@ -25,6 +26,17 @@ type DownloadOption = {
 export default function DownloadSection() {
   const { t } = useTranslation();
 
+  const [version, setVersion] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("https://api.github.com/repos/rafatosta/zapzap/releases/latest")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch release");
+        return res.json();
+      })
+      .then((data) => setVersion(data.tag_name))
+  }, []);
+
   const downloadOptions = t("downloadSection.options", {
     returnObjects: true,
   }) as DownloadOption[];
@@ -35,9 +47,12 @@ export default function DownloadSection() {
 
   const icons: IconType[] = [SiFlatpak, PiPackage, FaFedora, GrArchlinux];
 
+  //ZapZap-6.5.1.1-x86_64.AppImage
+
+
   const urls: string[] = [
     "https://flathub.org/apps/com.rtosta.zapzap",
-    "https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-x86_64.AppImage",
+    `https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-${version}-x86_64.AppImage`,
     "https://copr.fedorainfracloud.org/coprs/rafatosta/zapzap/",
     "https://aur.archlinux.org/packages/zapzap",
   ];
