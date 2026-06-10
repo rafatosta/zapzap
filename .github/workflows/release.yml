@@ -60,7 +60,7 @@ jobs:
       # ======================================================
 
       - name: Upload Python artifact
-        if: github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.publish != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: ZapZap-Python
@@ -71,7 +71,7 @@ jobs:
       # ======================================================
 
       - name: Release Python artifacts
-        if: github.event_name != 'workflow_dispatch'
+        if: github.event_name != 'workflow_dispatch' || github.event.inputs.publish == 'true'
         uses: softprops/action-gh-release@v2
         with:
           files: |
@@ -117,7 +117,7 @@ jobs:
       # ======================================================
 
       - name: Upload Windows artifact
-        if: github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.publish != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: ZapZap-Windows
@@ -128,7 +128,7 @@ jobs:
       # ======================================================
 
       - name: Release Windows artifacts
-        if: github.event_name != 'workflow_dispatch'
+        if: github.event_name != 'workflow_dispatch' || github.event.inputs.publish == 'true'
         uses: softprops/action-gh-release@v2
         with:
           files: |
@@ -214,7 +214,7 @@ jobs:
       # ======================================================
 
       - name: Upload AppImage artifact
-        if: github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.publish != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: ZapZap-AppImage
@@ -225,7 +225,7 @@ jobs:
       # ======================================================
 
       - name: Release AppImage artifacts
-        if: github.event_name != 'workflow_dispatch'
+        if: github.event_name != 'workflow_dispatch' || github.event.inputs.publish == 'true'
         uses: softprops/action-gh-release@v2
         with:
           files: |
