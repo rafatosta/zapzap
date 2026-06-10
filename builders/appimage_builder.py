@@ -311,15 +311,17 @@ coll = COLLECT(
     def create_apprun(self):
         print("Criando AppRun...")
 
-        apprun = (
-            self.appdir / "AppRun"
-        )
+        apprun = self.appdir / "AppRun"
 
         apprun.write_text(
             (
                 '#!/bin/sh\n\n'
-                'cd "$(dirname "$0")"\n'
-                'exec ./zapzap\n'
+                'cd "$(dirname "$0")"\n\n'
+                '# Workaround para QtWebEngine em AppImage\n'
+                'if [ -z "$QTWEBENGINE_CHROMIUM_FLAGS" ]; then\n'
+                '    export QTWEBENGINE_CHROMIUM_FLAGS="--disable-gpu"\n'
+                'fi\n\n'
+                'exec ./zapzap "$@"\n'
             )
         )
 
