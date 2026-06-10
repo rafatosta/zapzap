@@ -169,7 +169,7 @@ jobs:
 # ==========================================================
 
   build-appimage:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     env:
       PYTHONUTF8: 1
