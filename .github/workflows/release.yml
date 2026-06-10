@@ -14,7 +14,7 @@ permissions:
   contents: write
 
 env:
-  PYTHON_VERSION: "3.13"
+  PYTHON_VERSION: "3.14"
 
 jobs:
 
@@ -212,6 +212,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install pyinstaller
           pip install -r requirements.txt
+
+      - name: Show versions
+        run: |
+          python --version
+          pip show PyQt6
+          pip show PyQt6-WebEngine
+          pip show PyInstaller
 
       - name: Define version
         shell: bash
