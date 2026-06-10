@@ -2,6 +2,15 @@ name: Build and Release Zapzap
 
 on:
   workflow_dispatch:
+     inputs:
+      publish:
+        description: "Criar release?"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
 
   release:
     types: [created]
@@ -17,43 +26,6 @@ env:
   PYTHON_VERSION: "3.14"
 
 jobs:
-
-# ==========================================================
-#  Release RPM
-# ==========================================================
-
-  copr:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install copr
-
-      - name: Configure COPR
-        run: |
-          mkdir -p ~/.config
-          echo "$COPR_CONFIG" > ~/.config/copr
-          chmod 600 ~/.config/copr
-        env:
-          COPR_CONFIG: ${{ secrets.COPR_CONFIG }}
-
-      - name: Run COPR Release
-        env:
-          VERSION: ${{ github.ref_name }}
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          python builders/copr_builder.py
-
 # ==========================================================
 # PYTHON PACKAGE
 # ==========================================================
@@ -205,7 +177,7 @@ jobs:
             libxkbcommon-x11-0 \
             libnss3 \
             libxss1 \
-            libasound2
+            libasound2t64
 
       - name: Install Python dependencies
         run: |
