@@ -61,6 +61,42 @@
          </widget>
         </item>
         <item>
+         <widget class="QGroupBox" name="flatpak_permissions_groupBox">
+          <property name="toolTip">
+           <string>&lt;b&gt;ZapZap is running in the Flatpak sandbox.&lt;/b&gt; If opening PDFs, 
+drag-and-drop, or file uploads fail, this is usually caused by 
+ sandbox permissions. Open &lt;b&gt;Flatseal&lt;/b&gt; and grant ZapZap access 
+ to folders like Documents, Downloads, Pictures and Videos.</string>
+          </property>
+          <property name="title">
+           <string>Flatpak Permissions</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="1">
+            <widget class="QPushButton" name="btn_copy_flatpak_command">
+             <property name="text">
+              <string>Copy command</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="2">
+            <widget class="QPushButton" name="btn_open_flatseal">
+             <property name="text">
+              <string>Open Flatseal page</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLineEdit" name="flatpak_command_input">
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
          <widget class="QGroupBox" name="groupBox_3">
           <property name="title">
            <string>Download Directory</string>

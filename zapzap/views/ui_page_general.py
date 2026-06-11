@@ -29,6 +29,21 @@ class Ui_PageGeneral(object):
         self.label.setFont(font)
         self.label.setObjectName("label")
         self.verticalLayout_2.addWidget(self.label)
+        self.flatpak_permissions_groupBox = QtWidgets.QGroupBox(parent=self.frame)
+        self.flatpak_permissions_groupBox.setObjectName("flatpak_permissions_groupBox")
+        self.gridLayout_4 = QtWidgets.QGridLayout(self.flatpak_permissions_groupBox)
+        self.gridLayout_4.setObjectName("gridLayout_4")
+        self.btn_copy_flatpak_command = QtWidgets.QPushButton(parent=self.flatpak_permissions_groupBox)
+        self.btn_copy_flatpak_command.setObjectName("btn_copy_flatpak_command")
+        self.gridLayout_4.addWidget(self.btn_copy_flatpak_command, 0, 1, 1, 1)
+        self.btn_open_flatseal = QtWidgets.QPushButton(parent=self.flatpak_permissions_groupBox)
+        self.btn_open_flatseal.setObjectName("btn_open_flatseal")
+        self.gridLayout_4.addWidget(self.btn_open_flatseal, 1, 0, 1, 2)
+        self.flatpak_command_input = QtWidgets.QLineEdit(parent=self.flatpak_permissions_groupBox)
+        self.flatpak_command_input.setReadOnly(True)
+        self.flatpak_command_input.setObjectName("flatpak_command_input")
+        self.gridLayout_4.addWidget(self.flatpak_command_input, 0, 0, 1, 1)
+        self.verticalLayout_2.addWidget(self.flatpak_permissions_groupBox)
         self.groupBox_3 = QtWidgets.QGroupBox(parent=self.frame)
         self.groupBox_3.setObjectName("groupBox_3")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.groupBox_3)
@@ -122,6 +137,13 @@ class Ui_PageGeneral(object):
     def retranslateUi(self, PageGeneral):
         
         self.label.setText(_("General"))
+        self.flatpak_permissions_groupBox.setToolTip(_("<b>ZapZap is running in the Flatpak sandbox.</b> If opening PDFs, \n"
+"drag-and-drop, or file uploads fail, this is usually caused by \n"
+" sandbox permissions. Open <b>Flatseal</b> and grant ZapZap access \n"
+" to folders like Documents, Downloads, Pictures and Videos."))
+        self.flatpak_permissions_groupBox.setTitle(_("Flatpak Permissions"))
+        self.btn_copy_flatpak_command.setText(_("Copy command"))
+        self.btn_open_flatseal.setText(_("Open Flatseal page"))
         self.groupBox_3.setTitle(_("Download Directory"))
         self.btn_path_download.setToolTip(_("Set new folder for downloads"))
         self.btn_restore_path_download.setToolTip(_("Define default folder for downloads"))

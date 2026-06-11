@@ -1,4 +1,6 @@
 from PyQt6.QtWidgets import QWidget, QApplication, QStyle
+from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtCore import QUrl
 from zapzap.services.SetupManager import SetupManager
 from zapzap.services.AutostartManager import AutostartManager
 from zapzap.services.DictionariesManager import DictionariesManager
@@ -11,6 +13,8 @@ from gettext import gettext as _
 
 class PageGeneral(QWidget, Ui_PageGeneral):
     """Gerencia a página de configurações gerais de aparência e idioma."""
+
+    FLATPAK_OVERRIDE_COMMAND = "flatpak override --user --filesystem=home com.rtosta.zapzap"
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -31,11 +35,14 @@ class PageGeneral(QWidget, Ui_PageGeneral):
             self.style().standardIcon(QStyle.StandardPixmap.SP_DirIcon))
         self.btn_default_path_spell.setIcon(self.style().standardIcon(
             QStyle.StandardPixmap.SP_DialogResetButton))
+        self.flatpak_permissions_groupBox.hide()
 
         if SetupManager._is_flatpak:
             self.btn_wayland.setDisabled(True)
             self.btn_wayland.setToolTip(
                 _("Use Flatseal to change this mode of execution"))
+
+            self.flatpak_permissions_groupBox.show()
 
     def _load_settings(self):
         """
@@ -76,6 +83,9 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         self.dontUseNativeDialog.setChecked(
             SettingsManager.get("system/DontUseNativeDialog", False))
 
+        self.flatpak_command_input.setText(self.FLATPAK_OVERRIDE_COMMAND)
+        self.flatpak_command_input.setToolTip(
+            _("Select and copy this command in your terminal"))
 
     def _configure_signals(self):
         """
@@ -109,6 +119,15 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         self.dontUseNativeDialog.clicked.connect(
             lambda: SettingsManager.set("system/DontUseNativeDialog", self.dontUseNativeDialog.isChecked()))
 
+        self.btn_copy_flatpak_command.clicked.connect(
+            lambda: QApplication.clipboard().setText(self.FLATPAK_OVERRIDE_COMMAND)
+        )
+
+        self.btn_open_flatseal.clicked.connect(
+            lambda: QDesktopServices.openUrl(
+                QUrl("https://flathub.org/apps/com.github.tchx84.Flatseal")
+            )
+        )
 
     def _handle_toggled_spellcheck(self, toggled):
         SettingsManager.set("system/spellCheckers", toggled)
