@@ -81,24 +81,17 @@ QPushButton:pressed{\n}</string>
              <property name="spacing">
               <number>9</number>
              </property>
-             <item row="3" column="0">
-              <widget class="QLabel" name="qt_version">
+             <item row="5" column="0">
+              <widget class="QLabel" name="labelBuildProvider">
                <property name="text">
-                <string>Qt: 6.10.0</string>
+                <string>Build Provider: {value}</string>
                </property>
               </widget>
              </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="version_app">
+             <item row="6" column="0">
+              <widget class="QLabel" name="labelBuildCommit">
                <property name="text">
-                <string>Version: {id} ({version_type})</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_4">
-               <property name="text">
-                <string>Build channel: ✓ Official | ⚠ Community</string>
+                <string>Build Commit: {value}</string>
                </property>
               </widget>
              </item>
@@ -142,27 +135,62 @@ border-color: transparent;</string>
                </item>
               </layout>
              </item>
-             <item row="5" column="0">
+             <item row="9" column="0">
               <widget class="QPushButton" name="btnLeanMore">
                <property name="text">
                 <string>ZapZap official website -&gt;</string>
                </property>
               </widget>
              </item>
-             <item row="6" column="0">
+             <item row="7" column="0">
+              <widget class="Line" name="line">
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="labelBuildChannel">
+               <property name="text">
+                <string>Build channel: {value}</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="version_app">
+               <property name="text">
+                <string>Version: {id} ({package})</string>
+               </property>
+              </widget>
+             </item>
+             <item row="10" column="0">
               <widget class="QPushButton" name="btnReportIssue">
                <property name="text">
                 <string>Report a problem -&gt;</string>
                </property>
               </widget>
              </item>
-             <item row="4" column="0">
+             <item row="8" column="0">
               <widget class="QPushButton" name="btnDonate">
                <property name="text">
                 <string>Donate to the project -&gt;</string>
                </property>
                <property name="checkable">
                 <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="qt_version">
+               <property name="text">
+                <string>Qt: 6.10.0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="Line" name="line_2">
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
               </widget>
              </item>
