@@ -7,6 +7,7 @@ from typing import Dict, Any
 from datetime import datetime
 from PyQt6.QtCore import PYQT_VERSION_STR, QT_VERSION_STR
 from zapzap import __appname__, __version__
+from zapzap.services.EnvironmentDetector import EnvironmentDetector
 
 
 class RuntimeEnvironmentDebug:
@@ -99,6 +100,10 @@ class RuntimeEnvironmentDebug:
         return {
             "name": __appname__,
             "version": __version__,
+            "build_channel": EnvironmentDetector.CHANNEL,
+            "build_provider": EnvironmentDetector.PROVIDER,
+            "build_commit": EnvironmentDetector.COMMIT[:7],
+            "is_official": EnvironmentDetector.is_official(),
         }
 
     def sandbox_info(self) -> Dict[str, Any]:
