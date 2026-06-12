@@ -27,15 +27,16 @@ env:
 
 jobs:
 
-- name: Create BuildInfo.py
-  run: |
-    cat > zapzap/BuildInfo.py << EOF
-    BUILD_CHANNEL = "Official"
-    BUILD_PROVIDER = "GitHub Actions"
-    BUILD_REPOSITORY = "${{ github.repository }}"
-    BUILD_COMMIT = "${{ github.sha }}"
-    BUILD_REF = "${{ github.ref_name }}"
-    EOF
+  build-info:
+    - name: Create BuildInfo.py
+        run: |
+          cat > zapzap/BuildInfo.py << EOF
+          BUILD_CHANNEL = "Official"
+          BUILD_PROVIDER = "GitHub Actions"
+          BUILD_REPOSITORY = "${{ github.repository }}"
+          BUILD_COMMIT = "${{ github.sha }}"
+          BUILD_REF = "${{ github.ref_name }}"
+          EOF
 
 # ==========================================================
 # PYTHON PACKAGE
