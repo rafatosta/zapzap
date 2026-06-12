@@ -32,8 +32,9 @@ jobs:
     cat > zapzap/BuildInfo.py << EOF
     BUILD_CHANNEL = "Official"
     BUILD_PROVIDER = "GitHub Actions"
-    BUILD_REPOSITORY = "rafatosta/zapzap"
+    BUILD_REPOSITORY = "${{ github.repository }}"
     BUILD_COMMIT = "${{ github.sha }}"
+    BUILD_REF = "${{ github.ref_name }}"
     EOF
 
 # ==========================================================
