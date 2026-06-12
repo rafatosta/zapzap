@@ -200,6 +200,12 @@ class ThemeStylesheet:
                 padding: 2px 0;
                 margin-top: 8px;
             }
+
+            QLabel#label_flatpak_info{
+                font-size: 12px;
+                color: #1d1f1f; /* Cor do texto */
+            }
+
         """,
         "dark": """
             QLabel {
@@ -223,6 +229,11 @@ class ThemeStylesheet:
                 color: #A6AEB6;
                 padding: 2px 0;
                 margin-top: 8px;
+            }
+
+            QLabel#label_flatpak_info{
+                font-size: 12px;
+                color: #E1E1E1; /* Cor do texto */
             }
         """
     }

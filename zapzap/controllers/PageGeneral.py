@@ -84,8 +84,6 @@ class PageGeneral(QWidget, Ui_PageGeneral):
             SettingsManager.get("system/DontUseNativeDialog", False))
 
         self.flatpak_command_input.setText(self.FLATPAK_OVERRIDE_COMMAND)
-        self.flatpak_command_input.setToolTip(
-            _("Select and copy this command in your terminal"))
 
     def _configure_signals(self):
         """

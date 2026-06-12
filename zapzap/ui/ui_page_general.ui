@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>693</width>
-    <height>620</height>
+    <height>696</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -63,32 +63,53 @@
         <item>
          <widget class="QGroupBox" name="flatpak_permissions_groupBox">
           <property name="toolTip">
-           <string>&lt;b&gt;ZapZap is running in the Flatpak sandbox.&lt;/b&gt; If opening PDFs, 
-drag-and-drop, or file uploads fail, this is usually caused by 
- sandbox permissions. Open &lt;b&gt;Flatseal&lt;/b&gt; and grant ZapZap access 
- to folders like Documents, Downloads, Pictures and Videos.</string>
+           <string/>
           </property>
           <property name="title">
            <string>Flatpak Permissions</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
-           <item row="0" column="1">
+           <item row="1" column="1">
             <widget class="QPushButton" name="btn_copy_flatpak_command">
              <property name="text">
-              <string>Copy command</string>
+              <string>Copy</string>
              </property>
             </widget>
            </item>
-           <item row="1" column="0" colspan="2">
-            <widget class="QPushButton" name="btn_open_flatseal">
-             <property name="text">
-              <string>Open Flatseal page</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
+           <item row="1" column="0">
             <widget class="QLineEdit" name="flatpak_command_input">
+             <property name="toolTip">
+              <string>Select and copy this command in your terminal</string>
+             </property>
              <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="2">
+            <widget class="QPushButton" name="btn_open_flatseal">
+             <property name="toolTip">
+              <string>Flatseal is a graphical utility to review and modify permissions from your Flatpak applications.</string>
+             </property>
+             <property name="text">
+              <string>Install Flatseal on Linux | Flathub</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="label_flatpak_info">
+             <property name="font">
+              <font>
+               <pointsize>8</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Flatpak sandbox.&lt;/span&gt; If file access fails, grant folder permissions using &lt;span style=&quot; font-weight:700;&quot;&gt;Flatseal&lt;/span&gt; or a command-line tool such as &lt;span style=&quot; font-weight:700;&quot;&gt;flatpak override&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="scaledContents">
+              <bool>true</bool>
+             </property>
+             <property name="wordWrap">
               <bool>true</bool>
              </property>
             </widget>
@@ -102,13 +123,6 @@ drag-and-drop, or file uploads fail, this is usually caused by
            <string>Download Directory</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <item row="0" column="0">
-            <widget class="QLineEdit" name="download_path">
-             <property name="readOnly">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="1">
             <widget class="QPushButton" name="btn_path_download">
              <property name="toolTip">
@@ -116,6 +130,13 @@ drag-and-drop, or file uploads fail, this is usually caused by
              </property>
              <property name="text">
               <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLineEdit" name="download_path">
+             <property name="readOnly">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
