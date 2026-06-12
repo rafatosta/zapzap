@@ -26,6 +26,16 @@ env:
   PYTHON_VERSION: "3.14"
 
 jobs:
+
+- name: Create BuildInfo.py
+  run: |
+    cat > zapzap/BuildInfo.py << EOF
+    BUILD_CHANNEL = "Official"
+    BUILD_PROVIDER = "GitHub Actions"
+    BUILD_REPOSITORY = "rafatosta/zapzap"
+    BUILD_COMMIT = "${{ github.sha }}"
+    EOF
+
 # ==========================================================
 # PYTHON PACKAGE
 # ==========================================================
