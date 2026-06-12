@@ -26,18 +26,6 @@ env:
   PYTHON_VERSION: "3.14"
 
 jobs:
-
-  build-info:
-    - name: Create BuildInfo.py
-        run: |
-          cat > zapzap/BuildInfo.py << EOF
-          BUILD_CHANNEL = "Official"
-          BUILD_PROVIDER = "GitHub Actions"
-          BUILD_REPOSITORY = "${{ github.repository }}"
-          BUILD_COMMIT = "${{ github.sha }}"
-          BUILD_REF = "${{ github.ref_name }}"
-          EOF
-
 # ==========================================================
 # PYTHON PACKAGE
 # ==========================================================
@@ -46,6 +34,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      - name: Create BuildInfo.py
+        shell: bash
+        run: |
+          cat > zapzap/BuildInfo.py << EOF
+          BUILD_CHANNEL = "Official"
+          BUILD_PROVIDER = "GitHub Actions"
+          BUILD_REPOSITORY = "${{ github.repository }}"
+          BUILD_COMMIT = "${{ github.sha }}"
+          BUILD_REF = "${{ github.ref_name }}"
+          BUILD_RUN_ID = "${{ github.run_id }}"
+          EOF
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -102,6 +103,19 @@ jobs:
       PYTHONUTF8: 1
 
     steps:
+
+      - name: Create BuildInfo.py
+        shell: bash
+        run: |
+          cat > zapzap/BuildInfo.py << EOF
+          BUILD_CHANNEL = "Official"
+          BUILD_PROVIDER = "GitHub Actions"
+          BUILD_REPOSITORY = "${{ github.repository }}"
+          BUILD_COMMIT = "${{ github.sha }}"
+          BUILD_REF = "${{ github.ref_name }}"
+          BUILD_RUN_ID = "${{ github.run_id }}"
+          EOF
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -159,6 +173,18 @@ jobs:
       PYTHONUTF8: 1
 
     steps:
+      - name: Create BuildInfo.py
+        shell: bash
+        run: |
+          cat > zapzap/BuildInfo.py << EOF
+          BUILD_CHANNEL = "Official"
+          BUILD_PROVIDER = "GitHub Actions"
+          BUILD_REPOSITORY = "${{ github.repository }}"
+          BUILD_COMMIT = "${{ github.sha }}"
+          BUILD_REF = "${{ github.ref_name }}"
+          BUILD_RUN_ID = "${{ github.run_id }}"
+          EOF
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
