@@ -239,9 +239,9 @@
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="btn_page_details">
+              <widget class="QPushButton" name="btn_page_debug">
                <property name="text">
-                <string>Runtime &amp;&amp; Permissions</string>
+                <string>Debugging</string>
                </property>
               </widget>
              </item>

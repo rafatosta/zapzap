@@ -27,11 +27,8 @@ from zapzap.services.SetupManager import SetupManager
 from gettext import gettext as _
 
 
-class PageDetails(QWidget):
-    """Detailed about/settings page with diagnostics and runtime information."""
-
-    FLATPAK_OVERRIDE_COMMAND = "flatpak override --user --filesystem=home com.rtosta.zapzap"
-
+class PageDebugging(QWidget):
+   
     def __init__(self, parent=None):
         super().__init__(parent)
 
@@ -68,7 +65,6 @@ class PageDetails(QWidget):
         self.verticalLayout_2.addWidget(self.label)
 
         self._setup_debug_logs_group(content)
-        self._setup_flatpak_group(content)
         self._setup_runtime_group(content)
 
         self.verticalLayout_2.addStretch(1)
@@ -101,48 +97,6 @@ class PageDetails(QWidget):
         layout.addWidget(self.btn_reset_settings)
 
         self.verticalLayout_2.addWidget(self.groupBox_debug_logs)
-
-    def _setup_flatpak_group(self, parent):
-        self.groupBox_flatpak = QGroupBox(_("Flatpak tips"), parent)
-        layout = QVBoxLayout(self.groupBox_flatpak)
-
-        self.label_flatpak_hint = QLabel(self.groupBox_flatpak)
-        self.label_flatpak_hint.setWordWrap(True)
-        self.label_flatpak_hint.setTextFormat(Qt.TextFormat.RichText)
-        if SetupManager._is_flatpak:
-            self.label_flatpak_hint.setText(
-                _(
-                    "<b>ZapZap is running in the Flatpak sandbox.</b> If opening PDFs, "
-                    "drag-and-drop, or file uploads fail, this is usually caused by "
-                    "sandbox permissions. Open <b>Flatseal</b> and grant ZapZap access "
-                    "to folders like Documents, Downloads, Pictures and Videos."
-                )
-            )
-        else:
-            self.label_flatpak_hint.setText(
-                _(
-                    "ZapZap is not running in the Flatpak sandbox right now. These tips "
-                    "are kept here for Flatpak installations and support diagnostics."
-                )
-            )
-        layout.addWidget(self.label_flatpak_hint)
-
-        command_layout = QHBoxLayout()
-        self.flatpak_command_input = QLineEdit(
-            self.FLATPAK_OVERRIDE_COMMAND,
-            self.groupBox_flatpak,
-        )
-        self.flatpak_command_input.setReadOnly(True)
-        self.flatpak_command_input.setToolTip(_("Select and copy this command in your terminal"))
-        self.btn_copy_flatpak_command = QPushButton(_("Copy command"), self.groupBox_flatpak)
-        command_layout.addWidget(self.flatpak_command_input)
-        command_layout.addWidget(self.btn_copy_flatpak_command)
-        layout.addLayout(command_layout)
-
-        self.btn_open_flatseal = QPushButton(_("Open Flatseal page"), self.groupBox_flatpak)
-        layout.addWidget(self.btn_open_flatseal)
-
-        self.verticalLayout_2.addWidget(self.groupBox_flatpak)
 
     def _setup_runtime_group(self, parent):
         self.groupBox_runtime = QGroupBox(_("Runtime environment"), parent)
@@ -178,14 +132,7 @@ class PageDetails(QWidget):
         self.btn_delete_old_debug_logs.clicked.connect(self._handle_delete_old_debug_logs)
         self.btn_delete_all_debug_logs.clicked.connect(self._handle_delete_all_debug_logs)
         self.btn_reset_settings.clicked.connect(self._handle_reset_settings)
-        self.btn_copy_flatpak_command.clicked.connect(
-            lambda: QApplication.clipboard().setText(self.FLATPAK_OVERRIDE_COMMAND)
-        )
-        self.btn_open_flatseal.clicked.connect(
-            lambda: QDesktopServices.openUrl(
-                QUrl("https://flathub.org/apps/com.github.tchx84.Flatseal")
-            )
-        )
+        
         self.btn_refresh_runtime.clicked.connect(self._refresh_runtime_environment)
         self.btn_copy_runtime.clicked.connect(
             lambda: QApplication.clipboard().setText(self.runtime_environment.toPlainText())
