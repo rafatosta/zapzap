@@ -35,6 +35,9 @@ jobs:
 
     steps:
 
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Create BuildInfo.py
         shell: bash
         run: |
@@ -46,9 +49,6 @@ jobs:
           BUILD_REF = "${{ github.ref_name }}"
           BUILD_RUN_ID = "${{ github.run_id }}"
           EOF
-
-      - name: Checkout repository
-        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -104,6 +104,9 @@ jobs:
 
     steps:
 
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Create BuildInfo.py
         shell: bash
         run: |
@@ -115,9 +118,6 @@ jobs:
           BUILD_REF = "${{ github.ref_name }}"
           BUILD_RUN_ID = "${{ github.run_id }}"
           EOF
-
-      - name: Checkout repository
-        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -172,14 +172,11 @@ jobs:
     env:
       PYTHONUTF8: 1
 
-    steps:
+    steps: 
 
-      - name: Show repository structure
-        run: |
-          pwd
-          ls -lah
-          find . -maxdepth 2 -type d
-          
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Create BuildInfo.py
         shell: bash
         run: |
@@ -191,9 +188,6 @@ jobs:
           BUILD_REF = "${{ github.ref_name }}"
           BUILD_RUN_ID = "${{ github.run_id }}"
           EOF
-
-      - name: Checkout repository
-        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
