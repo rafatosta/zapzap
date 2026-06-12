@@ -41,7 +41,7 @@ jobs:
       - name: Create BuildInfo.py
         shell: bash
         run: |
-          cat > ./zapzap/zapzap/BuildInfo.py << EOF
+          cat > zapzap/BuildInfo.py << EOF
           BUILD_CHANNEL = "Official"
           BUILD_PROVIDER = "GitHub Actions"
           BUILD_REPOSITORY = "${{ github.repository }}"
@@ -110,7 +110,7 @@ jobs:
       - name: Create BuildInfo.py
         shell: bash
         run: |
-          cat > ./zapzap/zapzap/BuildInfo.py << EOF
+          cat > zapzap/BuildInfo.py << EOF
           BUILD_CHANNEL = "Official"
           BUILD_PROVIDER = "GitHub Actions"
           BUILD_REPOSITORY = "${{ github.repository }}"
@@ -180,7 +180,7 @@ jobs:
       - name: Create BuildInfo.py
         shell: bash
         run: |
-          cat > ./zapzap/zapzap/BuildInfo.py << EOF
+          cat > zapzap/BuildInfo.py << EOF
           BUILD_CHANNEL = "Official"
           BUILD_PROVIDER = "GitHub Actions"
           BUILD_REPOSITORY = "${{ github.repository }}"
