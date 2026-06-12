@@ -173,6 +173,13 @@ jobs:
       PYTHONUTF8: 1
 
     steps:
+
+      - name: Show repository structure
+        run: |
+          pwd
+          ls -lah
+          find . -maxdepth 2 -type d
+          
       - name: Create BuildInfo.py
         shell: bash
         run: |
