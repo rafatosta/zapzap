@@ -42,14 +42,23 @@ modules:
   - name: zapzap
     buildsystem: simple
     build-commands:
-      # Gera o wheel antes
+      - |
+        cat > zapzap/BuildInfo.py << EOF
+        BUILD_CHANNEL = "Official"
+        BUILD_PROVIDER = "Local Flatpak"
+        BUILD_REPOSITORY = "rtosta/zapzap"
+        BUILD_COMMIT = "Unknown"
+        BUILD_REF = "Local"
+        BUILD_RUN_ID = "Local"
+        EOF
+
       - python3 -m build --wheel --no-isolation
-      # Instala o wheel dentro do Flatpak
       - pip3 install --prefix=${FLATPAK_DEST} dist/zapzap-*.whl
-      # Instala os assets
+
       - install -Dm644 share/icons/${FLATPAK_ID}.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - install -Dm644 share/applications/${FLATPAK_ID}.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
       - install -Dm644 share/metainfo/${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.appdata.xml
+
     sources:
       - type: dir
         path: .
