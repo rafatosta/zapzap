@@ -20,19 +20,6 @@ class PageAbout(QWidget, Ui_PageAbout):
         self._setup_ui()
         self._configure_signals()
 
-        # self.icon.setIcon(UserIcon.get_icon())
-
-        # v_type = _("Official compilation") if EnvironmentManager.isOfficial() else _(
-        #    """Unofficial""")
-
-        # v_package = EnvironmentManager.identify_packaging().value if EnvironmentManager.isOfficial() else _(
-        #    """Unknown""")
-
-        # self.version_app.setText(
-        #    _(self.version_app.text()).format(id=__version__, version_type=v_type, package=v_package))
-
-        #
-
     def _setup_ui(self):
         self.icon.setIcon(UserIcon.get_icon())
         self.name_app.setText(__appname__)
