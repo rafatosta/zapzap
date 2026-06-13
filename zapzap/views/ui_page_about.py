@@ -88,6 +88,7 @@ class Ui_PageAbout(object):
         self.btnDonate.setObjectName("btnDonate")
         self.gridLayout_2.addWidget(self.btnDonate, 8, 0, 1, 1)
         self.qt_version = QtWidgets.QLabel(parent=self.groupBox)
+        self.qt_version.setText("")
         self.qt_version.setObjectName("qt_version")
         self.gridLayout_2.addWidget(self.qt_version, 3, 0, 1, 1)
         self.line_2 = QtWidgets.QFrame(parent=self.groupBox)
@@ -120,7 +121,6 @@ class Ui_PageAbout(object):
         self.version_app.setText(_("Version: {id}"))
         self.btnReportIssue.setText(_("Report a problem ->"))
         self.btnDonate.setText(_("Donate to the project ->"))
-        self.qt_version.setText(_("Qt: 6.10.0"))
 
 
 if __name__ == "__main__":

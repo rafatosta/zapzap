@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-07 16:43-0300\n"
+"POT-Creation-Date: 2026-06-13 10:15-0300\n"
 "PO-Revision-Date: 2026-04-08 15:31+UTC+0\n"
 "Last-Translator: André Barata <andretiagob@protonmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,8 +68,7 @@ msgstr "Eliminar"
 msgid "Enter the user name"
 msgstr "Inserir o nome do utilizador"
 
-#: zapzap/views/ui_mainwindow.py:109 zapzap/views/ui_page_about.py:109
-#: zapzap/views/ui_qtoaster_donation.py:130
+#: zapzap/views/ui_mainwindow.py:109 zapzap/views/ui_qtoaster_donation.py:130
 #: zapzap/views/ui_shortcuts_dialog.py:58
 msgid "ZapZap"
 msgstr "ZapZap"
@@ -238,27 +237,10 @@ msgstr "Atalhos do teclado"
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "trl+Shift+/, Ctrl+?"
 
-#: zapzap/views/ui_mainwindow.py:148 zapzap/views/ui_page_about.py:106
-#: zapzap/views/ui_settings.py:163
+#: zapzap/views/ui_mainwindow.py:148 zapzap/views/ui_settings.py:163
+#: zapzap/views/ui_page_about.py:115
 msgid "About"
 msgstr "Sobre"
-
-#: zapzap/views/ui_page_about.py:107
-msgid "WhatsApp Web for Linux"
-msgstr "WhatsApp Web para Linux"
-
-#: zapzap/views/ui_page_about.py:108
-#, python-brace-format
-msgid "Version {id} ({version_type}) - {package}"
-msgstr "Versão {id} ({version_type}) - {package}"
-
-#: zapzap/views/ui_page_about.py:110
-msgid "Learn more"
-msgstr "Saber mais"
-
-#: zapzap/views/ui_page_about.py:111
-msgid "Report issue"
-msgstr "Reportar problemas"
 
 #: zapzap/views/ui_page_account.py:79
 msgid "My accounts"
@@ -462,7 +444,7 @@ msgstr "Importar de um URL"
 #: zapzap/views/ui_page_customizations.py:266
 #: zapzap/controllers/DialogDumpHandler.py:50
 #: zapzap/controllers/DownloadDialog.py:133
-#: zapzap/controllers/PageDetails.py:92
+#: zapzap/controllers/PageDebugging.py:88
 #, fuzzy
 msgid "Open folder"
 msgstr "Abrir pasta"
@@ -499,68 +481,99 @@ msgstr "Guardar e recarregar"
 msgid "Save"
 msgstr "Guardar"
 
-#: zapzap/views/ui_page_general.py:124 zapzap/views/ui_settings.py:153
+#: zapzap/views/ui_page_general.py:148 zapzap/views/ui_settings.py:153
 msgid "General"
 msgstr "Geral"
 
-#: zapzap/views/ui_page_general.py:125
+#: zapzap/views/ui_page_general.py:149
+#, fuzzy
+msgid "Flatpak Permissions"
+msgstr "Permissões da sandbox Flatpak"
+
+#: zapzap/views/ui_page_general.py:150 zapzap/webengine/WebView.py:282
+msgid "Copy"
+msgstr "Copiar"
+
+#: zapzap/views/ui_page_general.py:151
+msgid "Select and copy this command in your terminal"
+msgstr "Selecione e copie este comando no seu terminal"
+
+#: zapzap/views/ui_page_general.py:152
+msgid ""
+"Flatseal is a graphical utility to review and modify permissions from your "
+"Flatpak applications."
+msgstr ""
+
+#: zapzap/views/ui_page_general.py:153
+msgid "Install Flatseal on Linux | Flathub"
+msgstr ""
+
+#: zapzap/views/ui_page_general.py:154
+msgid ""
+"<html><head/><body><p><span style=\" font-weight:700;\">Flatpak sandbox.</"
+"span> If file access fails, grant folder permissions using <span style=\" "
+"font-weight:700;\">Flatseal</span> or a command-line tool such as <span "
+"style=\" font-weight:700;\">flatpak override</span>.</p></body></html>"
+msgstr ""
+
+#: zapzap/views/ui_page_general.py:155
 msgid "Download Directory"
 msgstr "Pasta de transferẽncias"
 
-#: zapzap/views/ui_page_general.py:126
+#: zapzap/views/ui_page_general.py:156
 msgid "Set new folder for downloads"
 msgstr "Escolher uma pasta nova para transferências"
 
-#: zapzap/views/ui_page_general.py:127
+#: zapzap/views/ui_page_general.py:157
 msgid "Define default folder for downloads"
 msgstr "Definir uma pasta predefinida para transferências"
 
-#: zapzap/views/ui_page_general.py:128
+#: zapzap/views/ui_page_general.py:158
 msgid "Spellchecker"
 msgstr "Corretor ortográfico"
 
-#: zapzap/views/ui_page_general.py:129
+#: zapzap/views/ui_page_general.py:159
 msgid "Directory"
 msgstr "Diretória"
 
-#: zapzap/views/ui_page_general.py:130
+#: zapzap/views/ui_page_general.py:160
 msgid "Recognizes only compiled dictionaries (.bdic)"
 msgstr "Só reconhece dicionários compilados (.bdic)"
 
-#: zapzap/views/ui_page_general.py:131
+#: zapzap/views/ui_page_general.py:161
 msgid "Define standard dictionaries"
 msgstr "Defenir dicionários padrão"
 
-#: zapzap/views/ui_page_general.py:132
+#: zapzap/views/ui_page_general.py:162
 msgid "Note: Required restart."
 msgstr "Nota: É necessário reiniciar a aplicação"
 
-#: zapzap/views/ui_page_general.py:133
+#: zapzap/views/ui_page_general.py:163
 msgid "Behavior"
 msgstr "Comportamento"
 
-#: zapzap/views/ui_page_general.py:134
+#: zapzap/views/ui_page_general.py:164
 #, fuzzy
 msgid "Confirm before closing the window"
 msgstr "Fechar ao fechar a janela"
 
-#: zapzap/views/ui_page_general.py:135
+#: zapzap/views/ui_page_general.py:165
 msgid "Close when closing the window"
 msgstr "Fechar ao fechar a janela"
 
-#: zapzap/views/ui_page_general.py:136
+#: zapzap/views/ui_page_general.py:166
 msgid "Start minimized"
 msgstr "Iniciar minimizado"
 
-#: zapzap/views/ui_page_general.py:137
+#: zapzap/views/ui_page_general.py:167
 msgid "Start with the system"
 msgstr "Iniciar com o arranque do sistema"
 
-#: zapzap/views/ui_page_general.py:138
+#: zapzap/views/ui_page_general.py:168
 msgid "Don't use a platform-native file dialog"
 msgstr "Não usar um dialogo de ficheiros nativo da plataforma"
 
-#: zapzap/views/ui_page_general.py:139
+#: zapzap/views/ui_page_general.py:169
 msgid "Wayland window system"
 msgstr "Sistema de janelas Wayland"
 
@@ -802,8 +815,8 @@ msgstr "Desempenho"
 
 #: zapzap/views/ui_settings.py:161
 #, fuzzy
-msgid "Runtime && Permissions"
-msgstr "Permissões da sandbox Flatpak"
+msgid "Debugging"
+msgstr "Registos de depuração"
 
 #: zapzap/views/ui_settings.py:162
 msgid "HELP"
@@ -821,6 +834,42 @@ msgstr "Diálogo"
 #: zapzap/views/ui_shortcuts_dialog.py:57
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
+
+#: zapzap/views/ui_page_about.py:116
+#, python-brace-format
+msgid "Build Provider: {value}"
+msgstr ""
+
+#: zapzap/views/ui_page_about.py:117
+#, python-brace-format
+msgid "Build Commit: {value}"
+msgstr ""
+
+#: zapzap/views/ui_page_about.py:118
+msgid "name_app"
+msgstr ""
+
+#: zapzap/views/ui_page_about.py:119
+msgid "ZapZap official website ->"
+msgstr ""
+
+#: zapzap/views/ui_page_about.py:120
+#, python-brace-format
+msgid "Build channel: {value}"
+msgstr ""
+
+#: zapzap/views/ui_page_about.py:121
+#, fuzzy, python-brace-format
+msgid "Version: {id}"
+msgstr "Versão {id} - {version_type}"
+
+#: zapzap/views/ui_page_about.py:122
+msgid "Report a problem ->"
+msgstr ""
+
+#: zapzap/views/ui_page_about.py:123
+msgid "Donate to the project ->"
+msgstr ""
 
 #: zapzap/controllers/Browser.py:79
 msgid "Grid view"
@@ -1037,7 +1086,7 @@ msgid "Prefer Wayland (when available)"
 msgstr "Preferir Wayland (quando disponível)"
 
 #: zapzap/controllers/OnboardingDialog.py:219
-#: zapzap/controllers/PageGeneral.py:38
+#: zapzap/controllers/PageGeneral.py:43
 msgid "Use Flatseal to change this mode of execution"
 msgstr "Use o Flatseal para alterar este modo de execução"
 
@@ -1088,13 +1137,11 @@ msgstr ""
 
 #: zapzap/controllers/OnboardingDialog.py:331
 #: zapzap/controllers/OnboardingDialog.py:516
-#: zapzap/controllers/PageDetails.py:137
 #, fuzzy
 msgid "Copy command"
 msgstr "Copiar comando"
 
 #: zapzap/controllers/OnboardingDialog.py:336
-#: zapzap/controllers/PageDetails.py:142
 msgid "Open Flatseal page"
 msgstr "Abrir página do Flatseal"
 
@@ -1140,18 +1187,6 @@ msgstr "Instruções"
 #: zapzap/controllers/OnboardingDialog.py:517
 msgid "Close"
 msgstr "Fechar"
-
-#: zapzap/controllers/PageAbout.py:21
-msgid "Official compilation"
-msgstr "Compilação oficial"
-
-#: zapzap/controllers/PageAbout.py:22
-msgid "Unofficial"
-msgstr "Não oficial"
-
-#: zapzap/controllers/PageAbout.py:25
-msgid "Unknown"
-msgstr "Desconhecido"
 
 #: zapzap/controllers/PageAppearance.py:69
 msgid "Grid Columns:"
@@ -1397,136 +1432,6 @@ msgstr ""
 msgid "All pages reloaded."
 msgstr "Todas as páginas foram recarregadas."
 
-#: zapzap/controllers/PageDetails.py:63
-#, fuzzy
-msgid "Runtime & Permissions"
-msgstr "Permissões da sandbox Flatpak"
-
-#: zapzap/controllers/PageDetails.py:80 zapzap/controllers/PageDetails.py:238
-#: zapzap/controllers/PageDetails.py:248 zapzap/controllers/PageDetails.py:265
-msgid "Debug logs"
-msgstr "Registos de depuração"
-
-#: zapzap/controllers/PageDetails.py:93
-#, fuzzy
-msgid "Delete old"
-msgstr "Eliminar antigo"
-
-#: zapzap/controllers/PageDetails.py:94
-#, fuzzy
-msgid "Delete all"
-msgstr "Eliminar todos"
-
-#: zapzap/controllers/PageDetails.py:100 zapzap/controllers/PageDetails.py:273
-#: zapzap/controllers/PageDetails.py:291 zapzap/controllers/PageDetails.py:300
-#, fuzzy
-msgid "Reset settings"
-msgstr "Restaurar definições"
-
-#: zapzap/controllers/PageDetails.py:106
-#, fuzzy
-msgid "Flatpak tips"
-msgstr "Sandbox Flatpak"
-
-#: zapzap/controllers/PageDetails.py:115
-#, fuzzy
-msgid ""
-"<b>ZapZap is running in the Flatpak sandbox.</b> If opening PDFs, drag-and-"
-"drop, or file uploads fail, this is usually caused by sandbox permissions. "
-"Open <b>Flatseal</b> and grant ZapZap access to folders like Documents, "
-"Downloads, Pictures and Videos."
-msgstr ""
-"<b>Dica do Flatpak:</b> se abrir PDFs, arrastar e largar ou carregamentos de "
-"ficheiros falharem, isto normalmente é causado por permissões da sandbox. "
-"Abra o <b>Flatseal</b> e conceda ao ZapZap acesso a pastas como Documentos, "
-"Transferências, Imagens e Vídeos. Também pode executar: <code>flatpak "
-"override --user --filesystem=home com.rtosta.zapzap</code>."
-
-#: zapzap/controllers/PageDetails.py:124
-msgid ""
-"ZapZap is not running in the Flatpak sandbox right now. These tips are kept "
-"here for Flatpak installations and support diagnostics."
-msgstr ""
-
-#: zapzap/controllers/PageDetails.py:136
-msgid "Select and copy this command in your terminal"
-msgstr "Selecione e copie este comando no seu terminal"
-
-#: zapzap/controllers/PageDetails.py:148
-msgid "Runtime environment"
-msgstr ""
-
-#: zapzap/controllers/PageDetails.py:153
-msgid ""
-"Relevant environment information for bug reports, including Qt, PyQt, "
-"Python, Flatpak and desktop session details."
-msgstr ""
-
-#: zapzap/controllers/PageDetails.py:168
-msgid "Refresh"
-msgstr ""
-
-#: zapzap/controllers/PageDetails.py:169
-msgid "Copy details"
-msgstr ""
-
-#: zapzap/controllers/PageDetails.py:204
-#, python-brace-format
-msgid "Files: {count} crash report(s){faulthandler}."
-msgstr "Ficheiros: {count} registo(s) de falha(s){faulthandler}."
-
-#: zapzap/controllers/PageDetails.py:206
-msgid " + faulthandler.log"
-msgstr " + faulthandler.log"
-
-#: zapzap/controllers/PageDetails.py:210
-#, python-brace-format
-msgid ""
-"Crash reports are stored in this folder. You can open the directory or clean "
-"old files.\n"
-"{details}"
-msgstr ""
-"Os registos de falhas são guardados nesta pasta. Pode abrir a mesma ou "
-"limpar ficheiros antigos.\n"
-"{details}"
-
-#: zapzap/controllers/PageDetails.py:239
-#, python-brace-format
-msgid "Deleted {count} old crash report(s) (older than 30 days)."
-msgstr ""
-"Eliminar registo(s) de falha(s) da conta {count} (mais antigo(s) do que 30 "
-"dias)."
-
-#: zapzap/controllers/PageDetails.py:249
-msgid "Delete all crash reports and debug logs?"
-msgstr "Eliminar todos os registos de falha e depuração?"
-
-#: zapzap/controllers/PageDetails.py:266
-#, python-brace-format
-msgid "Deleted {count} file(s)."
-msgstr "Ficheiro(s) da conta {count} eliminados."
-
-#: zapzap/controllers/PageDetails.py:274
-msgid ""
-"This will delete your current settings file (.config) and requires restart. "
-"Continue?"
-msgstr ""
-"Isto vai eliminar o seu ficheiro de definições atual (.config) e será "
-"necessário reiniciar a aplicação.Deseja continuar?"
-
-#: zapzap/controllers/PageDetails.py:292
-#, python-brace-format
-msgid ""
-"Could not remove settings file:\n"
-"{error}"
-msgstr ""
-"Não foi possível remover o ficheiro de definições:\n"
-"{error}"
-
-#: zapzap/controllers/PageDetails.py:301
-msgid "Settings were reset successfully. Please restart ZapZap."
-msgstr "As definições foram repostas com sucesso. Reinicie o ZapZap por favor."
-
 #: zapzap/controllers/PageNetwork.py:23
 #, fuzzy
 msgid "Settings for:"
@@ -1767,6 +1672,111 @@ msgstr "Recarregar páginas"
 msgid "New conversation by phone number"
 msgstr "Nova conversação por número de telefone"
 
+#: zapzap/controllers/PageDebugging.py:60
+#, fuzzy
+msgid "Runtime & Permissions"
+msgstr "Permissões da sandbox Flatpak"
+
+#: zapzap/controllers/PageDebugging.py:76
+#: zapzap/controllers/PageDebugging.py:185
+#: zapzap/controllers/PageDebugging.py:195
+#: zapzap/controllers/PageDebugging.py:212
+msgid "Debug logs"
+msgstr "Registos de depuração"
+
+#: zapzap/controllers/PageDebugging.py:89
+#, fuzzy
+msgid "Delete old"
+msgstr "Eliminar antigo"
+
+#: zapzap/controllers/PageDebugging.py:90
+#, fuzzy
+msgid "Delete all"
+msgstr "Eliminar todos"
+
+#: zapzap/controllers/PageDebugging.py:96
+#: zapzap/controllers/PageDebugging.py:220
+#: zapzap/controllers/PageDebugging.py:238
+#: zapzap/controllers/PageDebugging.py:247
+#, fuzzy
+msgid "Reset settings"
+msgstr "Restaurar definições"
+
+#: zapzap/controllers/PageDebugging.py:102
+msgid "Runtime environment"
+msgstr ""
+
+#: zapzap/controllers/PageDebugging.py:107
+msgid ""
+"Relevant environment information for bug reports, including Qt, PyQt, "
+"Python, Flatpak and desktop session details."
+msgstr ""
+
+#: zapzap/controllers/PageDebugging.py:122
+msgid "Refresh"
+msgstr ""
+
+#: zapzap/controllers/PageDebugging.py:123
+msgid "Copy details"
+msgstr ""
+
+#: zapzap/controllers/PageDebugging.py:151
+#, python-brace-format
+msgid "Files: {count} crash report(s){faulthandler}."
+msgstr "Ficheiros: {count} registo(s) de falha(s){faulthandler}."
+
+#: zapzap/controllers/PageDebugging.py:153
+msgid " + faulthandler.log"
+msgstr " + faulthandler.log"
+
+#: zapzap/controllers/PageDebugging.py:157
+#, python-brace-format
+msgid ""
+"Crash reports are stored in this folder. You can open the directory or clean "
+"old files.\n"
+"{details}"
+msgstr ""
+"Os registos de falhas são guardados nesta pasta. Pode abrir a mesma ou "
+"limpar ficheiros antigos.\n"
+"{details}"
+
+#: zapzap/controllers/PageDebugging.py:186
+#, python-brace-format
+msgid "Deleted {count} old crash report(s) (older than 30 days)."
+msgstr ""
+"Eliminar registo(s) de falha(s) da conta {count} (mais antigo(s) do que 30 "
+"dias)."
+
+#: zapzap/controllers/PageDebugging.py:196
+msgid "Delete all crash reports and debug logs?"
+msgstr "Eliminar todos os registos de falha e depuração?"
+
+#: zapzap/controllers/PageDebugging.py:213
+#, python-brace-format
+msgid "Deleted {count} file(s)."
+msgstr "Ficheiro(s) da conta {count} eliminados."
+
+#: zapzap/controllers/PageDebugging.py:221
+msgid ""
+"This will delete your current settings file (.config) and requires restart. "
+"Continue?"
+msgstr ""
+"Isto vai eliminar o seu ficheiro de definições atual (.config) e será "
+"necessário reiniciar a aplicação.Deseja continuar?"
+
+#: zapzap/controllers/PageDebugging.py:239
+#, python-brace-format
+msgid ""
+"Could not remove settings file:\n"
+"{error}"
+msgstr ""
+"Não foi possível remover o ficheiro de definições:\n"
+"{error}"
+
+#: zapzap/controllers/PageDebugging.py:248
+msgid "Settings were reset successfully. Please restart ZapZap."
+msgstr "As definições foram repostas com sucesso. Reinicie o ZapZap por favor."
+
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
 msgstr "Informação"
@@ -1851,10 +1861,6 @@ msgid "Cut"
 msgstr "Cortar"
 
 #: zapzap/webengine/WebView.py:282
-msgid "Copy"
-msgstr "Copiar"
-
-#: zapzap/webengine/WebView.py:282
 msgid "Paste"
 msgstr "Colar"
 
@@ -1889,6 +1895,54 @@ msgstr "Selecionar idioma"
 #, fuzzy, python-brace-format
 msgid "DevTools - {}"
 msgstr "Abrir ferramentas de desenvolvimento"
+
+#, fuzzy, python-brace-format
+#~ msgid "Version: {id} ({package})"
+#~ msgstr "Versão {id} ({version_type}) - {package}"
+
+#, fuzzy
+#~ msgid "Official Version"
+#~ msgstr "Compilação oficial"
+
+#~ msgid "Learn more"
+#~ msgstr "Saber mais"
+
+#~ msgid "Report issue"
+#~ msgstr "Reportar problemas"
+
+#~ msgid "WhatsApp Web for Linux"
+#~ msgstr "WhatsApp Web para Linux"
+
+#~ msgid "Unofficial"
+#~ msgstr "Não oficial"
+
+#~ msgid "Unknown"
+#~ msgstr "Desconhecido"
+
+#, fuzzy
+#~ msgid "About ZapZap"
+#~ msgstr "Fechar o ZapZap"
+
+#, fuzzy
+#~ msgid "Runtime && Permissions"
+#~ msgstr "Permissões da sandbox Flatpak"
+
+#, fuzzy
+#~ msgid "Flatpak tips"
+#~ msgstr "Sandbox Flatpak"
+
+#, fuzzy
+#~ msgid ""
+#~ "<b>ZapZap is running in the Flatpak sandbox.</b> If opening PDFs, drag-"
+#~ "and-drop, or file uploads fail, this is usually caused by sandbox "
+#~ "permissions. Open <b>Flatseal</b> and grant ZapZap access to folders like "
+#~ "Documents, Downloads, Pictures and Videos."
+#~ msgstr ""
+#~ "<b>Dica do Flatpak:</b> se abrir PDFs, arrastar e largar ou carregamentos "
+#~ "de ficheiros falharem, isto normalmente é causado por permissões da "
+#~ "sandbox. Abra o <b>Flatseal</b> e conceda ao ZapZap acesso a pastas como "
+#~ "Documentos, Transferências, Imagens e Vídeos. Também pode executar: "
+#~ "<code>flatpak override --user --filesystem=home com.rtosta.zapzap</code>."
 
 #~ msgid ""
 #~ "Crash reports are stored in this folder. You can open the directory or "
