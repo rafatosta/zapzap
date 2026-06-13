@@ -159,7 +159,7 @@ border-color: transparent;</string>
              <item row="2" column="0">
               <widget class="QLabel" name="version_app">
                <property name="text">
-                <string>Version: {id} ({package})</string>
+                <string>Version: {id}</string>
                </property>
               </widget>
              </item>

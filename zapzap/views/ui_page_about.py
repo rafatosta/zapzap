@@ -117,7 +117,7 @@ class Ui_PageAbout(object):
         self.name_app.setText(_("name_app"))
         self.btnLeanMore.setText(_("ZapZap official website ->"))
         self.labelBuildChannel.setText(_("Build channel: {value}"))
-        self.version_app.setText(_("Version: {id} ({package})"))
+        self.version_app.setText(_("Version: {id}"))
         self.btnReportIssue.setText(_("Report a problem ->"))
         self.btnDonate.setText(_("Donate to the project ->"))
         self.qt_version.setText(_("Qt: 6.10.0"))
