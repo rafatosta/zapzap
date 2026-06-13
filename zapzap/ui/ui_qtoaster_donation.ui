@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>463</width>
-    <height>84</height>
+    <width>715</width>
+    <height>169</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,17 +15,36 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#frame{
-	border: 1px solid #585A5D;
-    border-radius: 8px; 
-    color: rgb(255, 255, 255);
-    background-color: #1d1f1f;
+border:1px solid #374151;
+border-radius:12px;
+background-color:#1d1f1f;
+color:white;
 }
-
-QLabel{
-	color: rgb(255, 255, 255);
+QLabel{color:white;}
+#labelZapZap{font:700 20pt;}
+#labelWelcomeTo{font:10pt;}
+#labelVersion{color:#d1d5db;font:10pt;}
+#labelSubtitle{color:#d1d5db;font:8pt;}
+#donateButton{
+background:#22c55e;
+border:none;
+border-radius:10px;
+color:white;
+padding:10px;
+font-weight:bold;
+}
+#footerFrame{
+border-top:1px solid #374151;
+}
+#donationMessage{
+	color: rgb(192, 191, 188);
+}
+#moreButton{
+border:none;
+color:rgb(46, 194, 126);
 }</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0">
+  <layout class="QHBoxLayout" name="horizontalLayout">
    <property name="spacing">
     <number>0</number>
    </property>
@@ -49,141 +68,188 @@ QLabel{
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <layout class="QVBoxLayout" name="verticalLayout">
       <property name="spacing">
-       <number>5</number>
-      </property>
-      <property name="leftMargin">
-       <number>12</number>
-      </property>
-      <property name="topMargin">
-       <number>9</number>
-      </property>
-      <property name="rightMargin">
-       <number>12</number>
-      </property>
-      <property name="bottomMargin">
-       <number>9</number>
+       <number>6</number>
       </property>
       <item>
-       <widget class="QPushButton" name="logo">
+       <widget class="QFrame" name="headerFrame">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="minimumSize">
          <size>
-          <width>64</width>
-          <height>64</height>
+          <width>0</width>
+          <height>16</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>64</width>
-          <height>64</height>
+          <width>16777215</width>
+          <height>16</height>
          </size>
         </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: transparent;
-border-color: transparent;</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>64</width>
-          <height>64</height>
-         </size>
-        </property>
+        <layout class="QHBoxLayout" name="footerLayout_2">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="labelVersion">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QToolButton" name="closeButton">
+           <property name="styleSheet">
+            <string notr="true">
+                QToolButton {
+                padding: 5px;
+                }
+                QToolButton:hover {
+                background-color: #1d1f1f;
+                }
+         </string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="autoRaise">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
-        <property name="spacing">
-         <number>0</number>
-        </property>
+       <layout class="QHBoxLayout" name="infoFrame">
         <item>
-         <widget class="QLabel" name="labelWelcomeTo">
-          <property name="font">
-           <font>
-            <family>Cantarell</family>
-            <pointsize>10</pointsize>
-            <italic>false</italic>
-            <bold>false</bold>
-           </font>
+         <widget class="QPushButton" name="logo">
+          <property name="minimumSize">
+           <size>
+            <width>82</width>
+            <height>82</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>82</width>
+            <height>82</height>
+           </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">font: 10pt;
- padding:0px</string>
+           <string notr="true">background-color: transparent;
+border-color: transparent;</string>
           </property>
           <property name="text">
-           <string>Welcome to</string>
+           <string/>
           </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft</set>
+          <property name="iconSize">
+           <size>
+            <width>82</width>
+            <height>82</height>
+           </size>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="labelZapZap">
-          <property name="font">
-           <font>
-            <family>13</family>
-            <pointsize>22</pointsize>
-            <italic>false</italic>
-            <bold>false</bold>
-           </font>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <property name="spacing">
+           <number>3</number>
           </property>
-          <property name="styleSheet">
-           <string notr="true">font: 22pt bold;
- padding:0px</string>
-          </property>
-          <property name="text">
-           <string>ZapZap</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
-          </property>
-         </widget>
+          <item>
+           <widget class="QLabel" name="labelWelcomeTo">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <italic>false</italic>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Support the project</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelZapZap">
+            <property name="font">
+             <font>
+              <pointsize>20</pointsize>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>ZapZap</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelSubtitle">
+            <property name="font">
+             <font>
+              <pointsize>8</pointsize>
+              <italic>false</italic>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Sua doação ajuda a manter o projeto no ar, melhorar recursos e garantir sua privacidade e liberdade.</string>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
-         <widget class="QLabel" name="labelVersion">
-          <property name="styleSheet">
-           <string notr="true">font: 6pt;
-padding:0px;
-color: rgb(222, 221, 218);</string>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
           </property>
-          <property name="text">
-           <string>Version {id} - {version_type}</string>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>98</width>
+            <height>17</height>
+           </size>
           </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTop|Qt::AlignmentFlag::AlignTrailing</set>
-          </property>
-         </widget>
+         </spacer>
         </item>
-       </layout>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Orientation::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>10</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
         <item>
          <widget class="QPushButton" name="donateButton">
           <property name="sizePolicy">
@@ -194,53 +260,75 @@ color: rgb(222, 221, 218);</string>
           </property>
           <property name="minimumSize">
            <size>
-            <width>150</width>
-            <height>40</height>
+            <width>220</width>
+            <height>54</height>
            </size>
           </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton {
-                border: 0px solid black;
-                border-radius: 5px; 
-                color: rgb(255, 255, 255);  
-				 background-color: rgb(38, 162, 105);
-                padding: 5px;
-                Text-align:center;
-            }
-            QPushButton:hover {
-             	 
-	
-	background-color: rgb(46, 194, 126);
-            }
-            QPushButton:pressed {
-                	background-color: rgb(46, 194, 126);
-            }</string>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="text">
-           <string>Make a donation</string>
+           <string>❤ Make a donation</string>
           </property>
          </widget>
         </item>
        </layout>
       </item>
       <item>
-       <widget class="QToolButton" name="closeButton">
-        <property name="styleSheet">
-         <string notr="true">
-                QToolButton {
-                padding: 5px;
-                }
-                QToolButton:hover {
-                background-color: #1d1f1f;
-                }
-         </string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="autoRaise">
-         <bool>true</bool>
-        </property>
+       <widget class="QFrame" name="footerFrame">
+        <layout class="QHBoxLayout" name="footerLayout">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>9</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QCheckBox" name="donationMessage">
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="text">
+            <string>Não mostrar novamente</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QToolButton" name="moreButton">
+           <property name="font">
+            <font/>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="text">
+            <string>Saiba mais sobre o ZapZap ↗</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
      </layout>
