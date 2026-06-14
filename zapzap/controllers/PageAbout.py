@@ -4,7 +4,6 @@ from PyQt6.QtCore import QUrl, PYQT_VERSION_STR, QT_VERSION_STR
 
 from zapzap.resources.UserIcon import UserIcon
 from zapzap.services.EnvironmentDetector import EnvironmentDetector
-from zapzap.services.EnvironmentManager import EnvironmentManager
 from zapzap.views.ui_page_about import Ui_PageAbout
 from zapzap import __bugreport__, __website__, __version__, __appname__, __donationPage__
 
