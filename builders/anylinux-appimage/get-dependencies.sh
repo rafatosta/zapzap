@@ -2,29 +2,63 @@
 
 set -eu
 
-ARCH=$(uname -m)
-
 echo "Installing package dependencies..."
 echo "---------------------------------------------------------------"
-pacman -Syu --noconfirm    \
-    kvantum        \
-    lxqt-qtplugin  \
+
+pacman -Syu --noconfirm \
+    base-devel \
+    ffmpeg \
+    git \
+    kvantum \
+    lxqt-qtplugin \
     pipewire-audio \
-    pipewire-jack  \
-    python         \
+    pipewire-jack \
+    python \
+    python-build \
+    python-installer \
+    python-pip \
+    python-setuptools \
+    python-wheel \
+    qt6-base \
+    qt6-webengine \
     qt6ct
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
+
 get-debloated-pkgs --add-common --prefer-nano ffmpeg-mini
 
-# Comment this out if you need an AUR package
-if [ "${DEVEL_RELEASE-}" = 1 ]; then
-    package=zapzap-git
-else
-    package=zapzap
-fi
-make-aur-package "$package"
-pacman -Q "$package" | awk '{print $2; exit}' > ~/version
+echo "Building ZapZap..."
+echo "---------------------------------------------------------------"
 
-# If the application needs to be manually built that has to be done down here
+python -m build
+
+echo "Installing ZapZap..."
+echo "---------------------------------------------------------------"
+
+python -m installer dist/*.whl
+
+echo "Checking installation..."
+echo "---------------------------------------------------------------"
+
+which zapzap
+
+zapzap --help >/dev/null 2>&1 || true
+
+echo "Saving version..."
+echo "---------------------------------------------------------------"
+
+python - <<'EOF' > ~/version
+import tomllib
+
+with open("pyproject.toml", "rb") as f:
+    data = tomllib.load(f)
+
+if "version" in data.get("project", {}):
+    print(data["project"]["version"])
+else:
+    import zapzap
+    print(zapzap.__version__)
+EOF
+
+echo "Done."
