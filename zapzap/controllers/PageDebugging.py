@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from pathlib import Path
 
-from PyQt6.QtCore import Qt, QUrl
+from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWidgets import (
     QApplication,
@@ -22,7 +22,6 @@ from PyQt6.QtWidgets import (
 from zapzap.debug import crash_handler
 from zapzap.debug.RuntimeEnvironmentDebug import RuntimeEnvironmentDebug
 from zapzap.services.SettingsManager import SettingsManager
-from zapzap.services.SetupManager import SetupManager
 
 from gettext import gettext as _
 
@@ -57,7 +56,7 @@ class PageDebugging(QWidget):
         self.verticalLayout_2 = QVBoxLayout(content)
         self.verticalLayout_2.setSpacing(15)
 
-        self.label = QLabel(_("Runtime & Permissions"), content)
+        self.label = QLabel(_("Debugging"), content)
         title_font = self.label.font()
         title_font.setPointSize(11)
         title_font.setBold(True)

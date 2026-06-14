@@ -1,10 +1,10 @@
 from enum import Enum
-
+from gettext import gettext as _
 
 class BuildChannel(Enum):
-    OFFICIAL = "Official"
-    COMMUNITY = "Community"
-    CUSTOM = "Custom"
+    OFFICIAL = _("Official")
+    COMMUNITY =_("Community")
+    CUSTOM = _("Custom")
 
 
 try:
@@ -15,8 +15,8 @@ try:
     )
 except ImportError:
     BUILD_CHANNEL = BuildChannel.CUSTOM.value
-    BUILD_PROVIDER = "Unknown"
-    BUILD_REPOSITORY = "Unknown"
+    BUILD_PROVIDER = _("Unknown")
+    BUILD_REPOSITORY = _("Unknown")
 
 
 class EnvironmentDetector:

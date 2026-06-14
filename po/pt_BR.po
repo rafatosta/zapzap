@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-13 10:15-0300\n"
+"POT-Creation-Date: 2026-06-14 10:17-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,7 +68,7 @@ msgstr "Excluir"
 msgid "Enter the user name"
 msgstr "Insira o nome do usuário"
 
-#: zapzap/views/ui_mainwindow.py:109 zapzap/views/ui_qtoaster_donation.py:130
+#: zapzap/views/ui_mainwindow.py:109 zapzap/views/ui_qtoaster_donation.py:165
 #: zapzap/views/ui_shortcuts_dialog.py:58
 msgid "ZapZap"
 msgstr "ZapZap"
@@ -426,7 +426,7 @@ msgstr "Importar a partir de URL"
 #: zapzap/views/ui_page_customizations.py:266
 #: zapzap/controllers/DialogDumpHandler.py:50
 #: zapzap/controllers/DownloadDialog.py:133
-#: zapzap/controllers/PageDebugging.py:88
+#: zapzap/controllers/PageDebugging.py:87
 msgid "Open folder"
 msgstr "Abrir pasta"
 
@@ -486,7 +486,7 @@ msgstr ""
 
 #: zapzap/views/ui_page_general.py:153
 msgid "Install Flatseal on Linux | Flathub"
-msgstr ""
+msgstr "Instale Flatseal no Linux | Flathub"
 
 #: zapzap/views/ui_page_general.py:154
 msgid ""
@@ -495,6 +495,11 @@ msgid ""
 "font-weight:700;\">Flatseal</span> or a command-line tool such as <span "
 "style=\" font-weight:700;\">flatpak override</span>.</p></body></html>"
 msgstr ""
+"<html><head/><body><p><span style=\" font-weight:700;\">Sandbox Flatpak.</"
+"span> Se o acesso ao arquivo falhar, conceda permissões à pasta usando <span "
+"style=\" font-weight:700;\">Flatseal</span> ou uma ferramenta de linha de "
+"comando como <span style=\" font-weight:700;\">substituição do flatpak</"
+"span>.</p></body></html>"
 
 #: zapzap/views/ui_page_general.py:155
 msgid "Download Directory"
@@ -752,18 +757,29 @@ msgstr "Restaurar padrões"
 msgid "Note: Restart required to apply changes."
 msgstr "Nota: Reinício necessário para aplicar as alterações."
 
-#: zapzap/views/ui_qtoaster_donation.py:129
-msgid "Welcome to"
-msgstr "Bem-vindo ao"
+#: zapzap/views/ui_qtoaster_donation.py:164
+msgid "Support the project"
+msgstr "Apoie o projeto"
 
-#: zapzap/views/ui_qtoaster_donation.py:131
-#, python-brace-format
-msgid "Version {id} - {version_type}"
-msgstr "Versão {id} - {version_type}"
+#: zapzap/views/ui_qtoaster_donation.py:166
+msgid ""
+"Your donation helps keep the project running, improve resources and "
+"guarantee your privacy and freedom."
+msgstr ""
+"Sua doação ajuda a manter o projeto no ar, melhorar recursos e garantir sua "
+"privacidade e liberdade."
 
-#: zapzap/views/ui_qtoaster_donation.py:132
-msgid "Make a donation"
-msgstr "Faça uma doação"
+#: zapzap/views/ui_qtoaster_donation.py:167
+msgid "❤ Make a donation"
+msgstr "❤ Faça uma doação"
+
+#: zapzap/views/ui_qtoaster_donation.py:168
+msgid "Don't show again"
+msgstr "Não mostrar novamente"
+
+#: zapzap/views/ui_qtoaster_donation.py:169
+msgid "Learn more about ZapZap ↗"
+msgstr "Saiba mais sobre o ZapZap ↗"
 
 #: zapzap/views/ui_settings.py:151 zapzap/controllers/OnboardingDialog.py:98
 msgid "Back"
@@ -785,7 +801,7 @@ msgstr "FERRAMENTAS"
 msgid "Performance"
 msgstr "Desempenho"
 
-#: zapzap/views/ui_settings.py:161
+#: zapzap/views/ui_settings.py:161 zapzap/controllers/PageDebugging.py:59
 msgid "Debugging"
 msgstr "Registro de depuração"
 
@@ -808,12 +824,12 @@ msgstr "WhatsApp Web"
 #: zapzap/views/ui_page_about.py:116
 #, python-brace-format
 msgid "Build Provider: {value}"
-msgstr ""
+msgstr "Provedor de compilação: {value}"
 
 #: zapzap/views/ui_page_about.py:117
 #, python-brace-format
-msgid "Build Commit: {value}"
-msgstr ""
+msgid "Build Repository: {value}"
+msgstr "Repositório de compilação: {value}"
 
 #: zapzap/views/ui_page_about.py:118
 msgid "name_app"
@@ -821,12 +837,12 @@ msgstr ""
 
 #: zapzap/views/ui_page_about.py:119
 msgid "ZapZap official website ->"
-msgstr ""
+msgstr "Site oficial do ZapZap ->"
 
 #: zapzap/views/ui_page_about.py:120
 #, python-brace-format
 msgid "Build channel: {value}"
-msgstr ""
+msgstr "Canal de compilação: {value}"
 
 #: zapzap/views/ui_page_about.py:121
 #, python-brace-format
@@ -835,11 +851,11 @@ msgstr "Versão {id}"
 
 #: zapzap/views/ui_page_about.py:122
 msgid "Report a problem ->"
-msgstr ""
+msgstr "Informar um problema ->"
 
 #: zapzap/views/ui_page_about.py:123
 msgid "Donate to the project ->"
-msgstr ""
+msgstr "Doe para o projeto ->"
 
 #: zapzap/controllers/Browser.py:79
 msgid "Grid view"
@@ -1607,37 +1623,33 @@ msgstr "Recarregar páginas"
 msgid "New conversation by phone number"
 msgstr "Nova conversa por número de telefone"
 
-#: zapzap/controllers/PageDebugging.py:60
-msgid "Runtime & Permissions"
-msgstr "Sistema & Permissões"
-
-#: zapzap/controllers/PageDebugging.py:76
-#: zapzap/controllers/PageDebugging.py:185
-#: zapzap/controllers/PageDebugging.py:195
-#: zapzap/controllers/PageDebugging.py:212
+#: zapzap/controllers/PageDebugging.py:75
+#: zapzap/controllers/PageDebugging.py:184
+#: zapzap/controllers/PageDebugging.py:194
+#: zapzap/controllers/PageDebugging.py:211
 msgid "Debug logs"
 msgstr "Registro de depuração"
 
-#: zapzap/controllers/PageDebugging.py:89
+#: zapzap/controllers/PageDebugging.py:88
 msgid "Delete old"
 msgstr "Excluir antigos"
 
-#: zapzap/controllers/PageDebugging.py:90
+#: zapzap/controllers/PageDebugging.py:89
 msgid "Delete all"
 msgstr "Excluir tudo"
 
-#: zapzap/controllers/PageDebugging.py:96
-#: zapzap/controllers/PageDebugging.py:220
-#: zapzap/controllers/PageDebugging.py:238
-#: zapzap/controllers/PageDebugging.py:247
+#: zapzap/controllers/PageDebugging.py:95
+#: zapzap/controllers/PageDebugging.py:219
+#: zapzap/controllers/PageDebugging.py:237
+#: zapzap/controllers/PageDebugging.py:246
 msgid "Reset settings"
 msgstr "Redefinir configurações"
 
-#: zapzap/controllers/PageDebugging.py:102
+#: zapzap/controllers/PageDebugging.py:101
 msgid "Runtime environment"
 msgstr "Ambiente de execução"
 
-#: zapzap/controllers/PageDebugging.py:107
+#: zapzap/controllers/PageDebugging.py:106
 msgid ""
 "Relevant environment information for bug reports, including Qt, PyQt, "
 "Python, Flatpak and desktop session details."
@@ -1645,24 +1657,24 @@ msgstr ""
 "Informações relevantes do ambiente para relatórios de bugs, incluindo Qt, "
 "PyQt, Detalhes da sessão Python, Flatpak e desktop."
 
-#: zapzap/controllers/PageDebugging.py:122
+#: zapzap/controllers/PageDebugging.py:121
 msgid "Refresh"
 msgstr "Atualizar"
 
-#: zapzap/controllers/PageDebugging.py:123
+#: zapzap/controllers/PageDebugging.py:122
 msgid "Copy details"
 msgstr "Copiar"
 
-#: zapzap/controllers/PageDebugging.py:151
+#: zapzap/controllers/PageDebugging.py:150
 #, python-brace-format
 msgid "Files: {count} crash report(s){faulthandler}."
 msgstr "Arquivos: {count} relatório(s) de falhas{faulthandler}"
 
-#: zapzap/controllers/PageDebugging.py:153
+#: zapzap/controllers/PageDebugging.py:152
 msgid " + faulthandler.log"
 msgstr " + faulthandler.log"
 
-#: zapzap/controllers/PageDebugging.py:157
+#: zapzap/controllers/PageDebugging.py:156
 #, python-brace-format
 msgid ""
 "Crash reports are stored in this folder. You can open the directory or clean "
@@ -1673,22 +1685,22 @@ msgstr ""
 "diretório ou limpar arquivos antigos.\n"
 "{details}"
 
-#: zapzap/controllers/PageDebugging.py:186
+#: zapzap/controllers/PageDebugging.py:185
 #, python-brace-format
 msgid "Deleted {count} old crash report(s) (older than 30 days)."
 msgstr ""
 "Foram excluídos {count} relatórios de falhas antigos (com mais de 30 dias)."
 
-#: zapzap/controllers/PageDebugging.py:196
+#: zapzap/controllers/PageDebugging.py:195
 msgid "Delete all crash reports and debug logs?"
 msgstr "Excluir todos os relatórios de falhas e registros de depuração?"
 
-#: zapzap/controllers/PageDebugging.py:213
+#: zapzap/controllers/PageDebugging.py:212
 #, python-brace-format
 msgid "Deleted {count} file(s)."
 msgstr "{count} arquivo(s) excluído(s)."
 
-#: zapzap/controllers/PageDebugging.py:221
+#: zapzap/controllers/PageDebugging.py:220
 msgid ""
 "This will delete your current settings file (.config) and requires restart. "
 "Continue?"
@@ -1696,7 +1708,7 @@ msgstr ""
 "Isso excluirá seu arquivo de configurações atuais (.config) e exigirá "
 "reinicialização. Continuar?"
 
-#: zapzap/controllers/PageDebugging.py:239
+#: zapzap/controllers/PageDebugging.py:238
 #, python-brace-format
 msgid ""
 "Could not remove settings file:\n"
@@ -1705,7 +1717,7 @@ msgstr ""
 "Não foi possível remover o arquivo de configurações:\n"
 "{error}"
 
-#: zapzap/controllers/PageDebugging.py:248
+#: zapzap/controllers/PageDebugging.py:247
 msgid "Settings were reset successfully. Please restart ZapZap."
 msgstr "As configurações foram redefinidas com sucesso. Reinicie o ZapZap."
 
@@ -1766,6 +1778,23 @@ msgstr "Exibir"
 msgid "Donation"
 msgstr "Doação"
 
+#: zapzap/services/EnvironmentDetector.py:5
+msgid "Official"
+msgstr "Oficial"
+
+#: zapzap/services/EnvironmentDetector.py:6
+msgid "Community"
+msgstr "Comunidade"
+
+#: zapzap/services/EnvironmentDetector.py:7
+msgid "Custom"
+msgstr "Personalizado"
+
+#: zapzap/services/EnvironmentDetector.py:18
+#: zapzap/services/EnvironmentDetector.py:19
+msgid "Unknown"
+msgstr "Desconhecido"
+
 #: zapzap/webengine/PageController.py:193
 msgid "Please enter the phone number with country code (e.g., +5511999999999):"
 msgstr ""
@@ -1822,3 +1851,13 @@ msgstr "Selecione o idioma"
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"
+
+#~ msgid "Welcome to"
+#~ msgstr "Bem-vindo ao"
+
+#, python-brace-format
+#~ msgid "Version {id} - {version_type}"
+#~ msgstr "Versão {id} - {version_type}"
+
+#~ msgid "Runtime & Permissions"
+#~ msgstr "Sistema & Permissões"

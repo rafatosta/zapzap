@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>715</width>
-    <height>169</height>
+    <width>707</width>
+    <height>183</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -225,7 +225,7 @@ border-color: transparent;</string>
              </font>
             </property>
             <property name="text">
-             <string>Sua doação ajuda a manter o projeto no ar, melhorar recursos e garantir sua privacidade e liberdade.</string>
+             <string>Your donation helps keep the project running, improve resources and guarantee your privacy and freedom.</string>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -298,7 +298,7 @@ border-color: transparent;</string>
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="text">
-            <string>Não mostrar novamente</string>
+            <string>Don't show again</string>
            </property>
           </widget>
          </item>
@@ -324,7 +324,7 @@ border-color: transparent;</string>
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="text">
-            <string>Saiba mais sobre o ZapZap ↗</string>
+            <string>Learn more about ZapZap ↗</string>
            </property>
           </widget>
          </item>

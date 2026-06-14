@@ -6,7 +6,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_QtoasterDonation(object):
     def setupUi(self, QtoasterDonation):
         QtoasterDonation.setObjectName("QtoasterDonation")
-        QtoasterDonation.resize(715, 169)
+        QtoasterDonation.resize(707, 183)
         QtoasterDonation.setWindowTitle("")
         QtoasterDonation.setStyleSheet("#frame{\n"
 "border:1px solid #374151;\n"
@@ -163,10 +163,10 @@ class Ui_QtoasterDonation(object):
         
         self.labelWelcomeTo.setText(_("Support the project"))
         self.labelZapZap.setText(_("ZapZap"))
-        self.labelSubtitle.setText(_("Sua doação ajuda a manter o projeto no ar, melhorar recursos e garantir sua privacidade e liberdade."))
+        self.labelSubtitle.setText(_("Your donation helps keep the project running, improve resources and guarantee your privacy and freedom."))
         self.donateButton.setText(_("❤ Make a donation"))
-        self.donationMessage.setText(_("Não mostrar novamente"))
-        self.moreButton.setText(_("Saiba mais sobre o ZapZap ↗"))
+        self.donationMessage.setText(_("Don\'t show again"))
+        self.moreButton.setText(_("Learn more about ZapZap ↗"))
 
 
 if __name__ == "__main__":

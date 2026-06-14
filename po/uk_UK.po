@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zapzap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-13 10:15-0300\n"
+"POT-Creation-Date: 2026-06-14 10:17-0300\n"
 "PO-Revision-Date: 2025-02-28 12:43+0500\n"
 "Last-Translator: Igor Semen  <semenigor at gmail dot com>\n"
 "Language-Team: TranslAster\n"
@@ -70,7 +70,7 @@ msgstr "Видалити"
 msgid "Enter the user name"
 msgstr "Введіть ім'я користувача'"
 
-#: zapzap/views/ui_mainwindow.py:109 zapzap/views/ui_qtoaster_donation.py:130
+#: zapzap/views/ui_mainwindow.py:109 zapzap/views/ui_qtoaster_donation.py:165
 #: zapzap/views/ui_shortcuts_dialog.py:58
 msgid "ZapZap"
 msgstr "ZapZap"
@@ -440,7 +440,7 @@ msgstr ""
 #: zapzap/views/ui_page_customizations.py:266
 #: zapzap/controllers/DialogDumpHandler.py:50
 #: zapzap/controllers/DownloadDialog.py:133
-#: zapzap/controllers/PageDebugging.py:88
+#: zapzap/controllers/PageDebugging.py:87
 #, fuzzy
 msgid "Open folder"
 msgstr "Вибір папки"
@@ -771,18 +771,28 @@ msgstr "Відновити стандарт"
 msgid "Note: Restart required to apply changes."
 msgstr "Примітка: Для застосування змін необхідний перезапуск."
 
-#: zapzap/views/ui_qtoaster_donation.py:129
-msgid "Welcome to"
-msgstr "Ласкаво просимо в"
-
-#: zapzap/views/ui_qtoaster_donation.py:131
-#, python-brace-format
-msgid "Version {id} - {version_type}"
+#: zapzap/views/ui_qtoaster_donation.py:164
+msgid "Support the project"
 msgstr ""
 
-#: zapzap/views/ui_qtoaster_donation.py:132
-msgid "Make a donation"
+#: zapzap/views/ui_qtoaster_donation.py:166
+msgid ""
+"Your donation helps keep the project running, improve resources and "
+"guarantee your privacy and freedom."
+msgstr ""
+
+#: zapzap/views/ui_qtoaster_donation.py:167
+#, fuzzy
+msgid "❤ Make a donation"
 msgstr "Задонатити"
+
+#: zapzap/views/ui_qtoaster_donation.py:168
+msgid "Don't show again"
+msgstr ""
+
+#: zapzap/views/ui_qtoaster_donation.py:169
+msgid "Learn more about ZapZap ↗"
+msgstr ""
 
 #: zapzap/views/ui_settings.py:151 zapzap/controllers/OnboardingDialog.py:98
 msgid "Back"
@@ -804,7 +814,7 @@ msgstr "ІНСТРУМЕНТИ"
 msgid "Performance"
 msgstr "Продуктивність"
 
-#: zapzap/views/ui_settings.py:161
+#: zapzap/views/ui_settings.py:161 zapzap/controllers/PageDebugging.py:59
 msgid "Debugging"
 msgstr ""
 
@@ -832,7 +842,7 @@ msgstr ""
 
 #: zapzap/views/ui_page_about.py:117
 #, python-brace-format
-msgid "Build Commit: {value}"
+msgid "Build Repository: {value}"
 msgstr ""
 
 #: zapzap/views/ui_page_about.py:118
@@ -1591,63 +1601,59 @@ msgstr "перезавантажити сторінку"
 msgid "New conversation by phone number"
 msgstr "Нова розмова за номером телефону"
 
-#: zapzap/controllers/PageDebugging.py:60
-msgid "Runtime & Permissions"
-msgstr ""
-
-#: zapzap/controllers/PageDebugging.py:76
-#: zapzap/controllers/PageDebugging.py:185
-#: zapzap/controllers/PageDebugging.py:195
-#: zapzap/controllers/PageDebugging.py:212
+#: zapzap/controllers/PageDebugging.py:75
+#: zapzap/controllers/PageDebugging.py:184
+#: zapzap/controllers/PageDebugging.py:194
+#: zapzap/controllers/PageDebugging.py:211
 msgid "Debug logs"
 msgstr ""
 
-#: zapzap/controllers/PageDebugging.py:89
+#: zapzap/controllers/PageDebugging.py:88
 #, fuzzy
 msgid "Delete old"
 msgstr "Видалити"
 
-#: zapzap/controllers/PageDebugging.py:90
+#: zapzap/controllers/PageDebugging.py:89
 #, fuzzy
 msgid "Delete all"
 msgstr "Вибрати всё"
 
-#: zapzap/controllers/PageDebugging.py:96
-#: zapzap/controllers/PageDebugging.py:220
-#: zapzap/controllers/PageDebugging.py:238
-#: zapzap/controllers/PageDebugging.py:247
+#: zapzap/controllers/PageDebugging.py:95
+#: zapzap/controllers/PageDebugging.py:219
+#: zapzap/controllers/PageDebugging.py:237
+#: zapzap/controllers/PageDebugging.py:246
 #, fuzzy
 msgid "Reset settings"
 msgstr "Налаштування"
 
-#: zapzap/controllers/PageDebugging.py:102
+#: zapzap/controllers/PageDebugging.py:101
 msgid "Runtime environment"
 msgstr ""
 
-#: zapzap/controllers/PageDebugging.py:107
+#: zapzap/controllers/PageDebugging.py:106
 msgid ""
 "Relevant environment information for bug reports, including Qt, PyQt, "
 "Python, Flatpak and desktop session details."
 msgstr ""
 
-#: zapzap/controllers/PageDebugging.py:122
+#: zapzap/controllers/PageDebugging.py:121
 msgid "Refresh"
 msgstr ""
 
-#: zapzap/controllers/PageDebugging.py:123
+#: zapzap/controllers/PageDebugging.py:122
 msgid "Copy details"
 msgstr ""
 
-#: zapzap/controllers/PageDebugging.py:151
+#: zapzap/controllers/PageDebugging.py:150
 #, python-brace-format
 msgid "Files: {count} crash report(s){faulthandler}."
 msgstr ""
 
-#: zapzap/controllers/PageDebugging.py:153
+#: zapzap/controllers/PageDebugging.py:152
 msgid " + faulthandler.log"
 msgstr ""
 
-#: zapzap/controllers/PageDebugging.py:157
+#: zapzap/controllers/PageDebugging.py:156
 #, python-brace-format
 msgid ""
 "Crash reports are stored in this folder. You can open the directory or clean "
@@ -1655,34 +1661,34 @@ msgid ""
 "{details}"
 msgstr ""
 
-#: zapzap/controllers/PageDebugging.py:186
+#: zapzap/controllers/PageDebugging.py:185
 #, python-brace-format
 msgid "Deleted {count} old crash report(s) (older than 30 days)."
 msgstr ""
 
-#: zapzap/controllers/PageDebugging.py:196
+#: zapzap/controllers/PageDebugging.py:195
 msgid "Delete all crash reports and debug logs?"
 msgstr ""
 
-#: zapzap/controllers/PageDebugging.py:213
+#: zapzap/controllers/PageDebugging.py:212
 #, python-brace-format
 msgid "Deleted {count} file(s)."
 msgstr ""
 
-#: zapzap/controllers/PageDebugging.py:221
+#: zapzap/controllers/PageDebugging.py:220
 msgid ""
 "This will delete your current settings file (.config) and requires restart. "
 "Continue?"
 msgstr ""
 
-#: zapzap/controllers/PageDebugging.py:239
+#: zapzap/controllers/PageDebugging.py:238
 #, python-brace-format
 msgid ""
 "Could not remove settings file:\n"
 "{error}"
 msgstr ""
 
-#: zapzap/controllers/PageDebugging.py:248
+#: zapzap/controllers/PageDebugging.py:247
 msgid "Settings were reset successfully. Please restart ZapZap."
 msgstr ""
 
@@ -1744,6 +1750,24 @@ msgstr "Показати"
 msgid "Donation"
 msgstr "Донати"
 
+#: zapzap/services/EnvironmentDetector.py:5
+#, fuzzy
+msgid "Official"
+msgstr "Версія {id} (Офіційна збірка)"
+
+#: zapzap/services/EnvironmentDetector.py:6
+msgid "Community"
+msgstr ""
+
+#: zapzap/services/EnvironmentDetector.py:7
+msgid "Custom"
+msgstr ""
+
+#: zapzap/services/EnvironmentDetector.py:18
+#: zapzap/services/EnvironmentDetector.py:19
+msgid "Unknown"
+msgstr ""
+
 #: zapzap/webengine/PageController.py:193
 msgid "Please enter the phone number with country code (e.g., +5511999999999):"
 msgstr ""
@@ -1801,9 +1825,8 @@ msgstr "Вибір мови"
 msgid "DevTools - {}"
 msgstr ""
 
-#, fuzzy
-#~ msgid "Official Version"
-#~ msgstr "Версія {id} (Офіційна збірка)"
+#~ msgid "Welcome to"
+#~ msgstr "Ласкаво просимо в"
 
 #~ msgid "Learn more"
 #~ msgstr "Вивчити більше"
