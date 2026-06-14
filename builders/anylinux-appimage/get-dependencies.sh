@@ -21,7 +21,10 @@ pacman -Syu --noconfirm \
     python-wheel \
     qt6-base \
     qt6-webengine \
-    qt6ct
+    qt6ct \
+    python-pyqt6 \
+    python-pyqt6-webengine
+
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
