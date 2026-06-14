@@ -14,8 +14,14 @@ export ADD_HOOKS="self-updater.hook"
 export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}|latest|*${ARCH}*.AppImage.zsync"
 
 # Metadata
-export ICON="/usr/share/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg"
-export DESKTOP="/usr/share/applications/com.rtosta.zapzap.desktop"
+DESKTOP_FILE="$(find . -name "com.rtosta.zapzap.desktop" | head -n1)"
+ICON_FILE="$(find . -name "com.rtosta.zapzap.svg" | head -n1)"
+
+echo "Desktop: ${DESKTOP_FILE}"
+echo "Icon: ${ICON_FILE}"
+
+export DESKTOP="${DESKTOP_FILE}"
+export ICON="${ICON_FILE}"
 
 # Qt / Python deployment
 export DEPLOY_OPENGL=1
