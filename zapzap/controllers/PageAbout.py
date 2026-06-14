@@ -30,13 +30,13 @@ class PageAbout(QWidget, Ui_PageAbout):
             f'Qt:{QT_VERSION_STR} - PyQt:{PYQT_VERSION_STR}')
 
         self._setValueLabel(self.labelBuildChannel,
-                            EnvironmentDetector.CHANNEL)
+                            _(EnvironmentDetector.CHANNEL))
 
         self._setValueLabel(self.labelBuildProvider,
-                            EnvironmentDetector.PROVIDER)
+                            _(EnvironmentDetector.PROVIDER))
 
         self._setValueLabel(self.labelBuildRepository,
-                            EnvironmentDetector.BUILD_REPOSITORY)
+                            _(EnvironmentDetector.BUILD_REPOSITORY))
 
     def _setValueLabel(self, label, value):
         label.setText(
