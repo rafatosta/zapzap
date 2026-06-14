@@ -333,7 +333,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist/*
+            dist/*.AppImage
+            dist/*.zsync
             
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

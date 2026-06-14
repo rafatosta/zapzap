@@ -55,22 +55,6 @@ quick-sharun \
 # Converte AppDir em AppImage
 quick-sharun --make-appimage
 
-# Renomeia para evitar conflito com o AppImage tradicional
-for file in "${OUTPATH}"/*.AppImage; do
-    [ -f "$file" ] || continue
-
-    base="$(basename "$file" .AppImage)"
-    mv "$file" "${OUTPATH}/${base}-anylinux.AppImage"
-done
-
-# Renomeia zsync correspondente
-for file in "${OUTPATH}"/*.zsync; do
-    [ -f "$file" ] || continue
-
-    base="$(basename "$file" .zsync)"
-    mv "$file" "${OUTPATH}/${base}-anylinux.zsync"
-done
-
 echo
 echo "Arquivos gerados:"
 ls -lh "${OUTPATH}"
