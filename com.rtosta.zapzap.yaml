@@ -45,11 +45,8 @@ modules:
       - |
         cat > zapzap/BuildInfo.py << EOF
         BUILD_CHANNEL = "Official"
-        BUILD_PROVIDER = "Local Flatpak"
-        BUILD_REPOSITORY = "rtosta/zapzap"
-        BUILD_COMMIT = "Unknown"
-        BUILD_REF = "Local"
-        BUILD_RUN_ID = "Local"
+        BUILD_PROVIDER = "Flatpak"
+        BUILD_REPOSITORY = "/home/tosta/Documentos/GitHub/zapzap"
         EOF
 
       - python3 -m build --wheel --no-isolation

@@ -102,8 +102,7 @@ class RuntimeEnvironmentDebug:
             "version": __version__,
             "build_channel": EnvironmentDetector.CHANNEL,
             "build_provider": EnvironmentDetector.PROVIDER,
-            "build_commit": EnvironmentDetector.COMMIT[:7],
-            "is_official": EnvironmentDetector.is_official(),
+            "build_repository": EnvironmentDetector.BUILD_REPOSITORY,
         }
 
     def sandbox_info(self) -> Dict[str, Any]:

@@ -36,8 +36,8 @@ class PageAbout(QWidget, Ui_PageAbout):
         self._setValueLabel(self.labelBuildProvider,
                             EnvironmentDetector.PROVIDER)
 
-        self._setValueLabel(self.labelBuildCommit,
-                            EnvironmentDetector.COMMIT[:7])
+        self._setValueLabel(self.labelBuildRepository,
+                            EnvironmentDetector.BUILD_REPOSITORY)
 
     def _setValueLabel(self, label, value):
         label.setText(

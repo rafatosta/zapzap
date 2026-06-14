@@ -11,24 +11,18 @@ try:
     from zapzap.BuildInfo import (
         BUILD_CHANNEL,
         BUILD_PROVIDER,
-        BUILD_COMMIT,
         BUILD_REPOSITORY,
-        BUILD_REF,
-        BUILD_RUN_ID,
     )
 except ImportError:
     BUILD_CHANNEL = BuildChannel.CUSTOM.value
     BUILD_PROVIDER = "Unknown"
-    BUILD_COMMIT = "Unknown"
     BUILD_REPOSITORY = "Unknown"
-    BUILD_REF = "Unknown"
-    BUILD_RUN_ID = "Unknown"
 
 
 class EnvironmentDetector:
     CHANNEL = BUILD_CHANNEL
     PROVIDER = BUILD_PROVIDER
-    COMMIT = BUILD_COMMIT
+    BUILD_REPOSITORY = BUILD_REPOSITORY
 
     @classmethod
     def is_official(cls) -> bool:

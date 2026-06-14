@@ -45,9 +45,6 @@ jobs:
           BUILD_CHANNEL = "Official"
           BUILD_PROVIDER = "GitHub Actions"
           BUILD_REPOSITORY = "${{ github.repository }}"
-          BUILD_COMMIT = "${{ github.sha }}"
-          BUILD_REF = "${{ github.ref_name }}"
-          BUILD_RUN_ID = "${{ github.run_id }}"
           EOF
 
       - name: Set up Python
@@ -114,9 +111,6 @@ jobs:
           BUILD_CHANNEL = "Official"
           BUILD_PROVIDER = "GitHub Actions"
           BUILD_REPOSITORY = "${{ github.repository }}"
-          BUILD_COMMIT = "${{ github.sha }}"
-          BUILD_REF = "${{ github.ref_name }}"
-          BUILD_RUN_ID = "${{ github.run_id }}"
           EOF
 
       - name: Set up Python
@@ -184,9 +178,6 @@ jobs:
           BUILD_CHANNEL = "Official"
           BUILD_PROVIDER = "GitHub Actions"
           BUILD_REPOSITORY = "${{ github.repository }}"
-          BUILD_COMMIT = "${{ github.sha }}"
-          BUILD_REF = "${{ github.ref_name }}"
-          BUILD_RUN_ID = "${{ github.run_id }}"
           EOF
 
       - name: Set up Python
