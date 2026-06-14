@@ -32,9 +32,18 @@ mkdir -p "${OUTPATH}"
 echo "Arquitetura: ${ARCH}"
 echo "Gerando AppImage AnyLinux..."
 
+ZAPZAP_BIN="$(command -v zapzap)"
+
+if [ -z "${ZAPZAP_BIN}" ]; then
+    echo "Erro: executável zapzap não encontrado."
+    exit 1
+fi
+
+echo "Executável encontrado em: ${ZAPZAP_BIN}"
+
 # Cria AppDir e coleta dependências
 quick-sharun \
-    /usr/bin/zapzap \
+    "${ZAPZAP_BIN}" \
     /usr/lib/libQt6Network.so*
 
 # Converte AppDir em AppImage

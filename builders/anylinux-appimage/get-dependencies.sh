@@ -49,16 +49,13 @@ echo "Saving version..."
 echo "---------------------------------------------------------------"
 
 python - <<'EOF' > ~/version
-import tomllib
+from pathlib import Path
 
-with open("pyproject.toml", "rb") as f:
-    data = tomllib.load(f)
+wheel = next(Path("dist").glob("zapzap-*.whl"))
 
-if "version" in data.get("project", {}):
-    print(data["project"]["version"])
-else:
-    import zapzap
-    print(zapzap.__version__)
+version = wheel.name.split("-")[1]
+
+print(version)
 EOF
 
 echo "Done."
