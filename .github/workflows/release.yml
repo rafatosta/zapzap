@@ -304,7 +304,16 @@ jobs:
       - name: Install Dependencies
         run: |
           /bin/sh ./builders/anylinux-appimage/get-dependencies.sh
+
+      - name: Check Hunspell packages
+        run: |
+          pacman -Qs hunspell || true
+          find /usr/share/hunspell -type f 2>/dev/null || true
       
+      - name: Check Qt dictionaries
+        run: |
+          find /usr -name "*.bdic" 2>/dev/null || true
+
       - name: Find dictionaries
         run: |
           find . -name "*.bdic" | sort
