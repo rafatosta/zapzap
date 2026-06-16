@@ -19,6 +19,7 @@ class WindowsBuilder:
         ("zapzap/resources", "zapzap/resources"),
         (
             "zapzap/webengine/webrtc_shield.js",
+            "zapzap/webengine/theme_controller.js",
             "zapzap/webengine",
         ),
     ]
