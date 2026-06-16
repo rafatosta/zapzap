@@ -305,6 +305,10 @@ jobs:
         run: |
           /bin/sh ./builders/anylinux-appimage/get-dependencies.sh
       
+      - name: Find dictionaries
+        run: |
+          find . -name "*.bdic" | sort
+      
       - name: Verify QtWebEngine dictionaries
         run: |
           echo "=== Procurando arquivos .bdic ==="
