@@ -3,29 +3,19 @@ import shutil
 import subprocess
 import sys
 
+from common import (
+    UI_FILES,
+    ADDITIONAL_DATA,
+    create_build_info,
+)
+
 
 class WindowsBuilder:
     APP_NAME = "ZapZap"
 
-    UI_FILES = [
-        ("zapzap/ui/ui_mainwindow.ui", "zapzap/views/ui_mainwindow.py"),
-        ("zapzap/ui/ui_page_general.ui", "zapzap/views/ui_page_general.py"),
-        ("zapzap/ui/ui_page_network.ui", "zapzap/views/ui_page_network.py"),
-    ]
-
-    ADDITIONAL_DATA = [
-        ("zapzap/po", "zapzap/po"),
-        ("zapzap/ui", "zapzap/ui"),
-        ("zapzap/resources", "zapzap/resources"),
-        (
-            "zapzap/webengine/webrtc_shield.js",
-            "zapzap/webengine",
-        ),
-        (
-            "zapzap/webengine/theme_controller.js",
-            "zapzap/webengine",
-        ),
-    ]
+    ICON_FILE = (
+        "zapzap/resources/icons/zapzap.ico"
+    )
 
     def __init__(self):
         self.root_dir = Path.cwd()
@@ -36,6 +26,8 @@ class WindowsBuilder:
     def run(self):
         print("# === Windows Builder ===")
 
+        create_build_info()
+
         self.compile_ui_files()
         self.clean_previous_build()
         self.run_pyinstaller()
@@ -43,14 +35,14 @@ class WindowsBuilder:
 
         print("# === Build concluído com sucesso ===")
 
-    # ==========================================================
+    # ======================================================
     # UI
-    # ==========================================================
+    # ======================================================
 
     def compile_ui_files(self):
         print("# === Compilando arquivos .ui ===")
 
-        for source, target in self.UI_FILES:
+        for source, target in UI_FILES:
             source_path = Path(source)
             target_path = Path(target)
 
@@ -58,11 +50,16 @@ class WindowsBuilder:
                 print(f"[IGNORADO] {source}")
                 continue
 
-            print(f"{source} -> {target}")
+            self.run_pyuic(
+                source_path,
+                target_path,
+            )
 
-            self.run_pyuic(source_path, target_path)
-
-    def run_pyuic(self, source: Path, target: Path):
+    def run_pyuic(
+        self,
+        source: Path,
+        target: Path,
+    ):
         commands = [
             [
                 sys.executable,
@@ -84,33 +81,37 @@ class WindowsBuilder:
 
         for command in commands:
             try:
-                subprocess.run(command, check=True)
+                subprocess.run(
+                    command,
+                    check=True,
+                )
+
                 return
 
             except Exception:
-                continue
+                pass
 
-        raise RuntimeError(f"Falha ao compilar: {source}")
+        raise RuntimeError(
+            f"Falha ao compilar: {source}"
+        )
 
-    # ==========================================================
+    # ======================================================
     # CLEAN
-    # ==========================================================
+    # ======================================================
 
     def clean_previous_build(self):
         print("# === Limpando builds anteriores ===")
 
-        folders = [
+        for folder in (
             self.dist_dir,
             self.build_dir,
-        ]
-
-        for folder in folders:
+        ):
             if folder.exists():
                 shutil.rmtree(folder)
 
-    # ==========================================================
+    # ======================================================
     # PYINSTALLER
-    # ==========================================================
+    # ======================================================
 
     def run_pyinstaller(self):
         print("# === Executando PyInstaller ===")
@@ -126,7 +127,19 @@ class WindowsBuilder:
             "--noconfirm",
         ]
 
-        for source, target in self.ADDITIONAL_DATA:
+        icon_path = Path(
+            self.ICON_FILE
+        )
+
+        if icon_path.exists():
+            command.extend(
+                [
+                    "--icon",
+                    str(icon_path),
+                ]
+            )
+
+        for source, target in ADDITIONAL_DATA:
             command.extend(
                 [
                     "--add-data",
@@ -134,7 +147,9 @@ class WindowsBuilder:
                 ]
             )
 
-        command.append("zapzap/__main__.py")
+        command.append(
+            "zapzap/__main__.py"
+        )
 
         result = subprocess.run(
             command,
@@ -150,43 +165,38 @@ class WindowsBuilder:
                 "Falha ao executar PyInstaller"
             )
 
-    # ==========================================================
+    # ======================================================
     # ZIP
-    # ==========================================================
+    # ======================================================
 
     def create_zip(self):
-        print("# === Criando ZIP de distribuição ===")
+        print("# === Criando ZIP ===")
 
-        exe_path = self.dist_dir / f"{self.APP_NAME}.exe"
+        exe_path = (
+            self.dist_dir
+            / f"{self.APP_NAME}.exe"
+        )
 
         if not exe_path.exists():
             raise FileNotFoundError(
-                f"Executável não encontrado: {exe_path}"
+                exe_path
             )
 
-        temp_dir = self.dist_dir / f"{self.APP_NAME}_temp"
-
-        if temp_dir.exists():
-            shutil.rmtree(temp_dir)
-
-        temp_dir.mkdir(parents=True)
-
-        shutil.copy2(
-            exe_path,
-            temp_dir / f"{self.APP_NAME}.exe",
+        archive_name = (
+            self.dist_dir
+            / "ZapZap-Windows-x86_64"
         )
-
-        zip_path = self.dist_dir / f"{self.APP_NAME}-Windows"
 
         shutil.make_archive(
-            str(zip_path),
+            str(archive_name),
             "zip",
-            temp_dir,
+            root_dir=self.dist_dir,
+            base_dir=".",
         )
 
-        shutil.rmtree(temp_dir)
-
-        print(f"ZIP criado: {zip_path}.zip")
+        print(
+            f"ZIP criado: {archive_name}.zip"
+        )
 
 
 if __name__ == "__main__":

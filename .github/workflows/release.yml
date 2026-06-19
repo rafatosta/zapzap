@@ -99,19 +99,14 @@ jobs:
     env:
       PYTHONUTF8: 1
 
+      BUILD_CHANNEL: Official
+      BUILD_PROVIDER: GitHub Actions
+      BUILD_REPOSITORY: ${{ github.repository }}
+
     steps:
 
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Create BuildInfo.py
-        shell: bash
-        run: |
-          cat > zapzap/BuildInfo.py << EOF
-          BUILD_CHANNEL = "Official"
-          BUILD_PROVIDER = "GitHub Actions"
-          BUILD_REPOSITORY = "${{ github.repository }}"
-          EOF
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -140,8 +135,8 @@ jobs:
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.publish != 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: ZapZap-Windows
-          path: dist/ZapZap-Windows.zip
+          name: ZapZap-Windows-x86_64
+          path: dist/ZapZap-Windows-x86_64.zip
 
       # ======================================================
       # Release/tag -> publish release
@@ -152,7 +147,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist/ZapZap-Windows.zip
+            dist/ZapZap-Windows-x86_64.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
