@@ -50,6 +50,8 @@ class WindowsBuilder:
                 print(f"[IGNORADO] {source}")
                 continue
 
+            print(f"{source} -> {target}")
+
             self.run_pyuic(
                 source_path,
                 target_path,
@@ -89,7 +91,7 @@ class WindowsBuilder:
                 return
 
             except Exception:
-                pass
+                continue
 
         raise RuntimeError(
             f"Falha ao compilar: {source}"
@@ -170,7 +172,7 @@ class WindowsBuilder:
     # ======================================================
 
     def create_zip(self):
-        print("# === Criando ZIP ===")
+        print("# === Criando ZIP de distribuição ===")
 
         exe_path = (
             self.dist_dir
@@ -179,23 +181,58 @@ class WindowsBuilder:
 
         if not exe_path.exists():
             raise FileNotFoundError(
-                exe_path
+                f"Executável não encontrado: {exe_path}"
             )
+
+        release_dir = (
+            self.dist_dir
+            / "release"
+        )
+
+        app_dir = (
+            release_dir
+            / self.APP_NAME
+        )
+
+        if release_dir.exists():
+            shutil.rmtree(
+                release_dir
+            )
+
+        app_dir.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+
+        shutil.copy2(
+            exe_path,
+            app_dir / f"{self.APP_NAME}.exe",
+        )
 
         archive_name = (
             self.dist_dir
             / "ZapZap-Windows-x86_64"
         )
 
+        zip_file = Path(
+            f"{archive_name}.zip"
+        )
+
+        if zip_file.exists():
+            zip_file.unlink()
+
         shutil.make_archive(
             str(archive_name),
             "zip",
-            root_dir=self.dist_dir,
-            base_dir=".",
+            release_dir,
+        )
+
+        shutil.rmtree(
+            release_dir
         )
 
         print(
-            f"ZIP criado: {archive_name}.zip"
+            f"ZIP criado: {zip_file}"
         )
 
 
