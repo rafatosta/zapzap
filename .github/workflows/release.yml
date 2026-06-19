@@ -304,45 +304,10 @@ jobs:
       - name: Install Dependencies
         run: |
           /bin/sh ./builders/anylinux-appimage/get-dependencies.sh
-
-      - name: Check Hunspell packages
-        run: |
-          pacman -Qs hunspell || true
-          find /usr/share/hunspell -type f 2>/dev/null || true
       
-      - name: Check Qt dictionaries
-        run: |
-          find /usr -name "*.bdic" 2>/dev/null || true
-
       - name: Find dictionaries
         run: |
           find . -name "*.bdic" | sort
-      
-      - name: Verify QtWebEngine dictionaries
-        run: |
-          echo "=== Procurando arquivos .bdic ==="
-          find / -name "*.bdic" 2>/dev/null | sort || true
-
-          echo
-          echo "=== Verificando pacote zapzap ==="
-          python - << 'EOF'
-          from importlib.resources import files
-
-          try:
-              path = files("zapzap") / "qtwebengine_dictionaries"
-
-              print(f"Diretório: {path}")
-
-              if path.exists():
-                  print("\nArquivos encontrados:")
-                  for item in path.iterdir():
-                      print(f" - {item.name}")
-              else:
-                  print("Diretório não encontrado.")
-
-          except Exception as e:
-              print(f"Erro: {e}")
-          EOF
 
       - name: Make AppImage
         run: |
