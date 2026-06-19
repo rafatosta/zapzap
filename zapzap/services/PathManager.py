@@ -8,7 +8,7 @@ class PathManager:
     paths = {
         Packaging.APPIMAGE: {
             "path": "",
-            "default": "/usr/share/zapzap/qtwebengine_dictionaries",
+            "default": os.path.join(os.getenv("APPDIR", "/"), "qtwebengine_dictionaries"),
         },
         Packaging.FLATPAK: {
             "path": "",
