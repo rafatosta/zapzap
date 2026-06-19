@@ -48,45 +48,70 @@ fi
 echo "Executável encontrado em: ${ZAPZAP_BIN}"
 
 echo
-echo "=== Verificando dicionários instalados ==="
+echo "==============================================================="
+echo "Verificando dicionários instalados"
+echo "==============================================================="
 
-python - <<'EOF'
+DICT_SRC="$(python - <<'EOF'
 from importlib.resources import files
 
 path = files("zapzap") / "qtwebengine_dictionaries"
 
-print(f"Diretório: {path}")
-
-for item in sorted(path.iterdir()):
-    print(item.name)
+print(path)
 EOF
+)"
+
+echo "Origem: ${DICT_SRC}"
+
+find "${DICT_SRC}" -name "*.bdic" | sort
 
 echo
-echo "=== Criando AppDir ==="
+echo "==============================================================="
+echo "Criando AppDir"
+echo "==============================================================="
 
 quick-sharun \
     "${ZAPZAP_BIN}" \
     /usr/lib/libQt6Network.so*
 
-echo
-echo "=== Procurando AppDir ==="
+APPDIR="./AppDir"
 
-find . -type d \( \
-    -name AppDir \
-    -o -name "*.AppDir" \
-\) 2>/dev/null || true
-
-echo
-echo "=== Procurando .bdic dentro do AppDir ==="
-
-find . -path "*AppDir*" -name "*.bdic" 2>/dev/null || true
+if [ ! -d "${APPDIR}" ]; then
+    echo "Erro: AppDir não encontrado."
+    exit 1
+fi
 
 echo
-echo "=== Gerando AppImage ==="
+echo "==============================================================="
+echo "Copiando dicionários para o AppDir"
+echo "==============================================================="
+
+DICT_DST="${APPDIR}/usr/share/zapzap/qtwebengine_dictionaries"
+
+mkdir -p "${DICT_DST}"
+
+cp -av \
+    "${DICT_SRC}"/*.bdic \
+    "${DICT_DST}/"
+
+echo
+echo "Dicionários presentes no AppDir:"
+
+find "${APPDIR}" -name "*.bdic" | sort
+
+echo
+echo "==============================================================="
+echo "Gerando AppImage"
+echo "==============================================================="
 
 quick-sharun --make-appimage
 
 echo
-echo "=== Arquivos gerados ==="
+echo "==============================================================="
+echo "Arquivos gerados"
+echo "==============================================================="
 
 ls -lh "${OUTPATH}"
+
+# Opcional:
+# quick-sharun --test "${OUTPATH}"/*.AppImage
