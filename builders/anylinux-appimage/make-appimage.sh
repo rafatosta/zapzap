@@ -47,17 +47,46 @@ fi
 
 echo "Executável encontrado em: ${ZAPZAP_BIN}"
 
-# Cria AppDir e coleta dependências
+echo
+echo "=== Verificando dicionários instalados ==="
+
+python - <<'EOF'
+from importlib.resources import files
+
+path = files("zapzap") / "qtwebengine_dictionaries"
+
+print(f"Diretório: {path}")
+
+for item in sorted(path.iterdir()):
+    print(item.name)
+EOF
+
+echo
+echo "=== Criando AppDir ==="
+
 quick-sharun \
     "${ZAPZAP_BIN}" \
     /usr/lib/libQt6Network.so*
 
-# Converte AppDir em AppImage
+echo
+echo "=== Procurando AppDir ==="
+
+find . -type d \( \
+    -name AppDir \
+    -o -name "*.AppDir" \
+\) 2>/dev/null || true
+
+echo
+echo "=== Procurando .bdic dentro do AppDir ==="
+
+find . -path "*AppDir*" -name "*.bdic" 2>/dev/null || true
+
+echo
+echo "=== Gerando AppImage ==="
+
 quick-sharun --make-appimage
 
 echo
-echo "Arquivos gerados:"
-ls -lh "${OUTPATH}"
+echo "=== Arquivos gerados ==="
 
-# Opcional:
-# quick-sharun --test "${OUTPATH}"/*.AppImage
+ls -lh "${OUTPATH}"
