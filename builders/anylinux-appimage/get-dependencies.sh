@@ -31,6 +31,17 @@ echo "---------------------------------------------------------------"
 
 get-debloated-pkgs --add-common --prefer-nano ffmpeg-mini
 
+echo "Downloading dictionaries..."
+git clone \
+  --depth=1 \
+  https://github.com/rafatosta/qtwebengine_dictionaries.git
+
+mkdir -p zapzap/qtwebengine_dictionaries
+
+cp \
+  qtwebengine_dictionaries/*.bdic \
+  zapzap/qtwebengine_dictionaries/
+
 echo "Building ZapZap..."
 echo "---------------------------------------------------------------"
 
