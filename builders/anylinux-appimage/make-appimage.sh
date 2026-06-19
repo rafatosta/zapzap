@@ -86,30 +86,16 @@ echo "==============================================================="
 echo "Copiando dicionários para o AppDir"
 echo "==============================================================="
 
-# Local esperado pelo QtWebEngine
-DICT_DST_ROOT="${APPDIR}/qtwebengine_dictionaries"
+DICT_DST="${APPDIR}/qtwebengine_dictionaries"
 
-# Local alternativo para uso do aplicativo
-DICT_DST_SHARE="${APPDIR}/usr/share/zapzap/qtwebengine_dictionaries"
-
-mkdir -p "${DICT_DST_ROOT}"
-mkdir -p "${DICT_DST_SHARE}"
+mkdir -p "${DICT_DST}"
 
 cp -av \
     "${DICT_SRC}"/*.bdic \
-    "${DICT_DST_ROOT}/"
-
-cp -av \
-    "${DICT_SRC}"/*.bdic \
-    "${DICT_DST_SHARE}/"
+    "${DICT_DST}/"
 
 echo
 echo "Dicionários no AppDir:"
-find "${APPDIR}" -name "*.bdic" | sort
-
-echo
-echo "Dicionários presentes no AppDir:"
-
 find "${APPDIR}" -name "*.bdic" | sort
 
 echo
