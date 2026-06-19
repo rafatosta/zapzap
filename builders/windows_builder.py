@@ -3,7 +3,7 @@ import shutil
 import subprocess
 import sys
 
-from common import (
+from builders.common import (
     UI_FILES,
     ADDITIONAL_DATA,
     create_build_info,
