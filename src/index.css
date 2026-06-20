@@ -1,1 +1,200 @@
+/* Importa o framework Tailwind CSS */
 @import "tailwindcss";
+
+/* Informa ao Tailwind onde procurar classes utilizadas
+   para gerar apenas o CSS necessário (tree-shaking) */
+@source "../src";
+
+/* Cria a variante "dark:" baseada na existência da classe .dark
+   em qualquer elemento ancestral */
+@custom-variant dark (&:is(.dark *));
+
+/* Define tokens do tema que serão expostos como utilitários Tailwind */
+@theme inline {
+
+  /* Fontes padrão */
+  --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Escalas de borda arredondada derivadas da variável principal */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Mapeamento das variáveis CSS para tokens Tailwind */
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Cores auxiliares para linhas finas e áreas discretas */
+  --color-hairline: var(--hairline);
+  --color-subtle: var(--subtle);
+}
+
+/* Tema padrão (modo claro) */
+:root {
+
+  /* Raio base usado pelos demais tamanhos */
+  --radius: 0.5rem;
+
+  /* Fundo quase branco */
+  --background: oklch(0.99 0.002 110);
+
+  /* Texto quase preto */
+  --foreground: oklch(0.18 0.01 250);
+
+  /* Cartões */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.01 250);
+
+  /* Popovers, dropdowns e menus */
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.01 250);
+
+  /* Verde principal do ZapZap/WhatsApp */
+  --primary: oklch(0.62 0.16 152);
+
+  /* Cor do texto sobre elementos primários */
+  --primary-foreground: oklch(0.99 0.005 150);
+
+  /* Cor secundária usada em áreas menos destacadas */
+  --secondary: oklch(0.96 0.005 110);
+  --secondary-foreground: oklch(0.22 0.01 250);
+
+  /* Elementos discretos/desabilitados */
+  --muted: oklch(0.965 0.004 110);
+  --muted-foreground: oklch(0.48 0.012 250);
+
+  /* Cor de destaque leve */
+  --accent: oklch(0.95 0.02 152);
+  --accent-foreground: oklch(0.28 0.08 152);
+
+  /* Ações destrutivas (ex.: excluir) */
+  --destructive: oklch(0.58 0.22 27);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  /* Bordas */
+  --border: oklch(0.92 0.005 110);
+
+  /* Linhas muito finas */
+  --hairline: oklch(0.9 0.005 110);
+
+  /* Superfícies discretas */
+  --subtle: oklch(0.97 0.004 110);
+
+  /* Campos de entrada */
+  --input: oklch(0.92 0.005 110);
+
+  /* Cor do foco (focus ring) */
+  --ring: oklch(0.62 0.16 152);
+}
+
+/* Sobrescreve as variáveis quando a classe .dark estiver presente */
+.dark {
+
+  /* Fundo escuro */
+  --background: oklch(0.16 0.008 250);
+
+  /* Texto claro */
+  --foreground: oklch(0.97 0.004 110);
+
+  /* Cartões */
+  --card: oklch(0.2 0.008 250);
+  --card-foreground: oklch(0.97 0.004 110);
+
+  /* Popovers */
+  --popover: oklch(0.2 0.008 250);
+  --popover-foreground: oklch(0.97 0.004 110);
+
+  /* Verde principal mais brilhante para contraste */
+  --primary: oklch(0.7 0.16 152);
+  --primary-foreground: oklch(0.16 0.008 250);
+
+  /* Superfícies secundárias */
+  --secondary: oklch(0.24 0.01 250);
+  --secondary-foreground: oklch(0.97 0.004 110);
+
+  /* Elementos discretos */
+  --muted: oklch(0.24 0.01 250);
+  --muted-foreground: oklch(0.68 0.01 250);
+
+  /* Destaques */
+  --accent: oklch(0.28 0.04 152);
+  --accent-foreground: oklch(0.9 0.05 152);
+
+  /* Bordas translúcidas */
+  --border: oklch(1 0 0 / 10%);
+  --hairline: oklch(1 0 0 / 8%);
+  --subtle: oklch(1 0 0 / 4%);
+
+  /* Inputs */
+  --input: oklch(1 0 0 / 15%);
+
+  /* Cor do foco */
+  --ring: oklch(0.7 0.16 152);
+}
+
+/* Camada base do Tailwind */
+@layer base {
+
+  /* Aplica a cor padrão de borda em todos os elementos */
+  * {
+    border-color: var(--color-border);
+  }
+
+  /* Configurações globais do documento */
+  html {
+
+    /* Recursos tipográficos OpenType */
+    font-feature-settings: "ss01", "cv11";
+
+    /* Melhor renderização de fontes */
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+
+    /* Cor de fundo global */
+    background-color: var(--color-background);
+
+    /* Cor padrão do texto */
+    color: var(--color-foreground);
+
+    /* Fonte principal */
+    font-family: var(--font-sans);
+
+    /* Leve redução do espaçamento entre letras */
+    letter-spacing: -0.01em;
+  }
+
+  /* Títulos com tracking mais fechado */
+  h1, h2, h3 {
+    letter-spacing: -0.03em;
+  }
+}
