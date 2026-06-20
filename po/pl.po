@@ -746,7 +746,3 @@ msgstr "Pokaż"
 #: zapzap/services/SysTrayManager.py:56
 msgid "Donation"
 msgstr "Darowizna"
-
-#, python-brace-format
-#~ msgid "Version {id}"
-#~ msgstr "Wersja {id}"
