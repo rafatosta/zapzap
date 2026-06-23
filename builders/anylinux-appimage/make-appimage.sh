@@ -70,9 +70,22 @@ echo "==============================================================="
 echo "Criando AppDir"
 echo "==============================================================="
 
+quick-sharun --version
+
+pacman -Qi sharun 2>/dev/null || true
+
 quick-sharun \
     "${ZAPZAP_BIN}" \
     /usr/lib/libQt6Network.so*
+
+
+echo
+echo "==============================================================="
+echo "Qt empacotado pelo quick-sharun"
+echo "==============================================================="
+
+find AppDir/lib -maxdepth 1 -name "libQt6*" | sort
+
 
 APPDIR="./AppDir"
 
