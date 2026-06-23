@@ -74,6 +74,8 @@ quick-sharun \
     "${ZAPZAP_BIN}" \
     /usr/lib/libQt6Network.so*
 
+find AppDir -name "libQt6Widgets*" | sort
+
 APPDIR="./AppDir"
 
 if [ ! -d "${APPDIR}" ]; then
