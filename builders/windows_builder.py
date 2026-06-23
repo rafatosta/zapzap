@@ -2,6 +2,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+from zipfile import ZIP_DEFLATED, ZipFile
 
 from builders.common import (
     UI_FILES,
@@ -176,31 +177,29 @@ class WindowsBuilder:
 
         exe_path = self.dist_dir / f"{self.APP_NAME}.exe"
 
-        release_dir = self.build_dir / "release"
+        if not exe_path.exists():
+            raise FileNotFoundError(exe_path)
 
-        if release_dir.exists():
-            shutil.rmtree(release_dir)
-
-        app_dir = release_dir / self.APP_NAME
-        app_dir.mkdir(parents=True)
-
-        shutil.copy2(
-            exe_path,
-            app_dir / exe_path.name,
-        )
-
-        archive_base = (
+        zip_path = (
             self.dist_dir
-            / "ZapZap-Windows-x86_64"
+            / "ZapZap-Windows-x86_64.zip"
         )
 
-        shutil.make_archive(
-            str(archive_base),
-            "zip",
-            release_dir,
-        )
+        if zip_path.exists():
+            zip_path.unlink()
 
-        shutil.rmtree(release_dir)
+        with ZipFile(
+            zip_path,
+            "w",
+            compression=ZIP_DEFLATED,
+        ) as zip_file:
+            zip_file.write(
+                exe_path,
+                arcname=f"{self.APP_NAME}/{self.APP_NAME}.exe",
+            )
+
+        print(f"ZIP criado: {zip_path}")
+
 
 if __name__ == "__main__":
     WindowsBuilder().run()
