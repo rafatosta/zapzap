@@ -70,6 +70,10 @@ echo "==============================================================="
 echo "Criando AppDir"
 echo "==============================================================="
 
+# PyQt6 WebEngine carrega dependências Qt em runtime.
+# Estas bibliotecas precisam ser passadas explicitamente ao Sharun,
+# caso contrário o AppImage fica incompleto.
+
 quick-sharun \
     "${ZAPZAP_BIN}" \
     /usr/lib/libQt6Network.so* \
