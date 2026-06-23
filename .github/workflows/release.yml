@@ -398,3 +398,12 @@ jobs:
           name: zapzap-deb-amd64
           path: |
             *.deb
+      
+      - name: Release DEB artifact
+        if: github.event_name != 'workflow_dispatch' || github.event.inputs.publish == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            *.deb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
