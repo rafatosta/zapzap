@@ -70,22 +70,11 @@ echo "==============================================================="
 echo "Criando AppDir"
 echo "==============================================================="
 
-quick-sharun --version
-
-pacman -Qi sharun 2>/dev/null || true
-
 quick-sharun \
     "${ZAPZAP_BIN}" \
-    /usr/lib/libQt6Network.so*
-
-
-echo
-echo "==============================================================="
-echo "Qt empacotado pelo quick-sharun"
-echo "==============================================================="
-
-find AppDir/lib -maxdepth 1 -name "libQt6*" | sort
-
+    /usr/lib/libQt6Network.so* \
+    /usr/lib/libQt6Widgets.so* \
+    /usr/lib/libQt6WebEngineCore.so*
 
 APPDIR="./AppDir"
 
@@ -93,42 +82,6 @@ if [ ! -d "${APPDIR}" ]; then
     echo "Erro: AppDir não encontrado."
     exit 1
 fi
-
-echo
-echo "==============================================================="
-echo "Copiando bibliotecas Qt ausentes"
-echo "==============================================================="
-
-mkdir -p "${APPDIR}/lib"
-
-cp -av /usr/lib/libQt6Widgets.so* \
-    "${APPDIR}/lib/" || true
-
-cp -av /usr/lib/libQt6PrintSupport.so* \
-    "${APPDIR}/lib/" || true
-
-cp -av /usr/lib/libQt6OpenGLWidgets.so* \
-    "${APPDIR}/lib/" || true
-
-cp -av /usr/lib/libQt6WebEngineWidgets.so* \
-    "${APPDIR}/lib/" || true
-
-cp -av /usr/lib/libQt6WebEngineCore.so* \
-    "${APPDIR}/lib/" || true
-
-cp -av /usr/lib/libQt6WebEngineQuick.so* \
-    "${APPDIR}/lib/" || true
-
-cp -av /usr/lib/libQt6Positioning.so* \
-    "${APPDIR}/lib/" || true
-
-echo
-echo "Bibliotecas Qt presentes:"
-find "${APPDIR}/lib" -maxdepth 1 -name "libQt6*" | sort
-
-test -e "${APPDIR}/lib/libQt6Widgets.so.6"
-test -e "${APPDIR}/lib/libQt6WebEngineWidgets.so.6"
-test -e "${APPDIR}/lib/libQt6WebEngineCore.so.6"
 
 echo
 echo "==============================================================="
