@@ -140,8 +140,8 @@ jobs:
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.publish != 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: ZapZap-Windows
-          path: dist/ZapZap-Windows.zip
+          name: ZapZap-Windows-x86_64
+          path: dist/ZapZap-*-windows-x86_64.exe
 
       # ======================================================
       # Release/tag -> publish release
@@ -152,7 +152,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist/ZapZap-Windows.zip
+            dist/ZapZap-*-windows-x86_64.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
