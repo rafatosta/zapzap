@@ -174,13 +174,19 @@ class WindowsBuilder:
         )
 
     def get_version(self):
-        try:
-            from zapzap.__version__ import __version__
+        result = subprocess.run(
+            [
+                "git",
+                "describe",
+                "--tags",
+                "--abbrev=0",
+            ],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
 
-            return __version__
-
-        except Exception:
-            return "dev"
+        return result.stdout.strip()
 
 
 if __name__ == "__main__":
