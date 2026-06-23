@@ -74,7 +74,11 @@ quick-sharun \
     "${ZAPZAP_BIN}" \
     /usr/lib/libQt6Network.so*
 
-find AppDir -name "libQt6Widgets*" | sort
+echo "==== Qt Widgets ===="
+find AppDir -name "libQt6Widgets*" -o -name "libQt6PrintSupport*"
+
+echo "==== PyQt Widgets ===="
+find AppDir -name "QtWidgets.abi3.so"
 
 APPDIR="./AppDir"
 
