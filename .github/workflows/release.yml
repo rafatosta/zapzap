@@ -230,3 +230,171 @@ jobs:
             
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+# ==========================================================
+# deb
+# ==========================================================
+
+  build-deb:
+    runs-on: ubuntu-latest
+
+    container:
+      image: ghcr.io/pkgforge-dev/archlinux:latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+
+      - name: Preparing Container
+        uses: pkgforge-dev/anylinux-setup-action@v2
+
+      - name: Debug AnyLinux
+        run: |
+          echo "PATH=$PATH"
+
+          which quick-sharun || true
+          which sharun || true
+          which get-debloated-pkgs || true
+          which appimagetool || true
+
+          find / -name quick-sharun 2>/dev/null | head -50
+          find / -name sharun 2>/dev/null | head -50
+
+      - name: Create BuildInfo
+        run: |
+          cat > zapzap/BuildInfo.py << EOF
+          BUILD_CHANNEL = "DEB"
+          BUILD_PROVIDER = "GitHub Actions"
+          BUILD_REPOSITORY = "${{ github.repository }}"
+          EOF
+
+      - name: Build Environment
+        run: |
+          chmod +x ./builders/anylinux-appimage/get-dependencies.sh
+          ./builders/anylinux-appimage/get-dependencies.sh
+
+      - name: Create AppDir
+        run: |
+          chmod +x ./builders/anylinux-appimage/make-appimage.sh
+
+          export GITHUB_REPOSITORY="${{ github.repository }}"
+
+          ./builders/anylinux-appimage/make-appimage.sh
+
+      - name: Debug AppDir
+        run: |
+          echo "=============================="
+          echo "Conteúdo do diretório atual"
+          echo "=============================="
+          ls -lah
+
+          echo
+          echo "=============================="
+          echo "Conteúdo do AppDir"
+          echo "=============================="
+          ls -lah AppDir
+
+      - name: Extract Version
+        id: version
+        run: |
+          VERSION=$(cat ~/version)
+
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Install Debian Tools
+        run: |
+          pacman -Syu --noconfirm dpkg
+
+      - name: Create DEB Structure
+        run: |
+          mkdir -p package/DEBIAN
+
+          mkdir -p package/opt/zapzap
+
+          mkdir -p package/usr/bin
+
+          mkdir -p package/usr/share/applications
+
+          mkdir -p package/usr/share/icons/hicolor/scalable/apps
+
+          cp -a AppDir/. package/opt/zapzap/
+
+          cat > package/usr/bin/zapzap << 'EOF'
+          #!/bin/sh
+          exec /opt/zapzap/AppRun "$@"
+          EOF
+
+          chmod 755 package/usr/bin/zapzap
+
+          cp \
+            share/applications/com.rtosta.zapzap.desktop \
+            package/usr/share/applications/
+
+          cp \
+            share/icons/com.rtosta.zapzap.svg \
+            package/usr/share/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg
+
+          cat > package/DEBIAN/control << EOF
+          Package: zapzap
+          Version: ${{ steps.version.outputs.version }}
+          Section: network
+          Priority: optional
+          Architecture: amd64
+          Maintainer: Rafael Tosta
+          Depends: libc6
+          Description: WhatsApp Messenger for Linux
+          Progressive Web App wrapper for WhatsApp.
+          .
+          Native WhatsApp Web client for Linux built with PyQt6.
+          EOF
+
+      - name: Create Control File
+        run: |
+          printf '%s\n' \
+            "Package: zapzap" \
+            "Version: ${{ steps.version.outputs.version }}" \
+            "Section: network" \
+            "Priority: optional" \
+            "Architecture: amd64" \
+            "Maintainer: Rafael Tosta" \
+            "Depends: libc6" \
+            "Description: WhatsApp Messenger for Linux" \
+            " Progressive Web App wrapper for WhatsApp." \
+            > package/DEBIAN/control
+
+          cat package/DEBIAN/control
+
+      - name: Debug Control File
+        run: |
+          nl -ba package/DEBIAN/control
+
+      - name: Build DEB
+        run: |
+          dpkg-deb \
+            --root-owner-group \
+            --build package \
+            zapzap_${{ steps.version.outputs.version }}_amd64.deb
+      
+      - name: List Package Contents
+        run: |
+          dpkg-deb --contents \
+            zapzap_${{ steps.version.outputs.version }}_amd64.deb \
+            | head -200
+      
+      - name: Test Package
+        run: |
+          dpkg-deb --info \
+            zapzap_${{ steps.version.outputs.version }}_amd64.deb
+
+      - name: Verify AppRun
+        run: |
+          test -x package/opt/zapzap/AppRun
+          echo "AppRun OK"
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: zapzap-deb-amd64
+          path: |
+            *.deb
