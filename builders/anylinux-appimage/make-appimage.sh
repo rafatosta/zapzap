@@ -105,15 +105,15 @@ echo "Dicionários no AppDir:"
 find "${APPDIR}" -name "*.bdic" | sort
 
 
-echo
 echo "==============================================================="
-echo "Copiando libQt6Widgets*"
+echo "Copiando bibliotecas QtWebEngine"
 echo "==============================================================="
 
-
-cp -av /usr/lib/libQt6Widgets.so* AppDir/lib/
-cp -av /usr/lib/libQt6PrintSupport.so* AppDir/lib/
-
+cp -av /usr/lib/libQt6WebEngineCore.so* AppDir/lib/ || true
+cp -av /usr/lib/libQt6WebEngineQuick.so* AppDir/lib/ || true
+cp -av /usr/lib/libQt6WebEngineWidgets.so* AppDir/lib/ || true
+cp -av /usr/lib/libQt6Positioning.so* AppDir/lib/ || true
+cp -av /usr/lib/libQt6OpenGLWidgets.so* AppDir/lib/ || true
 
 echo
 echo "==============================================================="
