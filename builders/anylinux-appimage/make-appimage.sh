@@ -78,6 +78,11 @@ quick-sharun \
 
 APPDIR="./AppDir"
 
+mkdir -p "${APPDIR}/lib"
+
+cp -av /usr/lib/libQt6WebEngineWidgets.so* \
+    "${APPDIR}/lib/"
+
 if [ ! -d "${APPDIR}" ]; then
     echo "Erro: AppDir não encontrado."
     exit 1
