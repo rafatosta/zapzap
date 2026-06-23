@@ -39,7 +39,7 @@ class WindowsBuilder:
         self.compile_ui_files()
         self.clean_previous_build()
         self.run_pyinstaller()
-        self.create_zip()
+        self.rename_executable()
 
         print("# === Build concluído com sucesso ===")
 
@@ -150,43 +150,37 @@ class WindowsBuilder:
                 "Falha ao executar PyInstaller"
             )
 
-    # ==========================================================
-    # ZIP
-    # ==========================================================
-
-    def create_zip(self):
-        print("# === Criando ZIP de distribuição ===")
-
-        exe_path = self.dist_dir / f"{self.APP_NAME}.exe"
+    def rename_executable(self):
+        exe_path = self.dist_dir / "ZapZap.exe"
 
         if not exe_path.exists():
-            raise FileNotFoundError(
-                f"Executável não encontrado: {exe_path}"
-            )
+            raise FileNotFoundError(exe_path)
 
-        temp_dir = self.dist_dir / f"{self.APP_NAME}_temp"
+        version = self.get_version()
 
-        if temp_dir.exists():
-            shutil.rmtree(temp_dir)
-
-        temp_dir.mkdir(parents=True)
-
-        shutil.copy2(
-            exe_path,
-            temp_dir / f"{self.APP_NAME}.exe",
+        final_name = (
+            f"ZapZap-{version}-windows-x86_64.exe"
         )
 
-        zip_path = self.dist_dir / f"{self.APP_NAME}-Windows"
+        final_path = self.dist_dir / final_name
 
-        shutil.make_archive(
-            str(zip_path),
-            "zip",
-            temp_dir,
+        if final_path.exists():
+            final_path.unlink()
+
+        exe_path.rename(final_path)
+
+        print(
+            f"Executável gerado: {final_path.name}"
         )
 
-        shutil.rmtree(temp_dir)
+    def get_version(self):
+        try:
+            from zapzap.__version__ import __version__
 
-        print(f"ZIP criado: {zip_path}.zip")
+            return __version__
+
+        except Exception:
+            return "dev"
 
 
 if __name__ == "__main__":
