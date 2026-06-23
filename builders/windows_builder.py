@@ -172,69 +172,35 @@ class WindowsBuilder:
     # ======================================================
 
     def create_zip(self):
-        print("# === Criando ZIP de distribuição ===")
+        print("# === Criando ZIP ===")
 
-        exe_path = (
-            self.dist_dir
-            / f"{self.APP_NAME}.exe"
-        )
+        exe_path = self.dist_dir / f"{self.APP_NAME}.exe"
 
-        if not exe_path.exists():
-            raise FileNotFoundError(
-                f"Executável não encontrado: {exe_path}"
-            )
-
-        release_dir = (
-            self.dist_dir
-            / "release"
-        )
-
-        app_dir = (
-            release_dir
-            / self.APP_NAME
-        )
+        release_dir = self.build_dir / "release"
 
         if release_dir.exists():
-            shutil.rmtree(
-                release_dir
-            )
+            shutil.rmtree(release_dir)
 
-        app_dir.mkdir(
-            parents=True,
-            exist_ok=True,
-        )
+        app_dir = release_dir / self.APP_NAME
+        app_dir.mkdir(parents=True)
 
         shutil.copy2(
             exe_path,
-            app_dir / f"{self.APP_NAME}.exe",
+            app_dir / exe_path.name,
         )
 
-        archive_name = (
+        archive_base = (
             self.dist_dir
             / "ZapZap-Windows-x86_64"
         )
 
-        zip_file = Path(
-            f"{archive_name}.zip"
-        )
-
-        if zip_file.exists():
-            zip_file.unlink()
-
         shutil.make_archive(
-            str(archive_name),
+            str(archive_base),
             "zip",
             release_dir,
         )
 
-        shutil.rmtree(
-            release_dir
-        )
-
-        print(
-            f"ZIP criado: {zip_file}"
-        )
-
+        shutil.rmtree(release_dir)
 
 if __name__ == "__main__":
     WindowsBuilder().run()
