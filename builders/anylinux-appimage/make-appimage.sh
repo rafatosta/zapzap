@@ -78,6 +78,8 @@ quick-sharun \
 
 APPDIR="./AppDir"
 
+find /usr/lib -name "libQt6WebEngineWidgets.so*"
+
 mkdir -p "${APPDIR}/lib"
 
 cp -av /usr/lib/libQt6WebEngineWidgets.so* \
