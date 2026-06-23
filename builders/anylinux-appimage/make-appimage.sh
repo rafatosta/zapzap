@@ -74,6 +74,9 @@ quick-sharun \
     "${ZAPZAP_BIN}" \
     /usr/lib/libQt6Network.so* \
     /usr/lib/libQt6Widgets.so* \
+    /usr/lib/libQt6PrintSupport.so* \
+    /usr/lib/libQt6QuickWidgets.so* \
+    /usr/lib/libQt6WebEngineWidgets.so* \
     /usr/lib/libQt6WebEngineCore.so*
 
 APPDIR="./AppDir"
