@@ -25,7 +25,6 @@ pacman -Syu --noconfirm \
     python-pyqt6 \
     python-pyqt6-webengine
 
-find /usr -name "libQt6Widgets.so*" | sort
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
