@@ -104,6 +104,17 @@ echo
 echo "Dicionários no AppDir:"
 find "${APPDIR}" -name "*.bdic" | sort
 
+
+echo
+echo "==============================================================="
+echo "Copiando libQt6Widgets*"
+echo "==============================================================="
+
+
+cp -av /usr/lib/libQt6Widgets.so* AppDir/lib/
+cp -av /usr/lib/libQt6PrintSupport.so* AppDir/lib/
+
+
 echo
 echo "==============================================================="
 echo "Gerando AppImage"
