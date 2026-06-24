@@ -30,6 +30,8 @@ class PagePerformance(QWidget, Ui_PagePerformance):
         "performance/disable_gpu": False,
         "performance/disable_gpu_vsync": False,
         "performance/software_rendering": False,
+        "performance/force_gbm": False,
+        "performance/disable_accessibility": False,
 
         # Processes
         "performance/single_process": False,
@@ -89,6 +91,12 @@ class PagePerformance(QWidget, Ui_PagePerformance):
         )
         self.software_rendering.setChecked(
             SettingsManager.get("performance/software_rendering", False)
+        )
+        self.force_gbm.setChecked(
+            SettingsManager.get("performance/force_gbm", False)
+        )
+        self.disable_accessibility.setChecked(
+            SettingsManager.get("performance/disable_accessibility", False)
         )
 
         # ---------------- Processes ----------------
@@ -181,6 +189,20 @@ class PagePerformance(QWidget, Ui_PagePerformance):
             lambda: SettingsManager.set(
                 "performance/software_rendering",
                 self.software_rendering.isChecked(),
+            )
+        )
+
+        self.force_gbm.clicked.connect(
+            lambda: SettingsManager.set(
+                "performance/force_gbm",
+                self.force_gbm.isChecked(),
+            )
+        )
+
+        self.disable_accessibility.clicked.connect(
+            lambda: SettingsManager.set(
+                "performance/disable_accessibility",
+                self.disable_accessibility.isChecked(),
             )
         )
 
@@ -289,6 +311,16 @@ class PagePerformance(QWidget, Ui_PagePerformance):
             _("Forces software rendering.\n"
               "Use only in case of graphical issues.\n"
               "May significantly reduce performance.")
+        )
+
+        self.force_gbm.setToolTip(
+            _("Forces the GBM backend on Wayland.\n"
+              "Known to fix severe typing lag on NVIDIA drivers.")
+        )
+
+        self.disable_accessibility.setToolTip(
+            _("Disables the accessibility bus.\n"
+              "Known to fix typing lag or CPU spikes in QtWebEngine.")
         )
 
         # Processes

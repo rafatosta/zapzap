@@ -57,6 +57,16 @@ class SetupManager:
             flags.extend(settings_flags.split())
 
         # --------------------------------------------------
+        # Workarounds (Input Lag)
+        # --------------------------------------------------
+        if SettingsManager.get("performance/force_gbm", False):
+            environ["QTWEBENGINE_FORCE_USE_GBM"] = "1"
+            
+        if SettingsManager.get("performance/disable_accessibility", False):
+            environ["QT_LINUX_ACCESSIBILITY_ALWAYS_ON"] = "0"
+            environ["QT_ACCESSIBILITY"] = "0"
+
+        # --------------------------------------------------
         # GPU / Renderização
         # --------------------------------------------------
         if SettingsManager.get("performance/disable_gpu", False):
