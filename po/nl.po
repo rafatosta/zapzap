@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-14 10:17-0300\n"
+"POT-Creation-Date: 2026-06-24 13:39-0300\n"
 "PO-Revision-Date: 2025-02-09 11:34+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -647,128 +647,6 @@ msgid ""
 "button in the main WhatsApp interface."
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:136
-msgid "Performance (Experimental)"
-msgstr "Prestaties (experimenteel)"
-
-#: zapzap/views/ui_page_performance.py:137
-msgid "Cache and Storage"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:138
-#, fuzzy
-msgid "Cache type"
-msgstr "Soort cache"
-
-#: zapzap/views/ui_page_performance.py:139
-#, fuzzy
-msgid "Maximum cache size"
-msgstr "Maximale cacheomvang"
-
-#: zapzap/views/ui_page_performance.py:140
-msgid "0 MB"
-msgstr "0 MB"
-
-#: zapzap/views/ui_page_performance.py:141
-msgid "50 MB"
-msgstr "50 MB"
-
-#: zapzap/views/ui_page_performance.py:142
-msgid "100 MB"
-msgstr "100 MB"
-
-#: zapzap/views/ui_page_performance.py:143
-#, fuzzy
-msgid "200 MB"
-msgstr "100 MB"
-
-#: zapzap/views/ui_page_performance.py:144
-msgid "Use persistent cookies"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:145
-msgid "GPU and Rendering"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:146
-msgid "Use GPU in the same process"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:147
-msgid "Disable GPU hardware acceleration"
-msgstr "Hardwareversnelling uitschakelen"
-
-#: zapzap/views/ui_page_performance.py:148
-msgid "Disable GPU VSync"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:149
-msgid "Force software rendering (experimental)"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:150
-msgid "Processes and Memory"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:151
-msgid "Run everything in a single process"
-msgstr "Alles uitvoeren binnen één proces"
-
-#: zapzap/views/ui_page_performance.py:152
-msgid "Use one process per site"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:153
-msgid "JavaScript memory limit"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:154
-msgid "Automatic"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:155
-msgid "Minimum (256 MB)"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:156
-msgid "Default (1024 MB)"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:157
-msgid "Maximum (4096 MB)"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:158
-#, fuzzy
-msgid "Web Behavior"
-msgstr "Gedrag"
-
-#: zapzap/views/ui_page_performance.py:159
-msgid "Animated scrolling"
-msgstr "Scrollen voorzien van animaties"
-
-#: zapzap/views/ui_page_performance.py:160
-msgid "Allow background optimizations"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:161
-#, fuzzy
-msgid "Disable page animations"
-msgstr "Hardwareversnelling uitschakelen"
-
-#: zapzap/views/ui_page_performance.py:162
-msgid "Disable pinch to zoom"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:163
-#, fuzzy
-msgid "Restore defaults"
-msgstr "Standaardwaarden herstellen"
-
-#: zapzap/views/ui_page_performance.py:164
-msgid "Note: Restart required to apply changes."
-msgstr "Herstart de app om de wijzigingen toe te passen."
-
 #: zapzap/views/ui_qtoaster_donation.py:164
 msgid "Support the project"
 msgstr ""
@@ -868,6 +746,136 @@ msgstr ""
 #: zapzap/views/ui_page_about.py:123
 msgid "Donate to the project ->"
 msgstr ""
+
+#: zapzap/views/ui_page_performance.py:142
+msgid "Performance (Experimental)"
+msgstr "Prestaties (experimenteel)"
+
+#: zapzap/views/ui_page_performance.py:143
+msgid "Cache and Storage"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:144
+#, fuzzy
+msgid "Cache type"
+msgstr "Soort cache"
+
+#: zapzap/views/ui_page_performance.py:145
+#, fuzzy
+msgid "Maximum cache size"
+msgstr "Maximale cacheomvang"
+
+#: zapzap/views/ui_page_performance.py:146
+msgid "0 MB"
+msgstr "0 MB"
+
+#: zapzap/views/ui_page_performance.py:147
+msgid "50 MB"
+msgstr "50 MB"
+
+#: zapzap/views/ui_page_performance.py:148
+msgid "100 MB"
+msgstr "100 MB"
+
+#: zapzap/views/ui_page_performance.py:149
+#, fuzzy
+msgid "200 MB"
+msgstr "100 MB"
+
+#: zapzap/views/ui_page_performance.py:150
+msgid "Use persistent cookies"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:151
+msgid "GPU and Rendering"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:152
+msgid "Use GPU in the same process"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:153
+msgid "Disable GPU hardware acceleration"
+msgstr "Hardwareversnelling uitschakelen"
+
+#: zapzap/views/ui_page_performance.py:154
+msgid "Disable GPU VSync"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:155
+msgid "Force software rendering (experimental)"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:156
+msgid "Force GBM on Wayland (Fixes NVIDIA lag)"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:157
+msgid "Disable Accessibility (Fixes typing lag)"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:158
+msgid "Processes and Memory"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:159
+msgid "Run everything in a single process"
+msgstr "Alles uitvoeren binnen één proces"
+
+#: zapzap/views/ui_page_performance.py:160
+msgid "Use one process per site"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:161
+msgid "JavaScript memory limit"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:162
+msgid "Automatic"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:163
+msgid "Minimum (256 MB)"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:164
+msgid "Default (1024 MB)"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:165
+msgid "Maximum (4096 MB)"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:166
+#, fuzzy
+msgid "Web Behavior"
+msgstr "Gedrag"
+
+#: zapzap/views/ui_page_performance.py:167
+msgid "Animated scrolling"
+msgstr "Scrollen voorzien van animaties"
+
+#: zapzap/views/ui_page_performance.py:168
+msgid "Allow background optimizations"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:169
+#, fuzzy
+msgid "Disable page animations"
+msgstr "Hardwareversnelling uitschakelen"
+
+#: zapzap/views/ui_page_performance.py:170
+msgid "Disable pinch to zoom"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:171
+#, fuzzy
+msgid "Restore defaults"
+msgstr "Standaardwaarden herstellen"
+
+#: zapzap/views/ui_page_performance.py:172
+msgid "Note: Restart required to apply changes."
+msgstr "Herstart de app om de wijzigingen toe te passen."
 
 #: zapzap/controllers/Browser.py:79
 msgid "Grid view"
@@ -1409,104 +1417,6 @@ msgstr "Instellingen"
 msgid "Global (Default)"
 msgstr "Standaard"
 
-#: zapzap/controllers/PagePerformance.py:256
-msgid ""
-"Defines where the HTTP cache will be stored.\n"
-"Disk: faster after restart.\n"
-"Memory: faster, but lost on exit.\n"
-"No cache: lower disk usage, slower."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:263
-msgid ""
-"Maximum HTTP cache size.\n"
-"0 MB uses the default Chromium behavior."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:268
-msgid ""
-"Keeps cookies between restarts.\n"
-"Disabling may cause frequent logouts."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:274
-msgid ""
-"Runs GPU and rendering in the same process.\n"
-"May reduce memory usage, but can cause instability."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:279
-msgid ""
-"Disables GPU hardware acceleration.\n"
-"Recommended only for old GPUs or problematic drivers."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:284
-msgid ""
-"Disables GPU VSync.\n"
-"May reduce latency, but can increase power usage and tearing."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:289
-msgid ""
-"Forces software rendering.\n"
-"Use only in case of graphical issues.\n"
-"May significantly reduce performance."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:296
-msgid ""
-"Runs the entire Chromium engine in a single process.\n"
-"Reduces memory usage, but may cause crashes.\n"
-"Experimental usage."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:302
-msgid ""
-"Uses a separate process per site.\n"
-"Safer and more stable.\n"
-"May increase memory usage."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:309
-msgid ""
-"JavaScript (V8) memory limit.\n"
-"Automatic is the safest option.\n"
-"Higher values allow heavier pages.\n"
-"\n"
-"Restart required."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:317
-msgid ""
-"Enables smooth scrolling animations.\n"
-"Disabling may reduce CPU usage."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:322
-msgid ""
-"Allows background tabs to reduce resource usage.\n"
-"Disabling keeps timers active, but uses more resources."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:327
-msgid ""
-"Disables CSS and JavaScript animations.\n"
-"May improve performance on slower machines."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:332
-msgid ""
-"Disables pinch-to-zoom gesture on touchpads.\n"
-"Useful if accidental zooming occurs during scrolling."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:338
-msgid ""
-"Restores all performance settings\n"
-"to safe default values."
-msgstr ""
-
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"
 msgstr "Markeren als ongelezen"
@@ -1688,6 +1598,116 @@ msgstr ""
 
 #: zapzap/controllers/PageDebugging.py:247
 msgid "Settings were reset successfully. Please restart ZapZap."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:278
+msgid ""
+"Defines where the HTTP cache will be stored.\n"
+"Disk: faster after restart.\n"
+"Memory: faster, but lost on exit.\n"
+"No cache: lower disk usage, slower."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:285
+msgid ""
+"Maximum HTTP cache size.\n"
+"0 MB uses the default Chromium behavior."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:290
+msgid ""
+"Keeps cookies between restarts.\n"
+"Disabling may cause frequent logouts."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:296
+msgid ""
+"Runs GPU and rendering in the same process.\n"
+"May reduce memory usage, but can cause instability."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:301
+msgid ""
+"Disables GPU hardware acceleration.\n"
+"Recommended only for old GPUs or problematic drivers."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:306
+msgid ""
+"Disables GPU VSync.\n"
+"May reduce latency, but can increase power usage and tearing."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:311
+msgid ""
+"Forces software rendering.\n"
+"Use only in case of graphical issues.\n"
+"May significantly reduce performance."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:317
+msgid ""
+"Forces the GBM backend on Wayland.\n"
+"Known to fix severe typing lag on NVIDIA drivers."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:322
+msgid ""
+"Disables the accessibility bus.\n"
+"Known to fix typing lag or CPU spikes in QtWebEngine."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:328
+msgid ""
+"Runs the entire Chromium engine in a single process.\n"
+"Reduces memory usage, but may cause crashes.\n"
+"Experimental usage."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:334
+msgid ""
+"Uses a separate process per site.\n"
+"Safer and more stable.\n"
+"May increase memory usage."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:341
+msgid ""
+"JavaScript (V8) memory limit.\n"
+"Automatic is the safest option.\n"
+"Higher values allow heavier pages.\n"
+"\n"
+"Restart required."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:349
+msgid ""
+"Enables smooth scrolling animations.\n"
+"Disabling may reduce CPU usage."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:354
+msgid ""
+"Allows background tabs to reduce resource usage.\n"
+"Disabling keeps timers active, but uses more resources."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:359
+msgid ""
+"Disables CSS and JavaScript animations.\n"
+"May improve performance on slower machines."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:364
+msgid ""
+"Disables pinch-to-zoom gesture on touchpads.\n"
+"Useful if accidental zooming occurs during scrolling."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:370
+msgid ""
+"Restores all performance settings\n"
+"to safe default values."
 msgstr ""
 
 #: zapzap/services/AlertManager.py:35

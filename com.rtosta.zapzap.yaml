@@ -44,9 +44,9 @@ modules:
     build-commands:
       - |
         cat > zapzap/BuildInfo.py << EOF
-        BUILD_CHANNEL = "Official"
-        BUILD_PROVIDER = "Flatpak"
-        BUILD_REPOSITORY = "/home/tosta/Documentos/GitHub/zapzap"
+        BUILD_CHANNEL = "FlatpakRunner"
+        BUILD_PROVIDER = "org.flatpak.Builder"
+        BUILD_REPOSITORY = "./zapzap/"
         EOF
 
       - python3 -m build --wheel --no-isolation

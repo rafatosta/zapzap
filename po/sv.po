@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-14 10:17-0300\n"
+"POT-Creation-Date: 2026-06-24 13:39-0300\n"
 "PO-Revision-Date: 2026-03-09 22:23+0100\n"
 "Last-Translator: Dennis Cederberg "
 "<9393069+cederberget@users.noreply.github.com>\n"
@@ -667,126 +667,6 @@ msgid ""
 "button in the main WhatsApp interface."
 msgstr ""
 
-#: zapzap/views/ui_page_performance.py:136
-msgid "Performance (Experimental)"
-msgstr "Prestanda (experimentell)"
-
-#: zapzap/views/ui_page_performance.py:137
-msgid "Cache and Storage"
-msgstr "Cache och lagring"
-
-#: zapzap/views/ui_page_performance.py:138
-msgid "Cache type"
-msgstr "Cache-typ"
-
-#: zapzap/views/ui_page_performance.py:139
-msgid "Maximum cache size"
-msgstr "Maximal cache-storlek"
-
-# Identical to source
-#: zapzap/views/ui_page_performance.py:140
-msgid "0 MB"
-msgstr ""
-
-# Identical to source
-#: zapzap/views/ui_page_performance.py:141
-msgid "50 MB"
-msgstr ""
-
-# Identical to source
-#: zapzap/views/ui_page_performance.py:142
-msgid "100 MB"
-msgstr ""
-
-# Identical to source
-#: zapzap/views/ui_page_performance.py:143
-msgid "200 MB"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:144
-msgid "Use persistent cookies"
-msgstr "Använd beständiga cookies"
-
-#: zapzap/views/ui_page_performance.py:145
-msgid "GPU and Rendering"
-msgstr "Grafikkort och rendering"
-
-#: zapzap/views/ui_page_performance.py:146
-msgid "Use GPU in the same process"
-msgstr "Kör all grafik i samma process"
-
-#: zapzap/views/ui_page_performance.py:147
-msgid "Disable GPU hardware acceleration"
-msgstr "Inaktivera hårdvaruacceleration av grafik"
-
-#: zapzap/views/ui_page_performance.py:148
-msgid "Disable GPU VSync"
-msgstr "Inaktivera VSync"
-
-#: zapzap/views/ui_page_performance.py:149
-msgid "Force software rendering (experimental)"
-msgstr "Framtvinga mjukvarurendering (experimentell)"
-
-#: zapzap/views/ui_page_performance.py:150
-msgid "Processes and Memory"
-msgstr "Processer och minne"
-
-#: zapzap/views/ui_page_performance.py:151
-msgid "Run everything in a single process"
-msgstr "Kör allt i en enda process"
-
-#: zapzap/views/ui_page_performance.py:152
-msgid "Use one process per site"
-msgstr "Använd en process per sajt"
-
-#: zapzap/views/ui_page_performance.py:153
-msgid "JavaScript memory limit"
-msgstr "Minnesgräns för JavaScript"
-
-#: zapzap/views/ui_page_performance.py:154
-msgid "Automatic"
-msgstr "Automatiskt"
-
-#: zapzap/views/ui_page_performance.py:155
-msgid "Minimum (256 MB)"
-msgstr "Lägsta (256 MB)"
-
-#: zapzap/views/ui_page_performance.py:156
-msgid "Default (1024 MB)"
-msgstr "Standard (1024 MB)"
-
-#: zapzap/views/ui_page_performance.py:157
-msgid "Maximum (4096 MB)"
-msgstr "Högsta (4096 MB)"
-
-#: zapzap/views/ui_page_performance.py:158
-msgid "Web Behavior"
-msgstr "Webb-beteende"
-
-#: zapzap/views/ui_page_performance.py:159
-msgid "Animated scrolling"
-msgstr "Animera skrollning"
-
-#: zapzap/views/ui_page_performance.py:160
-msgid "Allow background optimizations"
-msgstr "Tillåt bakgrundsoptimeringar"
-
-#: zapzap/views/ui_page_performance.py:161
-msgid "Disable page animations"
-msgstr "Inaktivera sidanimeringar"
-
-#: zapzap/views/ui_page_performance.py:162
-msgid "Disable pinch to zoom"
-msgstr ""
-
-#: zapzap/views/ui_page_performance.py:163
-msgid "Restore defaults"
-msgstr "Återställ till standard"
-
-#: zapzap/views/ui_page_performance.py:164
-msgid "Note: Restart required to apply changes."
-msgstr "Obs: Omstart krävs för att verkställa ändringar."
-
 #: zapzap/views/ui_qtoaster_donation.py:164
 msgid "Support the project"
 msgstr ""
@@ -887,6 +767,134 @@ msgstr ""
 #: zapzap/views/ui_page_about.py:123
 msgid "Donate to the project ->"
 msgstr ""
+
+#: zapzap/views/ui_page_performance.py:142
+msgid "Performance (Experimental)"
+msgstr "Prestanda (experimentell)"
+
+#: zapzap/views/ui_page_performance.py:143
+msgid "Cache and Storage"
+msgstr "Cache och lagring"
+
+#: zapzap/views/ui_page_performance.py:144
+msgid "Cache type"
+msgstr "Cache-typ"
+
+#: zapzap/views/ui_page_performance.py:145
+msgid "Maximum cache size"
+msgstr "Maximal cache-storlek"
+
+# Identical to source
+#: zapzap/views/ui_page_performance.py:146
+msgid "0 MB"
+msgstr ""
+
+# Identical to source
+#: zapzap/views/ui_page_performance.py:147
+msgid "50 MB"
+msgstr ""
+
+# Identical to source
+#: zapzap/views/ui_page_performance.py:148
+msgid "100 MB"
+msgstr ""
+
+# Identical to source
+#: zapzap/views/ui_page_performance.py:149
+msgid "200 MB"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:150
+msgid "Use persistent cookies"
+msgstr "Använd beständiga cookies"
+
+#: zapzap/views/ui_page_performance.py:151
+msgid "GPU and Rendering"
+msgstr "Grafikkort och rendering"
+
+#: zapzap/views/ui_page_performance.py:152
+msgid "Use GPU in the same process"
+msgstr "Kör all grafik i samma process"
+
+#: zapzap/views/ui_page_performance.py:153
+msgid "Disable GPU hardware acceleration"
+msgstr "Inaktivera hårdvaruacceleration av grafik"
+
+#: zapzap/views/ui_page_performance.py:154
+msgid "Disable GPU VSync"
+msgstr "Inaktivera VSync"
+
+#: zapzap/views/ui_page_performance.py:155
+msgid "Force software rendering (experimental)"
+msgstr "Framtvinga mjukvarurendering (experimentell)"
+
+#: zapzap/views/ui_page_performance.py:156
+msgid "Force GBM on Wayland (Fixes NVIDIA lag)"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:157
+msgid "Disable Accessibility (Fixes typing lag)"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:158
+msgid "Processes and Memory"
+msgstr "Processer och minne"
+
+#: zapzap/views/ui_page_performance.py:159
+msgid "Run everything in a single process"
+msgstr "Kör allt i en enda process"
+
+#: zapzap/views/ui_page_performance.py:160
+msgid "Use one process per site"
+msgstr "Använd en process per sajt"
+
+#: zapzap/views/ui_page_performance.py:161
+msgid "JavaScript memory limit"
+msgstr "Minnesgräns för JavaScript"
+
+#: zapzap/views/ui_page_performance.py:162
+msgid "Automatic"
+msgstr "Automatiskt"
+
+#: zapzap/views/ui_page_performance.py:163
+msgid "Minimum (256 MB)"
+msgstr "Lägsta (256 MB)"
+
+#: zapzap/views/ui_page_performance.py:164
+msgid "Default (1024 MB)"
+msgstr "Standard (1024 MB)"
+
+#: zapzap/views/ui_page_performance.py:165
+msgid "Maximum (4096 MB)"
+msgstr "Högsta (4096 MB)"
+
+#: zapzap/views/ui_page_performance.py:166
+msgid "Web Behavior"
+msgstr "Webb-beteende"
+
+#: zapzap/views/ui_page_performance.py:167
+msgid "Animated scrolling"
+msgstr "Animera skrollning"
+
+#: zapzap/views/ui_page_performance.py:168
+msgid "Allow background optimizations"
+msgstr "Tillåt bakgrundsoptimeringar"
+
+#: zapzap/views/ui_page_performance.py:169
+msgid "Disable page animations"
+msgstr "Inaktivera sidanimeringar"
+
+#: zapzap/views/ui_page_performance.py:170
+msgid "Disable pinch to zoom"
+msgstr ""
+
+#: zapzap/views/ui_page_performance.py:171
+msgid "Restore defaults"
+msgstr "Återställ till standard"
+
+#: zapzap/views/ui_page_performance.py:172
+msgid "Note: Restart required to apply changes."
+msgstr "Obs: Omstart krävs för att verkställa ändringar."
 
 #: zapzap/controllers/Browser.py:79
 msgid "Grid view"
@@ -1428,140 +1436,6 @@ msgstr "Inställningar"
 msgid "Global (Default)"
 msgstr "Standard"
 
-#: zapzap/controllers/PagePerformance.py:256
-msgid ""
-"Defines where the HTTP cache will be stored.\n"
-"Disk: faster after restart.\n"
-"Memory: faster, but lost on exit.\n"
-"No cache: lower disk usage, slower."
-msgstr ""
-"Bestämmer var HTTP-cachen lagras.\n"
-"Disk: Snabbare efter omstart.\n"
-"Minne (Memory): Snabbare, men förloras vid programavslut\n"
-"Ingen cache (No Cache): Lägre diskanvändning, långsammare."
-
-#: zapzap/controllers/PagePerformance.py:263
-msgid ""
-"Maximum HTTP cache size.\n"
-"0 MB uses the default Chromium behavior."
-msgstr ""
-"Maximal storlek på HTTP-cache.\n"
-"0 MB är standardbeteende för Chromium."
-
-#: zapzap/controllers/PagePerformance.py:268
-msgid ""
-"Keeps cookies between restarts.\n"
-"Disabling may cause frequent logouts."
-msgstr ""
-"Behåller cookies mellan omstarter.\n"
-"Inaktivering kan orsaka frekventa utloggningar."
-
-#: zapzap/controllers/PagePerformance.py:274
-msgid ""
-"Runs GPU and rendering in the same process.\n"
-"May reduce memory usage, but can cause instability."
-msgstr ""
-"Kör grafik och rendering i samma process.\n"
-"Kan reducera minnesanvändning, men kan orsaka instabilitet."
-
-#: zapzap/controllers/PagePerformance.py:279
-msgid ""
-"Disables GPU hardware acceleration.\n"
-"Recommended only for old GPUs or problematic drivers."
-msgstr ""
-"Inaktiverar hårdvaruaccelerering av grafik.\n"
-"Rekommenderas endast för gamla grafikkort eller struliga drivrutiner."
-
-#: zapzap/controllers/PagePerformance.py:284
-msgid ""
-"Disables GPU VSync.\n"
-"May reduce latency, but can increase power usage and tearing."
-msgstr ""
-"Inaktiverar VSync för grafik.\n"
-"Kan reducera latens, men kan öka energianvändning och tearing."
-
-#: zapzap/controllers/PagePerformance.py:289
-msgid ""
-"Forces software rendering.\n"
-"Use only in case of graphical issues.\n"
-"May significantly reduce performance."
-msgstr ""
-"Framtvingar mjukvarurendering.\n"
-"Använd endast vid problem med grafik.\n"
-"Kan ha stor påverkan på prestanda."
-
-#: zapzap/controllers/PagePerformance.py:296
-msgid ""
-"Runs the entire Chromium engine in a single process.\n"
-"Reduces memory usage, but may cause crashes.\n"
-"Experimental usage."
-msgstr ""
-"Kör hela Chromium-motorn i en enda process.\n"
-"Reducerar minnesanvändning, men kan orsaka krascher.\n"
-"Experimentell användning."
-
-#: zapzap/controllers/PagePerformance.py:302
-msgid ""
-"Uses a separate process per site.\n"
-"Safer and more stable.\n"
-"May increase memory usage."
-msgstr ""
-"Använd en separat process per sajt.\n"
-"Säkrare och mer stabilt.\n"
-"Kan öka minnesanvändningen."
-
-#: zapzap/controllers/PagePerformance.py:309
-msgid ""
-"JavaScript (V8) memory limit.\n"
-"Automatic is the safest option.\n"
-"Higher values allow heavier pages.\n"
-"\n"
-"Restart required."
-msgstr ""
-"Minnesgräns för JavaScript (V8).\n"
-"Automatiskt är det säkraste valet.\n"
-"Högre värden tillåter tyngre sidor.\n"
-"\n"
-"Omstart krävs."
-
-#: zapzap/controllers/PagePerformance.py:317
-msgid ""
-"Enables smooth scrolling animations.\n"
-"Disabling may reduce CPU usage."
-msgstr ""
-"Aktiverar mjuka rullningsanimationer.\n"
-"Inaktivering kan reducera processoranvändning."
-
-#: zapzap/controllers/PagePerformance.py:322
-msgid ""
-"Allows background tabs to reduce resource usage.\n"
-"Disabling keeps timers active, but uses more resources."
-msgstr ""
-"Tillåter bakgrundsflikar för att reducera resursanvändning.\n"
-"Inaktivering behåller timers aktiva, men använder mer resurser."
-
-#: zapzap/controllers/PagePerformance.py:327
-msgid ""
-"Disables CSS and JavaScript animations.\n"
-"May improve performance on slower machines."
-msgstr ""
-"Inaktiverar CSS- och JavaScript-animationer.\n"
-"Kan förbättra prestandan på långsamma enheter."
-
-#: zapzap/controllers/PagePerformance.py:332
-msgid ""
-"Disables pinch-to-zoom gesture on touchpads.\n"
-"Useful if accidental zooming occurs during scrolling."
-msgstr ""
-
-#: zapzap/controllers/PagePerformance.py:338
-msgid ""
-"Restores all performance settings\n"
-"to safe default values."
-msgstr ""
-"Återställer alla prestandainställningar\n"
-"till säkra standardvärden."
-
 #: zapzap/controllers/ShortcutsDialog.py:11
 msgid "Mark as unread"
 msgstr "Markera som oläst"
@@ -1744,6 +1618,152 @@ msgstr ""
 #: zapzap/controllers/PageDebugging.py:247
 msgid "Settings were reset successfully. Please restart ZapZap."
 msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:278
+msgid ""
+"Defines where the HTTP cache will be stored.\n"
+"Disk: faster after restart.\n"
+"Memory: faster, but lost on exit.\n"
+"No cache: lower disk usage, slower."
+msgstr ""
+"Bestämmer var HTTP-cachen lagras.\n"
+"Disk: Snabbare efter omstart.\n"
+"Minne (Memory): Snabbare, men förloras vid programavslut\n"
+"Ingen cache (No Cache): Lägre diskanvändning, långsammare."
+
+#: zapzap/controllers/PagePerformance.py:285
+msgid ""
+"Maximum HTTP cache size.\n"
+"0 MB uses the default Chromium behavior."
+msgstr ""
+"Maximal storlek på HTTP-cache.\n"
+"0 MB är standardbeteende för Chromium."
+
+#: zapzap/controllers/PagePerformance.py:290
+msgid ""
+"Keeps cookies between restarts.\n"
+"Disabling may cause frequent logouts."
+msgstr ""
+"Behåller cookies mellan omstarter.\n"
+"Inaktivering kan orsaka frekventa utloggningar."
+
+#: zapzap/controllers/PagePerformance.py:296
+msgid ""
+"Runs GPU and rendering in the same process.\n"
+"May reduce memory usage, but can cause instability."
+msgstr ""
+"Kör grafik och rendering i samma process.\n"
+"Kan reducera minnesanvändning, men kan orsaka instabilitet."
+
+#: zapzap/controllers/PagePerformance.py:301
+msgid ""
+"Disables GPU hardware acceleration.\n"
+"Recommended only for old GPUs or problematic drivers."
+msgstr ""
+"Inaktiverar hårdvaruaccelerering av grafik.\n"
+"Rekommenderas endast för gamla grafikkort eller struliga drivrutiner."
+
+#: zapzap/controllers/PagePerformance.py:306
+msgid ""
+"Disables GPU VSync.\n"
+"May reduce latency, but can increase power usage and tearing."
+msgstr ""
+"Inaktiverar VSync för grafik.\n"
+"Kan reducera latens, men kan öka energianvändning och tearing."
+
+#: zapzap/controllers/PagePerformance.py:311
+msgid ""
+"Forces software rendering.\n"
+"Use only in case of graphical issues.\n"
+"May significantly reduce performance."
+msgstr ""
+"Framtvingar mjukvarurendering.\n"
+"Använd endast vid problem med grafik.\n"
+"Kan ha stor påverkan på prestanda."
+
+#: zapzap/controllers/PagePerformance.py:317
+msgid ""
+"Forces the GBM backend on Wayland.\n"
+"Known to fix severe typing lag on NVIDIA drivers."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:322
+msgid ""
+"Disables the accessibility bus.\n"
+"Known to fix typing lag or CPU spikes in QtWebEngine."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:328
+msgid ""
+"Runs the entire Chromium engine in a single process.\n"
+"Reduces memory usage, but may cause crashes.\n"
+"Experimental usage."
+msgstr ""
+"Kör hela Chromium-motorn i en enda process.\n"
+"Reducerar minnesanvändning, men kan orsaka krascher.\n"
+"Experimentell användning."
+
+#: zapzap/controllers/PagePerformance.py:334
+msgid ""
+"Uses a separate process per site.\n"
+"Safer and more stable.\n"
+"May increase memory usage."
+msgstr ""
+"Använd en separat process per sajt.\n"
+"Säkrare och mer stabilt.\n"
+"Kan öka minnesanvändningen."
+
+#: zapzap/controllers/PagePerformance.py:341
+msgid ""
+"JavaScript (V8) memory limit.\n"
+"Automatic is the safest option.\n"
+"Higher values allow heavier pages.\n"
+"\n"
+"Restart required."
+msgstr ""
+"Minnesgräns för JavaScript (V8).\n"
+"Automatiskt är det säkraste valet.\n"
+"Högre värden tillåter tyngre sidor.\n"
+"\n"
+"Omstart krävs."
+
+#: zapzap/controllers/PagePerformance.py:349
+msgid ""
+"Enables smooth scrolling animations.\n"
+"Disabling may reduce CPU usage."
+msgstr ""
+"Aktiverar mjuka rullningsanimationer.\n"
+"Inaktivering kan reducera processoranvändning."
+
+#: zapzap/controllers/PagePerformance.py:354
+msgid ""
+"Allows background tabs to reduce resource usage.\n"
+"Disabling keeps timers active, but uses more resources."
+msgstr ""
+"Tillåter bakgrundsflikar för att reducera resursanvändning.\n"
+"Inaktivering behåller timers aktiva, men använder mer resurser."
+
+#: zapzap/controllers/PagePerformance.py:359
+msgid ""
+"Disables CSS and JavaScript animations.\n"
+"May improve performance on slower machines."
+msgstr ""
+"Inaktiverar CSS- och JavaScript-animationer.\n"
+"Kan förbättra prestandan på långsamma enheter."
+
+#: zapzap/controllers/PagePerformance.py:364
+msgid ""
+"Disables pinch-to-zoom gesture on touchpads.\n"
+"Useful if accidental zooming occurs during scrolling."
+msgstr ""
+
+#: zapzap/controllers/PagePerformance.py:370
+msgid ""
+"Restores all performance settings\n"
+"to safe default values."
+msgstr ""
+"Återställer alla prestandainställningar\n"
+"till säkra standardvärden."
 
 # Identical to source
 #: zapzap/services/AlertManager.py:35
