@@ -1,0 +1,64 @@
+name: Build Snap
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: "Criar release?"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+  release:
+    types: [created]
+  push:
+    tags:
+      - "*"
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  build-snap:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create BuildInfo.py
+        shell: bash
+        run: |
+          cat > zapzap/BuildInfo.py << EOF_BUILD_INFO
+          BUILD_CHANNEL = "Official"
+          BUILD_PROVIDER = "GitHub Actions"
+          BUILD_REPOSITORY = "${{ github.repository }}"
+          EOF_BUILD_INFO
+
+      - name: Build Snap
+        id: snapcraft
+        uses: snapcore/action-build@v1
+        with:
+          path: builders/snap
+
+      - name: List generated Snap
+        run: |
+          ls -lah "${{ steps.snapcraft.outputs.snap }}"
+
+      - name: Upload Snap artifact
+        if: github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.event.inputs.publish != 'true')
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZapZap-Snap
+          path: ${{ steps.snapcraft.outputs.snap }}
+
+      - name: Release Snap artifact
+        if: github.event_name != 'pull_request' && (github.event_name != 'workflow_dispatch' || github.event.inputs.publish == 'true')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.snapcraft.outputs.snap }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
