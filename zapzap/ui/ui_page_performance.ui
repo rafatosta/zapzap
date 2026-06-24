@@ -146,6 +146,20 @@
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="QCheckBox" name="force_gbm">
+             <property name="text">
+              <string>Force GBM on Wayland (Fixes NVIDIA lag)</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="disable_accessibility">
+             <property name="text">
+              <string>Disable Accessibility (Fixes typing lag)</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
