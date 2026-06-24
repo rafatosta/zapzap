@@ -2,9 +2,12 @@
 
 set -eu
 
-echo "Installing package dependencies..."
-echo "---------------------------------------------------------------"
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+ROOT_DIR=$(CDPATH= cd -- "${SCRIPT_DIR}/../.." && pwd)
 
+. "${ROOT_DIR}/builders/common/common.sh"
+
+log "Installing package dependencies"
 pacman -Syu --noconfirm \
     base-devel \
     ffmpeg \
@@ -25,51 +28,23 @@ pacman -Syu --noconfirm \
     python-pyqt6 \
     python-pyqt6-webengine
 
-
-echo "Installing debloated packages..."
-echo "---------------------------------------------------------------"
-
+log "Installing debloated packages"
 get-debloated-pkgs --add-common --prefer-nano ffmpeg-mini
 
-echo "Downloading dictionaries..."
-git clone \
-  --depth=1 \
-  https://github.com/rafatosta/qtwebengine_dictionaries.git
+log "Downloading dictionaries"
+if [ ! -d "${ROOT_DIR}/qtwebengine_dictionaries" ]; then
+    git clone \
+      --depth=1 \
+      https://github.com/rafatosta/qtwebengine_dictionaries.git \
+      "${ROOT_DIR}/qtwebengine_dictionaries"
+fi
 
-mkdir -p zapzap/qtwebengine_dictionaries
+export DESTDIR="${DESTDIR:-${ROOT_DIR}/AppDir}"
+export PREFIX="${PREFIX:-/usr}"
 
-cp \
-  qtwebengine_dictionaries/*.bdic \
-  zapzap/qtwebengine_dictionaries/
+prepare_package
 
-echo "Building ZapZap..."
-echo "---------------------------------------------------------------"
+log "Saving version"
+project_version > "${HOME}/version"
 
-python -m build
-
-echo "Installing ZapZap..."
-echo "---------------------------------------------------------------"
-
-python -m installer dist/*.whl
-
-echo "Checking installation..."
-echo "---------------------------------------------------------------"
-
-which zapzap
-
-zapzap --help >/dev/null 2>&1 || true
-
-echo "Saving version..."
-echo "---------------------------------------------------------------"
-
-python - <<'EOF' > ~/version
-from pathlib import Path
-
-wheel = next(Path("dist").glob("zapzap-*.whl"))
-
-version = wheel.name.split("-")[1]
-
-print(version)
-EOF
-
-echo "Done."
+log "Done"

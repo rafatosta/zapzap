@@ -1,0 +1,39 @@
+name: zapzap
+base: core24
+version: git
+grade: stable
+confinement: strict
+summary: WhatsApp desktop client web app
+description: |
+  ZapZap is a WhatsApp desktop client web app.
+
+apps:
+  zapzap:
+    command: usr/bin/zapzap
+    plugs:
+      - desktop
+      - desktop-legacy
+      - wayland
+      - x11
+      - network
+      - audio-playback
+      - browser-support
+
+parts:
+  zapzap:
+    plugin: dump
+    source: ../..
+    build-packages:
+      - python3-build
+      - python3-installer
+    stage-packages:
+      - python3
+      - python3-pyqt6
+      - python3-pyqt6.qtwebengine
+    override-build: |
+      set -eu
+      cd "$CRAFT_PART_SRC"
+      . builders/common/common.sh
+      export DESTDIR="$CRAFT_PART_INSTALL"
+      export PREFIX=/usr
+      prepare_package
