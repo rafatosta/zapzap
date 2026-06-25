@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from enum import IntEnum
 from typing import Any
 from typing import cast
 
@@ -15,6 +16,15 @@ from PyQt6.QtGui import QStyleHints
 from PyQt6.QtWidgets import QApplication
 
 
+if not hasattr(Qt, "ColorScheme"):
+    class _ColorScheme(IntEnum):
+        Unknown = 0
+        Dark = 1
+        Light = 2
+
+    setattr(Qt, "ColorScheme", _ColorScheme)
+
+
 class SystemThemeMonitor(QObject):
     """Monitors system color scheme changes.
 
@@ -27,7 +37,7 @@ class SystemThemeMonitor(QObject):
     NAMESPACE = "org.freedesktop.appearance"
     KEY = "color-scheme"
 
-    color_scheme_changed = pyqtSignal(Qt.ColorScheme)
+    color_scheme_changed = pyqtSignal(object)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -191,6 +201,9 @@ class SystemThemeMonitor(QObject):
         if style_hints is None:
             return False
 
+        if not hasattr(style_hints, "colorSchemeChanged"):
+            return False
+
         style_hints.colorSchemeChanged.connect(
             self._qt_style_hints_color_scheme_changed
         )
@@ -219,6 +232,9 @@ class SystemThemeMonitor(QObject):
     def _qt_style_hints_get_current_color_scheme(cls) -> Qt.ColorScheme:
         style_hints = cls._qt_style_hints_get_style_hints()
         if not style_hints:
+            return Qt.ColorScheme.Unknown
+
+        if not hasattr(style_hints, "colorScheme"):
             return Qt.ColorScheme.Unknown
 
         color_scheme = style_hints.colorScheme()
