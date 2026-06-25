@@ -52,6 +52,24 @@ install_wheel() {
     log "Installing wheel into ${DESTDIR}"
     mkdir -p "${DESTDIR}"
     "${PYTHON}" -Im installer --destdir "${DESTDIR}" --prefix "${PREFIX}" "${wheel}"
+    _normalize_executable
+}
+
+_normalize_executable() {
+    expected_bin="${DESTDIR}${PREFIX}/bin/zapzap"
+
+    if [ -x "${expected_bin}" ]; then
+        return 0
+    fi
+
+    installed_bin=$(find "${DESTDIR}" -type f -path "*/bin/zapzap" -perm -111 | head -n 1)
+
+    if [ -n "${installed_bin}" ]; then
+        log "Normalizing executable path to ${expected_bin}"
+        mkdir -p "$(dirname "${expected_bin}")"
+        cp -f "${installed_bin}" "${expected_bin}"
+        chmod 755 "${expected_bin}"
+    fi
 }
 
 project_version() {
@@ -127,6 +145,7 @@ from pathlib import Path
 import sys
 root = Path("${DESTDIR}")
 matches = list(root.glob("**/site-packages/zapzap/__init__.py"))
+matches.extend(root.glob("**/dist-packages/zapzap/__init__.py"))
 if not matches:
     sys.exit("Missing installed zapzap package under DESTDIR")
 EOF_PY
