@@ -6,7 +6,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_QtoasterDonation(object):
     def setupUi(self, QtoasterDonation):
         QtoasterDonation.setObjectName("QtoasterDonation")
-        QtoasterDonation.resize(707, 166)
+        QtoasterDonation.resize(707, 172)
         QtoasterDonation.setWindowTitle("")
         QtoasterDonation.setStyleSheet("#frame{\n"
 "border:1px solid #374151;\n"
@@ -54,7 +54,7 @@ class Ui_QtoasterDonation(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.headerFrame.sizePolicy().hasHeightForWidth())
         self.headerFrame.setSizePolicy(sizePolicy)
-        self.headerFrame.setMinimumSize(QtCore.QSize(0, 16))
+        self.headerFrame.setMinimumSize(QtCore.QSize(0, 22))
         self.headerFrame.setMaximumSize(QtCore.QSize(16777215, 16))
         self.headerFrame.setObjectName("headerFrame")
         self.footerLayout_2 = QtWidgets.QHBoxLayout(self.headerFrame)
