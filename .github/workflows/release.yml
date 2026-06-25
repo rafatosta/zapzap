@@ -45,6 +45,7 @@ jobs:
           BUILD_CHANNEL = "Official"
           BUILD_PROVIDER = "GitHub Actions"
           BUILD_REPOSITORY = "${{ github.repository }}"
+          BUILD_PACKAGING = "Python Package (whl)"
           EOF
 
       - name: Set up Python
@@ -111,6 +112,7 @@ jobs:
           BUILD_CHANNEL = "Official"
           BUILD_PROVIDER = "GitHub Actions"
           BUILD_REPOSITORY = "${{ github.repository }}"
+          BUILD_PACKAGING = "Windows (exe)"
           EOF
 
       - name: Set up Python
@@ -189,6 +191,7 @@ jobs:
           BUILD_CHANNEL = "Official"
           BUILD_PROVIDER = "GitHub Actions"
           BUILD_REPOSITORY = "${{ github.repository }}"
+          BUILD_PACKAGING = "AppImage"
           EOF
 
       - name: Preparing Container
@@ -270,6 +273,7 @@ jobs:
           BUILD_CHANNEL = "Official"
           BUILD_PROVIDER = "GitHub Actions"
           BUILD_REPOSITORY = "${{ github.repository }}"
+          BUILD_PACKAGING = "Snap"
           EOF_BUILD_INFO
 
       - name: Prepare Snapcraft project
@@ -376,6 +380,7 @@ jobs:
           BUILD_CHANNEL = "Official"
           BUILD_PROVIDER = "GitHub Actions"
           BUILD_REPOSITORY = "${{ github.repository }}"
+          BUILD_PACKAGING = "DEB"
           EOF
 
       - name: Build Environment

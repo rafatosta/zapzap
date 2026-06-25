@@ -47,6 +47,7 @@ modules:
         BUILD_CHANNEL = "FlatpakRunner"
         BUILD_PROVIDER = "org.flatpak.Builder"
         BUILD_REPOSITORY = "./zapzap/"
+        BUILD_PACKAGING = "Flatpak"
         EOF
 
       - python3 -m build --wheel --no-isolation

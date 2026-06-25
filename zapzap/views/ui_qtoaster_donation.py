@@ -6,7 +6,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_QtoasterDonation(object):
     def setupUi(self, QtoasterDonation):
         QtoasterDonation.setObjectName("QtoasterDonation")
-        QtoasterDonation.resize(707, 183)
+        QtoasterDonation.resize(707, 166)
         QtoasterDonation.setWindowTitle("")
         QtoasterDonation.setStyleSheet("#frame{\n"
 "border:1px solid #374151;\n"
@@ -95,14 +95,6 @@ class Ui_QtoasterDonation(object):
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
         self.verticalLayout_3.setSpacing(3)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.labelWelcomeTo = QtWidgets.QLabel(parent=self.frame)
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        font.setBold(False)
-        font.setItalic(False)
-        self.labelWelcomeTo.setFont(font)
-        self.labelWelcomeTo.setObjectName("labelWelcomeTo")
-        self.verticalLayout_3.addWidget(self.labelWelcomeTo)
         self.labelZapZap = QtWidgets.QLabel(parent=self.frame)
         font = QtGui.QFont()
         font.setPointSize(20)
@@ -161,7 +153,6 @@ class Ui_QtoasterDonation(object):
 
     def retranslateUi(self, QtoasterDonation):
         
-        self.labelWelcomeTo.setText(_("Support the project"))
         self.labelZapZap.setText(_("ZapZap"))
         self.labelSubtitle.setText(_("Your donation helps keep the project running, improve resources and guarantee your privacy and freedom."))
         self.donateButton.setText(_("❤ Make a donation"))

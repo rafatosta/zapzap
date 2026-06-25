@@ -34,6 +34,9 @@ class PageAbout(QWidget, Ui_PageAbout):
 
         self._setValueLabel(self.labelBuildProvider,
                             _(EnvironmentDetector.PROVIDER))
+        
+        self._setValueLabel(self.labelBuildPackaging,
+                            _(EnvironmentDetector.PACKAGING))
 
         self._setValueLabel(self.labelBuildRepository,
                             _(EnvironmentDetector.BUILD_REPOSITORY))

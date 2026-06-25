@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 13:39-0300\n"
+"POT-Creation-Date: 2026-06-25 15:34-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,7 +68,7 @@ msgstr "Excluir"
 msgid "Enter the user name"
 msgstr "Insira o nome do usuário"
 
-#: zapzap/views/ui_mainwindow.py:109 zapzap/views/ui_qtoaster_donation.py:165
+#: zapzap/views/ui_mainwindow.py:109 zapzap/views/ui_qtoaster_donation.py:156
 #: zapzap/views/ui_shortcuts_dialog.py:58
 msgid "ZapZap"
 msgstr "ZapZap"
@@ -229,7 +229,7 @@ msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
 #: zapzap/views/ui_mainwindow.py:148 zapzap/views/ui_settings.py:163
-#: zapzap/views/ui_page_about.py:115
+#: zapzap/views/ui_page_about.py:118
 msgid "About"
 msgstr "Sobre"
 
@@ -641,11 +641,7 @@ msgstr ""
 "Para alterar o som da notificação, acesse as configurações do WhatsApp "
 "usando o ⚙ (engrenagem) botão na interface principal do WhatsApp."
 
-#: zapzap/views/ui_qtoaster_donation.py:164
-msgid "Support the project"
-msgstr "Apoie o projeto"
-
-#: zapzap/views/ui_qtoaster_donation.py:166
+#: zapzap/views/ui_qtoaster_donation.py:157
 msgid ""
 "Your donation helps keep the project running, improve resources and "
 "guarantee your privacy and freedom."
@@ -653,15 +649,15 @@ msgstr ""
 "Sua doação ajuda a manter o projeto no ar, melhorar recursos e garantir sua "
 "privacidade e liberdade."
 
-#: zapzap/views/ui_qtoaster_donation.py:167
+#: zapzap/views/ui_qtoaster_donation.py:158
 msgid "❤ Make a donation"
 msgstr "❤ Faça uma doação"
 
-#: zapzap/views/ui_qtoaster_donation.py:168
+#: zapzap/views/ui_qtoaster_donation.py:159
 msgid "Don't show again"
 msgstr "Não mostrar novamente"
 
-#: zapzap/views/ui_qtoaster_donation.py:169
+#: zapzap/views/ui_qtoaster_donation.py:160
 msgid "Learn more about ZapZap ↗"
 msgstr "Saiba mais sobre o ZapZap ↗"
 
@@ -705,41 +701,46 @@ msgstr "Diálogo"
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
-#: zapzap/views/ui_page_about.py:116
+#: zapzap/views/ui_page_about.py:119
+msgid "name_app"
+msgstr ""
+
+#: zapzap/views/ui_page_about.py:120
+msgid "Donate to the project ->"
+msgstr "Doe para o projeto ->"
+
+#: zapzap/views/ui_page_about.py:121
+msgid "ZapZap official website ->"
+msgstr "Site oficial do ZapZap ->"
+
+#: zapzap/views/ui_page_about.py:122
 #, python-brace-format
 msgid "Build Provider: {value}"
 msgstr "Provedor de compilação: {value}"
 
-#: zapzap/views/ui_page_about.py:117
+#: zapzap/views/ui_page_about.py:123
 #, python-brace-format
 msgid "Build Repository: {value}"
 msgstr "Repositório de compilação: {value}"
 
-#: zapzap/views/ui_page_about.py:118
-msgid "name_app"
-msgstr ""
-
-#: zapzap/views/ui_page_about.py:119
-msgid "ZapZap official website ->"
-msgstr "Site oficial do ZapZap ->"
-
-#: zapzap/views/ui_page_about.py:120
-#, python-brace-format
-msgid "Build channel: {value}"
-msgstr "Canal de compilação: {value}"
-
-#: zapzap/views/ui_page_about.py:121
+#: zapzap/views/ui_page_about.py:124
 #, python-brace-format
 msgid "Version: {id}"
 msgstr "Versão {id}"
 
-#: zapzap/views/ui_page_about.py:122
+#: zapzap/views/ui_page_about.py:125
 msgid "Report a problem ->"
 msgstr "Informar um problema ->"
 
-#: zapzap/views/ui_page_about.py:123
-msgid "Donate to the project ->"
-msgstr "Doe para o projeto ->"
+#: zapzap/views/ui_page_about.py:126
+#, python-brace-format
+msgid "Build channel: {value}"
+msgstr "Canal de compilação: {value}"
+
+#: zapzap/views/ui_page_about.py:127
+#, fuzzy, python-brace-format
+msgid "Packaging: {value}"
+msgstr "Canal de compilação: {value}"
 
 #: zapzap/views/ui_page_performance.py:142
 msgid "Performance (Experimental)"
@@ -1807,11 +1808,9 @@ msgid "Community"
 msgstr "Comunidade"
 
 #: zapzap/services/EnvironmentDetector.py:7
-msgid "Custom"
-msgstr "Personalizado"
-
-#: zapzap/services/EnvironmentDetector.py:18
 #: zapzap/services/EnvironmentDetector.py:19
+#: zapzap/services/EnvironmentDetector.py:20
+#: zapzap/services/EnvironmentDetector.py:21
 msgid "Unknown"
 msgstr "Desconhecido"
 
@@ -1871,6 +1870,12 @@ msgstr "Selecione o idioma"
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"
+
+#~ msgid "Support the project"
+#~ msgstr "Apoie o projeto"
+
+#~ msgid "Custom"
+#~ msgstr "Personalizado"
 
 #~ msgid "Welcome to"
 #~ msgstr "Bem-vindo ao"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 13:39-0300\n"
+"POT-Creation-Date: 2026-06-25 15:34-0300\n"
 "PO-Revision-Date: 2026-03-09 22:23+0100\n"
 "Last-Translator: Dennis Cederberg "
 "<9393069+cederberget@users.noreply.github.com>\n"
@@ -72,7 +72,7 @@ msgid "Enter the user name"
 msgstr "Skriv in användarnamn"
 
 # Identical to source
-#: zapzap/views/ui_mainwindow.py:109 zapzap/views/ui_qtoaster_donation.py:165
+#: zapzap/views/ui_mainwindow.py:109 zapzap/views/ui_qtoaster_donation.py:156
 #: zapzap/views/ui_shortcuts_dialog.py:58
 msgid "ZapZap"
 msgstr ""
@@ -247,7 +247,7 @@ msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr ""
 
 #: zapzap/views/ui_mainwindow.py:148 zapzap/views/ui_settings.py:163
-#: zapzap/views/ui_page_about.py:115
+#: zapzap/views/ui_page_about.py:118
 msgid "About"
 msgstr "Om"
 
@@ -667,26 +667,22 @@ msgid ""
 "button in the main WhatsApp interface."
 msgstr ""
 
-#: zapzap/views/ui_qtoaster_donation.py:164
-msgid "Support the project"
-msgstr ""
-
-#: zapzap/views/ui_qtoaster_donation.py:166
+#: zapzap/views/ui_qtoaster_donation.py:157
 msgid ""
 "Your donation helps keep the project running, improve resources and "
 "guarantee your privacy and freedom."
 msgstr ""
 
-#: zapzap/views/ui_qtoaster_donation.py:167
+#: zapzap/views/ui_qtoaster_donation.py:158
 #, fuzzy
 msgid "❤ Make a donation"
 msgstr "Donera"
 
-#: zapzap/views/ui_qtoaster_donation.py:168
+#: zapzap/views/ui_qtoaster_donation.py:159
 msgid "Don't show again"
 msgstr ""
 
-#: zapzap/views/ui_qtoaster_donation.py:169
+#: zapzap/views/ui_qtoaster_donation.py:160
 msgid "Learn more about ZapZap ↗"
 msgstr ""
 
@@ -732,40 +728,45 @@ msgstr ""
 msgid "WhatsApp Web"
 msgstr ""
 
-#: zapzap/views/ui_page_about.py:116
+#: zapzap/views/ui_page_about.py:119
+msgid "name_app"
+msgstr ""
+
+#: zapzap/views/ui_page_about.py:120
+msgid "Donate to the project ->"
+msgstr ""
+
+#: zapzap/views/ui_page_about.py:121
+msgid "ZapZap official website ->"
+msgstr ""
+
+#: zapzap/views/ui_page_about.py:122
 #, python-brace-format
 msgid "Build Provider: {value}"
 msgstr ""
 
-#: zapzap/views/ui_page_about.py:117
+#: zapzap/views/ui_page_about.py:123
 #, python-brace-format
 msgid "Build Repository: {value}"
 msgstr ""
 
-#: zapzap/views/ui_page_about.py:118
-msgid "name_app"
-msgstr ""
-
-#: zapzap/views/ui_page_about.py:119
-msgid "ZapZap official website ->"
-msgstr ""
-
-#: zapzap/views/ui_page_about.py:120
-#, python-brace-format
-msgid "Build channel: {value}"
-msgstr ""
-
-#: zapzap/views/ui_page_about.py:121
+#: zapzap/views/ui_page_about.py:124
 #, python-brace-format
 msgid "Version: {id}"
 msgstr ""
 
-#: zapzap/views/ui_page_about.py:122
+#: zapzap/views/ui_page_about.py:125
 msgid "Report a problem ->"
 msgstr ""
 
-#: zapzap/views/ui_page_about.py:123
-msgid "Donate to the project ->"
+#: zapzap/views/ui_page_about.py:126
+#, python-brace-format
+msgid "Build channel: {value}"
+msgstr ""
+
+#: zapzap/views/ui_page_about.py:127
+#, python-brace-format
+msgid "Packaging: {value}"
 msgstr ""
 
 #: zapzap/views/ui_page_performance.py:142
@@ -1834,12 +1835,9 @@ msgid "Community"
 msgstr ""
 
 #: zapzap/services/EnvironmentDetector.py:7
-#, fuzzy
-msgid "Custom"
-msgstr "anpassning.{}"
-
-#: zapzap/services/EnvironmentDetector.py:18
 #: zapzap/services/EnvironmentDetector.py:19
+#: zapzap/services/EnvironmentDetector.py:20
+#: zapzap/services/EnvironmentDetector.py:21
 msgid "Unknown"
 msgstr "Okänd"
 
@@ -1899,6 +1897,10 @@ msgstr "Välj språk"
 #, fuzzy, python-brace-format
 msgid "DevTools - {}"
 msgstr "Öppna utvecklingsverktyg"
+
+#, fuzzy
+#~ msgid "Custom"
+#~ msgstr "anpassning.{}"
 
 #~ msgid "Welcome to"
 #~ msgstr "Välkommen till"
