@@ -1,158 +1,86 @@
-# Documentação técnica do ZapZap
+# Technical documentation
 
-## 1) Visão geral
+ZapZap is a Python desktop application that embeds WhatsApp Web in a PyQt6 and
+QtWebEngine shell, then adds desktop integration through services, controllers and
+package-specific runtime configuration.
 
-O **ZapZap** é um cliente desktop Linux para WhatsApp Web construído com **PyQt6 + QtWebEngine**. A aplicação encapsula `https://web.whatsapp.com/` em uma janela nativa, adicionando recursos de desktop (múltiplas contas, tray, notificações, tema, customizações CSS/JS, atalhos e integrações de empacotamento). 
+## Overview
 
-## 2) Stack e componentes principais
+- Language: Python 3.8 or newer.
+- UI toolkit: PyQt6.
+- Web engine: PyQt6-WebEngine.
+- Settings: Qt `QSettings`.
+- Account metadata: SQLite.
+- Translations: gettext catalogs from `po/` and `zapzap/po/`.
+- Packaging: Flatpak, AppImage, Snap, RPM, DEB and Windows builder support.
 
-- **Linguagem:** Python 3.8+ (conforme `pyproject.toml`)
-- **UI:** PyQt6
-- **Engine Web:** PyQt6-WebEngine
-- **Persistência de configurações:** `QSettings`
-- **Persistência de contas:** SQLite (`zapzap.db`)
-- **Internacionalização:** gettext (`po/*.po` + `zapzap/po/*/LC_MESSAGES/*.mo`)
-- **Empacotamento suportado:** Flatpak, AppImage, RPM e instalação não oficial (pip/source)
+## Startup flow
 
-## 3) Fluxo de inicialização
+1. `zapzap.__main__:main` starts the application entry point.
+2. Environment setup configures QtWebEngine, display and dictionary paths.
+3. Translation setup loads gettext resources.
+4. Crash handling and single-instance behavior are initialized.
+5. The main window restores saved state and loads accounts.
+6. Each account creates an isolated `QWebEngineProfile` and loads WhatsApp Web.
 
-Entrada principal:
+## Architecture
 
-1. `python -m zapzap` (ou script `zapzap`) chama `zapzap.__main__:main`.
-2. `SetupManager.apply()` configura variáveis de ambiente (plataforma gráfica, escala, dicionários e flags do QtWebEngine/Chromium).
-3. `TranslationManager.apply()` define domínio e diretório de traduções.
-4. O handler global de crash é registrado.
-5. A aplicação cria `SingleApplication` para impedir múltiplas instâncias simultâneas.
-6. `MainWindow` é criada e restaura estado (geometria, window state, sys tray e tema).
-7. `Browser` carrega as contas e instancia um `WebView` por conta habilitada.
-8. Cada `WebView` cria um `QWebEngineProfile` isolado e carrega o WhatsApp Web.
+### Controllers and views
 
-## 4) Arquitetura em camadas
+- `zapzap/controllers/` contains main-window and settings-page behavior.
+- `zapzap/ui/` contains Qt Designer source files.
+- `zapzap/views/` contains generated Python classes for the UI files.
 
-### 4.1 UI e controle
+### Web engine layer
 
-- `controllers/` concentra comportamento da janela principal e páginas de configurações.
-- `views/` contém classes Python geradas a partir de `.ui` do Qt Designer.
-- `ui/` contém os arquivos-fonte `.ui`.
+- `zapzap/webengine/WebView.py` manages profile, downloads, spell checking and
+  context-menu behavior.
+- `zapzap/webengine/PageController.py` handles navigation, permissions, new-window
+  behavior, injected scripts and theme integration.
+- JavaScript helpers are stored in `zapzap/webengine/`.
 
-### 4.2 Navegação e sessão web
+### Services
 
-- `webengine/WebView.py` gerencia perfil web, download, spellcheck, menu de contexto e eventos da aba.
-- `webengine/PageController.py` estende `QWebEnginePage` para:
-  - controlar navegação,
-  - interceptar novas janelas (abrindo no navegador padrão),
-  - injetar addons/customizações,
-  - aplicar permissões e tema.
+- `SettingsManager` wraps application settings.
+- `ThemeManager` applies light, dark and system theme behavior.
+- `CustomizationsManager` manages CSS and JavaScript customizations.
+- `DownloadManager` handles QtWebEngine downloads.
+- `DictionariesManager` and `PathManager` resolve dictionary locations.
+- `SysTrayManager` manages tray menu and tray interactions.
+- `EnvironmentManager` and `EnvironmentDetector` handle runtime environment details.
 
-### 4.3 Serviços de domínio
+### Notifications
 
-- `SettingsManager`: fachada estática para `QSettings`.
-- `CustomizationsManager`: catálogo/importação/ordenação/injeção de CSS e JS (global e por conta).
-- `ThemeManager`: aplica tema claro/escuro/auto via palette + stylesheet.
-- `SysTrayManager`: menu e interação do ícone de bandeja.
-- `DownloadManager`: tratamento de downloads do QtWebEngine.
-- `DictionariesManager` + `PathManager`: resolução de caminho de dicionários por tipo de empacotamento.
-- `AddonsManager`: carrega scripts JS internos para injeção.
+`NotificationService` selects an available backend for the current environment:
 
-### 4.4 Notificações
+- Portal notifications for sandboxed environments where available.
+- Freedesktop notifications on Linux desktops that support them.
+- Windows notifications for Windows builds.
 
-`NotificationService` atua como fachada e escolhe backend em runtime:
+## Persistence
 
-- **Flatpak:** backend Portal.
-- **Outros ambientes:** backend Freedesktop (quando disponível).
+- Account metadata is stored in SQLite through the project configuration layer.
+- Application preferences are stored with `QSettings`.
+- Customization files are stored under application-local data directories for global
+  and per-account CSS and JavaScript.
+- Compiled translations are packaged under `zapzap/po/`.
 
-As regras de exibição respeitam preferências globais e por conta, incluindo ocultação de nome/mensagem.
+## Package integration
 
-### 4.5 Persistência
+Package builders share the same Python project metadata and install the application
+entry point `zapzap`. Linux package metadata also installs the desktop file, icon and
+AppStream metadata from `share/` where applicable.
 
-- **Banco SQLite:** metadados de contas (`users`) e preferências associadas (ex.: zoom).
-- **QSettings:** configuração funcional (tema, comportamento de janela, performance, spellcheck, etc.).
-- **Disco local de customizações:**
-  - `customizations/global/css`
-  - `customizations/global/js`
-  - `customizations/accounts/<id>/css`
-  - `customizations/accounts/<id>/js`
-  - `customizations/extensions` (reservado)
+## Maintenance guidance
 
-## 5) Modelo de contas
+- Add reusable application behavior under `zapzap/services/`.
+- Keep controller classes focused on UI orchestration.
+- Regenerate `zapzap/views/` when Qt Designer files in `zapzap/ui/` change.
+- Validate QtWebEngine changes on the affected display server and package format.
+- Update documentation when commands, paths or package behavior change.
 
-Cada conta cria:
+## Related documentation
 
-- um botão lateral (`PageButton`),
-- uma aba web (`WebView`) com perfil isolado,
-- regras próprias de notificação e customização.
-
-A primeira conta usa alias lógico `storage-whats` para compatibilidade com estrutura histórica do projeto.
-
-## 6) Build, execução e release
-
-Script orquestrador: `run.py`
-
-### 6.1 Desenvolvimento
-
-- `python run.py`
-
-O fluxo gera classes de janela a partir dos `.ui` e inicia o app em seguida.
-
-### 6.2 Builders (camada de empacotamento)
-
-Os comandos de `run.py` delegam a implementação de build para módulos em `builders/`, separando a orquestração CLI da lógica de empacotamento:
-
-- `flatpak_builder.py`: prepara e gera pacote Flatpak.
-- `appimage_builder.py`: prepara ambiente e gera AppImage.
-- `windows_builder.py`: empacota versão Windows (EXE/ZIP).
-
-Esse desenho facilita manutenção por plataforma e reduz acoplamento entre fluxo de desenvolvimento e regras específicas de distribuição.
-
-## 7) Estrutura de diretórios (resumo)
-
-- `zapzap/controllers`: janelas, páginas de configuração e fluxos de UI.
-- `zapzap/webengine`: integração com QtWebEngine.
-- `zapzap/services`: serviços transversais (configuração, tema, notificações, customizações, ambiente).
-- `zapzap/models`: entidades persistidas (contas).
-- `zapzap/config`: infraestrutura local (SQLite).
-- `zapzap/resources`: ícones, estilos e recursos de UI.
-- `po/` e `zapzap/po/`: catálogo fonte e binário de traduções.
-- `tools/`: scripts auxiliares de execução local, compilação de UI e utilitários de tradução/build.
-- `builders/`: implementações de build/preview por plataforma (Flatpak, AppImage e Windows).
-
-## 8) Extensão e manutenção
-
-### Convenções práticas
-
-- Preferir novos comportamentos em `services/` e manter `controllers/` como camada de orquestração de UI.
-- Se uma configuração impacta conta e global, documentar fallback explícito (global -> conta).
-- Em mudanças que envolvam WebEngine, registrar impacto esperado em consumo de memória e compatibilidade Wayland/X11 no PR.
-
-### Pontos de extensão recomendados
-
-1. **Novos serviços**: adicionar em `services/` e integrar via controller específico.
-2. **Novos ajustes**: persistir em `SettingsManager` com chaves versionáveis.
-3. **Nova feature de injeção web**: priorizar `CustomizationsManager` (quando orientada a usuário) ou `AddonsManager` (comportamento interno).
-4. **Notificações**: implementar backend adicional e plugar na seleção do `NotificationService`.
-
-### Cuidados técnicos
-
-- Mudanças em `SetupManager` afetam inicialização de QtWebEngine; validar em X11/Wayland.
-- Mudanças em notificações devem ser testadas em Flatpak e ambiente não sandbox.
-- Chaves de `QSettings` devem manter compatibilidade retroativa para evitar regressões em upgrades.
-
-## 9) Operação diária (checklist)
-
-1. **Antes de abrir PR**
-   - executar `python run.py`
-   - validar ao menos uma conta carregando `https://web.whatsapp.com/`
-2. **Quando alterar UI**
-   - executar `python run.py` para recompilar classes geradas dos arquivos `.ui`
-3. **Quando alterar customizações/JS**
-   - validar `Save and reload` e `Reload` na página de customizações
-4. **Quando alterar notificações**
-   - testar em ambiente Flatpak e fora de sandbox
-
-## 10) Troubleshooting rápido
-
-- **Sem upload de arquivos (Flatpak/Wayland):** revisar permissões de filesystem (Documents, Downloads, Pictures, Videos).
-- **Sem spellcheck:** verificar caminho de dicionários conforme empacotamento.
-- **Tema não sincroniza:** confirmar backend de portal/DBus disponível no ambiente.
-- **Notificações ausentes:** validar preferência global/por conta e backend selecionado.
-- **Figurinhas de outras pessoas ficam carregando para sempre / alto uso de RAM:** no WhatsApp Web, habilitar `Configurações > Conversas > Download automático de mídia > Fotos`. Quando essa opção está desativada, há relatos de figurinhas que não finalizam o carregamento e podem elevar consumo de memória com a conversa aberta.
+- [Development](development.md)
+- [Packaging](packaging.md)
+- [Troubleshooting](troubleshooting.md)
