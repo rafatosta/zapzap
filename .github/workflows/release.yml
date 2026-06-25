@@ -13,7 +13,7 @@ on:
           - "true"
 
   release:
-    types: [created]
+    types: [published]
 
   push:
     tags:
@@ -342,6 +342,13 @@ jobs:
           files: ${{ steps.normalized_snap.outputs.snap }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish Snap to Snap Store stable
+        if: github.event_name == 'release' && github.event.release.prerelease == false
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
+        run: |
+          snapcraft upload --release=stable "${{ steps.normalized_snap.outputs.snap }}"
 
 # ==========================================================
 # DEB
