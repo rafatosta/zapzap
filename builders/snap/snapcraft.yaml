@@ -7,6 +7,10 @@ summary: WhatsApp desktop client web app
 description: |
   ZapZap is a WhatsApp desktop client web app.
 
+layout:
+  /usr/share/X11/xkb:
+    bind: $SNAP/usr/share/X11/xkb
+
 apps:
   zapzap:
     command: usr/bin/zapzap
