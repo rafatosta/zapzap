@@ -20,6 +20,7 @@ apps:
       QTWEBENGINE_LOCALES_PATH: $SNAP/usr/share/qt6/translations/qtwebengine_locales
       QTWEBENGINE_DISABLE_SANDBOX: "1"
       QTWEBENGINE_CHROMIUM_FLAGS: --no-sandbox --disable-gpu-sandbox --password-store=basic
+      XKB_CONFIG_ROOT: $SNAP/usr/share/X11/xkb
     plugs:
       - desktop
       - desktop-legacy
@@ -43,6 +44,7 @@ parts:
       - python3-pyqt6
       - python3-pyqt6.qtwebengine
       - qt6-wayland
+      - xkb-data
     override-build: |
       set -eu
       cd "$CRAFT_PART_SRC"
