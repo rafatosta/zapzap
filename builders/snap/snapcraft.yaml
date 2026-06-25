@@ -24,6 +24,7 @@ apps:
       QTWEBENGINE_LOCALES_PATH: $SNAP/usr/share/qt6/translations/qtwebengine_locales
       QTWEBENGINE_DISABLE_SANDBOX: "1"
       QTWEBENGINE_CHROMIUM_FLAGS: --no-sandbox --disable-gpu-sandbox --password-store=basic
+      QTWEBENGINE_DICTIONARIES_PATH: $SNAP/usr/share/zapzap/qtwebengine_dictionaries
       XKB_CONFIG_ROOT: $SNAP/usr/share/X11/xkb
     plugs:
       - desktop
@@ -39,6 +40,7 @@ parts:
     plugin: dump
     source: .
     build-packages:
+      - git
       - python3-build
       - python3-installer
       - python3-venv
@@ -56,6 +58,9 @@ parts:
       cd "$CRAFT_PART_SRC"
       . builders/common/common.sh
       craftctl set version="$(project_version)"
+      if [ ! -d qtwebengine_dictionaries ]; then
+        git clone --depth=1 https://github.com/rafatosta/qtwebengine_dictionaries.git
+      fi
       export DESTDIR="$CRAFT_PART_INSTALL"
       export PREFIX=/usr
       prepare_package
