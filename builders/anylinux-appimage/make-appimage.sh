@@ -38,32 +38,16 @@ mkdir -p "${OUTPATH}"
 echo "Arquitetura: ${ARCH}"
 echo "Gerando AppImage AnyLinux..."
 
-ZAPZAP_BIN="$(command -v zapzap)"
+APPDIR="./AppDir"
+ZAPZAP_BIN="${APPDIR}/usr/bin/zapzap"
 
-if [ -z "${ZAPZAP_BIN}" ]; then
-    echo "Erro: executável zapzap não encontrado."
+if [ ! -x "${ZAPZAP_BIN}" ]; then
+    echo "Erro: executável zapzap não encontrado em ${ZAPZAP_BIN}."
+    echo "Execute get-dependencies.sh para preparar a instalação em DESTDIR antes de empacotar."
     exit 1
 fi
 
-echo "Executável encontrado em: ${ZAPZAP_BIN}"
-
-echo
-echo "==============================================================="
-echo "Verificando dicionários instalados"
-echo "==============================================================="
-
-DICT_SRC="$(python - <<'EOF'
-from importlib.resources import files
-
-path = files("zapzap") / "qtwebengine_dictionaries"
-
-print(path)
-EOF
-)"
-
-echo "Origem: ${DICT_SRC}"
-
-find "${DICT_SRC}" -name "*.bdic" | sort
+echo "Executável preparado em: ${ZAPZAP_BIN}"
 
 echo
 echo "==============================================================="
@@ -83,8 +67,6 @@ quick-sharun \
     /usr/lib/libQt6WebEngineWidgets.so* \
     /usr/lib/libQt6WebEngineCore.so*
 
-APPDIR="./AppDir"
-
 find /usr/lib -name "libQt6WebEngineWidgets.so*"
 
 mkdir -p "${APPDIR}/lib"
@@ -96,23 +78,6 @@ if [ ! -d "${APPDIR}" ]; then
     echo "Erro: AppDir não encontrado."
     exit 1
 fi
-
-echo
-echo "==============================================================="
-echo "Copiando dicionários para o AppDir"
-echo "==============================================================="
-
-DICT_DST="${APPDIR}/qtwebengine_dictionaries"
-
-mkdir -p "${DICT_DST}"
-
-cp -av \
-    "${DICT_SRC}"/*.bdic \
-    "${DICT_DST}/"
-
-echo
-echo "Dicionários no AppDir:"
-find "${APPDIR}" -name "*.bdic" | sort
 
 echo
 echo "==============================================================="

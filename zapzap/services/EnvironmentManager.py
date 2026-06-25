@@ -6,6 +6,7 @@ from enum import Enum
 class Packaging(Enum):
     APPIMAGE   = "AppImage"
     FLATPAK    = "Flatpak"
+    SNAP       = "Snap"
     RPM        = "RPM"
     UNOFFICIAL = "Unofficial"
     WINDOWS    = "Windows"
@@ -19,7 +20,9 @@ class EnvironmentManager:
         if sys.platform == "win32":
             return Packaging.WINDOWS
 
-        if "APPIMAGE" in os.environ:
+        if "SNAP" in os.environ:
+            return Packaging.SNAP
+        elif "APPIMAGE" in os.environ:
             return Packaging.APPIMAGE
         elif "FLATPAK_ID" in os.environ:
             return Packaging.FLATPAK
