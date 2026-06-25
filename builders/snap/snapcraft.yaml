@@ -15,6 +15,7 @@ apps:
       PYTHONPATH: $SNAP/usr/local/lib/python3.12/dist-packages:$SNAP/usr/local/lib/python3.12/site-packages:$SNAP/usr/lib/python3/dist-packages:$SNAP/usr/lib/python3.12/dist-packages:$PYTHONPATH
       QT_PLUGIN_PATH: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/plugins:$SNAP/usr/lib/x86_64-linux-gnu/qt6/plugins:$SNAP/usr/lib/aarch64-linux-gnu/qt6/plugins:$QT_PLUGIN_PATH
       QT_QPA_PLATFORM_PLUGIN_PATH: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/plugins/platforms:$SNAP/usr/lib/x86_64-linux-gnu/qt6/plugins/platforms:$SNAP/usr/lib/aarch64-linux-gnu/qt6/plugins/platforms:$QT_QPA_PLATFORM_PLUGIN_PATH
+      QTWEBENGINEPROCESS_PATH: $SNAP/usr/lib/qt6/libexec/QtWebEngineProcess
     plugs:
       - desktop
       - desktop-legacy
