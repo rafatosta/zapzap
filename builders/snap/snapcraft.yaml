@@ -1,6 +1,6 @@
 name: zapzap
 base: core24
-version: git
+adopt-info: zapzap
 grade: stable
 confinement: strict
 summary: WhatsApp desktop client web app
@@ -35,6 +35,7 @@ parts:
       set -eu
       cd "$CRAFT_PART_SRC"
       . builders/common/common.sh
+      craftctl set version="$(project_version)"
       export DESTDIR="$CRAFT_PART_INSTALL"
       export PREFIX=/usr
       prepare_package
