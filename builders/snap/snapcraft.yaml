@@ -11,6 +11,7 @@ apps:
   zapzap:
     command: usr/bin/zapzap
     environment:
+      LD_LIBRARY_PATH: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy:$SNAP/usr/lib/x86_64-linux-gnu/libproxy:$SNAP/usr/lib/aarch64-linux-gnu/libproxy:$LD_LIBRARY_PATH
       PYTHONPATH: $SNAP/usr/local/lib/python3.12/dist-packages:$SNAP/usr/local/lib/python3.12/site-packages:$SNAP/usr/lib/python3/dist-packages:$SNAP/usr/lib/python3.12/dist-packages:$PYTHONPATH
     plugs:
       - desktop
