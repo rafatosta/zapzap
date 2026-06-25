@@ -18,6 +18,8 @@ apps:
       QTWEBENGINEPROCESS_PATH: $SNAP/usr/lib/qt6/libexec/QtWebEngineProcess
       QTWEBENGINE_RESOURCES_PATH: $SNAP/usr/share/qt6/resources
       QTWEBENGINE_LOCALES_PATH: $SNAP/usr/share/qt6/translations/qtwebengine_locales
+      QTWEBENGINE_DISABLE_SANDBOX: "1"
+      QTWEBENGINE_CHROMIUM_FLAGS: --no-sandbox --disable-gpu-sandbox --password-store=basic
     plugs:
       - desktop
       - desktop-legacy
