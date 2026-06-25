@@ -46,7 +46,9 @@ parts:
       - libxcb-cursor0
       - python3
       - python3-pyqt6
+      - python3-pyqt6.qtsvg
       - python3-pyqt6.qtwebengine
+      - libqt6svg6
       - qt6-wayland
       - xkb-data
     override-build: |
