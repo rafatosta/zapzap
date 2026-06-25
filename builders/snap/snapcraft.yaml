@@ -22,7 +22,7 @@ apps:
 parts:
   zapzap:
     plugin: dump
-    source: ../..
+    source: .
     build-packages:
       - python3-build
       - python3-installer

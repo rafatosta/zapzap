@@ -38,11 +38,22 @@ jobs:
           BUILD_REPOSITORY = "${{ github.repository }}"
           EOF_BUILD_INFO
 
+      - name: Prepare Snapcraft project
+        run: |
+          rm -rf .snapcraft-project
+          mkdir -p .snapcraft-project
+          rsync -a \
+            --exclude .git \
+            --exclude .snapcraft-project \
+            ./ \
+            .snapcraft-project/
+          cp builders/snap/snapcraft.yaml .snapcraft-project/snapcraft.yaml
+
       - name: Build Snap
         id: snapcraft
         uses: snapcore/action-build@v1
         with:
-          path: builders/snap
+          path: .snapcraft-project
 
       - name: List generated Snap
         run: |
