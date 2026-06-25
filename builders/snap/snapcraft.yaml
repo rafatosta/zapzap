@@ -6,6 +6,7 @@ confinement: strict
 summary: WhatsApp desktop client web app
 description: |
   ZapZap is a WhatsApp desktop client web app.
+icon: share/icons/com.rtosta.zapzap.svg
 
 layout:
   /usr/share/X11/xkb:
@@ -66,5 +67,7 @@ parts:
       export PREFIX=/usr
       prepare_package
       install -Dm644 share/applications/com.rtosta.zapzap.desktop "$CRAFT_PART_INSTALL/usr/share/applications/com.rtosta.zapzap.desktop"
+      sed -i 's|^Icon=.*|Icon=${SNAP}/meta/gui/icon.svg|' "$CRAFT_PART_INSTALL/usr/share/applications/com.rtosta.zapzap.desktop"
+      install -Dm644 share/icons/com.rtosta.zapzap.svg "$CRAFT_PART_INSTALL/meta/gui/icon.svg"
       install -Dm644 share/icons/com.rtosta.zapzap.svg "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg"
       install -Dm644 share/metainfo/com.rtosta.zapzap.appdata.xml "$CRAFT_PART_INSTALL/usr/share/metainfo/com.rtosta.zapzap.appdata.xml"
