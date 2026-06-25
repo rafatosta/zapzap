@@ -6,6 +6,7 @@ ROOT_DIR=${ROOT_DIR:-$(pwd)}
 DIST_DIR=${DIST_DIR:-"${ROOT_DIR}/dist"}
 DESTDIR=${DESTDIR:-}
 PREFIX=${PREFIX:-/usr}
+PYTHON=${PYTHON:-python3}
 
 log() {
     printf '\n==> %s\n' "$*"
@@ -29,7 +30,7 @@ build_wheel() {
     log "Building wheel"
     mkdir -p "${DIST_DIR}"
     rm -f "${DIST_DIR}"/*.whl
-    (cd "${ROOT_DIR}" && python -Im build --wheel --outdir "${DIST_DIR}")
+    (cd "${ROOT_DIR}" && "${PYTHON}" -Im build --wheel --outdir "${DIST_DIR}")
 }
 
 _find_wheel() {
@@ -50,11 +51,11 @@ install_wheel() {
     wheel=$(_find_wheel)
     log "Installing wheel into ${DESTDIR}"
     mkdir -p "${DESTDIR}"
-    python -Im installer --destdir "${DESTDIR}" --prefix "${PREFIX}" "${wheel}"
+    "${PYTHON}" -Im installer --destdir "${DESTDIR}" --prefix "${PREFIX}" "${wheel}"
 }
 
 project_version() {
-    python - <<EOF_PY
+    "${PYTHON}" - <<EOF_PY
 from pathlib import Path
 import ast
 
@@ -70,7 +71,7 @@ EOF_PY
 }
 
 find_qt_dir() {
-    python - <<'EOF_PY'
+    "${PYTHON}" - <<'EOF_PY'
 from pathlib import Path
 candidates = [
     Path('/usr/lib/qt6'),
@@ -121,7 +122,7 @@ validate_install() {
         exit 1
     }
 
-    python - <<EOF_PY
+    "${PYTHON}" - <<EOF_PY
 from pathlib import Path
 import sys
 root = Path("${DESTDIR}")
