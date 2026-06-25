@@ -10,6 +10,8 @@ description: |
 apps:
   zapzap:
     command: usr/bin/zapzap
+    environment:
+      PYTHONPATH: $SNAP/usr/local/lib/python3.12/dist-packages:$SNAP/usr/local/lib/python3.12/site-packages:$SNAP/usr/lib/python3/dist-packages:$SNAP/usr/lib/python3.12/dist-packages:$PYTHONPATH
     plugs:
       - desktop
       - desktop-legacy
