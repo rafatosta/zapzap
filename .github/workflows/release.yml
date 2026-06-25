@@ -345,11 +345,10 @@ jobs:
 
       - name: Publish Snap to Snap Store stable
         if: github.event_name == 'release' && github.event.release.prerelease == false
-        uses: snapcore/action-publish@v1
-        with:
-          store_login: ${{ secrets.STORE_LOGIN }}
-          snap: ${{ steps.normalized_snap.outputs.snap }}
-          release: stable
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
+        run: |
+          snapcraft upload --release=stable "${{ steps.normalized_snap.outputs.snap }}"
 
 # ==========================================================
 # DEB

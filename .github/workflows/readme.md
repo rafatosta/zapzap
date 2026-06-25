@@ -24,7 +24,7 @@ Settings -> Secrets and variables -> Actions -> New repository secret
 ```
 
 O valor do secret deve ser gerado uma vez em uma máquina com Snapcraft
-autenticado:
+autenticado e será usado no workflow como `SNAPCRAFT_STORE_CREDENTIALS`:
 
 ```bash
 snapcraft login
