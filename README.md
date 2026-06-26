@@ -49,6 +49,16 @@ Use the installation guide for package-specific instructions and links:
 - [Changelog](CHANGELOG.md)
 - [Contributing](CONTRIBUTING.md)
 
+## Donations
+
+If ZapZap is useful to you, you can support the maintainer through the project donation
+links:
+
+- [Project donation page](https://rtosta.com/zapzap/#donate)
+- [Pix](https://nubank.com.br/pagar/3c3r2/LS2hiJJKzv)
+- [Ko-fi](https://ko-fi.com/rafaeltosta)
+- [GitHub Sponsors](https://github.com/sponsors/rafatosta)
+
 ## Contributing
 
 Contributions are welcome. Before opening a pull request, read the
