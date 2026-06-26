@@ -25,11 +25,43 @@ function Donate() {
             body: "Fast and fee-free donations for supporters in Brazil.",
             copy: "c86378c4-c34a-4951-bad0-42d5c1774f79",
         },
-        {
-            title: "Every contribution matters",
-            body: "Your support helps cover infrastructure costs and gives more time to develop new features and improvements.",
-        },
     ];
+
+    const cardClass =
+        "group block h-full rounded-xl border border-transparent bg-subtle p-5 transition-all duration-200 hover:-translate-y-1 hover:border-border hover:bg-card hover:shadow-sm";
+
+    const content = (
+        item: (typeof donations)[number],
+        index: number
+    ) => (
+        <div className="border-t border-hairline pt-5">
+            <div className="flex items-center gap-3">
+                <span className="font-mono text-[11px] tabular-nums text-muted-foreground transition-colors group-hover:text-foreground">
+                    {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <h3 className="text-[15px] font-semibold tracking-tight">
+                    {item.title}
+                </h3>
+            </div>
+
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                {item.body}
+            </p>
+
+            {"href" in item && item.href && (
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium transition-colors group-hover:text-foreground">
+                    Donate →
+                </span>
+            )}
+
+            {"copy" in item && item.copy && (
+                <code className="mt-4 block overflow-hidden rounded-md border border-border bg-card px-3 py-2 font-mono text-xs text-muted-foreground">
+                    {item.copy}
+                </code>
+            )}
+        </div>
+    );
 
     return (
         <section id="donate" className="border-t border-hairline bg-subtle">
@@ -52,45 +84,29 @@ function Donate() {
 
                 <ul className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                     {donations.map((item, index) => (
-                        <li
-                            key={item.title}
-                            className="group rounded-xl bg-subtle p-5 transition-all duration-200 hover:-translate-y-1 hover:bg-card hover:shadow-sm"
-                        >
-                            <div className="border-t border-hairline pt-5">
-                                <div className="flex items-center gap-3">
-                                    <span className="font-mono text-[11px] tabular-nums text-muted-foreground transition-colors group-hover:text-foreground">
-                                        {String(index + 1).padStart(2, "0")}
-                                    </span>
-
-                                    <h3 className="text-[15px] font-semibold tracking-tight">
-                                        {item.title}
-                                    </h3>
+                        <li key={item.title}>
+                            {"href" in item && item.href ? (
+                                <a
+                                    href={item.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={cardClass}
+                                >
+                                    {content(item, index)}
+                                </a>
+                            ) : (
+                                <div className={cardClass}>
+                                    {content(item, index)}
                                 </div>
-
-                                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                                    {item.body}
-                                </p>
-
-                                {item.href && (
-                                    <a
-                                        href={item.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="mt-4 inline-flex items-center gap-1 text-sm font-medium transition-colors hover:text-foreground"
-                                    >
-                                        Donate →
-                                    </a>
-                                )}
-
-                                {item.copy && (
-                                    <code className="mt-4 block overflow-hidden rounded-md border border-border bg-card px-3 py-2 font-mono text-xs">
-                                        {item.copy}
-                                    </code>
-                                )}
-                            </div>
+                            )}
                         </li>
                     ))}
                 </ul>
+
+                <p className="mt-10 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                    Every contribution helps cover infrastructure costs and gives more
+                    time to develop new features, fix issues and keep ZapZap free.
+                </p>
             </div>
         </section>
     );
