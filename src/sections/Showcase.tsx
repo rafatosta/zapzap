@@ -10,7 +10,7 @@ function Showcase() {
     ];
 
     return (
-        <section id="showcase" className="border-t border-hairline bg-subtle">
+        <section id="features" className="border-t border-hairline bg-subtle">
             <div className="mx-auto max-w-6xl px-6 py-24">
                 <div className="max-w-2xl">
                     <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">

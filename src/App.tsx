@@ -24,7 +24,6 @@ function App() {
 const nav = [
   { label: "Features", href: "#features" },
   { label: "Download", href: "#download" },
-  { label: "FAQ", href: "#faq" },
   { label: "GitHub", href: "https://github.com/rafatosta/zapzap" },
 ];
 

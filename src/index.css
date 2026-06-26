@@ -5,6 +5,9 @@
    para gerar apenas o CSS necessário (tree-shaking) */
 @source "../src";
 
+
+@import "tw-animate-css";
+
 /* Cria a variante "dark:" baseada na existência da classe .dark
    em qualquer elemento ancestral */
 @custom-variant dark (&:is(.dark *));
