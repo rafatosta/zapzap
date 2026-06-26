@@ -1,5 +1,5 @@
-import { useLatestRelease } from "@/hooks/useLatestRelease";
-import { useFlathubStats } from "@/hooks/useFlathubStats";
+import { useLatestRelease } from "../hooks/useLatestRelease";
+import { useFlathubStats } from "../hooks/useFlathubStats";
 
 function Hero() {
     const version = useLatestRelease();
