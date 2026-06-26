@@ -4,12 +4,15 @@ import Features from "./sections/Features";
 
 import icon from '/icon.svg'
 import Donate from "./sections/Donate";
+import HashScroll from "./components/HashScroll";
 
 
 function App() {
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
+      <HashScroll />
+
       <Header />
       <main>
         <Hero />
