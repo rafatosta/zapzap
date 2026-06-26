@@ -2,6 +2,9 @@ import Download from "./sections/Download";
 import Hero from "./sections/Hero";
 import Features from "./sections/Features";
 
+import icon from '/icon.svg'
+
+
 function App() {
 
   return (
@@ -32,7 +35,12 @@ function Header() {
     <header className="sticky top-0 z-40 border-b border-hairline bg-background/80 backdrop-blur">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
         <a href="#" className="flex items-center gap-2 text-[15px] font-semibold tracking-tight">
-          <span className="inline-block h-2.5 w-2.5 rounded-full bg-primary" aria-hidden />
+          <img
+            src={icon}
+            alt="ZapZap desktop client running on Linux"
+            loading="lazy"
+            className="w-8 hover:opacity-90"
+          />
           ZapZap
         </a>
         <nav className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
