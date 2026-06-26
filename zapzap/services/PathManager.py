@@ -14,6 +14,16 @@ class PathManager:
             "path": "",
             "default": os.getenv("QTWEBENGINE_DICTIONARIES_PATH", ""),
         },
+        Packaging.SNAP: {
+            "path": "",
+            "default": os.getenv(
+                "QTWEBENGINE_DICTIONARIES_PATH",
+                os.path.join(
+                    os.getenv("SNAP", "/"),
+                    "usr/share/zapzap/qtwebengine_dictionaries",
+                ),
+            ),
+        },
         Packaging.RPM: {
             "path": "",
             "default": "/usr/share/qt6/qtwebengine_dictionaries",

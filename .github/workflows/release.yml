@@ -206,6 +206,21 @@ jobs:
         run: |
           /bin/sh ./builders/anylinux-appimage/make-appimage.sh
 
+      - name: Normalize AnyLinux artifact names
+        run: |
+          VERSION=$(cat ~/version)
+          APPIMAGE_NAME="ZapZap-${VERSION}-linux-${{ matrix.arch }}.AppImage"
+
+          appimage=$(find dist -maxdepth 1 -name "*.AppImage" -print -quit)
+          if [ -n "$appimage" ]; then
+            mv "$appimage" "dist/${APPIMAGE_NAME}"
+          fi
+
+          zsync=$(find dist -maxdepth 1 -name "*.zsync" -print -quit)
+          if [ -n "$zsync" ]; then
+            mv "$zsync" "dist/${APPIMAGE_NAME}.zsync"
+          fi
+
       - name: List generated files
         run: |
           ls -lah dist/
@@ -233,6 +248,94 @@ jobs:
             dist/*.AppImage
             dist/*.zsync
             
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+# ==========================================================
+# SNAP
+# ==========================================================
+
+  build-snap:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create BuildInfo.py
+        shell: bash
+        run: |
+          cat > zapzap/BuildInfo.py << EOF_BUILD_INFO
+          BUILD_CHANNEL = "Official"
+          BUILD_PROVIDER = "GitHub Actions"
+          BUILD_REPOSITORY = "${{ github.repository }}"
+          EOF_BUILD_INFO
+
+      - name: Prepare Snapcraft project
+        run: |
+          rm -rf .snapcraft-project
+          mkdir -p .snapcraft-project
+          rsync -a \
+            --exclude .git \
+            --exclude .snapcraft-project \
+            ./ \
+            .snapcraft-project/
+          cp builders/snap/snapcraft.yaml .snapcraft-project/snapcraft.yaml
+
+      - name: Build Snap
+        id: snapcraft
+        uses: snapcore/action-build@v1
+        with:
+          path: .snapcraft-project
+
+      - name: List generated Snap
+        run: |
+          ls -lah "${{ steps.snapcraft.outputs.snap }}"
+
+      - name: Normalize Snap artifact name
+        id: normalized_snap
+        run: |
+          VERSION=$(python - <<'PY_VERSION'
+          from pathlib import Path
+          import ast
+
+          init_py = Path("zapzap") / "__init__.py"
+          for node in ast.parse(init_py.read_text(encoding="utf-8")).body:
+              if isinstance(node, ast.Assign):
+                  for target in node.targets:
+                      if isinstance(target, ast.Name) and target.id == "__version__":
+                          print(ast.literal_eval(node.value))
+                          raise SystemExit
+          raise SystemExit("__version__ not found")
+          PY_VERSION
+          )
+          ARCH=$(dpkg --print-architecture)
+          SNAP_NAME="ZapZap-${VERSION}-linux-${ARCH}.snap"
+          mkdir -p dist
+          cp "${{ steps.snapcraft.outputs.snap }}" "dist/${SNAP_NAME}"
+          echo "snap=dist/${SNAP_NAME}" >> "$GITHUB_OUTPUT"
+
+      # ======================================================
+      # Manual execution -> upload artifact only
+      # ======================================================
+
+      - name: Upload Snap artifact
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.publish != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZapZap-Snap-linux-amd64
+          path: ${{ steps.normalized_snap.outputs.snap }}
+
+      # ======================================================
+      # Release/tag -> publish release
+      # ======================================================
+
+      - name: Release Snap artifact
+        if: github.event_name != 'workflow_dispatch' || github.event.inputs.publish == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.normalized_snap.outputs.snap }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -380,18 +483,18 @@ jobs:
           dpkg-deb \
             --root-owner-group \
             --build package \
-            zapzap_${{ steps.version.outputs.version }}_amd64.deb
+            ZapZap-${{ steps.version.outputs.version }}-linux-amd64.deb
       
       - name: List Package Contents
         run: |
           dpkg-deb --contents \
-            zapzap_${{ steps.version.outputs.version }}_amd64.deb \
+            ZapZap-${{ steps.version.outputs.version }}-linux-amd64.deb \
             | head -200
       
       - name: Test Package
         run: |
           dpkg-deb --info \
-            zapzap_${{ steps.version.outputs.version }}_amd64.deb
+            ZapZap-${{ steps.version.outputs.version }}-linux-amd64.deb
 
       - name: Verify AppRun
         run: |
@@ -401,15 +504,15 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: zapzap-deb-amd64
+          name: ZapZap-DEB-linux-amd64
           path: |
-            *.deb
+            ZapZap-*-linux-amd64.deb
       
       - name: Release DEB artifact
         if: github.event_name != 'workflow_dispatch' || github.event.inputs.publish == 'true'
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            *.deb
+            ZapZap-*-linux-amd64.deb
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
