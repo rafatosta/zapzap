@@ -53,6 +53,8 @@ function Hero() {
                 <span>•</span>
                 <span>AppImage</span>
                 <span>•</span>
+                <span>Snap</span>
+                <span>•</span>
                 <span>RPM</span>
                 <span>•</span>
                 <span>DEB</span>
