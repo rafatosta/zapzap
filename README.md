@@ -1,249 +1,78 @@
-# [ZapZap](https://rtosta.com/zapzap-web/) – WhatsApp Desktop for Linux & Windows
-![ZapZap for WhatsApp](share/screenshot/default.png)
-
-## 📌 About
-
-ZapZap brings the WhatsApp experience on Linux closer to that of a native application.  
-Since Meta does not provide a public API for third-party applications, ZapZap is developed as a [Progressive Web Application (PWA)](https://en.wikipedia.org/wiki/Progressive_web_app), built with **PyQt6 + PyQt6-WebEngine**.
-
-📌 Technical documentation:
-See [docs/technical-documentation.md](docs/technical-documentation.md)
-
----
-
-## 📥 Download
-
-- **[Flathub](https://flathub.org/apps/details/com.rtosta.zapzap)**  
-- **[AppImage](https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-x86_64.AppImage)**
-
----
-
-## ✨ Features
-
-ZapZap extends WhatsApp Web with additional features:
-
-### 🎨 Appearance
-- Adaptive **light and dark mode**
-- **Fullscreen mode**
-- Custom **window decorations**
-- **Interface scaling adjustment** (ideal for 2K/4K screens)
-
-### ⚡ Usability
-- **Keyboard shortcuts** for main options
-- Adaptive **system tray icon** (notifies new messages)
-- **Background process** support
-- **Drag-and-drop** functionality
-- **Account Grid View** (Quickly switch between all accounts)
-- Ability to select a **custom folder for downloads**
-- **Temporary folder** for opening files
-
-### 🛠️ Extras
-- **Spellchecker** with language selection via context menu
-- Customizable **system tray icons**
-- Option to choose a **folder for custom dictionaries**
-- Setting to **disable the native file selection dialog** (Hyprland)
-- **Custom CSS/JS** with global + per-account override
-- **Reorganized Settings Panel**
-- Added **Performance section**
-- **Native Windows support** (SQLite + Registry settings)
-
-### 🧩 Customizations
-- New **Customizations** page in Settings
-- Supports **Global** customization and **Current account** customization
-- Account mode supports **inherit global settings** + optional override
-- Users can:
-  - import `.css` and `.js` files
-  - create and edit CSS/JavaScript files in dialogs
-  - enable/disable each imported CSS/JS file independently
-  - import CSS/JavaScript from any `https://` URL
-  - open customization folders directly
-- Supports many userstyle files (`.user.css`) by extracting WhatsApp-targeted `@-moz-document` blocks
-- Page actions: `Save`, `Save and reload`, `Reload`
-
-Customization files are stored in the app local data path under:
-- `customizations/global/css`
-- `customizations/global/js`
-- `customizations/accounts/<id>/css`
-- `customizations/accounts/<id>/js`
-
-Reserved for future extension support:
-- `customizations/extensions`
-
----
-
-## ⚠️ File upload notice
-
-### File uploads and filesystem permissions
-
-To enable **file uploads (documents, images, videos, audio, etc.)** in WhatsApp Web, **ZapZap requires access to the user’s folders**.
-
-This is due to **technical limitations of QtWebEngine (Chromium)** in modern environments such as **Wayland** and **sandboxed applications** (for example, Flatpak).  
-Under these conditions, the embedded browser **cannot upload files correctly** without direct access to the filesystem.
-
-### What this means in practice
-
-- Without filesystem access:
-  - file uploads may fail
-  - files may be sent **with no content**
-- With the required permissions granted:
-  - file uploads work correctly
-  - the experience matches that of a regular web browser
-
-### Recommended permissions
-
-When running in a sandboxed environment (such as Flatpak), it is recommended to grant access to at least:
-
-- `Documents`
-- `Videos`
-- `Pictures`
-- `Downloads`
-
-These permissions are used **only** to allow the user to select and upload files and are **not** used for automatic file scanning, indexing, or data collection.
-
-### Changing permissions on Flatpak
-
-If ZapZap was installed via **Flatpak**, you can manage filesystem permissions using **Flatseal** (a graphical permission manager for Flatpak apps):
-
-👉 https://flathub.org/apps/com.github.tchx84.Flatseal
-
-Steps:
-1. Install and open **Flatseal**
-2. Select **ZapZap** from the application list
-3. Enable access to the recommended folders (`Documents`, `Videos`, `Pictures`, `Downloads`)
-4. Restart ZapZap
-
-Optional terminal alternative:
-
-```bash
-flatpak override --user --filesystem=home com.rtosta.zapzap
-```
-
-After adjusting these permissions, file uploads, opening PDFs, and drag-and-drop should work normally.
-
-
-# ⚙️ Development
-
-## Requirements
-
-- **Python 3.8 or higher**
-- `pip`
-- System libraries required by Qt WebEngine and optionally `dbus-python` on Linux
-
-
-
-## Fedora 43 System Dependencies
-
-If `pip install -r requirements.txt` fails due to `dbus-python`:
-
-``` bash
-sudo dnf install -y dbus-devel pkg-config gcc python3-devel
-```
-
-Then:
-
-``` bash
-pip install -r requirements.txt
-```
-
-
-
-# 🚀 Development Mode
-
-``` bash
-python run.py
-```
-
-#### Debugging WebEngine
-- Open DevTools for current account page: `View -> Open DevTools` (`Ctrl+Shift+I`)
-
-## 🏗️ Builders
-
-ZapZap possui builders dedicados para cada alvo de distribuição, organizados em `builders/`:
-
-- `builders/flatpak_builder.py`: pipeline de build e empacotamento Flatpak.
-- `builders/appimage_builder.py`: geração do artefato AppImage.
-- `builders/windows_builder.py`: build para Windows (EXE/ZIP).
-
-Esses builders são acionados manualmente e independente do `run.py`, mantendo um fluxo único de automação local e release.
-
-## 📦 Build AppImage
-
-``` bash
-python builders/appimage_builder.py --appimage <version>
-```
-
-Example:
-
-``` bash
-python builders/appimage_builder.py build --appimage 6.5
-```
-
-
-
-## 📦 Build Flatpak Onefile
-
-``` bash
-python builders/flatpak_builder.py
-```
-
-Output:
-
-    dist/com.rtosta.zapzap.flatpak
-    
-### 📦 Build Windows (EXE)
-
-``` bash
-python builders/windows_builder.py
-```
-
-Output:
-
-    dist/ZapZap.exe
-    dist/ZapZap-Windows.zip
-
-
-## 📦 Install as Python Module
-
-``` bash
-pip install .
-```
-
-### Uninstall
-
-``` bash
-pip uninstall zapzap
-```
-
-
-## 🔧 uv Tool
-
-``` bash
-uv tool install . --with-requirements requirements.txt
-```
-
-## 📦 Packaging
-- **[Flatpak](https://github.com/flathub/com.rtosta.zapzap)**
-- **[AppImage](_scripts/build-appimage.sh)**
-
-## 🌍 Translation
-ZapZap supports translations. If your language file is missing from the [po](/po) folder, submit a pull request or open an [issue](https://github.com/rafatosta/zapzap/issues).
-
-## 🤝 Contributions
-Contributions are welcome!
-Please submit a pull request with any improvements or changes you wish to propose.
-
-## 📜 License
-This project is licensed under the GPL.
-See the LICENSE file for more information.
-
-## 💖 Donations
-**PayPal:** [Donate via PayPal](https://www.paypal.com/donate/?business=E7R4BVR45GRC2&no_recurring=0&item_name=ZapZap+-+Whatsapp+Desktop+for+linux%0AAn+unofficial+WhatsApp+desktop+application+written+in+Pyqt6+%2B+PyQt6-WebEngine.&currency_code=USD) 
-
-**Pix:** [Donate via Pix](https://nubank.com.br/pagar/3c3r2/LS2hiJJKzv) 
-
-**Ko-fi:** [Donate via Ko-fi](https://ko-fi.com/X8X2E1OLG)
-
-## 📬 Contact
-**Maintainer:** Rafael Tosta 
-
-**Email:** [rafa.ecomp@gmail.com](mailto:rafa.ecomp@gmail.com)
+# [ZapZap](https://rtosta.com/zapzap-web/) – WhatsApp Web Desktop Client
+
+ZapZap is an unofficial WhatsApp Web desktop client built with Python, PyQt6 and QtWebEngine. It wraps `https://web.whatsapp.com/` in a desktop application and adds native integration for accounts, notifications, tray behavior, theming and packaging.
+
+## Why ZapZap?
+
+| Feature | WhatsApp Web | ZapZap |
+|---------|:------------:|:------:|
+| Runs in your default browser | ✅ | ❌ |
+| Standalone desktop application | ❌ | ✅ |
+| Multiple accounts | ❌ | ✅ |
+| Native system tray integration | ❌ | ✅ |
+| Native desktop notifications | Limited | ✅ |
+| Linux package manager support | ❌ | ✅ |
+| Flatpak package | ❌ | ✅ |
+| AppImage package | ❌ | ✅ |
+| Snap package | ❌ | ✅ |
+| Native DEB package | ❌ | ✅ |
+| Fedora COPR repository | ❌ | ✅ |
+| Automatic AppImage updates (`.zsync`) | ❌ | ✅ |
+| Spell checking | Browser dependent | ✅ |
+| Custom CSS & JavaScript | ❌ | ✅ |
+| Open source (GPL-3.0) | ❌ | ✅ |
+| Privacy | Browser session | Dedicated desktop application |
+
+
+## Key features
+- WhatsApp Web in a native PyQt6 desktop window.
+- Multiple account profiles with isolated web sessions.
+- System tray integration and desktop notifications.
+- Light, dark and system theme handling.
+- Custom CSS and JavaScript injection, globally or per account.
+- Spell checking through QtWebEngine dictionaries.
+- Download handling with configurable download behavior.
+- Linux packages and Windows executable build support.
+
+
+## Supported platforms
+
+| Platform | Package |
+|----------|---------|
+| Linux | Flatpak (recommended) |
+| Linux | AppImage (x86_64, aarch64) |
+| Debian / Ubuntu | DEB |
+| Linux | Snap |
+| Fedora | COPR |
+| Windows | EXE Installer |
+| Developers | Python Wheel (`.whl`) |
+
+## Installation
+
+| Platform | Installation |
+|----------|--------------|
+| Flatpak | https://flathub.org/apps/com.rtosta.zapzap |
+| AppImage, DEB, Windows | https://github.com/rafatosta/zapzap/releases |
+| Snap | https://snapcraft.io/zapzap |
+| Fedora (COPR) | https://copr.fedorainfracloud.org/coprs/rafatosta/zapzap |
+| Python | `pip install zapzap` |
+
+## Documentation
+
+
+## Donations
+
+ZapZap is a free and open-source project maintained in my spare time. If you find it useful, consider supporting its continued development through one of the following methods:
+
+| Method | Details |
+|--------|---------|
+| GitHub Sponsors | https://github.com/sponsors/rafatosta |
+| Ko-fi | https://ko-fi.com/rafaeltosta |
+| PayPal | https://www.paypal.com/donate/?business=E7R4BVR45GRC2 |
+| Wise | https://wise.com/pay/me/rafaelt2487 |
+| Pix (Brazil) | **Pix Key:** `c86378c4-c34a-4951-bad0-42d5c1774f79` |
+
+Every contribution helps keep ZapZap free, maintained, and continuously improving. ❤️
+
+## License
+ZapZap is licensed under the GNU General Public License v3.0 or later. See [LICENSE](LICENSE) for the full license text.
