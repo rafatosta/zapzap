@@ -39,7 +39,7 @@ function Hero() {
                     v{version || "latest"} available
                 </a>
 
-                <h1 className="mt-7 text-5xl font-semibold leading-[1.05] tracking-tight md:text-7xl">
+                <h1 className="mt-7 text-5xl font-semibold leading-[1.05] tracking-tight md:text-7xl text-whatsapp-gradient">
                     ZapZap
                     <br />
                     <span className="text-3xl text-muted-foreground md:text-5xl">

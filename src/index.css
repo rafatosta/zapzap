@@ -201,3 +201,14 @@
     letter-spacing: -0.03em;
   }
 }
+
+@utility text-whatsapp-gradient {
+  background-image: linear-gradient(
+    to right,
+    #25d366,
+    #128c7e,
+    #075e54
+  );
+  background-clip: text;
+  color: transparent;
+}
