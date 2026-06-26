@@ -56,7 +56,7 @@ function Hero() {
                 <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
                     <a
                         href="#download"
-                        className="inline-flex items-center gap-2 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
+                        className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
                     >
                         Download ZapZap
                     </a>
