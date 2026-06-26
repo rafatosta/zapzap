@@ -9,49 +9,50 @@ function Download() {
         {
             tag: "Recommended",
             title: "Flatpak",
-            body: "Sandboxed package distributed through Flathub. Automatic updates and broad compatibility across Linux distributions.",
+            body: "Sandboxed package distributed via Flathub with automatic updates. Recommended for most Linux distributions.",
             href: "https://flathub.org/apps/com.rtosta.zapzap",
         },
         {
-            tag: "Portable",
-            title: "AppImage aarch64",
-            body: "Portable package for ARM64 devices. No installation required and supports automatic update checks.",
-            href: `https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-${version}-linux-aarch64.AppImage`,
+            tag: "Official",
+            title: "Snap",
+            body: "Universal package distributed through Snapcraft with automatic updates.",
+            href: "https://snapcraft.io/zapzap",
         },
         {
-            tag: "Portable",
+            tag: "Official",
             title: "AppImage x86_64",
-            body: "Portable package for 64-bit PCs. Download, make executable and run. Supports automatic update checks.",
+            body: "Portable package for 64-bit PCs. No installation required and supports automatic delta updates.",
             href: `https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-${version}-linux-x86_64.AppImage`,
         },
         {
-            tag: "Fedora",
-            title: "DNF / Copr",
-            body: "Official Copr repository for Fedora with native DNF integration and automatic system updates.",
+            tag: "Official",
+            title: "AppImage aarch64",
+            body: "Portable package for ARM64 devices. No installation required and supports automatic delta updates.",
+            href: `https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-${version}-linux-aarch64.AppImage`,
+        },
+        {
+            tag: "Official",
+            title: "Fedora (DNF / Copr)",
+            body: "Official Fedora repository with seamless DNF integration and automatic system updates.",
             href: "https://copr.fedorainfracloud.org/coprs/rafatosta/zapzap/",
         },
         {
-            tag: "Debian",
+            tag: "Official",
             title: "APT (.deb)",
             body: "Native package for Debian, Ubuntu and derivatives. Integrates with the system package manager.",
             href: `https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-${version}-linux-amd64.deb`,
         },
+
         {
-            tag: "Universal",
-            title: "Snap",
-            body: "Containerized package with automatic updates through the Snap Store.",
-            href: "https://snapcraft.io/zapzap",
-        },
-        {
-            tag: "Arch",
-            title: "AUR",
-            body: "Install using your preferred AUR helper. Community-maintained package for Arch Linux.",
+            tag: "Community",
+            title: "Arch Linux (AUR)",
+            body: "Community-maintained AUR package. Not an official distribution from the ZapZap project.",
             href: "https://aur.archlinux.org/packages/zapzap",
         },
         {
             tag: "Windows",
-            title: "Portable (.exe)",
-            body: "Portable Windows build. Extract and run without installation. Ideal for restricted environments.",
+            title: "Windows (.exe)",
+            body: "Native Windows executable with no additional dependencies.",
             href: `https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-${version}-windows-x86_64.exe`,
         },
     ];
@@ -65,11 +66,11 @@ function Download() {
                             Download
                         </p>
                         <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                            Choose your distribution.
+                            Choose your platform.
                         </h2>
+
                         <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
-                            Four formats covering virtually every Linux distribution.
-                            Checksums published with every release.
+                            Official packages for the major Linux distributions, plus Windows builds and portable AppImages. Every release includes published SHA-256 checksums.
                         </p>
                     </div>
                     <p className="font-mono text-xs text-muted-foreground">
