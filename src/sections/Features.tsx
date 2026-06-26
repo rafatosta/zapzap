@@ -47,4 +47,4 @@ function Features() {
     );
 }
 
-export default Showcase;
+export default Features;

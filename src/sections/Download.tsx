@@ -16,13 +16,13 @@ function Download() {
             tag: "Portable",
             title: "AppImage aarch64",
             body: "Portable package for ARM64 devices. No installation required and supports automatic update checks.",
-            href: `https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-${version}-aarch64.AppImage`,
+            href: `https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-${version}-linux-aarch64.AppImage`,
         },
         {
             tag: "Portable",
             title: "AppImage x86_64",
             body: "Portable package for 64-bit PCs. Download, make executable and run. Supports automatic update checks.",
-            href: `https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-${version}-x86_64.AppImage`,
+            href: `https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-${version}-linux-x86_64.AppImage`,
         },
         {
             tag: "Fedora",
@@ -32,9 +32,9 @@ function Download() {
         },
         {
             tag: "Debian",
-            title: "APT / .deb",
+            title: "APT (.deb)",
             body: "Native package for Debian, Ubuntu and derivatives. Integrates with the system package manager.",
-            href: `https://github.com/rafatosta/zapzap/releases/latest`,
+            href: `https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-${version}-linux-amd64.deb`,
         },
         {
             tag: "Universal",
@@ -50,9 +50,9 @@ function Download() {
         },
         {
             tag: "Windows",
-            title: "Portable (.zip)",
+            title: "Portable (.exe)",
             body: "Portable Windows build. Extract and run without installation. Ideal for restricted environments.",
-            href: `https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-Windows-x86_64.zip`,
+            href: `https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-${version}-windows-x86_64.exe`,
         },
     ];
 
