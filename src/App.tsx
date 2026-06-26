@@ -1,6 +1,6 @@
 import Download from "./sections/Download";
 import Hero from "./sections/Hero";
-import Showcase from "./sections/Showcase";
+import Features from "./sections/Features";
 
 function App() {
 
@@ -9,7 +9,7 @@ function App() {
       <Header />
       <main>
         <Hero />
-        <Showcase />
+        <Features />
         <Download />
         <Footer />
       </main>

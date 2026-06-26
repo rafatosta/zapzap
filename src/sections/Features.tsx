@@ -1,4 +1,4 @@
-function Showcase() {
+function Features() {
 
     const features = [
         { title: "Multiple accounts", body: "Run several WhatsApp accounts side by side in one window." },
