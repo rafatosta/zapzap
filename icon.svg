@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="64" height="64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <linearGradient id="linearGradient3" x1="8.4665" x2="8.4665" y1="1.0583" y2="15.875" gradientTransform="scale(3.7796)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#323131" offset="0"/>
+      <stop stop-color="#141414" offset="1"/>
+    </linearGradient>
+    <linearGradient id="b-1" x1="33.867" x2="33.867" y1="51.861" y2="12.73" gradientTransform="matrix(0.823344, 0, 0, 0.781102, 4.050289, 5.595598)" gradientUnits="userSpaceOnUse" href="#gradient-2"/>
+    <linearGradient id="gradient-2" bx:pinned="true">
+      <stop offset="0" style="stop-opacity: 1;"/>
+      <stop offset="0.847" style="stop-opacity: 1; stop-color: rgb(0, 71, 6);"/>
+    </linearGradient>
+  </defs>
+  <path d="m20.26 4.0003c-5.782 0-9.7427 1.7243-12.321 4.5348-2.5651 2.7962-3.9387 6.8037-3.9387 11.341v24.248c0 4.5378 1.3734 8.5453 3.9387 11.341 2.5784 2.8103 6.5391 4.5348 12.321 4.5348h23.549c5.782 0 9.7427-1.7243 12.321-4.5348 2.5651-2.7962 3.8703-6.4352 3.8703-11.341v-23.337c0-5.9351-1.305-9.4562-3.8703-12.252-2.5784-2.8103-6.5391-4.5348-12.321-4.5348h-18.315z" fill="url(#linearGradient3)" stroke-width="3.7796"/>
+  <path d="M 32 13 C 21.507 13 13 21.013 13 30.898 C 13.003 33.951 13.835 36.952 15.416 39.617 L 13.996 45.076 L 13.804 45.813 C 13.425 47.271 14.884 48.696 16.431 48.377 L 16.431 48.377 L 23.535 46.913 C 26.164 48.149 29.062 48.793 32 48.796 C 42.494 48.796 51.001 40.783 51 30.898 C 51 21.013 42.494 13 32 13" style="fill-opacity: 1; stroke: none; stroke-width: 0.017; stroke-dasharray: none; stroke-opacity: 1; filter: none; fill: rgb(44, 185, 67);"/>
+  <path d="M 31.935 15.539 C 26.829 15.541 22.026 17.839 18.99 21.734 L 32.686 22.385 L 15.865 29.815 C 15.84 30.15 15.827 30.486 15.826 30.822 C 15.826 39.263 23.038 46.105 31.935 46.105 C 37.732 46.104 43.08 43.148 45.942 38.366 L 32.273 37.716 L 48.044 30.75 C 48.002 22.338 40.802 15.539 31.935 15.539" style="fill-opacity: 1; stroke: none; stroke-width: 0.008; stroke-linejoin: miter; stroke-dasharray: none; stroke-opacity: 1; fill: url(&quot;#b-1&quot;); filter: none;"/>
+</svg>
