@@ -128,7 +128,7 @@ jobs:
 
       - name: Build Windows executable
         run: |
-          python -m builders.windows_builder
+          python -m builders.windows.windows_builder
 
       - name: List generated files
         run: |
