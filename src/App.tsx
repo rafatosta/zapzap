@@ -3,6 +3,7 @@ import Hero from "./sections/Hero";
 import Features from "./sections/Features";
 
 import icon from '/icon.svg'
+import Donate from "./sections/Donate";
 
 
 function App() {
@@ -14,8 +15,9 @@ function App() {
         <Hero />
         <Features />
         <Download />
-        <Footer />
+        <Donate />
       </main>
+      <Footer />
     </div>
   )
 }
@@ -27,6 +29,7 @@ function App() {
 const nav = [
   { label: "Features", href: "#features" },
   { label: "Download", href: "#download" },
+  { label: "Donate", href: "#donate" },
   { label: "GitHub", href: "https://github.com/rafatosta/zapzap" },
 ];
 
