@@ -2,12 +2,9 @@
 
 set -eu
 
-SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-ROOT_DIR=$(CDPATH= cd -- "${SCRIPT_DIR}/../.." && pwd)
+echo "Installing package dependencies..."
+echo "---------------------------------------------------------------"
 
-. "${ROOT_DIR}/builders/common/common.sh"
-
-log "Installing package dependencies"
 pacman -Syu --noconfirm \
     base-devel \
     ffmpeg \
@@ -28,23 +25,51 @@ pacman -Syu --noconfirm \
     python-pyqt6 \
     python-pyqt6-webengine
 
-log "Installing debloated packages"
+
+echo "Installing debloated packages..."
+echo "---------------------------------------------------------------"
+
 get-debloated-pkgs --add-common --prefer-nano ffmpeg-mini
 
-log "Downloading dictionaries"
-if [ ! -d "${ROOT_DIR}/qtwebengine_dictionaries" ]; then
-    git clone \
-      --depth=1 \
-      https://github.com/rafatosta/qtwebengine_dictionaries.git \
-      "${ROOT_DIR}/qtwebengine_dictionaries"
-fi
+echo "Downloading dictionaries..."
+git clone \
+  --depth=1 \
+  https://github.com/rafatosta/qtwebengine_dictionaries.git
 
-export DESTDIR="${DESTDIR:-${ROOT_DIR}/AppDir}"
-export PREFIX="${PREFIX:-/usr}"
+mkdir -p zapzap/qtwebengine_dictionaries
 
-prepare_package
+cp \
+  qtwebengine_dictionaries/*.bdic \
+  zapzap/qtwebengine_dictionaries/
 
-log "Saving version"
-project_version > "${HOME}/version"
+echo "Building ZapZap..."
+echo "---------------------------------------------------------------"
 
-log "Done"
+python -m build
+
+echo "Installing ZapZap..."
+echo "---------------------------------------------------------------"
+
+python -m installer dist/*.whl
+
+echo "Checking installation..."
+echo "---------------------------------------------------------------"
+
+which zapzap
+
+zapzap --help >/dev/null 2>&1 || true
+
+echo "Saving version..."
+echo "---------------------------------------------------------------"
+
+python - <<'EOF' > ~/version
+from pathlib import Path
+
+wheel = next(Path("dist").glob("zapzap-*.whl"))
+
+version = wheel.name.split("-")[1]
+
+print(version)
+EOF
+
+echo "Done."
