@@ -53,6 +53,7 @@ install_wheel() {
     mkdir -p "${DESTDIR}"
     "${PYTHON}" -Im installer --destdir "${DESTDIR}" --prefix "${PREFIX}" "${wheel}"
     _normalize_executable
+    _normalize_python_package
 }
 
 _normalize_executable() {
@@ -70,6 +71,32 @@ _normalize_executable() {
         cp -f "${installed_bin}" "${expected_bin}"
         chmod 755 "${expected_bin}"
     fi
+}
+
+_normalize_python_package() {
+    expected_site="${DESTDIR}${PREFIX}/lib/python3/dist-packages"
+
+    if [ -f "${expected_site}/zapzap/__init__.py" ]; then
+        return 0
+    fi
+
+    installed_init=$(find "${DESTDIR}" -type f -path "*/zapzap/__init__.py" | head -n 1)
+
+    if [ -z "${installed_init}" ]; then
+        return 0
+    fi
+
+    installed_package=$(dirname "${installed_init}")
+    installed_site=$(dirname "${installed_package}")
+
+    log "Normalizing Python package path to ${expected_site}"
+    mkdir -p "${expected_site}"
+    cp -a "${installed_package}" "${expected_site}/"
+
+    for metadata in "${installed_site}"/zapzap-*.dist-info "${installed_site}"/zapzap-*.egg-info; do
+        [ -e "${metadata}" ] || continue
+        cp -a "${metadata}" "${expected_site}/"
+    done
 }
 
 project_version() {
