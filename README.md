@@ -57,9 +57,6 @@ ZapZap is an unofficial WhatsApp Web desktop client built with Python, PyQt6 and
 | Fedora (COPR) | https://copr.fedorainfracloud.org/coprs/rafatosta/zapzap |
 | Python | `pip install zapzap` |
 
-## Documentation
-
-
 ## Donations
 
 ZapZap is a free and open-source project maintained in my spare time. If you find it useful, consider supporting its continued development through one of the following methods:
