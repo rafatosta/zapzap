@@ -3,9 +3,9 @@ base: core24
 adopt-info: zapzap
 grade: stable
 confinement: strict
-summary: WhatsApp desktop client web app
+summary: WhatsApp Messenger
 description: |
-  ZapZap is a WhatsApp desktop client web app.
+  WhatsApp Messenger.
 icon: share/icons/com.rtosta.zapzap.svg
 
 layout:
