@@ -61,7 +61,7 @@ parts:
     override-build: |
       set -eu
       cd "$CRAFT_PART_SRC"
-      . builders/snap/prepare.sh
+      . .github/packaging/snap/prepare.sh
       craftctl set version="$(project_version)"
       if [ ! -d qtwebengine_dictionaries ]; then
         git clone --depth=1 https://github.com/rafatosta/qtwebengine_dictionaries.git
