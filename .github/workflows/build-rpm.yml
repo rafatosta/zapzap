@@ -53,6 +53,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set packaging scripts executable
+        run: |
+          chmod +x .github/packaging/common/version.sh  
+
       - name: Build RPM
         run: |
           chmod +x .github/packaging/rpm/build.sh
