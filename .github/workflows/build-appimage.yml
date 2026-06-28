@@ -49,6 +49,13 @@ jobs:
         with:
           name: ZapZap-Anylinux-AppImage-${{ matrix.arch }}
           path: dist/*.AppImage
+      - name: Validate release tag
+        if: ${{ inputs.release_upload }}
+        run: |
+          if [ -z "${{ inputs.release_tag }}" ]; then
+            echo "release_tag is required when release_upload=true"
+            exit 1
+          fi
       - name: Upload to release
         if: ${{ inputs.release_upload }}
         uses: softprops/action-gh-release@v2

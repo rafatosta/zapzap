@@ -83,5 +83,5 @@ jobs:
     uses: ./.github/workflows/build-appimage.yml
     with:
       release_upload: true
-      release_tag: ${{ inputs.tag }}
+      release_tag: ${{ needs.create-prerelease.outputs.release_tag }}
     secrets: inherit
