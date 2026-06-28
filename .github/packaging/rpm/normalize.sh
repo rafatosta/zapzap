@@ -1,30 +1,44 @@
 #!/usr/bin/env bash
+
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
-VERSION="$(${ROOT_DIR}/.github/packaging/common/version.sh)"
-DIST_DIR="${ROOT_DIR}/dist"
-ARCH="$(rpm --eval '%{_arch}')"
-FEDORA_RELEASE="$(rpm -E '%fedora')"
+ARCH="${1:-}"
 
-if [ -z "${FEDORA_RELEASE}" ] || [ "${FEDORA_RELEASE}" = "%fedora" ]; then
-    FEDORA_RELEASE="unknown"
-fi
-
-RPM_SOURCE="$(find "${DIST_DIR}" -maxdepth 1 -type f -name 'zapzap-*.rpm' ! -name '*.src.rpm' | head -n 1 || true)"
-SRPM_SOURCE="$(find "${DIST_DIR}" -maxdepth 1 -type f -name 'zapzap-*.src.rpm' | head -n 1 || true)"
-
-if [ -z "${RPM_SOURCE}" ]; then
-    echo "No binary RPM found in ${DIST_DIR}"
+if [[ -z "$ARCH" ]]; then
+    echo "Architecture argument is required."
     exit 1
 fi
 
-RPM_TARGET="${DIST_DIR}/ZapZap-${VERSION}-fedora-${FEDORA_RELEASE}-${ARCH}.rpm"
-mv -v "${RPM_SOURCE}" "${RPM_TARGET}"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+DIST_DIR="${ROOT_DIR}/dist-rpm"
 
-if [ -n "${SRPM_SOURCE}" ]; then
-    SRPM_TARGET="${DIST_DIR}/ZapZap-${VERSION}-fedora-${FEDORA_RELEASE}.src.rpm"
-    mv -v "${SRPM_SOURCE}" "${SRPM_TARGET}"
+mkdir -p "${DIST_DIR}"
+
+VERSION="$(
+python3 - <<'PY'
+import re
+from pathlib import Path
+
+text = Path("zapzap/__init__.py").read_text()
+match = re.search(r"__version__\s*=\s*['\"]([^'\"]+)['\"]", text)
+
+if not match:
+    raise SystemExit("Could not find __version__")
+
+print(match.group(1))
+PY
+)"
+
+RPM_FILE="$(find "${HOME}/rpmbuild/RPMS" -type f -name "*.rpm" | head -n 1)"
+
+if [[ -z "${RPM_FILE}" ]]; then
+    echo "No RPM file found."
+    exit 1
 fi
 
-ls -lah "${DIST_DIR}"
+FINAL_NAME="ZapZap-${VERSION}-fedora-44-${ARCH}.rpm"
+
+cp "${RPM_FILE}" "${DIST_DIR}/${FINAL_NAME}"
+
+echo "RPM normalized:"
+echo "${DIST_DIR}/${FINAL_NAME}"

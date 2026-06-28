@@ -2,6 +2,20 @@ name: Build RPM
 
 on:
   workflow_dispatch:
+    inputs:
+      release_upload:
+        description: "Upload RPMs to release"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      release_tag:
+        description: "Release tag to upload assets"
+        required: false
+        type: string
+
   workflow_call:
     inputs:
       release_upload:
@@ -11,21 +25,30 @@ on:
       release_tag:
         required: false
         type: string
-        default: ""
 
 permissions:
   contents: write
 
 jobs:
   build-rpm:
-    name: RPM Fedora 44 x86_64
-    runs-on: ubuntu-latest
-    container: fedora:44
+    name: Build RPM (${{ matrix.rpm_arch }})
+    runs-on: ${{ matrix.runner }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-latest
+            rpm_arch: x86_64
+
+          - runner: ubuntu-24.04-arm
+            rpm_arch: aarch64
+
+    container:
+      image: fedora:44
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Install RPM build dependencies
+      - name: Install build tools
         run: |
           dnf -y update
           dnf -y install \
@@ -34,54 +57,34 @@ jobs:
             rpmdevtools \
             python3-devel \
             pyproject-rpm-macros \
+            desktop-file-utils \
+            libappstream-glib \
             python3-pyqt6 \
             python3-pyqt6-webengine \
-            python3-dbus \
-            desktop-file-utils \
-            libappstream-glib
+            python3-dbus
 
-      - name: Set packaging scripts executable
-        run: |
-          chmod +x .github/packaging/common/build-info.sh
-          chmod +x .github/packaging/common/version.sh
-          chmod +x .github/packaging/rpm/build.sh
-          chmod +x .github/packaging/rpm/normalize.sh
-
-      - name: Create BuildInfo.py
-        run: .github/packaging/common/build-info.sh "RPM"
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Build RPM
-        run: .github/packaging/rpm/build.sh
-
-      - name: Normalize artifact names
-        run: .github/packaging/rpm/normalize.sh
-
-      - name: Show RPM dependencies
         run: |
-          rpm -qpR dist/*.rpm | sort -u
+          chmod +x .github/packaging/rpm/build.sh
+          .github/packaging/rpm/build.sh
+
+      - name: Normalize RPM names
+        run: |
+          chmod +x .github/packaging/rpm/normalize.sh
+          .github/packaging/rpm/normalize.sh "${{ matrix.rpm_arch }}"
 
       - name: Upload artifact
-        if: ${{ !inputs.release_upload }}
         uses: actions/upload-artifact@v4
         with:
-          name: ZapZap-RPM-fedora-44-x86_64
-          path: |
-            dist/*.rpm
-            dist/*.src.rpm
+          name: zapzap-rpm-${{ matrix.rpm_arch }}
+          path: dist-rpm/*.rpm
 
-      - name: Validate release tag
-        if: ${{ inputs.release_upload }}
-        run: |
-          if [ -z "${{ inputs.release_tag }}" ]; then
-            echo "release_tag is required when release_upload=true"
-            exit 1
-          fi
-
-      - name: Upload to release
-        if: ${{ inputs.release_upload }}
+      - name: Upload RPMs to release
+        if: ${{ inputs.release_upload == true || github.event.inputs.release_upload == 'true' }}
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ inputs.release_tag }}
-          files: |
-            dist/*.rpm
-            dist/*.src.rpm
+          tag_name: ${{ inputs.release_tag || github.event.inputs.release_tag || github.ref_name }}
+          files: dist-rpm/*.rpm
