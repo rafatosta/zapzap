@@ -30,6 +30,7 @@ jobs:
           chmod +x .github/packaging/common/build-info.sh
           chmod +x .github/packaging/snap/build.sh
           chmod +x .github/packaging/snap/normalize.sh
+          chmod +x .github/packaging/common/version.sh
       - name: Create BuildInfo.py
         run: .github/packaging/common/build-info.sh "Snap"
       - name: Prepare Snapcraft project
