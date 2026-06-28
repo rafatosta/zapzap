@@ -56,16 +56,18 @@ jobs:
       - name: Set packaging scripts executable
         run: |
           chmod +x .github/packaging/common/version.sh  
+          chmod +x .github/packaging/rpm/build.sh
+          chmod +x .github/packaging/rpm/normalize.sh
+          chmod +x .github/packaging/common/build-info.sh
+
+      - name: Create BuildInfo.py
+        run: .github/packaging/common/build-info.sh "RPM"
 
       - name: Build RPM
-        run: |
-          chmod +x .github/packaging/rpm/build.sh
-          .github/packaging/rpm/build.sh
+        run: .github/packaging/rpm/build.sh
 
       - name: Normalize RPM names
-        run: |
-          chmod +x .github/packaging/rpm/normalize.sh
-          .github/packaging/rpm/normalize.sh "${{ matrix.rpm_arch }}"
+        run: .github/packaging/rpm/normalize.sh "${{ matrix.rpm_arch }}"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
