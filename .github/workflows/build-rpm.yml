@@ -2,20 +2,6 @@ name: Build RPM
 
 on:
   workflow_dispatch:
-    inputs:
-      release_upload:
-        description: "Upload RPMs to release"
-        required: false
-        default: "false"
-        type: choice
-        options:
-          - "false"
-          - "true"
-      release_tag:
-        description: "Release tag to upload assets"
-        required: false
-        type: string
-
   workflow_call:
     inputs:
       release_upload:
@@ -25,6 +11,7 @@ on:
       release_tag:
         required: false
         type: string
+        default: ""
 
 permissions:
   contents: write
