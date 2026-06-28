@@ -40,6 +40,7 @@ jobs:
           dnf -y update
           dnf -y install \
             git \
+            rsync \
             rpm-build \
             rpmdevtools \
             python3-devel \

@@ -65,13 +65,40 @@ mkdir -p \
     "${RPMBUILD_DIR}/SRPMS" \
     "${DIST_DIR}"
 
+log "Validating BuildInfo.py"
+
+if [[ ! -f "${ROOT_DIR}/zapzap/BuildInfo.py" ]]; then
+    echo "zapzap/BuildInfo.py was not created."
+    echo "Run .github/packaging/common/build-info.sh before building the RPM."
+    exit 1
+fi
+
+cat "${ROOT_DIR}/zapzap/BuildInfo.py"
+
 log "Creating source archive"
 
-git -C "${ROOT_DIR}" archive \
-    --format=tar.gz \
-    --prefix="zapzap-${VERSION}/" \
-    HEAD \
-    -o "${SOURCES_DIR}/${SOURCE_NAME}"
+TMP_SOURCE_DIR="$(mktemp -d)"
+SOURCE_ROOT="${TMP_SOURCE_DIR}/zapzap-${VERSION}"
+
+mkdir -p "${SOURCE_ROOT}"
+
+rsync -a \
+    --exclude ".git" \
+    --exclude ".github" \
+    --exclude "rpmbuild" \
+    --exclude "dist" \
+    --exclude ".venv" \
+    --exclude "venv" \
+    --exclude "__pycache__" \
+    --exclude "*.pyc" \
+    "${ROOT_DIR}/" \
+    "${SOURCE_ROOT}/"
+
+tar -C "${TMP_SOURCE_DIR}" \
+    -czf "${SOURCES_DIR}/${SOURCE_NAME}" \
+    "zapzap-${VERSION}"
+
+rm -rf "${TMP_SOURCE_DIR}"
 
 log "Copying RPM spec"
 
