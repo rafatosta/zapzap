@@ -68,9 +68,6 @@ jobs:
       - name: Build RPM
         run: .github/packaging/rpm/build.sh
 
-      - name: Normalize RPM names
-        run: .github/packaging/rpm/normalize.sh "${{ matrix.rpm_arch }}"
-
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
