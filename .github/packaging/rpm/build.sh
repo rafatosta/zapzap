@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
+
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
-VERSION="$(${ROOT_DIR}/.github/packaging/common/version.sh)"
-RPMBUILD_DIR="${ROOT_DIR}/rpmbuild"
-SOURCE_NAME="zapzap-${VERSION}.tar.gz"
-SPEC_SOURCE="${ROOT_DIR}/.github/packaging/rpm/zapzap.spec"
-SPEC_TARGET="${RPMBUILD_DIR}/SPECS/zapzap.spec"
+RPMBUILD_DIR="${HOME}/rpmbuild"
+SOURCES_DIR="${RPMBUILD_DIR}/SOURCES"
+SPECS_DIR="${RPMBUILD_DIR}/SPECS"
 
 log() {
     echo
@@ -15,8 +14,14 @@ log() {
     echo "==============================================================="
 }
 
+log "Configuring Git safe directory"
+
+git config --global --add safe.directory "${ROOT_DIR}"
+
 log "Preparing RPM build tree"
-rm -rf "${RPMBUILD_DIR}" "${ROOT_DIR}/dist"
+
+rm -rf "${RPMBUILD_DIR}"
+mkdir -p "${SOURCES_DIR}" "${SPECS_DIR}"
 mkdir -p \
     "${RPMBUILD_DIR}/BUILD" \
     "${RPMBUILD_DIR}/BUILDROOT" \
