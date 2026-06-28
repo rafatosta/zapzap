@@ -32,6 +32,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Set packaging scripts executable
         run: |
+          chmod +x .github/packaging/common/build-info.sh
           chmod +x .github/packaging/appimage/build.sh
           chmod +x .github/packaging/appimage/normalize.sh
       - name: Create BuildInfo.py
