@@ -1,0 +1,2 @@
+# Move the current builders/snap/snapcraft.yaml content here.
+# This file is intentionally kept as the CI-only location used by workflows.

@@ -85,3 +85,12 @@ jobs:
       release_upload: true
       release_tag: ${{ needs.create-prerelease.outputs.release_tag }}
     secrets: inherit
+
+  snap:
+    needs: create-prerelease
+    uses: ./.github/workflows/build-snap.yml
+    with:
+      release_upload: true
+      release_tag: ${{ needs.create-prerelease.outputs.release_tag }}
+      publish_snap: false
+    secrets: inherit
