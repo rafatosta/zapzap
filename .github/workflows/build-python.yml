@@ -23,6 +23,10 @@ jobs:
       PYTHON_VERSION: "3.14"
     steps:
       - uses: actions/checkout@v4
+      - name: Set packaging scripts executable
+        run: |
+          chmod +x .github/packaging/common/build-info.sh
+          chmod +x .github/packaging/python/build.sh
       - name: Create BuildInfo.py
         run: .github/packaging/common/build-info.sh "Python Package (whl)"
       - uses: actions/setup-python@v5
