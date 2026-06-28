@@ -102,3 +102,11 @@ jobs:
       release_upload: true
       release_tag: ${{ needs.create-prerelease.outputs.release_tag }}
     secrets: inherit
+
+  rpm:
+    needs: create-prerelease
+    uses: ./.github/workflows/build-rpm.yml
+    with:
+      release_upload: true
+      release_tag: ${{ needs.create-prerelease.outputs.release_tag }}
+    secrets: inherit

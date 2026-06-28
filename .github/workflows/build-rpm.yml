@@ -1,0 +1,87 @@
+name: Build RPM
+
+on:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      release_upload:
+        required: false
+        type: boolean
+        default: false
+      release_tag:
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  build-rpm:
+    name: RPM Fedora 44 x86_64
+    runs-on: ubuntu-latest
+    container: fedora:44
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install RPM build dependencies
+        run: |
+          dnf -y update
+          dnf -y install \
+            git \
+            rpm-build \
+            rpmdevtools \
+            python3-devel \
+            pyproject-rpm-macros \
+            python3-pyqt6 \
+            python3-pyqt6-webengine \
+            python3-dbus \
+            desktop-file-utils \
+            libappstream-glib
+
+      - name: Set packaging scripts executable
+        run: |
+          chmod +x .github/packaging/common/build-info.sh
+          chmod +x .github/packaging/common/version.sh
+          chmod +x .github/packaging/rpm/build.sh
+          chmod +x .github/packaging/rpm/normalize.sh
+
+      - name: Create BuildInfo.py
+        run: .github/packaging/common/build-info.sh "RPM"
+
+      - name: Build RPM
+        run: .github/packaging/rpm/build.sh
+
+      - name: Normalize artifact names
+        run: .github/packaging/rpm/normalize.sh
+
+      - name: Show RPM dependencies
+        run: |
+          rpm -qpR dist/*.rpm | sort -u
+
+      - name: Upload artifact
+        if: ${{ !inputs.release_upload }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZapZap-RPM-fedora-44-x86_64
+          path: |
+            dist/*.rpm
+            dist/*.src.rpm
+
+      - name: Validate release tag
+        if: ${{ inputs.release_upload }}
+        run: |
+          if [ -z "${{ inputs.release_tag }}" ]; then
+            echo "release_tag is required when release_upload=true"
+            exit 1
+          fi
+
+      - name: Upload to release
+        if: ${{ inputs.release_upload }}
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.release_tag }}
+          files: |
+            dist/*.rpm
+            dist/*.src.rpm
