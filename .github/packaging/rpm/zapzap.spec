@@ -9,14 +9,16 @@ Source0:        %{name}-%{version}.tar.gz
 
 
 BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
+BuildRequires:  python3-wheel
 BuildRequires:  pyproject-rpm-macros
+
 BuildRequires:  python3-pyqt6
 BuildRequires:  python3-pyqt6-webengine
 BuildRequires:  python3-dbus
+
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
-BuildRequires:  python3-setuptools
-BuildRequires:  python3-wheel
 
 Requires:       python3
 Requires:       python3-pyqt6
@@ -40,55 +42,21 @@ written in Python with PyQt6 and QtWebEngine.
 %pyproject_install
 %pyproject_save_files zapzap
 
-# Some project layouts already install desktop/metainfo/icon files through the
-# Python wheel. These fallbacks keep the RPM compatible with both layouts.
-if [ ! -f "%{buildroot}%{_datadir}/applications/com.rtosta.zapzap.desktop" ]; then
-    for file in \
-        "com.rtosta.zapzap.desktop" \
-        "data/com.rtosta.zapzap.desktop" \
-        "share/applications/com.rtosta.zapzap.desktop" \
-        "zapzap/com.rtosta.zapzap.desktop"; do
-        if [ -f "$file" ]; then
-            install -Dm0644 "$file" "%{buildroot}%{_datadir}/applications/com.rtosta.zapzap.desktop"
-            break
-        fi
-    done
-fi
+install -Dm0644 share/applications/com.rtosta.zapzap.desktop \
+    %{buildroot}%{_datadir}/applications/com.rtosta.zapzap.desktop
 
-if [ ! -f "%{buildroot}%{_datadir}/metainfo/com.rtosta.zapzap.appdata.xml" ]; then
-    for file in \
-        "com.rtosta.zapzap.appdata.xml" \
-        "data/com.rtosta.zapzap.appdata.xml" \
-        "share/metainfo/com.rtosta.zapzap.appdata.xml" \
-        "zapzap/com.rtosta.zapzap.appdata.xml"; do
-        if [ -f "$file" ]; then
-            install -Dm0644 "$file" "%{buildroot}%{_datadir}/metainfo/com.rtosta.zapzap.appdata.xml"
-            break
-        fi
-    done
-fi
+install -Dm0644 share/icons/com.rtosta.zapzap.svg \
+    %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg
 
-if [ ! -f "%{buildroot}%{_datadir}/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg" ]; then
-    for file in \
-        "com.rtosta.zapzap.svg" \
-        "data/com.rtosta.zapzap.svg" \
-        "share/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg" \
-        "zapzap/com.rtosta.zapzap.svg"; do
-        if [ -f "$file" ]; then
-            install -Dm0644 "$file" "%{buildroot}%{_datadir}/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg"
-            break
-        fi
-    done
-fi
+install -Dm0644 share/metainfo/com.rtosta.zapzap.appdata.xml \
+    %{buildroot}%{_datadir}/metainfo/com.rtosta.zapzap.appdata.xml
 
 %check
-if [ -f "%{buildroot}%{_datadir}/applications/com.rtosta.zapzap.desktop" ]; then
-    desktop-file-validate "%{buildroot}%{_datadir}/applications/com.rtosta.zapzap.desktop"
-fi
+desktop-file-validate \
+    %{buildroot}%{_datadir}/applications/com.rtosta.zapzap.desktop
 
-if [ -f "%{buildroot}%{_datadir}/metainfo/com.rtosta.zapzap.appdata.xml" ]; then
-    appstream-util validate-relax --nonet "%{buildroot}%{_datadir}/metainfo/com.rtosta.zapzap.appdata.xml"
-fi
+appstream-util validate-relax --nonet \
+    %{buildroot}%{_datadir}/metainfo/com.rtosta.zapzap.appdata.xml
 
 %files -f %{pyproject_files}
 %license LICENSE*
