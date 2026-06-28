@@ -7,6 +7,7 @@ License:        GPL-3.0-or-later
 URL:            https://rtosta.com/zapzap
 Source0:        %{name}-%{version}.tar.gz
 
+%global debug_package %{nil}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
