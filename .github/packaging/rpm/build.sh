@@ -86,7 +86,7 @@ rpmbuild \
 
 log "Collecting RPM artifacts"
 
-find "${RPMBUILD_DIR}/RPMS" "${RPMBUILD_DIR}/SRPMS" \
+find "${RPMBUILD_DIR}/RPMS" \
     -type f \
     -name "*.rpm" \
     -exec cp -v {} "${DIST_DIR}/" \;
