@@ -75,11 +75,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: zapzap-rpm-${{ matrix.rpm_arch }}
-          path: dist-rpm/*.rpm
+          path: dist/*.rpm
 
       - name: Upload RPMs to release
         if: ${{ inputs.release_upload == true || github.event.inputs.release_upload == 'true' }}
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ inputs.release_tag || github.event.inputs.release_tag || github.ref_name }}
-          files: dist-rpm/*.rpm
+          files: dist/*.rpm
