@@ -7,7 +7,6 @@ summary: WhatsApp Messenger
 description: |
   WhatsApp Messenger.
 icon: share/icons/com.rtosta.zapzap.svg
-
 layout:
   /usr/share/X11/xkb:
     bind: $SNAP/usr/share/X11/xkb
@@ -29,13 +28,17 @@ apps:
       QTWEBENGINE_DICTIONARIES_PATH: $SNAP/usr/share/zapzap/qtwebengine_dictionaries
       XKB_CONFIG_ROOT: $SNAP/usr/share/X11/xkb
     plugs:
-      - desktop
-      - desktop-legacy
-      - wayland
-      - x11
       - network
-      - audio-playback
-      - browser-support
+        - network-bind
+        - desktop
+        - desktop-legacy
+        - wayland
+        - x11
+        - opengl
+        - audio-playback
+        - pulseaudio
+        - home
+        - removable-media
 
 parts:
   zapzap:
