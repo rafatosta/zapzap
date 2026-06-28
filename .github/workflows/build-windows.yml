@@ -1,0 +1,50 @@
+name: Build Windows
+
+on:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      release_upload:
+        required: false
+        type: boolean
+        default: false
+      release_tag:
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    env:
+      PYTHON_VERSION: "3.14"
+      PYTHONUTF8: 1
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set packaging scripts executable
+        run: |
+          chmod +x .github/packaging/common/build-info.sh
+      - name: Create BuildInfo.py
+        shell: bash
+        run: .github/packaging/common/build-info.sh "Windows (exe)"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Build Windows executable
+        shell: pwsh
+        run: .github/packaging/windows/build.ps1
+      - name: Upload artifact
+        if: ${{ !inputs.release_upload }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZapZap-Windows-x86_64
+          path: dist/ZapZap-*-windows-x86_64.exe
+      - name: Upload to release
+        if: ${{ inputs.release_upload }}
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.release_tag }}
+          files: dist/ZapZap-*-windows-x86_64.exe

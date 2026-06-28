@@ -94,3 +94,11 @@ jobs:
       release_tag: ${{ needs.create-prerelease.outputs.release_tag }}
       publish_snap: false
     secrets: inherit
+
+  windows:
+    needs: create-prerelease
+    uses: ./.github/workflows/build-windows.yml
+    with:
+      release_upload: true
+      release_tag: ${{ needs.create-prerelease.outputs.release_tag }}
+    secrets: inherit
