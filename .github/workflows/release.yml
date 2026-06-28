@@ -1,0 +1,530 @@
+name: Build and Release Zapzap
+
+on:
+  workflow_dispatch:
+     inputs:
+      publish:
+        description: "Criar release?"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+  release:
+    types: [published]
+
+  push:
+    tags:
+      - "*"
+
+permissions:
+  contents: write
+
+env:
+  PYTHON_VERSION: "3.14"
+
+jobs:
+# ==========================================================
+# PYTHON PACKAGE
+# ==========================================================
+
+  build-python:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create BuildInfo.py
+        shell: bash
+        run: |
+          cat > zapzap/BuildInfo.py << EOF
+          BUILD_CHANNEL = "Official"
+          BUILD_PROVIDER = "GitHub Actions"
+          BUILD_REPOSITORY = "${{ github.repository }}"
+          BUILD_PACKAGING = "Python Package (whl)"
+          EOF
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build wheel setuptools
+
+      - name: Build wheel
+        run: |
+          python -m build --wheel --outdir dist
+
+      - name: List generated files
+        run: |
+          ls -lah dist/
+
+      # ======================================================
+      # Manual execution -> upload artifact only
+      # ======================================================
+
+      - name: Upload Python artifact
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.publish != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZapZap-Python
+          path: dist/*.whl
+
+      # ======================================================
+      # Release/tag -> publish release
+      # ======================================================
+
+      - name: Release Python artifacts
+        if: github.event_name != 'workflow_dispatch' || github.event.inputs.publish == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.whl
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+# ==========================================================
+# WINDOWS
+# ==========================================================
+
+  build-windows:
+    runs-on: windows-latest
+
+    env:
+      PYTHONUTF8: 1
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create BuildInfo.py
+        shell: bash
+        run: |
+          cat > zapzap/BuildInfo.py << EOF
+          BUILD_CHANNEL = "Official"
+          BUILD_PROVIDER = "GitHub Actions"
+          BUILD_REPOSITORY = "${{ github.repository }}"
+          BUILD_PACKAGING = "Windows (exe)"
+          EOF
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller
+          pip install -r requirements.txt
+
+      - name: Build Windows executable
+        run: |
+          python -m builders.windows.windows_builder
+
+      - name: List generated files
+        run: |
+          dir dist
+
+      # ======================================================
+      # Manual execution -> upload artifact only
+      # ======================================================
+
+      - name: Upload Windows artifact
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.publish != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZapZap-Windows-x86_64
+          path: dist/ZapZap-*-windows-x86_64.exe
+
+      # ======================================================
+      # Release/tag -> publish release
+      # ======================================================
+
+      - name: Release Windows artifacts
+        if: github.event_name != 'workflow_dispatch' || github.event.inputs.publish == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/ZapZap-*-windows-x86_64.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+# ==========================================================
+# ANYLINUX APPIMAGE (sharun + uruntime)
+# ==========================================================
+
+  build-anylinux-appimage:
+    name: "${{ matrix.name }} (${{ matrix.arch }})"
+    runs-on: ${{ matrix.runs-on }}
+
+    strategy:
+      matrix:
+        include:
+          - runs-on: ubuntu-latest
+            name: Build AppImage
+            arch: x86_64
+
+          - runs-on: ubuntu-24.04-arm
+            name: Build AppImage
+            arch: aarch64
+
+    container: ghcr.io/pkgforge-dev/archlinux:latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create BuildInfo.py
+        shell: bash
+        run: |
+          cat > zapzap/BuildInfo.py << EOF
+          BUILD_CHANNEL = "Official"
+          BUILD_PROVIDER = "GitHub Actions"
+          BUILD_REPOSITORY = "${{ github.repository }}"
+          BUILD_PACKAGING = "AppImage"
+          EOF
+
+      - name: Preparing Container
+        uses: pkgforge-dev/anylinux-setup-action@v2
+
+      - name: Install Dependencies
+        run: |
+          /bin/sh ./builders/anylinux-appimage/get-dependencies.sh
+      
+      - name: Find dictionaries
+        run: |
+          find . -name "*.bdic" | sort
+
+      - name: Make AppImage
+        run: |
+          /bin/sh ./builders/anylinux-appimage/make-appimage.sh
+
+      - name: Normalize AnyLinux artifact names
+        run: |
+          VERSION=$(cat ~/version)
+          APPIMAGE_NAME="ZapZap-${VERSION}-linux-${{ matrix.arch }}.AppImage"
+
+          appimage=$(find dist -maxdepth 1 -name "*.AppImage" -print -quit)
+          if [ -n "$appimage" ]; then
+            mv "$appimage" "dist/${APPIMAGE_NAME}"
+          fi
+
+          zsync=$(find dist -maxdepth 1 -name "*.zsync" -print -quit)
+          if [ -n "$zsync" ]; then
+            mv "$zsync" "dist/${APPIMAGE_NAME}.zsync"
+          fi
+
+      - name: List generated files
+        run: |
+          ls -lah dist/
+
+      # ======================================================
+      # Manual execution -> upload artifact only
+      # ======================================================
+
+      - name: Upload AnyLinux artifact
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.publish != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZapZap-Anylinux-AppImage-${{ matrix.arch }}
+          path: dist/*.AppImage
+
+      # ======================================================
+      # Release/tag -> publish release
+      # ======================================================
+
+      - name: Release AnyLinux AppImage artifacts
+        if: github.event_name != 'workflow_dispatch' || github.event.inputs.publish == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.AppImage
+            dist/*.zsync
+            
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+# ==========================================================
+# SNAP
+# ==========================================================
+
+  build-snap:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create BuildInfo.py
+        shell: bash
+        run: |
+          cat > zapzap/BuildInfo.py << EOF_BUILD_INFO
+          BUILD_CHANNEL = "Official"
+          BUILD_PROVIDER = "GitHub Actions"
+          BUILD_REPOSITORY = "${{ github.repository }}"
+          BUILD_PACKAGING = "Snap"
+          EOF_BUILD_INFO
+
+      - name: Prepare Snapcraft project
+        run: |
+          rm -rf .snapcraft-project
+          mkdir -p .snapcraft-project
+          rsync -a \
+            --exclude .git \
+            --exclude .snapcraft-project \
+            ./ \
+            .snapcraft-project/
+          cp builders/snap/snapcraft.yaml .snapcraft-project/snapcraft.yaml
+
+      - name: Build Snap
+        id: snapcraft
+        uses: snapcore/action-build@v1
+        with:
+          path: .snapcraft-project
+
+      - name: List generated Snap
+        run: |
+          ls -lah "${{ steps.snapcraft.outputs.snap }}"
+
+      - name: Normalize Snap artifact name
+        id: normalized_snap
+        run: |
+          VERSION=$(python - <<'PY_VERSION'
+          from pathlib import Path
+          import ast
+
+          init_py = Path("zapzap") / "__init__.py"
+          for node in ast.parse(init_py.read_text(encoding="utf-8")).body:
+              if isinstance(node, ast.Assign):
+                  for target in node.targets:
+                      if isinstance(target, ast.Name) and target.id == "__version__":
+                          print(ast.literal_eval(node.value))
+                          raise SystemExit
+          raise SystemExit("__version__ not found")
+          PY_VERSION
+          )
+          ARCH=$(dpkg --print-architecture)
+          SNAP_NAME="ZapZap-${VERSION}-linux-${ARCH}.snap"
+          mkdir -p dist
+          cp "${{ steps.snapcraft.outputs.snap }}" "dist/${SNAP_NAME}"
+          echo "snap=dist/${SNAP_NAME}" >> "$GITHUB_OUTPUT"
+
+      # ======================================================
+      # Manual execution -> upload artifact only
+      # ======================================================
+
+      - name: Upload Snap artifact
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.publish != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZapZap-Snap-linux-amd64
+          path: ${{ steps.normalized_snap.outputs.snap }}
+
+      # ======================================================
+      # Release/tag -> publish release
+      # ======================================================
+
+      - name: Release Snap artifact
+        if: github.event_name != 'workflow_dispatch' || github.event.inputs.publish == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.normalized_snap.outputs.snap }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish Snap to Snap Store stable
+        if: github.event_name == 'release' && github.event.release.prerelease == false
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
+        run: |
+          snapcraft upload --release=stable "${{ steps.normalized_snap.outputs.snap }}"
+
+# ==========================================================
+# DEB
+# ==========================================================
+
+
+  build-deb:
+    runs-on: ubuntu-latest
+
+    container:
+      image: ghcr.io/pkgforge-dev/archlinux:latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+
+      - name: Preparing Container
+        uses: pkgforge-dev/anylinux-setup-action@v2
+
+      - name: Debug AnyLinux
+        run: |
+          echo "PATH=$PATH"
+
+          which quick-sharun || true
+          which sharun || true
+          which get-debloated-pkgs || true
+          which appimagetool || true
+
+          find / -name quick-sharun 2>/dev/null | head -50
+          find / -name sharun 2>/dev/null | head -50
+
+      - name: Create BuildInfo
+        run: |
+          cat > zapzap/BuildInfo.py << EOF
+          BUILD_CHANNEL = "Official"
+          BUILD_PROVIDER = "GitHub Actions"
+          BUILD_REPOSITORY = "${{ github.repository }}"
+          BUILD_PACKAGING = "DEB"
+          EOF
+
+      - name: Build Environment
+        run: |
+          chmod +x ./builders/anylinux-appimage/get-dependencies.sh
+          ./builders/anylinux-appimage/get-dependencies.sh
+
+      - name: Create AppDir
+        run: |
+          chmod +x ./builders/anylinux-appimage/make-appimage.sh
+
+          export GITHUB_REPOSITORY="${{ github.repository }}"
+
+          ./builders/anylinux-appimage/make-appimage.sh
+
+      - name: Debug AppDir
+        run: |
+          echo "=============================="
+          echo "Conteúdo do diretório atual"
+          echo "=============================="
+          ls -lah
+
+          echo
+          echo "=============================="
+          echo "Conteúdo do AppDir"
+          echo "=============================="
+          ls -lah AppDir
+
+      - name: Extract Version
+        id: version
+        run: |
+          VERSION=$(cat ~/version)
+
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Install Debian Tools
+        run: |
+          pacman -Syu --noconfirm dpkg
+
+      - name: Create DEB Structure
+        run: |
+          mkdir -p package/DEBIAN
+
+          mkdir -p package/opt/zapzap
+
+          mkdir -p package/usr/bin
+
+          mkdir -p package/usr/share/applications
+
+          mkdir -p package/usr/share/icons/hicolor/scalable/apps
+
+          cp -a AppDir/. package/opt/zapzap/
+
+          cat > package/usr/bin/zapzap << 'EOF'
+          #!/bin/sh
+          exec /opt/zapzap/AppRun "$@"
+          EOF
+
+          chmod 755 package/usr/bin/zapzap
+
+          cp \
+            share/applications/com.rtosta.zapzap.desktop \
+            package/usr/share/applications/
+
+          cp \
+            share/icons/com.rtosta.zapzap.svg \
+            package/usr/share/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg
+
+          cat > package/DEBIAN/control << EOF
+          Package: zapzap
+          Version: ${{ steps.version.outputs.version }}
+          Section: network
+          Priority: optional
+          Architecture: amd64
+          Maintainer: Rafael Tosta
+          Depends: libc6
+          Description: WhatsApp Messenger for Linux
+          Progressive Web App wrapper for WhatsApp.
+          .
+          Native WhatsApp Web client for Linux built with PyQt6.
+          EOF
+
+      - name: Create Control File
+        run: |
+          printf '%s\n' \
+            "Package: zapzap" \
+            "Version: ${{ steps.version.outputs.version }}" \
+            "Section: network" \
+            "Priority: optional" \
+            "Architecture: amd64" \
+            "Maintainer: Rafael Tosta" \
+            "Depends: libc6" \
+            "Description: WhatsApp Messenger for Linux" \
+            " Progressive Web App wrapper for WhatsApp." \
+            > package/DEBIAN/control
+
+          cat package/DEBIAN/control
+
+      - name: Debug Control File
+        run: |
+          nl -ba package/DEBIAN/control
+
+      - name: Build DEB
+        run: |
+          dpkg-deb \
+            --root-owner-group \
+            --build package \
+            ZapZap-${{ steps.version.outputs.version }}-linux-amd64.deb
+      
+      - name: List Package Contents
+        run: |
+          dpkg-deb --contents \
+            ZapZap-${{ steps.version.outputs.version }}-linux-amd64.deb \
+            | head -200
+      
+      - name: Test Package
+        run: |
+          dpkg-deb --info \
+            ZapZap-${{ steps.version.outputs.version }}-linux-amd64.deb
+
+      - name: Verify AppRun
+        run: |
+          test -x package/opt/zapzap/AppRun
+          echo "AppRun OK"
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZapZap-DEB-linux-amd64
+          path: |
+            ZapZap-*-linux-amd64.deb
+      
+      - name: Release DEB artifact
+        if: github.event_name != 'workflow_dispatch' || github.event.inputs.publish == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ZapZap-*-linux-amd64.deb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
