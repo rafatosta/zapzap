@@ -1,0 +1,44 @@
+name: Build Python Package
+
+on:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      release_upload:
+        required: false
+        type: boolean
+        default: false
+      release_tag:
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  build-python:
+    runs-on: ubuntu-latest
+    env:
+      PYTHON_VERSION: "3.14"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create BuildInfo.py
+        run: .github/packaging/common/build-info.sh "Python Package (whl)"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Build wheel
+        run: .github/packaging/python/build.sh
+      - name: Upload artifact
+        if: ${{ !inputs.release_upload }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZapZap-Python
+          path: dist/*.whl
+      - name: Upload to release
+        if: ${{ inputs.release_upload }}
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.release_tag }}
+          files: dist/*.whl
