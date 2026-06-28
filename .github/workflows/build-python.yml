@@ -1,0 +1,141 @@
+name: Build Python Package
+
+on:
+  workflow_call:
+    inputs:
+      mode:
+        required: false
+        type: string
+        default: test
+      version:
+        required: false
+        type: string
+        default: ""
+      python_version:
+        required: false
+        type: string
+        default: "3.14"
+      publish:
+        required: false
+        type: boolean
+        default: false
+
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Build mode"
+        required: true
+        default: test
+        type: choice
+        options:
+          - test
+          - deploy
+      version:
+        description: "Version override. Empty = zapzap/__init__.py"
+        required: false
+        type: string
+      python_version:
+        description: "Python version"
+        required: true
+        default: "3.14"
+        type: string
+      publish:
+        description: "Attach artifact to GitHub Release"
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  build-python:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Resolve version and channel
+        id: meta
+        shell: bash
+        run: |
+          if [ -n "${{ inputs.version }}" ]; then
+            BASE_VERSION="${{ inputs.version }}"
+          else
+            BASE_VERSION=$(python - <<'PY'
+          from pathlib import Path
+          import ast
+
+          init_py = Path("zapzap") / "__init__.py"
+          for node in ast.parse(init_py.read_text(encoding="utf-8")).body:
+              if isinstance(node, ast.Assign):
+                  for target in node.targets:
+                      if isinstance(target, ast.Name) and target.id == "__version__":
+                          print(ast.literal_eval(node.value))
+                          raise SystemExit
+          raise SystemExit("__version__ not found")
+          PY
+          )
+          fi
+
+          if [ "${{ inputs.mode }}" = "deploy" ]; then
+            CHANNEL="Official"
+            ARTIFACT_VERSION="$BASE_VERSION"
+          else
+            CHANNEL="Test"
+            ARTIFACT_VERSION="${BASE_VERSION}-test.${GITHUB_RUN_NUMBER}"
+          fi
+
+          echo "base_version=$BASE_VERSION" >> "$GITHUB_OUTPUT"
+          echo "artifact_version=$ARTIFACT_VERSION" >> "$GITHUB_OUTPUT"
+          echo "channel=$CHANNEL" >> "$GITHUB_OUTPUT"
+
+      - name: Create BuildInfo.py
+        shell: bash
+        run: |
+          cat > zapzap/BuildInfo.py <<EOF_BUILD_INFO
+          BUILD_CHANNEL = "${{ steps.meta.outputs.channel }}"
+          BUILD_PROVIDER = "GitHub Actions"
+          BUILD_REPOSITORY = "${{ github.repository }}"
+          BUILD_PACKAGING = "Python Package (whl)"
+          BUILD_VERSION = "${{ steps.meta.outputs.artifact_version }}"
+          EOF_BUILD_INFO
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python_version }}
+
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install build wheel setuptools
+
+      - name: Build wheel
+        run: python -m build --wheel --outdir dist
+
+      - name: Normalize Python artifact names
+        shell: bash
+        run: |
+          mkdir -p dist-normalized
+          wheel=$(find dist -maxdepth 1 -name '*.whl' -print -quit)
+          test -n "$wheel"
+          cp "$wheel" "dist-normalized/"
+
+      - name: List generated files
+        run: ls -lah dist-normalized/
+
+      - name: Upload Python artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZapZap-Python-${{ steps.meta.outputs.artifact_version }}
+          path: dist-normalized/*.whl
+
+      - name: Release Python artifact
+        if: ${{ inputs.publish == true }}
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist-normalized/*.whl
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,154 @@
+name: Build Snap
+
+on:
+  workflow_call:
+    inputs:
+      mode:
+        required: false
+        type: string
+        default: test
+      version:
+        required: false
+        type: string
+        default: ""
+      publish:
+        required: false
+        type: boolean
+        default: false
+      publish_store:
+        required: false
+        type: boolean
+        default: false
+
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Build mode"
+        required: true
+        default: test
+        type: choice
+        options:
+          - test
+          - deploy
+      version:
+        description: "Version override. Empty = zapzap/__init__.py"
+        required: false
+        type: string
+      publish:
+        description: "Attach artifact to GitHub Release"
+        required: true
+        default: false
+        type: boolean
+      publish_store:
+        description: "Upload Snap to Snap Store stable"
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  build-snap:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Resolve version and channel
+        id: meta
+        shell: bash
+        run: |
+          if [ -n "${{ inputs.version }}" ]; then
+            BASE_VERSION="${{ inputs.version }}"
+          else
+            BASE_VERSION=$(python - <<'PY'
+          from pathlib import Path
+          import ast
+
+          init_py = Path("zapzap") / "__init__.py"
+          for node in ast.parse(init_py.read_text(encoding="utf-8")).body:
+              if isinstance(node, ast.Assign):
+                  for target in node.targets:
+                      if isinstance(target, ast.Name) and target.id == "__version__":
+                          print(ast.literal_eval(node.value))
+                          raise SystemExit
+          raise SystemExit("__version__ not found")
+          PY
+          )
+          fi
+
+          if [ "${{ inputs.mode }}" = "deploy" ]; then
+            CHANNEL="Official"
+            ARTIFACT_VERSION="$BASE_VERSION"
+          else
+            CHANNEL="Test"
+            ARTIFACT_VERSION="${BASE_VERSION}-test.${GITHUB_RUN_NUMBER}"
+          fi
+
+          echo "base_version=$BASE_VERSION" >> "$GITHUB_OUTPUT"
+          echo "artifact_version=$ARTIFACT_VERSION" >> "$GITHUB_OUTPUT"
+          echo "channel=$CHANNEL" >> "$GITHUB_OUTPUT"
+
+      - name: Create BuildInfo.py
+        shell: bash
+        run: |
+          cat > zapzap/BuildInfo.py <<EOF_BUILD_INFO
+          BUILD_CHANNEL = "${{ steps.meta.outputs.channel }}"
+          BUILD_PROVIDER = "GitHub Actions"
+          BUILD_REPOSITORY = "${{ github.repository }}"
+          BUILD_PACKAGING = "Snap"
+          BUILD_VERSION = "${{ steps.meta.outputs.artifact_version }}"
+          EOF_BUILD_INFO
+
+      - name: Prepare Snapcraft project
+        shell: bash
+        run: |
+          rm -rf .snapcraft-project
+          mkdir -p .snapcraft-project
+          rsync -a \
+            --exclude .git \
+            --exclude .snapcraft-project \
+            ./ \
+            .snapcraft-project/
+          cp builders/snap/snapcraft.yaml .snapcraft-project/snapcraft.yaml
+
+      - name: Build Snap
+        id: snapcraft
+        uses: snapcore/action-build@v1
+        with:
+          path: .snapcraft-project
+
+      - name: Normalize Snap artifact name
+        id: normalized_snap
+        shell: bash
+        run: |
+          ARCH=$(dpkg --print-architecture)
+          SNAP_NAME="ZapZap-${{ steps.meta.outputs.artifact_version }}-linux-${ARCH}.snap"
+          mkdir -p dist-normalized
+          cp "${{ steps.snapcraft.outputs.snap }}" "dist-normalized/${SNAP_NAME}"
+          echo "snap=dist-normalized/${SNAP_NAME}" >> "$GITHUB_OUTPUT"
+
+      - name: List generated files
+        run: ls -lah dist-normalized/
+
+      - name: Upload Snap artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZapZap-Snap-linux-amd64-${{ steps.meta.outputs.artifact_version }}
+          path: ${{ steps.normalized_snap.outputs.snap }}
+
+      - name: Release Snap artifact
+        if: ${{ inputs.publish == true }}
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.normalized_snap.outputs.snap }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish Snap to Snap Store stable
+        if: ${{ inputs.publish_store == true }}
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
+        run: snapcraft upload --release=stable "${{ steps.normalized_snap.outputs.snap }}"
