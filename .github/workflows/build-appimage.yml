@@ -1,0 +1,58 @@
+name: Build AppImage
+
+on:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      release_upload:
+        required: false
+        type: boolean
+        default: false
+      release_tag:
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  build-anylinux-appimage:
+    name: AppImage ${{ matrix.arch }}
+    runs-on: ${{ matrix.runs-on }}
+    container: ghcr.io/pkgforge-dev/archlinux:latest
+    strategy:
+      matrix:
+        include:
+          - runs-on: ubuntu-latest
+            arch: x86_64
+          - runs-on: ubuntu-24.04-arm
+            arch: aarch64
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set packaging scripts executable
+        run: |
+          chmod +x .github/packaging/appimage/build.sh
+          chmod +x .github/packaging/appimage/normalize.sh
+      - name: Create BuildInfo.py
+        run: .github/packaging/common/build-info.sh "AppImage"
+      - name: Preparing Container
+        uses: pkgforge-dev/anylinux-setup-action@v2
+      - name: Build AppImage
+        run: .github/packaging/appimage/build.sh
+      - name: Normalize artifact names
+        run: .github/packaging/appimage/normalize.sh "${{ matrix.arch }}"
+      - name: Upload artifact
+        if: ${{ !inputs.release_upload }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZapZap-Anylinux-AppImage-${{ matrix.arch }}
+          path: dist/*.AppImage
+      - name: Upload to release
+        if: ${{ inputs.release_upload }}
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.release_tag }}
+          files: |
+            dist/*.AppImage
+            dist/*.zsync
