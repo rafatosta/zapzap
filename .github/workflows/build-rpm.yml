@@ -43,6 +43,8 @@ jobs:
             rpm-build \
             rpmdevtools \
             python3-devel \
+            python3-setuptools \
+            python3-wheel \
             pyproject-rpm-macros \
             desktop-file-utils \
             libappstream-glib \

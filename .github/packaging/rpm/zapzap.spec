@@ -15,6 +15,8 @@ BuildRequires:  python3-pyqt6-webengine
 BuildRequires:  python3-dbus
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
+BuildRequires:  python3-setuptools
+BuildRequires:  python3-wheel
 
 Requires:       python3
 Requires:       python3-pyqt6
