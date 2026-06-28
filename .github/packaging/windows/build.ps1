@@ -90,8 +90,6 @@ if (Test-Path $FinalPath) {
     Remove-Item $FinalPath -Force
 }
 
-Rename-Item $ExePath $FinalPath
+Move-Item -Path $ExePath -Destination $FinalPath -Force
 
 Write-Host "Executável gerado: $FinalPath"
-
-Get-ChildItem -Path dist
