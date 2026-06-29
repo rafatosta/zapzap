@@ -170,3 +170,10 @@ Exemplos possíveis:
 
 O objetivo é tornar a árvore previsível, facilitar navegação, reduzir variação de
 estilo e deixar claro o papel arquitetural de cada arquivo apenas pelo nome.
+
+## Localização de ferramentas
+
+Ferramentas de desenvolvimento devem ficar em `tools/`, fora do pacote `zapzap`.
+Esses arquivos seguem as mesmas regras de nomenclatura (`snake_case`) por serem
+scripts auxiliares do repositório, mas não devem ser tratados como módulos do
+runtime do aplicativo.

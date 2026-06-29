@@ -8,3 +8,7 @@ Estrutura conceitual completa proposta para o projeto ZapZap, organizada em cama
 ## Convenções
 
 - [Padrão de nomenclatura de arquivos e diretórios](NAMING.md)
+
+## Ferramentas de desenvolvimento
+
+As ferramentas auxiliares ficam em `docs/ideal_architecture/tools`, fora do pacote conceitual `zapzap`, para deixar claro que elas servem ao desenvolvimento e não ao runtime do aplicativo.
