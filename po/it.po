@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 16:13-0300\n"
+"POT-Creation-Date: 2026-06-25 16:14-0300\n"
 "PO-Revision-Date: 2025-08-03 20:05+0200\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -235,10 +235,51 @@ msgstr "Scorciatoie da tastiera"
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl++"
 
-#: zapzap/views/ui_mainwindow.py:148 zapzap/views/ui_settings.py:163
-#: zapzap/views/ui_page_about.py:118
+#: zapzap/views/ui_mainwindow.py:148 zapzap/views/ui_page_about.py:118
+#: zapzap/views/ui_settings.py:163
 msgid "About"
 msgstr "Informazioni"
+
+#: zapzap/views/ui_page_about.py:119
+msgid "name_app"
+msgstr ""
+
+#: zapzap/views/ui_page_about.py:120
+msgid "Donate to the project ->"
+msgstr ""
+
+#: zapzap/views/ui_page_about.py:121
+msgid "ZapZap official website ->"
+msgstr ""
+
+#: zapzap/views/ui_page_about.py:122
+#, python-brace-format
+msgid "Build Provider: {value}"
+msgstr ""
+
+#: zapzap/views/ui_page_about.py:123
+#, python-brace-format
+msgid "Build Repository: {value}"
+msgstr ""
+
+#: zapzap/views/ui_page_about.py:124
+#, fuzzy, python-brace-format
+msgid "Version: {id}"
+msgstr "Versione {id} - {version_type}"
+
+#: zapzap/views/ui_page_about.py:125
+msgid "Report a problem ->"
+msgstr ""
+
+#: zapzap/views/ui_page_about.py:126
+#, python-brace-format
+msgid "Build channel: {value}"
+msgstr ""
+
+#: zapzap/views/ui_page_about.py:127
+#, python-brace-format
+msgid "Packaging: {value}"
+msgstr ""
 
 #: zapzap/views/ui_page_account.py:79
 msgid "My accounts"
@@ -645,107 +686,6 @@ msgid ""
 "button in the main WhatsApp interface."
 msgstr ""
 
-#: zapzap/views/ui_qtoaster_donation.py:157
-msgid ""
-"Your donation helps keep the project running, improve resources and "
-"guarantee your privacy and freedom."
-msgstr ""
-
-#: zapzap/views/ui_qtoaster_donation.py:158
-#, fuzzy
-msgid "❤ Make a donation"
-msgstr "Donazione"
-
-#: zapzap/views/ui_qtoaster_donation.py:159
-msgid "Don't show again"
-msgstr ""
-
-#: zapzap/views/ui_qtoaster_donation.py:160
-msgid "Learn more about ZapZap ↗"
-msgstr ""
-
-#: zapzap/views/ui_settings.py:151 zapzap/controllers/OnboardingDialog.py:98
-msgid "Back"
-msgstr "Indietro"
-
-#: zapzap/views/ui_settings.py:152
-msgid "SETTINGS"
-msgstr "IMPOSTAZIONI"
-
-#: zapzap/views/ui_settings.py:154
-msgid "Accounts"
-msgstr "Account"
-
-#: zapzap/views/ui_settings.py:155
-msgid "TOOLS"
-msgstr "STRUMENTI"
-
-#: zapzap/views/ui_settings.py:159
-msgid "Performance"
-msgstr "Prestazioni"
-
-#: zapzap/views/ui_settings.py:161 zapzap/controllers/PageDebugging.py:59
-msgid "Debugging"
-msgstr ""
-
-#: zapzap/views/ui_settings.py:162
-msgid "HELP"
-msgstr "AIUTO"
-
-#: zapzap/views/ui_settings.py:164
-#, fuzzy
-msgid "Donate"
-msgstr "Donazione"
-
-#: zapzap/views/ui_shortcuts_dialog.py:55
-msgid "Dialog"
-msgstr "Dialogo"
-
-#: zapzap/views/ui_shortcuts_dialog.py:57
-msgid "WhatsApp Web"
-msgstr "WhatsApp Web"
-
-#: zapzap/views/ui_page_about.py:119
-msgid "name_app"
-msgstr ""
-
-#: zapzap/views/ui_page_about.py:120
-msgid "Donate to the project ->"
-msgstr ""
-
-#: zapzap/views/ui_page_about.py:121
-msgid "ZapZap official website ->"
-msgstr ""
-
-#: zapzap/views/ui_page_about.py:122
-#, python-brace-format
-msgid "Build Provider: {value}"
-msgstr ""
-
-#: zapzap/views/ui_page_about.py:123
-#, python-brace-format
-msgid "Build Repository: {value}"
-msgstr ""
-
-#: zapzap/views/ui_page_about.py:124
-#, fuzzy, python-brace-format
-msgid "Version: {id}"
-msgstr "Versione {id} - {version_type}"
-
-#: zapzap/views/ui_page_about.py:125
-msgid "Report a problem ->"
-msgstr ""
-
-#: zapzap/views/ui_page_about.py:126
-#, python-brace-format
-msgid "Build channel: {value}"
-msgstr ""
-
-#: zapzap/views/ui_page_about.py:127
-#, python-brace-format
-msgid "Packaging: {value}"
-msgstr ""
-
 #: zapzap/views/ui_page_performance.py:142
 msgid "Performance (Experimental)"
 msgstr "Prestazioni (Sperimentale)"
@@ -875,6 +815,66 @@ msgstr "Ripristina standard"
 #: zapzap/views/ui_page_performance.py:172
 msgid "Note: Restart required to apply changes."
 msgstr "Nota: È necessario un riavvio per applicare le modifiche."
+
+#: zapzap/views/ui_qtoaster_donation.py:157
+msgid ""
+"Your donation helps keep the project running, improve resources and "
+"guarantee your privacy and freedom."
+msgstr ""
+
+#: zapzap/views/ui_qtoaster_donation.py:158
+#, fuzzy
+msgid "❤ Make a donation"
+msgstr "Donazione"
+
+#: zapzap/views/ui_qtoaster_donation.py:159
+msgid "Don't show again"
+msgstr ""
+
+#: zapzap/views/ui_qtoaster_donation.py:160
+msgid "Learn more about ZapZap ↗"
+msgstr ""
+
+#: zapzap/views/ui_settings.py:151 zapzap/controllers/OnboardingDialog.py:98
+msgid "Back"
+msgstr "Indietro"
+
+#: zapzap/views/ui_settings.py:152
+msgid "SETTINGS"
+msgstr "IMPOSTAZIONI"
+
+#: zapzap/views/ui_settings.py:154
+msgid "Accounts"
+msgstr "Account"
+
+#: zapzap/views/ui_settings.py:155
+msgid "TOOLS"
+msgstr "STRUMENTI"
+
+#: zapzap/views/ui_settings.py:159
+msgid "Performance"
+msgstr "Prestazioni"
+
+#: zapzap/views/ui_settings.py:161 zapzap/controllers/PageDebugging.py:59
+msgid "Debugging"
+msgstr ""
+
+#: zapzap/views/ui_settings.py:162
+msgid "HELP"
+msgstr "AIUTO"
+
+#: zapzap/views/ui_settings.py:164
+#, fuzzy
+msgid "Donate"
+msgstr "Donazione"
+
+#: zapzap/views/ui_shortcuts_dialog.py:55
+msgid "Dialog"
+msgstr "Dialogo"
+
+#: zapzap/views/ui_shortcuts_dialog.py:57
+msgid "WhatsApp Web"
+msgstr "WhatsApp Web"
 
 #: zapzap/controllers/Browser.py:79
 msgid "Grid view"
@@ -1406,108 +1406,6 @@ msgstr ""
 msgid "All pages reloaded."
 msgstr ""
 
-#: zapzap/controllers/PageNetwork.py:23
-#, fuzzy
-msgid "Settings for:"
-msgstr "Impostazioni"
-
-#: zapzap/controllers/PageNetwork.py:25
-#, fuzzy
-msgid "Global (Default)"
-msgstr "Predefinito"
-
-#: zapzap/controllers/ShortcutsDialog.py:11
-msgid "Mark as unread"
-msgstr "Segna come non letto"
-
-#: zapzap/controllers/ShortcutsDialog.py:12
-msgid "Archive conversation"
-msgstr "Archivia conversazione"
-
-#: zapzap/controllers/ShortcutsDialog.py:13
-msgid "Pin conversation"
-msgstr "Fissa conversazione"
-
-#: zapzap/controllers/ShortcutsDialog.py:14
-msgid "Next conversation"
-msgstr "Conversazione successiva"
-
-#: zapzap/controllers/ShortcutsDialog.py:15
-msgid "Close conversation"
-msgstr "Chiudi conversazione"
-
-#: zapzap/controllers/ShortcutsDialog.py:16
-msgid "Search in conversation"
-msgstr "Cerca nella conversazione"
-
-#: zapzap/controllers/ShortcutsDialog.py:17
-msgid "Previous conversation"
-msgstr "Conversazione precedente"
-
-#: zapzap/controllers/ShortcutsDialog.py:18
-msgid "Delete conversation"
-msgstr "Elimina conversazione"
-
-#: zapzap/controllers/ShortcutsDialog.py:21
-msgid "Profile and status"
-msgstr "Profilo e stato"
-
-#: zapzap/controllers/ShortcutsDialog.py:25
-msgid "Decrease speed of selected voice message"
-msgstr "Riduci velocità del messaggio vocale selezionato"
-
-#: zapzap/controllers/ShortcutsDialog.py:26
-msgid "Increase speed of selected voice message"
-msgstr "Aumenta velocità del messaggio vocale selezionato"
-
-#: zapzap/controllers/ShortcutsDialog.py:29
-msgid "Emoji panel"
-msgstr "Pannello emoji"
-
-#: zapzap/controllers/ShortcutsDialog.py:30
-msgid "Sticker panel"
-msgstr "Pannello adesivi"
-
-#: zapzap/controllers/ShortcutsDialog.py:31
-msgid "GIF panel"
-msgstr "Pannello GIF"
-
-#: zapzap/controllers/ShortcutsDialog.py:34
-msgid "Lock the app"
-msgstr "Blocca l'app"
-
-#: zapzap/controllers/ShortcutsDialog.py:35
-msgid "Mute"
-msgstr "Disattiva audio"
-
-#: zapzap/controllers/ShortcutsDialog.py:36
-msgid "Search"
-msgstr "Cerca"
-
-#: zapzap/controllers/ShortcutsDialog.py:37
-msgid "New group"
-msgstr "Nuovo gruppo"
-
-#: zapzap/controllers/ShortcutsDialog.py:38
-msgid "Extended search"
-msgstr "Ricerca avanzata"
-
-#: zapzap/controllers/ShortcutsDialog.py:45
-msgid "Exit"
-msgstr "Esci"
-
-#: zapzap/controllers/ShortcutsDialog.py:48
-msgid "Fullscreen"
-msgstr "Schermo intero"
-
-#: zapzap/controllers/ShortcutsDialog.py:57
-msgid "Reload pages"
-msgstr "Ricarica pagine"
-
-#: zapzap/controllers/ShortcutsDialog.py:58
-msgid "New conversation by phone number"
-msgstr "Nuova conversazione per numero di telefono"
-
 #: zapzap/controllers/PageDebugging.py:75
 #: zapzap/controllers/PageDebugging.py:184
 #: zapzap/controllers/PageDebugging.py:194
@@ -1598,6 +1496,16 @@ msgstr ""
 #: zapzap/controllers/PageDebugging.py:247
 msgid "Settings were reset successfully. Please restart ZapZap."
 msgstr ""
+
+#: zapzap/controllers/PageNetwork.py:23
+#, fuzzy
+msgid "Settings for:"
+msgstr "Impostazioni"
+
+#: zapzap/controllers/PageNetwork.py:25
+#, fuzzy
+msgid "Global (Default)"
+msgstr "Predefinito"
 
 #: zapzap/controllers/PagePerformance.py:278
 msgid ""
@@ -1709,6 +1617,98 @@ msgid ""
 "to safe default values."
 msgstr ""
 
+#: zapzap/controllers/ShortcutsDialog.py:11
+msgid "Mark as unread"
+msgstr "Segna come non letto"
+
+#: zapzap/controllers/ShortcutsDialog.py:12
+msgid "Archive conversation"
+msgstr "Archivia conversazione"
+
+#: zapzap/controllers/ShortcutsDialog.py:13
+msgid "Pin conversation"
+msgstr "Fissa conversazione"
+
+#: zapzap/controllers/ShortcutsDialog.py:14
+msgid "Next conversation"
+msgstr "Conversazione successiva"
+
+#: zapzap/controllers/ShortcutsDialog.py:15
+msgid "Close conversation"
+msgstr "Chiudi conversazione"
+
+#: zapzap/controllers/ShortcutsDialog.py:16
+msgid "Search in conversation"
+msgstr "Cerca nella conversazione"
+
+#: zapzap/controllers/ShortcutsDialog.py:17
+msgid "Previous conversation"
+msgstr "Conversazione precedente"
+
+#: zapzap/controllers/ShortcutsDialog.py:18
+msgid "Delete conversation"
+msgstr "Elimina conversazione"
+
+#: zapzap/controllers/ShortcutsDialog.py:21
+msgid "Profile and status"
+msgstr "Profilo e stato"
+
+#: zapzap/controllers/ShortcutsDialog.py:25
+msgid "Decrease speed of selected voice message"
+msgstr "Riduci velocità del messaggio vocale selezionato"
+
+#: zapzap/controllers/ShortcutsDialog.py:26
+msgid "Increase speed of selected voice message"
+msgstr "Aumenta velocità del messaggio vocale selezionato"
+
+#: zapzap/controllers/ShortcutsDialog.py:29
+msgid "Emoji panel"
+msgstr "Pannello emoji"
+
+#: zapzap/controllers/ShortcutsDialog.py:30
+msgid "Sticker panel"
+msgstr "Pannello adesivi"
+
+#: zapzap/controllers/ShortcutsDialog.py:31
+msgid "GIF panel"
+msgstr "Pannello GIF"
+
+#: zapzap/controllers/ShortcutsDialog.py:34
+msgid "Lock the app"
+msgstr "Blocca l'app"
+
+#: zapzap/controllers/ShortcutsDialog.py:35
+msgid "Mute"
+msgstr "Disattiva audio"
+
+#: zapzap/controllers/ShortcutsDialog.py:36
+msgid "Search"
+msgstr "Cerca"
+
+#: zapzap/controllers/ShortcutsDialog.py:37
+msgid "New group"
+msgstr "Nuovo gruppo"
+
+#: zapzap/controllers/ShortcutsDialog.py:38
+msgid "Extended search"
+msgstr "Ricerca avanzata"
+
+#: zapzap/controllers/ShortcutsDialog.py:45
+msgid "Exit"
+msgstr "Esci"
+
+#: zapzap/controllers/ShortcutsDialog.py:48
+msgid "Fullscreen"
+msgstr "Schermo intero"
+
+#: zapzap/controllers/ShortcutsDialog.py:57
+msgid "Reload pages"
+msgstr "Ricarica pagine"
+
+#: zapzap/controllers/ShortcutsDialog.py:58
+msgid "New conversation by phone number"
+msgstr "Nuova conversazione per numero di telefono"
+
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
 msgstr "Informazione"
@@ -1734,6 +1734,22 @@ msgstr "Nessun account attivo!"
 #, fuzzy
 msgid "Select folder"
 msgstr "Seleziona cartella"
+
+#: zapzap/services/EnvironmentDetector.py:5
+#, fuzzy
+msgid "Official"
+msgstr "Non ufficiale"
+
+#: zapzap/services/EnvironmentDetector.py:6
+msgid "Community"
+msgstr ""
+
+#: zapzap/services/EnvironmentDetector.py:7
+#: zapzap/services/EnvironmentDetector.py:19
+#: zapzap/services/EnvironmentDetector.py:20
+#: zapzap/services/EnvironmentDetector.py:21
+msgid "Unknown"
+msgstr "Sconosciuto"
 
 #: zapzap/services/ProxyManager.py:9
 msgid "No proxying is used."
@@ -1766,22 +1782,6 @@ msgstr "Mostra"
 #: zapzap/services/SysTrayManager.py:56
 msgid "Donation"
 msgstr "Donazione"
-
-#: zapzap/services/EnvironmentDetector.py:5
-#, fuzzy
-msgid "Official"
-msgstr "Non ufficiale"
-
-#: zapzap/services/EnvironmentDetector.py:6
-msgid "Community"
-msgstr ""
-
-#: zapzap/services/EnvironmentDetector.py:7
-#: zapzap/services/EnvironmentDetector.py:19
-#: zapzap/services/EnvironmentDetector.py:20
-#: zapzap/services/EnvironmentDetector.py:21
-msgid "Unknown"
-msgstr "Sconosciuto"
 
 #: zapzap/webengine/PageController.py:193
 msgid "Please enter the phone number with country code (e.g., +5511999999999):"
