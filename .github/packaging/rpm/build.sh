@@ -154,6 +154,14 @@ log "Copying RPM spec"
 
 cp "${SPEC_SOURCE}" "${SPEC_TARGET}"
 
+# The GitHub build defines _version while creating the first SRPM, but Copr
+# imports the SRPM into dist-git and rebuilds it without that custom macro.
+# Therefore the spec stored inside the SRPM must contain the concrete Version.
+sed -i "s/^Version:.*/Version:        ${VERSION}/" "${SPEC_TARGET}"
+
+echo "RPM spec version after normalization:"
+grep -E "^(Name|Version|Release|Source0):" "${SPEC_TARGET}"
+
 case "${BUILD_MODE}" in
     rpm)
         log "Building binary RPM"
