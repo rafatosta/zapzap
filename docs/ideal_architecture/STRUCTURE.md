@@ -22,3 +22,7 @@ Os arquivos e diretórios deste esqueleto seguem nomes em minúsculas com `snake
 ## Ferramentas de desenvolvimento
 
 A pasta `tools` fica fora de `zapzap` porque não pertence ao runtime do aplicativo. Ela representa comandos auxiliares de desenvolvimento, execução local, empacotamento, compilação de UI e manutenção de traduções. A dependência permitida é `tools -> zapzap`; o pacote `zapzap` não deve importar `tools`.
+
+## Entrypoint do pacote
+
+O arquivo `zapzap/__main__.py` deve existir na arquitetura ideal para preservar a execução por `python -m zapzap`. Ele deve ser mínimo e delegar para `zapzap/app/main.py`, onde fica o bootstrap interno da aplicação.
