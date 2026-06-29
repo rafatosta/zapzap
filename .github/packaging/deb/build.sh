@@ -2,7 +2,8 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
+
 cd "${REPO_ROOT}"
 
 BUILD_INFO_PATH="zapzap/BuildInfo.py"
@@ -24,6 +25,8 @@ cleanup_build_info() {
 
 trap cleanup_build_info EXIT
 
+echo "Repository root: ${REPO_ROOT}"
+
 echo "Cleaning previous DEB build..."
 rm -f ./*.deb
 rm -rf deb_build
@@ -34,14 +37,17 @@ import ast
 from pathlib import Path
 
 module = Path("zapzap/__init__.py")
+
+if not module.exists():
+    raise SystemExit("zapzap/__init__.py not found")
+
 tree = ast.parse(module.read_text(encoding="utf-8"), filename=str(module))
 
 for node in tree.body:
     if isinstance(node, ast.Assign):
         for target in node.targets:
             if isinstance(target, ast.Name) and target.id == "__version__":
-                value = ast.literal_eval(node.value)
-                print(value)
+                print(ast.literal_eval(node.value))
                 raise SystemExit(0)
 
 raise SystemExit("Could not find __version__ in zapzap/__init__.py")
