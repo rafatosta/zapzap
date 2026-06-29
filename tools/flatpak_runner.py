@@ -1,7 +1,7 @@
 import subprocess
 
-from tools.UiCompiler import UiCompiler
-from tools.TranslationManager import TranslationManager
+from tools.ui_compiler import UiCompiler
+from tools.translation_manager import TranslationManager
 
 class FlatpakRunner:
     SDK_VERSION = "6.10"
@@ -48,7 +48,7 @@ class FlatpakRunner:
             "--install "
             "--user "
             "build "
-            "com.rtosta.zapzap.yaml"
+            "tools/com.rtosta.zapzap.yaml"
         )
 
     def start(self):

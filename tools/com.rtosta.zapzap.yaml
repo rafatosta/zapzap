@@ -1,0 +1,62 @@
+app-id: com.rtosta.zapzap
+runtime: org.kde.Platform
+runtime-version: "6.10"
+sdk: org.kde.Sdk
+base: com.riverbankcomputing.PyQt.BaseApp
+base-version: "6.10"
+command: zapzap
+finish-args:
+  - "--share=ipc"
+  - "--socket=wayland"
+  - "--socket=fallback-x11"
+  - "--socket=pulseaudio"
+  - "--share=network"
+  - "--device=all"
+  - "--filesystem=xdg-documents"
+  - "--filesystem=xdg-pictures"
+  - "--filesystem=xdg-download"
+  - "--filesystem=/tmp"
+  - "--filesystem=xdg-run/pipewire-0"
+  - "--talk-name=org.freedesktop.Notifications"
+  - "--talk-name=org.kde.StatusNotifierWatcher"
+  - "--env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess"
+  - "--env=QTWEBENGINE_DICTIONARIES_PATH=/app/qtwebengine_dictionaries"
+
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - "*.la"
+  - "*.a"
+cleanup-commands:
+  - /app/cleanup-BaseApp.sh
+
+modules:
+  # Build dependencies
+  - name: python-build-deps
+    buildsystem: simple
+    build-commands:
+      - pip3 install --prefix=${FLATPAK_DEST} setuptools wheel
+    sources: []
+
+  # Zapzap wheel build
+  - name: zapzap
+    buildsystem: simple
+    build-commands:
+      - |
+        cat > zapzap/BuildInfo.py << EOF
+        BUILD_CHANNEL = "FlatpakRunner"
+        BUILD_PROVIDER = "org.flatpak.Builder"
+        BUILD_REPOSITORY = "./zapzap/"
+        BUILD_PACKAGING = "Flatpak"
+        EOF
+
+      - python3 -m build --wheel --no-isolation
+      - pip3 install --prefix=${FLATPAK_DEST} dist/zapzap-*.whl
+
+      - install -Dm644 share/icons/${FLATPAK_ID}.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
+      - install -Dm644 share/applications/${FLATPAK_ID}.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
+      - install -Dm644 share/metainfo/${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.appdata.xml
+
+    sources:
+      - type: dir
+        path: ../ 

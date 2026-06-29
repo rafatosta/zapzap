@@ -1,17 +1,6 @@
 import sys
 
-from tools.FlatpakRunner import FlatpakRunner
-from tools.LocalRunner import LocalRunner
-
-
-def local(args):
-    """Usage: python run.py --local [args...]"""
-
-    print("Executando em modo local...")
-
-    runner = LocalRunner(sys.argv[1:])
-    runner.run()
-
+from tools.flatpak_runner import FlatpakRunner
 
 def run(args):
     """Usage: python run.py [args...]"""
@@ -25,9 +14,7 @@ def main():
 
     args = sys.argv[1:]
 
-    methods = {
-        "--local": local,
-    }
+    methods = {}
 
     selected_method = run
 
