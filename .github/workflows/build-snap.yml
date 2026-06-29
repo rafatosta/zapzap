@@ -2,6 +2,23 @@ name: Build Snap
 
 on:
   workflow_dispatch:
+    inputs:
+      release_upload:
+        description: "Upload Snap artifact to GitHub Release"
+        required: false
+        type: boolean
+        default: false
+      release_tag:
+        description: "Release tag to upload artifact"
+        required: false
+        type: string
+        default: ""
+      publish_snap:
+        description: "Publish Snap to Snap Store stable"
+        required: false
+        type: boolean
+        default: false
+
   workflow_call:
     inputs:
       release_upload:
@@ -22,43 +39,56 @@ permissions:
 
 jobs:
   build-snap:
+    name: Build Snap
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - name: Set packaging scripts executable
         run: |
           chmod +x .github/packaging/common/build-info.sh
           chmod +x .github/packaging/snap/build.sh
           chmod +x .github/packaging/snap/normalize.sh
           chmod +x .github/packaging/common/version.sh
+
       - name: Create BuildInfo.py
         run: .github/packaging/common/build-info.sh "Snap"
+
       - name: Prepare Snapcraft project
         run: .github/packaging/snap/build.sh
+
       - name: Build Snap
         id: snapcraft
         uses: snapcore/action-build@v1
         with:
           path: .snapcraft-project
+
       - name: Normalize Snap artifact name
         id: normalized_snap
         run: |
           SNAP="$(.github/packaging/snap/normalize.sh '${{ steps.snapcraft.outputs.snap }}')"
           echo "snap=${SNAP}" >> "$GITHUB_OUTPUT"
+
       - name: Upload artifact
         if: ${{ !inputs.release_upload }}
         uses: actions/upload-artifact@v4
         with:
           name: ZapZap-Snap-linux-amd64
           path: ${{ steps.normalized_snap.outputs.snap }}
+
       - name: Upload to release
         if: ${{ inputs.release_upload }}
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ inputs.release_tag }}
           files: ${{ steps.normalized_snap.outputs.snap }}
+
       - name: Publish Snap to Snap Store stable
         if: ${{ inputs.publish_snap }}
         env:
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
-        run: snapcraft upload --release=stable "${{ steps.normalized_snap.outputs.snap }}"
+        run: |
+          snapcraft upload \
+            --release=stable \
+            "${{ steps.normalized_snap.outputs.snap }}"
