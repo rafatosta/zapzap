@@ -11,6 +11,45 @@ DIST_DIR="${ROOT_DIR}/dist"
 SPEC_SOURCE="${ROOT_DIR}/.github/packaging/rpm/zapzap.spec"
 SPEC_TARGET="${SPECS_DIR}/zapzap.spec"
 
+BUILD_MODE="rpm"
+
+usage() {
+    cat <<'USAGE'
+Usage: .github/packaging/rpm/build.sh [--rpm|--srpm|--all]
+
+Options:
+  --rpm   Build binary RPM packages only. Default.
+  --srpm  Build source RPM only, suitable for Copr submission.
+  --all   Build binary RPM packages and source RPM.
+USAGE
+}
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --rpm)
+            BUILD_MODE="rpm"
+            shift
+            ;;
+        --srpm)
+            BUILD_MODE="srpm"
+            shift
+            ;;
+        --all)
+            BUILD_MODE="all"
+            shift
+            ;;
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1"
+            usage
+            exit 1
+            ;;
+    esac
+done
+
 log() {
     echo
     echo "==============================================================="
@@ -39,6 +78,16 @@ print(match.group(1))
 PY
 }
 
+copy_artifacts() {
+    local source_dir="$1"
+    local pattern="$2"
+
+    find "${source_dir}" \
+        -type f \
+        -name "${pattern}" \
+        -exec cp -v {} "${DIST_DIR}/" \;
+}
+
 log "Configuring Git safe directory"
 
 git config --global --add safe.directory "${ROOT_DIR}"
@@ -51,6 +100,7 @@ VERSION="$(read_version)"
 SOURCE_NAME="zapzap-${VERSION}.tar.gz"
 
 echo "Version: ${VERSION}"
+echo "Build mode: ${BUILD_MODE}"
 
 log "Preparing RPM build tree"
 
@@ -104,18 +154,47 @@ log "Copying RPM spec"
 
 cp "${SPEC_SOURCE}" "${SPEC_TARGET}"
 
-log "Building RPM"
+case "${BUILD_MODE}" in
+    rpm)
+        log "Building binary RPM"
+        rpmbuild \
+            --define "_topdir ${RPMBUILD_DIR}" \
+            --define "_version ${VERSION}" \
+            -bb "${SPEC_TARGET}"
 
-rpmbuild \
-    --define "_topdir ${RPMBUILD_DIR}" \
-    --define "_version ${VERSION}" \
-    -ba "${SPEC_TARGET}"
+        log "Collecting RPM artifacts"
+        copy_artifacts "${RPMBUILD_DIR}/RPMS" "*.rpm"
+        ;;
 
-log "Collecting RPM artifacts"
+    srpm)
+        log "Building source RPM"
+        rpmbuild \
+            --define "_topdir ${RPMBUILD_DIR}" \
+            --define "_version ${VERSION}" \
+            -bs "${SPEC_TARGET}"
 
-find "${RPMBUILD_DIR}/RPMS" \
-    -type f \
-    -name "*.rpm" \
-    -exec cp -v {} "${DIST_DIR}/" \;
+        log "Collecting SRPM artifacts"
+        copy_artifacts "${RPMBUILD_DIR}/SRPMS" "*.src.rpm"
+        ;;
+
+    all)
+        log "Building binary RPM and source RPM"
+        rpmbuild \
+            --define "_topdir ${RPMBUILD_DIR}" \
+            --define "_version ${VERSION}" \
+            -ba "${SPEC_TARGET}"
+
+        log "Collecting RPM and SRPM artifacts"
+        copy_artifacts "${RPMBUILD_DIR}/RPMS" "*.rpm"
+        copy_artifacts "${RPMBUILD_DIR}/SRPMS" "*.src.rpm"
+        ;;
+
+    *)
+        echo "Invalid build mode: ${BUILD_MODE}"
+        exit 1
+        ;;
+esac
+
+log "Generated artifacts"
 
 ls -lah "${DIST_DIR}"

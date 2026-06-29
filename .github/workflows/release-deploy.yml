@@ -1,0 +1,58 @@
+name: Release Deploy
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  python:
+    if: ${{ !github.event.release.prerelease }}
+    uses: ./.github/workflows/build-python.yml
+    with:
+      release_upload: true
+      release_tag: ${{ github.event.release.tag_name }}
+    secrets: inherit
+
+  appimage:
+    if: ${{ !github.event.release.prerelease }}
+    uses: ./.github/workflows/build-appimage.yml
+    with:
+      release_upload: true
+      release_tag: ${{ github.event.release.tag_name }}
+    secrets: inherit
+
+  snap:
+    if: ${{ !github.event.release.prerelease }}
+    uses: ./.github/workflows/build-snap.yml
+    with:
+      release_upload: true
+      release_tag: ${{ github.event.release.tag_name }}
+      publish_snap: true
+    secrets: inherit
+
+  windows:
+    if: ${{ !github.event.release.prerelease }}
+    uses: ./.github/workflows/build-windows.yml
+    with:
+      release_upload: true
+      release_tag: ${{ github.event.release.tag_name }}
+    secrets: inherit
+
+  deb:
+    if: ${{ !github.event.release.prerelease }}
+    uses: ./.github/workflows/build-deb.yml
+    with:
+      release_upload: true
+      release_tag: ${{ github.event.release.tag_name }}
+    secrets: inherit
+
+  copr:
+    if: ${{ !github.event.release.prerelease }}
+    uses: ./.github/workflows/build-copr.yml
+    with:
+      publish_copr: true
+      copr_project: rafatosta/zapzap
+    secrets: inherit

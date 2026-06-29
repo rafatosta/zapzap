@@ -1,0 +1,120 @@
+name: Build RPM on Copr
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish_copr:
+        description: "Submit SRPM to Fedora Copr"
+        required: true
+        type: boolean
+        default: false
+      copr_project:
+        description: "Copr project in owner/project format"
+        required: true
+        type: string
+        default: "rafatosta/zapzap"
+
+  workflow_call:
+    inputs:
+      publish_copr:
+        required: false
+        type: boolean
+        default: false
+      copr_project:
+        required: false
+        type: string
+        default: "rafatosta/zapzap"
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build-srpm:
+    name: Build SRPM / Copr
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:44
+
+    steps:
+      - name: Install build tools
+        run: |
+          dnf -y update
+          dnf -y install \
+            git \
+            rsync \
+            rpm-build \
+            rpmdevtools \
+            python3-devel \
+            python3-setuptools \
+            python3-wheel \
+            pyproject-rpm-macros \
+            copr-cli
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set packaging scripts executable
+        run: |
+          chmod +x .github/packaging/common/build-info.sh
+          chmod +x .github/packaging/rpm/build.sh
+
+      - name: Create BuildInfo.py
+        run: .github/packaging/common/build-info.sh "Copr"
+
+      - name: Build SRPM
+        run: .github/packaging/rpm/build.sh --srpm
+
+      - name: Upload SRPM artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: zapzap-srpm
+          path: dist/*.src.rpm
+          if-no-files-found: error
+
+      - name: Validate Copr secrets
+        if: ${{ inputs.publish_copr }}
+        env:
+          COPR_LOGIN: ${{ secrets.COPR_LOGIN }}
+          COPR_USERNAME: ${{ secrets.COPR_USERNAME }}
+          COPR_TOKEN: ${{ secrets.COPR_TOKEN }}
+        run: |
+          missing=0
+
+          for var in COPR_LOGIN COPR_USERNAME COPR_TOKEN; do
+            if [ -z "${!var:-}" ]; then
+              echo "Missing required secret: ${var}"
+              missing=1
+            fi
+          done
+
+          if [ "${missing}" -ne 0 ]; then
+            exit 1
+          fi
+
+      - name: Configure Copr CLI
+        if: ${{ inputs.publish_copr }}
+        env:
+          COPR_LOGIN: ${{ secrets.COPR_LOGIN }}
+          COPR_USERNAME: ${{ secrets.COPR_USERNAME }}
+          COPR_TOKEN: ${{ secrets.COPR_TOKEN }}
+        run: |
+          mkdir -p ~/.config
+
+          {
+            echo "[copr-cli]"
+            echo "login = ${COPR_LOGIN}"
+            echo "username = ${COPR_USERNAME}"
+            echo "token = ${COPR_TOKEN}"
+            echo "copr_url = https://copr.fedorainfracloud.org"
+          } > ~/.config/copr
+
+          chmod 600 ~/.config/copr
+
+      - name: Submit SRPM to Copr
+        if: ${{ inputs.publish_copr }}
+        run: |
+          copr-cli build "${{ inputs.copr_project }}" dist/*.src.rpm
