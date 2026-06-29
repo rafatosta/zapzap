@@ -29,16 +29,16 @@ apps:
       XKB_CONFIG_ROOT: $SNAP/usr/share/X11/xkb
     plugs:
       - network
-        - network-bind
-        - desktop
-        - desktop-legacy
-        - wayland
-        - x11
-        - opengl
-        - audio-playback
-        - pulseaudio
-        - home
-        - removable-media
+      - network-bind
+      - desktop
+      - desktop-legacy
+      - wayland
+      - x11
+      - opengl
+      - audio-playback
+      - pulseaudio
+      - home
+      - removable-media
 
 parts:
   zapzap:
