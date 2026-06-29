@@ -1,0 +1,81 @@
+name: Build Debian package
+
+on:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      release_upload:
+        required: false
+        type: boolean
+        default: false
+      release_tag:
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  build-deb:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set packaging scripts executable
+        run: |
+          chmod +x .github/packaging/common/version.sh  
+          chmod +x .github/packaging/deb/build.sh
+          chmod +x .github/packaging/common/build-info.sh
+
+      - name: Create BuildInfo.py
+        run: .github/packaging/common/build-info.sh "DEB"
+
+      - name: Install build dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y \
+            software-properties-common \
+            dpkg-dev \
+            rsync \
+            python3
+          sudo add-apt-repository -y universe
+          sudo apt update
+
+      - name: Build .deb package
+        run: .github/packaging/deb/build.sh
+
+      - name: Validate declared runtime dependencies
+        run: |
+          DEB_FILE="$(ls -1 *.deb | head -n1)"
+          DEPENDS="$(dpkg-deb -f "${DEB_FILE}" Depends)"
+
+          echo "Checking dependencies from ${DEB_FILE}:"
+          echo "${DEPENDS}"
+
+          echo "${DEPENDS}" \
+            | tr ',' '\n' \
+            | sed -E 's/\(.*\)//g; s/\|.*//g; s/^[[:space:]]+//; s/[[:space:]]+$//' \
+            | while read -r dep; do
+                [ -n "${dep}" ] || continue
+                echo "Validating ${dep}"
+                apt-cache policy "${dep}"
+                apt-cache show "${dep}" >/dev/null 2>&1 \
+                  || apt-cache pkgnames | grep -Fx "${dep}" >/dev/null
+              done
+
+      - name: Upload .deb artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: zapzap-deb
+          path: "*.deb"
+          if-no-files-found: error
+
+      - name: Upload .deb to GitHub Release
+        if: ${{ inputs.release_upload == true && inputs.release_tag != '' }}
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.release_tag }}
+          files: "*.deb"
