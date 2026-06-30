@@ -1,21 +1,5 @@
-import * as Dialog from "@radix-ui/react-dialog";
-import { useState } from "react";
-import qrPix from "/qr-pix.png";
-
-const PIX_KEY = "c86378c4-c34a-4951-bad0-42d5c1774f79";
-
-
 function Donate() {
 
-    const [copied, setCopied] = useState(false);
-
-    const handleCopy = async () => {
-        await navigator.clipboard.writeText(PIX_KEY);
-
-        setCopied(true);
-
-        setTimeout(() => setCopied(false), 2000);
-    };
 
     const donations = [
         {
@@ -24,10 +8,11 @@ function Donate() {
             href: "https://github.com/sponsors/rafatosta",
         },
         {
-            title: "Ko-fi",
-            body: "Make a one-time or recurring contribution to keep the project active and improving.",
-            href: "https://ko-fi.com/rafaeltosta",
+            title: "Pix",
+            body: "Fast and fee-free donations for supporters in Brazil.",
+            href: "https://nubank.com.br/pagar/3c3r2/LS2hiJJKzv",
         },
+
         {
             title: "PayPal",
             body: "A simple and secure way to support ZapZap from anywhere in the world.",
@@ -37,6 +22,11 @@ function Donate() {
             title: "Wise",
             body: "International donations with low fees and real exchange rates.",
             href: "https://wise.com/pay/me/rafaelt2487",
+        },
+        {
+            title: "Ko-fi",
+            body: "Make a one-time or recurring contribution to keep the project active and improving.",
+            href: "https://ko-fi.com/rafaeltosta",
         },
     ];
 
@@ -79,81 +69,7 @@ function Donate() {
                         </li>
                     ))}
 
-                    <li>
-                        <Dialog.Root>
-                            <Dialog.Trigger className={cardClass}>
-                                <DonateCard
-                                    index={4}
-                                    title="Pix"
-                                    body="Fast and fee-free donations for supporters in Brazil."
-                                />
-                                <span className="mt-4 inline-flex text-sm font-medium group-hover:text-foreground">
-                                    Donate →
-                                </span>
-                            </Dialog.Trigger>
 
-                            <Dialog.Portal>
-                                <Dialog.Overlay className="fixed inset-0 z-50 bg-black/50" />
-
-                                <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl border border-border bg-background shadow-lg">
-                                    <div className="flex items-center justify-between border-b border-hairline px-6 py-5">
-                                        <Dialog.Title className="text-xl font-semibold tracking-tight">
-                                            Pix
-                                        </Dialog.Title>
-
-                                        <Dialog.Close className="text-2xl leading-none text-muted-foreground transition-colors hover:text-foreground">
-                                            ×
-                                        </Dialog.Close>
-                                    </div>
-
-                                    <div className="px-6 py-10 text-center">
-                                        <Dialog.Description className="sr-only">
-                                            Donate to ZapZap using Pix QR Code or Pix key.
-                                        </Dialog.Description>
-
-                                        <h3 className="text-2xl font-semibold tracking-tight">
-                                            Use the Pix QR Code to donate
-                                        </h3>
-
-                                        <p className="mx-auto mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
-                                            Open your banking app, scan the QR Code or copy the Pix key below.
-                                        </p>
-
-                                        <div className="mx-auto mt-8 flex h-64 w-64 items-center justify-center rounded-2xl bg-subtle p-5">
-                                            <img
-                                                src={qrPix}
-                                                alt="Pix QR Code"
-                                                className="h-full w-full bg-white object-contain"
-                                            />
-                                        </div>
-
-                                        <div className="mt-8 text-left">
-                                            <label className="text-sm font-medium">
-                                                Pix Key
-                                            </label>
-
-                                            <code className="mt-3 block overflow-hidden rounded-md border border-border bg-card px-3 py-3 font-mono text-sm text-muted-foreground">
-                                                {PIX_KEY}
-                                            </code>
-
-                                            <button
-                                                type="button"
-                                                onClick={handleCopy}
-                                                className="mt-4 w-full rounded-md border border-border px-4 py-3 text-sm font-medium transition-all"
-                                            >
-                                                <span
-                                                    className={`transition-opacity ${copied ? "text-green-600" : ""
-                                                        }`}
-                                                >
-                                                    {copied ? "✓ Pix Key Copied" : "Copy Pix Key"}
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </Dialog.Content>
-                            </Dialog.Portal>
-                        </Dialog.Root>
-                    </li>
                 </ul>
 
                 <p className="mt-10 max-w-2xl text-sm leading-relaxed text-muted-foreground">
