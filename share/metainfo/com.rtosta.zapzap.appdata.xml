@@ -55,6 +55,15 @@
   </screenshots>
 
   <releases>
+      <release date="2026-06-06" version="6.5.3">
+          <description>
+              <ul>
+                  <li>Improve MIME type handling for downloads</li>
+                  <li>Add performance toggles for Wayland</li>
+                  <li>NVIDIA GBM and Accessibility to fix typing lag</li>
+              </ul>
+          </description>
+      </release>
       <release date="2026-06-06" version="6.5.1">
           <description>
               <ul>
