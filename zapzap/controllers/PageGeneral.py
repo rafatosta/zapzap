@@ -1,11 +1,12 @@
 from PyQt6.QtWidgets import QWidget, QApplication, QStyle
 from PyQt6.QtGui import QDesktopServices
-from PyQt6.QtCore import QUrl
+from PyQt6.QtCore import QUrl, QLocale
 from zapzap.services.SetupManager import SetupManager
 from zapzap.services.AutostartManager import AutostartManager
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.DownloadManager import DownloadManager
 from zapzap.services.SettingsManager import SettingsManager
+from zapzap.services.TranslationManager import TranslationManager
 from zapzap.views.ui_page_general import Ui_PageGeneral
 
 from gettext import gettext as _
@@ -83,6 +84,8 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         self.dontUseNativeDialog.setChecked(
             SettingsManager.get("system/DontUseNativeDialog", False))
 
+        self._load_interface_languages()
+
         self.flatpak_command_input.setText(self.FLATPAK_OVERRIDE_COMMAND)
 
     def _configure_signals(self):
@@ -95,6 +98,9 @@ class PageGeneral(QWidget, Ui_PageGeneral):
         self.spellchecker_groupBox.toggled.connect(
             lambda toggled: self._handle_toggled_spellcheck(toggled))
 
+        self.interface_language_comboBox.currentIndexChanged.connect(
+            self._handle_interface_language
+        )
         self.spell_comboBox.textActivated.connect(self._handle_spellcheck)
         self.btn_path_spell.clicked.connect(self._handle_path_spell)
         self.btn_default_path_spell.clicked.connect(
@@ -126,6 +132,49 @@ class PageGeneral(QWidget, Ui_PageGeneral):
                 QUrl("https://flathub.org/apps/com.github.tchx84.Flatseal")
             )
         )
+
+    def _load_interface_languages(self):
+        self.interface_language_comboBox.blockSignals(True)
+        self.interface_language_comboBox.clear()
+        self.interface_language_comboBox.addItem(
+            _("System default"), TranslationManager.SYSTEM_LANGUAGE
+        )
+
+        for language in TranslationManager.list_available_languages():
+            self.interface_language_comboBox.addItem(
+                self._language_label(language), language
+            )
+
+        current_language = TranslationManager.get_current_language()
+        index = self.interface_language_comboBox.findData(current_language)
+        if index < 0:
+            index = 0
+        self.interface_language_comboBox.setCurrentIndex(index)
+        self.interface_language_comboBox.blockSignals(False)
+
+    def _language_label(self, language):
+        locale = QLocale(language)
+        language_name = QLocale.languageToString(locale.language())
+        territory_name = QLocale.territoryToString(locale.territory())
+
+        if territory_name:
+            return f"{language_name} ({territory_name}) - {language}"
+        return f"{language_name} - {language}"
+
+    def _handle_interface_language(self, *_args):
+        language = self.interface_language_comboBox.currentData()
+        TranslationManager.set_current_language(language)
+        TranslationManager.apply()
+        self._retranslate_application()
+
+    def _retranslate_application(self):
+        app = QApplication.instance()
+        for widget in app.allWidgets():
+            retranslate = getattr(widget, "retranslateUi", None)
+            if callable(retranslate):
+                retranslate(widget)
+
+        self._load_interface_languages()
 
     def _handle_toggled_spellcheck(self, toggled):
         SettingsManager.set("system/spellCheckers", toggled)

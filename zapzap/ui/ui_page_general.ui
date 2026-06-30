@@ -118,6 +118,30 @@
          </widget>
         </item>
         <item>
+         <widget class="QGroupBox" name="interface_language_groupBox">
+          <property name="title">
+           <string>Interface language</string>
+          </property>
+          <layout class="QVBoxLayout" name="interface_language_layout">
+           <item>
+            <widget class="QComboBox" name="interface_language_comboBox"/>
+           </item>
+           <item>
+            <widget class="QLabel" name="interface_language_note">
+             <property name="font">
+              <font>
+               <italic>true</italic>
+              </font>
+             </property>
+             <property name="text">
+              <string>The interface language is applied immediately.</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
          <widget class="QGroupBox" name="groupBox_3">
           <property name="title">
            <string>Download Directory</string>
