@@ -164,6 +164,17 @@ class PageGeneral(QWidget, Ui_PageGeneral):
     def _handle_interface_language(self, *_args):
         language = self.interface_language_comboBox.currentData()
         TranslationManager.set_current_language(language)
+        TranslationManager.apply()
+        self._retranslate_application()
+
+    def _retranslate_application(self):
+        app = QApplication.instance()
+        for widget in app.allWidgets():
+            retranslate = getattr(widget, "retranslateUi", None)
+            if callable(retranslate):
+                retranslate(widget)
+
+        self._load_interface_languages()
 
     def _handle_toggled_spellcheck(self, toggled):
         SettingsManager.set("system/spellCheckers", toggled)

@@ -12,6 +12,7 @@ class TranslationManager:
     _locale_dir = os.path.join(APP_PATH, "po")
     SYSTEM_LANGUAGE = "system"
     ENGLISH_LANGUAGE = "en"
+    _original_language_env = os.environ.get("LANGUAGE")
 
     @staticmethod
     def list_available_languages():
@@ -64,6 +65,11 @@ class TranslationManager:
             # too, instead of only updating the builtins installed below.
             os.environ["LANGUAGE"] = selected_language
         else:
+            if TranslationManager._original_language_env is None:
+                os.environ.pop("LANGUAGE", None)
+            else:
+                os.environ["LANGUAGE"] = TranslationManager._original_language_env
+
             # Honor explicit env overrides first.
             for env_name in ("LANGUAGE", "LC_ALL", "LC_MESSAGES", "LANG"):
                 raw_value = os.environ.get(env_name, "")

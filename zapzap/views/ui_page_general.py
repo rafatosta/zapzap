@@ -167,7 +167,7 @@ class Ui_PageGeneral(object):
         self.btn_open_flatseal.setText(_("Install Flatseal on Linux | Flathub"))
         self.label_flatpak_info.setText(_("<html><head/><body><p><span style=\" font-weight:700;\">Flatpak sandbox.</span> If file access fails, grant folder permissions using <span style=\" font-weight:700;\">Flatseal</span> or a command-line tool such as <span style=\" font-weight:700;\">flatpak override</span>.</p></body></html>"))
         self.interface_language_groupBox.setTitle(_("Interface language"))
-        self.interface_language_note.setText(_("Note: Restart the application to apply the interface language."))
+        self.interface_language_note.setText(_("The interface language is applied immediately."))
         self.groupBox_3.setTitle(_("Download Directory"))
         self.btn_path_download.setToolTip(_("Set new folder for downloads"))
         self.btn_restore_path_download.setToolTip(_("Define default folder for downloads"))

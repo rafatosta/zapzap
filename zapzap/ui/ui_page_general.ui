@@ -134,7 +134,7 @@
               </font>
              </property>
              <property name="text">
-              <string>Note: Restart the application to apply the interface language.</string>
+              <string>The interface language is applied immediately.</string>
              </property>
             </widget>
            </item>
