@@ -1,9 +1,12 @@
+import mimetypes
 import os
 from urllib.parse import unquote
 
 
 class DownloadNamingService:
-    IMAGE_MIME_EXTENSIONS = {
+    PREFERRED_MIME_EXTENSIONS = {
+        "application/pdf": ".pdf",
+        "application/x-pdf": ".pdf",
         "image/jpeg": ".jpeg",
         "image/jpg": ".jpeg",
         "image/png": ".png",
@@ -14,6 +17,14 @@ class DownloadNamingService:
         "image/tiff": ".tiff",
         "image/x-icon": ".ico",
         "image/vnd.microsoft.icon": ".ico",
+    }
+
+    GENERIC_MIME_TYPES = {
+        "application/octet-stream",
+        "binary/octet-stream",
+        "application/force-download",
+        "application/download",
+        "application/unknown",
     }
 
     @staticmethod
@@ -40,14 +51,22 @@ class DownloadNamingService:
 
     @staticmethod
     def extension_for_mime_type(mime_type: str) -> str:
-        normalized_mime_type = (
-            mime_type or ""
-        ).split(";", 1)[0].strip().lower()
-
-        return DownloadNamingService.IMAGE_MIME_EXTENSIONS.get(
-            normalized_mime_type,
-            ""
+        normalized_mime_type = DownloadNamingService._normalized_mime_type(
+            mime_type
         )
+        if not normalized_mime_type:
+            return ""
+
+        preferred_extension = DownloadNamingService.PREFERRED_MIME_EXTENSIONS.get(
+            normalized_mime_type
+        )
+        if preferred_extension:
+            return preferred_extension
+
+        if normalized_mime_type in DownloadNamingService.GENERIC_MIME_TYPES:
+            return ""
+
+        return mimetypes.guess_extension(normalized_mime_type) or ""
 
     @staticmethod
     def _fallback_file_name(file_name: str, mime_type: str, url: str) -> str:
@@ -60,7 +79,7 @@ class DownloadNamingService:
             return url_file_name
 
         if DownloadNamingService.extension_for_mime_type(mime_type):
-            return "image"
+            return "download"
 
         return "download"
 
@@ -73,9 +92,13 @@ class DownloadNamingService:
 
     @staticmethod
     def _visible_file_name(file_name: str) -> str:
-        return file_name.lstrip(".") or "image"
+        return file_name.lstrip(".") or "download"
 
     @staticmethod
     def _has_extension(file_name: str) -> bool:
         root, extension = os.path.splitext(file_name)
         return bool(root and extension)
+
+    @staticmethod
+    def _normalized_mime_type(mime_type: str) -> str:
+        return (mime_type or "").split(";", 1)[0].strip().lower()
