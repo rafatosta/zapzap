@@ -24,7 +24,7 @@ apps:
       QTWEBENGINE_RESOURCES_PATH: $SNAP/usr/share/qt6/resources
       QTWEBENGINE_LOCALES_PATH: $SNAP/usr/share/qt6/translations/qtwebengine_locales
       QTWEBENGINE_DISABLE_SANDBOX: "1"
-      QTWEBENGINE_CHROMIUM_FLAGS: --no-sandbox --disable-gpu-sandbox --password-store=basic
+      QTWEBENGINE_CHROMIUM_FLAGS: --no-sandbox --disable-gpu-sandbox --disable-dev-shm-usage --password-store=basic
       QTWEBENGINE_DICTIONARIES_PATH: $SNAP/usr/share/zapzap/qtwebengine_dictionaries
       XKB_CONFIG_ROOT: $SNAP/usr/share/X11/xkb
     plugs:
