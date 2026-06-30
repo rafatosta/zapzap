@@ -11,10 +11,11 @@ class TranslationManager:
     _domain = "zapzap"
     _locale_dir = os.path.join(APP_PATH, "po")
     SYSTEM_LANGUAGE = "system"
+    ENGLISH_LANGUAGE = "en"
 
     @staticmethod
     def list_available_languages():
-        languages = []
+        languages = [TranslationManager.ENGLISH_LANGUAGE]
         if not os.path.isdir(TranslationManager._locale_dir):
             return languages
 
@@ -27,7 +28,7 @@ class TranslationManager:
                 "LC_MESSAGES",
                 f"{TranslationManager._domain}.mo",
             )
-            if os.path.isfile(mo_path):
+            if os.path.isfile(mo_path) and locale not in languages:
                 languages.append(locale)
 
         return languages
