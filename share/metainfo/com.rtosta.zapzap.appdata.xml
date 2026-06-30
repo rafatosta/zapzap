@@ -21,9 +21,11 @@
   <description>
     <p>What's:</p>
     <p>Zapzap is a container for execution of the web web, that is, a kind of Webapp. Thus, all
-      features of WhatsApp Web are available in addition to several others which integrate ZapZap with the
+      features of WhatsApp Web are available in addition to several others which integrate ZapZap
+      with the
       system.</p>
-    <p>What sets this application apart is its support for multiple accounts, running in the background, a spellchecker
+    <p>What sets this application apart is its support for multiple accounts, running in the
+      background, a spellchecker
       and customizations based on the theme of the system.</p>
 
     <p>Data security:</p>
@@ -55,197 +57,197 @@
   </screenshots>
 
   <releases>
-      <release date="2026-06-06" version="6.5.3">
-          <description>
-              <ul>
-                  <li>Improve MIME type handling for downloads</li>
-                  <li>Add performance toggles for Wayland</li>
-                  <li>NVIDIA GBM and Accessibility to fix typing lag</li>
-              </ul>
-          </description>
-      </release>
-      <release date="2026-06-06" version="6.5.1">
-          <description>
-              <ul>
-                  <li>Adjustments and corrections</li>
-              </ul>
-          </description>
-      </release>
-      <release date="2026-05-15" version="6.5">
-          <description>
-              <ul>
-                  <li>New: Custom title bar</li>
-                  <li>New: Refactor DownloadDialog UI</li>
-                  <li>Fix: WhatsApp Web theme sync</li>
-                  <li>Fix: grouped notifications</li>
-              </ul>
-          </description>
-      </release>
-      <release date="2026-05-15" version="6.4.2">
-          <description>
-              <ul>
-                  <li>Fix phone calls (WhatsApp Beta only)</li>
-                  <li>Fix display file preview.</li>
-              </ul>
-          </description>
-      </release>
-      <release date="2026-05-09" version="6.4.1">
-          <description>
-              <ul>
-                  <li>Fix display contact profile pictures in notifications.</li>
-                  <li>Fix phone calls stuck on "Connecting..."</li>
-              </ul>
-          </description>
-      </release>
-      <release date="2026-03-31" version="6.4">
-          <description>
-              <ul>
-                  <li>New debug log management experience in the General settings page.</li>
-                  <li>Add action to reset app settings (.config).</li>
-                  <li>Improve debug diagnostics with app info in RuntimeEnvironmentDebug.</li>
-                  <li>Fix debug logs path to use CrashDumpHandler.dump_dir.</li>
-                  <li>Translation updates.</li>
-              </ul>
-          </description>
-      </release>
-      <release date="2026-03-08" version="6.3.4">
-          <description>
-              <ul>
-                  <li>Support for voice and video calls.</li>
-                  <li>Improve Flatpak permission guidance for file access issues.</li>
-                  <li>fix: avoid duplicate external URL opens on redirects.</li>
-              </ul>
-          </description>
-      </release>
-      <release date="2026-02-19" version="6.3">
-          <description>
-              <ul>
-                  <li>Initial support for custom themes.</li>
-                  <li>User interface and layout improvements.</li>
-                  <li>Additional “Save As” option for downloads.</li>
-                  <li>Stability and performance improvements.</li>
-              </ul>
-          </description>
-      </release>
-      <release date="2026-02-06" version="6.2.10">
-          <description>
-              <ul>
-                  <li>Default user limit increased to 5</li>
-                  <li>Improved app stability</li>
-                  <li>Better error handling when the app crashes</li>
-                  <li>Error messages are now easier to read and copy</li>
-                  <li>General fixes and internal improvements</li>
-              </ul>
-          </description>
-      </release>
-      <release date="2026-01-30" version="6.2.9">
-            <description>
-                <ul>
-                  <li>Improvements and optimizations.</li>
-                </ul>
-            </description>
-        </release>
-      <release date="2026-01-21" version="6.2.8">
-            <description>
-                <ul>
-                  <li>fix: refactor clipboard logic to prevent wayland segfault</li>
-                </ul>
-            </description>
-        </release>
-      <release date="2026-01-14" version="6.2.7">
-            <description>
-                <ul>
-                  <li>Handle missing dbus dependency gracefully</li>
-                </ul>
-            </description>
-          </release>
-      <release date="2026-01-12" version="6.2.6">
-        <description>
-            <ul>
-              <li>Improve clipboard image handling for stability</li>
-            </ul>
-        </description>
-      </release>
-      <release date="2026-01-03" version="6.2.5">
-          <description>
-              <ul>
-                <li>Fixing Chromium Flags being ignored and Wayland support.</li>
-              </ul>
-          </description>
-        </release>
-      <release date="2025-11-11" version="6.2.4">
-        <description>
-            <ul>
-              <li>New: Add Hungarian translation support.</li>
-              <li>Update: Qt10.</li>
-            </ul>
-        </description>
-      </release>
-      <release date="2025-11-05" version="6.2.3">
-        <description>
-            <ul>
-              <li>New: Translation for pt_PT.</li>
-            </ul>
-        </description>
-      </release>
-      <release date="2025-11-02" version="6.2.2">
-        <description>
-            <ul>
-              <li>Fix: Icon does not appear on the taskbar in XFCE.</li>
-              <li>Fix: Review Flatpak Permissions.</li>
-              <li>Translation update.</li>
-            </ul>
-        </description>
-      </release>
+    <release date="2026-06-06" version="6.5.3">
+      <description>
+        <ul>
+          <li>Improve MIME type handling for downloads</li>
+          <li>Add performance toggles for Wayland</li>
+          <li>NVIDIA GBM and Accessibility to fix typing lag</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2026-06-06" version="6.5.1">
+      <description>
+        <ul>
+          <li>Adjustments and corrections</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2026-05-15" version="6.5">
+      <description>
+        <ul>
+          <li>New: Custom title bar</li>
+          <li>New: Refactor DownloadDialog UI</li>
+          <li>Fix: WhatsApp Web theme sync</li>
+          <li>Fix: grouped notifications</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2026-05-15" version="6.4.2">
+      <description>
+        <ul>
+          <li>Fix phone calls (WhatsApp Beta only)</li>
+          <li>Fix display file preview.</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2026-05-09" version="6.4.1">
+      <description>
+        <ul>
+          <li>Fix display contact profile pictures in notifications.</li>
+          <li>Fix phone calls stuck on "Connecting..."</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2026-03-31" version="6.4">
+      <description>
+        <ul>
+          <li>New debug log management experience in the General settings page.</li>
+          <li>Add action to reset app settings (.config).</li>
+          <li>Improve debug diagnostics with app info in RuntimeEnvironmentDebug.</li>
+          <li>Fix debug logs path to use CrashDumpHandler.dump_dir.</li>
+          <li>Translation updates.</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2026-03-08" version="6.3.4">
+      <description>
+        <ul>
+          <li>Support for voice and video calls.</li>
+          <li>Improve Flatpak permission guidance for file access issues.</li>
+          <li>fix: avoid duplicate external URL opens on redirects.</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2026-02-19" version="6.3">
+      <description>
+        <ul>
+          <li>Initial support for custom themes.</li>
+          <li>User interface and layout improvements.</li>
+          <li>Additional “Save As” option for downloads.</li>
+          <li>Stability and performance improvements.</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2026-02-06" version="6.2.10">
+      <description>
+        <ul>
+          <li>Default user limit increased to 5</li>
+          <li>Improved app stability</li>
+          <li>Better error handling when the app crashes</li>
+          <li>Error messages are now easier to read and copy</li>
+          <li>General fixes and internal improvements</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2026-01-30" version="6.2.9">
+      <description>
+        <ul>
+          <li>Improvements and optimizations.</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2026-01-21" version="6.2.8">
+      <description>
+        <ul>
+          <li>fix: refactor clipboard logic to prevent wayland segfault</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2026-01-14" version="6.2.7">
+      <description>
+        <ul>
+          <li>Handle missing dbus dependency gracefully</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2026-01-12" version="6.2.6">
+      <description>
+        <ul>
+          <li>Improve clipboard image handling for stability</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2026-01-03" version="6.2.5">
+      <description>
+        <ul>
+          <li>Fixing Chromium Flags being ignored and Wayland support.</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2025-11-11" version="6.2.4">
+      <description>
+        <ul>
+          <li>New: Add Hungarian translation support.</li>
+          <li>Update: Qt10.</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2025-11-05" version="6.2.3">
+      <description>
+        <ul>
+          <li>New: Translation for pt_PT.</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2025-11-02" version="6.2.2">
+      <description>
+        <ul>
+          <li>Fix: Icon does not appear on the taskbar in XFCE.</li>
+          <li>Fix: Review Flatpak Permissions.</li>
+          <li>Translation update.</li>
+        </ul>
+      </description>
+    </release>
     <release date="2025-09-11" version="6.2.1">
-        <description>
-            <ul>
-              <li>Fix: Can't paste images from clipboard (via browsers).</li>
-              <li>Fix: Dictionary for spelling correction.</li>
-            </ul>
-        </description>
-      </release>
+      <description>
+        <ul>
+          <li>Fix: Can't paste images from clipboard (via browsers).</li>
+          <li>Fix: Dictionary for spelling correction.</li>
+        </ul>
+      </description>
+    </release>
     <release date="2025-08-06" version="6.2">
       <description>
-          <ul>
-            <li>Fix: Links from messages only open a browser tab on first click;</li>
-            <li>Update UserAgent;</li>
-            <li>New: Open context menu in the message.</li>
-          </ul>
+        <ul>
+          <li>Fix: Links from messages only open a browser tab on first click;</li>
+          <li>Update UserAgent;</li>
+          <li>New: Open context menu in the message.</li>
+        </ul>
       </description>
     </release>
     <release date="2025-07-14" version="6.1.1">
       <description>
-          <ul>
-            <li>fix: Error following system dark/light mode.</li>
-          </ul>
+        <ul>
+          <li>fix: Error following system dark/light mode.</li>
+        </ul>
       </description>
     </release>
     <release date="2025-06-19" version="6.1">
       <description>
-          <ul>
-            <li>New color palette</li>
-            <li>Update UserAgent</li>
-            <li>fix: Fullscreen State Not Retained When Minimizing to Tray</li>
-            <li>fix: Improvement in account management</li>
-            <li>fix: A small window squishes the settings screen</li>
-            <li>fix: No tray notification counter anymore</li>
-          </ul>
+        <ul>
+          <li>New color palette</li>
+          <li>Update UserAgent</li>
+          <li>fix: Fullscreen State Not Retained When Minimizing to Tray</li>
+          <li>fix: Improvement in account management</li>
+          <li>fix: A small window squishes the settings screen</li>
+          <li>fix: No tray notification counter anymore</li>
+        </ul>
       </description>
     </release>
     <release date="2025-02-10" version="6.0">
       <description>
-        <ul>    
-            <li>Code optimization and refactoring.</li>
-            <li>Improved UX/UI across the entire app.</li>
-            <li>Reorganized Settings Panel.</li>
-            <li>Ability to select a custom folder for downloads.</li>
-            <li>Temporary folder for opening files.</li>
-            <li>Option to choose a folder for custom dictionaries.</li>
-            <li>Setting to disable the native file selection dialog (Hyprland).</li>
-            <li>Interface scaling adjustment, ideal for 2k/4K screens.</li>
-            <li>Added Performance section.</li>
-            <li>Ability to change the spell checker language via the context menu in chat.</li>
+        <ul>
+          <li>Code optimization and refactoring.</li>
+          <li>Improved UX/UI across the entire app.</li>
+          <li>Reorganized Settings Panel.</li>
+          <li>Ability to select a custom folder for downloads.</li>
+          <li>Temporary folder for opening files.</li>
+          <li>Option to choose a folder for custom dictionaries.</li>
+          <li>Setting to disable the native file selection dialog (Hyprland).</li>
+          <li>Interface scaling adjustment, ideal for 2k/4K screens.</li>
+          <li>Added Performance section.</li>
+          <li>Ability to change the spell checker language via the context menu in chat.</li>
         </ul>
       </description>
     </release>
