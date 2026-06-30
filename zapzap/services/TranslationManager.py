@@ -52,15 +52,16 @@ class TranslationManager:
     @staticmethod
     def apply():
         # Define path to translation files
-        gettext.bindtextdomain(__appname__.lower(),
-                            TranslationManager._locale_dir)
-        gettext.textdomain(__appname__.lower())
-
         selected_language = TranslationManager.get_current_language()
         locale_candidates = []
 
         if selected_language != TranslationManager.SYSTEM_LANGUAGE:
             locale_candidates.append(selected_language)
+            # Most UI modules import `gettext.gettext` directly as `_` before
+            # TranslationManager.apply() runs.  Setting LANGUAGE makes those
+            # already-imported gettext aliases resolve the persisted language
+            # too, instead of only updating the builtins installed below.
+            os.environ["LANGUAGE"] = selected_language
         else:
             # Honor explicit env overrides first.
             for env_name in ("LANGUAGE", "LC_ALL", "LC_MESSAGES", "LANG"):
@@ -76,6 +77,11 @@ class TranslationManager:
             qt_locale = QLocale.system().name()
             if qt_locale:
                 locale_candidates.append(qt_locale)
+
+        gettext.bindtextdomain(
+            __appname__.lower(), TranslationManager._locale_dir
+        )
+        gettext.textdomain(__appname__.lower())
 
         # Keep order, remove duplicates.
         seen = set()
