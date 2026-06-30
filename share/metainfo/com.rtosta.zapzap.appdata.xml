@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component type="desktop">
+<component type="desktop-application">
   <id>com.rtosta.zapzap</id>
   <launchable type="desktop-id">com.rtosta.zapzap.desktop</launchable>
 
@@ -7,52 +7,50 @@
   <summary>WhatsApp Messenger</summary>
 
   <branding>
-    <color type="primary" scheme_preference="light">#F0F2F5</color>
-    <color type="primary" scheme_preference="dark">#202C33</color>
+    <color type="primary" scheme_preference="light">#22C55E</color>
+    <color type="primary" scheme_preference="dark">#166534</color>
   </branding>
 
   <update_contact>rafa.ecomp@gmail.com</update_contact>
-  <developer_name>Rafael Tosta</developer_name>
+  <developer id="com.rtosta">
+    <name>Rafael Tosta</name>
+  </developer>
 
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPL-3.0+</project_license>
-  <content_rating type="oars-1.0" />
+  <project_license>GPL-3.0-or-later</project_license>
+  <content_rating type="oars-1.1" />
 
   <description>
-    <p>What's:</p>
-    <p>Zapzap is a container for execution of the web web, that is, a kind of Webapp. Thus, all
-      features of WhatsApp Web are available in addition to several others which integrate ZapZap
-      with the
-      system.</p>
-    <p>What sets this application apart is its support for multiple accounts, running in the
-      background, a spellchecker
-      and customizations based on the theme of the system.</p>
-
-    <p>Data security:</p>
-    <p>No modifications or manipulations are made to the execution of WhatsApp Web. In
-      addition, all source code is available on GitHub and is publically auditable.</p>
-
-    <p>About:</p>
-    <p>ZapZap was initially developed for personal use. I decided to share it so that other people,
-      like me, could have a WhatsApp client more integrated into the system.</p>
+    <p>
+      ZapZap provides a dedicated desktop window for WhatsApp Web on Linux, with system tray
+      integration, notifications, spell checking, theme integration, and support for multiple
+      accounts.
+    </p>
+    <p>
+      It is designed for users who want quick access to their conversations without keeping a
+      browser tab open, while preserving the familiar WhatsApp Web experience.
+    </p>
+    <p>
+      ZapZap does not modify or manipulate WhatsApp Web content. The source code is available on
+      GitHub for public review.
+    </p>
   </description>
 
   <categories>
     <category>Chat</category>
     <category>InstantMessaging</category>
-    <category>Utility</category>
-    <category>Office</category>
+    <category>Network</category>
   </categories>
 
   <url type="homepage">https://rtosta.com/zapzap/</url>
   <url type="bugtracker">https://github.com/rafatosta/zapzap/issues</url>
+  <url type="vcs-browser">https://github.com/rafatosta/zapzap</url>
   <url type="donation">https://rtosta.com/zapzap/#donate</url>
 
   <screenshots>
     <screenshot type="default">
-      <caption>Application showcase</caption>
-      <image type="source">
-        https://raw.githubusercontent.com/rafatosta/zapzap/main/share/screenshot/default.png</image>
+      <caption>Main chat window</caption>
+      <image type="source" xml:lang="en">https://raw.githubusercontent.com/rafatosta/zapzap/main/share/screenshot/default.png</image>
     </screenshot>
   </screenshots>
 
@@ -60,9 +58,9 @@
     <release date="2026-06-06" version="6.5.3">
       <description>
         <ul>
-          <li>Improve MIME type handling for downloads</li>
-          <li>Add performance toggles for Wayland</li>
-          <li>NVIDIA GBM and Accessibility to fix typing lag</li>
+          <li>Improved MIME type handling for downloaded files</li>
+          <li>Added performance toggles for Wayland sessions</li>
+          <li>Improved NVIDIA GBM and accessibility settings to reduce typing lag</li>
         </ul>
       </description>
     </release>
