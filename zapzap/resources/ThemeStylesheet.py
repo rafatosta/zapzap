@@ -55,22 +55,24 @@ class ThemeStylesheet:
     TOOLTIP = {
         "light": """
             QToolTip {
-                background-color: #ffffff; /* Fundo branco */
-                color: #000000; /* Texto preto */
-                border: 1px solid #cccccc; /* Borda cinza clara */
-                border-radius: 4px; /* Bordas arredondadas */
-                padding: 4px; /* Espaçamento interno */
-                font-size: 12px; /* Tamanho da fonte */
+                background-color: #FFFFFF;
+                color: #111B21;
+                border: 1px solid #DADDE1;
+                border-radius: 10px;
+                padding: 8px 10px;
+                font-size: 12px;
+                opacity: 245;
             }
-            """,
+        """,
         "dark": """
             QToolTip {
-                background-color: #333333; /* Fundo cinza escuro */
-                color: #ffffff; /* Texto branco */
-                border: 1px solid #aaaaaa; /* Borda cinza média */
-                border-radius: 4px; /* Bordas arredondadas */
-                padding: 4px; /* Espaçamento interno */
-                font-size: 12px; /* Tamanho da fonte */
+                background-color: #202C33;
+                color: #E9EDEF;
+                border: 1px solid #2A3942;
+                border-radius: 10px;
+                padding: 8px 10px;
+                font-size: 12px;
+                opacity: 245;
             }
         """
     }
