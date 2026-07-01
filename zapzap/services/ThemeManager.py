@@ -25,17 +25,31 @@ class ThemeManager(QObject):
         Dark = "dark"
 
     _LIGHT_PALETTE_COLORS = {
-        "window": "#f7f5f3",
-        "text": "#000000",
-        "base": "#f0f0f0",
-        "highlight": "#0066cc",
+        "window": "#F0F2F5",
+        "text": "#111B21",
+        "base": "#FFFFFF",
+        "alternate_base": "#F7F8FA",
+        "button": "#FFFFFF",
+        "button_text": "#111B21",
+        "highlight": "#00A884",
+        "highlighted_text": "#FFFFFF",
+        "mid": "#DADDE1",
+        "placeholder_text": "#667781",
+        "bright_text": "#C1352B",
     }
 
     _DARK_PALETTE_COLORS = {
-        "window": "#1d1f1f",
-        "text": "#ffffff",
-        "base": "#3a3a3a",
-        "highlight": "#0099ff",
+        "window": "#111B21",
+        "text": "#E9EDEF",
+        "base": "#202C33",
+        "alternate_base": "#2A3942",
+        "button": "#202C33",
+        "button_text": "#E9EDEF",
+        "highlight": "#00A884",
+        "highlighted_text": "#111B21",
+        "mid": "#2A3942",
+        "placeholder_text": "#8696A0",
+        "bright_text": "#FFB4AB",
     }
 
     theme_changed = pyqtSignal(object, object)
@@ -206,19 +220,35 @@ class ThemeManager(QObject):
             self._apply_color_scheme()
 
     @staticmethod
-    def _create_palette(window: str, text: str, base: str, highlight: str) -> QPalette:
+    def _create_palette(
+        window: str,
+        text: str,
+        base: str,
+        alternate_base: str,
+        button: str,
+        button_text: str,
+        highlight: str,
+        highlighted_text: str,
+        mid: str,
+        placeholder_text: str,
+        bright_text: str,
+    ) -> QPalette:
         palette = QPalette()
 
         palette.setColor(QPalette.ColorRole.Window, QColor(window))
         palette.setColor(QPalette.ColorRole.WindowText, QColor(text))
         palette.setColor(QPalette.ColorRole.Base, QColor(base))
+        palette.setColor(QPalette.ColorRole.AlternateBase, QColor(alternate_base))
         palette.setColor(QPalette.ColorRole.ToolTipBase, QColor(base))
         palette.setColor(QPalette.ColorRole.ToolTipText, QColor(text))
         palette.setColor(QPalette.ColorRole.Text, QColor(text))
-        palette.setColor(QPalette.ColorRole.Button, QColor(base))
-        palette.setColor(QPalette.ColorRole.ButtonText, QColor(text))
+        palette.setColor(QPalette.ColorRole.Button, QColor(button))
+        palette.setColor(QPalette.ColorRole.ButtonText, QColor(button_text))
         palette.setColor(QPalette.ColorRole.Highlight, QColor(highlight))
-        palette.setColor(QPalette.ColorRole.HighlightedText, QColor(text))
+        palette.setColor(QPalette.ColorRole.HighlightedText, QColor(highlighted_text))
+        palette.setColor(QPalette.ColorRole.Mid, QColor(mid))
+        palette.setColor(QPalette.ColorRole.PlaceholderText, QColor(placeholder_text))
+        palette.setColor(QPalette.ColorRole.BrightText, QColor(bright_text))
 
         return palette
 

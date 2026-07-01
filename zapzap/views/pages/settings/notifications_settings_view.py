@@ -1,19 +1,21 @@
 from gettext import gettext as _
 
+from PyQt6.QtCore import QTimer
 from PyQt6.QtWidgets import QScrollArea, QVBoxLayout, QWidget
 
+from zapzap.services.ThemeManager import ThemeManager
 from zapzap.views.components import Card, Label, Section, SwitchRow
-from zapzap.views.components.adaptive import AdaptiveStyleMixin, tokens
 
 
-class NotificationsSettingsView(AdaptiveStyleMixin, QWidget):
+class NotificationsSettingsView(QWidget):
     """Composable view for notification settings, without persistence logic."""
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setObjectName("PageNotificationsView")
         self._setup_ui()
-        self.install_adaptive_style()
+        self._apply_style()
+        ThemeManager.instance().theme_changed.connect(self._schedule_palette_refresh)
 
     def _setup_ui(self):
         root_layout = QVBoxLayout(self)
@@ -97,18 +99,27 @@ class NotificationsSettingsView(AdaptiveStyleMixin, QWidget):
         section.add_card(card)
         self.content_layout.addWidget(section)
 
-    def apply_adaptive_style(self):
-        c = tokens(self)
-        self.setStyleSheet(f"""
-            QWidget#PageNotificationsView {{
-                background: {c['background']};
-                color: {c['text']};
-            }}
-            QScrollArea {{
-                background: {c['background']};
+    def _schedule_palette_refresh(self, *_args):
+        QTimer.singleShot(0, self._refresh_palette_styles)
+
+    def _refresh_palette_styles(self):
+        for widget in [self, *self.findChildren(QWidget)]:
+            style = widget.style()
+            style.unpolish(widget)
+            style.polish(widget)
+            widget.update()
+
+    def _apply_style(self):
+        self.setStyleSheet("""
+            QWidget#PageNotificationsView {
+                background: palette(window);
+                color: palette(text);
+            }
+            QScrollArea {
+                background: palette(window);
                 border: 0;
-            }}
-            QScrollArea > QWidget > QWidget {{
-                background: {c['background']};
-            }}
+            }
+            QScrollArea > QWidget > QWidget {
+                background: palette(window);
+            }
         """)
