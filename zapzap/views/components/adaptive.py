@@ -77,14 +77,19 @@ class AdaptiveStyleMixin:
             self._adaptive_theme_signal_connected = True
         self.apply_adaptive_style()
 
-    def _refresh_adaptive_style(self, next_theme=None):
+    def _refresh_adaptive_style(self, next_theme=None, *, force=False):
         next_theme = next_theme or theme_name(self)
         if next_theme != self._adaptive_theme:
             self._adaptive_theme = next_theme
-        self.apply_adaptive_style()
+            force = True
+        if force:
+            self.apply_adaptive_style()
 
     def _handle_theme_changed(self, _current_theme=None, effective_color_scheme=None):
-        self._refresh_adaptive_style(_theme_name_from_color_scheme(effective_color_scheme))
+        self._refresh_adaptive_style(
+            _theme_name_from_color_scheme(effective_color_scheme),
+            force=True,
+        )
 
     def eventFilter(self, watched, event):
         if watched is self and event.type() in self.WATCHED_EVENTS:
