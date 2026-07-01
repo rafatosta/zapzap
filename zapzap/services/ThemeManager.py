@@ -25,31 +25,31 @@ class ThemeManager(QObject):
         Dark = "dark"
 
     _LIGHT_PALETTE_COLORS = {
-        "window": "#F0F2F5",
-        "text": "#111B21",
-        "base": "#FFFFFF",
-        "alternate_base": "#F7F8FA",
-        "button": "#FFFFFF",
-        "button_text": "#111B21",
-        "highlight": "#00A884",
+        "window": "#f7f5f3",
+        "text": "#1d1f1f",
+        "base": "#ffffff",
+        "alternate_base": "#eae9e7",
+        "button": "#ffffff",
+        "button_text": "#1d1f1f",
+        "highlight": "#21c063",
         "highlighted_text": "#FFFFFF",
-        "mid": "#DADDE1",
-        "placeholder_text": "#667781",
-        "bright_text": "#C1352B",
+        "mid": "#D0D4D8",
+        "placeholder_text": "#A6AEB6",
+        "bright_text": "#e01b24",
     }
 
     _DARK_PALETTE_COLORS = {
-        "window": "#111B21",
-        "text": "#E9EDEF",
-        "base": "#202C33",
-        "alternate_base": "#2A3942",
-        "button": "#202C33",
-        "button_text": "#E9EDEF",
-        "highlight": "#00A884",
-        "highlighted_text": "#111B21",
-        "mid": "#2A3942",
-        "placeholder_text": "#8696A0",
-        "bright_text": "#FFB4AB",
+        "window": "#1d1f1f",
+        "text": "#E1E1E1",
+        "base": "#242626",
+        "alternate_base": "#292a2a",
+        "button": "#242626",
+        "button_text": "#E1E1E1",
+        "highlight": "#21c063",
+        "highlighted_text": "#FFFFFF",
+        "mid": "#444444",
+        "placeholder_text": "#A6AEB6",
+        "bright_text": "#e01b24",
     }
 
     theme_changed = pyqtSignal(object, object)
