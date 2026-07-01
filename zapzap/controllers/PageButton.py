@@ -19,7 +19,7 @@ class PageButton(QPushButton):
         border: 1px solid transparent;
         border-radius: 12px;
         qproperty-flat: true;
-        qproperty-iconSize: 30px;
+        qproperty-iconSize: 34px;
         padding: 0;
     }
     """
@@ -30,7 +30,7 @@ class PageButton(QPushButton):
         border: 1px solid rgba(0, 168, 132, 0.24);
         border-radius: 12px;
         qproperty-flat: true;
-        qproperty-iconSize: 30px;
+        qproperty-iconSize: 34px;
         padding: 0;
     }
     """
@@ -41,7 +41,7 @@ class PageButton(QPushButton):
         border: 1px solid #00A884;
         border-radius: 12px;
         qproperty-flat: true;
-        qproperty-iconSize: 30px;
+        qproperty-iconSize: 34px;
         padding: 0;
     }
     """
@@ -66,8 +66,8 @@ class PageButton(QPushButton):
     def _setup_ui(self):
         """Configura a interface do botão."""
         self.setFlat(True)
-        self.setMinimumSize(QSize(42, 42))
-        self.setMaximumSize(QSize(42, 42))
+        self.setMinimumSize(QSize(48, 48))
+        self.setMaximumSize(QSize(48, 48))
         self.setStyleSheet(self.STYLE_NORMAL)
 
     def update_user_icon(self):

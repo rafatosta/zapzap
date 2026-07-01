@@ -30,7 +30,7 @@ class Browser(QWidget, Ui_Browser):
         self.page_count = 0  # Contador de páginas
         self.page_buttons = {}  # Mapeamento entre botões e páginas
         self._configure_sidebar_appearance()
-        self._sidebar_expanded_width = 56
+        self._sidebar_expanded_width = 72
         self._sidebar_animation_group = None
         self._last_active_webview = None
         self._shutting_down = False
@@ -39,16 +39,18 @@ class Browser(QWidget, Ui_Browser):
 
 
     def _configure_sidebar_appearance(self):
-        self.browser_sidebar.setMinimumWidth(56)
-        self.browser_sidebar.setMaximumWidth(56)
+        self.browser_sidebar.setMinimumWidth(72)
+        self.browser_sidebar.setMaximumWidth(72)
+        self.page_buttons_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        self.layout_2.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         for button in (
             self.btn_new_account,
             self.btn_new_chat_number,
             self.btn_new_chat,
             self.btn_open_settings,
         ):
-            button.setMinimumSize(40, 40)
-            button.setMaximumSize(40, 40)
+            button.setMinimumSize(48, 48)
+            button.setMaximumSize(48, 48)
             button.setIconSize(self.btn_open_settings.iconSize())
 
     def shutdown(self):
@@ -88,7 +90,8 @@ class Browser(QWidget, Ui_Browser):
 
         # Add grid button to sidebar
         self.btn_grid_view = QPushButton(self.settings_buttons_layout)
-        self.btn_grid_view.setMinimumSize(40, 40)
+        self.btn_grid_view.setMinimumSize(48, 48)
+        self.btn_grid_view.setMaximumSize(48, 48)
         self.btn_grid_view.setText("")
         self.btn_grid_view.setIconSize(self.btn_open_settings.iconSize())
         self.btn_grid_view.setToolTip(_("Grid view"))
@@ -118,7 +121,8 @@ class Browser(QWidget, Ui_Browser):
             return
 
         self.btn_flatpak_help = QPushButton(self.settings_buttons_layout)
-        self.btn_flatpak_help.setMinimumSize(40, 40)
+        self.btn_flatpak_help.setMinimumSize(48, 48)
+        self.btn_flatpak_help.setMaximumSize(48, 48)
         self.btn_flatpak_help.setText("")
         self.btn_flatpak_help.setIconSize(self.btn_open_settings.iconSize())
         self.btn_flatpak_help.setToolTip(_("Flatpak sandbox help"))
