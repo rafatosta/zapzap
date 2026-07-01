@@ -1,5 +1,6 @@
 """ZapZap label component."""
 
+from PyQt6.QtCore import QEvent
 from PyQt6.QtWidgets import QLabel
 
 
@@ -11,6 +12,14 @@ class Label(QLabel):
         self.variant = variant
         self.setWordWrap(variant in {"description", "section_description", "row_description"})
         self._apply_style()
+
+    def changeEvent(self, event):
+        if event.type() in {
+            QEvent.Type.ApplicationPaletteChange,
+            QEvent.Type.PaletteChange,
+        }:
+            self._apply_style()
+        super().changeEvent(event)
 
     def _apply_style(self):
         styles = {

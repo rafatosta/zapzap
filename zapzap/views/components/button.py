@@ -1,6 +1,6 @@
 """ZapZap button component."""
 
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import QEvent, Qt
 from PyQt6.QtWidgets import QPushButton
 
 
@@ -11,6 +11,14 @@ class Button(QPushButton):
         super().__init__(text, parent)
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         self._apply_style()
+
+    def changeEvent(self, event):
+        if event.type() in {
+            QEvent.Type.ApplicationPaletteChange,
+            QEvent.Type.PaletteChange,
+        }:
+            self._apply_style()
+        super().changeEvent(event)
 
     def _apply_style(self):
         self.setStyleSheet("""

@@ -1,5 +1,6 @@
 from gettext import gettext as _
 
+from PyQt6.QtCore import QEvent
 from PyQt6.QtWidgets import QScrollArea, QVBoxLayout, QWidget
 
 from zapzap.views.components import Card, Label, Section, SwitchRow
@@ -95,6 +96,14 @@ class NotificationsSettingsView(QWidget):
         card.add_widget(self.donationMessage)
         section.add_card(card)
         self.content_layout.addWidget(section)
+
+    def changeEvent(self, event):
+        if event.type() in {
+            QEvent.Type.ApplicationPaletteChange,
+            QEvent.Type.PaletteChange,
+        }:
+            self._apply_style()
+        super().changeEvent(event)
 
     def _apply_style(self):
         self.setStyleSheet("""
