@@ -1,6 +1,7 @@
 """Adaptive style primitives for ZapZap reusable components."""
 
 from PyQt6.QtCore import QEvent
+from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPalette
 
 from zapzap.services.ThemeManager import ThemeManager
@@ -33,8 +34,20 @@ DARK_TOKENS = {
 }
 
 
+def _theme_name_from_color_scheme(color_scheme):
+    if color_scheme == Qt.ColorScheme.Dark:
+        return "dark"
+    if color_scheme == Qt.ColorScheme.Light:
+        return "light"
+    return None
+
+
 def is_dark(widget):
-    """Return True when the current Qt palette is using a dark window color."""
+    """Return True when the component is using the dark theme."""
+    adaptive_theme = getattr(widget, "_adaptive_theme", None)
+    if adaptive_theme in {"dark", "light"}:
+        return adaptive_theme == "dark"
+
     return widget.palette().color(QPalette.ColorRole.Window).lightness() < 128
 
 
@@ -44,8 +57,9 @@ def theme_name(widget):
 
 
 def tokens(widget):
-    """Return ZapZap component tokens for the widget's current palette."""
+    """Return ZapZap component tokens for the widget's current theme."""
     return DARK_TOKENS if is_dark(widget) else LIGHT_TOKENS
+
 
 class AdaptiveStyleMixin:
     """Mixin that updates a component style when Qt emits palette changes."""
@@ -63,14 +77,14 @@ class AdaptiveStyleMixin:
             self._adaptive_theme_signal_connected = True
         self.apply_adaptive_style()
 
-    def _refresh_adaptive_style(self):
-        next_theme = theme_name(self)
+    def _refresh_adaptive_style(self, next_theme=None):
+        next_theme = next_theme or theme_name(self)
         if next_theme != self._adaptive_theme:
             self._adaptive_theme = next_theme
-            self.apply_adaptive_style()
+        self.apply_adaptive_style()
 
-    def _handle_theme_changed(self, *args):
-        self._refresh_adaptive_style()
+    def _handle_theme_changed(self, _current_theme=None, effective_color_scheme=None):
+        self._refresh_adaptive_style(_theme_name_from_color_scheme(effective_color_scheme))
 
     def eventFilter(self, watched, event):
         if watched is self and event.type() in self.WATCHED_EVENTS:
