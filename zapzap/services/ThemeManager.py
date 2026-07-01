@@ -265,3 +265,12 @@ class ThemeManager(QObject):
         )
 
         app.setPalette(cls._create_palette(**palette_colors))
+        cls._refresh_application_styles(app)
+
+    @staticmethod
+    def _refresh_application_styles(app: QApplication) -> None:
+        for widget in app.allWidgets():
+            style = widget.style()
+            style.unpolish(widget)
+            style.polish(widget)
+            widget.update()

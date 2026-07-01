@@ -1,6 +1,5 @@
 """ZapZap card component."""
 
-from PyQt6.QtCore import QEvent
 from PyQt6.QtWidgets import QFrame, QVBoxLayout
 
 
@@ -17,14 +16,6 @@ class Card(QFrame):
 
     def add_widget(self, widget):
         self.layout.addWidget(widget)
-
-    def changeEvent(self, event):
-        if event.type() in {
-            QEvent.Type.ApplicationPaletteChange,
-            QEvent.Type.PaletteChange,
-        }:
-            self._apply_style()
-        super().changeEvent(event)
 
     def _apply_style(self):
         self.setStyleSheet("""
