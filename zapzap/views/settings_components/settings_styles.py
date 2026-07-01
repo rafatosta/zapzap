@@ -3,6 +3,8 @@
 from PyQt6.QtCore import QEvent, QObject
 from PyQt6.QtGui import QPalette
 
+from zapzap.services.ThemeManager import ThemeManager
+
 
 WHATSAPP_LIGHT = {
     "background": "#F0F2F5",
@@ -76,13 +78,17 @@ class _SettingsStyleWatcher(QObject):
         super().__init__(widget)
         self.widget = widget
         self.current_theme = _theme_name(widget)
+        ThemeManager.instance().theme_changed.connect(self.refresh_style)
+
+    def refresh_style(self, *args):
+        next_theme = _theme_name(self.widget)
+        if next_theme != self.current_theme:
+            self.current_theme = next_theme
+            apply_settings_style(self.widget, install_watcher=False)
 
     def eventFilter(self, watched, event):
         if watched is self.widget and event.type() in self.WATCHED_EVENTS:
-            next_theme = _theme_name(self.widget)
-            if next_theme != self.current_theme:
-                self.current_theme = next_theme
-                apply_settings_style(self.widget, install_watcher=False)
+            self.refresh_style()
         return super().eventFilter(watched, event)
 
 
