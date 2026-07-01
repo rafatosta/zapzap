@@ -1,5 +1,6 @@
 """Shared stylesheet for the redesigned settings UI."""
 
+from PyQt6.QtCore import QEvent, QObject
 from PyQt6.QtGui import QPalette
 
 
@@ -58,9 +59,47 @@ def _tokens(widget):
     return WHATSAPP_DARK if _is_dark(widget) else WHATSAPP_LIGHT
 
 
-def apply_settings_style(widget):
+def _theme_name(widget):
+    """Return the current settings component theme name."""
+    return "dark" if _is_dark(widget) else "light"
+
+
+class _SettingsStyleWatcher(QObject):
+    """Reapply settings styles when Qt changes between light and dark palettes."""
+
+    WATCHED_EVENTS = {
+        QEvent.Type.ApplicationPaletteChange,
+        QEvent.Type.PaletteChange,
+    }
+
+    def __init__(self, widget):
+        super().__init__(widget)
+        self.widget = widget
+        self.current_theme = _theme_name(widget)
+
+    def eventFilter(self, watched, event):
+        if watched is self.widget and event.type() in self.WATCHED_EVENTS:
+            next_theme = _theme_name(self.widget)
+            if next_theme != self.current_theme:
+                self.current_theme = next_theme
+                apply_settings_style(self.widget, install_watcher=False)
+        return super().eventFilter(watched, event)
+
+
+def _install_style_watcher(widget):
+    watcher = getattr(widget, "_settings_style_watcher", None)
+    if watcher is None:
+        watcher = _SettingsStyleWatcher(widget)
+        widget._settings_style_watcher = watcher
+        widget.installEventFilter(watcher)
+    else:
+        watcher.current_theme = _theme_name(widget)
+
+
+def apply_settings_style(widget, install_watcher=True):
     """Apply a WhatsApp-inspired stylesheet that adapts to light and dark themes."""
     c = _tokens(widget)
+    widget.setProperty("settingsTheme", _theme_name(widget))
     widget.setStyleSheet(f"""
         QWidget#SettingsRoot {{ background: {c['background']}; color: {c['text']}; }}
         QWidget#SettingsSidebar {{ background: {c['sidebar']}; border-right: 1px solid {c['border']}; }}
@@ -83,13 +122,15 @@ def apply_settings_style(widget):
         }}
         QPushButton#SettingsDonateButton:hover {{ background: {c['accent_hover']}; border-color: {c['accent_hover']}; }}
         QScrollArea#SettingsPageScroll {{ border: 0; background: transparent; }}
-        QWidget#SettingsPageViewport {{ background: transparent; color: {c['text']}; }}
+        QScrollArea#SettingsPageScroll > QWidget > QWidget {{ background: {c['background']}; }}
+        QWidget#SettingsPageViewport {{ background: {c['background']}; color: {c['text']}; }}
         QLabel#SettingsPageTitle {{ font-size: 26px; font-weight: 700; color: {c['text']}; }}
         QLabel#SettingsPageDescription, QLabel#SettingsSectionDescription, QLabel#SettingsRowDescription {{ color: {c['muted']}; }}
         QLabel#SettingsSectionTitle {{ font-size: 16px; font-weight: 700; color: {c['text']}; }}
         QLabel#SettingsRowTitle {{ font-weight: 600; color: {c['text']}; }}
         QFrame#SettingsCard {{ background: {c['card']}; border: 1px solid {c['border']}; border-radius: 14px; }}
         QFrame#SettingsInfoBox {{ border-radius: 12px; padding: 12px; background: {c['info_bg']}; border: 1px solid {c['info_border']}; color: {c['text']}; }}
+        QFrame#SettingsInfoBox QLabel {{ color: {c['text']}; }}
         QFrame#SettingsInfoBox[kind="warning"] {{ background: {c['warning_bg']}; border-color: {c['warning_border']}; color: {c['warning_fg']}; }}
         QFrame#SettingsInfoBox[kind="warning"] QLabel {{ color: {c['warning_fg']}; }}
         QFrame#SettingsInfoBox[kind="danger"] {{ background: {c['danger_bg']}; border-color: {c['danger_border']}; color: {c['danger_fg']}; }}
@@ -111,3 +152,5 @@ def apply_settings_style(widget):
         QPushButton:hover {{ border-color: {c['accent']}; background: {c['accent_soft']}; }}
         QPushButton:disabled, QLineEdit:disabled, QComboBox:disabled {{ color: {c['muted']}; background: {c['background']}; }}
     """)
+    if install_watcher:
+        _install_style_watcher(widget)
