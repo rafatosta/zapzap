@@ -1007,6 +1007,88 @@ class ThemeStylesheet:
         """
     }
 
+
+    DIALOG = {
+        "light": """
+            QDialog, QMessageBox, QFileDialog {
+                background-color: #F0F2F5;
+                color: #111B21;
+            }
+            QDialog QFrame#Container,
+            QDialog QFrame#OnboardingCard,
+            QDialog QFrame#SettingsCard {
+                background-color: #FFFFFF;
+                border: 1px solid #DADDE1;
+                border-radius: 14px;
+            }
+            QMessageBox QLabel,
+            QDialog QLabel {
+                color: #111B21;
+                background-color: transparent;
+            }
+            QDialog QLabel#Directory,
+            QDialog QLabel#OnboardingSubtitle {
+                color: #667781;
+            }
+            QDialog QDialogButtonBox QPushButton,
+            QDialog QToolButton,
+            QMessageBox QPushButton,
+            QFileDialog QPushButton {
+                min-height: 32px;
+                border-radius: 10px;
+                padding: 6px 12px;
+            }
+            QDialog QProgressBar {
+                background-color: #DADDE1;
+                border: 0;
+                border-radius: 4px;
+            }
+            QDialog QProgressBar::chunk {
+                background-color: #00A884;
+                border-radius: 4px;
+            }
+        """,
+        "dark": """
+            QDialog, QMessageBox, QFileDialog {
+                background-color: #111B21;
+                color: #E9EDEF;
+            }
+            QDialog QFrame#Container,
+            QDialog QFrame#OnboardingCard,
+            QDialog QFrame#SettingsCard {
+                background-color: #202C33;
+                border: 1px solid #2A3942;
+                border-radius: 14px;
+            }
+            QMessageBox QLabel,
+            QDialog QLabel {
+                color: #E9EDEF;
+                background-color: transparent;
+            }
+            QDialog QLabel#Directory,
+            QDialog QLabel#OnboardingSubtitle {
+                color: #8696A0;
+            }
+            QDialog QDialogButtonBox QPushButton,
+            QDialog QToolButton,
+            QMessageBox QPushButton,
+            QFileDialog QPushButton {
+                min-height: 32px;
+                border-radius: 10px;
+                padding: 6px 12px;
+            }
+            QDialog QProgressBar {
+                background-color: #2A3942;
+                border: 0;
+                border-radius: 4px;
+            }
+            QDialog QProgressBar::chunk {
+                background-color: #00A884;
+                border-radius: 4px;
+            }
+        """
+    }
+
     @staticmethod
     def get_stylesheet(theme) -> str:
         components = [
@@ -1020,6 +1102,7 @@ class ThemeStylesheet:
             ThemeStylesheet.SPECIAL_BUTTONS[theme],
             ThemeStylesheet.COMBOBOX[theme],
             ThemeStylesheet.LINE_EDIT[theme],
+            ThemeStylesheet.DIALOG[theme],
             ThemeStylesheet.MENUBAR[theme],
             ThemeStylesheet.MENU[theme],
             ThemeStylesheet.TABLE[theme],

@@ -200,14 +200,15 @@ class DownloadDialog(QDialog):
         self.setStyleSheet("""
             #Container {
                 background-color: palette(window);
-                border-radius: 10px;
-                padding: 14px;
+                border: 1px solid palette(mid);
+                border-radius: 14px;
+                padding: 16px;
             }
 
             QToolButton {
-                padding: 5px 10px;
+                padding: 6px 12px;
                 font-size: 14px;
-                border-radius: 6px;
+                border-radius: 10px;
             }
         """)
 
