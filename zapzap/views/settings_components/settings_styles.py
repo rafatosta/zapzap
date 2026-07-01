@@ -140,12 +140,12 @@ def apply_settings_style(widget, install_watcher=True):
         QLabel#SettingsBadge[kind="danger"] {{ background: {c['danger_bg']}; color: {c['danger_fg']}; }}
         QLabel#SettingsBadge[kind="success"] {{ background: {c['accent_soft']}; color: {c['accent']}; }}
         QLineEdit, QTextEdit, QTableWidget {{
-            min-height: 32px; border: 1px solid {c['border']}; border-radius: 8px;
-            padding: 4px 8px; background: {c['field']}; color: {c['text']}; selection-background-color: {c['accent']};
+            min-height: 36px; border: 1px solid {c['border']}; border-radius: 8px;
+            padding: 6px 10px; background: {c['field']}; color: {c['text']}; selection-background-color: {c['accent']};
         }}
         QComboBox {{
-            min-height: 34px; border: 1px solid {c['border']}; border-radius: 10px;
-            padding: 4px 34px 4px 10px; background: {c['field']}; color: {c['text']};
+            min-height: 36px; border: 1px solid {c['border']}; border-radius: 10px;
+            padding: 6px 34px 6px 12px; background: {c['field']}; color: {c['text']};
             selection-background-color: {c['accent']}; selection-color: #FFFFFF;
         }}
         QComboBox:hover {{ border-color: {c['accent']}; background: {c['button']}; }}
@@ -170,7 +170,7 @@ def apply_settings_style(widget, install_watcher=True):
         QComboBox QAbstractItemView::item {{ min-height: 28px; padding: 4px 8px; border-radius: 6px; }}
         QCheckBox, QRadioButton, QLabel {{ color: {c['text']}; }}
         QPushButton {{
-            border: 1px solid {c['border']}; border-radius: 8px; padding: 6px 10px;
+            min-height: 36px; border: 1px solid {c['border']}; border-radius: 8px; padding: 6px 12px;
             background: {c['button']}; color: {c['text']};
         }}
         QPushButton:hover {{ border-color: {c['accent']}; background: {c['accent_soft']}; }}

@@ -117,7 +117,7 @@ class DownloadDialog(QDialog):
         more_btn.setObjectName("DownloadMoreButton")
         more_btn.setText(_("More"))
         more_btn.setMinimumWidth(112)
-        more_btn.setFixedHeight(34)
+        more_btn.setFixedHeight(36)
 
         more_btn.setPopupMode(
             QToolButton.ToolButtonPopupMode.InstantPopup
@@ -209,10 +209,10 @@ class DownloadDialog(QDialog):
             }
 
             QToolButton#DownloadMoreButton {
-                min-height: 34px;
+                min-height: 36px;
                 border: 1px solid palette(mid);
                 border-radius: 10px;
-                padding: 4px 34px 4px 10px;
+                padding: 6px 34px 6px 12px;
                 font-size: 14px;
                 text-align: left;
                 background-color: palette(base);

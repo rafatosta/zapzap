@@ -7,9 +7,10 @@ class ThemeStylesheet:
                 background-color: #ffffff;
                 color: #1d1f1f;
                 border: 1px solid #D0D4D8;
-                padding: 5px 10px;
+                min-height: 36px;
+                padding: 6px 12px;
                 font-size: 14px;
-                border-radius: 6px;
+                border-radius: 8px;
             }
             QPushButton:hover {
                 background-color: #f7f5f3;
@@ -31,9 +32,10 @@ class ThemeStylesheet:
                 background-color: #242626;
                 color: #E1E1E1;
                 border: 1px solid #242626;
-                padding: 5px 10px;
+                min-height: 36px;
+                padding: 6px 12px;
                 font-size: 14px;
-                border-radius: 6px;
+                border-radius: 8px;
             }
             QPushButton:hover {
                 background-color: #242626;
@@ -387,9 +389,10 @@ class ThemeStylesheet:
                 background-color: #ffffff;
                 color: #1d1f1f;
                 border: 1px solid #D0D4D8;
-                padding: 5px 10px;
+                min-height: 36px;
+                padding: 6px 12px;
                 font-size: 14px;
-                border-radius: 6px;
+                border-radius: 8px;
                 combobox-popup: 0;
             }
             QComboBox:hover {
@@ -420,9 +423,10 @@ class ThemeStylesheet:
                 background-color: #1d1f1f;
                 color: #E1E1E1;
                 border: 1px solid #1d1f1f;
-                padding: 5px 10px;
+                min-height: 36px;
+                padding: 6px 12px;
                 font-size: 14px;
-                border-radius: 6px;
+                border-radius: 8px;
                 combobox-popup: 0;
             }
             QComboBox:hover {
@@ -463,9 +467,10 @@ class ThemeStylesheet:
                 background-color: #ffffff;
                 color: #1d1f1f;
                 border: 1px solid #D0D4D8;
-                padding: 5px 10px;
+                min-height: 36px;
+                padding: 6px 12px;
                 font-size: 14px;
-                border-radius: 6px;
+                border-radius: 8px;
             }
             QLineEdit:hover {
                 background-color: #f7f5f3;
@@ -487,9 +492,10 @@ class ThemeStylesheet:
                 background-color: #1d1f1f;
                 color: #E1E1E1;
                 border: 1px solid #1d1f1f;
-                padding: 5px 10px;
+                min-height: 36px;
+                padding: 6px 12px;
                 font-size: 14px;
-                border-radius: 6px;
+                border-radius: 8px;
             }
             QLineEdit:hover {
                 background-color: #242626;
@@ -1034,7 +1040,7 @@ class ThemeStylesheet:
             QDialog QToolButton,
             QMessageBox QPushButton,
             QFileDialog QPushButton {
-                min-height: 32px;
+                min-height: 36px;
                 border-radius: 10px;
                 padding: 6px 12px;
             }
@@ -1073,7 +1079,7 @@ class ThemeStylesheet:
             QDialog QToolButton,
             QMessageBox QPushButton,
             QFileDialog QPushButton {
-                min-height: 32px;
+                min-height: 36px;
                 border-radius: 10px;
                 padding: 6px 12px;
             }
