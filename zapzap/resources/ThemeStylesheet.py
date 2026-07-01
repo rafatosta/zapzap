@@ -487,53 +487,120 @@ class ThemeStylesheet:
         """
     }
 
+
+    MENUBAR = {
+        "light": """
+            QMenuBar {
+                background-color: #FFFFFF;
+                color: #111B21;
+                border: none;
+                border-bottom: 1px solid #DADDE1;
+                padding: 2px 6px;
+                spacing: 2px;
+                font-size: 14px;
+            }
+            QMenuBar::item {
+                background: transparent;
+                color: #111B21;
+                padding: 6px 10px;
+                margin: 2px 1px;
+                border-radius: 8px;
+            }
+            QMenuBar::item:selected {
+                background-color: #D9FDD3;
+                color: #075E54;
+            }
+            QMenuBar::item:pressed {
+                background-color: #00A884;
+                color: #FFFFFF;
+            }
+            QMenuBar::item:disabled {
+                color: #A6AEB6;
+            }
+        """,
+        "dark": """
+            QMenuBar {
+                background-color: #111B21;
+                color: #E9EDEF;
+                border: none;
+                border-bottom: 1px solid #2A3942;
+                padding: 2px 6px;
+                spacing: 2px;
+                font-size: 14px;
+            }
+            QMenuBar::item {
+                background: transparent;
+                color: #E9EDEF;
+                padding: 6px 10px;
+                margin: 2px 1px;
+                border-radius: 8px;
+            }
+            QMenuBar::item:selected {
+                background-color: #0B3B35;
+                color: #00A884;
+            }
+            QMenuBar::item:pressed {
+                background-color: #00A884;
+                color: #FFFFFF;
+            }
+            QMenuBar::item:disabled {
+                color: #54656F;
+            }
+        """
+    }
+
     MENU = {
         "light": """
             QMenu {
                 background-color: #FFFFFF;
-                border: 1px solid #D0D4D8;
-                border-radius: 6px;
-                padding: 5px;
-                color: #1d1f1f;
+                border: 1px solid #DADDE1;
+                border-radius: 10px;
+                padding: 6px;
+                color: #111B21;
                 font-size: 14px;
             }
             QMenu::item {
                 background-color: transparent;
-                padding: 6px 12px;
+                padding: 8px 28px 8px 12px;
                 margin: 2px 0;
-                border-radius: 4px;
+                border-radius: 7px;
             }
             QMenu::item:selected {
-                background-color: #f7f5f3;
-                color: #1d1f1f;
+                background-color: #D9FDD3;
+                color: #075E54;
             }
             QMenu::item:pressed {
-                background-color: #DDE2E6;
-                color: #161E23;
+                background-color: #00A884;
+                color: #FFFFFF;
             }
             QMenu:disabled {
-                background-color: #ffffff;
-                border: 1px solid #D0D4D8;
+                background-color: #FFFFFF;
+                border: 1px solid #DADDE1;
                 color: #A6AEB6;
             }
             QMenu::item:disabled {
                 color: #A6AEB6;
                 background-color: transparent;
             }
+            QMenu::separator {
+                height: 1px;
+                background-color: #DADDE1;
+                margin: 6px 8px;
+            }
             QMenu::indicator {
-                width: 10px;
-                height: 10px;
-                border: 2px solid #D0D4D8;
-                border-radius: 4px;
+                width: 12px;
+                height: 12px;
+                border: 2px solid #D1D7DB;
+                border-radius: 6px;
                 background-color: #FFFFFF;
             }
             QMenu::indicator:checked {
-                background-color: #21c063;
-                border: 2px solid #21c063;
+                background-color: #00A884;
+                border: 2px solid #00A884;
             }
             QMenu::indicator:unchecked {
-                background-color: #ffffff;
-                border: 2px solid #D0D4D8;
+                background-color: #FFFFFF;
+                border: 2px solid #D1D7DB;
             }
             QMenu::right-arrow {
                 padding-left: 8px;
@@ -541,50 +608,55 @@ class ThemeStylesheet:
         """,
         "dark": """
             QMenu {
-                background-color: #2E2E2E;
-                border: 1px solid #444444;
-                border-radius: 6px;
-                padding: 5px;
-                color: #FFFFFF;
+                background-color: #202C33;
+                border: 1px solid #2A3942;
+                border-radius: 10px;
+                padding: 6px;
+                color: #E9EDEF;
                 font-size: 14px;
             }
             QMenu::item {
                 background-color: transparent;
-                padding: 6px 12px;
+                padding: 8px 28px 8px 12px;
                 margin: 2px 0;
-                border-radius: 4px;
+                border-radius: 7px;
             }
             QMenu::item:selected {
-                background-color: #444444;
-                color: #FFFFFF;
+                background-color: #0B3B35;
+                color: #00A884;
             }
             QMenu::item:pressed {
-                background-color: #666666;
+                background-color: #00A884;
                 color: #FFFFFF;
             }
             QMenu:disabled {
-                background-color: #333333;
-                border: 1px solid #555555;
-                color: #777777;
+                background-color: #202C33;
+                border: 1px solid #2A3942;
+                color: #54656F;
             }
             QMenu::item:disabled {
-                color: #777777;
+                color: #54656F;
                 background-color: transparent;
             }
+            QMenu::separator {
+                height: 1px;
+                background-color: #2A3942;
+                margin: 6px 8px;
+            }
             QMenu::indicator {
-                width: 10px;
-                height: 10px;
-                border: 2px solid #555555;
-                border-radius: 4px;
-                background-color: #333333;
+                width: 12px;
+                height: 12px;
+                border: 2px solid #3B4A54;
+                border-radius: 6px;
+                background-color: #111B21;
             }
             QMenu::indicator:checked {
-                background-color: #21c063;
-                border: 2px solid #21c063;
+                background-color: #00A884;
+                border: 2px solid #00A884;
             }
             QMenu::indicator:unchecked {
-                background-color: #444444;
-                border: 2px solid #555555;
+                background-color: #111B21;
+                border: 2px solid #3B4A54;
             }
             QMenu::right-arrow {
                 padding-left: 8px;
@@ -927,6 +999,7 @@ class ThemeStylesheet:
             ThemeStylesheet.SPECIAL_BUTTONS[theme],
             ThemeStylesheet.COMBOBOX[theme],
             ThemeStylesheet.LINE_EDIT[theme],
+            ThemeStylesheet.MENUBAR[theme],
             ThemeStylesheet.MENU[theme],
             ThemeStylesheet.TABLE[theme],
             ThemeStylesheet.GROUP_BOX[theme],
