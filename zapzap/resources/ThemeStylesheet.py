@@ -110,17 +110,33 @@ class ThemeStylesheet:
 
     SIDEBAR = {
         "light": """
-            QWidget#sidebar {
-                background-color: #f7f5f3;
-                border-right: 1px solid #c0c1c4;
+            QWidget#sidebar, QFrame#browser_sidebar {
+                background-color: #FFFFFF;
+                border-right: 1px solid #DADDE1;
                 padding: 10px;
+            }
+            QFrame#browser_sidebar QFrame#line,
+            QFrame#browser_sidebar QFrame#line_2 {
+                color: #DADDE1;
+                background-color: #DADDE1;
+                max-height: 1px;
+                border: 0;
+                margin: 6px 4px;
             }
         """,
         "dark": """
-            QWidget#sidebar {
-                background-color: #1d1f1f;
-                border-right: 1px solid #1d1f1f;
+            QWidget#sidebar, QFrame#browser_sidebar {
+                background-color: #111B21;
+                border-right: 1px solid #2A3942;
                 padding: 10px;
+            }
+            QFrame#browser_sidebar QFrame#line,
+            QFrame#browser_sidebar QFrame#line_2 {
+                color: #2A3942;
+                background-color: #2A3942;
+                max-height: 1px;
+                border: 0;
+                margin: 6px 4px;
             }
         """
     }
@@ -241,39 +257,40 @@ class ThemeStylesheet:
     SIDEBAR_BROWSER_BUTTONS = {
         "light": """
             QWidget#settings_buttons_layout QPushButton {
-                background-color: #f7f5f3;
-                border: none;
-                border-radius: none;
+                background-color: transparent;
+                border: 1px solid transparent;
+                border-radius: 12px;
                 qproperty-flat: true;
+                padding: 4px;
             }
             QWidget#settings_buttons_layout QPushButton:hover {
-                border-radius: 2px;
-                border-left: 3px solid #1daa61;
+                background-color: #D9FDD3;
+                border: 1px solid #B7EEC0;
+                border-radius: 12px;
             }
             QWidget#settings_buttons_layout QPushButton:pressed {
-                background-color: rgba(225, 225, 225, 0.3);
-                border-radius: 2px;
-                height: 30px;
-                border-left: 3px solid #1daa61;
+                background-color: #00A884;
+                border: 1px solid #00A884;
+                border-radius: 12px;
             }
         """,
         "dark": """
             QWidget#settings_buttons_layout QPushButton {
-                background-color: #1d1f1f;
-                border: none;
-                border-radius: none;
+                background-color: transparent;
+                border: 1px solid transparent;
+                border-radius: 12px;
                 qproperty-flat: true;
+                padding: 4px;
             }
             QWidget#settings_buttons_layout QPushButton:hover {
-            background-color: #292a2a;
-                border-radius: 2px;
-                border-left: 3px solid #1daa61;
+                background-color: #0B3B35;
+                border: 1px solid #146B5C;
+                border-radius: 12px;
             }
             QWidget#settings_buttons_layout QPushButton:pressed {
-                background-color: rgba(60, 60, 60, 0.3);
-                border-radius: 2px;
-                height: 30px;
-                border-left: 3px solid #1daa61;
+                background-color: #00A884;
+                border: 1px solid #00A884;
+                border-radius: 12px;
             }
         """
     }

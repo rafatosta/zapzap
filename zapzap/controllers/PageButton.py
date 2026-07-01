@@ -16,28 +16,34 @@ class PageButton(QPushButton):
     STYLE_NORMAL = """
     QPushButton {
         background-color: transparent;
-        border: none;
-        border-radius: none;
+        border: 1px solid transparent;
+        border-radius: 12px;
         qproperty-flat: true;
-        qproperty-iconSize: 25px;
+        qproperty-iconSize: 26px;
+        padding: 4px;
     }
     """
 
     STYLE_HOVER = """
     QPushButton {
-      background-color: rgba(225, 225, 225, 0.3);
-      border-radius: 2px;
-      height: 30px;
-      border: none;
+        background-color: rgba(0, 168, 132, 0.12);
+        border: 1px solid rgba(0, 168, 132, 0.24);
+        border-radius: 12px;
+        qproperty-flat: true;
+        qproperty-iconSize: 26px;
+        padding: 4px;
     }
     """
 
     STYLE_SELECTED = """
     QPushButton {
-      background-color: rgba(225, 225, 225, 0.3);
-      border-radius: 2px;
-      height: 30px;
-      border-left: 3px solid #00BD95;
+        background-color: rgba(0, 168, 132, 0.18);
+        border: 1px solid rgba(0, 168, 132, 0.34);
+        border-left: 4px solid #00A884;
+        border-radius: 12px;
+        qproperty-flat: true;
+        qproperty-iconSize: 26px;
+        padding: 4px;
     }
     """
 
