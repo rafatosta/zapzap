@@ -1,9 +1,3 @@
-from .notification_widgets import (
-    NotificationCard,
-    NotificationSection,
-    NotificationSettingsPage,
-    NotificationSwitchRow,
-)
 from .settings_badge import SettingsBadge, SettingsInfoBox
 from .settings_card import SettingsCard
 from .settings_page import SettingsPage

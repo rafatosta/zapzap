@@ -1,31 +1,33 @@
-"""Adaptive styling helpers for settings components."""
+"""Adaptive style primitives for ZapZap reusable components."""
 
 from PyQt6.QtCore import QEvent
 from PyQt6.QtGui import QPalette
 
 
-WHATSAPP_LIGHT = {
+LIGHT_TOKENS = {
     "background": "#F0F2F5",
-    "card": "#FFFFFF",
+    "surface": "#FFFFFF",
+    "surface_hover": "#F7F8FA",
     "border": "#DADDE1",
     "text": "#111B21",
     "muted": "#667781",
     "accent": "#00A884",
     "accent_hover": "#06CF9C",
     "accent_soft": "#D9FDD3",
-    "button": "#FFFFFF",
+    "danger": "#C1352B",
 }
 
-WHATSAPP_DARK = {
+DARK_TOKENS = {
     "background": "#111B21",
-    "card": "#202C33",
+    "surface": "#202C33",
+    "surface_hover": "#2A3942",
     "border": "#2A3942",
     "text": "#E9EDEF",
     "muted": "#8696A0",
     "accent": "#00A884",
     "accent_hover": "#06CF9C",
     "accent_soft": "#0B3B35",
-    "button": "#202C33",
+    "danger": "#FFB4AB",
 }
 
 
@@ -35,17 +37,17 @@ def is_dark(widget):
 
 
 def theme_name(widget):
-    """Return the current light/dark theme name for a widget."""
+    """Return the component theme name derived from the current Qt palette."""
     return "dark" if is_dark(widget) else "light"
 
 
-def theme_tokens(widget):
-    """Return shared WhatsApp-inspired tokens for the widget palette."""
-    return WHATSAPP_DARK if is_dark(widget) else WHATSAPP_LIGHT
+def tokens(widget):
+    """Return ZapZap component tokens for the widget's current palette."""
+    return DARK_TOKENS if is_dark(widget) else LIGHT_TOKENS
 
 
 class AdaptiveStyleMixin:
-    """Mixin that reapplies a component style when Qt notifies palette changes."""
+    """Mixin that updates a component style when Qt emits palette changes."""
 
     WATCHED_EVENTS = {
         QEvent.Type.ApplicationPaletteChange,
@@ -66,5 +68,5 @@ class AdaptiveStyleMixin:
         return super().eventFilter(watched, event)
 
     def apply_adaptive_style(self):
-        """Apply component-specific style. Subclasses should override this."""
+        """Apply the component-specific style."""
         raise NotImplementedError
