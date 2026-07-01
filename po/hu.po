@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 16:14-0300\n"
+"POT-Creation-Date: 2026-07-01 17:34-0300\n"
 "PO-Revision-Date: 2025-11-11 11:40+0200\n"
 "Last-Translator: F. András <erfan659-2 at yahoo dot com>\n"
 "Language-Team: Hungarian\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #: zapzap/views/ui_browser.py:84 zapzap/views/ui_page_account.py:80
-#: zapzap/controllers/Browser.py:226 zapzap/controllers/ShortcutsDialog.py:61
+#: zapzap/controllers/ShortcutsDialog.py:61 zapzap/controllers/Browser.py:226
 msgid "New account"
 msgstr "Új fiók"
 
@@ -514,33 +514,33 @@ msgstr ""
 msgid "Save"
 msgstr "Mentés"
 
-#: zapzap/views/ui_page_general.py:148 zapzap/views/ui_settings.py:153
+#: zapzap/views/ui_page_general.py:162 zapzap/views/ui_settings.py:153
 msgid "General"
 msgstr "Általános"
 
-#: zapzap/views/ui_page_general.py:149
+#: zapzap/views/ui_page_general.py:163
 msgid "Flatpak Permissions"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:150 zapzap/webengine/WebView.py:282
+#: zapzap/views/ui_page_general.py:164 zapzap/webengine/WebView.py:282
 msgid "Copy"
 msgstr "Másolás"
 
-#: zapzap/views/ui_page_general.py:151
+#: zapzap/views/ui_page_general.py:165
 msgid "Select and copy this command in your terminal"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:152
+#: zapzap/views/ui_page_general.py:166
 msgid ""
 "Flatseal is a graphical utility to review and modify permissions from your "
 "Flatpak applications."
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:153
+#: zapzap/views/ui_page_general.py:167
 msgid "Install Flatseal on Linux | Flathub"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:154
+#: zapzap/views/ui_page_general.py:168
 msgid ""
 "<html><head/><body><p><span style=\" font-weight:700;\">Flatpak sandbox.</"
 "span> If file access fails, grant folder permissions using <span style=\" "
@@ -548,64 +548,73 @@ msgid ""
 "style=\" font-weight:700;\">flatpak override</span>.</p></body></html>"
 msgstr ""
 
-#: zapzap/views/ui_page_general.py:155
+#: zapzap/views/ui_page_general.py:169
+#, fuzzy
+msgid "Interface language"
+msgstr "Válassz nyelvet"
+
+#: zapzap/views/ui_page_general.py:170
+msgid "The interface language is applied immediately."
+msgstr ""
+
+#: zapzap/views/ui_page_general.py:171
 msgid "Download Directory"
 msgstr "Letöltési mappa"
 
-#: zapzap/views/ui_page_general.py:156
+#: zapzap/views/ui_page_general.py:172
 msgid "Set new folder for downloads"
 msgstr "Új mappa beállítása a letöltésekhez"
 
-#: zapzap/views/ui_page_general.py:157
+#: zapzap/views/ui_page_general.py:173
 msgid "Define default folder for downloads"
 msgstr "Alapértelmezett letöltési mappa meghatározása"
 
-#: zapzap/views/ui_page_general.py:158
+#: zapzap/views/ui_page_general.py:174
 msgid "Spellchecker"
 msgstr "Helyesírásjavító"
 
-#: zapzap/views/ui_page_general.py:159
+#: zapzap/views/ui_page_general.py:175
 msgid "Directory"
 msgstr "Mappa"
 
-#: zapzap/views/ui_page_general.py:160
+#: zapzap/views/ui_page_general.py:176
 msgid "Recognizes only compiled dictionaries (.bdic)"
 msgstr "Csak a kompilált szótárakat ismeri fel (.bdic)"
 
-#: zapzap/views/ui_page_general.py:161
+#: zapzap/views/ui_page_general.py:177
 msgid "Define standard dictionaries"
 msgstr "Alapértelmezett szótárak meghatározása"
 
-#: zapzap/views/ui_page_general.py:162
+#: zapzap/views/ui_page_general.py:178
 msgid "Note: Required restart."
 msgstr "Megjegyzés: Újraindítás szükséges."
 
-#: zapzap/views/ui_page_general.py:163
+#: zapzap/views/ui_page_general.py:179
 msgid "Behavior"
 msgstr "Viselkedés"
 
-#: zapzap/views/ui_page_general.py:164
+#: zapzap/views/ui_page_general.py:180
 #, fuzzy
 msgid "Confirm before closing the window"
 msgstr "Zárd le amikor az ablakot kikapcsolod"
 
-#: zapzap/views/ui_page_general.py:165
+#: zapzap/views/ui_page_general.py:181
 msgid "Close when closing the window"
 msgstr "Zárd le amikor az ablakot kikapcsolod"
 
-#: zapzap/views/ui_page_general.py:166
+#: zapzap/views/ui_page_general.py:182
 msgid "Start minimized"
 msgstr "Minimalizált indítás"
 
-#: zapzap/views/ui_page_general.py:167
+#: zapzap/views/ui_page_general.py:183
 msgid "Start with the system"
 msgstr "Rendszerindításkor indul"
 
-#: zapzap/views/ui_page_general.py:168
+#: zapzap/views/ui_page_general.py:184
 msgid "Don't use a platform-native file dialog"
 msgstr "Ne használd platform fájlválasztóját"
 
-#: zapzap/views/ui_page_general.py:169
+#: zapzap/views/ui_page_general.py:185
 msgid "Wayland window system"
 msgstr "Waylan megjelenítő rendszer"
 
@@ -658,6 +667,7 @@ msgid "Prevent WebRTC IP leak (Mask local IPs)"
 msgstr ""
 
 #: zapzap/views/ui_page_notifications.py:69 zapzap/views/ui_settings.py:158
+#: zapzap/views/pages/settings/notifications_settings_view.py:36
 msgid "Notifications"
 msgstr "Jelzések"
 
@@ -674,6 +684,7 @@ msgid "Show the sender's name"
 msgstr "Mutasd a küldő nevét"
 
 #: zapzap/views/ui_page_notifications.py:73
+#: zapzap/views/pages/settings/notifications_settings_view.py:79
 msgid "Show message preview"
 msgstr "Mutasd az özenet előnézetét"
 
@@ -877,73 +888,78 @@ msgstr "Párbeszéd"
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
-#: zapzap/controllers/Browser.py:79
-msgid "Grid view"
-msgstr ""
-
-#: zapzap/controllers/Browser.py:109
-msgid "Flatpak sandbox help"
-msgstr ""
-
-#: zapzap/controllers/Browser.py:237 zapzap/controllers/Browser.py:284
-#, python-brace-format
-msgid "Account {}"
-msgstr "Fiók: {}"
-
-#: zapzap/controllers/Browser.py:292
-#, fuzzy
-msgid "Account disabled"
-msgstr "Fiókok"
-
-#: zapzap/controllers/Browser.py:293
-msgid "This account is disabled."
-msgstr ""
-
-#: zapzap/controllers/Browser.py:295
+#: zapzap/views/pages/settings/notifications_settings_view.py:39
 msgid ""
-"You can reactivate it now or use the right-click menu to manage this account."
+"Control desktop notifications, notification privacy, and ZapZap messages."
 msgstr ""
 
-#: zapzap/controllers/Browser.py:298
-msgid "Activate"
-msgstr ""
-
-#: zapzap/controllers/Browser.py:299
-msgid "Not now"
-msgstr ""
-
-#: zapzap/controllers/CardUser.py:42
-msgid "Select User-Agent for this account"
-msgstr ""
-
-#: zapzap/controllers/CardUser.py:144
-msgid "Confirm exclusion"
-msgstr "Kizérés megerősítése"
-
-#: zapzap/controllers/CardUser.py:144
-msgid "Are you sure you want to delete this item?"
-msgstr "Biztosan törlöd ezt az elemet?"
-
-#: zapzap/controllers/CardUser.py:169
-msgid "User-Agent Changed"
-msgstr ""
-
-#: zapzap/controllers/CardUser.py:169
-msgid ""
-"Please restart this session (or the application) to apply the new User-Agent."
-msgstr ""
-
-#: zapzap/controllers/CardUser.py:175 zapzap/controllers/CardUser.py:220
+#: zapzap/views/pages/settings/notifications_settings_view.py:52
 #, fuzzy
-msgid "Generate new colors for the icon"
-msgstr "Kattints ikon új színeinek generálásához"
+msgid "Desktop notifications"
+msgstr "Jelzések némitása"
 
-#: zapzap/controllers/CardUser.py:178 zapzap/controllers/CardUser.py:223
-msgid "Restore standard"
-msgstr "Alapértelmezett visszaállítása"
+#: zapzap/views/pages/settings/notifications_settings_view.py:53
+msgid "Choose whether ZapZap may show desktop notifications."
+msgstr ""
 
-#: zapzap/controllers/CardUser.py:205
-msgid "User-Agent"
+#: zapzap/views/pages/settings/notifications_settings_view.py:57
+#, fuzzy
+msgid "Enable notifications"
+msgstr "Jelzések munkaterülete"
+
+#: zapzap/views/pages/settings/notifications_settings_view.py:58
+msgid ""
+"Allow ZapZap to publish native desktop notifications for WhatsApp activity."
+msgstr ""
+
+#: zapzap/views/pages/settings/notifications_settings_view.py:66
+#, fuzzy
+msgid "Notification privacy"
+msgstr "Jelzések"
+
+#: zapzap/views/pages/settings/notifications_settings_view.py:67
+msgid "Limit what is visible in notification banners."
+msgstr ""
+
+#: zapzap/views/pages/settings/notifications_settings_view.py:71
+#, fuzzy
+msgid "Show contact photo"
+msgstr "Rejts el az adományozás-jelzőt"
+
+#: zapzap/views/pages/settings/notifications_settings_view.py:72
+msgid "Display the sender avatar when it is available."
+msgstr ""
+
+#: zapzap/views/pages/settings/notifications_settings_view.py:75
+#, fuzzy
+msgid "Show contact name"
+msgstr "Rejts el az adományozás-jelzőt"
+
+#: zapzap/views/pages/settings/notifications_settings_view.py:76
+msgid "Display the sender or group name."
+msgstr ""
+
+#: zapzap/views/pages/settings/notifications_settings_view.py:80
+#, fuzzy
+msgid "Display the message text in the notification."
+msgstr "Jelzések némitása"
+
+#: zapzap/views/pages/settings/notifications_settings_view.py:90
+#, fuzzy
+msgid "ZapZap messages"
+msgstr "ZapZap beállítások"
+
+#: zapzap/views/pages/settings/notifications_settings_view.py:91
+msgid "Optional messages shown by ZapZap itself."
+msgstr ""
+
+#: zapzap/views/pages/settings/notifications_settings_view.py:95
+#, fuzzy
+msgid "Donation reminder"
+msgstr "Rejts el az adományozás-jelzőt"
+
+#: zapzap/views/pages/settings/notifications_settings_view.py:96
+msgid "Show occasional support messages from ZapZap."
 msgstr ""
 
 #: zapzap/controllers/ClientSideRendering.py:436
@@ -984,32 +1000,6 @@ msgid ""
 " - Issue tracker: {issue_url}\n"
 " - Email: {email}"
 msgstr ""
-
-#: zapzap/controllers/DownloadDialog.py:30
-#, fuzzy
-msgid "Download"
-msgstr "Letöltési mappa"
-
-#: zapzap/controllers/DownloadDialog.py:89
-msgid "Open"
-msgstr "Megnyitás"
-
-#: zapzap/controllers/DownloadDialog.py:117
-msgid "More"
-msgstr ""
-
-#: zapzap/controllers/DownloadDialog.py:127
-#, fuzzy
-msgid "Save as"
-msgstr "Mentés"
-
-#: zapzap/controllers/DownloadDialog.py:141
-msgid "Cancel"
-msgstr ""
-
-#: zapzap/controllers/DownloadDialog.py:276
-msgid "Save file"
-msgstr "Fájl mentése"
 
 #: zapzap/controllers/OnboardingDialog.py:46
 #: zapzap/controllers/OnboardingDialog.py:71
@@ -1070,7 +1060,7 @@ msgid "Prefer Wayland (when available)"
 msgstr ""
 
 #: zapzap/controllers/OnboardingDialog.py:219
-#: zapzap/controllers/PageGeneral.py:43
+#: zapzap/controllers/PageGeneral.py:44
 msgid "Use Flatseal to change this mode of execution"
 msgstr "Flatseal használata ezen futtatási mód megváltoztatásához"
 
@@ -1165,6 +1155,193 @@ msgstr "Tájékoztatás"
 #: zapzap/controllers/OnboardingDialog.py:517
 msgid "Close"
 msgstr ""
+
+#: zapzap/controllers/ShortcutsDialog.py:11
+msgid "Mark as unread"
+msgstr "Olvasatlannak jelölés"
+
+#: zapzap/controllers/ShortcutsDialog.py:12
+msgid "Archive conversation"
+msgstr "Társalgás archiválása"
+
+#: zapzap/controllers/ShortcutsDialog.py:13
+msgid "Pin conversation"
+msgstr "Társalgás kitűzése"
+
+#: zapzap/controllers/ShortcutsDialog.py:14
+msgid "Next conversation"
+msgstr "Következő társalgás"
+
+#: zapzap/controllers/ShortcutsDialog.py:15
+msgid "Close conversation"
+msgstr "Társalgás bezárása"
+
+#: zapzap/controllers/ShortcutsDialog.py:16
+msgid "Search in conversation"
+msgstr "Keresés a társalgásban"
+
+#: zapzap/controllers/ShortcutsDialog.py:17
+msgid "Previous conversation"
+msgstr "Előző társalgás"
+
+#: zapzap/controllers/ShortcutsDialog.py:18
+msgid "Delete conversation"
+msgstr "Társalgás törlése"
+
+#: zapzap/controllers/ShortcutsDialog.py:21
+msgid "Profile and status"
+msgstr "Profil és státus"
+
+#: zapzap/controllers/ShortcutsDialog.py:25
+msgid "Decrease speed of selected voice message"
+msgstr "A kiválasztott hangüzenet lejátszási sebességének csökkentése"
+
+#: zapzap/controllers/ShortcutsDialog.py:26
+msgid "Increase speed of selected voice message"
+msgstr "A kiválasztott hangüzenet lejátszási sebességének növelése"
+
+#: zapzap/controllers/ShortcutsDialog.py:29
+msgid "Emoji panel"
+msgstr "Emoji panel"
+
+#: zapzap/controllers/ShortcutsDialog.py:30
+msgid "Sticker panel"
+msgstr "Matrica panel"
+
+#: zapzap/controllers/ShortcutsDialog.py:31
+msgid "GIF panel"
+msgstr "GIF panel"
+
+#: zapzap/controllers/ShortcutsDialog.py:34
+msgid "Lock the app"
+msgstr "Alkalmazás zárolása"
+
+#: zapzap/controllers/ShortcutsDialog.py:35
+msgid "Mute"
+msgstr "Némítás"
+
+#: zapzap/controllers/ShortcutsDialog.py:36
+msgid "Search"
+msgstr "Keresés"
+
+#: zapzap/controllers/ShortcutsDialog.py:37
+msgid "New group"
+msgstr "Új csoport"
+
+#: zapzap/controllers/ShortcutsDialog.py:38
+msgid "Extended search"
+msgstr "Bővjtett keresés"
+
+#: zapzap/controllers/ShortcutsDialog.py:45
+msgid "Exit"
+msgstr "Kilépés"
+
+#: zapzap/controllers/ShortcutsDialog.py:48
+msgid "Fullscreen"
+msgstr "Teljes képernyő"
+
+#: zapzap/controllers/ShortcutsDialog.py:57
+msgid "Reload pages"
+msgstr "Oldalak újratöltése"
+
+#: zapzap/controllers/ShortcutsDialog.py:58
+msgid "New conversation by phone number"
+msgstr "Új társalgás telefonszámon keresztül"
+
+#: zapzap/controllers/Browser.py:79
+msgid "Grid view"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:109
+msgid "Flatpak sandbox help"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:237 zapzap/controllers/Browser.py:284
+#, python-brace-format
+msgid "Account {}"
+msgstr "Fiók: {}"
+
+#: zapzap/controllers/Browser.py:292
+#, fuzzy
+msgid "Account disabled"
+msgstr "Fiókok"
+
+#: zapzap/controllers/Browser.py:293
+msgid "This account is disabled."
+msgstr ""
+
+#: zapzap/controllers/Browser.py:295
+msgid ""
+"You can reactivate it now or use the right-click menu to manage this account."
+msgstr ""
+
+#: zapzap/controllers/Browser.py:298
+msgid "Activate"
+msgstr ""
+
+#: zapzap/controllers/Browser.py:299
+msgid "Not now"
+msgstr ""
+
+#: zapzap/controllers/CardUser.py:42
+msgid "Select User-Agent for this account"
+msgstr ""
+
+#: zapzap/controllers/CardUser.py:144
+msgid "Confirm exclusion"
+msgstr "Kizérés megerősítése"
+
+#: zapzap/controllers/CardUser.py:144
+msgid "Are you sure you want to delete this item?"
+msgstr "Biztosan törlöd ezt az elemet?"
+
+#: zapzap/controllers/CardUser.py:169
+msgid "User-Agent Changed"
+msgstr ""
+
+#: zapzap/controllers/CardUser.py:169
+msgid ""
+"Please restart this session (or the application) to apply the new User-Agent."
+msgstr ""
+
+#: zapzap/controllers/CardUser.py:175 zapzap/controllers/CardUser.py:220
+#, fuzzy
+msgid "Generate new colors for the icon"
+msgstr "Kattints ikon új színeinek generálásához"
+
+#: zapzap/controllers/CardUser.py:178 zapzap/controllers/CardUser.py:223
+msgid "Restore standard"
+msgstr "Alapértelmezett visszaállítása"
+
+#: zapzap/controllers/CardUser.py:205
+msgid "User-Agent"
+msgstr ""
+
+#: zapzap/controllers/DownloadDialog.py:30
+#, fuzzy
+msgid "Download"
+msgstr "Letöltési mappa"
+
+#: zapzap/controllers/DownloadDialog.py:89
+msgid "Open"
+msgstr "Megnyitás"
+
+#: zapzap/controllers/DownloadDialog.py:117
+msgid "More"
+msgstr ""
+
+#: zapzap/controllers/DownloadDialog.py:127
+#, fuzzy
+msgid "Save as"
+msgstr "Mentés"
+
+#: zapzap/controllers/DownloadDialog.py:141
+msgid "Cancel"
+msgstr ""
+
+#: zapzap/controllers/DownloadDialog.py:276
+msgid "Save file"
+msgstr "Fájl mentése"
 
 #: zapzap/controllers/PageAppearance.py:69
 msgid "Grid Columns:"
@@ -1498,6 +1675,11 @@ msgstr ""
 msgid "Settings were reset successfully. Please restart ZapZap."
 msgstr ""
 
+#: zapzap/controllers/PageGeneral.py:140
+#, fuzzy
+msgid "System default"
+msgstr "Alapértelmezett visszaállítása"
+
 #: zapzap/controllers/PageNetwork.py:23
 #, fuzzy
 msgid "Settings for:"
@@ -1617,98 +1799,6 @@ msgid ""
 "Restores all performance settings\n"
 "to safe default values."
 msgstr ""
-
-#: zapzap/controllers/ShortcutsDialog.py:11
-msgid "Mark as unread"
-msgstr "Olvasatlannak jelölés"
-
-#: zapzap/controllers/ShortcutsDialog.py:12
-msgid "Archive conversation"
-msgstr "Társalgás archiválása"
-
-#: zapzap/controllers/ShortcutsDialog.py:13
-msgid "Pin conversation"
-msgstr "Társalgás kitűzése"
-
-#: zapzap/controllers/ShortcutsDialog.py:14
-msgid "Next conversation"
-msgstr "Következő társalgás"
-
-#: zapzap/controllers/ShortcutsDialog.py:15
-msgid "Close conversation"
-msgstr "Társalgás bezárása"
-
-#: zapzap/controllers/ShortcutsDialog.py:16
-msgid "Search in conversation"
-msgstr "Keresés a társalgásban"
-
-#: zapzap/controllers/ShortcutsDialog.py:17
-msgid "Previous conversation"
-msgstr "Előző társalgás"
-
-#: zapzap/controllers/ShortcutsDialog.py:18
-msgid "Delete conversation"
-msgstr "Társalgás törlése"
-
-#: zapzap/controllers/ShortcutsDialog.py:21
-msgid "Profile and status"
-msgstr "Profil és státus"
-
-#: zapzap/controllers/ShortcutsDialog.py:25
-msgid "Decrease speed of selected voice message"
-msgstr "A kiválasztott hangüzenet lejátszási sebességének csökkentése"
-
-#: zapzap/controllers/ShortcutsDialog.py:26
-msgid "Increase speed of selected voice message"
-msgstr "A kiválasztott hangüzenet lejátszási sebességének növelése"
-
-#: zapzap/controllers/ShortcutsDialog.py:29
-msgid "Emoji panel"
-msgstr "Emoji panel"
-
-#: zapzap/controllers/ShortcutsDialog.py:30
-msgid "Sticker panel"
-msgstr "Matrica panel"
-
-#: zapzap/controllers/ShortcutsDialog.py:31
-msgid "GIF panel"
-msgstr "GIF panel"
-
-#: zapzap/controllers/ShortcutsDialog.py:34
-msgid "Lock the app"
-msgstr "Alkalmazás zárolása"
-
-#: zapzap/controllers/ShortcutsDialog.py:35
-msgid "Mute"
-msgstr "Némítás"
-
-#: zapzap/controllers/ShortcutsDialog.py:36
-msgid "Search"
-msgstr "Keresés"
-
-#: zapzap/controllers/ShortcutsDialog.py:37
-msgid "New group"
-msgstr "Új csoport"
-
-#: zapzap/controllers/ShortcutsDialog.py:38
-msgid "Extended search"
-msgstr "Bővjtett keresés"
-
-#: zapzap/controllers/ShortcutsDialog.py:45
-msgid "Exit"
-msgstr "Kilépés"
-
-#: zapzap/controllers/ShortcutsDialog.py:48
-msgid "Fullscreen"
-msgstr "Teljes képernyő"
-
-#: zapzap/controllers/ShortcutsDialog.py:57
-msgid "Reload pages"
-msgstr "Oldalak újratöltése"
-
-#: zapzap/controllers/ShortcutsDialog.py:58
-msgid "New conversation by phone number"
-msgstr "Új társalgás telefonszámon keresztül"
 
 #: zapzap/services/AlertManager.py:35
 msgid "Information"
