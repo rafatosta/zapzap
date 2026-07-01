@@ -259,38 +259,40 @@ class ThemeStylesheet:
             QWidget#settings_buttons_layout QPushButton {
                 background-color: transparent;
                 border: 1px solid transparent;
-                border-radius: 12px;
+                border-radius: 10px;
                 qproperty-flat: true;
-                padding: 4px;
+                padding: 0;
+                margin: 0;
             }
             QWidget#settings_buttons_layout QPushButton:hover {
                 background-color: #D9FDD3;
                 border: 1px solid #B7EEC0;
-                border-radius: 12px;
+                border-radius: 10px;
             }
             QWidget#settings_buttons_layout QPushButton:pressed {
                 background-color: #00A884;
                 border: 1px solid #00A884;
-                border-radius: 12px;
+                border-radius: 10px;
             }
         """,
         "dark": """
             QWidget#settings_buttons_layout QPushButton {
                 background-color: transparent;
                 border: 1px solid transparent;
-                border-radius: 12px;
+                border-radius: 10px;
                 qproperty-flat: true;
-                padding: 4px;
+                padding: 0;
+                margin: 0;
             }
             QWidget#settings_buttons_layout QPushButton:hover {
                 background-color: #0B3B35;
                 border: 1px solid #146B5C;
-                border-radius: 12px;
+                border-radius: 10px;
             }
             QWidget#settings_buttons_layout QPushButton:pressed {
                 background-color: #00A884;
                 border: 1px solid #00A884;
-                border-radius: 12px;
+                border-radius: 10px;
             }
         """
     }
