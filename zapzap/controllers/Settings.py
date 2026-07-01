@@ -14,6 +14,8 @@ from zapzap.controllers.PageGeneral import PageGeneral
 from zapzap.controllers.PageNetwork import PageNetwork
 from zapzap.controllers.PageNotifications import PageNotifications
 from zapzap.controllers.PagePerformance import PagePerformance
+from zapzap.services.ThemeManager import ThemeManager
+from zapzap.views.components.adaptive import refresh_adaptive_styles
 from zapzap.views.settings_components import SettingsSidebar, apply_settings_style
 
 
@@ -27,9 +29,15 @@ class Settings(QWidget):
         self._setup_signals()
         self._select_default_page()
         apply_settings_style(self)
+        ThemeManager.instance().theme_changed.connect(self._handle_theme_changed)
 
     def __del__(self):
         """Destrói o widget e limpa recursos."""
+
+    def _handle_theme_changed(self, *args):
+        """Refresh open settings styles when the app theme changes dynamically."""
+        apply_settings_style(self, install_watcher=False)
+        refresh_adaptive_styles(self)
 
     def _setup_ui(self):
         """Build the settings shell and register pages in navigation order."""

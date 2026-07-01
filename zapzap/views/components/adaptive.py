@@ -1,6 +1,6 @@
 """Adaptive style primitives for ZapZap reusable components."""
 
-from PyQt6.QtCore import QEvent
+from PyQt6.QtCore import QEvent, QObject
 from PyQt6.QtGui import QPalette
 
 
@@ -44,6 +44,15 @@ def theme_name(widget):
 def tokens(widget):
     """Return ZapZap component tokens for the widget's current palette."""
     return DARK_TOKENS if is_dark(widget) else LIGHT_TOKENS
+
+
+def refresh_adaptive_styles(widget):
+    """Reapply adaptive styles for a widget and all adaptive descendants."""
+    children = [widget, *widget.findChildren(QObject)]
+    for child in children:
+        if isinstance(child, AdaptiveStyleMixin):
+            child._adaptive_theme = theme_name(child)
+            child.apply_adaptive_style()
 
 
 class AdaptiveStyleMixin:
