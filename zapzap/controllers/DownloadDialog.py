@@ -114,7 +114,10 @@ class DownloadDialog(QDialog):
         # ===============================
 
         more_btn = QToolButton()
+        more_btn.setObjectName("DownloadMoreButton")
         more_btn.setText(_("More"))
+        more_btn.setMinimumWidth(112)
+        more_btn.setFixedHeight(34)
 
         more_btn.setPopupMode(
             QToolButton.ToolButtonPopupMode.InstantPopup
@@ -205,10 +208,39 @@ class DownloadDialog(QDialog):
                 padding: 16px;
             }
 
-            QToolButton {
-                padding: 6px 12px;
-                font-size: 14px;
+            QToolButton#DownloadMoreButton {
+                min-height: 34px;
+                border: 1px solid palette(mid);
                 border-radius: 10px;
+                padding: 4px 34px 4px 10px;
+                font-size: 14px;
+                text-align: left;
+                background-color: palette(base);
+                color: palette(text);
+            }
+
+            QToolButton#DownloadMoreButton:hover {
+                border-color: #00A884;
+            }
+
+            QToolButton#DownloadMoreButton::menu-button {
+                subcontrol-origin: padding;
+                subcontrol-position: top right;
+                width: 30px;
+                border-left: 1px solid palette(mid);
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+                background: transparent;
+            }
+
+            QToolButton#DownloadMoreButton::menu-arrow {
+                image: none;
+                width: 0;
+                height: 0;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 6px solid palette(mid);
+                margin-right: 10px;
             }
         """)
 
