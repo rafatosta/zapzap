@@ -4,6 +4,7 @@ from gettext import gettext as _
 
 from PyQt6.QtCore import Qt, QUrl, QEvent, QTimer
 from PyQt6.QtGui import QDesktopServices, QPixmap
+from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import (
     QApplication,
     QDialog,
@@ -21,13 +22,13 @@ from PyQt6.QtWidgets import (
 from zapzap.services.CssPreviewService import CssPreviewService
 from zapzap.services.CustomizationsManager import CustomizationsManager
 from zapzap.services.SettingsManager import SettingsManager
-from zapzap.views.ui_page_customizations import Ui_PageCustomizations
+from zapzap.views.settings_components import SettingsCard, SettingsInfoBox, SettingsPage, SettingsSection
 
 
-class PageCustomizations(QWidget, Ui_PageCustomizations):
+class PageCustomizations(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setupUi(self)
+        self._setup_ui()
 
         self.current_scope = CustomizationsManager.SCOPE_GLOBAL
         self.current_account_id = None
@@ -38,6 +39,151 @@ class PageCustomizations(QWidget, Ui_PageCustomizations):
         self._configure_signals()
         self._refresh_current_account()
         self._load_scope()
+
+
+    def _setup_ui(self):
+        self.mainLayout = QVBoxLayout(self)
+        self.mainLayout.setContentsMargins(0, 0, 0, 0)
+        self.page = SettingsPage(
+            _("Customizations"),
+            _("Manage global and per-account CSS and JavaScript customizations."),
+            self,
+        )
+        self.mainLayout.addWidget(self.page)
+
+        self.scope_group = SettingsSection(_("Scope"), _("Choose the customization scope."))
+        scope_card = SettingsCard()
+        scope_row = QWidget()
+        scope_layout = QFormLayout(scope_row)
+        self.scope_combo = QtWidgets.QComboBox(scope_row)
+        self.account_label = QtWidgets.QLabel(scope_row)
+        self.account_label.setWordWrap(True)
+        scope_layout.addRow(_("Account"), self.scope_combo)
+        scope_layout.addRow("", self.account_label)
+        self.inherit_checkbox = QtWidgets.QCheckBox(_("Inherit global settings"), scope_row)
+        self.account_scope_hint_label = QtWidgets.QLabel(_("When inherit is disabled, account customizations are appended after global settings."), scope_row)
+        self.account_scope_hint_label.setWordWrap(True)
+        scope_card.add_row(scope_row)
+        scope_card.add_row(self.inherit_checkbox)
+        scope_card.add_row(self.account_scope_hint_label)
+        self.scope_group.add_card(scope_card)
+        self.page.add_section(self.scope_group)
+
+        self.feedback_label = QtWidgets.QLabel(self)
+        self.feedback_label.setWordWrap(True)
+        self.feedback_label.setObjectName("SettingsRowDescription")
+        self.page.content_layout.addWidget(self.feedback_label)
+
+        css_section = SettingsSection(_("CSS customizations"), _("Import, create, edit, enable, and delete CSS files."))
+        self.css_files_group = SettingsCard()
+        self.css_enabled = QtWidgets.QCheckBox(_("Enable custom CSS"), self.css_files_group)
+        self.css_files_group.add_row(self.css_enabled)
+        self.css_files = QtWidgets.QTableWidget(self.css_files_group)
+        self._setup_asset_table(self.css_files)
+        self.css_files_group.add_row(self.css_files)
+        css_buttons_1 = self._button_row()
+        self.btn_css_create = QtWidgets.QPushButton(_("Create"))
+        self.btn_css_edit = QtWidgets.QPushButton(_("Edit"))
+        self.btn_css_delete = QtWidgets.QPushButton(_("Delete"))
+        for button in (self.btn_css_create, self.btn_css_edit, self.btn_css_delete):
+            css_buttons_1.layout().addWidget(button)
+        css_buttons_1.layout().addStretch(1)
+        css_buttons_2 = self._button_row()
+        self.btn_css_import = QtWidgets.QPushButton(_("Import .css"))
+        self.btn_css_import_url = QtWidgets.QPushButton(_("Import from URL"))
+        self.btn_css_folder = QtWidgets.QPushButton(_("Open folder"))
+        for button in (self.btn_css_import, self.btn_css_import_url, self.btn_css_folder):
+            css_buttons_2.layout().addWidget(button)
+        css_buttons_2.layout().addStretch(1)
+        self.css_files_group.add_row(css_buttons_1)
+        self.css_files_group.add_row(css_buttons_2)
+        css_section.add_card(self.css_files_group)
+        self.page.add_section(css_section)
+
+        preview_section = SettingsSection(_("CSS preview"), _("Attach and preview a screenshot for the selected CSS file."))
+        preview_card = SettingsCard()
+        self.css_preview_stack = QtWidgets.QStackedWidget(preview_card)
+        self.css_preview_placeholder_page = QWidget()
+        placeholder_layout = QVBoxLayout(self.css_preview_placeholder_page)
+        self.css_preview_placeholder = QtWidgets.QLabel(_("Select a CSS file to preview."))
+        self.css_preview_placeholder.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.css_preview_placeholder.setWordWrap(True)
+        self.css_preview_placeholder_upload_button = QtWidgets.QPushButton(_("Upload preview image"))
+        self.css_preview_placeholder_upload_button.setVisible(False)
+        placeholder_layout.addWidget(self.css_preview_placeholder)
+        placeholder_layout.addWidget(self.css_preview_placeholder_upload_button, 0, Qt.AlignmentFlag.AlignCenter)
+        self.css_preview_image_page = QWidget()
+        image_layout = QtWidgets.QGridLayout(self.css_preview_image_page)
+        self.css_preview_image = QtWidgets.QLabel()
+        self.css_preview_image.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.css_preview_replace_button = QtWidgets.QPushButton(_("Replace preview image"))
+        self.css_preview_replace_button.setVisible(False)
+        image_layout.addWidget(self.css_preview_image, 0, 0)
+        image_layout.addWidget(self.css_preview_replace_button, 0, 0, Qt.AlignmentFlag.AlignCenter)
+        self.css_preview_stack.addWidget(self.css_preview_placeholder_page)
+        self.css_preview_stack.addWidget(self.css_preview_image_page)
+        preview_card.add_row(self.css_preview_stack)
+        preview_section.add_card(preview_card)
+        self.page.add_section(preview_section)
+
+        js_section = SettingsSection(_("JavaScript customizations"), _("Import, create, edit, enable, and delete JavaScript files."))
+        self.js_files_group = SettingsCard()
+        self.js_enabled = QtWidgets.QCheckBox(_("Enable custom JavaScript"), self.js_files_group)
+        self.js_files_group.add_row(self.js_enabled)
+        self.warning_label = SettingsInfoBox(_("⚠ Custom JavaScript runs with full page privileges. Use trusted code only."), "warning")
+        self.js_files_group.add_row(self.warning_label)
+        self.js_files = QtWidgets.QTableWidget(self.js_files_group)
+        self._setup_asset_table(self.js_files)
+        self.js_files_group.add_row(self.js_files)
+        js_buttons_1 = self._button_row()
+        self.btn_js_create = QtWidgets.QPushButton(_("Create"))
+        self.btn_js_edit = QtWidgets.QPushButton(_("Edit"))
+        self.btn_js_delete = QtWidgets.QPushButton(_("Delete"))
+        for button in (self.btn_js_create, self.btn_js_edit, self.btn_js_delete):
+            js_buttons_1.layout().addWidget(button)
+        js_buttons_1.layout().addStretch(1)
+        js_buttons_2 = self._button_row()
+        self.btn_js_import = QtWidgets.QPushButton(_("Import .js"))
+        self.btn_js_import_url = QtWidgets.QPushButton(_("Import from URL"))
+        self.btn_js_folder = QtWidgets.QPushButton(_("Open folder"))
+        for button in (self.btn_js_import, self.btn_js_import_url, self.btn_js_folder):
+            js_buttons_2.layout().addWidget(button)
+        js_buttons_2.layout().addStretch(1)
+        self.js_files_group.add_row(js_buttons_1)
+        self.js_files_group.add_row(js_buttons_2)
+        js_section.add_card(self.js_files_group)
+        self.page.add_section(js_section)
+
+        actions = SettingsSection(_("Apply changes"), _("Save changes and reload target pages when needed."))
+        actions_card = SettingsCard()
+        action_row = self._button_row()
+        self.btn_save_reload = QtWidgets.QPushButton(_("Save and reload"))
+        self.btn_reload = QtWidgets.QPushButton(_("Reload"))
+        self.btn_save = QtWidgets.QPushButton(_("Save"))
+        self.btn_save.setDefault(True)
+        action_row.layout().addStretch(1)
+        for button in (self.btn_save_reload, self.btn_reload, self.btn_save):
+            action_row.layout().addWidget(button)
+        actions_card.add_row(action_row)
+        actions.add_card(actions_card)
+        self.page.add_section(actions)
+        self.page.add_stretch()
+
+    def _button_row(self):
+        row = QWidget()
+        layout = QtWidgets.QHBoxLayout(row)
+        layout.setContentsMargins(0, 8, 0, 8)
+        return row
+
+    def _setup_asset_table(self, table):
+        table.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
+        table.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.SingleSelection)
+        table.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
+        table.setShowGrid(False)
+        table.setColumnCount(2)
+        table.setRowCount(0)
+        table.setHorizontalHeaderItem(0, QTableWidgetItem(_("Enabled")))
+        table.setHorizontalHeaderItem(1, QTableWidgetItem(_("Filename")))
 
     def _configure_asset_tables(self):
         for table in (self.css_files, self.js_files):
