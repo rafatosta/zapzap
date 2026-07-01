@@ -114,9 +114,17 @@ class SettingsSwitchRow(_BaseRow):
         super().__init__(title, description, self.checkbox, parent)
 
 
+class SettingsComboBox(QComboBox):
+    """Combo box with the settings component object name for unified styling."""
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setObjectName("SettingsComboBox")
+
+
 class SettingsSelectRow(_BaseRow):
     def __init__(self, title, description="", items=None, parent=None):
-        self.combo = QComboBox()
+        self.combo = SettingsComboBox()
         if items:
             self.combo.addItems(items)
         super().__init__(title, description, self.combo, parent)

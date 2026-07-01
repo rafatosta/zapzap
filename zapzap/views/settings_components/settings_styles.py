@@ -139,11 +139,35 @@ def apply_settings_style(widget, install_watcher=True):
         QLabel#SettingsBadge[kind="warning"] {{ background: {c['warning_bg']}; color: {c['warning_fg']}; }}
         QLabel#SettingsBadge[kind="danger"] {{ background: {c['danger_bg']}; color: {c['danger_fg']}; }}
         QLabel#SettingsBadge[kind="success"] {{ background: {c['accent_soft']}; color: {c['accent']}; }}
-        QLineEdit, QComboBox, QTextEdit, QTableWidget {{
+        QLineEdit, QTextEdit, QTableWidget {{
             min-height: 32px; border: 1px solid {c['border']}; border-radius: 8px;
             padding: 4px 8px; background: {c['field']}; color: {c['text']}; selection-background-color: {c['accent']};
         }}
-        QComboBox::drop-down {{ border: 0; width: 24px; }}
+        QComboBox {{
+            min-height: 34px; border: 1px solid {c['border']}; border-radius: 10px;
+            padding: 4px 34px 4px 10px; background: {c['field']}; color: {c['text']};
+            selection-background-color: {c['accent']}; selection-color: #FFFFFF;
+        }}
+        QComboBox:hover {{ border-color: {c['accent']}; background: {c['button']}; }}
+        QComboBox:focus {{ border: 1px solid {c['accent']}; }}
+        QComboBox:disabled {{ color: {c['muted']}; background: {c['background']}; }}
+        QComboBox::drop-down {{
+            subcontrol-origin: padding; subcontrol-position: top right; width: 30px;
+            border-left: 1px solid {c['border']}; border-top-right-radius: 10px; border-bottom-right-radius: 10px;
+            background: transparent;
+        }}
+        QComboBox::down-arrow {{
+            image: none; width: 0; height: 0;
+            border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid {c['muted']};
+            margin-right: 10px;
+        }}
+        QComboBox::down-arrow:on {{ border-top-color: {c['accent']}; }}
+        QComboBox QAbstractItemView {{
+            border: 1px solid {c['border']}; border-radius: 10px; padding: 4px;
+            background: {c['card']}; color: {c['text']}; outline: 0;
+            selection-background-color: {c['accent_soft']}; selection-color: {c['text']};
+        }}
+        QComboBox QAbstractItemView::item {{ min-height: 28px; padding: 4px 8px; border-radius: 6px; }}
         QCheckBox, QRadioButton, QLabel {{ color: {c['text']}; }}
         QPushButton {{
             border: 1px solid {c['border']}; border-radius: 8px; padding: 6px 10px;
