@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QVBoxLayout, QWidget
 
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.models.settings.notification_settings_model import NotificationSettingsModel
 from zapzap.views.pages.settings.notifications_settings_view import NotificationsSettingsView
 
 
@@ -9,12 +9,14 @@ class NotificationSettingsController(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.model = NotificationSettingsModel()
         self._setup_ui()
         self._initialize()
 
     def _setup_ui(self):
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
+
         self.view = NotificationsSettingsView(self)
         layout.addWidget(self.view)
 
@@ -24,20 +26,12 @@ class NotificationSettingsController(QWidget):
         self._connect_signals()
 
     def _load_settings(self):
-        self.view.notify_groupBox.checkbox.setChecked(
-            SettingsManager.get("notification/app", True)
-        )
-        self.view.show_photo.checkbox.setChecked(
-            SettingsManager.get("notification/show_photo", True)
-        )
-        self.view.show_name.checkbox.setChecked(
-            SettingsManager.get("notification/show_name", True)
-        )
-        self.view.show_msg.checkbox.setChecked(
-            SettingsManager.get("notification/show_msg", True)
-        )
+        self.view.notify_groupBox.checkbox.setChecked(self.model.enabled)
+        self.view.show_photo.checkbox.setChecked(self.model.show_photo)
+        self.view.show_name.checkbox.setChecked(self.model.show_name)
+        self.view.show_msg.checkbox.setChecked(self.model.show_message_preview)
         self.view.donationMessage.checkbox.setChecked(
-            SettingsManager.get("notification/donation_message", False)
+            self.model.donation_message_enabled
         )
 
     def _connect_signals(self):
@@ -45,17 +39,29 @@ class NotificationSettingsController(QWidget):
             self._handle_toggle_notifications
         )
         self.view.show_photo.checkbox.toggled.connect(
-            lambda checked: SettingsManager.set("notification/show_photo", checked)
+            self._handle_toggle_show_photo
         )
         self.view.show_name.checkbox.toggled.connect(
-            lambda checked: SettingsManager.set("notification/show_name", checked)
+            self._handle_toggle_show_name
         )
         self.view.show_msg.checkbox.toggled.connect(
-            lambda checked: SettingsManager.set("notification/show_msg", checked)
+            self._handle_toggle_show_message_preview
         )
         self.view.donationMessage.checkbox.toggled.connect(
-            lambda checked: SettingsManager.set("notification/donation_message", checked)
+            self._handle_toggle_donation_message
         )
 
-    def _handle_toggle_notifications(self, is_enabled):
-        SettingsManager.set("notification/app", is_enabled)
+    def _handle_toggle_notifications(self, is_enabled: bool):
+        self.model.enabled = is_enabled
+
+    def _handle_toggle_show_photo(self, is_enabled: bool):
+        self.model.show_photo = is_enabled
+
+    def _handle_toggle_show_name(self, is_enabled: bool):
+        self.model.show_name = is_enabled
+
+    def _handle_toggle_show_message_preview(self, is_enabled: bool):
+        self.model.show_message_preview = is_enabled
+
+    def _handle_toggle_donation_message(self, is_enabled: bool):
+        self.model.donation_message_enabled = is_enabled
