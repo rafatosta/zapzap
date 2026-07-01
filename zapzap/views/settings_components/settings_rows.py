@@ -38,20 +38,24 @@ class SettingsToggleSwitch(QCheckBox):
         )
         radius = track_rect.height() / 2
 
+        knob_border = Qt.PenStyle.NoPen
         if self.isEnabled():
             if self.isChecked():
                 track_color = QColor("#25D366")
                 border_color = QColor("#25D366")
+                knob_color = QColor("#FFFFFF")
             elif self._is_dark():
                 track_color = QColor("#2A3942")
                 border_color = QColor("#3B4A54")
+                knob_color = QColor("#8696A0")
             else:
-                track_color = QColor("#FFFFFF")
-                border_color = QColor("#DADDE1")
-            knob_color = QColor("#FFFFFF")
+                track_color = QColor("#F7F8FA")
+                border_color = QColor("#D1D7DB")
+                knob_color = QColor("#FFFFFF")
+                knob_border = QColor("#D1D7DB")
         else:
-            track_color = QColor("#DADDE1") if not self._is_dark() else QColor("#2A3942")
-            border_color = track_color
+            track_color = QColor("#EEF0F2") if not self._is_dark() else QColor("#2A3942")
+            border_color = QColor("#DADDE1") if not self._is_dark() else QColor("#3B4A54")
             knob_color = QColor("#B0B7BD") if not self._is_dark() else QColor("#54656F")
 
         painter.setPen(border_color)
@@ -62,7 +66,7 @@ class SettingsToggleSwitch(QCheckBox):
         knob_y = (self.height() - knob_diameter) / 2
         knob_x = self.width() - knob_diameter - 5 if self.isChecked() else 5
         knob_rect = QRectF(knob_x, knob_y, knob_diameter, knob_diameter)
-        painter.setPen(Qt.PenStyle.NoPen)
+        painter.setPen(knob_border)
         painter.setBrush(knob_color)
         painter.drawEllipse(knob_rect)
 
