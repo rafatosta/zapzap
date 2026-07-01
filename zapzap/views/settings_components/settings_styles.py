@@ -78,7 +78,7 @@ class _SettingsStyleWatcher(QObject):
         super().__init__(widget)
         self.widget = widget
         self.current_theme = _theme_name(widget)
-        ThemeManager.instance().theme_changed.connect(self.refresh_style)
+        ThemeManager.instance().add_theme_observer(self.refresh_style)
 
     def refresh_style(self, *args):
         next_theme = _theme_name(self.widget)

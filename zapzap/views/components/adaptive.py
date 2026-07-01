@@ -61,7 +61,7 @@ class AdaptiveStyleMixin:
         self._adaptive_theme = theme_name(self)
         self.installEventFilter(self)
         if not getattr(self, "_adaptive_theme_signal_connected", False):
-            ThemeManager.instance().theme_changed.connect(self._handle_theme_changed)
+            ThemeManager.instance().add_theme_observer(self._handle_theme_changed)
             self._adaptive_theme_signal_connected = True
         self.apply_adaptive_style()
 

@@ -3,6 +3,8 @@ from __future__ import annotations
 from enum import Enum
 from typing import ClassVar
 from typing import cast
+from weakref import ref
+from weakref import WeakMethod
 
 from PyQt6.QtCore import QObject
 from PyQt6.QtCore import Qt
@@ -53,6 +55,7 @@ class ThemeManager(QObject):
 
         self._current_color_scheme = Qt.ColorScheme.Unknown
         self._last_emitted_theme_state = None
+        self._theme_observers = []
         self._system_theme_monitor = SystemThemeMonitor(self)
         self._system_color_scheme = self._get_effective_system_color_scheme()
 
@@ -152,6 +155,26 @@ class ThemeManager(QObject):
         self._apply_palette_for_color_scheme(current_color_scheme)
         self._emit_theme_changed(self._current_theme, current_color_scheme)
 
+    def add_theme_observer(self, callback) -> None:
+        """Registers a callback to be called whenever the theme changes."""
+        if getattr(callback, "__self__", None) is not None:
+            self._theme_observers.append(WeakMethod(callback))
+        else:
+            self._theme_observers.append(ref(callback))
+
+    def _notify_theme_observers(
+        self,
+        current_theme: Type,
+        effective_color_scheme: Qt.ColorScheme
+    ) -> None:
+        alive_observers = []
+        for observer in self._theme_observers:
+            callback = observer()
+            if callback is not None:
+                callback(current_theme, effective_color_scheme)
+                alive_observers.append(observer)
+        self._theme_observers = alive_observers
+
     def _emit_theme_changed(
         self,
         current_theme: Type,
@@ -161,6 +184,7 @@ class ThemeManager(QObject):
 
         if self._last_emitted_theme_state != theme_state:
             self.theme_changed.emit(current_theme, effective_color_scheme)
+            self._notify_theme_observers(current_theme, effective_color_scheme)
             self._last_emitted_theme_state = theme_state
 
     def _update_system_theme_monitor_state(self) -> None:
