@@ -3,6 +3,8 @@
 from PyQt6.QtCore import QEvent
 from PyQt6.QtGui import QPalette
 
+from zapzap.services.ThemeManager import ThemeManager
+
 
 LIGHT_TOKENS = {
     "background": "#F0F2F5",
@@ -45,7 +47,6 @@ def tokens(widget):
     """Return ZapZap component tokens for the widget's current palette."""
     return DARK_TOKENS if is_dark(widget) else LIGHT_TOKENS
 
-
 class AdaptiveStyleMixin:
     """Mixin that updates a component style when Qt emits palette changes."""
 
@@ -57,14 +58,23 @@ class AdaptiveStyleMixin:
     def install_adaptive_style(self):
         self._adaptive_theme = theme_name(self)
         self.installEventFilter(self)
+        if not getattr(self, "_adaptive_theme_signal_connected", False):
+            ThemeManager.instance().add_theme_observer(self._handle_theme_changed)
+            self._adaptive_theme_signal_connected = True
         self.apply_adaptive_style()
+
+    def _refresh_adaptive_style(self):
+        next_theme = theme_name(self)
+        if next_theme != self._adaptive_theme:
+            self._adaptive_theme = next_theme
+            self.apply_adaptive_style()
+
+    def _handle_theme_changed(self, *args):
+        self._refresh_adaptive_style()
 
     def eventFilter(self, watched, event):
         if watched is self and event.type() in self.WATCHED_EVENTS:
-            next_theme = theme_name(self)
-            if next_theme != self._adaptive_theme:
-                self._adaptive_theme = next_theme
-                self.apply_adaptive_style()
+            self._refresh_adaptive_style()
         return super().eventFilter(watched, event)
 
     def apply_adaptive_style(self):

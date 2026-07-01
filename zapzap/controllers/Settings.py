@@ -11,7 +11,12 @@ from zapzap.controllers.PageAppearance import PageAppearance
 from zapzap.controllers.PageCustomizations import PageCustomizations
 from zapzap.controllers.PagePerformance import PagePerformance
 from zapzap.controllers.PageDebugging import PageDebugging
+from zapzap.services.ThemeManager import ThemeManager
+
 from zapzap.views.ui_settings import Ui_Settings
+
+
+from zapzap.controllers.settings import NotificationSettingsController
 
 
 class Settings(QWidget, Ui_Settings):
@@ -34,7 +39,8 @@ class Settings(QWidget, Ui_Settings):
         self._add_page(PageAccount(), self.btn_account)
         self._add_page(PageAppearance(), self.btn_page_appearence)
         self._add_page(PageCustomizations(), self.btn_page_customizations)
-        self._add_page(PageNotifications(), self.btn_page_notifications)
+        self._add_page(NotificationSettingsController(),
+                       self.btn_page_notifications)
         self._add_page(PageNetwork(), self.btn_page_network)
         self._add_page(PagePerformance(), self.btn_page_performance)
         self._add_page(PageDebugging(), self.btn_page_debug)
@@ -74,4 +80,3 @@ class Settings(QWidget, Ui_Settings):
     def open_about(self):
         """Abre a página Ajuda"""
         self.btn_page_help.click()
-

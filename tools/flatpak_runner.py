@@ -32,13 +32,13 @@ class FlatpakRunner:
 
     def build(self):
 
-        print(" # === Build the windows from the .ui file ===")
-        compiler = UiCompiler()
-        compiler.compile_all()
+        #print(" # === Build the windows from the .ui file ===")
+        #compiler = UiCompiler()
+        #compiler.compile_all()
 
-        print("# === Build translations ===")
-        manager = TranslationManager()
-        manager.run()
+        #print("# === Build translations ===")
+        #manager = TranslationManager()
+        #manager.run()
 
         print("# === Build Flatpak ===")
         self.execute(
