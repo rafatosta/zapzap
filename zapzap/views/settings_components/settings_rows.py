@@ -1,5 +1,70 @@
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import QRectF, QSize, Qt
+from PyQt6.QtGui import QColor, QPainter, QPalette
 from PyQt6.QtWidgets import QCheckBox, QComboBox, QHBoxLayout, QLabel, QLineEdit, QPushButton, QWidget
+
+
+class SettingsToggleSwitch(QCheckBox):
+    """WhatsApp-style pill toggle used by settings switch rows."""
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setObjectName("SettingsToggleSwitch")
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.setText("")
+        self.setFixedSize(self.sizeHint())
+
+    def sizeHint(self):
+        return QSize(46, 26)
+
+    def minimumSizeHint(self):
+        return self.sizeHint()
+
+    def hitButton(self, pos):
+        return self.rect().contains(pos)
+
+    def _is_dark(self):
+        return self.palette().color(QPalette.ColorRole.Window).lightness() < 128
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+
+        margin = 2
+        track_rect = QRectF(
+            margin,
+            margin,
+            self.width() - margin * 2,
+            self.height() - margin * 2,
+        )
+        radius = track_rect.height() / 2
+
+        if self.isEnabled():
+            if self.isChecked():
+                track_color = QColor("#25D366")
+                border_color = QColor("#25D366")
+            elif self._is_dark():
+                track_color = QColor("#2A3942")
+                border_color = QColor("#3B4A54")
+            else:
+                track_color = QColor("#FFFFFF")
+                border_color = QColor("#DADDE1")
+            knob_color = QColor("#FFFFFF")
+        else:
+            track_color = QColor("#DADDE1") if not self._is_dark() else QColor("#2A3942")
+            border_color = track_color
+            knob_color = QColor("#B0B7BD") if not self._is_dark() else QColor("#54656F")
+
+        painter.setPen(border_color)
+        painter.setBrush(track_color)
+        painter.drawRoundedRect(track_rect, radius, radius)
+
+        knob_diameter = self.height() - 8
+        knob_y = (self.height() - knob_diameter) / 2
+        knob_x = self.width() - knob_diameter - 5 if self.isChecked() else 5
+        knob_rect = QRectF(knob_x, knob_y, knob_diameter, knob_diameter)
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.setBrush(knob_color)
+        painter.drawEllipse(knob_rect)
 
 
 class _BaseRow(QWidget):
@@ -40,7 +105,7 @@ class _BaseRow(QWidget):
 
 class SettingsSwitchRow(_BaseRow):
     def __init__(self, title, description="", checked=False, parent=None):
-        self.checkbox = QCheckBox()
+        self.checkbox = SettingsToggleSwitch()
         self.checkbox.setChecked(checked)
         super().__init__(title, description, self.checkbox, parent)
 
