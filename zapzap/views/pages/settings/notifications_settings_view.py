@@ -12,7 +12,7 @@ class NotificationsSettingsView(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setObjectName("PageNotificationsView")
+        self.setObjectName("NotificationsSettingsView")
         self._setup_ui()
         self._apply_style()
         ThemeManager.instance().theme_changed.connect(self._schedule_palette_refresh)
@@ -111,7 +111,7 @@ class NotificationsSettingsView(QWidget):
 
     def _apply_style(self):
         self.setStyleSheet("""
-            QWidget#PageNotificationsView {
+            QWidget#NotificationsSettingsView {
                 background: palette(window);
                 color: palette(text);
             }
