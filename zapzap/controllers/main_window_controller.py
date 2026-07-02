@@ -1,5 +1,12 @@
-from PyQt6.QtWidgets import QMainWindow, QApplication
-from PyQt6.QtCore import QByteArray, Qt, QEvent, QBuffer, QTimer, QIODevice
+from PyQt6.QtCore import QByteArray
+from PyQt6.QtCore import QBuffer
+from PyQt6.QtCore import QEvent
+from PyQt6.QtCore import QIODevice
+from PyQt6.QtCore import QTimer
+from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QActionGroup
+from PyQt6.QtGui import QImage
+from PyQt6.QtWidgets import QApplication
 from zapzap.controllers.QtoasterDonation import QtoasterDonation
 from zapzap.controllers.Settings import Settings
 from zapzap.controllers.Browser import Browser
@@ -8,13 +15,11 @@ from zapzap.services.AlertManager import AlertManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
 from zapzap.services.ThemeManager import ThemeManager
-from zapzap.views.ui_mainwindow import Ui_MainWindow
-from PyQt6.QtGui import QImage, QActionGroup
-
+from zapzap.views import MainWindowView
 from gettext import gettext as _
 
 
-class MainWindow(QMainWindow, Ui_MainWindow):
+class MainWindowController(MainWindowView):
     """
     Classe principal da interface do aplicativo.
     Controla a janela principal, incluindo o menu e interações com widgets centrais.
@@ -22,8 +27,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setupUi(self)
-
         self.is_fullscreen = False  # Controle do estado de tela cheia
         self.browser = Browser(self)  # Inicialização do navegador
         self.app_settings = None
@@ -31,7 +34,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.theme_action_group = None
         self._setup_ui()
 
-        if not SettingsManager.get("notification/donation_message", True) and not SettingsManager.get("system/csr", False):
+        if (
+            not SettingsManager.get("notification/donation_message", True)
+            and not SettingsManager.get("system/csr", False)
+        ):
             QtoasterDonation.showMessage(parent=self)
 
     def changeEvent(self, event):
@@ -63,7 +69,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if image.save(buffer, "PNG"):
                 clean_img = QImage()
                 clean_img.loadFromData(buffer.data(), "PNG")
-                QTimer.singleShot(0, lambda img=clean_img.copy()                                  : clipboard.setImage(img))
+                QTimer.singleShot(
+                    0,
+                    lambda img=clean_img.copy(): clipboard.setImage(img),
+                )
         finally:
             buffer.close()
 
@@ -171,7 +180,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             action.setChecked(theme_value == value)
             action.blockSignals(False)
 
-    def set_sidebar_visible(self, visible: bool, animated: bool = True, persist: bool = True):
+    def set_sidebar_visible(
+        self,
+        visible: bool,
+        animated: bool = True,
+        persist: bool = True,
+    ):
         self.browser.set_sidebar_visible(visible, animated=animated)
 
         self.actionToggle_sidebar.blockSignals(True)
