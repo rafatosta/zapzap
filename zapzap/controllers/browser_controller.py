@@ -6,7 +6,6 @@ from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QMessageBox
 from PyQt6.QtWidgets import QWidget
 from zapzap.controllers.CardUser import CardUser
-from zapzap.controllers.PageButton import PageButton
 from zapzap.services.ThemeManager import ThemeManager
 from zapzap.webengine.WebView import WebView
 from zapzap.models.User import User
@@ -18,6 +17,7 @@ from zapzap.services.SetupManager import SetupManager
 from zapzap.services.SysTrayManager import SysTrayManager
 from zapzap.views.browser import BrowserSidebarButton
 from zapzap.views.browser import BrowserView
+from zapzap.views.browser import BrowserPageButton
 from zapzap.controllers.OnboardingDialog import OnboardingDialog
 
 from gettext import gettext as _
@@ -187,7 +187,7 @@ class BrowserController(BrowserView):
         self.pages.addWidget(new_page)
 
         # Criar o botão correspondente
-        page_button = PageButton(user, page_index)
+        page_button = BrowserPageButton(user, page_index)
         page_button.clicked.connect(
             lambda: self._handle_page_button_click(new_page, page_button))
         page_button.setObjectName(f"page_button_{page_index}")
@@ -299,7 +299,7 @@ class BrowserController(BrowserView):
         return None, None
 
     # === Ações do Navegador ===
-    def switch_to_page(self, page: WebView, button: PageButton):
+    def switch_to_page(self, page: WebView, button: BrowserPageButton):
         """Alterna para a página selecionada e ajusta os estilos dos botões."""
         old_page = self.pages.currentWidget()
         if old_page and isinstance(old_page, WebView):
@@ -316,7 +316,7 @@ class BrowserController(BrowserView):
                                "" else _("Account {}").format(page.page_index))
         button.selected()
 
-    def _handle_page_button_click(self, page: WebView, button: PageButton):
+    def _handle_page_button_click(self, page: WebView, button: BrowserPageButton):
         """Trata o clique no botão da conta, preservando contas desativadas visíveis."""
         if not button.user.enable:
             dialog = QMessageBox(self)
@@ -338,7 +338,7 @@ class BrowserController(BrowserView):
 
         self.switch_to_page(page, button)
 
-    def _show_page_button_context_menu(self, button: PageButton, position):
+    def _show_page_button_context_menu(self, button: BrowserPageButton, position):
         """Exibe no botão da conta o menu com as opções do CardUser."""
         menu = CardUser.create_page_button_context_menu(button, button.user)
         menu.exec(button.mapToGlobal(position))
