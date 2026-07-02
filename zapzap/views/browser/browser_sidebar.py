@@ -14,44 +14,48 @@ from PyQt6.QtWidgets import QVBoxLayout
 class BrowserSidebarButton(QPushButton):
     """Icon-only button used inside the browser sidebar."""
 
-    STYLE = """
-    QPushButton {
-        min-width: 35px;
-        min-height: 35px;
+    BUTTON_SIZE = 40
+    ICON_SIZE = 20
+    BORDER_RADIUS = 10
+
+    STYLE = f"""
+    QPushButton {{
+        min-width: {BUTTON_SIZE}px;
+        min-height: {BUTTON_SIZE}px;
         border: 1px solid transparent;
-        border-radius: 10px;
+        border-radius: {BORDER_RADIUS}px;
         padding: 0;
         background-color: transparent;
         color: palette(button-text);
         qproperty-flat: true;
-        qproperty-iconSize: 20px;
-    }
-    QPushButton:hover {
+        qproperty-iconSize: {ICON_SIZE}px;
+    }}
+    QPushButton:hover {{
         background-color: palette(alternate-base);
         border-color: palette(mid);
-    }
-    QPushButton:pressed {
+    }}
+    QPushButton:pressed {{
         background-color: palette(highlight);
         border-color: palette(highlight);
         color: palette(highlighted-text);
-    }
-    QPushButton:checked {
+    }}
+    QPushButton:checked {{
         background-color: palette(alternate-base);
         border-color: palette(highlight);
-    }
-    QPushButton:disabled {
+    }}
+    QPushButton:disabled {{
         background-color: transparent;
         border-color: transparent;
         color: palette(placeholder-text);
-    }
+    }}
     """
 
     def __init__(self, object_name="", parent=None):
         super().__init__(parent)
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         self.setText("")
-        self.setMinimumSize(QSize(35, 35))
-        self.setIconSize(QSize(20, 20))
+        self.setMinimumSize(QSize(self.BUTTON_SIZE, self.BUTTON_SIZE))
+        self.setIconSize(QSize(self.ICON_SIZE, self.ICON_SIZE))
         self._apply_style()
         if object_name:
             self.setObjectName(object_name)
