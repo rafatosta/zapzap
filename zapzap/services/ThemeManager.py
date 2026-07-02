@@ -13,6 +13,7 @@ from PyQt6.QtGui import QColor
 from PyQt6.QtGui import QPalette
 from PyQt6.QtWidgets import QApplication
 
+from zapzap.resources.ThemeStylesheet import ThemeStylesheet
 from zapzap.services.SystemThemeMonitor import SystemThemeMonitor
 from zapzap.services.SettingsManager import SettingsManager
 
@@ -264,3 +265,4 @@ class ThemeManager(QObject):
         )
 
         app.setPalette(cls._create_palette(**palette_colors))
+        app.setStyleSheet(ThemeStylesheet.get_global_components_stylesheet())
