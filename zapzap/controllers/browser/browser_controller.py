@@ -4,7 +4,6 @@ from PyQt6.QtCore import QPropertyAnimation
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QMessageBox
-from PyQt6.QtWidgets import QPushButton
 from PyQt6.QtWidgets import QWidget
 from zapzap.controllers.CardUser import CardUser
 from zapzap.controllers.PageButton import PageButton
@@ -17,6 +16,7 @@ from zapzap.services.AlertManager import AlertManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SetupManager import SetupManager
 from zapzap.services.SysTrayManager import SysTrayManager
+from zapzap.views.browser import BrowserSidebarButton
 from zapzap.views.browser import BrowserView
 from zapzap.controllers.OnboardingDialog import OnboardingDialog
 
@@ -92,7 +92,9 @@ class BrowserController(BrowserView):
         self.grid_page_index = self.pages.indexOf(self.grid_scroll)
 
         # Add grid button to sidebar
-        self.btn_grid_view = QPushButton(self.settings_buttons_layout)
+        self.btn_grid_view = BrowserSidebarButton(
+            parent=self.settings_buttons_layout,
+        )
         self.btn_grid_view.setMinimumSize(40, 40)
         self.btn_grid_view.setMaximumSize(40, 40)
         self.btn_grid_view.setText("")
@@ -123,7 +125,9 @@ class BrowserController(BrowserView):
         if not SetupManager._is_flatpak:
             return
 
-        self.btn_flatpak_help = QPushButton(self.settings_buttons_layout)
+        self.btn_flatpak_help = BrowserSidebarButton(
+            parent=self.settings_buttons_layout,
+        )
         self.btn_flatpak_help.setMinimumSize(40, 40)
         self.btn_flatpak_help.setMaximumSize(40, 40)
         self.btn_flatpak_help.setText("")
