@@ -1,9 +1,5 @@
 from gettext import gettext as _
-
-from PyQt6.QtCore import QTimer
 from PyQt6.QtWidgets import QScrollArea, QVBoxLayout, QWidget
-
-from zapzap.services.ThemeManager import ThemeManager
 from zapzap.views.components import Card, Label, Section, SwitchRow
 
 
@@ -15,7 +11,6 @@ class NotificationsSettingsView(QWidget):
         self.setObjectName("NotificationsSettingsView")
         self._setup_ui()
         self._apply_style()
-        ThemeManager.instance().theme_changed.connect(self._schedule_palette_refresh)
 
     def _setup_ui(self):
         root_layout = QVBoxLayout(self)
@@ -98,16 +93,6 @@ class NotificationsSettingsView(QWidget):
         card.add_widget(self.donationMessage)
         section.add_card(card)
         self.content_layout.addWidget(section)
-
-    def _schedule_palette_refresh(self, *_args):
-        QTimer.singleShot(0, self._refresh_palette_styles)
-
-    def _refresh_palette_styles(self):
-        for widget in [self, *self.findChildren(QWidget)]:
-            style = widget.style()
-            style.unpolish(widget)
-            style.polish(widget)
-            widget.update()
 
     def _apply_style(self):
         self.setStyleSheet("""
