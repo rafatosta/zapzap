@@ -3,6 +3,7 @@
 from gettext import gettext as _
 
 from PyQt6.QtCore import QSize
+from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QFrame
 from PyQt6.QtWidgets import QPushButton
 from PyQt6.QtWidgets import QSizePolicy
@@ -13,13 +14,50 @@ from PyQt6.QtWidgets import QVBoxLayout
 class BrowserSidebarButton(QPushButton):
     """Icon-only button used inside the browser sidebar."""
 
+    STYLE = """
+    QPushButton {
+        min-width: 35px;
+        min-height: 35px;
+        border: 1px solid transparent;
+        border-radius: 10px;
+        padding: 0;
+        background-color: transparent;
+        color: palette(button-text);
+        qproperty-flat: true;
+        qproperty-iconSize: 20px;
+    }
+    QPushButton:hover {
+        background-color: palette(alternate-base);
+        border-color: palette(mid);
+    }
+    QPushButton:pressed {
+        background-color: palette(highlight);
+        border-color: palette(highlight);
+        color: palette(highlighted-text);
+    }
+    QPushButton:checked {
+        background-color: palette(alternate-base);
+        border-color: palette(highlight);
+    }
+    QPushButton:disabled {
+        background-color: transparent;
+        border-color: transparent;
+        color: palette(placeholder-text);
+    }
+    """
+
     def __init__(self, object_name="", parent=None):
         super().__init__(parent)
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
         self.setText("")
         self.setMinimumSize(QSize(35, 35))
         self.setIconSize(QSize(20, 20))
+        self._apply_style()
         if object_name:
             self.setObjectName(object_name)
+
+    def _apply_style(self):
+        self.setStyleSheet(self.STYLE)
 
 
 class BrowserSidebar(QFrame):
