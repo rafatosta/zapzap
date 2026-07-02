@@ -4,3 +4,6 @@ from .label import Label
 from .section import Section
 from .toggle_switch import ToggleSwitch
 from .switch_row import SwitchRow
+from .path_row import PathRow
+from .combobox import ComboBox
+from .select_row import SelectRow
