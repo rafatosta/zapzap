@@ -31,11 +31,6 @@ class FlatpakRunner:
         self.execute("flatpak install --user --assumeyes org.flatpak.Builder")
 
     def build(self):
-
-        #print(" # === Build the windows from the .ui file ===")
-        #compiler = UiCompiler()
-        #compiler.compile_all()
-
         #print("# === Build translations ===")
         #manager = TranslationManager()
         #manager.run()
