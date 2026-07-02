@@ -1,3 +1,2 @@
-from zapzap.controllers.settings.notification_settings_controller import (
-    NotificationSettingsController,
-)
+from .notification_settings_controller import NotificationSettingsController
+from .general_settings_controller import GeneralSettingsController
