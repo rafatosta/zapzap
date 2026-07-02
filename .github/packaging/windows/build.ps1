@@ -12,7 +12,6 @@ $UiFiles = @(
 
 $AdditionalData = @(
     @("zapzap/po", "zapzap/po"),
-    @("zapzap/ui", "zapzap/ui"),
     @("zapzap/resources", "zapzap/resources"),
     @("zapzap/webengine/webrtc_shield.js", "zapzap/webengine"),
     @("zapzap/webengine/theme_controller.js", "zapzap/webengine")

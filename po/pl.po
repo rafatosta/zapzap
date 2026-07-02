@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-01 17:34-0300\n"
+"POT-Creation-Date: 2026-07-02 18:29-0300\n"
 "PO-Revision-Date: 2025-03-21 16:43+0100\n"
 "Last-Translator: Michał Kareńko <m.karenko@outlook.com>\n"
 "Language-Team: \n"
@@ -17,23 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
-
-#: zapzap/views/ui_browser.py:84 zapzap/views/ui_page_account.py:80
-#: zapzap/controllers/ShortcutsDialog.py:61 zapzap/controllers/Browser.py:226
-msgid "New account"
-msgstr "Nowe konto"
-
-#: zapzap/views/ui_browser.py:85
-msgid "New conversation by the phone number"
-msgstr "Nowa konwersacja przy użyciu numer telefonu"
-
-#: zapzap/views/ui_browser.py:86 zapzap/controllers/ShortcutsDialog.py:10
-msgid "New conversation"
-msgstr "Nowa konwersacja"
-
-#: zapzap/views/ui_browser.py:87
-msgid "ZapZap Settings"
-msgstr "Ustawienia ZapZap"
 
 #: zapzap/views/ui_card_user.py:77
 msgid "Click to generate new colors for the icon"
@@ -70,174 +53,185 @@ msgid "Enter the user name"
 msgstr "Wprowadź nazwę użytkownika"
 
 #: zapzap/views/ui_mainwindow.py:109 zapzap/views/ui_qtoaster_donation.py:156
-#: zapzap/views/ui_shortcuts_dialog.py:58
+#: zapzap/views/ui_shortcuts_dialog.py:58 zapzap/views/main_window_view.py:129
 msgid "ZapZap"
 msgstr "ZapZap"
 
-#: zapzap/views/ui_mainwindow.py:110
+#: zapzap/views/ui_mainwindow.py:110 zapzap/views/main_window_view.py:130
 msgid "File"
 msgstr "Plik"
 
-#: zapzap/views/ui_mainwindow.py:111
+#: zapzap/views/ui_mainwindow.py:111 zapzap/views/main_window_view.py:131
 msgid "View"
 msgstr "Widok"
 
-#: zapzap/views/ui_mainwindow.py:112
+#: zapzap/views/ui_mainwindow.py:112 zapzap/views/main_window_view.py:132
 msgid "Chat"
 msgstr "Czat"
 
-#: zapzap/views/ui_mainwindow.py:113
+#: zapzap/views/ui_mainwindow.py:113 zapzap/views/main_window_view.py:133
 msgid "Users"
 msgstr "Użytkownicy"
 
-#: zapzap/views/ui_mainwindow.py:114
+#: zapzap/views/ui_mainwindow.py:114 zapzap/views/main_window_view.py:134
 msgid "Help"
 msgstr "Pomoc"
 
 #: zapzap/views/ui_mainwindow.py:115 zapzap/views/ui_settings.py:165
-#: zapzap/services/SysTrayManager.py:57
+#: zapzap/views/main_window_view.py:135 zapzap/services/SysTrayManager.py:57
 msgid "Quit"
 msgstr "Wyjdź"
 
-#: zapzap/views/ui_mainwindow.py:116
+#: zapzap/views/ui_mainwindow.py:116 zapzap/views/main_window_view.py:136
 msgid "Ctrl+Q"
 msgstr "Ctrl+Q"
 
-#: zapzap/views/ui_mainwindow.py:117 zapzap/controllers/ShortcutsDialog.py:44
+#: zapzap/views/ui_mainwindow.py:117 zapzap/views/main_window_view.py:137
+#: zapzap/controllers/ShortcutsDialog.py:44
 msgid "Hide"
 msgstr "Schowaj"
 
-#: zapzap/views/ui_mainwindow.py:118
+#: zapzap/views/ui_mainwindow.py:118 zapzap/views/main_window_view.py:138
 msgid "Ctrl+W"
 msgstr "Ctrl+W"
 
-#: zapzap/views/ui_mainwindow.py:119 zapzap/controllers/ShortcutsDialog.py:22
+#: zapzap/views/ui_mainwindow.py:119 zapzap/views/main_window_view.py:139
+#: zapzap/controllers/ShortcutsDialog.py:22
 #: zapzap/controllers/ShortcutsDialog.py:43
 #: zapzap/services/SysTrayManager.py:55
 msgid "Settings"
 msgstr "Ustawienia"
 
-#: zapzap/views/ui_mainwindow.py:120
+#: zapzap/views/ui_mainwindow.py:120 zapzap/views/main_window_view.py:140
 msgid "Ctrl+P"
 msgstr "Ctrl+P"
 
-#: zapzap/views/ui_mainwindow.py:121 zapzap/controllers/ShortcutsDialog.py:52
+#: zapzap/views/ui_mainwindow.py:121 zapzap/views/main_window_view.py:141
+#: zapzap/controllers/ShortcutsDialog.py:52
 msgid "Reset zoom"
 msgstr "Zresetuj powiększenie"
 
-#: zapzap/views/ui_mainwindow.py:122
+#: zapzap/views/ui_mainwindow.py:122 zapzap/views/main_window_view.py:142
 msgid "Ctrl+0"
 msgstr "Ctrl+0"
 
-#: zapzap/views/ui_mainwindow.py:123 zapzap/controllers/ShortcutsDialog.py:53
+#: zapzap/views/ui_mainwindow.py:123 zapzap/views/main_window_view.py:143
+#: zapzap/controllers/ShortcutsDialog.py:53
 msgid "Zoom in"
 msgstr "Powiększ"
 
-#: zapzap/views/ui_mainwindow.py:124
+#: zapzap/views/ui_mainwindow.py:124 zapzap/views/main_window_view.py:144
 msgid "Ctrl++"
 msgstr "Ctrl++"
 
-#: zapzap/views/ui_mainwindow.py:125 zapzap/controllers/ShortcutsDialog.py:54
+#: zapzap/views/ui_mainwindow.py:125 zapzap/views/main_window_view.py:145
+#: zapzap/controllers/ShortcutsDialog.py:54
 msgid "Zoom out"
 msgstr "Pomniejsz"
 
-#: zapzap/views/ui_mainwindow.py:126
+#: zapzap/views/ui_mainwindow.py:126 zapzap/views/main_window_view.py:146
 msgid "Ctrl+-"
 msgstr "Ctrl+-"
 
-#: zapzap/views/ui_mainwindow.py:127
+#: zapzap/views/ui_mainwindow.py:127 zapzap/views/main_window_view.py:147
 msgid "Toggle full screen"
 msgstr "Włącz tryb pełnoekranowy"
 
-#: zapzap/views/ui_mainwindow.py:128
+#: zapzap/views/ui_mainwindow.py:128 zapzap/views/main_window_view.py:148
 msgid "F11"
 msgstr "F11"
 
-#: zapzap/views/ui_mainwindow.py:129
+#: zapzap/views/ui_mainwindow.py:129 zapzap/views/main_window_view.py:149
 msgid "Open DevTools"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:130
+#: zapzap/views/ui_mainwindow.py:130 zapzap/views/main_window_view.py:150
 #, fuzzy
 msgid "Ctrl+Shift+I"
 msgstr "Ctrl++"
 
-#: zapzap/views/ui_mainwindow.py:131
+#: zapzap/views/ui_mainwindow.py:131 zapzap/views/main_window_view.py:151
 #, fuzzy
 msgid "Grid View"
 msgstr "Widok"
 
-#: zapzap/views/ui_mainwindow.py:132
+#: zapzap/views/ui_mainwindow.py:132 zapzap/views/main_window_view.py:152
 #, fuzzy
 msgid "Ctrl+G"
 msgstr "Ctrl+Q"
 
 #: zapzap/views/ui_mainwindow.py:133 zapzap/views/ui_page_appearance.py:161
+#: zapzap/views/main_window_view.py:153
 msgid "Show sidebar"
 msgstr "Pokaż pasek boczny"
 
-#: zapzap/views/ui_mainwindow.py:134 zapzap/controllers/ShortcutsDialog.py:49
+#: zapzap/views/ui_mainwindow.py:134 zapzap/views/main_window_view.py:154
+#: zapzap/controllers/ShortcutsDialog.py:49
 msgid "Automatic theme"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:135
+#: zapzap/views/ui_mainwindow.py:135 zapzap/views/main_window_view.py:155
 #, fuzzy
 msgid "Ctrl+Alt+1"
 msgstr "Ctrl++"
 
-#: zapzap/views/ui_mainwindow.py:136 zapzap/controllers/ShortcutsDialog.py:50
+#: zapzap/views/ui_mainwindow.py:136 zapzap/views/main_window_view.py:156
+#: zapzap/controllers/ShortcutsDialog.py:50
 #, fuzzy
 msgid "Light theme"
 msgstr "Jasny"
 
-#: zapzap/views/ui_mainwindow.py:137
+#: zapzap/views/ui_mainwindow.py:137 zapzap/views/main_window_view.py:157
 #, fuzzy
 msgid "Ctrl+Alt+2"
 msgstr "Ctrl++"
 
-#: zapzap/views/ui_mainwindow.py:138 zapzap/controllers/ShortcutsDialog.py:51
+#: zapzap/views/ui_mainwindow.py:138 zapzap/views/main_window_view.py:158
+#: zapzap/controllers/ShortcutsDialog.py:51
 msgid "Dark theme"
 msgstr ""
 
-#: zapzap/views/ui_mainwindow.py:139
+#: zapzap/views/ui_mainwindow.py:139 zapzap/views/main_window_view.py:159
 #, fuzzy
 msgid "Ctrl+Alt+3"
 msgstr "Ctrl++"
 
 #: zapzap/views/ui_mainwindow.py:140 zapzap/views/ui_page_customizations.py:268
+#: zapzap/views/main_window_view.py:160
 msgid "Reload"
 msgstr "Przeładuj"
 
-#: zapzap/views/ui_mainwindow.py:141
+#: zapzap/views/ui_mainwindow.py:141 zapzap/views/main_window_view.py:161
 msgid "F5"
 msgstr "F5"
 
-#: zapzap/views/ui_mainwindow.py:142
+#: zapzap/views/ui_mainwindow.py:142 zapzap/views/main_window_view.py:162
 msgid "New chat"
 msgstr "Nowy czat"
 
-#: zapzap/views/ui_mainwindow.py:143
+#: zapzap/views/ui_mainwindow.py:143 zapzap/views/main_window_view.py:163
 msgid "Ctrl+N"
 msgstr "Ctrl+N"
 
-#: zapzap/views/ui_mainwindow.py:144
+#: zapzap/views/ui_mainwindow.py:144 zapzap/views/main_window_view.py:164
 msgid "By number phone"
 msgstr "Przy użyciu numer telefonu"
 
-#: zapzap/views/ui_mainwindow.py:145
+#: zapzap/views/ui_mainwindow.py:145 zapzap/views/main_window_view.py:165
 msgid "Ctrl+M"
 msgstr "Ctrl+M"
 
 #: zapzap/views/ui_mainwindow.py:146 zapzap/views/ui_shortcuts_dialog.py:56
+#: zapzap/views/main_window_view.py:166
 msgid "Keyboard shortcuts"
 msgstr "Skróty klawiszowe"
 
-#: zapzap/views/ui_mainwindow.py:147
+#: zapzap/views/ui_mainwindow.py:147 zapzap/views/main_window_view.py:167
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr ""
 
 #: zapzap/views/ui_mainwindow.py:148 zapzap/views/ui_page_about.py:118
-#: zapzap/views/ui_settings.py:163
+#: zapzap/views/ui_settings.py:163 zapzap/views/main_window_view.py:168
 msgid "About"
 msgstr "O programie"
 
@@ -285,6 +279,13 @@ msgstr ""
 #: zapzap/views/ui_page_account.py:79
 msgid "My accounts"
 msgstr "Moje konta"
+
+#: zapzap/views/ui_page_account.py:80
+#: zapzap/views/browser/browser_sidebar.py:145
+#: zapzap/controllers/ShortcutsDialog.py:61
+#: zapzap/controllers/browser_controller.py:243
+msgid "New account"
+msgstr "Nowe konto"
 
 #: zapzap/views/ui_page_appearance.py:143 zapzap/views/ui_settings.py:156
 msgid "Appearance"
@@ -515,6 +516,7 @@ msgid "Save"
 msgstr "Zapisz"
 
 #: zapzap/views/ui_page_general.py:162 zapzap/views/ui_settings.py:153
+#: zapzap/views/pages/settings/general_settings_view.py:32
 msgid "General"
 msgstr "Ogólny"
 
@@ -549,11 +551,13 @@ msgid ""
 msgstr ""
 
 #: zapzap/views/ui_page_general.py:169
+#: zapzap/views/pages/settings/general_settings_view.py:56
 #, fuzzy
 msgid "Interface language"
 msgstr "Wybierz język"
 
 #: zapzap/views/ui_page_general.py:170
+#: zapzap/views/pages/settings/general_settings_view.py:57
 msgid "The interface language is applied immediately."
 msgstr ""
 
@@ -594,27 +598,33 @@ msgid "Behavior"
 msgstr "Zachowanie"
 
 #: zapzap/views/ui_page_general.py:180
+#: zapzap/views/pages/settings/general_settings_view.py:90
 #, fuzzy
 msgid "Confirm before closing the window"
 msgstr "Zamknij podczas zamykania okna"
 
 #: zapzap/views/ui_page_general.py:181
+#: zapzap/views/pages/settings/general_settings_view.py:94
 msgid "Close when closing the window"
 msgstr "Zamknij podczas zamykania okna"
 
 #: zapzap/views/ui_page_general.py:182
+#: zapzap/views/pages/settings/general_settings_view.py:71
 msgid "Start minimized"
 msgstr "Uruchom zminimalizowane"
 
 #: zapzap/views/ui_page_general.py:183
+#: zapzap/views/pages/settings/general_settings_view.py:75
 msgid "Start with the system"
 msgstr "Uruchom z systemem"
 
 #: zapzap/views/ui_page_general.py:184
+#: zapzap/views/pages/settings/general_settings_view.py:98
 msgid "Don't use a platform-native file dialog"
 msgstr "Nie używaj systemowego okna dialogowego"
 
 #: zapzap/views/ui_page_general.py:185
+#: zapzap/views/pages/settings/general_settings_view.py:117
 msgid "Wayland window system"
 msgstr "System okien Wayland"
 
@@ -667,7 +677,7 @@ msgid "Prevent WebRTC IP leak (Mask local IPs)"
 msgstr ""
 
 #: zapzap/views/ui_page_notifications.py:69 zapzap/views/ui_settings.py:158
-#: zapzap/views/pages/settings/notifications_settings_view.py:36
+#: zapzap/views/pages/settings/notifications_settings_view.py:31
 msgid "Notifications"
 msgstr "Powiadomienia"
 
@@ -684,7 +694,7 @@ msgid "Show the sender's name"
 msgstr "Pokaż nazwę nadawcy"
 
 #: zapzap/views/ui_page_notifications.py:73
-#: zapzap/views/pages/settings/notifications_settings_view.py:79
+#: zapzap/views/pages/settings/notifications_settings_view.py:74
 msgid "Show message preview"
 msgstr "Pokaż podgląd wiadomości"
 
@@ -888,94 +898,240 @@ msgstr "Okno dialogowe"
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
-#: zapzap/views/pages/settings/notifications_settings_view.py:39
+#: zapzap/views/browser/browser_sidebar.py:147
+msgid "New conversation by the phone number"
+msgstr "Nowa konwersacja przy użyciu numer telefonu"
+
+#: zapzap/views/browser/browser_sidebar.py:149
+#: zapzap/controllers/ShortcutsDialog.py:10
+msgid "New conversation"
+msgstr "Nowa konwersacja"
+
+#: zapzap/views/browser/browser_sidebar.py:150
+msgid "ZapZap Settings"
+msgstr "Ustawienia ZapZap"
+
+#: zapzap/views/browser/browser_grid_view.py:74
+#, fuzzy
+msgid "Accounts overview"
+msgstr "Konta"
+
+#: zapzap/views/browser/browser_grid_view.py:78
+msgid "Select an account to return to its chat."
+msgstr ""
+
+#: zapzap/views/browser/browser_grid_view.py:91
+#, fuzzy
+msgid "No active accounts to display."
+msgstr "Brak aktywnego konta!"
+
+#: zapzap/views/pages/settings/notifications_settings_view.py:34
 msgid ""
 "Control desktop notifications, notification privacy, and ZapZap messages."
 msgstr ""
 
-#: zapzap/views/pages/settings/notifications_settings_view.py:52
+#: zapzap/views/pages/settings/notifications_settings_view.py:47
 #, fuzzy
 msgid "Desktop notifications"
 msgstr "Wycisz powiadomienia"
 
-#: zapzap/views/pages/settings/notifications_settings_view.py:53
+#: zapzap/views/pages/settings/notifications_settings_view.py:48
 msgid "Choose whether ZapZap may show desktop notifications."
 msgstr ""
 
-#: zapzap/views/pages/settings/notifications_settings_view.py:57
+#: zapzap/views/pages/settings/notifications_settings_view.py:52
 #, fuzzy
 msgid "Enable notifications"
 msgstr "Obszar roboczy powiadomień"
 
-#: zapzap/views/pages/settings/notifications_settings_view.py:58
+#: zapzap/views/pages/settings/notifications_settings_view.py:53
 msgid ""
 "Allow ZapZap to publish native desktop notifications for WhatsApp activity."
 msgstr ""
 
-#: zapzap/views/pages/settings/notifications_settings_view.py:66
+#: zapzap/views/pages/settings/notifications_settings_view.py:61
 #, fuzzy
 msgid "Notification privacy"
 msgstr "Powiadomienia"
 
-#: zapzap/views/pages/settings/notifications_settings_view.py:67
+#: zapzap/views/pages/settings/notifications_settings_view.py:62
 msgid "Limit what is visible in notification banners."
 msgstr ""
 
-#: zapzap/views/pages/settings/notifications_settings_view.py:71
+#: zapzap/views/pages/settings/notifications_settings_view.py:66
 #, fuzzy
 msgid "Show contact photo"
 msgstr "Ukryj powiadomienie darowizny"
 
-#: zapzap/views/pages/settings/notifications_settings_view.py:72
+#: zapzap/views/pages/settings/notifications_settings_view.py:67
 msgid "Display the sender avatar when it is available."
 msgstr ""
 
-#: zapzap/views/pages/settings/notifications_settings_view.py:75
+#: zapzap/views/pages/settings/notifications_settings_view.py:70
 #, fuzzy
 msgid "Show contact name"
 msgstr "Ukryj powiadomienie darowizny"
 
-#: zapzap/views/pages/settings/notifications_settings_view.py:76
+#: zapzap/views/pages/settings/notifications_settings_view.py:71
 msgid "Display the sender or group name."
 msgstr ""
 
-#: zapzap/views/pages/settings/notifications_settings_view.py:80
+#: zapzap/views/pages/settings/notifications_settings_view.py:75
 #, fuzzy
 msgid "Display the message text in the notification."
 msgstr "Wycisz powiadomienia"
 
-#: zapzap/views/pages/settings/notifications_settings_view.py:90
+#: zapzap/views/pages/settings/notifications_settings_view.py:85
 #, fuzzy
 msgid "ZapZap messages"
 msgstr "Ustawienia ZapZap"
 
-#: zapzap/views/pages/settings/notifications_settings_view.py:91
+#: zapzap/views/pages/settings/notifications_settings_view.py:86
 msgid "Optional messages shown by ZapZap itself."
 msgstr ""
 
-#: zapzap/views/pages/settings/notifications_settings_view.py:95
+#: zapzap/views/pages/settings/notifications_settings_view.py:90
 #, fuzzy
 msgid "Donation reminder"
 msgstr "Ukryj powiadomienie darowizny"
 
-#: zapzap/views/pages/settings/notifications_settings_view.py:96
+#: zapzap/views/pages/settings/notifications_settings_view.py:91
 msgid "Show occasional support messages from ZapZap."
 msgstr ""
 
+#: zapzap/views/pages/settings/general_settings_view.py:35
+msgid ""
+"Manage language, startup, downloads, spell checking, and Linux integration."
+msgstr ""
+
+#: zapzap/views/pages/settings/general_settings_view.py:51
+#, fuzzy
+msgid "Language"
+msgstr "Wybierz język"
+
+#: zapzap/views/pages/settings/general_settings_view.py:52
+msgid "Choose the interface language used by ZapZap."
+msgstr ""
+
+#: zapzap/views/pages/settings/general_settings_view.py:66
+msgid "Startup"
+msgstr ""
+
+#: zapzap/views/pages/settings/general_settings_view.py:67
+msgid "Control how ZapZap behaves when your desktop session starts."
+msgstr ""
+
+#: zapzap/views/pages/settings/general_settings_view.py:72
+msgid "Open ZapZap in the background instead of showing the main window."
+msgstr ""
+
+#: zapzap/views/pages/settings/general_settings_view.py:76
+msgid "Create or remove the desktop autostart entry."
+msgstr ""
+
+#: zapzap/views/pages/settings/general_settings_view.py:85
+#, fuzzy
+msgid "Window behavior"
+msgstr "Zachowanie"
+
+#: zapzap/views/pages/settings/general_settings_view.py:86
+msgid "Configure close behavior and native dialogs."
+msgstr ""
+
+#: zapzap/views/pages/settings/general_settings_view.py:91
+msgid "Ask for confirmation before closing ZapZap."
+msgstr ""
+
+#: zapzap/views/pages/settings/general_settings_view.py:95
+msgid "Quit the application when the main window is closed."
+msgstr ""
+
+#: zapzap/views/pages/settings/general_settings_view.py:99
+msgid "Use Qt file dialogs instead of the desktop portal or native picker."
+msgstr ""
+
+#: zapzap/views/pages/settings/general_settings_view.py:112
+#, fuzzy
+msgid "Linux integration"
+msgstr "Przypnij konwersację"
+
+#: zapzap/views/pages/settings/general_settings_view.py:113
+msgid "Options that affect how ZapZap integrates with Linux desktop sessions."
+msgstr ""
+
+#: zapzap/views/pages/settings/general_settings_view.py:118
+msgid "Enable Wayland-specific execution mode. A restart may be required."
+msgstr ""
+
+#: zapzap/views/pages/settings/general_settings_view.py:127
+#, fuzzy
+msgid "Downloads"
+msgstr "Katalog pobierań"
+
+#: zapzap/views/pages/settings/general_settings_view.py:128
+msgid "Choose where downloaded files are saved."
+msgstr ""
+
+#: zapzap/views/pages/settings/general_settings_view.py:132
+#, fuzzy
+msgid "Download directory"
+msgstr "Katalog pobierań"
+
+#: zapzap/views/pages/settings/general_settings_view.py:133
+msgid "Set a custom folder or restore the default download location."
+msgstr ""
+
+#: zapzap/views/pages/settings/general_settings_view.py:147
+#, fuzzy
+msgid "Spell checker"
+msgstr "Sprawdzanie pisowni"
+
+#: zapzap/views/pages/settings/general_settings_view.py:148
+msgid "Select compiled dictionaries and where ZapZap should look for them."
+msgstr ""
+
+#: zapzap/views/pages/settings/general_settings_view.py:152
+#: zapzap/controllers/OnboardingDialog.py:201
+#, fuzzy
+msgid "Enable spell checker"
+msgstr "Sprawdzanie pisowni"
+
+#: zapzap/views/pages/settings/general_settings_view.py:153
+msgid "Use Qt WebEngine spell checking with the selected dictionary."
+msgstr ""
+
+#: zapzap/views/pages/settings/general_settings_view.py:156
+msgid "Dictionary language"
+msgstr ""
+
+#: zapzap/views/pages/settings/general_settings_view.py:157
+#, fuzzy
+msgid "Recognizes only compiled dictionaries (.bdic)."
+msgstr "Rozpoznaje tylko skompilowane słowniki (.bdic)"
+
+#: zapzap/views/pages/settings/general_settings_view.py:161
+#, fuzzy
+msgid "Dictionary directory"
+msgstr "Katalog pobierań"
+
+#: zapzap/views/pages/settings/general_settings_view.py:162
+msgid "Note: changing dictionaries may require restarting the browser page."
+msgstr ""
+
 #: zapzap/controllers/ClientSideRendering.py:436
-#: zapzap/controllers/MainWindow.py:247
+#: zapzap/controllers/main_window_controller.py:261
 #, fuzzy
 msgid "Close ZapZap"
 msgstr "ZapZap"
 
 #: zapzap/controllers/ClientSideRendering.py:437
-#: zapzap/controllers/MainWindow.py:248
+#: zapzap/controllers/main_window_controller.py:262
 #, fuzzy
 msgid "Are you sure you want to close?"
 msgstr "Czy na pewno chcesz usunąć ten element?"
 
 #: zapzap/controllers/ClientSideRendering.py:442
-#: zapzap/controllers/MainWindow.py:253
+#: zapzap/controllers/main_window_controller.py:267
 msgid "Don't ask again"
 msgstr ""
 
@@ -1044,11 +1200,6 @@ msgstr ""
 #, fuzzy
 msgid "Quit app when closing the window"
 msgstr "Zamknij podczas zamykania okna"
-
-#: zapzap/controllers/OnboardingDialog.py:201
-#, fuzzy
-msgid "Enable spell checker"
-msgstr "Sprawdzanie pisowni"
 
 #: zapzap/controllers/OnboardingDialog.py:206
 #, fuzzy
@@ -1246,41 +1397,6 @@ msgstr "Załaduj ponownie strony"
 #: zapzap/controllers/ShortcutsDialog.py:58
 msgid "New conversation by phone number"
 msgstr "Nowa konwersacja po numerze"
-
-#: zapzap/controllers/Browser.py:79
-msgid "Grid view"
-msgstr ""
-
-#: zapzap/controllers/Browser.py:109
-msgid "Flatpak sandbox help"
-msgstr ""
-
-#: zapzap/controllers/Browser.py:237 zapzap/controllers/Browser.py:284
-#, python-brace-format
-msgid "Account {}"
-msgstr "Konto {}"
-
-#: zapzap/controllers/Browser.py:292
-#, fuzzy
-msgid "Account disabled"
-msgstr "Konta"
-
-#: zapzap/controllers/Browser.py:293
-msgid "This account is disabled."
-msgstr ""
-
-#: zapzap/controllers/Browser.py:295
-msgid ""
-"You can reactivate it now or use the right-click menu to manage this account."
-msgstr ""
-
-#: zapzap/controllers/Browser.py:298
-msgid "Activate"
-msgstr ""
-
-#: zapzap/controllers/Browser.py:299
-msgid "Not now"
-msgstr ""
 
 #: zapzap/controllers/CardUser.py:42
 msgid "Select User-Agent for this account"
@@ -1797,6 +1913,42 @@ msgstr ""
 msgid ""
 "Restores all performance settings\n"
 "to safe default values."
+msgstr ""
+
+#: zapzap/controllers/browser_controller.py:92
+msgid "Grid view"
+msgstr ""
+
+#: zapzap/controllers/browser_controller.py:124
+msgid "Flatpak sandbox help"
+msgstr ""
+
+#: zapzap/controllers/browser_controller.py:256
+#: zapzap/controllers/browser_controller.py:305
+#, python-brace-format
+msgid "Account {}"
+msgstr "Konto {}"
+
+#: zapzap/controllers/browser_controller.py:313
+#, fuzzy
+msgid "Account disabled"
+msgstr "Konta"
+
+#: zapzap/controllers/browser_controller.py:314
+msgid "This account is disabled."
+msgstr ""
+
+#: zapzap/controllers/browser_controller.py:316
+msgid ""
+"You can reactivate it now or use the right-click menu to manage this account."
+msgstr ""
+
+#: zapzap/controllers/browser_controller.py:319
+msgid "Activate"
+msgstr ""
+
+#: zapzap/controllers/browser_controller.py:320
+msgid "Not now"
 msgstr ""
 
 #: zapzap/services/AlertManager.py:35
