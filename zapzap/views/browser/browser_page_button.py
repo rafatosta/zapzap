@@ -13,37 +13,69 @@ from zapzap.services.SettingsManager import SettingsManager
 class BrowserPageButton(QPushButton):
     """Sidebar button that represents one user/account page."""
 
-    STYLE_NORMAL = """
-    QPushButton {
+    BUTTON_SIZE = 48
+    ICON_SIZE = 34
+    BORDER_RADIUS = 12
+
+    STYLE_NORMAL = f"""
+    QPushButton {{
+        min-width: {BUTTON_SIZE}px;
+        min-height: {BUTTON_SIZE}px;
         background-color: transparent;
         border: 1px solid transparent;
-        border-radius: 12px;
+        border-radius: {BORDER_RADIUS}px;
+        color: palette(button-text);
         qproperty-flat: true;
-        qproperty-iconSize: 32px;
+        qproperty-iconSize: {ICON_SIZE}px;
         padding: 0;
-    }
+    }}
+    QPushButton:disabled {{
+        background-color: transparent;
+        border-color: transparent;
+        color: palette(placeholder-text);
+    }}
     """
 
-    STYLE_HOVER = """
-    QPushButton {
-        background-color: rgba(0, 168, 132, 0.12);
-        border: 1px solid rgba(0, 168, 132, 0.24);
-        border-radius: 12px;
+    STYLE_HOVER = f"""
+    QPushButton {{
+        min-width: {BUTTON_SIZE}px;
+        min-height: {BUTTON_SIZE}px;
+        background-color: palette(alternate-base);
+        border: 1px solid palette(mid);
+        border-radius: {BORDER_RADIUS}px;
+        color: palette(button-text);
         qproperty-flat: true;
-        qproperty-iconSize: 34px;
+        qproperty-iconSize: {ICON_SIZE}px;
         padding: 0;
-    }
+    }}
     """
 
-    STYLE_SELECTED = """
-    QPushButton {
-        background-color: rgba(0, 168, 132, 0.18);
-        border: 1px solid #00A884;
-        border-radius: 12px;
+    STYLE_SELECTED = f"""
+    QPushButton {{
+        min-width: {BUTTON_SIZE}px;
+        min-height: {BUTTON_SIZE}px;
+        background-color: palette(alternate-base);
+        border: 1px solid palette(highlight);
+        border-radius: {BORDER_RADIUS}px;
+        color: palette(button-text);
         qproperty-flat: true;
-        qproperty-iconSize: 32px;
+        qproperty-iconSize: {ICON_SIZE}px;
         padding: 0;
-    }
+    }}
+    """
+
+    STYLE_PRESSED = f"""
+    QPushButton {{
+        min-width: {BUTTON_SIZE}px;
+        min-height: {BUTTON_SIZE}px;
+        background-color: palette(highlight);
+        border: 1px solid palette(highlight);
+        border-radius: {BORDER_RADIUS}px;
+        color: palette(highlighted-text);
+        qproperty-flat: true;
+        qproperty-iconSize: {ICON_SIZE}px;
+        padding: 0;
+    }}
     """
 
     def __init__(self, user: User = None, page_index=None, parent=None):
@@ -77,12 +109,15 @@ class BrowserPageButton(QPushButton):
         """Configure the page button visual defaults."""
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         self.setFlat(True)
-        self.setMinimumSize(QSize(48, 48))
-        self.setMaximumSize(QSize(48, 48))
+        self.setMinimumSize(QSize(self.BUTTON_SIZE, self.BUTTON_SIZE))
+        self.setMaximumSize(QSize(self.BUTTON_SIZE, self.BUTTON_SIZE))
+        self.setIconSize(QSize(self.ICON_SIZE, self.ICON_SIZE))
         self._apply_state_style()
 
-    def _apply_state_style(self, hovered=False):
-        if self._is_selected:
+    def _apply_state_style(self, hovered=False, pressed=False):
+        if pressed:
+            self.setStyleSheet(self.STYLE_PRESSED)
+        elif self._is_selected:
             self.setStyleSheet(self.STYLE_SELECTED)
         elif hovered:
             self.setStyleSheet(self.STYLE_HOVER)
@@ -148,3 +183,14 @@ class BrowserPageButton(QPushButton):
         """Restore the current state style when the cursor leaves the button."""
         self._apply_state_style()
         super().leaveEvent(event)
+
+    def mousePressEvent(self, event):
+        """Apply the pressed style while the pointer is down."""
+        self._apply_state_style(pressed=True)
+        super().mousePressEvent(event)
+
+    def mouseReleaseEvent(self, event):
+        """Restore selected or hover style when the pointer is released."""
+        is_hovered = self.rect().contains(event.position().toPoint())
+        self._apply_state_style(hovered=is_hovered)
+        super().mouseReleaseEvent(event)
