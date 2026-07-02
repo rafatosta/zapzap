@@ -7,7 +7,6 @@ from gettext import gettext as _
 from PyQt6.QtCore import QEvent
 from PyQt6.QtCore import QPoint
 from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QColor
 from PyQt6.QtGui import QPainter
 from PyQt6.QtGui import QPainterPath
 from PyQt6.QtWidgets import QLabel
@@ -19,7 +18,6 @@ from PyQt6.QtWidgets import QWidget
 from zapzap.resources.CSRButtonThemeProvider import CSRButtonTheme
 from zapzap.resources.CSRButtonThemeProvider import CSRButtonThemeProvider
 from zapzap.services.SettingsManager import SettingsManager
-from zapzap.services.ThemeManager import ThemeManager
 
 
 class _TitleBar(QWidget):
@@ -166,7 +164,7 @@ class _TitleBar(QWidget):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         painter.setPen(Qt.PenStyle.NoPen)
-        painter.setBrush(QColor(self.host_window._colors["frame"]))
+        painter.setBrush(self.host_window.palette().window())
         painter.drawRect(self.rect())
 
 
@@ -194,7 +192,6 @@ class ClientSideRenderingView(QWidget):
         super().__init__()
         self.inner_window = inner_window
         self.enabled = enabled
-        self._colors = {"frame": "#2b2d31"}
         self._button_theme = self._resolve_button_theme()
 
         self.setWindowTitle(inner_window.windowTitle())
@@ -328,7 +325,7 @@ class ClientSideRenderingView(QWidget):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         painter.setPen(Qt.PenStyle.NoPen)
-        painter.setBrush(QColor(self._colors["frame"]))
+        painter.setBrush(self.palette().window())
 
         rect = self.rect()
         path = QPainterPath()
@@ -347,34 +344,6 @@ class ClientSideRenderingView(QWidget):
             self._apply_theme()
 
     def _apply_theme(self):
-        theme = ThemeManager.get_current_color_scheme()
-        button_theme = CSRButtonThemeProvider.get_theme(self._button_theme)
-
-        if theme == Qt.ColorScheme.Dark:
-            self._colors = {
-                "frame": "#1d1f1f",
-                "container_bg": "#1d1f1f",
-                "container_border": "#1d1f1f",
-                "title_text": "#E1E1E1",
-                "button_bg": button_theme.button_bg_dark,
-                "button_hover": button_theme.button_hover_dark,
-                "button_text": "#E1E1E1",
-                "close_bg": button_theme.close_bg_dark,
-                "close_hover": button_theme.close_hover_dark,
-            }
-        else:
-            self._colors = {
-                "frame": "#f7f5f3",
-                "container_bg": "#f7f5f3",
-                "container_border": "#f7f5f3",
-                "title_text": "#1d1f1f",
-                "button_bg": button_theme.button_bg_light,
-                "button_hover": button_theme.button_hover_light,
-                "button_text": "#1d1f1f",
-                "close_bg": button_theme.close_bg_light,
-                "close_hover": button_theme.close_hover_light,
-            }
-
         font_size = self.title_bar.minimize_button.property(
             "csrFontSize") or "14"
         font_weight = self.title_bar.minimize_button.property(
@@ -383,40 +352,52 @@ class ClientSideRenderingView(QWidget):
             "csrBorderRadius") or "6"
 
         self.setStyleSheet(
-            (f"""
-            QWidget#csrContainer {{
-                background: {self._colors['container_bg']};
-                border: 1px solid {self._colors['container_border']};
+            """
+            QWidget#csrContainer {
+                background: palette(window);
+                border: 1px solid palette(mid);
                 border-radius: 12px;
-            }}
-            QWidget#csrTitleBar {{
-                background: {self._colors['frame']};
-            }}
-            QWidget#csrTitleBar QLabel {{
-                color: {self._colors['title_text']};
+            }
+            QWidget#csrTitleBar {
+                background: palette(window);
+            }
+            QWidget#csrTitleBar QLabel {
+                color: palette(text);
                 font-size: 13px;
-            }}
-            QPushButton#csrWindowButton {{
-                background: {self._colors['button_bg']};
-                color: {self._colors['button_text']};
-                border: none;
+            }
+            QPushButton#csrWindowButton {
+                background: palette(button);
+                color: palette(button-text);
+                border: 1px solid transparent;
                 border-radius: %(radius)spx;
                 font-size: %(font)spx;
                 font-weight: %(weight)s;
-            }}
-            QPushButton#csrWindowButton:hover {{
-                background: {self._colors['button_hover']};
-            }}
-            QPushButton#csrWindowCloseButton {{
-                background: {self._colors['close_bg']};
-                color: {self._colors['button_text']};
-                border: none;
+            }
+            QPushButton#csrWindowButton:hover {
+                background: palette(alternate-base);
+                border-color: palette(mid);
+            }
+            QPushButton#csrWindowButton:pressed {
+                background: palette(highlight);
+                border-color: palette(highlight);
+                color: palette(highlighted-text);
+            }
+            QPushButton#csrWindowCloseButton {
+                background: palette(bright-text);
+                color: palette(highlighted-text);
+                border: 1px solid transparent;
                 border-radius: %(radius)spx;
                 font-size: %(font)spx;
                 font-weight: %(weight)s;
-            }}
-            QPushButton#csrWindowCloseButton:hover {{
-                background: {self._colors['close_hover']};
-            }}
-            """ % {"font": font_size, "weight": font_weight, "radius": border_radius})
+            }
+            QPushButton#csrWindowCloseButton:hover {
+                background: palette(bright-text);
+                border-color: palette(mid);
+            }
+            QPushButton#csrWindowCloseButton:pressed {
+                background: palette(highlight);
+                border-color: palette(highlight);
+                color: palette(highlighted-text);
+            }
+            """ % {"font": font_size, "weight": font_weight, "radius": border_radius}
         )

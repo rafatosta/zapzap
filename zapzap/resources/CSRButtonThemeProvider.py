@@ -20,14 +20,6 @@ class CSRButtonThemeDefinition:
     button_width: int
     button_height: int
     border_radius: int
-    button_bg_light: str
-    button_bg_dark: str
-    button_hover_light: str
-    button_hover_dark: str
-    close_bg_light: str
-    close_bg_dark: str
-    close_hover_light: str
-    close_hover_dark: str
 
 
 class CSRButtonThemeProvider:
@@ -40,42 +32,22 @@ class CSRButtonThemeProvider:
         CSRButtonTheme.DEFAULT: CSRButtonThemeDefinition(
             minimize="—", maximize="□", close="✕", font_size=14, font_weight=600,
             button_width=36, button_height=28, border_radius=6,
-            button_bg_light="#ffffff", button_bg_dark="#3c4043",
-            button_hover_light="#eef1f4", button_hover_dark="#4a4d52",
-            close_bg_light="#e6554f", close_bg_dark="#d93025",
-            close_hover_light="#d93025", close_hover_dark="#ea4335",
         ),
         CSRButtonTheme.ADWAITA: CSRButtonThemeDefinition(
             minimize="–", maximize="+", close="×", font_size=14, font_weight=600,
             button_width=28, button_height=28, border_radius=14,
-            button_bg_light="#f0f0f0", button_bg_dark="#3a3a3a",
-            button_hover_light="#25D366", button_hover_dark="#075E54",
-            close_bg_light="#f0f0f0", close_bg_dark="#3a3a3a",
-            close_hover_light="#25D366", close_hover_dark="#075E54",
         ),
         CSRButtonTheme.PLASMA: CSRButtonThemeDefinition(
             minimize="–", maximize="▣", close="✖", font_size=13, font_weight=700,
             button_width=32, button_height=28, border_radius=8,
-            button_bg_light="#eef1f4", button_bg_dark="#43474c",
-            button_hover_light="#dfe3e8", button_hover_dark="#51575d",
-            close_bg_light="#e57373", close_bg_dark="#c84c4c",
-            close_hover_light="#d66565", close_hover_dark="#d85c5c",
         ),
         CSRButtonTheme.IOS: CSRButtonThemeDefinition(
             minimize="–", maximize="+", close="×", font_size=14, font_weight=600,
             button_width=28, button_height=28, border_radius=14,
-            button_bg_light="#f3bf4f", button_bg_dark="#8f6e2f",
-            button_hover_light="#e5b347", button_hover_dark="#a98038",
-            close_bg_light="#f06a5f", close_bg_dark="#bd4f47",
-            close_hover_light="#e56156", close_hover_dark="#cf5a52",
         ),
         CSRButtonTheme.WINDOWS: CSRButtonThemeDefinition(
             minimize="—", maximize="□", close="✕", font_size=12, font_weight=700,
             button_width=36, button_height=28, border_radius=2,
-            button_bg_light="#f6f6f6", button_bg_dark="#3a3a3a",
-            button_hover_light="#eaeaea", button_hover_dark="#4a4a4a",
-            close_bg_light="#d13438", close_bg_dark="#b32428",
-            close_hover_light="#b91d22", close_hover_dark="#cc3d42",
         ),
     }
 
