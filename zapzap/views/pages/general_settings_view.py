@@ -2,7 +2,9 @@
 
 from gettext import gettext as _
 
-from PyQt6.QtWidgets import QHBoxLayout, QLineEdit, QPushButton, QStyle, QVBoxLayout, QWidget
+from PyQt6.QtWidgets import QHBoxLayout, QStyle, QVBoxLayout, QWidget
+
+from zapzap.views.components import Button, LineEdit
 
 from zapzap.views.settings_components import (
     SettingsActionRow,
@@ -135,7 +137,7 @@ class GeneralSettingsView(QWidget):
         self.download_path = row.line_edit
         self.download_path.setReadOnly(True)
         self.btn_path_download = row.button
-        self.btn_restore_path_download = QPushButton("")
+        self.btn_restore_path_download = Button("")
         row.control.layout().addWidget(self.btn_restore_path_download)
         card.add_row(row)
         section.add_card(card)
@@ -164,7 +166,7 @@ class GeneralSettingsView(QWidget):
         self.dic_path = path_row.line_edit
         self.dic_path.setReadOnly(True)
         self.btn_path_spell = path_row.button
-        self.btn_default_path_spell = QPushButton("")
+        self.btn_default_path_spell = Button("")
         path_row.control.layout().addWidget(self.btn_default_path_spell)
         card.add_row(self.spellchecker_groupBox)
         card.add_row(lang_row)
@@ -184,12 +186,12 @@ class GeneralSettingsView(QWidget):
         command_row = QWidget()
         command_layout = QHBoxLayout(command_row)
         command_layout.setContentsMargins(0, 8, 0, 8)
-        self.flatpak_command_input = QLineEdit()
+        self.flatpak_command_input = LineEdit()
         self.flatpak_command_input.setReadOnly(True)
         self.flatpak_command_input.setToolTip(
             _("Select and copy this command in your terminal")
         )
-        self.btn_copy_flatpak_command = QPushButton(_("Copy"))
+        self.btn_copy_flatpak_command = Button(_("Copy"))
         command_layout.addWidget(self.flatpak_command_input, 1)
         command_layout.addWidget(self.btn_copy_flatpak_command)
         self.btn_open_flatseal = SettingsActionRow(

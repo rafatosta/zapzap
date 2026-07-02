@@ -1,6 +1,8 @@
 from PyQt6.QtCore import QRectF, QSize, Qt
 from PyQt6.QtGui import QColor, QPainter, QPalette
-from PyQt6.QtWidgets import QCheckBox, QComboBox, QHBoxLayout, QLabel, QLineEdit, QPushButton, QWidget
+from PyQt6.QtWidgets import QCheckBox, QHBoxLayout, QLabel, QWidget
+
+from zapzap.views.components import Button, ComboBox, LineEdit
 
 
 class SettingsToggleSwitch(QCheckBox):
@@ -114,7 +116,7 @@ class SettingsSwitchRow(_BaseRow):
         super().__init__(title, description, self.checkbox, parent)
 
 
-class SettingsComboBox(QComboBox):
+class SettingsComboBox(ComboBox):
     """Combo box with the settings component object name for unified styling."""
 
     def __init__(self, parent=None):
@@ -135,8 +137,8 @@ class SettingsPathRow(_BaseRow):
         box = QWidget()
         layout = QHBoxLayout(box)
         layout.setContentsMargins(0, 0, 0, 0)
-        self.line_edit = QLineEdit(path)
-        self.button = QPushButton(button_text)
+        self.line_edit = LineEdit(path)
+        self.button = Button(button_text)
         layout.addWidget(self.line_edit)
         layout.addWidget(self.button)
         super().__init__(title, description, box, parent)
@@ -144,17 +146,17 @@ class SettingsPathRow(_BaseRow):
 
 class SettingsActionRow(_BaseRow):
     def __init__(self, title, description="", button_text="Open", parent=None):
-        self.button = QPushButton(button_text)
+        self.button = Button(button_text)
         super().__init__(title, description, self.button, parent)
 
 
 class SettingsTextRow(_BaseRow):
     def __init__(self, title, description="", text="", parent=None):
-        self.line_edit = QLineEdit(text)
+        self.line_edit = LineEdit(text)
         super().__init__(title, description, self.line_edit, parent)
 
 
 class SettingsPasswordRow(SettingsTextRow):
     def __init__(self, title, description="", text="", parent=None):
         super().__init__(title, description, text, parent)
-        self.line_edit.setEchoMode(QLineEdit.EchoMode.Password)
+        self.line_edit.setEchoMode(LineEdit.EchoMode.Password)
