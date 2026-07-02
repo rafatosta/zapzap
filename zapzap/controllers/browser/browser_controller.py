@@ -6,7 +6,6 @@ from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QMessageBox
 from PyQt6.QtWidgets import QWidget
 from zapzap.controllers.CardUser import CardUser
-from zapzap.controllers.PageButton import PageButton
 from zapzap.services.ThemeManager import ThemeManager
 from zapzap.webengine.WebView import WebView
 from zapzap.models.User import User
@@ -16,6 +15,7 @@ from zapzap.services.AlertManager import AlertManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SetupManager import SetupManager
 from zapzap.services.SysTrayManager import SysTrayManager
+from zapzap.views.browser import BrowserPageButton
 from zapzap.views.browser import BrowserSidebarButton
 from zapzap.views.browser import BrowserView
 from zapzap.controllers.OnboardingDialog import OnboardingDialog
@@ -187,7 +187,7 @@ class BrowserController(BrowserView):
         self.pages.addWidget(new_page)
 
         # Criar o botão correspondente
-        page_button = PageButton(user, page_index)
+        page_button = BrowserPageButton(user, page_index)
         page_button.clicked.connect(
             lambda: self._handle_page_button_click(new_page, page_button))
         page_button.setObjectName(f"page_button_{page_index}")
