@@ -9,8 +9,8 @@ from PyQt6.QtGui import QImage
 from PyQt6.QtWidgets import QApplication
 from zapzap.controllers.QtoasterDonation import QtoasterDonation
 from zapzap.controllers.Settings import Settings
-from zapzap.controllers.Browser import Browser
 from zapzap.controllers.ShortcutsDialog import ShortcutsDialog
+from zapzap.controllers.browser_controller import BrowserController
 from zapzap.services.AlertManager import AlertManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
@@ -28,7 +28,7 @@ class MainWindowController(MainWindowView):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.is_fullscreen = False  # Controle do estado de tela cheia
-        self.browser = Browser(self)  # Inicialização do navegador
+        self.browser = BrowserController(self)  # Inicialização do navegador
         self.app_settings = None
         self._last_sanitized_key = None
         self.theme_action_group = None

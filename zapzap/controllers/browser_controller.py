@@ -1,6 +1,10 @@
-from PyQt6.QtCore import QEasingCurve, QParallelAnimationGroup, QPropertyAnimation, Qt
-from PyQt6.QtWidgets import QWidget, QPushButton, QMessageBox
+from PyQt6.QtCore import QEasingCurve
+from PyQt6.QtCore import QParallelAnimationGroup
+from PyQt6.QtCore import QPropertyAnimation
+from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
+from PyQt6.QtWidgets import QMessageBox
+from PyQt6.QtWidgets import QWidget
 from zapzap.controllers.CardUser import CardUser
 from zapzap.controllers.PageButton import PageButton
 from zapzap.services.ThemeManager import ThemeManager
@@ -12,29 +16,44 @@ from zapzap.services.AlertManager import AlertManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SetupManager import SetupManager
 from zapzap.services.SysTrayManager import SysTrayManager
-from zapzap.views.ui_browser import Ui_Browser
+from zapzap.views.browser import BrowserSidebarButton
+from zapzap.views.browser import BrowserView
 from zapzap.controllers.OnboardingDialog import OnboardingDialog
 
 from gettext import gettext as _
 
 
-class Browser(QWidget, Ui_Browser):
+class BrowserController(BrowserView):
     """Gerencia as páginas e interações do navegador no aplicativo."""
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setupUi(self)
-
         self.parent = parent
 
         self.page_count = 0  # Contador de páginas
         self.page_buttons = {}  # Mapeamento entre botões e páginas
-        self._sidebar_expanded_width = max(50, self.browser_sidebar.maximumWidth())
+        self._configure_sidebar_appearance()
+        self._sidebar_expanded_width = 72
         self._sidebar_animation_group = None
         self._last_active_webview = None
         self._shutting_down = False
 
         self._initialize()
+
+    def _configure_sidebar_appearance(self):
+        self.browser_sidebar.setMinimumWidth(72)
+        self.browser_sidebar.setMaximumWidth(72)
+        self.page_buttons_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        self.layout_2.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        for button in (
+            self.btn_new_account,
+            self.btn_new_chat_number,
+            self.btn_new_chat,
+            self.btn_open_settings,
+        ):
+            button.setMinimumSize(40, 40)
+            button.setMaximumSize(40, 40)
+            button.setIconSize(self.btn_open_settings.iconSize())
 
     def shutdown(self):
         """Libera explicitamente as páginas WebEngine antes do QApplication ser destruído."""
@@ -59,7 +78,8 @@ class Browser(QWidget, Ui_Browser):
         )
 
     def _setup_grid_view(self):
-        from PyQt6.QtWidgets import QScrollArea, QGridLayout
+        from PyQt6.QtWidgets import QGridLayout
+        from PyQt6.QtWidgets import QScrollArea
         # Setup the UI structure for the grid view
         self.grid_scroll = QScrollArea(self)
         self.grid_scroll.setWidgetResizable(True)
@@ -72,13 +92,16 @@ class Browser(QWidget, Ui_Browser):
         self.grid_page_index = self.pages.indexOf(self.grid_scroll)
 
         # Add grid button to sidebar
-        self.btn_grid_view = QPushButton(self.settings_buttons_layout)
-        self.btn_grid_view.setMinimumSize(35, 35)
+        self.btn_grid_view = BrowserSidebarButton(
+            parent=self.settings_buttons_layout,
+        )
+        self.btn_grid_view.setMinimumSize(40, 40)
+        self.btn_grid_view.setMaximumSize(40, 40)
         self.btn_grid_view.setText("")
         self.btn_grid_view.setIconSize(self.btn_open_settings.iconSize())
         self.btn_grid_view.setToolTip(_("Grid view"))
         self.btn_grid_view.clicked.connect(self.show_grid_view)
-        
+
         # Insert before the line_2 which separates settings
         idx = self.layout_2.indexOf(self.line_2)
         self.layout_2.insertWidget(idx, self.btn_grid_view)
@@ -102,8 +125,11 @@ class Browser(QWidget, Ui_Browser):
         if not SetupManager._is_flatpak:
             return
 
-        self.btn_flatpak_help = QPushButton(self.settings_buttons_layout)
-        self.btn_flatpak_help.setMinimumSize(35, 35)
+        self.btn_flatpak_help = BrowserSidebarButton(
+            parent=self.settings_buttons_layout,
+        )
+        self.btn_flatpak_help.setMinimumSize(40, 40)
+        self.btn_flatpak_help.setMaximumSize(40, 40)
         self.btn_flatpak_help.setText("")
         self.btn_flatpak_help.setIconSize(self.btn_open_settings.iconSize())
         self.btn_flatpak_help.setToolTip(_("Flatpak sandbox help"))
@@ -167,7 +193,9 @@ class Browser(QWidget, Ui_Browser):
         page_button.setObjectName(f"page_button_{page_index}")
         page_button.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         page_button.customContextMenuRequested.connect(
-            lambda position, button=page_button: self._show_page_button_context_menu(button, position)
+            lambda position, button=page_button: (
+                self._show_page_button_context_menu(button, position)
+            )
         )
 
         # Adicionar o botão ao layout e ao dicionário
@@ -233,8 +261,12 @@ class Browser(QWidget, Ui_Browser):
         for count, button in enumerate(self.page_buttons.values(), start=1):
             if button.user.enable:
                 # Define os itens da barra de menu Usuários
-                new_action = QAction(
-                    button.user.name if button.user.name != "" else _("Account {}").format(count), self)
+                label = (
+                    button.user.name
+                    if button.user.name != ""
+                    else _("Account {}").format(count)
+                )
+                new_action = QAction(label, self)
                 new_action.setShortcut(f'Ctrl+{count}')
                 new_action.triggered.connect(button.clicked)
                 self.parent.menuUsers.addAction(new_action)
@@ -333,20 +365,23 @@ class Browser(QWidget, Ui_Browser):
     def reload_pages(self):
         """Recarrega todas as páginas existentes."""
         for i in range(self.pages.count()):
-            if i == self.grid_page_index: continue
+            if i == self.grid_page_index:
+                continue
             page = self.pages.widget(i)
             page.load_page()
 
     def close_conversations(self):
         """Fecha todas as conversas abertas."""
         for i in range(self.pages.count()):
-            if i == self.grid_page_index: continue
+            if i == self.grid_page_index:
+                continue
             page = self.pages.widget(i)
             page.close_conversation()
 
     def apply_custom_css_all_pages(self):
         for i in range(self.pages.count()):
-            if i == self.grid_page_index: continue
+            if i == self.grid_page_index:
+                continue
             page = self.pages.widget(i)
             page.apply_custom_css()
 
@@ -358,9 +393,9 @@ class Browser(QWidget, Ui_Browser):
 
     def show_grid_view(self):
         """Generates thumbnails and displays the grid view."""
-        from PyQt6.QtWidgets import QLabel, QSizePolicy
-        from PyQt6.QtCore import Qt
-        
+        from PyQt6.QtWidgets import QLabel
+        from PyQt6.QtWidgets import QSizePolicy
+
         class ClickableLabel(QLabel):
             def __init__(self, pw, idx, switch_cb, parent=None):
                 super().__init__(parent)
@@ -368,6 +403,7 @@ class Browser(QWidget, Ui_Browser):
                 self.idx = idx
                 self.switch_cb = switch_cb
                 self.setCursor(Qt.CursorShape.PointingHandCursor)
+
             def mousePressEvent(self, event):
                 if event.button() == Qt.MouseButton.LeftButton:
                     self.switch_cb(self.pw, self.idx)
@@ -399,7 +435,7 @@ class Browser(QWidget, Ui_Browser):
             page_widget = self.pages.widget(i)
             if isinstance(page_widget, WebView) and page_widget.user.enable:
                 active_pages.append((page_widget, i))
-        
+
         num_accounts = len(active_pages)
         if num_accounts == 0:
             return
@@ -407,16 +443,16 @@ class Browser(QWidget, Ui_Browser):
         # Calculate grid geometry
         viewport_width = self.grid_scroll.viewport().width()
         viewport_height = self.grid_scroll.viewport().height()
-        
+
         # Calculate optimal rows/cols
         # If user wants e.g. 3 cols but has 2 accounts, we still use 3 cols logic for consistency
         # but for sizing we want to fill the screen
         effective_rows = (num_accounts + cols - 1) // cols
-        
+
         # Target dimensions (subtracting small margin for scrollbars/spacing)
         target_width = (viewport_width // cols) - 4
         target_height = (viewport_height // max(1, effective_rows)) - 4
-        
+
         # Ensure minimum readable size if many accounts
         target_width = max(200, target_width)
         target_height = max(150, target_height)
@@ -426,16 +462,16 @@ class Browser(QWidget, Ui_Browser):
             pixmap = getattr(page_widget, "cached_screenshot", None)
             if not pixmap or pixmap.isNull():
                 pixmap = page_widget.grab()
-            
+
             # Image Label
             img_label = ClickableLabel(page_widget, i, self._switch_from_grid)
             img_label.setPixmap(pixmap)
             img_label.setScaledContents(True)
             img_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
             img_label.setFixedSize(target_width, target_height)
-            
+
             self.grid_layout.addWidget(img_label, row, col)
-            
+
             col += 1
             if col >= cols:
                 col = 0
@@ -451,7 +487,7 @@ class Browser(QWidget, Ui_Browser):
             if button.user.id == page_widget.user.id:
                 target_button = button
                 break
-                
+
         if target_button:
             self.switch_to_page(page_widget, target_button)
         else:
@@ -459,7 +495,8 @@ class Browser(QWidget, Ui_Browser):
 
     def update_spellcheck(self):
         for i in range(self.pages.count()):
-            if i == self.grid_page_index: continue
+            if i == self.grid_page_index:
+                continue
             page = self.pages.widget(i)
             page.configure_spellcheck()
 
