@@ -4,7 +4,7 @@ from gettext import gettext as _
 
 from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
-from PyQt6.QtWidgets import QApplication, QVBoxLayout, QWidget
+from PyQt6.QtWidgets import QApplication, QWidget
 
 from zapzap import __donationPage__
 from zapzap.controllers.PageAbout import PageAbout
@@ -19,14 +19,12 @@ from zapzap.controllers.PagePerformance import PagePerformance
 from zapzap.views.pages.settings_view import SettingsView
 
 
-class SettingsController(QWidget):
+class SettingsController(SettingsView):
     """Coordinates settings navigation and shell actions."""
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.page_buttons = {}
-        self.view = SettingsView(self)
-        self._setup_ui()
         self._register_pages()
         self._setup_signals()
         self._select_default_page()
@@ -34,36 +32,26 @@ class SettingsController(QWidget):
     def __del__(self):
         """Destrói o widget e limpa recursos."""
 
-    def _setup_ui(self):
-        layout = QVBoxLayout(self)
-        layout.setContentsMargins(0, 0, 0, 0)
-        layout.addWidget(self.view)
-        self.sidebar = self.view.sidebar
-        self.pages = self.view.pages
-        self.btn_donate = self.view.btn_donate
-        self.btn_back = self.view.btn_back
-        self.btn_quit = self.view.btn_quit
-
     def _register_pages(self):
-        self._add_page(PageGeneral(), self.view.add_navigation_item(_("General")))
-        self._add_page(PageAccount(), self.view.add_navigation_item(_("Accounts")))
-        self._add_page(PageAppearance(), self.view.add_navigation_item(_("Appearance")))
+        self._add_page(PageGeneral(), self.add_navigation_item(_("General")))
+        self._add_page(PageAccount(), self.add_navigation_item(_("Accounts")))
+        self._add_page(PageAppearance(), self.add_navigation_item(_("Appearance")))
         self._add_page(
             PageCustomizations(),
-            self.view.add_navigation_item(_("Customizations")),
+            self.add_navigation_item(_("Customizations")),
         )
         self._add_page(
             PageNotifications(),
-            self.view.add_navigation_item(_("Notifications")),
+            self.add_navigation_item(_("Notifications")),
         )
-        self._add_page(PageNetwork(), self.view.add_navigation_item(_("Network")))
+        self._add_page(PageNetwork(), self.add_navigation_item(_("Network")))
         self._add_page(
             PagePerformance(),
-            self.view.add_navigation_item(_("Performance")),
+            self.add_navigation_item(_("Performance")),
         )
-        self._add_page(PageDebugging(), self.view.add_navigation_item(_("Debugging")))
-        self._add_page(PageAbout(), self.view.add_navigation_item(_("About")))
-        self.view.finish_sidebar()
+        self._add_page(PageDebugging(), self.add_navigation_item(_("Debugging")))
+        self._add_page(PageAbout(), self.add_navigation_item(_("About")))
+        self.finish_sidebar()
 
     def _setup_signals(self):
         """Conecta os sinais dos botões gerais."""
@@ -76,15 +64,15 @@ class SettingsController(QWidget):
 
     def _add_page(self, page: QWidget, button):
         """Adiciona uma página ao widget de páginas e associa ao botão."""
-        page_index = self.view.add_page(page)
+        page_index = self.add_page(page)
         self.page_buttons[page_index] = button
         button.clicked.connect(lambda: self.switch_to_page(page))
 
     def switch_to_page(self, page: QWidget):
         """Alterna para a página selecionada e ajusta os estilos dos botões."""
         self._reset_button_styles()
-        self.view.set_current_page(page)
-        self.page_buttons[self.view.page_index(page)].setEnabled(False)
+        self.set_current_page(page)
+        self.page_buttons[self.page_index(page)].setEnabled(False)
 
     def _reset_button_styles(self):
         """Reativa todos os botões."""
@@ -94,8 +82,8 @@ class SettingsController(QWidget):
     def _select_default_page(self):
         """Seleciona a primeira página como padrão."""
         if self.page_buttons:
-            self.switch_to_page(self.view.page_at(0))
+            self.switch_to_page(self.page_at(0))
 
     def open_about(self):
         """Abre a página Ajuda"""
-        self.switch_to_page(self.view.page_at(8))
+        self.switch_to_page(self.page_at(8))
