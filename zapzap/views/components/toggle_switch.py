@@ -1,14 +1,12 @@
 """ZapZap toggle switch component."""
 
 from PyQt6.QtCore import QRectF, QSize, Qt
-from PyQt6.QtGui import QColor, QPainter
+from PyQt6.QtGui import QPainter, QPalette
 from PyQt6.QtWidgets import QCheckBox
 
-from .adaptive import AdaptiveStyleMixin, is_dark
 
-
-class ToggleSwitch(AdaptiveStyleMixin, QCheckBox):
-    """WhatsApp-style adaptive pill toggle."""
+class ToggleSwitch(QCheckBox):
+    """WhatsApp-style pill toggle painted from the active Qt palette."""
 
     def __init__(self, checked=False, parent=None):
         super().__init__(parent)
@@ -16,7 +14,6 @@ class ToggleSwitch(AdaptiveStyleMixin, QCheckBox):
         self.setText("")
         self.setChecked(checked)
         self.setFixedSize(self.sizeHint())
-        self.install_adaptive_style()
 
     def sizeHint(self):
         return QSize(46, 26)
@@ -26,9 +23,6 @@ class ToggleSwitch(AdaptiveStyleMixin, QCheckBox):
 
     def hitButton(self, pos):
         return self.rect().contains(pos)
-
-    def apply_adaptive_style(self):
-        self.update()
 
     def paintEvent(self, event):
         painter = QPainter(self)
@@ -42,27 +36,23 @@ class ToggleSwitch(AdaptiveStyleMixin, QCheckBox):
             self.height() - margin * 2,
         )
         radius = track_rect.height() / 2
-        dark = is_dark(self)
+        palette = self.palette()
 
         knob_border = Qt.PenStyle.NoPen
         if self.isEnabled():
             if self.isChecked():
-                track_color = QColor("#25D366")
-                border_color = QColor("#25D366")
-                knob_color = QColor("#FFFFFF")
-            elif dark:
-                track_color = QColor("#2A3942")
-                border_color = QColor("#3B4A54")
-                knob_color = QColor("#8696A0")
+                track_color = palette.color(QPalette.ColorRole.Highlight)
+                border_color = palette.color(QPalette.ColorRole.Highlight)
+                knob_color = palette.color(QPalette.ColorRole.HighlightedText)
             else:
-                track_color = QColor("#F7F8FA")
-                border_color = QColor("#D1D7DB")
-                knob_color = QColor("#FFFFFF")
-                knob_border = QColor("#D1D7DB")
+                track_color = palette.color(QPalette.ColorRole.AlternateBase)
+                border_color = palette.color(QPalette.ColorRole.Mid)
+                knob_color = palette.color(QPalette.ColorRole.Base)
+                knob_border = palette.color(QPalette.ColorRole.Mid)
         else:
-            track_color = QColor("#2A3942" if dark else "#EEF0F2")
-            border_color = QColor("#3B4A54" if dark else "#DADDE1")
-            knob_color = QColor("#54656F" if dark else "#B0B7BD")
+            track_color = palette.color(QPalette.ColorRole.Window)
+            border_color = palette.color(QPalette.ColorRole.Mid)
+            knob_color = palette.color(QPalette.ColorRole.PlaceholderText)
 
         painter.setPen(border_color)
         painter.setBrush(track_color)

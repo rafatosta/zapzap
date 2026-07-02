@@ -1,76 +1,15 @@
-from PyQt6.QtCore import QRectF, QSize, Qt
-from PyQt6.QtGui import QColor, QPainter, QPalette
-from PyQt6.QtWidgets import QCheckBox, QHBoxLayout, QLabel, QWidget
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QHBoxLayout, QLabel, QWidget
 
-from zapzap.views.components import Button, ComboBox, LineEdit
+from zapzap.views.components import Button, ComboBox, LineEdit, ToggleSwitch
 
 
-class SettingsToggleSwitch(QCheckBox):
-    """WhatsApp-style pill toggle used by settings switch rows."""
+class SettingsToggleSwitch(ToggleSwitch):
+    """Settings-compatible toggle switch built from the generic component."""
 
     def __init__(self, parent=None):
-        super().__init__(parent)
+        super().__init__(parent=parent)
         self.setObjectName("SettingsToggleSwitch")
-        self.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.setText("")
-        self.setFixedSize(self.sizeHint())
-
-    def sizeHint(self):
-        return QSize(46, 26)
-
-    def minimumSizeHint(self):
-        return self.sizeHint()
-
-    def hitButton(self, pos):
-        return self.rect().contains(pos)
-
-    def _is_dark(self):
-        return self.palette().color(QPalette.ColorRole.Window).lightness() < 128
-
-    def paintEvent(self, event):
-        painter = QPainter(self)
-        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
-
-        margin = 2
-        track_rect = QRectF(
-            margin,
-            margin,
-            self.width() - margin * 2,
-            self.height() - margin * 2,
-        )
-        radius = track_rect.height() / 2
-
-        knob_border = Qt.PenStyle.NoPen
-        if self.isEnabled():
-            if self.isChecked():
-                track_color = QColor("#25D366")
-                border_color = QColor("#25D366")
-                knob_color = QColor("#FFFFFF")
-            elif self._is_dark():
-                track_color = QColor("#2A3942")
-                border_color = QColor("#3B4A54")
-                knob_color = QColor("#8696A0")
-            else:
-                track_color = QColor("#F7F8FA")
-                border_color = QColor("#D1D7DB")
-                knob_color = QColor("#FFFFFF")
-                knob_border = QColor("#D1D7DB")
-        else:
-            track_color = QColor("#EEF0F2") if not self._is_dark() else QColor("#2A3942")
-            border_color = QColor("#DADDE1") if not self._is_dark() else QColor("#3B4A54")
-            knob_color = QColor("#B0B7BD") if not self._is_dark() else QColor("#54656F")
-
-        painter.setPen(border_color)
-        painter.setBrush(track_color)
-        painter.drawRoundedRect(track_rect, radius, radius)
-
-        knob_diameter = self.height() - 8
-        knob_y = (self.height() - knob_diameter) / 2
-        knob_x = self.width() - knob_diameter - 5 if self.isChecked() else 5
-        knob_rect = QRectF(knob_x, knob_y, knob_diameter, knob_diameter)
-        painter.setPen(knob_border)
-        painter.setBrush(knob_color)
-        painter.drawEllipse(knob_rect)
 
 
 class _BaseRow(QWidget):

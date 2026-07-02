@@ -2,37 +2,35 @@
 
 from PyQt6.QtWidgets import QLineEdit
 
-from .adaptive import AdaptiveStyleMixin, tokens
 
-
-class LineEdit(AdaptiveStyleMixin, QLineEdit):
-    """Theme-aware ZapZap line edit."""
+class LineEdit(QLineEdit):
+    """ZapZap line edit styled from the active Qt palette."""
 
     def __init__(self, text="", parent=None):
         super().__init__(text, parent)
-        self.install_adaptive_style()
+        self._apply_style()
 
-    def apply_adaptive_style(self):
-        c = tokens(self)
-        self.setStyleSheet(f"""
-            QLineEdit {{
+    def _apply_style(self):
+        self.setStyleSheet("""
+            QLineEdit {
                 min-height: 36px;
-                border: 1px solid {c['border']};
+                border: 1px solid palette(mid);
                 border-radius: 8px;
                 padding: 6px 10px;
-                background: {c['surface']};
-                color: {c['text']};
-                selection-background-color: {c['accent']};
-            }}
-            QLineEdit:hover {{
-                border-color: {c['accent']};
-                background: {c['surface_hover']};
-            }}
-            QLineEdit:focus {{
-                border: 1px solid {c['accent']};
-            }}
-            QLineEdit:disabled, QLineEdit:read-only {{
-                color: {c['muted']};
-                background: {c['background']};
-            }}
+                background: palette(base);
+                color: palette(text);
+                selection-background-color: palette(highlight);
+                selection-color: palette(highlighted-text);
+            }
+            QLineEdit:hover {
+                border-color: palette(highlight);
+                background: palette(alternate-base);
+            }
+            QLineEdit:focus {
+                border: 1px solid palette(highlight);
+            }
+            QLineEdit:disabled, QLineEdit:read-only {
+                color: palette(placeholder-text);
+                background: palette(window);
+            }
         """)

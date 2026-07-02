@@ -6,7 +6,6 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QHBoxLayout, QScrollArea, QVBoxLayout, QWidget
 
 from zapzap.views.components import Card, Label, Section, ToggleSwitch
-from zapzap.views.components.adaptive import AdaptiveStyleMixin, tokens
 
 
 class _SwitchRow(QWidget):
@@ -33,14 +32,14 @@ class _SwitchRow(QWidget):
         layout.addWidget(self.checkbox, 0, Qt.AlignmentFlag.AlignVCenter)
 
 
-class PageNotificationsView(AdaptiveStyleMixin, QWidget):
+class PageNotificationsView(QWidget):
     """Composable view for notification settings, without persistence logic."""
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setObjectName("PageNotificationsView")
         self._setup_ui()
-        self.install_adaptive_style()
+        self._apply_style()
 
     def _setup_ui(self):
         root_layout = QVBoxLayout(self)
@@ -124,18 +123,17 @@ class PageNotificationsView(AdaptiveStyleMixin, QWidget):
         section.add_card(card)
         self.content_layout.addWidget(section)
 
-    def apply_adaptive_style(self):
-        c = tokens(self)
-        self.setStyleSheet(f"""
-            QWidget#PageNotificationsView {{
-                background: {c['background']};
-                color: {c['text']};
-            }}
-            QScrollArea {{
-                background: {c['background']};
+    def _apply_style(self):
+        self.setStyleSheet("""
+            QWidget#PageNotificationsView {
+                background: palette(window);
+                color: palette(text);
+            }
+            QScrollArea {
+                background: palette(window);
                 border: 0;
-            }}
-            QScrollArea > QWidget > QWidget {{
-                background: {c['background']};
-            }}
+            }
+            QScrollArea > QWidget > QWidget {
+                background: palette(window);
+            }
         """)
