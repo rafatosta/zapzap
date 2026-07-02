@@ -2,7 +2,6 @@ from PyQt6.QtWidgets import QWidget, QApplication
 from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
 from zapzap import __donationPage__
-from zapzap.controllers.PageGeneral import PageGeneral
 from zapzap.controllers.PageAbout import PageAbout
 from zapzap.controllers.PageNetwork import PageNetwork
 from zapzap.controllers.PageNotifications import PageNotifications
@@ -16,6 +15,7 @@ from zapzap.services.ThemeManager import ThemeManager
 from zapzap.views.ui_settings import Ui_Settings
 
 
+from zapzap.controllers.settings import GeneralSettingsController
 from zapzap.controllers.settings import NotificationSettingsController
 
 
@@ -35,7 +35,7 @@ class Settings(QWidget, Ui_Settings):
 
     def _setup_ui(self):
         """Configura as páginas e associa os botões às páginas."""
-        self._add_page(PageGeneral(), self.btn_page_general)
+        self._add_page(GeneralSettingsController(), self.btn_page_general)
         self._add_page(PageAccount(), self.btn_account)
         self._add_page(PageAppearance(), self.btn_page_appearence)
         self._add_page(PageCustomizations(), self.btn_page_customizations)

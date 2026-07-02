@@ -2,28 +2,25 @@
 
 from PyQt6.QtWidgets import QLabel
 
-from .adaptive import AdaptiveStyleMixin, tokens
 
-
-class Label(AdaptiveStyleMixin, QLabel):
-    """Theme-aware ZapZap label with reusable visual variants."""
+class Label(QLabel):
+    """ZapZap label with reusable visual variants from the active Qt palette."""
 
     def __init__(self, text="", variant="body", parent=None):
         super().__init__(text, parent)
         self.variant = variant
         self.setWordWrap(variant in {"description", "section_description", "row_description"})
-        self.install_adaptive_style()
+        self._apply_style()
 
-    def apply_adaptive_style(self):
-        c = tokens(self)
+    def _apply_style(self):
         styles = {
-            "title": f"color: {c['text']}; font-size: 26px; font-weight: 800;",
-            "description": f"color: {c['muted']}; font-size: 13px;",
-            "section_title": f"color: {c['text']}; font-size: 15px; font-weight: 700;",
-            "section_description": f"color: {c['muted']}; font-size: 12px;",
-            "row_title": f"color: {c['text']}; font-weight: 600;",
-            "row_description": f"color: {c['muted']}; font-size: 12px;",
-            "body": f"color: {c['text']};",
-            "muted": f"color: {c['muted']};",
+            "title": "color: palette(text); font-size: 26px; font-weight: 800;",
+            "description": "color: palette(placeholder-text); font-size: 13px;",
+            "section_title": "color: palette(text); font-size: 15px; font-weight: 700;",
+            "section_description": "color: palette(placeholder-text); font-size: 12px;",
+            "row_title": "color: palette(text); font-weight: 600;",
+            "row_description": "color: palette(placeholder-text); font-size: 12px;",
+            "body": "color: palette(text);",
+            "muted": "color: palette(placeholder-text);",
         }
         self.setStyleSheet(styles.get(self.variant, styles["body"]))

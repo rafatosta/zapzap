@@ -26,16 +26,30 @@ class ThemeManager(QObject):
 
     _LIGHT_PALETTE_COLORS = {
         "window": "#f7f5f3",
-        "text": "#000000",
-        "base": "#f0f0f0",
-        "highlight": "#0066cc",
+        "text": "#1d1f1f",
+        "base": "#ffffff",
+        "alternate_base": "#eae9e7",
+        "button": "#ffffff",
+        "button_text": "#1d1f1f",
+        "highlight": "#21c063",
+        "highlighted_text": "#FFFFFF",
+        "mid": "#D0D4D8",
+        "placeholder_text": "#A6AEB6",
+        "bright_text": "#e01b24",
     }
 
     _DARK_PALETTE_COLORS = {
         "window": "#1d1f1f",
-        "text": "#ffffff",
-        "base": "#3a3a3a",
-        "highlight": "#0099ff",
+        "text": "#E1E1E1",
+        "base": "#242626",
+        "alternate_base": "#292a2a",
+        "button": "#242626",
+        "button_text": "#E1E1E1",
+        "highlight": "#21c063",
+        "highlighted_text": "#FFFFFF",
+        "mid": "#444444",
+        "placeholder_text": "#A6AEB6",
+        "bright_text": "#e01b24",
     }
 
     theme_changed = pyqtSignal(object, object)
@@ -206,19 +220,35 @@ class ThemeManager(QObject):
             self._apply_color_scheme()
 
     @staticmethod
-    def _create_palette(window: str, text: str, base: str, highlight: str) -> QPalette:
+    def _create_palette(
+        window: str,
+        text: str,
+        base: str,
+        alternate_base: str,
+        button: str,
+        button_text: str,
+        highlight: str,
+        highlighted_text: str,
+        mid: str,
+        placeholder_text: str,
+        bright_text: str,
+    ) -> QPalette:
         palette = QPalette()
 
         palette.setColor(QPalette.ColorRole.Window, QColor(window))
         palette.setColor(QPalette.ColorRole.WindowText, QColor(text))
         palette.setColor(QPalette.ColorRole.Base, QColor(base))
+        palette.setColor(QPalette.ColorRole.AlternateBase, QColor(alternate_base))
         palette.setColor(QPalette.ColorRole.ToolTipBase, QColor(base))
         palette.setColor(QPalette.ColorRole.ToolTipText, QColor(text))
         palette.setColor(QPalette.ColorRole.Text, QColor(text))
-        palette.setColor(QPalette.ColorRole.Button, QColor(base))
-        palette.setColor(QPalette.ColorRole.ButtonText, QColor(text))
+        palette.setColor(QPalette.ColorRole.Button, QColor(button))
+        palette.setColor(QPalette.ColorRole.ButtonText, QColor(button_text))
         palette.setColor(QPalette.ColorRole.Highlight, QColor(highlight))
-        palette.setColor(QPalette.ColorRole.HighlightedText, QColor(text))
+        palette.setColor(QPalette.ColorRole.HighlightedText, QColor(highlighted_text))
+        palette.setColor(QPalette.ColorRole.Mid, QColor(mid))
+        palette.setColor(QPalette.ColorRole.PlaceholderText, QColor(placeholder_text))
+        palette.setColor(QPalette.ColorRole.BrightText, QColor(bright_text))
 
         return palette
 
