@@ -5,7 +5,7 @@ from gettext import gettext as _
 from PyQt6.QtWidgets import QHBoxLayout, QStackedWidget, QVBoxLayout, QWidget
 
 from zapzap.views.components import Button
-from zapzap.views.settings_components import SettingsSidebar, apply_settings_style
+from zapzap.views.settings_components import SettingsSidebar
 
 
 class SettingsView(QWidget):
@@ -15,7 +15,7 @@ class SettingsView(QWidget):
         super().__init__(parent)
         self.setObjectName("SettingsRoot")
         self._setup_ui()
-        apply_settings_style(self)
+        self._apply_style()
 
     def _setup_ui(self):
         root = QHBoxLayout(self)
@@ -38,6 +38,40 @@ class SettingsView(QWidget):
         self.action_layout.addWidget(self.btn_donate)
         self.action_layout.addWidget(self.btn_back)
         self.action_layout.addWidget(self.btn_quit)
+
+    def _apply_style(self):
+        self.setStyleSheet("""
+            QWidget#SettingsRoot {
+                background: palette(window);
+                color: palette(text);
+            }
+            QPushButton#SettingsBackButton, QPushButton#SettingsQuitButton {
+                min-height: 36px;
+                border: 1px solid palette(mid);
+                border-radius: 10px;
+                padding: 8px 12px;
+                background: palette(button);
+                color: palette(button-text);
+            }
+            QPushButton#SettingsBackButton:hover,
+            QPushButton#SettingsQuitButton:hover {
+                border-color: palette(highlight);
+                background: palette(alternate-base);
+            }
+            QPushButton#SettingsDonateButton {
+                min-height: 36px;
+                border: 1px solid palette(highlight);
+                border-radius: 10px;
+                padding: 8px 12px;
+                background: palette(highlight);
+                color: palette(highlighted-text);
+                font-weight: 700;
+            }
+            QPushButton#SettingsDonateButton:hover {
+                background: palette(highlight);
+                border-color: palette(highlight);
+            }
+        """)
 
     def add_navigation_item(self, label):
         return self.sidebar.add_item(label)

@@ -13,4 +13,3 @@ from .settings_rows import (
 )
 from .settings_section import SettingsSection
 from .settings_sidebar import SettingsSidebar, SettingsSidebarItem
-from .settings_styles import apply_settings_style

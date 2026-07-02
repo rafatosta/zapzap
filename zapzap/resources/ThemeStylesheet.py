@@ -11,6 +11,54 @@ class ThemeStylesheet:
             font-size: 12px;
             opacity: 245;
         }
+
+        QScrollArea {
+            background: palette(window);
+            border: 0;
+        }
+        QScrollArea > QWidget > QWidget {
+            background: palette(window);
+        }
+        QScrollBar:vertical {
+            background: transparent;
+            width: 10px;
+            margin: 2px;
+            border: 0;
+        }
+        QScrollBar::handle:vertical {
+            background: palette(mid);
+            min-height: 24px;
+            border-radius: 5px;
+        }
+        QScrollBar::handle:vertical:hover {
+            background: palette(highlight);
+        }
+        QScrollBar::add-line:vertical,
+        QScrollBar::sub-line:vertical {
+            height: 0;
+            background: transparent;
+            border: 0;
+        }
+        QScrollBar:horizontal {
+            background: transparent;
+            height: 10px;
+            margin: 2px;
+            border: 0;
+        }
+        QScrollBar::handle:horizontal {
+            background: palette(mid);
+            min-width: 24px;
+            border-radius: 5px;
+        }
+        QScrollBar::handle:horizontal:hover {
+            background: palette(highlight);
+        }
+        QScrollBar::add-line:horizontal,
+        QScrollBar::sub-line:horizontal {
+            width: 0;
+            background: transparent;
+            border: 0;
+        }
         QMenuBar {
             background-color: palette(base);
             color: palette(text);

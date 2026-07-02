@@ -46,6 +46,18 @@ class _BaseRow(QWidget):
         if control:
             layout.addWidget(control, 0, Qt.AlignmentFlag.AlignVCenter)
         self.control = control
+        self._apply_style()
+
+    def _apply_style(self):
+        self.setStyleSheet("""
+            QLabel#SettingsRowTitle {
+                font-weight: 600;
+                color: palette(text);
+            }
+            QLabel#SettingsRowDescription {
+                color: palette(placeholder-text);
+            }
+        """)
 
 
 class SettingsSwitchRow(_BaseRow):

@@ -17,6 +17,19 @@ class SettingsSection(QWidget):
             desc.setObjectName("SettingsSectionDescription")
             desc.setWordWrap(True)
             self.layout.addWidget(desc)
+        self._apply_style()
 
     def add_card(self, card):
         self.layout.addWidget(card)
+
+    def _apply_style(self):
+        self.setStyleSheet("""
+            QLabel#SettingsSectionTitle {
+                font-size: 16px;
+                font-weight: 700;
+                color: palette(text);
+            }
+            QLabel#SettingsSectionDescription {
+                color: palette(placeholder-text);
+            }
+        """)

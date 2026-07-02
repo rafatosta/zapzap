@@ -1,4 +1,3 @@
-from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QLabel, QScrollArea, QVBoxLayout, QWidget
 
 
@@ -24,9 +23,31 @@ class SettingsPage(QScrollArea):
             self.description_label.setWordWrap(True)
             self.content_layout.addWidget(self.description_label)
         self.content_layout.addSpacing(6)
+        self._apply_style()
 
     def add_section(self, section):
         self.content_layout.addWidget(section)
 
     def add_stretch(self):
         self.content_layout.addStretch(1)
+
+    def _apply_style(self):
+        self.setStyleSheet("""
+            QScrollArea#SettingsPageScroll {
+                border: 0;
+                background: transparent;
+            }
+            QScrollArea#SettingsPageScroll > QWidget > QWidget,
+            QWidget#SettingsPageViewport {
+                background: palette(window);
+                color: palette(text);
+            }
+            QLabel#SettingsPageTitle {
+                font-size: 26px;
+                font-weight: 700;
+                color: palette(text);
+            }
+            QLabel#SettingsPageDescription {
+                color: palette(placeholder-text);
+            }
+        """)
