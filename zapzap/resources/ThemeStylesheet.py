@@ -510,6 +510,26 @@ class ThemeStylesheet:
                 width: 12px;
                 height: 12px;
             }
+            QComboBox QAbstractItemView {
+                background-color: #FFFFFF;
+                color: #111B21;
+                border: 1px solid #DADDE1;
+                border-radius: 10px;
+                padding: 6px;
+                outline: 0;
+                selection-background-color: #D9FDD3;
+                selection-color: #075E54;
+            }
+            QComboBox QAbstractItemView::item {
+                min-height: 32px;
+                padding: 8px 28px 8px 12px;
+                margin: 2px 0;
+                border-radius: 7px;
+            }
+            QComboBox QAbstractItemView::item:selected {
+                background-color: #D9FDD3;
+                color: #075E54;
+            }
         """,
         "dark": """
             QComboBox {
@@ -545,12 +565,25 @@ class ThemeStylesheet:
                 height: 12px;
             }
             QComboBox QAbstractItemView {
-                background-color: #161e23;
-                selection-background-color: #21c063;
-                padding: 6px 12px;
+                background-color: #202C33;
+                color: #E9EDEF;
+                border: 1px solid #2A3942;
+                border-radius: 10px;
+                padding: 6px;
+                outline: 0;
+                selection-background-color: #0B3B35;
+                selection-color: #00A884;
+            }
+            QComboBox QAbstractItemView::item {
+                min-height: 32px;
+                padding: 8px 28px 8px 12px;
                 margin: 2px 0;
-                border-radius: 4px;
-            }   
+                border-radius: 7px;
+            }
+            QComboBox QAbstractItemView::item:selected {
+                background-color: #0B3B35;
+                color: #00A884;
+            }
         """
     }
 

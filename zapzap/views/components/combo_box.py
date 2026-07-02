@@ -8,6 +8,7 @@ class ComboBox(QComboBox):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.view().setObjectName("ZapZapComboBoxPopup")
         self._apply_style()
 
     def _apply_style(self):
@@ -57,16 +58,21 @@ class ComboBox(QComboBox):
             QComboBox QAbstractItemView {
                 border: 1px solid palette(mid);
                 border-radius: 10px;
-                padding: 4px;
+                padding: 6px;
                 background: palette(base);
                 color: palette(text);
                 outline: 0;
-                selection-background-color: palette(highlight);
-                selection-color: palette(highlighted-text);
+                selection-background-color: palette(alternate-base);
+                selection-color: palette(highlight);
             }
             QComboBox QAbstractItemView::item {
-                min-height: 28px;
-                padding: 4px 8px;
-                border-radius: 6px;
+                min-height: 32px;
+                padding: 8px 28px 8px 12px;
+                margin: 2px 0;
+                border-radius: 7px;
+            }
+            QComboBox QAbstractItemView::item:selected {
+                background: palette(alternate-base);
+                color: palette(highlight);
             }
         """)
