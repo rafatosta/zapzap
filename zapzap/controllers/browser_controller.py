@@ -4,7 +4,6 @@ from PyQt6.QtCore import QPropertyAnimation
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QMessageBox
-from PyQt6.QtWidgets import QWidget
 from zapzap.controllers.CardUser import CardUser
 from zapzap.services.ThemeManager import ThemeManager
 from zapzap.webengine.WebView import WebView
@@ -15,9 +14,10 @@ from zapzap.services.AlertManager import AlertManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SetupManager import SetupManager
 from zapzap.services.SysTrayManager import SysTrayManager
+from zapzap.views.browser import BrowserGridView
+from zapzap.views.browser import BrowserPageButton
 from zapzap.views.browser import BrowserSidebarButton
 from zapzap.views.browser import BrowserView
-from zapzap.views.browser import BrowserPageButton
 from zapzap.controllers.OnboardingDialog import OnboardingDialog
 
 from gettext import gettext as _
@@ -78,31 +78,20 @@ class BrowserController(BrowserView):
         )
 
     def _setup_grid_view(self):
-        from PyQt6.QtWidgets import QGridLayout
-        from PyQt6.QtWidgets import QScrollArea
-        # Setup the UI structure for the grid view
-        self.grid_scroll = QScrollArea(self)
-        self.grid_scroll.setWidgetResizable(True)
-        self.grid_widget = QWidget()
-        self.grid_layout = QGridLayout(self.grid_widget)
-        self.grid_scroll.setWidget(self.grid_widget)
+        """Create the styled account overview page and sidebar entry point."""
+        self.grid_view = BrowserGridView(self)
+        self.grid_scroll = self.grid_view.scroll
+        self.grid_layout = self.grid_view.grid_layout
 
-        # It goes into the stacked widget
-        self.pages.addWidget(self.grid_scroll)
-        self.grid_page_index = self.pages.indexOf(self.grid_scroll)
+        self.pages.addWidget(self.grid_view)
+        self.grid_page_index = self.pages.indexOf(self.grid_view)
 
-        # Add grid button to sidebar
         self.btn_grid_view = BrowserSidebarButton(
             parent=self.settings_buttons_layout,
         )
-        self.btn_grid_view.setMinimumSize(40, 40)
-        self.btn_grid_view.setMaximumSize(40, 40)
-        self.btn_grid_view.setText("")
-        self.btn_grid_view.setIconSize(self.btn_open_settings.iconSize())
         self.btn_grid_view.setToolTip(_("Grid view"))
         self.btn_grid_view.clicked.connect(self.show_grid_view)
 
-        # Insert before the line_2 which separates settings
         idx = self.layout_2.indexOf(self.line_2)
         self.layout_2.insertWidget(idx, self.btn_grid_view)
 
@@ -412,21 +401,12 @@ class BrowserController(BrowserView):
         if current_page and isinstance(current_page, WebView):
             current_page.cached_screenshot = current_page.grab()
 
-        # Clear existing grid
-        while self.grid_layout.count():
-            item = self.grid_layout.takeAt(0)
-            widget = item.widget()
-            if widget:
-                widget.deleteLater()
+        self.grid_view.clear_thumbnails()
+        self.grid_view.set_empty_state_visible(False)
 
-        # Remove spacing and margins
-        self.grid_layout.setContentsMargins(0, 0, 0, 0)
-        self.grid_layout.setSpacing(0)
-
-        # Layout logic
-        cols = int(SettingsManager.get("system/grid_cols", 2))
+        cols = max(1, int(SettingsManager.get("system/grid_cols", 2)))
         row, col = 0, 0
-        
+
         # Count active accounts first to calculate layout
         active_pages = []
         for i in range(self.pages.count()):
@@ -438,6 +418,9 @@ class BrowserController(BrowserView):
 
         num_accounts = len(active_pages)
         if num_accounts == 0:
+            self.grid_view.set_empty_state_visible(True)
+            self._reset_button_styles()
+            self.pages.setCurrentIndex(self.grid_page_index)
             return
 
         # Calculate grid geometry
@@ -449,13 +432,19 @@ class BrowserController(BrowserView):
         # but for sizing we want to fill the screen
         effective_rows = (num_accounts + cols - 1) // cols
 
-        # Target dimensions (subtracting small margin for scrollbars/spacing)
-        target_width = (viewport_width // cols) - 4
-        target_height = (viewport_height // max(1, effective_rows)) - 4
+        content_margin = 56
+        grid_padding = 32
+        grid_spacing = 16
+        available_width = viewport_width - content_margin - grid_padding
+        available_height = viewport_height - content_margin - grid_padding - 64
+        target_width = (available_width - (grid_spacing * (cols - 1))) // cols
+        target_height = (
+            available_height - (grid_spacing * max(0, effective_rows - 1))
+        ) // max(1, effective_rows)
 
-        # Ensure minimum readable size if many accounts
-        target_width = max(200, target_width)
-        target_height = max(150, target_height)
+        # Ensure thumbnails stay readable and balanced with the new card layout.
+        target_width = max(220, target_width)
+        target_height = max(170, min(360, target_height))
 
         for page_widget, i in active_pages:
             # Capture screenshot
@@ -465,6 +454,7 @@ class BrowserController(BrowserView):
 
             # Image Label
             img_label = ClickableLabel(page_widget, i, self._switch_from_grid)
+            img_label.setObjectName("BrowserGridThumbnail")
             img_label.setPixmap(pixmap)
             img_label.setScaledContents(True)
             img_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
