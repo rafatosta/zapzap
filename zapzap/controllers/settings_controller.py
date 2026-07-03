@@ -22,6 +22,19 @@ from zapzap.views import SettingsView
 class SettingsController(SettingsView):
     """Coordinates settings navigation and shell actions."""
 
+    # Exemplo: (PageGeneral, _("General"))
+    _PAGES = [
+        (QWidget, _("Contas")),
+        (QWidget, _("Aparência")),
+        (QWidget, _("Notificações")),
+        (QWidget, _("Idioma e downloads")),
+        (QWidget, _("Privacidade e rede")),
+        (QWidget, _("Customizações avançadas")),
+        (QWidget, _("Performance experimental")),
+        (QWidget, _("Sistema e inicialização")),
+        (QWidget, _("Suporte")),
+    ]
+
     def __init__(self, parent=None):
         super().__init__(parent)
         self.page_buttons = {}
@@ -33,24 +46,11 @@ class SettingsController(SettingsView):
         """Destrói o widget e limpa recursos."""
 
     def _register_pages(self):
-        """ self._add_page(PageGeneral(), self.add_navigation_item(_("General")))
-        self._add_page(PageAccount(), self.add_navigation_item(_("Accounts")))
-        self._add_page(PageAppearance(), self.add_navigation_item(_("Appearance")))
-        self._add_page(
-            PageCustomizations(),
-            self.add_navigation_item(_("Customizations")),
-        )
-        self._add_page(
-            PageNotifications(),
-            self.add_navigation_item(_("Notifications")),
-        )
-        self._add_page(PageNetwork(), self.add_navigation_item(_("Network")))
-        self._add_page(
-            PagePerformance(),
-            self.add_navigation_item(_("Performance")),
-        )
-        self._add_page(PageDebugging(), self.add_navigation_item(_("Debugging")))
-        self._add_page(PageAbout(), self.add_navigation_item(_("About"))) """
+        for page_class, label in self._PAGES:
+            self._add_page(
+                page_class(),
+                self.add_navigation_item(label),
+            )
         self.finish_sidebar()
 
     def _setup_signals(self):
@@ -58,6 +58,7 @@ class SettingsController(SettingsView):
         window = QApplication.instance().getWindow()
         self.btn_quit.clicked.connect(window.closeEvent)
         self.btn_back.clicked.connect(window.close_settings)
+        self.sidebar.btn_close.clicked.connect(window.close_settings)
         self.btn_donate.clicked.connect(
             lambda: QDesktopServices.openUrl(QUrl(__donationPage__))
         )
