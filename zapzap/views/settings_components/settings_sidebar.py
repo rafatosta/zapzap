@@ -2,6 +2,7 @@
 
 from gettext import gettext as _
 
+from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QFrame
 from PyQt6.QtWidgets import QHBoxLayout
 from PyQt6.QtWidgets import QPushButton
