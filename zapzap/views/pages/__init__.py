@@ -1,2 +1,3 @@
 from .PageNotifications import PageNotificationsView
 from .general_settings_view import GeneralSettingsView
+from .appearance_settings_view import AppearanceSettingsView
