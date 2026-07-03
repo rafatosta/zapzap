@@ -14,10 +14,10 @@ class ComboBox(QComboBox):
     def _apply_style(self):
         self.setStyleSheet("""
             QComboBox {
-                min-height: 36px;
+                min-height: 34px;
                 border: 1px solid palette(mid);
                 border-radius: 10px;
-                padding: 6px 34px 6px 12px;
+                padding: 4px 34px 4px 10px;
                 background: palette(base);
                 color: palette(text);
                 selection-background-color: palette(highlight);
@@ -25,7 +25,7 @@ class ComboBox(QComboBox):
             }
             QComboBox:hover {
                 border-color: palette(highlight);
-                background: palette(alternate-base);
+                background: palette(button);
             }
             QComboBox:focus {
                 border: 1px solid palette(highlight);
@@ -58,21 +58,20 @@ class ComboBox(QComboBox):
             QComboBox QAbstractItemView {
                 border: 1px solid palette(mid);
                 border-radius: 10px;
-                padding: 6px;
+                padding: 4px;
                 background: palette(base);
                 color: palette(text);
                 outline: 0;
                 selection-background-color: palette(alternate-base);
-                selection-color: palette(highlight);
+                selection-color: palette(text);
             }
             QComboBox QAbstractItemView::item {
-                min-height: 32px;
-                padding: 8px 28px 8px 12px;
-                margin: 2px 0;
-                border-radius: 7px;
+                min-height: 28px;
+                padding: 4px 8px;
+                border-radius: 6px;
             }
             QComboBox QAbstractItemView::item:selected {
                 background: palette(alternate-base);
-                color: palette(highlight);
+                color: palette(text);
             }
         """)
