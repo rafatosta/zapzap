@@ -54,6 +54,7 @@ packages = [
   "zapzap.views.browser",
   "zapzap.views.pages.settings",
   "zapzap.views.components",
+  "zapzap.views.settings_components",
   "zapzap.debug",
   "zapzap.notifications",
   "zapzap.webengine"

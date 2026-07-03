@@ -8,9 +8,9 @@ from PyQt6.QtGui import QActionGroup
 from PyQt6.QtGui import QImage
 from PyQt6.QtWidgets import QApplication
 from zapzap.controllers.QtoasterDonation import QtoasterDonation
-from zapzap.controllers.Settings import Settings
 from zapzap.controllers.ShortcutsDialog import ShortcutsDialog
 from zapzap.controllers.browser_controller import BrowserController
+from zapzap.controllers.settings_controller import SettingsController
 from zapzap.services.AlertManager import AlertManager
 from zapzap.services.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
@@ -318,7 +318,7 @@ class MainWindowController(MainWindowView):
     # === Funções de Configuração ===
     def open_settings(self):
         """Abre o painel de configurações."""
-        self.app_settings = Settings()
+        self.app_settings = SettingsController()
         self.stackedWidget.addWidget(self.app_settings)
         self.stackedWidget.setCurrentWidget(self.app_settings)
 
