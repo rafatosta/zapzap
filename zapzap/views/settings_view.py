@@ -31,12 +31,9 @@ class SettingsView(QWidget):
         self.action_layout.setSpacing(8)
         self.btn_donate = Button(_("Donate"))
         self.btn_donate.setObjectName("SettingsDonateButton")
-        self.btn_back = Button(_("Back"))
-        self.btn_back.setObjectName("SettingsBackButton")
         self.btn_quit = Button(_("Quit"))
         self.btn_quit.setObjectName("SettingsQuitButton")
         self.action_layout.addWidget(self.btn_donate)
-        self.action_layout.addWidget(self.btn_back)
         self.action_layout.addWidget(self.btn_quit)
 
     def _apply_style(self):
@@ -45,7 +42,7 @@ class SettingsView(QWidget):
                 background: palette(window);
                 color: palette(text);
             }
-            QPushButton#SettingsBackButton, QPushButton#SettingsQuitButton {
+            QPushButton#SettingsQuitButton {
                 min-height: 36px;
                 border: 1px solid palette(mid);
                 border-radius: 10px;
@@ -53,7 +50,6 @@ class SettingsView(QWidget):
                 background: palette(button);
                 color: palette(button-text);
             }
-            QPushButton#SettingsBackButton:hover,
             QPushButton#SettingsQuitButton:hover {
                 border-color: palette(highlight);
                 background: palette(alternate-base);
