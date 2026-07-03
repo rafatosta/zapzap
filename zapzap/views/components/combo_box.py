@@ -16,6 +16,7 @@ class ComboBox(QComboBox):
             color: palette(text);
             selection-background-color: palette(highlight);
             selection-color: palette(highlighted-text);
+            combobox-popup: 0;
         }
         QComboBox:hover {
             border-color: palette(highlight);
