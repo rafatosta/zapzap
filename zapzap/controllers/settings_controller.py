@@ -7,15 +7,8 @@ from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWidgets import QApplication, QWidget
 
 from zapzap import __donationPage__
-from zapzap.controllers.PageAbout import PageAbout
-from zapzap.controllers.PageAccount import PageAccount
-from zapzap.controllers.PageAppearance import PageAppearance
-from zapzap.controllers.PageCustomizations import PageCustomizations
-from zapzap.controllers.PageDebugging import PageDebugging
-from zapzap.controllers.PageGeneral import PageGeneral
-from zapzap.controllers.PageNetwork import PageNetwork
-from zapzap.controllers.PageNotifications import PageNotifications
-from zapzap.controllers.PagePerformance import PagePerformance
+
+from zapzap.controllers.settings.appearance_settings_controller import AppearanceSettingsController
 from zapzap.views import SettingsView
 
 
@@ -25,7 +18,7 @@ class SettingsController(SettingsView):
     # Exemplo: (PageGeneral, _("General"))
     _PAGES = [
         (QWidget, _("Contas")),
-        (QWidget, _("Aparência")),
+        (AppearanceSettingsController, _("Appearance")),
         (QWidget, _("Notificações")),
         (QWidget, _("Idioma e downloads")),
         (QWidget, _("Privacidade e rede")),

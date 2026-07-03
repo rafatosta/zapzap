@@ -1,2 +1,1 @@
-from .notification_settings_controller import NotificationSettingsController
-from .general_settings_controller import GeneralSettingsController
+from .appearance_settings_controller import AppearanceSettingsController
