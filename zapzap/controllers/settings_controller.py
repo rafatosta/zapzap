@@ -58,6 +58,7 @@ class SettingsController(SettingsView):
         window = QApplication.instance().getWindow()
         self.btn_quit.clicked.connect(window.closeEvent)
         self.btn_back.clicked.connect(window.close_settings)
+        self.sidebar.btn_close.clicked.connect(window.close_settings)
         self.btn_donate.clicked.connect(
             lambda: QDesktopServices.openUrl(QUrl(__donationPage__))
         )
