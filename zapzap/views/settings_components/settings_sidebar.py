@@ -2,15 +2,13 @@
 
 from gettext import gettext as _
 
-from PyQt6.QtCore import QSize
-from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QFrame
 from PyQt6.QtWidgets import QHBoxLayout
 from PyQt6.QtWidgets import QPushButton
 from PyQt6.QtWidgets import QVBoxLayout
 from PyQt6.QtWidgets import QWidget
 
-from zapzap.views.components import Button
+from zapzap.views.components import CloseButton
 from zapzap.views.components import Label
 
 
@@ -72,11 +70,7 @@ class SettingsSidebar(QFrame):
             )
         )
 
-        self.btn_close = Button("×")
-        self.btn_close.setObjectName("SettingsSidebarCloseButton")
-        self.btn_close.setToolTip(_("Close settings"))
-        self.btn_close.setFixedSize(QSize(36, 36))
-        self.btn_close.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.btn_close = CloseButton(self.header, tooltip=_("Close settings"))
 
         header_layout.addLayout(title_layout, 1)
         header_layout.addWidget(self.btn_close, 0, Qt.AlignmentFlag.AlignTop)
@@ -99,27 +93,5 @@ class SettingsSidebar(QFrame):
             }
             QWidget#SettingsSidebarHeader {
                 background: transparent;
-            }
-            QPushButton#SettingsSidebarCloseButton {
-                min-width: 36px;
-                min-height: 36px;
-                max-width: 36px;
-                max-height: 36px;
-                border: 1px solid transparent;
-                border-radius: 10px;
-                padding: 0;
-                background: transparent;
-                color: palette(button-text);
-                font-size: 18px;
-                font-weight: 600;
-            }
-            QPushButton#SettingsSidebarCloseButton:hover {
-                background: palette(alternate-base);
-                border-color: palette(mid);
-            }
-            QPushButton#SettingsSidebarCloseButton:pressed {
-                background: palette(highlight);
-                border-color: palette(highlight);
-                color: palette(highlighted-text);
             }
         """)
