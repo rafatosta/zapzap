@@ -5,10 +5,10 @@ import argparse
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtCore import QUrl
 
+from zapzap.controllers.client_side_rendering_controller import ClientSideRenderingController
 from zapzap.services.ThemeManager import ThemeManager
 from zapzap.services.SetupManager import SetupManager
 from zapzap.controllers.main_window_controller import MainWindowController
-from zapzap.controllers.ClientSideRendering import ClientSideRendering
 from zapzap.controllers.OnboardingDialog import OnboardingDialog
 from zapzap.controllers.SingleApplication import SingleApplication
 from zapzap.services.ProxyManager import ProxyManager
@@ -65,7 +65,7 @@ def main():
     # Create main window
     mainwindow_inside = MainWindowController()
     csr_enabled = SettingsManager.get("system/csr", False)
-    main_window = ClientSideRendering(mainwindow_inside, enabled=True) if csr_enabled else mainwindow_inside
+    main_window = ClientSideRenderingController(mainwindow_inside, enabled=True) if csr_enabled else mainwindow_inside
     app.setWindow(main_window)
     app.setActivationWindow(main_window)
     main_window.load_settings()

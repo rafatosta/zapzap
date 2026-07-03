@@ -1,14 +1,23 @@
+"""Client-side rendering window view components."""
+
 import os
 
-from PyQt6.QtCore import Qt, QPoint, QEvent, QByteArray
-from PyQt6.QtWidgets import QMessageBox, QCheckBox, QApplication
-from PyQt6.QtGui import QColor, QPainter, QPainterPath
-from PyQt6.QtWidgets import QHBoxLayout, QPushButton, QVBoxLayout, QWidget, QLabel
-from zapzap.resources.CSRButtonThemeProvider import CSRButtonTheme, CSRButtonThemeProvider
-from zapzap.services.ThemeManager import ThemeManager
-from zapzap.services.SettingsManager import SettingsManager
-from zapzap.controllers.QtoasterDonation import QtoasterDonation
 from gettext import gettext as _
+
+from PyQt6.QtCore import QEvent
+from PyQt6.QtCore import QPoint
+from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QPainter
+from PyQt6.QtGui import QPainterPath
+from PyQt6.QtWidgets import QLabel
+from PyQt6.QtWidgets import QHBoxLayout
+from PyQt6.QtWidgets import QPushButton
+from PyQt6.QtWidgets import QVBoxLayout
+from PyQt6.QtWidgets import QWidget
+
+from zapzap.resources.CSRButtonThemeProvider import CSRButtonTheme
+from zapzap.resources.CSRButtonThemeProvider import CSRButtonThemeProvider
+from zapzap.services.SettingsManager import SettingsManager
 
 
 class _TitleBar(QWidget):
@@ -155,7 +164,7 @@ class _TitleBar(QWidget):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         painter.setPen(Qt.PenStyle.NoPen)
-        painter.setBrush(QColor(self.host_window._colors["frame"]))
+        painter.setBrush(self.host_window.palette().window())
         painter.drawRect(self.rect())
 
 
@@ -174,15 +183,15 @@ class _ResizeArea(QWidget):
                 handle.startSystemResize(self.edges)
 
 
-class ClientSideRendering(QWidget):
+class ClientSideRenderingView(QWidget):
+    """Client-side rendered window wrapper view."""
+
     is_csr_wrapper = True
-    """Wrapper genérico para habilitar client-side rendering sem alterar MainWindow."""
 
     def __init__(self, inner_window: QWidget, enabled: bool = True):
         super().__init__()
         self.inner_window = inner_window
         self.enabled = enabled
-        self._colors = {"frame": "#2b2d31"}
         self._button_theme = self._resolve_button_theme()
 
         self.setWindowTitle(inner_window.windowTitle())
@@ -218,9 +227,6 @@ class ClientSideRendering(QWidget):
 
         self._create_resize_handles()
         self._apply_theme()
-
-        if not SettingsManager.get("notification/donation_message", True):
-            QtoasterDonation.showMessage(parent=self)
 
     def refresh_csr_button_preferences(self):
         if not self.enabled:
@@ -319,7 +325,7 @@ class ClientSideRendering(QWidget):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         painter.setPen(Qt.PenStyle.NoPen)
-        painter.setBrush(QColor(self._colors["frame"]))
+        painter.setBrush(self.palette().window())
 
         rect = self.rect()
         path = QPainterPath()
@@ -338,34 +344,6 @@ class ClientSideRendering(QWidget):
             self._apply_theme()
 
     def _apply_theme(self):
-        theme = ThemeManager.get_current_color_scheme()
-        button_theme = CSRButtonThemeProvider.get_theme(self._button_theme)
-
-        if theme == Qt.ColorScheme.Dark:
-            self._colors = {
-                "frame": "#1d1f1f",
-                "container_bg": "#1d1f1f",
-                "container_border": "#1d1f1f",
-                "title_text": "#E1E1E1",
-                "button_bg": button_theme.button_bg_dark,
-                "button_hover": button_theme.button_hover_dark,
-                "button_text": "#E1E1E1",
-                "close_bg": button_theme.close_bg_dark,
-                "close_hover": button_theme.close_hover_dark,
-            }
-        else:
-            self._colors = {
-                "frame": "#f7f5f3",
-                "container_bg": "#f7f5f3",
-                "container_border": "#f7f5f3",
-                "title_text": "#1d1f1f",
-                "button_bg": button_theme.button_bg_light,
-                "button_hover": button_theme.button_hover_light,
-                "button_text": "#1d1f1f",
-                "close_bg": button_theme.close_bg_light,
-                "close_hover": button_theme.close_hover_light,
-            }
-
         font_size = self.title_bar.minimize_button.property(
             "csrFontSize") or "14"
         font_weight = self.title_bar.minimize_button.property(
@@ -374,114 +352,50 @@ class ClientSideRendering(QWidget):
             "csrBorderRadius") or "6"
 
         self.setStyleSheet(
-            (f"""
-            QWidget#csrContainer {{
-                background: {self._colors['container_bg']};
-                border: 1px solid {self._colors['container_border']};
-                border-radius: 12px;
-            }}
-            QWidget#csrTitleBar {{
-                background: {self._colors['frame']};
-            }}
-            QWidget#csrTitleBar QLabel {{
-                color: {self._colors['title_text']};
+            """
+            QWidget#csrContainer {
+                background: palette(window);
+            }
+            QWidget#csrTitleBar {
+                background: palette(window);
+            }
+            QWidget#csrTitleBar QLabel {
+                color: palette(text);
                 font-size: 13px;
-            }}
-            QPushButton#csrWindowButton {{
-                background: {self._colors['button_bg']};
-                color: {self._colors['button_text']};
-                border: none;
+            }
+            QPushButton#csrWindowButton {
+                background: palette(button);
+                color: palette(button-text);
+                border: 1px solid transparent;
                 border-radius: %(radius)spx;
                 font-size: %(font)spx;
                 font-weight: %(weight)s;
-            }}
-            QPushButton#csrWindowButton:hover {{
-                background: {self._colors['button_hover']};
-            }}
-            QPushButton#csrWindowCloseButton {{
-                background: {self._colors['close_bg']};
-                color: {self._colors['button_text']};
-                border: none;
+            }
+            QPushButton#csrWindowButton:hover {
+                background: palette(alternate-base);
+                border-color: palette(mid);
+            }
+            QPushButton#csrWindowButton:pressed {
+                background: palette(highlight);
+                border-color: palette(highlight);
+                color: palette(highlighted-text);
+            }
+            QPushButton#csrWindowCloseButton {
+                background: palette(bright-text);
+                color: palette(highlighted-text);
+                border: 1px solid transparent;
                 border-radius: %(radius)spx;
                 font-size: %(font)spx;
                 font-weight: %(weight)s;
-            }}
-            QPushButton#csrWindowCloseButton:hover {{
-                background: {self._colors['close_hover']};
-            }}
-            """ % {"font": font_size, "weight": font_weight, "radius": border_radius})
+            }
+            QPushButton#csrWindowCloseButton:hover {
+                background: palette(bright-text);
+                border-color: palette(mid);
+            }
+            QPushButton#csrWindowCloseButton:pressed {
+                background: palette(highlight);
+                border-color: palette(highlight);
+                color: palette(highlighted-text);
+            }
+            """ % {"font": font_size, "weight": font_weight, "radius": border_radius}
         )
-
-    def load_settings(self):
-        """Restaura estado da janela no modo CSR e inicia serviços globais."""
-        if self.enabled:
-            self.restoreGeometry(SettingsManager.get(
-                "main/geometry", QByteArray()))
-            self.inner_window.restoreState(
-                SettingsManager.get("main/windowState", QByteArray()))
-        else:
-            self.inner_window.load_settings()
-            return
-
-        from zapzap.services.SysTrayManager import SysTrayManager
-        from zapzap.services.ThemeManager import ThemeManager
-        SysTrayManager.start()
-        ThemeManager.start()
-
-    def closeEvent(self, event):
-        self._save_window_state()
-
-        if SettingsManager.get("system/confirm_on_close", False):
-            msg_box = QMessageBox(self)
-            msg_box.setWindowTitle(_("Close ZapZap"))
-            msg_box.setText(_("Are you sure you want to close?"))
-            msg_box.setStandardButtons(
-                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
-            msg_box.setDefaultButton(QMessageBox.StandardButton.No)
-
-            cb = QCheckBox(_("Don't ask again"))
-            msg_box.setCheckBox(cb)
-
-            reply = msg_box.exec()
-            if reply != QMessageBox.StandardButton.Yes:
-                event.ignore()
-                return
-
-            if cb.isChecked():
-                SettingsManager.set("system/confirm_on_close", False)
-
-        if not SettingsManager.get("system/quit_in_close", False) and event:
-            self._prepare_for_background(event)
-        else:
-            QApplication.instance().quit()
-
-    def _save_window_state(self):
-        SettingsManager.set("main/geometry", self.saveGeometry())
-        SettingsManager.set("main/windowState", self.saveState())
-
-    def _prepare_for_background(self, event):
-        if self.inner_window.app_settings:
-            self.inner_window.close_settings()
-
-        self.inner_window.browser.close_conversations()
-        self.hide()
-        event.ignore()
-
-    def show_window(self):
-        if self.isHidden():
-            if self.inner_window.is_fullscreen:
-                self.showFullScreen()
-            else:
-                self.showNormal()
-            QApplication.instance().setActiveWindow(self)
-        elif not self.isActiveWindow():
-            self.activateWindow()
-            self.raise_()
-        else:
-            self.hide()
-
-    def hideEvent(self, event):
-        super().hideEvent(event)
-
-    def __getattr__(self, name):
-        return getattr(self.inner_window, name)
