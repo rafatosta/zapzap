@@ -1,1 +1,2 @@
 from .appearance_settings_model import AppearanceSettingsModel
+from .notifications_settings_model import NotificationsSettingsModel

@@ -1,6 +1,7 @@
 from gettext import gettext as _
 from PyQt6.QtWidgets import QScrollArea, QVBoxLayout, QWidget
-from zapzap.views.components import Card, Label, Section, SwitchRow
+from zapzap.views.components import Card, Label, Section
+from zapzap.views.settings_components import SettingsSwitchRow
 
 
 class NotificationsSettingsView(QWidget):
@@ -48,7 +49,7 @@ class NotificationsSettingsView(QWidget):
             _("Choose whether ZapZap may show desktop notifications."),
         )
         card = Card()
-        self.notify_groupBox = SwitchRow(
+        self.notify_groupBox = SettingsSwitchRow(
             _("Enable notifications"),
             _("Allow ZapZap to publish native desktop notifications for WhatsApp activity."),
         )
@@ -62,15 +63,15 @@ class NotificationsSettingsView(QWidget):
             _("Limit what is visible in notification banners."),
         )
         card = Card()
-        self.show_photo = SwitchRow(
+        self.show_photo = SettingsSwitchRow(
             _("Show contact photo"),
             _("Display the sender avatar when it is available."),
         )
-        self.show_name = SwitchRow(
+        self.show_name = SettingsSwitchRow(
             _("Show contact name"),
             _("Display the sender or group name."),
         )
-        self.show_msg = SwitchRow(
+        self.show_msg = SettingsSwitchRow(
             _("Show message preview"),
             _("Display the message text in the notification."),
         )
@@ -86,7 +87,7 @@ class NotificationsSettingsView(QWidget):
             _("Optional messages shown by ZapZap itself."),
         )
         card = Card()
-        self.donationMessage = SwitchRow(
+        self.donationMessage = SettingsSwitchRow(
             _("Donation reminder"),
             _("Show occasional support messages from ZapZap."),
         )

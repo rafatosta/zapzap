@@ -1,2 +1,3 @@
 from .appearance_settings_view import AppearanceSettingsView
+from .notifications_settings_view import NotificationsSettingsView
 

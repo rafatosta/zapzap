@@ -3,7 +3,7 @@ from __future__ import annotations
 from zapzap.services.SettingsManager import SettingsManager
 
 
-class NotificationSettingsModel:
+class NotificationsSettingsModel:
     """Model for notification settings persistence.
 
     This class hides SettingsManager keys from controllers and views.

@@ -9,6 +9,7 @@ from PyQt6.QtWidgets import QApplication, QWidget
 from zapzap import __donationPage__
 
 from zapzap.controllers.settings.appearance_settings_controller import AppearanceSettingsController
+from zapzap.controllers.settings.notifications_settings_controller import NotificationsSettingsController
 from zapzap.views import SettingsView
 
 
@@ -19,7 +20,7 @@ class SettingsController(SettingsView):
     _PAGES = [
         (QWidget, _("Contas")),
         (AppearanceSettingsController, _("Appearance")),
-        (QWidget, _("Notificações")),
+        (NotificationsSettingsController, _("Notifications")),
         (QWidget, _("Idioma e downloads")),
         (QWidget, _("Privacidade e rede")),
         (QWidget, _("Customizações avançadas")),
