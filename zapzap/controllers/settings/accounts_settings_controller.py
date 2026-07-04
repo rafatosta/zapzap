@@ -2,7 +2,7 @@
 
 from PyQt6.QtWidgets import QApplication
 
-from zapzap.controllers.CardUser import CardUser
+from zapzap.controllers.card_user_controller import CardUserController
 from zapzap.models.settings.accounts_settings_model import AccountsSettingsModel
 from zapzap.services.AlertManager import AlertManager
 from zapzap.views.settings.accounts_settings_view import AccountsSettingsView
@@ -23,12 +23,12 @@ class AccountsSettingsController(AccountsSettingsView):
     def _load_users(self):
         self.user_list = self.model.list_users()
         for user in self.user_list:
-            self.add_user_card(CardUser(user))
+            self.add_user_card(CardUserController(user))
 
     def _new_user(self):
         new_user = self.model.create_user()
         if new_user:
-            self.add_user_card(CardUser(new_user))
+            self.add_user_card(CardUserController(new_user))
             browser = self._get_browser()
             if browser:
                 browser.add_new_user(new_user)
