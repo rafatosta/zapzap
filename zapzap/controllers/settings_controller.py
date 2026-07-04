@@ -8,6 +8,7 @@ from PyQt6.QtWidgets import QApplication, QWidget
 
 from zapzap import __donationPage__
 
+from zapzap.controllers.settings.accounts_settings_controller import AccountsSettingsController
 from zapzap.controllers.settings.advanced_customizations_settings_controller import AdvancedCustomizationsSettingsController
 from zapzap.controllers.settings.appearance_settings_controller import AppearanceSettingsController
 from zapzap.controllers.settings.language_downloads_settings_controller import LanguageDownloadSettingsController
@@ -23,7 +24,7 @@ class SettingsController(SettingsView):
 
     # Exemplo: (PageGeneral, _("General"))
     _PAGES = [
-        (QWidget, _("Contas")),
+        (AccountsSettingsController, _("Accounts")),
         (AppearanceSettingsController, _("Appearance")),
         (NotificationsSettingsController, _("Notifications")),
         (LanguageDownloadSettingsController, _("Idioma e downloads")),

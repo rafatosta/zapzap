@@ -5,3 +5,4 @@ from .system_startup_settings_view import SystemStartupSettingsView
 from .network_privacy_settings_view import NetworkPrivacySettingsView
 from .advanced_customizations_settings_view import AdvancedCustomizationsSettingsView
 from .performance_experimental_settings_view import PerformanceExperimentalSettingsView
+from .accounts_settings_view import AccountsSettingsView

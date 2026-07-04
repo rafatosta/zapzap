@@ -5,3 +5,4 @@ from .system_startup_settings_model import SystemStartupSettingsModel
 from .network_privacy_settings_model import NetworkPrivacySettingsModel
 from .advanced_customizations_settings_model import AdvancedCustomizationsSettingsModel
 from .performance_experimental_settings_model import PerformanceExperimentalSettingsModel
+from .accounts_settings_model import AccountsSettingsModel
