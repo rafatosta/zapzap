@@ -51,6 +51,7 @@ packages = [
   "zapzap.resources",
   "zapzap.services",
   "zapzap.views",
+  "zapzap.views.settings",
   "zapzap.views.browser",
   "zapzap.views.components",
   "zapzap.views.settings_components",
