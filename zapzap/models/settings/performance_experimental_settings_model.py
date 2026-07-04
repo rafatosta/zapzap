@@ -25,6 +25,7 @@ class PerformanceExperimentalSettingsModel:
         "performance/single_process": False,
         "performance/process_per_site": True,
         "performance/js_memory_limit_index": 0,
+        "performance/js_predictable_gc_schedule": False,
         "web/scroll_animator": False,
         "web/background_throttling": True,
         "web/disable_animations": False,
