@@ -378,7 +378,8 @@ class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsVie
         self._schedule_preview_fit()
 
     def eventFilter(self, watched, event):
-        if watched != self.css_preview_image_page:
+        preview_page = getattr(self, "css_preview_image_page", None)
+        if preview_page is None or watched != preview_page:
             return super().eventFilter(watched, event)
 
         event_type = event.type()
