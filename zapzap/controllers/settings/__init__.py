@@ -1,6 +1,7 @@
 """Settings page controllers."""
 
 from .accounts_settings_controller import AccountsSettingsController
+from .about_settings_controller import AboutSettingsController
 from .appearance_settings_controller import AppearanceSettingsController
 from .advanced_customizations_settings_controller import AdvancedCustomizationsSettingsController
 from .language_downloads_settings_controller import LanguageDownloadsSettingsController

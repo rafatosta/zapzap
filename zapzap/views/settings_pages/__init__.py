@@ -1,6 +1,7 @@
 """Settings page views."""
 
 from .accounts_settings_view import AccountsSettingsView
+from .about_settings_view import AboutSettingsView
 from .advanced_customizations_settings_view import AdvancedCustomizationsSettingsView
 from .language_downloads_settings_view import LanguageDownloadsSettingsView
 from .network_privacy_settings_view import NetworkPrivacySettingsView
