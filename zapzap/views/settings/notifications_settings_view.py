@@ -1,7 +1,16 @@
 from gettext import gettext as _
-from zapzap.views.components import Card, Section
-from zapzap.views.settings_components import SettingsSwitchRow
-from zapzap.views.settings_components import SettingsPage
+
+from zapzap.views.settings_components import (
+    SettingsActionRow,
+    SettingsCard,
+    SettingsInfoBox,
+    SettingsPage,
+    SettingsPathRow,
+    SettingsSection,
+    SettingsSelectRow,
+    SettingsSwitchRow,
+)
+
 
 
 class NotificationsSettingsView(SettingsPage):
@@ -24,25 +33,25 @@ class NotificationsSettingsView(SettingsPage):
         self._add_messages_section()
 
     def _add_desktop_section(self):
-        section = Section(
+        section = SettingsSection(
             _("Desktop notifications"),
             _("Choose whether ZapZap may show desktop notifications."),
         )
-        card = Card()
+        card = SettingsCard()
         self.notify_groupBox = SettingsSwitchRow(
             _("Enable notifications"),
             _("Allow ZapZap to publish native desktop notifications for WhatsApp activity."),
         )
-        card.add_widget(self.notify_groupBox)
+        card.add_row(self.notify_groupBox)
         section.add_card(card)
         self.add_section(section)
 
     def _add_privacy_section(self):
-        section = Section(
+        section = SettingsSection(
             _("Notification privacy"),
             _("Limit what is visible in notification banners."),
         )
-        card = Card()
+        card = SettingsCard()
         self.show_photo = SettingsSwitchRow(
             _("Show contact photo"),
             _("Display the sender avatar when it is available."),
@@ -55,22 +64,22 @@ class NotificationsSettingsView(SettingsPage):
             _("Show message preview"),
             _("Display the message text in the notification."),
         )
-        card.add_widget(self.show_photo)
-        card.add_widget(self.show_name)
-        card.add_widget(self.show_msg)
+        card.add_row(self.show_photo)
+        card.add_row(self.show_name)
+        card.add_row(self.show_msg)
         section.add_card(card)
         self.add_section(section)
 
     def _add_messages_section(self):
-        section = Section(
+        section = SettingsSection(
             _("ZapZap messages"),
             _("Optional messages shown by ZapZap itself."),
         )
-        card = Card()
+        card = SettingsCard()
         self.donationMessage = SettingsSwitchRow(
             _("Donation reminder"),
             _("Show occasional support messages from ZapZap."),
         )
-        card.add_widget(self.donationMessage)
+        card.add_row(self.donationMessage)
         section.add_card(card)
         self.add_section(section)
