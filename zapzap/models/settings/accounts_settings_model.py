@@ -1,12 +1,17 @@
-"""Model for the Contas settings page."""
+"""Model for the Accounts settings page."""
 
 from __future__ import annotations
 
-from zapzap.models.settings.context_settings_model import ContextSettingsModel
+from zapzap.models.User import User
 
 
-class AccountsSettingsModel(ContextSettingsModel):
-    """Model for Contas settings state."""
+class AccountsSettingsModel:
+    """Model that exposes account persistence operations."""
 
-    def __init__(self):
-        super().__init__('accounts')
+    def list_users(self):
+        """Return the users displayed by the accounts settings page."""
+        return User.select()
+
+    def create_user(self):
+        """Create a new account, respecting the User model limits."""
+        return User.create_new_user()
