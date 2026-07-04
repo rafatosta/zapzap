@@ -161,7 +161,26 @@ class GeneralSettingsController(QWidget):
         for widget in app.allWidgets():
             self._call_retranslate(widget)
 
+        if self._reload_open_settings_page(app):
+            return
+
         self._load_interface_languages()
+
+    @staticmethod
+    def _reload_open_settings_page(app):
+        window = getattr(app, "getWindow", lambda: None)()
+        settings = getattr(window, "app_settings", None)
+        if settings is None:
+            return False
+
+        page_index = settings.pages.currentIndex()
+        window.close_settings()
+        window.open_settings()
+
+        next_settings = getattr(window, "app_settings", None)
+        if next_settings is not None and page_index >= 0:
+            next_settings.switch_to_page(next_settings.page_at(page_index))
+        return True
 
     @staticmethod
     def _call_retranslate(widget):
