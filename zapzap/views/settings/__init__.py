@@ -3,3 +3,4 @@ from .notifications_settings_view import NotificationsSettingsView
 from .language_downloads_settings_view import LanguageDownloadSettingsView
 from .system_startup_settings_view import SystemStartupSettingsView
 from .network_privacy_settings_view import NetworkPrivacySettingsView
+from .advanced_customizations_settings_view import AdvancedCustomizationsSettingsView

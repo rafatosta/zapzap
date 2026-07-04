@@ -8,6 +8,7 @@ from PyQt6.QtWidgets import QApplication, QWidget
 
 from zapzap import __donationPage__
 
+from zapzap.controllers.settings.advanced_customizations_settings_controller import AdvancedCustomizationsSettingsController
 from zapzap.controllers.settings.appearance_settings_controller import AppearanceSettingsController
 from zapzap.controllers.settings.language_downloads_settings_controller import LanguageDownloadSettingsController
 from zapzap.controllers.settings.network_privacy_settings_controller import NetworkPrivacySettingsController
@@ -26,7 +27,7 @@ class SettingsController(SettingsView):
         (NotificationsSettingsController, _("Notifications")),
         (LanguageDownloadSettingsController, _("Idioma e downloads")),
         (NetworkPrivacySettingsController, _("Privacy and network")),
-        (QWidget, _("Customizações avançadas")),
+        (AdvancedCustomizationsSettingsController, _("Advanced Customizations")),
         (QWidget, _("Performance experimental")),
         (SystemStartupSettingsController, _("Sistema e inicialização")),
         (QWidget, _("Suporte")),
