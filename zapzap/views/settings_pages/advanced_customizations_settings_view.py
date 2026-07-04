@@ -6,7 +6,9 @@ from PyQt6.QtCore import Qt
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QFormLayout, QHeaderView, QTableWidgetItem, QVBoxLayout, QWidget
 
+from zapzap.views.components import Button
 from zapzap.views.components import CheckBox
+from zapzap.views.components import ComboBox
 from zapzap.views.components import Label
 from zapzap.views.settings_components import SettingsCard
 from zapzap.views.settings_components import SettingsInfoBox
@@ -39,7 +41,7 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         card = SettingsCard()
         scope_row = QWidget()
         scope_layout = QFormLayout(scope_row)
-        self.scope_combo = QtWidgets.QComboBox(scope_row)
+        self.scope_combo = ComboBox(scope_row)
         self.account_label = Label("", "body", scope_row)
         self.account_label.setWordWrap(True)
         scope_layout.addRow(_("Account"), self.scope_combo)
@@ -82,17 +84,17 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         self.css_files_group.add_row(self.css_files)
 
         css_buttons_1 = self._button_row()
-        self.btn_css_create = QtWidgets.QPushButton(_("Create"))
-        self.btn_css_edit = QtWidgets.QPushButton(_("Edit"))
-        self.btn_css_delete = QtWidgets.QPushButton(_("Delete"))
+        self.btn_css_create = Button(_("Create"))
+        self.btn_css_edit = Button(_("Edit"))
+        self.btn_css_delete = Button(_("Delete"))
         for button in (self.btn_css_create, self.btn_css_edit, self.btn_css_delete):
             css_buttons_1.layout().addWidget(button)
         css_buttons_1.layout().addStretch(1)
 
         css_buttons_2 = self._button_row()
-        self.btn_css_import = QtWidgets.QPushButton(_("Import .css"))
-        self.btn_css_import_url = QtWidgets.QPushButton(_("Import from URL"))
-        self.btn_css_folder = QtWidgets.QPushButton(_("Open folder"))
+        self.btn_css_import = Button(_("Import .css"))
+        self.btn_css_import_url = Button(_("Import from URL"))
+        self.btn_css_folder = Button(_("Open folder"))
         for button in (self.btn_css_import, self.btn_css_import_url, self.btn_css_folder):
             css_buttons_2.layout().addWidget(button)
         css_buttons_2.layout().addStretch(1)
@@ -114,7 +116,7 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         self.css_preview_placeholder = Label(_("Select a CSS file to preview."), "body")
         self.css_preview_placeholder.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.css_preview_placeholder.setWordWrap(True)
-        self.css_preview_placeholder_upload_button = QtWidgets.QPushButton(
+        self.css_preview_placeholder_upload_button = Button(
             _("Upload preview image"),
         )
         self.css_preview_placeholder_upload_button.setVisible(False)
@@ -129,7 +131,7 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         image_layout = QtWidgets.QGridLayout(self.css_preview_image_page)
         self.css_preview_image = Label("", "body")
         self.css_preview_image.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.css_preview_replace_button = QtWidgets.QPushButton(_("Replace preview image"))
+        self.css_preview_replace_button = Button(_("Replace preview image"))
         self.css_preview_replace_button.setVisible(False)
         image_layout.addWidget(self.css_preview_image, 0, 0)
         image_layout.addWidget(
@@ -165,17 +167,17 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         self.js_files_group.add_row(self.js_files)
 
         js_buttons_1 = self._button_row()
-        self.btn_js_create = QtWidgets.QPushButton(_("Create"))
-        self.btn_js_edit = QtWidgets.QPushButton(_("Edit"))
-        self.btn_js_delete = QtWidgets.QPushButton(_("Delete"))
+        self.btn_js_create = Button(_("Create"))
+        self.btn_js_edit = Button(_("Edit"))
+        self.btn_js_delete = Button(_("Delete"))
         for button in (self.btn_js_create, self.btn_js_edit, self.btn_js_delete):
             js_buttons_1.layout().addWidget(button)
         js_buttons_1.layout().addStretch(1)
 
         js_buttons_2 = self._button_row()
-        self.btn_js_import = QtWidgets.QPushButton(_("Import .js"))
-        self.btn_js_import_url = QtWidgets.QPushButton(_("Import from URL"))
-        self.btn_js_folder = QtWidgets.QPushButton(_("Open folder"))
+        self.btn_js_import = Button(_("Import .js"))
+        self.btn_js_import_url = Button(_("Import from URL"))
+        self.btn_js_folder = Button(_("Open folder"))
         for button in (self.btn_js_import, self.btn_js_import_url, self.btn_js_folder):
             js_buttons_2.layout().addWidget(button)
         js_buttons_2.layout().addStretch(1)
@@ -192,9 +194,9 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         )
         card = SettingsCard()
         action_row = self._button_row()
-        self.btn_save_reload = QtWidgets.QPushButton(_("Save and reload"))
-        self.btn_reload = QtWidgets.QPushButton(_("Reload"))
-        self.btn_save = QtWidgets.QPushButton(_("Save"))
+        self.btn_save_reload = Button(_("Save and reload"))
+        self.btn_reload = Button(_("Reload"))
+        self.btn_save = Button(_("Save"))
         self.btn_save.setDefault(True)
         action_row.layout().addStretch(1)
         for button in (self.btn_save_reload, self.btn_reload, self.btn_save):
