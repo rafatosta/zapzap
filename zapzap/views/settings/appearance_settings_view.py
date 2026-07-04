@@ -2,10 +2,8 @@
 
 from gettext import gettext as _
 
-from PyQt6.QtWidgets import QHBoxLayout
-from PyQt6.QtWidgets import QRadioButton
-from PyQt6.QtWidgets import QWidget
-
+from zapzap.views.components import RadioButton
+from zapzap.views.settings_components import SettingsRadioGroup
 from zapzap.views.settings_components import SettingsCard
 from zapzap.views.settings_components import SettingsPage
 from zapzap.views.settings_components import SettingsSection
@@ -63,11 +61,11 @@ class AppearanceSettingsView(SettingsPage):
     def _setup_theme_section(self):
         section = SettingsSection(_("Theme"), _("Choose the visual theme."))
         card = SettingsCard()
-        self.theme_auto_radioButton = QRadioButton(_("Automatic"))
-        self.theme_light_radioButton = QRadioButton(_("Light"))
-        self.theme_dark_radioButton = QRadioButton(_("Dark"))
+        self.theme_auto_radioButton = RadioButton(_("Automatic"))
+        self.theme_light_radioButton = RadioButton(_("Light"))
+        self.theme_dark_radioButton = RadioButton(_("Dark"))
         card.add_row(
-            self._radio_row(
+            SettingsRadioGroup(
                 self.theme_auto_radioButton,
                 self.theme_light_radioButton,
                 self.theme_dark_radioButton,
@@ -91,13 +89,13 @@ class AppearanceSettingsView(SettingsPage):
             _("Show unread notifications on the tray icon."),
         )
         self.notificationCounter = self.notificationCounter_row.checkbox
-        self.tray_default_radioButton = QRadioButton(_("Default"))
-        self.tray_slight_radioButton = QRadioButton(_("Symbolic light"))
-        self.tray_sdark_radioButton = QRadioButton(_("Symbolic dark"))
+        self.tray_default_radioButton = RadioButton(_("Default"))
+        self.tray_slight_radioButton = RadioButton(_("Symbolic light"))
+        self.tray_sdark_radioButton = RadioButton(_("Symbolic dark"))
         card.add_row(self.tray_groupBox)
         card.add_row(self.notificationCounter_row)
         card.add_row(
-            self._radio_row(
+            SettingsRadioGroup(
                 self.tray_default_radioButton,
                 self.tray_slight_radioButton,
                 self.tray_sdark_radioButton,
@@ -154,12 +152,3 @@ class AppearanceSettingsView(SettingsPage):
         card.add_row(self.csr_direction_row)
         section.add_card(card)
         self.add_section(section)
-
-    def _radio_row(self, *radio_buttons):
-        row = QWidget()
-        layout = QHBoxLayout(row)
-        layout.setContentsMargins(0, 8, 0, 8)
-        for radio_button in radio_buttons:
-            layout.addWidget(radio_button)
-        layout.addStretch(1)
-        return row
