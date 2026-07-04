@@ -54,6 +54,7 @@ class GeneralSettingsView(QWidget):
         row = SettingsSelectRow(
             _("Interface language"),
             _("The interface language is applied immediately."),
+            [""],
         )
         self.interface_language_comboBox = row.combo
         self.interface_language_comboBox.setMinimumWidth(240)
