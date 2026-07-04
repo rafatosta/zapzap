@@ -13,6 +13,7 @@ from zapzap.controllers.settings.appearance_settings_controller import Appearanc
 from zapzap.controllers.settings.language_downloads_settings_controller import LanguageDownloadSettingsController
 from zapzap.controllers.settings.network_privacy_settings_controller import NetworkPrivacySettingsController
 from zapzap.controllers.settings.notifications_settings_controller import NotificationsSettingsController
+from zapzap.controllers.settings.performance_experimental_settings_controller import PerformanceExperimentalSettingsController
 from zapzap.controllers.settings.system_startup_settings_controller import SystemStartupSettingsController
 from zapzap.views import SettingsView
 
@@ -28,7 +29,7 @@ class SettingsController(SettingsView):
         (LanguageDownloadSettingsController, _("Idioma e downloads")),
         (NetworkPrivacySettingsController, _("Privacy and network")),
         (AdvancedCustomizationsSettingsController, _("Advanced Customizations")),
-        (QWidget, _("Performance experimental")),
+        (PerformanceExperimentalSettingsController, _("Performance experimental")),
         (SystemStartupSettingsController, _("Sistema e inicialização")),
         (QWidget, _("Suporte")),
     ]
