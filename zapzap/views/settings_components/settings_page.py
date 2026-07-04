@@ -1,4 +1,6 @@
-from PyQt6.QtWidgets import QLabel, QScrollArea, QVBoxLayout, QWidget
+from PyQt6.QtWidgets import QScrollArea, QVBoxLayout, QWidget
+
+from zapzap.views.components import Label
 
 
 class SettingsPage(QScrollArea):
@@ -14,11 +16,11 @@ class SettingsPage(QScrollArea):
         self.content_layout = QVBoxLayout(self.viewport_widget)
         self.content_layout.setContentsMargins(32, 28, 32, 32)
         self.content_layout.setSpacing(18)
-        self.title_label = QLabel(title)
+        self.title_label = Label(title, "title")
         self.title_label.setObjectName("SettingsPageTitle")
         self.content_layout.addWidget(self.title_label)
         if description:
-            self.description_label = QLabel(description)
+            self.description_label = Label(description, "description")
             self.description_label.setObjectName("SettingsPageDescription")
             self.description_label.setWordWrap(True)
             self.content_layout.addWidget(self.description_label)
@@ -41,13 +43,5 @@ class SettingsPage(QScrollArea):
             QWidget#SettingsPageViewport {
                 background: palette(window);
                 color: palette(text);
-            }
-            QLabel#SettingsPageTitle {
-                font-size: 26px;
-                font-weight: 700;
-                color: palette(text);
-            }
-            QLabel#SettingsPageDescription {
-                color: palette(placeholder-text);
             }
         """)
