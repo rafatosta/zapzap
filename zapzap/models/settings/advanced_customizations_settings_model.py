@@ -1,4 +1,4 @@
-"""Model for the Customizações avançadas settings page."""
+"""Model for advanced customization settings state."""
 
 from __future__ import annotations
 
@@ -9,4 +9,4 @@ class AdvancedCustomizationsSettingsModel(ContextSettingsModel):
     """Model for Customizações avançadas settings state."""
 
     def __init__(self):
-        super().__init__('advanced_customizations')
+        super().__init__("advanced_customizations")
