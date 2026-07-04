@@ -2,3 +2,4 @@ from .appearance_settings_model import AppearanceSettingsModel
 from .notifications_settings_model import NotificationsSettingsModel
 from .language_downloads_settings_model import LanguageDownloadSettingsModel
 from .system_startup_settings_model import SystemStartupSettingsModel
+from .network_privacy_settings_model import NetworkPrivacySettingsModel

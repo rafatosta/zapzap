@@ -10,6 +10,7 @@ from zapzap import __donationPage__
 
 from zapzap.controllers.settings.appearance_settings_controller import AppearanceSettingsController
 from zapzap.controllers.settings.language_downloads_settings_controller import LanguageDownloadSettingsController
+from zapzap.controllers.settings.network_privacy_settings_controller import NetworkPrivacySettingsController
 from zapzap.controllers.settings.notifications_settings_controller import NotificationsSettingsController
 from zapzap.controllers.settings.system_startup_settings_controller import SystemStartupSettingsController
 from zapzap.views import SettingsView
@@ -24,7 +25,7 @@ class SettingsController(SettingsView):
         (AppearanceSettingsController, _("Appearance")),
         (NotificationsSettingsController, _("Notifications")),
         (LanguageDownloadSettingsController, _("Idioma e downloads")),
-        (QWidget, _("Privacidade e rede")),
+        (NetworkPrivacySettingsController, _("Privacy and network")),
         (QWidget, _("Customizações avançadas")),
         (QWidget, _("Performance experimental")),
         (SystemStartupSettingsController, _("Sistema e inicialização")),
