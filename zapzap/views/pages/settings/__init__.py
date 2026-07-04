@@ -1,2 +1,0 @@
-from .general_settings_view import GeneralSettingsView
-from ...settings.notifications_settings_view import NotificationsSettingsView

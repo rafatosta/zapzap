@@ -9,7 +9,9 @@ from PyQt6.QtWidgets import QApplication, QWidget
 from zapzap import __donationPage__
 
 from zapzap.controllers.settings.appearance_settings_controller import AppearanceSettingsController
+from zapzap.controllers.settings.language_downloads_settings_controller import LanguageDownloadSettingsController
 from zapzap.controllers.settings.notifications_settings_controller import NotificationsSettingsController
+from zapzap.controllers.settings.system_startup_settings_controller import SystemStartupSettingsController
 from zapzap.views import SettingsView
 
 
@@ -21,11 +23,11 @@ class SettingsController(SettingsView):
         (QWidget, _("Contas")),
         (AppearanceSettingsController, _("Appearance")),
         (NotificationsSettingsController, _("Notifications")),
-        (QWidget, _("Idioma e downloads")),
+        (LanguageDownloadSettingsController, _("Idioma e downloads")),
         (QWidget, _("Privacidade e rede")),
         (QWidget, _("Customizações avançadas")),
         (QWidget, _("Performance experimental")),
-        (QWidget, _("Sistema e inicialização")),
+        (SystemStartupSettingsController, _("Sistema e inicialização")),
         (QWidget, _("Suporte")),
     ]
 

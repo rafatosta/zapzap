@@ -1,3 +1,4 @@
 from .appearance_settings_view import AppearanceSettingsView
 from .notifications_settings_view import NotificationsSettingsView
-
+from .language_downloads_settings_view import LanguageDownloadSettingsView
+from .system_startup_settings_view import SystemStartupSettingsView
