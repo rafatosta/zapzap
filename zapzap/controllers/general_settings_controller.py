@@ -70,6 +70,9 @@ class GeneralSettingsController(QWidget):
         self.view.interface_language_comboBox.currentIndexChanged.connect(
             self._handle_interface_language
         )
+        self.view.interface_language_comboBox.activated.connect(
+            self._handle_interface_language
+        )
         self.view.spell_comboBox.textActivated.connect(self._handle_spellcheck)
         self.view.btn_path_spell.clicked.connect(self._handle_path_spell)
         self.view.btn_default_path_spell.clicked.connect(
@@ -156,11 +159,20 @@ class GeneralSettingsController(QWidget):
     def _retranslate_application(self):
         app = QApplication.instance()
         for widget in app.allWidgets():
-            retranslate = getattr(widget, "retranslateUi", None)
-            if callable(retranslate):
-                retranslate(widget)
+            self._call_retranslate(widget)
 
         self._load_interface_languages()
+
+    @staticmethod
+    def _call_retranslate(widget):
+        for method_name in ("retranslate_ui", "retranslateUi"):
+            retranslate = getattr(widget, method_name, None)
+            if not callable(retranslate):
+                continue
+            try:
+                retranslate()
+            except TypeError:
+                retranslate(widget)
 
     def _handle_toggled_spellcheck(self, toggled):
         self.model.set_setting("system/spellCheckers", toggled)
