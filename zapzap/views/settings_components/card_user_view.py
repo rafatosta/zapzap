@@ -30,7 +30,7 @@ class CardUserView(SettingsCard):
         self.icon.setAutoRaise(True)
         self.icon.setIconSize(QSize(42, 42))
 
-        self.name = LineEdit(header)
+        self.name = LineEdit(parent=header)
         self.name.setPlaceholderText(_("Account name"))
 
         self.delete = Button(_("Delete"), header)
