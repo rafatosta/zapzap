@@ -11,8 +11,6 @@ from zapzap.views.settings import LanguageDownloadSettingsView
 
 
 class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
-    """Coordinates general settings state and actions for the """
-
     def __init__(self, parent=None):
         super().__init__(parent)
         self.model = LanguageDownloadSettingsModel()
@@ -30,7 +28,6 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         )
 
         self.spell_comboBox.clear()
-        print(self.model.list_dictionaries())
         self.spell_comboBox.addItems(self.model.list_dictionaries())
         self.spell_comboBox.setCurrentText(self.model.get_current_dictionary())
 
@@ -46,6 +43,9 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         self.interface_language_comboBox.currentIndexChanged.connect(
             self._handle_interface_language
         )
+        self.interface_language_comboBox.activated.connect(
+            self._handle_interface_language
+        )
         self.spell_comboBox.textActivated.connect(self._handle_spellcheck)
         self.btn_path_spell.clicked.connect(self._handle_path_spell)
         self.btn_default_path_spell.clicked.connect(
@@ -55,7 +55,7 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         self.btn_restore_path_download.clicked.connect(
             self._handle_restore_path_download
         )
-        
+
         self.btn_copy_flatpak_command.clicked.connect(
             lambda: QApplication.clipboard().setText(
                 self.model.FLATPAK_OVERRIDE_COMMAND
@@ -81,6 +81,7 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         if index < 0:
             index = 0
         combo.setCurrentIndex(index)
+        combo.updateGeometry()
         combo.blockSignals(False)
 
     def _language_label(self, language):
@@ -101,11 +102,39 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
     def _retranslate_application(self):
         app = QApplication.instance()
         for widget in app.allWidgets():
-            retranslate = getattr(widget, "retranslateUi", None)
-            if callable(retranslate):
-                retranslate(widget)
+            self._call_retranslate(widget)
+
+        if self._reload_open_settings_page(app):
+            return
 
         self._load_interface_languages()
+
+    @staticmethod
+    def _reload_open_settings_page(app):
+        window = getattr(app, "getWindow", lambda: None)()
+        settings = getattr(window, "app_settings", None)
+        if settings is None:
+            return False
+
+        page_index = settings.pages.currentIndex()
+        window.close_settings()
+        window.open_settings()
+
+        next_settings = getattr(window, "app_settings", None)
+        if next_settings is not None and page_index >= 0:
+            next_settings.switch_to_page(next_settings.page_at(page_index))
+        return True
+
+    @staticmethod
+    def _call_retranslate(widget):
+        for method_name in ("retranslate_ui", "retranslateUi"):
+            retranslate = getattr(widget, method_name, None)
+            if not callable(retranslate):
+                continue
+            try:
+                retranslate()
+            except TypeError:
+                retranslate(widget)
 
     def _handle_toggled_spellcheck(self, toggled):
         self.model.set_setting("system/spellCheckers", toggled)

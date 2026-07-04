@@ -51,8 +51,11 @@ class LanguageDownloadSettingsView(QWidget):
         row = SettingsSelectRow(
             _("Interface language"),
             _("The interface language is applied immediately."),
+            [""],
         )
         self.interface_language_comboBox = row.combo
+        self.interface_language_comboBox.setMinimumWidth(240)
+        self.interface_language_comboBox.setMinimumContentsLength(18)
         card.add_row(row)
         section.add_card(card)
         self.page.add_section(section)
