@@ -98,6 +98,10 @@ class SetupManager:
         if js_mem and js_mem != "0":
             add_flag(f"--js-flags=--max-old-space-size={js_mem}")
 
+        if SettingsManager.get("performance/js_predictable_gc_schedule", False):
+            add_flag("--js-flags=--predictable-gc-schedule")
+            add_flag("--disable-gpu")
+
         # --------------------------------------------------
         # Background / timers
         # --------------------------------------------------

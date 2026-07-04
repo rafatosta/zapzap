@@ -23,6 +23,7 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
         "performance/disable_accessibility": "disable_accessibility",
         "performance/single_process": "single_process",
         "performance/process_per_site": "process_per_site",
+        "performance/js_predictable_gc_schedule": "js_predictable_gc_schedule",
         "web/scroll_animator": "scroll_animator",
         "web/background_throttling": "background_throttling",
         "web/disable_animations": "disable_animations",
@@ -153,6 +154,14 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
                 "Automatic is the safest option.\n"
                 "Higher values allow heavier pages.\n\n"
                 "Restart required."
+            )
+        )
+        self.js_predictable_gc_schedule.setToolTip(
+            _(
+                "Enables V8 predictable garbage collection schedule.\n"
+                "This adds --js-flags=--predictable-gc-schedule and --disable-gpu "
+                "to QTWEBENGINE_CHROMIUM_FLAGS.\n\n"
+                "Experimental option. Restart required."
             )
         )
         self.scroll_animator.setToolTip(

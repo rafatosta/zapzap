@@ -156,8 +156,14 @@ class PerformanceExperimentalSettingsView(SettingsPage):
             _("JavaScript memory limit"),
             _("Automatic is the safest option."),
         )
+        self.js_predictable_gc_schedule_row = SettingsSwitchRow(
+            _("JavaScript GC predictable schedule (experimental)"),
+            _("Enables predictable V8 garbage collection and disables GPU."),
+        )
         self.js_memory_limit = self.js_memory_limit_row.combo
+        self.js_predictable_gc_schedule = self.js_predictable_gc_schedule_row.checkbox
         card.add_row(self.js_memory_limit_row)
+        card.add_row(self.js_predictable_gc_schedule_row)
         section.add_card(card)
         self.add_section(section)
 
