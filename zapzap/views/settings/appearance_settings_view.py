@@ -133,6 +133,7 @@ class AppearanceSettingsView(SettingsPage):
         self.csr_theme_row = SettingsSelectRow(
             _("Button theme"),
             _("Theme used by custom window buttons."),
+            [""],
         )
         self.csr_theme_comboBox = self.csr_theme_row.combo
         self.csr_show_minimize_row = SettingsSwitchRow(_("Show minimize button"))
