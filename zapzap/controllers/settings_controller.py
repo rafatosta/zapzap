@@ -10,6 +10,7 @@ from zapzap import __donationPage__
 from zapzap.controllers.settings.accounts_settings_controller import AccountsSettingsController
 from zapzap.controllers.settings.advanced_customizations_settings_controller import AdvancedCustomizationsSettingsController
 from zapzap.controllers.settings.appearance_settings_controller import AppearanceSettingsController
+from zapzap.controllers.settings.debugging_settings_controller import DebuggingSettingsController
 from zapzap.controllers.settings.language_downloads_settings_controller import LanguageDownloadsSettingsController
 from zapzap.controllers.settings.network_privacy_settings_controller import NetworkPrivacySettingsController
 from zapzap.controllers.settings.notifications_settings_controller import NotificationsSettingsController
@@ -30,6 +31,7 @@ class SettingsController(SettingsView):
         (NetworkPrivacySettingsController, _("Privacidade e rede")),
         (AdvancedCustomizationsSettingsController, _("Customizações avançadas")),
         (PerformanceExperimentalSettingsController, _("Performance experimental")),
+        (DebuggingSettingsController, _("Debugging")),
         (SystemStartupSettingsController, _("Sistema e inicialização")),
         (SupportSettingsController, _("Suporte")),
     ]
@@ -86,4 +88,8 @@ class SettingsController(SettingsView):
 
     def open_about(self):
         """Abre a página Ajuda"""
-        self.switch_to_page(self.page_at(8))
+        for index in range(self.pages.count()):
+            page = self.page_at(index)
+            if isinstance(page, SupportSettingsController):
+                self.switch_to_page(page)
+                return
