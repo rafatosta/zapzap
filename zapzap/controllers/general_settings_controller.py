@@ -135,6 +135,7 @@ class GeneralSettingsController(QWidget):
         if index < 0:
             index = 0
         combo.setCurrentIndex(index)
+        combo.updateGeometry()
         combo.blockSignals(False)
 
     def _language_label(self, language):
