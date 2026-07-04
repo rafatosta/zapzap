@@ -1,5 +1,5 @@
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QHBoxLayout, QLabel, QWidget
+from PyQt6.QtWidgets import QHBoxLayout, QLabel, QSizePolicy, QWidget
 
 from zapzap.views.components import Button, ComboBox, LineEdit, ToggleSwitch
 
@@ -13,7 +13,7 @@ class SettingsToggleSwitch(ToggleSwitch):
 
 
 class _BaseRow(QWidget):
-    def __init__(self, title, description="", control=None, parent=None):
+    def __init__(self, title, description="", control=None, parent=None, control_stretch=0):
         super().__init__(parent)
         self.setMinimumHeight(64)
         layout = QHBoxLayout(self)
@@ -44,7 +44,7 @@ class _BaseRow(QWidget):
             col.addWidget(desc)
         layout.addWidget(text_col, 1)
         if control:
-            layout.addWidget(control, 0, Qt.AlignmentFlag.AlignVCenter)
+            layout.addWidget(control, control_stretch, Qt.AlignmentFlag.AlignVCenter)
         self.control = control
         self._apply_style()
 
@@ -86,13 +86,18 @@ class SettingsSelectRow(_BaseRow):
 class SettingsPathRow(_BaseRow):
     def __init__(self, title, description="", path="", button_text="Browse…", parent=None):
         box = QWidget()
+        box.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
         layout = QHBoxLayout(box)
         layout.setContentsMargins(0, 0, 0, 0)
         self.line_edit = LineEdit(path)
+        self.line_edit.setSizePolicy(
+            QSizePolicy.Policy.Expanding,
+            QSizePolicy.Policy.Fixed,
+        )
         self.button = Button(button_text)
-        layout.addWidget(self.line_edit)
+        layout.addWidget(self.line_edit, 1)
         layout.addWidget(self.button)
-        super().__init__(title, description, box, parent)
+        super().__init__(title, description, box, parent, control_stretch=1)
 
 
 class SettingsActionRow(_BaseRow):
