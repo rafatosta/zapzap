@@ -1,5 +1,6 @@
 from .button import Button
 from .card import Card
+from .check_box import CheckBox
 from .close_button import CloseButton
 from .combo_box import ComboBox
 from .label import Label

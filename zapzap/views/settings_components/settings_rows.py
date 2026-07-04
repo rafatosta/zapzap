@@ -1,7 +1,7 @@
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QHBoxLayout, QLabel, QSizePolicy, QWidget
+from PyQt6.QtWidgets import QHBoxLayout, QSizePolicy, QWidget
 
-from zapzap.views.components import Button, ComboBox, LineEdit, ToggleSwitch
+from zapzap.views.components import Button, ComboBox, Label, LineEdit, ToggleSwitch
 
 
 class SettingsToggleSwitch(ToggleSwitch):
@@ -26,7 +26,7 @@ class _BaseRow(QWidget):
         labels_layout = QHBoxLayout(labels)
         labels_layout.setContentsMargins(0, 0, 0, 0)
         labels_layout.setSpacing(8)
-        title_label = QLabel(title)
+        title_label = Label(title, "row_title")
         title_label.setObjectName("SettingsRowTitle")
         labels_layout.addWidget(title_label)
         labels_layout.addStretch(1)
@@ -38,7 +38,7 @@ class _BaseRow(QWidget):
         col.setSpacing(3)
         col.addWidget(title_label)
         if description:
-            desc = QLabel(description)
+            desc = Label(description, "row_description")
             desc.setObjectName("SettingsRowDescription")
             desc.setWordWrap(True)
             col.addWidget(desc)

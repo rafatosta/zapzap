@@ -1,4 +1,6 @@
-from PyQt6.QtWidgets import QLabel, QVBoxLayout, QWidget
+from PyQt6.QtWidgets import QVBoxLayout, QWidget
+
+from zapzap.views.components import Label
 
 
 class SettingsSection(QWidget):
@@ -9,11 +11,11 @@ class SettingsSection(QWidget):
         self.layout = QVBoxLayout(self)
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.layout.setSpacing(8)
-        title_label = QLabel(title)
+        title_label = Label(title, "section_title")
         title_label.setObjectName("SettingsSectionTitle")
         self.layout.addWidget(title_label)
         if description:
-            desc = QLabel(description)
+            desc = Label(description, "section_description")
             desc.setObjectName("SettingsSectionDescription")
             desc.setWordWrap(True)
             self.layout.addWidget(desc)

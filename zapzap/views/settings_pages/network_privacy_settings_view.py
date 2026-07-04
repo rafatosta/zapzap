@@ -2,8 +2,7 @@
 
 from gettext import gettext as _
 
-from PyQt6.QtWidgets import QLabel
-
+from zapzap.views.components import Label
 from zapzap.views.settings_components import SettingsActionRow
 from zapzap.views.settings_components import SettingsCard
 from zapzap.views.settings_components import SettingsInfoBox
@@ -65,7 +64,7 @@ class NetworkPrivacySettingsView(SettingsPage):
         self.proxy_info_box = SettingsInfoBox(
             _("Proxy type details appear below the selector."),
         )
-        self.proxyDescription = QLabel()
+        self.proxyDescription = Label("", "row_description")
         self.proxyDescription.setObjectName("SettingsRowDescription")
         self.proxyDescription.setWordWrap(True)
         self.host_row = SettingsTextRow(

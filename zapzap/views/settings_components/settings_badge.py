@@ -1,9 +1,11 @@
-from PyQt6.QtWidgets import QFrame, QLabel, QVBoxLayout
+from PyQt6.QtWidgets import QFrame, QVBoxLayout
+
+from zapzap.views.components import Label
 
 
-class SettingsBadge(QLabel):
+class SettingsBadge(Label):
     def __init__(self, text, kind="accent", parent=None):
-        super().__init__(text, parent)
+        super().__init__(text, "body", parent)
         self.setObjectName("SettingsBadge")
         self._apply_style()
         self.set_kind(kind)
@@ -40,7 +42,7 @@ class SettingsInfoBox(QFrame):
         self._apply_style()
         self.set_kind(kind)
         layout = QVBoxLayout(self)
-        label = QLabel(text)
+        label = Label(text, "body")
         label.setWordWrap(True)
         layout.addWidget(label)
 

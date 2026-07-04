@@ -6,6 +6,8 @@ from PyQt6.QtCore import Qt
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QFormLayout, QHeaderView, QTableWidgetItem, QVBoxLayout, QWidget
 
+from zapzap.views.components import CheckBox
+from zapzap.views.components import Label
 from zapzap.views.settings_components import SettingsCard
 from zapzap.views.settings_components import SettingsInfoBox
 from zapzap.views.settings_components import SettingsPage
@@ -38,16 +40,17 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         scope_row = QWidget()
         scope_layout = QFormLayout(scope_row)
         self.scope_combo = QtWidgets.QComboBox(scope_row)
-        self.account_label = QtWidgets.QLabel(scope_row)
+        self.account_label = Label("", "body", scope_row)
         self.account_label.setWordWrap(True)
         scope_layout.addRow(_("Account"), self.scope_combo)
         scope_layout.addRow("", self.account_label)
-        self.inherit_checkbox = QtWidgets.QCheckBox(
+        self.inherit_checkbox = CheckBox(
             _("Inherit global settings"),
             scope_row,
         )
-        self.account_scope_hint_label = QtWidgets.QLabel(
+        self.account_scope_hint_label = Label(
             _("When inherit is disabled, account customizations are appended after global settings."),
+            "row_description",
             scope_row,
         )
         self.account_scope_hint_label.setWordWrap(True)
@@ -58,7 +61,7 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         self.add_section(section)
 
     def _setup_feedback_label(self):
-        self.feedback_label = QtWidgets.QLabel(self)
+        self.feedback_label = Label("", "row_description", self)
         self.feedback_label.setWordWrap(True)
         self.feedback_label.setObjectName("SettingsRowDescription")
         self.content_layout.addWidget(self.feedback_label)
@@ -69,7 +72,7 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
             _("Import, create, edit, enable, and delete CSS files."),
         )
         self.css_files_group = SettingsCard()
-        self.css_enabled = QtWidgets.QCheckBox(
+        self.css_enabled = CheckBox(
             _("Enable custom CSS"),
             self.css_files_group,
         )
@@ -108,7 +111,7 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         self.css_preview_stack = QtWidgets.QStackedWidget(card)
         self.css_preview_placeholder_page = QWidget()
         placeholder_layout = QVBoxLayout(self.css_preview_placeholder_page)
-        self.css_preview_placeholder = QtWidgets.QLabel(_("Select a CSS file to preview."))
+        self.css_preview_placeholder = Label(_("Select a CSS file to preview."), "body")
         self.css_preview_placeholder.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.css_preview_placeholder.setWordWrap(True)
         self.css_preview_placeholder_upload_button = QtWidgets.QPushButton(
@@ -124,7 +127,7 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
 
         self.css_preview_image_page = QWidget()
         image_layout = QtWidgets.QGridLayout(self.css_preview_image_page)
-        self.css_preview_image = QtWidgets.QLabel()
+        self.css_preview_image = Label("", "body")
         self.css_preview_image.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.css_preview_replace_button = QtWidgets.QPushButton(_("Replace preview image"))
         self.css_preview_replace_button.setVisible(False)
@@ -147,7 +150,7 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
             _("Import, create, edit, enable, and delete JavaScript files."),
         )
         self.js_files_group = SettingsCard()
-        self.js_enabled = QtWidgets.QCheckBox(
+        self.js_enabled = CheckBox(
             _("Enable custom JavaScript"),
             self.js_files_group,
         )
