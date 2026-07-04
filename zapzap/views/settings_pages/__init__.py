@@ -1,0 +1,9 @@
+"""Settings page views."""
+
+from .accounts_settings_view import AccountsSettingsView
+from .advanced_customizations_settings_view import AdvancedCustomizationsSettingsView
+from .language_downloads_settings_view import LanguageDownloadsSettingsView
+from .network_privacy_settings_view import NetworkPrivacySettingsView
+from .performance_experimental_settings_view import PerformanceExperimentalSettingsView
+from .support_settings_view import SupportSettingsView
+from .system_startup_settings_view import SystemStartupSettingsView

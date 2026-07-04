@@ -7,20 +7,32 @@ from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWidgets import QApplication, QWidget
 
 from zapzap import __donationPage__
-from zapzap.controllers.PageAbout import PageAbout
-from zapzap.controllers.PageAccount import PageAccount
-from zapzap.controllers.PageAppearance import PageAppearance
-from zapzap.controllers.PageCustomizations import PageCustomizations
-from zapzap.controllers.PageDebugging import PageDebugging
-from zapzap.controllers.PageGeneral import PageGeneral
-from zapzap.controllers.PageNetwork import PageNetwork
-from zapzap.controllers.PageNotifications import PageNotifications
-from zapzap.controllers.PagePerformance import PagePerformance
-from zapzap.views.pages.settings_view import SettingsView
+from zapzap.controllers.settings.accounts_settings_controller import AccountsSettingsController
+from zapzap.controllers.settings.advanced_customizations_settings_controller import AdvancedCustomizationsSettingsController
+from zapzap.controllers.settings.appearance_settings_controller import AppearanceSettingsController
+from zapzap.controllers.settings.language_downloads_settings_controller import LanguageDownloadsSettingsController
+from zapzap.controllers.settings.network_privacy_settings_controller import NetworkPrivacySettingsController
+from zapzap.controllers.settings.notifications_settings_controller import NotificationsSettingsController
+from zapzap.controllers.settings.performance_experimental_settings_controller import PerformanceExperimentalSettingsController
+from zapzap.controllers.settings.support_settings_controller import SupportSettingsController
+from zapzap.controllers.settings.system_startup_settings_controller import SystemStartupSettingsController
+from zapzap.views import SettingsView
 
 
 class SettingsController(SettingsView):
     """Coordinates settings navigation and shell actions."""
+
+    _PAGES = [
+        (AccountsSettingsController, _("Contas")),
+        (AppearanceSettingsController, _("Appearance")),
+        (NotificationsSettingsController, _("Notificações")),
+        (LanguageDownloadsSettingsController, _("Idioma e downloads")),
+        (NetworkPrivacySettingsController, _("Privacidade e rede")),
+        (AdvancedCustomizationsSettingsController, _("Customizações avançadas")),
+        (PerformanceExperimentalSettingsController, _("Performance experimental")),
+        (SystemStartupSettingsController, _("Sistema e inicialização")),
+        (SupportSettingsController, _("Suporte")),
+    ]
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -33,24 +45,11 @@ class SettingsController(SettingsView):
         """Destrói o widget e limpa recursos."""
 
     def _register_pages(self):
-        self._add_page(PageGeneral(), self.add_navigation_item(_("General")))
-        self._add_page(PageAccount(), self.add_navigation_item(_("Accounts")))
-        self._add_page(PageAppearance(), self.add_navigation_item(_("Appearance")))
-        self._add_page(
-            PageCustomizations(),
-            self.add_navigation_item(_("Customizations")),
-        )
-        self._add_page(
-            PageNotifications(),
-            self.add_navigation_item(_("Notifications")),
-        )
-        self._add_page(PageNetwork(), self.add_navigation_item(_("Network")))
-        self._add_page(
-            PagePerformance(),
-            self.add_navigation_item(_("Performance")),
-        )
-        self._add_page(PageDebugging(), self.add_navigation_item(_("Debugging")))
-        self._add_page(PageAbout(), self.add_navigation_item(_("About")))
+        for page_class, label in self._PAGES:
+            self._add_page(
+                page_class(),
+                self.add_navigation_item(label),
+            )
         self.finish_sidebar()
 
     def _setup_signals(self):
