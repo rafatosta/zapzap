@@ -28,6 +28,24 @@ class RadioButton(QRadioButton):
             QRadioButton#ZapRadioButton:hover {
                 background: palette(alternate-base);
             }
+            QRadioButton#ZapRadioButton::indicator {
+                width: 18px;
+                height: 18px;
+                border-radius: 9px;
+                border: 2px solid palette(mid);
+                background: palette(base);
+            }
+            QRadioButton#ZapRadioButton::indicator:hover {
+                border-color: palette(highlight);
+            }
+            QRadioButton#ZapRadioButton::indicator:checked {
+                border-color: palette(highlight);
+                background: palette(highlight);
+            }
+            QRadioButton#ZapRadioButton::indicator:disabled {
+                border-color: palette(mid);
+                background: palette(window);
+            }
             QRadioButton#ZapRadioButton:disabled {
                 color: palette(placeholder-text);
             }
