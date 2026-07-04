@@ -8,14 +8,15 @@ from PyQt6.QtWidgets import QApplication, QWidget
 
 from zapzap import __donationPage__
 
-from zapzap.controllers.settings.accounts_settings_controller import AccountsSettingsController
-from zapzap.controllers.settings.advanced_customizations_settings_controller import AdvancedCustomizationsSettingsController
-from zapzap.controllers.settings.appearance_settings_controller import AppearanceSettingsController
-from zapzap.controllers.settings.language_downloads_settings_controller import LanguageDownloadSettingsController
-from zapzap.controllers.settings.network_privacy_settings_controller import NetworkPrivacySettingsController
-from zapzap.controllers.settings.notifications_settings_controller import NotificationsSettingsController
-from zapzap.controllers.settings.performance_experimental_settings_controller import PerformanceExperimentalSettingsController
-from zapzap.controllers.settings.system_startup_settings_controller import SystemStartupSettingsController
+from zapzap.controllers.settings import AccountsSettingsController
+from zapzap.controllers.settings import AdvancedCustomizationsSettingsController
+from zapzap.controllers.settings import AppearanceSettingsController
+from zapzap.controllers.settings import LanguageDownloadSettingsController
+from zapzap.controllers.settings import NetworkPrivacySettingsController
+from zapzap.controllers.settings import NotificationsSettingsController
+from zapzap.controllers.settings import PerformanceExperimentalSettingsController
+from zapzap.controllers.settings import SystemStartupSettingsController
+from zapzap.controllers.settings import AboutSettingsController
 from zapzap.views import SettingsView
 
 
@@ -32,7 +33,7 @@ class SettingsController(SettingsView):
         (AdvancedCustomizationsSettingsController, _("Advanced Customizations")),
         (PerformanceExperimentalSettingsController, _("Performance experimental")),
         (SystemStartupSettingsController, _("Sistema e inicialização")),
-        (QWidget, _("Suporte")),
+        (AboutSettingsController, _("About")),
     ]
 
     def __init__(self, parent=None):
