@@ -1,8 +1,6 @@
-"""User interface for the general settings page."""
-
 from gettext import gettext as _
 
-from PyQt6.QtWidgets import QHBoxLayout, QStyle, QVBoxLayout, QWidget
+from PyQt6.QtWidgets import QHBoxLayout, QStyle, QWidget
 
 from zapzap.views.components import Button, LineEdit
 
@@ -18,29 +16,24 @@ from zapzap.views.settings_components import (
 )
 
 
-class LanguageDownloadSettingsView(QWidget):
+class LanguageDownloadSettingsView(SettingsPage):
     """Composable general settings view without persistence logic."""
 
     def __init__(self, parent=None):
-        super().__init__(parent)
-        self._setup_ui()
-        self.configure_icons()
-
-    def _setup_ui(self):
-        layout = QVBoxLayout(self)
-        layout.setContentsMargins(0, 0, 0, 0)
-        self.page = SettingsPage(
+        super().__init__(
             _("Language and Download"),
             _("Manage interface language, downloads folder and spell checker."),
-            self,
+            parent,
         )
-        layout.addWidget(self.page)
+        self._setup_ui()
+        self.configure_icons()
+        self.add_stretch()
 
+    def _setup_ui(self):
         self._setup_language_section()
         self._setup_spellchecker_section()
         self._setup_flatpak_section()
         self._setup_downloads_section()
-        self.page.add_stretch()
 
     def _setup_language_section(self):
         section = SettingsSection(
@@ -58,7 +51,7 @@ class LanguageDownloadSettingsView(QWidget):
         self.interface_language_comboBox.setMinimumContentsLength(18)
         card.add_row(row)
         section.add_card(card)
-        self.page.add_section(section)
+        self.add_section(section)
 
     def _setup_downloads_section(self):
         section = SettingsSection(
@@ -78,7 +71,7 @@ class LanguageDownloadSettingsView(QWidget):
         row.control.layout().addWidget(self.btn_restore_path_download)
         card.add_row(row)
         section.add_card(card)
-        self.page.add_section(section)
+        self.add_section(section)
 
     def _setup_spellchecker_section(self):
         section = SettingsSection(
@@ -97,7 +90,7 @@ class LanguageDownloadSettingsView(QWidget):
         self.spell_comboBox = lang_row.combo
         path_row = SettingsPathRow(
             _("Dictionary directory"),
-            _("Note: changing dictionaries may require restarting the browser page."),
+            _("Note: changing dictionaries may require restarting the browser "),
             button_text="",
         )
         self.dic_path = path_row.line_edit
@@ -109,7 +102,7 @@ class LanguageDownloadSettingsView(QWidget):
         card.add_row(lang_row)
         card.add_row(path_row)
         section.add_card(card)
-        self.page.add_section(section)
+        self.add_section(section)
 
     def _setup_flatpak_section(self):
         self.flatpak_permissions_groupBox = SettingsSection(
@@ -140,7 +133,7 @@ class LanguageDownloadSettingsView(QWidget):
         card.add_row(self.btn_open_flatseal)
         self.btn_open_flatseal = self.btn_open_flatseal.button
         self.flatpak_permissions_groupBox.add_card(card)
-        self.page.add_section(self.flatpak_permissions_groupBox)
+        self.add_section(self.flatpak_permissions_groupBox)
 
     def configure_icons(self):
         self.btn_path_download.setIcon(

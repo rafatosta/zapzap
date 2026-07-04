@@ -1,12 +1,8 @@
-"""User interface for the general settings page."""
-
 from gettext import gettext as _
 
-from PyQt6.QtWidgets import QVBoxLayout, QWidget
 from zapzap.services.SetupManager import SetupManager
 
 from zapzap.views.settings_components import (
-
     SettingsCard,
     SettingsPage,
     SettingsSection,
@@ -14,27 +10,22 @@ from zapzap.views.settings_components import (
 )
 
 
-class SystemStartupSettingsView(QWidget):
+class SystemStartupSettingsView(SettingsPage):
     """Composable general settings view without persistence logic."""
 
     def __init__(self, parent=None):
-        super().__init__(parent)
-        self._setup_ui()
-
-    def _setup_ui(self):
-        layout = QVBoxLayout(self)
-        layout.setContentsMargins(0, 0, 0, 0)
-        self.page = SettingsPage(
+        super().__init__(
             _("General"),
             _("Manage language, startup, downloads, spell checking, and Linux integration."),
-            self,
+            parent,
         )
-        layout.addWidget(self.page)
+        self._setup_ui()
+        self.add_stretch()
 
+    def _setup_ui(self):
         self._setup_startup_section()
         self._setup_window_behavior_section()
         self._setup_linux_section()
-        self.page.add_stretch()
 
     def _setup_startup_section(self):
         section = SettingsSection(
@@ -55,7 +46,7 @@ class SystemStartupSettingsView(QWidget):
         card.add_row(self.btn_start_background_row)
         card.add_row(self.btn_start_system_row)
         section.add_card(card)
-        self.page.add_section(section)
+        self.add_section(section)
 
     def _setup_window_behavior_section(self):
         section = SettingsSection(
@@ -82,7 +73,7 @@ class SystemStartupSettingsView(QWidget):
         card.add_row(self.btn_quit_in_close_row)
         card.add_row(self.dontUseNativeDialog_row)
         section.add_card(card)
-        self.page.add_section(section)
+        self.add_section(section)
 
     def _setup_linux_section(self):
 
@@ -99,4 +90,4 @@ class SystemStartupSettingsView(QWidget):
             self.btn_wayland = self.btn_wayland_row.checkbox
             card.add_row(self.btn_wayland_row)
             section.add_card(card)
-            self.page.add_section(section)
+            self.add_section(section)

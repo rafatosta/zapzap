@@ -1,47 +1,27 @@
 from gettext import gettext as _
-from PyQt6.QtWidgets import QScrollArea, QVBoxLayout, QWidget
-from zapzap.views.components import Card, Label, Section
+from zapzap.views.components import Card, Section
 from zapzap.views.settings_components import SettingsSwitchRow
+from zapzap.views.settings_components import SettingsPage
 
 
-class NotificationsSettingsView(QWidget):
+class NotificationsSettingsView(SettingsPage):
     """Composable view for notification settings, without persistence logic."""
 
     def __init__(self, parent=None):
-        super().__init__(parent)
+        super().__init__(
+            _("Notifications"),
+            _("Control desktop notifications, notification privacy, and ZapZap messages."),
+            parent,
+        )
         self.setObjectName("NotificationsSettingsView")
         self._setup_ui()
         self._apply_style()
+        self.add_stretch()
 
     def _setup_ui(self):
-        root_layout = QVBoxLayout(self)
-        root_layout.setContentsMargins(0, 0, 0, 0)
-
-        self.scroll = QScrollArea()
-        self.scroll.setWidgetResizable(True)
-        self.scroll.setFrameShape(QScrollArea.Shape.NoFrame)
-        root_layout.addWidget(self.scroll)
-
-        self.viewport = QWidget()
-        self.scroll.setWidget(self.viewport)
-
-        self.content_layout = QVBoxLayout(self.viewport)
-        self.content_layout.setContentsMargins(32, 28, 32, 32)
-        self.content_layout.setSpacing(18)
-
-        self.content_layout.addWidget(Label(_("Notifications"), "title"))
-        self.content_layout.addWidget(
-            Label(
-                _("Control desktop notifications, notification privacy, and ZapZap messages."),
-                "description",
-            )
-        )
-        self.content_layout.addSpacing(6)
-
         self._add_desktop_section()
         self._add_privacy_section()
         self._add_messages_section()
-        self.content_layout.addStretch(1)
 
     def _add_desktop_section(self):
         section = Section(
@@ -55,7 +35,7 @@ class NotificationsSettingsView(QWidget):
         )
         card.add_widget(self.notify_groupBox)
         section.add_card(card)
-        self.content_layout.addWidget(section)
+        self.add_section(section)
 
     def _add_privacy_section(self):
         section = Section(
@@ -79,7 +59,7 @@ class NotificationsSettingsView(QWidget):
         card.add_widget(self.show_name)
         card.add_widget(self.show_msg)
         section.add_card(card)
-        self.content_layout.addWidget(section)
+        self.add_section(section)
 
     def _add_messages_section(self):
         section = Section(
@@ -93,19 +73,4 @@ class NotificationsSettingsView(QWidget):
         )
         card.add_widget(self.donationMessage)
         section.add_card(card)
-        self.content_layout.addWidget(section)
-
-    def _apply_style(self):
-        self.setStyleSheet("""
-            QWidget#NotificationsSettingsView {
-                background: palette(window);
-                color: palette(text);
-            }
-            QScrollArea {
-                background: palette(window);
-                border: 0;
-            }
-            QScrollArea > QWidget > QWidget {
-                background: palette(window);
-            }
-        """)
+        self.add_section(section)
