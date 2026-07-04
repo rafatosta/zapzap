@@ -2,12 +2,10 @@
 
 from gettext import gettext as _
 
-from PyQt6.QtWidgets import QVBoxLayout
-from PyQt6.QtWidgets import QWidget
-
 from zapzap.views.components import RadioButton
 from zapzap.views.settings_components import SettingsCard
 from zapzap.views.settings_components import SettingsPage
+from zapzap.views.settings_components import SettingsRadioGroup
 from zapzap.views.settings_components import SettingsSection
 from zapzap.views.settings_components import SettingsSelectRow
 from zapzap.views.settings_components import SettingsSwitchRow
@@ -67,7 +65,7 @@ class AppearanceSettingsView(SettingsPage):
         self.theme_light_radioButton = RadioButton(_("Light"))
         self.theme_dark_radioButton = RadioButton(_("Dark"))
         card.add_row(
-            self._radio_row(
+            SettingsRadioGroup(
                 self.theme_auto_radioButton,
                 self.theme_light_radioButton,
                 self.theme_dark_radioButton,
@@ -97,7 +95,7 @@ class AppearanceSettingsView(SettingsPage):
         card.add_row(self.tray_groupBox)
         card.add_row(self.notificationCounter_row)
         card.add_row(
-            self._radio_row(
+            SettingsRadioGroup(
                 self.tray_default_radioButton,
                 self.tray_slight_radioButton,
                 self.tray_sdark_radioButton,
@@ -154,28 +152,3 @@ class AppearanceSettingsView(SettingsPage):
         card.add_row(self.csr_direction_row)
         section.add_card(card)
         self.add_section(section)
-
-    def _radio_row(self, *radio_buttons):
-        row = QWidget()
-        row.setObjectName("SettingsRadioGroup")
-        layout = QVBoxLayout(row)
-        layout.setContentsMargins(0, 0, 0, 0)
-        layout.setSpacing(0)
-        for index, radio_button in enumerate(radio_buttons):
-            radio_button.setProperty("first", index == 0)
-            radio_button.setProperty("last", index == len(radio_buttons) - 1)
-            layout.addWidget(radio_button)
-        row.setStyleSheet("""
-            QWidget#SettingsRadioGroup {
-                background: palette(base);
-                border: 1px solid palette(mid);
-                border-radius: 14px;
-            }
-            QWidget#SettingsRadioGroup QRadioButton#ZapRadioButton {
-                border-bottom: 1px solid palette(mid);
-            }
-            QWidget#SettingsRadioGroup QRadioButton#ZapRadioButton[last="true"] {
-                border-bottom: 0;
-            }
-        """)
-        return row

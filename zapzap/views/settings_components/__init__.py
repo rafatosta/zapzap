@@ -13,3 +13,4 @@ from .settings_rows import (
 )
 from .settings_section import SettingsSection
 from .settings_sidebar import SettingsSidebar, SettingsSidebarItem
+from .settings_radio_group import SettingsRadioGroup
