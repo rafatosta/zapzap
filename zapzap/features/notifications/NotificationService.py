@@ -1,10 +1,13 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from pathlib import Path
 from gettext import gettext as _
 import logging
 
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 
-from zapzap.features.browser.webengine.WebView import WebView
 from zapzap.core.config.SettingsManager import SettingsManager
 from zapzap import __appname__
 
@@ -16,6 +19,9 @@ from zapzap.features.notifications.FreedesktopNotificationBackend import (
 )
 
 logger = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from zapzap.features.browser.webengine.WebView import WebView
 
 
 def is_flatpak() -> bool:

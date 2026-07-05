@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 import os
 from collections import OrderedDict
 
@@ -8,10 +10,12 @@ from PyQt6.QtGui import QPainter, QImage, QBrush, QPen
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 
-from zapzap.features.browser.webengine.WebView import WebView
 from zapzap.assets.icons.TrayIcon import TrayIcon
 from zapzap.core.config.SettingsManager import SettingsManager
 from zapzap import __appname__
+
+if TYPE_CHECKING:
+    from zapzap.features.browser.webengine.WebView import WebView
 
 # -----------------------------------------------------------------------------
 # Optional DBus imports (fail-safe)
@@ -337,3 +341,4 @@ class FreedesktopNotificationBackend:
             pass
 
         self._connection.notify(notify)
+

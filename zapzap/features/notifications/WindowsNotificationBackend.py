@@ -4,10 +4,13 @@ No external dependencies required beyond PyQt6.
 """
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 from PyQt6.QtWidgets import QSystemTrayIcon
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 
-from zapzap.features.browser.webengine.WebView import WebView
+if TYPE_CHECKING:
+    from zapzap.features.browser.webengine.WebView import WebView
 
 
 class WindowsNotificationBackend:

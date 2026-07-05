@@ -1,3 +1,7 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from pathlib import Path
 from uuid import uuid4
 
@@ -12,9 +16,11 @@ from PyQt6.QtDBus import (
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 from PyQt6.QtWidgets import QApplication
 
-from zapzap.features.browser.webengine.WebView import WebView
 from zapzap.features.notifications.FreedesktopNotificationBackend import IconRenderer
 from zapzap.core.config.SettingsManager import SettingsManager
+
+if TYPE_CHECKING:
+    from zapzap.features.browser.webengine.WebView import WebView
 
 
 class PortalNotificationBackend(QObject):
