@@ -4,7 +4,7 @@ from gettext import gettext as _
 from PyQt6.QtCore import QSize
 
 from zapzap.assets.icons.UserIcon import UserIcon
-from zapzap.views.components import Button, Label
+from zapzap.ui.components import Button, Label
 from zapzap.views.settings_components import (
     SettingsActionRow,
     SettingsCard,

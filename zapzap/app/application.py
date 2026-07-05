@@ -9,8 +9,8 @@ from PyQt6.QtGui import QDesktopServices
 from zapzap.app.single_application import SingleApplication
 from zapzap.app.startup_options import apply_startup_options, parse_startup_options
 from zapzap.controllers.OnboardingDialog import OnboardingDialog
-from zapzap.controllers.client_side_rendering_controller import ClientSideRenderingController
-from zapzap.controllers.main_window_controller import MainWindowController
+from zapzap.ui.main_window.client_side_rendering_controller import ClientSideRenderingController
+from zapzap.ui.main_window.main_window_controller import MainWindowController
 from zapzap.core.diagnostics import crash_handler
 from zapzap.assets.icons.TrayIcon import TrayIcon
 from zapzap.core.environment.ProxyManager import ProxyManager

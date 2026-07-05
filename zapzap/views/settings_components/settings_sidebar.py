@@ -10,8 +10,8 @@ from PyQt6.QtWidgets import QPushButton
 from PyQt6.QtWidgets import QVBoxLayout
 from PyQt6.QtWidgets import QWidget
 
-from zapzap.views.components import CloseButton
-from zapzap.views.components import Label
+from zapzap.ui.components import CloseButton
+from zapzap.ui.components import Label
 
 
 class SettingsSidebarItem(QPushButton):

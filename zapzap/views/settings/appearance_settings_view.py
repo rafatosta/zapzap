@@ -2,7 +2,7 @@
 
 from gettext import gettext as _
 
-from zapzap.views.components import RadioButton
+from zapzap.ui.components import RadioButton
 from zapzap.views.settings_components import SettingsRadioGroup
 from zapzap.views.settings_components import SettingsCard
 from zapzap.views.settings_components import SettingsPage

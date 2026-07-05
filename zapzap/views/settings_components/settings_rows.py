@@ -1,7 +1,7 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QHBoxLayout, QSizePolicy, QWidget
 
-from zapzap.views.components import Button, ComboBox, Label, LineEdit, ToggleSwitch
+from zapzap.ui.components import Button, ComboBox, Label, LineEdit, ToggleSwitch
 
 
 class SettingsToggleSwitch(ToggleSwitch):

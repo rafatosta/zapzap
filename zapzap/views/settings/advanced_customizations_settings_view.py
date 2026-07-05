@@ -6,10 +6,10 @@ from PyQt6.QtCore import Qt
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QFormLayout, QHeaderView, QTableWidgetItem, QVBoxLayout, QWidget
 
-from zapzap.views.components import Button
-from zapzap.views.components import CheckBox
-from zapzap.views.components import ComboBox
-from zapzap.views.components import Label
+from zapzap.ui.components import Button
+from zapzap.ui.components import CheckBox
+from zapzap.ui.components import ComboBox
+from zapzap.ui.components import Label
 from zapzap.views.settings_components import SettingsCard
 from zapzap.views.settings_components import SettingsInfoBox
 from zapzap.views.settings_components import SettingsPage

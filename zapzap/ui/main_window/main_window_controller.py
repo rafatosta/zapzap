@@ -15,7 +15,7 @@ from zapzap.features.alerts.AlertManager import AlertManager
 from zapzap.core.config.SettingsManager import SettingsManager
 from zapzap.features.tray.SysTrayManager import SysTrayManager
 from zapzap.core.theme.ThemeManager import ThemeManager
-from zapzap.views import MainWindowView
+from zapzap.ui.main_window.main_window_view import MainWindowView
 from gettext import gettext as _
 
 

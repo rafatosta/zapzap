@@ -4,7 +4,7 @@ from gettext import gettext as _
 
 from PyQt6.QtWidgets import QHBoxLayout, QTextEdit, QWidget
 
-from zapzap.views.components import Button, Label, LineEdit
+from zapzap.ui.components import Button, Label, LineEdit
 from zapzap.views.settings_components import (
     SettingsCard,
     SettingsInfoBox,

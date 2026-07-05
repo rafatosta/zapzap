@@ -1,3 +1,1 @@
-from .main_window_view import MainWindowView
-from .client_side_rendering_view import ClientSideRenderingView
 from .settings_view import SettingsView

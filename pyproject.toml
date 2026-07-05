@@ -66,10 +66,13 @@ packages = [
   "zapzap.assets",
   "zapzap.assets.icons",
   "zapzap.assets.themes",
+  "zapzap.ui",
+  "zapzap.ui.components",
+  "zapzap.ui.generated",
+  "zapzap.ui.main_window",
   "zapzap.views",
   "zapzap.views.settings",
   "zapzap.views.browser",
-  "zapzap.views.components",
   "zapzap.views.settings_components",
   "zapzap.webengine"
 ]

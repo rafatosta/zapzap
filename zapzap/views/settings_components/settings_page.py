@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QScrollArea, QVBoxLayout, QWidget
 
-from zapzap.views.components import Label
+from zapzap.ui.components import Label
 
 
 class SettingsPage(QScrollArea):

@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QFrame, QVBoxLayout
 
-from zapzap.views.components import Label
+from zapzap.ui.components import Label
 
 
 class SettingsBadge(Label):

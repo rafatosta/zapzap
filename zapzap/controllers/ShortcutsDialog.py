@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QDialog, QHeaderView, QTableWidgetItem
-from zapzap.views.ui_shortcuts_dialog import Ui_ShortcutsDialog
+from zapzap.ui.generated.ui_shortcuts_dialog import Ui_ShortcutsDialog
 from gettext import gettext as _
 
 

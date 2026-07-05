@@ -10,7 +10,7 @@ from PyQt6.QtWidgets import QWidget
 
 from zapzap.controllers.QtoasterDonation import QtoasterDonation
 from zapzap.core.config.SettingsManager import SettingsManager
-from zapzap.views import ClientSideRenderingView
+from zapzap.ui.main_window.client_side_rendering_view import ClientSideRenderingView
 
 
 class ClientSideRenderingController(ClientSideRenderingView):

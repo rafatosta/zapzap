@@ -2,7 +2,7 @@ from gettext import gettext as _
 
 from PyQt6.QtWidgets import QHBoxLayout, QStyle, QWidget
 
-from zapzap.views.components import Button, LineEdit
+from zapzap.ui.components import Button, LineEdit
 
 from zapzap.views.settings_components import (
     SettingsActionRow,
