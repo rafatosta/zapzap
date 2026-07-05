@@ -5,7 +5,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QPushButton
 
-from zapzap.models import User
+from zapzap.features.accounts.domain.user import User
 from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.core.config.settings_manager import SettingsManager
 

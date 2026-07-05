@@ -5,8 +5,8 @@ from gettext import gettext as _
 from PyQt6.QtGui import QActionGroup
 from PyQt6.QtWidgets import QApplication, QMenu
 
-from zapzap.models.user import User
-from zapzap.models.card_user_model import CardUserModel
+from zapzap.features.accounts.domain.user import User
+from zapzap.features.accounts.models.card_user_model import CardUserModel
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.settings.components import CardUserView
 

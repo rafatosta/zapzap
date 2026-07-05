@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from zapzap.models.user import User
+from zapzap.features.accounts.domain.user import User
 from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.core.config.settings_manager import SettingsManager
 

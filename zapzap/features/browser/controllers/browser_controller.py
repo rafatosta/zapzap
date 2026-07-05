@@ -6,7 +6,7 @@ from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QMessageBox
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.browser.webengine.web_view import WebView
-from zapzap.models.user import User
+from zapzap.features.accounts.domain.user import User
 from zapzap.assets.icons.system_icon import SystemIcon
 from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.features.alerts.alert_manager import AlertManager
