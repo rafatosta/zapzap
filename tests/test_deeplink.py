@@ -1,4 +1,4 @@
-"""Unit tests for zapzap.webengine.deeplink.
+"""Unit tests for zapzap.features.browser.webengine.deeplink.
 
 These tests load the helper directly by path so they do not import the zapzap
 package, which requires PyQt6 in ``zapzap.__init__``.
@@ -10,7 +10,7 @@ import os
 import unittest
 
 _DEEPLINK_PATH = os.path.join(
-    os.path.dirname(__file__), "..", "zapzap", "webengine", "deeplink.py"
+    os.path.dirname(__file__), "..", "zapzap", "features", "browser", "webengine", "deeplink.py"
 )
 _SPEC = importlib.util.spec_from_file_location("zapzap_deeplink", _DEEPLINK_PATH)
 _deeplink = importlib.util.module_from_spec(_SPEC)
