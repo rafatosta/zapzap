@@ -1,4 +1,3 @@
-from .card_user_view import CardUserView
 from .settings_badge import SettingsBadge, SettingsInfoBox
 from .settings_card import SettingsCard
 from .settings_page import SettingsPage

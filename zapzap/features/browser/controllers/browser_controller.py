@@ -7,6 +7,7 @@ from PyQt6.QtWidgets import QMessageBox
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.browser.webengine.web_view import WebView
 from zapzap.features.accounts.domain.user import User
+from zapzap.features.accounts.controllers.card_user_controller import CardUserController as CardUser
 from zapzap.assets.icons.system_icon import SystemIcon
 from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.features.alerts.alert_manager import AlertManager

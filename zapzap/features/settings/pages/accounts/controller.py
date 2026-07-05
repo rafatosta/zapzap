@@ -2,7 +2,7 @@
 
 from PyQt6.QtWidgets import QApplication
 
-from zapzap.controllers.card_user_controller import CardUserController
+from zapzap.features.accounts.controllers.card_user_controller import CardUserController
 from zapzap.features.settings.pages.accounts.model import AccountsSettingsModel
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.settings.pages.accounts.view import AccountsSettingsView
