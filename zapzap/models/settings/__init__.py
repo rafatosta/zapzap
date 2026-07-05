@@ -7,3 +7,4 @@ from .advanced_customizations_settings_model import AdvancedCustomizationsSettin
 from .performance_experimental_settings_model import PerformanceExperimentalSettingsModel
 from .accounts_settings_model import AccountsSettingsModel
 from .about_settings_model import AboutSettingsModel
+from .debugging_settings_model import DebuggingSettingsModel

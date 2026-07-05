@@ -17,6 +17,7 @@ from zapzap.controllers.settings import NotificationsSettingsController
 from zapzap.controllers.settings import PerformanceExperimentalSettingsController
 from zapzap.controllers.settings import SystemStartupSettingsController
 from zapzap.controllers.settings import AboutSettingsController
+from zapzap.controllers.settings import DebuggingSettingsController
 from zapzap.views import SettingsView
 
 
@@ -32,6 +33,7 @@ class SettingsController(SettingsView):
         (NetworkPrivacySettingsController, _("Privacy and network")),
         (AdvancedCustomizationsSettingsController, _("Advanced Customizations")),
         (PerformanceExperimentalSettingsController, _("Performance experimental")),
+        (DebuggingSettingsController, _("Debugging")),
         (SystemStartupSettingsController, _("Sistema e inicialização")),
         (AboutSettingsController, _("About")),
     ]

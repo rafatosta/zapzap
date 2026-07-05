@@ -7,3 +7,4 @@ from .advanced_customizations_settings_view import AdvancedCustomizationsSetting
 from .performance_experimental_settings_view import PerformanceExperimentalSettingsView
 from .accounts_settings_view import AccountsSettingsView
 from .about_settings_view import AboutSettingsView
+from .debugging_settings_view import DebuggingSettingsView
