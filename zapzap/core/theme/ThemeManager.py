@@ -13,7 +13,7 @@ from PyQt6.QtGui import QColor
 from PyQt6.QtGui import QPalette
 from PyQt6.QtWidgets import QApplication
 
-from zapzap.resources.theme_stylesheet import ThemeStylesheet
+from zapzap.assets.themes.theme_stylesheet import ThemeStylesheet
 from zapzap.core.theme.SystemThemeMonitor import SystemThemeMonitor
 from zapzap.core.config.SettingsManager import SettingsManager
 

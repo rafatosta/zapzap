@@ -63,7 +63,9 @@ packages = [
   "zapzap.features.tray",
   "zapzap.models",
   "zapzap.models.settings",
-  "zapzap.resources",
+  "zapzap.assets",
+  "zapzap.assets.icons",
+  "zapzap.assets.themes",
   "zapzap.views",
   "zapzap.views.settings",
   "zapzap.views.browser",
@@ -77,7 +79,8 @@ zapzap = [
   "po/*/LC_MESSAGES/*.mo",
   "js/*",
   "extensions/*",
-  "webengine/*.js"
+  "webengine/*.js",
+  "assets/themes/*.css"
 ]
 
 [tool.setuptools.dynamic]

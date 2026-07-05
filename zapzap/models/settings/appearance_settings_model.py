@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from zapzap.resources.CSRButtonThemeProvider import CSRButtonThemeProvider
-from zapzap.resources.TrayIcon import TrayIcon
+from zapzap.assets.themes.CSRButtonThemeProvider import CSRButtonThemeProvider
+from zapzap.assets.icons.TrayIcon import TrayIcon
 from zapzap.core.config.SettingsManager import SettingsManager
 from zapzap.features.tray.SysTrayManager import SysTrayManager
 from zapzap.core.theme.ThemeManager import ThemeManager

@@ -229,7 +229,7 @@ class User:
 
         # Define o ícone, se necessário
         if icon is None:
-            from zapzap.resources.UserIcon import UserIcon
+            from zapzap.assets.icons.UserIcon import UserIcon
             icon = UserIcon.get_new_icon_svg()
 
         # Cria e salva o novo usuário

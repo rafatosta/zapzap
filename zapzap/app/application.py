@@ -12,7 +12,7 @@ from zapzap.controllers.OnboardingDialog import OnboardingDialog
 from zapzap.controllers.client_side_rendering_controller import ClientSideRenderingController
 from zapzap.controllers.main_window_controller import MainWindowController
 from zapzap.core.diagnostics import crash_handler
-from zapzap.resources.TrayIcon import TrayIcon
+from zapzap.assets.icons.TrayIcon import TrayIcon
 from zapzap.core.environment.ProxyManager import ProxyManager
 from zapzap.core.config.SettingsManager import SettingsManager
 from zapzap.core.environment.SetupManager import SetupManager

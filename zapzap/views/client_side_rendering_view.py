@@ -15,8 +15,8 @@ from PyQt6.QtWidgets import QPushButton
 from PyQt6.QtWidgets import QVBoxLayout
 from PyQt6.QtWidgets import QWidget
 
-from zapzap.resources.CSRButtonThemeProvider import CSRButtonTheme
-from zapzap.resources.CSRButtonThemeProvider import CSRButtonThemeProvider
+from zapzap.assets.themes.CSRButtonThemeProvider import CSRButtonTheme
+from zapzap.assets.themes.CSRButtonThemeProvider import CSRButtonThemeProvider
 from zapzap.core.config.SettingsManager import SettingsManager
 
 
