@@ -4,7 +4,7 @@ from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.features.downloads.download_naming_service import DownloadNamingService
 from PyQt6.QtWidgets import QFileDialog
 
-from zapzap.controllers.download_dialog import DownloadDialog
+from zapzap.features.downloads.ui.download_dialog import DownloadDialog
 from gettext import gettext as _
 
 

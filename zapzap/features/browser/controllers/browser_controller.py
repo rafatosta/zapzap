@@ -18,7 +18,7 @@ from zapzap.features.browser.ui import BrowserGridView
 from zapzap.features.browser.ui import BrowserPageButton
 from zapzap.features.browser.ui import BrowserSidebarButton
 from zapzap.features.browser.ui import BrowserView
-from zapzap.controllers.onboarding_dialog import OnboardingDialog
+from zapzap.features.onboarding.onboarding_dialog import OnboardingDialog
 
 from gettext import gettext as _
 

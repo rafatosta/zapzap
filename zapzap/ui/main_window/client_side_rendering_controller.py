@@ -8,7 +8,7 @@ from PyQt6.QtWidgets import QCheckBox
 from PyQt6.QtWidgets import QMessageBox
 from PyQt6.QtWidgets import QWidget
 
-from zapzap.controllers.qtoaster_donation import QtoasterDonation
+from zapzap.features.donation.qtoaster_donation import QtoasterDonation
 from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.ui.main_window.client_side_rendering_view import ClientSideRenderingView
 

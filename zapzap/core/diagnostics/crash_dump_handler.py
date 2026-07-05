@@ -9,7 +9,7 @@ import faulthandler
 
 from PyQt6.QtCore import QStandardPaths
 
-from zapzap.controllers.dialog_dump_handler import DialogDumpHandler
+from zapzap.core.diagnostics.dialog_dump_handler import DialogDumpHandler
 
 
 from zapzap import __appname__
