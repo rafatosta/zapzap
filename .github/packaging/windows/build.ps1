@@ -4,17 +4,14 @@ Write-Host "# === Windows Builder ==="
 
 $AppName = "ZapZap"
 
-$UiFiles = @(
-    @("zapzap/ui/ui_mainwindow.ui", "zapzap/views/ui_mainwindow.py"),
-    @("zapzap/ui/ui_page_general.ui", "zapzap/views/ui_page_general.py"),
-    @("zapzap/ui/ui_page_network.ui", "zapzap/views/ui_page_network.py")
-)
+# Generated Qt Python files now live in zapzap/ui/generated and are committed.
+# Keep this list for future .ui sources, but do not point to removed legacy paths.
+$UiFiles = @()
 
 $AdditionalData = @(
     @("zapzap/po", "zapzap/po"),
-    @("zapzap/resources", "zapzap/resources"),
-    @("zapzap/webengine/webrtc_shield.js", "zapzap/webengine"),
-    @("zapzap/webengine/theme_controller.js", "zapzap/webengine")
+    @("zapzap/assets", "zapzap/assets"),
+    @("zapzap/features/browser/webengine/scripts", "zapzap/features/browser/webengine/scripts")
 )
 
 Write-Host "# === Instalando dependências ==="
@@ -22,20 +19,24 @@ python -m pip install --upgrade pip
 python -m pip install pyinstaller
 python -m pip install -r requirements.txt
 
-Write-Host "# === Compilando arquivos .ui ==="
+if ($UiFiles.Count -gt 0) {
+    Write-Host "# === Compilando arquivos .ui ==="
 
-foreach ($item in $UiFiles) {
-    $source = $item[0]
-    $target = $item[1]
+    foreach ($item in $UiFiles) {
+        $source = $item[0]
+        $target = $item[1]
 
-    if (-not (Test-Path $source)) {
-        Write-Host "[IGNORADO] $source"
-        continue
+        if (-not (Test-Path $source)) {
+            Write-Host "[IGNORADO] $source"
+            continue
+        }
+
+        Write-Host "$source -> $target"
+
+        python -m PyQt6.uic.pyuic -x $source -o $target
     }
-
-    Write-Host "$source -> $target"
-
-    python -m PyQt6.uic.pyuic -x $source -o $target
+} else {
+    Write-Host "# === Nenhum arquivo .ui para compilar ==="
 }
 
 Write-Host "# === Limpando builds anteriores ==="
@@ -58,8 +59,15 @@ $Args = @(
 )
 
 foreach ($item in $AdditionalData) {
+    $source = $item[0]
+    $target = $item[1]
+
+    if (-not (Test-Path $source)) {
+        throw "Arquivo ou diretório de dados não encontrado: $source"
+    }
+
     $Args += "--add-data"
-    $Args += "$($item[0]);$($item[1])"
+    $Args += "$source;$target"
 }
 
 $Args += "zapzap/__main__.py"
