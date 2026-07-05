@@ -7,7 +7,7 @@ from __future__ import annotations
 from PyQt6.QtWidgets import QSystemTrayIcon
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 
-from zapzap.webengine import WebView
+from zapzap.features.browser.webengine.WebView import WebView
 
 
 class WindowsNotificationBackend:

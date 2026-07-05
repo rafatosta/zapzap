@@ -12,7 +12,7 @@ from PyQt6.QtDBus import (
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 from PyQt6.QtWidgets import QApplication
 
-from zapzap.webengine import WebView
+from zapzap.features.browser.webengine.WebView import WebView
 from zapzap.features.notifications.FreedesktopNotificationBackend import IconRenderer
 from zapzap.core.config.SettingsManager import SettingsManager
 

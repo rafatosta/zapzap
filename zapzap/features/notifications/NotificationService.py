@@ -4,7 +4,7 @@ import logging
 
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 
-from zapzap.webengine import WebView
+from zapzap.features.browser.webengine.WebView import WebView
 from zapzap.core.config.SettingsManager import SettingsManager
 from zapzap import __appname__
 

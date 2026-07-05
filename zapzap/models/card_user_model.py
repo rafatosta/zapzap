@@ -68,6 +68,6 @@ class CardUserModel:
 
     @staticmethod
     def available_user_agents():
-        from zapzap.webengine.WebView import WebView
+        from zapzap.features.browser.webengine.WebView import WebView
 
         return list(WebView.USER_AGENTS.keys())
