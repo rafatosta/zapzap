@@ -6,8 +6,8 @@ from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtWidgets import QHBoxLayout, QToolButton, QWidget
 
 from zapzap.ui.components import Button, LineEdit
-from zapzap.features.settings.components import (
-    SettingsCard,
+from zapzap.features.settings.components.settings_card import SettingsCard
+from zapzap.features.settings.components.settings_rows import (
     SettingsSelectRow,
     SettingsSwitchRow,
 )
