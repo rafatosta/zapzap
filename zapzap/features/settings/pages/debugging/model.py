@@ -6,8 +6,8 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 from zapzap.core.diagnostics import crash_handler
-from zapzap.core.diagnostics.RuntimeEnvironmentDebug import RuntimeEnvironmentDebug
-from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.core.diagnostics.runtime_environment_debug import RuntimeEnvironmentDebug
+from zapzap.core.config.settings_manager import SettingsManager
 
 
 class DebuggingSettingsModel:

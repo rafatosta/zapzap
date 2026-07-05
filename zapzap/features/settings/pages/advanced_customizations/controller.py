@@ -19,9 +19,9 @@ from PyQt6.QtWidgets import (
     QVBoxLayout,
 )
 
-from zapzap.features.customizations.CssPreviewService import CssPreviewService
-from zapzap.features.customizations.CustomizationsManager import CustomizationsManager
-from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.features.customizations.css_preview_service import CssPreviewService
+from zapzap.features.customizations.customizations_manager import CustomizationsManager
+from zapzap.core.config.settings_manager import SettingsManager
 
 from zapzap.features.settings.pages.advanced_customizations.view import AdvancedCustomizationsSettingsView
 from zapzap.features.settings.pages.advanced_customizations.model import AdvancedCustomizationsSettingsModel

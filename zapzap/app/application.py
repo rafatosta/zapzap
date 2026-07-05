@@ -8,16 +8,16 @@ from PyQt6.QtGui import QDesktopServices
 
 from zapzap.app.single_application import SingleApplication
 from zapzap.app.startup_options import apply_startup_options, parse_startup_options
-from zapzap.controllers.OnboardingDialog import OnboardingDialog
+from zapzap.controllers.onboarding_dialog import OnboardingDialog
 from zapzap.ui.main_window.client_side_rendering_controller import ClientSideRenderingController
 from zapzap.ui.main_window.main_window_controller import MainWindowController
 from zapzap.core.diagnostics import crash_handler
-from zapzap.assets.icons.TrayIcon import TrayIcon
-from zapzap.core.environment.ProxyManager import ProxyManager
-from zapzap.core.config.SettingsManager import SettingsManager
-from zapzap.core.environment.SetupManager import SetupManager
-from zapzap.core.theme.ThemeManager import ThemeManager
-from zapzap.core.i18n.TranslationManager import TranslationManager
+from zapzap.assets.icons.tray_icon import TrayIcon
+from zapzap.core.environment.proxy_manager import ProxyManager
+from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.core.environment.setup_manager import SetupManager
+from zapzap.core.theme.theme_manager import ThemeManager
+from zapzap.core.i18n.translation_manager import TranslationManager
 
 
 def main():

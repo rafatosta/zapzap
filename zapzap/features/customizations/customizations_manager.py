@@ -9,8 +9,8 @@ import urllib.request
 
 from PyQt6.QtCore import QStandardPaths
 
-from zapzap.features.customizations.CssPreviewService import CssPreviewService
-from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.features.customizations.css_preview_service import CssPreviewService
+from zapzap.core.config.settings_manager import SettingsManager
 
 
 class CustomizationsManager:

@@ -7,7 +7,7 @@ from typing import Dict, Any
 from datetime import datetime
 from PyQt6.QtCore import PYQT_VERSION_STR, QT_VERSION_STR
 from zapzap import __appname__, __version__
-from zapzap.core.environment.EnvironmentDetector import EnvironmentDetector
+from zapzap.core.environment.environment_detector import EnvironmentDetector
 
 
 class RuntimeEnvironmentDebug:

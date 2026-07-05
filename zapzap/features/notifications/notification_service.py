@@ -8,20 +8,20 @@ import logging
 
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 
-from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.core.config.settings_manager import SettingsManager
 from zapzap import __appname__
 
-from zapzap.features.notifications.PortalNotificationBackend import (
+from zapzap.features.notifications.portal_notification_backend import (
     PortalNotificationBackend
 )
-from zapzap.features.notifications.FreedesktopNotificationBackend import (
+from zapzap.features.notifications.freedesktop_notification_backend import (
     FreedesktopNotificationBackend
 )
 
 logger = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
-    from zapzap.features.browser.webengine.WebView import WebView
+    from zapzap.features.browser.webengine.web_view import WebView
 
 
 def is_flatpak() -> bool:
@@ -50,7 +50,7 @@ class NotificationService:
     def _select_backend(self):
         from zapzap.core.platform import IS_WINDOWS
         if IS_WINDOWS:
-            from zapzap.features.notifications.WindowsNotificationBackend import (
+            from zapzap.features.notifications.windows_notification_backend import (
                 WindowsNotificationBackend,
             )
             return WindowsNotificationBackend()

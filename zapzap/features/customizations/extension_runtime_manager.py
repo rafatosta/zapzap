@@ -1,4 +1,4 @@
-from zapzap.features.customizations.CustomizationsManager import CustomizationsManager
+from zapzap.features.customizations.customizations_manager import CustomizationsManager
 
 
 class ExtensionRuntimeManager:

@@ -7,14 +7,14 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QActionGroup
 from PyQt6.QtGui import QImage
 from PyQt6.QtWidgets import QApplication
-from zapzap.controllers.QtoasterDonation import QtoasterDonation
-from zapzap.controllers.ShortcutsDialog import ShortcutsDialog
+from zapzap.controllers.qtoaster_donation import QtoasterDonation
+from zapzap.controllers.shortcuts_dialog import ShortcutsDialog
 from zapzap.features.browser.controllers.browser_controller import BrowserController
 from zapzap.features.settings.shell.settings_controller import SettingsController
-from zapzap.features.alerts.AlertManager import AlertManager
-from zapzap.core.config.SettingsManager import SettingsManager
-from zapzap.features.tray.SysTrayManager import SysTrayManager
-from zapzap.core.theme.ThemeManager import ThemeManager
+from zapzap.features.alerts.alert_manager import AlertManager
+from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.features.tray.sys_tray_manager import SysTrayManager
+from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.ui.main_window.main_window_view import MainWindowView
 from gettext import gettext as _
 

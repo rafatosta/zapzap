@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from zapzap.models.User import User
-from zapzap.core.environment.ProxyManager import ProxyManager
-from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.models.user import User
+from zapzap.core.environment.proxy_manager import ProxyManager
+from zapzap.core.config.settings_manager import SettingsManager
 
 
 class NetworkPrivacySettingsModel:

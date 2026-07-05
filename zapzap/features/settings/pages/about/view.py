@@ -3,7 +3,7 @@
 from gettext import gettext as _
 from PyQt6.QtCore import QSize
 
-from zapzap.assets.icons.UserIcon import UserIcon
+from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.ui.components import Button, Label
 from zapzap.features.settings.components import (
     SettingsActionRow,

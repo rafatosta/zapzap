@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from zapzap.models.User import User
+from zapzap.models.user import User
 
 
 class AccountsSettingsModel:

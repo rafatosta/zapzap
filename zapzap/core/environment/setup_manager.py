@@ -1,8 +1,8 @@
 from os import environ, getenv
 from PyQt6.QtCore import QFileInfo
 from zapzap.core.platform import IS_WINDOWS
-from zapzap.features.dictionaries.DictionariesManager import DictionariesManager
-from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.features.dictionaries.dictionaries_manager import DictionariesManager
+from zapzap.core.config.settings_manager import SettingsManager
 
 
 class SetupManager:

@@ -5,7 +5,7 @@ from __future__ import annotations
 from PyQt6.QtCore import PYQT_VERSION_STR, QT_VERSION_STR
 
 from zapzap import __appname__, __bugreport__, __donationPage__, __version__, __website__
-from zapzap.core.environment.EnvironmentDetector import EnvironmentDetector
+from zapzap.core.environment.environment_detector import EnvironmentDetector
 
 
 class AboutSettingsModel:

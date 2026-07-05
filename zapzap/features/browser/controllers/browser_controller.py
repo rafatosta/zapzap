@@ -4,20 +4,20 @@ from PyQt6.QtCore import QPropertyAnimation
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QMessageBox
-from zapzap.core.theme.ThemeManager import ThemeManager
-from zapzap.features.browser.webengine.WebView import WebView
-from zapzap.models.User import User
-from zapzap.assets.icons.SystemIcon import SystemIcon
-from zapzap.assets.icons.UserIcon import UserIcon
-from zapzap.features.alerts.AlertManager import AlertManager
-from zapzap.core.config.SettingsManager import SettingsManager
-from zapzap.core.environment.SetupManager import SetupManager
-from zapzap.features.tray.SysTrayManager import SysTrayManager
+from zapzap.core.theme.theme_manager import ThemeManager
+from zapzap.features.browser.webengine.web_view import WebView
+from zapzap.models.user import User
+from zapzap.assets.icons.system_icon import SystemIcon
+from zapzap.assets.icons.user_icon import UserIcon
+from zapzap.features.alerts.alert_manager import AlertManager
+from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.core.environment.setup_manager import SetupManager
+from zapzap.features.tray.sys_tray_manager import SysTrayManager
 from zapzap.features.browser.ui import BrowserGridView
 from zapzap.features.browser.ui import BrowserPageButton
 from zapzap.features.browser.ui import BrowserSidebarButton
 from zapzap.features.browser.ui import BrowserView
-from zapzap.controllers.OnboardingDialog import OnboardingDialog
+from zapzap.controllers.onboarding_dialog import OnboardingDialog
 
 from gettext import gettext as _
 
@@ -298,7 +298,7 @@ class BrowserController(BrowserView):
         self._last_active_webview = page
         
         # Apply proxy for the active account
-        from zapzap.core.environment.ProxyManager import ProxyManager
+        from zapzap.core.environment.proxy_manager import ProxyManager
         ProxyManager.apply(user_id=page.user.id)
         page.page().show_toast(page.user.name if page.user.name !=
                                "" else _("Account {}").format(page.page_index))

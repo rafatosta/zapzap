@@ -1,7 +1,7 @@
 import logging
 from PyQt6 import QtNetwork
 from gettext import gettext as _
-from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.core.config.settings_manager import SettingsManager
 
 
 class ProxyManager:

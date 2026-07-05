@@ -1,4 +1,4 @@
-from zapzap.core.diagnostics.CrashDumpHandler import CrashDumpHandler
+from zapzap.core.diagnostics.crash_dump_handler import CrashDumpHandler
 from zapzap import __appname__
 
 crash_handler = CrashDumpHandler(

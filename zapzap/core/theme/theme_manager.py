@@ -14,8 +14,8 @@ from PyQt6.QtGui import QPalette
 from PyQt6.QtWidgets import QApplication
 
 from zapzap.assets.themes.theme_stylesheet import ThemeStylesheet
-from zapzap.core.theme.SystemThemeMonitor import SystemThemeMonitor
-from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.core.theme.system_theme_monitor import SystemThemeMonitor
+from zapzap.core.config.settings_manager import SettingsManager
 
 
 class ThemeManager(QObject):

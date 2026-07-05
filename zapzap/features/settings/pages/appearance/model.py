@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from zapzap.assets.themes.CSRButtonThemeProvider import CSRButtonThemeProvider
-from zapzap.assets.icons.TrayIcon import TrayIcon
-from zapzap.core.config.SettingsManager import SettingsManager
-from zapzap.features.tray.SysTrayManager import SysTrayManager
-from zapzap.core.theme.ThemeManager import ThemeManager
+from zapzap.assets.themes.csr_button_theme_provider import CSRButtonThemeProvider
+from zapzap.assets.icons.tray_icon import TrayIcon
+from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.features.tray.sys_tray_manager import SysTrayManager
+from zapzap.core.theme.theme_manager import ThemeManager
 
 
 class AppearanceSettingsModel:

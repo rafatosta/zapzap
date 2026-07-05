@@ -9,7 +9,7 @@ import faulthandler
 
 from PyQt6.QtCore import QStandardPaths
 
-from zapzap.controllers.DialogDumpHandler import DialogDumpHandler
+from zapzap.controllers.dialog_dump_handler import DialogDumpHandler
 
 
 from zapzap import __appname__
@@ -126,7 +126,7 @@ class CrashDumpHandler:
     # Dumps individuais
     # ==================================================
     def _dump_runtime_environment(self, work_dir: Path) -> None:
-        from zapzap.core.diagnostics.RuntimeEnvironmentDebug import (
+        from zapzap.core.diagnostics.runtime_environment_debug import (
             RuntimeEnvironmentDebug
         )
 

@@ -9,14 +9,14 @@ from PyQt6.QtCore import QUrl, pyqtSignal, QTimer, QEvent, Qt, QFile, QTextStrea
 from PyQt6.QtWidgets import QApplication, QWidget
 from PyQt6.QtGui import QAction
 
-from zapzap.core.theme.ThemeManager import ThemeManager
-from zapzap.features.browser.webengine.PageController import PageController
+from zapzap.core.theme.theme_manager import ThemeManager
+from zapzap.features.browser.webengine.page_controller import PageController
 from zapzap.models import User
 from zapzap import __user_agent__, __whatsapp_url__
-from zapzap.features.notifications.NotificationService import NotificationService
-from zapzap.features.dictionaries.DictionariesManager import DictionariesManager
-from zapzap.features.downloads.DownloadManager import DownloadManager
-from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.features.notifications.notification_service import NotificationService
+from zapzap.features.dictionaries.dictionaries_manager import DictionariesManager
+from zapzap.features.downloads.download_manager import DownloadManager
+from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.core.diagnostics import crash_handler  # instância global
 
 from gettext import gettext as _

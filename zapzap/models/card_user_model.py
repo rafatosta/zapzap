@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from zapzap.models.User import User
-from zapzap.assets.icons.UserIcon import UserIcon
-from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.models.user import User
+from zapzap.assets.icons.user_icon import UserIcon
+from zapzap.core.config.settings_manager import SettingsManager
 
 
 class CardUserModel:
@@ -68,6 +68,6 @@ class CardUserModel:
 
     @staticmethod
     def available_user_agents():
-        from zapzap.features.browser.webengine.WebView import WebView
+        from zapzap.features.browser.webengine.web_view import WebView
 
         return list(WebView.USER_AGENTS.keys())

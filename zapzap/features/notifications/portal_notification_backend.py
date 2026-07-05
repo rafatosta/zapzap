@@ -16,11 +16,11 @@ from PyQt6.QtDBus import (
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 from PyQt6.QtWidgets import QApplication
 
-from zapzap.features.notifications.FreedesktopNotificationBackend import IconRenderer
-from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.features.notifications.freedesktop_notification_backend import IconRenderer
+from zapzap.core.config.settings_manager import SettingsManager
 
 if TYPE_CHECKING:
-    from zapzap.features.browser.webengine.WebView import WebView
+    from zapzap.features.browser.webengine.web_view import WebView
 
 
 class PortalNotificationBackend(QObject):

@@ -6,7 +6,7 @@ import urllib.request
 
 from PyQt6.QtCore import QStandardPaths
 
-from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.core.config.settings_manager import SettingsManager
 
 
 class CssPreviewService:

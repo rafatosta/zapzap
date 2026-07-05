@@ -4,9 +4,9 @@ from PyQt6.QtGui import QAction
 from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
 
-from zapzap.assets.icons.TrayIcon import TrayIcon
+from zapzap.assets.icons.tray_icon import TrayIcon
 from zapzap import __donationPage__
-from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.core.config.settings_manager import SettingsManager
 
 
 class SysTrayManager:

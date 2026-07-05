@@ -15,9 +15,9 @@ from PyQt6.QtWidgets import QPushButton
 from PyQt6.QtWidgets import QVBoxLayout
 from PyQt6.QtWidgets import QWidget
 
-from zapzap.assets.themes.CSRButtonThemeProvider import CSRButtonTheme
-from zapzap.assets.themes.CSRButtonThemeProvider import CSRButtonThemeProvider
-from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.assets.themes.csr_button_theme_provider import CSRButtonTheme
+from zapzap.assets.themes.csr_button_theme_provider import CSRButtonThemeProvider
+from zapzap.core.config.settings_manager import SettingsManager
 
 
 class _TitleBar(QWidget):

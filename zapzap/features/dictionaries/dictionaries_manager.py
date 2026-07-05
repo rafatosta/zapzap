@@ -1,8 +1,8 @@
 import os
 from PyQt6.QtCore import QLocale
-from zapzap.core.environment.EnvironmentManager import EnvironmentManager
-from zapzap.core.config.PathManager import PathManager
-from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.core.environment.environment_manager import EnvironmentManager
+from zapzap.core.config.path_manager import PathManager
+from zapzap.core.config.settings_manager import SettingsManager
 
 
 class DictionariesManager:

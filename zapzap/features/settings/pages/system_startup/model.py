@@ -1,11 +1,11 @@
 """Data access for the general settings page."""
 
-from zapzap.features.startup.AutostartManager import AutostartManager
-from zapzap.features.dictionaries.DictionariesManager import DictionariesManager
-from zapzap.features.downloads.DownloadManager import DownloadManager
-from zapzap.core.config.SettingsManager import SettingsManager
-from zapzap.core.environment.SetupManager import SetupManager
-from zapzap.core.i18n.TranslationManager import TranslationManager
+from zapzap.features.startup.autostart_manager import AutostartManager
+from zapzap.features.dictionaries.dictionaries_manager import DictionariesManager
+from zapzap.features.downloads.download_manager import DownloadManager
+from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.core.environment.setup_manager import SetupManager
+from zapzap.core.i18n.translation_manager import TranslationManager
 
 
 class SystemStartupSettingsModel:

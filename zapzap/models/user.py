@@ -1,5 +1,5 @@
-from zapzap.core.config.Database import Database
-from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.core.config.database import Database
+from zapzap.core.config.settings_manager import SettingsManager
 
 
 class User:
@@ -229,7 +229,7 @@ class User:
 
         # Define o ícone, se necessário
         if icon is None:
-            from zapzap.assets.icons.UserIcon import UserIcon
+            from zapzap.assets.icons.user_icon import UserIcon
             icon = UserIcon.get_new_icon_svg()
 
         # Cria e salva o novo usuário

@@ -1,6 +1,6 @@
 from gettext import gettext as _
 
-from zapzap.core.environment.SetupManager import SetupManager
+from zapzap.core.environment.setup_manager import SetupManager
 
 from zapzap.features.settings.components import (
     SettingsCard,

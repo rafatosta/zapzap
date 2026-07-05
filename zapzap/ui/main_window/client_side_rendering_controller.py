@@ -8,8 +8,8 @@ from PyQt6.QtWidgets import QCheckBox
 from PyQt6.QtWidgets import QMessageBox
 from PyQt6.QtWidgets import QWidget
 
-from zapzap.controllers.QtoasterDonation import QtoasterDonation
-from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.controllers.qtoaster_donation import QtoasterDonation
+from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.ui.main_window.client_side_rendering_view import ClientSideRenderingView
 
 
@@ -33,8 +33,8 @@ class ClientSideRenderingController(ClientSideRenderingView):
             self.inner_window.load_settings()
             return
 
-        from zapzap.features.tray.SysTrayManager import SysTrayManager
-        from zapzap.core.theme.ThemeManager import ThemeManager
+        from zapzap.features.tray.sys_tray_manager import SysTrayManager
+        from zapzap.core.theme.theme_manager import ThemeManager
         SysTrayManager.start()
         ThemeManager.start()
 

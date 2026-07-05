@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.core.config.settings_manager import SettingsManager
 
 
 class PerformanceExperimentalSettingsModel:
