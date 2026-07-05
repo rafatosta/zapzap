@@ -11,6 +11,7 @@ from zapzap.services.AddonsManager import AddonsManager
 from zapzap.services.AlertManager import AlertManager
 from zapzap.services.CustomizationsManager import CustomizationsManager
 from zapzap.services.ThemeManager import ThemeManager
+from zapzap.services.PermissionsManager import PermissionsManager
 from zapzap.webengine.deeplink import build_open_chat_script
 
 import urllib.parse  # Para normalizar URLs
@@ -245,6 +246,12 @@ class PageController(QWebEnginePage):
         Policy = QWebEnginePage.PermissionPolicy
 
         if feature == Feature.Notifications:
+            self.setFeaturePermission(
+                frame, feature, Policy.PermissionGrantedByUser)
+            return
+
+        if PermissionsManager.is_auto_grant_enabled(feature):
+            self._granted_features.add(feature)
             self.setFeaturePermission(
                 frame, feature, Policy.PermissionGrantedByUser)
             return

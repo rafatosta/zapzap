@@ -14,6 +14,7 @@ from zapzap.controllers.settings import AppearanceSettingsController
 from zapzap.controllers.settings import LanguageDownloadSettingsController
 from zapzap.controllers.settings import NetworkPrivacySettingsController
 from zapzap.controllers.settings import NotificationsSettingsController
+from zapzap.controllers.settings import PermissionsSettingsController
 from zapzap.controllers.settings import PerformanceExperimentalSettingsController
 from zapzap.controllers.settings import SystemStartupSettingsController
 from zapzap.controllers.settings import AboutSettingsController
@@ -29,6 +30,7 @@ class SettingsController(SettingsView):
         (AccountsSettingsController, _("Accounts")),
         (AppearanceSettingsController, _("Appearance")),
         (NotificationsSettingsController, _("Notifications")),
+        (PermissionsSettingsController, _("Permissões")),
         (LanguageDownloadSettingsController, _("Idioma e downloads")),
         (NetworkPrivacySettingsController, _("Privacy and network")),
         (AdvancedCustomizationsSettingsController, _("Advanced Customizations")),
@@ -89,4 +91,4 @@ class SettingsController(SettingsView):
 
     def open_about(self):
         """Abre a página Ajuda"""
-        self.switch_to_page(self.page_at(8))
+        self.switch_to_page(self.page_at(self.pages.count() - 1))

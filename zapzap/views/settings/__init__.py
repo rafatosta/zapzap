@@ -8,3 +8,4 @@ from .performance_experimental_settings_view import PerformanceExperimentalSetti
 from .accounts_settings_view import AccountsSettingsView
 from .about_settings_view import AboutSettingsView
 from .debugging_settings_view import DebuggingSettingsView
+from .permissions_settings_view import PermissionsSettingsView

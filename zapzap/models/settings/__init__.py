@@ -8,3 +8,4 @@ from .performance_experimental_settings_model import PerformanceExperimentalSett
 from .accounts_settings_model import AccountsSettingsModel
 from .about_settings_model import AboutSettingsModel
 from .debugging_settings_model import DebuggingSettingsModel
+from .permissions_settings_model import PermissionsSettingsModel
