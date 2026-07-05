@@ -278,7 +278,7 @@ class MainWindowController(MainWindowView):
         if not SettingsManager.get("system/quit_in_close", False) and event:
             self._prepare_for_background(event)
         else:
-            # Cleanup is handled by aboutToQuit() in __main__.py.
+            # Cleanup is handled by aboutToQuit() in app/application.py.
             QApplication.instance().quit()
 
     def _save_window_state(self):

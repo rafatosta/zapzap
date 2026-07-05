@@ -1,7 +1,10 @@
-from PyQt6.QtWidgets import QApplication
-from PyQt6.QtCore import pyqtSignal, Qt, QTextStream, pyqtSlot
-from PyQt6.QtNetwork import QLocalServer, QLocalSocket
+"""Single-instance QApplication implementation."""
+
 import sys
+
+from PyQt6.QtCore import Qt, QTextStream, pyqtSignal, pyqtSlot
+from PyQt6.QtNetwork import QLocalServer, QLocalSocket
+from PyQt6.QtWidgets import QApplication
 
 
 class SingleApplication(QApplication):
@@ -36,7 +39,7 @@ class SingleApplication(QApplication):
             self._outSocket = None
             self._server = QLocalServer()
             self._server.listen(self._appid)
-            self._server.newConnection.connect(self._onNewConnection)           
+            self._server.newConnection.connect(self._onNewConnection)
 
     def close(self):
         if self._inSocket:

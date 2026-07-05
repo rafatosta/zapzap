@@ -42,6 +42,7 @@ zapzap = "zapzap.__main__:main"
 [tool.setuptools]
 packages = [
   "zapzap",
+  "zapzap.app",
   "zapzap.config",
   "zapzap.controllers",
   "zapzap.controllers.settings",
