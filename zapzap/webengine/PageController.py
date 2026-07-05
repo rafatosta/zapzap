@@ -8,8 +8,10 @@ from PyQt6.QtGui import QDesktopServices
 
 from zapzap import __allowed_hosts__
 from zapzap.services.AddonsManager import AddonsManager
+from zapzap.services.AlertManager import AlertManager
 from zapzap.services.CustomizationsManager import CustomizationsManager
 from zapzap.services.ThemeManager import ThemeManager
+from zapzap.webengine.deeplink import build_open_chat_script
 
 import urllib.parse  # Para normalizar URLs
 
@@ -25,6 +27,7 @@ class PageController(QWebEnginePage):
         self.link_context = ''
         self.user_id = None
         self._force_dark_mode_fallback_active = False
+        self._granted_features = set()
 
         # Conecta sinais para funcionalidades específicas
         self.linkHovered.connect(self._on_link_hovered)
@@ -222,9 +225,9 @@ class PageController(QWebEnginePage):
         self.runJavaScript(script)
 
     def xdg_open_chat(self, url):
-        script = """(function(){var a = document.createElement("a");a.href=\"""" + \
-            url + \
-            """\";document.body.appendChild(a);a.click();a.remove(); return;})();"""
+        script = build_open_chat_script(url)
+        if script is None:
+            return
 
         self.runJavaScript(script)
 
@@ -237,9 +240,44 @@ class PageController(QWebEnginePage):
             self.link_context = url
 
     def _on_feature_permission_requested(self, frame, feature):
-        """Concede automaticamente permissão para recursos do sistema."""
+        """Ask before granting sensitive page feature permissions."""
+        Feature = QWebEnginePage.Feature
+        Policy = QWebEnginePage.PermissionPolicy
+
+        if feature == Feature.Notifications:
+            self.setFeaturePermission(
+                frame, feature, Policy.PermissionGrantedByUser)
+            return
+
+        if feature in self._granted_features:
+            self.setFeaturePermission(
+                frame, feature, Policy.PermissionGrantedByUser)
+            return
+
+        labels = {
+            Feature.MediaAudioCapture: _("your microphone"),
+            Feature.MediaVideoCapture: _("your camera"),
+            Feature.MediaAudioVideoCapture: _("your camera and microphone"),
+            Feature.Geolocation: _("your location"),
+            Feature.DesktopVideoCapture: _("your screen contents"),
+            Feature.DesktopAudioVideoCapture: _("your screen contents and audio"),
+            Feature.MouseLock: _("mouse lock"),
+        }
+        what = labels.get(feature, _("a system feature"))
+
+        allow = AlertManager.question(
+            self.parent(),
+            _("Permission request"),
+            _("WhatsApp Web is requesting access to {}.\n\nAllow?").format(what),
+        )
+
+        if allow:
+            self._granted_features.add(feature)
+
         self.setFeaturePermission(
-            frame, feature, QWebEnginePage.PermissionPolicy.PermissionGrantedByUser
+            frame,
+            feature,
+            Policy.PermissionGrantedByUser if allow else Policy.PermissionDeniedByUser,
         )
 
     def _on_load_finished(self, success):

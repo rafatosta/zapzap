@@ -250,7 +250,7 @@ class WebView(QWebEngineView):
 
     def _setup_page(self):
         """Configura a página e carrega a URL inicial."""
-        self.whatsapp_page = PageController(self.profile, self)
+        self.whatsapp_page = PageController(self.profile, parent=self)
         self.whatsapp_page.user_id = self.user.id
         self.whatsapp_page.renderProcessTerminated.connect(self._on_render_crash)
         self.load_page()
