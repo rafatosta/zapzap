@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from PyQt6.QtWebEngineCore import QWebEnginePage
 
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.config.SettingsManager import SettingsManager
 
 
 class PermissionsManager:

@@ -1,5 +1,5 @@
-from zapzap.services.EnvironmentManager import Packaging
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.environment.EnvironmentManager import Packaging
+from zapzap.core.config.SettingsManager import SettingsManager
 import os
 
 

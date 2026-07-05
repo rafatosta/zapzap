@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import QMessageBox
 from zapzap import LIMITE_USERS
 from gettext import gettext as _
 
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.config.SettingsManager import SettingsManager
 
 
 class AlertManager:

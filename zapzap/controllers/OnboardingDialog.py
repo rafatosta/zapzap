@@ -21,10 +21,10 @@ from PyQt6.QtWidgets import (
 )
 
 # Serviços da aplicação
-from zapzap.services.EnvironmentManager import EnvironmentManager
+from zapzap.core.environment.EnvironmentManager import EnvironmentManager
 from zapzap.services.AutostartManager import AutostartManager
-from zapzap.services.SettingsManager import SettingsManager
-from zapzap.services.SetupManager import SetupManager
+from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.core.environment.SetupManager import SetupManager
 
 
 class _OnboardingWizardDialog(QDialog):

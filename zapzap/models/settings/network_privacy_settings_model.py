@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 from zapzap.models.User import User
-from zapzap.services.ProxyManager import ProxyManager
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.environment.ProxyManager import ProxyManager
+from zapzap.core.config.SettingsManager import SettingsManager
 
 
 class NetworkPrivacySettingsModel:

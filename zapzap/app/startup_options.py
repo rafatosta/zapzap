@@ -2,7 +2,7 @@
 
 import argparse
 
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.config.SettingsManager import SettingsManager
 
 
 def parse_startup_options():

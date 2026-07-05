@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from zapzap.models.User import User
 from zapzap.resources.UserIcon import UserIcon
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.config.SettingsManager import SettingsManager
 
 
 class CardUserModel:

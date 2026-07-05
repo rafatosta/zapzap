@@ -5,7 +5,7 @@ import logging
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 
 from zapzap.webengine import WebView
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.config.SettingsManager import SettingsManager
 from zapzap import __appname__
 
 from zapzap.notifications.PortalNotificationBackend import (
@@ -42,7 +42,7 @@ class NotificationService:
     # Backend selection
     # ------------------------------------------------------------------
     def _select_backend(self):
-        from zapzap.platform import IS_WINDOWS
+        from zapzap.core.platform import IS_WINDOWS
         if IS_WINDOWS:
             from zapzap.notifications.WindowsNotificationBackend import (
                 WindowsNotificationBackend,

@@ -5,9 +5,9 @@ from __future__ import annotations
 from datetime import datetime, timedelta
 from pathlib import Path
 
-from zapzap.debug import crash_handler
-from zapzap.debug.RuntimeEnvironmentDebug import RuntimeEnvironmentDebug
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.diagnostics import crash_handler
+from zapzap.core.diagnostics.RuntimeEnvironmentDebug import RuntimeEnvironmentDebug
+from zapzap.core.config.SettingsManager import SettingsManager
 
 
 class DebuggingSettingsModel:

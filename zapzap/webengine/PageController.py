@@ -10,7 +10,7 @@ from zapzap import __allowed_hosts__
 from zapzap.services.AddonsManager import AddonsManager
 from zapzap.services.AlertManager import AlertManager
 from zapzap.services.CustomizationsManager import CustomizationsManager
-from zapzap.services.ThemeManager import ThemeManager
+from zapzap.core.theme.ThemeManager import ThemeManager
 from zapzap.services.PermissionsManager import PermissionsManager
 from zapzap.webengine.deeplink import build_open_chat_script
 

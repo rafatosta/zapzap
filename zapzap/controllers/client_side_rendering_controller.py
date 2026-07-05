@@ -9,7 +9,7 @@ from PyQt6.QtWidgets import QMessageBox
 from PyQt6.QtWidgets import QWidget
 
 from zapzap.controllers.QtoasterDonation import QtoasterDonation
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.config.SettingsManager import SettingsManager
 from zapzap.views import ClientSideRenderingView
 
 
@@ -34,7 +34,7 @@ class ClientSideRenderingController(ClientSideRenderingView):
             return
 
         from zapzap.services.SysTrayManager import SysTrayManager
-        from zapzap.services.ThemeManager import ThemeManager
+        from zapzap.core.theme.ThemeManager import ThemeManager
         SysTrayManager.start()
         ThemeManager.start()
 

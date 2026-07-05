@@ -126,7 +126,7 @@ class CrashDumpHandler:
     # Dumps individuais
     # ==================================================
     def _dump_runtime_environment(self, work_dir: Path) -> None:
-        from zapzap.debug.RuntimeEnvironmentDebug import (
+        from zapzap.core.diagnostics.RuntimeEnvironmentDebug import (
             RuntimeEnvironmentDebug
         )
 

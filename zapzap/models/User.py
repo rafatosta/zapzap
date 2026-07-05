@@ -1,5 +1,5 @@
-from zapzap.config.Database import Database
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.config.Database import Database
+from zapzap.core.config.SettingsManager import SettingsManager
 
 
 class User:

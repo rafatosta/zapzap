@@ -1,5 +1,5 @@
 from PyQt6.QtCore import QStandardPaths, QFileInfo
-from zapzap.platform import IS_WINDOWS
+from zapzap.core.platform import IS_WINDOWS
 import os
 
 

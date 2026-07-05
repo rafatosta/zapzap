@@ -21,7 +21,7 @@ from PyQt6.QtWidgets import (
 
 from zapzap.services.CssPreviewService import CssPreviewService
 from zapzap.services.CustomizationsManager import CustomizationsManager
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.config.SettingsManager import SettingsManager
 
 from zapzap.views.settings import AdvancedCustomizationsSettingsView
 from zapzap.models.settings import AdvancedCustomizationsSettingsModel

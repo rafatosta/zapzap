@@ -3,7 +3,7 @@ import os
 from PyQt6.QtCore import QLocale
 
 from zapzap import APP_PATH, __appname__
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.config.SettingsManager import SettingsManager
 
 
 class TranslationManager:

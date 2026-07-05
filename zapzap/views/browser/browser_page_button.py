@@ -7,7 +7,7 @@ from PyQt6.QtWidgets import QPushButton
 
 from zapzap.models import User
 from zapzap.resources.UserIcon import UserIcon
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.config.SettingsManager import SettingsManager
 
 
 class BrowserPageButton(QPushButton):

@@ -6,7 +6,7 @@ from PyQt6.QtGui import QDesktopServices
 
 from zapzap.resources.TrayIcon import TrayIcon
 from zapzap import __donationPage__
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.config.SettingsManager import SettingsManager
 
 
 class SysTrayManager:

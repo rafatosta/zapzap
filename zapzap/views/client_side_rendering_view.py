@@ -17,7 +17,7 @@ from PyQt6.QtWidgets import QWidget
 
 from zapzap.resources.CSRButtonThemeProvider import CSRButtonTheme
 from zapzap.resources.CSRButtonThemeProvider import CSRButtonThemeProvider
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.config.SettingsManager import SettingsManager
 
 
 class _TitleBar(QWidget):

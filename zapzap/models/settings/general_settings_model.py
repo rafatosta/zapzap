@@ -4,12 +4,12 @@ from dataclasses import dataclass
 
 from PyQt6.QtCore import QLocale
 
-from zapzap.services.SetupManager import SetupManager
+from zapzap.core.environment.SetupManager import SetupManager
 from zapzap.services.AutostartManager import AutostartManager
 from zapzap.services.DictionariesManager import DictionariesManager
 from zapzap.services.DownloadManager import DownloadManager
-from zapzap.services.SettingsManager import SettingsManager
-from zapzap.services.TranslationManager import TranslationManager
+from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.core.i18n.TranslationManager import TranslationManager
 
 
 @dataclass(frozen=True)

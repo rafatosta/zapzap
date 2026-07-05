@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.config.SettingsManager import SettingsManager
 
 
 class NotificationsSettingsModel:

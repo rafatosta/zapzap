@@ -1,7 +1,7 @@
 """Controller for the general settings page."""
 
 from gettext import gettext as _
-from zapzap.services.SetupManager import SetupManager
+from zapzap.core.environment.SetupManager import SetupManager
 
 from zapzap.models.settings import SystemStartupSettingsModel
 from zapzap.views.settings import SystemStartupSettingsView

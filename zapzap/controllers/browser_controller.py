@@ -4,14 +4,14 @@ from PyQt6.QtCore import QPropertyAnimation
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QMessageBox
-from zapzap.services.ThemeManager import ThemeManager
+from zapzap.core.theme.ThemeManager import ThemeManager
 from zapzap.webengine.WebView import WebView
 from zapzap.models.User import User
 from zapzap.resources.SystemIcon import SystemIcon
 from zapzap.resources.UserIcon import UserIcon
 from zapzap.services.AlertManager import AlertManager
-from zapzap.services.SettingsManager import SettingsManager
-from zapzap.services.SetupManager import SetupManager
+from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.core.environment.SetupManager import SetupManager
 from zapzap.services.SysTrayManager import SysTrayManager
 from zapzap.views.browser import BrowserGridView
 from zapzap.views.browser import BrowserPageButton
@@ -298,7 +298,7 @@ class BrowserController(BrowserView):
         self._last_active_webview = page
         
         # Apply proxy for the active account
-        from zapzap.services.ProxyManager import ProxyManager
+        from zapzap.core.environment.ProxyManager import ProxyManager
         ProxyManager.apply(user_id=page.user.id)
         page.page().show_toast(page.user.name if page.user.name !=
                                "" else _("Account {}").format(page.page_index))

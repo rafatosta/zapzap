@@ -5,9 +5,9 @@ from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtCore import QUrl
 from gettext import gettext as _
 from zapzap.resources.UserIcon import UserIcon
-from zapzap.services.EnvironmentDetector import EnvironmentDetector
+from zapzap.core.environment.EnvironmentDetector import EnvironmentDetector
 from zapzap.views.ui_qtoaster_donation import Ui_QtoasterDonation
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.config.SettingsManager import SettingsManager
 from zapzap import __version__, __website__, __donationPage__
 
 

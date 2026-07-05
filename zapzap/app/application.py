@@ -11,13 +11,13 @@ from zapzap.app.startup_options import apply_startup_options, parse_startup_opti
 from zapzap.controllers.OnboardingDialog import OnboardingDialog
 from zapzap.controllers.client_side_rendering_controller import ClientSideRenderingController
 from zapzap.controllers.main_window_controller import MainWindowController
-from zapzap.debug import crash_handler
+from zapzap.core.diagnostics import crash_handler
 from zapzap.resources.TrayIcon import TrayIcon
-from zapzap.services.ProxyManager import ProxyManager
-from zapzap.services.SettingsManager import SettingsManager
-from zapzap.services.SetupManager import SetupManager
-from zapzap.services.ThemeManager import ThemeManager
-from zapzap.services.TranslationManager import TranslationManager
+from zapzap.core.environment.ProxyManager import ProxyManager
+from zapzap.core.config.SettingsManager import SettingsManager
+from zapzap.core.environment.SetupManager import SetupManager
+from zapzap.core.theme.ThemeManager import ThemeManager
+from zapzap.core.i18n.TranslationManager import TranslationManager
 
 
 def main():

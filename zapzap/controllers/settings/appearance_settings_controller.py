@@ -4,7 +4,7 @@ from PyQt6.QtWidgets import QApplication
 
 from zapzap.models.settings import AppearanceSettingsModel
 from zapzap.resources.TrayIcon import TrayIcon
-from zapzap.services.ThemeManager import ThemeManager
+from zapzap.core.theme.ThemeManager import ThemeManager
 from zapzap.views.settings import AppearanceSettingsView
 
 

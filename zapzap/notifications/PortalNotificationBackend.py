@@ -14,7 +14,7 @@ from PyQt6.QtWidgets import QApplication
 
 from zapzap.webengine import WebView
 from zapzap.notifications.FreedesktopNotificationBackend import IconRenderer
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.config.SettingsManager import SettingsManager
 
 
 class PortalNotificationBackend(QObject):

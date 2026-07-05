@@ -12,9 +12,9 @@ from zapzap.controllers.ShortcutsDialog import ShortcutsDialog
 from zapzap.controllers.browser_controller import BrowserController
 from zapzap.controllers.settings_controller import SettingsController
 from zapzap.services.AlertManager import AlertManager
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.config.SettingsManager import SettingsManager
 from zapzap.services.SysTrayManager import SysTrayManager
-from zapzap.services.ThemeManager import ThemeManager
+from zapzap.core.theme.ThemeManager import ThemeManager
 from zapzap.views import MainWindowView
 from gettext import gettext as _
 

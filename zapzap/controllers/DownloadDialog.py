@@ -16,7 +16,7 @@ from PyQt6.QtWebEngineCore import QWebEngineDownloadRequest
 from gettext import gettext as _
 import os
 
-from zapzap.services.SettingsManager import SettingsManager
+from zapzap.core.config.SettingsManager import SettingsManager
 from zapzap.services.DownloadNamingService import DownloadNamingService
 
 
