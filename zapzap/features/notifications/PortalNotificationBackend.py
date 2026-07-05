@@ -13,7 +13,7 @@ from PyQt6.QtWebEngineCore import QWebEngineNotification
 from PyQt6.QtWidgets import QApplication
 
 from zapzap.webengine import WebView
-from zapzap.notifications.FreedesktopNotificationBackend import IconRenderer
+from zapzap.features.notifications.FreedesktopNotificationBackend import IconRenderer
 from zapzap.core.config.SettingsManager import SettingsManager
 
 

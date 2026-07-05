@@ -26,7 +26,7 @@ class WindowsNotificationBackend:
         title: str,
         message: str,
     ):
-        from zapzap.services.SysTrayManager import SysTrayManager
+        from zapzap.features.tray.SysTrayManager import SysTrayManager
         from PyQt6.QtWidgets import QApplication
 
         tray: QSystemTrayIcon = SysTrayManager.instance()._tray

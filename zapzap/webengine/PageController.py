@@ -7,11 +7,11 @@ from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
 
 from zapzap import __allowed_hosts__
-from zapzap.services.AddonsManager import AddonsManager
-from zapzap.services.AlertManager import AlertManager
-from zapzap.services.CustomizationsManager import CustomizationsManager
+from zapzap.features.customizations.AddonsManager import AddonsManager
+from zapzap.features.alerts.AlertManager import AlertManager
+from zapzap.features.customizations.CustomizationsManager import CustomizationsManager
 from zapzap.core.theme.ThemeManager import ThemeManager
-from zapzap.services.PermissionsManager import PermissionsManager
+from zapzap.features.permissions.PermissionsManager import PermissionsManager
 from zapzap.webengine.deeplink import build_open_chat_script
 
 import urllib.parse  # Para normalizar URLs

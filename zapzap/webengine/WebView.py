@@ -13,9 +13,9 @@ from zapzap.core.theme.ThemeManager import ThemeManager
 from zapzap.webengine.PageController import PageController
 from zapzap.models import User
 from zapzap import __user_agent__, __whatsapp_url__
-from zapzap.notifications.NotificationService import NotificationService
-from zapzap.services.DictionariesManager import DictionariesManager
-from zapzap.services.DownloadManager import DownloadManager
+from zapzap.features.notifications.NotificationService import NotificationService
+from zapzap.features.dictionaries.DictionariesManager import DictionariesManager
+from zapzap.features.downloads.DownloadManager import DownloadManager
 from zapzap.core.config.SettingsManager import SettingsManager
 from zapzap.core.diagnostics import crash_handler  # instância global
 

@@ -1,7 +1,7 @@
 from PyQt6.QtWebEngineCore import QWebEngineDownloadRequest
 from PyQt6.QtCore import QStandardPaths
 from zapzap.core.config.SettingsManager import SettingsManager
-from zapzap.services.DownloadNamingService import DownloadNamingService
+from zapzap.features.downloads.DownloadNamingService import DownloadNamingService
 from PyQt6.QtWidgets import QFileDialog
 
 from zapzap.controllers.DownloadDialog import DownloadDialog

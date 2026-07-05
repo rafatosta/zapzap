@@ -8,10 +8,10 @@ from zapzap.webengine import WebView
 from zapzap.core.config.SettingsManager import SettingsManager
 from zapzap import __appname__
 
-from zapzap.notifications.PortalNotificationBackend import (
+from zapzap.features.notifications.PortalNotificationBackend import (
     PortalNotificationBackend
 )
-from zapzap.notifications.FreedesktopNotificationBackend import (
+from zapzap.features.notifications.FreedesktopNotificationBackend import (
     FreedesktopNotificationBackend
 )
 
@@ -44,7 +44,7 @@ class NotificationService:
     def _select_backend(self):
         from zapzap.core.platform import IS_WINDOWS
         if IS_WINDOWS:
-            from zapzap.notifications.WindowsNotificationBackend import (
+            from zapzap.features.notifications.WindowsNotificationBackend import (
                 WindowsNotificationBackend,
             )
             return WindowsNotificationBackend()

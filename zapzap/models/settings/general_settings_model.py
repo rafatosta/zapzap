@@ -5,9 +5,9 @@ from dataclasses import dataclass
 from PyQt6.QtCore import QLocale
 
 from zapzap.core.environment.SetupManager import SetupManager
-from zapzap.services.AutostartManager import AutostartManager
-from zapzap.services.DictionariesManager import DictionariesManager
-from zapzap.services.DownloadManager import DownloadManager
+from zapzap.features.startup.AutostartManager import AutostartManager
+from zapzap.features.dictionaries.DictionariesManager import DictionariesManager
+from zapzap.features.downloads.DownloadManager import DownloadManager
 from zapzap.core.config.SettingsManager import SettingsManager
 from zapzap.core.i18n.TranslationManager import TranslationManager
 

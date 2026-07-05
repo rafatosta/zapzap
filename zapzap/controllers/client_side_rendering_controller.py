@@ -33,7 +33,7 @@ class ClientSideRenderingController(ClientSideRenderingView):
             self.inner_window.load_settings()
             return
 
-        from zapzap.services.SysTrayManager import SysTrayManager
+        from zapzap.features.tray.SysTrayManager import SysTrayManager
         from zapzap.core.theme.ThemeManager import ThemeManager
         SysTrayManager.start()
         ThemeManager.start()

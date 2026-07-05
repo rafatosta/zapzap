@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QVBoxLayout, QWidget, QStyle
 
 from zapzap.models.settings.general_settings_model import GeneralSettingsModel
 from zapzap.views.pages.settings import GeneralSettingsView
-from zapzap.services.DownloadManager import DownloadManager
+from zapzap.features.downloads.DownloadManager import DownloadManager
 from gettext import gettext as _
 
 

@@ -9,10 +9,10 @@ from zapzap.webengine.WebView import WebView
 from zapzap.models.User import User
 from zapzap.resources.SystemIcon import SystemIcon
 from zapzap.resources.UserIcon import UserIcon
-from zapzap.services.AlertManager import AlertManager
+from zapzap.features.alerts.AlertManager import AlertManager
 from zapzap.core.config.SettingsManager import SettingsManager
 from zapzap.core.environment.SetupManager import SetupManager
-from zapzap.services.SysTrayManager import SysTrayManager
+from zapzap.features.tray.SysTrayManager import SysTrayManager
 from zapzap.views.browser import BrowserGridView
 from zapzap.views.browser import BrowserPageButton
 from zapzap.views.browser import BrowserSidebarButton

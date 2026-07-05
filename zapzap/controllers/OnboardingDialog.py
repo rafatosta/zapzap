@@ -22,7 +22,7 @@ from PyQt6.QtWidgets import (
 
 # Serviços da aplicação
 from zapzap.core.environment.EnvironmentManager import EnvironmentManager
-from zapzap.services.AutostartManager import AutostartManager
+from zapzap.features.startup.AutostartManager import AutostartManager
 from zapzap.core.config.SettingsManager import SettingsManager
 from zapzap.core.environment.SetupManager import SetupManager
 

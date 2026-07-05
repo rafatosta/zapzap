@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from zapzap.services.PermissionsManager import PermissionsManager
+from zapzap.features.permissions.PermissionsManager import PermissionsManager
 
 
 class PermissionsSettingsModel:
