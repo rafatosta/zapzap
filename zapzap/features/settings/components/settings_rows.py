@@ -47,7 +47,7 @@ class _BaseRow(QWidget):
         text_col = QWidget()
         col = QVBoxLayout(text_col)
         col.setContentsMargins(0, 0, 0, 0)
-        col.setSpacing(3)
+        col.setSpacing(0)
 
         self.title_label = Label(title, "row_title")
         self.title_label.setObjectName("SettingsRowTitle")
