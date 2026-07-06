@@ -67,7 +67,7 @@ class LanguageDownloadSettingsView(SettingsPage):
         self.download_path = row.line_edit
         self.download_path.setReadOnly(True)
         self.btn_path_download = row.button
-        self.btn_restore_path_download = Button("")
+        self.btn_restore_path_download = Button("", variant=Button.WARNING)
         row.control.layout().addWidget(self.btn_restore_path_download)
         card.add_row(row)
         section.add_card(card)
@@ -96,7 +96,7 @@ class LanguageDownloadSettingsView(SettingsPage):
         self.dic_path = path_row.line_edit
         self.dic_path.setReadOnly(True)
         self.btn_path_spell = path_row.button
-        self.btn_default_path_spell = Button("")
+        self.btn_default_path_spell = Button("", variant=Button.WARNING)
         path_row.control.layout().addWidget(self.btn_default_path_spell)
         card.add_row(self.spellchecker_groupBox)
         card.add_row(lang_row)

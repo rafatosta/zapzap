@@ -33,7 +33,8 @@ class CardUserView(SettingsCard):
         self.name = LineEdit(parent=header)
         self.name.setPlaceholderText(_("Account name"))
 
-        self.delete = Button(_("Delete"), header)
+        self.delete = Button(
+            _("Delete"), variant=Button.DANGER, parent=header)
 
         header_layout.addWidget(self.icon)
         header_layout.addWidget(self.name, 1)
