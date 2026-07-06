@@ -11,7 +11,7 @@ $UiFiles = @()
 $AdditionalData = @(
     @("zapzap/po", "zapzap/po"),
     @("zapzap/assets", "zapzap/assets"),
-    @("zapzap/features/browser/webengine/scripts", "zapzap/features/browser/webengine/scripts")
+    @("zapzap/features/browser/web/scripts", "zapzap/features/browser/web/scripts")
 )
 
 Write-Host "# === Instalando dependências ==="
