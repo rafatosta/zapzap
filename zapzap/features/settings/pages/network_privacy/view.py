@@ -94,16 +94,25 @@ class NetworkPrivacySettingsView(SettingsPage):
 
         self.proxyCheckBox = self.proxy_enable_row.checkbox
         self.proxyComboBox = self.proxy_type_row.combo
+
         self.setHostName = self.host_row.line_edit
+        self.setHostName.setPlaceholderText(_("Host name"))
+
         self.setPort = self.port_row.line_edit
+        self.setPort.setPlaceholderText(_("Port number"))
+
         self.setUser = self.user_row.line_edit
+        self.setUser.setPlaceholderText(_("Username"))
+
         self.setPassword = self.password_row.line_edit
+        self.setPassword.setPlaceholderText(_("Password"))
 
         section.add_card(card)
         self.add_section(section)
 
     def _setup_privacy_section(self):
-        section = SettingsSection(_("Privacy"), _("Global network privacy controls."))
+        section = SettingsSection(_("Privacy"), _(
+            "Global network privacy controls."))
         card = SettingsCard()
         self.webrtc_row = SettingsSwitchRow(
             _("WebRTC shield"),
@@ -115,7 +124,8 @@ class NetworkPrivacySettingsView(SettingsPage):
         self.add_section(section)
 
     def _setup_actions_section(self):
-        section = SettingsSection(_("Actions"), _("Apply or restore proxy settings."))
+        section = SettingsSection(_("Actions"), _(
+            "Apply or restore proxy settings."))
         card = SettingsCard()
         self.apply_row = SettingsActionRow(
             _("Apply proxy"),
