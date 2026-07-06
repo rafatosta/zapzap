@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-06 12:21-0300\n"
+"POT-Creation-Date: 2026-07-06 13:36-0300\n"
 "PO-Revision-Date: 2026-02-02 23:52+0200\n"
 "Last-Translator: Muhammed Al-Basha <contact.mu7basha@gmail.com>\n"
 "Language-Team: Arabic\n"
@@ -461,15 +461,16 @@ msgstr "الإشعارات"
 #: zapzap/features/settings/shell/settings_controller.py:33
 #: zapzap/features/settings/pages/permissions/view.py:17
 #: zapzap/features/settings/pages/permissions/view.py:28
-msgid "Permissões"
+msgid "Permissions"
 msgstr ""
 
 #: zapzap/features/settings/shell/settings_controller.py:34
-msgid "Idioma e downloads"
+#: zapzap/features/settings/pages/language_downloads/view.py:24
+msgid "Language and Download"
 msgstr ""
 
 #: zapzap/features/settings/shell/settings_controller.py:35
-msgid "Privacy and network"
+msgid "Privacy and Betwork"
 msgstr ""
 
 #: zapzap/features/settings/shell/settings_controller.py:36
@@ -489,8 +490,10 @@ msgid "Debugging"
 msgstr ""
 
 #: zapzap/features/settings/shell/settings_controller.py:39
-msgid "Sistema e inicialização"
-msgstr ""
+#: zapzap/features/settings/pages/system_startup/view.py:18
+#, fuzzy
+msgid "System and startup"
+msgstr "استرجع القياسي"
 
 #: zapzap/features/settings/shell/settings_controller.py:40
 #: zapzap/features/settings/pages/about/view.py:22
@@ -1284,10 +1287,6 @@ msgstr ""
 msgid "System default"
 msgstr "استرجع القياسي"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:24
-msgid "Language and Download"
-msgstr ""
-
 #: zapzap/features/settings/pages/language_downloads/view.py:25
 msgid "Manage interface language, downloads folder and spell checker."
 msgstr ""
@@ -1981,80 +1980,77 @@ msgid "Restores all performance settings to safe default values."
 msgstr ""
 
 #: zapzap/features/settings/pages/permissions/view.py:18
-msgid "Defina quais permissões o WhatsApp Web pode receber automaticamente."
+msgid "Define which permissions WhatsApp Web can receive automatically."
 msgstr ""
 
 #: zapzap/features/settings/pages/permissions/view.py:29
-msgid ""
-"Quando uma opção estiver desmarcada, o ZapZap perguntará novamente a cada "
-"sessão."
+msgid "When an option is unchecked, ZapZap will ask again in each session."
 msgstr ""
 
 #: zapzap/features/settings/pages/permissions/view.py:33
 msgid ""
-"Marque apenas as permissões que você deseja conceder automaticamente quando "
-"a página solicitar."
+"Enable only the permissions you want to grant automatically when the page "
+"requests them."
 msgstr ""
 
 #: zapzap/features/settings/pages/permissions/view.py:37
-msgid "Microfone"
-msgstr ""
+#, fuzzy
+msgid "Microphone"
+msgstr "برقم الهاتف"
 
 #: zapzap/features/settings/pages/permissions/view.py:37
-msgid "Permitir automaticamente o acesso ao seu microfone."
+msgid "Automatically allow access to your microphone."
 msgstr ""
 
 #: zapzap/features/settings/pages/permissions/view.py:38
-msgid "Câmera"
+msgid "Camera"
 msgstr ""
 
 #: zapzap/features/settings/pages/permissions/view.py:38
-msgid "Permitir automaticamente o acesso à sua câmera."
+msgid "Automatically allow access to your camera."
 msgstr ""
 
 #: zapzap/features/settings/pages/permissions/view.py:41
-msgid "Câmera e microfone"
-msgstr ""
+#, fuzzy
+msgid "Camera and microphone"
+msgstr "برقم الهاتف"
 
 #: zapzap/features/settings/pages/permissions/view.py:42
-msgid "Permitir automaticamente o acesso simultâneo à câmera e ao microfone."
+msgid "Automatically allow simultaneous access to the camera and microphone."
 msgstr ""
 
 #: zapzap/features/settings/pages/permissions/view.py:44
-msgid "Localização"
-msgstr ""
+#, fuzzy
+msgid "Location"
+msgstr "تبرَّع"
 
 #: zapzap/features/settings/pages/permissions/view.py:44
-msgid "Permitir automaticamente o acesso à sua localização."
+msgid "Automatically allow access to your location."
 msgstr ""
 
 #: zapzap/features/settings/pages/permissions/view.py:47
-msgid "Conteúdo da tela"
+msgid "Screen contents"
 msgstr ""
 
 #: zapzap/features/settings/pages/permissions/view.py:48
-msgid "Permitir automaticamente o compartilhamento do conteúdo da tela."
+msgid "Automatically allow sharing of screen contents."
 msgstr ""
 
 #: zapzap/features/settings/pages/permissions/view.py:52
-msgid "Conteúdo da tela e áudio"
+msgid "Screen contents and audio"
 msgstr ""
 
 #: zapzap/features/settings/pages/permissions/view.py:53
-msgid "Permitir automaticamente o compartilhamento da tela com áudio."
+msgid "Automatically allow screen sharing with audio."
 msgstr ""
 
-#: zapzap/features/settings/pages/permissions/view.py:55
-msgid "Bloqueio do mouse"
+#: zapzap/features/settings/pages/permissions/view.py:57
+msgid "Mouse lock"
 msgstr ""
 
-#: zapzap/features/settings/pages/permissions/view.py:55
-msgid "Permitir automaticamente que a página capture o ponteiro do mouse."
+#: zapzap/features/settings/pages/permissions/view.py:58
+msgid "Automatically allow the page to capture the mouse pointer."
 msgstr ""
-
-#: zapzap/features/settings/pages/system_startup/view.py:18
-msgid "General"
-msgstr "عام"
 
 #: zapzap/features/settings/pages/system_startup/view.py:19
 msgid ""
@@ -2550,6 +2546,9 @@ msgstr "Ctrl+M"
 #, fuzzy
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl++"
+
+#~ msgid "General"
+#~ msgstr "عام"
 
 #~ msgid "Click to generate new colors for the icon"
 #~ msgstr "انقر لتوليد ألوان جديدة للأيقونة"
