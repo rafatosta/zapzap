@@ -31,9 +31,9 @@ class FlatpakRunner:
         self.execute("flatpak install --user --assumeyes org.flatpak.Builder")
 
     def build(self):
-        #print("# === Build translations ===")
-        #manager = TranslationManager()
-        #manager.run()
+        print("# === Build translations ===")
+        manager = TranslationManager()
+        manager.run()
 
         print("# === Build Flatpak ===")
         self.execute(
