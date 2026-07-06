@@ -46,18 +46,18 @@ class Button(QPushButton):
                 "hover_background": "palette(alternate-base)",
             },
             self.WARNING: {
-                "border": ThemeManager.get_color("warning_border"),
-                "background": ThemeManager.get_color("warning"),
-                "color": ThemeManager.get_color("warning_text"),
+                "border": "palette(mid)",
+                "background": "palette(button)",
+                "color": ThemeManager.get_color("warning"),
                 "hover_border": ThemeManager.get_color("warning_hover"),
-                "hover_background": ThemeManager.get_color("warning_hover"),
+                
             },
             self.DANGER: {
-                "border": ThemeManager.get_color("danger_border"),
-                "background": ThemeManager.get_color("danger"),
-                "color": ThemeManager.get_color("danger_text"),
+                "border": "palette(mid)",
+                "background": "palette(button)",
+                "color": ThemeManager.get_color("bright_text"),
                 "hover_border": ThemeManager.get_color("danger_hover"),
-                "hover_background": ThemeManager.get_color("danger_hover"),
+                "hover_background": "palette(alternate-base)",
             },
         }
 
@@ -78,7 +78,7 @@ class Button(QPushButton):
 
             QPushButton:hover {{
                 border-color: {style["hover_border"]};
-                background: {style["hover_background"]};
+               
             }}
 
             QPushButton:disabled {{

@@ -26,7 +26,6 @@ class LanguageDownloadSettingsView(SettingsPage):
             parent,
         )
         self._setup_ui()
-        self.configure_icons()
         self.add_stretch()
 
     def _setup_ui(self):
@@ -62,12 +61,13 @@ class LanguageDownloadSettingsView(SettingsPage):
         row = SettingsPathRow(
             _("Download directory"),
             _("Set a custom folder or restore the default download location."),
-            button_text="",
+            button_text=_("Define"),
         )
         self.download_path = row.line_edit
         self.download_path.setReadOnly(True)
         self.btn_path_download = row.button
-        self.btn_restore_path_download = Button("", variant=Button.WARNING)
+        self.btn_restore_path_download = Button(
+            _("Restore"), variant=Button.WARNING)
         row.control.layout().addWidget(self.btn_restore_path_download)
         card.add_row(row)
         section.add_card(card)
@@ -91,12 +91,13 @@ class LanguageDownloadSettingsView(SettingsPage):
         path_row = SettingsPathRow(
             _("Dictionary directory"),
             _("Note: changing dictionaries may require restarting the browser "),
-            button_text="",
+            button_text=_("Define"),
         )
         self.dic_path = path_row.line_edit
         self.dic_path.setReadOnly(True)
         self.btn_path_spell = path_row.button
-        self.btn_default_path_spell = Button("", variant=Button.WARNING)
+        self.btn_default_path_spell = Button(
+            _("Restore"), variant=Button.WARNING)
         path_row.control.layout().addWidget(self.btn_default_path_spell)
         card.add_row(self.spellchecker_groupBox)
         card.add_row(lang_row)
@@ -134,20 +135,6 @@ class LanguageDownloadSettingsView(SettingsPage):
         self.btn_open_flatseal = self.btn_open_flatseal.button
         self.flatpak_permissions_groupBox.add_card(card)
         self.add_section(self.flatpak_permissions_groupBox)
-
-    def configure_icons(self):
-        self.btn_path_download.setIcon(
-            self.style().standardIcon(QStyle.StandardPixmap.SP_DirIcon)
-        )
-        self.btn_restore_path_download.setIcon(
-            self.style().standardIcon(QStyle.StandardPixmap.SP_DialogResetButton)
-        )
-        self.btn_path_spell.setIcon(
-            self.style().standardIcon(QStyle.StandardPixmap.SP_DirIcon)
-        )
-        self.btn_default_path_spell.setIcon(
-            self.style().standardIcon(QStyle.StandardPixmap.SP_DialogResetButton)
-        )
 
     def configure_flatpak(self, is_flatpak):
         self.flatpak_permissions_groupBox.setVisible(is_flatpak)
