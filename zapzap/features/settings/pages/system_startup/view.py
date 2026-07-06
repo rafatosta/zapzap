@@ -15,7 +15,7 @@ class SystemStartupSettingsView(SettingsPage):
 
     def __init__(self, parent=None):
         super().__init__(
-            _("General"),
+            _("System and startup"),
             _("Manage language, startup, downloads, spell checking, and Linux integration."),
             parent,
         )

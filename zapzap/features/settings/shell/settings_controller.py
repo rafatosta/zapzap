@@ -30,13 +30,13 @@ class SettingsController(SettingsView):
         (AccountsSettingsController, _("Accounts")),
         (AppearanceSettingsController, _("Appearance")),
         (NotificationsSettingsController, _("Notifications")),
-        (PermissionsSettingsController, _("Permissões")),
-        (LanguageDownloadSettingsController, _("Idioma e downloads")),
-        (NetworkPrivacySettingsController, _("Privacy and network")),
+        (PermissionsSettingsController, _("Permissions")),
+        (LanguageDownloadSettingsController, _("Language and Download")),
+        (NetworkPrivacySettingsController, _("Privacy and Betwork")),
         (AdvancedCustomizationsSettingsController, _("Advanced Customizations")),
         (PerformanceExperimentalSettingsController, _("Performance experimental")),
         (DebuggingSettingsController, _("Debugging")),
-        (SystemStartupSettingsController, _("Sistema e inicialização")),
+        (SystemStartupSettingsController, _("System and startup")),
         (AboutSettingsController, _("About")),
     ]
 

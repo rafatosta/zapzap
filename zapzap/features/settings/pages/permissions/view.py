@@ -14,8 +14,8 @@ class PermissionsSettingsView(SettingsPage):
 
     def __init__(self, parent=None):
         super().__init__(
-            _("Permissões"),
-            _("Defina quais permissões o WhatsApp Web pode receber automaticamente."),
+            _("Permissions"),
+            _("Define which permissions WhatsApp Web can receive automatically."),
             parent,
         )
         self.setObjectName("PermissionsSettingsView")
@@ -25,34 +25,38 @@ class PermissionsSettingsView(SettingsPage):
 
     def _setup_ui(self):
         section = SettingsSection(
-            _("Permissões"),
-            _("Quando uma opção estiver desmarcada, o ZapZap perguntará novamente a cada sessão."),
+            _("Permissions"),
+            _("When an option is unchecked, ZapZap will ask again in each session."),
         )
         card = SettingsCard()
         card.add_row(SettingsInfoBox(_(
-            "Marque apenas as permissões que você deseja conceder automaticamente quando a página solicitar."
+            "Enable only the permissions you want to grant automatically when the page requests them."
         )))
 
         rows = (
-            ("microphone", _("Microfone"), _("Permitir automaticamente o acesso ao seu microfone.")),
-            ("camera", _("Câmera"), _("Permitir automaticamente o acesso à sua câmera.")),
+            ("microphone", _("Microphone"), _("Automatically allow access to your microphone.")),
+            ("camera", _("Camera"), _("Automatically allow access to your camera.")),
             (
                 "camera_microphone",
-                _("Câmera e microfone"),
-                _("Permitir automaticamente o acesso simultâneo à câmera e ao microfone."),
+                _("Camera and microphone"),
+                _("Automatically allow simultaneous access to the camera and microphone."),
             ),
-            ("location", _("Localização"), _("Permitir automaticamente o acesso à sua localização.")),
+            ("location", _("Location"), _("Automatically allow access to your location.")),
             (
                 "screen_contents",
-                _("Conteúdo da tela"),
-                _("Permitir automaticamente o compartilhamento do conteúdo da tela."),
+                _("Screen contents"),
+                _("Automatically allow sharing of screen contents."),
             ),
             (
                 "screen_contents_audio",
-                _("Conteúdo da tela e áudio"),
-                _("Permitir automaticamente o compartilhamento da tela com áudio."),
+                _("Screen contents and audio"),
+                _("Automatically allow screen sharing with audio."),
             ),
-            ("mouse_lock", _("Bloqueio do mouse"), _("Permitir automaticamente que a página capture o ponteiro do mouse.")),
+            (
+                "mouse_lock",
+                _("Mouse lock"),
+                _("Automatically allow the page to capture the mouse pointer."),
+            ),
         )
 
         for permission_id, title, description in rows:
