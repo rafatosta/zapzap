@@ -33,6 +33,7 @@ class AccountsSettingsView(SettingsPage):
         )
         self.accounts_card = SettingsCard()
         self.user_list_layout = self.accounts_card.layout
+        self.user_list_layout.setSpacing(10)
         self.accounts_section.add_card(self.accounts_card)
         self.add_section(self.accounts_section)
 
