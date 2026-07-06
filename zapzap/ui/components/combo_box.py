@@ -12,7 +12,7 @@ class ComboBox(QComboBox):
             border: 1px solid palette(mid);
             border-radius: 10px;
             padding: 4px 34px 4px 10px;
-            background: palette(base);
+            background: palette(window);
             color: palette(text);
             selection-background-color: palette(highlight);
             selection-color: palette(highlighted-text);
@@ -20,7 +20,7 @@ class ComboBox(QComboBox):
         }
         QComboBox:hover {
             border-color: palette(highlight);
-            background: palette(button);
+            background: palette(alternate_base);
         }
         QComboBox:focus {
             border: 1px solid palette(highlight);
