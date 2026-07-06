@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-06 13:36-0300\n"
+"POT-Creation-Date: 2026-07-06 13:56-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -467,7 +467,7 @@ msgid "Language and Download"
 msgstr ""
 
 #: zapzap/features/settings/shell/settings_controller.py:35
-msgid "Privacy and Betwork"
+msgid "Privacy and Network"
 msgstr ""
 
 #: zapzap/features/settings/shell/settings_controller.py:36

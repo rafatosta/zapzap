@@ -32,7 +32,7 @@ class SettingsController(SettingsView):
         (NotificationsSettingsController, _("Notifications")),
         (PermissionsSettingsController, _("Permissions")),
         (LanguageDownloadSettingsController, _("Language and Download")),
-        (NetworkPrivacySettingsController, _("Privacy and Betwork")),
+        (NetworkPrivacySettingsController, _("Privacy and Network")),
         (AdvancedCustomizationsSettingsController, _("Advanced Customizations")),
         (PerformanceExperimentalSettingsController, _("Performance experimental")),
         (DebuggingSettingsController, _("Debugging")),

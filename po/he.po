@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-06 13:36-0300\n"
+"POT-Creation-Date: 2026-07-06 13:56-0300\n"
 "PO-Revision-Date: 2025-10-26 15:07+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Yaron Shahrabani <sh.yaron@gmail.com>\n"
@@ -469,7 +469,7 @@ msgid "Language and Download"
 msgstr ""
 
 #: zapzap/features/settings/shell/settings_controller.py:35
-msgid "Privacy and Betwork"
+msgid "Privacy and Network"
 msgstr ""
 
 #: zapzap/features/settings/shell/settings_controller.py:36
