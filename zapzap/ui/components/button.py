@@ -15,7 +15,7 @@ class Button(QPushButton):
     def _apply_style(self):
         self.setStyleSheet("""
             QPushButton {
-                min-height: 36px;
+                min-height: 26px;
                 border: 1px solid palette(mid);
                 border-radius: 8px;
                 padding: 6px 12px;

@@ -55,9 +55,9 @@ class SettingsInfoBox(QFrame):
         self.setStyleSheet("""
             QFrame#SettingsInfoBox {
                 border-radius: 12px;
-                padding: 12px;
+                padding: 6px;
                 background: palette(alternate-base);
-                border: 1px solid palette(mid);
+                border: 2px solid palette(mid);
                 color: palette(text);
             }
             QFrame#SettingsInfoBox QLabel {

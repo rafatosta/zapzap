@@ -13,7 +13,7 @@ class LineEdit(QLineEdit):
     def _apply_style(self):
         self.setStyleSheet("""
             QLineEdit {
-                min-height: 36px;
+                min-height: 26px;
                 border: 1px solid palette(mid);
                 border-radius: 8px;
                 padding: 6px 10px;

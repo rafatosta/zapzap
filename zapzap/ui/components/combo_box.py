@@ -8,7 +8,7 @@ class ComboBox(QComboBox):
 
     STYLE = """
         QComboBox {
-            min-height: 34px;
+            min-height: 26px;
             border: 1px solid palette(mid);
             border-radius: 10px;
             padding: 4px 34px 4px 10px;
