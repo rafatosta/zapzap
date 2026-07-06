@@ -54,7 +54,7 @@ class ToggleSwitch(QCheckBox):
                 border_color = track_color
                 knob_color = palette.color(QPalette.ColorRole.HighlightedText)
             else:
-                track_color = palette.color(QPalette.ColorRole.AlternateBase)
+                track_color = palette.color(QPalette.ColorRole.Mid)
                 border_color = palette.color(QPalette.ColorRole.Mid)
                 knob_color = palette.color(QPalette.ColorRole.Base)
                 knob_border = border_color
