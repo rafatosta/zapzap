@@ -474,9 +474,8 @@ msgid "Language and Download"
 msgstr "Idioma e downloads"
 
 #: zapzap/features/settings/shell/settings_controller.py:35
-#, fuzzy
 msgid "Privacy and Network"
-msgstr "Privacidade e rede"
+msgstr "Privacidade e Rede"
 
 #: zapzap/features/settings/shell/settings_controller.py:36
 msgid "Advanced Customizations"
