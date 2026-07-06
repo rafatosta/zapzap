@@ -10,7 +10,7 @@ from PyQt6.QtWidgets import QSystemTrayIcon
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 
 if TYPE_CHECKING:
-    from zapzap.features.browser.webengine.web_view import WebView
+    from zapzap.features.browser.web.web_view import WebView
 
 
 class WindowsNotificationBackend:

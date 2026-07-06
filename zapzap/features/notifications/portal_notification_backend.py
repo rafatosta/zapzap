@@ -20,7 +20,7 @@ from zapzap.features.notifications.freedesktop_notification_backend import IconR
 from zapzap.core.config.settings_manager import SettingsManager
 
 if TYPE_CHECKING:
-    from zapzap.features.browser.webengine.web_view import WebView
+    from zapzap.features.browser.web.web_view import WebView
 
 
 class PortalNotificationBackend(QObject):

@@ -12,7 +12,7 @@ from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.customizations.customizations_manager import CustomizationsManager
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.permissions.permissions_manager import PermissionsManager
-from zapzap.features.browser.webengine.deeplink import build_open_chat_script
+from zapzap.features.browser.web.deeplink import build_open_chat_script
 
 import urllib.parse  # Para normalizar URLs
 
@@ -145,7 +145,7 @@ class PageController(QWebEnginePage):
 
     def fall_back_to_force_dark_mode(self) -> None:
         """Falls back to using ForceDarkMode to handle the WhatsApp Web Theme."""
-        from zapzap.features.browser.webengine.web_view import WebView
+        from zapzap.features.browser.web.web_view import WebView
 
         profile = self.profile()
         settings = profile.settings() if profile else None

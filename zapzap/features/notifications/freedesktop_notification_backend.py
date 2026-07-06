@@ -15,7 +15,7 @@ from zapzap.core.config.settings_manager import SettingsManager
 from zapzap import __appname__
 
 if TYPE_CHECKING:
-    from zapzap.features.browser.webengine.web_view import WebView
+    from zapzap.features.browser.web.web_view import WebView
 
 # -----------------------------------------------------------------------------
 # Optional DBus imports (fail-safe)

@@ -3,8 +3,8 @@
 from PyQt6.QtWidgets import QHBoxLayout
 from PyQt6.QtWidgets import QWidget
 
-from zapzap.features.browser.ui.browser_pages import BrowserPages
-from zapzap.features.browser.ui.browser_sidebar import BrowserSidebar
+from zapzap.features.browser.components.browser_pages import BrowserPages
+from zapzap.features.browser.components.browser_sidebar import BrowserSidebar
 
 
 class BrowserView(QWidget):

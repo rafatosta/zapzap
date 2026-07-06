@@ -9,7 +9,7 @@ from PyQt6.QtGui import QImage
 from PyQt6.QtWidgets import QApplication
 from zapzap.features.donation.qtoaster_donation import QtoasterDonation
 from zapzap.features.shortcuts.shortcuts_dialog import ShortcutsDialog
-from zapzap.features.browser.controllers.browser_controller import BrowserController
+from zapzap.features.browser.shell.browser_controller import BrowserController
 from zapzap.features.settings.shell.settings_controller import SettingsController
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.core.config.settings_manager import SettingsManager

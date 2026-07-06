@@ -21,7 +21,7 @@ from zapzap.features.notifications.freedesktop_notification_backend import (
 logger = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
-    from zapzap.features.browser.webengine.web_view import WebView
+    from zapzap.features.browser.web.web_view import WebView
 
 
 def is_flatpak() -> bool:

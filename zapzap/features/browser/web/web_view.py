@@ -10,7 +10,7 @@ from PyQt6.QtWidgets import QApplication, QWidget
 from PyQt6.QtGui import QAction
 
 from zapzap.core.theme.theme_manager import ThemeManager
-from zapzap.features.browser.webengine.page_controller import PageController
+from zapzap.features.browser.web.page_controller import PageController
 from zapzap.features.accounts.domain.user import User
 from zapzap import __user_agent__, __whatsapp_url__
 from zapzap.features.notifications.notification_service import NotificationService
