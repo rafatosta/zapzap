@@ -6,9 +6,9 @@ from PyQt6.QtGui import QActionGroup
 from PyQt6.QtWidgets import QApplication, QMenu
 
 from zapzap.features.accounts.domain.user import User
-from zapzap.features.accounts.models.card_user_model import CardUserModel
+from zapzap.features.settings.components.card_user.card_user_model import CardUserModel
 from zapzap.features.alerts.alert_manager import AlertManager
-from zapzap.features.accounts.ui.card_user_view import CardUserView
+from zapzap.features.settings.components.card_user.card_user_view import CardUserView
 
 
 class CardUserController(CardUserView):
