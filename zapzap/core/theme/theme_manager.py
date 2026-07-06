@@ -14,18 +14,34 @@ from PyQt6.QtGui import QPalette
 from PyQt6.QtWidgets import QApplication
 
 from zapzap.assets.themes.theme_stylesheet import ThemeStylesheet
-from zapzap.core.theme.system_theme_monitor import SystemThemeMonitor
 from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.core.theme.system_theme_monitor import SystemThemeMonitor
 
 
 class ThemeManager(QObject):
     """Handles theme changes."""
+
     class Type(Enum):
         Auto = "auto"
         Light = "light"
         Dark = "dark"
 
-    _LIGHT_PALETTE_COLORS = {
+    _QT_PALETTE_KEYS: ClassVar[set[str]] = {
+        "window",
+        "text",
+        "base",
+        "alternate_base",
+        "button",
+        "button_text",
+        "highlight",
+        "highlighted_text",
+        "mid",
+        "placeholder_text",
+        "bright_text",
+    }
+
+    _LIGHT_PALETTE_COLORS: ClassVar[dict[str, str]] = {
+        # Qt palette colors
         "window": "#f7f5f3",
         "text": "#1d1f1f",
         "base": "#ffffff",
@@ -33,13 +49,35 @@ class ThemeManager(QObject):
         "button": "#ffffff",
         "button_text": "#1d1f1f",
         "highlight": "#21c063",
-        "highlighted_text": "#FFFFFF",
+        "highlighted_text": "#ffffff",
         "mid": "#D0D4D8",
         "placeholder_text": "#A6AEB6",
         "bright_text": "#e01b24",
+
+        # Semantic colors
+        "accent": "#21c063",
+        "accent_text": "#ffffff",
+        "accent_hover": "#1db356",
+        "accent_border": "#1aa34e",
+
+        "success": "#21c063",
+        "success_text": "#ffffff",
+        "success_hover": "#1db356",
+        "success_border": "#1aa34e",
+
+        "warning": "#cd9309",
+        "warning_text": "#ffffff",
+        "warning_hover": "#e5a50a",
+        "warning_border": "#b58300",
+
+        "danger": "#c01c28",
+        "danger_text": "#ffffff",
+        "danger_hover": "#e01b24",
+        "danger_border": "#a51d2d",
     }
 
-    _DARK_PALETTE_COLORS = {
+    _DARK_PALETTE_COLORS: ClassVar[dict[str, str]] = {
+        # Qt palette colors
         "window": "#1d1f1f",
         "text": "#E1E1E1",
         "base": "#242626",
@@ -47,10 +85,31 @@ class ThemeManager(QObject):
         "button": "#242626",
         "button_text": "#E1E1E1",
         "highlight": "#21c063",
-        "highlighted_text": "#FFFFFF",
+        "highlighted_text": "#ffffff",
         "mid": "#444444",
         "placeholder_text": "#A6AEB6",
-        "bright_text": "#e01b24",
+        "bright_text": "#ff6b6b",
+
+        # Semantic colors
+        "accent": "#21c063",
+        "accent_text": "#ffffff",
+        "accent_hover": "#25d366",
+        "accent_border": "#1db356",
+
+        "success": "#21c063",
+        "success_text": "#ffffff",
+        "success_hover": "#25d366",
+        "success_border": "#1db356",
+
+        "warning": "#e5a50a",
+        "warning_text": "#1d1f1f",
+        "warning_hover": "#f6d32d",
+        "warning_border": "#cd9309",
+
+        "danger": "#e01b24",
+        "danger_text": "#ffffff",
+        "danger_hover": "#ff4b55",
+        "danger_border": "#c01c28",
     }
 
     theme_changed = pyqtSignal(object, object)
@@ -83,7 +142,7 @@ class ThemeManager(QObject):
                 SettingsManager.get("system/theme", type(self).Type.Auto.value)
             )
         except ValueError:
-            # In case the legacy "custom" theme value is saved in the config file
+            # In case the legacy "custom" theme value is saved in the config file.
             theme = type(self).Type.Auto
             SettingsManager.set("system/theme", theme.value)
 
@@ -110,12 +169,6 @@ class ThemeManager(QObject):
     def _get_app_instance() -> QApplication | None:
         return cast(QApplication | None, QApplication.instance())
 
-    def _get_theme_color_scheme(self, theme: Type) -> Qt.ColorScheme:
-        if theme == type(self).Type.Auto:
-            return self._system_color_scheme
-
-        return Qt.ColorScheme[theme.name]
-
     @classmethod
     def start(cls) -> ThemeManager:
         return cls.instance()
@@ -141,7 +194,9 @@ class ThemeManager(QObject):
         SettingsManager.set("system/theme", theme.value)
 
         if theme == cls.Type.Auto:
-            instance._system_color_scheme = instance._get_effective_system_color_scheme()
+            instance._system_color_scheme = (
+                instance._get_effective_system_color_scheme()
+            )
 
         instance._current_theme = theme
         instance._update_system_theme_monitor_state()
@@ -154,7 +209,29 @@ class ThemeManager(QObject):
 
     @classmethod
     def get_current_color_scheme(cls) -> Qt.ColorScheme:
+        """Returns the effective current color scheme."""
         return cls.instance()._current_color_scheme
+
+    @classmethod
+    def get_current_palette_colors(cls) -> dict[str, str]:
+        """Returns the active ZapZap palette colors, including semantic colors."""
+        color_scheme = cls.get_current_color_scheme()
+
+        if color_scheme == Qt.ColorScheme.Dark:
+            return cls._DARK_PALETTE_COLORS.copy()
+
+        return cls._LIGHT_PALETTE_COLORS.copy()
+
+    @classmethod
+    def get_color(cls, color_name: str, fallback: str = "") -> str:
+        """Returns a color from the active ZapZap palette."""
+        return cls.get_current_palette_colors().get(color_name, fallback)
+
+    def _get_theme_color_scheme(self, theme: Type) -> Qt.ColorScheme:
+        if theme == type(self).Type.Auto:
+            return self._system_color_scheme
+
+        return Qt.ColorScheme[theme.name]
 
     def _get_effective_system_color_scheme(self) -> Qt.ColorScheme:
         color_scheme = self._system_theme_monitor.get_current_color_scheme()
@@ -165,8 +242,7 @@ class ThemeManager(QObject):
         return Qt.ColorScheme.Light
 
     def _apply_color_scheme(self) -> None:
-        current_color_scheme = self._get_theme_color_scheme(
-            self._current_theme)
+        current_color_scheme = self._get_theme_color_scheme(self._current_theme)
         self._current_color_scheme = current_color_scheme
         self._apply_palette_for_color_scheme(current_color_scheme)
         self._emit_theme_changed(self._current_theme, current_color_scheme)
@@ -181,20 +257,23 @@ class ThemeManager(QObject):
     def _notify_theme_observers(
         self,
         current_theme: Type,
-        effective_color_scheme: Qt.ColorScheme
+        effective_color_scheme: Qt.ColorScheme,
     ) -> None:
         alive_observers = []
+
         for observer in self._theme_observers:
             callback = observer()
+
             if callback is not None:
                 callback(current_theme, effective_color_scheme)
                 alive_observers.append(observer)
+
         self._theme_observers = alive_observers
 
     def _emit_theme_changed(
         self,
         current_theme: Type,
-        effective_color_scheme: Qt.ColorScheme
+        effective_color_scheme: Qt.ColorScheme,
     ) -> None:
         theme_state = (current_theme, effective_color_scheme)
 
@@ -208,7 +287,10 @@ class ThemeManager(QObject):
             self._current_theme == type(self).Type.Auto
         )
 
-    def _on_system_color_scheme_changed(self, new_system_color_scheme: Qt.ColorScheme) -> None:
+    def _on_system_color_scheme_changed(
+        self,
+        new_system_color_scheme: Qt.ColorScheme,
+    ) -> None:
         if new_system_color_scheme == Qt.ColorScheme.Unknown:
             new_system_color_scheme = Qt.ColorScheme.Light
 
@@ -221,50 +303,99 @@ class ThemeManager(QObject):
             self._apply_color_scheme()
 
     @staticmethod
-    def _create_palette(
-        window: str,
-        text: str,
-        base: str,
-        alternate_base: str,
-        button: str,
-        button_text: str,
-        highlight: str,
-        highlighted_text: str,
-        mid: str,
-        placeholder_text: str,
-        bright_text: str,
-    ) -> QPalette:
+    def _create_palette(colors: dict[str, str]) -> QPalette:
         palette = QPalette()
 
-        palette.setColor(QPalette.ColorRole.Window, QColor(window))
-        palette.setColor(QPalette.ColorRole.WindowText, QColor(text))
-        palette.setColor(QPalette.ColorRole.Base, QColor(base))
-        palette.setColor(QPalette.ColorRole.AlternateBase, QColor(alternate_base))
-        palette.setColor(QPalette.ColorRole.ToolTipBase, QColor(base))
-        palette.setColor(QPalette.ColorRole.ToolTipText, QColor(text))
-        palette.setColor(QPalette.ColorRole.Text, QColor(text))
-        palette.setColor(QPalette.ColorRole.Button, QColor(button))
-        palette.setColor(QPalette.ColorRole.ButtonText, QColor(button_text))
-        palette.setColor(QPalette.ColorRole.Highlight, QColor(highlight))
-        palette.setColor(QPalette.ColorRole.HighlightedText, QColor(highlighted_text))
-        palette.setColor(QPalette.ColorRole.Mid, QColor(mid))
-        palette.setColor(QPalette.ColorRole.PlaceholderText, QColor(placeholder_text))
-        palette.setColor(QPalette.ColorRole.BrightText, QColor(bright_text))
+        palette.setColor(
+            QPalette.ColorRole.Window,
+            QColor(colors["window"]),
+        )
+        palette.setColor(
+            QPalette.ColorRole.WindowText,
+            QColor(colors["text"]),
+        )
+        palette.setColor(
+            QPalette.ColorRole.Base,
+            QColor(colors["base"]),
+        )
+        palette.setColor(
+            QPalette.ColorRole.AlternateBase,
+            QColor(colors["alternate_base"]),
+        )
+        palette.setColor(
+            QPalette.ColorRole.ToolTipBase,
+            QColor(colors["base"]),
+        )
+        palette.setColor(
+            QPalette.ColorRole.ToolTipText,
+            QColor(colors["text"]),
+        )
+        palette.setColor(
+            QPalette.ColorRole.Text,
+            QColor(colors["text"]),
+        )
+        palette.setColor(
+            QPalette.ColorRole.Button,
+            QColor(colors["button"]),
+        )
+        palette.setColor(
+            QPalette.ColorRole.ButtonText,
+            QColor(colors["button_text"]),
+        )
+        palette.setColor(
+            QPalette.ColorRole.Highlight,
+            QColor(colors["highlight"]),
+        )
+        palette.setColor(
+            QPalette.ColorRole.HighlightedText,
+            QColor(colors["highlighted_text"]),
+        )
+        palette.setColor(
+            QPalette.ColorRole.Mid,
+            QColor(colors["mid"]),
+        )
+        palette.setColor(
+            QPalette.ColorRole.PlaceholderText,
+            QColor(colors["placeholder_text"]),
+        )
+        palette.setColor(
+            QPalette.ColorRole.BrightText,
+            QColor(colors["bright_text"]),
+        )
 
         return palette
 
     @classmethod
-    def _apply_palette_for_color_scheme(cls, color_scheme: Qt.ColorScheme) -> None:
+    def _get_qt_palette_colors(cls, colors: dict[str, str]) -> dict[str, str]:
+        """Returns only colors that can be applied to QPalette."""
+        return {
+            key: value
+            for key, value in colors.items()
+            if key in cls._QT_PALETTE_KEYS
+        }
+
+    @classmethod
+    def _get_palette_colors_for_color_scheme(
+        cls,
+        color_scheme: Qt.ColorScheme,
+    ) -> dict[str, str]:
+        if color_scheme == Qt.ColorScheme.Dark:
+            return cls._DARK_PALETTE_COLORS
+
+        return cls._LIGHT_PALETTE_COLORS
+
+    @classmethod
+    def _apply_palette_for_color_scheme(
+        cls,
+        color_scheme: Qt.ColorScheme,
+    ) -> None:
         app = cls._get_app_instance()
+
         if app is None:
             return
 
-        palette_colors = (
-            cls._DARK_PALETTE_COLORS
-            if color_scheme == Qt.ColorScheme.Dark
-            else cls._LIGHT_PALETTE_COLORS
-        )
+        palette_colors = cls._get_palette_colors_for_color_scheme(color_scheme)
+        qt_palette_colors = cls._get_qt_palette_colors(palette_colors)
 
-        app.setPalette(cls._create_palette(**palette_colors))
+        app.setPalette(cls._create_palette(qt_palette_colors))
         app.setStyleSheet(ThemeStylesheet.get_global_components_stylesheet())
-

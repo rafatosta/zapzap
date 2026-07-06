@@ -3,9 +3,11 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QPushButton
 
+from zapzap.core.theme.theme_manager import ThemeManager
+
 
 class Button(QPushButton):
-    """ZapZap push button styled from the active Qt palette."""
+    """ZapZap push button styled from the active ZapZap palette."""
 
     DEFAULT = "default"
     WARNING = "warning"
@@ -19,13 +21,22 @@ class Button(QPushButton):
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         self._apply_style()
 
+        ThemeManager.instance().theme_changed.connect(self._on_theme_changed)
+
     def set_variant(self, variant):
         """Change button visual variant."""
 
         self.variant = variant
         self._apply_style()
 
-    def _apply_style(self):
+    def _on_theme_changed(self, *_args):
+        """Refresh button style when the application theme changes."""
+
+        self._apply_style()
+
+    def _get_variant_style(self):
+        """Return stylesheet tokens for the current button variant."""
+
         variants = {
             self.DEFAULT: {
                 "border": "palette(mid)",
@@ -35,22 +46,25 @@ class Button(QPushButton):
                 "hover_background": "palette(alternate-base)",
             },
             self.WARNING: {
-                "border": "#d18b00",
-                "background": "#fff3cd",
-                "color": "#7a4f00",
-                "hover_border": "#b87900",
-                "hover_background": "#ffe8a1",
+                "border": ThemeManager.get_color("warning_border"),
+                "background": ThemeManager.get_color("warning"),
+                "color": ThemeManager.get_color("warning_text"),
+                "hover_border": ThemeManager.get_color("warning_hover"),
+                "hover_background": ThemeManager.get_color("warning_hover"),
             },
             self.DANGER: {
-                "border": "#dc3545",
-                "background": "#f8d7da",
-                "color": "#842029",
-                "hover_border": "#b02a37",
-                "hover_background": "#f1aeb5",
+                "border": ThemeManager.get_color("danger_border"),
+                "background": ThemeManager.get_color("danger"),
+                "color": ThemeManager.get_color("danger_text"),
+                "hover_border": ThemeManager.get_color("danger_hover"),
+                "hover_background": ThemeManager.get_color("danger_hover"),
             },
         }
 
-        style = variants.get(self.variant, variants[self.DEFAULT])
+        return variants.get(self.variant, variants[self.DEFAULT])
+
+    def _apply_style(self):
+        style = self._get_variant_style()
 
         self.setStyleSheet(f"""
             QPushButton {{
