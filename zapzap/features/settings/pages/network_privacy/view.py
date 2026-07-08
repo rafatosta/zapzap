@@ -20,8 +20,8 @@ class NetworkPrivacySettingsView(SettingsPage):
 
     def __init__(self, parent=None):
         super().__init__(
-            _("Privacidade e rede"),
-            _("Configure proxy, WebRTC e opções de privacidade."),
+            _("Privacy and Network"),
+            _("Configure proxy, WebRTC and privacy options."),
             parent,
         )
         self._setup_ui()
