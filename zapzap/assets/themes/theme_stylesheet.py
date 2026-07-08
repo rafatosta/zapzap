@@ -140,6 +140,64 @@ class ThemeStylesheet:
         QMenu::right-arrow {
             padding-left: 8px;
         }
+        QMessageBox {
+            background-color: palette(window);
+            color: palette(text);
+            font-size: 14px;
+        }
+        QMessageBox QLabel {
+            background-color: transparent;
+            color: palette(text);
+        }
+        QMessageBox QLabel#qt_msgbox_label,
+        QMessageBox QLabel#qt_msgbox_informativelabel {
+            min-width: 320px;
+            padding: 2px 0;
+        }
+        QMessageBox QDialogButtonBox {
+            background-color: transparent;
+            button-layout: 0;
+        }
+        QMessageBox QPushButton {
+            min-width: 84px;
+            min-height: 26px;
+            border: 1px solid palette(mid);
+            border-radius: 8px;
+            padding: 6px 12px;
+            background-color: palette(button);
+            color: palette(button-text);
+        }
+        QMessageBox QPushButton:hover {
+            border-color: palette(highlight);
+            background-color: palette(alternate-base);
+        }
+        QMessageBox QPushButton:pressed,
+        QMessageBox QPushButton:default {
+            border-color: palette(highlight);
+            background-color: palette(highlight);
+            color: palette(highlighted-text);
+        }
+        QMessageBox QPushButton:disabled {
+            border-color: palette(mid);
+            background-color: palette(window);
+            color: palette(placeholder-text);
+        }
+        QMessageBox QCheckBox {
+            background-color: transparent;
+            color: palette(text);
+            spacing: 8px;
+        }
+        QMessageBox QCheckBox::indicator {
+            width: 16px;
+            height: 16px;
+            border: 1px solid palette(mid);
+            border-radius: 4px;
+            background-color: palette(base);
+        }
+        QMessageBox QCheckBox::indicator:checked {
+            background-color: palette(highlight);
+            border-color: palette(highlight);
+        }
     """
 
     @staticmethod
