@@ -25,21 +25,6 @@ from zapzap.features.settings.shell.settings_view import SettingsView
 class SettingsController(SettingsView):
     """Coordinates settings navigation and shell actions."""
 
-    # Exemplo: (PageGeneral, _("General"))
-    _PAGES = [
-        (AccountsSettingsController, _("Accounts")),
-        (AppearanceSettingsController, _("Appearance")),
-        (NotificationsSettingsController, _("Notifications")),
-        (PermissionsSettingsController, _("Permissions")),
-        (LanguageDownloadSettingsController, _("Language and Download")),
-        (NetworkPrivacySettingsController, _("Privacy and Network")),
-        (AdvancedCustomizationsSettingsController, _("Advanced Customizations")),
-        (PerformanceExperimentalSettingsController, _("Performance experimental")),
-        (DebuggingSettingsController, _("Debugging")),
-        (SystemStartupSettingsController, _("System and startup")),
-        (AboutSettingsController, _("About")),
-    ]
-
     def __init__(self, parent=None):
         super().__init__(parent)
         self.page_buttons = {}
@@ -50,8 +35,25 @@ class SettingsController(SettingsView):
     def __del__(self):
         """Destrói o widget e limpa recursos."""
 
+    def _pages(self):
+        """Return settings pages with labels translated at runtime."""
+        return [
+            (AccountsSettingsController, _("Accounts")),
+            (AppearanceSettingsController, _("Appearance")),
+            (NotificationsSettingsController, _("Notifications")),
+            (PermissionsSettingsController, _("Permissions")),
+            (LanguageDownloadSettingsController, _("Language and Download")),
+            (NetworkPrivacySettingsController, _("Privacy and Network")),
+            (AdvancedCustomizationsSettingsController, _("Advanced Customizations")),
+            (PerformanceExperimentalSettingsController,
+             _("Performance experimental")),
+            (DebuggingSettingsController, _("Debugging")),
+            (SystemStartupSettingsController, _("System and startup")),
+            (AboutSettingsController, _("About")),
+        ]
+
     def _register_pages(self):
-        for page_class, label in self._PAGES:
+        for page_class, label in self._pages():
             self._add_page(
                 page_class(),
                 self.add_navigation_item(label),
