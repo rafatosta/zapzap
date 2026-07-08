@@ -30,6 +30,7 @@ class PerformanceExperimentalSettingsModel:
         "web/background_throttling": True,
         "web/disable_animations": False,
         "web/disable_pinch": False,
+        "web/ctrl_arrow_visual_navigation_fix": True,
     }
 
     CACHE_TYPES = [

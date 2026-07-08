@@ -98,7 +98,7 @@ zapzap = [
   "po/*/LC_MESSAGES/*.mo",
   "js/*",
   "extensions/*",
-  "features/browser/webengine/scripts/*.js",
+  "features/browser/web/scripts/*.js",
   "assets/themes/*.css"
 ]
 

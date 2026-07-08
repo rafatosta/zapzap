@@ -24,6 +24,7 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
         "web/background_throttling": "background_throttling",
         "web/disable_animations": "disable_animations",
         "web/disable_pinch": "disable_pinch",
+        "web/ctrl_arrow_visual_navigation_fix": "ctrl_arrow_visual_navigation_fix",
     }
 
     def __init__(self, parent=None):
@@ -179,6 +180,13 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
             _(
                 "Disables pinch-to-zoom gesture on touchpads.\n"
                 "Useful if accidental zooming occurs during scrolling."
+            )
+        )
+        self.ctrl_arrow_visual_navigation_fix.setToolTip(
+            _(
+                "Uses Selection.modify() with visual directions for Ctrl+Arrow word navigation.\n"
+                "This fixes reversed cursor movement in RTL text inside WhatsApp Web message fields.\n\n"
+                "Restart or reload WhatsApp Web after changing this option."
             )
         )
         self.btn_restore.setToolTip(

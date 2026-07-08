@@ -113,8 +113,10 @@ class WebView(QWebEngineView):
         self._cache_path = self.profile.cachePath()
         self._storage_path = self.profile.persistentStoragePath()
 
-        selected_ua_name = SettingsManager.get(f"{self.user.id}/user_agent", "Default")
-        ua_string = self.USER_AGENTS.get(selected_ua_name, self.USER_AGENTS["Default"])
+        selected_ua_name = SettingsManager.get(
+            f"{self.user.id}/user_agent", "Default")
+        ua_string = self.USER_AGENTS.get(
+            selected_ua_name, self.USER_AGENTS["Default"])
         self.profile.setHttpUserAgent(ua_string)
 
         self.profile.downloadRequested.connect(
@@ -142,9 +144,34 @@ class WebView(QWebEngineView):
             self.QWEBENGINE_CACHE_TYPES.get(SettingsManager.get(
                 "performance/cache_type", "DiskHttpCache")))
 
+        self._install_ctrl_arrow_visual_navigation_fix()
+
         # Instala o handler de crash específico para este WebView
         crash_handler.register_profile(self.profile)
         self._inject_webrtc_shield()
+
+    def _install_ctrl_arrow_visual_navigation_fix(self):
+        if SettingsManager.get("web/ctrl_arrow_visual_navigation_fix", True):
+            try:
+                base_dir = os.path.dirname(__file__)
+                js_path = os.path.join(
+                    base_dir, "scripts", "zapzap_ctrl_arrow_visual_navigation_fix.js")
+                with open(js_path, "r", encoding="utf-8") as f:
+                    js_code = f.read()
+
+                script = QWebEngineScript()
+                script.setName("zapzap_ctrl_arrow_visual_navigation_fix")
+                script.setSourceCode(js_code)
+                script.setInjectionPoint(
+                    QWebEngineScript.InjectionPoint.DocumentCreation)
+                script.setRunsOnSubFrames(False)
+                script.setWorldId(QWebEngineScript.ScriptWorldId.MainWorld)
+                script.setEnabled(True)
+
+                self.profile.scripts().insert(script)
+
+            except Exception as e:
+                print(f"Error injecting ctrl_arrow_visual_navigation_fix: {e}")
 
     def _inject_webrtc_shield(self):
         """Injeta script para prevenir vazamento de IP via WebRTC."""
@@ -157,7 +184,8 @@ class WebView(QWebEngineView):
 
                 script = QWebEngineScript()
                 script.setName("webrtc_shield")
-                script.setInjectionPoint(QWebEngineScript.InjectionPoint.DocumentCreation)
+                script.setInjectionPoint(
+                    QWebEngineScript.InjectionPoint.DocumentCreation)
                 script.setRunsOnSubFrames(True)
                 script.setSourceCode(js_code)
                 script.setWorldId(QWebEngineScript.ScriptWorldId.MainWorld)
@@ -181,12 +209,14 @@ class WebView(QWebEngineView):
             raise RuntimeError(file.errorString())
         js_code = QTextStream(file).readAll()
 
-        pattern = re.compile("|".join(re.escape(key) for key in placeholders.keys()))
+        pattern = re.compile("|".join(re.escape(key)
+                             for key in placeholders.keys()))
         js_code = pattern.sub(lambda m: placeholders[m.group(0)], js_code)
         try:
             script = QWebEngineScript()
             script.setName("zapzap_web_theme_controller")
-            script.setInjectionPoint(QWebEngineScript.InjectionPoint.DocumentReady)
+            script.setInjectionPoint(
+                QWebEngineScript.InjectionPoint.DocumentReady)
             script.setRunsOnSubFrames(False)
             script.setSourceCode(js_code)
             script.setWorldId(QWebEngineScript.ScriptWorldId.MainWorld)
@@ -215,7 +245,8 @@ class WebView(QWebEngineView):
             @pyqtSlot(str)
             def on_theme_controller_failure(self, message: str):
                 if self._webview.whatsapp_page:
-                    self._webview.whatsapp_page.on_apply_theme_result(False, message)
+                    self._webview.whatsapp_page.on_apply_theme_result(
+                        False, message)
                     self._webview.whatsapp_page.fall_back_to_force_dark_mode()
 
             def __init__(self, webview):
@@ -252,14 +283,16 @@ class WebView(QWebEngineView):
         """Configura a página e carrega a URL inicial."""
         self.whatsapp_page = PageController(self.profile, parent=self)
         self.whatsapp_page.user_id = self.user.id
-        self.whatsapp_page.renderProcessTerminated.connect(self._on_render_crash)
+        self.whatsapp_page.renderProcessTerminated.connect(
+            self._on_render_crash)
         self.load_page()
         self._inject_web_theme_controller()
 
     def _on_render_crash(self, terminationStatus, exitCode):
         if self._shutting_down or not self.user.enable or not self.whatsapp_page:
             return
-        print(f"Tab renderer crashed (status={terminationStatus}, code={exitCode}). Reloading...")
+        print(
+            f"Tab renderer crashed (status={terminationStatus}, code={exitCode}). Reloading...")
         self._render_crash_reload_timer.start(1000)
 
     def contextMenuEvent(self, event):
@@ -475,7 +508,7 @@ class WebView(QWebEngineView):
             if timer:
                 timer.stop()
 
-    def _teardown_webengine(self, clear_cache: bool=False):
+    def _teardown_webengine(self, clear_cache: bool = False):
         """Destrói objetos Qt associados à WebEngine de forma ordenada."""
         self._stop_timers()
         self._save_zoom_factor()

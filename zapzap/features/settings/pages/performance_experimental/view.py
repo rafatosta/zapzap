@@ -190,15 +190,25 @@ class PerformanceExperimentalSettingsView(SettingsPage):
             _("Disable pinch-to-zoom"),
             _("Useful if accidental zooming occurs during scrolling."),
         )
+        self.ctrl_arrow_visual_navigation_fix_row = SettingsSwitchRow(
+            _("Fix Ctrl+Arrow cursor movement"),
+            _(
+                "Use visual word navigation in editable fields to fix RTL text cursor movement."
+            ),
+        )
         self.scroll_animator = self.scroll_animator_row.checkbox
         self.background_throttling = self.background_throttling_row.checkbox
         self.disable_animations = self.disable_animations_row.checkbox
         self.disable_pinch = self.disable_pinch_row.checkbox
+        self.ctrl_arrow_visual_navigation_fix = (
+            self.ctrl_arrow_visual_navigation_fix_row.checkbox
+        )
         for row in (
             self.scroll_animator_row,
             self.background_throttling_row,
             self.disable_animations_row,
             self.disable_pinch_row,
+            self.ctrl_arrow_visual_navigation_fix_row,
         ):
             card.add_row(row)
         section.add_card(card)
