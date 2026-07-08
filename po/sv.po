@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-08 10:23-0300\n"
+"POT-Creation-Date: 2026-07-08 15:29-0300\n"
 "PO-Revision-Date: 2026-03-09 22:23+0100\n"
 "Last-Translator: Dennis Cederberg "
 "<9393069+cederberget@users.noreply.github.com>\n"
@@ -895,7 +895,7 @@ msgid "Choose the customization scope."
 msgstr "Anpassningar"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:47
-#: zapzap/features/browser/web/web_view.py:534
+#: zapzap/features/browser/web/web_view.py:567
 msgid "Account"
 msgstr "Konton"
 
@@ -1341,7 +1341,7 @@ msgstr ""
 #: zapzap/features/settings/pages/language_downloads/view.py:70
 #: zapzap/features/settings/pages/language_downloads/view.py:100
 #: zapzap/features/settings/pages/network_privacy/view.py:138
-#: zapzap/features/settings/pages/performance_experimental/view.py:216
+#: zapzap/features/settings/pages/performance_experimental/view.py:226
 msgid "Restore"
 msgstr "Återställ"
 
@@ -1399,7 +1399,7 @@ msgid "Select and copy this command in your terminal"
 msgstr "Markera och kopiera detta kommando till din terminal"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:125
-#: zapzap/features/browser/web/web_view.py:282
+#: zapzap/features/browser/web/web_view.py:315
 msgid "Copy"
 msgstr "Kopiera"
 
@@ -1647,161 +1647,6 @@ msgstr "Göm donationsnotis"
 msgid "Show occasional support messages from ZapZap."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:84
-msgid ""
-"Defines where the HTTP cache will be stored.\n"
-"Disk: faster after restart.\n"
-"Memory: faster, but lost on exit.\n"
-"No cache: lower disk usage, slower."
-msgstr ""
-"Bestämmer var HTTP-cachen lagras.\n"
-"Disk: Snabbare efter omstart.\n"
-"Minne (Memory): Snabbare, men förloras vid programavslut\n"
-"Ingen cache (No Cache): Lägre diskanvändning, långsammare."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:91
-msgid ""
-"Maximum HTTP cache size.\n"
-"0 MB uses the default Chromium behavior."
-msgstr ""
-"Maximal storlek på HTTP-cache.\n"
-"0 MB är standardbeteende för Chromium."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:94
-msgid ""
-"Keeps cookies between restarts.\n"
-"Disabling may cause frequent logouts."
-msgstr ""
-"Behåller cookies mellan omstarter.\n"
-"Inaktivering kan orsaka frekventa utloggningar."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:98
-msgid ""
-"Runs GPU and rendering in the same process.\n"
-"May reduce memory usage, but can cause instability."
-msgstr ""
-"Kör grafik och rendering i samma process.\n"
-"Kan reducera minnesanvändning, men kan orsaka instabilitet."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:104
-msgid ""
-"Disables GPU hardware acceleration.\n"
-"Recommended only for old GPUs or problematic drivers."
-msgstr ""
-"Inaktiverar hårdvaruaccelerering av grafik.\n"
-"Rekommenderas endast för gamla grafikkort eller struliga drivrutiner."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:110
-msgid ""
-"Disables GPU VSync.\n"
-"May reduce latency, but can increase power usage and tearing."
-msgstr ""
-"Inaktiverar VSync för grafik.\n"
-"Kan reducera latens, men kan öka energianvändning och tearing."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:116
-msgid ""
-"Forces software rendering.\n"
-"Use only in case of graphical issues.\n"
-"May significantly reduce performance."
-msgstr ""
-"Framtvingar mjukvarurendering.\n"
-"Använd endast vid problem med grafik.\n"
-"Kan ha stor påverkan på prestanda."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:123
-msgid ""
-"Forces the GBM backend on Wayland.\n"
-"Known to fix severe typing lag on NVIDIA drivers."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:129
-msgid ""
-"Disables the accessibility bus.\n"
-"Known to fix typing lag or CPU spikes in QtWebEngine."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:135
-msgid ""
-"Runs the entire Chromium engine in a single process.\n"
-"Reduces memory usage, but may cause crashes.\n"
-"Experimental usage."
-msgstr ""
-"Kör hela Chromium-motorn i en enda process.\n"
-"Reducerar minnesanvändning, men kan orsaka krascher.\n"
-"Experimentell användning."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:142
-msgid ""
-"Uses a separate process per site.\n"
-"Safer and more stable.\n"
-"May increase memory usage."
-msgstr ""
-"Använd en separat process per sajt.\n"
-"Säkrare och mer stabilt.\n"
-"Kan öka minnesanvändningen."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:149
-msgid ""
-"JavaScript (V8) memory limit.\n"
-"Automatic is the safest option.\n"
-"Higher values allow heavier pages.\n"
-"\n"
-"Restart required."
-msgstr ""
-"Minnesgräns för JavaScript (V8).\n"
-"Automatiskt är det säkraste valet.\n"
-"Högre värden tillåter tyngre sidor.\n"
-"\n"
-"Omstart krävs."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:157
-msgid ""
-"Enables V8 predictable garbage collection schedule.\n"
-"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
-"QTWEBENGINE_CHROMIUM_FLAGS.\n"
-"\n"
-"Experimental option. Restart required."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:164
-msgid ""
-"Enables smooth scrolling animations.\n"
-"Disabling may reduce CPU usage."
-msgstr ""
-"Aktiverar mjuka rullningsanimationer.\n"
-"Inaktivering kan reducera processoranvändning."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:168
-msgid ""
-"Allows background tabs to reduce resource usage.\n"
-"Disabling keeps timers active, but uses more resources."
-msgstr ""
-"Tillåter bakgrundsflikar för att reducera resursanvändning.\n"
-"Inaktivering behåller timers aktiva, men använder mer resurser."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:174
-msgid ""
-"Disables CSS and JavaScript animations.\n"
-"May improve performance on slower machines."
-msgstr ""
-"Inaktiverar CSS- och JavaScript-animationer.\n"
-"Kan förbättra prestandan på långsamma enheter."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:180
-msgid ""
-"Disables pinch-to-zoom gesture on touchpads.\n"
-"Useful if accidental zooming occurs during scrolling."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:185
-msgid ""
-"Restores all performance settings\n"
-"to safe default values."
-msgstr ""
-"Återställer alla prestandainställningar\n"
-"till säkra standardvärden."
-
 #: zapzap/features/settings/pages/performance_experimental/view.py:20
 msgid "Ajuste cache, GPU, processos e comportamento avançado."
 msgstr ""
@@ -2034,25 +1879,200 @@ msgstr ""
 msgid "Useful if accidental zooming occurs during scrolling."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:209
+#: zapzap/features/settings/pages/performance_experimental/view.py:194
+msgid "Fix Ctrl+Arrow cursor movement"
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:196
+msgid ""
+"Use visual word navigation in editable fields to fix RTL text cursor "
+"movement."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:219
 msgid "Restore defaults"
 msgstr "Återställ till standard"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:210
+#: zapzap/features/settings/pages/performance_experimental/view.py:220
 #, fuzzy
 msgid "Return performance settings to safe defaults."
 msgstr ""
 "Återställer alla prestandainställningar\n"
 "till säkra standardvärden."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:214
+#: zapzap/features/settings/pages/performance_experimental/view.py:224
 #, fuzzy
 msgid "Restore performance defaults"
 msgstr "Återställ till standard"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:215
+#: zapzap/features/settings/pages/performance_experimental/view.py:225
 #, fuzzy
 msgid "Restores all performance settings to safe default values."
+msgstr ""
+"Återställer alla prestandainställningar\n"
+"till säkra standardvärden."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:85
+msgid ""
+"Defines where the HTTP cache will be stored.\n"
+"Disk: faster after restart.\n"
+"Memory: faster, but lost on exit.\n"
+"No cache: lower disk usage, slower."
+msgstr ""
+"Bestämmer var HTTP-cachen lagras.\n"
+"Disk: Snabbare efter omstart.\n"
+"Minne (Memory): Snabbare, men förloras vid programavslut\n"
+"Ingen cache (No Cache): Lägre diskanvändning, långsammare."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:92
+msgid ""
+"Maximum HTTP cache size.\n"
+"0 MB uses the default Chromium behavior."
+msgstr ""
+"Maximal storlek på HTTP-cache.\n"
+"0 MB är standardbeteende för Chromium."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:95
+msgid ""
+"Keeps cookies between restarts.\n"
+"Disabling may cause frequent logouts."
+msgstr ""
+"Behåller cookies mellan omstarter.\n"
+"Inaktivering kan orsaka frekventa utloggningar."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:99
+msgid ""
+"Runs GPU and rendering in the same process.\n"
+"May reduce memory usage, but can cause instability."
+msgstr ""
+"Kör grafik och rendering i samma process.\n"
+"Kan reducera minnesanvändning, men kan orsaka instabilitet."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:105
+msgid ""
+"Disables GPU hardware acceleration.\n"
+"Recommended only for old GPUs or problematic drivers."
+msgstr ""
+"Inaktiverar hårdvaruaccelerering av grafik.\n"
+"Rekommenderas endast för gamla grafikkort eller struliga drivrutiner."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:111
+msgid ""
+"Disables GPU VSync.\n"
+"May reduce latency, but can increase power usage and tearing."
+msgstr ""
+"Inaktiverar VSync för grafik.\n"
+"Kan reducera latens, men kan öka energianvändning och tearing."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:117
+msgid ""
+"Forces software rendering.\n"
+"Use only in case of graphical issues.\n"
+"May significantly reduce performance."
+msgstr ""
+"Framtvingar mjukvarurendering.\n"
+"Använd endast vid problem med grafik.\n"
+"Kan ha stor påverkan på prestanda."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:124
+msgid ""
+"Forces the GBM backend on Wayland.\n"
+"Known to fix severe typing lag on NVIDIA drivers."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:130
+msgid ""
+"Disables the accessibility bus.\n"
+"Known to fix typing lag or CPU spikes in QtWebEngine."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:136
+msgid ""
+"Runs the entire Chromium engine in a single process.\n"
+"Reduces memory usage, but may cause crashes.\n"
+"Experimental usage."
+msgstr ""
+"Kör hela Chromium-motorn i en enda process.\n"
+"Reducerar minnesanvändning, men kan orsaka krascher.\n"
+"Experimentell användning."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:143
+msgid ""
+"Uses a separate process per site.\n"
+"Safer and more stable.\n"
+"May increase memory usage."
+msgstr ""
+"Använd en separat process per sajt.\n"
+"Säkrare och mer stabilt.\n"
+"Kan öka minnesanvändningen."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:150
+msgid ""
+"JavaScript (V8) memory limit.\n"
+"Automatic is the safest option.\n"
+"Higher values allow heavier pages.\n"
+"\n"
+"Restart required."
+msgstr ""
+"Minnesgräns för JavaScript (V8).\n"
+"Automatiskt är det säkraste valet.\n"
+"Högre värden tillåter tyngre sidor.\n"
+"\n"
+"Omstart krävs."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:158
+msgid ""
+"Enables V8 predictable garbage collection schedule.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"\n"
+"Experimental option. Restart required."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:165
+msgid ""
+"Enables smooth scrolling animations.\n"
+"Disabling may reduce CPU usage."
+msgstr ""
+"Aktiverar mjuka rullningsanimationer.\n"
+"Inaktivering kan reducera processoranvändning."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:169
+msgid ""
+"Allows background tabs to reduce resource usage.\n"
+"Disabling keeps timers active, but uses more resources."
+msgstr ""
+"Tillåter bakgrundsflikar för att reducera resursanvändning.\n"
+"Inaktivering behåller timers aktiva, men använder mer resurser."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:175
+msgid ""
+"Disables CSS and JavaScript animations.\n"
+"May improve performance on slower machines."
+msgstr ""
+"Inaktiverar CSS- och JavaScript-animationer.\n"
+"Kan förbättra prestandan på långsamma enheter."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:181
+msgid ""
+"Disables pinch-to-zoom gesture on touchpads.\n"
+"Useful if accidental zooming occurs during scrolling."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:187
+msgid ""
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
+"navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
+"fields.\n"
+"\n"
+"Restart or reload WhatsApp Web after changing this option."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:193
+msgid ""
+"Restores all performance settings\n"
+"to safe default values."
 msgstr ""
 "Återställer alla prestandainställningar\n"
 "till säkra standardvärden."
@@ -2384,51 +2404,51 @@ msgid ""
 "Allow?"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:281
+#: zapzap/features/browser/web/web_view.py:314
 msgid "Undo"
 msgstr "Ångra"
 
-#: zapzap/features/browser/web/web_view.py:281
+#: zapzap/features/browser/web/web_view.py:314
 msgid "Redo"
 msgstr "Gör om"
 
-#: zapzap/features/browser/web/web_view.py:281
+#: zapzap/features/browser/web/web_view.py:314
 msgid "Cut"
 msgstr "Klipp ut"
 
-#: zapzap/features/browser/web/web_view.py:282
+#: zapzap/features/browser/web/web_view.py:315
 msgid "Paste"
 msgstr "Klistra in"
 
-#: zapzap/features/browser/web/web_view.py:282
+#: zapzap/features/browser/web/web_view.py:315
 #, fuzzy
 msgid "Select all"
 msgstr "Markera allt"
 
-#: zapzap/features/browser/web/web_view.py:283
+#: zapzap/features/browser/web/web_view.py:316
 #, fuzzy
 msgid "Save image"
 msgstr "Spara fil"
 
-#: zapzap/features/browser/web/web_view.py:283
+#: zapzap/features/browser/web/web_view.py:316
 #, fuzzy
 msgid "Copy image"
 msgstr "Kopiera kommando"
 
-#: zapzap/features/browser/web/web_view.py:284
-#: zapzap/features/browser/web/web_view.py:314
+#: zapzap/features/browser/web/web_view.py:317
+#: zapzap/features/browser/web/web_view.py:347
 msgid "Copy link address"
 msgstr "Kopiera länkadress"
 
-#: zapzap/features/browser/web/web_view.py:334
+#: zapzap/features/browser/web/web_view.py:367
 msgid "Check Spelling"
 msgstr "Kontrollera stavning"
 
-#: zapzap/features/browser/web/web_view.py:342
+#: zapzap/features/browser/web/web_view.py:375
 msgid "Select Language"
 msgstr "Välj språk"
 
-#: zapzap/features/browser/web/web_view.py:536
+#: zapzap/features/browser/web/web_view.py:569
 #, fuzzy, python-brace-format
 msgid "DevTools - {}"
 msgstr "Öppna utvecklingsverktyg"
