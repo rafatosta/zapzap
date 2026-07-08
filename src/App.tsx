@@ -5,6 +5,7 @@ import Donate from "./sections/Donate";
 import HashScroll from "./components/HashScroll";
 import { Header } from "./components/Header";
 import Footer from "./components/Footeer";
+import Screenshots from "./sections/Screenshots";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <main>
         <Hero />
         <Features />
+        <Screenshots />
         <Download />
         <Donate />
       </main>

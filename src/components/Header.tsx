@@ -5,6 +5,7 @@ import icon from '/icon.svg'
 
 const nav = [
   { label: "Features", href: "#features" },
+  { label: "Screenshots", href: "#screenshots" },
   { label: "Download", href: "#download" },
   { label: "Donate", href: "#donate" },
   { label: "GitHub", href: "https://github.com/rafatosta/zapzap" },
