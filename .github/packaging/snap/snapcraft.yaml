@@ -28,17 +28,17 @@ apps:
       QTWEBENGINE_DICTIONARIES_PATH: $SNAP/usr/share/zapzap/qtwebengine_dictionaries
       XKB_CONFIG_ROOT: $SNAP/usr/share/X11/xkb
     plugs:
-      - network
-      - network-bind
-      - desktop
-      - desktop-legacy
-      - wayland
-      - x11
-      - opengl
-      - audio-playback
-      - pulseaudio
-      - home
-      - removable-media
+    - network
+    - network-bind
+    - desktop
+    - desktop-legacy
+    - wayland
+    - x11
+    - opengl
+    - audio-playback
+    - audio-record
+    - home
+    - removable-media
 
 parts:
   zapzap:
@@ -58,6 +58,9 @@ parts:
       - libqt6svg6
       - qt6-wayland
       - xkb-data
+      - libpulse0
+      - libasound2t64
+      - libasound2-plugins
     override-build: |
       set -eu
       cd "$CRAFT_PART_SRC"
