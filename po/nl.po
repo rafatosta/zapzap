@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-06 13:56-0300\n"
+"POT-Creation-Date: 2026-07-08 10:23-0300\n"
 "PO-Revision-Date: 2025-02-09 11:34+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -441,58 +441,59 @@ msgstr "Nieuw gesprek op basis van telefoonnummer"
 msgid "New account"
 msgstr "Nieuw account"
 
-#: zapzap/features/settings/shell/settings_controller.py:30
+#: zapzap/features/settings/shell/settings_controller.py:41
 #: zapzap/features/settings/pages/accounts/view.py:18
 msgid "Accounts"
 msgstr "Accounts"
 
-#: zapzap/features/settings/shell/settings_controller.py:31
+#: zapzap/features/settings/shell/settings_controller.py:42
 #: zapzap/features/settings/pages/appearance/view.py:19
 msgid "Appearance"
 msgstr "Vormgeving"
 
-#: zapzap/features/settings/shell/settings_controller.py:32
+#: zapzap/features/settings/shell/settings_controller.py:43
 #: zapzap/features/settings/pages/notifications/view.py:21
 msgid "Notifications"
 msgstr "Meldingen"
 
-#: zapzap/features/settings/shell/settings_controller.py:33
+#: zapzap/features/settings/shell/settings_controller.py:44
 #: zapzap/features/settings/pages/permissions/view.py:17
 #: zapzap/features/settings/pages/permissions/view.py:28
 msgid "Permissions"
 msgstr ""
 
-#: zapzap/features/settings/shell/settings_controller.py:34
-#: zapzap/features/settings/pages/language_downloads/view.py:24
-msgid "Language and Download"
-msgstr ""
-
-#: zapzap/features/settings/shell/settings_controller.py:35
-msgid "Privacy and Network"
-msgstr ""
-
-#: zapzap/features/settings/shell/settings_controller.py:36
-msgid "Advanced Customizations"
-msgstr ""
-
-#: zapzap/features/settings/shell/settings_controller.py:37
-#: zapzap/features/settings/pages/performance_experimental/view.py:19
-#, fuzzy
-msgid "Performance experimental"
-msgstr "Prestaties (experimenteel)"
-
-#: zapzap/features/settings/shell/settings_controller.py:38
-#: zapzap/features/settings/pages/debugging/view.py:21
-msgid "Debugging"
-msgstr ""
-
-#: zapzap/features/settings/shell/settings_controller.py:39
+#: zapzap/features/settings/shell/settings_controller.py:45
 #: zapzap/features/settings/pages/system_startup/view.py:18
 #, fuzzy
 msgid "System and startup"
 msgstr "Standaardwaarden herstellen"
 
-#: zapzap/features/settings/shell/settings_controller.py:40
+#: zapzap/features/settings/shell/settings_controller.py:46
+#: zapzap/features/settings/pages/language_downloads/view.py:24
+msgid "Language and Download"
+msgstr ""
+
+#: zapzap/features/settings/shell/settings_controller.py:47
+#: zapzap/features/settings/pages/network_privacy/view.py:23
+msgid "Privacy and Network"
+msgstr ""
+
+#: zapzap/features/settings/shell/settings_controller.py:48
+msgid "Advanced Customizations"
+msgstr ""
+
+#: zapzap/features/settings/shell/settings_controller.py:50
+#: zapzap/features/settings/pages/performance_experimental/view.py:19
+#, fuzzy
+msgid "Performance experimental"
+msgstr "Prestaties (experimenteel)"
+
+#: zapzap/features/settings/shell/settings_controller.py:51
+#: zapzap/features/settings/pages/debugging/view.py:21
+msgid "Debugging"
+msgstr ""
+
+#: zapzap/features/settings/shell/settings_controller.py:53
 #: zapzap/features/settings/pages/about/view.py:22
 #: zapzap/ui/main_window/main_window_view.py:168
 msgid "About"
@@ -1408,12 +1409,8 @@ msgstr ""
 msgid "Global (Default)"
 msgstr "Standaard"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:23
-msgid "Privacidade e rede"
-msgstr ""
-
 #: zapzap/features/settings/pages/network_privacy/view.py:24
-msgid "Configure proxy, WebRTC e opções de privacidade."
+msgid "Configure proxy, WebRTC and privacy options."
 msgstr ""
 
 #: zapzap/features/settings/pages/network_privacy/view.py:39
