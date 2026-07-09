@@ -59,6 +59,7 @@ packages = [
   "zapzap.features.browser.web",
   "zapzap.features.settings",
   "zapzap.features.settings.components",
+  "zapzap.features.settings.components.card_user",
   "zapzap.features.settings.shell",
   "zapzap.features.settings.pages",
   "zapzap.features.settings.pages.about",
