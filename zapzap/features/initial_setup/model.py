@@ -14,18 +14,52 @@ from zapzap.features.tray.sys_tray_manager import SysTrayManager
 
 
 class InitialSetupModel:
-    """Centralizes settings read/write operations used by onboarding."""
+    """Centralizes settings read/write operations used by onboarding.
 
-    COMPLETED_KEY = "onboarding/initial_setup_completed"
+    This model hides SettingsManager keys from the initial setup controller.
+    Controllers should access setup values through semantic properties and
+    methods instead of passing raw persistence keys around.
+    """
+
+    _COMPLETED = ("onboarding/initial_setup_completed", False)
+    _THEME = ("system/theme", ThemeManager.Type.Auto.value)
+    _NOTIFICATIONS_ENABLED = ("notification/app", True)
+    _NOTIFICATION_SHOW_PHOTO = ("notification/show_photo", True)
+    _NOTIFICATION_SHOW_NAME = ("notification/show_name", True)
+    _NOTIFICATION_SHOW_MESSAGE_PREVIEW = ("notification/show_msg", True)
+    _TRAY_ICON = ("system/tray_icon", True)
+    _TRAY_NOTIFICATION_COUNTER = ("system/notificationCounter", False)
+    _QUIT_IN_CLOSE = ("system/quit_in_close", False)
+    _CONFIRM_ON_CLOSE = ("system/confirm_on_close", False)
+    _START_SYSTEM = ("system/start_system", False)
+    _START_BACKGROUND = ("system/start_background", False)
+    _SPELLCHECKERS = ("system/spellCheckers", True)
+    _WEBRTC_SHIELD = ("privacy/webrtc_shield", False)
+
     FLATPAK_OVERRIDE_COMMAND = "flatpak override --user --filesystem=home com.rtosta.zapzap"
 
     @classmethod
     def is_completed(cls) -> bool:
-        return bool(SettingsManager.get(cls.COMPLETED_KEY, False))
+        return cls._get_bool(cls._COMPLETED)
 
     @classmethod
     def mark_completed(cls) -> None:
-        SettingsManager.set(cls.COMPLETED_KEY, True)
+        cls._set_bool(cls._COMPLETED, True)
+
+    @staticmethod
+    def _get_bool(setting: tuple[str, bool]) -> bool:
+        key, default = setting
+        return bool(SettingsManager.get(key, default))
+
+    @staticmethod
+    def _set_bool(setting: tuple[str, bool], value: bool) -> None:
+        key, _default = setting
+        SettingsManager.set(key, bool(value))
+
+    @staticmethod
+    def _get_str(setting: tuple[str, str]) -> str:
+        key, default = setting
+        return str(SettingsManager.get(key, default))
 
     def is_flatpak(self) -> bool:
         return SetupManager._is_flatpak
@@ -41,23 +75,110 @@ class InitialSetupModel:
         TranslationManager.apply()
 
     def current_theme(self) -> str:
-        return str(SettingsManager.get("system/theme", ThemeManager.Type.Auto.value))
+        return self._get_str(self._THEME)
 
     def set_theme(self, theme: str) -> None:
         ThemeManager.set_theme(theme)
 
-    def get_bool(self, key: str, default: bool = False) -> bool:
-        return bool(SettingsManager.get(key, default))
+    @property
+    def notifications_enabled(self) -> bool:
+        return self._get_bool(self._NOTIFICATIONS_ENABLED)
 
-    def set_bool(self, key: str, value: bool) -> None:
-        SettingsManager.set(key, bool(value))
+    @notifications_enabled.setter
+    def notifications_enabled(self, value: bool) -> None:
+        self._set_bool(self._NOTIFICATIONS_ENABLED, value)
+
+    @property
+    def notification_show_photo(self) -> bool:
+        return self._get_bool(self._NOTIFICATION_SHOW_PHOTO)
+
+    @notification_show_photo.setter
+    def notification_show_photo(self, value: bool) -> None:
+        self._set_bool(self._NOTIFICATION_SHOW_PHOTO, value)
+
+    @property
+    def notification_show_name(self) -> bool:
+        return self._get_bool(self._NOTIFICATION_SHOW_NAME)
+
+    @notification_show_name.setter
+    def notification_show_name(self, value: bool) -> None:
+        self._set_bool(self._NOTIFICATION_SHOW_NAME, value)
+
+    @property
+    def notification_show_message_preview(self) -> bool:
+        return self._get_bool(self._NOTIFICATION_SHOW_MESSAGE_PREVIEW)
+
+    @notification_show_message_preview.setter
+    def notification_show_message_preview(self, value: bool) -> None:
+        self._set_bool(self._NOTIFICATION_SHOW_MESSAGE_PREVIEW, value)
+
+    @property
+    def tray_icon_enabled(self) -> bool:
+        return self._get_bool(self._TRAY_ICON)
+
+    @tray_icon_enabled.setter
+    def tray_icon_enabled(self, value: bool) -> None:
+        SysTrayManager.set_state(bool(value))
+
+    @property
+    def tray_notification_counter(self) -> bool:
+        return self._get_bool(self._TRAY_NOTIFICATION_COUNTER)
+
+    @tray_notification_counter.setter
+    def tray_notification_counter(self, value: bool) -> None:
+        self._set_bool(self._TRAY_NOTIFICATION_COUNTER, value)
+
+    @property
+    def keep_running_in_background(self) -> bool:
+        return not self._get_bool(self._QUIT_IN_CLOSE)
+
+    @keep_running_in_background.setter
+    def keep_running_in_background(self, value: bool) -> None:
+        self._set_bool(self._QUIT_IN_CLOSE, not value)
+
+    @property
+    def confirm_on_close(self) -> bool:
+        return self._get_bool(self._CONFIRM_ON_CLOSE)
+
+    @confirm_on_close.setter
+    def confirm_on_close(self, value: bool) -> None:
+        self._set_bool(self._CONFIRM_ON_CLOSE, value)
 
     def set_autostart(self, enabled: bool) -> None:
-        SettingsManager.set("system/start_system", bool(enabled))
+        self._set_bool(self._START_SYSTEM, enabled)
         AutostartManager.create_desktop_file(bool(enabled))
 
-    def set_tray_icon(self, enabled: bool) -> None:
-        SysTrayManager.set_state(bool(enabled))
+    @property
+    def autostart_enabled(self) -> bool:
+        return self._get_bool(self._START_SYSTEM)
+
+    @autostart_enabled.setter
+    def autostart_enabled(self, value: bool) -> None:
+        self.set_autostart(value)
+
+    @property
+    def start_minimized(self) -> bool:
+        return self._get_bool(self._START_BACKGROUND)
+
+    @start_minimized.setter
+    def start_minimized(self, value: bool) -> None:
+        self._set_bool(self._START_BACKGROUND, value)
+
+    @property
+    def spellcheck_enabled(self) -> bool:
+        return self._get_bool(self._SPELLCHECKERS)
+
+    @spellcheck_enabled.setter
+    def spellcheck_enabled(self, value: bool) -> None:
+        self._set_bool(self._SPELLCHECKERS, value)
+
+    @property
+    def webrtc_shield_enabled(self) -> bool:
+        return self._get_bool(self._WEBRTC_SHIELD)
+
+    @webrtc_shield_enabled.setter
+    def webrtc_shield_enabled(self, value: bool) -> None:
+        self._set_bool(self._WEBRTC_SHIELD, value)
 
     def refresh_tray(self) -> None:
         SysTrayManager.refresh()
@@ -82,3 +203,21 @@ class InitialSetupModel:
 
     def set_permission(self, permission_id: str, enabled: bool) -> None:
         PermissionsManager.set_auto_grant(permission_id, enabled)
+
+    def microphone_permission_enabled(self) -> bool:
+        return PermissionsManager.get_auto_grant("microphone")
+
+    def set_microphone_permission(self, enabled: bool) -> None:
+        self.set_permission("microphone", enabled)
+
+    def camera_permission_enabled(self) -> bool:
+        return PermissionsManager.get_auto_grant("camera")
+
+    def set_camera_permission(self, enabled: bool) -> None:
+        self.set_permission("camera", enabled)
+
+    def screen_contents_permission_enabled(self) -> bool:
+        return PermissionsManager.get_auto_grant("screen_contents")
+
+    def set_screen_contents_permission(self, enabled: bool) -> None:
+        self.set_permission("screen_contents", enabled)

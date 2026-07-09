@@ -56,51 +56,51 @@ class InitialSetupController(InitialSetupView):
         self._load_languages()
         self._load_theme()
         self.notifications_enabled.setChecked(
-            self.model.get_bool("notification/app", True)
+            self.model.notifications_enabled
         )
         self.notify_photo.setChecked(
-            self.model.get_bool("notification/show_photo", True)
+            self.model.notification_show_photo
         )
         self.notify_name.setChecked(
-            self.model.get_bool("notification/show_name", True)
+            self.model.notification_show_name
         )
         self.notify_preview.setChecked(
-            self.model.get_bool("notification/show_msg", True)
+            self.model.notification_show_message_preview
         )
-        self.tray_enabled.setChecked(self.model.get_bool("system/tray_icon", True))
+        self.tray_enabled.setChecked(self.model.tray_icon_enabled)
         self.tray_counter.setChecked(
-            self.model.get_bool("system/notificationCounter", False)
+            self.model.tray_notification_counter
         )
         self.keep_background.setChecked(
-            not self.model.get_bool("system/quit_in_close", False)
+            self.model.keep_running_in_background
         )
         self.confirm_close.setChecked(
-            self.model.get_bool("system/confirm_on_close", False)
+            self.model.confirm_on_close
         )
         self.start_system.setChecked(
-            self.model.get_bool("system/start_system", False)
+            self.model.autostart_enabled
         )
         self.start_minimized.setChecked(
-            self.model.get_bool("system/start_background", False)
+            self.model.start_minimized
         )
         self.download_path.setText(self.model.download_path())
         self.configure_flatpak_permissions(self.model.is_flatpak())
         self.flatpak_command_input.setText(self.model.FLATPAK_OVERRIDE_COMMAND)
         self.spellcheck_enabled.setChecked(
-            self.model.get_bool("system/spellCheckers", True)
+            self.model.spellcheck_enabled
         )
         self._load_dictionaries()
         self.permission_microphone.setChecked(
-            self.model.get_bool("permissions/auto_grant/microphone", False)
+            self.model.microphone_permission_enabled()
         )
         self.permission_camera.setChecked(
-            self.model.get_bool("permissions/auto_grant/camera", False)
+            self.model.camera_permission_enabled()
         )
         self.permission_screen.setChecked(
-            self.model.get_bool("permissions/auto_grant/screen_contents", False)
+            self.model.screen_contents_permission_enabled()
         )
         self.webrtc_shield.setChecked(
-            self.model.get_bool("privacy/webrtc_shield", False)
+            self.model.webrtc_shield_enabled
         )
         self._sync_notification_controls()
         self._sync_tray_controls()
@@ -198,23 +198,23 @@ class InitialSetupController(InitialSetupView):
     def _save_settings(self):
         self.model.set_language(self.language_combo.currentData())
         self.model.set_theme(self._selected_theme())
-        self.model.set_bool("notification/app", self.notifications_enabled.isChecked())
-        self.model.set_bool("notification/show_photo", self.notify_photo.isChecked())
-        self.model.set_bool("notification/show_name", self.notify_name.isChecked())
-        self.model.set_bool("notification/show_msg", self.notify_preview.isChecked())
-        self.model.set_tray_icon(self.tray_enabled.isChecked())
-        self.model.set_bool("system/notificationCounter", self.tray_counter.isChecked())
+        self.model.notifications_enabled = self.notifications_enabled.isChecked()
+        self.model.notification_show_photo = self.notify_photo.isChecked()
+        self.model.notification_show_name = self.notify_name.isChecked()
+        self.model.notification_show_message_preview = self.notify_preview.isChecked()
+        self.model.tray_icon_enabled = self.tray_enabled.isChecked()
+        self.model.tray_notification_counter = self.tray_counter.isChecked()
         self.model.refresh_tray()
-        self.model.set_bool("system/quit_in_close", not self.keep_background.isChecked())
-        self.model.set_bool("system/confirm_on_close", self.confirm_close.isChecked())
+        self.model.keep_running_in_background = self.keep_background.isChecked()
+        self.model.confirm_on_close = self.confirm_close.isChecked()
         self.model.set_autostart(self.start_system.isChecked())
-        self.model.set_bool("system/start_background", self.start_minimized.isChecked())
+        self.model.start_minimized = self.start_minimized.isChecked()
         if self.download_path.text():
             self.model.set_download_path(self.download_path.text())
-        self.model.set_bool("system/spellCheckers", self.spellcheck_enabled.isChecked())
+        self.model.spellcheck_enabled = self.spellcheck_enabled.isChecked()
         if self.spellcheck_enabled.isChecked() and self.dictionary_combo.currentText():
             self.model.set_dictionary(self.dictionary_combo.currentText())
-        self.model.set_permission("microphone", self.permission_microphone.isChecked())
-        self.model.set_permission("camera", self.permission_camera.isChecked())
-        self.model.set_permission("screen_contents", self.permission_screen.isChecked())
-        self.model.set_bool("privacy/webrtc_shield", self.webrtc_shield.isChecked())
+        self.model.set_microphone_permission(self.permission_microphone.isChecked())
+        self.model.set_camera_permission(self.permission_camera.isChecked())
+        self.model.set_screen_contents_permission(self.permission_screen.isChecked())
+        self.model.webrtc_shield_enabled = self.webrtc_shield.isChecked()
