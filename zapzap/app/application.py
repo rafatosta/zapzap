@@ -3,6 +3,7 @@
 import sys
 
 import zapzap
+from PyQt6.QtCore import QTimer
 from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
 
@@ -17,6 +18,7 @@ from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.core.environment.setup_manager import SetupManager
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.core.i18n.translation_manager import TranslationManager
+from zapzap.features.initial_setup.controller import InitialSetupController
 
 
 def main():
@@ -65,13 +67,18 @@ def main():
         QDesktopServices.openUrl(QUrl(zapzap.__website__))
         SettingsManager.set("website/open_page", False)
 
+    should_show_initial_setup = InitialSetupController.should_show()
+
     if (
         SettingsManager.get("system/start_background",
                             False) or '--hideStart' in sys.argv
-    ):
+    ) and not should_show_initial_setup:
         main_window.hide()
     else:
         main_window.show()
+
+    if should_show_initial_setup:
+        QTimer.singleShot(0, lambda: InitialSetupController(main_window).exec())
 
     app.aboutToQuit.connect(ThemeManager.stop)
     app.aboutToQuit.connect(main_window.browser.shutdown)
