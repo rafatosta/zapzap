@@ -190,7 +190,7 @@ class InitialSetupView(QDialog):
         card = self._card(page, layout)
         card.addWidget(QLabel(_("Download directory")))
         path_row = QHBoxLayout()
-        self.download_path = LineEdit(page)
+        self.download_path = LineEdit(parent=page)
         self.download_path.setReadOnly(True)
         self.btn_download_path = Button(_("Choose folder"), parent=page)
         path_row.addWidget(self.download_path, 1)
