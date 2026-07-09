@@ -116,6 +116,7 @@ class InitialSetupView(QDialog):
         self.language_row = SettingsSelectRow(
             _("Interface language"),
             _("The interface language is applied when you finish setup."),
+            [""]
         )
         self.language_combo = self.language_row.combo
         language_card.add_row(self.language_row)
