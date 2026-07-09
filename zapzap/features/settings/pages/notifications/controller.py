@@ -26,6 +26,11 @@ class NotificationsSettingsController(NotificationsSettingsView):
             self.model.donation_message_enabled
         )
 
+    def _sync_notification_controls(self):
+        enabled = self.notify_groupBox.checkbox.isChecked()
+        for checkbox in (self.show_photo.checkbox, self.show_name.checkbox, self.show_msg.checkbox):
+            checkbox.setEnabled(enabled)
+        
     def _connect_signals(self):
         self.notify_groupBox.checkbox.toggled.connect(
             self._handle_toggle_notifications
@@ -45,6 +50,7 @@ class NotificationsSettingsController(NotificationsSettingsView):
 
     def _handle_toggle_notifications(self, is_enabled: bool):
         self.model.enabled = is_enabled
+        self._sync_notification_controls()
 
     def _handle_toggle_show_photo(self, is_enabled: bool):
         self.model.show_photo = is_enabled
