@@ -11,8 +11,6 @@ from zapzap.core.i18n.translation_manager import TranslationManager
 class LanguageDownloadSettingsModel:
     """Facade over services used by the general settings controller."""
 
-    FLATPAK_OVERRIDE_COMMAND = "flatpak override --user --filesystem=home com.rtosta.zapzap"
-
     def is_flatpak(self):
         return SetupManager._is_flatpak
 

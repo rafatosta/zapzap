@@ -2,8 +2,7 @@
 
 from gettext import gettext as _
 
-from PyQt6.QtCore import QLocale, QUrl
-from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtCore import QLocale
 from PyQt6.QtWidgets import QApplication
 
 from zapzap.features.settings.pages.language_downloads.model import LanguageDownloadSettingsModel
@@ -14,12 +13,8 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.model = LanguageDownloadSettingsModel()
-        self._configure_ui()
         self._load_settings()
         self._connect_signals()
-
-    def _configure_ui(self):
-        self.configure_flatpak(self.model.is_flatpak())
 
     def _load_settings(self):
         self.dic_path.setText(self.model.get_dictionaries_path())
@@ -34,7 +29,6 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         self.download_path.setText(self.model.get_download_path())
 
         self._load_interface_languages()
-        self.flatpak_command_input.setText(self.model.FLATPAK_OVERRIDE_COMMAND)
 
     def _connect_signals(self):
         self.spellchecker_groupBox.checkbox.toggled.connect(
@@ -54,17 +48,6 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         self.btn_path_download.clicked.connect(self._handle_path_download)
         self.btn_restore_path_download.clicked.connect(
             self._handle_restore_path_download
-        )
-
-        self.btn_copy_flatpak_command.clicked.connect(
-            lambda: QApplication.clipboard().setText(
-                self.model.FLATPAK_OVERRIDE_COMMAND
-            )
-        )
-        self.btn_open_flatseal.clicked.connect(
-            lambda: QDesktopServices.openUrl(
-                QUrl("https://flathub.org/apps/com.github.tchx84.Flatseal")
-            )
         )
 
     def _load_interface_languages(self):
