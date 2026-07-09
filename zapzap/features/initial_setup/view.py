@@ -413,7 +413,7 @@ class InitialSetupView(QDialog):
         command_row = QWidget(page)
         command_layout = QHBoxLayout(command_row)
         command_layout.setContentsMargins(0, 8, 0, 8)
-        self.flatpak_command_input = LineEdit(page)
+        self.flatpak_command_input = LineEdit(parent=page)
         self.flatpak_command_input.setReadOnly(True)
         self.flatpak_command_input.setToolTip(
             _("Select and copy this command in your terminal")
