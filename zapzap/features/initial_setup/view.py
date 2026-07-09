@@ -21,6 +21,7 @@ from PyQt6.QtWidgets import QStackedWidget
 from PyQt6.QtWidgets import QVBoxLayout
 from PyQt6.QtWidgets import QWidget
 
+from zapzap.features.settings.components import SettingsActionRow
 from zapzap.features.settings.components import SettingsCard
 from zapzap.features.settings.components import SettingsInfoBox
 from zapzap.features.settings.components import SettingsPage
@@ -30,6 +31,7 @@ from zapzap.features.settings.components import SettingsSection
 from zapzap.features.settings.components import SettingsSelectRow
 from zapzap.features.settings.components import SettingsSwitchRow
 from zapzap.ui.components import Button
+from zapzap.ui.components import LineEdit
 from zapzap.ui.components import RadioButton
 
 
@@ -395,8 +397,45 @@ class InitialSetupView(QDialog):
             card.add_row(row)
         section.add_card(card)
         page.add_section(section)
+
+        self.flatpak_permissions_section = SettingsSection(
+            _("Flatpak permissions"),
+            _("Grant filesystem access if downloads, imports, or dictionaries cannot reach folders outside the sandbox."),
+            page,
+        )
+        flatpak_card = SettingsCard(page)
+        flatpak_card.add_row(SettingsInfoBox(
+            _(
+                "Flatpak sandbox: if file access fails, grant folder permissions using Flatseal or flatpak override."
+            ),
+            "warning",
+        ))
+        command_row = QWidget(page)
+        command_layout = QHBoxLayout(command_row)
+        command_layout.setContentsMargins(0, 8, 0, 8)
+        self.flatpak_command_input = LineEdit(page)
+        self.flatpak_command_input.setReadOnly(True)
+        self.flatpak_command_input.setToolTip(
+            _("Select and copy this command in your terminal")
+        )
+        self.btn_copy_flatpak_command = Button(_("Copy"), parent=page)
+        command_layout.addWidget(self.flatpak_command_input, 1)
+        command_layout.addWidget(self.btn_copy_flatpak_command)
+        self.btn_open_flatseal_row = SettingsActionRow(
+            _("Flatseal"),
+            _("Flatseal is a graphical utility to review and modify permissions from your Flatpak applications."),
+            _("Install Flatseal on Linux | Flathub"),
+        )
+        flatpak_card.add_row(command_row)
+        flatpak_card.add_row(self.btn_open_flatseal_row)
+        self.btn_open_flatseal = self.btn_open_flatseal_row.button
+        self.flatpak_permissions_section.add_card(flatpak_card)
+        page.add_section(self.flatpak_permissions_section)
         page.add_stretch()
         return page
+
+    def configure_flatpak_permissions(self, is_flatpak: bool):
+        self.flatpak_permissions_section.setVisible(is_flatpak)
 
     def _finish_page(self):
         page = SettingsPage(

@@ -5,6 +5,9 @@ from __future__ import annotations
 from gettext import gettext as _
 
 from PyQt6.QtCore import QLocale
+from PyQt6.QtCore import QUrl
+from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtWidgets import QApplication
 
 from zapzap.core.i18n.translation_manager import TranslationManager
 from zapzap.core.theme.theme_manager import ThemeManager
@@ -33,6 +36,16 @@ class InitialSetupController(InitialSetupView):
         self.btn_finish.clicked.connect(self._finish)
         self.btn_skip.clicked.connect(self._skip)
         self.btn_download_path.clicked.connect(self._choose_download_path)
+        self.btn_copy_flatpak_command.clicked.connect(
+            lambda: QApplication.clipboard().setText(
+                self.model.FLATPAK_OVERRIDE_COMMAND
+            )
+        )
+        self.btn_open_flatseal.clicked.connect(
+            lambda: QDesktopServices.openUrl(
+                QUrl("https://flathub.org/apps/com.github.tchx84.Flatseal")
+            )
+        )
         for index, button in enumerate(self.step_buttons):
             button.clicked.connect(lambda _checked=False, step=index: self._go_to_step(step))
         self.notifications_enabled.toggled.connect(self._sync_notification_controls)
@@ -71,6 +84,8 @@ class InitialSetupController(InitialSetupView):
             self.model.get_bool("system/start_background", False)
         )
         self.download_path.setText(self.model.download_path())
+        self.configure_flatpak_permissions(self.model.is_flatpak())
+        self.flatpak_command_input.setText(self.model.FLATPAK_OVERRIDE_COMMAND)
         self.spellcheck_enabled.setChecked(
             self.model.get_bool("system/spellCheckers", True)
         )
