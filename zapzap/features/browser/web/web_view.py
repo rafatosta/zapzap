@@ -155,21 +155,18 @@ class WebView(QWebEngineView):
             try:
                 base_dir = os.path.dirname(__file__)
                 js_path = os.path.join(
-                    base_dir, "scripts", "zapzap_ctrl_arrow_visual_navigation_fix.js")
+                    base_dir, "scripts", "ctrl_arrow_visual_navigation_fix.js")
                 with open(js_path, "r", encoding="utf-8") as f:
                     js_code = f.read()
 
                 script = QWebEngineScript()
-                script.setName("zapzap_ctrl_arrow_visual_navigation_fix")
-                script.setSourceCode(js_code)
+                script.setName("ctrl_arrow_visual_navigation_fix")
                 script.setInjectionPoint(
                     QWebEngineScript.InjectionPoint.DocumentCreation)
-                script.setRunsOnSubFrames(False)
+                script.setRunsOnSubFrames(True)
+                script.setSourceCode(js_code)
                 script.setWorldId(QWebEngineScript.ScriptWorldId.MainWorld)
-                script.setEnabled(True)
-
                 self.profile.scripts().insert(script)
-
             except Exception as e:
                 print(f"Error injecting ctrl_arrow_visual_navigation_fix: {e}")
 

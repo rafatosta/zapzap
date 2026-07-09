@@ -5,53 +5,18 @@
 
   window.__zapzapCtrlArrowVisualNavigationFixInstalled = true;
 
-  document.addEventListener(
-    "keydown",
-    function (event) {
-      if (
-        !event.ctrlKey ||
-        event.altKey ||
-        event.metaKey ||
-        (event.key !== "ArrowLeft" && event.key !== "ArrowRight")
-      ) {
-        return;
-      }
+  document.addEventListener('keydown', function (e) {
+    if (!e.ctrlKey || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
+    const sel = window.getSelection();
+    if (!sel || sel.rangeCount === 0) return;
+    const el = sel.anchorNode && sel.anchorNode.parentElement;
+    if (!el || !el.closest('[contenteditable="true"]')) return;
 
-      const selection = window.getSelection();
+    e.preventDefault();
+    e.stopImmediatePropagation();
 
-      if (!selection || selection.rangeCount === 0) {
-        return;
-      }
-
-      const anchorNode = selection.anchorNode;
-
-      const element =
-        anchorNode && anchorNode.nodeType === Node.ELEMENT_NODE
-          ? anchorNode
-          : anchorNode && anchorNode.parentElement;
-
-      if (!element || !element.closest('[contenteditable="true"]')) {
-        return;
-      }
-
-      if (typeof selection.modify !== "function") {
-        return;
-      }
-
-      event.preventDefault();
-      event.stopImmediatePropagation();
-
-      /*
-       * Use visual word navigation instead of logical navigation.
-       *
-       * This fixes Ctrl+Arrow movement in RTL text while preserving the
-       * expected behavior in LTR text inside WhatsApp Web editable fields.
-       */
-      const direction = event.key === "ArrowLeft" ? "left" : "right";
-      const action = event.shiftKey ? "extend" : "move";
-
-      selection.modify(action, direction, "word");
-    },
-    true
-  );
+    const direction = e.key === 'ArrowLeft' ? 'left' : 'right'; // visual, not logical
+    const alter = e.shiftKey ? 'extend' : 'move';
+    sel.modify(alter, direction, 'word');
+  }, true); // capture phase, so it runs before WhatsApp's own handlers
 })();
