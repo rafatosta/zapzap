@@ -4,9 +4,16 @@ from __future__ import annotations
 
 from gettext import gettext as _
 
+from PyQt6.QtCore import QEvent
+from PyQt6.QtCore import QObject
+from PyQt6.QtCore import QPoint
+from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QColor
+from PyQt6.QtGui import QMouseEvent
 from PyQt6.QtWidgets import QButtonGroup
 from PyQt6.QtWidgets import QDialog
 from PyQt6.QtWidgets import QFrame
+from PyQt6.QtWidgets import QGraphicsDropShadowEffect
 from PyQt6.QtWidgets import QHBoxLayout
 from PyQt6.QtWidgets import QLabel
 from PyQt6.QtWidgets import QPushButton
@@ -34,14 +41,37 @@ class InitialSetupView(QDialog):
         self.setObjectName("InitialSetupDialog")
         self.setWindowTitle(_("Set up ZapZap"))
         self.setModal(True)
-        self.setMinimumSize(900, 640)
+        self.setMinimumSize(970, 740)
+        self.setWindowFlags(
+            Qt.WindowType.Dialog
+            | Qt.WindowType.FramelessWindowHint
+        )
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground, True)
+
+        self._drag_position: QPoint | None = None
+        self._drag_widgets: list[QWidget] = []
         self.step_buttons = []
+
         self._setup_ui()
         self._apply_style()
 
     def _setup_ui(self):
-        root = QVBoxLayout(self)
-        root.setContentsMargins(0, 0, 0, 0)
+        outer = QVBoxLayout(self)
+        outer.setContentsMargins(14, 14, 14, 14)
+        outer.setSpacing(0)
+
+        self.window_frame = QFrame(self)
+        self.window_frame.setObjectName("InitialSetupWindowFrame")
+        outer.addWidget(self.window_frame)
+
+        shadow = QGraphicsDropShadowEffect(self.window_frame)
+        shadow.setBlurRadius(36)
+        shadow.setOffset(0, 10)
+        shadow.setColor(QColor(0, 0, 0, 80))
+        self.window_frame.setGraphicsEffect(shadow)
+
+        root = QVBoxLayout(self.window_frame)
+        root.setContentsMargins(10, 10, 10, 10)
         root.setSpacing(0)
 
         content = QHBoxLayout()
@@ -68,6 +98,7 @@ class InitialSetupView(QDialog):
         content.addWidget(self.sidebar, 0)
 
         self.pages = QStackedWidget(self)
+        self.pages.setObjectName("InitialSetupPages")
         content.addWidget(self.pages, 1)
 
         self._add_page(self._appearance_page(), _("Basics"))
@@ -393,14 +424,25 @@ class InitialSetupView(QDialog):
     def _apply_style(self):
         self.setStyleSheet("""
             QDialog#InitialSetupDialog {
-                background: palette(window);
+                background: transparent;
                 color: palette(text);
+            }
+            QFrame#InitialSetupWindowFrame {
+                background: palette(window);
+                border: 1px solid palette(mid);
+                border-radius: 18px;
             }
             QFrame#InitialSetupSidebar {
                 background: palette(base);
                 border-right: 1px solid palette(mid);
+                border-top-left-radius: 18px;
+                border-bottom-left-radius: 18px;
                 min-width: 230px;
                 max-width: 280px;
+            }
+            QStackedWidget#InitialSetupPages {
+                background: palette(window);
+                border-top-right-radius: 18px;
             }
             QLabel#InitialSetupTitle {
                 font-size: 22px;
@@ -412,6 +454,8 @@ class InitialSetupView(QDialog):
             QFrame#InitialSetupFooter {
                 background: palette(base);
                 border-top: 1px solid palette(mid);
+                border-bottom-left-radius: 18px;
+                border-bottom-right-radius: 18px;
             }
             QPushButton#InitialSetupStepButton {
                 border: 0;
