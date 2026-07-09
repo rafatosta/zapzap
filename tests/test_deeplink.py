@@ -10,7 +10,7 @@ import os
 import unittest
 
 _DEEPLINK_PATH = os.path.join(
-    os.path.dirname(__file__), "..", "zapzap", "features", "browser", "webengine", "deeplink.py"
+    os.path.dirname(__file__), "..", "zapzap", "features", "browser", "web", "deeplink.py"
 )
 _SPEC = importlib.util.spec_from_file_location("zapzap_deeplink", _DEEPLINK_PATH)
 _deeplink = importlib.util.module_from_spec(_SPEC)
