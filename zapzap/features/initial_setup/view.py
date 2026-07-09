@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from gettext import gettext as _
 
-from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QButtonGroup
 from PyQt6.QtWidgets import QDialog
 from PyQt6.QtWidgets import QFrame
@@ -15,22 +14,27 @@ from PyQt6.QtWidgets import QStackedWidget
 from PyQt6.QtWidgets import QVBoxLayout
 from PyQt6.QtWidgets import QWidget
 
+from zapzap.features.settings.components import SettingsCard
+from zapzap.features.settings.components import SettingsInfoBox
+from zapzap.features.settings.components import SettingsPage
+from zapzap.features.settings.components import SettingsPathRow
+from zapzap.features.settings.components import SettingsRadioGroup
+from zapzap.features.settings.components import SettingsSection
+from zapzap.features.settings.components import SettingsSelectRow
+from zapzap.features.settings.components import SettingsSwitchRow
 from zapzap.ui.components import Button
-from zapzap.ui.components import CheckBox
-from zapzap.ui.components import ComboBox
-from zapzap.ui.components import LineEdit
 from zapzap.ui.components import RadioButton
 
 
 class InitialSetupView(QDialog):
-    """Guided first-run setup dialog."""
+    """Guided first-run setup dialog using the settings visual language."""
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setObjectName("InitialSetupDialog")
         self.setWindowTitle(_("Set up ZapZap"))
         self.setModal(True)
-        self.setMinimumSize(860, 620)
+        self.setMinimumSize(900, 640)
         self.step_buttons = []
         self._setup_ui()
         self._apply_style()
@@ -52,7 +56,10 @@ class InitialSetupView(QDialog):
         self.sidebar_layout.setSpacing(8)
         title = QLabel(_("Welcome to ZapZap"), self.sidebar)
         title.setObjectName("InitialSetupTitle")
-        subtitle = QLabel(_("Choose the essentials now. You can change everything later in Settings."), self.sidebar)
+        subtitle = QLabel(
+            _("Choose the essentials now. You can change everything later in Settings."),
+            self.sidebar,
+        )
         subtitle.setObjectName("InitialSetupSubtitle")
         subtitle.setWordWrap(True)
         self.sidebar_layout.addWidget(title)
@@ -93,171 +100,334 @@ class InitialSetupView(QDialog):
         self.step_buttons.append(button)
         self.sidebar_layout.addWidget(button)
 
-    def _page(self, title: str, description: str) -> tuple[QWidget, QVBoxLayout]:
-        page = QWidget(self)
-        layout = QVBoxLayout(page)
-        layout.setContentsMargins(34, 30, 34, 24)
-        layout.setSpacing(14)
-        title_label = QLabel(title, page)
-        title_label.setObjectName("InitialSetupPageTitle")
-        description_label = QLabel(description, page)
-        description_label.setObjectName("InitialSetupPageDescription")
-        description_label.setWordWrap(True)
-        layout.addWidget(title_label)
-        layout.addWidget(description_label)
-        layout.addSpacing(10)
-        return page, layout
-
-    def _card(self, parent, layout):
-        card = QFrame(parent)
-        card.setObjectName("InitialSetupCard")
-        card_layout = QVBoxLayout(card)
-        card_layout.setContentsMargins(18, 16, 18, 16)
-        card_layout.setSpacing(10)
-        layout.addWidget(card)
-        return card_layout
-
     def _appearance_page(self):
-        page, layout = self._page(
+        page = SettingsPage(
             _("Language and appearance"),
             _("Start with the interface language and a comfortable visual theme."),
+            self,
         )
-        card = self._card(page, layout)
-        card.addWidget(QLabel(_("Interface language")))
-        self.language_combo = ComboBox(page)
-        card.addWidget(self.language_combo)
-        card.addSpacing(10)
-        card.addWidget(QLabel(_("Theme")))
+
+        language_section = SettingsSection(
+            _("Language"),
+            _("Choose the interface language used by ZapZap."),
+            page,
+        )
+        language_card = SettingsCard(page)
+        self.language_row = SettingsSelectRow(
+            _("Interface language"),
+            _("The interface language is applied when you finish setup."),
+        )
+        self.language_combo = self.language_row.combo
+        language_card.add_row(self.language_row)
+        language_section.add_card(language_card)
+        page.add_section(language_section)
+
+        theme_section = SettingsSection(
+            _("Theme"),
+            _("Choose the visual theme."),
+            page,
+        )
         self.theme_group = QButtonGroup(page)
         self.theme_auto = RadioButton(_("Automatic"), page)
         self.theme_light = RadioButton(_("Light"), page)
         self.theme_dark = RadioButton(_("Dark"), page)
         for button in (self.theme_auto, self.theme_light, self.theme_dark):
             self.theme_group.addButton(button)
-            card.addWidget(button)
-        layout.addStretch(1)
+        theme_section.add_card(
+            SettingsRadioGroup(
+                self.theme_auto,
+                self.theme_light,
+                self.theme_dark,
+                parent=page,
+            )
+        )
+        page.add_section(theme_section)
+        page.add_stretch()
         return page
 
     def _notifications_page(self):
-        page, layout = self._page(
+        page = SettingsPage(
             _("Notifications and privacy"),
             _("Decide how much message information appears in native notification banners."),
+            self,
         )
-        card = self._card(page, layout)
-        self.notifications_enabled = CheckBox(_("Enable desktop notifications"), page)
-        self.notify_photo = CheckBox(_("Show contact photo"), page)
-        self.notify_name = CheckBox(_("Show contact or group name"), page)
-        self.notify_preview = CheckBox(_("Show message preview"), page)
-        for checkbox in (
-            self.notifications_enabled,
-            self.notify_photo,
-            self.notify_name,
-            self.notify_preview,
-        ):
-            card.addWidget(checkbox)
-        layout.addStretch(1)
+        desktop_section = SettingsSection(
+            _("Desktop notifications"),
+            _("Choose whether ZapZap may show desktop notifications."),
+            page,
+        )
+        desktop_card = SettingsCard(page)
+        self.notifications_enabled_row = SettingsSwitchRow(
+            _("Enable notifications"),
+            _("Allow ZapZap to publish native desktop notifications for WhatsApp activity."),
+        )
+        self.notifications_enabled = self.notifications_enabled_row.checkbox
+        desktop_card.add_row(self.notifications_enabled_row)
+        desktop_section.add_card(desktop_card)
+        page.add_section(desktop_section)
+
+        privacy_section = SettingsSection(
+            _("Notification privacy"),
+            _("Limit what is visible in notification banners."),
+            page,
+        )
+        privacy_card = SettingsCard(page)
+        self.notify_photo_row = SettingsSwitchRow(
+            _("Show contact photo"),
+            _("Display the sender avatar when it is available."),
+        )
+        self.notify_name_row = SettingsSwitchRow(
+            _("Show contact name"),
+            _("Display the sender or group name."),
+        )
+        self.notify_preview_row = SettingsSwitchRow(
+            _("Show message preview"),
+            _("Display the message text in the notification."),
+        )
+        self.notify_photo = self.notify_photo_row.checkbox
+        self.notify_name = self.notify_name_row.checkbox
+        self.notify_preview = self.notify_preview_row.checkbox
+        for row in (self.notify_photo_row, self.notify_name_row, self.notify_preview_row):
+            privacy_card.add_row(row)
+        privacy_section.add_card(privacy_card)
+        page.add_section(privacy_section)
+        page.add_stretch()
         return page
 
     def _background_page(self):
-        page, layout = self._page(
+        page = SettingsPage(
             _("Background behavior"),
             _("Choose whether ZapZap should stay available from the tray and start with your session."),
+            self,
         )
-        card = self._card(page, layout)
-        self.tray_enabled = CheckBox(_("Show icon in the system tray"), page)
-        self.tray_counter = CheckBox(_("Show unread counter on the tray icon"), page)
-        self.keep_background = CheckBox(_("Keep running in the background when closing the window"), page)
-        self.confirm_close = CheckBox(_("Ask for confirmation before closing"), page)
-        self.start_system = CheckBox(_("Start with the system"), page)
-        self.start_minimized = CheckBox(_("Start minimized"), page)
-        for checkbox in (
-            self.tray_enabled,
-            self.tray_counter,
-            self.keep_background,
-            self.confirm_close,
-            self.start_system,
-            self.start_minimized,
-        ):
-            card.addWidget(checkbox)
-        layout.addStretch(1)
+        tray_section = SettingsSection(
+            _("Tray icon"),
+            _("Control tray icon visibility and unread counter."),
+            page,
+        )
+        tray_card = SettingsCard(page)
+        self.tray_enabled_row = SettingsSwitchRow(
+            _("Enable tray icon"),
+            _("Show ZapZap in the system tray."),
+        )
+        self.tray_counter_row = SettingsSwitchRow(
+            _("Notification counter"),
+            _("Show unread notifications on the tray icon."),
+        )
+        self.tray_enabled = self.tray_enabled_row.checkbox
+        self.tray_counter = self.tray_counter_row.checkbox
+        tray_card.add_row(self.tray_enabled_row)
+        tray_card.add_row(self.tray_counter_row)
+        tray_section.add_card(tray_card)
+        page.add_section(tray_section)
+
+        window_section = SettingsSection(
+            _("Window behavior"),
+            _("Configure close behavior."),
+            page,
+        )
+        window_card = SettingsCard(page)
+        self.keep_background_row = SettingsSwitchRow(
+            _("Keep running in the background"),
+            _("Hide the main window instead of quitting when it is closed."),
+        )
+        self.confirm_close_row = SettingsSwitchRow(
+            _("Confirm before closing the window"),
+            _("Ask for confirmation before closing ZapZap."),
+        )
+        self.keep_background = self.keep_background_row.checkbox
+        self.confirm_close = self.confirm_close_row.checkbox
+        window_card.add_row(self.keep_background_row)
+        window_card.add_row(self.confirm_close_row)
+        window_section.add_card(window_card)
+        page.add_section(window_section)
+
+        startup_section = SettingsSection(
+            _("Startup"),
+            _("Control how ZapZap behaves when your desktop session starts."),
+            page,
+        )
+        startup_card = SettingsCard(page)
+        self.start_system_row = SettingsSwitchRow(
+            _("Start with the system"),
+            _("Create or remove the desktop autostart entry."),
+        )
+        self.start_minimized_row = SettingsSwitchRow(
+            _("Start minimized"),
+            _("Open ZapZap in the background instead of showing the main window."),
+        )
+        self.start_system = self.start_system_row.checkbox
+        self.start_minimized = self.start_minimized_row.checkbox
+        startup_card.add_row(self.start_system_row)
+        startup_card.add_row(self.start_minimized_row)
+        startup_section.add_card(startup_card)
+        page.add_section(startup_section)
+        page.add_stretch()
         return page
 
     def _files_page(self):
-        page, layout = self._page(
+        page = SettingsPage(
             _("Downloads and typing"),
             _("Choose where files are saved and enable spell checking when dictionaries are available."),
+            self,
         )
-        card = self._card(page, layout)
-        card.addWidget(QLabel(_("Download directory")))
-        path_row = QHBoxLayout()
-        self.download_path = LineEdit(parent=page)
+        downloads_section = SettingsSection(
+            _("Downloads"),
+            _("Choose where downloaded files are saved."),
+            page,
+        )
+        downloads_card = SettingsCard(page)
+        self.download_path_row = SettingsPathRow(
+            _("Download directory"),
+            _("Set a custom folder or keep the current download location."),
+            button_text=_("Choose folder"),
+        )
+        self.download_path = self.download_path_row.line_edit
         self.download_path.setReadOnly(True)
-        self.btn_download_path = Button(_("Choose folder"), parent=page)
-        path_row.addWidget(self.download_path, 1)
-        path_row.addWidget(self.btn_download_path)
-        card.addLayout(path_row)
-        self.spellcheck_enabled = CheckBox(_("Enable spell checker"), page)
-        card.addWidget(self.spellcheck_enabled)
-        card.addWidget(QLabel(_("Dictionary language")))
-        self.dictionary_combo = ComboBox(page)
-        card.addWidget(self.dictionary_combo)
-        self.dictionary_hint = QLabel(_("No compiled dictionaries were found. You can configure dictionaries later in Settings."), page)
-        self.dictionary_hint.setObjectName("InitialSetupHint")
-        self.dictionary_hint.setWordWrap(True)
-        card.addWidget(self.dictionary_hint)
-        layout.addStretch(1)
+        self.btn_download_path = self.download_path_row.button
+        downloads_card.add_row(self.download_path_row)
+        downloads_section.add_card(downloads_card)
+        page.add_section(downloads_section)
+
+        spell_section = SettingsSection(
+            _("Spell checker"),
+            _("Select compiled dictionaries and where ZapZap should look for them."),
+            page,
+        )
+        spell_card = SettingsCard(page)
+        self.spellcheck_enabled_row = SettingsSwitchRow(
+            _("Enable spell checker"),
+            _("Use Qt WebEngine spell checking with the selected dictionary."),
+        )
+        self.dictionary_row = SettingsSelectRow(
+            _("Dictionary language"),
+            _("Recognizes only compiled dictionaries (.bdic)."),
+        )
+        self.dictionary_hint = SettingsInfoBox(
+            _("No compiled dictionaries were found. You can configure dictionaries later in Settings."),
+            "warning",
+        )
+        self.spellcheck_enabled = self.spellcheck_enabled_row.checkbox
+        self.dictionary_combo = self.dictionary_row.combo
+        spell_card.add_row(self.spellcheck_enabled_row)
+        spell_card.add_row(self.dictionary_row)
+        spell_card.add_row(self.dictionary_hint)
+        spell_section.add_card(spell_card)
+        page.add_section(spell_section)
+        page.add_stretch()
         return page
 
     def _permissions_page(self):
-        page, layout = self._page(
+        page = SettingsPage(
             _("Essential permissions"),
             _("Allow only the WhatsApp Web permissions you want to grant automatically."),
+            self,
         )
-        card = self._card(page, layout)
-        self.permission_microphone = CheckBox(_("Microphone"), page)
-        self.permission_camera = CheckBox(_("Camera"), page)
-        self.permission_screen = CheckBox(_("Screen sharing"), page)
-        self.webrtc_shield = CheckBox(_("Reduce WebRTC IP exposure"), page)
-        for checkbox in (
-            self.permission_microphone,
-            self.permission_camera,
-            self.permission_screen,
-            self.webrtc_shield,
+        section = SettingsSection(
+            _("Permissions"),
+            _("When an option is unchecked, ZapZap will ask again in each session."),
+            page,
+        )
+        card = SettingsCard(page)
+        card.add_row(
+            SettingsInfoBox(
+                _("Enable only the permissions you want to grant automatically when the page requests them."),
+            )
+        )
+        self.permission_microphone_row = SettingsSwitchRow(
+            _("Microphone"),
+            _("Automatically allow access to your microphone."),
+        )
+        self.permission_camera_row = SettingsSwitchRow(
+            _("Camera"),
+            _("Automatically allow access to your camera."),
+        )
+        self.permission_screen_row = SettingsSwitchRow(
+            _("Screen contents"),
+            _("Automatically allow sharing of screen contents."),
+        )
+        self.webrtc_shield_row = SettingsSwitchRow(
+            _("WebRTC shield"),
+            _("Reduce WebRTC IP exposure."),
+        )
+        self.permission_microphone = self.permission_microphone_row.checkbox
+        self.permission_camera = self.permission_camera_row.checkbox
+        self.permission_screen = self.permission_screen_row.checkbox
+        self.webrtc_shield = self.webrtc_shield_row.checkbox
+        for row in (
+            self.permission_microphone_row,
+            self.permission_camera_row,
+            self.permission_screen_row,
+            self.webrtc_shield_row,
         ):
-            card.addWidget(checkbox)
-        hint = QLabel(_("When a permission is off, ZapZap will ask again when WhatsApp Web requests it."), page)
-        hint.setObjectName("InitialSetupHint")
-        hint.setWordWrap(True)
-        card.addWidget(hint)
-        layout.addStretch(1)
+            card.add_row(row)
+        section.add_card(card)
+        page.add_section(section)
+        page.add_stretch()
         return page
 
     def _finish_page(self):
-        page, layout = self._page(
+        page = SettingsPage(
             _("You're ready"),
-            _("ZapZap will save these preferences now. Advanced options like proxy, custom CSS/JavaScript, Flatpak permissions, and performance tweaks remain available in Settings."),
+            _("ZapZap will save these preferences now. Advanced options remain available in Settings."),
+            self,
         )
-        card = self._card(page, layout)
-        done = QLabel(_("You can revisit all choices from Settings at any time."), page)
-        done.setObjectName("InitialSetupCompletion")
-        done.setWordWrap(True)
-        card.addWidget(done)
-        layout.addStretch(1)
+        section = SettingsSection(
+            _("Finish setup"),
+            _("Review advanced options later whenever you need them."),
+            page,
+        )
+        card = SettingsCard(page)
+        card.add_row(
+            SettingsInfoBox(
+                _("You can revisit all choices from Settings at any time. Proxy, custom CSS/JavaScript, Flatpak permissions, and performance tweaks are still available there."),
+                "success",
+            )
+        )
+        section.add_card(card)
+        page.add_section(section)
+        page.add_stretch()
         return page
 
     def _apply_style(self):
         self.setStyleSheet("""
-            QDialog#InitialSetupDialog { background: palette(window); color: palette(text); }
-            QFrame#InitialSetupSidebar { background: palette(base); border-right: 1px solid palette(mid); min-width: 230px; max-width: 280px; }
-            QLabel#InitialSetupTitle { font-size: 22px; font-weight: 800; }
-            QLabel#InitialSetupSubtitle, QLabel#InitialSetupPageDescription, QLabel#InitialSetupHint { color: palette(placeholder-text); }
-            QLabel#InitialSetupPageTitle { font-size: 24px; font-weight: 800; }
-            QFrame#InitialSetupCard { background: palette(base); border: 1px solid palette(mid); border-radius: 16px; }
-            QFrame#InitialSetupFooter { background: palette(base); border-top: 1px solid palette(mid); }
-            QPushButton#InitialSetupStepButton { border: 0; border-radius: 10px; padding: 10px 12px; text-align: left; background: transparent; color: palette(text); }
-            QPushButton#InitialSetupStepButton:hover { background: palette(alternate-base); }
-            QPushButton#InitialSetupStepButton[active="true"] { background: palette(alternate-base); color: palette(highlight); font-weight: 700; }
-            QLabel#InitialSetupCompletion { font-size: 16px; font-weight: 600; }
+            QDialog#InitialSetupDialog {
+                background: palette(window);
+                color: palette(text);
+            }
+            QFrame#InitialSetupSidebar {
+                background: palette(base);
+                border-right: 1px solid palette(mid);
+                min-width: 230px;
+                max-width: 280px;
+            }
+            QLabel#InitialSetupTitle {
+                font-size: 22px;
+                font-weight: 800;
+            }
+            QLabel#InitialSetupSubtitle {
+                color: palette(placeholder-text);
+            }
+            QFrame#InitialSetupFooter {
+                background: palette(base);
+                border-top: 1px solid palette(mid);
+            }
+            QPushButton#InitialSetupStepButton {
+                border: 0;
+                border-radius: 10px;
+                padding: 10px 12px;
+                text-align: left;
+                background: transparent;
+                color: palette(text);
+            }
+            QPushButton#InitialSetupStepButton:hover {
+                background: palette(alternate-base);
+            }
+            QPushButton#InitialSetupStepButton[active="true"] {
+                background: palette(alternate-base);
+                color: palette(highlight);
+                font-weight: 700;
+            }
         """)
 
     def set_step(self, index: int):

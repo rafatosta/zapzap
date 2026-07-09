@@ -117,7 +117,7 @@ class InitialSetupController(InitialSetupView):
         if current_dictionary:
             self.dictionary_combo.setCurrentText(current_dictionary)
         has_dictionaries = bool(dictionaries)
-        self.dictionary_combo.setVisible(has_dictionaries)
+        self.dictionary_row.setVisible(has_dictionaries)
         self.dictionary_hint.setVisible(not has_dictionaries)
         if not has_dictionaries:
             self.spellcheck_enabled.setChecked(False)
