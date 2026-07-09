@@ -14,11 +14,17 @@ class LanguageDownloadSettingsModel:
     def is_flatpak(self):
         return SetupManager._is_flatpak
 
-    def get_setting(self, key, default=None):
-        return SettingsManager.get(key, default)
+    _SPELLCHECKERS = ("system/spellCheckers", True)
 
-    def set_setting(self, key, value):
-        SettingsManager.set(key, value)
+    @property
+    def spellcheck_enabled(self):
+        key, default = self._SPELLCHECKERS
+        return bool(SettingsManager.get(key, default))
+
+    @spellcheck_enabled.setter
+    def spellcheck_enabled(self, value):
+        key, _default = self._SPELLCHECKERS
+        SettingsManager.set(key, bool(value))
 
     def get_dictionaries_path(self):
         return DictionariesManager.get_path()

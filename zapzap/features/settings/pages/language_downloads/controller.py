@@ -19,7 +19,7 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
     def _load_settings(self):
         self.dic_path.setText(self.model.get_dictionaries_path())
         self.spellchecker_groupBox.checkbox.setChecked(
-            self.model.get_setting("system/spellCheckers", True)
+            self.model.spellcheck_enabled
         )
 
         self.spell_comboBox.clear()
@@ -120,7 +120,7 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
                 retranslate(widget)
 
     def _handle_toggled_spellcheck(self, toggled):
-        self.model.set_setting("system/spellCheckers", toggled)
+        setattr(self.model, "spellcheck_enabled", toggled)
         self._update_browser_spellcheck()
 
     def _handle_spellcheck(self, language):
