@@ -79,7 +79,6 @@ packages = [
   "zapzap.features.downloads",
   "zapzap.features.downloads.ui",
   "zapzap.features.notifications",
-  "zapzap.features.onboarding",
   "zapzap.features.permissions",
   "zapzap.features.shortcuts",
   "zapzap.features.startup",

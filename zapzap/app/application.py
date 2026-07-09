@@ -8,7 +8,6 @@ from PyQt6.QtGui import QDesktopServices
 
 from zapzap.app.single_application import SingleApplication
 from zapzap.app.startup_options import apply_startup_options, parse_startup_options
-from zapzap.features.onboarding.onboarding_dialog import OnboardingDialog
 from zapzap.ui.main_window.client_side_rendering_controller import ClientSideRenderingController
 from zapzap.ui.main_window.main_window_controller import MainWindowController
 from zapzap.core.diagnostics import crash_handler
@@ -53,27 +52,22 @@ def main():
     # Create main window
     mainwindow_inside = MainWindowController()
     csr_enabled = SettingsManager.get("system/csr", False)
-    main_window = ClientSideRenderingController(mainwindow_inside, enabled=True) if csr_enabled else mainwindow_inside
+    main_window = ClientSideRenderingController(
+        mainwindow_inside, enabled=True) if csr_enabled else mainwindow_inside
     app.setWindow(main_window)
     app.setActivationWindow(main_window)
     main_window.load_settings()
 
     ProxyManager.apply()
 
-    show_onboarding = OnboardingDialog.should_show()
-
-    # Se houver onboarding, abrimos a janela para o fluxo ficar visualmente integrado
-    if show_onboarding:
-        main_window.show()
-        OnboardingDialog.run(main_window)
-
     # Compatibilidade com comportamento legado de primeiro acesso
     if SettingsManager.get("website/open_page", True):
         QDesktopServices.openUrl(QUrl(zapzap.__website__))
         SettingsManager.set("website/open_page", False)
 
-    if not show_onboarding and (
-        SettingsManager.get("system/start_background", False) or '--hideStart' in sys.argv
+    if (
+        SettingsManager.get("system/start_background",
+                            False) or '--hideStart' in sys.argv
     ):
         main_window.hide()
     else:

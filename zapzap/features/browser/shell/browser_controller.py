@@ -1,9 +1,10 @@
 from PyQt6.QtCore import QEasingCurve
 from PyQt6.QtCore import QParallelAnimationGroup
 from PyQt6.QtCore import QPropertyAnimation
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QUrl
 from PyQt6.QtGui import QAction
-from PyQt6.QtWidgets import QMessageBox
+from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtWidgets import QMessageBox, QApplication
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.browser.web.web_view import WebView
 from zapzap.features.accounts.domain.user import User
@@ -18,7 +19,7 @@ from zapzap.features.browser.components import BrowserGridView
 from zapzap.features.browser.components import BrowserPageButton
 from zapzap.features.browser.components import BrowserSidebarButton
 from zapzap.features.browser.components import BrowserView
-from zapzap.features.onboarding.onboarding_dialog import OnboardingDialog
+
 
 from gettext import gettext as _
 
@@ -122,11 +123,49 @@ class BrowserController(BrowserView):
         self.btn_flatpak_help.setText("")
         self.btn_flatpak_help.setIconSize(self.btn_open_settings.iconSize())
         self.btn_flatpak_help.setToolTip(_("Flatpak sandbox help"))
-        self.btn_flatpak_help.clicked.connect(self._show_flatpak_sandbox_popover)
+        self.btn_flatpak_help.clicked.connect(
+            self._show_flatpak_sandbox_popover)
         self.layout_2.insertWidget(4, self.btn_flatpak_help)
 
     def _show_flatpak_sandbox_popover(self):
-        OnboardingDialog.show_flatpak_permissions_dialog(self)
+        """
+        Exibe um alerta manual sobre permissões Flatpak.
+        """
+        command = "flatpak override --user --filesystem=home com.rtosta.zapzap"
+
+        def _open_flatseal_with_fallback():
+            """
+            Tenta abrir a página do Flatseal.
+            Caso falhe, copia o link para o clipboard.
+            """
+            flatseal_url = QUrl(
+                "https://flathub.org/apps/com.github.tchx84.Flatseal")
+            opened = QDesktopServices.openUrl(flatseal_url)
+
+            if not opened:
+                QApplication.clipboard().setText(flatseal_url.toString())
+
+        dialog = QMessageBox(self)
+        dialog.setWindowTitle(_("Flatpak sandbox"))
+        dialog.setIcon(QMessageBox.Icon.Warning)
+
+        dialog.setText(_("ZapZap is running in Flatpak sandbox."))
+        dialog.setInformativeText(
+            _("Some features like opening files or drag-and-drop may require additional permissions.")
+        )
+
+        instructions_button = dialog.addButton(
+            _("Instructions"), QMessageBox.ButtonRole.ActionRole)
+        copy_button = dialog.addButton(
+            _("Copy command"), QMessageBox.ButtonRole.ActionRole)
+        dialog.addButton(_("Close"), QMessageBox.ButtonRole.RejectRole)
+
+        dialog.exec()
+
+        if dialog.clickedButton() == instructions_button:
+            _open_flatseal_with_fallback()
+        elif dialog.clickedButton() == copy_button:
+            QApplication.clipboard().setText(command)
 
     def _load_users(self):
         """Carrega os usuários e cria páginas correspondentes."""
@@ -180,7 +219,8 @@ class BrowserController(BrowserView):
         page_button.clicked.connect(
             lambda: self._handle_page_button_click(new_page, page_button))
         page_button.setObjectName(f"page_button_{page_index}")
-        page_button.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
+        page_button.setContextMenuPolicy(
+            Qt.ContextMenuPolicy.CustomContextMenu)
         page_button.customContextMenuRequested.connect(
             lambda position, button=page_button: (
                 self._show_page_button_context_menu(button, position)
@@ -293,11 +333,11 @@ class BrowserController(BrowserView):
         old_page = self.pages.currentWidget()
         if old_page and isinstance(old_page, WebView):
             old_page.cached_screenshot = old_page.grab()
-            
+
         self._reset_button_styles()
         self.pages.setCurrentWidget(page)
         self._last_active_webview = page
-        
+
         # Apply proxy for the active account
         from zapzap.core.environment.proxy_manager import ProxyManager
         ProxyManager.apply(user_id=page.user.id)
@@ -316,7 +356,8 @@ class BrowserController(BrowserView):
                 _("You can reactivate it now or use the right-click menu to manage this account.")
             )
 
-            activate_button = dialog.addButton(_("Activate"), QMessageBox.ButtonRole.AcceptRole)
+            activate_button = dialog.addButton(
+                _("Activate"), QMessageBox.ButtonRole.AcceptRole)
             dialog.addButton(_("Not now"), QMessageBox.ButtonRole.RejectRole)
             dialog.exec()
 
@@ -521,7 +562,8 @@ class BrowserController(BrowserView):
             SystemIcon.get_icon("new_chat_number", theme))
 
         if hasattr(self, "btn_flatpak_help"):
-            self.btn_flatpak_help.setIcon(SystemIcon.get_icon("flatpak_help", theme))
+            self.btn_flatpak_help.setIcon(
+                SystemIcon.get_icon("flatpak_help", theme))
 
         # Reusing the existing users group icon for grid view for simplicity
         try:
@@ -531,7 +573,8 @@ class BrowserController(BrowserView):
 
     def settings_sidebar(self):
         """Mostra ou esconde a barra lateral"""
-        self.set_sidebar_visible(SettingsManager.get("system/sidebar", True), animated=False)
+        self.set_sidebar_visible(SettingsManager.get(
+            "system/sidebar", True), animated=False)
 
     def set_sidebar_visible(self, visible: bool, animated: bool = True):
         if self._sidebar_animation_group:
@@ -561,17 +604,20 @@ class BrowserController(BrowserView):
         self._animate_sidebar_width(
             current_width,
             target_width,
-            on_finished=(lambda: self.browser_sidebar.hide()) if not visible else None,
+            on_finished=(lambda: self.browser_sidebar.hide()
+                         ) if not visible else None,
         )
 
     def _animate_sidebar_width(self, start_width: int, end_width: int, on_finished=None):
-        min_animation = QPropertyAnimation(self.browser_sidebar, b"minimumWidth", self)
+        min_animation = QPropertyAnimation(
+            self.browser_sidebar, b"minimumWidth", self)
         min_animation.setDuration(180)
         min_animation.setEasingCurve(QEasingCurve.Type.InOutCubic)
         min_animation.setStartValue(start_width)
         min_animation.setEndValue(end_width)
 
-        max_animation = QPropertyAnimation(self.browser_sidebar, b"maximumWidth", self)
+        max_animation = QPropertyAnimation(
+            self.browser_sidebar, b"maximumWidth", self)
         max_animation.setDuration(180)
         max_animation.setEasingCurve(QEasingCurve.Type.InOutCubic)
         max_animation.setStartValue(start_width)
