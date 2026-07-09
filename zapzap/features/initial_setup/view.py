@@ -108,14 +108,14 @@ class InitialSetupView(QDialog):
         )
 
         language_section = SettingsSection(
-            _("Language"),
-            _("Choose the interface language used by ZapZap."),
+            _("Interface language"),
+            "",
             page,
         )
         language_card = SettingsCard(page)
         self.language_row = SettingsSelectRow(
             _("Interface language"),
-            _("The interface language is applied when you finish setup."),
+            "",
         )
         self.language_combo = self.language_row.combo
         language_card.add_row(self.language_row)
@@ -124,7 +124,7 @@ class InitialSetupView(QDialog):
 
         theme_section = SettingsSection(
             _("Theme"),
-            _("Choose the visual theme."),
+            "",
             page,
         )
         self.theme_group = QButtonGroup(page)
@@ -152,14 +152,14 @@ class InitialSetupView(QDialog):
             self,
         )
         desktop_section = SettingsSection(
-            _("Desktop notifications"),
-            _("Choose whether ZapZap may show desktop notifications."),
+            _("Notifications"),
+            "",
             page,
         )
         desktop_card = SettingsCard(page)
         self.notifications_enabled_row = SettingsSwitchRow(
-            _("Enable notifications"),
-            _("Allow ZapZap to publish native desktop notifications for WhatsApp activity."),
+            _("Enable desktop notifications"),
+            "",
         )
         self.notifications_enabled = self.notifications_enabled_row.checkbox
         desktop_card.add_row(self.notifications_enabled_row)
@@ -167,22 +167,22 @@ class InitialSetupView(QDialog):
         page.add_section(desktop_section)
 
         privacy_section = SettingsSection(
-            _("Notification privacy"),
-            _("Limit what is visible in notification banners."),
+            _("Notifications and privacy"),
+            "",
             page,
         )
         privacy_card = SettingsCard(page)
         self.notify_photo_row = SettingsSwitchRow(
             _("Show contact photo"),
-            _("Display the sender avatar when it is available."),
+            "",
         )
         self.notify_name_row = SettingsSwitchRow(
-            _("Show contact name"),
-            _("Display the sender or group name."),
+            _("Show contact or group name"),
+            "",
         )
         self.notify_preview_row = SettingsSwitchRow(
             _("Show message preview"),
-            _("Display the message text in the notification."),
+            "",
         )
         self.notify_photo = self.notify_photo_row.checkbox
         self.notify_name = self.notify_name_row.checkbox
@@ -201,18 +201,18 @@ class InitialSetupView(QDialog):
             self,
         )
         tray_section = SettingsSection(
-            _("Tray icon"),
-            _("Control tray icon visibility and unread counter."),
+            _("Background behavior"),
+            "",
             page,
         )
         tray_card = SettingsCard(page)
         self.tray_enabled_row = SettingsSwitchRow(
-            _("Enable tray icon"),
-            _("Show ZapZap in the system tray."),
+            _("Show icon in the system tray"),
+            "",
         )
         self.tray_counter_row = SettingsSwitchRow(
-            _("Notification counter"),
-            _("Show unread notifications on the tray icon."),
+            _("Show unread counter on the tray icon"),
+            "",
         )
         self.tray_enabled = self.tray_enabled_row.checkbox
         self.tray_counter = self.tray_counter_row.checkbox
@@ -222,18 +222,18 @@ class InitialSetupView(QDialog):
         page.add_section(tray_section)
 
         window_section = SettingsSection(
-            _("Window behavior"),
-            _("Configure close behavior."),
+            _("Background behavior"),
+            "",
             page,
         )
         window_card = SettingsCard(page)
         self.keep_background_row = SettingsSwitchRow(
-            _("Keep running in the background"),
-            _("Hide the main window instead of quitting when it is closed."),
+            _("Keep running in the background when closing the window"),
+            "",
         )
         self.confirm_close_row = SettingsSwitchRow(
-            _("Confirm before closing the window"),
-            _("Ask for confirmation before closing ZapZap."),
+            _("Ask for confirmation before closing"),
+            "",
         )
         self.keep_background = self.keep_background_row.checkbox
         self.confirm_close = self.confirm_close_row.checkbox
@@ -243,18 +243,18 @@ class InitialSetupView(QDialog):
         page.add_section(window_section)
 
         startup_section = SettingsSection(
-            _("Startup"),
-            _("Control how ZapZap behaves when your desktop session starts."),
+            _("Background behavior"),
+            "",
             page,
         )
         startup_card = SettingsCard(page)
         self.start_system_row = SettingsSwitchRow(
             _("Start with the system"),
-            _("Create or remove the desktop autostart entry."),
+            "",
         )
         self.start_minimized_row = SettingsSwitchRow(
             _("Start minimized"),
-            _("Open ZapZap in the background instead of showing the main window."),
+            "",
         )
         self.start_system = self.start_system_row.checkbox
         self.start_minimized = self.start_minimized_row.checkbox
@@ -272,14 +272,14 @@ class InitialSetupView(QDialog):
             self,
         )
         downloads_section = SettingsSection(
-            _("Downloads"),
-            _("Choose where downloaded files are saved."),
+            _("Download directory"),
+            "",
             page,
         )
         downloads_card = SettingsCard(page)
         self.download_path_row = SettingsPathRow(
             _("Download directory"),
-            _("Set a custom folder or keep the current download location."),
+            "",
             button_text=_("Choose folder"),
         )
         self.download_path = self.download_path_row.line_edit
@@ -290,18 +290,18 @@ class InitialSetupView(QDialog):
         page.add_section(downloads_section)
 
         spell_section = SettingsSection(
-            _("Spell checker"),
-            _("Select compiled dictionaries and where ZapZap should look for them."),
+            _("Downloads and typing"),
+            "",
             page,
         )
         spell_card = SettingsCard(page)
         self.spellcheck_enabled_row = SettingsSwitchRow(
             _("Enable spell checker"),
-            _("Use Qt WebEngine spell checking with the selected dictionary."),
+            "",
         )
         self.dictionary_row = SettingsSelectRow(
             _("Dictionary language"),
-            _("Recognizes only compiled dictionaries (.bdic)."),
+            "",
         )
         self.dictionary_hint = SettingsInfoBox(
             _("No compiled dictionaries were found. You can configure dictionaries later in Settings."),
@@ -324,31 +324,31 @@ class InitialSetupView(QDialog):
             self,
         )
         section = SettingsSection(
-            _("Permissions"),
-            _("When an option is unchecked, ZapZap will ask again in each session."),
+            _("Essential permissions"),
+            "",
             page,
         )
         card = SettingsCard(page)
         card.add_row(
             SettingsInfoBox(
-                _("Enable only the permissions you want to grant automatically when the page requests them."),
+                _("When a permission is off, ZapZap will ask again when WhatsApp Web requests it."),
             )
         )
         self.permission_microphone_row = SettingsSwitchRow(
             _("Microphone"),
-            _("Automatically allow access to your microphone."),
+            "",
         )
         self.permission_camera_row = SettingsSwitchRow(
             _("Camera"),
-            _("Automatically allow access to your camera."),
+            "",
         )
         self.permission_screen_row = SettingsSwitchRow(
-            _("Screen contents"),
-            _("Automatically allow sharing of screen contents."),
+            _("Screen sharing"),
+            "",
         )
         self.webrtc_shield_row = SettingsSwitchRow(
-            _("WebRTC shield"),
-            _("Reduce WebRTC IP exposure."),
+            _("Reduce WebRTC IP exposure"),
+            "",
         )
         self.permission_microphone = self.permission_microphone_row.checkbox
         self.permission_camera = self.permission_camera_row.checkbox
@@ -369,18 +369,18 @@ class InitialSetupView(QDialog):
     def _finish_page(self):
         page = SettingsPage(
             _("You're ready"),
-            _("ZapZap will save these preferences now. Advanced options remain available in Settings."),
+            _("ZapZap will save these preferences now. Advanced options like proxy, custom CSS/JavaScript, Flatpak permissions, and performance tweaks remain available in Settings."),
             self,
         )
         section = SettingsSection(
-            _("Finish setup"),
-            _("Review advanced options later whenever you need them."),
+            _("You're ready"),
+            "",
             page,
         )
         card = SettingsCard(page)
         card.add_row(
             SettingsInfoBox(
-                _("You can revisit all choices from Settings at any time. Proxy, custom CSS/JavaScript, Flatpak permissions, and performance tweaks are still available there."),
+                _("You can revisit all choices from Settings at any time."),
                 "success",
             )
         )
