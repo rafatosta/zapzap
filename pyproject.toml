@@ -101,7 +101,6 @@ zapzap = [
   "js/*",
   "extensions/*",
   "features/browser/web/scripts/*.js",
-  "assets/themes/*.css"
 ]
 
 [tool.setuptools.dynamic]
