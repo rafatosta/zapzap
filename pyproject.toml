@@ -45,6 +45,7 @@ packages = [
   "zapzap.app",
   "zapzap.core",
   "zapzap.core.config",
+  "zapzap.core.config.settings",
   "zapzap.core.diagnostics",
   "zapzap.core.environment",
   "zapzap.core.i18n",

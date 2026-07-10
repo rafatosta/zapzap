@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from zapzap.features.accounts.domain.user import User
 from zapzap.core.environment.proxy_manager import ProxyManager
+from zapzap.core.config.settings.privacy import PrivacySettings
 from zapzap.core.config.settings_manager import SettingsManager
 
 
@@ -16,7 +17,9 @@ class NetworkPrivacySettingsModel:
     """
 
     _GLOBAL_PROXY_PREFIX = "proxy/"
-    _WEBRTC_SHIELD = ("privacy/webrtc_shield", False)
+
+    def __init__(self) -> None:
+        self._privacy_settings = PrivacySettings()
 
     def list_scopes(self) -> list[tuple[str, int | None]]:
         """Return available proxy scopes as `(label, user_id)` pairs."""
@@ -83,13 +86,11 @@ class NetworkPrivacySettingsModel:
     @property
     def webrtc_shield_enabled(self) -> bool:
         """Whether WebRTC IP exposure protection is enabled."""
-        key, default = self._WEBRTC_SHIELD
-        return bool(SettingsManager.get(key, default))
+        return self._privacy_settings.webrtc_shield_enabled
 
     @webrtc_shield_enabled.setter
     def webrtc_shield_enabled(self, value: bool) -> None:
-        key, _default = self._WEBRTC_SHIELD
-        SettingsManager.set(key, bool(value))
+        self._privacy_settings.webrtc_shield_enabled = value
 
     def apply_proxy(self) -> None:
         """Apply the currently persisted proxy configuration."""

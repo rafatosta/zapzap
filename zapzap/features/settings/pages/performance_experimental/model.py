@@ -2,38 +2,11 @@
 
 from __future__ import annotations
 
-from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.core.config.settings.performance import PerformanceSettings
 
 
 class PerformanceExperimentalSettingsModel:
-    """Model for Qt WebEngine/Chromium performance settings.
-
-    This class hides SettingsManager keys from controllers and views.
-    Controllers should access performance settings only through semantic
-    properties and setting names.
-    """
-
-    _CACHE_TYPE = ("performance/cache_type", "DiskHttpCache")
-    _CACHE_SIZE_MAX = ("performance/cache_size_max", "0")
-    _JS_MEMORY_LIMIT_INDEX = ("performance/js_memory_limit_index", 0)
-
-    _BOOLEAN_SETTINGS = {
-        "persistent_cookies": ("performance/persistent_cookies", True),
-        "in_process_gpu": ("performance/in_process_gpu", False),
-        "disable_gpu": ("performance/disable_gpu", False),
-        "disable_gpu_vsync": ("performance/disable_gpu_vsync", False),
-        "software_rendering": ("performance/software_rendering", False),
-        "force_gbm": ("performance/force_gbm", False),
-        "disable_accessibility": ("performance/disable_accessibility", False),
-        "single_process": ("performance/single_process", False),
-        "process_per_site": ("performance/process_per_site", True),
-        "js_predictable_gc_schedule": ("performance/js_predictable_gc_schedule", False),
-        "scroll_animator": ("web/scroll_animator", False),
-        "background_throttling": ("web/background_throttling", True),
-        "disable_animations": ("web/disable_animations", False),
-        "disable_pinch": ("web/disable_pinch", False),
-        "ctrl_arrow_visual_navigation_fix": ("web/ctrl_arrow_visual_navigation_fix", True),
-    }
+    """Model for Qt WebEngine/Chromium performance settings."""
 
     BOOLEAN_SETTINGS = tuple(_BOOLEAN_SETTINGS)
 
@@ -42,66 +15,45 @@ class PerformanceExperimentalSettingsModel:
         "MemoryHttpCache",
         "NoCache",
     ]
-
     CACHE_SIZES = ["0 MB", "128 MB", "256 MB", "512 MB", "1024 MB", "2048 MB"]
-    JS_MEMORY_LIMITS = ["Automatic", "256 MB", "1024 MB", "4096 MB"]
+    JS_MEMORY_LIMITS = list(PerformanceSettings.JS_MEMORY_LIMITS)
+    BOOLEAN_SETTINGS = PerformanceSettings.BOOLEAN_SETTINGS
 
-    @staticmethod
-    def _get(setting: tuple[str, object]):
-        key, default = setting
-        return SettingsManager.get(key, default)
-
-    @staticmethod
-    def _set(setting: tuple[str, object], value) -> None:
-        key, _default = setting
-        SettingsManager.set(key, value)
-
-    @classmethod
-    def _default_settings(cls) -> tuple[tuple[str, object], ...]:
-        return (
-            cls._CACHE_TYPE,
-            cls._CACHE_SIZE_MAX,
-            cls._JS_MEMORY_LIMIT_INDEX,
-            *cls._BOOLEAN_SETTINGS.values(),
-        )
+    def __init__(self) -> None:
+        self._settings = PerformanceSettings()
 
     def get_boolean_setting(self, name: str) -> bool:
         """Return a boolean performance setting by semantic name."""
-        return bool(self._get(self._BOOLEAN_SETTINGS[name]))
+        return self._settings.get_boolean_setting(name)
 
     def set_boolean_setting(self, name: str, value: bool) -> None:
         """Persist a boolean performance setting by semantic name."""
-        self._set(self._BOOLEAN_SETTINGS[name], bool(value))
+        self._settings.set_boolean_setting(name, value)
 
     @property
     def cache_type(self) -> str:
-        return str(self._get(self._CACHE_TYPE))
+        return self._settings.cache_type
 
     @cache_type.setter
     def cache_type(self, value: str) -> None:
-        self._set(self._CACHE_TYPE, value)
+        self._settings.cache_type = value
 
     @property
     def cache_size_max(self) -> str:
-        return str(self._get(self._CACHE_SIZE_MAX))
+        return self._settings.cache_size_max
 
     @cache_size_max.setter
     def cache_size_max(self, value: str) -> None:
-        self._set(self._CACHE_SIZE_MAX, value)
+        self._settings.cache_size_max = value
 
     @property
     def js_memory_limit_index(self) -> int:
-        try:
-            index = int(self._get(self._JS_MEMORY_LIMIT_INDEX))
-        except (TypeError, ValueError):
-            index = 0
-        return max(0, min(index, len(self.JS_MEMORY_LIMITS) - 1))
+        return self._settings.js_memory_limit_index
 
     @js_memory_limit_index.setter
     def js_memory_limit_index(self, value: int) -> None:
-        self._set(self._JS_MEMORY_LIMIT_INDEX, int(value))
+        self._settings.js_memory_limit_index = value
 
     def restore_defaults(self) -> None:
         """Restore all performance settings to safe defaults."""
-        for key, value in self._default_settings():
-            SettingsManager.set(key, value)
+        self._settings.restore_defaults()
