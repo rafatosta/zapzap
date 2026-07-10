@@ -8,6 +8,8 @@ from zapzap.core.config.settings.performance import PerformanceSettings
 class PerformanceExperimentalSettingsModel:
     """Model for Qt WebEngine/Chromium performance settings."""
 
+    BOOLEAN_SETTINGS = tuple(_BOOLEAN_SETTINGS)
+
     CACHE_TYPES = [
         "DiskHttpCache",
         "MemoryHttpCache",
