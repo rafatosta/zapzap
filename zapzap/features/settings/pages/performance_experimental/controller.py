@@ -9,24 +9,6 @@ from zapzap.features.settings.pages.performance_experimental.view import Perform
 class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsView):
     """Coordinates performance settings state and actions for the view."""
 
-    _BOOLEAN_BINDINGS = {
-        "performance/persistent_cookies": "persistent_cookies",
-        "performance/in_process_gpu": "in_process_gpu",
-        "performance/disable_gpu": "disable_gpu",
-        "performance/disable_gpu_vsync": "disable_gpu_vsync",
-        "performance/software_rendering": "software_rendering",
-        "performance/force_gbm": "force_gbm",
-        "performance/disable_accessibility": "disable_accessibility",
-        "performance/single_process": "single_process",
-        "performance/process_per_site": "process_per_site",
-        "performance/js_predictable_gc_schedule": "js_predictable_gc_schedule",
-        "web/scroll_animator": "scroll_animator",
-        "web/background_throttling": "background_throttling",
-        "web/disable_animations": "disable_animations",
-        "web/disable_pinch": "disable_pinch",
-        "web/ctrl_arrow_visual_navigation_fix": "ctrl_arrow_visual_navigation_fix",
-    }
-
     def __init__(self, parent=None):
         super().__init__(parent)
         self.model = PerformanceExperimentalSettingsModel()
@@ -47,8 +29,10 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
         self.cache_type.setCurrentText(self.model.cache_type)
         self.cache_size_max.setCurrentText(f"{self.model.cache_size_max} MB")
 
-        for key, attribute_name in self._BOOLEAN_BINDINGS.items():
-            getattr(self, attribute_name).setChecked(self.model.get_bool(key))
+        for setting_name in self.model.BOOLEAN_SETTINGS:
+            getattr(self, setting_name).setChecked(
+                self.model.get_boolean_setting(setting_name)
+            )
 
         self.js_memory_limit.blockSignals(True)
         self.js_memory_limit.setCurrentIndex(self.model.js_memory_limit_index)
@@ -57,11 +41,11 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
     def _connect_signals(self):
         self.cache_type.textActivated.connect(self._handle_cache_type)
         self.cache_size_max.textActivated.connect(self._handle_cache_size)
-        for key, attribute_name in self._BOOLEAN_BINDINGS.items():
-            getattr(self, attribute_name).clicked.connect(
-                lambda _checked=False, setting_key=key, widget_name=attribute_name: self.model.set_bool(
-                    setting_key,
-                    getattr(self, widget_name).isChecked(),
+        for setting_name in self.model.BOOLEAN_SETTINGS:
+            getattr(self, setting_name).clicked.connect(
+                lambda _checked=False, name=setting_name: self.model.set_boolean_setting(
+                    name,
+                    getattr(self, name).isChecked(),
                 )
             )
         self.js_memory_limit.currentIndexChanged.connect(

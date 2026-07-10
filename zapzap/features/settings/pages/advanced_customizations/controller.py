@@ -21,8 +21,6 @@ from PyQt6.QtWidgets import (
 
 from zapzap.features.customizations.css_preview_service import CssPreviewService
 from zapzap.features.customizations.customizations_manager import CustomizationsManager
-from zapzap.core.config.settings_manager import SettingsManager
-
 from zapzap.features.settings.pages.advanced_customizations.view import AdvancedCustomizationsSettingsView
 from zapzap.features.settings.pages.advanced_customizations.model import AdvancedCustomizationsSettingsModel
 
@@ -232,7 +230,7 @@ class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsVie
             widget.setEnabled(allow_edit)
 
     def _dialog_options(self):
-        if SettingsManager.get("system/DontUseNativeDialog", False):
+        if self.model.dont_use_native_dialog:
             return QFileDialog.Option.DontUseNativeDialog
         return QFileDialog.Option(0)
 

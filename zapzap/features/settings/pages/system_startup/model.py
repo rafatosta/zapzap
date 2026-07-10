@@ -3,7 +3,7 @@
 from zapzap.features.startup.autostart_manager import AutostartManager
 from zapzap.features.dictionaries.dictionaries_manager import DictionariesManager
 from zapzap.features.downloads.download_manager import DownloadManager
-from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.core.config.settings.system import SystemSettings
 from zapzap.core.environment.setup_manager import SetupManager
 from zapzap.core.i18n.translation_manager import TranslationManager
 
@@ -16,11 +16,52 @@ class SystemStartupSettingsModel:
     def is_flatpak(self):
         return SetupManager._is_flatpak
 
-    def get_setting(self, key, default=None):
-        return SettingsManager.get(key, default)
+    def __init__(self):
+        self._system_settings = SystemSettings()
 
-    def set_setting(self, key, value):
-        SettingsManager.set(key, value)
+    @property
+    def wayland_enabled(self) -> bool:
+        return self._system_settings.wayland_enabled
+
+    @wayland_enabled.setter
+    def wayland_enabled(self, value: bool) -> None:
+        self._system_settings.wayland_enabled = value
+
+    @property
+    def confirm_on_close(self) -> bool:
+        return self._system_settings.confirm_on_close
+
+    @confirm_on_close.setter
+    def confirm_on_close(self, value: bool) -> None:
+        self._system_settings.confirm_on_close = value
+
+    @property
+    def quit_on_close(self) -> bool:
+        return self._system_settings.quit_on_close
+
+    @quit_on_close.setter
+    def quit_on_close(self, value: bool) -> None:
+        self._system_settings.quit_on_close = value
+
+    @property
+    def start_in_background(self) -> bool:
+        return self._system_settings.start_in_background
+
+    @start_in_background.setter
+    def start_in_background(self, value: bool) -> None:
+        self._system_settings.start_in_background = value
+
+    @property
+    def start_with_system(self) -> bool:
+        return self._system_settings.start_with_system
+
+    @property
+    def dont_use_native_dialog(self) -> bool:
+        return self._system_settings.dont_use_native_dialog
+
+    @dont_use_native_dialog.setter
+    def dont_use_native_dialog(self, value: bool) -> None:
+        self._system_settings.dont_use_native_dialog = value
 
     def get_dictionaries_path(self):
         return DictionariesManager.get_path()
@@ -54,7 +95,7 @@ class SystemStartupSettingsModel:
         return DownloadManager.open_folder_dialog(parent)
 
     def set_autostart(self, enabled):
-        SettingsManager.set("system/start_system", enabled)
+        self._system_settings.start_with_system = enabled
         AutostartManager.create_desktop_file(enabled)
 
     def list_available_languages(self):

@@ -17,62 +17,66 @@ class SystemStartupSettingsController(SystemStartupSettingsView):
         self._connect_signals()
         self._not_flatpak()
 
-
     def _not_flatpak(self):
 
         if not SetupManager._is_flatpak:
             self.btn_wayland.setChecked(
-                self.model.get_setting("system/wayland", False)
+                self.model.wayland_enabled
             )
             self.btn_wayland.clicked.connect(
-            lambda: self.model.set_setting(
-                "system/wayland",
-                self.btn_wayland.isChecked(),
+                lambda: setattr(
+                    self.model,
+                    "wayland_enabled",
+                    self.btn_wayland.isChecked(),
+                )
             )
-        )
 
     def _load_settings(self):
 
         self.btn_confirm_in_close.setChecked(
-            self.model.get_setting("system/confirm_on_close", False)
+            self.model.confirm_on_close
         )
         self.btn_quit_in_close.setChecked(
-            self.model.get_setting("system/quit_in_close", False)
+            self.model.quit_on_close
         )
         self.btn_start_background.setChecked(
-            self.model.get_setting("system/start_background", False)
+            self.model.start_in_background
         )
         self.btn_start_system.setChecked(
-            self.model.get_setting("system/start_system", False)
+            self.model.start_with_system
         )
 
         self.dontUseNativeDialog.setChecked(
-            self.model.get_setting("system/DontUseNativeDialog", False)
-        )            
+            self.model.dont_use_native_dialog
+        )
 
     def _connect_signals(self):
         self.btn_confirm_in_close.clicked.connect(
-            lambda: self.model.set_setting(
-                "system/confirm_on_close",
+            lambda: setattr(
+                self.model,
+                "confirm_on_close",
                 self.btn_confirm_in_close.isChecked(),
             )
         )
         self.btn_quit_in_close.clicked.connect(
-            lambda: self.model.set_setting(
-                "system/quit_in_close",
+            lambda: setattr(
+                self.model,
+                "quit_on_close",
                 self.btn_quit_in_close.isChecked(),
             )
         )
         self.btn_start_background.clicked.connect(
-            lambda: self.model.set_setting(
-                "system/start_background",
+            lambda: setattr(
+                self.model,
+                "start_in_background",
                 self.btn_start_background.isChecked(),
             )
         )
         self.btn_start_system.clicked.connect(self._handle_autostart)
         self.dontUseNativeDialog.clicked.connect(
-            lambda: self.model.set_setting(
-                "system/DontUseNativeDialog",
+            lambda: setattr(
+                self.model,
+                "dont_use_native_dialog",
                 self.dontUseNativeDialog.isChecked(),
             )
         )
