@@ -14,6 +14,7 @@ class DownloadManager:
     )
 
     _floating_cards = []
+    _active_downloads = []
 
     @staticmethod
     def set_path(new_path):
@@ -41,17 +42,29 @@ class DownloadManager:
         if download.state() != QWebEngineDownloadRequest.DownloadState.DownloadRequested:
             return
 
-        # pausa até decisão
-        download.pause()
-
         download.setDownloadDirectory(
             DownloadManager.get_path()
         )
 
         DownloadManager._normalize_download_file_name(download)
 
+        DownloadManager._active_downloads.append(download)
+
         dialog = DownloadDialog(download, parent)
-        dialog.show()
+        DownloadManager._floating_cards.append(dialog)
+
+        try:
+            dialog.exec()
+        finally:
+            DownloadManager._release_download(download, dialog)
+
+    @staticmethod
+    def _release_download(download: QWebEngineDownloadRequest, dialog):
+        if download in DownloadManager._active_downloads:
+            DownloadManager._active_downloads.remove(download)
+
+        if dialog in DownloadManager._floating_cards:
+            DownloadManager._floating_cards.remove(dialog)
 
     @staticmethod
     def _normalize_download_file_name(download: QWebEngineDownloadRequest):

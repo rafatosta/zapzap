@@ -1,3 +1,4 @@
+from PyQt6 import sip
 from PyQt6.QtWidgets import (
     QDialog,
     QLabel,
@@ -26,6 +27,24 @@ class DownloadDialog(QDialog):
         super().__init__(parent)
 
         self.download = download
+        self.initial_directory = self._safe_download_value(
+            download.downloadDirectory,
+            ""
+        )
+        self.initial_file_name = self._safe_download_value(
+            download.downloadFileName,
+            ""
+        )
+        self.initial_mime_type = self._safe_download_value(
+            download.mimeType,
+            ""
+        )
+        self.initial_url = self._safe_download_value(
+            lambda: download.url().toString(),
+            ""
+        )
+
+        self._connect_lifetime_signals()
 
         self.setWindowTitle(_("Download"))
         self.setModal(True)
@@ -57,7 +76,7 @@ class DownloadDialog(QDialog):
         # File name
         # ===============================
 
-        title = QLabel(self.download.downloadFileName())
+        title = QLabel(self.initial_file_name)
         title.setWordWrap(True)
 
         font = title.font()
@@ -73,7 +92,7 @@ class DownloadDialog(QDialog):
         # Destination
         # ===============================
 
-        directory = QLabel(self.download.downloadDirectory())
+        directory = QLabel(self.initial_directory)
         directory.setWordWrap(True)
 
         directory.setObjectName("Directory")
@@ -212,51 +231,92 @@ class DownloadDialog(QDialog):
         """)
 
     # ===============================
+    # Download lifetime
+    # ===============================
+
+    def _safe_download_value(self, getter, fallback):
+        try:
+            return getter()
+        except RuntimeError:
+            return fallback
+
+    def _is_download_available(self) -> bool:
+        return (
+            self.download is not None
+            and not sip.isdeleted(self.download)
+        )
+
+    def _connect_lifetime_signals(self):
+        if not self._is_download_available():
+            self.download = None
+            return
+
+        try:
+            self.download.destroyed.connect(self._on_download_destroyed)
+        except RuntimeError:
+            self.download = None
+
+    def _on_download_destroyed(self):
+        self.download = None
+
+    def _close_unavailable_download(self):
+        self.download = None
+        self.reject()
+
+    # ===============================
     # Actions
     # ===============================
 
     def _open_file(self):
+        if not self._is_download_available():
+            self._close_unavailable_download()
+            return
 
-        directory = self.download.downloadDirectory()
+        directory = self.initial_directory
+        file_name = self.initial_file_name
 
         def open_when_done(state):
-
             if (
                 state ==
                 QWebEngineDownloadRequest.DownloadState.DownloadCompleted
             ):
-                path = os.path.join(
-                    directory,
-                    self.download.downloadFileName()
-                )
+                path = os.path.join(directory, file_name)
 
                 QDesktopServices.openUrl(
                     QUrl.fromLocalFile(path)
                 )
 
-        self.download.stateChanged.connect(open_when_done)
-        self.download.accept()
-        self.close()
+        try:
+            self.download.stateChanged.connect(open_when_done)
+            self.download.accept()
+            self.accept()
+        except RuntimeError:
+            self._close_unavailable_download()
 
     def _open_folder(self):
-
         QDesktopServices.openUrl(
-            QUrl.fromLocalFile(
-                self.download.downloadDirectory()
-            )
+            QUrl.fromLocalFile(self.initial_directory)
         )
 
     def _save(self):
+        if not self._is_download_available():
+            self._close_unavailable_download()
+            return
 
-        self.download.accept()
-
-        self.close()
+        try:
+            self.download.accept()
+            self.accept()
+        except RuntimeError:
+            self._close_unavailable_download()
 
     def _save_as(self):
+        if not self._is_download_available():
+            self._close_unavailable_download()
+            return
 
-        directory = self.download.downloadDirectory()
+        directory = self.initial_directory
 
-        file_name = self.download.downloadFileName()
+        file_name = self.initial_file_name
 
         suffix = QFileInfo(file_name).suffix()
 
@@ -284,24 +344,35 @@ class DownloadDialog(QDialog):
 
         normalized_file_name = DownloadNamingService.normalized_file_name(
             os.path.basename(path),
-            self.download.mimeType(),
-            self.download.url().toString()
+            self.initial_mime_type,
+            self.initial_url
         )
 
-        self.download.setDownloadDirectory(
-            os.path.dirname(path)
-        )
+        if not self._is_download_available():
+            self._close_unavailable_download()
+            return
 
-        self.download.setDownloadFileName(
-            normalized_file_name
-        )
+        try:
+            self.download.setDownloadDirectory(
+                os.path.dirname(path)
+            )
 
-        self.download.accept()
+            self.download.setDownloadFileName(
+                normalized_file_name
+            )
 
-        self.close()
+            self.download.accept()
+            self.accept()
+        except RuntimeError:
+            self._close_unavailable_download()
 
     def _cancel(self):
+        if not self._is_download_available():
+            self._close_unavailable_download()
+            return
 
-        self.download.cancel()
-
-        self.close()
+        try:
+            self.download.cancel()
+            self.reject()
+        except RuntimeError:
+            self._close_unavailable_download()
