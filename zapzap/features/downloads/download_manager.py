@@ -14,6 +14,7 @@ class DownloadManager:
     )
 
     _floating_cards = []
+    _active_downloads = set()
 
     @staticmethod
     def set_path(new_path):
@@ -50,7 +51,13 @@ class DownloadManager:
 
         DownloadManager._normalize_download_file_name(download)
 
+        DownloadManager._active_downloads.add(download)
+
         dialog = DownloadDialog(download, parent)
+        dialog.finished.connect(
+            lambda _result, request=download:
+            DownloadManager._active_downloads.discard(request)
+        )
         dialog.show()
 
     @staticmethod

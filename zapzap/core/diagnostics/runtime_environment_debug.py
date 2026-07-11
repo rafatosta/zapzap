@@ -100,7 +100,7 @@ class RuntimeEnvironmentDebug:
         return {
             "name": __appname__,
             "version": __version__,
-            "packaging:": EnvironmentDetector.PACKAGING,
+            "packaging": EnvironmentDetector.PACKAGING,
             "build_channel": EnvironmentDetector.CHANNEL,
             "build_provider": EnvironmentDetector.PROVIDER,
             "build_repository": EnvironmentDetector.BUILD_REPOSITORY,
