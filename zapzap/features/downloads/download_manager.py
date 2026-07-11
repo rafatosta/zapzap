@@ -42,9 +42,6 @@ class DownloadManager:
         if download.state() != QWebEngineDownloadRequest.DownloadState.DownloadRequested:
             return
 
-        # pausa até decisão
-        download.pause()
-
         download.setDownloadDirectory(
             DownloadManager.get_path()
         )
@@ -55,11 +52,11 @@ class DownloadManager:
 
         dialog = DownloadDialog(download, parent)
         DownloadManager._floating_cards.append(dialog)
-        dialog.finished.connect(
-            lambda _result, request=download, download_dialog=dialog:
-            DownloadManager._release_download(request, download_dialog)
-        )
-        dialog.show()
+
+        try:
+            dialog.exec()
+        finally:
+            DownloadManager._release_download(download, dialog)
 
     @staticmethod
     def _release_download(download: QWebEngineDownloadRequest, dialog):
