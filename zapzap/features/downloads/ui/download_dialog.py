@@ -12,7 +12,7 @@ from PyQt6.QtWidgets import (
     QMenu,
 )
 from PyQt6.QtGui import QDesktopServices, QIcon, QAction
-from PyQt6.QtCore import QUrl, QFileInfo, Qt, QTimer
+from PyQt6.QtCore import QUrl, QFileInfo, Qt
 from PyQt6.QtWebEngineCore import QWebEngineDownloadRequest
 from gettext import gettext as _
 import os
@@ -248,30 +248,17 @@ class DownloadDialog(QDialog):
 
     def _connect_lifetime_signals(self):
         if not self._is_download_available():
-            QTimer.singleShot(0, self.reject)
+            self.download = None
             return
 
         try:
             self.download.destroyed.connect(self._on_download_destroyed)
-            self.download.stateChanged.connect(self._on_state_changed)
         except RuntimeError:
             self.download = None
-            QTimer.singleShot(0, self.reject)
 
     def _on_download_destroyed(self):
         self.download = None
         self.reject()
-
-    def _on_state_changed(self, state):
-        terminal_states = {
-            QWebEngineDownloadRequest.DownloadState.DownloadCompleted,
-            QWebEngineDownloadRequest.DownloadState.DownloadCancelled,
-            QWebEngineDownloadRequest.DownloadState.DownloadInterrupted,
-        }
-
-        if state in terminal_states:
-            self.download = None
-            self.reject()
 
     def _close_unavailable_download(self):
         self.download = None

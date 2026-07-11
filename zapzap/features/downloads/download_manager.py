@@ -14,7 +14,7 @@ class DownloadManager:
     )
 
     _floating_cards = []
-    _active_downloads = set()
+    _active_downloads = []
 
     @staticmethod
     def set_path(new_path):
@@ -51,14 +51,23 @@ class DownloadManager:
 
         DownloadManager._normalize_download_file_name(download)
 
-        DownloadManager._active_downloads.add(download)
+        DownloadManager._active_downloads.append(download)
 
         dialog = DownloadDialog(download, parent)
+        DownloadManager._floating_cards.append(dialog)
         dialog.finished.connect(
-            lambda _result, request=download:
-            DownloadManager._active_downloads.discard(request)
+            lambda _result, request=download, download_dialog=dialog:
+            DownloadManager._release_download(request, download_dialog)
         )
         dialog.show()
+
+    @staticmethod
+    def _release_download(download: QWebEngineDownloadRequest, dialog):
+        if download in DownloadManager._active_downloads:
+            DownloadManager._active_downloads.remove(download)
+
+        if dialog in DownloadManager._floating_cards:
+            DownloadManager._floating_cards.remove(dialog)
 
     @staticmethod
     def _normalize_download_file_name(download: QWebEngineDownloadRequest):
