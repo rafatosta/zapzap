@@ -258,7 +258,6 @@ class DownloadDialog(QDialog):
 
     def _on_download_destroyed(self):
         self.download = None
-        self.reject()
 
     def _close_unavailable_download(self):
         self.download = None
