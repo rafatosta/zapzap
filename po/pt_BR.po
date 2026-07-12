@@ -304,7 +304,9 @@ msgstr "Bem-vindo ao ZapZap"
 
 #: zapzap/features/initial_setup/view.py:92
 msgid "Choose the essentials now. You can change everything later in Settings."
-msgstr "Escolha o essencial agora. Você pode alterar tudo posteriormente em Configurações."
+msgstr ""
+"Escolha o essencial agora. Você pode alterar tudo posteriormente em "
+"Configurações."
 
 #: zapzap/features/initial_setup/view.py:106
 msgid "Basics"
@@ -409,7 +411,8 @@ msgstr "Privacidade das notificações"
 msgid ""
 "Decide how much message information appears in native notification banners."
 msgstr ""
-"Decida quantas informações da mensagem serão exibidas nos banners de notificação nativos."
+"Decida quantas informações da mensagem serão exibidas nos banners de "
+"notificação nativos."
 
 #: zapzap/features/initial_setup/view.py:189
 #: zapzap/features/settings/pages/notifications/view.py:37
@@ -483,8 +486,8 @@ msgid ""
 "Choose whether ZapZap should stay available from the tray and start with "
 "your session."
 msgstr ""
-"Escolha se o ZapZap deve permanecer disponível na bandeja e comece com" 
-"sua sessão."
+"Escolha se o ZapZap deve permanecer disponível na bandeja e comece comsua "
+"sessão."
 
 #: zapzap/features/initial_setup/view.py:238
 #: zapzap/features/settings/pages/appearance/view.py:79
@@ -493,8 +496,7 @@ msgstr "Ícone da bandeja"
 
 #: zapzap/features/initial_setup/view.py:239
 msgid "Control tray icon visibility and unread counter."
-msgstr ""
-"Controle a visibilidade do ícone da bandeja e o contador de não lidos."
+msgstr "Controle a visibilidade do ícone da bandeja e o contador de não lidos."
 
 #: zapzap/features/initial_setup/view.py:244
 #: zapzap/features/settings/pages/appearance/view.py:84
@@ -585,8 +587,8 @@ msgid ""
 "Choose where files are saved and enable spell checking when dictionaries are "
 "available."
 msgstr ""
-"Escolha onde os arquivos serão salvos e ative a verificação ortográfica quando os dicionários estiverem " 
-"disponível."
+"Escolha onde os arquivos serão salvos e ative a verificação ortográfica "
+"quando os dicionários estiverem disponível."
 
 #: zapzap/features/initial_setup/view.py:309
 #: zapzap/features/settings/pages/language_downloads/view.py:52
@@ -648,8 +650,8 @@ msgid ""
 "No compiled dictionaries were found. You can configure dictionaries later in "
 "Settings."
 msgstr ""
-"Nenhum dicionário compilado foi encontrado. Você pode configurar dicionários posteriormente em " 
-“Configurações”.
+"Nenhum dicionário compilado foi encontrado. Você pode configurar dicionários "
+"posteriormente em Configurações."
 
 #: zapzap/features/initial_setup/view.py:356
 msgid "Essential permissions"
@@ -659,7 +661,8 @@ msgstr "Permissões essenciais"
 msgid ""
 "Allow only the WhatsApp Web permissions you want to grant automatically."
 msgstr ""
-"Permita apenas as permissões do WhatsApp Web que você deseja conceder automaticamente."
+"Permita apenas as permissões do WhatsApp Web que você deseja conceder "
+"automaticamente."
 
 #: zapzap/features/initial_setup/view.py:362
 #: zapzap/features/settings/pages/permissions/view.py:38
@@ -714,8 +717,7 @@ msgstr "Proteção WebRTC"
 
 #: zapzap/features/initial_setup/view.py:385
 msgid "Reduce WebRTC IP exposure."
-msgstr ""
-"Reduza a exposição de IP via WebRTC."
+msgstr "Reduza a exposição de IP via WebRTC."
 
 #: zapzap/features/initial_setup/view.py:402
 #: zapzap/features/settings/pages/permissions/view.py:81
@@ -794,9 +796,9 @@ msgid ""
 "JavaScript, Flatpak permissions, and performance tweaks are still available "
 "there."
 msgstr ""
-"Você pode revisitar todas as opções em Configurações a qualquer momento. Proxy, CSS personalizado/" 
-"JavaScript, permissões Flatpak e ajustes de desempenho ainda estão disponíveis" 
-"lá."
+"Você pode revisitar todas as opções em Configurações a qualquer momento. "
+"Proxy, CSS personalizado/JavaScript, permissões Flatpak e ajustes de "
+"desempenho ainda estão disponíveislá."
 
 #: zapzap/features/settings/shell/settings_controller.py:41
 #: zapzap/features/settings/pages/accounts/view.py:18
