@@ -41,7 +41,7 @@ class InitialSetupView(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setObjectName("InitialSetupDialog")
-        self.setWindowTitle(_("Set up ZapZap"))
+        self.setWindowTitle(_("Setup ZapZap"))
         self.setModal(True)
         self.setMinimumSize(970, 740)
         self.setWindowFlags(

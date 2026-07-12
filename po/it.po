@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-10 18:06-0300\n"
+"POT-Creation-Date: 2026-07-12 17:32-0300\n"
 "PO-Revision-Date: 2025-08-03 20:05+0200\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr ""
 #: zapzap/features/settings/pages/advanced_customizations/view.py:97
 #: zapzap/features/settings/pages/advanced_customizations/view.py:180
 #: zapzap/features/settings/pages/debugging/view.py:51
-#: zapzap/features/downloads/ui/download_dialog.py:133
+#: zapzap/features/downloads/ui/download_dialog.py:152
 #, fuzzy
 msgid "Open folder"
 msgstr "Seleziona cartella"
@@ -108,7 +108,7 @@ msgstr "Attenzione"
 msgid "No active account!"
 msgstr "Nessun account attivo!"
 
-#: zapzap/features/downloads/download_manager.py:79
+#: zapzap/features/downloads/download_manager.py:92
 #, fuzzy
 msgid "Select folder"
 msgstr "Seleziona cartella"
@@ -279,9 +279,19 @@ msgstr "Donazione"
 msgid "Quit"
 msgstr "Esci"
 
+#: zapzap/features/initial_setup/controller.py:111
+#: zapzap/features/settings/pages/language_downloads/controller.py:57
+#, fuzzy
+msgid "System default"
+msgstr "Ripristina standard"
+
+#: zapzap/features/initial_setup/controller.py:142
+msgid "English"
+msgstr ""
+
 #: zapzap/features/initial_setup/view.py:44
 #, fuzzy
-msgid "Set up ZapZap"
+msgid "Setup ZapZap"
 msgstr "ZapZap"
 
 #: zapzap/features/initial_setup/view.py:89
@@ -778,16 +788,6 @@ msgid ""
 "there."
 msgstr ""
 
-#: zapzap/features/initial_setup/controller.py:111
-#: zapzap/features/settings/pages/language_downloads/controller.py:57
-#, fuzzy
-msgid "System default"
-msgstr "Ripristina standard"
-
-#: zapzap/features/initial_setup/controller.py:142
-msgid "English"
-msgstr ""
-
 #: zapzap/features/settings/shell/settings_controller.py:41
 #: zapzap/features/settings/pages/accounts/view.py:18
 msgid "Accounts"
@@ -874,7 +874,7 @@ msgid "Homepage"
 msgstr ""
 
 #: zapzap/features/settings/pages/about/view.py:91
-#: zapzap/features/downloads/ui/download_dialog.py:89
+#: zapzap/features/downloads/ui/download_dialog.py:108
 msgid "Open"
 msgstr "Apri"
 
@@ -952,154 +952,6 @@ msgstr ""
 msgid "Add an account if the configured account limit allows it."
 msgstr ""
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:24
-msgid "Customizações avançadas"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:25
-msgid "Gerencie CSS, JavaScript e customizações por escopo."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:40
-#: zapzap/features/settings/pages/network_privacy/view.py:38
-msgid "Scope"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:40
-msgid "Choose the customization scope."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:47
-#: zapzap/features/browser/web/web_view.py:564
-#, fuzzy
-msgid "Account"
-msgstr "Account"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:50
-msgid "Inherit global settings"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:54
-msgid ""
-"When inherit is disabled, account customizations are appended after global "
-"settings."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:73
-msgid "CSS customizations"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:74
-msgid "Import, create, edit, enable, and delete CSS files."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:78
-msgid "Enable custom CSS"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:87
-#: zapzap/features/settings/pages/advanced_customizations/view.py:170
-msgid "Create"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:88
-#: zapzap/features/settings/pages/advanced_customizations/view.py:171
-msgid "Edit"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:89
-#: zapzap/features/settings/pages/advanced_customizations/view.py:172
-#: zapzap/features/settings/components/card_user/card_user_controller.py:195
-#: zapzap/features/settings/components/card_user/card_user_view.py:37
-msgid "Delete"
-msgstr "Elimina"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:95
-#, fuzzy
-msgid "Import .css"
-msgstr "Segnala un problema"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:96
-#: zapzap/features/settings/pages/advanced_customizations/view.py:179
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:488
-msgid "Import from URL"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:109
-msgid "CSS preview"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:110
-msgid "Attach and preview a screenshot for the selected CSS file."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:116
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:329
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:368
-msgid "Select a CSS file to preview."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:120
-#, fuzzy
-msgid "Upload preview image"
-msgstr "Salva immagine"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:134
-msgid "Replace preview image"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:151
-msgid "JavaScript customizations"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:152
-msgid "Import, create, edit, enable, and delete JavaScript files."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:156
-msgid "Enable custom JavaScript"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:161
-msgid ""
-"⚠ Custom JavaScript runs with full page privileges. Use trusted code only."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:178
-msgid "Import .js"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:192
-msgid "Apply changes"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:193
-msgid "Save changes and reload target pages when needed."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:197
-msgid "Save and reload"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:198
-#: zapzap/ui/main_window/main_window_view.py:160
-msgid "Reload"
-msgstr "Ricarica"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:199
-#: zapzap/features/downloads/ui/download_dialog.py:99
-msgid "Save"
-msgstr "Salva"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:221
-msgid "Enabled"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:222
-#, fuzzy
-msgid "Filename"
-msgstr "File"
-
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:46
 msgid "Global"
 msgstr ""
@@ -1170,6 +1022,12 @@ msgstr ""
 msgid "Select a file first."
 msgstr "Seleziona cartella"
 
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:329
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:368
+#: zapzap/features/settings/pages/advanced_customizations/view.py:116
+msgid "Select a CSS file to preview."
+msgstr ""
+
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:378
 msgid "No preview available."
 msgstr ""
@@ -1208,6 +1066,12 @@ msgstr ""
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:482
 msgid "Preview image updated."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:488
+#: zapzap/features/settings/pages/advanced_customizations/view.py:96
+#: zapzap/features/settings/pages/advanced_customizations/view.py:179
+msgid "Import from URL"
 msgstr ""
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:499
@@ -1340,6 +1204,142 @@ msgstr ""
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:869
 msgid "All pages reloaded."
 msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:24
+msgid "Customizações avançadas"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:25
+msgid "Gerencie CSS, JavaScript e customizações por escopo."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:40
+#: zapzap/features/settings/pages/network_privacy/view.py:38
+msgid "Scope"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:40
+msgid "Choose the customization scope."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:47
+#: zapzap/features/browser/web/web_view.py:564
+#, fuzzy
+msgid "Account"
+msgstr "Account"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:50
+msgid "Inherit global settings"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:54
+msgid ""
+"When inherit is disabled, account customizations are appended after global "
+"settings."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:73
+msgid "CSS customizations"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:74
+msgid "Import, create, edit, enable, and delete CSS files."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:78
+msgid "Enable custom CSS"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:87
+#: zapzap/features/settings/pages/advanced_customizations/view.py:170
+msgid "Create"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:88
+#: zapzap/features/settings/pages/advanced_customizations/view.py:171
+msgid "Edit"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:89
+#: zapzap/features/settings/pages/advanced_customizations/view.py:172
+#: zapzap/features/settings/components/card_user/card_user_controller.py:195
+#: zapzap/features/settings/components/card_user/card_user_view.py:37
+msgid "Delete"
+msgstr "Elimina"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:95
+#, fuzzy
+msgid "Import .css"
+msgstr "Segnala un problema"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:109
+msgid "CSS preview"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:110
+msgid "Attach and preview a screenshot for the selected CSS file."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:120
+#, fuzzy
+msgid "Upload preview image"
+msgstr "Salva immagine"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:134
+msgid "Replace preview image"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:151
+msgid "JavaScript customizations"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:152
+msgid "Import, create, edit, enable, and delete JavaScript files."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:156
+msgid "Enable custom JavaScript"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:161
+msgid ""
+"⚠ Custom JavaScript runs with full page privileges. Use trusted code only."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:178
+msgid "Import .js"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:192
+msgid "Apply changes"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:193
+msgid "Save changes and reload target pages when needed."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:197
+msgid "Save and reload"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:198
+#: zapzap/ui/main_window/main_window_view.py:160
+msgid "Reload"
+msgstr "Ricarica"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:199
+#: zapzap/features/downloads/ui/download_dialog.py:118
+msgid "Save"
+msgstr "Salva"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:221
+msgid "Enabled"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:222
+#, fuzzy
+msgid "Filename"
+msgstr "File"
 
 #: zapzap/features/settings/pages/appearance/view.py:20
 msgid ""
@@ -1772,6 +1772,135 @@ msgstr "Nascondere la notifica della donazione"
 msgid "Show occasional support messages from ZapZap."
 msgstr ""
 
+#: zapzap/features/settings/pages/performance_experimental/controller.py:69
+msgid ""
+"Defines where the HTTP cache will be stored.\n"
+"Disk: faster after restart.\n"
+"Memory: faster, but lost on exit.\n"
+"No cache: lower disk usage, slower."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:76
+msgid ""
+"Maximum HTTP cache size.\n"
+"0 MB uses the default Chromium behavior."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:79
+msgid ""
+"Keeps cookies between restarts.\n"
+"Disabling may cause frequent logouts."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:83
+msgid ""
+"Runs GPU and rendering in the same process.\n"
+"May reduce memory usage, but can cause instability."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:89
+msgid ""
+"Disables GPU hardware acceleration.\n"
+"Recommended only for old GPUs or problematic drivers."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:95
+msgid ""
+"Disables GPU VSync.\n"
+"May reduce latency, but can increase power usage and tearing."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:101
+msgid ""
+"Forces software rendering.\n"
+"Use only in case of graphical issues.\n"
+"May significantly reduce performance."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:108
+msgid ""
+"Forces the GBM backend on Wayland.\n"
+"Known to fix severe typing lag on NVIDIA drivers."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:114
+msgid ""
+"Disables the accessibility bus.\n"
+"Known to fix typing lag or CPU spikes in QtWebEngine."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:120
+msgid ""
+"Runs the entire Chromium engine in a single process.\n"
+"Reduces memory usage, but may cause crashes.\n"
+"Experimental usage."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:127
+msgid ""
+"Uses a separate process per site.\n"
+"Safer and more stable.\n"
+"May increase memory usage."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:134
+msgid ""
+"JavaScript (V8) memory limit.\n"
+"Automatic is the safest option.\n"
+"Higher values allow heavier pages.\n"
+"\n"
+"Restart required."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:142
+msgid ""
+"Enables V8 predictable garbage collection schedule.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"\n"
+"Experimental option. Restart required."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:149
+msgid ""
+"Enables smooth scrolling animations.\n"
+"Disabling may reduce CPU usage."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:153
+msgid ""
+"Allows background tabs to reduce resource usage.\n"
+"Disabling keeps timers active, but uses more resources."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:159
+msgid ""
+"Disables CSS and JavaScript animations.\n"
+"May improve performance on slower machines."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:165
+msgid ""
+"Disables pinch-to-zoom gesture on touchpads.\n"
+"Useful if accidental zooming occurs during scrolling."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:171
+msgid ""
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
+"navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
+"fields.\n"
+"\n"
+"Restart or reload WhatsApp Web after changing this option."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:177
+msgid ""
+"Restores all performance settings\n"
+"to safe default values."
+msgstr ""
+
 #: zapzap/features/settings/pages/performance_experimental/view.py:20
 msgid "Ajuste cache, GPU, processos e comportamento avançado."
 msgstr ""
@@ -2001,135 +2130,6 @@ msgstr "Ripristina standard"
 msgid "Restores all performance settings to safe default values."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:69
-msgid ""
-"Defines where the HTTP cache will be stored.\n"
-"Disk: faster after restart.\n"
-"Memory: faster, but lost on exit.\n"
-"No cache: lower disk usage, slower."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:76
-msgid ""
-"Maximum HTTP cache size.\n"
-"0 MB uses the default Chromium behavior."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:79
-msgid ""
-"Keeps cookies between restarts.\n"
-"Disabling may cause frequent logouts."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:83
-msgid ""
-"Runs GPU and rendering in the same process.\n"
-"May reduce memory usage, but can cause instability."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:89
-msgid ""
-"Disables GPU hardware acceleration.\n"
-"Recommended only for old GPUs or problematic drivers."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:95
-msgid ""
-"Disables GPU VSync.\n"
-"May reduce latency, but can increase power usage and tearing."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:101
-msgid ""
-"Forces software rendering.\n"
-"Use only in case of graphical issues.\n"
-"May significantly reduce performance."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:108
-msgid ""
-"Forces the GBM backend on Wayland.\n"
-"Known to fix severe typing lag on NVIDIA drivers."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:114
-msgid ""
-"Disables the accessibility bus.\n"
-"Known to fix typing lag or CPU spikes in QtWebEngine."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:120
-msgid ""
-"Runs the entire Chromium engine in a single process.\n"
-"Reduces memory usage, but may cause crashes.\n"
-"Experimental usage."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:127
-msgid ""
-"Uses a separate process per site.\n"
-"Safer and more stable.\n"
-"May increase memory usage."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:134
-msgid ""
-"JavaScript (V8) memory limit.\n"
-"Automatic is the safest option.\n"
-"Higher values allow heavier pages.\n"
-"\n"
-"Restart required."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:142
-msgid ""
-"Enables V8 predictable garbage collection schedule.\n"
-"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
-"QTWEBENGINE_CHROMIUM_FLAGS.\n"
-"\n"
-"Experimental option. Restart required."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:149
-msgid ""
-"Enables smooth scrolling animations.\n"
-"Disabling may reduce CPU usage."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:153
-msgid ""
-"Allows background tabs to reduce resource usage.\n"
-"Disabling keeps timers active, but uses more resources."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:159
-msgid ""
-"Disables CSS and JavaScript animations.\n"
-"May improve performance on slower machines."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:165
-msgid ""
-"Disables pinch-to-zoom gesture on touchpads.\n"
-"Useful if accidental zooming occurs during scrolling."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:171
-msgid ""
-"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
-"navigation.\n"
-"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
-"fields.\n"
-"\n"
-"Restart or reload WhatsApp Web after changing this option."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:177
-msgid ""
-"Restores all performance settings\n"
-"to safe default values."
-msgstr ""
-
 #: zapzap/features/settings/pages/permissions/view.py:23
 msgid "Define which permissions WhatsApp Web can receive automatically."
 msgstr ""
@@ -2275,25 +2275,25 @@ msgstr "Notifiche dell'area di lavoro"
 msgid "Select User-Agent for this account."
 msgstr ""
 
-#: zapzap/features/downloads/ui/download_dialog.py:30
+#: zapzap/features/downloads/ui/download_dialog.py:49
 #, fuzzy
 msgid "Download"
 msgstr "Cartella di download"
 
-#: zapzap/features/downloads/ui/download_dialog.py:117
+#: zapzap/features/downloads/ui/download_dialog.py:136
 msgid "More"
 msgstr ""
 
-#: zapzap/features/downloads/ui/download_dialog.py:127
+#: zapzap/features/downloads/ui/download_dialog.py:146
 #, fuzzy
 msgid "Save as"
 msgstr "Salva"
 
-#: zapzap/features/downloads/ui/download_dialog.py:141
+#: zapzap/features/downloads/ui/download_dialog.py:160
 msgid "Cancel"
 msgstr ""
 
-#: zapzap/features/downloads/ui/download_dialog.py:276
+#: zapzap/features/downloads/ui/download_dialog.py:336
 msgid "Save file"
 msgstr "Salva file"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-10 18:06-0300\n"
+"POT-Creation-Date: 2026-07-12 17:32-0300\n"
 "PO-Revision-Date: 2026-03-09 22:23+0100\n"
 "Last-Translator: Dennis Cederberg "
 "<9393069+cederberget@users.noreply.github.com>\n"
@@ -55,7 +55,7 @@ msgstr ""
 #: zapzap/features/settings/pages/advanced_customizations/view.py:97
 #: zapzap/features/settings/pages/advanced_customizations/view.py:180
 #: zapzap/features/settings/pages/debugging/view.py:51
-#: zapzap/features/downloads/ui/download_dialog.py:133
+#: zapzap/features/downloads/ui/download_dialog.py:152
 msgid "Open folder"
 msgstr "Öppna katalog"
 
@@ -121,7 +121,7 @@ msgstr "Observera"
 msgid "No active account!"
 msgstr "Inget aktivt konto!"
 
-#: zapzap/features/downloads/download_manager.py:79
+#: zapzap/features/downloads/download_manager.py:92
 msgid "Select folder"
 msgstr "Välj katalog"
 
@@ -293,9 +293,19 @@ msgstr ""
 msgid "Quit"
 msgstr "Avsluta"
 
+#: zapzap/features/initial_setup/controller.py:111
+#: zapzap/features/settings/pages/language_downloads/controller.py:57
+#, fuzzy
+msgid "System default"
+msgstr "Återställ till standard"
+
+#: zapzap/features/initial_setup/controller.py:142
+msgid "English"
+msgstr ""
+
 #: zapzap/features/initial_setup/view.py:44
 #, fuzzy
-msgid "Set up ZapZap"
+msgid "Setup ZapZap"
 msgstr "Välkommen till"
 
 #: zapzap/features/initial_setup/view.py:89
@@ -797,16 +807,6 @@ msgid ""
 "there."
 msgstr ""
 
-#: zapzap/features/initial_setup/controller.py:111
-#: zapzap/features/settings/pages/language_downloads/controller.py:57
-#, fuzzy
-msgid "System default"
-msgstr "Återställ till standard"
-
-#: zapzap/features/initial_setup/controller.py:142
-msgid "English"
-msgstr ""
-
 #: zapzap/features/settings/shell/settings_controller.py:41
 #: zapzap/features/settings/pages/accounts/view.py:18
 msgid "Accounts"
@@ -893,7 +893,7 @@ msgid "Homepage"
 msgstr ""
 
 #: zapzap/features/settings/pages/about/view.py:91
-#: zapzap/features/downloads/ui/download_dialog.py:89
+#: zapzap/features/downloads/ui/download_dialog.py:108
 msgid "Open"
 msgstr "Öppna"
 
@@ -971,158 +971,6 @@ msgstr ""
 msgid "Add an account if the configured account limit allows it."
 msgstr ""
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:24
-msgid "Customizações avançadas"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:25
-msgid "Gerencie CSS, JavaScript e customizações por escopo."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:40
-#: zapzap/features/settings/pages/network_privacy/view.py:38
-msgid "Scope"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:40
-#, fuzzy
-msgid "Choose the customization scope."
-msgstr "Anpassningar"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:47
-#: zapzap/features/browser/web/web_view.py:564
-msgid "Account"
-msgstr "Konton"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:50
-msgid "Inherit global settings"
-msgstr "Ärv globala inställningar"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:54
-msgid ""
-"When inherit is disabled, account customizations are appended after global "
-"settings."
-msgstr ""
-"När arv är inaktiverat, läses kontots anpassningar in efter de globala "
-"anpassningarna."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:73
-#, fuzzy
-msgid "CSS customizations"
-msgstr "Anpassningar"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:74
-msgid "Import, create, edit, enable, and delete CSS files."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:78
-msgid "Enable custom CSS"
-msgstr "Aktivera anpassad CSS"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:87
-#: zapzap/features/settings/pages/advanced_customizations/view.py:170
-msgid "Create"
-msgstr "Skapa"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:88
-#: zapzap/features/settings/pages/advanced_customizations/view.py:171
-msgid "Edit"
-msgstr "Ändra"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:89
-#: zapzap/features/settings/pages/advanced_customizations/view.py:172
-#: zapzap/features/settings/components/card_user/card_user_controller.py:195
-#: zapzap/features/settings/components/card_user/card_user_view.py:37
-msgid "Delete"
-msgstr "Radera"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:95
-msgid "Import .css"
-msgstr "Importera .css"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:96
-#: zapzap/features/settings/pages/advanced_customizations/view.py:179
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:488
-msgid "Import from URL"
-msgstr "Importera från URL"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:109
-#, fuzzy
-msgid "CSS preview"
-msgstr "CSS-förhandsvisning"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:110
-msgid "Attach and preview a screenshot for the selected CSS file."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:116
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:329
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:368
-msgid "Select a CSS file to preview."
-msgstr "Välj en CSS-fil att förhandsvisa."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:120
-msgid "Upload preview image"
-msgstr "Ladda upp bild för förhandsvisning"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:134
-msgid "Replace preview image"
-msgstr "Ersätt bild för förhandsvisning"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:151
-#, fuzzy
-msgid "JavaScript customizations"
-msgstr "Anpassningar"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:152
-msgid "Import, create, edit, enable, and delete JavaScript files."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:156
-msgid "Enable custom JavaScript"
-msgstr "Aktivera anpassad JavaScript-kod"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:161
-msgid ""
-"⚠ Custom JavaScript runs with full page privileges. Use trusted code only."
-msgstr ""
-"⚠ Anpassad JavaScript-kod körs med fullständiga rättigheter. Använd endast "
-"betrodd kod."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:178
-msgid "Import .js"
-msgstr "Importera .js"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:192
-msgid "Apply changes"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:193
-msgid "Save changes and reload target pages when needed."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:197
-msgid "Save and reload"
-msgstr "Spara och ladda om"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:198
-#: zapzap/ui/main_window/main_window_view.py:160
-msgid "Reload"
-msgstr "Ladda om"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:199
-#: zapzap/features/downloads/ui/download_dialog.py:99
-msgid "Save"
-msgstr "Spara"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:221
-msgid "Enabled"
-msgstr "Aktiverad"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:222
-msgid "Filename"
-msgstr "Filnamn"
-
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:46
 msgid "Global"
 msgstr "Globalt"
@@ -1189,6 +1037,12 @@ msgstr "Kunde inte ladda ned JavaScript från URL."
 msgid "Select a file first."
 msgstr "Välj en fil först."
 
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:329
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:368
+#: zapzap/features/settings/pages/advanced_customizations/view.py:116
+msgid "Select a CSS file to preview."
+msgstr "Välj en CSS-fil att förhandsvisa."
+
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:378
 msgid "No preview available."
 msgstr "Ingen förhandsvisning tillgänglig."
@@ -1228,6 +1082,12 @@ msgstr "Kunde inte ställa in bild för förhandsvisning."
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:482
 msgid "Preview image updated."
 msgstr "Uppdaterade bild för förhandsvisning."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:488
+#: zapzap/features/settings/pages/advanced_customizations/view.py:96
+#: zapzap/features/settings/pages/advanced_customizations/view.py:179
+msgid "Import from URL"
+msgstr "Importera från URL"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:499
 msgid "https://example.com/theme.user.css"
@@ -1356,6 +1216,146 @@ msgstr "Anpassningar sparade. Ladda om sidor för att applicera ändringarna."
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:869
 msgid "All pages reloaded."
 msgstr "Alla sidor laddades om."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:24
+msgid "Customizações avançadas"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:25
+msgid "Gerencie CSS, JavaScript e customizações por escopo."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:40
+#: zapzap/features/settings/pages/network_privacy/view.py:38
+msgid "Scope"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:40
+#, fuzzy
+msgid "Choose the customization scope."
+msgstr "Anpassningar"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:47
+#: zapzap/features/browser/web/web_view.py:564
+msgid "Account"
+msgstr "Konton"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:50
+msgid "Inherit global settings"
+msgstr "Ärv globala inställningar"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:54
+msgid ""
+"When inherit is disabled, account customizations are appended after global "
+"settings."
+msgstr ""
+"När arv är inaktiverat, läses kontots anpassningar in efter de globala "
+"anpassningarna."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:73
+#, fuzzy
+msgid "CSS customizations"
+msgstr "Anpassningar"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:74
+msgid "Import, create, edit, enable, and delete CSS files."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:78
+msgid "Enable custom CSS"
+msgstr "Aktivera anpassad CSS"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:87
+#: zapzap/features/settings/pages/advanced_customizations/view.py:170
+msgid "Create"
+msgstr "Skapa"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:88
+#: zapzap/features/settings/pages/advanced_customizations/view.py:171
+msgid "Edit"
+msgstr "Ändra"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:89
+#: zapzap/features/settings/pages/advanced_customizations/view.py:172
+#: zapzap/features/settings/components/card_user/card_user_controller.py:195
+#: zapzap/features/settings/components/card_user/card_user_view.py:37
+msgid "Delete"
+msgstr "Radera"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:95
+msgid "Import .css"
+msgstr "Importera .css"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:109
+#, fuzzy
+msgid "CSS preview"
+msgstr "CSS-förhandsvisning"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:110
+msgid "Attach and preview a screenshot for the selected CSS file."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:120
+msgid "Upload preview image"
+msgstr "Ladda upp bild för förhandsvisning"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:134
+msgid "Replace preview image"
+msgstr "Ersätt bild för förhandsvisning"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:151
+#, fuzzy
+msgid "JavaScript customizations"
+msgstr "Anpassningar"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:152
+msgid "Import, create, edit, enable, and delete JavaScript files."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:156
+msgid "Enable custom JavaScript"
+msgstr "Aktivera anpassad JavaScript-kod"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:161
+msgid ""
+"⚠ Custom JavaScript runs with full page privileges. Use trusted code only."
+msgstr ""
+"⚠ Anpassad JavaScript-kod körs med fullständiga rättigheter. Använd endast "
+"betrodd kod."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:178
+msgid "Import .js"
+msgstr "Importera .js"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:192
+msgid "Apply changes"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:193
+msgid "Save changes and reload target pages when needed."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:197
+msgid "Save and reload"
+msgstr "Spara och ladda om"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:198
+#: zapzap/ui/main_window/main_window_view.py:160
+msgid "Reload"
+msgstr "Ladda om"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:199
+#: zapzap/features/downloads/ui/download_dialog.py:118
+msgid "Save"
+msgstr "Spara"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:221
+msgid "Enabled"
+msgstr "Aktiverad"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:222
+msgid "Filename"
+msgstr "Filnamn"
 
 #: zapzap/features/settings/pages/appearance/view.py:20
 msgid ""
@@ -1791,6 +1791,171 @@ msgstr "Göm donationsnotis"
 msgid "Show occasional support messages from ZapZap."
 msgstr ""
 
+#: zapzap/features/settings/pages/performance_experimental/controller.py:69
+msgid ""
+"Defines where the HTTP cache will be stored.\n"
+"Disk: faster after restart.\n"
+"Memory: faster, but lost on exit.\n"
+"No cache: lower disk usage, slower."
+msgstr ""
+"Bestämmer var HTTP-cachen lagras.\n"
+"Disk: Snabbare efter omstart.\n"
+"Minne (Memory): Snabbare, men förloras vid programavslut\n"
+"Ingen cache (No Cache): Lägre diskanvändning, långsammare."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:76
+msgid ""
+"Maximum HTTP cache size.\n"
+"0 MB uses the default Chromium behavior."
+msgstr ""
+"Maximal storlek på HTTP-cache.\n"
+"0 MB är standardbeteende för Chromium."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:79
+msgid ""
+"Keeps cookies between restarts.\n"
+"Disabling may cause frequent logouts."
+msgstr ""
+"Behåller cookies mellan omstarter.\n"
+"Inaktivering kan orsaka frekventa utloggningar."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:83
+msgid ""
+"Runs GPU and rendering in the same process.\n"
+"May reduce memory usage, but can cause instability."
+msgstr ""
+"Kör grafik och rendering i samma process.\n"
+"Kan reducera minnesanvändning, men kan orsaka instabilitet."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:89
+msgid ""
+"Disables GPU hardware acceleration.\n"
+"Recommended only for old GPUs or problematic drivers."
+msgstr ""
+"Inaktiverar hårdvaruaccelerering av grafik.\n"
+"Rekommenderas endast för gamla grafikkort eller struliga drivrutiner."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:95
+msgid ""
+"Disables GPU VSync.\n"
+"May reduce latency, but can increase power usage and tearing."
+msgstr ""
+"Inaktiverar VSync för grafik.\n"
+"Kan reducera latens, men kan öka energianvändning och tearing."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:101
+msgid ""
+"Forces software rendering.\n"
+"Use only in case of graphical issues.\n"
+"May significantly reduce performance."
+msgstr ""
+"Framtvingar mjukvarurendering.\n"
+"Använd endast vid problem med grafik.\n"
+"Kan ha stor påverkan på prestanda."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:108
+msgid ""
+"Forces the GBM backend on Wayland.\n"
+"Known to fix severe typing lag on NVIDIA drivers."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:114
+msgid ""
+"Disables the accessibility bus.\n"
+"Known to fix typing lag or CPU spikes in QtWebEngine."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:120
+msgid ""
+"Runs the entire Chromium engine in a single process.\n"
+"Reduces memory usage, but may cause crashes.\n"
+"Experimental usage."
+msgstr ""
+"Kör hela Chromium-motorn i en enda process.\n"
+"Reducerar minnesanvändning, men kan orsaka krascher.\n"
+"Experimentell användning."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:127
+msgid ""
+"Uses a separate process per site.\n"
+"Safer and more stable.\n"
+"May increase memory usage."
+msgstr ""
+"Använd en separat process per sajt.\n"
+"Säkrare och mer stabilt.\n"
+"Kan öka minnesanvändningen."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:134
+msgid ""
+"JavaScript (V8) memory limit.\n"
+"Automatic is the safest option.\n"
+"Higher values allow heavier pages.\n"
+"\n"
+"Restart required."
+msgstr ""
+"Minnesgräns för JavaScript (V8).\n"
+"Automatiskt är det säkraste valet.\n"
+"Högre värden tillåter tyngre sidor.\n"
+"\n"
+"Omstart krävs."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:142
+msgid ""
+"Enables V8 predictable garbage collection schedule.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"\n"
+"Experimental option. Restart required."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:149
+msgid ""
+"Enables smooth scrolling animations.\n"
+"Disabling may reduce CPU usage."
+msgstr ""
+"Aktiverar mjuka rullningsanimationer.\n"
+"Inaktivering kan reducera processoranvändning."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:153
+msgid ""
+"Allows background tabs to reduce resource usage.\n"
+"Disabling keeps timers active, but uses more resources."
+msgstr ""
+"Tillåter bakgrundsflikar för att reducera resursanvändning.\n"
+"Inaktivering behåller timers aktiva, men använder mer resurser."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:159
+msgid ""
+"Disables CSS and JavaScript animations.\n"
+"May improve performance on slower machines."
+msgstr ""
+"Inaktiverar CSS- och JavaScript-animationer.\n"
+"Kan förbättra prestandan på långsamma enheter."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:165
+msgid ""
+"Disables pinch-to-zoom gesture on touchpads.\n"
+"Useful if accidental zooming occurs during scrolling."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:171
+msgid ""
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
+"navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
+"fields.\n"
+"\n"
+"Restart or reload WhatsApp Web after changing this option."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:177
+msgid ""
+"Restores all performance settings\n"
+"to safe default values."
+msgstr ""
+"Återställer alla prestandainställningar\n"
+"till säkra standardvärden."
+
 #: zapzap/features/settings/pages/performance_experimental/view.py:20
 msgid "Ajuste cache, GPU, processos e comportamento avançado."
 msgstr ""
@@ -2056,171 +2221,6 @@ msgstr ""
 "Återställer alla prestandainställningar\n"
 "till säkra standardvärden."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:69
-msgid ""
-"Defines where the HTTP cache will be stored.\n"
-"Disk: faster after restart.\n"
-"Memory: faster, but lost on exit.\n"
-"No cache: lower disk usage, slower."
-msgstr ""
-"Bestämmer var HTTP-cachen lagras.\n"
-"Disk: Snabbare efter omstart.\n"
-"Minne (Memory): Snabbare, men förloras vid programavslut\n"
-"Ingen cache (No Cache): Lägre diskanvändning, långsammare."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:76
-msgid ""
-"Maximum HTTP cache size.\n"
-"0 MB uses the default Chromium behavior."
-msgstr ""
-"Maximal storlek på HTTP-cache.\n"
-"0 MB är standardbeteende för Chromium."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:79
-msgid ""
-"Keeps cookies between restarts.\n"
-"Disabling may cause frequent logouts."
-msgstr ""
-"Behåller cookies mellan omstarter.\n"
-"Inaktivering kan orsaka frekventa utloggningar."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:83
-msgid ""
-"Runs GPU and rendering in the same process.\n"
-"May reduce memory usage, but can cause instability."
-msgstr ""
-"Kör grafik och rendering i samma process.\n"
-"Kan reducera minnesanvändning, men kan orsaka instabilitet."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:89
-msgid ""
-"Disables GPU hardware acceleration.\n"
-"Recommended only for old GPUs or problematic drivers."
-msgstr ""
-"Inaktiverar hårdvaruaccelerering av grafik.\n"
-"Rekommenderas endast för gamla grafikkort eller struliga drivrutiner."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:95
-msgid ""
-"Disables GPU VSync.\n"
-"May reduce latency, but can increase power usage and tearing."
-msgstr ""
-"Inaktiverar VSync för grafik.\n"
-"Kan reducera latens, men kan öka energianvändning och tearing."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:101
-msgid ""
-"Forces software rendering.\n"
-"Use only in case of graphical issues.\n"
-"May significantly reduce performance."
-msgstr ""
-"Framtvingar mjukvarurendering.\n"
-"Använd endast vid problem med grafik.\n"
-"Kan ha stor påverkan på prestanda."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:108
-msgid ""
-"Forces the GBM backend on Wayland.\n"
-"Known to fix severe typing lag on NVIDIA drivers."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:114
-msgid ""
-"Disables the accessibility bus.\n"
-"Known to fix typing lag or CPU spikes in QtWebEngine."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:120
-msgid ""
-"Runs the entire Chromium engine in a single process.\n"
-"Reduces memory usage, but may cause crashes.\n"
-"Experimental usage."
-msgstr ""
-"Kör hela Chromium-motorn i en enda process.\n"
-"Reducerar minnesanvändning, men kan orsaka krascher.\n"
-"Experimentell användning."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:127
-msgid ""
-"Uses a separate process per site.\n"
-"Safer and more stable.\n"
-"May increase memory usage."
-msgstr ""
-"Använd en separat process per sajt.\n"
-"Säkrare och mer stabilt.\n"
-"Kan öka minnesanvändningen."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:134
-msgid ""
-"JavaScript (V8) memory limit.\n"
-"Automatic is the safest option.\n"
-"Higher values allow heavier pages.\n"
-"\n"
-"Restart required."
-msgstr ""
-"Minnesgräns för JavaScript (V8).\n"
-"Automatiskt är det säkraste valet.\n"
-"Högre värden tillåter tyngre sidor.\n"
-"\n"
-"Omstart krävs."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:142
-msgid ""
-"Enables V8 predictable garbage collection schedule.\n"
-"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
-"QTWEBENGINE_CHROMIUM_FLAGS.\n"
-"\n"
-"Experimental option. Restart required."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:149
-msgid ""
-"Enables smooth scrolling animations.\n"
-"Disabling may reduce CPU usage."
-msgstr ""
-"Aktiverar mjuka rullningsanimationer.\n"
-"Inaktivering kan reducera processoranvändning."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:153
-msgid ""
-"Allows background tabs to reduce resource usage.\n"
-"Disabling keeps timers active, but uses more resources."
-msgstr ""
-"Tillåter bakgrundsflikar för att reducera resursanvändning.\n"
-"Inaktivering behåller timers aktiva, men använder mer resurser."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:159
-msgid ""
-"Disables CSS and JavaScript animations.\n"
-"May improve performance on slower machines."
-msgstr ""
-"Inaktiverar CSS- och JavaScript-animationer.\n"
-"Kan förbättra prestandan på långsamma enheter."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:165
-msgid ""
-"Disables pinch-to-zoom gesture on touchpads.\n"
-"Useful if accidental zooming occurs during scrolling."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:171
-msgid ""
-"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
-"navigation.\n"
-"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
-"fields.\n"
-"\n"
-"Restart or reload WhatsApp Web after changing this option."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:177
-msgid ""
-"Restores all performance settings\n"
-"to safe default values."
-msgstr ""
-"Återställer alla prestandainställningar\n"
-"till säkra standardvärden."
-
 #: zapzap/features/settings/pages/permissions/view.py:23
 msgid "Define which permissions WhatsApp Web can receive automatically."
 msgstr ""
@@ -2366,24 +2366,24 @@ msgstr "Notiser i arbetsyta"
 msgid "Select User-Agent for this account."
 msgstr ""
 
-#: zapzap/features/downloads/ui/download_dialog.py:30
+#: zapzap/features/downloads/ui/download_dialog.py:49
 #, fuzzy
 msgid "Download"
 msgstr "Nedladdningen är för stor."
 
-#: zapzap/features/downloads/ui/download_dialog.py:117
+#: zapzap/features/downloads/ui/download_dialog.py:136
 msgid "More"
 msgstr ""
 
-#: zapzap/features/downloads/ui/download_dialog.py:127
+#: zapzap/features/downloads/ui/download_dialog.py:146
 msgid "Save as"
 msgstr "Spara som"
 
-#: zapzap/features/downloads/ui/download_dialog.py:141
+#: zapzap/features/downloads/ui/download_dialog.py:160
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: zapzap/features/downloads/ui/download_dialog.py:276
+#: zapzap/features/downloads/ui/download_dialog.py:336
 msgid "Save file"
 msgstr "Spara fil"
 
