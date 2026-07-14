@@ -52,10 +52,17 @@ class AppearanceSettingsView(SettingsPage):
         )
         self.browser_sidebar = self.browser_sidebar_row.checkbox
         self.mainwindow_menu = self.mainwindow_menu_row.checkbox
+        self.restart_application_row = SettingsActionRow(
+            _("Restart ZapZap"),
+            _("Restart the full application to apply interface scale changes."),
+            _("Restart ZapZap"),
+        )
+        self.btn_restart_application = self.restart_application_row.button
         self.scaleComboBox = self.scale_row.combo
         card.add_row(self.browser_sidebar_row)
         card.add_row(self.mainwindow_menu_row)
         card.add_row(self.scale_row)
+        card.add_row(self.restart_application_row)
         section.add_card(card)
         self.add_section(section)
 
