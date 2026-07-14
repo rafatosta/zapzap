@@ -2,6 +2,8 @@
 
 from gettext import gettext as _
 
+from PyQt6.QtWidgets import QApplication
+
 from zapzap.features.settings.pages.performance_experimental.model import PerformanceExperimentalSettingsModel
 from zapzap.features.settings.pages.performance_experimental.view import PerformanceExperimentalSettingsView
 
@@ -51,6 +53,7 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
         self.js_memory_limit.currentIndexChanged.connect(
             lambda index: setattr(self.model, "js_memory_limit_index", index)
         )
+        self.btn_restart_interface.clicked.connect(self._restart_interface)
         self.btn_restore.clicked.connect(self._restore_settings)
 
     def _handle_cache_type(self, value):
@@ -62,6 +65,9 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
     def _restore_settings(self):
         self.model.restore_defaults()
         self._load_settings()
+
+    def _restart_interface(self):
+        QApplication.instance().restartInterface()
 
     def _add_tooltips(self):
         self.cache_type.setToolTip(

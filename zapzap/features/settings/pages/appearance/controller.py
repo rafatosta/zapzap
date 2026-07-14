@@ -92,6 +92,7 @@ class AppearanceSettingsController(AppearanceSettingsView):
         self.csr_direction_comboBox.currentTextChanged.connect(
             self._handle_csr_direction
         )
+        self.btn_restart_interface.clicked.connect(self._restart_interface)
 
     @staticmethod
     def _set_selected_radio(selected_value, radio_map):
@@ -179,3 +180,6 @@ class AppearanceSettingsController(AppearanceSettingsView):
     def _handle_csr_direction(self, direction_label):
         self.model.csr_buttons_direction = direction_label
         self._refresh_csr_buttons()
+
+    def _restart_interface(self):
+        QApplication.instance().restartInterface()

@@ -3,6 +3,7 @@
 from gettext import gettext as _
 
 from zapzap.ui.components import RadioButton
+from zapzap.features.settings.components import SettingsActionRow
 from zapzap.features.settings.components import SettingsRadioGroup
 from zapzap.features.settings.components import SettingsCard
 from zapzap.features.settings.components import SettingsPage
@@ -146,10 +147,17 @@ class AppearanceSettingsView(SettingsPage):
             ["right", "left"],
         )
         self.csr_direction_comboBox = self.csr_direction_row.combo
+        self.restart_interface_row = SettingsActionRow(
+            _("Restart interface"),
+            _("Rebuild the main window to apply window decoration mode changes."),
+            _("Restart interface"),
+        )
+        self.btn_restart_interface = self.restart_interface_row.button
         card.add_row(self.csr_groupBox)
         card.add_row(self.csr_theme_row)
         card.add_row(self.csr_show_minimize_row)
         card.add_row(self.csr_show_maximize_row)
         card.add_row(self.csr_direction_row)
+        card.add_row(self.restart_interface_row)
         section.add_card(card)
         self.add_section(section)
