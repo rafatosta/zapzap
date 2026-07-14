@@ -6,6 +6,7 @@ from PyQt6.QtWidgets import QHBoxLayout, QTextEdit, QWidget
 
 from zapzap.ui.components import Button, Label, LineEdit
 from zapzap.features.settings.components import (
+    SettingsActionRow,
     SettingsCard,
     SettingsInfoBox,
     SettingsPage,
@@ -70,6 +71,14 @@ class DebuggingSettingsView(SettingsPage):
         )
         self.btn_reset_settings = Button(_("Reset settings"), card)
         card.add_row(self.btn_reset_settings)
+
+        self.restart_application_row = SettingsActionRow(
+            _("Restart ZapZap"),
+            _("Restart the full application after resetting settings."),
+            _("Restart ZapZap"),
+        )
+        self.btn_restart_application = self.restart_application_row.button
+        card.add_row(self.restart_application_row)
 
         section.add_card(card)
         self.add_section(section)

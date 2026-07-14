@@ -1,6 +1,9 @@
 """Controller for the general settings page."""
 
 from gettext import gettext as _
+
+from PyQt6.QtWidgets import QApplication
+
 from zapzap.core.environment.setup_manager import SetupManager
 
 from zapzap.features.settings.pages.system_startup.model import SystemStartupSettingsModel
@@ -30,6 +33,7 @@ class SystemStartupSettingsController(SystemStartupSettingsView):
                     self.btn_wayland.isChecked(),
                 )
             )
+            self.btn_restart_application.clicked.connect(self._restart_application)
 
     def _load_settings(self):
 
@@ -83,3 +87,6 @@ class SystemStartupSettingsController(SystemStartupSettingsView):
 
     def _handle_autostart(self):
         self.model.set_autostart(self.btn_start_system.isChecked())
+
+    def _restart_application(self):
+        QApplication.instance().restartApplication()

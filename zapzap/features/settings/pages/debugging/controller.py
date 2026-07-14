@@ -25,6 +25,7 @@ class DebuggingSettingsController(DebuggingSettingsView):
         self.btn_delete_old_debug_logs.clicked.connect(self._handle_delete_old_debug_logs)
         self.btn_delete_all_debug_logs.clicked.connect(self._handle_delete_all_debug_logs)
         self.btn_reset_settings.clicked.connect(self._handle_reset_settings)
+        self.btn_restart_application.clicked.connect(self._restart_application)
 
         self.btn_refresh_runtime.clicked.connect(self._refresh_runtime_environment)
         self.btn_copy_runtime.clicked.connect(self._copy_runtime_environment)
@@ -96,8 +97,13 @@ class DebuggingSettingsController(DebuggingSettingsView):
             )
             return
 
-        QMessageBox.information(
+        restart = QMessageBox.question(
             self,
             _("Reset settings"),
-            _("Settings were reset successfully. Please restart ZapZap."),
+            _("Settings were reset successfully. Restart ZapZap now?"),
         )
+        if restart == QMessageBox.StandardButton.Yes:
+            self._restart_application()
+
+    def _restart_application(self):
+        QApplication.instance().restartApplication()

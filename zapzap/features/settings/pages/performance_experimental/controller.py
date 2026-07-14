@@ -53,7 +53,7 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
         self.js_memory_limit.currentIndexChanged.connect(
             lambda index: setattr(self.model, "js_memory_limit_index", index)
         )
-        self.btn_restart_interface.clicked.connect(self._restart_interface)
+        self.btn_restart_application.clicked.connect(self._restart_application)
         self.btn_restore.clicked.connect(self._restore_settings)
 
     def _handle_cache_type(self, value):
@@ -66,8 +66,8 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
         self.model.restore_defaults()
         self._load_settings()
 
-    def _restart_interface(self):
-        QApplication.instance().restartInterface()
+    def _restart_application(self):
+        QApplication.instance().restartApplication()
 
     def _add_tooltips(self):
         self.cache_type.setToolTip(

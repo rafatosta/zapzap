@@ -47,15 +47,15 @@ class PerformanceExperimentalSettingsView(SettingsPage):
                 "warning",
             )
         )
-        self.restart_interface_row = SettingsActionRow(
-            _("Restart interface"),
+        self.restart_application_row = SettingsActionRow(
+            _("Restart ZapZap"),
             _(
-                "Rebuild the browser interface now. Chromium startup flags still require restarting ZapZap."
+                "Restart the full application now to apply environment and Chromium startup flags."
             ),
-            _("Restart interface"),
+            _("Restart ZapZap"),
         )
-        self.btn_restart_interface = self.restart_interface_row.button
-        card.add_row(self.restart_interface_row)
+        self.btn_restart_application = self.restart_application_row.button
+        card.add_row(self.restart_application_row)
         section.add_card(card)
         self.add_section(section)
 

@@ -93,6 +93,7 @@ class AppearanceSettingsController(AppearanceSettingsView):
             self._handle_csr_direction
         )
         self.btn_restart_interface.clicked.connect(self._restart_interface)
+        self.btn_restart_application.clicked.connect(self._restart_application)
 
     @staticmethod
     def _set_selected_radio(selected_value, radio_map):
@@ -183,3 +184,6 @@ class AppearanceSettingsController(AppearanceSettingsView):
 
     def _restart_interface(self):
         QApplication.instance().restartInterface()
+
+    def _restart_application(self):
+        QApplication.instance().restartApplication()

@@ -3,6 +3,7 @@ from gettext import gettext as _
 from zapzap.core.environment.setup_manager import SetupManager
 
 from zapzap.features.settings.components import (
+    SettingsActionRow,
     SettingsCard,
     SettingsPage,
     SettingsSection,
@@ -87,7 +88,14 @@ class SystemStartupSettingsView(SettingsPage):
                 _("Wayland window system"),
                 _("Enable Wayland-specific execution mode. A restart may be required."),
             )
+            self.restart_application_row = SettingsActionRow(
+                _("Restart ZapZap"),
+                _("Restart the full application to apply the selected window system."),
+                _("Restart ZapZap"),
+            )
+            self.btn_restart_application = self.restart_application_row.button
             self.btn_wayland = self.btn_wayland_row.checkbox
             card.add_row(self.btn_wayland_row)
+            card.add_row(self.restart_application_row)
             section.add_card(card)
             self.add_section(section)

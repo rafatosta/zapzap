@@ -2,12 +2,14 @@
 
 import sys
 
-from PyQt6.QtCore import Qt, QTextStream, QTimer, pyqtSignal, pyqtSlot
+from PyQt6.QtCore import QProcess, Qt, QTextStream, QTimer, pyqtSignal, pyqtSlot
 from PyQt6.QtNetwork import QLocalServer, QLocalSocket
 from PyQt6.QtWidgets import QApplication
 
 
 class SingleApplication(QApplication):
+    RESTART_MESSAGE = "zapzap://restart"
+
     messageReceived = pyqtSignal(str)
 
     def __init__(self, appid, *argv):
@@ -28,9 +30,9 @@ class SingleApplication(QApplication):
 
         if self._isRunning:
             self._outStream = QTextStream(self._outSocket)
-            for link in argv[0]:
-                if 'whatsapp' in link:
-                    self.sendMessage(link)
+            for message in argv[0]:
+                if 'whatsapp' in message or message == self.RESTART_MESSAGE:
+                    self.sendMessage(message)
                     break
             sys.exit(0)
         else:
@@ -125,6 +127,15 @@ class SingleApplication(QApplication):
         QTimer.singleShot(0, lambda: self._restart_interface_now(show))
         return True
 
+    def restartApplication(self):
+        """Restart the full application process."""
+        if self._interface_restarting:
+            return False
+
+        self._interface_restarting = True
+        QTimer.singleShot(0, self._restart_application_now)
+        return True
+
     def shutdownInterface(self):
         """Release resources owned by the current interface window."""
         if not self.window:
@@ -133,6 +144,19 @@ class SingleApplication(QApplication):
         browser = getattr(self.window, "browser", None)
         if browser:
             browser.shutdown()
+
+    def _restart_application_now(self):
+        if self.window and hasattr(self.window, "_save_window_state"):
+            self.window._save_window_state()
+
+        self.shutdownInterface()
+        self.close()
+
+        restart_args = [arg for arg in sys.argv if arg != self.RESTART_MESSAGE]
+        if QProcess.startDetached(sys.executable, restart_args):
+            self.exit(0)
+        else:
+            self._interface_restarting = False
 
     def _restart_interface_now(self, show=True):
         old_window = self.window
