@@ -53,9 +53,15 @@ def main():
 
     SetupManager.apply_qt_scale_factor_rounding_policy()
 
+    def handle_instance_message(result):
+        if result == app.RESTART_MESSAGE:
+            app.restartApplication()
+            return
+
+        app.getWindow().xdgOpenChat(result)
+
     # Callback instance
-    app.messageReceived.connect(
-        lambda result: app.getWindow().xdgOpenChat(result))
+    app.messageReceived.connect(handle_instance_message)
 
     # Initialize ThemeManager
     ThemeManager.start()
