@@ -69,6 +69,10 @@ class SysTrayManager:
 
     def _setup_connections(self):
         """Configura as conexões dos sinais das ações da bandeja."""
+        self._actions["donation"].triggered.connect(
+            lambda: QDesktopServices.openUrl(QUrl(__donationPage__))
+        )
+
         main_window = QApplication.instance().getWindow()
 
         if main_window is None:
@@ -78,14 +82,31 @@ class SysTrayManager:
                     break
 
         if main_window:
-            self._tray.activated.connect(main_window.show_window)
-            self._actions["show"].triggered.connect(main_window.show_window)
-            self._actions["settings"].triggered.connect(
-                lambda: self._open_settings(main_window))
-            self._actions["donation"].triggered.connect(
-                lambda: QDesktopServices.openUrl(QUrl(__donationPage__))
-            )
-            self._actions["exit"].triggered.connect(main_window.closeEvent)
+            self.bind_window(main_window)
+
+    @classmethod
+    def bind_window(cls, main_window):
+        """Reconnect tray actions to the current MainWindow instance."""
+        instance = cls.instance()
+        instance._disconnect_window_actions()
+        instance._bound_window = main_window
+        instance._tray.activated.connect(main_window.show_window)
+        instance._actions["show"].triggered.connect(main_window.show_window)
+        instance._actions["settings"].triggered.connect(
+            lambda: instance._open_settings(main_window))
+        instance._actions["exit"].triggered.connect(main_window.closeEvent)
+
+    def _disconnect_window_actions(self):
+        for signal in (
+            self._tray.activated,
+            self._actions["show"].triggered,
+            self._actions["settings"].triggered,
+            self._actions["exit"].triggered,
+        ):
+            try:
+                signal.disconnect()
+            except TypeError:
+                pass
 
     def _set_icon(self, icon_type: TrayIcon.Type, number_notifications=0):
         """Atualiza o ícone da bandeja."""

@@ -2,7 +2,7 @@
 
 import sys
 
-from PyQt6.QtCore import Qt, QTextStream, pyqtSignal, pyqtSlot
+from PyQt6.QtCore import Qt, QTextStream, QTimer, pyqtSignal, pyqtSlot
 from PyQt6.QtNetwork import QLocalServer, QLocalSocket
 from PyQt6.QtWidgets import QApplication
 
@@ -23,6 +23,8 @@ class SingleApplication(QApplication):
         self._inStream = None
         self._server = None
         self.window = None
+        self._window_factory = None
+        self._interface_restarting = False
 
         if self._isRunning:
             self._outStream = QTextStream(self._outSocket)
@@ -103,3 +105,57 @@ class SingleApplication(QApplication):
 
     def getWindow(self):
         return self.window
+
+    def startInterface(self, window_factory):
+        """Create and register the main interface window."""
+        self._window_factory = window_factory
+        return self._create_interface_window()
+
+    def restartInterface(self, show=True):
+        """Rebuild the MainWindow without restarting the QApplication process.
+
+        This is useful for settings that only need a new MainWindow/browser tree.
+        Settings consumed before QApplication/QtWebEngine initialization still need
+        a full application restart.
+        """
+        if not self._window_factory or self._interface_restarting:
+            return False
+
+        self._interface_restarting = True
+        QTimer.singleShot(0, lambda: self._restart_interface_now(show))
+        return True
+
+    def shutdownInterface(self):
+        """Release resources owned by the current interface window."""
+        if not self.window:
+            return
+
+        browser = getattr(self.window, "browser", None)
+        if browser:
+            browser.shutdown()
+
+    def _restart_interface_now(self, show=True):
+        old_window = self.window
+        was_visible = old_window.isVisible() if old_window else False
+
+        if old_window:
+            if hasattr(old_window, "_save_window_state"):
+                old_window._save_window_state()
+            self.shutdownInterface()
+            old_window.hide()
+            old_window.deleteLater()
+
+        new_window = self._create_interface_window()
+        if show and was_visible:
+            new_window.show()
+
+        self._interface_restarting = False
+
+    def _create_interface_window(self):
+        window = self._window_factory()
+        self.setWindow(window)
+        self.setActivationWindow(window)
+        window.load_settings()
+        from zapzap.features.tray.sys_tray_manager import SysTrayManager
+        SysTrayManager.bind_window(window)
+        return window
