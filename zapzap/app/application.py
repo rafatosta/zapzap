@@ -21,6 +21,14 @@ from zapzap.core.i18n.translation_manager import TranslationManager
 from zapzap.features.initial_setup.controller import InitialSetupController
 
 
+def create_main_window():
+    """Build a fresh MainWindow instance using the current runtime settings."""
+    mainwindow_inside = MainWindowController()
+    csr_enabled = SettingsManager.get("system/csr", False)
+    return ClientSideRenderingController(
+        mainwindow_inside, enabled=True) if csr_enabled else mainwindow_inside
+
+
 def main():
     # Desativa todos os prints do código
     # sys.stdout = open(os.devnull, 'w')
@@ -46,19 +54,14 @@ def main():
     SetupManager.apply_qt_scale_factor_rounding_policy()
 
     # Callback instance
-    app.messageReceived.connect(lambda result: main_window.xdgOpenChat(result))
+    app.messageReceived.connect(
+        lambda result: app.getWindow().xdgOpenChat(result))
 
     # Initialize ThemeManager
     ThemeManager.start()
 
     # Create main window
-    mainwindow_inside = MainWindowController()
-    csr_enabled = SettingsManager.get("system/csr", False)
-    main_window = ClientSideRenderingController(
-        mainwindow_inside, enabled=True) if csr_enabled else mainwindow_inside
-    app.setWindow(main_window)
-    app.setActivationWindow(main_window)
-    main_window.load_settings()
+    main_window = app.startInterface(create_main_window)
 
     ProxyManager.apply()
 
@@ -78,15 +81,16 @@ def main():
         main_window.show()
 
     if should_show_initial_setup:
-        QTimer.singleShot(0, lambda: InitialSetupController(main_window).exec())
+        QTimer.singleShot(
+            0, lambda: InitialSetupController(app.getWindow()).exec())
 
     app.aboutToQuit.connect(ThemeManager.stop)
-    app.aboutToQuit.connect(main_window.browser.shutdown)
+    app.aboutToQuit.connect(app.shutdownInterface)
 
     exit_code = app.exec()
 
     # Defensive fallback for abnormal shutdown paths where aboutToQuit may not have run.
     ThemeManager.stop()
-    main_window.browser.shutdown()
+    app.shutdownInterface()
 
     return exit_code
