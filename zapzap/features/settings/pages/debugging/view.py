@@ -69,6 +69,7 @@ class DebuggingSettingsView(SettingsPage):
                 "danger",
             )
         )
+        card.add_space()
         self.btn_reset_settings = Button(_("Reset settings"), card)
         card.add_row(self.btn_reset_settings)
 

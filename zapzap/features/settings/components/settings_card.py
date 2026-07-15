@@ -15,6 +15,9 @@ class SettingsCard(QFrame):
     def add_row(self, row):
         self.layout.addWidget(row)
 
+    def add_space(self, width=10):
+        self.layout.addSpacing(width)
+
     def _apply_style(self):
         self.setStyleSheet("""
             QFrame#SettingsCard {
