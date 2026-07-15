@@ -43,7 +43,7 @@ class InitialSetupView(QDialog):
         self.setObjectName("InitialSetupDialog")
         self.setWindowTitle(_("Setup ZapZap"))
         self.setModal(True)
-        self.setMinimumSize(970, 740)
+        self.setMinimumSize(1040, 740)
         self.setWindowFlags(
             Qt.WindowType.Dialog
             | Qt.WindowType.FramelessWindowHint
@@ -477,8 +477,8 @@ class InitialSetupView(QDialog):
                 border-right: 1px solid palette(mid);
                 border-top-left-radius: 18px;
                 border-bottom-left-radius: 18px;
-                min-width: 230px;
-                max-width: 280px;
+                min-width: 300px;
+                max-width: 340px;
             }
             QStackedWidget#InitialSetupPages {
                 background: palette(window);
