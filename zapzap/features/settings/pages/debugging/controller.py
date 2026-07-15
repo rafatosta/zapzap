@@ -4,8 +4,9 @@ from gettext import gettext as _
 
 from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
-from PyQt6.QtWidgets import QApplication, QMessageBox
+from PyQt6.QtWidgets import QApplication
 
+from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.settings.pages.debugging.model import DebuggingSettingsModel
 from zapzap.features.settings.pages.debugging.view import DebuggingSettingsView
 
@@ -49,7 +50,7 @@ class DebuggingSettingsController(DebuggingSettingsView):
 
     def _handle_delete_old_debug_logs(self):
         removed = self.model.delete_old_debug_logs(days=30)
-        QMessageBox.information(
+        AlertManager.information(
             self,
             _("Debug logs"),
             _("Deleted {count} old crash report(s) (older than 30 days).").format(
@@ -59,16 +60,16 @@ class DebuggingSettingsController(DebuggingSettingsView):
         self._refresh_debug_logs_ui()
 
     def _handle_delete_all_debug_logs(self):
-        confirm = QMessageBox.question(
+        confirm = AlertManager.question(
             self,
             _("Debug logs"),
             _("Delete all crash reports and debug logs?"),
         )
-        if confirm != QMessageBox.StandardButton.Yes:
+        if not confirm:
             return
 
         removed = self.model.delete_all_debug_logs()
-        QMessageBox.information(
+        AlertManager.information(
             self,
             _("Debug logs"),
             _("Deleted {count} file(s).").format(count=removed),
@@ -76,7 +77,7 @@ class DebuggingSettingsController(DebuggingSettingsView):
         self._refresh_debug_logs_ui()
 
     def _handle_reset_settings(self):
-        confirm = QMessageBox.question(
+        confirm = AlertManager.question(
             self,
             _("Reset settings"),
             _(
@@ -84,24 +85,24 @@ class DebuggingSettingsController(DebuggingSettingsView):
                 "restart. Continue?"
             ),
         )
-        if confirm != QMessageBox.StandardButton.Yes:
+        if not confirm:
             return
 
         error = self.model.reset_settings()
         if error:
-            QMessageBox.warning(
+            AlertManager.warning(
                 self,
                 _("Reset settings"),
                 _("Could not remove settings file:\n{error}").format(error=error),
             )
             return
 
-        restart = QMessageBox.question(
+        restart = AlertManager.question(
             self,
             _("Reset settings"),
             _("Settings were reset successfully. Restart ZapZap now?"),
         )
-        if restart == QMessageBox.StandardButton.Yes:
+        if restart:
             self._restart_application()
 
     def _restart_application(self):
