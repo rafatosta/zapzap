@@ -127,7 +127,7 @@ msgstr "Padrão do sistema"
 
 #: zapzap/features/initial_setup/controller.py:142
 msgid "English"
-msgstr ""
+msgstr "Inglês"
 
 #: zapzap/features/initial_setup/view.py:44
 msgid "Setup ZapZap"
@@ -609,13 +609,15 @@ msgstr "Instale Flatseal no Linux | Flathub"
 
 #: zapzap/features/initial_setup/view.py:443
 msgid "You're ready"
-msgstr ""
+msgstr "Tudo pronto"
 
 #: zapzap/features/initial_setup/view.py:444
 msgid ""
 "ZapZap will save these preferences now. Advanced options remain available in "
 "Settings."
 msgstr ""
+"O ZapZap salvará essas preferências agora. As opções avançadas continuarão "
+"disponíveis nas Configurações."
 
 #: zapzap/features/initial_setup/view.py:448
 msgid "Finish setup"
@@ -1395,14 +1397,14 @@ msgstr ""
 #: zapzap/features/settings/pages/performance_experimental/view.py:55
 #: zapzap/features/settings/pages/system_startup/view.py:92
 #: zapzap/features/settings/pages/system_startup/view.py:94
-#, fuzzy
 msgid "Restart ZapZap"
-msgstr "Configurar o ZapZap"
+msgstr "Reiniciar o ZapZap"
 
 #: zapzap/features/settings/pages/appearance/view.py:57
-#, fuzzy
 msgid "Restart the full application to apply interface scale changes."
-msgstr "Reinicie esta sessão (ou o aplicativo) para aplicar o novo User-Agent."
+msgstr ""
+"Reinicie o aplicativo por completo para aplicar as alterações na escala da "
+"interface."
 
 #: zapzap/features/settings/pages/appearance/view.py:88
 msgid "Control tray icon visibility, style, and unread counter."
@@ -1482,13 +1484,14 @@ msgstr "Posicione os botões da janela à direita ou à esquerda."
 
 #: zapzap/features/settings/pages/appearance/view.py:158
 #: zapzap/features/settings/pages/appearance/view.py:160
-#, fuzzy
 msgid "Restart interface"
-msgstr "Interface"
+msgstr "Reiniciar interface"
 
 #: zapzap/features/settings/pages/appearance/view.py:159
 msgid "Rebuild the main window to apply window decoration mode changes."
 msgstr ""
+"Reconstrua a janela principal para aplicar as alterações no modo de "
+"decoração."
 
 #: zapzap/features/settings/pages/debugging/controller.py:55
 #: zapzap/features/settings/pages/debugging/controller.py:65
@@ -1536,9 +1539,9 @@ msgstr ""
 "{error}"
 
 #: zapzap/features/settings/pages/debugging/controller.py:103
-#, fuzzy
 msgid "Settings were reset successfully. Restart ZapZap now?"
-msgstr "As configurações foram redefinidas com sucesso. Reinicie o ZapZap."
+msgstr ""
+"As configurações foram redefinidas com sucesso. Reiniciar o ZapZap agora?"
 
 #: zapzap/features/settings/pages/debugging/view.py:23
 msgid ""
@@ -1569,7 +1572,7 @@ msgstr "Redefinir as configurações é uma ação destrutiva e requer reinício
 
 #: zapzap/features/settings/pages/debugging/view.py:77
 msgid "Restart the full application after resetting settings."
-msgstr ""
+msgstr "Reinicie o aplicativo por completo após redefinir as configurações."
 
 #: zapzap/features/settings/pages/debugging/view.py:88
 msgid "Runtime information"
@@ -1976,6 +1979,12 @@ msgid ""
 "\n"
 "Restart or reload WhatsApp Web after changing this option."
 msgstr ""
+"Usa Selection.modify() com direções visuais para navegar entre palavras com "
+"Ctrl+Seta.\n"
+"Isso corrige o movimento invertido do cursor em textos RTL nos campos de "
+"mensagem do WhatsApp Web.\n"
+"\n"
+"Reinicie ou recarregue o WhatsApp Web após alterar esta opção."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:183
 msgid ""
@@ -2010,6 +2019,8 @@ msgid ""
 "Restart the full application now to apply environment and Chromium startup "
 "flags."
 msgstr ""
+"Reinicie o aplicativo por completo agora para aplicar as variáveis de "
+"ambiente e os parâmetros de inicialização do Chromium."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:64
 msgid "Cache"
@@ -2190,13 +2201,15 @@ msgstr "Útil se ocorrer zoom acidental durante a rolagem."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:203
 msgid "Fix Ctrl+Arrow cursor movement"
-msgstr ""
+msgstr "Corrigir o movimento do cursor com Ctrl+Seta"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:205
 msgid ""
 "Use visual word navigation in editable fields to fix RTL text cursor "
 "movement."
 msgstr ""
+"Use a navegação visual entre palavras em campos editáveis para corrigir o "
+"movimento do cursor em textos RTL."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:228
 msgid "Restore defaults"
@@ -2300,9 +2313,10 @@ msgstr ""
 "necessário."
 
 #: zapzap/features/settings/pages/system_startup/view.py:93
-#, fuzzy
 msgid "Restart the full application to apply the selected window system."
-msgstr "Reinicie esta sessão (ou o aplicativo) para aplicar o novo User-Agent."
+msgstr ""
+"Reinicie o aplicativo por completo para aplicar o sistema de janelas "
+"selecionado."
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:109
 msgid "Confirm exclusion"
