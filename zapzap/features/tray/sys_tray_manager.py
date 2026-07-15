@@ -6,7 +6,7 @@ from PyQt6.QtGui import QDesktopServices
 
 from zapzap.assets.icons.tray_icon import TrayIcon
 from zapzap import __donationPage__
-from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.core.config.settings.appearance import AppearanceSettings
 
 
 class SysTrayManager:
@@ -35,11 +35,10 @@ class SysTrayManager:
 
     def _initialize_components(self):
         """Inicializa os componentes do gerenciador de bandeja."""
+        self._settings = AppearanceSettings()
         self.number_notifications = 0
         self._tray = QSystemTrayIcon()
-        self.current_icon = TrayIcon.Type(
-            SettingsManager.get("system/tray_theme", TrayIcon.Type.Default)
-        )
+        self.current_icon = TrayIcon.Type(self._settings.tray_theme)
         self._set_icon(self.current_icon)
 
         self._actions = self._create_actions()
@@ -112,8 +111,7 @@ class SysTrayManager:
         """Atualiza o ícone da bandeja."""
         self.current_icon = icon_type
 
-        if SettingsManager.get(
-                "system/notificationCounter", False):
+        if not self._settings.notification_counter_enabled:
             number_notifications = 0
 
         self._tray.setIcon(TrayIcon.getIcon(icon_type, number_notifications))
@@ -142,7 +140,7 @@ class SysTrayManager:
         """Define o tema do ícone na bandeja."""
         instance = SysTrayManager.instance()
         instance._set_icon(icon_type, instance.number_notifications)
-        SettingsManager.set("system/tray_theme", icon_type.value)
+        instance._settings.tray_theme = icon_type.value
 
     @staticmethod
     def refresh():
@@ -154,7 +152,7 @@ class SysTrayManager:
     def _load_state():
         """Carrega o estado da visibilidade do ícone na bandeja."""
         instance = SysTrayManager.instance()
-        if SettingsManager.get("system/tray_icon", True):
+        if instance._settings.tray_icon_enabled:
             instance._tray.show()
         else:
             instance._tray.hide()
@@ -167,4 +165,4 @@ class SysTrayManager:
             instance._tray.show()
         else:
             instance._tray.hide()
-        SettingsManager.set("system/tray_icon", state)
+        instance._settings.tray_icon_enabled = state

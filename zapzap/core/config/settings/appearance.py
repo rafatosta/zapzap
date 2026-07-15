@@ -14,7 +14,7 @@ class AppearanceSettings(BaseSettings):
     _MENUBAR = ("system/menubar", True)
     _SCALE = ("system/scale", 100)
     _TRAY_ICON = ("system/tray_icon", True)
-    _NOTIFICATION_COUNTER = ("system/notificationCounter", False)
+    _NOTIFICATION_COUNTER = ("system/notificationCounter", True)
     _CSR_ENABLED = ("system/csr", False)
     _CSR_BUTTON_THEME = ("system/csr_button_theme", "default")
     _CSR_SHOW_MINIMIZE = ("system/csr_show_minimize_button", True)
