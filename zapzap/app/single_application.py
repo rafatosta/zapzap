@@ -1,8 +1,9 @@
 """Single-instance QApplication implementation."""
 
+import subprocess
 import sys
 
-from PyQt6.QtCore import QProcess, Qt, QTextStream, QTimer, pyqtSignal, pyqtSlot
+from PyQt6.QtCore import Qt, QTextStream, QTimer, pyqtSignal, pyqtSlot
 from PyQt6.QtNetwork import QLocalServer, QLocalSocket
 from PyQt6.QtWidgets import QApplication
 
@@ -153,10 +154,24 @@ class SingleApplication(QApplication):
         self.close()
 
         restart_args = [arg for arg in sys.argv if arg != self.RESTART_MESSAGE]
-        if QProcess.startDetached(sys.executable, restart_args):
+        if self._start_detached_process([sys.executable, *restart_args]):
             self.exit(0)
         else:
             self._interface_restarting = False
+
+    def _start_detached_process(self, command):
+        try:
+            subprocess.Popen(
+                command,
+                stdin=subprocess.DEVNULL,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                start_new_session=True,
+            )
+        except OSError:
+            return False
+
+        return True
 
     def _restart_interface_now(self, show=True):
         old_window = self.window
