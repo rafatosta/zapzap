@@ -336,6 +336,7 @@ class InitialSetupView(QDialog):
         self.dictionary_row = SettingsSelectRow(
             _("Dictionary language"),
             _("Recognizes only compiled dictionaries (.bdic)."),
+            [""]
         )
         self.dictionary_hint = SettingsInfoBox(
             _("No compiled dictionaries were found. You can configure dictionaries later in Settings."),
