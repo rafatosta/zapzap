@@ -26,9 +26,24 @@ class BuildOpenChatScriptTests(unittest.TestCase):
         self.assertIsNotNone(script)
         self.assertIn("a.click()", script)
 
-    def test_http_and_https_links_allowed(self):
+    def test_whatsapp_https_links_allowed(self):
         self.assertIsNotNone(build_open_chat_script("https://web.whatsapp.com/"))
-        self.assertIsNotNone(build_open_chat_script("http://example.invalid/"))
+        self.assertIsNotNone(
+            build_open_chat_script("https://api.whatsapp.com/send?phone=15551234567")
+        )
+        self.assertIsNotNone(build_open_chat_script("https://wa.me/15551234567"))
+
+    def test_non_whatsapp_https_links_rejected(self):
+        self.assertIsNone(build_open_chat_script("https://example.invalid/"))
+        self.assertIsNone(
+            build_open_chat_script("https://web.whatsapp.com.evil.invalid/")
+        )
+
+    def test_https_links_with_userinfo_rejected(self):
+        self.assertIsNone(build_open_chat_script("https://attacker@web.whatsapp.com/"))
+
+    def test_http_scheme_rejected(self):
+        self.assertIsNone(build_open_chat_script("http://web.whatsapp.com/"))
 
     def test_javascript_scheme_rejected(self):
         self.assertIsNone(build_open_chat_script("javascript:alert(1)"))

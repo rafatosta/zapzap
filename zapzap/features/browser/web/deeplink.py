@@ -8,7 +8,17 @@ without importing PyQt6 or QtWebEngine.
 import json
 import urllib.parse
 
-ALLOWED_OPEN_CHAT_SCHEMES = {"whatsapp", "http", "https"}
+ALLOWED_OPEN_CHAT_SCHEMES = {"whatsapp", "https"}
+ALLOWED_HTTPS_HOSTS = {"api.whatsapp.com", "web.whatsapp.com", "whatsapp.com", "wa.me"}
+
+
+def _is_allowed_https_host(hostname):
+    """Return True when hostname belongs to a known WhatsApp deep-link host."""
+    if not hostname:
+        return False
+
+    normalized = hostname.rstrip(".").lower()
+    return normalized in ALLOWED_HTTPS_HOSTS or normalized.endswith(".whatsapp.com")
 
 
 def build_open_chat_script(url):
@@ -21,9 +31,16 @@ def build_open_chat_script(url):
     if not url:
         return None
 
-    scheme = urllib.parse.urlparse(url).scheme.lower()
+    parsed = urllib.parse.urlparse(url)
+    scheme = parsed.scheme.lower()
     if scheme not in ALLOWED_OPEN_CHAT_SCHEMES:
         return None
+
+    if scheme == "https":
+        if parsed.username or parsed.password:
+            return None
+        if not _is_allowed_https_host(parsed.hostname):
+            return None
 
     href = json.dumps(url)
     return (
