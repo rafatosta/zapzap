@@ -4,12 +4,9 @@ from __future__ import annotations
 
 from gettext import gettext as _
 
-from PyQt6.QtCore import QEvent
-from PyQt6.QtCore import QObject
 from PyQt6.QtCore import QPoint
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QColor
-from PyQt6.QtGui import QMouseEvent
 from PyQt6.QtWidgets import QButtonGroup
 from PyQt6.QtWidgets import QDialog
 from PyQt6.QtWidgets import QFrame

@@ -1,7 +1,5 @@
 """Controller for the general settings page."""
 
-from gettext import gettext as _
-
 from PyQt6.QtWidgets import QApplication
 
 from zapzap.core.environment.setup_manager import SetupManager

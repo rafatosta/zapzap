@@ -1,5 +1,3 @@
-from PyQt6.QtWidgets import QVBoxLayout
-
 from zapzap.features.settings.pages.notifications.model import NotificationsSettingsModel
 from zapzap.features.settings.pages.notifications.view import NotificationsSettingsView
 

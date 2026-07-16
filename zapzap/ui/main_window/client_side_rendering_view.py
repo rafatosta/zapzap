@@ -2,8 +2,6 @@
 
 import os
 
-from gettext import gettext as _
-
 from PyQt6.QtCore import QEvent
 from PyQt6.QtCore import QPoint
 from PyQt6.QtCore import Qt

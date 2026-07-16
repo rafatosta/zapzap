@@ -1,6 +1,6 @@
 from gettext import gettext as _
 
-from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtWidgets
 
 
 class Ui_ShortcutsDialog(object):
