@@ -73,6 +73,12 @@ class _BaseRow(QWidget):
         self.control = control
 
 
+class SettingsLabelRow(_BaseRow):
+
+    def __init__(self, title, description="", parent=None):
+        super().__init__(title, description, parent)
+
+
 class SettingsSwitchRow(_BaseRow):
     """
     Linha de configuração com switch liga/desliga.
