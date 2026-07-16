@@ -1,6 +1,5 @@
 import subprocess
 
-from tools.ui_compiler import UiCompiler
 from tools.translation_manager import TranslationManager
 
 class FlatpakRunner:
