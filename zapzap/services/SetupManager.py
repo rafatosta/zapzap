@@ -82,6 +82,17 @@ class SetupManager:
             environ["QT_OPENGL"] = "software"
             add_flag("--disable-gpu")
 
+        # Workaround automático: multi-GPU com GPU secundária "headless"
+        # (ex.: dGPU sem monitor + iGPU controlando a tela). O processo de GPU do
+        # Chromium pode alocar buffers GBM no render node errado -> gbm_bo_import
+        # nulo -> EGL_BAD_MATCH -> SIGABRT na inicialização. --disable-gpu-compositing
+        # é a flag mínima que evita o crash preservando aceleração de raster/vídeo.
+        # Desative com: zapzap --setSettings performance/auto_gpu_workaround false
+        if SettingsManager.get("performance/auto_gpu_workaround", True):
+            from zapzap.services.GpuEnvironment import has_headless_secondary_gpu
+            if has_headless_secondary_gpu():
+                add_flag("--disable-gpu-compositing")
+
         # --------------------------------------------------
         # Processos
         # --------------------------------------------------
