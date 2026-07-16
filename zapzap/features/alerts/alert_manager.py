@@ -1,16 +1,14 @@
 from gettext import gettext as _
 from typing import Optional
 
-from PyQt6.QtWidgets import QLabel, QMessageBox, QSizePolicy
+from PyQt6.QtWidgets import QMessageBox
 
 from zapzap import LIMITE_USERS
 from zapzap.core.config.settings_manager import SettingsManager
 
 
 class AlertManager:
-    MESSAGE_MIN_WIDTH = 320
-    MESSAGE_MAX_WIDTH = 560
-
+    
     @classmethod
     def _message_box(
         cls,
@@ -30,20 +28,7 @@ class AlertManager:
         if default_button is not None:
             message_box.setDefaultButton(default_button)
 
-        cls._enable_message_wrapping(message_box)
         return message_box
-
-    @classmethod
-    def _enable_message_wrapping(cls, message_box: QMessageBox):
-        message_box.setMinimumWidth(cls.MESSAGE_MIN_WIDTH)
-        for label in message_box.findChildren(QLabel):
-            label.setWordWrap(True)
-            label.setMinimumWidth(cls.MESSAGE_MIN_WIDTH)
-            label.setMaximumWidth(cls.MESSAGE_MAX_WIDTH)
-            label.setSizePolicy(
-                QSizePolicy.Policy.Expanding,
-                QSizePolicy.Policy.Preferred,
-            )
 
     @classmethod
     def information(cls, parent, title: str, message: str):

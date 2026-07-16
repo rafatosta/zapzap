@@ -151,7 +151,7 @@ class ThemeStylesheet:
         }
         QMessageBox QLabel#qt_msgbox_label,
         QMessageBox QLabel#qt_msgbox_informativelabel {
-            min-width: 320px;
+            max-width: 560px;
             padding: 2px 0;
         }
         QMessageBox QDialogButtonBox {
