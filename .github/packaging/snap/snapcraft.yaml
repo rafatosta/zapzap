@@ -15,7 +15,7 @@ layout:
 
 apps:
   zapzap:
-    command: usr/bin/zapzap
+    command: usr/bin/zapzap-snap
     desktop: usr/share/applications/com.rtosta.zapzap.desktop
     environment:
       LD_LIBRARY_PATH: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy:$SNAP/usr/lib/x86_64-linux-gnu/libproxy:$SNAP/usr/lib/aarch64-linux-gnu/libproxy:$LD_LIBRARY_PATH
@@ -80,3 +80,4 @@ parts:
       install -Dm644 share/icons/com.rtosta.zapzap.svg "$CRAFT_PART_INSTALL/meta/gui/icon.svg"
       install -Dm644 share/icons/com.rtosta.zapzap.svg "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg"
       install -Dm644 share/metainfo/com.rtosta.zapzap.appdata.xml "$CRAFT_PART_INSTALL/usr/share/metainfo/com.rtosta.zapzap.appdata.xml"
+      install -Dm755 .github/packaging/snap/zapzap-snap-wrapper "$CRAFT_PART_INSTALL/usr/bin/zapzap-snap"
