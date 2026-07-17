@@ -1,0 +1,1 @@
+"""Visual assets for ZapZap."""

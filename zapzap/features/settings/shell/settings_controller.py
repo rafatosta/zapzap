@@ -1,0 +1,97 @@
+"""Controller for the settings shell."""
+
+from gettext import gettext as _
+
+from PyQt6.QtCore import QUrl
+from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtWidgets import QApplication, QWidget
+
+from zapzap import __donationPage__
+
+from zapzap.features.settings.pages.accounts.controller import AccountsSettingsController
+from zapzap.features.settings.pages.advanced_customizations.controller import AdvancedCustomizationsSettingsController
+from zapzap.features.settings.pages.appearance.controller import AppearanceSettingsController
+from zapzap.features.settings.pages.language_downloads.controller import LanguageDownloadSettingsController
+from zapzap.features.settings.pages.network_privacy.controller import NetworkPrivacySettingsController
+from zapzap.features.settings.pages.notifications.controller import NotificationsSettingsController
+from zapzap.features.settings.pages.permissions.controller import PermissionsSettingsController
+from zapzap.features.settings.pages.performance_experimental.controller import PerformanceExperimentalSettingsController
+from zapzap.features.settings.pages.system_startup.controller import SystemStartupSettingsController
+from zapzap.features.settings.pages.about.controller import AboutSettingsController
+from zapzap.features.settings.pages.debugging.controller import DebuggingSettingsController
+from zapzap.features.settings.shell.settings_view import SettingsView
+
+
+class SettingsController(SettingsView):
+    """Coordinates settings navigation and shell actions."""
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.page_buttons = {}
+        self._register_pages()
+        self._setup_signals()
+        self._select_default_page()
+
+    def __del__(self):
+        """Destrói o widget e limpa recursos."""
+
+    def _pages(self):
+        """Return settings pages with labels translated at runtime."""
+        return [
+            (AccountsSettingsController, _("Accounts")),
+            (AppearanceSettingsController, _("Appearance")),
+            (NotificationsSettingsController, _("Notifications")),
+            (PermissionsSettingsController, _("Permissions")),
+            (SystemStartupSettingsController, _("System and startup")),
+            (LanguageDownloadSettingsController, _("Language and Download")),
+            (NetworkPrivacySettingsController, _("Privacy and Network")),
+            (AdvancedCustomizationsSettingsController, _("Advanced Customizations")),
+            (PerformanceExperimentalSettingsController,
+             _("Performance experimental")),
+            (DebuggingSettingsController, _("Debugging")),
+            
+            (AboutSettingsController, _("About")),
+        ]
+
+    def _register_pages(self):
+        for page_class, label in self._pages():
+            self._add_page(
+                page_class(),
+                self.add_navigation_item(label),
+            )
+        self.finish_sidebar()
+
+    def _setup_signals(self):
+        """Conecta os sinais dos botões gerais."""
+        window = QApplication.instance().getWindow()
+        self.btn_quit.clicked.connect(window.closeEvent)
+        self.sidebar.btn_close.clicked.connect(window.close_settings)
+        self.btn_donate.clicked.connect(
+            lambda: QDesktopServices.openUrl(QUrl(__donationPage__))
+        )
+
+    def _add_page(self, page: QWidget, button):
+        """Adiciona uma página ao widget de páginas e associa ao botão."""
+        page_index = self.add_page(page)
+        self.page_buttons[page_index] = button
+        button.clicked.connect(lambda: self.switch_to_page(page))
+
+    def switch_to_page(self, page: QWidget):
+        """Alterna para a página selecionada e ajusta os estilos dos botões."""
+        self._reset_button_styles()
+        self.set_current_page(page)
+        self.page_buttons[self.page_index(page)].setEnabled(False)
+
+    def _reset_button_styles(self):
+        """Reativa todos os botões."""
+        for button in self.page_buttons.values():
+            button.setEnabled(True)
+
+    def _select_default_page(self):
+        """Seleciona a primeira página como padrão."""
+        if self.page_buttons:
+            self.switch_to_page(self.page_at(0))
+
+    def open_about(self):
+        """Abre a página Ajuda"""
+        self.switch_to_page(self.page_at(self.pages.count() - 1))

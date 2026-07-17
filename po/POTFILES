@@ -1,5 +1,5 @@
-./zapzap/views/
-./zapzap/controllers/
-./zapzap/services/
-./zapzap/debug/
-./zapzap/webengine/
+./zapzap/app/
+./zapzap/core/
+./zapzap/features/
+./zapzap/ui/
+./zapzap/assets/
