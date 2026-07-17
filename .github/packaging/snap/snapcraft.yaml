@@ -10,6 +10,8 @@ icon: share/icons/com.rtosta.zapzap.svg
 layout:
   /usr/share/X11/xkb:
     bind: $SNAP/usr/share/X11/xkb
+  /usr/share/X11/locale:
+    bind: $SNAP/usr/share/X11/locale
 
 apps:
   zapzap:
@@ -27,6 +29,7 @@ apps:
       QTWEBENGINE_CHROMIUM_FLAGS: --no-sandbox --disable-gpu-sandbox --disable-dev-shm-usage --password-store=basic
       QTWEBENGINE_DICTIONARIES_PATH: $SNAP/usr/share/zapzap/qtwebengine_dictionaries
       XKB_CONFIG_ROOT: $SNAP/usr/share/X11/xkb
+      XLOCALEDIR: $SNAP/usr/share/X11/locale
     plugs:
     - network
     - network-bind
