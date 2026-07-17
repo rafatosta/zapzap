@@ -17,6 +17,7 @@ class PerformanceSettings(BaseSettings):
         "persistent_cookies": ("performance/persistent_cookies", True),
         "in_process_gpu": ("performance/in_process_gpu", False),
         "disable_gpu": ("performance/disable_gpu", False),
+        "auto_gpu_workaround": ("performance/auto_gpu_workaround", True),
         "disable_gpu_vsync": ("performance/disable_gpu_vsync", False),
         "software_rendering": ("performance/software_rendering", False),
         "force_gbm": ("performance/force_gbm", False),

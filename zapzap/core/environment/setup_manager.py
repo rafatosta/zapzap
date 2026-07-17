@@ -3,6 +3,7 @@ from PyQt6.QtCore import QFileInfo
 from zapzap.core.platform import IS_WINDOWS
 from zapzap.features.dictionaries.dictionaries_manager import DictionariesManager
 from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.core.environment.gpu_environment import has_headless_secondary_gpu
 
 
 class SetupManager:
@@ -71,6 +72,12 @@ class SetupManager:
         # --------------------------------------------------
         if SettingsManager.get("performance/disable_gpu", False):
             add_flag("--disable-gpu")
+
+        if (
+            SettingsManager.get("performance/auto_gpu_workaround", True)
+            and has_headless_secondary_gpu()
+        ):
+            add_flag("--disable-gpu-compositing")
 
         if SettingsManager.get("performance/in_process_gpu", False):
             add_flag("--in-process-gpu")
