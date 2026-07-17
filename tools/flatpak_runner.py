@@ -3,7 +3,7 @@ import subprocess
 from tools.translation_manager import TranslationManager
 
 class FlatpakRunner:
-    SDK_VERSION = "6.10"
+    SDK_VERSION = "6.11"
 
     def __init__(self, args: list[str]):
         self.args = args
