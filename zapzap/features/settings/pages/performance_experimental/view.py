@@ -100,6 +100,12 @@ class PerformanceExperimentalSettingsView(SettingsPage):
             _("Disable GPU"),
             _("Recommended only for old GPUs or problematic drivers."),
         )
+        self.auto_gpu_workaround_row = SettingsSwitchRow(
+            _("Automatic headless GPU workaround"),
+            _(
+                "Disables GPU compositing at startup when a secondary GPU has no connected display."
+            ),
+        )
         self.disable_gpu_vsync_row = SettingsSwitchRow(
             _("Disable GPU VSync"),
             _("May reduce latency, but can increase tearing."),
@@ -118,6 +124,7 @@ class PerformanceExperimentalSettingsView(SettingsPage):
         )
         self.in_process_gpu = self.in_process_gpu_row.checkbox
         self.disable_gpu = self.disable_gpu_row.checkbox
+        self.auto_gpu_workaround = self.auto_gpu_workaround_row.checkbox
         self.disable_gpu_vsync = self.disable_gpu_vsync_row.checkbox
         self.software_rendering = self.software_rendering_row.checkbox
         self.force_gbm = self.force_gbm_row.checkbox
@@ -125,6 +132,7 @@ class PerformanceExperimentalSettingsView(SettingsPage):
         for row in (
             self.in_process_gpu_row,
             self.disable_gpu_row,
+            self.auto_gpu_workaround_row,
             self.disable_gpu_vsync_row,
             self.software_rendering_row,
             self.force_gbm_row,

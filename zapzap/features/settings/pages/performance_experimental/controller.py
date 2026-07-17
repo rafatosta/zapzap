@@ -96,6 +96,14 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
                 "Recommended only for old GPUs or problematic drivers."
             )
         )
+        self.auto_gpu_workaround.setToolTip(
+            _(
+                "Automatically adds --disable-gpu-compositing when ZapZap detects "
+                "multiple Linux render GPUs and one of them has no connected display.\n\n"
+                "Disable this only if the automatic workaround causes problems. "
+                "Restart required."
+            )
+        )
         self.disable_gpu_vsync.setToolTip(
             _(
                 "Disables GPU VSync.\n"
