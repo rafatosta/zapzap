@@ -43,59 +43,52 @@
 
   <screenshots>
     <screenshot type="default">
-      <caption>Main chat window</caption>
-      <image type="source" xml:lang="en">
-        https://raw.githubusercontent.com/rafatosta/zapzap/7.0/share/screenshots/zapzap-main-chat.png
-      </image>
+      <image>
+        https://raw.githubusercontent.com/rafatosta/zapzap/7.0/share/screenshots/zapzap-main-chat.png</image>
+      <caption>Manage conversations from a native desktop interface</caption>
     </screenshot>
 
     <screenshot>
-      <caption>Multiple accounts</caption>
-      <image type="source" xml:lang="en">
-        https://raw.githubusercontent.com/rafatosta/zapzap/7.0/share/screenshots/zapzap-accounts.png
-      </image>
+      <image>
+        https://raw.githubusercontent.com/rafatosta/zapzap/7.0/share/screenshots/zapzap-accounts.png</image>
+      <caption>Manage multiple WhatsApp accounts</caption>
     </screenshot>
 
     <screenshot>
-      <caption>Appearance settings</caption>
-      <image type="source" xml:lang="en">
-        https://raw.githubusercontent.com/rafatosta/zapzap/7.0/share/screenshots/zapzap-appearance.png
-      </image>
+      <image>
+        https://raw.githubusercontent.com/rafatosta/zapzap/7.0/share/screenshots/zapzap-appearance.png</image>
+      <caption>Customize the application appearance</caption>
     </screenshot>
 
     <screenshot>
-      <caption>Desktop notifications</caption>
-      <image type="source" xml:lang="en">
-        https://raw.githubusercontent.com/rafatosta/zapzap/7.0/share/screenshots/zapzap-notifications.png
-      </image>
-    </screenshot>
-
-    <screenshot>
-      <caption>Privacy and network</caption>
-      <image type="source" xml:lang="en">
-        https://raw.githubusercontent.com/rafatosta/zapzap/7.0/share/screenshots/zapzap-privacy-network.png
-      </image>
-    </screenshot>
-
-    <screenshot>
+      <image>
+        https://raw.githubusercontent.com/rafatosta/zapzap/7.0/share/screenshots/zapzap-performance.png</image>
       <caption>Experimental performance settings</caption>
-      <image type="source" xml:lang="en">
-        https://raw.githubusercontent.com/rafatosta/zapzap/7.0/share/screenshots/zapzap-performance.png
-      </image>
     </screenshot>
 
     <screenshot>
+      <image>
+        https://raw.githubusercontent.com/rafatosta/zapzap/7.0/share/screenshots/zapzap-notifications.png</image>
+      <caption>Configure desktop notification behavior</caption>
+    </screenshot>
+
+    <screenshot>
+      <image>
+        https://raw.githubusercontent.com/rafatosta/zapzap/7.0/share/screenshots/zapzap-privacy-network.png</image>
+      <caption>Privacy and network</caption>
+    </screenshot>
+
+    <screenshot>
+      <image>
+        https://raw.githubusercontent.com/rafatosta/zapzap/7.0/share/screenshots/zapzap-dark-theme.png</image>
       <caption>Theme integration</caption>
-      <image type="source" xml:lang="en">
-        https://raw.githubusercontent.com/rafatosta/zapzap/7.0/share/screenshots/zapzap-dark-theme.png
-      </image>
     </screenshot>
   </screenshots>
 
   <content_rating type="oars-1.1" />
 
   <releases>
-    <release version="7.0" date="07-17-2026">
+    <release version="7.0" date="2026-07-18">
       <description>
         <p>
           Improved security with vulnerability-related fixes. This release also reorganizes
