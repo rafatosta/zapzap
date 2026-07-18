@@ -95,12 +95,12 @@
   <content_rating type="oars-1.1" />
 
   <releases>
-    <release version="7.0" date="">
+    <release version="7.0" date="07-17-2026">
       <description>
         <p>
           Improved security with vulnerability-related fixes. This release also reorganizes
           the settings dashboard, adds a new permissions panel for camera and microphone
-          access, and introduces the new ZapZap Fluent user interface inspired by GNOME.
+          access, and introduces the new ZapZap Fluent user interface.
         </p>
       </description>
     </release>
