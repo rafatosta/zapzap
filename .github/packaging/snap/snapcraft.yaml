@@ -15,44 +15,51 @@ layout:
 
 apps:
   zapzap:
-    command: usr/bin/zapzap
+    command: usr/bin/zapzap-wrapper
     desktop: usr/share/applications/com.rtosta.zapzap.desktop
+
     environment:
-      LD_LIBRARY_PATH: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:$SNAP/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pulseaudio:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy:$LD_LIBRARY_PATH
       PYTHONPATH: $SNAP/usr/local/lib/python3.12/dist-packages:$SNAP/usr/local/lib/python3.12/site-packages:$SNAP/usr/lib/python3/dist-packages:$SNAP/usr/lib/python3.12/dist-packages:$PYTHONPATH
-      QT_PLUGIN_PATH: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/plugins:$SNAP/usr/lib/x86_64-linux-gnu/qt6/plugins:$SNAP/usr/lib/aarch64-linux-gnu/qt6/plugins:$QT_PLUGIN_PATH
-      QT_QPA_PLATFORM_PLUGIN_PATH: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/plugins/platforms:$SNAP/usr/lib/x86_64-linux-gnu/qt6/plugins/platforms:$SNAP/usr/lib/aarch64-linux-gnu/qt6/plugins/platforms:$QT_QPA_PLATFORM_PLUGIN_PATH
+
+      QT_PLUGIN_PATH: $SNAP/usr/lib/x86_64-linux-gnu/qt6/plugins:$SNAP/usr/lib/aarch64-linux-gnu/qt6/plugins:$QT_PLUGIN_PATH
+
+      QT_QPA_PLATFORM_PLUGIN_PATH: $SNAP/usr/lib/x86_64-linux-gnu/qt6/plugins/platforms:$SNAP/usr/lib/aarch64-linux-gnu/qt6/plugins/platforms:$QT_QPA_PLATFORM_PLUGIN_PATH
+
       QTWEBENGINEPROCESS_PATH: $SNAP/usr/lib/qt6/libexec/QtWebEngineProcess
       QTWEBENGINE_RESOURCES_PATH: $SNAP/usr/share/qt6/resources
       QTWEBENGINE_LOCALES_PATH: $SNAP/usr/share/qt6/translations/qtwebengine_locales
+      QTWEBENGINE_DICTIONARIES_PATH: $SNAP/usr/share/zapzap/qtwebengine_dictionaries
+
       QTWEBENGINE_DISABLE_SANDBOX: "1"
       QTWEBENGINE_CHROMIUM_FLAGS: --no-sandbox --disable-gpu-sandbox --disable-dev-shm-usage --password-store=basic
-      QTWEBENGINE_DICTIONARIES_PATH: $SNAP/usr/share/zapzap/qtwebengine_dictionaries
+
       XKB_CONFIG_ROOT: $SNAP/usr/share/X11/xkb
       XLOCALEDIR: $SNAP/usr/share/X11/locale
+
     plugs:
-    - network
-    - network-bind
-    - desktop
-    - desktop-legacy
-    - wayland
-    - x11
-    - opengl
-    - audio-playback
-    - audio-record
-    - pipewire
-    - home
-    - removable-media
+      - network
+      - network-bind
+      - desktop
+      - desktop-legacy
+      - wayland
+      - x11
+      - opengl
+      - audio-playback
+      - audio-record
+      - home
+      - removable-media
 
 parts:
   zapzap:
     plugin: dump
     source: .
+
     build-packages:
       - git
       - python3-build
       - python3-installer
       - python3-venv
+
     stage-packages:
       - libxcb-cursor0
       - python3
@@ -62,23 +69,88 @@ parts:
       - libqt6svg6
       - qt6-wayland
       - xkb-data
+
+      # Audio
       - libpulse0
       - libpipewire-0.3-0
       - libasound2t64
       - libasound2-plugins
+
     override-build: |
       set -eu
+
       cd "$CRAFT_PART_SRC"
+
       . .github/packaging/snap/prepare.sh
+
       craftctl set version="$(project_version)"
+
       if [ ! -d qtwebengine_dictionaries ]; then
-        git clone --depth=1 https://github.com/rafatosta/qtwebengine_dictionaries.git
+        git clone \
+          --depth=1 \
+          https://github.com/rafatosta/qtwebengine_dictionaries.git
       fi
+
       export DESTDIR="$CRAFT_PART_INSTALL"
       export PREFIX=/usr
+
       prepare_package
-      install -Dm644 share/applications/com.rtosta.zapzap.desktop "$CRAFT_PART_INSTALL/usr/share/applications/com.rtosta.zapzap.desktop"
-      sed -i 's|^Icon=.*|Icon=${SNAP}/meta/gui/icon.svg|' "$CRAFT_PART_INSTALL/usr/share/applications/com.rtosta.zapzap.desktop"
-      install -Dm644 share/icons/com.rtosta.zapzap.svg "$CRAFT_PART_INSTALL/meta/gui/icon.svg"
-      install -Dm644 share/icons/com.rtosta.zapzap.svg "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg"
-      install -Dm644 share/metainfo/com.rtosta.zapzap.appdata.xml "$CRAFT_PART_INSTALL/usr/share/metainfo/com.rtosta.zapzap.appdata.xml"
+
+      install -Dm644 \
+        share/applications/com.rtosta.zapzap.desktop \
+        "$CRAFT_PART_INSTALL/usr/share/applications/com.rtosta.zapzap.desktop"
+
+      sed -i \
+        's|^Icon=.*|Icon=${SNAP}/meta/gui/icon.svg|' \
+        "$CRAFT_PART_INSTALL/usr/share/applications/com.rtosta.zapzap.desktop"
+
+      install -Dm644 \
+        share/icons/com.rtosta.zapzap.svg \
+        "$CRAFT_PART_INSTALL/meta/gui/icon.svg"
+
+      install -Dm644 \
+        share/icons/com.rtosta.zapzap.svg \
+        "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/scalable/apps/com.rtosta.zapzap.svg"
+
+      install -Dm644 \
+        share/metainfo/com.rtosta.zapzap.appdata.xml \
+        "$CRAFT_PART_INSTALL/usr/share/metainfo/com.rtosta.zapzap.appdata.xml"
+
+      mkdir -p "$CRAFT_PART_INSTALL/usr/bin"
+
+      cat > "$CRAFT_PART_INSTALL/usr/bin/zapzap-wrapper" <<'EOF'
+      #!/bin/sh
+
+      set -eu
+
+      case "$(uname -m)" in
+        x86_64)
+          arch_triplet="x86_64-linux-gnu"
+          ;;
+        aarch64|arm64)
+          arch_triplet="aarch64-linux-gnu"
+          ;;
+        armv7l|armv8l)
+          arch_triplet="arm-linux-gnueabihf"
+          ;;
+        *)
+          echo "Unsupported architecture: $(uname -m)" >&2
+          exit 1
+          ;;
+      esac
+
+      user_id="$(id -u)"
+
+      export PULSE_SERVER="unix:/run/user/${user_id}/pulse/native"
+
+      snap_arch_lib="$SNAP/usr/lib/${arch_triplet}"
+      snap_base_lib="$SNAP/lib/${arch_triplet}"
+      pulse_lib="$snap_arch_lib/pulseaudio"
+      proxy_lib="$snap_arch_lib/libproxy"
+
+      export LD_LIBRARY_PATH="$snap_arch_lib:$snap_base_lib:$pulse_lib:$proxy_lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+
+      exec "$SNAP/usr/bin/zapzap" "$@"
+      EOF
+
+      chmod 0755 "$CRAFT_PART_INSTALL/usr/bin/zapzap-wrapper"
