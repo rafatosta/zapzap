@@ -18,7 +18,7 @@ apps:
     command: usr/bin/zapzap
     desktop: usr/share/applications/com.rtosta.zapzap.desktop
     environment:
-      LD_LIBRARY_PATH: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy:$SNAP/usr/lib/x86_64-linux-gnu/libproxy:$SNAP/usr/lib/aarch64-linux-gnu/libproxy:$LD_LIBRARY_PATH
+      LD_LIBRARY_PATH: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:$SNAP/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pulseaudio:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy:$LD_LIBRARY_PATH
       PYTHONPATH: $SNAP/usr/local/lib/python3.12/dist-packages:$SNAP/usr/local/lib/python3.12/site-packages:$SNAP/usr/lib/python3/dist-packages:$SNAP/usr/lib/python3.12/dist-packages:$PYTHONPATH
       QT_PLUGIN_PATH: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/plugins:$SNAP/usr/lib/x86_64-linux-gnu/qt6/plugins:$SNAP/usr/lib/aarch64-linux-gnu/qt6/plugins:$QT_PLUGIN_PATH
       QT_QPA_PLATFORM_PLUGIN_PATH: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/plugins/platforms:$SNAP/usr/lib/x86_64-linux-gnu/qt6/plugins/platforms:$SNAP/usr/lib/aarch64-linux-gnu/qt6/plugins/platforms:$QT_QPA_PLATFORM_PLUGIN_PATH
