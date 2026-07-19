@@ -40,7 +40,7 @@ function Download() {
             tag: "Official",
             title: "APT (.deb)",
             body: "Native package for Debian, Ubuntu and derivatives. Integrates with the system package manager.",
-            href: `https://github.com/rafatosta/zapzap/releases/latest/download/ZapZap-${version}-linux-amd64.deb`,
+            href: `https://github.com/rafatosta/zapzap/releases/latest/download/zapzap-${version}-amd64.deb`,
         },
 
         {
