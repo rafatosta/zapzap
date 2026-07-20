@@ -98,8 +98,9 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
         )
         self.auto_gpu_workaround.setToolTip(
             _(
-                "Automatically adds --disable-gpu-compositing when ZapZap detects "
-                "multiple Linux render GPUs and one of them has no connected display.\n\n"
+                "Automatically honors an unambiguous DRI_PRIME selector on systems "
+                "with multiple Linux render GPUs. Otherwise, adds "
+                "--disable-gpu-compositing when one GPU has no connected display.\n\n"
                 "Disable this only if the automatic workaround causes problems. "
                 "Restart required."
             )

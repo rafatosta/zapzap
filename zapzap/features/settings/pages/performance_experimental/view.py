@@ -101,9 +101,9 @@ class PerformanceExperimentalSettingsView(SettingsPage):
             _("Recommended only for old GPUs or problematic drivers."),
         )
         self.auto_gpu_workaround_row = SettingsSwitchRow(
-            _("Automatic headless GPU workaround"),
+            _("Automatic multi-GPU workaround"),
             _(
-                "Disables GPU compositing at startup when a secondary GPU has no connected display."
+                "Honors DRI_PRIME or adjusts GPU compositing for a headless secondary GPU."
             ),
         )
         self.disable_gpu_vsync_row = SettingsSwitchRow(
