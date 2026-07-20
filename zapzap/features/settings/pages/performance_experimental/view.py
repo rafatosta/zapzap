@@ -17,7 +17,7 @@ class PerformanceExperimentalSettingsView(SettingsPage):
     def __init__(self, parent=None):
         super().__init__(
             _("Performance experimental"),
-            _("Ajuste cache, GPU, processos e comportamento avançado."),
+            _("Tune cache, GPU, processes, and advanced behavior."),
             parent,
         )
         self._setup_ui()
@@ -101,9 +101,9 @@ class PerformanceExperimentalSettingsView(SettingsPage):
             _("Recommended only for old GPUs or problematic drivers."),
         )
         self.auto_gpu_workaround_row = SettingsSwitchRow(
-            _("Automatic headless GPU workaround"),
+            _("Automatic multi-GPU workaround"),
             _(
-                "Disables GPU compositing at startup when a secondary GPU has no connected display."
+                "Honors DRI_PRIME or adjusts GPU compositing for a headless secondary GPU."
             ),
         )
         self.disable_gpu_vsync_row = SettingsSwitchRow(
