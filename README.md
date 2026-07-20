@@ -1,4 +1,4 @@
-# [ZapZap](https://rtosta.com/zapzap-web/) – WhatsApp Web Desktop Client
+# [ZapZap](https://rtosta.com/zapzap/) – WhatsApp Web Desktop Client
 
 ZapZap is an unofficial WhatsApp Web desktop client built with Python, PyQt6 and QtWebEngine. It wraps `https://web.whatsapp.com/` in a desktop application and adds native integration for accounts, notifications, tray behavior, theming and packaging.
 
