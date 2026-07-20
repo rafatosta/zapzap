@@ -30,7 +30,7 @@ class PathManager:
         },
         Packaging.UNOFFICIAL: {
             "path": "",
-            "default": "/usr/share/qt6/qtwebengine_dictionaries",
+            "default": os.getenv("QTWEBENGINE_DICTIONARIES_PATH", os.path.join(os.path.expanduser("~"), ".local/share/zapzap/qtwebengine_dictionaries")),
         },
         Packaging.WINDOWS: {
             "path": "",
