@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 11:29-0300\n"
+"POT-Creation-Date: 2026-07-21 18:17-0300\n"
 "PO-Revision-Date: 2026-04-08 15:31+UTC+0\n"
 "Last-Translator: André Barata <andretiagob@protonmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,11 +98,11 @@ msgstr "Apenas proxy para solicitações HTTP."
 msgid "Proxying for FTP requests only."
 msgstr "Apenas proxy para solicitações FTP."
 
-#: zapzap/features/alerts/alert_manager.py:35
+#: zapzap/features/alerts/alert_manager.py:76
 msgid "Information"
 msgstr "Informação"
 
-#: zapzap/features/alerts/alert_manager.py:35
+#: zapzap/features/alerts/alert_manager.py:78
 #, python-brace-format
 msgid ""
 "Limit of {} users reached.\n"
@@ -111,13 +111,39 @@ msgstr ""
 "O limite de {} utilizadores foi alcançado!\n"
 "Não é possível criar mais utilizadores!"
 
-#: zapzap/features/alerts/alert_manager.py:39
+#: zapzap/features/alerts/alert_manager.py:85
 msgid "Attention"
 msgstr "Atenção"
 
-#: zapzap/features/alerts/alert_manager.py:39
+#: zapzap/features/alerts/alert_manager.py:85
 msgid "No active account!"
 msgstr "Nenhuma conta ativa!"
+
+#: zapzap/features/donation/view.py:207
+#: zapzap/ui/main_window/main_window_view.py:129
+#: zapzap/ui/generated/ui_shortcuts_dialog.py:60
+msgid "ZapZap"
+msgstr "ZapZap"
+
+#: zapzap/features/donation/view.py:210
+msgid ""
+"Your donation helps keep the project running, improve resources and "
+"guarantee your privacy and freedom."
+msgstr ""
+
+#: zapzap/features/donation/view.py:214
+#, fuzzy
+msgid "❤ Make a donation"
+msgstr "Fazer uma doação"
+
+#: zapzap/features/donation/view.py:215
+#, fuzzy
+msgid "Don't show again"
+msgstr "Não perguntar novamente"
+
+#: zapzap/features/donation/view.py:216
+msgid "Learn more about ZapZap ↗"
+msgstr ""
 
 #: zapzap/features/downloads/download_manager.py:92
 #, fuzzy
@@ -134,42 +160,42 @@ msgstr "Restaurar predefinições"
 msgid "English"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:44
+#: zapzap/features/initial_setup/view.py:42
 #, fuzzy
 msgid "Setup ZapZap"
 msgstr "Fechar o ZapZap"
 
-#: zapzap/features/initial_setup/view.py:89
+#: zapzap/features/initial_setup/view.py:87
 #, fuzzy
 msgid "Welcome to ZapZap"
 msgstr "Bem Vindo ao ZapZap"
 
-#: zapzap/features/initial_setup/view.py:92
+#: zapzap/features/initial_setup/view.py:90
 #, fuzzy
 msgid "Choose the essentials now. You can change everything later in Settings."
 msgstr "Pode alterar todas estas opções mais tarde em Definições."
 
-#: zapzap/features/initial_setup/view.py:106
+#: zapzap/features/initial_setup/view.py:105
 msgid "Basics"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:107
+#: zapzap/features/initial_setup/view.py:106
 #: zapzap/features/settings/shell/settings_controller.py:43
 #: zapzap/features/settings/pages/notifications/view.py:21
 msgid "Notifications"
 msgstr "Notificações"
 
-#: zapzap/features/initial_setup/view.py:108
+#: zapzap/features/initial_setup/view.py:107
 msgid "Background"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:109
+#: zapzap/features/initial_setup/view.py:108
 #, fuzzy
 msgid "Files"
 msgstr "Ficheiro"
 
-#: zapzap/features/initial_setup/view.py:110
-#: zapzap/features/initial_setup/view.py:362
+#: zapzap/features/initial_setup/view.py:109
+#: zapzap/features/initial_setup/view.py:364
 #: zapzap/features/settings/shell/settings_controller.py:44
 #: zapzap/features/settings/pages/permissions/view.py:22
 #: zapzap/features/settings/pages/permissions/view.py:37
@@ -177,464 +203,464 @@ msgstr "Ficheiro"
 msgid "Permissions"
 msgstr "Permissões da sandbox Flatpak"
 
-#: zapzap/features/initial_setup/view.py:111
-#: zapzap/features/initial_setup/view.py:121
+#: zapzap/features/initial_setup/view.py:110
+#: zapzap/features/initial_setup/view.py:120
 msgid "Finish"
 msgstr "Concluir"
 
-#: zapzap/features/initial_setup/view.py:118
+#: zapzap/features/initial_setup/view.py:117
 msgid "Skip setup"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:119
+#: zapzap/features/initial_setup/view.py:118
 msgid "Back"
 msgstr "Retroceder"
 
-#: zapzap/features/initial_setup/view.py:120
+#: zapzap/features/initial_setup/view.py:119
 msgid "Next"
 msgstr "Seguinte"
 
-#: zapzap/features/initial_setup/view.py:138
+#: zapzap/features/initial_setup/view.py:140
 #, fuzzy
 msgid "Language and appearance"
 msgstr "Guardar e recarregar"
 
-#: zapzap/features/initial_setup/view.py:139
+#: zapzap/features/initial_setup/view.py:141
 msgid "Start with the interface language and a comfortable visual theme."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:144
+#: zapzap/features/initial_setup/view.py:146
 #: zapzap/features/settings/pages/language_downloads/view.py:34
 #, fuzzy
 msgid "Language"
 msgstr "Selecionar idioma"
 
-#: zapzap/features/initial_setup/view.py:145
+#: zapzap/features/initial_setup/view.py:147
 #: zapzap/features/settings/pages/language_downloads/view.py:35
 msgid "Choose the interface language used by ZapZap."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:150
+#: zapzap/features/initial_setup/view.py:152
 #: zapzap/features/settings/pages/language_downloads/view.py:39
 #, fuzzy
 msgid "Interface language"
 msgstr "Selecionar idioma"
 
-#: zapzap/features/initial_setup/view.py:151
+#: zapzap/features/initial_setup/view.py:153
 msgid "The interface language is applied when you finish setup."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:160
+#: zapzap/features/initial_setup/view.py:162
 #: zapzap/features/settings/pages/appearance/view.py:70
 msgid "Theme"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:161
+#: zapzap/features/initial_setup/view.py:163
 #: zapzap/features/settings/pages/appearance/view.py:70
 msgid "Choose the visual theme."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:165
+#: zapzap/features/initial_setup/view.py:167
 #: zapzap/features/settings/pages/appearance/view.py:72
 msgid "Automatic"
 msgstr "Automático"
 
-#: zapzap/features/initial_setup/view.py:166
+#: zapzap/features/initial_setup/view.py:168
 #: zapzap/features/settings/pages/appearance/view.py:73
 msgid "Light"
 msgstr "Claro"
 
-#: zapzap/features/initial_setup/view.py:167
+#: zapzap/features/initial_setup/view.py:169
 #: zapzap/features/settings/pages/appearance/view.py:74
 msgid "Dark"
 msgstr "Escuro"
 
-#: zapzap/features/initial_setup/view.py:184
+#: zapzap/features/initial_setup/view.py:186
 #, fuzzy
 msgid "Notifications and privacy"
 msgstr "Notificações"
 
-#: zapzap/features/initial_setup/view.py:185
+#: zapzap/features/initial_setup/view.py:187
 msgid ""
 "Decide how much message information appears in native notification banners."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:189
+#: zapzap/features/initial_setup/view.py:191
 #: zapzap/features/settings/pages/notifications/view.py:37
 #, fuzzy
 msgid "Desktop notifications"
 msgstr "Silencia as notificações"
 
-#: zapzap/features/initial_setup/view.py:190
+#: zapzap/features/initial_setup/view.py:192
 #: zapzap/features/settings/pages/notifications/view.py:38
 msgid "Choose whether ZapZap may show desktop notifications."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:195
+#: zapzap/features/initial_setup/view.py:197
 #: zapzap/features/settings/pages/notifications/view.py:42
 #, fuzzy
 msgid "Enable notifications"
 msgstr "Ativar notificações da aplicação"
 
-#: zapzap/features/initial_setup/view.py:196
+#: zapzap/features/initial_setup/view.py:198
 #: zapzap/features/settings/pages/notifications/view.py:43
 msgid ""
 "Allow ZapZap to publish native desktop notifications for WhatsApp activity."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:204
+#: zapzap/features/initial_setup/view.py:206
 #: zapzap/features/settings/pages/notifications/view.py:51
 #, fuzzy
 msgid "Notification privacy"
 msgstr "Notificações"
 
-#: zapzap/features/initial_setup/view.py:205
+#: zapzap/features/initial_setup/view.py:207
 #: zapzap/features/settings/pages/notifications/view.py:52
 msgid "Limit what is visible in notification banners."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:210
+#: zapzap/features/initial_setup/view.py:212
 #: zapzap/features/settings/pages/notifications/view.py:56
 #, fuzzy
 msgid "Show contact photo"
 msgstr "Mostrar a foto do contacto nas notificações"
 
-#: zapzap/features/initial_setup/view.py:211
+#: zapzap/features/initial_setup/view.py:213
 #: zapzap/features/settings/pages/notifications/view.py:57
 msgid "Display the sender avatar when it is available."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:214
+#: zapzap/features/initial_setup/view.py:216
 #: zapzap/features/settings/pages/notifications/view.py:60
 #, fuzzy
 msgid "Show contact name"
 msgstr "Mostrar o nome do contacto nas notificações"
 
-#: zapzap/features/initial_setup/view.py:215
+#: zapzap/features/initial_setup/view.py:217
 #: zapzap/features/settings/pages/notifications/view.py:61
 msgid "Display the sender or group name."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:218
+#: zapzap/features/initial_setup/view.py:220
 #: zapzap/features/settings/pages/notifications/view.py:64
 msgid "Show message preview"
 msgstr "Mostrar a pré-visualização da mensagem"
 
-#: zapzap/features/initial_setup/view.py:219
+#: zapzap/features/initial_setup/view.py:221
 #: zapzap/features/settings/pages/notifications/view.py:65
 #, fuzzy
 msgid "Display the message text in the notification."
 msgstr "Mostrar conteúdo das mensagens nas notificações"
 
-#: zapzap/features/initial_setup/view.py:233
+#: zapzap/features/initial_setup/view.py:235
 #, fuzzy
 msgid "Background behavior"
 msgstr "Comportamento de web"
 
-#: zapzap/features/initial_setup/view.py:234
+#: zapzap/features/initial_setup/view.py:236
 msgid ""
 "Choose whether ZapZap should stay available from the tray and start with "
 "your session."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:238
+#: zapzap/features/initial_setup/view.py:240
 #: zapzap/features/settings/pages/appearance/view.py:87
 msgid "Tray icon"
 msgstr "Ícone do tabuleiro"
 
-#: zapzap/features/initial_setup/view.py:239
+#: zapzap/features/initial_setup/view.py:241
 msgid "Control tray icon visibility and unread counter."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:244
+#: zapzap/features/initial_setup/view.py:246
 #: zapzap/features/settings/pages/appearance/view.py:92
 #, fuzzy
 msgid "Enable tray icon"
 msgstr "Ativar notificações da aplicação"
 
-#: zapzap/features/initial_setup/view.py:245
+#: zapzap/features/initial_setup/view.py:247
 #: zapzap/features/settings/pages/appearance/view.py:93
 msgid "Show ZapZap in the system tray."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:248
+#: zapzap/features/initial_setup/view.py:250
 #: zapzap/features/settings/pages/appearance/view.py:96
 #, fuzzy
 msgid "Notification counter"
 msgstr "Notificações"
 
-#: zapzap/features/initial_setup/view.py:249
+#: zapzap/features/initial_setup/view.py:251
 #: zapzap/features/settings/pages/appearance/view.py:97
 msgid "Show unread notifications on the tray icon."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:259
+#: zapzap/features/initial_setup/view.py:261
 #: zapzap/features/settings/pages/system_startup/view.py:54
 #, fuzzy
 msgid "Window behavior"
 msgstr "Comportamento de web"
 
-#: zapzap/features/initial_setup/view.py:260
+#: zapzap/features/initial_setup/view.py:262
 msgid "Configure close behavior."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:265
+#: zapzap/features/initial_setup/view.py:267
 #, fuzzy
 msgid "Keep running in the background"
 msgstr "Iniciar oculto em segundo plano"
 
-#: zapzap/features/initial_setup/view.py:266
+#: zapzap/features/initial_setup/view.py:268
 msgid "Hide the main window instead of quitting when it is closed."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:269
+#: zapzap/features/initial_setup/view.py:271
 #: zapzap/features/settings/pages/system_startup/view.py:59
 #, fuzzy
 msgid "Confirm before closing the window"
 msgstr "Fechar ao fechar a janela"
 
-#: zapzap/features/initial_setup/view.py:270
+#: zapzap/features/initial_setup/view.py:272
 #: zapzap/features/settings/pages/system_startup/view.py:60
 msgid "Ask for confirmation before closing ZapZap."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:280
+#: zapzap/features/initial_setup/view.py:282
 #: zapzap/features/settings/pages/system_startup/view.py:33
 msgid "Startup"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:281
+#: zapzap/features/initial_setup/view.py:283
 #: zapzap/features/settings/pages/system_startup/view.py:34
 msgid "Control how ZapZap behaves when your desktop session starts."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:286
+#: zapzap/features/initial_setup/view.py:288
 #: zapzap/features/settings/pages/system_startup/view.py:42
 msgid "Start with the system"
 msgstr "Iniciar com o arranque do sistema"
 
-#: zapzap/features/initial_setup/view.py:287
+#: zapzap/features/initial_setup/view.py:289
 #: zapzap/features/settings/pages/system_startup/view.py:43
 msgid "Create or remove the desktop autostart entry."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:290
+#: zapzap/features/initial_setup/view.py:292
 #: zapzap/features/settings/pages/system_startup/view.py:38
 msgid "Start minimized"
 msgstr "Iniciar minimizado"
 
-#: zapzap/features/initial_setup/view.py:291
+#: zapzap/features/initial_setup/view.py:293
 #: zapzap/features/settings/pages/system_startup/view.py:39
 msgid "Open ZapZap in the background instead of showing the main window."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:304
+#: zapzap/features/initial_setup/view.py:306
 #, fuzzy
 msgid "Downloads and typing"
 msgstr "Pasta de transferẽncias"
 
-#: zapzap/features/initial_setup/view.py:305
+#: zapzap/features/initial_setup/view.py:307
 msgid ""
 "Choose where files are saved and enable spell checking when dictionaries are "
 "available."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:309
+#: zapzap/features/initial_setup/view.py:311
 #: zapzap/features/settings/pages/language_downloads/view.py:52
 #, fuzzy
 msgid "Downloads"
 msgstr "Transferir"
 
-#: zapzap/features/initial_setup/view.py:310
+#: zapzap/features/initial_setup/view.py:312
 #: zapzap/features/settings/pages/language_downloads/view.py:53
 msgid "Choose where downloaded files are saved."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:315
+#: zapzap/features/initial_setup/view.py:317
 #: zapzap/features/settings/pages/language_downloads/view.py:57
 #, fuzzy
 msgid "Download directory"
 msgstr "Pasta de transferẽncias"
 
-#: zapzap/features/initial_setup/view.py:316
+#: zapzap/features/initial_setup/view.py:318
 msgid "Set a custom folder or keep the current download location."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:317
+#: zapzap/features/initial_setup/view.py:319
 #, fuzzy
 msgid "Choose folder"
 msgstr "Abrir pasta"
 
-#: zapzap/features/initial_setup/view.py:327
+#: zapzap/features/initial_setup/view.py:329
 #: zapzap/features/settings/pages/language_downloads/view.py:73
 #, fuzzy
 msgid "Spell checker"
 msgstr "Corretor ortográfico"
 
-#: zapzap/features/initial_setup/view.py:328
+#: zapzap/features/initial_setup/view.py:330
 #: zapzap/features/settings/pages/language_downloads/view.py:74
 msgid "Select compiled dictionaries and where ZapZap should look for them."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:333
+#: zapzap/features/initial_setup/view.py:335
 #: zapzap/features/settings/pages/language_downloads/view.py:78
 #, fuzzy
 msgid "Enable spell checker"
 msgstr "Corretor ortográfico"
 
-#: zapzap/features/initial_setup/view.py:334
+#: zapzap/features/initial_setup/view.py:336
 #: zapzap/features/settings/pages/language_downloads/view.py:79
 msgid "Use Qt WebEngine spell checking with the selected dictionary."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:337
+#: zapzap/features/initial_setup/view.py:339
 #: zapzap/features/settings/pages/language_downloads/view.py:82
 msgid "Dictionary language"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:338
+#: zapzap/features/initial_setup/view.py:340
 #: zapzap/features/settings/pages/language_downloads/view.py:83
 #, fuzzy
 msgid "Recognizes only compiled dictionaries (.bdic)."
 msgstr "Só reconhece dicionários compilados (.bdic)"
 
-#: zapzap/features/initial_setup/view.py:342
+#: zapzap/features/initial_setup/view.py:344
 msgid ""
 "No compiled dictionaries were found. You can configure dictionaries later in "
 "Settings."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:357
+#: zapzap/features/initial_setup/view.py:359
 #, fuzzy
 msgid "Essential permissions"
 msgstr "Permissões da sandbox Flatpak"
 
-#: zapzap/features/initial_setup/view.py:358
+#: zapzap/features/initial_setup/view.py:360
 msgid ""
 "Allow only the WhatsApp Web permissions you want to grant automatically."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:363
+#: zapzap/features/initial_setup/view.py:365
 #: zapzap/features/settings/pages/permissions/view.py:38
 msgid "When an option is unchecked, ZapZap will ask again in each session."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:369
+#: zapzap/features/initial_setup/view.py:371
 #: zapzap/features/settings/pages/permissions/view.py:42
 msgid ""
 "Enable only the permissions you want to grant automatically when the page "
 "requests them."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:373
+#: zapzap/features/initial_setup/view.py:375
 #: zapzap/features/settings/pages/permissions/view.py:46
 #, fuzzy
 msgid "Microphone"
 msgstr "Por número de telefone"
 
-#: zapzap/features/initial_setup/view.py:374
+#: zapzap/features/initial_setup/view.py:376
 #: zapzap/features/settings/pages/permissions/view.py:46
 msgid "Automatically allow access to your microphone."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:377
+#: zapzap/features/initial_setup/view.py:379
 #: zapzap/features/settings/pages/permissions/view.py:47
 msgid "Camera"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:378
+#: zapzap/features/initial_setup/view.py:380
 #: zapzap/features/settings/pages/permissions/view.py:47
 msgid "Automatically allow access to your camera."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:381
+#: zapzap/features/initial_setup/view.py:383
 #: zapzap/features/settings/pages/permissions/view.py:56
 msgid "Screen contents"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:382
+#: zapzap/features/initial_setup/view.py:384
 #: zapzap/features/settings/pages/permissions/view.py:57
 msgid "Automatically allow sharing of screen contents."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:385
-#: zapzap/features/settings/pages/network_privacy/view.py:118
+#: zapzap/features/initial_setup/view.py:387
+#: zapzap/features/settings/pages/network_privacy/view.py:117
 msgid "WebRTC shield"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:386
+#: zapzap/features/initial_setup/view.py:388
 msgid "Reduce WebRTC IP exposure."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:403
+#: zapzap/features/initial_setup/view.py:405
 #: zapzap/features/settings/pages/permissions/view.py:81
 #, fuzzy
 msgid "Flatpak permissions"
 msgstr "Permissões da sandbox Flatpak"
 
-#: zapzap/features/initial_setup/view.py:404
+#: zapzap/features/initial_setup/view.py:406
 #: zapzap/features/settings/pages/permissions/view.py:82
 msgid ""
 "Grant filesystem access if downloads, imports, or dictionaries cannot reach "
 "folders outside the sandbox."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:410
+#: zapzap/features/initial_setup/view.py:412
 #: zapzap/features/settings/pages/permissions/view.py:86
 msgid ""
 "Flatpak sandbox: if file access fails, grant folder permissions using "
 "Flatseal or flatpak override."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:420
+#: zapzap/features/initial_setup/view.py:422
 #: zapzap/features/settings/pages/permissions/view.py:94
 msgid "Select and copy this command in your terminal"
 msgstr "Selecione e copie este comando no seu terminal"
 
-#: zapzap/features/initial_setup/view.py:422
+#: zapzap/features/initial_setup/view.py:424
 #: zapzap/features/settings/pages/permissions/view.py:96
 #: zapzap/features/browser/web/web_view.py:312
 msgid "Copy"
 msgstr "Copiar"
 
-#: zapzap/features/initial_setup/view.py:426
+#: zapzap/features/initial_setup/view.py:428
 #: zapzap/features/settings/pages/permissions/view.py:100
 #, fuzzy
 msgid "Flatseal"
 msgstr "Abrir página do Flatseal"
 
-#: zapzap/features/initial_setup/view.py:427
+#: zapzap/features/initial_setup/view.py:429
 #: zapzap/features/settings/pages/permissions/view.py:101
 msgid ""
 "Flatseal is a graphical utility to review and modify permissions from your "
 "Flatpak applications."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:428
+#: zapzap/features/initial_setup/view.py:430
 #: zapzap/features/settings/pages/permissions/view.py:102
 msgid "Install Flatseal on Linux | Flathub"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:443
+#: zapzap/features/initial_setup/view.py:445
 msgid "You're ready"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:444
+#: zapzap/features/initial_setup/view.py:446
 msgid ""
 "ZapZap will save these preferences now. Advanced options remain available in "
 "Settings."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:448
+#: zapzap/features/initial_setup/view.py:450
 #, fuzzy
 msgid "Finish setup"
 msgstr "Concluir"
 
-#: zapzap/features/initial_setup/view.py:449
+#: zapzap/features/initial_setup/view.py:451
 msgid "Review advanced options later whenever you need them."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:455
+#: zapzap/features/initial_setup/view.py:457
 msgid ""
 "You can revisit all choices from Settings at any time. Proxy, custom CSS/"
 "JavaScript, Flatpak permissions, and performance tweaks are still available "
@@ -689,7 +715,7 @@ msgstr "Perfil e estado"
 #: zapzap/features/shortcuts/shortcuts_dialog.py:22
 #: zapzap/features/shortcuts/shortcuts_dialog.py:43
 #: zapzap/features/tray/sys_tray_manager.py:54
-#: zapzap/features/settings/shell/settings_sidebar.py:68
+#: zapzap/features/settings/shell/settings_sidebar.py:73
 #: zapzap/ui/main_window/main_window_view.py:139
 msgid "Settings"
 msgstr "Definições"
@@ -831,7 +857,7 @@ msgid "Language and Download"
 msgstr "Guardar e recarregar"
 
 #: zapzap/features/settings/shell/settings_controller.py:47
-#: zapzap/features/settings/pages/network_privacy/view.py:23
+#: zapzap/features/settings/pages/network_privacy/view.py:22
 msgid "Privacy and Network"
 msgstr ""
 
@@ -858,11 +884,11 @@ msgstr "Registos de depuração"
 msgid "About"
 msgstr "Sobre"
 
-#: zapzap/features/settings/shell/settings_sidebar.py:71
+#: zapzap/features/settings/shell/settings_sidebar.py:76
 msgid "Adjust accounts, appearance, notifications and advanced options."
 msgstr ""
 
-#: zapzap/features/settings/shell/settings_sidebar.py:76
+#: zapzap/features/settings/shell/settings_sidebar.py:81
 #, fuzzy
 msgid "Close settings"
 msgstr "Restaurar definições"
@@ -1240,7 +1266,7 @@ msgid "Gerencie CSS, JavaScript e customizações por escopo."
 msgstr ""
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:40
-#: zapzap/features/settings/pages/network_privacy/view.py:38
+#: zapzap/features/settings/pages/network_privacy/view.py:37
 msgid "Scope"
 msgstr ""
 
@@ -1419,8 +1445,6 @@ msgstr ""
 
 #: zapzap/features/settings/pages/appearance/view.py:56
 #: zapzap/features/settings/pages/appearance/view.py:58
-#: zapzap/features/settings/pages/debugging/view.py:76
-#: zapzap/features/settings/pages/debugging/view.py:78
 #: zapzap/features/settings/pages/performance_experimental/view.py:51
 #: zapzap/features/settings/pages/performance_experimental/view.py:55
 #: zapzap/features/settings/pages/system_startup/view.py:92
@@ -1548,7 +1572,7 @@ msgstr "Ficheiro(s) da conta {count} eliminados."
 #: zapzap/features/settings/pages/debugging/controller.py:82
 #: zapzap/features/settings/pages/debugging/controller.py:95
 #: zapzap/features/settings/pages/debugging/controller.py:102
-#: zapzap/features/settings/pages/debugging/view.py:72
+#: zapzap/features/settings/pages/debugging/view.py:73
 #, fuzzy
 msgid "Reset settings"
 msgstr "Restaurar definições"
@@ -1603,43 +1627,39 @@ msgstr "Eliminar todos"
 msgid "Reset settings is destructive and requires restart."
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:77
-msgid "Restart the full application after resetting settings."
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/view.py:88
+#: zapzap/features/settings/pages/debugging/view.py:81
 #, fuzzy
 msgid "Runtime information"
 msgstr "Informação"
 
-#: zapzap/features/settings/pages/debugging/view.py:89
+#: zapzap/features/settings/pages/debugging/view.py:82
 msgid "Information useful for diagnostics and bug reports."
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:95
+#: zapzap/features/settings/pages/debugging/view.py:88
 msgid ""
 "Relevant environment information for bug reports, including Qt, PyQt, "
 "Python, Flatpak and desktop session details."
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:114
+#: zapzap/features/settings/pages/debugging/view.py:107
 msgid "Refresh"
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:115
+#: zapzap/features/settings/pages/debugging/view.py:108
 msgid "Copy details"
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:126
+#: zapzap/features/settings/pages/debugging/view.py:119
 #, python-brace-format
 msgid "Files: {count} crash report(s){faulthandler}."
 msgstr "Ficheiros: {count} registo(s) de falha(s){faulthandler}."
 
-#: zapzap/features/settings/pages/debugging/view.py:128
+#: zapzap/features/settings/pages/debugging/view.py:121
 msgid " + faulthandler.log"
 msgstr " + faulthandler.log"
 
-#: zapzap/features/settings/pages/debugging/view.py:132
+#: zapzap/features/settings/pages/debugging/view.py:125
 #, python-brace-format
 msgid ""
 "Crash reports are stored in this folder. You can open the directory or clean "
@@ -1669,8 +1689,8 @@ msgstr ""
 
 #: zapzap/features/settings/pages/language_downloads/view.py:65
 #: zapzap/features/settings/pages/language_downloads/view.py:95
-#: zapzap/features/settings/pages/network_privacy/view.py:138
-#: zapzap/features/settings/pages/performance_experimental/view.py:235
+#: zapzap/features/settings/pages/network_privacy/view.py:137
+#: zapzap/features/settings/pages/performance_experimental/view.py:243
 msgid "Restore"
 msgstr "Restaurar"
 
@@ -1689,144 +1709,144 @@ msgstr "Nota: É necessário reiniciar a aplicação"
 msgid "Global (Default)"
 msgstr "Global (Predefinição)"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:24
+#: zapzap/features/settings/pages/network_privacy/view.py:23
 msgid "Configure proxy, WebRTC and privacy options."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:39
+#: zapzap/features/settings/pages/network_privacy/view.py:38
 msgid "Choose whether these settings apply globally or to one account."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:43
+#: zapzap/features/settings/pages/network_privacy/view.py:42
 #, fuzzy
 msgid "Settings for"
 msgstr "Definições para:"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:44
+#: zapzap/features/settings/pages/network_privacy/view.py:43
 msgid "Per-account settings override the global default."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:54
+#: zapzap/features/settings/pages/network_privacy/view.py:53
 #, fuzzy
 msgid "Proxy"
 msgstr "Tipo de proxy"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:55
+#: zapzap/features/settings/pages/network_privacy/view.py:54
 msgid "Configure the HTTP/SOCKS proxy used by Qt WebEngine."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:59
+#: zapzap/features/settings/pages/network_privacy/view.py:58
 #, fuzzy
 msgid "Enable proxy"
 msgstr "Ativado"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:60
+#: zapzap/features/settings/pages/network_privacy/view.py:59
 msgid "Route traffic through the configured proxy."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:63
+#: zapzap/features/settings/pages/network_privacy/view.py:62
 #, fuzzy
 msgid "Proxy type"
 msgstr "Tipo de proxy"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:64
+#: zapzap/features/settings/pages/network_privacy/view.py:63
 msgid "Select the proxy mode."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:67
+#: zapzap/features/settings/pages/network_privacy/view.py:66
 msgid "Proxy type details appear below the selector."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:73
+#: zapzap/features/settings/pages/network_privacy/view.py:72
 #, fuzzy
 msgid "Host"
 msgstr "Nome do anfitrião"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:74
+#: zapzap/features/settings/pages/network_privacy/view.py:73
 msgid "Proxy host name or IP address."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:76
+#: zapzap/features/settings/pages/network_privacy/view.py:75
 msgid "Port"
 msgstr "Porta"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:76
+#: zapzap/features/settings/pages/network_privacy/view.py:75
 #, fuzzy
 msgid "Proxy port."
 msgstr "Tipo de proxy"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:77
+#: zapzap/features/settings/pages/network_privacy/view.py:76
 msgid "User"
 msgstr "Utilizador"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:77
+#: zapzap/features/settings/pages/network_privacy/view.py:76
 #, fuzzy
 msgid "Optional proxy user."
 msgstr "Nenhuma proxy está a ser utilizada."
 
-#: zapzap/features/settings/pages/network_privacy/view.py:79
-#: zapzap/features/settings/pages/network_privacy/view.py:108
+#: zapzap/features/settings/pages/network_privacy/view.py:78
+#: zapzap/features/settings/pages/network_privacy/view.py:107
 msgid "Password"
 msgstr "Palavra-passe"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:80
+#: zapzap/features/settings/pages/network_privacy/view.py:79
 msgid "Optional proxy password."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:99
+#: zapzap/features/settings/pages/network_privacy/view.py:98
 #, fuzzy
 msgid "Host name"
 msgstr "Nome do anfitrião"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:102
+#: zapzap/features/settings/pages/network_privacy/view.py:101
 msgid "Port number"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:105
+#: zapzap/features/settings/pages/network_privacy/view.py:104
 #, fuzzy
 msgid "Username"
 msgstr "Utilizador"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:114
+#: zapzap/features/settings/pages/network_privacy/view.py:113
 msgid "Privacy"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:115
+#: zapzap/features/settings/pages/network_privacy/view.py:114
 msgid "Global network privacy controls."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:119
+#: zapzap/features/settings/pages/network_privacy/view.py:118
 msgid "Reduce WebRTC IP exposure. This is a global privacy setting."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:127
+#: zapzap/features/settings/pages/network_privacy/view.py:126
 #, fuzzy
 msgid "Actions"
 msgstr "Instruções"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:128
+#: zapzap/features/settings/pages/network_privacy/view.py:127
 msgid "Apply or restore proxy settings."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:131
+#: zapzap/features/settings/pages/network_privacy/view.py:130
 #, fuzzy
 msgid "Apply proxy"
 msgstr "Aplicar"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:132
+#: zapzap/features/settings/pages/network_privacy/view.py:131
 msgid "Save settings and apply the proxy immediately."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:133
+#: zapzap/features/settings/pages/network_privacy/view.py:132
 msgid "Apply"
 msgstr "Aplicar"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:136
+#: zapzap/features/settings/pages/network_privacy/view.py:135
 #, fuzzy
 msgid "Restore proxy"
 msgstr "Proxy de rede"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:137
+#: zapzap/features/settings/pages/network_privacy/view.py:136
 msgid "Clear proxy settings for the selected scope."
 msgstr ""
 
@@ -1853,177 +1873,8 @@ msgstr "Esconder lembretes de doação"
 msgid "Show occasional support messages from ZapZap."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:75
-msgid ""
-"Defines where the HTTP cache will be stored.\n"
-"Disk: faster after restart.\n"
-"Memory: faster, but lost on exit.\n"
-"No cache: lower disk usage, slower."
-msgstr ""
-"Define onde o cache do HTTP vai ser armazenado.\n"
-"Disco: mais rápido depois de reiniciar a aplicação.\n"
-"Memória: mais rápida mas é perdida ao sair.\n"
-"Sem cache: menor utilização do disco, mais lento."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:82
-msgid ""
-"Maximum HTTP cache size.\n"
-"0 MB uses the default Chromium behavior."
-msgstr ""
-"Tamanho máximo do cache HTTP.\n"
-"0 MB usa o comportamento padrão do Chromium."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:85
-msgid ""
-"Keeps cookies between restarts.\n"
-"Disabling may cause frequent logouts."
-msgstr ""
-"Guarda os cookies ao abrir e fechar a aplicação.\n"
-"Se desativar, pode causar o fecho frequente de sessões."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:89
-msgid ""
-"Runs GPU and rendering in the same process.\n"
-"May reduce memory usage, but can cause instability."
-msgstr ""
-"Executa a GPU e renderização no mesmo processo.\n"
-"Pode reduzir a utilização de memória mas pode causar instabilidade."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:95
-msgid ""
-"Disables GPU hardware acceleration.\n"
-"Recommended only for old GPUs or problematic drivers."
-msgstr ""
-"Desativa a acelaração de hardware da GPU.\n"
-"Só é recomendado para GPU's mais antigas ou controladores problemáticos."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:101
-msgid ""
-"Disables GPU VSync.\n"
-"May reduce latency, but can increase power usage and tearing."
-msgstr ""
-"Desativa o VSync da GPU.\n"
-"Pode reduzir a latência mas pode aumentar o consumo de energia e artefactos "
-"na aplicação."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:107
-msgid ""
-"Forces software rendering.\n"
-"Use only in case of graphical issues.\n"
-"May significantly reduce performance."
-msgstr ""
-"Força a renderização em software.\n"
-"Utilize só no caso que tenha problemas na renderização.\n"
-"Pode reduzir significamente o desempenho."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:114
-msgid ""
-"Forces the GBM backend on Wayland.\n"
-"Known to fix severe typing lag on NVIDIA drivers."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:120
-msgid ""
-"Disables the accessibility bus.\n"
-"Known to fix typing lag or CPU spikes in QtWebEngine."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:126
-msgid ""
-"Runs the entire Chromium engine in a single process.\n"
-"Reduces memory usage, but may cause crashes.\n"
-"Experimental usage."
-msgstr ""
-"Executa totalmente o motor do Chromium num único processo.\n"
-"Reduz a utilização de memória mas pode causar problemas.\n"
-"Utilização experimental."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:133
-msgid ""
-"Uses a separate process per site.\n"
-"Safer and more stable.\n"
-"May increase memory usage."
-msgstr ""
-"Usa um processo em separada para cada website.\n"
-"É mais seguro e estável.\n"
-"Pode aumentar a utilização da memória."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:140
-#, fuzzy
-msgid ""
-"JavaScript (V8) memory limit.\n"
-"Automatic is the safest option.\n"
-"Higher values allow heavier pages.\n"
-"\n"
-"Restart required."
-msgstr ""
-"Limite da memória JavaScript (V8).\n"
-"A opção automática é a mais segura.\n"
-"Valores mais altos permitem páginas mais pesadas.\n"
-"\n"
-"É necessário reiniciar a aplicação"
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:148
-msgid ""
-"Enables V8 predictable garbage collection schedule.\n"
-"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
-"QTWEBENGINE_CHROMIUM_FLAGS.\n"
-"\n"
-"Experimental option. Restart required."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:155
-msgid ""
-"Enables smooth scrolling animations.\n"
-"Disabling may reduce CPU usage."
-msgstr ""
-"Ativa animações de deslocamento suave.\n"
-"Desativar pode reduzir a utilização da CPU."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:159
-msgid ""
-"Allows background tabs to reduce resource usage.\n"
-"Disabling keeps timers active, but uses more resources."
-msgstr ""
-"Permite separadores em segundo plano para reduzir a utilização de recursos.\n"
-"Desativar mantém os temporizadores ativos mas usa mais recursos."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:165
-msgid ""
-"Disables CSS and JavaScript animations.\n"
-"May improve performance on slower machines."
-msgstr ""
-"Desativa as animações de CSS e JavaScript.\n"
-"Pode melhorar o desempenho em computadores mais lentos."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:171
-msgid ""
-"Disables pinch-to-zoom gesture on touchpads.\n"
-"Useful if accidental zooming occurs during scrolling."
-msgstr ""
-"Desativa o gesto de apertar para fazer zoom nos touchpads.\n"
-"É útil para impedir zoom indesejado enquando desliza."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:177
-msgid ""
-"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
-"navigation.\n"
-"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
-"fields.\n"
-"\n"
-"Restart or reload WhatsApp Web after changing this option."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:183
-msgid ""
-"Restores all performance settings\n"
-"to safe default values."
-msgstr ""
-"Restaura todas as definições de desempenho\n"
-"para os valores padrão seguros."
-
 #: zapzap/features/settings/pages/performance_experimental/view.py:20
-msgid "Ajuste cache, GPU, processos e comportamento avançado."
+msgid "Tune cache, GPU, processes, and advanced behavior."
 msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:37
@@ -2119,10 +1970,19 @@ msgstr ""
 "Só é recomendado para GPU's mais antigas ou controladores problemáticos."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:104
+msgid "Automatic multi-GPU workaround"
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:106
+msgid ""
+"Honors DRI_PRIME or adjusts GPU compositing for a headless secondary GPU."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:110
 msgid "Disable GPU VSync"
 msgstr "Desativar o VSync da GPU"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:105
+#: zapzap/features/settings/pages/performance_experimental/view.py:111
 #, fuzzy
 msgid "May reduce latency, but can increase tearing."
 msgstr ""
@@ -2130,54 +1990,54 @@ msgstr ""
 "Pode reduzir a latência mas pode aumentar o consumo de energia e artefactos "
 "na aplicação."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:108
+#: zapzap/features/settings/pages/performance_experimental/view.py:114
 #, fuzzy
 msgid "Force software rendering"
 msgstr "Forçar a renderização por software (experimental)"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:109
+#: zapzap/features/settings/pages/performance_experimental/view.py:115
 msgid "Use only for graphical issues."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:112
+#: zapzap/features/settings/pages/performance_experimental/view.py:118
 msgid "Force GBM"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:113
+#: zapzap/features/settings/pages/performance_experimental/view.py:119
 msgid "Known NVIDIA typing lag fix."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:116
+#: zapzap/features/settings/pages/performance_experimental/view.py:122
 msgid "Disable accessibility bus"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:117
+#: zapzap/features/settings/pages/performance_experimental/view.py:123
 msgid "Known typing lag or CPU spike fix in QtWebEngine."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:139
+#: zapzap/features/settings/pages/performance_experimental/view.py:147
 #, fuzzy
 msgid "Processes"
 msgstr "Processos e memória"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:140
+#: zapzap/features/settings/pages/performance_experimental/view.py:148
 msgid "Chromium process model options."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:144
+#: zapzap/features/settings/pages/performance_experimental/view.py:152
 msgid "Single process"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:145
+#: zapzap/features/settings/pages/performance_experimental/view.py:153
 msgid "Experimental; reduces memory usage but may cause crashes."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:148
+#: zapzap/features/settings/pages/performance_experimental/view.py:156
 #, fuzzy
 msgid "Process per site"
 msgstr "Usar um processo por website"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:149
+#: zapzap/features/settings/pages/performance_experimental/view.py:157
 #, fuzzy
 msgid "Safer and more stable, but may increase memory usage."
 msgstr ""
@@ -2185,118 +2045,297 @@ msgstr ""
 "É mais seguro e estável.\n"
 "Pode aumentar a utilização da memória."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:160
+#: zapzap/features/settings/pages/performance_experimental/view.py:168
 #, fuzzy
 msgid "JavaScript memory"
 msgstr "Limite da memória do JavaScript"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:161
+#: zapzap/features/settings/pages/performance_experimental/view.py:169
 msgid "V8 memory limit. Restart required."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:165
+#: zapzap/features/settings/pages/performance_experimental/view.py:173
 msgid "JavaScript memory limit"
 msgstr "Limite da memória do JavaScript"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:166
+#: zapzap/features/settings/pages/performance_experimental/view.py:174
 #, fuzzy
 msgid "Automatic is the safest option."
 msgstr "Tema automático"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:170
+#: zapzap/features/settings/pages/performance_experimental/view.py:178
 msgid "JavaScript GC predictable schedule (experimental)"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:171
+#: zapzap/features/settings/pages/performance_experimental/view.py:179
 msgid "Enables predictable V8 garbage collection and disables GPU."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:182
+#: zapzap/features/settings/pages/performance_experimental/view.py:190
 #, fuzzy
 msgid "Web behavior"
 msgstr "Comportamento de web"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:183
+#: zapzap/features/settings/pages/performance_experimental/view.py:191
 msgid "Behavior options for rendered web content."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:187
+#: zapzap/features/settings/pages/performance_experimental/view.py:195
 #, fuzzy
 msgid "Smooth scrolling"
 msgstr "Deslocamento animado"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:188
+#: zapzap/features/settings/pages/performance_experimental/view.py:196
 #, fuzzy
 msgid "Disabling may reduce CPU usage."
 msgstr ""
 "Ativa animações de deslocamento suave.\n"
 "Desativar pode reduzir a utilização da CPU."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:191
+#: zapzap/features/settings/pages/performance_experimental/view.py:199
 msgid "Background throttling"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:192
+#: zapzap/features/settings/pages/performance_experimental/view.py:200
 #, fuzzy
 msgid "Allows background tabs to reduce resource usage."
 msgstr ""
 "Permite separadores em segundo plano para reduzir a utilização de recursos.\n"
 "Desativar mantém os temporizadores ativos mas usa mais recursos."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:195
+#: zapzap/features/settings/pages/performance_experimental/view.py:203
 #, fuzzy
 msgid "Disable animations"
 msgstr "Desativar animações de página"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:196
+#: zapzap/features/settings/pages/performance_experimental/view.py:204
 #, fuzzy
 msgid "May improve performance on slower machines."
 msgstr ""
 "Desativa as animações de CSS e JavaScript.\n"
 "Pode melhorar o desempenho em computadores mais lentos."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:199
+#: zapzap/features/settings/pages/performance_experimental/view.py:207
 #, fuzzy
 msgid "Disable pinch-to-zoom"
 msgstr "Desativar gesto de apertar para fazer zoom"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:200
+#: zapzap/features/settings/pages/performance_experimental/view.py:208
 #, fuzzy
 msgid "Useful if accidental zooming occurs during scrolling."
 msgstr ""
 "Desativa o gesto de apertar para fazer zoom nos touchpads.\n"
 "É útil para impedir zoom indesejado enquando desliza."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:203
+#: zapzap/features/settings/pages/performance_experimental/view.py:211
 msgid "Fix Ctrl+Arrow cursor movement"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:205
+#: zapzap/features/settings/pages/performance_experimental/view.py:213
 msgid ""
 "Use visual word navigation in editable fields to fix RTL text cursor "
 "movement."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:228
+#: zapzap/features/settings/pages/performance_experimental/view.py:236
 #, fuzzy
 msgid "Restore defaults"
 msgstr "Restaurar predefinições"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:229
+#: zapzap/features/settings/pages/performance_experimental/view.py:237
 #, fuzzy
 msgid "Return performance settings to safe defaults."
 msgstr ""
 "Restaura todas as definições de desempenho\n"
 "para os valores padrão seguros."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:233
+#: zapzap/features/settings/pages/performance_experimental/view.py:241
 #, fuzzy
 msgid "Restore performance defaults"
 msgstr "Restaurar predefinições"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:234
+#: zapzap/features/settings/pages/performance_experimental/view.py:242
 #, fuzzy
 msgid "Restores all performance settings to safe default values."
+msgstr ""
+"Restaura todas as definições de desempenho\n"
+"para os valores padrão seguros."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:75
+msgid ""
+"Defines where the HTTP cache will be stored.\n"
+"Disk: faster after restart.\n"
+"Memory: faster, but lost on exit.\n"
+"No cache: lower disk usage, slower."
+msgstr ""
+"Define onde o cache do HTTP vai ser armazenado.\n"
+"Disco: mais rápido depois de reiniciar a aplicação.\n"
+"Memória: mais rápida mas é perdida ao sair.\n"
+"Sem cache: menor utilização do disco, mais lento."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:82
+msgid ""
+"Maximum HTTP cache size.\n"
+"0 MB uses the default Chromium behavior."
+msgstr ""
+"Tamanho máximo do cache HTTP.\n"
+"0 MB usa o comportamento padrão do Chromium."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:85
+msgid ""
+"Keeps cookies between restarts.\n"
+"Disabling may cause frequent logouts."
+msgstr ""
+"Guarda os cookies ao abrir e fechar a aplicação.\n"
+"Se desativar, pode causar o fecho frequente de sessões."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:89
+msgid ""
+"Runs GPU and rendering in the same process.\n"
+"May reduce memory usage, but can cause instability."
+msgstr ""
+"Executa a GPU e renderização no mesmo processo.\n"
+"Pode reduzir a utilização de memória mas pode causar instabilidade."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:95
+msgid ""
+"Disables GPU hardware acceleration.\n"
+"Recommended only for old GPUs or problematic drivers."
+msgstr ""
+"Desativa a acelaração de hardware da GPU.\n"
+"Só é recomendado para GPU's mais antigas ou controladores problemáticos."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:101
+msgid ""
+"Automatically honors an unambiguous DRI_PRIME selector on systems with "
+"multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
+"one GPU has no connected display.\n"
+"\n"
+"Disable this only if the automatic workaround causes problems. Restart "
+"required."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:110
+msgid ""
+"Disables GPU VSync.\n"
+"May reduce latency, but can increase power usage and tearing."
+msgstr ""
+"Desativa o VSync da GPU.\n"
+"Pode reduzir a latência mas pode aumentar o consumo de energia e artefactos "
+"na aplicação."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:116
+msgid ""
+"Forces software rendering.\n"
+"Use only in case of graphical issues.\n"
+"May significantly reduce performance."
+msgstr ""
+"Força a renderização em software.\n"
+"Utilize só no caso que tenha problemas na renderização.\n"
+"Pode reduzir significamente o desempenho."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:123
+msgid ""
+"Forces the GBM backend on Wayland.\n"
+"Known to fix severe typing lag on NVIDIA drivers."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:129
+msgid ""
+"Disables the accessibility bus.\n"
+"Known to fix typing lag or CPU spikes in QtWebEngine."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:135
+msgid ""
+"Runs the entire Chromium engine in a single process.\n"
+"Reduces memory usage, but may cause crashes.\n"
+"Experimental usage."
+msgstr ""
+"Executa totalmente o motor do Chromium num único processo.\n"
+"Reduz a utilização de memória mas pode causar problemas.\n"
+"Utilização experimental."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:142
+msgid ""
+"Uses a separate process per site.\n"
+"Safer and more stable.\n"
+"May increase memory usage."
+msgstr ""
+"Usa um processo em separada para cada website.\n"
+"É mais seguro e estável.\n"
+"Pode aumentar a utilização da memória."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:149
+#, fuzzy
+msgid ""
+"JavaScript (V8) memory limit.\n"
+"Automatic is the safest option.\n"
+"Higher values allow heavier pages.\n"
+"\n"
+"Restart required."
+msgstr ""
+"Limite da memória JavaScript (V8).\n"
+"A opção automática é a mais segura.\n"
+"Valores mais altos permitem páginas mais pesadas.\n"
+"\n"
+"É necessário reiniciar a aplicação"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:157
+msgid ""
+"Enables V8 predictable garbage collection schedule.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"\n"
+"Experimental option. Restart required."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:164
+msgid ""
+"Enables smooth scrolling animations.\n"
+"Disabling may reduce CPU usage."
+msgstr ""
+"Ativa animações de deslocamento suave.\n"
+"Desativar pode reduzir a utilização da CPU."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:168
+msgid ""
+"Allows background tabs to reduce resource usage.\n"
+"Disabling keeps timers active, but uses more resources."
+msgstr ""
+"Permite separadores em segundo plano para reduzir a utilização de recursos.\n"
+"Desativar mantém os temporizadores ativos mas usa mais recursos."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:174
+msgid ""
+"Disables CSS and JavaScript animations.\n"
+"May improve performance on slower machines."
+msgstr ""
+"Desativa as animações de CSS e JavaScript.\n"
+"Pode melhorar o desempenho em computadores mais lentos."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:180
+msgid ""
+"Disables pinch-to-zoom gesture on touchpads.\n"
+"Useful if accidental zooming occurs during scrolling."
+msgstr ""
+"Desativa o gesto de apertar para fazer zoom nos touchpads.\n"
+"É útil para impedir zoom indesejado enquando desliza."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:186
+msgid ""
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
+"navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
+"fields.\n"
+"\n"
+"Restart or reload WhatsApp Web after changing this option."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:192
+msgid ""
+"Restores all performance settings\n"
+"to safe default values."
 msgstr ""
 "Restaura todas as definições de desempenho\n"
 "para os valores padrão seguros."
@@ -2478,6 +2517,14 @@ msgstr "Cancelar"
 msgid "Save file"
 msgstr "Guardar ficheiro"
 
+#: zapzap/features/browser/components/browser_sidebar.py:147
+msgid "New conversation by the phone number"
+msgstr "Nova conversação pelo número de telefone"
+
+#: zapzap/features/browser/components/browser_sidebar.py:150
+msgid "ZapZap Settings"
+msgstr "Definições do ZapZap"
+
 #: zapzap/features/browser/components/browser_grid_view.py:74
 #, fuzzy
 msgid "Accounts overview"
@@ -2491,14 +2538,6 @@ msgstr ""
 #, fuzzy
 msgid "No active accounts to display."
 msgstr "Nenhuma conta ativa!"
-
-#: zapzap/features/browser/components/browser_sidebar.py:147
-msgid "New conversation by the phone number"
-msgstr "Nova conversação pelo número de telefone"
-
-#: zapzap/features/browser/components/browser_sidebar.py:150
-msgid "ZapZap Settings"
-msgstr "Definições do ZapZap"
 
 #: zapzap/features/browser/shell/browser_controller.py:125
 msgid "Flatpak sandbox help"
@@ -2531,7 +2570,7 @@ msgid "Copy command"
 msgstr "Copiar comando"
 
 #: zapzap/features/browser/shell/browser_controller.py:161
-#: zapzap/ui/components/close_button.py:53
+#: zapzap/ui/components/close_button.py:55
 msgid "Close"
 msgstr "Fechar"
 
@@ -2673,62 +2712,6 @@ msgstr "Selecionar idioma"
 msgid "DevTools - {}"
 msgstr "Abrir ferramentas de desenvolvimento"
 
-#: zapzap/ui/generated/ui_qtoaster_donation.py:156
-#: zapzap/ui/generated/ui_shortcuts_dialog.py:58
-#: zapzap/ui/main_window/main_window_view.py:129
-msgid "ZapZap"
-msgstr "ZapZap"
-
-#: zapzap/ui/generated/ui_qtoaster_donation.py:157
-msgid ""
-"Your donation helps keep the project running, improve resources and "
-"guarantee your privacy and freedom."
-msgstr ""
-
-#: zapzap/ui/generated/ui_qtoaster_donation.py:158
-#, fuzzy
-msgid "❤ Make a donation"
-msgstr "Fazer uma doação"
-
-#: zapzap/ui/generated/ui_qtoaster_donation.py:159
-#, fuzzy
-msgid "Don't show again"
-msgstr "Não perguntar novamente"
-
-#: zapzap/ui/generated/ui_qtoaster_donation.py:160
-msgid "Learn more about ZapZap ↗"
-msgstr ""
-
-#: zapzap/ui/generated/ui_shortcuts_dialog.py:55
-msgid "Dialog"
-msgstr "Diálogo"
-
-#: zapzap/ui/generated/ui_shortcuts_dialog.py:56
-#: zapzap/ui/main_window/main_window_view.py:166
-msgid "Keyboard shortcuts"
-msgstr "Atalhos do teclado"
-
-#: zapzap/ui/generated/ui_shortcuts_dialog.py:57
-msgid "WhatsApp Web"
-msgstr "WhatsApp Web"
-
-#: zapzap/ui/main_window/client_side_rendering_controller.py:46
-#: zapzap/ui/main_window/main_window_controller.py:261
-#, fuzzy
-msgid "Close ZapZap"
-msgstr "Fechar o ZapZap"
-
-#: zapzap/ui/main_window/client_side_rendering_controller.py:47
-#: zapzap/ui/main_window/main_window_controller.py:262
-#, fuzzy
-msgid "Are you sure you want to close?"
-msgstr "Tem a certeza de que pretente fechar?"
-
-#: zapzap/ui/main_window/client_side_rendering_controller.py:52
-#: zapzap/ui/main_window/main_window_controller.py:267
-msgid "Don't ask again"
-msgstr "Não perguntar novamente"
-
 #: zapzap/ui/main_window/main_window_view.py:130
 msgid "File"
 msgstr "Ficheiro"
@@ -2839,10 +2822,40 @@ msgstr "Por número de telefone"
 msgid "Ctrl+M"
 msgstr "Ctrl+M"
 
+#: zapzap/ui/main_window/main_window_view.py:166
+#: zapzap/ui/generated/ui_shortcuts_dialog.py:58
+msgid "Keyboard shortcuts"
+msgstr "Atalhos do teclado"
+
 #: zapzap/ui/main_window/main_window_view.py:167
 #, fuzzy
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "trl+Shift+/, Ctrl+?"
+
+#: zapzap/ui/main_window/client_side_rendering_controller.py:46
+#: zapzap/ui/main_window/main_window_controller.py:263
+#, fuzzy
+msgid "Close ZapZap"
+msgstr "Fechar o ZapZap"
+
+#: zapzap/ui/main_window/client_side_rendering_controller.py:47
+#: zapzap/ui/main_window/main_window_controller.py:264
+#, fuzzy
+msgid "Are you sure you want to close?"
+msgstr "Tem a certeza de que pretente fechar?"
+
+#: zapzap/ui/main_window/client_side_rendering_controller.py:52
+#: zapzap/ui/main_window/main_window_controller.py:269
+msgid "Don't ask again"
+msgstr "Não perguntar novamente"
+
+#: zapzap/ui/generated/ui_shortcuts_dialog.py:57
+msgid "Dialog"
+msgstr "Diálogo"
+
+#: zapzap/ui/generated/ui_shortcuts_dialog.py:59
+msgid "WhatsApp Web"
+msgstr "WhatsApp Web"
 
 #~ msgid "Quick setup for your preferred environment"
 #~ msgstr "Configuração rápida para o seu ambiente preferido"
