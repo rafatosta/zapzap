@@ -1,5 +1,14 @@
 from PyQt6.QtCore import QStandardPaths, QFileInfo
 from zapzap.core.platform import IS_WINDOWS
+from PyQt6.QtCore import QMetaType
+from PyQt6.QtDBus import (
+    QDBusArgument,
+    QDBusConnection,
+    QDBusInterface,
+    QDBusMessage,
+    QDBusVariant,
+)
+
 import os
 
 
@@ -40,23 +49,68 @@ class AutostartManager:
             print(f"Error managing Windows autostart: {e}")
 
     @staticmethod
-    def _handle_flatpak(enable_autostart: bool):
-        """Manages autostart settings for Flatpak installations."""
-        try:
-            import dbus
-            bus = dbus.SessionBus()
-            obj = bus.get_object("org.freedesktop.portal.Desktop",
-                                 "/org/freedesktop/portal/desktop")
-            interface = dbus.Interface(
-                obj, "org.freedesktop.portal.Background")
-            interface.RequestBackground('', {
-                'reason': 'Zapzap autostart',
-                'autostart': enable_autostart,
-                'background': enable_autostart,
-                'commandline': dbus.Array(['zapzap', '--hideStart'])
-            })
-        except Exception as e:
-            print(f"Error managing Flatpak autostart: {e}")
+    def _handle_flatpak(enable_autostart: bool) -> bool:
+        """Manage Flatpak autostart using the XDG Background portal."""
+
+        bus = QDBusConnection.sessionBus()
+
+        interface = QDBusInterface(
+            "org.freedesktop.portal.Desktop",
+            "/org/freedesktop/portal/desktop",
+            "org.freedesktop.portal.Background",
+            bus,
+        )
+
+        if not interface.isValid():
+            print(
+                "Error managing Flatpak autostart: "
+                "org.freedesktop.portal.Background is unavailable"
+            )
+            return False
+
+        # D-Bus type: as (array of strings)
+        commandline = QDBusArgument()
+        commandline.beginArray(QMetaType.Type.QString.value)
+        commandline.add("zapzap")
+        commandline.add("--hideStart")
+        commandline.endArray()
+
+        # D-Bus type: a{sv}
+        options = QDBusArgument()
+        options.beginMap(
+            QMetaType.Type.QString.value,
+            QMetaType.fromName(b"QDBusVariant").id(),
+        )
+
+        values = {
+            "reason": "Zapzap autostart",
+            "autostart": enable_autostart,
+            "background": enable_autostart,
+            "commandline": commandline,
+        }
+
+        for key, value in values.items():
+            options.beginMapEntry()
+            options.add(key)
+            options.add(QDBusVariant(value))
+            options.endMapEntry()
+
+        options.endMap()
+
+        reply = interface.call(
+            "RequestBackground",
+            "",
+            options,
+        )
+
+        if reply.type() == QDBusMessage.MessageType.ErrorMessage:
+            print(
+                "Error managing Flatpak autostart: "
+                f"{reply.errorName()}: {reply.errorMessage()}"
+            )
+            return False
+
+        return True
 
     @staticmethod
     def _handle_local(enable_autostart: bool):
