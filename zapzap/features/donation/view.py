@@ -6,6 +6,7 @@ from gettext import gettext as _
 
 from PyQt6 import QtCore, QtWidgets
 from PyQt6.QtWidgets import QWidget
+from PyQt6.QtGui import QFont
 
 from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.ui.components import Button
@@ -131,7 +132,7 @@ class DonationView(QWidget):
         self.labelZapZap.setObjectName("labelZapZap")
         self.verticalLayout_3.addWidget(self.labelZapZap)
 
-        self.labelSubtitle = Label(variant="description", parent=self.frame)
+        self.labelSubtitle = Label(variant="brand", parent=self.frame)
         self.labelSubtitle.setScaledContents(True)
         self.labelSubtitle.setObjectName("labelSubtitle")
         self.verticalLayout_3.addWidget(self.labelSubtitle)
@@ -180,6 +181,11 @@ class DonationView(QWidget):
 
         self.moreButton = QtWidgets.QToolButton(parent=self.footerFrame)
         self.moreButton.setCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        
+        font = self.moreButton.font()
+        font.setWeight(QFont.Weight.Medium)
+        self.moreButton.setFont(font)
+
         self.moreButton.setObjectName("moreButton")
         self.footerLayout.addWidget(self.moreButton)
         self.verticalLayout.addWidget(self.footerFrame)
