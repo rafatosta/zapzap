@@ -1,6 +1,7 @@
 """ZapZap button component."""
 
 from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QPushButton
 
 from zapzap.core.theme.theme_manager import ThemeManager
@@ -50,7 +51,7 @@ class Button(QPushButton):
                 "background": "palette(button)",
                 "color": ThemeManager.get_color("warning"),
                 "hover_border": ThemeManager.get_color("warning_hover"),
-                
+                "hover_background": "palette(alternate-base)",
             },
             self.DANGER: {
                 "border": "palette(mid)",
@@ -63,10 +64,20 @@ class Button(QPushButton):
 
         return variants.get(self.variant, variants[self.DEFAULT])
 
+    def _apply_font(self):
+        """Apply button typography using Qt's native font handling."""
+
+        font = self.font()
+        font.setWeight(QFont.Weight.Medium)
+        self.setFont(font)
+
     def _apply_style(self):
         style = self._get_variant_style()
 
-        self.setStyleSheet(f"""
+        self._apply_font()
+
+        self.setStyleSheet(
+            f"""
             QPushButton {{
                 min-height: 26px;
                 border: 1px solid {style["border"]};
@@ -78,7 +89,7 @@ class Button(QPushButton):
 
             QPushButton:hover {{
                 border-color: {style["hover_border"]};
-               
+                background: {style["hover_background"]};
             }}
 
             QPushButton:disabled {{
@@ -86,4 +97,5 @@ class Button(QPushButton):
                 background: palette(window);
                 border-color: palette(mid);
             }}
-        """)
+            """
+        )
