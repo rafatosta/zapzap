@@ -79,36 +79,48 @@ class DonationView(QWidget):
 
     def _setup_header(self) -> None:
         self.headerFrame = QtWidgets.QFrame(parent=self.frame)
+
         sizePolicy = QtWidgets.QSizePolicy(
             QtWidgets.QSizePolicy.Policy.Preferred,
             QtWidgets.QSizePolicy.Policy.Fixed,
         )
-        sizePolicy.setHeightForWidth(self.headerFrame.sizePolicy().hasHeightForWidth())
         self.headerFrame.setSizePolicy(sizePolicy)
-        self.headerFrame.setMinimumSize(QtCore.QSize(0, 22))
-        self.headerFrame.setMaximumSize(QtCore.QSize(16777215, 16))
+
+        # Espaço suficiente para o botão de 28px
+        self.headerFrame.setFixedHeight(36)
         self.headerFrame.setObjectName("headerFrame")
 
         self.footerLayout_2 = QtWidgets.QHBoxLayout(self.headerFrame)
-        self.footerLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.footerLayout_2.setSpacing(0)
+
+        # Pequeno respiro nas laterais e no topo
+        self.footerLayout_2.setContentsMargins(2, 2, 2, 6)
+        self.footerLayout_2.setSpacing(8)
         self.footerLayout_2.setObjectName("footerLayout_2")
 
-        self.labelVersion = Label(variant="muted", parent=self.headerFrame)
+        self.labelVersion = Label(
+            variant="muted",
+            parent=self.headerFrame,
+        )
         self.labelVersion.setText("")
         self.labelVersion.setObjectName("labelVersion")
-        self.footerLayout_2.addWidget(self.labelVersion)
-        self.footerLayout_2.addItem(
-            QtWidgets.QSpacerItem(
-                0,
-                0,
-                QtWidgets.QSizePolicy.Policy.Expanding,
-                QtWidgets.QSizePolicy.Policy.Minimum,
-            )
+
+        self.footerLayout_2.addWidget(
+            self.labelVersion,
+            0,
+            QtCore.Qt.AlignmentFlag.AlignVCenter,
         )
 
+        self.footerLayout_2.addStretch()
+
         self.closeButton = CloseButton(parent=self.headerFrame)
-        self.footerLayout_2.addWidget(self.closeButton)
+
+        self.footerLayout_2.addWidget(
+            self.closeButton,
+            0,
+            QtCore.Qt.AlignmentFlag.AlignTop
+            | QtCore.Qt.AlignmentFlag.AlignRight,
+        )
+
         self.verticalLayout.addWidget(self.headerFrame)
 
     def _setup_content(self) -> None:
@@ -152,7 +164,8 @@ class DonationView(QWidget):
             QtWidgets.QSizePolicy.Policy.Preferred,
             QtWidgets.QSizePolicy.Policy.Fixed,
         )
-        sizePolicy.setHeightForWidth(self.donateButton.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.donateButton.sizePolicy().hasHeightForWidth())
         self.donateButton.setSizePolicy(sizePolicy)
         self.donateButton.setMinimumSize(QtCore.QSize(220, 54))
         self.donateButton.setObjectName("donateButton")
@@ -181,7 +194,7 @@ class DonationView(QWidget):
 
         self.moreButton = QtWidgets.QToolButton(parent=self.footerFrame)
         self.moreButton.setCursor(QtCore.Qt.CursorShape.PointingHandCursor)
-        
+
         font = self.moreButton.font()
         font.setWeight(QFont.Weight.Medium)
         self.moreButton.setFont(font)
