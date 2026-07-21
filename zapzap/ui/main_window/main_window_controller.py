@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from PyQt6.QtCore import QByteArray
 from PyQt6.QtCore import QBuffer
 from PyQt6.QtCore import QEvent
@@ -7,16 +9,16 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QActionGroup
 from PyQt6.QtGui import QImage
 from PyQt6.QtWidgets import QApplication
-from zapzap.features.donation.qtoaster_donation import QtoasterDonation
-from zapzap.features.shortcuts.shortcuts_dialog import ShortcutsDialog
-from zapzap.features.browser.shell.browser_controller import BrowserController
-from zapzap.features.settings.shell.settings_controller import SettingsController
-from zapzap.features.alerts.alert_manager import AlertManager
+
 from zapzap.core.config.settings_manager import SettingsManager
-from zapzap.features.tray.sys_tray_manager import SysTrayManager
 from zapzap.core.theme.theme_manager import ThemeManager
+from zapzap.features.alerts.alert_manager import AlertManager
+from zapzap.features.browser.shell.browser_controller import BrowserController
+from zapzap.features.donation.controller import DonationController
+from zapzap.features.settings.shell.settings_controller import SettingsController
+from zapzap.features.shortcuts.shortcuts_dialog import ShortcutsDialog
+from zapzap.features.tray.sys_tray_manager import SysTrayManager
 from zapzap.ui.main_window.main_window_view import MainWindowView
-from gettext import gettext as _
 
 
 class MainWindowController(MainWindowView):
@@ -35,10 +37,10 @@ class MainWindowController(MainWindowView):
         self._setup_ui()
 
         if (
-            QtoasterDonation.should_show()
+            DonationController.should_show()
             and not SettingsManager.get("system/csr", False)
         ):
-            QtoasterDonation.showMessage(parent=self)
+            DonationController.showMessage(parent=self)
 
     def changeEvent(self, event):
         super().changeEvent(event)

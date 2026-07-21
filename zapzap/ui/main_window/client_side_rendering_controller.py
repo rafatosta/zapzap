@@ -8,8 +8,8 @@ from PyQt6.QtWidgets import QCheckBox
 from PyQt6.QtWidgets import QMessageBox
 from PyQt6.QtWidgets import QWidget
 
-from zapzap.features.donation.qtoaster_donation import QtoasterDonation
 from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.features.donation.controller import DonationController
 from zapzap.ui.main_window.client_side_rendering_view import ClientSideRenderingView
 
 
@@ -19,8 +19,8 @@ class ClientSideRenderingController(ClientSideRenderingView):
     def __init__(self, inner_window: QWidget, enabled: bool = True):
         super().__init__(inner_window, enabled)
 
-        if enabled and QtoasterDonation.should_show():
-            QtoasterDonation.showMessage(parent=self)
+        if enabled and DonationController.should_show():
+            DonationController.showMessage(parent=self)
 
     def load_settings(self):
         """Restore window state in CSR mode and start global services."""
