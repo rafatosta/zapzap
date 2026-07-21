@@ -15,6 +15,7 @@ class Label(QLabel):
                 "description",
                 "section_description",
                 "row_description",
+                "brand"
             }
         )
         self._apply_style()
@@ -47,6 +48,10 @@ class Label(QLabel):
             },
             "body": {
                 "style": "color: palette(text);",
+                "weight": QFont.Weight.Normal,
+            },
+            "brand": {
+                "style": "color: palette(text); font-size: 13px;",
                 "weight": QFont.Weight.Normal,
             },
             "muted": {
