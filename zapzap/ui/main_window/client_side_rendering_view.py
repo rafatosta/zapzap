@@ -7,7 +7,6 @@ from PyQt6.QtCore import QPoint
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPainter
 from PyQt6.QtGui import QPainterPath
-from PyQt6.QtWidgets import QLabel
 from PyQt6.QtWidgets import QHBoxLayout
 from PyQt6.QtWidgets import QPushButton
 from PyQt6.QtWidgets import QVBoxLayout
@@ -16,6 +15,7 @@ from PyQt6.QtWidgets import QWidget
 from zapzap.assets.themes.csr_button_theme_provider import CSRButtonTheme
 from zapzap.assets.themes.csr_button_theme_provider import CSRButtonThemeProvider
 from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.ui.components import Label
 
 
 class _TitleBar(QWidget):
@@ -32,7 +32,7 @@ class _TitleBar(QWidget):
         self.layout.setContentsMargins(12, 0, 8, 0)
         self.layout.setSpacing(6)
 
-        self.title_label = QLabel(title)
+        self.title_label = Label(title)
 
         self.minimize_button = QPushButton()
         self.maximize_button = QPushButton()

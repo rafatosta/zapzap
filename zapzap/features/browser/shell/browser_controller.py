@@ -423,12 +423,11 @@ class BrowserController(BrowserView):
 
     def show_grid_view(self):
         """Generates thumbnails and displays the grid view."""
-        from PyQt6.QtWidgets import QLabel
-        from PyQt6.QtWidgets import QSizePolicy
+        from zapzap.ui.components import Label
 
-        class ClickableLabel(QLabel):
+        class ClickableLabel(Label):
             def __init__(self, pw, idx, switch_cb, parent=None):
-                super().__init__(parent)
+                super().__init__(parent=parent)
                 self.pw = pw
                 self.idx = idx
                 self.switch_cb = switch_cb

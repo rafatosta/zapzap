@@ -12,7 +12,6 @@ from PyQt6.QtWidgets import QDialog
 from PyQt6.QtWidgets import QFrame
 from PyQt6.QtWidgets import QGraphicsDropShadowEffect
 from PyQt6.QtWidgets import QHBoxLayout
-from PyQt6.QtWidgets import QLabel
 from PyQt6.QtWidgets import QPushButton
 from PyQt6.QtWidgets import QStackedWidget
 from PyQt6.QtWidgets import QVBoxLayout
@@ -28,6 +27,7 @@ from zapzap.features.settings.components import SettingsSection
 from zapzap.features.settings.components import SettingsSelectRow
 from zapzap.features.settings.components import SettingsSwitchRow
 from zapzap.ui.components import Button
+from zapzap.ui.components import Label
 from zapzap.ui.components import LineEdit
 from zapzap.ui.components import RadioButton
 
@@ -83,11 +83,11 @@ class InitialSetupView(QDialog):
         self.sidebar_layout = QVBoxLayout(self.sidebar)
         self.sidebar_layout.setContentsMargins(22, 24, 22, 24)
         self.sidebar_layout.setSpacing(8)
-        title = QLabel(_("Welcome to ZapZap"), self.sidebar)
+        title = Label(_("Welcome to ZapZap"), parent=self.sidebar)
         title.setObjectName("InitialSetupTitle")
-        subtitle = QLabel(
+        subtitle = Label(
             _("Choose the essentials now. You can change everything later in Settings."),
-            self.sidebar,
+            parent=self.sidebar,
         )
         subtitle.setObjectName("InitialSetupSubtitle")
         subtitle.setWordWrap(True)

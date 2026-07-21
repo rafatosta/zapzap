@@ -2,6 +2,8 @@ from gettext import gettext as _
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 
+from zapzap.ui.components import Label
+
 
 class Ui_QtoasterDonation(object):
     def setupUi(self, QtoasterDonation):
@@ -61,7 +63,7 @@ class Ui_QtoasterDonation(object):
         self.footerLayout_2.setContentsMargins(0, 0, 0, 0)
         self.footerLayout_2.setSpacing(0)
         self.footerLayout_2.setObjectName("footerLayout_2")
-        self.labelVersion = QtWidgets.QLabel(parent=self.headerFrame)
+        self.labelVersion = Label(parent=self.headerFrame)
         self.labelVersion.setText("")
         self.labelVersion.setObjectName("labelVersion")
         self.footerLayout_2.addWidget(self.labelVersion)
@@ -95,7 +97,7 @@ class Ui_QtoasterDonation(object):
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
         self.verticalLayout_3.setSpacing(3)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.labelZapZap = QtWidgets.QLabel(parent=self.frame)
+        self.labelZapZap = Label(parent=self.frame)
         font = QtGui.QFont()
         font.setPointSize(20)
         font.setBold(True)
@@ -103,7 +105,7 @@ class Ui_QtoasterDonation(object):
         self.labelZapZap.setFont(font)
         self.labelZapZap.setObjectName("labelZapZap")
         self.verticalLayout_3.addWidget(self.labelZapZap)
-        self.labelSubtitle = QtWidgets.QLabel(parent=self.frame)
+        self.labelSubtitle = Label(parent=self.frame)
         font = QtGui.QFont()
         font.setPointSize(8)
         font.setBold(False)

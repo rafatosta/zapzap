@@ -5,10 +5,11 @@ from gettext import gettext as _
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QFrame
 from PyQt6.QtWidgets import QGridLayout
-from PyQt6.QtWidgets import QLabel
 from PyQt6.QtWidgets import QScrollArea
 from PyQt6.QtWidgets import QVBoxLayout
 from PyQt6.QtWidgets import QWidget
+
+from zapzap.ui.components import Label
 
 
 class BrowserGridView(QWidget):
@@ -71,11 +72,11 @@ class BrowserGridView(QWidget):
         self.content_layout.setContentsMargins(28, 24, 28, 28)
         self.content_layout.setSpacing(16)
 
-        self.title_label = QLabel(_("Accounts overview"))
+        self.title_label = Label(_("Accounts overview"))
         self.title_label.setObjectName("BrowserGridTitle")
         self.content_layout.addWidget(self.title_label)
 
-        self.subtitle_label = QLabel(_("Select an account to return to its chat."))
+        self.subtitle_label = Label(_("Select an account to return to its chat."))
         self.subtitle_label.setObjectName("BrowserGridSubtitle")
         self.subtitle_label.setWordWrap(True)
         self.content_layout.addWidget(self.subtitle_label)
@@ -88,7 +89,7 @@ class BrowserGridView(QWidget):
         self.grid_layout.setVerticalSpacing(16)
         self.content_layout.addWidget(self.grid_container, 1)
 
-        self.empty_state = QLabel(_("No active accounts to display."))
+        self.empty_state = Label(_("No active accounts to display."))
         self.empty_state.setObjectName("BrowserGridEmptyState")
         self.empty_state.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.empty_state.setWordWrap(True)

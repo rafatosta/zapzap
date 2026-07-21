@@ -2,6 +2,8 @@ from gettext import gettext as _
 
 from PyQt6 import QtCore, QtWidgets
 
+from zapzap.ui.components import Label
+
 
 class Ui_ShortcutsDialog(object):
     def setupUi(self, ShortcutsDialog):
@@ -9,7 +11,7 @@ class Ui_ShortcutsDialog(object):
         ShortcutsDialog.resize(798, 575)
         self.verticalLayout = QtWidgets.QVBoxLayout(ShortcutsDialog)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.label = QtWidgets.QLabel(parent=ShortcutsDialog)
+        self.label = Label(parent=ShortcutsDialog)
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)
         self.groupBox = QtWidgets.QGroupBox(parent=ShortcutsDialog)
