@@ -4,10 +4,13 @@ from __future__ import annotations
 
 from gettext import gettext as _
 
-from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtWidgets
 from PyQt6.QtWidgets import QWidget
 
 from zapzap.assets.icons.user_icon import UserIcon
+from zapzap.ui.components import Button
+from zapzap.ui.components import CheckBox
+from zapzap.ui.components import CloseButton
 from zapzap.ui.components import Label
 
 
@@ -27,33 +30,28 @@ class DonationView(QWidget):
         self.resize(707, 172)
         self.setWindowTitle("")
         self.setStyleSheet(
-            "#frame{\n"
-            "border:1px solid #374151;\n"
-            "border-radius:12px;\n"
-            "background-color:#1d1f1f;\n"
-            "color:white;\n"
-            "}\n"
-            "QLabel{color:white;}\n"
-            "#labelZapZap{font-size:20pt;}\n"
-            "#labelWelcomeTo{font:10pt;}\n"
-            "#labelVersion{color:#d1d5db;font:10pt;}\n"
-            "#labelSubtitle{color:#d1d5db;font:8pt;}\n"
-            "#donateButton{\n"
-            "background:#22c55e;\n"
-            "border:none;\n"
-            "border-radius:10px;\n"
-            "color:white;\n"
-            "padding:10px;\n"
-            "}\n"
-            "#footerFrame{\n"
-            "border-top:1px solid #374151;\n"
-            "}\n"
-            "#donationMessage{\n"
-            "    color: rgb(192, 191, 188);\n"
-            "}\n"
-            "#moreButton{\n"
-            "border:none;\n"
-            "color:rgb(46, 194, 126);\n"
+            "QWidget#QtoasterDonation {"
+            "background: transparent;"
+            "}"
+            "QFrame#frame {"
+            "border: 1px solid palette(mid);"
+            "border-radius: 12px;"
+            "background-color: palette(base);"
+            "color: palette(text);"
+            "}"
+            "QFrame#footerFrame {"
+            "border-top: 1px solid palette(mid);"
+            "}"
+            "QToolButton#moreButton {"
+            "border: 1px solid transparent;"
+            "border-radius: 8px;"
+            "padding: 6px 8px;"
+            "background: transparent;"
+            "color: palette(highlight);"
+            "}"
+            "QToolButton#moreButton:hover {"
+            "background: palette(alternate-base);"
+            "border-color: palette(mid);"
             "}"
         )
 
@@ -95,7 +93,7 @@ class DonationView(QWidget):
         self.footerLayout_2.setSpacing(0)
         self.footerLayout_2.setObjectName("footerLayout_2")
 
-        self.labelVersion = Label(parent=self.headerFrame)
+        self.labelVersion = Label(variant="muted", parent=self.headerFrame)
         self.labelVersion.setText("")
         self.labelVersion.setObjectName("labelVersion")
         self.footerLayout_2.addWidget(self.labelVersion)
@@ -108,20 +106,7 @@ class DonationView(QWidget):
             )
         )
 
-        self.closeButton = QtWidgets.QToolButton(parent=self.headerFrame)
-        self.closeButton.setStyleSheet(
-            "\n"
-            "                QToolButton {\n"
-            "                padding: 5px;\n"
-            "                }\n"
-            "                QToolButton:hover {\n"
-            "                background-color: #1d1f1f;\n"
-            "                }\n"
-            "         "
-        )
-        self.closeButton.setText("")
-        self.closeButton.setAutoRaise(True)
-        self.closeButton.setObjectName("closeButton")
+        self.closeButton = CloseButton(parent=self.headerFrame)
         self.footerLayout_2.addWidget(self.closeButton)
         self.verticalLayout.addWidget(self.headerFrame)
 
@@ -132,7 +117,7 @@ class DonationView(QWidget):
         self.logo = QtWidgets.QPushButton(parent=self.frame)
         self.logo.setMinimumSize(QtCore.QSize(82, 82))
         self.logo.setMaximumSize(QtCore.QSize(82, 82))
-        self.logo.setStyleSheet("background-color: transparent;\nborder-color: transparent;")
+        self.logo.setStyleSheet("background: transparent; border: none;")
         self.logo.setText("")
         self.logo.setIconSize(QtCore.QSize(82, 82))
         self.logo.setObjectName("logo")
@@ -142,23 +127,12 @@ class DonationView(QWidget):
         self.verticalLayout_3.setSpacing(3)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
 
-        self.labelZapZap = Label(parent=self.frame)
-        title_font = QtGui.QFont()
-        title_font.setPointSize(20)
-        title_font.setWeight(QtGui.QFont.Weight.DemiBold)
-        title_font.setItalic(False)
-        self.labelZapZap.setFont(title_font)
+        self.labelZapZap = Label(variant="title", parent=self.frame)
         self.labelZapZap.setObjectName("labelZapZap")
         self.verticalLayout_3.addWidget(self.labelZapZap)
 
-        self.labelSubtitle = Label(parent=self.frame)
-        subtitle_font = QtGui.QFont()
-        subtitle_font.setPointSize(8)
-        subtitle_font.setWeight(QtGui.QFont.Weight.Normal)
-        subtitle_font.setItalic(False)
-        self.labelSubtitle.setFont(subtitle_font)
+        self.labelSubtitle = Label(variant="description", parent=self.frame)
         self.labelSubtitle.setScaledContents(True)
-        self.labelSubtitle.setWordWrap(True)
         self.labelSubtitle.setObjectName("labelSubtitle")
         self.verticalLayout_3.addWidget(self.labelSubtitle)
 
@@ -172,7 +146,7 @@ class DonationView(QWidget):
             )
         )
 
-        self.donateButton = QtWidgets.QPushButton(parent=self.frame)
+        self.donateButton = Button("", parent=self.frame)
         sizePolicy = QtWidgets.QSizePolicy(
             QtWidgets.QSizePolicy.Policy.Preferred,
             QtWidgets.QSizePolicy.Policy.Fixed,
@@ -180,10 +154,6 @@ class DonationView(QWidget):
         sizePolicy.setHeightForWidth(self.donateButton.sizePolicy().hasHeightForWidth())
         self.donateButton.setSizePolicy(sizePolicy)
         self.donateButton.setMinimumSize(QtCore.QSize(220, 54))
-        self.donateButton.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        button_font = self.donateButton.font()
-        button_font.setWeight(QtGui.QFont.Weight.Medium)
-        self.donateButton.setFont(button_font)
         self.donateButton.setObjectName("donateButton")
         self.infoFrame.addWidget(self.donateButton)
         self.verticalLayout.addLayout(self.infoFrame)
@@ -197,9 +167,7 @@ class DonationView(QWidget):
         self.footerLayout.setSpacing(0)
         self.footerLayout.setObjectName("footerLayout")
 
-        self.donationMessage = QtWidgets.QCheckBox(parent=self.footerFrame)
-        self.donationMessage.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.donationMessage.setObjectName("donationMessage")
+        self.donationMessage = CheckBox(parent=self.footerFrame)
         self.footerLayout.addWidget(self.donationMessage)
         self.footerLayout.addItem(
             QtWidgets.QSpacerItem(
@@ -211,8 +179,7 @@ class DonationView(QWidget):
         )
 
         self.moreButton = QtWidgets.QToolButton(parent=self.footerFrame)
-        self.moreButton.setFont(QtGui.QFont())
-        self.moreButton.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.moreButton.setCursor(QtCore.Qt.CursorShape.PointingHandCursor)
         self.moreButton.setObjectName("moreButton")
         self.footerLayout.addWidget(self.moreButton)
         self.verticalLayout.addWidget(self.footerFrame)
@@ -237,16 +204,9 @@ class DonationView(QWidget):
             QtWidgets.QSizePolicy.Policy.Maximum,
             QtWidgets.QSizePolicy.Policy.Maximum,
         )
-        self.set_close_icon()
         self._install_parent_resize_filter()
         self.raise_()
         self.adjustSize()
-
-    def set_close_icon(self) -> None:
-        close_icon = self.style().standardIcon(
-            QtWidgets.QStyle.StandardPixmap.SP_TitleBarCloseButton,
-        )
-        self.closeButton.setIcon(close_icon)
 
     def set_version_label(self, text: str) -> None:
         self.labelVersion.setText(text)
