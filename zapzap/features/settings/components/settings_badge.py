@@ -1,3 +1,4 @@
+from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QFrame, QVBoxLayout
 
 from zapzap.ui.components import Label
@@ -7,8 +8,14 @@ class SettingsBadge(Label):
     def __init__(self, text, kind="accent", parent=None):
         super().__init__(text, "body", parent)
         self.setObjectName("SettingsBadge")
+        self._apply_font()
         self._apply_style()
         self.set_kind(kind)
+
+    def _apply_font(self):
+        font = self.font()
+        font.setWeight(QFont.Weight.Normal)
+        self.setFont(font)
 
     def set_kind(self, kind):
         self.setProperty("kind", kind)
@@ -21,7 +28,6 @@ class SettingsBadge(Label):
                 border-radius: 8px;
                 padding: 3px 8px;
                 font-size: 11px;
-                font-weight: 700;
                 background: palette(alternate-base);
                 color: palette(highlight);
             }

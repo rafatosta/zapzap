@@ -16,7 +16,6 @@ class CSRButtonThemeDefinition:
     maximize: str
     close: str
     font_size: int
-    font_weight: int
     button_width: int
     button_height: int
     border_radius: int
@@ -30,23 +29,23 @@ class CSRButtonThemeProvider:
 
     _THEMES: dict[CSRButtonTheme, CSRButtonThemeDefinition] = {
         CSRButtonTheme.DEFAULT: CSRButtonThemeDefinition(
-            minimize="—", maximize="□", close="✕", font_size=14, font_weight=600,
+            minimize="—", maximize="□", close="✕", font_size=14,
             button_width=36, button_height=28, border_radius=6,
         ),
         CSRButtonTheme.ADWAITA: CSRButtonThemeDefinition(
-            minimize="–", maximize="+", close="×", font_size=14, font_weight=600,
+            minimize="–", maximize="+", close="×", font_size=14,
             button_width=28, button_height=28, border_radius=14,
         ),
         CSRButtonTheme.PLASMA: CSRButtonThemeDefinition(
-            minimize="–", maximize="▣", close="✖", font_size=13, font_weight=700,
+            minimize="–", maximize="▣", close="✖", font_size=13,
             button_width=32, button_height=28, border_radius=8,
         ),
         CSRButtonTheme.IOS: CSRButtonThemeDefinition(
-            minimize="–", maximize="+", close="×", font_size=14, font_weight=600,
+            minimize="–", maximize="+", close="×", font_size=14,
             button_width=28, button_height=28, border_radius=14,
         ),
         CSRButtonTheme.WINDOWS: CSRButtonThemeDefinition(
-            minimize="—", maximize="□", close="✕", font_size=12, font_weight=700,
+            minimize="—", maximize="□", close="✕", font_size=12,
             button_width=36, button_height=28, border_radius=2,
         ),
     }

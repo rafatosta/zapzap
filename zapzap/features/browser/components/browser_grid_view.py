@@ -23,7 +23,6 @@ class BrowserGridView(QWidget):
     QLabel#BrowserGridTitle {
         color: palette(text);
         font-size: 22px;
-        font-weight: 700;
     }
     QLabel#BrowserGridSubtitle,
     QLabel#BrowserGridEmptyState {
@@ -72,7 +71,7 @@ class BrowserGridView(QWidget):
         self.content_layout.setContentsMargins(28, 24, 28, 28)
         self.content_layout.setSpacing(16)
 
-        self.title_label = Label(_("Accounts overview"))
+        self.title_label = Label(_("Accounts overview"), "title")
         self.title_label.setObjectName("BrowserGridTitle")
         self.content_layout.addWidget(self.title_label)
 

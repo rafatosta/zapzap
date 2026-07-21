@@ -62,7 +62,7 @@ class CloseButton(QPushButton):
 
         font = self.font()
         font.setPixelSize(self.FONT_SIZE)
-        font.setWeight(QFont.Weight.DemiBold)
+        font.setWeight(QFont.Weight.Medium)
 
         self.setFont(font)
 

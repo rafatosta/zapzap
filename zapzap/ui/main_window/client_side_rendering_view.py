@@ -5,6 +5,7 @@ import os
 from PyQt6.QtCore import QEvent
 from PyQt6.QtCore import QPoint
 from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QFont
 from PyQt6.QtGui import QPainter
 from PyQt6.QtGui import QPainterPath
 from PyQt6.QtWidgets import QHBoxLayout
@@ -88,7 +89,6 @@ class _TitleBar(QWidget):
         self.close_button.setText(theme_definition.close)
 
         font_size = str(theme_definition.font_size)
-        font_weight = str(theme_definition.font_weight)
         border_radius = str(theme_definition.border_radius)
         button_width = int(theme_definition.button_width)
         button_height = int(theme_definition.button_height)
@@ -96,7 +96,9 @@ class _TitleBar(QWidget):
         for button in (self.minimize_button, self.maximize_button, self.close_button):
             button.setFixedSize(button_width, button_height)
             button.setProperty("csrFontSize", font_size)
-            button.setProperty("csrFontWeight", font_weight)
+            font = button.font()
+            font.setWeight(QFont.Weight.Medium)
+            button.setFont(font)
             button.setProperty("csrBorderRadius", border_radius)
 
     def _apply_button_visibility(self):
@@ -344,8 +346,6 @@ class ClientSideRenderingView(QWidget):
     def _apply_theme(self):
         font_size = self.title_bar.minimize_button.property(
             "csrFontSize") or "14"
-        font_weight = self.title_bar.minimize_button.property(
-            "csrFontWeight") or "600"
         border_radius = self.title_bar.minimize_button.property(
             "csrBorderRadius") or "6"
 
@@ -367,7 +367,6 @@ class ClientSideRenderingView(QWidget):
                 border: 1px solid transparent;
                 border-radius: %(radius)spx;
                 font-size: %(font)spx;
-                font-weight: %(weight)s;
             }
             QPushButton#csrWindowButton:hover {
                 background: palette(alternate-base);
@@ -384,7 +383,6 @@ class ClientSideRenderingView(QWidget):
                 border: 1px solid transparent;
                 border-radius: %(radius)spx;
                 font-size: %(font)spx;
-                font-weight: %(weight)s;
             }
             QPushButton#csrWindowCloseButton:hover {
                 background: palette(bright-text);
@@ -395,5 +393,5 @@ class ClientSideRenderingView(QWidget):
                 border-color: palette(highlight);
                 color: palette(highlighted-text);
             }
-            """ % {"font": font_size, "weight": font_weight, "radius": border_radius}
+            """ % {"font": font_size, "radius": border_radius}
         )

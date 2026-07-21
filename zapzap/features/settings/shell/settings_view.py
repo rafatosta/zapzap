@@ -61,7 +61,6 @@ class SettingsView(QWidget):
                 padding: 8px 12px;
                 background: palette(highlight);
                 color: palette(highlighted-text);
-                font-weight: 700;
             }
             QPushButton#SettingsDonateButton:hover {
                 background: palette(highlight);

@@ -17,7 +17,7 @@ class Ui_QtoasterDonation(object):
 "color:white;\n"
 "}\n"
 "QLabel{color:white;}\n"
-"#labelZapZap{font:700 20pt;}\n"
+"#labelZapZap{font-size:20pt;}\n"
 "#labelWelcomeTo{font:10pt;}\n"
 "#labelVersion{color:#d1d5db;font:10pt;}\n"
 "#labelSubtitle{color:#d1d5db;font:8pt;}\n"
@@ -27,7 +27,6 @@ class Ui_QtoasterDonation(object):
 "border-radius:10px;\n"
 "color:white;\n"
 "padding:10px;\n"
-"font-weight:bold;\n"
 "}\n"
 "#footerFrame{\n"
 "border-top:1px solid #374151;\n"
@@ -100,7 +99,7 @@ class Ui_QtoasterDonation(object):
         self.labelZapZap = Label(parent=self.frame)
         font = QtGui.QFont()
         font.setPointSize(20)
-        font.setBold(True)
+        font.setWeight(QtGui.QFont.Weight.DemiBold)
         font.setItalic(False)
         self.labelZapZap.setFont(font)
         self.labelZapZap.setObjectName("labelZapZap")
@@ -108,7 +107,7 @@ class Ui_QtoasterDonation(object):
         self.labelSubtitle = Label(parent=self.frame)
         font = QtGui.QFont()
         font.setPointSize(8)
-        font.setBold(False)
+        font.setWeight(QtGui.QFont.Weight.Normal)
         font.setItalic(False)
         self.labelSubtitle.setFont(font)
         self.labelSubtitle.setScaledContents(True)
@@ -126,6 +125,9 @@ class Ui_QtoasterDonation(object):
         self.donateButton.setSizePolicy(sizePolicy)
         self.donateButton.setMinimumSize(QtCore.QSize(220, 54))
         self.donateButton.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        font = self.donateButton.font()
+        font.setWeight(QtGui.QFont.Weight.Medium)
+        self.donateButton.setFont(font)
         self.donateButton.setObjectName("donateButton")
         self.infoFrame.addWidget(self.donateButton)
         self.verticalLayout.addLayout(self.infoFrame)

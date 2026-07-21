@@ -7,6 +7,7 @@ from gettext import gettext as _
 from PyQt6.QtCore import QPoint
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QColor
+from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QButtonGroup
 from PyQt6.QtWidgets import QDialog
 from PyQt6.QtWidgets import QFrame
@@ -83,10 +84,11 @@ class InitialSetupView(QDialog):
         self.sidebar_layout = QVBoxLayout(self.sidebar)
         self.sidebar_layout.setContentsMargins(22, 24, 22, 24)
         self.sidebar_layout.setSpacing(8)
-        title = Label(_("Welcome to ZapZap"), parent=self.sidebar)
+        title = Label(_("Welcome to ZapZap"), "title", parent=self.sidebar)
         title.setObjectName("InitialSetupTitle")
         subtitle = Label(
             _("Choose the essentials now. You can change everything later in Settings."),
+            "description",
             parent=self.sidebar,
         )
         subtitle.setObjectName("InitialSetupSubtitle")
@@ -126,6 +128,9 @@ class InitialSetupView(QDialog):
     def _add_page(self, page: QWidget, label: str):
         index = self.pages.addWidget(page)
         button = QPushButton(f"{index + 1}. {label}", self.sidebar)
+        font = button.font()
+        font.setWeight(QFont.Weight.Medium)
+        button.setFont(font)
         button.setObjectName("InitialSetupStepButton")
         self.step_buttons.append(button)
         self.sidebar_layout.addWidget(button)
@@ -483,7 +488,6 @@ class InitialSetupView(QDialog):
             }
             QLabel#InitialSetupTitle {
                 font-size: 22px;
-                font-weight: 800;
             }
             QLabel#InitialSetupSubtitle {
                 color: palette(placeholder-text);
@@ -508,7 +512,6 @@ class InitialSetupView(QDialog):
             QPushButton#InitialSetupStepButton[active="true"] {
                 background: palette(alternate-base);
                 color: palette(highlight);
-                font-weight: 700;
             }
         """)
 

@@ -3,6 +3,7 @@
 from gettext import gettext as _
 
 from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QFrame
 from PyQt6.QtWidgets import QHBoxLayout
 from PyQt6.QtWidgets import QPushButton
@@ -17,7 +18,13 @@ class SettingsSidebarItem(QPushButton):
     def __init__(self, text, parent=None):
         super().__init__(text, parent)
         self.setObjectName("SettingsNavButton")
+        self._apply_font()
         self._apply_style()
+
+    def _apply_font(self):
+        font = self.font()
+        font.setWeight(QFont.Weight.Medium)
+        self.setFont(font)
 
     def _apply_style(self):
         self.setStyleSheet("""
@@ -28,7 +35,6 @@ class SettingsSidebarItem(QPushButton):
                 text-align: left;
                 color: palette(text);
                 background: transparent;
-                font-weight: 500;
             }
             QPushButton#SettingsNavButton:hover {
                 background: palette(alternate-base);
@@ -107,7 +113,6 @@ class SettingsSidebar(QFrame):
                 background: transparent;
                 color: palette(button-text);
                 font-size: 18px;
-                font-weight: 600;
             }
             QPushButton#SettingsSidebarCloseButton:hover {
                 background: palette(alternate-base);
