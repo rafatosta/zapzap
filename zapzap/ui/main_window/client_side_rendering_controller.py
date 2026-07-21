@@ -19,7 +19,7 @@ class ClientSideRenderingController(ClientSideRenderingView):
     def __init__(self, inner_window: QWidget, enabled: bool = True):
         super().__init__(inner_window, enabled)
 
-        if enabled and not SettingsManager.get("notification/donation_message", True):
+        if enabled and QtoasterDonation.should_show():
             QtoasterDonation.showMessage(parent=self)
 
     def load_settings(self):

@@ -35,7 +35,7 @@ class MainWindowController(MainWindowView):
         self._setup_ui()
 
         if (
-            not SettingsManager.get("notification/donation_message", True)
+            QtoasterDonation.should_show()
             and not SettingsManager.get("system/csr", False)
         ):
             QtoasterDonation.showMessage(parent=self)
