@@ -53,7 +53,7 @@ class AutostartManager:
                 'reason': 'Zapzap autostart',
                 'autostart': enable_autostart,
                 'background': enable_autostart,
-                'commandline': dbus.Array(['zapzap', '--hideStart'])
+                'commandline': dbus.Array(['zapzap', '--hideStart'], signature='s')
             })
         except Exception as e:
             print(f"Error managing Flatpak autostart: {e}")
