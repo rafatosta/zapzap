@@ -1,23 +1,21 @@
 from PyQt6 import sip
 from PyQt6.QtWidgets import (
     QDialog,
-    QLabel,
-    QPushButton,
     QHBoxLayout,
     QVBoxLayout,
     QFrame,
     QFileDialog,
-    QStyle,
-    QToolButton,
     QMenu,
 )
-from PyQt6.QtGui import QDesktopServices, QIcon, QAction
+from PyQt6.QtGui import QDesktopServices, QAction
 from PyQt6.QtCore import QUrl, QFileInfo, Qt
 from PyQt6.QtWebEngineCore import QWebEngineDownloadRequest
 from gettext import gettext as _
 import os
 
 from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.ui.components.button import Button
+from zapzap.ui.components.label import Label
 from zapzap.features.downloads.download_naming_service import DownloadNamingService
 
 
@@ -76,13 +74,8 @@ class DownloadDialog(QDialog):
         # File name
         # ===============================
 
-        title = QLabel(self.initial_file_name)
+        title = Label(self.initial_file_name, "section_title", self)
         title.setWordWrap(True)
-
-        font = title.font()
-        font.setBold(True)
-        font.setPointSize(font.pointSize() + 1)
-        title.setFont(font)
 
         title.setTextInteractionFlags(
             Qt.TextInteractionFlag.TextSelectableByMouse
@@ -92,7 +85,7 @@ class DownloadDialog(QDialog):
         # Destination
         # ===============================
 
-        directory = QLabel(self.initial_directory)
+        directory = Label(self.initial_directory, "muted", self)
         directory.setWordWrap(True)
 
         directory.setObjectName("Directory")
@@ -105,25 +98,9 @@ class DownloadDialog(QDialog):
         # Main buttons
         # ===============================
 
-        open_btn = QPushButton(_("Open"))
-        open_btn.setIcon(
-            QIcon.fromTheme(
-                "document-open",
-                self.style().standardIcon(
-                    QStyle.StandardPixmap.SP_DialogOpenButton
-                )
-            )
-        )
+        open_btn = Button(_("Open"), parent=self)
 
-        save_btn = QPushButton(_("Save"))
-        save_btn.setIcon(
-            QIcon.fromTheme(
-                "document-save",
-                self.style().standardIcon(
-                    QStyle.StandardPixmap.SP_DialogSaveButton
-                )
-            )
-        )
+        save_btn = Button(_("Save"), parent=self)
 
         save_btn.setDefault(True)
         save_btn.setAutoDefault(True)
@@ -132,34 +109,15 @@ class DownloadDialog(QDialog):
         # More button
         # ===============================
 
-        more_btn = QToolButton()
-        more_btn.setText(_("More"))
-
-        more_btn.setPopupMode(
-            QToolButton.ToolButtonPopupMode.InstantPopup
-        )
+        more_btn = Button(_("More"), parent=self)
 
         menu = QMenu(self)
 
-        save_as_action = QAction(
-            QIcon.fromTheme("document-save-as"),
-            _("Save as"),
-            self
-        )
+        save_as_action = QAction(_("Save as"), self)
 
-        folder_action = QAction(
-            QIcon.fromTheme("folder-open"),
-            _("Open folder"),
-            self
-        )
+        folder_action = QAction(_("Open folder"), self)
 
-        cancel_action = QAction(
-            self.style().standardIcon(
-                QStyle.StandardPixmap.SP_DialogCancelButton
-            ),
-            _("Cancel"),
-            self
-        )
+        cancel_action = QAction(_("Cancel"), self)
 
         save_as_action.triggered.connect(self._save_as)
         folder_action.triggered.connect(self._open_folder)
@@ -223,11 +181,6 @@ class DownloadDialog(QDialog):
                 padding: 14px;
             }
 
-            QToolButton {
-                padding: 5px 10px;
-                font-size: 14px;
-                border-radius: 6px;
-            }
         """)
 
     # ===============================
