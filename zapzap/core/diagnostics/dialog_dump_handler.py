@@ -1,10 +1,11 @@
 from pathlib import Path
 
-from PyQt6.QtGui import QDesktopServices
-from PyQt6.QtWidgets import QMessageBox
 from PyQt6.QtCore import QUrl
+from PyQt6.QtGui import QDesktopServices
 
 from gettext import gettext as _
+
+from zapzap.features.alerts.alert_manager import AlertManager
 
 
 class DialogDumpHandler:
@@ -21,15 +22,10 @@ class DialogDumpHandler:
         print(f"Showing crash dialog for dump at: {zip_path}")
         print(f"Folder URL: {folder_url.toString()}")
 
-        msg = QMessageBox()
-        msg.setIcon(QMessageBox.Icon.Critical)
-        msg.setWindowTitle(_("Unexpected Error"))
-
-        msg.setText(
-            _("The application encountered an unexpected error.")
-        )
-
-        msg.setInformativeText(
+        open_folder = AlertManager.critical_action(
+            None,
+            _("Unexpected Error"),
+            _("The application encountered an unexpected error."),
             _(
                 "A diagnostic report was generated automatically at:\n\n"
                 "{path}\n\n"
@@ -41,17 +37,9 @@ class DialogDumpHandler:
                 path=zip_path,
                 issue_url=DialogDumpHandler.ISSUE_URL,
                 email=DialogDumpHandler.SUPPORT_EMAIL,
-            )
-        )
-
-        msg.setStandardButtons(QMessageBox.StandardButton.Ok)
-
-        open_button = msg.addButton(
+            ),
             _("Open folder"),
-            QMessageBox.ButtonRole.ActionRole
         )
 
-        msg.exec()
-
-        if msg.clickedButton() == open_button:
-            QDesktopServices.openUrl(QUrl.fromLocalFile(str(zip_path)))
+        if open_folder:
+            QDesktopServices.openUrl(folder_url)

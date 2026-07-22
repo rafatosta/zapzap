@@ -13,12 +13,12 @@ from PyQt6.QtWidgets import (
     QFileDialog,
     QFormLayout,
     QLineEdit,
-    QMessageBox,
     QTableWidgetItem,
     QTextEdit,
     QVBoxLayout,
 )
 
+from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.customizations.css_preview_service import CssPreviewService
 from zapzap.features.customizations.customizations_manager import CustomizationsManager
 from zapzap.features.settings.pages.advanced_customizations.view import AdvancedCustomizationsSettingsView
@@ -805,14 +805,12 @@ class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsVie
 
         file_kind = _(
             "CSS") if asset_type == CustomizationsManager.TYPE_CSS else _("JS")
-        answer = QMessageBox.question(
+        confirmed = AlertManager.question(
             self,
             _("Confirm deletion"),
             _("Delete selected {} file: {}?").format(file_kind, file_name),
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-            QMessageBox.StandardButton.No,
         )
-        if answer != QMessageBox.StandardButton.Yes:
+        if not confirmed:
             self._show_feedback(_("Deletion cancelled."))
             return
 

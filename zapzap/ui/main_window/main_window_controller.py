@@ -258,23 +258,17 @@ class MainWindowController(MainWindowView):
         self._save_window_state()
 
         if SettingsManager.get("system/confirm_on_close", False):
-            from PyQt6.QtWidgets import QMessageBox, QCheckBox
-            msg_box = QMessageBox(self)
-            msg_box.setWindowTitle(_("Close ZapZap"))
-            msg_box.setText(_("Are you sure you want to close?"))
-            msg_box.setStandardButtons(
-                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
-            msg_box.setDefaultButton(QMessageBox.StandardButton.No)
-
-            cb = QCheckBox(_("Don't ask again"))
-            msg_box.setCheckBox(cb)
-
-            reply = msg_box.exec()
-            if reply != QMessageBox.StandardButton.Yes:
+            confirmed, dont_ask_again = AlertManager.question_with_checkbox(
+                self,
+                _("Close ZapZap"),
+                _("Are you sure you want to close?"),
+                _("Don't ask again"),
+            )
+            if not confirmed:
                 event.ignore()
                 return
 
-            if cb.isChecked():
+            if dont_ask_again:
                 SettingsManager.set("system/confirm_on_close", False)
 
         if not SettingsManager.get("system/quit_in_close", False) and event:

@@ -4,7 +4,7 @@ from PyQt6.QtCore import QPropertyAnimation
 from PyQt6.QtCore import Qt, QUrl
 from PyQt6.QtGui import QAction
 from PyQt6.QtGui import QDesktopServices
-from PyQt6.QtWidgets import QMessageBox, QApplication
+from PyQt6.QtWidgets import QApplication
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.browser.web.web_view import WebView
 from zapzap.features.accounts.domain.user import User
@@ -145,26 +145,26 @@ class BrowserController(BrowserView):
             if not opened:
                 QApplication.clipboard().setText(flatseal_url.toString())
 
-        dialog = QMessageBox(self)
-        dialog.setWindowTitle(_("Flatpak sandbox"))
-        dialog.setIcon(QMessageBox.Icon.Warning)
-
-        dialog.setText(_("ZapZap is running in Flatpak sandbox."))
-        dialog.setInformativeText(
-            _("Some features like opening files or drag-and-drop may require additional permissions.")
+        action = AlertManager.action_dialog(
+            self,
+            _("Flatpak sandbox"),
+            _("ZapZap is running in Flatpak sandbox."),
+            _(
+                "Some features like opening files or drag-and-drop may require "
+                "additional permissions."
+            ),
+            AlertManager.warning_icon,
+            (
+                ("instructions", _("Instructions"), AlertManager.action_role),
+                ("copy", _("Copy command"), AlertManager.action_role),
+                ("close", _("Close"), AlertManager.reject_role),
+            ),
+            "close",
         )
 
-        instructions_button = dialog.addButton(
-            _("Instructions"), QMessageBox.ButtonRole.ActionRole)
-        copy_button = dialog.addButton(
-            _("Copy command"), QMessageBox.ButtonRole.ActionRole)
-        dialog.addButton(_("Close"), QMessageBox.ButtonRole.RejectRole)
-
-        dialog.exec()
-
-        if dialog.clickedButton() == instructions_button:
+        if action == "instructions":
             _open_flatseal_with_fallback()
-        elif dialog.clickedButton() == copy_button:
+        elif action == "copy":
             QApplication.clipboard().setText(command)
 
     def _load_users(self):
@@ -348,20 +348,23 @@ class BrowserController(BrowserView):
     def _handle_page_button_click(self, page: WebView, button: BrowserPageButton):
         """Trata o clique no botão da conta, preservando contas desativadas visíveis."""
         if not button.user.enable:
-            dialog = QMessageBox(self)
-            dialog.setIcon(QMessageBox.Icon.Information)
-            dialog.setWindowTitle(_("Account disabled"))
-            dialog.setText(_("This account is disabled."))
-            dialog.setInformativeText(
-                _("You can reactivate it now or use the right-click menu to manage this account.")
+            action = AlertManager.action_dialog(
+                self,
+                _("Account disabled"),
+                _("This account is disabled."),
+                _(
+                    "You can reactivate it now or use the right-click menu to "
+                    "manage this account."
+                ),
+                AlertManager.information_icon,
+                (
+                    ("activate", _("Activate"), AlertManager.accept_role),
+                    ("dismiss", _("Not now"), AlertManager.reject_role),
+                ),
+                "dismiss",
             )
 
-            activate_button = dialog.addButton(
-                _("Activate"), QMessageBox.ButtonRole.AcceptRole)
-            dialog.addButton(_("Not now"), QMessageBox.ButtonRole.RejectRole)
-            dialog.exec()
-
-            if dialog.clickedButton() == activate_button:
+            if action == "activate":
                 CardUser.set_user_enabled(button.user, True)
                 self.switch_to_page(page, button)
             return

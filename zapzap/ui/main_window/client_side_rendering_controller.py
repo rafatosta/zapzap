@@ -4,11 +4,10 @@ from gettext import gettext as _
 
 from PyQt6.QtCore import QByteArray
 from PyQt6.QtWidgets import QApplication
-from PyQt6.QtWidgets import QCheckBox
-from PyQt6.QtWidgets import QMessageBox
 from PyQt6.QtWidgets import QWidget
 
 from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.donation.controller import DonationController
 from zapzap.ui.main_window.client_side_rendering_view import ClientSideRenderingView
 
@@ -42,22 +41,17 @@ class ClientSideRenderingController(ClientSideRenderingView):
         self._save_window_state()
 
         if SettingsManager.get("system/confirm_on_close", False):
-            msg_box = QMessageBox(self)
-            msg_box.setWindowTitle(_("Close ZapZap"))
-            msg_box.setText(_("Are you sure you want to close?"))
-            msg_box.setStandardButtons(
-                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
-            msg_box.setDefaultButton(QMessageBox.StandardButton.No)
-
-            cb = QCheckBox(_("Don't ask again"))
-            msg_box.setCheckBox(cb)
-
-            reply = msg_box.exec()
-            if reply != QMessageBox.StandardButton.Yes:
+            confirmed, dont_ask_again = AlertManager.question_with_checkbox(
+                self,
+                _("Close ZapZap"),
+                _("Are you sure you want to close?"),
+                _("Don't ask again"),
+            )
+            if not confirmed:
                 event.ignore()
                 return
 
-            if cb.isChecked():
+            if dont_ask_again:
                 SettingsManager.set("system/confirm_on_close", False)
 
         if not SettingsManager.get("system/quit_in_close", False) and event:
