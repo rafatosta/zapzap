@@ -325,8 +325,25 @@ class MainWindowController(MainWindowView):
             return
 
         self.app_settings = SettingsController()
+        self._guard_settings_initial_clicks(self.app_settings)
         self.stackedWidget.addWidget(self.app_settings)
         self.stackedWidget.setCurrentWidget(self.app_settings)
+
+    def _guard_settings_initial_clicks(self, settings):
+        """Prevent the second click of a double-click from triggering settings actions."""
+        guarded_buttons = (settings.btn_quit, settings.btn_donate)
+        for button in guarded_buttons:
+            button.setEnabled(False)
+
+        delay = QApplication.doubleClickInterval() + 50
+
+        def enable_buttons():
+            if settings is not self.app_settings:
+                return
+            for button in guarded_buttons:
+                button.setEnabled(True)
+
+        QTimer.singleShot(delay, enable_buttons)
 
     def close_settings(self):
         """Fecha o painel de configurações."""
