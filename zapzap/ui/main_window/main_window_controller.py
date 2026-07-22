@@ -320,14 +320,24 @@ class MainWindowController(MainWindowView):
     # === Funções de Configuração ===
     def open_settings(self):
         """Abre o painel de configurações."""
+        if self.app_settings is not None:
+            self.stackedWidget.setCurrentWidget(self.app_settings)
+            return
+
         self.app_settings = SettingsController()
         self.stackedWidget.addWidget(self.app_settings)
         self.stackedWidget.setCurrentWidget(self.app_settings)
 
     def close_settings(self):
         """Fecha o painel de configurações."""
-        self.stackedWidget.removeWidget(self.app_settings)
-        self.app_settings.__del__()
+        if self.app_settings is None:
+            self.stackedWidget.setCurrentWidget(self.browser)
+            return
+
+        app_settings = self.app_settings
+        self.app_settings = None
+        self.stackedWidget.removeWidget(app_settings)
+        app_settings.deleteLater()
 
         self.stackedWidget.setCurrentWidget(self.browser)
 
