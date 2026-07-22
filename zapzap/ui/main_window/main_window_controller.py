@@ -330,7 +330,11 @@ class MainWindowController(MainWindowView):
         self.stackedWidget.setCurrentWidget(self.app_settings)
 
     def _guard_settings_initial_clicks(self, settings):
-        """Prevent the second click of a double-click from triggering settings actions."""
+        """Block the double-click release that can land on Settings actions."""
+        # The Settings button and the Settings panel's Quit button can occupy
+        # the same screen position. During a double-click, the first click opens
+        # Settings and the second click may hit Quit before the panel is fully
+        # perceived as open, closing the app without an application log.
         guarded_buttons = (settings.btn_quit, settings.btn_donate)
         for button in guarded_buttons:
             button.setEnabled(False)
