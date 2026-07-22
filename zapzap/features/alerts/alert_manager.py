@@ -44,27 +44,17 @@ class AlertManager:
         message_box: QMessageBox,
         text: str,
         role: QMessageBox.ButtonRole,
-<<<<<<< ours
-    ) -> QPushButton:
-        button = message_box.addButton(text, role)
-        button.setIcon(QIcon())
-=======
     ) -> Button:
         button = Button(text, parent=message_box)
         button.setIcon(QIcon())
         message_box.addButton(button, role)
->>>>>>> theirs
         return button
 
     @classmethod
     def _set_default_button(
         cls,
         message_box: QMessageBox,
-<<<<<<< ours
-        button: QPushButton,
-=======
         button: Button,
->>>>>>> theirs
     ) -> None:
         message_box.setDefaultButton(button)
         button.setFocus()
