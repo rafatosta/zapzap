@@ -3,6 +3,7 @@
 from gettext import gettext as _
 
 from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QAbstractItemView
 from PyQt6.QtWidgets import QDialog
 from PyQt6.QtWidgets import QDialogButtonBox
@@ -14,6 +15,7 @@ from PyQt6.QtWidgets import QTableWidgetItem
 from PyQt6.QtWidgets import QVBoxLayout
 
 from zapzap.ui.components import Label
+from zapzap.ui.typography import Typography
 
 
 class ShortcutsView(QDialog):
@@ -22,16 +24,24 @@ class ShortcutsView(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         self._setup_ui()
+        self._apply_style()
 
     def _setup_ui(self):
         self.setObjectName("ShortcutsView")
         self.resize(798, 575)
-        self.setWindowTitle(_("Dialog"))
+        self.setMinimumSize(640, 520)
+        self.setWindowTitle(_("Keyboard shortcuts"))
 
         self.verticalLayout = QVBoxLayout(self)
+        self.verticalLayout.setContentsMargins(24, 22, 24, 22)
+        self.verticalLayout.setSpacing(16)
         self.verticalLayout.setObjectName("verticalLayout")
 
-        self.label = Label(_("Keyboard shortcuts"), parent=self)
+        self.label = Label(
+            _("Keyboard shortcuts"),
+            variant="title",
+            parent=self,
+        )
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)
 
@@ -44,7 +54,7 @@ class ShortcutsView(QDialog):
             "table_whatsapp",
         )
         self.verticalLayout_2.addWidget(self.table_whatsapp)
-        self.verticalLayout.addWidget(self.groupBox)
+        self.verticalLayout.addWidget(self.groupBox, 3)
 
         self.groupBox_2 = QGroupBox(_("ZapZap"), parent=self)
         self.groupBox_2.setObjectName("groupBox_2")
@@ -55,7 +65,7 @@ class ShortcutsView(QDialog):
             "table_zapzap",
         )
         self.horizontalLayout.addWidget(self.table_zapzap)
-        self.verticalLayout.addWidget(self.groupBox_2)
+        self.verticalLayout.addWidget(self.groupBox_2, 2)
 
         self.buttonBox = QDialogButtonBox(
             QDialogButtonBox.StandardButton.Ok,
@@ -67,10 +77,95 @@ class ShortcutsView(QDialog):
         self.buttonBox.rejected.connect(self.reject)
         self.verticalLayout.addWidget(self.buttonBox)
 
+    def _apply_style(self):
+        self.setStyleSheet(
+            f"""
+            QDialog#ShortcutsView {{
+                background: palette(window);
+                color: palette(text);
+            }}
+            QGroupBox {{
+                margin-top: 12px;
+                border: 1px solid palette(mid);
+                border-radius: 14px;
+                background: palette(base);
+                color: palette(text);
+                font-size: {Typography.px(Typography.SUBTITLE)};
+                font-weight: 600;
+            }}
+            QGroupBox::title {{
+                subcontrol-origin: margin;
+                subcontrol-position: top left;
+                left: 14px;
+                padding: 0 6px;
+                background: palette(window);
+                color: palette(text);
+            }}
+            QTableWidget {{
+                border: 0;
+                outline: 0;
+                background: transparent;
+                alternate-background-color: palette(alternate-base);
+                color: palette(text);
+                gridline-color: transparent;
+                font-size: {Typography.px(Typography.BODY)};
+            }}
+            QTableWidget::item {{
+                border: 0;
+                padding: 6px 10px;
+            }}
+            QTableWidget::item:alternate {{
+                border-radius: 6px;
+            }}
+            QScrollBar:vertical {{
+                width: 10px;
+                margin: 4px 1px;
+                border: 0;
+                background: transparent;
+            }}
+            QScrollBar::handle:vertical {{
+                min-height: 28px;
+                border-radius: 5px;
+                background: palette(mid);
+            }}
+            QScrollBar::add-line:vertical,
+            QScrollBar::sub-line:vertical,
+            QScrollBar::add-page:vertical,
+            QScrollBar::sub-page:vertical {{
+                height: 0;
+                background: transparent;
+            }}
+            QDialogButtonBox QPushButton {{
+                min-width: 88px;
+                min-height: 26px;
+                border: 1px solid palette(highlight);
+                border-radius: 8px;
+                padding: 6px 14px;
+                background: palette(highlight);
+                color: palette(highlighted-text);
+                font-size: {Typography.px(Typography.BODY)};
+                font-weight: 500;
+            }}
+            QDialogButtonBox QPushButton:hover {{
+                border-color: palette(highlight);
+                background: palette(alternate-base);
+                color: palette(text);
+            }}
+            QDialogButtonBox QPushButton:pressed {{
+                background: palette(highlight);
+                color: palette(highlighted-text);
+            }}
+            """
+        )
+
     @staticmethod
     def _create_table(parent, object_name):
         table = QTableWidget(parent=parent)
         table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        table.setSelectionMode(QAbstractItemView.SelectionMode.NoSelection)
+        table.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        table.setAlternatingRowColors(True)
+        table.setShowGrid(False)
         table.setObjectName(object_name)
         table.horizontalHeader().setVisible(False)
         table.verticalHeader().setVisible(False)
@@ -90,8 +185,19 @@ class ShortcutsView(QDialog):
         table.setRowCount(len(shortcuts))
 
         for row, (action, shortcut) in enumerate(shortcuts):
-            table.setItem(row, 0, QTableWidgetItem(action))
-            table.setItem(row, 1, QTableWidgetItem(shortcut))
+            action_item = QTableWidgetItem(action)
+            shortcut_item = QTableWidgetItem(shortcut)
+            shortcut_item.setTextAlignment(
+                Qt.AlignmentFlag.AlignRight
+                | Qt.AlignmentFlag.AlignVCenter
+            )
+            shortcut_font = shortcut_item.font()
+            shortcut_font.setStyleHint(QFont.StyleHint.Monospace)
+            shortcut_font.setFixedPitch(True)
+            shortcut_font.setWeight(QFont.Weight.Medium)
+            shortcut_item.setFont(shortcut_font)
+            table.setItem(row, 0, action_item)
+            table.setItem(row, 1, shortcut_item)
 
         table.resizeColumnsToContents()
         table.horizontalHeader().setSectionResizeMode(
