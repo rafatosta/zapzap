@@ -95,7 +95,7 @@ class SettingsSidebar(QFrame):
         self.layout.addStretch(1)
 
     def _apply_style(self):
-        self.setStyleSheet("""
+        style = """
             QFrame#SettingsSidebar {
                 background: palette(base);
                 border-right: 1px solid palette(mid);
@@ -124,4 +124,5 @@ class SettingsSidebar(QFrame):
                 border-color: palette(highlight);
                 color: palette(highlighted-text);
             }
-        """).replace("@font-close-icon", Typography.px(Typography.CLOSE_ICON))
+        """.replace("@font-close-icon", Typography.px(Typography.CLOSE_ICON))
+        self.setStyleSheet(style)

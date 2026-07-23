@@ -464,7 +464,7 @@ class InitialSetupView(QDialog):
         return page
 
     def _apply_style(self):
-        self.setStyleSheet("""
+        style = """
             QDialog#InitialSetupDialog {
                 background: transparent;
                 color: palette(text);
@@ -513,7 +513,8 @@ class InitialSetupView(QDialog):
                 background: palette(alternate-base);
                 color: palette(highlight);
             }
-        """).replace("@font-heading", Typography.px(Typography.HEADING))
+        """.replace("@font-heading", Typography.px(Typography.HEADING))
+        self.setStyleSheet(style)
 
     def set_step(self, index: int):
         self.pages.setCurrentIndex(index)

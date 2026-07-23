@@ -24,7 +24,7 @@ class SettingsBadge(Label):
         self.style().polish(self)
 
     def _apply_style(self):
-        self.setStyleSheet("""
+        style = """
             QLabel#SettingsBadge {
                 border-radius: 8px;
                 padding: 3px 8px;
@@ -39,7 +39,8 @@ class SettingsBadge(Label):
             QLabel#SettingsBadge[kind="success"] {
                 color: palette(highlight);
             }
-        """).replace("@font-caption", Typography.px(Typography.CAPTION))
+        """.replace("@font-caption", Typography.px(Typography.CAPTION))
+        self.setStyleSheet(style)
 
 
 class SettingsInfoBox(QFrame):
