@@ -91,7 +91,6 @@ packages = [
   "zapzap.assets.themes",
   "zapzap.ui",
   "zapzap.ui.components",
-  "zapzap.ui.generated",
   "zapzap.ui.main_window",
 ]
 
