@@ -2,8 +2,8 @@
 
 from gettext import gettext as _
 
-from PyQt6.QtCore import QUrl
-from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtCore import Qt, QUrl
+from PyQt6.QtGui import QDesktopServices, QKeySequence, QShortcut
 from PyQt6.QtWidgets import QApplication, QWidget
 
 from zapzap import __donationPage__
@@ -66,6 +66,11 @@ class SettingsController(SettingsView):
         window = QApplication.instance().getWindow()
         self.btn_quit.clicked.connect(window.closeEvent)
         self.sidebar.btn_close.clicked.connect(window.close_settings)
+        self.close_shortcut = QShortcut(QKeySequence("Escape"), self)
+        self.close_shortcut.setContext(
+            Qt.ShortcutContext.WidgetWithChildrenShortcut
+        )
+        self.close_shortcut.activated.connect(window.close_settings)
         self.btn_donate.clicked.connect(
             lambda: QDesktopServices.openUrl(QUrl(__donationPage__))
         )
