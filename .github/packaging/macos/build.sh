@@ -4,15 +4,16 @@ set -euo pipefail
 echo "# === macOS Builder ==="
 
 APP_NAME="ZapZap"
-VERSION=$(python3 -c "import sys, os; sys.path.insert(0, os.getcwd()); import zapzap; print(zapzap.__version__)")
-if [ -z "$VERSION" ]; then
-    VERSION="dev"
-fi
 
 echo "# === Installing dependencies ==="
 python -m pip install --upgrade pip
 python -m pip install pyinstaller
 python -m pip install -r requirements.txt
+
+VERSION=$(python3 -c "import sys, os; sys.path.insert(0, os.getcwd()); import zapzap; print(zapzap.__version__)")
+if [ -z "$VERSION" ]; then
+    VERSION="dev"
+fi
 
 echo "# === Cleaning previous builds ==="
 rm -rf dist build
