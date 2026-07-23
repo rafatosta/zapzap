@@ -21,8 +21,8 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
 
     def __init__(self, parent=None):
         super().__init__(
-            _("Customizações avançadas"),
-            _("Gerencie CSS, JavaScript e customizações por escopo."),
+            _("Advanced Customizations"),
+            _("Manage CSS, JavaScript and customizations by scope."),
             parent,
         )
         self._setup_ui()
