@@ -1,10 +1,15 @@
 """ZapZap button component."""
 
+from typing import Literal
+
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QPushButton
 
 from zapzap.core.theme.theme_manager import ThemeManager
+
+
+ButtonVariant = Literal["default", "warning", "danger"]
 
 
 class Button(QPushButton):
@@ -14,7 +19,7 @@ class Button(QPushButton):
     WARNING = "warning"
     DANGER = "danger"
 
-    def __init__(self, text="", variant=DEFAULT, parent=None):
+    def __init__(self, text="", variant: ButtonVariant = DEFAULT, parent=None):
         super().__init__(text, parent)
 
         self.variant = variant
@@ -24,7 +29,7 @@ class Button(QPushButton):
 
         ThemeManager.instance().theme_changed.connect(self._on_theme_changed)
 
-    def set_variant(self, variant):
+    def set_variant(self, variant: ButtonVariant):
         """Change button visual variant."""
 
         self.variant = variant

@@ -1,10 +1,10 @@
 from gettext import gettext as _
-from typing import Optional
+from typing import Optional, Union
 
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QMessageBox
 
-from zapzap.ui.components.button import Button
+from zapzap.ui.components.button import Button, ButtonVariant
 from zapzap.ui.components.check_box import CheckBox
 
 from zapzap import LIMITE_USERS
@@ -40,8 +40,9 @@ class AlertManager:
         message_box: QMessageBox,
         text: str,
         role: QMessageBox.ButtonRole,
+        variant: ButtonVariant = Button.DEFAULT,
     ) -> Button:
-        button = Button(text, parent=message_box)
+        button = Button(text, variant=variant, parent=message_box)
         button.setIcon(QIcon())
         message_box.addButton(button, role)
         return button
@@ -65,7 +66,12 @@ class AlertManager:
         )
         cls._set_default_button(
             message_box,
-            cls._add_button(message_box, _("OK"), QMessageBox.ButtonRole.AcceptRole),
+            cls._add_button(
+                message_box,
+                _("OK"),
+                QMessageBox.ButtonRole.AcceptRole,
+                variant=Button.DEFAULT,
+            ),
         )
         message_box.exec()
 
@@ -79,7 +85,12 @@ class AlertManager:
         )
         cls._set_default_button(
             message_box,
-            cls._add_button(message_box, _("OK"), QMessageBox.ButtonRole.AcceptRole),
+            cls._add_button(
+                message_box,
+                _("OK"),
+                QMessageBox.ButtonRole.AcceptRole,
+                variant=Button.DEFAULT,
+            ),
         )
         message_box.exec()
 
@@ -93,7 +104,12 @@ class AlertManager:
         )
         cls._set_default_button(
             message_box,
-            cls._add_button(message_box, _("OK"), QMessageBox.ButtonRole.AcceptRole),
+            cls._add_button(
+                message_box,
+                _("OK"),
+                QMessageBox.ButtonRole.AcceptRole,
+                variant=Button.DEFAULT,
+            ),
         )
         message_box.exec()
 
@@ -105,15 +121,25 @@ class AlertManager:
         message: str,
         informative_message: str,
         icon: QMessageBox.Icon,
-        actions: tuple[tuple[str, str, QMessageBox.ButtonRole], ...],
+        actions: tuple[
+            Union[
+                tuple[str, str, QMessageBox.ButtonRole],
+                tuple[str, str, QMessageBox.ButtonRole, ButtonVariant],
+            ],
+            ...,
+        ],
         default_action: Optional[str] = None,
     ) -> Optional[str]:
         message_box = cls._message_box(parent, title, message, icon)
         message_box.setInformativeText(informative_message)
 
         buttons = {}
-        for action_key, text, role in actions:
-            buttons[action_key] = cls._add_button(message_box, text, role)
+        for action in actions:
+            action_key, text, role = action[:3]
+            variant = action[3] if len(action) > 3 else Button.DEFAULT
+            buttons[action_key] = cls._add_button(
+                message_box, text, role, variant=variant
+            )
 
         if default_action is not None and default_action in buttons:
             cls._set_default_button(message_box, buttons[default_action])
@@ -150,14 +176,21 @@ class AlertManager:
             message_box,
             action_text,
             QMessageBox.ButtonRole.ActionRole,
+            variant=Button.DANGER,
         )
         cls._set_default_button(message_box, ok_button)
         message_box.exec()
         return message_box.clickedButton() == action_button
 
     @classmethod
-    def question(cls, parent, title: str, message: str) -> bool:
-        response, _ = cls.question_with_checkbox(parent, title, message)
+    def question(
+        cls,
+        parent,
+        title: str,
+        message: str,
+        icon: QMessageBox.Icon = QMessageBox.Icon.Question,
+    ) -> bool:
+        response, _ = cls.question_with_checkbox(parent, title, message, icon=icon)
         return response
 
     @classmethod
@@ -167,17 +200,21 @@ class AlertManager:
         title: str,
         message: str,
         checkbox_text: Optional[str] = None,
+        icon: QMessageBox.Icon = QMessageBox.Icon.Question,
     ) -> tuple[bool, bool]:
         message_box = cls._message_box(
             parent,
             title,
             message,
-            QMessageBox.Icon.Question,
+            icon,
         )
         yes_button = cls._add_button(
             message_box,
             _("Yes"),
             QMessageBox.ButtonRole.YesRole,
+            variant=Button.DANGER
+            if message_box.icon() == QMessageBox.Icon.Critical
+            else Button.DEFAULT,
         )
         no_button = cls._add_button(
             message_box,
