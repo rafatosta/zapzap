@@ -64,6 +64,7 @@ class DebuggingSettingsController(DebuggingSettingsView):
             self,
             _("Debug logs"),
             _("Delete all crash reports and debug logs?"),
+            icon=AlertManager.critical_icon,
         )
         if not confirm:
             return
@@ -84,6 +85,7 @@ class DebuggingSettingsController(DebuggingSettingsView):
                 "This will delete your current settings file (.config) and requires "
                 "restart. Continue?"
             ),
+            icon=AlertManager.critical_icon,
         )
         if not confirm:
             return

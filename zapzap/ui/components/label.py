@@ -1,13 +1,28 @@
 """ZapZap label component."""
 
+from typing import Literal
+
 from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QLabel
+
+
+LabelVariant = Literal[
+    "title",
+    "description",
+    "section_title",
+    "section_description",
+    "row_title",
+    "row_description",
+    "body",
+    "brand",
+    "muted",
+]
 
 
 class Label(QLabel):
     """ZapZap label with reusable visual variants from the active Qt palette."""
 
-    def __init__(self, text="", variant="body", parent=None):
+    def __init__(self, text="", variant: LabelVariant = "body", parent=None):
         super().__init__(text, parent)
         self.variant = variant
         self.setWordWrap(

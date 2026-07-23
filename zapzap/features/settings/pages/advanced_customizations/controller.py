@@ -809,6 +809,7 @@ class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsVie
             self,
             _("Confirm deletion"),
             _("Delete selected {} file: {}?").format(file_kind, file_name),
+            icon=AlertManager.critical_icon,
         )
         if not confirmed:
             self._show_feedback(_("Deletion cancelled."))

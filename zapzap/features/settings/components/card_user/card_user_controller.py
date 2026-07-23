@@ -108,6 +108,7 @@ class CardUserController(CardUserView):
             parent,
             _("Confirm exclusion"),
             _("Are you sure you want to delete this item?"),
+            icon=AlertManager.critical_icon,
         ):
             browser = cls._get_browser()
             if browser:

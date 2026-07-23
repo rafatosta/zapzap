@@ -16,6 +16,7 @@ class AlertManager:
 
     information_icon = QMessageBox.Icon.Information
     warning_icon = QMessageBox.Icon.Warning
+    critical_icon = QMessageBox.Icon.Critical
     accept_role = QMessageBox.ButtonRole.AcceptRole
     action_role = QMessageBox.ButtonRole.ActionRole
     reject_role = QMessageBox.ButtonRole.RejectRole
@@ -62,7 +63,7 @@ class AlertManager:
             parent,
             title,
             message,
-            QMessageBox.Icon.Information,
+            cls.information_icon,
         )
         cls._set_default_button(
             message_box,
@@ -81,7 +82,7 @@ class AlertManager:
             parent,
             title,
             message,
-            QMessageBox.Icon.Warning,
+            cls.warning_icon,
         )
         cls._set_default_button(
             message_box,
@@ -100,7 +101,7 @@ class AlertManager:
             parent,
             title,
             message,
-            QMessageBox.Icon.Critical,
+            cls.critical_icon,
         )
         cls._set_default_button(
             message_box,
@@ -164,7 +165,7 @@ class AlertManager:
             parent,
             title,
             message,
-            QMessageBox.Icon.Critical,
+            cls.critical_icon,
         )
         message_box.setInformativeText(informative_message)
         ok_button = cls._add_button(
@@ -213,7 +214,7 @@ class AlertManager:
             _("Yes"),
             QMessageBox.ButtonRole.YesRole,
             variant=Button.DANGER
-            if message_box.icon() == QMessageBox.Icon.Critical
+            if message_box.icon() == cls.critical_icon
             else Button.DEFAULT,
         )
         no_button = cls._add_button(
