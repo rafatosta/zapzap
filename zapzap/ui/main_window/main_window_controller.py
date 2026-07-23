@@ -16,7 +16,7 @@ from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.browser.shell.browser_controller import BrowserController
 from zapzap.features.donation.controller import DonationController
 from zapzap.features.settings.shell.settings_controller import SettingsController
-from zapzap.features.shortcuts.shortcuts_dialog import ShortcutsDialog
+from zapzap.features.shortcuts.controller import ShortcutsController
 from zapzap.features.tray.sys_tray_manager import SysTrayManager
 from zapzap.ui.main_window.main_window_view import MainWindowView
 
@@ -200,7 +200,7 @@ class MainWindowController(MainWindowView):
     def _connect_help_menu_actions(self):
         """Conectar ações do menu 'Ajuda'."""
         self.actionShortcuts.triggered.connect(
-            lambda: ShortcutsDialog().exec())
+            lambda: ShortcutsController(self).exec())
 
     # === Ações de Menu ===
     def new_chat(self):
