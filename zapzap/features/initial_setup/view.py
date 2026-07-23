@@ -28,11 +28,8 @@ from zapzap.features.settings.components import SettingsSwitchRow
 from zapzap.features.settings.shell.settings_sidebar import SettingsSidebarItem
 from zapzap.ui.typography import Typography
 from zapzap.ui.components import Button
-from zapzap.ui.typography import Typography
 from zapzap.ui.components import Label
-from zapzap.ui.typography import Typography
 from zapzap.ui.components import LineEdit
-from zapzap.ui.typography import Typography
 from zapzap.ui.components import RadioButton
 
 
