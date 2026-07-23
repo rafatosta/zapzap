@@ -10,6 +10,7 @@ class Packaging(Enum):
     RPM        = "RPM"
     UNOFFICIAL = "Unofficial"
     WINDOWS    = "Windows"
+    MACOS      = "macOS"
 
 
 class EnvironmentManager:
@@ -19,6 +20,9 @@ class EnvironmentManager:
 
         if sys.platform == "win32":
             return Packaging.WINDOWS
+
+        if sys.platform == "darwin":
+            return Packaging.MACOS
 
         if "SNAP" in os.environ:
             return Packaging.SNAP

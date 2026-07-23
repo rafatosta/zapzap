@@ -39,6 +39,13 @@ class PathManager:
                 "zapzap", "dictionaries"
             ),
         },
+        Packaging.MACOS: {
+            "path": "",
+            "default": os.path.join(
+                os.path.expanduser("~"),
+                "Library", "Application Support", "zapzap", "dictionaries"
+            ),
+        },
     }
 
     @staticmethod
