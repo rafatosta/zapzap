@@ -1,5 +1,7 @@
 """Controller for the appearance settings page."""
 
+from gettext import gettext as _
+
 from PyQt6.QtWidgets import QApplication
 
 from zapzap.features.settings.pages.appearance.model import AppearanceSettingsModel
@@ -60,10 +62,19 @@ class AppearanceSettingsController(AppearanceSettingsView):
     def _load_csr_button_themes(self):
         self.csr_theme_comboBox.blockSignals(True)
         self.csr_theme_comboBox.clear()
-        self.csr_theme_comboBox.addItems(
-            self.model.available_csr_button_themes())
-        theme_index = self.csr_theme_comboBox.findText(
-            self.model.csr_button_theme)
+        theme_labels = {
+            "default": _("Default"),
+            "adwaita": _("Adwaita"),
+            "plasma": _("Plasma"),
+            "ios": _("iOS"),
+            "windows": _("Windows"),
+        }
+        for theme in self.model.available_csr_button_themes():
+            self.csr_theme_comboBox.addItem(theme_labels.get(theme, theme), theme)
+
+        theme_index = self.csr_theme_comboBox.findData(
+            self.model.csr_button_theme
+        )
         self.csr_theme_comboBox.setCurrentIndex(
             theme_index if theme_index >= 0 else 0)
         self.csr_theme_comboBox.blockSignals(False)
@@ -84,7 +95,7 @@ class AppearanceSettingsController(AppearanceSettingsView):
         self.theme_light_radioButton.toggled.connect(self._handle_theme_mode)
         self.theme_dark_radioButton.toggled.connect(self._handle_theme_mode)
         self.csr_groupBox.checkbox.toggled.connect(self._handle_csr_enabled)
-        self.csr_theme_comboBox.currentTextChanged.connect(
+        self.csr_theme_comboBox.currentIndexChanged.connect(
             self._handle_csr_theme)
         self.csr_show_minimize_checkBox.toggled.connect(
             self._handle_csr_show_minimize
@@ -169,9 +180,11 @@ class AppearanceSettingsController(AppearanceSettingsView):
     def _handle_csr_enabled(self, enabled):
         self.model.csr_enabled = enabled
 
-    def _handle_csr_theme(self, theme_name):
-        self.model.csr_button_theme = theme_name
-        self._refresh_csr_buttons()
+    def _handle_csr_theme(self, _index):
+        theme = self.csr_theme_comboBox.currentData()
+        if theme:
+            self.model.csr_button_theme = theme
+            self._refresh_csr_buttons()
 
     def _handle_csr_show_minimize(self, enabled):
         self.model.csr_show_minimize_button = enabled
