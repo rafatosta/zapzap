@@ -151,9 +151,12 @@ class AppearanceSettingsView(SettingsPage):
         self.csr_direction_row = SettingsSelectRow(
             _("Button direction"),
             _("Place window buttons on the right or left."),
-            ["right", "left"],
+            [""],
         )
         self.csr_direction_comboBox = self.csr_direction_row.combo
+        self.csr_direction_comboBox.clear()
+        self.csr_direction_comboBox.addItem(_("Right"), "right")
+        self.csr_direction_comboBox.addItem(_("Left"), "left")
         self.restart_interface_row = SettingsActionRow(
             _("Restart interface"),
             _("Rebuild the main window to apply window decoration mode changes."),

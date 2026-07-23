@@ -34,8 +34,11 @@ class AppearanceSettingsController(AppearanceSettingsView):
         self.csr_show_maximize_checkBox.setChecked(
             self.model.csr_show_maximize_button
         )
-        self.csr_direction_comboBox.setCurrentText(
-            self.model.csr_buttons_direction)
+        direction_index = self.csr_direction_comboBox.findData(
+            self.model.csr_buttons_direction
+        )
+        if direction_index >= 0:
+            self.csr_direction_comboBox.setCurrentIndex(direction_index)
 
         self._set_selected_radio(
             self.model.theme,
@@ -89,7 +92,7 @@ class AppearanceSettingsController(AppearanceSettingsView):
         self.csr_show_maximize_checkBox.toggled.connect(
             self._handle_csr_show_maximize
         )
-        self.csr_direction_comboBox.currentTextChanged.connect(
+        self.csr_direction_comboBox.currentIndexChanged.connect(
             self._handle_csr_direction
         )
         self.btn_restart_interface.clicked.connect(self._restart_interface)
@@ -178,9 +181,11 @@ class AppearanceSettingsController(AppearanceSettingsView):
         self.model.csr_show_maximize_button = enabled
         self._refresh_csr_buttons()
 
-    def _handle_csr_direction(self, direction_label):
-        self.model.csr_buttons_direction = direction_label
-        self._refresh_csr_buttons()
+    def _handle_csr_direction(self, _index):
+        direction = self.csr_direction_comboBox.currentData()
+        if direction:
+            self.model.csr_buttons_direction = direction
+            self._refresh_csr_buttons()
 
     def _restart_interface(self):
         QApplication.instance().restartInterface()
