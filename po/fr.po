@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-23 14:08-0300\n"
+"POT-Creation-Date: 2026-07-23 14:46-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1332,6 +1332,27 @@ msgstr ""
 msgid "All pages reloaded."
 msgstr ""
 
+#: zapzap/features/settings/pages/appearance/controller.py:66
+#: zapzap/features/settings/pages/appearance/view.py:100
+msgid "Default"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/controller.py:67
+msgid "Adwaita"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/controller.py:68
+msgid "Plasma"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/controller.py:69
+msgid "iOS"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/controller.py:70
+msgid "Windows"
+msgstr ""
+
 #: zapzap/features/settings/pages/appearance/view.py:21
 msgid ""
 "Adjust interface chrome, theme, tray icon, grid view, and window decorations."
@@ -1384,10 +1405,6 @@ msgstr ""
 
 #: zapzap/features/settings/pages/appearance/view.py:88
 msgid "Control tray icon visibility, style, and unread counter."
-msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py:100
-msgid "Default"
 msgstr ""
 
 #: zapzap/features/settings/pages/appearance/view.py:101
@@ -1456,11 +1473,19 @@ msgid "Place window buttons on the right or left."
 msgstr ""
 
 #: zapzap/features/settings/pages/appearance/view.py:158
-#: zapzap/features/settings/pages/appearance/view.py:160
-msgid "Restart interface"
+msgid "Right"
 msgstr ""
 
 #: zapzap/features/settings/pages/appearance/view.py:159
+msgid "Left"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:161
+#: zapzap/features/settings/pages/appearance/view.py:163
+msgid "Restart interface"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:162
 msgid "Rebuild the main window to apply window decoration mode changes."
 msgstr ""
 

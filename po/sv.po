@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-23 14:08-0300\n"
+"POT-Creation-Date: 2026-07-23 14:46-0300\n"
 "PO-Revision-Date: 2026-03-09 22:23+0100\n"
 "Last-Translator: Dennis Cederberg "
 "<9393069+cederberget@users.noreply.github.com>\n"
@@ -1404,6 +1404,27 @@ msgstr "Anpassningar sparade. Ladda om sidor för att applicera ändringarna."
 msgid "All pages reloaded."
 msgstr "Alla sidor laddades om."
 
+#: zapzap/features/settings/pages/appearance/controller.py:66
+#: zapzap/features/settings/pages/appearance/view.py:100
+msgid "Default"
+msgstr "Standard"
+
+#: zapzap/features/settings/pages/appearance/controller.py:67
+msgid "Adwaita"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/controller.py:68
+msgid "Plasma"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/controller.py:69
+msgid "iOS"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/controller.py:70
+msgid "Windows"
+msgstr ""
+
 #: zapzap/features/settings/pages/appearance/view.py:21
 msgid ""
 "Adjust interface chrome, theme, tray icon, grid view, and window decorations."
@@ -1463,10 +1484,6 @@ msgstr ""
 #: zapzap/features/settings/pages/appearance/view.py:88
 msgid "Control tray icon visibility, style, and unread counter."
 msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py:100
-msgid "Default"
-msgstr "Standard"
 
 #: zapzap/features/settings/pages/appearance/view.py:101
 msgid "Symbolic light"
@@ -1537,12 +1554,21 @@ msgid "Place window buttons on the right or left."
 msgstr ""
 
 #: zapzap/features/settings/pages/appearance/view.py:158
-#: zapzap/features/settings/pages/appearance/view.py:160
+#, fuzzy
+msgid "Right"
+msgstr "Ljus"
+
+#: zapzap/features/settings/pages/appearance/view.py:159
+msgid "Left"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:161
+#: zapzap/features/settings/pages/appearance/view.py:163
 #, fuzzy
 msgid "Restart interface"
 msgstr "Välj språk"
 
-#: zapzap/features/settings/pages/appearance/view.py:159
+#: zapzap/features/settings/pages/appearance/view.py:162
 msgid "Rebuild the main window to apply window decoration mode changes."
 msgstr ""
 
@@ -2882,10 +2908,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Note:Requires restart."
 #~ msgstr "Obs: Kräver omstart."
-
-#, fuzzy
-#~ msgid "Right"
-#~ msgstr "Ljus"
 
 #~ msgid "Remove notification indicator"
 #~ msgstr "Inaktivera notisindikator"
