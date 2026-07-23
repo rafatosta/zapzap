@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-21 18:17-0300\n"
+"POT-Creation-Date: 2026-07-22 20:42-0300\n"
 "PO-Revision-Date: 2026-03-09 22:23+0100\n"
 "Last-Translator: Dennis Cederberg "
 "<9393069+cederberget@users.noreply.github.com>\n"
@@ -20,15 +20,15 @@ msgstr ""
 "X-Generator: Poedit 3.8\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: zapzap/core/diagnostics/dialog_dump_handler.py:26
+#: zapzap/core/diagnostics/dialog_dump_handler.py:27
 msgid "Unexpected Error"
 msgstr "Oväntat fel"
 
-#: zapzap/core/diagnostics/dialog_dump_handler.py:29
+#: zapzap/core/diagnostics/dialog_dump_handler.py:28
 msgid "The application encountered an unexpected error."
 msgstr "Applikationen stötte på ett oväntat fel."
 
-#: zapzap/core/diagnostics/dialog_dump_handler.py:34
+#: zapzap/core/diagnostics/dialog_dump_handler.py:30
 #, python-brace-format
 msgid ""
 "A diagnostic report was generated automatically at:\n"
@@ -51,11 +51,11 @@ msgstr ""
 " - Ärendesystem: {issue_url}\n"
 " - E-post: {email}"
 
-#: zapzap/core/diagnostics/dialog_dump_handler.py:50
+#: zapzap/core/diagnostics/dialog_dump_handler.py:41
 #: zapzap/features/settings/pages/advanced_customizations/view.py:97
 #: zapzap/features/settings/pages/advanced_customizations/view.py:180
 #: zapzap/features/settings/pages/debugging/view.py:52
-#: zapzap/features/downloads/ui/download_dialog.py:152
+#: zapzap/features/downloads/ui/download_dialog.py:118
 msgid "Open folder"
 msgstr "Öppna katalog"
 
@@ -99,12 +99,27 @@ msgstr "Använd proxy endast för HTTP-begäranden."
 msgid "Proxying for FTP requests only."
 msgstr "Använd proxy endast för FTP-begäranden."
 
+#: zapzap/features/alerts/alert_manager.py:68
+#: zapzap/features/alerts/alert_manager.py:82
+#: zapzap/features/alerts/alert_manager.py:96
+#: zapzap/features/alerts/alert_manager.py:146
+msgid "OK"
+msgstr ""
+
+#: zapzap/features/alerts/alert_manager.py:179
+msgid "Yes"
+msgstr ""
+
+#: zapzap/features/alerts/alert_manager.py:184
+msgid "No"
+msgstr ""
+
 # Identical to source
-#: zapzap/features/alerts/alert_manager.py:76
+#: zapzap/features/alerts/alert_manager.py:203
 msgid "Information"
 msgstr ""
 
-#: zapzap/features/alerts/alert_manager.py:78
+#: zapzap/features/alerts/alert_manager.py:205
 #, python-brace-format
 msgid ""
 "Limit of {} users reached.\n"
@@ -113,11 +128,11 @@ msgstr ""
 "Begränsning på {} användare uppnådd.\n"
 "Det är inte möjligt att skapa fler användare!"
 
-#: zapzap/features/alerts/alert_manager.py:85
+#: zapzap/features/alerts/alert_manager.py:212
 msgid "Attention"
 msgstr "Observera"
 
-#: zapzap/features/alerts/alert_manager.py:85
+#: zapzap/features/alerts/alert_manager.py:212
 msgid "No active account!"
 msgstr "Inget aktivt konto!"
 
@@ -833,6 +848,20 @@ msgstr ""
 msgid "Quit"
 msgstr "Avsluta"
 
+#: zapzap/features/settings/shell/settings_sidebar.py:76
+msgid "Adjust accounts, appearance, notifications and advanced options."
+msgstr ""
+
+#: zapzap/features/settings/shell/settings_sidebar.py:81
+#, fuzzy
+msgid "Close settings"
+msgstr "Inställningar"
+
+#: zapzap/features/settings/shell/settings_view.py:32
+#: zapzap/features/settings/pages/about/view.py:105
+msgid "Donate"
+msgstr ""
+
 #: zapzap/features/settings/shell/settings_controller.py:41
 #: zapzap/features/settings/pages/accounts/view.py:18
 msgid "Accounts"
@@ -882,20 +911,6 @@ msgstr ""
 msgid "About"
 msgstr "Om"
 
-#: zapzap/features/settings/shell/settings_sidebar.py:76
-msgid "Adjust accounts, appearance, notifications and advanced options."
-msgstr ""
-
-#: zapzap/features/settings/shell/settings_sidebar.py:81
-#, fuzzy
-msgid "Close settings"
-msgstr "Inställningar"
-
-#: zapzap/features/settings/shell/settings_view.py:32
-#: zapzap/features/settings/pages/about/view.py:105
-msgid "Donate"
-msgstr ""
-
 #: zapzap/features/settings/pages/about/view.py:24
 msgid ""
 "Application identity, project links, support, legal information, and "
@@ -919,7 +934,7 @@ msgid "Homepage"
 msgstr ""
 
 #: zapzap/features/settings/pages/about/view.py:91
-#: zapzap/features/downloads/ui/download_dialog.py:108
+#: zapzap/features/downloads/ui/download_dialog.py:101
 msgid "Open"
 msgstr "Öppna"
 
@@ -997,6 +1012,158 @@ msgstr ""
 msgid "Add an account if the configured account limit allows it."
 msgstr ""
 
+#: zapzap/features/settings/pages/advanced_customizations/view.py:24
+msgid "Customizações avançadas"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:25
+msgid "Gerencie CSS, JavaScript e customizações por escopo."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:40
+#: zapzap/features/settings/pages/network_privacy/view.py:37
+msgid "Scope"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:40
+#, fuzzy
+msgid "Choose the customization scope."
+msgstr "Anpassningar"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:47
+#: zapzap/features/browser/web/web_view.py:564
+msgid "Account"
+msgstr "Konton"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:50
+msgid "Inherit global settings"
+msgstr "Ärv globala inställningar"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:54
+msgid ""
+"When inherit is disabled, account customizations are appended after global "
+"settings."
+msgstr ""
+"När arv är inaktiverat, läses kontots anpassningar in efter de globala "
+"anpassningarna."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:73
+#, fuzzy
+msgid "CSS customizations"
+msgstr "Anpassningar"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:74
+msgid "Import, create, edit, enable, and delete CSS files."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:78
+msgid "Enable custom CSS"
+msgstr "Aktivera anpassad CSS"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:87
+#: zapzap/features/settings/pages/advanced_customizations/view.py:170
+msgid "Create"
+msgstr "Skapa"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:88
+#: zapzap/features/settings/pages/advanced_customizations/view.py:171
+msgid "Edit"
+msgstr "Ändra"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:89
+#: zapzap/features/settings/pages/advanced_customizations/view.py:172
+#: zapzap/features/settings/components/card_user/card_user_controller.py:195
+#: zapzap/features/settings/components/card_user/card_user_view.py:37
+msgid "Delete"
+msgstr "Radera"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:95
+msgid "Import .css"
+msgstr "Importera .css"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:96
+#: zapzap/features/settings/pages/advanced_customizations/view.py:179
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:488
+msgid "Import from URL"
+msgstr "Importera från URL"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:109
+#, fuzzy
+msgid "CSS preview"
+msgstr "CSS-förhandsvisning"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:110
+msgid "Attach and preview a screenshot for the selected CSS file."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:116
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:329
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:368
+msgid "Select a CSS file to preview."
+msgstr "Välj en CSS-fil att förhandsvisa."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:120
+msgid "Upload preview image"
+msgstr "Ladda upp bild för förhandsvisning"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:134
+msgid "Replace preview image"
+msgstr "Ersätt bild för förhandsvisning"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:151
+#, fuzzy
+msgid "JavaScript customizations"
+msgstr "Anpassningar"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:152
+msgid "Import, create, edit, enable, and delete JavaScript files."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:156
+msgid "Enable custom JavaScript"
+msgstr "Aktivera anpassad JavaScript-kod"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:161
+msgid ""
+"⚠ Custom JavaScript runs with full page privileges. Use trusted code only."
+msgstr ""
+"⚠ Anpassad JavaScript-kod körs med fullständiga rättigheter. Använd endast "
+"betrodd kod."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:178
+msgid "Import .js"
+msgstr "Importera .js"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:192
+msgid "Apply changes"
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:193
+msgid "Save changes and reload target pages when needed."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:197
+msgid "Save and reload"
+msgstr "Spara och ladda om"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:198
+#: zapzap/ui/main_window/main_window_view.py:160
+msgid "Reload"
+msgstr "Ladda om"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:199
+#: zapzap/features/downloads/ui/download_dialog.py:103
+msgid "Save"
+msgstr "Spara"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:221
+msgid "Enabled"
+msgstr "Aktiverad"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:222
+msgid "Filename"
+msgstr "Filnamn"
+
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:46
 msgid "Global"
 msgstr "Globalt"
@@ -1063,12 +1230,6 @@ msgstr "Kunde inte ladda ned JavaScript från URL."
 msgid "Select a file first."
 msgstr "Välj en fil först."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:329
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:368
-#: zapzap/features/settings/pages/advanced_customizations/view.py:116
-msgid "Select a CSS file to preview."
-msgstr "Välj en CSS-fil att förhandsvisa."
-
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:378
 msgid "No preview available."
 msgstr "Ingen förhandsvisning tillgänglig."
@@ -1108,12 +1269,6 @@ msgstr "Kunde inte ställa in bild för förhandsvisning."
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:482
 msgid "Preview image updated."
 msgstr "Uppdaterade bild för förhandsvisning."
-
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:488
-#: zapzap/features/settings/pages/advanced_customizations/view.py:96
-#: zapzap/features/settings/pages/advanced_customizations/view.py:179
-msgid "Import from URL"
-msgstr "Importera från URL"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:499
 msgid "https://example.com/theme.user.css"
@@ -1223,165 +1378,25 @@ msgstr "Bekräfta borttagning"
 msgid "Delete selected {} file: {}?"
 msgstr "Ta bort vald {}-fil: {}?"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:816
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:814
 msgid "Deletion cancelled."
 msgstr "Avbröt borttagning."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:827
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:825
 msgid "File deleted."
 msgstr "Fil borttagen."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:829
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:827
 msgid "Could not delete file."
 msgstr "Kunde inte ta bort fil."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:859
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:857
 msgid "Customizations saved. Reload pages to apply changes."
 msgstr "Anpassningar sparade. Ladda om sidor för att applicera ändringarna."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:869
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:867
 msgid "All pages reloaded."
 msgstr "Alla sidor laddades om."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:24
-msgid "Customizações avançadas"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:25
-msgid "Gerencie CSS, JavaScript e customizações por escopo."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:40
-#: zapzap/features/settings/pages/network_privacy/view.py:37
-msgid "Scope"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:40
-#, fuzzy
-msgid "Choose the customization scope."
-msgstr "Anpassningar"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:47
-#: zapzap/features/browser/web/web_view.py:564
-msgid "Account"
-msgstr "Konton"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:50
-msgid "Inherit global settings"
-msgstr "Ärv globala inställningar"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:54
-msgid ""
-"When inherit is disabled, account customizations are appended after global "
-"settings."
-msgstr ""
-"När arv är inaktiverat, läses kontots anpassningar in efter de globala "
-"anpassningarna."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:73
-#, fuzzy
-msgid "CSS customizations"
-msgstr "Anpassningar"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:74
-msgid "Import, create, edit, enable, and delete CSS files."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:78
-msgid "Enable custom CSS"
-msgstr "Aktivera anpassad CSS"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:87
-#: zapzap/features/settings/pages/advanced_customizations/view.py:170
-msgid "Create"
-msgstr "Skapa"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:88
-#: zapzap/features/settings/pages/advanced_customizations/view.py:171
-msgid "Edit"
-msgstr "Ändra"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:89
-#: zapzap/features/settings/pages/advanced_customizations/view.py:172
-#: zapzap/features/settings/components/card_user/card_user_controller.py:195
-#: zapzap/features/settings/components/card_user/card_user_view.py:37
-msgid "Delete"
-msgstr "Radera"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:95
-msgid "Import .css"
-msgstr "Importera .css"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:109
-#, fuzzy
-msgid "CSS preview"
-msgstr "CSS-förhandsvisning"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:110
-msgid "Attach and preview a screenshot for the selected CSS file."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:120
-msgid "Upload preview image"
-msgstr "Ladda upp bild för förhandsvisning"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:134
-msgid "Replace preview image"
-msgstr "Ersätt bild för förhandsvisning"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:151
-#, fuzzy
-msgid "JavaScript customizations"
-msgstr "Anpassningar"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:152
-msgid "Import, create, edit, enable, and delete JavaScript files."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:156
-msgid "Enable custom JavaScript"
-msgstr "Aktivera anpassad JavaScript-kod"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:161
-msgid ""
-"⚠ Custom JavaScript runs with full page privileges. Use trusted code only."
-msgstr ""
-"⚠ Anpassad JavaScript-kod körs med fullständiga rättigheter. Använd endast "
-"betrodd kod."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:178
-msgid "Import .js"
-msgstr "Importera .js"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:192
-msgid "Apply changes"
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:193
-msgid "Save changes and reload target pages when needed."
-msgstr ""
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:197
-msgid "Save and reload"
-msgstr "Spara och ladda om"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:198
-#: zapzap/ui/main_window/main_window_view.py:160
-msgid "Reload"
-msgstr "Ladda om"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:199
-#: zapzap/features/downloads/ui/download_dialog.py:118
-msgid "Save"
-msgstr "Spara"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:221
-msgid "Enabled"
-msgstr "Aktiverad"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:222
-msgid "Filename"
-msgstr "Filnamn"
 
 #: zapzap/features/settings/pages/appearance/view.py:21
 msgid ""
@@ -2445,24 +2460,24 @@ msgstr "Notiser i arbetsyta"
 msgid "Select User-Agent for this account."
 msgstr ""
 
-#: zapzap/features/downloads/ui/download_dialog.py:49
+#: zapzap/features/downloads/ui/download_dialog.py:47
 #, fuzzy
 msgid "Download"
 msgstr "Nedladdningen är för stor."
 
-#: zapzap/features/downloads/ui/download_dialog.py:136
+#: zapzap/features/downloads/ui/download_dialog.py:112
 msgid "More"
 msgstr ""
 
-#: zapzap/features/downloads/ui/download_dialog.py:146
+#: zapzap/features/downloads/ui/download_dialog.py:116
 msgid "Save as"
 msgstr "Spara som"
 
-#: zapzap/features/downloads/ui/download_dialog.py:160
+#: zapzap/features/downloads/ui/download_dialog.py:120
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: zapzap/features/downloads/ui/download_dialog.py:336
+#: zapzap/features/downloads/ui/download_dialog.py:289
 msgid "Save file"
 msgstr "Spara fil"
 
@@ -2492,15 +2507,15 @@ msgstr "Inget aktivt konto!"
 msgid "Flatpak sandbox help"
 msgstr "Hjälp för Flatpak-sandlåda"
 
-#: zapzap/features/browser/shell/browser_controller.py:149
+#: zapzap/features/browser/shell/browser_controller.py:150
 msgid "Flatpak sandbox"
 msgstr "Flatpak-sandlåda"
 
-#: zapzap/features/browser/shell/browser_controller.py:152
+#: zapzap/features/browser/shell/browser_controller.py:151
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap körs i Flatpak-sandlådan."
 
-#: zapzap/features/browser/shell/browser_controller.py:154
+#: zapzap/features/browser/shell/browser_controller.py:153
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
@@ -2512,11 +2527,11 @@ msgstr ""
 msgid "Instructions"
 msgstr "Instruktioner"
 
-#: zapzap/features/browser/shell/browser_controller.py:160
+#: zapzap/features/browser/shell/browser_controller.py:159
 msgid "Copy command"
 msgstr "Kopiera kommando"
 
-#: zapzap/features/browser/shell/browser_controller.py:161
+#: zapzap/features/browser/shell/browser_controller.py:160
 #: zapzap/ui/components/close_button.py:55
 msgid "Close"
 msgstr "Stäng"
@@ -2541,11 +2556,11 @@ msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 
-#: zapzap/features/browser/shell/browser_controller.py:360
+#: zapzap/features/browser/shell/browser_controller.py:361
 msgid "Activate"
 msgstr ""
 
-#: zapzap/features/browser/shell/browser_controller.py:361
+#: zapzap/features/browser/shell/browser_controller.py:362
 msgid "Not now"
 msgstr ""
 
@@ -2789,8 +2804,8 @@ msgstr ""
 msgid "Are you sure you want to close?"
 msgstr "Är du säker på att du vill ta bort detta objekt?"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:52
-#: zapzap/ui/main_window/main_window_controller.py:269
+#: zapzap/ui/main_window/client_side_rendering_controller.py:48
+#: zapzap/ui/main_window/main_window_controller.py:265
 msgid "Don't ask again"
 msgstr ""
 
