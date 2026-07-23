@@ -20,7 +20,7 @@ class ComboBox(QComboBox):
         }
         QComboBox:hover {
             border-color: palette(highlight);
-            background: palette(alternate_base);
+            background: palette(alternate-base);
         }
         QComboBox:focus {
             border: 1px solid palette(highlight);
@@ -65,6 +65,11 @@ class ComboBox(QComboBox):
             padding: 4px 8px;
             border-radius: 6px;
         }
+        QComboBox QAbstractItemView::item:hover,
+        QComboBox QAbstractItemView::item:selected {
+            background: palette(highlight);
+            color: palette(highlighted-text);
+        }
     """
 
     POPUP_STYLE = """
@@ -83,11 +88,18 @@ class ComboBox(QComboBox):
             padding: 4px 8px;
             border-radius: 6px;
         }
+        QAbstractItemView::item:hover,
+        QAbstractItemView::item:selected {
+            background: palette(highlight);
+            color: palette(highlighted-text);
+        }
     """
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.view().setObjectName("ZapZapComboBoxPopup")
+        self.view().setMouseTracking(True)
+        self.view().viewport().setMouseTracking(True)
         self._apply_style()
 
     def showPopup(self):
