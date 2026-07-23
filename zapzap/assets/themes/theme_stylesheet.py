@@ -1,3 +1,6 @@
+from zapzap.ui.typography import Typography
+
+
 class ThemeStylesheet:
     """Global styles for Qt-owned widgets that cannot be wrapped reliably."""
 
@@ -8,7 +11,7 @@ class ThemeStylesheet:
             border: 1px solid palette(mid);
             border-radius: 10px;
             padding: 8px 10px;
-            font-size: 12px;
+            font-size: @font-small;
             opacity: 245;
         }
 
@@ -66,7 +69,7 @@ class ThemeStylesheet:
             border-bottom: 1px solid palette(mid);
             padding: 2px 6px;
             spacing: 2px;
-            font-size: 14px;
+            font-size: @font-body;
         }
         QMenuBar::item {
             background: transparent;
@@ -92,7 +95,7 @@ class ThemeStylesheet:
             border-radius: 10px;
             padding: 6px;
             color: palette(text);
-            font-size: 14px;
+            font-size: @font-body;
         }
         QMenu::item {
             background-color: transparent;
@@ -143,7 +146,7 @@ class ThemeStylesheet:
         QMessageBox {
             background-color: palette(window);
             color: palette(text);
-            font-size: 14px;
+            font-size: @font-body;
         }
         QMessageBox QLabel {
             background-color: transparent;
@@ -198,7 +201,7 @@ class ThemeStylesheet:
             background-color: palette(highlight);
             border-color: palette(highlight);
         }
-    """
+    """.replace("@font-small", Typography.px(Typography.SMALL)).replace("@font-body", Typography.px(Typography.BODY))
 
     @staticmethod
     def get_global_components_stylesheet() -> str:

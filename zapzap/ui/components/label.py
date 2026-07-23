@@ -5,6 +5,8 @@ from typing import Literal
 from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QLabel
 
+from zapzap.ui.typography import Typography
+
 
 LabelVariant = Literal[
     "title",
@@ -38,39 +40,39 @@ class Label(QLabel):
     def _apply_style(self):
         styles = {
             "title": {
-                "style": "color: palette(text); font-size: 26px;",
+                "style": f"color: palette(text); font-size: {Typography.px(Typography.TITLE)};",
                 "weight": QFont.Weight.DemiBold,
             },
             "description": {
-                "style": "color: palette(placeholder-text); font-size: 13px;",
+                "style": f"color: palette(placeholder-text); font-size: {Typography.px(Typography.SMALL)};",
                 "weight": QFont.Weight.Normal,
             },
             "section_title": {
-                "style": "color: palette(text); font-size: 15px;",
+                "style": f"color: palette(text); font-size: {Typography.px(Typography.SUBTITLE)};",
                 "weight": QFont.Weight.DemiBold,
             },
             "section_description": {
-                "style": "color: palette(placeholder-text); font-size: 12px;",
+                "style": f"color: palette(placeholder-text); font-size: {Typography.px(Typography.SMALL)};",
                 "weight": QFont.Weight.Normal,
             },
             "row_title": {
-                "style": "color: palette(text);",
+                "style": f"color: palette(text); font-size: {Typography.px(Typography.BODY)};",
                 "weight": QFont.Weight.Medium,
             },
             "row_description": {
-                "style": "color: palette(placeholder-text); font-size: 12px;",
+                "style": f"color: palette(placeholder-text); font-size: {Typography.px(Typography.SMALL)};",
                 "weight": QFont.Weight.Normal,
             },
             "body": {
-                "style": "color: palette(text);",
+                "style": f"color: palette(text); font-size: {Typography.px(Typography.BODY)};",
                 "weight": QFont.Weight.Normal,
             },
             "brand": {
-                "style": "color: palette(text); font-size: 13px;",
+                "style": f"color: palette(text); font-size: {Typography.px(Typography.SMALL)};",
                 "weight": QFont.Weight.Normal,
             },
             "muted": {
-                "style": "color: palette(placeholder-text);",
+                "style": f"color: palette(placeholder-text); font-size: {Typography.px(Typography.BODY)};",
                 "weight": QFont.Weight.Normal,
             },
         }

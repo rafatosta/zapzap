@@ -12,6 +12,7 @@ from PyQt6.QtWidgets import QWidget
 
 from zapzap.ui.components import CloseButton
 from zapzap.ui.components import Label
+from zapzap.ui.typography import Typography
 
 
 class SettingsSidebarItem(QPushButton):
@@ -112,7 +113,7 @@ class SettingsSidebar(QFrame):
                 padding: 0;
                 background: transparent;
                 color: palette(button-text);
-                font-size: 18px;
+                font-size: @font-close-icon;
             }
             QPushButton#SettingsSidebarCloseButton:hover {
                 background: palette(alternate-base);
@@ -123,4 +124,4 @@ class SettingsSidebar(QFrame):
                 border-color: palette(highlight);
                 color: palette(highlighted-text);
             }
-        """)
+        """).replace("@font-close-icon", Typography.px(Typography.CLOSE_ICON))

@@ -26,9 +26,13 @@ from zapzap.features.settings.components import SettingsSection
 from zapzap.features.settings.components import SettingsSelectRow
 from zapzap.features.settings.components import SettingsSwitchRow
 from zapzap.features.settings.shell.settings_sidebar import SettingsSidebarItem
+from zapzap.ui.typography import Typography
 from zapzap.ui.components import Button
+from zapzap.ui.typography import Typography
 from zapzap.ui.components import Label
+from zapzap.ui.typography import Typography
 from zapzap.ui.components import LineEdit
+from zapzap.ui.typography import Typography
 from zapzap.ui.components import RadioButton
 
 
@@ -483,7 +487,7 @@ class InitialSetupView(QDialog):
                 border-top-right-radius: 18px;
             }
             QLabel#InitialSetupTitle {
-                font-size: 22px;
+                font-size: @font-heading;
             }
             QLabel#InitialSetupSubtitle {
                 color: palette(placeholder-text);
@@ -509,7 +513,7 @@ class InitialSetupView(QDialog):
                 background: palette(alternate-base);
                 color: palette(highlight);
             }
-        """)
+        """).replace("@font-heading", Typography.px(Typography.HEADING))
 
     def set_step(self, index: int):
         self.pages.setCurrentIndex(index)

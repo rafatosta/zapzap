@@ -13,6 +13,7 @@ from zapzap.features.customizations.customizations_manager import Customizations
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.permissions.permissions_manager import PermissionsManager
 from zapzap.features.browser.web.deeplink import build_open_chat_script
+from zapzap.ui.typography import Typography
 
 import urllib.parse  # Para normalizar URLs
 
@@ -334,7 +335,7 @@ class PageController(QWebEnginePage):
             toast.style.backgroundColor = '#333';
             toast.style.color = '#fff';
             toast.style.borderRadius = '5px';
-            toast.style.fontSize = '14px';
+            toast.style.fontSize = '{Typography.px(Typography.BODY)}';
             toast.style.zIndex = '9999';
             toast.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
             toast.innerText = '{message}';

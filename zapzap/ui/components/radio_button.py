@@ -4,6 +4,8 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QRadioButton, QSizePolicy
 
+from zapzap.ui.typography import Typography
+
 
 class RadioButton(QRadioButton):
     """Adwaita-inspired radio button for ZapZap settings groups."""
@@ -27,7 +29,7 @@ class RadioButton(QRadioButton):
         """Apply radio button typography using Qt's native font handling."""
 
         font = self.font()
-        font.setPixelSize(14)
+        font.setPixelSize(Typography.BODY)
         font.setWeight(QFont.Weight.Medium)
 
         self.setFont(font)

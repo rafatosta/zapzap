@@ -6,12 +6,14 @@ from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QPushButton
 
+from zapzap.ui.typography import Typography
+
 
 class CloseButton(QPushButton):
     """Small icon-only close button styled from the active Qt palette."""
 
     SIZE = 28
-    FONT_SIZE = 16
+    FONT_SIZE = Typography.ICON
     BORDER_RADIUS = 8
 
     STYLE = f"""

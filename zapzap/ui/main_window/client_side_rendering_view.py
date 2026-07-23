@@ -17,6 +17,7 @@ from zapzap.assets.themes.csr_button_theme_provider import CSRButtonTheme
 from zapzap.assets.themes.csr_button_theme_provider import CSRButtonThemeProvider
 from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.ui.components import Label
+from zapzap.ui.typography import Typography
 
 
 class _TitleBar(QWidget):
@@ -345,7 +346,7 @@ class ClientSideRenderingView(QWidget):
 
     def _apply_theme(self):
         font_size = self.title_bar.minimize_button.property(
-            "csrFontSize") or "14"
+            "csrFontSize") or str(Typography.BODY)
         border_radius = self.title_bar.minimize_button.property(
             "csrBorderRadius") or "6"
 
@@ -359,7 +360,7 @@ class ClientSideRenderingView(QWidget):
             }
             QWidget#csrTitleBar QLabel {
                 color: palette(text);
-                font-size: 13px;
+                font-size: %(title_font)s;
             }
             QPushButton#csrWindowButton {
                 background: palette(button);
@@ -393,5 +394,5 @@ class ClientSideRenderingView(QWidget):
                 border-color: palette(highlight);
                 color: palette(highlighted-text);
             }
-            """ % {"font": font_size, "radius": border_radius}
+            """ % {"font": font_size, "radius": border_radius, "title_font": Typography.px(Typography.SMALL)}
         )

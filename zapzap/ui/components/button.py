@@ -7,6 +7,7 @@ from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QPushButton
 
 from zapzap.core.theme.theme_manager import ThemeManager
+from zapzap.ui.typography import Typography
 
 
 ButtonVariant = Literal["default", "warning", "danger"]
@@ -73,6 +74,7 @@ class Button(QPushButton):
         """Apply button typography using Qt's native font handling."""
 
         font = self.font()
+        font.setPixelSize(Typography.BODY)
         font.setWeight(QFont.Weight.Medium)
         self.setFont(font)
 

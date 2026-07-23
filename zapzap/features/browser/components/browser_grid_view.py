@@ -10,6 +10,7 @@ from PyQt6.QtWidgets import QVBoxLayout
 from PyQt6.QtWidgets import QWidget
 
 from zapzap.ui.components import Label
+from zapzap.ui.typography import Typography
 
 
 class BrowserGridView(QWidget):
@@ -22,12 +23,12 @@ class BrowserGridView(QWidget):
     }
     QLabel#BrowserGridTitle {
         color: palette(text);
-        font-size: 22px;
+        font-size: @font-heading;
     }
     QLabel#BrowserGridSubtitle,
     QLabel#BrowserGridEmptyState {
         color: palette(placeholder-text);
-        font-size: 13px;
+        font-size: @font-small;
     }
     QFrame#BrowserGridContainer {
         background: palette(base);
@@ -44,7 +45,7 @@ class BrowserGridView(QWidget):
         border-color: palette(highlight);
         background: palette(base);
     }
-    """
+    """.replace("@font-heading", Typography.px(Typography.HEADING)).replace("@font-small", Typography.px(Typography.SMALL))
 
     def __init__(self, parent=None):
         super().__init__(parent)

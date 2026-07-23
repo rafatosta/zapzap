@@ -2,6 +2,7 @@ from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QFrame, QVBoxLayout
 
 from zapzap.ui.components import Label
+from zapzap.ui.typography import Typography
 
 
 class SettingsBadge(Label):
@@ -27,7 +28,7 @@ class SettingsBadge(Label):
             QLabel#SettingsBadge {
                 border-radius: 8px;
                 padding: 3px 8px;
-                font-size: 11px;
+                font-size: @font-caption;
                 background: palette(alternate-base);
                 color: palette(highlight);
             }
@@ -38,7 +39,7 @@ class SettingsBadge(Label):
             QLabel#SettingsBadge[kind="success"] {
                 color: palette(highlight);
             }
-        """)
+        """).replace("@font-caption", Typography.px(Typography.CAPTION))
 
 
 class SettingsInfoBox(QFrame):
