@@ -7,13 +7,11 @@ from gettext import gettext as _
 from PyQt6.QtCore import QPoint
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QColor
-from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QButtonGroup
 from PyQt6.QtWidgets import QDialog
 from PyQt6.QtWidgets import QFrame
 from PyQt6.QtWidgets import QGraphicsDropShadowEffect
 from PyQt6.QtWidgets import QHBoxLayout
-from PyQt6.QtWidgets import QPushButton
 from PyQt6.QtWidgets import QStackedWidget
 from PyQt6.QtWidgets import QVBoxLayout
 from PyQt6.QtWidgets import QWidget
@@ -27,6 +25,7 @@ from zapzap.features.settings.components import SettingsRadioGroup
 from zapzap.features.settings.components import SettingsSection
 from zapzap.features.settings.components import SettingsSelectRow
 from zapzap.features.settings.components import SettingsSwitchRow
+from zapzap.features.settings.shell.settings_sidebar import SettingsSidebarItem
 from zapzap.ui.components import Button
 from zapzap.ui.components import Label
 from zapzap.ui.components import LineEdit
@@ -127,10 +126,7 @@ class InitialSetupView(QDialog):
 
     def _add_page(self, page: QWidget, label: str):
         index = self.pages.addWidget(page)
-        button = QPushButton(f"{index + 1}. {label}", self.sidebar)
-        font = button.font()
-        font.setWeight(QFont.Weight.Medium)
-        button.setFont(font)
+        button = SettingsSidebarItem(f"{index + 1}. {label}", self.sidebar)
         button.setObjectName("InitialSetupStepButton")
         self.step_buttons.append(button)
         self.sidebar_layout.addWidget(button)
