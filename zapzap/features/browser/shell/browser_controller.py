@@ -373,7 +373,7 @@ class BrowserController(BrowserView):
 
     def _show_page_button_context_menu(self, button: BrowserPageButton, position):
         """Exibe no botão da conta o menu com as opções do CardUser."""
-        menu = CardUser.create_page_button_context_menu(button, button.user)
+        menu = CardUser.create_page_button_context_menu(self, button.user)
         menu.exec(button.mapToGlobal(position))
 
     def close_pages(self):
