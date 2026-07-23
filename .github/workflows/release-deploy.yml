@@ -41,6 +41,14 @@ jobs:
       release_tag: ${{ github.event.release.tag_name }}
     secrets: inherit
 
+  macos:
+    if: ${{ !github.event.release.prerelease }}
+    uses: ./.github/workflows/build-macos.yml
+    with:
+      release_upload: true
+      release_tag: ${{ github.event.release.tag_name }}
+    secrets: inherit
+
   deb:
     if: ${{ !github.event.release.prerelease }}
     uses: ./.github/workflows/build-deb.yml

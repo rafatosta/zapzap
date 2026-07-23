@@ -1,5 +1,5 @@
 from PyQt6.QtCore import QStandardPaths, QFileInfo
-from zapzap.core.platform import IS_WINDOWS
+from zapzap.core.platform import IS_WINDOWS, IS_MAC
 from PyQt6.QtCore import QMetaType
 from PyQt6.QtDBus import (
     QDBusArgument,
@@ -22,6 +22,8 @@ class AutostartManager:
         """Creates or removes the autostart desktop entry."""
         if IS_WINDOWS:
             AutostartManager._handle_windows(enable_autostart)
+        elif IS_MAC:
+            AutostartManager._handle_macos(enable_autostart)
         elif AutostartManager.IS_FLATPAK:
             AutostartManager._handle_flatpak(enable_autostart)
         else:
@@ -47,6 +49,43 @@ class AutostartManager:
                         pass
         except Exception as e:
             print(f"Error managing Windows autostart: {e}")
+
+    @staticmethod
+    def _handle_macos(enable_autostart: bool):
+        """Manages autostart settings on macOS via LaunchAgents."""
+        try:
+            import os
+            plist_dir = os.path.expanduser("~/Library/LaunchAgents")
+            plist_path = os.path.join(plist_dir, "com.rtosta.zapzap.plist")
+
+            if enable_autostart:
+                import sys
+                exe = sys.executable
+                plist_content = f"""<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.rtosta.zapzap</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>{exe}</string>
+        <string>-m</string>
+        <string>zapzap</string>
+        <string>--hideStart</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>"""
+                os.makedirs(plist_dir, exist_ok=True)
+                with open(plist_path, "w") as f:
+                    f.write(plist_content)
+            else:
+                if os.path.exists(plist_path):
+                    os.remove(plist_path)
+        except Exception as e:
+            print(f"Error managing macOS autostart: {e}")
 
     @staticmethod
     def _handle_flatpak(enable_autostart: bool) -> bool:

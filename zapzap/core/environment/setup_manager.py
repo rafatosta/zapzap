@@ -1,6 +1,6 @@
 from os import environ, getenv
 from PyQt6.QtCore import QFileInfo
-from zapzap.core.platform import IS_WINDOWS
+from zapzap.core.platform import IS_WINDOWS, IS_MAC
 from zapzap.features.dictionaries.dictionaries_manager import DictionariesManager
 from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.core.environment.gpu_environment import (
@@ -156,8 +156,8 @@ class SetupManager:
 
     @staticmethod
     def get_qt_platform():
-        # On Windows, let Qt automatically pick the 'windows' platform plugin
-        if IS_WINDOWS:
+        # On Windows and macOS, let Qt automatically pick the platform plugin
+        if IS_WINDOWS or IS_MAC:
             return None
 
         if "QT_QPA_PLATFORM" in environ:
