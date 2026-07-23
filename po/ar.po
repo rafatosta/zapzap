@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-22 20:42-0300\n"
+"POT-Creation-Date: 2026-07-23 09:51-0300\n"
 "PO-Revision-Date: 2026-02-02 23:52+0200\n"
 "Last-Translator: Muhammed Al-Basha <contact.mu7basha@gmail.com>\n"
 "Language-Team: Arabic\n"
@@ -91,26 +91,26 @@ msgstr "الوساطة لطلبات HTTP فقط"
 msgid "Proxying for FTP requests only."
 msgstr "الوساطة لطلبات FTP فقط"
 
-#: zapzap/features/alerts/alert_manager.py:68
-#: zapzap/features/alerts/alert_manager.py:82
-#: zapzap/features/alerts/alert_manager.py:96
-#: zapzap/features/alerts/alert_manager.py:146
+#: zapzap/features/alerts/alert_manager.py:72
+#: zapzap/features/alerts/alert_manager.py:91
+#: zapzap/features/alerts/alert_manager.py:110
+#: zapzap/features/alerts/alert_manager.py:173
 msgid "OK"
 msgstr ""
 
-#: zapzap/features/alerts/alert_manager.py:179
+#: zapzap/features/alerts/alert_manager.py:214
 msgid "Yes"
 msgstr ""
 
-#: zapzap/features/alerts/alert_manager.py:184
+#: zapzap/features/alerts/alert_manager.py:222
 msgid "No"
 msgstr ""
 
-#: zapzap/features/alerts/alert_manager.py:203
+#: zapzap/features/alerts/alert_manager.py:241
 msgid "Information"
 msgstr "معلومات"
 
-#: zapzap/features/alerts/alert_manager.py:205
+#: zapzap/features/alerts/alert_manager.py:243
 #, python-brace-format
 msgid ""
 "Limit of {} users reached.\n"
@@ -119,11 +119,11 @@ msgstr ""
 "وصلت لحد المستخدمين {}\n"
 "لا يمكن إنشاء المزيد من المستخدمين!"
 
-#: zapzap/features/alerts/alert_manager.py:212
+#: zapzap/features/alerts/alert_manager.py:250
 msgid "Attention"
 msgstr "انتباه"
 
-#: zapzap/features/alerts/alert_manager.py:212
+#: zapzap/features/alerts/alert_manager.py:250
 msgid "No active account!"
 msgstr "لا حساب فعَّال!"
 
@@ -167,499 +167,499 @@ msgstr "استرجع القياسي"
 msgid "English"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:42
+#: zapzap/features/initial_setup/view.py:41
 #, fuzzy
 msgid "Setup ZapZap"
 msgstr "زاب-زاب"
 
-#: zapzap/features/initial_setup/view.py:87
+#: zapzap/features/initial_setup/view.py:86
 #, fuzzy
 msgid "Welcome to ZapZap"
 msgstr "مرحبًا  في"
 
-#: zapzap/features/initial_setup/view.py:90
+#: zapzap/features/initial_setup/view.py:89
 msgid "Choose the essentials now. You can change everything later in Settings."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:105
+#: zapzap/features/initial_setup/view.py:104
 msgid "Basics"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:106
+#: zapzap/features/initial_setup/view.py:105
 #: zapzap/features/settings/shell/settings_controller.py:43
 #: zapzap/features/settings/pages/notifications/view.py:21
 msgid "Notifications"
 msgstr "الإشعارات"
 
-#: zapzap/features/initial_setup/view.py:107
+#: zapzap/features/initial_setup/view.py:106
 msgid "Background"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:108
+#: zapzap/features/initial_setup/view.py:107
 #, fuzzy
 msgid "Files"
 msgstr "الملف"
 
-#: zapzap/features/initial_setup/view.py:109
-#: zapzap/features/initial_setup/view.py:364
+#: zapzap/features/initial_setup/view.py:108
+#: zapzap/features/initial_setup/view.py:360
 #: zapzap/features/settings/shell/settings_controller.py:44
 #: zapzap/features/settings/pages/permissions/view.py:22
 #: zapzap/features/settings/pages/permissions/view.py:37
 msgid "Permissions"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:110
-#: zapzap/features/initial_setup/view.py:120
+#: zapzap/features/initial_setup/view.py:109
+#: zapzap/features/initial_setup/view.py:119
 msgid "Finish"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:117
+#: zapzap/features/initial_setup/view.py:116
 msgid "Skip setup"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:118
+#: zapzap/features/initial_setup/view.py:117
 msgid "Back"
 msgstr "رجوع"
 
-#: zapzap/features/initial_setup/view.py:119
+#: zapzap/features/initial_setup/view.py:118
 msgid "Next"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:140
+#: zapzap/features/initial_setup/view.py:136
 msgid "Language and appearance"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:141
+#: zapzap/features/initial_setup/view.py:137
 msgid "Start with the interface language and a comfortable visual theme."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:146
+#: zapzap/features/initial_setup/view.py:142
 #: zapzap/features/settings/pages/language_downloads/view.py:34
 #, fuzzy
 msgid "Language"
 msgstr "اختر اللغة"
 
-#: zapzap/features/initial_setup/view.py:147
+#: zapzap/features/initial_setup/view.py:143
 #: zapzap/features/settings/pages/language_downloads/view.py:35
 msgid "Choose the interface language used by ZapZap."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:152
+#: zapzap/features/initial_setup/view.py:148
 #: zapzap/features/settings/pages/language_downloads/view.py:39
 #, fuzzy
 msgid "Interface language"
 msgstr "اختر اللغة"
 
-#: zapzap/features/initial_setup/view.py:153
+#: zapzap/features/initial_setup/view.py:149
 msgid "The interface language is applied when you finish setup."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:162
+#: zapzap/features/initial_setup/view.py:158
 #: zapzap/features/settings/pages/appearance/view.py:70
 msgid "Theme"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:163
+#: zapzap/features/initial_setup/view.py:159
 #: zapzap/features/settings/pages/appearance/view.py:70
 msgid "Choose the visual theme."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:167
+#: zapzap/features/initial_setup/view.py:163
 #: zapzap/features/settings/pages/appearance/view.py:72
 msgid "Automatic"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:168
+#: zapzap/features/initial_setup/view.py:164
 #: zapzap/features/settings/pages/appearance/view.py:73
 msgid "Light"
 msgstr "فاتح"
 
-#: zapzap/features/initial_setup/view.py:169
+#: zapzap/features/initial_setup/view.py:165
 #: zapzap/features/settings/pages/appearance/view.py:74
 msgid "Dark"
 msgstr "داكن"
 
-#: zapzap/features/initial_setup/view.py:186
+#: zapzap/features/initial_setup/view.py:182
 #, fuzzy
 msgid "Notifications and privacy"
 msgstr "الإشعارات"
 
-#: zapzap/features/initial_setup/view.py:187
+#: zapzap/features/initial_setup/view.py:183
 msgid ""
 "Decide how much message information appears in native notification banners."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:191
+#: zapzap/features/initial_setup/view.py:187
 #: zapzap/features/settings/pages/notifications/view.py:37
 #, fuzzy
 msgid "Desktop notifications"
 msgstr "يُصمِت الإشعارات"
 
-#: zapzap/features/initial_setup/view.py:192
+#: zapzap/features/initial_setup/view.py:188
 #: zapzap/features/settings/pages/notifications/view.py:38
 msgid "Choose whether ZapZap may show desktop notifications."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:197
+#: zapzap/features/initial_setup/view.py:193
 #: zapzap/features/settings/pages/notifications/view.py:42
 #, fuzzy
 msgid "Enable notifications"
 msgstr "منطقة عمل الإشعارات"
 
-#: zapzap/features/initial_setup/view.py:198
+#: zapzap/features/initial_setup/view.py:194
 #: zapzap/features/settings/pages/notifications/view.py:43
 msgid ""
 "Allow ZapZap to publish native desktop notifications for WhatsApp activity."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:206
+#: zapzap/features/initial_setup/view.py:202
 #: zapzap/features/settings/pages/notifications/view.py:51
 #, fuzzy
 msgid "Notification privacy"
 msgstr "الإشعارات"
 
-#: zapzap/features/initial_setup/view.py:207
+#: zapzap/features/initial_setup/view.py:203
 #: zapzap/features/settings/pages/notifications/view.py:52
 msgid "Limit what is visible in notification banners."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:212
+#: zapzap/features/initial_setup/view.py:208
 #: zapzap/features/settings/pages/notifications/view.py:56
 #, fuzzy
 msgid "Show contact photo"
 msgstr "اخفِ إشعار التبرع"
 
-#: zapzap/features/initial_setup/view.py:213
+#: zapzap/features/initial_setup/view.py:209
 #: zapzap/features/settings/pages/notifications/view.py:57
 msgid "Display the sender avatar when it is available."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:216
+#: zapzap/features/initial_setup/view.py:212
 #: zapzap/features/settings/pages/notifications/view.py:60
 #, fuzzy
 msgid "Show contact name"
 msgstr "اخفِ إشعار التبرع"
 
-#: zapzap/features/initial_setup/view.py:217
+#: zapzap/features/initial_setup/view.py:213
 #: zapzap/features/settings/pages/notifications/view.py:61
 msgid "Display the sender or group name."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:220
+#: zapzap/features/initial_setup/view.py:216
 #: zapzap/features/settings/pages/notifications/view.py:64
 msgid "Show message preview"
 msgstr "اظهر معاينة للرسالة"
 
-#: zapzap/features/initial_setup/view.py:221
+#: zapzap/features/initial_setup/view.py:217
 #: zapzap/features/settings/pages/notifications/view.py:65
 #, fuzzy
 msgid "Display the message text in the notification."
 msgstr "يُصمِت الإشعارات"
 
-#: zapzap/features/initial_setup/view.py:235
+#: zapzap/features/initial_setup/view.py:231
 #, fuzzy
 msgid "Background behavior"
 msgstr "السلوك"
 
-#: zapzap/features/initial_setup/view.py:236
+#: zapzap/features/initial_setup/view.py:232
 msgid ""
 "Choose whether ZapZap should stay available from the tray and start with "
 "your session."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:240
+#: zapzap/features/initial_setup/view.py:236
 #: zapzap/features/settings/pages/appearance/view.py:87
 msgid "Tray icon"
 msgstr "أيقونة اللوحة"
 
-#: zapzap/features/initial_setup/view.py:241
+#: zapzap/features/initial_setup/view.py:237
 msgid "Control tray icon visibility and unread counter."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:246
+#: zapzap/features/initial_setup/view.py:242
 #: zapzap/features/settings/pages/appearance/view.py:92
 #, fuzzy
 msgid "Enable tray icon"
 msgstr "منطقة عمل الإشعارات"
 
-#: zapzap/features/initial_setup/view.py:247
+#: zapzap/features/initial_setup/view.py:243
 #: zapzap/features/settings/pages/appearance/view.py:93
 msgid "Show ZapZap in the system tray."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:250
+#: zapzap/features/initial_setup/view.py:246
 #: zapzap/features/settings/pages/appearance/view.py:96
 #, fuzzy
 msgid "Notification counter"
 msgstr "الإشعارات"
 
-#: zapzap/features/initial_setup/view.py:251
+#: zapzap/features/initial_setup/view.py:247
 #: zapzap/features/settings/pages/appearance/view.py:97
 msgid "Show unread notifications on the tray icon."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:261
+#: zapzap/features/initial_setup/view.py:257
 #: zapzap/features/settings/pages/system_startup/view.py:54
 #, fuzzy
 msgid "Window behavior"
 msgstr "السلوك"
 
-#: zapzap/features/initial_setup/view.py:262
+#: zapzap/features/initial_setup/view.py:258
 msgid "Configure close behavior."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:267
+#: zapzap/features/initial_setup/view.py:263
 msgid "Keep running in the background"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:268
+#: zapzap/features/initial_setup/view.py:264
 msgid "Hide the main window instead of quitting when it is closed."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:271
+#: zapzap/features/initial_setup/view.py:267
 #: zapzap/features/settings/pages/system_startup/view.py:59
 #, fuzzy
 msgid "Confirm before closing the window"
 msgstr "اغلق عند إغلاق النافذة"
 
-#: zapzap/features/initial_setup/view.py:272
+#: zapzap/features/initial_setup/view.py:268
 #: zapzap/features/settings/pages/system_startup/view.py:60
 msgid "Ask for confirmation before closing ZapZap."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:282
+#: zapzap/features/initial_setup/view.py:278
 #: zapzap/features/settings/pages/system_startup/view.py:33
 msgid "Startup"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:283
+#: zapzap/features/initial_setup/view.py:279
 #: zapzap/features/settings/pages/system_startup/view.py:34
 msgid "Control how ZapZap behaves when your desktop session starts."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:288
+#: zapzap/features/initial_setup/view.py:284
 #: zapzap/features/settings/pages/system_startup/view.py:42
 msgid "Start with the system"
 msgstr "ابدأ مع النظام"
 
-#: zapzap/features/initial_setup/view.py:289
+#: zapzap/features/initial_setup/view.py:285
 #: zapzap/features/settings/pages/system_startup/view.py:43
 msgid "Create or remove the desktop autostart entry."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:292
+#: zapzap/features/initial_setup/view.py:288
 #: zapzap/features/settings/pages/system_startup/view.py:38
 msgid "Start minimized"
 msgstr "ابدأ مصغرًا"
 
-#: zapzap/features/initial_setup/view.py:293
+#: zapzap/features/initial_setup/view.py:289
 #: zapzap/features/settings/pages/system_startup/view.py:39
 msgid "Open ZapZap in the background instead of showing the main window."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:306
+#: zapzap/features/initial_setup/view.py:302
 #, fuzzy
 msgid "Downloads and typing"
 msgstr "مسار التحميل"
 
-#: zapzap/features/initial_setup/view.py:307
+#: zapzap/features/initial_setup/view.py:303
 msgid ""
 "Choose where files are saved and enable spell checking when dictionaries are "
 "available."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:311
+#: zapzap/features/initial_setup/view.py:307
 #: zapzap/features/settings/pages/language_downloads/view.py:52
 #, fuzzy
 msgid "Downloads"
 msgstr "مسار التحميل"
 
-#: zapzap/features/initial_setup/view.py:312
+#: zapzap/features/initial_setup/view.py:308
 #: zapzap/features/settings/pages/language_downloads/view.py:53
 msgid "Choose where downloaded files are saved."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:317
+#: zapzap/features/initial_setup/view.py:313
 #: zapzap/features/settings/pages/language_downloads/view.py:57
 #, fuzzy
 msgid "Download directory"
 msgstr "مسار التحميل"
 
-#: zapzap/features/initial_setup/view.py:318
+#: zapzap/features/initial_setup/view.py:314
 msgid "Set a custom folder or keep the current download location."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:319
+#: zapzap/features/initial_setup/view.py:315
 #, fuzzy
 msgid "Choose folder"
 msgstr "مسار التحميل"
 
-#: zapzap/features/initial_setup/view.py:329
+#: zapzap/features/initial_setup/view.py:325
 #: zapzap/features/settings/pages/language_downloads/view.py:73
 #, fuzzy
 msgid "Spell checker"
 msgstr "مدقِّق الهجاء"
 
-#: zapzap/features/initial_setup/view.py:330
+#: zapzap/features/initial_setup/view.py:326
 #: zapzap/features/settings/pages/language_downloads/view.py:74
 msgid "Select compiled dictionaries and where ZapZap should look for them."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:335
+#: zapzap/features/initial_setup/view.py:331
 #: zapzap/features/settings/pages/language_downloads/view.py:78
 #, fuzzy
 msgid "Enable spell checker"
 msgstr "مدقِّق الهجاء"
 
-#: zapzap/features/initial_setup/view.py:336
+#: zapzap/features/initial_setup/view.py:332
 #: zapzap/features/settings/pages/language_downloads/view.py:79
 msgid "Use Qt WebEngine spell checking with the selected dictionary."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:339
+#: zapzap/features/initial_setup/view.py:335
 #: zapzap/features/settings/pages/language_downloads/view.py:82
 msgid "Dictionary language"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:340
+#: zapzap/features/initial_setup/view.py:336
 #: zapzap/features/settings/pages/language_downloads/view.py:83
 #, fuzzy
 msgid "Recognizes only compiled dictionaries (.bdic)."
 msgstr "يتعرف فقط على القواميس المجمَّعة (.bdic)"
 
-#: zapzap/features/initial_setup/view.py:344
+#: zapzap/features/initial_setup/view.py:340
 msgid ""
 "No compiled dictionaries were found. You can configure dictionaries later in "
 "Settings."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:359
+#: zapzap/features/initial_setup/view.py:355
 msgid "Essential permissions"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:360
+#: zapzap/features/initial_setup/view.py:356
 msgid ""
 "Allow only the WhatsApp Web permissions you want to grant automatically."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:365
+#: zapzap/features/initial_setup/view.py:361
 #: zapzap/features/settings/pages/permissions/view.py:38
 msgid "When an option is unchecked, ZapZap will ask again in each session."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:371
+#: zapzap/features/initial_setup/view.py:367
 #: zapzap/features/settings/pages/permissions/view.py:42
 msgid ""
 "Enable only the permissions you want to grant automatically when the page "
 "requests them."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:375
+#: zapzap/features/initial_setup/view.py:371
 #: zapzap/features/settings/pages/permissions/view.py:46
 #, fuzzy
 msgid "Microphone"
 msgstr "برقم الهاتف"
 
-#: zapzap/features/initial_setup/view.py:376
+#: zapzap/features/initial_setup/view.py:372
 #: zapzap/features/settings/pages/permissions/view.py:46
 msgid "Automatically allow access to your microphone."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:379
+#: zapzap/features/initial_setup/view.py:375
 #: zapzap/features/settings/pages/permissions/view.py:47
 msgid "Camera"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:380
+#: zapzap/features/initial_setup/view.py:376
 #: zapzap/features/settings/pages/permissions/view.py:47
 msgid "Automatically allow access to your camera."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:383
+#: zapzap/features/initial_setup/view.py:379
 #: zapzap/features/settings/pages/permissions/view.py:56
 msgid "Screen contents"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:384
+#: zapzap/features/initial_setup/view.py:380
 #: zapzap/features/settings/pages/permissions/view.py:57
 msgid "Automatically allow sharing of screen contents."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:387
+#: zapzap/features/initial_setup/view.py:383
 #: zapzap/features/settings/pages/network_privacy/view.py:117
 msgid "WebRTC shield"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:388
+#: zapzap/features/initial_setup/view.py:384
 msgid "Reduce WebRTC IP exposure."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:405
+#: zapzap/features/initial_setup/view.py:401
 #: zapzap/features/settings/pages/permissions/view.py:81
 msgid "Flatpak permissions"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:406
+#: zapzap/features/initial_setup/view.py:402
 #: zapzap/features/settings/pages/permissions/view.py:82
 msgid ""
 "Grant filesystem access if downloads, imports, or dictionaries cannot reach "
 "folders outside the sandbox."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:412
+#: zapzap/features/initial_setup/view.py:408
 #: zapzap/features/settings/pages/permissions/view.py:86
 msgid ""
 "Flatpak sandbox: if file access fails, grant folder permissions using "
 "Flatseal or flatpak override."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:422
+#: zapzap/features/initial_setup/view.py:418
 #: zapzap/features/settings/pages/permissions/view.py:94
 msgid "Select and copy this command in your terminal"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:424
+#: zapzap/features/initial_setup/view.py:420
 #: zapzap/features/settings/pages/permissions/view.py:96
 #: zapzap/features/browser/web/web_view.py:312
 msgid "Copy"
 msgstr "نسخ"
 
-#: zapzap/features/initial_setup/view.py:428
+#: zapzap/features/initial_setup/view.py:424
 #: zapzap/features/settings/pages/permissions/view.py:100
 msgid "Flatseal"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:429
+#: zapzap/features/initial_setup/view.py:425
 #: zapzap/features/settings/pages/permissions/view.py:101
 msgid ""
 "Flatseal is a graphical utility to review and modify permissions from your "
 "Flatpak applications."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:430
+#: zapzap/features/initial_setup/view.py:426
 #: zapzap/features/settings/pages/permissions/view.py:102
 msgid "Install Flatseal on Linux | Flathub"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:445
+#: zapzap/features/initial_setup/view.py:441
 msgid "You're ready"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:446
+#: zapzap/features/initial_setup/view.py:442
 msgid ""
 "ZapZap will save these preferences now. Advanced options remain available in "
 "Settings."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:450
+#: zapzap/features/initial_setup/view.py:446
 msgid "Finish setup"
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:451
+#: zapzap/features/initial_setup/view.py:447
 msgid "Review advanced options later whenever you need them."
 msgstr ""
 
-#: zapzap/features/initial_setup/view.py:457
+#: zapzap/features/initial_setup/view.py:453
 msgid ""
 "You can revisit all choices from Settings at any time. Proxy, custom CSS/"
 "JavaScript, Flatpak permissions, and performance tweaks are still available "
@@ -874,6 +874,7 @@ msgid "Privacy and Network"
 msgstr ""
 
 #: zapzap/features/settings/shell/settings_controller.py:48
+#: zapzap/features/settings/pages/advanced_customizations/view.py:24
 #, fuzzy
 msgid "Advanced Customizations"
 msgstr "مخصَّص"
@@ -997,13 +998,10 @@ msgstr ""
 msgid "Add an account if the configured account limit allows it."
 msgstr ""
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:24
-msgid "Customizações avançadas"
-msgstr ""
-
 #: zapzap/features/settings/pages/advanced_customizations/view.py:25
-msgid "Gerencie CSS, JavaScript e customizações por escopo."
-msgstr ""
+#, fuzzy
+msgid "Manage CSS, JavaScript and customizations by scope."
+msgstr "مخصَّص"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:40
 #: zapzap/features/settings/pages/network_privacy/view.py:37
@@ -1056,8 +1054,8 @@ msgstr ""
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:89
 #: zapzap/features/settings/pages/advanced_customizations/view.py:172
-#: zapzap/features/settings/components/card_user/card_user_controller.py:195
 #: zapzap/features/settings/components/card_user/card_user_view.py:37
+#: zapzap/features/settings/components/card_user/card_user_controller.py:196
 msgid "Delete"
 msgstr "احذف"
 
@@ -1369,23 +1367,23 @@ msgstr "اكّد الاستبعاد"
 msgid "Delete selected {} file: {}?"
 msgstr ""
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:814
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:815
 msgid "Deletion cancelled."
 msgstr ""
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:825
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:826
 msgid "File deleted."
 msgstr ""
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:827
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:828
 msgid "Could not delete file."
 msgstr ""
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:857
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:858
 msgid "Customizations saved. Reload pages to apply changes."
 msgstr ""
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:867
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:868
 msgid "All pages reloaded."
 msgstr ""
 
@@ -1531,51 +1529,6 @@ msgstr "اختر اللغة"
 msgid "Rebuild the main window to apply window decoration mode changes."
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/controller.py:55
-#: zapzap/features/settings/pages/debugging/controller.py:65
-#: zapzap/features/settings/pages/debugging/controller.py:74
-msgid "Debug logs"
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/controller.py:56
-#, python-brace-format
-msgid "Deleted {count} old crash report(s) (older than 30 days)."
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/controller.py:66
-msgid "Delete all crash reports and debug logs?"
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/controller.py:75
-#, python-brace-format
-msgid "Deleted {count} file(s)."
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/controller.py:82
-#: zapzap/features/settings/pages/debugging/controller.py:95
-#: zapzap/features/settings/pages/debugging/controller.py:102
-#: zapzap/features/settings/pages/debugging/view.py:73
-#, fuzzy
-msgid "Reset settings"
-msgstr "الإعدادات"
-
-#: zapzap/features/settings/pages/debugging/controller.py:84
-msgid ""
-"This will delete your current settings file (.config) and requires restart. "
-"Continue?"
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/controller.py:96
-#, python-brace-format
-msgid ""
-"Could not remove settings file:\n"
-"{error}"
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/controller.py:103
-msgid "Settings were reset successfully. Restart ZapZap now?"
-msgstr ""
-
 #: zapzap/features/settings/pages/debugging/view.py:23
 msgid ""
 "Diagnostics, crash logs, runtime information, and safe maintenance actions."
@@ -1602,6 +1555,14 @@ msgstr "اختر الكل"
 #: zapzap/features/settings/pages/debugging/view.py:68
 msgid "Reset settings is destructive and requires restart."
 msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:73
+#: zapzap/features/settings/pages/debugging/controller.py:83
+#: zapzap/features/settings/pages/debugging/controller.py:97
+#: zapzap/features/settings/pages/debugging/controller.py:104
+#, fuzzy
+msgid "Reset settings"
+msgstr "الإعدادات"
 
 #: zapzap/features/settings/pages/debugging/view.py:81
 #, fuzzy
@@ -1641,6 +1602,43 @@ msgid ""
 "Crash reports are stored in this folder. You can open the directory or clean "
 "old files.\n"
 "{details}"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/controller.py:55
+#: zapzap/features/settings/pages/debugging/controller.py:65
+#: zapzap/features/settings/pages/debugging/controller.py:75
+msgid "Debug logs"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/controller.py:56
+#, python-brace-format
+msgid "Deleted {count} old crash report(s) (older than 30 days)."
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/controller.py:66
+msgid "Delete all crash reports and debug logs?"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/controller.py:76
+#, python-brace-format
+msgid "Deleted {count} file(s)."
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/controller.py:85
+msgid ""
+"This will delete your current settings file (.config) and requires restart. "
+"Continue?"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/controller.py:98
+#, python-brace-format
+msgid ""
+"Could not remove settings file:\n"
+"{error}"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/controller.py:105
+msgid "Settings were reset successfully. Restart ZapZap now?"
 msgstr ""
 
 #: zapzap/features/settings/pages/language_downloads/view.py:21
@@ -2312,48 +2310,6 @@ msgstr ""
 msgid "Restart the full application to apply the selected window system."
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:109
-msgid "Confirm exclusion"
-msgstr "اكّد الاستبعاد"
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:110
-msgid "Are you sure you want to delete this item?"
-msgstr "أمتأكد من حذف هذا العنصر؟"
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:138
-msgid "User-Agent Changed"
-msgstr ""
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:140
-msgid ""
-"Please restart this session (or the application) to apply the new User-Agent."
-msgstr ""
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:148
-#: zapzap/features/settings/components/card_user/card_user_controller.py:188
-#, fuzzy
-msgid "Generate new colors for the icon"
-msgstr "انقر لتوليد ألوان جديدة للأيقونة"
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:150
-#: zapzap/features/settings/components/card_user/card_user_controller.py:190
-msgid "Restore standard"
-msgstr "استرجع القياسي"
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:159
-#: zapzap/features/settings/components/card_user/card_user_view.py:49
-msgid "Do not disturb"
-msgstr "عدم الإزعاج"
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:166
-msgid "Disable"
-msgstr "عطِّل"
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:173
-#: zapzap/features/settings/components/card_user/card_user_view.py:58
-msgid "User-Agent"
-msgstr ""
-
 #: zapzap/features/settings/components/card_user/card_user_view.py:34
 #, fuzzy
 msgid "Account name"
@@ -2368,14 +2324,56 @@ msgstr "حساب جديد"
 msgid "Hide this account and prevent it from loading."
 msgstr ""
 
+#: zapzap/features/settings/components/card_user/card_user_view.py:49
+#: zapzap/features/settings/components/card_user/card_user_controller.py:160
+msgid "Do not disturb"
+msgstr "عدم الإزعاج"
+
 #: zapzap/features/settings/components/card_user/card_user_view.py:50
 #, fuzzy
 msgid "Disable notifications for this account."
 msgstr "منطقة عمل الإشعارات"
 
+#: zapzap/features/settings/components/card_user/card_user_view.py:58
+#: zapzap/features/settings/components/card_user/card_user_controller.py:174
+msgid "User-Agent"
+msgstr ""
+
 #: zapzap/features/settings/components/card_user/card_user_view.py:59
 msgid "Select User-Agent for this account."
 msgstr ""
+
+#: zapzap/features/settings/components/card_user/card_user_controller.py:109
+msgid "Confirm exclusion"
+msgstr "اكّد الاستبعاد"
+
+#: zapzap/features/settings/components/card_user/card_user_controller.py:110
+msgid "Are you sure you want to delete this item?"
+msgstr "أمتأكد من حذف هذا العنصر؟"
+
+#: zapzap/features/settings/components/card_user/card_user_controller.py:139
+msgid "User-Agent Changed"
+msgstr ""
+
+#: zapzap/features/settings/components/card_user/card_user_controller.py:141
+msgid ""
+"Please restart this session (or the application) to apply the new User-Agent."
+msgstr ""
+
+#: zapzap/features/settings/components/card_user/card_user_controller.py:149
+#: zapzap/features/settings/components/card_user/card_user_controller.py:189
+#, fuzzy
+msgid "Generate new colors for the icon"
+msgstr "انقر لتوليد ألوان جديدة للأيقونة"
+
+#: zapzap/features/settings/components/card_user/card_user_controller.py:151
+#: zapzap/features/settings/components/card_user/card_user_controller.py:191
+msgid "Restore standard"
+msgstr "استرجع القياسي"
+
+#: zapzap/features/settings/components/card_user/card_user_controller.py:167
+msgid "Disable"
+msgstr "عطِّل"
 
 #: zapzap/features/downloads/ui/download_dialog.py:47
 #, fuzzy
