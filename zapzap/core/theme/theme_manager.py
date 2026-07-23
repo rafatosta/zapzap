@@ -51,7 +51,7 @@ class ThemeManager(QObject):
         "highlight": "#21c063",
         "highlighted_text": "#ffffff",
         "mid": "#D0D4D8",
-        "placeholder_text": "#A6AEB6",
+        "placeholder_text": "#66717A",
         "bright_text": "#e01b24",
 
         # Semantic colors
