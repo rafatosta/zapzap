@@ -7,6 +7,7 @@ from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QFrame
 from PyQt6.QtWidgets import QHBoxLayout
 from PyQt6.QtWidgets import QPushButton
+from PyQt6.QtWidgets import QScrollArea
 from PyQt6.QtWidgets import QVBoxLayout
 from PyQt6.QtWidgets import QWidget
 
@@ -54,9 +55,29 @@ class SettingsSidebar(QFrame):
         self.setObjectName("SettingsSidebar")
         self.setMinimumWidth(260)
         self.setMaximumWidth(360)
-        self.layout = QVBoxLayout(self)
+        root_layout = QVBoxLayout(self)
+        root_layout.setContentsMargins(0, 0, 0, 0)
+        root_layout.setSpacing(0)
+
+        self.scroll_area = QScrollArea(self)
+        self.scroll_area.setObjectName("SettingsSidebarScroll")
+        self.scroll_area.setWidgetResizable(True)
+        self.scroll_area.setHorizontalScrollBarPolicy(
+            Qt.ScrollBarPolicy.ScrollBarAlwaysOff
+        )
+        self.scroll_area.setVerticalScrollBarPolicy(
+            Qt.ScrollBarPolicy.ScrollBarAsNeeded
+        )
+        self.scroll_area.setFrameShape(QFrame.Shape.NoFrame)
+
+        self.scroll_content = QWidget()
+        self.scroll_content.setObjectName("SettingsSidebarContent")
+        self.layout = QVBoxLayout(self.scroll_content)
         self.layout.setContentsMargins(14, 18, 14, 18)
         self.layout.setSpacing(6)
+        self.scroll_area.setWidget(self.scroll_content)
+        root_layout.addWidget(self.scroll_area)
+
         self.items = []
         self._setup_header()
         self._apply_style()
@@ -102,6 +123,11 @@ class SettingsSidebar(QFrame):
             }
             QWidget#SettingsSidebarHeader {
                 background: transparent;
+            }
+            QScrollArea#SettingsSidebarScroll,
+            QWidget#SettingsSidebarContent {
+                background: transparent;
+                border: 0;
             }
             QPushButton#SettingsSidebarCloseButton {
                 min-width: 36px;
