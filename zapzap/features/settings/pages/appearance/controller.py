@@ -8,6 +8,7 @@ from zapzap.features.settings.pages.appearance.model import AppearanceSettingsMo
 from zapzap.assets.icons.tray_icon import TrayIcon
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.settings.pages.appearance.view import AppearanceSettingsView
+from zapzap.features.settings.components import SettingsRestartBar
 
 
 class AppearanceSettingsController(AppearanceSettingsView):
@@ -17,6 +18,10 @@ class AppearanceSettingsController(AppearanceSettingsView):
         super().__init__(parent)
         self.model = AppearanceSettingsModel()
         self._load_settings()
+        self._restart_baseline = {
+            "scale": self.model.scale,
+            "csr_enabled": self.model.csr_enabled,
+        }
         self._connect_signals()
 
     def _load_settings(self):
@@ -106,8 +111,7 @@ class AppearanceSettingsController(AppearanceSettingsView):
         self.csr_direction_comboBox.currentIndexChanged.connect(
             self._handle_csr_direction
         )
-        self.btn_restart_interface.clicked.connect(self._restart_interface)
-        self.btn_restart_application.clicked.connect(self._restart_application)
+        self.restart_bar.restart_requested.connect(self._restart_required)
 
     @staticmethod
     def _set_selected_radio(selected_value, radio_map):
@@ -135,6 +139,7 @@ class AppearanceSettingsController(AppearanceSettingsView):
         digits = "".join(filter(str.isdigit, text))
         if digits:
             self.model.scale = int(digits)
+            self._update_restart_requirement()
 
     def _handle_tray_enabled(self, enabled):
         self.model.tray_icon_enabled = enabled
@@ -179,6 +184,7 @@ class AppearanceSettingsController(AppearanceSettingsView):
 
     def _handle_csr_enabled(self, enabled):
         self.model.csr_enabled = enabled
+        self._update_restart_requirement()
 
     def _handle_csr_theme(self, _index):
         theme = self.csr_theme_comboBox.currentData()
@@ -200,8 +206,17 @@ class AppearanceSettingsController(AppearanceSettingsView):
             self.model.csr_buttons_direction = direction
             self._refresh_csr_buttons()
 
-    def _restart_interface(self):
-        QApplication.instance().restartInterface()
+    def _update_restart_requirement(self):
+        if self.model.scale != self._restart_baseline["scale"]:
+            self.set_restart_required(SettingsRestartBar.APPLICATION)
+        elif self.model.csr_enabled != self._restart_baseline["csr_enabled"]:
+            self.set_restart_required(SettingsRestartBar.INTERFACE)
+        else:
+            self.set_restart_required()
 
-    def _restart_application(self):
-        QApplication.instance().restartApplication()
+    def _restart_required(self, restart_kind):
+        app = QApplication.instance()
+        if restart_kind == SettingsRestartBar.APPLICATION:
+            app.restartApplication()
+        else:
+            app.restartInterface()

@@ -3,7 +3,6 @@
 from gettext import gettext as _
 
 from zapzap.ui.components import RadioButton
-from zapzap.features.settings.components import SettingsActionRow
 from zapzap.features.settings.components import SettingsRadioGroup
 from zapzap.features.settings.components import SettingsCard
 from zapzap.features.settings.components import SettingsPage
@@ -52,17 +51,10 @@ class AppearanceSettingsView(SettingsPage):
         )
         self.browser_sidebar = self.browser_sidebar_row.checkbox
         self.mainwindow_menu = self.mainwindow_menu_row.checkbox
-        self.restart_application_row = SettingsActionRow(
-            _("Restart ZapZap"),
-            _("Restart the full application to apply interface scale changes."),
-            _("Restart ZapZap"),
-        )
-        self.btn_restart_application = self.restart_application_row.button
         self.scaleComboBox = self.scale_row.combo
         card.add_row(self.browser_sidebar_row)
         card.add_row(self.mainwindow_menu_row)
         card.add_row(self.scale_row)
-        card.add_row(self.restart_application_row)
         section.add_card(card)
         self.add_section(section)
 
@@ -157,17 +149,10 @@ class AppearanceSettingsView(SettingsPage):
         self.csr_direction_comboBox.clear()
         self.csr_direction_comboBox.addItem(_("Right"), "right")
         self.csr_direction_comboBox.addItem(_("Left"), "left")
-        self.restart_interface_row = SettingsActionRow(
-            _("Restart interface"),
-            _("Rebuild the main window to apply window decoration mode changes."),
-            _("Restart interface"),
-        )
-        self.btn_restart_interface = self.restart_interface_row.button
         card.add_row(self.csr_groupBox)
         card.add_row(self.csr_theme_row)
         card.add_row(self.csr_show_minimize_row)
         card.add_row(self.csr_show_maximize_row)
         card.add_row(self.csr_direction_row)
-        card.add_row(self.restart_interface_row)
         section.add_card(card)
         self.add_section(section)

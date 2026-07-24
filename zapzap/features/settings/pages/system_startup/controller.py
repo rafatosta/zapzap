@@ -6,6 +6,7 @@ from zapzap.core.environment.setup_manager import SetupManager
 
 from zapzap.features.settings.pages.system_startup.model import SystemStartupSettingsModel
 from zapzap.features.settings.pages.system_startup.view import SystemStartupSettingsView
+from zapzap.features.settings.components import SettingsRestartBar
 
 
 class SystemStartupSettingsController(SystemStartupSettingsView):
@@ -24,14 +25,10 @@ class SystemStartupSettingsController(SystemStartupSettingsView):
             self.btn_wayland.setChecked(
                 self.model.wayland_enabled
             )
-            self.btn_wayland.clicked.connect(
-                lambda: setattr(
-                    self.model,
-                    "wayland_enabled",
-                    self.btn_wayland.isChecked(),
-                )
-            )
-            self.btn_restart_application.clicked.connect(self._restart_application)
+            self._wayland_restart_baseline = self.model.wayland_enabled
+            self.btn_wayland.clicked.connect(self._handle_wayland)
+            self.restart_bar.restart_requested.connect(
+                self._restart_required)
 
     def _load_settings(self):
 
@@ -86,5 +83,14 @@ class SystemStartupSettingsController(SystemStartupSettingsView):
     def _handle_autostart(self):
         self.model.set_autostart(self.btn_start_system.isChecked())
 
-    def _restart_application(self):
+    def _handle_wayland(self):
+        self.model.wayland_enabled = self.btn_wayland.isChecked()
+        restart_kind = (
+            SettingsRestartBar.APPLICATION
+            if self.model.wayland_enabled != self._wayland_restart_baseline
+            else None
+        )
+        self.set_restart_required(restart_kind)
+
+    def _restart_required(self, _restart_kind):
         QApplication.instance().restartApplication()

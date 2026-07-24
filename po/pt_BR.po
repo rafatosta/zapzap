@@ -2867,6 +2867,18 @@ msgstr "Tem certeza de que deseja fechar?"
 msgid "Don't ask again"
 msgstr "Não pergunte novamente"
 
+#: zapzap/features/settings/components/settings_restart_bar.py
+msgid "A full restart is required."
+msgstr "É necessário reiniciar completamente."
+
+#: zapzap/features/settings/components/settings_restart_bar.py
+msgid "An interface restart is required."
+msgstr "É necessário reiniciar a interface."
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Enable Wayland-specific execution mode."
+msgstr "Ative o modo de execução específico para Wayland."
+
 #~ msgid "Manage CSS, JavaScript and customizations by scope."
 #~ msgstr "Gerencie CSS, JavaScript e customizações por escopo."
 

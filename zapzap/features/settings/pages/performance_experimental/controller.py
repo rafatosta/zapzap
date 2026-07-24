@@ -6,16 +6,32 @@ from PyQt6.QtWidgets import QApplication
 
 from zapzap.features.settings.pages.performance_experimental.model import PerformanceExperimentalSettingsModel
 from zapzap.features.settings.pages.performance_experimental.view import PerformanceExperimentalSettingsView
+from zapzap.features.settings.components import SettingsRestartBar
 
 
 class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsView):
     """Coordinates performance settings state and actions for the view."""
+
+    FULL_RESTART_SETTINGS = {
+        "in_process_gpu",
+        "disable_gpu",
+        "auto_gpu_workaround",
+        "disable_gpu_vsync",
+        "software_rendering",
+        "force_gbm",
+        "disable_accessibility",
+        "single_process",
+        "process_per_site",
+        "js_predictable_gc_schedule",
+        "background_throttling",
+    }
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.model = PerformanceExperimentalSettingsModel()
         self._load_static_options()
         self._load_settings()
+        self._restart_baseline = self._restart_state()
         self._connect_signals()
         self._add_tooltips()
 
@@ -45,29 +61,76 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
         self.cache_size_max.textActivated.connect(self._handle_cache_size)
         for setting_name in self.model.BOOLEAN_SETTINGS:
             getattr(self, setting_name).clicked.connect(
-                lambda _checked=False, name=setting_name: self.model.set_boolean_setting(
-                    name,
-                    getattr(self, name).isChecked(),
-                )
+                lambda _checked=False, name=setting_name:
+                self._handle_boolean_setting(name)
             )
         self.js_memory_limit.currentIndexChanged.connect(
-            lambda index: setattr(self.model, "js_memory_limit_index", index)
+            self._handle_js_memory_limit
         )
-        self.btn_restart_application.clicked.connect(self._restart_application)
+        self.restart_bar.restart_requested.connect(self._restart_required)
         self.btn_restore.clicked.connect(self._restore_settings)
 
     def _handle_cache_type(self, value):
         self.model.cache_type = value
+        self._update_restart_requirement()
 
     def _handle_cache_size(self, value):
         self.model.cache_size_max = "".join(filter(str.isdigit, value))
+        self._update_restart_requirement()
+
+    def _handle_boolean_setting(self, setting_name):
+        self.model.set_boolean_setting(
+            setting_name,
+            getattr(self, setting_name).isChecked(),
+        )
+        self._update_restart_requirement()
+
+    def _handle_js_memory_limit(self, index):
+        self.model.js_memory_limit_index = index
+        self._update_restart_requirement()
 
     def _restore_settings(self):
         self.model.restore_defaults()
         self._load_settings()
+        self._update_restart_requirement()
 
-    def _restart_application(self):
-        QApplication.instance().restartApplication()
+    def _restart_state(self):
+        state = {
+            name: self.model.get_boolean_setting(name)
+            for name in self.model.BOOLEAN_SETTINGS
+        }
+        state.update({
+            "cache_type": self.model.cache_type,
+            "cache_size_max": self.model.cache_size_max,
+            "js_memory_limit_index": self.model.js_memory_limit_index,
+        })
+        return state
+
+    def _update_restart_requirement(self):
+        current = self._restart_state()
+        full_restart_changed = (
+            current["js_memory_limit_index"]
+            != self._restart_baseline["js_memory_limit_index"]
+            or any(
+                current[name] != self._restart_baseline[name]
+                for name in self.FULL_RESTART_SETTINGS
+            )
+        )
+        any_restart_changed = current != self._restart_baseline
+
+        if full_restart_changed:
+            self.set_restart_required(SettingsRestartBar.APPLICATION)
+        elif any_restart_changed:
+            self.set_restart_required(SettingsRestartBar.INTERFACE)
+        else:
+            self.set_restart_required()
+
+    def _restart_required(self, restart_kind):
+        app = QApplication.instance()
+        if restart_kind == SettingsRestartBar.APPLICATION:
+            app.restartApplication()
+        else:
+            app.restartInterface()
 
     def _add_tooltips(self):
         self.cache_type.setToolTip(

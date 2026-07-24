@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QScrollArea, QVBoxLayout, QWidget
 
 from zapzap.ui.components import Label
+from zapzap.features.settings.components.settings_restart_bar import SettingsRestartBar
 
 
 class SettingsPage(QScrollArea):
@@ -53,6 +54,7 @@ class SettingsPage(QScrollArea):
 
         self.content_layout.addSpacing(18)
 
+        self.restart_bar = SettingsRestartBar(self.viewport())
         self._apply_style()
 
     def add_section(self, section):
@@ -73,6 +75,27 @@ class SettingsPage(QScrollArea):
         disponível na área visível.
         """
         self.content_layout.addStretch(1)
+
+    def set_restart_required(self, restart_kind=None):
+        """Show or hide the contextual restart action."""
+        self.restart_bar.set_restart_kind(restart_kind)
+        if restart_kind:
+            self._position_restart_bar()
+
+    def _position_restart_bar(self):
+        margin = 16
+        width = max(320, self.viewport().width() - (margin * 2))
+        height = self.restart_bar.sizeHint().height()
+        self.restart_bar.setGeometry(
+            margin,
+            self.viewport().height() - height - margin,
+            width,
+            height,
+        )
+
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        self._position_restart_bar()
 
     def _apply_style(self):
         """

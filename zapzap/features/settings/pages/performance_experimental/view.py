@@ -47,15 +47,6 @@ class PerformanceExperimentalSettingsView(SettingsPage):
                 "warning",
             )
         )
-        self.restart_application_row = SettingsActionRow(
-            _("Restart ZapZap"),
-            _(
-                "Restart the full application now to apply environment and Chromium startup flags."
-            ),
-            _("Restart ZapZap"),
-        )
-        self.btn_restart_application = self.restart_application_row.button
-        card.add_row(self.restart_application_row)
         section.add_card(card)
         self.add_section(section)
 
