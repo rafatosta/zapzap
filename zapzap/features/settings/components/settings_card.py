@@ -3,6 +3,9 @@ from PyQt6.QtWidgets import QFrame, QVBoxLayout
 from .settings_divider import SettingsDivider
 
 
+SUBSETTING_INDENT = 20
+
+
 class SettingsCard(QFrame):
     """Rounded card container with explicit row and subgroup hierarchy."""
 
@@ -63,7 +66,7 @@ class SettingsSubgroup(QFrame):
         super().__init__(parent)
         self.setObjectName("SettingsSubgroup")
         self.layout = QVBoxLayout(self)
-        self.layout.setContentsMargins(20, 0, 0, 4)
+        self.layout.setContentsMargins(SUBSETTING_INDENT, 0, 0, 4)
         self.layout.setSpacing(2)
         self._has_rows = False
         self.setStyleSheet("""

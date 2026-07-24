@@ -355,7 +355,7 @@ msgstr ""
 "sessão."
 
 #: zapzap/features/initial_setup/view.py:237
-#: zapzap/features/settings/pages/appearance/view.py:79
+#: zapzap/features/settings/pages/appearance/view.py:81
 msgid "Tray icon"
 msgstr "Ícone da bandeja"
 
@@ -364,22 +364,18 @@ msgid "Control tray icon visibility and unread counter."
 msgstr "Controle a visibilidade do ícone da bandeja e o contador de não lidos."
 
 #: zapzap/features/initial_setup/view.py:243
-#: zapzap/features/settings/pages/appearance/view.py:84
 msgid "Enable tray icon"
 msgstr "Ativar ícone da bandeja"
 
 #: zapzap/features/initial_setup/view.py:244
-#: zapzap/features/settings/pages/appearance/view.py:85
 msgid "Show ZapZap in the system tray."
 msgstr "Mostre o ZapZap na bandeja do sistema."
 
 #: zapzap/features/initial_setup/view.py:247
-#: zapzap/features/settings/pages/appearance/view.py:88
 msgid "Notification counter"
 msgstr "Contador de notificações"
 
 #: zapzap/features/initial_setup/view.py:248
-#: zapzap/features/settings/pages/appearance/view.py:89
 msgid "Show unread notifications on the tray icon."
 msgstr "Mostre notificações não lidas no ícone da bandeja."
 
@@ -1572,83 +1568,106 @@ msgstr ""
 "Ajuste a escala da interface para telas de alta densidade ou necessidades de "
 "acessibilidade."
 
-#: zapzap/features/settings/pages/appearance/view.py:80
+#: zapzap/features/settings/pages/appearance/view.py:82
 msgid "Control tray icon visibility, style, and unread counter."
 msgstr ""
 "Controle a visibilidade, o estilo e o contador de não lidas no ícone da "
 "bandeja."
 
-#: zapzap/features/settings/pages/appearance/view.py:93
+#: zapzap/features/settings/pages/appearance/view.py:86
+msgid "Show tray icon"
+msgstr "Mostrar ícone na bandeja"
+
+#: zapzap/features/settings/pages/appearance/view.py:87
+msgid "Display ZapZap in the system notification area."
+msgstr "Exibir o ZapZap na área de notificação do sistema."
+
+#: zapzap/features/settings/pages/appearance/view.py:90
+msgid "Unread counter"
+msgstr "Contador de não lidas"
+
+#: zapzap/features/settings/pages/appearance/view.py:91
+msgid "Show the number of unread messages."
+msgstr "Mostrar a quantidade de mensagens não lidas."
+
+#: zapzap/features/settings/pages/appearance/view.py:94
+msgid "Icon style"
+msgstr "Estilo do ícone"
+
+#: zapzap/features/settings/pages/appearance/view.py:96
 msgid "Symbolic light"
 msgstr "Simbólico claro"
 
-#: zapzap/features/settings/pages/appearance/view.py:94
+#: zapzap/features/settings/pages/appearance/view.py:97
 msgid "Symbolic dark"
 msgstr "Simbólico escuro"
 
-#: zapzap/features/settings/pages/appearance/view.py:109
+#: zapzap/features/settings/pages/appearance/view.py:118
 #: zapzap/features/browser/shell/browser_controller.py:93
 msgid "Grid view"
 msgstr "Visualização em grade"
 
-#: zapzap/features/settings/pages/appearance/view.py:110
+#: zapzap/features/settings/pages/appearance/view.py:119
 msgid "Choose how many columns are used by grid view."
 msgstr "Escolha quantas colunas serão usadas na visualização em grade."
 
-#: zapzap/features/settings/pages/appearance/view.py:114
+#: zapzap/features/settings/pages/appearance/view.py:123
 msgid "Grid columns"
 msgstr "Colunas da grade"
 
-#: zapzap/features/settings/pages/appearance/view.py:115
+#: zapzap/features/settings/pages/appearance/view.py:124
 msgid "Number of account columns in grid view."
 msgstr "Número de colunas de contas na visualização em grade."
 
-#: zapzap/features/settings/pages/appearance/view.py:125
-msgid "Custom window decoration"
-msgstr "Decoração personalizada da janela"
-
-#: zapzap/features/settings/pages/appearance/view.py:126
-msgid "Configure client-side rendering window buttons."
-msgstr "Configure os botões da janela desenhados pelo próprio aplicativo."
-
-#: zapzap/features/settings/pages/appearance/view.py:130
-msgid "Use custom window decoration"
-msgstr "Usar decoração personalizada da janela"
-
-#: zapzap/features/settings/pages/appearance/view.py:131
-msgid "Draw ZapZap window controls instead of native ones."
-msgstr ""
-"Desenhar os controles da janela do ZapZap em vez dos controles nativos."
-
 #: zapzap/features/settings/pages/appearance/view.py:134
-msgid "Button theme"
-msgstr "Tema dos botões"
+msgid "Window decoration"
+msgstr "Decoração da janela"
 
 #: zapzap/features/settings/pages/appearance/view.py:135
-msgid "Theme used by custom window buttons."
-msgstr "Tema usado pelos botões personalizados da janela."
+msgid "Customize the window controls drawn by ZapZap."
+msgstr "Personalize os controles desenhados pelo ZapZap."
 
 #: zapzap/features/settings/pages/appearance/view.py:139
-msgid "Show minimize button"
-msgstr "Mostrar botão minimizar"
+msgid "Use custom decoration"
+msgstr "Usar decoração personalizada"
 
 #: zapzap/features/settings/pages/appearance/view.py:140
-msgid "Show maximize button"
-msgstr "Mostrar botão maximizar"
+msgid "Use window controls drawn by ZapZap."
+msgstr "Usar controles de janela desenhados pelo ZapZap."
+
+#: zapzap/features/settings/pages/appearance/view.py:143
+msgid "Button style"
+msgstr "Estilo dos botões"
 
 #: zapzap/features/settings/pages/appearance/view.py:144
-msgid "Button direction"
+msgid "Visual style used by custom window buttons."
+msgstr "Estilo visual usado pelos botões personalizados da janela."
+
+#: zapzap/features/settings/pages/appearance/view.py:148
+msgid "Minimize"
+msgstr "Minimizar"
+
+#: zapzap/features/settings/pages/appearance/view.py:149
+msgid "Maximize"
+msgstr "Maximizar"
+
+#: zapzap/features/settings/pages/appearance/view.py:153
+msgid "Visible buttons"
+msgstr "Botões visíveis"
+
+#: zapzap/features/settings/pages/appearance/view.py:158
+msgid "Button position"
 msgstr "Posição dos botões"
 
-#: zapzap/features/settings/pages/appearance/view.py:145
+#: zapzap/features/settings/pages/appearance/view.py:159
 msgid "Place window buttons on the right or left."
 msgstr "Posicione os botões da janela à direita ou à esquerda."
 
-#: zapzap/features/settings/pages/appearance/view.py:150
+#: zapzap/features/settings/pages/appearance/view.py:164
 msgid "Right"
 msgstr "Direita"
 
-#: zapzap/features/settings/pages/appearance/view.py:151
+#: zapzap/features/settings/pages/appearance/view.py:165
 msgid "Left"
 msgstr "Esquerda"
 

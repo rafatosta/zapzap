@@ -8,6 +8,8 @@ from zapzap.features.settings.components import SettingsCard
 from zapzap.features.settings.components import SettingsPage
 from zapzap.features.settings.components import SettingsSection
 from zapzap.features.settings.components import SettingsSelectRow
+from zapzap.features.settings.components import SettingsSubgroupHeader
+from zapzap.features.settings.components import SettingsSwitchGroup
 from zapzap.features.settings.components import SettingsSwitchRow
 
 
@@ -81,26 +83,31 @@ class AppearanceSettingsView(SettingsPage):
         )
         card = SettingsCard()
         self.tray_groupBox = SettingsSwitchRow(
-            _("Enable tray icon"),
-            _("Show ZapZap in the system tray."),
+            _("Show tray icon"),
+            _("Display ZapZap in the system notification area."),
         )
         self.notificationCounter_row = SettingsSwitchRow(
-            _("Notification counter"),
-            _("Show unread notifications on the tray icon."),
+            _("Unread counter"),
+            _("Show the number of unread messages."),
         )
         self.notificationCounter = self.notificationCounter_row.checkbox
+        self.tray_style_header = SettingsSubgroupHeader(_("Icon style"))
         self.tray_default_radioButton = RadioButton(_("Default"))
         self.tray_slight_radioButton = RadioButton(_("Symbolic light"))
         self.tray_sdark_radioButton = RadioButton(_("Symbolic dark"))
+        self.tray_style_group = SettingsRadioGroup(
+            self.tray_default_radioButton,
+            self.tray_slight_radioButton,
+            self.tray_sdark_radioButton,
+        )
+        self._configure_row_accessibility(self.tray_groupBox)
+        self._configure_row_accessibility(self.notificationCounter_row)
         self.tray_options_group = card.add_group(
             self.tray_groupBox,
             (
                 self.notificationCounter_row,
-                SettingsRadioGroup(
-                    self.tray_default_radioButton,
-                    self.tray_slight_radioButton,
-                    self.tray_sdark_radioButton,
-                ),
+                self.tray_style_header,
+                self.tray_style_group,
             ),
         )
         section.add_card(card)
@@ -124,26 +131,31 @@ class AppearanceSettingsView(SettingsPage):
 
     def _setup_csr_section(self):
         section = SettingsSection(
-            _("Custom window decoration"),
-            _("Configure client-side rendering window buttons."),
+            _("Window decoration"),
+            _("Customize the window controls drawn by ZapZap."),
         )
         card = SettingsCard()
         self.csr_groupBox = SettingsSwitchRow(
-            _("Use custom window decoration"),
-            _("Draw ZapZap window controls instead of native ones."),
+            _("Use custom decoration"),
+            _("Use window controls drawn by ZapZap."),
         )
         self.csr_theme_row = SettingsSelectRow(
-            _("Button theme"),
-            _("Theme used by custom window buttons."),
+            _("Button style"),
+            _("Visual style used by custom window buttons."),
             [""],
         )
         self.csr_theme_comboBox = self.csr_theme_row.combo
-        self.csr_show_minimize_row = SettingsSwitchRow(_("Show minimize button"))
-        self.csr_show_maximize_row = SettingsSwitchRow(_("Show maximize button"))
+        self.csr_show_minimize_row = SettingsSwitchRow(_("Minimize"))
+        self.csr_show_maximize_row = SettingsSwitchRow(_("Maximize"))
         self.csr_show_minimize_checkBox = self.csr_show_minimize_row.checkbox
         self.csr_show_maximize_checkBox = self.csr_show_maximize_row.checkbox
+        self.csr_visible_buttons_group = SettingsSwitchGroup(
+            _("Visible buttons"),
+            self.csr_show_minimize_row,
+            self.csr_show_maximize_row,
+        )
         self.csr_direction_row = SettingsSelectRow(
-            _("Button direction"),
+            _("Button position"),
             _("Place window buttons on the right or left."),
             [""],
         )
@@ -151,14 +163,35 @@ class AppearanceSettingsView(SettingsPage):
         self.csr_direction_comboBox.clear()
         self.csr_direction_comboBox.addItem(_("Right"), "right")
         self.csr_direction_comboBox.addItem(_("Left"), "left")
+        for row in (
+            self.csr_groupBox,
+            self.csr_theme_row,
+            self.csr_show_minimize_row,
+            self.csr_show_maximize_row,
+            self.csr_direction_row,
+        ):
+            self._configure_row_accessibility(row)
         self.csr_options_group = card.add_group(
             self.csr_groupBox,
             (
                 self.csr_theme_row,
-                self.csr_show_minimize_row,
-                self.csr_show_maximize_row,
+                self.csr_visible_buttons_group,
                 self.csr_direction_row,
             ),
         )
         section.add_card(card)
         self.add_section(section)
+
+    @staticmethod
+    def _configure_row_accessibility(row):
+        """Expose visible row copy to keyboard and assistive technology."""
+        control = row.control
+        if control is None:
+            return
+        control.setAccessibleName(row.title_label.text())
+        description = (
+            row.description_label.text()
+            if row.description_label is not None
+            else row.title_label.text()
+        )
+        control.setAccessibleDescription(description)

@@ -1,5 +1,11 @@
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QHBoxLayout, QSizePolicy, QWidget, QVBoxLayout
+from PyQt6.QtWidgets import (
+    QBoxLayout,
+    QHBoxLayout,
+    QSizePolicy,
+    QWidget,
+    QVBoxLayout,
+)
 
 from zapzap.ui.components import Button, ComboBox, Label, LineEdit, ToggleSwitch
 
@@ -77,6 +83,64 @@ class SettingsLabelRow(_BaseRow):
 
     def __init__(self, title, description="", parent=None):
         super().__init__(title, description, parent)
+
+
+class SettingsSubgroupHeader(QWidget):
+    """Compact label that names a set of dependent controls."""
+
+    def __init__(self, title, description="", parent=None):
+        super().__init__(parent)
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 12, 0, 4)
+        layout.setSpacing(4)
+
+        self.title_label = Label(title, "row_title")
+        self.title_label.setObjectName("SettingsSubgroupTitle")
+        layout.addWidget(self.title_label)
+
+        self.description_label = None
+        if description:
+            self.description_label = Label(description, "row_description")
+            self.description_label.setObjectName("SettingsSubgroupDescription")
+            self.description_label.setWordWrap(True)
+            layout.addWidget(self.description_label)
+
+
+class SettingsSwitchGroup(QWidget):
+    """Labeled switch rows that wrap from columns to a vertical stack."""
+
+    STACK_BREAKPOINT = 480
+
+    def __init__(self, title, *rows, parent=None):
+        super().__init__(parent)
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setSpacing(0)
+
+        self.header = SettingsSubgroupHeader(title, parent=self)
+        layout.addWidget(self.header)
+
+        self.rows_container = QWidget(self)
+        self.rows_layout = QBoxLayout(
+            QBoxLayout.Direction.LeftToRight,
+            self.rows_container,
+        )
+        self.rows_layout.setContentsMargins(0, 0, 0, 0)
+        self.rows_layout.setSpacing(20)
+        self.rows = tuple(rows)
+        for row in self.rows:
+            self.rows_layout.addWidget(row, 1)
+        layout.addWidget(self.rows_container)
+
+    def resizeEvent(self, event):
+        direction = (
+            QBoxLayout.Direction.TopToBottom
+            if event.size().width() < self.STACK_BREAKPOINT
+            else QBoxLayout.Direction.LeftToRight
+        )
+        if self.rows_layout.direction() != direction:
+            self.rows_layout.setDirection(direction)
+        super().resizeEvent(event)
 
 
 class SettingsSwitchRow(_BaseRow):

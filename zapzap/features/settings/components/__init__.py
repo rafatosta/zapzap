@@ -1,5 +1,9 @@
 from .settings_badge import SettingsBadge, SettingsInfoBox
-from .settings_card import SettingsCard, SettingsSubgroup
+from .settings_card import (
+    SUBSETTING_INDENT,
+    SettingsCard,
+    SettingsSubgroup,
+)
 from .settings_divider import SettingsDivider
 from .settings_page import SettingsPage
 from .settings_radio_group import SettingsRadioGroup
@@ -10,6 +14,8 @@ from .settings_rows import (
     SettingsPasswordRow,
     SettingsPathRow,
     SettingsSelectRow,
+    SettingsSubgroupHeader,
+    SettingsSwitchGroup,
     SettingsSwitchRow,
     SettingsTextRow,
     SettingsToggleSwitch,

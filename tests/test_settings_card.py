@@ -8,6 +8,7 @@ os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 from PyQt6.QtWidgets import QApplication, QWidget
 
 from zapzap.features.settings.components import (
+    SUBSETTING_INDENT,
     SettingsCard,
     SettingsDivider,
     SettingsSubgroup,
@@ -62,7 +63,10 @@ class SettingsCardTests(unittest.TestCase):
         self.assertEqual(card.layout.count(), 2)
         self.assertIs(card.layout.itemAt(0).widget(), parent_row)
         self.assertIs(card.layout.itemAt(1).widget(), subgroup)
-        self.assertEqual(subgroup.layout.contentsMargins().left(), 20)
+        self.assertEqual(
+            subgroup.layout.contentsMargins().left(),
+            SUBSETTING_INDENT,
+        )
         self.assertEqual(subgroup.layout.count(), 2)
         self.assertFalse(any(
             isinstance(subgroup.layout.itemAt(index).widget(), SettingsDivider)
