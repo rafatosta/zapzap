@@ -4,6 +4,7 @@ from PyQt6.QtWidgets import (
     QHBoxLayout,
     QSizePolicy,
     QWidget,
+    QWIDGETSIZE_MAX,
     QVBoxLayout,
 )
 
@@ -110,6 +111,7 @@ class SettingsSwitchGroup(QWidget):
     """Labeled switch rows that wrap from columns to a vertical stack."""
 
     STACK_BREAKPOINT = 480
+    MAX_COLUMN_WIDTH = 320
 
     def __init__(self, title, *rows, parent=None):
         super().__init__(parent)
@@ -129,15 +131,23 @@ class SettingsSwitchGroup(QWidget):
         self.rows_layout.setSpacing(20)
         self.rows = tuple(rows)
         for row in self.rows:
-            self.rows_layout.addWidget(row, 1)
+            row.setMaximumWidth(self.MAX_COLUMN_WIDTH)
+            self.rows_layout.addWidget(row)
+        self.rows_layout.addStretch(1)
         layout.addWidget(self.rows_container)
 
     def resizeEvent(self, event):
+        stacked = event.size().width() < self.STACK_BREAKPOINT
         direction = (
             QBoxLayout.Direction.TopToBottom
-            if event.size().width() < self.STACK_BREAKPOINT
+            if stacked
             else QBoxLayout.Direction.LeftToRight
         )
+        maximum_width = (
+            QWIDGETSIZE_MAX if stacked else self.MAX_COLUMN_WIDTH
+        )
+        for row in self.rows:
+            row.setMaximumWidth(maximum_width)
         if self.rows_layout.direction() != direction:
             self.rows_layout.setDirection(direction)
         super().resizeEvent(event)

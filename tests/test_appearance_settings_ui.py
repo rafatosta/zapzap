@@ -126,6 +126,10 @@ class AppearanceSettingsUiTests(unittest.TestCase):
             group.rows_layout.direction(),
             QBoxLayout.Direction.LeftToRight,
         )
+        self.assertTrue(all(
+            row.maximumWidth() == group.MAX_COLUMN_WIDTH
+            for row in group.rows
+        ))
 
         group.resize(420, group.sizeHint().height())
         QApplication.processEvents()
@@ -133,6 +137,10 @@ class AppearanceSettingsUiTests(unittest.TestCase):
             group.rows_layout.direction(),
             QBoxLayout.Direction.TopToBottom,
         )
+        self.assertTrue(all(
+            row.maximumWidth() > group.MAX_COLUMN_WIDTH
+            for row in group.rows
+        ))
         self.assertIs(
             group.rows[0].checkbox,
             page.csr_show_minimize_checkBox,
