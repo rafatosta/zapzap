@@ -3,17 +3,18 @@
 from gettext import gettext as _
 
 from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QHeaderView, QTableWidgetItem, QVBoxLayout, QWidget
 from PyQt6 import QtWidgets
-from PyQt6.QtWidgets import QFormLayout, QHeaderView, QTableWidgetItem, QVBoxLayout, QWidget
 
 from zapzap.ui.components import Button
-from zapzap.ui.components import CheckBox
-from zapzap.ui.components import ComboBox
 from zapzap.ui.components import Label
+from zapzap.features.settings.components import SettingsActionRow
 from zapzap.features.settings.components import SettingsCard
 from zapzap.features.settings.components import SettingsInfoBox
 from zapzap.features.settings.components import SettingsPage
+from zapzap.features.settings.components import SettingsSelectRow
 from zapzap.features.settings.components import SettingsSection
+from zapzap.features.settings.components import SettingsSwitchRow
 
 
 class AdvancedCustomizationsSettingsView(SettingsPage):
@@ -37,28 +38,31 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         self._setup_actions_section()
 
     def _setup_scope_section(self):
-        section = SettingsSection(_("Scope"), _("Choose the customization scope."))
+        section = SettingsSection(
+            _("Scope"),
+            _("Choose whether customizations apply globally or only to the current account."),
+        )
         card = SettingsCard()
-        scope_row = QWidget()
-        scope_layout = QFormLayout(scope_row)
-        self.scope_combo = ComboBox(scope_row)
-        self.account_label = Label("", "body", scope_row)
+        self.scope_row = SettingsSelectRow(
+            _("Customization scope"),
+            _("Account customizations can extend or inherit the global configuration."),
+            [""],
+        )
+        self.scope_combo = self.scope_row.combo
+        self.account_label = Label("", "row_description")
+        self.account_label.setObjectName("SettingsRowDescription")
         self.account_label.setWordWrap(True)
-        scope_layout.addRow(_("Account"), self.scope_combo)
-        scope_layout.addRow("", self.account_label)
-        self.inherit_checkbox = CheckBox(
+        self.inherit_row = SettingsSwitchRow(
             _("Inherit global settings"),
-            scope_row,
-        )
-        self.account_scope_hint_label = Label(
             _("When inherit is disabled, account customizations are appended after global settings."),
-            "row_description",
-            scope_row,
         )
-        self.account_scope_hint_label.setWordWrap(True)
-        card.add_row(scope_row)
-        card.add_row(self.inherit_checkbox)
-        card.add_row(self.account_scope_hint_label)
+        self.inherit_checkbox = self.inherit_row.checkbox
+        # Kept as a compatibility alias for the controller, which controls
+        # visibility based on the selected scope.
+        self.account_scope_hint_label = self.inherit_row
+        card.add_row(self.scope_row)
+        card.add_row(self.account_label)
+        card.add_row(self.inherit_row)
         section.add_card(card)
         self.add_section(section)
 
@@ -74,11 +78,12 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
             _("Import, create, edit, enable, and delete CSS files."),
         )
         self.css_files_group = SettingsCard()
-        self.css_enabled = CheckBox(
+        self.css_enabled_row = SettingsSwitchRow(
             _("Enable custom CSS"),
-            self.css_files_group,
+            _("Load enabled style files for the selected scope."),
         )
-        self.css_files_group.add_row(self.css_enabled)
+        self.css_enabled = self.css_enabled_row.checkbox
+        self.css_files_group.add_row(self.css_enabled_row)
         self.css_files = QtWidgets.QTableWidget(self.css_files_group)
         self._setup_asset_table(self.css_files)
         self.css_files_group.add_row(self.css_files)
@@ -86,7 +91,7 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         css_buttons_1 = self._button_row()
         self.btn_css_create = Button(_("Create"))
         self.btn_css_edit = Button(_("Edit"))
-        self.btn_css_delete = Button(_("Delete"))
+        self.btn_css_delete = Button(_("Delete"), variant=Button.DANGER)
         for button in (self.btn_css_create, self.btn_css_edit, self.btn_css_delete):
             css_buttons_1.layout().addWidget(button)
         css_buttons_1.layout().addStretch(1)
@@ -111,6 +116,8 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         )
         card = SettingsCard()
         self.css_preview_stack = QtWidgets.QStackedWidget(card)
+        self.css_preview_stack.setObjectName("CustomizationPreview")
+        self.css_preview_stack.setMinimumHeight(240)
         self.css_preview_placeholder_page = QWidget()
         placeholder_layout = QVBoxLayout(self.css_preview_placeholder_page)
         self.css_preview_placeholder = Label(_("Select a CSS file to preview."), "body")
@@ -152,16 +159,18 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
             _("Import, create, edit, enable, and delete JavaScript files."),
         )
         self.js_files_group = SettingsCard()
-        self.js_enabled = CheckBox(
+        self.js_enabled_row = SettingsSwitchRow(
             _("Enable custom JavaScript"),
-            self.js_files_group,
+            _("Load enabled scripts for the selected scope."),
         )
-        self.js_files_group.add_row(self.js_enabled)
+        self.js_enabled = self.js_enabled_row.checkbox
+        self.js_files_group.add_row(self.js_enabled_row)
         self.warning_label = SettingsInfoBox(
             _("⚠ Custom JavaScript runs with full page privileges. Use trusted code only."),
             "warning",
         )
         self.js_files_group.add_row(self.warning_label)
+        self.js_files_group.add_space()
         self.js_files = QtWidgets.QTableWidget(self.js_files_group)
         self._setup_asset_table(self.js_files)
         self.js_files_group.add_row(self.js_files)
@@ -169,7 +178,7 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         js_buttons_1 = self._button_row()
         self.btn_js_create = Button(_("Create"))
         self.btn_js_edit = Button(_("Edit"))
-        self.btn_js_delete = Button(_("Delete"))
+        self.btn_js_delete = Button(_("Delete"), variant=Button.DANGER)
         for button in (self.btn_js_create, self.btn_js_edit, self.btn_js_delete):
             js_buttons_1.layout().addWidget(button)
         js_buttons_1.layout().addStretch(1)
@@ -193,15 +202,28 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
             _("Save changes and reload target pages when needed."),
         )
         card = SettingsCard()
-        action_row = self._button_row()
-        self.btn_save_reload = Button(_("Save and reload"))
-        self.btn_reload = Button(_("Reload"))
-        self.btn_save = Button(_("Save"))
+        self.save_reload_row = SettingsActionRow(
+            _("Save and reload"),
+            _("Save the selected scope and reload its target page immediately."),
+            _("Save and reload"),
+        )
+        self.reload_row = SettingsActionRow(
+            _("Reload target"),
+            _("Reload the target page without changing the saved configuration."),
+            _("Reload"),
+        )
+        self.save_row = SettingsActionRow(
+            _("Save changes"),
+            _("Store changes without reloading the target page."),
+            _("Save"),
+        )
+        self.btn_save_reload = self.save_reload_row.button
+        self.btn_reload = self.reload_row.button
+        self.btn_save = self.save_row.button
         self.btn_save.setDefault(True)
-        action_row.layout().addStretch(1)
-        for button in (self.btn_save_reload, self.btn_reload, self.btn_save):
-            action_row.layout().addWidget(button)
-        card.add_row(action_row)
+        card.add_row(self.save_reload_row)
+        card.add_row(self.reload_row)
+        card.add_row(self.save_row)
         section.add_card(card)
         self.add_section(section)
 
@@ -212,16 +234,44 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         return row
 
     def _setup_asset_table(self, table):
+        table.setObjectName("CustomizationAssetTable")
+        table.setMinimumHeight(200)
         table.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
         table.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.SingleSelection)
         table.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
         table.setShowGrid(False)
+        table.setAlternatingRowColors(True)
+        table.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         table.setColumnCount(2)
         table.setRowCount(0)
         table.setHorizontalHeaderItem(0, QTableWidgetItem(_("Enabled")))
         table.setHorizontalHeaderItem(1, QTableWidgetItem(_("Filename")))
         table.verticalHeader().setVisible(False)
+        table.verticalHeader().setDefaultSectionSize(38)
         table.horizontalHeader().setStretchLastSection(False)
         table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents)
         table.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Stretch)
         table.setColumnWidth(0, 90)
+        table.setStyleSheet("""
+            QTableWidget#CustomizationAssetTable {
+                background: palette(base);
+                alternate-background-color: palette(alternate-base);
+                color: palette(text);
+                border: 1px solid palette(mid);
+                border-radius: 10px;
+                outline: 0;
+                selection-background-color: palette(highlight);
+                selection-color: palette(highlighted-text);
+            }
+            QTableWidget#CustomizationAssetTable::item {
+                border: 0;
+                padding: 6px 8px;
+            }
+            QHeaderView::section {
+                background: palette(alternate-base);
+                color: palette(text);
+                border: 0;
+                border-bottom: 1px solid palette(mid);
+                padding: 8px;
+            }
+        """)
