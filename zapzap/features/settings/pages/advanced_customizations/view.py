@@ -3,10 +3,18 @@
 from gettext import gettext as _
 
 from PyQt6 import QtWidgets
-from PyQt6.QtCore import Qt, pyqtSignal
-from PyQt6.QtWidgets import QHeaderView, QVBoxLayout, QWidget
+from PyQt6.QtCore import QSize, Qt, pyqtSignal
+from PyQt6.QtGui import QFont, QIcon, QPainter, QPalette, QPixmap
+from PyQt6.QtWidgets import (
+    QHeaderView,
+    QProxyStyle,
+    QStyle,
+    QVBoxLayout,
+    QWidget,
+)
 
 from zapzap.ui.components import Button, Label
+from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.settings.components import (
     SettingsCard,
     SettingsInfoBox,
@@ -15,6 +23,36 @@ from zapzap.features.settings.components import (
     SettingsSelectRow,
     SettingsSwitchRow,
 )
+
+
+class _CenteredTabStyle(QProxyStyle):
+    """Center a compact tab bar like GNOME's top-level view switchers."""
+
+    def styleHint(self, hint, option=None, widget=None, return_data=None):
+        if hint == QStyle.StyleHint.SH_TabBar_Alignment:
+            return int(Qt.AlignmentFlag.AlignHCenter)
+        return super().styleHint(hint, option, widget, return_data)
+
+
+def _symbolic_tab_icon(theme_names, fallback_glyph):
+    for icon_name in theme_names:
+        icon = QIcon.fromTheme(icon_name)
+        if not icon.isNull():
+            return icon
+
+    pixmap = QPixmap(18, 18)
+    pixmap.fill(Qt.GlobalColor.transparent)
+    painter = QPainter(pixmap)
+    painter.setPen(
+        QtWidgets.QApplication.palette().color(QPalette.ColorRole.Text))
+    font = painter.font()
+    font.setFamily("monospace")
+    font.setPixelSize(10)
+    font.setWeight(QFont.Weight.DemiBold)
+    painter.setFont(font)
+    painter.drawText(pixmap.rect(), Qt.AlignmentFlag.AlignCenter, fallback_glyph)
+    painter.end()
+    return QIcon(pixmap)
 
 
 class CustomizationFilesPanel(QWidget):
@@ -201,47 +239,73 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         self.customization_tabs = QtWidgets.QTabWidget(self)
         self.customization_tabs.setObjectName("CustomizationTabs")
         self.customization_tabs.setDocumentMode(True)
-        self.customization_tabs.tabBar().setDrawBase(False)
-        self.customization_tabs.tabBar().setCursor(
-            Qt.CursorShape.PointingHandCursor)
-        self.customization_tabs.addTab(self._build_css_tab(), _("CSS"))
-        self.customization_tabs.addTab(self._build_js_tab(), _("JavaScript"))
+        tab_bar = self.customization_tabs.tabBar()
+        tab_bar.setDrawBase(False)
+        tab_bar.setExpanding(False)
+        tab_bar.setUsesScrollButtons(False)
+        tab_bar.setCursor(Qt.CursorShape.PointingHandCursor)
+        self._centered_tab_style = _CenteredTabStyle()
+        tab_bar.setStyle(self._centered_tab_style)
+
+        self.customization_tabs.setIconSize(QSize(18, 18))
+        self.customization_tabs.addTab(
+            self._build_css_tab(), _("CSS"))
+        self.customization_tabs.addTab(
+            self._build_js_tab(), _("JavaScript"))
+        self._refresh_tab_icons()
+        ThemeManager.instance().theme_changed.connect(
+            self._refresh_tab_icons)
         self.customization_tabs.setStyleSheet("""
             QTabWidget#CustomizationTabs::pane {
                 border: 0;
                 background: transparent;
-                margin-top: 6px;
+                margin-top: 10px;
             }
             QTabWidget#CustomizationTabs QTabBar {
-                background: palette(alternate-base);
-                border: 1px solid palette(mid);
-                border-radius: 10px;
+                background: transparent;
+                border: 0;
             }
             QTabWidget#CustomizationTabs QTabBar::tab {
-                min-width: 104px;
-                min-height: 26px;
-                padding: 5px 14px;
-                margin: 2px;
+                min-width: 190px;
+                min-height: 31px;
+                padding: 6px 18px;
+                margin: 0 3px;
                 border: 0;
-                border-radius: 7px;
+                border-radius: 11px;
                 background: transparent;
-                color: palette(placeholder-text);
+                color: palette(text);
+                font-weight: 600;
             }
             QTabWidget#CustomizationTabs QTabBar::tab:hover:!selected {
-                background: palette(window);
+                background: palette(base);
                 color: palette(text);
             }
             QTabWidget#CustomizationTabs QTabBar::tab:selected {
-                background: palette(base);
+                background: palette(alternate-base);
                 color: palette(text);
-                border: 1px solid palette(mid);
             }
             QTabWidget#CustomizationTabs QTabBar::tab:disabled {
-                color: palette(mid);
+                color: palette(placeholder-text);
             }
         """)
         section.layout.addWidget(self.customization_tabs)
         self.add_section(section)
+
+    def _refresh_tab_icons(self, *_args):
+        self.customization_tabs.setTabIcon(
+            0,
+            _symbolic_tab_icon(
+                ("text-css-symbolic", "text-x-css"),
+                "{}",
+            ),
+        )
+        self.customization_tabs.setTabIcon(
+            1,
+            _symbolic_tab_icon(
+                ("text-x-javascript-symbolic", "application-javascript"),
+                "JS",
+            ),
+        )
 
     def _build_css_tab(self):
         tab = QWidget()
