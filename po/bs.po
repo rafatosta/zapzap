@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-24 11:35-0300\n"
+"POT-Creation-Date: 2026-07-24 13:24-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,7 +41,7 @@ msgstr ""
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:41
 #: zapzap/features/settings/pages/advanced_customizations/view.py:101
-#: zapzap/features/settings/pages/debugging/view.py:52
+#: zapzap/features/settings/pages/debugging/view.py:199
 #: zapzap/features/downloads/ui/download_dialog.py:118
 #, fuzzy
 msgid "Open folder"
@@ -126,6 +126,7 @@ msgid "No active account!"
 msgstr "Nema aktivnog naloga!"
 
 #: zapzap/features/donation/view.py:207 zapzap/features/shortcuts/view.py:59
+#: zapzap/features/settings/pages/debugging/view.py:389
 #: zapzap/ui/main_window/main_window_view.py:129
 msgid "ZapZap"
 msgstr "ZapZap"
@@ -584,7 +585,7 @@ msgid "Automatically allow sharing of screen contents."
 msgstr ""
 
 #: zapzap/features/initial_setup/view.py:384
-#: zapzap/features/settings/pages/network_privacy/view.py:117
+#: zapzap/features/settings/pages/network_privacy/view.py:118
 msgid "WebRTC shield"
 msgstr ""
 
@@ -617,6 +618,8 @@ msgid "Select and copy this command in your terminal"
 msgstr ""
 
 #: zapzap/features/initial_setup/view.py:421
+#: zapzap/features/settings/pages/debugging/controller.py:87
+#: zapzap/features/settings/pages/debugging/view.py:233
 #: zapzap/features/settings/pages/permissions/view.py:96
 #: zapzap/features/browser/web/web_view.py:312
 msgid "Copy"
@@ -890,7 +893,7 @@ msgid "Performance experimental"
 msgstr "Performanse (Eksperimentalno)"
 
 #: zapzap/features/settings/shell/settings_controller.py:51
-#: zapzap/features/settings/pages/debugging/view.py:22
+#: zapzap/features/settings/pages/debugging/view.py:169
 msgid "Debugging"
 msgstr ""
 
@@ -992,11 +995,13 @@ msgstr "Verzija {id}"
 
 #: zapzap/features/settings/pages/about/model.py:67
 #: zapzap/features/settings/pages/about/model.py:91
+#: zapzap/features/settings/pages/debugging/view.py:391
 msgid "Channel"
 msgstr ""
 
 #: zapzap/features/settings/pages/about/model.py:68
 #: zapzap/features/settings/pages/about/model.py:90
+#: zapzap/features/settings/pages/debugging/view.py:390
 msgid "Packaging"
 msgstr ""
 
@@ -1009,6 +1014,7 @@ msgid "Repository"
 msgstr ""
 
 #: zapzap/features/settings/pages/about/model.py:88
+#: zapzap/features/settings/pages/debugging/view.py:395
 #, fuzzy
 msgid "System"
 msgstr "Vrati standardne postavke"
@@ -1667,116 +1673,226 @@ msgstr "Svijetla tema"
 msgid "Left"
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:23
+#: zapzap/features/settings/pages/debugging/controller.py:67
+#: zapzap/features/settings/pages/debugging/view.py:343
+#, python-brace-format
+msgid "{count} crash report"
+msgid_plural "{count} crash reports"
+msgstr[0] ""
+msgstr[1] ""
+
+#: zapzap/features/settings/pages/debugging/controller.py:72
+#, fuzzy
+msgid "available"
+msgstr "Onemogući"
+
+#: zapzap/features/settings/pages/debugging/controller.py:72
+msgid "not available"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/controller.py:75
+#, python-brace-format
 msgid ""
-"Diagnostics, crash logs, runtime information, and safe maintenance actions."
+"Diagnostic files: {reports}; debug log: {log_status}.\n"
+"\n"
+"Runtime information:\n"
+"{runtime}"
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:35
-msgid "Logs"
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/view.py:36
-msgid "Crash reports and debug log files."
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/view.py:53
+#: zapzap/features/settings/pages/debugging/controller.py:88
+#: zapzap/features/settings/pages/debugging/view.py:203
 #, fuzzy
-msgid "Delete old"
-msgstr "Izbriši"
+msgid "Copy diagnostics"
+msgstr "Kopiraj sliku"
 
-#: zapzap/features/settings/pages/debugging/view.py:54
-#, fuzzy
-msgid "Delete all"
-msgstr "Odaberi sve"
-
-#: zapzap/features/settings/pages/debugging/view.py:68
-msgid "Reset settings is destructive and requires restart."
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/view.py:73
-#: zapzap/features/settings/pages/debugging/controller.py:83
-#: zapzap/features/settings/pages/debugging/controller.py:97
-#: zapzap/features/settings/pages/debugging/controller.py:104
-#, fuzzy
-msgid "Reset settings"
-msgstr "Postavke"
-
-#: zapzap/features/settings/pages/debugging/view.py:81
-#, fuzzy
-msgid "Runtime information"
-msgstr "Informacija"
-
-#: zapzap/features/settings/pages/debugging/view.py:82
-msgid "Information useful for diagnostics and bug reports."
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/view.py:88
-msgid ""
-"Relevant environment information for bug reports, including Qt, PyQt, "
-"Python, Flatpak and desktop session details."
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/view.py:107
-msgid "Refresh"
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/view.py:108
+#: zapzap/features/settings/pages/debugging/controller.py:89
+#: zapzap/features/settings/pages/debugging/view.py:299
 msgid "Copy details"
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:119
-#, python-brace-format
-msgid "Files: {count} crash report(s){faulthandler}."
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/view.py:121
-msgid " + faulthandler.log"
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/view.py:125
-#, python-brace-format
-msgid ""
-"Crash reports are stored in this folder. You can open the directory or clean "
-"old files.\n"
-"{details}"
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/controller.py:55
-#: zapzap/features/settings/pages/debugging/controller.py:65
-#: zapzap/features/settings/pages/debugging/controller.py:75
+#: zapzap/features/settings/pages/debugging/controller.py:99
+#: zapzap/features/settings/pages/debugging/controller.py:109
+#: zapzap/features/settings/pages/debugging/controller.py:119
 msgid "Debug logs"
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/controller.py:56
+#: zapzap/features/settings/pages/debugging/controller.py:100
 #, python-brace-format
 msgid "Deleted {count} old crash report(s) (older than 30 days)."
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/controller.py:66
+#: zapzap/features/settings/pages/debugging/controller.py:110
 msgid "Delete all crash reports and debug logs?"
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/controller.py:76
+#: zapzap/features/settings/pages/debugging/controller.py:120
 #, python-brace-format
 msgid "Deleted {count} file(s)."
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/controller.py:85
+#: zapzap/features/settings/pages/debugging/controller.py:127
+#, fuzzy
+msgid "Reset settings?"
+msgstr "Postavke"
+
+#: zapzap/features/settings/pages/debugging/controller.py:129
 msgid ""
-"This will delete your current settings file (.config) and requires restart. "
-"Continue?"
+"All custom ZapZap settings will be restored to their default values.\n"
+"\n"
+"The application will need to be restarted to complete the operation."
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/controller.py:98
+#: zapzap/features/settings/pages/debugging/controller.py:142
+#: zapzap/features/settings/pages/debugging/controller.py:149
+#: zapzap/features/settings/pages/debugging/view.py:312
+#, fuzzy
+msgid "Reset settings"
+msgstr "Postavke"
+
+#: zapzap/features/settings/pages/debugging/controller.py:143
 #, python-brace-format
 msgid ""
 "Could not remove settings file:\n"
 "{error}"
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/controller.py:105
+#: zapzap/features/settings/pages/debugging/controller.py:150
 msgid "Settings were reset successfully. Restart ZapZap now?"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:98
+msgid "Full details"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:170
+msgid "Diagnostics, logs, runtime information, and maintenance tools."
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:184
+msgid "Diagnostics"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:188
+msgid "Crash reports"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:191
+msgid "Debug log"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:216
+msgid "Logs and crash reports"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:217
+msgid "Manage files used to diagnose errors."
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:225
+msgid "Diagnostics folder"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:232
+#: zapzap/features/downloads/ui/download_dialog.py:101
+msgid "Open"
+msgstr "Otvori"
+
+#: zapzap/features/settings/pages/debugging/view.py:247
+msgid "Clean up files…"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:252
+#, fuzzy
+msgid "Delete old files"
+msgstr "Izbriši"
+
+#: zapzap/features/settings/pages/debugging/view.py:255
+msgid "Remove only crash reports older than 30 days."
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:259
+msgid "Delete all logs and reports"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:267
+msgid "Remove every diagnostic file."
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:279
+#, fuzzy
+msgid "Runtime information"
+msgstr "Informacija"
+
+#: zapzap/features/settings/pages/debugging/view.py:280
+msgid "Useful data for support and bug reports."
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:298
+msgid "Refresh"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:309
+msgid "Maintenance"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:314
+msgid ""
+"Restore ZapZap's default settings. The application will need to be restarted."
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:317
+msgid "Reset…"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:330
+#, fuzzy, python-brace-format
+msgid "{count} available"
+msgid_plural "{count} available"
+msgstr[0] "Nalozi"
+msgstr[1] "Nalozi"
+
+#: zapzap/features/settings/pages/debugging/view.py:335
+msgid "faulthandler.log available"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:337
+msgid "Not available"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:348
+#, python-brace-format
+msgid "{reports} and 1 log file"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:392
+#, fuzzy
+msgid "Qt"
+msgstr "Izađi"
+
+#: zapzap/features/settings/pages/debugging/view.py:393
+msgid "PyQt"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:394
+msgid "Python"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:396
+msgid "Graphics session"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:408
+#, fuzzy
+msgid "Path copied"
+msgstr "Informacija"
+
+#: zapzap/features/settings/pages/debugging/view.py:411
+#, fuzzy
+msgid "Diagnostics copied"
+msgstr "Informacija"
+
+#: zapzap/features/settings/pages/debugging/view.py:414
+msgid "Details copied"
 msgstr ""
 
 #: zapzap/features/settings/pages/language_downloads/view.py:21
@@ -1792,23 +1908,23 @@ msgid "Set a custom folder or restore the default download location."
 msgstr ""
 
 #: zapzap/features/settings/pages/language_downloads/view.py:59
-#: zapzap/features/settings/pages/language_downloads/view.py:89
+#: zapzap/features/settings/pages/language_downloads/view.py:90
 msgid "Define"
 msgstr ""
 
 #: zapzap/features/settings/pages/language_downloads/view.py:65
-#: zapzap/features/settings/pages/language_downloads/view.py:95
-#: zapzap/features/settings/pages/network_privacy/view.py:137
-#: zapzap/features/settings/pages/performance_experimental/view.py:234
+#: zapzap/features/settings/pages/language_downloads/view.py:96
+#: zapzap/features/settings/pages/network_privacy/view.py:138
+#: zapzap/features/settings/pages/performance_experimental/view.py:236
 msgid "Restore"
 msgstr "Vrati"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:87
+#: zapzap/features/settings/pages/language_downloads/view.py:88
 #, fuzzy
 msgid "Dictionary directory"
 msgstr "Direktorij za preuzimanje"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:88
+#: zapzap/features/settings/pages/language_downloads/view.py:89
 #, fuzzy
 msgid "Note: changing dictionaries may require restarting the browser "
 msgstr "Napomena: Potrebno je ponovno pokretanje."
@@ -1861,100 +1977,100 @@ msgstr "Tip proxyja"
 msgid "Select the proxy mode."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:66
+#: zapzap/features/settings/pages/network_privacy/view.py:67
 msgid "Proxy type details appear below the selector."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:72
+#: zapzap/features/settings/pages/network_privacy/view.py:73
 #, fuzzy
 msgid "Host"
 msgstr "Naziv hosta"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:73
+#: zapzap/features/settings/pages/network_privacy/view.py:74
 msgid "Proxy host name or IP address."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:75
+#: zapzap/features/settings/pages/network_privacy/view.py:76
 msgid "Port"
 msgstr "Port"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:75
+#: zapzap/features/settings/pages/network_privacy/view.py:76
 #, fuzzy
 msgid "Proxy port."
 msgstr "Tip proxyja"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:76
+#: zapzap/features/settings/pages/network_privacy/view.py:77
 msgid "User"
 msgstr "Korisnik"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:76
+#: zapzap/features/settings/pages/network_privacy/view.py:77
 #, fuzzy
 msgid "Optional proxy user."
 msgstr "Nema korištenja proxyja."
 
-#: zapzap/features/settings/pages/network_privacy/view.py:78
-#: zapzap/features/settings/pages/network_privacy/view.py:107
+#: zapzap/features/settings/pages/network_privacy/view.py:79
+#: zapzap/features/settings/pages/network_privacy/view.py:108
 msgid "Password"
 msgstr "Lozinka"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:79
+#: zapzap/features/settings/pages/network_privacy/view.py:80
 msgid "Optional proxy password."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:98
+#: zapzap/features/settings/pages/network_privacy/view.py:99
 #, fuzzy
 msgid "Host name"
 msgstr "Naziv hosta"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:101
+#: zapzap/features/settings/pages/network_privacy/view.py:102
 msgid "Port number"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:104
+#: zapzap/features/settings/pages/network_privacy/view.py:105
 #, fuzzy
 msgid "Username"
 msgstr "Korisnik"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:113
+#: zapzap/features/settings/pages/network_privacy/view.py:114
 msgid "Privacy"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:114
+#: zapzap/features/settings/pages/network_privacy/view.py:115
 msgid "Global network privacy controls."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:118
+#: zapzap/features/settings/pages/network_privacy/view.py:119
 msgid "Reduce WebRTC IP exposure. This is a global privacy setting."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:126
+#: zapzap/features/settings/pages/network_privacy/view.py:127
 #, fuzzy
 msgid "Actions"
 msgstr "Informacija"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:127
+#: zapzap/features/settings/pages/network_privacy/view.py:128
 msgid "Apply or restore proxy settings."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:130
+#: zapzap/features/settings/pages/network_privacy/view.py:131
 #, fuzzy
 msgid "Apply proxy"
 msgstr "Primijeni"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:131
+#: zapzap/features/settings/pages/network_privacy/view.py:132
 msgid "Save settings and apply the proxy immediately."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:132
+#: zapzap/features/settings/pages/network_privacy/view.py:133
 msgid "Apply"
 msgstr "Primijeni"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:135
+#: zapzap/features/settings/pages/network_privacy/view.py:136
 #, fuzzy
 msgid "Restore proxy"
 msgstr "Mrežni proxy"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:136
+#: zapzap/features/settings/pages/network_privacy/view.py:137
 msgid "Clear proxy settings for the selected scope."
 msgstr ""
 
@@ -2017,205 +2133,205 @@ msgstr "Tip keša"
 msgid "Defines where the HTTP cache is stored."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:64
+#: zapzap/features/settings/pages/performance_experimental/view.py:65
 #, fuzzy
 msgid "Maximum cache size"
 msgstr "Maksimalna veličina keša"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:65
+#: zapzap/features/settings/pages/performance_experimental/view.py:66
 msgid "0 MB uses Chromium's default behavior."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:68
+#: zapzap/features/settings/pages/performance_experimental/view.py:70
 msgid "Persistent cookies"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:69
+#: zapzap/features/settings/pages/performance_experimental/view.py:71
 msgid "Keeps cookies between restarts."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:82
+#: zapzap/features/settings/pages/performance_experimental/view.py:84
 msgid "GPU and rendering"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:83
+#: zapzap/features/settings/pages/performance_experimental/view.py:85
 msgid "Rendering options for problematic drivers or hardware."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:87
+#: zapzap/features/settings/pages/performance_experimental/view.py:89
 msgid "In-process GPU"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:88
+#: zapzap/features/settings/pages/performance_experimental/view.py:90
 msgid "May reduce memory usage, but can cause instability."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:91
+#: zapzap/features/settings/pages/performance_experimental/view.py:93
 #, fuzzy
 msgid "Disable GPU"
 msgstr "Onemogući"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:92
+#: zapzap/features/settings/pages/performance_experimental/view.py:94
 msgid "Recommended only for old GPUs or problematic drivers."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:95
+#: zapzap/features/settings/pages/performance_experimental/view.py:97
 msgid "Automatic multi-GPU workaround"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:97
+#: zapzap/features/settings/pages/performance_experimental/view.py:99
 msgid ""
 "Honors DRI_PRIME or adjusts GPU compositing for a headless secondary GPU."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:101
+#: zapzap/features/settings/pages/performance_experimental/view.py:103
 msgid "Disable GPU VSync"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:102
+#: zapzap/features/settings/pages/performance_experimental/view.py:104
 msgid "May reduce latency, but can increase tearing."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:105
+#: zapzap/features/settings/pages/performance_experimental/view.py:107
 msgid "Force software rendering"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:106
+#: zapzap/features/settings/pages/performance_experimental/view.py:108
 msgid "Use only for graphical issues."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:109
+#: zapzap/features/settings/pages/performance_experimental/view.py:111
 msgid "Force GBM"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:110
+#: zapzap/features/settings/pages/performance_experimental/view.py:112
 msgid "Known NVIDIA typing lag fix."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:113
+#: zapzap/features/settings/pages/performance_experimental/view.py:115
 msgid "Disable accessibility bus"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:114
+#: zapzap/features/settings/pages/performance_experimental/view.py:116
 msgid "Known typing lag or CPU spike fix in QtWebEngine."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:138
+#: zapzap/features/settings/pages/performance_experimental/view.py:140
 msgid "Processes"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:139
+#: zapzap/features/settings/pages/performance_experimental/view.py:141
 msgid "Chromium process model options."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:143
+#: zapzap/features/settings/pages/performance_experimental/view.py:145
 msgid "Single process"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:144
+#: zapzap/features/settings/pages/performance_experimental/view.py:146
 msgid "Experimental; reduces memory usage but may cause crashes."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:147
+#: zapzap/features/settings/pages/performance_experimental/view.py:149
 msgid "Process per site"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:148
+#: zapzap/features/settings/pages/performance_experimental/view.py:150
 msgid "Safer and more stable, but may increase memory usage."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:159
+#: zapzap/features/settings/pages/performance_experimental/view.py:161
 msgid "JavaScript memory"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:160
+#: zapzap/features/settings/pages/performance_experimental/view.py:162
 msgid "V8 memory limit. Restart required."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:164
+#: zapzap/features/settings/pages/performance_experimental/view.py:166
 msgid "JavaScript memory limit"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:165
+#: zapzap/features/settings/pages/performance_experimental/view.py:167
 msgid "Automatic is the safest option."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:169
+#: zapzap/features/settings/pages/performance_experimental/view.py:171
 msgid "JavaScript GC predictable schedule (experimental)"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:170
+#: zapzap/features/settings/pages/performance_experimental/view.py:172
 msgid "Enables predictable V8 garbage collection and disables GPU."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:181
+#: zapzap/features/settings/pages/performance_experimental/view.py:183
 #, fuzzy
 msgid "Web behavior"
 msgstr "Ponašanje"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:182
+#: zapzap/features/settings/pages/performance_experimental/view.py:184
 msgid "Behavior options for rendered web content."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:186
+#: zapzap/features/settings/pages/performance_experimental/view.py:188
 #, fuzzy
 msgid "Smooth scrolling"
 msgstr "Animirano listanje"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:187
+#: zapzap/features/settings/pages/performance_experimental/view.py:189
 msgid "Disabling may reduce CPU usage."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:190
+#: zapzap/features/settings/pages/performance_experimental/view.py:192
 msgid "Background throttling"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:191
+#: zapzap/features/settings/pages/performance_experimental/view.py:193
 msgid "Allows background tabs to reduce resource usage."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:194
+#: zapzap/features/settings/pages/performance_experimental/view.py:196
 #, fuzzy
 msgid "Disable animations"
 msgstr "Onemogući hardversku akceleraciju GPU-a"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:195
+#: zapzap/features/settings/pages/performance_experimental/view.py:197
 msgid "May improve performance on slower machines."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:198
+#: zapzap/features/settings/pages/performance_experimental/view.py:200
 msgid "Disable pinch-to-zoom"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:199
+#: zapzap/features/settings/pages/performance_experimental/view.py:201
 msgid "Useful if accidental zooming occurs during scrolling."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:202
+#: zapzap/features/settings/pages/performance_experimental/view.py:204
 msgid "Fix Ctrl+Arrow cursor movement"
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:204
+#: zapzap/features/settings/pages/performance_experimental/view.py:206
 msgid ""
 "Use visual word navigation in editable fields to fix RTL text cursor "
 "movement."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:227
+#: zapzap/features/settings/pages/performance_experimental/view.py:229
 #, fuzzy
 msgid "Restore defaults"
 msgstr "Vrati standardne postavke"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:228
+#: zapzap/features/settings/pages/performance_experimental/view.py:230
 msgid "Return performance settings to safe defaults."
 msgstr ""
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:232
+#: zapzap/features/settings/pages/performance_experimental/view.py:234
 #, fuzzy
 msgid "Restore performance defaults"
 msgstr "Vrati standardne postavke"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:233
+#: zapzap/features/settings/pages/performance_experimental/view.py:235
 msgid "Restores all performance settings to safe default values."
 msgstr ""
 
@@ -2563,10 +2679,6 @@ msgstr ""
 msgid "Download"
 msgstr "Direktorij za preuzimanje"
 
-#: zapzap/features/downloads/ui/download_dialog.py:101
-msgid "Open"
-msgstr "Otvori"
-
 #: zapzap/features/downloads/ui/download_dialog.py:112
 msgid "More"
 msgstr ""
@@ -2907,6 +3019,10 @@ msgstr "Da li ste sigurni da želite izbrisati ovu stavku?"
 #: zapzap/ui/main_window/main_window_controller.py:265
 msgid "Don't ask again"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete all"
+#~ msgstr "Odaberi sve"
 
 #, fuzzy
 #~ msgid "Build information"
