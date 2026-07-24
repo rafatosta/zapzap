@@ -1,13 +1,10 @@
 """Regression tests for shared component font weights."""
 
-import os
 import unittest
 
-os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
-
 from PyQt6.QtGui import QFont
-from PyQt6.QtWidgets import QApplication
 
+from qt_test_case import QtTestCase
 from zapzap.features.settings.pages.advanced_customizations.view import (
     AdvancedCustomizationsSettingsView,
 )
@@ -16,11 +13,7 @@ from zapzap.ui.components import CheckBox, ComboBox, LineEdit
 from zapzap.ui.main_window.main_window_view import MainWindowView
 
 
-class ComponentTypographyTests(unittest.TestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        cls.app = QApplication.instance() or QApplication([])
+class ComponentTypographyTests(QtTestCase):
 
     def test_body_text_components_use_normal_weight(self):
         components = (LineEdit(), CheckBox(), ComboBox())

@@ -1,12 +1,10 @@
 """Tests for the shared settings card row separators."""
 
-import os
 import unittest
 
-os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
+from PyQt6.QtWidgets import QWidget
 
-from PyQt6.QtWidgets import QApplication, QWidget
-
+from qt_test_case import QtTestCase
 from zapzap.features.settings.components import (
     SUBSETTING_INDENT,
     SettingsCard,
@@ -15,11 +13,7 @@ from zapzap.features.settings.components import (
 )
 
 
-class SettingsCardTests(unittest.TestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        cls.app = QApplication.instance() or QApplication([])
+class SettingsCardTests(QtTestCase):
 
     def test_add_row_inserts_shared_divider_between_rows(self):
         card = SettingsCard()

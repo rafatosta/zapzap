@@ -1,12 +1,8 @@
 """Tests for shared dividers inside settings radio groups."""
 
-import os
 import unittest
 
-os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
-
-from PyQt6.QtWidgets import QApplication
-
+from qt_test_case import QtTestCase
 from zapzap.features.settings.components import (
     SettingsDivider,
     SettingsRadioGroup,
@@ -14,11 +10,7 @@ from zapzap.features.settings.components import (
 from zapzap.ui.components import RadioButton
 
 
-class SettingsRadioGroupTests(unittest.TestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        cls.app = QApplication.instance() or QApplication([])
+class SettingsRadioGroupTests(QtTestCase):
 
     def test_radio_options_use_shared_dividers(self):
         buttons = (

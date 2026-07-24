@@ -1,13 +1,9 @@
 """Regression tests for the System and startup settings interface."""
 
-import os
 import unittest
 from unittest.mock import patch
 
-os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
-
-from PyQt6.QtWidgets import QApplication
-
+from qt_test_case import QtTestCase
 from zapzap.features.settings.pages.system_startup.controller import (
     SystemStartupSettingsController,
 )
@@ -38,11 +34,7 @@ class FakeSystemStartupSettingsModel:
         self.autostart_updates.append(enabled)
 
 
-class SystemStartupSettingsUiTests(unittest.TestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        cls.app = QApplication.instance() or QApplication([])
+class SystemStartupSettingsUiTests(QtTestCase):
 
     def _controller(self, **states):
         model = FakeSystemStartupSettingsModel(**states)

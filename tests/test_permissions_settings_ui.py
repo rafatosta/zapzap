@@ -1,14 +1,11 @@
 """Regression tests for the permissions settings interface."""
 
-import os
 import unittest
 from unittest.mock import patch
 
-os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
-
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QApplication
 
+from qt_test_case import QtTestCase
 from zapzap.features.settings.pages.permissions.controller import (
     PermissionsSettingsController,
 )
@@ -45,11 +42,7 @@ class FakePermissionsSettingsModel:
         self.changes.append((permission_id, enabled))
 
 
-class PermissionsSettingsUiTests(unittest.TestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        cls.app = QApplication.instance() or QApplication([])
+class PermissionsSettingsUiTests(QtTestCase):
 
     def _controller(self, states=None):
         model = FakePermissionsSettingsModel(states)

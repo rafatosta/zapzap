@@ -1,13 +1,11 @@
 """Regression tests for the Privacy and Network settings interface."""
 
-import os
 import unittest
 from unittest.mock import patch
 
-os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
+from PyQt6.QtWidgets import QLineEdit
 
-from PyQt6.QtWidgets import QApplication, QLineEdit
-
+from qt_test_case import QtTestCase
 from zapzap.features.settings.pages.network_privacy.controller import (
     NetworkPrivacySettingsController,
 )
@@ -79,11 +77,7 @@ class FakeNetworkPrivacySettingsModel:
         self.apply_count += 1
 
 
-class NetworkPrivacySettingsUiTests(unittest.TestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        cls.app = QApplication.instance() or QApplication([])
+class NetworkPrivacySettingsUiTests(QtTestCase):
 
     def _controller(self, settings=None):
         model = FakeNetworkPrivacySettingsModel(settings)

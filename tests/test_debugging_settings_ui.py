@@ -1,13 +1,11 @@
 """Regression tests for the compact Debugging settings page."""
 
 import json
-import os
 import unittest
-
-os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
 from PyQt6.QtWidgets import QApplication
 
+from qt_test_case import QtTestCase
 from zapzap.features.settings.pages.debugging.controller import (
     DebuggingSettingsController,
 )
@@ -18,11 +16,7 @@ from zapzap.core.diagnostics.runtime_environment_debug import (
 from zapzap.ui.components import Button
 
 
-class DebuggingSettingsUiTests(unittest.TestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        cls.app = QApplication.instance() or QApplication([])
+class DebuggingSettingsUiTests(QtTestCase):
 
     def test_destructive_reset_is_isolated_in_maintenance(self):
         page = DebuggingSettingsView()
@@ -44,7 +38,7 @@ class DebuggingSettingsUiTests(unittest.TestCase):
             page.action_delete_all_debug_logs.text(),
             "Delete all logs and reports",
         )
-        self.assertFalse(page.action_delete_all_debug_logs.icon().isNull())
+        self.assertTrue(page.action_delete_all_debug_logs.toolTip())
 
     def test_file_summary_uses_correct_plural_and_log_count(self):
         page = DebuggingSettingsView()

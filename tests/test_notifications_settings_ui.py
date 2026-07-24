@@ -1,13 +1,9 @@
 """Regression tests for the notification settings interface."""
 
-import os
 import unittest
 from unittest.mock import patch
 
-os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
-
-from PyQt6.QtWidgets import QApplication
-
+from qt_test_case import QtTestCase
 from zapzap.core.config.settings.notifications import NotificationSettings
 from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.features.donation.model import DonationModel
@@ -29,11 +25,7 @@ class FakeNotificationsSettingsModel:
         self.donation_message_enabled = False
 
 
-class NotificationsSettingsUiTests(unittest.TestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        cls.app = QApplication.instance() or QApplication([])
+class NotificationsSettingsUiTests(QtTestCase):
 
     def _controller(self, **states):
         model = FakeNotificationsSettingsModel(**states)

@@ -1,13 +1,9 @@
 """Regression tests for the compact accounts settings interface."""
 
-import os
 import unittest
 from types import SimpleNamespace
 
-os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
-
-from PyQt6.QtWidgets import QApplication
-
+from qt_test_case import QtTestCase
 from zapzap.features.settings.components.card_user.card_user_controller import (
     CardUserController,
 )
@@ -19,11 +15,7 @@ from zapzap.features.settings.pages.accounts.view import AccountsSettingsView
 from zapzap.ui.components import Button, ComboBox, LineEdit
 
 
-class AccountsSettingsUiTests(unittest.TestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        cls.app = QApplication.instance() or QApplication([])
+class AccountsSettingsUiTests(QtTestCase):
 
     def test_card_only_exposes_primary_account_settings(self):
         card = CardUserView()

@@ -1,13 +1,11 @@
 """Regression tests for the appearance settings hierarchy."""
 
-import os
 import unittest
 from unittest.mock import patch
 
-os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
-
 from PyQt6.QtWidgets import QApplication, QBoxLayout
 
+from qt_test_case import QtTestCase
 from zapzap.features.settings.components import SUBSETTING_INDENT, SettingsDivider
 from zapzap.features.settings.pages.appearance.controller import (
     AppearanceSettingsController,
@@ -55,11 +53,7 @@ class FakeAppearanceSettingsModel:
         pass
 
 
-class AppearanceSettingsUiTests(unittest.TestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        cls.app = QApplication.instance() or QApplication([])
+class AppearanceSettingsUiTests(QtTestCase):
 
     def _controller(self, **states):
         model = FakeAppearanceSettingsModel(**states)

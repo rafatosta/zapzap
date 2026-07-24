@@ -1,28 +1,23 @@
 """Regression tests for the institutional About settings page."""
 
-import os
 import unittest
-
-os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
 from PyQt6.QtWidgets import QApplication, QPushButton
 
+from qt_test_case import QtTestCase
+from zapzap import __version__
 from zapzap.features.settings.pages.about.controller import AboutSettingsController
 from zapzap.features.settings.pages.about.model import AboutSettingsModel
 from zapzap.features.settings.pages.about.view import AboutSettingsView
 
 
-class AboutSettingsUiTests(unittest.TestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        cls.app = QApplication.instance() or QApplication([])
+class AboutSettingsUiTests(QtTestCase):
 
     def test_identity_is_prominent_and_excludes_runtime_versions(self):
         page = AboutSettingsController()
 
         self.assertEqual(page.identity_header.name_label.text(), "ZapZap")
-        self.assertIn("7.0.3", page.identity_header.version_label.text())
+        self.assertIn(__version__, page.identity_header.version_label.text())
         self.assertNotIn("Qt", page.identity_header.version_label.text())
         self.assertEqual(page.identity_header.icon_label.width(), 72)
 
@@ -49,7 +44,7 @@ class AboutSettingsUiTests(unittest.TestCase):
     def test_system_information_contains_runtime_versions(self):
         information = AboutSettingsModel().system_information
 
-        self.assertIn("ZapZap 7.0.3", information)
+        self.assertIn(f"ZapZap {__version__}", information)
         self.assertIn("Qt:", information)
         self.assertIn("PyQt:", information)
         self.assertIn("Python:", information)
