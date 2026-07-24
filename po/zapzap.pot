@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-24 10:50-0300\n"
+"POT-Creation-Date: 2026-07-24 11:01-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -982,7 +982,7 @@ msgid "Unsaved changes discarded."
 msgstr ""
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:197
-#: zapzap/features/settings/components/card_user/card_user_view.py:134
+#: zapzap/features/settings/components/card_user/card_user_view.py:176
 msgid "Unnamed account"
 msgstr ""
 
@@ -1140,6 +1140,7 @@ msgid "Ctrl+S to save"
 msgstr ""
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:648
+#: zapzap/features/settings/components/card_user/rename_account_dialog.py:43
 #: zapzap/features/downloads/ui/download_dialog.py:120
 msgid "Cancel"
 msgstr ""
@@ -1288,7 +1289,7 @@ msgid "Open location"
 msgstr ""
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:165
-#: zapzap/features/settings/components/card_user/card_user_controller.py:240
+#: zapzap/features/settings/components/card_user/card_user_controller.py:237
 msgid "Delete"
 msgstr ""
 
@@ -1412,7 +1413,7 @@ msgstr ""
 
 #: zapzap/features/settings/pages/appearance/controller.py:71
 #: zapzap/features/settings/pages/appearance/view.py:92
-#: zapzap/features/settings/components/card_user/card_user_view.py:125
+#: zapzap/features/settings/components/card_user/card_user_view.py:167
 msgid "Default"
 msgstr ""
 
@@ -2285,92 +2286,99 @@ msgstr ""
 msgid "Enable Wayland-specific execution mode."
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:39
-#: zapzap/features/settings/components/card_user/card_user_view.py:40
-#: zapzap/features/settings/components/card_user/card_user_controller.py:104
-msgid "Change icon"
-msgstr ""
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:53
-#: zapzap/features/settings/components/card_user/card_user_view.py:55
-msgid "Account active"
-msgstr ""
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:63
-#: zapzap/features/settings/components/card_user/card_user_view.py:64
+#: zapzap/features/settings/components/card_user/card_user_view.py:32
+#: zapzap/features/settings/components/card_user/card_user_view.py:33
 msgid "Account actions"
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:86
-#: zapzap/features/settings/components/card_user/card_user_controller.py:204
+#: zapzap/features/settings/components/card_user/card_user_view.py:97
+#: zapzap/features/settings/components/card_user/card_user_view.py:98
+#: zapzap/features/settings/components/card_user/card_user_controller.py:101
+msgid "Change icon"
+msgstr ""
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:112
+#: zapzap/features/settings/components/card_user/card_user_view.py:115
+msgid "Account active"
+msgstr ""
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:128
+#: zapzap/features/settings/components/card_user/card_user_controller.py:201
 msgid "Do not disturb"
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:87
+#: zapzap/features/settings/components/card_user/card_user_view.py:129
 msgid "Silences notifications for this account."
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:99
-#: zapzap/features/settings/components/card_user/card_user_view.py:100
+#: zapzap/features/settings/components/card_user/card_user_view.py:141
+#: zapzap/features/settings/components/card_user/card_user_view.py:142
 msgid "Advanced options"
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:120
-#: zapzap/features/settings/components/card_user/card_user_controller.py:218
+#: zapzap/features/settings/components/card_user/card_user_view.py:162
+#: zapzap/features/settings/components/card_user/card_user_controller.py:215
 msgid "User-Agent"
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:121
+#: zapzap/features/settings/components/card_user/card_user_view.py:163
 msgid "Changes the identification used by this account when loading pages."
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:73
-msgid "Rename account"
-msgstr ""
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:74
-msgid "Account name"
-msgstr ""
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:101
+#: zapzap/features/settings/components/card_user/card_user_controller.py:98
+#: zapzap/features/settings/components/card_user/rename_account_dialog.py:44
 msgid "Rename"
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:105
-#: zapzap/features/settings/components/card_user/card_user_controller.py:193
-#: zapzap/features/settings/components/card_user/card_user_controller.py:233
+#: zapzap/features/settings/components/card_user/card_user_controller.py:102
+#: zapzap/features/settings/components/card_user/card_user_controller.py:190
+#: zapzap/features/settings/components/card_user/card_user_controller.py:230
 msgid "Generate new colors for the icon"
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:107
-#: zapzap/features/settings/components/card_user/card_user_controller.py:195
-#: zapzap/features/settings/components/card_user/card_user_controller.py:235
+#: zapzap/features/settings/components/card_user/card_user_controller.py:104
+#: zapzap/features/settings/components/card_user/card_user_controller.py:192
+#: zapzap/features/settings/components/card_user/card_user_controller.py:232
 msgid "Restore standard"
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:112
+#: zapzap/features/settings/components/card_user/card_user_controller.py:109
 msgid "Remove account"
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:153
+#: zapzap/features/settings/components/card_user/card_user_controller.py:150
 msgid "Confirm exclusion"
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:154
+#: zapzap/features/settings/components/card_user/card_user_controller.py:151
 msgid "Are you sure you want to delete this item?"
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:183
+#: zapzap/features/settings/components/card_user/card_user_controller.py:180
 msgid "User-Agent Changed"
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:185
+#: zapzap/features/settings/components/card_user/card_user_controller.py:182
 msgid ""
 "Please restart this session (or the application) to apply the new User-Agent."
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:211
+#: zapzap/features/settings/components/card_user/card_user_controller.py:208
 msgid "Disable"
+msgstr ""
+
+#: zapzap/features/settings/components/card_user/rename_account_dialog.py:16
+#: zapzap/features/settings/components/card_user/rename_account_dialog.py:30
+msgid "Rename account"
+msgstr ""
+
+#: zapzap/features/settings/components/card_user/rename_account_dialog.py:32
+msgid "Choose a name to identify this account."
+msgstr ""
+
+#: zapzap/features/settings/components/card_user/rename_account_dialog.py:38
+#: zapzap/features/settings/components/card_user/rename_account_dialog.py:40
+msgid "Account name"
 msgstr ""
 
 #: zapzap/features/downloads/ui/download_dialog.py:47

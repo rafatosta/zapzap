@@ -9,7 +9,11 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QApplication
 
 from zapzap.features.settings.components.card_user.card_user_view import CardUserView
+from zapzap.features.settings.components.card_user.rename_account_dialog import (
+    RenameAccountDialog,
+)
 from zapzap.features.settings.pages.accounts.view import AccountsSettingsView
+from zapzap.ui.components import Button, LineEdit
 
 
 class AccountsSettingsUiTests(unittest.TestCase):
@@ -63,6 +67,15 @@ class AccountsSettingsUiTests(unittest.TestCase):
         self.assertEqual(card.menu_button.sizeHint().height(), 34)
         self.assertEqual(card.menu_button.text(), "")
         self.assertTrue(card.menu_button.accessibleName())
+
+    def test_rename_dialog_uses_zapzap_components(self):
+        dialog = RenameAccountDialog("Rafael Tosta")
+
+        self.assertIsInstance(dialog.name_edit, LineEdit)
+        self.assertIsInstance(dialog.cancel_button, Button)
+        self.assertIsInstance(dialog.rename_button, Button)
+        self.assertEqual(dialog.account_name(), "Rafael Tosta")
+        self.assertTrue(dialog.rename_button.isDefault())
 
     def test_account_limit_disables_add_action(self):
         page = AccountsSettingsView()

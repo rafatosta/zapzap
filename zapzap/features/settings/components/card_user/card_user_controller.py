@@ -3,11 +3,14 @@
 from gettext import gettext as _
 
 from PyQt6.QtGui import QActionGroup
-from PyQt6.QtWidgets import QApplication, QInputDialog, QLineEdit, QMenu
+from PyQt6.QtWidgets import QApplication, QMenu
 
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.accounts.domain.user import User
 from zapzap.features.settings.components.card_user.card_user_model import CardUserModel
+from zapzap.features.settings.components.card_user.rename_account_dialog import (
+    RenameAccountDialog,
+)
 from zapzap.features.settings.components.card_user.card_user_view import CardUserView
 
 
@@ -68,13 +71,7 @@ class CardUserController(CardUserView):
         self._show_icon_menu(self.icon)
 
     def _handle_rename_action(self):
-        name, accepted = QInputDialog.getText(
-            self,
-            _("Rename account"),
-            _("Account name"),
-            QLineEdit.EchoMode.Normal,
-            self.model.name,
-        )
+        name, accepted = RenameAccountDialog.get_name(self, self.model.name)
         if not accepted:
             return
         self.model.name = name
