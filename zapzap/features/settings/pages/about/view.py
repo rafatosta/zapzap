@@ -5,7 +5,6 @@ from gettext import gettext as _
 from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import (
-    QFrame,
     QHBoxLayout,
     QLabel,
     QPushButton,
@@ -228,14 +227,6 @@ class AboutListCard(SettingsCard):
     """One low-fragmentation card with internal separators."""
 
     def add_action(self, row: QWidget):
-        if self.layout.count():
-            divider = QFrame(self)
-            divider.setFrameShape(QFrame.Shape.HLine)
-            divider.setObjectName("AboutDivider")
-            divider.setStyleSheet(
-                "QFrame#AboutDivider { color: palette(mid); max-height: 1px; }"
-            )
-            self.layout.addWidget(divider)
         self.add_row(row)
 
 

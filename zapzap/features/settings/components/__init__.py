@@ -1,5 +1,6 @@
 from .settings_badge import SettingsBadge, SettingsInfoBox
 from .settings_card import SettingsCard
+from .settings_divider import SettingsDivider
 from .settings_page import SettingsPage
 from .settings_radio_group import SettingsRadioGroup
 from .settings_restart_bar import SettingsRestartBar

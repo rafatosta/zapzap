@@ -153,14 +153,6 @@ class ExpandableDiagnosticDetails(QWidget):
         self.text_edit.setPlainText(value)
 
 
-def _divider(parent=None) -> QFrame:
-    divider = QFrame(parent)
-    divider.setFrameShape(QFrame.Shape.HLine)
-    divider.setFrameShadow(QFrame.Shadow.Plain)
-    divider.setStyleSheet("color: palette(mid);")
-    return divider
-
-
 class DebuggingSettingsView(SettingsPage):
     """Composable debugging page view without filesystem or settings logic."""
 
@@ -236,7 +228,6 @@ class DebuggingSettingsView(SettingsPage):
         path_row_layout.addWidget(self.btn_copy_debug_logs_path)
         path_layout.addWidget(path_row)
         card.add_row(path_header)
-        card.add_row(_divider(card))
 
         files_row = QWidget(card)
         files_layout = QHBoxLayout(files_row)
@@ -289,7 +280,6 @@ class DebuggingSettingsView(SettingsPage):
 
         self.runtime_details = ExpandableDiagnosticDetails(card)
         self.runtime_environment = self.runtime_details.text_edit
-        card.add_row(_divider(card))
         card.add_row(self.runtime_details)
 
         actions = QWidget(card)

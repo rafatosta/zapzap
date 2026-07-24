@@ -1,7 +1,6 @@
 from gettext import gettext as _
 
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QFrame
 
 from zapzap.core.environment.setup_manager import SetupManager
 
@@ -13,20 +12,6 @@ from zapzap.features.settings.components import (
     SettingsSelectRow,
     SettingsSwitchRow,
 )
-
-
-def _divider(parent=None):
-    """Return a subtle separator for rows that share the same card."""
-    divider = QFrame(parent)
-    divider.setObjectName("SystemStartupDivider")
-    divider.setFrameShape(QFrame.Shape.HLine)
-    divider.setFrameShadow(QFrame.Shadow.Plain)
-    divider.setStyleSheet(
-        "QFrame#SystemStartupDivider {"
-        " color: palette(mid); max-height: 1px;"
-        "}"
-    )
-    return divider
 
 
 class SystemStartupSettingsView(SettingsPage):
@@ -69,7 +54,6 @@ class SystemStartupSettingsView(SettingsPage):
         self._configure_accessibility(self.btn_start_system_row)
         self._configure_accessibility(self.btn_start_background_row)
         card.add_row(self.btn_start_system_row)
-        card.add_row(_divider(card))
         card.add_row(self.btn_start_background_row)
         section.add_card(card)
         self.add_section(section)
@@ -115,7 +99,6 @@ class SystemStartupSettingsView(SettingsPage):
         )
         self._configure_accessibility(self.btn_confirm_in_close_row)
         card.add_row(self.close_behavior_row)
-        card.add_row(_divider(card))
         card.add_row(self.btn_confirm_in_close_row)
         section.add_card(card)
         self.add_section(section)
@@ -157,7 +140,6 @@ class SystemStartupSettingsView(SettingsPage):
             self.wayland_restart_badge.setAccessibleName(
                 _("Wayland changes require restart")
             )
-            card.add_row(_divider(card))
             card.add_row(self.btn_wayland_row)
             text_column = self.btn_wayland_row.layout().itemAt(0).widget()
             text_column.layout().addWidget(

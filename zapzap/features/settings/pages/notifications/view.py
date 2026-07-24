@@ -1,7 +1,7 @@
 from gettext import gettext as _
 
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QMenu, QVBoxLayout, QWidget
+from PyQt6.QtWidgets import QHBoxLayout, QMenu, QVBoxLayout, QWidget
 
 from zapzap.features.settings.components import (
     SettingsCard,
@@ -9,17 +9,6 @@ from zapzap.features.settings.components import (
     SettingsSwitchRow,
 )
 from zapzap.ui.components import Button, Label
-
-
-def _divider(parent=None):
-    divider = QFrame(parent)
-    divider.setObjectName("NotificationDivider")
-    divider.setFrameShape(QFrame.Shape.HLine)
-    divider.setFrameShadow(QFrame.Shadow.Plain)
-    divider.setStyleSheet(
-        "QFrame#NotificationDivider { color: palette(mid); max-height: 1px; }"
-    )
-    return divider
 
 
 class NotificationsSettingsView(SettingsPage):
@@ -79,10 +68,8 @@ class NotificationsSettingsView(SettingsPage):
             self.show_name,
             self.show_msg,
         )
-        for index, row in enumerate(self.notification_content_rows):
+        for row in self.notification_content_rows:
             self._configure_accessibility(row)
-            if index:
-                card.add_row(_divider(card))
             card.add_row(row)
         section.layout().addWidget(card)
         self.add_section(section)

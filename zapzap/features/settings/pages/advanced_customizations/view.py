@@ -220,7 +220,7 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         self.inherit_checkbox = self.inherit_row.checkbox
         self.account_scope_hint_label = self.inherit_row
         card.add_row(self.scope_row)
-        card.add_row(self.account_label)
+        card.add_row(self.account_label, divider=False)
         card.add_row(self.inherit_row)
         section.add_card(card)
         self.add_section(section)
@@ -370,7 +370,7 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         )
         self.css_preview_stack.addWidget(self.css_preview_placeholder_page)
         self.css_preview_stack.addWidget(self.css_preview_image_page)
-        card.add_row(self.css_preview_stack)
+        card.add_row(self.css_preview_stack, divider=False)
         return card
 
     def _build_js_tab(self):

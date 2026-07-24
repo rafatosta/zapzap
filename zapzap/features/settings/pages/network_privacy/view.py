@@ -179,7 +179,7 @@ class NetworkPrivacySettingsView(SettingsPage):
         self.current_account_label.setWordWrap(True)
         self.current_account_label.hide()
         card.add_row(self.account_selector_row)
-        card.add_row(self.current_account_label)
+        card.add_row(self.current_account_label, divider=False)
         section.add_card(card)
         self.add_section(section)
 
@@ -230,11 +230,11 @@ class NetworkPrivacySettingsView(SettingsPage):
             self.host_row,
             self.port_row,
             self.authentication,
-            self.validation_message,
-            self.proxy_status,
-            self.restore_row,
         ):
             card.add_row(row)
+        card.add_row(self.validation_message, divider=False)
+        card.add_row(self.proxy_status, divider=False)
+        card.add_row(self.restore_row)
 
         self.proxyCheckBox = self.proxy_enable_row.checkbox
         self.proxyComboBox = self.proxy_type_row.combo
@@ -266,7 +266,7 @@ class NetworkPrivacySettingsView(SettingsPage):
         self.webrtc_scope_label.setObjectName("SettingsScopeMetadata")
         self.webrtcShieldCheckBox = self.webrtc_row.checkbox
         card.add_row(self.webrtc_row)
-        card.add_row(self.webrtc_scope_label)
+        card.add_row(self.webrtc_scope_label, divider=False)
         section.add_card(card)
         self.add_section(section)
 
