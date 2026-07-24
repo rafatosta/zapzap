@@ -224,16 +224,17 @@ class NetworkPrivacySettingsView(SettingsPage):
             _("Restore…"),
         )
 
-        for row in (
+        card.add_group(
             self.proxy_enable_row,
-            self.proxy_type_row,
-            self.host_row,
-            self.port_row,
-            self.authentication,
-        ):
-            card.add_row(row)
-        card.add_row(self.validation_message, divider=False)
-        card.add_row(self.proxy_status, divider=False)
+            (
+                self.proxy_type_row,
+                self.host_row,
+                self.port_row,
+                self.authentication,
+                self.validation_message,
+                self.proxy_status,
+            ),
+        )
         card.add_row(self.restore_row)
 
         self.proxyCheckBox = self.proxy_enable_row.checkbox
