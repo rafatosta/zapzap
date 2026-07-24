@@ -8,8 +8,8 @@ from PyQt6.QtWidgets import QApplication, QMenu
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.accounts.domain.user import User
 from zapzap.features.settings.components.card_user.card_user_model import CardUserModel
-from zapzap.features.settings.components.card_user.rename_account_dialog import (
-    RenameAccountDialog,
+from zapzap.features.settings.components.card_user.edit_account_dialog import (
+    EditAccountDialog,
 )
 from zapzap.features.settings.components.card_user.card_user_view import CardUserView
 
@@ -20,7 +20,7 @@ class CardUserController(CardUserView):
     def __init__(self, user: User = None, parent=None, on_deleted=None):
         self.model = CardUserModel(user)
         self._on_deleted = on_deleted
-        super().__init__(self.model.available_user_agents(), parent)
+        super().__init__(parent)
         self.user = self.model.user
         self._initialize()
 
@@ -34,13 +34,11 @@ class CardUserController(CardUserView):
         self.silence.clicked.connect(self._handle_silence_action)
         self.active.clicked.connect(self._handle_active_action)
         self.icon.clicked.connect(self._handle_icon_action)
-        self.ua_selector.currentIndexChanged.connect(self._handle_ua_change)
 
     def _load_data(self):
         self.set_user_name(self.model.name)
         self.set_account_enabled(self.model.enabled)
         self.set_notifications_silenced(not self.model.notifications_enabled)
-        self.set_selected_user_agent(self.model.user_agent)
 
     def _update_user_icon(self):
         self.set_user_icon(self.model.current_icon())
@@ -70,12 +68,26 @@ class CardUserController(CardUserView):
     def _handle_icon_action(self):
         self._show_icon_menu(self.icon)
 
-    def _handle_rename_action(self):
-        name, accepted = RenameAccountDialog.get_name(self, self.model.name)
-        if not accepted:
+    def _handle_edit_action(self):
+        dialog = EditAccountDialog(
+            self.model.name,
+            self.model.current_icon(),
+            self.model.available_user_agents(),
+            self.model.user_agent,
+            self,
+        )
+        dialog.name_edit.setFocus()
+        if dialog.exec() != dialog.DialogCode.Accepted:
             return
-        self.model.name = name
-        self.set_user_name(name)
+
+        self.model.name = dialog.account_name()
+        self.set_user_name(self.model.name)
+        if dialog.icon_action() != EditAccountDialog.KEEP_ICON:
+            self.model.set_icon(dialog.staged_icon_svg())
+            self._update_user_icon()
+        if dialog.user_agent() != self.model.user_agent:
+            self.set_user_agent(self, self.user, dialog.user_agent())
+
         browser = self._get_browser()
         if browser:
             browser.update_icons_page_button(self.user)
@@ -86,23 +98,10 @@ class CardUserController(CardUserView):
         if action:
             self._update_user_icon()
 
-    def _handle_ua_change(self, index):
-        if index < 0:
-            return
-        user_agent = self.ua_selector.itemData(index)
-        if user_agent != self.model.user_agent:
-            self.set_user_agent(self, self.user, user_agent)
-
     def _create_account_menu(self):
         menu = QMenu(self)
-        rename_action = menu.addAction(_("Rename"))
-        rename_action.triggered.connect(self._handle_rename_action)
-
-        icon_menu = menu.addMenu(_("Change icon"))
-        generate_action = icon_menu.addAction(_("Generate new colors for the icon"))
-        generate_action.triggered.connect(self._regenerate_icon)
-        restore_action = icon_menu.addAction(_("Restore standard"))
-        restore_action.triggered.connect(self._restore_icon)
+        edit_action = menu.addAction(_("Edit"))
+        edit_action.triggered.connect(self._handle_edit_action)
 
         if not self.model.is_default_user:
             menu.addSeparator()

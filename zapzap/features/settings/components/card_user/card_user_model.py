@@ -55,6 +55,10 @@ class CardUserModel:
     def restore_default_icon(self) -> None:
         self.user.icon = UserIcon.ICON_DEFAULT
 
+    def set_icon(self, icon_svg: str) -> None:
+        """Persist a previously previewed account icon."""
+        self.user.icon = icon_svg
+
     def remove_user(self) -> None:
         self.user.remove()
 

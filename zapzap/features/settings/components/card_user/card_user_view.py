@@ -8,13 +8,11 @@ from PyQt6.QtWidgets import (
     QHBoxLayout,
     QSizePolicy,
     QToolButton,
-    QVBoxLayout,
     QWidget,
 )
 
 from zapzap.features.settings.components.settings_card import SettingsCard
 from zapzap.features.settings.components.settings_rows import (
-    SettingsSelectRow,
     SettingsSwitchRow,
     SettingsToggleSwitch,
 )
@@ -81,11 +79,11 @@ class AccountActionsButton(QToolButton):
 class CardUserView(SettingsCard):
     """Visual account card without persistence or application side effects."""
 
-    def __init__(self, user_agent_items=None, parent=None):
+    def __init__(self, parent=None):
         super().__init__(parent)
-        self._setup_ui(user_agent_items or [])
+        self._setup_ui()
 
-    def _setup_ui(self, user_agent_items):
+    def _setup_ui(self):
         header = QWidget(self)
         header_layout = QHBoxLayout(header)
         header_layout.setContentsMargins(0, 4, 0, 4)
@@ -131,47 +129,6 @@ class CardUserView(SettingsCard):
         self.silence = self.silence_row.checkbox
         self.add_row(self.silence_row)
 
-        self.advanced_button = QToolButton(self)
-        self.advanced_button.setCheckable(True)
-        self.advanced_button.setChecked(False)
-        self.advanced_button.setToolButtonStyle(
-            Qt.ToolButtonStyle.ToolButtonTextBesideIcon
-        )
-        self.advanced_button.setArrowType(Qt.ArrowType.RightArrow)
-        self.advanced_button.setText(_("Advanced options"))
-        self.advanced_button.setAccessibleName(_("Advanced options"))
-        self.advanced_button.setStyleSheet("""
-            QToolButton {
-                min-height: 28px;
-                border: 0;
-                border-radius: 8px;
-                padding: 4px 6px;
-                color: palette(text);
-            }
-            QToolButton:hover {
-                background: palette(alternate-base);
-            }
-        """)
-        self.add_row(self.advanced_button)
-
-        self.advanced_content = QWidget(self)
-        advanced_layout = QVBoxLayout(self.advanced_content)
-        advanced_layout.setContentsMargins(20, 0, 0, 0)
-        advanced_layout.setSpacing(0)
-        self.ua_row = SettingsSelectRow(
-            _("User-Agent"),
-            _("Changes the identification used by this account when loading pages."),
-        )
-        self.ua_selector = self.ua_row.combo
-        for user_agent in user_agent_items:
-            display_name = _("Default") if user_agent == "Default" else user_agent
-            self.ua_selector.addItem(display_name, user_agent)
-        advanced_layout.addWidget(self.ua_row)
-        self.advanced_content.hide()
-        self.add_row(self.advanced_content)
-
-        self.advanced_button.toggled.connect(self.set_advanced_options_expanded)
-
     def set_user_name(self, name: str):
         self.name.setText(name or _("Unnamed account"))
 
@@ -181,19 +138,8 @@ class CardUserView(SettingsCard):
     def set_notifications_silenced(self, silenced: bool):
         self.silence.setChecked(silenced)
 
-    def set_selected_user_agent(self, user_agent: str):
-        index = self.ua_selector.findData(user_agent)
-        if index >= 0:
-            self.ua_selector.setCurrentIndex(index)
-
     def set_user_icon(self, icon):
         self.icon.setIcon(icon)
 
     def set_account_menu(self, menu):
         self.menu_button.setMenu(menu)
-
-    def set_advanced_options_expanded(self, expanded: bool):
-        self.advanced_content.setVisible(expanded)
-        self.advanced_button.setArrowType(
-            Qt.ArrowType.DownArrow if expanded else Qt.ArrowType.RightArrow
-        )
