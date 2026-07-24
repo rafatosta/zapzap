@@ -198,7 +198,7 @@ class DebuggingSettingsView(SettingsPage):
         actions_layout.addWidget(self.btn_diagnostic_open_folder)
         actions_layout.addStretch(1)
         actions_layout.addWidget(self.btn_copy_diagnostics)
-        card.add_row(actions)
+        card.add_subrow(actions)
 
         section.add_card(card)
         self.add_section(section)
@@ -227,8 +227,6 @@ class DebuggingSettingsView(SettingsPage):
         path_row_layout.addWidget(self.btn_open_debug_logs)
         path_row_layout.addWidget(self.btn_copy_debug_logs_path)
         path_layout.addWidget(path_row)
-        card.add_row(path_header)
-
         files_row = QWidget(card)
         files_layout = QHBoxLayout(files_row)
         files_layout.setContentsMargins(0, 9, 0, 7)
@@ -260,7 +258,7 @@ class DebuggingSettingsView(SettingsPage):
         self.btn_cleanup_debug_logs.setMenu(self.cleanup_menu)
         files_layout.addWidget(self.label_debug_logs_hint, 1)
         files_layout.addWidget(self.btn_cleanup_debug_logs)
-        card.add_row(files_row)
+        card.add_group(path_header, (files_row,))
 
         section.add_card(card)
         self.add_section(section)
@@ -276,11 +274,8 @@ class DebuggingSettingsView(SettingsPage):
         self.runtime_summary_layout = QVBoxLayout(self.runtime_summary)
         self.runtime_summary_layout.setContentsMargins(0, 0, 0, 0)
         self.runtime_summary_layout.setSpacing(0)
-        card.add_row(self.runtime_summary)
-
         self.runtime_details = ExpandableDiagnosticDetails(card)
         self.runtime_environment = self.runtime_details.text_edit
-        card.add_row(self.runtime_details)
 
         actions = QWidget(card)
         actions_layout = QHBoxLayout(actions)
@@ -290,7 +285,10 @@ class DebuggingSettingsView(SettingsPage):
         actions_layout.addWidget(self.btn_refresh_runtime)
         actions_layout.addStretch(1)
         actions_layout.addWidget(self.btn_copy_runtime)
-        card.add_row(actions)
+        card.add_group(
+            self.runtime_summary,
+            (self.runtime_details, actions),
+        )
 
         section.add_card(card)
         self.add_section(section)

@@ -73,8 +73,10 @@ class PerformanceExperimentalSettingsView(SettingsPage):
         self.cache_type = self.cache_type_row.combo
         self.cache_size_max = self.cache_size_max_row.combo
         self.persistent_cookies = self.persistent_cookies_row.checkbox
-        card.add_row(self.cache_type_row)
-        card.add_row(self.cache_size_max_row)
+        card.add_group(
+            self.cache_type_row,
+            (self.cache_size_max_row,),
+        )
         card.add_row(self.persistent_cookies_row)
         section.add_card(card)
         self.add_section(section)

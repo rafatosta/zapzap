@@ -25,12 +25,15 @@ class NotificationsSettingsView(SettingsPage):
         self.add_stretch()
 
     def _setup_ui(self):
-        self._add_desktop_section()
-        self._add_privacy_section()
+        self._add_notifications_section()
         self._add_messages_section()
 
-    def _add_desktop_section(self):
-        section = self._create_section(_("Notifications"))
+    def _add_notifications_section(self):
+        section = self._create_section(
+            _("Notifications"),
+            _("Choose which information may appear in notifications."),
+            with_privacy_menu=True,
+        )
         card = SettingsCard()
         self.notify_groupBox = SettingsSwitchRow(
             _("Desktop notifications"),
@@ -40,17 +43,6 @@ class NotificationsSettingsView(SettingsPage):
             ),
         )
         self._configure_accessibility(self.notify_groupBox)
-        card.add_row(self.notify_groupBox)
-        section.layout().addWidget(card)
-        self.add_section(section)
-
-    def _add_privacy_section(self):
-        section = self._create_section(
-            _("Notification content"),
-            _("Choose which information may appear in notifications."),
-            with_privacy_menu=True,
-        )
-        card = SettingsCard()
         self.show_photo = SettingsSwitchRow(
             _("Contact photo"),
             _("Show the sender's photo when available."),
@@ -70,7 +62,11 @@ class NotificationsSettingsView(SettingsPage):
         )
         for row in self.notification_content_rows:
             self._configure_accessibility(row)
-            card.add_row(row)
+        card.add_group(
+            self.notify_groupBox,
+            self.notification_content_rows,
+            child_dividers=True,
+        )
         section.layout().addWidget(card)
         self.add_section(section)
 

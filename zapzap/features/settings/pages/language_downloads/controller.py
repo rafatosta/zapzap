@@ -25,6 +25,9 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         self.spell_comboBox.clear()
         self.spell_comboBox.addItems(self.model.list_dictionaries())
         self.spell_comboBox.setCurrentText(self.model.get_current_dictionary())
+        self.spellchecker_options_group.setEnabled(
+            self.spellchecker_groupBox.checkbox.isChecked()
+        )
 
         self.download_path.setText(self.model.get_download_path())
 
@@ -121,6 +124,7 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
 
     def _handle_toggled_spellcheck(self, toggled):
         setattr(self.model, "spellcheck_enabled", toggled)
+        self.spellchecker_options_group.setEnabled(toggled)
         self._update_browser_spellcheck()
 
     def _handle_spellcheck(self, language):

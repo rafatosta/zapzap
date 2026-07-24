@@ -98,8 +98,10 @@ class SystemStartupSettingsView(SettingsPage):
             ),
         )
         self._configure_accessibility(self.btn_confirm_in_close_row)
-        card.add_row(self.close_behavior_row)
-        card.add_row(self.btn_confirm_in_close_row)
+        card.add_group(
+            self.close_behavior_row,
+            (self.btn_confirm_in_close_row,),
+        )
         section.add_card(card)
         self.add_section(section)
 

@@ -63,6 +63,7 @@ class AppearanceSettingsController(AppearanceSettingsView):
                 TrayIcon.Type.SDark.value: self.tray_sdark_radioButton,
             },
         )
+        self._sync_dependent_controls()
 
     def _load_csr_button_themes(self):
         self.csr_theme_comboBox.blockSignals(True)
@@ -144,6 +145,7 @@ class AppearanceSettingsController(AppearanceSettingsView):
     def _handle_tray_enabled(self, enabled):
         self.model.tray_icon_enabled = enabled
         self.model.apply_tray_icon_enabled(enabled)
+        self.tray_options_group.setEnabled(enabled)
 
     def _handle_notification_counter(self):
         self.model.notification_counter_enabled = self.notificationCounter.isChecked()
@@ -184,7 +186,16 @@ class AppearanceSettingsController(AppearanceSettingsView):
 
     def _handle_csr_enabled(self, enabled):
         self.model.csr_enabled = enabled
+        self.csr_options_group.setEnabled(enabled)
         self._update_restart_requirement()
+
+    def _sync_dependent_controls(self):
+        self.tray_options_group.setEnabled(
+            self.tray_groupBox.checkbox.isChecked()
+        )
+        self.csr_options_group.setEnabled(
+            self.csr_groupBox.checkbox.isChecked()
+        )
 
     def _handle_csr_theme(self, _index):
         theme = self.csr_theme_comboBox.currentData()

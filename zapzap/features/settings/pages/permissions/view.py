@@ -131,9 +131,9 @@ class PermissionsSettingsView(SettingsPage):
             _("Grant filesystem access if downloads, imports, or dictionaries cannot reach folders outside the sandbox."),
         )
         card = SettingsCard()
-        card.add_row(SettingsInfoBox(_(
+        sandbox_info = SettingsInfoBox(_(
             "Flatpak sandbox: if file access fails, grant folder permissions using Flatseal or flatpak override."
-        ), "warning"))
+        ), "warning")
         command_row = QWidget()
         command_layout = QHBoxLayout(command_row)
         command_layout.setContentsMargins(0, 8, 0, 8)
@@ -150,8 +150,10 @@ class PermissionsSettingsView(SettingsPage):
             _("Flatseal is a graphical utility to review and modify permissions from your Flatpak applications."),
             _("Install Flatseal on Linux | Flathub"),
         )
-        card.add_row(command_row)
-        card.add_row(self.btn_open_flatseal)
+        card.add_group(
+            sandbox_info,
+            (command_row, self.btn_open_flatseal),
+        )
         self.btn_open_flatseal = self.btn_open_flatseal.button
         self.flatpak_permissions_groupBox.add_card(card)
         self.add_section(self.flatpak_permissions_groupBox)

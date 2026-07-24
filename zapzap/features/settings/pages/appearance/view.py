@@ -92,14 +92,16 @@ class AppearanceSettingsView(SettingsPage):
         self.tray_default_radioButton = RadioButton(_("Default"))
         self.tray_slight_radioButton = RadioButton(_("Symbolic light"))
         self.tray_sdark_radioButton = RadioButton(_("Symbolic dark"))
-        card.add_row(self.tray_groupBox)
-        card.add_row(self.notificationCounter_row)
-        card.add_row(
-            SettingsRadioGroup(
-                self.tray_default_radioButton,
-                self.tray_slight_radioButton,
-                self.tray_sdark_radioButton,
-            )
+        self.tray_options_group = card.add_group(
+            self.tray_groupBox,
+            (
+                self.notificationCounter_row,
+                SettingsRadioGroup(
+                    self.tray_default_radioButton,
+                    self.tray_slight_radioButton,
+                    self.tray_sdark_radioButton,
+                ),
+            ),
         )
         section.add_card(card)
         self.add_section(section)
@@ -149,10 +151,14 @@ class AppearanceSettingsView(SettingsPage):
         self.csr_direction_comboBox.clear()
         self.csr_direction_comboBox.addItem(_("Right"), "right")
         self.csr_direction_comboBox.addItem(_("Left"), "left")
-        card.add_row(self.csr_groupBox)
-        card.add_row(self.csr_theme_row)
-        card.add_row(self.csr_show_minimize_row)
-        card.add_row(self.csr_show_maximize_row)
-        card.add_row(self.csr_direction_row)
+        self.csr_options_group = card.add_group(
+            self.csr_groupBox,
+            (
+                self.csr_theme_row,
+                self.csr_show_minimize_row,
+                self.csr_show_maximize_row,
+                self.csr_direction_row,
+            ),
+        )
         section.add_card(card)
         self.add_section(section)

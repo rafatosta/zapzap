@@ -179,7 +179,7 @@ class NetworkPrivacySettingsView(SettingsPage):
         self.current_account_label.setWordWrap(True)
         self.current_account_label.hide()
         card.add_row(self.account_selector_row)
-        card.add_row(self.current_account_label, divider=False)
+        card.add_subrow(self.current_account_label)
         section.add_card(card)
         self.add_section(section)
 
@@ -267,7 +267,7 @@ class NetworkPrivacySettingsView(SettingsPage):
         self.webrtc_scope_label.setObjectName("SettingsScopeMetadata")
         self.webrtcShieldCheckBox = self.webrtc_row.checkbox
         card.add_row(self.webrtc_row)
-        card.add_row(self.webrtc_scope_label, divider=False)
+        card.add_subrow(self.webrtc_scope_label)
         section.add_card(card)
         self.add_section(section)
 

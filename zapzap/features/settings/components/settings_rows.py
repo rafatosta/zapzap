@@ -41,13 +41,13 @@ class _BaseRow(QWidget):
         self.setMinimumHeight(64)
 
         layout = QHBoxLayout(self)
-        layout.setContentsMargins(0, 8, 0, 8)
+        layout.setContentsMargins(0, 12, 0, 12)
         layout.setSpacing(16)
 
         text_col = QWidget()
         col = QVBoxLayout(text_col)
         col.setContentsMargins(0, 0, 0, 0)
-        col.setSpacing(0)
+        col.setSpacing(4)
 
         self.title_label = Label(title, "row_title")
         self.title_label.setObjectName("SettingsRowTitle")

@@ -95,8 +95,9 @@ class LanguageDownloadSettingsView(SettingsPage):
         self.btn_default_path_spell = Button(
             _("Restore"), variant=Button.WARNING)
         path_row.control.layout().addWidget(self.btn_default_path_spell)
-        card.add_row(self.spellchecker_groupBox)
-        card.add_row(lang_row)
-        card.add_row(path_row)
+        self.spellchecker_options_group = card.add_group(
+            self.spellchecker_groupBox,
+            (lang_row, path_row),
+        )
         section.add_card(card)
         self.add_section(section)

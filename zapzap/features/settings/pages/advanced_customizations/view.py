@@ -219,9 +219,10 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         )
         self.inherit_checkbox = self.inherit_row.checkbox
         self.account_scope_hint_label = self.inherit_row
-        card.add_row(self.scope_row)
-        card.add_row(self.account_label, divider=False)
-        card.add_row(self.inherit_row)
+        card.add_group(
+            self.scope_row,
+            (self.account_label, self.inherit_row),
+        )
         section.add_card(card)
         self.add_section(section)
 
@@ -319,14 +320,13 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
             _("Enables or disables all CSS files in this scope."),
         )
         self.css_enabled = self.css_enabled_row.checkbox
-        card.add_row(self.css_enabled_row)
         self.css_panel = CustomizationFilesPanel(
             _("No CSS files"),
             _("Create or import a style to get started."),
             card,
         )
         self.css_files = self.css_panel.table
-        card.add_row(self.css_panel)
+        card.add_group(self.css_enabled_row, (self.css_panel,))
         layout.addWidget(card)
         layout.addWidget(self._build_preview())
         return tab
@@ -335,7 +335,6 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         card = SettingsCard()
         title = Label(_("Preview"), "row_title")
         title.setObjectName("SettingsRowTitle")
-        card.add_row(title)
         self.css_preview_stack = QtWidgets.QStackedWidget(card)
         self.css_preview_stack.setObjectName("CustomizationPreview")
         self.css_preview_stack.setMinimumHeight(88)
@@ -370,7 +369,7 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         )
         self.css_preview_stack.addWidget(self.css_preview_placeholder_page)
         self.css_preview_stack.addWidget(self.css_preview_image_page)
-        card.add_row(self.css_preview_stack, divider=False)
+        card.add_group(title, (self.css_preview_stack,))
         return card
 
     def _build_js_tab(self):
@@ -384,19 +383,20 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
             _("Enables or disables all JavaScript files in this scope."),
         )
         self.js_enabled = self.js_enabled_row.checkbox
-        card.add_row(self.js_enabled_row)
         self.warning_label = SettingsInfoBox(
             _("⚠ Custom scripts have full access to page content. Use code only from trusted sources."),
             "warning",
         )
-        card.add_row(self.warning_label)
         self.js_panel = CustomizationFilesPanel(
             _("No JavaScript files"),
             _("Create or import a script to get started."),
             card,
         )
         self.js_files = self.js_panel.table
-        card.add_row(self.js_panel)
+        card.add_group(
+            self.js_enabled_row,
+            (self.warning_label, self.js_panel),
+        )
         layout.addWidget(card)
         layout.addStretch(1)
         return tab
