@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-24 13:24-0300\n"
+"POT-Creation-Date: 2026-07-24 13:30-0300\n"
 "PO-Revision-Date: 2026-07-24 13:23-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -206,7 +206,6 @@ msgstr "Arquivos"
 #: zapzap/features/initial_setup/view.py:361
 #: zapzap/features/settings/shell/settings_controller.py:44
 #: zapzap/features/settings/pages/permissions/view.py:22
-#: zapzap/features/settings/pages/permissions/view.py:37
 msgid "Permissions"
 msgstr "Permissões"
 
@@ -541,14 +540,12 @@ msgstr ""
 "automaticamente."
 
 #: zapzap/features/initial_setup/view.py:362
-#: zapzap/features/settings/pages/permissions/view.py:38
 msgid "When an option is unchecked, ZapZap will ask again in each session."
 msgstr ""
 "Quando uma opção estiver desmarcada, o ZapZap perguntará novamente a cada "
 "sessão."
 
 #: zapzap/features/initial_setup/view.py:368
-#: zapzap/features/settings/pages/permissions/view.py:42
 msgid ""
 "Enable only the permissions you want to grant automatically when the page "
 "requests them."
@@ -557,34 +554,33 @@ msgstr ""
 "página solicitar."
 
 #: zapzap/features/initial_setup/view.py:372
-#: zapzap/features/settings/pages/permissions/view.py:46
+#: zapzap/features/settings/pages/permissions/view.py:64
 msgid "Microphone"
 msgstr "Microfone"
 
 #: zapzap/features/initial_setup/view.py:373
-#: zapzap/features/settings/pages/permissions/view.py:46
+#: zapzap/features/settings/pages/permissions/view.py:65
 msgid "Automatically allow access to your microphone."
-msgstr "Permitir automaticamente o acesso ao microfone."
+msgstr "Permitir acesso automático ao microfone."
 
 #: zapzap/features/initial_setup/view.py:376
-#: zapzap/features/settings/pages/permissions/view.py:47
+#: zapzap/features/settings/pages/permissions/view.py:69
 msgid "Camera"
 msgstr "Câmera"
 
 #: zapzap/features/initial_setup/view.py:377
-#: zapzap/features/settings/pages/permissions/view.py:47
+#: zapzap/features/settings/pages/permissions/view.py:70
 msgid "Automatically allow access to your camera."
-msgstr "Permitir automaticamente o acesso à câmera."
+msgstr "Permitir acesso automático à câmera."
 
 #: zapzap/features/initial_setup/view.py:380
-#: zapzap/features/settings/pages/permissions/view.py:56
 msgid "Screen contents"
 msgstr "Conteúdo da tela"
 
 #: zapzap/features/initial_setup/view.py:381
-#: zapzap/features/settings/pages/permissions/view.py:57
+#: zapzap/features/settings/pages/permissions/view.py:94
 msgid "Automatically allow sharing of screen contents."
-msgstr "Permitir automaticamente o compartilhamento do conteúdo da tela."
+msgstr "Permitir compartilhar o conteúdo da tela."
 
 #: zapzap/features/initial_setup/view.py:384
 #: zapzap/features/settings/pages/network_privacy/view.py:118
@@ -596,12 +592,12 @@ msgid "Reduce WebRTC IP exposure."
 msgstr "Reduza a exposição de IP via WebRTC."
 
 #: zapzap/features/initial_setup/view.py:402
-#: zapzap/features/settings/pages/permissions/view.py:81
+#: zapzap/features/settings/pages/permissions/view.py:130
 msgid "Flatpak permissions"
 msgstr "Permissões do Flatpak"
 
 #: zapzap/features/initial_setup/view.py:403
-#: zapzap/features/settings/pages/permissions/view.py:82
+#: zapzap/features/settings/pages/permissions/view.py:131
 msgid ""
 "Grant filesystem access if downloads, imports, or dictionaries cannot reach "
 "folders outside the sandbox."
@@ -610,7 +606,7 @@ msgstr ""
 "dicionários não conseguirem acessar pastas fora do sandbox."
 
 #: zapzap/features/initial_setup/view.py:409
-#: zapzap/features/settings/pages/permissions/view.py:86
+#: zapzap/features/settings/pages/permissions/view.py:135
 msgid ""
 "Flatpak sandbox: if file access fails, grant folder permissions using "
 "Flatseal or flatpak override."
@@ -619,25 +615,25 @@ msgstr ""
 "pasta usando o Flatseal ou flatpak override."
 
 #: zapzap/features/initial_setup/view.py:419
-#: zapzap/features/settings/pages/permissions/view.py:94
+#: zapzap/features/settings/pages/permissions/view.py:143
 msgid "Select and copy this command in your terminal"
 msgstr "Selecione e copie este comando em seu terminal"
 
 #: zapzap/features/initial_setup/view.py:421
 #: zapzap/features/settings/pages/debugging/controller.py:87
 #: zapzap/features/settings/pages/debugging/view.py:233
-#: zapzap/features/settings/pages/permissions/view.py:96
+#: zapzap/features/settings/pages/permissions/view.py:145
 #: zapzap/features/browser/web/web_view.py:312
 msgid "Copy"
 msgstr "Copiar"
 
 #: zapzap/features/initial_setup/view.py:425
-#: zapzap/features/settings/pages/permissions/view.py:100
+#: zapzap/features/settings/pages/permissions/view.py:149
 msgid "Flatseal"
 msgstr "Flatseal"
 
 #: zapzap/features/initial_setup/view.py:426
-#: zapzap/features/settings/pages/permissions/view.py:101
+#: zapzap/features/settings/pages/permissions/view.py:150
 msgid ""
 "Flatseal is a graphical utility to review and modify permissions from your "
 "Flatpak applications."
@@ -646,7 +642,7 @@ msgstr ""
 "seus aplicativos Flatpak."
 
 #: zapzap/features/initial_setup/view.py:427
-#: zapzap/features/settings/pages/permissions/view.py:102
+#: zapzap/features/settings/pages/permissions/view.py:151
 msgid "Install Flatseal on Linux | Flathub"
 msgstr "Instale Flatseal no Linux | Flathub"
 
@@ -2524,40 +2520,70 @@ msgstr ""
 "para valores padrão seguros."
 
 #: zapzap/features/settings/pages/permissions/view.py:23
-msgid "Define which permissions WhatsApp Web can receive automatically."
-msgstr "Defina quais permissões o WhatsApp Web pode receber automaticamente."
+msgid "Define which permissions can be granted automatically to WhatsApp Web."
+msgstr ""
+"Defina quais permissões podem ser concedidas automaticamente ao WhatsApp Web."
 
-#: zapzap/features/settings/pages/permissions/view.py:50
+#: zapzap/features/settings/pages/permissions/view.py:40
+msgid "Disabled permissions will continue to be requested when needed."
+msgstr ""
+"Permissões desativadas continuarão sendo solicitadas quando necessárias."
+
+#: zapzap/features/settings/pages/permissions/view.py:51
+msgid "Allow all"
+msgstr "Permitir todas"
+
+#: zapzap/features/settings/pages/permissions/view.py:52
+msgid "Remove all"
+msgstr "Remover todas"
+
+#: zapzap/features/settings/pages/permissions/view.py:60
+msgid "Device access"
+msgstr "Acesso a dispositivos"
+
+#: zapzap/features/settings/pages/permissions/view.py:74
 msgid "Camera and microphone"
 msgstr "Câmera e microfone"
 
-#: zapzap/features/settings/pages/permissions/view.py:51
+#: zapzap/features/settings/pages/permissions/view.py:76
 msgid "Automatically allow simultaneous access to the camera and microphone."
-msgstr "Permitir automaticamente o acesso simultâneo à câmera e ao microfone."
+msgstr "Permitir acesso simultâneo à câmera e ao microfone."
 
-#: zapzap/features/settings/pages/permissions/view.py:53
+#: zapzap/features/settings/pages/permissions/view.py:82
 msgid "Location"
 msgstr "Localização"
 
-#: zapzap/features/settings/pages/permissions/view.py:53
+#: zapzap/features/settings/pages/permissions/view.py:83
 msgid "Automatically allow access to your location."
-msgstr "Permitir automaticamente o acesso à localização."
+msgstr "Permitir acesso automático à localização."
 
-#: zapzap/features/settings/pages/permissions/view.py:61
-msgid "Screen contents and audio"
-msgstr "Conteúdo da tela e áudio"
+#: zapzap/features/settings/pages/permissions/view.py:89
+msgid "Sharing"
+msgstr "Compartilhamento"
 
-#: zapzap/features/settings/pages/permissions/view.py:62
+#: zapzap/features/settings/pages/permissions/view.py:93
+msgid "Screen sharing"
+msgstr "Compartilhamento de tela"
+
+#: zapzap/features/settings/pages/permissions/view.py:98
+msgid "Screen with audio"
+msgstr "Tela com áudio"
+
+#: zapzap/features/settings/pages/permissions/view.py:99
 msgid "Automatically allow screen sharing with audio."
-msgstr "Permitir automaticamente o compartilhamento da tela com áudio."
+msgstr "Permitir compartilhar a tela junto com o áudio."
 
-#: zapzap/features/settings/pages/permissions/view.py:66
-msgid "Mouse lock"
-msgstr "Bloqueio do mouse"
+#: zapzap/features/settings/pages/permissions/view.py:105
+msgid "Advanced"
+msgstr "Avançado"
 
-#: zapzap/features/settings/pages/permissions/view.py:67
+#: zapzap/features/settings/pages/permissions/view.py:109
+msgid "Pointer lock"
+msgstr "Bloqueio do ponteiro"
+
+#: zapzap/features/settings/pages/permissions/view.py:110
 msgid "Automatically allow the page to capture the mouse pointer."
-msgstr "Permitir automaticamente que a página capture o ponteiro do mouse."
+msgstr "Permitir que a página capture o ponteiro do mouse."
 
 #: zapzap/features/settings/pages/system_startup/view.py:19
 msgid ""

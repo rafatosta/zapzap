@@ -20,11 +20,12 @@ class PermissionsSettingsView(SettingsPage):
     def __init__(self, parent=None):
         super().__init__(
             _("Permissions"),
-            _("Define which permissions WhatsApp Web can receive automatically."),
+            _("Define which permissions can be granted automatically to WhatsApp Web."),
             parent,
         )
         self.setObjectName("PermissionsSettingsView")
         self.permission_rows = {}
+        self.permission_sections = {}
         self._setup_ui()
         self.add_stretch()
 
@@ -33,48 +34,96 @@ class PermissionsSettingsView(SettingsPage):
         self._setup_flatpak_section()
 
     def _setup_permissions_section(self):
-        section = SettingsSection(
-            _("Permissions"),
-            _("When an option is unchecked, ZapZap will ask again in each session."),
-        )
-        card = SettingsCard()
-        card.add_row(SettingsInfoBox(_(
-            "Enable only the permissions you want to grant automatically when the page requests them."
-        )))
-
-        rows = (
-            ("microphone", _("Microphone"), _("Automatically allow access to your microphone.")),
-            ("camera", _("Camera"), _("Automatically allow access to your camera.")),
-            (
-                "camera_microphone",
-                _("Camera and microphone"),
-                _("Automatically allow simultaneous access to the camera and microphone."),
-            ),
-            ("location", _("Location"), _("Automatically allow access to your location.")),
-            (
-                "screen_contents",
-                _("Screen contents"),
-                _("Automatically allow sharing of screen contents."),
-            ),
-            (
-                "screen_contents_audio",
-                _("Screen contents and audio"),
-                _("Automatically allow screen sharing with audio."),
-            ),
-            (
-                "mouse_lock",
-                _("Mouse lock"),
-                _("Automatically allow the page to capture the mouse pointer."),
-            ),
+        self.add_section(
+            SettingsInfoBox(
+                _(
+                    "Disabled permissions will continue to be requested when needed."
+                )
+            )
         )
 
-        for permission_id, title, description in rows:
-            row = SettingsSwitchRow(title, description)
-            self.permission_rows[permission_id] = row
-            card.add_row(row)
+        actions = QWidget()
+        actions.setObjectName("GlobalPermissionActions")
+        actions_layout = QHBoxLayout(actions)
+        actions_layout.setContentsMargins(0, 0, 0, 4)
+        actions_layout.setSpacing(8)
+        actions_layout.addStretch(1)
+        self.btn_allow_all = Button(_("Allow all"))
+        self.btn_remove_all = Button(_("Remove all"))
+        actions_layout.addWidget(self.btn_allow_all)
+        actions_layout.addWidget(self.btn_remove_all)
+        self.add_section(actions)
 
-        section.add_card(card)
-        self.add_section(section)
+        groups = (
+            (
+                "device_access",
+                _("Device access"),
+                (
+                    (
+                        "microphone",
+                        _("Microphone"),
+                        _("Automatically allow access to your microphone."),
+                    ),
+                    (
+                        "camera",
+                        _("Camera"),
+                        _("Automatically allow access to your camera."),
+                    ),
+                    (
+                        "camera_microphone",
+                        _("Camera and microphone"),
+                        _(
+                            "Automatically allow simultaneous access to the "
+                            "camera and microphone."
+                        ),
+                    ),
+                    (
+                        "location",
+                        _("Location"),
+                        _("Automatically allow access to your location."),
+                    ),
+                ),
+            ),
+            (
+                "sharing",
+                _("Sharing"),
+                (
+                    (
+                        "screen_contents",
+                        _("Screen sharing"),
+                        _("Automatically allow sharing of screen contents."),
+                    ),
+                    (
+                        "screen_contents_audio",
+                        _("Screen with audio"),
+                        _("Automatically allow screen sharing with audio."),
+                    ),
+                ),
+            ),
+            (
+                "advanced",
+                _("Advanced"),
+                (
+                    (
+                        "mouse_lock",
+                        _("Pointer lock"),
+                        _("Automatically allow the page to capture the mouse pointer."),
+                    ),
+                ),
+            ),
+        )
+
+        for group_id, title, rows in groups:
+            section = SettingsSection(title)
+            section.setObjectName(f"PermissionSection_{group_id}")
+            card = SettingsCard()
+            for permission_id, row_title, description in rows:
+                row = SettingsSwitchRow(row_title, description)
+                self.permission_rows[permission_id] = row
+                card.add_row(row)
+            section.add_card(card)
+            self.permission_sections[group_id] = section
+            self.add_section(section)
 
     def _setup_flatpak_section(self):
         self.flatpak_permissions_groupBox = SettingsSection(
