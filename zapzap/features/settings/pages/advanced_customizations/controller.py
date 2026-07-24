@@ -34,6 +34,8 @@ class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsVie
         self.current_scope = CustomizationsManager.SCOPE_GLOBAL
         self.current_account_id = None
         self._updating_asset_lists = False
+        self._loading_scope = False
+        self._dirty = False
         self._preview_pixmap = None
         self._configure_scope()
         self._configure_signals()
@@ -43,8 +45,8 @@ class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsVie
     def _configure_scope(self):
         self.scope_combo.clear()
         self.scope_combo.addItem(
-            _("Global"), CustomizationsManager.SCOPE_GLOBAL)
-        self.scope_combo.addItem(_("Current account"),
+            _("All accounts"), CustomizationsManager.SCOPE_GLOBAL)
+        self.scope_combo.addItem(_("This account"),
                                  CustomizationsManager.SCOPE_ACCOUNT)
 
     def _configure_signals(self):
@@ -54,25 +56,26 @@ class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsVie
         self.btn_save.clicked.connect(self._save)
         self.btn_save_reload.clicked.connect(self._save_and_reload)
         self.btn_reload.clicked.connect(self._reload_pages)
+        self.btn_discard.clicked.connect(self._discard_changes)
 
         self._connect_asset_action_signals(
             CustomizationsManager.TYPE_CSS,
             self.btn_css_import,
             self.btn_css_import_url,
             self.btn_css_create,
-            self.btn_css_edit,
             self.btn_css_folder,
-            self.btn_css_delete,
         )
         self._connect_asset_action_signals(
             CustomizationsManager.TYPE_JS,
             self.btn_js_import,
             self.btn_js_import_url,
             self.btn_js_create,
-            self.btn_js_edit,
             self.btn_js_folder,
-            self.btn_js_delete,
         )
+        self._connect_panel_actions(
+            CustomizationsManager.TYPE_CSS, self.css_panel)
+        self._connect_panel_actions(
+            CustomizationsManager.TYPE_JS, self.js_panel)
 
         self.css_files.itemChanged.connect(
             lambda item: self._handle_asset_toggle(
@@ -84,6 +87,13 @@ class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsVie
             lambda item: self._handle_asset_toggle(
                 item, CustomizationsManager.TYPE_JS)
         )
+        self.css_enabled.toggled.connect(
+            lambda checked: self._on_category_toggled(
+                CustomizationsManager.TYPE_CSS, checked))
+        self.js_enabled.toggled.connect(
+            lambda checked: self._on_category_toggled(
+                CustomizationsManager.TYPE_JS, checked))
+        self.inherit_checkbox.toggled.connect(self._mark_dirty)
 
         self.css_preview_placeholder_upload_button.clicked.connect(
             self._upload_css_preview_image)
@@ -97,20 +107,45 @@ class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsVie
         import_button,
         import_url_button,
         create_button,
-        edit_button,
         open_folder_button,
-        delete_button,
     ):
         import_button.clicked.connect(lambda: self._import_asset(asset_type))
         import_url_button.clicked.connect(
             lambda: self._import_asset_from_url(asset_type))
         create_button.clicked.connect(lambda: self._create_asset(asset_type))
-        edit_button.clicked.connect(
-            lambda: self._edit_selected_asset(asset_type))
         open_folder_button.clicked.connect(
             lambda: self._open_assets_folder(asset_type))
-        delete_button.clicked.connect(
+
+    def _connect_panel_actions(self, asset_type, panel):
+        panel.edit_requested.connect(
+            lambda: self._edit_selected_asset(asset_type))
+        panel.duplicate_requested.connect(
+            lambda: self._duplicate_selected_asset(asset_type))
+        panel.location_requested.connect(
+            lambda: self._open_assets_folder(asset_type))
+        panel.delete_requested.connect(
             lambda: self._delete_selected_asset(asset_type))
+
+    def _mark_dirty(self, *_args):
+        if self._loading_scope:
+            return
+        self._dirty = True
+        self.set_pending_changes(True)
+
+    def _on_category_toggled(self, asset_type, checked):
+        self._update_category_availability()
+        self._mark_dirty()
+
+    def _update_category_availability(self):
+        locked = self._is_account_scope_locked()
+        self.css_panel.set_dependent_enabled(
+            not locked and self.css_enabled.isChecked())
+        self.js_panel.set_dependent_enabled(
+            not locked and self.js_enabled.isChecked())
+
+    def _discard_changes(self):
+        self._load_scope()
+        self._show_feedback(_("Unsaved changes discarded."))
 
     def _browser(self):
         app = QApplication.instance()
@@ -164,6 +199,10 @@ class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsVie
             self.account_label.setText(_("Current account: unavailable"))
 
     def _on_scope_changed(self):
+        if self._dirty:
+            self._save(show_feedback=False)
+            self._show_feedback(
+                _("Changes to the previous scope were saved."))
         self._refresh_current_account()
         self.current_scope = self.scope_combo.currentData()
         if (
@@ -175,6 +214,7 @@ class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsVie
         self._load_scope()
 
     def _load_scope(self):
+        self._loading_scope = True
         scope = self.current_scope
         account_id = self.current_account_id
         is_account_scope = scope == CustomizationsManager.SCOPE_ACCOUNT
@@ -201,6 +241,9 @@ class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsVie
 
         self._toggle_account_override_ui()
         self._refresh_asset_lists()
+        self._dirty = False
+        self.set_pending_changes(False)
+        self._loading_scope = False
 
     def _toggle_account_override_ui(self):
         is_account_scope = self.current_scope == CustomizationsManager.SCOPE_ACCOUNT
@@ -216,18 +259,15 @@ class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsVie
             self.btn_js_import_url,
             self.btn_css_create,
             self.btn_js_create,
-            self.btn_css_edit,
-            self.btn_js_edit,
             self.btn_css_folder,
             self.btn_js_folder,
-            self.btn_css_delete,
-            self.btn_js_delete,
             self.css_files,
             self.js_files,
             self.css_preview_placeholder_upload_button,
             self.css_preview_replace_button,
         ):
             widget.setEnabled(allow_edit)
+        self._update_category_availability()
 
     def _dialog_options(self):
         if self.model.dont_use_native_dialog:
@@ -750,6 +790,20 @@ class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsVie
 
                     table_widget.setItem(row, 0, enabled_item)
                     table_widget.setItem(row, 1, file_item)
+                    panel = (
+                        self.css_panel
+                        if asset_type == CustomizationsManager.TYPE_CSS
+                        else self.js_panel
+                    )
+                    actions_button = panel.create_actions_button(
+                        table_widget, row)
+                    table_widget.setCellWidget(row, 2, actions_button)
+                panel = (
+                    self.css_panel
+                    if asset_type == CustomizationsManager.TYPE_CSS
+                    else self.js_panel
+                )
+                panel.update_row_count(len(file_names))
         finally:
             self._updating_asset_lists = False
 
@@ -827,6 +881,37 @@ class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsVie
         else:
             self._show_feedback(_("Could not delete file."))
 
+    def _duplicate_selected_asset(self, asset_type: str):
+        if self._is_account_scope_locked():
+            return
+
+        file_name = self._selected_file_name(asset_type)
+        if not file_name:
+            return
+
+        try:
+            content = CustomizationsManager.read_asset_file_content(
+                file_name,
+                self.current_scope,
+                asset_type,
+                self.current_account_id,
+            )
+            stem, extension = os.path.splitext(file_name)
+            target_path = CustomizationsManager.create_asset_file(
+                "{}_copy{}".format(stem, extension),
+                content,
+                self.current_scope,
+                asset_type,
+                self.current_account_id,
+            )
+        except ValueError:
+            self._show_feedback(_("Could not duplicate file."))
+            return
+
+        self._refresh_asset_lists()
+        self._show_feedback(
+            _("File duplicated: {}").format(os.path.basename(target_path)))
+
     def _save(self, show_feedback=True):
         self._disable_css_preview()
 
@@ -856,6 +941,8 @@ class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsVie
         if show_feedback:
             self._show_feedback(
                 _("Customizations saved. Reload pages to apply changes."))
+        self._dirty = False
+        self.set_pending_changes(False)
 
     def _save_and_reload(self):
         self._save(show_feedback=False)

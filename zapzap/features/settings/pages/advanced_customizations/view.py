@@ -1,20 +1,145 @@
-"""View for the Customizações avançadas settings page."""
+"""View for the advanced customizations settings page."""
 
 from gettext import gettext as _
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QHeaderView, QTableWidgetItem, QVBoxLayout, QWidget
 from PyQt6 import QtWidgets
+from PyQt6.QtCore import Qt, pyqtSignal
+from PyQt6.QtWidgets import QHeaderView, QVBoxLayout, QWidget
 
-from zapzap.ui.components import Button
-from zapzap.ui.components import Label
-from zapzap.features.settings.components import SettingsActionRow
-from zapzap.features.settings.components import SettingsCard
-from zapzap.features.settings.components import SettingsInfoBox
-from zapzap.features.settings.components import SettingsPage
-from zapzap.features.settings.components import SettingsSelectRow
-from zapzap.features.settings.components import SettingsSection
-from zapzap.features.settings.components import SettingsSwitchRow
+from zapzap.ui.components import Button, Label
+from zapzap.features.settings.components import (
+    SettingsCard,
+    SettingsInfoBox,
+    SettingsPage,
+    SettingsSection,
+    SettingsSelectRow,
+    SettingsSwitchRow,
+)
+
+
+class CustomizationFilesPanel(QWidget):
+    """Compact, shared file-management presentation for CSS and JavaScript."""
+
+    edit_requested = pyqtSignal()
+    duplicate_requested = pyqtSignal()
+    location_requested = pyqtSignal()
+    delete_requested = pyqtSignal()
+
+    def __init__(self, empty_title, empty_description, parent=None):
+        super().__init__(parent)
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 4, 0, 4)
+        layout.setSpacing(8)
+
+        header = QtWidgets.QHBoxLayout()
+        title = Label(_("Files"), "row_title")
+        title.setObjectName("SettingsRowTitle")
+        self.create_button = Button(_("+ Create"))
+        header.addWidget(title)
+        header.addStretch(1)
+        header.addWidget(self.create_button)
+        layout.addLayout(header)
+
+        self.table = QtWidgets.QTableWidget(self)
+        self._setup_table()
+        layout.addWidget(self.table)
+
+        self.empty_state = QWidget(self)
+        empty_layout = QVBoxLayout(self.empty_state)
+        empty_layout.setContentsMargins(12, 8, 12, 8)
+        empty_layout.setSpacing(2)
+        empty_title_label = Label(empty_title, "row_title")
+        empty_description_label = Label(empty_description, "row_description")
+        empty_description_label.setWordWrap(True)
+        empty_layout.addWidget(empty_title_label)
+        empty_layout.addWidget(empty_description_label)
+        self.empty_state.setObjectName("CustomizationEmptyState")
+        layout.addWidget(self.empty_state)
+        self.update_row_count(0)
+
+        actions = QtWidgets.QHBoxLayout()
+        self.import_button = Button(_("Import file"))
+        self.import_url_button = Button(_("Import URL"))
+        self.folder_button = Button(_("Open folder"))
+        actions.addWidget(self.import_button)
+        actions.addWidget(self.import_url_button)
+        actions.addStretch(1)
+        actions.addWidget(self.folder_button)
+        layout.addLayout(actions)
+
+    def _setup_table(self):
+        table = self.table
+        table.setObjectName("CustomizationAssetTable")
+        table.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
+        table.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.SingleSelection)
+        table.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
+        table.setShowGrid(False)
+        table.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        table.setColumnCount(3)
+        table.setRowCount(0)
+        table.horizontalHeader().setVisible(False)
+        table.verticalHeader().setVisible(False)
+        table.verticalHeader().setDefaultSectionSize(38)
+        table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Fixed)
+        table.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Stretch)
+        table.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
+        table.setColumnWidth(0, 44)
+        table.setColumnWidth(2, 42)
+        table.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
+        table.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        table.setStyleSheet("""
+            QTableWidget#CustomizationAssetTable {
+                background: palette(base);
+                color: palette(text);
+                border: 1px solid palette(mid);
+                border-radius: 10px;
+                outline: 0;
+            }
+            QTableWidget#CustomizationAssetTable::item {
+                border: 0;
+                border-bottom: 1px solid palette(midlight);
+                padding: 5px 8px;
+            }
+            QWidget#CustomizationEmptyState {
+                background: palette(alternate-base);
+                border: 1px solid palette(mid);
+                border-radius: 10px;
+            }
+        """)
+
+    def update_row_count(self, count):
+        self.table.setVisible(count > 0)
+        self.empty_state.setVisible(count == 0)
+        if count:
+            visible_rows = min(count, 6)
+            self.table.setFixedHeight(visible_rows * 38 + 2)
+
+    def create_actions_button(self, parent=None, row=None):
+        button = QtWidgets.QToolButton(parent)
+        button.setText("⋮")
+        button.setToolTip(_("File actions"))
+        button.setPopupMode(QtWidgets.QToolButton.ToolButtonPopupMode.InstantPopup)
+        menu = QtWidgets.QMenu(button)
+        menu.addAction(_("Edit"), self.edit_requested.emit)
+        menu.addAction(_("Duplicate"), self.duplicate_requested.emit)
+        menu.addAction(_("Open location"), self.location_requested.emit)
+        menu.addSeparator()
+        delete_action = menu.addAction(_("Delete"), self.delete_requested.emit)
+        delete_action.setProperty("destructive", True)
+        if row is not None and isinstance(parent, QtWidgets.QTableWidget):
+            menu.aboutToShow.connect(lambda: parent.setCurrentCell(row, 1))
+        button.setMenu(menu)
+        return button
+
+    def set_dependent_enabled(self, enabled):
+        self.table.setEnabled(enabled)
+        self.create_button.setEnabled(enabled)
+        self.import_button.setEnabled(enabled)
+        self.import_url_button.setEnabled(enabled)
+        self.folder_button.setEnabled(enabled)
+        opacity = QtWidgets.QGraphicsOpacityEffect(self)
+        opacity.setOpacity(1.0 if enabled else 0.55)
+        self.setGraphicsEffect(opacity)
 
 
 class AdvancedCustomizationsSettingsView(SettingsPage):
@@ -22,8 +147,8 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
 
     def __init__(self, parent=None):
         super().__init__(
-            _("Advanced Customizations"),
-            _("Manage CSS, JavaScript and customizations by scope."),
+            _("Advanced customizations"),
+            _("Add custom CSS and JavaScript to WhatsApp Web."),
             parent,
         )
         self._setup_ui()
@@ -32,20 +157,18 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
     def _setup_ui(self):
         self._setup_scope_section()
         self._setup_feedback_label()
-        self._setup_css_section()
-        self._setup_preview_section()
-        self._setup_js_section()
-        self._setup_actions_section()
+        self._setup_customizations_section()
+        self._setup_pending_bar()
 
     def _setup_scope_section(self):
         section = SettingsSection(
             _("Scope"),
-            _("Choose whether customizations apply globally or only to the current account."),
+            _("Choose whether customizations apply to all accounts or only to the current account."),
         )
         card = SettingsCard()
         self.scope_row = SettingsSelectRow(
-            _("Customization scope"),
-            _("Account customizations can extend or inherit the global configuration."),
+            _("Apply to"),
+            _("Account customizations can inherit or extend the global configuration."),
             [""],
         )
         self.scope_combo = self.scope_row.combo
@@ -54,11 +177,9 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         self.account_label.setWordWrap(True)
         self.inherit_row = SettingsSwitchRow(
             _("Inherit global settings"),
-            _("When inherit is disabled, account customizations are appended after global settings."),
+            _("Use only the global customizations for this account."),
         )
         self.inherit_checkbox = self.inherit_row.checkbox
-        # Kept as a compatibility alias for the controller, which controls
-        # visibility based on the selected scope.
         self.account_scope_hint_label = self.inherit_row
         card.add_row(self.scope_row)
         card.add_row(self.account_label)
@@ -72,60 +193,61 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         self.feedback_label.setObjectName("SettingsRowDescription")
         self.content_layout.addWidget(self.feedback_label)
 
-    def _setup_css_section(self):
+    def _setup_customizations_section(self):
         section = SettingsSection(
-            _("CSS customizations"),
-            _("Import, create, edit, enable, and delete CSS files."),
+            _("Customizations"),
+            _("Manage custom files for the selected scope."),
         )
-        self.css_files_group = SettingsCard()
-        self.css_enabled_row = SettingsSwitchRow(
-            _("Enable custom CSS"),
-            _("Load enabled style files for the selected scope."),
-        )
-        self.css_enabled = self.css_enabled_row.checkbox
-        self.css_files_group.add_row(self.css_enabled_row)
-        self.css_files = QtWidgets.QTableWidget(self.css_files_group)
-        self._setup_asset_table(self.css_files)
-        self.css_files_group.add_row(self.css_files)
-
-        css_buttons_1 = self._button_row()
-        self.btn_css_create = Button(_("Create"))
-        self.btn_css_edit = Button(_("Edit"))
-        self.btn_css_delete = Button(_("Delete"), variant=Button.DANGER)
-        for button in (self.btn_css_create, self.btn_css_edit, self.btn_css_delete):
-            css_buttons_1.layout().addWidget(button)
-        css_buttons_1.layout().addStretch(1)
-
-        css_buttons_2 = self._button_row()
-        self.btn_css_import = Button(_("Import .css"))
-        self.btn_css_import_url = Button(_("Import from URL"))
-        self.btn_css_folder = Button(_("Open folder"))
-        for button in (self.btn_css_import, self.btn_css_import_url, self.btn_css_folder):
-            css_buttons_2.layout().addWidget(button)
-        css_buttons_2.layout().addStretch(1)
-
-        self.css_files_group.add_row(css_buttons_1)
-        self.css_files_group.add_row(css_buttons_2)
-        section.add_card(self.css_files_group)
+        self.customization_tabs = QtWidgets.QTabWidget(self)
+        self.customization_tabs.setDocumentMode(True)
+        self.customization_tabs.addTab(self._build_css_tab(), _("CSS"))
+        self.customization_tabs.addTab(self._build_js_tab(), _("JavaScript"))
+        section.layout.addWidget(self.customization_tabs)
         self.add_section(section)
 
-    def _setup_preview_section(self):
-        section = SettingsSection(
-            _("CSS preview"),
-            _("Attach and preview a screenshot for the selected CSS file."),
-        )
+    def _build_css_tab(self):
+        tab = QWidget()
+        layout = QVBoxLayout(tab)
+        layout.setContentsMargins(0, 10, 0, 0)
+        layout.setSpacing(8)
         card = SettingsCard()
+        self.css_files_group = card
+        self.css_enabled_row = SettingsSwitchRow(
+            _("Custom CSS"),
+            _("Enables or disables all CSS files in this scope."),
+        )
+        self.css_enabled = self.css_enabled_row.checkbox
+        card.add_row(self.css_enabled_row)
+        self.css_panel = CustomizationFilesPanel(
+            _("No CSS files"),
+            _("Create or import a style to get started."),
+            card,
+        )
+        self.css_files = self.css_panel.table
+        card.add_row(self.css_panel)
+        layout.addWidget(card)
+        layout.addWidget(self._build_preview())
+        return tab
+
+    def _build_preview(self):
+        card = SettingsCard()
+        title = Label(_("Preview"), "row_title")
+        title.setObjectName("SettingsRowTitle")
+        card.add_row(title)
         self.css_preview_stack = QtWidgets.QStackedWidget(card)
         self.css_preview_stack.setObjectName("CustomizationPreview")
-        self.css_preview_stack.setMinimumHeight(240)
+        self.css_preview_stack.setMinimumHeight(88)
+        self.css_preview_stack.setMaximumHeight(360)
+
         self.css_preview_placeholder_page = QWidget()
         placeholder_layout = QVBoxLayout(self.css_preview_placeholder_page)
-        self.css_preview_placeholder = Label(_("Select a CSS file to preview."), "body")
+        self.css_preview_placeholder = Label(
+            _("No preview available. Select a CSS file to view an associated screenshot."),
+            "row_description",
+        )
         self.css_preview_placeholder.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.css_preview_placeholder.setWordWrap(True)
-        self.css_preview_placeholder_upload_button = Button(
-            _("Upload preview image"),
-        )
+        self.css_preview_placeholder_upload_button = Button(_("Upload preview image"))
         self.css_preview_placeholder_upload_button.setVisible(False)
         placeholder_layout.addWidget(self.css_preview_placeholder)
         placeholder_layout.addWidget(
@@ -142,136 +264,121 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
         self.css_preview_replace_button.setVisible(False)
         image_layout.addWidget(self.css_preview_image, 0, 0)
         image_layout.addWidget(
-            self.css_preview_replace_button,
-            0,
-            0,
-            Qt.AlignmentFlag.AlignCenter,
+            self.css_preview_replace_button, 0, 0, Qt.AlignmentFlag.AlignCenter
         )
         self.css_preview_stack.addWidget(self.css_preview_placeholder_page)
         self.css_preview_stack.addWidget(self.css_preview_image_page)
         card.add_row(self.css_preview_stack)
-        section.add_card(card)
-        self.add_section(section)
+        return card
 
-    def _setup_js_section(self):
-        section = SettingsSection(
-            _("JavaScript customizations"),
-            _("Import, create, edit, enable, and delete JavaScript files."),
-        )
-        self.js_files_group = SettingsCard()
+    def _build_js_tab(self):
+        tab = QWidget()
+        layout = QVBoxLayout(tab)
+        layout.setContentsMargins(0, 10, 0, 0)
+        card = SettingsCard()
+        self.js_files_group = card
         self.js_enabled_row = SettingsSwitchRow(
-            _("Enable custom JavaScript"),
-            _("Load enabled scripts for the selected scope."),
+            _("Custom JavaScript"),
+            _("Enables or disables all JavaScript files in this scope."),
         )
         self.js_enabled = self.js_enabled_row.checkbox
-        self.js_files_group.add_row(self.js_enabled_row)
+        card.add_row(self.js_enabled_row)
         self.warning_label = SettingsInfoBox(
-            _("⚠ Custom JavaScript runs with full page privileges. Use trusted code only."),
+            _("⚠ Custom scripts have full access to page content. Use code only from trusted sources."),
             "warning",
         )
-        self.js_files_group.add_row(self.warning_label)
-        self.js_files_group.add_space()
-        self.js_files = QtWidgets.QTableWidget(self.js_files_group)
-        self._setup_asset_table(self.js_files)
-        self.js_files_group.add_row(self.js_files)
-
-        js_buttons_1 = self._button_row()
-        self.btn_js_create = Button(_("Create"))
-        self.btn_js_edit = Button(_("Edit"))
-        self.btn_js_delete = Button(_("Delete"), variant=Button.DANGER)
-        for button in (self.btn_js_create, self.btn_js_edit, self.btn_js_delete):
-            js_buttons_1.layout().addWidget(button)
-        js_buttons_1.layout().addStretch(1)
-
-        js_buttons_2 = self._button_row()
-        self.btn_js_import = Button(_("Import .js"))
-        self.btn_js_import_url = Button(_("Import from URL"))
-        self.btn_js_folder = Button(_("Open folder"))
-        for button in (self.btn_js_import, self.btn_js_import_url, self.btn_js_folder):
-            js_buttons_2.layout().addWidget(button)
-        js_buttons_2.layout().addStretch(1)
-
-        self.js_files_group.add_row(js_buttons_1)
-        self.js_files_group.add_row(js_buttons_2)
-        section.add_card(self.js_files_group)
-        self.add_section(section)
-
-    def _setup_actions_section(self):
-        section = SettingsSection(
-            _("Apply changes"),
-            _("Save changes and reload target pages when needed."),
+        card.add_row(self.warning_label)
+        self.js_panel = CustomizationFilesPanel(
+            _("No JavaScript files"),
+            _("Create or import a script to get started."),
+            card,
         )
-        card = SettingsCard()
-        self.save_reload_row = SettingsActionRow(
-            _("Save and reload"),
-            _("Save the selected scope and reload its target page immediately."),
-            _("Save and reload"),
-        )
-        self.reload_row = SettingsActionRow(
-            _("Reload target"),
-            _("Reload the target page without changing the saved configuration."),
-            _("Reload"),
-        )
-        self.save_row = SettingsActionRow(
-            _("Save changes"),
-            _("Store changes without reloading the target page."),
-            _("Save"),
-        )
-        self.btn_save_reload = self.save_reload_row.button
-        self.btn_reload = self.reload_row.button
-        self.btn_save = self.save_row.button
+        self.js_files = self.js_panel.table
+        card.add_row(self.js_panel)
+        layout.addWidget(card)
+        layout.addStretch(1)
+        return tab
+
+    def _setup_pending_bar(self):
+        self.pending_bar = QtWidgets.QFrame(self.viewport())
+        self.pending_bar.setObjectName("PendingChangesBar")
+        layout = QtWidgets.QHBoxLayout(self.pending_bar)
+        layout.setContentsMargins(14, 8, 14, 8)
+        self.pending_label = Label(_("● There are unsaved changes."), "row_description")
+        self.btn_discard = Button(_("Discard"))
+        self.btn_save = Button(_("Save"))
+        self.btn_save_reload = Button(_("Save and reload"))
+        self.btn_reload = Button(_("Reload page"))
+        self.btn_reload.setVisible(False)
         self.btn_save.setDefault(True)
-        card.add_row(self.save_reload_row)
-        card.add_row(self.reload_row)
-        card.add_row(self.save_row)
-        section.add_card(card)
-        self.add_section(section)
-
-    def _button_row(self):
-        row = QWidget()
-        layout = QtWidgets.QHBoxLayout(row)
-        layout.setContentsMargins(0, 8, 0, 8)
-        return row
-
-    def _setup_asset_table(self, table):
-        table.setObjectName("CustomizationAssetTable")
-        table.setMinimumHeight(200)
-        table.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
-        table.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.SingleSelection)
-        table.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
-        table.setShowGrid(False)
-        table.setAlternatingRowColors(True)
-        table.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        table.setColumnCount(2)
-        table.setRowCount(0)
-        table.setHorizontalHeaderItem(0, QTableWidgetItem(_("Enabled")))
-        table.setHorizontalHeaderItem(1, QTableWidgetItem(_("Filename")))
-        table.verticalHeader().setVisible(False)
-        table.verticalHeader().setDefaultSectionSize(38)
-        table.horizontalHeader().setStretchLastSection(False)
-        table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents)
-        table.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Stretch)
-        table.setColumnWidth(0, 90)
-        table.setStyleSheet("""
-            QTableWidget#CustomizationAssetTable {
-                background: palette(base);
-                alternate-background-color: palette(alternate-base);
-                color: palette(text);
-                border: 1px solid palette(mid);
-                border-radius: 10px;
-                outline: 0;
-                selection-background-color: palette(highlight);
-                selection-color: palette(highlighted-text);
-            }
-            QTableWidget#CustomizationAssetTable::item {
-                border: 0;
-                padding: 6px 8px;
-            }
-            QHeaderView::section {
+        layout.addWidget(self.pending_label)
+        layout.addStretch(1)
+        layout.addWidget(self.btn_discard)
+        layout.addWidget(self.btn_save)
+        layout.addWidget(self.btn_save_reload)
+        self.pending_bar.setStyleSheet("""
+            QFrame#PendingChangesBar {
                 background: palette(alternate-base);
-                color: palette(text);
-                border: 0;
-                border-bottom: 1px solid palette(mid);
-                padding: 8px;
+                border: 1px solid palette(mid);
+                border-radius: 12px;
             }
         """)
+        self.pending_bar.setVisible(False)
+        self.pending_bar.raise_()
+
+    def set_pending_changes(self, pending):
+        self.pending_bar.setVisible(pending)
+        if pending:
+            self._position_pending_bar()
+
+    def _position_pending_bar(self):
+        margin = 16
+        width = max(320, self.viewport().width() - (margin * 2))
+        height = self.pending_bar.sizeHint().height()
+        self.pending_bar.setGeometry(
+            margin,
+            self.viewport().height() - height - margin,
+            width,
+            height,
+        )
+
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        self._position_pending_bar()
+
+    def set_category_enabled(self, asset_type, enabled):
+        panel = self.css_panel if asset_type == "css" else self.js_panel
+        panel.set_dependent_enabled(enabled)
+
+    # Compatibility aliases used by the controller.
+    @property
+    def btn_css_create(self):
+        return self.css_panel.create_button
+
+    @property
+    def btn_css_import(self):
+        return self.css_panel.import_button
+
+    @property
+    def btn_css_import_url(self):
+        return self.css_panel.import_url_button
+
+    @property
+    def btn_css_folder(self):
+        return self.css_panel.folder_button
+
+    @property
+    def btn_js_create(self):
+        return self.js_panel.create_button
+
+    @property
+    def btn_js_import(self):
+        return self.js_panel.import_button
+
+    @property
+    def btn_js_import_url(self):
+        return self.js_panel.import_url_button
+
+    @property
+    def btn_js_folder(self):
+        return self.js_panel.folder_button
