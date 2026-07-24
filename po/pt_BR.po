@@ -2868,12 +2868,12 @@ msgid "Don't ask again"
 msgstr "Não pergunte novamente"
 
 #: zapzap/features/settings/components/settings_restart_bar.py
-msgid "A full restart is required."
-msgstr "É necessário reiniciar completamente."
+msgid "A restart is required to apply the changes."
+msgstr "É necessário reiniciar para aplicar as alterações."
 
 #: zapzap/features/settings/components/settings_restart_bar.py
-msgid "An interface restart is required."
-msgstr "É necessário reiniciar a interface."
+msgid "Restart now"
+msgstr "Reiniciar agora"
 
 #: zapzap/features/settings/pages/system_startup/view.py
 msgid "Enable Wayland-specific execution mode."

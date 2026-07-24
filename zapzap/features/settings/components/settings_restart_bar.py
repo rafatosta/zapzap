@@ -46,16 +46,13 @@ class SettingsRestartBar(QFrame):
 
     def set_restart_kind(self, restart_kind):
         self._restart_kind = restart_kind
-        if restart_kind == self.APPLICATION:
-            self.message.setText(_("A full restart is required."))
-            self.restart_button.setText(_("Restart ZapZap"))
-        elif restart_kind == self.INTERFACE:
-            self.message.setText(_("An interface restart is required."))
-            self.restart_button.setText(_("Restart interface"))
-        else:
+        if restart_kind not in (self.APPLICATION, self.INTERFACE):
             self.hide()
             return
 
+        self.message.setText(
+            _("A restart is required to apply the changes."))
+        self.restart_button.setText(_("Restart now"))
         self.show()
         self.raise_()
 
