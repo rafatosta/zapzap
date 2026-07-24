@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-24 13:30-0300\n"
+"POT-Creation-Date: 2026-07-24 13:48-0300\n"
 "PO-Revision-Date: 2026-07-24 13:23-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -189,7 +189,8 @@ msgstr "Básico"
 
 #: zapzap/features/initial_setup/view.py:106
 #: zapzap/features/settings/shell/settings_controller.py:43
-#: zapzap/features/settings/pages/notifications/view.py:21
+#: zapzap/features/settings/pages/notifications/view.py:30
+#: zapzap/features/settings/pages/notifications/view.py:44
 msgid "Notifications"
 msgstr "Notificações"
 
@@ -290,22 +291,19 @@ msgstr ""
 "notificação nativos."
 
 #: zapzap/features/initial_setup/view.py:188
-#: zapzap/features/settings/pages/notifications/view.py:37
+#: zapzap/features/settings/pages/notifications/view.py:47
 msgid "Desktop notifications"
 msgstr "Notificações da área de trabalho"
 
 #: zapzap/features/initial_setup/view.py:189
-#: zapzap/features/settings/pages/notifications/view.py:38
 msgid "Choose whether ZapZap may show desktop notifications."
 msgstr "Escolha se o ZapZap pode mostrar notificações da área de trabalho."
 
 #: zapzap/features/initial_setup/view.py:194
-#: zapzap/features/settings/pages/notifications/view.py:42
 msgid "Enable notifications"
 msgstr "Ativar notificações"
 
 #: zapzap/features/initial_setup/view.py:195
-#: zapzap/features/settings/pages/notifications/view.py:43
 msgid ""
 "Allow ZapZap to publish native desktop notifications for WhatsApp activity."
 msgstr ""
@@ -313,42 +311,34 @@ msgstr ""
 "atividades do WhatsApp."
 
 #: zapzap/features/initial_setup/view.py:203
-#: zapzap/features/settings/pages/notifications/view.py:51
 msgid "Notification privacy"
 msgstr "Privacidade das notificações"
 
 #: zapzap/features/initial_setup/view.py:204
-#: zapzap/features/settings/pages/notifications/view.py:52
 msgid "Limit what is visible in notification banners."
 msgstr "Limite o que aparece nos banners de notificação."
 
 #: zapzap/features/initial_setup/view.py:209
-#: zapzap/features/settings/pages/notifications/view.py:56
 msgid "Show contact photo"
 msgstr "Mostrar foto do contato"
 
 #: zapzap/features/initial_setup/view.py:210
-#: zapzap/features/settings/pages/notifications/view.py:57
 msgid "Display the sender avatar when it is available."
 msgstr "Mostre o avatar do remetente quando disponível."
 
 #: zapzap/features/initial_setup/view.py:213
-#: zapzap/features/settings/pages/notifications/view.py:60
 msgid "Show contact name"
 msgstr "Mostrar nome do contato"
 
 #: zapzap/features/initial_setup/view.py:214
-#: zapzap/features/settings/pages/notifications/view.py:61
 msgid "Display the sender or group name."
 msgstr "Mostre o nome do remetente ou do grupo."
 
 #: zapzap/features/initial_setup/view.py:217
-#: zapzap/features/settings/pages/notifications/view.py:64
 msgid "Show message preview"
 msgstr "Exibir prévia da mensagem"
 
 #: zapzap/features/initial_setup/view.py:218
-#: zapzap/features/settings/pages/notifications/view.py:65
 msgid "Display the message text in the notification."
 msgstr "Mostre o texto da mensagem na notificação."
 
@@ -2019,6 +2009,7 @@ msgid "Username"
 msgstr "Nome de usuário"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:114
+#: zapzap/features/settings/pages/notifications/view.py:125
 msgid "Privacy"
 msgstr "Privacidade"
 
@@ -2060,28 +2051,83 @@ msgstr "Restaurar proxy"
 msgid "Clear proxy settings for the selected scope."
 msgstr "Limpe as configurações de proxy do escopo selecionado."
 
-#: zapzap/features/settings/pages/notifications/view.py:22
-msgid ""
-"Control desktop notifications, notification privacy, and ZapZap messages."
+#: zapzap/features/settings/pages/notifications/view.py:31
+msgid "Configure notifications, privacy, and ZapZap messages."
+msgstr "Configure notificações, privacidade e mensagens do ZapZap."
+
+#: zapzap/features/settings/pages/notifications/view.py:49
+msgid "Show WhatsApp notifications using the desktop notification system."
 msgstr ""
-"Controle notificações da área de trabalho, privacidade das notificações e "
-"mensagens do ZapZap."
+"Exibir notificações do WhatsApp usando o sistema de notificações do desktop."
+
+#: zapzap/features/settings/pages/notifications/view.py:60
+msgid "Notification content"
+msgstr "Conteúdo das notificações"
+
+#: zapzap/features/settings/pages/notifications/view.py:61
+msgid "Choose which information may appear in notifications."
+msgstr "Escolha quais informações podem aparecer nas notificações."
+
+#: zapzap/features/settings/pages/notifications/view.py:66
+msgid "Contact photo"
+msgstr "Foto do contato"
+
+#: zapzap/features/settings/pages/notifications/view.py:67
+msgid "Show the sender's photo when available."
+msgstr "Mostrar a foto do remetente quando disponível."
+
+#: zapzap/features/settings/pages/notifications/view.py:70
+msgid "Contact name"
+msgstr "Nome do contato"
+
+#: zapzap/features/settings/pages/notifications/view.py:71
+msgid "Show the sender or group name."
+msgstr "Mostrar o nome do remetente ou do grupo."
+
+#: zapzap/features/settings/pages/notifications/view.py:74
+msgid "Message preview"
+msgstr "Prévia da mensagem"
 
 #: zapzap/features/settings/pages/notifications/view.py:75
+msgid "Show the content of the received message."
+msgstr "Mostrar o conteúdo da mensagem recebida."
+
+#: zapzap/features/settings/pages/notifications/view.py:92
 msgid "ZapZap messages"
 msgstr "Mensagens do ZapZap"
 
-#: zapzap/features/settings/pages/notifications/view.py:76
-msgid "Optional messages shown by ZapZap itself."
-msgstr "Mensagens opcionais exibidas pelo próprio ZapZap."
+#: zapzap/features/settings/pages/notifications/view.py:93
+msgid "Control occasional messages shown by the application itself."
+msgstr "Controle mensagens ocasionais exibidas pelo próprio aplicativo."
 
-#: zapzap/features/settings/pages/notifications/view.py:80
-msgid "Donation reminder"
-msgstr "Lembrete de doação"
+#: zapzap/features/settings/pages/notifications/view.py:97
+msgid "Support reminders"
+msgstr "Lembretes de apoio"
 
-#: zapzap/features/settings/pages/notifications/view.py:81
-msgid "Show occasional support messages from ZapZap."
-msgstr "Mostre mensagens ocasionais de apoio ao ZapZap."
+#: zapzap/features/settings/pages/notifications/view.py:99
+msgid "Occasionally show messages supporting ZapZap's development."
+msgstr ""
+"Mostrar ocasionalmente mensagens de apoio ao desenvolvimento do ZapZap."
+
+#: zapzap/features/settings/pages/notifications/view.py:127
+msgid "Privacy presets"
+msgstr "Predefinições de privacidade"
+
+#: zapzap/features/settings/pages/notifications/view.py:130
+msgid "Quickly choose which notification details are visible."
+msgstr "Escolha rapidamente quais detalhes da notificação ficam visíveis."
+
+#: zapzap/features/settings/pages/notifications/view.py:134
+msgid "Show everything"
+msgstr "Mostrar tudo"
+
+#: zapzap/features/settings/pages/notifications/view.py:137
+msgid "Hide content"
+msgstr "Ocultar conteúdo"
+
+#: zapzap/features/settings/pages/notifications/view.py:140
+msgid "Maximum privacy"
+msgstr "Privacidade máxima"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:20
 msgid "Tune cache, GPU, processes, and advanced behavior."
@@ -3074,6 +3120,9 @@ msgstr "Tem certeza de que deseja fechar?"
 msgid "Don't ask again"
 msgstr "Não pergunte novamente"
 
+#~ msgid "Show occasional support messages from ZapZap."
+#~ msgstr "Mostre mensagens ocasionais de apoio ao ZapZap."
+
 #~ msgid "Logs"
 #~ msgstr "Logs"
 
@@ -3486,12 +3535,6 @@ msgstr "Não pergunte novamente"
 
 #~ msgid "Work area notifications"
 #~ msgstr "Notificações na área de trabalho"
-
-#~ msgid "Show the photo of the sender"
-#~ msgstr "Exibir a foto do remetente"
-
-#~ msgid "Show the sender's name"
-#~ msgstr "Exibir o nome do remetente"
 
 #~ msgid "Hide donation notification"
 #~ msgstr "Ocultar a notificação de doação"

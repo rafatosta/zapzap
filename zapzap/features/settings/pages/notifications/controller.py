@@ -14,6 +14,7 @@ class NotificationsSettingsController(NotificationsSettingsView):
         """Load saved settings and connect view signals."""
         self._load_settings()
         self._connect_signals()
+        self._sync_notification_controls()
 
     def _load_settings(self):
         self.notify_groupBox.checkbox.setChecked(self.model.enabled)
@@ -26,9 +27,10 @@ class NotificationsSettingsController(NotificationsSettingsView):
 
     def _sync_notification_controls(self):
         enabled = self.notify_groupBox.checkbox.isChecked()
-        for checkbox in (self.show_photo.checkbox, self.show_name.checkbox, self.show_msg.checkbox):
-            checkbox.setEnabled(enabled)
-        
+        for row in self.notification_content_rows:
+            row.setEnabled(enabled)
+        self.privacy_presets_button.setEnabled(enabled)
+
     def _connect_signals(self):
         self.notify_groupBox.checkbox.toggled.connect(
             self._handle_toggle_notifications
@@ -45,6 +47,26 @@ class NotificationsSettingsController(NotificationsSettingsView):
         self.donationMessage.checkbox.toggled.connect(
             self._handle_toggle_donation_message
         )
+        self.show_all_action.triggered.connect(
+            lambda: self._apply_privacy_preset(True, True, True)
+        )
+        self.hide_content_action.triggered.connect(
+            lambda: self._apply_privacy_preset(True, True, False)
+        )
+        self.maximum_privacy_action.triggered.connect(
+            lambda: self._apply_privacy_preset(False, False, False)
+        )
+
+    def _apply_privacy_preset(
+        self,
+        show_photo: bool,
+        show_name: bool,
+        show_message: bool,
+    ):
+        """Apply a shortcut through the existing switches and persistence."""
+        self.show_photo.checkbox.setChecked(show_photo)
+        self.show_name.checkbox.setChecked(show_name)
+        self.show_msg.checkbox.setChecked(show_message)
 
     def _handle_toggle_notifications(self, is_enabled: bool):
         self.model.enabled = is_enabled

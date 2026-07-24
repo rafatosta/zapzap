@@ -1,16 +1,25 @@
 from gettext import gettext as _
 
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QFrame, QHBoxLayout, QMenu, QVBoxLayout, QWidget
+
 from zapzap.features.settings.components import (
-    SettingsActionRow,
     SettingsCard,
-    SettingsInfoBox,
     SettingsPage,
-    SettingsPathRow,
-    SettingsSection,
-    SettingsSelectRow,
     SettingsSwitchRow,
 )
+from zapzap.ui.components import Button, Label
 
+
+def _divider(parent=None):
+    divider = QFrame(parent)
+    divider.setObjectName("NotificationDivider")
+    divider.setFrameShape(QFrame.Shape.HLine)
+    divider.setFrameShadow(QFrame.Shadow.Plain)
+    divider.setStyleSheet(
+        "QFrame#NotificationDivider { color: palette(mid); max-height: 1px; }"
+    )
+    return divider
 
 
 class NotificationsSettingsView(SettingsPage):
@@ -19,12 +28,11 @@ class NotificationsSettingsView(SettingsPage):
     def __init__(self, parent=None):
         super().__init__(
             _("Notifications"),
-            _("Control desktop notifications, notification privacy, and ZapZap messages."),
+            _("Configure notifications, privacy, and ZapZap messages."),
             parent,
         )
         self.setObjectName("NotificationsSettingsView")
         self._setup_ui()
-        self._apply_style()
         self.add_stretch()
 
     def _setup_ui(self):
@@ -33,53 +41,129 @@ class NotificationsSettingsView(SettingsPage):
         self._add_messages_section()
 
     def _add_desktop_section(self):
-        section = SettingsSection(
-            _("Desktop notifications"),
-            _("Choose whether ZapZap may show desktop notifications."),
-        )
+        section = self._create_section(_("Notifications"))
         card = SettingsCard()
         self.notify_groupBox = SettingsSwitchRow(
-            _("Enable notifications"),
-            _("Allow ZapZap to publish native desktop notifications for WhatsApp activity."),
+            _("Desktop notifications"),
+            _(
+                "Show WhatsApp notifications using the desktop notification "
+                "system."
+            ),
         )
+        self._configure_accessibility(self.notify_groupBox)
         card.add_row(self.notify_groupBox)
-        section.add_card(card)
+        section.layout().addWidget(card)
         self.add_section(section)
 
     def _add_privacy_section(self):
-        section = SettingsSection(
-            _("Notification privacy"),
-            _("Limit what is visible in notification banners."),
+        section = self._create_section(
+            _("Notification content"),
+            _("Choose which information may appear in notifications."),
+            with_privacy_menu=True,
         )
         card = SettingsCard()
         self.show_photo = SettingsSwitchRow(
-            _("Show contact photo"),
-            _("Display the sender avatar when it is available."),
+            _("Contact photo"),
+            _("Show the sender's photo when available."),
         )
         self.show_name = SettingsSwitchRow(
-            _("Show contact name"),
-            _("Display the sender or group name."),
+            _("Contact name"),
+            _("Show the sender or group name."),
         )
         self.show_msg = SettingsSwitchRow(
-            _("Show message preview"),
-            _("Display the message text in the notification."),
+            _("Message preview"),
+            _("Show the content of the received message."),
         )
-        card.add_row(self.show_photo)
-        card.add_row(self.show_name)
-        card.add_row(self.show_msg)
-        section.add_card(card)
+        self.notification_content_rows = (
+            self.show_photo,
+            self.show_name,
+            self.show_msg,
+        )
+        for index, row in enumerate(self.notification_content_rows):
+            self._configure_accessibility(row)
+            if index:
+                card.add_row(_divider(card))
+            card.add_row(row)
+        section.layout().addWidget(card)
         self.add_section(section)
 
     def _add_messages_section(self):
-        section = SettingsSection(
+        section = self._create_section(
             _("ZapZap messages"),
-            _("Optional messages shown by ZapZap itself."),
+            _("Control occasional messages shown by the application itself."),
         )
         card = SettingsCard()
         self.donationMessage = SettingsSwitchRow(
-            _("Donation reminder"),
-            _("Show occasional support messages from ZapZap."),
+            _("Support reminders"),
+            _(
+                "Occasionally show messages supporting ZapZap's "
+                "development."
+            ),
         )
+        self._configure_accessibility(self.donationMessage)
         card.add_row(self.donationMessage)
-        section.add_card(card)
+        section.layout().addWidget(card)
         self.add_section(section)
+
+    def _create_section(self, title, description="", with_privacy_menu=False):
+        """Create a compact section with an optional action in its header."""
+        section = QWidget(self)
+        layout = QVBoxLayout(section)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setSpacing(8)
+
+        header = QWidget(section)
+        header_layout = QHBoxLayout(header)
+        header_layout.setContentsMargins(0, 0, 0, 0)
+        header_layout.setSpacing(12)
+
+        title_label = Label(title, "section_title", header)
+        title_label.setObjectName("SettingsSectionTitle")
+        header_layout.addWidget(title_label, 1)
+
+        if with_privacy_menu:
+            self.privacy_presets_button = Button(_("Privacy"), parent=header)
+            self.privacy_presets_button.setAccessibleName(
+                _("Privacy presets")
+            )
+            self.privacy_presets_button.setAccessibleDescription(
+                _("Quickly choose which notification details are visible.")
+            )
+            self.privacy_presets_menu = QMenu(self.privacy_presets_button)
+            self.show_all_action = self.privacy_presets_menu.addAction(
+                _("Show everything")
+            )
+            self.hide_content_action = self.privacy_presets_menu.addAction(
+                _("Hide content")
+            )
+            self.maximum_privacy_action = self.privacy_presets_menu.addAction(
+                _("Maximum privacy")
+            )
+            self.privacy_presets_button.setMenu(self.privacy_presets_menu)
+            header_layout.addWidget(
+                self.privacy_presets_button,
+                0,
+                Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter,
+            )
+
+        layout.addWidget(header)
+        if description:
+            description_label = Label(
+                description,
+                "section_description",
+                section,
+            )
+            description_label.setObjectName("SettingsSectionDescription")
+            layout.addWidget(description_label)
+        return section
+
+    @staticmethod
+    def _configure_accessibility(row):
+        """Associate a switch with the row's visible title and description."""
+        title = row.title_label.text()
+        description = (
+            row.description_label.text() if row.description_label else ""
+        )
+        row.checkbox.setAccessibleName(title)
+        row.checkbox.setAccessibleDescription(description)
+        row.title_label.setBuddy(row.checkbox)

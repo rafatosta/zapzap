@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-24 13:30-0300\n"
+"POT-Creation-Date: 2026-07-24 13:48-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -177,7 +177,8 @@ msgstr ""
 
 #: zapzap/features/initial_setup/view.py:106
 #: zapzap/features/settings/shell/settings_controller.py:43
-#: zapzap/features/settings/pages/notifications/view.py:21
+#: zapzap/features/settings/pages/notifications/view.py:30
+#: zapzap/features/settings/pages/notifications/view.py:44
 msgid "Notifications"
 msgstr ""
 
@@ -276,63 +277,52 @@ msgid ""
 msgstr ""
 
 #: zapzap/features/initial_setup/view.py:188
-#: zapzap/features/settings/pages/notifications/view.py:37
+#: zapzap/features/settings/pages/notifications/view.py:47
 msgid "Desktop notifications"
 msgstr ""
 
 #: zapzap/features/initial_setup/view.py:189
-#: zapzap/features/settings/pages/notifications/view.py:38
 msgid "Choose whether ZapZap may show desktop notifications."
 msgstr ""
 
 #: zapzap/features/initial_setup/view.py:194
-#: zapzap/features/settings/pages/notifications/view.py:42
 msgid "Enable notifications"
 msgstr ""
 
 #: zapzap/features/initial_setup/view.py:195
-#: zapzap/features/settings/pages/notifications/view.py:43
 msgid ""
 "Allow ZapZap to publish native desktop notifications for WhatsApp activity."
 msgstr ""
 
 #: zapzap/features/initial_setup/view.py:203
-#: zapzap/features/settings/pages/notifications/view.py:51
 msgid "Notification privacy"
 msgstr ""
 
 #: zapzap/features/initial_setup/view.py:204
-#: zapzap/features/settings/pages/notifications/view.py:52
 msgid "Limit what is visible in notification banners."
 msgstr ""
 
 #: zapzap/features/initial_setup/view.py:209
-#: zapzap/features/settings/pages/notifications/view.py:56
 msgid "Show contact photo"
 msgstr ""
 
 #: zapzap/features/initial_setup/view.py:210
-#: zapzap/features/settings/pages/notifications/view.py:57
 msgid "Display the sender avatar when it is available."
 msgstr ""
 
 #: zapzap/features/initial_setup/view.py:213
-#: zapzap/features/settings/pages/notifications/view.py:60
 msgid "Show contact name"
 msgstr ""
 
 #: zapzap/features/initial_setup/view.py:214
-#: zapzap/features/settings/pages/notifications/view.py:61
 msgid "Display the sender or group name."
 msgstr ""
 
 #: zapzap/features/initial_setup/view.py:217
-#: zapzap/features/settings/pages/notifications/view.py:64
 msgid "Show message preview"
 msgstr ""
 
 #: zapzap/features/initial_setup/view.py:218
-#: zapzap/features/settings/pages/notifications/view.py:65
 msgid "Display the message text in the notification."
 msgstr ""
 
@@ -1934,6 +1924,7 @@ msgid "Username"
 msgstr ""
 
 #: zapzap/features/settings/pages/network_privacy/view.py:114
+#: zapzap/features/settings/pages/notifications/view.py:125
 msgid "Privacy"
 msgstr ""
 
@@ -1973,25 +1964,80 @@ msgstr ""
 msgid "Clear proxy settings for the selected scope."
 msgstr ""
 
-#: zapzap/features/settings/pages/notifications/view.py:22
-msgid ""
-"Control desktop notifications, notification privacy, and ZapZap messages."
+#: zapzap/features/settings/pages/notifications/view.py:31
+msgid "Configure notifications, privacy, and ZapZap messages."
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:49
+msgid "Show WhatsApp notifications using the desktop notification system."
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:60
+msgid "Notification content"
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:61
+msgid "Choose which information may appear in notifications."
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:66
+msgid "Contact photo"
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:67
+msgid "Show the sender's photo when available."
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:70
+msgid "Contact name"
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:71
+msgid "Show the sender or group name."
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:74
+msgid "Message preview"
 msgstr ""
 
 #: zapzap/features/settings/pages/notifications/view.py:75
+msgid "Show the content of the received message."
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:92
 msgid "ZapZap messages"
 msgstr ""
 
-#: zapzap/features/settings/pages/notifications/view.py:76
-msgid "Optional messages shown by ZapZap itself."
+#: zapzap/features/settings/pages/notifications/view.py:93
+msgid "Control occasional messages shown by the application itself."
 msgstr ""
 
-#: zapzap/features/settings/pages/notifications/view.py:80
-msgid "Donation reminder"
+#: zapzap/features/settings/pages/notifications/view.py:97
+msgid "Support reminders"
 msgstr ""
 
-#: zapzap/features/settings/pages/notifications/view.py:81
-msgid "Show occasional support messages from ZapZap."
+#: zapzap/features/settings/pages/notifications/view.py:99
+msgid "Occasionally show messages supporting ZapZap's development."
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:127
+msgid "Privacy presets"
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:130
+msgid "Quickly choose which notification details are visible."
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:134
+msgid "Show everything"
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:137
+msgid "Hide content"
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:140
+msgid "Maximum privacy"
 msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:20

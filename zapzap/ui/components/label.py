@@ -2,6 +2,7 @@
 
 from typing import Literal
 
+from PyQt6.QtCore import QEvent
 from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QLabel
 
@@ -79,8 +80,19 @@ class Label(QLabel):
 
         config = styles.get(self.variant, styles["body"])
 
-        self.setStyleSheet(config["style"])
+        style = config["style"]
+        if not self.isEnabled():
+            _color, separator, rest = style.partition(";")
+            style = (
+                f"color: palette(placeholder-text){separator}{rest}"
+            )
+        self.setStyleSheet(style)
 
         font = self.font()
         font.setWeight(config["weight"])
         self.setFont(font)
+
+    def changeEvent(self, event):
+        if event.type() == QEvent.Type.EnabledChange:
+            self._apply_style()
+        super().changeEvent(event)
