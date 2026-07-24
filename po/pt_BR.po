@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-23 14:46-0300\n"
+"POT-Creation-Date: 2026-07-24 10:12-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,8 +49,7 @@ msgstr ""
 " - E-mail: {email}"
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:41
-#: zapzap/features/settings/pages/advanced_customizations/view.py:97
-#: zapzap/features/settings/pages/advanced_customizations/view.py:180
+#: zapzap/features/settings/pages/advanced_customizations/view.py:63
 #: zapzap/features/settings/pages/debugging/view.py:52
 #: zapzap/features/downloads/ui/download_dialog.py:118
 msgid "Open folder"
@@ -198,6 +197,7 @@ msgid "Background"
 msgstr "Segundo plano"
 
 #: zapzap/features/initial_setup/view.py:108
+#: zapzap/features/settings/pages/advanced_customizations/view.py:35
 msgid "Files"
 msgstr "Arquivos"
 
@@ -881,7 +881,6 @@ msgid "Privacy and Network"
 msgstr "Privacidade e Rede"
 
 #: zapzap/features/settings/shell/settings_controller.py:48
-#: zapzap/features/settings/pages/advanced_customizations/view.py:24
 msgid "Advanced Customizations"
 msgstr "Customizações avançadas"
 
@@ -1014,384 +1013,456 @@ msgstr "Crie outra sessão do WhatsApp Web."
 msgid "Add an account if the configured account limit allows it."
 msgstr "Adicione uma conta se o limite configurado permitir."
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:25
-msgid "Manage CSS, JavaScript and customizations by scope."
-msgstr "Gerencie CSS, JavaScript e customizações por escopo."
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:52
+msgid "All accounts"
+msgstr "Todas as contas"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:40
-#: zapzap/features/settings/pages/network_privacy/view.py:37
-msgid "Scope"
-msgstr "Escopo"
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:53
+msgid "This account"
+msgstr "Esta conta"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:40
-msgid "Choose the customization scope."
-msgstr "Escolha o escopo da customização."
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:152
+msgid "Unsaved changes discarded."
+msgstr "Alterações não salvas descartadas."
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:47
-#: zapzap/features/browser/web/web_view.py:564
-msgid "Account"
-msgstr "Conta"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:50
-msgid "Inherit global settings"
-msgstr "Herdar configurações globais"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:54
-msgid ""
-"When inherit is disabled, account customizations are appended after global "
-"settings."
-msgstr ""
-"Quando a herança estiver desativada, as personalizações da conta são "
-"aplicadas após as configurações globais."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:73
-msgid "CSS customizations"
-msgstr "Personalizações CSS"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:74
-msgid "Import, create, edit, enable, and delete CSS files."
-msgstr "Importe, crie, edite, ative e exclua arquivos CSS."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:78
-msgid "Enable custom CSS"
-msgstr "Ativar CSS personalizado"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:87
-#: zapzap/features/settings/pages/advanced_customizations/view.py:170
-msgid "Create"
-msgstr "Criar"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:88
-#: zapzap/features/settings/pages/advanced_customizations/view.py:171
-msgid "Edit"
-msgstr "Editar"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:89
-#: zapzap/features/settings/pages/advanced_customizations/view.py:172
-#: zapzap/features/settings/components/card_user/card_user_view.py:37
-#: zapzap/features/settings/components/card_user/card_user_controller.py:196
-msgid "Delete"
-msgstr "Excluir"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:95
-msgid "Import .css"
-msgstr "Importar .css"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:96
-#: zapzap/features/settings/pages/advanced_customizations/view.py:179
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:488
-msgid "Import from URL"
-msgstr "Importar a partir de URL"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:109
-msgid "CSS preview"
-msgstr "Pré-visualização do CSS"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:110
-msgid "Attach and preview a screenshot for the selected CSS file."
-msgstr "Anexe e visualize uma captura de tela para o arquivo CSS selecionado."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:116
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:329
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:368
-msgid "Select a CSS file to preview."
-msgstr "Selecione um arquivo CSS para pré-visualização."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:120
-msgid "Upload preview image"
-msgstr "Enviar imagem de pré-visualização"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:134
-msgid "Replace preview image"
-msgstr "Substituir imagem de pré-visualização"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:151
-msgid "JavaScript customizations"
-msgstr "Personalizações JavaScript"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:152
-msgid "Import, create, edit, enable, and delete JavaScript files."
-msgstr "Importe, crie, edite, ative e exclua arquivos JavaScript."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:156
-msgid "Enable custom JavaScript"
-msgstr "Ativar JavaScript personalizado"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:161
-msgid ""
-"⚠ Custom JavaScript runs with full page privileges. Use trusted code only."
-msgstr ""
-"⚠ JavaScript personalizado é executado com privilégios completos da página. "
-"Utilize apenas código confiável."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:178
-msgid "Import .js"
-msgstr "Importar .js"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:192
-msgid "Apply changes"
-msgstr "Aplicar alterações"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:193
-msgid "Save changes and reload target pages when needed."
-msgstr ""
-"Salve as alterações e recarregue as páginas de destino quando necessário."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:197
-msgid "Save and reload"
-msgstr "Salvar e recarregar"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:198
-#: zapzap/ui/main_window/main_window_view.py:160
-msgid "Reload"
-msgstr "Recarregar"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:199
-#: zapzap/features/downloads/ui/download_dialog.py:103
-msgid "Save"
-msgstr "Salvar"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:221
-msgid "Enabled"
-msgstr "Ativado"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py:222
-msgid "Filename"
-msgstr "Nome do arquivo"
-
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:46
-msgid "Global"
-msgstr "Global"
-
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:47
-msgid "Current account"
-msgstr "Conta atual"
-
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:158
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:197
 msgid "Unnamed account"
 msgstr "Conta sem nome"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:160
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:199
 #, python-brace-format
 msgid "Current account: {} ({})"
 msgstr "Conta atual: {} ({})"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:164
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:203
 msgid "Current account: unavailable"
 msgstr "Conta atual: indisponível"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:252
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:209
+msgid "Changes to the previous scope were saved."
+msgstr "As alterações do escopo anterior foram salvas."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:296
 #, python-brace-format
 msgid "CSS file enabled: {}"
 msgstr "Arquivo CSS ativado: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:252
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:296
 #, python-brace-format
 msgid "CSS file disabled: {}"
 msgstr "Arquivo CSS desativado: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:255
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:299
 #, python-brace-format
 msgid "JavaScript file enabled: {}"
 msgstr "Arquivo JavaScript ativado: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:257
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:301
 #, python-brace-format
 msgid "JavaScript file disabled: {}"
 msgstr "Arquivo JavaScript desativado: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:263
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:279
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:307
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:323
 msgid "This userstyle does not target WhatsApp Web."
 msgstr "Este userstyle não é destinado ao WhatsApp Web."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:270
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:314
 msgid "Only HTTPS URLs are allowed."
 msgstr "Apenas URLs HTTPS são permitidas."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:274
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:318
 msgid "Download is too large."
 msgstr "O download é muito grande."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:283
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:327
 msgid "Could not download CSS from URL."
 msgstr "Não foi possível baixar o CSS a partir da URL."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:285
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:329
 msgid "Could not download JavaScript from URL."
 msgstr "Não foi possível baixar o JavaScript a partir da URL."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:297
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:341
 msgid "Select a file first."
 msgstr "Selecione um arquivo primeiro."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:378
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:373
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:412
+msgid "Select a CSS file to preview."
+msgstr "Selecione um arquivo CSS para pré-visualização."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:422
 msgid "No preview available."
 msgstr "Nenhuma pré-visualização disponível."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:385
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:429
 msgid "Could not load preview image."
 msgstr "Não foi possível carregar a imagem de pré-visualização."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:415
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:459
 msgid "Enter a CSS HTTPS URL."
 msgstr "Informe uma URL HTTPS de CSS."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:417
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:461
 msgid "Enter a JavaScript HTTPS URL."
 msgstr "Informe uma URL HTTPS de JavaScript."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:437
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:447
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:481
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:491
 #, python-brace-format
 msgid "File imported: {}"
 msgstr "Arquivo importado: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:451
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:495
 #, python-brace-format
 msgid "File imported: {}. No preview found, upload one manually."
 msgstr ""
 "Arquivo importado: {}. Nenhuma pré-visualização encontrada, envie uma "
 "manualmente."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:462
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:506
 msgid "Select preview image"
 msgstr "Selecionar imagem de pré-visualização"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:478
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:522
 msgid "Could not set preview image."
 msgstr "Não foi possível definir a imagem de pré-visualização."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:482
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:526
 msgid "Preview image updated."
 msgstr "Imagem de pré-visualização atualizada."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:499
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:532
+msgid "Import from URL"
+msgstr "Importar a partir de URL"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:543
 msgid "https://example.com/theme.user.css"
 msgstr "https://exemplo.com/tema.user.css"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:501
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:545
 msgid "https://example.com/script.js"
 msgstr "https://exemplo.com/script.js"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:505
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:549
 #, python-brace-format
 msgid "Optional file name (e.g. 10-custom.{})"
 msgstr "Nome do arquivo opcional (ex.: 10-personalizado.{})"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:508
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:552
 msgid "URL"
 msgstr "URL"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:509
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:538
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:553
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:617
 msgid "File name"
 msgstr "Nome do arquivo"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:537
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:608
+msgid "Edit the stylesheet content and choose the file name."
+msgstr "Edite o conteúdo da folha de estilos e escolha o nome do arquivo."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:610
+msgid "Edit the script content and choose the file name."
+msgstr "Edite o conteúdo do script e escolha o nome do arquivo."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:620
 #, python-brace-format
 msgid "custom.{}"
 msgstr "personalizado.{}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:564
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:625
+msgid "CSS code"
+msgstr "Código CSS"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:627
+msgid "JavaScript code"
+msgstr "Código JavaScript"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:647
+msgid "Ctrl+S to save"
+msgstr "Ctrl+S para salvar"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:648
+#: zapzap/features/downloads/ui/download_dialog.py:120
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:649
+#: zapzap/features/settings/pages/advanced_customizations/view.py:347
+#: zapzap/features/downloads/ui/download_dialog.py:103
+msgid "Save"
+msgstr "Salvar"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:676
 msgid "Select file"
 msgstr "Selecionar arquivo"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:582
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:694
 msgid "Could not import file."
 msgstr "Não foi possível importar o arquivo."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:586
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:698
 msgid "File imported successfully."
 msgstr "Arquivo importado com sucesso."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:618
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:730
 msgid "Create file"
 msgstr "Criar arquivo"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:626
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:677
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:738
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:789
 msgid "File name cannot be empty."
 msgstr "O nome do arquivo não pode estar vazio."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:639
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:751
 msgid "Could not create file."
 msgstr "Não foi possível criar o arquivo."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:643
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:755
 #, python-brace-format
 msgid "File created: {}"
 msgstr "Arquivo criado: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:662
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:774
 msgid "Could not open file for editing."
 msgstr "Não foi possível abrir o arquivo para edição."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:665
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:777
 #, python-brace-format
 msgid "Edit CSS: {}"
 msgstr "Editar CSS: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:666
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:778
 #, python-brace-format
 msgid "Edit JavaScript: {}"
 msgstr "Editar JavaScript: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:700
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:812
 msgid "Could not save file."
 msgstr "Não foi possível salvar o arquivo."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:704
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:816
 #, python-brace-format
 msgid "File saved: {}"
 msgstr "Arquivo salvo: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:765
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:891
 msgid "Reload complete."
 msgstr "Recarregamento concluído."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:794
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:920
 #, python-brace-format
 msgid "{}. Save and reload to apply changes."
 msgstr "{}. Salve e recarregue para aplicar as alterações."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:807
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:933
+#: zapzap/features/settings/pages/advanced_customizations/view.py:207
 msgid "CSS"
 msgstr "CSS"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:807
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:933
 msgid "JS"
 msgstr "JS"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:810
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:936
 msgid "Confirm deletion"
 msgstr "Confirmar exclusão"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:811
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:937
 #, python-brace-format
 msgid "Delete selected {} file: {}?"
 msgstr "Excluir o arquivo {} selecionado: {}?"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:815
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:941
 msgid "Deletion cancelled."
 msgstr "Exclusão cancelada."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:826
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:952
 msgid "File deleted."
 msgstr "Arquivo excluído."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:828
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:954
 msgid "Could not delete file."
 msgstr "Não foi possível excluir o arquivo."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:858
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:980
+msgid "Could not duplicate file."
+msgstr "Não foi possível duplicar o arquivo."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:985
+#, python-brace-format
+msgid "File duplicated: {}"
+msgstr "Arquivo duplicado: {}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:1015
 msgid "Customizations saved. Reload pages to apply changes."
 msgstr ""
 "Personalizações salvas. Recarregue as páginas para aplicar as alterações."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:868
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:1027
 msgid "All pages reloaded."
 msgstr "Todas as páginas foram recarregadas."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:37
+msgid "+ Create"
+msgstr "+ Criar"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:61
+msgid "Import file"
+msgstr "Importar arquivo"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:62
+msgid "Import URL"
+msgstr "Importar URL"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:120
+msgid "File actions"
+msgstr "Ações do arquivo"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:123
+msgid "Edit"
+msgstr "Editar"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:124
+msgid "Duplicate"
+msgstr "Duplicar"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:125
+msgid "Open location"
+msgstr "Abrir localização"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:127
+#: zapzap/features/settings/components/card_user/card_user_view.py:37
+#: zapzap/features/settings/components/card_user/card_user_controller.py:196
+msgid "Delete"
+msgstr "Excluir"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:150
+msgid "Advanced customizations"
+msgstr "Customizações avançadas"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:151
+msgid "Add custom CSS and JavaScript to WhatsApp Web."
+msgstr "Adicione CSS e JavaScript personalizados ao WhatsApp Web."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:165
+#: zapzap/features/settings/pages/network_privacy/view.py:37
+msgid "Scope"
+msgstr "Escopo"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:166
+msgid ""
+"Choose whether customizations apply to all accounts or only to the current "
+"account."
+msgstr ""
+"Escolha se as personalizações serão aplicadas a todas as contas ou apenas à "
+"conta atual."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:170
+msgid "Apply to"
+msgstr "Aplicar em"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:171
+msgid "Account customizations can inherit or extend the global configuration."
+msgstr ""
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:179
+msgid "Inherit global settings"
+msgstr "Herdar configurações globais"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:180
+#, fuzzy
+msgid "Use only the global customizations for this account."
+msgstr "Desativar notificações para esta conta."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:198
+msgid "Customizations"
+msgstr "Personalizações"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:199
+msgid "Manage custom files for the selected scope."
+msgstr "Gerencie os arquivos personalizados do escopo selecionado."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:208
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:254
+msgid "Custom CSS"
+msgstr "CSS personalizado"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:255
+msgid "Enables or disables all CSS files in this scope."
+msgstr "Habilita ou desabilita todos os arquivos CSS deste escopo."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:260
+msgid "No CSS files"
+msgstr "Nenhum arquivo CSS"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:261
+msgid "Create or import a style to get started."
+msgstr "Crie ou importe um estilo para começar."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:272
+msgid "Preview"
+msgstr "Pré-visualização"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:283
+msgid ""
+"No preview available. Select a CSS file to view an associated screenshot."
+msgstr ""
+"Nenhuma pré-visualização disponível. Selecione um arquivo CSS para "
+"visualizar uma captura associada."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:288
+msgid "Upload preview image"
+msgstr "Enviar imagem de pré-visualização"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:301
+msgid "Replace preview image"
+msgstr "Substituir imagem de pré-visualização"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:319
+msgid "Custom JavaScript"
+msgstr "JavaScript personalizado"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:320
+msgid "Enables or disables all JavaScript files in this scope."
+msgstr "Habilita ou desabilita todos os arquivos JavaScript deste escopo."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:325
+msgid ""
+"⚠ Custom scripts have full access to page content. Use code only from "
+"trusted sources."
+msgstr ""
+"⚠ Scripts personalizados têm acesso completo ao conteúdo da página. Use "
+"apenas código de fontes confiáveis."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:330
+msgid "No JavaScript files"
+msgstr "Nenhum arquivo JavaScript"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:331
+msgid "Create or import a script to get started."
+msgstr "Crie ou importe um script para começar."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:345
+msgid "● There are unsaved changes."
+msgstr "● Existem alterações não salvas."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:346
+msgid "Discard"
+msgstr "Descartar"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:348
+msgid "Save and reload"
+msgstr "Salvar e recarregar"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:349
+msgid "Reload page"
+msgstr "Recarregar página"
 
 #: zapzap/features/settings/pages/appearance/controller.py:66
 #: zapzap/features/settings/pages/appearance/view.py:100
@@ -2474,10 +2545,6 @@ msgstr "Mais"
 msgid "Save as"
 msgstr "Salvar como"
 
-#: zapzap/features/downloads/ui/download_dialog.py:120
-msgid "Cancel"
-msgstr "Cancelar"
-
 #: zapzap/features/downloads/ui/download_dialog.py:289
 msgid "Save file"
 msgstr "Salvar arquivo"
@@ -2605,6 +2672,10 @@ msgstr "Verificar a ortografia"
 msgid "Select Language"
 msgstr "Selecionar idioma"
 
+#: zapzap/features/browser/web/web_view.py:564
+msgid "Account"
+msgstr "Conta"
+
 #: zapzap/features/browser/web/web_view.py:566
 #, python-brace-format
 msgid "DevTools - {}"
@@ -2729,154 +2800,6 @@ msgstr "Abrir DevTools"
 msgid "Ctrl+Shift+I"
 msgstr "Ctrl+Shift+I"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Advanced customizations"
-msgstr "Customizações avançadas"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Add custom CSS and JavaScript to WhatsApp Web."
-msgstr "Adicione CSS e JavaScript personalizados ao WhatsApp Web."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Choose whether customizations apply to all accounts or only to the current account."
-msgstr "Escolha se as personalizações serão aplicadas a todas as contas ou apenas à conta atual."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Apply to"
-msgstr "Aplicar em"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "All accounts"
-msgstr "Todas as contas"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "This account"
-msgstr "Esta conta"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Customizations"
-msgstr "Personalizações"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Manage custom files for the selected scope."
-msgstr "Gerencie os arquivos personalizados do escopo selecionado."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "+ Create"
-msgstr "+ Criar"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Import file"
-msgstr "Importar arquivo"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Import URL"
-msgstr "Importar URL"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "File actions"
-msgstr "Ações do arquivo"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Duplicate"
-msgstr "Duplicar"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Open location"
-msgstr "Abrir localização"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Custom CSS"
-msgstr "CSS personalizado"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Enables or disables all CSS files in this scope."
-msgstr "Habilita ou desabilita todos os arquivos CSS deste escopo."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "No CSS files"
-msgstr "Nenhum arquivo CSS"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Create or import a style to get started."
-msgstr "Crie ou importe um estilo para começar."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Preview"
-msgstr "Pré-visualização"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "No preview available. Select a CSS file to view an associated screenshot."
-msgstr "Nenhuma pré-visualização disponível. Selecione um arquivo CSS para visualizar uma captura associada."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Custom JavaScript"
-msgstr "JavaScript personalizado"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Enables or disables all JavaScript files in this scope."
-msgstr "Habilita ou desabilita todos os arquivos JavaScript deste escopo."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "⚠ Custom scripts have full access to page content. Use code only from trusted sources."
-msgstr "⚠ Scripts personalizados têm acesso completo ao conteúdo da página. Use apenas código de fontes confiáveis."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "No JavaScript files"
-msgstr "Nenhum arquivo JavaScript"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Create or import a script to get started."
-msgstr "Crie ou importe um script para começar."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "● There are unsaved changes."
-msgstr "● Existem alterações não salvas."
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Discard"
-msgstr "Descartar"
-
-#: zapzap/features/settings/pages/advanced_customizations/view.py
-msgid "Reload page"
-msgstr "Recarregar página"
-
-#: zapzap/features/settings/pages/advanced_customizations/controller.py
-msgid "Unsaved changes discarded."
-msgstr "Alterações não salvas descartadas."
-
-#: zapzap/features/settings/pages/advanced_customizations/controller.py
-msgid "Changes to the previous scope were saved."
-msgstr "As alterações do escopo anterior foram salvas."
-
-#: zapzap/features/settings/pages/advanced_customizations/controller.py
-msgid "Could not duplicate file."
-msgstr "Não foi possível duplicar o arquivo."
-
-#: zapzap/features/settings/pages/advanced_customizations/controller.py
-msgid "File duplicated: {}"
-msgstr "Arquivo duplicado: {}"
-
-#: zapzap/features/settings/pages/advanced_customizations/controller.py
-msgid "Edit the stylesheet content and choose the file name."
-msgstr "Edite o conteúdo da folha de estilos e escolha o nome do arquivo."
-
-#: zapzap/features/settings/pages/advanced_customizations/controller.py
-msgid "Edit the script content and choose the file name."
-msgstr "Edite o conteúdo do script e escolha o nome do arquivo."
-
-#: zapzap/features/settings/pages/advanced_customizations/controller.py
-msgid "CSS code"
-msgstr "Código CSS"
-
-#: zapzap/features/settings/pages/advanced_customizations/controller.py
-msgid "JavaScript code"
-msgstr "Código JavaScript"
-
-#: zapzap/features/settings/pages/advanced_customizations/controller.py
-msgid "Ctrl+S to save"
-msgstr "Ctrl+S para salvar"
-
 #: zapzap/ui/main_window/main_window_view.py:151
 msgid "Grid View"
 msgstr "Visualização em grade"
@@ -2900,6 +2823,10 @@ msgstr "Ctrl+Alt+2"
 #: zapzap/ui/main_window/main_window_view.py:159
 msgid "Ctrl+Alt+3"
 msgstr "Ctrl+Alt+3"
+
+#: zapzap/ui/main_window/main_window_view.py:160
+msgid "Reload"
+msgstr "Recarregar"
 
 #: zapzap/ui/main_window/main_window_view.py:161
 msgid "F5"
@@ -2939,6 +2866,78 @@ msgstr "Tem certeza de que deseja fechar?"
 #: zapzap/ui/main_window/main_window_controller.py:265
 msgid "Don't ask again"
 msgstr "Não pergunte novamente"
+
+#~ msgid "Manage CSS, JavaScript and customizations by scope."
+#~ msgstr "Gerencie CSS, JavaScript e customizações por escopo."
+
+#~ msgid "Choose the customization scope."
+#~ msgstr "Escolha o escopo da customização."
+
+#~ msgid ""
+#~ "When inherit is disabled, account customizations are appended after "
+#~ "global settings."
+#~ msgstr ""
+#~ "Quando a herança estiver desativada, as personalizações da conta são "
+#~ "aplicadas após as configurações globais."
+
+#~ msgid "CSS customizations"
+#~ msgstr "Personalizações CSS"
+
+#~ msgid "Import, create, edit, enable, and delete CSS files."
+#~ msgstr "Importe, crie, edite, ative e exclua arquivos CSS."
+
+#~ msgid "Enable custom CSS"
+#~ msgstr "Ativar CSS personalizado"
+
+#~ msgid "Create"
+#~ msgstr "Criar"
+
+#~ msgid "Import .css"
+#~ msgstr "Importar .css"
+
+#~ msgid "CSS preview"
+#~ msgstr "Pré-visualização do CSS"
+
+#~ msgid "Attach and preview a screenshot for the selected CSS file."
+#~ msgstr ""
+#~ "Anexe e visualize uma captura de tela para o arquivo CSS selecionado."
+
+#~ msgid "JavaScript customizations"
+#~ msgstr "Personalizações JavaScript"
+
+#~ msgid "Import, create, edit, enable, and delete JavaScript files."
+#~ msgstr "Importe, crie, edite, ative e exclua arquivos JavaScript."
+
+#~ msgid "Enable custom JavaScript"
+#~ msgstr "Ativar JavaScript personalizado"
+
+#~ msgid ""
+#~ "⚠ Custom JavaScript runs with full page privileges. Use trusted code only."
+#~ msgstr ""
+#~ "⚠ JavaScript personalizado é executado com privilégios completos da "
+#~ "página. Utilize apenas código confiável."
+
+#~ msgid "Import .js"
+#~ msgstr "Importar .js"
+
+#~ msgid "Apply changes"
+#~ msgstr "Aplicar alterações"
+
+#~ msgid "Save changes and reload target pages when needed."
+#~ msgstr ""
+#~ "Salve as alterações e recarregue as páginas de destino quando necessário."
+
+#~ msgid "Enabled"
+#~ msgstr "Ativado"
+
+#~ msgid "Filename"
+#~ msgstr "Nome do arquivo"
+
+#~ msgid "Global"
+#~ msgstr "Global"
+
+#~ msgid "Current account"
+#~ msgstr "Conta atual"
 
 #~ msgid "Dialog"
 #~ msgstr "Diálogo"
@@ -3103,9 +3102,6 @@ msgstr "Não pergunte novamente"
 
 #~ msgid "background: palette(base);"
 #~ msgstr "background: palette(base);"
-
-#~ msgid "JavaScript"
-#~ msgstr "JavaScript"
 
 #~ msgid "color: #c77800;"
 #~ msgstr "color: #c77800;"
