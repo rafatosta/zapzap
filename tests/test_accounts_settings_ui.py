@@ -56,6 +56,14 @@ class AccountsSettingsUiTests(unittest.TestCase):
 
         self.assertTrue(card.name.text())
 
+    def test_account_actions_button_has_a_compact_click_target(self):
+        card = CardUserView(["Default"])
+
+        self.assertEqual(card.menu_button.sizeHint().width(), 34)
+        self.assertEqual(card.menu_button.sizeHint().height(), 34)
+        self.assertEqual(card.menu_button.text(), "")
+        self.assertTrue(card.menu_button.accessibleName())
+
     def test_account_limit_disables_add_action(self):
         page = AccountsSettingsView()
 

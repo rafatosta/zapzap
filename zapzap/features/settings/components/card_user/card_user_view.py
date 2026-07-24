@@ -2,7 +2,8 @@
 
 from gettext import gettext as _
 
-from PyQt6.QtCore import QSize, Qt
+from PyQt6.QtCore import QRectF, QSize, Qt
+from PyQt6.QtGui import QPainter, QPalette
 from PyQt6.QtWidgets import (
     QHBoxLayout,
     QSizePolicy,
@@ -18,6 +19,63 @@ from zapzap.features.settings.components.settings_rows import (
     SettingsToggleSwitch,
 )
 from zapzap.ui.components import Label
+
+
+class AccountActionsButton(QToolButton):
+    """Compact palette-aware button for an account's contextual actions."""
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.setAutoRaise(True)
+        self.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
+        self.setToolTip(_("Account actions"))
+        self.setAccessibleName(_("Account actions"))
+
+    def sizeHint(self):
+        return QSize(34, 34)
+
+    def minimumSizeHint(self):
+        return self.sizeHint()
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+
+        palette = self.palette()
+        button_rect = QRectF(self.rect()).adjusted(1, 1, -1, -1)
+        background = palette.color(QPalette.ColorRole.Button)
+        border = palette.color(QPalette.ColorRole.Mid)
+        if self.isDown():
+            background = palette.color(QPalette.ColorRole.Mid)
+        elif self.underMouse():
+            background = palette.color(QPalette.ColorRole.AlternateBase)
+            border = palette.color(QPalette.ColorRole.Highlight)
+
+        border_pen = painter.pen()
+        border_pen.setColor(
+            palette.color(QPalette.ColorRole.Highlight)
+            if self.hasFocus()
+            else border
+        )
+        border_pen.setWidth(2 if self.hasFocus() else 1)
+        painter.setBrush(background)
+        painter.setPen(border_pen)
+        painter.drawRoundedRect(button_rect, 10, 10)
+
+        dot_color = palette.color(
+            QPalette.ColorRole.ButtonText
+            if self.isEnabled()
+            else QPalette.ColorRole.PlaceholderText
+        )
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.setBrush(dot_color)
+        center_x = self.rect().center().x()
+        center_y = self.rect().center().y()
+        for offset in (-6, 0, 6):
+            painter.drawEllipse(
+                QRectF(center_x - 1.75, center_y + offset - 1.75, 3.5, 3.5)
+            )
 
 
 class CardUserView(SettingsCard):
@@ -58,25 +116,7 @@ class CardUserView(SettingsCard):
         active_layout.addWidget(self.active_label)
         active_layout.addWidget(self.active)
 
-        self.menu_button = QToolButton(header)
-        self.menu_button.setText("⋮")
-        self.menu_button.setAutoRaise(True)
-        self.menu_button.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
-        self.menu_button.setToolTip(_("Account actions"))
-        self.menu_button.setAccessibleName(_("Account actions"))
-        self.menu_button.setStyleSheet("""
-            QToolButton {
-                min-width: 28px;
-                min-height: 28px;
-                border: 0;
-                border-radius: 8px;
-                color: palette(text);
-                font-size: 20px;
-            }
-            QToolButton:hover {
-                background: palette(alternate-base);
-            }
-        """)
+        self.menu_button = AccountActionsButton(header)
 
         header_layout.addWidget(self.icon)
         header_layout.addWidget(self.name, 1)
