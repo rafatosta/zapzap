@@ -59,10 +59,12 @@ class PerformanceExperimentalSettingsView(SettingsPage):
         self.cache_type_row = SettingsSelectRow(
             _("Cache type"),
             _("Defines where the HTTP cache is stored."),
+            [""]
         )
         self.cache_size_max_row = SettingsSelectRow(
             _("Maximum cache size"),
             _("0 MB uses Chromium's default behavior."),
+            [""]
         )
         self.persistent_cookies_row = SettingsSwitchRow(
             _("Persistent cookies"),

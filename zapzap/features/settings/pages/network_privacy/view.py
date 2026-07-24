@@ -61,6 +61,7 @@ class NetworkPrivacySettingsView(SettingsPage):
         self.proxy_type_row = SettingsSelectRow(
             _("Proxy type"),
             _("Select the proxy mode."),
+            [""]
         )
         self.proxy_info_box = SettingsInfoBox(
             _("Proxy type details appear below the selector."),

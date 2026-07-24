@@ -81,6 +81,7 @@ class LanguageDownloadSettingsView(SettingsPage):
         lang_row = SettingsSelectRow(
             _("Dictionary language"),
             _("Recognizes only compiled dictionaries (.bdic)."),
+            [""]
         )
         self.spell_comboBox = lang_row.combo
         path_row = SettingsPathRow(
