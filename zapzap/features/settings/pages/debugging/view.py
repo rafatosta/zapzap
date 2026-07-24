@@ -373,6 +373,8 @@ class DebuggingSettingsView(SettingsPage):
             or runtime_distro.get("PRETTY_NAME")
             or runtime_distro.get("NAME")
         )
+        system_graphics_session = graphics.get("xdg_session_type")
+        zapzap_graphics_backend = self._graphics_backend_label(graphics)
         fields = (
             (_("ZapZap"), app.get("version")),
             (_("Packaging"), app.get("packaging")),
@@ -381,13 +383,35 @@ class DebuggingSettingsView(SettingsPage):
             (_("PyQt"), qt.get("pyqt_version")),
             (_("Python"), python_version),
             (_("System"), system),
-            (_("Graphics session"), graphics.get("xdg_session_type")),
+            (
+                _("System graphics session"),
+                self._display_name(system_graphics_session),
+            ),
+            (_("ZapZap graphics backend"), zapzap_graphics_backend),
         )
         for label, field_value in fields:
             if field_value is None or field_value == "":
                 continue
             row = KeyValueInfoRow(label, str(field_value), self.runtime_summary)
             self.runtime_summary_layout.addWidget(row)
+
+    @staticmethod
+    def _display_name(value):
+        return value[:1].upper() + value[1:] if value else value
+
+    @classmethod
+    def _graphics_backend_label(cls, graphics):
+        backend = graphics.get("qt_platform_name")
+        if not backend:
+            return None
+
+        normalized = backend.strip().lower()
+        if normalized == "wayland":
+            return "Wayland"
+        if normalized == "xcb":
+            session = (graphics.get("xdg_session_type") or "").lower()
+            return "X11/XWayland" if session == "wayland" else "X11"
+        return cls._display_name(backend)
 
     def runtime_json(self) -> str:
         return self._runtime_json

@@ -12,6 +12,9 @@ from zapzap.features.settings.pages.debugging.controller import (
     DebuggingSettingsController,
 )
 from zapzap.features.settings.pages.debugging.view import DebuggingSettingsView
+from zapzap.core.diagnostics.runtime_environment_debug import (
+    RuntimeEnvironmentDebug,
+)
 from zapzap.ui.components import Button
 
 
@@ -69,12 +72,19 @@ class DebuggingSettingsUiTests(unittest.TestCase):
                     "host_distro": {"PRETTY_NAME": "Example Linux"},
                 },
                 "app_config": {
-                    "graphics_session": {"xdg_session_type": "wayland"},
+                    "graphics_session": {
+                        "xdg_session_type": "wayland",
+                        "qt_platform_name": "xcb",
+                    },
                 },
             }
         )
 
         page.set_runtime_environment(payload)
+        labels = [
+            page.runtime_summary_layout.itemAt(index).widget().key_label.text()
+            for index in range(page.runtime_summary_layout.count())
+        ]
         values = [
             page.runtime_summary_layout.itemAt(index).widget().value_label.text()
             for index in range(page.runtime_summary_layout.count())
@@ -89,12 +99,28 @@ class DebuggingSettingsUiTests(unittest.TestCase):
                 "6.11.0",
                 "3.14.0",
                 "Example Linux",
-                "wayland",
+                "Wayland",
+                "X11/XWayland",
             ],
+        )
+        self.assertEqual(
+            labels[-2:],
+            ["System graphics session", "ZapZap graphics backend"],
         )
         self.assertEqual(page.runtime_environment.toPlainText(), payload)
         self.assertFalse(page.runtime_details.toggle.isChecked())
         self.assertFalse(page.runtime_details.content.isVisible())
+
+    def test_runtime_report_records_the_effective_qt_graphics_backend(self):
+        graphics = (
+            RuntimeEnvironmentDebug()
+            .build_report()["app_config"]["graphics_session"]
+        )
+
+        self.assertEqual(
+            graphics["qt_platform_name"],
+            QApplication.platformName(),
+        )
 
     def test_copy_actions_copy_complete_data_and_show_feedback(self):
         page = DebuggingSettingsController()

@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Dict, Any
 from datetime import datetime
 from PyQt6.QtCore import PYQT_VERSION_STR, QT_VERSION_STR
+from PyQt6.QtGui import QGuiApplication
 from zapzap import __appname__, __version__
 from zapzap.core.environment.environment_detector import EnvironmentDetector
 
@@ -62,6 +63,11 @@ class RuntimeEnvironmentDebug:
         def __init__(self, env: os._Environ) -> None:
             self.env = env
 
+        @staticmethod
+        def _qt_platform_name() -> str | None:
+            application = QGuiApplication.instance()
+            return application.platformName() if application else None
+
         def build(self) -> Dict[str, Any]:
             return {
                 "qt": {
@@ -87,6 +93,7 @@ class RuntimeEnvironmentDebug:
                 },
                 "graphics_session": {
                     "xdg_session_type": self.env.get("XDG_SESSION_TYPE"),
+                    "qt_platform_name": self._qt_platform_name(),
                     "display": self.env.get("DISPLAY"),
                     "wayland_display": self.env.get("WAYLAND_DISPLAY"),
                 },
