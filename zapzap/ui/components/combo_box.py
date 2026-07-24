@@ -1,5 +1,6 @@
 """ZapZap combo box component."""
 
+from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QComboBox
 
 
@@ -100,11 +101,20 @@ class ComboBox(QComboBox):
         self.view().setObjectName("ZapZapComboBoxPopup")
         self.view().setMouseTracking(True)
         self.view().viewport().setMouseTracking(True)
+        self._apply_font()
         self._apply_style()
 
     def showPopup(self):
         self.view().setMinimumWidth(self.width())
         super().showPopup()
+
+    def _apply_font(self):
+        """Apply combo box typography using Qt's native font handling."""
+
+        font = self.font()
+        font.setWeight(QFont.Weight.Normal)
+        self.setFont(font)
+        self.view().setFont(font)
 
     def _apply_style(self):
         self.setStyleSheet(self.STYLE)

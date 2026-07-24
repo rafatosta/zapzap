@@ -1,5 +1,6 @@
 """ZapZap line edit component."""
 
+from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QLineEdit
 
 
@@ -8,7 +9,15 @@ class LineEdit(QLineEdit):
 
     def __init__(self, text="", parent=None):
         super().__init__(text, parent)
+        self._apply_font()
         self._apply_style()
+
+    def _apply_font(self):
+        """Apply line edit typography using Qt's native font handling."""
+
+        font = self.font()
+        font.setWeight(QFont.Weight.Normal)
+        self.setFont(font)
 
     def _apply_style(self):
         self.setStyleSheet("""

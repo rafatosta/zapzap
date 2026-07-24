@@ -1,6 +1,7 @@
 """ZapZap check box component."""
 
 from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QCheckBox, QSizePolicy
 
 
@@ -13,7 +14,15 @@ class CheckBox(QCheckBox):
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         self.setSizePolicy(QSizePolicy.Policy.Minimum,
                            QSizePolicy.Policy.Fixed)
+        self._apply_font()
         self._apply_style()
+
+    def _apply_font(self):
+        """Apply check box typography using Qt's native font handling."""
+
+        font = self.font()
+        font.setWeight(QFont.Weight.Normal)
+        self.setFont(font)
 
     def _apply_style(self):
         self.setStyleSheet("""

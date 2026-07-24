@@ -3,6 +3,7 @@
 from gettext import gettext as _
 
 from PyQt6.QtGui import QAction
+from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QHBoxLayout
 from PyQt6.QtWidgets import QMainWindow
 from PyQt6.QtWidgets import QMenu
@@ -38,6 +39,9 @@ class MainWindowView(QMainWindow):
 
         self.menubar = QMenuBar(self)
         self.menubar.setObjectName("menubar")
+        menubar_font = self.menubar.font()
+        menubar_font.setWeight(QFont.Weight.Normal)
+        self.menubar.setFont(menubar_font)
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
         self.menuView = QMenu(self.menubar)

@@ -275,7 +275,6 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
                 border-radius: 11px;
                 background: transparent;
                 color: palette(text);
-                font-weight: 600;
             }
             QTabWidget#CustomizationTabs QTabBar::tab:hover:!selected {
                 background: palette(base);
@@ -289,6 +288,14 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
                 color: palette(placeholder-text);
             }
         """)
+        tab_font = self.customization_tabs.font()
+        tab_font.setWeight(QFont.Weight.DemiBold)
+        self.customization_tabs.setFont(tab_font)
+        for index in range(self.customization_tabs.count()):
+            page = self.customization_tabs.widget(index)
+            page_font = page.font()
+            page_font.setWeight(QFont.Weight.Normal)
+            page.setFont(page_font)
         section.layout.addWidget(self.customization_tabs)
         self.add_section(section)
 

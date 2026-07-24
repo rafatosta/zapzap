@@ -25,6 +25,7 @@ class ShortcutsView(QDialog):
         super().__init__(parent)
         self._setup_ui()
         self._apply_style()
+        self._apply_fonts()
 
     def _setup_ui(self):
         self.setObjectName("ShortcutsView")
@@ -77,6 +78,24 @@ class ShortcutsView(QDialog):
         self.buttonBox.rejected.connect(self.reject)
         self.verticalLayout.addWidget(self.buttonBox)
 
+    def _apply_fonts(self):
+        """Apply shortcut dialog typography using Qt's native font handling."""
+
+        for group_box in (self.groupBox, self.groupBox_2):
+            font = group_box.font()
+            font.setWeight(QFont.Weight.DemiBold)
+            group_box.setFont(font)
+
+        for table in (self.table_whatsapp, self.table_zapzap):
+            font = table.font()
+            font.setWeight(QFont.Weight.Normal)
+            table.setFont(font)
+
+        for button in self.buttonBox.buttons():
+            font = button.font()
+            font.setWeight(QFont.Weight.Medium)
+            button.setFont(font)
+
     def _apply_style(self):
         self.setStyleSheet(
             f"""
@@ -91,7 +110,6 @@ class ShortcutsView(QDialog):
                 background: palette(base);
                 color: palette(text);
                 font-size: {Typography.px(Typography.SUBTITLE)};
-                font-weight: 600;
             }}
             QGroupBox::title {{
                 subcontrol-origin: margin;
@@ -144,7 +162,6 @@ class ShortcutsView(QDialog):
                 background: palette(highlight);
                 color: palette(highlighted-text);
                 font-size: {Typography.px(Typography.BODY)};
-                font-weight: 500;
             }}
             QDialogButtonBox QPushButton:hover {{
                 border-color: palette(highlight);
