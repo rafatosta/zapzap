@@ -8,6 +8,9 @@ os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
 from PyQt6.QtWidgets import QApplication
 
+from zapzap.core.config.settings.notifications import NotificationSettings
+from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.features.donation.model import DonationModel
 from zapzap.features.settings.pages.notifications.controller import (
     NotificationsSettingsController,
 )
@@ -130,6 +133,31 @@ class NotificationsSettingsUiTests(unittest.TestCase):
             [model.show_photo, model.show_name, model.show_message_preview],
             [True, True, True],
         )
+
+    def test_support_reminder_uses_positive_switch_semantics(self):
+        settings = NotificationSettings()
+
+        with patch.object(SettingsManager, "get", return_value=False):
+            self.assertTrue(settings.donation_message_enabled)
+            self.assertTrue(DonationModel.should_show_reminder())
+
+        with patch.object(SettingsManager, "get", return_value=True):
+            self.assertFalse(settings.donation_message_enabled)
+            self.assertFalse(DonationModel.should_show_reminder())
+
+        with patch.object(SettingsManager, "set") as save:
+            settings.donation_message_enabled = True
+            save.assert_called_once_with(
+                "notification/donation_message",
+                False,
+            )
+
+        with patch.object(SettingsManager, "set") as save:
+            settings.donation_message_enabled = False
+            save.assert_called_once_with(
+                "notification/donation_message",
+                True,
+            )
 
 
 if __name__ == "__main__":

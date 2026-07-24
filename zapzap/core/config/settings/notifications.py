@@ -12,7 +12,8 @@ class NotificationSettings(BaseSettings):
     _SHOW_PHOTO = ("notification/show_photo", True)
     _SHOW_NAME = ("notification/show_name", True)
     _SHOW_MESSAGE_PREVIEW = ("notification/show_msg", True)
-    _DONATION_MESSAGE = ("notification/donation_message", False)
+    # This legacy key stores whether reminders are hidden, despite its name.
+    _DONATION_MESSAGE_HIDDEN = ("notification/donation_message", False)
 
     @property
     def enabled(self) -> bool:
@@ -48,8 +49,9 @@ class NotificationSettings(BaseSettings):
 
     @property
     def donation_message_enabled(self) -> bool:
-        return self._get_bool(self._DONATION_MESSAGE)
+        """Whether support reminders may be shown."""
+        return not self._get_bool(self._DONATION_MESSAGE_HIDDEN)
 
     @donation_message_enabled.setter
     def donation_message_enabled(self, value: bool) -> None:
-        self._set_bool(self._DONATION_MESSAGE, value)
+        self._set_bool(self._DONATION_MESSAGE_HIDDEN, not value)

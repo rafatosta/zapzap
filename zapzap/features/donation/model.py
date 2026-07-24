@@ -13,14 +13,15 @@ class DonationModel:
     """Centralizes donation reminder data and persistence access."""
 
     _DONATION_MESSAGE_KEY = "notification/donation_message"
-    _DONATION_MESSAGE_DEFAULT = True
+    # The legacy setting stores whether the reminder is hidden.
+    _DONATION_MESSAGE_HIDDEN_DEFAULT = False
 
     @classmethod
     def should_show_reminder(cls) -> bool:
         """Return whether the donation reminder should be shown."""
         return not SettingsManager.get(
             cls._DONATION_MESSAGE_KEY,
-            cls._DONATION_MESSAGE_DEFAULT,
+            cls._DONATION_MESSAGE_HIDDEN_DEFAULT,
         )
 
     @property
