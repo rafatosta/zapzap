@@ -103,9 +103,15 @@ class CardUserController(CardUserView):
         edit_action = menu.addAction(_("Edit"))
         edit_action.triggered.connect(self._handle_edit_action)
 
-        if not self.model.is_default_user:
-            menu.addSeparator()
-            delete_action = menu.addAction(_("Remove account"))
+        menu.addSeparator()
+        delete_action = menu.addAction(
+            _("Remove account"),
+        )
+        if self.model.is_default_user:
+            delete_action.setEnabled(False)
+            delete_action.setToolTip(
+                _("The default account cannot be removed."))
+        else:
             delete_action.triggered.connect(self._handle_delete_action)
         return menu
 
@@ -186,10 +192,13 @@ class CardUserController(CardUserView):
     @classmethod
     def create_icon_context_menu(cls, parent, user: User):
         menu = QMenu(parent)
-        generate_icon_action = menu.addAction(_("Generate new colors for the icon"))
-        generate_icon_action.triggered.connect(lambda: cls.regenerate_user_icon(user))
+        generate_icon_action = menu.addAction(
+            _("Generate new colors for the icon"))
+        generate_icon_action.triggered.connect(
+            lambda: cls.regenerate_user_icon(user))
         restore_action = menu.addAction(_("Restore standard"))
-        restore_action.triggered.connect(lambda: cls.restore_default_icon(user))
+        restore_action.triggered.connect(
+            lambda: cls.restore_default_icon(user))
         return menu
 
     @classmethod
@@ -226,14 +235,18 @@ class CardUserController(CardUserView):
             user_agent_group.addAction(user_agent_action)
 
         menu.addSeparator()
-        generate_icon_action = menu.addAction(_("Generate new colors for the icon"))
-        generate_icon_action.triggered.connect(lambda: cls.regenerate_user_icon(user))
+        generate_icon_action = menu.addAction(
+            _("Generate new colors for the icon"))
+        generate_icon_action.triggered.connect(
+            lambda: cls.regenerate_user_icon(user))
         restore_action = menu.addAction(_("Restore standard"))
-        restore_action.triggered.connect(lambda: cls.restore_default_icon(user))
+        restore_action.triggered.connect(
+            lambda: cls.restore_default_icon(user))
 
         if user.id != User.USER_DEFAULT:
             menu.addSeparator()
             delete_action = menu.addAction(_("Delete"))
-            delete_action.triggered.connect(lambda: cls.delete_user(parent, user))
+            delete_action.triggered.connect(
+                lambda: cls.delete_user(parent, user))
 
         return menu

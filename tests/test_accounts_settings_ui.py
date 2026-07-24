@@ -92,6 +92,21 @@ class AccountsSettingsUiTests(unittest.TestCase):
 
         self.assertEqual(menu.actions()[0].text(), "Edit")
         self.assertIsNone(menu.actions()[0].menu())
+        self.assertEqual(menu.actions()[-1].text(), "Remove account")
+        self.assertTrue(menu.actions()[-1].isEnabled())
+
+    def test_default_account_shows_protected_remove_action(self):
+        card = CardUserView()
+        card.model = SimpleNamespace(is_default_user=True)
+        card._handle_edit_action = lambda: None
+        card._handle_delete_action = lambda: None
+
+        menu = CardUserController._create_account_menu(card)
+        remove_action = menu.actions()[-1]
+
+        self.assertEqual(remove_action.text(), "Remove account")
+        self.assertFalse(remove_action.isEnabled())
+        self.assertTrue(remove_action.toolTip())
 
     def test_account_limit_disables_add_action(self):
         page = AccountsSettingsView()
