@@ -18,6 +18,10 @@ Run from the repository root:
 
     python tests/check_unused_code.py
 
+To check only the package list in ``pyproject.toml``:
+
+    python tests/check_unused_code.py --packages-only
+
 Use ``--no-fail`` to print the inventory without returning a failing status.
 """
 
@@ -523,12 +527,27 @@ def parse_arguments() -> argparse.Namespace:
         action="store_true",
         help="return status 0 even when probable unused code is found",
     )
+    parser.add_argument(
+        "--packages-only",
+        action="store_true",
+        help="check only tool.setuptools.packages against package directories",
+    )
     return parser.parse_args()
 
 
 def main() -> int:
     arguments = parse_arguments()
-    findings, errors = analyze(include_tests=arguments.include_tests)
+    if arguments.packages_only:
+        errors = []
+        try:
+            findings = package_manifest_findings()
+        except (OSError, ValueError) as error:
+            findings = []
+            errors.append(
+                f"{PYPROJECT_PATH.relative_to(REPOSITORY_ROOT)}: {error}"
+            )
+    else:
+        findings, errors = analyze(include_tests=arguments.include_tests)
 
     if errors:
         print("Files that could not be analyzed:", file=sys.stderr)
@@ -541,9 +560,12 @@ def main() -> int:
             print(f"  {finding.render()}")
         print(f"\n{len(findings)} finding(s).")
     else:
-        print(
-            "No probable unused code or setuptools package manifest mismatches."
-        )
+        if arguments.packages_only:
+            print("No setuptools package manifest mismatches.")
+        else:
+            print(
+                "No probable unused code or setuptools package manifest mismatches."
+            )
 
     if errors:
         return 2
