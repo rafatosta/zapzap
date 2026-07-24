@@ -3608,3 +3608,87 @@ msgstr "Não pergunte novamente"
 
 #~ msgid "Welcome to"
 #~ msgstr "Bem-vindo ao"
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Configure how ZapZap starts, behaves in the system, and integrates with Linux."
+msgstr "Configure como o ZapZap inicia, se comporta no sistema e se integra ao Linux."
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Define how ZapZap behaves when your session starts."
+msgstr "Defina como o ZapZap se comporta ao iniciar sua sessão."
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Open ZapZap automatically when the session starts."
+msgstr "Abrir o ZapZap automaticamente ao iniciar a sessão."
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Start in the background"
+msgstr "Iniciar em segundo plano"
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Open without showing the main window."
+msgstr "Abrir sem mostrar a janela principal."
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Window"
+msgstr "Janela"
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Define what happens when the main window is closed."
+msgstr "Defina o que acontece ao fechar a janela principal."
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "When closing the window"
+msgstr "Ao fechar a janela"
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Continue in the background"
+msgstr "Continuar em segundo plano"
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Quit ZapZap"
+msgstr "Encerrar o ZapZap"
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Confirm before quitting"
+msgstr "Confirmar antes de encerrar"
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Ask for confirmation before completely closing ZapZap."
+msgstr "Pedir confirmação antes de fechar completamente o ZapZap."
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Choose whether ZapZap continues in the background or quits when the window is closed."
+msgstr "Escolha se o ZapZap continua em segundo plano ou é encerrado ao fechar a janela."
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Settings related to the desktop environment and platform."
+msgstr "Configurações relacionadas ao ambiente de desktop e à plataforma."
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "System file dialogs"
+msgstr "Diálogos de arquivos do sistema"
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Use the file picker provided by the desktop environment."
+msgstr "Usar o seletor de arquivos fornecido pelo ambiente de desktop."
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Run natively on Wayland"
+msgstr "Executar nativamente no Wayland"
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Use the Wayland backend when available."
+msgstr "Usar o backend Wayland quando disponível."
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Use the Wayland backend when available. Requires restart."
+msgstr "Usar o backend Wayland quando disponível. Requer reinício."
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Requires restart"
+msgstr "Requer reinício"
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Wayland changes require restart"
+msgstr "Alterações do Wayland requerem reinício"

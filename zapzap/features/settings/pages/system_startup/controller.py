@@ -35,8 +35,13 @@ class SystemStartupSettingsController(SystemStartupSettingsView):
         self.btn_confirm_in_close.setChecked(
             self.model.confirm_on_close
         )
-        self.btn_quit_in_close.setChecked(
-            self.model.quit_on_close
+        close_behavior = (
+            "quit_application"
+            if self.model.quit_on_close
+            else "keep_running"
+        )
+        self.close_behavior.setCurrentIndex(
+            self.close_behavior.findData(close_behavior)
         )
         self.btn_start_background.setChecked(
             self.model.start_in_background
@@ -45,26 +50,19 @@ class SystemStartupSettingsController(SystemStartupSettingsView):
             self.model.start_with_system
         )
 
-        self.dontUseNativeDialog.setChecked(
-            self.model.dont_use_native_dialog
+        self.native_file_dialogs.setChecked(
+            not self.model.dont_use_native_dialog
         )
+        self._sync_close_confirmation()
 
     def _connect_signals(self):
-        self.btn_confirm_in_close.clicked.connect(
-            lambda: setattr(
-                self.model,
-                "confirm_on_close",
-                self.btn_confirm_in_close.isChecked(),
-            )
+        self.btn_confirm_in_close.toggled.connect(
+            self._handle_close_confirmation
         )
-        self.btn_quit_in_close.clicked.connect(
-            lambda: setattr(
-                self.model,
-                "quit_on_close",
-                self.btn_quit_in_close.isChecked(),
-            )
+        self.close_behavior.currentIndexChanged.connect(
+            self._handle_close_behavior
         )
-        self.btn_start_background.clicked.connect(
+        self.btn_start_background.toggled.connect(
             lambda: setattr(
                 self.model,
                 "start_in_background",
@@ -72,13 +70,27 @@ class SystemStartupSettingsController(SystemStartupSettingsView):
             )
         )
         self.btn_start_system.clicked.connect(self._handle_autostart)
-        self.dontUseNativeDialog.clicked.connect(
-            lambda: setattr(
-                self.model,
-                "dont_use_native_dialog",
-                self.dontUseNativeDialog.isChecked(),
-            )
+        self.native_file_dialogs.toggled.connect(
+            self._handle_native_file_dialogs
         )
+
+    def _handle_close_behavior(self, _index):
+        should_quit = self.close_behavior.currentData() == "quit_application"
+        self.model.quit_on_close = should_quit
+        self._sync_close_confirmation()
+
+    def _handle_close_confirmation(self, enabled):
+        self.model.confirm_on_close = enabled
+
+    def _sync_close_confirmation(self):
+        """Disable the irrelevant control without discarding its saved state."""
+        should_quit = self.close_behavior.currentData() == "quit_application"
+        self.btn_confirm_in_close_row.setEnabled(should_quit)
+
+    def _handle_native_file_dialogs(self, enabled):
+        # The existing persisted key has negative semantics. Keep it intact and
+        # adapt only the positive presentation shown to the user.
+        self.model.dont_use_native_dialog = not enabled
 
     def _handle_autostart(self):
         self.model.set_autostart(self.btn_start_system.isChecked())

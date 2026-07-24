@@ -2945,3 +2945,87 @@ msgstr ""
 #: zapzap/ui/main_window/main_window_controller.py:265
 msgid "Don't ask again"
 msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Configure how ZapZap starts, behaves in the system, and integrates with Linux."
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Define how ZapZap behaves when your session starts."
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Open ZapZap automatically when the session starts."
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Start in the background"
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Open without showing the main window."
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Window"
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Define what happens when the main window is closed."
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "When closing the window"
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Continue in the background"
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Quit ZapZap"
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Confirm before quitting"
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Ask for confirmation before completely closing ZapZap."
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Choose whether ZapZap continues in the background or quits when the window is closed."
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Settings related to the desktop environment and platform."
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "System file dialogs"
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Use the file picker provided by the desktop environment."
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Run natively on Wayland"
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Use the Wayland backend when available."
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Use the Wayland backend when available. Requires restart."
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Requires restart"
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Wayland changes require restart"
+msgstr ""
