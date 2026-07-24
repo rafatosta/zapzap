@@ -1,21 +1,19 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Brazilian Portuguese translations for ZapZap.
+# This file is distributed under the same license as the ZapZap package.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-24 11:25-0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language:pt_BR \n"
+"POT-Creation-Date: 2026-07-24 11:35-0300\n"
+"PO-Revision-Date: 2026-07-24 12:00-0300\n"
+"Last-Translator: ZapZap contributors\n"
+"Language-Team: Brazilian Portuguese\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:27
 msgid "Unexpected Error"
@@ -67,6 +65,7 @@ msgstr "Comunidade"
 #: zapzap/core/environment/environment_detector.py:19
 #: zapzap/core/environment/environment_detector.py:20
 #: zapzap/core/environment/environment_detector.py:21
+#: zapzap/features/settings/pages/about/model.py:56
 msgid "Unknown"
 msgstr "Desconhecido"
 
@@ -110,6 +109,7 @@ msgid "No"
 msgstr "Não"
 
 #: zapzap/features/alerts/alert_manager.py:241
+#: zapzap/features/settings/pages/about/view.py:288
 msgid "Information"
 msgstr "Informação"
 
@@ -858,7 +858,6 @@ msgid "Restart now"
 msgstr "Reiniciar agora"
 
 #: zapzap/features/settings/shell/settings_view.py:32
-#: zapzap/features/settings/pages/about/view.py:105
 msgid "Donate"
 msgstr "Doar"
 
@@ -902,7 +901,7 @@ msgid "Debugging"
 msgstr "Depuração"
 
 #: zapzap/features/settings/shell/settings_controller.py:53
-#: zapzap/features/settings/pages/about/view.py:22
+#: zapzap/features/settings/pages/about/view.py:247
 #: zapzap/ui/main_window/main_window_view.py:168
 msgid "About"
 msgstr "Sobre"
@@ -915,83 +914,127 @@ msgstr "Ajuste contas, aparência, notificações e opções avançadas."
 msgid "Close settings"
 msgstr "Fechar configurações"
 
-#: zapzap/features/settings/pages/about/view.py:24
+#: zapzap/features/settings/pages/about/view.py:38
+msgid "ZapZap application icon"
+msgstr "Ícone do aplicativo ZapZap"
+
+#: zapzap/features/settings/pages/about/view.py:50
+msgid "WhatsApp Web for Linux"
+msgstr "WhatsApp Web para Linux"
+
+#: zapzap/features/settings/pages/about/view.py:62
+#, python-brace-format
+msgid "Version {version}"
+msgstr "Versão {version}"
+
+#: zapzap/features/settings/pages/about/view.py:149
+msgid "Technical details"
+msgstr "Detalhes técnicos"
+
+#: zapzap/features/settings/pages/about/view.py:248
+msgid "Information about ZapZap, the project, and support."
+msgstr "Informações sobre o ZapZap, o projeto e o suporte."
+
+#: zapzap/features/settings/pages/about/view.py:262
+msgid "Project and support"
+msgstr "Projeto e suporte"
+
+#: zapzap/features/settings/pages/about/view.py:266
+msgid "Project page"
+msgstr "Página do projeto"
+
+#: zapzap/features/settings/pages/about/view.py:267
+msgid "Official website, downloads, and documentation."
+msgstr "Site oficial, downloads e documentação."
+
+#: zapzap/features/settings/pages/about/view.py:271
+msgid "Report a problem"
+msgstr "Reportar um problema"
+
+#: zapzap/features/settings/pages/about/view.py:272
+msgid "Report bugs or suggest improvements on GitHub."
+msgstr "Informe bugs ou sugira melhorias no GitHub."
+
+#: zapzap/features/settings/pages/about/view.py:276
+msgid "Support the project"
+msgstr "Apoie o projeto"
+
+#: zapzap/features/settings/pages/about/view.py:277
+msgid "Help sustain ZapZap development."
+msgstr "Ajude a manter o desenvolvimento do ZapZap."
+
+#: zapzap/features/settings/pages/about/view.py:293
+#: zapzap/features/settings/pages/about/controller.py:58
+msgid "License"
+msgstr "Licença"
+
+#: zapzap/features/settings/pages/about/view.py:298
+#: zapzap/features/settings/pages/about/controller.py:68
+msgid "Credits and contributors"
+msgstr "Créditos e contribuidores"
+
+#: zapzap/features/settings/pages/about/view.py:320
+#: zapzap/features/settings/pages/about/view.py:324
+#: zapzap/features/settings/pages/about/controller.py:53
+msgid "Copy system information"
+msgstr "Copiar informações do sistema"
+
+#: zapzap/features/settings/pages/about/view.py:334
 msgid ""
-"Application identity, project links, support, legal information, and "
-"acknowledgements."
+"ZapZap is an independent project and is not affiliated with WhatsApp or Meta."
 msgstr ""
-"Identidade do aplicativo, links do projeto, suporte, informações legais e "
-"agradecimentos."
+"O ZapZap é um projeto independente e não possui afiliação com o WhatsApp ou "
+"a Meta."
 
-#: zapzap/features/settings/pages/about/view.py:40
-msgid "Application identity"
-msgstr "Identidade do aplicativo"
+#: zapzap/features/settings/pages/about/view.py:352
+msgid "Information copied"
+msgstr "Informações copiadas"
 
-#: zapzap/features/settings/pages/about/view.py:68
-msgid "Build information"
-msgstr "Informações de construção"
+#: zapzap/features/settings/pages/about/model.py:62
+msgid "Version"
+msgstr "Versão"
 
-#: zapzap/features/settings/pages/about/view.py:88
-msgid "Project links"
-msgstr "Links do projeto"
+#: zapzap/features/settings/pages/about/model.py:67
+#: zapzap/features/settings/pages/about/model.py:91
+msgid "Channel"
+msgstr "Canal"
 
-#: zapzap/features/settings/pages/about/view.py:91
-msgid "Homepage"
-msgstr "Página inicial"
+#: zapzap/features/settings/pages/about/model.py:68
+#: zapzap/features/settings/pages/about/model.py:90
+msgid "Packaging"
+msgstr "Empacotamento"
 
-#: zapzap/features/settings/pages/about/view.py:91
-#: zapzap/features/downloads/ui/download_dialog.py:101
-msgid "Open"
-msgstr "Abrir"
+#: zapzap/features/settings/pages/about/model.py:69
+msgid "Provider"
+msgstr "Provedor"
 
-#: zapzap/features/settings/pages/about/view.py:92
-msgid "Issue tracker"
-msgstr "Rastreador de problemas"
+#: zapzap/features/settings/pages/about/model.py:70
+msgid "Repository"
+msgstr "Repositório"
 
-#: zapzap/features/settings/pages/about/view.py:92
-msgid "Report issue"
-msgstr "Reportar problema"
+#: zapzap/features/settings/pages/about/model.py:88
+msgid "System"
+msgstr "Sistema"
 
-#: zapzap/features/settings/pages/about/view.py:102
-msgid "Support"
-msgstr "Suporte"
+#: zapzap/features/settings/pages/about/model.py:89
+msgid "Session"
+msgstr "Sessão"
 
-#: zapzap/features/settings/pages/about/view.py:113
-msgid "Legal"
-msgstr "Informações legais"
+#: zapzap/features/settings/pages/about/controller.py:60
+#, python-brace-format
+msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
+msgstr ""
+"O ZapZap é um software livre licenciado sob a {license_id} (GPL-3.0-or-"
+"later)."
 
-#: zapzap/features/settings/pages/about/view.py:118
+#: zapzap/features/settings/pages/about/controller.py:70
+#, python-brace-format
 msgid ""
-"ZapZap is licensed under GPL-3.0-or-later. ZapZap provides access to "
-"WhatsApp Web and is independent from WhatsApp and Meta."
+"Created and maintained by {author}. Thanks to everyone who contributes "
+"translations, code, testing, and feedback."
 msgstr ""
-"O ZapZap é licenciado sob a GPL-3.0-or-later. O ZapZap fornece acesso ao "
-"WhatsApp Web e é independente do WhatsApp e da Meta."
-
-#: zapzap/features/settings/pages/about/view.py:128
-#, python-brace-format
-msgid "Version: {id}"
-msgstr "Versão: {id}"
-
-#: zapzap/features/settings/pages/about/view.py:133
-#, python-brace-format
-msgid "Channel: {value}"
-msgstr "Canal: {value}"
-
-#: zapzap/features/settings/pages/about/view.py:136
-#, python-brace-format
-msgid "Provider: {value}"
-msgstr "Provedor: {value}"
-
-#: zapzap/features/settings/pages/about/view.py:139
-#, python-brace-format
-msgid "Packaging: {value}"
-msgstr "Empacotamento: {value}"
-
-#: zapzap/features/settings/pages/about/view.py:142
-#, python-brace-format
-msgid "Repository: {value}"
-msgstr "Repositório: {value}"
+"Criado e mantido por {author}. Agradecemos a todas as pessoas que contribuem "
+"com traduções, código, testes e feedback."
 
 #: zapzap/features/settings/pages/accounts/view.py:18
 msgid "Manage your accounts and individual preferences."
@@ -1345,7 +1388,7 @@ msgid "Open location"
 msgstr "Abrir localização"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:165
-#: zapzap/features/settings/components/card_user/card_user_controller.py:242
+#: zapzap/features/settings/components/card_user/card_user_controller.py:248
 msgid "Delete"
 msgstr "Excluir"
 
@@ -1377,15 +1420,15 @@ msgstr "Aplicar em"
 #: zapzap/features/settings/pages/advanced_customizations/view.py:209
 msgid "Account customizations can inherit or extend the global configuration."
 msgstr ""
+"As personalizações da conta podem herdar ou ampliar a configuração global."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:217
 msgid "Inherit global settings"
 msgstr "Herdar configurações globais"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:218
-#, fuzzy
 msgid "Use only the global customizations for this account."
-msgstr "Desativar notificações para esta conta."
+msgstr "Usar somente as personalizações globais para esta conta."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:236
 msgid "Customizations"
@@ -1482,19 +1525,19 @@ msgstr "Padrão"
 
 #: zapzap/features/settings/pages/appearance/controller.py:72
 msgid "Adwaita"
-msgstr ""
+msgstr "Adwaita"
 
 #: zapzap/features/settings/pages/appearance/controller.py:73
 msgid "Plasma"
-msgstr ""
+msgstr "Plasma"
 
 #: zapzap/features/settings/pages/appearance/controller.py:74
 msgid "iOS"
-msgstr ""
+msgstr "iOS"
 
 #: zapzap/features/settings/pages/appearance/controller.py:75
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 #: zapzap/features/settings/pages/appearance/view.py:20
 msgid ""
@@ -2009,12 +2052,14 @@ msgstr "Recomendado apenas para GPUs antigas ou drivers problemáticos."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:95
 msgid "Automatic multi-GPU workaround"
-msgstr ""
+msgstr "Solução alternativa automática para múltiplas GPUs"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:97
 msgid ""
 "Honors DRI_PRIME or adjusts GPU compositing for a headless secondary GPU."
 msgstr ""
+"Respeita DRI_PRIME ou ajusta a composição da GPU para uma GPU secundária sem "
+"monitor."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:101
 msgid "Disable GPU VSync"
@@ -2219,6 +2264,12 @@ msgid ""
 "Disable this only if the automatic workaround causes problems. Restart "
 "required."
 msgstr ""
+"Respeita automaticamente um seletor DRI_PRIME inequívoco em sistemas Linux "
+"com várias GPUs de renderização. Caso contrário, adiciona --disable-gpu-"
+"compositing quando uma GPU não possui monitor conectado.\n"
+"\n"
+"Desative esta opção somente se a solução alternativa automática causar "
+"problemas. É necessário reiniciar."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:173
 msgid ""
@@ -2458,7 +2509,7 @@ msgid "Account active"
 msgstr "Conta ativa"
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:126
-#: zapzap/features/settings/components/card_user/card_user_controller.py:206
+#: zapzap/features/settings/components/card_user/card_user_controller.py:209
 msgid "Do not disturb"
 msgstr "Não perturbe"
 
@@ -2466,7 +2517,7 @@ msgstr "Não perturbe"
 msgid "Silences notifications for this account."
 msgstr "Silencia as notificações desta conta."
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:109
+#: zapzap/features/settings/components/card_user/card_user_controller.py:108
 msgid "Remove account"
 msgstr "Remover conta"
 
@@ -2491,23 +2542,23 @@ msgid ""
 "Please restart this session (or the application) to apply the new User-Agent."
 msgstr "Reinicie esta sessão (ou o aplicativo) para aplicar o novo User-Agent."
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:195
-#: zapzap/features/settings/components/card_user/card_user_controller.py:235
+#: zapzap/features/settings/components/card_user/card_user_controller.py:196
+#: zapzap/features/settings/components/card_user/card_user_controller.py:239
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:76
 msgid "Generate new colors for the icon"
 msgstr "Gerar novas cores para o ícone"
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:197
-#: zapzap/features/settings/components/card_user/card_user_controller.py:237
+#: zapzap/features/settings/components/card_user/card_user_controller.py:199
+#: zapzap/features/settings/components/card_user/card_user_controller.py:242
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:78
 msgid "Restore standard"
 msgstr "Restaurar padrão"
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:213
+#: zapzap/features/settings/components/card_user/card_user_controller.py:216
 msgid "Disable"
 msgstr "Desativar"
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:220
+#: zapzap/features/settings/components/card_user/card_user_controller.py:223
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:92
 msgid "User-Agent"
 msgstr "User-Agent"
@@ -2553,6 +2604,10 @@ msgstr "Ícone padrão selecionado."
 #: zapzap/features/downloads/ui/download_dialog.py:47
 msgid "Download"
 msgstr "Baixar"
+
+#: zapzap/features/downloads/ui/download_dialog.py:101
+msgid "Open"
+msgstr "Abrir"
 
 #: zapzap/features/downloads/ui/download_dialog.py:112
 msgid "More"
@@ -2884,6 +2939,38 @@ msgstr "Tem certeza de que deseja fechar?"
 msgid "Don't ask again"
 msgstr "Não pergunte novamente"
 
+#~ msgid ""
+#~ "Application identity, project links, support, legal information, and "
+#~ "acknowledgements."
+#~ msgstr ""
+#~ "Identidade do aplicativo, links do projeto, suporte, informações legais e "
+#~ "agradecimentos."
+
+#~ msgid "Build information"
+#~ msgstr "Informações de construção"
+
+#~ msgid "Homepage"
+#~ msgstr "Página inicial"
+
+#~ msgid "Issue tracker"
+#~ msgstr "Rastreador de problemas"
+
+#~ msgid "Report issue"
+#~ msgstr "Reportar problema"
+
+#~ msgid "Support"
+#~ msgstr "Suporte"
+
+#~ msgid "Legal"
+#~ msgstr "Informações legais"
+
+#~ msgid ""
+#~ "ZapZap is licensed under GPL-3.0-or-later. ZapZap provides access to "
+#~ "WhatsApp Web and is independent from WhatsApp and Meta."
+#~ msgstr ""
+#~ "O ZapZap é licenciado sob a GPL-3.0-or-later. O ZapZap fornece acesso ao "
+#~ "WhatsApp Web e é independente do WhatsApp e da Meta."
+
 #~ msgid "Rename"
 #~ msgstr "Renomear"
 
@@ -3132,9 +3219,6 @@ msgstr "Não pergunte novamente"
 #~ msgid "ZapZap official website ->"
 #~ msgstr "Site oficial do ZapZap ->"
 
-#~ msgid "Report a problem ->"
-#~ msgstr "Informar um problema ->"
-
 #~ msgid "My accounts"
 #~ msgstr "Minhas contas"
 
@@ -3308,15 +3392,8 @@ msgstr "Não pergunte novamente"
 #~ msgid "Runtime environment"
 #~ msgstr "Ambiente de execução"
 
-#~ msgid "Support the project"
-#~ msgstr "Apoie o projeto"
-
 #~ msgid "Custom"
 #~ msgstr "Personalizado"
 
 #~ msgid "Welcome to"
 #~ msgstr "Bem-vindo ao"
-
-#, python-brace-format
-#~ msgid "Version {id} - {version_type}"
-#~ msgstr "Versão {id} - {version_type}"

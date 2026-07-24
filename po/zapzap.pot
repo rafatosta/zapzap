@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-24 11:25-0300\n"
+"POT-Creation-Date: 2026-07-24 11:35-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,6 +58,7 @@ msgstr ""
 #: zapzap/core/environment/environment_detector.py:19
 #: zapzap/core/environment/environment_detector.py:20
 #: zapzap/core/environment/environment_detector.py:21
+#: zapzap/features/settings/pages/about/model.py:56
 msgid "Unknown"
 msgstr ""
 
@@ -101,6 +102,7 @@ msgid "No"
 msgstr ""
 
 #: zapzap/features/alerts/alert_manager.py:241
+#: zapzap/features/settings/pages/about/view.py:288
 msgid "Information"
 msgstr ""
 
@@ -811,7 +813,6 @@ msgid "Restart now"
 msgstr ""
 
 #: zapzap/features/settings/shell/settings_view.py:32
-#: zapzap/features/settings/pages/about/view.py:105
 msgid "Donate"
 msgstr ""
 
@@ -855,7 +856,7 @@ msgid "Debugging"
 msgstr ""
 
 #: zapzap/features/settings/shell/settings_controller.py:53
-#: zapzap/features/settings/pages/about/view.py:22
+#: zapzap/features/settings/pages/about/view.py:247
 #: zapzap/ui/main_window/main_window_view.py:168
 msgid "About"
 msgstr ""
@@ -868,78 +869,120 @@ msgstr ""
 msgid "Close settings"
 msgstr ""
 
-#: zapzap/features/settings/pages/about/view.py:24
+#: zapzap/features/settings/pages/about/view.py:38
+msgid "ZapZap application icon"
+msgstr ""
+
+#: zapzap/features/settings/pages/about/view.py:50
+msgid "WhatsApp Web for Linux"
+msgstr ""
+
+#: zapzap/features/settings/pages/about/view.py:62
+#, python-brace-format
+msgid "Version {version}"
+msgstr ""
+
+#: zapzap/features/settings/pages/about/view.py:149
+msgid "Technical details"
+msgstr ""
+
+#: zapzap/features/settings/pages/about/view.py:248
+msgid "Information about ZapZap, the project, and support."
+msgstr ""
+
+#: zapzap/features/settings/pages/about/view.py:262
+msgid "Project and support"
+msgstr ""
+
+#: zapzap/features/settings/pages/about/view.py:266
+msgid "Project page"
+msgstr ""
+
+#: zapzap/features/settings/pages/about/view.py:267
+msgid "Official website, downloads, and documentation."
+msgstr ""
+
+#: zapzap/features/settings/pages/about/view.py:271
+msgid "Report a problem"
+msgstr ""
+
+#: zapzap/features/settings/pages/about/view.py:272
+msgid "Report bugs or suggest improvements on GitHub."
+msgstr ""
+
+#: zapzap/features/settings/pages/about/view.py:276
+msgid "Support the project"
+msgstr ""
+
+#: zapzap/features/settings/pages/about/view.py:277
+msgid "Help sustain ZapZap development."
+msgstr ""
+
+#: zapzap/features/settings/pages/about/view.py:293
+#: zapzap/features/settings/pages/about/controller.py:58
+msgid "License"
+msgstr ""
+
+#: zapzap/features/settings/pages/about/view.py:298
+#: zapzap/features/settings/pages/about/controller.py:68
+msgid "Credits and contributors"
+msgstr ""
+
+#: zapzap/features/settings/pages/about/view.py:320
+#: zapzap/features/settings/pages/about/view.py:324
+#: zapzap/features/settings/pages/about/controller.py:53
+msgid "Copy system information"
+msgstr ""
+
+#: zapzap/features/settings/pages/about/view.py:334
 msgid ""
-"Application identity, project links, support, legal information, and "
-"acknowledgements."
+"ZapZap is an independent project and is not affiliated with WhatsApp or Meta."
 msgstr ""
 
-#: zapzap/features/settings/pages/about/view.py:40
-msgid "Application identity"
+#: zapzap/features/settings/pages/about/view.py:352
+msgid "Information copied"
 msgstr ""
 
-#: zapzap/features/settings/pages/about/view.py:68
-msgid "Build information"
+#: zapzap/features/settings/pages/about/model.py:62
+msgid "Version"
 msgstr ""
 
-#: zapzap/features/settings/pages/about/view.py:88
-msgid "Project links"
+#: zapzap/features/settings/pages/about/model.py:67
+#: zapzap/features/settings/pages/about/model.py:91
+msgid "Channel"
 msgstr ""
 
-#: zapzap/features/settings/pages/about/view.py:91
-msgid "Homepage"
+#: zapzap/features/settings/pages/about/model.py:68
+#: zapzap/features/settings/pages/about/model.py:90
+msgid "Packaging"
 msgstr ""
 
-#: zapzap/features/settings/pages/about/view.py:91
-#: zapzap/features/downloads/ui/download_dialog.py:101
-msgid "Open"
+#: zapzap/features/settings/pages/about/model.py:69
+msgid "Provider"
 msgstr ""
 
-#: zapzap/features/settings/pages/about/view.py:92
-msgid "Issue tracker"
+#: zapzap/features/settings/pages/about/model.py:70
+msgid "Repository"
 msgstr ""
 
-#: zapzap/features/settings/pages/about/view.py:92
-msgid "Report issue"
+#: zapzap/features/settings/pages/about/model.py:88
+msgid "System"
 msgstr ""
 
-#: zapzap/features/settings/pages/about/view.py:102
-msgid "Support"
+#: zapzap/features/settings/pages/about/model.py:89
+msgid "Session"
 msgstr ""
 
-#: zapzap/features/settings/pages/about/view.py:113
-msgid "Legal"
+#: zapzap/features/settings/pages/about/controller.py:60
+#, python-brace-format
+msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
 msgstr ""
 
-#: zapzap/features/settings/pages/about/view.py:118
+#: zapzap/features/settings/pages/about/controller.py:70
+#, python-brace-format
 msgid ""
-"ZapZap is licensed under GPL-3.0-or-later. ZapZap provides access to "
-"WhatsApp Web and is independent from WhatsApp and Meta."
-msgstr ""
-
-#: zapzap/features/settings/pages/about/view.py:128
-#, python-brace-format
-msgid "Version: {id}"
-msgstr ""
-
-#: zapzap/features/settings/pages/about/view.py:133
-#, python-brace-format
-msgid "Channel: {value}"
-msgstr ""
-
-#: zapzap/features/settings/pages/about/view.py:136
-#, python-brace-format
-msgid "Provider: {value}"
-msgstr ""
-
-#: zapzap/features/settings/pages/about/view.py:139
-#, python-brace-format
-msgid "Packaging: {value}"
-msgstr ""
-
-#: zapzap/features/settings/pages/about/view.py:142
-#, python-brace-format
-msgid "Repository: {value}"
+"Created and maintained by {author}. Thanks to everyone who contributes "
+"translations, code, testing, and feedback."
 msgstr ""
 
 #: zapzap/features/settings/pages/accounts/view.py:18
@@ -1291,7 +1334,7 @@ msgid "Open location"
 msgstr ""
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:165
-#: zapzap/features/settings/components/card_user/card_user_controller.py:242
+#: zapzap/features/settings/components/card_user/card_user_controller.py:248
 msgid "Delete"
 msgstr ""
 
@@ -2305,7 +2348,7 @@ msgid "Account active"
 msgstr ""
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:126
-#: zapzap/features/settings/components/card_user/card_user_controller.py:206
+#: zapzap/features/settings/components/card_user/card_user_controller.py:209
 msgid "Do not disturb"
 msgstr ""
 
@@ -2313,7 +2356,7 @@ msgstr ""
 msgid "Silences notifications for this account."
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:109
+#: zapzap/features/settings/components/card_user/card_user_controller.py:108
 msgid "Remove account"
 msgstr ""
 
@@ -2338,23 +2381,23 @@ msgid ""
 "Please restart this session (or the application) to apply the new User-Agent."
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:195
-#: zapzap/features/settings/components/card_user/card_user_controller.py:235
+#: zapzap/features/settings/components/card_user/card_user_controller.py:196
+#: zapzap/features/settings/components/card_user/card_user_controller.py:239
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:76
 msgid "Generate new colors for the icon"
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:197
-#: zapzap/features/settings/components/card_user/card_user_controller.py:237
+#: zapzap/features/settings/components/card_user/card_user_controller.py:199
+#: zapzap/features/settings/components/card_user/card_user_controller.py:242
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:78
 msgid "Restore standard"
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:213
+#: zapzap/features/settings/components/card_user/card_user_controller.py:216
 msgid "Disable"
 msgstr ""
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:220
+#: zapzap/features/settings/components/card_user/card_user_controller.py:223
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:92
 msgid "User-Agent"
 msgstr ""
@@ -2399,6 +2442,10 @@ msgstr ""
 
 #: zapzap/features/downloads/ui/download_dialog.py:47
 msgid "Download"
+msgstr ""
+
+#: zapzap/features/downloads/ui/download_dialog.py:101
+msgid "Open"
 msgstr ""
 
 #: zapzap/features/downloads/ui/download_dialog.py:112
