@@ -3638,8 +3638,12 @@ msgid "Define what happens when the main window is closed."
 msgstr "Defina o que acontece ao fechar a janela principal."
 
 #: zapzap/features/settings/pages/system_startup/view.py
-msgid "When closing the window"
-msgstr "Ao fechar a janela"
+msgid "Close behavior"
+msgstr "Comportamento ao fechar"
+
+#: zapzap/features/settings/pages/system_startup/view.py
+msgid "Choose whether ZapZap continues in the background or quits."
+msgstr "Escolha se o ZapZap continua em segundo plano ou é encerrado."
 
 #: zapzap/features/settings/pages/system_startup/view.py
 msgid "Continue in the background"

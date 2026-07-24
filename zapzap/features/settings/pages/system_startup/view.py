@@ -81,9 +81,14 @@ class SystemStartupSettingsView(SettingsPage):
         )
         card = SettingsCard()
         self.close_behavior_row = SettingsSelectRow(
-            _("When closing the window"),
+            _("Close behavior"),
+            _(
+                "Choose whether ZapZap continues in the background or quits."
+            ),
+            [""]
         )
         self.close_behavior = self.close_behavior_row.combo
+        self.close_behavior.clear()
         self.close_behavior.addItem(
             _("Continue in the background"),
             "keep_running",
@@ -91,6 +96,9 @@ class SystemStartupSettingsView(SettingsPage):
         self.close_behavior.addItem(
             _("Quit ZapZap"),
             "quit_application",
+        )
+        self.close_behavior.setCurrentIndex(
+            self.close_behavior.findData("keep_running")
         )
         self.btn_confirm_in_close_row = SettingsSwitchRow(
             _("Confirm before quitting"),

@@ -89,7 +89,15 @@ class SystemStartupSettingsUiTests(unittest.TestCase):
         )
         self.assertEqual(
             page.close_behavior_row.title_label.text(),
-            "When closing the window",
+            "Close behavior",
+        )
+        self.assertEqual(
+            page.close_behavior_row.description_label.text(),
+            "Choose whether ZapZap continues in the background or quits.",
+        )
+        self.assertEqual(
+            page.close_behavior.currentData(),
+            "keep_running",
         )
         self.assertEqual(
             page.native_file_dialogs_row.title_label.text(),
