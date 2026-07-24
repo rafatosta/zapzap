@@ -2,6 +2,8 @@
 
 from PyQt6.QtWidgets import QVBoxLayout, QWidget
 
+from .settings_divider import SettingsDivider
+
 
 class SettingsRadioGroup(QWidget):
     """Adwaita-inspired vertical group for settings radio buttons."""
@@ -19,6 +21,8 @@ class SettingsRadioGroup(QWidget):
 
     def add_radio_button(self, radio_button):
         """Add a radio button and refresh first/last styling metadata."""
+        if self._radio_buttons:
+            self.layout.addWidget(SettingsDivider(self))
         self._radio_buttons.append(radio_button)
         self.layout.addWidget(radio_button)
         self._refresh_button_positions()
@@ -37,11 +41,5 @@ class SettingsRadioGroup(QWidget):
                 background: palette(base);
                 border: 1px solid palette(mid);
                 border-radius: 14px;
-            }
-            QWidget#SettingsRadioGroup QRadioButton#ZapRadioButton {
-                border-bottom: 1px solid palette(mid);
-            }
-            QWidget#SettingsRadioGroup QRadioButton#ZapRadioButton[last="true"] {
-                border-bottom: 0;
             }
         """)
