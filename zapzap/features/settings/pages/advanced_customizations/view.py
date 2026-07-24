@@ -199,9 +199,47 @@ class AdvancedCustomizationsSettingsView(SettingsPage):
             _("Manage custom files for the selected scope."),
         )
         self.customization_tabs = QtWidgets.QTabWidget(self)
+        self.customization_tabs.setObjectName("CustomizationTabs")
         self.customization_tabs.setDocumentMode(True)
+        self.customization_tabs.tabBar().setDrawBase(False)
+        self.customization_tabs.tabBar().setCursor(
+            Qt.CursorShape.PointingHandCursor)
         self.customization_tabs.addTab(self._build_css_tab(), _("CSS"))
         self.customization_tabs.addTab(self._build_js_tab(), _("JavaScript"))
+        self.customization_tabs.setStyleSheet("""
+            QTabWidget#CustomizationTabs::pane {
+                border: 0;
+                background: transparent;
+                margin-top: 6px;
+            }
+            QTabWidget#CustomizationTabs QTabBar {
+                background: palette(alternate-base);
+                border: 1px solid palette(mid);
+                border-radius: 10px;
+            }
+            QTabWidget#CustomizationTabs QTabBar::tab {
+                min-width: 104px;
+                min-height: 26px;
+                padding: 5px 14px;
+                margin: 2px;
+                border: 0;
+                border-radius: 7px;
+                background: transparent;
+                color: palette(placeholder-text);
+            }
+            QTabWidget#CustomizationTabs QTabBar::tab:hover:!selected {
+                background: palette(window);
+                color: palette(text);
+            }
+            QTabWidget#CustomizationTabs QTabBar::tab:selected {
+                background: palette(base);
+                color: palette(text);
+                border: 1px solid palette(mid);
+            }
+            QTabWidget#CustomizationTabs QTabBar::tab:disabled {
+                color: palette(mid);
+            }
+        """)
         section.layout.addWidget(self.customization_tabs)
         self.add_section(section)
 

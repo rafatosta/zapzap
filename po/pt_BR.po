@@ -2857,6 +2857,26 @@ msgstr "Não foi possível duplicar o arquivo."
 msgid "File duplicated: {}"
 msgstr "Arquivo duplicado: {}"
 
+#: zapzap/features/settings/pages/advanced_customizations/controller.py
+msgid "Edit the stylesheet content and choose the file name."
+msgstr "Edite o conteúdo da folha de estilos e escolha o nome do arquivo."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py
+msgid "Edit the script content and choose the file name."
+msgstr "Edite o conteúdo do script e escolha o nome do arquivo."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py
+msgid "CSS code"
+msgstr "Código CSS"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py
+msgid "JavaScript code"
+msgstr "Código JavaScript"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py
+msgid "Ctrl+S to save"
+msgstr "Ctrl+S para salvar"
+
 #: zapzap/ui/main_window/main_window_view.py:151
 msgid "Grid View"
 msgstr "Visualização em grade"

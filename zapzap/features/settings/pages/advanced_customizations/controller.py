@@ -4,18 +4,21 @@ import os
 
 from gettext import gettext as _
 
+from PyQt6 import QtGui
 from PyQt6.QtCore import QEvent, Qt, QTimer, QUrl
-from PyQt6.QtGui import QDesktopServices, QPixmap
+from PyQt6.QtGui import QDesktopServices, QFontDatabase, QPixmap
 from PyQt6.QtWidgets import (
     QApplication,
     QDialog,
     QDialogButtonBox,
     QFileDialog,
     QFormLayout,
+    QHBoxLayout,
     QLineEdit,
     QTableWidgetItem,
     QTextEdit,
     QVBoxLayout,
+    QWidget,
 )
 
 from zapzap.features.alerts.alert_manager import AlertManager
@@ -23,6 +26,7 @@ from zapzap.features.customizations.css_preview_service import CssPreviewService
 from zapzap.features.customizations.customizations_manager import CustomizationsManager
 from zapzap.features.settings.pages.advanced_customizations.view import AdvancedCustomizationsSettingsView
 from zapzap.features.settings.pages.advanced_customizations.model import AdvancedCustomizationsSettingsModel
+from zapzap.ui.components import Button, Label, LineEdit
 
 
 class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsView):
@@ -565,29 +569,97 @@ class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsVie
         extension = "css" if asset_type == CustomizationsManager.TYPE_CSS else "js"
 
         dialog = QDialog(self)
+        dialog.setObjectName("CustomizationEditorDialog")
         dialog.setWindowTitle(title)
-        dialog.resize(760, 520)
+        dialog.resize(780, 560)
+        dialog.setMinimumSize(620, 440)
         dialog.setModal(True)
+        dialog.setStyleSheet("""
+            QDialog#CustomizationEditorDialog {
+                background: palette(window);
+                color: palette(text);
+            }
+            QDialog#CustomizationEditorDialog QTextEdit#CustomizationCodeEditor {
+                border: 1px solid palette(mid);
+                border-radius: 10px;
+                padding: 10px;
+                background: palette(base);
+                color: palette(text);
+                selection-background-color: palette(highlight);
+                selection-color: palette(highlighted-text);
+            }
+            QDialog#CustomizationEditorDialog QTextEdit#CustomizationCodeEditor:hover {
+                border-color: palette(highlight);
+            }
+            QDialog#CustomizationEditorDialog QTextEdit#CustomizationCodeEditor:focus {
+                border: 1px solid palette(highlight);
+            }
+            QDialog#CustomizationEditorDialog QWidget#EditorFooter {
+                border-top: 1px solid palette(mid);
+            }
+        """)
 
         layout = QVBoxLayout(dialog)
-        form_layout = QFormLayout()
+        layout.setContentsMargins(24, 22, 24, 20)
+        layout.setSpacing(14)
 
-        file_name_input = QLineEdit(dialog)
+        heading = Label(title, "section_title", dialog)
+        description = Label(
+            _("Edit the stylesheet content and choose the file name.")
+            if asset_type == CustomizationsManager.TYPE_CSS
+            else _("Edit the script content and choose the file name."),
+            "row_description",
+            dialog,
+        )
+        layout.addWidget(heading)
+        layout.addWidget(description)
+
+        file_name_label = Label(_("File name"), "row_title", dialog)
+        file_name_input = LineEdit(parent=dialog)
         file_name_input.setText(initial_name)
         file_name_input.setPlaceholderText(_("custom.{}").format(extension))
-        form_layout.addRow(_("File name"), file_name_input)
-        layout.addLayout(form_layout)
+        layout.addWidget(file_name_label)
+        layout.addWidget(file_name_input)
 
+        content_label = Label(
+            _("CSS code")
+            if asset_type == CustomizationsManager.TYPE_CSS
+            else _("JavaScript code"),
+            "row_title",
+            dialog,
+        )
+        layout.addWidget(content_label)
         editor = QTextEdit(dialog)
+        editor.setObjectName("CustomizationCodeEditor")
+        editor.setAcceptRichText(False)
+        editor.setLineWrapMode(QTextEdit.LineWrapMode.NoWrap)
+        editor.setTabStopDistance(32)
+        editor.setFont(QFontDatabase.systemFont(
+            QFontDatabase.SystemFont.FixedFont))
         editor.setPlainText(initial_content)
-        layout.addWidget(editor)
+        layout.addWidget(editor, 1)
 
-        button_box = QDialogButtonBox(dialog)
-        button_box.addButton(QDialogButtonBox.StandardButton.Save)
-        button_box.addButton(QDialogButtonBox.StandardButton.Cancel)
-        button_box.accepted.connect(dialog.accept)
-        button_box.rejected.connect(dialog.reject)
-        layout.addWidget(button_box)
+        footer = QWidget(dialog)
+        footer.setObjectName("EditorFooter")
+        footer_layout = QHBoxLayout(footer)
+        footer_layout.setContentsMargins(0, 12, 0, 0)
+        footer_layout.setSpacing(8)
+        shortcut_hint = Label(_("Ctrl+S to save"), "row_description", footer)
+        cancel_button = Button(_("Cancel"), parent=footer)
+        save_button = Button(_("Save"), parent=footer)
+        save_button.setDefault(True)
+        save_button.setAutoDefault(True)
+        footer_layout.addWidget(shortcut_hint)
+        footer_layout.addStretch(1)
+        footer_layout.addWidget(cancel_button)
+        footer_layout.addWidget(save_button)
+        cancel_button.clicked.connect(dialog.reject)
+        save_button.clicked.connect(dialog.accept)
+        layout.addWidget(footer)
+
+        save_shortcut = QtGui.QShortcut(
+            QtGui.QKeySequence.StandardKey.Save, dialog)
+        save_shortcut.activated.connect(dialog.accept)
 
         if dialog.exec() != QDialog.DialogCode.Accepted:
             return None, None
