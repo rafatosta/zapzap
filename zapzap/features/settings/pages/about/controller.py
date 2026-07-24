@@ -1,39 +1,75 @@
+"""Controller for the About settings page."""
 
-from PyQt6.QtCore import QUrl
+from gettext import gettext as _
+
+from PyQt6.QtCore import QTimer, QUrl
 from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtWidgets import QApplication
 
+from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.settings.pages.about.model import AboutSettingsModel
 from zapzap.features.settings.pages.about.view import AboutSettingsView
 
 
 class AboutSettingsController(AboutSettingsView):
-    """Coordinates About page metadata and external link actions."""
+    """Coordinates About metadata, links, dialogs, and clipboard actions."""
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.model = AboutSettingsModel()
+        self._copy_feedback_timer = QTimer(self)
+        self._copy_feedback_timer.setSingleShot(True)
+        self._copy_feedback_timer.timeout.connect(
+            self._restore_copy_button_text
+        )
         self._load_metadata()
         self._configure_signals()
 
     def _load_metadata(self):
-        self.set_identity(
-            self.model.app_name,
-            self.model.version_text,
-            self.model.qt_version_text,
-        )
-        self.set_build_information(self.model.build_information)
-        self.set_project_links(self.model.project_links)
+        self.set_identity(self.model.app_name, self.model.version_text)
+        self.set_technical_details(self.model.technical_details)
 
     def _configure_signals(self):
         links = self.model.project_links
-        self.btnLeanMore.clicked.connect(
+        self.homepage_row.clicked.connect(
             lambda: self._open_project_link(links["website"])
         )
-        self.btnReportIssue.clicked.connect(
+        self.issue_row.clicked.connect(
             lambda: self._open_project_link(links["bug_report"])
         )
-        self.btnDonate.clicked.connect(
+        self.donate_row.clicked.connect(
             lambda: self._open_project_link(links["donation"])
+        )
+        self.license_row.clicked.connect(self._show_license)
+        self.credits_row.clicked.connect(self._show_credits)
+        self.copy_system_info_button.clicked.connect(self._copy_system_information)
+
+    def _copy_system_information(self):
+        QApplication.clipboard().setText(self.model.system_information)
+        self.show_copy_feedback()
+        self._copy_feedback_timer.start(2000)
+
+    def _restore_copy_button_text(self):
+        self.copy_system_info_button.setText(_("Copy system information"))
+
+    def _show_license(self):
+        AlertManager.information(
+            self,
+            _("License"),
+            _(
+                "ZapZap is free software licensed under {license_id} "
+                "(GPL-3.0-or-later)."
+            ).format(license_id=self.model.license_name),
+        )
+
+    def _show_credits(self):
+        AlertManager.information(
+            self,
+            _("Credits and contributors"),
+            _(
+                "Created and maintained by {author}. Thanks to everyone who "
+                "contributes translations, code, testing, and feedback."
+            ).format(author=self.model.author_name),
         )
 
     @staticmethod
