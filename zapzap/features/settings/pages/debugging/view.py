@@ -8,11 +8,9 @@ from gettext import gettext as _, ngettext
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFontDatabase
 from PyQt6.QtWidgets import (
-    QFrame,
     QHBoxLayout,
     QMenu,
     QSizePolicy,
-    QStyle,
     QTextEdit,
     QToolButton,
     QVBoxLayout,
@@ -247,11 +245,7 @@ class DebuggingSettingsView(SettingsPage):
         self.action_delete_all_debug_logs = self.cleanup_menu.addAction(
             _("Delete all logs and reports")
         )
-        self.action_delete_all_debug_logs.setIcon(
-            self.style().standardIcon(
-                QStyle.StandardPixmap.SP_MessageBoxCritical
-            )
-        )
+        
         self.action_delete_all_debug_logs.setToolTip(
             _("Remove every diagnostic file.")
         )
