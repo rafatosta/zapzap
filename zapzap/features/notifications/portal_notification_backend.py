@@ -67,9 +67,6 @@ class PortalNotificationBackend(QObject):
     ):
         notification_id = f"zapzap-page-{page.page_index}-{uuid4().hex}"
 
-        self._notifications[notification_id] = notification
-        self._pages[notification_id] = page
-
         base_payload = {
             "title": title,
             "body": message,
@@ -121,6 +118,7 @@ class PortalNotificationBackend(QObject):
             "[Portal] Notification failed: {}",
         ))
 
+        used_payload = None
         for payload, error_msg in attempts:
             reply = self.interface.call(
                 "AddNotification",
@@ -129,14 +127,51 @@ class PortalNotificationBackend(QObject):
             )
 
             if (reply.type() != QDBusMessage.MessageType.ErrorMessage):
+                used_payload = payload
+                self._track_notification(
+                    notification_id,
+                    page,
+                    notification,
+                )
                 notification.show()
                 break
 
             print(error_msg.format(reply.errorMessage()))
 
-        self._supports_icon_field = bool(icon_field) and icon_field.items() <= payload.items()
-        self._supports_extra_fields = bool(extra_fields) and extra_fields.items() <= payload.items()
+        self._supports_icon_field = (
+            used_payload is not None
+            and bool(icon_field)
+            and icon_field.items() <= used_payload.items()
+        )
+        self._supports_extra_fields = (
+            used_payload is not None
+            and bool(extra_fields)
+            and extra_fields.items() <= used_payload.items()
+        )
 
+    def _track_notification(
+        self,
+        notification_id: str,
+        page: WebView,
+        notification: QWebEngineNotification,
+    ):
+        self._notifications[notification_id] = notification
+        self._pages[notification_id] = page
+        notification.closed.connect(
+            lambda notification_id=notification_id:
+                self._remove_notification(notification_id)
+        )
+
+    def _remove_notification(self, notification_id: str):
+        if (
+            notification_id not in self._notifications
+            and notification_id not in self._pages
+        ):
+            return
+
+        self._notifications.pop(notification_id, None)
+        self._pages.pop(notification_id, None)
+        self.interface.call("RemoveNotification", notification_id)
 
     def _build_dbus_variant_map(self, payload: dict):
         arg = QDBusArgument()
@@ -206,6 +241,11 @@ class PortalNotificationBackend(QObject):
         if action != self.ACTION_FOCUS:
             return
 
+        notification = self._notifications.get(notification_id)
+        page = self._pages.get(notification_id)
+        if notification is None and page is None:
+            return
+
         try:
             app = QApplication.instance()
             if not app:
@@ -219,9 +259,6 @@ class PortalNotificationBackend(QObject):
             main_window.raise_()
             main_window.activateWindow()
 
-            notification = self._notifications.get(notification_id)
-            page = self._pages.get(notification_id)
-
             if page is not None:
                 main_window.browser.switch_to_page(
                     page,
@@ -230,6 +267,9 @@ class PortalNotificationBackend(QObject):
 
             if notification:
                 notification.click()
+                notification.close()
 
         except Exception as e:
             print("Portal ActionInvoked error:", e)
+        finally:
+            self._remove_notification(notification_id)
