@@ -1,6 +1,5 @@
 """Application bootstrap and lifecycle orchestration."""
 
-from os import environ
 import sys
 
 import zapzap
@@ -21,8 +20,10 @@ from zapzap.core.environment.setup_manager import SetupManager
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.core.i18n.translation_manager import TranslationManager
 from zapzap.features.initial_setup.controller import InitialSetupController
-from zapzap.features.notifications.notification_service import NotificationService
-from zapzap.features.notifications.window_activation import activate_window
+from zapzap.features.notifications.notification_service import (
+    NotificationService,
+    is_flatpak,
+)
 
 
 def create_main_window():
@@ -47,15 +48,8 @@ def main():
     crash_handler.install()
 
     # Define application attributes
-    startup_activation_token = (
-        environ.get("XDG_ACTIVATION_TOKEN")
-        or environ.get("DESKTOP_STARTUP_ID")
-    )
     app = SingleApplication(
-        zapzap.__appid__,
-        sys.argv + SetupManager.get_argv(),
-        startup_activation_token=startup_activation_token,
-    )
+        zapzap.__appid__, sys.argv + SetupManager.get_argv())
     app.setApplicationName(zapzap.__appname__)
     app.setApplicationVersion(zapzap.__version__)
     app.setDesktopFileName(zapzap.__desktopid__)
@@ -65,23 +59,11 @@ def main():
     SetupManager.apply_qt_scale_factor_rounding_policy()
 
     def handle_instance_message(result):
-        instance_message = app.parse_instance_message(result)
-        if instance_message is not None:
-            command, activation_token = instance_message
-            activate_window(app.getWindow(), activation_token)
-        else:
-            # Compatibility with messages from an older running instance.
-            command = result
-            app.activateWindow()
-
-        if command == app.ACTIVATE_MESSAGE:
-            return
-
-        if command == app.RESTART_MESSAGE:
+        if result == app.RESTART_MESSAGE:
             app.restartApplication()
             return
 
-        app.getWindow().xdgOpenChat(command)
+        app.getWindow().xdgOpenChat(result)
 
     # Callback instance
     app.messageReceived.connect(handle_instance_message)
@@ -91,8 +73,10 @@ def main():
 
     # Create main window
     main_window = app.startInterface(create_main_window)
-    desktop_application_dbus = DesktopApplicationDBus(app)
-    desktop_application_dbus.start()
+    desktop_application_dbus = None
+    if is_flatpak():
+        desktop_application_dbus = DesktopApplicationDBus(app)
+        desktop_application_dbus.start()
 
     ProxyManager.apply()
 
@@ -116,7 +100,8 @@ def main():
             0, lambda: InitialSetupController(app.getWindow()).exec())
 
     app.aboutToQuit.connect(NotificationService.shutdown)
-    app.aboutToQuit.connect(desktop_application_dbus.stop)
+    if desktop_application_dbus is not None:
+        app.aboutToQuit.connect(desktop_application_dbus.stop)
     app.aboutToQuit.connect(ThemeManager.stop)
     app.aboutToQuit.connect(app.shutdownInterface)
 

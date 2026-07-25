@@ -1,7 +1,5 @@
 """Single-instance QApplication implementation."""
 
-import base64
-import json
 import subprocess
 import sys
 
@@ -12,12 +10,10 @@ from PyQt6.QtWidgets import QApplication
 
 class SingleApplication(QApplication):
     RESTART_MESSAGE = "zapzap://restart"
-    ACTIVATE_MESSAGE = "zapzap://activate"
-    INSTANCE_MESSAGE_PREFIX = "zapzap://instance/"
 
     messageReceived = pyqtSignal(str)
 
-    def __init__(self, appid, *argv, startup_activation_token=None):
+    def __init__(self, appid, *argv):
         super(SingleApplication, self).__init__(*argv)
         self._appid = appid
         self._activationWindow = None
@@ -35,15 +31,10 @@ class SingleApplication(QApplication):
 
         if self._isRunning:
             self._outStream = QTextStream(self._outSocket)
-            command = self.ACTIVATE_MESSAGE
             for message in argv[0]:
                 if 'whatsapp' in message or message == self.RESTART_MESSAGE:
-                    command = message
+                    self.sendMessage(message)
                     break
-            self.sendMessage(self.build_instance_message(
-                command,
-                startup_activation_token,
-            ))
             sys.exit(0)
         else:
             error = self._outSocket.error()
@@ -92,40 +83,6 @@ class SingleApplication(QApplication):
         self._outStream.flush()
         return self._outSocket.waitForBytesWritten()
 
-    @classmethod
-    def build_instance_message(cls, command, activation_token=None):
-        payload = {
-            "command": command,
-            "activation_token": activation_token,
-        }
-        encoded = base64.urlsafe_b64encode(
-            json.dumps(payload, separators=(",", ":")).encode()
-        ).decode()
-        return f"{cls.INSTANCE_MESSAGE_PREFIX}{encoded}"
-
-    @classmethod
-    def parse_instance_message(cls, message):
-        if not message.startswith(cls.INSTANCE_MESSAGE_PREFIX):
-            return None
-
-        encoded = message.removeprefix(cls.INSTANCE_MESSAGE_PREFIX)
-        try:
-            payload = json.loads(
-                base64.urlsafe_b64decode(encoded.encode()).decode()
-            )
-        except (ValueError, UnicodeDecodeError, json.JSONDecodeError):
-            return None
-
-        command = payload.get("command")
-        activation_token = payload.get("activation_token")
-        if not isinstance(command, str):
-            return None
-        if activation_token is not None and not isinstance(
-            activation_token, str
-        ):
-            return None
-        return command, activation_token
-
     @pyqtSlot()
     def _onNewConnection(self):
         if self._inSocket:
@@ -135,6 +92,8 @@ class SingleApplication(QApplication):
             return
         self._inStream = QTextStream(self._inSocket)
         self._inSocket.readyRead.connect(self._onReadyRead)
+        if self._activateOnMessage:
+            self.activateWindow()
 
     @pyqtSlot()
     def _onReadyRead(self):

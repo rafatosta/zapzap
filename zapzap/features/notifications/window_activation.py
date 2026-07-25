@@ -15,7 +15,6 @@ from PyQt6.QtGui import QGuiApplication
 
 _MISSING = object()
 _XDG_ACTIVATION_TOKEN = "XDG_ACTIVATION_TOKEN"
-_DESKTOP_STARTUP_ID = "DESKTOP_STARTUP_ID"
 
 
 def _unwrap_dbus_variant(value):
@@ -225,10 +224,7 @@ def activate_window(window, activation_token: str | None = None):
         return
 
     if activation_token and platform == "xcb":
-        with _temporary_environment(
-            _DESKTOP_STARTUP_ID, activation_token
-        ):
-            _present_and_activate(window)
+        _present_and_activate(window)
         _complete_x11_startup(activation_token)
         return
 

@@ -77,12 +77,9 @@ class NotificationWindowActivationTests(unittest.TestCase):
         events = []
         window = MagicMock()
         window.isVisible.return_value = True
-        window.activateWindow.side_effect = lambda: events.append(
-            ("activate", os.environ.get("DESKTOP_STARTUP_ID"))
-        )
+        window.activateWindow.side_effect = lambda: events.append("activate")
 
         with (
-            patch.dict(os.environ, {}, clear=True),
             patch(
                 "zapzap.features.notifications.window_activation."
                 "_platform_name",
@@ -95,13 +92,12 @@ class NotificationWindowActivationTests(unittest.TestCase):
             ) as complete,
         ):
             activate_window(window, "x11-startup-id")
-            self.assertNotIn("DESKTOP_STARTUP_ID", os.environ)
 
         complete.assert_called_once_with("x11-startup-id")
         self.assertEqual(
             events,
             [
-                ("activate", "x11-startup-id"),
+                "activate",
                 ("complete", "x11-startup-id"),
             ],
         )
