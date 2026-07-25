@@ -2,7 +2,7 @@
 
 from unittest.mock import MagicMock, patch
 
-from PyQt6.QtDBus import QDBusMessage
+from PyQt6.QtDBus import QDBusMessage, QDBusVariant
 
 from qt_test_case import QtTestCase
 from zapzap.features.notifications.portal_notification_backend import (
@@ -182,6 +182,44 @@ class PortalNotificationBackendTests(QtTestCase):
         )
         self.assertNotIn(notification_id, self.backend._notifications)
         self.assertNotIn(notification_id, self.backend._pages)
+
+    def test_action_forwards_portal_activation_token(self):
+        page = self._page()
+        notification = FakeNotification()
+        self.backend.notify(page, notification, "Title", "Message")
+        notification_id = self._notification_id()
+
+        main_window = MagicMock()
+        main_window.browser.page_buttons = {page.page_index: MagicMock()}
+        app = MagicMock()
+        app.getWindow.return_value = main_window
+        parameters = [
+            QDBusVariant({
+                "activation-token": QDBusVariant("portal-token"),
+            })
+        ]
+
+        with (
+            patch(
+                "zapzap.features.notifications.portal_notification_backend."
+                "QApplication.instance",
+                return_value=app,
+            ),
+            patch(
+                "zapzap.features.notifications.portal_notification_backend."
+                "activate_window",
+            ) as activate_window,
+        ):
+            self.backend._on_action_invoked(
+                notification_id,
+                self.backend.ACTION_FOCUS,
+                parameters,
+            )
+
+        activate_window.assert_called_once_with(
+            main_window,
+            "portal-token",
+        )
 
 
 if __name__ == "__main__":

@@ -17,6 +17,10 @@ from PyQt6.QtWebEngineCore import QWebEngineNotification
 from PyQt6.QtWidgets import QApplication
 
 from zapzap.features.notifications.freedesktop_notification_backend import IconRenderer
+from zapzap.features.notifications.window_activation import (
+    activate_window,
+    portal_activation_token,
+)
 from zapzap.core.config.settings_manager import SettingsManager
 
 if TYPE_CHECKING:
@@ -261,9 +265,10 @@ class PortalNotificationBackend(QObject):
             if not main_window:
                 return
 
-            main_window.show()
-            main_window.raise_()
-            main_window.activateWindow()
+            activate_window(
+                main_window,
+                portal_activation_token(parameters),
+            )
 
             if page is not None:
                 main_window.browser.switch_to_page(
