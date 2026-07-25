@@ -173,6 +173,12 @@ class PortalNotificationBackend(QObject):
         self._pages.pop(notification_id, None)
         self.interface.call("RemoveNotification", notification_id)
 
+    def close_all(self):
+        """Withdraw every notification published through the portal."""
+        notification_ids = set(self._notifications) | set(self._pages)
+        for notification_id in tuple(notification_ids):
+            self._remove_notification(notification_id)
+
     def _build_dbus_variant_map(self, payload: dict):
         arg = QDBusArgument()
         arg.beginMap(

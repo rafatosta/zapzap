@@ -67,6 +67,17 @@ class NotificationService:
         backend = FreedesktopNotificationBackend()
         return backend if backend.available() else None
 
+    @classmethod
+    def shutdown(cls):
+        """Withdraw active notifications before the application exits."""
+        backend = cls._backend
+        if backend is None:
+            return
+
+        close_all = getattr(backend, "close_all", None)
+        if close_all is not None:
+            close_all()
+
     # ------------------------------------------------------------------
     # Public API
     # ------------------------------------------------------------------

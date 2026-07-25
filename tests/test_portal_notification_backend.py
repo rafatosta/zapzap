@@ -118,6 +118,27 @@ class PortalNotificationBackendTests(QtTestCase):
         ]
         self.assertEqual(len(remove_calls), 1)
 
+    def test_close_all_withdraws_every_active_notification(self):
+        first = FakeNotification()
+        second = FakeNotification()
+        self.backend.notify(self._page(1), first, "First", "Message")
+        first_id = self._notification_id()
+        self.backend.notify(self._page(2), second, "Second", "Message")
+        second_id = self._notification_id()
+
+        self.backend.close_all()
+
+        self.assertIn(
+            ("RemoveNotification", first_id),
+            self.interface.calls,
+        )
+        self.assertIn(
+            ("RemoveNotification", second_id),
+            self.interface.calls,
+        )
+        self.assertEqual(self.backend._notifications, {})
+        self.assertEqual(self.backend._pages, {})
+
     def test_failed_add_does_not_retain_notification(self):
         self.interface.add_reply_type = QDBusMessage.MessageType.ErrorMessage
         notification = FakeNotification()
