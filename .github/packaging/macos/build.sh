@@ -29,7 +29,8 @@ python -m PyInstaller \
     zapzap/__main__.py
 
 echo "# === Packaging into DMG ==="
-DMG_NAME="${APP_NAME}-${VERSION}-macos-universal.dmg"
+ARCH=$(uname -m)
+DMG_NAME="${APP_NAME}-${VERSION}-macos-${ARCH}.dmg"
 # Create DMG using hdiutil
 if [ -d "dist/${APP_NAME}.app" ]; then
     hdiutil create -volname "$APP_NAME" -srcfolder "dist/${APP_NAME}.app" -ov -format UDZO "dist/$DMG_NAME"

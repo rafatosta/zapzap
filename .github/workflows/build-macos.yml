@@ -30,7 +30,14 @@ permissions:
 
 jobs:
   build-macos:
-    runs-on: macos-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: macos-26-intel
+            arch: x86_64
+          - os: macos-26
+            arch: arm64
     env:
       PYTHON_VERSION: "3.10"
       PYTHONUTF8: 1
@@ -58,11 +65,11 @@ jobs:
         if: ${{ !inputs.release_upload }}
         uses: actions/upload-artifact@v4
         with:
-          name: ZapZap-macOS-universal
-          path: dist/ZapZap-*-macos-universal.dmg
+          name: ZapZap-macOS-${{ matrix.arch }}
+          path: dist/ZapZap-*-macos-${{ matrix.arch }}.dmg
       - name: Upload to release
         if: ${{ inputs.release_upload }}
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ inputs.release_tag }}
-          files: dist/ZapZap-*-macos-universal.dmg
+          files: dist/ZapZap-*-macos-${{ matrix.arch }}.dmg
