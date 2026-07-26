@@ -2,6 +2,18 @@ name: Build RPM
 
 on:
   workflow_dispatch:
+    inputs:
+      release_upload:
+        description: "Upload RPM artifacts to GitHub Release"
+        required: false
+        type: boolean
+        default: false
+      release_tag:
+        description: "Release tag to upload artifacts"
+        required: false
+        type: string
+        default: ""
+
   workflow_call:
     inputs:
       release_upload:
@@ -35,6 +47,12 @@ jobs:
       image: fedora:44
 
     steps:
+      - name: Validate release tag
+        if: ${{ inputs.release_upload && inputs.release_tag == '' }}
+        run: |
+          echo "release_tag is required when release_upload=true"
+          exit 1
+
       - name: Install build tools
         run: |
           dnf -y update
@@ -75,8 +93,8 @@ jobs:
           path: dist/*.rpm
 
       - name: Upload RPMs to release
-        if: ${{ inputs.release_upload == true || github.event.inputs.release_upload == 'true' }}
+        if: ${{ inputs.release_upload }}
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ inputs.release_tag || github.event.inputs.release_tag || github.ref_name }}
+          tag_name: ${{ inputs.release_tag }}
           files: dist/*.rpm

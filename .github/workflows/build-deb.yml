@@ -2,6 +2,18 @@ name: Build Debian package
 
 on:
   workflow_dispatch:
+    inputs:
+      release_upload:
+        description: "Upload DEB artifact to GitHub Release"
+        required: false
+        type: boolean
+        default: false
+      release_tag:
+        description: "Release tag to upload artifact"
+        required: false
+        type: string
+        default: ""
+
   workflow_call:
     inputs:
       release_upload:
@@ -23,6 +35,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Validate release tag
+        if: ${{ inputs.release_upload && inputs.release_tag == '' }}
+        run: |
+          echo "release_tag is required when release_upload=true"
+          exit 1
 
       - name: Set packaging scripts executable
         run: |
@@ -74,7 +92,7 @@ jobs:
           if-no-files-found: error
 
       - name: Upload .deb to GitHub Release
-        if: ${{ inputs.release_upload == true && inputs.release_tag != '' }}
+        if: ${{ inputs.release_upload }}
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ inputs.release_tag }}

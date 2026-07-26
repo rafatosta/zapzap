@@ -2,6 +2,18 @@ name: Build AppImage
 
 on:
   workflow_dispatch:
+    inputs:
+      release_upload:
+        description: "Upload AppImage artifacts to GitHub Release"
+        required: false
+        type: boolean
+        default: false
+      release_tag:
+        description: "Release tag to upload artifacts"
+        required: false
+        type: string
+        default: ""
+
   workflow_call:
     inputs:
       release_upload:
@@ -30,6 +42,11 @@ jobs:
             arch: aarch64
     steps:
       - uses: actions/checkout@v4
+      - name: Validate release tag
+        if: ${{ inputs.release_upload && inputs.release_tag == '' }}
+        run: |
+          echo "release_tag is required when release_upload=true"
+          exit 1
       - name: Set packaging scripts executable
         run: |
           chmod +x .github/packaging/common/build-info.sh
@@ -49,13 +66,6 @@ jobs:
         with:
           name: ZapZap-Anylinux-AppImage-${{ matrix.arch }}
           path: dist/*.AppImage
-      - name: Validate release tag
-        if: ${{ inputs.release_upload }}
-        run: |
-          if [ -z "${{ inputs.release_tag }}" ]; then
-            echo "release_tag is required when release_upload=true"
-            exit 1
-          fi
       - name: Upload to release
         if: ${{ inputs.release_upload }}
         uses: softprops/action-gh-release@v2
