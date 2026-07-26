@@ -5,7 +5,6 @@ from __future__ import annotations
 from zapzap.core.config.settings.appearance import AppearanceSettings
 from zapzap.core.config.settings.base import BaseSettings
 from zapzap.core.config.settings.notifications import NotificationSettings
-from zapzap.core.config.settings.privacy import PrivacySettings
 from zapzap.core.config.settings.spellcheck import SpellcheckSettings
 from zapzap.core.config.settings.system import SystemSettings
 from zapzap.core.environment.setup_manager import SetupManager
@@ -33,7 +32,6 @@ class InitialSetupModel(BaseSettings):
     def __init__(self) -> None:
         self._appearance_settings = AppearanceSettings()
         self._notification_settings = NotificationSettings()
-        self._privacy_settings = PrivacySettings()
         self._spellcheck_settings = SpellcheckSettings()
         self._system_settings = SystemSettings()
 
@@ -97,6 +95,14 @@ class InitialSetupModel(BaseSettings):
         self._notification_settings.show_message_preview = value
 
     @property
+    def notification_sound(self) -> bool:
+        return self._notification_settings.sound
+
+    @notification_sound.setter
+    def notification_sound(self, value: bool) -> None:
+        self._notification_settings.sound = value
+
+    @property
     def tray_icon_enabled(self) -> bool:
         return self._appearance_settings.tray_icon_enabled
 
@@ -113,12 +119,12 @@ class InitialSetupModel(BaseSettings):
         self._appearance_settings.notification_counter_enabled = value
 
     @property
-    def keep_running_in_background(self) -> bool:
-        return self._system_settings.keep_running_in_background
+    def quit_on_close(self) -> bool:
+        return self._system_settings.quit_on_close
 
-    @keep_running_in_background.setter
-    def keep_running_in_background(self, value: bool) -> None:
-        self._system_settings.keep_running_in_background = value
+    @quit_on_close.setter
+    def quit_on_close(self, value: bool) -> None:
+        self._system_settings.quit_on_close = value
 
     @property
     def confirm_on_close(self) -> bool:
@@ -156,14 +162,6 @@ class InitialSetupModel(BaseSettings):
     def spellcheck_enabled(self, value: bool) -> None:
         self._spellcheck_settings.enabled = value
 
-    @property
-    def webrtc_shield_enabled(self) -> bool:
-        return self._privacy_settings.webrtc_shield_enabled
-
-    @webrtc_shield_enabled.setter
-    def webrtc_shield_enabled(self, value: bool) -> None:
-        self._privacy_settings.webrtc_shield_enabled = value
-
     def refresh_tray(self) -> None:
         SysTrayManager.refresh()
 
@@ -200,8 +198,20 @@ class InitialSetupModel(BaseSettings):
     def set_camera_permission(self, enabled: bool) -> None:
         self.set_permission("camera", enabled)
 
+    def camera_microphone_permission_enabled(self) -> bool:
+        return PermissionsManager.get_auto_grant("camera_microphone")
+
+    def set_camera_microphone_permission(self, enabled: bool) -> None:
+        self.set_permission("camera_microphone", enabled)
+
     def screen_contents_permission_enabled(self) -> bool:
         return PermissionsManager.get_auto_grant("screen_contents")
 
     def set_screen_contents_permission(self, enabled: bool) -> None:
         self.set_permission("screen_contents", enabled)
+
+    def screen_contents_audio_permission_enabled(self) -> bool:
+        return PermissionsManager.get_auto_grant("screen_contents_audio")
+
+    def set_screen_contents_audio_permission(self, enabled: bool) -> None:
+        self.set_permission("screen_contents_audio", enabled)

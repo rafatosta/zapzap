@@ -50,6 +50,9 @@ class InitialSetupController(InitialSetupView):
             button.clicked.connect(lambda _checked=False, step=index: self._go_to_step(step))
         self.notifications_enabled.toggled.connect(self._sync_notification_controls)
         self.tray_enabled.toggled.connect(self._sync_tray_controls)
+        self.close_behavior.currentIndexChanged.connect(
+            self._sync_close_controls
+        )
         self.spellcheck_enabled.toggled.connect(self._sync_dictionary_controls)
 
     def _load_settings(self):
@@ -67,12 +70,20 @@ class InitialSetupController(InitialSetupView):
         self.notify_preview.setChecked(
             self.model.notification_show_message_preview
         )
+        self.notification_sound.setChecked(
+            self.model.notification_sound
+        )
         self.tray_enabled.setChecked(self.model.tray_icon_enabled)
         self.tray_counter.setChecked(
             self.model.tray_notification_counter
         )
-        self.keep_background.setChecked(
-            self.model.keep_running_in_background
+        close_behavior = (
+            "quit_application"
+            if self.model.quit_on_close
+            else "keep_running"
+        )
+        self.close_behavior.setCurrentIndex(
+            self.close_behavior.findData(close_behavior)
         )
         self.confirm_close.setChecked(
             self.model.confirm_on_close
@@ -96,14 +107,18 @@ class InitialSetupController(InitialSetupView):
         self.permission_camera.setChecked(
             self.model.camera_permission_enabled()
         )
+        self.permission_camera_microphone.setChecked(
+            self.model.camera_microphone_permission_enabled()
+        )
         self.permission_screen.setChecked(
             self.model.screen_contents_permission_enabled()
         )
-        self.webrtc_shield.setChecked(
-            self.model.webrtc_shield_enabled
+        self.permission_screen_audio.setChecked(
+            self.model.screen_contents_audio_permission_enabled()
         )
         self._sync_notification_controls()
         self._sync_tray_controls()
+        self._sync_close_controls()
         self._sync_dictionary_controls()
 
     def _load_languages(self):
@@ -132,10 +147,8 @@ class InitialSetupController(InitialSetupView):
         if current_dictionary:
             self.dictionary_combo.setCurrentText(current_dictionary)
         has_dictionaries = bool(dictionaries)
+        self.spell_section.setVisible(has_dictionaries)
         self.dictionary_row.setVisible(has_dictionaries)
-        self.dictionary_hint.setVisible(not has_dictionaries)
-        if not has_dictionaries:
-            self.spellcheck_enabled.setChecked(False)
 
     def _language_label(self, language: str) -> str:
         if language == TranslationManager.ENGLISH_LANGUAGE:
@@ -156,15 +169,32 @@ class InitialSetupController(InitialSetupView):
 
     def _sync_notification_controls(self):
         enabled = self.notifications_enabled.isChecked()
-        for checkbox in (self.notify_photo, self.notify_name, self.notify_preview):
+        for checkbox in (
+            self.notify_photo,
+            self.notify_name,
+            self.notify_preview,
+            self.notification_sound,
+        ):
             checkbox.setEnabled(enabled)
 
     def _sync_tray_controls(self):
         enabled = self.tray_enabled.isChecked()
         self.tray_counter.setEnabled(enabled)
-        if not enabled and self.keep_background.isChecked():
-            self.keep_background.setChecked(False)
-        self.keep_background.setEnabled(enabled)
+        if (
+            not enabled
+            and self.close_behavior.currentData() == "keep_running"
+        ):
+            self.close_behavior.setCurrentIndex(
+                self.close_behavior.findData("quit_application")
+            )
+        self.close_behavior.setEnabled(enabled)
+        self._sync_close_controls()
+
+    def _sync_close_controls(self):
+        should_quit = (
+            self.close_behavior.currentData() == "quit_application"
+        )
+        self.confirm_close_row.setEnabled(should_quit)
 
     def _sync_dictionary_controls(self):
         enabled = self.spellcheck_enabled.isChecked() and self.dictionary_combo.count() > 0
@@ -202,10 +232,13 @@ class InitialSetupController(InitialSetupView):
         self.model.notification_show_photo = self.notify_photo.isChecked()
         self.model.notification_show_name = self.notify_name.isChecked()
         self.model.notification_show_message_preview = self.notify_preview.isChecked()
+        self.model.notification_sound = self.notification_sound.isChecked()
         self.model.tray_icon_enabled = self.tray_enabled.isChecked()
         self.model.tray_notification_counter = self.tray_counter.isChecked()
         self.model.refresh_tray()
-        self.model.keep_running_in_background = self.keep_background.isChecked()
+        self.model.quit_on_close = (
+            self.close_behavior.currentData() == "quit_application"
+        )
         self.model.confirm_on_close = self.confirm_close.isChecked()
         self.model.set_autostart(self.start_system.isChecked())
         self.model.start_minimized = self.start_minimized.isChecked()
@@ -216,5 +249,10 @@ class InitialSetupController(InitialSetupView):
             self.model.set_dictionary(self.dictionary_combo.currentText())
         self.model.set_microphone_permission(self.permission_microphone.isChecked())
         self.model.set_camera_permission(self.permission_camera.isChecked())
+        self.model.set_camera_microphone_permission(
+            self.permission_camera_microphone.isChecked()
+        )
         self.model.set_screen_contents_permission(self.permission_screen.isChecked())
-        self.model.webrtc_shield_enabled = self.webrtc_shield.isChecked()
+        self.model.set_screen_contents_audio_permission(
+            self.permission_screen_audio.isChecked()
+        )

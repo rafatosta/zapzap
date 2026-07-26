@@ -217,10 +217,20 @@ class InitialSetupView(QDialog):
             _("Show message preview"),
             _("Display the message text in the notification."),
         )
+        self.notification_sound_row = SettingsSwitchRow(
+            _("Notification sound"),
+            _("Let the desktop play its alert sound for new messages."),
+        )
         self.notify_photo = self.notify_photo_row.checkbox
         self.notify_name = self.notify_name_row.checkbox
         self.notify_preview = self.notify_preview_row.checkbox
-        for row in (self.notify_photo_row, self.notify_name_row, self.notify_preview_row):
+        self.notification_sound = self.notification_sound_row.checkbox
+        for row in (
+            self.notify_photo_row,
+            self.notify_name_row,
+            self.notify_preview_row,
+            self.notification_sound_row,
+        ):
             privacy_card.add_row(row)
         privacy_section.add_card(privacy_card)
         page.add_section(privacy_section)
@@ -260,18 +270,30 @@ class InitialSetupView(QDialog):
             page,
         )
         window_card = SettingsCard(page)
-        self.keep_background_row = SettingsSwitchRow(
-            _("Keep running in the background"),
-            _("Hide the main window instead of quitting when it is closed."),
+        self.close_behavior_row = SettingsSelectRow(
+            _("Close behavior"),
+            _("Choose whether ZapZap continues in the background or quits."),
+            [""],
+        )
+        self.close_behavior = self.close_behavior_row.combo
+        self.close_behavior.clear()
+        self.close_behavior.addItem(
+            _("Continue in the background"),
+            "keep_running",
+        )
+        self.close_behavior.addItem(
+            _("Quit ZapZap"),
+            "quit_application",
         )
         self.confirm_close_row = SettingsSwitchRow(
-            _("Confirm before closing the window"),
-            _("Ask for confirmation before closing ZapZap."),
+            _("Confirm before quitting"),
+            _("Ask for confirmation before completely closing ZapZap."),
         )
-        self.keep_background = self.keep_background_row.checkbox
         self.confirm_close = self.confirm_close_row.checkbox
-        window_card.add_row(self.keep_background_row)
-        window_card.add_row(self.confirm_close_row)
+        window_card.add_group(
+            self.close_behavior_row,
+            (self.confirm_close_row,),
+        )
         window_section.add_card(window_card)
         page.add_section(window_section)
 
@@ -322,7 +344,7 @@ class InitialSetupView(QDialog):
         downloads_section.add_card(downloads_card)
         page.add_section(downloads_section)
 
-        spell_section = SettingsSection(
+        self.spell_section = SettingsSection(
             _("Spell checker"),
             _("Select compiled dictionaries and where ZapZap should look for them."),
             page,
@@ -337,17 +359,12 @@ class InitialSetupView(QDialog):
             _("Recognizes only compiled dictionaries (.bdic)."),
             [""]
         )
-        self.dictionary_hint = SettingsInfoBox(
-            _("No compiled dictionaries were found. You can configure dictionaries later in Settings."),
-            "warning",
-        )
         self.spellcheck_enabled = self.spellcheck_enabled_row.checkbox
         self.dictionary_combo = self.dictionary_row.combo
         spell_card.add_row(self.spellcheck_enabled_row)
         spell_card.add_row(self.dictionary_row)
-        spell_card.add_row(self.dictionary_hint)
-        spell_section.add_card(spell_card)
-        page.add_section(spell_section)
+        self.spell_section.add_card(spell_card)
+        page.add_section(self.spell_section)
         page.add_stretch()
         return page
 
@@ -376,23 +393,31 @@ class InitialSetupView(QDialog):
             _("Camera"),
             _("Automatically allow access to your camera."),
         )
+        self.permission_camera_microphone_row = SettingsSwitchRow(
+            _("Camera and microphone"),
+            _("Automatically allow simultaneous access to the camera and microphone."),
+        )
         self.permission_screen_row = SettingsSwitchRow(
-            _("Screen contents"),
+            _("Screen sharing"),
             _("Automatically allow sharing of screen contents."),
         )
-        self.webrtc_shield_row = SettingsSwitchRow(
-            _("WebRTC shield"),
-            _("Reduce WebRTC IP exposure."),
+        self.permission_screen_audio_row = SettingsSwitchRow(
+            _("Screen with audio"),
+            _("Automatically allow screen sharing with audio."),
         )
         self.permission_microphone = self.permission_microphone_row.checkbox
         self.permission_camera = self.permission_camera_row.checkbox
+        self.permission_camera_microphone = (
+            self.permission_camera_microphone_row.checkbox
+        )
         self.permission_screen = self.permission_screen_row.checkbox
-        self.webrtc_shield = self.webrtc_shield_row.checkbox
+        self.permission_screen_audio = self.permission_screen_audio_row.checkbox
         for row in (
             self.permission_microphone_row,
             self.permission_camera_row,
+            self.permission_camera_microphone_row,
             self.permission_screen_row,
-            self.webrtc_shield_row,
+            self.permission_screen_audio_row,
         ):
             card.add_row(row)
         section.add_card(card)
