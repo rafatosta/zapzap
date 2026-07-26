@@ -19,9 +19,10 @@ from zapzap.features.settings.shell.settings_controller import SettingsControlle
 from zapzap.features.shortcuts.controller import ShortcutsController
 from zapzap.features.tray.sys_tray_manager import SysTrayManager
 from zapzap.ui.main_window.main_window_view import MainWindowView
+from zapzap.ui.main_window.window_state import WindowStateMemory
 
 
-class MainWindowController(MainWindowView):
+class MainWindowController(WindowStateMemory, MainWindowView):
     """
     Classe principal da interface do aplicativo.
     Controla a janela principal, incluindo o menu e interações com widgets centrais.
@@ -293,17 +294,27 @@ class MainWindowController(MainWindowView):
         self.hide()
         event.ignore()
 
+    def hideEvent(self, event):
+        """Guardar o estado da janela antes de ela ser ocultada."""
+        self.remember_window_state()
+        super().hideEvent(event)
+
     # === Controle de Visibilidade da Janela ===
+    def restore_window(self):
+        """Exibe a janela no estado em que ela estava ao ser ocultada."""
+        if self.parentWidget() is not None and hasattr(self.window(), "is_csr_wrapper"):
+            self.window().restore_window()
+            return
+
+        self.show_in_remembered_state(self.is_fullscreen)
+
     def show_window(self):
         if self.parentWidget() is not None and hasattr(self.window(), "is_csr_wrapper"):
             self.window().show_window()
             return
         """Alterna a visibilidade da janela principal."""
         if self.isHidden():
-            if self.is_fullscreen:
-                self.showFullScreen()
-            else:
-                self.showNormal()
+            self.restore_window()
             QApplication.instance().setActiveWindow(self)
         elif not self.isActiveWindow():
             self.activateWindow()

@@ -118,7 +118,7 @@ class SysTrayManager:
 
     def _open_settings(self, main_window):
         main_window.open_settings()
-        main_window.showNormal()
+        main_window.restore_window()
         main_window.activateWindow()
         main_window.raise_()
 

@@ -10,9 +10,10 @@ from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.donation.controller import DonationController
 from zapzap.ui.main_window.client_side_rendering_view import ClientSideRenderingView
+from zapzap.ui.main_window.window_state import WindowStateMemory
 
 
-class ClientSideRenderingController(ClientSideRenderingView):
+class ClientSideRenderingController(WindowStateMemory, ClientSideRenderingView):
     """Coordinates lifecycle behavior for the CSR window wrapper."""
 
     def __init__(self, inner_window: QWidget, enabled: bool = True):
@@ -71,12 +72,13 @@ class ClientSideRenderingController(ClientSideRenderingView):
         self.hide()
         event.ignore()
 
+    def restore_window(self):
+        """Show the window in the state it held when it was hidden."""
+        self.show_in_remembered_state(self.inner_window.is_fullscreen)
+
     def show_window(self):
         if self.isHidden():
-            if self.inner_window.is_fullscreen:
-                self.showFullScreen()
-            else:
-                self.showNormal()
+            self.restore_window()
             QApplication.instance().setActiveWindow(self)
         elif not self.isActiveWindow():
             self.activateWindow()
@@ -85,6 +87,7 @@ class ClientSideRenderingController(ClientSideRenderingView):
             self.hide()
 
     def hideEvent(self, event):
+        self.remember_window_state()
         super().hideEvent(event)
 
     def __getattr__(self, name):
