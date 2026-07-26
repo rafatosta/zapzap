@@ -2,6 +2,18 @@ name: Build macOS
 
 on:
   workflow_dispatch:
+    inputs:
+      release_upload:
+        description: "Upload macOS artifact to GitHub Release"
+        required: false
+        type: boolean
+        default: false
+      release_tag:
+        description: "Release tag to upload artifact"
+        required: false
+        type: string
+        default: ""
+
   workflow_call:
     inputs:
       release_upload:
@@ -24,6 +36,11 @@ jobs:
       PYTHONUTF8: 1
     steps:
       - uses: actions/checkout@v4
+      - name: Validate release tag
+        if: ${{ inputs.release_upload && inputs.release_tag == '' }}
+        run: |
+          echo "release_tag is required when release_upload=true"
+          exit 1
       - name: Set packaging scripts executable
         run: |
           chmod +x .github/packaging/common/build-info.sh
