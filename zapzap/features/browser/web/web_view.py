@@ -458,6 +458,14 @@ class WebView(QWebEngineView):
 
         self.whatsapp_page.apply_theme(current_theme, current_color_scheme)
 
+    @staticmethod
+    def profile_paths(user_id) -> tuple[str, str]:
+        """Resolve o cache e o armazenamento de um perfil sem abri-lo."""
+        probe = QWebEngineProfile(str(user_id))
+        paths = (probe.cachePath(), probe.persistentStoragePath())
+        probe.deleteLater()
+        return paths
+
     def remove_files(self):
         """Remove os arquivos de cache e armazenamento persistente do perfil."""
         # TODO: refatorar a lógica de limpeza de cache de contas excluídas
@@ -465,13 +473,19 @@ class WebView(QWebEngineView):
         # inicialização do aplicativo) do que durante a exclusão do perfil.
         # Isso poderia ser feito, talvez, armazenando self._cache_path e
         # self._storage_path por meio do objeto User.
-        if self._cache_path:
-            shutil.rmtree(self._cache_path, ignore_errors=True)
-            self._cache_path = None
+        cache_path = self._cache_path
+        storage_path = self._storage_path
 
-        if self._storage_path:
-            shutil.rmtree(self._storage_path, ignore_errors=True)
-            self._storage_path = None
+        if not cache_path or not storage_path:
+            # Contas desabilitadas desde a inicialização nunca abriram um
+            # perfil, então os caminhos ainda não foram capturados.
+            cache_path, storage_path = self.profile_paths(self.user.id)
+
+        shutil.rmtree(cache_path, ignore_errors=True)
+        shutil.rmtree(storage_path, ignore_errors=True)
+
+        self._cache_path = None
+        self._storage_path = None
 
     def enable_page(self):
         """Ativa a página, configurando novamente."""
