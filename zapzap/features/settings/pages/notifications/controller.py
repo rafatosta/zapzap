@@ -21,6 +21,7 @@ class NotificationsSettingsController(NotificationsSettingsView):
         self.show_photo.checkbox.setChecked(self.model.show_photo)
         self.show_name.checkbox.setChecked(self.model.show_name)
         self.show_msg.checkbox.setChecked(self.model.show_message_preview)
+        self.sound.checkbox.setChecked(self.model.sound)
         self.donationMessage.checkbox.setChecked(
             self.model.donation_message_enabled
         )
@@ -43,6 +44,9 @@ class NotificationsSettingsController(NotificationsSettingsView):
         )
         self.show_msg.checkbox.toggled.connect(
             self._handle_toggle_show_message_preview
+        )
+        self.sound.checkbox.toggled.connect(
+            self._handle_toggle_sound
         )
         self.donationMessage.checkbox.toggled.connect(
             self._handle_toggle_donation_message
@@ -80,6 +84,9 @@ class NotificationsSettingsController(NotificationsSettingsView):
 
     def _handle_toggle_show_message_preview(self, is_enabled: bool):
         self.model.show_message_preview = is_enabled
+
+    def _handle_toggle_sound(self, is_enabled: bool):
+        self.model.sound = is_enabled
 
     def _handle_toggle_donation_message(self, is_enabled: bool):
         self.model.donation_message_enabled = is_enabled

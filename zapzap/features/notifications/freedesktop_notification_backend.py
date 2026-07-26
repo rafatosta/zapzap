@@ -254,6 +254,10 @@ class DBusNotification:
     def set_category(self, category: str):
         self.hints["category"] = category
 
+    def set_suppress_sound(self, suppress: bool):
+        """Ask the server not to play its alert sound for this notification."""
+        self.hints["suppress-sound"] = bool(suppress)
+
     def setIconPath(self, icon_path: str):
         """
         Necessário para ícones dinâmicos (avatar).
@@ -335,6 +339,9 @@ class FreedesktopNotificationBackend:
 
         notify.set_urgency(Urgency.NORMAL)
         notify.set_category("im.received")
+        notify.set_suppress_sound(
+            not SettingsManager.get("notification/sound", True)
+        )
         notify.setIconPath(icon_path)  # 👈 ESSENCIAL
 
         def on_click(activation_token=None):

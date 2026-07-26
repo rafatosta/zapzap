@@ -12,6 +12,7 @@ class NotificationSettings(BaseSettings):
     _SHOW_PHOTO = ("notification/show_photo", True)
     _SHOW_NAME = ("notification/show_name", True)
     _SHOW_MESSAGE_PREVIEW = ("notification/show_msg", True)
+    _SOUND = ("notification/sound", True)
     # This legacy key stores whether reminders are hidden, despite its name.
     _DONATION_MESSAGE_HIDDEN = ("notification/donation_message", False)
 
@@ -46,6 +47,14 @@ class NotificationSettings(BaseSettings):
     @show_message_preview.setter
     def show_message_preview(self, value: bool) -> None:
         self._set_bool(self._SHOW_MESSAGE_PREVIEW, value)
+
+    @property
+    def sound(self) -> bool:
+        return self._get_bool(self._SOUND)
+
+    @sound.setter
+    def sound(self, value: bool) -> None:
+        self._set_bool(self._SOUND, value)
 
     @property
     def donation_message_enabled(self) -> bool:

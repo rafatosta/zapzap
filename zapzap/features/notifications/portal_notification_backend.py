@@ -62,6 +62,17 @@ class PortalNotificationBackend(QObject):
     # Notify with Dynamic Fallback
     # ---------------------------------------------------------
 
+    @staticmethod
+    def _extra_fields() -> dict:
+        """Payload fields that only newer portal versions understand."""
+        fields = {
+            "display-hint": ["show-as-new"],
+            "category": "im.received",
+        }
+        if not SettingsManager.get("notification/sound", True):
+            fields["sound"] = "silent"
+        return fields
+
     def notify(
         self,
         page: WebView,
@@ -88,10 +99,7 @@ class PortalNotificationBackend(QObject):
 
         extra_fields = {}
         if self._supports_extra_fields:
-            extra_fields = {
-                "display-hint": ["show-as-new"],
-                "category": "im.received",
-            }
+            extra_fields = self._extra_fields()
 
         attempts = []
 

@@ -17,11 +17,19 @@ from zapzap.features.settings.pages.notifications.view import (
 
 class FakeNotificationsSettingsModel:
 
-    def __init__(self, enabled=True, photo=True, name=True, message=True):
+    def __init__(
+        self,
+        enabled=True,
+        photo=True,
+        name=True,
+        message=True,
+        sound=True,
+    ):
         self.enabled = enabled
         self.show_photo = photo
         self.show_name = name
         self.show_message_preview = message
+        self.sound = sound
         self.donation_message_enabled = False
 
 
@@ -51,6 +59,7 @@ class NotificationsSettingsUiTests(QtTestCase):
         self.assertEqual(page.show_photo.title_label.text(), "Contact photo")
         self.assertEqual(page.show_name.title_label.text(), "Contact name")
         self.assertEqual(page.show_msg.title_label.text(), "Message preview")
+        self.assertEqual(page.sound.title_label.text(), "Notification sound")
         self.assertEqual(
             page.donationMessage.title_label.text(),
             "Support reminders",
@@ -104,6 +113,22 @@ class NotificationsSettingsUiTests(QtTestCase):
             [model.show_photo, model.show_name, model.show_message_preview],
             [True, False, True],
         )
+
+    def test_notification_sound_switch_persists_the_preference(self):
+        page, model = self._controller(sound=True)
+
+        page.sound.checkbox.setChecked(False)
+        self.assertFalse(model.sound)
+
+        page.sound.checkbox.setChecked(True)
+        self.assertTrue(model.sound)
+
+    def test_privacy_presets_leave_the_notification_sound_alone(self):
+        page, model = self._controller(sound=True)
+
+        page.maximum_privacy_action.trigger()
+
+        self.assertTrue(model.sound)
 
     def test_privacy_presets_update_existing_switch_settings(self):
         page, model = self._controller()
