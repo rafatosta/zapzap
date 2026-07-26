@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-25 13:29-0300\n"
-"PO-Revision-Date: 2026-07-25 21:10-0300\n"
+"POT-Creation-Date: 2026-07-26 11:48-0300\n"
+"PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Bosnian\n"
 "Language: bs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:27
 msgid "Unexpected Error"
@@ -180,8 +181,7 @@ msgid "Welcome to ZapZap"
 msgstr "Dobro došli u ZapZap"
 
 #: zapzap/features/initial_setup/view.py:90
-msgid ""
-"Choose the essentials now. You can change everything later in Settings."
+msgid "Choose the essentials now. You can change everything later in Settings."
 msgstr ""
 "Odaberite sada osnovne stvari.Sve možete promijeniti kasnije u Postavkama."
 
@@ -438,8 +438,8 @@ msgstr "Preuzimanja i kucanje"
 
 #: zapzap/features/initial_setup/view.py:304
 msgid ""
-"Choose where files are saved and enable spell checking when dictionaries are"
-" available."
+"Choose where files are saved and enable spell checking when dictionaries are "
+"available."
 msgstr ""
 "Odaberite gdje se datoteke spremaju i omogućite provjeru pravopisa kada su "
 "rječnici dostupni."
@@ -500,8 +500,8 @@ msgstr "Prepoznaje samo sastavljene rječnike (.bdic)."
 
 #: zapzap/features/initial_setup/view.py:341
 msgid ""
-"No compiled dictionaries were found. You can configure dictionaries later in"
-" Settings."
+"No compiled dictionaries were found. You can configure dictionaries later in "
+"Settings."
 msgstr ""
 "Nisu pronađeni sastavljeni rječnici.Rečnike možete konfigurisati kasnije u "
 "Postavkama."
@@ -513,8 +513,7 @@ msgstr "Osnovne dozvole"
 #: zapzap/features/initial_setup/view.py:357
 msgid ""
 "Allow only the WhatsApp Web permissions you want to grant automatically."
-msgstr ""
-"Dozvolite samo WhatsApp Web dozvole koje želite automatski dodijeliti."
+msgstr "Dozvolite samo WhatsApp Web dozvole koje želite automatski dodijeliti."
 
 #: zapzap/features/initial_setup/view.py:362
 msgid "When an option is unchecked, ZapZap will ask again in each session."
@@ -626,8 +625,8 @@ msgstr "Spremni ste"
 
 #: zapzap/features/initial_setup/view.py:443
 msgid ""
-"ZapZap will save these preferences now. Advanced options remain available in"
-" Settings."
+"ZapZap will save these preferences now. Advanced options remain available in "
+"Settings."
 msgstr ""
 "ZapZap će sada sačuvati ove postavke.Napredne opcije ostaju dostupne u "
 "Postavkama."
@@ -642,13 +641,13 @@ msgstr "Pregledajte napredne opcije kasnije kad god vam zatrebaju."
 
 #: zapzap/features/initial_setup/view.py:454
 msgid ""
-"You can revisit all choices from Settings at any time. Proxy, custom "
-"CSS/JavaScript, Flatpak permissions, and performance tweaks are still "
-"available there."
+"You can revisit all choices from Settings at any time. Proxy, custom CSS/"
+"JavaScript, Flatpak permissions, and performance tweaks are still available "
+"there."
 msgstr ""
-"U bilo kojem trenutku možete ponovo posjetiti sve izbore u Postavkama.Proxy,"
-" prilagođene CSS/JavaScript, Flatpak dozvole i podešavanja performansi su "
-"još uvijek dostupni tamo."
+"U bilo kojem trenutku možete ponovo posjetiti sve izbore u Postavkama.Proxy, "
+"prilagođene CSS/JavaScript, Flatpak dozvole i podešavanja performansi su još "
+"uvijek dostupni tamo."
 
 #: zapzap/features/notifications/notification_service.py:115
 msgid "New message..."
@@ -954,8 +953,7 @@ msgstr "Kopirajte sistemske informacije"
 
 #: zapzap/features/settings/pages/about/view.py:325
 msgid ""
-"ZapZap is an independent project and is not affiliated with WhatsApp or "
-"Meta."
+"ZapZap is an independent project and is not affiliated with WhatsApp or Meta."
 msgstr "ZapZap je nezavisan projekat i nije povezan sa WhatsApp ili Meta."
 
 #: zapzap/features/settings/pages/about/view.py:343
@@ -997,11 +995,9 @@ msgstr "Sjednica"
 
 #: zapzap/features/settings/pages/about/controller.py:60
 #, python-brace-format
-msgid ""
-"ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
+msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
 msgstr ""
-"ZapZap je besplatni softver licenciran pod {license_id} (GPL-3.0 ili "
-"noviji)."
+"ZapZap je besplatni softver licenciran pod {license_id} (GPL-3.0 ili noviji)."
 
 #: zapzap/features/settings/pages/about/controller.py:70
 #, python-brace-format
@@ -1470,8 +1466,8 @@ msgid ""
 "⚠ Custom scripts have full access to page content. Use code only from "
 "trusted sources."
 msgstr ""
-"⚠ Prilagođene skripte imaju pun pristup sadržaju stranice.Koristite kod samo"
-" iz pouzdanih izvora."
+"⚠ Prilagođene skripte imaju pun pristup sadržaju stranice.Koristite kod samo "
+"iz pouzdanih izvora."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:398
 msgid "No JavaScript files"
@@ -1523,8 +1519,7 @@ msgstr "Prozori"
 
 #: zapzap/features/settings/pages/appearance/view.py:22
 msgid ""
-"Adjust interface chrome, theme, tray icon, grid view, and window "
-"decorations."
+"Adjust interface chrome, theme, tray icon, grid view, and window decorations."
 msgstr ""
 "Podesite hrom sučelja, temu, ikonu u traci, prikaz mreže i ukrase prozora."
 
@@ -1731,7 +1726,8 @@ msgid ""
 "\n"
 "The application will need to be restarted to complete the operation."
 msgstr ""
-"Sve prilagođene ZapZap postavke će biti vraćene na njihove zadane vrijednosti.\n"
+"Sve prilagođene ZapZap postavke će biti vraćene na njihove zadane "
+"vrijednosti.\n"
 "\n"
 "Aplikaciju će trebati ponovo pokrenuti da dovršite operaciju."
 
@@ -1831,8 +1827,7 @@ msgstr "Održavanje"
 
 #: zapzap/features/settings/pages/debugging/view.py:296
 msgid ""
-"Restore ZapZap's default settings. The application will need to be "
-"restarted."
+"Restore ZapZap's default settings. The application will need to be restarted."
 msgstr ""
 "Vratite zadane postavke za ZapZap.Aplikaciju će trebati ponovo pokrenuti."
 
@@ -2120,7 +2115,7 @@ msgid "8080"
 msgstr "8080"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:255
-#: zapzap/features/settings/pages/notifications/view.py:108
+#: zapzap/features/settings/pages/notifications/view.py:113
 msgid "Privacy"
 msgstr "Privatnost"
 
@@ -2178,39 +2173,47 @@ msgstr "Pregled poruke"
 msgid "Show the content of the received message."
 msgstr "Prikažite sadržaj primljene poruke."
 
-#: zapzap/features/settings/pages/notifications/view.py:75
+#: zapzap/features/settings/pages/notifications/view.py:59
+msgid "Notification sound"
+msgstr "Zvuk obavještenja"
+
+#: zapzap/features/settings/pages/notifications/view.py:60
+msgid "Let the desktop play its alert sound for new messages."
+msgstr "Dozvoli radnoj površini da reproducira zvuk upozorenja za nove poruke."
+
+#: zapzap/features/settings/pages/notifications/view.py:80
 msgid "ZapZap messages"
 msgstr "ZapZap poruke"
 
-#: zapzap/features/settings/pages/notifications/view.py:76
+#: zapzap/features/settings/pages/notifications/view.py:81
 msgid "Control occasional messages shown by the application itself."
 msgstr "Kontrolirajte povremene poruke koje prikazuje sama aplikacija."
 
-#: zapzap/features/settings/pages/notifications/view.py:80
+#: zapzap/features/settings/pages/notifications/view.py:85
 msgid "Support reminders"
 msgstr "Podsjetnici podrške"
 
-#: zapzap/features/settings/pages/notifications/view.py:82
+#: zapzap/features/settings/pages/notifications/view.py:87
 msgid "Occasionally show messages supporting ZapZap's development."
 msgstr "Povremeno prikažite poruke koje podržavaju razvoj ZapZap."
 
-#: zapzap/features/settings/pages/notifications/view.py:110
+#: zapzap/features/settings/pages/notifications/view.py:115
 msgid "Privacy presets"
 msgstr "Unapred podešene postavke privatnosti"
 
-#: zapzap/features/settings/pages/notifications/view.py:113
+#: zapzap/features/settings/pages/notifications/view.py:118
 msgid "Quickly choose which notification details are visible."
 msgstr "Brzo odaberite koji detalji obavijesti su vidljivi."
 
-#: zapzap/features/settings/pages/notifications/view.py:117
+#: zapzap/features/settings/pages/notifications/view.py:122
 msgid "Show everything"
 msgstr "Pokaži sve"
 
-#: zapzap/features/settings/pages/notifications/view.py:120
+#: zapzap/features/settings/pages/notifications/view.py:125
 msgid "Hide content"
 msgstr "Sakrij sadržaj"
 
-#: zapzap/features/settings/pages/notifications/view.py:123
+#: zapzap/features/settings/pages/notifications/view.py:128
 msgid "Maximum privacy"
 msgstr "Maksimalna privatnost"
 
@@ -2225,8 +2228,7 @@ msgstr "Napredno upozorenje"
 #: zapzap/features/settings/pages/performance_experimental/view.py:38
 msgid "These options may require restart and can affect stability."
 msgstr ""
-"Ove opcije mogu zahtijevati ponovno pokretanje i mogu utjecati na "
-"stabilnost."
+"Ove opcije mogu zahtijevati ponovno pokretanje i mogu utjecati na stabilnost."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:44
 msgid ""
@@ -2498,13 +2500,19 @@ msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:164
 msgid ""
-"Automatically honors an unambiguous DRI_PRIME selector on systems with multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when one GPU has no connected display.\n"
+"Automatically honors an unambiguous DRI_PRIME selector on systems with "
+"multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
+"one GPU has no connected display.\n"
 "\n"
-"Disable this only if the automatic workaround causes problems. Restart required."
+"Disable this only if the automatic workaround causes problems. Restart "
+"required."
 msgstr ""
-"Automatski poštuje nedvosmisleni DRI_PRIME selektor na sistemima s višestrukim Linux GPU-ovima za renderiranje.U suprotnom, dodaje --disable-gpu-compositing kada jedan GPU nema povezan ekran.\n"
+"Automatski poštuje nedvosmisleni DRI_PRIME selektor na sistemima s "
+"višestrukim Linux GPU-ovima za renderiranje.U suprotnom, dodaje --disable-"
+"gpu-compositing kada jedan GPU nema povezan ekran.\n"
 "\n"
-"Onemogućite ovo samo ako automatsko rješenje uzrokuje probleme.Potrebno je ponovno pokretanje."
+"Onemogućite ovo samo ako automatsko rješenje uzrokuje probleme.Potrebno je "
+"ponovno pokretanje."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:173
 msgid ""
@@ -2577,12 +2585,14 @@ msgstr ""
 #: zapzap/features/settings/pages/performance_experimental/controller.py:220
 msgid ""
 "Enables V8 predictable garbage collection schedule.\n"
-"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
 "\n"
 "Experimental option. Restart required."
 msgstr ""
 "Omogućava V8 predvidljivi raspored prikupljanja smeća.\n"
-"Ovo dodaje --js-flags=--predictable-gc-schedule i --disable-gpu u QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"Ovo dodaje --js-flags=--predictable-gc-schedule i --disable-gpu u "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
 "\n"
 "Eksperimentalna opcija.Potrebno je ponovno pokretanje."
 
@@ -2620,13 +2630,17 @@ msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:249
 msgid ""
-"Uses Selection.modify() with visual directions for Ctrl+Arrow word navigation.\n"
-"This fixes reversed cursor movement in RTL text inside WhatsApp Web message fields.\n"
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
+"navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
+"fields.\n"
 "\n"
 "Restart or reload WhatsApp Web after changing this option."
 msgstr ""
-"Koristi Selection.modify() sa vizuelnim uputstvima za Ctrl+Arrow navigaciju riječima.\n"
-"Ovo popravlja obrnuto kretanje kursora u tekstu RTL unutar WhatsApp Web polja poruke.\n"
+"Koristi Selection.modify() sa vizuelnim uputstvima za Ctrl+Arrow navigaciju "
+"riječima.\n"
+"Ovo popravlja obrnuto kretanje kursora u tekstu RTL unutar WhatsApp Web "
+"polja poruke.\n"
 "\n"
 "Ponovo pokrenite ili ponovo učitajte WhatsApp Web nakon promjene ove opcije."
 
@@ -2763,8 +2777,8 @@ msgid ""
 "Choose whether ZapZap continues in the background or quits when the window "
 "is closed."
 msgstr ""
-"Odaberite da li se ZapZap nastavlja u pozadini ili se zatvara kada se prozor"
-" zatvori."
+"Odaberite da li se ZapZap nastavlja u pozadini ili se zatvara kada se prozor "
+"zatvori."
 
 #: zapzap/features/settings/pages/system_startup/view.py:110
 msgid "Linux integration"
@@ -2850,8 +2864,7 @@ msgstr "Korisnički agent promijenjen"
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:187
 msgid ""
-"Please restart this session (or the application) to apply the new User-"
-"Agent."
+"Please restart this session (or the application) to apply the new User-Agent."
 msgstr ""
 "Ponovo pokrenite ovu sesiju (ili aplikaciju) da biste primijenili novog "
 "korisničkog agenta."
@@ -3002,8 +3015,7 @@ msgstr "Ovaj račun je onemogućen."
 
 #: zapzap/features/browser/shell/browser_controller.py:356
 msgid ""
-"You can reactivate it now or use the right-click menu to manage this "
-"account."
+"You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Možete ga ponovo aktivirati sada ili koristiti meni desnim klikom za "
 "upravljanje ovim računom."
@@ -3067,10 +3079,8 @@ msgid "DevTools - {}"
 msgstr "DevTools - {}"
 
 #: zapzap/features/browser/web/page_controller.py:198
-msgid ""
-"Please enter the phone number with country code (e.g., +5511999999999):"
-msgstr ""
-"Unesite broj telefona sa pozivnim brojem zemlje (npr. +5511999999999):"
+msgid "Please enter the phone number with country code (e.g., +5511999999999):"
+msgstr "Unesite broj telefona sa pozivnim brojem zemlje (npr. +5511999999999):"
 
 #: zapzap/features/browser/web/page_controller.py:202
 msgid ""
@@ -3237,18 +3247,18 @@ msgstr "Ctrl+M"
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:46
-#: zapzap/ui/main_window/main_window_controller.py:263
+#: zapzap/ui/main_window/client_side_rendering_controller.py:47
+#: zapzap/ui/main_window/main_window_controller.py:264
 msgid "Close ZapZap"
 msgstr "Zatvori ZapZap"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:47
-#: zapzap/ui/main_window/main_window_controller.py:264
+#: zapzap/ui/main_window/client_side_rendering_controller.py:48
+#: zapzap/ui/main_window/main_window_controller.py:265
 msgid "Are you sure you want to close?"
 msgstr "Jeste li sigurni da želite zatvoriti?"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:48
-#: zapzap/ui/main_window/main_window_controller.py:265
+#: zapzap/ui/main_window/client_side_rendering_controller.py:49
+#: zapzap/ui/main_window/main_window_controller.py:266
 msgid "Don't ask again"
 msgstr "Ne pitaj ponovo"
 
@@ -3386,7 +3396,8 @@ msgstr "Ne pitaj ponovo"
 #~ msgstr "200 %"
 
 #~ msgid "Note: The change of scale will only have effect until restarting."
-#~ msgstr "Napomena: Promjena skaliranja će važiti samo do ponovnog pokretanja."
+#~ msgstr ""
+#~ "Napomena: Promjena skaliranja će važiti samo do ponovnog pokretanja."
 
 #~ msgid "Download Directory"
 #~ msgstr "Direktorij za preuzimanje"

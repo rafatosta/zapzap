@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-25 13:29-0300\n"
-"PO-Revision-Date: 2026-07-25 21:10-0300\n"
+"POT-Creation-Date: 2026-07-26 11:48-0300\n"
+"PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
+"2 : 3);\n"
 "X-Generator: Lokalize 25.08.2\n"
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:27
@@ -181,8 +182,7 @@ msgid "Welcome to ZapZap"
 msgstr "ברוכים הבאים אל ZapZap"
 
 #: zapzap/features/initial_setup/view.py:90
-msgid ""
-"Choose the essentials now. You can change everything later in Settings."
+msgid "Choose the essentials now. You can change everything later in Settings."
 msgstr "בחר את היסודות עכשיו.תוכל לשנות הכל מאוחר יותר בהגדרות."
 
 #: zapzap/features/initial_setup/view.py:105
@@ -431,8 +431,8 @@ msgstr "הורדות והקלדה"
 
 #: zapzap/features/initial_setup/view.py:304
 msgid ""
-"Choose where files are saved and enable spell checking when dictionaries are"
-" available."
+"Choose where files are saved and enable spell checking when dictionaries are "
+"available."
 msgstr "בחר היכן הקבצים נשמרים והפעל בדיקת איות כאשר מילונים זמינים."
 
 #: zapzap/features/initial_setup/view.py:308
@@ -490,8 +490,8 @@ msgstr "מזהה רק מילונים מהודרים (.bdic)."
 
 #: zapzap/features/initial_setup/view.py:341
 msgid ""
-"No compiled dictionaries were found. You can configure dictionaries later in"
-" Settings."
+"No compiled dictionaries were found. You can configure dictionaries later in "
+"Settings."
 msgstr "לא נמצאו מילונים מלוקטים.תוכל להגדיר מילונים מאוחר יותר בהגדרות."
 
 #: zapzap/features/initial_setup/view.py:356
@@ -609,8 +609,8 @@ msgstr "אתה מוכן"
 
 #: zapzap/features/initial_setup/view.py:443
 msgid ""
-"ZapZap will save these preferences now. Advanced options remain available in"
-" Settings."
+"ZapZap will save these preferences now. Advanced options remain available in "
+"Settings."
 msgstr "ZapZap ישמור העדפות אלה כעת.אפשרויות מתקדמות נשארות זמינות בהגדרות."
 
 #: zapzap/features/initial_setup/view.py:447
@@ -623,12 +623,12 @@ msgstr "סקור אפשרויות מתקדמות מאוחר יותר בכל פע
 
 #: zapzap/features/initial_setup/view.py:454
 msgid ""
-"You can revisit all choices from Settings at any time. Proxy, custom "
-"CSS/JavaScript, Flatpak permissions, and performance tweaks are still "
-"available there."
+"You can revisit all choices from Settings at any time. Proxy, custom CSS/"
+"JavaScript, Flatpak permissions, and performance tweaks are still available "
+"there."
 msgstr ""
-"אתה יכול לחזור על כל האפשרויות מההגדרות בכל עת.פרוקסי, הרשאות "
-"CSS/JavaScript, Flatpak ושינויי ביצועים עדיין זמינים שם."
+"אתה יכול לחזור על כל האפשרויות מההגדרות בכל עת.פרוקסי, הרשאות CSS/"
+"JavaScript, Flatpak ושינויי ביצועים עדיין זמינים שם."
 
 #: zapzap/features/notifications/notification_service.py:115
 msgid "New message..."
@@ -934,8 +934,7 @@ msgstr "העתק מידע מערכת"
 
 #: zapzap/features/settings/pages/about/view.py:325
 msgid ""
-"ZapZap is an independent project and is not affiliated with WhatsApp or "
-"Meta."
+"ZapZap is an independent project and is not affiliated with WhatsApp or Meta."
 msgstr "ZapZap הוא פרויקט עצמאי ואינו מזוהה עם WhatsApp או Meta."
 
 #: zapzap/features/settings/pages/about/view.py:343
@@ -977,8 +976,7 @@ msgstr "מושב"
 
 #: zapzap/features/settings/pages/about/controller.py:60
 #, python-brace-format
-msgid ""
-"ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
+msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
 msgstr "ZapZap היא תוכנה חופשית ברישיון תחת {license_id} (GPL-3.0 ואילך)."
 
 #: zapzap/features/settings/pages/about/controller.py:70
@@ -1494,8 +1492,7 @@ msgstr "חלונות"
 
 #: zapzap/features/settings/pages/appearance/view.py:22
 msgid ""
-"Adjust interface chrome, theme, tray icon, grid view, and window "
-"decorations."
+"Adjust interface chrome, theme, tray icon, grid view, and window decorations."
 msgstr "התאם ממשק כרום, ערכת נושא, סמל מגש, תצוגת רשת וקישוטי חלונות."
 
 #: zapzap/features/settings/pages/appearance/view.py:37
@@ -1800,8 +1797,7 @@ msgstr "תחזוקה"
 
 #: zapzap/features/settings/pages/debugging/view.py:296
 msgid ""
-"Restore ZapZap's default settings. The application will need to be "
-"restarted."
+"Restore ZapZap's default settings. The application will need to be restarted."
 msgstr "שחזר את הגדרות ברירת המחדל של ZapZap.יהיה צורך להפעיל מחדש את היישום."
 
 #: zapzap/features/settings/pages/debugging/view.py:299
@@ -2083,7 +2079,7 @@ msgid "8080"
 msgstr "8080"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:255
-#: zapzap/features/settings/pages/notifications/view.py:108
+#: zapzap/features/settings/pages/notifications/view.py:113
 msgid "Privacy"
 msgstr "פרטיות"
 
@@ -2139,39 +2135,47 @@ msgstr "תצוגה מקדימה של הודעה"
 msgid "Show the content of the received message."
 msgstr "הצג את תוכן ההודעה שהתקבלה."
 
-#: zapzap/features/settings/pages/notifications/view.py:75
+#: zapzap/features/settings/pages/notifications/view.py:59
+msgid "Notification sound"
+msgstr "צליל התראה"
+
+#: zapzap/features/settings/pages/notifications/view.py:60
+msgid "Let the desktop play its alert sound for new messages."
+msgstr "אפשר לשולחן העבודה להשמיע צליל התראה עבור הודעות חדשות."
+
+#: zapzap/features/settings/pages/notifications/view.py:80
 msgid "ZapZap messages"
 msgstr "הודעות ZapZap"
 
-#: zapzap/features/settings/pages/notifications/view.py:76
+#: zapzap/features/settings/pages/notifications/view.py:81
 msgid "Control occasional messages shown by the application itself."
 msgstr "שליטה בהודעות מזדמנות שמוצגות על ידי האפליקציה עצמה."
 
-#: zapzap/features/settings/pages/notifications/view.py:80
+#: zapzap/features/settings/pages/notifications/view.py:85
 msgid "Support reminders"
 msgstr "תזכורות תמיכה"
 
-#: zapzap/features/settings/pages/notifications/view.py:82
+#: zapzap/features/settings/pages/notifications/view.py:87
 msgid "Occasionally show messages supporting ZapZap's development."
 msgstr "הצג מדי פעם הודעות התומכות בפיתוח של ZapZap."
 
-#: zapzap/features/settings/pages/notifications/view.py:110
+#: zapzap/features/settings/pages/notifications/view.py:115
 msgid "Privacy presets"
 msgstr "הגדרות פרטיות מראש"
 
-#: zapzap/features/settings/pages/notifications/view.py:113
+#: zapzap/features/settings/pages/notifications/view.py:118
 msgid "Quickly choose which notification details are visible."
 msgstr "בחר במהירות אילו פרטי הודעה גלויים."
 
-#: zapzap/features/settings/pages/notifications/view.py:117
+#: zapzap/features/settings/pages/notifications/view.py:122
 msgid "Show everything"
 msgstr "הצג הכל"
 
-#: zapzap/features/settings/pages/notifications/view.py:120
+#: zapzap/features/settings/pages/notifications/view.py:125
 msgid "Hide content"
 msgstr "הסתר תוכן"
 
-#: zapzap/features/settings/pages/notifications/view.py:123
+#: zapzap/features/settings/pages/notifications/view.py:128
 msgid "Maximum privacy"
 msgstr "פרטיות מירבית"
 
@@ -2454,11 +2458,15 @@ msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:164
 msgid ""
-"Automatically honors an unambiguous DRI_PRIME selector on systems with multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when one GPU has no connected display.\n"
+"Automatically honors an unambiguous DRI_PRIME selector on systems with "
+"multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
+"one GPU has no connected display.\n"
 "\n"
-"Disable this only if the automatic workaround causes problems. Restart required."
+"Disable this only if the automatic workaround causes problems. Restart "
+"required."
 msgstr ""
-"מכבד באופן אוטומטי בורר DRI_PRIME חד משמעי במערכות עם מספר גרפי עיבוד של לינוקס.אחרת, מוסיף --disable-gpu-compositing כאשר ל-GPU אחד אין צג מחובר.\n"
+"מכבד באופן אוטומטי בורר DRI_PRIME חד משמעי במערכות עם מספר גרפי עיבוד של "
+"לינוקס.אחרת, מוסיף --disable-gpu-compositing כאשר ל-GPU אחד אין צג מחובר.\n"
 "\n"
 "השבת זאת רק אם הפתרון האוטומטי גורם לבעיות.נדרשת הפעלה מחדש."
 
@@ -2533,12 +2541,14 @@ msgstr ""
 #: zapzap/features/settings/pages/performance_experimental/controller.py:220
 msgid ""
 "Enables V8 predictable garbage collection schedule.\n"
-"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
 "\n"
 "Experimental option. Restart required."
 msgstr ""
 "מאפשר V8 לוח זמנים לאיסוף אשפה צפוי.\n"
-"זה מוסיף --js-flags=--predictable-gc-schedule ו--disable-gpu ל-QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"זה מוסיף --js-flags=--predictable-gc-schedule ו--disable-gpu "
+"ל-QTWEBENGINE_CHROMIUM_FLAGS.\n"
 "\n"
 "אפשרות נסיונית.נדרשת הפעלה מחדש."
 
@@ -2576,8 +2586,10 @@ msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:249
 msgid ""
-"Uses Selection.modify() with visual directions for Ctrl+Arrow word navigation.\n"
-"This fixes reversed cursor movement in RTL text inside WhatsApp Web message fields.\n"
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
+"navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
+"fields.\n"
 "\n"
 "Restart or reload WhatsApp Web after changing this option."
 msgstr ""
@@ -2801,11 +2813,9 @@ msgstr "User-Agent השתנה"
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:187
 msgid ""
-"Please restart this session (or the application) to apply the new User-"
-"Agent."
+"Please restart this session (or the application) to apply the new User-Agent."
 msgstr ""
-"אנא הפעל מחדש את ההפעלה הזו (או את האפליקציה) כדי להחיל את ה-User-Agent "
-"החדש."
+"אנא הפעל מחדש את ההפעלה הזו (או את האפליקציה) כדי להחיל את ה-User-Agent החדש."
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:196
 #: zapzap/features/settings/components/card_user/card_user_controller.py:239
@@ -2950,8 +2960,7 @@ msgstr "חשבון זה מושבת."
 
 #: zapzap/features/browser/shell/browser_controller.py:356
 msgid ""
-"You can reactivate it now or use the right-click menu to manage this "
-"account."
+"You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "אתה יכול להפעיל אותו מחדש עכשיו או להשתמש בתפריט לחיצה ימנית כדי לנהל חשבון "
 "זה."
@@ -3015,8 +3024,7 @@ msgid "DevTools - {}"
 msgstr "DevTools - {}"
 
 #: zapzap/features/browser/web/page_controller.py:198
-msgid ""
-"Please enter the phone number with country code (e.g., +5511999999999):"
+msgid "Please enter the phone number with country code (e.g., +5511999999999):"
 msgstr "אנא הזן את מספר הטלפון עם קוד המדינה (לדוגמה, +5511999999999):"
 
 #: zapzap/features/browser/web/page_controller.py:202
@@ -3183,18 +3191,18 @@ msgstr "Ctrl+M"
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:46
-#: zapzap/ui/main_window/main_window_controller.py:263
+#: zapzap/ui/main_window/client_side_rendering_controller.py:47
+#: zapzap/ui/main_window/main_window_controller.py:264
 msgid "Close ZapZap"
 msgstr "סגור את ZapZap"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:47
-#: zapzap/ui/main_window/main_window_controller.py:264
+#: zapzap/ui/main_window/client_side_rendering_controller.py:48
+#: zapzap/ui/main_window/main_window_controller.py:265
 msgid "Are you sure you want to close?"
 msgstr "האם אתה בטוח שאתה רוצה לסגור?"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:48
-#: zapzap/ui/main_window/main_window_controller.py:265
+#: zapzap/ui/main_window/client_side_rendering_controller.py:49
+#: zapzap/ui/main_window/main_window_controller.py:266
 msgid "Don't ask again"
 msgstr "אל תשאל שוב"
 

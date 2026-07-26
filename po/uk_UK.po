@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-25 13:29-0300\n"
-"PO-Revision-Date: 2026-07-25 21:10-0300\n"
+"POT-Creation-Date: 2026-07-26 11:48-0300\n"
+"PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 3.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -44,7 +45,8 @@ msgstr ""
 "\n"
 "{path}\n"
 "\n"
-"Будь ласка, надішліть цей файл до служби підтримки, щоб ми могли розслідувати проблему.\n"
+"Будь ласка, надішліть цей файл до служби підтримки, щоб ми могли "
+"розслідувати проблему.\n"
 "\n"
 "Канали для звітування:\n"
 " - Трекер проблем: {issue_url}\n"
@@ -182,10 +184,8 @@ msgid "Welcome to ZapZap"
 msgstr "Ласкаво просимо до ZapZap"
 
 #: zapzap/features/initial_setup/view.py:90
-msgid ""
-"Choose the essentials now. You can change everything later in Settings."
-msgstr ""
-"Виберіть основне зараз. Ви можете змінити все пізніше в Налаштуваннях."
+msgid "Choose the essentials now. You can change everything later in Settings."
+msgstr "Виберіть основне зараз. Ви можете змінити все пізніше в Налаштуваннях."
 
 #: zapzap/features/initial_setup/view.py:105
 msgid "Basics"
@@ -443,8 +443,8 @@ msgstr "Завантаження та набір тексту"
 
 #: zapzap/features/initial_setup/view.py:304
 msgid ""
-"Choose where files are saved and enable spell checking when dictionaries are"
-" available."
+"Choose where files are saved and enable spell checking when dictionaries are "
+"available."
 msgstr ""
 "Виберіть, куди зберігати файли, і увімкніть перевірку орфографії, коли "
 "словники доступні."
@@ -490,8 +490,7 @@ msgstr "Увімкнути перевірку правопису"
 #: zapzap/features/initial_setup/view.py:333
 #: zapzap/features/settings/pages/language_downloads/view.py:79
 msgid "Use Qt WebEngine spell checking with the selected dictionary."
-msgstr ""
-"Використовувати перевірку орфографії Qt WebEngine з обраним словником."
+msgstr "Використовувати перевірку орфографії Qt WebEngine з обраним словником."
 
 #: zapzap/features/initial_setup/view.py:336
 #: zapzap/features/settings/pages/language_downloads/view.py:82
@@ -505,11 +504,11 @@ msgstr "Розпізнає лише скомпільовані словники 
 
 #: zapzap/features/initial_setup/view.py:341
 msgid ""
-"No compiled dictionaries were found. You can configure dictionaries later in"
-" Settings."
+"No compiled dictionaries were found. You can configure dictionaries later in "
+"Settings."
 msgstr ""
-"Не знайдено скомпільованих словників. Ви можете налаштувати словники пізніше"
-" в Налаштуваннях."
+"Не знайдено скомпільованих словників. Ви можете налаштувати словники пізніше "
+"в Налаштуваннях."
 
 #: zapzap/features/initial_setup/view.py:356
 msgid "Essential permissions"
@@ -582,8 +581,8 @@ msgid ""
 "Grant filesystem access if downloads, imports, or dictionaries cannot reach "
 "folders outside the sandbox."
 msgstr ""
-"Надати доступ до файлової системи, якщо завантаження, імпорт або словники не"
-" можуть отримати доступ до папок поза песочницею."
+"Надати доступ до файлової системи, якщо завантаження, імпорт або словники не "
+"можуть отримати доступ до папок поза песочницею."
 
 #: zapzap/features/initial_setup/view.py:409
 #: zapzap/features/settings/pages/permissions/view.py:135
@@ -632,11 +631,11 @@ msgstr "Ви готові"
 
 #: zapzap/features/initial_setup/view.py:443
 msgid ""
-"ZapZap will save these preferences now. Advanced options remain available in"
-" Settings."
+"ZapZap will save these preferences now. Advanced options remain available in "
+"Settings."
 msgstr ""
-"ZapZap збереже ці налаштування зараз. Розширені опції залишаються доступними"
-" в Налаштуваннях."
+"ZapZap збереже ці налаштування зараз. Розширені опції залишаються доступними "
+"в Налаштуваннях."
 
 #: zapzap/features/initial_setup/view.py:447
 msgid "Finish setup"
@@ -648,9 +647,9 @@ msgstr "Перегляньте додаткові параметри пізні�
 
 #: zapzap/features/initial_setup/view.py:454
 msgid ""
-"You can revisit all choices from Settings at any time. Proxy, custom "
-"CSS/JavaScript, Flatpak permissions, and performance tweaks are still "
-"available there."
+"You can revisit all choices from Settings at any time. Proxy, custom CSS/"
+"JavaScript, Flatpak permissions, and performance tweaks are still available "
+"there."
 msgstr ""
 "Ви можете переглянути всі вибори в Налаштуваннях у будь-який час. Проксі, "
 "користувацькі CSS/JavaScript, дозволи Flatpak та оптимізація продуктивності "
@@ -960,8 +959,7 @@ msgstr "Копіювати системну інформацію"
 
 #: zapzap/features/settings/pages/about/view.py:325
 msgid ""
-"ZapZap is an independent project and is not affiliated with WhatsApp or "
-"Meta."
+"ZapZap is an independent project and is not affiliated with WhatsApp or Meta."
 msgstr "ZapZap є незалежним проектом і не пов’язаний з WhatsApp або Meta."
 
 #: zapzap/features/settings/pages/about/view.py:343
@@ -1003,8 +1001,7 @@ msgstr "Сесія"
 
 #: zapzap/features/settings/pages/about/controller.py:60
 #, python-brace-format
-msgid ""
-"ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
+msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
 msgstr ""
 "ZapZap є вільним програмним забезпеченням, ліцензованим за {license_id} "
 "(GPL-3.0-or-later)."
@@ -1339,8 +1336,7 @@ msgstr "Файл дубльовано: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:1015
 msgid "Customizations saved. Reload pages to apply changes."
-msgstr ""
-"Налаштування збережено. Перезавантажте сторінки для застосування змін."
+msgstr "Налаштування збережено. Перезавантажте сторінки для застосування змін."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:1027
 msgid "All pages reloaded."
@@ -1533,8 +1529,7 @@ msgstr "Вікна"
 
 #: zapzap/features/settings/pages/appearance/view.py:22
 msgid ""
-"Adjust interface chrome, theme, tray icon, grid view, and window "
-"decorations."
+"Adjust interface chrome, theme, tray icon, grid view, and window decorations."
 msgstr ""
 "Налаштувати інтерфейс, тему, значок у треї, режим сітки та оформлення вікон."
 
@@ -1643,8 +1638,7 @@ msgstr "Стиль кнопки"
 
 #: zapzap/features/settings/pages/appearance/view.py:144
 msgid "Visual style used by custom window buttons."
-msgstr ""
-"Візуальний стиль, який використовується для настраюваних кнопок вікна."
+msgstr "Візуальний стиль, який використовується для настраюваних кнопок вікна."
 
 #: zapzap/features/settings/pages/appearance/view.py:148
 msgid "Minimize"
@@ -1744,7 +1738,8 @@ msgid ""
 "\n"
 "The application will need to be restarted to complete the operation."
 msgstr ""
-"Усі користувацькі ZapZap налаштування будуть відновлені до значень за замовчуванням.\n"
+"Усі користувацькі ZapZap налаштування будуть відновлені до значень за "
+"замовчуванням.\n"
 "\n"
 "Для завершення операції потрібно буде перезапустити додаток."
 
@@ -1774,8 +1769,7 @@ msgstr "Повні деталі"
 #: zapzap/features/settings/pages/debugging/view.py:160
 msgid "Diagnostics, logs, runtime information, and maintenance tools."
 msgstr ""
-"Діагностика, журнали, інформація про виконання та інструменти "
-"обслуговування."
+"Діагностика, журнали, інформація про виконання та інструменти обслуговування."
 
 #: zapzap/features/settings/pages/debugging/view.py:174
 msgid "Diagnostics"
@@ -1844,8 +1838,7 @@ msgstr "Обслуговування"
 
 #: zapzap/features/settings/pages/debugging/view.py:296
 msgid ""
-"Restore ZapZap's default settings. The application will need to be "
-"restarted."
+"Restore ZapZap's default settings. The application will need to be restarted."
 msgstr ""
 "Відновити стандартні налаштування ZapZap. Необхідно буде перезапустити "
 "додаток."
@@ -2023,8 +2016,8 @@ msgid ""
 "The proxy settings for this scope will be removed and the default values "
 "will be restored."
 msgstr ""
-"Параметри проксі для цього обсягу буде видалено, а значення за замовчуванням"
-" відновлено."
+"Параметри проксі для цього обсягу буде видалено, а значення за замовчуванням "
+"відновлено."
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:331
 msgid "WebRTC protection will not be changed."
@@ -2134,7 +2127,7 @@ msgid "8080"
 msgstr "8080"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:255
-#: zapzap/features/settings/pages/notifications/view.py:108
+#: zapzap/features/settings/pages/notifications/view.py:113
 msgid "Privacy"
 msgstr "Конфіденційність"
 
@@ -2165,8 +2158,7 @@ msgstr "Виберіть, яка інформація може з’являти
 #: zapzap/features/settings/pages/notifications/view.py:41
 msgid "Show WhatsApp notifications using the desktop notification system."
 msgstr ""
-"Показувати сповіщення WhatsApp за допомогою системи сповіщень робочого "
-"столу."
+"Показувати сповіщення WhatsApp за допомогою системи сповіщень робочого столу."
 
 #: zapzap/features/settings/pages/notifications/view.py:47
 msgid "Contact photo"
@@ -2192,39 +2184,48 @@ msgstr "Попередній перегляд повідомлення"
 msgid "Show the content of the received message."
 msgstr "Показати вміст отриманого повідомлення."
 
-#: zapzap/features/settings/pages/notifications/view.py:75
+#: zapzap/features/settings/pages/notifications/view.py:59
+msgid "Notification sound"
+msgstr "Звук сповіщення"
+
+#: zapzap/features/settings/pages/notifications/view.py:60
+msgid "Let the desktop play its alert sound for new messages."
+msgstr ""
+"Дозволити робочому столу відтворювати звук сповіщення про нові повідомлення."
+
+#: zapzap/features/settings/pages/notifications/view.py:80
 msgid "ZapZap messages"
 msgstr "ZapZap повідомлення"
 
-#: zapzap/features/settings/pages/notifications/view.py:76
+#: zapzap/features/settings/pages/notifications/view.py:81
 msgid "Control occasional messages shown by the application itself."
 msgstr "Керуйте випадковими повідомленнями, що відображаються самим додатком."
 
-#: zapzap/features/settings/pages/notifications/view.py:80
+#: zapzap/features/settings/pages/notifications/view.py:85
 msgid "Support reminders"
 msgstr "Нагадування про підтримку"
 
-#: zapzap/features/settings/pages/notifications/view.py:82
+#: zapzap/features/settings/pages/notifications/view.py:87
 msgid "Occasionally show messages supporting ZapZap's development."
 msgstr "Час від часу показувати повідомлення на підтримку розвитку ZapZap."
 
-#: zapzap/features/settings/pages/notifications/view.py:110
+#: zapzap/features/settings/pages/notifications/view.py:115
 msgid "Privacy presets"
 msgstr "Попередньо встановлені налаштування конфіденційності"
 
-#: zapzap/features/settings/pages/notifications/view.py:113
+#: zapzap/features/settings/pages/notifications/view.py:118
 msgid "Quickly choose which notification details are visible."
 msgstr "Швидко оберіть, які деталі сповіщення будуть видимі."
 
-#: zapzap/features/settings/pages/notifications/view.py:117
+#: zapzap/features/settings/pages/notifications/view.py:122
 msgid "Show everything"
 msgstr "Показати все"
 
-#: zapzap/features/settings/pages/notifications/view.py:120
+#: zapzap/features/settings/pages/notifications/view.py:125
 msgid "Hide content"
 msgstr "Сховати вміст"
 
-#: zapzap/features/settings/pages/notifications/view.py:123
+#: zapzap/features/settings/pages/notifications/view.py:128
 msgid "Maximum privacy"
 msgstr "Максимальна конфіденційність"
 
@@ -2294,8 +2295,7 @@ msgstr "У процесі GPU"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:92
 msgid "May reduce memory usage, but can cause instability."
-msgstr ""
-"Може зменшити використання пам'яті, але може викликати нестабільність."
+msgstr "Може зменшити використання пам'яті, але може викликати нестабільність."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:95
 msgid "Disable GPU"
@@ -2313,8 +2313,7 @@ msgstr "Автоматичне багатомісне рішення для GPU"
 msgid ""
 "Honors DRI_PRIME or adjusts GPU compositing for a headless secondary GPU."
 msgstr ""
-"Поважає DRI_PRIME або налаштовує GPU композитинг для другого безголового "
-"GPU."
+"Поважає DRI_PRIME або налаштовує GPU композитинг для другого безголового GPU."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:105
 msgid "Disable GPU VSync"
@@ -2515,13 +2514,19 @@ msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:164
 msgid ""
-"Automatically honors an unambiguous DRI_PRIME selector on systems with multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when one GPU has no connected display.\n"
+"Automatically honors an unambiguous DRI_PRIME selector on systems with "
+"multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
+"one GPU has no connected display.\n"
 "\n"
-"Disable this only if the automatic workaround causes problems. Restart required."
+"Disable this only if the automatic workaround causes problems. Restart "
+"required."
 msgstr ""
-"Автоматично враховує однозначний селектор DRI_PRIME на системах з кількома рендер-ГПУ Linux. В іншому випадку додає --disable-gpu-compositing, коли у одного GPU немає підключеного дисплея.\n"
+"Автоматично враховує однозначний селектор DRI_PRIME на системах з кількома "
+"рендер-ГПУ Linux. В іншому випадку додає --disable-gpu-compositing, коли у "
+"одного GPU немає підключеного дисплея.\n"
 "\n"
-"Вимикайте це лише у разі, якщо автоматичне виправлення викликає проблеми. Потрібне перезавантаження."
+"Вимикайте це лише у разі, якщо автоматичне виправлення викликає проблеми. "
+"Потрібне перезавантаження."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:173
 msgid ""
@@ -2529,7 +2534,8 @@ msgid ""
 "May reduce latency, but can increase power usage and tearing."
 msgstr ""
 "Вимикає GPU VSync.\n"
-"Може зменшити затримку, але може збільшити споживання енергії та ривки зображення."
+"Може зменшити затримку, але може збільшити споживання енергії та ривки "
+"зображення."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:179
 msgid ""
@@ -2594,12 +2600,14 @@ msgstr ""
 #: zapzap/features/settings/pages/performance_experimental/controller.py:220
 msgid ""
 "Enables V8 predictable garbage collection schedule.\n"
-"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
 "\n"
 "Experimental option. Restart required."
 msgstr ""
 "Увімкнення передбачуваного розкладу збирання сміття V8.\n"
-"Це додає --js-flags=--predictable-gc-schedule та --disable-gpu до QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"Це додає --js-flags=--predictable-gc-schedule та --disable-gpu до "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
 "\n"
 "Експериментальна опція. Потрібно перезавантаження."
 
@@ -2637,13 +2645,17 @@ msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:249
 msgid ""
-"Uses Selection.modify() with visual directions for Ctrl+Arrow word navigation.\n"
-"This fixes reversed cursor movement in RTL text inside WhatsApp Web message fields.\n"
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
+"navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
+"fields.\n"
 "\n"
 "Restart or reload WhatsApp Web after changing this option."
 msgstr ""
-"Використовує Selection.modify() з візуальними напрямками для навігації по словах Ctrl+Arrow.\n"
-"Це виправляє зворотний рух курсора в тексті RTL всередині полів повідомлень WhatsApp Web.\n"
+"Використовує Selection.modify() з візуальними напрямками для навігації по "
+"словах Ctrl+Arrow.\n"
+"Це виправляє зворотний рух курсора в тексті RTL всередині полів повідомлень "
+"WhatsApp Web.\n"
 "\n"
 "Перезавантажте або перезавантажте WhatsApp Web після зміни цієї опції."
 
@@ -2661,8 +2673,7 @@ msgstr "Визначте, які дозволи можна надавати What
 
 #: zapzap/features/settings/pages/permissions/view.py:40
 msgid "Disabled permissions will continue to be requested when needed."
-msgstr ""
-"Вимкнені дозволи продовжуватимуть запитуватися, коли це буде потрібно."
+msgstr "Вимкнені дозволи продовжуватимуть запитуватися, коли це буде потрібно."
 
 #: zapzap/features/settings/pages/permissions/view.py:51
 msgid "Allow all"
@@ -2812,8 +2823,7 @@ msgstr "Використовувати бекенд Wayland, коли досту
 #: zapzap/features/settings/pages/system_startup/view.py:135
 msgid "Use the Wayland backend when available. Requires restart."
 msgstr ""
-"Використовуйте бекенд Wayland, коли він доступний. Потрібне "
-"перезавантаження."
+"Використовуйте бекенд Wayland, коли він доступний. Потрібне перезавантаження."
 
 #: zapzap/features/settings/pages/system_startup/view.py:139
 msgid "Requires restart"
@@ -2870,8 +2880,7 @@ msgstr "Користувацький агент змінено"
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:187
 msgid ""
-"Please restart this session (or the application) to apply the new User-"
-"Agent."
+"Please restart this session (or the application) to apply the new User-Agent."
 msgstr ""
 "Будь ласка, перезапустіть цю сесію (або застосунок), щоб застосувати новий "
 "User-Agent."
@@ -3024,11 +3033,10 @@ msgstr "Цей обліковий запис вимкнено."
 
 #: zapzap/features/browser/shell/browser_controller.py:356
 msgid ""
-"You can reactivate it now or use the right-click menu to manage this "
-"account."
+"You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
-"Ви можете повторно активувати його зараз або скористатися меню правої кнопки"
-" миші для керування цим обліковим записом."
+"Ви можете повторно активувати його зараз або скористатися меню правої кнопки "
+"миші для керування цим обліковим записом."
 
 #: zapzap/features/browser/shell/browser_controller.py:361
 msgid "Activate"
@@ -3089,8 +3097,7 @@ msgid "DevTools - {}"
 msgstr "Інструменти розробника - {}"
 
 #: zapzap/features/browser/web/page_controller.py:198
-msgid ""
-"Please enter the phone number with country code (e.g., +5511999999999):"
+msgid "Please enter the phone number with country code (e.g., +5511999999999):"
 msgstr ""
 "Будь ласка, введіть номер телефону з кодом країни (наприклад, "
 "+5511999999999):"
@@ -3261,18 +3268,18 @@ msgstr "Ctrl+M"
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:46
-#: zapzap/ui/main_window/main_window_controller.py:263
+#: zapzap/ui/main_window/client_side_rendering_controller.py:47
+#: zapzap/ui/main_window/main_window_controller.py:264
 msgid "Close ZapZap"
 msgstr "Закрити ZapZap"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:47
-#: zapzap/ui/main_window/main_window_controller.py:264
+#: zapzap/ui/main_window/client_side_rendering_controller.py:48
+#: zapzap/ui/main_window/main_window_controller.py:265
 msgid "Are you sure you want to close?"
 msgstr "Ви впевнені, що хочете закрити?"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:48
-#: zapzap/ui/main_window/main_window_controller.py:265
+#: zapzap/ui/main_window/client_side_rendering_controller.py:49
+#: zapzap/ui/main_window/main_window_controller.py:266
 msgid "Don't ask again"
 msgstr "Більше не запитувати"
 

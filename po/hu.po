@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-25 13:29-0300\n"
-"PO-Revision-Date: 2026-07-25 21:10-0300\n"
+"POT-Creation-Date: 2026-07-26 11:48-0300\n"
+"PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Hungarian\n"
 "Language: hu\n"
@@ -43,7 +43,8 @@ msgstr ""
 "\n"
 "{path}\n"
 "\n"
-"Kérjük, küldje el ezt a fájlt az ügyfélszolgálatnak, hogy kivizsgálhassuk a problémát.\n"
+"Kérjük, küldje el ezt a fájlt az ügyfélszolgálatnak, hogy kivizsgálhassuk a "
+"problémát.\n"
 "\n"
 "Csatornák jelentése:\n"
 "- Problémakövető: {issue_url}\n"
@@ -144,8 +145,8 @@ msgid ""
 "Your donation helps keep the project running, improve resources and "
 "guarantee your privacy and freedom."
 msgstr ""
-"Adománya segíti a projekt működését, javítja az erőforrásokat, és garantálja"
-" az Ön magánéletét és szabadságát."
+"Adománya segíti a projekt működését, javítja az erőforrásokat, és garantálja "
+"az Ön magánéletét és szabadságát."
 
 #: zapzap/features/donation/view.py:214
 msgid "❤ Make a donation"
@@ -181,8 +182,7 @@ msgid "Welcome to ZapZap"
 msgstr "Üdvözli a ZapZap"
 
 #: zapzap/features/initial_setup/view.py:90
-msgid ""
-"Choose the essentials now. You can change everything later in Settings."
+msgid "Choose the essentials now. You can change everything later in Settings."
 msgstr ""
 "Válassza most a legfontosabbakat.Később mindent módosíthat a Beállításokban."
 
@@ -364,8 +364,7 @@ msgstr "Panel ikon"
 
 #: zapzap/features/initial_setup/view.py:238
 msgid "Control tray icon visibility and unread counter."
-msgstr ""
-"A tálca ikonjának láthatóságát és az olvasatlan számlálót szabályozza."
+msgstr "A tálca ikonjának láthatóságát és az olvasatlan számlálót szabályozza."
 
 #: zapzap/features/initial_setup/view.py:243
 msgid "Enable tray icon"
@@ -443,8 +442,8 @@ msgstr "Letöltések és gépelés"
 
 #: zapzap/features/initial_setup/view.py:304
 msgid ""
-"Choose where files are saved and enable spell checking when dictionaries are"
-" available."
+"Choose where files are saved and enable spell checking when dictionaries are "
+"available."
 msgstr ""
 "Válassza ki a fájlok mentési helyét, és engedélyezze a helyesírás-"
 "ellenőrzést, ha szótárak állnak rendelkezésre."
@@ -508,8 +507,8 @@ msgstr "Csak a lefordított szótárakat ismeri fel (.bdic)."
 
 #: zapzap/features/initial_setup/view.py:341
 msgid ""
-"No compiled dictionaries were found. You can configure dictionaries later in"
-" Settings."
+"No compiled dictionaries were found. You can configure dictionaries later in "
+"Settings."
 msgstr ""
 "Nem található összeállított szótár.A szótárakat később a Beállításokban "
 "konfigurálhatja."
@@ -635,8 +634,8 @@ msgstr "készen állsz"
 
 #: zapzap/features/initial_setup/view.py:443
 msgid ""
-"ZapZap will save these preferences now. Advanced options remain available in"
-" Settings."
+"ZapZap will save these preferences now. Advanced options remain available in "
+"Settings."
 msgstr ""
 "A ZapZap most elmenti ezeket a beállításokat.A speciális beállítások "
 "továbbra is elérhetők a Beállításokban."
@@ -648,14 +647,13 @@ msgstr "Fejezze be a beállítást"
 #: zapzap/features/initial_setup/view.py:448
 msgid "Review advanced options later whenever you need them."
 msgstr ""
-"Tekintse át a speciális beállításokat később, amikor csak szüksége van "
-"rájuk."
+"Tekintse át a speciális beállításokat később, amikor csak szüksége van rájuk."
 
 #: zapzap/features/initial_setup/view.py:454
 msgid ""
-"You can revisit all choices from Settings at any time. Proxy, custom "
-"CSS/JavaScript, Flatpak permissions, and performance tweaks are still "
-"available there."
+"You can revisit all choices from Settings at any time. Proxy, custom CSS/"
+"JavaScript, Flatpak permissions, and performance tweaks are still available "
+"there."
 msgstr ""
 "A Beállításokban bármikor újra megtekintheti az összes lehetőséget.Proxy, "
 "egyéni CSS/JavaScript, Flatpak engedélyek és teljesítménybeli módosítások "
@@ -967,8 +965,7 @@ msgstr "Rendszerinformációk másolása"
 
 #: zapzap/features/settings/pages/about/view.py:325
 msgid ""
-"ZapZap is an independent project and is not affiliated with WhatsApp or "
-"Meta."
+"ZapZap is an independent project and is not affiliated with WhatsApp or Meta."
 msgstr ""
 "A ZapZap egy független projekt, és nem áll kapcsolatban a WhatsApp vagy a "
 "Metával."
@@ -1012,8 +1009,7 @@ msgstr "Munkamenet"
 
 #: zapzap/features/settings/pages/about/controller.py:60
 #, python-brace-format
-msgid ""
-"ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
+msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
 msgstr ""
 "A ZapZap egy ingyenes szoftver, amelynek licence a {license_id} (GPL-3.0 "
 "vagy újabb)."
@@ -1418,8 +1414,7 @@ msgstr "Alkalmazni"
 #: zapzap/features/settings/pages/advanced_customizations/view.py:209
 msgid "Account customizations can inherit or extend the global configuration."
 msgstr ""
-"A fiók testreszabása örökölheti vagy kiterjesztheti a globális "
-"konfigurációt."
+"A fiók testreszabása örökölheti vagy kiterjesztheti a globális konfigurációt."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:217
 msgid "Inherit global settings"
@@ -1543,8 +1538,7 @@ msgstr "Windows"
 
 #: zapzap/features/settings/pages/appearance/view.py:22
 msgid ""
-"Adjust interface chrome, theme, tray icon, grid view, and window "
-"decorations."
+"Adjust interface chrome, theme, tray icon, grid view, and window decorations."
 msgstr ""
 "Állítsa be a felület krómját, témáját, tálcaikonját, rácsnézetét és "
 "ablakdekorációit."
@@ -1586,8 +1580,7 @@ msgstr ""
 #: zapzap/features/settings/pages/appearance/view.py:82
 msgid "Control tray icon visibility, style, and unread counter."
 msgstr ""
-"Vezérelje a tálca ikonjának láthatóságát, stílusát és olvasatlan "
-"számlálóját."
+"Vezérelje a tálca ikonjának láthatóságát, stílusát és olvasatlan számlálóját."
 
 #: zapzap/features/settings/pages/appearance/view.py:86
 msgid "Show tray icon"
@@ -1856,8 +1849,7 @@ msgstr "Karbantartás"
 
 #: zapzap/features/settings/pages/debugging/view.py:296
 msgid ""
-"Restore ZapZap's default settings. The application will need to be "
-"restarted."
+"Restore ZapZap's default settings. The application will need to be restarted."
 msgstr ""
 "Állítsa vissza a(z) ZapZap alapértelmezett beállításait.Az alkalmazást újra "
 "kell indítani."
@@ -2149,7 +2141,7 @@ msgid "8080"
 msgstr "8080"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:255
-#: zapzap/features/settings/pages/notifications/view.py:108
+#: zapzap/features/settings/pages/notifications/view.py:113
 msgid "Privacy"
 msgstr "Adatvédelem"
 
@@ -2207,39 +2199,49 @@ msgstr "Üzenet előnézete"
 msgid "Show the content of the received message."
 msgstr "Mutassa meg a fogadott üzenet tartalmát."
 
-#: zapzap/features/settings/pages/notifications/view.py:75
+#: zapzap/features/settings/pages/notifications/view.py:59
+msgid "Notification sound"
+msgstr "Értesítési hang"
+
+#: zapzap/features/settings/pages/notifications/view.py:60
+msgid "Let the desktop play its alert sound for new messages."
+msgstr ""
+"Az asztali környezet játsszon le figyelmeztető hangot új üzenetek "
+"érkezésekor."
+
+#: zapzap/features/settings/pages/notifications/view.py:80
 msgid "ZapZap messages"
 msgstr "ZapZap üzenet"
 
-#: zapzap/features/settings/pages/notifications/view.py:76
+#: zapzap/features/settings/pages/notifications/view.py:81
 msgid "Control occasional messages shown by the application itself."
 msgstr "Az alkalmazás által megjelenített alkalmi üzenetek szabályozása."
 
-#: zapzap/features/settings/pages/notifications/view.py:80
+#: zapzap/features/settings/pages/notifications/view.py:85
 msgid "Support reminders"
 msgstr "Támogatási emlékeztetők"
 
-#: zapzap/features/settings/pages/notifications/view.py:82
+#: zapzap/features/settings/pages/notifications/view.py:87
 msgid "Occasionally show messages supporting ZapZap's development."
 msgstr "Időnként jelenítsen meg a ZapZap fejlesztését támogató üzeneteket."
 
-#: zapzap/features/settings/pages/notifications/view.py:110
+#: zapzap/features/settings/pages/notifications/view.py:115
 msgid "Privacy presets"
 msgstr "Előre beállított adatvédelmi beállítások"
 
-#: zapzap/features/settings/pages/notifications/view.py:113
+#: zapzap/features/settings/pages/notifications/view.py:118
 msgid "Quickly choose which notification details are visible."
 msgstr "Gyorsan kiválaszthatja, hogy mely értesítési adatok jelenjenek meg."
 
-#: zapzap/features/settings/pages/notifications/view.py:117
+#: zapzap/features/settings/pages/notifications/view.py:122
 msgid "Show everything"
 msgstr "Mutass meg mindent"
 
-#: zapzap/features/settings/pages/notifications/view.py:120
+#: zapzap/features/settings/pages/notifications/view.py:125
 msgid "Hide content"
 msgstr "Tartalom elrejtése"
 
-#: zapzap/features/settings/pages/notifications/view.py:123
+#: zapzap/features/settings/pages/notifications/view.py:128
 msgid "Maximum privacy"
 msgstr "Maximális magánélet"
 
@@ -2489,8 +2491,8 @@ msgstr "Teljesítmény alapértékeinek visszaállítása"
 #: zapzap/features/settings/pages/performance_experimental/view.py:237
 msgid "Restores all performance settings to safe default values."
 msgstr ""
-"Az összes teljesítménybeállítást visszaállítja a biztonságos alapértelmezett"
-" értékekre."
+"Az összes teljesítménybeállítást visszaállítja a biztonságos alapértelmezett "
+"értékekre."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:138
 msgid ""
@@ -2538,13 +2540,20 @@ msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:164
 msgid ""
-"Automatically honors an unambiguous DRI_PRIME selector on systems with multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when one GPU has no connected display.\n"
+"Automatically honors an unambiguous DRI_PRIME selector on systems with "
+"multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
+"one GPU has no connected display.\n"
 "\n"
-"Disable this only if the automatic workaround causes problems. Restart required."
+"Disable this only if the automatic workaround causes problems. Restart "
+"required."
 msgstr ""
-"Több Linux renderelő GPU-val rendelkező rendszereken automatikusan tiszteletben tartja az egyértelmű DRI_PRIME választót.Ellenkező esetben hozzáadja a --disable-gpu-compositing funkciót, ha az egyik GPU nem rendelkezik csatlakoztatott kijelzővel.\n"
+"Több Linux renderelő GPU-val rendelkező rendszereken automatikusan "
+"tiszteletben tartja az egyértelmű DRI_PRIME választót.Ellenkező esetben "
+"hozzáadja a --disable-gpu-compositing funkciót, ha az egyik GPU nem "
+"rendelkezik csatlakoztatott kijelzővel.\n"
 "\n"
-"Csak akkor kapcsolja ki, ha az automatikus megoldás problémákat okoz.Újraindítás szükséges."
+"Csak akkor kapcsolja ki, ha az automatikus megoldás problémákat "
+"okoz.Újraindítás szükséges."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:173
 msgid ""
@@ -2552,7 +2561,8 @@ msgid ""
 "May reduce latency, but can increase power usage and tearing."
 msgstr ""
 "Letiltja a GPU VSync funkciót.\n"
-"Csökkentheti a várakozási időt, de növelheti az energiafogyasztást és a szakadást."
+"Csökkentheti a várakozási időt, de növelheti az energiafogyasztást és a "
+"szakadást."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:179
 msgid ""
@@ -2578,7 +2588,8 @@ msgid ""
 "Known to fix typing lag or CPU spikes in QtWebEngine."
 msgstr ""
 "Letiltja az akadálymentesítési buszt.\n"
-"Ismert, hogy javítja a gépelési késést vagy a CPU-csúcsokat a következőben: QtWebEngine."
+"Ismert, hogy javítja a gépelési késést vagy a CPU-csúcsokat a következőben: "
+"QtWebEngine."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:198
 msgid ""
@@ -2617,12 +2628,14 @@ msgstr ""
 #: zapzap/features/settings/pages/performance_experimental/controller.py:220
 msgid ""
 "Enables V8 predictable garbage collection schedule.\n"
-"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
 "\n"
 "Experimental option. Restart required."
 msgstr ""
 "Lehetővé teszi a V8 kiszámítható szemétszállítási ütemezését.\n"
-"Ez hozzáadja a --js-flags=--predictable-gc-schedule és --disable-gpu-t a QTWEBENGINE_CHROMIUM_FLAGS-hoz.\n"
+"Ez hozzáadja a --js-flags=--predictable-gc-schedule és --disable-gpu-t a "
+"QTWEBENGINE_CHROMIUM_FLAGS-hoz.\n"
 "\n"
 "Kísérleti lehetőség.Újraindítás szükséges."
 
@@ -2639,8 +2652,10 @@ msgid ""
 "Allows background tabs to reduce resource usage.\n"
 "Disabling keeps timers active, but uses more resources."
 msgstr ""
-"Lehetővé teszi, hogy a háttérben lévő lapok csökkentsék az erőforrás-felhasználást.\n"
-"A letiltással az időzítők aktívak maradnak, de több erőforrást használnak fel."
+"Lehetővé teszi, hogy a háttérben lévő lapok csökkentsék az erőforrás-"
+"felhasználást.\n"
+"A letiltással az időzítők aktívak maradnak, de több erőforrást használnak "
+"fel."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:237
 msgid ""
@@ -2660,15 +2675,20 @@ msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:249
 msgid ""
-"Uses Selection.modify() with visual directions for Ctrl+Arrow word navigation.\n"
-"This fixes reversed cursor movement in RTL text inside WhatsApp Web message fields.\n"
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
+"navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
+"fields.\n"
 "\n"
 "Restart or reload WhatsApp Web after changing this option."
 msgstr ""
-"A Selection.modify() kifejezést használja vizuális útmutatásokkal a Ctrl+Arrow szónavigációhoz.\n"
-"Ez javítja a kurzor fordított mozgását a RTL szövegben a WhatsApp Web üzenetmezőkben.\n"
+"A Selection.modify() kifejezést használja vizuális útmutatásokkal a "
+"Ctrl+Arrow szónavigációhoz.\n"
+"Ez javítja a kurzor fordított mozgását a RTL szövegben a WhatsApp Web "
+"üzenetmezőkben.\n"
 "\n"
-"A beállítás módosítása után indítsa újra vagy töltse be újra a(z) WhatsApp Web elemet."
+"A beállítás módosítása után indítsa újra vagy töltse be újra a(z) WhatsApp "
+"Web elemet."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:255
 msgid ""
@@ -2837,8 +2857,7 @@ msgstr "Használja a Wayland háttérprogramot, ha elérhető."
 
 #: zapzap/features/settings/pages/system_startup/view.py:135
 msgid "Use the Wayland backend when available. Requires restart."
-msgstr ""
-"Használja a Wayland háttérprogramot, ha elérhető.Újraindítást igényel."
+msgstr "Használja a Wayland háttérprogramot, ha elérhető.Újraindítást igényel."
 
 #: zapzap/features/settings/pages/system_startup/view.py:139
 msgid "Requires restart"
@@ -2895,8 +2914,7 @@ msgstr "Felhasználói ügynök módosult"
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:187
 msgid ""
-"Please restart this session (or the application) to apply the new User-"
-"Agent."
+"Please restart this session (or the application) to apply the new User-Agent."
 msgstr ""
 "Kérjük, indítsa újra ezt a munkamenetet (vagy az alkalmazást) az új User-"
 "Agent alkalmazásához."
@@ -3045,8 +3063,7 @@ msgstr "Ez a fiók le van tiltva."
 
 #: zapzap/features/browser/shell/browser_controller.py:356
 msgid ""
-"You can reactivate it now or use the right-click menu to manage this "
-"account."
+"You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Most újraaktiválhatja, vagy a jobb gombbal kattintva kezelheti a fiókot."
 
@@ -3109,8 +3126,7 @@ msgid "DevTools - {}"
 msgstr "DevTools - {}"
 
 #: zapzap/features/browser/web/page_controller.py:198
-msgid ""
-"Please enter the phone number with country code (e.g., +5511999999999):"
+msgid "Please enter the phone number with country code (e.g., +5511999999999):"
 msgstr "Kérjük, adja meg a telefonszámot országkóddal (pl. +5511999999999):"
 
 #: zapzap/features/browser/web/page_controller.py:202
@@ -3279,18 +3295,18 @@ msgstr "Ctrl+M"
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:46
-#: zapzap/ui/main_window/main_window_controller.py:263
+#: zapzap/ui/main_window/client_side_rendering_controller.py:47
+#: zapzap/ui/main_window/main_window_controller.py:264
 msgid "Close ZapZap"
 msgstr "Bezárás ZapZap"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:47
-#: zapzap/ui/main_window/main_window_controller.py:264
+#: zapzap/ui/main_window/client_side_rendering_controller.py:48
+#: zapzap/ui/main_window/main_window_controller.py:265
 msgid "Are you sure you want to close?"
 msgstr "Biztosan bezárja?"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:48
-#: zapzap/ui/main_window/main_window_controller.py:265
+#: zapzap/ui/main_window/client_side_rendering_controller.py:49
+#: zapzap/ui/main_window/main_window_controller.py:266
 msgid "Don't ask again"
 msgstr "Ne kérdezd újra"
 

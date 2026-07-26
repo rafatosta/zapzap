@@ -8,15 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-25 13:29-0300\n"
-"PO-Revision-Date: 2026-07-25 21:10-0300\n"
+"POT-Creation-Date: 2026-07-26 11:48-0300\n"
+"PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Arabic\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=(n == 0 ? 0 : n == 1 ? 1 : n == 2 ? 2 : n % 100 >= 3 && n % 100 <= 10 ? 3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5);\n"
+"Plural-Forms: nplurals=6; plural=(n == 0 ? 0 : n == 1 ? 1 : n == 2 ? 2 : n % "
+"100 >= 3 && n % 100 <= 10 ? 3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5);\n"
 "X-Generator: Gtranslator 49.0\n"
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:27
@@ -180,8 +181,7 @@ msgid "Welcome to ZapZap"
 msgstr "مرحبًا بك في ZapZap"
 
 #: zapzap/features/initial_setup/view.py:90
-msgid ""
-"Choose the essentials now. You can change everything later in Settings."
+msgid "Choose the essentials now. You can change everything later in Settings."
 msgstr "اختر الأساسيات الآن.يمكنك تغيير كل شيء لاحقًا في الإعدادات."
 
 #: zapzap/features/initial_setup/view.py:105
@@ -430,8 +430,8 @@ msgstr "التنزيلات والكتابة"
 
 #: zapzap/features/initial_setup/view.py:304
 msgid ""
-"Choose where files are saved and enable spell checking when dictionaries are"
-" available."
+"Choose where files are saved and enable spell checking when dictionaries are "
+"available."
 msgstr "اختر مكان حفظ الملفات وقم بتمكين التدقيق الإملائي عند توفر القواميس."
 
 #: zapzap/features/initial_setup/view.py:308
@@ -489,8 +489,8 @@ msgstr "يتعرف فقط على القواميس المجمعة (.bdic)."
 
 #: zapzap/features/initial_setup/view.py:341
 msgid ""
-"No compiled dictionaries were found. You can configure dictionaries later in"
-" Settings."
+"No compiled dictionaries were found. You can configure dictionaries later in "
+"Settings."
 msgstr ""
 "لم يتم العثور على قواميس مجمعة.يمكنك تكوين القواميس لاحقًا في الإعدادات."
 
@@ -609,8 +609,8 @@ msgstr "أنت جاهز"
 
 #: zapzap/features/initial_setup/view.py:443
 msgid ""
-"ZapZap will save these preferences now. Advanced options remain available in"
-" Settings."
+"ZapZap will save these preferences now. Advanced options remain available in "
+"Settings."
 msgstr ""
 "سيقوم ZapZap بحفظ هذه التفضيلات الآن.تظل الخيارات المتقدمة متاحة في "
 "الإعدادات."
@@ -625,12 +625,12 @@ msgstr "قم بمراجعة الخيارات المتقدمة لاحقًا عن�
 
 #: zapzap/features/initial_setup/view.py:454
 msgid ""
-"You can revisit all choices from Settings at any time. Proxy, custom "
-"CSS/JavaScript, Flatpak permissions, and performance tweaks are still "
-"available there."
+"You can revisit all choices from Settings at any time. Proxy, custom CSS/"
+"JavaScript, Flatpak permissions, and performance tweaks are still available "
+"there."
 msgstr ""
-"يمكنك إعادة النظر في جميع الاختيارات من الإعدادات في أي وقت.الوكيل والأذونات"
-" المخصصة CSS/JavaScript وFlatpak وتعديلات الأداء لا تزال متاحة هناك."
+"يمكنك إعادة النظر في جميع الاختيارات من الإعدادات في أي وقت.الوكيل والأذونات "
+"المخصصة CSS/JavaScript وFlatpak وتعديلات الأداء لا تزال متاحة هناك."
 
 #: zapzap/features/notifications/notification_service.py:115
 msgid "New message..."
@@ -936,8 +936,7 @@ msgstr "نسخ معلومات النظام"
 
 #: zapzap/features/settings/pages/about/view.py:325
 msgid ""
-"ZapZap is an independent project and is not affiliated with WhatsApp or "
-"Meta."
+"ZapZap is an independent project and is not affiliated with WhatsApp or Meta."
 msgstr "ZapZap هو مشروع مستقل وغير تابع لـ WhatsApp أو Meta."
 
 #: zapzap/features/settings/pages/about/view.py:343
@@ -979,8 +978,7 @@ msgstr "جلسة"
 
 #: zapzap/features/settings/pages/about/controller.py:60
 #, python-brace-format
-msgid ""
-"ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
+msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
 msgstr "ZapZap هو برنامج مجاني مرخص بموجب {license_id} (GPL-3.0 أو الأحدث)."
 
 #: zapzap/features/settings/pages/about/controller.py:70
@@ -989,8 +987,8 @@ msgid ""
 "Created and maintained by {author}. Thanks to everyone who contributes "
 "translations, code, testing, and feedback."
 msgstr ""
-"تم الإنشاء والصيانة بواسطة {author}.شكرًا لكل من ساهم في الترجمات والتعليمات"
-" البرمجية والاختبارات والتعليقات."
+"تم الإنشاء والصيانة بواسطة {author}.شكرًا لكل من ساهم في الترجمات والتعليمات "
+"البرمجية والاختبارات والتعليقات."
 
 #: zapzap/features/settings/pages/accounts/view.py:18
 msgid "Manage your accounts and individual preferences."
@@ -1498,8 +1496,7 @@ msgstr "ويندوز"
 
 #: zapzap/features/settings/pages/appearance/view.py:22
 msgid ""
-"Adjust interface chrome, theme, tray icon, grid view, and window "
-"decorations."
+"Adjust interface chrome, theme, tray icon, grid view, and window decorations."
 msgstr "اضبط واجهة الكروم والموضوع وأيقونة الدرج وعرض الشبكة وزخارف النوافذ."
 
 #: zapzap/features/settings/pages/appearance/view.py:37
@@ -1807,8 +1804,7 @@ msgstr "الصيانة"
 
 #: zapzap/features/settings/pages/debugging/view.py:296
 msgid ""
-"Restore ZapZap's default settings. The application will need to be "
-"restarted."
+"Restore ZapZap's default settings. The application will need to be restarted."
 msgstr "استعادة الإعدادات الافتراضية لـ ZapZap.سيلزم إعادة تشغيل التطبيق."
 
 #: zapzap/features/settings/pages/debugging/view.py:299
@@ -2092,7 +2088,7 @@ msgid "8080"
 msgstr "8080"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:255
-#: zapzap/features/settings/pages/notifications/view.py:108
+#: zapzap/features/settings/pages/notifications/view.py:113
 msgid "Privacy"
 msgstr "الخصوصية"
 
@@ -2148,39 +2144,47 @@ msgstr "معاينة الرسالة"
 msgid "Show the content of the received message."
 msgstr "إظهار محتوى الرسالة المستلمة."
 
-#: zapzap/features/settings/pages/notifications/view.py:75
+#: zapzap/features/settings/pages/notifications/view.py:59
+msgid "Notification sound"
+msgstr "صوت الإشعار"
+
+#: zapzap/features/settings/pages/notifications/view.py:60
+msgid "Let the desktop play its alert sound for new messages."
+msgstr "السماح لسطح المكتب بتشغيل صوت التنبيه عند وصول رسائل جديدة."
+
+#: zapzap/features/settings/pages/notifications/view.py:80
 msgid "ZapZap messages"
 msgstr "رسائل ZapZap."
 
-#: zapzap/features/settings/pages/notifications/view.py:76
+#: zapzap/features/settings/pages/notifications/view.py:81
 msgid "Control occasional messages shown by the application itself."
 msgstr "التحكم في الرسائل العرضية التي يظهرها التطبيق نفسه."
 
-#: zapzap/features/settings/pages/notifications/view.py:80
+#: zapzap/features/settings/pages/notifications/view.py:85
 msgid "Support reminders"
 msgstr "تذكيرات الدعم"
 
-#: zapzap/features/settings/pages/notifications/view.py:82
+#: zapzap/features/settings/pages/notifications/view.py:87
 msgid "Occasionally show messages supporting ZapZap's development."
 msgstr "أحيانًا تظهر رسائل تدعم تطوير ZapZap."
 
-#: zapzap/features/settings/pages/notifications/view.py:110
+#: zapzap/features/settings/pages/notifications/view.py:115
 msgid "Privacy presets"
 msgstr "إعدادات الخصوصية المسبقة"
 
-#: zapzap/features/settings/pages/notifications/view.py:113
+#: zapzap/features/settings/pages/notifications/view.py:118
 msgid "Quickly choose which notification details are visible."
 msgstr "اختر بسرعة تفاصيل الإشعارات المرئية."
 
-#: zapzap/features/settings/pages/notifications/view.py:117
+#: zapzap/features/settings/pages/notifications/view.py:122
 msgid "Show everything"
 msgstr "عرض كل شيء"
 
-#: zapzap/features/settings/pages/notifications/view.py:120
+#: zapzap/features/settings/pages/notifications/view.py:125
 msgid "Hide content"
 msgstr "إخفاء المحتوى"
 
-#: zapzap/features/settings/pages/notifications/view.py:123
+#: zapzap/features/settings/pages/notifications/view.py:128
 msgid "Maximum privacy"
 msgstr "أقصى قدر من الخصوصية"
 
@@ -2400,8 +2404,8 @@ msgid ""
 "Use visual word navigation in editable fields to fix RTL text cursor "
 "movement."
 msgstr ""
-"استخدم التنقل المرئي للكلمات في الحقول القابلة للتحرير لإصلاح حركة مؤشر النص"
-" RTL."
+"استخدم التنقل المرئي للكلمات في الحقول القابلة للتحرير لإصلاح حركة مؤشر النص "
+"RTL."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:231
 msgid "Restore defaults"
@@ -2465,13 +2469,19 @@ msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:164
 msgid ""
-"Automatically honors an unambiguous DRI_PRIME selector on systems with multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when one GPU has no connected display.\n"
+"Automatically honors an unambiguous DRI_PRIME selector on systems with "
+"multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
+"one GPU has no connected display.\n"
 "\n"
-"Disable this only if the automatic workaround causes problems. Restart required."
+"Disable this only if the automatic workaround causes problems. Restart "
+"required."
 msgstr ""
-"يكرّم تلقائيًا محدد DRI_PRIME الذي لا لبس فيه على الأنظمة التي تحتوي على وحدات معالجة رسومات Linux متعددة.بخلاف ذلك، تتم إضافة --disable-gpu-compositing عندما لا يكون لدى GPU شاشة متصلة.\n"
+"يكرّم تلقائيًا محدد DRI_PRIME الذي لا لبس فيه على الأنظمة التي تحتوي على وحدات "
+"معالجة رسومات Linux متعددة.بخلاف ذلك، تتم إضافة --disable-gpu-compositing "
+"عندما لا يكون لدى GPU شاشة متصلة.\n"
 "\n"
-"قم بتعطيل هذا فقط إذا تسبب الحل البديل التلقائي في حدوث مشكلات.إعادة التشغيل مطلوبة."
+"قم بتعطيل هذا فقط إذا تسبب الحل البديل التلقائي في حدوث مشكلات.إعادة التشغيل "
+"مطلوبة."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:173
 msgid ""
@@ -2544,12 +2554,14 @@ msgstr ""
 #: zapzap/features/settings/pages/performance_experimental/controller.py:220
 msgid ""
 "Enables V8 predictable garbage collection schedule.\n"
-"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
 "\n"
 "Experimental option. Restart required."
 msgstr ""
 "تمكين جدول تجميع البيانات المهملة V8 الذي يمكن التنبؤ به.\n"
-"يؤدي ذلك إلى إضافة --js-flags=--predictable-gc-schedule و--disable-gpu إلى QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"يؤدي ذلك إلى إضافة --js-flags=--predictable-gc-schedule و--disable-gpu إلى "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
 "\n"
 "الخيار التجريبي.إعادة التشغيل مطلوبة."
 
@@ -2587,13 +2599,17 @@ msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:249
 msgid ""
-"Uses Selection.modify() with visual directions for Ctrl+Arrow word navigation.\n"
-"This fixes reversed cursor movement in RTL text inside WhatsApp Web message fields.\n"
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
+"navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
+"fields.\n"
 "\n"
 "Restart or reload WhatsApp Web after changing this option."
 msgstr ""
-"يستخدم Selection.modify() مع التوجيهات المرئية للتنقل بين الكلمات Ctrl+Arrow.\n"
-"يؤدي هذا إلى إصلاح حركة المؤشر المعكوسة في النص RTL داخل حقول الرسائل WhatsApp Web.\n"
+"يستخدم Selection.modify() مع التوجيهات المرئية للتنقل بين الكلمات "
+"Ctrl+Arrow.\n"
+"يؤدي هذا إلى إصلاح حركة المؤشر المعكوسة في النص RTL داخل حقول الرسائل "
+"WhatsApp Web.\n"
 "\n"
 "أعد تشغيل أو إعادة تحميل WhatsApp Web بعد تغيير هذا الخيار."
 
@@ -2812,8 +2828,7 @@ msgstr "تم تغيير وكيل المستخدم"
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:187
 msgid ""
-"Please restart this session (or the application) to apply the new User-"
-"Agent."
+"Please restart this session (or the application) to apply the new User-Agent."
 msgstr "يرجى إعادة تشغيل هذه الجلسة (أو التطبيق) لتطبيق وكيل المستخدم الجديد."
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:196
@@ -2959,8 +2974,7 @@ msgstr "هذا الحساب معطل."
 
 #: zapzap/features/browser/shell/browser_controller.py:356
 msgid ""
-"You can reactivate it now or use the right-click menu to manage this "
-"account."
+"You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "يمكنك إعادة تنشيطه الآن أو استخدام قائمة النقر بزر الماوس الأيمن لإدارة هذا "
 "الحساب."
@@ -3024,8 +3038,7 @@ msgid "DevTools - {}"
 msgstr "أدوات التطوير - {}"
 
 #: zapzap/features/browser/web/page_controller.py:198
-msgid ""
-"Please enter the phone number with country code (e.g., +5511999999999):"
+msgid "Please enter the phone number with country code (e.g., +5511999999999):"
 msgstr "رجاءًا ادخل رقم الهاتف مع رمز البلد (مثال: +201111111111)"
 
 #: zapzap/features/browser/web/page_controller.py:202
@@ -3192,18 +3205,18 @@ msgstr "Ctrl+M"
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:46
-#: zapzap/ui/main_window/main_window_controller.py:263
+#: zapzap/ui/main_window/client_side_rendering_controller.py:47
+#: zapzap/ui/main_window/main_window_controller.py:264
 msgid "Close ZapZap"
 msgstr "إغلاق ZapZap"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:47
-#: zapzap/ui/main_window/main_window_controller.py:264
+#: zapzap/ui/main_window/client_side_rendering_controller.py:48
+#: zapzap/ui/main_window/main_window_controller.py:265
 msgid "Are you sure you want to close?"
 msgstr "هل أنت متأكد أنك تريد الإغلاق؟"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:48
-#: zapzap/ui/main_window/main_window_controller.py:265
+#: zapzap/ui/main_window/client_side_rendering_controller.py:49
+#: zapzap/ui/main_window/main_window_controller.py:266
 msgid "Don't ask again"
 msgstr "لا تسأل مرة أخرى"
 

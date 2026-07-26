@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-25 13:29-0300\n"
-"PO-Revision-Date: 2026-07-25 21:10-0300\n"
+"POT-Creation-Date: 2026-07-26 11:48-0300\n"
+"PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Swedish\n"
 "Language: sv\n"
@@ -184,8 +184,7 @@ msgid "Welcome to ZapZap"
 msgstr "Välkommen till ZapZap"
 
 #: zapzap/features/initial_setup/view.py:90
-msgid ""
-"Choose the essentials now. You can change everything later in Settings."
+msgid "Choose the essentials now. You can change everything later in Settings."
 msgstr "Välj det viktigaste nu. Du kan ändra allt senare i Inställningar."
 
 #: zapzap/features/initial_setup/view.py:105
@@ -440,8 +439,8 @@ msgstr "Nedladdningar och skrivning"
 
 #: zapzap/features/initial_setup/view.py:304
 msgid ""
-"Choose where files are saved and enable spell checking when dictionaries are"
-" available."
+"Choose where files are saved and enable spell checking when dictionaries are "
+"available."
 msgstr ""
 "Välj var filer sparas och aktivera stavningskontroll när ordlistor är "
 "tillgängliga."
@@ -501,8 +500,8 @@ msgstr "Känner bara igen kompilerade ordböcker (.bdic)."
 
 #: zapzap/features/initial_setup/view.py:341
 msgid ""
-"No compiled dictionaries were found. You can configure dictionaries later in"
-" Settings."
+"No compiled dictionaries were found. You can configure dictionaries later in "
+"Settings."
 msgstr ""
 "Inga kompilerade ordböcker hittades. Du kan konfigurera ordböcker senare "
 "under Inställningar."
@@ -626,8 +625,8 @@ msgstr "Du är redo"
 
 #: zapzap/features/initial_setup/view.py:443
 msgid ""
-"ZapZap will save these preferences now. Advanced options remain available in"
-" Settings."
+"ZapZap will save these preferences now. Advanced options remain available in "
+"Settings."
 msgstr ""
 "ZapZap kommer att spara dessa inställningar nu. Avancerade alternativ finns "
 "kvar i Inställningar."
@@ -642,13 +641,13 @@ msgstr "Granska avancerade alternativ senare när du behöver dem."
 
 #: zapzap/features/initial_setup/view.py:454
 msgid ""
-"You can revisit all choices from Settings at any time. Proxy, custom "
-"CSS/JavaScript, Flatpak permissions, and performance tweaks are still "
-"available there."
+"You can revisit all choices from Settings at any time. Proxy, custom CSS/"
+"JavaScript, Flatpak permissions, and performance tweaks are still available "
+"there."
 msgstr ""
-"Du kan återbesöka alla val från Inställningar när som helst. Proxy, anpassad"
-" CSS/JavaScript, Flatpak-behörigheter och prestandajusteringar är "
-"fortfarande tillgängliga där."
+"Du kan återbesöka alla val från Inställningar när som helst. Proxy, anpassad "
+"CSS/JavaScript, Flatpak-behörigheter och prestandajusteringar är fortfarande "
+"tillgängliga där."
 
 #: zapzap/features/notifications/notification_service.py:115
 msgid "New message..."
@@ -956,11 +955,10 @@ msgstr "Kopiera systeminformation"
 
 #: zapzap/features/settings/pages/about/view.py:325
 msgid ""
-"ZapZap is an independent project and is not affiliated with WhatsApp or "
-"Meta."
+"ZapZap is an independent project and is not affiliated with WhatsApp or Meta."
 msgstr ""
-"ZapZap är ett självständigt projekt och är inte anslutet till WhatsApp eller"
-" Meta."
+"ZapZap är ett självständigt projekt och är inte anslutet till WhatsApp eller "
+"Meta."
 
 #: zapzap/features/settings/pages/about/view.py:343
 msgid "Information copied"
@@ -1001,8 +999,7 @@ msgstr "Session"
 
 #: zapzap/features/settings/pages/about/controller.py:60
 #, python-brace-format
-msgid ""
-"ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
+msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
 msgstr ""
 "ZapZap är fri programvara licensierad under {license_id} (GPL-3.0-or-later)."
 
@@ -1474,8 +1471,8 @@ msgid ""
 "⚠ Custom scripts have full access to page content. Use code only from "
 "trusted sources."
 msgstr ""
-"⚠ Anpassade skript har full tillgång till sidans innehåll. Använd endast kod"
-" från betrodda källor."
+"⚠ Anpassade skript har full tillgång till sidans innehåll. Använd endast kod "
+"från betrodda källor."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:398
 msgid "No JavaScript files"
@@ -1527,8 +1524,7 @@ msgstr "Fönster"
 
 #: zapzap/features/settings/pages/appearance/view.py:22
 msgid ""
-"Adjust interface chrome, theme, tray icon, grid view, and window "
-"decorations."
+"Adjust interface chrome, theme, tray icon, grid view, and window decorations."
 msgstr ""
 "Justera gränssnittsdesign, tema, systemfacksikon, rutnätvy och "
 "fönstersdekorationer."
@@ -1735,7 +1731,8 @@ msgid ""
 "\n"
 "The application will need to be restarted to complete the operation."
 msgstr ""
-"Alla anpassade ZapZap-inställningar kommer att återställas till sina standardvärden.\n"
+"Alla anpassade ZapZap-inställningar kommer att återställas till sina "
+"standardvärden.\n"
 "\n"
 "Programmet måste startas om för att slutföra åtgärden."
 
@@ -1833,8 +1830,7 @@ msgstr "Underhåll"
 
 #: zapzap/features/settings/pages/debugging/view.py:296
 msgid ""
-"Restore ZapZap's default settings. The application will need to be "
-"restarted."
+"Restore ZapZap's default settings. The application will need to be restarted."
 msgstr ""
 "Återställ ZapZap:s standardinställningar. Applikationen måste startas om."
 
@@ -1992,8 +1988,7 @@ msgstr "Verkställ ändringar innan du ändrar omfattning?"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:278
 msgid "You can apply or discard the changes made to this scope."
-msgstr ""
-"Du kan tillämpa eller avvisa de ändringar som gjorts för detta omfång."
+msgstr "Du kan tillämpa eller avvisa de ändringar som gjorts för detta omfång."
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:282
 #: zapzap/features/settings/pages/network_privacy/view.py:111
@@ -2056,8 +2051,8 @@ msgstr "Välj var dessa inställningar ska tillämpas."
 #: zapzap/features/settings/pages/network_privacy/view.py:173
 msgid "Settings for this account override the all-accounts default."
 msgstr ""
-"Inställningarna för detta konto åsidosätter standardinställningarna för alla"
-" konton."
+"Inställningarna för detta konto åsidosätter standardinställningarna för alla "
+"konton."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:188
 msgid "Proxy"
@@ -2121,7 +2116,7 @@ msgid "8080"
 msgstr "8080"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:255
-#: zapzap/features/settings/pages/notifications/view.py:108
+#: zapzap/features/settings/pages/notifications/view.py:113
 msgid "Privacy"
 msgstr "Integritet"
 
@@ -2177,40 +2172,47 @@ msgstr "Meddelandeförhandsvisning"
 msgid "Show the content of the received message."
 msgstr "Visa innehållet i det mottagna meddelandet."
 
-#: zapzap/features/settings/pages/notifications/view.py:75
+#: zapzap/features/settings/pages/notifications/view.py:59
+msgid "Notification sound"
+msgstr "Aviseringsljud"
+
+#: zapzap/features/settings/pages/notifications/view.py:60
+msgid "Let the desktop play its alert sound for new messages."
+msgstr "Låt skrivbordet spela upp ett aviseringsljud för nya meddelanden."
+
+#: zapzap/features/settings/pages/notifications/view.py:80
 msgid "ZapZap messages"
 msgstr "ZapZap meddelanden"
 
-#: zapzap/features/settings/pages/notifications/view.py:76
+#: zapzap/features/settings/pages/notifications/view.py:81
 msgid "Control occasional messages shown by the application itself."
-msgstr ""
-"Kontrollera tillfälliga meddelanden som visas av själva applikationen."
+msgstr "Kontrollera tillfälliga meddelanden som visas av själva applikationen."
 
-#: zapzap/features/settings/pages/notifications/view.py:80
+#: zapzap/features/settings/pages/notifications/view.py:85
 msgid "Support reminders"
 msgstr "Påminnelser om stöd"
 
-#: zapzap/features/settings/pages/notifications/view.py:82
+#: zapzap/features/settings/pages/notifications/view.py:87
 msgid "Occasionally show messages supporting ZapZap's development."
 msgstr "Visa ibland meddelanden som stödjer ZapZap's utveckling."
 
-#: zapzap/features/settings/pages/notifications/view.py:110
+#: zapzap/features/settings/pages/notifications/view.py:115
 msgid "Privacy presets"
 msgstr "Integritetsinställningar"
 
-#: zapzap/features/settings/pages/notifications/view.py:113
+#: zapzap/features/settings/pages/notifications/view.py:118
 msgid "Quickly choose which notification details are visible."
 msgstr "Välj snabbt vilka notifieringsdetaljer som är synliga."
 
-#: zapzap/features/settings/pages/notifications/view.py:117
+#: zapzap/features/settings/pages/notifications/view.py:122
 msgid "Show everything"
 msgstr "Visa allt"
 
-#: zapzap/features/settings/pages/notifications/view.py:120
+#: zapzap/features/settings/pages/notifications/view.py:125
 msgid "Hide content"
 msgstr "Dölj innehåll"
 
-#: zapzap/features/settings/pages/notifications/view.py:123
+#: zapzap/features/settings/pages/notifications/view.py:128
 msgid "Maximum privacy"
 msgstr "Maximal sekretess"
 
@@ -2289,8 +2291,7 @@ msgstr "Inaktivera GPU"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:96
 msgid "Recommended only for old GPUs or problematic drivers."
-msgstr ""
-"Rekommenderas endast för gamla GPU:er eller problematiska drivrutiner."
+msgstr "Rekommenderas endast för gamla GPU:er eller problematiska drivrutiner."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:99
 msgid "Automatic multi-GPU workaround"
@@ -2300,8 +2301,8 @@ msgstr "Automatiskt flermedels-GPU-lösning"
 msgid ""
 "Honors DRI_PRIME or adjusts GPU compositing for a headless secondary GPU."
 msgstr ""
-"Hederar DRI_PRIME eller justerar GPU sammansättning för en huvudlös sekundär"
-" GPU."
+"Hederar DRI_PRIME eller justerar GPU sammansättning för en huvudlös sekundär "
+"GPU."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:105
 msgid "Disable GPU VSync"
@@ -2497,13 +2498,19 @@ msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:164
 msgid ""
-"Automatically honors an unambiguous DRI_PRIME selector on systems with multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when one GPU has no connected display.\n"
+"Automatically honors an unambiguous DRI_PRIME selector on systems with "
+"multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
+"one GPU has no connected display.\n"
 "\n"
-"Disable this only if the automatic workaround causes problems. Restart required."
+"Disable this only if the automatic workaround causes problems. Restart "
+"required."
 msgstr ""
-"Automatiskt hedrar en entydig DRI_PRIME-väljare på system med flera Linux-render-GPU:er. Annars läggs --disable-gpu-compositing till när en GPU inte har någon ansluten skärm.\n"
+"Automatiskt hedrar en entydig DRI_PRIME-väljare på system med flera Linux-"
+"render-GPU:er. Annars läggs --disable-gpu-compositing till när en GPU inte "
+"har någon ansluten skärm.\n"
 "\n"
-"Inaktivera detta endast om den automatiska lösningen orsakar problem. Omstart krävs."
+"Inaktivera detta endast om den automatiska lösningen orsakar problem. "
+"Omstart krävs."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:173
 msgid ""
@@ -2576,12 +2583,14 @@ msgstr ""
 #: zapzap/features/settings/pages/performance_experimental/controller.py:220
 msgid ""
 "Enables V8 predictable garbage collection schedule.\n"
-"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
 "\n"
 "Experimental option. Restart required."
 msgstr ""
 "Aktiverar V8:s förutsägbara skräpsamlingsschema.\n"
-"Detta lägger till --js-flags=--predictable-gc-schedule och --disable-gpu till QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"Detta lägger till --js-flags=--predictable-gc-schedule och --disable-gpu "
+"till QTWEBENGINE_CHROMIUM_FLAGS.\n"
 "\n"
 "Experimentellt alternativ. Omstart krävs."
 
@@ -2619,13 +2628,17 @@ msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:249
 msgid ""
-"Uses Selection.modify() with visual directions for Ctrl+Arrow word navigation.\n"
-"This fixes reversed cursor movement in RTL text inside WhatsApp Web message fields.\n"
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
+"navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
+"fields.\n"
 "\n"
 "Restart or reload WhatsApp Web after changing this option."
 msgstr ""
-"Använder Selection.modify() med visuella riktningar för Ctrl+Arrow ordnavigering.\n"
-"Detta åtgärdar omvänd markörförflyttning i RTL text inuti WhatsApp Web meddelandefält.\n"
+"Använder Selection.modify() med visuella riktningar för Ctrl+Arrow "
+"ordnavigering.\n"
+"Detta åtgärdar omvänd markörförflyttning i RTL text inuti WhatsApp Web "
+"meddelandefält.\n"
 "\n"
 "Starta om eller ladda om WhatsApp Web efter att ha ändrat detta alternativ."
 
@@ -2848,8 +2861,7 @@ msgstr "User-Agent ändrad"
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:187
 msgid ""
-"Please restart this session (or the application) to apply the new User-"
-"Agent."
+"Please restart this session (or the application) to apply the new User-Agent."
 msgstr ""
 "Starta om denna session (eller applikationen) för att tillämpa den nya User-"
 "Agent."
@@ -2998,8 +3010,7 @@ msgstr "Det här kontot är inaktiverat."
 
 #: zapzap/features/browser/shell/browser_controller.py:356
 msgid ""
-"You can reactivate it now or use the right-click menu to manage this "
-"account."
+"You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Du kan återaktivera det nu eller använda högerklicksmenyn för att hantera "
 "detta konto."
@@ -3063,8 +3074,7 @@ msgid "DevTools - {}"
 msgstr "DevTools - {}"
 
 #: zapzap/features/browser/web/page_controller.py:198
-msgid ""
-"Please enter the phone number with country code (e.g., +5511999999999):"
+msgid "Please enter the phone number with country code (e.g., +5511999999999):"
 msgstr "Skriv in telefonnummer, inklusive landsnummer (t.ex. +46701234567):"
 
 #: zapzap/features/browser/web/page_controller.py:202
@@ -3242,18 +3252,18 @@ msgstr "Ctrl+M"
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:46
-#: zapzap/ui/main_window/main_window_controller.py:263
+#: zapzap/ui/main_window/client_side_rendering_controller.py:47
+#: zapzap/ui/main_window/main_window_controller.py:264
 msgid "Close ZapZap"
 msgstr "Stäng ZapZap"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:47
-#: zapzap/ui/main_window/main_window_controller.py:264
+#: zapzap/ui/main_window/client_side_rendering_controller.py:48
+#: zapzap/ui/main_window/main_window_controller.py:265
 msgid "Are you sure you want to close?"
 msgstr "Är du säker på att du vill stänga?"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:48
-#: zapzap/ui/main_window/main_window_controller.py:265
+#: zapzap/ui/main_window/client_side_rendering_controller.py:49
+#: zapzap/ui/main_window/main_window_controller.py:266
 msgid "Don't ask again"
 msgstr "Fråga inte igen"
 
@@ -3326,8 +3336,8 @@ msgstr "Fråga inte igen"
 #~ msgstr "Anpassningar"
 
 #~ msgid ""
-#~ "When inherit is disabled, account customizations are appended after global "
-#~ "settings."
+#~ "When inherit is disabled, account customizations are appended after "
+#~ "global settings."
 #~ msgstr ""
 #~ "När arv är inaktiverat, läses kontots anpassningar in efter de globala "
 #~ "anpassningarna."
@@ -3345,8 +3355,8 @@ msgstr "Fråga inte igen"
 #~ msgid ""
 #~ "⚠ Custom JavaScript runs with full page privileges. Use trusted code only."
 #~ msgstr ""
-#~ "⚠ Anpassad JavaScript-kod körs med fullständiga rättigheter. Använd endast "
-#~ "betrodd kod."
+#~ "⚠ Anpassad JavaScript-kod körs med fullständiga rättigheter. Använd "
+#~ "endast betrodd kod."
 
 #~ msgid "Enabled"
 #~ msgstr "Aktiverad"
@@ -3518,15 +3528,15 @@ msgstr "Fråga inte igen"
 
 #, fuzzy
 #~ msgid ""
-#~ "<b>ZapZap is running in the Flatpak sandbox.</b> If opening PDFs, drag-and-"
-#~ "drop, or file uploads fail, this is usually caused by sandbox permissions. "
-#~ "Open <b>Flatseal</b> and grant ZapZap access to folders like Documents, "
-#~ "Downloads, Pictures and Videos."
+#~ "<b>ZapZap is running in the Flatpak sandbox.</b> If opening PDFs, drag-"
+#~ "and-drop, or file uploads fail, this is usually caused by sandbox "
+#~ "permissions. Open <b>Flatseal</b> and grant ZapZap access to folders like "
+#~ "Documents, Downloads, Pictures and Videos."
 #~ msgstr ""
 #~ "<b>Flatpak-tips:</b> Om öppning av PDF-filer, drag-och-släpp eller "
 #~ "filuppladdningar misslyckas, kan detta orsakas av rättighetsproblem för "
-#~ "sandlådan. Öppna <b>Flatseal</b> och tillåt ZapZap att komma åt kataloger så"
-#~ " som Dokument, Hämtningar, Bilder och Videor. Du kan också köra: "
+#~ "sandlådan. Öppna <b>Flatseal</b> och tillåt ZapZap att komma åt kataloger "
+#~ "så som Dokument, Hämtningar, Bilder och Videor. Du kan också köra: "
 #~ "<code>flatpak override --user --filesystem=home com.rtosta.zapzap</code>."
 
 #~ msgid "Cache Behavior"

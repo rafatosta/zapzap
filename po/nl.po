@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-25 13:29-0300\n"
-"PO-Revision-Date: 2026-07-25 21:10-0300\n"
+"POT-Creation-Date: 2026-07-26 11:48-0300\n"
+"PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
@@ -43,7 +43,8 @@ msgstr ""
 "\n"
 "{path}\n"
 "\n"
-"Stuur dit bestand naar ondersteuning, zodat we het probleem kunnen onderzoeken.\n"
+"Stuur dit bestand naar ondersteuning, zodat we het probleem kunnen "
+"onderzoeken.\n"
 "\n"
 "Kanalen melden:\n"
 "- Probleemtracker: {issue_url}\n"
@@ -181,8 +182,7 @@ msgid "Welcome to ZapZap"
 msgstr "Welkom bij ZapZap"
 
 #: zapzap/features/initial_setup/view.py:90
-msgid ""
-"Choose the essentials now. You can change everything later in Settings."
+msgid "Choose the essentials now. You can change everything later in Settings."
 msgstr "Kies nu de essentie.Je kunt alles later wijzigen in Instellingen."
 
 #: zapzap/features/initial_setup/view.py:105
@@ -424,8 +424,7 @@ msgstr "Automatisch opstarten"
 
 #: zapzap/features/initial_setup/view.py:286
 msgid "Create or remove the desktop autostart entry."
-msgstr ""
-"Maak of verwijder het item voor automatisch starten op het bureaublad."
+msgstr "Maak of verwijder het item voor automatisch starten op het bureaublad."
 
 #: zapzap/features/initial_setup/view.py:289
 msgid "Start minimized"
@@ -443,11 +442,11 @@ msgstr "Downloaden en typen"
 
 #: zapzap/features/initial_setup/view.py:304
 msgid ""
-"Choose where files are saved and enable spell checking when dictionaries are"
-" available."
+"Choose where files are saved and enable spell checking when dictionaries are "
+"available."
 msgstr ""
-"Kies waar bestanden worden opgeslagen en schakel spellingcontrole in wanneer"
-" woordenboeken beschikbaar zijn."
+"Kies waar bestanden worden opgeslagen en schakel spellingcontrole in wanneer "
+"woordenboeken beschikbaar zijn."
 
 #: zapzap/features/initial_setup/view.py:308
 #: zapzap/features/settings/pages/language_downloads/view.py:52
@@ -506,11 +505,11 @@ msgstr "Herkent alleen gecompileerde woordenboeken (.bdic)."
 
 #: zapzap/features/initial_setup/view.py:341
 msgid ""
-"No compiled dictionaries were found. You can configure dictionaries later in"
-" Settings."
+"No compiled dictionaries were found. You can configure dictionaries later in "
+"Settings."
 msgstr ""
-"Er zijn geen samengestelde woordenboeken gevonden.U kunt woordenboeken later"
-" configureren in Instellingen."
+"Er zijn geen samengestelde woordenboeken gevonden.U kunt woordenboeken later "
+"configureren in Instellingen."
 
 #: zapzap/features/initial_setup/view.py:356
 msgid "Essential permissions"
@@ -533,8 +532,8 @@ msgid ""
 "Enable only the permissions you want to grant automatically when the page "
 "requests them."
 msgstr ""
-"Schakel alleen de machtigingen in die u automatisch wilt verlenen wanneer de"
-" pagina daarom vraagt."
+"Schakel alleen de machtigingen in die u automatisch wilt verlenen wanneer de "
+"pagina daarom vraagt."
 
 #: zapzap/features/initial_setup/view.py:372
 #: zapzap/features/settings/pages/permissions/view.py:64
@@ -593,8 +592,8 @@ msgid ""
 "Flatpak sandbox: if file access fails, grant folder permissions using "
 "Flatseal or flatpak override."
 msgstr ""
-"Flatpak sandbox: als de toegang tot bestanden mislukt, verleent u maprechten"
-" met behulp van Flatseal of flatpak override."
+"Flatpak sandbox: als de toegang tot bestanden mislukt, verleent u maprechten "
+"met behulp van Flatseal of flatpak override."
 
 #: zapzap/features/initial_setup/view.py:419
 #: zapzap/features/settings/pages/permissions/view.py:143
@@ -634,8 +633,8 @@ msgstr "U bent klaar"
 
 #: zapzap/features/initial_setup/view.py:443
 msgid ""
-"ZapZap will save these preferences now. Advanced options remain available in"
-" Settings."
+"ZapZap will save these preferences now. Advanced options remain available in "
+"Settings."
 msgstr ""
 "ZapZap zal deze voorkeuren nu opslaan. Geavanceerde opties blijven "
 "beschikbaar in Instellingen."
@@ -650,9 +649,9 @@ msgstr "Bekijk de geavanceerde opties later wanneer u ze nodig heeft."
 
 #: zapzap/features/initial_setup/view.py:454
 msgid ""
-"You can revisit all choices from Settings at any time. Proxy, custom "
-"CSS/JavaScript, Flatpak permissions, and performance tweaks are still "
-"available there."
+"You can revisit all choices from Settings at any time. Proxy, custom CSS/"
+"JavaScript, Flatpak permissions, and performance tweaks are still available "
+"there."
 msgstr ""
 "U kunt alle keuzes op elk moment opnieuw bekijken via Instellingen. Proxy, "
 "aangepaste CSS/JavaScript, Flatpak-machtigingen en prestatie-aanpassingen "
@@ -962,11 +961,9 @@ msgstr "Systeeminformatie kopiëren"
 
 #: zapzap/features/settings/pages/about/view.py:325
 msgid ""
-"ZapZap is an independent project and is not affiliated with WhatsApp or "
-"Meta."
+"ZapZap is an independent project and is not affiliated with WhatsApp or Meta."
 msgstr ""
-"ZapZap is een onafhankelijk project en is niet gelieerd aan WhatsApp of "
-"Meta."
+"ZapZap is een onafhankelijk project en is niet gelieerd aan WhatsApp of Meta."
 
 #: zapzap/features/settings/pages/about/view.py:343
 msgid "Information copied"
@@ -1007,8 +1004,7 @@ msgstr "Sessie"
 
 #: zapzap/features/settings/pages/about/controller.py:60
 #, python-brace-format
-msgid ""
-"ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
+msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
 msgstr ""
 "ZapZap is vrije software, gelicentieerd onder {license_id} (GPL-3.0-of-"
 "later)."
@@ -1534,8 +1530,7 @@ msgstr "Vensters"
 
 #: zapzap/features/settings/pages/appearance/view.py:22
 msgid ""
-"Adjust interface chrome, theme, tray icon, grid view, and window "
-"decorations."
+"Adjust interface chrome, theme, tray icon, grid view, and window decorations."
 msgstr ""
 "Pas het chroom van de interface, het thema, het systeemvakpictogram, de "
 "rasterweergave en de vensterdecoraties aan."
@@ -1744,7 +1739,8 @@ msgid ""
 "\n"
 "The application will need to be restarted to complete the operation."
 msgstr ""
-"Alle aangepaste ZapZap-instellingen worden hersteld naar hun standaardwaarden.\n"
+"Alle aangepaste ZapZap-instellingen worden hersteld naar hun "
+"standaardwaarden.\n"
 "\n"
 "De applicatie moet opnieuw worden opgestart om de bewerking te voltooien."
 
@@ -1842,8 +1838,7 @@ msgstr "Onderhoud"
 
 #: zapzap/features/settings/pages/debugging/view.py:296
 msgid ""
-"Restore ZapZap's default settings. The application will need to be "
-"restarted."
+"Restore ZapZap's default settings. The application will need to be restarted."
 msgstr ""
 "Herstel de standaardinstellingen van ZapZap.De applicatie moet opnieuw "
 "worden opgestart."
@@ -2132,7 +2127,7 @@ msgid "8080"
 msgstr "8080"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:255
-#: zapzap/features/settings/pages/notifications/view.py:108
+#: zapzap/features/settings/pages/notifications/view.py:113
 msgid "Privacy"
 msgstr "Privacy"
 
@@ -2188,40 +2183,49 @@ msgstr "Berichtvoorbeeld"
 msgid "Show the content of the received message."
 msgstr "Toon de inhoud van het ontvangen bericht."
 
-#: zapzap/features/settings/pages/notifications/view.py:75
+#: zapzap/features/settings/pages/notifications/view.py:59
+msgid "Notification sound"
+msgstr "Meldingsgeluid"
+
+#: zapzap/features/settings/pages/notifications/view.py:60
+msgid "Let the desktop play its alert sound for new messages."
+msgstr ""
+"Laat het bureaublad een waarschuwingsgeluid afspelen bij nieuwe berichten."
+
+#: zapzap/features/settings/pages/notifications/view.py:80
 msgid "ZapZap messages"
 msgstr "ZapZap-berichten"
 
-#: zapzap/features/settings/pages/notifications/view.py:76
+#: zapzap/features/settings/pages/notifications/view.py:81
 msgid "Control occasional messages shown by the application itself."
 msgstr ""
 "Beheer incidentele berichten die door de applicatie zelf worden weergegeven."
 
-#: zapzap/features/settings/pages/notifications/view.py:80
+#: zapzap/features/settings/pages/notifications/view.py:85
 msgid "Support reminders"
 msgstr "Ondersteuning herinneringen"
 
-#: zapzap/features/settings/pages/notifications/view.py:82
+#: zapzap/features/settings/pages/notifications/view.py:87
 msgid "Occasionally show messages supporting ZapZap's development."
 msgstr "Toon af en toe berichten die de ontwikkeling van ZapZap ondersteunen."
 
-#: zapzap/features/settings/pages/notifications/view.py:110
+#: zapzap/features/settings/pages/notifications/view.py:115
 msgid "Privacy presets"
 msgstr "Privacy-voorinstellingen"
 
-#: zapzap/features/settings/pages/notifications/view.py:113
+#: zapzap/features/settings/pages/notifications/view.py:118
 msgid "Quickly choose which notification details are visible."
 msgstr "Kies snel welke meldingsdetails zichtbaar zijn."
 
-#: zapzap/features/settings/pages/notifications/view.py:117
+#: zapzap/features/settings/pages/notifications/view.py:122
 msgid "Show everything"
 msgstr "Laat alles zien"
 
-#: zapzap/features/settings/pages/notifications/view.py:120
+#: zapzap/features/settings/pages/notifications/view.py:125
 msgid "Hide content"
 msgstr "Inhoud verbergen"
 
-#: zapzap/features/settings/pages/notifications/view.py:123
+#: zapzap/features/settings/pages/notifications/view.py:128
 msgid "Maximum privacy"
 msgstr "Maximale privacy"
 
@@ -2437,8 +2441,7 @@ msgstr "Schakel knijpen om te zoomen uit"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:203
 msgid "Useful if accidental zooming occurs during scrolling."
-msgstr ""
-"Nuttig als per ongeluk in- of uitzoomen voorkomt tijdens het scrollen."
+msgstr "Nuttig als per ongeluk in- of uitzoomen voorkomt tijdens het scrollen."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:206
 msgid "Fix Ctrl+Arrow cursor movement"
@@ -2514,13 +2517,19 @@ msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:164
 msgid ""
-"Automatically honors an unambiguous DRI_PRIME selector on systems with multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when one GPU has no connected display.\n"
+"Automatically honors an unambiguous DRI_PRIME selector on systems with "
+"multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
+"one GPU has no connected display.\n"
 "\n"
-"Disable this only if the automatic workaround causes problems. Restart required."
+"Disable this only if the automatic workaround causes problems. Restart "
+"required."
 msgstr ""
-"Voldoet automatisch aan een ondubbelzinnige DRI_PRIME-selector op systemen met meerdere Linux-render-GPU's.Anders wordt --disable-gpu-compositing toegevoegd wanneer één GPU geen aangesloten beeldscherm heeft.\n"
+"Voldoet automatisch aan een ondubbelzinnige DRI_PRIME-selector op systemen "
+"met meerdere Linux-render-GPU's.Anders wordt --disable-gpu-compositing "
+"toegevoegd wanneer één GPU geen aangesloten beeldscherm heeft.\n"
 "\n"
-"Schakel dit alleen uit als de automatische oplossing problemen veroorzaakt.Opnieuw opstarten vereist."
+"Schakel dit alleen uit als de automatische oplossing problemen "
+"veroorzaakt.Opnieuw opstarten vereist."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:173
 msgid ""
@@ -2528,7 +2537,8 @@ msgid ""
 "May reduce latency, but can increase power usage and tearing."
 msgstr ""
 "Schakelt GPU VSync uit.\n"
-"Kan de latentie verminderen, maar kan het stroomverbruik en de tearing verhogen."
+"Kan de latentie verminderen, maar kan het stroomverbruik en de tearing "
+"verhogen."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:179
 msgid ""
@@ -2593,12 +2603,14 @@ msgstr ""
 #: zapzap/features/settings/pages/performance_experimental/controller.py:220
 msgid ""
 "Enables V8 predictable garbage collection schedule.\n"
-"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
 "\n"
 "Experimental option. Restart required."
 msgstr ""
 "Maakt een voorspelbaar V8-afvalinzamelingsschema mogelijk.\n"
-"Dit voegt --js-flags=--predictable-gc-schedule en --disable-gpu toe aan QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"Dit voegt --js-flags=--predictable-gc-schedule en --disable-gpu toe aan "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
 "\n"
 "Experimentele optie.Opnieuw opstarten vereist."
 
@@ -2615,8 +2627,10 @@ msgid ""
 "Allows background tabs to reduce resource usage.\n"
 "Disabling keeps timers active, but uses more resources."
 msgstr ""
-"Maakt achtergrondtabbladen mogelijk om het gebruik van bronnen te verminderen.\n"
-"Als u deze uitschakelt, blijven de timers actief, maar worden er meer bronnen gebruikt."
+"Maakt achtergrondtabbladen mogelijk om het gebruik van bronnen te "
+"verminderen.\n"
+"Als u deze uitschakelt, blijven de timers actief, maar worden er meer "
+"bronnen gebruikt."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:237
 msgid ""
@@ -2636,15 +2650,20 @@ msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:249
 msgid ""
-"Uses Selection.modify() with visual directions for Ctrl+Arrow word navigation.\n"
-"This fixes reversed cursor movement in RTL text inside WhatsApp Web message fields.\n"
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
+"navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
+"fields.\n"
 "\n"
 "Restart or reload WhatsApp Web after changing this option."
 msgstr ""
-"Gebruikt Selection.modify() met visuele aanwijzingen voor Ctrl+Arrow woordnavigatie.\n"
-"Dit verhelpt omgekeerde cursorbeweging in RTL tekst binnen WhatsApp Web berichtvelden.\n"
+"Gebruikt Selection.modify() met visuele aanwijzingen voor Ctrl+Arrow "
+"woordnavigatie.\n"
+"Dit verhelpt omgekeerde cursorbeweging in RTL tekst binnen WhatsApp Web "
+"berichtvelden.\n"
 "\n"
-"Start WhatsApp Web opnieuw op of laad het opnieuw na het wijzigen van deze optie."
+"Start WhatsApp Web opnieuw op of laad het opnieuw na het wijzigen van deze "
+"optie."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:255
 msgid ""
@@ -2657,8 +2676,8 @@ msgstr ""
 #: zapzap/features/settings/pages/permissions/view.py:23
 msgid "Define which permissions can be granted automatically to WhatsApp Web."
 msgstr ""
-"Definieer welke machtigingen automatisch kunnen worden verleend aan WhatsApp"
-" Web."
+"Definieer welke machtigingen automatisch kunnen worden verleend aan WhatsApp "
+"Web."
 
 #: zapzap/features/settings/pages/permissions/view.py:40
 msgid "Disabled permissions will continue to be requested when needed."
@@ -2683,8 +2702,7 @@ msgstr "Camera en microfoon"
 
 #: zapzap/features/settings/pages/permissions/view.py:76
 msgid "Automatically allow simultaneous access to the camera and microphone."
-msgstr ""
-"Automatisch gelijktijdige toegang tot de camera en microfoon toestaan."
+msgstr "Automatisch gelijktijdige toegang tot de camera en microfoon toestaan."
 
 #: zapzap/features/settings/pages/permissions/view.py:82
 msgid "Location"
@@ -2727,8 +2745,8 @@ msgid ""
 "Configure how ZapZap starts, behaves in the system, and integrates with "
 "Linux."
 msgstr ""
-"Configureer hoe ZapZap start, zich gedraagt in het systeem en integreert met"
-" Linux."
+"Configureer hoe ZapZap start, zich gedraagt in het systeem en integreert met "
+"Linux."
 
 #: zapzap/features/settings/pages/system_startup/view.py:41
 msgid "Define how ZapZap behaves when your session starts."
@@ -2783,8 +2801,8 @@ msgid ""
 "Choose whether ZapZap continues in the background or quits when the window "
 "is closed."
 msgstr ""
-"Kies of ZapZap op de achtergrond doorgaat of stopt wanneer het venster wordt"
-" gesloten."
+"Kies of ZapZap op de achtergrond doorgaat of stopt wanneer het venster wordt "
+"gesloten."
 
 #: zapzap/features/settings/pages/system_startup/view.py:110
 msgid "Linux integration"
@@ -2813,8 +2831,7 @@ msgstr "Gebruik de backend van Wayland, indien beschikbaar."
 #: zapzap/features/settings/pages/system_startup/view.py:135
 msgid "Use the Wayland backend when available. Requires restart."
 msgstr ""
-"Gebruik de backend van Wayland, indien beschikbaar.Vereist opnieuw "
-"opstarten."
+"Gebruik de backend van Wayland, indien beschikbaar.Vereist opnieuw opstarten."
 
 #: zapzap/features/settings/pages/system_startup/view.py:139
 msgid "Requires restart"
@@ -2871,8 +2888,7 @@ msgstr "User-Agent Gewijzigd"
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:187
 msgid ""
-"Please restart this session (or the application) to apply the new User-"
-"Agent."
+"Please restart this session (or the application) to apply the new User-Agent."
 msgstr ""
 "Start deze sessie (of de applicatie) opnieuw om de nieuwe User-Agent toe te "
 "passen."
@@ -3025,8 +3041,7 @@ msgstr "Dit account is uitgeschakeld."
 
 #: zapzap/features/browser/shell/browser_controller.py:356
 msgid ""
-"You can reactivate it now or use the right-click menu to manage this "
-"account."
+"You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "U kunt het nu opnieuw activeren of het contextmenu gebruiken om dit account "
 "te beheren."
@@ -3090,8 +3105,7 @@ msgid "DevTools - {}"
 msgstr "Ontwikkelaarstools - {}"
 
 #: zapzap/features/browser/web/page_controller.py:198
-msgid ""
-"Please enter the phone number with country code (e.g., +5511999999999):"
+msgid "Please enter the phone number with country code (e.g., +5511999999999):"
 msgstr ""
 "Voer het telefoonnummer met de landcode in (bijvoorbeeld +5511999999999):"
 
@@ -3259,18 +3273,18 @@ msgstr "Ctrl+M"
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:46
-#: zapzap/ui/main_window/main_window_controller.py:263
+#: zapzap/ui/main_window/client_side_rendering_controller.py:47
+#: zapzap/ui/main_window/main_window_controller.py:264
 msgid "Close ZapZap"
 msgstr "Sluiten ZapZap"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:47
-#: zapzap/ui/main_window/main_window_controller.py:264
+#: zapzap/ui/main_window/client_side_rendering_controller.py:48
+#: zapzap/ui/main_window/main_window_controller.py:265
 msgid "Are you sure you want to close?"
 msgstr "Weet u zeker dat u wilt sluiten?"
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:48
-#: zapzap/ui/main_window/main_window_controller.py:265
+#: zapzap/ui/main_window/client_side_rendering_controller.py:49
+#: zapzap/ui/main_window/main_window_controller.py:266
 msgid "Don't ask again"
 msgstr "Vraag het niet opnieuw"
 

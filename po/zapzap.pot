@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-25 13:29-0300\n"
+"POT-Creation-Date: 2026-07-26 11:48-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2043,7 +2043,7 @@ msgid "8080"
 msgstr ""
 
 #: zapzap/features/settings/pages/network_privacy/view.py:255
-#: zapzap/features/settings/pages/notifications/view.py:108
+#: zapzap/features/settings/pages/notifications/view.py:113
 msgid "Privacy"
 msgstr ""
 
@@ -2099,39 +2099,47 @@ msgstr ""
 msgid "Show the content of the received message."
 msgstr ""
 
-#: zapzap/features/settings/pages/notifications/view.py:75
-msgid "ZapZap messages"
+#: zapzap/features/settings/pages/notifications/view.py:59
+msgid "Notification sound"
 msgstr ""
 
-#: zapzap/features/settings/pages/notifications/view.py:76
-msgid "Control occasional messages shown by the application itself."
+#: zapzap/features/settings/pages/notifications/view.py:60
+msgid "Let the desktop play its alert sound for new messages."
 msgstr ""
 
 #: zapzap/features/settings/pages/notifications/view.py:80
+msgid "ZapZap messages"
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:81
+msgid "Control occasional messages shown by the application itself."
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:85
 msgid "Support reminders"
 msgstr ""
 
-#: zapzap/features/settings/pages/notifications/view.py:82
+#: zapzap/features/settings/pages/notifications/view.py:87
 msgid "Occasionally show messages supporting ZapZap's development."
 msgstr ""
 
-#: zapzap/features/settings/pages/notifications/view.py:110
+#: zapzap/features/settings/pages/notifications/view.py:115
 msgid "Privacy presets"
 msgstr ""
 
-#: zapzap/features/settings/pages/notifications/view.py:113
+#: zapzap/features/settings/pages/notifications/view.py:118
 msgid "Quickly choose which notification details are visible."
 msgstr ""
 
-#: zapzap/features/settings/pages/notifications/view.py:117
+#: zapzap/features/settings/pages/notifications/view.py:122
 msgid "Show everything"
 msgstr ""
 
-#: zapzap/features/settings/pages/notifications/view.py:120
+#: zapzap/features/settings/pages/notifications/view.py:125
 msgid "Hide content"
 msgstr ""
 
-#: zapzap/features/settings/pages/notifications/view.py:123
+#: zapzap/features/settings/pages/notifications/view.py:128
 msgid "Maximum privacy"
 msgstr ""
 
@@ -3081,17 +3089,17 @@ msgstr ""
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr ""
 
-#: zapzap/ui/main_window/client_side_rendering_controller.py:46
-#: zapzap/ui/main_window/main_window_controller.py:263
-msgid "Close ZapZap"
-msgstr ""
-
 #: zapzap/ui/main_window/client_side_rendering_controller.py:47
 #: zapzap/ui/main_window/main_window_controller.py:264
-msgid "Are you sure you want to close?"
+msgid "Close ZapZap"
 msgstr ""
 
 #: zapzap/ui/main_window/client_side_rendering_controller.py:48
 #: zapzap/ui/main_window/main_window_controller.py:265
+msgid "Are you sure you want to close?"
+msgstr ""
+
+#: zapzap/ui/main_window/client_side_rendering_controller.py:49
+#: zapzap/ui/main_window/main_window_controller.py:266
 msgid "Don't ask again"
 msgstr ""
