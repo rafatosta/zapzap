@@ -20,6 +20,10 @@ class PerformanceSettings(BaseSettings):
         "auto_gpu_workaround": ("performance/auto_gpu_workaround", True),
         "disable_gpu_vsync": ("performance/disable_gpu_vsync", False),
         "software_rendering": ("performance/software_rendering", False),
+        "software_video_decoding": (
+            "performance/software_video_decoding",
+            False,
+        ),
         "force_gbm": ("performance/force_gbm", False),
         "disable_accessibility": ("performance/disable_accessibility", False),
         "single_process": ("performance/single_process", False),

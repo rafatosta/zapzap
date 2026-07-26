@@ -109,6 +109,14 @@ class PerformanceExperimentalSettingsView(SettingsPage):
             _("Force software rendering"),
             _("Use only for graphical issues."),
         )
+        self.software_video_decoding_row = SettingsSwitchRow(
+            _("Use software video decoding"),
+            _(
+                "Disables hardware video decoding to fix videos that appear "
+                "white, black, flicker, or cause crashes. This may increase "
+                "CPU and battery usage."
+            ),
+        )
         self.force_gbm_row = SettingsSwitchRow(
             _("Force GBM"),
             _("Known NVIDIA typing lag fix."),
@@ -122,6 +130,7 @@ class PerformanceExperimentalSettingsView(SettingsPage):
         self.auto_gpu_workaround = self.auto_gpu_workaround_row.checkbox
         self.disable_gpu_vsync = self.disable_gpu_vsync_row.checkbox
         self.software_rendering = self.software_rendering_row.checkbox
+        self.software_video_decoding = self.software_video_decoding_row.checkbox
         self.force_gbm = self.force_gbm_row.checkbox
         self.disable_accessibility = self.disable_accessibility_row.checkbox
         for row in (
@@ -130,6 +139,7 @@ class PerformanceExperimentalSettingsView(SettingsPage):
             self.auto_gpu_workaround_row,
             self.disable_gpu_vsync_row,
             self.software_rendering_row,
+            self.software_video_decoding_row,
             self.force_gbm_row,
             self.disable_accessibility_row,
         ):

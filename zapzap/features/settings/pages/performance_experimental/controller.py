@@ -18,6 +18,7 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
         "auto_gpu_workaround",
         "disable_gpu_vsync",
         "software_rendering",
+        "software_video_decoding",
         "force_gbm",
         "disable_accessibility",
         "single_process",
@@ -179,6 +180,15 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
                 "Forces software rendering.\n"
                 "Use only in case of graphical issues.\n"
                 "May significantly reduce performance."
+            )
+        )
+        self.software_video_decoding.setToolTip(
+            _(
+                "Disables hardware video decoding without disabling all GPU "
+                "acceleration.\n"
+                "Use when videos play only audio, appear white or black, flicker, "
+                "or cause crashes.\n"
+                "May increase CPU and battery usage. Restart required."
             )
         )
         self.force_gbm.setToolTip(

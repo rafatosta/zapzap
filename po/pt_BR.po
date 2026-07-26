@@ -2337,6 +2337,19 @@ msgid "Use only for graphical issues."
 msgstr "Use apenas para problemas gráficos."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:113
+msgid "Use software video decoding"
+msgstr "Usar decodificação de vídeo por software"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:115
+msgid ""
+"Disables hardware video decoding to fix videos that appear white, black, "
+"flicker, or cause crashes. This may increase CPU and battery usage."
+msgstr ""
+"Desativa a decodificação de vídeo por hardware para corrigir vídeos com tela "
+"branca, preta, piscando ou causando falhas. Pode aumentar o uso da CPU e da "
+"bateria."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:113
 msgid "Force GBM"
 msgstr "Forçar GBM"
 
@@ -2548,6 +2561,19 @@ msgstr ""
 "Força a renderização por software.\n"
 "Use apenas em caso de problemas gráficos.\n"
 "Pode reduzir significativamente o desempenho."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:187
+msgid ""
+"Disables hardware video decoding without disabling all GPU acceleration.\n"
+"Use when videos play only audio, appear white or black, flicker, or cause "
+"crashes.\n"
+"May increase CPU and battery usage. Restart required."
+msgstr ""
+"Desativa a decodificação de vídeo por hardware sem desativar toda a "
+"aceleração da GPU.\n"
+"Use quando os vídeos reproduzirem apenas áudio, ficarem brancos ou pretos, "
+"piscarem ou causarem falhas.\n"
+"Pode aumentar o uso da CPU e da bateria. Reinicialização necessária."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:186
 msgid ""

@@ -1,12 +1,46 @@
+from __future__ import annotations
+
+from collections.abc import MutableMapping
 from os import environ, getenv
+
 from PyQt6.QtCore import QFileInfo
+
+from zapzap.core.config.settings.performance import PerformanceSettings
+from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.core.platform import IS_WINDOWS, IS_MAC
 from zapzap.features.dictionaries.dictionaries_manager import DictionariesManager
-from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.core.environment.gpu_environment import (
     has_headless_secondary_gpu,
     preferred_render_node,
 )
+
+
+def update_chromium_flag(
+    flag: str,
+    enabled: bool,
+    environment: MutableMapping[str, str] = environ,
+) -> None:
+    """Add or remove one exact Chromium flag without disturbing other flags."""
+    current_flags = environment.get("QTWEBENGINE_CHROMIUM_FLAGS", "")
+    flags = current_flags.split()
+    matching_indexes = [
+        index for index, value in enumerate(flags) if value == flag
+    ]
+
+    if enabled:
+        if matching_indexes:
+            first_index = matching_indexes[0]
+            flags = [
+                value
+                for index, value in enumerate(flags)
+                if value != flag or index == first_index
+            ]
+        else:
+            flags.append(flag)
+    else:
+        flags = [value for value in flags if value != flag]
+
+    environment["QTWEBENGINE_CHROMIUM_FLAGS"] = " ".join(flags)
 
 
 class SetupManager:
@@ -140,6 +174,12 @@ class SetupManager:
         flags = [f for f in flags if not f.startswith("--ozone-platform")]
 
         environ["QTWEBENGINE_CHROMIUM_FLAGS"] = " ".join(flags)
+        update_chromium_flag(
+            "--disable-accelerated-video-decode",
+            PerformanceSettings().get_boolean_setting(
+                "software_video_decoding"
+            ),
+        )
 
     @staticmethod
     def apply_qt_scale_factor_rounding_policy():
