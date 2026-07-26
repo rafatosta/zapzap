@@ -55,10 +55,15 @@ class NotificationsSettingsView(SettingsPage):
             _("Message preview"),
             _("Show the content of the received message."),
         )
+        self.sound = SettingsSwitchRow(
+            _("Notification sound"),
+            _("Let the desktop play its alert sound for new messages."),
+        )
         self.notification_content_rows = (
             self.show_photo,
             self.show_name,
             self.show_msg,
+            self.sound,
         )
         for row in self.notification_content_rows:
             self._configure_accessibility(row)

@@ -19,6 +19,15 @@ class NotificationsSettingsModel:
         self._settings.enabled = value
 
     @property
+    def sound(self) -> bool:
+        """Whether the notification server may play its alert sound."""
+        return self._settings.sound
+
+    @sound.setter
+    def sound(self, value: bool) -> None:
+        self._settings.sound = value
+
+    @property
     def show_photo(self) -> bool:
         """Whether contact photos are shown in notifications."""
         return self._settings.show_photo
