@@ -71,5 +71,10 @@ ZapZap is a free and open-source project maintained in my spare time. If you fin
 
 Every contribution helps keep ZapZap free, maintained, and continuously improving. ❤️
 
+## Development and maintenance
+
+Architecture, maintenance procedures and automated-test instructions are
+available in the [technical documentation](docs/README.md).
+
 ## License
 ZapZap is licensed under the GNU General Public License v3.0 or later. See [LICENSE](LICENSE) for the full license text.

@@ -1,0 +1,250 @@
+# Arquitetura do ZapZap
+
+## Visão geral
+
+ZapZap é um aplicativo desktop PyQt6 que hospeda o WhatsApp Web em perfis
+isolados do QtWebEngine. A organização é orientada por camadas:
+
+```text
+run.py / zapzap.__main__
+        |
+        v
+zapzap.app                  bootstrap e ciclo de vida
+        |
+        v
+zapzap.ui.main_window       janela, menus e composição
+        |
+        +--> features.browser       contas e páginas WebEngine
+        +--> features.settings      shell, páginas e componentes
+        +--> features.notifications integração nativa por plataforma
+        +--> outras features        tray, downloads, permissões etc.
+        |
+        v
+zapzap.core                 configuração, ambiente, tema, i18n e diagnóstico
+```
+
+`zapzap.assets` contém ícones e estilos; `zapzap.ui.components` contém widgets
+compartilhados. Uma feature pode usar `core`, `assets` e componentes de UI.
+`core` não deve depender de páginas de configurações nem de uma feature de
+apresentação. Quando duas páginas precisam do mesmo comportamento, ele deve ser
+movido para um domínio em `core` ou para uma feature compartilhada.
+
+## Inicialização e encerramento
+
+O caminho principal está em `zapzap/app/application.py`:
+
+1. interpreta opções de linha de comando;
+2. aplica ambiente e flags do Qt/Chromium por `SetupManager` antes de criar
+   `QApplication`;
+3. instala idioma e tratamento de falhas;
+4. cria `SingleApplication`, impedindo duas instâncias concorrentes;
+5. inicia tema e constrói a janela principal;
+6. no Flatpak, exporta `org.freedesktop.Application` por D-Bus;
+7. aplica proxy, decide visibilidade inicial e mostra o onboarding se preciso;
+8. no encerramento, remove notificações, para D-Bus e tema e libera páginas
+   WebEngine explicitamente.
+
+`SingleApplication` também coordena mensagens entre instâncias, reinício apenas
+da interface e reinício completo do processo. Configurações lidas antes da
+criação do QtWebEngine, como escala, plataforma gráfica e flags Chromium,
+normalmente exigem reinício completo.
+
+## Janela e navegador
+
+`MainWindowController` compõe a janela, o `BrowserController`, configurações,
+atalhos, bandeja e menus. A renderização de bordas do lado cliente é um invólucro
+opcional criado por `ClientSideRenderingController`; o controlador interno
+continua sendo a janela funcional.
+
+`BrowserController` mantém o relacionamento entre contas, botões laterais e
+`WebView`s. Cada conta usa um perfil WebEngine próprio. O fluxo básico é:
+
+```text
+User (SQLite) -> BrowserController -> WebView -> PageController
+                                    -> perfil WebEngine isolado
+                                    -> downloads e notificações
+```
+
+`PageController` aplica permissões, scripts, navegação segura e ações do
+WhatsApp. Scripts mantidos em `features/browser/web/scripts/` são ativos em
+tempo de execução e devem ser considerados pelo teste de código estático mesmo
+quando chamam identificadores Python indiretamente.
+
+Ao remover ou desativar uma conta, preserve a captura e a limpeza dos diretórios
+do perfil sem recriar o perfil WebEngine. Ao encerrar, destrua páginas antes do
+`QApplication` para evitar falhas nativas.
+
+## Persistência e dados
+
+Existem dois mecanismos:
+
+- `SettingsManager` usa `QSettings` para preferências simples;
+- `Database` usa SQLite para a tabela de contas representada por `User`.
+
+Novas preferências devem entrar primeiro em uma classe semântica de
+`zapzap/core/config/settings/`, com chave, tipo e valor padrão estáveis. A UI
+consome propriedades desse domínio. Use `SettingsManager` diretamente apenas
+em código legado ou infraestrutura ainda não migrada; não crie uma segunda
+abstração dentro de uma página.
+
+Não renomeie chaves persistidas sem migração. Algumas propriedades positivas
+invertem chaves legadas negativas, por exemplo `keep_running_in_background`
+versus `system/quit_in_close` e `donation_message_enabled` versus
+`notification/donation_message`. Essa inversão pertence ao domínio, não à view.
+
+Dados e caches seguem `QStandardPaths`. Testes substituem os diretórios XDG por
+temporários; nunca devem usar o perfil real do mantenedor.
+
+## Configurações
+
+O shell é registrado em `SettingsController._pages()`. Cada página segue, tanto
+quanto possível, a separação:
+
+- `model.py`: valores, opções e interfaces de domínio;
+- `view.py`: widgets, layout, texto visível e acessibilidade;
+- `controller.py`: sinais, persistência e efeitos.
+
+Componentes reutilizáveis ficam em `features/settings/components/`.
+`SettingsCard.add_row()` cria divisores automaticamente; linhas auxiliares
+podem optar por `divider=False`. Mudanças que pedem reinício usam
+`SettingsPage.set_restart_required()` e a barra contextual compartilhada.
+
+Ao criar uma página:
+
+1. crie o pacote `pages/<nome>/` com `model`, `view`, `controller` e
+   `__init__.py`;
+2. registre o controlador em `SettingsController._pages()`;
+3. inclua o pacote em `pyproject.toml`;
+4. use componentes existentes, paleta Qt e `Typography`;
+5. adicione nomes acessíveis e teste de UI;
+6. atualize os inventários desta documentação.
+
+## Notificações e ativação
+
+`NotificationService` é a fachada. Ele aplica preferências globais e por conta e
+seleciona um backend:
+
+| Ambiente | Backend |
+|---|---|
+| Flatpak/Linux | XDG Desktop Portal |
+| Linux fora do Flatpak | `org.freedesktop.Notifications` |
+| Windows | backend Windows |
+| macOS | backend macOS |
+
+Fechamento de uma notificação WebEngine e encerramento do app devem retirar a
+notificação nativa de forma idempotente. A ativação pode carregar tokens Portal
+ou Wayland e dados de inicialização X11. Mudanças nessa área precisam ser
+testadas no backend afetado e, para foco/cursor/compositor, em uma sessão gráfica
+real; `offscreen` não comprova comportamento do compositor.
+
+## Tema, componentes e internacionalização
+
+`ThemeManager` mantém o tema efetivo, a `QPalette` e observadores. Widgets devem
+usar componentes em `zapzap/ui/components`, cores semânticas da paleta e
+`Typography`, evitando uma segunda linguagem visual. QSS pode sobrescrever
+fontes: quando necessário, aplique `setFont()` depois de `setStyleSheet()`.
+
+Texto visível usa `gettext`. IDs persistidos de seletores ficam em `itemData` e
+`currentData`; somente o rótulo é traduzido. Ao alterar texto:
+
+1. atualize extração/catálogos;
+2. preserve placeholders, URLs e atalhos;
+3. valide arquivos PO com `msgfmt --check --check-format`;
+4. gere os `.mo` empacotados.
+
+## Funcionalidades transversais
+
+| Área | Responsabilidade principal |
+|---|---|
+| `accounts` | entidade e persistência de contas |
+| `alerts` | diálogos e feedback compartilhados |
+| `browser` | perfis, páginas, sidebar, scripts e navegação |
+| `customizations` | CSS, JavaScript e extensões por escopo |
+| `dictionaries` | descoberta e instalação de dicionários WebEngine |
+| `downloads` | destino, nome seguro e diálogo de progresso |
+| `initial_setup` | onboarding e persistência das escolhas iniciais |
+| `notifications` | fachada, backends e ativação da janela |
+| `permissions` | permissões WebEngine por conta |
+| `settings` | navegação e edição das preferências |
+| `shortcuts` | catálogo e diálogo de atalhos |
+| `startup` | inicialização automática por plataforma |
+| `tray` | ícone, menu, contador e vínculo com a janela |
+
+## Mapa do repositório
+
+| Caminho | Conteúdo |
+|---|---|
+| `zapzap/` | código Python distribuído e catálogos `.mo` de runtime |
+| `tests/` | testes `unittest`, fixture Qt e verificações estáticas |
+| `docs/` | documentação técnica e contratos de manutenção |
+| `po/` | fontes gettext (`.po`, `.pot`, POTFILES e LINGUAS) |
+| `share/` | desktop entry, ícone, metadados AppStream e screenshots |
+| `tools/` | manifesto/runner Flatpak e gerenciador de traduções |
+| `.github/packaging/` | scripts e arquivos de build por formato |
+| `.github/workflows/` | qualidade, builds, pré-release e publicação |
+| `pyproject.toml` | metadados, dependências, entry point e pacotes |
+| `run.py` | entrada conveniente para execução pelo checkout |
+| `requirements.txt` | dependências usadas por fluxos legados/auxiliares |
+
+Diretórios como `build/`, `.flatpak-builder/`, `__pycache__/` e metadados de
+empacotamento gerados não são fontes. Não documente nem edite seus conteúdos
+como se fizessem parte da arquitetura.
+
+## Inventário de pacotes distribuídos
+
+Este bloco é verificado automaticamente contra
+`tool.setuptools.packages`. Mantenha-o ordenado.
+
+<!-- structure-check:packages:start -->
+- `zapzap`
+- `zapzap.app`
+- `zapzap.assets`
+- `zapzap.assets.icons`
+- `zapzap.assets.themes`
+- `zapzap.core`
+- `zapzap.core.config`
+- `zapzap.core.config.settings`
+- `zapzap.core.diagnostics`
+- `zapzap.core.environment`
+- `zapzap.core.i18n`
+- `zapzap.core.platform`
+- `zapzap.core.theme`
+- `zapzap.features`
+- `zapzap.features.accounts`
+- `zapzap.features.accounts.domain`
+- `zapzap.features.alerts`
+- `zapzap.features.browser`
+- `zapzap.features.browser.components`
+- `zapzap.features.browser.shell`
+- `zapzap.features.browser.web`
+- `zapzap.features.customizations`
+- `zapzap.features.dictionaries`
+- `zapzap.features.donation`
+- `zapzap.features.downloads`
+- `zapzap.features.downloads.ui`
+- `zapzap.features.initial_setup`
+- `zapzap.features.notifications`
+- `zapzap.features.permissions`
+- `zapzap.features.settings`
+- `zapzap.features.settings.components`
+- `zapzap.features.settings.components.card_user`
+- `zapzap.features.settings.pages`
+- `zapzap.features.settings.pages.about`
+- `zapzap.features.settings.pages.accounts`
+- `zapzap.features.settings.pages.advanced_customizations`
+- `zapzap.features.settings.pages.appearance`
+- `zapzap.features.settings.pages.debugging`
+- `zapzap.features.settings.pages.language_downloads`
+- `zapzap.features.settings.pages.network_privacy`
+- `zapzap.features.settings.pages.notifications`
+- `zapzap.features.settings.pages.performance_experimental`
+- `zapzap.features.settings.pages.permissions`
+- `zapzap.features.settings.pages.system_startup`
+- `zapzap.features.settings.shell`
+- `zapzap.features.shortcuts`
+- `zapzap.features.startup`
+- `zapzap.features.tray`
+- `zapzap.ui`
+- `zapzap.ui.components`
+- `zapzap.ui.main_window`
+<!-- structure-check:packages:end -->
