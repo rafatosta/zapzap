@@ -3,6 +3,7 @@
 import unittest
 from unittest.mock import patch
 
+from PyQt6.QtGui import QResizeEvent
 from PyQt6.QtWidgets import QApplication, QBoxLayout
 
 from qt_test_case import QtTestCase
@@ -107,15 +108,22 @@ class AppearanceSettingsUiTests(QtTestCase):
                 for index in range(group.layout.count())
             ))
 
-    def test_visible_button_group_wraps_and_keeps_independent_switches(self):
+    @staticmethod
+    def _resize_to_width(widget, width):
+        """Resize and deliver the event without going through the queue.
+
+        The group is nested several layouts deep, so a posted resize races
+        with the parent layout reassigning the geometry.
+        """
+        previous = widget.size()
+        widget.resize(width, previous.height())
+        QApplication.sendEvent(widget, QResizeEvent(widget.size(), previous))
+
+    def test_visible_button_group_wraps_when_narrow(self):
         page = AppearanceSettingsView()
         group = page.csr_visible_buttons_group
-        page.resize(800, 900)
-        page.show()
-        QApplication.processEvents()
 
-        group.resize(600, group.sizeHint().height())
-        QApplication.processEvents()
+        self._resize_to_width(group, 600)
         self.assertEqual(
             group.rows_layout.direction(),
             QBoxLayout.Direction.LeftToRight,
@@ -125,8 +133,7 @@ class AppearanceSettingsUiTests(QtTestCase):
             for row in group.rows
         ))
 
-        group.resize(420, group.sizeHint().height())
-        QApplication.processEvents()
+        self._resize_to_width(group, 420)
         self.assertEqual(
             group.rows_layout.direction(),
             QBoxLayout.Direction.TopToBottom,
@@ -135,6 +142,12 @@ class AppearanceSettingsUiTests(QtTestCase):
             row.maximumWidth() > group.MAX_COLUMN_WIDTH
             for row in group.rows
         ))
+        page.close()
+
+    def test_visible_button_group_keeps_independent_switches(self):
+        page = AppearanceSettingsView()
+        group = page.csr_visible_buttons_group
+
         self.assertIs(
             group.rows[0].checkbox,
             page.csr_show_minimize_checkBox,
