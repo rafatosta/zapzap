@@ -6,7 +6,10 @@ import tempfile
 import unittest
 from types import SimpleNamespace
 
-import qt_test_case  # noqa: F401  puts the repository root on sys.path
+from PyQt6.QtCore import QCoreApplication, QEvent
+
+from qt_test_case import QtTestCase
+from zapzap.features.accounts.domain.user import User
 from zapzap.features.browser.web.web_view import WebView
 
 
@@ -82,6 +85,37 @@ class AccountDataRemovalTest(unittest.TestCase):
         self._remove(account)  # must not raise
 
         self.assertFalse(os.path.exists(self.cache))
+
+
+class DisabledAccountWebViewTest(QtTestCase):
+    """The same removal, driven through a real WebView."""
+
+    def test_data_is_removed_for_an_account_disabled_since_startup(self):
+        user = User(id="account-disabled", name="Disabled", enable=False)
+        view = WebView(user=user, page_index=0)
+        self.addCleanup(view.deleteLater)
+
+        # The profile was never opened, so the WebView holds no paths.
+        self.assertIsNone(view._cache_path)
+        self.assertIsNone(view._storage_path)
+
+        cache, storage = WebView.profile_paths(user.id)
+        # profile_paths schedules its probe with deleteLater, which only runs
+        # on an event loop turn. Release it before remove_files opens a second
+        # profile under the same name.
+        QCoreApplication.sendPostedEvents(None, QEvent.Type.DeferredDelete)
+
+        for path in (cache, storage):
+            os.makedirs(path, exist_ok=True)
+        session = os.path.join(storage, "session.dat")
+        with open(session, "w") as handle:
+            handle.write("session")
+
+        view.remove_files()
+
+        self.assertFalse(os.path.exists(cache))
+        self.assertFalse(os.path.exists(storage))
+        self.assertFalse(os.path.exists(session))
 
 
 if __name__ == "__main__":
