@@ -3,27 +3,27 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-24 18:16-0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language:bs \n"
+"POT-Creation-Date: 2026-07-25 13:29-0300\n"
+"PO-Revision-Date: 2026-07-25 21:10-0300\n"
+"Last-Translator: ZapZap contributors\n"
+"Language-Team: Bosnian\n"
+"Language: bs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:27
 msgid "Unexpected Error"
-msgstr ""
+msgstr "Neočekivana greška"
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:28
 msgid "The application encountered an unexpected error."
-msgstr ""
+msgstr "Aplikacija je naišla na neočekivanu grešku."
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:30
 #, python-brace-format
@@ -38,23 +38,30 @@ msgid ""
 " - Issue tracker: {issue_url}\n"
 " - Email: {email}"
 msgstr ""
+"Dijagnostički izvještaj je automatski generiran na:\n"
+"\n"
+"{path}\n"
+"\n"
+"Molimo pošaljite ovaj fajl podršci kako bismo mogli istražiti problem.\n"
+"\n"
+"Prijavite kanale:\n"
+"- Praćenje problema: {issue_url}\n"
+"- Email: {email}"
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:41
 #: zapzap/features/settings/pages/advanced_customizations/view.py:101
-#: zapzap/features/settings/pages/debugging/view.py:191
+#: zapzap/features/settings/pages/debugging/view.py:189
 #: zapzap/features/downloads/ui/download_dialog.py:118
-#, fuzzy
 msgid "Open folder"
-msgstr "Odaberi folder"
+msgstr "Otvori folder"
 
 #: zapzap/core/environment/environment_detector.py:5
-#, fuzzy
 msgid "Official"
-msgstr "Verzija {id} (Zvanična kompilacija)"
+msgstr "Službeno"
 
 #: zapzap/core/environment/environment_detector.py:6
 msgid "Community"
-msgstr ""
+msgstr "Zajednica"
 
 #: zapzap/core/environment/environment_detector.py:7
 #: zapzap/core/environment/environment_detector.py:19
@@ -62,7 +69,7 @@ msgstr ""
 #: zapzap/core/environment/environment_detector.py:21
 #: zapzap/features/settings/pages/about/model.py:56
 msgid "Unknown"
-msgstr ""
+msgstr "Nepoznato"
 
 #: zapzap/core/environment/proxy_manager.py:9
 msgid "No proxying is used."
@@ -93,15 +100,15 @@ msgstr "Proxy se koristi samo za FTP zahtjeve."
 #: zapzap/features/alerts/alert_manager.py:110
 #: zapzap/features/alerts/alert_manager.py:173
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: zapzap/features/alerts/alert_manager.py:214
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
 #: zapzap/features/alerts/alert_manager.py:222
 msgid "No"
-msgstr ""
+msgstr "br"
 
 #: zapzap/features/alerts/alert_manager.py:241
 #: zapzap/features/settings/pages/about/view.py:279
@@ -125,9 +132,9 @@ msgstr "Pažnja"
 msgid "No active account!"
 msgstr "Nema aktivnog naloga!"
 
-#: zapzap/features/donation/view.py:207 zapzap/features/shortcuts/view.py:59
-#: zapzap/features/settings/pages/debugging/view.py:379
-#: zapzap/ui/main_window/main_window_view.py:129
+#: zapzap/features/donation/view.py:207 zapzap/features/shortcuts/view.py:60
+#: zapzap/features/settings/pages/debugging/view.py:373
+#: zapzap/ui/main_window/main_window_view.py:133
 msgid "ZapZap"
 msgstr "ZapZap"
 
@@ -136,52 +143,51 @@ msgid ""
 "Your donation helps keep the project running, improve resources and "
 "guarantee your privacy and freedom."
 msgstr ""
+"Vaša donacija pomaže u održavanju projekta, poboljšava resurse i garantuje "
+"vašu privatnost i slobodu."
 
 #: zapzap/features/donation/view.py:214
-#, fuzzy
 msgid "❤ Make a donation"
-msgstr "Donacija"
+msgstr "❤ Donirajte"
 
 #: zapzap/features/donation/view.py:215
 msgid "Don't show again"
-msgstr ""
+msgstr "Ne prikazuj ponovo"
 
 #: zapzap/features/donation/view.py:216
 msgid "Learn more about ZapZap ↗"
-msgstr ""
+msgstr "Saznajte više o ZapZap ↗"
 
 #: zapzap/features/downloads/download_manager.py:92
-#, fuzzy
 msgid "Select folder"
-msgstr "Odaberi folder"
+msgstr "Odaberite folder"
 
 #: zapzap/features/initial_setup/controller.py:111
 #: zapzap/features/settings/pages/language_downloads/controller.py:60
-#, fuzzy
 msgid "System default"
-msgstr "Vrati standardne postavke"
+msgstr "Sistemski zadani"
 
 #: zapzap/features/initial_setup/controller.py:142
 msgid "English"
-msgstr ""
+msgstr "engleski"
 
 #: zapzap/features/initial_setup/view.py:42
-#, fuzzy
 msgid "Setup ZapZap"
-msgstr "ZapZap"
+msgstr "Postavljanje ZapZap"
 
 #: zapzap/features/initial_setup/view.py:87
-#, fuzzy
 msgid "Welcome to ZapZap"
-msgstr "Dobro došli na"
+msgstr "Dobro došli u ZapZap"
 
 #: zapzap/features/initial_setup/view.py:90
-msgid "Choose the essentials now. You can change everything later in Settings."
+msgid ""
+"Choose the essentials now. You can change everything later in Settings."
 msgstr ""
+"Odaberite sada osnovne stvari.Sve možete promijeniti kasnije u Postavkama."
 
 #: zapzap/features/initial_setup/view.py:105
 msgid "Basics"
-msgstr ""
+msgstr "Osnove"
 
 #: zapzap/features/initial_setup/view.py:106
 #: zapzap/features/settings/shell/settings_controller.py:43
@@ -192,29 +198,28 @@ msgstr "Obavještenja"
 
 #: zapzap/features/initial_setup/view.py:107
 msgid "Background"
-msgstr ""
+msgstr "Pozadina"
 
 #: zapzap/features/initial_setup/view.py:108
 #: zapzap/features/settings/pages/advanced_customizations/view.py:73
-#, fuzzy
 msgid "Files"
-msgstr "Fajl"
+msgstr "Fajlovi"
 
 #: zapzap/features/initial_setup/view.py:109
 #: zapzap/features/initial_setup/view.py:361
 #: zapzap/features/settings/shell/settings_controller.py:44
 #: zapzap/features/settings/pages/permissions/view.py:22
 msgid "Permissions"
-msgstr ""
+msgstr "Dozvole"
 
 #: zapzap/features/initial_setup/view.py:110
 #: zapzap/features/initial_setup/view.py:120
 msgid "Finish"
-msgstr ""
+msgstr "Završi"
 
 #: zapzap/features/initial_setup/view.py:117
 msgid "Skip setup"
-msgstr ""
+msgstr "Preskoči postavljanje"
 
 #: zapzap/features/initial_setup/view.py:118
 msgid "Back"
@@ -222,51 +227,49 @@ msgstr "Nazad"
 
 #: zapzap/features/initial_setup/view.py:119
 msgid "Next"
-msgstr ""
+msgstr "Sledeći"
 
 #: zapzap/features/initial_setup/view.py:137
 msgid "Language and appearance"
-msgstr ""
+msgstr "Jezik i izgled"
 
 #: zapzap/features/initial_setup/view.py:138
 msgid "Start with the interface language and a comfortable visual theme."
-msgstr ""
+msgstr "Počnite sa jezikom interfejsa i udobnom vizuelnom temom."
 
 #: zapzap/features/initial_setup/view.py:143
 #: zapzap/features/settings/pages/language_downloads/view.py:34
-#, fuzzy
 msgid "Language"
-msgstr "Odaberi jezik"
+msgstr "Jezik"
 
 #: zapzap/features/initial_setup/view.py:144
 #: zapzap/features/settings/pages/language_downloads/view.py:35
 msgid "Choose the interface language used by ZapZap."
-msgstr ""
+msgstr "Odaberite jezik interfejsa koji koristi ZapZap."
 
 #: zapzap/features/initial_setup/view.py:149
 #: zapzap/features/settings/pages/language_downloads/view.py:39
-#, fuzzy
 msgid "Interface language"
-msgstr "Odaberi jezik"
+msgstr "Jezik interfejsa"
 
 #: zapzap/features/initial_setup/view.py:150
 msgid "The interface language is applied when you finish setup."
-msgstr ""
+msgstr "Jezik interfejsa se primenjuje kada završite sa podešavanjem."
 
 #: zapzap/features/initial_setup/view.py:159
 #: zapzap/features/settings/pages/appearance/view.py:64
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: zapzap/features/initial_setup/view.py:160
 #: zapzap/features/settings/pages/appearance/view.py:64
 msgid "Choose the visual theme."
-msgstr ""
+msgstr "Odaberite vizuelnu temu."
 
 #: zapzap/features/initial_setup/view.py:164
 #: zapzap/features/settings/pages/appearance/view.py:66
 msgid "Automatic"
-msgstr ""
+msgstr "Automatski"
 
 #: zapzap/features/initial_setup/view.py:165
 #: zapzap/features/settings/pages/appearance/view.py:67
@@ -279,81 +282,80 @@ msgid "Dark"
 msgstr "Tamna tema"
 
 #: zapzap/features/initial_setup/view.py:183
-#, fuzzy
 msgid "Notifications and privacy"
-msgstr "Obavještenja"
+msgstr "Obavještenja i privatnost"
 
 #: zapzap/features/initial_setup/view.py:184
 msgid ""
 "Decide how much message information appears in native notification banners."
 msgstr ""
+"Odlučite koliko se informacija o poruci pojavljuje u izvornim banerima "
+"obavijesti."
 
 #: zapzap/features/initial_setup/view.py:188
 #: zapzap/features/settings/pages/notifications/view.py:39
-#, fuzzy
 msgid "Desktop notifications"
-msgstr "Utišava obavještenja"
+msgstr "Obavještenja na radnoj površini"
 
 #: zapzap/features/initial_setup/view.py:189
 msgid "Choose whether ZapZap may show desktop notifications."
 msgstr ""
+"Odaberite da li ZapZap može prikazivati obavještenja na radnoj površini."
 
 #: zapzap/features/initial_setup/view.py:194
-#, fuzzy
 msgid "Enable notifications"
-msgstr "Obavještenja u radnom prostoru"
+msgstr "Omogući obavještenja"
 
 #: zapzap/features/initial_setup/view.py:195
 msgid ""
 "Allow ZapZap to publish native desktop notifications for WhatsApp activity."
 msgstr ""
+"Dozvolite ZapZap da objavljuje izvorna obavještenja na radnoj površini za "
+"aktivnost WhatsApp."
 
 #: zapzap/features/initial_setup/view.py:203
-#, fuzzy
 msgid "Notification privacy"
-msgstr "Obavještenja"
+msgstr "Privatnost obavještenja"
 
 #: zapzap/features/initial_setup/view.py:204
 msgid "Limit what is visible in notification banners."
-msgstr ""
+msgstr "Ograničite ono što je vidljivo u banerima obavijesti."
 
 #: zapzap/features/initial_setup/view.py:209
-#, fuzzy
 msgid "Show contact photo"
-msgstr "Sakrij obavijest o donaciji"
+msgstr "Prikaži fotografiju kontakta"
 
 #: zapzap/features/initial_setup/view.py:210
 msgid "Display the sender avatar when it is available."
-msgstr ""
+msgstr "Prikaži avatar pošiljaoca kada je dostupan."
 
 #: zapzap/features/initial_setup/view.py:213
-#, fuzzy
 msgid "Show contact name"
-msgstr "Sakrij obavijest o donaciji"
+msgstr "Prikaži ime kontakta"
 
 #: zapzap/features/initial_setup/view.py:214
 msgid "Display the sender or group name."
-msgstr ""
+msgstr "Prikažite ime pošiljaoca ili grupe."
 
 #: zapzap/features/initial_setup/view.py:217
 msgid "Show message preview"
 msgstr "Prikaži pregled poruke"
 
 #: zapzap/features/initial_setup/view.py:218
-#, fuzzy
 msgid "Display the message text in the notification."
-msgstr "Utišava obavještenja"
+msgstr "Prikažite tekst poruke u obavještenju."
 
 #: zapzap/features/initial_setup/view.py:232
-#, fuzzy
 msgid "Background behavior"
-msgstr "Ponašanje"
+msgstr "Ponašanje u pozadini"
 
 #: zapzap/features/initial_setup/view.py:233
 msgid ""
 "Choose whether ZapZap should stay available from the tray and start with "
 "your session."
 msgstr ""
+"Odaberite da li ZapZap treba da ostane dostupan na traci i počnite sa "
+"sesijom."
 
 #: zapzap/features/initial_setup/view.py:237
 #: zapzap/features/settings/pages/appearance/view.py:81
@@ -362,60 +364,56 @@ msgstr "Ikona u sistemskoj traci"
 
 #: zapzap/features/initial_setup/view.py:238
 msgid "Control tray icon visibility and unread counter."
-msgstr ""
+msgstr "Kontrolirajte vidljivost ikone na traci i brojač nepročitanih."
 
 #: zapzap/features/initial_setup/view.py:243
-#, fuzzy
 msgid "Enable tray icon"
-msgstr "Obavještenja u radnom prostoru"
+msgstr "Omogući ikonu u traci"
 
 #: zapzap/features/initial_setup/view.py:244
 msgid "Show ZapZap in the system tray."
-msgstr ""
+msgstr "Prikaži ZapZap u sistemskoj paleti."
 
 #: zapzap/features/initial_setup/view.py:247
-#, fuzzy
 msgid "Notification counter"
-msgstr "Obavještenja"
+msgstr "Brojač obaveštenja"
 
 #: zapzap/features/initial_setup/view.py:248
 msgid "Show unread notifications on the tray icon."
-msgstr ""
+msgstr "Prikaži nepročitana obavještenja na ikoni u traci."
 
 #: zapzap/features/initial_setup/view.py:258
-#, fuzzy
 msgid "Window behavior"
-msgstr "Ponašanje"
+msgstr "Ponašanje prozora"
 
 #: zapzap/features/initial_setup/view.py:259
 msgid "Configure close behavior."
-msgstr ""
+msgstr "Konfigurirajte ponašanje zatvaranja."
 
 #: zapzap/features/initial_setup/view.py:264
 msgid "Keep running in the background"
-msgstr ""
+msgstr "Nastavite raditi u pozadini"
 
 #: zapzap/features/initial_setup/view.py:265
 msgid "Hide the main window instead of quitting when it is closed."
-msgstr ""
+msgstr "Sakrijte glavni prozor umjesto da ga zatvorite kada je zatvoren."
 
 #: zapzap/features/initial_setup/view.py:268
-#, fuzzy
 msgid "Confirm before closing the window"
-msgstr "Zatvori pri zatvaranju prozora"
+msgstr "Potvrdite prije zatvaranja prozora"
 
 #: zapzap/features/initial_setup/view.py:269
 msgid "Ask for confirmation before closing ZapZap."
-msgstr ""
+msgstr "Zatražite potvrdu prije zatvaranja ZapZap."
 
 #: zapzap/features/initial_setup/view.py:279
 #: zapzap/features/settings/pages/system_startup/view.py:40
 msgid "Startup"
-msgstr ""
+msgstr "Pokretanje"
 
 #: zapzap/features/initial_setup/view.py:280
 msgid "Control how ZapZap behaves when your desktop session starts."
-msgstr ""
+msgstr "Kontrolišite kako se ZapZap ponaša kada započne vaša desktop sesija."
 
 #: zapzap/features/initial_setup/view.py:285
 #: zapzap/features/settings/pages/system_startup/view.py:45
@@ -424,7 +422,7 @@ msgstr "Pokreni sa sistemom"
 
 #: zapzap/features/initial_setup/view.py:286
 msgid "Create or remove the desktop autostart entry."
-msgstr ""
+msgstr "Kreirajte ili uklonite unos za automatsko pokretanje radne površine."
 
 #: zapzap/features/initial_setup/view.py:289
 msgid "Start minimized"
@@ -432,145 +430,145 @@ msgstr "Pokreni minimizirano"
 
 #: zapzap/features/initial_setup/view.py:290
 msgid "Open ZapZap in the background instead of showing the main window."
-msgstr ""
+msgstr "Otvorite ZapZap u pozadini umjesto da prikazujete glavni prozor."
 
 #: zapzap/features/initial_setup/view.py:303
-#, fuzzy
 msgid "Downloads and typing"
-msgstr "Direktorij za preuzimanje"
+msgstr "Preuzimanja i kucanje"
 
 #: zapzap/features/initial_setup/view.py:304
 msgid ""
-"Choose where files are saved and enable spell checking when dictionaries are "
-"available."
+"Choose where files are saved and enable spell checking when dictionaries are"
+" available."
 msgstr ""
+"Odaberite gdje se datoteke spremaju i omogućite provjeru pravopisa kada su "
+"rječnici dostupni."
 
 #: zapzap/features/initial_setup/view.py:308
 #: zapzap/features/settings/pages/language_downloads/view.py:52
-#, fuzzy
 msgid "Downloads"
-msgstr "Direktorij za preuzimanje"
+msgstr "Preuzimanja"
 
 #: zapzap/features/initial_setup/view.py:309
 #: zapzap/features/settings/pages/language_downloads/view.py:53
 msgid "Choose where downloaded files are saved."
-msgstr ""
+msgstr "Odaberite gdje će preuzeti datoteke pohranjene."
 
 #: zapzap/features/initial_setup/view.py:314
 #: zapzap/features/settings/pages/language_downloads/view.py:57
-#, fuzzy
 msgid "Download directory"
-msgstr "Direktorij za preuzimanje"
+msgstr "Preuzmite imenik"
 
 #: zapzap/features/initial_setup/view.py:315
 msgid "Set a custom folder or keep the current download location."
 msgstr ""
+"Postavite prilagođeni folder ili zadržite trenutnu lokaciju preuzimanja."
 
 #: zapzap/features/initial_setup/view.py:316
-#, fuzzy
 msgid "Choose folder"
-msgstr "Direktorij za preuzimanje"
+msgstr "Odaberite folder"
 
 #: zapzap/features/initial_setup/view.py:326
 #: zapzap/features/settings/pages/language_downloads/view.py:73
-#, fuzzy
 msgid "Spell checker"
 msgstr "Provjera pravopisa"
 
 #: zapzap/features/initial_setup/view.py:327
 #: zapzap/features/settings/pages/language_downloads/view.py:74
 msgid "Select compiled dictionaries and where ZapZap should look for them."
-msgstr ""
+msgstr "Odaberite sastavljene rječnike i gdje ih ZapZap treba tražiti."
 
 #: zapzap/features/initial_setup/view.py:332
 #: zapzap/features/settings/pages/language_downloads/view.py:78
-#, fuzzy
 msgid "Enable spell checker"
-msgstr "Provjera pravopisa"
+msgstr "Omogući provjeru pravopisa"
 
 #: zapzap/features/initial_setup/view.py:333
 #: zapzap/features/settings/pages/language_downloads/view.py:79
 msgid "Use Qt WebEngine spell checking with the selected dictionary."
-msgstr ""
+msgstr "Koristite Qt WebEngine provjeru pravopisa sa odabranim rječnikom."
 
 #: zapzap/features/initial_setup/view.py:336
 #: zapzap/features/settings/pages/language_downloads/view.py:82
 msgid "Dictionary language"
-msgstr ""
+msgstr "Jezik rječnika"
 
 #: zapzap/features/initial_setup/view.py:337
 #: zapzap/features/settings/pages/language_downloads/view.py:83
-#, fuzzy
 msgid "Recognizes only compiled dictionaries (.bdic)."
-msgstr "Prepoznaje samo kompajlirane rječnike (.bdic)"
+msgstr "Prepoznaje samo sastavljene rječnike (.bdic)."
 
 #: zapzap/features/initial_setup/view.py:341
 msgid ""
-"No compiled dictionaries were found. You can configure dictionaries later in "
-"Settings."
+"No compiled dictionaries were found. You can configure dictionaries later in"
+" Settings."
 msgstr ""
+"Nisu pronađeni sastavljeni rječnici.Rečnike možete konfigurisati kasnije u "
+"Postavkama."
 
 #: zapzap/features/initial_setup/view.py:356
 msgid "Essential permissions"
-msgstr ""
+msgstr "Osnovne dozvole"
 
 #: zapzap/features/initial_setup/view.py:357
 msgid ""
 "Allow only the WhatsApp Web permissions you want to grant automatically."
 msgstr ""
+"Dozvolite samo WhatsApp Web dozvole koje želite automatski dodijeliti."
 
 #: zapzap/features/initial_setup/view.py:362
 msgid "When an option is unchecked, ZapZap will ask again in each session."
-msgstr ""
+msgstr "Kada je opcija poništena, ZapZap će ponovo pitati u svakoj sesiji."
 
 #: zapzap/features/initial_setup/view.py:368
 msgid ""
 "Enable only the permissions you want to grant automatically when the page "
 "requests them."
 msgstr ""
+"Omogućite samo dozvole koje želite automatski dodijeliti kada ih stranica "
+"zatraži."
 
 #: zapzap/features/initial_setup/view.py:372
 #: zapzap/features/settings/pages/permissions/view.py:64
-#, fuzzy
 msgid "Microphone"
-msgstr "Prema broju telefona"
+msgstr "Mikrofon"
 
 #: zapzap/features/initial_setup/view.py:373
 #: zapzap/features/settings/pages/permissions/view.py:65
 msgid "Automatically allow access to your microphone."
-msgstr ""
+msgstr "Automatski dozvolite pristup vašem mikrofonu."
 
 #: zapzap/features/initial_setup/view.py:376
 #: zapzap/features/settings/pages/permissions/view.py:69
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: zapzap/features/initial_setup/view.py:377
 #: zapzap/features/settings/pages/permissions/view.py:70
 msgid "Automatically allow access to your camera."
-msgstr ""
+msgstr "Automatski dozvolite pristup vašoj kameri."
 
 #: zapzap/features/initial_setup/view.py:380
 msgid "Screen contents"
-msgstr ""
+msgstr "Sadržaj ekrana"
 
 #: zapzap/features/initial_setup/view.py:381
 #: zapzap/features/settings/pages/permissions/view.py:94
 msgid "Automatically allow sharing of screen contents."
-msgstr ""
+msgstr "Automatski dozvoli dijeljenje sadržaja ekrana."
 
 #: zapzap/features/initial_setup/view.py:384
 msgid "WebRTC shield"
-msgstr ""
+msgstr "WebRTC štit"
 
 #: zapzap/features/initial_setup/view.py:385
 msgid "Reduce WebRTC IP exposure."
-msgstr ""
+msgstr "Smanjite WebRTC IP izloženost."
 
 #: zapzap/features/initial_setup/view.py:402
 #: zapzap/features/settings/pages/permissions/view.py:130
 msgid "Flatpak permissions"
-msgstr ""
+msgstr "Flatpak dozvole"
 
 #: zapzap/features/initial_setup/view.py:403
 #: zapzap/features/settings/pages/permissions/view.py:131
@@ -578,6 +576,8 @@ msgid ""
 "Grant filesystem access if downloads, imports, or dictionaries cannot reach "
 "folders outside the sandbox."
 msgstr ""
+"Odobrite pristup sistemu datoteka ako preuzimanja, uvozi ili rječnici ne "
+"mogu doći do foldera izvan sandbox-a."
 
 #: zapzap/features/initial_setup/view.py:409
 #: zapzap/features/settings/pages/permissions/view.py:135
@@ -585,15 +585,17 @@ msgid ""
 "Flatpak sandbox: if file access fails, grant folder permissions using "
 "Flatseal or flatpak override."
 msgstr ""
+"Flatpak sandbox: ako pristup fajlu ne uspije, dodijelite dozvole foldera "
+"koristeći Flatseal ili Flatseal zaobilaženje."
 
 #: zapzap/features/initial_setup/view.py:419
 #: zapzap/features/settings/pages/permissions/view.py:143
 msgid "Select and copy this command in your terminal"
-msgstr ""
+msgstr "Odaberite i kopirajte ovu naredbu u svoj terminal"
 
 #: zapzap/features/initial_setup/view.py:421
 #: zapzap/features/settings/pages/debugging/controller.py:87
-#: zapzap/features/settings/pages/debugging/view.py:225
+#: zapzap/features/settings/pages/debugging/view.py:223
 #: zapzap/features/settings/pages/permissions/view.py:145
 #: zapzap/features/browser/web/web_view.py:312
 msgid "Copy"
@@ -602,7 +604,7 @@ msgstr "Kopiraj"
 #: zapzap/features/initial_setup/view.py:425
 #: zapzap/features/settings/pages/permissions/view.py:149
 msgid "Flatseal"
-msgstr ""
+msgstr "Flatseal"
 
 #: zapzap/features/initial_setup/view.py:426
 #: zapzap/features/settings/pages/permissions/view.py:150
@@ -610,38 +612,45 @@ msgid ""
 "Flatseal is a graphical utility to review and modify permissions from your "
 "Flatpak applications."
 msgstr ""
+"Flatseal je grafički uslužni program za pregled i izmjenu dozvola iz vaših "
+"Flatpak aplikacija."
 
 #: zapzap/features/initial_setup/view.py:427
 #: zapzap/features/settings/pages/permissions/view.py:151
 msgid "Install Flatseal on Linux | Flathub"
-msgstr ""
+msgstr "Instalirajte Flatseal na Linux |Flathub"
 
 #: zapzap/features/initial_setup/view.py:442
 msgid "You're ready"
-msgstr ""
+msgstr "Spremni ste"
 
 #: zapzap/features/initial_setup/view.py:443
 msgid ""
-"ZapZap will save these preferences now. Advanced options remain available in "
-"Settings."
+"ZapZap will save these preferences now. Advanced options remain available in"
+" Settings."
 msgstr ""
+"ZapZap će sada sačuvati ove postavke.Napredne opcije ostaju dostupne u "
+"Postavkama."
 
 #: zapzap/features/initial_setup/view.py:447
 msgid "Finish setup"
-msgstr ""
+msgstr "Završi postavljanje"
 
 #: zapzap/features/initial_setup/view.py:448
 msgid "Review advanced options later whenever you need them."
-msgstr ""
+msgstr "Pregledajte napredne opcije kasnije kad god vam zatrebaju."
 
 #: zapzap/features/initial_setup/view.py:454
 msgid ""
-"You can revisit all choices from Settings at any time. Proxy, custom CSS/"
-"JavaScript, Flatpak permissions, and performance tweaks are still available "
-"there."
+"You can revisit all choices from Settings at any time. Proxy, custom "
+"CSS/JavaScript, Flatpak permissions, and performance tweaks are still "
+"available there."
 msgstr ""
+"U bilo kojem trenutku možete ponovo posjetiti sve izbore u Postavkama.Proxy,"
+" prilagođene CSS/JavaScript, Flatpak dozvole i podešavanja performansi su "
+"još uvijek dostupni tamo."
 
-#: zapzap/features/notifications/notification_service.py:104
+#: zapzap/features/notifications/notification_service.py:115
 msgid "New message..."
 msgstr "Nova poruka..."
 
@@ -689,7 +698,7 @@ msgstr "Profil i status"
 #: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
 #: zapzap/features/tray/sys_tray_manager.py:54
 #: zapzap/features/settings/shell/settings_sidebar.py:95
-#: zapzap/ui/main_window/main_window_view.py:139
+#: zapzap/ui/main_window/main_window_view.py:143
 msgid "Settings"
 msgstr "Postavke"
 
@@ -703,7 +712,7 @@ msgstr "Povećaj brzinu odabrane glasovne poruke"
 
 #: zapzap/features/shortcuts/model.py:25
 msgid "Emoji panel"
-msgstr "Emoji panel"
+msgstr "Panel s emotikonima"
 
 #: zapzap/features/shortcuts/model.py:26
 msgid "Sticker panel"
@@ -734,7 +743,7 @@ msgid "Extended search"
 msgstr "Proširena pretraga"
 
 #: zapzap/features/shortcuts/model.py:39
-#: zapzap/ui/main_window/main_window_view.py:137
+#: zapzap/ui/main_window/main_window_view.py:141
 msgid "Hide"
 msgstr "Sakrij"
 
@@ -747,33 +756,32 @@ msgid "Fullscreen"
 msgstr "Cijeli ekran"
 
 #: zapzap/features/shortcuts/model.py:42
-#: zapzap/ui/main_window/main_window_view.py:154
+#: zapzap/ui/main_window/main_window_view.py:158
 msgid "Automatic theme"
-msgstr ""
+msgstr "Automatska tema"
 
 #: zapzap/features/shortcuts/model.py:43
-#: zapzap/ui/main_window/main_window_view.py:156
-#, fuzzy
+#: zapzap/ui/main_window/main_window_view.py:160
 msgid "Light theme"
-msgstr "Svijetla tema"
+msgstr "Lagana tema"
 
 #: zapzap/features/shortcuts/model.py:44
-#: zapzap/ui/main_window/main_window_view.py:158
+#: zapzap/ui/main_window/main_window_view.py:162
 msgid "Dark theme"
-msgstr ""
+msgstr "Tamna tema"
 
 #: zapzap/features/shortcuts/model.py:45
-#: zapzap/ui/main_window/main_window_view.py:141
+#: zapzap/ui/main_window/main_window_view.py:145
 msgid "Reset zoom"
 msgstr "Resetuj zum"
 
 #: zapzap/features/shortcuts/model.py:46
-#: zapzap/ui/main_window/main_window_view.py:143
+#: zapzap/ui/main_window/main_window_view.py:147
 msgid "Zoom in"
 msgstr "Uvećaj"
 
 #: zapzap/features/shortcuts/model.py:47
-#: zapzap/ui/main_window/main_window_view.py:145
+#: zapzap/ui/main_window/main_window_view.py:149
 msgid "Zoom out"
 msgstr "Umanji"
 
@@ -791,12 +799,12 @@ msgstr "Novi razgovor prema broju telefona"
 msgid "New account"
 msgstr "Novi nalog"
 
-#: zapzap/features/shortcuts/view.py:33 zapzap/features/shortcuts/view.py:41
-#: zapzap/ui/main_window/main_window_view.py:166
+#: zapzap/features/shortcuts/view.py:34 zapzap/features/shortcuts/view.py:42
+#: zapzap/ui/main_window/main_window_view.py:170
 msgid "Keyboard shortcuts"
 msgstr "Prečice na tastaturi"
 
-#: zapzap/features/shortcuts/view.py:48
+#: zapzap/features/shortcuts/view.py:49
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
@@ -810,25 +818,21 @@ msgstr "Donacija"
 
 #: zapzap/features/tray/sys_tray_manager.py:56
 #: zapzap/features/settings/shell/settings_view.py:34
-#: zapzap/ui/main_window/main_window_view.py:135
+#: zapzap/ui/main_window/main_window_view.py:139
 msgid "Quit"
 msgstr "Izađi"
 
 #: zapzap/features/settings/components/settings_restart_bar.py:54
-#, fuzzy
 msgid "A restart is required to apply the changes."
-msgstr ""
-"Napomena: Potrebno je ponovno pokretanje da bi se promjene primijenile."
+msgstr "Za primjenu promjena potrebno je ponovno pokretanje."
 
 #: zapzap/features/settings/components/settings_restart_bar.py:55
-#, fuzzy
 msgid "Restart now"
-msgstr "Odaberi jezik"
+msgstr "Ponovo pokreni sada"
 
 #: zapzap/features/settings/shell/settings_view.py:32
-#, fuzzy
 msgid "Donate"
-msgstr "Donacija"
+msgstr "Donirajte"
 
 #: zapzap/features/settings/shell/settings_controller.py:41
 #: zapzap/features/settings/pages/accounts/view.py:17
@@ -842,165 +846,162 @@ msgstr "Izgled"
 
 #: zapzap/features/settings/shell/settings_controller.py:45
 #: zapzap/features/settings/pages/system_startup/view.py:22
-#, fuzzy
 msgid "System and startup"
-msgstr "Vrati standardne postavke"
+msgstr "Sistem i pokretanje"
 
 #: zapzap/features/settings/shell/settings_controller.py:46
 #: zapzap/features/settings/pages/language_downloads/view.py:20
 msgid "Language and Download"
-msgstr ""
+msgstr "Jezik i preuzimanje"
 
 #: zapzap/features/settings/shell/settings_controller.py:47
 #: zapzap/features/settings/pages/network_privacy/view.py:149
 msgid "Privacy and Network"
-msgstr ""
+msgstr "Privatnost i mreža"
 
 #: zapzap/features/settings/shell/settings_controller.py:48
 msgid "Advanced Customizations"
-msgstr ""
+msgstr "Napredne prilagodbe"
 
 #: zapzap/features/settings/shell/settings_controller.py:50
 #: zapzap/features/settings/pages/performance_experimental/view.py:19
-#, fuzzy
 msgid "Performance experimental"
-msgstr "Performanse (Eksperimentalno)"
+msgstr "Performanse eksperimentalne"
 
 #: zapzap/features/settings/shell/settings_controller.py:51
-#: zapzap/features/settings/pages/debugging/view.py:161
+#: zapzap/features/settings/pages/debugging/view.py:159
 msgid "Debugging"
-msgstr ""
+msgstr "Otklanjanje grešaka"
 
 #: zapzap/features/settings/shell/settings_controller.py:53
 #: zapzap/features/settings/pages/about/view.py:238
-#: zapzap/ui/main_window/main_window_view.py:168
+#: zapzap/ui/main_window/main_window_view.py:172
 msgid "About"
 msgstr "O aplikaciji"
 
 #: zapzap/features/settings/shell/settings_sidebar.py:98
 msgid "Adjust accounts, appearance, notifications and advanced options."
-msgstr ""
+msgstr "Prilagodite račune, izgled, obavještenja i napredne opcije."
 
 #: zapzap/features/settings/shell/settings_sidebar.py:103
-#, fuzzy
 msgid "Close settings"
-msgstr "Postavke"
+msgstr "Zatvorite postavke"
 
 #: zapzap/features/settings/pages/about/view.py:37
 msgid "ZapZap application icon"
-msgstr ""
+msgstr "Ikona aplikacije ZapZap"
 
 #: zapzap/features/settings/pages/about/view.py:49
 msgid "WhatsApp Web for Linux"
 msgstr "WhatsApp Web za Linux"
 
 #: zapzap/features/settings/pages/about/view.py:61
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Version {version}"
-msgstr "Verzija {id}"
+msgstr "Verzija {version}"
 
 #: zapzap/features/settings/pages/about/view.py:148
 msgid "Technical details"
-msgstr ""
+msgstr "Tehnički detalji"
 
 #: zapzap/features/settings/pages/about/view.py:239
 msgid "Information about ZapZap, the project, and support."
-msgstr ""
+msgstr "Informacije o ZapZap, projektu i podršci."
 
 #: zapzap/features/settings/pages/about/view.py:253
 msgid "Project and support"
-msgstr ""
+msgstr "Projekat i podrška"
 
 #: zapzap/features/settings/pages/about/view.py:257
 msgid "Project page"
-msgstr ""
+msgstr "Stranica projekta"
 
 #: zapzap/features/settings/pages/about/view.py:258
 msgid "Official website, downloads, and documentation."
-msgstr ""
+msgstr "Službena web stranica, preuzimanja i dokumentacija."
 
 #: zapzap/features/settings/pages/about/view.py:262
 msgid "Report a problem"
-msgstr ""
+msgstr "Prijavite problem"
 
 #: zapzap/features/settings/pages/about/view.py:263
 msgid "Report bugs or suggest improvements on GitHub."
-msgstr ""
+msgstr "Prijavite greške ili predložite poboljšanja na GitHubu."
 
 #: zapzap/features/settings/pages/about/view.py:267
 msgid "Support the project"
-msgstr ""
+msgstr "Podržite projekat"
 
 #: zapzap/features/settings/pages/about/view.py:268
 msgid "Help sustain ZapZap development."
-msgstr ""
+msgstr "Pomozite u održavanju razvoja ZapZap."
 
 #: zapzap/features/settings/pages/about/view.py:284
 #: zapzap/features/settings/pages/about/controller.py:58
 msgid "License"
-msgstr ""
+msgstr "Licenca"
 
 #: zapzap/features/settings/pages/about/view.py:289
 #: zapzap/features/settings/pages/about/controller.py:68
 msgid "Credits and contributors"
-msgstr ""
+msgstr "Zasluge i saradnici"
 
 #: zapzap/features/settings/pages/about/view.py:311
 #: zapzap/features/settings/pages/about/view.py:315
 #: zapzap/features/settings/pages/about/controller.py:53
-#, fuzzy
 msgid "Copy system information"
-msgstr "Informacija"
+msgstr "Kopirajte sistemske informacije"
 
 #: zapzap/features/settings/pages/about/view.py:325
 msgid ""
-"ZapZap is an independent project and is not affiliated with WhatsApp or Meta."
-msgstr ""
+"ZapZap is an independent project and is not affiliated with WhatsApp or "
+"Meta."
+msgstr "ZapZap je nezavisan projekat i nije povezan sa WhatsApp ili Meta."
 
 #: zapzap/features/settings/pages/about/view.py:343
-#, fuzzy
 msgid "Information copied"
-msgstr "Informacija"
+msgstr "Informacije su kopirane"
 
 #: zapzap/features/settings/pages/about/model.py:62
-#, fuzzy
 msgid "Version"
-msgstr "Verzija {id}"
+msgstr "Verzija"
 
 #: zapzap/features/settings/pages/about/model.py:67
 #: zapzap/features/settings/pages/about/model.py:91
-#: zapzap/features/settings/pages/debugging/view.py:381
+#: zapzap/features/settings/pages/debugging/view.py:375
 msgid "Channel"
-msgstr ""
+msgstr "Kanal"
 
 #: zapzap/features/settings/pages/about/model.py:68
 #: zapzap/features/settings/pages/about/model.py:90
-#: zapzap/features/settings/pages/debugging/view.py:380
+#: zapzap/features/settings/pages/debugging/view.py:374
 msgid "Packaging"
-msgstr ""
+msgstr "Pakovanje"
 
 #: zapzap/features/settings/pages/about/model.py:69
 msgid "Provider"
-msgstr ""
+msgstr "Provajder"
 
 #: zapzap/features/settings/pages/about/model.py:70
 msgid "Repository"
-msgstr ""
+msgstr "Repozitorijum"
 
 #: zapzap/features/settings/pages/about/model.py:88
-#: zapzap/features/settings/pages/debugging/view.py:385
-#, fuzzy
+#: zapzap/features/settings/pages/debugging/view.py:379
 msgid "System"
-msgstr "Vrati standardne postavke"
+msgstr "Sistem"
 
 #: zapzap/features/settings/pages/about/model.py:89
 msgid "Session"
-msgstr ""
+msgstr "Sjednica"
 
 #: zapzap/features/settings/pages/about/controller.py:60
 #, python-brace-format
-msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
+msgid ""
+"ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
 msgstr ""
+"ZapZap je besplatni softver licenciran pod {license_id} (GPL-3.0 ili "
+"noviji)."
 
 #: zapzap/features/settings/pages/about/controller.py:70
 #, python-brace-format
@@ -1008,215 +1009,208 @@ msgid ""
 "Created and maintained by {author}. Thanks to everyone who contributes "
 "translations, code, testing, and feedback."
 msgstr ""
+"Kreirao i održava {author}.Hvala svima koji doprinose prijevodima, kodu, "
+"testiranju i povratnim informacijama."
 
 #: zapzap/features/settings/pages/accounts/view.py:18
 msgid "Manage your accounts and individual preferences."
-msgstr ""
+msgstr "Upravljajte svojim računima i individualnim preferencama."
 
 #: zapzap/features/settings/pages/accounts/view.py:38
-#, fuzzy
 msgid "Account list"
-msgstr "Nalozi"
+msgstr "Lista naloga"
 
 #: zapzap/features/settings/pages/accounts/view.py:40
 #: zapzap/features/settings/pages/accounts/view.py:41
-#, fuzzy
 msgid "Add account"
-msgstr "Nalozi"
+msgstr "Dodaj račun"
 
 #: zapzap/features/settings/pages/accounts/view.py:51
 msgid "Each account can have independent settings."
-msgstr ""
+msgstr "Svaki nalog može imati nezavisna podešavanja."
 
 #: zapzap/features/settings/pages/accounts/view.py:81
 #, python-brace-format
 msgid "Account limit of {limit} reached."
-msgstr ""
+msgstr "Dostignuto je ograničenje računa od {limit}."
 
 #: zapzap/features/settings/pages/accounts/view.py:85
 #, python-brace-format
 msgid "{count} of {limit} accounts configured."
-msgstr ""
+msgstr "Konfigurirano je {count} od {limit} računa."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:52
 #: zapzap/features/settings/pages/network_privacy/controller.py:71
-#, fuzzy
 msgid "All accounts"
-msgstr "Nalozi"
+msgstr "Svi računi"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:53
 #: zapzap/features/settings/pages/network_privacy/controller.py:73
-#, fuzzy
 msgid "This account"
-msgstr "Novi nalog"
+msgstr "Ovaj račun"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:152
 msgid "Unsaved changes discarded."
-msgstr ""
+msgstr "Nesačuvane promjene su odbačene."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:197
 #: zapzap/features/settings/pages/network_privacy/controller.py:58
 #: zapzap/features/settings/components/card_user/card_user_view.py:133
-#, fuzzy
 msgid "Unnamed account"
-msgstr "Novi nalog"
+msgstr "Neimenovani račun"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:199
 #, python-brace-format
 msgid "Current account: {} ({})"
-msgstr ""
+msgstr "Trenutni račun: {} ({})"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:203
 msgid "Current account: unavailable"
-msgstr ""
+msgstr "Tekući račun: nedostupan"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:209
 msgid "Changes to the previous scope were saved."
-msgstr ""
+msgstr "Promjene prethodnog opsega su sačuvane."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:296
 #, python-brace-format
 msgid "CSS file enabled: {}"
-msgstr ""
+msgstr "CSS fajl je omogućen: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:296
 #, python-brace-format
 msgid "CSS file disabled: {}"
-msgstr ""
+msgstr "Fajl CSS onemogućen: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:299
 #, python-brace-format
 msgid "JavaScript file enabled: {}"
-msgstr ""
+msgstr "JavaScript fajl je omogućen: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:301
 #, python-brace-format
 msgid "JavaScript file disabled: {}"
-msgstr ""
+msgstr "Fajl JavaScript onemogućen: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:307
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:323
 msgid "This userstyle does not target WhatsApp Web."
-msgstr ""
+msgstr "Ovaj korisnički stil ne cilja WhatsApp Web."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:314
 msgid "Only HTTPS URLs are allowed."
-msgstr ""
+msgstr "Dozvoljeni su samo HTTPS URL-ovi."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:318
-#, fuzzy
 msgid "Download is too large."
-msgstr "Direktorij za preuzimanje"
+msgstr "Preuzimanje je preveliko."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:327
 msgid "Could not download CSS from URL."
-msgstr ""
+msgstr "Nije moguće preuzeti CSS sa URL-a."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:329
 msgid "Could not download JavaScript from URL."
-msgstr ""
+msgstr "Nije moguće preuzeti JavaScript sa URL-a."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:341
-#, fuzzy
 msgid "Select a file first."
-msgstr "Odaberi folder"
+msgstr "Prvo odaberite datoteku."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:373
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:412
 msgid "Select a CSS file to preview."
-msgstr ""
+msgstr "Odaberite datoteku CSS za pregled."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:422
 msgid "No preview available."
-msgstr ""
+msgstr "Nije dostupan pregled."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:429
 msgid "Could not load preview image."
-msgstr ""
+msgstr "Nije moguće učitati sliku za pregled."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:459
 msgid "Enter a CSS HTTPS URL."
-msgstr ""
+msgstr "Unesite CSS HTTPS URL."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:461
 msgid "Enter a JavaScript HTTPS URL."
-msgstr ""
+msgstr "Unesite JavaScript HTTPS URL."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:481
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:491
 #, python-brace-format
 msgid "File imported: {}"
-msgstr ""
+msgstr "Uvezen fajl: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:495
 #, python-brace-format
 msgid "File imported: {}. No preview found, upload one manually."
-msgstr ""
+msgstr "Uvezen fajl: {}.Nije pronađen pregled, učitajte ga ručno."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:506
-#, fuzzy
 msgid "Select preview image"
-msgstr "Sačuvaj sliku"
+msgstr "Odaberite sliku za pregled"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:522
 msgid "Could not set preview image."
-msgstr ""
+msgstr "Nije moguće postaviti sliku za pregled."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:526
 msgid "Preview image updated."
-msgstr ""
+msgstr "Slika za pregled je ažurirana."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:532
 msgid "Import from URL"
-msgstr ""
+msgstr "Uvezi iz URL-a"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:543
 msgid "https://example.com/theme.user.css"
-msgstr ""
+msgstr "https://example.com/theme.user.css"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:545
 msgid "https://example.com/script.js"
-msgstr ""
+msgstr "https://example.com/script.js"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:549
 #, python-brace-format
 msgid "Optional file name (e.g. 10-custom.{})"
-msgstr ""
+msgstr "Opcijski naziv fajla (npr. 10-custom.{})"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:552
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:553
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:617
-#, fuzzy
 msgid "File name"
-msgstr "Fajl"
+msgstr "Ime datoteke"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:608
 msgid "Edit the stylesheet content and choose the file name."
-msgstr ""
+msgstr "Uredite sadržaj stilova i odaberite naziv datoteke."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:610
 msgid "Edit the script content and choose the file name."
-msgstr ""
+msgstr "Uredite sadržaj skripte i odaberite naziv datoteke."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:620
 #, python-brace-format
 msgid "custom.{}"
-msgstr ""
+msgstr "prilagođeno.{}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:625
 msgid "CSS code"
-msgstr ""
+msgstr "CSS kod"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:627
 msgid "JavaScript code"
-msgstr ""
+msgstr "JavaScript kod"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:647
 msgid "Ctrl+S to save"
-msgstr ""
+msgstr "Ctrl+S to save"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:648
 #: zapzap/features/settings/pages/network_privacy/controller.py:293
@@ -1224,162 +1218,153 @@ msgstr ""
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:106
 #: zapzap/features/downloads/ui/download_dialog.py:120
 msgid "Cancel"
-msgstr ""
+msgstr "Otkaži"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:649
-#: zapzap/features/settings/pages/advanced_customizations/view.py:411
+#: zapzap/features/settings/pages/advanced_customizations/view.py:418
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:107
 #: zapzap/features/downloads/ui/download_dialog.py:103
 msgid "Save"
 msgstr "Sačuvaj"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:676
-#, fuzzy
 msgid "Select file"
-msgstr "Odaberi folder"
+msgstr "Odaberite datoteku"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:694
 msgid "Could not import file."
-msgstr ""
+msgstr "Nije moguće uvesti datoteku."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:698
 msgid "File imported successfully."
-msgstr ""
+msgstr "Fajl je uspješno uvezen."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:730
-#, fuzzy
 msgid "Create file"
-msgstr "Sačuvaj datoteku"
+msgstr "Kreirajte fajl"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:738
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:789
 msgid "File name cannot be empty."
-msgstr ""
+msgstr "Naziv datoteke ne može biti prazan."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:751
 msgid "Could not create file."
-msgstr ""
+msgstr "Nije moguće kreirati fajl."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:755
 #, python-brace-format
 msgid "File created: {}"
-msgstr ""
+msgstr "Kreiran fajl: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:774
 msgid "Could not open file for editing."
-msgstr ""
+msgstr "Nije moguće otvoriti fajl za uređivanje."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:777
 #, python-brace-format
 msgid "Edit CSS: {}"
-msgstr ""
+msgstr "Uredi CSS: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:778
 #, python-brace-format
 msgid "Edit JavaScript: {}"
-msgstr ""
+msgstr "Uredi JavaScript: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:812
 msgid "Could not save file."
-msgstr ""
+msgstr "Nije moguće sačuvati fajl."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:816
 #, python-brace-format
 msgid "File saved: {}"
-msgstr ""
+msgstr "Fajl sačuvan: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:891
-#, fuzzy
 msgid "Reload complete."
-msgstr "Ponovo učitaj stranice"
+msgstr "Ponovno učitavanje završeno."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:920
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{}. Save and reload to apply changes."
-msgstr ""
-"Napomena: Potrebno je ponovno pokretanje da bi se promjene primijenile."
+msgstr "{}.Sačuvajte i ponovo učitajte da biste primijenili promjene."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:933
 #: zapzap/features/settings/pages/advanced_customizations/view.py:253
 msgid "CSS"
-msgstr ""
+msgstr "CSS"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:933
 msgid "JS"
-msgstr ""
+msgstr "JS"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:936
-#, fuzzy
 msgid "Confirm deletion"
-msgstr "Potvrdi brisanje"
+msgstr "Potvrdite brisanje"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:937
 #, python-brace-format
 msgid "Delete selected {} file: {}?"
-msgstr ""
+msgstr "Izbrisati odabrani {} fajl: {}?"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:941
 msgid "Deletion cancelled."
-msgstr ""
+msgstr "Brisanje je otkazano."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:952
 msgid "File deleted."
-msgstr ""
+msgstr "Fajl je izbrisan."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:954
 msgid "Could not delete file."
-msgstr ""
+msgstr "Nije moguće izbrisati fajl."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:980
 msgid "Could not duplicate file."
-msgstr ""
+msgstr "Nije moguće duplirati fajl."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:985
 #, python-brace-format
 msgid "File duplicated: {}"
-msgstr ""
+msgstr "Dupliciran fajl: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:1015
 msgid "Customizations saved. Reload pages to apply changes."
 msgstr ""
+"Prilagodbe su sačuvane.Ponovo učitajte stranice da primijenite promjene."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:1027
 msgid "All pages reloaded."
-msgstr ""
+msgstr "Sve stranice su ponovo učitane."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:75
-#, fuzzy
 msgid "+ Create"
-msgstr "Sačuvaj datoteku"
+msgstr "+ Kreiraj"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:99
-#, fuzzy
 msgid "Import file"
-msgstr "Prijavi problem"
+msgstr "Uvezi datoteku"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:100
-#, fuzzy
 msgid "Import URL"
-msgstr "Prijavi problem"
+msgstr "Uvoz URL"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:158
-#, fuzzy
 msgid "File actions"
-msgstr "Onemogući hardversku akceleraciju GPU-a"
+msgstr "File akcije"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:161
 #: zapzap/features/settings/components/card_user/card_user_controller.py:103
 msgid "Edit"
-msgstr ""
+msgstr "Uredi"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:162
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikat"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:163
-#, fuzzy
 msgid "Open location"
-msgstr "Donacija"
+msgstr "Otvorena lokacija"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:165
 #: zapzap/features/settings/components/card_user/card_user_controller.py:248
@@ -1388,128 +1373,131 @@ msgstr "Izbriši"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:188
 msgid "Advanced customizations"
-msgstr ""
+msgstr "Napredna prilagođavanja"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:189
 msgid "Add custom CSS and JavaScript to WhatsApp Web."
-msgstr ""
+msgstr "Dodajte prilagođene CSS i JavaScript u WhatsApp Web."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:203
 #: zapzap/features/settings/pages/network_privacy/view.py:167
 msgid "Scope"
-msgstr ""
+msgstr "Obim"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:204
 msgid ""
 "Choose whether customizations apply to all accounts or only to the current "
 "account."
 msgstr ""
+"Odaberite hoće li se prilagođavanja primjenjivati na sve račune ili samo na "
+"tekući račun."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:208
 #: zapzap/features/settings/pages/network_privacy/view.py:172
-#, fuzzy
 msgid "Apply to"
-msgstr "Primijeni"
+msgstr "Prijavite se na"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:209
 msgid "Account customizations can inherit or extend the global configuration."
 msgstr ""
+"Prilagodbe naloga mogu naslijediti ili proširiti globalnu konfiguraciju."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:217
 msgid "Inherit global settings"
-msgstr ""
+msgstr "Naslijediti globalne postavke"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:218
-#, fuzzy
 msgid "Use only the global customizations for this account."
-msgstr "Obavještenja u radnom prostoru"
+msgstr "Koristite samo globalna prilagođavanja za ovaj račun."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:237
 msgid "Customizations"
-msgstr ""
+msgstr "Prilagođavanja"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:238
 msgid "Manage custom files for the selected scope."
-msgstr ""
+msgstr "Upravljajte prilagođenim datotekama za odabrani opseg."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:255
 msgid "JavaScript"
-msgstr ""
+msgstr "JavaScript"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:319
+#: zapzap/features/settings/pages/advanced_customizations/view.py:326
 msgid "Custom CSS"
-msgstr ""
+msgstr "Prilagođeno CSS"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:320
+#: zapzap/features/settings/pages/advanced_customizations/view.py:327
 msgid "Enables or disables all CSS files in this scope."
-msgstr ""
+msgstr "Omogućava ili onemogućuje sve CSS fajlove u ovom opsegu."
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:324
+#: zapzap/features/settings/pages/advanced_customizations/view.py:331
 msgid "No CSS files"
-msgstr ""
+msgstr "Nema CSS fajlova"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:325
+#: zapzap/features/settings/pages/advanced_customizations/view.py:332
 msgid "Create or import a style to get started."
-msgstr ""
+msgstr "Kreirajte ili uvezite stil da biste započeli."
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:336
+#: zapzap/features/settings/pages/advanced_customizations/view.py:343
 msgid "Preview"
-msgstr ""
+msgstr "Pregled"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:346
+#: zapzap/features/settings/pages/advanced_customizations/view.py:353
 msgid ""
 "No preview available. Select a CSS file to view an associated screenshot."
 msgstr ""
+"Nije dostupan pregled.Odaberite datoteku CSS da vidite pridruženi snimak "
+"ekrana."
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:351
-#, fuzzy
+#: zapzap/features/settings/pages/advanced_customizations/view.py:358
 msgid "Upload preview image"
-msgstr "Sačuvaj sliku"
+msgstr "Otpremite sliku za pregled"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:364
+#: zapzap/features/settings/pages/advanced_customizations/view.py:371
 msgid "Replace preview image"
-msgstr ""
+msgstr "Zamijenite sliku za pregled"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:382
+#: zapzap/features/settings/pages/advanced_customizations/view.py:389
 msgid "Custom JavaScript"
-msgstr ""
+msgstr "Prilagođeno JavaScript"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:383
+#: zapzap/features/settings/pages/advanced_customizations/view.py:390
 msgid "Enables or disables all JavaScript files in this scope."
-msgstr ""
+msgstr "Omogućava ili onemogućuje sve JavaScript fajlove u ovom opsegu."
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:387
+#: zapzap/features/settings/pages/advanced_customizations/view.py:394
 msgid ""
 "⚠ Custom scripts have full access to page content. Use code only from "
 "trusted sources."
 msgstr ""
+"⚠ Prilagođene skripte imaju pun pristup sadržaju stranice.Koristite kod samo"
+" iz pouzdanih izvora."
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:391
+#: zapzap/features/settings/pages/advanced_customizations/view.py:398
 msgid "No JavaScript files"
-msgstr ""
+msgstr "Nema JavaScript fajlova"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:392
+#: zapzap/features/settings/pages/advanced_customizations/view.py:399
 msgid "Create or import a script to get started."
-msgstr ""
+msgstr "Kreirajte ili uvezite skriptu da započnete."
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:409
+#: zapzap/features/settings/pages/advanced_customizations/view.py:416
 msgid "● There are unsaved changes."
-msgstr ""
+msgstr "● Postoje promjene koje nisu sačuvane."
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:410
+#: zapzap/features/settings/pages/advanced_customizations/view.py:417
 #: zapzap/features/settings/pages/network_privacy/controller.py:287
 #: zapzap/features/settings/pages/network_privacy/view.py:110
 msgid "Discard"
-msgstr ""
+msgstr "Odbaci"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:412
+#: zapzap/features/settings/pages/advanced_customizations/view.py:419
 msgid "Save and reload"
-msgstr ""
+msgstr "Sačuvaj i ponovo učitaj"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:413
-#, fuzzy
+#: zapzap/features/settings/pages/advanced_customizations/view.py:420
 msgid "Reload page"
-msgstr "Ponovo učitaj stranice"
+msgstr "Ponovo učitaj stranicu"
 
 #: zapzap/features/settings/pages/appearance/controller.py:72
 #: zapzap/features/settings/pages/appearance/view.py:95
@@ -1519,88 +1507,82 @@ msgstr "Podrazumijevano"
 
 #: zapzap/features/settings/pages/appearance/controller.py:73
 msgid "Adwaita"
-msgstr ""
+msgstr "Adwaita"
 
 #: zapzap/features/settings/pages/appearance/controller.py:74
 msgid "Plasma"
-msgstr ""
+msgstr "Plazma"
 
 #: zapzap/features/settings/pages/appearance/controller.py:75
 msgid "iOS"
-msgstr ""
+msgstr "iOS"
 
 #: zapzap/features/settings/pages/appearance/controller.py:76
 msgid "Windows"
-msgstr ""
+msgstr "Prozori"
 
 #: zapzap/features/settings/pages/appearance/view.py:22
 msgid ""
-"Adjust interface chrome, theme, tray icon, grid view, and window decorations."
+"Adjust interface chrome, theme, tray icon, grid view, and window "
+"decorations."
 msgstr ""
+"Podesite hrom sučelja, temu, ikonu u traci, prikaz mreže i ukrase prozora."
 
 #: zapzap/features/settings/pages/appearance/view.py:37
-#, fuzzy
 msgid "Interface"
-msgstr "Odaberi jezik"
+msgstr "Interfejs"
 
 #: zapzap/features/settings/pages/appearance/view.py:38
 msgid "Show or hide primary application chrome."
-msgstr ""
+msgstr "Prikaži ili sakrij primarnu aplikaciju Chrome."
 
 #: zapzap/features/settings/pages/appearance/view.py:42
-#, fuzzy
 msgid "Browser sidebar"
-msgstr "Prikaži bočnu traku"
+msgstr "Bočna traka pretraživača"
 
 #: zapzap/features/settings/pages/appearance/view.py:43
 msgid "Show account navigation in the browser shell."
-msgstr ""
+msgstr "Prikaži navigaciju računa u ljusci pretraživača."
 
 #: zapzap/features/settings/pages/appearance/view.py:46
-#, fuzzy
 msgid "Menu bar"
-msgstr "Prikaži traku menija"
+msgstr "Traka menija"
 
 #: zapzap/features/settings/pages/appearance/view.py:47
-#, fuzzy
 msgid "Show the main window menu bar."
-msgstr "Prikaži traku menija"
+msgstr "Prikaži traku menija glavnog prozora."
 
 #: zapzap/features/settings/pages/appearance/view.py:50
-#, fuzzy
 msgid "Interface scale"
-msgstr "Odaberi jezik"
+msgstr "Skala interfejsa"
 
 #: zapzap/features/settings/pages/appearance/view.py:51
 msgid "Scale the interface for high-DPI or accessibility needs."
-msgstr ""
+msgstr "Skalirajte interfejs za potrebe visokog DPI ili pristupačnosti."
 
 #: zapzap/features/settings/pages/appearance/view.py:82
 msgid "Control tray icon visibility, style, and unread counter."
-msgstr ""
+msgstr "Kontrolirajte vidljivost, stil i broj nepročitanih ikona u traci."
 
 #: zapzap/features/settings/pages/appearance/view.py:86
-#, fuzzy
 msgid "Show tray icon"
-msgstr "Ikona u sistemskoj traci"
+msgstr "Prikaži ikonu u traci"
 
 #: zapzap/features/settings/pages/appearance/view.py:87
-#, fuzzy
 msgid "Display ZapZap in the system notification area."
-msgstr "Utišava obavještenja"
+msgstr "Prikažite ZapZap u sistemskoj traci poslova."
 
 #: zapzap/features/settings/pages/appearance/view.py:90
-#, fuzzy
 msgid "Unread counter"
-msgstr "Novi nalog"
+msgstr "Nepročitani brojač"
 
 #: zapzap/features/settings/pages/appearance/view.py:91
 msgid "Show the number of unread messages."
-msgstr ""
+msgstr "Prikaži broj nepročitanih poruka."
 
 #: zapzap/features/settings/pages/appearance/view.py:94
 msgid "Icon style"
-msgstr ""
+msgstr "Stil ikone"
 
 #: zapzap/features/settings/pages/appearance/view.py:96
 msgid "Symbolic light"
@@ -1613,96 +1595,88 @@ msgstr "Simbolička tamna"
 #: zapzap/features/settings/pages/appearance/view.py:118
 #: zapzap/features/browser/shell/browser_controller.py:93
 msgid "Grid view"
-msgstr ""
+msgstr "Mrežni prikaz"
 
 #: zapzap/features/settings/pages/appearance/view.py:119
 msgid "Choose how many columns are used by grid view."
-msgstr ""
+msgstr "Odaberite koliko kolona koristi prikaz mreže."
 
 #: zapzap/features/settings/pages/appearance/view.py:123
 msgid "Grid columns"
-msgstr ""
+msgstr "Mrežni stupovi"
 
 #: zapzap/features/settings/pages/appearance/view.py:124
 msgid "Number of account columns in grid view."
-msgstr ""
+msgstr "Broj stupaca računa u prikazu mreže."
 
 #: zapzap/features/settings/pages/appearance/view.py:134
-#, fuzzy
 msgid "Window decoration"
-msgstr "Ponašanje"
+msgstr "Dekoracija prozora"
 
 #: zapzap/features/settings/pages/appearance/view.py:135
 msgid "Customize the window controls drawn by ZapZap."
-msgstr ""
+msgstr "Prilagodite kontrole prozora koje je nacrtao ZapZap."
 
 #: zapzap/features/settings/pages/appearance/view.py:139
-#, fuzzy
 msgid "Use custom decoration"
-msgstr "Zatvori razgovor"
+msgstr "Koristite prilagođenu dekoraciju"
 
 #: zapzap/features/settings/pages/appearance/view.py:140
 msgid "Use window controls drawn by ZapZap."
-msgstr ""
+msgstr "Koristite kontrole prozora koje je nacrtao ZapZap."
 
 #: zapzap/features/settings/pages/appearance/view.py:143
-#, fuzzy
 msgid "Button style"
-msgstr "Svijetla tema"
+msgstr "Stil dugmeta"
 
 #: zapzap/features/settings/pages/appearance/view.py:144
 msgid "Visual style used by custom window buttons."
-msgstr ""
+msgstr "Vizualni stil koji koriste prilagođena dugmad prozora."
 
 #: zapzap/features/settings/pages/appearance/view.py:148
-#, fuzzy
 msgid "Minimize"
-msgstr "Pokreni minimizirano"
+msgstr "Minimizirajte"
 
 #: zapzap/features/settings/pages/appearance/view.py:149
-#, fuzzy
 msgid "Maximize"
-msgstr "Maksimalna veličina keša"
+msgstr "Maksimiziraj"
 
 #: zapzap/features/settings/pages/appearance/view.py:153
-#, fuzzy
 msgid "Visible buttons"
-msgstr "Onemogući hardversku akceleraciju GPU-a"
+msgstr "Vidljiva dugmad"
 
 #: zapzap/features/settings/pages/appearance/view.py:158
-#, fuzzy
 msgid "Button position"
-msgstr "Direktorij za preuzimanje"
+msgstr "Položaj dugmeta"
 
 #: zapzap/features/settings/pages/appearance/view.py:159
 msgid "Place window buttons on the right or left."
-msgstr ""
+msgstr "Postavite dugmad prozora s desne ili lijeve strane."
 
 #: zapzap/features/settings/pages/appearance/view.py:164
-#, fuzzy
 msgid "Right"
-msgstr "Svijetla tema"
+msgstr "U redu"
 
 #: zapzap/features/settings/pages/appearance/view.py:165
 msgid "Left"
-msgstr ""
+msgstr "lijevo"
 
 #: zapzap/features/settings/pages/debugging/controller.py:67
-#: zapzap/features/settings/pages/debugging/view.py:331
+#: zapzap/features/settings/pages/debugging/view.py:325
 #, python-brace-format
 msgid "{count} crash report"
 msgid_plural "{count} crash reports"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{count} izvještaj o padu"
+msgstr[1] "{count} izvještaja o padu"
+msgstr[2] "{count} izvještaja o padu"
 
 #: zapzap/features/settings/pages/debugging/controller.py:72
-#, fuzzy
 msgid "available"
-msgstr "Onemogući"
+msgstr "dostupan"
 
 #: zapzap/features/settings/pages/debugging/controller.py:72
 msgid "not available"
-msgstr ""
+msgstr "nije dostupno"
 
 #: zapzap/features/settings/pages/debugging/controller.py:75
 #, python-brace-format
@@ -1712,42 +1686,44 @@ msgid ""
 "Runtime information:\n"
 "{runtime}"
 msgstr ""
+"Dijagnostički fajlovi: {reports};dnevnik otklanjanja grešaka: {log_status}.\n"
+"\n"
+"Informacije o vremenu izvođenja:\n"
+"{runtime}"
 
 #: zapzap/features/settings/pages/debugging/controller.py:88
-#: zapzap/features/settings/pages/debugging/view.py:195
-#, fuzzy
+#: zapzap/features/settings/pages/debugging/view.py:193
 msgid "Copy diagnostics"
-msgstr "Kopiraj sliku"
+msgstr "Kopiraj dijagnostiku"
 
 #: zapzap/features/settings/pages/debugging/controller.py:89
-#: zapzap/features/settings/pages/debugging/view.py:284
+#: zapzap/features/settings/pages/debugging/view.py:278
 msgid "Copy details"
-msgstr ""
+msgstr "Kopiraj detalje"
 
 #: zapzap/features/settings/pages/debugging/controller.py:99
 #: zapzap/features/settings/pages/debugging/controller.py:109
 #: zapzap/features/settings/pages/debugging/controller.py:119
 msgid "Debug logs"
-msgstr ""
+msgstr "Dnevnici otklanjanja grešaka"
 
 #: zapzap/features/settings/pages/debugging/controller.py:100
 #, python-brace-format
 msgid "Deleted {count} old crash report(s) (older than 30 days)."
-msgstr ""
+msgstr "Izbrisano je {count} starih izvještaja o padu (stariji od 30 dana)."
 
 #: zapzap/features/settings/pages/debugging/controller.py:110
 msgid "Delete all crash reports and debug logs?"
-msgstr ""
+msgstr "Izbrisati sve izvještaje o padu i evidencije otklanjanja grešaka?"
 
 #: zapzap/features/settings/pages/debugging/controller.py:120
 #, python-brace-format
 msgid "Deleted {count} file(s)."
-msgstr ""
+msgstr "Izbrisano {count} fajl(ova)."
 
 #: zapzap/features/settings/pages/debugging/controller.py:127
-#, fuzzy
 msgid "Reset settings?"
-msgstr "Postavke"
+msgstr "Poništiti postavke?"
 
 #: zapzap/features/settings/pages/debugging/controller.py:129
 msgid ""
@@ -1755,13 +1731,15 @@ msgid ""
 "\n"
 "The application will need to be restarted to complete the operation."
 msgstr ""
+"Sve prilagođene ZapZap postavke će biti vraćene na njihove zadane vrijednosti.\n"
+"\n"
+"Aplikaciju će trebati ponovo pokrenuti da dovršite operaciju."
 
 #: zapzap/features/settings/pages/debugging/controller.py:142
 #: zapzap/features/settings/pages/debugging/controller.py:149
-#: zapzap/features/settings/pages/debugging/view.py:300
-#, fuzzy
+#: zapzap/features/settings/pages/debugging/view.py:294
 msgid "Reset settings"
-msgstr "Postavke"
+msgstr "Poništi postavke"
 
 #: zapzap/features/settings/pages/debugging/controller.py:143
 #, python-brace-format
@@ -1769,166 +1747,171 @@ msgid ""
 "Could not remove settings file:\n"
 "{error}"
 msgstr ""
+"Nije moguće ukloniti fajl postavki:\n"
+"{error}"
 
 #: zapzap/features/settings/pages/debugging/controller.py:150
 msgid "Settings were reset successfully. Restart ZapZap now?"
-msgstr ""
+msgstr "Postavke su uspješno resetirane.Ponovo pokrenuti ZapZap sada?"
 
-#: zapzap/features/settings/pages/debugging/view.py:98
+#: zapzap/features/settings/pages/debugging/view.py:96
 msgid "Full details"
-msgstr ""
+msgstr "Puni detalji"
 
-#: zapzap/features/settings/pages/debugging/view.py:162
+#: zapzap/features/settings/pages/debugging/view.py:160
 msgid "Diagnostics, logs, runtime information, and maintenance tools."
 msgstr ""
+"Dijagnostika, zapisnici, informacije o vremenu izvođenja i alati za "
+"održavanje."
 
-#: zapzap/features/settings/pages/debugging/view.py:176
+#: zapzap/features/settings/pages/debugging/view.py:174
 msgid "Diagnostics"
-msgstr ""
+msgstr "Dijagnostika"
 
-#: zapzap/features/settings/pages/debugging/view.py:180
+#: zapzap/features/settings/pages/debugging/view.py:178
 msgid "Crash reports"
-msgstr ""
+msgstr "Izvještaji o padu"
 
-#: zapzap/features/settings/pages/debugging/view.py:183
+#: zapzap/features/settings/pages/debugging/view.py:181
 msgid "Debug log"
-msgstr ""
+msgstr "Dnevnik otklanjanja grešaka"
 
-#: zapzap/features/settings/pages/debugging/view.py:208
+#: zapzap/features/settings/pages/debugging/view.py:206
 msgid "Logs and crash reports"
-msgstr ""
+msgstr "Dnevnici i izvještaji o padu"
 
-#: zapzap/features/settings/pages/debugging/view.py:209
+#: zapzap/features/settings/pages/debugging/view.py:207
 msgid "Manage files used to diagnose errors."
-msgstr ""
+msgstr "Upravljajte datotekama koje se koriste za dijagnosticiranje grešaka."
 
-#: zapzap/features/settings/pages/debugging/view.py:217
+#: zapzap/features/settings/pages/debugging/view.py:215
 msgid "Diagnostics folder"
-msgstr ""
+msgstr "Dijagnostički folder"
 
-#: zapzap/features/settings/pages/debugging/view.py:224
+#: zapzap/features/settings/pages/debugging/view.py:222
 #: zapzap/features/downloads/ui/download_dialog.py:101
 msgid "Open"
 msgstr "Otvori"
 
-#: zapzap/features/settings/pages/debugging/view.py:236
+#: zapzap/features/settings/pages/debugging/view.py:234
 msgid "Clean up files…"
-msgstr ""
+msgstr "Očistite fajlove…"
 
-#: zapzap/features/settings/pages/debugging/view.py:241
-#, fuzzy
+#: zapzap/features/settings/pages/debugging/view.py:239
 msgid "Delete old files"
-msgstr "Izbriši"
+msgstr "Izbrišite stare fajlove"
 
-#: zapzap/features/settings/pages/debugging/view.py:244
+#: zapzap/features/settings/pages/debugging/view.py:242
 msgid "Remove only crash reports older than 30 days."
-msgstr ""
+msgstr "Uklonite samo izvještaje o padu starijim od 30 dana."
 
-#: zapzap/features/settings/pages/debugging/view.py:248
+#: zapzap/features/settings/pages/debugging/view.py:246
 msgid "Delete all logs and reports"
-msgstr ""
+msgstr "Izbrišite sve zapise i izvještaje"
 
-#: zapzap/features/settings/pages/debugging/view.py:256
+#: zapzap/features/settings/pages/debugging/view.py:250
 msgid "Remove every diagnostic file."
-msgstr ""
+msgstr "Uklonite svaku dijagnostičku datoteku."
 
-#: zapzap/features/settings/pages/debugging/view.py:268
-#, fuzzy
+#: zapzap/features/settings/pages/debugging/view.py:262
 msgid "Runtime information"
-msgstr "Informacija"
+msgstr "Informacije o vremenu izvođenja"
 
-#: zapzap/features/settings/pages/debugging/view.py:269
+#: zapzap/features/settings/pages/debugging/view.py:263
 msgid "Useful data for support and bug reports."
-msgstr ""
+msgstr "Korisni podaci za podršku i izvještaje o greškama."
 
-#: zapzap/features/settings/pages/debugging/view.py:283
+#: zapzap/features/settings/pages/debugging/view.py:277
 msgid "Refresh"
-msgstr ""
+msgstr "Osvježi"
 
-#: zapzap/features/settings/pages/debugging/view.py:297
+#: zapzap/features/settings/pages/debugging/view.py:291
 msgid "Maintenance"
-msgstr ""
+msgstr "Održavanje"
 
-#: zapzap/features/settings/pages/debugging/view.py:302
+#: zapzap/features/settings/pages/debugging/view.py:296
 msgid ""
-"Restore ZapZap's default settings. The application will need to be restarted."
+"Restore ZapZap's default settings. The application will need to be "
+"restarted."
 msgstr ""
+"Vratite zadane postavke za ZapZap.Aplikaciju će trebati ponovo pokrenuti."
 
-#: zapzap/features/settings/pages/debugging/view.py:305
+#: zapzap/features/settings/pages/debugging/view.py:299
 msgid "Reset…"
-msgstr ""
+msgstr "Resetiraj…"
 
-#: zapzap/features/settings/pages/debugging/view.py:318
-#, fuzzy, python-brace-format
+#: zapzap/features/settings/pages/debugging/view.py:312
+#, python-brace-format
 msgid "{count} available"
 msgid_plural "{count} available"
-msgstr[0] "Nalozi"
-msgstr[1] "Nalozi"
+msgstr[0] "{count} dostupan"
+msgstr[1] "{count} dostupna"
+msgstr[2] "{count} dostupno"
 
-#: zapzap/features/settings/pages/debugging/view.py:323
+#: zapzap/features/settings/pages/debugging/view.py:317
 msgid "faulthandler.log available"
-msgstr ""
+msgstr "faulthandler.log dostupan"
 
-#: zapzap/features/settings/pages/debugging/view.py:325
+#: zapzap/features/settings/pages/debugging/view.py:319
 msgid "Not available"
-msgstr ""
+msgstr "Nije dostupno"
 
-#: zapzap/features/settings/pages/debugging/view.py:336
+#: zapzap/features/settings/pages/debugging/view.py:330
 #, python-brace-format
 msgid "{reports} and 1 log file"
-msgstr ""
+msgstr "{reports} i 1 log fajl"
 
-#: zapzap/features/settings/pages/debugging/view.py:382
-#, fuzzy
+#: zapzap/features/settings/pages/debugging/view.py:376
 msgid "Qt"
-msgstr "Izađi"
+msgstr "Qt"
 
-#: zapzap/features/settings/pages/debugging/view.py:383
+#: zapzap/features/settings/pages/debugging/view.py:377
 msgid "PyQt"
-msgstr ""
+msgstr "PyQt"
+
+#: zapzap/features/settings/pages/debugging/view.py:378
+msgid "Python"
+msgstr "Python"
+
+#: zapzap/features/settings/pages/debugging/view.py:381
+msgid "System graphics session"
+msgstr "Sistemska grafička sesija"
 
 #: zapzap/features/settings/pages/debugging/view.py:384
-msgid "Python"
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/view.py:387
-msgid "System graphics session"
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/view.py:390
 msgid "ZapZap graphics backend"
-msgstr ""
+msgstr "ZapZap grafička pozadina"
+
+#: zapzap/features/settings/pages/debugging/view.py:414
+msgid "Path copied"
+msgstr "Putanja je kopirana"
+
+#: zapzap/features/settings/pages/debugging/view.py:417
+msgid "Diagnostics copied"
+msgstr "Dijagnostika je kopirana"
 
 #: zapzap/features/settings/pages/debugging/view.py:420
-#, fuzzy
-msgid "Path copied"
-msgstr "Informacija"
-
-#: zapzap/features/settings/pages/debugging/view.py:423
-#, fuzzy
-msgid "Diagnostics copied"
-msgstr "Informacija"
-
-#: zapzap/features/settings/pages/debugging/view.py:426
 msgid "Details copied"
-msgstr ""
+msgstr "Detalji su kopirani"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:21
 msgid "Manage interface language, downloads folder and spell checker."
 msgstr ""
+"Upravljajte jezikom interfejsa, folderom za preuzimanje i provjerom "
+"pravopisa."
 
 #: zapzap/features/settings/pages/language_downloads/view.py:40
 msgid "The interface language is applied immediately."
-msgstr ""
+msgstr "Jezik interfejsa se odmah primenjuje."
 
 #: zapzap/features/settings/pages/language_downloads/view.py:58
 msgid "Set a custom folder or restore the default download location."
 msgstr ""
+"Postavite prilagođeni folder ili vratite zadanu lokaciju za preuzimanje."
 
 #: zapzap/features/settings/pages/language_downloads/view.py:59
 #: zapzap/features/settings/pages/language_downloads/view.py:90
 msgid "Define"
-msgstr ""
+msgstr "Definiraj"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:65
 #: zapzap/features/settings/pages/language_downloads/view.py:96
@@ -1938,126 +1921,119 @@ msgid "Restore"
 msgstr "Vrati"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:88
-#, fuzzy
 msgid "Dictionary directory"
-msgstr "Direktorij za preuzimanje"
+msgstr "Imenik rječnika"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:89
-#, fuzzy
 msgid "Note: changing dictionaries may require restarting the browser "
-msgstr "Napomena: Potrebno je ponovno pokretanje."
+msgstr ""
+"Napomena: promjena rječnika može zahtijevati ponovno pokretanje pretraživača"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:27
-#, fuzzy
 msgid "No proxy"
-msgstr "Mrežni proxy"
+msgstr "Nema proxyja"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:28
 #: zapzap/features/settings/pages/network_privacy/controller.py:194
-#, fuzzy
 msgid "System proxy"
-msgstr "Mrežni proxy"
+msgstr "Sistemski proxy"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:29
 msgid "SOCKS5"
-msgstr ""
+msgstr "SOCKS5"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:30
 msgid "HTTP"
-msgstr ""
+msgstr "HTTP"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:31
 msgid "HTTP caching"
-msgstr ""
+msgstr "HTTP keširanje"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:32
 msgid "FTP caching"
-msgstr ""
+msgstr "FTP keširanje"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:65
-#, fuzzy
 msgid "Unavailable"
-msgstr "Onemogući"
+msgstr "Nedostupno"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:81
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Current account: {}"
-msgstr "Nalog {}"
+msgstr "Trenutni račun: {}"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:192
-#, fuzzy
 msgid "No proxy configured"
-msgstr "Nema korištenja proxyja."
+msgstr "Nije konfigurisan proxy"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:204
 #, python-brace-format
 msgid "{proxy_type} · {endpoint}"
-msgstr ""
+msgstr "{proxy_type} · {endpoint}"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:210
 #, python-brace-format
 msgid "{status} · disabled"
-msgstr ""
+msgstr "{status} · onemogućeno"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:235
-#, fuzzy
 msgid "Enter a proxy server."
-msgstr "Nema korištenja proxyja."
+msgstr "Unesite proxy server."
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:243
 msgid "Enter a port between 1 and 65535."
-msgstr ""
+msgstr "Unesite port između 1 i 65535."
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:276
 msgid "Unapplied changes"
-msgstr ""
+msgstr "Neprimijenjene promjene"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:277
 msgid "Apply changes before changing scope?"
-msgstr ""
+msgstr "Primijeniti promjene prije promjene opsega?"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:278
 msgid "You can apply or discard the changes made to this scope."
-msgstr ""
+msgstr "Možete primijeniti ili odbaciti promjene napravljene u ovom opsegu."
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:282
 #: zapzap/features/settings/pages/network_privacy/view.py:111
 msgid "Apply changes"
-msgstr ""
+msgstr "Primijenite promjene"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:326
-#, fuzzy
 msgid "Restore proxy settings?"
-msgstr "Postavke"
+msgstr "Vratiti postavke proxyja?"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:328
 msgid ""
 "The proxy settings for this scope will be removed and the default values "
 "will be restored."
 msgstr ""
+"Postavke proxyja za ovaj opseg će biti uklonjene i zadane vrijednosti će "
+"biti vraćene."
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:331
 msgid "WebRTC protection will not be changed."
-msgstr ""
+msgstr "Zaštita WebRTC neće biti promijenjena."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:36
 #: zapzap/features/settings/pages/network_privacy/view.py:42
-#, fuzzy
 msgid "Authentication"
-msgstr "Pažnja"
+msgstr "Autentifikacija"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:44
 msgid "Show or hide optional proxy credentials."
-msgstr ""
+msgstr "Prikažite ili sakrijte opcionalne proxy vjerodajnice."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:54
 msgid "User"
 msgstr "Korisnik"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:55
-#, fuzzy
 msgid "Optional proxy user."
-msgstr "Nema korištenja proxyja."
+msgstr "Opcioni proxy korisnik."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:58
 msgid "Password"
@@ -2065,430 +2041,416 @@ msgstr "Lozinka"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:59
 msgid "Optional proxy password."
-msgstr ""
+msgstr "Opciona lozinka za proxy."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:106
 msgid "There are unapplied network changes."
-msgstr ""
+msgstr "Postoje neprimijenjene mrežne promjene."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:150
 msgid "Configure proxy, privacy protection, and network options."
-msgstr ""
+msgstr "Konfigurirajte proxy, zaštitu privatnosti i mrežne opcije."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:168
 msgid "Choose where these settings will be applied."
-msgstr ""
+msgstr "Odaberite gdje će se ove postavke primijeniti."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:173
 msgid "Settings for this account override the all-accounts default."
-msgstr ""
+msgstr "Postavke za ovaj račun poništavaju zadane postavke za sve račune."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:188
-#, fuzzy
 msgid "Proxy"
-msgstr "Tip proxyja"
+msgstr "Proxy"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:189
 msgid "Route WhatsApp Web traffic through a proxy server."
-msgstr ""
+msgstr "Usmjerite WhatsApp Web saobraćaj kroz proxy server."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:193
-#, fuzzy
 msgid "Use proxy"
-msgstr "Mrežni proxy"
+msgstr "Koristi proxy"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:194
 msgid "Route traffic through the proxy configured below."
-msgstr ""
+msgstr "Usmjerite promet kroz proxy konfiguriran u nastavku."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:197
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:198
 msgid "Select the proxy mode."
-msgstr ""
+msgstr "Odaberite proxy način rada."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:202
 msgid "Server"
-msgstr ""
+msgstr "Server"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:203
 msgid "Proxy host name or IP address."
-msgstr ""
+msgstr "Ime ili IP adresa proxy hosta."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:205
 msgid "Port"
 msgstr "Port"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:205
-#, fuzzy
 msgid "Proxy port."
-msgstr "Tip proxyja"
+msgstr "Proxy port."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:222
-#, fuzzy
 msgid "Restore proxy…"
-msgstr "Mrežni proxy"
+msgstr "Vrati proxy…"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:223
 msgid "Remove proxy settings only from the selected scope."
-msgstr ""
+msgstr "Uklonite postavke proxyja samo iz odabranog opsega."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:224
-#, fuzzy
 msgid "Restore…"
-msgstr "Vrati"
+msgstr "Vrati…"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:243
 msgid "proxy.example.com"
-msgstr ""
+msgstr "proxy.example.com"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:245
 msgid "8080"
-msgstr ""
+msgstr "8080"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:255
 #: zapzap/features/settings/pages/notifications/view.py:108
 msgid "Privacy"
-msgstr ""
+msgstr "Privatnost"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:256
 msgid "Reduce the exposure of network information."
-msgstr ""
+msgstr "Smanjite izloženost mrežnim informacijama."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:260
 msgid "WebRTC protection"
-msgstr ""
+msgstr "WebRTC zaštita"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:261
 msgid "Reduces IP address exposure through WebRTC."
-msgstr ""
+msgstr "Smanjuje izloženost IP adrese kroz WebRTC."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:264
-#, fuzzy
 msgid "Global setting"
-msgstr "Postavke"
+msgstr "Globalno podešavanje"
 
 #: zapzap/features/settings/pages/notifications/view.py:20
 msgid "Configure notifications, privacy, and ZapZap messages."
-msgstr ""
+msgstr "Konfigurirajte obavještenja, privatnost i ZapZap poruke."
 
 #: zapzap/features/settings/pages/notifications/view.py:34
-#, fuzzy
 msgid "Choose which information may appear in notifications."
-msgstr "Sakrij obavijest o donaciji"
+msgstr "Odaberite koje informacije se mogu pojaviti u obavještenjima."
 
 #: zapzap/features/settings/pages/notifications/view.py:41
 msgid "Show WhatsApp notifications using the desktop notification system."
 msgstr ""
+"Prikaži WhatsApp obavještenja koristeći sistem obavještenja na radnoj "
+"površini."
 
 #: zapzap/features/settings/pages/notifications/view.py:47
-#, fuzzy
 msgid "Contact photo"
-msgstr "Sakrij obavijest o donaciji"
+msgstr "Kontakt fotografija"
 
 #: zapzap/features/settings/pages/notifications/view.py:48
-#, fuzzy
 msgid "Show the sender's photo when available."
-msgstr "Prikaži ime pošiljaoca"
+msgstr "Prikažite fotografiju pošiljaoca kada je dostupna."
 
 #: zapzap/features/settings/pages/notifications/view.py:51
-#, fuzzy
 msgid "Contact name"
-msgstr "Sakrij obavijest o donaciji"
+msgstr "Ime kontakta"
 
 #: zapzap/features/settings/pages/notifications/view.py:52
-#, fuzzy
 msgid "Show the sender or group name."
-msgstr "Prikaži ime pošiljaoca"
+msgstr "Prikažite ime pošiljaoca ili grupe."
 
 #: zapzap/features/settings/pages/notifications/view.py:55
-#, fuzzy
 msgid "Message preview"
-msgstr "Prikaži pregled poruke"
+msgstr "Pregled poruke"
 
 #: zapzap/features/settings/pages/notifications/view.py:56
-#, fuzzy
 msgid "Show the content of the received message."
-msgstr "Prikaži fotografiju pošiljaoca"
+msgstr "Prikažite sadržaj primljene poruke."
 
 #: zapzap/features/settings/pages/notifications/view.py:75
-#, fuzzy
 msgid "ZapZap messages"
-msgstr "ZapZap postavke"
+msgstr "ZapZap poruke"
 
 #: zapzap/features/settings/pages/notifications/view.py:76
 msgid "Control occasional messages shown by the application itself."
-msgstr ""
+msgstr "Kontrolirajte povremene poruke koje prikazuje sama aplikacija."
 
 #: zapzap/features/settings/pages/notifications/view.py:80
-#, fuzzy
 msgid "Support reminders"
-msgstr "Sakrij obavijest o donaciji"
+msgstr "Podsjetnici podrške"
 
 #: zapzap/features/settings/pages/notifications/view.py:82
 msgid "Occasionally show messages supporting ZapZap's development."
-msgstr ""
+msgstr "Povremeno prikažite poruke koje podržavaju razvoj ZapZap."
 
 #: zapzap/features/settings/pages/notifications/view.py:110
 msgid "Privacy presets"
-msgstr ""
+msgstr "Unapred podešene postavke privatnosti"
 
 #: zapzap/features/settings/pages/notifications/view.py:113
 msgid "Quickly choose which notification details are visible."
-msgstr ""
+msgstr "Brzo odaberite koji detalji obavijesti su vidljivi."
 
 #: zapzap/features/settings/pages/notifications/view.py:117
 msgid "Show everything"
-msgstr ""
+msgstr "Pokaži sve"
 
 #: zapzap/features/settings/pages/notifications/view.py:120
 msgid "Hide content"
-msgstr ""
+msgstr "Sakrij sadržaj"
 
 #: zapzap/features/settings/pages/notifications/view.py:123
-#, fuzzy
 msgid "Maximum privacy"
-msgstr "Maksimalna veličina keša"
+msgstr "Maksimalna privatnost"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:20
 msgid "Tune cache, GPU, processes, and advanced behavior."
-msgstr ""
+msgstr "Podesite keš memoriju, GPU, procese i napredno ponašanje."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:37
 msgid "Advanced warning"
-msgstr ""
+msgstr "Napredno upozorenje"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:38
 msgid "These options may require restart and can affect stability."
 msgstr ""
+"Ove opcije mogu zahtijevati ponovno pokretanje i mogu utjecati na "
+"stabilnost."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:44
 msgid ""
 "Change these settings only if you understand the trade-offs. Restart ZapZap "
 "after changing rendering, process, or JavaScript memory options."
 msgstr ""
+"Promijenite ove postavke samo ako razumijete kompromise.Ponovo pokrenite "
+"ZapZap nakon promjene opcija renderiranja, procesa ili JavaScript memorije."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:55
-#, fuzzy
 msgid "Cache"
-msgstr "Tip keša"
+msgstr "Predmemorija"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:56
 msgid "Control HTTP cache and persistent cookies."
-msgstr ""
+msgstr "Kontrolirajte HTTP keš memoriju i trajne kolačiće."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:60
-#, fuzzy
 msgid "Cache type"
-msgstr "Tip keša"
+msgstr "Vrsta keš memorije"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:61
 msgid "Defines where the HTTP cache is stored."
-msgstr ""
+msgstr "Definira gdje se pohranjuje HTTP keš memorija."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:65
-#, fuzzy
 msgid "Maximum cache size"
 msgstr "Maksimalna veličina keša"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:66
 msgid "0 MB uses Chromium's default behavior."
-msgstr ""
+msgstr "0 MB koristi zadano ponašanje Chromium."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:70
 msgid "Persistent cookies"
-msgstr ""
+msgstr "Trajni kolačići"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:71
 msgid "Keeps cookies between restarts."
-msgstr ""
+msgstr "Čuva kolačiće između ponovnih pokretanja."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:86
 msgid "GPU and rendering"
-msgstr ""
+msgstr "GPU i renderiranje"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:87
 msgid "Rendering options for problematic drivers or hardware."
-msgstr ""
+msgstr "Opcije prikazivanja za problematične drajvere ili hardver."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:91
 msgid "In-process GPU"
-msgstr ""
+msgstr "U procesu GPU"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:92
 msgid "May reduce memory usage, but can cause instability."
-msgstr ""
+msgstr "Može smanjiti upotrebu memorije, ali može uzrokovati nestabilnost."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:95
-#, fuzzy
 msgid "Disable GPU"
-msgstr "Onemogući"
+msgstr "Onemogući GPU"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:96
 msgid "Recommended only for old GPUs or problematic drivers."
-msgstr ""
+msgstr "Preporučuje se samo za stare GPU-ove ili problematične drajvere."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:99
 msgid "Automatic multi-GPU workaround"
-msgstr ""
+msgstr "Automatsko zaobilazno rješenje za više GPU"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:101
 msgid ""
 "Honors DRI_PRIME or adjusts GPU compositing for a headless secondary GPU."
 msgstr ""
+"Poštuje DRI_PRIME ili prilagođava GPU sastavljanje za bezglavi sekundarni "
+"GPU."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:105
 msgid "Disable GPU VSync"
-msgstr ""
+msgstr "Onemogućite GPU VSync"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:106
 msgid "May reduce latency, but can increase tearing."
-msgstr ""
+msgstr "Može smanjiti kašnjenje, ali može povećati trganje."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:109
 msgid "Force software rendering"
-msgstr ""
+msgstr "Prisilno renderiranje softvera"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:110
 msgid "Use only for graphical issues."
-msgstr ""
+msgstr "Koristite samo za grafičke probleme."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:113
 msgid "Force GBM"
-msgstr ""
+msgstr "Prisili GBM"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:114
 msgid "Known NVIDIA typing lag fix."
-msgstr ""
+msgstr "Poznata NVIDIA ispravka kašnjenja u kucanju."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:117
 msgid "Disable accessibility bus"
-msgstr ""
+msgstr "Onemogućite sabirnicu pristupačnosti"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:118
 msgid "Known typing lag or CPU spike fix in QtWebEngine."
-msgstr ""
+msgstr "Poznato kašnjenje u kucanju ili popravak CPU-a u QtWebEngine."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:142
 msgid "Processes"
-msgstr ""
+msgstr "Procesi"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:143
 msgid "Chromium process model options."
-msgstr ""
+msgstr "Opcije procesa procesa Chromium."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:147
 msgid "Single process"
-msgstr ""
+msgstr "Jedan proces"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:148
 msgid "Experimental; reduces memory usage but may cause crashes."
 msgstr ""
+"Eksperimentalno;smanjuje upotrebu memorije, ali može uzrokovati padove."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:151
 msgid "Process per site"
-msgstr ""
+msgstr "Proces po lokaciji"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:152
 msgid "Safer and more stable, but may increase memory usage."
-msgstr ""
+msgstr "Sigurniji i stabilniji, ali može povećati upotrebu memorije."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:163
 msgid "JavaScript memory"
-msgstr ""
+msgstr "JavaScript memorija"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:164
 msgid "V8 memory limit. Restart required."
-msgstr ""
+msgstr "V8 ograničenje memorije.Potrebno je ponovno pokretanje."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:168
 msgid "JavaScript memory limit"
-msgstr ""
+msgstr "JavaScript ograničenje memorije"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:169
 msgid "Automatic is the safest option."
-msgstr ""
+msgstr "Automatski je najsigurnija opcija."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:173
 msgid "JavaScript GC predictable schedule (experimental)"
-msgstr ""
+msgstr "JavaScript GC predvidljivi raspored (eksperimentalno)"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:174
 msgid "Enables predictable V8 garbage collection and disables GPU."
-msgstr ""
+msgstr "Omogućava predvidljivo V8 prikupljanje smeća i onemogućuje GPU."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:185
-#, fuzzy
 msgid "Web behavior"
-msgstr "Ponašanje"
+msgstr "Web ponašanje"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:186
 msgid "Behavior options for rendered web content."
-msgstr ""
+msgstr "Opcije ponašanja za renderirani web sadržaj."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:190
-#, fuzzy
 msgid "Smooth scrolling"
-msgstr "Animirano listanje"
+msgstr "Glatko pomicanje"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:191
 msgid "Disabling may reduce CPU usage."
-msgstr ""
+msgstr "Onemogućavanje može smanjiti korištenje CPU-a."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:194
 msgid "Background throttling"
-msgstr ""
+msgstr "Prigušivanje u pozadini"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:195
 msgid "Allows background tabs to reduce resource usage."
-msgstr ""
+msgstr "Omogućava pozadinskim karticama da smanje upotrebu resursa."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:198
-#, fuzzy
 msgid "Disable animations"
-msgstr "Onemogući hardversku akceleraciju GPU-a"
+msgstr "Onemogući animacije"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:199
 msgid "May improve performance on slower machines."
-msgstr ""
+msgstr "Može poboljšati performanse na sporijim mašinama."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:202
 msgid "Disable pinch-to-zoom"
-msgstr ""
+msgstr "Onemogući štipanje za zumiranje"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:203
 msgid "Useful if accidental zooming occurs during scrolling."
-msgstr ""
+msgstr "Korisno ako dođe do slučajnog zumiranja tokom pomicanja."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:206
 msgid "Fix Ctrl+Arrow cursor movement"
-msgstr ""
+msgstr "Popravite kretanje kursora Ctrl+Arrow"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:208
 msgid ""
 "Use visual word navigation in editable fields to fix RTL text cursor "
 "movement."
 msgstr ""
+"Koristite vizuelnu navigaciju riječima u poljima koja se mogu uređivati da "
+"popravite kretanje kursora teksta RTL."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:231
-#, fuzzy
 msgid "Restore defaults"
-msgstr "Vrati standardne postavke"
+msgstr "Vrati zadane postavke"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:232
 msgid "Return performance settings to safe defaults."
-msgstr ""
+msgstr "Vratite postavke performansi na sigurne zadane vrijednosti."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:236
-#, fuzzy
 msgid "Restore performance defaults"
-msgstr "Vrati standardne postavke"
+msgstr "Vratite zadane postavke performansi"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:237
 msgid "Restores all performance settings to safe default values."
-msgstr ""
+msgstr "Vraća sve postavke performansi na sigurne zadane vrijednosti."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:138
 msgid ""
@@ -2497,46 +2459,60 @@ msgid ""
 "Memory: faster, but lost on exit.\n"
 "No cache: lower disk usage, slower."
 msgstr ""
+"Definira gdje će biti pohranjena HTTP keš memorija.\n"
+"Disk: brži nakon ponovnog pokretanja.\n"
+"Memorija: brža, ali izgubljena pri izlasku.\n"
+"Nema keš memorije: manja upotreba diska, sporija."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:145
 msgid ""
 "Maximum HTTP cache size.\n"
 "0 MB uses the default Chromium behavior."
 msgstr ""
+"Maksimalna veličina HTTP keša.\n"
+"0 MB koristi zadano ponašanje Chromium."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:148
 msgid ""
 "Keeps cookies between restarts.\n"
 "Disabling may cause frequent logouts."
 msgstr ""
+"Čuva kolačiće između ponovnih pokretanja.\n"
+"Onemogućavanje može uzrokovati česte odjave."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:152
 msgid ""
 "Runs GPU and rendering in the same process.\n"
 "May reduce memory usage, but can cause instability."
 msgstr ""
+"Pokreće GPU i renderiranje u istom procesu.\n"
+"Može smanjiti upotrebu memorije, ali može uzrokovati nestabilnost."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:158
 msgid ""
 "Disables GPU hardware acceleration.\n"
 "Recommended only for old GPUs or problematic drivers."
 msgstr ""
+"Onemogućuje GPU hardversko ubrzanje.\n"
+"Preporučuje se samo za stare GPU-ove ili problematične drajvere."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:164
 msgid ""
-"Automatically honors an unambiguous DRI_PRIME selector on systems with "
-"multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
-"one GPU has no connected display.\n"
+"Automatically honors an unambiguous DRI_PRIME selector on systems with multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when one GPU has no connected display.\n"
 "\n"
-"Disable this only if the automatic workaround causes problems. Restart "
-"required."
+"Disable this only if the automatic workaround causes problems. Restart required."
 msgstr ""
+"Automatski poštuje nedvosmisleni DRI_PRIME selektor na sistemima s višestrukim Linux GPU-ovima za renderiranje.U suprotnom, dodaje --disable-gpu-compositing kada jedan GPU nema povezan ekran.\n"
+"\n"
+"Onemogućite ovo samo ako automatsko rješenje uzrokuje probleme.Potrebno je ponovno pokretanje."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:173
 msgid ""
 "Disables GPU VSync.\n"
 "May reduce latency, but can increase power usage and tearing."
 msgstr ""
+"Onemogućuje GPU VSync.\n"
+"Može smanjiti kašnjenje, ali može povećati potrošnju energije i kidanje."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:179
 msgid ""
@@ -2544,18 +2520,25 @@ msgid ""
 "Use only in case of graphical issues.\n"
 "May significantly reduce performance."
 msgstr ""
+"Forsira softversko prikazivanje.\n"
+"Koristite samo u slučaju grafičkih problema.\n"
+"Može značajno smanjiti performanse."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:186
 msgid ""
 "Forces the GBM backend on Wayland.\n"
 "Known to fix severe typing lag on NVIDIA drivers."
 msgstr ""
+"Forsira pozadinu GBM-a na Wayland.\n"
+"Poznato je da popravlja ozbiljno kašnjenje u kucanju na NVIDIA drajverima."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:192
 msgid ""
 "Disables the accessibility bus.\n"
 "Known to fix typing lag or CPU spikes in QtWebEngine."
 msgstr ""
+"Onemogućuje sabirnicu pristupačnosti.\n"
+"Poznato da popravlja kašnjenje u kucanju ili CPU skokove u QtWebEngine."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:198
 msgid ""
@@ -2563,6 +2546,9 @@ msgid ""
 "Reduces memory usage, but may cause crashes.\n"
 "Experimental usage."
 msgstr ""
+"Pokreće cijeli Chromium motor u jednom procesu.\n"
+"Smanjuje upotrebu memorije, ali može uzrokovati padove.\n"
+"Eksperimentalna upotreba."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:205
 msgid ""
@@ -2570,6 +2556,9 @@ msgid ""
 "Safer and more stable.\n"
 "May increase memory usage."
 msgstr ""
+"Koristi poseban proces po lokaciji.\n"
+"Sigurniji i stabilniji.\n"
+"Može povećati upotrebu memorije."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:212
 msgid ""
@@ -2579,246 +2568,256 @@ msgid ""
 "\n"
 "Restart required."
 msgstr ""
+"JavaScript (V8) ograničenje memorije.\n"
+"Automatski je najsigurnija opcija.\n"
+"Više vrijednosti omogućavaju teže stranice.\n"
+"\n"
+"Potrebno je ponovno pokretanje."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:220
 msgid ""
 "Enables V8 predictable garbage collection schedule.\n"
-"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
-"QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to QTWEBENGINE_CHROMIUM_FLAGS.\n"
 "\n"
 "Experimental option. Restart required."
 msgstr ""
+"Omogućava V8 predvidljivi raspored prikupljanja smeća.\n"
+"Ovo dodaje --js-flags=--predictable-gc-schedule i --disable-gpu u QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"\n"
+"Eksperimentalna opcija.Potrebno je ponovno pokretanje."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:227
 msgid ""
 "Enables smooth scrolling animations.\n"
 "Disabling may reduce CPU usage."
 msgstr ""
+"Omogućava glatke animacije pomicanja.\n"
+"Onemogućavanje može smanjiti korištenje CPU-a."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:231
 msgid ""
 "Allows background tabs to reduce resource usage.\n"
 "Disabling keeps timers active, but uses more resources."
 msgstr ""
+"Omogućava pozadinskim karticama da smanje upotrebu resursa.\n"
+"Onemogućavanje održava tajmere aktivnim, ali koristi više resursa."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:237
 msgid ""
 "Disables CSS and JavaScript animations.\n"
 "May improve performance on slower machines."
 msgstr ""
+"Onemogućuje animacije CSS i JavaScript.\n"
+"Može poboljšati performanse na sporijim mašinama."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:243
 msgid ""
 "Disables pinch-to-zoom gesture on touchpads.\n"
 "Useful if accidental zooming occurs during scrolling."
 msgstr ""
+"Onemogućuje pokret zumiranja prstima na dodirnim tablama.\n"
+"Korisno ako dođe do slučajnog zumiranja tokom pomicanja."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:249
 msgid ""
-"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
-"navigation.\n"
-"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
-"fields.\n"
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web message fields.\n"
 "\n"
 "Restart or reload WhatsApp Web after changing this option."
 msgstr ""
+"Koristi Selection.modify() sa vizuelnim uputstvima za Ctrl+Arrow navigaciju riječima.\n"
+"Ovo popravlja obrnuto kretanje kursora u tekstu RTL unutar WhatsApp Web polja poruke.\n"
+"\n"
+"Ponovo pokrenite ili ponovo učitajte WhatsApp Web nakon promjene ove opcije."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:255
 msgid ""
 "Restores all performance settings\n"
 "to safe default values."
 msgstr ""
+"Vraća sve postavke performansi\n"
+"na sigurne zadane vrijednosti."
 
 #: zapzap/features/settings/pages/permissions/view.py:23
 msgid "Define which permissions can be granted automatically to WhatsApp Web."
-msgstr ""
+msgstr "Definirajte koje se dozvole mogu automatski dodijeliti WhatsApp Web."
 
 #: zapzap/features/settings/pages/permissions/view.py:40
 msgid "Disabled permissions will continue to be requested when needed."
-msgstr ""
+msgstr "Onemogućene dozvole će se i dalje tražiti kada budu potrebne."
 
 #: zapzap/features/settings/pages/permissions/view.py:51
 msgid "Allow all"
-msgstr ""
+msgstr "Dozvoli sve"
 
 #: zapzap/features/settings/pages/permissions/view.py:52
-#, fuzzy
 msgid "Remove all"
-msgstr "Novi nalog"
+msgstr "Uklonite sve"
 
 #: zapzap/features/settings/pages/permissions/view.py:60
 msgid "Device access"
-msgstr ""
+msgstr "Pristup uređaju"
 
 #: zapzap/features/settings/pages/permissions/view.py:74
-#, fuzzy
 msgid "Camera and microphone"
-msgstr "Prema broju telefona"
+msgstr "Kamera i mikrofon"
 
 #: zapzap/features/settings/pages/permissions/view.py:76
 msgid "Automatically allow simultaneous access to the camera and microphone."
-msgstr ""
+msgstr "Automatski dozvoli istovremeni pristup kameri i mikrofonu."
 
 #: zapzap/features/settings/pages/permissions/view.py:82
-#, fuzzy
 msgid "Location"
-msgstr "Donacija"
+msgstr "Lokacija"
 
 #: zapzap/features/settings/pages/permissions/view.py:83
 msgid "Automatically allow access to your location."
-msgstr ""
+msgstr "Automatski dozvolite pristup vašoj lokaciji."
 
 #: zapzap/features/settings/pages/permissions/view.py:89
 msgid "Sharing"
-msgstr ""
+msgstr "Dijeljenje"
 
 #: zapzap/features/settings/pages/permissions/view.py:93
 msgid "Screen sharing"
-msgstr ""
+msgstr "Dijeljenje ekrana"
 
 #: zapzap/features/settings/pages/permissions/view.py:98
 msgid "Screen with audio"
-msgstr ""
+msgstr "Ekran sa zvukom"
 
 #: zapzap/features/settings/pages/permissions/view.py:99
 msgid "Automatically allow screen sharing with audio."
-msgstr ""
+msgstr "Automatski dozvoli dijeljenje ekrana sa zvukom."
 
 #: zapzap/features/settings/pages/permissions/view.py:105
-#, fuzzy
 msgid "Advanced"
-msgstr "Informacija"
+msgstr "Napredno"
 
 #: zapzap/features/settings/pages/permissions/view.py:109
 msgid "Pointer lock"
-msgstr ""
+msgstr "Zaključavanje pokazivača"
 
 #: zapzap/features/settings/pages/permissions/view.py:110
 msgid "Automatically allow the page to capture the mouse pointer."
-msgstr ""
+msgstr "Automatski dozvoli stranici da uhvati pokazivač miša."
 
 #: zapzap/features/settings/pages/system_startup/view.py:24
 msgid ""
 "Configure how ZapZap starts, behaves in the system, and integrates with "
 "Linux."
 msgstr ""
+"Konfigurirajte kako se ZapZap pokreće, ponaša u sistemu i integrira s "
+"Linuxom."
 
 #: zapzap/features/settings/pages/system_startup/view.py:41
 msgid "Define how ZapZap behaves when your session starts."
-msgstr ""
+msgstr "Definirajte kako se ZapZap ponaša kada vaša sesija počne."
 
 #: zapzap/features/settings/pages/system_startup/view.py:46
-#, fuzzy
 msgid "Open ZapZap automatically when the session starts."
-msgstr "Pokreni sa sistemom"
+msgstr "Automatski otvori ZapZap kada sesija započne."
 
 #: zapzap/features/settings/pages/system_startup/view.py:49
 msgid "Start in the background"
-msgstr ""
+msgstr "Počnite u pozadini"
 
 #: zapzap/features/settings/pages/system_startup/view.py:50
-#, fuzzy
 msgid "Open without showing the main window."
-msgstr "Zatvori pri zatvaranju prozora"
+msgstr "Otvorite bez prikazivanja glavnog prozora."
 
 #: zapzap/features/settings/pages/system_startup/view.py:63
 msgid "Window"
-msgstr ""
+msgstr "Prozor"
 
 #: zapzap/features/settings/pages/system_startup/view.py:64
 msgid "Define what happens when the main window is closed."
-msgstr ""
+msgstr "Definirajte šta se dešava kada se zatvori glavni prozor."
 
 #: zapzap/features/settings/pages/system_startup/view.py:68
-#, fuzzy
 msgid "Close behavior"
-msgstr "Ponašanje"
+msgstr "Blisko ponašanje"
 
 #: zapzap/features/settings/pages/system_startup/view.py:70
 msgid "Choose whether ZapZap continues in the background or quits."
-msgstr ""
+msgstr "Odaberite da li se ZapZap nastavlja u pozadini ili se prekida."
 
 #: zapzap/features/settings/pages/system_startup/view.py:77
 msgid "Continue in the background"
-msgstr ""
+msgstr "Nastavite u pozadini"
 
 #: zapzap/features/settings/pages/system_startup/view.py:81
-#, fuzzy
 msgid "Quit ZapZap"
-msgstr "ZapZap"
+msgstr "Napusti ZapZap"
 
 #: zapzap/features/settings/pages/system_startup/view.py:88
-#, fuzzy
 msgid "Confirm before quitting"
-msgstr "Zatvori pri zatvaranju prozora"
+msgstr "Potvrdite prije odustajanja"
 
 #: zapzap/features/settings/pages/system_startup/view.py:89
 msgid "Ask for confirmation before completely closing ZapZap."
-msgstr ""
+msgstr "Zatražite potvrdu prije potpunog zatvaranja ZapZap."
 
 #: zapzap/features/settings/pages/system_startup/view.py:96
 msgid ""
 "Choose whether ZapZap continues in the background or quits when the window "
 "is closed."
 msgstr ""
+"Odaberite da li se ZapZap nastavlja u pozadini ili se zatvara kada se prozor"
+" zatvori."
 
 #: zapzap/features/settings/pages/system_startup/view.py:110
-#, fuzzy
 msgid "Linux integration"
-msgstr "Prikvači razgovor"
+msgstr "Linux integracija"
 
 #: zapzap/features/settings/pages/system_startup/view.py:111
 msgid "Settings related to the desktop environment and platform."
-msgstr ""
+msgstr "Postavke vezane za desktop okruženje i platformu."
 
 #: zapzap/features/settings/pages/system_startup/view.py:115
-#, fuzzy
 msgid "System file dialogs"
-msgstr "Vrati standardne postavke"
+msgstr "Dijalozi sistemskih datoteka"
 
 #: zapzap/features/settings/pages/system_startup/view.py:116
 msgid "Use the file picker provided by the desktop environment."
-msgstr ""
+msgstr "Koristite birač datoteka koji pruža okruženje radne površine."
 
 #: zapzap/features/settings/pages/system_startup/view.py:128
 msgid "Run natively on Wayland"
-msgstr ""
+msgstr "Pokreni izvorno na Wayland"
 
 #: zapzap/features/settings/pages/system_startup/view.py:129
 msgid "Use the Wayland backend when available."
-msgstr ""
+msgstr "Koristite pozadinu Wayland kada je dostupna."
 
 #: zapzap/features/settings/pages/system_startup/view.py:135
 msgid "Use the Wayland backend when available. Requires restart."
 msgstr ""
+"Koristite pozadinu Wayland kada je dostupna.Zahtijeva ponovno pokretanje."
 
 #: zapzap/features/settings/pages/system_startup/view.py:139
-#, fuzzy
 msgid "Requires restart"
-msgstr "Napomena: Potrebno je ponovno pokretanje."
+msgstr "Zahtijeva ponovno pokretanje"
 
 #: zapzap/features/settings/pages/system_startup/view.py:143
 msgid "Wayland changes require restart"
-msgstr ""
+msgstr "Wayland promjene zahtijevaju ponovno pokretanje"
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:30
 #: zapzap/features/settings/components/card_user/card_user_view.py:31
-#, fuzzy
 msgid "Account actions"
-msgstr "Nalozi"
+msgstr "Radnje na računu"
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:95
 #: zapzap/features/settings/components/card_user/card_user_view.py:96
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:69
-#, fuzzy
 msgid "Change icon"
-msgstr "Ikona u sistemskoj traci"
+msgstr "Promijeni ikonu"
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:110
 #: zapzap/features/settings/components/card_user/card_user_view.py:113
-#, fuzzy
 msgid "Account active"
-msgstr "Nalozi"
+msgstr "Račun aktivan"
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:126
 #: zapzap/features/settings/components/card_user/card_user_controller.py:209
@@ -2826,18 +2825,16 @@ msgid "Do not disturb"
 msgstr "Ne uznemiravaj"
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:127
-#, fuzzy
 msgid "Silences notifications for this account."
-msgstr "Obavještenja u radnom prostoru"
+msgstr "Utišava obavještenja za ovaj račun."
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:108
-#, fuzzy
 msgid "Remove account"
-msgstr "Novi nalog"
+msgstr "Ukloni račun"
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:113
 msgid "The default account cannot be removed."
-msgstr ""
+msgstr "Zadani račun se ne može ukloniti."
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:155
 msgid "Confirm exclusion"
@@ -2849,19 +2846,21 @@ msgstr "Da li ste sigurni da želite izbrisati ovu stavku?"
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:185
 msgid "User-Agent Changed"
-msgstr ""
+msgstr "Korisnički agent promijenjen"
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:187
 msgid ""
-"Please restart this session (or the application) to apply the new User-Agent."
+"Please restart this session (or the application) to apply the new User-"
+"Agent."
 msgstr ""
+"Ponovo pokrenite ovu sesiju (ili aplikaciju) da biste primijenili novog "
+"korisničkog agenta."
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:196
 #: zapzap/features/settings/components/card_user/card_user_controller.py:239
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:76
-#, fuzzy
 msgid "Generate new colors for the icon"
-msgstr "Kliknite da generišete nove boje za ikonu"
+msgstr "Generirajte nove boje za ikonu"
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:199
 #: zapzap/features/settings/components/card_user/card_user_controller.py:242
@@ -2876,64 +2875,59 @@ msgstr "Onemogući"
 #: zapzap/features/settings/components/card_user/card_user_controller.py:223
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:92
 msgid "User-Agent"
-msgstr ""
+msgstr "Korisnički agent"
 
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:30
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:55
-#, fuzzy
 msgid "Edit account"
-msgstr "Nalozi"
+msgstr "Uredi račun"
 
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:57
 msgid "Change the name and icon used to identify this account."
 msgstr ""
+"Promijenite naziv i ikonu koja se koristi za identifikaciju ovog računa."
 
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:63
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:65
-#, fuzzy
 msgid "Account name"
-msgstr "Nalozi"
+msgstr "Naziv računa"
 
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:68
-#, fuzzy
 msgid "Account icon"
-msgstr "Nalozi"
+msgstr "Ikona računa"
 
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:88
-#, fuzzy
 msgid "Keep current icon"
-msgstr "Novi nalog"
+msgstr "Zadrži trenutnu ikonu"
 
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:91
-#, fuzzy
 msgid "Advanced options"
-msgstr "Informacija"
+msgstr "Napredne opcije"
 
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:101
 msgid "Changes the identification used by this account when loading pages."
 msgstr ""
+"Mijenja identifikaciju koju koristi ovaj račun prilikom učitavanja stranica."
 
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:152
 msgid "New icon colors selected."
-msgstr ""
+msgstr "Odabrane nove boje ikone."
 
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:158
 msgid "Standard icon selected."
-msgstr ""
+msgstr "Odabrana je standardna ikona."
 
 #: zapzap/features/downloads/ui/download_dialog.py:47
-#, fuzzy
 msgid "Download"
-msgstr "Direktorij za preuzimanje"
+msgstr "Preuzmi"
 
 #: zapzap/features/downloads/ui/download_dialog.py:112
 msgid "More"
-msgstr ""
+msgstr "Više"
 
 #: zapzap/features/downloads/ui/download_dialog.py:116
-#, fuzzy
 msgid "Save as"
-msgstr "Sačuvaj"
+msgstr "Sačuvaj kao"
 
 #: zapzap/features/downloads/ui/download_dialog.py:289
 msgid "Save file"
@@ -2948,51 +2942,49 @@ msgid "ZapZap Settings"
 msgstr "ZapZap postavke"
 
 #: zapzap/features/browser/components/browser_grid_view.py:75
-#, fuzzy
 msgid "Accounts overview"
-msgstr "Nalozi"
+msgstr "Pregled računa"
 
 #: zapzap/features/browser/components/browser_grid_view.py:79
 msgid "Select an account to return to its chat."
-msgstr ""
+msgstr "Odaberite račun da se vratite na njegov chat."
 
 #: zapzap/features/browser/components/browser_grid_view.py:92
-#, fuzzy
 msgid "No active accounts to display."
-msgstr "Nema aktivnog naloga!"
+msgstr "Nema aktivnih naloga za prikaz."
 
 #: zapzap/features/browser/shell/browser_controller.py:125
 msgid "Flatpak sandbox help"
-msgstr ""
+msgstr "Flatpak pomoć za sandbox"
 
 #: zapzap/features/browser/shell/browser_controller.py:150
 msgid "Flatpak sandbox"
-msgstr ""
+msgstr "Flatpak izolirano okruženje"
 
 #: zapzap/features/browser/shell/browser_controller.py:151
 msgid "ZapZap is running in Flatpak sandbox."
-msgstr ""
+msgstr "ZapZap radi u Flatpak sandboxu."
 
 #: zapzap/features/browser/shell/browser_controller.py:153
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
 msgstr ""
+"Neke funkcije poput otvaranja datoteka ili prevlačenja i ispuštanja mogu "
+"zahtijevati dodatne dozvole."
 
 #: zapzap/features/browser/shell/browser_controller.py:158
-#, fuzzy
 msgid "Instructions"
-msgstr "Informacija"
+msgstr "Uputstva"
 
 #: zapzap/features/browser/shell/browser_controller.py:159
-#, fuzzy
 msgid "Copy command"
-msgstr "Kopiraj sliku"
+msgstr "Kopiraj komandu"
 
 #: zapzap/features/browser/shell/browser_controller.py:160
 #: zapzap/ui/components/close_button.py:57
 msgid "Close"
-msgstr ""
+msgstr "Zatvori"
 
 #: zapzap/features/browser/shell/browser_controller.py:296
 #: zapzap/features/browser/shell/browser_controller.py:345
@@ -3001,26 +2993,28 @@ msgid "Account {}"
 msgstr "Nalog {}"
 
 #: zapzap/features/browser/shell/browser_controller.py:353
-#, fuzzy
 msgid "Account disabled"
-msgstr "Nalozi"
+msgstr "Račun je onemogućen"
 
 #: zapzap/features/browser/shell/browser_controller.py:354
 msgid "This account is disabled."
-msgstr ""
+msgstr "Ovaj račun je onemogućen."
 
 #: zapzap/features/browser/shell/browser_controller.py:356
 msgid ""
-"You can reactivate it now or use the right-click menu to manage this account."
+"You can reactivate it now or use the right-click menu to manage this "
+"account."
 msgstr ""
+"Možete ga ponovo aktivirati sada ili koristiti meni desnim klikom za "
+"upravljanje ovim računom."
 
 #: zapzap/features/browser/shell/browser_controller.py:361
 msgid "Activate"
-msgstr ""
+msgstr "Aktiviraj"
 
 #: zapzap/features/browser/shell/browser_controller.py:362
 msgid "Not now"
-msgstr ""
+msgstr "Ne sada"
 
 #: zapzap/features/browser/web/web_view.py:311
 msgid "Undo"
@@ -3039,17 +3033,14 @@ msgid "Paste"
 msgstr "Zalijepi"
 
 #: zapzap/features/browser/web/web_view.py:312
-#, fuzzy
 msgid "Select all"
-msgstr "Odaberi sve"
+msgstr "Odaberite sve"
 
 #: zapzap/features/browser/web/web_view.py:313
-#, fuzzy
 msgid "Save image"
-msgstr "Sačuvaj datoteku"
+msgstr "Sačuvaj sliku"
 
 #: zapzap/features/browser/web/web_view.py:313
-#, fuzzy
 msgid "Copy image"
 msgstr "Kopiraj sliku"
 
@@ -3067,61 +3058,61 @@ msgid "Select Language"
 msgstr "Odaberi jezik"
 
 #: zapzap/features/browser/web/web_view.py:564
-#, fuzzy
 msgid "Account"
-msgstr "Nalozi"
+msgstr "Račun"
 
 #: zapzap/features/browser/web/web_view.py:566
 #, python-brace-format
 msgid "DevTools - {}"
-msgstr ""
+msgstr "DevTools - {}"
 
 #: zapzap/features/browser/web/page_controller.py:198
-msgid "Please enter the phone number with country code (e.g., +5511999999999):"
+msgid ""
+"Please enter the phone number with country code (e.g., +5511999999999):"
 msgstr ""
+"Unesite broj telefona sa pozivnim brojem zemlje (npr. +5511999999999):"
 
 #: zapzap/features/browser/web/page_controller.py:202
 msgid ""
 "Invalid number! Please enter at least 9 digits, including the country code."
 msgstr ""
+"Nevažeći broj!Unesite najmanje 9 cifara, uključujući pozivni broj zemlje."
 
 #: zapzap/features/browser/web/page_controller.py:266
-#, fuzzy
 msgid "your microphone"
-msgstr "Prema broju telefona"
+msgstr "vaš mikrofon"
 
 #: zapzap/features/browser/web/page_controller.py:267
 msgid "your camera"
-msgstr ""
+msgstr "svoju kameru"
 
 #: zapzap/features/browser/web/page_controller.py:268
 msgid "your camera and microphone"
-msgstr ""
+msgstr "svoju kameru i mikrofon"
 
 #: zapzap/features/browser/web/page_controller.py:269
 msgid "your location"
-msgstr ""
+msgstr "svoju lokaciju"
 
 #: zapzap/features/browser/web/page_controller.py:270
 msgid "your screen contents"
-msgstr ""
+msgstr "sadržaj vašeg ekrana"
 
 #: zapzap/features/browser/web/page_controller.py:271
 msgid "your screen contents and audio"
-msgstr ""
+msgstr "sadržaj vašeg ekrana i zvuk"
 
 #: zapzap/features/browser/web/page_controller.py:272
 msgid "mouse lock"
-msgstr ""
+msgstr "zaključavanje miša"
 
 #: zapzap/features/browser/web/page_controller.py:274
-#, fuzzy
 msgid "a system feature"
-msgstr "Vrati standardne postavke"
+msgstr "sistemska karakteristika"
 
 #: zapzap/features/browser/web/page_controller.py:278
 msgid "Permission request"
-msgstr ""
+msgstr "Zahtjev za dozvolu"
 
 #: zapzap/features/browser/web/page_controller.py:279
 #, python-brace-format
@@ -3130,142 +3121,136 @@ msgid ""
 "\n"
 "Allow?"
 msgstr ""
+"WhatsApp Web traži pristup {}.\n"
+"\n"
+"Dozvoliti?"
 
-#: zapzap/ui/main_window/main_window_view.py:130
+#: zapzap/ui/main_window/main_window_view.py:134
 msgid "File"
 msgstr "Fajl"
 
-#: zapzap/ui/main_window/main_window_view.py:131
+#: zapzap/ui/main_window/main_window_view.py:135
 msgid "View"
 msgstr "Prikaz"
 
-#: zapzap/ui/main_window/main_window_view.py:132
+#: zapzap/ui/main_window/main_window_view.py:136
 msgid "Chat"
 msgstr "Ćaskanje"
 
-#: zapzap/ui/main_window/main_window_view.py:133
+#: zapzap/ui/main_window/main_window_view.py:137
 msgid "Users"
 msgstr "Korisnici"
 
-#: zapzap/ui/main_window/main_window_view.py:134
+#: zapzap/ui/main_window/main_window_view.py:138
 msgid "Help"
 msgstr "Pomoć"
 
-#: zapzap/ui/main_window/main_window_view.py:136
+#: zapzap/ui/main_window/main_window_view.py:140
 msgid "Ctrl+Q"
 msgstr "Ctrl+Q"
 
-#: zapzap/ui/main_window/main_window_view.py:138
+#: zapzap/ui/main_window/main_window_view.py:142
 msgid "Ctrl+W"
 msgstr "Ctrl+W"
 
-#: zapzap/ui/main_window/main_window_view.py:140
+#: zapzap/ui/main_window/main_window_view.py:144
 msgid "Ctrl+P"
 msgstr "Ctrl+P"
 
-#: zapzap/ui/main_window/main_window_view.py:142
+#: zapzap/ui/main_window/main_window_view.py:146
 msgid "Ctrl+0"
 msgstr "Ctrl+0"
 
-#: zapzap/ui/main_window/main_window_view.py:144
+#: zapzap/ui/main_window/main_window_view.py:148
 msgid "Ctrl++"
 msgstr "Ctrl++"
 
-#: zapzap/ui/main_window/main_window_view.py:146
+#: zapzap/ui/main_window/main_window_view.py:150
 msgid "Ctrl+-"
 msgstr "Ctrl+-"
 
-#: zapzap/ui/main_window/main_window_view.py:147
+#: zapzap/ui/main_window/main_window_view.py:151
 msgid "Toggle full screen"
 msgstr "Prebaci na cijeli ekran"
 
-#: zapzap/ui/main_window/main_window_view.py:148
+#: zapzap/ui/main_window/main_window_view.py:152
 msgid "F11"
 msgstr "F11"
 
-#: zapzap/ui/main_window/main_window_view.py:149
-msgid "Open DevTools"
-msgstr ""
-
-#: zapzap/ui/main_window/main_window_view.py:150
-#, fuzzy
-msgid "Ctrl+Shift+I"
-msgstr "Ctrl++"
-
-#: zapzap/ui/main_window/main_window_view.py:151
-#, fuzzy
-msgid "Grid View"
-msgstr "Prikaz"
-
-#: zapzap/ui/main_window/main_window_view.py:152
-#, fuzzy
-msgid "Ctrl+G"
-msgstr "Ctrl+Q"
-
 #: zapzap/ui/main_window/main_window_view.py:153
+msgid "Open DevTools"
+msgstr "Otvorite DevTools"
+
+#: zapzap/ui/main_window/main_window_view.py:154
+msgid "Ctrl+Shift+I"
+msgstr "Ctrl+Shift+I"
+
+#: zapzap/ui/main_window/main_window_view.py:155
+msgid "Grid View"
+msgstr "Mrežni prikaz"
+
+#: zapzap/ui/main_window/main_window_view.py:156
+msgid "Ctrl+G"
+msgstr "Ctrl+G"
+
+#: zapzap/ui/main_window/main_window_view.py:157
 msgid "Show sidebar"
 msgstr "Prikaži bočnu traku"
 
-#: zapzap/ui/main_window/main_window_view.py:155
-#, fuzzy
-msgid "Ctrl+Alt+1"
-msgstr "Ctrl++"
-
-#: zapzap/ui/main_window/main_window_view.py:157
-#, fuzzy
-msgid "Ctrl+Alt+2"
-msgstr "Ctrl++"
-
 #: zapzap/ui/main_window/main_window_view.py:159
-#, fuzzy
-msgid "Ctrl+Alt+3"
-msgstr "Ctrl++"
+msgid "Ctrl+Alt+1"
+msgstr "Ctrl+Alt+1"
 
-#: zapzap/ui/main_window/main_window_view.py:160
+#: zapzap/ui/main_window/main_window_view.py:161
+msgid "Ctrl+Alt+2"
+msgstr "Ctrl+Alt+2"
+
+#: zapzap/ui/main_window/main_window_view.py:163
+msgid "Ctrl+Alt+3"
+msgstr "Ctrl+Alt+3"
+
+#: zapzap/ui/main_window/main_window_view.py:164
 msgid "Reload"
 msgstr "Ponovo učitaj"
 
-#: zapzap/ui/main_window/main_window_view.py:161
+#: zapzap/ui/main_window/main_window_view.py:165
 msgid "F5"
 msgstr "F5"
 
-#: zapzap/ui/main_window/main_window_view.py:162
+#: zapzap/ui/main_window/main_window_view.py:166
 msgid "New chat"
 msgstr "Novi razgovor"
 
-#: zapzap/ui/main_window/main_window_view.py:163
+#: zapzap/ui/main_window/main_window_view.py:167
 msgid "Ctrl+N"
 msgstr "Ctrl+N"
 
-#: zapzap/ui/main_window/main_window_view.py:164
+#: zapzap/ui/main_window/main_window_view.py:168
 msgid "By number phone"
 msgstr "Prema broju telefona"
 
-#: zapzap/ui/main_window/main_window_view.py:165
+#: zapzap/ui/main_window/main_window_view.py:169
 msgid "Ctrl+M"
 msgstr "Ctrl+M"
 
-#: zapzap/ui/main_window/main_window_view.py:167
-#, fuzzy
+#: zapzap/ui/main_window/main_window_view.py:171
 msgid "Ctrl+Shift+/, Ctrl+?"
-msgstr "Ctrl++"
+msgstr "Ctrl+Shift+/, Ctrl+?"
 
 #: zapzap/ui/main_window/client_side_rendering_controller.py:46
 #: zapzap/ui/main_window/main_window_controller.py:263
-#, fuzzy
 msgid "Close ZapZap"
-msgstr "ZapZap"
+msgstr "Zatvori ZapZap"
 
 #: zapzap/ui/main_window/client_side_rendering_controller.py:47
 #: zapzap/ui/main_window/main_window_controller.py:264
-#, fuzzy
 msgid "Are you sure you want to close?"
-msgstr "Da li ste sigurni da želite izbrisati ovu stavku?"
+msgstr "Jeste li sigurni da želite zatvoriti?"
 
 #: zapzap/ui/main_window/client_side_rendering_controller.py:48
 #: zapzap/ui/main_window/main_window_controller.py:265
 msgid "Don't ask again"
-msgstr ""
+msgstr "Ne pitaj ponovo"
 
 #, fuzzy
 #~ msgid "Global (Default)"
@@ -3401,8 +3386,7 @@ msgstr ""
 #~ msgstr "200 %"
 
 #~ msgid "Note: The change of scale will only have effect until restarting."
-#~ msgstr ""
-#~ "Napomena: Promjena skaliranja će važiti samo do ponovnog pokretanja."
+#~ msgstr "Napomena: Promjena skaliranja će važiti samo do ponovnog pokretanja."
 
 #~ msgid "Download Directory"
 #~ msgstr "Direktorij za preuzimanje"

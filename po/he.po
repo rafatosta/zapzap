@@ -5,27 +5,26 @@
 # SPDX-FileCopyrightText: 2025 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-24 18:16-0300\n"
-"PO-Revision-Date: 2025-10-26 15:07+0200\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"POT-Creation-Date: 2026-07-25 13:29-0300\n"
+"PO-Revision-Date: 2026-07-25 21:10-0300\n"
+"Last-Translator: ZapZap contributors\n"
+"Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
-"2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? 2 : 3);\n"
 "X-Generator: Lokalize 25.08.2\n"
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:27
 msgid "Unexpected Error"
-msgstr ""
+msgstr "שגיאה בלתי צפויה"
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:28
 msgid "The application encountered an unexpected error."
-msgstr ""
+msgstr "האפליקציה נתקלה בשגיאה בלתי צפויה."
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:30
 #, python-brace-format
@@ -40,23 +39,30 @@ msgid ""
 " - Issue tracker: {issue_url}\n"
 " - Email: {email}"
 msgstr ""
+"דוח אבחון נוצר באופן אוטומטי ב:\n"
+"\n"
+"{path}\n"
+"\n"
+"שלח את הקובץ הזה לתמיכה כדי שנוכל לחקור את הבעיה.\n"
+"\n"
+"ערוצי דיווח:\n"
+"- עוקב אחר בעיות: {issue_url}\n"
+"- אימייל: {email}"
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:41
 #: zapzap/features/settings/pages/advanced_customizations/view.py:101
-#: zapzap/features/settings/pages/debugging/view.py:191
+#: zapzap/features/settings/pages/debugging/view.py:189
 #: zapzap/features/downloads/ui/download_dialog.py:118
-#, fuzzy
 msgid "Open folder"
-msgstr "בחירת תיקייה"
+msgstr "פתח תיקייה"
 
 #: zapzap/core/environment/environment_detector.py:5
-#, fuzzy
 msgid "Official"
-msgstr "לא רשמי"
+msgstr "רשמי"
 
 #: zapzap/core/environment/environment_detector.py:6
 msgid "Community"
-msgstr ""
+msgstr "קהילה"
 
 #: zapzap/core/environment/environment_detector.py:7
 #: zapzap/core/environment/environment_detector.py:19
@@ -95,15 +101,15 @@ msgstr "תיווך לבקשות FTP בלבד."
 #: zapzap/features/alerts/alert_manager.py:110
 #: zapzap/features/alerts/alert_manager.py:173
 msgid "OK"
-msgstr ""
+msgstr "בסדר"
 
 #: zapzap/features/alerts/alert_manager.py:214
 msgid "Yes"
-msgstr ""
+msgstr "כן"
 
 #: zapzap/features/alerts/alert_manager.py:222
 msgid "No"
-msgstr ""
+msgstr "לא"
 
 #: zapzap/features/alerts/alert_manager.py:241
 #: zapzap/features/settings/pages/about/view.py:279
@@ -127,9 +133,9 @@ msgstr "נא לשים לב"
 msgid "No active account!"
 msgstr "אין חשבון פעיל!"
 
-#: zapzap/features/donation/view.py:207 zapzap/features/shortcuts/view.py:59
-#: zapzap/features/settings/pages/debugging/view.py:379
-#: zapzap/ui/main_window/main_window_view.py:129
+#: zapzap/features/donation/view.py:207 zapzap/features/shortcuts/view.py:60
+#: zapzap/features/settings/pages/debugging/view.py:373
+#: zapzap/ui/main_window/main_window_view.py:133
 msgid "ZapZap"
 msgstr "ZapZap"
 
@@ -138,52 +144,50 @@ msgid ""
 "Your donation helps keep the project running, improve resources and "
 "guarantee your privacy and freedom."
 msgstr ""
+"התרומה שלך עוזרת להמשיך את הפרויקט לפעול, לשפר משאבים ולהבטיח את הפרטיות "
+"והחופש שלך."
 
 #: zapzap/features/donation/view.py:214
-#, fuzzy
 msgid "❤ Make a donation"
-msgstr "תרומה כספית"
+msgstr "❤ תרום תרומה"
 
 #: zapzap/features/donation/view.py:215
 msgid "Don't show again"
-msgstr ""
+msgstr "אל תראה שוב"
 
 #: zapzap/features/donation/view.py:216
 msgid "Learn more about ZapZap ↗"
-msgstr ""
+msgstr "למידע נוסף על ZapZap ↗"
 
 #: zapzap/features/downloads/download_manager.py:92
-#, fuzzy
 msgid "Select folder"
-msgstr "בחירת תיקייה"
+msgstr "בחר תיקייה"
 
 #: zapzap/features/initial_setup/controller.py:111
 #: zapzap/features/settings/pages/language_downloads/controller.py:60
-#, fuzzy
 msgid "System default"
-msgstr "שחזור רגיל"
+msgstr "ברירת המחדל של המערכת"
 
 #: zapzap/features/initial_setup/controller.py:142
 msgid "English"
-msgstr ""
+msgstr "אנגלית"
 
 #: zapzap/features/initial_setup/view.py:42
-#, fuzzy
 msgid "Setup ZapZap"
-msgstr "ZapZap"
+msgstr "הגדרת ZapZap"
 
 #: zapzap/features/initial_setup/view.py:87
-#, fuzzy
 msgid "Welcome to ZapZap"
-msgstr "ברוך בואך אל"
+msgstr "ברוכים הבאים אל ZapZap"
 
 #: zapzap/features/initial_setup/view.py:90
-msgid "Choose the essentials now. You can change everything later in Settings."
-msgstr ""
+msgid ""
+"Choose the essentials now. You can change everything later in Settings."
+msgstr "בחר את היסודות עכשיו.תוכל לשנות הכל מאוחר יותר בהגדרות."
 
 #: zapzap/features/initial_setup/view.py:105
 msgid "Basics"
-msgstr ""
+msgstr "יסודות"
 
 #: zapzap/features/initial_setup/view.py:106
 #: zapzap/features/settings/shell/settings_controller.py:43
@@ -194,29 +198,28 @@ msgstr "התראות"
 
 #: zapzap/features/initial_setup/view.py:107
 msgid "Background"
-msgstr ""
+msgstr "רקע"
 
 #: zapzap/features/initial_setup/view.py:108
 #: zapzap/features/settings/pages/advanced_customizations/view.py:73
-#, fuzzy
 msgid "Files"
-msgstr "קובץ"
+msgstr "קבצים"
 
 #: zapzap/features/initial_setup/view.py:109
 #: zapzap/features/initial_setup/view.py:361
 #: zapzap/features/settings/shell/settings_controller.py:44
 #: zapzap/features/settings/pages/permissions/view.py:22
 msgid "Permissions"
-msgstr ""
+msgstr "הרשאות"
 
 #: zapzap/features/initial_setup/view.py:110
 #: zapzap/features/initial_setup/view.py:120
 msgid "Finish"
-msgstr ""
+msgstr "סיים"
 
 #: zapzap/features/initial_setup/view.py:117
 msgid "Skip setup"
-msgstr ""
+msgstr "דלג על ההגדרה"
 
 #: zapzap/features/initial_setup/view.py:118
 msgid "Back"
@@ -224,51 +227,49 @@ msgstr "חזרה"
 
 #: zapzap/features/initial_setup/view.py:119
 msgid "Next"
-msgstr ""
+msgstr "הבא"
 
 #: zapzap/features/initial_setup/view.py:137
 msgid "Language and appearance"
-msgstr ""
+msgstr "שפה ומראה"
 
 #: zapzap/features/initial_setup/view.py:138
 msgid "Start with the interface language and a comfortable visual theme."
-msgstr ""
+msgstr "התחל עם שפת הממשק ונושא ויזואלי נוח."
 
 #: zapzap/features/initial_setup/view.py:143
 #: zapzap/features/settings/pages/language_downloads/view.py:34
-#, fuzzy
 msgid "Language"
-msgstr "בחירת שפה"
+msgstr "שפה"
 
 #: zapzap/features/initial_setup/view.py:144
 #: zapzap/features/settings/pages/language_downloads/view.py:35
 msgid "Choose the interface language used by ZapZap."
-msgstr ""
+msgstr "בחר את שפת הממשק שבה משתמש ZapZap."
 
 #: zapzap/features/initial_setup/view.py:149
 #: zapzap/features/settings/pages/language_downloads/view.py:39
-#, fuzzy
 msgid "Interface language"
-msgstr "בחירת שפה"
+msgstr "שפת ממשק"
 
 #: zapzap/features/initial_setup/view.py:150
 msgid "The interface language is applied when you finish setup."
-msgstr ""
+msgstr "שפת הממשק מוחלת כאשר אתה מסיים את ההגדרה."
 
 #: zapzap/features/initial_setup/view.py:159
 #: zapzap/features/settings/pages/appearance/view.py:64
 msgid "Theme"
-msgstr ""
+msgstr "נושא"
 
 #: zapzap/features/initial_setup/view.py:160
 #: zapzap/features/settings/pages/appearance/view.py:64
 msgid "Choose the visual theme."
-msgstr ""
+msgstr "בחר את הנושא החזותי."
 
 #: zapzap/features/initial_setup/view.py:164
 #: zapzap/features/settings/pages/appearance/view.py:66
 msgid "Automatic"
-msgstr ""
+msgstr "אוטומטי"
 
 #: zapzap/features/initial_setup/view.py:165
 #: zapzap/features/settings/pages/appearance/view.py:67
@@ -281,81 +282,73 @@ msgid "Dark"
 msgstr "כהה"
 
 #: zapzap/features/initial_setup/view.py:183
-#, fuzzy
 msgid "Notifications and privacy"
-msgstr "התראות"
+msgstr "התראות ופרטיות"
 
 #: zapzap/features/initial_setup/view.py:184
 msgid ""
 "Decide how much message information appears in native notification banners."
-msgstr ""
+msgstr "החלט כמה מידע הודעה יופיע בבאנרים של התראות מקוריות."
 
 #: zapzap/features/initial_setup/view.py:188
 #: zapzap/features/settings/pages/notifications/view.py:39
-#, fuzzy
 msgid "Desktop notifications"
-msgstr "השתקת ההתראות"
+msgstr "הודעות על שולחן העבודה"
 
 #: zapzap/features/initial_setup/view.py:189
 msgid "Choose whether ZapZap may show desktop notifications."
-msgstr ""
+msgstr "בחר אם ZapZap עשוי להציג הודעות על שולחן העבודה."
 
 #: zapzap/features/initial_setup/view.py:194
-#, fuzzy
 msgid "Enable notifications"
-msgstr "התראות אזור עבודה"
+msgstr "אפשר התראות"
 
 #: zapzap/features/initial_setup/view.py:195
 msgid ""
 "Allow ZapZap to publish native desktop notifications for WhatsApp activity."
-msgstr ""
+msgstr "אפשר ל-ZapZap לפרסם התראות שולחן עבודה מקוריות עבור פעילות WhatsApp."
 
 #: zapzap/features/initial_setup/view.py:203
-#, fuzzy
 msgid "Notification privacy"
-msgstr "התראות"
+msgstr "פרטיות הודעות"
 
 #: zapzap/features/initial_setup/view.py:204
 msgid "Limit what is visible in notification banners."
-msgstr ""
+msgstr "הגבל את מה שנראה בבאנרים של התראות."
 
 #: zapzap/features/initial_setup/view.py:209
-#, fuzzy
 msgid "Show contact photo"
-msgstr "הסתרת התראת תרומה"
+msgstr "הצג תמונת איש קשר"
 
 #: zapzap/features/initial_setup/view.py:210
 msgid "Display the sender avatar when it is available."
-msgstr ""
+msgstr "הצג את דמות השולח כאשר הוא זמין."
 
 #: zapzap/features/initial_setup/view.py:213
-#, fuzzy
 msgid "Show contact name"
-msgstr "הסתרת התראת תרומה"
+msgstr "הצג את שם איש הקשר"
 
 #: zapzap/features/initial_setup/view.py:214
 msgid "Display the sender or group name."
-msgstr ""
+msgstr "הצג את שם השולח או הקבוצה."
 
 #: zapzap/features/initial_setup/view.py:217
 msgid "Show message preview"
 msgstr "הצגת תצוגה מקדימה של ההודעה"
 
 #: zapzap/features/initial_setup/view.py:218
-#, fuzzy
 msgid "Display the message text in the notification."
-msgstr "השתקת ההתראות"
+msgstr "הצג את טקסט ההודעה בהתראה."
 
 #: zapzap/features/initial_setup/view.py:232
-#, fuzzy
 msgid "Background behavior"
-msgstr "התנהגות"
+msgstr "התנהגות רקע"
 
 #: zapzap/features/initial_setup/view.py:233
 msgid ""
 "Choose whether ZapZap should stay available from the tray and start with "
 "your session."
-msgstr ""
+msgstr "בחר אם ZapZap יישאר זמין מהמגש והתחל עם ההפעלה שלך."
 
 #: zapzap/features/initial_setup/view.py:237
 #: zapzap/features/settings/pages/appearance/view.py:81
@@ -364,60 +357,56 @@ msgstr "סמל בשורת המערכת"
 
 #: zapzap/features/initial_setup/view.py:238
 msgid "Control tray icon visibility and unread counter."
-msgstr ""
+msgstr "שליטה בנראות סמל המגש ובמונה שלא נקרא."
 
 #: zapzap/features/initial_setup/view.py:243
-#, fuzzy
 msgid "Enable tray icon"
-msgstr "התראות אזור עבודה"
+msgstr "סמל מגש הפעל"
 
 #: zapzap/features/initial_setup/view.py:244
 msgid "Show ZapZap in the system tray."
-msgstr ""
+msgstr "הצג את ZapZap במגש המערכת."
 
 #: zapzap/features/initial_setup/view.py:247
-#, fuzzy
 msgid "Notification counter"
-msgstr "התראות"
+msgstr "מונה הודעות"
 
 #: zapzap/features/initial_setup/view.py:248
 msgid "Show unread notifications on the tray icon."
-msgstr ""
+msgstr "הצג הודעות שלא נקראו בסמל המגש."
 
 #: zapzap/features/initial_setup/view.py:258
-#, fuzzy
 msgid "Window behavior"
-msgstr "התנהגות"
+msgstr "התנהגות חלונות"
 
 #: zapzap/features/initial_setup/view.py:259
 msgid "Configure close behavior."
-msgstr ""
+msgstr "הגדר התנהגות קרובה."
 
 #: zapzap/features/initial_setup/view.py:264
 msgid "Keep running in the background"
-msgstr ""
+msgstr "המשיכו לרוץ ברקע"
 
 #: zapzap/features/initial_setup/view.py:265
 msgid "Hide the main window instead of quitting when it is closed."
-msgstr ""
+msgstr "הסתר את החלון הראשי במקום לצאת כשהוא סגור."
 
 #: zapzap/features/initial_setup/view.py:268
-#, fuzzy
 msgid "Confirm before closing the window"
-msgstr "לסגור עם סגירת החלון"
+msgstr "אשר לפני סגירת החלון"
 
 #: zapzap/features/initial_setup/view.py:269
 msgid "Ask for confirmation before closing ZapZap."
-msgstr ""
+msgstr "בקש אישור לפני סגירת ZapZap."
 
 #: zapzap/features/initial_setup/view.py:279
 #: zapzap/features/settings/pages/system_startup/view.py:40
 msgid "Startup"
-msgstr ""
+msgstr "הפעלה"
 
 #: zapzap/features/initial_setup/view.py:280
 msgid "Control how ZapZap behaves when your desktop session starts."
-msgstr ""
+msgstr "שלוט בהתנהגות של ZapZap כשההפעלה שלך בשולחן העבודה מתחילה."
 
 #: zapzap/features/initial_setup/view.py:285
 #: zapzap/features/settings/pages/system_startup/view.py:45
@@ -426,7 +415,7 @@ msgstr "הפעלה עם עליית המערכת"
 
 #: zapzap/features/initial_setup/view.py:286
 msgid "Create or remove the desktop autostart entry."
-msgstr ""
+msgstr "צור או הסר את ערך ההפעלה האוטומטית של שולחן העבודה."
 
 #: zapzap/features/initial_setup/view.py:289
 msgid "Start minimized"
@@ -434,145 +423,137 @@ msgstr "התחלה ממוזערת"
 
 #: zapzap/features/initial_setup/view.py:290
 msgid "Open ZapZap in the background instead of showing the main window."
-msgstr ""
+msgstr "פתח את ZapZap ברקע במקום להציג את החלון הראשי."
 
 #: zapzap/features/initial_setup/view.py:303
-#, fuzzy
 msgid "Downloads and typing"
-msgstr "תיקיית הורדות"
+msgstr "הורדות והקלדה"
 
 #: zapzap/features/initial_setup/view.py:304
 msgid ""
-"Choose where files are saved and enable spell checking when dictionaries are "
-"available."
-msgstr ""
+"Choose where files are saved and enable spell checking when dictionaries are"
+" available."
+msgstr "בחר היכן הקבצים נשמרים והפעל בדיקת איות כאשר מילונים זמינים."
 
 #: zapzap/features/initial_setup/view.py:308
 #: zapzap/features/settings/pages/language_downloads/view.py:52
-#, fuzzy
 msgid "Downloads"
-msgstr "תיקיית הורדות"
+msgstr "הורדות"
 
 #: zapzap/features/initial_setup/view.py:309
 #: zapzap/features/settings/pages/language_downloads/view.py:53
 msgid "Choose where downloaded files are saved."
-msgstr ""
+msgstr "בחר היכן יישמרו קבצים שהורדו."
 
 #: zapzap/features/initial_setup/view.py:314
 #: zapzap/features/settings/pages/language_downloads/view.py:57
-#, fuzzy
 msgid "Download directory"
-msgstr "תיקיית הורדות"
+msgstr "הורד ספרייה"
 
 #: zapzap/features/initial_setup/view.py:315
 msgid "Set a custom folder or keep the current download location."
-msgstr ""
+msgstr "הגדר תיקיה מותאמת אישית או השאר את מיקום ההורדה הנוכחי."
 
 #: zapzap/features/initial_setup/view.py:316
-#, fuzzy
 msgid "Choose folder"
-msgstr "תיקיית הורדות"
+msgstr "בחר תיקיה"
 
 #: zapzap/features/initial_setup/view.py:326
 #: zapzap/features/settings/pages/language_downloads/view.py:73
-#, fuzzy
 msgid "Spell checker"
 msgstr "בודק איות"
 
 #: zapzap/features/initial_setup/view.py:327
 #: zapzap/features/settings/pages/language_downloads/view.py:74
 msgid "Select compiled dictionaries and where ZapZap should look for them."
-msgstr ""
+msgstr "בחר מילונים מלוקטים והיכן ZapZap צריך לחפש אותם."
 
 #: zapzap/features/initial_setup/view.py:332
 #: zapzap/features/settings/pages/language_downloads/view.py:78
-#, fuzzy
 msgid "Enable spell checker"
-msgstr "בודק איות"
+msgstr "הפעל בודק איות"
 
 #: zapzap/features/initial_setup/view.py:333
 #: zapzap/features/settings/pages/language_downloads/view.py:79
 msgid "Use Qt WebEngine spell checking with the selected dictionary."
-msgstr ""
+msgstr "השתמש בבדיקת איות Qt WebEngine עם המילון שנבחר."
 
 #: zapzap/features/initial_setup/view.py:336
 #: zapzap/features/settings/pages/language_downloads/view.py:82
 msgid "Dictionary language"
-msgstr ""
+msgstr "שפת מילון"
 
 #: zapzap/features/initial_setup/view.py:337
 #: zapzap/features/settings/pages/language_downloads/view.py:83
-#, fuzzy
 msgid "Recognizes only compiled dictionaries (.bdic)."
-msgstr "מזהה מילונים מהודרים בלבד (‎.bdic)"
+msgstr "מזהה רק מילונים מהודרים (.bdic)."
 
 #: zapzap/features/initial_setup/view.py:341
 msgid ""
-"No compiled dictionaries were found. You can configure dictionaries later in "
-"Settings."
-msgstr ""
+"No compiled dictionaries were found. You can configure dictionaries later in"
+" Settings."
+msgstr "לא נמצאו מילונים מלוקטים.תוכל להגדיר מילונים מאוחר יותר בהגדרות."
 
 #: zapzap/features/initial_setup/view.py:356
 msgid "Essential permissions"
-msgstr ""
+msgstr "הרשאות חיוניות"
 
 #: zapzap/features/initial_setup/view.py:357
 msgid ""
 "Allow only the WhatsApp Web permissions you want to grant automatically."
-msgstr ""
+msgstr "אפשר רק את ההרשאות WhatsApp Web שברצונך להעניק אוטומטית."
 
 #: zapzap/features/initial_setup/view.py:362
 msgid "When an option is unchecked, ZapZap will ask again in each session."
-msgstr ""
+msgstr "כאשר אפשרות לא מסומנת, ZapZap ישאל שוב בכל הפעלה."
 
 #: zapzap/features/initial_setup/view.py:368
 msgid ""
 "Enable only the permissions you want to grant automatically when the page "
 "requests them."
-msgstr ""
+msgstr "אפשר רק את ההרשאות שברצונך להעניק באופן אוטומטי כאשר הדף מבקש אותן."
 
 #: zapzap/features/initial_setup/view.py:372
 #: zapzap/features/settings/pages/permissions/view.py:64
-#, fuzzy
 msgid "Microphone"
-msgstr "לפי מספר טלפון"
+msgstr "מיקרופון"
 
 #: zapzap/features/initial_setup/view.py:373
 #: zapzap/features/settings/pages/permissions/view.py:65
 msgid "Automatically allow access to your microphone."
-msgstr ""
+msgstr "אפשר גישה אוטומטית למיקרופון שלך."
 
 #: zapzap/features/initial_setup/view.py:376
 #: zapzap/features/settings/pages/permissions/view.py:69
 msgid "Camera"
-msgstr ""
+msgstr "מצלמה"
 
 #: zapzap/features/initial_setup/view.py:377
 #: zapzap/features/settings/pages/permissions/view.py:70
 msgid "Automatically allow access to your camera."
-msgstr ""
+msgstr "אפשר גישה אוטומטית למצלמה שלך."
 
 #: zapzap/features/initial_setup/view.py:380
 msgid "Screen contents"
-msgstr ""
+msgstr "תוכן מסך"
 
 #: zapzap/features/initial_setup/view.py:381
 #: zapzap/features/settings/pages/permissions/view.py:94
 msgid "Automatically allow sharing of screen contents."
-msgstr ""
+msgstr "אפשר שיתוף אוטומטי של תוכן מסך."
 
 #: zapzap/features/initial_setup/view.py:384
 msgid "WebRTC shield"
-msgstr ""
+msgstr "מגן WebRTC"
 
 #: zapzap/features/initial_setup/view.py:385
 msgid "Reduce WebRTC IP exposure."
-msgstr ""
+msgstr "צמצם את חשיפת ה-IP של WebRTC."
 
 #: zapzap/features/initial_setup/view.py:402
 #: zapzap/features/settings/pages/permissions/view.py:130
 msgid "Flatpak permissions"
-msgstr ""
+msgstr "הרשאות Flatpak"
 
 #: zapzap/features/initial_setup/view.py:403
 #: zapzap/features/settings/pages/permissions/view.py:131
@@ -580,6 +561,8 @@ msgid ""
 "Grant filesystem access if downloads, imports, or dictionaries cannot reach "
 "folders outside the sandbox."
 msgstr ""
+"הענק גישה למערכת הקבצים אם הורדות, ייבוא או מילונים אינם יכולים להגיע "
+"לתיקיות מחוץ לארגז החול."
 
 #: zapzap/features/initial_setup/view.py:409
 #: zapzap/features/settings/pages/permissions/view.py:135
@@ -587,15 +570,17 @@ msgid ""
 "Flatpak sandbox: if file access fails, grant folder permissions using "
 "Flatseal or flatpak override."
 msgstr ""
+"ארגז חול Flatpak: אם הגישה לקובץ נכשלת, הענק הרשאות תיקיה באמצעות Flatseal "
+"או Flatpak."
 
 #: zapzap/features/initial_setup/view.py:419
 #: zapzap/features/settings/pages/permissions/view.py:143
 msgid "Select and copy this command in your terminal"
-msgstr ""
+msgstr "בחר והעתק פקודה זו בטרמינל שלך"
 
 #: zapzap/features/initial_setup/view.py:421
 #: zapzap/features/settings/pages/debugging/controller.py:87
-#: zapzap/features/settings/pages/debugging/view.py:225
+#: zapzap/features/settings/pages/debugging/view.py:223
 #: zapzap/features/settings/pages/permissions/view.py:145
 #: zapzap/features/browser/web/web_view.py:312
 msgid "Copy"
@@ -604,46 +589,48 @@ msgstr "העתקה"
 #: zapzap/features/initial_setup/view.py:425
 #: zapzap/features/settings/pages/permissions/view.py:149
 msgid "Flatseal"
-msgstr ""
+msgstr "חותם שטוח"
 
 #: zapzap/features/initial_setup/view.py:426
 #: zapzap/features/settings/pages/permissions/view.py:150
 msgid ""
 "Flatseal is a graphical utility to review and modify permissions from your "
 "Flatpak applications."
-msgstr ""
+msgstr "Flatseal הוא כלי עזר גרפי לבדיקה ושינוי הרשאות מיישומי Flatpak שלך."
 
 #: zapzap/features/initial_setup/view.py:427
 #: zapzap/features/settings/pages/permissions/view.py:151
 msgid "Install Flatseal on Linux | Flathub"
-msgstr ""
+msgstr "התקן Flatseal על לינוקס |Flathub"
 
 #: zapzap/features/initial_setup/view.py:442
 msgid "You're ready"
-msgstr ""
+msgstr "אתה מוכן"
 
 #: zapzap/features/initial_setup/view.py:443
 msgid ""
-"ZapZap will save these preferences now. Advanced options remain available in "
-"Settings."
-msgstr ""
+"ZapZap will save these preferences now. Advanced options remain available in"
+" Settings."
+msgstr "ZapZap ישמור העדפות אלה כעת.אפשרויות מתקדמות נשארות זמינות בהגדרות."
 
 #: zapzap/features/initial_setup/view.py:447
 msgid "Finish setup"
-msgstr ""
+msgstr "סיים את ההגדרה"
 
 #: zapzap/features/initial_setup/view.py:448
 msgid "Review advanced options later whenever you need them."
-msgstr ""
+msgstr "סקור אפשרויות מתקדמות מאוחר יותר בכל פעם שתזדקק להן."
 
 #: zapzap/features/initial_setup/view.py:454
 msgid ""
-"You can revisit all choices from Settings at any time. Proxy, custom CSS/"
-"JavaScript, Flatpak permissions, and performance tweaks are still available "
-"there."
+"You can revisit all choices from Settings at any time. Proxy, custom "
+"CSS/JavaScript, Flatpak permissions, and performance tweaks are still "
+"available there."
 msgstr ""
+"אתה יכול לחזור על כל האפשרויות מההגדרות בכל עת.פרוקסי, הרשאות "
+"CSS/JavaScript, Flatpak ושינויי ביצועים עדיין זמינים שם."
 
-#: zapzap/features/notifications/notification_service.py:104
+#: zapzap/features/notifications/notification_service.py:115
 msgid "New message..."
 msgstr "הודעה חדשה…"
 
@@ -691,7 +678,7 @@ msgstr "פרופיל ומצב"
 #: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
 #: zapzap/features/tray/sys_tray_manager.py:54
 #: zapzap/features/settings/shell/settings_sidebar.py:95
-#: zapzap/ui/main_window/main_window_view.py:139
+#: zapzap/ui/main_window/main_window_view.py:143
 msgid "Settings"
 msgstr "הגדרות"
 
@@ -736,7 +723,7 @@ msgid "Extended search"
 msgstr "חיפוש מורחב"
 
 #: zapzap/features/shortcuts/model.py:39
-#: zapzap/ui/main_window/main_window_view.py:137
+#: zapzap/ui/main_window/main_window_view.py:141
 msgid "Hide"
 msgstr "הסתרה"
 
@@ -749,33 +736,32 @@ msgid "Fullscreen"
 msgstr "מסך מלא"
 
 #: zapzap/features/shortcuts/model.py:42
-#: zapzap/ui/main_window/main_window_view.py:154
+#: zapzap/ui/main_window/main_window_view.py:158
 msgid "Automatic theme"
-msgstr ""
+msgstr "ערכת נושא אוטומטית"
 
 #: zapzap/features/shortcuts/model.py:43
-#: zapzap/ui/main_window/main_window_view.py:156
-#, fuzzy
+#: zapzap/ui/main_window/main_window_view.py:160
 msgid "Light theme"
-msgstr "בהיר"
+msgstr "נושא קליל"
 
 #: zapzap/features/shortcuts/model.py:44
-#: zapzap/ui/main_window/main_window_view.py:158
+#: zapzap/ui/main_window/main_window_view.py:162
 msgid "Dark theme"
-msgstr ""
+msgstr "נושא אפל"
 
 #: zapzap/features/shortcuts/model.py:45
-#: zapzap/ui/main_window/main_window_view.py:141
+#: zapzap/ui/main_window/main_window_view.py:145
 msgid "Reset zoom"
 msgstr "איפוס מרחק תצוגה"
 
 #: zapzap/features/shortcuts/model.py:46
-#: zapzap/ui/main_window/main_window_view.py:143
+#: zapzap/ui/main_window/main_window_view.py:147
 msgid "Zoom in"
 msgstr "התקרבות"
 
 #: zapzap/features/shortcuts/model.py:47
-#: zapzap/ui/main_window/main_window_view.py:145
+#: zapzap/ui/main_window/main_window_view.py:149
 msgid "Zoom out"
 msgstr "התרחקות"
 
@@ -793,12 +779,12 @@ msgstr "שיחה חדשה לפי מספר טלפון"
 msgid "New account"
 msgstr "חשבון חדש"
 
-#: zapzap/features/shortcuts/view.py:33 zapzap/features/shortcuts/view.py:41
-#: zapzap/ui/main_window/main_window_view.py:166
+#: zapzap/features/shortcuts/view.py:34 zapzap/features/shortcuts/view.py:42
+#: zapzap/ui/main_window/main_window_view.py:170
 msgid "Keyboard shortcuts"
 msgstr "קיצורי מקשים"
 
-#: zapzap/features/shortcuts/view.py:48
+#: zapzap/features/shortcuts/view.py:49
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
@@ -812,24 +798,21 @@ msgstr "תרומה"
 
 #: zapzap/features/tray/sys_tray_manager.py:56
 #: zapzap/features/settings/shell/settings_view.py:34
-#: zapzap/ui/main_window/main_window_view.py:135
+#: zapzap/ui/main_window/main_window_view.py:139
 msgid "Quit"
 msgstr "יציאה"
 
 #: zapzap/features/settings/components/settings_restart_bar.py:54
-#, fuzzy
 msgid "A restart is required to apply the changes."
-msgstr "לתשומת ליבך: להחלת השינויים יש להפעיל מחדש."
+msgstr "נדרשת הפעלה מחדש כדי להחיל את השינויים."
 
 #: zapzap/features/settings/components/settings_restart_bar.py:55
-#, fuzzy
 msgid "Restart now"
-msgstr "בחירת שפה"
+msgstr "הפעל מחדש עכשיו"
 
 #: zapzap/features/settings/shell/settings_view.py:32
-#, fuzzy
 msgid "Donate"
-msgstr "תרומה"
+msgstr "לתרום"
 
 #: zapzap/features/settings/shell/settings_controller.py:41
 #: zapzap/features/settings/pages/accounts/view.py:17
@@ -843,165 +826,160 @@ msgstr "מראה"
 
 #: zapzap/features/settings/shell/settings_controller.py:45
 #: zapzap/features/settings/pages/system_startup/view.py:22
-#, fuzzy
 msgid "System and startup"
-msgstr "שחזור רגיל"
+msgstr "מערכת והפעלה"
 
 #: zapzap/features/settings/shell/settings_controller.py:46
 #: zapzap/features/settings/pages/language_downloads/view.py:20
 msgid "Language and Download"
-msgstr ""
+msgstr "שפה והורדה"
 
 #: zapzap/features/settings/shell/settings_controller.py:47
 #: zapzap/features/settings/pages/network_privacy/view.py:149
 msgid "Privacy and Network"
-msgstr ""
+msgstr "פרטיות ורשת"
 
 #: zapzap/features/settings/shell/settings_controller.py:48
 msgid "Advanced Customizations"
-msgstr ""
+msgstr "התאמות אישיות מתקדמות"
 
 #: zapzap/features/settings/shell/settings_controller.py:50
 #: zapzap/features/settings/pages/performance_experimental/view.py:19
-#, fuzzy
 msgid "Performance experimental"
-msgstr "ביצועים (ניסיוני)"
+msgstr "ביצועים ניסיוניים"
 
 #: zapzap/features/settings/shell/settings_controller.py:51
-#: zapzap/features/settings/pages/debugging/view.py:161
+#: zapzap/features/settings/pages/debugging/view.py:159
 msgid "Debugging"
-msgstr ""
+msgstr "איתור באגים"
 
 #: zapzap/features/settings/shell/settings_controller.py:53
 #: zapzap/features/settings/pages/about/view.py:238
-#: zapzap/ui/main_window/main_window_view.py:168
+#: zapzap/ui/main_window/main_window_view.py:172
 msgid "About"
 msgstr "על אודות"
 
 #: zapzap/features/settings/shell/settings_sidebar.py:98
 msgid "Adjust accounts, appearance, notifications and advanced options."
-msgstr ""
+msgstr "התאם חשבונות, מראה, התראות ואפשרויות מתקדמות."
 
 #: zapzap/features/settings/shell/settings_sidebar.py:103
-#, fuzzy
 msgid "Close settings"
-msgstr "הגדרות"
+msgstr "סגור הגדרות"
 
 #: zapzap/features/settings/pages/about/view.py:37
 msgid "ZapZap application icon"
-msgstr ""
+msgstr "סמל האפליקציה ZapZap"
 
 #: zapzap/features/settings/pages/about/view.py:49
 msgid "WhatsApp Web for Linux"
 msgstr "WhatsApp Web ללינוקס"
 
 #: zapzap/features/settings/pages/about/view.py:61
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Version {version}"
-msgstr "גרסה {id} - {version_type}"
+msgstr "גרסה {version}"
 
 #: zapzap/features/settings/pages/about/view.py:148
 msgid "Technical details"
-msgstr ""
+msgstr "פרטים טכניים"
 
 #: zapzap/features/settings/pages/about/view.py:239
 msgid "Information about ZapZap, the project, and support."
-msgstr ""
+msgstr "מידע על ZapZap, הפרויקט והתמיכה."
 
 #: zapzap/features/settings/pages/about/view.py:253
 msgid "Project and support"
-msgstr ""
+msgstr "פרויקט ותמיכה"
 
 #: zapzap/features/settings/pages/about/view.py:257
 msgid "Project page"
-msgstr ""
+msgstr "עמוד הפרויקט"
 
 #: zapzap/features/settings/pages/about/view.py:258
 msgid "Official website, downloads, and documentation."
-msgstr ""
+msgstr "אתר רשמי, הורדות ותיעוד."
 
 #: zapzap/features/settings/pages/about/view.py:262
 msgid "Report a problem"
-msgstr ""
+msgstr "דווח על בעיה"
 
 #: zapzap/features/settings/pages/about/view.py:263
 msgid "Report bugs or suggest improvements on GitHub."
-msgstr ""
+msgstr "דווח על באגים או הצע שיפורים ב-GitHub."
 
 #: zapzap/features/settings/pages/about/view.py:267
 msgid "Support the project"
-msgstr ""
+msgstr "תמכו בפרויקט"
 
 #: zapzap/features/settings/pages/about/view.py:268
 msgid "Help sustain ZapZap development."
-msgstr ""
+msgstr "עזור לקיים את הפיתוח של ZapZap."
 
 #: zapzap/features/settings/pages/about/view.py:284
 #: zapzap/features/settings/pages/about/controller.py:58
 msgid "License"
-msgstr ""
+msgstr "רישיון"
 
 #: zapzap/features/settings/pages/about/view.py:289
 #: zapzap/features/settings/pages/about/controller.py:68
 msgid "Credits and contributors"
-msgstr ""
+msgstr "קרדיטים ותורמים"
 
 #: zapzap/features/settings/pages/about/view.py:311
 #: zapzap/features/settings/pages/about/view.py:315
 #: zapzap/features/settings/pages/about/controller.py:53
-#, fuzzy
 msgid "Copy system information"
-msgstr "פרטים"
+msgstr "העתק מידע מערכת"
 
 #: zapzap/features/settings/pages/about/view.py:325
 msgid ""
-"ZapZap is an independent project and is not affiliated with WhatsApp or Meta."
-msgstr ""
+"ZapZap is an independent project and is not affiliated with WhatsApp or "
+"Meta."
+msgstr "ZapZap הוא פרויקט עצמאי ואינו מזוהה עם WhatsApp או Meta."
 
 #: zapzap/features/settings/pages/about/view.py:343
-#, fuzzy
 msgid "Information copied"
-msgstr "פרטים"
+msgstr "המידע הועתק"
 
 #: zapzap/features/settings/pages/about/model.py:62
-#, fuzzy
 msgid "Version"
-msgstr "גרסה {id} - {version_type}"
+msgstr "גרסה"
 
 #: zapzap/features/settings/pages/about/model.py:67
 #: zapzap/features/settings/pages/about/model.py:91
-#: zapzap/features/settings/pages/debugging/view.py:381
+#: zapzap/features/settings/pages/debugging/view.py:375
 msgid "Channel"
-msgstr ""
+msgstr "ערוץ"
 
 #: zapzap/features/settings/pages/about/model.py:68
 #: zapzap/features/settings/pages/about/model.py:90
-#: zapzap/features/settings/pages/debugging/view.py:380
+#: zapzap/features/settings/pages/debugging/view.py:374
 msgid "Packaging"
-msgstr ""
+msgstr "אריזה"
 
 #: zapzap/features/settings/pages/about/model.py:69
 msgid "Provider"
-msgstr ""
+msgstr "ספק"
 
 #: zapzap/features/settings/pages/about/model.py:70
 msgid "Repository"
-msgstr ""
+msgstr "מאגר"
 
 #: zapzap/features/settings/pages/about/model.py:88
-#: zapzap/features/settings/pages/debugging/view.py:385
-#, fuzzy
+#: zapzap/features/settings/pages/debugging/view.py:379
 msgid "System"
-msgstr "שחזור רגיל"
+msgstr "מערכת"
 
 #: zapzap/features/settings/pages/about/model.py:89
 msgid "Session"
-msgstr ""
+msgstr "מושב"
 
 #: zapzap/features/settings/pages/about/controller.py:60
 #, python-brace-format
-msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
-msgstr ""
+msgid ""
+"ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
+msgstr "ZapZap היא תוכנה חופשית ברישיון תחת {license_id} (GPL-3.0 ואילך)."
 
 #: zapzap/features/settings/pages/about/controller.py:70
 #, python-brace-format
@@ -1009,215 +987,207 @@ msgid ""
 "Created and maintained by {author}. Thanks to everyone who contributes "
 "translations, code, testing, and feedback."
 msgstr ""
+"נוצר ומתוחזק על ידי {author}.תודה לכל מי שתורם תרגומים, קוד, בדיקות ומשוב."
 
 #: zapzap/features/settings/pages/accounts/view.py:18
 msgid "Manage your accounts and individual preferences."
-msgstr ""
+msgstr "נהל את החשבונות וההעדפות האישיות שלך."
 
 #: zapzap/features/settings/pages/accounts/view.py:38
-#, fuzzy
 msgid "Account list"
-msgstr "חשבונות"
+msgstr "רשימת חשבונות"
 
 #: zapzap/features/settings/pages/accounts/view.py:40
 #: zapzap/features/settings/pages/accounts/view.py:41
-#, fuzzy
 msgid "Add account"
-msgstr "חשבונות"
+msgstr "הוסף חשבון"
 
 #: zapzap/features/settings/pages/accounts/view.py:51
 msgid "Each account can have independent settings."
-msgstr ""
+msgstr "לכל חשבון יכולות להיות הגדרות עצמאיות."
 
 #: zapzap/features/settings/pages/accounts/view.py:81
 #, python-brace-format
 msgid "Account limit of {limit} reached."
-msgstr ""
+msgstr "הגעת למגבלת החשבון של {limit}."
 
 #: zapzap/features/settings/pages/accounts/view.py:85
 #, python-brace-format
 msgid "{count} of {limit} accounts configured."
-msgstr ""
+msgstr "{count} מתוך {limit} חשבונות מוגדרים."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:52
 #: zapzap/features/settings/pages/network_privacy/controller.py:71
-#, fuzzy
 msgid "All accounts"
-msgstr "חשבונות"
+msgstr "כל החשבונות"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:53
 #: zapzap/features/settings/pages/network_privacy/controller.py:73
-#, fuzzy
 msgid "This account"
-msgstr "חשבון חדש"
+msgstr "החשבון הזה"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:152
 msgid "Unsaved changes discarded."
-msgstr ""
+msgstr "שינויים שלא נשמרו נמחקו."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:197
 #: zapzap/features/settings/pages/network_privacy/controller.py:58
 #: zapzap/features/settings/components/card_user/card_user_view.py:133
-#, fuzzy
 msgid "Unnamed account"
-msgstr "חשבון חדש"
+msgstr "חשבון ללא שם"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:199
 #, python-brace-format
 msgid "Current account: {} ({})"
-msgstr ""
+msgstr "חשבון נוכחי: {} ({})"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:203
 msgid "Current account: unavailable"
-msgstr ""
+msgstr "חשבון נוכחי: לא זמין"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:209
 msgid "Changes to the previous scope were saved."
-msgstr ""
+msgstr "השינויים בהיקף הקודם נשמרו."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:296
 #, python-brace-format
 msgid "CSS file enabled: {}"
-msgstr ""
+msgstr "קובץ CSS מופעל: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:296
 #, python-brace-format
 msgid "CSS file disabled: {}"
-msgstr ""
+msgstr "קובץ CSS מושבת: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:299
 #, python-brace-format
 msgid "JavaScript file enabled: {}"
-msgstr ""
+msgstr "קובץ JavaScript מופעל: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:301
 #, python-brace-format
 msgid "JavaScript file disabled: {}"
-msgstr ""
+msgstr "קובץ JavaScript מושבת: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:307
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:323
 msgid "This userstyle does not target WhatsApp Web."
-msgstr ""
+msgstr "סגנון משתמש זה אינו ממקד ל-WhatsApp Web."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:314
 msgid "Only HTTPS URLs are allowed."
-msgstr ""
+msgstr "רק כתובות URL של HTTPS מותרות."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:318
-#, fuzzy
 msgid "Download is too large."
-msgstr "תיקיית הורדות"
+msgstr "ההורדה גדולה מדי."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:327
 msgid "Could not download CSS from URL."
-msgstr ""
+msgstr "לא ניתן להוריד את CSS מ-URL."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:329
 msgid "Could not download JavaScript from URL."
-msgstr ""
+msgstr "לא ניתן להוריד את JavaScript מ-URL."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:341
-#, fuzzy
 msgid "Select a file first."
-msgstr "בחירת תיקייה"
+msgstr "תחילה בחר קובץ."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:373
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:412
 msgid "Select a CSS file to preview."
-msgstr ""
+msgstr "בחר קובץ CSS לתצוגה מקדימה."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:422
 msgid "No preview available."
-msgstr ""
+msgstr "אין תצוגה מקדימה זמינה."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:429
 msgid "Could not load preview image."
-msgstr ""
+msgstr "לא ניתן היה לטעון את תמונת התצוגה המקדימה."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:459
 msgid "Enter a CSS HTTPS URL."
-msgstr ""
+msgstr "הזן כתובת אתר HTTPS של CSS."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:461
 msgid "Enter a JavaScript HTTPS URL."
-msgstr ""
+msgstr "הזן כתובת אתר HTTPS של JavaScript."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:481
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:491
 #, python-brace-format
 msgid "File imported: {}"
-msgstr ""
+msgstr "קובץ מיובא: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:495
 #, python-brace-format
 msgid "File imported: {}. No preview found, upload one manually."
-msgstr ""
+msgstr "קובץ מיובא: {}.לא נמצאה תצוגה מקדימה, העלה אחת באופן ידני."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:506
-#, fuzzy
 msgid "Select preview image"
-msgstr "שמירת תמונה"
+msgstr "בחר תמונת תצוגה מקדימה"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:522
 msgid "Could not set preview image."
-msgstr ""
+msgstr "לא ניתן להגדיר תמונת תצוגה מקדימה."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:526
 msgid "Preview image updated."
-msgstr ""
+msgstr "תמונת תצוגה מקדימה עודכנה."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:532
 msgid "Import from URL"
-msgstr ""
+msgstr "ייבא מ-URL"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:543
 msgid "https://example.com/theme.user.css"
-msgstr ""
+msgstr "https://example.com/theme.user.css"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:545
 msgid "https://example.com/script.js"
-msgstr ""
+msgstr "https://example.com/script.js"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:549
 #, python-brace-format
 msgid "Optional file name (e.g. 10-custom.{})"
-msgstr ""
+msgstr "שם קובץ אופציונלי (לדוגמה, 10-מותאם אישית.{})"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:552
 msgid "URL"
-msgstr ""
+msgstr "כתובת אתר"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:553
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:617
-#, fuzzy
 msgid "File name"
-msgstr "קובץ"
+msgstr "שם הקובץ"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:608
 msgid "Edit the stylesheet content and choose the file name."
-msgstr ""
+msgstr "ערוך את תוכן גיליון הסגנונות ובחר את שם הקובץ."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:610
 msgid "Edit the script content and choose the file name."
-msgstr ""
+msgstr "ערוך את תוכן הסקריפט ובחר את שם הקובץ."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:620
 #, python-brace-format
 msgid "custom.{}"
-msgstr ""
+msgstr "מותאם אישית.{}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:625
 msgid "CSS code"
-msgstr ""
+msgstr "קוד CSS"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:627
 msgid "JavaScript code"
-msgstr ""
+msgstr "קוד JavaScript"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:647
 msgid "Ctrl+S to save"
-msgstr ""
+msgstr "Ctrl+S to save"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:648
 #: zapzap/features/settings/pages/network_privacy/controller.py:293
@@ -1225,161 +1195,152 @@ msgstr ""
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:106
 #: zapzap/features/downloads/ui/download_dialog.py:120
 msgid "Cancel"
-msgstr ""
+msgstr "בטל"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:649
-#: zapzap/features/settings/pages/advanced_customizations/view.py:411
+#: zapzap/features/settings/pages/advanced_customizations/view.py:418
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:107
 #: zapzap/features/downloads/ui/download_dialog.py:103
 msgid "Save"
 msgstr "שמירה"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:676
-#, fuzzy
 msgid "Select file"
-msgstr "בחירת תיקייה"
+msgstr "בחר קובץ"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:694
 msgid "Could not import file."
-msgstr ""
+msgstr "לא ניתן לייבא קובץ."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:698
 msgid "File imported successfully."
-msgstr ""
+msgstr "הקובץ יובא בהצלחה."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:730
-#, fuzzy
 msgid "Create file"
-msgstr "שמירת קובץ"
+msgstr "צור קובץ"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:738
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:789
 msgid "File name cannot be empty."
-msgstr ""
+msgstr "שם הקובץ לא יכול להיות ריק."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:751
 msgid "Could not create file."
-msgstr ""
+msgstr "לא ניתן ליצור קובץ."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:755
 #, python-brace-format
 msgid "File created: {}"
-msgstr ""
+msgstr "הקובץ נוצר: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:774
 msgid "Could not open file for editing."
-msgstr ""
+msgstr "לא ניתן היה לפתוח את הקובץ לעריכה."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:777
 #, python-brace-format
 msgid "Edit CSS: {}"
-msgstr ""
+msgstr "ערוך את CSS: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:778
 #, python-brace-format
 msgid "Edit JavaScript: {}"
-msgstr ""
+msgstr "ערוך את JavaScript: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:812
 msgid "Could not save file."
-msgstr ""
+msgstr "לא ניתן לשמור את הקובץ."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:816
 #, python-brace-format
 msgid "File saved: {}"
-msgstr ""
+msgstr "הקובץ נשמר: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:891
-#, fuzzy
 msgid "Reload complete."
-msgstr "ריענון עמודים"
+msgstr "הטעינה מחדש הושלמה."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:920
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{}. Save and reload to apply changes."
-msgstr "לתשומת ליבך: להחלת השינויים יש להפעיל מחדש."
+msgstr "{}.שמור וטען מחדש כדי להחיל שינויים."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:933
 #: zapzap/features/settings/pages/advanced_customizations/view.py:253
 msgid "CSS"
-msgstr ""
+msgstr "CSS"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:933
 msgid "JS"
-msgstr ""
+msgstr "JS"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:936
-#, fuzzy
 msgid "Confirm deletion"
-msgstr "אישור החרגה"
+msgstr "אשר את המחיקה"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:937
 #, python-brace-format
 msgid "Delete selected {} file: {}?"
-msgstr ""
+msgstr "למחוק את הקובץ {} שנבחר: {}?"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:941
 msgid "Deletion cancelled."
-msgstr ""
+msgstr "המחיקה בוטלה."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:952
 msgid "File deleted."
-msgstr ""
+msgstr "הקובץ נמחק."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:954
 msgid "Could not delete file."
-msgstr ""
+msgstr "לא ניתן למחוק את הקובץ."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:980
 msgid "Could not duplicate file."
-msgstr ""
+msgstr "לא ניתן היה לשכפל את הקובץ."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:985
 #, python-brace-format
 msgid "File duplicated: {}"
-msgstr ""
+msgstr "קובץ משוכפל: {}"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:1015
 msgid "Customizations saved. Reload pages to apply changes."
-msgstr ""
+msgstr "ההתאמות האישיות נשמרו.טען מחדש דפים כדי להחיל שינויים."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:1027
 msgid "All pages reloaded."
-msgstr ""
+msgstr "כל הדפים נטענו מחדש."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:75
-#, fuzzy
 msgid "+ Create"
-msgstr "שמירת קובץ"
+msgstr "+ צור"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:99
-#, fuzzy
 msgid "Import file"
-msgstr "דיווח על תקלה"
+msgstr "ייבוא קובץ"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:100
-#, fuzzy
 msgid "Import URL"
-msgstr "דיווח על תקלה"
+msgstr "ייבוא כתובת אתר"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:158
-#, fuzzy
 msgid "File actions"
-msgstr "גיבוי האצת חומרת מעבד גרפי"
+msgstr "פעולות קובץ"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:161
 #: zapzap/features/settings/components/card_user/card_user_controller.py:103
 msgid "Edit"
-msgstr ""
+msgstr "ערוך"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:162
 msgid "Duplicate"
-msgstr ""
+msgstr "שכפול"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:163
-#, fuzzy
 msgid "Open location"
-msgstr "תרומה"
+msgstr "מיקום פתוח"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:165
 #: zapzap/features/settings/components/card_user/card_user_controller.py:248
@@ -1388,128 +1349,126 @@ msgstr "מחיקה"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:188
 msgid "Advanced customizations"
-msgstr ""
+msgstr "התאמות אישיות מתקדמות"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:189
 msgid "Add custom CSS and JavaScript to WhatsApp Web."
-msgstr ""
+msgstr "הוסף CSS ו-JavaScript מותאמים אישית ל-WhatsApp Web."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:203
 #: zapzap/features/settings/pages/network_privacy/view.py:167
 msgid "Scope"
-msgstr ""
+msgstr "היקף"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:204
 msgid ""
 "Choose whether customizations apply to all accounts or only to the current "
 "account."
-msgstr ""
+msgstr "בחר אם ההתאמות יחולו על כל החשבונות או רק על החשבון הנוכחי."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:208
 #: zapzap/features/settings/pages/network_privacy/view.py:172
-#, fuzzy
 msgid "Apply to"
-msgstr "החלה"
+msgstr "הגשת בקשה ל"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:209
 msgid "Account customizations can inherit or extend the global configuration."
-msgstr ""
+msgstr "התאמות אישיות של חשבון יכולות לרשת או להרחיב את התצורה הגלובלית."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:217
 msgid "Inherit global settings"
-msgstr ""
+msgstr "קבל הגדרות גלובליות בירושה"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:218
-#, fuzzy
 msgid "Use only the global customizations for this account."
-msgstr "התראות אזור עבודה"
+msgstr "השתמש רק בהתאמות אישיות גלובליות עבור חשבון זה."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:237
 msgid "Customizations"
-msgstr ""
+msgstr "התאמות אישיות"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:238
 msgid "Manage custom files for the selected scope."
-msgstr ""
+msgstr "נהל קבצים מותאמים אישית עבור ההיקף שנבחר."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:255
 msgid "JavaScript"
-msgstr ""
+msgstr "JavaScript"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:319
+#: zapzap/features/settings/pages/advanced_customizations/view.py:326
 msgid "Custom CSS"
-msgstr ""
+msgstr "מותאם אישית CSS"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:320
+#: zapzap/features/settings/pages/advanced_customizations/view.py:327
 msgid "Enables or disables all CSS files in this scope."
-msgstr ""
+msgstr "מפעיל או משבית את כל הקבצים CSS בהיקף זה."
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:324
+#: zapzap/features/settings/pages/advanced_customizations/view.py:331
 msgid "No CSS files"
-msgstr ""
+msgstr "אין קבצים של CSS"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:325
+#: zapzap/features/settings/pages/advanced_customizations/view.py:332
 msgid "Create or import a style to get started."
-msgstr ""
+msgstr "צור או ייבא סגנון כדי להתחיל."
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:336
+#: zapzap/features/settings/pages/advanced_customizations/view.py:343
 msgid "Preview"
-msgstr ""
+msgstr "תצוגה מקדימה"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:346
+#: zapzap/features/settings/pages/advanced_customizations/view.py:353
 msgid ""
 "No preview available. Select a CSS file to view an associated screenshot."
-msgstr ""
+msgstr "אין תצוגה מקדימה זמינה.בחר קובץ CSS כדי להציג צילום מסך משויך."
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:351
-#, fuzzy
+#: zapzap/features/settings/pages/advanced_customizations/view.py:358
 msgid "Upload preview image"
-msgstr "שמירת תמונה"
+msgstr "העלה תמונת תצוגה מקדימה"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:364
+#: zapzap/features/settings/pages/advanced_customizations/view.py:371
 msgid "Replace preview image"
-msgstr ""
+msgstr "החלף תמונת תצוגה מקדימה"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:382
+#: zapzap/features/settings/pages/advanced_customizations/view.py:389
 msgid "Custom JavaScript"
-msgstr ""
+msgstr "מותאם אישית JavaScript"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:383
+#: zapzap/features/settings/pages/advanced_customizations/view.py:390
 msgid "Enables or disables all JavaScript files in this scope."
-msgstr ""
+msgstr "מפעיל או משבית את כל הקבצים JavaScript בהיקף זה."
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:387
+#: zapzap/features/settings/pages/advanced_customizations/view.py:394
 msgid ""
 "⚠ Custom scripts have full access to page content. Use code only from "
 "trusted sources."
 msgstr ""
+"⚠ לסקריפטים מותאמים אישית יש גישה מלאה לתוכן העמוד.השתמש בקוד רק ממקורות "
+"מהימנים."
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:391
+#: zapzap/features/settings/pages/advanced_customizations/view.py:398
 msgid "No JavaScript files"
-msgstr ""
+msgstr "אין קבצים של JavaScript"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:392
+#: zapzap/features/settings/pages/advanced_customizations/view.py:399
 msgid "Create or import a script to get started."
-msgstr ""
+msgstr "צור או ייבא סקריפט כדי להתחיל."
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:409
+#: zapzap/features/settings/pages/advanced_customizations/view.py:416
 msgid "● There are unsaved changes."
-msgstr ""
+msgstr "● ישנם שינויים שלא נשמרו."
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:410
+#: zapzap/features/settings/pages/advanced_customizations/view.py:417
 #: zapzap/features/settings/pages/network_privacy/controller.py:287
 #: zapzap/features/settings/pages/network_privacy/view.py:110
 msgid "Discard"
-msgstr ""
+msgstr "לזרוק"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:412
+#: zapzap/features/settings/pages/advanced_customizations/view.py:419
 msgid "Save and reload"
-msgstr ""
+msgstr "שמור וטען מחדש"
 
-#: zapzap/features/settings/pages/advanced_customizations/view.py:413
-#, fuzzy
+#: zapzap/features/settings/pages/advanced_customizations/view.py:420
 msgid "Reload page"
-msgstr "ריענון עמודים"
+msgstr "טען מחדש את הדף"
 
 #: zapzap/features/settings/pages/appearance/controller.py:72
 #: zapzap/features/settings/pages/appearance/view.py:95
@@ -1519,88 +1478,81 @@ msgstr "ברירת מחדל"
 
 #: zapzap/features/settings/pages/appearance/controller.py:73
 msgid "Adwaita"
-msgstr ""
+msgstr "אדוואיטה"
 
 #: zapzap/features/settings/pages/appearance/controller.py:74
 msgid "Plasma"
-msgstr ""
+msgstr "פלזמה"
 
 #: zapzap/features/settings/pages/appearance/controller.py:75
 msgid "iOS"
-msgstr ""
+msgstr "iOS"
 
 #: zapzap/features/settings/pages/appearance/controller.py:76
 msgid "Windows"
-msgstr ""
+msgstr "חלונות"
 
 #: zapzap/features/settings/pages/appearance/view.py:22
 msgid ""
-"Adjust interface chrome, theme, tray icon, grid view, and window decorations."
-msgstr ""
+"Adjust interface chrome, theme, tray icon, grid view, and window "
+"decorations."
+msgstr "התאם ממשק כרום, ערכת נושא, סמל מגש, תצוגת רשת וקישוטי חלונות."
 
 #: zapzap/features/settings/pages/appearance/view.py:37
-#, fuzzy
 msgid "Interface"
-msgstr "בחירת שפה"
+msgstr "ממשק"
 
 #: zapzap/features/settings/pages/appearance/view.py:38
 msgid "Show or hide primary application chrome."
-msgstr ""
+msgstr "הצג או הסתר את כרום היישום הראשי."
 
 #: zapzap/features/settings/pages/appearance/view.py:42
-#, fuzzy
 msgid "Browser sidebar"
-msgstr "הצגת סרגל צד"
+msgstr "סרגל הצד של הדפדפן"
 
 #: zapzap/features/settings/pages/appearance/view.py:43
 msgid "Show account navigation in the browser shell."
-msgstr ""
+msgstr "הצג ניווט בחשבון במעטפת הדפדפן."
 
 #: zapzap/features/settings/pages/appearance/view.py:46
-#, fuzzy
 msgid "Menu bar"
-msgstr "הצגת סרגל תפריטים"
+msgstr "שורת תפריטים"
 
 #: zapzap/features/settings/pages/appearance/view.py:47
-#, fuzzy
 msgid "Show the main window menu bar."
-msgstr "הצגת סרגל תפריטים"
+msgstr "הצג את שורת התפריטים של החלון הראשי."
 
 #: zapzap/features/settings/pages/appearance/view.py:50
-#, fuzzy
 msgid "Interface scale"
-msgstr "בחירת שפה"
+msgstr "סולם ממשק"
 
 #: zapzap/features/settings/pages/appearance/view.py:51
 msgid "Scale the interface for high-DPI or accessibility needs."
-msgstr ""
+msgstr "קנה קנה מידה של הממשק לצרכי DPI גבוהים או נגישות."
 
 #: zapzap/features/settings/pages/appearance/view.py:82
 msgid "Control tray icon visibility, style, and unread counter."
-msgstr ""
+msgstr "שליטה בנראות של סמל מגש, בסגנון ובמונה שלא נקרא."
 
 #: zapzap/features/settings/pages/appearance/view.py:86
-#, fuzzy
 msgid "Show tray icon"
-msgstr "סמל בשורת המערכת"
+msgstr "הצג את סמל המגש"
 
 #: zapzap/features/settings/pages/appearance/view.py:87
-#, fuzzy
 msgid "Display ZapZap in the system notification area."
-msgstr "השתקת ההתראות"
+msgstr "הצג את ZapZap באזור הודעות המערכת."
 
 #: zapzap/features/settings/pages/appearance/view.py:90
-#, fuzzy
 msgid "Unread counter"
-msgstr "חשבון חדש"
+msgstr "מונה שלא נקרא"
 
 #: zapzap/features/settings/pages/appearance/view.py:91
 msgid "Show the number of unread messages."
-msgstr ""
+msgstr "הצג את מספר ההודעות שלא נקראו."
 
 #: zapzap/features/settings/pages/appearance/view.py:94
 msgid "Icon style"
-msgstr ""
+msgstr "סגנון אייקון"
 
 #: zapzap/features/settings/pages/appearance/view.py:96
 msgid "Symbolic light"
@@ -1613,98 +1565,89 @@ msgstr "כהה סמלי"
 #: zapzap/features/settings/pages/appearance/view.py:118
 #: zapzap/features/browser/shell/browser_controller.py:93
 msgid "Grid view"
-msgstr ""
+msgstr "תצוגת רשת"
 
 #: zapzap/features/settings/pages/appearance/view.py:119
 msgid "Choose how many columns are used by grid view."
-msgstr ""
+msgstr "בחר בכמה עמודות ישתמשו בתצוגת רשת."
 
 #: zapzap/features/settings/pages/appearance/view.py:123
 msgid "Grid columns"
-msgstr ""
+msgstr "עמודות רשת"
 
 #: zapzap/features/settings/pages/appearance/view.py:124
 msgid "Number of account columns in grid view."
-msgstr ""
+msgstr "מספר עמודות החשבון בתצוגת רשת."
 
 #: zapzap/features/settings/pages/appearance/view.py:134
-#, fuzzy
 msgid "Window decoration"
-msgstr "התנהגות"
+msgstr "קישוט חלון"
 
 #: zapzap/features/settings/pages/appearance/view.py:135
 msgid "Customize the window controls drawn by ZapZap."
-msgstr ""
+msgstr "התאם אישית את פקדי החלון שצוירו על ידי ZapZap."
 
 #: zapzap/features/settings/pages/appearance/view.py:139
-#, fuzzy
 msgid "Use custom decoration"
-msgstr "סגירת השיחה"
+msgstr "השתמש בקישוט מותאם אישית"
 
 #: zapzap/features/settings/pages/appearance/view.py:140
 msgid "Use window controls drawn by ZapZap."
-msgstr ""
+msgstr "השתמש בפקדי חלון שצוירו על ידי ZapZap."
 
 #: zapzap/features/settings/pages/appearance/view.py:143
-#, fuzzy
 msgid "Button style"
-msgstr "בהיר"
+msgstr "סגנון כפתורים"
 
 #: zapzap/features/settings/pages/appearance/view.py:144
 msgid "Visual style used by custom window buttons."
-msgstr ""
+msgstr "סגנון חזותי בשימוש על ידי לחצני חלון מותאמים אישית."
 
 #: zapzap/features/settings/pages/appearance/view.py:148
-#, fuzzy
 msgid "Minimize"
-msgstr "התחלה ממוזערת"
+msgstr "הקטינו"
 
 #: zapzap/features/settings/pages/appearance/view.py:149
-#, fuzzy
 msgid "Maximize"
-msgstr "גודל מטמון מרבי"
+msgstr "למקסם"
 
 #: zapzap/features/settings/pages/appearance/view.py:153
-#, fuzzy
 msgid "Visible buttons"
-msgstr "גיבוי האצת חומרת מעבד גרפי"
+msgstr "כפתורים גלויים"
 
 #: zapzap/features/settings/pages/appearance/view.py:158
-#, fuzzy
 msgid "Button position"
-msgstr "תיקיית הורדות"
+msgstr "מיקום הכפתור"
 
 #: zapzap/features/settings/pages/appearance/view.py:159
 msgid "Place window buttons on the right or left."
-msgstr ""
+msgstr "מקם לחצני חלון בצד ימין או שמאל."
 
 #: zapzap/features/settings/pages/appearance/view.py:164
-#, fuzzy
 msgid "Right"
-msgstr "בהיר"
+msgstr "נכון"
 
 #: zapzap/features/settings/pages/appearance/view.py:165
 msgid "Left"
-msgstr ""
+msgstr "שמאל"
 
 #: zapzap/features/settings/pages/debugging/controller.py:67
-#: zapzap/features/settings/pages/debugging/view.py:331
+#: zapzap/features/settings/pages/debugging/view.py:325
 #, python-brace-format
 msgid "{count} crash report"
 msgid_plural "{count} crash reports"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{count} דוח קריסה"
+msgstr[1] "{count} דוחות קריסה"
+msgstr[2] "{count} דוחות קריסה"
+msgstr[3] "{count} דוחות קריסה"
 
 #: zapzap/features/settings/pages/debugging/controller.py:72
-#, fuzzy
 msgid "available"
-msgstr "כיבוי"
+msgstr "זמין"
 
 #: zapzap/features/settings/pages/debugging/controller.py:72
 msgid "not available"
-msgstr ""
+msgstr "לא זמין"
 
 #: zapzap/features/settings/pages/debugging/controller.py:75
 #, python-brace-format
@@ -1714,42 +1657,44 @@ msgid ""
 "Runtime information:\n"
 "{runtime}"
 msgstr ""
+"קבצי אבחון: {reports};יומן ניפוי באגים: {log_status}.\n"
+"\n"
+"מידע על זמן ריצה:\n"
+"{runtime}"
 
 #: zapzap/features/settings/pages/debugging/controller.py:88
-#: zapzap/features/settings/pages/debugging/view.py:195
-#, fuzzy
+#: zapzap/features/settings/pages/debugging/view.py:193
 msgid "Copy diagnostics"
-msgstr "העתקת תמונה"
+msgstr "העתק אבחון"
 
 #: zapzap/features/settings/pages/debugging/controller.py:89
-#: zapzap/features/settings/pages/debugging/view.py:284
+#: zapzap/features/settings/pages/debugging/view.py:278
 msgid "Copy details"
-msgstr ""
+msgstr "העתק פרטים"
 
 #: zapzap/features/settings/pages/debugging/controller.py:99
 #: zapzap/features/settings/pages/debugging/controller.py:109
 #: zapzap/features/settings/pages/debugging/controller.py:119
 msgid "Debug logs"
-msgstr ""
+msgstr "איתור באגים ביומנים"
 
 #: zapzap/features/settings/pages/debugging/controller.py:100
 #, python-brace-format
 msgid "Deleted {count} old crash report(s) (older than 30 days)."
-msgstr ""
+msgstr "נמחקו {count} דוחות קריסה ישנים (יותר מ-30 ימים)."
 
 #: zapzap/features/settings/pages/debugging/controller.py:110
 msgid "Delete all crash reports and debug logs?"
-msgstr ""
+msgstr "למחוק את כל דוחות הקריסה ויומני ניפוי הבאגים?"
 
 #: zapzap/features/settings/pages/debugging/controller.py:120
 #, python-brace-format
 msgid "Deleted {count} file(s)."
-msgstr ""
+msgstr "נמחקו {count} קבצים."
 
 #: zapzap/features/settings/pages/debugging/controller.py:127
-#, fuzzy
 msgid "Reset settings?"
-msgstr "הגדרות"
+msgstr "לאפס את ההגדרות?"
 
 #: zapzap/features/settings/pages/debugging/controller.py:129
 msgid ""
@@ -1757,13 +1702,15 @@ msgid ""
 "\n"
 "The application will need to be restarted to complete the operation."
 msgstr ""
+"כל ההגדרות המותאמות אישית ZapZap ישוחזרו לערכי ברירת המחדל שלהן.\n"
+"\n"
+"יהיה צורך להפעיל מחדש את היישום כדי להשלים את הפעולה."
 
 #: zapzap/features/settings/pages/debugging/controller.py:142
 #: zapzap/features/settings/pages/debugging/controller.py:149
-#: zapzap/features/settings/pages/debugging/view.py:300
-#, fuzzy
+#: zapzap/features/settings/pages/debugging/view.py:294
 msgid "Reset settings"
-msgstr "הגדרות"
+msgstr "אפס את ההגדרות"
 
 #: zapzap/features/settings/pages/debugging/controller.py:143
 #, python-brace-format
@@ -1771,168 +1718,166 @@ msgid ""
 "Could not remove settings file:\n"
 "{error}"
 msgstr ""
+"לא ניתן להסיר את קובץ ההגדרות:\n"
+"{error}"
 
 #: zapzap/features/settings/pages/debugging/controller.py:150
 msgid "Settings were reset successfully. Restart ZapZap now?"
-msgstr ""
+msgstr "ההגדרות אופסו בהצלחה.להפעיל מחדש את ZapZap עכשיו?"
 
-#: zapzap/features/settings/pages/debugging/view.py:98
+#: zapzap/features/settings/pages/debugging/view.py:96
 msgid "Full details"
-msgstr ""
+msgstr "פרטים מלאים"
 
-#: zapzap/features/settings/pages/debugging/view.py:162
+#: zapzap/features/settings/pages/debugging/view.py:160
 msgid "Diagnostics, logs, runtime information, and maintenance tools."
-msgstr ""
+msgstr "אבחון, יומנים, מידע על זמן ריצה וכלי תחזוקה."
 
-#: zapzap/features/settings/pages/debugging/view.py:176
+#: zapzap/features/settings/pages/debugging/view.py:174
 msgid "Diagnostics"
-msgstr ""
+msgstr "אבחון"
 
-#: zapzap/features/settings/pages/debugging/view.py:180
+#: zapzap/features/settings/pages/debugging/view.py:178
 msgid "Crash reports"
-msgstr ""
+msgstr "דוחות קריסה"
 
-#: zapzap/features/settings/pages/debugging/view.py:183
+#: zapzap/features/settings/pages/debugging/view.py:181
 msgid "Debug log"
-msgstr ""
+msgstr "יומן ניפוי באגים"
 
-#: zapzap/features/settings/pages/debugging/view.py:208
+#: zapzap/features/settings/pages/debugging/view.py:206
 msgid "Logs and crash reports"
-msgstr ""
+msgstr "יומנים ודוחות קריסה"
 
-#: zapzap/features/settings/pages/debugging/view.py:209
+#: zapzap/features/settings/pages/debugging/view.py:207
 msgid "Manage files used to diagnose errors."
-msgstr ""
+msgstr "נהל קבצים המשמשים לאבחון שגיאות."
 
-#: zapzap/features/settings/pages/debugging/view.py:217
+#: zapzap/features/settings/pages/debugging/view.py:215
 msgid "Diagnostics folder"
-msgstr ""
+msgstr "תיקיית אבחון"
 
-#: zapzap/features/settings/pages/debugging/view.py:224
+#: zapzap/features/settings/pages/debugging/view.py:222
 #: zapzap/features/downloads/ui/download_dialog.py:101
 msgid "Open"
 msgstr "פתיחה"
 
-#: zapzap/features/settings/pages/debugging/view.py:236
+#: zapzap/features/settings/pages/debugging/view.py:234
 msgid "Clean up files…"
-msgstr ""
+msgstr "נקה קבצים..."
 
-#: zapzap/features/settings/pages/debugging/view.py:241
-#, fuzzy
+#: zapzap/features/settings/pages/debugging/view.py:239
 msgid "Delete old files"
-msgstr "מחיקה"
+msgstr "מחק קבצים ישנים"
 
-#: zapzap/features/settings/pages/debugging/view.py:244
+#: zapzap/features/settings/pages/debugging/view.py:242
 msgid "Remove only crash reports older than 30 days."
-msgstr ""
+msgstr "הסר רק דוחות קריסה בני יותר מ-30 יום."
 
-#: zapzap/features/settings/pages/debugging/view.py:248
+#: zapzap/features/settings/pages/debugging/view.py:246
 msgid "Delete all logs and reports"
-msgstr ""
+msgstr "מחק את כל היומנים והדוחות"
 
-#: zapzap/features/settings/pages/debugging/view.py:256
+#: zapzap/features/settings/pages/debugging/view.py:250
 msgid "Remove every diagnostic file."
-msgstr ""
+msgstr "הסר כל קובץ אבחון."
 
-#: zapzap/features/settings/pages/debugging/view.py:268
-#, fuzzy
+#: zapzap/features/settings/pages/debugging/view.py:262
 msgid "Runtime information"
-msgstr "פרטים"
+msgstr "מידע על זמן ריצה"
 
-#: zapzap/features/settings/pages/debugging/view.py:269
+#: zapzap/features/settings/pages/debugging/view.py:263
 msgid "Useful data for support and bug reports."
-msgstr ""
+msgstr "נתונים שימושיים לתמיכה ולדוחות באגים."
 
-#: zapzap/features/settings/pages/debugging/view.py:283
+#: zapzap/features/settings/pages/debugging/view.py:277
 msgid "Refresh"
-msgstr ""
+msgstr "רענן"
 
-#: zapzap/features/settings/pages/debugging/view.py:297
+#: zapzap/features/settings/pages/debugging/view.py:291
 msgid "Maintenance"
-msgstr ""
+msgstr "תחזוקה"
 
-#: zapzap/features/settings/pages/debugging/view.py:302
+#: zapzap/features/settings/pages/debugging/view.py:296
 msgid ""
-"Restore ZapZap's default settings. The application will need to be restarted."
-msgstr ""
+"Restore ZapZap's default settings. The application will need to be "
+"restarted."
+msgstr "שחזר את הגדרות ברירת המחדל של ZapZap.יהיה צורך להפעיל מחדש את היישום."
 
-#: zapzap/features/settings/pages/debugging/view.py:305
+#: zapzap/features/settings/pages/debugging/view.py:299
 msgid "Reset…"
-msgstr ""
+msgstr "אפס..."
 
-#: zapzap/features/settings/pages/debugging/view.py:318
-#, fuzzy, python-brace-format
+#: zapzap/features/settings/pages/debugging/view.py:312
+#, python-brace-format
 msgid "{count} available"
 msgid_plural "{count} available"
-msgstr[0] "חשבונות"
-msgstr[1] "חשבונות"
-msgstr[2] "חשבונות"
-msgstr[3] "חשבונות"
+msgstr[0] "זמינים: {count}"
+msgstr[1] "זמינים: {count}"
+msgstr[2] "זמינים: {count}"
+msgstr[3] "זמינים: {count}"
 
-#: zapzap/features/settings/pages/debugging/view.py:323
+#: zapzap/features/settings/pages/debugging/view.py:317
 msgid "faulthandler.log available"
-msgstr ""
+msgstr "faulthandler.log זמין"
 
-#: zapzap/features/settings/pages/debugging/view.py:325
+#: zapzap/features/settings/pages/debugging/view.py:319
 msgid "Not available"
-msgstr ""
+msgstr "לא זמין"
 
-#: zapzap/features/settings/pages/debugging/view.py:336
+#: zapzap/features/settings/pages/debugging/view.py:330
 #, python-brace-format
 msgid "{reports} and 1 log file"
-msgstr ""
+msgstr "{reports} וקובץ יומן אחד"
 
-#: zapzap/features/settings/pages/debugging/view.py:382
-#, fuzzy
+#: zapzap/features/settings/pages/debugging/view.py:376
 msgid "Qt"
-msgstr "יציאה"
+msgstr "Qt"
 
-#: zapzap/features/settings/pages/debugging/view.py:383
+#: zapzap/features/settings/pages/debugging/view.py:377
 msgid "PyQt"
-msgstr ""
+msgstr "PyQt"
+
+#: zapzap/features/settings/pages/debugging/view.py:378
+msgid "Python"
+msgstr "פייתון"
+
+#: zapzap/features/settings/pages/debugging/view.py:381
+msgid "System graphics session"
+msgstr "מפגש גרפי מערכת"
 
 #: zapzap/features/settings/pages/debugging/view.py:384
-msgid "Python"
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/view.py:387
-msgid "System graphics session"
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/view.py:390
 msgid "ZapZap graphics backend"
-msgstr ""
+msgstr "קצה גב גרפי של ZapZap"
+
+#: zapzap/features/settings/pages/debugging/view.py:414
+msgid "Path copied"
+msgstr "הנתיב הועתק"
+
+#: zapzap/features/settings/pages/debugging/view.py:417
+msgid "Diagnostics copied"
+msgstr "האבחון הועתק"
 
 #: zapzap/features/settings/pages/debugging/view.py:420
-#, fuzzy
-msgid "Path copied"
-msgstr "פרטים"
-
-#: zapzap/features/settings/pages/debugging/view.py:423
-#, fuzzy
-msgid "Diagnostics copied"
-msgstr "פרטים"
-
-#: zapzap/features/settings/pages/debugging/view.py:426
 msgid "Details copied"
-msgstr ""
+msgstr "הפרטים הועתקו"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:21
 msgid "Manage interface language, downloads folder and spell checker."
-msgstr ""
+msgstr "נהל את שפת הממשק, תיקיית ההורדות ובודק האיות."
 
 #: zapzap/features/settings/pages/language_downloads/view.py:40
 msgid "The interface language is applied immediately."
-msgstr ""
+msgstr "שפת הממשק מיושמת באופן מיידי."
 
 #: zapzap/features/settings/pages/language_downloads/view.py:58
 msgid "Set a custom folder or restore the default download location."
-msgstr ""
+msgstr "הגדר תיקיה מותאמת אישית או שחזר את מיקום ההורדה המוגדר כברירת מחדל."
 
 #: zapzap/features/settings/pages/language_downloads/view.py:59
 #: zapzap/features/settings/pages/language_downloads/view.py:90
 msgid "Define"
-msgstr ""
+msgstr "תגדיר"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:65
 #: zapzap/features/settings/pages/language_downloads/view.py:96
@@ -1942,126 +1887,116 @@ msgid "Restore"
 msgstr "שחזור"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:88
-#, fuzzy
 msgid "Dictionary directory"
-msgstr "תיקיית הורדות"
+msgstr "ספריית מילון"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:89
-#, fuzzy
 msgid "Note: changing dictionaries may require restarting the browser "
-msgstr "לתשומך ליבך: יש להפעיל מחדש."
+msgstr "הערה: שינוי מילונים עשוי לדרוש הפעלה מחדש של הדפדפן"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:27
-#, fuzzy
 msgid "No proxy"
-msgstr "מתווך רשת"
+msgstr "אין פרוקסי"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:28
 #: zapzap/features/settings/pages/network_privacy/controller.py:194
-#, fuzzy
 msgid "System proxy"
-msgstr "מתווך רשת"
+msgstr "פרוקסי מערכת"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:29
 msgid "SOCKS5"
-msgstr ""
+msgstr "SOCKS5"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:30
 msgid "HTTP"
-msgstr ""
+msgstr "HTTP"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:31
 msgid "HTTP caching"
-msgstr ""
+msgstr "מטמון HTTP"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:32
 msgid "FTP caching"
-msgstr ""
+msgstr "מטמון FTP"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:65
-#, fuzzy
 msgid "Unavailable"
-msgstr "כיבוי"
+msgstr "לא זמין"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:81
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Current account: {}"
-msgstr "חשבון {}"
+msgstr "חשבון נוכחי: {}"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:192
-#, fuzzy
 msgid "No proxy configured"
-msgstr "לא נעשה שימוש בתיווך."
+msgstr "לא הוגדר פרוקסי"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:204
 #, python-brace-format
 msgid "{proxy_type} · {endpoint}"
-msgstr ""
+msgstr "{proxy_type} · {endpoint}"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:210
 #, python-brace-format
 msgid "{status} · disabled"
-msgstr ""
+msgstr "{status} · מושבת"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:235
-#, fuzzy
 msgid "Enter a proxy server."
-msgstr "לא נעשה שימוש בתיווך."
+msgstr "הזן שרת פרוקסי."
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:243
 msgid "Enter a port between 1 and 65535."
-msgstr ""
+msgstr "הזן יציאה בין 1 ל-65535."
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:276
 msgid "Unapplied changes"
-msgstr ""
+msgstr "שינויים שלא יושמו"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:277
 msgid "Apply changes before changing scope?"
-msgstr ""
+msgstr "להחיל שינויים לפני שינוי היקף?"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:278
 msgid "You can apply or discard the changes made to this scope."
-msgstr ""
+msgstr "אתה יכול להחיל או למחוק את השינויים שנעשו בהיקף זה."
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:282
 #: zapzap/features/settings/pages/network_privacy/view.py:111
 msgid "Apply changes"
-msgstr ""
+msgstr "החל שינויים"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:326
-#, fuzzy
 msgid "Restore proxy settings?"
-msgstr "הגדרות"
+msgstr "לשחזר את הגדרות ה-proxy?"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:328
 msgid ""
 "The proxy settings for this scope will be removed and the default values "
 "will be restored."
-msgstr ""
+msgstr "הגדרות ה-proxy עבור היקף זה יוסרו וערכי ברירת המחדל ישוחזרו."
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:331
 msgid "WebRTC protection will not be changed."
-msgstr ""
+msgstr "ההגנה על WebRTC לא תשתנה."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:36
 #: zapzap/features/settings/pages/network_privacy/view.py:42
-#, fuzzy
 msgid "Authentication"
-msgstr "נא לשים לב"
+msgstr "אימות"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:44
 msgid "Show or hide optional proxy credentials."
-msgstr ""
+msgstr "הצג או הסתר אישורי proxy אופציונליים."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:54
 msgid "User"
 msgstr "משתמש"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:55
-#, fuzzy
 msgid "Optional proxy user."
-msgstr "לא נעשה שימוש בתיווך."
+msgstr "משתמש פרוקסי אופציונלי."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:58
 msgid "Password"
@@ -2069,430 +2004,409 @@ msgstr "סיסמה"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:59
 msgid "Optional proxy password."
-msgstr ""
+msgstr "סיסמת פרוקסי אופציונלית."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:106
 msgid "There are unapplied network changes."
-msgstr ""
+msgstr "ישנם שינויים ברשת שלא הוחלו."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:150
 msgid "Configure proxy, privacy protection, and network options."
-msgstr ""
+msgstr "קבע את התצורה של פרוקסי, הגנת פרטיות ואפשרויות רשת."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:168
 msgid "Choose where these settings will be applied."
-msgstr ""
+msgstr "בחר היכן יחולו הגדרות אלה."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:173
 msgid "Settings for this account override the all-accounts default."
-msgstr ""
+msgstr "ההגדרות עבור חשבון זה עוקפות את ברירת המחדל של כל החשבונות."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:188
-#, fuzzy
 msgid "Proxy"
-msgstr "סוג מתווך"
+msgstr "פרוקסי"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:189
 msgid "Route WhatsApp Web traffic through a proxy server."
-msgstr ""
+msgstr "נתב תעבורת WhatsApp Web דרך שרת פרוקסי."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:193
-#, fuzzy
 msgid "Use proxy"
-msgstr "מתווך רשת"
+msgstr "השתמש בפרוקסי"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:194
 msgid "Route traffic through the proxy configured below."
-msgstr ""
+msgstr "נתב תנועה דרך ה-proxy המוגדר להלן."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:197
 msgid "Type"
-msgstr ""
+msgstr "סוג"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:198
 msgid "Select the proxy mode."
-msgstr ""
+msgstr "בחר את מצב ה-proxy."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:202
 msgid "Server"
-msgstr ""
+msgstr "שרת"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:203
 msgid "Proxy host name or IP address."
-msgstr ""
+msgstr "שם מארח פרוקסי או כתובת IP."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:205
 msgid "Port"
-msgstr "פתחה"
+msgstr "יציאה"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:205
-#, fuzzy
 msgid "Proxy port."
-msgstr "סוג מתווך"
+msgstr "יציאת פרוקסי."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:222
-#, fuzzy
 msgid "Restore proxy…"
-msgstr "מתווך רשת"
+msgstr "שחזר שרת proxy..."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:223
 msgid "Remove proxy settings only from the selected scope."
-msgstr ""
+msgstr "הסר את הגדרות ה-proxy רק מההיקף שנבחר."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:224
-#, fuzzy
 msgid "Restore…"
-msgstr "שחזור"
+msgstr "שחזר..."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:243
 msgid "proxy.example.com"
-msgstr ""
+msgstr "proxy.example.com"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:245
 msgid "8080"
-msgstr ""
+msgstr "8080"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:255
 #: zapzap/features/settings/pages/notifications/view.py:108
 msgid "Privacy"
-msgstr ""
+msgstr "פרטיות"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:256
 msgid "Reduce the exposure of network information."
-msgstr ""
+msgstr "צמצם את החשיפה של מידע רשת."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:260
 msgid "WebRTC protection"
-msgstr ""
+msgstr "הגנת WebRTC"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:261
 msgid "Reduces IP address exposure through WebRTC."
-msgstr ""
+msgstr "מפחית את החשיפה לכתובת IP באמצעות WebRTC."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:264
-#, fuzzy
 msgid "Global setting"
-msgstr "הגדרות"
+msgstr "הגדרה גלובלית"
 
 #: zapzap/features/settings/pages/notifications/view.py:20
 msgid "Configure notifications, privacy, and ZapZap messages."
-msgstr ""
+msgstr "הגדר הודעות, פרטיות והודעות ZapZap."
 
 #: zapzap/features/settings/pages/notifications/view.py:34
-#, fuzzy
 msgid "Choose which information may appear in notifications."
-msgstr "הסתרת התראת תרומה"
+msgstr "בחר איזה מידע עשוי להופיע בהתראות."
 
 #: zapzap/features/settings/pages/notifications/view.py:41
 msgid "Show WhatsApp notifications using the desktop notification system."
-msgstr ""
+msgstr "הצג הודעות WhatsApp באמצעות מערכת ההתראות בשולחן העבודה."
 
 #: zapzap/features/settings/pages/notifications/view.py:47
-#, fuzzy
 msgid "Contact photo"
-msgstr "הסתרת התראת תרומה"
+msgstr "תמונה ליצירת קשר"
 
 #: zapzap/features/settings/pages/notifications/view.py:48
-#, fuzzy
 msgid "Show the sender's photo when available."
-msgstr "הצגת שם המוען או המוענת"
+msgstr "הצג את תמונת השולח כאשר היא זמינה."
 
 #: zapzap/features/settings/pages/notifications/view.py:51
-#, fuzzy
 msgid "Contact name"
-msgstr "הסתרת התראת תרומה"
+msgstr "שם איש הקשר"
 
 #: zapzap/features/settings/pages/notifications/view.py:52
-#, fuzzy
 msgid "Show the sender or group name."
-msgstr "הצגת שם המוען או המוענת"
+msgstr "הצג את שם השולח או הקבוצה."
 
 #: zapzap/features/settings/pages/notifications/view.py:55
-#, fuzzy
 msgid "Message preview"
-msgstr "הצגת תצוגה מקדימה של ההודעה"
+msgstr "תצוגה מקדימה של הודעה"
 
 #: zapzap/features/settings/pages/notifications/view.py:56
-#, fuzzy
 msgid "Show the content of the received message."
-msgstr "הצגת תמונת המוען או המוענת"
+msgstr "הצג את תוכן ההודעה שהתקבלה."
 
 #: zapzap/features/settings/pages/notifications/view.py:75
-#, fuzzy
 msgid "ZapZap messages"
-msgstr "הגדרות ZapZap"
+msgstr "הודעות ZapZap"
 
 #: zapzap/features/settings/pages/notifications/view.py:76
 msgid "Control occasional messages shown by the application itself."
-msgstr ""
+msgstr "שליטה בהודעות מזדמנות שמוצגות על ידי האפליקציה עצמה."
 
 #: zapzap/features/settings/pages/notifications/view.py:80
-#, fuzzy
 msgid "Support reminders"
-msgstr "הסתרת התראת תרומה"
+msgstr "תזכורות תמיכה"
 
 #: zapzap/features/settings/pages/notifications/view.py:82
 msgid "Occasionally show messages supporting ZapZap's development."
-msgstr ""
+msgstr "הצג מדי פעם הודעות התומכות בפיתוח של ZapZap."
 
 #: zapzap/features/settings/pages/notifications/view.py:110
 msgid "Privacy presets"
-msgstr ""
+msgstr "הגדרות פרטיות מראש"
 
 #: zapzap/features/settings/pages/notifications/view.py:113
 msgid "Quickly choose which notification details are visible."
-msgstr ""
+msgstr "בחר במהירות אילו פרטי הודעה גלויים."
 
 #: zapzap/features/settings/pages/notifications/view.py:117
 msgid "Show everything"
-msgstr ""
+msgstr "הצג הכל"
 
 #: zapzap/features/settings/pages/notifications/view.py:120
 msgid "Hide content"
-msgstr ""
+msgstr "הסתר תוכן"
 
 #: zapzap/features/settings/pages/notifications/view.py:123
-#, fuzzy
 msgid "Maximum privacy"
-msgstr "גודל מטמון מרבי"
+msgstr "פרטיות מירבית"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:20
 msgid "Tune cache, GPU, processes, and advanced behavior."
-msgstr ""
+msgstr "כוונון מטמון, GPU, תהליכים והתנהגות מתקדמת."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:37
 msgid "Advanced warning"
-msgstr ""
+msgstr "אזהרה מתקדמת"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:38
 msgid "These options may require restart and can affect stability."
-msgstr ""
+msgstr "אפשרויות אלה עשויות לדרוש הפעלה מחדש ויכולות להשפיע על היציבות."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:44
 msgid ""
 "Change these settings only if you understand the trade-offs. Restart ZapZap "
 "after changing rendering, process, or JavaScript memory options."
 msgstr ""
+"שנה הגדרות אלה רק אם אתה מבין את הפשרות.הפעל מחדש את ZapZap לאחר שינוי "
+"אפשרויות הזיכרון של רינדור, תהליך או JavaScript."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:55
-#, fuzzy
 msgid "Cache"
-msgstr "סוג מטמון"
+msgstr "מטמון"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:56
 msgid "Control HTTP cache and persistent cookies."
-msgstr ""
+msgstr "שליטה במטמון HTTP ובקובצי Cookie מתמשכים."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:60
-#, fuzzy
 msgid "Cache type"
 msgstr "סוג מטמון"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:61
 msgid "Defines where the HTTP cache is stored."
-msgstr ""
+msgstr "מגדיר היכן מאוחסן מטמון ה-HTTP."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:65
-#, fuzzy
 msgid "Maximum cache size"
-msgstr "גודל מטמון מרבי"
+msgstr "גודל מטמון מקסימלי"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:66
 msgid "0 MB uses Chromium's default behavior."
-msgstr ""
+msgstr "0 MB משתמש בהתנהגות ברירת המחדל של Chromium."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:70
 msgid "Persistent cookies"
-msgstr ""
+msgstr "עוגיות מתמשכות"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:71
 msgid "Keeps cookies between restarts."
-msgstr ""
+msgstr "שומר עוגיות בין הפעלה מחדש."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:86
 msgid "GPU and rendering"
-msgstr ""
+msgstr "GPU ועיבוד"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:87
 msgid "Rendering options for problematic drivers or hardware."
-msgstr ""
+msgstr "אפשרויות עיבוד עבור מנהלי התקנים או חומרה בעייתיים."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:91
 msgid "In-process GPU"
-msgstr ""
+msgstr "בתהליך GPU"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:92
 msgid "May reduce memory usage, but can cause instability."
-msgstr ""
+msgstr "עשוי להפחית את השימוש בזיכרון, אך עלול לגרום לחוסר יציבות."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:95
-#, fuzzy
 msgid "Disable GPU"
-msgstr "כיבוי"
+msgstr "השבת את GPU"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:96
 msgid "Recommended only for old GPUs or problematic drivers."
-msgstr ""
+msgstr "מומלץ רק עבור GPUs ישנים או מנהלי התקנים בעייתיים."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:99
 msgid "Automatic multi-GPU workaround"
-msgstr ""
+msgstr "מעקף אוטומטי מרובה GPU"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:101
 msgid ""
 "Honors DRI_PRIME or adjusts GPU compositing for a headless secondary GPU."
-msgstr ""
+msgstr "מכבד את DRI_PRIME או מתאים את ההרכבה של GPU עבור משני חסר ראש GPU."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:105
 msgid "Disable GPU VSync"
-msgstr ""
+msgstr "השבת את VSync GPU"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:106
 msgid "May reduce latency, but can increase tearing."
-msgstr ""
+msgstr "עשוי להפחית את השהיה, אך יכול להגביר את הקריעה."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:109
 msgid "Force software rendering"
-msgstr ""
+msgstr "כפה עיבוד תוכנה"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:110
 msgid "Use only for graphical issues."
-msgstr ""
+msgstr "השתמש רק לבעיות גרפיות."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:113
 msgid "Force GBM"
-msgstr ""
+msgstr "כפה על GBM"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:114
 msgid "Known NVIDIA typing lag fix."
-msgstr ""
+msgstr "תיקון עיכוב הקלדה ידוע של NVIDIA."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:117
 msgid "Disable accessibility bus"
-msgstr ""
+msgstr "השבת את אוטובוס הנגישות"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:118
 msgid "Known typing lag or CPU spike fix in QtWebEngine."
-msgstr ""
+msgstr "פיגור הקלדה ידוע או תיקון ספייק של CPU ב-QtWebEngine."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:142
 msgid "Processes"
-msgstr ""
+msgstr "תהליכים"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:143
 msgid "Chromium process model options."
-msgstr ""
+msgstr "Chromium אפשרויות מודל תהליך."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:147
 msgid "Single process"
-msgstr ""
+msgstr "תהליך בודד"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:148
 msgid "Experimental; reduces memory usage but may cause crashes."
-msgstr ""
+msgstr "ניסיוני;מפחית את השימוש בזיכרון אך עלול לגרום לקריסות."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:151
 msgid "Process per site"
-msgstr ""
+msgstr "תהליך לכל אתר"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:152
 msgid "Safer and more stable, but may increase memory usage."
-msgstr ""
+msgstr "בטוח ויציב יותר, אך עשוי להגביר את השימוש בזיכרון."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:163
 msgid "JavaScript memory"
-msgstr ""
+msgstr "זיכרון JavaScript"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:164
 msgid "V8 memory limit. Restart required."
-msgstr ""
+msgstr "מגבלת זיכרון V8.נדרשת הפעלה מחדש."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:168
 msgid "JavaScript memory limit"
-msgstr ""
+msgstr "מגבלת זיכרון של JavaScript"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:169
 msgid "Automatic is the safest option."
-msgstr ""
+msgstr "אוטומטי היא האפשרות הבטוחה ביותר."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:173
 msgid "JavaScript GC predictable schedule (experimental)"
-msgstr ""
+msgstr "JavaScript לוח זמנים צפוי של GC (ניסיוני)"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:174
 msgid "Enables predictable V8 garbage collection and disables GPU."
-msgstr ""
+msgstr "מאפשר איסוף אשפה צפוי של V8 ומשבית את GPU."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:185
-#, fuzzy
 msgid "Web behavior"
-msgstr "התנהגות"
+msgstr "התנהגות אינטרנט"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:186
 msgid "Behavior options for rendered web content."
-msgstr ""
+msgstr "אפשרויות התנהגות עבור תוכן אינטרנט מעובד."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:190
-#, fuzzy
 msgid "Smooth scrolling"
-msgstr "גלילה מונפשת"
+msgstr "גלילה חלקה"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:191
 msgid "Disabling may reduce CPU usage."
-msgstr ""
+msgstr "השבתה עשויה להפחית את השימוש במעבד."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:194
 msgid "Background throttling"
-msgstr ""
+msgstr "מצערת רקע"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:195
 msgid "Allows background tabs to reduce resource usage."
-msgstr ""
+msgstr "מאפשר לכרטיסיות רקע להפחית את השימוש במשאבים."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:198
-#, fuzzy
 msgid "Disable animations"
-msgstr "גיבוי האצת חומרת מעבד גרפי"
+msgstr "השבת אנימציות"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:199
 msgid "May improve performance on slower machines."
-msgstr ""
+msgstr "עשוי לשפר את הביצועים במכונות איטיות יותר."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:202
 msgid "Disable pinch-to-zoom"
-msgstr ""
+msgstr "השבת צביטה לזום"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:203
 msgid "Useful if accidental zooming occurs during scrolling."
-msgstr ""
+msgstr "שימושי אם מתרחשת התקרבות בשוגג במהלך הגלילה."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:206
 msgid "Fix Ctrl+Arrow cursor movement"
-msgstr ""
+msgstr "תקן את תנועת הסמן Ctrl+Arrow"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:208
 msgid ""
 "Use visual word navigation in editable fields to fix RTL text cursor "
 "movement."
 msgstr ""
+"השתמש בניווט מילים חזותי בשדות הניתנים לעריכה כדי לתקן את תנועת סמן הטקסט "
+"RTL."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:231
-#, fuzzy
 msgid "Restore defaults"
-msgstr "שחזור רגיל"
+msgstr "שחזר ברירת מחדל"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:232
 msgid "Return performance settings to safe defaults."
-msgstr ""
+msgstr "החזר את הגדרות הביצועים לברירות המחדל בטוחות."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:236
-#, fuzzy
 msgid "Restore performance defaults"
-msgstr "שחזור רגיל"
+msgstr "שחזר ברירת מחדל של ביצועים"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:237
 msgid "Restores all performance settings to safe default values."
-msgstr ""
+msgstr "משחזר את כל הגדרות הביצועים לערכי ברירת מחדל בטוחים."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:138
 msgid ""
@@ -2501,46 +2415,60 @@ msgid ""
 "Memory: faster, but lost on exit.\n"
 "No cache: lower disk usage, slower."
 msgstr ""
+"מגדיר היכן יאוחסן מטמון ה-HTTP.\n"
+"דיסק: מהיר יותר לאחר הפעלה מחדש.\n"
+"זיכרון: מהיר יותר, אבל אבוד ביציאה.\n"
+"אין מטמון: שימוש נמוך יותר בדיסק, איטי יותר."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:145
 msgid ""
 "Maximum HTTP cache size.\n"
 "0 MB uses the default Chromium behavior."
 msgstr ""
+"גודל מטמון HTTP מקסימלי.\n"
+"0 MB משתמש בהתנהגות ברירת המחדל של Chromium."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:148
 msgid ""
 "Keeps cookies between restarts.\n"
 "Disabling may cause frequent logouts."
 msgstr ""
+"שומר עוגיות בין הפעלה מחדש.\n"
+"השבתה עלולה לגרום להתנתקות תכופה."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:152
 msgid ""
 "Runs GPU and rendering in the same process.\n"
 "May reduce memory usage, but can cause instability."
 msgstr ""
+"מפעיל את GPU ועיבוד באותו תהליך.\n"
+"עשוי להפחית את השימוש בזיכרון, אך עלול לגרום לחוסר יציבות."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:158
 msgid ""
 "Disables GPU hardware acceleration.\n"
 "Recommended only for old GPUs or problematic drivers."
 msgstr ""
+"משבית את האצת החומרה של GPU.\n"
+"מומלץ רק עבור GPUs ישנים או מנהלי התקנים בעייתיים."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:164
 msgid ""
-"Automatically honors an unambiguous DRI_PRIME selector on systems with "
-"multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
-"one GPU has no connected display.\n"
+"Automatically honors an unambiguous DRI_PRIME selector on systems with multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when one GPU has no connected display.\n"
 "\n"
-"Disable this only if the automatic workaround causes problems. Restart "
-"required."
+"Disable this only if the automatic workaround causes problems. Restart required."
 msgstr ""
+"מכבד באופן אוטומטי בורר DRI_PRIME חד משמעי במערכות עם מספר גרפי עיבוד של לינוקס.אחרת, מוסיף --disable-gpu-compositing כאשר ל-GPU אחד אין צג מחובר.\n"
+"\n"
+"השבת זאת רק אם הפתרון האוטומטי גורם לבעיות.נדרשת הפעלה מחדש."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:173
 msgid ""
 "Disables GPU VSync.\n"
 "May reduce latency, but can increase power usage and tearing."
 msgstr ""
+"משבית את VSync GPU.\n"
+"עשוי להפחית את זמן האחזור, אך יכול להגביר את צריכת החשמל והקריעה."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:179
 msgid ""
@@ -2548,18 +2476,25 @@ msgid ""
 "Use only in case of graphical issues.\n"
 "May significantly reduce performance."
 msgstr ""
+"מאלץ עיבוד תוכנה.\n"
+"השתמש רק במקרה של בעיות גרפיות.\n"
+"עשוי להפחית משמעותית את הביצועים."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:186
 msgid ""
 "Forces the GBM backend on Wayland.\n"
 "Known to fix severe typing lag on NVIDIA drivers."
 msgstr ""
+"מאלץ את הקצה האחורי של GBM על Wayland.\n"
+"ידוע לתקן עיכוב הקלדה חמור במנהלי התקנים של NVIDIA."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:192
 msgid ""
 "Disables the accessibility bus.\n"
 "Known to fix typing lag or CPU spikes in QtWebEngine."
 msgstr ""
+"משבית את אוטובוס הנגישות.\n"
+"ידוע לתקן פיגור בהקלדה או עליות מעבד ב-QtWebEngine."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:198
 msgid ""
@@ -2567,6 +2502,9 @@ msgid ""
 "Reduces memory usage, but may cause crashes.\n"
 "Experimental usage."
 msgstr ""
+"מפעיל את כל מנוע Chromium בתהליך אחד.\n"
+"מפחית את השימוש בזיכרון, אך עלול לגרום לקריסות.\n"
+"שימוש ניסיוני."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:205
 msgid ""
@@ -2574,6 +2512,9 @@ msgid ""
 "Safer and more stable.\n"
 "May increase memory usage."
 msgstr ""
+"משתמש בתהליך נפרד לכל אתר.\n"
+"בטוח יותר ויציב יותר.\n"
+"עשוי להגביר את השימוש בזיכרון."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:212
 msgid ""
@@ -2583,246 +2524,251 @@ msgid ""
 "\n"
 "Restart required."
 msgstr ""
+"מגבלת זיכרון JavaScript (V8).\n"
+"אוטומטי היא האפשרות הבטוחה ביותר.\n"
+"ערכים גבוהים יותר מאפשרים דפים כבדים יותר.\n"
+"\n"
+"נדרשת הפעלה מחדש."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:220
 msgid ""
 "Enables V8 predictable garbage collection schedule.\n"
-"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
-"QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to QTWEBENGINE_CHROMIUM_FLAGS.\n"
 "\n"
 "Experimental option. Restart required."
 msgstr ""
+"מאפשר V8 לוח זמנים לאיסוף אשפה צפוי.\n"
+"זה מוסיף --js-flags=--predictable-gc-schedule ו--disable-gpu ל-QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"\n"
+"אפשרות נסיונית.נדרשת הפעלה מחדש."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:227
 msgid ""
 "Enables smooth scrolling animations.\n"
 "Disabling may reduce CPU usage."
 msgstr ""
+"מאפשר גלילה חלקה של אנימציות.\n"
+"השבתה עשויה להפחית את השימוש במעבד."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:231
 msgid ""
 "Allows background tabs to reduce resource usage.\n"
 "Disabling keeps timers active, but uses more resources."
 msgstr ""
+"מאפשר לכרטיסיות רקע להפחית את השימוש במשאבים.\n"
+"השבתה שומרת על טיימרים פעילים, אך משתמשת במשאבים רבים יותר."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:237
 msgid ""
 "Disables CSS and JavaScript animations.\n"
 "May improve performance on slower machines."
 msgstr ""
+"משבית את הנפשות CSS ו-JavaScript.\n"
+"עשוי לשפר את הביצועים במכונות איטיות יותר."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:243
 msgid ""
 "Disables pinch-to-zoom gesture on touchpads.\n"
 "Useful if accidental zooming occurs during scrolling."
 msgstr ""
+"משבית תנועת צביטה לזום במשטחי מגע.\n"
+"שימושי אם מתרחשת התקרבות בשוגג במהלך הגלילה."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:249
 msgid ""
-"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
-"navigation.\n"
-"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
-"fields.\n"
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web message fields.\n"
 "\n"
 "Restart or reload WhatsApp Web after changing this option."
 msgstr ""
+"משתמש ב-Selection.modify() עם הנחיות חזותיות עבור ניווט מילים Ctrl+Arrow.\n"
+"זה מתקן תנועה הפוכה של הסמן בטקסט RTL בתוך שדות ההודעה WhatsApp Web.\n"
+"\n"
+"הפעל מחדש או טען מחדש את WhatsApp Web לאחר שינוי אפשרות זו."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:255
 msgid ""
 "Restores all performance settings\n"
 "to safe default values."
 msgstr ""
+"משחזר את כל הגדרות הביצועים\n"
+"לערכי ברירת מחדל בטוחים."
 
 #: zapzap/features/settings/pages/permissions/view.py:23
 msgid "Define which permissions can be granted automatically to WhatsApp Web."
-msgstr ""
+msgstr "הגדר אילו הרשאות ניתן להעניק אוטומטית ל-WhatsApp Web."
 
 #: zapzap/features/settings/pages/permissions/view.py:40
 msgid "Disabled permissions will continue to be requested when needed."
-msgstr ""
+msgstr "הרשאות מושבתות ימשיכו להתבקש בעת הצורך."
 
 #: zapzap/features/settings/pages/permissions/view.py:51
 msgid "Allow all"
-msgstr ""
+msgstr "אפשר הכל"
 
 #: zapzap/features/settings/pages/permissions/view.py:52
-#, fuzzy
 msgid "Remove all"
-msgstr "חשבון חדש"
+msgstr "הסר הכל"
 
 #: zapzap/features/settings/pages/permissions/view.py:60
 msgid "Device access"
-msgstr ""
+msgstr "גישה למכשיר"
 
 #: zapzap/features/settings/pages/permissions/view.py:74
-#, fuzzy
 msgid "Camera and microphone"
-msgstr "לפי מספר טלפון"
+msgstr "מצלמה ומיקרופון"
 
 #: zapzap/features/settings/pages/permissions/view.py:76
 msgid "Automatically allow simultaneous access to the camera and microphone."
-msgstr ""
+msgstr "אפשר באופן אוטומטי גישה בו-זמנית למצלמה ולמיקרופון."
 
 #: zapzap/features/settings/pages/permissions/view.py:82
-#, fuzzy
 msgid "Location"
-msgstr "תרומה"
+msgstr "מיקום"
 
 #: zapzap/features/settings/pages/permissions/view.py:83
 msgid "Automatically allow access to your location."
-msgstr ""
+msgstr "אפשר באופן אוטומטי גישה למיקום שלך."
 
 #: zapzap/features/settings/pages/permissions/view.py:89
 msgid "Sharing"
-msgstr ""
+msgstr "שיתוף"
 
 #: zapzap/features/settings/pages/permissions/view.py:93
 msgid "Screen sharing"
-msgstr ""
+msgstr "שיתוף מסך"
 
 #: zapzap/features/settings/pages/permissions/view.py:98
 msgid "Screen with audio"
-msgstr ""
+msgstr "מסך עם שמע"
 
 #: zapzap/features/settings/pages/permissions/view.py:99
 msgid "Automatically allow screen sharing with audio."
-msgstr ""
+msgstr "אפשר באופן אוטומטי שיתוף מסך עם אודיו."
 
 #: zapzap/features/settings/pages/permissions/view.py:105
-#, fuzzy
 msgid "Advanced"
-msgstr "פרטים"
+msgstr "מתקדם"
 
 #: zapzap/features/settings/pages/permissions/view.py:109
 msgid "Pointer lock"
-msgstr ""
+msgstr "מנעול מצביע"
 
 #: zapzap/features/settings/pages/permissions/view.py:110
 msgid "Automatically allow the page to capture the mouse pointer."
-msgstr ""
+msgstr "אפשר באופן אוטומטי לדף ללכוד את מצביע העכבר."
 
 #: zapzap/features/settings/pages/system_startup/view.py:24
 msgid ""
 "Configure how ZapZap starts, behaves in the system, and integrates with "
 "Linux."
-msgstr ""
+msgstr "הגדר כיצד ZapZap מתחיל, מתנהג במערכת ומשתלב עם לינוקס."
 
 #: zapzap/features/settings/pages/system_startup/view.py:41
 msgid "Define how ZapZap behaves when your session starts."
-msgstr ""
+msgstr "הגדר כיצד ZapZap מתנהג כשההפעלה שלך מתחילה."
 
 #: zapzap/features/settings/pages/system_startup/view.py:46
-#, fuzzy
 msgid "Open ZapZap automatically when the session starts."
-msgstr "הפעלה עם עליית המערכת"
+msgstr "פתח את ZapZap באופן אוטומטי עם תחילת ההפעלה."
 
 #: zapzap/features/settings/pages/system_startup/view.py:49
 msgid "Start in the background"
-msgstr ""
+msgstr "התחל ברקע"
 
 #: zapzap/features/settings/pages/system_startup/view.py:50
-#, fuzzy
 msgid "Open without showing the main window."
-msgstr "לסגור עם סגירת החלון"
+msgstr "פתח מבלי להציג את החלון הראשי."
 
 #: zapzap/features/settings/pages/system_startup/view.py:63
 msgid "Window"
-msgstr ""
+msgstr "חלון"
 
 #: zapzap/features/settings/pages/system_startup/view.py:64
 msgid "Define what happens when the main window is closed."
-msgstr ""
+msgstr "הגדר מה קורה כשהחלון הראשי נסגר."
 
 #: zapzap/features/settings/pages/system_startup/view.py:68
-#, fuzzy
 msgid "Close behavior"
-msgstr "התנהגות"
+msgstr "התנהגות קרובה"
 
 #: zapzap/features/settings/pages/system_startup/view.py:70
 msgid "Choose whether ZapZap continues in the background or quits."
-msgstr ""
+msgstr "בחר אם ZapZap ימשיך ברקע או ייצא."
 
 #: zapzap/features/settings/pages/system_startup/view.py:77
 msgid "Continue in the background"
-msgstr ""
+msgstr "המשך ברקע"
 
 #: zapzap/features/settings/pages/system_startup/view.py:81
-#, fuzzy
 msgid "Quit ZapZap"
-msgstr "ZapZap"
+msgstr "צא מ-ZapZap"
 
 #: zapzap/features/settings/pages/system_startup/view.py:88
-#, fuzzy
 msgid "Confirm before quitting"
-msgstr "לסגור עם סגירת החלון"
+msgstr "אשר לפני היציאה"
 
 #: zapzap/features/settings/pages/system_startup/view.py:89
 msgid "Ask for confirmation before completely closing ZapZap."
-msgstr ""
+msgstr "בקש אישור לפני סגירה מלאה של ZapZap."
 
 #: zapzap/features/settings/pages/system_startup/view.py:96
 msgid ""
 "Choose whether ZapZap continues in the background or quits when the window "
 "is closed."
-msgstr ""
+msgstr "בחר אם ZapZap ימשיך ברקע או ייסגר כשהחלון נסגר."
 
 #: zapzap/features/settings/pages/system_startup/view.py:110
-#, fuzzy
 msgid "Linux integration"
-msgstr "הצמדת השיחה"
+msgstr "אינטגרציה של לינוקס"
 
 #: zapzap/features/settings/pages/system_startup/view.py:111
 msgid "Settings related to the desktop environment and platform."
-msgstr ""
+msgstr "הגדרות הקשורות לסביבת שולחן העבודה ולפלטפורמה."
 
 #: zapzap/features/settings/pages/system_startup/view.py:115
-#, fuzzy
 msgid "System file dialogs"
-msgstr "שחזור רגיל"
+msgstr "דיאלוגים של קבצי מערכת"
 
 #: zapzap/features/settings/pages/system_startup/view.py:116
 msgid "Use the file picker provided by the desktop environment."
-msgstr ""
+msgstr "השתמש בבורר הקבצים שסופק על ידי סביבת שולחן העבודה."
 
 #: zapzap/features/settings/pages/system_startup/view.py:128
 msgid "Run natively on Wayland"
-msgstr ""
+msgstr "הפעל באופן מקורי ב-Wayland"
 
 #: zapzap/features/settings/pages/system_startup/view.py:129
 msgid "Use the Wayland backend when available."
-msgstr ""
+msgstr "השתמש בקצה העורפי של Wayland כאשר זמין."
 
 #: zapzap/features/settings/pages/system_startup/view.py:135
 msgid "Use the Wayland backend when available. Requires restart."
-msgstr ""
+msgstr "השתמש בקצה העורפי של Wayland כאשר זמין.דורש הפעלה מחדש."
 
 #: zapzap/features/settings/pages/system_startup/view.py:139
-#, fuzzy
 msgid "Requires restart"
-msgstr "לתשומך ליבך: יש להפעיל מחדש."
+msgstr "דורש הפעלה מחדש"
 
 #: zapzap/features/settings/pages/system_startup/view.py:143
 msgid "Wayland changes require restart"
-msgstr ""
+msgstr "שינויים ב-Wayland דורשים הפעלה מחדש"
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:30
 #: zapzap/features/settings/components/card_user/card_user_view.py:31
-#, fuzzy
 msgid "Account actions"
-msgstr "חשבונות"
+msgstr "פעולות בחשבון"
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:95
 #: zapzap/features/settings/components/card_user/card_user_view.py:96
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:69
-#, fuzzy
 msgid "Change icon"
-msgstr "סמל בשורת המערכת"
+msgstr "שנה סמל"
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:110
 #: zapzap/features/settings/components/card_user/card_user_view.py:113
-#, fuzzy
 msgid "Account active"
-msgstr "חשבונות"
+msgstr "חשבון פעיל"
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:126
 #: zapzap/features/settings/components/card_user/card_user_controller.py:209
@@ -2830,18 +2776,16 @@ msgid "Do not disturb"
 msgstr "לא להפריע"
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:127
-#, fuzzy
 msgid "Silences notifications for this account."
-msgstr "התראות אזור עבודה"
+msgstr "משתיק הודעות עבור חשבון זה."
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:108
-#, fuzzy
 msgid "Remove account"
-msgstr "חשבון חדש"
+msgstr "הסר חשבון"
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:113
 msgid "The default account cannot be removed."
-msgstr ""
+msgstr "לא ניתן להסיר את חשבון ברירת המחדל."
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:155
 msgid "Confirm exclusion"
@@ -2853,19 +2797,21 @@ msgstr "למחוק את הפריט?"
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:185
 msgid "User-Agent Changed"
-msgstr ""
+msgstr "User-Agent השתנה"
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:187
 msgid ""
-"Please restart this session (or the application) to apply the new User-Agent."
+"Please restart this session (or the application) to apply the new User-"
+"Agent."
 msgstr ""
+"אנא הפעל מחדש את ההפעלה הזו (או את האפליקציה) כדי להחיל את ה-User-Agent "
+"החדש."
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:196
 #: zapzap/features/settings/components/card_user/card_user_controller.py:239
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:76
-#, fuzzy
 msgid "Generate new colors for the icon"
-msgstr "לחיצה תייצר צבעים חדשים לסמל"
+msgstr "צור צבעים חדשים עבור הסמל"
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:199
 #: zapzap/features/settings/components/card_user/card_user_controller.py:242
@@ -2880,64 +2826,57 @@ msgstr "כיבוי"
 #: zapzap/features/settings/components/card_user/card_user_controller.py:223
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:92
 msgid "User-Agent"
-msgstr ""
+msgstr "משתמש-סוכן"
 
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:30
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:55
-#, fuzzy
 msgid "Edit account"
-msgstr "חשבונות"
+msgstr "ערוך חשבון"
 
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:57
 msgid "Change the name and icon used to identify this account."
-msgstr ""
+msgstr "שנה את השם והסמל המשמשים לזיהוי חשבון זה."
 
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:63
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:65
-#, fuzzy
 msgid "Account name"
-msgstr "חשבונות"
+msgstr "שם חשבון"
 
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:68
-#, fuzzy
 msgid "Account icon"
-msgstr "חשבונות"
+msgstr "סמל חשבון"
 
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:88
-#, fuzzy
 msgid "Keep current icon"
-msgstr "חשבון חדש"
+msgstr "שמור על הסמל הנוכחי"
 
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:91
-#, fuzzy
 msgid "Advanced options"
-msgstr "פרטים"
+msgstr "אפשרויות מתקדמות"
 
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:101
 msgid "Changes the identification used by this account when loading pages."
-msgstr ""
+msgstr "משנה את הזיהוי שבו משתמש חשבון זה בעת טעינת דפים."
 
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:152
 msgid "New icon colors selected."
-msgstr ""
+msgstr "נבחרו צבעי סמל חדשים."
 
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:158
 msgid "Standard icon selected."
-msgstr ""
+msgstr "נבחר סמל סטנדרטי."
 
 #: zapzap/features/downloads/ui/download_dialog.py:47
-#, fuzzy
 msgid "Download"
-msgstr "תיקיית הורדות"
+msgstr "הורד"
 
 #: zapzap/features/downloads/ui/download_dialog.py:112
 msgid "More"
-msgstr ""
+msgstr "עוד"
 
 #: zapzap/features/downloads/ui/download_dialog.py:116
-#, fuzzy
 msgid "Save as"
-msgstr "שמירה"
+msgstr "שמור בשם"
 
 #: zapzap/features/downloads/ui/download_dialog.py:289
 msgid "Save file"
@@ -2952,51 +2891,48 @@ msgid "ZapZap Settings"
 msgstr "הגדרות ZapZap"
 
 #: zapzap/features/browser/components/browser_grid_view.py:75
-#, fuzzy
 msgid "Accounts overview"
-msgstr "חשבונות"
+msgstr "סקירת חשבונות"
 
 #: zapzap/features/browser/components/browser_grid_view.py:79
 msgid "Select an account to return to its chat."
-msgstr ""
+msgstr "בחר חשבון כדי לחזור לצ'אט שלו."
 
 #: zapzap/features/browser/components/browser_grid_view.py:92
-#, fuzzy
 msgid "No active accounts to display."
-msgstr "אין חשבון פעיל!"
+msgstr "אין חשבונות פעילים להצגה."
 
 #: zapzap/features/browser/shell/browser_controller.py:125
 msgid "Flatpak sandbox help"
-msgstr ""
+msgstr "עזרה בארגז חול Flatpak"
 
 #: zapzap/features/browser/shell/browser_controller.py:150
 msgid "Flatpak sandbox"
-msgstr ""
+msgstr "ארגז חול Flatpak"
 
 #: zapzap/features/browser/shell/browser_controller.py:151
 msgid "ZapZap is running in Flatpak sandbox."
-msgstr ""
+msgstr "ZapZap פועל בארגז החול Flatpak."
 
 #: zapzap/features/browser/shell/browser_controller.py:153
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
 msgstr ""
+"תכונות מסוימות כמו פתיחת קבצים או גרירה ושחרור עשויות לדרוש הרשאות נוספות."
 
 #: zapzap/features/browser/shell/browser_controller.py:158
-#, fuzzy
 msgid "Instructions"
-msgstr "פרטים"
+msgstr "הוראות"
 
 #: zapzap/features/browser/shell/browser_controller.py:159
-#, fuzzy
 msgid "Copy command"
-msgstr "העתקת תמונה"
+msgstr "העתק פקודה"
 
 #: zapzap/features/browser/shell/browser_controller.py:160
 #: zapzap/ui/components/close_button.py:57
 msgid "Close"
-msgstr ""
+msgstr "סגור"
 
 #: zapzap/features/browser/shell/browser_controller.py:296
 #: zapzap/features/browser/shell/browser_controller.py:345
@@ -3005,26 +2941,28 @@ msgid "Account {}"
 msgstr "חשבון {}"
 
 #: zapzap/features/browser/shell/browser_controller.py:353
-#, fuzzy
 msgid "Account disabled"
-msgstr "חשבונות"
+msgstr "החשבון מושבת"
 
 #: zapzap/features/browser/shell/browser_controller.py:354
 msgid "This account is disabled."
-msgstr ""
+msgstr "חשבון זה מושבת."
 
 #: zapzap/features/browser/shell/browser_controller.py:356
 msgid ""
-"You can reactivate it now or use the right-click menu to manage this account."
+"You can reactivate it now or use the right-click menu to manage this "
+"account."
 msgstr ""
+"אתה יכול להפעיל אותו מחדש עכשיו או להשתמש בתפריט לחיצה ימנית כדי לנהל חשבון "
+"זה."
 
 #: zapzap/features/browser/shell/browser_controller.py:361
 msgid "Activate"
-msgstr ""
+msgstr "הפעל"
 
 #: zapzap/features/browser/shell/browser_controller.py:362
 msgid "Not now"
-msgstr ""
+msgstr "לא עכשיו"
 
 #: zapzap/features/browser/web/web_view.py:311
 msgid "Undo"
@@ -3043,19 +2981,16 @@ msgid "Paste"
 msgstr "הדבקה"
 
 #: zapzap/features/browser/web/web_view.py:312
-#, fuzzy
 msgid "Select all"
-msgstr "בחירה בהכול"
+msgstr "בחר הכל"
 
 #: zapzap/features/browser/web/web_view.py:313
-#, fuzzy
 msgid "Save image"
-msgstr "שמירת קובץ"
+msgstr "שמור תמונה"
 
 #: zapzap/features/browser/web/web_view.py:313
-#, fuzzy
 msgid "Copy image"
-msgstr "העתקת תמונה"
+msgstr "העתק תמונה"
 
 #: zapzap/features/browser/web/web_view.py:314
 #: zapzap/features/browser/web/web_view.py:344
@@ -3071,61 +3006,59 @@ msgid "Select Language"
 msgstr "בחירת שפה"
 
 #: zapzap/features/browser/web/web_view.py:564
-#, fuzzy
 msgid "Account"
-msgstr "חשבונות"
+msgstr "חשבון"
 
 #: zapzap/features/browser/web/web_view.py:566
 #, python-brace-format
 msgid "DevTools - {}"
-msgstr ""
+msgstr "DevTools - {}"
 
 #: zapzap/features/browser/web/page_controller.py:198
-msgid "Please enter the phone number with country code (e.g., +5511999999999):"
-msgstr ""
+msgid ""
+"Please enter the phone number with country code (e.g., +5511999999999):"
+msgstr "אנא הזן את מספר הטלפון עם קוד המדינה (לדוגמה, +5511999999999):"
 
 #: zapzap/features/browser/web/page_controller.py:202
 msgid ""
 "Invalid number! Please enter at least 9 digits, including the country code."
-msgstr ""
+msgstr "מספר לא חוקי!אנא הזן לפחות 9 ספרות, כולל קידומת המדינה."
 
 #: zapzap/features/browser/web/page_controller.py:266
-#, fuzzy
 msgid "your microphone"
-msgstr "לפי מספר טלפון"
+msgstr "המיקרופון שלך"
 
 #: zapzap/features/browser/web/page_controller.py:267
 msgid "your camera"
-msgstr ""
+msgstr "המצלמה שלך"
 
 #: zapzap/features/browser/web/page_controller.py:268
 msgid "your camera and microphone"
-msgstr ""
+msgstr "המצלמה והמיקרופון שלך"
 
 #: zapzap/features/browser/web/page_controller.py:269
 msgid "your location"
-msgstr ""
+msgstr "המיקום שלך"
 
 #: zapzap/features/browser/web/page_controller.py:270
 msgid "your screen contents"
-msgstr ""
+msgstr "תוכן המסך שלך"
 
 #: zapzap/features/browser/web/page_controller.py:271
 msgid "your screen contents and audio"
-msgstr ""
+msgstr "תוכן המסך והשמע שלך"
 
 #: zapzap/features/browser/web/page_controller.py:272
 msgid "mouse lock"
-msgstr ""
+msgstr "נעילת עכבר"
 
 #: zapzap/features/browser/web/page_controller.py:274
-#, fuzzy
 msgid "a system feature"
-msgstr "שחזור רגיל"
+msgstr "תכונת מערכת"
 
 #: zapzap/features/browser/web/page_controller.py:278
 msgid "Permission request"
-msgstr ""
+msgstr "בקשת רשות"
 
 #: zapzap/features/browser/web/page_controller.py:279
 #, python-brace-format
@@ -3134,142 +3067,136 @@ msgid ""
 "\n"
 "Allow?"
 msgstr ""
+"WhatsApp Web מבקש גישה אל {}.\n"
+"\n"
+"לְהַתִיר?"
 
-#: zapzap/ui/main_window/main_window_view.py:130
+#: zapzap/ui/main_window/main_window_view.py:134
 msgid "File"
 msgstr "קובץ"
 
-#: zapzap/ui/main_window/main_window_view.py:131
+#: zapzap/ui/main_window/main_window_view.py:135
 msgid "View"
 msgstr "תצוגה"
 
-#: zapzap/ui/main_window/main_window_view.py:132
+#: zapzap/ui/main_window/main_window_view.py:136
 msgid "Chat"
 msgstr "שיחה"
 
-#: zapzap/ui/main_window/main_window_view.py:133
+#: zapzap/ui/main_window/main_window_view.py:137
 msgid "Users"
 msgstr "משתמשים"
 
-#: zapzap/ui/main_window/main_window_view.py:134
+#: zapzap/ui/main_window/main_window_view.py:138
 msgid "Help"
 msgstr "עזרה"
 
-#: zapzap/ui/main_window/main_window_view.py:136
+#: zapzap/ui/main_window/main_window_view.py:140
 msgid "Ctrl+Q"
 msgstr "Ctrl+Q"
 
-#: zapzap/ui/main_window/main_window_view.py:138
+#: zapzap/ui/main_window/main_window_view.py:142
 msgid "Ctrl+W"
 msgstr "Ctrl+W"
 
-#: zapzap/ui/main_window/main_window_view.py:140
+#: zapzap/ui/main_window/main_window_view.py:144
 msgid "Ctrl+P"
 msgstr "Ctrl+P"
 
-#: zapzap/ui/main_window/main_window_view.py:142
+#: zapzap/ui/main_window/main_window_view.py:146
 msgid "Ctrl+0"
 msgstr "Ctrl+0"
 
-#: zapzap/ui/main_window/main_window_view.py:144
+#: zapzap/ui/main_window/main_window_view.py:148
 msgid "Ctrl++"
 msgstr "Ctrl++"
 
-#: zapzap/ui/main_window/main_window_view.py:146
+#: zapzap/ui/main_window/main_window_view.py:150
 msgid "Ctrl+-"
 msgstr "Ctrl+-"
 
-#: zapzap/ui/main_window/main_window_view.py:147
+#: zapzap/ui/main_window/main_window_view.py:151
 msgid "Toggle full screen"
 msgstr "החלפת מצב מסך מלא"
 
-#: zapzap/ui/main_window/main_window_view.py:148
+#: zapzap/ui/main_window/main_window_view.py:152
 msgid "F11"
 msgstr "F11"
 
-#: zapzap/ui/main_window/main_window_view.py:149
-msgid "Open DevTools"
-msgstr ""
-
-#: zapzap/ui/main_window/main_window_view.py:150
-#, fuzzy
-msgid "Ctrl+Shift+I"
-msgstr "Ctrl++"
-
-#: zapzap/ui/main_window/main_window_view.py:151
-#, fuzzy
-msgid "Grid View"
-msgstr "תצוגה"
-
-#: zapzap/ui/main_window/main_window_view.py:152
-#, fuzzy
-msgid "Ctrl+G"
-msgstr "Ctrl+Q"
-
 #: zapzap/ui/main_window/main_window_view.py:153
+msgid "Open DevTools"
+msgstr "פתח את DevTools"
+
+#: zapzap/ui/main_window/main_window_view.py:154
+msgid "Ctrl+Shift+I"
+msgstr "Ctrl+Shift+I"
+
+#: zapzap/ui/main_window/main_window_view.py:155
+msgid "Grid View"
+msgstr "תצוגת רשת"
+
+#: zapzap/ui/main_window/main_window_view.py:156
+msgid "Ctrl+G"
+msgstr "Ctrl+G"
+
+#: zapzap/ui/main_window/main_window_view.py:157
 msgid "Show sidebar"
 msgstr "הצגת סרגל צד"
 
-#: zapzap/ui/main_window/main_window_view.py:155
-#, fuzzy
-msgid "Ctrl+Alt+1"
-msgstr "Ctrl++"
-
-#: zapzap/ui/main_window/main_window_view.py:157
-#, fuzzy
-msgid "Ctrl+Alt+2"
-msgstr "Ctrl++"
-
 #: zapzap/ui/main_window/main_window_view.py:159
-#, fuzzy
-msgid "Ctrl+Alt+3"
-msgstr "Ctrl++"
+msgid "Ctrl+Alt+1"
+msgstr "Ctrl+Alt+1"
 
-#: zapzap/ui/main_window/main_window_view.py:160
+#: zapzap/ui/main_window/main_window_view.py:161
+msgid "Ctrl+Alt+2"
+msgstr "Ctrl+Alt+2"
+
+#: zapzap/ui/main_window/main_window_view.py:163
+msgid "Ctrl+Alt+3"
+msgstr "Ctrl+Alt+3"
+
+#: zapzap/ui/main_window/main_window_view.py:164
 msgid "Reload"
 msgstr "ריענון"
 
-#: zapzap/ui/main_window/main_window_view.py:161
+#: zapzap/ui/main_window/main_window_view.py:165
 msgid "F5"
 msgstr "F5"
 
-#: zapzap/ui/main_window/main_window_view.py:162
+#: zapzap/ui/main_window/main_window_view.py:166
 msgid "New chat"
 msgstr "שיחה חדשה"
 
-#: zapzap/ui/main_window/main_window_view.py:163
+#: zapzap/ui/main_window/main_window_view.py:167
 msgid "Ctrl+N"
 msgstr "Ctrl+N"
 
-#: zapzap/ui/main_window/main_window_view.py:164
+#: zapzap/ui/main_window/main_window_view.py:168
 msgid "By number phone"
 msgstr "לפי מספר טלפון"
 
-#: zapzap/ui/main_window/main_window_view.py:165
+#: zapzap/ui/main_window/main_window_view.py:169
 msgid "Ctrl+M"
 msgstr "Ctrl+M"
 
-#: zapzap/ui/main_window/main_window_view.py:167
-#, fuzzy
+#: zapzap/ui/main_window/main_window_view.py:171
 msgid "Ctrl+Shift+/, Ctrl+?"
-msgstr "Ctrl++"
+msgstr "Ctrl+Shift+/, Ctrl+?"
 
 #: zapzap/ui/main_window/client_side_rendering_controller.py:46
 #: zapzap/ui/main_window/main_window_controller.py:263
-#, fuzzy
 msgid "Close ZapZap"
-msgstr "ZapZap"
+msgstr "סגור את ZapZap"
 
 #: zapzap/ui/main_window/client_side_rendering_controller.py:47
 #: zapzap/ui/main_window/main_window_controller.py:264
-#, fuzzy
 msgid "Are you sure you want to close?"
-msgstr "למחוק את הפריט?"
+msgstr "האם אתה בטוח שאתה רוצה לסגור?"
 
 #: zapzap/ui/main_window/client_side_rendering_controller.py:48
 #: zapzap/ui/main_window/main_window_controller.py:265
 msgid "Don't ask again"
-msgstr ""
+msgstr "אל תשאל שוב"
 
 #, fuzzy
 #~ msgid "Global (Default)"
