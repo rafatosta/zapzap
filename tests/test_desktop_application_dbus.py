@@ -6,6 +6,7 @@ from unittest.mock import MagicMock, patch
 from PyQt6.QtCore import QObject
 from PyQt6.QtDBus import QDBusConnection
 
+import qt_test_case  # noqa: F401  puts the repository root on sys.path
 from zapzap import __desktopid__
 from zapzap.app.desktop_application_dbus import (
     DesktopApplicationDBus,
