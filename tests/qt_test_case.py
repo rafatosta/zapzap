@@ -35,5 +35,8 @@ class QtTestCase(unittest.TestCase):
     def setUpClass(cls):
         super().setUpClass()
         global _APPLICATION
-        _APPLICATION = QApplication.instance() or QApplication([])
+        # QtWebEngine reads the program name out of argv to initialise
+        # Chromium, and aborts the process when it is missing, so pass one
+        # instead of an empty list.
+        _APPLICATION = QApplication.instance() or QApplication(["zapzap"])
         cls.app = _APPLICATION
