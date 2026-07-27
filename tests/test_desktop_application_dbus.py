@@ -3,7 +3,7 @@
 import unittest
 from unittest.mock import MagicMock, patch
 
-from PyQt6.QtCore import QObject
+from PyQt6.QtCore import QObject, QMetaMethod
 from PyQt6.QtDBus import QDBusConnection
 
 import qt_test_case  # noqa: F401  puts the repository root on sys.path
@@ -17,31 +17,57 @@ from zapzap.app.desktop_application_dbus import (
 class FreedesktopApplicationAdaptorTests(unittest.TestCase):
     def setUp(self):
         self.parent = QObject()
-        self.adaptor = FreedesktopApplicationAdaptor(self.parent)
+        self.activation_requested = MagicMock()
+        self.open_requested = MagicMock()
+        self.adaptor = FreedesktopApplicationAdaptor(
+            self.parent,
+            self.activation_requested,
+            self.open_requested,
+        )
 
-    def test_activate_emits_platform_activation_token(self):
-        received = []
-        self.adaptor.activationRequested.connect(received.append)
-
+    def test_activate_forwards_platform_activation_token(self):
         self.adaptor.Activate({
             "activation-token": "portal-token",
         })
 
-        self.assertEqual(received, ["portal-token"])
+        self.activation_requested.assert_called_once_with("portal-token")
 
-    def test_open_emits_activation_and_uris(self):
-        activations = []
-        opened = []
-        self.adaptor.activationRequested.connect(activations.append)
-        self.adaptor.openRequested.connect(opened.append)
-
+    def test_open_forwards_activation_and_uris(self):
         self.adaptor.Open(
             ["whatsapp://send?phone=123"],
             {"desktop-startup-id": "startup-id"},
         )
 
-        self.assertEqual(activations, ["startup-id"])
-        self.assertEqual(opened, [["whatsapp://send?phone=123"]])
+        self.activation_requested.assert_called_once_with("startup-id")
+        self.open_requested.assert_called_once_with([
+            "whatsapp://send?phone=123",
+        ])
+
+    def test_activate_action_forwards_platform_activation_token(self):
+        self.adaptor.ActivateAction(
+            "show",
+            [],
+            {"activation-token": "action-token"},
+        )
+
+        self.activation_requested.assert_called_once_with("action-token")
+
+    def test_internal_callbacks_are_not_exported_as_dbus_signals(self):
+        meta_object = self.adaptor.metaObject()
+        signals = {
+            bytes(meta_object.method(index).name())
+            for index in range(
+                meta_object.methodOffset(),
+                meta_object.methodCount(),
+            )
+            if (
+                meta_object.method(index).methodType()
+                == QMetaMethod.MethodType.Signal
+            )
+        }
+
+        self.assertNotIn(b"activationRequested", signals)
+        self.assertNotIn(b"openRequested", signals)
 
 
 class DesktopApplicationDBusTests(unittest.TestCase):
@@ -78,7 +104,9 @@ class DesktopApplicationDBusTests(unittest.TestCase):
         with patch(
             "zapzap.app.desktop_application_dbus.activate_window"
         ) as activate_window:
-            self.integration._activate("activation-token")
+            self.integration.adaptor.Activate({
+                "activation-token": "activation-token",
+            })
 
         activate_window.assert_called_once_with(
             self.window,

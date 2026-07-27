@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Callable
 
-from PyQt6.QtCore import QObject, pyqtClassInfo, pyqtSignal, pyqtSlot
+from PyQt6.QtCore import QObject, pyqtClassInfo, pyqtSlot
 from PyQt6.QtDBus import QDBusAbstractAdaptor, QDBusConnection
 
 from zapzap import __desktopid__
@@ -19,25 +20,32 @@ logger = logging.getLogger(__name__)
 
 @pyqtClassInfo("D-Bus Interface", "org.freedesktop.Application")
 class FreedesktopApplicationAdaptor(QDBusAbstractAdaptor):
-    activationRequested = pyqtSignal(object)
-    openRequested = pyqtSignal(list)
+    def __init__(
+        self,
+        parent: QObject,
+        activation_requested: Callable[[str | None], None],
+        open_requested: Callable[[list[str]], None],
+    ):
+        super().__init__(parent)
+        self._activation_requested = activation_requested
+        self._open_requested = open_requested
 
     @pyqtSlot("QVariantMap")
     def Activate(self, platform_data):
-        self.activationRequested.emit(
+        self._activation_requested(
             platform_activation_token(platform_data)
         )
 
     @pyqtSlot("QStringList", "QVariantMap")
     def Open(self, uris, platform_data):
-        self.activationRequested.emit(
+        self._activation_requested(
             platform_activation_token(platform_data)
         )
-        self.openRequested.emit(list(uris))
+        self._open_requested(list(uris))
 
     @pyqtSlot(str, "QVariantList", "QVariantMap")
     def ActivateAction(self, _action_name, _parameters, platform_data):
-        self.activationRequested.emit(
+        self._activation_requested(
             platform_activation_token(platform_data)
         )
 
@@ -53,9 +61,11 @@ class DesktopApplicationDBus(QObject):
         self._registered_service = False
         self._registered_object = False
 
-        self.adaptor = FreedesktopApplicationAdaptor(self)
-        self.adaptor.activationRequested.connect(self._activate)
-        self.adaptor.openRequested.connect(self._open_uris)
+        self.adaptor = FreedesktopApplicationAdaptor(
+            self,
+            self._activate,
+            self._open_uris,
+        )
 
     def start(self) -> bool:
         self._registered_service = self._bus.registerService(__desktopid__)
