@@ -69,6 +69,8 @@ User (SQLite) -> BrowserController -> WebView -> PageController
 WhatsApp. Scripts mantidos em `features/browser/web/scripts/` são ativos em
 tempo de execução e devem ser considerados pelo teste de código estático mesmo
 quando chamam identificadores Python indiretamente.
+Páginas transitórias criadas para capturar links externos devem ser
+interrompidas e destruídas assim que a URL for entregue ao navegador padrão.
 
 Ao remover ou desativar uma conta, preserve a captura e a limpeza dos diretórios
 do perfil sem recriar o perfil WebEngine. Ao encerrar, destrua páginas antes do

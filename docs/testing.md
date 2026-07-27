@@ -78,6 +78,7 @@ documente o que ele protege.
 | `test_deeplink.py` | validação de URLs WhatsApp e resistência a injeção de script |
 | `test_desktop_application_dbus.py` | interface `org.freedesktop.Application` e ativação D-Bus |
 | `test_documentation_structure.py` | sincronização entre árvore, inventários técnicos e guia para agentes |
+| `test_external_link_lifecycle.py` | descarte da página WebEngine transitória após abrir links externos |
 | `test_gpu_environment.py` | detecção multi-GPU, conectores e seleção de render node |
 | `test_initial_setup_ui.py` | onboarding, som, fechamento, permissões, dicionários e persistência |
 | `test_network_privacy_settings_ui.py` | proxy, credenciais, aplicar/descartar, restauração e WebRTC |
@@ -104,6 +105,7 @@ documente o que ele protege.
 - `test_deeplink.py`
 - `test_desktop_application_dbus.py`
 - `test_documentation_structure.py`
+- `test_external_link_lifecycle.py`
 - `test_gpu_environment.py`
 - `test_initial_setup_ui.py`
 - `test_network_privacy_settings_ui.py`

@@ -49,6 +49,9 @@ class PageController(QWebEnginePage):
         """Abre o primeiro link externo no navegador padrão, evitando duplicações por redirecionamento."""
         page = self.sender()
 
+        if not url.isValid() or url.isEmpty():
+            return
+
         # createWindow() pode disparar múltiplos urlChanged para o mesmo clique
         # (ex.: redirecionamentos em Google Maps/Docs). Abrimos apenas uma vez.
         if isinstance(page, QWebEnginePage):
@@ -56,12 +59,17 @@ class PageController(QWebEnginePage):
                 return
             page.setProperty("externalUrlOpened", True)
 
-        if not url.isValid() or url.isEmpty():
-            return
-
         normalized_url = self.normalize_url(url.toString())
 
-        QDesktopServices.openUrl(QUrl(normalized_url))
+        try:
+            QDesktopServices.openUrl(QUrl(normalized_url))
+        finally:
+            if isinstance(page, QWebEnginePage):
+                # A página existe apenas para receber a URL solicitada por
+                # createWindow(). Sem o descarte explícito, ela continua
+                # carregando o site externo e retém seu renderizador.
+                page.stop()
+                page.deleteLater()
 
     def normalize_url(self, url: str) -> str:
         """Normaliza a URL removendo parâmetros redundantes."""
