@@ -187,6 +187,12 @@ AppStream em `share/metainfo/`, artefatos desktop/ícone, catálogos compilados 
 histórico real de mudanças. Valide XML/AppStream e o manifesto Flatpak com as
 ferramentas disponíveis; avisos do Flathub podem bloquear a publicação.
 
+No AppImage, o nome publicado deve ser definido antes da geração do arquivo
+`.zsync`. O script de normalização renomeia o AppImage, regenera o controle com
+`zsyncmake` e valida que `Filename` e `URL` correspondem exatamente ao basename
+publicado. Não renomeie apenas o `.zsync`: seus metadados internos continuariam
+apontando para o nome anterior e o atualizador receberia HTTP 404.
+
 ## Checklist de entrega
 
 - [ ] comportamento e valores persistidos foram preservados ou migrados;

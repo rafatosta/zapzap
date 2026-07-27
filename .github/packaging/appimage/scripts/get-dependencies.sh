@@ -23,7 +23,8 @@ pacman -Syu --noconfirm \
     qt6-webengine \
     qt6ct \
     python-pyqt6 \
-    python-pyqt6-webengine
+    python-pyqt6-webengine \
+    zsync
 
 
 echo "Installing debloated packages..."
