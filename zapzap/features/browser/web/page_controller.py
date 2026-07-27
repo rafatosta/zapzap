@@ -68,7 +68,7 @@ class PageController(QWebEnginePage):
                 # A página existe apenas para receber a URL solicitada por
                 # createWindow(). Sem o descarte explícito, ela continua
                 # carregando o site externo e retém seu renderizador.
-                page.stop()
+                page.triggerAction(QWebEnginePage.WebAction.Stop)
                 page.deleteLater()
 
     def normalize_url(self, url: str) -> str:

@@ -10,9 +10,12 @@ from zapzap.features.browser.web.page_controller import PageController
 
 
 class _ExternalPage:
+    class WebAction:
+        Stop = object()
+
     def __init__(self):
         self._properties = {"externalUrlOpened": False}
-        self.stop_calls = 0
+        self.triggered_actions = []
         self.delete_later_calls = 0
 
     def property(self, name):
@@ -21,8 +24,8 @@ class _ExternalPage:
     def setProperty(self, name, value):
         self._properties[name] = value
 
-    def stop(self):
-        self.stop_calls += 1
+    def triggerAction(self, action):
+        self.triggered_actions.append(action)
 
     def deleteLater(self):
         self.delete_later_calls += 1
@@ -63,7 +66,10 @@ class ExternalLinkLifecycleTests(unittest.TestCase):
             "https://example.com/path",
         )
         self.assertTrue(self.page.property("externalUrlOpened"))
-        self.assertEqual(self.page.stop_calls, 1)
+        self.assertEqual(
+            self.page.triggered_actions,
+            [_ExternalPage.WebAction.Stop],
+        )
         self.assertEqual(self.page.delete_later_calls, 1)
 
     def test_redirect_signal_does_not_reopen_or_dispose_twice(self):
@@ -72,7 +78,10 @@ class ExternalLinkLifecycleTests(unittest.TestCase):
 
         first_open.assert_called_once()
         second_open.assert_not_called()
-        self.assertEqual(self.page.stop_calls, 1)
+        self.assertEqual(
+            self.page.triggered_actions,
+            [_ExternalPage.WebAction.Stop],
+        )
         self.assertEqual(self.page.delete_later_calls, 1)
 
     def test_invalid_url_does_not_consume_the_valid_handoff(self):
@@ -82,7 +91,10 @@ class ExternalLinkLifecycleTests(unittest.TestCase):
         invalid_open.assert_not_called()
         valid_open.assert_called_once()
         self.assertTrue(self.page.property("externalUrlOpened"))
-        self.assertEqual(self.page.stop_calls, 1)
+        self.assertEqual(
+            self.page.triggered_actions,
+            [_ExternalPage.WebAction.Stop],
+        )
         self.assertEqual(self.page.delete_later_calls, 1)
 
 
