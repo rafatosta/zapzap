@@ -169,7 +169,7 @@ msgstr "Valor predeterminado del sistema"
 
 #: zapzap/features/initial_setup/controller.py:142
 msgid "English"
-msgstr "ingles"
+msgstr "inglés"
 
 #: zapzap/features/initial_setup/view.py:42
 msgid "Setup ZapZap"
@@ -309,7 +309,7 @@ msgid ""
 "Allow ZapZap to publish native desktop notifications for WhatsApp activity."
 msgstr ""
 "Permita que ZapZap publique notificaciones de escritorio nativas para la "
-"actividad WhatsApp."
+"actividad de WhatsApp."
 
 #: zapzap/features/initial_setup/view.py:203
 msgid "Notification privacy"
@@ -607,7 +607,7 @@ msgstr "Copiar"
 #: zapzap/features/initial_setup/view.py:425
 #: zapzap/features/settings/pages/permissions/view.py:149
 msgid "Flatseal"
-msgstr "Sello plano"
+msgstr "Flatseal"
 
 #: zapzap/features/initial_setup/view.py:426
 #: zapzap/features/settings/pages/permissions/view.py:150
@@ -621,7 +621,7 @@ msgstr ""
 #: zapzap/features/initial_setup/view.py:427
 #: zapzap/features/settings/pages/permissions/view.py:151
 msgid "Install Flatseal on Linux | Flathub"
-msgstr "Instale Flatseal en Linux |Cubo plano"
+msgstr "Instale Flatseal en Linux | Flathub"
 
 #: zapzap/features/initial_setup/view.py:442
 msgid "You're ready"
@@ -909,11 +909,11 @@ msgstr "Detalles técnicos"
 
 #: zapzap/features/settings/pages/about/view.py:239
 msgid "Information about ZapZap, the project, and support."
-msgstr "Información sobre ZapZap, el proyecto y soporte."
+msgstr "Información sobre ZapZap, el proyecto y apoyo."
 
 #: zapzap/features/settings/pages/about/view.py:253
 msgid "Project and support"
-msgstr "Proyecto y soporte"
+msgstr "Proyecto y apoyo"
 
 #: zapzap/features/settings/pages/about/view.py:257
 msgid "Project page"
@@ -2150,7 +2150,7 @@ msgstr "Configuración global"
 
 #: zapzap/features/settings/pages/notifications/view.py:20
 msgid "Configure notifications, privacy, and ZapZap messages."
-msgstr "Configura notificaciones, privacidad y mensajes ZapZap."
+msgstr "Configura notificaciones, privacidad y mensajes de ZapZap."
 
 #: zapzap/features/settings/pages/notifications/view.py:34
 msgid "Choose which information may appear in notifications."
@@ -2198,7 +2198,7 @@ msgstr ""
 
 #: zapzap/features/settings/pages/notifications/view.py:80
 msgid "ZapZap messages"
-msgstr "ZapZap mensajes"
+msgstr "Mensajes de ZapZap"
 
 #: zapzap/features/settings/pages/notifications/view.py:81
 msgid "Control occasional messages shown by the application itself."
@@ -2206,7 +2206,7 @@ msgstr "Controlar los mensajes ocasionales que muestra la propia aplicación."
 
 #: zapzap/features/settings/pages/notifications/view.py:85
 msgid "Support reminders"
-msgstr "Recordatorios de soporte"
+msgstr "Recordatorios de apoyo"
 
 #: zapzap/features/settings/pages/notifications/view.py:87
 msgid "Occasionally show messages supporting ZapZap's development."
@@ -2296,7 +2296,7 @@ msgstr "Opciones de renderizado para controladores o hardware problemáticos."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:91
 msgid "In-process GPU"
-msgstr "En proceso GPU"
+msgstr "GPU en proceso"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:92
 msgid "May reduce memory usage, but can cause instability."
@@ -2308,7 +2308,7 @@ msgstr "Desactivar GPU"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:96
 msgid "Recommended only for old GPUs or problematic drivers."
-msgstr "Recomendado sólo para GPU antiguas o controladores problemáticos."
+msgstr "Recomendado sólo para GPUs antiguas o controladores problemáticos."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:99
 msgid "Automatic multi-GPU workaround"
@@ -2327,7 +2327,7 @@ msgstr "Deshabilitar GPU VSync"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:106
 msgid "May reduce latency, but can increase tearing."
-msgstr "Puede reducir la latencia, pero puede aumentar el desgarro."
+msgstr "Puede reducir la latencia, pero puede aumentar el desgarro (tearing)."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:109
 msgid "Force software rendering"
@@ -2444,7 +2444,7 @@ msgstr "Útil si se produce un zoom accidental durante el desplazamiento."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:206
 msgid "Fix Ctrl+Arrow cursor movement"
-msgstr "Arreglar el movimiento del cursor Ctrl+Arrow"
+msgstr "Arreglar el movimiento del cursor Ctrl+Flechas"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:208
 msgid ""
@@ -2832,7 +2832,7 @@ msgstr "Utilice el backend Wayland cuando esté disponible."
 
 #: zapzap/features/settings/pages/system_startup/view.py:135
 msgid "Use the Wayland backend when available. Requires restart."
-msgstr "Utilice el backend Wayland cuando esté disponible.Requiere reinicio."
+msgstr "Utilice el backend Wayland cuando esté disponible. Requiere reinicio."
 
 #: zapzap/features/settings/pages/system_startup/view.py:139
 msgid "Requires restart"
@@ -2840,7 +2840,7 @@ msgstr "Requiere reinicio"
 
 #: zapzap/features/settings/pages/system_startup/view.py:143
 msgid "Wayland changes require restart"
-msgstr "Wayland los cambios requieren reinicio"
+msgstr "Los cambios de Wayland requieren reiniciar"
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:30
 #: zapzap/features/settings/components/card_user/card_user_view.py:31
@@ -2861,7 +2861,7 @@ msgstr "Cuenta activa"
 #: zapzap/features/settings/components/card_user/card_user_view.py:126
 #: zapzap/features/settings/components/card_user/card_user_controller.py:209
 msgid "Do not disturb"
-msgstr "No interrumpir"
+msgstr "No molestar"
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:127
 msgid "Silences notifications for this account."
@@ -2990,15 +2990,15 @@ msgstr "No hay cuentas activas para mostrar."
 
 #: zapzap/features/browser/shell/browser_controller.py:125
 msgid "Flatpak sandbox help"
-msgstr "Flatpak ayuda de zona de pruebas"
+msgstr "Ayuda con aislamiento (sandbox) de Flatpak "
 
 #: zapzap/features/browser/shell/browser_controller.py:150
 msgid "Flatpak sandbox"
-msgstr "Flatpak zona de pruebas"
+msgstr "aislamiento de Flatpak"
 
 #: zapzap/features/browser/shell/browser_controller.py:151
 msgid "ZapZap is running in Flatpak sandbox."
-msgstr "ZapZap se está ejecutando en el entorno limitado de Flatpak."
+msgstr "ZapZap se está ejecutando en el entorno aislado de Flatpak."
 
 #: zapzap/features/browser/shell/browser_controller.py:153
 msgid ""
@@ -3110,7 +3110,7 @@ msgstr ""
 msgid ""
 "Invalid number! Please enter at least 9 digits, including the country code."
 msgstr ""
-"¡Número no válido!Introduzca al menos 9 dígitos, incluido el código de país."
+"¡Número no válido! Introduzca al menos 9 dígitos, incluido el código de país."
 
 #: zapzap/features/browser/web/page_controller.py:266
 msgid "your microphone"
