@@ -4,7 +4,20 @@ from enum import Enum
 
 from PyQt6.QtCore import QRectF, QSize
 from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QColor, QIcon, QPainter, QPalette
+from PyQt6.QtGui import (
+    QColor,
+    QIcon,
+    QImage,
+    QPainter,
+    QPalette,
+    QPixmap,
+    qAlpha,
+    qBlue,
+    qGray,
+    qGreen,
+    qRed,
+    qRgba,
+)
 from PyQt6.QtWidgets import QPushButton
 
 from zapzap.assets.icons.user_icon import UserIcon
@@ -17,17 +30,18 @@ class AccountIndicatorState(Enum):
     """Account states the sidebar can determine without inference.
 
     Mapping:
-    - ACTIVITY: enabled account with unread messages -> theme activity teal;
-    - INACTIVE: explicitly disabled account -> palette neutral gray;
-    - NONE: enabled account without unread messages -> no indicator.
+    - ACTIVITY: enabled, unmuted account with unread messages
+      -> theme activity teal;
+    - NONE: no unread activity, muted notifications or disabled account
+      -> no indicator.
 
     Web loading, connection errors and session validity are intentionally not
     represented because those states are not propagated to this component.
+    Disabled accounts are represented by the grayscale avatar itself.
     """
 
     NONE = "none"
     ACTIVITY = "activity"
-    INACTIVE = "inactive"
 
 
 class BrowserPageButton(QPushButton):
@@ -42,6 +56,8 @@ class BrowserPageButton(QPushButton):
     MIN_INDICATOR_SIZE = 6.0
     MIN_INDICATOR_BORDER = 1.5
     MIN_INDICATOR_CARD_GAP = 2.0
+    INACTIVE_AVATAR_GRAYSCALE = 1.0
+    INACTIVE_AVATAR_OPACITY = 0.82
 
     STYLE_NORMAL = f"""
     QPushButton {{
@@ -111,6 +127,8 @@ class BrowserPageButton(QPushButton):
         self._number_notifications = 0
         self._is_selected = False
         self._card_background_role = QPalette.ColorRole.Window
+        self._avatar_cache_key = None
+        self._avatar_cache_icon = QIcon()
 
         self._setup_ui()
         self.update_user_icon()
@@ -171,7 +189,7 @@ class BrowserPageButton(QPushButton):
             return
 
         # Quantitative data is deliberately not painted into the avatar.
-        self.setIcon(UserIcon.get_icon(self._user.icon))
+        self.setIcon(self._account_avatar())
         tooltip = self._build_tooltip()
         self.setToolTip(tooltip)
         self.setAccessibleName(self._user.name or self.tr("Account"))
@@ -181,11 +199,63 @@ class BrowserPageButton(QPushButton):
     def _resolve_indicator_state(self):
         if self._user is None:
             return AccountIndicatorState.NONE
-        if not self._user.enable:
-            return AccountIndicatorState.INACTIVE
+        if not self._user.enable or not self._notifications_enabled():
+            return AccountIndicatorState.NONE
         if self._number_notifications > 0:
             return AccountIndicatorState.ACTIVITY
         return AccountIndicatorState.NONE
+
+    def _notifications_enabled(self):
+        return bool(
+            SettingsManager.get(f"{self._user.id}/notification", True)
+        )
+
+    def _account_avatar(self):
+        """Return the current avatar with only account-state styling applied."""
+        cache_key = (self._user.icon, bool(self._user.enable))
+        if cache_key == self._avatar_cache_key:
+            return self._avatar_cache_icon
+
+        avatar = UserIcon.get_icon(self._user.icon)
+        if not self._user.enable:
+            avatar = self._inactive_avatar(avatar)
+
+        self._avatar_cache_key = cache_key
+        self._avatar_cache_icon = avatar
+        return avatar
+
+    @classmethod
+    def _inactive_avatar(cls, avatar):
+        """Apply the centralized inactive-account effect in memory."""
+        sizes = avatar.availableSizes()
+        source_size = (
+            max(sizes, key=lambda size: size.width() * size.height())
+            if sizes
+            else QSize(UserIcon.PHOTO_SIZE, UserIcon.PHOTO_SIZE)
+        )
+        source = avatar.pixmap(source_size).toImage().convertToFormat(
+            QImage.Format.Format_ARGB32
+        )
+        inactive = QImage(source.size(), QImage.Format.Format_ARGB32)
+        inactive.fill(Qt.GlobalColor.transparent)
+
+        grayscale = cls.INACTIVE_AVATAR_GRAYSCALE
+        opacity = cls.INACTIVE_AVATAR_OPACITY
+        for y in range(source.height()):
+            for x in range(source.width()):
+                pixel = source.pixel(x, y)
+                gray = qGray(pixel)
+                red = round(qRed(pixel) + (gray - qRed(pixel)) * grayscale)
+                green = round(
+                    qGreen(pixel) + (gray - qGreen(pixel)) * grayscale
+                )
+                blue = round(
+                    qBlue(pixel) + (gray - qBlue(pixel)) * grayscale
+                )
+                alpha = round(qAlpha(pixel) * opacity)
+                inactive.setPixel(x, y, qRgba(red, green, blue, alpha))
+
+        return QIcon(QPixmap.fromImage(inactive))
 
     def indicator_rect(self):
         """Return the DPI-independent outer indicator geometry."""
@@ -232,8 +302,6 @@ class BrowserPageButton(QPushButton):
         state = self.indicator_state
         if state == AccountIndicatorState.ACTIVITY:
             return QColor(ThemeManager.get_color("activity"))
-        if state == AccountIndicatorState.INACTIVE:
-            return self.palette().color(QPalette.ColorRole.PlaceholderText)
         return QColor()
 
     def _indicator_border_color(self):
@@ -249,7 +317,7 @@ class BrowserPageButton(QPushButton):
                     self._number_notifications
                 )
             )
-        if not SettingsManager.get(f"{self._user.id}/notification", True):
+        if not self._notifications_enabled():
             descriptions.append(self.tr("Notifications muted"))
         return ". ".join(descriptions)
 

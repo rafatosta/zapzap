@@ -67,9 +67,10 @@ User (SQLite) -> BrowserController -> WebView -> PageController
 
 Na barra lateral, o contorno do card identifica a conta selecionada e o avatar
 não contém texto quantitativo. Um ponto verde-azulado indica não lidos e um
-ponto cinza indica conta explicitamente desativada; sem esses estados, não há
-ponto. Carregamento, falha de conexão e validade da sessão não são inferidos,
-pois o `WebView` ainda não os propaga ao botão da conta.
+avatar em escala de cinza identifica uma conta explicitamente desativada.
+Contas desativadas ou silenciadas não exibem ponto; sem atividade especial,
+também não há indicador. Carregamento, falha de conexão e validade da sessão
+não são inferidos, pois o `WebView` ainda não os propaga ao botão da conta.
 Os cards da página `Contas` também mantêm o avatar original; os switches do
 próprio card comunicam conta ativa e `Não perturbe`, sem sobreposições no ícone.
 
