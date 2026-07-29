@@ -160,6 +160,12 @@ usar componentes em `zapzap/ui/components`, cores semânticas da paleta e
 `Typography`, evitando uma segunda linguagem visual. QSS pode sobrescrever
 fontes: quando necessário, aplique `setFont()` depois de `setStyleSheet()`.
 
+`SegmentedControl` é o seletor exclusivo reutilizável para duas ou mais opções.
+Ele mantém valores estáveis separados dos rótulos traduzidos, usa um único foco
+de teclado e expõe estados nativos de botão para acessibilidade. A página de
+contas apenas mapeia `enabled` e `disabled` para `User.enable`; persistência e
+efeitos de sessão permanecem no fluxo existente do `CardUserController`.
+
 Texto visível usa `gettext`. IDs persistidos de seletores ficam em `itemData` e
 `currentData`; somente o rótulo é traduzido. Ao alterar texto:
 

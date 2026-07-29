@@ -95,6 +95,8 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 
 - Corrija primeiro o componente central e audite consumidores.
 - Use `QPalette`, `QFont` e `Typography`; evite cores e pesos paralelos.
+- Em seletores segmentados, mantenha IDs estáveis em `SegmentOption.value` e
+  rótulos traduzidos em `SegmentOption.label`; não persista o texto visível.
 - Verifique estados normal, hover, pressed, disabled, foco e alto contraste.
 - `offscreen` valida propriedades e sinais, não posição do cursor, foco do
   compositor nem aparência final.

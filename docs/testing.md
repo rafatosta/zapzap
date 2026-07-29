@@ -89,6 +89,7 @@ documente o que ele protege.
 | `test_performance_experimental_settings_ui.py` | seção e reinício da decodificação por software |
 | `test_permissions_settings_ui.py` | grupos e ações globais/individuais de permissões |
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
+| `test_segmented_control.py` | seleção exclusiva, sinais, mouse, teclado, acessibilidade, tamanhos, raios e temas |
 | `test_settings_card.py` | divisores e grupos no componente compartilhado |
 | `test_settings_radio_group.py` | divisores de opções de rádio |
 | `test_software_video_decoding.py` | flag Chromium, persistência, padrão e ordem do bootstrap |
@@ -117,6 +118,7 @@ documente o que ele protege.
 - `test_performance_experimental_settings_ui.py`
 - `test_permissions_settings_ui.py`
 - `test_portal_notification_backend.py`
+- `test_segmented_control.py`
 - `test_settings_card.py`
 - `test_settings_radio_group.py`
 - `test_software_video_decoding.py`

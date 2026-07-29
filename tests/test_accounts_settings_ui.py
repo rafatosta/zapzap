@@ -2,7 +2,7 @@
 
 import unittest
 from types import SimpleNamespace
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 from PyQt6.QtGui import QColor, QImage
 from qt_test_case import QtTestCase
@@ -19,7 +19,13 @@ from zapzap.features.settings.components.card_user.edit_account_dialog import (
     EditAccountDialog,
 )
 from zapzap.features.settings.pages.accounts.view import AccountsSettingsView
-from zapzap.ui.components import Button, ComboBox, LineEdit
+from zapzap.ui.components import (
+    Button,
+    ComboBox,
+    LineEdit,
+    SegmentedControl,
+    SegmentedControlSize,
+)
 
 
 class AccountsSettingsUiTests(QtTestCase):
@@ -30,13 +36,80 @@ class AccountsSettingsUiTests(QtTestCase):
         self.assertFalse(hasattr(card, "advanced_button"))
         self.assertFalse(hasattr(card, "ua_selector"))
 
-    def test_active_switch_uses_positive_semantics(self):
+    def test_account_state_segment_uses_stable_positive_semantics(self):
         card = CardUserView()
 
         card.set_account_enabled(True)
-        self.assertTrue(card.active.isChecked())
+        self.assertIsInstance(card.active, SegmentedControl)
+        self.assertEqual(
+            card.active.value(),
+            CardUserView.ACCOUNT_ENABLED,
+        )
+        self.assertEqual(
+            card.active.controlSize(),
+            SegmentedControlSize.MEDIUM,
+        )
         card.set_account_enabled(False)
-        self.assertFalse(card.active.isChecked())
+        self.assertEqual(
+            card.active.value(),
+            CardUserView.ACCOUNT_DISABLED,
+        )
+        self.assertTrue(card.active.accessibleName())
+
+    def test_account_state_segment_updates_existing_user_flow(self):
+        user = User(name="Test", enable=True)
+        card = CardUserController(user)
+        browser = Mock()
+
+        with patch.object(
+            CardUserController,
+            "_get_browser",
+            return_value=browser,
+        ):
+            card.active.segmentButton(1).click()
+
+            self.assertFalse(user.enable)
+            self.assertEqual(
+                card.active.value(),
+                CardUserView.ACCOUNT_DISABLED,
+            )
+
+            card.active.segmentButton(0).click()
+
+            self.assertTrue(user.enable)
+            self.assertEqual(
+                card.active.value(),
+                CardUserView.ACCOUNT_ENABLED,
+            )
+
+        self.assertEqual(browser.update_icons_page_button.call_count, 2)
+        self.assertEqual(browser.disable_page.call_count, 2)
+
+    def test_account_state_failure_restores_previous_value(self):
+        user = User(name="Test", enable=True)
+        card = CardUserController(user)
+
+        def fail_after_change(changed_user, enabled):
+            changed_user.enable = enabled
+            raise RuntimeError
+
+        with patch.object(
+            card,
+            "set_user_enabled",
+            side_effect=fail_after_change,
+        ):
+            with patch(
+                "zapzap.features.settings.components.card_user."
+                "card_user_controller.AlertManager.critical",
+            ) as critical:
+                card.active.segmentButton(1).click()
+
+        self.assertTrue(user.enable)
+        self.assertEqual(
+            card.active.value(),
+            CardUserView.ACCOUNT_ENABLED,
+        )
+        critical.assert_called_once()
 
     def test_empty_name_has_a_non_persisted_visual_fallback(self):
         card = CardUserView()

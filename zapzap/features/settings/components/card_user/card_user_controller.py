@@ -32,7 +32,7 @@ class CardUserController(CardUserView):
 
     def _setup_signals(self):
         self.silence.clicked.connect(self._handle_silence_action)
-        self.active.clicked.connect(self._handle_active_action)
+        self.active.valueChanged.connect(self._handle_active_action)
         self.icon.clicked.connect(self._handle_icon_action)
 
     def _load_data(self):
@@ -43,8 +43,20 @@ class CardUserController(CardUserView):
     def _update_user_icon(self):
         self.set_user_icon(self.model.current_icon())
 
-    def _handle_active_action(self):
-        self.set_user_enabled(self.user, self.active.isChecked())
+    def _handle_active_action(self, value):
+        previous = self.model.enabled
+        enabled = value == self.ACCOUNT_ENABLED
+        try:
+            self.set_user_enabled(self.user, enabled)
+        except Exception:
+            self.model.enabled = previous
+            self.set_account_enabled(previous)
+            AlertManager.critical(
+                self,
+                _("Could not update account"),
+                _("The account state could not be changed."),
+            )
+            return
         self.set_account_enabled(self.model.enabled)
         self._update_user_icon()
 

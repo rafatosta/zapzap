@@ -2,7 +2,7 @@
 
 from gettext import gettext as _
 
-from PyQt6.QtCore import QRectF, QSize, Qt
+from PyQt6.QtCore import QRectF, QSignalBlocker, QSize, Qt
 from PyQt6.QtGui import QPainter, QPalette
 from PyQt6.QtWidgets import (
     QHBoxLayout,
@@ -13,10 +13,15 @@ from PyQt6.QtWidgets import (
 
 from zapzap.features.settings.components.settings_card import SettingsCard
 from zapzap.features.settings.components.settings_rows import (
+    SettingsSegmentedRow,
     SettingsSwitchRow,
-    SettingsToggleSwitch,
 )
-from zapzap.ui.components import Label
+from zapzap.ui.components import (
+    Label,
+    SegmentOption,
+    SegmentedControlRadius,
+    SegmentedControlSize,
+)
 
 
 class AccountActionsButton(QToolButton):
@@ -79,6 +84,9 @@ class AccountActionsButton(QToolButton):
 class CardUserView(SettingsCard):
     """Visual account card without persistence or application side effects."""
 
+    ACCOUNT_ENABLED = "enabled"
+    ACCOUNT_DISABLED = "disabled"
+
     def __init__(self, parent=None):
         super().__init__(parent)
         self._setup_ui()
@@ -102,25 +110,29 @@ class CardUserView(SettingsCard):
             QSizePolicy.Policy.Preferred,
         )
 
-        active_control = QWidget(header)
-        active_layout = QHBoxLayout(active_control)
-        active_layout.setContentsMargins(0, 0, 0, 0)
-        active_layout.setSpacing(8)
-        self.active_label = Label(
-            _("Account active"), "row_title", active_control
-        )
-        self.active = SettingsToggleSwitch(active_control)
-        self.active.setAccessibleName(_("Account active"))
-        active_layout.addWidget(self.active_label)
-        active_layout.addWidget(self.active)
-
         self.menu_button = AccountActionsButton(header)
 
         header_layout.addWidget(self.icon)
         header_layout.addWidget(self.name, 1)
-        header_layout.addWidget(active_control)
         header_layout.addWidget(self.menu_button)
         self.add_row(header)
+
+        self.account_state_row = SettingsSegmentedRow(
+            _("Account status"),
+            _(
+                "Disabled accounts remain saved, but are not loaded "
+                "and do not receive notifications."
+            ),
+            options=(
+                SegmentOption(self.ACCOUNT_ENABLED, _("Enabled")),
+                SegmentOption(self.ACCOUNT_DISABLED, _("Disabled")),
+            ),
+            value=self.ACCOUNT_ENABLED,
+            size=SegmentedControlSize.MEDIUM,
+            radius=SegmentedControlRadius.LARGE,
+        )
+        self.active = self.account_state_row.segmented
+        self.add_row(self.account_state_row)
 
         self.silence_row = SettingsSwitchRow(
             _("Do not disturb"),
@@ -133,7 +145,10 @@ class CardUserView(SettingsCard):
         self.name.setText(name or _("Unnamed account"))
 
     def set_account_enabled(self, enabled: bool):
-        self.active.setChecked(enabled)
+        with QSignalBlocker(self.active):
+            self.active.setValue(
+                self.ACCOUNT_ENABLED if enabled else self.ACCOUNT_DISABLED
+            )
 
     def set_notifications_silenced(self, silenced: bool):
         self.silence.setChecked(silenced)

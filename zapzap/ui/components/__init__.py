@@ -6,3 +6,9 @@ from .label import Label
 from .line_edit import LineEdit
 from .toggle_switch import ToggleSwitch
 from .radio_button import RadioButton
+from .segmented_control import (
+    SegmentOption,
+    SegmentedControl,
+    SegmentedControlRadius,
+    SegmentedControlSize,
+)

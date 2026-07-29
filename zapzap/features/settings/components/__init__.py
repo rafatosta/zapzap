@@ -13,6 +13,7 @@ from .settings_rows import (
     SettingsComboBox,
     SettingsPasswordRow,
     SettingsPathRow,
+    SettingsSegmentedRow,
     SettingsSelectRow,
     SettingsSubgroupHeader,
     SettingsSwitchGroup,

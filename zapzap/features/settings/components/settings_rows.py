@@ -8,7 +8,16 @@ from PyQt6.QtWidgets import (
     QVBoxLayout,
 )
 
-from zapzap.ui.components import Button, ComboBox, Label, LineEdit, ToggleSwitch
+from zapzap.ui.components import (
+    Button,
+    ComboBox,
+    Label,
+    LineEdit,
+    SegmentedControl,
+    SegmentedControlRadius,
+    SegmentedControlSize,
+    ToggleSwitch,
+)
 
 
 class SettingsToggleSwitch(ToggleSwitch):
@@ -195,6 +204,29 @@ class SettingsSelectRow(_BaseRow):
             self.combo.addItems(items)
 
         super().__init__(title, description, self.combo, parent)
+
+
+class SettingsSegmentedRow(_BaseRow):
+    """Settings row backed by a reusable exclusive segmented control."""
+
+    def __init__(
+        self,
+        title,
+        description="",
+        options=(),
+        value=None,
+        size=SegmentedControlSize.MEDIUM,
+        radius=SegmentedControlRadius.LARGE,
+        parent=None,
+    ):
+        self.segmented = SegmentedControl(
+            options=options,
+            value=value,
+            size=size,
+            radius=radius,
+        )
+        self.segmented.setAccessibleName(title)
+        super().__init__(title, description, self.segmented, parent)
 
 
 class SettingsPathRow(_BaseRow):
