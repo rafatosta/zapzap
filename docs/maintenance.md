@@ -84,6 +84,9 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   bloqueie ativações duplicadas e reutilize a confirmação destrutiva.
 - Desativar a conta pode desabilitar visualmente `Não perturbe`, mas nunca deve
   sobrescrever a preferência persistida que será restaurada na reativação.
+- Mantenha o menu de contexto da barra lateral limitado a identidade, edição,
+  Não perturbe, desativação e remoção. User-Agent e personalização do avatar
+  pertencem ao diálogo transacional de edição.
 - Não reutilize armazenamento, cache ou scripts entre perfis por conveniência.
 - Capture caminhos antes de destruir o perfil quando for necessário remover
   dados.

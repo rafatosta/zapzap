@@ -71,6 +71,9 @@ avatar em escala de cinza identifica uma conta explicitamente desativada.
 Contas desativadas ou silenciadas não exibem ponto; sem atividade especial,
 também não há indicador. Carregamento, falha de conexão e validade da sessão
 não são inferidos, pois o `WebView` ainda não os propaga ao botão da conta.
+O clique de contexto abre um popover compacto com identidade, estado, edição,
+Não perturbe, desativação e remoção. As opções avançadas de User-Agent e
+personalização do avatar permanecem exclusivamente no diálogo de edição.
 No gerenciamento em `Contas`, o card expõe `Editar` e `Remover` diretamente no
 cabeçalho; não há menu de três pontos duplicando essas ações. O avatar não
 recebe sobreposições e, quando a conta é desativada, usa o mesmo processamento

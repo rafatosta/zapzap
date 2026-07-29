@@ -2,8 +2,7 @@
 
 from gettext import gettext as _
 
-from PyQt6.QtGui import QActionGroup
-from PyQt6.QtWidgets import QApplication, QMessageBox, QMenu
+from PyQt6.QtWidgets import QApplication, QMessageBox
 
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.accounts.domain.user import User
@@ -11,7 +10,10 @@ from zapzap.features.settings.components.card_user.card_user_model import CardUs
 from zapzap.features.settings.components.card_user.edit_account_dialog import (
     EditAccountDialog,
 )
-from zapzap.features.settings.components.card_user.card_user_view import CardUserView
+from zapzap.features.settings.components.card_user.card_user_view import (
+    AccountContextMenu,
+    CardUserView,
+)
 from zapzap.ui.components import Button
 
 
@@ -91,28 +93,35 @@ class CardUserController(CardUserView):
             self._on_deleted(self.user)
 
     def _handle_edit_action(self):
+        if not self.edit_user(self, self.user):
+            return
+        self._load_data()
+        self._update_user_icon()
+
+    @classmethod
+    def edit_user(cls, parent, user: User):
+        model = CardUserModel(user)
         dialog = EditAccountDialog(
-            self.model.name,
-            self.model.user.icon,
-            self.model.available_user_agents(),
-            self.model.user_agent,
-            self,
+            model.name,
+            model.user.icon,
+            model.available_user_agents(),
+            model.user_agent,
+            parent,
         )
         dialog.name_edit.setFocus()
         if dialog.exec() != dialog.DialogCode.Accepted:
-            return
+            return False
 
-        self.model.name = dialog.account_name()
-        self.set_user_name(self.model.name)
+        model.name = dialog.account_name()
         if dialog.icon_action() != EditAccountDialog.KEEP_ICON:
-            self.model.set_icon(dialog.staged_icon())
-            self._update_user_icon()
-        if dialog.user_agent() != self.model.user_agent:
-            self.set_user_agent(self, self.user, dialog.user_agent())
+            model.set_icon(dialog.staged_icon())
+        if dialog.user_agent() != model.user_agent:
+            cls.set_user_agent(parent, user, dialog.user_agent())
 
-        browser = self._get_browser()
+        browser = cls._get_browser()
         if browser:
-            browser.update_icons_page_button(self.user)
+            browser.update_icons_page_button(user)
+        return True
 
     @staticmethod
     def _get_browser():
@@ -135,20 +144,6 @@ class CardUserController(CardUserView):
     def set_user_notifications(cls, user: User, enabled: bool):
         model = CardUserModel(user)
         model.notifications_enabled = enabled
-        browser = cls._get_browser()
-        if browser:
-            browser.update_icons_page_button(user)
-
-    @classmethod
-    def regenerate_user_icon(cls, user: User):
-        CardUserModel(user).regenerate_icon()
-        browser = cls._get_browser()
-        if browser:
-            browser.update_icons_page_button(user)
-
-    @classmethod
-    def restore_default_icon(cls, user: User):
-        CardUserModel(user).restore_default_icon()
         browser = cls._get_browser()
         if browser:
             browser.update_icons_page_button(user)
@@ -215,50 +210,46 @@ class CardUserController(CardUserView):
 
     @classmethod
     def create_page_button_context_menu(cls, parent, user: User):
-        menu = QMenu(parent)
         model = CardUserModel(user)
+        menu = AccountContextMenu(user, parent)
+        menu.set_notifications_silenced(not model.notifications_enabled)
+        menu.set_remove_available(not model.is_default_user)
 
-        silence_action = menu.addAction(_("Do not disturb"))
-        silence_action.setCheckable(True)
-        silence_action.setChecked(not model.notifications_enabled)
-        silence_action.toggled.connect(
-            lambda checked: cls.set_user_notifications(user, not checked)
+        menu.edit_requested.connect(
+            lambda: cls.edit_user(parent, user)
         )
 
-        disable_action = menu.addAction(_("Disable"))
-        disable_action.setCheckable(True)
-        disable_action.setChecked(not model.enabled)
-        disable_action.toggled.connect(
-            lambda checked: cls.set_user_enabled(user, not checked)
+        def set_notifications_silenced(silenced):
+            previous = model.notifications_enabled
+            try:
+                cls.set_user_notifications(user, not silenced)
+            except Exception:
+                model.notifications_enabled = previous
+                menu.set_notifications_silenced(not previous)
+                AlertManager.critical(
+                    menu,
+                    _("Could not update account"),
+                    _("The notification state could not be changed."),
+                )
+
+        def set_account_disabled(disabled):
+            previous = model.enabled
+            try:
+                cls.set_user_enabled(user, not disabled)
+            except Exception:
+                model.enabled = previous
+                AlertManager.critical(
+                    menu,
+                    _("Could not update account"),
+                    _("The account state could not be changed."),
+                )
+            menu.set_account_enabled(model.enabled)
+
+        menu.notifications_silenced_changed.connect(
+            set_notifications_silenced
         )
-
-        user_agent_menu = menu.addMenu(_("User-Agent"))
-        user_agent_group = QActionGroup(user_agent_menu)
-        user_agent_group.setExclusive(True)
-        selected_ua = model.user_agent
-        for user_agent_name in model.available_user_agents():
-            user_agent_action = user_agent_menu.addAction(user_agent_name)
-            user_agent_action.setCheckable(True)
-            user_agent_action.setChecked(user_agent_name == selected_ua)
-            user_agent_action.triggered.connect(
-                lambda checked, ua=user_agent_name: checked
-                and cls.set_user_agent(parent, user, ua)
-            )
-            user_agent_group.addAction(user_agent_action)
-
-        menu.addSeparator()
-        generate_icon_action = menu.addAction(
-            _("Generate new colors for the icon"))
-        generate_icon_action.triggered.connect(
-            lambda: cls.regenerate_user_icon(user))
-        restore_action = menu.addAction(_("Restore standard"))
-        restore_action.triggered.connect(
-            lambda: cls.restore_default_icon(user))
-
-        if user.id != User.USER_DEFAULT:
-            menu.addSeparator()
-            delete_action = menu.addAction(_("Delete"))
-            delete_action.triggered.connect(
-                lambda: cls.delete_user(parent, user))
-
+        menu.account_disabled_changed.connect(set_account_disabled)
+        menu.remove_requested.connect(
+            lambda: cls.delete_user(parent, user)
+        )
         return menu

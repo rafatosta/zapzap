@@ -7,7 +7,7 @@ from unittest.mock import Mock, patch
 from PyQt6.QtCore import QPoint, QPointF, Qt
 from PyQt6.QtGui import QColor, QImage
 from PyQt6.QtTest import QTest
-from PyQt6.QtWidgets import QBoxLayout, QDialog
+from PyQt6.QtWidgets import QBoxLayout, QDialog, QPushButton
 from qt_test_case import QtTestCase
 from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.features.alerts.alert_manager import AlertManager
@@ -18,7 +18,10 @@ from zapzap.features.settings.components.card_user.card_user_controller import (
 from zapzap.features.settings.components.card_user.card_user_model import (
     CardUserModel,
 )
-from zapzap.features.settings.components.card_user.card_user_view import CardUserView
+from zapzap.features.settings.components.card_user.card_user_view import (
+    AccountContextMenu,
+    CardUserView,
+)
 from zapzap.features.settings.components.card_user.edit_account_dialog import (
     EditAccountDialog,
 )
@@ -29,6 +32,7 @@ from zapzap.ui.components import (
     LineEdit,
     SegmentedControl,
     SegmentedControlSize,
+    ToggleSwitch,
 )
 
 
@@ -470,33 +474,193 @@ class AccountsSettingsUiTests(QtTestCase):
         self.assertEqual(dialog.icon_action(), EditAccountDialog.KEEP_ICON)
         self.assertIn("Could not", dialog.icon_choice_label.text())
 
-    def test_legacy_color_actions_retain_photo_for_future_switching(self):
+    def test_account_context_menu_contains_only_immediate_actions(self):
+        menu = AccountContextMenu(
+            User(id=2, name="Rafael Tosta"),
+        )
+        action_texts = {
+            button.text()
+            for button in menu.findChildren(QPushButton)
+            if button.text()
+        }
+
+        self.assertFalse(menu.header.isHidden())
+        self.assertEqual(menu.name_label.fullText(), "Rafael Tosta")
+        self.assertIsInstance(menu.notifications_switch, ToggleSwitch)
+        self.assertIsInstance(menu.disable_switch, ToggleSwitch)
+        self.assertIn("Edit account", action_texts)
+        self.assertIn("Remove account", action_texts)
+        forbidden = {
+            "User-Agent",
+            "Generate new colors for the icon",
+            "Restore standard",
+        }
+        self.assertTrue(action_texts.isdisjoint(forbidden))
+
+    def test_account_context_menu_actions_have_no_icons(self):
+        menu = AccountContextMenu(User(id=2, name="Personal"))
+
+        self.assertTrue(menu.edit_action.icon().isNull())
+        self.assertTrue(menu.remove_action.icon().isNull())
+
+    def test_account_context_menu_reflects_disabled_state_and_preserves_dnd(self):
         source = QImage(256, 256, QImage.Format.Format_RGB32)
-        source.fill(QColor("#a16207"))
+        source.fill(QColor("#4338ca"))
         photo = UserIcon.photo_from_image(source)
-        user = User(
-            icon=UserIcon.persisted_image(
-                UserIcon.ICON_DEFAULT,
-                photo,
-                use_photo=True,
-            )
-        )
+        user = User(id=2, name="Personal", icon=photo, enable=False)
         model = CardUserModel(user)
+        model.notifications_enabled = False
 
-        model.regenerate_icon()
-        self.assertFalse(UserIcon.is_photo(user.icon))
-        self.assertEqual(UserIcon.photo(user.icon), photo)
-        self.assertNotEqual(
-            UserIcon.default_icon(user.icon),
-            UserIcon.ICON_DEFAULT,
+        menu = CardUserController.create_page_button_context_menu(
+            None,
+            user,
         )
 
-        model.restore_default_icon()
-        self.assertEqual(UserIcon.photo(user.icon), photo)
-        self.assertEqual(
-            UserIcon.default_icon(user.icon),
-            UserIcon.ICON_DEFAULT,
+        self.assertTrue(menu.disable_switch.isChecked())
+        self.assertTrue(menu.notifications_switch.isChecked())
+        self.assertFalse(menu.notifications_switch.isEnabled())
+        self.assertTrue(menu.notifications_switch.accessibleDescription())
+        self.assertIn("Disabled", menu.state_label.text())
+        pixel = menu.avatar.pixmap().toImage().pixelColor(
+            menu.AVATAR_SIZE // 2,
+            menu.AVATAR_SIZE // 2,
         )
+        self.assertEqual(pixel.red(), pixel.green())
+        self.assertEqual(pixel.green(), pixel.blue())
+
+    def test_account_context_menu_switches_reuse_existing_business_flow(self):
+        user = User(id=2, name="Personal", enable=True)
+        model = CardUserModel(user)
+        model.notifications_enabled = True
+        browser = Mock()
+        menu = CardUserController.create_page_button_context_menu(
+            None,
+            user,
+        )
+
+        with patch.object(
+            CardUserController,
+            "_get_browser",
+            return_value=browser,
+        ):
+            menu.notifications_switch.click()
+            menu.disable_switch.click()
+
+        self.assertFalse(model.notifications_enabled)
+        self.assertFalse(user.enable)
+        self.assertTrue(menu.notifications_switch.isChecked())
+        self.assertFalse(menu.notifications_switch.isEnabled())
+        self.assertEqual(browser.update_icons_page_button.call_count, 2)
+        browser.disable_page.assert_called_once_with(user)
+
+    def test_account_context_menu_rows_and_keyboard_toggle_switches(self):
+        menu = AccountContextMenu(User(id=2, name="Personal"))
+        menu.show()
+        self.app.processEvents()
+
+        menu.edit_action.setFocus()
+        QTest.keyClick(menu.edit_action, Qt.Key.Key_Down)
+        self.assertTrue(menu.notifications_switch.hasFocus())
+
+        QTest.keyClick(menu.notifications_switch, Qt.Key.Key_Space)
+        self.assertTrue(menu.notifications_switch.isChecked())
+
+        menu.notifications_switch.setChecked(False)
+        QTest.mouseClick(
+            menu.notifications_row,
+            Qt.MouseButton.LeftButton,
+            pos=QPoint(16, menu.notifications_row.height() // 2),
+        )
+        self.assertTrue(menu.notifications_switch.isChecked())
+
+        QTest.keyClick(menu.notifications_switch, Qt.Key.Key_Down)
+        self.assertTrue(menu.disable_switch.hasFocus())
+        QTest.keyClick(menu.disable_switch, Qt.Key.Key_Down)
+        self.assertTrue(menu.remove_action.hasFocus())
+        QTest.keyClick(menu.remove_action, Qt.Key.Key_Up)
+        self.assertTrue(menu.disable_switch.hasFocus())
+
+        QTest.keyClick(menu.disable_switch, Qt.Key.Key_Escape)
+        self.assertFalse(menu.isVisible())
+
+    def test_account_context_menu_tab_order_and_enter_activation(self):
+        menu = AccountContextMenu(User(id=2, name="Personal"))
+        edit_requests = []
+        menu.edit_requested.connect(lambda: edit_requests.append(True))
+        menu.show()
+        self.app.processEvents()
+
+        menu.edit_action.setFocus()
+        QTest.keyClick(menu.edit_action, Qt.Key.Key_Tab)
+        self.assertTrue(menu.notifications_switch.hasFocus())
+        QTest.keyClick(menu.notifications_switch, Qt.Key.Key_Tab)
+        self.assertTrue(menu.disable_switch.hasFocus())
+        QTest.keyClick(
+            menu.disable_switch,
+            Qt.Key.Key_Tab,
+            Qt.KeyboardModifier.ShiftModifier,
+        )
+        self.assertTrue(menu.notifications_switch.hasFocus())
+
+        menu.edit_action.setFocus()
+        QTest.keyClick(menu.edit_action, Qt.Key.Key_Return)
+        self.assertEqual(edit_requests, [True])
+        self.assertFalse(menu.isVisible())
+
+    def test_account_context_menu_waits_for_keyboard_before_focusing_action(self):
+        menu = AccountContextMenu(User(id=2, name="Personal"))
+        menu.popup(QPoint(20, 20))
+        self.app.processEvents()
+
+        self.assertTrue(menu.hasFocus())
+        self.assertFalse(
+            any(control.hasFocus() for control in menu._controls())
+        )
+
+        QTest.keyClick(menu, Qt.Key.Key_Tab)
+        self.assertTrue(menu.edit_action.hasFocus())
+
+        menu.setFocus()
+        QTest.keyClick(menu, Qt.Key.Key_Up)
+        self.assertTrue(menu.remove_action.hasFocus())
+
+    def test_account_context_menu_edit_and_remove_delegate_to_existing_flows(self):
+        user = User(id=2, name="Personal")
+
+        with patch.object(
+            CardUserController,
+            "edit_user",
+            return_value=False,
+        ) as edit_user:
+            edit_menu = CardUserController.create_page_button_context_menu(
+                None,
+                user,
+            )
+            edit_menu.edit_action.click()
+        edit_user.assert_called_once_with(None, user)
+
+        with patch.object(
+            CardUserController,
+            "delete_user",
+            return_value=False,
+        ) as delete_user:
+            remove_menu = CardUserController.create_page_button_context_menu(
+                None,
+                user,
+            )
+            remove_menu.remove_action.click()
+        delete_user.assert_called_once_with(None, user)
+
+    def test_default_account_keeps_remove_action_visible_but_disabled(self):
+        menu = CardUserController.create_page_button_context_menu(
+            None,
+            User(id=User.USER_DEFAULT, name="Default"),
+        )
+
+        self.assertFalse(menu.remove_action.isHidden())
+        self.assertFalse(menu.remove_action.isEnabled())
+        self.assertTrue(menu.remove_action.toolTip())
+        self.assertTrue(menu.remove_action.accessibleDescription())
 
     def test_card_avatar_is_grayscale_only_when_account_is_disabled(self):
         source = QImage(256, 256, QImage.Format.Format_RGB32)

@@ -37,6 +37,7 @@ class BrowserController(BrowserView):
         self._sidebar_expanded_width = 72
         self._sidebar_animation_group = None
         self._last_active_webview = None
+        self._account_context_menu = None
         self._shutting_down = False
 
         self._initialize()
@@ -373,8 +374,20 @@ class BrowserController(BrowserView):
 
     def _show_page_button_context_menu(self, button: BrowserPageButton, position):
         """Exibe no botão da conta o menu com as opções do CardUser."""
+        if self._account_context_menu is not None:
+            self._account_context_menu.close()
         menu = CardUser.create_page_button_context_menu(self, button.user)
-        menu.exec(button.mapToGlobal(position))
+        self._account_context_menu = menu
+        menu.destroyed.connect(
+            lambda _object=None, popup=menu: (
+                self._clear_account_context_menu(popup)
+            )
+        )
+        menu.popup(button.mapToGlobal(position))
+
+    def _clear_account_context_menu(self, menu):
+        if self._account_context_menu is menu:
+            self._account_context_menu = None
 
     def close_pages(self):
         """Fecha e limpa todas as páginas existentes."""
