@@ -2,7 +2,7 @@
 
 from unittest.mock import patch
 
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import QRectF, QSize, Qt
 from PyQt6.QtGui import QColor, QImage, QPalette
 from PyQt6.QtTest import QTest
 
@@ -59,25 +59,49 @@ class BrowserPageButtonUiTests(QtTestCase):
             AccountIndicatorState.INACTIVE,
         )
 
-    def test_indicator_is_proportional_anchored_and_inside_card(self):
+    def test_indicator_is_proportional_top_right_and_clear_of_card_edge(self):
         button = BrowserPageButton(self._user())
         button.update_notifications(3)
-        indicator = button.indicator_rect()
-        dot_size = (
-            button.ICON_SIZE
-            * button.INDICATOR_RATIO
+        card_gap = max(
+            button.MIN_INDICATOR_CARD_GAP,
+            button.BUTTON_SIZE * button.INDICATOR_CARD_GAP_RATIO,
         )
 
-        self.assertGreaterEqual(dot_size, button.ICON_SIZE * 0.20)
-        self.assertLessEqual(dot_size, button.ICON_SIZE * 0.25)
-        self.assertGreater(indicator.left(), button.width() / 2)
-        self.assertGreater(indicator.top(), button.height() / 2)
-        self.assertLess(indicator.right(), button.width())
-        self.assertLess(indicator.bottom(), button.height())
+        for icon_size in (28, button.ICON_SIZE, 40):
+            with self.subTest(icon_size=icon_size):
+                button.setIconSize(QSize(icon_size, icon_size))
+                indicator = button.indicator_rect()
+                avatar = QRectF(
+                    (button.width() - icon_size) / 2,
+                    (button.height() - icon_size) / 2,
+                    icon_size,
+                    icon_size,
+                )
+                dot_size = max(
+                    button.MIN_INDICATOR_SIZE,
+                    icon_size * button.INDICATOR_RATIO,
+                )
+
+                self.assertGreaterEqual(dot_size, icon_size * 0.20)
+                self.assertLessEqual(dot_size, icon_size * 0.25)
+                self.assertGreater(indicator.left(), button.width() / 2)
+                self.assertLess(indicator.bottom(), button.height() / 2)
+                self.assertGreaterEqual(indicator.top(), card_gap)
+                self.assertLessEqual(
+                    indicator.right(),
+                    button.width() - card_gap,
+                )
+                self.assertTrue(indicator.intersects(avatar))
+                self.assertFalse(avatar.contains(indicator))
+
         self.assertEqual(button.minimumWidth(), button.BUTTON_SIZE)
         self.assertEqual(button.maximumWidth(), button.BUTTON_SIZE)
         self.assertEqual(button.minimumHeight(), button.BUTTON_SIZE)
         self.assertEqual(button.maximumHeight(), button.BUTTON_SIZE)
+
+        normal_rect = button.indicator_rect()
+        button.selected()
+        self.assertEqual(button.indicator_rect(), normal_rect)
 
     def test_indicator_uses_theme_activity_and_card_background_colors(self):
         button = BrowserPageButton(self._user())

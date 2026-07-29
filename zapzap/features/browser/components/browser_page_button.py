@@ -38,8 +38,10 @@ class BrowserPageButton(QPushButton):
     BORDER_RADIUS = 12
     INDICATOR_RATIO = 0.23
     INDICATOR_BORDER_RATIO = 0.22
+    INDICATOR_CARD_GAP_RATIO = 0.06
     MIN_INDICATOR_SIZE = 6.0
     MIN_INDICATOR_BORDER = 1.5
+    MIN_INDICATOR_CARD_GAP = 2.0
 
     STYLE_NORMAL = f"""
     QPushButton {{
@@ -198,16 +200,29 @@ class BrowserPageButton(QPushButton):
         )
         outer_size = dot_size + (2 * border_width)
         content = QRectF(self.contentsRect())
+        card_gap = max(
+            self.MIN_INDICATOR_CARD_GAP,
+            min(content.width(), content.height())
+            * self.INDICATOR_CARD_GAP_RATIO,
+        )
         avatar = QRectF(
             content.center().x() - (icon_size / 2),
             content.center().y() - (icon_size / 2),
             icon_size,
             icon_size,
         )
-        center = avatar.bottomRight()
+        radius = outer_size / 2
+        center_x = min(
+            avatar.right(),
+            content.right() - card_gap - radius,
+        )
+        center_y = max(
+            avatar.top(),
+            content.top() + card_gap + radius,
+        )
         return QRectF(
-            center.x() - (outer_size / 2),
-            center.y() - (outer_size / 2),
+            center_x - radius,
+            center_y - radius,
             outer_size,
             outer_size,
         )
