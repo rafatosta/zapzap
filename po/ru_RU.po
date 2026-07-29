@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-29 16:24-0300\n"
+"POT-Creation-Date: 2026-07-29 16:34-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Russian\n"
@@ -1095,8 +1095,8 @@ msgstr "Несохраненные изменения отброшены."
 #: zapzap/features/settings/components/card_user/card_user_controller.py:160
 #: zapzap/features/settings/components/card_user/card_user_view.py:234
 #: zapzap/features/settings/components/card_user/card_user_view.py:299
-#: zapzap/features/settings/components/card_user/card_user_view.py:468
-#: zapzap/features/settings/components/card_user/card_user_view.py:683
+#: zapzap/features/settings/components/card_user/card_user_view.py:469
+#: zapzap/features/settings/components/card_user/card_user_view.py:684
 msgid "Unnamed account"
 msgstr "Неименованный аккаунт"
 
@@ -2921,8 +2921,8 @@ msgstr "Не удалось изменить состояние уведомле
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:167
 #: zapzap/features/settings/components/card_user/card_user_view.py:149
 #: zapzap/features/settings/components/card_user/card_user_view.py:150
-#: zapzap/features/settings/components/card_user/card_user_view.py:482
-#: zapzap/features/settings/components/card_user/card_user_view.py:485
+#: zapzap/features/settings/components/card_user/card_user_view.py:483
+#: zapzap/features/settings/components/card_user/card_user_view.py:486
 msgid "Edit account"
 msgstr "Редактировать аккаунт"
 
@@ -3035,8 +3035,8 @@ msgstr "Продолжить редактирование"
 #: zapzap/features/settings/components/card_user/card_user_view.py:158
 #: zapzap/features/settings/components/card_user/card_user_view.py:159
 #: zapzap/features/settings/components/card_user/card_user_view.py:282
-#: zapzap/features/settings/components/card_user/card_user_view.py:505
-#: zapzap/features/settings/components/card_user/card_user_view.py:509
+#: zapzap/features/settings/components/card_user/card_user_view.py:506
+#: zapzap/features/settings/components/card_user/card_user_view.py:510
 msgid "Remove account"
 msgstr "Удалить аккаунт"
 
@@ -3068,7 +3068,7 @@ msgstr "Отключена"
 #: zapzap/features/settings/components/card_user/card_user_view.py:190
 #: zapzap/features/settings/components/card_user/card_user_view.py:194
 #: zapzap/features/settings/components/card_user/card_user_view.py:307
-#: zapzap/features/settings/components/card_user/card_user_view.py:489
+#: zapzap/features/settings/components/card_user/card_user_view.py:490
 msgid "Do not disturb"
 msgstr "Не беспокоить"
 
@@ -3077,12 +3077,12 @@ msgid "Silences notifications for this account."
 msgstr "Отключает уведомления для этой учетной записи."
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:249
-#: zapzap/features/settings/components/card_user/card_user_view.py:676
+#: zapzap/features/settings/components/card_user/card_user_view.py:677
 msgid "Unavailable while the account is disabled."
 msgstr "Недоступно, пока учётная запись отключена."
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:284
-#: zapzap/features/settings/components/card_user/card_user_view.py:645
+#: zapzap/features/settings/components/card_user/card_user_view.py:646
 msgid "The default account cannot be removed."
 msgstr "Аккаунт по умолчанию не может быть удален."
 
@@ -3091,29 +3091,29 @@ msgstr "Аккаунт по умолчанию не может быть удал
 msgid "Account"
 msgstr "Учётная запись"
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:496
+#: zapzap/features/settings/components/card_user/card_user_view.py:497
 msgid "Disable account"
 msgstr "Отключить учётную запись"
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:511
-#: zapzap/features/settings/components/card_user/card_user_view.py:643
+#: zapzap/features/settings/components/card_user/card_user_view.py:512
+#: zapzap/features/settings/components/card_user/card_user_view.py:644
 msgid "Destructive action: removes this account."
 msgstr "Необратимое действие: удаляет эту учётную запись."
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:656
+#: zapzap/features/settings/components/card_user/card_user_view.py:657
 msgid "Active account"
 msgstr "Активная учётная запись"
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:658
+#: zapzap/features/settings/components/card_user/card_user_view.py:659
 msgid "Disabled account"
 msgstr "Отключённая учётная запись"
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:685
+#: zapzap/features/settings/components/card_user/card_user_view.py:686
 #, python-brace-format
 msgid "Account {name}, active."
 msgstr "Учётная запись {name} активна."
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:687
+#: zapzap/features/settings/components/card_user/card_user_view.py:688
 #, python-brace-format
 msgid "Account {name}, disabled."
 msgstr "Учётная запись {name} отключена."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-29 16:24-0300\n"
+"POT-Creation-Date: 2026-07-29 16:34-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Arabic\n"
@@ -1066,8 +1066,8 @@ msgstr "تم تجاهل التغييرات غير المحفوظة."
 #: zapzap/features/settings/components/card_user/card_user_controller.py:160
 #: zapzap/features/settings/components/card_user/card_user_view.py:234
 #: zapzap/features/settings/components/card_user/card_user_view.py:299
-#: zapzap/features/settings/components/card_user/card_user_view.py:468
-#: zapzap/features/settings/components/card_user/card_user_view.py:683
+#: zapzap/features/settings/components/card_user/card_user_view.py:469
+#: zapzap/features/settings/components/card_user/card_user_view.py:684
 msgid "Unnamed account"
 msgstr "حساب بدون اسم"
 
@@ -2852,8 +2852,8 @@ msgstr "تعذر تغيير حالة الإشعارات."
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:167
 #: zapzap/features/settings/components/card_user/card_user_view.py:149
 #: zapzap/features/settings/components/card_user/card_user_view.py:150
-#: zapzap/features/settings/components/card_user/card_user_view.py:482
-#: zapzap/features/settings/components/card_user/card_user_view.py:485
+#: zapzap/features/settings/components/card_user/card_user_view.py:483
+#: zapzap/features/settings/components/card_user/card_user_view.py:486
 msgid "Edit account"
 msgstr "تحرير الحساب"
 
@@ -2963,8 +2963,8 @@ msgstr "متابعة التحرير"
 #: zapzap/features/settings/components/card_user/card_user_view.py:158
 #: zapzap/features/settings/components/card_user/card_user_view.py:159
 #: zapzap/features/settings/components/card_user/card_user_view.py:282
-#: zapzap/features/settings/components/card_user/card_user_view.py:505
-#: zapzap/features/settings/components/card_user/card_user_view.py:509
+#: zapzap/features/settings/components/card_user/card_user_view.py:506
+#: zapzap/features/settings/components/card_user/card_user_view.py:510
 msgid "Remove account"
 msgstr "إزالة الحساب"
 
@@ -2994,7 +2994,7 @@ msgstr "معطّل"
 #: zapzap/features/settings/components/card_user/card_user_view.py:190
 #: zapzap/features/settings/components/card_user/card_user_view.py:194
 #: zapzap/features/settings/components/card_user/card_user_view.py:307
-#: zapzap/features/settings/components/card_user/card_user_view.py:489
+#: zapzap/features/settings/components/card_user/card_user_view.py:490
 msgid "Do not disturb"
 msgstr "عدم الإزعاج"
 
@@ -3003,12 +3003,12 @@ msgid "Silences notifications for this account."
 msgstr "كتم صوت الإشعارات لهذا الحساب."
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:249
-#: zapzap/features/settings/components/card_user/card_user_view.py:676
+#: zapzap/features/settings/components/card_user/card_user_view.py:677
 msgid "Unavailable while the account is disabled."
 msgstr "غير متاح أثناء تعطيل الحساب."
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:284
-#: zapzap/features/settings/components/card_user/card_user_view.py:645
+#: zapzap/features/settings/components/card_user/card_user_view.py:646
 msgid "The default account cannot be removed."
 msgstr "لا يمكن إزالة الحساب الافتراضي."
 
@@ -3017,29 +3017,29 @@ msgstr "لا يمكن إزالة الحساب الافتراضي."
 msgid "Account"
 msgstr "الحساب"
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:496
+#: zapzap/features/settings/components/card_user/card_user_view.py:497
 msgid "Disable account"
 msgstr "تعطيل الحساب"
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:511
-#: zapzap/features/settings/components/card_user/card_user_view.py:643
+#: zapzap/features/settings/components/card_user/card_user_view.py:512
+#: zapzap/features/settings/components/card_user/card_user_view.py:644
 msgid "Destructive action: removes this account."
 msgstr "إجراء تدميري: يزيل هذا الحساب."
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:656
+#: zapzap/features/settings/components/card_user/card_user_view.py:657
 msgid "Active account"
 msgstr "حساب نشط"
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:658
+#: zapzap/features/settings/components/card_user/card_user_view.py:659
 msgid "Disabled account"
 msgstr "حساب معطّل"
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:685
+#: zapzap/features/settings/components/card_user/card_user_view.py:686
 #, python-brace-format
 msgid "Account {name}, active."
 msgstr "الحساب {name}، نشط."
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:687
+#: zapzap/features/settings/components/card_user/card_user_view.py:688
 #, python-brace-format
 msgid "Account {name}, disabled."
 msgstr "الحساب {name}، معطّل."
