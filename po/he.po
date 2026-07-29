@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-29 14:33-0300\n"
+"POT-Creation-Date: 2026-07-29 16:24-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Hebrew\n"
@@ -112,12 +112,12 @@ msgstr "כן"
 msgid "No"
 msgstr "לא"
 
-#: zapzap/features/alerts/alert_manager.py:241
+#: zapzap/features/alerts/alert_manager.py:244
 #: zapzap/features/settings/pages/about/view.py:279
 msgid "Information"
 msgstr "פרטים"
 
-#: zapzap/features/alerts/alert_manager.py:243
+#: zapzap/features/alerts/alert_manager.py:246
 #, python-brace-format
 msgid ""
 "Limit of {} users reached.\n"
@@ -126,21 +126,21 @@ msgstr ""
 "הגעת למגבלה של {} משתמשים.\n"
 "אי אפשר לייצור משתמשים נוספים!"
 
-#: zapzap/features/alerts/alert_manager.py:250
+#: zapzap/features/alerts/alert_manager.py:253
 msgid "Attention"
 msgstr "נא לשים לב"
 
-#: zapzap/features/alerts/alert_manager.py:250
+#: zapzap/features/alerts/alert_manager.py:253
 msgid "No active account!"
 msgstr "אין חשבון פעיל!"
 
-#: zapzap/features/donation/view.py:207 zapzap/features/shortcuts/view.py:60
+#: zapzap/features/donation/view.py:213 zapzap/features/shortcuts/view.py:60
 #: zapzap/features/settings/pages/debugging/view.py:373
 #: zapzap/ui/main_window/main_window_view.py:133
 msgid "ZapZap"
 msgstr "ZapZap"
 
-#: zapzap/features/donation/view.py:210
+#: zapzap/features/donation/view.py:216
 msgid ""
 "Your donation helps keep the project running, improve resources and "
 "guarantee your privacy and freedom."
@@ -148,15 +148,15 @@ msgstr ""
 "התרומה שלך עוזרת להמשיך את הפרויקט לפעול, לשפר משאבים ולהבטיח את הפרטיות "
 "והחופש שלך."
 
-#: zapzap/features/donation/view.py:214
+#: zapzap/features/donation/view.py:220
 msgid "❤ Make a donation"
 msgstr "❤ תרום תרומה"
 
-#: zapzap/features/donation/view.py:215
+#: zapzap/features/donation/view.py:221
 msgid "Don't show again"
 msgstr "אל תראה שוב"
 
-#: zapzap/features/donation/view.py:216
+#: zapzap/features/donation/view.py:222
 msgid "Learn more about ZapZap ↗"
 msgstr "למידע נוסף על ZapZap ↗"
 
@@ -806,7 +806,7 @@ msgstr "שיחה חדשה לפי מספר טלפון"
 
 #: zapzap/features/shortcuts/model.py:50
 #: zapzap/features/browser/components/browser_sidebar.py:145
-#: zapzap/features/browser/shell/browser_controller.py:283
+#: zapzap/features/browser/shell/browser_controller.py:284
 msgid "New account"
 msgstr "חשבון חדש"
 
@@ -1061,7 +1061,11 @@ msgstr "שינויים שלא נשמרו נמחקו."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:197
 #: zapzap/features/settings/pages/network_privacy/controller.py:58
-#: zapzap/features/settings/components/card_user/card_user_view.py:145
+#: zapzap/features/settings/components/card_user/card_user_controller.py:160
+#: zapzap/features/settings/components/card_user/card_user_view.py:234
+#: zapzap/features/settings/components/card_user/card_user_view.py:299
+#: zapzap/features/settings/components/card_user/card_user_view.py:468
+#: zapzap/features/settings/components/card_user/card_user_view.py:683
 msgid "Unnamed account"
 msgstr "חשבון ללא שם"
 
@@ -1133,7 +1137,7 @@ msgid "No preview available."
 msgstr "אין תצוגה מקדימה זמינה."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:429
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:273
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:660
 msgid "Could not load preview image."
 msgstr "לא ניתן היה לטעון את תמונת התצוגה המקדימה."
 
@@ -1165,7 +1169,7 @@ msgid "Could not set preview image."
 msgstr "לא ניתן להגדיר תמונת תצוגה מקדימה."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:526
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:293
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:679
 msgid "Preview image updated."
 msgstr "תמונת תצוגה מקדימה עודכנה."
 
@@ -1223,14 +1227,15 @@ msgstr "Ctrl+S to save"
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:648
 #: zapzap/features/settings/pages/network_privacy/controller.py:293
 #: zapzap/features/settings/pages/network_privacy/controller.py:341
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:160
+#: zapzap/features/settings/components/card_user/card_user_controller.py:175
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:456
 #: zapzap/features/downloads/ui/download_dialog.py:120
 msgid "Cancel"
 msgstr "בטל"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:649
 #: zapzap/features/settings/pages/advanced_customizations/view.py:418
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:161
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:458
 #: zapzap/features/downloads/ui/download_dialog.py:103
 msgid "Save"
 msgstr "שמירה"
@@ -1361,7 +1366,7 @@ msgid "File actions"
 msgstr "פעולות קובץ"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:161
-#: zapzap/features/settings/components/card_user/card_user_controller.py:115
+#: zapzap/features/settings/components/card_user/card_user_view.py:148
 msgid "Edit"
 msgstr "ערוך"
 
@@ -1374,7 +1379,6 @@ msgid "Open location"
 msgstr "מיקום פתוח"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:165
-#: zapzap/features/settings/components/card_user/card_user_controller.py:260
 msgid "Delete"
 msgstr "מחיקה"
 
@@ -1490,6 +1494,7 @@ msgstr "● ישנם שינויים שלא נשמרו."
 #: zapzap/features/settings/pages/advanced_customizations/view.py:417
 #: zapzap/features/settings/pages/network_privacy/controller.py:287
 #: zapzap/features/settings/pages/network_privacy/view.py:110
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:770
 msgid "Discard"
 msgstr "לזרוק"
 
@@ -1503,8 +1508,9 @@ msgstr "טען מחדש את הדף"
 
 #: zapzap/features/settings/pages/appearance/controller.py:72
 #: zapzap/features/settings/pages/appearance/view.py:95
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:98
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:149
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:276
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:418
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:424
 msgid "Default"
 msgstr "ברירת מחדל"
 
@@ -1594,7 +1600,7 @@ msgid "Symbolic dark"
 msgstr "כהה סמלי"
 
 #: zapzap/features/settings/pages/appearance/view.py:118
-#: zapzap/features/browser/shell/browser_controller.py:93
+#: zapzap/features/browser/shell/browser_controller.py:94
 msgid "Grid view"
 msgstr "תצוגת רשת"
 
@@ -2772,148 +2778,258 @@ msgstr "דורש הפעלה מחדש"
 msgid "Wayland changes require restart"
 msgstr "שינויים ב-Wayland דורשים הפעלה מחדש"
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:35
-#: zapzap/features/settings/components/card_user/card_user_view.py:36
-msgid "Account actions"
-msgstr "פעולות בחשבון"
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:103
-#: zapzap/features/settings/components/card_user/card_user_view.py:104
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:106
-msgid "Change icon"
-msgstr "שנה סמל"
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:121
-msgid "Account status"
-msgstr "מצב החשבון"
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:123
-msgid ""
-"Disabled accounts remain saved, but are not loaded and do not receive "
-"notifications."
-msgstr "חשבונות מושבתים נשארים שמורים, אך אינם נטענים ואינם מקבלים התראות."
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:127
-msgid "Enabled"
-msgstr "פעיל"
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:128
-msgid "Disabled"
-msgstr "מושבת"
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:138
-#: zapzap/features/settings/components/card_user/card_user_controller.py:221
-msgid "Do not disturb"
-msgstr "לא להפריע"
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:139
-msgid "Silences notifications for this account."
-msgstr "משתיק הודעות עבור חשבון זה."
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:56
+#: zapzap/features/settings/components/card_user/card_user_controller.py:60
+#: zapzap/features/settings/components/card_user/card_user_controller.py:231
+#: zapzap/features/settings/components/card_user/card_user_controller.py:243
 msgid "Could not update account"
 msgstr "לא ניתן לעדכן את החשבון"
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:57
+#: zapzap/features/settings/components/card_user/card_user_controller.py:61
+#: zapzap/features/settings/components/card_user/card_user_controller.py:244
 msgid "The account state could not be changed."
 msgstr "לא ניתן לשנות את מצב החשבון."
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:120
-msgid "Remove account"
-msgstr "הסר חשבון"
+#: zapzap/features/settings/components/card_user/card_user_controller.py:80
+#: zapzap/features/settings/components/card_user/card_user_controller.py:193
+msgid "Could not remove account"
+msgstr "לא ניתן להסיר את החשבון"
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:125
-msgid "The default account cannot be removed."
-msgstr "לא ניתן להסיר את חשבון ברירת המחדל."
+#: zapzap/features/settings/components/card_user/card_user_controller.py:81
+#: zapzap/features/settings/components/card_user/card_user_controller.py:194
+msgid "The account could not be removed. Please try again."
+msgstr "לא ניתן להסיר את החשבון. נא לנסות שוב."
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:167
-msgid "Confirm exclusion"
-msgstr "אישור החרגה"
+#: zapzap/features/settings/components/card_user/card_user_controller.py:157
+msgid "Remove account?"
+msgstr "להסיר את החשבון?"
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:168
-msgid "Are you sure you want to delete this item?"
-msgstr "למחוק את הפריט?"
+#: zapzap/features/settings/components/card_user/card_user_controller.py:159
+#, python-brace-format
+msgid "The account \"{name}\" will be removed from ZapZap."
+msgstr "החשבון „{name}” יוסר מ-ZapZap."
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:197
+#: zapzap/features/settings/components/card_user/card_user_controller.py:162
+msgid ""
+"Its session will be closed and related local data may be permanently "
+"removed. This action cannot be undone."
+msgstr ""
+"ההפעלה שלו תיסגר וייתכן שנתונים מקומיים קשורים יימחקו לצמיתות. לא ניתן לבטל "
+"פעולה זו."
+
+#: zapzap/features/settings/components/card_user/card_user_controller.py:169
+#: zapzap/features/settings/components/card_user/card_user_view.py:153
+msgid "Remove"
+msgstr "הסרה"
+
+#: zapzap/features/settings/components/card_user/card_user_controller.py:204
 msgid "User-Agent Changed"
 msgstr "User-Agent השתנה"
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:199
+#: zapzap/features/settings/components/card_user/card_user_controller.py:206
 msgid ""
 "Please restart this session (or the application) to apply the new User-Agent."
 msgstr ""
 "אנא הפעל מחדש את ההפעלה הזו (או את האפליקציה) כדי להחיל את ה-User-Agent החדש."
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:208
-#: zapzap/features/settings/components/card_user/card_user_controller.py:251
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:117
-msgid "Generate new colors for the icon"
-msgstr "צור צבעים חדשים עבור הסמל"
+#: zapzap/features/settings/components/card_user/card_user_controller.py:232
+msgid "The notification state could not be changed."
+msgstr "לא ניתן לשנות את מצב ההתראות."
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:211
-#: zapzap/features/settings/components/card_user/card_user_controller.py:254
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:119
-msgid "Restore standard"
-msgstr "שחזור רגיל"
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:228
-msgid "Disable"
-msgstr "כיבוי"
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:235
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:146
-msgid "User-Agent"
-msgstr "משתמש-סוכן"
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:59
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:84
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:65
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:167
+#: zapzap/features/settings/components/card_user/card_user_view.py:149
+#: zapzap/features/settings/components/card_user/card_user_view.py:150
+#: zapzap/features/settings/components/card_user/card_user_view.py:482
+#: zapzap/features/settings/components/card_user/card_user_view.py:485
 msgid "Edit account"
 msgstr "ערוך חשבון"
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:86
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:73
+#: zapzap/features/browser/shell/browser_controller.py:161
+#: zapzap/ui/components/close_button.py:66
+msgid "Close"
+msgstr "סגור"
+
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:243
 msgid "Change the name and icon used to identify this account."
 msgstr "שנה את השם והסמל המשמשים לזיהוי חשבון זה."
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:92
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:94
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:251
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:253
 msgid "Account name"
 msgstr "שם חשבון"
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:97
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:257
+msgid "Account name error"
+msgstr "שגיאה בשם החשבון"
+
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:265
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:285
 msgid "Account icon"
 msgstr "סמל חשבון"
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:99
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:277
 msgid "Photo"
 msgstr "תמונה"
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:128
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:130
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:256
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:307
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:315
+msgid "Current icon"
+msgstr "הסמל הנוכחי"
+
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:326
+msgid "Change icon"
+msgstr "שנה סמל"
+
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:331
+msgid "Generate new colors for the icon"
+msgstr "צור צבעים חדשים עבור הסמל"
+
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:333
+msgid "Restore standard"
+msgstr "שחזור רגיל"
+
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:343
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:351
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:649
 msgid "Choose photo"
 msgstr "בחירת תמונה"
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:133
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:142
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:358
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:371
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:701
 msgid "Keep current icon"
 msgstr "שמור על הסמל הנוכחי"
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:145
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:384
 msgid "Advanced options"
 msgstr "אפשרויות מתקדמות"
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:155
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:396
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:415
+msgid "User-Agent"
+msgstr "משתמש-סוכן"
+
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:402
 msgid "Changes the identification used by this account when loading pages."
 msgstr "משנה את הזיהוי שבו משתמש חשבון זה בעת טעינת דפים."
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:218
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:406
+msgid "User-Agent information"
+msgstr "מידע על סוכן המשתמש"
+
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:611
 msgid "New icon colors selected."
 msgstr "נבחרו צבעי סמל חדשים."
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:226
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:239
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:616
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:629
 msgid "Standard icon selected."
 msgstr "נבחר סמל סטנדרטי."
+
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:728
+msgid "Account name is required."
+msgstr "נדרש שם חשבון."
+
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:763
+msgid "Discard account changes?"
+msgstr "לבטל את השינויים בחשבון?"
+
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:764
+msgid "There are unsaved changes to this account."
+msgstr "יש שינויים שלא נשמרו בחשבון זה."
+
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:765
+msgid "Discarding them restores the values from before editing."
+msgstr "ביטולם ישחזר את הערכים מלפני העריכה."
+
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:776
+msgid "Keep editing"
+msgstr "המשך עריכה"
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:158
+#: zapzap/features/settings/components/card_user/card_user_view.py:159
+#: zapzap/features/settings/components/card_user/card_user_view.py:282
+#: zapzap/features/settings/components/card_user/card_user_view.py:505
+#: zapzap/features/settings/components/card_user/card_user_view.py:509
+msgid "Remove account"
+msgstr "הסר חשבון"
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:173
+#: zapzap/features/settings/components/card_user/card_user_view.py:306
+msgid "Account status"
+msgstr "מצב החשבון"
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:175
+msgid ""
+"Disabled accounts remain saved, but are not loaded and do not receive "
+"notifications."
+msgstr "חשבונות מושבתים נשארים שמורים, אך אינם נטענים ואינם מקבלים התראות."
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:179
+#: zapzap/features/settings/components/card_user/card_user_view.py:300
+#: zapzap/features/settings/components/card_user/card_user_view.py:302
+msgid "Enabled"
+msgstr "פעיל"
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:180
+#: zapzap/features/settings/components/card_user/card_user_view.py:300
+#: zapzap/features/settings/components/card_user/card_user_view.py:302
+msgid "Disabled"
+msgstr "מושבת"
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:190
+#: zapzap/features/settings/components/card_user/card_user_view.py:194
+#: zapzap/features/settings/components/card_user/card_user_view.py:307
+#: zapzap/features/settings/components/card_user/card_user_view.py:489
+msgid "Do not disturb"
+msgstr "לא להפריע"
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:191
+msgid "Silences notifications for this account."
+msgstr "משתיק הודעות עבור חשבון זה."
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:249
+#: zapzap/features/settings/components/card_user/card_user_view.py:676
+msgid "Unavailable while the account is disabled."
+msgstr "לא זמין כאשר החשבון מושבת."
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:284
+#: zapzap/features/settings/components/card_user/card_user_view.py:645
+msgid "The default account cannot be removed."
+msgstr "לא ניתן להסיר את חשבון ברירת המחדל."
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:304
+#: zapzap/features/browser/web/web_view.py:578
+msgid "Account"
+msgstr "חשבון"
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:496
+msgid "Disable account"
+msgstr "השבתת החשבון"
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:511
+#: zapzap/features/settings/components/card_user/card_user_view.py:643
+msgid "Destructive action: removes this account."
+msgstr "פעולה הרסנית: מסירה את החשבון הזה."
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:656
+msgid "Active account"
+msgstr "חשבון פעיל"
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:658
+msgid "Disabled account"
+msgstr "חשבון מושבת"
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:685
+#, python-brace-format
+msgid "Account {name}, active."
+msgstr "החשבון {name}, פעיל."
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:687
+#, python-brace-format
+msgid "Account {name}, disabled."
+msgstr "החשבון {name}, מושבת."
 
 #: zapzap/features/downloads/ui/download_dialog.py:47
 msgid "Download"
@@ -2951,64 +3067,59 @@ msgstr "בחר חשבון כדי לחזור לצ'אט שלו."
 msgid "No active accounts to display."
 msgstr "אין חשבונות פעילים להצגה."
 
-#: zapzap/features/browser/shell/browser_controller.py:125
+#: zapzap/features/browser/shell/browser_controller.py:126
 msgid "Flatpak sandbox help"
 msgstr "עזרה בארגז חול Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:150
+#: zapzap/features/browser/shell/browser_controller.py:151
 msgid "Flatpak sandbox"
 msgstr "ארגז חול Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:151
+#: zapzap/features/browser/shell/browser_controller.py:152
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap פועל בארגז החול Flatpak."
 
-#: zapzap/features/browser/shell/browser_controller.py:153
+#: zapzap/features/browser/shell/browser_controller.py:154
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
 msgstr ""
 "תכונות מסוימות כמו פתיחת קבצים או גרירה ושחרור עשויות לדרוש הרשאות נוספות."
 
-#: zapzap/features/browser/shell/browser_controller.py:158
+#: zapzap/features/browser/shell/browser_controller.py:159
 msgid "Instructions"
 msgstr "הוראות"
 
-#: zapzap/features/browser/shell/browser_controller.py:159
+#: zapzap/features/browser/shell/browser_controller.py:160
 msgid "Copy command"
 msgstr "העתק פקודה"
 
-#: zapzap/features/browser/shell/browser_controller.py:160
-#: zapzap/ui/components/close_button.py:57
-msgid "Close"
-msgstr "סגור"
-
-#: zapzap/features/browser/shell/browser_controller.py:296
-#: zapzap/features/browser/shell/browser_controller.py:345
+#: zapzap/features/browser/shell/browser_controller.py:297
+#: zapzap/features/browser/shell/browser_controller.py:346
 #, python-brace-format
 msgid "Account {}"
 msgstr "חשבון {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:353
+#: zapzap/features/browser/shell/browser_controller.py:354
 msgid "Account disabled"
 msgstr "החשבון מושבת"
 
-#: zapzap/features/browser/shell/browser_controller.py:354
+#: zapzap/features/browser/shell/browser_controller.py:355
 msgid "This account is disabled."
 msgstr "חשבון זה מושבת."
 
-#: zapzap/features/browser/shell/browser_controller.py:356
+#: zapzap/features/browser/shell/browser_controller.py:357
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "אתה יכול להפעיל אותו מחדש עכשיו או להשתמש בתפריט לחיצה ימנית כדי לנהל חשבון "
 "זה."
 
-#: zapzap/features/browser/shell/browser_controller.py:361
+#: zapzap/features/browser/shell/browser_controller.py:362
 msgid "Activate"
 msgstr "הפעל"
 
-#: zapzap/features/browser/shell/browser_controller.py:362
+#: zapzap/features/browser/shell/browser_controller.py:363
 msgid "Not now"
 msgstr "לא עכשיו"
 
@@ -3108,10 +3219,6 @@ msgstr "בדיקת איות"
 #: zapzap/features/browser/web/web_view.py:372
 msgid "Select Language"
 msgstr "בחירת שפה"
-
-#: zapzap/features/browser/web/web_view.py:578
-msgid "Account"
-msgstr "חשבון"
 
 #: zapzap/features/browser/web/web_view.py:580
 #, python-brace-format
@@ -3245,8 +3352,21 @@ msgstr "האם אתה בטוח שאתה רוצה לסגור?"
 msgid "Don't ask again"
 msgstr "אל תשאל שוב"
 
-#~ msgid "Account active"
-#~ msgstr "חשבון פעיל"
+#~ msgid "Disable"
+#~ msgstr "כיבוי"
+
+#, fuzzy
+#~ msgid "On"
+#~ msgstr "פתיחה"
+
+#~ msgid "Account actions"
+#~ msgstr "פעולות בחשבון"
+
+#~ msgid "Confirm exclusion"
+#~ msgstr "אישור החרגה"
+
+#~ msgid "Are you sure you want to delete this item?"
+#~ msgstr "למחוק את הפריט?"
 
 #, fuzzy
 #~ msgid "Account image"
@@ -3357,10 +3477,6 @@ msgstr "אל תשאל שוב"
 #, fuzzy
 #~ msgid "Restart ZapZap"
 #~ msgstr "ZapZap"
-
-#, fuzzy
-#~ msgid "Disable account"
-#~ msgstr "חשבון חדש"
 
 #, fuzzy
 #~ msgid "Filename"
