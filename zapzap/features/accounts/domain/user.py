@@ -214,7 +214,7 @@ class User:
 
         Args:
             name (str): Nome do usuário. Padrão é string vazia.
-            icon (str): Ícone SVG para o usuário. Gerado automaticamente se None.
+            icon (str): SVG ou foto incorporada do usuário. Gerado automaticamente se None.
             LIMITE_USERS (int): Limite máximo de usuários permitidos. Padrão é 10.
 
         Returns:

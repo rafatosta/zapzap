@@ -1,7 +1,18 @@
-from PyQt6.QtGui import QImage, QPixmap, QIcon
-from PyQt6.QtCore import QSize
+import base64
+import binascii
+import json
 import random
 from enum import Enum
+
+from PyQt6.QtCore import QBuffer, QIODevice, QSize, Qt
+from PyQt6.QtGui import (
+    QIcon,
+    QImage,
+    QImageReader,
+    QPainter,
+    QPainterPath,
+    QPixmap,
+)
 
 
 class UserIcon:
@@ -11,6 +22,10 @@ class UserIcon:
         Default = 1
         Disable = 2
         Silence = 3
+
+    PHOTO_PREFIX = "data:image/png;base64,"
+    PROFILE_PREFIX = "zapzap-account-image:v1:"
+    PHOTO_SIZE = 256
 
     # Constantes para SVGs
     ICON_DEFAULT = """<?xml version="1.0" encoding="utf-8"?>
@@ -65,13 +80,158 @@ class UserIcon:
         return svg.replace('#34c640', UserIcon._generate_random_color())
 
     @staticmethod
+    def is_photo(icon_data: str) -> bool:
+        """Return whether the selected account image is an embedded photo."""
+        profile = UserIcon._profile(icon_data)
+        if profile is not None:
+            return profile["type"] == "photo"
+        return UserIcon._is_raw_photo(icon_data)
+
+    @staticmethod
+    def default_icon(icon_data: str) -> str:
+        """Return the colored default icon retained in persisted account data."""
+        profile = UserIcon._profile(icon_data)
+        if profile is not None:
+            return profile["icon"]
+        if UserIcon._has_profile_prefix(icon_data):
+            return UserIcon.ICON_DEFAULT
+        if UserIcon._is_raw_photo(icon_data):
+            return UserIcon.ICON_DEFAULT
+        return icon_data or UserIcon.ICON_DEFAULT
+
+    @staticmethod
+    def photo(icon_data: str):
+        """Return the retained embedded photo, if any."""
+        profile = UserIcon._profile(icon_data)
+        if profile is not None:
+            return profile["photo"]
+        return icon_data if UserIcon._is_raw_photo(icon_data) else None
+
+    @staticmethod
+    def persisted_image(
+        default_icon: str,
+        photo_data: str = None,
+        use_photo: bool = False,
+    ) -> str:
+        """Build the persisted representation while retaining both choices."""
+        if not photo_data:
+            return default_icon or UserIcon.ICON_DEFAULT
+        profile = {
+            "type": "photo" if use_photo else "icon",
+            "icon": default_icon or UserIcon.ICON_DEFAULT,
+            "photo": photo_data,
+        }
+        return UserIcon.PROFILE_PREFIX + json.dumps(
+            profile,
+            ensure_ascii=False,
+            separators=(",", ":"),
+        )
+
+    @staticmethod
+    def _is_raw_photo(icon_data: str) -> bool:
+        return bool(
+            isinstance(icon_data, str)
+            and icon_data.startswith(UserIcon.PHOTO_PREFIX)
+        )
+
+    @staticmethod
+    def _profile(icon_data: str):
+        if not UserIcon._has_profile_prefix(icon_data):
+            return None
+        try:
+            profile = json.loads(icon_data[len(UserIcon.PROFILE_PREFIX):])
+        except (TypeError, ValueError):
+            return None
+        if (
+            not isinstance(profile, dict)
+            or profile.get("type") not in ("icon", "photo")
+            or not isinstance(profile.get("icon"), str)
+            or not UserIcon._is_raw_photo(profile.get("photo"))
+        ):
+            return None
+        return profile
+
+    @staticmethod
+    def _has_profile_prefix(icon_data: str) -> bool:
+        return bool(
+            isinstance(icon_data, str)
+            and icon_data.startswith(UserIcon.PROFILE_PREFIX)
+        )
+
+    @staticmethod
+    def photo_from_file(file_path: str) -> str:
+        """Load, normalize and encode an account photo for persistence."""
+        reader = QImageReader(file_path)
+        reader.setAutoTransform(True)
+        image = reader.read()
+        if image.isNull():
+            raise ValueError(reader.errorString() or "Invalid image")
+        return UserIcon.photo_from_image(image)
+
+    @staticmethod
+    def photo_from_image(image: QImage) -> str:
+        """Crop an image to a circle and encode it as a bounded PNG data URI."""
+        if image.isNull():
+            raise ValueError("Invalid image")
+
+        side = min(image.width(), image.height())
+        square = image.copy(
+            (image.width() - side) // 2,
+            (image.height() - side) // 2,
+            side,
+            side,
+        ).scaled(
+            QSize(UserIcon.PHOTO_SIZE, UserIcon.PHOTO_SIZE),
+            Qt.AspectRatioMode.IgnoreAspectRatio,
+            Qt.TransformationMode.SmoothTransformation,
+        )
+
+        result = QImage(
+            UserIcon.PHOTO_SIZE,
+            UserIcon.PHOTO_SIZE,
+            QImage.Format.Format_ARGB32_Premultiplied,
+        )
+        result.fill(Qt.GlobalColor.transparent)
+        painter = QPainter(result)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        clip = QPainterPath()
+        clip.addEllipse(0, 0, UserIcon.PHOTO_SIZE, UserIcon.PHOTO_SIZE)
+        painter.setClipPath(clip)
+        painter.drawImage(0, 0, square)
+        painter.end()
+
+        buffer = QBuffer()
+        if not buffer.open(QIODevice.OpenModeFlag.WriteOnly):
+            raise ValueError("Could not encode image")
+        try:
+            if not result.save(buffer, "PNG"):
+                raise ValueError("Could not encode image")
+            encoded = bytes(buffer.data().toBase64()).decode("ascii")
+        finally:
+            buffer.close()
+        return f"{UserIcon.PHOTO_PREFIX}{encoded}"
+
+    @staticmethod
     def _generate_random_color():
         """Gera uma cor aleatória em rgb"""
         return f'rgb({random.randint(0, 255)}, {random.randint(0, 255)}, {random.randint(0, 255)})'
 
     @staticmethod
-    def get_icon(svg_str: str = ICON_DEFAULT, icon_type=Type.Default, qtd: int = 0) -> QIcon:
-        """Gera um QIcon a partir de um SVG."""
+    def get_icon(icon_data: str = ICON_DEFAULT, icon_type=Type.Default, qtd: int = 0) -> QIcon:
+        """Build an account icon from its persisted SVG or embedded photo."""
+        profile = UserIcon._profile(icon_data)
+        if profile is not None:
+            icon_data = (
+                profile["photo"]
+                if profile["type"] == "photo"
+                else profile["icon"]
+            )
+        elif UserIcon._has_profile_prefix(icon_data):
+            icon_data = UserIcon.ICON_DEFAULT
+        if UserIcon._is_raw_photo(icon_data):
+            return UserIcon._build_photo_icon(icon_data, icon_type, qtd)
+
+        svg_str = icon_data or UserIcon.ICON_DEFAULT
         if icon_type == UserIcon.Type.Default:
             qtd = 999 if qtd >= 1000 else qtd
             data = UserIcon._get_notification_data(qtd)
@@ -83,6 +243,59 @@ class UserIcon:
         else:
             svg = svg_str.format(UserIcon.IMAGE_SILENCE)
         return UserIcon.__build(svg)
+
+    @staticmethod
+    def _build_photo_icon(icon_data: str, icon_type, qtd: int) -> QIcon:
+        try:
+            encoded = icon_data[len(UserIcon.PHOTO_PREFIX):]
+            photo_bytes = base64.b64decode(encoded, validate=True)
+        except (ValueError, binascii.Error):
+            return UserIcon.get_icon(UserIcon.ICON_DEFAULT, icon_type, qtd)
+
+        image = QImage.fromData(photo_bytes, "PNG")
+        if image.isNull():
+            return UserIcon.get_icon(UserIcon.ICON_DEFAULT, icon_type, qtd)
+        image = image.scaled(
+            QSize(UserIcon.PHOTO_SIZE, UserIcon.PHOTO_SIZE),
+            Qt.AspectRatioMode.IgnoreAspectRatio,
+            Qt.TransformationMode.SmoothTransformation,
+        )
+
+        if icon_type == UserIcon.Type.Default and qtd > 0:
+            qtd = 999 if qtd >= 1000 else qtd
+            data = UserIcon._get_notification_data(qtd)
+            overlay = UserIcon.SVG_NOTIFICATION.format(
+                x=data["x"], width=data["width"], number=qtd
+            )
+        elif icon_type == UserIcon.Type.Disable:
+            overlay = UserIcon.IMAGE_DISABLE
+        elif icon_type == UserIcon.Type.Silence:
+            overlay = UserIcon.IMAGE_SILENCE
+        else:
+            overlay = ""
+
+        if overlay:
+            overlay_svg = (
+                '<svg viewBox="0 0 256 256" '
+                'xmlns="http://www.w3.org/2000/svg">'
+                f"{overlay}</svg>"
+            )
+            overlay_image = QImage.fromData(
+                overlay_svg.encode("utf-8"), "SVG"
+            )
+            painter = QPainter(image)
+            painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+            painter.drawImage(0, 0, overlay_image)
+            painter.end()
+
+        pixmap = QPixmap.fromImage(image)
+        return QIcon(
+            pixmap.scaled(
+                QSize(128, 128),
+                Qt.AspectRatioMode.KeepAspectRatio,
+                Qt.TransformationMode.SmoothTransformation,
+            )
+        )
 
     @staticmethod
     def __build(svg_str: str) -> QIcon:

@@ -73,6 +73,9 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 ### Mudança no navegador ou em contas
 
 - Preserve um perfil WebEngine por conta e o ID especial da conta padrão.
+- Preserve os SVGs existentes em `User.icon`; fotos de conta são recortadas,
+  reduzidas e incorporadas como PNG no mesmo campo, junto às cores do ícone
+  padrão, para permitir alternância sem depender de caminhos externos.
 - Não reutilize armazenamento, cache ou scripts entre perfis por conveniência.
 - Capture caminhos antes de destruir o perfil quando for necessário remover
   dados.

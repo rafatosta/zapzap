@@ -50,14 +50,22 @@ class CardUserModel:
         SettingsManager.set(f"{self.user.id}/user_agent", value)
 
     def regenerate_icon(self) -> None:
-        self.user.icon = UserIcon.get_new_icon_svg()
+        self.user.icon = UserIcon.persisted_image(
+            UserIcon.get_new_icon_svg(),
+            UserIcon.photo(self.user.icon),
+            use_photo=False,
+        )
 
     def restore_default_icon(self) -> None:
-        self.user.icon = UserIcon.ICON_DEFAULT
+        self.user.icon = UserIcon.persisted_image(
+            UserIcon.ICON_DEFAULT,
+            UserIcon.photo(self.user.icon),
+            use_photo=False,
+        )
 
-    def set_icon(self, icon_svg: str) -> None:
-        """Persist a previously previewed account icon."""
-        self.user.icon = icon_svg
+    def set_icon(self, icon_data: str) -> None:
+        """Persist a previously previewed account SVG or embedded photo."""
+        self.user.icon = icon_data
 
     def remove_user(self) -> None:
         self.user.remove()

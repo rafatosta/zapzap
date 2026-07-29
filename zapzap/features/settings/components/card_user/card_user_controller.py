@@ -71,7 +71,7 @@ class CardUserController(CardUserView):
     def _handle_edit_action(self):
         dialog = EditAccountDialog(
             self.model.name,
-            self.model.current_icon(),
+            self.model.user.icon,
             self.model.available_user_agents(),
             self.model.user_agent,
             self,
@@ -83,7 +83,7 @@ class CardUserController(CardUserView):
         self.model.name = dialog.account_name()
         self.set_user_name(self.model.name)
         if dialog.icon_action() != EditAccountDialog.KEEP_ICON:
-            self.model.set_icon(dialog.staged_icon_svg())
+            self.model.set_icon(dialog.staged_icon())
             self._update_user_icon()
         if dialog.user_agent() != self.model.user_agent:
             self.set_user_agent(self, self.user, dialog.user_agent())

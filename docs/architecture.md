@@ -83,6 +83,11 @@ Existem dois mecanismos:
 - `SettingsManager` usa `QSettings` para preferências simples;
 - `Database` usa SQLite para a tabela de contas representada por `User`.
 
+O campo `User.icon` preserva os SVGs existentes e também pode conter uma foto
+normalizada em PNG incorporada. A representação mantém a foto e as cores do
+ícone padrão ao alternar entre as duas opções, sem depender do arquivo original
+escolhido pelo usuário.
+
 Novas preferências devem entrar primeiro em uma classe semântica de
 `zapzap/core/config/settings/`, com chave, tipo e valor padrão estáveis. A UI
 consome propriedades desse domínio. Use `SettingsManager` diretamente apenas
