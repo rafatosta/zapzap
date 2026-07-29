@@ -51,15 +51,12 @@ jobs:
         run: |
           chmod +x .github/packaging/common/build-info.sh
           chmod +x .github/packaging/appimage/build.sh
-          chmod +x .github/packaging/appimage/normalize.sh
       - name: Create BuildInfo.py
         run: .github/packaging/common/build-info.sh "AppImage"
       - name: Preparing Container
         uses: pkgforge-dev/anylinux-setup-action@v2
       - name: Build AppImage
         run: .github/packaging/appimage/build.sh
-      - name: Normalize artifact names
-        run: .github/packaging/appimage/normalize.sh "${{ matrix.arch }}"
       - name: Upload artifact
         if: ${{ !inputs.release_upload }}
         uses: actions/upload-artifact@v4

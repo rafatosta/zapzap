@@ -3,9 +3,11 @@
 set -eu
 
 ARCH="$(uname -m)"
+VERSION="$(cat ~/version)"
 
 export ARCH
 export OUTPATH="./dist"
+export OUTNAME="ZapZap-${VERSION}-linux-${ARCH}.AppImage"
 
 # Hooks
 export ADD_HOOKS="self-updater.hook"
