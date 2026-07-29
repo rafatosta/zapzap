@@ -5,7 +5,7 @@ from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QMessageBox
 
 from zapzap.ui.components.button import Button, ButtonVariant
-from zapzap.ui.components.check_box import CheckBox
+from zapzap.ui.components.check_box import CheckBox, CheckBoxVariant
 
 from zapzap import LIMITE_USERS
 from zapzap.core.config.settings_manager import SettingsManager
@@ -226,7 +226,10 @@ class AlertManager:
 
         checkbox = None
         if checkbox_text is not None:
-            checkbox = CheckBox(checkbox_text)
+            checkbox = CheckBox(
+                checkbox_text,
+                variant=CheckBoxVariant.CLASSIC,
+            )
             message_box.setCheckBox(checkbox)
 
         message_box.exec()

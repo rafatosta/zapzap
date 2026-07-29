@@ -175,6 +175,12 @@ de teclado e expõe estados nativos de botão para acessibilidade. A página de
 contas apenas mapeia `enabled` e `disabled` para `User.enable`; persistência e
 efeitos de sessão permanecem no fluxo existente do `CardUserController`.
 
+`CheckBox` continua herdando de `QCheckBox`, preservando sinais, tri-state,
+atalhos, clique no texto e papel acessível nativos. Sua API visual usa os enums
+`CheckBoxVariant` (`CLASSIC`, `SURFACE`, `SOFT`), `CheckBoxSize` e
+`CheckBoxTone`; caixa, checkmark, estado parcial e foco são vetoriais e pintados
+em pixels lógicos a partir da `QPalette`.
+
 Texto visível usa `gettext`. IDs persistidos de seletores ficam em `itemData` e
 `currentData`; somente o rótulo é traduzido. Ao alterar texto:
 

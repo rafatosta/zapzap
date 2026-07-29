@@ -105,6 +105,9 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - Use `QPalette`, `QFont` e `Typography`; evite cores e pesos paralelos.
 - Em seletores segmentados, mantenha IDs estáveis em `SegmentOption.value` e
   rótulos traduzidos em `SegmentOption.label`; não persista o texto visível.
+- Em checkboxes, preserve a semântica nativa de `QCheckBox`. Use
+  `CheckBoxVariant.SURFACE` em formulários, `SOFT` para opções discretas e
+  `CLASSIC` em confirmações; escolha o tamanho pelos enums compartilhados.
 - Verifique estados normal, hover, pressed, disabled, foco e alto contraste.
 - `offscreen` valida propriedades e sinais, não posição do cursor, foco do
   compositor nem aparência final.

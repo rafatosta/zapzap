@@ -10,7 +10,6 @@ from PyQt6.QtWidgets import (
     QHBoxLayout,
     QLabel,
     QSizePolicy,
-    QStyle,
     QWidget,
 )
 
@@ -148,7 +147,7 @@ class CardUserView(SettingsCard):
             variant=Button.DANGER,
             parent=self.actions,
         )
-    
+
         self.remove_button.setToolTip(_("Remove account"))
         self.remove_button.setAccessibleName(_("Remove account"))
 

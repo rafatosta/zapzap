@@ -128,17 +128,11 @@ class AccountsSettingsUiTests(QtTestCase):
         self.assertFalse(hasattr(card, "menu_button"))
         self.assertIsInstance(card.edit_button, Button)
         self.assertIsInstance(card.remove_button, Button)
-        self.assertEqual(
-            card.edit_button.text().removeprefix("✎ "),
-            "Edit",
-        )
+        self.assertEqual(card.edit_button.text(), "Edit")
         self.assertEqual(card.remove_button.text(), "Remove")
         self.assertEqual(card.remove_button.variant, Button.DANGER)
-        self.assertTrue(
-            not card.edit_button.icon().isNull()
-            or card.edit_button.text().startswith("✎ ")
-        )
-        self.assertFalse(card.remove_button.icon().isNull())
+        self.assertTrue(card.edit_button.icon().isNull())
+        self.assertTrue(card.remove_button.icon().isNull())
         self.assertTrue(card.edit_button.toolTip())
         self.assertTrue(card.remove_button.accessibleName())
 
