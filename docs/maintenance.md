@@ -108,6 +108,9 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - Em checkboxes, preserve a semântica nativa de `QCheckBox`. Use
   `CheckBoxVariant.SURFACE` em formulários, `SOFT` para opções discretas e
   `CLASSIC` em confirmações; escolha o tamanho pelos enums compartilhados.
+- Em menus, preserve `QAction.setCheckable(True)`: use o indicador não exclusivo
+  do tema para opções booleanas e o exclusivo para grupos de rádio, sem embutir
+  `CheckBox` por meio de `QWidgetAction`.
 - Verifique estados normal, hover, pressed, disabled, foco e alto contraste.
 - `offscreen` valida propriedades e sinais, não posição do cursor, foco do
   compositor nem aparência final.

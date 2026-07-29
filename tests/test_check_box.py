@@ -1,13 +1,15 @@
 """Behavior and rendering contracts for the shared CheckBox component."""
 
 import unittest
+from pathlib import Path
 
 from PyQt6.QtCore import QPoint, Qt
-from PyQt6.QtGui import QColor, QFont, QPalette
+from PyQt6.QtGui import QActionGroup, QColor, QFont, QImage, QPalette
 from PyQt6.QtTest import QSignalSpy, QTest
-from PyQt6.QtWidgets import QCheckBox
+from PyQt6.QtWidgets import QCheckBox, QMenu
 
 from qt_test_case import QtTestCase
+from zapzap.assets.themes.theme_stylesheet import ThemeStylesheet
 from zapzap.features.donation.view import DonationView
 from zapzap.ui.components import (
     CheckBox,
@@ -247,6 +249,64 @@ class CheckBoxTests(QtTestCase):
             donation.donationMessage.controlSize(),
             CheckBoxSize.SMALL,
         )
+
+    def test_menu_indicators_match_checkbox_and_radio_semantics(self):
+        stylesheet = ThemeStylesheet.get_global_components_stylesheet()
+
+        self.assertIn(
+            "QMenu::indicator:non-exclusive:checked",
+            stylesheet,
+        )
+        self.assertIn(
+            "QMenu::indicator:exclusive:checked",
+            stylesheet,
+        )
+        self.assertIn(
+            f"width: {CheckBox.SIZE_TOKENS[CheckBoxSize.SMALL]['indicator']}px",
+            stylesheet,
+        )
+        self.assertIn(
+            f"border-radius: "
+            f"{CheckBox.SIZE_TOKENS[CheckBoxSize.SMALL]['radius']}px",
+            stylesheet,
+        )
+        self.assertNotIn("@menu-", stylesheet)
+        self.assertIn("menu_check.svg", stylesheet)
+        self.assertIn("menu_radio.svg", stylesheet)
+        for icon_path in (
+            ThemeStylesheet._MENU_CHECK_ICON,
+            ThemeStylesheet._MENU_RADIO_ICON,
+        ):
+            with self.subTest(icon_path=icon_path):
+                self.assertNotIn("file://", icon_path)
+                self.assertTrue(Path(icon_path).is_file())
+                self.assertFalse(QImage(icon_path).isNull())
+
+        original_stylesheet = self.app.styleSheet()
+        self.addCleanup(self.app.setStyleSheet, original_stylesheet)
+        self.app.setStyleSheet(stylesheet)
+
+        checkbox_image = self._render_checked_menu_action(exclusive=False)
+        radio_image = self._render_checked_menu_action(exclusive=True)
+
+        self.assertEqual(checkbox_image.size(), radio_image.size())
+        self.assertNotEqual(checkbox_image, radio_image)
+
+    def _render_checked_menu_action(self, *, exclusive):
+        menu = QMenu()
+        action = menu.addAction("Option")
+        action.setCheckable(True)
+        if exclusive:
+            group = QActionGroup(menu)
+            group.setExclusive(True)
+            group.addAction(action)
+        action.setChecked(True)
+
+        menu.show()
+        self.app.processEvents()
+        image = menu.grab().toImage()
+        menu.close()
+        return image
 
 
 if __name__ == "__main__":

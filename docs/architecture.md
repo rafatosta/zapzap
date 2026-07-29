@@ -181,6 +181,11 @@ atalhos, clique no texto e papel acessível nativos. Sua API visual usa os enums
 `CheckBoxTone`; caixa, checkmark, estado parcial e foco são vetoriais e pintados
 em pixels lógicos a partir da `QPalette`.
 
+Ações marcáveis em `QMenu` continuam sendo `QAction`, preservando a semântica
+nativa de menu. O tema representa ações não exclusivas com a mesma geometria
+do `CheckBox` pequeno e ações exclusivas como radio buttons; os dois casos não
+devem ser substituídos por `QWidgetAction`.
+
 Texto visível usa `gettext`. IDs persistidos de seletores ficam em `itemData` e
 `currentData`; somente o rótulo é traduzido. Ao alterar texto:
 

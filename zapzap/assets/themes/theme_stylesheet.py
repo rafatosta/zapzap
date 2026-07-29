@@ -1,8 +1,19 @@
+from pathlib import Path
+
 from zapzap.ui.typography import Typography
 
 
 class ThemeStylesheet:
     """Global styles for Qt-owned widgets that cannot be wrapped reliably."""
+
+    # Menu actions keep their native QAction semantics while matching the
+    # geometry of CheckBoxSize.SMALL. Exclusive actions remain radio-shaped.
+    MENU_INDICATOR_SIZE = 16
+    MENU_CHECKBOX_RADIUS = 4
+    MENU_RADIO_RADIUS = MENU_INDICATOR_SIZE // 2
+    _ICON_DIRECTORY = Path(__file__).resolve().parent.parent / "icons"
+    _MENU_CHECK_ICON = (_ICON_DIRECTORY / "menu_check.svg").as_posix()
+    _MENU_RADIO_ICON = (_ICON_DIRECTORY / "menu_radio.svg").as_posix()
 
     GLOBAL_COMPONENTS = """
         QToolTip {
@@ -126,19 +137,38 @@ class ThemeStylesheet:
             margin: 6px 8px;
         }
         QMenu::indicator {
-            width: 12px;
-            height: 12px;
-            border: 2px solid palette(mid);
-            border-radius: 6px;
+            width: @menu-indicator-size;
+            height: @menu-indicator-size;
+        }
+        QMenu::indicator:non-exclusive:unchecked {
+            border: 1px solid palette(mid);
+            border-radius: @menu-checkbox-radius;
             background-color: palette(base);
         }
-        QMenu::indicator:checked {
+        QMenu::indicator:non-exclusive:checked {
+            image: url("@menu-check-icon");
             background-color: palette(highlight);
-            border: 2px solid palette(highlight);
+            border: 1px solid palette(highlight);
+            border-radius: @menu-checkbox-radius;
         }
-        QMenu::indicator:unchecked {
+        QMenu::indicator:exclusive:unchecked {
+            border: 1px solid palette(mid);
+            border-radius: @menu-radio-radius;
             background-color: palette(base);
-            border: 2px solid palette(mid);
+        }
+        QMenu::indicator:exclusive:checked {
+            image: url("@menu-radio-icon");
+            background-color: palette(highlight);
+            border: 1px solid palette(highlight);
+            border-radius: @menu-radio-radius;
+        }
+        QMenu::indicator:disabled {
+            background-color: palette(alternate-base);
+            border-color: palette(mid);
+        }
+        QMenu::indicator:checked:disabled {
+            background-color: palette(mid);
+            border-color: palette(mid);
         }
         QMenu::right-arrow {
             padding-left: 8px;
@@ -201,7 +231,17 @@ class ThemeStylesheet:
             background-color: palette(highlight);
             border-color: palette(highlight);
         }
-    """.replace("@font-small", Typography.px(Typography.SMALL)).replace("@font-body", Typography.px(Typography.BODY))
+    """
+    GLOBAL_COMPONENTS = (
+        GLOBAL_COMPONENTS
+        .replace("@font-small", Typography.px(Typography.SMALL))
+        .replace("@font-body", Typography.px(Typography.BODY))
+        .replace("@menu-indicator-size", f"{MENU_INDICATOR_SIZE}px")
+        .replace("@menu-checkbox-radius", f"{MENU_CHECKBOX_RADIUS}px")
+        .replace("@menu-radio-radius", f"{MENU_RADIO_RADIUS}px")
+        .replace("@menu-check-icon", _MENU_CHECK_ICON)
+        .replace("@menu-radio-icon", _MENU_RADIO_ICON)
+    )
 
     @staticmethod
     def get_global_components_stylesheet() -> str:

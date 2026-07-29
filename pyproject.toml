@@ -96,6 +96,7 @@ packages = [
 
 [tool.setuptools.package-data]
 zapzap = [
+  "assets/icons/*.svg",
   "po/*/LC_MESSAGES/*.mo",
   "js/*",
   "extensions/*",
