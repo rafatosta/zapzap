@@ -1,7 +1,7 @@
 """ZapZap toggle switch component."""
 
 from PyQt6.QtCore import QEvent, QRectF, QSize, Qt
-from PyQt6.QtGui import QPainter, QPalette
+from PyQt6.QtGui import QPainter, QPalette, QPen
 from PyQt6.QtWidgets import QCheckBox
 
 
@@ -63,7 +63,14 @@ class ToggleSwitch(QCheckBox):
             border_color = palette.color(QPalette.ColorRole.Mid)
             knob_color = palette.color(QPalette.ColorRole.PlaceholderText)
 
-        painter.setPen(border_color)
+        painter.setPen(
+            QPen(
+                palette.color(QPalette.ColorRole.Highlight)
+                if self.hasFocus()
+                else border_color,
+                2 if self.hasFocus() else 1,
+            )
+        )
         painter.setBrush(track_color)
         painter.drawRoundedRect(track_rect, radius, radius)
 

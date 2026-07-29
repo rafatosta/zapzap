@@ -79,6 +79,11 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - No diálogo de edição, mantenha nome, ícone/foto e User-Agent em rascunho até
   `Salvar`; `Cancelar`, `Esc` e o botão de fechar devem seguir o mesmo fluxo de
   descarte, com confirmação quando houver alterações.
+- Mantenha `Editar` e `Remover` descobertos no cabeçalho do card. A conta
+  padrão conserva `Remover` visível, porém desabilitado; durante uma remoção,
+  bloqueie ativações duplicadas e reutilize a confirmação destrutiva.
+- Desativar a conta pode desabilitar visualmente `Não perturbe`, mas nunca deve
+  sobrescrever a preferência persistida que será restaurada na reativação.
 - Não reutilize armazenamento, cache ou scripts entre perfis por conveniência.
 - Capture caminhos antes de destruir o perfil quando for necessário remover
   dados.

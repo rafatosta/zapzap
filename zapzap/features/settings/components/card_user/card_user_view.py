@@ -2,21 +2,26 @@
 
 from gettext import gettext as _
 
-from PyQt6.QtCore import QRectF, QSignalBlocker, QSize, Qt
-from PyQt6.QtGui import QPainter, QPalette
+from PyQt6.QtCore import QSignalBlocker, QSize, Qt
+from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import (
+    QBoxLayout,
+    QGridLayout,
     QHBoxLayout,
+    QLabel,
     QSizePolicy,
-    QToolButton,
+    QStyle,
     QWidget,
 )
 
+from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.features.settings.components.settings_card import SettingsCard
 from zapzap.features.settings.components.settings_rows import (
     SettingsSegmentedRow,
     SettingsSwitchRow,
 )
 from zapzap.ui.components import (
+    Button,
     Label,
     SegmentOption,
     SegmentedControlRadius,
@@ -24,61 +29,63 @@ from zapzap.ui.components import (
 )
 
 
-class AccountActionsButton(QToolButton):
-    """Compact palette-aware button for an account's contextual actions."""
+class _ElidedAccountName(Label):
+    """Account name which keeps its complete value for tooltip and a11y."""
 
     def __init__(self, parent=None):
-        super().__init__(parent)
-        self.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.setAutoRaise(True)
-        self.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
-        self.setToolTip(_("Account actions"))
-        self.setAccessibleName(_("Account actions"))
-
-    def sizeHint(self):
-        return QSize(34, 34)
-
-    def minimumSizeHint(self):
-        return self.sizeHint()
-
-    def paintEvent(self, event):
-        painter = QPainter(self)
-        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
-
-        palette = self.palette()
-        button_rect = QRectF(self.rect()).adjusted(1, 1, -1, -1)
-        background = palette.color(QPalette.ColorRole.Button)
-        border = palette.color(QPalette.ColorRole.Mid)
-        if self.isDown():
-            background = palette.color(QPalette.ColorRole.Mid)
-        elif self.underMouse():
-            background = palette.color(QPalette.ColorRole.AlternateBase)
-            border = palette.color(QPalette.ColorRole.Highlight)
-
-        border_pen = painter.pen()
-        border_pen.setColor(
-            palette.color(QPalette.ColorRole.Highlight)
-            if self.hasFocus()
-            else border
+        super().__init__("", "section_title", parent)
+        self._full_text = ""
+        self.setMinimumWidth(80)
+        self.setSizePolicy(
+            QSizePolicy.Policy.Expanding,
+            QSizePolicy.Policy.Preferred,
         )
-        border_pen.setWidth(2 if self.hasFocus() else 1)
-        painter.setBrush(background)
-        painter.setPen(border_pen)
-        painter.drawRoundedRect(button_rect, 10, 10)
 
-        dot_color = palette.color(
-            QPalette.ColorRole.ButtonText
-            if self.isEnabled()
-            else QPalette.ColorRole.PlaceholderText
+    def setFullText(self, text):
+        self._full_text = text
+        self.setAccessibleName(text)
+        self._update_elision()
+
+    def fullText(self):
+        return self._full_text
+
+    def resizeEvent(self, event):
+        self._update_elision()
+        super().resizeEvent(event)
+
+    def _update_elision(self):
+        elided = self.fontMetrics().elidedText(
+            self._full_text,
+            Qt.TextElideMode.ElideRight,
+            max(0, self.width()),
         )
-        painter.setPen(Qt.PenStyle.NoPen)
-        painter.setBrush(dot_color)
-        center_x = self.rect().center().x()
-        center_y = self.rect().center().y()
-        for offset in (-6, 0, 6):
-            painter.drawEllipse(
-                QRectF(center_x - 1.75, center_y + offset - 1.75, 3.5, 3.5)
+        super().setText(elided)
+        self.setToolTip(self._full_text if elided != self._full_text else "")
+
+
+class _ResponsiveAccountStateRow(SettingsSegmentedRow):
+    """Keep translated state text readable at narrow card widths."""
+
+    STACK_BREAKPOINT = 520
+
+    def resizeEvent(self, event):
+        stacked = event.size().width() < self.STACK_BREAKPOINT
+        direction = (
+            QBoxLayout.Direction.TopToBottom
+            if stacked
+            else QBoxLayout.Direction.LeftToRight
+        )
+        layout = self.layout()
+        if layout.direction() != direction:
+            layout.setDirection(direction)
+            layout.setAlignment(
+                self.segmented,
+                Qt.AlignmentFlag.AlignRight
+                if stacked
+                else Qt.AlignmentFlag.AlignVCenter,
             )
+            self.updateGeometry()
+        super().resizeEvent(event)
 
 
 class CardUserView(SettingsCard):
@@ -87,37 +94,76 @@ class CardUserView(SettingsCard):
     ACCOUNT_ENABLED = "enabled"
     ACCOUNT_DISABLED = "disabled"
 
+    AVATAR_SIZE = 48
+    INACTIVE_AVATAR_GRAYSCALE = 1.0
+    INACTIVE_AVATAR_OPACITY = 0.82
+    HEADER_STACK_BREAKPOINT = 520
+
     def __init__(self, parent=None):
         super().__init__(parent)
+        self._account_name = ""
+        self._account_enabled = True
+        self._notifications_silenced = False
+        self._base_icon = QIcon()
+        self._remove_available = True
+        self._actions_busy = False
+        self._header_stacked = None
         self._setup_ui()
 
     def _setup_ui(self):
-        header = QWidget(self)
-        header_layout = QHBoxLayout(header)
-        header_layout.setContentsMargins(0, 4, 0, 4)
-        header_layout.setSpacing(12)
+        self.header = QWidget(self)
+        self.header_layout = QGridLayout(self.header)
+        self.header_layout.setContentsMargins(0, 6, 0, 6)
+        self.header_layout.setHorizontalSpacing(12)
+        self.header_layout.setVerticalSpacing(10)
 
-        self.icon = QToolButton(header)
-        self.icon.setAutoRaise(True)
-        self.icon.setIconSize(QSize(38, 38))
-        self.icon.setToolTip(_("Change icon"))
-        self.icon.setAccessibleName(_("Change icon"))
+        identity = QWidget(self.header)
+        identity_layout = QHBoxLayout(identity)
+        identity_layout.setContentsMargins(0, 0, 0, 0)
+        identity_layout.setSpacing(14)
 
-        self.name = Label("", "section_title", header)
+        self.icon = QLabel(identity)
+        self.icon.setObjectName("AccountCardAvatar")
+        self.icon.setFixedSize(self.AVATAR_SIZE, self.AVATAR_SIZE)
+        self.icon.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.icon.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+
+        self.name = _ElidedAccountName(identity)
         self.name.setObjectName("AccountCardName")
-        self.name.setSizePolicy(
-            QSizePolicy.Policy.Expanding,
-            QSizePolicy.Policy.Preferred,
+
+        identity_layout.addWidget(self.icon)
+        identity_layout.addWidget(self.name, 1)
+
+        self.actions = QWidget(self.header)
+        actions_layout = QHBoxLayout(self.actions)
+        actions_layout.setContentsMargins(0, 0, 0, 0)
+        actions_layout.setSpacing(8)
+
+        self.edit_button = Button(_("Edit"), parent=self.actions)
+        self.edit_button.setToolTip(_("Edit account"))
+        self.edit_button.setAccessibleName(_("Edit account"))
+
+        self.remove_button = Button(
+            _("Remove"),
+            variant=Button.DANGER,
+            parent=self.actions,
         )
+    
+        self.remove_button.setToolTip(_("Remove account"))
+        self.remove_button.setAccessibleName(_("Remove account"))
 
-        self.menu_button = AccountActionsButton(header)
+        actions_layout.addWidget(self.edit_button)
+        actions_layout.addWidget(self.remove_button)
+        self.header_layout.addWidget(identity, 0, 0)
+        self.header_layout.addWidget(
+            self.actions,
+            0,
+            1,
+            Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter,
+        )
+        self.add_row(self.header)
 
-        header_layout.addWidget(self.icon)
-        header_layout.addWidget(self.name, 1)
-        header_layout.addWidget(self.menu_button)
-        self.add_row(header)
-
-        self.account_state_row = SettingsSegmentedRow(
+        self.account_state_row = _ResponsiveAccountStateRow(
             _("Account status"),
             _(
                 "Disabled accounts remain saved, but are not loaded "
@@ -139,22 +185,118 @@ class CardUserView(SettingsCard):
             _("Silences notifications for this account."),
         )
         self.silence = self.silence_row.checkbox
+        self.silence.setAccessibleName(_("Do not disturb"))
         self.add_row(self.silence_row)
 
+        QWidget.setTabOrder(self.edit_button, self.remove_button)
+        QWidget.setTabOrder(self.remove_button, self.active)
+        QWidget.setTabOrder(self.active, self.silence)
+        self._update_header_layout()
+        self._update_accessibility()
+
+    def resizeEvent(self, event):
+        self._update_header_layout(event.size().width())
+        super().resizeEvent(event)
+
+    def _update_header_layout(self, width=None):
+        stacked = (
+            (self.width() if width is None else width)
+            < self.HEADER_STACK_BREAKPOINT
+        )
+        if stacked == self._header_stacked:
+            return
+        self.header_layout.removeWidget(self.actions)
+        if stacked:
+            self.header_layout.addWidget(
+                self.actions,
+                1,
+                0,
+                1,
+                2,
+                Qt.AlignmentFlag.AlignRight,
+            )
+        else:
+            self.header_layout.addWidget(
+                self.actions,
+                0,
+                1,
+                Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter,
+            )
+        self._header_stacked = stacked
+
     def set_user_name(self, name: str):
-        self.name.setText(name or _("Unnamed account"))
+        self._account_name = name or _("Unnamed account")
+        self.name.setFullText(self._account_name)
+        self.icon.setAccessibleName(self._account_name)
+        self._update_accessibility()
 
     def set_account_enabled(self, enabled: bool):
+        self._account_enabled = bool(enabled)
         with QSignalBlocker(self.active):
             self.active.setValue(
                 self.ACCOUNT_ENABLED if enabled else self.ACCOUNT_DISABLED
             )
+        self.silence.setEnabled(self._account_enabled)
+        unavailable = (
+            ""
+            if self._account_enabled
+            else _("Unavailable while the account is disabled.")
+        )
+        self.silence.setToolTip(unavailable)
+        self.silence.setAccessibleDescription(
+            unavailable or self.silence_row.description_label.text()
+        )
+        self._refresh_avatar()
+        self._update_accessibility()
 
     def set_notifications_silenced(self, silenced: bool):
+        self._notifications_silenced = bool(silenced)
         self.silence.setChecked(silenced)
+        self._update_accessibility()
 
     def set_user_icon(self, icon):
-        self.icon.setIcon(icon)
+        self._base_icon = icon
+        self._refresh_avatar()
 
-    def set_account_menu(self, menu):
-        self.menu_button.setMenu(menu)
+    def _refresh_avatar(self):
+        icon = self._base_icon
+        if not self._account_enabled and not icon.isNull():
+            icon = UserIcon.grayscale_icon(
+                icon,
+                intensity=self.INACTIVE_AVATAR_GRAYSCALE,
+                opacity=self.INACTIVE_AVATAR_OPACITY,
+            )
+        self.icon.setPixmap(
+            icon.pixmap(QSize(self.AVATAR_SIZE, self.AVATAR_SIZE))
+        )
+
+    def set_remove_available(self, available: bool):
+        self._remove_available = bool(available)
+        if available:
+            explanation = _("Remove account")
+        else:
+            explanation = _("The default account cannot be removed.")
+        self.remove_button.setToolTip(explanation)
+        self.remove_button.setAccessibleDescription(explanation)
+        self.remove_button.setEnabled(
+            self._remove_available and not self._actions_busy
+        )
+
+    def set_actions_busy(self, busy: bool):
+        self._actions_busy = bool(busy)
+        self.edit_button.setEnabled(not busy)
+        self.remove_button.setEnabled(
+            self._remove_available and not busy
+        )
+
+    def _update_accessibility(self):
+        name = self._account_name or _("Unnamed account")
+        status = _("Enabled") if self._account_enabled else _("Disabled")
+        notifications = (
+            _("Enabled") if self._notifications_silenced else _("Disabled")
+        )
+        self.setAccessibleName(f"{_('Account')} {name}")
+        self.setAccessibleDescription(
+            f"{_('Account status')}: {status}. "
+            f"{_('Do not disturb')}: {notifications}."
+        )

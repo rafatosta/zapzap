@@ -7,16 +7,8 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtGui import (
     QColor,
     QIcon,
-    QImage,
     QPainter,
     QPalette,
-    QPixmap,
-    qAlpha,
-    qBlue,
-    qGray,
-    qGreen,
-    qRed,
-    qRgba,
 )
 from PyQt6.QtWidgets import QPushButton
 
@@ -227,35 +219,11 @@ class BrowserPageButton(QPushButton):
     @classmethod
     def _inactive_avatar(cls, avatar):
         """Apply the centralized inactive-account effect in memory."""
-        sizes = avatar.availableSizes()
-        source_size = (
-            max(sizes, key=lambda size: size.width() * size.height())
-            if sizes
-            else QSize(UserIcon.PHOTO_SIZE, UserIcon.PHOTO_SIZE)
+        return UserIcon.grayscale_icon(
+            avatar,
+            intensity=cls.INACTIVE_AVATAR_GRAYSCALE,
+            opacity=cls.INACTIVE_AVATAR_OPACITY,
         )
-        source = avatar.pixmap(source_size).toImage().convertToFormat(
-            QImage.Format.Format_ARGB32
-        )
-        inactive = QImage(source.size(), QImage.Format.Format_ARGB32)
-        inactive.fill(Qt.GlobalColor.transparent)
-
-        grayscale = cls.INACTIVE_AVATAR_GRAYSCALE
-        opacity = cls.INACTIVE_AVATAR_OPACITY
-        for y in range(source.height()):
-            for x in range(source.width()):
-                pixel = source.pixel(x, y)
-                gray = qGray(pixel)
-                red = round(qRed(pixel) + (gray - qRed(pixel)) * grayscale)
-                green = round(
-                    qGreen(pixel) + (gray - qGreen(pixel)) * grayscale
-                )
-                blue = round(
-                    qBlue(pixel) + (gray - qBlue(pixel)) * grayscale
-                )
-                alpha = round(qAlpha(pixel) * opacity)
-                inactive.setPixel(x, y, qRgba(red, green, blue, alpha))
-
-        return QIcon(QPixmap.fromImage(inactive))
 
     def indicator_rect(self):
         """Return the DPI-independent outer indicator geometry."""

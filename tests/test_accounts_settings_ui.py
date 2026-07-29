@@ -7,9 +7,10 @@ from unittest.mock import Mock, patch
 from PyQt6.QtCore import QPoint, QPointF, Qt
 from PyQt6.QtGui import QColor, QImage
 from PyQt6.QtTest import QTest
-from PyQt6.QtWidgets import QDialog
+from PyQt6.QtWidgets import QBoxLayout, QDialog
 from qt_test_case import QtTestCase
 from zapzap.assets.icons.user_icon import UserIcon
+from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.accounts.domain.user import User
 from zapzap.features.settings.components.card_user.card_user_controller import (
     CardUserController,
@@ -121,13 +122,25 @@ class AccountsSettingsUiTests(QtTestCase):
 
         self.assertTrue(card.name.text())
 
-    def test_account_actions_button_has_a_compact_click_target(self):
+    def test_account_actions_are_visible_without_overflow_menu(self):
         card = CardUserView()
 
-        self.assertEqual(card.menu_button.sizeHint().width(), 34)
-        self.assertEqual(card.menu_button.sizeHint().height(), 34)
-        self.assertEqual(card.menu_button.text(), "")
-        self.assertTrue(card.menu_button.accessibleName())
+        self.assertFalse(hasattr(card, "menu_button"))
+        self.assertIsInstance(card.edit_button, Button)
+        self.assertIsInstance(card.remove_button, Button)
+        self.assertEqual(
+            card.edit_button.text().removeprefix("✎ "),
+            "Edit",
+        )
+        self.assertEqual(card.remove_button.text(), "Remove")
+        self.assertEqual(card.remove_button.variant, Button.DANGER)
+        self.assertTrue(
+            not card.edit_button.icon().isNull()
+            or card.edit_button.text().startswith("✎ ")
+        )
+        self.assertFalse(card.remove_button.icon().isNull())
+        self.assertTrue(card.edit_button.toolTip())
+        self.assertTrue(card.remove_button.accessibleName())
 
     def test_edit_dialog_combines_name_and_icon_controls(self):
         dialog = EditAccountDialog(
@@ -491,59 +504,256 @@ class AccountsSettingsUiTests(QtTestCase):
             UserIcon.ICON_DEFAULT,
         )
 
-    def test_card_avatar_is_not_modified_by_disabled_or_silenced_state(self):
+    def test_card_avatar_is_grayscale_only_when_account_is_disabled(self):
         source = QImage(256, 256, QImage.Format.Format_RGB32)
         source.fill(QColor("#4338ca"))
         photo = UserIcon.photo_from_image(source)
-        expected = UserIcon.get_icon(photo).pixmap(128, 128).toImage()
+        card = CardUserView()
+        card.set_user_icon(UserIcon.get_icon(photo))
 
-        for enabled, notifications_enabled in (
-            (False, True),
-            (True, False),
-        ):
-            with self.subTest(
-                enabled=enabled,
-                notifications_enabled=notifications_enabled,
+        card.set_account_enabled(True)
+        active = card.icon.pixmap().toImage().pixelColor(24, 24)
+        self.assertNotEqual(active.red(), active.blue())
+        self.assertEqual(active.alpha(), 255)
+
+        card.set_notifications_silenced(True)
+        muted = card.icon.pixmap().toImage().pixelColor(24, 24)
+        self.assertEqual(muted, active)
+
+        card.set_account_enabled(False)
+        disabled = card.icon.pixmap().toImage().pixelColor(24, 24)
+        self.assertEqual(disabled.red(), disabled.green())
+        self.assertEqual(disabled.green(), disabled.blue())
+        self.assertAlmostEqual(
+            disabled.alpha() / active.alpha(),
+            card.INACTIVE_AVATAR_OPACITY,
+            delta=0.01,
+        )
+
+        card.set_account_enabled(True)
+        reactivated = card.icon.pixmap().toImage().pixelColor(24, 24)
+        self.assertEqual(reactivated, active)
+
+    def test_disabled_account_preserves_and_temporarily_disables_dnd(self):
+        card = CardUserView()
+        card.set_notifications_silenced(True)
+
+        card.set_account_enabled(False)
+        self.assertTrue(card.silence.isChecked())
+        self.assertFalse(card.silence.isEnabled())
+        self.assertTrue(card.silence.toolTip())
+        self.assertTrue(card.silence.accessibleDescription())
+
+        card.set_account_enabled(True)
+        self.assertTrue(card.silence.isChecked())
+        self.assertTrue(card.silence.isEnabled())
+        self.assertEqual(card.silence.toolTip(), "")
+
+    def test_card_exposes_state_and_logical_keyboard_order(self):
+        card = CardUserView()
+        card.set_user_name("Conta pessoal")
+        card.set_account_enabled(False)
+        card.set_notifications_silenced(True)
+
+        self.assertIn("Conta pessoal", card.accessibleName())
+        self.assertIn("Disabled", card.accessibleDescription())
+        card.set_account_enabled(True)
+        card.show()
+        card.edit_button.setFocus()
+        self.app.processEvents()
+        self.assertTrue(card.edit_button.hasFocus())
+        card.focusNextPrevChild(True)
+        self.app.processEvents()
+        self.assertTrue(card.remove_button.hasFocus())
+        card.focusNextPrevChild(True)
+        self.app.processEvents()
+        self.assertTrue(card.active.hasFocus())
+        card.focusNextPrevChild(True)
+        self.app.processEvents()
+        self.assertTrue(card.silence.hasFocus())
+
+    def test_account_header_stacks_actions_and_elides_long_names(self):
+        card = CardUserView()
+        long_name = "Conta pessoal com um nome muito longo 世界"
+        card.set_user_name(long_name)
+        card.show()
+
+        card.resize(700, card.sizeHint().height())
+        card._update_header_layout(700)
+        self.app.processEvents()
+        wide_index = card.header_layout.indexOf(card.actions)
+        self.assertEqual(
+            card.header_layout.getItemPosition(wide_index)[:2],
+            (0, 1),
+        )
+
+        card.resize(400, card.sizeHint().height())
+        card._update_header_layout(400)
+        card.name.resize(100, card.name.height())
+        self.app.processEvents()
+        narrow_index = card.header_layout.indexOf(card.actions)
+        self.assertEqual(
+            card.header_layout.getItemPosition(narrow_index)[:2],
+            (1, 0),
+        )
+        self.assertEqual(card.name.fullText(), long_name)
+        self.assertEqual(card.name.toolTip(), long_name)
+        self.assertEqual(
+            card.account_state_row.layout().direction(),
+            QBoxLayout.Direction.TopToBottom,
+        )
+
+    def test_edit_button_opens_combined_dialog_and_cancel_is_noop(self):
+        user = User(name="Original")
+        card = CardUserController(user)
+
+        with patch(
+            "zapzap.features.settings.components.card_user."
+            "card_user_controller.EditAccountDialog",
+        ) as dialog_class:
+            dialog_class.KEEP_ICON = EditAccountDialog.KEEP_ICON
+            dialog = dialog_class.return_value
+            dialog.DialogCode = QDialog.DialogCode
+            dialog.exec.return_value = QDialog.DialogCode.Rejected
+
+            with patch.object(
+                CardUserModel,
+                "available_user_agents",
+                return_value=["Default"],
             ):
-                model = CardUserModel(
-                    User(icon=photo, enable=enabled)
-                )
-                with patch(
-                    "zapzap.features.settings.components.card_user."
-                    "card_user_model.SettingsManager.get",
-                    return_value=notifications_enabled,
+                with patch.object(
+                    CardUserController,
+                    "_get_browser",
+                    return_value=None,
                 ):
-                    rendered = (
-                        model.current_icon().pixmap(128, 128).toImage()
+                    card.edit_button.click()
+
+        dialog_class.assert_called_once()
+        self.assertEqual(user.name, "Original")
+
+    def test_edit_button_refreshes_card_after_save(self):
+        user = User(name="Original", icon=UserIcon.ICON_DEFAULT)
+        card = CardUserController(user)
+
+        with patch(
+            "zapzap.features.settings.components.card_user."
+            "card_user_controller.EditAccountDialog",
+        ) as dialog_class:
+            dialog_class.KEEP_ICON = EditAccountDialog.KEEP_ICON
+            dialog = dialog_class.return_value
+            dialog.DialogCode = QDialog.DialogCode
+            dialog.exec.return_value = QDialog.DialogCode.Accepted
+            dialog.account_name.return_value = "Atualizada 世界"
+            dialog.icon_action.return_value = EditAccountDialog.KEEP_ICON
+            dialog.user_agent.return_value = card.model.user_agent
+
+            with patch.object(
+                CardUserModel,
+                "available_user_agents",
+                return_value=["Default"],
+            ):
+                with patch.object(
+                    CardUserController,
+                    "_get_browser",
+                    return_value=None,
+                ):
+                    card.edit_button.click()
+
+        self.assertEqual(user.name, "Atualizada 世界")
+        self.assertEqual(card.name.fullText(), "Atualizada 世界")
+
+    def test_default_account_has_visible_but_protected_remove_button(self):
+        card = CardUserController(User(id=1, name="Default"))
+
+        self.assertFalse(card.remove_button.isEnabled())
+        self.assertFalse(card.remove_button.isHidden())
+        self.assertTrue(card.remove_button.toolTip())
+        self.assertTrue(card.remove_button.accessibleDescription())
+
+    def test_remove_confirmation_cancel_preserves_account(self):
+        user = User(id=2, name="Personal")
+
+        with patch.object(
+            AlertManager,
+            "action_dialog",
+            return_value="cancel",
+        ) as confirmation:
+            with patch.object(CardUserModel, "remove_user") as remove:
+                removed = CardUserController.delete_user(None, user)
+
+        self.assertFalse(removed)
+        remove.assert_not_called()
+        self.assertIn("Personal", confirmation.call_args.args[2])
+        self.assertIn("session", confirmation.call_args.args[3])
+        self.assertIn("cannot be undone", confirmation.call_args.args[3])
+
+    def test_remove_confirmation_closes_session_and_removes_account(self):
+        user = User(id=2, name="Personal")
+        browser = Mock()
+        deleted = []
+
+        with patch.object(
+            AlertManager,
+            "action_dialog",
+            return_value="remove",
+        ):
+            with patch.object(
+                CardUserController,
+                "_get_browser",
+                return_value=browser,
+            ):
+                with patch.object(CardUserModel, "remove_user") as remove:
+                    removed = CardUserController.delete_user(
+                        None,
+                        user,
+                        on_deleted=lambda: deleted.append(True),
                     )
 
-                self.assertEqual(rendered, expected)
+        self.assertTrue(removed)
+        browser.delete_page.assert_called_once_with(user)
+        remove.assert_called_once()
+        self.assertEqual(deleted, [True])
 
-    def test_account_menu_opens_combined_edit_dialog(self):
-        card = CardUserView()
-        card.model = SimpleNamespace(is_default_user=False)
-        card._handle_edit_action = lambda: None
-        card._handle_delete_action = lambda: None
+    def test_remove_failure_restores_actions_and_reports_error(self):
+        user = User(id=2, name="Personal")
+        card = CardUserController(user)
+        browser = Mock()
+        browser.delete_page.side_effect = RuntimeError
 
-        menu = CardUserController._create_account_menu(card)
+        with patch.object(
+            AlertManager,
+            "action_dialog",
+            return_value="remove",
+        ):
+            with patch.object(
+                CardUserController,
+                "_get_browser",
+                return_value=browser,
+            ):
+                with patch.object(AlertManager, "critical") as critical:
+                    card.remove_button.click()
 
-        self.assertEqual(menu.actions()[0].text(), "Edit")
-        self.assertIsNone(menu.actions()[0].menu())
-        self.assertEqual(menu.actions()[-1].text(), "Remove account")
-        self.assertTrue(menu.actions()[-1].isEnabled())
+        critical.assert_called_once()
+        self.assertTrue(card.edit_button.isEnabled())
+        self.assertTrue(card.remove_button.isEnabled())
 
-    def test_default_account_shows_protected_remove_action(self):
-        card = CardUserView()
-        card.model = SimpleNamespace(is_default_user=True)
-        card._handle_edit_action = lambda: None
-        card._handle_delete_action = lambda: None
+    def test_remove_action_ignores_duplicate_activation_while_busy(self):
+        card = CardUserController(User(id=2, name="Personal"))
 
-        menu = CardUserController._create_account_menu(card)
-        remove_action = menu.actions()[-1]
+        def attempt_duplicate(_parent, _user):
+            self.assertFalse(card.edit_button.isEnabled())
+            card._handle_delete_action()
+            return False
 
-        self.assertEqual(remove_action.text(), "Remove account")
-        self.assertFalse(remove_action.isEnabled())
-        self.assertTrue(remove_action.toolTip())
+        with patch.object(
+            card,
+            "delete_user",
+            side_effect=attempt_duplicate,
+        ) as delete_user:
+            card.remove_button.click()
+
+        delete_user.assert_called_once()
+        self.assertTrue(card.remove_button.isEnabled())
 
     def test_account_limit_disables_add_action(self):
         page = AccountsSettingsView()

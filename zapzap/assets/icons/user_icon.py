@@ -12,6 +12,12 @@ from PyQt6.QtGui import (
     QPainter,
     QPainterPath,
     QPixmap,
+    qAlpha,
+    qBlue,
+    qGray,
+    qGreen,
+    qRed,
+    qRgba,
 )
 
 
@@ -224,6 +230,47 @@ class UserIcon:
                 x=data['x'], width=data['width'], number=qtd)
             svg = svg_str.format(notification if qtd > 0 else "")
         return UserIcon.__build(svg)
+
+    @staticmethod
+    def grayscale_icon(
+        icon: QIcon,
+        intensity: float = 1.0,
+        opacity: float = 0.82,
+    ) -> QIcon:
+        """Return an in-memory grayscale copy without changing stored data."""
+        sizes = icon.availableSizes()
+        source_size = (
+            max(sizes, key=lambda size: size.width() * size.height())
+            if sizes
+            else QSize(UserIcon.PHOTO_SIZE, UserIcon.PHOTO_SIZE)
+        )
+        source = icon.pixmap(source_size).toImage().convertToFormat(
+            QImage.Format.Format_ARGB32
+        )
+        grayscale = QImage(source.size(), QImage.Format.Format_ARGB32)
+        grayscale.fill(Qt.GlobalColor.transparent)
+
+        intensity = max(0.0, min(1.0, intensity))
+        opacity = max(0.0, min(1.0, opacity))
+        for y in range(source.height()):
+            for x in range(source.width()):
+                pixel = source.pixel(x, y)
+                gray = qGray(pixel)
+                red = round(qRed(pixel) + (gray - qRed(pixel)) * intensity)
+                green = round(
+                    qGreen(pixel) + (gray - qGreen(pixel)) * intensity
+                )
+                blue = round(
+                    qBlue(pixel) + (gray - qBlue(pixel)) * intensity
+                )
+                alpha = round(qAlpha(pixel) * opacity)
+                grayscale.setPixel(
+                    x,
+                    y,
+                    qRgba(red, green, blue, alpha),
+                )
+
+        return QIcon(QPixmap.fromImage(grayscale))
 
     @staticmethod
     def _build_photo_icon(icon_data: str, icon_type, qtd: int) -> QIcon:

@@ -3,7 +3,7 @@
 from gettext import gettext as _
 
 from PyQt6.QtGui import QActionGroup
-from PyQt6.QtWidgets import QApplication, QMenu
+from PyQt6.QtWidgets import QApplication, QMessageBox, QMenu
 
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.accounts.domain.user import User
@@ -12,6 +12,7 @@ from zapzap.features.settings.components.card_user.edit_account_dialog import (
     EditAccountDialog,
 )
 from zapzap.features.settings.components.card_user.card_user_view import CardUserView
+from zapzap.ui.components import Button
 
 
 class CardUserController(CardUserView):
@@ -28,12 +29,13 @@ class CardUserController(CardUserView):
         self._setup_signals()
         self._load_data()
         self._update_user_icon()
-        self.set_account_menu(self._create_account_menu())
+        self.set_remove_available(not self.model.is_default_user)
 
     def _setup_signals(self):
         self.silence.clicked.connect(self._handle_silence_action)
         self.active.valueChanged.connect(self._handle_active_action)
-        self.icon.clicked.connect(self._handle_icon_action)
+        self.edit_button.clicked.connect(self._handle_edit_action)
+        self.remove_button.clicked.connect(self._handle_delete_action)
 
     def _load_data(self):
         self.set_user_name(self.model.name)
@@ -65,20 +67,28 @@ class CardUserController(CardUserView):
         self._update_user_icon()
 
     def _handle_delete_action(self):
-        self.delete_user(
-            self,
-            self.user,
-            on_deleted=self._after_delete,
-        )
+        if self._actions_busy:
+            return
+        self.set_actions_busy(True)
+        try:
+            removed = self.delete_user(self, self.user)
+        except Exception:
+            AlertManager.critical(
+                self,
+                _("Could not remove account"),
+                _("The account could not be removed. Please try again."),
+            )
+            removed = False
+        if removed:
+            self._after_delete()
+        else:
+            self.set_actions_busy(False)
 
     def _after_delete(self):
         self.close()
         self.setParent(None)
         if self._on_deleted:
             self._on_deleted(self.user)
-
-    def _handle_icon_action(self):
-        self._show_icon_menu(self.icon)
 
     def _handle_edit_action(self):
         dialog = EditAccountDialog(
@@ -103,37 +113,6 @@ class CardUserController(CardUserView):
         browser = self._get_browser()
         if browser:
             browser.update_icons_page_button(self.user)
-
-    def _show_icon_menu(self, button):
-        menu = self.create_icon_context_menu(self, self.user)
-        action = menu.exec(button.mapToGlobal(button.rect().bottomLeft()))
-        if action:
-            self._update_user_icon()
-
-    def _create_account_menu(self):
-        menu = QMenu(self)
-        edit_action = menu.addAction(_("Edit"))
-        edit_action.triggered.connect(self._handle_edit_action)
-
-        menu.addSeparator()
-        delete_action = menu.addAction(
-            _("Remove account"),
-        )
-        if self.model.is_default_user:
-            delete_action.setEnabled(False)
-            delete_action.setToolTip(
-                _("The default account cannot be removed."))
-        else:
-            delete_action.triggered.connect(self._handle_delete_action)
-        return menu
-
-    def _regenerate_icon(self):
-        self.regenerate_user_icon(self.user)
-        self._update_user_icon()
-
-    def _restore_icon(self):
-        self.restore_default_icon(self.user)
-        self._update_user_icon()
 
     @staticmethod
     def _get_browser():
@@ -161,21 +140,6 @@ class CardUserController(CardUserView):
             browser.update_icons_page_button(user)
 
     @classmethod
-    def delete_user(cls, parent, user: User, on_deleted=None):
-        if AlertManager.question(
-            parent,
-            _("Confirm exclusion"),
-            _("Are you sure you want to delete this item?"),
-            icon=AlertManager.critical_icon,
-        ):
-            browser = cls._get_browser()
-            if browser:
-                browser.delete_page(user)
-            CardUserModel(user).remove_user()
-            if on_deleted:
-                on_deleted()
-
-    @classmethod
     def regenerate_user_icon(cls, user: User):
         CardUserModel(user).regenerate_icon()
         browser = cls._get_browser()
@@ -189,6 +153,54 @@ class CardUserController(CardUserView):
         if browser:
             browser.update_icons_page_button(user)
 
+    @classmethod
+    def delete_user(cls, parent, user: User, on_deleted=None):
+        if user.id == User.USER_DEFAULT:
+            return False
+        action = AlertManager.action_dialog(
+            parent,
+            _("Remove account?"),
+            _(
+                'The account "{name}" will be removed from ZapZap.'
+            ).format(name=user.name or _("Unnamed account")),
+            _(
+                "Its session will be closed and related local data may be "
+                "permanently removed. This action cannot be undone."
+            ),
+            AlertManager.critical_icon,
+            (
+                (
+                    "remove",
+                    _("Remove"),
+                    QMessageBox.ButtonRole.DestructiveRole,
+                    Button.DANGER,
+                ),
+                (
+                    "cancel",
+                    _("Cancel"),
+                    QMessageBox.ButtonRole.RejectRole,
+                ),
+            ),
+            "cancel",
+        )
+        if action != "remove":
+            return False
+        try:
+            browser = cls._get_browser()
+            if browser:
+                browser.delete_page(user)
+            CardUserModel(user).remove_user()
+            if on_deleted:
+                on_deleted()
+        except Exception:
+            AlertManager.critical(
+                parent,
+                _("Could not remove account"),
+                _("The account could not be removed. Please try again."),
+            )
+            return False
+        return True
+
     @staticmethod
     def set_user_agent(parent, user: User, text: str):
         CardUserModel(user).user_agent = text
@@ -200,18 +212,6 @@ class CardUserController(CardUserView):
                 "the new User-Agent."
             ),
         )
-
-    @classmethod
-    def create_icon_context_menu(cls, parent, user: User):
-        menu = QMenu(parent)
-        generate_icon_action = menu.addAction(
-            _("Generate new colors for the icon"))
-        generate_icon_action.triggered.connect(
-            lambda: cls.regenerate_user_icon(user))
-        restore_action = menu.addAction(_("Restore standard"))
-        restore_action.triggered.connect(
-            lambda: cls.restore_default_icon(user))
-        return menu
 
     @classmethod
     def create_page_button_context_menu(cls, parent, user: User):
