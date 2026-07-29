@@ -4,7 +4,10 @@ import unittest
 from types import SimpleNamespace
 from unittest.mock import Mock, patch
 
+from PyQt6.QtCore import QPoint, QPointF, Qt
 from PyQt6.QtGui import QColor, QImage
+from PyQt6.QtTest import QTest
+from PyQt6.QtWidgets import QDialog
 from qt_test_case import QtTestCase
 from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.features.accounts.domain.user import User
@@ -143,6 +146,7 @@ class AccountsSettingsUiTests(QtTestCase):
         self.assertEqual(dialog.user_agent_selector.itemData(0), "Default")
         self.assertEqual(dialog.icon_action(), EditAccountDialog.KEEP_ICON)
         self.assertTrue(dialog.save_button.isDefault())
+        self.assertEqual(dialog.save_button.variant, Button.PRIMARY)
 
         icon_actions = dialog.change_icon_button.menu().actions()
         icon_actions[0].trigger()
@@ -150,9 +154,143 @@ class AccountsSettingsUiTests(QtTestCase):
             dialog.icon_action(), EditAccountDialog.REGENERATE_ICON
         )
         self.assertIsNotNone(dialog.staged_icon_svg())
-        self.assertFalse(dialog.change_icon_button.icon().isNull())
+        self.assertFalse(dialog.preview_avatar.pixmap().isNull())
         icon_actions[1].trigger()
         self.assertEqual(dialog.icon_action(), EditAccountDialog.RESTORE_ICON)
+
+    def test_edit_dialog_is_fixed_frameless_modal_with_one_visible_title(self):
+        dialog = EditAccountDialog("Rafael Tosta")
+
+        self.assertTrue(
+            dialog.windowFlags() & Qt.WindowType.FramelessWindowHint
+        )
+        self.assertTrue(dialog.windowFlags() & Qt.WindowType.Dialog)
+        self.assertFalse(
+            dialog.windowFlags() & Qt.WindowType.WindowMaximizeButtonHint
+        )
+        self.assertEqual(dialog.minimumSize(), dialog.maximumSize())
+        self.assertEqual(dialog.size(), dialog.minimumSize())
+        self.assertTrue(dialog.isModal())
+        self.assertTrue(
+            dialog.testAttribute(
+                Qt.WidgetAttribute.WA_TranslucentBackground
+            )
+        )
+        visible_titles = [
+            label.text()
+            for label in dialog.findChildren(type(dialog.header.title_label))
+            if label.text() == "Edit account"
+        ]
+        self.assertEqual(visible_titles, ["Edit account"])
+        self.assertTrue(dialog.close_button.toolTip())
+        self.assertTrue(dialog.close_button.accessibleName())
+        self.assertTrue(dialog.close_button.property("circular"))
+        self.assertEqual(
+            dialog.body_scroll.horizontalScrollBarPolicy(),
+            Qt.ScrollBarPolicy.ScrollBarAlwaysOff,
+        )
+        self.assertIs(dialog.footer.parent(), dialog.window_frame)
+
+    def test_edit_dialog_validates_name_inline_without_changing_unicode(self):
+        dialog = EditAccountDialog("")
+
+        self.assertFalse(dialog.save_button.isEnabled())
+        self.assertFalse(dialog.name_error_label.isHidden())
+        self.assertTrue(dialog.name_edit.accessibleDescription())
+
+        dialog.name_edit.setText("   ")
+        self.assertFalse(dialog.save_button.isEnabled())
+
+        entered_name = "  José 世界  "
+        dialog.name_edit.setText(entered_name)
+        self.assertTrue(dialog.save_button.isEnabled())
+        self.assertTrue(dialog.name_error_label.isHidden())
+        self.assertEqual(dialog.account_name(), entered_name)
+
+    def test_edit_dialog_enter_saves_and_escape_cancels(self):
+        save_dialog = EditAccountDialog("Rafael Tosta")
+        save_dialog.show()
+        save_dialog.name_edit.setFocus()
+        QTest.keyClick(save_dialog.name_edit, Qt.Key.Key_Return)
+        self.assertEqual(save_dialog.result(), QDialog.DialogCode.Accepted)
+
+        cancel_dialog = EditAccountDialog("Rafael Tosta")
+        cancel_dialog.show()
+        QTest.keyClick(cancel_dialog, Qt.Key.Key_Escape)
+        self.assertEqual(
+            cancel_dialog.result(),
+            QDialog.DialogCode.Rejected,
+        )
+
+    def test_edit_dialog_close_confirms_and_can_discard_unsaved_changes(self):
+        dialog = EditAccountDialog("Original")
+        dialog.show()
+        dialog.name_edit.setText("Changed")
+
+        with patch(
+            "zapzap.features.settings.components.card_user."
+            "edit_account_dialog.AlertManager.action_dialog",
+            return_value="keep",
+        ) as confirmation:
+            dialog.close_button.click()
+
+        self.assertTrue(dialog.isVisible())
+        confirmation.assert_called_once()
+
+        with patch(
+            "zapzap.features.settings.components.card_user."
+            "edit_account_dialog.AlertManager.action_dialog",
+            return_value="discard",
+        ):
+            dialog.close_button.click()
+
+        self.assertFalse(dialog.isVisible())
+        self.assertEqual(dialog.result(), QDialog.DialogCode.Rejected)
+
+    def test_edit_dialog_header_uses_qt_system_move_without_maximizing(self):
+        dialog = EditAccountDialog("Rafael Tosta")
+        handle = Mock()
+        handle.startSystemMove.return_value = True
+        event = Mock()
+        event.button.return_value = Qt.MouseButton.LeftButton
+        event.globalPosition.return_value = QPointF(200, 120)
+
+        with patch.object(dialog, "windowHandle", return_value=handle):
+            dialog.header.mousePressEvent(event)
+
+        handle.startSystemMove.assert_called_once()
+        event.accept.assert_called_once()
+
+        double_click = Mock()
+        dialog.header.mouseDoubleClickEvent(double_click)
+        double_click.accept.assert_called_once()
+        self.assertFalse(dialog.isMaximized())
+
+    def test_edit_dialog_header_falls_back_to_manual_drag(self):
+        dialog = EditAccountDialog("Rafael Tosta")
+        handle = Mock()
+        handle.startSystemMove.return_value = False
+        press = Mock()
+        press.button.return_value = Qt.MouseButton.LeftButton
+        press.globalPosition.return_value = QPointF(200, 120)
+        move = Mock()
+        move.buttons.return_value = Qt.MouseButton.LeftButton
+        move.globalPosition.return_value = QPointF(230, 150)
+
+        with patch.object(dialog, "windowHandle", return_value=handle):
+            with patch.object(
+                dialog,
+                "frameGeometry",
+                return_value=SimpleNamespace(
+                    topLeft=lambda: QPoint(100, 50)
+                ),
+            ):
+                dialog.header.mousePressEvent(press)
+        with patch.object(dialog, "move") as move_dialog:
+            dialog.header.mouseMoveEvent(move)
+
+        move_dialog.assert_called_once_with(QPoint(130, 80))
+        move.accept.assert_called_once()
 
     def test_account_photo_is_normalized_and_rendered(self):
         source = QImage(640, 320, QImage.Format.Format_RGB32)
@@ -170,10 +308,15 @@ class AccountsSettingsUiTests(QtTestCase):
         photo = UserIcon.photo_from_image(source)
         dialog = EditAccountDialog("Rafael Tosta", UserIcon.ICON_DEFAULT)
 
-        self.assertTrue(dialog.default_icon_radio.isChecked())
-        self.assertFalse(dialog.photo_radio.isChecked())
+        self.assertEqual(
+            dialog.image_type_control.value(),
+            EditAccountDialog.IMAGE_DEFAULT,
+        )
         dialog._stage_photo(photo)
-        self.assertTrue(dialog.photo_radio.isChecked())
+        self.assertEqual(
+            dialog.image_type_control.value(),
+            EditAccountDialog.IMAGE_PHOTO,
+        )
         self.assertEqual(dialog.icon_action(), EditAccountDialog.USE_PHOTO)
         self.assertTrue(UserIcon.is_photo(dialog.staged_icon()))
         self.assertEqual(UserIcon.photo(dialog.staged_icon()), photo)
@@ -185,8 +328,13 @@ class AccountsSettingsUiTests(QtTestCase):
         self.assertFalse(dialog.choose_photo_button.isHidden())
 
         current_photo_dialog = EditAccountDialog("Rafael Tosta", photo)
-        self.assertTrue(current_photo_dialog.photo_radio.isChecked())
-        current_photo_dialog.default_icon_radio.setChecked(True)
+        self.assertEqual(
+            current_photo_dialog.image_type_control.value(),
+            EditAccountDialog.IMAGE_PHOTO,
+        )
+        current_photo_dialog.image_type_control.setValue(
+            EditAccountDialog.IMAGE_DEFAULT
+        )
         self.assertEqual(
             current_photo_dialog.icon_action(),
             EditAccountDialog.RESTORE_ICON,
@@ -203,6 +351,27 @@ class AccountsSettingsUiTests(QtTestCase):
             photo,
         )
 
+    def test_edit_dialog_keep_current_discards_staged_photo(self):
+        source = QImage(256, 256, QImage.Format.Format_RGB32)
+        source.fill(QColor("#be123c"))
+        photo = UserIcon.photo_from_image(source)
+        dialog = EditAccountDialog(
+            "Rafael Tosta",
+            UserIcon.ICON_DEFAULT,
+        )
+
+        dialog._stage_photo(photo)
+        self.assertTrue(dialog.has_unsaved_changes())
+        dialog.keep_current_button.click()
+
+        self.assertEqual(
+            dialog.image_type_control.value(),
+            EditAccountDialog.IMAGE_DEFAULT,
+        )
+        self.assertEqual(dialog.icon_action(), EditAccountDialog.KEEP_ICON)
+        self.assertIsNone(dialog.staged_icon())
+        self.assertFalse(dialog.has_unsaved_changes())
+
     def test_photo_and_custom_icon_colors_are_retained_when_switching(self):
         source = QImage(300, 300, QImage.Format.Format_RGB32)
         source.fill(QColor("#0f766e"))
@@ -215,7 +384,9 @@ class AccountsSettingsUiTests(QtTestCase):
         )
         dialog = EditAccountDialog("Rafael Tosta", persisted_photo)
 
-        dialog.default_icon_radio.setChecked(True)
+        dialog.image_type_control.setValue(
+            EditAccountDialog.IMAGE_DEFAULT
+        )
         persisted_icon = dialog.staged_icon()
 
         self.assertFalse(UserIcon.is_photo(persisted_icon))
@@ -239,12 +410,34 @@ class AccountsSettingsUiTests(QtTestCase):
                 "photo_from_file",
                 return_value=photo,
             ) as photo_from_file:
-                dialog.photo_radio.click()
+                dialog.image_type_control.setValue(
+                    EditAccountDialog.IMAGE_PHOTO
+                )
 
         get_open_file_name.assert_called_once()
         photo_from_file.assert_called_once_with("/tmp/account-photo.png")
         self.assertEqual(dialog.icon_action(), EditAccountDialog.USE_PHOTO)
         self.assertTrue(UserIcon.is_photo(dialog.staged_icon()))
+
+    def test_cancelled_photo_picker_preserves_the_existing_draft(self):
+        dialog = EditAccountDialog("Rafael Tosta", UserIcon.ICON_DEFAULT)
+
+        with patch(
+            "zapzap.features.settings.components.card_user."
+            "edit_account_dialog.QFileDialog.getOpenFileName",
+            return_value=("", ""),
+        ):
+            dialog.image_type_control.setValue(
+                EditAccountDialog.IMAGE_PHOTO
+            )
+
+        self.assertEqual(
+            dialog.image_type_control.value(),
+            EditAccountDialog.IMAGE_DEFAULT,
+        )
+        self.assertEqual(dialog.icon_action(), EditAccountDialog.KEEP_ICON)
+        self.assertIsNone(dialog.staged_icon())
+        self.assertFalse(dialog.has_unsaved_changes())
 
     def test_invalid_photo_keeps_default_icon_and_shows_feedback(self):
         dialog = EditAccountDialog("Rafael Tosta", UserIcon.ICON_DEFAULT)
@@ -259,9 +452,14 @@ class AccountsSettingsUiTests(QtTestCase):
                 "photo_from_file",
                 side_effect=ValueError,
             ):
-                dialog.photo_radio.click()
+                dialog.image_type_control.setValue(
+                    EditAccountDialog.IMAGE_PHOTO
+                )
 
-        self.assertTrue(dialog.default_icon_radio.isChecked())
+        self.assertEqual(
+            dialog.image_type_control.value(),
+            EditAccountDialog.IMAGE_DEFAULT,
+        )
         self.assertEqual(dialog.icon_action(), EditAccountDialog.KEEP_ICON)
         self.assertIn("Could not", dialog.icon_choice_label.text())
 

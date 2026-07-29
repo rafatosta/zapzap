@@ -70,7 +70,7 @@ documente o que ele protege.
 |---|---|
 | `test_about_settings_ui.py` | identidade, links, detalhes técnicos, cópia, licença e créditos |
 | `test_account_data_removal.py` | remoção segura e idempotente de dados de perfis desativados |
-| `test_accounts_settings_ui.py` | cards, diálogo de edição, ícone/foto, conta padrão, limite e persistência visual |
+| `test_accounts_settings_ui.py` | cards e diálogo transacional sem moldura: validação, arraste, ícone/foto, conta padrão, limite e persistência visual |
 | `test_appearance_settings_ui.py` | grupos, dependências, layout responsivo, persistência e acessibilidade |
 | `test_appimage_packaging.py` | nome final do AppImage e metadados internos Filename/URL do zsync |
 | `test_browser_page_button_ui.py` | avatar sem número, grayscale de conta desativada, ponto de estado, card, temas, escala e clique |

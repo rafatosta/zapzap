@@ -38,6 +38,9 @@ class LineEdit(QLineEdit):
             QLineEdit:focus {
                 border: 1px solid palette(highlight);
             }
+            QLineEdit[invalid="true"] {
+                border: 1px solid palette(bright-text);
+            }
             QLineEdit:disabled, QLineEdit:read-only {
                 color: palette(placeholder-text);
                 background: palette(window);

@@ -97,6 +97,11 @@ normalizada em PNG incorporada. A representação mantém a foto e as cores do
 ícone padrão ao alternar entre as duas opções, sem depender do arquivo original
 escolhido pelo usuário.
 
+O diálogo de edição mantém nome, ícone/foto e User-Agent em estado temporário.
+O `SegmentedControl` alterna apenas a pré-visualização; o controlador recebe os
+valores definitivos somente após `Salvar`. Cancelar, fechar ou descartar
+alterações restaura implicitamente os valores persistidos, sem tocar na sessão.
+
 Novas preferências devem entrar primeiro em uma classe semântica de
 `zapzap/core/config/settings/`, com chave, tipo e valor padrão estáveis. A UI
 consome propriedades desse domínio. Use `SettingsManager` diretamente apenas

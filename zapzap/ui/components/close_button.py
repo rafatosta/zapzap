@@ -41,20 +41,30 @@ class CloseButton(QPushButton):
         color: palette(highlighted-text);
     }}
 
+    QPushButton#ZapZapCloseButton:focus {{
+        border: 2px solid palette(highlight);
+    }}
+
     QPushButton#ZapZapCloseButton:disabled {{
         background: transparent;
         border-color: transparent;
         color: palette(placeholder-text);
     }}
+
+    QPushButton#ZapZapCloseButton[circular="true"] {{
+        border-radius: {SIZE // 2}px;
+    }}
     """
 
-    def __init__(self, parent=None, *, tooltip=None):
+    def __init__(self, parent=None, *, tooltip=None, circular=False):
         super().__init__("×", parent)
 
         self.setObjectName("ZapZapCloseButton")
+        self.setProperty("circular", circular)
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         self.setFixedSize(QSize(self.SIZE, self.SIZE))
         self.setToolTip(tooltip or _("Close"))
+        self.setAccessibleName(self.toolTip())
 
         self._apply_font()
         self._apply_style()

@@ -10,13 +10,14 @@ from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.ui.typography import Typography
 
 
-ButtonVariant = Literal["default", "warning", "danger"]
+ButtonVariant = Literal["default", "primary", "warning", "danger"]
 
 
 class Button(QPushButton):
     """ZapZap push button styled from the active ZapZap palette."""
 
     DEFAULT = "default"
+    PRIMARY = "primary"
     WARNING = "warning"
     DANGER = "danger"
 
@@ -51,6 +52,17 @@ class Button(QPushButton):
                 "color": "palette(button-text)",
                 "hover_border": "palette(highlight)",
                 "hover_background": "palette(alternate-base)",
+                "pressed_border": "palette(highlight)",
+                "pressed_background": "palette(mid)",
+            },
+            self.PRIMARY: {
+                "border": ThemeManager.get_color("accent_border"),
+                "background": ThemeManager.get_color("accent"),
+                "color": ThemeManager.get_color("accent_text"),
+                "hover_border": ThemeManager.get_color("accent_border"),
+                "hover_background": ThemeManager.get_color("accent_hover"),
+                "pressed_border": ThemeManager.get_color("accent_border"),
+                "pressed_background": ThemeManager.get_color("accent_border"),
             },
             self.WARNING: {
                 "border": "palette(mid)",
@@ -58,6 +70,8 @@ class Button(QPushButton):
                 "color": ThemeManager.get_color("warning"),
                 "hover_border": ThemeManager.get_color("warning_hover"),
                 "hover_background": "palette(alternate-base)",
+                "pressed_border": ThemeManager.get_color("warning_border"),
+                "pressed_background": "palette(mid)",
             },
             self.DANGER: {
                 "border": "palette(mid)",
@@ -65,6 +79,8 @@ class Button(QPushButton):
                 "color": ThemeManager.get_color("bright_text"),
                 "hover_border": ThemeManager.get_color("danger_hover"),
                 "hover_background": "palette(alternate-base)",
+                "pressed_border": ThemeManager.get_color("danger_border"),
+                "pressed_background": "palette(mid)",
             },
         }
 
@@ -97,6 +113,15 @@ class Button(QPushButton):
             QPushButton:hover {{
                 border-color: {style["hover_border"]};
                 background: {style["hover_background"]};
+            }}
+
+            QPushButton:pressed {{
+                border-color: {style["pressed_border"]};
+                background: {style["pressed_background"]};
+            }}
+
+            QPushButton:focus {{
+                border: 2px solid palette(highlight);
             }}
 
             QPushButton:disabled {{
