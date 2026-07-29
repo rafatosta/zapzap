@@ -1,13 +1,33 @@
 """Browser account page button component."""
 
-from PyQt6.QtCore import QSize
+from enum import Enum
+
+from PyQt6.QtCore import QRectF, QSize
 from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QIcon
+from PyQt6.QtGui import QColor, QIcon, QPainter, QPalette
 from PyQt6.QtWidgets import QPushButton
 
-from zapzap.features.accounts.domain.user import User
 from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.core.theme.theme_manager import ThemeManager
+from zapzap.features.accounts.domain.user import User
+
+
+class AccountIndicatorState(Enum):
+    """Account states the sidebar can determine without inference.
+
+    Mapping:
+    - ACTIVITY: enabled account with unread messages -> theme activity teal;
+    - INACTIVE: explicitly disabled account -> palette neutral gray;
+    - NONE: enabled account without unread messages -> no indicator.
+
+    Web loading, connection errors and session validity are intentionally not
+    represented because those states are not propagated to this component.
+    """
+
+    NONE = "none"
+    ACTIVITY = "activity"
+    INACTIVE = "inactive"
 
 
 class BrowserPageButton(QPushButton):
@@ -16,6 +36,10 @@ class BrowserPageButton(QPushButton):
     BUTTON_SIZE = 48
     ICON_SIZE = 34
     BORDER_RADIUS = 12
+    INDICATOR_RATIO = 0.23
+    INDICATOR_BORDER_RATIO = 0.22
+    MIN_INDICATOR_SIZE = 6.0
+    MIN_INDICATOR_BORDER = 1.5
 
     STYLE_NORMAL = f"""
     QPushButton {{
@@ -84,6 +108,7 @@ class BrowserPageButton(QPushButton):
         self.page_index = page_index
         self._number_notifications = 0
         self._is_selected = False
+        self._card_background_role = QPalette.ColorRole.Window
 
         self._setup_ui()
         self.update_user_icon()
@@ -105,6 +130,10 @@ class BrowserPageButton(QPushButton):
     def isSelected(self):
         return self._is_selected
 
+    @property
+    def indicator_state(self):
+        return self._resolve_indicator_state()
+
     def _setup_ui(self):
         """Configure the page button visual defaults."""
         self.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -116,35 +145,98 @@ class BrowserPageButton(QPushButton):
 
     def _apply_state_style(self, hovered=False, pressed=False):
         if pressed:
+            self._card_background_role = QPalette.ColorRole.Highlight
             self.setStyleSheet(self.STYLE_PRESSED)
         elif self._is_selected:
+            self._card_background_role = QPalette.ColorRole.AlternateBase
             self.setStyleSheet(self.STYLE_SELECTED)
         elif hovered:
+            self._card_background_role = QPalette.ColorRole.AlternateBase
             self.setStyleSheet(self.STYLE_HOVER)
         else:
+            self._card_background_role = QPalette.ColorRole.Window
             self.setStyleSheet(self.STYLE_NORMAL)
+        self.update()
 
     def update_user_icon(self):
         """Refresh the user icon and tooltip from the current user state."""
         if self._user is None:
             self.setIcon(QIcon())
             self.setToolTip("")
+            self.setAccessibleName("")
+            self.setAccessibleDescription("")
+            self.update()
             return
 
-        user_icon_type = UserIcon.Type.Default
-        if not self._user.enable:
-            user_icon_type = UserIcon.Type.Disable
-        elif not SettingsManager.get(f"{self._user.id}/notification", True):
-            user_icon_type = UserIcon.Type.Silence
+        # Quantitative data is deliberately not painted into the avatar.
+        self.setIcon(UserIcon.get_icon(self._user.icon))
+        tooltip = self._build_tooltip()
+        self.setToolTip(tooltip)
+        self.setAccessibleName(self._user.name or self.tr("Account"))
+        self.setAccessibleDescription(self._build_accessible_description())
+        self.update()
 
-        self.setIcon(
-            UserIcon.get_icon(
-                self._user.icon,
-                user_icon_type,
-                self._number_notifications,
-            )
+    def _resolve_indicator_state(self):
+        if self._user is None:
+            return AccountIndicatorState.NONE
+        if not self._user.enable:
+            return AccountIndicatorState.INACTIVE
+        if self._number_notifications > 0:
+            return AccountIndicatorState.ACTIVITY
+        return AccountIndicatorState.NONE
+
+    def indicator_rect(self):
+        """Return the DPI-independent outer indicator geometry."""
+        icon_size = min(self.iconSize().width(), self.iconSize().height())
+        dot_size = max(
+            self.MIN_INDICATOR_SIZE,
+            icon_size * self.INDICATOR_RATIO,
         )
-        self.setToolTip(self._build_tooltip())
+        border_width = max(
+            self.MIN_INDICATOR_BORDER,
+            dot_size * self.INDICATOR_BORDER_RATIO,
+        )
+        outer_size = dot_size + (2 * border_width)
+        content = QRectF(self.contentsRect())
+        avatar = QRectF(
+            content.center().x() - (icon_size / 2),
+            content.center().y() - (icon_size / 2),
+            icon_size,
+            icon_size,
+        )
+        center = avatar.bottomRight()
+        return QRectF(
+            center.x() - (outer_size / 2),
+            center.y() - (outer_size / 2),
+            outer_size,
+            outer_size,
+        )
+
+    def indicator_color(self):
+        """Return the centralized color for the current real account state."""
+        state = self.indicator_state
+        if state == AccountIndicatorState.ACTIVITY:
+            return QColor(ThemeManager.get_color("activity"))
+        if state == AccountIndicatorState.INACTIVE:
+            return self.palette().color(QPalette.ColorRole.PlaceholderText)
+        return QColor()
+
+    def _indicator_border_color(self):
+        return self.palette().color(self._card_background_role)
+
+    def _build_accessible_description(self):
+        descriptions = []
+        if not self._user.enable:
+            descriptions.append(self.tr("Account disabled"))
+        elif self._number_notifications > 0:
+            descriptions.append(
+                self.tr("Unread messages: {}").format(
+                    self._number_notifications
+                )
+            )
+        if not SettingsManager.get(f"{self._user.id}/notification", True):
+            descriptions.append(self.tr("Notifications muted"))
+        return ". ".join(descriptions)
 
     def _build_tooltip(self):
         tooltip = (
@@ -160,7 +252,7 @@ class BrowserPageButton(QPushButton):
         return tooltip
 
     def update_notifications(self, number_notifications):
-        """Update the unread notifications badge count."""
+        """Update unread state without adding quantitative text to the avatar."""
         self._number_notifications = number_notifications
         self.update_user_icon()
 
@@ -194,3 +286,31 @@ class BrowserPageButton(QPushButton):
         is_hovered = self.rect().contains(event.position().toPoint())
         self._apply_state_style(hovered=is_hovered)
         super().mouseReleaseEvent(event)
+
+    def paintEvent(self, event):
+        """Paint a non-interactive status dot over the avatar."""
+        super().paintEvent(event)
+        if self.indicator_state == AccountIndicatorState.NONE:
+            return
+
+        outer_rect = self.indicator_rect()
+        dot_size = max(
+            self.MIN_INDICATOR_SIZE,
+            min(self.iconSize().width(), self.iconSize().height())
+            * self.INDICATOR_RATIO,
+        )
+        inner_rect = QRectF(
+            outer_rect.center().x() - (dot_size / 2),
+            outer_rect.center().y() - (dot_size / 2),
+            dot_size,
+            dot_size,
+        )
+
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.setBrush(self._indicator_border_color())
+        painter.drawEllipse(outer_rect)
+        painter.setBrush(self.indicator_color())
+        painter.drawEllipse(inner_rect)
+        painter.end()

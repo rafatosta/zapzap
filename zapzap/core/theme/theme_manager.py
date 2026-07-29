@@ -65,6 +65,9 @@ class ThemeManager(QObject):
         "success_hover": "#1db356",
         "success_border": "#1aa34e",
 
+        # Account activity, intentionally distinct from the selection green.
+        "activity": "#007C83",
+
         "warning": "#cd9309",
         "warning_text": "#ffffff",
         "warning_hover": "#e5a50a",
@@ -100,6 +103,9 @@ class ThemeManager(QObject):
         "success_text": "#ffffff",
         "success_hover": "#25d366",
         "success_border": "#1db356",
+
+        # Account activity, intentionally distinct from the selection green.
+        "activity": "#2DD4BF",
 
         "warning": "#e5a50a",
         "warning_text": "#1d1f1f",

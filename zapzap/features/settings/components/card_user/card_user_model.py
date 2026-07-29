@@ -71,12 +71,8 @@ class CardUserModel:
         self.user.remove()
 
     def current_icon(self):
-        user_icon_type = UserIcon.Type.Default
-        if not self.enabled:
-            user_icon_type = UserIcon.Type.Disable
-        elif not self.notifications_enabled:
-            user_icon_type = UserIcon.Type.Silence
-        return UserIcon.get_icon(self.user.icon, user_icon_type)
+        """Return the account image without duplicating card switch states."""
+        return UserIcon.get_icon(self.user.icon)
 
     @staticmethod
     def available_user_agents():

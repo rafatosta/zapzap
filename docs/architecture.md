@@ -65,6 +65,14 @@ User (SQLite) -> BrowserController -> WebView -> PageController
                                     -> downloads e notificações
 ```
 
+Na barra lateral, o contorno do card identifica a conta selecionada e o avatar
+não contém texto quantitativo. Um ponto verde-azulado indica não lidos e um
+ponto cinza indica conta explicitamente desativada; sem esses estados, não há
+ponto. Carregamento, falha de conexão e validade da sessão não são inferidos,
+pois o `WebView` ainda não os propaga ao botão da conta.
+Os cards da página `Contas` também mantêm o avatar original; os switches do
+próprio card comunicam conta ativa e `Não perturbe`, sem sobreposições no ícone.
+
 `PageController` aplica permissões, scripts, navegação segura e ações do
 WhatsApp. Scripts mantidos em `features/browser/web/scripts/` são ativos em
 tempo de execução e devem ser considerados pelo teste de código estático mesmo

@@ -233,6 +233,44 @@ class AccountsSettingsUiTests(QtTestCase):
             UserIcon.ICON_DEFAULT,
         )
 
+    def test_card_avatar_is_not_modified_by_disabled_or_silenced_state(self):
+        source = QImage(256, 256, QImage.Format.Format_RGB32)
+        source.fill(QColor("#4338ca"))
+        photo = UserIcon.photo_from_image(source)
+        expected = UserIcon.get_icon(photo).pixmap(128, 128).toImage()
+
+        for enabled, notifications_enabled in (
+            (False, True),
+            (True, False),
+        ):
+            with self.subTest(
+                enabled=enabled,
+                notifications_enabled=notifications_enabled,
+            ):
+                model = CardUserModel(
+                    User(icon=photo, enable=enabled)
+                )
+                with patch(
+                    "zapzap.features.settings.components.card_user."
+                    "card_user_model.SettingsManager.get",
+                    return_value=notifications_enabled,
+                ):
+                    rendered = (
+                        model.current_icon().pixmap(128, 128).toImage()
+                    )
+
+                self.assertEqual(rendered, expected)
+                legacy_type = (
+                    UserIcon.Type.Disable
+                    if not enabled
+                    else UserIcon.Type.Silence
+                )
+                legacy = UserIcon.get_icon(
+                    photo,
+                    legacy_type,
+                ).pixmap(128, 128).toImage()
+                self.assertNotEqual(rendered, legacy)
+
     def test_account_menu_opens_combined_edit_dialog(self):
         card = CardUserView()
         card.model = SimpleNamespace(is_default_user=False)
