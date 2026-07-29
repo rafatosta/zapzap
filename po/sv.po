@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-26 11:48-0300\n"
+"POT-Creation-Date: 2026-07-29 11:53-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Swedish\n"
@@ -166,12 +166,12 @@ msgstr "Lär dig mer om ZapZap ↗"
 msgid "Select folder"
 msgstr "Välj katalog"
 
-#: zapzap/features/initial_setup/controller.py:111
+#: zapzap/features/initial_setup/controller.py:126
 #: zapzap/features/settings/pages/language_downloads/controller.py:60
 msgid "System default"
 msgstr "Systemstandard"
 
-#: zapzap/features/initial_setup/controller.py:142
+#: zapzap/features/initial_setup/controller.py:155
 msgid "English"
 msgstr "Engelska"
 
@@ -208,7 +208,7 @@ msgid "Files"
 msgstr "Filer"
 
 #: zapzap/features/initial_setup/view.py:109
-#: zapzap/features/initial_setup/view.py:361
+#: zapzap/features/initial_setup/view.py:378
 #: zapzap/features/settings/shell/settings_controller.py:44
 #: zapzap/features/settings/pages/permissions/view.py:22
 msgid "Permissions"
@@ -346,11 +346,21 @@ msgstr "Visa meddelande"
 msgid "Display the message text in the notification."
 msgstr "Visa meddelandetexten i meddelandet."
 
-#: zapzap/features/initial_setup/view.py:232
+#: zapzap/features/initial_setup/view.py:221
+#: zapzap/features/settings/pages/notifications/view.py:59
+msgid "Notification sound"
+msgstr "Aviseringsljud"
+
+#: zapzap/features/initial_setup/view.py:222
+#: zapzap/features/settings/pages/notifications/view.py:60
+msgid "Let the desktop play its alert sound for new messages."
+msgstr "Låt skrivbordet spela upp ett aviseringsljud för nya meddelanden."
+
+#: zapzap/features/initial_setup/view.py:242
 msgid "Background behavior"
 msgstr "Bakgrund"
 
-#: zapzap/features/initial_setup/view.py:233
+#: zapzap/features/initial_setup/view.py:243
 msgid ""
 "Choose whether ZapZap should stay available from the tray and start with "
 "your session."
@@ -358,86 +368,100 @@ msgstr ""
 "Välj om ZapZap ska vara tillgänglig från systemfältet och starta med din "
 "session."
 
-#: zapzap/features/initial_setup/view.py:237
+#: zapzap/features/initial_setup/view.py:247
 #: zapzap/features/settings/pages/appearance/view.py:81
 msgid "Tray icon"
 msgstr "Fältikon"
 
-#: zapzap/features/initial_setup/view.py:238
+#: zapzap/features/initial_setup/view.py:248
 msgid "Control tray icon visibility and unread counter."
 msgstr "Kontrollera synlighet för systemfältikon och olästa räkning."
 
-#: zapzap/features/initial_setup/view.py:243
+#: zapzap/features/initial_setup/view.py:253
 msgid "Enable tray icon"
 msgstr "Aktivera systemfackikon"
 
-#: zapzap/features/initial_setup/view.py:244
+#: zapzap/features/initial_setup/view.py:254
 msgid "Show ZapZap in the system tray."
 msgstr "Visa ZapZap i systemfältet."
 
-#: zapzap/features/initial_setup/view.py:247
+#: zapzap/features/initial_setup/view.py:257
 msgid "Notification counter"
 msgstr "Notifieringsräknare"
 
-#: zapzap/features/initial_setup/view.py:248
+#: zapzap/features/initial_setup/view.py:258
 msgid "Show unread notifications on the tray icon."
 msgstr "Visa olästa aviseringar på systemfackikonen."
 
-#: zapzap/features/initial_setup/view.py:258
+#: zapzap/features/initial_setup/view.py:268
 msgid "Window behavior"
 msgstr "Fönsterbeteende"
 
-#: zapzap/features/initial_setup/view.py:259
+#: zapzap/features/initial_setup/view.py:269
 msgid "Configure close behavior."
 msgstr "Konfigurera stängningsbeteende."
 
-#: zapzap/features/initial_setup/view.py:264
-msgid "Keep running in the background"
-msgstr "Fortsätt köra i bakgrunden"
+#: zapzap/features/initial_setup/view.py:274
+#: zapzap/features/settings/pages/system_startup/view.py:68
+msgid "Close behavior"
+msgstr "Stäng beteende"
 
-#: zapzap/features/initial_setup/view.py:265
-msgid "Hide the main window instead of quitting when it is closed."
-msgstr "Dölj huvudfönstret istället för att avsluta när det stängs."
+#: zapzap/features/initial_setup/view.py:275
+#: zapzap/features/settings/pages/system_startup/view.py:70
+msgid "Choose whether ZapZap continues in the background or quits."
+msgstr "Välj om ZapZap fortsätter i bakgrunden eller avslutas."
 
-#: zapzap/features/initial_setup/view.py:268
-msgid "Confirm before closing the window"
-msgstr "Bekräfta innan fönstret stängs"
+#: zapzap/features/initial_setup/view.py:281
+#: zapzap/features/settings/pages/system_startup/view.py:77
+msgid "Continue in the background"
+msgstr "Fortsätt i bakgrunden"
 
-#: zapzap/features/initial_setup/view.py:269
-msgid "Ask for confirmation before closing ZapZap."
-msgstr "Be om bekräftelse innan ZapZap stängs."
+#: zapzap/features/initial_setup/view.py:285
+#: zapzap/features/settings/pages/system_startup/view.py:81
+msgid "Quit ZapZap"
+msgstr "Avsluta ZapZap"
 
-#: zapzap/features/initial_setup/view.py:279
+#: zapzap/features/initial_setup/view.py:289
+#: zapzap/features/settings/pages/system_startup/view.py:88
+msgid "Confirm before quitting"
+msgstr "Bekräfta innan programmet avslutas"
+
+#: zapzap/features/initial_setup/view.py:290
+#: zapzap/features/settings/pages/system_startup/view.py:89
+msgid "Ask for confirmation before completely closing ZapZap."
+msgstr "Be om bekräftelse innan ZapZap stängs helt."
+
+#: zapzap/features/initial_setup/view.py:301
 #: zapzap/features/settings/pages/system_startup/view.py:40
 msgid "Startup"
 msgstr "Start"
 
-#: zapzap/features/initial_setup/view.py:280
+#: zapzap/features/initial_setup/view.py:302
 msgid "Control how ZapZap behaves when your desktop session starts."
 msgstr "Kontrollera hur ZapZap beter sig när din skrivbordssession startar."
 
-#: zapzap/features/initial_setup/view.py:285
+#: zapzap/features/initial_setup/view.py:307
 #: zapzap/features/settings/pages/system_startup/view.py:45
 msgid "Start with the system"
 msgstr "Starta med systemet"
 
-#: zapzap/features/initial_setup/view.py:286
+#: zapzap/features/initial_setup/view.py:308
 msgid "Create or remove the desktop autostart entry."
 msgstr "Skapa eller ta bort skrivbordsautostartposten."
 
-#: zapzap/features/initial_setup/view.py:289
+#: zapzap/features/initial_setup/view.py:311
 msgid "Start minimized"
 msgstr "Starta minimerat"
 
-#: zapzap/features/initial_setup/view.py:290
+#: zapzap/features/initial_setup/view.py:312
 msgid "Open ZapZap in the background instead of showing the main window."
 msgstr "Öppna ZapZap i bakgrunden istället för att visa huvudfönstret."
 
-#: zapzap/features/initial_setup/view.py:303
+#: zapzap/features/initial_setup/view.py:325
 msgid "Downloads and typing"
 msgstr "Nedladdningar och skrivning"
 
-#: zapzap/features/initial_setup/view.py:304
+#: zapzap/features/initial_setup/view.py:326
 msgid ""
 "Choose where files are saved and enable spell checking when dictionaries are "
 "available."
@@ -445,131 +469,136 @@ msgstr ""
 "Välj var filer sparas och aktivera stavningskontroll när ordlistor är "
 "tillgängliga."
 
-#: zapzap/features/initial_setup/view.py:308
+#: zapzap/features/initial_setup/view.py:330
 #: zapzap/features/settings/pages/language_downloads/view.py:52
 msgid "Downloads"
 msgstr "Nedladdningar"
 
-#: zapzap/features/initial_setup/view.py:309
+#: zapzap/features/initial_setup/view.py:331
 #: zapzap/features/settings/pages/language_downloads/view.py:53
 msgid "Choose where downloaded files are saved."
 msgstr "Välj var nedladdade filer sparas."
 
-#: zapzap/features/initial_setup/view.py:314
+#: zapzap/features/initial_setup/view.py:336
 #: zapzap/features/settings/pages/language_downloads/view.py:57
 msgid "Download directory"
 msgstr "Nedladdningsmapp"
 
-#: zapzap/features/initial_setup/view.py:315
+#: zapzap/features/initial_setup/view.py:337
 msgid "Set a custom folder or keep the current download location."
 msgstr "Ange en egen mapp eller behåll den nuvarande nedladdningsplatsen."
 
-#: zapzap/features/initial_setup/view.py:316
+#: zapzap/features/initial_setup/view.py:338
 msgid "Choose folder"
 msgstr "Välj mapp"
 
-#: zapzap/features/initial_setup/view.py:326
+#: zapzap/features/initial_setup/view.py:348
 #: zapzap/features/settings/pages/language_downloads/view.py:73
 msgid "Spell checker"
 msgstr "Stavningskontroll"
 
-#: zapzap/features/initial_setup/view.py:327
+#: zapzap/features/initial_setup/view.py:349
 #: zapzap/features/settings/pages/language_downloads/view.py:74
 msgid "Select compiled dictionaries and where ZapZap should look for them."
 msgstr "Välj sammanställda ordböcker och var ZapZap ska leta efter dem."
 
-#: zapzap/features/initial_setup/view.py:332
+#: zapzap/features/initial_setup/view.py:354
 #: zapzap/features/settings/pages/language_downloads/view.py:78
 msgid "Enable spell checker"
 msgstr "Aktivera stavningskontroll"
 
-#: zapzap/features/initial_setup/view.py:333
+#: zapzap/features/initial_setup/view.py:355
 #: zapzap/features/settings/pages/language_downloads/view.py:79
 msgid "Use Qt WebEngine spell checking with the selected dictionary."
 msgstr "Använd Qt WebEngine stavningskontroll med det valda ordboken."
 
-#: zapzap/features/initial_setup/view.py:336
+#: zapzap/features/initial_setup/view.py:358
 #: zapzap/features/settings/pages/language_downloads/view.py:82
 msgid "Dictionary language"
 msgstr "Ordboksspråk"
 
-#: zapzap/features/initial_setup/view.py:337
+#: zapzap/features/initial_setup/view.py:359
 #: zapzap/features/settings/pages/language_downloads/view.py:83
 msgid "Recognizes only compiled dictionaries (.bdic)."
 msgstr "Känner bara igen kompilerade ordböcker (.bdic)."
 
-#: zapzap/features/initial_setup/view.py:341
-msgid ""
-"No compiled dictionaries were found. You can configure dictionaries later in "
-"Settings."
-msgstr ""
-"Inga kompilerade ordböcker hittades. Du kan konfigurera ordböcker senare "
-"under Inställningar."
-
-#: zapzap/features/initial_setup/view.py:356
+#: zapzap/features/initial_setup/view.py:373
 msgid "Essential permissions"
 msgstr "Väsentliga behörigheter"
 
-#: zapzap/features/initial_setup/view.py:357
+#: zapzap/features/initial_setup/view.py:374
 msgid ""
 "Allow only the WhatsApp Web permissions you want to grant automatically."
 msgstr "Tillåt endast de WhatsApp Web-behörigheter du vill ge automatiskt."
 
-#: zapzap/features/initial_setup/view.py:362
+#: zapzap/features/initial_setup/view.py:379
 msgid "When an option is unchecked, ZapZap will ask again in each session."
 msgstr ""
 "När ett alternativ är avmarkerat, kommer ZapZap fråga igen i varje session."
 
-#: zapzap/features/initial_setup/view.py:368
+#: zapzap/features/initial_setup/view.py:385
 msgid ""
 "Enable only the permissions you want to grant automatically when the page "
 "requests them."
 msgstr ""
 "Aktivera endast de behörigheter du vill ge automatiskt när sidan begär dem."
 
-#: zapzap/features/initial_setup/view.py:372
+#: zapzap/features/initial_setup/view.py:389
 #: zapzap/features/settings/pages/permissions/view.py:64
 msgid "Microphone"
 msgstr "Mikrofon"
 
-#: zapzap/features/initial_setup/view.py:373
+#: zapzap/features/initial_setup/view.py:390
 #: zapzap/features/settings/pages/permissions/view.py:65
 msgid "Automatically allow access to your microphone."
 msgstr "Tillåt automatiskt åtkomst till din mikrofon."
 
-#: zapzap/features/initial_setup/view.py:376
+#: zapzap/features/initial_setup/view.py:393
 #: zapzap/features/settings/pages/permissions/view.py:69
 msgid "Camera"
 msgstr "Kamera"
 
-#: zapzap/features/initial_setup/view.py:377
+#: zapzap/features/initial_setup/view.py:394
 #: zapzap/features/settings/pages/permissions/view.py:70
 msgid "Automatically allow access to your camera."
 msgstr "Tillåt automatiskt åtkomst till din kamera."
 
-#: zapzap/features/initial_setup/view.py:380
-msgid "Screen contents"
-msgstr "Skärminnehåll"
+#: zapzap/features/initial_setup/view.py:397
+#: zapzap/features/settings/pages/permissions/view.py:74
+msgid "Camera and microphone"
+msgstr "Kamera och mikrofon"
 
-#: zapzap/features/initial_setup/view.py:381
+#: zapzap/features/initial_setup/view.py:398
+#: zapzap/features/settings/pages/permissions/view.py:76
+msgid "Automatically allow simultaneous access to the camera and microphone."
+msgstr "Tillåt automatiskt samtidig åtkomst till kamera och mikrofon."
+
+#: zapzap/features/initial_setup/view.py:401
+#: zapzap/features/settings/pages/permissions/view.py:93
+msgid "Screen sharing"
+msgstr "Skärmdelning"
+
+#: zapzap/features/initial_setup/view.py:402
 #: zapzap/features/settings/pages/permissions/view.py:94
 msgid "Automatically allow sharing of screen contents."
 msgstr "Tillåt automatiskt delning av skärminnehåll."
 
-#: zapzap/features/initial_setup/view.py:384
-msgid "WebRTC shield"
-msgstr "WebRTC sköld"
+#: zapzap/features/initial_setup/view.py:405
+#: zapzap/features/settings/pages/permissions/view.py:98
+msgid "Screen with audio"
+msgstr "Skärm med ljud"
 
-#: zapzap/features/initial_setup/view.py:385
-msgid "Reduce WebRTC IP exposure."
-msgstr "Minska WebRTC exponering av IP."
+#: zapzap/features/initial_setup/view.py:406
+#: zapzap/features/settings/pages/permissions/view.py:99
+msgid "Automatically allow screen sharing with audio."
+msgstr "Dela automatiskt skärm med ljud."
 
-#: zapzap/features/initial_setup/view.py:402
+#: zapzap/features/initial_setup/view.py:427
 #: zapzap/features/settings/pages/permissions/view.py:130
 msgid "Flatpak permissions"
 msgstr "Flatpak behörigheter"
 
-#: zapzap/features/initial_setup/view.py:403
+#: zapzap/features/initial_setup/view.py:428
 #: zapzap/features/settings/pages/permissions/view.py:131
 msgid ""
 "Grant filesystem access if downloads, imports, or dictionaries cannot reach "
@@ -578,7 +607,7 @@ msgstr ""
 "Bevilja åtkomst till filsystemet om nedladdningar, importer eller ordlistor "
 "inte kan nå mappar utanför sandlådan."
 
-#: zapzap/features/initial_setup/view.py:409
+#: zapzap/features/initial_setup/view.py:434
 #: zapzap/features/settings/pages/permissions/view.py:135
 msgid ""
 "Flatpak sandbox: if file access fails, grant folder permissions using "
@@ -587,12 +616,12 @@ msgstr ""
 "Flatpak sandbox: om filåtkomst misslyckas, ge mappbehörigheter med Flatseal "
 "eller flatpak override."
 
-#: zapzap/features/initial_setup/view.py:419
+#: zapzap/features/initial_setup/view.py:444
 #: zapzap/features/settings/pages/permissions/view.py:143
 msgid "Select and copy this command in your terminal"
 msgstr "Markera och kopiera detta kommando till din terminal"
 
-#: zapzap/features/initial_setup/view.py:421
+#: zapzap/features/initial_setup/view.py:446
 #: zapzap/features/settings/pages/debugging/controller.py:87
 #: zapzap/features/settings/pages/debugging/view.py:223
 #: zapzap/features/settings/pages/permissions/view.py:145
@@ -600,12 +629,12 @@ msgstr "Markera och kopiera detta kommando till din terminal"
 msgid "Copy"
 msgstr "Kopiera"
 
-#: zapzap/features/initial_setup/view.py:425
+#: zapzap/features/initial_setup/view.py:450
 #: zapzap/features/settings/pages/permissions/view.py:149
 msgid "Flatseal"
 msgstr "Flatseal"
 
-#: zapzap/features/initial_setup/view.py:426
+#: zapzap/features/initial_setup/view.py:451
 #: zapzap/features/settings/pages/permissions/view.py:150
 msgid ""
 "Flatseal is a graphical utility to review and modify permissions from your "
@@ -614,16 +643,16 @@ msgstr ""
 "Flatseal är ett grafiskt verktyg för att granska och ändra behörigheter för "
 "dina Flatpak-applikationer."
 
-#: zapzap/features/initial_setup/view.py:427
+#: zapzap/features/initial_setup/view.py:452
 #: zapzap/features/settings/pages/permissions/view.py:151
 msgid "Install Flatseal on Linux | Flathub"
 msgstr "Installera Flatseal på Linux | Flathub"
 
-#: zapzap/features/initial_setup/view.py:442
+#: zapzap/features/initial_setup/view.py:467
 msgid "You're ready"
 msgstr "Du är redo"
 
-#: zapzap/features/initial_setup/view.py:443
+#: zapzap/features/initial_setup/view.py:468
 msgid ""
 "ZapZap will save these preferences now. Advanced options remain available in "
 "Settings."
@@ -631,15 +660,15 @@ msgstr ""
 "ZapZap kommer att spara dessa inställningar nu. Avancerade alternativ finns "
 "kvar i Inställningar."
 
-#: zapzap/features/initial_setup/view.py:447
+#: zapzap/features/initial_setup/view.py:472
 msgid "Finish setup"
 msgstr "Slutför installation"
 
-#: zapzap/features/initial_setup/view.py:448
+#: zapzap/features/initial_setup/view.py:473
 msgid "Review advanced options later whenever you need them."
 msgstr "Granska avancerade alternativ senare när du behöver dem."
 
-#: zapzap/features/initial_setup/view.py:454
+#: zapzap/features/initial_setup/view.py:479
 msgid ""
 "You can revisit all choices from Settings at any time. Proxy, custom CSS/"
 "JavaScript, Flatpak permissions, and performance tweaks are still available "
@@ -1127,6 +1156,7 @@ msgid "No preview available."
 msgstr "Ingen förhandsvisning tillgänglig."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:429
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:273
 msgid "Could not load preview image."
 msgstr "Kunde inte ladda bild för förhandsvisning."
 
@@ -1159,6 +1189,7 @@ msgid "Could not set preview image."
 msgstr "Kunde inte ställa in bild för förhandsvisning."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:526
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:293
 msgid "Preview image updated."
 msgstr "Uppdaterade bild för förhandsvisning."
 
@@ -1216,14 +1247,14 @@ msgstr "Ctrl+S to save"
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:648
 #: zapzap/features/settings/pages/network_privacy/controller.py:293
 #: zapzap/features/settings/pages/network_privacy/controller.py:341
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:106
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:160
 #: zapzap/features/downloads/ui/download_dialog.py:120
 msgid "Cancel"
 msgstr "Avbryt"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:649
 #: zapzap/features/settings/pages/advanced_customizations/view.py:418
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:107
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:161
 #: zapzap/features/downloads/ui/download_dialog.py:103
 msgid "Save"
 msgstr "Spara"
@@ -1502,7 +1533,8 @@ msgstr "Ladda om sidan"
 
 #: zapzap/features/settings/pages/appearance/controller.py:72
 #: zapzap/features/settings/pages/appearance/view.py:95
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:95
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:98
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:149
 msgid "Default"
 msgstr "Standard"
 
@@ -1910,7 +1942,7 @@ msgstr "Definiera"
 #: zapzap/features/settings/pages/language_downloads/view.py:65
 #: zapzap/features/settings/pages/language_downloads/view.py:96
 #: zapzap/features/settings/pages/network_privacy/controller.py:335
-#: zapzap/features/settings/pages/performance_experimental/view.py:238
+#: zapzap/features/settings/pages/performance_experimental/view.py:248
 msgid "Restore"
 msgstr "Återställ"
 
@@ -2172,14 +2204,6 @@ msgstr "Meddelandeförhandsvisning"
 msgid "Show the content of the received message."
 msgstr "Visa innehållet i det mottagna meddelandet."
 
-#: zapzap/features/settings/pages/notifications/view.py:59
-msgid "Notification sound"
-msgstr "Aviseringsljud"
-
-#: zapzap/features/settings/pages/notifications/view.py:60
-msgid "Let the desktop play its alert sound for new messages."
-msgstr "Låt skrivbordet spela upp ett aviseringsljud för nya meddelanden."
-
 #: zapzap/features/settings/pages/notifications/view.py:80
 msgid "ZapZap messages"
 msgstr "ZapZap meddelanden"
@@ -2321,114 +2345,127 @@ msgid "Use only for graphical issues."
 msgstr "Använd endast för grafiska problem."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:113
+msgid "Use software video decoding"
+msgstr "Använd programvaruavkodning av video"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:115
+msgid ""
+"Disables hardware video decoding to fix videos that appear white, black, "
+"flicker, or cause crashes. This may increase CPU and battery usage."
+msgstr ""
+"Inaktiverar hårdvaruavkodning av video för att åtgärda videor som visas vita "
+"eller svarta, flimrar eller orsakar krascher. Detta kan öka processor- och "
+"batterianvändningen."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:121
 msgid "Force GBM"
 msgstr "Tvinga GBM"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:114
+#: zapzap/features/settings/pages/performance_experimental/view.py:122
 msgid "Known NVIDIA typing lag fix."
 msgstr "Känd NVIDIA skrivfördröjningsfix."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:117
+#: zapzap/features/settings/pages/performance_experimental/view.py:125
 msgid "Disable accessibility bus"
 msgstr "Inaktivera tillgänglighetsbuss"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:118
+#: zapzap/features/settings/pages/performance_experimental/view.py:126
 msgid "Known typing lag or CPU spike fix in QtWebEngine."
 msgstr "Känd fix för skrivfördröjning eller CPU-pick i QtWebEngine."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:142
+#: zapzap/features/settings/pages/performance_experimental/view.py:152
 msgid "Processes"
 msgstr "Processer"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:143
+#: zapzap/features/settings/pages/performance_experimental/view.py:153
 msgid "Chromium process model options."
 msgstr "Chromium-processmodellsalternativ."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:147
+#: zapzap/features/settings/pages/performance_experimental/view.py:157
 msgid "Single process"
 msgstr "Enkel process"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:148
+#: zapzap/features/settings/pages/performance_experimental/view.py:158
 msgid "Experimental; reduces memory usage but may cause crashes."
 msgstr "Experimentell; minskar minnesanvändning men kan orsaka krascher."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:151
+#: zapzap/features/settings/pages/performance_experimental/view.py:161
 msgid "Process per site"
 msgstr "Process per webbplats"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:152
+#: zapzap/features/settings/pages/performance_experimental/view.py:162
 msgid "Safer and more stable, but may increase memory usage."
 msgstr "Säkrare och mer stabilt, men kan öka minnesanvändningen."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:163
+#: zapzap/features/settings/pages/performance_experimental/view.py:173
 msgid "JavaScript memory"
 msgstr "JavaScript minne"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:164
+#: zapzap/features/settings/pages/performance_experimental/view.py:174
 msgid "V8 memory limit. Restart required."
 msgstr "V8 minnesgräns. Omstart krävs."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:168
+#: zapzap/features/settings/pages/performance_experimental/view.py:178
 msgid "JavaScript memory limit"
 msgstr "Minnesgräns för JavaScript"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:169
+#: zapzap/features/settings/pages/performance_experimental/view.py:179
 msgid "Automatic is the safest option."
 msgstr "Automatiskt är det säkraste alternativet."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:173
+#: zapzap/features/settings/pages/performance_experimental/view.py:183
 msgid "JavaScript GC predictable schedule (experimental)"
 msgstr "JavaScript GC förutsägbar schema (experimentell)"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:174
+#: zapzap/features/settings/pages/performance_experimental/view.py:184
 msgid "Enables predictable V8 garbage collection and disables GPU."
 msgstr "Aktiverar förutsägbar V8-skräpinsamling och inaktiverar GPU."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:185
+#: zapzap/features/settings/pages/performance_experimental/view.py:195
 msgid "Web behavior"
 msgstr "Webb-beteende"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:186
+#: zapzap/features/settings/pages/performance_experimental/view.py:196
 msgid "Behavior options for rendered web content."
 msgstr "Grundläggande"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:190
+#: zapzap/features/settings/pages/performance_experimental/view.py:200
 msgid "Smooth scrolling"
 msgstr "Mjuk rullning"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:191
+#: zapzap/features/settings/pages/performance_experimental/view.py:201
 msgid "Disabling may reduce CPU usage."
 msgstr "Inaktivering kan minska CPU-användning."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:194
+#: zapzap/features/settings/pages/performance_experimental/view.py:204
 msgid "Background throttling"
 msgstr "Bakgrundsbeteeende"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:195
+#: zapzap/features/settings/pages/performance_experimental/view.py:205
 msgid "Allows background tabs to reduce resource usage."
 msgstr "Tillåter bakgrundsflikar att minska resursanvändning."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:198
+#: zapzap/features/settings/pages/performance_experimental/view.py:208
 msgid "Disable animations"
 msgstr "Inaktivera animationer"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:199
+#: zapzap/features/settings/pages/performance_experimental/view.py:209
 msgid "May improve performance on slower machines."
 msgstr "Kan förbättra prestanda på långsammare datorer."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:202
+#: zapzap/features/settings/pages/performance_experimental/view.py:212
 msgid "Disable pinch-to-zoom"
 msgstr "Inaktivera nyp-till-zoom"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:203
+#: zapzap/features/settings/pages/performance_experimental/view.py:213
 msgid "Useful if accidental zooming occurs during scrolling."
 msgstr "Användbart om oavsiktlig zoomning sker under scrollning."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:206
+#: zapzap/features/settings/pages/performance_experimental/view.py:216
 msgid "Fix Ctrl+Arrow cursor movement"
 msgstr "Åtgärda Ctrl+Arrow markörrörelse"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:208
+#: zapzap/features/settings/pages/performance_experimental/view.py:218
 msgid ""
 "Use visual word navigation in editable fields to fix RTL text cursor "
 "movement."
@@ -2436,23 +2473,23 @@ msgstr ""
 "Använd visuell ordnavigering i redigerbara fält för att fixa RTL "
 "textmarkörens rörelse."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:231
+#: zapzap/features/settings/pages/performance_experimental/view.py:241
 msgid "Restore defaults"
 msgstr "Återställ till standard"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:232
+#: zapzap/features/settings/pages/performance_experimental/view.py:242
 msgid "Return performance settings to safe defaults."
 msgstr "Återgå prestandainställningar till säkra standardvärden."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:236
+#: zapzap/features/settings/pages/performance_experimental/view.py:246
 msgid "Restore performance defaults"
 msgstr "Återställ prestanda till standardvärden"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:237
+#: zapzap/features/settings/pages/performance_experimental/view.py:247
 msgid "Restores all performance settings to safe default values."
 msgstr "Återställer alla prestanda-inställningar till säkra standardvärden."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:138
+#: zapzap/features/settings/pages/performance_experimental/controller.py:139
 msgid ""
 "Defines where the HTTP cache will be stored.\n"
 "Disk: faster after restart.\n"
@@ -2464,7 +2501,7 @@ msgstr ""
 "Minne (Memory): Snabbare, men förloras vid programavslut\n"
 "Ingen cache (No Cache): Lägre diskanvändning, långsammare."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:145
+#: zapzap/features/settings/pages/performance_experimental/controller.py:146
 msgid ""
 "Maximum HTTP cache size.\n"
 "0 MB uses the default Chromium behavior."
@@ -2472,7 +2509,7 @@ msgstr ""
 "Maximal storlek på HTTP-cache.\n"
 "0 MB är standardbeteende för Chromium."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:148
+#: zapzap/features/settings/pages/performance_experimental/controller.py:149
 msgid ""
 "Keeps cookies between restarts.\n"
 "Disabling may cause frequent logouts."
@@ -2480,7 +2517,7 @@ msgstr ""
 "Behåller cookies mellan omstarter.\n"
 "Inaktivering kan orsaka frekventa utloggningar."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:152
+#: zapzap/features/settings/pages/performance_experimental/controller.py:153
 msgid ""
 "Runs GPU and rendering in the same process.\n"
 "May reduce memory usage, but can cause instability."
@@ -2488,7 +2525,7 @@ msgstr ""
 "Kör grafik och rendering i samma process.\n"
 "Kan reducera minnesanvändning, men kan orsaka instabilitet."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:158
+#: zapzap/features/settings/pages/performance_experimental/controller.py:159
 msgid ""
 "Disables GPU hardware acceleration.\n"
 "Recommended only for old GPUs or problematic drivers."
@@ -2496,7 +2533,7 @@ msgstr ""
 "Inaktiverar hårdvaruaccelerering av grafik.\n"
 "Rekommenderas endast för gamla grafikkort eller struliga drivrutiner."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:164
+#: zapzap/features/settings/pages/performance_experimental/controller.py:165
 msgid ""
 "Automatically honors an unambiguous DRI_PRIME selector on systems with "
 "multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
@@ -2512,7 +2549,7 @@ msgstr ""
 "Inaktivera detta endast om den automatiska lösningen orsakar problem. "
 "Omstart krävs."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:173
+#: zapzap/features/settings/pages/performance_experimental/controller.py:174
 msgid ""
 "Disables GPU VSync.\n"
 "May reduce latency, but can increase power usage and tearing."
@@ -2520,7 +2557,7 @@ msgstr ""
 "Inaktiverar VSync för grafik.\n"
 "Kan reducera latens, men kan öka energianvändning och tearing."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:179
+#: zapzap/features/settings/pages/performance_experimental/controller.py:180
 msgid ""
 "Forces software rendering.\n"
 "Use only in case of graphical issues.\n"
@@ -2530,7 +2567,20 @@ msgstr ""
 "Använd endast vid problem med grafik.\n"
 "Kan ha stor påverkan på prestanda."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:186
+#: zapzap/features/settings/pages/performance_experimental/controller.py:187
+msgid ""
+"Disables hardware video decoding without disabling all GPU acceleration.\n"
+"Use when videos play only audio, appear white or black, flicker, or cause "
+"crashes.\n"
+"May increase CPU and battery usage. Restart required."
+msgstr ""
+"Inaktiverar hårdvaruavkodning av video utan att stänga av all GPU-"
+"acceleration.\n"
+"Använd när videor bara spelar upp ljud, visas vita eller svarta, flimrar "
+"eller orsakar krascher.\n"
+"Kan öka processor- och batterianvändningen. Omstart krävs."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:196
 msgid ""
 "Forces the GBM backend on Wayland.\n"
 "Known to fix severe typing lag on NVIDIA drivers."
@@ -2538,7 +2588,7 @@ msgstr ""
 "Tvingar GBM-backend på Wayland.\n"
 "Känt för att åtgärda allvarlig skrivfördröjning på NVIDIA-drivrutiner."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:192
+#: zapzap/features/settings/pages/performance_experimental/controller.py:202
 msgid ""
 "Disables the accessibility bus.\n"
 "Known to fix typing lag or CPU spikes in QtWebEngine."
@@ -2546,7 +2596,7 @@ msgstr ""
 "Inaktiverar tillgänglighetsbussen.\n"
 "Känd för att fixa tangentbordsfördröjning eller CPU-spikar i QtWebEngine."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:198
+#: zapzap/features/settings/pages/performance_experimental/controller.py:208
 msgid ""
 "Runs the entire Chromium engine in a single process.\n"
 "Reduces memory usage, but may cause crashes.\n"
@@ -2556,7 +2606,7 @@ msgstr ""
 "Reducerar minnesanvändning, men kan orsaka krascher.\n"
 "Experimentell användning."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:205
+#: zapzap/features/settings/pages/performance_experimental/controller.py:215
 msgid ""
 "Uses a separate process per site.\n"
 "Safer and more stable.\n"
@@ -2566,7 +2616,7 @@ msgstr ""
 "Säkrare och mer stabilt.\n"
 "Kan öka minnesanvändningen."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:212
+#: zapzap/features/settings/pages/performance_experimental/controller.py:222
 msgid ""
 "JavaScript (V8) memory limit.\n"
 "Automatic is the safest option.\n"
@@ -2580,7 +2630,7 @@ msgstr ""
 "\n"
 "Omstart krävs."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:220
+#: zapzap/features/settings/pages/performance_experimental/controller.py:230
 msgid ""
 "Enables V8 predictable garbage collection schedule.\n"
 "This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
@@ -2594,7 +2644,7 @@ msgstr ""
 "\n"
 "Experimentellt alternativ. Omstart krävs."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:227
+#: zapzap/features/settings/pages/performance_experimental/controller.py:237
 msgid ""
 "Enables smooth scrolling animations.\n"
 "Disabling may reduce CPU usage."
@@ -2602,7 +2652,7 @@ msgstr ""
 "Aktiverar mjuka rullningsanimationer.\n"
 "Inaktivering kan reducera processoranvändning."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:231
+#: zapzap/features/settings/pages/performance_experimental/controller.py:241
 msgid ""
 "Allows background tabs to reduce resource usage.\n"
 "Disabling keeps timers active, but uses more resources."
@@ -2610,7 +2660,7 @@ msgstr ""
 "Tillåter bakgrundsflikar för att reducera resursanvändning.\n"
 "Inaktivering behåller timers aktiva, men använder mer resurser."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:237
+#: zapzap/features/settings/pages/performance_experimental/controller.py:247
 msgid ""
 "Disables CSS and JavaScript animations.\n"
 "May improve performance on slower machines."
@@ -2618,7 +2668,7 @@ msgstr ""
 "Inaktiverar CSS- och JavaScript-animationer.\n"
 "Kan förbättra prestandan på långsamma enheter."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:243
+#: zapzap/features/settings/pages/performance_experimental/controller.py:253
 msgid ""
 "Disables pinch-to-zoom gesture on touchpads.\n"
 "Useful if accidental zooming occurs during scrolling."
@@ -2626,7 +2676,7 @@ msgstr ""
 "Inaktiverar nyp-till-zoom-gest på pekplattor.\n"
 "Användbart om oavsiktlig zoomning sker under rullning."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:249
+#: zapzap/features/settings/pages/performance_experimental/controller.py:259
 msgid ""
 "Uses Selection.modify() with visual directions for Ctrl+Arrow word "
 "navigation.\n"
@@ -2642,7 +2692,7 @@ msgstr ""
 "\n"
 "Starta om eller ladda om WhatsApp Web efter att ha ändrat detta alternativ."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:255
+#: zapzap/features/settings/pages/performance_experimental/controller.py:265
 msgid ""
 "Restores all performance settings\n"
 "to safe default values."
@@ -2671,14 +2721,6 @@ msgstr "Ta bort allt"
 msgid "Device access"
 msgstr "Enhetsåtkomst"
 
-#: zapzap/features/settings/pages/permissions/view.py:74
-msgid "Camera and microphone"
-msgstr "Kamera och mikrofon"
-
-#: zapzap/features/settings/pages/permissions/view.py:76
-msgid "Automatically allow simultaneous access to the camera and microphone."
-msgstr "Tillåt automatiskt samtidig åtkomst till kamera och mikrofon."
-
 #: zapzap/features/settings/pages/permissions/view.py:82
 msgid "Location"
 msgstr "Plats"
@@ -2690,18 +2732,6 @@ msgstr "Tillåt automatiskt åtkomst till din plats."
 #: zapzap/features/settings/pages/permissions/view.py:89
 msgid "Sharing"
 msgstr "Delning"
-
-#: zapzap/features/settings/pages/permissions/view.py:93
-msgid "Screen sharing"
-msgstr "Skärmdelning"
-
-#: zapzap/features/settings/pages/permissions/view.py:98
-msgid "Screen with audio"
-msgstr "Skärm med ljud"
-
-#: zapzap/features/settings/pages/permissions/view.py:99
-msgid "Automatically allow screen sharing with audio."
-msgstr "Dela automatiskt skärm med ljud."
 
 #: zapzap/features/settings/pages/permissions/view.py:105
 msgid "Advanced"
@@ -2746,30 +2776,6 @@ msgstr "Fönster"
 #: zapzap/features/settings/pages/system_startup/view.py:64
 msgid "Define what happens when the main window is closed."
 msgstr "Definiera vad som händer när huvudfönstret stängs."
-
-#: zapzap/features/settings/pages/system_startup/view.py:68
-msgid "Close behavior"
-msgstr "Stäng beteende"
-
-#: zapzap/features/settings/pages/system_startup/view.py:70
-msgid "Choose whether ZapZap continues in the background or quits."
-msgstr "Välj om ZapZap fortsätter i bakgrunden eller avslutas."
-
-#: zapzap/features/settings/pages/system_startup/view.py:77
-msgid "Continue in the background"
-msgstr "Fortsätt i bakgrunden"
-
-#: zapzap/features/settings/pages/system_startup/view.py:81
-msgid "Quit ZapZap"
-msgstr "Avsluta ZapZap"
-
-#: zapzap/features/settings/pages/system_startup/view.py:88
-msgid "Confirm before quitting"
-msgstr "Bekräfta innan programmet avslutas"
-
-#: zapzap/features/settings/pages/system_startup/view.py:89
-msgid "Ask for confirmation before completely closing ZapZap."
-msgstr "Be om bekräftelse innan ZapZap stängs helt."
 
 #: zapzap/features/settings/pages/system_startup/view.py:96
 msgid ""
@@ -2821,7 +2827,7 @@ msgstr "Kontohändelser"
 
 #: zapzap/features/settings/components/card_user/card_user_view.py:95
 #: zapzap/features/settings/components/card_user/card_user_view.py:96
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:69
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:106
 msgid "Change icon"
 msgstr "Ändra ikon"
 
@@ -2868,13 +2874,13 @@ msgstr ""
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:196
 #: zapzap/features/settings/components/card_user/card_user_controller.py:239
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:76
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:117
 msgid "Generate new colors for the icon"
 msgstr "Generera nya färger för ikonen"
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:199
 #: zapzap/features/settings/components/card_user/card_user_controller.py:242
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:78
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:119
 msgid "Restore standard"
 msgstr "Återställ till standard"
 
@@ -2883,45 +2889,57 @@ msgid "Disable"
 msgstr "Inaktivera"
 
 #: zapzap/features/settings/components/card_user/card_user_controller.py:223
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:92
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:146
 msgid "User-Agent"
 msgstr "User-Agent"
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:30
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:55
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:59
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:84
 msgid "Edit account"
 msgstr "Redigera konto"
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:57
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:86
 msgid "Change the name and icon used to identify this account."
 msgstr "Ändra namnet och ikonen som används för att identifiera detta konto."
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:63
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:65
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:92
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:94
 msgid "Account name"
 msgstr "Kontonamn"
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:68
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:97
 msgid "Account icon"
 msgstr "Kontots ikon"
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:88
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:99
+msgid "Photo"
+msgstr "Foto"
+
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:128
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:130
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:256
+msgid "Choose photo"
+msgstr "Välj foto"
+
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:133
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:142
 msgid "Keep current icon"
 msgstr "Behåll nuvarande ikon"
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:91
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:145
 msgid "Advanced options"
 msgstr "Avancerade alternativ"
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:101
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:155
 msgid "Changes the identification used by this account when loading pages."
 msgstr "Ändrar identifieringen som används av detta konto när sidor laddas."
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:152
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:218
 msgid "New icon colors selected."
 msgstr "Nya ikonfärger valda."
 
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:158
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:226
+#: zapzap/features/settings/components/card_user/edit_account_dialog.py:239
 msgid "Standard icon selected."
 msgstr "Standardikon vald."
 
@@ -3023,6 +3041,62 @@ msgstr "Aktivera"
 msgid "Not now"
 msgstr "Inte nu"
 
+#: zapzap/features/browser/web/page_controller.py:206
+msgid "Please enter the phone number with country code (e.g., +5511999999999):"
+msgstr "Skriv in telefonnummer, inklusive landsnummer (t.ex. +46701234567):"
+
+#: zapzap/features/browser/web/page_controller.py:210
+msgid ""
+"Invalid number! Please enter at least 9 digits, including the country code."
+msgstr "Ogiltigt nummer! Skriv in minst 9 siffror, inklusive landsnummer."
+
+#: zapzap/features/browser/web/page_controller.py:274
+msgid "your microphone"
+msgstr "din mikrofon"
+
+#: zapzap/features/browser/web/page_controller.py:275
+msgid "your camera"
+msgstr "din kamera"
+
+#: zapzap/features/browser/web/page_controller.py:276
+msgid "your camera and microphone"
+msgstr "din kamera och mikrofon"
+
+#: zapzap/features/browser/web/page_controller.py:277
+msgid "your location"
+msgstr "din plats"
+
+#: zapzap/features/browser/web/page_controller.py:278
+msgid "your screen contents"
+msgstr "ditt skärminnehåll"
+
+#: zapzap/features/browser/web/page_controller.py:279
+msgid "your screen contents and audio"
+msgstr "ditt skärminnehåll och ljud"
+
+#: zapzap/features/browser/web/page_controller.py:280
+msgid "mouse lock"
+msgstr "musslås"
+
+#: zapzap/features/browser/web/page_controller.py:282
+msgid "a system feature"
+msgstr "en systemfunktion"
+
+#: zapzap/features/browser/web/page_controller.py:286
+msgid "Permission request"
+msgstr "Behörighetsförfrågan"
+
+#: zapzap/features/browser/web/page_controller.py:287
+#, python-brace-format
+msgid ""
+"WhatsApp Web is requesting access to {}.\n"
+"\n"
+"Allow?"
+msgstr ""
+"WhatsApp Web begär åtkomst till {}.\n"
+"\n"
+"Tillåt?"
+
 #: zapzap/features/browser/web/web_view.py:311
 msgid "Undo"
 msgstr "Ångra"
@@ -3064,70 +3138,14 @@ msgstr "Kontrollera stavning"
 msgid "Select Language"
 msgstr "Välj språk"
 
-#: zapzap/features/browser/web/web_view.py:564
+#: zapzap/features/browser/web/web_view.py:578
 msgid "Account"
 msgstr "Konto"
 
-#: zapzap/features/browser/web/web_view.py:566
+#: zapzap/features/browser/web/web_view.py:580
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"
-
-#: zapzap/features/browser/web/page_controller.py:198
-msgid "Please enter the phone number with country code (e.g., +5511999999999):"
-msgstr "Skriv in telefonnummer, inklusive landsnummer (t.ex. +46701234567):"
-
-#: zapzap/features/browser/web/page_controller.py:202
-msgid ""
-"Invalid number! Please enter at least 9 digits, including the country code."
-msgstr "Ogiltigt nummer! Skriv in minst 9 siffror, inklusive landsnummer."
-
-#: zapzap/features/browser/web/page_controller.py:266
-msgid "your microphone"
-msgstr "din mikrofon"
-
-#: zapzap/features/browser/web/page_controller.py:267
-msgid "your camera"
-msgstr "din kamera"
-
-#: zapzap/features/browser/web/page_controller.py:268
-msgid "your camera and microphone"
-msgstr "din kamera och mikrofon"
-
-#: zapzap/features/browser/web/page_controller.py:269
-msgid "your location"
-msgstr "din plats"
-
-#: zapzap/features/browser/web/page_controller.py:270
-msgid "your screen contents"
-msgstr "ditt skärminnehåll"
-
-#: zapzap/features/browser/web/page_controller.py:271
-msgid "your screen contents and audio"
-msgstr "ditt skärminnehåll och ljud"
-
-#: zapzap/features/browser/web/page_controller.py:272
-msgid "mouse lock"
-msgstr "musslås"
-
-#: zapzap/features/browser/web/page_controller.py:274
-msgid "a system feature"
-msgstr "en systemfunktion"
-
-#: zapzap/features/browser/web/page_controller.py:278
-msgid "Permission request"
-msgstr "Behörighetsförfrågan"
-
-#: zapzap/features/browser/web/page_controller.py:279
-#, python-brace-format
-msgid ""
-"WhatsApp Web is requesting access to {}.\n"
-"\n"
-"Allow?"
-msgstr ""
-"WhatsApp Web begär åtkomst till {}.\n"
-"\n"
-"Tillåt?"
 
 #: zapzap/ui/main_window/main_window_view.py:134
 msgid "File"
@@ -3266,6 +3284,62 @@ msgstr "Är du säker på att du vill stänga?"
 #: zapzap/ui/main_window/main_window_controller.py:266
 msgid "Don't ask again"
 msgstr "Fråga inte igen"
+
+#, fuzzy
+#~ msgid "Account image"
+#~ msgstr "Kontonamn"
+
+#, fuzzy
+#~ msgid "Default icon"
+#~ msgstr "Standard"
+
+#, fuzzy
+#~ msgid "Choose account photo"
+#~ msgstr "Visa kontaktfoto"
+
+#, fuzzy
+#~ msgid "Keep current photo"
+#~ msgstr "Behåll nuvarande ikon"
+
+#, fuzzy
+#~ msgid "Default icon selected."
+#~ msgstr "Standardikon vald."
+
+#, fuzzy
+#~ msgid "Could not load this image."
+#~ msgstr "Kunde inte ladda bild för förhandsvisning."
+
+#, fuzzy
+#~ msgid "Photo selected."
+#~ msgstr "Standardikon vald."
+
+#~ msgid "Keep running in the background"
+#~ msgstr "Fortsätt köra i bakgrunden"
+
+#~ msgid "Hide the main window instead of quitting when it is closed."
+#~ msgstr "Dölj huvudfönstret istället för att avsluta när det stängs."
+
+#~ msgid "Confirm before closing the window"
+#~ msgstr "Bekräfta innan fönstret stängs"
+
+#~ msgid "Ask for confirmation before closing ZapZap."
+#~ msgstr "Be om bekräftelse innan ZapZap stängs."
+
+#~ msgid ""
+#~ "No compiled dictionaries were found. You can configure dictionaries later "
+#~ "in Settings."
+#~ msgstr ""
+#~ "Inga kompilerade ordböcker hittades. Du kan konfigurera ordböcker senare "
+#~ "under Inställningar."
+
+#~ msgid "Screen contents"
+#~ msgstr "Skärminnehåll"
+
+#~ msgid "WebRTC shield"
+#~ msgstr "WebRTC sköld"
+
+#~ msgid "Reduce WebRTC IP exposure."
+#~ msgstr "Minska WebRTC exponering av IP."
 
 #, fuzzy
 #~ msgid "Global (Default)"
