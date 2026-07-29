@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-29 11:53-0300\n"
+"POT-Creation-Date: 2026-07-29 14:33-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: French\n"
@@ -1100,7 +1100,7 @@ msgstr "Les modifications non enregistrées sont supprimées."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:197
 #: zapzap/features/settings/pages/network_privacy/controller.py:58
-#: zapzap/features/settings/components/card_user/card_user_view.py:133
+#: zapzap/features/settings/components/card_user/card_user_view.py:145
 msgid "Unnamed account"
 msgstr "Compte sans nom"
 
@@ -1405,7 +1405,7 @@ msgid "File actions"
 msgstr "Actions sur les fichiers"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:161
-#: zapzap/features/settings/components/card_user/card_user_controller.py:103
+#: zapzap/features/settings/components/card_user/card_user_controller.py:115
 msgid "Edit"
 msgstr "Modifier"
 
@@ -1418,7 +1418,7 @@ msgid "Open location"
 msgstr "Emplacement ouvert"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:165
-#: zapzap/features/settings/components/card_user/card_user_controller.py:248
+#: zapzap/features/settings/components/card_user/card_user_controller.py:260
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -2885,75 +2885,98 @@ msgstr "Nécessite un redémarrage"
 msgid "Wayland changes require restart"
 msgstr "Les modifications Wayland nécessitent un redémarrage"
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:30
-#: zapzap/features/settings/components/card_user/card_user_view.py:31
+#: zapzap/features/settings/components/card_user/card_user_view.py:35
+#: zapzap/features/settings/components/card_user/card_user_view.py:36
 msgid "Account actions"
 msgstr "Actions du compte"
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:95
-#: zapzap/features/settings/components/card_user/card_user_view.py:96
+#: zapzap/features/settings/components/card_user/card_user_view.py:103
+#: zapzap/features/settings/components/card_user/card_user_view.py:104
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:106
 msgid "Change icon"
 msgstr "Changer d'icône"
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:110
-#: zapzap/features/settings/components/card_user/card_user_view.py:113
-msgid "Account active"
-msgstr "Compte actif"
+#: zapzap/features/settings/components/card_user/card_user_view.py:121
+msgid "Account status"
+msgstr "État du compte"
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:126
-#: zapzap/features/settings/components/card_user/card_user_controller.py:209
+#: zapzap/features/settings/components/card_user/card_user_view.py:123
+msgid ""
+"Disabled accounts remain saved, but are not loaded and do not receive "
+"notifications."
+msgstr ""
+"Les comptes désactivés restent enregistrés, mais ne sont pas chargés et ne "
+"reçoivent pas de notifications."
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:127
+msgid "Enabled"
+msgstr "Activé"
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:128
+msgid "Disabled"
+msgstr "Désactivé"
+
+#: zapzap/features/settings/components/card_user/card_user_view.py:138
+#: zapzap/features/settings/components/card_user/card_user_controller.py:221
 msgid "Do not disturb"
 msgstr "Ne pas déranger"
 
-#: zapzap/features/settings/components/card_user/card_user_view.py:127
+#: zapzap/features/settings/components/card_user/card_user_view.py:139
 msgid "Silences notifications for this account."
 msgstr "Désactive les notifications pour ce compte."
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:108
+#: zapzap/features/settings/components/card_user/card_user_controller.py:56
+msgid "Could not update account"
+msgstr "Impossible de mettre à jour le compte"
+
+#: zapzap/features/settings/components/card_user/card_user_controller.py:57
+msgid "The account state could not be changed."
+msgstr "L’état du compte n’a pas pu être modifié."
+
+#: zapzap/features/settings/components/card_user/card_user_controller.py:120
 msgid "Remove account"
 msgstr "Supprimer le compte"
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:113
+#: zapzap/features/settings/components/card_user/card_user_controller.py:125
 msgid "The default account cannot be removed."
 msgstr "Le compte par défaut ne peut pas être supprimé."
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:155
+#: zapzap/features/settings/components/card_user/card_user_controller.py:167
 msgid "Confirm exclusion"
 msgstr "Confirmer l'exclusion"
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:156
+#: zapzap/features/settings/components/card_user/card_user_controller.py:168
 msgid "Are you sure you want to delete this item?"
 msgstr "Êtes-vous sûr de vouloir supprimer cet élément ?"
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:185
+#: zapzap/features/settings/components/card_user/card_user_controller.py:197
 msgid "User-Agent Changed"
 msgstr "Agent utilisateur modifié"
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:187
+#: zapzap/features/settings/components/card_user/card_user_controller.py:199
 msgid ""
 "Please restart this session (or the application) to apply the new User-Agent."
 msgstr ""
 "Veuillez redémarrer cette session (ou l'application) pour appliquer le "
 "nouveau User-Agent."
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:196
-#: zapzap/features/settings/components/card_user/card_user_controller.py:239
+#: zapzap/features/settings/components/card_user/card_user_controller.py:208
+#: zapzap/features/settings/components/card_user/card_user_controller.py:251
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:117
 msgid "Generate new colors for the icon"
 msgstr "Générer de nouvelles couleurs pour l'icône"
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:199
-#: zapzap/features/settings/components/card_user/card_user_controller.py:242
+#: zapzap/features/settings/components/card_user/card_user_controller.py:211
+#: zapzap/features/settings/components/card_user/card_user_controller.py:254
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:119
 msgid "Restore standard"
 msgstr "Restaurer la norme"
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:216
+#: zapzap/features/settings/components/card_user/card_user_controller.py:228
 msgid "Disable"
 msgstr "Désactiver"
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:223
+#: zapzap/features/settings/components/card_user/card_user_controller.py:235
 #: zapzap/features/settings/components/card_user/edit_account_dialog.py:146
 msgid "User-Agent"
 msgstr "Agent utilisateur"
@@ -3343,6 +3366,9 @@ msgstr "Êtes-vous sûr de vouloir fermer ?"
 #: zapzap/ui/main_window/main_window_controller.py:266
 msgid "Don't ask again"
 msgstr "Ne demande plus"
+
+#~ msgid "Account active"
+#~ msgstr "Compte actif"
 
 #, fuzzy
 #~ msgid "Account image"
