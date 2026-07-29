@@ -81,7 +81,7 @@ class AccountsSettingsUiTests(QtTestCase):
         icon_actions[1].trigger()
         self.assertEqual(dialog.icon_action(), EditAccountDialog.RESTORE_ICON)
 
-    def test_account_photo_is_normalized_and_rendered_with_all_states(self):
+    def test_account_photo_is_normalized_and_rendered(self):
         source = QImage(640, 320, QImage.Format.Format_RGB32)
         source.fill(QColor("#7c3aed"))
 
@@ -89,20 +89,7 @@ class AccountsSettingsUiTests(QtTestCase):
 
         self.assertTrue(UserIcon.is_photo(photo))
         self.assertLess(len(photo), 1_000_000)
-        for icon_type, notifications in (
-            (UserIcon.Type.Default, 0),
-            (UserIcon.Type.Default, 12),
-            (UserIcon.Type.Disable, 0),
-            (UserIcon.Type.Silence, 0),
-        ):
-            with self.subTest(icon_type=icon_type, notifications=notifications):
-                self.assertFalse(
-                    UserIcon.get_icon(
-                        photo,
-                        icon_type,
-                        notifications,
-                    ).isNull()
-                )
+        self.assertFalse(UserIcon.get_icon(photo).isNull())
 
     def test_edit_dialog_switches_between_default_icon_and_photo(self):
         source = QImage(320, 480, QImage.Format.Format_RGB32)
@@ -260,16 +247,6 @@ class AccountsSettingsUiTests(QtTestCase):
                     )
 
                 self.assertEqual(rendered, expected)
-                legacy_type = (
-                    UserIcon.Type.Disable
-                    if not enabled
-                    else UserIcon.Type.Silence
-                )
-                legacy = UserIcon.get_icon(
-                    photo,
-                    legacy_type,
-                ).pixmap(128, 128).toImage()
-                self.assertNotEqual(rendered, legacy)
 
     def test_account_menu_opens_combined_edit_dialog(self):
         card = CardUserView()

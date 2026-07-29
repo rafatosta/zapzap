@@ -20,8 +20,6 @@ class UserIcon:
 
     class Type(Enum):
         Default = 1
-        Disable = 2
-        Silence = 3
 
     PHOTO_PREFIX = "data:image/png;base64,"
     PROFILE_PREFIX = "zapzap-account-image:v1:"
@@ -54,19 +52,6 @@ class UserIcon:
   {}
 </svg>
 """
-    IMAGE_DISABLE = """
-  <circle cx="128" cy="128" r="88" style="fill: rgb(160, 160, 160); fill-opacity: 0.58; stroke: rgb(130, 130, 130); stroke-width: 10;" />
-  <rect x="150" y="144" width="58" height="48" rx="12" ry="12" style="fill: rgb(110, 110, 110); stroke: rgb(255, 255, 255); stroke-width: 6;" />
-  <path d="M 164 144 L 164 126 C 164 105 179 90 199 90 C 219 90 234 105 234 126 L 234 144"
-        style="fill: none; stroke: rgb(110, 110, 110); stroke-width: 14; stroke-linecap: round;" />
-  <circle cx="179" cy="168" r="7" style="fill: rgb(255, 255, 255);" />
-  <rect x="175" y="168" width="8" height="14" rx="3" ry="3" style="fill: rgb(255, 255, 255);" />
-"""
-
-    IMAGE_SILENCE = """ <path d="M 131.636 121.618 C 128.873 118.751 123.774 119.712 122.458 123.346 C 121.833 125.074 122.282 126.977 123.629 128.31 L 134.949 139.77 C 130.143 147.362 127.616 155.994 127.634 164.78 C 127.634 186.765 122.049 203.588 118.296 209.535 C 114.1 216.154 119.267 224.47 127.595 224.503 C 127.608 224.504 127.62 224.504 127.634 224.504 L 218.675 224.504 L 231.823 237.805 C 234.585 240.671 239.686 239.709 241 236.076 C 241.627 234.347 241.175 232.443 239.827 231.11 L 131.636 121.618 Z M 127.634 214.549 C 132.84 206.312 138.452 187.226 138.452 164.78 C 138.443 158.832 139.891 152.958 142.686 147.598 L 208.838 214.549 L 127.634 214.549 Z M 208.776 239.435 C 208.776 242.183 206.355 244.412 203.367 244.412 L 160.091 244.412 C 155.928 244.412 153.323 240.264 155.406 236.947 C 156.372 235.407 158.159 234.458 160.091 234.458 L 203.367 234.458 C 206.355 234.458 208.776 236.686 208.776 239.435 Z M 239.881 211.596 C 239.251 211.82 238.578 211.936 237.901 211.938 C 235.676 211.934 233.681 210.68 232.871 208.777 C 227.946 197.248 225.006 180.8 225.006 164.78 C 225.015 134.262 189.237 115.079 160.381 130.133 C 156.721 131.959 152.283 129.453 152.397 125.622 C 152.448 123.916 153.445 122.351 155.039 121.48 C 191.106 102.658 235.831 126.63 235.824 164.78 C 235.824 186.771 241.268 201.23 242.938 205.143 C 244.031 207.7 242.662 210.59 239.881 211.596 Z" style="fill: rgb(255, 0, 0); stroke-width: 4px; stroke: rgb(255, 0, 0);">
-    <title>silence</title>
-  </path> """
-
     SVG_NOTIFICATION = """
   <rect y="116.592" width="{width}" height="136.107" style="fill: rgb(255, 0, 0); stroke: rgb(255, 0, 0);" rx="19.653" ry="19.653" x="{x}"/>
   <text style="fill: rgb(255, 255, 255); font-family: Arial, sans-serif; font-size: 65.9885px; text-anchor: end; white-space: pre;" transform="matrix(2.154438, 0, 0, 1.833654, -279.152802, -210.015335)" x="244.638" y="238.631">{number}</text>
@@ -238,10 +223,6 @@ class UserIcon:
             notification = UserIcon.SVG_NOTIFICATION.format(
                 x=data['x'], width=data['width'], number=qtd)
             svg = svg_str.format(notification if qtd > 0 else "")
-        elif icon_type == UserIcon.Type.Disable:
-            svg = svg_str.format(UserIcon.IMAGE_DISABLE)
-        else:
-            svg = svg_str.format(UserIcon.IMAGE_SILENCE)
         return UserIcon.__build(svg)
 
     @staticmethod
@@ -267,10 +248,6 @@ class UserIcon:
             overlay = UserIcon.SVG_NOTIFICATION.format(
                 x=data["x"], width=data["width"], number=qtd
             )
-        elif icon_type == UserIcon.Type.Disable:
-            overlay = UserIcon.IMAGE_DISABLE
-        elif icon_type == UserIcon.Type.Silence:
-            overlay = UserIcon.IMAGE_SILENCE
         else:
             overlay = ""
 
