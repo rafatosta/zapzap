@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-29 16:34-0300\n"
+"POT-Creation-Date: 2026-07-31 19:49-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Russian\n"
@@ -19,6 +19,18 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 3.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+
+#: zapzap/app/window_lifecycle.py:54
+msgid "Close ZapZap"
+msgstr "Закрыть ZapZap"
+
+#: zapzap/app/window_lifecycle.py:55
+msgid "Are you sure you want to close?"
+msgstr "Вы уверены, что хотите закрыть?"
+
+#: zapzap/app/window_lifecycle.py:56
+msgid "Don't ask again"
+msgstr "Больше не спрашивать"
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:27
 msgid "Unexpected Error"
@@ -99,6 +111,81 @@ msgstr "Проксирование только для HTTP-запросов."
 msgid "Proxying for FTP requests only."
 msgstr "Проксирование только для FTP-запросов."
 
+#: zapzap/features/accounts/card_user_controller.py:58
+#: zapzap/features/accounts/card_user_controller.py:229
+#: zapzap/features/accounts/card_user_controller.py:241
+msgid "Could not update account"
+msgstr "Не удалось обновить учётную запись"
+
+#: zapzap/features/accounts/card_user_controller.py:59
+#: zapzap/features/accounts/card_user_controller.py:242
+msgid "The account state could not be changed."
+msgstr "Не удалось изменить состояние учётной записи."
+
+#: zapzap/features/accounts/card_user_controller.py:78
+#: zapzap/features/accounts/card_user_controller.py:191
+msgid "Could not remove account"
+msgstr "Не удалось удалить учётную запись"
+
+#: zapzap/features/accounts/card_user_controller.py:79
+#: zapzap/features/accounts/card_user_controller.py:192
+msgid "The account could not be removed. Please try again."
+msgstr "Не удалось удалить учётную запись. Повторите попытку."
+
+#: zapzap/features/accounts/card_user_controller.py:155
+msgid "Remove account?"
+msgstr "Удалить учётную запись?"
+
+#: zapzap/features/accounts/card_user_controller.py:157
+#, python-brace-format
+msgid "The account \"{name}\" will be removed from ZapZap."
+msgstr "Учётная запись «{name}» будет удалена из ZapZap."
+
+#: zapzap/features/accounts/card_user_controller.py:158
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:197
+#: zapzap/features/settings/pages/network_privacy/controller.py:58
+#: zapzap/ui/components/card_user.py:234 zapzap/ui/components/card_user.py:299
+#: zapzap/ui/components/card_user.py:469 zapzap/ui/components/card_user.py:684
+msgid "Unnamed account"
+msgstr "Неименованный аккаунт"
+
+#: zapzap/features/accounts/card_user_controller.py:160
+msgid ""
+"Its session will be closed and related local data may be permanently "
+"removed. This action cannot be undone."
+msgstr ""
+"Её сеанс будет закрыт, а связанные локальные данные могут быть удалены "
+"безвозвратно. Это действие нельзя отменить."
+
+#: zapzap/features/accounts/card_user_controller.py:167
+#: zapzap/ui/components/card_user.py:153
+msgid "Remove"
+msgstr "Удалить"
+
+#: zapzap/features/accounts/card_user_controller.py:173
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:648
+#: zapzap/features/settings/pages/network_privacy/controller.py:293
+#: zapzap/features/settings/pages/network_privacy/controller.py:341
+#: zapzap/features/downloads/ui/download_dialog.py:120
+#: zapzap/ui/components/edit_account_dialog.py:456
+msgid "Cancel"
+msgstr "Отмена"
+
+#: zapzap/features/accounts/card_user_controller.py:202
+msgid "User-Agent Changed"
+msgstr "User-Agent изменен"
+
+#: zapzap/features/accounts/card_user_controller.py:204
+msgid ""
+"Please restart this session (or the application) to apply the new User-Agent."
+msgstr ""
+"Пожалуйста, перезапустите эту сессию (или приложение), чтобы применить новый "
+"User-Agent."
+
+#: zapzap/features/accounts/card_user_controller.py:230
+msgid "The notification state could not be changed."
+msgstr "Не удалось изменить состояние уведомлений."
+
 #: zapzap/features/alerts/alert_manager.py:72
 #: zapzap/features/alerts/alert_manager.py:91
 #: zapzap/features/alerts/alert_manager.py:110
@@ -138,7 +225,7 @@ msgstr "Нет активного аккаунта!"
 
 #: zapzap/features/donation/view.py:213 zapzap/features/shortcuts/view.py:60
 #: zapzap/features/settings/pages/debugging/view.py:373
-#: zapzap/ui/main_window/main_window_view.py:133
+#: zapzap/ui/components/main_window.py:133
 msgid "ZapZap"
 msgstr "ZapZap"
 
@@ -693,7 +780,7 @@ msgid "New message..."
 msgstr "Новое сообщение..."
 
 #: zapzap/features/shortcuts/model.py:12
-#: zapzap/features/browser/components/browser_sidebar.py:149
+#: zapzap/ui/components/browser_sidebar.py:149
 msgid "New conversation"
 msgstr "Новый разговор"
 
@@ -735,8 +822,8 @@ msgstr "Профиль и статус"
 
 #: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
 #: zapzap/features/tray/sys_tray_manager.py:54
-#: zapzap/features/settings/shell/settings_sidebar.py:95
-#: zapzap/ui/main_window/main_window_view.py:143
+#: zapzap/features/settings/shell/settings_sidebar.py:61
+#: zapzap/ui/components/main_window.py:143
 msgid "Settings"
 msgstr "Настройки"
 
@@ -781,7 +868,7 @@ msgid "Extended search"
 msgstr "Расширенный поиск"
 
 #: zapzap/features/shortcuts/model.py:39
-#: zapzap/ui/main_window/main_window_view.py:141
+#: zapzap/ui/components/main_window.py:141
 msgid "Hide"
 msgstr "Скрыть"
 
@@ -794,32 +881,32 @@ msgid "Fullscreen"
 msgstr "Полноэкранный"
 
 #: zapzap/features/shortcuts/model.py:42
-#: zapzap/ui/main_window/main_window_view.py:158
+#: zapzap/ui/components/main_window.py:158
 msgid "Automatic theme"
 msgstr "Автоматическая тема"
 
 #: zapzap/features/shortcuts/model.py:43
-#: zapzap/ui/main_window/main_window_view.py:160
+#: zapzap/ui/components/main_window.py:160
 msgid "Light theme"
 msgstr "Светлая тема"
 
 #: zapzap/features/shortcuts/model.py:44
-#: zapzap/ui/main_window/main_window_view.py:162
+#: zapzap/ui/components/main_window.py:162
 msgid "Dark theme"
 msgstr "Темная тема"
 
 #: zapzap/features/shortcuts/model.py:45
-#: zapzap/ui/main_window/main_window_view.py:145
+#: zapzap/ui/components/main_window.py:145
 msgid "Reset zoom"
 msgstr "Сброс масштабирования"
 
 #: zapzap/features/shortcuts/model.py:46
-#: zapzap/ui/main_window/main_window_view.py:147
+#: zapzap/ui/components/main_window.py:147
 msgid "Zoom in"
 msgstr "Увеличить"
 
 #: zapzap/features/shortcuts/model.py:47
-#: zapzap/ui/main_window/main_window_view.py:149
+#: zapzap/ui/components/main_window.py:149
 msgid "Zoom out"
 msgstr "Уменьшить"
 
@@ -832,13 +919,13 @@ msgid "New conversation by phone number"
 msgstr "Новый разговор по номеру телефона"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/components/browser_sidebar.py:145
-#: zapzap/features/browser/shell/browser_controller.py:284
+#: zapzap/features/browser/shell/browser_controller.py:285
+#: zapzap/ui/components/browser_sidebar.py:145
 msgid "New account"
 msgstr "Новый аккаунт"
 
 #: zapzap/features/shortcuts/view.py:34 zapzap/features/shortcuts/view.py:42
-#: zapzap/ui/main_window/main_window_view.py:170
+#: zapzap/ui/components/main_window.py:170
 msgid "Keyboard shortcuts"
 msgstr "Клавиатурные сокращения"
 
@@ -856,17 +943,9 @@ msgstr "Пожертвования"
 
 #: zapzap/features/tray/sys_tray_manager.py:56
 #: zapzap/features/settings/shell/settings_view.py:34
-#: zapzap/ui/main_window/main_window_view.py:139
+#: zapzap/ui/components/main_window.py:139
 msgid "Quit"
 msgstr "Выйти"
-
-#: zapzap/features/settings/components/settings_restart_bar.py:54
-msgid "A restart is required to apply the changes."
-msgstr "Для применения изменений требуется перезагрузка."
-
-#: zapzap/features/settings/components/settings_restart_bar.py:55
-msgid "Restart now"
-msgstr "Перезапустить сейчас"
 
 #: zapzap/features/settings/shell/settings_view.py:32
 msgid "Donate"
@@ -913,16 +992,16 @@ msgstr "Отладка"
 
 #: zapzap/features/settings/shell/settings_controller.py:53
 #: zapzap/features/settings/pages/about/view.py:238
-#: zapzap/ui/main_window/main_window_view.py:172
+#: zapzap/ui/components/main_window.py:172
 msgid "About"
 msgstr "О программе"
 
-#: zapzap/features/settings/shell/settings_sidebar.py:98
+#: zapzap/features/settings/shell/settings_sidebar.py:64
 msgid "Adjust accounts, appearance, notifications and advanced options."
 msgstr ""
 "Настроить аккаунты, внешний вид, уведомления и дополнительные параметры."
 
-#: zapzap/features/settings/shell/settings_sidebar.py:103
+#: zapzap/features/settings/shell/settings_sidebar.py:69
 msgid "Close settings"
 msgstr "Настройки закрытия"
 
@@ -1090,16 +1169,6 @@ msgstr "Этот аккаунт"
 msgid "Unsaved changes discarded."
 msgstr "Несохраненные изменения отброшены."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:197
-#: zapzap/features/settings/pages/network_privacy/controller.py:58
-#: zapzap/features/settings/components/card_user/card_user_controller.py:160
-#: zapzap/features/settings/components/card_user/card_user_view.py:234
-#: zapzap/features/settings/components/card_user/card_user_view.py:299
-#: zapzap/features/settings/components/card_user/card_user_view.py:469
-#: zapzap/features/settings/components/card_user/card_user_view.py:684
-msgid "Unnamed account"
-msgstr "Неименованный аккаунт"
-
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:199
 #, python-brace-format
 msgid "Current account: {} ({})"
@@ -1168,7 +1237,7 @@ msgid "No preview available."
 msgstr "Предпросмотр недоступен."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:429
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:660
+#: zapzap/ui/components/edit_account_dialog.py:660
 msgid "Could not load preview image."
 msgstr "Не удалось загрузить предварительное изображение."
 
@@ -1201,7 +1270,7 @@ msgid "Could not set preview image."
 msgstr "Не удалось установить предварительное изображение."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:526
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:679
+#: zapzap/ui/components/edit_account_dialog.py:679
 msgid "Preview image updated."
 msgstr "Изображение предварительного просмотра обновлено."
 
@@ -1256,19 +1325,10 @@ msgstr "Код JavaScript"
 msgid "Ctrl+S to save"
 msgstr "Ctrl+S to save"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:648
-#: zapzap/features/settings/pages/network_privacy/controller.py:293
-#: zapzap/features/settings/pages/network_privacy/controller.py:341
-#: zapzap/features/settings/components/card_user/card_user_controller.py:175
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:456
-#: zapzap/features/downloads/ui/download_dialog.py:120
-msgid "Cancel"
-msgstr "Отмена"
-
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:649
 #: zapzap/features/settings/pages/advanced_customizations/view.py:418
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:458
 #: zapzap/features/downloads/ui/download_dialog.py:103
+#: zapzap/ui/components/edit_account_dialog.py:458
 msgid "Save"
 msgstr "Сохранить"
 
@@ -1399,7 +1459,7 @@ msgid "File actions"
 msgstr "Действия с файлами"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:161
-#: zapzap/features/settings/components/card_user/card_user_view.py:148
+#: zapzap/ui/components/card_user.py:148
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -1533,7 +1593,7 @@ msgstr "● Есть несохраненные изменения."
 #: zapzap/features/settings/pages/advanced_customizations/view.py:417
 #: zapzap/features/settings/pages/network_privacy/controller.py:287
 #: zapzap/features/settings/pages/network_privacy/view.py:110
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:770
+#: zapzap/ui/components/edit_account_dialog.py:770
 msgid "Discard"
 msgstr "Отмена"
 
@@ -1547,9 +1607,9 @@ msgstr "Перезагрузить страницу"
 
 #: zapzap/features/settings/pages/appearance/controller.py:72
 #: zapzap/features/settings/pages/appearance/view.py:95
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:276
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:418
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:424
+#: zapzap/ui/components/edit_account_dialog.py:276
+#: zapzap/ui/components/edit_account_dialog.py:418
+#: zapzap/ui/components/edit_account_dialog.py:424
 msgid "Default"
 msgstr "По умолчанию"
 
@@ -1644,7 +1704,7 @@ msgid "Symbolic dark"
 msgstr "Символический тёмный"
 
 #: zapzap/features/settings/pages/appearance/view.py:118
-#: zapzap/features/browser/shell/browser_controller.py:94
+#: zapzap/features/browser/shell/browser_controller.py:95
 msgid "Grid view"
 msgstr "Просмотр сетки"
 
@@ -2859,265 +2919,6 @@ msgstr "Требуется перезапуск"
 msgid "Wayland changes require restart"
 msgstr "Изменения Wayland требуют перезапуска"
 
-#: zapzap/features/settings/components/card_user/card_user_controller.py:60
-#: zapzap/features/settings/components/card_user/card_user_controller.py:231
-#: zapzap/features/settings/components/card_user/card_user_controller.py:243
-msgid "Could not update account"
-msgstr "Не удалось обновить учётную запись"
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:61
-#: zapzap/features/settings/components/card_user/card_user_controller.py:244
-msgid "The account state could not be changed."
-msgstr "Не удалось изменить состояние учётной записи."
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:80
-#: zapzap/features/settings/components/card_user/card_user_controller.py:193
-msgid "Could not remove account"
-msgstr "Не удалось удалить учётную запись"
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:81
-#: zapzap/features/settings/components/card_user/card_user_controller.py:194
-msgid "The account could not be removed. Please try again."
-msgstr "Не удалось удалить учётную запись. Повторите попытку."
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:157
-msgid "Remove account?"
-msgstr "Удалить учётную запись?"
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:159
-#, python-brace-format
-msgid "The account \"{name}\" will be removed from ZapZap."
-msgstr "Учётная запись «{name}» будет удалена из ZapZap."
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:162
-msgid ""
-"Its session will be closed and related local data may be permanently "
-"removed. This action cannot be undone."
-msgstr ""
-"Её сеанс будет закрыт, а связанные локальные данные могут быть удалены "
-"безвозвратно. Это действие нельзя отменить."
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:169
-#: zapzap/features/settings/components/card_user/card_user_view.py:153
-msgid "Remove"
-msgstr "Удалить"
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:204
-msgid "User-Agent Changed"
-msgstr "User-Agent изменен"
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:206
-msgid ""
-"Please restart this session (or the application) to apply the new User-Agent."
-msgstr ""
-"Пожалуйста, перезапустите эту сессию (или приложение), чтобы применить новый "
-"User-Agent."
-
-#: zapzap/features/settings/components/card_user/card_user_controller.py:232
-msgid "The notification state could not be changed."
-msgstr "Не удалось изменить состояние уведомлений."
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:65
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:167
-#: zapzap/features/settings/components/card_user/card_user_view.py:149
-#: zapzap/features/settings/components/card_user/card_user_view.py:150
-#: zapzap/features/settings/components/card_user/card_user_view.py:483
-#: zapzap/features/settings/components/card_user/card_user_view.py:486
-msgid "Edit account"
-msgstr "Редактировать аккаунт"
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:73
-#: zapzap/features/browser/shell/browser_controller.py:161
-#: zapzap/ui/components/close_button.py:66
-msgid "Close"
-msgstr "Закрыть"
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:243
-msgid "Change the name and icon used to identify this account."
-msgstr ""
-"Изменить имя и значок, используемые для идентификации этой учетной записи."
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:251
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:253
-msgid "Account name"
-msgstr "Название учётной записи"
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:257
-msgid "Account name error"
-msgstr "Ошибка в названии учётной записи"
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:265
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:285
-msgid "Account icon"
-msgstr "Иконка учётной записи"
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:277
-msgid "Photo"
-msgstr "Фотография"
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:307
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:315
-msgid "Current icon"
-msgstr "Текущий значок"
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:326
-msgid "Change icon"
-msgstr "Сменить значок"
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:331
-msgid "Generate new colors for the icon"
-msgstr "Создавать новые цвета для значка"
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:333
-msgid "Restore standard"
-msgstr "Восстановить стандарт"
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:343
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:351
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:649
-msgid "Choose photo"
-msgstr "Выбрать фотографию"
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:358
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:371
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:701
-msgid "Keep current icon"
-msgstr "Сохранить текущую иконку"
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:384
-msgid "Advanced options"
-msgstr "Дополнительные параметры"
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:396
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:415
-msgid "User-Agent"
-msgstr "User-Agent"
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:402
-msgid "Changes the identification used by this account when loading pages."
-msgstr ""
-"Изменяет идентификацию, используемую этой учетной записью при загрузке "
-"страниц."
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:406
-msgid "User-Agent information"
-msgstr "Информация о User-Agent"
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:611
-msgid "New icon colors selected."
-msgstr "Выбраны новые цвета значков."
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:616
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:629
-msgid "Standard icon selected."
-msgstr "Выбран стандартный значок."
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:728
-msgid "Account name is required."
-msgstr "Необходимо указать название учётной записи."
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:763
-msgid "Discard account changes?"
-msgstr "Отменить изменения учётной записи?"
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:764
-msgid "There are unsaved changes to this account."
-msgstr "В этой учётной записи есть несохранённые изменения."
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:765
-msgid "Discarding them restores the values from before editing."
-msgstr "При отмене будут восстановлены значения до редактирования."
-
-#: zapzap/features/settings/components/card_user/edit_account_dialog.py:776
-msgid "Keep editing"
-msgstr "Продолжить редактирование"
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:158
-#: zapzap/features/settings/components/card_user/card_user_view.py:159
-#: zapzap/features/settings/components/card_user/card_user_view.py:282
-#: zapzap/features/settings/components/card_user/card_user_view.py:506
-#: zapzap/features/settings/components/card_user/card_user_view.py:510
-msgid "Remove account"
-msgstr "Удалить аккаунт"
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:173
-#: zapzap/features/settings/components/card_user/card_user_view.py:306
-msgid "Account status"
-msgstr "Состояние учётной записи"
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:175
-msgid ""
-"Disabled accounts remain saved, but are not loaded and do not receive "
-"notifications."
-msgstr ""
-"Отключённые учётные записи остаются сохранёнными, но не загружаются и не "
-"получают уведомления."
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:179
-#: zapzap/features/settings/components/card_user/card_user_view.py:300
-#: zapzap/features/settings/components/card_user/card_user_view.py:302
-msgid "Enabled"
-msgstr "Включена"
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:180
-#: zapzap/features/settings/components/card_user/card_user_view.py:300
-#: zapzap/features/settings/components/card_user/card_user_view.py:302
-msgid "Disabled"
-msgstr "Отключена"
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:190
-#: zapzap/features/settings/components/card_user/card_user_view.py:194
-#: zapzap/features/settings/components/card_user/card_user_view.py:307
-#: zapzap/features/settings/components/card_user/card_user_view.py:490
-msgid "Do not disturb"
-msgstr "Не беспокоить"
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:191
-msgid "Silences notifications for this account."
-msgstr "Отключает уведомления для этой учетной записи."
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:249
-#: zapzap/features/settings/components/card_user/card_user_view.py:677
-msgid "Unavailable while the account is disabled."
-msgstr "Недоступно, пока учётная запись отключена."
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:284
-#: zapzap/features/settings/components/card_user/card_user_view.py:646
-msgid "The default account cannot be removed."
-msgstr "Аккаунт по умолчанию не может быть удален."
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:304
-#: zapzap/features/browser/web/web_view.py:578
-msgid "Account"
-msgstr "Учётная запись"
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:497
-msgid "Disable account"
-msgstr "Отключить учётную запись"
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:512
-#: zapzap/features/settings/components/card_user/card_user_view.py:644
-msgid "Destructive action: removes this account."
-msgstr "Необратимое действие: удаляет эту учётную запись."
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:657
-msgid "Active account"
-msgstr "Активная учётная запись"
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:659
-msgid "Disabled account"
-msgstr "Отключённая учётная запись"
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:686
-#, python-brace-format
-msgid "Account {name}, active."
-msgstr "Учётная запись {name} активна."
-
-#: zapzap/features/settings/components/card_user/card_user_view.py:688
-#, python-brace-format
-msgid "Account {name}, disabled."
-msgstr "Учётная запись {name} отключена."
-
 #: zapzap/features/downloads/ui/download_dialog.py:47
 msgid "Download"
 msgstr "Скачать"
@@ -3134,39 +2935,19 @@ msgstr "Сохранить как"
 msgid "Save file"
 msgstr "Сохранить файл"
 
-#: zapzap/features/browser/components/browser_sidebar.py:147
-msgid "New conversation by the phone number"
-msgstr "Новый разговор по номеру телефона"
-
-#: zapzap/features/browser/components/browser_sidebar.py:150
-msgid "ZapZap Settings"
-msgstr "Настройки ZapZap"
-
-#: zapzap/features/browser/components/browser_grid_view.py:75
-msgid "Accounts overview"
-msgstr "Обзор аккаунтов"
-
-#: zapzap/features/browser/components/browser_grid_view.py:79
-msgid "Select an account to return to its chat."
-msgstr "Выберите учетную запись, чтобы вернуться к ее чату."
-
-#: zapzap/features/browser/components/browser_grid_view.py:92
-msgid "No active accounts to display."
-msgstr "Нет активных аккаунтов для отображения."
-
-#: zapzap/features/browser/shell/browser_controller.py:126
+#: zapzap/features/browser/shell/browser_controller.py:127
 msgid "Flatpak sandbox help"
 msgstr "Справка по песочнице Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:151
+#: zapzap/features/browser/shell/browser_controller.py:152
 msgid "Flatpak sandbox"
 msgstr "Песочница Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:152
+#: zapzap/features/browser/shell/browser_controller.py:153
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap работает в песочнице Flatpak."
 
-#: zapzap/features/browser/shell/browser_controller.py:154
+#: zapzap/features/browser/shell/browser_controller.py:155
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
@@ -3174,40 +2955,46 @@ msgstr ""
 "Некоторые функции, такие как открытие файлов или перетаскивание, могут "
 "требовать дополнительных разрешений."
 
-#: zapzap/features/browser/shell/browser_controller.py:159
+#: zapzap/features/browser/shell/browser_controller.py:160
 msgid "Instructions"
 msgstr "Инструкции"
 
-#: zapzap/features/browser/shell/browser_controller.py:160
+#: zapzap/features/browser/shell/browser_controller.py:161
 msgid "Copy command"
 msgstr "Команда копирования"
 
-#: zapzap/features/browser/shell/browser_controller.py:297
-#: zapzap/features/browser/shell/browser_controller.py:346
+#: zapzap/features/browser/shell/browser_controller.py:162
+#: zapzap/ui/components/edit_account_dialog.py:73
+#: zapzap/ui/primitives/close_button.py:66
+msgid "Close"
+msgstr "Закрыть"
+
+#: zapzap/features/browser/shell/browser_controller.py:298
+#: zapzap/features/browser/shell/browser_controller.py:347
 #, python-brace-format
 msgid "Account {}"
 msgstr "Аккаунт {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:354
+#: zapzap/features/browser/shell/browser_controller.py:355
 msgid "Account disabled"
 msgstr "Учётная запись отключена"
 
-#: zapzap/features/browser/shell/browser_controller.py:355
+#: zapzap/features/browser/shell/browser_controller.py:356
 msgid "This account is disabled."
 msgstr "Этот аккаунт отключен."
 
-#: zapzap/features/browser/shell/browser_controller.py:357
+#: zapzap/features/browser/shell/browser_controller.py:358
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Вы можете активировать его снова сейчас или использовать контекстное меню "
 "для управления этой учётной записью."
 
-#: zapzap/features/browser/shell/browser_controller.py:362
+#: zapzap/features/browser/shell/browser_controller.py:363
 msgid "Activate"
 msgstr "Активировать"
 
-#: zapzap/features/browser/shell/browser_controller.py:363
+#: zapzap/features/browser/shell/browser_controller.py:364
 msgid "Not now"
 msgstr "Не сейчас"
 
@@ -3310,137 +3097,333 @@ msgstr "Проверка орфографии"
 msgid "Select Language"
 msgstr "Выбор языка"
 
+#: zapzap/features/browser/web/web_view.py:578
+#: zapzap/ui/components/card_user.py:304
+msgid "Account"
+msgstr "Учётная запись"
+
 #: zapzap/features/browser/web/web_view.py:580
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "Инструменты разработчика - {}"
 
-#: zapzap/ui/main_window/main_window_view.py:134
+#: zapzap/ui/components/settings_restart_bar.py:54
+msgid "A restart is required to apply the changes."
+msgstr "Для применения изменений требуется перезагрузка."
+
+#: zapzap/ui/components/settings_restart_bar.py:55
+msgid "Restart now"
+msgstr "Перезапустить сейчас"
+
+#: zapzap/ui/components/card_user.py:149 zapzap/ui/components/card_user.py:150
+#: zapzap/ui/components/card_user.py:483 zapzap/ui/components/card_user.py:486
+#: zapzap/ui/components/edit_account_dialog.py:65
+#: zapzap/ui/components/edit_account_dialog.py:167
+msgid "Edit account"
+msgstr "Редактировать аккаунт"
+
+#: zapzap/ui/components/card_user.py:158 zapzap/ui/components/card_user.py:159
+#: zapzap/ui/components/card_user.py:282 zapzap/ui/components/card_user.py:506
+#: zapzap/ui/components/card_user.py:510
+msgid "Remove account"
+msgstr "Удалить аккаунт"
+
+#: zapzap/ui/components/card_user.py:173 zapzap/ui/components/card_user.py:306
+msgid "Account status"
+msgstr "Состояние учётной записи"
+
+#: zapzap/ui/components/card_user.py:175
+msgid ""
+"Disabled accounts remain saved, but are not loaded and do not receive "
+"notifications."
+msgstr ""
+"Отключённые учётные записи остаются сохранёнными, но не загружаются и не "
+"получают уведомления."
+
+#: zapzap/ui/components/card_user.py:179 zapzap/ui/components/card_user.py:300
+#: zapzap/ui/components/card_user.py:302
+msgid "Enabled"
+msgstr "Включена"
+
+#: zapzap/ui/components/card_user.py:180 zapzap/ui/components/card_user.py:300
+#: zapzap/ui/components/card_user.py:302
+msgid "Disabled"
+msgstr "Отключена"
+
+#: zapzap/ui/components/card_user.py:190 zapzap/ui/components/card_user.py:194
+#: zapzap/ui/components/card_user.py:307 zapzap/ui/components/card_user.py:490
+msgid "Do not disturb"
+msgstr "Не беспокоить"
+
+#: zapzap/ui/components/card_user.py:191
+msgid "Silences notifications for this account."
+msgstr "Отключает уведомления для этой учетной записи."
+
+#: zapzap/ui/components/card_user.py:249 zapzap/ui/components/card_user.py:677
+msgid "Unavailable while the account is disabled."
+msgstr "Недоступно, пока учётная запись отключена."
+
+#: zapzap/ui/components/card_user.py:284 zapzap/ui/components/card_user.py:646
+msgid "The default account cannot be removed."
+msgstr "Аккаунт по умолчанию не может быть удален."
+
+#: zapzap/ui/components/card_user.py:497
+msgid "Disable account"
+msgstr "Отключить учётную запись"
+
+#: zapzap/ui/components/card_user.py:512 zapzap/ui/components/card_user.py:644
+msgid "Destructive action: removes this account."
+msgstr "Необратимое действие: удаляет эту учётную запись."
+
+#: zapzap/ui/components/card_user.py:657
+msgid "Active account"
+msgstr "Активная учётная запись"
+
+#: zapzap/ui/components/card_user.py:659
+msgid "Disabled account"
+msgstr "Отключённая учётная запись"
+
+#: zapzap/ui/components/card_user.py:686
+#, python-brace-format
+msgid "Account {name}, active."
+msgstr "Учётная запись {name} активна."
+
+#: zapzap/ui/components/card_user.py:688
+#, python-brace-format
+msgid "Account {name}, disabled."
+msgstr "Учётная запись {name} отключена."
+
+#: zapzap/ui/components/edit_account_dialog.py:243
+msgid "Change the name and icon used to identify this account."
+msgstr ""
+"Изменить имя и значок, используемые для идентификации этой учетной записи."
+
+#: zapzap/ui/components/edit_account_dialog.py:251
+#: zapzap/ui/components/edit_account_dialog.py:253
+msgid "Account name"
+msgstr "Название учётной записи"
+
+#: zapzap/ui/components/edit_account_dialog.py:257
+msgid "Account name error"
+msgstr "Ошибка в названии учётной записи"
+
+#: zapzap/ui/components/edit_account_dialog.py:265
+#: zapzap/ui/components/edit_account_dialog.py:285
+msgid "Account icon"
+msgstr "Иконка учётной записи"
+
+#: zapzap/ui/components/edit_account_dialog.py:277
+msgid "Photo"
+msgstr "Фотография"
+
+#: zapzap/ui/components/edit_account_dialog.py:307
+#: zapzap/ui/components/edit_account_dialog.py:315
+msgid "Current icon"
+msgstr "Текущий значок"
+
+#: zapzap/ui/components/edit_account_dialog.py:326
+msgid "Change icon"
+msgstr "Сменить значок"
+
+#: zapzap/ui/components/edit_account_dialog.py:331
+msgid "Generate new colors for the icon"
+msgstr "Создавать новые цвета для значка"
+
+#: zapzap/ui/components/edit_account_dialog.py:333
+msgid "Restore standard"
+msgstr "Восстановить стандарт"
+
+#: zapzap/ui/components/edit_account_dialog.py:343
+#: zapzap/ui/components/edit_account_dialog.py:351
+#: zapzap/ui/components/edit_account_dialog.py:649
+msgid "Choose photo"
+msgstr "Выбрать фотографию"
+
+#: zapzap/ui/components/edit_account_dialog.py:358
+#: zapzap/ui/components/edit_account_dialog.py:371
+#: zapzap/ui/components/edit_account_dialog.py:701
+msgid "Keep current icon"
+msgstr "Сохранить текущую иконку"
+
+#: zapzap/ui/components/edit_account_dialog.py:384
+msgid "Advanced options"
+msgstr "Дополнительные параметры"
+
+#: zapzap/ui/components/edit_account_dialog.py:396
+#: zapzap/ui/components/edit_account_dialog.py:415
+msgid "User-Agent"
+msgstr "User-Agent"
+
+#: zapzap/ui/components/edit_account_dialog.py:402
+msgid "Changes the identification used by this account when loading pages."
+msgstr ""
+"Изменяет идентификацию, используемую этой учетной записью при загрузке "
+"страниц."
+
+#: zapzap/ui/components/edit_account_dialog.py:406
+msgid "User-Agent information"
+msgstr "Информация о User-Agent"
+
+#: zapzap/ui/components/edit_account_dialog.py:611
+msgid "New icon colors selected."
+msgstr "Выбраны новые цвета значков."
+
+#: zapzap/ui/components/edit_account_dialog.py:616
+#: zapzap/ui/components/edit_account_dialog.py:629
+msgid "Standard icon selected."
+msgstr "Выбран стандартный значок."
+
+#: zapzap/ui/components/edit_account_dialog.py:728
+msgid "Account name is required."
+msgstr "Необходимо указать название учётной записи."
+
+#: zapzap/ui/components/edit_account_dialog.py:763
+msgid "Discard account changes?"
+msgstr "Отменить изменения учётной записи?"
+
+#: zapzap/ui/components/edit_account_dialog.py:764
+msgid "There are unsaved changes to this account."
+msgstr "В этой учётной записи есть несохранённые изменения."
+
+#: zapzap/ui/components/edit_account_dialog.py:765
+msgid "Discarding them restores the values from before editing."
+msgstr "При отмене будут восстановлены значения до редактирования."
+
+#: zapzap/ui/components/edit_account_dialog.py:776
+msgid "Keep editing"
+msgstr "Продолжить редактирование"
+
+#: zapzap/ui/components/browser_grid_view.py:75
+msgid "Accounts overview"
+msgstr "Обзор аккаунтов"
+
+#: zapzap/ui/components/browser_grid_view.py:79
+msgid "Select an account to return to its chat."
+msgstr "Выберите учетную запись, чтобы вернуться к ее чату."
+
+#: zapzap/ui/components/browser_grid_view.py:92
+msgid "No active accounts to display."
+msgstr "Нет активных аккаунтов для отображения."
+
+#: zapzap/ui/components/browser_sidebar.py:147
+msgid "New conversation by the phone number"
+msgstr "Новый разговор по номеру телефона"
+
+#: zapzap/ui/components/browser_sidebar.py:150
+msgid "ZapZap Settings"
+msgstr "Настройки ZapZap"
+
+#: zapzap/ui/components/main_window.py:134
 msgid "File"
 msgstr "Файл"
 
-#: zapzap/ui/main_window/main_window_view.py:135
+#: zapzap/ui/components/main_window.py:135
 msgid "View"
 msgstr "Обзор"
 
-#: zapzap/ui/main_window/main_window_view.py:136
+#: zapzap/ui/components/main_window.py:136
 msgid "Chat"
 msgstr "Чат"
 
-#: zapzap/ui/main_window/main_window_view.py:137
+#: zapzap/ui/components/main_window.py:137
 msgid "Users"
 msgstr "Пользователи"
 
-#: zapzap/ui/main_window/main_window_view.py:138
+#: zapzap/ui/components/main_window.py:138
 msgid "Help"
 msgstr "Справка"
 
-#: zapzap/ui/main_window/main_window_view.py:140
+#: zapzap/ui/components/main_window.py:140
 msgid "Ctrl+Q"
 msgstr "Ctrl+Q"
 
-#: zapzap/ui/main_window/main_window_view.py:142
+#: zapzap/ui/components/main_window.py:142
 msgid "Ctrl+W"
 msgstr "Ctrl+W"
 
-#: zapzap/ui/main_window/main_window_view.py:144
+#: zapzap/ui/components/main_window.py:144
 msgid "Ctrl+P"
 msgstr "Ctrl+P"
 
-#: zapzap/ui/main_window/main_window_view.py:146
+#: zapzap/ui/components/main_window.py:146
 msgid "Ctrl+0"
 msgstr "Ctrl+0"
 
-#: zapzap/ui/main_window/main_window_view.py:148
+#: zapzap/ui/components/main_window.py:148
 msgid "Ctrl++"
 msgstr "Ctrl++"
 
-#: zapzap/ui/main_window/main_window_view.py:150
+#: zapzap/ui/components/main_window.py:150
 msgid "Ctrl+-"
 msgstr "Ctrl+-"
 
-#: zapzap/ui/main_window/main_window_view.py:151
+#: zapzap/ui/components/main_window.py:151
 msgid "Toggle full screen"
 msgstr "Переключить полноэкранный режим"
 
-#: zapzap/ui/main_window/main_window_view.py:152
+#: zapzap/ui/components/main_window.py:152
 msgid "F11"
 msgstr "F11"
 
-#: zapzap/ui/main_window/main_window_view.py:153
+#: zapzap/ui/components/main_window.py:153
 msgid "Open DevTools"
 msgstr "Открыть DevTools"
 
-#: zapzap/ui/main_window/main_window_view.py:154
+#: zapzap/ui/components/main_window.py:154
 msgid "Ctrl+Shift+I"
 msgstr "Ctrl+Shift+I"
 
-#: zapzap/ui/main_window/main_window_view.py:155
+#: zapzap/ui/components/main_window.py:155
 msgid "Grid View"
 msgstr "Вид сетки"
 
-#: zapzap/ui/main_window/main_window_view.py:156
+#: zapzap/ui/components/main_window.py:156
 msgid "Ctrl+G"
 msgstr "Ctrl+G"
 
-#: zapzap/ui/main_window/main_window_view.py:157
+#: zapzap/ui/components/main_window.py:157
 msgid "Show sidebar"
 msgstr "Показать боковую панель"
 
-#: zapzap/ui/main_window/main_window_view.py:159
+#: zapzap/ui/components/main_window.py:159
 msgid "Ctrl+Alt+1"
 msgstr "Ctrl+Alt+1"
 
-#: zapzap/ui/main_window/main_window_view.py:161
+#: zapzap/ui/components/main_window.py:161
 msgid "Ctrl+Alt+2"
 msgstr "Ctrl+Alt+2"
 
-#: zapzap/ui/main_window/main_window_view.py:163
+#: zapzap/ui/components/main_window.py:163
 msgid "Ctrl+Alt+3"
 msgstr "Ctrl+Alt+3"
 
-#: zapzap/ui/main_window/main_window_view.py:164
+#: zapzap/ui/components/main_window.py:164
 msgid "Reload"
 msgstr "Перезагрузить"
 
-#: zapzap/ui/main_window/main_window_view.py:165
+#: zapzap/ui/components/main_window.py:165
 msgid "F5"
 msgstr "F5"
 
-#: zapzap/ui/main_window/main_window_view.py:166
+#: zapzap/ui/components/main_window.py:166
 msgid "New chat"
 msgstr "Новый чат"
 
-#: zapzap/ui/main_window/main_window_view.py:167
+#: zapzap/ui/components/main_window.py:167
 msgid "Ctrl+N"
 msgstr "Ctrl+N"
 
-#: zapzap/ui/main_window/main_window_view.py:168
+#: zapzap/ui/components/main_window.py:168
 msgid "By number phone"
 msgstr "По номеру телефона"
 
-#: zapzap/ui/main_window/main_window_view.py:169
+#: zapzap/ui/components/main_window.py:169
 msgid "Ctrl+M"
 msgstr "Ctrl+M"
 
-#: zapzap/ui/main_window/main_window_view.py:171
+#: zapzap/ui/components/main_window.py:171
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
-
-#: zapzap/ui/main_window/client_side_rendering_controller.py:47
-#: zapzap/ui/main_window/main_window_controller.py:264
-msgid "Close ZapZap"
-msgstr "Закрыть ZapZap"
-
-#: zapzap/ui/main_window/client_side_rendering_controller.py:48
-#: zapzap/ui/main_window/main_window_controller.py:265
-msgid "Are you sure you want to close?"
-msgstr "Вы уверены, что хотите закрыть?"
-
-#: zapzap/ui/main_window/client_side_rendering_controller.py:49
-#: zapzap/ui/main_window/main_window_controller.py:266
-msgid "Don't ask again"
-msgstr "Больше не спрашивать"
 
 #~ msgid "Disable"
 #~ msgstr "Отключить"
