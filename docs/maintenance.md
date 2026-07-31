@@ -133,7 +133,8 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - Aplique mudanças de mostrar, ocultar, fechar e restaurar em `WindowLifecycle`
   para manter o comportamento idêntico entre a janela nativa e a moldura CSR.
 - Não conecte sinais de ação diretamente a `closeEvent`: solicite `close()` para
-  que o Qt forneça um evento real.
+  que o Qt forneça um evento real. Fechar a janela usa `request_close()` e
+  respeita o segundo plano; ações “Sair” usam `request_quit()`.
 - Valide restauração normal, maximizada e fullscreen. Aparência, movimento e
   redimensionamento da moldura CSR ainda exigem uma sessão gráfica real.
 

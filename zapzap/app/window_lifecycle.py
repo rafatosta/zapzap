@@ -26,6 +26,7 @@ class WindowLifecycle:
         self._system_settings = SystemSettings()
         self._window_settings = WindowSettings()
         self._restore_mode = self.NORMAL
+        self._quit_requested = False
 
     def load_settings(self) -> None:
         self.host.restoreGeometry(self._window_settings.geometry)
@@ -39,6 +40,11 @@ class WindowLifecycle:
     def request_close(self) -> None:
         self.host.close()
 
+    def request_quit(self) -> None:
+        """Close the host while bypassing background-only window behavior."""
+        self._quit_requested = True
+        self.host.close()
+
     def close_event(self, event) -> None:
         self.save_window_state()
 
@@ -50,13 +56,20 @@ class WindowLifecycle:
                 _("Don't ask again"),
             )
             if not confirmed:
+                self._quit_requested = False
                 event.ignore()
                 return
 
             if dont_ask_again:
                 self._system_settings.confirm_on_close = False
 
-        if self._system_settings.keep_running_in_background:
+        quit_requested = self._quit_requested
+        self._quit_requested = False
+
+        if (
+            self._system_settings.keep_running_in_background
+            and not quit_requested
+        ):
             self.content.prepare_for_background()
             self.host.hide()
             event.ignore()
@@ -115,6 +128,9 @@ class ClientSideWindowHost(ClientSideWindow):
 
     def request_close(self):
         self.lifecycle.request_close()
+
+    def request_quit(self):
+        self.lifecycle.request_quit()
 
     def closeEvent(self, event):
         self.lifecycle.close_event(event)

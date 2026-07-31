@@ -63,7 +63,8 @@ Ele restaura e persiste geometria, coordena fechamento, segundo plano, bandeja e
 o estado normal, maximizado ou fullscreen observado diretamente no Qt. As chaves
 legadas `main/geometry` e `main/windowState` são preservadas por
 `WindowSettings`; preferências de fechamento e aparência usam seus domínios
-tipados existentes.
+tipados existentes. `request_close()` respeita a permanência em segundo plano;
+ações explicitamente chamadas “Sair” usam `request_quit()` e encerram o app.
 
 `BrowserController` mantém o relacionamento entre contas, botões laterais e
 `WebView`s. Cada conta usa um perfil WebEngine próprio. O fluxo básico é:

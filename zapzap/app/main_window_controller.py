@@ -108,7 +108,7 @@ class MainWindowController(MainWindowView):
     def _connect_file_menu_actions(self):
         """Conectar ações do menu 'Arquivo'."""
         self.actionSettings.triggered.connect(self.open_settings)
-        self.actionQuit.triggered.connect(self.request_close)
+        self.actionQuit.triggered.connect(self.request_quit)
         self.actionHide.triggered.connect(self.hide)
         self.actionReload.triggered.connect(self.browser.reload_pages)
         self.actionNew_chat.triggered.connect(self.new_chat)
@@ -249,6 +249,10 @@ class MainWindowController(MainWindowView):
     def request_close(self):
         """Request a real Qt close event from the active top-level host."""
         self.lifecycle.request_close()
+
+    def request_quit(self):
+        """Explicitly quit even when closing the window keeps ZapZap running."""
+        self.lifecycle.request_quit()
 
     def save_window_state(self):
         """Persist geometry and QMainWindow layout through the active host."""

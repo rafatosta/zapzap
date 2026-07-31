@@ -93,7 +93,7 @@ class SysTrayManager:
         instance._actions["show"].triggered.connect(main_window.show_window)
         instance._actions["settings"].triggered.connect(
             lambda: instance._open_settings(main_window))
-        instance._actions["exit"].triggered.connect(main_window.request_close)
+        instance._actions["exit"].triggered.connect(main_window.request_quit)
 
     def _disconnect_window_actions(self):
         for signal in (

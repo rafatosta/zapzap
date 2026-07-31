@@ -64,7 +64,7 @@ class SettingsController(SettingsView):
     def _setup_signals(self):
         """Conecta os sinais dos botões gerais."""
         window = QApplication.instance().getWindow()
-        self.btn_quit.clicked.connect(window.request_close)
+        self.btn_quit.clicked.connect(window.request_quit)
         self.sidebar.btn_close.clicked.connect(window.close_settings)
         self.close_shortcut = QShortcut(QKeySequence("Escape"), self)
         self.close_shortcut.setContext(

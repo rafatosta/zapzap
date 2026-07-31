@@ -1,5 +1,7 @@
 """Regression tests for the shared native/CSR window lifecycle."""
 
+from unittest.mock import patch
+
 from PyQt6.QtWidgets import QMainWindow
 
 from qt_test_case import QtTestCase
@@ -132,6 +134,20 @@ class WindowStateRestoreTest(QtTestCase):
 
         self.assertTrue(self.window.isHidden())
         self.assertEqual(self.window.background_preparations, 1)
+
+    def test_request_quit_bypasses_keep_running_in_background(self):
+        settings = SystemSettings()
+        settings.confirm_on_close = False
+        settings.keep_running_in_background = True
+        self.window.show()
+
+        with patch(
+            "zapzap.app.window_lifecycle.QApplication.instance"
+        ) as application_instance:
+            self.window.lifecycle.request_quit()
+
+        application_instance.return_value.quit.assert_called_once_with()
+        self.assertEqual(self.window.background_preparations, 0)
 
     def test_csr_host_exposes_the_application_contract_explicitly(self):
         content = _Content()
