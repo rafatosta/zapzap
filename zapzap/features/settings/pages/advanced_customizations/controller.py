@@ -26,7 +26,7 @@ from zapzap.features.customizations.css_preview_service import CssPreviewService
 from zapzap.features.customizations.customizations_manager import CustomizationsManager
 from zapzap.features.settings.pages.advanced_customizations.view import AdvancedCustomizationsSettingsView
 from zapzap.features.settings.pages.advanced_customizations.model import AdvancedCustomizationsSettingsModel
-from zapzap.ui.components import Button, Label, LineEdit
+from zapzap.ui.primitives import Button, Label, LineEdit
 
 
 class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsView):

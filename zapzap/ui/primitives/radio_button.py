@@ -1,4 +1,4 @@
-"""ZapZap radio button component."""
+"""ZapZap radio button primitive."""
 
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont

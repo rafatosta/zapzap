@@ -1,4 +1,4 @@
-"""Controller for a user/account settings card."""
+"""Controller for the shared account card."""
 
 from gettext import gettext as _
 
@@ -6,15 +6,13 @@ from PyQt6.QtWidgets import QApplication, QMessageBox
 
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.accounts.domain.user import User
-from zapzap.features.settings.components.card_user.card_user_model import CardUserModel
-from zapzap.features.settings.components.card_user.edit_account_dialog import (
-    EditAccountDialog,
-)
-from zapzap.features.settings.components.card_user.card_user_view import (
+from zapzap.features.accounts.card_user_model import CardUserModel
+from zapzap.ui.components.edit_account_dialog import EditAccountDialog
+from zapzap.ui.components.card_user import (
     AccountContextMenu,
     CardUserView,
 )
-from zapzap.ui.components import Button
+from zapzap.ui.primitives import Button
 
 
 class CardUserController(CardUserView):

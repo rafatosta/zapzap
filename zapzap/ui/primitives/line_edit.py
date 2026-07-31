@@ -1,4 +1,4 @@
-"""ZapZap line edit component."""
+"""ZapZap line edit primitive."""
 
 from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QLineEdit

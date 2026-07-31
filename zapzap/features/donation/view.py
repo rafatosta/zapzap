@@ -9,12 +9,12 @@ from PyQt6.QtWidgets import QWidget
 from PyQt6.QtGui import QFont
 
 from zapzap.assets.icons.user_icon import UserIcon
-from zapzap.ui.components import Button
-from zapzap.ui.components import CheckBox
-from zapzap.ui.components import CheckBoxSize
-from zapzap.ui.components import CheckBoxVariant
-from zapzap.ui.components import CloseButton
-from zapzap.ui.components import Label
+from zapzap.ui.primitives import Button
+from zapzap.ui.primitives import CheckBox
+from zapzap.ui.primitives import CheckBoxSize
+from zapzap.ui.primitives import CheckBoxVariant
+from zapzap.ui.primitives import CloseButton
+from zapzap.ui.primitives import Label
 
 
 class DonationView(QWidget):

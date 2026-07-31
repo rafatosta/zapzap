@@ -6,7 +6,7 @@ from PyQt6.QtTest import QTest
 from PyQt6.QtWidgets import QLineEdit, QVBoxLayout, QWidget
 
 from qt_test_case import QtTestCase
-from zapzap.ui.components import (
+from zapzap.ui.primitives import (
     SegmentOption,
     SegmentedControl,
     SegmentedControlRadius,

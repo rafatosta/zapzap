@@ -60,6 +60,10 @@ de `unittest.TestCase`. Restaure monkey patches, singletons e variáveis de
 ambiente em `tearDown` ou com `addCleanup`; a suíte roda em um único processo e
 vazamentos tornam o resultado dependente da ordem.
 
+Nos testes visuais, importe controles básicos de `zapzap.ui.primitives` e
+composições de `zapzap.ui.components`. Imports por caminhos internos de uma
+feature não devem ser usados para alcançar widgets compartilhados.
+
 ## Cobertura por módulo
 
 O inventário abaixo descreve a responsabilidade de cada módulo. O bloco de
@@ -75,11 +79,11 @@ documente o que ele protege.
 | `test_appimage_packaging.py` | nome final fornecido ao quick-sharun e ausência de renomeação posterior do AppImage/zsync |
 | `test_browser_page_button_ui.py` | avatar sem número, grayscale de conta desativada, ponto de estado, card, temas, escala e clique |
 | `test_check_box.py` | API, variantes, tamanhos, pintura, temas, tri-state, mouse, teclado e acessibilidade do CheckBox |
-| `test_component_typography.py` | pesos de fonte de componentes, menus, combos, atalhos e tabs |
+| `test_component_typography.py` | pesos de fonte de primitives, menus, combos, atalhos e tabs |
 | `test_debugging_settings_ui.py` | manutenção, relatórios, informações de runtime, cópia e feedback |
 | `test_deeplink.py` | validação de URLs WhatsApp e resistência a injeção de script |
 | `test_desktop_application_dbus.py` | interface `org.freedesktop.Application` e ativação D-Bus |
-| `test_documentation_structure.py` | sincronização entre árvore, inventários técnicos e guia para agentes |
+| `test_documentation_structure.py` | camadas de UI e sincronização entre árvore, inventários técnicos e guia para agentes |
 | `test_external_link_lifecycle.py` | descarte da página WebEngine transitória após abrir links externos |
 | `test_gpu_environment.py` | detecção multi-GPU, conectores e seleção de render node |
 | `test_initial_setup_ui.py` | onboarding, som, fechamento, permissões, dicionários e persistência |
@@ -91,8 +95,8 @@ documente o que ele protege.
 | `test_permissions_settings_ui.py` | grupos e ações globais/individuais de permissões |
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
 | `test_segmented_control.py` | seleção exclusiva, sinais, mouse, teclado, acessibilidade, tamanhos, raios e temas |
-| `test_settings_card.py` | divisores e grupos no componente compartilhado |
-| `test_settings_radio_group.py` | divisores de opções de rádio |
+| `test_settings_card.py` | divisores e grupos do card compartilhado em `ui.components` |
+| `test_settings_radio_group.py` | divisores do grupo de rádio em `ui.components` |
 | `test_software_video_decoding.py` | flag Chromium, persistência, padrão e ordem do bootstrap |
 | `test_system_startup_settings_ui.py` | semântica de fechamento, diálogo nativo e acessibilidade |
 | `test_window_state_restore.py` | restauração normal, maximizada, fullscreen e invólucro CSR |

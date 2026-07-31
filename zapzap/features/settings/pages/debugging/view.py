@@ -17,13 +17,13 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
-from zapzap.features.settings.components import (
+from zapzap.ui.components import (
     SettingsActionRow,
     SettingsCard,
     SettingsPage,
     SettingsSection,
 )
-from zapzap.ui.components import Button, Label
+from zapzap.ui.primitives import Button, Label
 
 
 class KeyValueInfoRow(QWidget):

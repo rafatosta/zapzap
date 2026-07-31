@@ -5,8 +5,9 @@ Antes de alterar o ZapZap, leia `docs/README.md`, `docs/architecture.md`,
 
 - Preserve comportamento, chaves e valores persistidos; migre explicitamente
   quando uma mudança for inevitável.
-- Prefira domínios em `zapzap/core/config/settings/`, componentes
-  compartilhados, paleta Qt, `QFont` e `Typography`.
+- Prefira domínios em `zapzap/core/config/settings/`, `ui.primitives` para
+  controles básicos, `ui.components` para composições visuais, paleta Qt,
+  `QFont` e `Typography`; não coloque widgets reutilizáveis dentro de features.
 - Mantenha IDs persistidos separados de rótulos traduzidos.
 - Audite páginas, backends e plataformas irmãs quando a mudança for transversal.
 - Não considere `offscreen` prova de foco, cursor, compositor ou aparência real.
@@ -26,4 +27,3 @@ git diff --check
 Se uma validação não puder ser executada, registre claramente qual foi e por
 quê. Consulte `docs/maintenance.md` para validadores específicos de tradução,
 AppStream, Flatpak e empacotamento.
-

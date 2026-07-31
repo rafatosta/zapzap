@@ -8,7 +8,7 @@ from zapzap.features.settings.pages.appearance.model import AppearanceSettingsMo
 from zapzap.assets.icons.tray_icon import TrayIcon
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.settings.pages.appearance.view import AppearanceSettingsView
-from zapzap.features.settings.components import SettingsRestartBar
+from zapzap.ui.components import SettingsRestartBar
 
 
 class AppearanceSettingsController(AppearanceSettingsView):

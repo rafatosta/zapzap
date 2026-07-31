@@ -4,7 +4,7 @@ from gettext import gettext as _
 
 from PyQt6.QtWidgets import QHBoxLayout, QStackedWidget, QVBoxLayout, QWidget
 
-from zapzap.ui.components import Button
+from zapzap.ui.primitives import Button
 from zapzap.features.settings.shell.settings_sidebar import SettingsSidebar
 
 

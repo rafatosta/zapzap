@@ -11,7 +11,7 @@ from zapzap.features.settings.pages.network_privacy.model import (
 from zapzap.features.settings.pages.network_privacy.view import (
     NetworkPrivacySettingsView,
 )
-from zapzap.ui.components import Button
+from zapzap.ui.primitives import Button
 
 
 class NetworkPrivacySettingsController(NetworkPrivacySettingsView):

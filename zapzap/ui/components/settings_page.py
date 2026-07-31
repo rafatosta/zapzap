@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QScrollArea, QVBoxLayout, QWidget
 
-from zapzap.ui.components import Label
-from zapzap.features.settings.components.settings_restart_bar import SettingsRestartBar
+from zapzap.ui.primitives import Label
+from .settings_restart_bar import SettingsRestartBar
 
 
 class SettingsPage(QScrollArea):

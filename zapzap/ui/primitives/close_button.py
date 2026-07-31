@@ -1,4 +1,4 @@
-"""ZapZap close button component."""
+"""ZapZap close button primitive."""
 
 from gettext import gettext as _
 

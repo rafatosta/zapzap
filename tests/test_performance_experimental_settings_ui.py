@@ -2,7 +2,7 @@
 
 from qt_test_case import QtTestCase
 from zapzap.core.config.settings_manager import SettingsManager
-from zapzap.features.settings.components import SettingsRestartBar
+from zapzap.ui.components import SettingsRestartBar
 from zapzap.features.settings.pages.performance_experimental.controller import (
     PerformanceExperimentalSettingsController,
 )

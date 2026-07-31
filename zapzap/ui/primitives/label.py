@@ -1,4 +1,4 @@
-"""ZapZap label component."""
+"""ZapZap label primitive."""
 
 from typing import Literal
 

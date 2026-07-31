@@ -11,7 +11,7 @@ from PyQt6.QtWidgets import QCheckBox, QMenu
 from qt_test_case import QtTestCase
 from zapzap.assets.themes.theme_stylesheet import ThemeStylesheet
 from zapzap.features.donation.view import DonationView
-from zapzap.ui.components import (
+from zapzap.ui.primitives import (
     CheckBox,
     CheckBoxSize,
     CheckBoxTone,

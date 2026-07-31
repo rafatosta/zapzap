@@ -8,17 +8,17 @@ from PyQt6.QtWidgets import QApplication
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.browser.web.web_view import WebView
 from zapzap.features.accounts.domain.user import User
-from zapzap.features.settings.components.card_user.card_user_controller import CardUserController as CardUser
+from zapzap.features.accounts.card_user_controller import CardUserController as CardUser
 from zapzap.assets.icons.system_icon import SystemIcon
 from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.core.environment.setup_manager import SetupManager
 from zapzap.features.tray.sys_tray_manager import SysTrayManager
-from zapzap.features.browser.components import BrowserGridView
-from zapzap.features.browser.components import BrowserPageButton
-from zapzap.features.browser.components import BrowserSidebarButton
-from zapzap.features.browser.components import BrowserView
+from zapzap.features.browser.shell.browser_view import BrowserView
+from zapzap.ui.components import BrowserGridView
+from zapzap.ui.components import BrowserPageButton
+from zapzap.ui.components import BrowserSidebarButton
 
 
 from gettext import gettext as _
@@ -439,7 +439,7 @@ class BrowserController(BrowserView):
 
     def show_grid_view(self):
         """Generates thumbnails and displays the grid view."""
-        from zapzap.ui.components import Label
+        from zapzap.ui.primitives import Label
 
         class ClickableLabel(Label):
             def __init__(self, pw, idx, switch_cb, parent=None):

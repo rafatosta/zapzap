@@ -13,9 +13,9 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
-from zapzap.ui.components import Button, Label
+from zapzap.ui.primitives import Button, Label
 from zapzap.core.theme.theme_manager import ThemeManager
-from zapzap.features.settings.components import (
+from zapzap.ui.components import (
     SettingsCard,
     SettingsInfoBox,
     SettingsPage,

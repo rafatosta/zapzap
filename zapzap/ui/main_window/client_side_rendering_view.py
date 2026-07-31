@@ -16,7 +16,7 @@ from PyQt6.QtWidgets import QWidget
 from zapzap.assets.themes.csr_button_theme_provider import CSRButtonTheme
 from zapzap.assets.themes.csr_button_theme_provider import CSRButtonThemeProvider
 from zapzap.core.config.settings_manager import SettingsManager
-from zapzap.ui.components import Label
+from zapzap.ui.primitives import Label
 from zapzap.ui.typography import Typography
 
 

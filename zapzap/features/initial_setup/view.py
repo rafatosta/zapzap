@@ -16,21 +16,21 @@ from PyQt6.QtWidgets import QStackedWidget
 from PyQt6.QtWidgets import QVBoxLayout
 from PyQt6.QtWidgets import QWidget
 
-from zapzap.features.settings.components import SettingsActionRow
-from zapzap.features.settings.components import SettingsCard
-from zapzap.features.settings.components import SettingsInfoBox
-from zapzap.features.settings.components import SettingsPage
-from zapzap.features.settings.components import SettingsPathRow
-from zapzap.features.settings.components import SettingsRadioGroup
-from zapzap.features.settings.components import SettingsSection
-from zapzap.features.settings.components import SettingsSelectRow
-from zapzap.features.settings.components import SettingsSwitchRow
-from zapzap.features.settings.shell.settings_sidebar import SettingsSidebarItem
+from zapzap.ui.components import SettingsActionRow
+from zapzap.ui.components import SettingsCard
+from zapzap.ui.components import SettingsInfoBox
+from zapzap.ui.components import SettingsPage
+from zapzap.ui.components import SettingsPathRow
+from zapzap.ui.components import SettingsRadioGroup
+from zapzap.ui.components import SettingsSection
+from zapzap.ui.components import SettingsSelectRow
+from zapzap.ui.components import SettingsSwitchRow
+from zapzap.ui.components import NavigationItem
 from zapzap.ui.typography import Typography
-from zapzap.ui.components import Button
-from zapzap.ui.components import Label
-from zapzap.ui.components import LineEdit
-from zapzap.ui.components import RadioButton
+from zapzap.ui.primitives import Button
+from zapzap.ui.primitives import Label
+from zapzap.ui.primitives import LineEdit
+from zapzap.ui.primitives import RadioButton
 
 
 class InitialSetupView(QDialog):
@@ -127,7 +127,7 @@ class InitialSetupView(QDialog):
 
     def _add_page(self, page: QWidget, label: str):
         index = self.pages.addWidget(page)
-        button = SettingsSidebarItem(f"{index + 1}. {label}", self.sidebar)
+        button = NavigationItem(f"{index + 1}. {label}", self.sidebar)
         button.setObjectName("InitialSetupStepButton")
         self.step_buttons.append(button)
         self.sidebar_layout.addWidget(button)

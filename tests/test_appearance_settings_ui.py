@@ -7,7 +7,7 @@ from PyQt6.QtGui import QResizeEvent
 from PyQt6.QtWidgets import QApplication, QBoxLayout
 
 from qt_test_case import QtTestCase
-from zapzap.features.settings.components import SUBSETTING_INDENT, SettingsDivider
+from zapzap.ui.components import SUBSETTING_INDENT, SettingsDivider
 from zapzap.features.settings.pages.appearance.controller import (
     AppearanceSettingsController,
 )

@@ -11,15 +11,15 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
-from zapzap.features.settings.components import SettingsActionRow
-from zapzap.features.settings.components import SettingsCard
-from zapzap.features.settings.components import SettingsPage
-from zapzap.features.settings.components import SettingsPasswordRow
-from zapzap.features.settings.components import SettingsSection
-from zapzap.features.settings.components import SettingsSelectRow
-from zapzap.features.settings.components import SettingsSwitchRow
-from zapzap.features.settings.components import SettingsTextRow
-from zapzap.ui.components import Button, Label
+from zapzap.ui.components import SettingsActionRow
+from zapzap.ui.components import SettingsCard
+from zapzap.ui.components import SettingsPage
+from zapzap.ui.components import SettingsPasswordRow
+from zapzap.ui.components import SettingsSection
+from zapzap.ui.components import SettingsSelectRow
+from zapzap.ui.components import SettingsSwitchRow
+from zapzap.ui.components import SettingsTextRow
+from zapzap.ui.primitives import Button, Label
 
 
 class AuthenticationExpander(QWidget):

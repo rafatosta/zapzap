@@ -5,7 +5,7 @@ from gettext import gettext as _
 from PyQt6.QtCore import pyqtSignal
 from PyQt6.QtWidgets import QFrame, QHBoxLayout
 
-from zapzap.ui.components import Button, Label
+from zapzap.ui.primitives import Button, Label
 
 
 class SettingsRestartBar(QFrame):

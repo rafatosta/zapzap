@@ -2,15 +2,15 @@
 
 from gettext import gettext as _
 
-from zapzap.ui.components import RadioButton
-from zapzap.features.settings.components import SettingsRadioGroup
-from zapzap.features.settings.components import SettingsCard
-from zapzap.features.settings.components import SettingsPage
-from zapzap.features.settings.components import SettingsSection
-from zapzap.features.settings.components import SettingsSelectRow
-from zapzap.features.settings.components import SettingsSubgroupHeader
-from zapzap.features.settings.components import SettingsSwitchGroup
-from zapzap.features.settings.components import SettingsSwitchRow
+from zapzap.ui.primitives import RadioButton
+from zapzap.ui.components import SettingsRadioGroup
+from zapzap.ui.components import SettingsCard
+from zapzap.ui.components import SettingsPage
+from zapzap.ui.components import SettingsSection
+from zapzap.ui.components import SettingsSelectRow
+from zapzap.ui.components import SettingsSubgroupHeader
+from zapzap.ui.components import SettingsSwitchGroup
+from zapzap.ui.components import SettingsSwitchRow
 
 
 class AppearanceSettingsView(SettingsPage):

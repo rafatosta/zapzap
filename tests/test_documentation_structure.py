@@ -59,6 +59,19 @@ class DocumentationStructureTests(unittest.TestCase):
             declared_setuptools_packages(),
         )
 
+    def test_components_are_located_under_the_ui_layer(self):
+        feature_component_modules = sorted(
+            path.relative_to(REPOSITORY_ROOT)
+            for path in (REPOSITORY_ROOT / "zapzap" / "features").glob(
+                "*/components/**/*.py"
+            )
+        )
+        self.assertEqual(
+            [],
+            feature_component_modules,
+            "Move visual components to zapzap/ui/components",
+        )
+
     def test_tests_and_technical_documents_are_documented(self):
         test_modules = {
             path.name for path in (REPOSITORY_ROOT / "tests").glob("test_*.py")
@@ -102,4 +115,3 @@ class DocumentationStructureTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

@@ -15,7 +15,7 @@ zapzap.app                  bootstrap e ciclo de vida
 zapzap.ui.main_window       janela, menus e composição
         |
         +--> features.browser       contas e páginas WebEngine
-        +--> features.settings      shell, páginas e componentes
+        +--> features.settings      shell e páginas de configurações
         +--> features.notifications integração nativa por plataforma
         +--> outras features        tray, downloads, permissões etc.
         |
@@ -23,11 +23,13 @@ zapzap.ui.main_window       janela, menus e composição
 zapzap.core                 configuração, ambiente, tema, i18n e diagnóstico
 ```
 
-`zapzap.assets` contém ícones e estilos; `zapzap.ui.components` contém widgets
-compartilhados. Uma feature pode usar `core`, `assets` e componentes de UI.
+`zapzap.assets` contém ícones e estilos. A interface compartilhada fica toda em
+`zapzap.ui`: `ui.primitives` reúne controles básicos e `ui.components` reúne
+composições visuais. Uma feature pode usar `core`, `assets` e elementos de UI.
 `core` não deve depender de páginas de configurações nem de uma feature de
 apresentação. Quando duas páginas precisam do mesmo comportamento, ele deve ser
-movido para um domínio em `core` ou para uma feature compartilhada.
+movido para um domínio em `core`; quando compartilham uma composição visual,
+ela deve ficar em `ui.components`.
 
 ## Inicialização e encerramento
 
@@ -132,10 +134,12 @@ quanto possível, a separação:
 - `view.py`: widgets, layout, texto visível e acessibilidade;
 - `controller.py`: sinais, persistência e efeitos.
 
-Componentes reutilizáveis ficam em `features/settings/components/`.
+As páginas consomem composições reutilizáveis de `zapzap.ui.components`.
 `SettingsCard.add_row()` cria divisores automaticamente; linhas auxiliares
 podem optar por `divider=False`. Mudanças que pedem reinício usam
-`SettingsPage.set_restart_required()` e a barra contextual compartilhada.
+`SettingsPage.set_restart_required()` e a barra contextual compartilhada. A
+feature decide quando exibir ou acionar esses elementos, mas sua implementação
+visual permanece localizável em `ui`.
 
 Ao criar uma página:
 
@@ -167,10 +171,17 @@ real; `offscreen` não comprova comportamento do compositor.
 
 ## Tema, componentes e internacionalização
 
-`ThemeManager` mantém o tema efetivo, a `QPalette` e observadores. Widgets devem
-usar componentes em `zapzap/ui/components`, cores semânticas da paleta e
-`Typography`, evitando uma segunda linguagem visual. QSS pode sobrescrever
-fontes: quando necessário, aplique `setFont()` depois de `setStyleSheet()`.
+`ThemeManager` mantém o tema efetivo, a `QPalette` e observadores. Controles
+básicos devem partir de `zapzap/ui/primitives`; composições reutilizáveis ficam
+em `zapzap/ui/components`. Ambos usam cores semânticas da paleta e `Typography`,
+evitando uma segunda linguagem visual. QSS pode sobrescrever fontes: quando
+necessário, aplique `setFont()` depois de `setStyleSheet()`.
+
+Uma classe visual não deve ser escondida dentro de uma feature apenas porque
+seu primeiro consumidor surgiu ali. Views completas podem continuar próximas
+da feature, mas widgets e diálogos reutilizados por fluxos diferentes devem ser
+promovidos para `ui.components`. Modelos, controladores, persistência e efeitos
+continuam na feature ou no domínio responsável.
 
 `SegmentedControl` é o seletor exclusivo reutilizável para duas ou mais opções.
 Ele mantém valores estáveis separados dos rótulos traduzidos, usa um único foco
@@ -259,7 +270,6 @@ Este bloco é verificado automaticamente contra
 - `zapzap.features.accounts.domain`
 - `zapzap.features.alerts`
 - `zapzap.features.browser`
-- `zapzap.features.browser.components`
 - `zapzap.features.browser.shell`
 - `zapzap.features.browser.web`
 - `zapzap.features.customizations`
@@ -271,8 +281,6 @@ Este bloco é verificado automaticamente contra
 - `zapzap.features.notifications`
 - `zapzap.features.permissions`
 - `zapzap.features.settings`
-- `zapzap.features.settings.components`
-- `zapzap.features.settings.components.card_user`
 - `zapzap.features.settings.pages`
 - `zapzap.features.settings.pages.about`
 - `zapzap.features.settings.pages.accounts`
@@ -292,4 +300,5 @@ Este bloco é verificado automaticamente contra
 - `zapzap.ui`
 - `zapzap.ui.components`
 - `zapzap.ui.main_window`
+- `zapzap.ui.primitives`
 <!-- structure-check:packages:end -->

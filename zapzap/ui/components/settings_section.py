@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QVBoxLayout, QWidget
 
-from zapzap.ui.components import Label
+from zapzap.ui.primitives import Label
 
 
 class SettingsSection(QWidget):

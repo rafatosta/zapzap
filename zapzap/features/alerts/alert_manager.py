@@ -4,8 +4,8 @@ from typing import Optional, Union
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QMessageBox
 
-from zapzap.ui.components.button import Button, ButtonVariant
-from zapzap.ui.components.check_box import CheckBox, CheckBoxVariant
+from zapzap.ui.primitives.button import Button, ButtonVariant
+from zapzap.ui.primitives.check_box import CheckBox, CheckBoxVariant
 
 from zapzap import LIMITE_USERS
 from zapzap.core.config.settings_manager import SettingsManager

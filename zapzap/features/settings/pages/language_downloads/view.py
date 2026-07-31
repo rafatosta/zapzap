@@ -1,8 +1,8 @@
 from gettext import gettext as _
 
-from zapzap.ui.components import Button
+from zapzap.ui.primitives import Button
 
-from zapzap.features.settings.components import (
+from zapzap.ui.components import (
     SettingsCard,
     SettingsPage,
     SettingsPathRow,

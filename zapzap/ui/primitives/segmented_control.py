@@ -1,4 +1,4 @@
-"""Reusable exclusive segmented control."""
+"""Reusable exclusive segmented-control primitive."""
 
 from dataclasses import dataclass
 from enum import Enum

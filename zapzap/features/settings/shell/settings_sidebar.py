@@ -3,50 +3,16 @@
 from gettext import gettext as _
 
 from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QFrame
 from PyQt6.QtWidgets import QHBoxLayout
-from PyQt6.QtWidgets import QPushButton
 from PyQt6.QtWidgets import QScrollArea
 from PyQt6.QtWidgets import QVBoxLayout
 from PyQt6.QtWidgets import QWidget
 
-from zapzap.ui.components import CloseButton
-from zapzap.ui.components import Label
+from zapzap.ui.primitives import CloseButton
+from zapzap.ui.primitives import Label
+from zapzap.ui.components import NavigationItem
 from zapzap.ui.typography import Typography
-
-
-class SettingsSidebarItem(QPushButton):
-    def __init__(self, text, parent=None):
-        super().__init__(text, parent)
-        self.setObjectName("SettingsNavButton")
-        self._apply_font()
-        self._apply_style()
-
-    def _apply_font(self):
-        font = self.font()
-        font.setWeight(QFont.Weight.Medium)
-        self.setFont(font)
-
-    def _apply_style(self):
-        self.setStyleSheet("""
-            QPushButton#SettingsNavButton {
-                border: 0;
-                border-radius: 10px;
-                padding: 10px 12px;
-                text-align: left;
-                color: palette(text);
-                background: transparent;
-            }
-            QPushButton#SettingsNavButton:hover {
-                background: palette(alternate-base);
-                color: palette(text);
-            }
-            QPushButton#SettingsNavButton:disabled {
-                background: palette(alternate-base);
-                color: palette(highlight);
-            }
-        """)
 
 
 class SettingsSidebar(QFrame):
@@ -107,7 +73,7 @@ class SettingsSidebar(QFrame):
         self.layout.addWidget(self.header)
 
     def add_item(self, text):
-        item = SettingsSidebarItem(text)
+        item = NavigationItem(text)
         self.items.append(item)
         self.layout.addWidget(item)
         return item

@@ -1,7 +1,7 @@
 from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QFrame, QVBoxLayout
 
-from zapzap.ui.components import Label
+from zapzap.ui.primitives import Label
 from zapzap.ui.typography import Typography
 
 

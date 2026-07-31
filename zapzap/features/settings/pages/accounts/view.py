@@ -5,8 +5,8 @@ from gettext import gettext as _
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QHBoxLayout, QVBoxLayout, QWidget
 
-from zapzap.features.settings.components import SettingsPage
-from zapzap.ui.components import Button, Label
+from zapzap.ui.components import SettingsPage
+from zapzap.ui.primitives import Button, Label
 
 
 class AccountsSettingsView(SettingsPage):

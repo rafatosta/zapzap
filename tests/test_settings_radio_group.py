@@ -3,11 +3,11 @@
 import unittest
 
 from qt_test_case import QtTestCase
-from zapzap.features.settings.components import (
+from zapzap.ui.components import (
     SettingsDivider,
     SettingsRadioGroup,
 )
-from zapzap.ui.components import RadioButton
+from zapzap.ui.primitives import RadioButton
 
 
 class SettingsRadioGroupTests(QtTestCase):

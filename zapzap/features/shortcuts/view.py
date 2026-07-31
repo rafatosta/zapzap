@@ -14,7 +14,7 @@ from PyQt6.QtWidgets import QTableWidget
 from PyQt6.QtWidgets import QTableWidgetItem
 from PyQt6.QtWidgets import QVBoxLayout
 
-from zapzap.ui.components import Label
+from zapzap.ui.primitives import Label
 from zapzap.ui.typography import Typography
 
 

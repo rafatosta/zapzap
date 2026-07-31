@@ -12,21 +12,21 @@ from qt_test_case import QtTestCase
 from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.accounts.domain.user import User
-from zapzap.features.settings.components.card_user.card_user_controller import (
+from zapzap.features.accounts.card_user_controller import (
     CardUserController,
 )
-from zapzap.features.settings.components.card_user.card_user_model import (
+from zapzap.features.accounts.card_user_model import (
     CardUserModel,
 )
-from zapzap.features.settings.components.card_user.card_user_view import (
+from zapzap.ui.components.card_user import (
     AccountContextMenu,
     CardUserView,
 )
-from zapzap.features.settings.components.card_user.edit_account_dialog import (
+from zapzap.ui.components.edit_account_dialog import (
     EditAccountDialog,
 )
 from zapzap.features.settings.pages.accounts.view import AccountsSettingsView
-from zapzap.ui.components import (
+from zapzap.ui.primitives import (
     Button,
     ComboBox,
     LineEdit,
@@ -107,7 +107,7 @@ class AccountsSettingsUiTests(QtTestCase):
             side_effect=fail_after_change,
         ):
             with patch(
-                "zapzap.features.settings.components.card_user."
+                "zapzap.features.accounts."
                 "card_user_controller.AlertManager.critical",
             ) as critical:
                 card.active.segmentButton(1).click()
@@ -239,7 +239,7 @@ class AccountsSettingsUiTests(QtTestCase):
         dialog.name_edit.setText("Changed")
 
         with patch(
-            "zapzap.features.settings.components.card_user."
+            "zapzap.ui.components."
             "edit_account_dialog.AlertManager.action_dialog",
             return_value="keep",
         ) as confirmation:
@@ -249,7 +249,7 @@ class AccountsSettingsUiTests(QtTestCase):
         confirmation.assert_called_once()
 
         with patch(
-            "zapzap.features.settings.components.card_user."
+            "zapzap.ui.components."
             "edit_account_dialog.AlertManager.action_dialog",
             return_value="discard",
         ):
@@ -412,7 +412,7 @@ class AccountsSettingsUiTests(QtTestCase):
         dialog = EditAccountDialog("Rafael Tosta", UserIcon.ICON_DEFAULT)
 
         with patch(
-            "zapzap.features.settings.components.card_user."
+            "zapzap.ui.components."
             "edit_account_dialog.QFileDialog.getOpenFileName",
             return_value=("/tmp/account-photo.png", ""),
         ) as get_open_file_name:
@@ -434,7 +434,7 @@ class AccountsSettingsUiTests(QtTestCase):
         dialog = EditAccountDialog("Rafael Tosta", UserIcon.ICON_DEFAULT)
 
         with patch(
-            "zapzap.features.settings.components.card_user."
+            "zapzap.ui.components."
             "edit_account_dialog.QFileDialog.getOpenFileName",
             return_value=("", ""),
         ):
@@ -454,7 +454,7 @@ class AccountsSettingsUiTests(QtTestCase):
         dialog = EditAccountDialog("Rafael Tosta", UserIcon.ICON_DEFAULT)
 
         with patch(
-            "zapzap.features.settings.components.card_user."
+            "zapzap.ui.components."
             "edit_account_dialog.QFileDialog.getOpenFileName",
             return_value=("/tmp/invalid-photo.png", ""),
         ):
@@ -766,7 +766,7 @@ class AccountsSettingsUiTests(QtTestCase):
         card = CardUserController(user)
 
         with patch(
-            "zapzap.features.settings.components.card_user."
+            "zapzap.features.accounts."
             "card_user_controller.EditAccountDialog",
         ) as dialog_class:
             dialog_class.KEEP_ICON = EditAccountDialog.KEEP_ICON
@@ -794,7 +794,7 @@ class AccountsSettingsUiTests(QtTestCase):
         card = CardUserController(user)
 
         with patch(
-            "zapzap.features.settings.components.card_user."
+            "zapzap.features.accounts."
             "card_user_controller.EditAccountDialog",
         ) as dialog_class:
             dialog_class.KEEP_ICON = EditAccountDialog.KEEP_ICON

@@ -1,4 +1,4 @@
-"""View for a user/account settings card."""
+"""Reusable account-card and account-menu views."""
 
 from gettext import gettext as _
 
@@ -18,12 +18,12 @@ from PyQt6.QtWidgets import (
 )
 
 from zapzap.assets.icons.user_icon import UserIcon
-from zapzap.features.settings.components.settings_card import SettingsCard
-from zapzap.features.settings.components.settings_rows import (
+from .settings_card import SettingsCard
+from .settings_rows import (
     SettingsSegmentedRow,
     SettingsSwitchRow,
 )
-from zapzap.ui.components import (
+from zapzap.ui.primitives import (
     Button,
     Label,
     SegmentOption,

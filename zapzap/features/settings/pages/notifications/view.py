@@ -3,12 +3,12 @@ from gettext import gettext as _
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QHBoxLayout, QMenu, QVBoxLayout, QWidget
 
-from zapzap.features.settings.components import (
+from zapzap.ui.components import (
     SettingsCard,
     SettingsPage,
     SettingsSwitchRow,
 )
-from zapzap.ui.components import Button, Label
+from zapzap.ui.primitives import Button, Label
 
 
 class NotificationsSettingsView(SettingsPage):

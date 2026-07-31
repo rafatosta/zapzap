@@ -2,13 +2,13 @@
 
 from gettext import gettext as _
 
-from zapzap.features.settings.components import SettingsActionRow
-from zapzap.features.settings.components import SettingsCard
-from zapzap.features.settings.components import SettingsInfoBox
-from zapzap.features.settings.components import SettingsPage
-from zapzap.features.settings.components import SettingsSection
-from zapzap.features.settings.components import SettingsSelectRow
-from zapzap.features.settings.components import SettingsSwitchRow
+from zapzap.ui.components import SettingsActionRow
+from zapzap.ui.components import SettingsCard
+from zapzap.ui.components import SettingsInfoBox
+from zapzap.ui.components import SettingsPage
+from zapzap.ui.components import SettingsSection
+from zapzap.ui.components import SettingsSelectRow
+from zapzap.ui.components import SettingsSwitchRow
 
 
 class PerformanceExperimentalSettingsView(SettingsPage):

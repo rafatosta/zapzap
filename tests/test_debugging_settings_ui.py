@@ -13,7 +13,7 @@ from zapzap.features.settings.pages.debugging.view import DebuggingSettingsView
 from zapzap.core.diagnostics.runtime_environment_debug import (
     RuntimeEnvironmentDebug,
 )
-from zapzap.ui.components import Button
+from zapzap.ui.primitives import Button
 
 
 class DebuggingSettingsUiTests(QtTestCase):

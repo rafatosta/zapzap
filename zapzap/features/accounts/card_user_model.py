@@ -1,4 +1,4 @@
-"""Model for account card state and persistence."""
+"""Model for shared account-card state and persistence."""
 
 from __future__ import annotations
 

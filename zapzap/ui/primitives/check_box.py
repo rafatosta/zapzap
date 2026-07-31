@@ -1,4 +1,4 @@
-"""Reusable, palette-aware ZapZap check box."""
+"""Reusable, palette-aware ZapZap check box primitive."""
 
 from enum import Enum
 

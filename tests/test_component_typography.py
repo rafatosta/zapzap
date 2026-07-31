@@ -9,7 +9,7 @@ from zapzap.features.settings.pages.advanced_customizations.view import (
     AdvancedCustomizationsSettingsView,
 )
 from zapzap.features.shortcuts.view import ShortcutsView
-from zapzap.ui.components import CheckBox, ComboBox, LineEdit
+from zapzap.ui.primitives import CheckBox, ComboBox, LineEdit
 from zapzap.ui.main_window.main_window_view import MainWindowView
 
 

@@ -6,7 +6,7 @@ from PyQt6.QtWidgets import QApplication
 
 from zapzap.features.settings.pages.performance_experimental.model import PerformanceExperimentalSettingsModel
 from zapzap.features.settings.pages.performance_experimental.view import PerformanceExperimentalSettingsView
-from zapzap.features.settings.components import SettingsRestartBar
+from zapzap.ui.components import SettingsRestartBar
 
 
 class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsView):

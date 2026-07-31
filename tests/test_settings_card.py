@@ -5,7 +5,7 @@ import unittest
 from PyQt6.QtWidgets import QWidget
 
 from qt_test_case import QtTestCase
-from zapzap.features.settings.components import (
+from zapzap.ui.components import (
     SUBSETTING_INDENT,
     SettingsCard,
     SettingsDivider,

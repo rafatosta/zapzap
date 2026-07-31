@@ -1,4 +1,4 @@
-"""ZapZap toggle switch component."""
+"""ZapZap toggle switch primitive."""
 
 from PyQt6.QtCore import QEvent, QRectF, QSize, Qt
 from PyQt6.QtGui import QPainter, QPalette, QPen

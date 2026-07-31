@@ -8,7 +8,7 @@ from PyQt6.QtWidgets import (
     QVBoxLayout,
 )
 
-from zapzap.ui.components import (
+from zapzap.ui.primitives import (
     Button,
     ComboBox,
     Label,

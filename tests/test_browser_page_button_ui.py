@@ -10,7 +10,7 @@ from qt_test_case import QtTestCase
 from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.accounts.domain.user import User
-from zapzap.features.browser.components.browser_page_button import (
+from zapzap.ui.components.browser_page_button import (
     AccountIndicatorState,
     BrowserPageButton,
 )
@@ -72,7 +72,7 @@ class BrowserPageButtonUiTests(QtTestCase):
 
         button.user.enable = True
         with patch(
-            "zapzap.features.browser.components.browser_page_button."
+            "zapzap.ui.components.browser_page_button."
             "SettingsManager.get",
             return_value=False,
         ):

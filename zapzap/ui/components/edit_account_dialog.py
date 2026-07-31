@@ -23,7 +23,7 @@ from PyQt6.QtWidgets import (
 from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.core.config.settings.system import SystemSettings
 from zapzap.features.alerts.alert_manager import AlertManager
-from zapzap.ui.components import (
+from zapzap.ui.primitives import (
     Button,
     CloseButton,
     ComboBox,

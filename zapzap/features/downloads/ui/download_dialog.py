@@ -14,8 +14,8 @@ from gettext import gettext as _
 import os
 
 from zapzap.core.config.settings_manager import SettingsManager
-from zapzap.ui.components.button import Button
-from zapzap.ui.components.label import Label
+from zapzap.ui.primitives.button import Button
+from zapzap.ui.primitives.label import Label
 from zapzap.features.downloads.download_naming_service import DownloadNamingService
 
 

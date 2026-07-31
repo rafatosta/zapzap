@@ -105,6 +105,12 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 ### Mudança visual compartilhada
 
 - Corrija primeiro o componente central e audite consumidores.
+- Coloque controles Qt básicos em `ui.primitives` e composições visuais
+  reutilizáveis em `ui.components`; não esconda widgets compartilhados dentro
+  da feature que os criou primeiro.
+- Mantenha modelos, controladores, persistência e efeitos na feature ou domínio
+  responsável. Componentes visuais devem receber dados e callbacks pelas suas
+  interfaces públicas.
 - Use `QPalette`, `QFont` e `Typography`; evite cores e pesos paralelos.
 - Em seletores segmentados, mantenha IDs estáveis em `SegmentOption.value` e
   rótulos traduzidos em `SegmentOption.label`; não persista o texto visível.

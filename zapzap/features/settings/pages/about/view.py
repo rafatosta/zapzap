@@ -15,8 +15,8 @@ from PyQt6.QtWidgets import (
 )
 
 from zapzap.assets.icons.user_icon import UserIcon
-from zapzap.features.settings.components import SettingsCard, SettingsPage, SettingsSection
-from zapzap.ui.components import Button, Label
+from zapzap.ui.components import SettingsCard, SettingsPage, SettingsSection
+from zapzap.ui.primitives import Button, Label
 from zapzap.ui.typography import Typography
 
 

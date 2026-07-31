@@ -9,7 +9,7 @@ from PyQt6.QtWidgets import QScrollArea
 from PyQt6.QtWidgets import QVBoxLayout
 from PyQt6.QtWidgets import QWidget
 
-from zapzap.ui.components import Label
+from zapzap.ui.primitives import Label
 from zapzap.ui.typography import Typography
 
 
