@@ -12,7 +12,7 @@ run.py / zapzap.__main__
 zapzap.app                  bootstrap e ciclo de vida
         |
         v
-zapzap.ui.main_window       janela, menus e composição
+zapzap.app.main_window_controller composição da interface principal
         |
         +--> features.browser       contas e páginas WebEngine
         +--> features.settings      shell e páginas de configurações
@@ -53,10 +53,17 @@ normalmente exigem reinício completo.
 
 ## Janela e navegador
 
-`MainWindowController` compõe a janela, o `BrowserController`, configurações,
-atalhos, bandeja e menus. A renderização de bordas do lado cliente é um invólucro
-opcional criado por `ClientSideRenderingController`; o controlador interno
-continua sendo a janela funcional.
+`MainWindowController`, em `zapzap.app`, compõe o navegador, configurações,
+atalhos e menus sobre o `MainWindowView` de `ui.components`. A moldura opcional
+fica em `ClientSideWindow`; `ClientSideWindowHost` expõe explicitamente o
+contrato da janela principal, sem delegação dinâmica de atributos.
+
+`WindowLifecycle` é único para janelas nativas e com decoração do lado cliente.
+Ele restaura e persiste geometria, coordena fechamento, segundo plano, bandeja e
+o estado normal, maximizado ou fullscreen observado diretamente no Qt. As chaves
+legadas `main/geometry` e `main/windowState` são preservadas por
+`WindowSettings`; preferências de fechamento e aparência usam seus domínios
+tipados existentes.
 
 `BrowserController` mantém o relacionamento entre contas, botões laterais e
 `WebView`s. Cada conta usa um perfil WebEngine próprio. O fluxo básico é:
@@ -299,6 +306,5 @@ Este bloco é verificado automaticamente contra
 - `zapzap.features.tray`
 - `zapzap.ui`
 - `zapzap.ui.components`
-- `zapzap.ui.main_window`
 - `zapzap.ui.primitives`
 <!-- structure-check:packages:end -->

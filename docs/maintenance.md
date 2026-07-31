@@ -124,6 +124,19 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - `offscreen` valida propriedades e sinais, não posição do cursor, foco do
   compositor nem aparência final.
 
+### Mudança na janela principal
+
+- Mantenha a estrutura visual em `ui.components` e a coordenação global em
+  `app`; não volte a criar controladores dentro da camada de UI.
+- Preserve `main/geometry`, `main/windowState` e a semântica das preferências de
+  fechamento. Use `WindowSettings`, `SystemSettings` e `AppearanceSettings`.
+- Aplique mudanças de mostrar, ocultar, fechar e restaurar em `WindowLifecycle`
+  para manter o comportamento idêntico entre a janela nativa e a moldura CSR.
+- Não conecte sinais de ação diretamente a `closeEvent`: solicite `close()` para
+  que o Qt forneça um evento real.
+- Valide restauração normal, maximizada e fullscreen. Aparência, movimento e
+  redimensionamento da moldura CSR ainda exigem uma sessão gráfica real.
+
 ### Traduções
 
 Inventarie entradas vazias e `fuzzy`, preserve tokens técnicos e valide todos os

@@ -12,7 +12,7 @@ from zapzap.features.accounts.card_user_controller import CardUserController as 
 from zapzap.assets.icons.system_icon import SystemIcon
 from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.features.alerts.alert_manager import AlertManager
-from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.core.config.settings.appearance import AppearanceSettings
 from zapzap.core.environment.setup_manager import SetupManager
 from zapzap.features.tray.sys_tray_manager import SysTrayManager
 from zapzap.features.browser.shell.browser_view import BrowserView
@@ -30,6 +30,7 @@ class BrowserController(BrowserView):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.parent = parent
+        self._appearance_settings = AppearanceSettings()
 
         self.page_count = 0  # Contador de páginas
         self.page_buttons = {}  # Mapeamento entre botões e páginas
@@ -460,7 +461,7 @@ class BrowserController(BrowserView):
         self.grid_view.clear_thumbnails()
         self.grid_view.set_empty_state_visible(False)
 
-        cols = max(1, int(SettingsManager.get("system/grid_cols", 2)))
+        cols = max(1, self._appearance_settings.grid_columns)
         row, col = 0, 0
 
         # Count active accounts first to calculate layout
@@ -588,8 +589,10 @@ class BrowserController(BrowserView):
 
     def settings_sidebar(self):
         """Mostra ou esconde a barra lateral"""
-        self.set_sidebar_visible(SettingsManager.get(
-            "system/sidebar", True), animated=False)
+        self.set_sidebar_visible(
+            self._appearance_settings.browser_sidebar_visible,
+            animated=False,
+        )
 
     def set_sidebar_visible(self, visible: bool, animated: bool = True):
         if self._sidebar_animation_group:

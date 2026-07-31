@@ -9,17 +9,20 @@ from PyQt6.QtGui import QDesktopServices
 
 from zapzap.app.single_application import SingleApplication
 from zapzap.app.desktop_application_dbus import DesktopApplicationDBus
+from zapzap.app.main_window_controller import MainWindowController
 from zapzap.app.startup_options import apply_startup_options, parse_startup_options
-from zapzap.ui.main_window.client_side_rendering_controller import ClientSideRenderingController
-from zapzap.ui.main_window.main_window_controller import MainWindowController
+from zapzap.app.window_lifecycle import ClientSideWindowHost
 from zapzap.core.diagnostics import crash_handler
 from zapzap.assets.icons.tray_icon import TrayIcon
 from zapzap.core.environment.proxy_manager import ProxyManager
 from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.core.config.settings.appearance import AppearanceSettings
+from zapzap.core.config.settings.system import SystemSettings
 from zapzap.core.environment.setup_manager import SetupManager
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.core.i18n.translation_manager import TranslationManager
 from zapzap.features.initial_setup.controller import InitialSetupController
+from zapzap.features.donation.controller import DonationController
 from zapzap.features.notifications.notification_service import (
     NotificationService,
     is_flatpak,
@@ -28,10 +31,15 @@ from zapzap.features.notifications.notification_service import (
 
 def create_main_window():
     """Build a fresh MainWindow instance using the current runtime settings."""
-    mainwindow_inside = MainWindowController()
-    csr_enabled = SettingsManager.get("system/csr", False)
-    return ClientSideRenderingController(
-        mainwindow_inside, enabled=True) if csr_enabled else mainwindow_inside
+    content = MainWindowController()
+    window = (
+        ClientSideWindowHost(content)
+        if AppearanceSettings().csr_enabled
+        else content
+    )
+    if DonationController.should_show():
+        DonationController.showMessage(parent=window)
+    return window
 
 
 def main():
@@ -88,8 +96,7 @@ def main():
     should_show_initial_setup = InitialSetupController.should_show()
 
     if (
-        SettingsManager.get("system/start_background",
-                            False) or '--hideStart' in sys.argv
+        SystemSettings().start_in_background or '--hideStart' in sys.argv
     ) and not should_show_initial_setup:
         main_window.hide()
     else:

@@ -1,4 +1,4 @@
-"""Client-side rendering window view components."""
+"""Client-side decorated application window component."""
 
 import os
 
@@ -15,15 +15,22 @@ from PyQt6.QtWidgets import QWidget
 
 from zapzap.assets.themes.csr_button_theme_provider import CSRButtonTheme
 from zapzap.assets.themes.csr_button_theme_provider import CSRButtonThemeProvider
-from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.core.config.settings.appearance import AppearanceSettings
 from zapzap.ui.primitives import Label
 from zapzap.ui.typography import Typography
 
 
 class _TitleBar(QWidget):
-    def __init__(self, window, title: str, button_theme: CSRButtonTheme):
+    def __init__(
+        self,
+        window,
+        title: str,
+        button_theme: CSRButtonTheme,
+        settings: AppearanceSettings,
+    ):
         super().__init__(window)
         self.host_window = window
+        self._settings = settings
         self.setObjectName("csrTitleBar")
         self.setFixedHeight(40)
         self._drag_active = False
@@ -79,9 +86,7 @@ class _TitleBar(QWidget):
         self._apply_button_visibility()
 
     def _buttons_on_left(self) -> bool:
-        button_direction = str(SettingsManager.get(
-            "system/csr_buttons_direction", "right")).strip().lower()
-        return button_direction == "left"
+        return self._settings.csr_buttons_direction == "left"
 
     def _apply_button_theme(self):
         theme_definition = CSRButtonThemeProvider.get_theme(self._button_theme)
@@ -103,13 +108,12 @@ class _TitleBar(QWidget):
             button.setProperty("csrBorderRadius", border_radius)
 
     def _apply_button_visibility(self):
-        show_minimize = bool(SettingsManager.get(
-            "system/csr_show_minimize_button", True))
-        show_maximize = bool(SettingsManager.get(
-            "system/csr_show_maximize_button", True))
-
-        self.minimize_button.setVisible(show_minimize)
-        self.maximize_button.setVisible(show_maximize)
+        self.minimize_button.setVisible(
+            self._settings.csr_show_minimize_button
+        )
+        self.maximize_button.setVisible(
+            self._settings.csr_show_maximize_button
+        )
 
     def toggle_maximize(self):
         if self.host_window.isMaximized():
@@ -184,24 +188,24 @@ class _ResizeArea(QWidget):
                 handle.startSystemResize(self.edges)
 
 
-class ClientSideRenderingView(QWidget):
-    """Client-side rendered window wrapper view."""
+class ClientSideWindow(QWidget):
+    """Client-side decorated wrapper around application content."""
 
     is_csr_wrapper = True
 
-    def __init__(self, inner_window: QWidget, enabled: bool = True):
+    def __init__(
+        self,
+        inner_window: QWidget,
+        appearance_settings: AppearanceSettings | None = None,
+    ):
         super().__init__()
         self.inner_window = inner_window
-        self.enabled = enabled
+        self._appearance_settings = appearance_settings or AppearanceSettings()
         self._button_theme = self._resolve_button_theme()
 
         self.setWindowTitle(inner_window.windowTitle())
         self.resize(inner_window.size())
         self.setMinimumSize(inner_window.minimumSize())
-
-        if not enabled:
-            self._adopt_native_window()
-            return
 
         self.setWindowFlags(Qt.WindowType.Window |
                             Qt.WindowType.FramelessWindowHint)
@@ -219,7 +223,11 @@ class ClientSideRenderingView(QWidget):
         layout.setSpacing(0)
 
         self.title_bar = _TitleBar(
-            self, inner_window.windowTitle() or "ZapZap", self._button_theme)
+            self,
+            inner_window.windowTitle() or "ZapZap",
+            self._button_theme,
+            self._appearance_settings,
+        )
         layout.addWidget(self.title_bar)
 
         inner_window.setParent(self.container)
@@ -230,16 +238,12 @@ class ClientSideRenderingView(QWidget):
         self._apply_theme()
 
     def refresh_csr_button_preferences(self):
-        if not self.enabled:
-            return
-
         self._button_theme = self._resolve_button_theme()
         self.title_bar.refresh_preferences(self._button_theme)
         self._apply_theme()
 
     def _resolve_button_theme(self) -> CSRButtonTheme:
-        configured_theme = str(SettingsManager.get(
-            "system/csr_button_theme", "auto")).strip().lower()
+        configured_theme = self._appearance_settings.csr_button_theme
 
         configured_button_theme = CSRButtonThemeProvider.parse_theme(
             configured_theme)
@@ -253,14 +257,6 @@ class ClientSideRenderingView(QWidget):
             return CSRButtonTheme.ADWAITA
 
         return CSRButtonTheme.DEFAULT
-
-    def _adopt_native_window(self):
-        self.setWindowFlags(self.inner_window.windowFlags())
-        layout = QVBoxLayout(self)
-        layout.setContentsMargins(0, 0, 0, 0)
-        self.inner_window.setParent(self)
-        self.inner_window.setWindowFlags(Qt.WindowType.Widget)
-        layout.addWidget(self.inner_window)
 
     def _create_resize_handles(self):
         margin = 8
@@ -315,14 +311,10 @@ class ClientSideRenderingView(QWidget):
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
-        if not self.enabled:
-            return
         margin = 8
         self._update_resize_handle_geometry(margin)
 
     def paintEvent(self, _event):
-        if not self.enabled:
-            return
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         painter.setPen(Qt.PenStyle.NoPen)

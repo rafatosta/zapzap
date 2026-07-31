@@ -3,7 +3,9 @@ from .browser_page_button import BrowserPageButton
 from .browser_pages import BrowserPages
 from .browser_sidebar import BrowserSidebar, BrowserSidebarButton
 from .card_user import AccountContextMenu, CardUserView
+from .client_side_window import ClientSideWindow
 from .edit_account_dialog import EditAccountDialog
+from .main_window import MainWindowView
 from .navigation_item import NavigationItem
 from .settings_badge import SettingsBadge, SettingsInfoBox
 from .settings_card import (

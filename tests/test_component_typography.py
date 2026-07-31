@@ -10,7 +10,7 @@ from zapzap.features.settings.pages.advanced_customizations.view import (
 )
 from zapzap.features.shortcuts.view import ShortcutsView
 from zapzap.ui.primitives import CheckBox, ComboBox, LineEdit
-from zapzap.ui.main_window.main_window_view import MainWindowView
+from zapzap.ui.components.main_window import MainWindowView
 
 
 class ComponentTypographyTests(QtTestCase):

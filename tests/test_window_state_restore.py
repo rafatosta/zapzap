@@ -1,37 +1,61 @@
-"""Regression tests for restoring the maximized state of hidden windows."""
+"""Regression tests for the shared native/CSR window lifecycle."""
 
-import unittest
-
-from PyQt6.QtWidgets import QWidget
+from PyQt6.QtWidgets import QMainWindow
 
 from qt_test_case import QtTestCase
-from zapzap.ui.main_window.window_state import WindowStateMemory
+from zapzap.app.window_lifecycle import ClientSideWindowHost, WindowLifecycle
+from zapzap.core.config.settings.system import SystemSettings
+from zapzap.core.config.settings_manager import SettingsManager
 
 
-class _Window(WindowStateMemory, QWidget):
-    """Stand-in wired like the application windows."""
-
+class _Window(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.is_fullscreen = False
+        self.background_preparations = 0
+        self.lifecycle = WindowLifecycle(self, self)
 
     def hideEvent(self, event):
-        self.remember_window_state()
+        self.lifecycle.remember_window_state()
         super().hideEvent(event)
 
+    def closeEvent(self, event):
+        self.lifecycle.close_event(event)
+
     def restore_window(self):
-        self.show_in_remembered_state(self.is_fullscreen)
+        self.lifecycle.restore_window()
+
+    def prepare_for_background(self):
+        self.background_preparations += 1
 
 
-class _DelegatingWrapper(WindowStateMemory, QWidget):
-    """Wrapper that forwards unknown attributes, like the CSR window."""
-
-    def __init__(self, inner):
+class _Content(QMainWindow):
+    def __init__(self):
         super().__init__()
-        self.inner_window = inner
+        self.browser = object()
+        self.app_settings = None
+        self.settings_opened = 0
 
-    def __getattr__(self, name):
-        return getattr(self.inner_window, name)
+    def attach_window_host(self, host, lifecycle):
+        self.host = host
+        self.lifecycle = lifecycle
+
+    def prepare_for_background(self):
+        pass
+
+    def open_settings(self):
+        self.settings_opened += 1
+
+    def close_settings(self):
+        pass
+
+    def settings_menubar(self):
+        pass
+
+    def set_sidebar_visible(self, _visible, _animated=True, _persist=True):
+        pass
+
+    def xdgOpenChat(self, _url):
+        pass
 
 
 class WindowStateRestoreTest(QtTestCase):
@@ -55,20 +79,22 @@ class WindowStateRestoreTest(QtTestCase):
         self.window.restore_window()
 
         self.assertFalse(self.window.isMaximized())
+        self.assertFalse(self.window.isFullScreen())
 
-    def test_fullscreen_takes_precedence_over_maximized(self):
-        self.window.showMaximized()
+    def test_fullscreen_state_is_derived_from_qt(self):
+        self.window.showFullScreen()
+        self.assertTrue(self.window.isFullScreen())
+
         self.window.hide()
-        self.window.is_fullscreen = True
-
         self.window.restore_window()
 
         self.assertTrue(self.window.isFullScreen())
 
     def test_window_never_hidden_is_shown_normal(self):
-        self.window.show_in_remembered_state()
+        self.window.restore_window()
 
         self.assertFalse(self.window.isMaximized())
+        self.assertFalse(self.window.isFullScreen())
 
     def test_restoring_twice_keeps_the_state(self):
         self.window.showMaximized()
@@ -79,18 +105,47 @@ class WindowStateRestoreTest(QtTestCase):
 
         self.assertTrue(self.window.isMaximized())
 
-    def test_state_is_not_read_from_a_delegated_inner_window(self):
-        inner = _Window()
-        self.addCleanup(inner.deleteLater)
-        inner.showMaximized()
-        inner.hide()
-        wrapper = _DelegatingWrapper(inner)
-        self.addCleanup(wrapper.deleteLater)
+    def test_state_is_captured_from_host_not_embedded_content(self):
+        content = QMainWindow()
+        self.addCleanup(content.deleteLater)
+        content.showMaximized()
 
-        wrapper.show_in_remembered_state()
+        lifecycle = WindowLifecycle(self.window, content)
+        lifecycle.remember_window_state()
+        lifecycle.restore_window()
 
-        self.assertFalse(wrapper.isMaximized())
+        self.assertFalse(self.window.isMaximized())
+
+    def test_save_preserves_existing_geometry_and_layout_keys(self):
+        self.window.lifecycle.save_window_state()
+
+        self.assertTrue(SettingsManager.contains("main/geometry"))
+        self.assertTrue(SettingsManager.contains("main/windowState"))
+
+    def test_request_close_uses_a_real_event_and_prepares_background(self):
+        settings = SystemSettings()
+        settings.confirm_on_close = False
+        settings.keep_running_in_background = True
+        self.window.show()
+
+        self.window.lifecycle.request_close()
+
+        self.assertTrue(self.window.isHidden())
+        self.assertEqual(self.window.background_preparations, 1)
+
+    def test_csr_host_exposes_the_application_contract_explicitly(self):
+        content = _Content()
+        host = ClientSideWindowHost(content)
+        self.addCleanup(host.deleteLater)
+
+        host.open_settings()
+
+        self.assertIs(host.browser, content.browser)
+        self.assertEqual(content.settings_opened, 1)
+        self.assertNotIn("__getattr__", ClientSideWindowHost.__dict__)
 
 
 if __name__ == "__main__":
+    import unittest
+
     unittest.main()

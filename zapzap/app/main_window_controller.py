@@ -1,6 +1,3 @@
-from gettext import gettext as _
-
-from PyQt6.QtCore import QByteArray
 from PyQt6.QtCore import QBuffer
 from PyQt6.QtCore import QEvent
 from PyQt6.QtCore import QIODevice
@@ -10,19 +7,17 @@ from PyQt6.QtGui import QActionGroup
 from PyQt6.QtGui import QImage
 from PyQt6.QtWidgets import QApplication
 
-from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.app.window_lifecycle import WindowLifecycle
+from zapzap.core.config.settings.appearance import AppearanceSettings
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.browser.shell.browser_controller import BrowserController
-from zapzap.features.donation.controller import DonationController
 from zapzap.features.settings.shell.settings_controller import SettingsController
 from zapzap.features.shortcuts.controller import ShortcutsController
-from zapzap.features.tray.sys_tray_manager import SysTrayManager
-from zapzap.ui.main_window.main_window_view import MainWindowView
-from zapzap.ui.main_window.window_state import WindowStateMemory
+from zapzap.ui.components.main_window import MainWindowView
 
 
-class MainWindowController(WindowStateMemory, MainWindowView):
+class MainWindowController(MainWindowView):
     """
     Classe principal da interface do aplicativo.
     Controla a janela principal, incluindo o menu e interações com widgets centrais.
@@ -30,18 +25,14 @@ class MainWindowController(WindowStateMemory, MainWindowView):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.is_fullscreen = False  # Controle do estado de tela cheia
+        self._appearance_settings = AppearanceSettings()
+        self._window_host = self
+        self.lifecycle = WindowLifecycle(self, self)
         self.browser = BrowserController(self)  # Inicialização do navegador
         self.app_settings = None
         self._last_sanitized_key = None
         self.theme_action_group = None
         self._setup_ui()
-
-        if (
-            DonationController.should_show()
-            and not SettingsManager.get("system/csr", False)
-        ):
-            DonationController.showMessage(parent=self)
 
     def changeEvent(self, event):
         super().changeEvent(event)
@@ -89,7 +80,7 @@ class MainWindowController(WindowStateMemory, MainWindowView):
         self.settings_menubar()
         self.refresh_theme_menu()
         self.set_sidebar_visible(
-            SettingsManager.get("system/sidebar", True),
+            self._appearance_settings.browser_sidebar_visible,
             animated=False,
             persist=False,
         )
@@ -97,13 +88,7 @@ class MainWindowController(WindowStateMemory, MainWindowView):
 
     def load_settings(self):
         """Restaura as configurações salvas da janela e do sistema."""
-        self.restoreGeometry(SettingsManager.get(
-            "main/geometry", QByteArray()))
-        self.restoreState(SettingsManager.get(
-            "main/windowState", QByteArray()))
-
-        # Exibe o SysTray
-        SysTrayManager.start()
+        self.lifecycle.load_settings()
 
     def _setup_toolbar(self):
         """Ativa o toolBar com o menu de usuários (personalização futura)"""
@@ -123,7 +108,7 @@ class MainWindowController(WindowStateMemory, MainWindowView):
     def _connect_file_menu_actions(self):
         """Conectar ações do menu 'Arquivo'."""
         self.actionSettings.triggered.connect(self.open_settings)
-        self.actionQuit.triggered.connect(self.closeEvent)
+        self.actionQuit.triggered.connect(self.request_close)
         self.actionHide.triggered.connect(self.hide)
         self.actionReload.triggered.connect(self.browser.reload_pages)
         self.actionNew_chat.triggered.connect(self.new_chat)
@@ -166,9 +151,7 @@ class MainWindowController(WindowStateMemory, MainWindowView):
 
     def refresh_theme_menu(self):
         """Sincroniza o estado do menu com a preferência de tema salva."""
-        theme_value = SettingsManager.get(
-            "system/theme", ThemeManager.Type.Auto.value
-        )
+        theme_value = self._appearance_settings.theme
         if isinstance(theme_value, ThemeManager.Type):
             theme_value = theme_value.value
 
@@ -196,7 +179,7 @@ class MainWindowController(WindowStateMemory, MainWindowView):
         self.actionToggle_sidebar.blockSignals(False)
 
         if persist:
-            SettingsManager.set("system/sidebar", visible)
+            self._appearance_settings.browser_sidebar_visible = visible
 
     def _connect_help_menu_actions(self):
         """Conectar ações do menu 'Ajuda'."""
@@ -206,121 +189,96 @@ class MainWindowController(WindowStateMemory, MainWindowView):
     # === Ações de Menu ===
     def new_chat(self):
         """Iniciar um novo chat na página atual."""
-        try:
-            self._current_page().page().new_chat()
-        except:
-            AlertManager.no_active_account()
+        page = self._current_page_or_alert()
+        if page is not None:
+            page.page().new_chat()
 
     def new_chat_by_phone(self):
         """Iniciar um novo chat pelo número de telefone na página atual."""
-        try:
-            self._current_page().page().open_chat_by_number()
-        except:
-            AlertManager.no_active_account()
+        page = self._current_page_or_alert()
+        if page is not None:
+            page.page().open_chat_by_number()
 
     def _reset_zoom(self):
         """Resetar o fator de zoom da página atual."""
-        self._current_page().set_zoom_factor_page()
+        page = self._current_page_or_alert()
+        if page is not None:
+            page.set_zoom_factor_page()
 
     def _zoom_in(self):
         """Aumentar o zoom da página atual."""
-        self._current_page().set_zoom_factor_page(+0.1)
+        page = self._current_page_or_alert()
+        if page is not None:
+            page.set_zoom_factor_page(+0.1)
 
     def _zoom_out(self):
         """Diminuir o zoom da página atual."""
-        self._current_page().set_zoom_factor_page(-0.1)
+        page = self._current_page_or_alert()
+        if page is not None:
+            page.set_zoom_factor_page(-0.1)
 
     def open_devtools(self):
         """Abrir DevTools da página atual."""
-        try:
-            self._current_page().open_devtools()
-        except Exception:
-            AlertManager.no_active_account()
+        page = self._current_page_or_alert()
+        if page is not None:
+            page.open_devtools()
 
     # === Gerenciamento de Tela ===
     def _current_page(self):
         """Retorna a página atual do navegador."""
         return self.browser.current_webview()
 
+    def _current_page_or_alert(self):
+        page = self._current_page()
+        if page is None:
+            AlertManager.no_active_account()
+        return page
+
     def toggle_fullscreen(self):
         """Alterna entre os modos de tela cheia e janela."""
-        self.is_fullscreen = not self.is_fullscreen
-        if self.is_fullscreen:
-            self.showFullScreen()
+        if self._window_host.isFullScreen():
+            self._window_host.showNormal()
         else:
-            self.showNormal()
+            self._window_host.showFullScreen()
 
     # === Configurações de Fechamento ===
     def closeEvent(self, event):
-        """
-        Evento chamado ao fechar a janela.
-        Salva o estado da janela e realiza a limpeza de recursos.
-        """
-        self._save_window_state()
+        """Delegate native close requests to the shared lifecycle."""
+        self.lifecycle.close_event(event)
 
-        if SettingsManager.get("system/confirm_on_close", False):
-            confirmed, dont_ask_again = AlertManager.question_with_checkbox(
-                self,
-                _("Close ZapZap"),
-                _("Are you sure you want to close?"),
-                _("Don't ask again"),
-            )
-            if not confirmed:
-                event.ignore()
-                return
+    def request_close(self):
+        """Request a real Qt close event from the active top-level host."""
+        self.lifecycle.request_close()
 
-            if dont_ask_again:
-                SettingsManager.set("system/confirm_on_close", False)
+    def save_window_state(self):
+        """Persist geometry and QMainWindow layout through the active host."""
+        self.lifecycle.save_window_state()
 
-        if not SettingsManager.get("system/quit_in_close", False) and event:
-            self._prepare_for_background(event)
-        else:
-            # Cleanup is handled by aboutToQuit() in app/application.py.
-            QApplication.instance().quit()
-
-    def _save_window_state(self):
-        """Salvar a geometria e o estado da janela."""
-        SettingsManager.set("main/geometry", self.saveGeometry())
-        SettingsManager.set("main/windowState", self.saveState())
-
-    def _prepare_for_background(self, event):
-        """Preparar o app para permanecer em segundo plano."""
-
-        # Fecha o painel de configurações se estiver aberto
+    def prepare_for_background(self):
+        """Release transient UI before the host is hidden to the tray."""
         if self.app_settings:
             self.close_settings()
 
         self.browser.close_conversations()
-        self.hide()
-        event.ignore()
 
     def hideEvent(self, event):
         """Guardar o estado da janela antes de ela ser ocultada."""
-        self.remember_window_state()
+        self.lifecycle.remember_window_state()
         super().hideEvent(event)
 
     # === Controle de Visibilidade da Janela ===
     def restore_window(self):
         """Exibe a janela no estado em que ela estava ao ser ocultada."""
-        if self.parentWidget() is not None and hasattr(self.window(), "is_csr_wrapper"):
-            self.window().restore_window()
-            return
-
-        self.show_in_remembered_state(self.is_fullscreen)
+        self.lifecycle.restore_window()
 
     def show_window(self):
-        if self.parentWidget() is not None and hasattr(self.window(), "is_csr_wrapper"):
-            self.window().show_window()
-            return
         """Alterna a visibilidade da janela principal."""
-        if self.isHidden():
-            self.restore_window()
-            QApplication.instance().setActiveWindow(self)
-        elif not self.isActiveWindow():
-            self.activateWindow()
-            self.raise_()
-        else:
-            self.hide()
+        self.lifecycle.show_window()
+
+    def attach_window_host(self, host, lifecycle):
+        """Use a CSR host while keeping this controller as application content."""
+        self._window_host = host
+        self.lifecycle = lifecycle
 
     # === Funções de Configuração ===
     def open_settings(self):
@@ -374,14 +332,13 @@ class MainWindowController(WindowStateMemory, MainWindowView):
     # === Eventos externos ===
     def xdgOpenChat(self, url):
         """Open chat by clicking on a notification"""
-        try:
-            self._current_page().page().xdg_open_chat(url)
-        except:
-            AlertManager.no_active_account()
+        page = self._current_page_or_alert()
+        if page is not None:
+            page.page().xdg_open_chat(url)
 
     # === Estilo e Interface ===
     def settings_menubar(self):
-        if SettingsManager.get("system/menubar", True):
+        if self._appearance_settings.menubar_visible:
             self.menubar.setMaximumHeight(2000)
         else:
             self.menubar.setMaximumHeight(0)

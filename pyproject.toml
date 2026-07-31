@@ -88,7 +88,6 @@ packages = [
   "zapzap.assets.themes",
   "zapzap.ui",
   "zapzap.ui.components",
-  "zapzap.ui.main_window",
   "zapzap.ui.primitives",
 ]
 

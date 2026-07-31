@@ -147,8 +147,8 @@ class SingleApplication(QApplication):
             browser.shutdown()
 
     def _restart_application_now(self):
-        if self.window and hasattr(self.window, "_save_window_state"):
-            self.window._save_window_state()
+        if self.window and hasattr(self.window, "save_window_state"):
+            self.window.save_window_state()
 
         self.shutdownInterface()
         self.close()
@@ -178,8 +178,8 @@ class SingleApplication(QApplication):
         was_visible = old_window.isVisible() if old_window else False
 
         if old_window:
-            if hasattr(old_window, "_save_window_state"):
-                old_window._save_window_state()
+            if hasattr(old_window, "save_window_state"):
+                old_window.save_window_state()
             self.shutdownInterface()
             old_window.hide()
             old_window.deleteLater()
