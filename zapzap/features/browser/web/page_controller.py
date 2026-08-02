@@ -144,12 +144,9 @@ class PageController(QWebEnginePage):
         if result:
             return
 
-        if message is None:
-            message = "Unable to set the WhatsApp Web Theme via JavaScript"
-
         print(
-            f'[ZapZap WAWeb Theme Controller] Controller #{self.parent().page_index} failed. '
-            f'{message.rstrip(".")}.'
+            "[ZapZap WAWeb Theme Controller] "
+            f"{message or 'Unable to set the WhatsApp Web Theme via JavaScript'}"
         )
 
     def fall_back_to_force_dark_mode(self) -> None:
