@@ -283,7 +283,7 @@ msgstr "Notificaciones"
 
 #: zapzap/features/initial_setup/view.py:107
 msgid "Background"
-msgstr "Antecedentes"
+msgstr "Fondo"
 
 #: zapzap/features/initial_setup/view.py:108
 #: zapzap/features/settings/pages/advanced_customizations/view.py:73
@@ -485,12 +485,12 @@ msgstr "Comportamiento de la ventana"
 
 #: zapzap/features/initial_setup/view.py:269
 msgid "Configure close behavior."
-msgstr "Configurar el comportamiento cercano."
+msgstr "Configurar el comportamiento al cerrar."
 
 #: zapzap/features/initial_setup/view.py:274
 #: zapzap/features/settings/pages/system_startup/view.py:68
 msgid "Close behavior"
-msgstr "Comportamiento cercano"
+msgstr "Comportamiento al cerrar"
 
 #: zapzap/features/initial_setup/view.py:275
 #: zapzap/features/settings/pages/system_startup/view.py:70
