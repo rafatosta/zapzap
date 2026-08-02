@@ -218,6 +218,13 @@ class PerformanceExperimentalSettingsView(SettingsPage):
                 "Use visual word navigation in editable fields to fix RTL text cursor movement."
             ),
         )
+        self.send_with_ctrl_enter_row = SettingsSwitchRow(
+            _("Send messages with Ctrl+Enter"),
+            _(
+                "Enter starts a new line in the message box and Ctrl+Enter "
+                "sends the message."
+            ),
+        )
         self.scroll_animator = self.scroll_animator_row.checkbox
         self.background_throttling = self.background_throttling_row.checkbox
         self.disable_animations = self.disable_animations_row.checkbox
@@ -225,12 +232,14 @@ class PerformanceExperimentalSettingsView(SettingsPage):
         self.ctrl_arrow_visual_navigation_fix = (
             self.ctrl_arrow_visual_navigation_fix_row.checkbox
         )
+        self.send_with_ctrl_enter = self.send_with_ctrl_enter_row.checkbox
         for row in (
             self.scroll_animator_row,
             self.background_throttling_row,
             self.disable_animations_row,
             self.disable_pinch_row,
             self.ctrl_arrow_visual_navigation_fix_row,
+            self.send_with_ctrl_enter_row,
         ):
             card.add_row(row)
         section.add_card(card)

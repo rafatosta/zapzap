@@ -145,50 +145,49 @@ class WebView(QWebEngineView):
                 "performance/cache_type", "DiskHttpCache")))
 
         self._install_ctrl_arrow_visual_navigation_fix()
+        self._install_send_with_ctrl_enter()
 
         # Instala o handler de crash específico para este WebView
         crash_handler.register_profile(self.profile)
         self._inject_webrtc_shield()
 
+    def _install_document_script(self, name):
+        """Insert scripts/<name>.js into the profile at document creation.
+
+        The preference that gates a script is read while the profile is being
+        built, so turning one on or off only takes effect once the interface
+        is rebuilt.
+        """
+        try:
+            js_path = os.path.join(
+                os.path.dirname(__file__), "scripts", f"{name}.js")
+            with open(js_path, "r", encoding="utf-8") as f:
+                js_code = f.read()
+
+            script = QWebEngineScript()
+            script.setName(name)
+            script.setInjectionPoint(
+                QWebEngineScript.InjectionPoint.DocumentCreation)
+            script.setRunsOnSubFrames(True)
+            script.setSourceCode(js_code)
+            script.setWorldId(QWebEngineScript.ScriptWorldId.MainWorld)
+            self.profile.scripts().insert(script)
+        except Exception as e:
+            print(f"Error injecting {name}: {e}")
+
     def _install_ctrl_arrow_visual_navigation_fix(self):
         if SettingsManager.get("web/ctrl_arrow_visual_navigation_fix", True):
-            try:
-                base_dir = os.path.dirname(__file__)
-                js_path = os.path.join(
-                    base_dir, "scripts", "ctrl_arrow_visual_navigation_fix.js")
-                with open(js_path, "r", encoding="utf-8") as f:
-                    js_code = f.read()
+            self._install_document_script("ctrl_arrow_visual_navigation_fix")
 
-                script = QWebEngineScript()
-                script.setName("ctrl_arrow_visual_navigation_fix")
-                script.setInjectionPoint(
-                    QWebEngineScript.InjectionPoint.DocumentCreation)
-                script.setRunsOnSubFrames(True)
-                script.setSourceCode(js_code)
-                script.setWorldId(QWebEngineScript.ScriptWorldId.MainWorld)
-                self.profile.scripts().insert(script)
-            except Exception as e:
-                print(f"Error injecting ctrl_arrow_visual_navigation_fix: {e}")
+    def _install_send_with_ctrl_enter(self):
+        """Trade Enter for Ctrl+Enter when sending a message."""
+        if SettingsManager.get("web/send_with_ctrl_enter", False):
+            self._install_document_script("send_with_ctrl_enter")
 
     def _inject_webrtc_shield(self):
         """Injeta script para prevenir vazamento de IP via WebRTC."""
         if SettingsManager.get("privacy/webrtc_shield", False):
-            try:
-                base_dir = os.path.dirname(__file__)
-                js_path = os.path.join(base_dir, "scripts", "webrtc_shield.js")
-                with open(js_path, "r", encoding="utf-8") as f:
-                    js_code = f.read()
-
-                script = QWebEngineScript()
-                script.setName("webrtc_shield")
-                script.setInjectionPoint(
-                    QWebEngineScript.InjectionPoint.DocumentCreation)
-                script.setRunsOnSubFrames(True)
-                script.setSourceCode(js_code)
-                script.setWorldId(QWebEngineScript.ScriptWorldId.MainWorld)
-                self.profile.scripts().insert(script)
-            except Exception as e:
-                print(f"Error injecting WebRTC shield: {e}")
+            self._install_document_script("webrtc_shield")
 
     def _inject_web_theme_controller(self):
         """Injects the JavaScript code for the ZapZap WAWeb Theme Controller and QWebChannel support."""

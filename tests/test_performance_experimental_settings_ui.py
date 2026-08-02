@@ -35,3 +35,29 @@ class PerformanceExperimentalSettingsUiTests(QtTestCase):
             page.restart_bar.restart_kind,
             SettingsRestartBar.APPLICATION,
         )
+
+    def test_send_with_ctrl_enter_sits_with_the_other_web_behavior_rows(self):
+        page = PerformanceExperimentalSettingsController()
+
+        self.assertEqual(
+            page.send_with_ctrl_enter_row.title_label.text(),
+            "Send messages with Ctrl+Enter",
+        )
+        self.assertIn(
+            "new line",
+            page.send_with_ctrl_enter_row.description_label.text(),
+        )
+        self.assertTrue(page.send_with_ctrl_enter.toolTip())
+        self.assertFalse(page.send_with_ctrl_enter.isChecked())
+
+        page.send_with_ctrl_enter.click()
+
+        self.assertTrue(
+            page.model.get_boolean_setting("send_with_ctrl_enter")
+        )
+        # The script is inserted while the profile is built, so rebuilding the
+        # interface is enough; the whole process does not have to restart.
+        self.assertEqual(
+            page.restart_bar.restart_kind,
+            SettingsRestartBar.INTERFACE,
+        )

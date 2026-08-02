@@ -91,10 +91,11 @@ documente o que ele protege.
 | `test_notification_sound_setting.py` | mapeamento de som para hints Portal/Freedesktop |
 | `test_notification_window_activation.py` | tokens Portal/Wayland, startup X11, foco e limpeza |
 | `test_notifications_settings_ui.py` | rótulos, dependências, privacidade, som e lembrete de apoio |
-| `test_performance_experimental_settings_ui.py` | seção e reinício da decodificação por software |
+| `test_performance_experimental_settings_ui.py` | seção e reinício da decodificação por software e do envio com Ctrl+Enter |
 | `test_permissions_settings_ui.py` | grupos e ações globais/individuais de permissões |
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
 | `test_segmented_control.py` | seleção exclusiva, sinais, mouse, teclado, acessibilidade, tamanhos, raios e temas |
+| `test_send_with_ctrl_enter.py` | padrão e persistência da preferência, injeção condicional do script e troca de Enter por Ctrl+Enter apenas na caixa de mensagem |
 | `test_settings_card.py` | divisores e grupos do card compartilhado em `ui.components` |
 | `test_settings_radio_group.py` | divisores do grupo de rádio em `ui.components` |
 | `test_software_video_decoding.py` | flag Chromium, persistência, padrão e ordem do bootstrap |
@@ -125,6 +126,7 @@ documente o que ele protege.
 - `test_permissions_settings_ui.py`
 - `test_portal_notification_backend.py`
 - `test_segmented_control.py`
+- `test_send_with_ctrl_enter.py`
 - `test_settings_card.py`
 - `test_settings_radio_group.py`
 - `test_software_video_decoding.py`

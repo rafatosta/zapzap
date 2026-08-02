@@ -261,6 +261,14 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
                 "Restart or reload WhatsApp Web after changing this option."
             )
         )
+        self.send_with_ctrl_enter.setToolTip(
+            _(
+                "Relabels Enter as Shift+Enter in the WhatsApp Web message box, "
+                "so it starts a new line, and Ctrl+Enter as Enter, so it sends.\n"
+                "Search fields keep sending on Enter.\n\n"
+                "Restart or reload WhatsApp Web after changing this option."
+            )
+        )
         self.btn_restore.setToolTip(
             _("Restores all performance settings\nto safe default values.")
         )

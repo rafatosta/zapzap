@@ -34,6 +34,7 @@ class PerformanceSettings(BaseSettings):
         "disable_animations": ("web/disable_animations", False),
         "disable_pinch": ("web/disable_pinch", False),
         "ctrl_arrow_visual_navigation_fix": ("web/ctrl_arrow_visual_navigation_fix", True),
+        "send_with_ctrl_enter": ("web/send_with_ctrl_enter", False),
     }
 
     BOOLEAN_SETTINGS = tuple(_BOOLEAN_SETTINGS)
