@@ -6,6 +6,7 @@ from PyQt6.QtWidgets import QHBoxLayout, QMenu, QVBoxLayout, QWidget
 from zapzap.ui.components import (
     SettingsCard,
     SettingsPage,
+    SettingsSubgroupHeader,
     SettingsSwitchRow,
 )
 from zapzap.ui.primitives import Button, Label
@@ -65,11 +66,28 @@ class NotificationsSettingsView(SettingsPage):
             self.show_msg,
             self.sound,
         )
-        for row in self.notification_content_rows:
+        # Which chats may notify is a separate question from what a
+        # notification is allowed to show, and the privacy presets in the
+        # header only ever touch the latter.
+        self.sources_header = SettingsSubgroupHeader(
+            _("Which chats notify"),
+        )
+        self.channel_updates = SettingsSwitchRow(
+            _("Channel updates"),
+            _(
+                "Show a notification when a channel you follow posts. "
+                "WhatsApp does not tell ZapZap which channels you muted, so "
+                "this covers all of them."
+            ),
+        )
+        self.notification_source_rows = (self.channel_updates,)
+        for row in self.notification_content_rows + self.notification_source_rows:
             self._configure_accessibility(row)
         card.add_group(
             self.notify_groupBox,
-            self.notification_content_rows,
+            self.notification_content_rows + (
+                self.sources_header,
+            ) + self.notification_source_rows,
             child_dividers=True,
         )
         section.layout().addWidget(card)

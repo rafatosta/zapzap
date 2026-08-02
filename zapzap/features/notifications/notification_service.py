@@ -8,6 +8,7 @@ import logging
 
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 
+from zapzap.core.config.settings.notifications import NotificationSettings
 from zapzap.core.config.settings_manager import SettingsManager
 from zapzap import __appname__
 
@@ -28,6 +29,46 @@ def is_flatpak() -> bool:
     return Path("/.flatpak-info").exists()
 
 
+# WhatsApp addresses every chat with a JID, "user@domain", whose domain says
+# what kind of chat it is: "c.us" or "lid" for a person, "g.us" for a group,
+# "newsletter" for a Channel, "broadcast" for status. WhatsApp Web publishes
+# that JID as the tag of the notification it raises, and the tag is the only
+# field QWebEngineNotification carries that identifies where the message came
+# from: there is no access to the data or silent options of the underlying web
+# notification.
+#
+# The tag is the chat JID on its own, except that some notifications identify
+# a single message instead, joining the fields of a message key with "_". Both
+# forms are read the same way, by looking at the domain of every JID in the
+# tag. If WhatsApp Web changes the format, this is written in its
+# WAWebMsgNotification, WAWebBaseNotificationBanner and WAWebWid modules.
+CHANNEL_JID_DOMAIN = "newsletter"
+
+
+def _jid_domains(tag: str) -> list[str]:
+    """The domain of every JID the tag is built from, lowercased."""
+    domains = []
+    for token in tag.lower().split("_"):
+        user, separator, domain = token.partition("@")
+        if separator and user and domain:
+            domains.append(domain)
+    return domains
+
+
+def is_channel_notification(notification: QWebEngineNotification) -> bool:
+    """Whether a notification announces a post from a WhatsApp Channel.
+
+    Only a tag built entirely out of Channel JIDs counts, so a tag that names
+    no chat, that WhatsApp Web publishes in an unknown format, or that names a
+    person alongside a Channel, leaves the notification visible instead of
+    silently hiding a real message.
+    """
+    domains = _jid_domains(notification.tag() or "")
+    return bool(domains) and all(
+        domain == CHANNEL_JID_DOMAIN for domain in domains
+    )
+
+
 class NotificationService:
     """
     Fachada única para notificações.
@@ -43,6 +84,7 @@ class NotificationService:
             NotificationService._backend = self._select_backend()
 
         self.backend = NotificationService._backend
+        self.settings = NotificationSettings()
 
     # ------------------------------------------------------------------
     # Backend selection
@@ -94,6 +136,12 @@ class NotificationService:
 
         if not SettingsManager.get(
             f"{page.user.id}/notification", True
+        ):
+            return
+
+        if (
+            not self.settings.channel_updates
+            and is_channel_notification(notification)
         ):
             return
 

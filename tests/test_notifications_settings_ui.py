@@ -24,12 +24,14 @@ class FakeNotificationsSettingsModel:
         name=True,
         message=True,
         sound=True,
+        channel_updates=True,
     ):
         self.enabled = enabled
         self.show_photo = photo
         self.show_name = name
         self.show_message_preview = message
         self.sound = sound
+        self.channel_updates = channel_updates
         self.donation_message_enabled = False
 
 
@@ -60,6 +62,10 @@ class NotificationsSettingsUiTests(QtTestCase):
         self.assertEqual(page.show_name.title_label.text(), "Contact name")
         self.assertEqual(page.show_msg.title_label.text(), "Message preview")
         self.assertEqual(page.sound.title_label.text(), "Notification sound")
+        self.assertEqual(
+            page.channel_updates.title_label.text(),
+            "Channel updates",
+        )
         self.assertEqual(
             page.donationMessage.title_label.text(),
             "Support reminders",
@@ -123,12 +129,43 @@ class NotificationsSettingsUiTests(QtTestCase):
         page.sound.checkbox.setChecked(True)
         self.assertTrue(model.sound)
 
+    def test_channel_updates_switch_persists_the_preference(self):
+        page, model = self._controller(channel_updates=True)
+
+        page.channel_updates.checkbox.setChecked(False)
+        self.assertFalse(model.channel_updates)
+
+        page.channel_updates.checkbox.setChecked(True)
+        self.assertTrue(model.channel_updates)
+
     def test_privacy_presets_leave_the_notification_sound_alone(self):
         page, model = self._controller(sound=True)
 
         page.maximum_privacy_action.trigger()
 
         self.assertTrue(model.sound)
+
+    def test_privacy_presets_leave_channel_updates_alone(self):
+        page, model = self._controller(channel_updates=True)
+
+        page.maximum_privacy_action.trigger()
+
+        self.assertTrue(model.channel_updates)
+        self.assertNotIn(
+            page.channel_updates,
+            page.notification_content_rows,
+        )
+
+    def test_channel_updates_follows_the_master_switch(self):
+        page, _model = self._controller(enabled=False)
+
+        self.assertFalse(page.channel_updates.isEnabled())
+        self.assertFalse(page.sources_header.isEnabled())
+
+        page.notify_groupBox.checkbox.setChecked(True)
+
+        self.assertTrue(page.channel_updates.isEnabled())
+        self.assertTrue(page.sources_header.isEnabled())
 
     def test_privacy_presets_update_existing_switch_settings(self):
         page, model = self._controller()

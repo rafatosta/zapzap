@@ -171,6 +171,19 @@ seleciona um backend:
 | Windows | backend Windows |
 | macOS | backend macOS |
 
+A fachada também classifica a origem da notificação. O único campo de
+`QWebEngineNotification` que identifica a conversa é o `tag`, publicado pelo
+WhatsApp Web como o JID do chat; o domínio `newsletter` identifica um canal.
+A regra suprime apenas quando todos os JIDs do `tag` são de canal, de modo que
+um `tag` ausente, em outro formato ou que também nomeie uma pessoa preserva a
+notificação em vez de esconder uma mensagem real. O silenciamento por canal
+feito no WhatsApp não chega ao aplicativo, então a preferência é por categoria,
+não por conversa.
+
+O contador de não lidos é independente desse caminho: ele vem do título da
+página em `WebView._on_title_changed` e alimenta a bandeja e o botão da conta.
+Filtrar uma notificação não altera esse número.
+
 Fechamento de uma notificação WebEngine e encerramento do app devem retirar a
 notificação nativa de forma idempotente. A ativação pode carregar tokens Portal
 ou Wayland e dados de inicialização X11. Mudanças nessa área precisam ser

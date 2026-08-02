@@ -13,6 +13,7 @@ class NotificationSettings(BaseSettings):
     _SHOW_NAME = ("notification/show_name", True)
     _SHOW_MESSAGE_PREVIEW = ("notification/show_msg", True)
     _SOUND = ("notification/sound", True)
+    _CHANNEL_UPDATES = ("notification/channel_updates", True)
     # This legacy key stores whether reminders are hidden, despite its name.
     _DONATION_MESSAGE_HIDDEN = ("notification/donation_message", False)
 
@@ -55,6 +56,15 @@ class NotificationSettings(BaseSettings):
     @sound.setter
     def sound(self, value: bool) -> None:
         self._set_bool(self._SOUND, value)
+
+    @property
+    def channel_updates(self) -> bool:
+        """Whether posts from followed WhatsApp Channels may notify."""
+        return self._get_bool(self._CHANNEL_UPDATES)
+
+    @channel_updates.setter
+    def channel_updates(self, value: bool) -> None:
+        self._set_bool(self._CHANNEL_UPDATES, value)
 
     @property
     def donation_message_enabled(self) -> bool:

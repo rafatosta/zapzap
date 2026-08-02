@@ -22,14 +22,16 @@ class NotificationsSettingsController(NotificationsSettingsView):
         self.show_name.checkbox.setChecked(self.model.show_name)
         self.show_msg.checkbox.setChecked(self.model.show_message_preview)
         self.sound.checkbox.setChecked(self.model.sound)
+        self.channel_updates.checkbox.setChecked(self.model.channel_updates)
         self.donationMessage.checkbox.setChecked(
             self.model.donation_message_enabled
         )
 
     def _sync_notification_controls(self):
         enabled = self.notify_groupBox.checkbox.isChecked()
-        for row in self.notification_content_rows:
+        for row in self.notification_content_rows + self.notification_source_rows:
             row.setEnabled(enabled)
+        self.sources_header.setEnabled(enabled)
         self.privacy_presets_button.setEnabled(enabled)
 
     def _connect_signals(self):
@@ -47,6 +49,9 @@ class NotificationsSettingsController(NotificationsSettingsView):
         )
         self.sound.checkbox.toggled.connect(
             self._handle_toggle_sound
+        )
+        self.channel_updates.checkbox.toggled.connect(
+            self._handle_toggle_channel_updates
         )
         self.donationMessage.checkbox.toggled.connect(
             self._handle_toggle_donation_message
@@ -87,6 +92,9 @@ class NotificationsSettingsController(NotificationsSettingsView):
 
     def _handle_toggle_sound(self, is_enabled: bool):
         self.model.sound = is_enabled
+
+    def _handle_toggle_channel_updates(self, is_enabled: bool):
+        self.model.channel_updates = is_enabled
 
     def _handle_toggle_donation_message(self, is_enabled: bool):
         self.model.donation_message_enabled = is_enabled

@@ -78,6 +78,7 @@ documente o que ele protege.
 | `test_appearance_settings_ui.py` | grupos, dependências, layout responsivo, persistência e acessibilidade |
 | `test_appimage_packaging.py` | nome final fornecido ao quick-sharun e ausência de renomeação posterior do AppImage/zsync |
 | `test_browser_page_button_ui.py` | avatar sem número, grayscale de conta desativada, ponto de estado, card, temas, escala e clique |
+| `test_channel_notification_filter.py` | leitura do JID no tag da notificação e supressão apenas de posts de canais |
 | `test_check_box.py` | API, variantes, tamanhos, pintura, temas, tri-state, mouse, teclado e acessibilidade do CheckBox |
 | `test_component_typography.py` | pesos de fonte de primitives, menus, combos, atalhos e tabs |
 | `test_debugging_settings_ui.py` | manutenção, relatórios, informações de runtime, cópia e feedback |
@@ -90,7 +91,7 @@ documente o que ele protege.
 | `test_network_privacy_settings_ui.py` | proxy, credenciais, aplicar/descartar, restauração e WebRTC |
 | `test_notification_sound_setting.py` | mapeamento de som para hints Portal/Freedesktop |
 | `test_notification_window_activation.py` | tokens Portal/Wayland, startup X11, foco e limpeza |
-| `test_notifications_settings_ui.py` | rótulos, dependências, privacidade, som e lembrete de apoio |
+| `test_notifications_settings_ui.py` | rótulos, dependências, privacidade, som, canais e lembrete de apoio |
 | `test_performance_experimental_settings_ui.py` | seção e reinício da decodificação por software |
 | `test_permissions_settings_ui.py` | grupos e ações globais/individuais de permissões |
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
@@ -108,6 +109,7 @@ documente o que ele protege.
 - `test_appearance_settings_ui.py`
 - `test_appimage_packaging.py`
 - `test_browser_page_button_ui.py`
+- `test_channel_notification_filter.py`
 - `test_check_box.py`
 - `test_component_typography.py`
 - `test_debugging_settings_ui.py`

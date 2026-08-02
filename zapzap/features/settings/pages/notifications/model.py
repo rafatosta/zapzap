@@ -28,6 +28,15 @@ class NotificationsSettingsModel:
         self._settings.sound = value
 
     @property
+    def channel_updates(self) -> bool:
+        """Whether posts from followed WhatsApp Channels may notify."""
+        return self._settings.channel_updates
+
+    @channel_updates.setter
+    def channel_updates(self, value: bool) -> None:
+        self._settings.channel_updates = value
+
+    @property
     def show_photo(self) -> bool:
         """Whether contact photos are shown in notifications."""
         return self._settings.show_photo
