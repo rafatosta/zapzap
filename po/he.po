@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-02 21:19-0300\n"
+"POT-Creation-Date: 2026-08-02 22:05-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Hebrew\n"
@@ -166,6 +166,7 @@ msgstr "הסרה"
 #: zapzap/features/settings/pages/network_privacy/controller.py:341
 #: zapzap/features/downloads/ui/download_dialog.py:120
 #: zapzap/ui/components/edit_account_dialog.py:456
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:275
 msgid "Cancel"
 msgstr "בטל"
 
@@ -251,7 +252,7 @@ msgid "Select folder"
 msgstr "בחר תיקייה"
 
 #: zapzap/features/initial_setup/controller.py:126
-#: zapzap/features/settings/pages/language_downloads/controller.py:64
+#: zapzap/features/settings/pages/language_downloads/controller.py:63
 msgid "System default"
 msgstr "ברירת המחדל של המערכת"
 
@@ -324,17 +325,17 @@ msgid "Start with the interface language and a comfortable visual theme."
 msgstr "התחל עם שפת הממשק ונושא ויזואלי נוח."
 
 #: zapzap/features/initial_setup/view.py:143
-#: zapzap/features/settings/pages/language_downloads/view.py:36
+#: zapzap/features/settings/pages/language_downloads/view.py:35
 msgid "Language"
 msgstr "שפה"
 
 #: zapzap/features/initial_setup/view.py:144
-#: zapzap/features/settings/pages/language_downloads/view.py:37
+#: zapzap/features/settings/pages/language_downloads/view.py:36
 msgid "Choose the interface language used by ZapZap."
 msgstr "בחר את שפת הממשק שבה משתמש ZapZap."
 
 #: zapzap/features/initial_setup/view.py:149
-#: zapzap/features/settings/pages/language_downloads/view.py:41
+#: zapzap/features/settings/pages/language_downloads/view.py:40
 msgid "Interface language"
 msgstr "שפת ממשק"
 
@@ -546,17 +547,17 @@ msgid ""
 msgstr "בחר היכן הקבצים נשמרים והפעל בדיקת איות כאשר מילונים זמינים."
 
 #: zapzap/features/initial_setup/view.py:330
-#: zapzap/features/settings/pages/language_downloads/view.py:54
+#: zapzap/features/settings/pages/language_downloads/view.py:53
 msgid "Downloads"
 msgstr "הורדות"
 
 #: zapzap/features/initial_setup/view.py:331
-#: zapzap/features/settings/pages/language_downloads/view.py:55
+#: zapzap/features/settings/pages/language_downloads/view.py:54
 msgid "Choose where downloaded files are saved."
 msgstr "בחר היכן יישמרו קבצים שהורדו."
 
 #: zapzap/features/initial_setup/view.py:336
-#: zapzap/features/settings/pages/language_downloads/view.py:59
+#: zapzap/features/settings/pages/language_downloads/view.py:58
 msgid "Download directory"
 msgstr "הורד ספרייה"
 
@@ -569,32 +570,30 @@ msgid "Choose folder"
 msgstr "בחר תיקיה"
 
 #: zapzap/features/initial_setup/view.py:348
-#: zapzap/features/settings/pages/language_downloads/view.py:75
+#: zapzap/features/settings/pages/language_downloads/view.py:74
 msgid "Spell checker"
 msgstr "בודק איות"
 
 #: zapzap/features/initial_setup/view.py:349
-#: zapzap/features/settings/pages/language_downloads/view.py:76
+#: zapzap/features/settings/pages/language_downloads/view.py:75
 msgid "Select compiled dictionaries and where ZapZap should look for them."
 msgstr "בחר מילונים מלוקטים והיכן ZapZap צריך לחפש אותם."
 
 #: zapzap/features/initial_setup/view.py:354
-#: zapzap/features/settings/pages/language_downloads/view.py:80
+#: zapzap/features/settings/pages/language_downloads/view.py:79
 msgid "Enable spell checker"
 msgstr "הפעל בודק איות"
 
 #: zapzap/features/initial_setup/view.py:355
-#: zapzap/features/settings/pages/language_downloads/view.py:81
+#: zapzap/features/settings/pages/language_downloads/view.py:80
 msgid "Use Qt WebEngine spell checking with the selected dictionary."
 msgstr "השתמש בבדיקת איות Qt WebEngine עם המילון שנבחר."
 
 #: zapzap/features/initial_setup/view.py:358
-#: zapzap/features/settings/pages/language_downloads/view.py:84
 msgid "Dictionary language"
 msgstr "שפת מילון"
 
 #: zapzap/features/initial_setup/view.py:359
-#: zapzap/features/settings/pages/language_downloads/view.py:85
 msgid "Recognizes only compiled dictionaries (.bdic)."
 msgstr "מזהה רק מילונים מהודרים (.bdic)."
 
@@ -699,7 +698,7 @@ msgstr "בחר והעתק פקודה זו בטרמינל שלך"
 #: zapzap/features/settings/pages/debugging/controller.py:87
 #: zapzap/features/settings/pages/debugging/view.py:223
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:312
+#: zapzap/features/browser/web/web_view.py:314
 msgid "Copy"
 msgstr "העתקה"
 
@@ -939,7 +938,7 @@ msgid "System and startup"
 msgstr "מערכת והפעלה"
 
 #: zapzap/features/settings/shell/settings_controller.py:46
-#: zapzap/features/settings/pages/language_downloads/view.py:22
+#: zapzap/features/settings/pages/language_downloads/view.py:21
 msgid "Language and Download"
 msgstr "שפה והורדה"
 
@@ -1957,35 +1956,58 @@ msgstr "האבחון הועתק"
 msgid "Details copied"
 msgstr "הפרטים הועתקו"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:23
+#: zapzap/features/settings/pages/language_downloads/controller.py:140
+#: zapzap/features/settings/pages/language_downloads/view.py:84
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:255
+msgid "No dictionary available"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/controller.py:144
+#, python-brace-format
+msgid "{language} and {count} more"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:22
 msgid "Manage interface language, downloads folder and spell checker."
 msgstr "נהל את שפת הממשק, תיקיית ההורדות ובודק האיות."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:42
+#: zapzap/features/settings/pages/language_downloads/view.py:41
 msgid "The interface language is applied immediately."
 msgstr "שפת הממשק מיושמת באופן מיידי."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:60
+#: zapzap/features/settings/pages/language_downloads/view.py:59
 msgid "Set a custom folder or restore the default download location."
 msgstr "הגדר תיקיה מותאמת אישית או שחזר את מיקום ההורדה המוגדר כברירת מחדל."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:61
-#: zapzap/features/settings/pages/language_downloads/view.py:95
+#: zapzap/features/settings/pages/language_downloads/view.py:60
+#: zapzap/features/settings/pages/language_downloads/view.py:93
 msgid "Define"
 msgstr "תגדיר"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:67
-#: zapzap/features/settings/pages/language_downloads/view.py:101
+#: zapzap/features/settings/pages/language_downloads/view.py:66
+#: zapzap/features/settings/pages/language_downloads/view.py:99
 #: zapzap/features/settings/pages/network_privacy/controller.py:335
 #: zapzap/features/settings/pages/performance_experimental/view.py:248
 msgid "Restore"
 msgstr "שחזור"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:93
+#: zapzap/features/settings/pages/language_downloads/view.py:83
+msgid "Spell checker languages"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:85
+msgid "Select…"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:89
+msgid "Select spell checker languages"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:91
 msgid "Dictionary directory"
 msgstr "ספריית מילון"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:94
+#: zapzap/features/settings/pages/language_downloads/view.py:92
 msgid "Note: changing dictionaries may require restarting the browser "
 msgstr "הערה: שינוי מילונים עשוי לדרוש הפעלה מחדש של הדפדפן"
 
@@ -2882,6 +2904,7 @@ msgstr "העתק פקודה"
 
 #: zapzap/features/browser/shell/browser_controller.py:162
 #: zapzap/ui/components/edit_account_dialog.py:73
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "סגור"
@@ -2971,36 +2994,36 @@ msgstr ""
 "\n"
 "לְהַתִיר?"
 
-#: zapzap/features/browser/web/web_view.py:311
+#: zapzap/features/browser/web/web_view.py:313
 msgid "Undo"
 msgstr "הסגה"
 
-#: zapzap/features/browser/web/web_view.py:311
+#: zapzap/features/browser/web/web_view.py:313
 msgid "Redo"
 msgstr "ביצוע מחדש"
 
-#: zapzap/features/browser/web/web_view.py:311
+#: zapzap/features/browser/web/web_view.py:313
 msgid "Cut"
 msgstr "גזירה"
 
-#: zapzap/features/browser/web/web_view.py:312
+#: zapzap/features/browser/web/web_view.py:314
 msgid "Paste"
 msgstr "הדבקה"
 
-#: zapzap/features/browser/web/web_view.py:312
+#: zapzap/features/browser/web/web_view.py:314
 msgid "Select all"
 msgstr "בחר הכל"
 
-#: zapzap/features/browser/web/web_view.py:313
+#: zapzap/features/browser/web/web_view.py:315
 msgid "Save image"
 msgstr "שמור תמונה"
 
-#: zapzap/features/browser/web/web_view.py:313
+#: zapzap/features/browser/web/web_view.py:315
 msgid "Copy image"
 msgstr "העתק תמונה"
 
-#: zapzap/features/browser/web/web_view.py:314
-#: zapzap/features/browser/web/web_view.py:344
+#: zapzap/features/browser/web/web_view.py:316
+#: zapzap/features/browser/web/web_view.py:346
 msgid "Copy link address"
 msgstr "העתקת כתובת קישור"
 
@@ -3008,16 +3031,20 @@ msgstr "העתקת כתובת קישור"
 msgid "Check Spelling"
 msgstr "בדיקת איות"
 
-#: zapzap/features/browser/web/web_view.py:372
-msgid "Select Language"
-msgstr "בחירת שפה"
+#: zapzap/features/browser/web/web_view.py:370
+msgid "Languages…"
+msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:579
+#: zapzap/features/browser/web/web_view.py:373
+msgid "Choose the languages used by the spell checker."
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:575
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "חשבון"
 
-#: zapzap/features/browser/web/web_view.py:581
+#: zapzap/features/browser/web/web_view.py:577
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"
@@ -3335,12 +3362,108 @@ msgstr "Ctrl+M"
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:126
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:169
+msgid "Languages"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:184
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:186
+msgid "Search language"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:188
+msgid "Filter languages by name or dictionary code."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:195
+msgid "Selected languages"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:201
+msgid "They will be used for spell checking."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:217
+msgid "Language selection status"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:225
+msgid "Recent"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:231
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:239
+msgid "All languages"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:241
+msgid "Use Space to select or remove the focused language."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:246
+msgid "No language found"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:259
+msgid "Install or configure a dictionary to use the spell checker."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:274
+msgid "Manage dictionaries"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:276
+msgid "Apply"
+msgstr "החלה"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:279
+msgid "Open the spell checker dictionary settings."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:411
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:477
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:512
+msgid "You can select up to 10 languages."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:421
+msgid "At least one language must remain selected."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:451
+#, python-brace-format
+msgid "Remove {language}"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:453
+msgid "Remove this language from the temporary selection."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:462
+#, python-brace-format
+msgid "{count} of {maximum} languages selected"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:485
+msgid "selected"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:485
+msgid "not selected"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:506
+#, python-brace-format
+msgid "Add {language}"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:508
+msgid "Add this recent language to the temporary selection."
+msgstr ""
+
 #~ msgid "Disable"
 #~ msgstr "כיבוי"
-
-#, fuzzy
-#~ msgid "On"
-#~ msgstr "פתיחה"
 
 #~ msgid "Account actions"
 #~ msgstr "פעולות בחשבון"
@@ -3350,34 +3473,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 
 #~ msgid "Are you sure you want to delete this item?"
 #~ msgstr "למחוק את הפריט?"
-
-#, fuzzy
-#~ msgid "Account image"
-#~ msgstr "שם חשבון"
-
-#, fuzzy
-#~ msgid "Default icon"
-#~ msgstr "ברירת מחדל"
-
-#, fuzzy
-#~ msgid "Choose account photo"
-#~ msgstr "הצג תמונת איש קשר"
-
-#, fuzzy
-#~ msgid "Keep current photo"
-#~ msgstr "שמור על הסמל הנוכחי"
-
-#, fuzzy
-#~ msgid "Default icon selected."
-#~ msgstr "נבחר סמל סטנדרטי."
-
-#, fuzzy
-#~ msgid "Could not load this image."
-#~ msgstr "לא ניתן היה לטעון את תמונת התצוגה המקדימה."
-
-#, fuzzy
-#~ msgid "Photo selected."
-#~ msgstr "נבחר סמל סטנדרטי."
 
 #~ msgid "Keep running in the background"
 #~ msgstr "המשיכו לרוץ ברקע"
@@ -3405,95 +3500,20 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "Reduce WebRTC IP exposure."
 #~ msgstr "צמצם את חשיפת ה-IP של WebRTC."
 
-#, fuzzy
-#~ msgid "Global (Default)"
-#~ msgstr "ברירת מחדל"
-
-#, fuzzy
-#~ msgid "Settings for"
-#~ msgstr "הגדרות"
-
-#, fuzzy
-#~ msgid "Proxy type"
-#~ msgstr "סוג מתווך"
-
-#, fuzzy
-#~ msgid "Host"
-#~ msgstr "שם מארח"
-
-#, fuzzy
-#~ msgid "Host name"
-#~ msgstr "שם מארח"
-
-#, fuzzy
-#~ msgid "Username"
-#~ msgstr "משתמש"
-
-#, fuzzy
-#~ msgid "Actions"
-#~ msgstr "פרטים"
-
-#, fuzzy
-#~ msgid "Apply proxy"
-#~ msgstr "החלה"
-
-#~ msgid "Apply"
-#~ msgstr "החלה"
-
 #~ msgid "Don't use a platform-native file dialog"
 #~ msgstr "לא להשתמש בחלונית קבצים שטבעית לפלטפורמה"
 
 #~ msgid "Wayland window system"
 #~ msgstr "מערכת החלונות Wayland"
 
-#, fuzzy
-#~ msgid "Delete all"
-#~ msgstr "בחירה בהכול"
-
-#, fuzzy
-#~ msgid "Build information"
-#~ msgstr "פרטים"
-
 #~ msgid "Report issue"
 #~ msgstr "דיווח על תקלה"
-
-#, fuzzy
-#~ msgid "Restart ZapZap"
-#~ msgstr "ZapZap"
-
-#, fuzzy
-#~ msgid "Filename"
-#~ msgstr "קובץ"
 
 #~ msgid "Dialog"
 #~ msgstr "חלונית"
 
-#, fuzzy
-#~ msgid "Quit app when closing the window"
-#~ msgstr "לסגור עם סגירת החלון"
-
 #~ msgid "Use Flatseal to change this mode of execution"
 #~ msgstr "יש להשתמש ב־Flateal כדי לשנות את מצב ההפעלה הזה"
-
-#, fuzzy
-#~ msgid "Enable app notifications"
-#~ msgstr "התראות אזור עבודה"
-
-#, fuzzy
-#~ msgid "Show message content in notifications"
-#~ msgstr "השתקת ההתראות"
-
-#, fuzzy
-#~ msgid "Show contact photo in notifications"
-#~ msgstr "הסתרת התראת תרומה"
-
-#, fuzzy
-#~ msgid "Hide donation reminders"
-#~ msgstr "הסתרת התראת תרומה"
-
-#, fuzzy
-#~ msgid "Setup complete"
-#~ msgstr "ריענון עמודים"
 
 #~ msgid "General"
 #~ msgstr "כללי"
@@ -3564,9 +3584,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "Recognizes only compiled dictionaries (.bdic)"
 #~ msgstr "מזהה מילונים מהודרים בלבד (‎.bdic)"
 
-#~ msgid "Define standard dictionaries"
-#~ msgstr "הגדרת מילונים תקניים"
-
 #~ msgid "Note: Required restart."
 #~ msgstr "לתשומך ליבך: יש להפעיל מחדש."
 
@@ -3594,10 +3611,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "100 MB"
 #~ msgstr "100 מ״ב"
 
-#, fuzzy
-#~ msgid "200 MB"
-#~ msgstr "100 מ״ב"
-
 #~ msgid "Disable GPU hardware acceleration"
 #~ msgstr "גיבוי האצת חומרת מעבד גרפי"
 
@@ -3618,14 +3631,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 
 #~ msgid "Welcome to"
 #~ msgstr "ברוך בואך אל"
-
-#, fuzzy, python-brace-format
-#~ msgid "Version: {id} ({package})"
-#~ msgstr "גרסה {id} ({version_type}) - {package}"
-
-#, fuzzy
-#~ msgid "Official Version"
-#~ msgstr "הידור רשמי"
 
 #~ msgid "Learn more"
 #~ msgstr "מידע נוסף"

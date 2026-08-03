@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-02 21:19-0300\n"
+"POT-Creation-Date: 2026-08-02 22:05-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Hungarian\n"
@@ -166,6 +166,7 @@ msgstr "Eltávolítás"
 #: zapzap/features/settings/pages/network_privacy/controller.py:341
 #: zapzap/features/downloads/ui/download_dialog.py:120
 #: zapzap/ui/components/edit_account_dialog.py:456
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:275
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -252,7 +253,7 @@ msgid "Select folder"
 msgstr "Válasszon mappát"
 
 #: zapzap/features/initial_setup/controller.py:126
-#: zapzap/features/settings/pages/language_downloads/controller.py:64
+#: zapzap/features/settings/pages/language_downloads/controller.py:63
 msgid "System default"
 msgstr "Rendszer alapértelmezett"
 
@@ -326,17 +327,17 @@ msgid "Start with the interface language and a comfortable visual theme."
 msgstr "Kezdje a felület nyelvével és egy kényelmes vizuális témával."
 
 #: zapzap/features/initial_setup/view.py:143
-#: zapzap/features/settings/pages/language_downloads/view.py:36
+#: zapzap/features/settings/pages/language_downloads/view.py:35
 msgid "Language"
 msgstr "Nyelv"
 
 #: zapzap/features/initial_setup/view.py:144
-#: zapzap/features/settings/pages/language_downloads/view.py:37
+#: zapzap/features/settings/pages/language_downloads/view.py:36
 msgid "Choose the interface language used by ZapZap."
 msgstr "Válassza ki a ZapZap által használt felület nyelvét."
 
 #: zapzap/features/initial_setup/view.py:149
-#: zapzap/features/settings/pages/language_downloads/view.py:41
+#: zapzap/features/settings/pages/language_downloads/view.py:40
 msgid "Interface language"
 msgstr "Interfész nyelve"
 
@@ -562,17 +563,17 @@ msgstr ""
 "ellenőrzést, ha szótárak állnak rendelkezésre."
 
 #: zapzap/features/initial_setup/view.py:330
-#: zapzap/features/settings/pages/language_downloads/view.py:54
+#: zapzap/features/settings/pages/language_downloads/view.py:53
 msgid "Downloads"
 msgstr "Letöltések"
 
 #: zapzap/features/initial_setup/view.py:331
-#: zapzap/features/settings/pages/language_downloads/view.py:55
+#: zapzap/features/settings/pages/language_downloads/view.py:54
 msgid "Choose where downloaded files are saved."
 msgstr "Válassza ki a letöltött fájlok mentési helyét."
 
 #: zapzap/features/initial_setup/view.py:336
-#: zapzap/features/settings/pages/language_downloads/view.py:59
+#: zapzap/features/settings/pages/language_downloads/view.py:58
 msgid "Download directory"
 msgstr "Könyvtár letöltése"
 
@@ -586,35 +587,33 @@ msgid "Choose folder"
 msgstr "Válasszon mappát"
 
 #: zapzap/features/initial_setup/view.py:348
-#: zapzap/features/settings/pages/language_downloads/view.py:75
+#: zapzap/features/settings/pages/language_downloads/view.py:74
 msgid "Spell checker"
 msgstr "Helyesírás-ellenőrző"
 
 #: zapzap/features/initial_setup/view.py:349
-#: zapzap/features/settings/pages/language_downloads/view.py:76
+#: zapzap/features/settings/pages/language_downloads/view.py:75
 msgid "Select compiled dictionaries and where ZapZap should look for them."
 msgstr ""
 "Válassza ki az összeállított szótárakat, és azt, hogy a ZapZap hol keresse "
 "azokat."
 
 #: zapzap/features/initial_setup/view.py:354
-#: zapzap/features/settings/pages/language_downloads/view.py:80
+#: zapzap/features/settings/pages/language_downloads/view.py:79
 msgid "Enable spell checker"
 msgstr "Helyesírás-ellenőrző engedélyezése"
 
 #: zapzap/features/initial_setup/view.py:355
-#: zapzap/features/settings/pages/language_downloads/view.py:81
+#: zapzap/features/settings/pages/language_downloads/view.py:80
 msgid "Use Qt WebEngine spell checking with the selected dictionary."
 msgstr ""
 "Használja a Qt WebEngine helyesírás-ellenőrzést a kiválasztott szótárral."
 
 #: zapzap/features/initial_setup/view.py:358
-#: zapzap/features/settings/pages/language_downloads/view.py:84
 msgid "Dictionary language"
 msgstr "A szótár nyelve"
 
 #: zapzap/features/initial_setup/view.py:359
-#: zapzap/features/settings/pages/language_downloads/view.py:85
 msgid "Recognizes only compiled dictionaries (.bdic)."
 msgstr "Csak a lefordított szótárakat ismeri fel (.bdic)."
 
@@ -725,7 +724,7 @@ msgstr "Válassza ki és másolja be ezt a parancsot a termináljába"
 #: zapzap/features/settings/pages/debugging/controller.py:87
 #: zapzap/features/settings/pages/debugging/view.py:223
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:312
+#: zapzap/features/browser/web/web_view.py:314
 msgid "Copy"
 msgstr "Másolás"
 
@@ -971,7 +970,7 @@ msgid "System and startup"
 msgstr "Rendszer és indítás"
 
 #: zapzap/features/settings/shell/settings_controller.py:46
-#: zapzap/features/settings/pages/language_downloads/view.py:22
+#: zapzap/features/settings/pages/language_downloads/view.py:21
 msgid "Language and Download"
 msgstr "Nyelv és letöltés"
 
@@ -2012,38 +2011,61 @@ msgstr "Diagnosztika másolva"
 msgid "Details copied"
 msgstr "Részletek másolva"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:23
+#: zapzap/features/settings/pages/language_downloads/controller.py:140
+#: zapzap/features/settings/pages/language_downloads/view.py:84
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:255
+msgid "No dictionary available"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/controller.py:144
+#, python-brace-format
+msgid "{language} and {count} more"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:22
 msgid "Manage interface language, downloads folder and spell checker."
 msgstr ""
 "Kezelje a felület nyelvét, a letöltési mappát és a helyesírás-ellenőrzőt."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:42
+#: zapzap/features/settings/pages/language_downloads/view.py:41
 msgid "The interface language is applied immediately."
 msgstr "Az interfész nyelve azonnal alkalmazásra kerül."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:60
+#: zapzap/features/settings/pages/language_downloads/view.py:59
 msgid "Set a custom folder or restore the default download location."
 msgstr ""
 "Állítson be egyéni mappát, vagy állítsa vissza az alapértelmezett letöltési "
 "helyet."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:61
-#: zapzap/features/settings/pages/language_downloads/view.py:95
+#: zapzap/features/settings/pages/language_downloads/view.py:60
+#: zapzap/features/settings/pages/language_downloads/view.py:93
 msgid "Define"
 msgstr "Határozza meg"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:67
-#: zapzap/features/settings/pages/language_downloads/view.py:101
+#: zapzap/features/settings/pages/language_downloads/view.py:66
+#: zapzap/features/settings/pages/language_downloads/view.py:99
 #: zapzap/features/settings/pages/network_privacy/controller.py:335
 #: zapzap/features/settings/pages/performance_experimental/view.py:248
 msgid "Restore"
 msgstr "Visszaállít"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:93
+#: zapzap/features/settings/pages/language_downloads/view.py:83
+msgid "Spell checker languages"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:85
+msgid "Select…"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:89
+msgid "Select spell checker languages"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:91
 msgid "Dictionary directory"
 msgstr "Szótárkönyvtár"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:94
+#: zapzap/features/settings/pages/language_downloads/view.py:92
 msgid "Note: changing dictionaries may require restarting the browser "
 msgstr ""
 "Megjegyzés: a szótárak megváltoztatásához szükség lehet a böngésző "
@@ -2985,6 +3007,7 @@ msgstr "Másolás parancs"
 
 #: zapzap/features/browser/shell/browser_controller.py:162
 #: zapzap/ui/components/edit_account_dialog.py:73
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "Bezárás"
@@ -3075,36 +3098,36 @@ msgstr ""
 "\n"
 "Engedélyezi?"
 
-#: zapzap/features/browser/web/web_view.py:311
+#: zapzap/features/browser/web/web_view.py:313
 msgid "Undo"
 msgstr "Visszavonás"
 
-#: zapzap/features/browser/web/web_view.py:311
+#: zapzap/features/browser/web/web_view.py:313
 msgid "Redo"
 msgstr "Újra végrahajtás"
 
-#: zapzap/features/browser/web/web_view.py:311
+#: zapzap/features/browser/web/web_view.py:313
 msgid "Cut"
 msgstr "Kivágás"
 
-#: zapzap/features/browser/web/web_view.py:312
+#: zapzap/features/browser/web/web_view.py:314
 msgid "Paste"
 msgstr "Beillesztás"
 
-#: zapzap/features/browser/web/web_view.py:312
+#: zapzap/features/browser/web/web_view.py:314
 msgid "Select all"
 msgstr "Válassza ki az összeset"
 
-#: zapzap/features/browser/web/web_view.py:313
+#: zapzap/features/browser/web/web_view.py:315
 msgid "Save image"
 msgstr "Kép mentése"
 
-#: zapzap/features/browser/web/web_view.py:313
+#: zapzap/features/browser/web/web_view.py:315
 msgid "Copy image"
 msgstr "Kép másolása"
 
-#: zapzap/features/browser/web/web_view.py:314
-#: zapzap/features/browser/web/web_view.py:344
+#: zapzap/features/browser/web/web_view.py:316
+#: zapzap/features/browser/web/web_view.py:346
 msgid "Copy link address"
 msgstr "Link címénel másolása"
 
@@ -3112,16 +3135,20 @@ msgstr "Link címénel másolása"
 msgid "Check Spelling"
 msgstr "Helyesírás ellenörzése"
 
-#: zapzap/features/browser/web/web_view.py:372
-msgid "Select Language"
-msgstr "Válassz nyelvet"
+#: zapzap/features/browser/web/web_view.py:370
+msgid "Languages…"
+msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:579
+#: zapzap/features/browser/web/web_view.py:373
+msgid "Choose the languages used by the spell checker."
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:575
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "fiók"
 
-#: zapzap/features/browser/web/web_view.py:581
+#: zapzap/features/browser/web/web_view.py:577
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"
@@ -3441,12 +3468,108 @@ msgstr "Ctrl+M"
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:126
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:169
+msgid "Languages"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:184
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:186
+msgid "Search language"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:188
+msgid "Filter languages by name or dictionary code."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:195
+msgid "Selected languages"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:201
+msgid "They will be used for spell checking."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:217
+msgid "Language selection status"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:225
+msgid "Recent"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:231
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:239
+msgid "All languages"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:241
+msgid "Use Space to select or remove the focused language."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:246
+msgid "No language found"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:259
+msgid "Install or configure a dictionary to use the spell checker."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:274
+msgid "Manage dictionaries"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:276
+msgid "Apply"
+msgstr "Alkalmazd"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:279
+msgid "Open the spell checker dictionary settings."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:411
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:477
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:512
+msgid "You can select up to 10 languages."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:421
+msgid "At least one language must remain selected."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:451
+#, python-brace-format
+msgid "Remove {language}"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:453
+msgid "Remove this language from the temporary selection."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:462
+#, python-brace-format
+msgid "{count} of {maximum} languages selected"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:485
+msgid "selected"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:485
+msgid "not selected"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:506
+#, python-brace-format
+msgid "Add {language}"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:508
+msgid "Add this recent language to the temporary selection."
+msgstr ""
+
 #~ msgid "Disable"
 #~ msgstr "Kikapcsol"
-
-#, fuzzy
-#~ msgid "On"
-#~ msgstr "Megnyitás"
 
 #~ msgid "Account actions"
 #~ msgstr "Fiókműveletek"
@@ -3456,34 +3579,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 
 #~ msgid "Are you sure you want to delete this item?"
 #~ msgstr "Biztosan törlöd ezt az elemet?"
-
-#, fuzzy
-#~ msgid "Account image"
-#~ msgstr "Fiók neve"
-
-#, fuzzy
-#~ msgid "Default icon"
-#~ msgstr "Alapértelmezett"
-
-#, fuzzy
-#~ msgid "Choose account photo"
-#~ msgstr "Névjegyfotó megjelenítése"
-
-#, fuzzy
-#~ msgid "Keep current photo"
-#~ msgstr "Az aktuális ikon megtartása"
-
-#, fuzzy
-#~ msgid "Default icon selected."
-#~ msgstr "Normál ikon kiválasztva."
-
-#, fuzzy
-#~ msgid "Could not load this image."
-#~ msgstr "Nem sikerült betölteni az előnézeti képet."
-
-#, fuzzy
-#~ msgid "Photo selected."
-#~ msgstr "Normál ikon kiválasztva."
 
 #~ msgid "Keep running in the background"
 #~ msgstr "Folytassa a futást a háttérben"
@@ -3513,95 +3608,20 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "Reduce WebRTC IP exposure."
 #~ msgstr "Csökkentse a WebRTC IP-kitettséget."
 
-#, fuzzy
-#~ msgid "Global (Default)"
-#~ msgstr "Alapértelmezett"
-
-#, fuzzy
-#~ msgid "Settings for"
-#~ msgstr "Beállítások"
-
-#, fuzzy
-#~ msgid "Proxy type"
-#~ msgstr "Proxy tipus"
-
-#, fuzzy
-#~ msgid "Host"
-#~ msgstr "Gépnév"
-
-#, fuzzy
-#~ msgid "Host name"
-#~ msgstr "Gépnév"
-
-#, fuzzy
-#~ msgid "Username"
-#~ msgstr "Felhasználó"
-
-#, fuzzy
-#~ msgid "Actions"
-#~ msgstr "Tájékoztatás"
-
-#, fuzzy
-#~ msgid "Apply proxy"
-#~ msgstr "Alkalmazd"
-
-#~ msgid "Apply"
-#~ msgstr "Alkalmazd"
-
 #~ msgid "Don't use a platform-native file dialog"
 #~ msgstr "Ne használd platform fájlválasztóját"
 
 #~ msgid "Wayland window system"
 #~ msgstr "Waylan megjelenítő rendszer"
 
-#, fuzzy
-#~ msgid "Delete all"
-#~ msgstr "Kiválaszt mindent"
-
-#, fuzzy
-#~ msgid "Build information"
-#~ msgstr "Tájékoztatás"
-
 #~ msgid "Report issue"
 #~ msgstr "Probléma jelentése"
-
-#, fuzzy
-#~ msgid "Restart ZapZap"
-#~ msgstr "ZapZap"
-
-#, fuzzy
-#~ msgid "Filename"
-#~ msgstr "Fájl"
 
 #~ msgid "Dialog"
 #~ msgstr "Párbeszéd"
 
-#, fuzzy
-#~ msgid "Quit app when closing the window"
-#~ msgstr "Zárd le amikor az ablakot kikapcsolod"
-
 #~ msgid "Use Flatseal to change this mode of execution"
 #~ msgstr "Flatseal használata ezen futtatási mód megváltoztatásához"
-
-#, fuzzy
-#~ msgid "Enable app notifications"
-#~ msgstr "Jelzések munkaterülete"
-
-#, fuzzy
-#~ msgid "Show message content in notifications"
-#~ msgstr "Jelzések némitása"
-
-#, fuzzy
-#~ msgid "Show contact photo in notifications"
-#~ msgstr "Rejts el az adományozás-jelzőt"
-
-#, fuzzy
-#~ msgid "Hide donation reminders"
-#~ msgstr "Rejts el az adományozás-jelzőt"
-
-#, fuzzy
-#~ msgid "Setup complete"
-#~ msgstr "Oldalak újratöltése"
 
 #~ msgid "General"
 #~ msgstr "Általános"
@@ -3672,9 +3692,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "Recognizes only compiled dictionaries (.bdic)"
 #~ msgstr "Csak a kompilált szótárakat ismeri fel (.bdic)"
 
-#~ msgid "Define standard dictionaries"
-#~ msgstr "Alapértelmezett szótárak meghatározása"
-
 #~ msgid "Note: Required restart."
 #~ msgstr "Megjegyzés: Újraindítás szükséges."
 
@@ -3702,10 +3719,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "100 MB"
 #~ msgstr "100 MB"
 
-#, fuzzy
-#~ msgid "200 MB"
-#~ msgstr "100 MB"
-
 #~ msgid "Disable GPU hardware acceleration"
 #~ msgstr "Grafikus kártya harveres gyorsításának kikapcsolása"
 
@@ -3726,14 +3739,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 
 #~ msgid "Welcome to"
 #~ msgstr "Isten hozott ide:"
-
-#, fuzzy, python-brace-format
-#~ msgid "Version: {id} ({package})"
-#~ msgstr "Verzió: {id} ({version_type}) - {package}"
-
-#, fuzzy
-#~ msgid "Official Version"
-#~ msgstr "Hivatalos kiadás"
 
 #~ msgid "Learn more"
 #~ msgstr "Tudj meg többet"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-02 21:19-0300\n"
+"POT-Creation-Date: 2026-08-02 22:05-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Turkish\n"
@@ -164,6 +164,7 @@ msgstr "Kaldır"
 #: zapzap/features/settings/pages/network_privacy/controller.py:341
 #: zapzap/features/downloads/ui/download_dialog.py:120
 #: zapzap/ui/components/edit_account_dialog.py:456
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:275
 msgid "Cancel"
 msgstr "İptal"
 
@@ -250,7 +251,7 @@ msgid "Select folder"
 msgstr "Klasör seç"
 
 #: zapzap/features/initial_setup/controller.py:126
-#: zapzap/features/settings/pages/language_downloads/controller.py:64
+#: zapzap/features/settings/pages/language_downloads/controller.py:63
 msgid "System default"
 msgstr "Sistem varsayılanı"
 
@@ -325,17 +326,17 @@ msgid "Start with the interface language and a comfortable visual theme."
 msgstr "Arayüz dili ve rahat bir görsel tema ile başlat."
 
 #: zapzap/features/initial_setup/view.py:143
-#: zapzap/features/settings/pages/language_downloads/view.py:36
+#: zapzap/features/settings/pages/language_downloads/view.py:35
 msgid "Language"
 msgstr "Dil"
 
 #: zapzap/features/initial_setup/view.py:144
-#: zapzap/features/settings/pages/language_downloads/view.py:37
+#: zapzap/features/settings/pages/language_downloads/view.py:36
 msgid "Choose the interface language used by ZapZap."
 msgstr "ZapZap tarafından kullanılan arayüz dilini seçin."
 
 #: zapzap/features/initial_setup/view.py:149
-#: zapzap/features/settings/pages/language_downloads/view.py:41
+#: zapzap/features/settings/pages/language_downloads/view.py:40
 msgid "Interface language"
 msgstr "Arayüz dili"
 
@@ -561,17 +562,17 @@ msgstr ""
 "denetimini etkinleştirin."
 
 #: zapzap/features/initial_setup/view.py:330
-#: zapzap/features/settings/pages/language_downloads/view.py:54
+#: zapzap/features/settings/pages/language_downloads/view.py:53
 msgid "Downloads"
 msgstr "İndirilenler"
 
 #: zapzap/features/initial_setup/view.py:331
-#: zapzap/features/settings/pages/language_downloads/view.py:55
+#: zapzap/features/settings/pages/language_downloads/view.py:54
 msgid "Choose where downloaded files are saved."
 msgstr "İndirilen dosyaların nereye kaydedileceğini seçin."
 
 #: zapzap/features/initial_setup/view.py:336
-#: zapzap/features/settings/pages/language_downloads/view.py:59
+#: zapzap/features/settings/pages/language_downloads/view.py:58
 msgid "Download directory"
 msgstr "İndirme dizini"
 
@@ -584,32 +585,30 @@ msgid "Choose folder"
 msgstr "Klasör seç"
 
 #: zapzap/features/initial_setup/view.py:348
-#: zapzap/features/settings/pages/language_downloads/view.py:75
+#: zapzap/features/settings/pages/language_downloads/view.py:74
 msgid "Spell checker"
 msgstr "Yazım denetleyici"
 
 #: zapzap/features/initial_setup/view.py:349
-#: zapzap/features/settings/pages/language_downloads/view.py:76
+#: zapzap/features/settings/pages/language_downloads/view.py:75
 msgid "Select compiled dictionaries and where ZapZap should look for them."
 msgstr "Derlenmiş sözlükleri ve ZapZap'in nerede araması gerektiğini seçin."
 
 #: zapzap/features/initial_setup/view.py:354
-#: zapzap/features/settings/pages/language_downloads/view.py:80
+#: zapzap/features/settings/pages/language_downloads/view.py:79
 msgid "Enable spell checker"
 msgstr "Yazım denetleyiciyi etkinleştir"
 
 #: zapzap/features/initial_setup/view.py:355
-#: zapzap/features/settings/pages/language_downloads/view.py:81
+#: zapzap/features/settings/pages/language_downloads/view.py:80
 msgid "Use Qt WebEngine spell checking with the selected dictionary."
 msgstr "Seçilen sözlükle Qt WebEngine yazım denetimini kullan."
 
 #: zapzap/features/initial_setup/view.py:358
-#: zapzap/features/settings/pages/language_downloads/view.py:84
 msgid "Dictionary language"
 msgstr "Sözlük dili"
 
 #: zapzap/features/initial_setup/view.py:359
-#: zapzap/features/settings/pages/language_downloads/view.py:85
 msgid "Recognizes only compiled dictionaries (.bdic)."
 msgstr "Sadece derlenmiş sözlükleri (.bdic) tanır."
 
@@ -718,7 +717,7 @@ msgstr "Terminalinizde bu komutu seçin ve kopyalayın"
 #: zapzap/features/settings/pages/debugging/controller.py:87
 #: zapzap/features/settings/pages/debugging/view.py:223
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:312
+#: zapzap/features/browser/web/web_view.py:314
 msgid "Copy"
 msgstr "Kopyala"
 
@@ -962,7 +961,7 @@ msgid "System and startup"
 msgstr "Sistem ve başlangıç"
 
 #: zapzap/features/settings/shell/settings_controller.py:46
-#: zapzap/features/settings/pages/language_downloads/view.py:22
+#: zapzap/features/settings/pages/language_downloads/view.py:21
 msgid "Language and Download"
 msgstr "Dil ve İndirme"
 
@@ -1996,36 +1995,59 @@ msgstr "Teşhisler kopyalandı"
 msgid "Details copied"
 msgstr "Detaylar kopyalandı"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:23
+#: zapzap/features/settings/pages/language_downloads/controller.py:140
+#: zapzap/features/settings/pages/language_downloads/view.py:84
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:255
+msgid "No dictionary available"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/controller.py:144
+#, python-brace-format
+msgid "{language} and {count} more"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:22
 msgid "Manage interface language, downloads folder and spell checker."
 msgstr "Arayüz dili, indirme klasörü ve yazım denetleyiciyi yönetin."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:42
+#: zapzap/features/settings/pages/language_downloads/view.py:41
 msgid "The interface language is applied immediately."
 msgstr "Arayüz dili hemen uygulanır."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:60
+#: zapzap/features/settings/pages/language_downloads/view.py:59
 msgid "Set a custom folder or restore the default download location."
 msgstr ""
 "Özel bir klasör ayarlayın veya varsayılan indirme konumunu geri yükleyin."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:61
-#: zapzap/features/settings/pages/language_downloads/view.py:95
+#: zapzap/features/settings/pages/language_downloads/view.py:60
+#: zapzap/features/settings/pages/language_downloads/view.py:93
 msgid "Define"
 msgstr "Tanımla"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:67
-#: zapzap/features/settings/pages/language_downloads/view.py:101
+#: zapzap/features/settings/pages/language_downloads/view.py:66
+#: zapzap/features/settings/pages/language_downloads/view.py:99
 #: zapzap/features/settings/pages/network_privacy/controller.py:335
 #: zapzap/features/settings/pages/performance_experimental/view.py:248
 msgid "Restore"
 msgstr "Geri yükle"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:93
+#: zapzap/features/settings/pages/language_downloads/view.py:83
+msgid "Spell checker languages"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:85
+msgid "Select…"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:89
+msgid "Select spell checker languages"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:91
 msgid "Dictionary directory"
 msgstr "Sözlük dizini"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:94
+#: zapzap/features/settings/pages/language_downloads/view.py:92
 msgid "Note: changing dictionaries may require restarting the browser "
 msgstr ""
 "Not: Sözlükleri değiştirmek tarayıcının yeniden başlatılmasını gerektirebilir"
@@ -2951,6 +2973,7 @@ msgstr "Komutu kopyala"
 
 #: zapzap/features/browser/shell/browser_controller.py:162
 #: zapzap/ui/components/edit_account_dialog.py:73
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "Kapat"
@@ -3040,36 +3063,36 @@ msgstr ""
 "\n"
 "İzin verilsin mi?"
 
-#: zapzap/features/browser/web/web_view.py:311
+#: zapzap/features/browser/web/web_view.py:313
 msgid "Undo"
 msgstr "Geri al"
 
-#: zapzap/features/browser/web/web_view.py:311
+#: zapzap/features/browser/web/web_view.py:313
 msgid "Redo"
 msgstr "Yinele"
 
-#: zapzap/features/browser/web/web_view.py:311
+#: zapzap/features/browser/web/web_view.py:313
 msgid "Cut"
 msgstr "Kes"
 
-#: zapzap/features/browser/web/web_view.py:312
+#: zapzap/features/browser/web/web_view.py:314
 msgid "Paste"
 msgstr "Yapıştır"
 
-#: zapzap/features/browser/web/web_view.py:312
+#: zapzap/features/browser/web/web_view.py:314
 msgid "Select all"
 msgstr "Tümünü seç"
 
-#: zapzap/features/browser/web/web_view.py:313
+#: zapzap/features/browser/web/web_view.py:315
 msgid "Save image"
 msgstr "Resmi kaydet"
 
-#: zapzap/features/browser/web/web_view.py:313
+#: zapzap/features/browser/web/web_view.py:315
 msgid "Copy image"
 msgstr "Resmi kopyala"
 
-#: zapzap/features/browser/web/web_view.py:314
-#: zapzap/features/browser/web/web_view.py:344
+#: zapzap/features/browser/web/web_view.py:316
+#: zapzap/features/browser/web/web_view.py:346
 msgid "Copy link address"
 msgstr "Bağlantı adresini kopyala"
 
@@ -3077,16 +3100,20 @@ msgstr "Bağlantı adresini kopyala"
 msgid "Check Spelling"
 msgstr "Yazım denetimi yap"
 
-#: zapzap/features/browser/web/web_view.py:372
-msgid "Select Language"
-msgstr "Dil seç"
+#: zapzap/features/browser/web/web_view.py:370
+msgid "Languages…"
+msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:579
+#: zapzap/features/browser/web/web_view.py:373
+msgid "Choose the languages used by the spell checker."
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:575
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "Hesap"
 
-#: zapzap/features/browser/web/web_view.py:581
+#: zapzap/features/browser/web/web_view.py:577
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "Geliştirici Araçları - {}"
@@ -3406,12 +3433,108 @@ msgstr "Ctrl+M"
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:126
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:169
+msgid "Languages"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:184
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:186
+msgid "Search language"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:188
+msgid "Filter languages by name or dictionary code."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:195
+msgid "Selected languages"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:201
+msgid "They will be used for spell checking."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:217
+msgid "Language selection status"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:225
+msgid "Recent"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:231
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:239
+msgid "All languages"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:241
+msgid "Use Space to select or remove the focused language."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:246
+msgid "No language found"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:259
+msgid "Install or configure a dictionary to use the spell checker."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:274
+msgid "Manage dictionaries"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:276
+msgid "Apply"
+msgstr "Uygula"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:279
+msgid "Open the spell checker dictionary settings."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:411
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:477
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:512
+msgid "You can select up to 10 languages."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:421
+msgid "At least one language must remain selected."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:451
+#, python-brace-format
+msgid "Remove {language}"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:453
+msgid "Remove this language from the temporary selection."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:462
+#, python-brace-format
+msgid "{count} of {maximum} languages selected"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:485
+msgid "selected"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:485
+msgid "not selected"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:506
+#, python-brace-format
+msgid "Add {language}"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:508
+msgid "Add this recent language to the temporary selection."
+msgstr ""
+
 #~ msgid "Disable"
 #~ msgstr "devre dışı bırak"
-
-#, fuzzy
-#~ msgid "On"
-#~ msgstr "Aç"
 
 #~ msgid "Account actions"
 #~ msgstr "Hesap işlemleri"
@@ -3421,34 +3544,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 
 #~ msgid "Are you sure you want to delete this item?"
 #~ msgstr "Bu öğeyi silmek istediğinizden emin misiniz?"
-
-#, fuzzy
-#~ msgid "Account image"
-#~ msgstr "Hesap adı"
-
-#, fuzzy
-#~ msgid "Default icon"
-#~ msgstr "Varsayılan"
-
-#, fuzzy
-#~ msgid "Choose account photo"
-#~ msgstr "Kişi fotoğrafını göster"
-
-#, fuzzy
-#~ msgid "Keep current photo"
-#~ msgstr "Mevcut simgeyi koru"
-
-#, fuzzy
-#~ msgid "Default icon selected."
-#~ msgstr "Standart simge seçildi."
-
-#, fuzzy
-#~ msgid "Could not load this image."
-#~ msgstr "Önizleme resmi yüklenemedi."
-
-#, fuzzy
-#~ msgid "Photo selected."
-#~ msgstr "Standart simge seçildi."
 
 #~ msgid "Keep running in the background"
 #~ msgstr "Arka planda çalışmaya devam et"
@@ -3478,80 +3573,17 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "Reduce WebRTC IP exposure."
 #~ msgstr "WebRTC IP maruziyetini azalt."
 
-#, fuzzy
-#~ msgid "Global (Default)"
-#~ msgstr "Varsayılan"
-
-#, fuzzy
-#~ msgid "Settings for"
-#~ msgstr "Ayarlar"
-
-#, fuzzy
-#~ msgid "Username"
-#~ msgstr "Kullanıcı"
-
-#, fuzzy
-#~ msgid "Actions"
-#~ msgstr "Bilgi"
-
-#, fuzzy
-#~ msgid "Apply proxy"
-#~ msgstr "Uygula"
-
-#~ msgid "Apply"
-#~ msgstr "Uygula"
-
 #~ msgid "Wayland window system"
 #~ msgstr "Wayland pencere sistemi"
-
-#, fuzzy
-#~ msgid "Delete all"
-#~ msgstr "Tümünü seç"
-
-#, fuzzy
-#~ msgid "Build information"
-#~ msgstr "Bilgi"
 
 #~ msgid "Report issue"
 #~ msgstr "Sorun bildir"
 
-#, fuzzy
-#~ msgid "Restart ZapZap"
-#~ msgstr "ZapZap"
-
-#, fuzzy
-#~ msgid "Filename"
-#~ msgstr "Dosya"
-
 #~ msgid "Dialog"
 #~ msgstr "Diyalog"
 
-#, fuzzy
-#~ msgid "Quit app when closing the window"
-#~ msgstr "Pencereyi kapatınca uygulamayı da kapat"
-
 #~ msgid "Use Flatseal to change this mode of execution"
 #~ msgstr "Bu çalıştırma modunu değiştirmek için Flatseal kullanın"
-
-#, fuzzy
-#~ msgid "Enable app notifications"
-#~ msgstr "Çalışma alanı bildirimleri"
-
-#, fuzzy
-#~ msgid "Show message content in notifications"
-#~ msgstr "Bildirimleri sessize alır"
-
-#, fuzzy
-#~ msgid "Show contact photo in notifications"
-#~ msgstr "Bağış bildirimini gizle"
-
-#, fuzzy
-#~ msgid "Hide donation reminders"
-#~ msgstr "Bağış bildirimini gizle"
-
-#, fuzzy
-#~ msgid "Setup complete"
-#~ msgstr "Sayfaları Yenile"
 
 #~ msgid "General"
 #~ msgstr "Genel"
@@ -3624,9 +3656,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "Recognizes only compiled dictionaries (.bdic)"
 #~ msgstr "Yalnızca derlenmiş sözlükleri tanır (.bdic)"
 
-#~ msgid "Define standard dictionaries"
-#~ msgstr "Standart sözlükleri tanımla"
-
 #~ msgid "Note: Required restart."
 #~ msgstr "Not: Yeniden başlatma gerekli"
 
@@ -3645,10 +3674,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "Hide donation notification"
 #~ msgstr "Bağış bildirimini gizle"
 
-#, fuzzy
-#~ msgid "200 MB"
-#~ msgstr "200 %"
-
 #~ msgid "Disable GPU hardware acceleration"
 #~ msgstr "GPU donanım hızlandırmasını devre dışı bırak"
 
@@ -3666,14 +3691,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 
 #~ msgid "HELP"
 #~ msgstr "YARDIM"
-
-#, fuzzy, python-brace-format
-#~ msgid "Version: {id} ({package})"
-#~ msgstr "Versiyon {id} ({version_type}) - {package}"
-
-#, fuzzy
-#~ msgid "Official Version"
-#~ msgstr "Resmi derleme"
 
 #~ msgid "Learn more"
 #~ msgstr "Daha fazla bilgi"

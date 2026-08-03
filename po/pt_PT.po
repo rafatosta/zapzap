@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-02 21:19-0300\n"
+"POT-Creation-Date: 2026-08-02 22:05-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: European Portuguese\n"
@@ -165,6 +165,7 @@ msgstr "Remover"
 #: zapzap/features/settings/pages/network_privacy/controller.py:341
 #: zapzap/features/downloads/ui/download_dialog.py:120
 #: zapzap/ui/components/edit_account_dialog.py:456
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:275
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -251,7 +252,7 @@ msgid "Select folder"
 msgstr "Selecionar pasta"
 
 #: zapzap/features/initial_setup/controller.py:126
-#: zapzap/features/settings/pages/language_downloads/controller.py:64
+#: zapzap/features/settings/pages/language_downloads/controller.py:63
 msgid "System default"
 msgstr "Padrão do sistema"
 
@@ -325,17 +326,17 @@ msgid "Start with the interface language and a comfortable visual theme."
 msgstr "Comece com a linguagem da interface e um tema visual confortável."
 
 #: zapzap/features/initial_setup/view.py:143
-#: zapzap/features/settings/pages/language_downloads/view.py:36
+#: zapzap/features/settings/pages/language_downloads/view.py:35
 msgid "Language"
 msgstr "Idioma"
 
 #: zapzap/features/initial_setup/view.py:144
-#: zapzap/features/settings/pages/language_downloads/view.py:37
+#: zapzap/features/settings/pages/language_downloads/view.py:36
 msgid "Choose the interface language used by ZapZap."
 msgstr "Escolha o idioma da interface usado por ZapZap."
 
 #: zapzap/features/initial_setup/view.py:149
-#: zapzap/features/settings/pages/language_downloads/view.py:41
+#: zapzap/features/settings/pages/language_downloads/view.py:40
 msgid "Interface language"
 msgstr "Idioma da interface"
 
@@ -559,17 +560,17 @@ msgstr ""
 "quando dicionários estiverem disponíveis."
 
 #: zapzap/features/initial_setup/view.py:330
-#: zapzap/features/settings/pages/language_downloads/view.py:54
+#: zapzap/features/settings/pages/language_downloads/view.py:53
 msgid "Downloads"
 msgstr "Descargas"
 
 #: zapzap/features/initial_setup/view.py:331
-#: zapzap/features/settings/pages/language_downloads/view.py:55
+#: zapzap/features/settings/pages/language_downloads/view.py:54
 msgid "Choose where downloaded files are saved."
 msgstr "Escolha onde os ficheiros descarregados são guardados."
 
 #: zapzap/features/initial_setup/view.py:336
-#: zapzap/features/settings/pages/language_downloads/view.py:59
+#: zapzap/features/settings/pages/language_downloads/view.py:58
 msgid "Download directory"
 msgstr "Diretório de descarga"
 
@@ -583,33 +584,31 @@ msgid "Choose folder"
 msgstr "Escolher pasta"
 
 #: zapzap/features/initial_setup/view.py:348
-#: zapzap/features/settings/pages/language_downloads/view.py:75
+#: zapzap/features/settings/pages/language_downloads/view.py:74
 msgid "Spell checker"
 msgstr "Corrector ortográfico"
 
 #: zapzap/features/initial_setup/view.py:349
-#: zapzap/features/settings/pages/language_downloads/view.py:76
+#: zapzap/features/settings/pages/language_downloads/view.py:75
 msgid "Select compiled dictionaries and where ZapZap should look for them."
 msgstr "Selecione dicionários compilados e onde ZapZap deve procurá-los."
 
 #: zapzap/features/initial_setup/view.py:354
-#: zapzap/features/settings/pages/language_downloads/view.py:80
+#: zapzap/features/settings/pages/language_downloads/view.py:79
 msgid "Enable spell checker"
 msgstr "Ativar corretor ortográfico"
 
 #: zapzap/features/initial_setup/view.py:355
-#: zapzap/features/settings/pages/language_downloads/view.py:81
+#: zapzap/features/settings/pages/language_downloads/view.py:80
 msgid "Use Qt WebEngine spell checking with the selected dictionary."
 msgstr ""
 "Usar verificação ortográfica Qt WebEngine com o dicionário selecionado."
 
 #: zapzap/features/initial_setup/view.py:358
-#: zapzap/features/settings/pages/language_downloads/view.py:84
 msgid "Dictionary language"
 msgstr "Língua do dicionário"
 
 #: zapzap/features/initial_setup/view.py:359
-#: zapzap/features/settings/pages/language_downloads/view.py:85
 msgid "Recognizes only compiled dictionaries (.bdic)."
 msgstr "Reconhece apenas dicionários compilados (.bdic)."
 
@@ -720,7 +719,7 @@ msgstr "Selecione e copie este comando no seu terminal"
 #: zapzap/features/settings/pages/debugging/controller.py:87
 #: zapzap/features/settings/pages/debugging/view.py:223
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:312
+#: zapzap/features/browser/web/web_view.py:314
 msgid "Copy"
 msgstr "Copiar"
 
@@ -965,7 +964,7 @@ msgid "System and startup"
 msgstr "Sistema e início"
 
 #: zapzap/features/settings/shell/settings_controller.py:46
-#: zapzap/features/settings/pages/language_downloads/view.py:22
+#: zapzap/features/settings/pages/language_downloads/view.py:21
 msgid "Language and Download"
 msgstr "Idioma e Transferência"
 
@@ -2001,37 +2000,60 @@ msgstr "Diagnósticos copiados"
 msgid "Details copied"
 msgstr "Detalhes copiados"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:23
+#: zapzap/features/settings/pages/language_downloads/controller.py:140
+#: zapzap/features/settings/pages/language_downloads/view.py:84
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:255
+msgid "No dictionary available"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/controller.py:144
+#, python-brace-format
+msgid "{language} and {count} more"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:22
 msgid "Manage interface language, downloads folder and spell checker."
 msgstr "Gerir idioma da interface, pasta de downloads e corretor ortográfico."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:42
+#: zapzap/features/settings/pages/language_downloads/view.py:41
 msgid "The interface language is applied immediately."
 msgstr "O idioma da interface é aplicado imediatamente."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:60
+#: zapzap/features/settings/pages/language_downloads/view.py:59
 msgid "Set a custom folder or restore the default download location."
 msgstr ""
 "Definir uma pasta personalizada ou restaurar a localização de download "
 "predefinida."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:61
-#: zapzap/features/settings/pages/language_downloads/view.py:95
+#: zapzap/features/settings/pages/language_downloads/view.py:60
+#: zapzap/features/settings/pages/language_downloads/view.py:93
 msgid "Define"
 msgstr "Definir"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:67
-#: zapzap/features/settings/pages/language_downloads/view.py:101
+#: zapzap/features/settings/pages/language_downloads/view.py:66
+#: zapzap/features/settings/pages/language_downloads/view.py:99
 #: zapzap/features/settings/pages/network_privacy/controller.py:335
 #: zapzap/features/settings/pages/performance_experimental/view.py:248
 msgid "Restore"
 msgstr "Restaurar"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:93
+#: zapzap/features/settings/pages/language_downloads/view.py:83
+msgid "Spell checker languages"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:85
+msgid "Select…"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:89
+msgid "Select spell checker languages"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:91
 msgid "Dictionary directory"
 msgstr "Diretório de dicionário"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:94
+#: zapzap/features/settings/pages/language_downloads/view.py:92
 msgid "Note: changing dictionaries may require restarting the browser "
 msgstr "Nota: mudar os dicionários pode requerer reiniciar o navegador"
 
@@ -2953,6 +2975,7 @@ msgstr "Copiar comando"
 
 #: zapzap/features/browser/shell/browser_controller.py:162
 #: zapzap/ui/components/edit_account_dialog.py:73
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "Fechar"
@@ -3046,36 +3069,36 @@ msgstr ""
 "\n"
 "Permitir?"
 
-#: zapzap/features/browser/web/web_view.py:311
+#: zapzap/features/browser/web/web_view.py:313
 msgid "Undo"
 msgstr "Desfazer"
 
-#: zapzap/features/browser/web/web_view.py:311
+#: zapzap/features/browser/web/web_view.py:313
 msgid "Redo"
 msgstr "Refazer"
 
-#: zapzap/features/browser/web/web_view.py:311
+#: zapzap/features/browser/web/web_view.py:313
 msgid "Cut"
 msgstr "Cortar"
 
-#: zapzap/features/browser/web/web_view.py:312
+#: zapzap/features/browser/web/web_view.py:314
 msgid "Paste"
 msgstr "Colar"
 
-#: zapzap/features/browser/web/web_view.py:312
+#: zapzap/features/browser/web/web_view.py:314
 msgid "Select all"
 msgstr "Selecionar tudo"
 
-#: zapzap/features/browser/web/web_view.py:313
+#: zapzap/features/browser/web/web_view.py:315
 msgid "Save image"
 msgstr "Guardar imagem"
 
-#: zapzap/features/browser/web/web_view.py:313
+#: zapzap/features/browser/web/web_view.py:315
 msgid "Copy image"
 msgstr "Copiar imagem"
 
-#: zapzap/features/browser/web/web_view.py:314
-#: zapzap/features/browser/web/web_view.py:344
+#: zapzap/features/browser/web/web_view.py:316
+#: zapzap/features/browser/web/web_view.py:346
 msgid "Copy link address"
 msgstr "Copiar link do endereço"
 
@@ -3083,16 +3106,20 @@ msgstr "Copiar link do endereço"
 msgid "Check Spelling"
 msgstr "Verificar ortografia"
 
-#: zapzap/features/browser/web/web_view.py:372
-msgid "Select Language"
-msgstr "Selecionar idioma"
+#: zapzap/features/browser/web/web_view.py:370
+msgid "Languages…"
+msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:579
+#: zapzap/features/browser/web/web_view.py:373
+msgid "Choose the languages used by the spell checker."
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:575
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "Conta"
 
-#: zapzap/features/browser/web/web_view.py:581
+#: zapzap/features/browser/web/web_view.py:577
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"
@@ -3412,12 +3439,108 @@ msgstr "Ctrl+M"
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:126
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:169
+msgid "Languages"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:184
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:186
+msgid "Search language"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:188
+msgid "Filter languages by name or dictionary code."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:195
+msgid "Selected languages"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:201
+msgid "They will be used for spell checking."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:217
+msgid "Language selection status"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:225
+msgid "Recent"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:231
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:239
+msgid "All languages"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:241
+msgid "Use Space to select or remove the focused language."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:246
+msgid "No language found"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:259
+msgid "Install or configure a dictionary to use the spell checker."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:274
+msgid "Manage dictionaries"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:276
+msgid "Apply"
+msgstr "Aplicar"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:279
+msgid "Open the spell checker dictionary settings."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:411
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:477
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:512
+msgid "You can select up to 10 languages."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:421
+msgid "At least one language must remain selected."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:451
+#, python-brace-format
+msgid "Remove {language}"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:453
+msgid "Remove this language from the temporary selection."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:462
+#, python-brace-format
+msgid "{count} of {maximum} languages selected"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:485
+msgid "selected"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:485
+msgid "not selected"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:506
+#, python-brace-format
+msgid "Add {language}"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:508
+msgid "Add this recent language to the temporary selection."
+msgstr ""
+
 #~ msgid "Disable"
 #~ msgstr "Desativar"
-
-#, fuzzy
-#~ msgid "On"
-#~ msgstr "Abrir"
 
 #~ msgid "Account actions"
 #~ msgstr "Ações da conta"
@@ -3427,34 +3550,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 
 #~ msgid "Are you sure you want to delete this item?"
 #~ msgstr "Tem a certeza de que pretente eliminar este item?"
-
-#, fuzzy
-#~ msgid "Account image"
-#~ msgstr "Nome da conta"
-
-#, fuzzy
-#~ msgid "Default icon"
-#~ msgstr "Predefinição"
-
-#, fuzzy
-#~ msgid "Choose account photo"
-#~ msgstr "Mostrar fotografia do contacto"
-
-#, fuzzy
-#~ msgid "Keep current photo"
-#~ msgstr "Manter ícone atual"
-
-#, fuzzy
-#~ msgid "Default icon selected."
-#~ msgstr "Ícone padrão seleccionado."
-
-#, fuzzy
-#~ msgid "Could not load this image."
-#~ msgstr "Não foi possível carregar imagem de antevisão."
-
-#, fuzzy
-#~ msgid "Photo selected."
-#~ msgstr "Ícone padrão seleccionado."
 
 #~ msgid "Keep running in the background"
 #~ msgstr "Continuar a correr em segundo plano"
@@ -3484,54 +3579,11 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "Reduce WebRTC IP exposure."
 #~ msgstr "Reduz a exposição do IP de WebRTC."
 
-#, fuzzy
-#~ msgid "Global (Default)"
-#~ msgstr "Global (Predefinição)"
-
-#, fuzzy
-#~ msgid "Settings for"
-#~ msgstr "Definições para:"
-
-#, fuzzy
-#~ msgid "Enable proxy"
-#~ msgstr "Ativado"
-
-#, fuzzy
-#~ msgid "Proxy type"
-#~ msgstr "Tipo de proxy"
-
-#, fuzzy
-#~ msgid "Host"
-#~ msgstr "Nome do anfitrião"
-
-#, fuzzy
-#~ msgid "Host name"
-#~ msgstr "Nome do anfitrião"
-
-#, fuzzy
-#~ msgid "Username"
-#~ msgstr "Utilizador"
-
-#, fuzzy
-#~ msgid "Actions"
-#~ msgstr "Instruções"
-
-#, fuzzy
-#~ msgid "Apply proxy"
-#~ msgstr "Aplicar"
-
-#~ msgid "Apply"
-#~ msgstr "Aplicar"
-
 #~ msgid "Don't use a platform-native file dialog"
 #~ msgstr "Não usar um dialogo de ficheiros nativo da plataforma"
 
 #~ msgid "Wayland window system"
 #~ msgstr "Sistema de janelas Wayland"
-
-#, fuzzy
-#~ msgid "Delete all"
-#~ msgstr "Eliminar todos"
 
 #, python-brace-format
 #~ msgid ""
@@ -3550,40 +3602,8 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ "Isto vai eliminar o seu ficheiro de definições atual (.config) e será "
 #~ "necessário reiniciar a aplicação.Deseja continuar?"
 
-#, fuzzy
-#~ msgid "Build information"
-#~ msgstr "Informação"
-
 #~ msgid "Report issue"
 #~ msgstr "Reportar problemas"
-
-#, fuzzy
-#~ msgid "Restart ZapZap"
-#~ msgstr "Fechar o ZapZap"
-
-#, fuzzy
-#~ msgid "Restart the full application to apply interface scale changes."
-#~ msgstr ""
-#~ "Reinicie esta sessão (ou a aplicação) para aplicar o novo agente de "
-#~ "utilizador, por favor."
-
-#, fuzzy
-#~ msgid "Restart the full application to apply the selected window system."
-#~ msgstr ""
-#~ "Reinicie esta sessão (ou a aplicação) para aplicar o novo agente de "
-#~ "utilizador, por favor."
-
-#, fuzzy
-#~ msgid "Select User-Agent for this account."
-#~ msgstr "Selecionar um agente de utilizador para esta conta"
-
-#, fuzzy
-#~ msgid "Manage CSS, JavaScript and customizations by scope."
-#~ msgstr "Personalizações"
-
-#, fuzzy
-#~ msgid "Choose the customization scope."
-#~ msgstr "Personalizações"
 
 #~ msgid ""
 #~ "When inherit is disabled, account customizations are appended after "
@@ -3595,23 +3615,11 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "Enable custom CSS"
 #~ msgstr "Ativar CSS personalizado"
 
-#, fuzzy
-#~ msgid "Import .css"
-#~ msgstr "Importar .css"
-
-#, fuzzy
-#~ msgid "JavaScript customizations"
-#~ msgstr "Personalizações"
-
 #~ msgid ""
 #~ "⚠ Custom JavaScript runs with full page privileges. Use trusted code only."
 #~ msgstr ""
 #~ "⚠ O JavaScript personalizado executa com privilégios totais da página. Só "
 #~ "utilize código de fontes seguras."
-
-#, fuzzy
-#~ msgid "Filename"
-#~ msgstr "Nome do ficheiro"
 
 #~ msgid "Global"
 #~ msgstr "Global"
@@ -3645,31 +3653,11 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "Personalize your experience · General"
 #~ msgstr "Personalize a sua experiência · Geral"
 
-#, fuzzy
-#~ msgid "Quit app when closing the window"
-#~ msgstr "Fechar a aplicação ao fechar a janela"
-
 #~ msgid "Use Flatseal to change this mode of execution"
 #~ msgstr "Use o Flatseal para alterar este modo de execução"
 
 #~ msgid "Personalize your experience · Notifications"
 #~ msgstr "Personalize a sua experiência · Notificações"
-
-#, fuzzy
-#~ msgid "Enable app notifications"
-#~ msgstr "Ativar notificações da aplicação"
-
-#, fuzzy
-#~ msgid "Show message content in notifications"
-#~ msgstr "Mostrar conteúdo das mensagens nas notificações"
-
-#, fuzzy
-#~ msgid "Show contact photo in notifications"
-#~ msgstr "Mostrar a foto do contacto nas notificações"
-
-#, fuzzy
-#~ msgid "Hide donation reminders"
-#~ msgstr "Esconder lembretes de doação"
 
 #~ msgid "Flatpak sandbox permissions"
 #~ msgstr "Permissões da sandbox Flatpak"
@@ -3683,10 +3671,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 
 #~ msgid "Open Flatseal page"
 #~ msgstr "Abrir página do Flatseal"
-
-#, fuzzy
-#~ msgid "Setup complete"
-#~ msgstr "Configuração terminada"
 
 #~ msgid ""
 #~ "Your preferences were saved. You can review and change them at any time "
@@ -3775,9 +3759,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "Recognizes only compiled dictionaries (.bdic)"
 #~ msgstr "Só reconhece dicionários compilados (.bdic)"
 
-#~ msgid "Define standard dictionaries"
-#~ msgstr "Defenir dicionários padrão"
-
 #~ msgid "Note: Required restart."
 #~ msgstr "Nota: É necessário reiniciar a aplicação"
 
@@ -3824,10 +3805,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "100 MB"
 #~ msgstr "100 MB"
 
-#, fuzzy
-#~ msgid "200 MB"
-#~ msgstr "100 MB"
-
 #~ msgid "Use GPU in the same process"
 #~ msgstr "Usar a GPU no mesmo processo"
 
@@ -3864,37 +3841,8 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "Welcome to"
 #~ msgstr "Bem Vindo a"
 
-#, fuzzy, python-brace-format
-#~ msgid "Version: {id} ({package})"
-#~ msgstr "Versão {id} ({version_type}) - {package}"
-
-#, fuzzy
-#~ msgid "Official Version"
-#~ msgstr "Compilação oficial"
-
 #~ msgid "Learn more"
 #~ msgstr "Saber mais"
-
-#, fuzzy
-#~ msgid "Runtime && Permissions"
-#~ msgstr "Permissões da sandbox Flatpak"
-
-#, fuzzy
-#~ msgid "Flatpak tips"
-#~ msgstr "Sandbox Flatpak"
-
-#, fuzzy
-#~ msgid ""
-#~ "<b>ZapZap is running in the Flatpak sandbox.</b> If opening PDFs, drag-"
-#~ "and-drop, or file uploads fail, this is usually caused by sandbox "
-#~ "permissions. Open <b>Flatseal</b> and grant ZapZap access to folders like "
-#~ "Documents, Downloads, Pictures and Videos."
-#~ msgstr ""
-#~ "<b>Dica do Flatpak:</b> se abrir PDFs, arrastar e largar ou carregamentos "
-#~ "de ficheiros falharem, isto normalmente é causado por permissões da "
-#~ "sandbox. Abra o <b>Flatseal</b> e conceda ao ZapZap acesso a pastas como "
-#~ "Documentos, Transferências, Imagens e Vídeos. Também pode executar: "
-#~ "<code>flatpak override --user --filesystem=home com.rtosta.zapzap</code>."
 
 #~ msgid ""
 #~ "Crash reports are stored in this folder. You can open the directory or "

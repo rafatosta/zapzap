@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-02 21:19-0300\n"
+"POT-Creation-Date: 2026-08-02 22:05-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Swedish\n"
@@ -166,6 +166,7 @@ msgstr "Ta bort"
 #: zapzap/features/settings/pages/network_privacy/controller.py:341
 #: zapzap/features/downloads/ui/download_dialog.py:120
 #: zapzap/ui/components/edit_account_dialog.py:456
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:275
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -254,7 +255,7 @@ msgid "Select folder"
 msgstr "Välj katalog"
 
 #: zapzap/features/initial_setup/controller.py:126
-#: zapzap/features/settings/pages/language_downloads/controller.py:64
+#: zapzap/features/settings/pages/language_downloads/controller.py:63
 msgid "System default"
 msgstr "Systemstandard"
 
@@ -327,17 +328,17 @@ msgid "Start with the interface language and a comfortable visual theme."
 msgstr "Börja med gränssnittets språk och ett bekvämt visuellt tema."
 
 #: zapzap/features/initial_setup/view.py:143
-#: zapzap/features/settings/pages/language_downloads/view.py:36
+#: zapzap/features/settings/pages/language_downloads/view.py:35
 msgid "Language"
 msgstr "Språk"
 
 #: zapzap/features/initial_setup/view.py:144
-#: zapzap/features/settings/pages/language_downloads/view.py:37
+#: zapzap/features/settings/pages/language_downloads/view.py:36
 msgid "Choose the interface language used by ZapZap."
 msgstr "Välj gränssnittsspråket som används av ZapZap."
 
 #: zapzap/features/initial_setup/view.py:149
-#: zapzap/features/settings/pages/language_downloads/view.py:41
+#: zapzap/features/settings/pages/language_downloads/view.py:40
 msgid "Interface language"
 msgstr "Gränssnittsspråk"
 
@@ -557,17 +558,17 @@ msgstr ""
 "tillgängliga."
 
 #: zapzap/features/initial_setup/view.py:330
-#: zapzap/features/settings/pages/language_downloads/view.py:54
+#: zapzap/features/settings/pages/language_downloads/view.py:53
 msgid "Downloads"
 msgstr "Nedladdningar"
 
 #: zapzap/features/initial_setup/view.py:331
-#: zapzap/features/settings/pages/language_downloads/view.py:55
+#: zapzap/features/settings/pages/language_downloads/view.py:54
 msgid "Choose where downloaded files are saved."
 msgstr "Välj var nedladdade filer sparas."
 
 #: zapzap/features/initial_setup/view.py:336
-#: zapzap/features/settings/pages/language_downloads/view.py:59
+#: zapzap/features/settings/pages/language_downloads/view.py:58
 msgid "Download directory"
 msgstr "Nedladdningsmapp"
 
@@ -580,32 +581,30 @@ msgid "Choose folder"
 msgstr "Välj mapp"
 
 #: zapzap/features/initial_setup/view.py:348
-#: zapzap/features/settings/pages/language_downloads/view.py:75
+#: zapzap/features/settings/pages/language_downloads/view.py:74
 msgid "Spell checker"
 msgstr "Stavningskontroll"
 
 #: zapzap/features/initial_setup/view.py:349
-#: zapzap/features/settings/pages/language_downloads/view.py:76
+#: zapzap/features/settings/pages/language_downloads/view.py:75
 msgid "Select compiled dictionaries and where ZapZap should look for them."
 msgstr "Välj sammanställda ordböcker och var ZapZap ska leta efter dem."
 
 #: zapzap/features/initial_setup/view.py:354
-#: zapzap/features/settings/pages/language_downloads/view.py:80
+#: zapzap/features/settings/pages/language_downloads/view.py:79
 msgid "Enable spell checker"
 msgstr "Aktivera stavningskontroll"
 
 #: zapzap/features/initial_setup/view.py:355
-#: zapzap/features/settings/pages/language_downloads/view.py:81
+#: zapzap/features/settings/pages/language_downloads/view.py:80
 msgid "Use Qt WebEngine spell checking with the selected dictionary."
 msgstr "Använd Qt WebEngine stavningskontroll med det valda ordboken."
 
 #: zapzap/features/initial_setup/view.py:358
-#: zapzap/features/settings/pages/language_downloads/view.py:84
 msgid "Dictionary language"
 msgstr "Ordboksspråk"
 
 #: zapzap/features/initial_setup/view.py:359
-#: zapzap/features/settings/pages/language_downloads/view.py:85
 msgid "Recognizes only compiled dictionaries (.bdic)."
 msgstr "Känner bara igen kompilerade ordböcker (.bdic)."
 
@@ -712,7 +711,7 @@ msgstr "Markera och kopiera detta kommando till din terminal"
 #: zapzap/features/settings/pages/debugging/controller.py:87
 #: zapzap/features/settings/pages/debugging/view.py:223
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:312
+#: zapzap/features/browser/web/web_view.py:314
 msgid "Copy"
 msgstr "Kopiera"
 
@@ -959,7 +958,7 @@ msgid "System and startup"
 msgstr "System och start"
 
 #: zapzap/features/settings/shell/settings_controller.py:46
-#: zapzap/features/settings/pages/language_downloads/view.py:22
+#: zapzap/features/settings/pages/language_downloads/view.py:21
 msgid "Language and Download"
 msgstr "Språk och nedladdning"
 
@@ -1988,35 +1987,58 @@ msgstr "Diagnostik kopierad"
 msgid "Details copied"
 msgstr "Detaljer kopierade"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:23
+#: zapzap/features/settings/pages/language_downloads/controller.py:140
+#: zapzap/features/settings/pages/language_downloads/view.py:84
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:255
+msgid "No dictionary available"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/controller.py:144
+#, python-brace-format
+msgid "{language} and {count} more"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:22
 msgid "Manage interface language, downloads folder and spell checker."
 msgstr "Hantera gränssnittsspråk, nedladdningsmapp och stavningskontroll."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:42
+#: zapzap/features/settings/pages/language_downloads/view.py:41
 msgid "The interface language is applied immediately."
 msgstr "Gränssnittets språk tillämpas omedelbart."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:60
+#: zapzap/features/settings/pages/language_downloads/view.py:59
 msgid "Set a custom folder or restore the default download location."
 msgstr "Ange en egen mapp eller återställ standardnedladdningsplatsen."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:61
-#: zapzap/features/settings/pages/language_downloads/view.py:95
+#: zapzap/features/settings/pages/language_downloads/view.py:60
+#: zapzap/features/settings/pages/language_downloads/view.py:93
 msgid "Define"
 msgstr "Definiera"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:67
-#: zapzap/features/settings/pages/language_downloads/view.py:101
+#: zapzap/features/settings/pages/language_downloads/view.py:66
+#: zapzap/features/settings/pages/language_downloads/view.py:99
 #: zapzap/features/settings/pages/network_privacy/controller.py:335
 #: zapzap/features/settings/pages/performance_experimental/view.py:248
 msgid "Restore"
 msgstr "Återställ"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:93
+#: zapzap/features/settings/pages/language_downloads/view.py:83
+msgid "Spell checker languages"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:85
+msgid "Select…"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:89
+msgid "Select spell checker languages"
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:91
 msgid "Dictionary directory"
 msgstr "Ordboks-katalog"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:94
+#: zapzap/features/settings/pages/language_downloads/view.py:92
 msgid "Note: changing dictionaries may require restarting the browser "
 msgstr "Obs: att byta ordböcker kan kräva att webbläsaren startas om"
 
@@ -2932,6 +2954,7 @@ msgstr "Kopiera kommando"
 
 #: zapzap/features/browser/shell/browser_controller.py:162
 #: zapzap/ui/components/edit_account_dialog.py:73
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "Stäng"
@@ -3021,36 +3044,36 @@ msgstr ""
 "\n"
 "Tillåt?"
 
-#: zapzap/features/browser/web/web_view.py:311
+#: zapzap/features/browser/web/web_view.py:313
 msgid "Undo"
 msgstr "Ångra"
 
-#: zapzap/features/browser/web/web_view.py:311
+#: zapzap/features/browser/web/web_view.py:313
 msgid "Redo"
 msgstr "Gör om"
 
-#: zapzap/features/browser/web/web_view.py:311
+#: zapzap/features/browser/web/web_view.py:313
 msgid "Cut"
 msgstr "Klipp ut"
 
-#: zapzap/features/browser/web/web_view.py:312
+#: zapzap/features/browser/web/web_view.py:314
 msgid "Paste"
 msgstr "Klistra in"
 
-#: zapzap/features/browser/web/web_view.py:312
+#: zapzap/features/browser/web/web_view.py:314
 msgid "Select all"
 msgstr "Välj alla"
 
-#: zapzap/features/browser/web/web_view.py:313
+#: zapzap/features/browser/web/web_view.py:315
 msgid "Save image"
 msgstr "Spara bild"
 
-#: zapzap/features/browser/web/web_view.py:313
+#: zapzap/features/browser/web/web_view.py:315
 msgid "Copy image"
 msgstr "Kopiera bild"
 
-#: zapzap/features/browser/web/web_view.py:314
-#: zapzap/features/browser/web/web_view.py:344
+#: zapzap/features/browser/web/web_view.py:316
+#: zapzap/features/browser/web/web_view.py:346
 msgid "Copy link address"
 msgstr "Kopiera länkadress"
 
@@ -3058,16 +3081,20 @@ msgstr "Kopiera länkadress"
 msgid "Check Spelling"
 msgstr "Kontrollera stavning"
 
-#: zapzap/features/browser/web/web_view.py:372
-msgid "Select Language"
-msgstr "Välj språk"
+#: zapzap/features/browser/web/web_view.py:370
+msgid "Languages…"
+msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:579
+#: zapzap/features/browser/web/web_view.py:373
+msgid "Choose the languages used by the spell checker."
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:575
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "Konto"
 
-#: zapzap/features/browser/web/web_view.py:581
+#: zapzap/features/browser/web/web_view.py:577
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"
@@ -3397,12 +3424,108 @@ msgstr "Ctrl+M"
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:126
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:169
+msgid "Languages"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:184
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:186
+msgid "Search language"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:188
+msgid "Filter languages by name or dictionary code."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:195
+msgid "Selected languages"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:201
+msgid "They will be used for spell checking."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:217
+msgid "Language selection status"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:225
+msgid "Recent"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:231
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:239
+msgid "All languages"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:241
+msgid "Use Space to select or remove the focused language."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:246
+msgid "No language found"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:259
+msgid "Install or configure a dictionary to use the spell checker."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:274
+msgid "Manage dictionaries"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:276
+msgid "Apply"
+msgstr "Verkställ"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:279
+msgid "Open the spell checker dictionary settings."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:411
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:477
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:512
+msgid "You can select up to 10 languages."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:421
+msgid "At least one language must remain selected."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:451
+#, python-brace-format
+msgid "Remove {language}"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:453
+msgid "Remove this language from the temporary selection."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:462
+#, python-brace-format
+msgid "{count} of {maximum} languages selected"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:485
+msgid "selected"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:485
+msgid "not selected"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:506
+#, python-brace-format
+msgid "Add {language}"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:508
+msgid "Add this recent language to the temporary selection."
+msgstr ""
+
 #~ msgid "Disable"
 #~ msgstr "Inaktivera"
-
-#, fuzzy
-#~ msgid "On"
-#~ msgstr "Öppna"
 
 #~ msgid "Account actions"
 #~ msgstr "Kontohändelser"
@@ -3412,34 +3535,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 
 #~ msgid "Are you sure you want to delete this item?"
 #~ msgstr "Är du säker på att du vill ta bort detta objekt?"
-
-#, fuzzy
-#~ msgid "Account image"
-#~ msgstr "Kontonamn"
-
-#, fuzzy
-#~ msgid "Default icon"
-#~ msgstr "Standard"
-
-#, fuzzy
-#~ msgid "Choose account photo"
-#~ msgstr "Visa kontaktfoto"
-
-#, fuzzy
-#~ msgid "Keep current photo"
-#~ msgstr "Behåll nuvarande ikon"
-
-#, fuzzy
-#~ msgid "Default icon selected."
-#~ msgstr "Standardikon vald."
-
-#, fuzzy
-#~ msgid "Could not load this image."
-#~ msgstr "Kunde inte ladda bild för förhandsvisning."
-
-#, fuzzy
-#~ msgid "Photo selected."
-#~ msgstr "Standardikon vald."
 
 #~ msgid "Keep running in the background"
 #~ msgstr "Fortsätt köra i bakgrunden"
@@ -3469,69 +3564,14 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "Reduce WebRTC IP exposure."
 #~ msgstr "Minska WebRTC exponering av IP."
 
-#, fuzzy
-#~ msgid "Global (Default)"
-#~ msgstr "Standard"
-
-#, fuzzy
-#~ msgid "Settings for"
-#~ msgstr "Inställningar"
-
-#, fuzzy
-#~ msgid "Enable proxy"
-#~ msgstr "Aktiverad"
-
-#, fuzzy
-#~ msgid "Proxy type"
-#~ msgstr "Proxytyp"
-
-#, fuzzy
-#~ msgid "Host"
-#~ msgstr "Värdnamn"
-
-#, fuzzy
-#~ msgid "Host name"
-#~ msgstr "Värdnamn"
-
-#, fuzzy
-#~ msgid "Username"
-#~ msgstr "Användare"
-
-#, fuzzy
-#~ msgid "Actions"
-#~ msgstr "Instruktioner"
-
-#, fuzzy
-#~ msgid "Apply proxy"
-#~ msgstr "Verkställ"
-
-#~ msgid "Apply"
-#~ msgstr "Verkställ"
-
 #~ msgid "Don't use a platform-native file dialog"
 #~ msgstr "Använd inte plattformsspecifik fildialogruta"
 
 #~ msgid "Wayland window system"
 #~ msgstr "Wayland-fönstersystem"
 
-#, fuzzy
-#~ msgid "Delete all"
-#~ msgstr "Markera allt"
-
 #~ msgid "Report issue"
 #~ msgstr "Rapportera problem"
-
-#, fuzzy
-#~ msgid "Restart ZapZap"
-#~ msgstr "Välkommen till"
-
-#, fuzzy
-#~ msgid "Manage CSS, JavaScript and customizations by scope."
-#~ msgstr "Anpassningar"
-
-#, fuzzy
-#~ msgid "Choose the customization scope."
-#~ msgstr "Anpassningar"
 
 #~ msgid ""
 #~ "When inherit is disabled, account customizations are appended after "
@@ -3546,10 +3586,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "Import .css"
 #~ msgstr "Importera .css"
 
-#, fuzzy
-#~ msgid "JavaScript customizations"
-#~ msgstr "Anpassningar"
-
 #~ msgid ""
 #~ "⚠ Custom JavaScript runs with full page privileges. Use trusted code only."
 #~ msgstr ""
@@ -3562,39 +3598,11 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "Global"
 #~ msgstr "Globalt"
 
-#, fuzzy
-#~ msgid "Quit app when closing the window"
-#~ msgstr "Avsluta när fönstret stängs"
-
 #~ msgid "Use Flatseal to change this mode of execution"
 #~ msgstr "Använd Flatseal för att ändra exekveringsläge"
 
-#, fuzzy
-#~ msgid "Enable app notifications"
-#~ msgstr "Notiser i arbetsyta"
-
-#, fuzzy
-#~ msgid "Show message content in notifications"
-#~ msgstr "Tystar notiserna"
-
-#, fuzzy
-#~ msgid "Show contact photo in notifications"
-#~ msgstr "Göm donationsnotis"
-
-#, fuzzy
-#~ msgid "Hide donation reminders"
-#~ msgstr "Göm donationsnotis"
-
-#, fuzzy
-#~ msgid "Flatpak sandbox permissions"
-#~ msgstr "Hjälp för Flatpak-sandlåda"
-
 #~ msgid "Open Flatseal page"
 #~ msgstr "Öppna Flatseal-sida"
-
-#, fuzzy
-#~ msgid "Setup complete"
-#~ msgstr "Omladdning slutfördes."
 
 #~ msgid "General"
 #~ msgstr "Allmänt"
@@ -3649,9 +3657,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 
 #~ msgid "Recognizes only compiled dictionaries (.bdic)"
 #~ msgstr "Känner endast igen kompilerade ordböcker (.bdic)"
-
-#~ msgid "Define standard dictionaries"
-#~ msgstr "Återställ standardordböcker"
 
 #~ msgid "Note: Required restart."
 #~ msgstr "Obs: Kräver omstart."
@@ -3710,29 +3715,8 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "Welcome to"
 #~ msgstr "Välkommen till"
 
-#, fuzzy
-#~ msgid "Official Version"
-#~ msgstr "Officiell kompilering"
-
 #~ msgid "Learn more"
 #~ msgstr "Läs mer"
-
-#, fuzzy
-#~ msgid "Flatpak tips"
-#~ msgstr "Flatpak-sandlåda"
-
-#, fuzzy
-#~ msgid ""
-#~ "<b>ZapZap is running in the Flatpak sandbox.</b> If opening PDFs, drag-"
-#~ "and-drop, or file uploads fail, this is usually caused by sandbox "
-#~ "permissions. Open <b>Flatseal</b> and grant ZapZap access to folders like "
-#~ "Documents, Downloads, Pictures and Videos."
-#~ msgstr ""
-#~ "<b>Flatpak-tips:</b> Om öppning av PDF-filer, drag-och-släpp eller "
-#~ "filuppladdningar misslyckas, kan detta orsakas av rättighetsproblem för "
-#~ "sandlådan. Öppna <b>Flatseal</b> och tillåt ZapZap att komma åt kataloger "
-#~ "så som Dokument, Hämtningar, Bilder och Videor. Du kan också köra: "
-#~ "<code>flatpak override --user --filesystem=home com.rtosta.zapzap</code>."
 
 #~ msgid "Cache Behavior"
 #~ msgstr "Cache-beteende"
