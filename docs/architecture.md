@@ -216,6 +216,12 @@ Texto visível usa `gettext`. IDs persistidos de seletores ficam em `itemData` e
 3. valide arquivos PO com `msgfmt --check --check-format`;
 4. gere os `.mo` empacotados.
 
+Seletores de dicionário seguem o mesmo contrato: `DictionaryOption.code`
+preserva exatamente o basename técnico do `.bdic`, enquanto `label` apresenta
+o nome legível e ordenável. Associações conhecidas corrigem nomes fora do
+padrão de locale; dicionários personalizados desconhecidos permanecem visíveis
+pelo basename original.
+
 ## Funcionalidades transversais
 
 | Área | Responsabilidade principal |
@@ -224,7 +230,7 @@ Texto visível usa `gettext`. IDs persistidos de seletores ficam em `itemData` e
 | `alerts` | diálogos e feedback compartilhados |
 | `browser` | perfis, páginas, sidebar, scripts e navegação |
 | `customizations` | CSS, JavaScript e extensões por escopo |
-| `dictionaries` | descoberta e instalação de dicionários WebEngine |
+| `dictionaries` | descoberta, apresentação e instalação de dicionários WebEngine |
 | `downloads` | destino, nome seguro e diálogo de progresso |
 | `initial_setup` | onboarding e persistência das escolhas iniciais |
 | `notifications` | fachada, backends e ativação da janela |

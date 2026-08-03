@@ -174,8 +174,8 @@ class InitialSetupModel(BaseSettings):
     def open_download_folder_dialog(self, parent) -> str:
         return DownloadManager.open_folder_dialog(parent)
 
-    def dictionaries(self) -> list[str]:
-        return DictionariesManager.list()
+    def dictionary_options(self):
+        return DictionariesManager.options()
 
     def current_dictionary(self) -> str:
         return DictionariesManager.get_current_dict()

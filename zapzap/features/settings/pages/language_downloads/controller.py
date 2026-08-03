@@ -23,8 +23,12 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         )
 
         self.spell_comboBox.clear()
-        self.spell_comboBox.addItems(self.model.list_dictionaries())
-        self.spell_comboBox.setCurrentText(self.model.get_current_dictionary())
+        for option in self.model.list_dictionary_options():
+            self.spell_comboBox.addItem(option.label, option.code)
+        current_dictionary = self.model.get_current_dictionary()
+        current_index = self.spell_comboBox.findData(current_dictionary)
+        if current_index >= 0:
+            self.spell_comboBox.setCurrentIndex(current_index)
         self.spellchecker_options_group.setEnabled(
             self.spellchecker_groupBox.checkbox.isChecked()
         )
@@ -43,7 +47,7 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         self.interface_language_comboBox.activated.connect(
             self._handle_interface_language
         )
-        self.spell_comboBox.textActivated.connect(self._handle_spellcheck)
+        self.spell_comboBox.activated.connect(self._handle_spellcheck)
         self.btn_path_spell.clicked.connect(self._handle_path_spell)
         self.btn_default_path_spell.clicked.connect(
             self._handle_default_folder_spell
@@ -127,9 +131,11 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         self.spellchecker_options_group.setEnabled(toggled)
         self._update_browser_spellcheck()
 
-    def _handle_spellcheck(self, language):
-        self.model.set_dictionary_language(language)
-        self._update_browser_spellcheck()
+    def _handle_spellcheck(self, _index):
+        language = self.spell_comboBox.currentData()
+        if language:
+            self.model.set_dictionary_language(language)
+            self._update_browser_spellcheck()
 
     def _handle_path_spell(self):
         new_path = self.model.open_folder_dialog(self)

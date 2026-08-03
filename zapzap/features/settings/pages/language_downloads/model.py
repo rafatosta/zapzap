@@ -30,8 +30,8 @@ class LanguageDownloadSettingsModel:
     def get_dictionaries_path(self):
         return DictionariesManager.get_path()
 
-    def list_dictionaries(self):
-        return DictionariesManager.list()
+    def list_dictionary_options(self):
+        return DictionariesManager.options()
 
     def get_current_dictionary(self):
         return DictionariesManager.get_current_dict()

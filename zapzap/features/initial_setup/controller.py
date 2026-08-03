@@ -140,13 +140,16 @@ class InitialSetupController(InitialSetupView):
         theme_map.get(theme, self.theme_auto).setChecked(True)
 
     def _load_dictionaries(self):
-        dictionaries = self.model.dictionaries()
+        options = self.model.dictionary_options()
         self.dictionary_combo.clear()
-        self.dictionary_combo.addItems(dictionaries)
+        for option in options:
+            self.dictionary_combo.addItem(option.label, option.code)
         current_dictionary = self.model.current_dictionary()
         if current_dictionary:
-            self.dictionary_combo.setCurrentText(current_dictionary)
-        has_dictionaries = bool(dictionaries)
+            index = self.dictionary_combo.findData(current_dictionary)
+            if index >= 0:
+                self.dictionary_combo.setCurrentIndex(index)
+        has_dictionaries = bool(options)
         self.spell_section.setVisible(has_dictionaries)
         self.dictionary_row.setVisible(has_dictionaries)
 
@@ -245,8 +248,9 @@ class InitialSetupController(InitialSetupView):
         if self.download_path.text():
             self.model.set_download_path(self.download_path.text())
         self.model.spellcheck_enabled = self.spellcheck_enabled.isChecked()
-        if self.spellcheck_enabled.isChecked() and self.dictionary_combo.currentText():
-            self.model.set_dictionary(self.dictionary_combo.currentText())
+        selected_dictionary = self.dictionary_combo.currentData()
+        if self.spellcheck_enabled.isChecked() and selected_dictionary:
+            self.model.set_dictionary(selected_dictionary)
         self.model.set_microphone_permission(self.permission_microphone.isChecked())
         self.model.set_camera_permission(self.permission_camera.isChecked())
         self.model.set_camera_microphone_permission(

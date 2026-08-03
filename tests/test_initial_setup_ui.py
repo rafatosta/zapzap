@@ -4,6 +4,7 @@ import unittest
 from unittest.mock import patch
 
 from qt_test_case import QtTestCase
+from zapzap.features.dictionaries.dictionaries_manager import DictionaryOption
 from zapzap.features.initial_setup.controller import InitialSetupController
 from zapzap.features.initial_setup.model import InitialSetupModel
 from zapzap.features.initial_setup.view import InitialSetupView
@@ -75,8 +76,14 @@ class FakeInitialSetupModel:
     def open_download_folder_dialog(self, _parent):
         return ""
 
-    def dictionaries(self):
-        return self._dictionaries
+    def dictionary_options(self):
+        return [
+            DictionaryOption(
+                code,
+                {"pt_BR": "Portuguese (Brazil)"}.get(code, code),
+            )
+            for code in self._dictionaries
+        ]
 
     def current_dictionary(self):
         return self._dictionaries[0] if self._dictionaries else ""
@@ -190,6 +197,19 @@ class InitialSetupUiTests(QtTestCase):
 
         self.assertTrue(dialog.spell_section.isHidden())
         self.assertTrue(dialog.spellcheck_enabled.isChecked())
+
+    def test_spellchecker_displays_label_but_saves_dictionary_code(self):
+        dialog, model = self._controller(dictionaries=["pt_BR"])
+
+        self.assertEqual(
+            dialog.dictionary_combo.currentText(),
+            "Portuguese (Brazil)",
+        )
+        self.assertEqual(dialog.dictionary_combo.currentData(), "pt_BR")
+
+        dialog._save_settings()
+
+        self.assertEqual(model.saved_dictionary, "pt_BR")
 
     def test_combined_permission_facade_uses_distinct_permission_ids(self):
         model = InitialSetupModel()

@@ -370,12 +370,13 @@ class WebView(QWebEngineView):
         # Submenu de seleção de idiomas
         if profile.isSpellCheckEnabled():
             sub_menu = menu.addMenu(_("Select Language"))
-            for lang_name in DictionariesManager.list():
-                action = sub_menu.addAction(lang_name)
+            for option in DictionariesManager.options():
+                action = sub_menu.addAction(option.label)
                 action.setCheckable(True)
-                action.setChecked(lang_name in languages)
+                action.setData(option.code)
+                action.setChecked(option.code in languages)
                 action.triggered.connect(
-                    lambda _, lang=lang_name: self._select_language(lang)
+                    lambda _, lang=option.code: self._select_language(lang)
                 )
 
     def _toggle_spellcheck(self, toggled):
