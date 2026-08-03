@@ -99,6 +99,7 @@ documente o que ele protege.
 | `test_settings_card.py` | divisores e grupos do card compartilhado em `ui.components` |
 | `test_settings_radio_group.py` | divisores do grupo de rádio em `ui.components` |
 | `test_software_video_decoding.py` | flag Chromium, persistência, padrão e ordem do bootstrap |
+| `test_spellcheck_language_picker.py` | migração, seleção múltipla transacional, pesquisa, limite, recentes, menu e perfis WebEngine |
 | `test_system_startup_settings_ui.py` | semântica de fechamento, diálogo nativo e acessibilidade |
 | `test_window_state_restore.py` | ciclo de vida compartilhado e restauração normal, maximizada e fullscreen |
 
@@ -130,6 +131,7 @@ documente o que ele protege.
 - `test_settings_card.py`
 - `test_settings_radio_group.py`
 - `test_software_video_decoding.py`
+- `test_spellcheck_language_picker.py`
 - `test_system_startup_settings_ui.py`
 - `test_window_state_restore.py`
 <!-- structure-check:tests:end -->

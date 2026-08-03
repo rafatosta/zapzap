@@ -93,6 +93,18 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - Faça o encerramento idempotente; QtWebEngine é sensível à ordem de destruição.
 - Revalide grid, sidebar, conta ativa, zoom, downloads e notificações.
 
+### Mudança no corretor ortográfico
+
+- Mantenha descoberta, normalização, migração, limite e recentes em
+  `DictionariesManager`; views não devem persistir rótulos nem validar sozinhas.
+- Preserve `system/spellCheckLanguage` como chave escalar de compatibilidade e
+  use `system/spellCheckLanguages` como a fonte atual da seleção múltipla.
+- Use `SpellcheckLanguagePickerDialog` nos pontos de entrada do menu e de
+  Configurações. Cancelar, fechar e `Esc` descartam o rascunho; apenas
+  `Aplicar` persiste e chama `browser.update_spellcheck()`.
+- Não volte a criar submenus ou uma `QAction` por dicionário. Valide listas
+  grandes, pesquisa por código/rótulo, ausência de dicionários e perfis ativos.
+
 ### Mudança em notificação ou ativação
 
 - Aplique regras comuns em `NotificationService`, não as duplique nos backends.

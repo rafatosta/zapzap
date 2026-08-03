@@ -67,6 +67,7 @@ class FakeLanguageDownloadSettingsModel:
         self.spellcheck_enabled = True
         self.saved_dictionary = None
         self.current_dictionary = "pt_BR"
+        self.selected_dictionaries = ["pt_BR"]
         self.dictionary_options = [
             DictionaryOption("ar_EG", "Arabic (Egypt)"),
             DictionaryOption("pt_BR", "Portuguese (Brazil)"),
@@ -80,6 +81,9 @@ class FakeLanguageDownloadSettingsModel:
 
     def get_current_dictionary(self):
         return self.current_dictionary
+
+    def get_selected_dictionaries(self):
+        return list(self.selected_dictionaries)
 
     def get_download_path(self):
         return "/downloads"
@@ -96,7 +100,7 @@ class FakeLanguageDownloadSettingsModel:
 
 class DictionarySettingsUiTests(QtTestCase):
 
-    def test_settings_combo_displays_labels_and_persists_item_data(self):
+    def test_settings_page_displays_selected_language_summary(self):
         model = FakeLanguageDownloadSettingsModel()
         with patch(
             "zapzap.features.settings.pages.language_downloads.controller."
@@ -105,18 +109,13 @@ class DictionarySettingsUiTests(QtTestCase):
         ):
             page = LanguageDownloadSettingsController()
 
-        self.assertEqual(page.spell_comboBox.currentText(), "Portuguese (Brazil)")
-        self.assertEqual(page.spell_comboBox.currentData(), "pt_BR")
+        self.assertEqual(
+            page.spell_languages_row.description_label.text(),
+            "Portuguese (Brazil)",
+        )
+        self.assertEqual(page.btn_select_spell_languages.text(), "Select…")
 
-        page._update_browser_spellcheck = Mock()
-        arabic_index = page.spell_comboBox.findData("ar_EG")
-        page.spell_comboBox.setCurrentIndex(arabic_index)
-        page._handle_spellcheck(arabic_index)
-
-        self.assertEqual(model.saved_dictionary, "ar_EG")
-        page._update_browser_spellcheck.assert_called_once_with()
-
-    def test_settings_combo_recalculates_width_after_dictionary_folder_change(self):
+    def test_settings_summary_updates_after_selection_changes(self):
         model = FakeLanguageDownloadSettingsModel()
         with patch(
             "zapzap.features.settings.pages.language_downloads.controller."
@@ -125,24 +124,22 @@ class DictionarySettingsUiTests(QtTestCase):
         ):
             page = LanguageDownloadSettingsController()
 
-        page.show()
-        self.app.processEvents()
-        initial_width = page.spell_comboBox.sizeHint().width()
-
-        model.current_dictionary = "custom_dictionary"
+        model.selected_dictionaries = ["custom_dictionary", "pt_BR"]
         model.dictionary_options = [
             DictionaryOption(
                 "custom_dictionary",
                 "A customized dictionary with a substantially longer name",
-            )
+            ),
+            DictionaryOption("pt_BR", "Portuguese (Brazil)"),
         ]
-        page._load_settings()
-        self.app.processEvents()
+        page._update_spellcheck_language_summary()
 
-        self.assertGreater(page.spell_comboBox.sizeHint().width(), initial_width)
-        self.assertEqual(page.spell_comboBox.currentData(), "custom_dictionary")
+        self.assertEqual(
+            page.spell_languages_row.description_label.text(),
+            "A customized dictionary with a substantially longer name and 1 more",
+        )
 
-    def test_browser_menu_displays_labels_but_selects_dictionary_code(self):
+    def test_browser_menu_is_compact_and_opens_picker(self):
         class FakeProfile:
             @staticmethod
             def spellCheckLanguages():
@@ -160,7 +157,7 @@ class DictionarySettingsUiTests(QtTestCase):
         class FakeWebView(QWidget):
             def __init__(self):
                 super().__init__()
-                self.selected_dictionary = None
+                self.picker_opened = False
 
             @staticmethod
             def page():
@@ -170,28 +167,53 @@ class DictionarySettingsUiTests(QtTestCase):
             def _toggle_spellcheck(_enabled):
                 pass
 
-            def _select_language(self, language):
-                self.selected_dictionary = language
+            def _open_spellcheck_language_picker(self):
+                self.picker_opened = True
 
         web_view = FakeWebView()
         menu = QMenu()
-        options = [
-            DictionaryOption("ar_EG", "Arabic (Egypt)"),
-            DictionaryOption("pt_BR", "Portuguese (Brazil)"),
-        ]
-        with patch.object(DictionariesManager, "options", return_value=options):
+        with patch.object(
+            DictionariesManager,
+            "options",
+            side_effect=AssertionError("the context menu must not enumerate dictionaries"),
+        ):
             WebView._add_spellcheck_actions(web_view, menu)
 
-        language_menu = menu.actions()[1].menu()
-        arabic_action, portuguese_action = language_menu.actions()
-        self.assertEqual(arabic_action.text(), "Arabic (Egypt)")
-        self.assertEqual(arabic_action.data(), "ar_EG")
-        self.assertFalse(arabic_action.isChecked())
-        self.assertTrue(portuguese_action.isChecked())
+        spellcheck_action, languages_action = menu.actions()
+        self.assertEqual(spellcheck_action.text(), "Check Spelling")
+        self.assertTrue(spellcheck_action.isCheckable())
+        self.assertEqual(languages_action.text(), "Languages…")
+        self.assertIsNone(languages_action.menu())
+        self.assertEqual(len(menu.actions()), 2)
 
-        arabic_action.trigger()
+        languages_action.trigger()
+        self.assertTrue(web_view.picker_opened)
 
-        self.assertEqual(web_view.selected_dictionary, "ar_EG")
+    def test_browser_languages_action_is_visible_but_disabled_when_off(self):
+        profile = Mock()
+        profile.isSpellCheckEnabled.return_value = False
+
+        class FakeWebView(QWidget):
+            def page(self):
+                page = Mock()
+                page.profile.return_value = profile
+                return page
+
+            @staticmethod
+            def _toggle_spellcheck(_enabled):
+                pass
+
+            @staticmethod
+            def _open_spellcheck_language_picker():
+                pass
+
+        fake = FakeWebView()
+        menu = QMenu()
+
+        WebView._add_spellcheck_actions(fake, menu)
+
+        self.assertEqual(len(menu.actions()), 2)
+        self.assertFalse(menu.actions()[1].isEnabled())
 
 
 if __name__ == "__main__":

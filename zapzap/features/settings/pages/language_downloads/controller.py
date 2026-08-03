@@ -5,6 +5,9 @@ from gettext import gettext as _
 from PyQt6.QtCore import QLocale
 from PyQt6.QtWidgets import QApplication
 
+from zapzap.features.dictionaries.spellcheck_language_picker import (
+    open_spellcheck_language_picker,
+)
 from zapzap.features.settings.pages.language_downloads.model import LanguageDownloadSettingsModel
 from zapzap.features.settings.pages.language_downloads.view import LanguageDownloadSettingsView
 
@@ -22,13 +25,7 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
             self.model.spellcheck_enabled
         )
 
-        self.spell_comboBox.clear()
-        for option in self.model.list_dictionary_options():
-            self.spell_comboBox.addItem(option.label, option.code)
-        current_dictionary = self.model.get_current_dictionary()
-        current_index = self.spell_comboBox.findData(current_dictionary)
-        if current_index >= 0:
-            self.spell_comboBox.setCurrentIndex(current_index)
+        self._update_spellcheck_language_summary()
         self.spellchecker_options_group.setEnabled(
             self.spellchecker_groupBox.checkbox.isChecked()
         )
@@ -47,7 +44,9 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         self.interface_language_comboBox.activated.connect(
             self._handle_interface_language
         )
-        self.spell_comboBox.activated.connect(self._handle_spellcheck)
+        self.btn_select_spell_languages.clicked.connect(
+            self._open_spellcheck_language_picker
+        )
         self.btn_path_spell.clicked.connect(self._handle_path_spell)
         self.btn_default_path_spell.clicked.connect(
             self._handle_default_folder_spell
@@ -131,11 +130,41 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         self.spellchecker_options_group.setEnabled(toggled)
         self._update_browser_spellcheck()
 
-    def _handle_spellcheck(self, _index):
-        language = self.spell_comboBox.currentData()
-        if language:
-            self.model.set_dictionary_language(language)
-            self._update_browser_spellcheck()
+    def _update_spellcheck_language_summary(self):
+        options = {
+            option.code: option.label
+            for option in self.model.list_dictionary_options()
+        }
+        selected = self.model.get_selected_dictionaries()
+        if not selected:
+            summary = _("No dictionary available")
+        elif len(selected) == 1:
+            summary = options.get(selected[0], selected[0])
+        else:
+            summary = _("{language} and {count} more").format(
+                language=options.get(selected[0], selected[0]),
+                count=len(selected) - 1,
+            )
+        self.spell_languages_row.description_label.setText(summary)
+        self.btn_select_spell_languages.setEnabled(bool(options))
+        self.btn_select_spell_languages.setAccessibleDescription(summary)
+
+    def _open_spellcheck_language_picker(self):
+        if open_spellcheck_language_picker(
+            self,
+            on_applied=self._on_spellcheck_languages_applied,
+            on_manage=self.focus_spellchecker_management,
+        ):
+            self._update_spellcheck_language_summary()
+
+    def _on_spellcheck_languages_applied(self):
+        self._update_browser_spellcheck()
+        self._update_spellcheck_language_summary()
+
+    def focus_spellchecker_management(self):
+        """Expose and focus the existing dictionary management controls."""
+        self.ensureWidgetVisible(self.btn_path_spell)
+        self.btn_path_spell.setFocus()
 
     def _handle_path_spell(self):
         new_path = self.model.open_folder_dialog(self)

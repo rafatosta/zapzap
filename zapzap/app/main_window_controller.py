@@ -333,6 +333,11 @@ class MainWindowController(MainWindowView):
         self.open_settings()
         self.app_settings.open_about()
 
+    def open_language_download_settings(self):
+        """Open Settings directly on dictionary and language management."""
+        self.open_settings()
+        return self.app_settings.open_language_downloads()
+
     # === Eventos externos ===
     def xdgOpenChat(self, url):
         """Open chat by clicking on a notification"""

@@ -31,3 +31,4 @@ from .settings_rows import (
     SettingsToggleSwitch,
 )
 from .settings_section import SettingsSection
+from .spellcheck_language_picker_dialog import SpellcheckLanguagePickerDialog

@@ -545,7 +545,10 @@ class BrowserController(BrowserView):
             if i == self.grid_page_index:
                 continue
             page = self.pages.widget(i)
-            page.configure_spellcheck()
+            try:
+                page.configure_spellcheck()
+            except Exception as error:
+                print(f"Unable to update spellcheck for one profile: {error}")
 
     # === Notificações ===
     def update_page_button_number_notifications(self, page_index, number_notifications):

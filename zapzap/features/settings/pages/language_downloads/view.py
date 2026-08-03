@@ -1,11 +1,10 @@
 from gettext import gettext as _
 
-from PyQt6.QtWidgets import QComboBox
-
 from zapzap.ui.primitives import Button
 
 from zapzap.ui.components import (
     SettingsCard,
+    SettingsActionRow,
     SettingsPage,
     SettingsPathRow,
     SettingsSection,
@@ -80,15 +79,14 @@ class LanguageDownloadSettingsView(SettingsPage):
             _("Enable spell checker"),
             _("Use Qt WebEngine spell checking with the selected dictionary."),
         )
-        lang_row = SettingsSelectRow(
-            _("Dictionary language"),
-            _("Recognizes only compiled dictionaries (.bdic)."),
-            [""]
+        self.spell_languages_row = SettingsActionRow(
+            _("Spell checker languages"),
+            _("No dictionary available"),
+            button_text=_("Select…"),
         )
-        self.spell_comboBox = lang_row.combo
-        self.spell_comboBox.setSizeAdjustPolicy(
-            QComboBox.SizeAdjustPolicy.AdjustToContents
-        )
+        self.btn_select_spell_languages = self.spell_languages_row.button
+        self.btn_select_spell_languages.setAccessibleName(
+            _("Select spell checker languages"))
         path_row = SettingsPathRow(
             _("Dictionary directory"),
             _("Note: changing dictionaries may require restarting the browser "),
@@ -102,7 +100,7 @@ class LanguageDownloadSettingsView(SettingsPage):
         path_row.control.layout().addWidget(self.btn_default_path_spell)
         self.spellchecker_options_group = card.add_group(
             self.spellchecker_groupBox,
-            (lang_row, path_row),
+            (self.spell_languages_row, path_row),
         )
         section.add_card(card)
         self.add_section(section)

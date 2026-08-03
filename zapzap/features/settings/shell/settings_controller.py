@@ -100,3 +100,18 @@ class SettingsController(SettingsView):
     def open_about(self):
         """Abre a página Ajuda"""
         self.switch_to_page(self.page_at(self.pages.count() - 1))
+
+    def open_page_type(self, page_type):
+        """Select a registered settings page by its public controller type."""
+        for index in range(self.pages.count()):
+            page = self.page_at(index)
+            if isinstance(page, page_type):
+                self.switch_to_page(page)
+                return page
+        return None
+
+    def open_language_downloads(self):
+        page = self.open_page_type(LanguageDownloadSettingsController)
+        if page is not None:
+            page.focus_spellchecker_management()
+        return page

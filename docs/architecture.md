@@ -125,6 +125,14 @@ consome propriedades desse domínio. Use `SettingsManager` diretamente apenas
 em código legado ou infraestrutura ainda não migrada; não crie uma segunda
 abstração dentro de uma página.
 
+A seleção global do corretor ortográfico é uma lista de até dez códigos
+estáveis em `system/spellCheckLanguages`. `DictionariesManager` descobre os
+dicionários instalados, normaliza a lista, remove duplicatas e itens ausentes e
+migra transparentemente o valor escalar legado `system/spellCheckLanguage`.
+A chave legada não é apagada e continua sincronizada com o primeiro idioma,
+preservando downgrade e `get_current_dict()`. Idiomas recentes ficam, como lista
+ordenada, em `system/recentSpellCheckLanguages`.
+
 Não renomeie chaves persistidas sem migração. Algumas propriedades positivas
 invertem chaves legadas negativas, por exemplo `keep_running_in_background`
 versus `system/quit_in_close` e `donation_message_enabled` versus
@@ -222,6 +230,13 @@ o nome legível e ordenável. Associações conhecidas corrigem nomes fora do
 padrão de locale; dicionários personalizados desconhecidos permanecem visíveis
 pelo basename original.
 
+O menu de contexto do navegador expõe somente a ativação do corretor e a ação
+`Idiomas…`; ele não cria uma ação por dicionário. A view reutilizável
+`SpellcheckLanguagePickerDialog`, em `ui.components`, mantém pesquisa, chips,
+recentes e checkboxes em estado temporário. A feature `dictionaries` coordena a
+persistência somente após `Aplicar`, e tanto o navegador quanto a página
+`Language and Download` abrem esse mesmo fluxo.
+
 ## Funcionalidades transversais
 
 | Área | Responsabilidade principal |
@@ -230,7 +245,7 @@ pelo basename original.
 | `alerts` | diálogos e feedback compartilhados |
 | `browser` | perfis, páginas, sidebar, scripts e navegação |
 | `customizations` | CSS, JavaScript e extensões por escopo |
-| `dictionaries` | descoberta, apresentação e instalação de dicionários WebEngine |
+| `dictionaries` | descoberta, seleção global/migração e instalação de dicionários WebEngine |
 | `downloads` | destino, nome seguro e diálogo de progresso |
 | `initial_setup` | onboarding e persistência das escolhas iniciais |
 | `notifications` | fachada, backends e ativação da janela |

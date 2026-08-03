@@ -15,6 +15,9 @@ from zapzap.features.accounts.domain.user import User
 from zapzap import __user_agent__, __whatsapp_url__
 from zapzap.features.notifications.notification_service import NotificationService
 from zapzap.features.dictionaries.dictionaries_manager import DictionariesManager
+from zapzap.features.dictionaries.spellcheck_language_picker import (
+    open_spellcheck_language_picker,
+)
 from zapzap.features.downloads.download_manager import DownloadManager
 from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.core.diagnostics import crash_handler  # instância global
@@ -272,8 +275,7 @@ class WebView(QWebEngineView):
                 SettingsManager.get("system/spellCheckers", True))
 
             self.profile.setSpellCheckLanguages(
-                [SettingsManager.get("system/spellCheckLanguage",
-                                     DictionariesManager.get_current_dict())]
+                DictionariesManager.get_selected_languages()
             )
 
     def _setup_page(self):
@@ -358,8 +360,6 @@ class WebView(QWebEngineView):
     def _add_spellcheck_actions(self, menu):
         """Adiciona opções de correção ortográfica e seleção de idiomas."""
         profile = self.page().profile()
-        languages = profile.spellCheckLanguages()
-
         # Ação de correção ortográfica
         spellcheck_action = QAction(_("Check Spelling"), self)
         spellcheck_action.setCheckable(True)
@@ -367,17 +367,12 @@ class WebView(QWebEngineView):
         spellcheck_action.toggled.connect(self._toggle_spellcheck)
         menu.addAction(spellcheck_action)
 
-        # Submenu de seleção de idiomas
-        if profile.isSpellCheckEnabled():
-            sub_menu = menu.addMenu(_("Select Language"))
-            for option in DictionariesManager.options():
-                action = sub_menu.addAction(option.label)
-                action.setCheckable(True)
-                action.setData(option.code)
-                action.setChecked(option.code in languages)
-                action.triggered.connect(
-                    lambda _, lang=option.code: self._select_language(lang)
-                )
+        language_action = QAction(_("Languages…"), self)
+        language_action.setEnabled(profile.isSpellCheckEnabled())
+        language_action.setToolTip(
+            _("Choose the languages used by the spell checker."))
+        language_action.triggered.connect(self._open_spellcheck_language_picker)
+        menu.addAction(language_action)
 
     def _toggle_spellcheck(self, toggled):
         """Ativa/desativa a correção ortográfica."""
@@ -385,11 +380,12 @@ class WebView(QWebEngineView):
         SettingsManager.set("system/spellCheckers", toggled)
         QApplication.instance().getWindow().browser.update_spellcheck()
 
-    def _select_language(self, lang):
-        """Seleciona o idioma para correção ortográfica."""
-        print("Linguagem selecionada via menu de contexto:", lang)
-        DictionariesManager.set_lang(lang)
-        QApplication.instance().getWindow().browser.update_spellcheck()
+    def _open_spellcheck_language_picker(self):
+        open_spellcheck_language_picker(
+            self,
+            on_applied=lambda: QApplication.instance()
+            .getWindow().browser.update_spellcheck(),
+        )
 
     def _on_title_changed(self, title):
         """Manipula mudanças no título da página."""

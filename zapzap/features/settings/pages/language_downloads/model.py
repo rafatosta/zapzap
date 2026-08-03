@@ -36,6 +36,9 @@ class LanguageDownloadSettingsModel:
     def get_current_dictionary(self):
         return DictionariesManager.get_current_dict()
 
+    def get_selected_dictionaries(self):
+        return DictionariesManager.get_selected_languages()
+
     def set_dictionary_language(self, language):
         DictionariesManager.set_lang(language)
 
