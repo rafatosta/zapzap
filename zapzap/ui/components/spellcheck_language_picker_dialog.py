@@ -6,10 +6,11 @@ from gettext import gettext as _
 import unicodedata
 
 from PyQt6.QtCore import QLocale, QPoint, QRect, QSize, Qt
-from PyQt6.QtGui import QKeyEvent
+from PyQt6.QtGui import QColor, QKeyEvent
 from PyQt6.QtWidgets import (
     QDialog,
     QFrame,
+    QGraphicsDropShadowEffect,
     QHBoxLayout,
     QLayout,
     QListWidget,
@@ -94,6 +95,8 @@ class SpellcheckLanguagePickerDialog(QDialog):
 
     CODE_ROLE = int(Qt.ItemDataRole.UserRole)
     SEARCH_ROLE = CODE_ROLE + 1
+    OUTER_MARGIN = 14
+    WINDOW_RADIUS = 18
 
     def __init__(
         self,
@@ -123,6 +126,7 @@ class SpellcheckLanguagePickerDialog(QDialog):
         self.setWindowTitle(_("Languages"))
         self.setModal(True)
         self.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.FramelessWindowHint)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground, True)
         self._setup_ui()
         self._apply_style()
         self._populate_languages()
@@ -136,10 +140,29 @@ class SpellcheckLanguagePickerDialog(QDialog):
 
     def _setup_ui(self):
         root = QVBoxLayout(self)
-        root.setContentsMargins(0, 0, 0, 0)
+        root.setContentsMargins(
+            self.OUTER_MARGIN,
+            self.OUTER_MARGIN,
+            self.OUTER_MARGIN,
+            self.OUTER_MARGIN,
+        )
         root.setSpacing(0)
 
-        self.header = QFrame(self)
+        self.window_frame = QFrame(self)
+        self.window_frame.setObjectName("SpellcheckPickerWindowFrame")
+        root.addWidget(self.window_frame)
+
+        shadow = QGraphicsDropShadowEffect(self.window_frame)
+        shadow.setBlurRadius(34)
+        shadow.setOffset(0, 8)
+        shadow.setColor(QColor(0, 0, 0, 75))
+        self.window_frame.setGraphicsEffect(shadow)
+
+        window_layout = QVBoxLayout(self.window_frame)
+        window_layout.setContentsMargins(0, 0, 0, 0)
+        window_layout.setSpacing(0)
+
+        self.header = QFrame(self.window_frame)
         self.header.setObjectName("SpellcheckPickerHeader")
         header_layout = QHBoxLayout(self.header)
         header_layout.setContentsMargins(22, 16, 18, 16)
@@ -149,9 +172,10 @@ class SpellcheckLanguagePickerDialog(QDialog):
         header_layout.addWidget(self.title_label)
         header_layout.addStretch(1)
         header_layout.addWidget(self.close_button)
-        root.addWidget(self.header)
+        window_layout.addWidget(self.header)
 
-        content = QWidget(self)
+        content = QWidget(self.window_frame)
+        content.setObjectName("SpellcheckPickerContent")
         content_layout = QVBoxLayout(content)
         content_layout.setContentsMargins(26, 18, 26, 18)
         content_layout.setSpacing(10)
@@ -240,9 +264,9 @@ class SpellcheckLanguagePickerDialog(QDialog):
         no_dict_layout.addWidget(no_dict_description)
         self.no_dictionaries.hide()
         content_layout.addWidget(self.no_dictionaries, 1)
-        root.addWidget(content, 1)
+        window_layout.addWidget(content, 1)
 
-        footer = QFrame(self)
+        footer = QFrame(self.window_frame)
         footer.setObjectName("SpellcheckPickerFooter")
         footer_layout = QHBoxLayout(footer)
         footer_layout.setContentsMargins(22, 14, 22, 14)
@@ -259,18 +283,23 @@ class SpellcheckLanguagePickerDialog(QDialog):
         footer_layout.addStretch(1)
         footer_layout.addWidget(self.cancel_button)
         footer_layout.addWidget(self.apply_button)
-        root.addWidget(footer)
+        window_layout.addWidget(footer)
 
     def _apply_style(self):
         self.setStyleSheet("""
             QDialog#SpellcheckLanguagePickerDialog {
-                background: palette(window);
+                background: transparent;
                 color: palette(text);
-                border: 1px solid palette(mid);
-                border-radius: 14px;
             }
-            QFrame#SpellcheckPickerHeader, QFrame#SpellcheckPickerFooter {
-                background: palette(button);
+            QFrame#SpellcheckPickerWindowFrame {
+                background: palette(window);
+                border: 1px solid palette(mid);
+                border-radius: %dpx;
+            }
+            QFrame#SpellcheckPickerHeader,
+            QFrame#SpellcheckPickerFooter,
+            QWidget#SpellcheckPickerContent {
+                background: transparent;
                 border: 0;
             }
             QListWidget#SpellcheckLanguageList {
@@ -296,7 +325,7 @@ class SpellcheckLanguagePickerDialog(QDialog):
             QLabel#SpellcheckPickerFeedback {
                 color: palette(highlight);
             }
-        """)
+        """ % self.WINDOW_RADIUS)
 
     @staticmethod
     def _search_key(value):

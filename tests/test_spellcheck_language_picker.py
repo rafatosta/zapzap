@@ -4,7 +4,7 @@ import tempfile
 from unittest.mock import Mock, patch
 
 from PyQt6.QtCore import QSettings, Qt
-from PyQt6.QtWidgets import QDialog, QPushButton
+from PyQt6.QtWidgets import QDialog, QGraphicsDropShadowEffect, QPushButton
 
 from qt_test_case import QtTestCase
 from zapzap.core.config.settings_manager import SettingsManager
@@ -213,6 +213,25 @@ class SpellcheckLanguagePickerUiTests(QtTestCase):
         )
         self.assertTrue(dialog.search_edit.accessibleName())
         self.assertTrue(dialog.language_list.accessibleDescription())
+
+    def test_dialog_uses_the_shared_rounded_frameless_window_treatment(self):
+        dialog = self.make_dialog()
+
+        self.assertTrue(
+            dialog.testAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        )
+        self.assertEqual(
+            dialog.window_frame.objectName(),
+            "SpellcheckPickerWindowFrame",
+        )
+        self.assertIsInstance(
+            dialog.window_frame.graphicsEffect(),
+            QGraphicsDropShadowEffect,
+        )
+        self.assertIn(
+            f"border-radius: {dialog.WINDOW_RADIUS}px",
+            dialog.styleSheet(),
+        )
 
 
 class SpellcheckLanguagePickerIntegrationTests(QtTestCase):
