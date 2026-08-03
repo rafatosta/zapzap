@@ -60,18 +60,20 @@ class FakeLanguageDownloadSettingsModel:
     def __init__(self):
         self.spellcheck_enabled = True
         self.saved_dictionary = None
+        self.current_dictionary = "pt_BR"
+        self.dictionary_options = [
+            DictionaryOption("ar_EG", "Arabic (Egypt)"),
+            DictionaryOption("pt_BR", "Portuguese (Brazil)"),
+        ]
 
     def get_dictionaries_path(self):
         return "/dictionaries"
 
     def list_dictionary_options(self):
-        return [
-            DictionaryOption("ar_EG", "Arabic (Egypt)"),
-            DictionaryOption("pt_BR", "Portuguese (Brazil)"),
-        ]
+        return self.dictionary_options
 
     def get_current_dictionary(self):
-        return "pt_BR"
+        return self.current_dictionary
 
     def get_download_path(self):
         return "/downloads"
@@ -107,6 +109,32 @@ class DictionarySettingsUiTests(QtTestCase):
 
         self.assertEqual(model.saved_dictionary, "ar_EG")
         page._update_browser_spellcheck.assert_called_once_with()
+
+    def test_settings_combo_recalculates_width_after_dictionary_folder_change(self):
+        model = FakeLanguageDownloadSettingsModel()
+        with patch(
+            "zapzap.features.settings.pages.language_downloads.controller."
+            "LanguageDownloadSettingsModel",
+            return_value=model,
+        ):
+            page = LanguageDownloadSettingsController()
+
+        page.show()
+        self.app.processEvents()
+        initial_width = page.spell_comboBox.sizeHint().width()
+
+        model.current_dictionary = "custom_dictionary"
+        model.dictionary_options = [
+            DictionaryOption(
+                "custom_dictionary",
+                "A customized dictionary with a substantially longer name",
+            )
+        ]
+        page._load_settings()
+        self.app.processEvents()
+
+        self.assertGreater(page.spell_comboBox.sizeHint().width(), initial_width)
+        self.assertEqual(page.spell_comboBox.currentData(), "custom_dictionary")
 
     def test_browser_menu_displays_labels_but_selects_dictionary_code(self):
         class FakeProfile:

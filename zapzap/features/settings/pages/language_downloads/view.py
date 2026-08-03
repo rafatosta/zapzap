@@ -1,5 +1,7 @@
 from gettext import gettext as _
 
+from PyQt6.QtWidgets import QComboBox
+
 from zapzap.ui.primitives import Button
 
 from zapzap.ui.components import (
@@ -84,6 +86,9 @@ class LanguageDownloadSettingsView(SettingsPage):
             [""]
         )
         self.spell_comboBox = lang_row.combo
+        self.spell_comboBox.setSizeAdjustPolicy(
+            QComboBox.SizeAdjustPolicy.AdjustToContents
+        )
         path_row = SettingsPathRow(
             _("Dictionary directory"),
             _("Note: changing dictionaries may require restarting the browser "),
