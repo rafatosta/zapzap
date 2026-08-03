@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-31 19:49-0300\n"
+"POT-Creation-Date: 2026-08-02 21:19-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: German\n"
@@ -251,11 +251,11 @@ msgid "Select folder"
 msgstr "Ordner auswählen"
 
 #: zapzap/features/initial_setup/controller.py:126
-#: zapzap/features/settings/pages/language_downloads/controller.py:60
+#: zapzap/features/settings/pages/language_downloads/controller.py:64
 msgid "System default"
 msgstr "Systemstandard"
 
-#: zapzap/features/initial_setup/controller.py:155
+#: zapzap/features/initial_setup/controller.py:158
 msgid "English"
 msgstr "Englisch"
 
@@ -328,17 +328,17 @@ msgstr ""
 "visuellen Thema."
 
 #: zapzap/features/initial_setup/view.py:143
-#: zapzap/features/settings/pages/language_downloads/view.py:34
+#: zapzap/features/settings/pages/language_downloads/view.py:36
 msgid "Language"
 msgstr "Sprache"
 
 #: zapzap/features/initial_setup/view.py:144
-#: zapzap/features/settings/pages/language_downloads/view.py:35
+#: zapzap/features/settings/pages/language_downloads/view.py:37
 msgid "Choose the interface language used by ZapZap."
 msgstr "Wählen Sie die von ZapZap verwendete Schnittstellensprache."
 
 #: zapzap/features/initial_setup/view.py:149
-#: zapzap/features/settings/pages/language_downloads/view.py:39
+#: zapzap/features/settings/pages/language_downloads/view.py:41
 msgid "Interface language"
 msgstr "Schnittstellensprache"
 
@@ -565,17 +565,17 @@ msgstr ""
 "Rechtschreibprüfung, wenn Wörterbücher verfügbar sind."
 
 #: zapzap/features/initial_setup/view.py:330
-#: zapzap/features/settings/pages/language_downloads/view.py:52
+#: zapzap/features/settings/pages/language_downloads/view.py:54
 msgid "Downloads"
 msgstr "Downloads"
 
 #: zapzap/features/initial_setup/view.py:331
-#: zapzap/features/settings/pages/language_downloads/view.py:53
+#: zapzap/features/settings/pages/language_downloads/view.py:55
 msgid "Choose where downloaded files are saved."
 msgstr "Wählen Sie, wo heruntergeladene Dateien gespeichert werden."
 
 #: zapzap/features/initial_setup/view.py:336
-#: zapzap/features/settings/pages/language_downloads/view.py:57
+#: zapzap/features/settings/pages/language_downloads/view.py:59
 msgid "Download directory"
 msgstr "Verzeichnis herunterladen"
 
@@ -590,35 +590,35 @@ msgid "Choose folder"
 msgstr "Ordner auswählen"
 
 #: zapzap/features/initial_setup/view.py:348
-#: zapzap/features/settings/pages/language_downloads/view.py:73
+#: zapzap/features/settings/pages/language_downloads/view.py:75
 msgid "Spell checker"
 msgstr "Rechtschreibprüfung"
 
 #: zapzap/features/initial_setup/view.py:349
-#: zapzap/features/settings/pages/language_downloads/view.py:74
+#: zapzap/features/settings/pages/language_downloads/view.py:76
 msgid "Select compiled dictionaries and where ZapZap should look for them."
 msgstr ""
 "Wählen Sie kompilierte Wörterbücher aus und wo ZapZap nach ihnen suchen soll."
 
 #: zapzap/features/initial_setup/view.py:354
-#: zapzap/features/settings/pages/language_downloads/view.py:78
+#: zapzap/features/settings/pages/language_downloads/view.py:80
 msgid "Enable spell checker"
 msgstr "Aktivieren Sie die Rechtschreibprüfung"
 
 #: zapzap/features/initial_setup/view.py:355
-#: zapzap/features/settings/pages/language_downloads/view.py:79
+#: zapzap/features/settings/pages/language_downloads/view.py:81
 msgid "Use Qt WebEngine spell checking with the selected dictionary."
 msgstr ""
 "Verwenden Sie die Rechtschreibprüfung von Qt WebEngine mit dem ausgewählten "
 "Wörterbuch."
 
 #: zapzap/features/initial_setup/view.py:358
-#: zapzap/features/settings/pages/language_downloads/view.py:82
+#: zapzap/features/settings/pages/language_downloads/view.py:84
 msgid "Dictionary language"
 msgstr "Wörterbuchsprache"
 
 #: zapzap/features/initial_setup/view.py:359
-#: zapzap/features/settings/pages/language_downloads/view.py:83
+#: zapzap/features/settings/pages/language_downloads/view.py:85
 msgid "Recognizes only compiled dictionaries (.bdic)."
 msgstr "Erkennt nur kompilierte Wörterbücher (.bdic)."
 
@@ -976,7 +976,7 @@ msgid "System and startup"
 msgstr "System und Start"
 
 #: zapzap/features/settings/shell/settings_controller.py:46
-#: zapzap/features/settings/pages/language_downloads/view.py:20
+#: zapzap/features/settings/pages/language_downloads/view.py:22
 msgid "Language and Download"
 msgstr "Sprache und Download"
 
@@ -2018,39 +2018,39 @@ msgstr "Diagnose kopiert"
 msgid "Details copied"
 msgstr "Details kopiert"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:21
+#: zapzap/features/settings/pages/language_downloads/view.py:23
 msgid "Manage interface language, downloads folder and spell checker."
 msgstr ""
 "Verwalten Sie die Sprache der Benutzeroberfläche, den Download-Ordner und "
 "die Rechtschreibprüfung."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:40
+#: zapzap/features/settings/pages/language_downloads/view.py:42
 msgid "The interface language is applied immediately."
 msgstr "Die Oberflächensprache wird sofort angewendet."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:58
+#: zapzap/features/settings/pages/language_downloads/view.py:60
 msgid "Set a custom folder or restore the default download location."
 msgstr ""
 "Legen Sie einen benutzerdefinierten Ordner fest oder stellen Sie den "
 "Standard-Download-Speicherort wieder her."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:59
-#: zapzap/features/settings/pages/language_downloads/view.py:90
+#: zapzap/features/settings/pages/language_downloads/view.py:61
+#: zapzap/features/settings/pages/language_downloads/view.py:95
 msgid "Define"
 msgstr "Definieren"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:65
-#: zapzap/features/settings/pages/language_downloads/view.py:96
+#: zapzap/features/settings/pages/language_downloads/view.py:67
+#: zapzap/features/settings/pages/language_downloads/view.py:101
 #: zapzap/features/settings/pages/network_privacy/controller.py:335
 #: zapzap/features/settings/pages/performance_experimental/view.py:248
 msgid "Restore"
 msgstr "Wiederherstellen"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:88
+#: zapzap/features/settings/pages/language_downloads/view.py:93
 msgid "Dictionary directory"
 msgstr "Wörterbuchverzeichnis"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:89
+#: zapzap/features/settings/pages/language_downloads/view.py:94
 msgid "Note: changing dictionaries may require restarting the browser "
 msgstr ""
 "Hinweis: Um Wörterbücher zu ändern, ist möglicherweise ein Neustart des "
@@ -3029,56 +3029,56 @@ msgstr "Aktivieren"
 msgid "Not now"
 msgstr "Nicht jetzt"
 
-#: zapzap/features/browser/web/page_controller.py:206
+#: zapzap/features/browser/web/page_controller.py:203
 msgid "Please enter the phone number with country code (e.g., +5511999999999):"
 msgstr ""
 "Bitte geben Sie die Telefonnummer mit Ländervorwahl ein (z. B. "
 "+5511999999999):"
 
-#: zapzap/features/browser/web/page_controller.py:210
+#: zapzap/features/browser/web/page_controller.py:207
 msgid ""
 "Invalid number! Please enter at least 9 digits, including the country code."
 msgstr ""
 "Ungültige Nummer!Bitte geben Sie mindestens 9 Ziffern ein, einschließlich "
 "der Landesvorwahl."
 
-#: zapzap/features/browser/web/page_controller.py:274
+#: zapzap/features/browser/web/page_controller.py:271
 msgid "your microphone"
 msgstr "Ihr Mikrofon"
 
-#: zapzap/features/browser/web/page_controller.py:275
+#: zapzap/features/browser/web/page_controller.py:272
 msgid "your camera"
 msgstr "Ihre Kamera"
 
-#: zapzap/features/browser/web/page_controller.py:276
+#: zapzap/features/browser/web/page_controller.py:273
 msgid "your camera and microphone"
 msgstr "Ihre Kamera und Ihr Mikrofon"
 
-#: zapzap/features/browser/web/page_controller.py:277
+#: zapzap/features/browser/web/page_controller.py:274
 msgid "your location"
 msgstr "Ihr Standort"
 
-#: zapzap/features/browser/web/page_controller.py:278
+#: zapzap/features/browser/web/page_controller.py:275
 msgid "your screen contents"
 msgstr "Ihren Bildschirminhalt"
 
-#: zapzap/features/browser/web/page_controller.py:279
+#: zapzap/features/browser/web/page_controller.py:276
 msgid "your screen contents and audio"
 msgstr "Ihre Bildschirminhalte und Audio"
 
-#: zapzap/features/browser/web/page_controller.py:280
+#: zapzap/features/browser/web/page_controller.py:277
 msgid "mouse lock"
 msgstr "Maussperre"
 
-#: zapzap/features/browser/web/page_controller.py:282
+#: zapzap/features/browser/web/page_controller.py:279
 msgid "a system feature"
 msgstr "eine Systemfunktion"
 
-#: zapzap/features/browser/web/page_controller.py:286
+#: zapzap/features/browser/web/page_controller.py:283
 msgid "Permission request"
 msgstr "Erlaubnisanfrage"
 
-#: zapzap/features/browser/web/page_controller.py:287
+#: zapzap/features/browser/web/page_controller.py:284
 #, python-brace-format
 msgid ""
 "WhatsApp Web is requesting access to {}.\n"
@@ -3130,12 +3130,12 @@ msgstr "Rechtschreibung überprüfen"
 msgid "Select Language"
 msgstr "Sprache auswählen"
 
-#: zapzap/features/browser/web/web_view.py:578
+#: zapzap/features/browser/web/web_view.py:579
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "Konto"
 
-#: zapzap/features/browser/web/web_view.py:580
+#: zapzap/features/browser/web/web_view.py:581
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"
