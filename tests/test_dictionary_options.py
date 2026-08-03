@@ -18,6 +18,12 @@ from zapzap.features.settings.pages.language_downloads.controller import (
 
 class DictionaryOptionsTests(unittest.TestCase):
 
+    def test_type_annotations_do_not_resolve_list_as_the_manager_method(self):
+        self.assertEqual(
+            DictionariesManager.options.__annotations__["return"],
+            "list[DictionaryOption]",
+        )
+
     def test_options_are_readable_and_sorted_without_filtering_custom_names(self):
         with (
             patch.object(DictionariesManager, "get_path", return_value="/dictionaries"),
