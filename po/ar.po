@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-02 22:05-0300\n"
+"POT-Creation-Date: 2026-08-05 18:39-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Arabic\n"
@@ -141,7 +141,7 @@ msgid "The account \"{name}\" will be removed from ZapZap."
 msgstr "سيُزال الحساب \"{name}\" من ZapZap."
 
 #: zapzap/features/accounts/card_user_controller.py:158
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:197
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:191
 #: zapzap/features/settings/pages/network_privacy/controller.py:58
 #: zapzap/ui/components/card_user.py:234 zapzap/ui/components/card_user.py:299
 #: zapzap/ui/components/card_user.py:469 zapzap/ui/components/card_user.py:684
@@ -162,7 +162,7 @@ msgid "Remove"
 msgstr "إزالة"
 
 #: zapzap/features/accounts/card_user_controller.py:173
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:648
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:642
 #: zapzap/features/settings/pages/network_privacy/controller.py:293
 #: zapzap/features/settings/pages/network_privacy/controller.py:341
 #: zapzap/features/downloads/ui/download_dialog.py:120
@@ -245,7 +245,7 @@ msgstr "لا تظهر مرة أخرى"
 msgid "Learn more about ZapZap ↗"
 msgstr "تعرف على المزيد حول ZapZap ↗"
 
-#: zapzap/features/downloads/download_manager.py:92
+#: zapzap/features/downloads/download_manager.py:100
 msgid "Select folder"
 msgstr "حدد المجلد"
 
@@ -275,7 +275,7 @@ msgid "Basics"
 msgstr "الأساسيات"
 
 #: zapzap/features/initial_setup/view.py:106
-#: zapzap/features/settings/shell/settings_controller.py:43
+#: zapzap/features/settings/shell/settings_controller.py:134
 #: zapzap/features/settings/pages/notifications/view.py:19
 #: zapzap/features/settings/pages/notifications/view.py:33
 msgid "Notifications"
@@ -292,7 +292,7 @@ msgstr "ملفات"
 
 #: zapzap/features/initial_setup/view.py:109
 #: zapzap/features/initial_setup/view.py:378
-#: zapzap/features/settings/shell/settings_controller.py:44
+#: zapzap/features/settings/shell/settings_controller.py:140
 #: zapzap/features/settings/pages/permissions/view.py:22
 msgid "Permissions"
 msgstr "الأذونات"
@@ -794,6 +794,7 @@ msgstr "الملف الشخصي والحالة"
 #: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
 #: zapzap/features/tray/sys_tray_manager.py:54
 #: zapzap/features/settings/shell/settings_sidebar.py:61
+#: zapzap/features/settings/shell/settings_controller.py:236
 #: zapzap/ui/components/main_window.py:143
 msgid "Settings"
 msgstr "الإعدادات"
@@ -890,7 +891,7 @@ msgid "New conversation by phone number"
 msgstr "محادثة جديدة برقم الهاتف"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:285
+#: zapzap/features/browser/shell/browser_controller.py:399
 #: zapzap/ui/components/browser_sidebar.py:145
 msgid "New account"
 msgstr "حساب جديد"
@@ -918,55 +919,6 @@ msgstr "تبرَّع"
 msgid "Quit"
 msgstr "غادِر"
 
-#: zapzap/features/settings/shell/settings_view.py:32
-msgid "Donate"
-msgstr "تبرع"
-
-#: zapzap/features/settings/shell/settings_controller.py:41
-#: zapzap/features/settings/pages/accounts/view.py:17
-msgid "Accounts"
-msgstr "الحسابات"
-
-#: zapzap/features/settings/shell/settings_controller.py:42
-#: zapzap/features/settings/pages/appearance/view.py:21
-msgid "Appearance"
-msgstr "المظهر"
-
-#: zapzap/features/settings/shell/settings_controller.py:45
-#: zapzap/features/settings/pages/system_startup/view.py:22
-msgid "System and startup"
-msgstr "النظام وبدء التشغيل"
-
-#: zapzap/features/settings/shell/settings_controller.py:46
-#: zapzap/features/settings/pages/language_downloads/view.py:21
-msgid "Language and Download"
-msgstr "اللغة والتحميل"
-
-#: zapzap/features/settings/shell/settings_controller.py:47
-#: zapzap/features/settings/pages/network_privacy/view.py:149
-msgid "Privacy and Network"
-msgstr "الخصوصية والشبكة"
-
-#: zapzap/features/settings/shell/settings_controller.py:48
-msgid "Advanced Customizations"
-msgstr "التخصيصات المتقدمة"
-
-#: zapzap/features/settings/shell/settings_controller.py:50
-#: zapzap/features/settings/pages/performance_experimental/view.py:19
-msgid "Performance experimental"
-msgstr "الأداء تجريبي"
-
-#: zapzap/features/settings/shell/settings_controller.py:51
-#: zapzap/features/settings/pages/debugging/view.py:159
-msgid "Debugging"
-msgstr "تصحيح الأخطاء"
-
-#: zapzap/features/settings/shell/settings_controller.py:53
-#: zapzap/features/settings/pages/about/view.py:238
-#: zapzap/ui/components/main_window.py:172
-msgid "About"
-msgstr "حول"
-
 #: zapzap/features/settings/shell/settings_sidebar.py:64
 msgid "Adjust accounts, appearance, notifications and advanced options."
 msgstr "ضبط الحسابات والمظهر والإشعارات والخيارات المتقدمة."
@@ -974,6 +926,118 @@ msgstr "ضبط الحسابات والمظهر والإشعارات والخيا
 #: zapzap/features/settings/shell/settings_sidebar.py:69
 msgid "Close settings"
 msgstr "إغلاق الإعدادات"
+
+#: zapzap/features/settings/shell/settings_view.py:32
+msgid "Donate"
+msgstr "تبرع"
+
+#: zapzap/features/settings/shell/settings_controller.py:122
+#: zapzap/features/settings/pages/accounts/view.py:17
+msgid "Accounts"
+msgstr "الحسابات"
+
+#: zapzap/features/settings/shell/settings_controller.py:128
+#: zapzap/features/settings/pages/appearance/view.py:21
+msgid "Appearance"
+msgstr "المظهر"
+
+#: zapzap/features/settings/shell/settings_controller.py:146
+#: zapzap/features/settings/pages/system_startup/view.py:22
+msgid "System and startup"
+msgstr "النظام وبدء التشغيل"
+
+#: zapzap/features/settings/shell/settings_controller.py:152
+#: zapzap/features/settings/pages/language_downloads/view.py:21
+msgid "Language and Download"
+msgstr "اللغة والتحميل"
+
+#: zapzap/features/settings/shell/settings_controller.py:158
+#: zapzap/features/settings/pages/network_privacy/view.py:149
+msgid "Privacy and Network"
+msgstr "الخصوصية والشبكة"
+
+#: zapzap/features/settings/shell/settings_controller.py:164
+msgid "Advanced Customizations"
+msgstr "التخصيصات المتقدمة"
+
+#: zapzap/features/settings/shell/settings_controller.py:170
+#: zapzap/features/settings/pages/performance_experimental/view.py:19
+msgid "Performance experimental"
+msgstr "الأداء تجريبي"
+
+#: zapzap/features/settings/shell/settings_controller.py:176
+#: zapzap/features/settings/pages/debugging/view.py:159
+msgid "Debugging"
+msgstr "تصحيح الأخطاء"
+
+#: zapzap/features/settings/shell/settings_controller.py:182
+#: zapzap/features/settings/pages/about/view.py:238
+#: zapzap/ui/components/main_window.py:172
+msgid "About"
+msgstr "حول"
+
+#: zapzap/features/settings/pages/about/controller.py:53
+#: zapzap/features/settings/pages/about/view.py:311
+#: zapzap/features/settings/pages/about/view.py:315
+msgid "Copy system information"
+msgstr "نسخ معلومات النظام"
+
+#: zapzap/features/settings/pages/about/controller.py:58
+#: zapzap/features/settings/pages/about/view.py:284
+msgid "License"
+msgstr "الترخيص"
+
+#: zapzap/features/settings/pages/about/controller.py:60
+#, python-brace-format
+msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
+msgstr "ZapZap هو برنامج مجاني مرخص بموجب {license_id} (GPL-3.0 أو الأحدث)."
+
+#: zapzap/features/settings/pages/about/controller.py:68
+#: zapzap/features/settings/pages/about/view.py:289
+msgid "Credits and contributors"
+msgstr "الاعتمادات والمساهمين"
+
+#: zapzap/features/settings/pages/about/controller.py:70
+#, python-brace-format
+msgid ""
+"Created and maintained by {author}. Thanks to everyone who contributes "
+"translations, code, testing, and feedback."
+msgstr ""
+"تم الإنشاء والصيانة بواسطة {author}.شكرًا لكل من ساهم في الترجمات والتعليمات "
+"البرمجية والاختبارات والتعليقات."
+
+#: zapzap/features/settings/pages/about/model.py:62
+msgid "Version"
+msgstr "الإصدار"
+
+#: zapzap/features/settings/pages/about/model.py:67
+#: zapzap/features/settings/pages/about/model.py:91
+#: zapzap/features/settings/pages/debugging/view.py:375
+msgid "Channel"
+msgstr "قناة"
+
+#: zapzap/features/settings/pages/about/model.py:68
+#: zapzap/features/settings/pages/about/model.py:90
+#: zapzap/features/settings/pages/debugging/view.py:374
+msgid "Packaging"
+msgstr "التعبئة والتغليف"
+
+#: zapzap/features/settings/pages/about/model.py:69
+msgid "Provider"
+msgstr "مزود"
+
+#: zapzap/features/settings/pages/about/model.py:70
+msgid "Repository"
+msgstr "مستودع"
+
+#: zapzap/features/settings/pages/about/model.py:88
+#: zapzap/features/settings/pages/debugging/view.py:379
+msgid "System"
+msgstr "النظام"
+
+#: zapzap/features/settings/pages/about/model.py:89
+msgid "Session"
+msgstr "جلسة"
 
 #: zapzap/features/settings/pages/about/view.py:37
 msgid "ZapZap application icon"
@@ -1024,22 +1088,6 @@ msgstr "دعم المشروع"
 msgid "Help sustain ZapZap development."
 msgstr "ساعد في الحفاظ على تطوير ZapZap."
 
-#: zapzap/features/settings/pages/about/view.py:284
-#: zapzap/features/settings/pages/about/controller.py:58
-msgid "License"
-msgstr "الترخيص"
-
-#: zapzap/features/settings/pages/about/view.py:289
-#: zapzap/features/settings/pages/about/controller.py:68
-msgid "Credits and contributors"
-msgstr "الاعتمادات والمساهمين"
-
-#: zapzap/features/settings/pages/about/view.py:311
-#: zapzap/features/settings/pages/about/view.py:315
-#: zapzap/features/settings/pages/about/controller.py:53
-msgid "Copy system information"
-msgstr "نسخ معلومات النظام"
-
 #: zapzap/features/settings/pages/about/view.py:325
 msgid ""
 "ZapZap is an independent project and is not affiliated with WhatsApp or Meta."
@@ -1048,53 +1096,6 @@ msgstr "ZapZap هو مشروع مستقل وغير تابع لـ WhatsApp أو M
 #: zapzap/features/settings/pages/about/view.py:343
 msgid "Information copied"
 msgstr "تم نسخ المعلومات"
-
-#: zapzap/features/settings/pages/about/model.py:62
-msgid "Version"
-msgstr "الإصدار"
-
-#: zapzap/features/settings/pages/about/model.py:67
-#: zapzap/features/settings/pages/about/model.py:91
-#: zapzap/features/settings/pages/debugging/view.py:375
-msgid "Channel"
-msgstr "قناة"
-
-#: zapzap/features/settings/pages/about/model.py:68
-#: zapzap/features/settings/pages/about/model.py:90
-#: zapzap/features/settings/pages/debugging/view.py:374
-msgid "Packaging"
-msgstr "التعبئة والتغليف"
-
-#: zapzap/features/settings/pages/about/model.py:69
-msgid "Provider"
-msgstr "مزود"
-
-#: zapzap/features/settings/pages/about/model.py:70
-msgid "Repository"
-msgstr "مستودع"
-
-#: zapzap/features/settings/pages/about/model.py:88
-#: zapzap/features/settings/pages/debugging/view.py:379
-msgid "System"
-msgstr "النظام"
-
-#: zapzap/features/settings/pages/about/model.py:89
-msgid "Session"
-msgstr "جلسة"
-
-#: zapzap/features/settings/pages/about/controller.py:60
-#, python-brace-format
-msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
-msgstr "ZapZap هو برنامج مجاني مرخص بموجب {license_id} (GPL-3.0 أو الأحدث)."
-
-#: zapzap/features/settings/pages/about/controller.py:70
-#, python-brace-format
-msgid ""
-"Created and maintained by {author}. Thanks to everyone who contributes "
-"translations, code, testing, and feedback."
-msgstr ""
-"تم الإنشاء والصيانة بواسطة {author}.شكرًا لكل من ساهم في الترجمات والتعليمات "
-"البرمجية والاختبارات والتعليقات."
 
 #: zapzap/features/settings/pages/accounts/view.py:18
 msgid "Manage your accounts and individual preferences."
@@ -1137,274 +1138,274 @@ msgstr "هذا الحساب"
 msgid "Unsaved changes discarded."
 msgstr "تم تجاهل التغييرات غير المحفوظة."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:199
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:193
 #, python-brace-format
 msgid "Current account: {} ({})"
 msgstr "الحساب الحالي: {} ({})"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:203
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:197
 msgid "Current account: unavailable"
 msgstr "الحساب الجاري: غير متوفر"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:209
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:203
 msgid "Changes to the previous scope were saved."
 msgstr "تم حفظ التغييرات التي تم إجراؤها على النطاق السابق."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:296
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:290
 #, python-brace-format
 msgid "CSS file enabled: {}"
 msgstr "تم تمكين الملف CSS: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:296
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:290
 #, python-brace-format
 msgid "CSS file disabled: {}"
 msgstr "تم تعطيل الملف CSS: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:299
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:293
 #, python-brace-format
 msgid "JavaScript file enabled: {}"
 msgstr "تم تمكين الملف JavaScript: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:301
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:295
 #, python-brace-format
 msgid "JavaScript file disabled: {}"
 msgstr "تم تعطيل الملف JavaScript: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:307
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:323
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:301
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:317
 msgid "This userstyle does not target WhatsApp Web."
 msgstr "نمط المستخدم هذا لا يستهدف WhatsApp Web."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:314
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:308
 msgid "Only HTTPS URLs are allowed."
 msgstr "يُسمح فقط بعناوين URL HTTPS."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:318
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:312
 msgid "Download is too large."
 msgstr "التنزيل كبير جدًا."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:327
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:321
 msgid "Could not download CSS from URL."
 msgstr "تعذر تنزيل CSS من عنوان URL."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:329
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:323
 msgid "Could not download JavaScript from URL."
 msgstr "تعذر تنزيل JavaScript من عنوان URL."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:341
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:335
 msgid "Select a file first."
 msgstr "حدد ملفًا أولاً."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:373
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:412
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:367
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:406
 msgid "Select a CSS file to preview."
 msgstr "حدد ملف CSS لمعاينته."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:422
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:416
 msgid "No preview available."
 msgstr "لا توجد معاينة متاحة."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:429
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:423
 #: zapzap/ui/components/edit_account_dialog.py:660
 msgid "Could not load preview image."
 msgstr "تعذر تحميل صورة المعاينة."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:459
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:453
 msgid "Enter a CSS HTTPS URL."
 msgstr "أدخل عنوان URL HTTPS CSS."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:461
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:455
 msgid "Enter a JavaScript HTTPS URL."
 msgstr "أدخل عنوان URL HTTPS JavaScript."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:481
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:491
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:475
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:485
 #, python-brace-format
 msgid "File imported: {}"
 msgstr "الملف المستورد: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:495
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:489
 #, python-brace-format
 msgid "File imported: {}. No preview found, upload one manually."
 msgstr "الملف المستورد: {}.لم يتم العثور على معاينة، قم بتحميل واحدة يدويًا."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:506
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:500
 msgid "Select preview image"
 msgstr "حدد صورة المعاينة"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:522
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:516
 msgid "Could not set preview image."
 msgstr "لا يمكن تعيين صورة المعاينة."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:526
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:520
 #: zapzap/ui/components/edit_account_dialog.py:679
 msgid "Preview image updated."
 msgstr "تم تحديث صورة المعاينة."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:532
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:526
 msgid "Import from URL"
 msgstr "استيراد من URL"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:543
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:537
 msgid "https://example.com/theme.user.css"
 msgstr "https://example.com/theme.user.css"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:545
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:539
 msgid "https://example.com/script.js"
 msgstr "https://example.com/script.js"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:549
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:543
 #, python-brace-format
 msgid "Optional file name (e.g. 10-custom.{})"
 msgstr "اسم ملف اختياري (على سبيل المثال، 10-custom.{})"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:552
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:546
 msgid "URL"
 msgstr "عنوان URL"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:553
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:617
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:547
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:611
 msgid "File name"
 msgstr "اسم الملف"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:608
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:602
 msgid "Edit the stylesheet content and choose the file name."
 msgstr "قم بتحرير محتوى ورقة الأنماط واختر اسم الملف."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:610
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:604
 msgid "Edit the script content and choose the file name."
 msgstr "قم بتحرير محتوى البرنامج النصي واختيار اسم الملف."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:620
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:614
 #, python-brace-format
 msgid "custom.{}"
 msgstr "مخصص.{}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:625
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:619
 msgid "CSS code"
 msgstr "الكود CSS."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:627
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:621
 msgid "JavaScript code"
 msgstr "الكود JavaScript."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:647
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:641
 msgid "Ctrl+S to save"
 msgstr "Ctrl+S to save"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:649
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:643
 #: zapzap/features/settings/pages/advanced_customizations/view.py:418
 #: zapzap/features/downloads/ui/download_dialog.py:103
 #: zapzap/ui/components/edit_account_dialog.py:458
 msgid "Save"
 msgstr "احفظ"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:676
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:670
 msgid "Select file"
 msgstr "حدد الملف"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:694
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:688
 msgid "Could not import file."
 msgstr "تعذر استيراد الملف."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:698
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:692
 msgid "File imported successfully."
 msgstr "تم استيراد الملف بنجاح."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:730
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:724
 msgid "Create file"
 msgstr "إنشاء ملف"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:738
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:789
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:732
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:783
 msgid "File name cannot be empty."
 msgstr "لا يمكن أن يكون اسم الملف فارغًا."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:751
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:745
 msgid "Could not create file."
 msgstr "لا يمكن إنشاء الملف."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:755
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:749
 #, python-brace-format
 msgid "File created: {}"
 msgstr "تم إنشاء الملف: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:774
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:768
 msgid "Could not open file for editing."
 msgstr "لا يمكن فتح الملف للتحرير."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:777
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:771
 #, python-brace-format
 msgid "Edit CSS: {}"
 msgstr "تعديل CSS: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:778
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:772
 #, python-brace-format
 msgid "Edit JavaScript: {}"
 msgstr "تعديل JavaScript: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:812
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:806
 msgid "Could not save file."
 msgstr "لا يمكن حفظ الملف."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:816
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:810
 #, python-brace-format
 msgid "File saved: {}"
 msgstr "تم حفظ الملف: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:891
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:885
 msgid "Reload complete."
 msgstr "اكتملت عملية إعادة التحميل."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:920
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:914
 #, python-brace-format
 msgid "{}. Save and reload to apply changes."
 msgstr "{}.احفظ وأعد التحميل لتطبيق التغييرات."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:933
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:927
 #: zapzap/features/settings/pages/advanced_customizations/view.py:253
 msgid "CSS"
 msgstr "CSS"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:933
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:927
 msgid "JS"
 msgstr "شبيبة"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:936
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:930
 msgid "Confirm deletion"
 msgstr "تأكيد الحذف"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:937
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:931
 #, python-brace-format
 msgid "Delete selected {} file: {}?"
 msgstr "هل تريد حذف الملف {} المحدد: {}؟"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:941
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:935
 msgid "Deletion cancelled."
 msgstr "تم إلغاء الحذف."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:952
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:946
 msgid "File deleted."
 msgstr "تم حذف الملف."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:954
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:948
 msgid "Could not delete file."
 msgstr "لا يمكن حذف الملف."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:980
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:974
 msgid "Could not duplicate file."
 msgstr "لا يمكن تكرار الملف."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:985
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:979
 #, python-brace-format
 msgid "File duplicated: {}"
 msgstr "الملف مكرر: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:1015
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:1009
 msgid "Customizations saved. Reload pages to apply changes."
 msgstr "تم حفظ التخصيصات.أعد تحميل الصفحات لتطبيق التغييرات."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:1027
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:1021
 msgid "All pages reloaded."
 msgstr "تم إعادة تحميل جميع الصفحات."
 
@@ -1660,7 +1661,7 @@ msgid "Symbolic dark"
 msgstr "رمزي داكن"
 
 #: zapzap/features/settings/pages/appearance/view.py:118
-#: zapzap/features/browser/shell/browser_controller.py:95
+#: zapzap/features/browser/shell/browser_controller.py:138
 msgid "Grid view"
 msgstr "عرض الشبكة"
 
@@ -2299,6 +2300,216 @@ msgstr "إخفاء المحتوى"
 msgid "Maximum privacy"
 msgstr "أقصى قدر من الخصوصية"
 
+#: zapzap/features/settings/pages/performance_experimental/controller.py:139
+msgid ""
+"Defines where the HTTP cache will be stored.\n"
+"Disk: faster after restart.\n"
+"Memory: faster, but lost on exit.\n"
+"No cache: lower disk usage, slower."
+msgstr ""
+"يحدد مكان تخزين ذاكرة التخزين المؤقت لـ HTTP.\n"
+"القرص: أسرع بعد إعادة التشغيل.\n"
+"الذاكرة: أسرع، لكنها فقدت عند الخروج.\n"
+"لا توجد ذاكرة تخزين مؤقت: استخدام أقل للقرص، وأبطأ."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:146
+msgid ""
+"Maximum HTTP cache size.\n"
+"0 MB uses the default Chromium behavior."
+msgstr ""
+"الحد الأقصى لحجم ذاكرة التخزين المؤقت لـ HTTP.\n"
+"يستخدم 0 ميغابايت السلوك الافتراضي Chromium."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:149
+msgid ""
+"Keeps cookies between restarts.\n"
+"Disabling may cause frequent logouts."
+msgstr ""
+"يحتفظ بملفات تعريف الارتباط بين عمليات إعادة التشغيل.\n"
+"قد يؤدي التعطيل إلى تسجيل الخروج بشكل متكرر."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:153
+msgid ""
+"Runs GPU and rendering in the same process.\n"
+"May reduce memory usage, but can cause instability."
+msgstr ""
+"يتم تشغيل GPU والعرض في نفس العملية.\n"
+"قد يقلل من استخدام الذاكرة، ولكن يمكن أن يسبب عدم الاستقرار."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:159
+msgid ""
+"Disables GPU hardware acceleration.\n"
+"Recommended only for old GPUs or problematic drivers."
+msgstr ""
+"تعطيل تسريع الأجهزة GPU.\n"
+"يوصى به فقط لوحدات معالجة الرسومات القديمة أو برامج التشغيل التي بها مشكلات."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:165
+msgid ""
+"Automatically honors an unambiguous DRI_PRIME selector on systems with "
+"multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
+"one GPU has no connected display.\n"
+"\n"
+"Disable this only if the automatic workaround causes problems. Restart "
+"required."
+msgstr ""
+"يكرّم تلقائيًا محدد DRI_PRIME الذي لا لبس فيه على الأنظمة التي تحتوي على وحدات "
+"معالجة رسومات Linux متعددة.بخلاف ذلك، تتم إضافة --disable-gpu-compositing "
+"عندما لا يكون لدى GPU شاشة متصلة.\n"
+"\n"
+"قم بتعطيل هذا فقط إذا تسبب الحل البديل التلقائي في حدوث مشكلات.إعادة التشغيل "
+"مطلوبة."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:174
+msgid ""
+"Disables GPU VSync.\n"
+"May reduce latency, but can increase power usage and tearing."
+msgstr ""
+"تعطيل GPU VSync.\n"
+"قد يقلل من زمن الوصول، ولكن يمكن أن يزيد من استخدام الطاقة والتمزيق."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:180
+msgid ""
+"Forces software rendering.\n"
+"Use only in case of graphical issues.\n"
+"May significantly reduce performance."
+msgstr ""
+"فرض عرض البرمجيات.\n"
+"استخدم فقط في حالة وجود مشاكل رسومية.\n"
+"قد يقلل الأداء بشكل ملحوظ."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:187
+msgid ""
+"Disables hardware video decoding without disabling all GPU acceleration.\n"
+"Use when videos play only audio, appear white or black, flicker, or cause "
+"crashes.\n"
+"May increase CPU and battery usage. Restart required."
+msgstr ""
+"يعطّل فك ترميز الفيديو عتاديًا دون تعطيل تسريع وحدة معالجة الرسومات بالكامل.\n"
+"استخدمه عندما تشغّل مقاطع الفيديو الصوت فقط، أو تظهر باللون الأبيض أو الأسود، "
+"أو تومض، أو تسبب أعطالًا.\n"
+"قد يزيد من استخدام المعالج والبطارية. يلزم إعادة التشغيل."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:196
+msgid ""
+"Forces the GBM backend on Wayland.\n"
+"Known to fix severe typing lag on NVIDIA drivers."
+msgstr ""
+"يفرض الواجهة الخلفية لـ GBM على Wayland.\n"
+"معروف بإصلاح تأخر الكتابة الشديد على برامج تشغيل NVIDIA."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:202
+msgid ""
+"Disables the accessibility bus.\n"
+"Known to fix typing lag or CPU spikes in QtWebEngine."
+msgstr ""
+"تعطيل حافلة الوصول.\n"
+"معروف بإصلاح تأخر الكتابة أو ارتفاع وحدة المعالجة المركزية في QtWebEngine."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:208
+msgid ""
+"Runs the entire Chromium engine in a single process.\n"
+"Reduces memory usage, but may cause crashes.\n"
+"Experimental usage."
+msgstr ""
+"يقوم بتشغيل المحرك Chromium بالكامل في عملية واحدة.\n"
+"يقلل من استخدام الذاكرة، ولكن قد يتسبب في حدوث أعطال.\n"
+"الاستخدام التجريبي."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:215
+msgid ""
+"Uses a separate process per site.\n"
+"Safer and more stable.\n"
+"May increase memory usage."
+msgstr ""
+"يستخدم عملية منفصلة لكل موقع.\n"
+"أكثر أمانا واستقرارا.\n"
+"قد يزيد من استخدام الذاكرة."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:222
+msgid ""
+"JavaScript (V8) memory limit.\n"
+"Automatic is the safest option.\n"
+"Higher values allow heavier pages.\n"
+"\n"
+"Restart required."
+msgstr ""
+"حد الذاكرة JavaScript (V8).\n"
+"التلقائي هو الخيار الأكثر أمانا.\n"
+"تسمح القيم الأعلى بصفحات أثقل.\n"
+"\n"
+"إعادة التشغيل مطلوبة."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:230
+msgid ""
+"Enables V8 predictable garbage collection schedule.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"\n"
+"Experimental option. Restart required."
+msgstr ""
+"تمكين جدول تجميع البيانات المهملة V8 الذي يمكن التنبؤ به.\n"
+"يؤدي ذلك إلى إضافة --js-flags=--predictable-gc-schedule و--disable-gpu إلى "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"\n"
+"الخيار التجريبي.إعادة التشغيل مطلوبة."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:237
+msgid ""
+"Enables smooth scrolling animations.\n"
+"Disabling may reduce CPU usage."
+msgstr ""
+"تمكين الرسوم المتحركة التمرير السلس.\n"
+"قد يؤدي التعطيل إلى تقليل استخدام وحدة المعالجة المركزية."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:241
+msgid ""
+"Allows background tabs to reduce resource usage.\n"
+"Disabling keeps timers active, but uses more resources."
+msgstr ""
+"يسمح لعلامات التبويب الخلفية بتقليل استخدام الموارد.\n"
+"يؤدي التعطيل إلى إبقاء المؤقتات نشطة، ولكنه يستخدم المزيد من الموارد."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:247
+msgid ""
+"Disables CSS and JavaScript animations.\n"
+"May improve performance on slower machines."
+msgstr ""
+"تعطيل الرسوم المتحركة CSS وJavaScript.\n"
+"قد يحسن الأداء على الأجهزة الأبطأ."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:253
+msgid ""
+"Disables pinch-to-zoom gesture on touchpads.\n"
+"Useful if accidental zooming occurs during scrolling."
+msgstr ""
+"تعطيل إيماءة الضغط للتكبير/التصغير على لوحات اللمس.\n"
+"مفيد في حالة حدوث تكبير/تصغير غير مقصود أثناء التمرير."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:259
+msgid ""
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
+"navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
+"fields.\n"
+"\n"
+"Restart or reload WhatsApp Web after changing this option."
+msgstr ""
+"يستخدم Selection.modify() مع التوجيهات المرئية للتنقل بين الكلمات "
+"Ctrl+Arrow.\n"
+"يؤدي هذا إلى إصلاح حركة المؤشر المعكوسة في النص RTL داخل حقول الرسائل "
+"WhatsApp Web.\n"
+"\n"
+"أعد تشغيل أو إعادة تحميل WhatsApp Web بعد تغيير هذا الخيار."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:265
+msgid ""
+"Restores all performance settings\n"
+"to safe default values."
+msgstr ""
+"يستعيد كافة إعدادات الأداء\n"
+"إلى القيم الافتراضية الآمنة."
+
 #: zapzap/features/settings/pages/performance_experimental/view.py:20
 msgid "Tune cache, GPU, processes, and advanced behavior."
 msgstr "قم بضبط ذاكرة التخزين المؤقت GPU والعمليات والسلوك المتقدم."
@@ -2546,216 +2757,6 @@ msgstr "استعادة الإعدادات الافتراضية للأداء"
 msgid "Restores all performance settings to safe default values."
 msgstr "يعيد كافة إعدادات الأداء إلى القيم الافتراضية الآمنة."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:139
-msgid ""
-"Defines where the HTTP cache will be stored.\n"
-"Disk: faster after restart.\n"
-"Memory: faster, but lost on exit.\n"
-"No cache: lower disk usage, slower."
-msgstr ""
-"يحدد مكان تخزين ذاكرة التخزين المؤقت لـ HTTP.\n"
-"القرص: أسرع بعد إعادة التشغيل.\n"
-"الذاكرة: أسرع، لكنها فقدت عند الخروج.\n"
-"لا توجد ذاكرة تخزين مؤقت: استخدام أقل للقرص، وأبطأ."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:146
-msgid ""
-"Maximum HTTP cache size.\n"
-"0 MB uses the default Chromium behavior."
-msgstr ""
-"الحد الأقصى لحجم ذاكرة التخزين المؤقت لـ HTTP.\n"
-"يستخدم 0 ميغابايت السلوك الافتراضي Chromium."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:149
-msgid ""
-"Keeps cookies between restarts.\n"
-"Disabling may cause frequent logouts."
-msgstr ""
-"يحتفظ بملفات تعريف الارتباط بين عمليات إعادة التشغيل.\n"
-"قد يؤدي التعطيل إلى تسجيل الخروج بشكل متكرر."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:153
-msgid ""
-"Runs GPU and rendering in the same process.\n"
-"May reduce memory usage, but can cause instability."
-msgstr ""
-"يتم تشغيل GPU والعرض في نفس العملية.\n"
-"قد يقلل من استخدام الذاكرة، ولكن يمكن أن يسبب عدم الاستقرار."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:159
-msgid ""
-"Disables GPU hardware acceleration.\n"
-"Recommended only for old GPUs or problematic drivers."
-msgstr ""
-"تعطيل تسريع الأجهزة GPU.\n"
-"يوصى به فقط لوحدات معالجة الرسومات القديمة أو برامج التشغيل التي بها مشكلات."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:165
-msgid ""
-"Automatically honors an unambiguous DRI_PRIME selector on systems with "
-"multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
-"one GPU has no connected display.\n"
-"\n"
-"Disable this only if the automatic workaround causes problems. Restart "
-"required."
-msgstr ""
-"يكرّم تلقائيًا محدد DRI_PRIME الذي لا لبس فيه على الأنظمة التي تحتوي على وحدات "
-"معالجة رسومات Linux متعددة.بخلاف ذلك، تتم إضافة --disable-gpu-compositing "
-"عندما لا يكون لدى GPU شاشة متصلة.\n"
-"\n"
-"قم بتعطيل هذا فقط إذا تسبب الحل البديل التلقائي في حدوث مشكلات.إعادة التشغيل "
-"مطلوبة."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:174
-msgid ""
-"Disables GPU VSync.\n"
-"May reduce latency, but can increase power usage and tearing."
-msgstr ""
-"تعطيل GPU VSync.\n"
-"قد يقلل من زمن الوصول، ولكن يمكن أن يزيد من استخدام الطاقة والتمزيق."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:180
-msgid ""
-"Forces software rendering.\n"
-"Use only in case of graphical issues.\n"
-"May significantly reduce performance."
-msgstr ""
-"فرض عرض البرمجيات.\n"
-"استخدم فقط في حالة وجود مشاكل رسومية.\n"
-"قد يقلل الأداء بشكل ملحوظ."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:187
-msgid ""
-"Disables hardware video decoding without disabling all GPU acceleration.\n"
-"Use when videos play only audio, appear white or black, flicker, or cause "
-"crashes.\n"
-"May increase CPU and battery usage. Restart required."
-msgstr ""
-"يعطّل فك ترميز الفيديو عتاديًا دون تعطيل تسريع وحدة معالجة الرسومات بالكامل.\n"
-"استخدمه عندما تشغّل مقاطع الفيديو الصوت فقط، أو تظهر باللون الأبيض أو الأسود، "
-"أو تومض، أو تسبب أعطالًا.\n"
-"قد يزيد من استخدام المعالج والبطارية. يلزم إعادة التشغيل."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:196
-msgid ""
-"Forces the GBM backend on Wayland.\n"
-"Known to fix severe typing lag on NVIDIA drivers."
-msgstr ""
-"يفرض الواجهة الخلفية لـ GBM على Wayland.\n"
-"معروف بإصلاح تأخر الكتابة الشديد على برامج تشغيل NVIDIA."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:202
-msgid ""
-"Disables the accessibility bus.\n"
-"Known to fix typing lag or CPU spikes in QtWebEngine."
-msgstr ""
-"تعطيل حافلة الوصول.\n"
-"معروف بإصلاح تأخر الكتابة أو ارتفاع وحدة المعالجة المركزية في QtWebEngine."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:208
-msgid ""
-"Runs the entire Chromium engine in a single process.\n"
-"Reduces memory usage, but may cause crashes.\n"
-"Experimental usage."
-msgstr ""
-"يقوم بتشغيل المحرك Chromium بالكامل في عملية واحدة.\n"
-"يقلل من استخدام الذاكرة، ولكن قد يتسبب في حدوث أعطال.\n"
-"الاستخدام التجريبي."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:215
-msgid ""
-"Uses a separate process per site.\n"
-"Safer and more stable.\n"
-"May increase memory usage."
-msgstr ""
-"يستخدم عملية منفصلة لكل موقع.\n"
-"أكثر أمانا واستقرارا.\n"
-"قد يزيد من استخدام الذاكرة."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:222
-msgid ""
-"JavaScript (V8) memory limit.\n"
-"Automatic is the safest option.\n"
-"Higher values allow heavier pages.\n"
-"\n"
-"Restart required."
-msgstr ""
-"حد الذاكرة JavaScript (V8).\n"
-"التلقائي هو الخيار الأكثر أمانا.\n"
-"تسمح القيم الأعلى بصفحات أثقل.\n"
-"\n"
-"إعادة التشغيل مطلوبة."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:230
-msgid ""
-"Enables V8 predictable garbage collection schedule.\n"
-"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
-"QTWEBENGINE_CHROMIUM_FLAGS.\n"
-"\n"
-"Experimental option. Restart required."
-msgstr ""
-"تمكين جدول تجميع البيانات المهملة V8 الذي يمكن التنبؤ به.\n"
-"يؤدي ذلك إلى إضافة --js-flags=--predictable-gc-schedule و--disable-gpu إلى "
-"QTWEBENGINE_CHROMIUM_FLAGS.\n"
-"\n"
-"الخيار التجريبي.إعادة التشغيل مطلوبة."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:237
-msgid ""
-"Enables smooth scrolling animations.\n"
-"Disabling may reduce CPU usage."
-msgstr ""
-"تمكين الرسوم المتحركة التمرير السلس.\n"
-"قد يؤدي التعطيل إلى تقليل استخدام وحدة المعالجة المركزية."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:241
-msgid ""
-"Allows background tabs to reduce resource usage.\n"
-"Disabling keeps timers active, but uses more resources."
-msgstr ""
-"يسمح لعلامات التبويب الخلفية بتقليل استخدام الموارد.\n"
-"يؤدي التعطيل إلى إبقاء المؤقتات نشطة، ولكنه يستخدم المزيد من الموارد."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:247
-msgid ""
-"Disables CSS and JavaScript animations.\n"
-"May improve performance on slower machines."
-msgstr ""
-"تعطيل الرسوم المتحركة CSS وJavaScript.\n"
-"قد يحسن الأداء على الأجهزة الأبطأ."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:253
-msgid ""
-"Disables pinch-to-zoom gesture on touchpads.\n"
-"Useful if accidental zooming occurs during scrolling."
-msgstr ""
-"تعطيل إيماءة الضغط للتكبير/التصغير على لوحات اللمس.\n"
-"مفيد في حالة حدوث تكبير/تصغير غير مقصود أثناء التمرير."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:259
-msgid ""
-"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
-"navigation.\n"
-"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
-"fields.\n"
-"\n"
-"Restart or reload WhatsApp Web after changing this option."
-msgstr ""
-"يستخدم Selection.modify() مع التوجيهات المرئية للتنقل بين الكلمات "
-"Ctrl+Arrow.\n"
-"يؤدي هذا إلى إصلاح حركة المؤشر المعكوسة في النص RTL داخل حقول الرسائل "
-"WhatsApp Web.\n"
-"\n"
-"أعد تشغيل أو إعادة تحميل WhatsApp Web بعد تغيير هذا الخيار."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:265
-msgid ""
-"Restores all performance settings\n"
-"to safe default values."
-msgstr ""
-"يستعيد كافة إعدادات الأداء\n"
-"إلى القيم الافتراضية الآمنة."
-
 #: zapzap/features/settings/pages/permissions/view.py:23
 msgid "Define which permissions can be granted automatically to WhatsApp Web."
 msgstr "حدد الأذونات التي يمكن منحها تلقائيًا إلى WhatsApp Web."
@@ -2888,66 +2889,66 @@ msgstr "حفظ باسم"
 msgid "Save file"
 msgstr "احفظ الملف"
 
-#: zapzap/features/browser/shell/browser_controller.py:127
+#: zapzap/features/browser/shell/browser_controller.py:170
 msgid "Flatpak sandbox help"
 msgstr "مساعدة في وضع الحماية Flatpak."
 
-#: zapzap/features/browser/shell/browser_controller.py:152
+#: zapzap/features/browser/shell/browser_controller.py:195
 msgid "Flatpak sandbox"
 msgstr "صندوق الرمل Flatpak."
 
-#: zapzap/features/browser/shell/browser_controller.py:153
+#: zapzap/features/browser/shell/browser_controller.py:196
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "يتم تشغيل ZapZap في وضع الحماية Flatpak."
 
-#: zapzap/features/browser/shell/browser_controller.py:155
+#: zapzap/features/browser/shell/browser_controller.py:198
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
 msgstr ""
 "قد تتطلب بعض الميزات، مثل فتح الملفات أو السحب والإفلات، أذونات إضافية."
 
-#: zapzap/features/browser/shell/browser_controller.py:160
+#: zapzap/features/browser/shell/browser_controller.py:203
 msgid "Instructions"
 msgstr "تعليمات"
 
-#: zapzap/features/browser/shell/browser_controller.py:161
+#: zapzap/features/browser/shell/browser_controller.py:204
 msgid "Copy command"
 msgstr "أمر النسخ"
 
-#: zapzap/features/browser/shell/browser_controller.py:162
+#: zapzap/features/browser/shell/browser_controller.py:205
 #: zapzap/ui/components/edit_account_dialog.py:73
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "إغلاق"
 
-#: zapzap/features/browser/shell/browser_controller.py:298
-#: zapzap/features/browser/shell/browser_controller.py:347
+#: zapzap/features/browser/shell/browser_controller.py:416
+#: zapzap/features/browser/shell/browser_controller.py:500
 #, python-brace-format
 msgid "Account {}"
 msgstr "حساب {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:355
+#: zapzap/features/browser/shell/browser_controller.py:513
 msgid "Account disabled"
 msgstr "تم تعطيل الحساب"
 
-#: zapzap/features/browser/shell/browser_controller.py:356
+#: zapzap/features/browser/shell/browser_controller.py:514
 msgid "This account is disabled."
 msgstr "هذا الحساب معطل."
 
-#: zapzap/features/browser/shell/browser_controller.py:358
+#: zapzap/features/browser/shell/browser_controller.py:516
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "يمكنك إعادة تنشيطه الآن أو استخدام قائمة النقر بزر الماوس الأيمن لإدارة هذا "
 "الحساب."
 
-#: zapzap/features/browser/shell/browser_controller.py:363
+#: zapzap/features/browser/shell/browser_controller.py:521
 msgid "Activate"
 msgstr "تفعيل"
 
-#: zapzap/features/browser/shell/browser_controller.py:364
+#: zapzap/features/browser/shell/browser_controller.py:522
 msgid "Not now"
 msgstr "ليس الآن"
 
@@ -3052,23 +3053,35 @@ msgstr ""
 msgid "Choose the languages used by the spell checker."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:575
+#: zapzap/features/browser/web/web_view.py:583
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "الحساب"
 
-#: zapzap/features/browser/web/web_view.py:577
+#: zapzap/features/browser/web/web_view.py:585
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "أدوات التطوير - {}"
 
-#: zapzap/ui/components/settings_restart_bar.py:54
-msgid "A restart is required to apply the changes."
-msgstr "مطلوب إعادة التشغيل لتطبيق التغييرات."
+#: zapzap/ui/components/browser_grid_view.py:75
+msgid "Accounts overview"
+msgstr "نظرة عامة على الحسابات"
 
-#: zapzap/ui/components/settings_restart_bar.py:55
-msgid "Restart now"
-msgstr "أعد التشغيل الآن"
+#: zapzap/ui/components/browser_grid_view.py:79
+msgid "Select an account to return to its chat."
+msgstr "حدد حسابًا للعودة إلى الدردشة الخاصة به."
+
+#: zapzap/ui/components/browser_grid_view.py:92
+msgid "No active accounts to display."
+msgstr "لا توجد حسابات نشطة لعرضها."
+
+#: zapzap/ui/components/browser_sidebar.py:147
+msgid "New conversation by the phone number"
+msgstr "محادثة جديدة برقم الهاتف"
+
+#: zapzap/ui/components/browser_sidebar.py:150
+msgid "ZapZap Settings"
+msgstr "إعدادات زاب-زاب"
 
 #: zapzap/ui/components/card_user.py:149 zapzap/ui/components/card_user.py:150
 #: zapzap/ui/components/card_user.py:483 zapzap/ui/components/card_user.py:486
@@ -3243,26 +3256,6 @@ msgstr "يؤدي تجاهلها إلى استعادة القيم السابقة 
 msgid "Keep editing"
 msgstr "متابعة التحرير"
 
-#: zapzap/ui/components/browser_grid_view.py:75
-msgid "Accounts overview"
-msgstr "نظرة عامة على الحسابات"
-
-#: zapzap/ui/components/browser_grid_view.py:79
-msgid "Select an account to return to its chat."
-msgstr "حدد حسابًا للعودة إلى الدردشة الخاصة به."
-
-#: zapzap/ui/components/browser_grid_view.py:92
-msgid "No active accounts to display."
-msgstr "لا توجد حسابات نشطة لعرضها."
-
-#: zapzap/ui/components/browser_sidebar.py:147
-msgid "New conversation by the phone number"
-msgstr "محادثة جديدة برقم الهاتف"
-
-#: zapzap/ui/components/browser_sidebar.py:150
-msgid "ZapZap Settings"
-msgstr "إعدادات زاب-زاب"
-
 #: zapzap/ui/components/main_window.py:134
 msgid "File"
 msgstr "الملف"
@@ -3374,6 +3367,14 @@ msgstr "Ctrl+M"
 #: zapzap/ui/components/main_window.py:171
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
+
+#: zapzap/ui/components/settings_restart_bar.py:54
+msgid "A restart is required to apply the changes."
+msgstr "مطلوب إعادة التشغيل لتطبيق التغييرات."
+
+#: zapzap/ui/components/settings_restart_bar.py:55
+msgid "Restart now"
+msgstr "أعد التشغيل الآن"
 
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:126
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:169

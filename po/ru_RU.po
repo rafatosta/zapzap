@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-02 22:05-0300\n"
+"POT-Creation-Date: 2026-08-05 18:39-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Russian\n"
@@ -142,7 +142,7 @@ msgid "The account \"{name}\" will be removed from ZapZap."
 msgstr "Учётная запись «{name}» будет удалена из ZapZap."
 
 #: zapzap/features/accounts/card_user_controller.py:158
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:197
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:191
 #: zapzap/features/settings/pages/network_privacy/controller.py:58
 #: zapzap/ui/components/card_user.py:234 zapzap/ui/components/card_user.py:299
 #: zapzap/ui/components/card_user.py:469 zapzap/ui/components/card_user.py:684
@@ -163,7 +163,7 @@ msgid "Remove"
 msgstr "Удалить"
 
 #: zapzap/features/accounts/card_user_controller.py:173
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:648
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:642
 #: zapzap/features/settings/pages/network_privacy/controller.py:293
 #: zapzap/features/settings/pages/network_privacy/controller.py:341
 #: zapzap/features/downloads/ui/download_dialog.py:120
@@ -250,7 +250,7 @@ msgstr "Больше не показывать"
 msgid "Learn more about ZapZap ↗"
 msgstr "Узнать больше о ZapZap ↗"
 
-#: zapzap/features/downloads/download_manager.py:92
+#: zapzap/features/downloads/download_manager.py:100
 msgid "Select folder"
 msgstr "Выбрать папку"
 
@@ -282,7 +282,7 @@ msgid "Basics"
 msgstr "Основы"
 
 #: zapzap/features/initial_setup/view.py:106
-#: zapzap/features/settings/shell/settings_controller.py:43
+#: zapzap/features/settings/shell/settings_controller.py:134
 #: zapzap/features/settings/pages/notifications/view.py:19
 #: zapzap/features/settings/pages/notifications/view.py:33
 msgid "Notifications"
@@ -299,7 +299,7 @@ msgstr "Файлы"
 
 #: zapzap/features/initial_setup/view.py:109
 #: zapzap/features/initial_setup/view.py:378
-#: zapzap/features/settings/shell/settings_controller.py:44
+#: zapzap/features/settings/shell/settings_controller.py:140
 #: zapzap/features/settings/pages/permissions/view.py:22
 msgid "Permissions"
 msgstr "Разрешения"
@@ -822,6 +822,7 @@ msgstr "Профиль и статус"
 #: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
 #: zapzap/features/tray/sys_tray_manager.py:54
 #: zapzap/features/settings/shell/settings_sidebar.py:61
+#: zapzap/features/settings/shell/settings_controller.py:236
 #: zapzap/ui/components/main_window.py:143
 msgid "Settings"
 msgstr "Настройки"
@@ -918,7 +919,7 @@ msgid "New conversation by phone number"
 msgstr "Новый разговор по номеру телефона"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:285
+#: zapzap/features/browser/shell/browser_controller.py:399
 #: zapzap/ui/components/browser_sidebar.py:145
 msgid "New account"
 msgstr "Новый аккаунт"
@@ -946,55 +947,6 @@ msgstr "Пожертвования"
 msgid "Quit"
 msgstr "Выйти"
 
-#: zapzap/features/settings/shell/settings_view.py:32
-msgid "Donate"
-msgstr "Пожертвовать"
-
-#: zapzap/features/settings/shell/settings_controller.py:41
-#: zapzap/features/settings/pages/accounts/view.py:17
-msgid "Accounts"
-msgstr "Учётные записи"
-
-#: zapzap/features/settings/shell/settings_controller.py:42
-#: zapzap/features/settings/pages/appearance/view.py:21
-msgid "Appearance"
-msgstr "Внешний вид"
-
-#: zapzap/features/settings/shell/settings_controller.py:45
-#: zapzap/features/settings/pages/system_startup/view.py:22
-msgid "System and startup"
-msgstr "Система и запуск"
-
-#: zapzap/features/settings/shell/settings_controller.py:46
-#: zapzap/features/settings/pages/language_downloads/view.py:21
-msgid "Language and Download"
-msgstr "Язык и загрузка"
-
-#: zapzap/features/settings/shell/settings_controller.py:47
-#: zapzap/features/settings/pages/network_privacy/view.py:149
-msgid "Privacy and Network"
-msgstr "Конфиденциальность и сеть"
-
-#: zapzap/features/settings/shell/settings_controller.py:48
-msgid "Advanced Customizations"
-msgstr "Расширенные настройки"
-
-#: zapzap/features/settings/shell/settings_controller.py:50
-#: zapzap/features/settings/pages/performance_experimental/view.py:19
-msgid "Performance experimental"
-msgstr "Производительность (экспериментально)"
-
-#: zapzap/features/settings/shell/settings_controller.py:51
-#: zapzap/features/settings/pages/debugging/view.py:159
-msgid "Debugging"
-msgstr "Отладка"
-
-#: zapzap/features/settings/shell/settings_controller.py:53
-#: zapzap/features/settings/pages/about/view.py:238
-#: zapzap/ui/components/main_window.py:172
-msgid "About"
-msgstr "О программе"
-
 #: zapzap/features/settings/shell/settings_sidebar.py:64
 msgid "Adjust accounts, appearance, notifications and advanced options."
 msgstr ""
@@ -1003,6 +955,120 @@ msgstr ""
 #: zapzap/features/settings/shell/settings_sidebar.py:69
 msgid "Close settings"
 msgstr "Настройки закрытия"
+
+#: zapzap/features/settings/shell/settings_view.py:32
+msgid "Donate"
+msgstr "Пожертвовать"
+
+#: zapzap/features/settings/shell/settings_controller.py:122
+#: zapzap/features/settings/pages/accounts/view.py:17
+msgid "Accounts"
+msgstr "Учётные записи"
+
+#: zapzap/features/settings/shell/settings_controller.py:128
+#: zapzap/features/settings/pages/appearance/view.py:21
+msgid "Appearance"
+msgstr "Внешний вид"
+
+#: zapzap/features/settings/shell/settings_controller.py:146
+#: zapzap/features/settings/pages/system_startup/view.py:22
+msgid "System and startup"
+msgstr "Система и запуск"
+
+#: zapzap/features/settings/shell/settings_controller.py:152
+#: zapzap/features/settings/pages/language_downloads/view.py:21
+msgid "Language and Download"
+msgstr "Язык и загрузка"
+
+#: zapzap/features/settings/shell/settings_controller.py:158
+#: zapzap/features/settings/pages/network_privacy/view.py:149
+msgid "Privacy and Network"
+msgstr "Конфиденциальность и сеть"
+
+#: zapzap/features/settings/shell/settings_controller.py:164
+msgid "Advanced Customizations"
+msgstr "Расширенные настройки"
+
+#: zapzap/features/settings/shell/settings_controller.py:170
+#: zapzap/features/settings/pages/performance_experimental/view.py:19
+msgid "Performance experimental"
+msgstr "Производительность (экспериментально)"
+
+#: zapzap/features/settings/shell/settings_controller.py:176
+#: zapzap/features/settings/pages/debugging/view.py:159
+msgid "Debugging"
+msgstr "Отладка"
+
+#: zapzap/features/settings/shell/settings_controller.py:182
+#: zapzap/features/settings/pages/about/view.py:238
+#: zapzap/ui/components/main_window.py:172
+msgid "About"
+msgstr "О программе"
+
+#: zapzap/features/settings/pages/about/controller.py:53
+#: zapzap/features/settings/pages/about/view.py:311
+#: zapzap/features/settings/pages/about/view.py:315
+msgid "Copy system information"
+msgstr "Копировать системную информацию"
+
+#: zapzap/features/settings/pages/about/controller.py:58
+#: zapzap/features/settings/pages/about/view.py:284
+msgid "License"
+msgstr "Лицензия"
+
+#: zapzap/features/settings/pages/about/controller.py:60
+#, python-brace-format
+msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
+msgstr ""
+"ZapZap является свободным программным обеспечением, лицензированным по "
+"{license_id} (GPL-3.0-or-later)."
+
+#: zapzap/features/settings/pages/about/controller.py:68
+#: zapzap/features/settings/pages/about/view.py:289
+msgid "Credits and contributors"
+msgstr "Авторы и участники"
+
+#: zapzap/features/settings/pages/about/controller.py:70
+#, python-brace-format
+msgid ""
+"Created and maintained by {author}. Thanks to everyone who contributes "
+"translations, code, testing, and feedback."
+msgstr ""
+"Создано и поддерживается {author}. Спасибо всем, кто вносит вклад в "
+"переводы, код, тестирование и обратную связь."
+
+#: zapzap/features/settings/pages/about/model.py:62
+msgid "Version"
+msgstr "Версия"
+
+#: zapzap/features/settings/pages/about/model.py:67
+#: zapzap/features/settings/pages/about/model.py:91
+#: zapzap/features/settings/pages/debugging/view.py:375
+msgid "Channel"
+msgstr "Канал"
+
+#: zapzap/features/settings/pages/about/model.py:68
+#: zapzap/features/settings/pages/about/model.py:90
+#: zapzap/features/settings/pages/debugging/view.py:374
+msgid "Packaging"
+msgstr "Упаковка"
+
+#: zapzap/features/settings/pages/about/model.py:69
+msgid "Provider"
+msgstr "Поставщик"
+
+#: zapzap/features/settings/pages/about/model.py:70
+msgid "Repository"
+msgstr "Репозиторий"
+
+#: zapzap/features/settings/pages/about/model.py:88
+#: zapzap/features/settings/pages/debugging/view.py:379
+msgid "System"
+msgstr "Система"
+
+#: zapzap/features/settings/pages/about/model.py:89
+msgid "Session"
+msgstr "Сессия"
 
 #: zapzap/features/settings/pages/about/view.py:37
 msgid "ZapZap application icon"
@@ -1053,22 +1119,6 @@ msgstr "Поддержать проект"
 msgid "Help sustain ZapZap development."
 msgstr "Помогите поддерживать разработку ZapZap."
 
-#: zapzap/features/settings/pages/about/view.py:284
-#: zapzap/features/settings/pages/about/controller.py:58
-msgid "License"
-msgstr "Лицензия"
-
-#: zapzap/features/settings/pages/about/view.py:289
-#: zapzap/features/settings/pages/about/controller.py:68
-msgid "Credits and contributors"
-msgstr "Авторы и участники"
-
-#: zapzap/features/settings/pages/about/view.py:311
-#: zapzap/features/settings/pages/about/view.py:315
-#: zapzap/features/settings/pages/about/controller.py:53
-msgid "Copy system information"
-msgstr "Копировать системную информацию"
-
 #: zapzap/features/settings/pages/about/view.py:325
 msgid ""
 "ZapZap is an independent project and is not affiliated with WhatsApp or Meta."
@@ -1077,55 +1127,6 @@ msgstr "ZapZap является независимым проектом и не 
 #: zapzap/features/settings/pages/about/view.py:343
 msgid "Information copied"
 msgstr "Информация скопирована"
-
-#: zapzap/features/settings/pages/about/model.py:62
-msgid "Version"
-msgstr "Версия"
-
-#: zapzap/features/settings/pages/about/model.py:67
-#: zapzap/features/settings/pages/about/model.py:91
-#: zapzap/features/settings/pages/debugging/view.py:375
-msgid "Channel"
-msgstr "Канал"
-
-#: zapzap/features/settings/pages/about/model.py:68
-#: zapzap/features/settings/pages/about/model.py:90
-#: zapzap/features/settings/pages/debugging/view.py:374
-msgid "Packaging"
-msgstr "Упаковка"
-
-#: zapzap/features/settings/pages/about/model.py:69
-msgid "Provider"
-msgstr "Поставщик"
-
-#: zapzap/features/settings/pages/about/model.py:70
-msgid "Repository"
-msgstr "Репозиторий"
-
-#: zapzap/features/settings/pages/about/model.py:88
-#: zapzap/features/settings/pages/debugging/view.py:379
-msgid "System"
-msgstr "Система"
-
-#: zapzap/features/settings/pages/about/model.py:89
-msgid "Session"
-msgstr "Сессия"
-
-#: zapzap/features/settings/pages/about/controller.py:60
-#, python-brace-format
-msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
-msgstr ""
-"ZapZap является свободным программным обеспечением, лицензированным по "
-"{license_id} (GPL-3.0-or-later)."
-
-#: zapzap/features/settings/pages/about/controller.py:70
-#, python-brace-format
-msgid ""
-"Created and maintained by {author}. Thanks to everyone who contributes "
-"translations, code, testing, and feedback."
-msgstr ""
-"Создано и поддерживается {author}. Спасибо всем, кто вносит вклад в "
-"переводы, код, тестирование и обратную связь."
 
 #: zapzap/features/settings/pages/accounts/view.py:18
 msgid "Manage your accounts and individual preferences."
@@ -1168,276 +1169,276 @@ msgstr "Этот аккаунт"
 msgid "Unsaved changes discarded."
 msgstr "Несохраненные изменения отброшены."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:199
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:193
 #, python-brace-format
 msgid "Current account: {} ({})"
 msgstr "Текущая учётная запись: {} ({})"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:203
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:197
 msgid "Current account: unavailable"
 msgstr "Текущая учетная запись: недоступна"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:209
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:203
 msgid "Changes to the previous scope were saved."
 msgstr "Изменения в предыдущей области были сохранены."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:296
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:290
 #, python-brace-format
 msgid "CSS file enabled: {}"
 msgstr "CSS файл включен: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:296
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:290
 #, python-brace-format
 msgid "CSS file disabled: {}"
 msgstr "CSS файл отключен: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:299
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:293
 #, python-brace-format
 msgid "JavaScript file enabled: {}"
 msgstr "Файл JavaScript включен: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:301
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:295
 #, python-brace-format
 msgid "JavaScript file disabled: {}"
 msgstr "Файл JavaScript отключен: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:307
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:323
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:301
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:317
 msgid "This userstyle does not target WhatsApp Web."
 msgstr "Этот пользовательский стиль не предназначен для WhatsApp Web."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:314
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:308
 msgid "Only HTTPS URLs are allowed."
 msgstr "Разрешены только URL-адреса HTTPS."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:318
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:312
 msgid "Download is too large."
 msgstr "Скачивание слишком большое."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:327
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:321
 msgid "Could not download CSS from URL."
 msgstr "Не удалось загрузить CSS с URL."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:329
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:323
 msgid "Could not download JavaScript from URL."
 msgstr "Не удалось скачать JavaScript с URL."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:341
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:335
 msgid "Select a file first."
 msgstr "Сначала выберите файл."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:373
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:412
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:367
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:406
 msgid "Select a CSS file to preview."
 msgstr "Выберите файл CSS для предварительного просмотра."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:422
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:416
 msgid "No preview available."
 msgstr "Предпросмотр недоступен."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:429
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:423
 #: zapzap/ui/components/edit_account_dialog.py:660
 msgid "Could not load preview image."
 msgstr "Не удалось загрузить предварительное изображение."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:459
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:453
 msgid "Enter a CSS HTTPS URL."
 msgstr "Введите HTTPS-URL CSS."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:461
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:455
 msgid "Enter a JavaScript HTTPS URL."
 msgstr "Введите HTTPS-URL JavaScript."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:481
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:491
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:475
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:485
 #, python-brace-format
 msgid "File imported: {}"
 msgstr "Файл импортирован: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:495
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:489
 #, python-brace-format
 msgid "File imported: {}. No preview found, upload one manually."
 msgstr ""
 "Файл импортирован: {}. Предварительный просмотр не найден, загрузите вручную."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:506
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:500
 msgid "Select preview image"
 msgstr "Выберите изображение для предварительного просмотра"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:522
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:516
 msgid "Could not set preview image."
 msgstr "Не удалось установить предварительное изображение."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:526
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:520
 #: zapzap/ui/components/edit_account_dialog.py:679
 msgid "Preview image updated."
 msgstr "Изображение предварительного просмотра обновлено."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:532
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:526
 msgid "Import from URL"
 msgstr "Импорт из URL"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:543
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:537
 msgid "https://example.com/theme.user.css"
 msgstr "https://example.com/theme.user.css"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:545
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:539
 msgid "https://example.com/script.js"
 msgstr "https://example.com/script.js"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:549
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:543
 #, python-brace-format
 msgid "Optional file name (e.g. 10-custom.{})"
 msgstr "Необязательное имя файла (например, 10-custom.{})"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:552
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:546
 msgid "URL"
 msgstr "URL"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:553
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:617
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:547
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:611
 msgid "File name"
 msgstr "Имя файла"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:608
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:602
 msgid "Edit the stylesheet content and choose the file name."
 msgstr "Редактировать содержимое таблицы стилей и выбрать имя файла."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:610
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:604
 msgid "Edit the script content and choose the file name."
 msgstr "Редактировать содержимое скрипта и выбрать имя файла."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:620
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:614
 #, python-brace-format
 msgid "custom.{}"
 msgstr "пользовательский.{}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:625
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:619
 msgid "CSS code"
 msgstr "CSS код"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:627
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:621
 msgid "JavaScript code"
 msgstr "Код JavaScript"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:647
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:641
 msgid "Ctrl+S to save"
 msgstr "Ctrl+S to save"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:649
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:643
 #: zapzap/features/settings/pages/advanced_customizations/view.py:418
 #: zapzap/features/downloads/ui/download_dialog.py:103
 #: zapzap/ui/components/edit_account_dialog.py:458
 msgid "Save"
 msgstr "Сохранить"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:676
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:670
 msgid "Select file"
 msgstr "Выбрать файл"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:694
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:688
 msgid "Could not import file."
 msgstr "Не удалось импортировать файл."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:698
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:692
 msgid "File imported successfully."
 msgstr "Файл успешно импортирован."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:730
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:724
 msgid "Create file"
 msgstr "Создать файл"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:738
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:789
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:732
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:783
 msgid "File name cannot be empty."
 msgstr "Имя файла не может быть пустым."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:751
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:745
 msgid "Could not create file."
 msgstr "Не удалось создать файл."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:755
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:749
 #, python-brace-format
 msgid "File created: {}"
 msgstr "Файл создан: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:774
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:768
 msgid "Could not open file for editing."
 msgstr "Не удалось открыть файл для редактирования."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:777
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:771
 #, python-brace-format
 msgid "Edit CSS: {}"
 msgstr "Редактировать CSS: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:778
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:772
 #, python-brace-format
 msgid "Edit JavaScript: {}"
 msgstr "Редактировать JavaScript: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:812
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:806
 msgid "Could not save file."
 msgstr "Не удалось сохранить файл."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:816
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:810
 #, python-brace-format
 msgid "File saved: {}"
 msgstr "Файл сохранён: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:891
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:885
 msgid "Reload complete."
 msgstr "Перезагрузка завершена."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:920
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:914
 #, python-brace-format
 msgid "{}. Save and reload to apply changes."
 msgstr "{}. Сохраните и перезагрузите, чтобы применить изменения."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:933
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:927
 #: zapzap/features/settings/pages/advanced_customizations/view.py:253
 msgid "CSS"
 msgstr "CSS"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:933
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:927
 msgid "JS"
 msgstr "JS"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:936
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:930
 msgid "Confirm deletion"
 msgstr "Подтверждать удаление"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:937
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:931
 #, python-brace-format
 msgid "Delete selected {} file: {}?"
 msgstr "Удалить выбранный файл {}: {}?"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:941
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:935
 msgid "Deletion cancelled."
 msgstr "Удаление отменено."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:952
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:946
 msgid "File deleted."
 msgstr "Файл удалён."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:954
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:948
 msgid "Could not delete file."
 msgstr "Не удалось удалить файл."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:980
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:974
 msgid "Could not duplicate file."
 msgstr "Не удалось создать копию файла."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:985
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:979
 #, python-brace-format
 msgid "File duplicated: {}"
 msgstr "Файл дублирован: {}"
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:1015
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:1009
 msgid "Customizations saved. Reload pages to apply changes."
 msgstr ""
 "Настройки сохранены. Перезагрузите страницы, чтобы применить изменения."
 
-#: zapzap/features/settings/pages/advanced_customizations/controller.py:1027
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:1021
 msgid "All pages reloaded."
 msgstr "Все страницы перезагружены."
 
@@ -1703,7 +1704,7 @@ msgid "Symbolic dark"
 msgstr "Символический тёмный"
 
 #: zapzap/features/settings/pages/appearance/view.py:118
-#: zapzap/features/browser/shell/browser_controller.py:95
+#: zapzap/features/browser/shell/browser_controller.py:138
 msgid "Grid view"
 msgstr "Просмотр сетки"
 
@@ -2347,6 +2348,220 @@ msgstr "Скрыть содержимое"
 msgid "Maximum privacy"
 msgstr "Максимальная конфиденциальность"
 
+#: zapzap/features/settings/pages/performance_experimental/controller.py:139
+msgid ""
+"Defines where the HTTP cache will be stored.\n"
+"Disk: faster after restart.\n"
+"Memory: faster, but lost on exit.\n"
+"No cache: lower disk usage, slower."
+msgstr ""
+"Определяет, где будет храниться HTTP-кэш.\n"
+"Диск: быстрее после перезапуска.\n"
+"Память: быстрее, но теряется при выходе.\n"
+"Без кэша: меньшая нагрузка на диск, медленнее."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:146
+msgid ""
+"Maximum HTTP cache size.\n"
+"0 MB uses the default Chromium behavior."
+msgstr ""
+"Максимальный размер HTTP кэша.\n"
+"0 МБ использует поведение по умолчанию Chromium."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:149
+msgid ""
+"Keeps cookies between restarts.\n"
+"Disabling may cause frequent logouts."
+msgstr ""
+"Сохраняет куки между перезапусками.\n"
+"Отключение может вызвать частые выходы из системы."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:153
+msgid ""
+"Runs GPU and rendering in the same process.\n"
+"May reduce memory usage, but can cause instability."
+msgstr ""
+"Запускает GPU и рендеринг в одном процессе.\n"
+"Может снизить использование памяти, но может вызвать нестабильность."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:159
+msgid ""
+"Disables GPU hardware acceleration.\n"
+"Recommended only for old GPUs or problematic drivers."
+msgstr ""
+"Отключает аппаратное ускорение GPU.\n"
+"Рекомендуется только для старых видеокарт или проблемных драйверов."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:165
+msgid ""
+"Automatically honors an unambiguous DRI_PRIME selector on systems with "
+"multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
+"one GPU has no connected display.\n"
+"\n"
+"Disable this only if the automatic workaround causes problems. Restart "
+"required."
+msgstr ""
+"Автоматически учитывает однозначный селектор DRI_PRIME на системах с "
+"несколькими графическими процессорами Linux. В противном случае добавляет --"
+"disable-gpu-compositing, когда у одного GPU нет подключенного дисплея.\n"
+"\n"
+"Отключайте это только в случае, если автоматическое решение вызывает "
+"проблемы. Необходима перезагрузка."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:174
+msgid ""
+"Disables GPU VSync.\n"
+"May reduce latency, but can increase power usage and tearing."
+msgstr ""
+"Отключает VSync GPU.\n"
+"Может уменьшить задержку, но может увеличить потребление энергии и появление "
+"разрывов изображения."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:180
+msgid ""
+"Forces software rendering.\n"
+"Use only in case of graphical issues.\n"
+"May significantly reduce performance."
+msgstr ""
+"Принудительно использовать программный рендеринг.\n"
+"Используйте только в случае графических проблем.\n"
+"Может значительно снизить производительность."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:187
+msgid ""
+"Disables hardware video decoding without disabling all GPU acceleration.\n"
+"Use when videos play only audio, appear white or black, flicker, or cause "
+"crashes.\n"
+"May increase CPU and battery usage. Restart required."
+msgstr ""
+"Отключает аппаратное декодирование видео, не отключая всё ускорение GPU.\n"
+"Используйте, если в видео воспроизводится только звук, изображение белое или "
+"чёрное, мерцает либо вызывает сбои.\n"
+"Может увеличить нагрузку на процессор и расход заряда батареи. Требуется "
+"перезапуск."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:196
+msgid ""
+"Forces the GBM backend on Wayland.\n"
+"Known to fix severe typing lag on NVIDIA drivers."
+msgstr ""
+"Принудительно использует бэкенд GBM на Wayland.\n"
+"Известно, что это исправляет сильную задержку при наборе текста на драйверах "
+"NVIDIA."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:202
+msgid ""
+"Disables the accessibility bus.\n"
+"Known to fix typing lag or CPU spikes in QtWebEngine."
+msgstr ""
+"Отключает шину доступности.\n"
+"Известно, что это исправляет задержку при наборе текста или скачки нагрузки "
+"на ЦП в QtWebEngine."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:208
+msgid ""
+"Runs the entire Chromium engine in a single process.\n"
+"Reduces memory usage, but may cause crashes.\n"
+"Experimental usage."
+msgstr ""
+"Запускает весь движок Chromium в одном процессе.\n"
+"Снижает использование памяти, но может вызвать сбои.\n"
+"Экспериментальное использование."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:215
+msgid ""
+"Uses a separate process per site.\n"
+"Safer and more stable.\n"
+"May increase memory usage."
+msgstr ""
+"Использует отдельный процесс для каждого сайта.\n"
+"Безопаснее и стабильнее.\n"
+"Может увеличивать использование памяти."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:222
+msgid ""
+"JavaScript (V8) memory limit.\n"
+"Automatic is the safest option.\n"
+"Higher values allow heavier pages.\n"
+"\n"
+"Restart required."
+msgstr ""
+"Лимит памяти JavaScript (V8).\n"
+"Автоматический режим является самым безопасным.\n"
+"Более высокие значения позволяют загружать более тяжелые страницы.\n"
+"\n"
+"Требуется перезагрузка."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:230
+msgid ""
+"Enables V8 predictable garbage collection schedule.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"\n"
+"Experimental option. Restart required."
+msgstr ""
+"Включает предсказуемый график сборки мусора V8.\n"
+"Это добавляет --js-flags=--predictable-gc-schedule и --disable-gpu в "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"\n"
+"Экспериментальная опция. Требуется перезапуск."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:237
+msgid ""
+"Enables smooth scrolling animations.\n"
+"Disabling may reduce CPU usage."
+msgstr ""
+"Включает плавную анимацию прокрутки.\n"
+"Отключение может снизить использование ЦП."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:241
+msgid ""
+"Allows background tabs to reduce resource usage.\n"
+"Disabling keeps timers active, but uses more resources."
+msgstr ""
+"Позволяет фоновым вкладкам снижать использование ресурсов.\n"
+"Отключение сохраняет активность таймеров, но использует больше ресурсов."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:247
+msgid ""
+"Disables CSS and JavaScript animations.\n"
+"May improve performance on slower machines."
+msgstr ""
+"Отключает анимации CSS и JavaScript.\n"
+"Может улучшить производительность на медленных машинах."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:253
+msgid ""
+"Disables pinch-to-zoom gesture on touchpads.\n"
+"Useful if accidental zooming occurs during scrolling."
+msgstr ""
+"Отключает жест «щипок для увеличения» на тачпадах.\n"
+"Полезно, если случайное увеличение происходит при прокрутке."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:259
+msgid ""
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
+"navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
+"fields.\n"
+"\n"
+"Restart or reload WhatsApp Web after changing this option."
+msgstr ""
+"Использует Selection.modify() с визуальными направлениями для навигации по "
+"словам Ctrl+Arrow.\n"
+"Это исправляет обратное движение курсора в тексте RTL внутри полей сообщений "
+"WhatsApp Web.\n"
+"\n"
+"Перезапустите или перезагрузите WhatsApp Web после изменения этой опции."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:265
+msgid ""
+"Restores all performance settings\n"
+"to safe default values."
+msgstr ""
+"Восстанавливает все настройки производительности\n"
+"до безопасных значений по умолчанию."
+
 #: zapzap/features/settings/pages/performance_experimental/view.py:20
 msgid "Tune cache, GPU, processes, and advanced behavior."
 msgstr "Настройка кэша, GPU, процессов и расширенного поведения."
@@ -2604,220 +2819,6 @@ msgstr ""
 "Восстанавливает все настройки производительности до безопасных значений по "
 "умолчанию."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:139
-msgid ""
-"Defines where the HTTP cache will be stored.\n"
-"Disk: faster after restart.\n"
-"Memory: faster, but lost on exit.\n"
-"No cache: lower disk usage, slower."
-msgstr ""
-"Определяет, где будет храниться HTTP-кэш.\n"
-"Диск: быстрее после перезапуска.\n"
-"Память: быстрее, но теряется при выходе.\n"
-"Без кэша: меньшая нагрузка на диск, медленнее."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:146
-msgid ""
-"Maximum HTTP cache size.\n"
-"0 MB uses the default Chromium behavior."
-msgstr ""
-"Максимальный размер HTTP кэша.\n"
-"0 МБ использует поведение по умолчанию Chromium."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:149
-msgid ""
-"Keeps cookies between restarts.\n"
-"Disabling may cause frequent logouts."
-msgstr ""
-"Сохраняет куки между перезапусками.\n"
-"Отключение может вызвать частые выходы из системы."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:153
-msgid ""
-"Runs GPU and rendering in the same process.\n"
-"May reduce memory usage, but can cause instability."
-msgstr ""
-"Запускает GPU и рендеринг в одном процессе.\n"
-"Может снизить использование памяти, но может вызвать нестабильность."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:159
-msgid ""
-"Disables GPU hardware acceleration.\n"
-"Recommended only for old GPUs or problematic drivers."
-msgstr ""
-"Отключает аппаратное ускорение GPU.\n"
-"Рекомендуется только для старых видеокарт или проблемных драйверов."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:165
-msgid ""
-"Automatically honors an unambiguous DRI_PRIME selector on systems with "
-"multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
-"one GPU has no connected display.\n"
-"\n"
-"Disable this only if the automatic workaround causes problems. Restart "
-"required."
-msgstr ""
-"Автоматически учитывает однозначный селектор DRI_PRIME на системах с "
-"несколькими графическими процессорами Linux. В противном случае добавляет --"
-"disable-gpu-compositing, когда у одного GPU нет подключенного дисплея.\n"
-"\n"
-"Отключайте это только в случае, если автоматическое решение вызывает "
-"проблемы. Необходима перезагрузка."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:174
-msgid ""
-"Disables GPU VSync.\n"
-"May reduce latency, but can increase power usage and tearing."
-msgstr ""
-"Отключает VSync GPU.\n"
-"Может уменьшить задержку, но может увеличить потребление энергии и появление "
-"разрывов изображения."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:180
-msgid ""
-"Forces software rendering.\n"
-"Use only in case of graphical issues.\n"
-"May significantly reduce performance."
-msgstr ""
-"Принудительно использовать программный рендеринг.\n"
-"Используйте только в случае графических проблем.\n"
-"Может значительно снизить производительность."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:187
-msgid ""
-"Disables hardware video decoding without disabling all GPU acceleration.\n"
-"Use when videos play only audio, appear white or black, flicker, or cause "
-"crashes.\n"
-"May increase CPU and battery usage. Restart required."
-msgstr ""
-"Отключает аппаратное декодирование видео, не отключая всё ускорение GPU.\n"
-"Используйте, если в видео воспроизводится только звук, изображение белое или "
-"чёрное, мерцает либо вызывает сбои.\n"
-"Может увеличить нагрузку на процессор и расход заряда батареи. Требуется "
-"перезапуск."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:196
-msgid ""
-"Forces the GBM backend on Wayland.\n"
-"Known to fix severe typing lag on NVIDIA drivers."
-msgstr ""
-"Принудительно использует бэкенд GBM на Wayland.\n"
-"Известно, что это исправляет сильную задержку при наборе текста на драйверах "
-"NVIDIA."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:202
-msgid ""
-"Disables the accessibility bus.\n"
-"Known to fix typing lag or CPU spikes in QtWebEngine."
-msgstr ""
-"Отключает шину доступности.\n"
-"Известно, что это исправляет задержку при наборе текста или скачки нагрузки "
-"на ЦП в QtWebEngine."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:208
-msgid ""
-"Runs the entire Chromium engine in a single process.\n"
-"Reduces memory usage, but may cause crashes.\n"
-"Experimental usage."
-msgstr ""
-"Запускает весь движок Chromium в одном процессе.\n"
-"Снижает использование памяти, но может вызвать сбои.\n"
-"Экспериментальное использование."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:215
-msgid ""
-"Uses a separate process per site.\n"
-"Safer and more stable.\n"
-"May increase memory usage."
-msgstr ""
-"Использует отдельный процесс для каждого сайта.\n"
-"Безопаснее и стабильнее.\n"
-"Может увеличивать использование памяти."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:222
-msgid ""
-"JavaScript (V8) memory limit.\n"
-"Automatic is the safest option.\n"
-"Higher values allow heavier pages.\n"
-"\n"
-"Restart required."
-msgstr ""
-"Лимит памяти JavaScript (V8).\n"
-"Автоматический режим является самым безопасным.\n"
-"Более высокие значения позволяют загружать более тяжелые страницы.\n"
-"\n"
-"Требуется перезагрузка."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:230
-msgid ""
-"Enables V8 predictable garbage collection schedule.\n"
-"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
-"QTWEBENGINE_CHROMIUM_FLAGS.\n"
-"\n"
-"Experimental option. Restart required."
-msgstr ""
-"Включает предсказуемый график сборки мусора V8.\n"
-"Это добавляет --js-flags=--predictable-gc-schedule и --disable-gpu в "
-"QTWEBENGINE_CHROMIUM_FLAGS.\n"
-"\n"
-"Экспериментальная опция. Требуется перезапуск."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:237
-msgid ""
-"Enables smooth scrolling animations.\n"
-"Disabling may reduce CPU usage."
-msgstr ""
-"Включает плавную анимацию прокрутки.\n"
-"Отключение может снизить использование ЦП."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:241
-msgid ""
-"Allows background tabs to reduce resource usage.\n"
-"Disabling keeps timers active, but uses more resources."
-msgstr ""
-"Позволяет фоновым вкладкам снижать использование ресурсов.\n"
-"Отключение сохраняет активность таймеров, но использует больше ресурсов."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:247
-msgid ""
-"Disables CSS and JavaScript animations.\n"
-"May improve performance on slower machines."
-msgstr ""
-"Отключает анимации CSS и JavaScript.\n"
-"Может улучшить производительность на медленных машинах."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:253
-msgid ""
-"Disables pinch-to-zoom gesture on touchpads.\n"
-"Useful if accidental zooming occurs during scrolling."
-msgstr ""
-"Отключает жест «щипок для увеличения» на тачпадах.\n"
-"Полезно, если случайное увеличение происходит при прокрутке."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:259
-msgid ""
-"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
-"navigation.\n"
-"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
-"fields.\n"
-"\n"
-"Restart or reload WhatsApp Web after changing this option."
-msgstr ""
-"Использует Selection.modify() с визуальными направлениями для навигации по "
-"словам Ctrl+Arrow.\n"
-"Это исправляет обратное движение курсора в тексте RTL внутри полей сообщений "
-"WhatsApp Web.\n"
-"\n"
-"Перезапустите или перезагрузите WhatsApp Web после изменения этой опции."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:265
-msgid ""
-"Restores all performance settings\n"
-"to safe default values."
-msgstr ""
-"Восстанавливает все настройки производительности\n"
-"до безопасных значений по умолчанию."
-
 #: zapzap/features/settings/pages/permissions/view.py:23
 msgid "Define which permissions can be granted automatically to WhatsApp Web."
 msgstr ""
@@ -2957,19 +2958,19 @@ msgstr "Сохранить как"
 msgid "Save file"
 msgstr "Сохранить файл"
 
-#: zapzap/features/browser/shell/browser_controller.py:127
+#: zapzap/features/browser/shell/browser_controller.py:170
 msgid "Flatpak sandbox help"
 msgstr "Справка по песочнице Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:152
+#: zapzap/features/browser/shell/browser_controller.py:195
 msgid "Flatpak sandbox"
 msgstr "Песочница Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:153
+#: zapzap/features/browser/shell/browser_controller.py:196
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap работает в песочнице Flatpak."
 
-#: zapzap/features/browser/shell/browser_controller.py:155
+#: zapzap/features/browser/shell/browser_controller.py:198
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
@@ -2977,47 +2978,47 @@ msgstr ""
 "Некоторые функции, такие как открытие файлов или перетаскивание, могут "
 "требовать дополнительных разрешений."
 
-#: zapzap/features/browser/shell/browser_controller.py:160
+#: zapzap/features/browser/shell/browser_controller.py:203
 msgid "Instructions"
 msgstr "Инструкции"
 
-#: zapzap/features/browser/shell/browser_controller.py:161
+#: zapzap/features/browser/shell/browser_controller.py:204
 msgid "Copy command"
 msgstr "Команда копирования"
 
-#: zapzap/features/browser/shell/browser_controller.py:162
+#: zapzap/features/browser/shell/browser_controller.py:205
 #: zapzap/ui/components/edit_account_dialog.py:73
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "Закрыть"
 
-#: zapzap/features/browser/shell/browser_controller.py:298
-#: zapzap/features/browser/shell/browser_controller.py:347
+#: zapzap/features/browser/shell/browser_controller.py:416
+#: zapzap/features/browser/shell/browser_controller.py:500
 #, python-brace-format
 msgid "Account {}"
 msgstr "Аккаунт {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:355
+#: zapzap/features/browser/shell/browser_controller.py:513
 msgid "Account disabled"
 msgstr "Учётная запись отключена"
 
-#: zapzap/features/browser/shell/browser_controller.py:356
+#: zapzap/features/browser/shell/browser_controller.py:514
 msgid "This account is disabled."
 msgstr "Этот аккаунт отключен."
 
-#: zapzap/features/browser/shell/browser_controller.py:358
+#: zapzap/features/browser/shell/browser_controller.py:516
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Вы можете активировать его снова сейчас или использовать контекстное меню "
 "для управления этой учётной записью."
 
-#: zapzap/features/browser/shell/browser_controller.py:363
+#: zapzap/features/browser/shell/browser_controller.py:521
 msgid "Activate"
 msgstr "Активировать"
 
-#: zapzap/features/browser/shell/browser_controller.py:364
+#: zapzap/features/browser/shell/browser_controller.py:522
 msgid "Not now"
 msgstr "Не сейчас"
 
@@ -3124,23 +3125,35 @@ msgstr ""
 msgid "Choose the languages used by the spell checker."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:575
+#: zapzap/features/browser/web/web_view.py:583
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "Учётная запись"
 
-#: zapzap/features/browser/web/web_view.py:577
+#: zapzap/features/browser/web/web_view.py:585
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "Инструменты разработчика - {}"
 
-#: zapzap/ui/components/settings_restart_bar.py:54
-msgid "A restart is required to apply the changes."
-msgstr "Для применения изменений требуется перезагрузка."
+#: zapzap/ui/components/browser_grid_view.py:75
+msgid "Accounts overview"
+msgstr "Обзор аккаунтов"
 
-#: zapzap/ui/components/settings_restart_bar.py:55
-msgid "Restart now"
-msgstr "Перезапустить сейчас"
+#: zapzap/ui/components/browser_grid_view.py:79
+msgid "Select an account to return to its chat."
+msgstr "Выберите учетную запись, чтобы вернуться к ее чату."
+
+#: zapzap/ui/components/browser_grid_view.py:92
+msgid "No active accounts to display."
+msgstr "Нет активных аккаунтов для отображения."
+
+#: zapzap/ui/components/browser_sidebar.py:147
+msgid "New conversation by the phone number"
+msgstr "Новый разговор по номеру телефона"
+
+#: zapzap/ui/components/browser_sidebar.py:150
+msgid "ZapZap Settings"
+msgstr "Настройки ZapZap"
 
 #: zapzap/ui/components/card_user.py:149 zapzap/ui/components/card_user.py:150
 #: zapzap/ui/components/card_user.py:483 zapzap/ui/components/card_user.py:486
@@ -3320,26 +3333,6 @@ msgstr "При отмене будут восстановлены значени
 msgid "Keep editing"
 msgstr "Продолжить редактирование"
 
-#: zapzap/ui/components/browser_grid_view.py:75
-msgid "Accounts overview"
-msgstr "Обзор аккаунтов"
-
-#: zapzap/ui/components/browser_grid_view.py:79
-msgid "Select an account to return to its chat."
-msgstr "Выберите учетную запись, чтобы вернуться к ее чату."
-
-#: zapzap/ui/components/browser_grid_view.py:92
-msgid "No active accounts to display."
-msgstr "Нет активных аккаунтов для отображения."
-
-#: zapzap/ui/components/browser_sidebar.py:147
-msgid "New conversation by the phone number"
-msgstr "Новый разговор по номеру телефона"
-
-#: zapzap/ui/components/browser_sidebar.py:150
-msgid "ZapZap Settings"
-msgstr "Настройки ZapZap"
-
 #: zapzap/ui/components/main_window.py:134
 msgid "File"
 msgstr "Файл"
@@ -3451,6 +3444,14 @@ msgstr "Ctrl+M"
 #: zapzap/ui/components/main_window.py:171
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
+
+#: zapzap/ui/components/settings_restart_bar.py:54
+msgid "A restart is required to apply the changes."
+msgstr "Для применения изменений требуется перезагрузка."
+
+#: zapzap/ui/components/settings_restart_bar.py:55
+msgid "Restart now"
+msgstr "Перезапустить сейчас"
 
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:126
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:169
