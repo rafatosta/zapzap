@@ -183,6 +183,20 @@ msgfmt --check --check-format --statistics -o /tmp/zapzap.mo po/pt_BR.po
 
 Repita para cada catálogo alterado e gere os `.mo` que o pacote distribui.
 
+### Benchmark de memória
+
+- Execute campanhas manuais com ao menos cinco repetições em processos novos:
+  `python tools/memory/benchmark_memory.py --without-webengine --accounts
+  1,3,5 --repeat 5 --output-dir memory-results`.
+- Confirme que o relatório registra uma `StubWebView` por conta solicitada e
+  nenhum módulo `PyQt6.QtWebEngine*`/`PyQt6.QtWebChannel`.
+- Compare mediana de PSS/USS na mesma máquina. RSS e números absolutos não são
+  contrato de CI; uma falha por regressão só pode ser habilitada por regra
+  relativa explícita no comparador.
+- Preserve imports tardios na fronteira WebEngine. O benchmark não pode
+  mascarar um import anterior por monkeypatch posterior.
+- Consulte `docs/memory-benchmark.md` para cenários, schema e interpretação.
+
 ## Contrato de documentação estrutural
 
 Toda alteração estrutural deve atualizar os documentos no mesmo commit ou pull

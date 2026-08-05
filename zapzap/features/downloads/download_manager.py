@@ -1,11 +1,16 @@
-from PyQt6.QtWebEngineCore import QWebEngineDownloadRequest
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from PyQt6.QtCore import QStandardPaths
 from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.features.downloads.download_naming_service import DownloadNamingService
 from PyQt6.QtWidgets import QFileDialog
 
-from zapzap.features.downloads.ui.download_dialog import DownloadDialog
 from gettext import gettext as _
+
+if TYPE_CHECKING:
+    from PyQt6.QtWebEngineCore import QWebEngineDownloadRequest
 
 
 class DownloadManager:
@@ -39,6 +44,9 @@ class DownloadManager:
         download: QWebEngineDownloadRequest,
         parent=None
     ):
+        from PyQt6.QtWebEngineCore import QWebEngineDownloadRequest
+        from zapzap.features.downloads.ui.download_dialog import DownloadDialog
+
         if download.state() != QWebEngineDownloadRequest.DownloadState.DownloadRequested:
             return
 

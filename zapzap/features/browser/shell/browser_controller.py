@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 from enum import Enum
-from typing import Callable, Dict, Iterator, Optional
+from typing import Callable, Dict, Iterator, Optional, TYPE_CHECKING
 
 from PyQt6.QtCore import QEasingCurve
 from PyQt6.QtCore import QParallelAnimationGroup
@@ -10,7 +12,6 @@ from PyQt6.QtGui import QAction
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWidgets import QApplication
 from zapzap.core.theme.theme_manager import ThemeManager
-from zapzap.features.browser.web.web_view import WebView
 from zapzap.features.accounts.domain.user import User
 from zapzap.features.accounts.card_user_controller import CardUserController as CardUser
 from zapzap.assets.icons.system_icon import SystemIcon
@@ -27,6 +28,16 @@ from zapzap.ui.components import BrowserSidebarButton
 
 
 from gettext import gettext as _
+
+if TYPE_CHECKING:
+    from zapzap.features.browser.web.web_view import WebView
+
+
+def load_webview_factory():
+    """Load QtWebEngine only when the production browser needs a page."""
+    from zapzap.features.browser.web.web_view import WebView
+
+    return WebView
 
 
 class AccountLifecycle(Enum):
@@ -51,14 +62,20 @@ class AccountRuntime:
 class BrowserController(BrowserView):
     """Gerencia as páginas e interações do navegador no aplicativo."""
 
-    def __init__(self, parent=None, webview_factory: Callable = WebView):
+    def __init__(self, parent=None, webview_factory: Optional[Callable] = None,
+                 user_provider: Optional[Callable] = None):
         super().__init__(parent)
         self.parent = parent
         self._appearance_settings = AppearanceSettings()
 
         self.page_count = 0
         self._accounts: Dict[str, AccountRuntime] = {}
-        self._webview_factory = webview_factory
+        self._webview_factory = (
+            webview_factory
+            if webview_factory is not None
+            else load_webview_factory()
+        )
+        self._user_provider = user_provider
         self._configure_sidebar_appearance()
         self._sidebar_expanded_width = 72
         self._sidebar_animation_group = None
@@ -197,10 +214,13 @@ class BrowserController(BrowserView):
 
     def _load_users(self):
         """Register every user and eagerly start only enabled accounts."""
+        if self._user_provider is None:
+            self._create_user_in_first_access()
+            users = User.select()
+        else:
+            users = self._user_provider()
 
-        self._create_user_in_first_access()
-
-        for user in User.select():
+        for user in users:
             self._add_page(user)
 
     def _create_user_in_first_access(self):

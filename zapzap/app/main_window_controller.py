@@ -23,12 +23,17 @@ class MainWindowController(MainWindowView):
     Controla a janela principal, incluindo o menu e interações com widgets centrais.
     """
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, webview_factory=None,
+                 user_provider=None):
         super().__init__(parent)
         self._appearance_settings = AppearanceSettings()
         self._window_host = self
         self.lifecycle = WindowLifecycle(self, self)
-        self.browser = BrowserController(self)  # Inicialização do navegador
+        self.browser = BrowserController(
+            self,
+            webview_factory=webview_factory,
+            user_provider=user_provider,
+        )
         self.app_settings = None
         self._last_sanitized_key = None
         self.theme_action_group = None

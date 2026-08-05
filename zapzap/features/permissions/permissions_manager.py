@@ -2,24 +2,20 @@
 
 from __future__ import annotations
 
-from PyQt6.QtWebEngineCore import QWebEnginePage
-
 from zapzap.core.config.settings_manager import SettingsManager
 
 
 class PermissionsManager:
     """Centralizes user preferences for automatic WebEngine permissions."""
 
-    Feature = QWebEnginePage.Feature
-
     PERMISSIONS = (
-        (Feature.MediaAudioCapture, "microphone"),
-        (Feature.MediaVideoCapture, "camera"),
-        (Feature.MediaAudioVideoCapture, "camera_microphone"),
-        (Feature.Geolocation, "location"),
-        (Feature.DesktopVideoCapture, "screen_contents"),
-        (Feature.DesktopAudioVideoCapture, "screen_contents_audio"),
-        (Feature.MouseLock, "mouse_lock"),
+        ("MediaAudioCapture", "microphone"),
+        ("MediaVideoCapture", "camera"),
+        ("MediaAudioVideoCapture", "camera_microphone"),
+        ("Geolocation", "location"),
+        ("DesktopVideoCapture", "screen_contents"),
+        ("DesktopAudioVideoCapture", "screen_contents_audio"),
+        ("MouseLock", "mouse_lock"),
     )
 
     _KEY_PREFIX = "permissions/auto_grant"
@@ -29,14 +25,17 @@ class PermissionsManager:
         return f"{cls._KEY_PREFIX}/{permission_id}"
 
     @classmethod
-    def feature_key(cls, feature: QWebEnginePage.Feature) -> str | None:
-        for item_feature, permission_id in cls.PERMISSIONS:
-            if feature == item_feature:
+    def feature_key(cls, feature) -> str | None:
+        """Resolve WebEngine enum values only on the real browser path."""
+        from PyQt6.QtWebEngineCore import QWebEnginePage
+
+        for feature_name, permission_id in cls.PERMISSIONS:
+            if feature == getattr(QWebEnginePage.Feature, feature_name):
                 return cls.key_for(permission_id)
         return None
 
     @classmethod
-    def is_auto_grant_enabled(cls, feature: QWebEnginePage.Feature) -> bool:
+    def is_auto_grant_enabled(cls, feature) -> bool:
         key = cls.feature_key(feature)
         if key is None:
             return False

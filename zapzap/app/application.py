@@ -10,6 +10,9 @@ from PyQt6.QtGui import QDesktopServices
 from zapzap.app.single_application import SingleApplication
 from zapzap.app.desktop_application_dbus import DesktopApplicationDBus
 from zapzap.app.main_window_controller import MainWindowController
+from zapzap.features.browser.shell.browser_controller import (
+    load_webview_factory,
+)
 from zapzap.app.startup_options import apply_startup_options, parse_startup_options
 from zapzap.app.window_lifecycle import ClientSideWindowHost
 from zapzap.core.diagnostics import crash_handler
@@ -29,9 +32,9 @@ from zapzap.features.notifications.notification_service import (
 )
 
 
-def create_main_window():
+def create_main_window(webview_factory=None):
     """Build a fresh MainWindow instance using the current runtime settings."""
-    content = MainWindowController()
+    content = MainWindowController(webview_factory=webview_factory)
     window = (
         ClientSideWindowHost(content)
         if AppearanceSettings().csr_enabled
@@ -51,6 +54,11 @@ def main():
 
     SetupManager.apply()
     TranslationManager.apply()
+
+    # Qt requires QWebEngineView to be imported (or the corresponding
+    # application attribute to be set) before constructing QCoreApplication.
+    # Resolve the real factory here; isolated tools inject their QWidget stub.
+    webview_factory = load_webview_factory()
 
     # Instala o handler de crash
     crash_handler.install()
@@ -80,7 +88,9 @@ def main():
     ThemeManager.start()
 
     # Create main window
-    main_window = app.startInterface(create_main_window)
+    main_window = app.startInterface(
+        lambda: create_main_window(webview_factory)
+    )
     desktop_application_dbus = None
     if is_flatpak():
         desktop_application_dbus = DesktopApplicationDBus(app)

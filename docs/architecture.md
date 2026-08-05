@@ -156,6 +156,22 @@ versus `system/quit_in_close` e `donation_message_enabled` versus
 Dados e caches seguem `QStandardPaths`. Testes substituem os diretórios XDG por
 temporários; nunca devem usar o perfil real do mantenedor.
 
+## Instrumentação de memória
+
+O benchmark em `tools/memory/` mantém seu processo coordenador limitado à
+biblioteca padrão e configura a plataforma Qt antes de importar PyQt6. Cada
+repetição nasce em um subprocesso novo. `MainWindowController` encaminha uma
+factory opcional ao registro de contas e o modo isolado fornece `StubWebView`.
+No bootstrap de produção, a factory real é resolvida depois de configurar o
+ambiente, mas obrigatoriamente antes de criar `QCoreApplication`, como exige o
+QtWebEngine; reinícios da interface reutilizam essa factory já resolvida.
+
+Imports de tipos WebEngine usados somente no caminho de navegação real, como
+downloads e permissões, também são tardios. Assim, todas as páginas de
+Configurações podem ser construídas no benchmark sem carregar
+`QtWebEngineCore`, `QtWebEngineWidgets` ou `QtWebChannel`. Métricas e limites de
+interpretação estão documentados em `docs/memory-benchmark.md`.
+
 ## Configurações
 
 O shell é registrado em `SettingsController._pages()`. Cada página segue, tanto

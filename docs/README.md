@@ -22,6 +22,7 @@ Inventário de documentos técnicos:
 - `README.md`
 - `architecture.md`
 - `maintenance.md`
+- `memory-benchmark.md`
 - `performance-experimental.md`
 - `testing.md`
 <!-- structure-check:docs:end -->
