@@ -160,7 +160,9 @@ e somente a página `accounts` são construídos. Cada outra página é importad
 instanciada apenas na primeira seleção, permanece singleton durante aquela
 sessão do painel e é destruída com a árvore Qt quando o painel é fechado. APIs
 externas selecionam páginas pelo ID ou tipo público, nunca pelo índice físico
-do `QStackedWidget`.
+do `QStackedWidget`. O loader distingue módulo alvo ausente, dependência interna
+ausente, classe inválida e falha do construtor; o diagnóstico mantém ID, módulo
+e classe sem deixar o shell em estado parcial.
 
 As páginas consomem composições reutilizáveis de `zapzap.ui.components`.
 `SettingsCard.add_row()` cria divisores automaticamente; linhas auxiliares

@@ -1,4 +1,10 @@
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
 from types import SimpleNamespace
+import unittest
 from unittest.mock import Mock, patch
 
 from PyQt6.QtWidgets import QWidget
@@ -6,7 +12,11 @@ from PyQt6.QtWidgets import QWidget
 from qt_test_case import QtTestCase
 from zapzap.app.main_window_controller import MainWindowController
 from zapzap.features.settings.shell import settings_controller as settings_module
-from zapzap.features.settings.shell.settings_controller import SettingsController
+from zapzap.features.settings.shell.settings_controller import (
+    SettingsController,
+    SettingsPageDescriptor,
+    SettingsPageLoadError,
+)
 
 
 PAGE_TYPES = (
@@ -55,6 +65,129 @@ PAGE_TYPES = (
         "AboutSettingsController",
     ),
 )
+REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+
+
+class SettingsImportIsolationTest(unittest.TestCase):
+    def _run_isolated(self, source):
+        environment = os.environ.copy()
+        environment.setdefault("QT_QPA_PLATFORM", "offscreen")
+        result = subprocess.run(
+            [sys.executable, "-c", source],
+            cwd=REPOSITORY_ROOT,
+            env=environment,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        return json.loads(result.stdout.strip().splitlines()[-1])
+
+    def test_shell_and_main_window_import_no_page_controllers(self):
+        for module_name in (
+            "zapzap.features.settings.shell.settings_controller",
+            "zapzap.app.main_window_controller",
+        ):
+            with self.subTest(module=module_name):
+                loaded = self._run_isolated(
+                    "import importlib, json, sys; "
+                    f"importlib.import_module({module_name!r}); "
+                    "print(json.dumps(sorted(name for name in sys.modules "
+                    "if name.startswith('zapzap.features.settings.pages.') "
+                    "and name.endswith('.controller'))))"
+                )
+                self.assertEqual(loaded, [])
+
+    def test_descriptor_imports_only_its_target_in_isolated_process(self):
+        loaded = self._run_isolated(
+            "import json, sys; "
+            "from PyQt6.QtWidgets import QApplication; "
+            "app = QApplication(['zapzap']); "
+            "from zapzap.features.settings.shell.settings_controller "
+            "import SettingsPageDescriptor; "
+            "descriptor = SettingsPageDescriptor('about', 'About', "
+            "'zapzap.features.settings.pages.about.controller', "
+            "'AboutSettingsController'); "
+            "page = descriptor.create(); "
+            "print(json.dumps(sorted(name for name in sys.modules "
+            "if name.startswith('zapzap.features.settings.pages.') "
+            "and name.endswith('.controller'))))"
+        )
+
+        self.assertEqual(
+            loaded,
+            ["zapzap.features.settings.pages.about.controller"],
+        )
+
+
+class SettingsPageDescriptorTest(unittest.TestCase):
+    DESCRIPTOR = SettingsPageDescriptor(
+        "example",
+        "Example",
+        "zapzap.features.settings.pages.example.controller",
+        "ExampleSettingsController",
+    )
+
+    def test_missing_target_module_has_structured_context(self):
+        missing = ModuleNotFoundError(
+            "No module named target",
+            name=self.DESCRIPTOR.module_name,
+        )
+        with (
+            patch.object(settings_module, "import_module", side_effect=missing),
+            self.assertRaises(SettingsPageLoadError) as raised,
+        ):
+            self.DESCRIPTOR.load_controller()
+
+        error = raised.exception
+        self.assertEqual(error.stage, "target_module_not_found")
+        self.assertIn("id=example", str(error))
+        self.assertIn(f"module={self.DESCRIPTOR.module_name}", str(error))
+        self.assertIn("class=ExampleSettingsController", str(error))
+
+    def test_internal_missing_dependency_is_not_reported_as_target_missing(self):
+        missing = ModuleNotFoundError(
+            "No module named optional_dependency",
+            name="optional_dependency",
+        )
+        with (
+            patch.object(settings_module, "import_module", side_effect=missing),
+            self.assertRaises(SettingsPageLoadError) as raised,
+        ):
+            self.DESCRIPTOR.load_controller()
+
+        self.assertEqual(raised.exception.stage, "dependency_import_failed")
+
+    def test_missing_or_invalid_controller_class_is_rejected(self):
+        for module, expected_stage in (
+            (SimpleNamespace(), "controller_not_found"),
+            (
+                SimpleNamespace(ExampleSettingsController=object),
+                "invalid_controller",
+            ),
+        ):
+            with self.subTest(stage=expected_stage):
+                with (
+                    patch.object(
+                        settings_module,
+                        "import_module",
+                        return_value=module,
+                    ),
+                    self.assertRaises(SettingsPageLoadError) as raised,
+                ):
+                    self.DESCRIPTOR.load_controller()
+                self.assertEqual(raised.exception.stage, expected_stage)
+
+
+class SettingsLazyPackagingTest(unittest.TestCase):
+    def test_pyinstaller_builds_collect_dynamic_settings_modules(self):
+        for relative_path in (
+            ".github/packaging/macos/build.sh",
+            ".github/packaging/windows/build.ps1",
+        ):
+            with self.subTest(path=relative_path):
+                source = (REPOSITORY_ROOT / relative_path).read_text()
+                self.assertIn("--collect-submodules", source)
+                self.assertIn("zapzap.features.settings.pages", source)
 
 
 class SettingsLazyLoadingTest(QtTestCase):
@@ -155,6 +288,12 @@ class SettingsLazyLoadingTest(QtTestCase):
 
         self.assertIs(settings.page_instance("appearance"), first)
         self.assertEqual(self.constructions["AppearanceSettingsController"], 1)
+        self.assertEqual(
+            self.imported_modules.count(
+                "zapzap.features.settings.pages.appearance.controller"
+            ),
+            1,
+        )
         self.assertEqual(settings.pages.count(), 2)
         self.assertEqual(settings.current_page_id, "appearance")
 
@@ -169,6 +308,18 @@ class SettingsLazyLoadingTest(QtTestCase):
         self.assertEqual(language.focus_calls, 1)
         self.assertEqual(settings.current_page_id, "language_downloads")
         self.assertEqual(settings.pages.count(), 3)
+        self.assertEqual(
+            self.imported_modules.count(
+                "zapzap.features.settings.pages.about.controller"
+            ),
+            1,
+        )
+        self.assertEqual(
+            self.imported_modules.count(
+                "zapzap.features.settings.pages.language_downloads.controller"
+            ),
+            1,
+        )
 
     def test_open_page_type_matches_uninstantiated_descriptor(self):
         settings = self._settings()
@@ -195,6 +346,10 @@ class SettingsLazyLoadingTest(QtTestCase):
         self.assertEqual(settings.pages.count(), 1)
         self.assertTrue(settings.page_buttons["notifications"].isEnabled())
         alert.assert_called_once()
+        message = alert.call_args.args[2]
+        self.assertIn("id=notifications", message)
+        self.assertIn(f"module={failing_module}", message)
+        self.assertIn("class=NotificationsSettingsController", message)
 
     def test_close_settings_drops_main_window_reference_and_schedules_delete(self):
         settings = Mock()

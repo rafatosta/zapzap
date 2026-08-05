@@ -22,15 +22,75 @@ class SettingsPageDescriptor:
     module_name: str
     controller_name: str
 
+    def _load_error(self, stage, cause):
+        return SettingsPageLoadError(self, stage, cause)
+
+    def load_controller(self):
+        try:
+            module = import_module(self.module_name)
+        except ModuleNotFoundError as error:
+            missing_name = error.name or ""
+            target_missing = (
+                missing_name == self.module_name
+                or self.module_name.startswith(f"{missing_name}.")
+            )
+            stage = (
+                "target_module_not_found"
+                if target_missing
+                else "dependency_import_failed"
+            )
+            raise self._load_error(stage, error) from error
+        except ImportError as error:
+            raise self._load_error("module_import_failed", error) from error
+
+        try:
+            controller = getattr(module, self.controller_name)
+        except AttributeError as error:
+            raise self._load_error("controller_not_found", error) from error
+
+        if not isinstance(controller, type) or not issubclass(controller, QWidget):
+            error = TypeError("controller must be a QWidget class")
+            raise self._load_error("invalid_controller", error)
+        return controller
+
     def create(self):
-        module = import_module(self.module_name)
-        controller = getattr(module, self.controller_name)
-        return controller()
+        controller = self.load_controller()
+        try:
+            page = controller()
+        except Exception as error:
+            raise self._load_error("controller_init_failed", error) from error
+        if not isinstance(page, QWidget):
+            error = TypeError("controller did not create a QWidget")
+            raise self._load_error("invalid_widget", error)
+        return page
 
     def matches_type(self, page_type):
         return (
             page_type.__module__ == self.module_name
             and page_type.__name__ == self.controller_name
+        )
+
+
+class SettingsPageLoadError(RuntimeError):
+    """Structured diagnostic for one declaratively registered page."""
+
+    def __init__(self, descriptor, stage, cause):
+        self.page_id = descriptor.page_id
+        self.module_name = descriptor.module_name
+        self.controller_name = descriptor.controller_name
+        self.stage = stage
+        self.cause = cause
+        super().__init__(str(self))
+
+    def __str__(self):
+        return "\n".join(
+            (
+                f"id={self.page_id}",
+                f"module={self.module_name}",
+                f"class={self.controller_name}",
+                f"stage={self.stage}",
+                f"error={type(self.cause).__name__}: {self.cause}",
+            )
         )
 
 
@@ -164,13 +224,17 @@ class SettingsController(SettingsView):
 
         try:
             page = descriptor.create()
-            if not isinstance(page, QWidget):
-                raise TypeError(descriptor.controller_name)
         except Exception as error:
+            if not isinstance(error, SettingsPageLoadError):
+                error = SettingsPageLoadError(
+                    descriptor,
+                    "unexpected_loader_failure",
+                    error,
+                )
             AlertManager.critical(
                 self,
                 _("Settings"),
-                f"{descriptor.label}\n\n{error}",
+                str(error),
             )
             return None
 

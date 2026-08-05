@@ -98,7 +98,7 @@ documente o que ele protege.
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
 | `test_segmented_control.py` | seleção exclusiva, sinais, mouse, teclado, acessibilidade, tamanhos, raios e temas |
 | `test_settings_card.py` | divisores e grupos do card compartilhado em `ui.components` |
-| `test_settings_lazy_loading.py` | registro, importação e instanciação lazy, singleton por painel, APIs públicas, erro e fechamento de Configurações |
+| `test_settings_lazy_loading.py` | subprocessos de importação, registro e instanciação lazy, singleton por painel, diagnóstico, empacotamento, APIs públicas e fechamento de Configurações |
 | `test_settings_radio_group.py` | divisores do grupo de rádio em `ui.components` |
 | `test_software_video_decoding.py` | flag Chromium, persistência, padrão e ordem do bootstrap |
 | `test_spellcheck_language_picker.py` | migração, seleção múltipla transacional, pesquisa, limite, recentes, menu e perfis WebEngine |

@@ -23,6 +23,7 @@ python -m PyInstaller \
     --name "$APP_NAME" \
     --windowed \
     --noconfirm \
+    --collect-submodules "zapzap.features.settings.pages" \
     --add-data "zapzap/po:zapzap/po" \
     --add-data "zapzap/assets:zapzap/assets" \
     --add-data "zapzap/features/browser/web/scripts:zapzap/features/browser/web/scripts" \

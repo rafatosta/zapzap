@@ -55,7 +55,8 @@ $Args = @(
     "--name", $AppName,
     "--onefile",
     "--windowed",
-    "--noconfirm"
+    "--noconfirm",
+    "--collect-submodules", "zapzap.features.settings.pages"
 )
 
 foreach ($item in $AdditionalData) {

@@ -68,6 +68,9 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   não importe nem instancie o controller ao construir o shell. Navegação e
   restauração devem usar o ID, pois o índice físico contém somente páginas já
   visitadas.
+- Como os builds macOS e Windows usam PyInstaller, preserve a coleta explícita
+  de `zapzap.features.settings.pages` quando adicionar loaders dinâmicos. Os
+  pacotes Python comuns continuam cobertos pelo inventário de `pyproject.toml`.
 - Reutilize `SettingsPage`, `SettingsSection`, `SettingsCard` e as linhas
   semânticas existentes.
 - Mantenha texto curto, descrição útil, estado padrão real e nome acessível.
