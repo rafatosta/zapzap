@@ -91,6 +91,10 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - Capture caminhos antes de destruir o perfil quando for necessário remover
   dados.
 - Faça o encerramento idempotente; QtWebEngine é sensível à ordem de destruição.
+- Preserve o cache de miniaturas da grade sob propriedade do
+  `BrowserController`: capture apenas páginas visíveis, limite buffers em
+  pixels físicos e invalide-os antes de desativar, excluir, recarregar ou
+  encerrar a conta.
 - Revalide grid, sidebar, conta ativa, zoom, downloads e notificações.
 
 ### Mudança no corretor ortográfico

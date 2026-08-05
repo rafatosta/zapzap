@@ -16,6 +16,7 @@ from zapzap.core.config.settings.appearance import AppearanceSettings
 from zapzap.core.environment.setup_manager import SetupManager
 from zapzap.features.tray.sys_tray_manager import SysTrayManager
 from zapzap.features.browser.shell.browser_view import BrowserView
+from zapzap.features.browser.shell.grid_thumbnail_cache import GridThumbnailCache
 from zapzap.ui.components import BrowserGridView
 from zapzap.ui.components import BrowserPageButton
 from zapzap.ui.components import BrowserSidebarButton
@@ -40,6 +41,7 @@ class BrowserController(BrowserView):
         self._last_active_webview = None
         self._account_context_menu = None
         self._shutting_down = False
+        self._grid_thumbnails = GridThumbnailCache()
 
         self._initialize()
 
@@ -236,6 +238,7 @@ class BrowserController(BrowserView):
     def disable_page(self, user: User):
         """Habilita ou desabilita uma página com base no status do usuário."""
         button, page = self._find_button_and_page_by_user(user)
+        self._grid_thumbnails.invalidate(user.id)
 
         if button and page:
             if user.enable:
@@ -249,6 +252,7 @@ class BrowserController(BrowserView):
     def delete_page(self, user: User):
         """Remove uma página e seu botão correspondente."""
         button, page = self._find_button_and_page_by_user(user)
+        self._grid_thumbnails.invalidate(user.id)
 
         if page:
             self.pages.removeWidget(page)
@@ -333,8 +337,12 @@ class BrowserController(BrowserView):
     def switch_to_page(self, page: WebView, button: BrowserPageButton):
         """Alterna para a página selecionada e ajusta os estilos dos botões."""
         old_page = self.pages.currentWidget()
-        if old_page and isinstance(old_page, WebView):
-            old_page.cached_screenshot = old_page.grab()
+        if old_page is not page and isinstance(old_page, WebView):
+            self._capture_grid_thumbnail(old_page)
+        elif old_page is self.grid_view:
+            # Grid labels share the cached native buffers. Release those
+            # references before a future capture replaces any cache entry.
+            self.grid_view.clear_thumbnails()
 
         self._reset_button_styles()
         self.pages.setCurrentWidget(page)
@@ -392,6 +400,8 @@ class BrowserController(BrowserView):
 
     def close_pages(self):
         """Fecha e limpa todas as páginas existentes."""
+        self._grid_thumbnails.clear()
+        self.grid_view.clear_thumbnails()
         for i in reversed(range(self.pages.count())):
             page = self.pages.widget(i)
 
@@ -411,10 +421,12 @@ class BrowserController(BrowserView):
 
     def reload_pages(self):
         """Recarrega todas as páginas existentes."""
+        self.grid_view.clear_thumbnails()
         for i in range(self.pages.count()):
             if i == self.grid_page_index:
                 continue
             page = self.pages.widget(i)
+            self._grid_thumbnails.invalidate(page.user.id)
             page.load_page()
 
     def close_conversations(self):
@@ -438,6 +450,29 @@ class BrowserController(BrowserView):
             return current
         return self._last_active_webview
 
+    def _capture_grid_thumbnail(self, page):
+        """Capture a live visible page and retain only its bounded thumbnail."""
+        if self._shutting_down or getattr(page, "_shutting_down", False):
+            return None
+        if not page.user.enable:
+            self._grid_thumbnails.invalidate(page.user.id)
+            return None
+
+        try:
+            if not page.isVisible():
+                return None
+            return self._grid_thumbnails.store(page.user.id, page.grab())
+        except RuntimeError:
+            # The underlying C++ widget may already have been destroyed.
+            self._grid_thumbnails.invalidate(page.user.id)
+            return None
+
+    def _grid_thumbnail(self, page):
+        thumbnail = self._grid_thumbnails.get(page.user.id)
+        if thumbnail is None or thumbnail.isNull():
+            thumbnail = self._capture_grid_thumbnail(page)
+        return thumbnail
+
     def show_grid_view(self):
         """Generates thumbnails and displays the grid view."""
         from zapzap.ui.primitives import Label
@@ -456,7 +491,7 @@ class BrowserController(BrowserView):
 
         current_page = self.pages.currentWidget()
         if current_page and isinstance(current_page, WebView):
-            current_page.cached_screenshot = current_page.grab()
+            self._grid_thumbnail(current_page)
 
         self.grid_view.clear_thumbnails()
         self.grid_view.set_empty_state_visible(False)
@@ -504,15 +539,13 @@ class BrowserController(BrowserView):
         target_height = max(170, min(360, target_height))
 
         for page_widget, i in active_pages:
-            # Capture screenshot
-            pixmap = getattr(page_widget, "cached_screenshot", None)
-            if not pixmap or pixmap.isNull():
-                pixmap = page_widget.grab()
+            pixmap = self._grid_thumbnail(page_widget)
 
             # Image Label
             img_label = ClickableLabel(page_widget, i, self._switch_from_grid)
             img_label.setObjectName("BrowserGridThumbnail")
-            img_label.setPixmap(pixmap)
+            if pixmap is not None:
+                img_label.setPixmap(pixmap)
             img_label.setScaledContents(True)
             img_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
             img_label.setFixedSize(target_width, target_height)

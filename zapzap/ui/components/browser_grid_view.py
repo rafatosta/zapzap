@@ -105,6 +105,8 @@ class BrowserGridView(QWidget):
             item = self.grid_layout.takeAt(index)
             widget = item.widget()
             if widget:
+                if isinstance(widget, Label):
+                    widget.clear()
                 widget.deleteLater()
 
     def set_empty_state_visible(self, visible):

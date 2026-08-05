@@ -67,7 +67,11 @@ tipados existentes. `request_close()` respeita a permanência em segundo plano;
 ações explicitamente chamadas “Sair” usam `request_quit()` e encerram o app.
 
 `BrowserController` mantém o relacionamento entre contas, botões laterais e
-`WebView`s. Cada conta usa um perfil WebEngine próprio. O fluxo básico é:
+`WebView`s. Ele também possui o cache efêmero da grade, com no máximo uma
+miniatura de 480 × 300 pixels físicos por conta, indexada pelo ID estável e
+limpa ao desativar, excluir, recarregar ou encerrar páginas. Capturas integrais
+não ficam retidas nas `WebView`s. Cada conta usa um perfil WebEngine próprio. O
+fluxo básico é:
 
 ```text
 User (SQLite) -> BrowserController -> WebView -> PageController

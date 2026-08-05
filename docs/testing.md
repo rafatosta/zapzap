@@ -87,6 +87,7 @@ documente o que ele protege.
 | `test_documentation_structure.py` | camadas de UI e sincronização entre árvore, inventários técnicos e guia para agentes |
 | `test_external_link_lifecycle.py` | descarte da página WebEngine transitória após abrir links externos |
 | `test_gpu_environment.py` | detecção multi-GPU, conectores e seleção de render node |
+| `test_grid_thumbnail_cache.py` | limite físico/DPR, reutilização, fallback, seleção e ciclo de vida das miniaturas da grade |
 | `test_initial_setup_ui.py` | onboarding, som, fechamento, permissões, dicionários e persistência |
 | `test_network_privacy_settings_ui.py` | proxy, credenciais, aplicar/descartar, restauração e WebRTC |
 | `test_notification_sound_setting.py` | mapeamento de som para hints Portal/Freedesktop |
@@ -119,6 +120,7 @@ documente o que ele protege.
 - `test_documentation_structure.py`
 - `test_external_link_lifecycle.py`
 - `test_gpu_environment.py`
+- `test_grid_thumbnail_cache.py`
 - `test_initial_setup_ui.py`
 - `test_network_privacy_settings_ui.py`
 - `test_notification_sound_setting.py`
