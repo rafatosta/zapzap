@@ -1,5 +1,6 @@
 """Regression tests for dictionary discovery and presentation."""
 
+from types import SimpleNamespace
 import unittest
 from unittest.mock import Mock, patch
 
@@ -99,6 +100,28 @@ class FakeLanguageDownloadSettingsModel:
 
 
 class DictionarySettingsUiTests(QtTestCase):
+
+    def test_interface_reload_restores_lazy_settings_page_by_stable_id(self):
+        current_settings = SimpleNamespace(current_page_id="debugging")
+        next_settings = SimpleNamespace(open_page_id=Mock())
+        window = SimpleNamespace(app_settings=current_settings)
+
+        def close_settings():
+            window.app_settings = None
+
+        def open_settings():
+            window.app_settings = next_settings
+
+        window.close_settings = close_settings
+        window.open_settings = open_settings
+        app = SimpleNamespace(getWindow=lambda: window)
+
+        reloaded = LanguageDownloadSettingsController._reload_open_settings_page(
+            app
+        )
+
+        self.assertTrue(reloaded)
+        next_settings.open_page_id.assert_called_once_with("debugging")
 
     def test_settings_page_displays_selected_language_summary(self):
         model = FakeLanguageDownloadSettingsModel()

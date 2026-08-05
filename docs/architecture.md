@@ -154,6 +154,14 @@ quanto possível, a separação:
 - `view.py`: widgets, layout, texto visível e acessibilidade;
 - `controller.py`: sinais, persistência e efeitos.
 
+`SettingsController._pages()` registra descritores com ID estável, rótulo
+traduzido e caminho do controller. Ao abrir Configurações, o shell, a navegação
+e somente a página `accounts` são construídos. Cada outra página é importada e
+instanciada apenas na primeira seleção, permanece singleton durante aquela
+sessão do painel e é destruída com a árvore Qt quando o painel é fechado. APIs
+externas selecionam páginas pelo ID ou tipo público, nunca pelo índice físico
+do `QStackedWidget`.
+
 As páginas consomem composições reutilizáveis de `zapzap.ui.components`.
 `SettingsCard.add_row()` cria divisores automaticamente; linhas auxiliares
 podem optar por `divider=False`. Mudanças que pedem reinício usam

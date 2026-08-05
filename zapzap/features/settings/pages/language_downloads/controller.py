@@ -105,13 +105,13 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         if settings is None:
             return False
 
-        page_index = settings.pages.currentIndex()
+        page_id = settings.current_page_id
         window.close_settings()
         window.open_settings()
 
         next_settings = getattr(window, "app_settings", None)
-        if next_settings is not None and page_index >= 0:
-            next_settings.switch_to_page(next_settings.page_at(page_index))
+        if next_settings is not None and page_id is not None:
+            next_settings.open_page_id(page_id)
         return True
 
     @staticmethod

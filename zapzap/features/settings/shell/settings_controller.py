@@ -1,33 +1,52 @@
 """Controller for the settings shell."""
 
+from dataclasses import dataclass
 from gettext import gettext as _
+from importlib import import_module
 
 from PyQt6.QtCore import Qt, QUrl
 from PyQt6.QtGui import QDesktopServices, QKeySequence, QShortcut
 from PyQt6.QtWidgets import QApplication, QWidget
 
 from zapzap import __donationPage__
-
-from zapzap.features.settings.pages.accounts.controller import AccountsSettingsController
-from zapzap.features.settings.pages.advanced_customizations.controller import AdvancedCustomizationsSettingsController
-from zapzap.features.settings.pages.appearance.controller import AppearanceSettingsController
-from zapzap.features.settings.pages.language_downloads.controller import LanguageDownloadSettingsController
-from zapzap.features.settings.pages.network_privacy.controller import NetworkPrivacySettingsController
-from zapzap.features.settings.pages.notifications.controller import NotificationsSettingsController
-from zapzap.features.settings.pages.permissions.controller import PermissionsSettingsController
-from zapzap.features.settings.pages.performance_experimental.controller import PerformanceExperimentalSettingsController
-from zapzap.features.settings.pages.system_startup.controller import SystemStartupSettingsController
-from zapzap.features.settings.pages.about.controller import AboutSettingsController
-from zapzap.features.settings.pages.debugging.controller import DebuggingSettingsController
+from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.settings.shell.settings_view import SettingsView
 
 
+@dataclass(frozen=True)
+class SettingsPageDescriptor:
+    """Stable navigation metadata and a lazy controller factory."""
+
+    page_id: str
+    label: str
+    module_name: str
+    controller_name: str
+
+    def create(self):
+        module = import_module(self.module_name)
+        controller = getattr(module, self.controller_name)
+        return controller()
+
+    def matches_type(self, page_type):
+        return (
+            page_type.__module__ == self.module_name
+            and page_type.__name__ == self.controller_name
+        )
+
+
 class SettingsController(SettingsView):
-    """Coordinates settings navigation and shell actions."""
+    """Coordinates lazy settings navigation and shell actions."""
+
+    DEFAULT_PAGE_ID = "accounts"
+    LANGUAGE_DOWNLOADS_PAGE_ID = "language_downloads"
+    ABOUT_PAGE_ID = "about"
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.page_buttons = {}
+        self._page_descriptors = {}
+        self._page_instances = {}
+        self._current_page_id = None
         self._register_pages()
         self._setup_signals()
         self._select_default_page()
@@ -36,28 +55,87 @@ class SettingsController(SettingsView):
         """Destrói o widget e limpa recursos."""
 
     def _pages(self):
-        """Return settings pages with labels translated at runtime."""
+        """Return page descriptors with labels translated at runtime."""
         return [
-            (AccountsSettingsController, _("Accounts")),
-            (AppearanceSettingsController, _("Appearance")),
-            (NotificationsSettingsController, _("Notifications")),
-            (PermissionsSettingsController, _("Permissions")),
-            (SystemStartupSettingsController, _("System and startup")),
-            (LanguageDownloadSettingsController, _("Language and Download")),
-            (NetworkPrivacySettingsController, _("Privacy and Network")),
-            (AdvancedCustomizationsSettingsController, _("Advanced Customizations")),
-            (PerformanceExperimentalSettingsController,
-             _("Performance experimental")),
-            (DebuggingSettingsController, _("Debugging")),
-            
-            (AboutSettingsController, _("About")),
+            SettingsPageDescriptor(
+                "accounts",
+                _("Accounts"),
+                "zapzap.features.settings.pages.accounts.controller",
+                "AccountsSettingsController",
+            ),
+            SettingsPageDescriptor(
+                "appearance",
+                _("Appearance"),
+                "zapzap.features.settings.pages.appearance.controller",
+                "AppearanceSettingsController",
+            ),
+            SettingsPageDescriptor(
+                "notifications",
+                _("Notifications"),
+                "zapzap.features.settings.pages.notifications.controller",
+                "NotificationsSettingsController",
+            ),
+            SettingsPageDescriptor(
+                "permissions",
+                _("Permissions"),
+                "zapzap.features.settings.pages.permissions.controller",
+                "PermissionsSettingsController",
+            ),
+            SettingsPageDescriptor(
+                "system_startup",
+                _("System and startup"),
+                "zapzap.features.settings.pages.system_startup.controller",
+                "SystemStartupSettingsController",
+            ),
+            SettingsPageDescriptor(
+                self.LANGUAGE_DOWNLOADS_PAGE_ID,
+                _("Language and Download"),
+                "zapzap.features.settings.pages.language_downloads.controller",
+                "LanguageDownloadSettingsController",
+            ),
+            SettingsPageDescriptor(
+                "network_privacy",
+                _("Privacy and Network"),
+                "zapzap.features.settings.pages.network_privacy.controller",
+                "NetworkPrivacySettingsController",
+            ),
+            SettingsPageDescriptor(
+                "advanced_customizations",
+                _("Advanced Customizations"),
+                "zapzap.features.settings.pages.advanced_customizations.controller",
+                "AdvancedCustomizationsSettingsController",
+            ),
+            SettingsPageDescriptor(
+                "performance_experimental",
+                _("Performance experimental"),
+                "zapzap.features.settings.pages.performance_experimental.controller",
+                "PerformanceExperimentalSettingsController",
+            ),
+            SettingsPageDescriptor(
+                "debugging",
+                _("Debugging"),
+                "zapzap.features.settings.pages.debugging.controller",
+                "DebuggingSettingsController",
+            ),
+            SettingsPageDescriptor(
+                self.ABOUT_PAGE_ID,
+                _("About"),
+                "zapzap.features.settings.pages.about.controller",
+                "AboutSettingsController",
+            ),
         ]
 
     def _register_pages(self):
-        for page_class, label in self._pages():
-            self._add_page(
-                page_class(),
-                self.add_navigation_item(label),
+        for descriptor in self._pages():
+            if descriptor.page_id in self._page_descriptors:
+                raise ValueError(f"Duplicate settings page ID: {descriptor.page_id}")
+            self._page_descriptors[descriptor.page_id] = descriptor
+            button = self.add_navigation_item(descriptor.label)
+            self.page_buttons[descriptor.page_id] = button
+            button.clicked.connect(
+                lambda _checked=False, page_id=descriptor.page_id: (
+                    self.open_page_id(page_id)
+                )
             )
         self.finish_sidebar()
 
@@ -75,17 +153,56 @@ class SettingsController(SettingsView):
             lambda: QDesktopServices.openUrl(QUrl(__donationPage__))
         )
 
-    def _add_page(self, page: QWidget, button):
-        """Adiciona uma página ao widget de páginas e associa ao botão."""
-        page_index = self.add_page(page)
-        self.page_buttons[page_index] = button
-        button.clicked.connect(lambda: self.switch_to_page(page))
+    def _ensure_page(self, page_id):
+        page = self._page_instances.get(page_id)
+        if page is not None:
+            return page
+
+        descriptor = self._page_descriptors.get(page_id)
+        if descriptor is None:
+            return None
+
+        try:
+            page = descriptor.create()
+            if not isinstance(page, QWidget):
+                raise TypeError(descriptor.controller_name)
+        except Exception as error:
+            AlertManager.critical(
+                self,
+                _("Settings"),
+                f"{descriptor.label}\n\n{error}",
+            )
+            return None
+
+        self.add_page(page)
+        self._page_instances[page_id] = page
+        return page
+
+    def open_page_id(self, page_id):
+        """Create a registered page on first use and select it."""
+        page = self._ensure_page(page_id)
+        if page is None:
+            return None
+        return self.switch_to_page(page)
 
     def switch_to_page(self, page: QWidget):
-        """Alterna para a página selecionada e ajusta os estilos dos botões."""
+        """Select an instantiated page without recreating it."""
+        page_id = next(
+            (
+                registered_id
+                for registered_id, instance in self._page_instances.items()
+                if instance is page
+            ),
+            None,
+        )
+        if page_id is None:
+            return None
+
         self._reset_button_styles()
         self.set_current_page(page)
-        self.page_buttons[self.page_index(page)].setEnabled(False)
+        self.page_buttons[page_id].setEnabled(False)
+        self._current_page_id = page_id
+        return page
 
     def _reset_button_styles(self):
         """Reativa todos os botões."""
@@ -93,25 +210,34 @@ class SettingsController(SettingsView):
             button.setEnabled(True)
 
     def _select_default_page(self):
-        """Seleciona a primeira página como padrão."""
-        if self.page_buttons:
-            self.switch_to_page(self.page_at(0))
+        """Create and select only the default page."""
+        self.open_page_id(self.DEFAULT_PAGE_ID)
+
+    @property
+    def current_page_id(self):
+        return self._current_page_id
+
+    def page_instance(self, page_id):
+        """Return an already-created page without triggering construction."""
+        return self._page_instances.get(page_id)
 
     def open_about(self):
-        """Abre a página Ajuda"""
-        self.switch_to_page(self.page_at(self.pages.count() - 1))
+        """Abre a página Ajuda."""
+        return self.open_page_id(self.ABOUT_PAGE_ID)
 
     def open_page_type(self, page_type):
-        """Select a registered settings page by its public controller type."""
-        for index in range(self.pages.count()):
-            page = self.page_at(index)
+        """Create and select a registered page by its public controller type."""
+        for page_id, page in self._page_instances.items():
             if isinstance(page, page_type):
-                self.switch_to_page(page)
-                return page
+                return self.open_page_id(page_id)
+
+        for page_id, descriptor in self._page_descriptors.items():
+            if descriptor.matches_type(page_type):
+                return self.open_page_id(page_id)
         return None
 
     def open_language_downloads(self):
-        page = self.open_page_type(LanguageDownloadSettingsController)
+        page = self.open_page_id(self.LANGUAGE_DOWNLOADS_PAGE_ID)
         if page is not None:
             page.focus_spellchecker_management()
         return page

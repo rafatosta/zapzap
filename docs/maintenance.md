@@ -64,6 +64,10 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 ### Nova página de configurações
 
 - Siga o contrato descrito em `architecture.md`.
+- Registre um descritor lazy com ID estável em `SettingsController._pages()`;
+  não importe nem instancie o controller ao construir o shell. Navegação e
+  restauração devem usar o ID, pois o índice físico contém somente páginas já
+  visitadas.
 - Reutilize `SettingsPage`, `SettingsSection`, `SettingsCard` e as linhas
   semânticas existentes.
 - Mantenha texto curto, descrição útil, estado padrão real e nome acessível.
