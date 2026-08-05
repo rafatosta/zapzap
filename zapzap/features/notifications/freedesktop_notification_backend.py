@@ -347,10 +347,7 @@ class FreedesktopNotificationBackend:
         def on_click(activation_token=None):
             main = QApplication.instance().getWindow()
             activate_window(main, activation_token)
-            main.browser.switch_to_page(
-                page,
-                main.browser.page_buttons[page.page_index],
-            )
+            main.browser.activate_account(page.user.id)
             notification.click()
 
         notify.add_action("default", "", on_click)

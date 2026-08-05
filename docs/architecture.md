@@ -66,18 +66,28 @@ legadas `main/geometry` e `main/windowState` são preservadas por
 tipados existentes. `request_close()` respeita a permanência em segundo plano;
 ações explicitamente chamadas “Sair” usam `request_quit()` e encerram o app.
 
-`BrowserController` mantém o relacionamento entre contas, botões laterais e
-`WebView`s. Ele também possui o cache efêmero da grade, com no máximo uma
+`BrowserController` mantém um registro central indexado por `User.id`. Cada
+entrada possui o `User`, o botão lateral, a posição de apresentação, um estado
+de ciclo de vida e uma referência opcional para a `WebView`. Uma conta
+desativada é registrada sem construir `QWebEngineView` ou perfil; todas as
+contas habilitadas, inclusive as que não estão selecionadas, são iniciadas
+automaticamente. Ele também possui o cache efêmero da grade, com no máximo uma
 miniatura de 480 × 300 pixels físicos por conta, indexada pelo ID estável e
 limpa ao desativar, excluir, recarregar ou encerrar páginas. Capturas integrais
 não ficam retidas nas `WebView`s. Cada conta usa um perfil WebEngine próprio. O
 fluxo básico é:
 
 ```text
-User (SQLite) -> BrowserController -> WebView -> PageController
-                                    -> perfil WebEngine isolado
-                                    -> downloads e notificações
+User (SQLite) -> registro desativado (botão, page=None)
+       habilitar -> registro ativo -> WebView -> PageController
+       desativar <- destruição única <-+       -> perfil WebEngine isolado
+       remover   -> limpeza + retirada definitiva do registro
 ```
+
+O `user.id` é a identidade usada por sidebar, grade, atalhos e notificações.
+Índices da `QStackedWidget` e posições visuais nunca identificam contas. Em
+cada entrada há no máximo uma `WebView`; desativar ou remover anula a referência
+antes da desmontagem, e encerrar/desativar novamente é uma operação neutra.
 
 Na barra lateral, o contorno do card identifica a conta selecionada e o avatar
 não contém texto quantitativo. Um ponto verde-azulado indica não lidos e um
@@ -103,8 +113,9 @@ Páginas transitórias criadas para capturar links externos devem ser
 interrompidas e destruídas assim que a URL for entregue ao navegador padrão.
 
 Ao remover ou desativar uma conta, preserve a captura e a limpeza dos diretórios
-do perfil sem recriar o perfil WebEngine. Ao encerrar, destrua páginas antes do
-`QApplication` para evitar falhas nativas.
+do perfil. A limpeza de uma conta que nunca foi ativada pode resolver os caminhos
+do perfil, mas não deve criar uma `WebView`. Ao encerrar, destrua páginas antes
+do `QApplication` para evitar falhas nativas.
 
 ## Persistência e dados
 

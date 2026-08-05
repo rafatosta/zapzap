@@ -1,11 +1,14 @@
 from types import SimpleNamespace
-from unittest.mock import Mock, patch
+from unittest.mock import Mock
 
 from PyQt6.QtGui import QPixmap
 
 from qt_test_case import QtTestCase
-from zapzap.features.browser.shell import browser_controller as browser_module
-from zapzap.features.browser.shell.browser_controller import BrowserController
+from zapzap.features.browser.shell.browser_controller import (
+    AccountLifecycle,
+    AccountRuntime,
+    BrowserController,
+)
 from zapzap.features.browser.shell.grid_thumbnail_cache import (
     GRID_THUMBNAIL_MAX_PHYSICAL_SIZE,
     GridThumbnailCache,
@@ -59,6 +62,10 @@ class BrowserGridThumbnailLifecycleTest(QtTestCase):
         _capture_grid_thumbnail = BrowserController._capture_grid_thumbnail
         _grid_thumbnail = BrowserController._grid_thumbnail
         _switch_from_grid = BrowserController._switch_from_grid
+        _active_runtimes = BrowserController._active_runtimes
+        _create_webview = BrowserController._create_webview
+        _destroy_webview = BrowserController._destroy_webview
+        _ensure_valid_selection = BrowserController._ensure_valid_selection
         disable_page = BrowserController.disable_page
         delete_page = BrowserController.delete_page
         close_pages = BrowserController.close_pages
@@ -81,6 +88,9 @@ class BrowserGridThumbnailLifecycleTest(QtTestCase):
         controller = BrowserGridThumbnailLifecycleTest.ControllerHarness()
         controller._shutting_down = False
         controller._grid_thumbnails = GridThumbnailCache()
+        controller._accounts = {}
+        controller._last_active_webview = None
+        controller._update_total_notifications = Mock()
         return controller
 
     @staticmethod
@@ -137,10 +147,12 @@ class BrowserGridThumbnailLifecycleTest(QtTestCase):
         controller = self._controller()
         page = self.FakeWebView(enabled=False)
         button = Mock()
+        runtime = AccountRuntime(page.user, button, 1, page,
+                                 AccountLifecycle.ACTIVE)
+        controller._accounts = {page.user.id: runtime}
+        controller.pages = Mock()
+        controller.pages.currentWidget.return_value = page
         controller._grid_thumbnails.store("account", QPixmap(10, 10))
-        controller._find_button_and_page_by_user = Mock(
-            return_value=(button, page)
-        )
         controller._select_default_page = Mock()
         controller._update_user_menu = Mock()
 
@@ -157,12 +169,11 @@ class BrowserGridThumbnailLifecycleTest(QtTestCase):
             close=Mock(),
             deleteLater=Mock(),
         )
-        controller.page_buttons = {3: button}
+        runtime = AccountRuntime(page.user, button, 3, page,
+                                 AccountLifecycle.ACTIVE)
+        controller._accounts = {page.user.id: runtime}
         controller.pages = Mock()
         controller._grid_thumbnails.store("deleted", QPixmap(10, 10))
-        controller._find_button_and_page_by_user = Mock(
-            return_value=(button, page)
-        )
         controller._select_default_page = Mock()
         controller._update_user_menu = Mock()
 
@@ -177,13 +188,14 @@ class BrowserGridThumbnailLifecycleTest(QtTestCase):
         page = self.FakeWebView(user_id="closing")
         controller._grid_thumbnails.store("closing", QPixmap(10, 10))
         controller.grid_view = Mock()
+        button = SimpleNamespace(close=Mock(), deleteLater=Mock())
+        controller._accounts = {
+            "closing": AccountRuntime(
+                page.user, button, 1, page, AccountLifecycle.ACTIVE
+            )
+        }
         controller.pages = Mock()
-        controller.pages.count.return_value = 1
-        controller.pages.widget.return_value = page
-        controller.page_buttons = {}
-
-        with patch.object(browser_module, "WebView", self.FakeWebView):
-            controller.close_pages()
+        controller.close_pages()
 
         self.assertEqual(len(controller._grid_thumbnails), 0)
         controller.grid_view.clear_thumbnails.assert_called_once_with()
@@ -196,10 +208,14 @@ class BrowserGridThumbnailLifecycleTest(QtTestCase):
         controller._grid_thumbnails.store("first", QPixmap(10, 10))
         controller._grid_thumbnails.store("second", QPixmap(10, 10))
         controller.grid_view = Mock()
-        controller.grid_page_index = 0
-        controller.pages = Mock()
-        controller.pages.count.return_value = 3
-        controller.pages.widget.side_effect = [first, second]
+        controller._accounts = {
+            "first": AccountRuntime(
+                first.user, Mock(), 1, first, AccountLifecycle.ACTIVE
+            ),
+            "second": AccountRuntime(
+                second.user, Mock(), 2, second, AccountLifecycle.ACTIVE
+            ),
+        }
 
         controller.reload_pages()
 
@@ -210,13 +226,8 @@ class BrowserGridThumbnailLifecycleTest(QtTestCase):
 
     def test_grid_thumbnail_click_keeps_account_selection_by_stable_id(self):
         controller = self._controller()
-        page = self._page(user_id="target")
-        button = SimpleNamespace(user=SimpleNamespace(id="target"))
-        controller.page_buttons = {99: button}
-        controller.switch_to_page = Mock()
-        controller.pages = Mock()
+        controller.activate_account = Mock()
 
-        controller._switch_from_grid(page, 7)
+        controller._switch_from_grid("target")
 
-        controller.switch_to_page.assert_called_once_with(page, button)
-        controller.pages.setCurrentWidget.assert_not_called()
+        controller.activate_account.assert_called_once_with("target")

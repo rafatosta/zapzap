@@ -172,13 +172,7 @@ class AdvancedCustomizationsSettingsController(AdvancedCustomizationsSettingsVie
         browser = self._browser()
         if not browser:
             return None
-
-        for index in range(browser.pages.count()):
-            webview = browser.pages.widget(index)
-            if webview and webview.user and webview.user.id == user_id and webview.user.enable:
-                return webview
-
-        return None
+        return browser.webview_for_user_id(user_id)
 
     def _target_webview_for_scope(self):
         if self.current_scope == CustomizationsManager.SCOPE_GLOBAL:

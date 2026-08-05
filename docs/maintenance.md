@@ -80,6 +80,13 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 ### Mudança no navegador ou em contas
 
 - Preserve um perfil WebEngine por conta e o ID especial da conta padrão.
+- Use `User.id` como identidade do registro de runtime; índices da pilha e
+  posições de botões servem somente à apresentação.
+- Contas desativadas devem manter apenas modelo e botão. Não instancie
+  `QWebEngineView`/perfil até a ativação; contas habilitadas continuam iniciando
+  automaticamente em segundo plano.
+- Garanta no máximo uma `WebView` por entrada: ativação repetida reutiliza a
+  instância; desativação a destrói e anula; reativação cria uma nova.
 - Preserve os SVGs existentes em `User.icon`; fotos de conta são recortadas,
   reduzidas e incorporadas como PNG no mesmo campo, junto às cores do ícone
   padrão, para permitir alternância sem depender de caminhos externos.
@@ -98,6 +105,8 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - Capture caminhos antes de destruir o perfil quando for necessário remover
   dados.
 - Faça o encerramento idempotente; QtWebEngine é sensível à ordem de destruição.
+- Injete uma fábrica falsa de `WebView` nos testes de ciclo de vida para contar
+  criação, desmontagem, limpeza e callbacks sem iniciar Chromium.
 - Preserve o cache de miniaturas da grade sob propriedade do
   `BrowserController`: capture apenas páginas visíveis, limite buffers em
   pixels físicos e invalide-os antes de desativar, excluir, recarregar ou

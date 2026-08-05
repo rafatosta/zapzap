@@ -1,3 +1,7 @@
+from dataclasses import dataclass
+from enum import Enum
+from typing import Callable, Dict, Iterator, Optional
+
 from PyQt6.QtCore import QEasingCurve
 from PyQt6.QtCore import QParallelAnimationGroup
 from PyQt6.QtCore import QPropertyAnimation
@@ -25,16 +29,36 @@ from zapzap.ui.components import BrowserSidebarButton
 from gettext import gettext as _
 
 
+class AccountLifecycle(Enum):
+    """Runtime states for one account owned by the browser shell."""
+
+    DISABLED = "disabled"
+    ACTIVE = "active"
+    REMOVED = "removed"
+
+
+@dataclass
+class AccountRuntime:
+    """Stable account registry entry; the WebView is deliberately optional."""
+
+    user: User
+    button: BrowserPageButton
+    position: int
+    page: Optional[WebView] = None
+    state: AccountLifecycle = AccountLifecycle.DISABLED
+
+
 class BrowserController(BrowserView):
     """Gerencia as páginas e interações do navegador no aplicativo."""
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, webview_factory: Callable = WebView):
         super().__init__(parent)
         self.parent = parent
         self._appearance_settings = AppearanceSettings()
 
-        self.page_count = 0  # Contador de páginas
-        self.page_buttons = {}  # Mapeamento entre botões e páginas
+        self.page_count = 0
+        self._accounts: Dict[str, AccountRuntime] = {}
+        self._webview_factory = webview_factory
         self._configure_sidebar_appearance()
         self._sidebar_expanded_width = 72
         self._sidebar_animation_group = None
@@ -172,12 +196,11 @@ class BrowserController(BrowserView):
             QApplication.clipboard().setText(command)
 
     def _load_users(self):
-        """Carrega os usuários e cria páginas correspondentes."""
+        """Register every user and eagerly start only enabled accounts."""
 
         self._create_user_in_first_access()
 
-        self.user_list = User.select()
-        for user in self.user_list:
+        for user in User.select():
             self._add_page(user)
 
     def _create_user_in_first_access(self):
@@ -191,6 +214,8 @@ class BrowserController(BrowserView):
         button, page = self._find_button_and_page_enabled()
         if button and page:
             self.switch_to_page(page, button)
+        elif hasattr(self, "grid_view"):
+            self.show_grid_view()
 
     def add_new_user(self, new_user=None):
         """Adiciona um novo usuário e cria a página correspondente."""
@@ -200,6 +225,7 @@ class BrowserController(BrowserView):
 
         if new_user:
             self._add_page(new_user)
+            self._ensure_valid_selection()
             self._update_user_menu()
         else:
             AlertManager.limit_users(self)
@@ -207,21 +233,23 @@ class BrowserController(BrowserView):
     # === Gerenciamento de Páginas ===
 
     def _add_page(self, user: User):
-        """Adiciona uma nova página e o botão correspondente."""
+        """Register an account, creating a WebView only when it is enabled."""
+        existing = self._accounts.get(user.id)
+        if existing is not None:
+            existing.user = user
+            existing.button.user = user
+            if user.enable and existing.page is None:
+                self._create_webview(existing)
+            return existing
+
         self.page_count += 1
         page_index = self.page_count
-
-        # Criar uma nova página
-        new_page = WebView(user, page_index)
-        new_page.update_button_signal.connect(
-            self.update_page_button_number_notifications
-        )
-        self.pages.addWidget(new_page)
-
-        # Criar o botão correspondente
         page_button = BrowserPageButton(user, page_index)
         page_button.clicked.connect(
-            lambda: self._handle_page_button_click(new_page, page_button))
+            lambda _checked=False, user_id=user.id: (
+                self._handle_account_button_click(user_id)
+            )
+        )
         page_button.setObjectName(f"page_button_{page_index}")
         page_button.setContextMenuPolicy(
             Qt.ContextMenuPolicy.CustomContextMenu)
@@ -231,52 +259,114 @@ class BrowserController(BrowserView):
             )
         )
 
-        # Adicionar o botão ao layout e ao dicionário
         self.page_buttons_layout.addWidget(page_button)
-        self.page_buttons[page_index] = page_button
+        runtime = AccountRuntime(user, page_button, page_index)
+        self._accounts[user.id] = runtime
+        if user.enable:
+            self._create_webview(runtime)
+        return runtime
+
+    def _create_webview(self, runtime: AccountRuntime):
+        """Create exactly one WebView for an enabled registry entry."""
+        if (
+            self._shutting_down
+            or not runtime.user.enable
+            or runtime.state is AccountLifecycle.REMOVED
+        ):
+            return None
+        if runtime.page is not None:
+            return runtime.page
+
+        page = self._webview_factory(runtime.user, runtime.position)
+        page.update_button_signal.connect(
+            lambda _position, count, entry=runtime: (
+                self._update_runtime_notifications(entry, count)
+            )
+        )
+        runtime.page = page
+        runtime.state = AccountLifecycle.ACTIVE
+        self.pages.addWidget(page)
+        return page
+
+    def _destroy_webview(self, runtime: AccountRuntime, *, disabled=False,
+                         remove_files=False):
+        """Detach and dispose the current WebView at most once."""
+        page = runtime.page
+        if page is None:
+            return None
+
+        runtime.page = None
+        runtime.state = (
+            AccountLifecycle.DISABLED if disabled
+            else AccountLifecycle.REMOVED
+        )
+        if self._last_active_webview is page:
+            self._last_active_webview = None
+        self.pages.removeWidget(page)
+        if disabled:
+            page.disable_page()
+        else:
+            page.shutdown()
+        if remove_files:
+            page.remove_files()
+        page.close()
+        page.setParent(None)
+        page.deleteLater()
+        return page
 
     def disable_page(self, user: User):
         """Habilita ou desabilita uma página com base no status do usuário."""
-        button, page = self._find_button_and_page_by_user(user)
+        runtime = self._accounts.get(user.id)
+        if runtime is None or runtime.state is AccountLifecycle.REMOVED:
+            return
+        runtime.user = user
+        runtime.button.user = user
         self._grid_thumbnails.invalidate(user.id)
 
-        if button and page:
-            if user.enable:
-                button.show()
-                page.enable_page()
-            else:
-                page.disable_page()
-        self._select_default_page()
+        was_current = self.pages.currentWidget() is runtime.page
+        if user.enable:
+            runtime.button.show()
+            self._create_webview(runtime)
+        else:
+            self._destroy_webview(runtime, disabled=True)
+            runtime.button.update_notifications(0)
+        if was_current:
+            self._select_default_page()
+        else:
+            self._ensure_valid_selection()
+        self._update_total_notifications()
         self._update_user_menu()
 
     def delete_page(self, user: User):
         """Remove uma página e seu botão correspondente."""
-        button, page = self._find_button_and_page_by_user(user)
+        runtime = self._accounts.get(user.id)
+        if runtime is None:
+            return
         self._grid_thumbnails.invalidate(user.id)
+        was_current = self.pages.currentWidget() is runtime.page
+        page = self._destroy_webview(runtime, remove_files=True)
+        if page is None:
+            self._webview_factory.remove_user_files(user.id)
 
-        if page:
-            self.pages.removeWidget(page)
-            page.shutdown()
-            page.remove_files()
-            page.close()
-            page.setParent(None)
-            page.deleteLater()
-
-        if button:
-            del self.page_buttons[button.page_index]
-            button.close()
-            button.deleteLater()
-
-        self._select_default_page()
+        runtime.state = AccountLifecycle.REMOVED
+        runtime.button.close()
+        runtime.button.deleteLater()
+        del self._accounts[user.id]
+        if was_current:
+            self._select_default_page()
+        else:
+            self._ensure_valid_selection()
+        self._update_total_notifications()
         self._update_user_menu()
 
     def update_icons_page_button(self, user: User):
         """Atualiza os ícones de um botão específico com base no usuário."""
-        button, page = self._find_button_and_page_by_user(user)
-
-        if button and page:
-            button.user = user
-            page.user = user
+        runtime = self._accounts.get(user.id)
+        if runtime:
+            runtime.user = user
+            runtime.button.user = user
+            if runtime.page:
+                runtime.page.user = user
 
         self._update_user_menu()
 
@@ -293,51 +383,86 @@ class BrowserController(BrowserView):
         self.parent.menuUsers.addSeparator()
 
         # Adiciona ações para cada botão habilitado
-        for count, button in enumerate(self.page_buttons.values(), start=1):
-            if button.user.enable:
-                # Define os itens da barra de menu Usuários
-                label = (
-                    button.user.name
-                    if button.user.name != ""
-                    else _("Account {}").format(count)
+        enabled_accounts = (
+            runtime for runtime in self._accounts.values()
+            if runtime.user.enable
+        )
+        for count, runtime in enumerate(enabled_accounts, start=1):
+            button = runtime.button
+            # Define os itens da barra de menu Usuários
+            label = (
+                button.user.name
+                if button.user.name != ""
+                else _("Account {}").format(count)
+            )
+            new_action = QAction(label, self)
+            new_action.setShortcut(f'Ctrl+{count}')
+            new_action.triggered.connect(
+                lambda _checked=False, user_id=runtime.user.id: (
+                    self.activate_account(user_id)
                 )
-                new_action = QAction(label, self)
-                new_action.setShortcut(f'Ctrl+{count}')
-                new_action.triggered.connect(button.clicked)
-                self.parent.menuUsers.addAction(new_action)
+            )
+            self.parent.menuUsers.addAction(new_action)
 
     # === Funções Auxiliares ===
     def _find_button_and_page_by_user(self, user: User):
         """Busca o botão e a página correspondentes ao usuário."""
-        found_button = None
-        found_page = None
-
-        for button in self.page_buttons.values():
-            if button.user.id == user.id:
-                found_button = button
-                break
-
-        for i in range(self.pages.count()):
-            page = self.pages.widget(i)
-            if isinstance(page, WebView) and page.user.id == user.id:
-                found_page = page
-                break
-
-        return found_button, found_page
+        runtime = self._accounts.get(user.id)
+        if runtime is None:
+            return None, None
+        return runtime.button, runtime.page
 
     def _find_button_and_page_enabled(self):
         """Busca o primeiro botão e página habilitados."""
-        for button in self.page_buttons.values():
-            if button.user.enable:
-                page = self.pages.widget(button.page_index)
-                return button, page
+        for runtime in self._accounts.values():
+            if runtime.user.enable and runtime.page is not None:
+                return runtime.button, runtime.page
         return None, None
 
+    def _active_runtimes(self) -> Iterator[AccountRuntime]:
+        return (
+            runtime for runtime in self._accounts.values()
+            if runtime.state is AccountLifecycle.ACTIVE
+            and runtime.page is not None
+        )
+
+    def webview_for_user_id(self, user_id):
+        runtime = self._accounts.get(user_id)
+        return runtime.page if runtime else None
+
+    def _ensure_valid_selection(self):
+        current = self.pages.currentWidget()
+        if any(runtime.page is current for runtime in self._active_runtimes()):
+            return
+        self._select_default_page()
+
+    def _runtime_for_page(self, page):
+        for runtime in self._accounts.values():
+            if runtime.page is page:
+                return runtime
+        return None
+
     # === Ações do Navegador ===
-    def switch_to_page(self, page: WebView, button: BrowserPageButton):
+    def activate_account(self, user_id):
+        """Activate an account through its stable persisted identifier."""
+        runtime = self._accounts.get(user_id)
+        if runtime is None or not runtime.user.enable:
+            return False
+        page = self._create_webview(runtime)
+        if page is None:
+            return False
+        self.switch_to_page(page, runtime.button)
+        return True
+
+    def switch_to_page(self, page: WebView,
+                       button: Optional[BrowserPageButton] = None):
         """Alterna para a página selecionada e ajusta os estilos dos botões."""
+        runtime = self._runtime_for_page(page)
+        if runtime is None or runtime.state is not AccountLifecycle.ACTIVE:
+            return False
+        button = button or runtime.button
         old_page = self.pages.currentWidget()
-        if old_page is not page and isinstance(old_page, WebView):
+        if old_page is not page and self._runtime_for_page(old_page):
             self._capture_grid_thumbnail(old_page)
         elif old_page is self.grid_view:
             # Grid labels share the cached native buffers. Release those
@@ -354,9 +479,14 @@ class BrowserController(BrowserView):
         page.page().show_toast(page.user.name if page.user.name !=
                                "" else _("Account {}").format(page.page_index))
         button.selected()
+        return True
 
-    def _handle_page_button_click(self, page: WebView, button: BrowserPageButton):
+    def _handle_account_button_click(self, user_id):
         """Trata o clique no botão da conta, preservando contas desativadas visíveis."""
+        runtime = self._accounts.get(user_id)
+        if runtime is None:
+            return
+        button = runtime.button
         if not button.user.enable:
             action = AlertManager.action_dialog(
                 self,
@@ -376,10 +506,15 @@ class BrowserController(BrowserView):
 
             if action == "activate":
                 CardUser.set_user_enabled(button.user, True)
-                self.switch_to_page(page, button)
+                self.activate_account(user_id)
             return
 
-        self.switch_to_page(page, button)
+        self.activate_account(user_id)
+
+    def _handle_page_button_click(self, page: WebView,
+                                  button: BrowserPageButton):
+        """Compatibility entry point that resolves the stable account ID."""
+        self._handle_account_button_click(button.user.id)
 
     def _show_page_button_context_menu(self, button: BrowserPageButton, position):
         """Exibe no botão da conta o menu com as opções do CardUser."""
@@ -402,53 +537,39 @@ class BrowserController(BrowserView):
         """Fecha e limpa todas as páginas existentes."""
         self._grid_thumbnails.clear()
         self.grid_view.clear_thumbnails()
-        for i in reversed(range(self.pages.count())):
-            page = self.pages.widget(i)
-
-            if not isinstance(page, WebView):
-                continue
-
-            page.shutdown()
-            self.pages.removeWidget(page)
-            page.setParent(None)
-            page.deleteLater()
-
-        for button in list(self.page_buttons.values()):
-            button.close()
-            button.deleteLater()
-
-        self.page_buttons.clear()
+        for runtime in list(self._accounts.values()):
+            self._destroy_webview(runtime)
+            runtime.button.close()
+            runtime.button.deleteLater()
+            runtime.state = AccountLifecycle.REMOVED
+        self._accounts.clear()
+        self._last_active_webview = None
+        self._update_total_notifications()
 
     def reload_pages(self):
         """Recarrega todas as páginas existentes."""
         self.grid_view.clear_thumbnails()
-        for i in range(self.pages.count()):
-            if i == self.grid_page_index:
-                continue
-            page = self.pages.widget(i)
+        for runtime in self._active_runtimes():
+            page = runtime.page
             self._grid_thumbnails.invalidate(page.user.id)
             page.load_page()
 
     def close_conversations(self):
         """Fecha todas as conversas abertas."""
-        for i in range(self.pages.count()):
-            if i == self.grid_page_index:
-                continue
-            page = self.pages.widget(i)
-            page.close_conversation()
+        for runtime in self._active_runtimes():
+            runtime.page.close_conversation()
 
     def apply_custom_css_all_pages(self):
-        for i in range(self.pages.count()):
-            if i == self.grid_page_index:
-                continue
-            page = self.pages.widget(i)
-            page.apply_custom_css()
+        for runtime in self._active_runtimes():
+            runtime.page.apply_custom_css()
 
     def current_webview(self):
         current = self.pages.currentWidget()
-        if isinstance(current, WebView):
+        if self._runtime_for_page(current):
             return current
-        return self._last_active_webview
+        if self._runtime_for_page(self._last_active_webview):
+            return self._last_active_webview
+        return None
 
     def _capture_grid_thumbnail(self, page):
         """Capture a live visible page and retain only its bounded thumbnail."""
@@ -478,19 +599,18 @@ class BrowserController(BrowserView):
         from zapzap.ui.primitives import Label
 
         class ClickableLabel(Label):
-            def __init__(self, pw, idx, switch_cb, parent=None):
+            def __init__(self, user_id, switch_cb, parent=None):
                 super().__init__(parent=parent)
-                self.pw = pw
-                self.idx = idx
+                self.user_id = user_id
                 self.switch_cb = switch_cb
                 self.setCursor(Qt.CursorShape.PointingHandCursor)
 
             def mousePressEvent(self, event):
                 if event.button() == Qt.MouseButton.LeftButton:
-                    self.switch_cb(self.pw, self.idx)
+                    self.switch_cb(self.user_id)
 
         current_page = self.pages.currentWidget()
-        if current_page and isinstance(current_page, WebView):
+        if current_page and self._runtime_for_page(current_page):
             self._grid_thumbnail(current_page)
 
         self.grid_view.clear_thumbnails()
@@ -500,13 +620,7 @@ class BrowserController(BrowserView):
         row, col = 0, 0
 
         # Count active accounts first to calculate layout
-        active_pages = []
-        for i in range(self.pages.count()):
-            if i == self.grid_page_index:
-                continue
-            page_widget = self.pages.widget(i)
-            if isinstance(page_widget, WebView) and page_widget.user.enable:
-                active_pages.append((page_widget, i))
+        active_pages = [runtime.page for runtime in self._active_runtimes()]
 
         num_accounts = len(active_pages)
         if num_accounts == 0:
@@ -538,11 +652,14 @@ class BrowserController(BrowserView):
         target_width = max(220, target_width)
         target_height = max(170, min(360, target_height))
 
-        for page_widget, i in active_pages:
+        for page_widget in active_pages:
             pixmap = self._grid_thumbnail(page_widget)
 
             # Image Label
-            img_label = ClickableLabel(page_widget, i, self._switch_from_grid)
+            img_label = ClickableLabel(
+                page_widget.user.id,
+                self._switch_from_grid,
+            )
             img_label.setObjectName("BrowserGridThumbnail")
             if pixmap is not None:
                 img_label.setPixmap(pixmap)
@@ -560,49 +677,55 @@ class BrowserController(BrowserView):
         self._reset_button_styles()
         self.pages.setCurrentIndex(self.grid_page_index)
 
-    def _switch_from_grid(self, page_widget, index):
-        # We need to find the layout button to highlight it
-        target_button = None
-        for button in self.page_buttons.values():
-            if button.user.id == page_widget.user.id:
-                target_button = button
-                break
-
-        if target_button:
-            self.switch_to_page(page_widget, target_button)
-        else:
-            self.pages.setCurrentWidget(page_widget)
+    def _switch_from_grid(self, user_id):
+        self.activate_account(user_id)
 
     def update_spellcheck(self):
-        for i in range(self.pages.count()):
-            if i == self.grid_page_index:
-                continue
-            page = self.pages.widget(i)
+        for runtime in self._active_runtimes():
+            page = runtime.page
             try:
                 page.configure_spellcheck()
             except Exception as error:
                 print(f"Unable to update spellcheck for one profile: {error}")
 
     # === Notificações ===
-    def update_page_button_number_notifications(self, page_index, number_notifications):
-        """Atualiza o número de notificações de um botão específico."""
-        if page_index in self.page_buttons:
-            self.page_buttons[page_index].update_notifications(
-                number_notifications)
+    def _update_runtime_notifications(self, runtime, number_notifications):
+        """Ignore late signals emitted by a disposed runtime generation."""
+        if self._accounts.get(runtime.user.id) is not runtime:
+            return
+        self.update_account_notifications(
+            runtime.user.id, number_notifications
+        )
+
+    def update_account_notifications(self, user_id, number_notifications):
+        """Update unread state through the stable account identifier."""
+        runtime = self._accounts.get(user_id)
+        if runtime is not None:
+            runtime.button.update_notifications(number_notifications)
             self._update_total_notifications()
+
+    def update_page_button_number_notifications(self, page_index,
+                                                number_notifications):
+        """Compatibility adapter for callers that still emit display order."""
+        for runtime in self._accounts.values():
+            if runtime.position == page_index:
+                self.update_account_notifications(
+                    runtime.user.id, number_notifications)
+                return
 
     def _update_total_notifications(self):
         """Atualiza o total de notificações no SysTrayManager."""
         total_notifications = sum(
-            button.number_notifications for button in self.page_buttons.values()
+            runtime.button.number_notifications
+            for runtime in self._active_runtimes()
         )
         SysTrayManager.set_number_notifications(total_notifications)
 
     # === Estilo e Interface ===
     def _reset_button_styles(self):
         """Reseta os estilos de todos os botões."""
-        for button in self.page_buttons.values():
-            button.unselected()
+        for runtime in self._accounts.values():
+            runtime.button.unselected()
 
     def __set_button_icons(self, theme):
         """Define os ícones dos botões com base no tema."""

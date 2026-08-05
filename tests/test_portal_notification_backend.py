@@ -80,6 +80,7 @@ class PortalNotificationBackendTests(QtTestCase):
     def _page(index=3):
         page = MagicMock()
         page.page_index = index
+        page.user.id = f"account-{index}"
         return page
 
     def _notification_id(self):
@@ -159,7 +160,6 @@ class PortalNotificationBackendTests(QtTestCase):
         notification_id = self._notification_id()
 
         main_window = MagicMock()
-        main_window.browser.page_buttons = {page.page_index: MagicMock()}
         app = MagicMock()
         app.getWindow.return_value = main_window
 
@@ -176,9 +176,8 @@ class PortalNotificationBackendTests(QtTestCase):
 
         notification.click.assert_called_once_with()
         notification.close.assert_called_once_with()
-        main_window.browser.switch_to_page.assert_called_once_with(
-            page,
-            main_window.browser.page_buttons[page.page_index],
+        main_window.browser.activate_account.assert_called_once_with(
+            page.user.id
         )
         self.assertNotIn(notification_id, self.backend._notifications)
         self.assertNotIn(notification_id, self.backend._pages)
@@ -190,7 +189,6 @@ class PortalNotificationBackendTests(QtTestCase):
         notification_id = self._notification_id()
 
         main_window = MagicMock()
-        main_window.browser.page_buttons = {page.page_index: MagicMock()}
         app = MagicMock()
         app.getWindow.return_value = main_window
         parameters = [

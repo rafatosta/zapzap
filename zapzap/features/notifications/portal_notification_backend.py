@@ -80,7 +80,7 @@ class PortalNotificationBackend(QObject):
         title: str,
         message: str
     ):
-        notification_id = f"zapzap-page-{page.page_index}-{uuid4().hex}"
+        notification_id = f"zapzap-account-{page.user.id}-{uuid4().hex}"
 
         base_payload = {
             "title": title,
@@ -279,10 +279,7 @@ class PortalNotificationBackend(QObject):
             )
 
             if page is not None:
-                main_window.browser.switch_to_page(
-                    page,
-                    main_window.browser.page_buttons[page.page_index]
-                )
+                main_window.browser.activate_account(page.user.id)
 
             if notification:
                 notification.click()

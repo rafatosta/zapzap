@@ -41,10 +41,7 @@ class MacosNotificationBackend:
             main.show()
             main.raise_()
             main.activateWindow()
-            main.browser.switch_to_page(
-                page,
-                main.browser.page_buttons[page.page_index],
-            )
+            main.browser.activate_account(page.user.id)
             notification.click()
 
         # Disconnect any previous one-shot connection to avoid stacking

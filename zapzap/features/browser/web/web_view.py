@@ -484,6 +484,13 @@ class WebView(QWebEngineView):
         self._cache_path = None
         self._storage_path = None
 
+    @classmethod
+    def remove_user_files(cls, user_id):
+        """Remove persisted profile data without constructing a WebView."""
+        cache_path, storage_path = cls.profile_paths(user_id)
+        shutil.rmtree(cache_path, ignore_errors=True)
+        shutil.rmtree(storage_path, ignore_errors=True)
+
     def enable_page(self):
         """Ativa a página, configurando novamente."""
         if self._shutting_down:
@@ -495,10 +502,11 @@ class WebView(QWebEngineView):
         self.setVisible(True)
 
     def disable_page(self):
-        """Desativa a página e limpa o perfil."""
+        """Permanently tear down this disabled runtime instance."""
         if self._shutting_down:
             return
 
+        self._shutting_down = True
         self._teardown_webengine(clear_cache=True)
 
     def shutdown(self):
