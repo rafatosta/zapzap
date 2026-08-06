@@ -285,6 +285,7 @@ Workflows mantidos:
 - `build-rpm.yml`
 - `build-snap.yml`
 - `build-windows.yml`
+- `quality.yml`
 - `release-candidate.yml`
 - `release-deploy.yml`
 <!-- structure-check:workflows:end -->
