@@ -38,7 +38,7 @@ class AboutSettingsController(AboutSettingsView):
             lambda: self._open_project_link(links["bug_report"])
         )
         self.donate_row.clicked.connect(
-            lambda: self._open_project_link(links["donation"])
+            self._open_donations
         )
         self.license_row.clicked.connect(self._show_license)
         self.credits_row.clicked.connect(self._show_credits)
@@ -75,3 +75,8 @@ class AboutSettingsController(AboutSettingsView):
     @staticmethod
     def _open_project_link(url):
         QDesktopServices.openUrl(QUrl(url))
+
+    @staticmethod
+    def _open_donations():
+        window = QApplication.instance().getWindow()
+        return window.open_donations()

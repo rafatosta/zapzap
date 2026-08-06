@@ -22,6 +22,7 @@ from zapzap.core.environment.setup_manager import SetupManager
 from zapzap.features.tray.sys_tray_manager import SysTrayManager
 from zapzap.features.browser.shell.browser_view import BrowserView
 from zapzap.features.browser.shell.grid_thumbnail_cache import GridThumbnailCache
+from zapzap.features.donation.page import DonationsPageController
 from zapzap.ui.components import BrowserGridView
 from zapzap.ui.components import BrowserPageButton
 from zapzap.ui.components import BrowserSidebarButton
@@ -80,6 +81,7 @@ class BrowserController(BrowserView):
         self._sidebar_expanded_width = 72
         self._sidebar_animation_group = None
         self._last_active_webview = None
+        self._page_before_donations = None
         self._account_context_menu = None
         self._shutting_down = False
         self._grid_thumbnails = GridThumbnailCache()
@@ -95,6 +97,7 @@ class BrowserController(BrowserView):
             self.btn_new_account,
             self.btn_new_chat_number,
             self.btn_new_chat,
+            self.btn_donations,
             self.btn_open_settings,
         ):
             button.setMinimumSize(40, 40)
@@ -114,6 +117,7 @@ class BrowserController(BrowserView):
         self._configure_flatpak_guidance()
         self._configure_signals()
         self._setup_grid_view()
+        self._setup_donations_page()
         self._load_users()
         self._select_default_page()
         self._update_user_menu()
@@ -138,8 +142,14 @@ class BrowserController(BrowserView):
         self.btn_grid_view.setToolTip(_("Grid view"))
         self.btn_grid_view.clicked.connect(self.show_grid_view)
 
-        idx = self.layout_2.indexOf(self.line_2)
+        idx = self.layout_2.indexOf(self.btn_donations)
         self.layout_2.insertWidget(idx, self.btn_grid_view)
+
+    def _setup_donations_page(self):
+        """Create the single native support page owned by browser navigation."""
+        self.donations_page = DonationsPageController(self)
+        self.donations_page.close_requested.connect(self.close_donations)
+        self.pages.addWidget(self.donations_page)
 
     def _configure_signals(self):
         """Configura os sinais do widget."""
@@ -147,6 +157,7 @@ class BrowserController(BrowserView):
         self.btn_new_chat_number.clicked.connect(
             lambda: self.parent.new_chat_by_phone())
         self.btn_new_chat.clicked.connect(lambda: self.parent.new_chat())
+        self.btn_donations.clicked.connect(self.show_donations)
         self.btn_open_settings.clicked.connect(
             lambda: self.parent.open_settings())
         ThemeManager.instance().theme_changed.connect(self._update_buttons)
@@ -697,6 +708,47 @@ class BrowserController(BrowserView):
         self._reset_button_styles()
         self.pages.setCurrentIndex(self.grid_page_index)
 
+    def show_donations(self):
+        """Select the native donations route without navigating any WebView."""
+        old_page = self.pages.currentWidget()
+        if old_page is not self.donations_page:
+            self._page_before_donations = old_page
+        if (
+            old_page is not self.donations_page
+            and self._runtime_for_page(old_page)
+        ):
+            self._capture_grid_thumbnail(old_page)
+        elif old_page is self.grid_view:
+            self.grid_view.clear_thumbnails()
+
+        self._reset_button_styles()
+        self.pages.setCurrentWidget(self.donations_page)
+        self.btn_donations.setChecked(True)
+        self.donations_page.setFocus(Qt.FocusReason.OtherFocusReason)
+        return self.donations_page
+
+    def close_donations(self):
+        """Return to the page shown before the donations route was opened."""
+        previous_page = self._page_before_donations
+        self._page_before_donations = None
+
+        if previous_page is self.grid_view:
+            self.show_grid_view()
+            return self.grid_view
+
+        runtime = self._runtime_for_page(previous_page)
+        if runtime is not None and runtime.state is AccountLifecycle.ACTIVE:
+            self.switch_to_page(previous_page, runtime.button)
+            return previous_page
+
+        last_runtime = self._runtime_for_page(self._last_active_webview)
+        if last_runtime is not None and last_runtime.state is AccountLifecycle.ACTIVE:
+            self.switch_to_page(self._last_active_webview, last_runtime.button)
+            return self._last_active_webview
+
+        self.show_grid_view()
+        return self.grid_view
+
     def _switch_from_grid(self, user_id):
         self.activate_account(user_id)
 
@@ -746,6 +798,7 @@ class BrowserController(BrowserView):
         """Reseta os estilos de todos os botões."""
         for runtime in self._accounts.values():
             runtime.button.unselected()
+        self.btn_donations.setChecked(False)
 
     def __set_button_icons(self, theme):
         """Define os ícones dos botões com base no tema."""
@@ -755,6 +808,8 @@ class BrowserController(BrowserView):
         self.btn_new_chat.setIcon(SystemIcon.get_icon("new_chat", theme))
         self.btn_new_chat_number.setIcon(
             SystemIcon.get_icon("new_chat_number", theme))
+        self.btn_donations.setIcon(
+            SystemIcon.get_icon("donation_heart", theme))
 
         if hasattr(self, "btn_flatpak_help"):
             self.btn_flatpak_help.setIcon(

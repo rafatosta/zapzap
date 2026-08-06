@@ -359,6 +359,14 @@ class MainWindowController(MainWindowView):
         self.open_settings()
         self.app_settings.open_about()
 
+    def open_donations(self):
+        """Open the single native donations route from any application entry."""
+        if self.app_settings is not None:
+            self.close_settings()
+        else:
+            self.stackedWidget.setCurrentWidget(self.browser)
+        return self.browser.show_donations()
+
     def open_language_download_settings(self):
         """Open Settings directly on dictionary and language management."""
         self.open_settings()

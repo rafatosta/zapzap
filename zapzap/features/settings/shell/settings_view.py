@@ -29,8 +29,12 @@ class SettingsView(QWidget):
 
         self.action_layout = QVBoxLayout()
         self.action_layout.setSpacing(8)
-        self.btn_donate = Button(_("Donate"))
+        self.btn_donate = Button(_("Support ZapZap"))
         self.btn_donate.setObjectName("SettingsDonateButton")
+        self.btn_donate.setAccessibleName(_("Support ZapZap"))
+        self.btn_donate.setAccessibleDescription(
+            _("Learn how to contribute to the project's development.")
+        )
         self.btn_quit = Button(_("Quit"), variant=Button.DANGER)
         self.btn_quit.setObjectName("SettingsQuitButton")
         self.action_layout.addWidget(self.btn_donate)

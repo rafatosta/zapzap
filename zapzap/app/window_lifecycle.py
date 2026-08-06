@@ -148,6 +148,9 @@ class ClientSideWindowHost(ClientSideWindow):
     def open_settings(self):
         self.inner_window.open_settings()
 
+    def open_donations(self):
+        return self.inner_window.open_donations()
+
     def close_settings(self):
         self.inner_window.close_settings()
 

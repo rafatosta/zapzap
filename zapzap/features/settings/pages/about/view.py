@@ -264,8 +264,8 @@ class AboutSettingsView(SettingsPage):
             card,
         )
         self.donate_row = AboutActionRow(
-            _("Support the project"),
-            _("Help sustain ZapZap development."),
+            _("Support ZapZap"),
+            _("Learn how to contribute to the project's development."),
             card,
         )
 

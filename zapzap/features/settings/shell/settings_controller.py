@@ -4,11 +4,10 @@ from dataclasses import dataclass
 from gettext import gettext as _
 from importlib import import_module
 
-from PyQt6.QtCore import Qt, QUrl
-from PyQt6.QtGui import QDesktopServices, QKeySequence, QShortcut
+from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QKeySequence, QShortcut
 from PyQt6.QtWidgets import QApplication, QWidget
 
-from zapzap import __donationPage__
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.settings.shell.settings_view import SettingsView
 
@@ -209,9 +208,7 @@ class SettingsController(SettingsView):
             Qt.ShortcutContext.WidgetWithChildrenShortcut
         )
         self.close_shortcut.activated.connect(window.close_settings)
-        self.btn_donate.clicked.connect(
-            lambda: QDesktopServices.openUrl(QUrl(__donationPage__))
-        )
+        self.btn_donate.clicked.connect(window.open_donations)
 
     def _ensure_page(self, page_id):
         page = self._page_instances.get(page_id)

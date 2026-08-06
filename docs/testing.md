@@ -86,6 +86,7 @@ documente o que ele protege.
 | `test_desktop_application_dbus.py` | interface `org.freedesktop.Application` e ativação D-Bus |
 | `test_dictionary_options.py` | descoberta dinâmica, nomes amigáveis, ordenação, redimensionamento e fallback de dicionários personalizados |
 | `test_documentation_structure.py` | camadas de UI e sincronização entre árvore, inventários técnicos e guia para agentes |
+| `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
 | `test_external_link_lifecycle.py` | descarte da página WebEngine transitória após abrir links externos |
 | `test_gpu_environment.py` | detecção multi-GPU, conectores e seleção de render node |
 | `test_grid_thumbnail_cache.py` | limite físico/DPR, reutilização, fallback, seleção e ciclo de vida das miniaturas da grade |
@@ -123,6 +124,7 @@ documente o que ele protege.
 - `test_desktop_application_dbus.py`
 - `test_dictionary_options.py`
 - `test_documentation_structure.py`
+- `test_donations_page.py`
 - `test_external_link_lifecycle.py`
 - `test_gpu_environment.py`
 - `test_grid_thumbnail_cache.py`

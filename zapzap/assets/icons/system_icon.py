@@ -53,6 +53,55 @@ class SystemIcon:
             </svg>
             """
         ),
+        "donation_heart": (
+            """
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="{fill_color}" viewBox="0 0 256 256">
+                <path d="M176,32a60,60,0,0,0-48,24A60,60,0,0,0,20,92c0,71.9,99.9,128.6,104.2,131a8,8,0,0,0,7.6,0C136.1,220.6,236,163.9,236,92A60.1,60.1,0,0,0,176,32Zm-48,174.7C110.4,196,36,147.7,36,92a44,44,0,0,1,84.6-17.2,8,8,0,0,0,14.8,0A44,44,0,0,1,220,92C220,147.6,145.6,196,128,206.7Z"/>
+            </svg>
+            """
+        ),
+        "donation_code": (
+            """
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="{fill_color}" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 256 256">
+                <path d="M88 64 24 128l64 64M168 64l64 64-64 64M144 40l-32 176"/>
+            </svg>
+            """
+        ),
+        "donation_pix": (
+            """
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="{fill_color}" viewBox="0 0 256 256">
+                <path d="m221.7 112.6-78.3-78.3a21.8 21.8 0 0 0-30.8 0L34.3 112.6a21.8 21.8 0 0 0 0 30.8l78.3 78.3a21.8 21.8 0 0 0 30.8 0l78.3-78.3a21.8 21.8 0 0 0 0-30.8ZM210.4 132.1l-78.3 78.3a5.8 5.8 0 0 1-8.2 0l-78.3-78.3a5.8 5.8 0 0 1 0-8.2l78.3-78.3a5.8 5.8 0 0 1 8.2 0l78.3 78.3a5.8 5.8 0 0 1 0 8.2Z"/>
+            </svg>
+            """
+        ),
+        "donation_card": (
+            """
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="{fill_color}" viewBox="0 0 256 256">
+                <path d="M224 48H32A16 16 0 0 0 16 64v128a16 16 0 0 0 16 16h192a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16Zm0 16v24H32V64Zm0 128H32v-88h192v88Zm-32-24a8 8 0 0 1-8 8h-32a8 8 0 0 1 0-16h32a8 8 0 0 1 8 8Z"/>
+            </svg>
+            """
+        ),
+        "donation_transfer": (
+            """
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="{fill_color}" viewBox="0 0 256 256">
+                <path d="M224 72a8 8 0 0 1-8 8H59.3l26.4 26.3a8 8 0 0 1-11.4 11.4l-40-40a8 8 0 0 1 0-11.4l40-40a8 8 0 0 1 11.4 11.4L59.3 64H216a8 8 0 0 1 8 8Zm-42.3 66.3a8 8 0 0 0-11.4 11.4l26.4 26.3H40a8 8 0 0 0 0 16h156.7l-26.4 26.3a8 8 0 0 0 11.4 11.4l40-40a8 8 0 0 0 0-11.4Z"/>
+            </svg>
+            """
+        ),
+        "donation_cup": (
+            """
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="{fill_color}" viewBox="0 0 256 256">
+                <path d="M208 72h-16V56a8 8 0 0 0-8-8H40a8 8 0 0 0-8 8v88a64.1 64.1 0 0 0 64 64h32a64.1 64.1 0 0 0 62-48H208a44 44 0 0 0 0-88Zm-80 120H96a48.1 48.1 0 0 1-48-48V64h128v80a48.1 48.1 0 0 1-48 48Zm80-48h-16V88h16a28 28 0 0 1 0 56Z"/>
+            </svg>
+            """
+        ),
+        "external_link": (
+            """
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="{fill_color}" viewBox="0 0 256 256">
+                <path d="M224 104a8 8 0 0 1-16 0V59.3l-74.3 74.4a8 8 0 0 1-11.4-11.4L196.7 48H152a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Zm-40 24a8 8 0 0 0-8 8v72H48V80h72a8 8 0 0 0 0-16H48a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-72a8 8 0 0 0-8-8Z"/>
+            </svg>
+            """
+        ),
     }
 
     @staticmethod

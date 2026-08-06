@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-06 12:02-0300\n"
+"POT-Creation-Date: 2026-08-06 12:57-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Dutch\n"
@@ -167,8 +167,8 @@ msgstr "Verwijderen"
 #: zapzap/features/downloads/ui/download_dialog.py:120
 #: zapzap/ui/components/edit_account_dialog.py:456
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:275
-#: zapzap/ui/components/send_message_to_number_dialog.py:251
-#: zapzap/ui/components/send_message_to_number_dialog.py:257
+#: zapzap/ui/components/send_message_to_number_dialog.py:262
+#: zapzap/ui/components/send_message_to_number_dialog.py:268
 msgid "Cancel"
 msgstr "Annuleer"
 
@@ -224,6 +224,77 @@ msgstr "Let op"
 msgid "No active account!"
 msgstr "Er is geen actief account!"
 
+#: zapzap/features/alerts/external_url.py:39
+#, fuzzy
+msgid "Could not open link"
+msgstr "Kan bestand niet openen om te bewerken."
+
+#: zapzap/features/alerts/external_url.py:40
+msgid "The address could not be opened in your default browser."
+msgstr ""
+
+#: zapzap/features/alerts/external_url.py:41
+msgid "You can copy the address and open it manually."
+msgstr ""
+
+#: zapzap/features/alerts/external_url.py:44
+#, fuzzy
+msgid "Copy address"
+msgstr "Linkadres kopiëren"
+
+#: zapzap/features/alerts/external_url.py:45
+#: zapzap/features/browser/shell/browser_controller.py:216
+#: zapzap/ui/components/edit_account_dialog.py:73
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
+#: zapzap/ui/components/send_message_to_number_dialog.py:135
+#: zapzap/ui/primitives/close_button.py:66
+msgid "Close"
+msgstr "Sluiten"
+
+#: zapzap/features/donation/model.py:40
+msgid "GitHub Sponsors"
+msgstr ""
+
+#: zapzap/features/donation/model.py:42
+msgid "Support ZapZap through GitHub and help fund its long-term development."
+msgstr ""
+
+#: zapzap/features/donation/model.py:50
+msgid "Pix"
+msgstr ""
+
+#: zapzap/features/donation/model.py:52
+msgid ""
+"Continue securely in your browser and complete the contribution with your "
+"banking app."
+msgstr ""
+
+#: zapzap/features/donation/model.py:60
+msgid "PayPal"
+msgstr ""
+
+#: zapzap/features/donation/model.py:61
+msgid "A simple and secure way to support ZapZap from anywhere."
+msgstr ""
+
+#: zapzap/features/donation/model.py:67
+msgid "Wise"
+msgstr ""
+
+#: zapzap/features/donation/model.py:69
+msgid ""
+"International contributions with reduced fees and competitive exchange rates."
+msgstr ""
+
+#: zapzap/features/donation/model.py:77
+msgid "Ko-fi"
+msgstr ""
+
+#: zapzap/features/donation/model.py:79
+msgid ""
+"Make a one-time or recurring contribution and help keep the project active."
+msgstr ""
+
 #: zapzap/features/donation/view.py:213 zapzap/features/shortcuts/view.py:60
 #: zapzap/features/settings/pages/debugging/view.py:373
 #: zapzap/ui/components/main_window.py:133
@@ -239,8 +310,14 @@ msgstr ""
 "uw privacy en vrijheid te garanderen."
 
 #: zapzap/features/donation/view.py:220
-msgid "❤ Make a donation"
-msgstr "❤ Doe een donatie"
+#: zapzap/features/tray/sys_tray_manager.py:52
+#: zapzap/features/settings/shell/settings_view.py:32
+#: zapzap/features/settings/shell/settings_view.py:34
+#: zapzap/features/settings/pages/about/view.py:267
+#: zapzap/ui/components/browser_sidebar.py:157
+#, fuzzy
+msgid "Support ZapZap"
+msgstr "ZapZap instellen"
 
 #: zapzap/features/donation/view.py:221
 msgid "Don't show again"
@@ -249,6 +326,73 @@ msgstr "Niet meer laten zien"
 #: zapzap/features/donation/view.py:222
 msgid "Learn more about ZapZap ↗"
 msgstr "Meer informatie over ZapZap ↗"
+
+#: zapzap/features/donation/page.py:62 zapzap/features/donation/page.py:106
+msgid "Opens in your browser"
+msgstr ""
+
+#: zapzap/features/donation/page.py:67 zapzap/features/donation/page.py:108
+msgid "External link. Opens in your default browser."
+msgstr ""
+
+#: zapzap/features/donation/page.py:71 zapzap/features/donation/page.py:110
+msgid "Donate"
+msgstr "Doneer"
+
+#: zapzap/features/donation/page.py:73 zapzap/features/donation/page.py:112
+#, python-brace-format
+msgid "Open {method} in your browser"
+msgstr ""
+
+#: zapzap/features/donation/page.py:76 zapzap/features/donation/page.py:115
+msgid "Opens the official external contribution page."
+msgstr ""
+
+#: zapzap/features/donation/page.py:79 zapzap/features/donation/page.py:118
+#, python-brace-format
+msgid "Open the official {method} page in your browser"
+msgstr ""
+
+#: zapzap/features/donation/page.py:163 zapzap/features/donation/page.py:272
+msgid "Help keep ZapZap alive"
+msgstr ""
+
+#: zapzap/features/donation/page.py:165 zapzap/features/donation/page.py:275
+msgid ""
+"ZapZap is free and open source. Your contributions help keep the project "
+"active, improve the application, and develop new features."
+msgstr ""
+
+#: zapzap/features/donation/page.py:195 zapzap/features/donation/page.py:280
+#, fuzzy
+msgid "Close donations page"
+msgstr "Gesprek sluiten"
+
+#: zapzap/features/donation/page.py:198 zapzap/features/donation/page.py:283
+#, fuzzy
+msgid "Return to the previous browser page."
+msgstr "Wijzigingen in het vorige bereik zijn opgeslagen."
+
+#: zapzap/features/donation/page.py:216 zapzap/features/donation/page.py:285
+#, fuzzy
+msgid "Choose how to support"
+msgstr "Foto kiezen"
+
+#: zapzap/features/donation/page.py:218 zapzap/features/donation/page.py:288
+msgid ""
+"Every option opens its official page in your default browser. ZapZap never "
+"processes payment information."
+msgstr ""
+
+#: zapzap/features/donation/page.py:245 zapzap/features/donation/page.py:292
+msgid "Your support makes a difference"
+msgstr ""
+
+#: zapzap/features/donation/page.py:252 zapzap/features/donation/page.py:295
+msgid ""
+"Every contribution helps cover infrastructure costs, fix problems, and keep "
+"ZapZap free for everyone."
+msgstr ""
 
 #: zapzap/features/downloads/download_manager.py:100
 msgid "Select folder"
@@ -280,7 +424,7 @@ msgid "Basics"
 msgstr "Basisprincipes"
 
 #: zapzap/features/initial_setup/view.py:106
-#: zapzap/features/settings/shell/settings_controller.py:134
+#: zapzap/features/settings/shell/settings_controller.py:133
 #: zapzap/features/settings/pages/notifications/view.py:19
 #: zapzap/features/settings/pages/notifications/view.py:33
 msgid "Notifications"
@@ -297,7 +441,7 @@ msgstr "Bestanden"
 
 #: zapzap/features/initial_setup/view.py:109
 #: zapzap/features/initial_setup/view.py:378
-#: zapzap/features/settings/shell/settings_controller.py:140
+#: zapzap/features/settings/shell/settings_controller.py:139
 #: zapzap/features/settings/pages/permissions/view.py:22
 msgid "Permissions"
 msgstr "Machtigingen"
@@ -779,7 +923,7 @@ msgid "New message..."
 msgstr "Nieuw bericht…"
 
 #: zapzap/features/shortcuts/model.py:12
-#: zapzap/ui/components/browser_sidebar.py:149
+#: zapzap/ui/components/browser_sidebar.py:156
 msgid "New conversation"
 msgstr "Nieuw gesprek"
 
@@ -820,9 +964,9 @@ msgid "Profile and status"
 msgstr "Profiel en status"
 
 #: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
-#: zapzap/features/tray/sys_tray_manager.py:54
+#: zapzap/features/tray/sys_tray_manager.py:51
 #: zapzap/features/settings/shell/settings_sidebar.py:61
-#: zapzap/features/settings/shell/settings_controller.py:236
+#: zapzap/features/settings/shell/settings_controller.py:233
 #: zapzap/ui/components/main_window.py:143
 msgid "Settings"
 msgstr "Instellingen"
@@ -919,8 +1063,8 @@ msgid "New conversation by phone number"
 msgstr "Nieuw gesprek op basis van telefoonnummer"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:399
-#: zapzap/ui/components/browser_sidebar.py:145
+#: zapzap/features/browser/shell/browser_controller.py:410
+#: zapzap/ui/components/browser_sidebar.py:152
 msgid "New account"
 msgstr "Nieuw account"
 
@@ -933,16 +1077,12 @@ msgstr "Sneltoetsen"
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
-#: zapzap/features/tray/sys_tray_manager.py:53
+#: zapzap/features/tray/sys_tray_manager.py:50
 msgid "Show"
 msgstr "Bekijken"
 
-#: zapzap/features/tray/sys_tray_manager.py:55
-msgid "Donation"
-msgstr "Doneren"
-
-#: zapzap/features/tray/sys_tray_manager.py:56
-#: zapzap/features/settings/shell/settings_view.py:34
+#: zapzap/features/tray/sys_tray_manager.py:53
+#: zapzap/features/settings/shell/settings_view.py:38
 #: zapzap/ui/components/main_window.py:139
 msgid "Quit"
 msgstr "Afsluiten"
@@ -955,50 +1095,51 @@ msgstr "Pas accounts, uiterlijk, meldingen en geavanceerde opties aan."
 msgid "Close settings"
 msgstr "Instellingen sluiten"
 
-#: zapzap/features/settings/shell/settings_view.py:32
-msgid "Donate"
-msgstr "Doneer"
+#: zapzap/features/settings/shell/settings_view.py:36
+#: zapzap/features/settings/pages/about/view.py:268
+msgid "Learn how to contribute to the project's development."
+msgstr ""
 
-#: zapzap/features/settings/shell/settings_controller.py:122
+#: zapzap/features/settings/shell/settings_controller.py:121
 #: zapzap/features/settings/pages/accounts/view.py:17
 msgid "Accounts"
 msgstr "Accounts"
 
-#: zapzap/features/settings/shell/settings_controller.py:128
+#: zapzap/features/settings/shell/settings_controller.py:127
 #: zapzap/features/settings/pages/appearance/view.py:21
 msgid "Appearance"
 msgstr "Vormgeving"
 
-#: zapzap/features/settings/shell/settings_controller.py:146
+#: zapzap/features/settings/shell/settings_controller.py:145
 #: zapzap/features/settings/pages/system_startup/view.py:22
 msgid "System and startup"
 msgstr "Systeem en opstarten"
 
-#: zapzap/features/settings/shell/settings_controller.py:152
+#: zapzap/features/settings/shell/settings_controller.py:151
 #: zapzap/features/settings/pages/language_downloads/view.py:21
 msgid "Language and Download"
 msgstr "Taal en downloaden"
 
-#: zapzap/features/settings/shell/settings_controller.py:158
+#: zapzap/features/settings/shell/settings_controller.py:157
 #: zapzap/features/settings/pages/network_privacy/view.py:149
 msgid "Privacy and Network"
 msgstr "Privacy en netwerk"
 
-#: zapzap/features/settings/shell/settings_controller.py:164
+#: zapzap/features/settings/shell/settings_controller.py:163
 msgid "Advanced Customizations"
 msgstr "Geavanceerde aanpassingen"
 
-#: zapzap/features/settings/shell/settings_controller.py:170
+#: zapzap/features/settings/shell/settings_controller.py:169
 #: zapzap/features/settings/pages/performance_experimental/view.py:19
 msgid "Performance experimental"
 msgstr "Prestaties experimenteel"
 
-#: zapzap/features/settings/shell/settings_controller.py:176
+#: zapzap/features/settings/shell/settings_controller.py:175
 #: zapzap/features/settings/pages/debugging/view.py:159
 msgid "Debugging"
 msgstr "Foutopsporing"
 
-#: zapzap/features/settings/shell/settings_controller.py:182
+#: zapzap/features/settings/shell/settings_controller.py:181
 #: zapzap/features/settings/pages/about/view.py:238
 #: zapzap/ui/components/main_window.py:172
 msgid "About"
@@ -1109,14 +1250,6 @@ msgstr "Meld een probleem"
 #: zapzap/features/settings/pages/about/view.py:263
 msgid "Report bugs or suggest improvements on GitHub."
 msgstr "Rapporteer bugs of stel verbeteringen voor op GitHub."
-
-#: zapzap/features/settings/pages/about/view.py:267
-msgid "Support the project"
-msgstr "Steun het project"
-
-#: zapzap/features/settings/pages/about/view.py:268
-msgid "Help sustain ZapZap development."
-msgstr "Help de ontwikkeling van ZapZap ondersteunen."
 
 #: zapzap/features/settings/pages/about/view.py:325
 msgid ""
@@ -1702,7 +1835,7 @@ msgid "Symbolic dark"
 msgstr "Symbolisch (donker)"
 
 #: zapzap/features/settings/pages/appearance/view.py:118
-#: zapzap/features/browser/shell/browser_controller.py:138
+#: zapzap/features/browser/shell/browser_controller.py:142
 msgid "Grid view"
 msgstr "Rasterweergave"
 
@@ -2953,19 +3086,19 @@ msgstr "Opslaan als"
 msgid "Save file"
 msgstr "Bestand opslaan"
 
-#: zapzap/features/browser/shell/browser_controller.py:170
+#: zapzap/features/browser/shell/browser_controller.py:181
 msgid "Flatpak sandbox help"
 msgstr "Flatpak hulp bij sandbox"
 
-#: zapzap/features/browser/shell/browser_controller.py:195
+#: zapzap/features/browser/shell/browser_controller.py:206
 msgid "Flatpak sandbox"
 msgstr "Flatpak-sandbox"
 
-#: zapzap/features/browser/shell/browser_controller.py:196
+#: zapzap/features/browser/shell/browser_controller.py:207
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap draait in de Flatpak-sandbox."
 
-#: zapzap/features/browser/shell/browser_controller.py:198
+#: zapzap/features/browser/shell/browser_controller.py:209
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
@@ -2973,48 +3106,40 @@ msgstr ""
 "Voor sommige functies, zoals het openen van bestanden of slepen en "
 "neerzetten, zijn mogelijk extra machtigingen vereist."
 
-#: zapzap/features/browser/shell/browser_controller.py:203
+#: zapzap/features/browser/shell/browser_controller.py:214
 msgid "Instructions"
 msgstr "Instructies"
 
-#: zapzap/features/browser/shell/browser_controller.py:204
+#: zapzap/features/browser/shell/browser_controller.py:215
 msgid "Copy command"
 msgstr "Kopieer opdracht"
 
-#: zapzap/features/browser/shell/browser_controller.py:205
-#: zapzap/ui/components/edit_account_dialog.py:73
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
-#: zapzap/ui/components/send_message_to_number_dialog.py:134
-#: zapzap/ui/primitives/close_button.py:66
-msgid "Close"
-msgstr "Sluiten"
-
-#: zapzap/features/browser/shell/browser_controller.py:416
-#: zapzap/features/browser/shell/browser_controller.py:500
+#: zapzap/features/browser/shell/browser_controller.py:427
+#: zapzap/features/browser/shell/browser_controller.py:511
 #, python-brace-format
 msgid "Account {}"
 msgstr "Account {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:513
+#: zapzap/features/browser/shell/browser_controller.py:524
 msgid "Account disabled"
 msgstr "Account uitgeschakeld"
 
-#: zapzap/features/browser/shell/browser_controller.py:514
+#: zapzap/features/browser/shell/browser_controller.py:525
 msgid "This account is disabled."
 msgstr "Dit account is uitgeschakeld."
 
-#: zapzap/features/browser/shell/browser_controller.py:516
+#: zapzap/features/browser/shell/browser_controller.py:527
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "U kunt het nu opnieuw activeren of het contextmenu gebruiken om dit account "
 "te beheren."
 
-#: zapzap/features/browser/shell/browser_controller.py:521
+#: zapzap/features/browser/shell/browser_controller.py:532
 msgid "Activate"
 msgstr "Activeer"
 
-#: zapzap/features/browser/shell/browser_controller.py:522
+#: zapzap/features/browser/shell/browser_controller.py:533
 msgid "Not now"
 msgstr "Niet nu"
 
@@ -3132,11 +3257,21 @@ msgstr "Selecteer een account om terug te keren naar de chat."
 msgid "No active accounts to display."
 msgstr "Er zijn geen actieve accounts om weer te geven."
 
-#: zapzap/ui/components/browser_sidebar.py:147
+#: zapzap/ui/components/browser_sidebar.py:154
 msgid "New conversation by the phone number"
 msgstr "Nieuw gesprek op basis van telefoonnummer"
 
-#: zapzap/ui/components/browser_sidebar.py:150
+#: zapzap/ui/components/browser_sidebar.py:158
+#, fuzzy
+msgid "Open donations page"
+msgstr "Open locatie"
+
+#: zapzap/ui/components/browser_sidebar.py:160
+#, fuzzy
+msgid "Show ways to support ZapZap development."
+msgstr "Toon af en toe berichten die de ontwikkeling van ZapZap ondersteunen."
+
+#: zapzap/ui/components/browser_sidebar.py:162
 msgid "ZapZap Settings"
 msgstr "ZapZap-instellingen"
 
@@ -3539,115 +3674,127 @@ msgstr ""
 msgid "Add this recent language to the temporary selection."
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:70
-#: zapzap/ui/components/send_message_to_number_dialog.py:121
+#: zapzap/ui/components/send_message_to_number_dialog.py:71
+#: zapzap/ui/components/send_message_to_number_dialog.py:122
 msgid "Send message to number"
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:126
+#: zapzap/ui/components/send_message_to_number_dialog.py:127
 msgid "Chat with someone who is not in your contact list."
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:152
-#: zapzap/ui/components/send_message_to_number_dialog.py:163
+#: zapzap/ui/components/send_message_to_number_dialog.py:157
+#: zapzap/ui/components/send_message_to_number_dialog.py:166
 #, fuzzy
 msgid "Country code"
 msgstr "CSS-code"
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:153
-#: zapzap/ui/components/send_message_to_number_dialog.py:172
+#: zapzap/ui/components/send_message_to_number_dialog.py:158
+#: zapzap/ui/components/send_message_to_number_dialog.py:181
 msgid "Phone number"
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:165
+#: zapzap/ui/components/send_message_to_number_dialog.py:168
 msgid "Search by country name, region code, or international prefix."
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:170
+#: zapzap/ui/components/send_message_to_number_dialog.py:173
 msgid "Example: 11 99999-9999"
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:174
+#: zapzap/ui/components/send_message_to_number_dialog.py:183
 msgid "Enter the national number without repeating the country code."
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:183
+#: zapzap/ui/components/send_message_to_number_dialog.py:194
 #, fuzzy
 msgid "Enter the national number without the country code."
 msgstr ""
 "Voer het telefoonnummer met de landcode in (bijvoorbeeld +5511999999999):"
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:191
+#: zapzap/ui/components/send_message_to_number_dialog.py:202
 #, fuzzy
 msgid "Phone number error"
 msgstr "Fout in accountnaam"
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:197
-#: zapzap/ui/components/send_message_to_number_dialog.py:212
+#: zapzap/ui/components/send_message_to_number_dialog.py:208
+#: zapzap/ui/components/send_message_to_number_dialog.py:223
 #, fuzzy
 msgid "Optional message"
 msgstr "ZapZap-berichten"
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:202
+#: zapzap/ui/components/send_message_to_number_dialog.py:213
 msgid "Message character count"
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:209
+#: zapzap/ui/components/send_message_to_number_dialog.py:220
 msgid "Hello! How are you?"
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:214
+#: zapzap/ui/components/send_message_to_number_dialog.py:225
 msgid "Type an initial message. Press Control+Enter to continue."
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:221
+#: zapzap/ui/components/send_message_to_number_dialog.py:232
 msgid "Type a message to start the conversation."
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:233
+#: zapzap/ui/components/send_message_to_number_dialog.py:244
 msgid "Your privacy is protected"
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:237
+#: zapzap/ui/components/send_message_to_number_dialog.py:248
 msgid "The message will be sent directly to the number provided."
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:253
-#: zapzap/ui/components/send_message_to_number_dialog.py:258
+#: zapzap/ui/components/send_message_to_number_dialog.py:264
+#: zapzap/ui/components/send_message_to_number_dialog.py:269
 #, fuzzy
 msgid "Send message"
 msgstr "Nieuw bericht…"
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:402
+#: zapzap/ui/components/send_message_to_number_dialog.py:413
 #, fuzzy, python-brace-format
 msgid "{count} of {maximum} characters used."
 msgstr "{count} van {limit} geconfigureerde accounts."
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:423
+#: zapzap/ui/components/send_message_to_number_dialog.py:434
 #, fuzzy
 msgid "Select a country code."
 msgstr "Selecteer de proxymodus."
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:424
+#: zapzap/ui/components/send_message_to_number_dialog.py:435
 #, fuzzy
 msgid "Enter a phone number."
 msgstr "Voer een proxyserver in."
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:426
+#: zapzap/ui/components/send_message_to_number_dialog.py:437
 msgid "The phone number appears to be incomplete."
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:429
+#: zapzap/ui/components/send_message_to_number_dialog.py:440
 msgid "The phone number exceeds the international limit."
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:432
+#: zapzap/ui/components/send_message_to_number_dialog.py:443
 msgid "Do not include the country code again in this field."
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:435
+#: zapzap/ui/components/send_message_to_number_dialog.py:446
 msgid "The message can contain up to 500 characters."
 msgstr ""
+
+#~ msgid "Donation"
+#~ msgstr "Doneren"
+
+#~ msgid "❤ Make a donation"
+#~ msgstr "❤ Doe een donatie"
+
+#~ msgid "Support the project"
+#~ msgstr "Steun het project"
+
+#~ msgid "Help sustain ZapZap development."
+#~ msgstr "Help de ontwikkeling van ZapZap ondersteunen."
 
 #~ msgid ""
 #~ "Invalid number! Please enter at least 9 digits, including the country "

@@ -220,6 +220,7 @@ class SettingsLazyLoadingTest(QtTestCase):
         self.window = SimpleNamespace(
             request_quit=Mock(),
             close_settings=Mock(),
+            open_donations=Mock(),
         )
         self.app.getWindow = Mock(return_value=self.window)
         self.addCleanup(delattr, self.app, "getWindow")

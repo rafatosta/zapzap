@@ -15,7 +15,10 @@ __releases__ = 'https://github.com/rafatosta/zapzap/releases'
 __paypal__ = 'https://www.paypal.com/donate/?business=E7R4BVR45GRC2&no_recurring=0&item_name=ZapZap+-+Whatsapp+Desktop+for+linux%0AAn+unofficial+WhatsApp+desktop+application+written+in+Pyqt6+%2B+PyQt6-WebEngine.&currency_code=USD'
 __pix__ = 'https://nubank.com.br/pagar/3c3r2/LS2hiJJKzv'
 __kofi__ = 'https://ko-fi.com/rafaeltosta'
-__githubSponor__ = 'https://github.com/sponsors/rafatosta'
+__wise__ = 'https://wise.com/pay/me/rafaelt2487'
+__githubSponsor__ = 'https://github.com/sponsors/rafatosta'
+# Compatibility with the historical misspelled public constant.
+__githubSponor__ = __githubSponsor__
 __licence__ = 'GNU General Public License v3.0'
 
 __donationPage__ = 'https://rtosta.com/zapzap/#donate'

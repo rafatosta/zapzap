@@ -1,11 +1,8 @@
 from gettext import gettext as _
 from PyQt6.QtWidgets import QApplication, QSystemTrayIcon, QMenu
 from PyQt6.QtGui import QAction
-from PyQt6.QtCore import QUrl
-from PyQt6.QtGui import QDesktopServices
 
 from zapzap.assets.icons.tray_icon import TrayIcon
-from zapzap import __donationPage__
 from zapzap.core.config.settings.appearance import AppearanceSettings
 
 
@@ -52,7 +49,7 @@ class SysTrayManager:
         return {
             "show": QAction(_("Show")),
             "settings": QAction(_("Settings")),
-            "donation": QAction(_("Donation")),
+            "donation": QAction(_("Support ZapZap")),
             "exit": QAction(_("Quit")),
         }
 
@@ -68,10 +65,6 @@ class SysTrayManager:
 
     def _setup_connections(self):
         """Configura as conexões dos sinais das ações da bandeja."""
-        self._actions["donation"].triggered.connect(
-            lambda: QDesktopServices.openUrl(QUrl(__donationPage__))
-        )
-
         main_window = QApplication.instance().getWindow()
 
         if main_window is None:
@@ -93,6 +86,8 @@ class SysTrayManager:
         instance._actions["show"].triggered.connect(main_window.show_window)
         instance._actions["settings"].triggered.connect(
             lambda: instance._open_settings(main_window))
+        instance._actions["donation"].triggered.connect(
+            lambda: instance._open_donations(main_window))
         instance._actions["exit"].triggered.connect(main_window.request_quit)
 
     def _disconnect_window_actions(self):
@@ -100,6 +95,7 @@ class SysTrayManager:
             self._tray.activated,
             self._actions["show"].triggered,
             self._actions["settings"].triggered,
+            self._actions["donation"].triggered,
             self._actions["exit"].triggered,
         ):
             try:
@@ -118,6 +114,12 @@ class SysTrayManager:
 
     def _open_settings(self, main_window):
         main_window.open_settings()
+        main_window.restore_window()
+        main_window.activateWindow()
+        main_window.raise_()
+
+    def _open_donations(self, main_window):
+        main_window.open_donations()
         main_window.restore_window()
         main_window.activateWindow()
         main_window.raise_()

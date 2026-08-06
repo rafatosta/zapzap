@@ -217,9 +217,13 @@ class DonationView(QWidget):
                 "and guarantee your privacy and freedom."
             )
         )
-        self.donateButton.setText(_("❤ Make a donation"))
+        self.donateButton.setText(_("Support ZapZap"))
         self.donationMessage.setText(_("Don't show again"))
         self.moreButton.setText(_("Learn more about ZapZap ↗"))
+
+    def retranslate_ui(self) -> None:
+        """Refresh the reminder after an in-process language change."""
+        self._retranslate_ui()
 
     def _setup_view(self) -> None:
         self.logo.setIcon(UserIcon.get_icon())

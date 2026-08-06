@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from PyQt6.QtCore import QUrl
-from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtWidgets import QApplication
 
+from zapzap.features.alerts.external_url import open_external_url
 from zapzap.features.donation.model import DonationModel
 from zapzap.features.donation.view import DonationView
 
@@ -38,7 +38,9 @@ class DonationController(DonationView):
         self.moreButton.clicked.connect(self._open_website)
 
     def _open_donation_page(self) -> None:
-        QDesktopServices.openUrl(QUrl(self.model.donation_url))
+        window = QApplication.instance().getWindow()
+        window.open_donations()
+        self.close()
 
     def _open_website(self) -> None:
-        QDesktopServices.openUrl(QUrl(self.model.website_url))
+        open_external_url(self.model.website_url, self)

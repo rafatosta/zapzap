@@ -118,6 +118,20 @@ URL ficam em `features/browser/web/open_chat.py`; após a aceitação,
 `PageController` navega diretamente para `web.whatsapp.com/send`, sem injetar
 `window.prompt` nem interceptar outros prompts do WhatsApp Web.
 
+A central nativa de doações pertence a `features.donation` e é uma página única
+da pilha do `BrowserController`, ao lado da grade e das páginas de conta. O
+coração da sidebar, Configurações, Sobre, bandeja e lembrete de apoio convergem
+para `MainWindowController.open_donations()`; selecionar essa rota não navega
+nem recria qualquer `WebView`. `DonationMethod` centraliza os cinco destinos
+oficiais (GitHub Sponsors, Pix, PayPal, Wise e Ko-fi), sempre HTTPS. Pix segue o
+mesmo fluxo externo dos demais, sem chave, QR code ou dados financeiros na UI.
+O botão de fechar e `Esc` retornam à conta ou grade exibida antes da abertura,
+sem recarregar a conversa. A página e seus cartões expõem `retranslate_ui()`
+para acompanhar imediatamente a troca do catálogo sem recriar a rota.
+`features.alerts.external_url` valida o esquema e o host antes de usar
+`QDesktopServices` e oferece copiar o endereço quando o navegador não puder ser
+aberto.
+
 Páginas transitórias criadas para capturar links externos devem ser
 interrompidas e destruídas assim que a URL for entregue ao navegador padrão.
 
@@ -298,10 +312,11 @@ persistência somente após `Aplicar`, e tanto o navegador quanto a página
 | Área | Responsabilidade principal |
 |---|---|
 | `accounts` | entidade e persistência de contas |
-| `alerts` | diálogos e feedback compartilhados |
+| `alerts` | diálogos, abertura HTTPS externa e feedback compartilhados |
 | `browser` | perfis, páginas, sidebar, scripts e navegação |
 | `customizations` | CSS, JavaScript e extensões por escopo |
 | `dictionaries` | descoberta, seleção global/migração e instalação de dicionários WebEngine |
+| `donation` | lembrete, métodos oficiais e página nativa de apoio |
 | `downloads` | destino, nome seguro e diálogo de progresso |
 | `initial_setup` | onboarding e persistência das escolhas iniciais |
 | `notifications` | fachada, backends e ativação da janela |

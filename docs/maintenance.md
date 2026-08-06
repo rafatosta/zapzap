@@ -172,6 +172,24 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - Valide restauração normal, maximizada e fullscreen. Aparência, movimento e
   redimensionamento da moldura CSR ainda exigem uma sessão gráfica real.
 
+### Doações e links externos
+
+- Preserve uma única `DonationsPageController` sob propriedade do
+  `BrowserController`; todos os pontos de entrada chamam
+  `MainWindowController.open_donations()` e não abrem o site de doações na
+  `WebView` do WhatsApp.
+- Mantenha GitHub Sponsors, Pix, PayPal, Wise e Ko-fi em
+  `donation_methods()`, usando somente URLs oficiais HTTPS centralizadas em
+  `zapzap.__init__`. Não incorpore chaves Pix, QR codes, credenciais ou dados de
+  pagamento.
+- Abra destinos por `features.alerts.external_url.open_external_url()`. O
+  utilitário rejeita esquemas não HTTPS e oferece cópia manual se
+  `QDesktopServices` falhar.
+- Ao alterar a página, valide o coração selecionado, reutilização da instância,
+  retorno pelo botão de fechar e `Esc`, entradas de
+  Configurações/Sobre/bandeja/lembrete, reflow em uma a três colunas, teclado,
+  acessibilidade, temas, `retranslate_ui()` e catálogos gettext.
+
 ### Traduções
 
 Inventarie entradas vazias e `fuzzy`, preserve tokens técnicos e valide todos os
