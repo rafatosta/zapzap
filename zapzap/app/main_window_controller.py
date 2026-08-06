@@ -5,7 +5,7 @@ from PyQt6.QtCore import QTimer
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QActionGroup
 from PyQt6.QtGui import QImage
-from PyQt6.QtWidgets import QApplication
+from PyQt6.QtWidgets import QApplication, QDialog
 
 from zapzap.app.window_lifecycle import WindowLifecycle
 from zapzap.core.config.settings.appearance import AppearanceSettings
@@ -15,6 +15,9 @@ from zapzap.features.browser.shell.browser_controller import BrowserController
 from zapzap.features.settings.shell.settings_controller import SettingsController
 from zapzap.features.shortcuts.controller import ShortcutsController
 from zapzap.ui.components.main_window import MainWindowView
+from zapzap.ui.components.send_message_to_number_dialog import (
+    SendMessageToNumberDialog,
+)
 
 
 class MainWindowController(MainWindowView):
@@ -36,6 +39,7 @@ class MainWindowController(MainWindowView):
         )
         self.app_settings = None
         self._last_sanitized_key = None
+        self._send_message_dialog = None
         self.theme_action_group = None
         self._setup_ui()
 
@@ -201,8 +205,25 @@ class MainWindowController(MainWindowView):
     def new_chat_by_phone(self):
         """Iniciar um novo chat pelo número de telefone na página atual."""
         page = self._current_page_or_alert()
-        if page is not None:
-            page.page().open_chat_by_number()
+        if page is None:
+            return
+
+        if self._send_message_dialog is not None:
+            self._send_message_dialog.raise_()
+            self._send_message_dialog.activateWindow()
+            return
+
+        dialog = SendMessageToNumberDialog(self)
+        self._send_message_dialog = dialog
+        try:
+            accepted = dialog.exec() == QDialog.DialogCode.Accepted
+            target = dialog.chat_target
+        finally:
+            self._send_message_dialog = None
+            dialog.deleteLater()
+
+        if accepted and target is not None:
+            page.page().open_chat_by_number(target)
 
     def _reset_zoom(self):
         """Resetar o fator de zoom da página atual."""

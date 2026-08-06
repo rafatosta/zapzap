@@ -13,6 +13,7 @@ from zapzap.features.customizations.customizations_manager import Customizations
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.permissions.permissions_manager import PermissionsManager
 from zapzap.features.browser.web.deeplink import build_open_chat_script
+from zapzap.features.browser.web.open_chat import ChatTarget, build_open_chat_url
 from zapzap.ui.typography import Typography
 
 import urllib.parse  # Para normalizar URLs
@@ -197,39 +198,9 @@ class PageController(QWebEnginePage):
         """
         self.runJavaScript(script)
 
-    def open_chat_by_number(self):
-        """Exibe um prompt para entrada de número e abre o WhatsApp Web."""
-        prompt_text = _(
-            "Please enter the phone number with country code (e.g., +5511999999999):"
-        )
-
-        prompt_error = _(
-            "Invalid number! Please enter at least 9 digits, including the country code."
-        )
-
-        script = f"""
-            (function() {{
-                var number = prompt('{prompt_text}');
-                if (number) {{
-                    number = number.replace(/\\D/g, "");
-                    if (number.startsWith("00")) number = "+" + number.slice(2);
-                    else if (!number.startsWith("+")) number = "+" + number;
-
-                    number = number.substring(0, 15);
-
-                    if (number.length >= 9) {{
-                        var a = document.createElement("a");
-                        a.href = "https://api.whatsapp.com/send?phone=" + encodeURIComponent(number);
-                        document.body.appendChild(a);
-                        a.click();
-                        a.remove();
-                    }} else {{
-                        alert('{prompt_error}');
-                    }}
-                }}
-            }})();
-            """
-        self.runJavaScript(script)
+    def open_chat_by_number(self, target: ChatTarget):
+        """Navigate directly to a validated unsaved-number conversation."""
+        self.setUrl(QUrl(build_open_chat_url(target)))
 
     def xdg_open_chat(self, url):
         script = build_open_chat_script(url)

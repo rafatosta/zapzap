@@ -109,6 +109,15 @@ próxima reativação.
 WhatsApp. Scripts mantidos em `features/browser/web/scripts/` são ativos em
 tempo de execução e devem ser considerados pelo teste de código estático mesmo
 quando chamam identificadores Python indiretamente.
+
+A ação de conversa por número é coordenada por `MainWindowController`, que
+mantém no máximo um `SendMessageToNumberDialog` modal por vez. O diálogo
+reutilizável em `ui.components` coleta país, número nacional e mensagem sem
+persistir destinatários. Normalização, validação E.164 e construção segura da
+URL ficam em `features/browser/web/open_chat.py`; após a aceitação,
+`PageController` navega diretamente para `web.whatsapp.com/send`, sem injetar
+`window.prompt` nem interceptar outros prompts do WhatsApp Web.
+
 Páginas transitórias criadas para capturar links externos devem ser
 interrompidas e destruídas assim que a URL for entregue ao navegador padrão.
 

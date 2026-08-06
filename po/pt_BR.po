@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-05 18:39-0300\n"
+"POT-Creation-Date: 2026-08-06 12:02-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -163,6 +163,8 @@ msgstr "Remover"
 #: zapzap/features/downloads/ui/download_dialog.py:120
 #: zapzap/ui/components/edit_account_dialog.py:456
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:275
+#: zapzap/ui/components/send_message_to_number_dialog.py:251
+#: zapzap/ui/components/send_message_to_number_dialog.py:257
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -2974,6 +2976,7 @@ msgstr "Copiar comando"
 #: zapzap/features/browser/shell/browser_controller.py:205
 #: zapzap/ui/components/edit_account_dialog.py:73
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
+#: zapzap/ui/components/send_message_to_number_dialog.py:134
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "Fechar"
@@ -3007,55 +3010,43 @@ msgstr "Ativar"
 msgid "Not now"
 msgstr "Agora não"
 
-#: zapzap/features/browser/web/page_controller.py:203
-msgid "Please enter the phone number with country code (e.g., +5511999999999):"
-msgstr ""
-"Por favor, insira o número de telefone com código do país (Ex: "
-"+5511999999999):"
-
-#: zapzap/features/browser/web/page_controller.py:207
-msgid ""
-"Invalid number! Please enter at least 9 digits, including the country code."
-msgstr ""
-"Número inválido! Insira pelo menos 9 dígitos, incluindo o código do país."
-
-#: zapzap/features/browser/web/page_controller.py:271
+#: zapzap/features/browser/web/page_controller.py:242
 msgid "your microphone"
 msgstr "seu microfone"
 
-#: zapzap/features/browser/web/page_controller.py:272
+#: zapzap/features/browser/web/page_controller.py:243
 msgid "your camera"
 msgstr "sua câmera"
 
-#: zapzap/features/browser/web/page_controller.py:273
+#: zapzap/features/browser/web/page_controller.py:244
 msgid "your camera and microphone"
 msgstr "sua câmera e seu microfone"
 
-#: zapzap/features/browser/web/page_controller.py:274
+#: zapzap/features/browser/web/page_controller.py:245
 msgid "your location"
 msgstr "sua localização"
 
-#: zapzap/features/browser/web/page_controller.py:275
+#: zapzap/features/browser/web/page_controller.py:246
 msgid "your screen contents"
 msgstr "o conteúdo da sua tela"
 
-#: zapzap/features/browser/web/page_controller.py:276
+#: zapzap/features/browser/web/page_controller.py:247
 msgid "your screen contents and audio"
 msgstr "o conteúdo e o áudio da sua tela"
 
-#: zapzap/features/browser/web/page_controller.py:277
+#: zapzap/features/browser/web/page_controller.py:248
 msgid "mouse lock"
 msgstr "bloqueio do mouse"
 
-#: zapzap/features/browser/web/page_controller.py:279
+#: zapzap/features/browser/web/page_controller.py:250
 msgid "a system feature"
 msgstr "um recurso do sistema"
 
-#: zapzap/features/browser/web/page_controller.py:283
+#: zapzap/features/browser/web/page_controller.py:254
 msgid "Permission request"
 msgstr "Solicitação de permissão"
 
-#: zapzap/features/browser/web/page_controller.py:284
+#: zapzap/features/browser/web/page_controller.py:255
 #, python-brace-format
 msgid ""
 "WhatsApp Web is requesting access to {}.\n"
@@ -3536,6 +3527,114 @@ msgstr "Adicionar {language}"
 msgid "Add this recent language to the temporary selection."
 msgstr "Adicione este idioma recente à seleção temporária."
 
+#: zapzap/ui/components/send_message_to_number_dialog.py:70
+#: zapzap/ui/components/send_message_to_number_dialog.py:121
+msgid "Send message to number"
+msgstr "Enviar mensagem para número"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:126
+msgid "Chat with someone who is not in your contact list."
+msgstr "Converse com alguém que não está na sua lista de contatos."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:152
+#: zapzap/ui/components/send_message_to_number_dialog.py:163
+msgid "Country code"
+msgstr "Código do país"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:153
+#: zapzap/ui/components/send_message_to_number_dialog.py:172
+msgid "Phone number"
+msgstr "Número de telefone"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:165
+msgid "Search by country name, region code, or international prefix."
+msgstr "Pesquise pelo nome do país, código da região ou prefixo internacional."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:170
+msgid "Example: 11 99999-9999"
+msgstr "Exemplo: 11 99999-9999"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:174
+msgid "Enter the national number without repeating the country code."
+msgstr "Informe o número nacional sem repetir o código do país."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:183
+msgid "Enter the national number without the country code."
+msgstr "Informe o número nacional sem o código do país."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:191
+msgid "Phone number error"
+msgstr "Erro no número de telefone"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:197
+#: zapzap/ui/components/send_message_to_number_dialog.py:212
+msgid "Optional message"
+msgstr "Mensagem opcional"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:202
+msgid "Message character count"
+msgstr "Contagem de caracteres da mensagem"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:209
+msgid "Hello! How are you?"
+msgstr "Olá! Tudo bem?"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:214
+msgid "Type an initial message. Press Control+Enter to continue."
+msgstr "Digite uma mensagem inicial. Pressione Ctrl+Enter para continuar."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:221
+msgid "Type a message to start the conversation."
+msgstr "Digite uma mensagem para iniciar a conversa."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:233
+msgid "Your privacy is protected"
+msgstr "Sua privacidade é protegida"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:237
+msgid "The message will be sent directly to the number provided."
+msgstr "A mensagem será enviada diretamente para o número informado."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:253
+#: zapzap/ui/components/send_message_to_number_dialog.py:258
+msgid "Send message"
+msgstr "Enviar mensagem"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:402
+#, python-brace-format
+msgid "{count} of {maximum} characters used."
+msgstr "{count} de {maximum} caracteres usados."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:423
+msgid "Select a country code."
+msgstr "Selecione um código de país."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:424
+msgid "Enter a phone number."
+msgstr "Informe um número de telefone."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:426
+msgid "The phone number appears to be incomplete."
+msgstr "O número informado parece incompleto."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:429
+msgid "The phone number exceeds the international limit."
+msgstr "O número informado excede o limite internacional."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:432
+msgid "Do not include the country code again in this field."
+msgstr "Não inclua o código do país novamente neste campo."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:435
+msgid "The message can contain up to 500 characters."
+msgstr "A mensagem pode conter até 500 caracteres."
+
+#~ msgid ""
+#~ "Invalid number! Please enter at least 9 digits, including the country "
+#~ "code."
+#~ msgstr ""
+#~ "Número inválido! Insira pelo menos 9 dígitos, incluindo o código do país."
+
 #~ msgid "Disable"
 #~ msgstr "Desativar"
 
@@ -3620,9 +3719,6 @@ msgstr "Adicione este idioma recente à seleção temporária."
 
 #~ msgid "Host name"
 #~ msgstr "Nome do host"
-
-#~ msgid "Port number"
-#~ msgstr "Número da porta"
 
 #~ msgid "Username"
 #~ msgstr "Nome de usuário"

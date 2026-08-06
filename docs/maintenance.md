@@ -107,6 +107,10 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   `BrowserController`: capture apenas páginas visíveis, limite buffers em
   pixels físicos e invalide-os antes de desativar, excluir, recarregar ou
   encerrar a conta.
+- Na conversa por número, preserve a separação entre código do país e número
+  nacional. O diálogo apenas coleta e apresenta erros; `open_chat.py` normaliza,
+  valida e codifica a URL, e o `PageController` realiza a navegação direta sem
+  JavaScript injetado. Nunca persista número ou mensagem.
 - Revalide grid, sidebar, conta ativa, zoom, downloads e notificações.
 
 ### Mudança no corretor ortográfico

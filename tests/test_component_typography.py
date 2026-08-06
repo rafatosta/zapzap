@@ -9,14 +9,14 @@ from zapzap.features.settings.pages.advanced_customizations.view import (
     AdvancedCustomizationsSettingsView,
 )
 from zapzap.features.shortcuts.view import ShortcutsView
-from zapzap.ui.primitives import CheckBox, ComboBox, LineEdit
+from zapzap.ui.primitives import CheckBox, ComboBox, LineEdit, TextEdit
 from zapzap.ui.components.main_window import MainWindowView
 
 
 class ComponentTypographyTests(QtTestCase):
 
     def test_body_text_components_use_normal_weight(self):
-        components = (LineEdit(), CheckBox(), ComboBox())
+        components = (LineEdit(), TextEdit(), CheckBox(), ComboBox())
 
         for component in components:
             with self.subTest(component=type(component).__name__):

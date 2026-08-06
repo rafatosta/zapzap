@@ -99,6 +99,7 @@ documente o que ele protege.
 | `test_permissions_settings_ui.py` | grupos e ações globais/individuais de permissões |
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
 | `test_segmented_control.py` | seleção exclusiva, sinais, mouse, teclado, acessibilidade, tamanhos, raios e temas |
+| `test_send_message_to_number.py` | normalização/URL, lista de países, validação, acessibilidade e teclado do diálogo de conversa por número |
 | `test_settings_card.py` | divisores e grupos do card compartilhado em `ui.components` |
 | `test_settings_lazy_loading.py` | subprocessos de importação, registro e instanciação lazy, singleton por painel, diagnóstico, empacotamento, APIs públicas e fechamento de Configurações |
 | `test_settings_radio_group.py` | divisores do grupo de rádio em `ui.components` |
@@ -135,6 +136,7 @@ documente o que ele protege.
 - `test_permissions_settings_ui.py`
 - `test_portal_notification_backend.py`
 - `test_segmented_control.py`
+- `test_send_message_to_number.py`
 - `test_settings_card.py`
 - `test_settings_lazy_loading.py`
 - `test_settings_radio_group.py`
