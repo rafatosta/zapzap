@@ -326,6 +326,13 @@ persistência somente após `Aplicar`, e tanto o navegador quanto a página
 | `startup` | inicialização automática por plataforma |
 | `tray` | ícone, menu, contador e vínculo com a janela |
 
+## Empacotamento multiplataforma
+
+O workflow de Windows produz executáveis nativos em uma matriz com `x86_64` e
+`arm64`. Cada arquitetura usa um runner e um Python da mesma arquitetura; o
+script PowerShell verifica essa correspondência antes do PyInstaller e inclui a
+arquitetura no nome final do artefato.
+
 ## Mapa do repositório
 
 | Caminho | Conteúdo |

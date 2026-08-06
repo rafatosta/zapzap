@@ -30,7 +30,18 @@ permissions:
 
 jobs:
   build-windows:
-    runs-on: windows-latest
+    name: Windows ${{ matrix.artifact_arch }}
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-latest
+            python_arch: x64
+            artifact_arch: x86_64
+          - runner: windows-11-arm
+            python_arch: arm64
+            artifact_arch: arm64
     env:
       PYTHON_VERSION: "3.14"
       PYTHONUTF8: 1
@@ -47,22 +58,23 @@ jobs:
           chmod +x .github/packaging/common/build-info.sh
       - name: Create BuildInfo.py
         shell: bash
-        run: .github/packaging/common/build-info.sh "Windows (exe)"
+        run: .github/packaging/common/build-info.sh "Windows ${{ matrix.artifact_arch }} (exe)"
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
+          architecture: ${{ matrix.python_arch }}
       - name: Build Windows executable
         shell: pwsh
-        run: .github/packaging/windows/build.ps1
+        run: .github/packaging/windows/build.ps1 -Architecture "${{ matrix.artifact_arch }}"
       - name: Upload artifact
         if: ${{ !inputs.release_upload }}
         uses: actions/upload-artifact@v4
         with:
-          name: ZapZap-Windows-x86_64
-          path: dist/ZapZap-*-windows-x86_64.exe
+          name: ZapZap-Windows-${{ matrix.artifact_arch }}
+          path: dist/ZapZap-*-windows-${{ matrix.artifact_arch }}.exe
       - name: Upload to release
         if: ${{ inputs.release_upload }}
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ inputs.release_tag }}
-          files: dist/ZapZap-*-windows-x86_64.exe
+          files: dist/ZapZap-*-windows-${{ matrix.artifact_arch }}.exe

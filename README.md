@@ -32,7 +32,7 @@ ZapZap is an unofficial WhatsApp Web desktop client built with Python, PyQt6 and
 - Custom CSS and JavaScript injection, globally or per account.
 - Spell checking through QtWebEngine dictionaries.
 - Download handling with configurable download behavior.
-- Linux packages and Windows executable build support.
+- Linux packages and native Windows x86_64 and ARM64 executable builds.
 
 
 ## Supported platforms
@@ -44,7 +44,7 @@ ZapZap is an unofficial WhatsApp Web desktop client built with Python, PyQt6 and
 | Debian / Ubuntu | DEB |
 | Linux | Snap |
 | Fedora | COPR |
-| Windows | EXE Installer |
+| Windows | EXE (x86_64, ARM64) |
 | Developers | Python Wheel (`.whl`) |
 
 ## Installation

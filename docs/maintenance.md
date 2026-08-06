@@ -302,6 +302,14 @@ criados diretamente com o mesmo nome. Não renomeie os artefatos depois dessa
 etapa: os metadados internos do `.zsync` poderiam apontar para um nome anterior
 e o atualizador receberia HTTP 404.
 
+No Windows, `build-windows.yml` executa uma matriz nativa para `x86_64` e
+`arm64`. Preserve a correspondência entre runner, arquitetura solicitada ao
+`setup-python`, argumento de `build.ps1` e sufixo do artefato; o script deve
+falhar antes do PyInstaller quando o Python estiver executando em outra
+arquitetura. O runner `windows-11-arm` ainda é uma imagem em prévia pública do
+GitHub, portanto o build ARM64 precisa ser confirmado no Actions antes da
+publicação de cada release.
+
 ## Checklist de entrega
 
 - [ ] comportamento e valores persistidos foram preservados ou migrados;

@@ -1,8 +1,34 @@
+param(
+    [ValidateSet("x86_64", "arm64")]
+    [string]$Architecture
+)
+
 $ErrorActionPreference = "Stop"
 
 Write-Host "# === Windows Builder ==="
 
 $AppName = "ZapZap"
+
+if ([string]::IsNullOrWhiteSpace($Architecture)) {
+    if ($env:PROCESSOR_ARCHITECTURE -eq "ARM64") {
+        $Architecture = "arm64"
+    } else {
+        $Architecture = "x86_64"
+    }
+}
+
+$RuntimeArchitecture = (python -c "import platform; print(platform.machine())").Trim().ToLowerInvariant()
+$ExpectedRuntimeArchitectures = if ($Architecture -eq "arm64") {
+    @("arm64", "aarch64")
+} else {
+    @("amd64", "x86_64")
+}
+
+if ($RuntimeArchitecture -notin $ExpectedRuntimeArchitectures) {
+    throw "Python architecture '$RuntimeArchitecture' does not match requested artifact architecture '$Architecture'."
+}
+
+Write-Host "Target architecture: $Architecture (Python: $RuntimeArchitecture)"
 
 # Generated Qt Python files now live in zapzap/ui/generated and are committed.
 # Keep this list for future .ui sources, but do not point to removed legacy paths.
@@ -88,7 +114,7 @@ if ($VersionLine -match "=\s*['""]([^'""]+)['""]") {
 }
 
 $ExePath = "dist/ZapZap.exe"
-$FinalPath = "dist/ZapZap-$Version-windows-x86_64.exe"
+$FinalPath = "dist/ZapZap-$Version-windows-$Architecture.exe"
 
 if (-not (Test-Path $ExePath)) {
     throw "Executável não encontrado: $ExePath"
