@@ -68,8 +68,7 @@ jobs:
             desktop-file-utils \
             libappstream-glib \
             python3-pyqt6 \
-            python3-pyqt6-webengine \
-            python3-dbus
+            python3-pyqt6-webengine
 
       - name: Checkout repository
         uses: actions/checkout@v4

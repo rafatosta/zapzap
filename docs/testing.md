@@ -92,8 +92,8 @@ documente o que ele protege.
 | `test_initial_setup_ui.py` | onboarding, som, fechamento, permissões, dicionários e persistência |
 | `test_memory_benchmark.py` | procfs/USS, schema JSON/CSV/Markdown, isolamento WebEngine, factory stub, cenários e comparação relativa |
 | `test_network_privacy_settings_ui.py` | proxy, credenciais, aplicar/descartar, restauração e WebRTC |
-| `test_notification_sound_setting.py` | mapeamento de som para hints Portal/Freedesktop |
-| `test_notification_window_activation.py` | tokens Portal/Wayland, startup X11, foco e limpeza |
+| `test_notification_sound_setting.py` | mapeamento de som e tipos dos hints Portal/Freedesktop |
+| `test_notification_window_activation.py` | conexão QtDBus, tokens Portal/Wayland, startup X11, foco e limpeza |
 | `test_notifications_settings_ui.py` | rótulos, dependências, privacidade, som e lembrete de apoio |
 | `test_performance_experimental_settings_ui.py` | seção e reinício da decodificação por software |
 | `test_permissions_settings_ui.py` | grupos e ações globais/individuais de permissões |

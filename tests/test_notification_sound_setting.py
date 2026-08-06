@@ -3,6 +3,8 @@
 import unittest
 from unittest.mock import patch
 
+from PyQt6.QtCore import QMetaType, QVariant
+
 import qt_test_case  # noqa: F401  puts the repository root on sys.path
 from zapzap.features.notifications.freedesktop_notification_backend import (
     DBusNotification,
@@ -45,6 +47,23 @@ class SuppressSoundHintTests(unittest.TestCase):
 
     def test_hint_is_absent_until_it_is_set(self):
         self.assertNotIn("suppress-sound", self._notification().hints)
+
+    def test_urgency_keeps_the_freedesktop_byte_type(self):
+        notification = self._notification()
+
+        notification.set_urgency(1)
+
+        urgency = notification.hints["urgency"]
+        self.assertIsInstance(urgency, QVariant)
+        self.assertEqual(urgency.typeId(), QMetaType.Type.UChar.value)
+
+    def test_urgency_rejects_values_outside_the_dbus_byte_range(self):
+        notification = self._notification()
+
+        for urgency in (-1, 256):
+            with self.subTest(urgency=urgency):
+                with self.assertRaises(ValueError):
+                    notification.set_urgency(urgency)
 
 
 class PortalSoundFieldTests(unittest.TestCase):

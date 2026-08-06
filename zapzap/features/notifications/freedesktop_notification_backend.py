@@ -5,7 +5,22 @@ from typing import TYPE_CHECKING
 import os
 from collections import OrderedDict
 
-from PyQt6.QtCore import Qt, QSize, QStandardPaths
+from PyQt6.QtCore import (
+    QMetaType,
+    QObject,
+    QStandardPaths,
+    QSize,
+    Qt,
+    QVariant,
+    pyqtSlot,
+)
+from PyQt6.QtDBus import (
+    QDBusArgument,
+    QDBusConnection as QtDBusConnection,
+    QDBusInterface,
+    QDBusMessage,
+    QDBusVariant,
+)
 from PyQt6.QtGui import QPainter, QImage, QBrush, QPen
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtWebEngineCore import QWebEngineNotification
@@ -17,17 +32,6 @@ from zapzap import __appname__
 
 if TYPE_CHECKING:
     from zapzap.features.browser.web.web_view import WebView
-
-# -----------------------------------------------------------------------------
-# Optional DBus imports (fail-safe)
-# -----------------------------------------------------------------------------
-try:
-    import dbus
-    from dbus.mainloop.glib import DBusGMainLoop
-except Exception:
-    dbus = None
-    DBusGMainLoop = None
-
 
 # -----------------------------------------------------------------------------
 # Domain
@@ -108,53 +112,119 @@ class IconRenderer:
 # -----------------------------------------------------------------------------
 # Infrastructure: DBus connection
 # -----------------------------------------------------------------------------
-class DBusConnection:
+class DBusConnection(QObject):
 
     SERVICE = "org.freedesktop.Notifications"
     PATH = "/org/freedesktop/Notifications"
     IFACE = "org.freedesktop.Notifications"
 
-    def __init__(self, app_name: str):
+    _SIGNALS = (
+        ("ActionInvoked", "us", "_on_action_invoked"),
+        ("ActivationToken", "us", "_on_activation_token"),
+        ("NotificationClosed", "uu", "_on_notification_closed"),
+    )
+
+    def __init__(self, app_name: str, parent=None):
+        super().__init__(parent)
         self.app_name = app_name
+        self.bus = QtDBusConnection.sessionBus()
         self.interface = None
         self.available = False
+        self._signals_connected = False
         self._notifications: dict[int, DBusNotification] = {}
         self._activation_tokens: dict[int, str] = {}
 
         self._init()
 
     def _init(self):
-        if dbus is None:
-            return
-
         self.interface = None
         self.available = False
 
-        try:
-            if DBusGMainLoop:
-                DBusGMainLoop(set_as_default=True)
+        if not self.bus.isConnected():
+            return
 
-            bus = dbus.SessionBus()
-            proxy = bus.get_object(self.SERVICE, self.PATH)
-            self.interface = dbus.Interface(proxy, self.IFACE)
+        interface = QDBusInterface(
+            self.SERVICE,
+            self.PATH,
+            self.IFACE,
+            self.bus,
+        )
+        if not interface.isValid():
+            return
 
-            self.interface.connect_to_signal(
-                "ActionInvoked", self._on_action_invoked
-            )
-            self.interface.connect_to_signal(
-                "ActivationToken", self._on_activation_token
-            )
-            self.interface.connect_to_signal(
-                "NotificationClosed", self._on_notification_closed
-            )
+        if not self._signals_connected and not self._connect_signals():
+            return
 
-            self.available = True
-        except Exception:
-            self.available = False
+        self.interface = interface
+        self.available = True
+
+    def _connect_signals(self) -> bool:
+        connected = []
+        for name, signature, callback_name in self._SIGNALS:
+            callback = getattr(self, callback_name)
+            if not self.bus.connect(
+                self.SERVICE,
+                self.PATH,
+                self.IFACE,
+                name,
+                signature,
+                callback,
+            ):
+                for old_name, old_signature, old_callback in connected:
+                    self.bus.disconnect(
+                        self.SERVICE,
+                        self.PATH,
+                        self.IFACE,
+                        old_name,
+                        old_signature,
+                        old_callback,
+                    )
+                return False
+            connected.append((name, signature, callback))
+
+        self._signals_connected = True
+        return True
 
     def _mark_unavailable(self):
         self.available = False
         self.interface = None
+
+    @staticmethod
+    def _build_hints(values: dict) -> QDBusArgument:
+        hints = QDBusArgument()
+        hints.beginMap(
+            QMetaType.Type.QString.value,
+            QMetaType.fromName(b"QDBusVariant").id(),
+        )
+
+        for key, value in values.items():
+            hints.beginMapEntry()
+            hints.add(key)
+            hints.add(QDBusVariant(value))
+            hints.endMapEntry()
+
+        hints.endMap()
+        return hints
+
+    @staticmethod
+    def _build_string_array(values: list[str]) -> QDBusArgument:
+        strings = QDBusArgument()
+        strings.beginArray(QMetaType.Type.QString.value)
+        for value in values:
+            strings.add(value)
+        strings.endArray()
+        return strings
+
+    @staticmethod
+    def _dbus_uint(value: int) -> QVariant:
+        value = int(value)
+        if not 0 <= value <= 0xFFFFFFFF:
+            raise ValueError(f"Invalid D-Bus UINT32 value: {value}")
+
+        unsigned = QVariant(value)
+        if not unsigned.convert(QMetaType(QMetaType.Type.UInt.value)):
+            raise ValueError(f"Invalid D-Bus UINT32 value: {value}")
+        return unsigned
 
     # ------------------------------------------------------------------
     # Public API
@@ -169,17 +239,27 @@ class DBusConnection:
             return False
 
         try:
-            nid = self.interface.Notify(
+            reply = self.interface.call(
+                "Notify",
                 self.app_name,
-                notification.id,
+                self._dbus_uint(notification.id),
                 notification.icon,   # fallback
                 notification.title,
                 notification.body,
-                notification.actions_list(),
-                notification.hints,  # image-path aqui
+                self._build_string_array(notification.actions_list()),
+                self._build_hints(notification.hints),
                 notification.timeout,
             )
         except Exception:
+            self._mark_unavailable()
+            return False
+
+        if reply.type() == QDBusMessage.MessageType.ErrorMessage:
+            self._mark_unavailable()
+            return False
+
+        arguments = reply.arguments()
+        if not arguments:
             self._mark_unavailable()
             return False
 
@@ -187,26 +267,33 @@ class DBusConnection:
             if notification.matches(old):
                 self.close_notification(old)
 
-        notification.id = int(nid)
+        notification.id = int(arguments[0])
         self._notifications[notification.id] = notification
         return True
 
     def close_notification(self, notification: "DBusNotification"):
         if notification.id and self.interface:
             try:
-                self.interface.CloseNotification(notification.id)
+                reply = self.interface.call(
+                    "CloseNotification",
+                    self._dbus_uint(notification.id),
+                )
+                if reply.type() == QDBusMessage.MessageType.ErrorMessage:
+                    self._mark_unavailable()
             except Exception:
                 self._mark_unavailable()
 
     # ------------------------------------------------------------------
     # DBus callbacks
     # ------------------------------------------------------------------
+    @pyqtSlot("uint", str)
     def _on_activation_token(self, nid, activation_token):
         nid = int(nid)
         activation_token = str(activation_token)
         if nid in self._notifications and activation_token:
             self._activation_tokens[nid] = activation_token
 
+    @pyqtSlot("uint", str)
     def _on_action_invoked(self, nid, action):
         nid = int(nid)
         action = str(action)
@@ -214,6 +301,7 @@ class DBusConnection:
             token = self._activation_tokens.pop(nid, None)
             self._notifications[nid].handle_action(action, token)
 
+    @pyqtSlot("uint", "uint")
     def _on_notification_closed(self, nid, _reason):
         nid = int(nid)
         self._activation_tokens.pop(nid, None)
@@ -249,7 +337,14 @@ class DBusNotification:
     # Configuration
     # ------------------------------------------------------------------
     def set_urgency(self, value: int):
-        self.hints["urgency"] = dbus.Byte(value)
+        value = int(value)
+        if not 0 <= value <= 255:
+            raise ValueError(f"Invalid notification urgency: {value}")
+
+        urgency = QVariant(value)
+        if not urgency.convert(QMetaType(QMetaType.Type.UChar.value)):
+            raise ValueError(f"Invalid notification urgency: {value}")
+        self.hints["urgency"] = urgency
 
     def set_category(self, category: str):
         self.hints["category"] = category

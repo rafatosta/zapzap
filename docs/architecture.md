@@ -220,6 +220,12 @@ seleciona um backend:
 | Windows | backend Windows |
 | macOS | backend macOS |
 
+As integrações D-Bus usam exclusivamente `PyQt6.QtDBus`: o backend Portal e o
+backend Freedesktop compartilham o event loop do Qt e não dependem de
+`dbus-python` nem de um adaptador GLib adicional. No backend Freedesktop, os
+hints preservam o mapa `a{sv}` e seus tipos de protocolo, inclusive `urgency`
+como `BYTE`.
+
 Fechamento de uma notificação WebEngine e encerramento do app devem retirar a
 notificação nativa de forma idempotente. A ativação pode carregar tokens Portal
 ou Wayland e dados de inicialização X11. Mudanças nessa área precisam ser

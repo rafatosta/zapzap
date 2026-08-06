@@ -12,12 +12,8 @@ python -m pip install --upgrade pip
 python -m pip install -e .
 ```
 
-No Linux, integrações D-Bus fora do Flatpak também podem precisar da dependência
-opcional:
-
-```bash
-python -m pip install -e '.[dbus]'
-```
+As integrações D-Bus usam `PyQt6.QtDBus`, já fornecido pelo PyQt6. Não instale
+`dbus-python` nem configure um segundo adaptador de event loop para elas.
 
 Execute o aplicativo da raiz com `python run.py` ou `python -m zapzap`. Não use
 dados reais para testes destrutivos de conta, cache ou configurações.
@@ -128,6 +124,8 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 ### Mudança em notificação ou ativação
 
 - Aplique regras comuns em `NotificationService`, não as duplique nos backends.
+- Use `PyQt6.QtDBus` nos backends Linux e preserve as assinaturas do protocolo;
+  hints Freedesktop são `a{sv}` e `urgency` é um `BYTE`.
 - Mantenha IDs e remoção idempotentes.
 - Fechar no WhatsApp deve fechar a notificação nativa; o encerramento retira as
   restantes.

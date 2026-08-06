@@ -4,14 +4,15 @@ import os
 import unittest
 from unittest.mock import MagicMock, call, patch
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtDBus import QDBusVariant
+from PyQt6.QtCore import QMetaType, Qt, QVariant
+from PyQt6.QtDBus import QDBusArgument, QDBusMessage, QDBusVariant
 
 import qt_test_case  # noqa: F401  puts the repository root on sys.path
 from zapzap.features.notifications.freedesktop_notification_backend import (
     DBusConnection,
     DBusNotification,
 )
+from zapzap.features.notifications import freedesktop_notification_backend
 from zapzap.features.notifications.window_activation import (
     _complete_x11_startup,
     activate_window,
@@ -216,6 +217,93 @@ class FreedesktopActivationTokenTests(unittest.TestCase):
         notification.handle_closed.assert_called_once_with()
         self.assertNotIn(23, self.connection._notifications)
         self.assertNotIn(23, self.connection._activation_tokens)
+
+
+class FreedesktopQtDBusConnectionTests(unittest.TestCase):
+    def _connection(self):
+        bus = MagicMock()
+        bus.isConnected.return_value = True
+        bus.connect.return_value = True
+
+        interface = MagicMock()
+        interface.isValid.return_value = True
+
+        patches = (
+            patch.object(
+                freedesktop_notification_backend.QtDBusConnection,
+                "sessionBus",
+                return_value=bus,
+            ),
+            patch.object(
+                freedesktop_notification_backend,
+                "QDBusInterface",
+                return_value=interface,
+            ),
+        )
+        for dbus_patch in patches:
+            dbus_patch.start()
+            self.addCleanup(dbus_patch.stop)
+
+        return DBusConnection("ZapZap"), bus, interface
+
+    def test_connects_typed_notification_signals_once(self):
+        connection, bus, _interface = self._connection()
+
+        self.assertEqual(
+            [item.args[3:5] for item in bus.connect.call_args_list],
+            [
+                ("ActionInvoked", "us"),
+                ("ActivationToken", "us"),
+                ("NotificationClosed", "uu"),
+            ],
+        )
+
+        connection._mark_unavailable()
+        connection._init()
+
+        self.assertEqual(bus.connect.call_count, 3)
+        self.assertTrue(connection.available)
+
+    def test_notify_uses_qtdbus_and_tracks_the_returned_id(self):
+        connection, _bus, interface = self._connection()
+        reply = MagicMock()
+        reply.type.return_value = QDBusMessage.MessageType.ReplyMessage
+        reply.arguments.return_value = [37]
+        interface.call.return_value = reply
+        notification = DBusNotification("Title", "Body", "", 3000)
+        notification.set_urgency(1)
+        notification.set_category("im.received")
+
+        self.assertTrue(connection.notify(notification))
+
+        arguments = interface.call.call_args.args
+        self.assertEqual(arguments[0], "Notify")
+        self.assertIsInstance(arguments[2], QVariant)
+        self.assertEqual(arguments[2].typeId(), QMetaType.Type.UInt.value)
+        self.assertIsInstance(arguments[6], QDBusArgument)
+        self.assertIsInstance(arguments[7], QDBusArgument)
+        self.assertEqual(notification.id, 37)
+        self.assertIs(connection._notifications[37], notification)
+
+    def test_uint_arguments_reject_values_outside_the_dbus_range(self):
+        for value in (-1, 0x100000000):
+            with self.subTest(value=value):
+                with self.assertRaises(ValueError):
+                    DBusConnection._dbus_uint(value)
+
+    def test_dbus_error_marks_the_connection_unavailable(self):
+        connection, _bus, interface = self._connection()
+        reply = MagicMock()
+        reply.type.return_value = QDBusMessage.MessageType.ErrorMessage
+        interface.call.return_value = reply
+
+        notified = connection.notify(
+            DBusNotification("Title", "Body", "", 3000)
+        )
+
+        self.assertFalse(notified)
+        self.assertFalse(connection.available)
+        self.assertIsNone(connection.interface)
 
 
 if __name__ == "__main__":

@@ -95,7 +95,7 @@ Version: ${VERSION}
 Section: network
 Priority: optional
 Architecture: amd64
-Depends: python3, python3-pyqt6.qtwebengine, python3-pyqt6.qtsvg, python3-dbus, qt6-wayland, qt6-qpa-plugins
+Depends: python3, python3-pyqt6, python3-pyqt6.qtwebengine, python3-pyqt6.qtsvg, qt6-wayland, qt6-qpa-plugins
 Maintainer: Rafael Tosta <rafa.ecomp@gmail.com>
 Description: ZapZap - WhatsApp Messenger for Linux.
  An unofficial WhatsApp desktop application written in Python and PyQt6.

@@ -30,9 +30,6 @@ dependencies = [
   "PyQt6-WebEngine"
 ]
 
-[project.optional-dependencies]
-dbus = ["dbus-python; sys_platform == 'linux'"]
-
 [project.urls]
 Homepage = "https://rtosta.com/zapzap"
 

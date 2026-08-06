@@ -1,10 +1,8 @@
 PyQt6
 PyQt6-WebEngine
 python-gettext
-dbus-python; sys_platform == "linux"
 pyinstaller
 setuptools
 wheel
-
 
 

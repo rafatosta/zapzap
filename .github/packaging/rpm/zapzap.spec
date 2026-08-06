@@ -16,7 +16,6 @@ BuildRequires:  pyproject-rpm-macros
 
 BuildRequires:  python3-pyqt6
 BuildRequires:  python3-pyqt6-webengine
-BuildRequires:  python3-dbus
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
@@ -24,7 +23,6 @@ BuildRequires:  libappstream-glib
 Requires:       python3
 Requires:       python3-pyqt6
 Requires:       python3-pyqt6-webengine
-Requires:       python3-dbus
 
 %description
 ZapZap is an unofficial WhatsApp Web desktop client for Linux,
