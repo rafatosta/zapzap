@@ -14,6 +14,7 @@ from zapzap import (
     __author__,
     __bugreport__,
     __donationPage__,
+    __downloadPage__,
     __licence__,
     __version__,
     __website__,
@@ -36,6 +37,7 @@ class AboutSettingsModel:
     def project_links(self):
         return {
             "website": __website__,
+            "download": __downloadPage__,
             "bug_report": __bugreport__,
             "donation": __donationPage__,
         }

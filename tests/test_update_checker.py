@@ -285,7 +285,10 @@ class UpdateUiTests(QtTestCase):
             button.click()
 
         opener.assert_called_once()
-        self.assertEqual(opener.call_args.args[0], "https://rtosta.com/zapzap/")
+        self.assertEqual(
+            opener.call_args.args[0],
+            "https://rtosta.com/zapzap/#download",
+        )
 
     def test_about_page_consumes_the_same_state(self):
         state = UpdateState()
@@ -300,6 +303,17 @@ class UpdateUiTests(QtTestCase):
         self.assertFalse(page.update_row.isHidden())
         self.assertIn("7.5", page.update_row.title_label.text())
         self.assertIn("7.5", page.update_row.accessibleName())
+
+        with patch(
+            "zapzap.features.settings.pages.about.controller.QDesktopServices.openUrl",
+            return_value=True,
+        ) as opener:
+            page.update_row.click()
+
+        self.assertEqual(
+            opener.call_args.args[0].toString(),
+            "https://rtosta.com/zapzap/#download",
+        )
 
 
 if __name__ == "__main__":

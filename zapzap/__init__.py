@@ -22,6 +22,7 @@ __githubSponor__ = __githubSponsor__
 __licence__ = 'GNU General Public License v3.0'
 
 __donationPage__ = 'https://rtosta.com/zapzap/#donate'
+__downloadPage__ = 'https://rtosta.com/zapzap/#download'
 
 __whatsapp_url__ = 'https://web.whatsapp.com/'
 __allowed_hosts__ = [

@@ -11,7 +11,7 @@ from zapzap.app.window_lifecycle import WindowLifecycle
 from zapzap.core.config.settings.appearance import AppearanceSettings
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.core.update_checker import UpdateChecker, UpdateState
-from zapzap import __website__
+from zapzap import __downloadPage__
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.alerts.external_url import open_external_url
 from zapzap.features.browser.shell.browser_controller import BrowserController
@@ -379,7 +379,7 @@ class MainWindowController(MainWindowView):
 
     def open_update_website(self):
         """Open the official download page without selecting an installer."""
-        return open_external_url(__website__, self._window_host)
+        return open_external_url(__downloadPage__, self._window_host)
 
     def open_donations(self):
         """Open the single native donations route from any application entry."""

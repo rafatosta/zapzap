@@ -185,7 +185,7 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - A consulta deve continuar assíncrona, única por execução, com timeout curto,
   sem retry, persistência, telemetria, popup ou `AlertManager` para falhas.
 - A sidebar e Sobre devem observar o mesmo estado. O clique sempre abre
-  `https://rtosta.com/zapzap/`, nunca um asset ou instalador direto.
+  `https://rtosta.com/zapzap/#download`, nunca um asset ou instalador direto.
 - Teste política, ordenação numérica, resposta inválida, draft, prerelease,
   timeout, ausência de rede e propriedades semânticas da UI sem Internet real.
 

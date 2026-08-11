@@ -36,7 +36,7 @@ class AboutSettingsController(AboutSettingsView):
             lambda: self._open_project_link(links["website"])
         )
         self.update_row.clicked.connect(
-            lambda: self._open_project_link(links["website"])
+            lambda: self._open_project_link(links["download"])
         )
         self.issue_row.clicked.connect(
             lambda: self._open_project_link(links["bug_report"])

@@ -105,7 +105,8 @@ também não há indicador. Carregamento, falha de conexão e validade da sessã
 não são inferidos, pois o `WebView` ainda não os propaga ao botão da conta.
 Nos builds oficiais de download manual, uma release estável mais recente torna
 visível uma ação auxiliar de atualização na parte inferior da sidebar. Ela não
-baixa arquivos: o clique abre o site oficial. O mesmo `UpdateState` alimenta a
+baixa arquivos: o clique abre `https://rtosta.com/zapzap/#download`. O mesmo
+`UpdateState` alimenta a
 página Sobre, inclusive quando a sidebar está oculta, sem duplicar consulta ou
 comparação.
 O clique de contexto abre um popover compacto com identidade, estado, edição,
