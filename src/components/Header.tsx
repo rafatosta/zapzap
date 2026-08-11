@@ -2,16 +2,19 @@ import { Menu, X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 
 import icon from '/icon.svg'
-
-const nav = [
-  { label: "Features", href: "#features" },
-  { label: "Screenshots", href: "#screenshots" },
-  { label: "Download", href: "#download" },
-  { label: "Donate", href: "#donate" },
-  { label: "GitHub", href: "https://github.com/rafatosta/zapzap" },
-];
+import { useI18n } from "../i18n/useI18n";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Header() {
+  const { t } = useI18n();
+  const nav = [
+    { label: t("header.features"), href: "#features" },
+    { label: t("header.screenshots"), href: "#screenshots" },
+    { label: t("header.download"), href: "#download" },
+    { label: t("header.donate"), href: "#donate" },
+    { label: "GitHub", href: "https://github.com/rafatosta/zapzap" },
+  ];
+
   return (
     <header className="sticky top-0 z-40 border-b border-hairline bg-background/80 backdrop-blur">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
@@ -21,14 +24,14 @@ export function Header() {
         >
           <img
             src={icon}
-            alt="ZapZap desktop client running on Linux"
+            alt={t("header.logoAlt")}
             loading="lazy"
             className="w-8 hover:opacity-90"
           />
           ZapZap
         </a>
 
-        <nav className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
+        <nav className="hidden items-center gap-5 text-sm text-muted-foreground lg:flex">
           {nav.map((item) => (
             <a
               key={item.label}
@@ -42,12 +45,13 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-4 lg:flex">
+          <LanguageSwitcher />
           <a
             href="#download"
             className="rounded-md border border-border bg-foreground px-3.5 py-1.5 text-xs font-medium text-background transition-opacity hover:opacity-90"
           >
-            Download
+            {t("header.download")}
           </a>
         </div>
 
@@ -55,8 +59,8 @@ export function Header() {
           <Dialog.Trigger asChild>
             <button
               type="button"
-              className="inline-flex size-9 items-center justify-center rounded-md border border-border text-foreground transition-colors hover:bg-muted md:hidden"
-              aria-label="Open menu"
+              className="inline-flex size-9 items-center justify-center rounded-md border border-border text-foreground transition-colors hover:bg-muted lg:hidden"
+              aria-label={t("header.openMenu")}
             >
               <Menu className="size-4" />
             </button>
@@ -86,7 +90,7 @@ export function Header() {
                   <button
                     type="button"
                     className="inline-flex size-9 items-center justify-center rounded-md border border-border text-foreground transition-colors hover:bg-muted"
-                    aria-label="Close menu"
+                    aria-label={t("header.closeMenu")}
                   >
                     <X className="size-4" />
                   </button>
@@ -108,12 +112,16 @@ export function Header() {
                 ))}
               </nav>
 
+              <div className="mt-6">
+                <LanguageSwitcher compact />
+              </div>
+
               <Dialog.Close asChild>
                 <a
                   href="#download"
                   className="mt-6 block rounded-md border border-border bg-foreground px-3.5 py-2 text-center text-sm font-medium text-background transition-opacity hover:opacity-90"
                 >
-                  Download
+                  {t("header.download")}
                 </a>
               </Dialog.Close>
             </Dialog.Content>

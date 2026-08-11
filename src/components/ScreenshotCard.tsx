@@ -1,4 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
+import { useI18n } from "../i18n/useI18n";
 
 export type Screenshot = {
     title: string;
@@ -16,6 +17,8 @@ function ScreenshotCard({
     screenshot,
     featured = false,
 }: ScreenshotCardProps) {
+    const { t } = useI18n();
+
     return (
         <Dialog.Root>
             <figure className="group overflow-hidden rounded-2xl border border-border bg-card">
@@ -23,7 +26,7 @@ function ScreenshotCard({
                     <button
                         type="button"
                         className="block w-full cursor-zoom-in bg-gradient-to-br from-primary/10 via-secondary to-transparent p-2 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                        aria-label={`Open screenshot: ${screenshot.title}`}
+                        aria-label={t("screenshots.open", { title: screenshot.title })}
                     >
                         <img
                             src={screenshot.image}
@@ -74,7 +77,7 @@ function ScreenshotCard({
                             <button
                                 type="button"
                                 className="inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-border bg-background text-lg leading-none text-muted-foreground transition hover:bg-secondary hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                                aria-label="Close screenshot dialog"
+                                aria-label={t("screenshots.close")}
                             >
                                 ×
                             </button>

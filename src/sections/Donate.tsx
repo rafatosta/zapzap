@@ -1,31 +1,33 @@
-function Donate() {
+import { useI18n } from "../i18n/useI18n";
 
+function Donate() {
+    const { t } = useI18n();
 
     const donations = [
         {
             title: "GitHub Sponsors",
-            body: "Support ZapZap directly through GitHub and help fund long-term open-source development.",
+            body: t("donate.github"),
             href: "https://github.com/sponsors/rafatosta",
         },
         {
             title: "Pix",
-            body: "Fast and fee-free donations for supporters in Brazil.",
+            body: t("donate.pix"),
             href: "https://nubank.com.br/pagar/3c3r2/LS2hiJJKzv",
         },
 
         {
             title: "PayPal",
-            body: "A simple and secure way to support ZapZap from anywhere in the world.",
+            body: t("donate.paypal"),
             href: "https://www.paypal.com/donate/?business=E7R4BVR45GRC2",
         },
         {
             title: "Wise",
-            body: "International donations with low fees and real exchange rates.",
+            body: t("donate.wise"),
             href: "https://wise.com/pay/me/rafaelt2487",
         },
         {
             title: "Ko-fi",
-            body: "Make a one-time or recurring contribution to keep the project active and improving.",
+            body: t("donate.kofi"),
             href: "https://ko-fi.com/rafaeltosta",
         },
     ];
@@ -38,17 +40,15 @@ function Donate() {
             <div className="mx-auto max-w-6xl px-6 py-24">
                 <div className="max-w-2xl">
                     <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-                        Donations
+                        {t("donate.eyebrow")}
                     </p>
 
                     <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                        Help keep ZapZap alive.
+                        {t("donate.title")}
                     </h2>
 
                     <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
-                        ZapZap is free and open source, maintained in my spare time.
-                        If it makes your daily workflow better, consider supporting
-                        its continued development.
+                        {t("donate.description")}
                     </p>
                 </div>
 
@@ -63,7 +63,7 @@ function Donate() {
                             >
                                 <DonateCard index={index} title={item.title} body={item.body} />
                                 <span className="mt-4 inline-flex text-sm font-medium group-hover:text-foreground">
-                                    Donate →
+                                    {t("donate.action")} →
                                 </span>
                             </a>
                         </li>
@@ -73,8 +73,7 @@ function Donate() {
                 </ul>
 
                 <p className="mt-10 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                    Every contribution helps cover infrastructure costs and gives more
-                    time to develop new features, fix issues and keep ZapZap free.
+                    {t("donate.footer")}
                 </p>
             </div>
         </section>

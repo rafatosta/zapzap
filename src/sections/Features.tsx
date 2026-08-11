@@ -1,40 +1,52 @@
+import { useI18n } from "../i18n/useI18n";
+
 function Features() {
+    const { t } = useI18n();
     const features = [
         {
-            title: "Multiple accounts",
-            body: "Manage multiple WhatsApp accounts simultaneously in a single application.",
+            id: "accounts",
+            title: t("features.accounts.title"),
+            body: t("features.accounts.body"),
         },
         {
-            title: "Native desktop integration",
-            body: "System tray, notifications and desktop behavior designed for Linux.",
+            id: "integration",
+            title: t("features.integration.title"),
+            body: t("features.integration.body"),
         },
         {
-            title: "Native Linux packages",
-            body: "Available as Flatpak, AppImage, Snap, DEB and Fedora COPR.",
+            id: "packages",
+            title: t("features.packages.title"),
+            body: t("features.packages.body"),
         },
         {
-            title: "Automatic updates",
-            body: "AppImage releases support efficient delta updates through .zsync.",
+            id: "updates",
+            title: t("features.updates.title"),
+            body: t("features.updates.body"),
         },
         {
-            title: "Open source",
-            body: "GPL-3.0 licensed, transparent and community-driven development.",
+            id: "source",
+            title: t("features.source.title"),
+            body: t("features.source.body"),
         },
         {
-            title: "Privacy focused",
-            body: "A dedicated desktop application without relying on a browser session.",
+            id: "privacy",
+            title: t("features.privacy.title"),
+            body: t("features.privacy.body"),
         },
         {
-            title: "Spell checking",
-            body: "Built-in spell checker with multiple dictionaries and language support.",
+            id: "spellcheck",
+            title: t("features.spellcheck.title"),
+            body: t("features.spellcheck.body"),
         },
         {
-            title: "Custom CSS & JavaScript",
-            body: "Personalize the WhatsApp interface with your own styles and scripts.",
+            id: "custom",
+            title: t("features.custom.title"),
+            body: t("features.custom.body"),
         },
         {
-            title: "Cross-platform",
-            body: "Available for Linux, Windows and Python environments.",
+            id: "platforms",
+            title: t("features.platforms.title"),
+            body: t("features.platforms.body"),
         },
     ];
 
@@ -43,24 +55,22 @@ function Features() {
             <div className="mx-auto max-w-6xl px-6 py-24">
                 <div className="max-w-2xl">
                     <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-                        Why ZapZap?
+                        {t("features.eyebrow")}
                     </p>
 
                     <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                        A better desktop experience for WhatsApp.
+                        {t("features.title")}
                     </h2>
 
                     <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
-                        ZapZap stays close to the official WhatsApp Web experience while
-                        adding the native integrations Linux users expect from a modern
-                        desktop application.
+                        {t("features.description")}
                     </p>
                 </div>
 
                 <ul className="mt-14 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
                     {features.map((feature, index) => (
                         <li
-                            key={feature.title}
+                            key={feature.id}
                             className="border-t border-hairline pt-5"
                         >
                             <div className="flex items-center gap-3">

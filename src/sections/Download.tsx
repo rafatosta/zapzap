@@ -1,4 +1,5 @@
 import { useLatestRelease } from "../hooks/useLatestRelease";
+import { useI18n } from "../i18n/useI18n";
 
 type DownloadOption = {
     label: string;
@@ -74,6 +75,7 @@ function DownloadCard({
 
 function Download() {
     const version = useLatestRelease();
+    const { t } = useI18n();
     const releasesUrl = "https://github.com/rafatosta/zapzap/releases";
     const releaseUrl = version
         ? `${releasesUrl}/tag/${version}`
@@ -85,76 +87,76 @@ function Download() {
 
     const linuxDownloads: DownloadCardProps[] = [
         {
-            badge: "Recommended · Official",
+            badge: t("download.recommendedOfficial"),
             title: "Flatpak",
-            body: "The easiest option for most Linux distributions, distributed through Flathub with automatic updates.",
+            body: t("download.flatpak.body"),
             highlighted: true,
             options: [
                 {
-                    label: "Open Flathub",
+                    label: t("download.flatpak.action"),
                     href: "https://flathub.org/apps/com.rtosta.zapzap",
                 },
             ],
         },
         {
-            badge: "Portable · Official",
+            badge: t("download.portableOfficial"),
             title: "AppImage",
-            body: "Run ZapZap without installing it. Choose the build that matches your computer's architecture.",
+            body: t("download.appimage.body"),
             options: [
                 {
-                    label: "Download",
+                    label: t("download.action"),
                     detail: "x86_64",
                     href: releaseAsset(`ZapZap-${version}-linux-x86_64.AppImage`),
                 },
                 {
-                    label: "Download",
+                    label: t("download.action"),
                     detail: "ARM64",
                     href: releaseAsset(`ZapZap-${version}-linux-aarch64.AppImage`),
                 },
             ],
         },
         {
-            badge: "Native package · Official",
+            badge: t("download.nativeOfficial"),
             title: "Debian / Ubuntu",
-            body: "A .deb package for 64-bit Debian, Ubuntu and compatible distributions.",
+            body: t("download.debian.body"),
             options: [
                 {
-                    label: "Download .deb",
+                    label: t("download.debian.action"),
                     detail: "x86_64",
                     href: releaseAsset(`zapzap-${version}-amd64.deb`),
                 },
             ],
         },
         {
-            badge: "Store · Official",
+            badge: t("download.storeOfficial"),
             title: "Snap",
-            body: "Install through Snapcraft and receive updates automatically.",
+            body: t("download.snap.body"),
             options: [
                 {
-                    label: "Open Snapcraft",
+                    label: t("download.snap.action"),
                     href: "https://snapcraft.io/zapzap",
                 },
             ],
         },
         {
-            badge: "Repository · Official",
+            badge: t("download.repositoryOfficial"),
             title: "Fedora",
-            body: "Install from the official COPR repository and keep ZapZap updated with DNF.",
+            body: t("download.fedora.body"),
             options: [
                 {
-                    label: "Open COPR",
+                    label: t("download.fedora.action"),
                     href: "https://copr.fedorainfracloud.org/coprs/rafatosta/zapzap/",
                 },
             ],
         },
         {
-            badge: "Community · Unofficial",
+            badge: t("download.communityUnofficial"),
             title: "Arch Linux (AUR)",
-            body: "This package is maintained by the Arch community. It is not built, published or supported by the ZapZap project.",
+            body: t("download.aur.body"),
             unofficial: true,
             options: [
                 {
-                    label: "View community package",
+                    label: t("download.aur.action"),
                     href: "https://aur.archlinux.org/packages/zapzap",
                 },
             ],
@@ -163,34 +165,34 @@ function Download() {
 
     const desktopDownloads: DownloadCardProps[] = [
         {
-            badge: "Official",
+            badge: t("download.official"),
             title: "Windows (.exe)",
-            body: "Native Windows builds with no additional dependencies. Available for Intel/AMD and ARM PCs.",
+            body: t("download.windows.body"),
             options: [
                 {
-                    label: "Download",
+                    label: t("download.action"),
                     detail: "x86_64",
                     href: releaseAsset(`ZapZap-${version}-windows-x86_64.exe`),
                 },
                 {
-                    label: "Download",
+                    label: t("download.action"),
                     detail: "ARM64",
                     href: releaseAsset(`ZapZap-${version}-windows-arm64.exe`),
                 },
             ],
         },
         {
-            badge: "Official",
+            badge: t("download.official"),
             title: "macOS (.dmg)",
-            body: "Disk images for modern Apple Silicon Macs and Intel-based Macs.",
+            body: t("download.macos.body"),
             options: [
                 {
-                    label: "Apple Silicon",
+                    label: t("download.appleSilicon"),
                     detail: "ARM64",
                     href: releaseAsset(`ZapZap-${version}-macos-arm64.dmg`),
                 },
                 {
-                    label: "Intel",
+                    label: t("download.intel"),
                     detail: "x86_64",
                     href: releaseAsset(`ZapZap-${version}-macos-x86_64.dmg`),
                 },
@@ -204,27 +206,29 @@ function Download() {
                 <div className="flex flex-wrap items-end justify-between gap-4">
                     <div className="max-w-2xl">
                         <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-                            Download
+                            {t("download.eyebrow")}
                         </p>
                         <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                            Choose your platform and format.
+                            {t("download.title")}
                         </h2>
                         <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
-                            Use a software store for simple automatic updates, or download a standalone package for your system and architecture.
+                            {t("download.description")}
                         </p>
                     </div>
                     <a
                         href={releaseUrl}
                         className="font-mono text-xs text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >
-                        {version ? `Latest · v${version}` : "View latest release"} →
+                        {version
+                            ? t("download.latest", { version })
+                            : t("download.viewLatest")} →
                     </a>
                 </div>
 
                 <div className="mt-12">
                     <div className="flex items-baseline justify-between gap-4">
                         <h3 className="text-xl font-semibold tracking-tight">Linux</h3>
-                        <p className="text-xs text-muted-foreground">Stores, repositories and portable packages</p>
+                        <p className="text-xs text-muted-foreground">{t("download.linuxSubtitle")}</p>
                     </div>
                     <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                         {linuxDownloads.map((download) => (
@@ -235,8 +239,8 @@ function Download() {
 
                 <div className="mt-12 border-t border-hairline pt-10">
                     <div className="flex items-baseline justify-between gap-4">
-                        <h3 className="text-xl font-semibold tracking-tight">Windows &amp; macOS</h3>
-                        <p className="text-xs text-muted-foreground">Select your processor architecture</p>
+                        <h3 className="text-xl font-semibold tracking-tight">{t("download.desktopTitle")}</h3>
+                        <p className="text-xs text-muted-foreground">{t("download.desktopSubtitle")}</p>
                     </div>
                     <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2">
                         {desktopDownloads.map((download) => (
@@ -247,16 +251,16 @@ function Download() {
 
                 <div className="mt-8 flex flex-col gap-4 rounded-xl border border-border bg-subtle/60 p-5 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                        <p className="text-sm font-semibold">Advanced downloads</p>
+                        <p className="text-sm font-semibold">{t("download.advanced.title")}</p>
                         <p className="mt-1 text-sm text-muted-foreground">
-                            Find the Python wheel, update files, source archives and SHA-256 digests on GitHub.
+                            {t("download.advanced.body")}
                         </p>
                     </div>
                     <a
                         href={releaseUrl}
                         className="inline-flex shrink-0 items-center gap-2 text-sm font-medium text-foreground hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >
-                        View all release files <span aria-hidden="true">→</span>
+                        {t("download.advanced.action")} <span aria-hidden="true">→</span>
                     </a>
                 </div>
             </div>

@@ -1,47 +1,53 @@
 import useSWR from "swr";
 
-const fetcher = (url: string) =>
-  fetch(url).then((r) => {
-    if (!r.ok) {
-      throw new Error(`HTTP ${r.status}`);
+type FlathubDay = {
+  date: string;
+  arches: Record<string, [downloads: number, updates: number]>;
+};
+
+type FlathubResponse = {
+  stats: FlathubDay[];
+};
+
+type HistoryDay = {
+  date: string;
+  downloads: number;
+  updates: number;
+  installs: number;
+};
+
+const fetcher = (url: string): Promise<FlathubResponse> =>
+  fetch(url).then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
     }
 
-    return r.json();
+    return response.json() as Promise<FlathubResponse>;
   });
 
-const formatNumber = (value: number) =>
-  new Intl.NumberFormat("pt-BR").format(value);
-
 export interface FlathubStats {
-  totalDownloads: string;
-  totalUpdates: string;
-  totalInstalls: string;
-
-  downloadsLast30Days: string;
-  installsLast30Days: string;
-
-  downloadsLast365Days: string;
-  installsLast365Days: string;
-
-  downloadsToday: string;
-  installsToday: string;
-
-  averageDownloadsPerDay: string;
-
-  peakDownloads: string;
+  totalDownloads: number;
+  totalUpdates: number;
+  totalInstalls: number;
+  downloadsLast30Days: number;
+  installsLast30Days: number;
+  downloadsLast365Days: number;
+  installsLast365Days: number;
+  downloadsToday: number;
+  installsToday: number;
+  averageDownloadsPerDay: number;
+  peakDownloads: number;
   peakDownloadsDate: string;
-
-  chartData: {
-    date: string;
-    downloads: number;
-    installs: number;
-  }[];
+  chartData: Array<Pick<HistoryDay, "date" | "downloads" | "installs">>;
 }
 
-export function useFlathubStats(
-  appId = "com.rtosta.zapzap",
-) {
-  const { data, error, isLoading } = useSWR(
+const sumBy = (
+  history: HistoryDay[],
+  field: "downloads" | "updates" | "installs",
+) => history.reduce((sum, day) => sum + day[field], 0);
+
+export function useFlathubStats(appId = "com.rtosta.zapzap") {
+  const { data, error, isLoading } = useSWR<FlathubResponse>(
     `https://klausenbusk.github.io/flathub-stats/data/${appId}.json`,
     fetcher,
     {
@@ -52,16 +58,14 @@ export function useFlathubStats(
 
   const stats: FlathubStats | null = data
     ? (() => {
-        const history = data.stats.map((day: any) => {
+        const history: HistoryDay[] = data.stats.map((day) => {
           let downloads = 0;
           let updates = 0;
 
-          Object.values(day.arches).forEach(
-            (arch: any) => {
-              downloads += arch[0];
-              updates += arch[1];
-            },
-          );
+          Object.values(day.arches).forEach((arch) => {
+            downloads += arch[0];
+            updates += arch[1];
+          });
 
           return {
             date: day.date,
@@ -71,98 +75,37 @@ export function useFlathubStats(
           };
         });
 
-        const totalDownloads = history.reduce(
-          (sum: number, day: any) =>
-            sum + day.downloads,
-          0,
-        );
-
-        const totalUpdates = history.reduce(
-          (sum: number, day: any) =>
-            sum + day.updates,
-          0,
-        );
-
-        const totalInstalls =
-          totalDownloads - totalUpdates;
-
+        const totalDownloads = sumBy(history, "downloads");
+        const totalUpdates = sumBy(history, "updates");
         const last30Days = history.slice(-30);
         const last365Days = history.slice(-365);
-
-        const peakDay = history.reduce(
-          (max: any, current: any) =>
-            current.downloads > max.downloads
-              ? current
-              : max,
-          history[0],
+        const peakDay = history.reduce<HistoryDay | null>(
+          (peak, current) =>
+            !peak || current.downloads > peak.downloads ? current : peak,
+          null,
         );
-
         const today = history.at(-1);
 
         return {
-          totalDownloads:
-            formatNumber(totalDownloads),
-
-          totalUpdates:
-            formatNumber(totalUpdates),
-
-          totalInstalls:
-            formatNumber(totalInstalls),
-
-          downloadsLast30Days: formatNumber(
-            last30Days.reduce(
-              (sum: number, day: any) =>
-                sum + day.downloads,
-              0,
-            ),
-          ),
-
-          installsLast30Days: formatNumber(
-            last30Days.reduce(
-              (sum: number, day: any) =>
-                sum + day.installs,
-              0,
-            ),
-          ),
-
-          downloadsLast365Days: formatNumber(
-            last365Days.reduce(
-              (sum: number, day: any) =>
-                sum + day.downloads,
-              0,
-            ),
-          ),
-
-          installsLast365Days: formatNumber(
-            last365Days.reduce(
-              (sum: number, day: any) =>
-                sum + day.installs,
-              0,
-            ),
-          ),
-
-          downloadsToday: formatNumber(
-            today?.downloads ?? 0,
-          ),
-
-          installsToday: formatNumber(
-            today?.installs ?? 0,
-          ),
-
-          averageDownloadsPerDay:
-            formatNumber(
-              Math.round(
-                totalDownloads / history.length,
-              ),
-            ),
-
-          peakDownloads: formatNumber(
-            peakDay.downloads,
-          ),
-
-          peakDownloadsDate: peakDay.date,
-
-          chartData: history,
+          totalDownloads,
+          totalUpdates,
+          totalInstalls: totalDownloads - totalUpdates,
+          downloadsLast30Days: sumBy(last30Days, "downloads"),
+          installsLast30Days: sumBy(last30Days, "installs"),
+          downloadsLast365Days: sumBy(last365Days, "downloads"),
+          installsLast365Days: sumBy(last365Days, "installs"),
+          downloadsToday: today?.downloads ?? 0,
+          installsToday: today?.installs ?? 0,
+          averageDownloadsPerDay: history.length
+            ? Math.round(totalDownloads / history.length)
+            : 0,
+          peakDownloads: peakDay?.downloads ?? 0,
+          peakDownloadsDate: peakDay?.date ?? "",
+          chartData: history.map(({ date, downloads, installs }) => ({
+            date,
+            downloads,
+            installs,
+          })),
         };
       })()
     : null;
