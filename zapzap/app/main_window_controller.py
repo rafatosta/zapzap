@@ -10,7 +10,10 @@ from PyQt6.QtWidgets import QApplication, QDialog
 from zapzap.app.window_lifecycle import WindowLifecycle
 from zapzap.core.config.settings.appearance import AppearanceSettings
 from zapzap.core.theme.theme_manager import ThemeManager
+from zapzap.core.update_checker import UpdateChecker, UpdateState
+from zapzap import __website__
 from zapzap.features.alerts.alert_manager import AlertManager
+from zapzap.features.alerts.external_url import open_external_url
 from zapzap.features.browser.shell.browser_controller import BrowserController
 from zapzap.features.settings.shell.settings_controller import SettingsController
 from zapzap.features.shortcuts.controller import ShortcutsController
@@ -27,7 +30,7 @@ class MainWindowController(MainWindowView):
     """
 
     def __init__(self, parent=None, webview_factory=None,
-                 user_provider=None):
+                 user_provider=None, update_state=None, update_checker=None):
         super().__init__(parent)
         self._appearance_settings = AppearanceSettings()
         self._window_host = self
@@ -37,11 +40,22 @@ class MainWindowController(MainWindowView):
             webview_factory=webview_factory,
             user_provider=user_provider,
         )
+        self.update_state = (
+            update_state if update_state is not None else UpdateState(self)
+        )
+        self.update_checker = (
+            update_checker
+            if update_checker is not None
+            else UpdateChecker(self.update_state, self)
+        )
         self.app_settings = None
         self._last_sanitized_key = None
         self._send_message_dialog = None
         self.theme_action_group = None
         self._setup_ui()
+        self.update_state.changed.connect(self._on_update_info_changed)
+        self._on_update_info_changed(self.update_state.info)
+        QTimer.singleShot(0, self.update_checker.start_once)
 
     def changeEvent(self, event):
         super().changeEvent(event)
@@ -317,7 +331,7 @@ class MainWindowController(MainWindowView):
             self.stackedWidget.setCurrentWidget(self.app_settings)
             return
 
-        self.app_settings = SettingsController()
+        self.app_settings = SettingsController(update_state=self.update_state)
         self._guard_settings_initial_clicks(self.app_settings)
         self.stackedWidget.addWidget(self.app_settings)
         self.stackedWidget.setCurrentWidget(self.app_settings)
@@ -358,6 +372,14 @@ class MainWindowController(MainWindowView):
     def open_about(self):
         self.open_settings()
         self.app_settings.open_about()
+
+    def _on_update_info_changed(self, info):
+        latest = info.latest_version if info is not None and info.available else None
+        self.browser.set_update_available(latest)
+
+    def open_update_website(self):
+        """Open the official download page without selecting an installer."""
+        return open_external_url(__website__, self._window_host)
 
     def open_donations(self):
         """Open the single native donations route from any application entry."""

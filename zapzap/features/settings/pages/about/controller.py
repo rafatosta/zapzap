@@ -24,6 +24,7 @@ class AboutSettingsController(AboutSettingsView):
         )
         self._load_metadata()
         self._configure_signals()
+        self._update_state = None
 
     def _load_metadata(self):
         self.set_identity(self.model.app_name, self.model.version_text)
@@ -32,6 +33,9 @@ class AboutSettingsController(AboutSettingsView):
     def _configure_signals(self):
         links = self.model.project_links
         self.homepage_row.clicked.connect(
+            lambda: self._open_project_link(links["website"])
+        )
+        self.update_row.clicked.connect(
             lambda: self._open_project_link(links["website"])
         )
         self.issue_row.clicked.connect(
@@ -80,3 +84,21 @@ class AboutSettingsController(AboutSettingsView):
     def _open_donations():
         window = QApplication.instance().getWindow()
         return window.open_donations()
+
+    def bind_update_state(self, update_state):
+        """Consume the same session state as the main-window indicator."""
+        if self._update_state is not None:
+            try:
+                self._update_state.changed.disconnect(self._on_update_info_changed)
+            except (TypeError, RuntimeError):
+                pass
+        self._update_state = update_state
+        if update_state is None:
+            self.set_update_available(None)
+            return
+        update_state.changed.connect(self._on_update_info_changed)
+        self._on_update_info_changed(update_state.info)
+
+    def _on_update_info_changed(self, info):
+        latest = info.latest_version if info is not None and info.available else None
+        self.set_update_available(latest)

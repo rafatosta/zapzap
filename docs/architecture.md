@@ -46,6 +46,14 @@ O caminho principal está em `zapzap/app/application.py`:
 8. no encerramento, remove notificações, para D-Bus e tema e libera páginas
    WebEngine explicitamente.
 
+Depois que o event loop começa, `MainWindowController` inicia no máximo uma
+consulta assíncrona de release por execução. `core.update_checker`
+faz a política conservadora por `BuildInfo`, consulta somente a release estável
+mais recente e publica um `UpdateState` efêmero. A abertura da janela não aguarda
+a rede e falhas não entram no fluxo de alertas. O estado e o checker pertencem
+ao `QApplication`, portanto sobrevivem a uma reconstrução apenas da interface
+sem repetir a consulta.
+
 `SingleApplication` também coordena mensagens entre instâncias, reinício apenas
 da interface e reinício completo do processo. Configurações lidas antes da
 criação do QtWebEngine, como escala, plataforma gráfica e flags Chromium,
@@ -95,6 +103,11 @@ avatar em escala de cinza identifica uma conta explicitamente desativada.
 Contas desativadas ou silenciadas não exibem ponto; sem atividade especial,
 também não há indicador. Carregamento, falha de conexão e validade da sessão
 não são inferidos, pois o `WebView` ainda não os propaga ao botão da conta.
+Nos builds oficiais de download manual, uma release estável mais recente torna
+visível uma ação auxiliar de atualização na parte inferior da sidebar. Ela não
+baixa arquivos: o clique abre o site oficial. O mesmo `UpdateState` alimenta a
+página Sobre, inclusive quando a sidebar está oculta, sem duplicar consulta ou
+comparação.
 O clique de contexto abre um popover compacto com identidade, estado, edição,
 Não perturbe, desativação e remoção. As opções avançadas de User-Agent e
 personalização do avatar permanecem exclusivamente no diálogo de edição.
@@ -325,6 +338,23 @@ persistência somente após `Aplicar`, e tanto o navegador quanto a página
 | `shortcuts` | catálogo e diálogo de atalhos |
 | `startup` | inicialização automática por plataforma |
 | `tray` | ícone, menu, contador e vínculo com a janela |
+
+## Verificação passiva de versão
+
+`core.update_checker` mantém separadas três responsabilidades: comparação de
+versões numéricas, política de ambiente e parsing da fonte remota. A fonte atual
+é `https://api.github.com/repos/rafatosta/zapzap/releases/latest`; drafts,
+prereleases e tags não numéricas são rejeitados mesmo que a resposta remota
+mude. A chamada usa `QNetworkAccessManager`, timeout de cinco segundos, nenhum
+retry e nenhum identificador de instalação.
+
+A política exige simultaneamente canal `Official`, provedor `GitHub Actions`,
+repositório `rafatosta/zapzap` e um destes valores reais de `BUILD_PACKAGING`:
+`DEB`, `macOS`, `Windows x86_64 (exe)` ou `Windows arm64 (exe)`. `AppImage`,
+`Copr`, `Flatpak`, `Python Package (whl)`, `RPM`, `Snap`, builds comunitários,
+customizados e checkouts sem `BuildInfo.py` não fazem request. Assim, formatos
+com atualização própria ou gerenciada externamente não recebem um aviso
+upstream conflitante.
 
 ## Empacotamento multiplataforma
 

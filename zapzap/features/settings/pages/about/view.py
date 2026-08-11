@@ -253,6 +253,13 @@ class AboutSettingsView(SettingsPage):
         section = SettingsSection(_("Project and support"))
         card = AboutListCard()
 
+        self.update_row = AboutActionRow(
+            _("Update available"),
+            _("Visit the official website"),
+            card,
+        )
+        self.update_row.setVisible(False)
+
         self.homepage_row = AboutActionRow(
             _("Project page"),
             _("Official website, downloads, and documentation."),
@@ -269,7 +276,12 @@ class AboutSettingsView(SettingsPage):
             card,
         )
 
-        for row in (self.homepage_row, self.issue_row, self.donate_row):
+        for row in (
+            self.update_row,
+            self.homepage_row,
+            self.issue_row,
+            self.donate_row,
+        ):
             card.add_action(row)
 
         section.add_card(card)
@@ -338,6 +350,19 @@ class AboutSettingsView(SettingsPage):
 
     def set_technical_details(self, details):
         self.technical_details.set_details(details)
+
+    def set_update_available(self, latest_version=None):
+        available = bool(latest_version)
+        if available:
+            title = _("ZapZap {version} is available").format(
+                version=latest_version
+            )
+            self.update_row.title_label.setText(title)
+            self.update_row.setAccessibleName(title)
+            self.update_row.setAccessibleDescription(
+                _("Open the official ZapZap website to download it.")
+            )
+        self.update_row.setVisible(available)
 
     def show_copy_feedback(self):
         self.copy_system_info_button.setText(_("Information copied"))

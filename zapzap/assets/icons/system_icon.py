@@ -25,6 +25,13 @@ class SystemIcon:
             </svg>
             """
         ),
+        "update_available": (
+            """
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="{fill_color}" viewBox="0 0 256 256">
+                <path d="M128 24a8 8 0 0 1 8 8v96.7l26.3-26.4a8 8 0 0 1 11.4 11.4l-40 40a8 8 0 0 1-11.4 0l-40-40a8 8 0 0 1 11.4-11.4L120 128.7V32a8 8 0 0 1 8-8Zm88 136a8 8 0 0 0-8 8v40H48v-40a8 8 0 0 0-16 0v40a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-40a8 8 0 0 0-8-8Z"/>
+            </svg>
+            """
+        ),
         "new_chat": (
             """
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="{fill_color}" viewBox="0 0 256 256">

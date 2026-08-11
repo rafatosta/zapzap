@@ -98,6 +98,7 @@ class BrowserController(BrowserView):
             self.btn_new_chat_number,
             self.btn_new_chat,
             self.btn_donations,
+            self.btn_update_available,
             self.btn_open_settings,
         ):
             button.setMinimumSize(40, 40)
@@ -158,9 +159,16 @@ class BrowserController(BrowserView):
             lambda: self.parent.new_chat_by_phone())
         self.btn_new_chat.clicked.connect(lambda: self.parent.new_chat())
         self.btn_donations.clicked.connect(self.show_donations)
+        self.btn_update_available.clicked.connect(
+            lambda: self.parent.open_update_website()
+        )
         self.btn_open_settings.clicked.connect(
             lambda: self.parent.open_settings())
         ThemeManager.instance().theme_changed.connect(self._update_buttons)
+
+    def set_update_available(self, latest_version=None):
+        """Reflect the shared update state in the passive sidebar action."""
+        self.sidebar.set_update_available(latest_version)
 
     def _update_buttons(self, _current_theme, current_color_scheme):
         self.__set_button_icons(
@@ -810,6 +818,8 @@ class BrowserController(BrowserView):
             SystemIcon.get_icon("new_chat_number", theme))
         self.btn_donations.setIcon(
             SystemIcon.get_icon("donation_heart", theme))
+        self.btn_update_available.setIcon(
+            SystemIcon.get_icon("update_available", theme))
 
         if hasattr(self, "btn_flatpak_help"):
             self.btn_flatpak_help.setIcon(

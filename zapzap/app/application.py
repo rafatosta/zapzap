@@ -23,6 +23,7 @@ from zapzap.core.config.settings.appearance import AppearanceSettings
 from zapzap.core.config.settings.system import SystemSettings
 from zapzap.core.environment.setup_manager import SetupManager
 from zapzap.core.theme.theme_manager import ThemeManager
+from zapzap.core.update_checker import UpdateChecker, UpdateState
 from zapzap.core.i18n.translation_manager import TranslationManager
 from zapzap.features.initial_setup.controller import InitialSetupController
 from zapzap.features.donation.controller import DonationController
@@ -32,9 +33,17 @@ from zapzap.features.notifications.notification_service import (
 )
 
 
-def create_main_window(webview_factory=None):
+def create_main_window(
+    webview_factory=None,
+    update_state=None,
+    update_checker=None,
+):
     """Build a fresh MainWindow instance using the current runtime settings."""
-    content = MainWindowController(webview_factory=webview_factory)
+    content = MainWindowController(
+        webview_factory=webview_factory,
+        update_state=update_state,
+        update_checker=update_checker,
+    )
     window = (
         ClientSideWindowHost(content)
         if AppearanceSettings().csr_enabled
@@ -87,9 +96,18 @@ def main():
     # Initialize ThemeManager
     ThemeManager.start()
 
+    # The session state survives interface-only restarts, preventing a second
+    # request while restoring an already-known update in the rebuilt UI.
+    update_state = UpdateState(app)
+    update_checker = UpdateChecker(update_state, app)
+
     # Create main window
     main_window = app.startInterface(
-        lambda: create_main_window(webview_factory)
+        lambda: create_main_window(
+            webview_factory,
+            update_state,
+            update_checker,
+        )
     )
     desktop_application_dbus = None
     if is_flatpak():

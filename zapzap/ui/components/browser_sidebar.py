@@ -134,6 +134,14 @@ class BrowserSidebar(QFrame):
         self.btn_donations.setCheckable(True)
         self.layout_2.addWidget(self.btn_donations)
 
+        self.btn_update_available = BrowserSidebarButton(
+            "btn_update_available",
+            self.settings_buttons_layout,
+        )
+        self.btn_update_available.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
+        self.btn_update_available.setVisible(False)
+        self.layout_2.addWidget(self.btn_update_available)
+
         self.line_2 = QFrame(self.settings_buttons_layout)
         self.line_2.setFrameShape(QFrame.Shape.HLine)
         self.line_2.setFrameShadow(QFrame.Shadow.Sunken)
@@ -160,3 +168,16 @@ class BrowserSidebar(QFrame):
             _("Show ways to support ZapZap development.")
         )
         self.btn_open_settings.setToolTip(_("ZapZap Settings"))
+
+    def set_update_available(self, latest_version=None):
+        available = bool(latest_version)
+        if available:
+            text = _("ZapZap {version} is available").format(
+                version=latest_version
+            )
+            self.btn_update_available.setToolTip(text)
+            self.btn_update_available.setAccessibleName(text)
+            self.btn_update_available.setAccessibleDescription(
+                _("Open the official ZapZap website to download it.")
+            )
+        self.btn_update_available.setVisible(available)

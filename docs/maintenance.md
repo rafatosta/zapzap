@@ -172,6 +172,23 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - Valide restauração normal, maximizada e fullscreen. Aparência, movimento e
   redimensionamento da moldura CSR ainda exigem uma sessão gráfica real.
 
+### Verificação passiva de versão
+
+- Mantenha comparação, parsing da release e política centralizados em
+  `core.update_checker`; widgets apenas consomem `UpdateState`.
+- Use os valores literais produzidos por `.github/packaging/common/build-info.sh`
+  e pelos workflows. Ao adicionar ou alterar um formato, decida explicitamente
+  se sua atualização é manual, própria ou gerenciada por uma distribuição.
+- Preserve o padrão conservador: canal, provedor, repositório ou packaging
+  desconhecido não inicia request. AppImage, Flatpak, Snap, RPM/COPR e pacotes
+  comunitários não devem receber o aviso manual.
+- A consulta deve continuar assíncrona, única por execução, com timeout curto,
+  sem retry, persistência, telemetria, popup ou `AlertManager` para falhas.
+- A sidebar e Sobre devem observar o mesmo estado. O clique sempre abre
+  `https://rtosta.com/zapzap/`, nunca um asset ou instalador direto.
+- Teste política, ordenação numérica, resposta inválida, draft, prerelease,
+  timeout, ausência de rede e propriedades semânticas da UI sem Internet real.
+
 ### Doações e links externos
 
 - Preserve uma única `DonationsPageController` sob propriedade do

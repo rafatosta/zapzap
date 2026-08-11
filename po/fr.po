@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-06 12:57-0300\n"
+"POT-Creation-Date: 2026-08-11 09:07-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: French\n"
@@ -202,7 +202,7 @@ msgid "No"
 msgstr "Non"
 
 #: zapzap/features/alerts/alert_manager.py:244
-#: zapzap/features/settings/pages/about/view.py:279
+#: zapzap/features/settings/pages/about/view.py:291
 msgid "Information"
 msgstr "Informations"
 
@@ -242,7 +242,7 @@ msgid "Copy address"
 msgstr "Copier l'adresse du lien"
 
 #: zapzap/features/alerts/external_url.py:45
-#: zapzap/features/browser/shell/browser_controller.py:216
+#: zapzap/features/browser/shell/browser_controller.py:224
 #: zapzap/ui/components/edit_account_dialog.py:73
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
 #: zapzap/ui/components/send_message_to_number_dialog.py:135
@@ -312,8 +312,8 @@ msgstr ""
 #: zapzap/features/tray/sys_tray_manager.py:52
 #: zapzap/features/settings/shell/settings_view.py:32
 #: zapzap/features/settings/shell/settings_view.py:34
-#: zapzap/features/settings/pages/about/view.py:267
-#: zapzap/ui/components/browser_sidebar.py:157
+#: zapzap/features/settings/pages/about/view.py:274
+#: zapzap/ui/components/browser_sidebar.py:165
 #, fuzzy
 msgid "Support ZapZap"
 msgstr "Configurer ZapZap"
@@ -426,7 +426,7 @@ msgid "Basics"
 msgstr "Les bases"
 
 #: zapzap/features/initial_setup/view.py:106
-#: zapzap/features/settings/shell/settings_controller.py:133
+#: zapzap/features/settings/shell/settings_controller.py:134
 #: zapzap/features/settings/pages/notifications/view.py:19
 #: zapzap/features/settings/pages/notifications/view.py:33
 msgid "Notifications"
@@ -443,7 +443,7 @@ msgstr "Fichiers"
 
 #: zapzap/features/initial_setup/view.py:109
 #: zapzap/features/initial_setup/view.py:378
-#: zapzap/features/settings/shell/settings_controller.py:139
+#: zapzap/features/settings/shell/settings_controller.py:140
 #: zapzap/features/settings/pages/permissions/view.py:22
 msgid "Permissions"
 msgstr "Autorisations"
@@ -933,7 +933,7 @@ msgid "New message..."
 msgstr "Nouveau message..."
 
 #: zapzap/features/shortcuts/model.py:12
-#: zapzap/ui/components/browser_sidebar.py:156
+#: zapzap/ui/components/browser_sidebar.py:164
 msgid "New conversation"
 msgstr "Nouvelle conversation"
 
@@ -976,7 +976,7 @@ msgstr "Profil et statut"
 #: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
 #: zapzap/features/tray/sys_tray_manager.py:51
 #: zapzap/features/settings/shell/settings_sidebar.py:61
-#: zapzap/features/settings/shell/settings_controller.py:233
+#: zapzap/features/settings/shell/settings_controller.py:234
 #: zapzap/ui/components/main_window.py:143
 msgid "Settings"
 msgstr "Paramètres"
@@ -1073,8 +1073,8 @@ msgid "New conversation by phone number"
 msgstr "Nouvelle conversation par numéro de téléphone"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:410
-#: zapzap/ui/components/browser_sidebar.py:152
+#: zapzap/features/browser/shell/browser_controller.py:418
+#: zapzap/ui/components/browser_sidebar.py:160
 msgid "New account"
 msgstr "Nouveau compte"
 
@@ -1107,79 +1107,79 @@ msgid "Close settings"
 msgstr "Fermer les paramètres"
 
 #: zapzap/features/settings/shell/settings_view.py:36
-#: zapzap/features/settings/pages/about/view.py:268
+#: zapzap/features/settings/pages/about/view.py:275
 msgid "Learn how to contribute to the project's development."
 msgstr ""
 
-#: zapzap/features/settings/shell/settings_controller.py:121
+#: zapzap/features/settings/shell/settings_controller.py:122
 #: zapzap/features/settings/pages/accounts/view.py:17
 msgid "Accounts"
 msgstr "Comptes"
 
-#: zapzap/features/settings/shell/settings_controller.py:127
+#: zapzap/features/settings/shell/settings_controller.py:128
 #: zapzap/features/settings/pages/appearance/view.py:21
 msgid "Appearance"
 msgstr "Apparence"
 
-#: zapzap/features/settings/shell/settings_controller.py:145
+#: zapzap/features/settings/shell/settings_controller.py:146
 #: zapzap/features/settings/pages/system_startup/view.py:22
 msgid "System and startup"
 msgstr "Système et démarrage"
 
-#: zapzap/features/settings/shell/settings_controller.py:151
+#: zapzap/features/settings/shell/settings_controller.py:152
 #: zapzap/features/settings/pages/language_downloads/view.py:21
 msgid "Language and Download"
 msgstr "Langue et téléchargement"
 
-#: zapzap/features/settings/shell/settings_controller.py:157
+#: zapzap/features/settings/shell/settings_controller.py:158
 #: zapzap/features/settings/pages/network_privacy/view.py:149
 msgid "Privacy and Network"
 msgstr "Confidentialité et réseau"
 
-#: zapzap/features/settings/shell/settings_controller.py:163
+#: zapzap/features/settings/shell/settings_controller.py:164
 msgid "Advanced Customizations"
 msgstr "Personnalisations avancées"
 
-#: zapzap/features/settings/shell/settings_controller.py:169
+#: zapzap/features/settings/shell/settings_controller.py:170
 #: zapzap/features/settings/pages/performance_experimental/view.py:19
 msgid "Performance experimental"
 msgstr "Performance expérimentale"
 
-#: zapzap/features/settings/shell/settings_controller.py:175
+#: zapzap/features/settings/shell/settings_controller.py:176
 #: zapzap/features/settings/pages/debugging/view.py:159
 msgid "Debugging"
 msgstr "Débogage"
 
-#: zapzap/features/settings/shell/settings_controller.py:181
+#: zapzap/features/settings/shell/settings_controller.py:182
 #: zapzap/features/settings/pages/about/view.py:238
 #: zapzap/ui/components/main_window.py:172
 msgid "About"
 msgstr "À propos"
 
-#: zapzap/features/settings/pages/about/controller.py:53
-#: zapzap/features/settings/pages/about/view.py:311
-#: zapzap/features/settings/pages/about/view.py:315
+#: zapzap/features/settings/pages/about/controller.py:57
+#: zapzap/features/settings/pages/about/view.py:323
+#: zapzap/features/settings/pages/about/view.py:327
 msgid "Copy system information"
 msgstr "Copier les informations système"
 
-#: zapzap/features/settings/pages/about/controller.py:58
-#: zapzap/features/settings/pages/about/view.py:284
+#: zapzap/features/settings/pages/about/controller.py:62
+#: zapzap/features/settings/pages/about/view.py:296
 msgid "License"
 msgstr "Licence"
 
-#: zapzap/features/settings/pages/about/controller.py:60
+#: zapzap/features/settings/pages/about/controller.py:64
 #, python-brace-format
 msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
 msgstr ""
 "ZapZap est un logiciel gratuit sous licence {license_id} (GPL-3.0 ou version "
 "ultérieure)."
 
-#: zapzap/features/settings/pages/about/controller.py:68
-#: zapzap/features/settings/pages/about/view.py:289
+#: zapzap/features/settings/pages/about/controller.py:72
+#: zapzap/features/settings/pages/about/view.py:301
 msgid "Credits and contributors"
 msgstr "Crédits et contributeurs"
 
-#: zapzap/features/settings/pages/about/controller.py:70
+#: zapzap/features/settings/pages/about/controller.py:74
 #, python-brace-format
 msgid ""
 "Created and maintained by {author}. Thanks to everyone who contributes "
@@ -1247,28 +1247,48 @@ msgid "Project and support"
 msgstr "Projet et accompagnement"
 
 #: zapzap/features/settings/pages/about/view.py:257
+#, fuzzy
+msgid "Update available"
+msgstr "non disponible"
+
+#: zapzap/features/settings/pages/about/view.py:258
+msgid "Visit the official website"
+msgstr ""
+
+#: zapzap/features/settings/pages/about/view.py:264
 msgid "Project page"
 msgstr "Page du projet"
 
-#: zapzap/features/settings/pages/about/view.py:258
+#: zapzap/features/settings/pages/about/view.py:265
 msgid "Official website, downloads, and documentation."
 msgstr "Site officiel, téléchargements et documentation."
 
-#: zapzap/features/settings/pages/about/view.py:262
+#: zapzap/features/settings/pages/about/view.py:269
 msgid "Report a problem"
 msgstr "Signaler un problème"
 
-#: zapzap/features/settings/pages/about/view.py:263
+#: zapzap/features/settings/pages/about/view.py:270
 msgid "Report bugs or suggest improvements on GitHub."
 msgstr "Signalez des bugs ou suggérez des améliorations sur GitHub."
 
-#: zapzap/features/settings/pages/about/view.py:325
+#: zapzap/features/settings/pages/about/view.py:337
 msgid ""
 "ZapZap is an independent project and is not affiliated with WhatsApp or Meta."
 msgstr ""
 "ZapZap est un projet indépendant et n'est pas affilié à WhatsApp ou Meta."
 
-#: zapzap/features/settings/pages/about/view.py:343
+#: zapzap/features/settings/pages/about/view.py:357
+#: zapzap/ui/components/browser_sidebar.py:175
+#, fuzzy, python-brace-format
+msgid "ZapZap {version} is available"
+msgstr "{count} disponible"
+
+#: zapzap/features/settings/pages/about/view.py:363
+#: zapzap/ui/components/browser_sidebar.py:181
+msgid "Open the official ZapZap website to download it."
+msgstr ""
+
+#: zapzap/features/settings/pages/about/view.py:368
 msgid "Information copied"
 msgstr "Informations copiées"
 
@@ -1850,7 +1870,7 @@ msgid "Symbolic dark"
 msgstr "Sombre symbolique"
 
 #: zapzap/features/settings/pages/appearance/view.py:118
-#: zapzap/features/browser/shell/browser_controller.py:142
+#: zapzap/features/browser/shell/browser_controller.py:143
 msgid "Grid view"
 msgstr "Vue grille"
 
@@ -3126,19 +3146,19 @@ msgstr "Enregistrer sous"
 msgid "Save file"
 msgstr "Enregistrer le fichier"
 
-#: zapzap/features/browser/shell/browser_controller.py:181
+#: zapzap/features/browser/shell/browser_controller.py:189
 msgid "Flatpak sandbox help"
 msgstr "Aide du bac à sable Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:206
+#: zapzap/features/browser/shell/browser_controller.py:214
 msgid "Flatpak sandbox"
 msgstr "Bac à sable Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:207
+#: zapzap/features/browser/shell/browser_controller.py:215
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap s'exécute dans le bac à sable Flatpak."
 
-#: zapzap/features/browser/shell/browser_controller.py:209
+#: zapzap/features/browser/shell/browser_controller.py:217
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
@@ -3146,40 +3166,40 @@ msgstr ""
 "Certaines fonctionnalités telles que l'ouverture de fichiers ou le glisser-"
 "déposer peuvent nécessiter des autorisations supplémentaires."
 
-#: zapzap/features/browser/shell/browser_controller.py:214
+#: zapzap/features/browser/shell/browser_controller.py:222
 msgid "Instructions"
 msgstr "Instructions"
 
-#: zapzap/features/browser/shell/browser_controller.py:215
+#: zapzap/features/browser/shell/browser_controller.py:223
 msgid "Copy command"
 msgstr "Commande Copier"
 
-#: zapzap/features/browser/shell/browser_controller.py:427
-#: zapzap/features/browser/shell/browser_controller.py:511
+#: zapzap/features/browser/shell/browser_controller.py:435
+#: zapzap/features/browser/shell/browser_controller.py:519
 #, python-brace-format
 msgid "Account {}"
 msgstr "Compte {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:524
+#: zapzap/features/browser/shell/browser_controller.py:532
 msgid "Account disabled"
 msgstr "Compte désactivé"
 
-#: zapzap/features/browser/shell/browser_controller.py:525
+#: zapzap/features/browser/shell/browser_controller.py:533
 msgid "This account is disabled."
 msgstr "Ce compte est désactivé."
 
-#: zapzap/features/browser/shell/browser_controller.py:527
+#: zapzap/features/browser/shell/browser_controller.py:535
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Vous pouvez le réactiver maintenant ou utiliser le menu contextuel pour "
 "gérer ce compte."
 
-#: zapzap/features/browser/shell/browser_controller.py:532
+#: zapzap/features/browser/shell/browser_controller.py:540
 msgid "Activate"
 msgstr "Activer"
 
-#: zapzap/features/browser/shell/browser_controller.py:533
+#: zapzap/features/browser/shell/browser_controller.py:541
 msgid "Not now"
 msgstr "Pas maintenant"
 
@@ -3297,22 +3317,22 @@ msgstr "Sélectionnez un compte pour revenir à son chat."
 msgid "No active accounts to display."
 msgstr "Aucun compte actif à afficher."
 
-#: zapzap/ui/components/browser_sidebar.py:154
+#: zapzap/ui/components/browser_sidebar.py:162
 msgid "New conversation by the phone number"
 msgstr "Nouvelle conversation par numéro de téléphone"
 
-#: zapzap/ui/components/browser_sidebar.py:158
+#: zapzap/ui/components/browser_sidebar.py:166
 #, fuzzy
 msgid "Open donations page"
 msgstr "Emplacement ouvert"
 
-#: zapzap/ui/components/browser_sidebar.py:160
+#: zapzap/ui/components/browser_sidebar.py:168
 #, fuzzy
 msgid "Show ways to support ZapZap development."
 msgstr ""
 "Afficher occasionnellement des messages soutenant le développement de ZapZap."
 
-#: zapzap/ui/components/browser_sidebar.py:162
+#: zapzap/ui/components/browser_sidebar.py:170
 msgid "ZapZap Settings"
 msgstr "Paramètres ZapZap"
 
