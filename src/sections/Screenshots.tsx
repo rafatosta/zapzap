@@ -1,9 +1,12 @@
+import { useState } from "react";
+
 import type { Screenshot } from "../components/ScreenshotCard";
 import ScreenshotCard from "../components/ScreenshotCard";
 import { useI18n } from "../i18n/useI18n";
 
 function Screenshots() {
     const { t } = useI18n();
+    const [showAll, setShowAll] = useState(false);
     const screenshots = [
         {
             title: t("screenshots.inbox.title"),
@@ -51,7 +54,7 @@ function Screenshots() {
     const [featured, ...items] = screenshots;
 
     return (
-        <section id="screenshots" className="border-t border-hairline bg-background">
+        <section id="screenshots" className="scroll-mt-14 border-t border-hairline bg-background">
             <div className="mx-auto max-w-6xl px-6 py-20">
                 <div className="mx-auto max-w-2xl text-center">
                     <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
@@ -72,13 +75,24 @@ function Screenshots() {
                 </div>
 
                 <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {items.map((screenshot) => (
-                        <ScreenshotCard
-                            key={screenshot.title}
-                            screenshot={screenshot}
-                        />
+                    {items.map((screenshot, index) => (
+                        <div
+                            key={screenshot.image}
+                            className={!showAll && index >= 2 ? "hidden sm:block" : undefined}
+                        >
+                            <ScreenshotCard screenshot={screenshot} />
+                        </div>
                     ))}
                 </div>
+
+                <button
+                    type="button"
+                    onClick={() => setShowAll((current) => !current)}
+                    className="mx-auto mt-6 flex min-h-11 items-center justify-center rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:hidden"
+                    aria-expanded={showAll}
+                >
+                    {showAll ? t("screenshots.showLess") : t("screenshots.viewAll")}
+                </button>
             </div>
         </section>
     );

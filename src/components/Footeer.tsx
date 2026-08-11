@@ -12,13 +12,13 @@ function Footer() {
                     <span className="text-muted-foreground">{t("footer.builtBy")}</span>
                 </div>
                 <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
-                    <a href="https://github.com/rafatosta/zapzap" className="hover:text-foreground">
+                    <a href="https://github.com/rafatosta/zapzap" target="_blank" rel="noopener noreferrer" className="rounded-sm hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                         GitHub
                     </a>
-                    <a href="https://github.com/sponsors/rafatosta" className="hover:text-foreground">
+                    <a href="https://github.com/sponsors/rafatosta" target="_blank" rel="noopener noreferrer" className="rounded-sm hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                         {t("footer.sponsor")}
                     </a>
-                    <a href="https://flathub.org/apps/com.rtosta.zapzap" className="hover:text-foreground">
+                    <a href="https://flathub.org/apps/com.rtosta.zapzap" target="_blank" rel="noopener noreferrer" className="rounded-sm hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                         Flathub
                     </a>
                 </div>

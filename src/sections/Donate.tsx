@@ -33,10 +33,10 @@ function Donate() {
     ];
 
     const cardClass =
-        "group block h-full rounded-xl border border-transparent bg-subtle p-5 text-left transition-all duration-200 hover:-translate-y-1 hover:border-border hover:bg-card hover:shadow-sm";
+        "group block h-full rounded-xl border border-border bg-card/40 p-5 text-left transition-all duration-200 hover:-translate-y-1 hover:bg-card hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
     return (
-        <section id="donate" className="border-t border-hairline bg-subtle">
+        <section id="donate" className="scroll-mt-14 border-t border-hairline bg-subtle">
             <div className="mx-auto max-w-6xl px-6 py-24">
                 <div className="max-w-2xl">
                     <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">

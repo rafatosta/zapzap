@@ -15,11 +15,11 @@ function App() {
       <HashScroll />
 
       <Header />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Hero />
+        <Download />
         <Features />
         <Screenshots />
-        <Download />
         <Donate />
       </main>
       <Footer />

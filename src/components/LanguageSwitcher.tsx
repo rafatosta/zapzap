@@ -1,4 +1,4 @@
-import { Languages } from "lucide-react";
+import { ChevronDown, Languages } from "lucide-react";
 
 import { useI18n } from "../i18n/useI18n";
 import type { Locale } from "../i18n/translations";
@@ -20,15 +20,21 @@ export function LanguageSwitcher({ compact = false }: LanguageSwitcherProps) {
             <span className={compact ? "text-sm font-medium" : "sr-only"}>
                 {t("language.label")}
             </span>
-            <select
-                value={locale}
-                onChange={(event) => setLocale(event.target.value as Locale)}
-                aria-label={t("language.label")}
-                className="min-w-0 cursor-pointer bg-transparent text-xs font-medium text-foreground outline-none"
-            >
-                <option value="en">{t("language.english")}</option>
-                <option value="pt-BR">{t("language.portuguese")}</option>
-            </select>
+            <span className="relative min-w-0">
+                <select
+                    value={locale}
+                    onChange={(event) => setLocale(event.target.value as Locale)}
+                    aria-label={t("language.label")}
+                    className="min-w-0 cursor-pointer appearance-none rounded-sm bg-transparent py-1 pr-5 text-xs font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                    <option value="en">{t("language.english")}</option>
+                    <option value="pt-BR">{t("language.portuguese")}</option>
+                </select>
+                <ChevronDown
+                    className="pointer-events-none absolute right-0 top-1/2 size-3 -translate-y-1/2"
+                    aria-hidden="true"
+                />
+            </span>
         </label>
     );
 }

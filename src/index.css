@@ -16,8 +16,8 @@
 @theme inline {
 
   /* Fontes padrão */
-  --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
 
   /* Escalas de borda arredondada derivadas da variável principal */
   --radius-sm: calc(var(--radius) - 4px);

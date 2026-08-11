@@ -1,13 +1,27 @@
 import useSWR from "swr";
 
-const fetcher = (url: string) =>
-  fetch(url).then((res) => res.json());
+type GitHubRelease = {
+  tag_name: string;
+};
+
+const fetcher = (url: string): Promise<GitHubRelease> =>
+  fetch(url).then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    return response.json() as Promise<GitHubRelease>;
+  });
 
 export function useLatestRelease() {
-  const { data } = useSWR(
+  const { data, error, isLoading } = useSWR<GitHubRelease>(
     "https://api.github.com/repos/rafatosta/zapzap/releases/latest",
     fetcher,
   );
 
-  return data?.tag_name ?? null;
+  return {
+    version: data?.tag_name ?? null,
+    loading: isLoading,
+    error: error?.message ?? null,
+  };
 }

@@ -14,26 +14,6 @@ function Features() {
             body: t("features.integration.body"),
         },
         {
-            id: "packages",
-            title: t("features.packages.title"),
-            body: t("features.packages.body"),
-        },
-        {
-            id: "updates",
-            title: t("features.updates.title"),
-            body: t("features.updates.body"),
-        },
-        {
-            id: "source",
-            title: t("features.source.title"),
-            body: t("features.source.body"),
-        },
-        {
-            id: "privacy",
-            title: t("features.privacy.title"),
-            body: t("features.privacy.body"),
-        },
-        {
             id: "spellcheck",
             title: t("features.spellcheck.title"),
             body: t("features.spellcheck.body"),
@@ -44,14 +24,19 @@ function Features() {
             body: t("features.custom.body"),
         },
         {
-            id: "platforms",
-            title: t("features.platforms.title"),
-            body: t("features.platforms.body"),
+            id: "privacy",
+            title: t("features.privacy.title"),
+            body: t("features.privacy.body"),
+        },
+        {
+            id: "source",
+            title: t("features.source.title"),
+            body: t("features.source.body"),
         },
     ];
 
     return (
-        <section id="features" className="border-t border-hairline bg-subtle">
+        <section id="features" className="scroll-mt-14 border-t border-hairline bg-subtle">
             <div className="mx-auto max-w-6xl px-6 py-24">
                 <div className="max-w-2xl">
                     <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">

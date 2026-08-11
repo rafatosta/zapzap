@@ -10,21 +10,27 @@ export function Header() {
   const nav = [
     { label: t("header.features"), href: "#features" },
     { label: t("header.screenshots"), href: "#screenshots" },
-    { label: t("header.download"), href: "#download" },
     { label: t("header.donate"), href: "#donate" },
     { label: "GitHub", href: "https://github.com/rafatosta/zapzap" },
   ];
 
   return (
-    <header className="sticky top-0 z-40 border-b border-hairline bg-background/80 backdrop-blur">
+    <>
+      <a
+        href="#main-content"
+        className="fixed left-4 top-3 z-[60] -translate-y-20 rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background transition-transform focus:translate-y-0"
+      >
+        {t("header.skipContent")}
+      </a>
+      <header className="sticky top-0 z-40 border-b border-hairline bg-background/80 backdrop-blur">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
         <a
           href="#"
-          className="flex items-center gap-2 text-[15px] font-semibold tracking-tight"
+          className="rounded-sm flex items-center gap-2 text-[15px] font-semibold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           <img
             src={icon}
-            alt={t("header.logoAlt")}
+            alt=""
             loading="lazy"
             className="w-8 hover:opacity-90"
           />
@@ -36,7 +42,7 @@ export function Header() {
             <a
               key={item.label}
               href={item.href}
-              className="transition-colors hover:text-foreground"
+              className="rounded-sm transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               target={item.href.startsWith("http") ? "_blank" : undefined}
               rel={item.href.startsWith("http") ? "noreferrer" : undefined}
             >
@@ -49,7 +55,7 @@ export function Header() {
           <LanguageSwitcher />
           <a
             href="#download"
-            className="rounded-md border border-border bg-foreground px-3.5 py-1.5 text-xs font-medium text-background transition-opacity hover:opacity-90"
+            className="rounded-md bg-primary px-3.5 py-1.5 text-xs font-medium text-primary-foreground transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {t("header.download")}
           </a>
@@ -78,7 +84,7 @@ export function Header() {
                   >
                     <img
                       src={icon}
-                      alt="ZapZap"
+                      alt=""
                       loading="lazy"
                       className="w-8"
                     />
@@ -119,7 +125,7 @@ export function Header() {
               <Dialog.Close asChild>
                 <a
                   href="#download"
-                  className="mt-6 block rounded-md border border-border bg-foreground px-3.5 py-2 text-center text-sm font-medium text-background transition-opacity hover:opacity-90"
+                  className="mt-6 block rounded-md bg-primary px-3.5 py-2 text-center text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   {t("header.download")}
                 </a>
@@ -128,6 +134,7 @@ export function Header() {
           </Dialog.Portal>
         </Dialog.Root>
       </div>
-    </header>
+      </header>
+    </>
   );
 }
