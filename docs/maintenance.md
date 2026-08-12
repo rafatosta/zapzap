@@ -330,6 +330,13 @@ criados diretamente com o mesmo nome. Não renomeie os artefatos depois dessa
 etapa: os metadados internos do `.zsync` poderiam apontar para um nome anterior
 e o atualizador receberia HTTP 404.
 
+Instale FFmpeg e Qt WebEngine na mesma transação dos repositórios oficiais do
+Arch. Não substitua FFmpeg por `ffmpeg-mini` do canal contínuo de pacotes
+reduzidos: as arquiteturas podem ser publicadas em momentos diferentes e expor
+ABIs incompatíveis. Antes do `quick-sharun`, valide com `ldd` que as bibliotecas
+Qt WebEngine não contêm dependências `not found`; essa verificação deve falhar
+antes da coleta, exibindo as bibliotecas ausentes.
+
 No Windows, `build-windows.yml` executa uma matriz nativa para `x86_64` e
 `arm64`. Preserve a correspondência entre runner, arquitetura solicitada ao
 `setup-python`, argumento de `build.ps1` e sufixo do artefato; o script deve

@@ -30,7 +30,10 @@ pacman -Syu --noconfirm \
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
 
-get-debloated-pkgs --add-common --prefer-nano ffmpeg-mini
+# Keep FFmpeg from the same Arch repository transaction as Qt WebEngine.
+# The continuously published ffmpeg-mini package may temporarily expose an
+# older ABI on one architecture and make the Qt libraries unloadable.
+get-debloated-pkgs --add-common --prefer-nano
 
 echo "Downloading dictionaries..."
 git clone \

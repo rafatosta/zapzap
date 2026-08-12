@@ -11,6 +11,14 @@ MAKE_APPIMAGE_SCRIPT = (
     / "scripts"
     / "make-appimage.sh"
 )
+GET_DEPENDENCIES_SCRIPT = (
+    REPOSITORY_ROOT
+    / ".github"
+    / "packaging"
+    / "appimage"
+    / "scripts"
+    / "get-dependencies.sh"
+)
 APPIMAGE_WORKFLOW = (
     REPOSITORY_ROOT / ".github" / "workflows" / "build-appimage.yml"
 )
@@ -20,6 +28,33 @@ NORMALIZE_SCRIPT = (
 
 
 class AppImagePackagingTest(unittest.TestCase):
+    def test_ffmpeg_uses_the_same_repository_transaction_as_qt_webengine(self):
+        script = GET_DEPENDENCIES_SCRIPT.read_text(encoding="utf-8")
+
+        self.assertIn("pacman -Syu --noconfirm", script)
+        self.assertIn("    ffmpeg \\", script)
+        self.assertIn(
+            "get-debloated-pkgs --add-common --prefer-nano",
+            script,
+        )
+        self.assertNotIn(
+            "get-debloated-pkgs --add-common --prefer-nano ffmpeg-mini",
+            script,
+        )
+
+    def test_qt_webengine_dependencies_are_checked_before_deployment(self):
+        script = MAKE_APPIMAGE_SCRIPT.read_text(encoding="utf-8")
+        dependency_check = "sed -n '/not found/p'"
+        deployment = "quick-sharun \\"
+
+        self.assertIn("/usr/lib/libQt6WebEngineWidgets.so", script)
+        self.assertIn("/usr/lib/libQt6WebEngineCore.so", script)
+        self.assertIn(dependency_check, script)
+        self.assertLess(
+            script.index(dependency_check),
+            script.index(deployment),
+        )
+
     def test_final_name_is_defined_before_quick_sharun_builds_artifacts(self):
         script = MAKE_APPIMAGE_SCRIPT.read_text(encoding="utf-8")
         outname = (

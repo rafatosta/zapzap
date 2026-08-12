@@ -72,6 +72,22 @@ echo "==============================================================="
 echo "Criando AppDir"
 echo "==============================================================="
 
+# Falhe com um diagnóstico direto antes que o quick-sharun tente percorrer uma
+# instalação Qt inconsistente. Isso também protege contra futuros desencontros
+# de ABI em pacotes externos usados para reduzir o AppImage.
+for QT_WEBENGINE_LIBRARY in \
+    /usr/lib/libQt6WebEngineWidgets.so \
+    /usr/lib/libQt6WebEngineCore.so
+do
+    MISSING_LIBRARIES="$(ldd "${QT_WEBENGINE_LIBRARY}" | sed -n '/not found/p')"
+
+    if [ -n "${MISSING_LIBRARIES}" ]; then
+        echo "Erro: ${QT_WEBENGINE_LIBRARY} possui dependências ausentes:" >&2
+        echo "${MISSING_LIBRARIES}" >&2
+        exit 1
+    fi
+done
+
 # PyQt6 WebEngine carrega dependências Qt em runtime.
 # Estas bibliotecas precisam ser passadas explicitamente ao Sharun,
 # caso contrário o AppImage fica incompleto.

@@ -76,7 +76,7 @@ documente o que ele protege.
 | `test_account_data_removal.py` | remoção segura e idempotente de dados de perfis desativados |
 | `test_accounts_settings_ui.py` | card responsivo com ações diretas, remoção, estados/avisos e diálogo transacional sem moldura |
 | `test_appearance_settings_ui.py` | grupos, dependências, layout responsivo, persistência e acessibilidade |
-| `test_appimage_packaging.py` | nome final fornecido ao quick-sharun e ausência de renomeação posterior do AppImage/zsync |
+| `test_appimage_packaging.py` | coerência FFmpeg/Qt WebEngine, verificação de ABI, nome final fornecido ao quick-sharun e ausência de renomeação posterior do AppImage/zsync |
 | `test_browser_account_lifecycle.py` | registro estável, criação lazy de contas desativadas, reativação, remoção, notificações e encerramento idempotente |
 | `test_browser_page_button_ui.py` | avatar sem número, grayscale de conta desativada, ponto de estado, card, temas, escala e clique |
 | `test_check_box.py` | API, variantes, tamanhos, pintura, temas, tri-state, mouse, teclado e acessibilidade do CheckBox |
