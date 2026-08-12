@@ -90,6 +90,10 @@
   <releases>
     <release version="7.4.1" date="2026-08-12">
       <description>
+        <p>
+          This update includes corrective and preventive maintenance to keep ZapZap
+          running reliably.
+        </p>
       </description>
     </release>
     <release version="7.4" date="2026-08-06">
