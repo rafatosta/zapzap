@@ -166,6 +166,9 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   fechamento. Use `WindowSettings`, `SystemSettings` e `AppearanceSettings`.
 - Aplique mudanças de mostrar, ocultar, fechar e restaurar em `WindowLifecycle`
   para manter o comportamento idêntico entre a janela nativa e a moldura CSR.
+- Ao tratar `hideEvent`, identifique a janela de origem. No modo CSR, somente o
+  host superior pode consultar e persistir seu estado; o conteúdo incorporado
+  também recebe eventos durante a destruição, quando o host já pode ser inválido.
 - Não conecte sinais de ação diretamente a `closeEvent`: solicite `close()` para
   que o Qt forneça um evento real. Fechar a janela usa `request_close()` e
   respeita o segundo plano; ações “Sair” usam `request_quit()`.

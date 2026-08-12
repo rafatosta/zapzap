@@ -73,6 +73,9 @@ legadas `main/geometry` e `main/windowState` são preservadas por
 `WindowSettings`; preferências de fechamento e aparência usam seus domínios
 tipados existentes. `request_close()` respeita a permanência em segundo plano;
 ações explicitamente chamadas “Sair” usam `request_quit()` e encerram o app.
+Somente a janela superior registra seu estado ao ser ocultada: no modo CSR, o
+host assume essa responsabilidade e eventos tardios do conteúdo incorporado são
+ignorados durante a destruição da árvore Qt.
 
 `BrowserController` mantém um registro central indexado por `User.id`. Cada
 entrada possui o `User`, o botão lateral, a posição de apresentação, um estado

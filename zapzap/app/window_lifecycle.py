@@ -77,7 +77,10 @@ class WindowLifecycle:
 
         QApplication.instance().quit()
 
-    def remember_window_state(self) -> None:
+    def remember_window_state(self, source: QWidget | None = None) -> None:
+        if source is not None and source is not self.host:
+            return
+
         if self.host.isFullScreen():
             self._restore_mode = self.FULLSCREEN
         elif self.host.isMaximized():
@@ -136,7 +139,7 @@ class ClientSideWindowHost(ClientSideWindow):
         self.lifecycle.close_event(event)
 
     def hideEvent(self, event):
-        self.lifecycle.remember_window_state()
+        self.lifecycle.remember_window_state(self)
         super().hideEvent(event)
 
     def restore_window(self):

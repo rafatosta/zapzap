@@ -307,7 +307,7 @@ class MainWindowController(MainWindowView):
 
     def hideEvent(self, event):
         """Guardar o estado da janela antes de ela ser ocultada."""
-        self.lifecycle.remember_window_state()
+        self.lifecycle.remember_window_state(self)
         super().hideEvent(event)
 
     # === Controle de Visibilidade da Janela ===

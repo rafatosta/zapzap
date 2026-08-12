@@ -108,7 +108,7 @@ documente o que ele protege.
 | `test_spellcheck_language_picker.py` | migração, seleção múltipla transacional, pesquisa, limite, recentes, menu e perfis WebEngine |
 | `test_system_startup_settings_ui.py` | semântica de fechamento, diálogo nativo e acessibilidade |
 | `test_update_checker.py` | versões, política de builds, respostas/falhas assíncronas, metadados seguros e popover acessível compartilhado entre sidebar e Sobre |
-| `test_window_state_restore.py` | ciclo de vida compartilhado e restauração normal, maximizada e fullscreen |
+| `test_window_state_restore.py` | ciclo de vida compartilhado, restauração normal, maximizada e fullscreen e destruição segura do host CSR |
 | `test_windows_packaging.py` | matriz nativa x86_64/ARM64, arquitetura do Python e nomes dos executáveis Windows |
 
 <!-- structure-check:tests:start -->

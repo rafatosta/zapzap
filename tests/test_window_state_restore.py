@@ -2,9 +2,12 @@
 
 from unittest.mock import patch
 
+from PyQt6.QtCore import QCoreApplication, QEvent
 from PyQt6.QtWidgets import QMainWindow
 
 from qt_test_case import QtTestCase
+from tools.memory.stub_webview import StubWebView
+from zapzap.app.main_window_controller import MainWindowController
 from zapzap.app.window_lifecycle import ClientSideWindowHost, WindowLifecycle
 from zapzap.core.config.settings.system import SystemSettings
 from zapzap.core.config.settings_manager import SettingsManager
@@ -17,7 +20,7 @@ class _Window(QMainWindow):
         self.lifecycle = WindowLifecycle(self, self)
 
     def hideEvent(self, event):
-        self.lifecycle.remember_window_state()
+        self.lifecycle.remember_window_state(self)
         super().hideEvent(event)
 
     def closeEvent(self, event):
@@ -58,6 +61,20 @@ class _Content(QMainWindow):
 
     def xdgOpenChat(self, _url):
         pass
+
+
+class _MainWindowContent(MainWindowController):
+    def __init__(self, hide_results):
+        self._hide_results = hide_results
+        super().__init__(webview_factory=StubWebView, user_provider=lambda: [])
+
+    def hideEvent(self, event):
+        try:
+            super().hideEvent(event)
+        except RuntimeError as error:
+            self._hide_results.append(error)
+        else:
+            self._hide_results.append(None)
 
 
 class WindowStateRestoreTest(QtTestCase):
@@ -159,6 +176,20 @@ class WindowStateRestoreTest(QtTestCase):
         self.assertIs(host.browser, content.browser)
         self.assertEqual(content.settings_opened, 1)
         self.assertNotIn("__getattr__", ClientSideWindowHost.__dict__)
+
+    def test_destroying_csr_host_does_not_query_it_from_embedded_content(self):
+        hide_results = []
+        content = _MainWindowContent(hide_results)
+        host = ClientSideWindowHost(content)
+        host.show()
+        self.app.processEvents()
+
+        host.deleteLater()
+        QCoreApplication.sendPostedEvents(None, QEvent.Type.DeferredDelete)
+        self.app.processEvents()
+
+        self.assertTrue(hide_results)
+        self.assertTrue(all(result is None for result in hide_results))
 
 
 if __name__ == "__main__":
