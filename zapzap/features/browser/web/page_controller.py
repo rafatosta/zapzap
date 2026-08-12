@@ -7,6 +7,7 @@ from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
 
 from zapzap import __allowed_hosts__
+from zapzap.core.diagnostics import page_console_log
 from zapzap.features.customizations.addons_manager import AddonsManager
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.customizations.customizations_manager import CustomizationsManager
@@ -23,6 +24,13 @@ from gettext import gettext as _
 
 class PageController(QWebEnginePage):
     """Controlador de página para gerenciar eventos e ações personalizadas no QWebEnginePage."""
+
+    # O nível informativo fica de fora: o WhatsApp Web o usa em volume e ele
+    # não carrega o diagnóstico que um relato de erro precisa.
+    _CONSOLE_LEVELS = {
+        QWebEnginePage.JavaScriptConsoleMessageLevel.WarningMessageLevel: "WARNING",
+        QWebEnginePage.JavaScriptConsoleMessageLevel.ErrorMessageLevel: "ERROR",
+    }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -327,5 +335,11 @@ class PageController(QWebEnginePage):
         self.runJavaScript(script)
 
     def javaScriptConsoleMessage(self, level, message, line, sourceID):
-        """ Ignora as mensagens do console """
-        pass
+        """Registra avisos e erros da página; mensagens informativas são ignoradas."""
+        level_name = self._CONSOLE_LEVELS.get(level)
+        if level_name is None:
+            return
+
+        page_console_log.write(
+            level_name, message, line, sourceID, self.user_id
+        )

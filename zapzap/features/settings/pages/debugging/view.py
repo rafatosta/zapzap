@@ -22,6 +22,7 @@ from zapzap.ui.components import (
     SettingsCard,
     SettingsPage,
     SettingsSection,
+    SettingsSwitchRow,
 )
 from zapzap.ui.primitives import Button, Label
 
@@ -207,6 +208,18 @@ class DebuggingSettingsView(SettingsPage):
             _("Manage files used to diagnose errors."),
         )
         card = SettingsCard()
+
+        self.page_console_log_row = SettingsSwitchRow(
+            _("Record page messages"),
+            _(
+                "Save the warnings and errors WhatsApp Web reports to "
+                "page-console.log, so a bug report can carry them. Turning "
+                "this off also deletes the file."
+            ),
+            parent=card,
+        )
+        self.page_console_log = self.page_console_log_row.checkbox
+        card.add_row(self.page_console_log_row)
 
         path_header = QWidget(card)
         path_layout = QVBoxLayout(path_header)

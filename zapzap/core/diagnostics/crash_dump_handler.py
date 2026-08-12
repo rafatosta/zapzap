@@ -10,6 +10,7 @@ import faulthandler
 from PyQt6.QtCore import QStandardPaths
 
 from zapzap.core.diagnostics.dialog_dump_handler import DialogDumpHandler
+from zapzap.core.diagnostics.page_console_log import PageConsoleLog
 
 
 from zapzap import __appname__
@@ -53,6 +54,7 @@ class CrashDumpHandler:
         self._profiles = set()
 
         self.faulthandler_path = self.dump_dir / "faulthandler.log"
+        self.page_console_path = self.dump_dir / PageConsoleLog.FILE_NAME
 
         if self.enable_faulthandler:
             self._enable_faulthandler()
@@ -103,6 +105,9 @@ class CrashDumpHandler:
 
             # 4 Dump do faulthandler
             self._attach_faulthandler_log(work_dir)
+
+            # 4.1 Mensagens de console da página
+            self._attach_page_console_log(work_dir)
 
             # 5 Compactação
             self._zip_dump(work_dir, zip_path)
@@ -209,3 +214,14 @@ class CrashDumpHandler:
                 )
         except Exception as e:
             print("Falha ao anexar faulthandler.log:", e)
+
+    def _attach_page_console_log(self, work_dir: Path) -> None:
+        try:
+            if self.page_console_path.exists():
+                target = work_dir / PageConsoleLog.FILE_NAME
+                target.write_text(
+                    self.page_console_path.read_text(errors="ignore"),
+                    encoding="utf-8"
+                )
+        except Exception as e:
+            print(f"Falha ao anexar {PageConsoleLog.FILE_NAME}:", e)

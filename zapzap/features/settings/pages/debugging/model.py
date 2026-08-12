@@ -5,17 +5,34 @@ from __future__ import annotations
 from datetime import datetime, timedelta
 from pathlib import Path
 
-from zapzap.core.diagnostics import crash_handler
+from zapzap.core.diagnostics import crash_handler, page_console_log
 from zapzap.core.diagnostics.runtime_environment_debug import RuntimeEnvironmentDebug
+from zapzap.core.config.settings.diagnostics import DiagnosticsSettings
 from zapzap.core.config.settings_manager import SettingsManager
 
 
 class DebuggingSettingsModel:
     """Provides debug log, runtime information, and reset operations."""
 
+    def __init__(self):
+        self.diagnostics_settings = DiagnosticsSettings()
+
     @property
     def debug_logs_dir(self) -> Path:
         return Path(crash_handler.dump_dir)
+
+    @property
+    def page_console_log_enabled(self) -> bool:
+        return self.diagnostics_settings.page_console_log_enabled
+
+    @page_console_log_enabled.setter
+    def page_console_log_enabled(self, value: bool) -> None:
+        self.diagnostics_settings.page_console_log_enabled = value
+        # O writer guarda a preferência para não reler QSettings a cada
+        # mensagem, então a mudança precisa alcançá-lo explicitamente.
+        page_console_log.set_enabled(value)
+        if not value:
+            page_console_log.clear()
 
     def ensure_debug_logs_dir(self) -> Path:
         logs_dir = self.debug_logs_dir

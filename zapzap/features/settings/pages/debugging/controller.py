@@ -21,10 +21,15 @@ class DebuggingSettingsController(DebuggingSettingsView):
         self._feedback_timer.setSingleShot(True)
         self._feedback_timer.timeout.connect(self._restore_feedback_text)
         self._configure_signals()
+        self._load_settings()
         self._refresh_debug_logs_ui()
         self._refresh_runtime_environment()
 
+    def _load_settings(self):
+        self.page_console_log.setChecked(self.model.page_console_log_enabled)
+
     def _configure_signals(self):
+        self.page_console_log.clicked.connect(self._handle_page_console_log)
         self.btn_open_debug_logs.clicked.connect(self._handle_open_debug_logs)
         self.btn_diagnostic_open_folder.clicked.connect(self._handle_open_debug_logs)
         self.btn_copy_debug_logs_path.clicked.connect(self._copy_debug_logs_path)
@@ -39,6 +44,10 @@ class DebuggingSettingsController(DebuggingSettingsView):
 
         self.btn_refresh_runtime.clicked.connect(self._refresh_runtime_environment)
         self.btn_copy_runtime.clicked.connect(self._copy_runtime_environment)
+
+    def _handle_page_console_log(self):
+        self.model.page_console_log_enabled = self.page_console_log.isChecked()
+        self._refresh_debug_logs_ui()
 
     def _refresh_debug_logs_ui(self):
         details = self.model.debug_logs_details()

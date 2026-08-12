@@ -201,6 +201,15 @@ versus `system/quit_in_close` e `donation_message_enabled` versus
 Dados e caches seguem `QStandardPaths`. Testes substituem os diretórios XDG por
 temporários; nunca devem usar o perfil real do mantenedor.
 
+Os arquivos de diagnóstico dividem um único diretório, o `dump_dir` do
+`CrashDumpHandler`, exposto pela página de Depuração. Além dos ZIPs de falha e
+do `faulthandler.log`, `PageConsoleLog` grava ali os avisos e erros que a página
+escreve no console, um registro por linha, com rotação em um único arquivo
+anterior. O `CrashDumpHandler` anexa esse log aos dumps. A preferência
+`diagnostics/page_console_log` desliga a captura e apaga o arquivo; o writer
+guarda esse valor em memória, então quem alterá-lo deve avisá-lo por
+`set_enabled()` em vez de contar com uma releitura do `QSettings`.
+
 ## Instrumentação de memória
 
 O benchmark em `tools/memory/` mantém seu processo coordenador limitado à

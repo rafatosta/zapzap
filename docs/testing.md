@@ -96,6 +96,7 @@ documente o que ele protege.
 | `test_notification_sound_setting.py` | mapeamento de som e tipos dos hints Portal/Freedesktop |
 | `test_notification_window_activation.py` | conexão QtDBus, tokens Portal/Wayland, startup X11, foco e limpeza |
 | `test_notifications_settings_ui.py` | rótulos, dependências, privacidade, som e lembrete de apoio |
+| `test_page_console_log.py` | formato, rotação, preferência e níveis do log de console da página |
 | `test_performance_experimental_settings_ui.py` | seção e reinício da decodificação por software |
 | `test_permissions_settings_ui.py` | grupos e ações globais/individuais de permissões |
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
@@ -136,6 +137,7 @@ documente o que ele protege.
 - `test_notification_sound_setting.py`
 - `test_notification_window_activation.py`
 - `test_notifications_settings_ui.py`
+- `test_page_console_log.py`
 - `test_performance_experimental_settings_ui.py`
 - `test_permissions_settings_ui.py`
 - `test_portal_notification_backend.py`
