@@ -104,11 +104,16 @@ Contas desativadas ou silenciadas não exibem ponto; sem atividade especial,
 também não há indicador. Carregamento, falha de conexão e validade da sessão
 não são inferidos, pois o `WebView` ainda não os propaga ao botão da conta.
 Nos builds oficiais de download manual, uma release estável mais recente torna
-visível uma ação auxiliar de atualização na parte inferior da sidebar. Ela não
-baixa arquivos: o clique abre `https://rtosta.com/zapzap/#download`. O mesmo
-`UpdateState` alimenta a
-página Sobre, inclusive quando a sidebar está oculta, sem duplicar consulta ou
-comparação.
+visível um botão de atualização 40 × 40, somente com ícone, na parte inferior
+da sidebar. Hover ou foco mostram
+um popover com versões instalada/recente, data da publicação e ações para notas
+da versão e downloads. O clique fixa o foco nas ações; `Esc`, clique externo ou
+saída do conjunto botão/popover fecham o painel. A transição do ponteiro possui
+um pequeno atraso para não fechar o painel entre os dois elementos. O mesmo
+`UpdateState` alimenta a página Sobre, inclusive quando a sidebar está oculta,
+sem duplicar consulta ou comparação.
+O botão não possui tooltip nativo, pois ele competiria visualmente com o
+popover; nome e descrição acessíveis continuam informando a atualização.
 O clique de contexto abre um popover compacto com identidade, estado, edição,
 Não perturbe, desativação e remoção. As opções avançadas de User-Agent e
 personalização do avatar permanecem exclusivamente no diálogo de edição.
@@ -348,6 +353,16 @@ versões numéricas, política de ambiente e parsing da fonte remota. A fonte at
 prereleases e tags não numéricas são rejeitados mesmo que a resposta remota
 mude. A chamada usa `QNetworkAccessManager`, timeout de cinco segundos, nenhum
 retry e nenhum identificador de instalação.
+
+`UpdateInfo` também transporta a data de publicação e a URL de notas. A URL é
+aceita somente quando usa HTTPS no caminho de releases de
+`github.com/rafatosta/zapzap`; metadados opcionais inválidos são omitidos sem
+descartar uma versão estável válida. `ui.components.UpdateAvailablePopover`
+apresenta esses dados sem conhecer rede ou política. “Notas da versão” abre a
+release validada e “Baixar” abre `https://rtosta.com/zapzap/#download`.
+No hover, o painel usa uma janela `Qt.Tool` mostrada sem ativação; não use
+`Qt.Popup` nesse caminho, pois a captura do mouse alterna `enter/leave` no botão
+e faz o painel piscar.
 
 A política exige simultaneamente canal `Official`, provedor `GitHub Actions`,
 repositório `rafatosta/zapzap` e um destes valores reais de `BUILD_PACKAGING`:

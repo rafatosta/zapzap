@@ -4,9 +4,10 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Callable, Dict, Iterator, Optional, TYPE_CHECKING
 
-from PyQt6.QtCore import QEasingCurve
+from PyQt6.QtCore import QEvent, QEasingCurve
 from PyQt6.QtCore import QParallelAnimationGroup
 from PyQt6.QtCore import QPropertyAnimation
+from PyQt6.QtCore import QTimer
 from PyQt6.QtCore import Qt, QUrl
 from PyQt6.QtGui import QAction
 from PyQt6.QtGui import QDesktopServices
@@ -26,6 +27,7 @@ from zapzap.features.donation.page import DonationsPageController
 from zapzap.ui.components import BrowserGridView
 from zapzap.ui.components import BrowserPageButton
 from zapzap.ui.components import BrowserSidebarButton
+from zapzap.ui.components import UpdateAvailablePopover
 
 
 from gettext import gettext as _
@@ -85,6 +87,20 @@ class BrowserController(BrowserView):
         self._account_context_menu = None
         self._shutting_down = False
         self._grid_thumbnails = GridThumbnailCache()
+        self._update_info = None
+        self._update_popover = UpdateAvailablePopover(self)
+        self._update_popover_close_timer = QTimer(self)
+        self._update_popover_close_timer.setSingleShot(True)
+        self._update_popover_close_timer.setInterval(250)
+        self._update_popover_close_timer.timeout.connect(
+            self._update_popover.close
+        )
+        app = QApplication.instance()
+        if app is not None:
+            app.installEventFilter(self)
+            app.applicationStateChanged.connect(
+                self._handle_application_state_changed
+            )
 
         self._initialize()
 
@@ -110,6 +126,10 @@ class BrowserController(BrowserView):
         if self._shutting_down:
             return
         self._shutting_down = True
+        app = QApplication.instance()
+        if app is not None:
+            app.removeEventFilter(self)
+        self._update_popover.close()
         self.close_pages()
 
     # === Inicialização ===
@@ -160,15 +180,77 @@ class BrowserController(BrowserView):
         self.btn_new_chat.clicked.connect(lambda: self.parent.new_chat())
         self.btn_donations.clicked.connect(self.show_donations)
         self.btn_update_available.clicked.connect(
-            lambda: self.parent.open_update_website()
+            lambda: self.show_update_popover(focus_actions=True)
+        )
+        self.btn_update_available.pointer_entered.connect(
+            self.show_update_popover
+        )
+        self.btn_update_available.pointer_exited.connect(
+            self._schedule_update_popover_close
+        )
+        self.btn_update_available.focus_entered.connect(
+            self.show_update_popover
+        )
+        self._update_popover.pointer_entered.connect(
+            self._cancel_update_popover_close
+        )
+        self._update_popover.pointer_exited.connect(
+            self._schedule_update_popover_close
+        )
+        self._update_popover.download_requested.connect(
+            self.parent.open_update_website
+        )
+        self._update_popover.release_notes_requested.connect(
+            self.parent.open_update_release_notes
         )
         self.btn_open_settings.clicked.connect(
             lambda: self.parent.open_settings())
         ThemeManager.instance().theme_changed.connect(self._update_buttons)
 
-    def set_update_available(self, latest_version=None):
+    def set_update_available(self, info=None):
         """Reflect the shared update state in the passive sidebar action."""
-        self.sidebar.set_update_available(latest_version)
+        available = info is not None and info.available
+        self._update_info = info if available else None
+        self._update_popover.set_update_info(self._update_info)
+        self.sidebar.set_update_available(
+            info.latest_version if available else None
+        )
+
+    def show_update_popover(self, focus_actions=False):
+        """Show release details beside the update tag without blocking the UI."""
+        self._cancel_update_popover_close()
+        return self._update_popover.popup_for(
+            self.btn_update_available,
+            focus_actions=focus_actions,
+        )
+
+    def _schedule_update_popover_close(self):
+        if self._update_popover.isVisible():
+            self._update_popover_close_timer.start()
+
+    def _cancel_update_popover_close(self):
+        self._update_popover_close_timer.stop()
+
+    def _handle_application_state_changed(self, state):
+        if state != Qt.ApplicationState.ApplicationActive:
+            self._update_popover.close()
+
+    def eventFilter(self, watched, event):
+        if (
+            event.type() == QEvent.Type.MouseButtonPress
+            and self._update_popover.isVisible()
+            and hasattr(event, "globalPosition")
+        ):
+            position = event.globalPosition().toPoint()
+            over_button = self.btn_update_available.rect().contains(
+                self.btn_update_available.mapFromGlobal(position)
+            )
+            over_popover = self._update_popover.rect().contains(
+                self._update_popover.mapFromGlobal(position)
+            )
+            if not over_button and not over_popover:
+                self._update_popover.close()
+        return super().eventFilter(watched, event)
 
     def _update_buttons(self, _current_theme, current_color_scheme):
         self.__set_button_icons(
@@ -820,7 +902,6 @@ class BrowserController(BrowserView):
             SystemIcon.get_icon("donation_heart", theme))
         self.btn_update_available.setIcon(
             SystemIcon.get_icon("update_available", theme))
-
         if hasattr(self, "btn_flatpak_help"):
             self.btn_flatpak_help.setIcon(
                 SystemIcon.get_icon("flatpak_help", theme))
@@ -839,6 +920,8 @@ class BrowserController(BrowserView):
         )
 
     def set_sidebar_visible(self, visible: bool, animated: bool = True):
+        if not visible:
+            self._update_popover.close()
         if self._sidebar_animation_group:
             self._sidebar_animation_group.stop()
             self._sidebar_animation_group = None

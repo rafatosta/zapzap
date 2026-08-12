@@ -1,7 +1,11 @@
 from .browser_grid_view import BrowserGridView
 from .browser_page_button import BrowserPageButton
 from .browser_pages import BrowserPages
-from .browser_sidebar import BrowserSidebar, BrowserSidebarButton
+from .browser_sidebar import (
+    BrowserSidebar,
+    BrowserSidebarButton,
+    UpdateIndicatorButton,
+)
 from .card_user import AccountContextMenu, CardUserView
 from .client_side_window import ClientSideWindow
 from .edit_account_dialog import EditAccountDialog
@@ -33,3 +37,4 @@ from .settings_rows import (
 from .settings_section import SettingsSection
 from .send_message_to_number_dialog import SendMessageToNumberDialog
 from .spellcheck_language_picker_dialog import SpellcheckLanguagePickerDialog
+from .update_available_popover import UpdateAvailablePopover

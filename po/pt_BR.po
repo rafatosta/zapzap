@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-11 09:07-0300\n"
+"POT-Creation-Date: 2026-08-12 09:22-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -77,7 +77,7 @@ msgstr "Comunidade"
 #: zapzap/core/environment/environment_detector.py:19
 #: zapzap/core/environment/environment_detector.py:20
 #: zapzap/core/environment/environment_detector.py:21
-#: zapzap/features/settings/pages/about/model.py:56
+#: zapzap/features/settings/pages/about/model.py:58
 msgid "Unknown"
 msgstr "Desconhecido"
 
@@ -162,9 +162,9 @@ msgstr "Remover"
 #: zapzap/features/settings/pages/network_privacy/controller.py:341
 #: zapzap/features/downloads/ui/download_dialog.py:120
 #: zapzap/ui/components/edit_account_dialog.py:456
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:275
 #: zapzap/ui/components/send_message_to_number_dialog.py:262
 #: zapzap/ui/components/send_message_to_number_dialog.py:268
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:275
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -235,10 +235,10 @@ msgid "Copy address"
 msgstr "Copiar endereço"
 
 #: zapzap/features/alerts/external_url.py:45
-#: zapzap/features/browser/shell/browser_controller.py:224
+#: zapzap/features/browser/shell/browser_controller.py:306
 #: zapzap/ui/components/edit_account_dialog.py:73
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
 #: zapzap/ui/components/send_message_to_number_dialog.py:135
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "Fechar"
@@ -291,37 +291,6 @@ msgid ""
 "Make a one-time or recurring contribution and help keep the project active."
 msgstr ""
 "Faça uma contribuição única ou recorrente e ajude a manter o projeto ativo."
-
-#: zapzap/features/donation/view.py:213 zapzap/features/shortcuts/view.py:60
-#: zapzap/features/settings/pages/debugging/view.py:373
-#: zapzap/ui/components/main_window.py:133
-msgid "ZapZap"
-msgstr "ZapZap"
-
-#: zapzap/features/donation/view.py:216
-msgid ""
-"Your donation helps keep the project running, improve resources and "
-"guarantee your privacy and freedom."
-msgstr ""
-"Sua doação ajuda a manter o projeto no ar, melhorar recursos e garantir sua "
-"privacidade e liberdade."
-
-#: zapzap/features/donation/view.py:220
-#: zapzap/features/tray/sys_tray_manager.py:52
-#: zapzap/features/settings/shell/settings_view.py:32
-#: zapzap/features/settings/shell/settings_view.py:34
-#: zapzap/features/settings/pages/about/view.py:274
-#: zapzap/ui/components/browser_sidebar.py:165
-msgid "Support ZapZap"
-msgstr "Apoiar o ZapZap"
-
-#: zapzap/features/donation/view.py:221
-msgid "Don't show again"
-msgstr "Não mostrar novamente"
-
-#: zapzap/features/donation/view.py:222
-msgid "Learn more about ZapZap ↗"
-msgstr "Saiba mais sobre o ZapZap ↗"
 
 #: zapzap/features/donation/page.py:62 zapzap/features/donation/page.py:106
 msgid "Opens in your browser"
@@ -392,6 +361,37 @@ msgid ""
 msgstr ""
 "Cada contribuição ajuda a cobrir custos de infraestrutura, corrigir "
 "problemas e manter o ZapZap gratuito para todos."
+
+#: zapzap/features/donation/view.py:213 zapzap/features/shortcuts/view.py:60
+#: zapzap/features/settings/pages/debugging/view.py:373
+#: zapzap/ui/components/main_window.py:133
+msgid "ZapZap"
+msgstr "ZapZap"
+
+#: zapzap/features/donation/view.py:216
+msgid ""
+"Your donation helps keep the project running, improve resources and "
+"guarantee your privacy and freedom."
+msgstr ""
+"Sua doação ajuda a manter o projeto no ar, melhorar recursos e garantir sua "
+"privacidade e liberdade."
+
+#: zapzap/features/donation/view.py:220
+#: zapzap/features/tray/sys_tray_manager.py:52
+#: zapzap/features/settings/shell/settings_view.py:32
+#: zapzap/features/settings/shell/settings_view.py:34
+#: zapzap/features/settings/pages/about/view.py:274
+#: zapzap/ui/components/browser_sidebar.py:186
+msgid "Support ZapZap"
+msgstr "Apoiar o ZapZap"
+
+#: zapzap/features/donation/view.py:221
+msgid "Don't show again"
+msgstr "Não mostrar novamente"
+
+#: zapzap/features/donation/view.py:222
+msgid "Learn more about ZapZap ↗"
+msgstr "Saiba mais sobre o ZapZap ↗"
 
 #: zapzap/features/downloads/download_manager.py:100
 msgid "Select folder"
@@ -925,7 +925,7 @@ msgid "New message..."
 msgstr "Nova mensagem..."
 
 #: zapzap/features/shortcuts/model.py:12
-#: zapzap/ui/components/browser_sidebar.py:164
+#: zapzap/ui/components/browser_sidebar.py:185
 msgid "New conversation"
 msgstr "Nova conversa"
 
@@ -967,8 +967,8 @@ msgstr "Perfil e status"
 
 #: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
 #: zapzap/features/tray/sys_tray_manager.py:51
-#: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/settings/shell/settings_controller.py:234
+#: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/ui/components/main_window.py:143
 msgid "Settings"
 msgstr "Configurações"
@@ -1065,8 +1065,8 @@ msgid "New conversation by phone number"
 msgstr "Nova conversa por número de telefone"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:418
-#: zapzap/ui/components/browser_sidebar.py:160
+#: zapzap/features/browser/shell/browser_controller.py:500
+#: zapzap/ui/components/browser_sidebar.py:181
 msgid "New account"
 msgstr "Nova conta"
 
@@ -1088,19 +1088,6 @@ msgstr "Exibir"
 #: zapzap/ui/components/main_window.py:139
 msgid "Quit"
 msgstr "Sair"
-
-#: zapzap/features/settings/shell/settings_sidebar.py:64
-msgid "Adjust accounts, appearance, notifications and advanced options."
-msgstr "Ajuste contas, aparência, notificações e opções avançadas."
-
-#: zapzap/features/settings/shell/settings_sidebar.py:69
-msgid "Close settings"
-msgstr "Fechar configurações"
-
-#: zapzap/features/settings/shell/settings_view.py:36
-#: zapzap/features/settings/pages/about/view.py:275
-msgid "Learn how to contribute to the project's development."
-msgstr "Conheça as formas de contribuir com o desenvolvimento do projeto."
 
 #: zapzap/features/settings/shell/settings_controller.py:122
 #: zapzap/features/settings/pages/accounts/view.py:17
@@ -1147,6 +1134,19 @@ msgstr "Depuração"
 msgid "About"
 msgstr "Sobre"
 
+#: zapzap/features/settings/shell/settings_sidebar.py:64
+msgid "Adjust accounts, appearance, notifications and advanced options."
+msgstr "Ajuste contas, aparência, notificações e opções avançadas."
+
+#: zapzap/features/settings/shell/settings_sidebar.py:69
+msgid "Close settings"
+msgstr "Fechar configurações"
+
+#: zapzap/features/settings/shell/settings_view.py:36
+#: zapzap/features/settings/pages/about/view.py:275
+msgid "Learn how to contribute to the project's development."
+msgstr "Conheça as formas de contribuir com o desenvolvimento do projeto."
+
 #: zapzap/features/settings/pages/about/controller.py:57
 #: zapzap/features/settings/pages/about/view.py:323
 #: zapzap/features/settings/pages/about/view.py:327
@@ -1179,40 +1179,41 @@ msgstr ""
 "Criado e mantido por {author}. Agradecemos a todas as pessoas que contribuem "
 "com traduções, código, testes e feedback."
 
-#: zapzap/features/settings/pages/about/model.py:62
+#: zapzap/features/settings/pages/about/model.py:64
 msgid "Version"
 msgstr "Versão"
 
-#: zapzap/features/settings/pages/about/model.py:67
-#: zapzap/features/settings/pages/about/model.py:91
+#: zapzap/features/settings/pages/about/model.py:69
+#: zapzap/features/settings/pages/about/model.py:93
 #: zapzap/features/settings/pages/debugging/view.py:375
 msgid "Channel"
 msgstr "Canal"
 
-#: zapzap/features/settings/pages/about/model.py:68
-#: zapzap/features/settings/pages/about/model.py:90
+#: zapzap/features/settings/pages/about/model.py:70
+#: zapzap/features/settings/pages/about/model.py:92
 #: zapzap/features/settings/pages/debugging/view.py:374
 msgid "Packaging"
 msgstr "Empacotamento"
 
-#: zapzap/features/settings/pages/about/model.py:69
+#: zapzap/features/settings/pages/about/model.py:71
 msgid "Provider"
 msgstr "Provedor"
 
-#: zapzap/features/settings/pages/about/model.py:70
+#: zapzap/features/settings/pages/about/model.py:72
 msgid "Repository"
 msgstr "Repositório"
 
-#: zapzap/features/settings/pages/about/model.py:88
+#: zapzap/features/settings/pages/about/model.py:90
 #: zapzap/features/settings/pages/debugging/view.py:379
 msgid "System"
 msgstr "Sistema"
 
-#: zapzap/features/settings/pages/about/model.py:89
+#: zapzap/features/settings/pages/about/model.py:91
 msgid "Session"
 msgstr "Sessão"
 
 #: zapzap/features/settings/pages/about/view.py:37
+#: zapzap/ui/components/update_available_popover.py:82
 msgid "ZapZap application icon"
 msgstr "Ícone do aplicativo ZapZap"
 
@@ -1238,6 +1239,8 @@ msgid "Project and support"
 msgstr "Projeto e suporte"
 
 #: zapzap/features/settings/pages/about/view.py:257
+#: zapzap/ui/components/update_available_popover.py:70
+#: zapzap/ui/components/update_available_popover.py:173
 msgid "Update available"
 msgstr "Atualização disponível"
 
@@ -1269,13 +1272,13 @@ msgstr ""
 "a Meta."
 
 #: zapzap/features/settings/pages/about/view.py:357
-#: zapzap/ui/components/browser_sidebar.py:175
+#: zapzap/ui/components/browser_sidebar.py:196
 #, python-brace-format
 msgid "ZapZap {version} is available"
 msgstr "ZapZap {version} está disponível"
 
 #: zapzap/features/settings/pages/about/view.py:363
-#: zapzap/ui/components/browser_sidebar.py:181
+#: zapzap/ui/components/browser_sidebar.py:202
 msgid "Open the official ZapZap website to download it."
 msgstr "Abra o site oficial do ZapZap para baixá-lo."
 
@@ -1860,7 +1863,7 @@ msgid "Symbolic dark"
 msgstr "Simbólico escuro"
 
 #: zapzap/features/settings/pages/appearance/view.py:118
-#: zapzap/features/browser/shell/browser_controller.py:143
+#: zapzap/features/browser/shell/browser_controller.py:163
 msgid "Grid view"
 msgstr "Visualização em grade"
 
@@ -3087,6 +3090,7 @@ msgid "Wayland changes require restart"
 msgstr "Alterações do Wayland requerem reinício"
 
 #: zapzap/features/downloads/ui/download_dialog.py:47
+#: zapzap/ui/components/update_available_popover.py:109
 msgid "Download"
 msgstr "Baixar"
 
@@ -3102,19 +3106,19 @@ msgstr "Salvar como"
 msgid "Save file"
 msgstr "Salvar arquivo"
 
-#: zapzap/features/browser/shell/browser_controller.py:189
+#: zapzap/features/browser/shell/browser_controller.py:271
 msgid "Flatpak sandbox help"
 msgstr "Ajuda Flatpak sandbox"
 
-#: zapzap/features/browser/shell/browser_controller.py:214
+#: zapzap/features/browser/shell/browser_controller.py:296
 msgid "Flatpak sandbox"
 msgstr "Sandbox do Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:215
+#: zapzap/features/browser/shell/browser_controller.py:297
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap está rodando no Flatpak sandbox."
 
-#: zapzap/features/browser/shell/browser_controller.py:217
+#: zapzap/features/browser/shell/browser_controller.py:299
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
@@ -3122,40 +3126,40 @@ msgstr ""
 "Alguns recursos, como abrir arquivos ou arrastar e soltar, podem exigir "
 "permissões adicionais."
 
-#: zapzap/features/browser/shell/browser_controller.py:222
+#: zapzap/features/browser/shell/browser_controller.py:304
 msgid "Instructions"
 msgstr "Instruções"
 
-#: zapzap/features/browser/shell/browser_controller.py:223
+#: zapzap/features/browser/shell/browser_controller.py:305
 msgid "Copy command"
 msgstr "Copiar comando"
 
-#: zapzap/features/browser/shell/browser_controller.py:435
-#: zapzap/features/browser/shell/browser_controller.py:519
+#: zapzap/features/browser/shell/browser_controller.py:517
+#: zapzap/features/browser/shell/browser_controller.py:601
 #, python-brace-format
 msgid "Account {}"
 msgstr "Conta {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:532
+#: zapzap/features/browser/shell/browser_controller.py:614
 msgid "Account disabled"
 msgstr "Conta desativada"
 
-#: zapzap/features/browser/shell/browser_controller.py:533
+#: zapzap/features/browser/shell/browser_controller.py:615
 msgid "This account is disabled."
 msgstr "Esta conta está desativada."
 
-#: zapzap/features/browser/shell/browser_controller.py:535
+#: zapzap/features/browser/shell/browser_controller.py:617
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Você pode reativá-lo agora ou usar o menu do botão direito para gerenciar "
 "esta conta."
 
-#: zapzap/features/browser/shell/browser_controller.py:540
+#: zapzap/features/browser/shell/browser_controller.py:622
 msgid "Activate"
 msgstr "Ativar"
 
-#: zapzap/features/browser/shell/browser_controller.py:541
+#: zapzap/features/browser/shell/browser_controller.py:623
 msgid "Not now"
 msgstr "Agora não"
 
@@ -3273,19 +3277,19 @@ msgstr "Selecione uma conta para retornar ao chat."
 msgid "No active accounts to display."
 msgstr "Nenhuma conta ativa para exibir."
 
-#: zapzap/ui/components/browser_sidebar.py:162
+#: zapzap/ui/components/browser_sidebar.py:183
 msgid "New conversation by the phone number"
 msgstr "Nova conversa pelo número de telefone"
 
-#: zapzap/ui/components/browser_sidebar.py:166
+#: zapzap/ui/components/browser_sidebar.py:187
 msgid "Open donations page"
 msgstr "Abrir página de doações"
 
-#: zapzap/ui/components/browser_sidebar.py:168
+#: zapzap/ui/components/browser_sidebar.py:189
 msgid "Show ways to support ZapZap development."
 msgstr "Mostrar formas de apoiar o desenvolvimento do ZapZap."
 
-#: zapzap/ui/components/browser_sidebar.py:170
+#: zapzap/ui/components/browser_sidebar.py:191
 msgid "ZapZap Settings"
 msgstr "Configurações do ZapZap"
 
@@ -3576,6 +3580,108 @@ msgstr "Ctrl+M"
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
+#: zapzap/ui/components/send_message_to_number_dialog.py:71
+#: zapzap/ui/components/send_message_to_number_dialog.py:122
+msgid "Send message to number"
+msgstr "Enviar mensagem para número"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:127
+msgid "Chat with someone who is not in your contact list."
+msgstr "Converse com alguém que não está na sua lista de contatos."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:157
+#: zapzap/ui/components/send_message_to_number_dialog.py:166
+msgid "Country code"
+msgstr "Código do país"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:158
+#: zapzap/ui/components/send_message_to_number_dialog.py:181
+msgid "Phone number"
+msgstr "Número de telefone"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:168
+msgid "Search by country name, region code, or international prefix."
+msgstr "Pesquise pelo nome do país, código da região ou prefixo internacional."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:173
+msgid "Example: 11 99999-9999"
+msgstr "Exemplo: 11 99999-9999"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:183
+msgid "Enter the national number without repeating the country code."
+msgstr "Informe o número nacional sem repetir o código do país."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:194
+msgid "Enter the national number without the country code."
+msgstr "Informe o número nacional sem o código do país."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:202
+msgid "Phone number error"
+msgstr "Erro no número de telefone"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:208
+#: zapzap/ui/components/send_message_to_number_dialog.py:223
+msgid "Optional message"
+msgstr "Mensagem opcional"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:213
+msgid "Message character count"
+msgstr "Contagem de caracteres da mensagem"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:220
+msgid "Hello! How are you?"
+msgstr "Olá! Tudo bem?"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:225
+msgid "Type an initial message. Press Control+Enter to continue."
+msgstr "Digite uma mensagem inicial. Pressione Ctrl+Enter para continuar."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:232
+msgid "Type a message to start the conversation."
+msgstr "Digite uma mensagem para iniciar a conversa."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:244
+msgid "Your privacy is protected"
+msgstr "Sua privacidade é protegida"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:248
+msgid "The message will be sent directly to the number provided."
+msgstr "A mensagem será enviada diretamente para o número informado."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:264
+#: zapzap/ui/components/send_message_to_number_dialog.py:269
+msgid "Send message"
+msgstr "Enviar mensagem"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:413
+#, python-brace-format
+msgid "{count} of {maximum} characters used."
+msgstr "{count} de {maximum} caracteres usados."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:434
+msgid "Select a country code."
+msgstr "Selecione um código de país."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:435
+msgid "Enter a phone number."
+msgstr "Informe um número de telefone."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:437
+msgid "The phone number appears to be incomplete."
+msgstr "O número informado parece incompleto."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:440
+msgid "The phone number exceeds the international limit."
+msgstr "O número informado excede o limite internacional."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:443
+msgid "Do not include the country code again in this field."
+msgstr "Não inclua o código do país novamente neste campo."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:446
+msgid "The message can contain up to 500 characters."
+msgstr "A mensagem pode conter até 500 caracteres."
+
 #: zapzap/ui/components/settings_restart_bar.py:54
 msgid "A restart is required to apply the changes."
 msgstr "É necessário reiniciar para aplicar as alterações."
@@ -3684,107 +3790,40 @@ msgstr "Adicionar {language}"
 msgid "Add this recent language to the temporary selection."
 msgstr "Adicione este idioma recente à seleção temporária."
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:71
-#: zapzap/ui/components/send_message_to_number_dialog.py:122
-msgid "Send message to number"
-msgstr "Enviar mensagem para número"
+#: zapzap/ui/components/update_available_popover.py:106
+msgid "Release notes"
+msgstr "Notas da versão"
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:127
-msgid "Chat with someone who is not in your contact list."
-msgstr "Converse com alguém que não está na sua lista de contatos."
+#: zapzap/ui/components/update_available_popover.py:107
+msgid "Open release notes"
+msgstr "Abrir notas da versão"
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:157
-#: zapzap/ui/components/send_message_to_number_dialog.py:166
-msgid "Country code"
-msgstr "Código do país"
+#: zapzap/ui/components/update_available_popover.py:113
+msgid "Open downloads page"
+msgstr "Abrir página de downloads"
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:158
-#: zapzap/ui/components/send_message_to_number_dialog.py:181
-msgid "Phone number"
-msgstr "Número de telefone"
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:168
-msgid "Search by country name, region code, or international prefix."
-msgstr "Pesquise pelo nome do país, código da região ou prefixo internacional."
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:173
-msgid "Example: 11 99999-9999"
-msgstr "Exemplo: 11 99999-9999"
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:183
-msgid "Enter the national number without repeating the country code."
-msgstr "Informe o número nacional sem repetir o código do país."
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:194
-msgid "Enter the national number without the country code."
-msgstr "Informe o número nacional sem o código do país."
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:202
-msgid "Phone number error"
-msgstr "Erro no número de telefone"
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:208
-#: zapzap/ui/components/send_message_to_number_dialog.py:223
-msgid "Optional message"
-msgstr "Mensagem opcional"
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:213
-msgid "Message character count"
-msgstr "Contagem de caracteres da mensagem"
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:220
-msgid "Hello! How are you?"
-msgstr "Olá! Tudo bem?"
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:225
-msgid "Type an initial message. Press Control+Enter to continue."
-msgstr "Digite uma mensagem inicial. Pressione Ctrl+Enter para continuar."
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:232
-msgid "Type a message to start the conversation."
-msgstr "Digite uma mensagem para iniciar a conversa."
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:244
-msgid "Your privacy is protected"
-msgstr "Sua privacidade é protegida"
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:248
-msgid "The message will be sent directly to the number provided."
-msgstr "A mensagem será enviada diretamente para o número informado."
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:264
-#: zapzap/ui/components/send_message_to_number_dialog.py:269
-msgid "Send message"
-msgstr "Enviar mensagem"
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:413
+#: zapzap/ui/components/update_available_popover.py:146
 #, python-brace-format
-msgid "{count} of {maximum} characters used."
-msgstr "{count} de {maximum} caracteres usados."
+msgid "Current version: {version}"
+msgstr "Versão atual: {version}"
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:434
-msgid "Select a country code."
-msgstr "Selecione um código de país."
+#: zapzap/ui/components/update_available_popover.py:149
+#, python-brace-format
+msgid "Latest version: {version}"
+msgstr "Versão mais recente: {version}"
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:435
-msgid "Enter a phone number."
-msgstr "Informe um número de telefone."
+#: zapzap/ui/components/update_available_popover.py:166
+#, python-brace-format
+msgid "Released on {date}"
+msgstr "Lançada em {date}"
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:437
-msgid "The phone number appears to be incomplete."
-msgstr "O número informado parece incompleto."
+#: zapzap/ui/components/update_available_popover.py:171
+#, python-brace-format
+msgid "ZapZap {latest} is available. Current version: {current}."
+msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:440
-msgid "The phone number exceeds the international limit."
-msgstr "O número informado excede o limite internacional."
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:443
-msgid "Do not include the country code again in this field."
-msgstr "Não inclua o código do país novamente neste campo."
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:446
-msgid "The message can contain up to 500 characters."
-msgstr "A mensagem pode conter até 500 caracteres."
+#~ msgid "Update"
+#~ msgstr "Atualizar"
 
 #~ msgid "Donation"
 #~ msgstr "Doação"

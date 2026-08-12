@@ -183,11 +183,19 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   desconhecido não inicia request. AppImage, Flatpak, Snap, RPM/COPR e pacotes
   comunitários não devem receber o aviso manual.
 - A consulta deve continuar assíncrona, única por execução, com timeout curto,
-  sem retry, persistência, telemetria, popup ou `AlertManager` para falhas.
-- A sidebar e Sobre devem observar o mesmo estado. O clique sempre abre
+  sem retry, persistência, telemetria, popup de erro ou `AlertManager` para
+  falhas.
+- A sidebar e Sobre devem observar o mesmo estado. O botão com ícone abre o popover
+  compartilhado por hover, foco ou clique; notas aceitam somente uma URL HTTPS
+  oficial da release e o botão de download abre
   `https://rtosta.com/zapzap/#download`, nunca um asset ou instalador direto.
+- Preserve acesso por teclado, `Esc`, fechamento externo e o atraso que permite
+  mover o ponteiro do botão para o popover sem fechá-lo no trajeto. No hover,
+  use `Qt.Tool` sem ativação, não `Qt.Popup`, para não capturar o mouse. Não dependa
+  apenas de cor para comunicar a atualização.
 - Teste política, ordenação numérica, resposta inválida, draft, prerelease,
-  timeout, ausência de rede e propriedades semânticas da UI sem Internet real.
+  timeout, ausência de rede, URL não oficial, metadados do popover e propriedades
+  semânticas da UI sem Internet real.
 
 ### Doações e links externos
 

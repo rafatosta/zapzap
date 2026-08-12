@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-11 09:07-0300\n"
+"POT-Creation-Date: 2026-08-12 09:22-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Hungarian\n"
@@ -81,7 +81,7 @@ msgstr "közösség"
 #: zapzap/core/environment/environment_detector.py:19
 #: zapzap/core/environment/environment_detector.py:20
 #: zapzap/core/environment/environment_detector.py:21
-#: zapzap/features/settings/pages/about/model.py:56
+#: zapzap/features/settings/pages/about/model.py:58
 msgid "Unknown"
 msgstr "Ismeretlen"
 
@@ -166,9 +166,9 @@ msgstr "Eltávolítás"
 #: zapzap/features/settings/pages/network_privacy/controller.py:341
 #: zapzap/features/downloads/ui/download_dialog.py:120
 #: zapzap/ui/components/edit_account_dialog.py:456
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:275
 #: zapzap/ui/components/send_message_to_number_dialog.py:262
 #: zapzap/ui/components/send_message_to_number_dialog.py:268
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:275
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -243,10 +243,10 @@ msgid "Copy address"
 msgstr "Link címénel másolása"
 
 #: zapzap/features/alerts/external_url.py:45
-#: zapzap/features/browser/shell/browser_controller.py:224
+#: zapzap/features/browser/shell/browser_controller.py:306
 #: zapzap/ui/components/edit_account_dialog.py:73
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
 #: zapzap/ui/components/send_message_to_number_dialog.py:135
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "Bezárás"
@@ -294,38 +294,6 @@ msgstr ""
 msgid ""
 "Make a one-time or recurring contribution and help keep the project active."
 msgstr ""
-
-#: zapzap/features/donation/view.py:213 zapzap/features/shortcuts/view.py:60
-#: zapzap/features/settings/pages/debugging/view.py:373
-#: zapzap/ui/components/main_window.py:133
-msgid "ZapZap"
-msgstr "ZapZap"
-
-#: zapzap/features/donation/view.py:216
-msgid ""
-"Your donation helps keep the project running, improve resources and "
-"guarantee your privacy and freedom."
-msgstr ""
-"Adománya segíti a projekt működését, javítja az erőforrásokat, és garantálja "
-"az Ön magánéletét és szabadságát."
-
-#: zapzap/features/donation/view.py:220
-#: zapzap/features/tray/sys_tray_manager.py:52
-#: zapzap/features/settings/shell/settings_view.py:32
-#: zapzap/features/settings/shell/settings_view.py:34
-#: zapzap/features/settings/pages/about/view.py:274
-#: zapzap/ui/components/browser_sidebar.py:165
-#, fuzzy
-msgid "Support ZapZap"
-msgstr "A ZapZap beállítása"
-
-#: zapzap/features/donation/view.py:221
-msgid "Don't show again"
-msgstr "Ne mutasd újra"
-
-#: zapzap/features/donation/view.py:222
-msgid "Learn more about ZapZap ↗"
-msgstr "További információ a következőről: ZapZap ↗"
 
 #: zapzap/features/donation/page.py:62 zapzap/features/donation/page.py:106
 msgid "Opens in your browser"
@@ -393,6 +361,38 @@ msgid ""
 "Every contribution helps cover infrastructure costs, fix problems, and keep "
 "ZapZap free for everyone."
 msgstr ""
+
+#: zapzap/features/donation/view.py:213 zapzap/features/shortcuts/view.py:60
+#: zapzap/features/settings/pages/debugging/view.py:373
+#: zapzap/ui/components/main_window.py:133
+msgid "ZapZap"
+msgstr "ZapZap"
+
+#: zapzap/features/donation/view.py:216
+msgid ""
+"Your donation helps keep the project running, improve resources and "
+"guarantee your privacy and freedom."
+msgstr ""
+"Adománya segíti a projekt működését, javítja az erőforrásokat, és garantálja "
+"az Ön magánéletét és szabadságát."
+
+#: zapzap/features/donation/view.py:220
+#: zapzap/features/tray/sys_tray_manager.py:52
+#: zapzap/features/settings/shell/settings_view.py:32
+#: zapzap/features/settings/shell/settings_view.py:34
+#: zapzap/features/settings/pages/about/view.py:274
+#: zapzap/ui/components/browser_sidebar.py:186
+#, fuzzy
+msgid "Support ZapZap"
+msgstr "A ZapZap beállítása"
+
+#: zapzap/features/donation/view.py:221
+msgid "Don't show again"
+msgstr "Ne mutasd újra"
+
+#: zapzap/features/donation/view.py:222
+msgid "Learn more about ZapZap ↗"
+msgstr "További információ a következőről: ZapZap ↗"
 
 #: zapzap/features/downloads/download_manager.py:100
 msgid "Select folder"
@@ -929,7 +929,7 @@ msgid "New message..."
 msgstr "Új üzenet..."
 
 #: zapzap/features/shortcuts/model.py:12
-#: zapzap/ui/components/browser_sidebar.py:164
+#: zapzap/ui/components/browser_sidebar.py:185
 msgid "New conversation"
 msgstr "Új társalgás"
 
@@ -971,8 +971,8 @@ msgstr "Profil és státus"
 
 #: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
 #: zapzap/features/tray/sys_tray_manager.py:51
-#: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/settings/shell/settings_controller.py:234
+#: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/ui/components/main_window.py:143
 msgid "Settings"
 msgstr "Beállítások"
@@ -1069,8 +1069,8 @@ msgid "New conversation by phone number"
 msgstr "Új társalgás telefonszámon keresztül"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:418
-#: zapzap/ui/components/browser_sidebar.py:160
+#: zapzap/features/browser/shell/browser_controller.py:500
+#: zapzap/ui/components/browser_sidebar.py:181
 msgid "New account"
 msgstr "Új fiók"
 
@@ -1092,21 +1092,6 @@ msgstr "Mutasd"
 #: zapzap/ui/components/main_window.py:139
 msgid "Quit"
 msgstr "Kilépés"
-
-#: zapzap/features/settings/shell/settings_sidebar.py:64
-msgid "Adjust accounts, appearance, notifications and advanced options."
-msgstr ""
-"Állítsa be a fiókokat, a megjelenést, az értesítéseket és a speciális "
-"beállításokat."
-
-#: zapzap/features/settings/shell/settings_sidebar.py:69
-msgid "Close settings"
-msgstr "Zárja be a beállításokat"
-
-#: zapzap/features/settings/shell/settings_view.py:36
-#: zapzap/features/settings/pages/about/view.py:275
-msgid "Learn how to contribute to the project's development."
-msgstr ""
 
 #: zapzap/features/settings/shell/settings_controller.py:122
 #: zapzap/features/settings/pages/accounts/view.py:17
@@ -1153,6 +1138,21 @@ msgstr "Hibakeresés"
 msgid "About"
 msgstr "Alkalmazásról"
 
+#: zapzap/features/settings/shell/settings_sidebar.py:64
+msgid "Adjust accounts, appearance, notifications and advanced options."
+msgstr ""
+"Állítsa be a fiókokat, a megjelenést, az értesítéseket és a speciális "
+"beállításokat."
+
+#: zapzap/features/settings/shell/settings_sidebar.py:69
+msgid "Close settings"
+msgstr "Zárja be a beállításokat"
+
+#: zapzap/features/settings/shell/settings_view.py:36
+#: zapzap/features/settings/pages/about/view.py:275
+msgid "Learn how to contribute to the project's development."
+msgstr ""
+
 #: zapzap/features/settings/pages/about/controller.py:57
 #: zapzap/features/settings/pages/about/view.py:323
 #: zapzap/features/settings/pages/about/view.py:327
@@ -1185,40 +1185,41 @@ msgstr ""
 "Készítette és karbantartja: {author}.Köszönet mindenkinek, aki hozzájárul a "
 "fordításokhoz, a kódokhoz, a teszteléshez és a visszajelzésekhez."
 
-#: zapzap/features/settings/pages/about/model.py:62
+#: zapzap/features/settings/pages/about/model.py:64
 msgid "Version"
 msgstr "Verzió"
 
-#: zapzap/features/settings/pages/about/model.py:67
-#: zapzap/features/settings/pages/about/model.py:91
+#: zapzap/features/settings/pages/about/model.py:69
+#: zapzap/features/settings/pages/about/model.py:93
 #: zapzap/features/settings/pages/debugging/view.py:375
 msgid "Channel"
 msgstr "Csatorna"
 
-#: zapzap/features/settings/pages/about/model.py:68
-#: zapzap/features/settings/pages/about/model.py:90
+#: zapzap/features/settings/pages/about/model.py:70
+#: zapzap/features/settings/pages/about/model.py:92
 #: zapzap/features/settings/pages/debugging/view.py:374
 msgid "Packaging"
 msgstr "Csomagolás"
 
-#: zapzap/features/settings/pages/about/model.py:69
+#: zapzap/features/settings/pages/about/model.py:71
 msgid "Provider"
 msgstr "Szolgáltató"
 
-#: zapzap/features/settings/pages/about/model.py:70
+#: zapzap/features/settings/pages/about/model.py:72
 msgid "Repository"
 msgstr "Adattár"
 
-#: zapzap/features/settings/pages/about/model.py:88
+#: zapzap/features/settings/pages/about/model.py:90
 #: zapzap/features/settings/pages/debugging/view.py:379
 msgid "System"
 msgstr "Rendszer"
 
-#: zapzap/features/settings/pages/about/model.py:89
+#: zapzap/features/settings/pages/about/model.py:91
 msgid "Session"
 msgstr "Munkamenet"
 
 #: zapzap/features/settings/pages/about/view.py:37
+#: zapzap/ui/components/update_available_popover.py:82
 msgid "ZapZap application icon"
 msgstr "ZapZap alkalmazás ikonra"
 
@@ -1244,6 +1245,8 @@ msgid "Project and support"
 msgstr "Projekt és támogatás"
 
 #: zapzap/features/settings/pages/about/view.py:257
+#: zapzap/ui/components/update_available_popover.py:70
+#: zapzap/ui/components/update_available_popover.py:173
 #, fuzzy
 msgid "Update available"
 msgstr "nem elérhető"
@@ -1276,13 +1279,13 @@ msgstr ""
 "Metával."
 
 #: zapzap/features/settings/pages/about/view.py:357
-#: zapzap/ui/components/browser_sidebar.py:175
+#: zapzap/ui/components/browser_sidebar.py:196
 #, fuzzy, python-brace-format
 msgid "ZapZap {version} is available"
 msgstr "{count} elérhető"
 
 #: zapzap/features/settings/pages/about/view.py:363
-#: zapzap/ui/components/browser_sidebar.py:181
+#: zapzap/ui/components/browser_sidebar.py:202
 msgid "Open the official ZapZap website to download it."
 msgstr ""
 
@@ -1868,7 +1871,7 @@ msgid "Symbolic dark"
 msgstr "Simbólikus sötét"
 
 #: zapzap/features/settings/pages/appearance/view.py:118
-#: zapzap/features/browser/shell/browser_controller.py:143
+#: zapzap/features/browser/shell/browser_controller.py:163
 msgid "Grid view"
 msgstr "Rács nézet"
 
@@ -3118,6 +3121,7 @@ msgid "Wayland changes require restart"
 msgstr "A Wayland módosítások újraindítást igényelnek"
 
 #: zapzap/features/downloads/ui/download_dialog.py:47
+#: zapzap/ui/components/update_available_popover.py:109
 msgid "Download"
 msgstr "Letöltés"
 
@@ -3133,19 +3137,19 @@ msgstr "Mentés másként"
 msgid "Save file"
 msgstr "Fájl mentése"
 
-#: zapzap/features/browser/shell/browser_controller.py:189
+#: zapzap/features/browser/shell/browser_controller.py:271
 msgid "Flatpak sandbox help"
 msgstr "Flatpak sandbox súgó"
 
-#: zapzap/features/browser/shell/browser_controller.py:214
+#: zapzap/features/browser/shell/browser_controller.py:296
 msgid "Flatpak sandbox"
 msgstr "Flatpak homokozó"
 
-#: zapzap/features/browser/shell/browser_controller.py:215
+#: zapzap/features/browser/shell/browser_controller.py:297
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "A(z) ZapZap a(z) Flatpak homokozóban fut."
 
-#: zapzap/features/browser/shell/browser_controller.py:217
+#: zapzap/features/browser/shell/browser_controller.py:299
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
@@ -3153,39 +3157,39 @@ msgstr ""
 "Egyes funkciók, például a fájlok megnyitása vagy az áthúzás további "
 "engedélyeket igényelhetnek."
 
-#: zapzap/features/browser/shell/browser_controller.py:222
+#: zapzap/features/browser/shell/browser_controller.py:304
 msgid "Instructions"
 msgstr "Utasítások"
 
-#: zapzap/features/browser/shell/browser_controller.py:223
+#: zapzap/features/browser/shell/browser_controller.py:305
 msgid "Copy command"
 msgstr "Másolás parancs"
 
-#: zapzap/features/browser/shell/browser_controller.py:435
-#: zapzap/features/browser/shell/browser_controller.py:519
+#: zapzap/features/browser/shell/browser_controller.py:517
+#: zapzap/features/browser/shell/browser_controller.py:601
 #, python-brace-format
 msgid "Account {}"
 msgstr "Fiók: {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:532
+#: zapzap/features/browser/shell/browser_controller.py:614
 msgid "Account disabled"
 msgstr "Fiók letiltva"
 
-#: zapzap/features/browser/shell/browser_controller.py:533
+#: zapzap/features/browser/shell/browser_controller.py:615
 msgid "This account is disabled."
 msgstr "Ez a fiók le van tiltva."
 
-#: zapzap/features/browser/shell/browser_controller.py:535
+#: zapzap/features/browser/shell/browser_controller.py:617
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Most újraaktiválhatja, vagy a jobb gombbal kattintva kezelheti a fiókot."
 
-#: zapzap/features/browser/shell/browser_controller.py:540
+#: zapzap/features/browser/shell/browser_controller.py:622
 msgid "Activate"
 msgstr "Aktiválja"
 
-#: zapzap/features/browser/shell/browser_controller.py:541
+#: zapzap/features/browser/shell/browser_controller.py:623
 msgid "Not now"
 msgstr "Most nem"
 
@@ -3303,21 +3307,21 @@ msgstr "Válasszon ki egy fiókot a csevegéshez való visszatéréshez."
 msgid "No active accounts to display."
 msgstr "Nincsenek megjeleníthető aktív fiókok."
 
-#: zapzap/ui/components/browser_sidebar.py:162
+#: zapzap/ui/components/browser_sidebar.py:183
 msgid "New conversation by the phone number"
 msgstr "Új társalgás telefonszámon keresztül"
 
-#: zapzap/ui/components/browser_sidebar.py:166
+#: zapzap/ui/components/browser_sidebar.py:187
 #, fuzzy
 msgid "Open donations page"
 msgstr "Hely megnyitása"
 
-#: zapzap/ui/components/browser_sidebar.py:168
+#: zapzap/ui/components/browser_sidebar.py:189
 #, fuzzy
 msgid "Show ways to support ZapZap development."
 msgstr "Időnként jelenítsen meg a ZapZap fejlesztését támogató üzeneteket."
 
-#: zapzap/ui/components/browser_sidebar.py:170
+#: zapzap/ui/components/browser_sidebar.py:191
 msgid "ZapZap Settings"
 msgstr "ZapZap beállítások"
 
@@ -3608,6 +3612,115 @@ msgstr "Ctrl+M"
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
+#: zapzap/ui/components/send_message_to_number_dialog.py:71
+#: zapzap/ui/components/send_message_to_number_dialog.py:122
+msgid "Send message to number"
+msgstr ""
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:127
+msgid "Chat with someone who is not in your contact list."
+msgstr ""
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:157
+#: zapzap/ui/components/send_message_to_number_dialog.py:166
+#, fuzzy
+msgid "Country code"
+msgstr "CSS kód"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:158
+#: zapzap/ui/components/send_message_to_number_dialog.py:181
+msgid "Phone number"
+msgstr ""
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:168
+msgid "Search by country name, region code, or international prefix."
+msgstr ""
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:173
+msgid "Example: 11 99999-9999"
+msgstr ""
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:183
+msgid "Enter the national number without repeating the country code."
+msgstr ""
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:194
+#, fuzzy
+msgid "Enter the national number without the country code."
+msgstr "Kérjük, adja meg a telefonszámot országkóddal (pl. +5511999999999):"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:202
+#, fuzzy
+msgid "Phone number error"
+msgstr "Hiba a fiók nevében"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:208
+#: zapzap/ui/components/send_message_to_number_dialog.py:223
+#, fuzzy
+msgid "Optional message"
+msgstr "ZapZap üzenet"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:213
+msgid "Message character count"
+msgstr ""
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:220
+msgid "Hello! How are you?"
+msgstr ""
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:225
+msgid "Type an initial message. Press Control+Enter to continue."
+msgstr ""
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:232
+msgid "Type a message to start the conversation."
+msgstr ""
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:244
+msgid "Your privacy is protected"
+msgstr ""
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:248
+msgid "The message will be sent directly to the number provided."
+msgstr ""
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:264
+#: zapzap/ui/components/send_message_to_number_dialog.py:269
+#, fuzzy
+msgid "Send message"
+msgstr "Új üzenet..."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:413
+#, fuzzy, python-brace-format
+msgid "{count} of {maximum} characters used."
+msgstr "{count}/{limit} fiók konfigurálva."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:434
+#, fuzzy
+msgid "Select a country code."
+msgstr "Válassza ki a proxy módot."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:435
+#, fuzzy
+msgid "Enter a phone number."
+msgstr "Adjon meg egy proxyszervert."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:437
+msgid "The phone number appears to be incomplete."
+msgstr ""
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:440
+msgid "The phone number exceeds the international limit."
+msgstr ""
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:443
+msgid "Do not include the country code again in this field."
+msgstr ""
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:446
+msgid "The message can contain up to 500 characters."
+msgstr ""
+
 #: zapzap/ui/components/settings_restart_bar.py:54
 msgid "A restart is required to apply the changes."
 msgstr "A változtatások alkalmazásához újraindítás szükséges."
@@ -3716,113 +3829,37 @@ msgstr ""
 msgid "Add this recent language to the temporary selection."
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:71
-#: zapzap/ui/components/send_message_to_number_dialog.py:122
-msgid "Send message to number"
+#: zapzap/ui/components/update_available_popover.py:106
+msgid "Release notes"
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:127
-msgid "Chat with someone who is not in your contact list."
+#: zapzap/ui/components/update_available_popover.py:107
+msgid "Open release notes"
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:157
-#: zapzap/ui/components/send_message_to_number_dialog.py:166
+#: zapzap/ui/components/update_available_popover.py:113
 #, fuzzy
-msgid "Country code"
-msgstr "CSS kód"
+msgid "Open downloads page"
+msgstr "Hely megnyitása"
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:158
-#: zapzap/ui/components/send_message_to_number_dialog.py:181
-msgid "Phone number"
-msgstr ""
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:168
-msgid "Search by country name, region code, or international prefix."
-msgstr ""
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:173
-msgid "Example: 11 99999-9999"
-msgstr ""
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:183
-msgid "Enter the national number without repeating the country code."
-msgstr ""
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:194
-#, fuzzy
-msgid "Enter the national number without the country code."
-msgstr "Kérjük, adja meg a telefonszámot országkóddal (pl. +5511999999999):"
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:202
-#, fuzzy
-msgid "Phone number error"
-msgstr "Hiba a fiók nevében"
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:208
-#: zapzap/ui/components/send_message_to_number_dialog.py:223
-#, fuzzy
-msgid "Optional message"
-msgstr "ZapZap üzenet"
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:213
-msgid "Message character count"
-msgstr ""
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:220
-msgid "Hello! How are you?"
-msgstr ""
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:225
-msgid "Type an initial message. Press Control+Enter to continue."
-msgstr ""
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:232
-msgid "Type a message to start the conversation."
-msgstr ""
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:244
-msgid "Your privacy is protected"
-msgstr ""
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:248
-msgid "The message will be sent directly to the number provided."
-msgstr ""
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:264
-#: zapzap/ui/components/send_message_to_number_dialog.py:269
-#, fuzzy
-msgid "Send message"
-msgstr "Új üzenet..."
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:413
+#: zapzap/ui/components/update_available_popover.py:146
 #, fuzzy, python-brace-format
-msgid "{count} of {maximum} characters used."
-msgstr "{count}/{limit} fiók konfigurálva."
+msgid "Current version: {version}"
+msgstr "Verzió: {version}"
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:434
-#, fuzzy
-msgid "Select a country code."
-msgstr "Válassza ki a proxy módot."
+#: zapzap/ui/components/update_available_popover.py:149
+#, fuzzy, python-brace-format
+msgid "Latest version: {version}"
+msgstr "Verzió: {version}"
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:435
-#, fuzzy
-msgid "Enter a phone number."
-msgstr "Adjon meg egy proxyszervert."
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:437
-msgid "The phone number appears to be incomplete."
+#: zapzap/ui/components/update_available_popover.py:166
+#, python-brace-format
+msgid "Released on {date}"
 msgstr ""
 
-#: zapzap/ui/components/send_message_to_number_dialog.py:440
-msgid "The phone number exceeds the international limit."
-msgstr ""
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:443
-msgid "Do not include the country code again in this field."
-msgstr ""
-
-#: zapzap/ui/components/send_message_to_number_dialog.py:446
-msgid "The message can contain up to 500 characters."
+#: zapzap/ui/components/update_available_popover.py:171
+#, python-brace-format
+msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
 
 #~ msgid "Donation"

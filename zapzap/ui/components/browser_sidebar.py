@@ -4,12 +4,12 @@ from gettext import gettext as _
 
 from PyQt6.QtCore import QSize
 from PyQt6.QtCore import Qt
+from PyQt6.QtCore import pyqtSignal
 from PyQt6.QtWidgets import QFrame
 from PyQt6.QtWidgets import QPushButton
 from PyQt6.QtWidgets import QSizePolicy
 from PyQt6.QtWidgets import QSpacerItem
 from PyQt6.QtWidgets import QVBoxLayout
-
 
 class BrowserSidebarButton(QPushButton):
     """Icon-only button used inside the browser sidebar."""
@@ -63,6 +63,28 @@ class BrowserSidebarButton(QPushButton):
     def _apply_style(self):
         self.setStyleSheet(self.STYLE)
 
+
+class UpdateIndicatorButton(BrowserSidebarButton):
+    """Icon-only update action exposing pointer and keyboard presence."""
+
+    pointer_entered = pyqtSignal()
+    pointer_exited = pyqtSignal()
+    focus_entered = pyqtSignal()
+
+    def __init__(self, parent=None):
+        super().__init__("btn_update_available", parent)
+
+    def enterEvent(self, event):
+        self.pointer_entered.emit()
+        super().enterEvent(event)
+
+    def leaveEvent(self, event):
+        self.pointer_exited.emit()
+        super().leaveEvent(event)
+
+    def focusInEvent(self, event):
+        self.focus_entered.emit()
+        super().focusInEvent(event)
 
 class BrowserSidebar(QFrame):
     """Sidebar that hosts account buttons and browser actions."""
@@ -134,8 +156,7 @@ class BrowserSidebar(QFrame):
         self.btn_donations.setCheckable(True)
         self.layout_2.addWidget(self.btn_donations)
 
-        self.btn_update_available = BrowserSidebarButton(
-            "btn_update_available",
+        self.btn_update_available = UpdateIndicatorButton(
             self.settings_buttons_layout,
         )
         self.btn_update_available.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
@@ -175,9 +196,9 @@ class BrowserSidebar(QFrame):
             text = _("ZapZap {version} is available").format(
                 version=latest_version
             )
-            self.btn_update_available.setToolTip(text)
             self.btn_update_available.setAccessibleName(text)
             self.btn_update_available.setAccessibleDescription(
                 _("Open the official ZapZap website to download it.")
             )
+        self.btn_update_available.setToolTip("")
         self.btn_update_available.setVisible(available)

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-11 09:07-0300\n"
+"POT-Creation-Date: 2026-08-12 09:22-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Dutch\n"
@@ -81,7 +81,7 @@ msgstr "Gemeenschap"
 #: zapzap/core/environment/environment_detector.py:19
 #: zapzap/core/environment/environment_detector.py:20
 #: zapzap/core/environment/environment_detector.py:21
-#: zapzap/features/settings/pages/about/model.py:56
+#: zapzap/features/settings/pages/about/model.py:58
 msgid "Unknown"
 msgstr "Onbekend"
 
@@ -166,9 +166,9 @@ msgstr "Verwijderen"
 #: zapzap/features/settings/pages/network_privacy/controller.py:341
 #: zapzap/features/downloads/ui/download_dialog.py:120
 #: zapzap/ui/components/edit_account_dialog.py:456
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:275
 #: zapzap/ui/components/send_message_to_number_dialog.py:262
 #: zapzap/ui/components/send_message_to_number_dialog.py:268
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:275
 msgid "Cancel"
 msgstr "Annuleer"
 
@@ -243,10 +243,10 @@ msgid "Copy address"
 msgstr "Linkadres kopiëren"
 
 #: zapzap/features/alerts/external_url.py:45
-#: zapzap/features/browser/shell/browser_controller.py:224
+#: zapzap/features/browser/shell/browser_controller.py:306
 #: zapzap/ui/components/edit_account_dialog.py:73
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
 #: zapzap/ui/components/send_message_to_number_dialog.py:135
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "Sluiten"
@@ -294,38 +294,6 @@ msgstr ""
 msgid ""
 "Make a one-time or recurring contribution and help keep the project active."
 msgstr ""
-
-#: zapzap/features/donation/view.py:213 zapzap/features/shortcuts/view.py:60
-#: zapzap/features/settings/pages/debugging/view.py:373
-#: zapzap/ui/components/main_window.py:133
-msgid "ZapZap"
-msgstr "ZapZap"
-
-#: zapzap/features/donation/view.py:216
-msgid ""
-"Your donation helps keep the project running, improve resources and "
-"guarantee your privacy and freedom."
-msgstr ""
-"Uw donatie helpt het project draaiende te houden, middelen te verbeteren en "
-"uw privacy en vrijheid te garanderen."
-
-#: zapzap/features/donation/view.py:220
-#: zapzap/features/tray/sys_tray_manager.py:52
-#: zapzap/features/settings/shell/settings_view.py:32
-#: zapzap/features/settings/shell/settings_view.py:34
-#: zapzap/features/settings/pages/about/view.py:274
-#: zapzap/ui/components/browser_sidebar.py:165
-#, fuzzy
-msgid "Support ZapZap"
-msgstr "ZapZap instellen"
-
-#: zapzap/features/donation/view.py:221
-msgid "Don't show again"
-msgstr "Niet meer laten zien"
-
-#: zapzap/features/donation/view.py:222
-msgid "Learn more about ZapZap ↗"
-msgstr "Meer informatie over ZapZap ↗"
 
 #: zapzap/features/donation/page.py:62 zapzap/features/donation/page.py:106
 msgid "Opens in your browser"
@@ -393,6 +361,38 @@ msgid ""
 "Every contribution helps cover infrastructure costs, fix problems, and keep "
 "ZapZap free for everyone."
 msgstr ""
+
+#: zapzap/features/donation/view.py:213 zapzap/features/shortcuts/view.py:60
+#: zapzap/features/settings/pages/debugging/view.py:373
+#: zapzap/ui/components/main_window.py:133
+msgid "ZapZap"
+msgstr "ZapZap"
+
+#: zapzap/features/donation/view.py:216
+msgid ""
+"Your donation helps keep the project running, improve resources and "
+"guarantee your privacy and freedom."
+msgstr ""
+"Uw donatie helpt het project draaiende te houden, middelen te verbeteren en "
+"uw privacy en vrijheid te garanderen."
+
+#: zapzap/features/donation/view.py:220
+#: zapzap/features/tray/sys_tray_manager.py:52
+#: zapzap/features/settings/shell/settings_view.py:32
+#: zapzap/features/settings/shell/settings_view.py:34
+#: zapzap/features/settings/pages/about/view.py:274
+#: zapzap/ui/components/browser_sidebar.py:186
+#, fuzzy
+msgid "Support ZapZap"
+msgstr "ZapZap instellen"
+
+#: zapzap/features/donation/view.py:221
+msgid "Don't show again"
+msgstr "Niet meer laten zien"
+
+#: zapzap/features/donation/view.py:222
+msgid "Learn more about ZapZap ↗"
+msgstr "Meer informatie over ZapZap ↗"
 
 #: zapzap/features/downloads/download_manager.py:100
 msgid "Select folder"
@@ -923,7 +923,7 @@ msgid "New message..."
 msgstr "Nieuw bericht…"
 
 #: zapzap/features/shortcuts/model.py:12
-#: zapzap/ui/components/browser_sidebar.py:164
+#: zapzap/ui/components/browser_sidebar.py:185
 msgid "New conversation"
 msgstr "Nieuw gesprek"
 
@@ -965,8 +965,8 @@ msgstr "Profiel en status"
 
 #: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
 #: zapzap/features/tray/sys_tray_manager.py:51
-#: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/settings/shell/settings_controller.py:234
+#: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/ui/components/main_window.py:143
 msgid "Settings"
 msgstr "Instellingen"
@@ -1063,8 +1063,8 @@ msgid "New conversation by phone number"
 msgstr "Nieuw gesprek op basis van telefoonnummer"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:418
-#: zapzap/ui/components/browser_sidebar.py:160
+#: zapzap/features/browser/shell/browser_controller.py:500
+#: zapzap/ui/components/browser_sidebar.py:181
 msgid "New account"
 msgstr "Nieuw account"
 
@@ -1086,19 +1086,6 @@ msgstr "Bekijken"
 #: zapzap/ui/components/main_window.py:139
 msgid "Quit"
 msgstr "Afsluiten"
-
-#: zapzap/features/settings/shell/settings_sidebar.py:64
-msgid "Adjust accounts, appearance, notifications and advanced options."
-msgstr "Pas accounts, uiterlijk, meldingen en geavanceerde opties aan."
-
-#: zapzap/features/settings/shell/settings_sidebar.py:69
-msgid "Close settings"
-msgstr "Instellingen sluiten"
-
-#: zapzap/features/settings/shell/settings_view.py:36
-#: zapzap/features/settings/pages/about/view.py:275
-msgid "Learn how to contribute to the project's development."
-msgstr ""
 
 #: zapzap/features/settings/shell/settings_controller.py:122
 #: zapzap/features/settings/pages/accounts/view.py:17
@@ -1145,6 +1132,19 @@ msgstr "Foutopsporing"
 msgid "About"
 msgstr "Over"
 
+#: zapzap/features/settings/shell/settings_sidebar.py:64
+msgid "Adjust accounts, appearance, notifications and advanced options."
+msgstr "Pas accounts, uiterlijk, meldingen en geavanceerde opties aan."
+
+#: zapzap/features/settings/shell/settings_sidebar.py:69
+msgid "Close settings"
+msgstr "Instellingen sluiten"
+
+#: zapzap/features/settings/shell/settings_view.py:36
+#: zapzap/features/settings/pages/about/view.py:275
+msgid "Learn how to contribute to the project's development."
+msgstr ""
+
 #: zapzap/features/settings/pages/about/controller.py:57
 #: zapzap/features/settings/pages/about/view.py:323
 #: zapzap/features/settings/pages/about/view.py:327
@@ -1177,40 +1177,41 @@ msgstr ""
 "Gemaakt en onderhouden door {author}.Dank aan iedereen die bijdraagt ​​aan "
 "vertalingen, code, testen en feedback."
 
-#: zapzap/features/settings/pages/about/model.py:62
+#: zapzap/features/settings/pages/about/model.py:64
 msgid "Version"
 msgstr "Versie"
 
-#: zapzap/features/settings/pages/about/model.py:67
-#: zapzap/features/settings/pages/about/model.py:91
+#: zapzap/features/settings/pages/about/model.py:69
+#: zapzap/features/settings/pages/about/model.py:93
 #: zapzap/features/settings/pages/debugging/view.py:375
 msgid "Channel"
 msgstr "Kanaal"
 
-#: zapzap/features/settings/pages/about/model.py:68
-#: zapzap/features/settings/pages/about/model.py:90
+#: zapzap/features/settings/pages/about/model.py:70
+#: zapzap/features/settings/pages/about/model.py:92
 #: zapzap/features/settings/pages/debugging/view.py:374
 msgid "Packaging"
 msgstr "Verpakking"
 
-#: zapzap/features/settings/pages/about/model.py:69
+#: zapzap/features/settings/pages/about/model.py:71
 msgid "Provider"
 msgstr "Aanbieder"
 
-#: zapzap/features/settings/pages/about/model.py:70
+#: zapzap/features/settings/pages/about/model.py:72
 msgid "Repository"
 msgstr "Bewaarplaats"
 
-#: zapzap/features/settings/pages/about/model.py:88
+#: zapzap/features/settings/pages/about/model.py:90
 #: zapzap/features/settings/pages/debugging/view.py:379
 msgid "System"
 msgstr "Systeem"
 
-#: zapzap/features/settings/pages/about/model.py:89
+#: zapzap/features/settings/pages/about/model.py:91
 msgid "Session"
 msgstr "Sessie"
 
 #: zapzap/features/settings/pages/about/view.py:37
+#: zapzap/ui/components/update_available_popover.py:82
 msgid "ZapZap application icon"
 msgstr "ZapZap-toepassingspictogram"
 
@@ -1236,6 +1237,8 @@ msgid "Project and support"
 msgstr "Projecten en ondersteuning"
 
 #: zapzap/features/settings/pages/about/view.py:257
+#: zapzap/ui/components/update_available_popover.py:70
+#: zapzap/ui/components/update_available_popover.py:173
 #, fuzzy
 msgid "Update available"
 msgstr "niet beschikbaar"
@@ -1267,13 +1270,13 @@ msgstr ""
 "ZapZap is een onafhankelijk project en is niet gelieerd aan WhatsApp of Meta."
 
 #: zapzap/features/settings/pages/about/view.py:357
-#: zapzap/ui/components/browser_sidebar.py:175
+#: zapzap/ui/components/browser_sidebar.py:196
 #, fuzzy, python-brace-format
 msgid "ZapZap {version} is available"
 msgstr "{count} beschikbaar"
 
 #: zapzap/features/settings/pages/about/view.py:363
-#: zapzap/ui/components/browser_sidebar.py:181
+#: zapzap/ui/components/browser_sidebar.py:202
 msgid "Open the official ZapZap website to download it."
 msgstr ""
 
@@ -1855,7 +1858,7 @@ msgid "Symbolic dark"
 msgstr "Symbolisch (donker)"
 
 #: zapzap/features/settings/pages/appearance/view.py:118
-#: zapzap/features/browser/shell/browser_controller.py:143
+#: zapzap/features/browser/shell/browser_controller.py:163
 msgid "Grid view"
 msgstr "Rasterweergave"
 
@@ -3091,6 +3094,7 @@ msgid "Wayland changes require restart"
 msgstr "Wayland wijzigingen vereisen herstart"
 
 #: zapzap/features/downloads/ui/download_dialog.py:47
+#: zapzap/ui/components/update_available_popover.py:109
 msgid "Download"
 msgstr "Downloaden"
 
@@ -3106,19 +3110,19 @@ msgstr "Opslaan als"
 msgid "Save file"
 msgstr "Bestand opslaan"
 
-#: zapzap/features/browser/shell/browser_controller.py:189
+#: zapzap/features/browser/shell/browser_controller.py:271
 msgid "Flatpak sandbox help"
 msgstr "Flatpak hulp bij sandbox"
 
-#: zapzap/features/browser/shell/browser_controller.py:214
+#: zapzap/features/browser/shell/browser_controller.py:296
 msgid "Flatpak sandbox"
 msgstr "Flatpak-sandbox"
 
-#: zapzap/features/browser/shell/browser_controller.py:215
+#: zapzap/features/browser/shell/browser_controller.py:297
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap draait in de Flatpak-sandbox."
 
-#: zapzap/features/browser/shell/browser_controller.py:217
+#: zapzap/features/browser/shell/browser_controller.py:299
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
@@ -3126,40 +3130,40 @@ msgstr ""
 "Voor sommige functies, zoals het openen van bestanden of slepen en "
 "neerzetten, zijn mogelijk extra machtigingen vereist."
 
-#: zapzap/features/browser/shell/browser_controller.py:222
+#: zapzap/features/browser/shell/browser_controller.py:304
 msgid "Instructions"
 msgstr "Instructies"
 
-#: zapzap/features/browser/shell/browser_controller.py:223
+#: zapzap/features/browser/shell/browser_controller.py:305
 msgid "Copy command"
 msgstr "Kopieer opdracht"
 
-#: zapzap/features/browser/shell/browser_controller.py:435
-#: zapzap/features/browser/shell/browser_controller.py:519
+#: zapzap/features/browser/shell/browser_controller.py:517
+#: zapzap/features/browser/shell/browser_controller.py:601
 #, python-brace-format
 msgid "Account {}"
 msgstr "Account {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:532
+#: zapzap/features/browser/shell/browser_controller.py:614
 msgid "Account disabled"
 msgstr "Account uitgeschakeld"
 
-#: zapzap/features/browser/shell/browser_controller.py:533
+#: zapzap/features/browser/shell/browser_controller.py:615
 msgid "This account is disabled."
 msgstr "Dit account is uitgeschakeld."
 
-#: zapzap/features/browser/shell/browser_controller.py:535
+#: zapzap/features/browser/shell/browser_controller.py:617
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "U kunt het nu opnieuw activeren of het contextmenu gebruiken om dit account "
 "te beheren."
 
-#: zapzap/features/browser/shell/browser_controller.py:540
+#: zapzap/features/browser/shell/browser_controller.py:622
 msgid "Activate"
 msgstr "Activeer"
 
-#: zapzap/features/browser/shell/browser_controller.py:541
+#: zapzap/features/browser/shell/browser_controller.py:623
 msgid "Not now"
 msgstr "Niet nu"
 
@@ -3277,21 +3281,21 @@ msgstr "Selecteer een account om terug te keren naar de chat."
 msgid "No active accounts to display."
 msgstr "Er zijn geen actieve accounts om weer te geven."
 
-#: zapzap/ui/components/browser_sidebar.py:162
+#: zapzap/ui/components/browser_sidebar.py:183
 msgid "New conversation by the phone number"
 msgstr "Nieuw gesprek op basis van telefoonnummer"
 
-#: zapzap/ui/components/browser_sidebar.py:166
+#: zapzap/ui/components/browser_sidebar.py:187
 #, fuzzy
 msgid "Open donations page"
 msgstr "Open locatie"
 
-#: zapzap/ui/components/browser_sidebar.py:168
+#: zapzap/ui/components/browser_sidebar.py:189
 #, fuzzy
 msgid "Show ways to support ZapZap development."
 msgstr "Toon af en toe berichten die de ontwikkeling van ZapZap ondersteunen."
 
-#: zapzap/ui/components/browser_sidebar.py:170
+#: zapzap/ui/components/browser_sidebar.py:191
 msgid "ZapZap Settings"
 msgstr "ZapZap-instellingen"
 
@@ -3586,114 +3590,6 @@ msgstr "Ctrl+M"
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
-#: zapzap/ui/components/settings_restart_bar.py:54
-msgid "A restart is required to apply the changes."
-msgstr "Een herstart is vereist om de wijzigingen toe te passen."
-
-#: zapzap/ui/components/settings_restart_bar.py:55
-msgid "Restart now"
-msgstr "Start nu opnieuw op"
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:126
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:169
-msgid "Languages"
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:184
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:186
-msgid "Search language"
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:188
-msgid "Filter languages by name or dictionary code."
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:195
-msgid "Selected languages"
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:201
-msgid "They will be used for spell checking."
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:217
-msgid "Language selection status"
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:225
-msgid "Recent"
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:231
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:239
-msgid "All languages"
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:241
-msgid "Use Space to select or remove the focused language."
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:246
-msgid "No language found"
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:259
-msgid "Install or configure a dictionary to use the spell checker."
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:274
-msgid "Manage dictionaries"
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:276
-msgid "Apply"
-msgstr "Toepassen"
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:279
-msgid "Open the spell checker dictionary settings."
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:411
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:477
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:512
-msgid "You can select up to 10 languages."
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:421
-msgid "At least one language must remain selected."
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:451
-#, python-brace-format
-msgid "Remove {language}"
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:453
-msgid "Remove this language from the temporary selection."
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:462
-#, python-brace-format
-msgid "{count} of {maximum} languages selected"
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:485
-msgid "selected"
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:485
-msgid "not selected"
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:506
-#, python-brace-format
-msgid "Add {language}"
-msgstr ""
-
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:508
-msgid "Add this recent language to the temporary selection."
-msgstr ""
-
 #: zapzap/ui/components/send_message_to_number_dialog.py:71
 #: zapzap/ui/components/send_message_to_number_dialog.py:122
 msgid "Send message to number"
@@ -3802,6 +3698,147 @@ msgstr ""
 
 #: zapzap/ui/components/send_message_to_number_dialog.py:446
 msgid "The message can contain up to 500 characters."
+msgstr ""
+
+#: zapzap/ui/components/settings_restart_bar.py:54
+msgid "A restart is required to apply the changes."
+msgstr "Een herstart is vereist om de wijzigingen toe te passen."
+
+#: zapzap/ui/components/settings_restart_bar.py:55
+msgid "Restart now"
+msgstr "Start nu opnieuw op"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:126
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:169
+msgid "Languages"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:184
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:186
+msgid "Search language"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:188
+msgid "Filter languages by name or dictionary code."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:195
+msgid "Selected languages"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:201
+msgid "They will be used for spell checking."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:217
+msgid "Language selection status"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:225
+msgid "Recent"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:231
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:239
+msgid "All languages"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:241
+msgid "Use Space to select or remove the focused language."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:246
+msgid "No language found"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:259
+msgid "Install or configure a dictionary to use the spell checker."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:274
+msgid "Manage dictionaries"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:276
+msgid "Apply"
+msgstr "Toepassen"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:279
+msgid "Open the spell checker dictionary settings."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:411
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:477
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:512
+msgid "You can select up to 10 languages."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:421
+msgid "At least one language must remain selected."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:451
+#, python-brace-format
+msgid "Remove {language}"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:453
+msgid "Remove this language from the temporary selection."
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:462
+#, python-brace-format
+msgid "{count} of {maximum} languages selected"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:485
+msgid "selected"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:485
+msgid "not selected"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:506
+#, python-brace-format
+msgid "Add {language}"
+msgstr ""
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:508
+msgid "Add this recent language to the temporary selection."
+msgstr ""
+
+#: zapzap/ui/components/update_available_popover.py:106
+msgid "Release notes"
+msgstr ""
+
+#: zapzap/ui/components/update_available_popover.py:107
+msgid "Open release notes"
+msgstr ""
+
+#: zapzap/ui/components/update_available_popover.py:113
+#, fuzzy
+msgid "Open downloads page"
+msgstr "Open locatie"
+
+#: zapzap/ui/components/update_available_popover.py:146
+#, fuzzy, python-brace-format
+msgid "Current version: {version}"
+msgstr "Versie {version}"
+
+#: zapzap/ui/components/update_available_popover.py:149
+#, fuzzy, python-brace-format
+msgid "Latest version: {version}"
+msgstr "Versie {version}"
+
+#: zapzap/ui/components/update_available_popover.py:166
+#, python-brace-format
+msgid "Released on {date}"
+msgstr ""
+
+#: zapzap/ui/components/update_available_popover.py:171
+#, python-brace-format
+msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
 
 #~ msgid "Donation"

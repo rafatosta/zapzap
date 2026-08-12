@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import date, datetime
 import json
 import logging
 import re
 from typing import Optional
+from urllib.parse import urlparse
 
 from PyQt6.QtCore import QObject, QUrl, pyqtSignal
 from PyQt6.QtNetwork import QNetworkAccessManager, QNetworkReply, QNetworkRequest
@@ -31,6 +33,13 @@ MANUAL_UPDATE_PACKAGING = frozenset(
     }
 )
 _VERSION_PATTERN = re.compile(r"^[vV]?(\d+(?:\.\d+)*)$")
+
+
+@dataclass(frozen=True)
+class StableRelease:
+    version: str
+    published_on: Optional[date] = None
+    release_notes_url: str = ""
 
 
 def parse_version(value: str) -> Optional[tuple[int, ...]]:
@@ -58,8 +67,33 @@ def is_newer_version(current: str, latest: str) -> bool:
     )
 
 
-def parse_stable_release(payload: bytes) -> Optional[str]:
-    """Extract one stable numeric tag from a GitHub release response."""
+def _parse_release_date(value) -> Optional[date]:
+    if not isinstance(value, str) or not value.strip():
+        return None
+    try:
+        return datetime.fromisoformat(value.strip().replace("Z", "+00:00")).date()
+    except ValueError:
+        return None
+
+
+def _official_release_url(value) -> str:
+    if not isinstance(value, str):
+        return ""
+    parsed = urlparse(value.strip())
+    expected_prefix = "/rafatosta/zapzap/releases/"
+    if (
+        parsed.scheme.casefold() != "https"
+        or parsed.hostname != "github.com"
+        or not parsed.path.casefold().startswith(expected_prefix)
+        or parsed.username
+        or parsed.password
+    ):
+        return ""
+    return value.strip()
+
+
+def parse_stable_release(payload: bytes) -> Optional[StableRelease]:
+    """Extract safe stable-release metadata from a GitHub response."""
 
     try:
         release = json.loads(bytes(payload).decode("utf-8"))
@@ -72,7 +106,11 @@ def parse_stable_release(payload: bytes) -> Optional[str]:
     tag_name = release.get("tag_name")
     if not isinstance(tag_name, str) or parse_version(tag_name) is None:
         return None
-    return tag_name.lstrip("vV")
+    return StableRelease(
+        version=tag_name.lstrip("vV"),
+        published_on=_parse_release_date(release.get("published_at")),
+        release_notes_url=_official_release_url(release.get("html_url")),
+    )
 
 
 class UpdatePolicy:
@@ -107,6 +145,8 @@ class UpdateInfo:
     current_version: str
     latest_version: str
     available: bool
+    published_on: Optional[date] = None
+    release_notes_url: str = ""
 
 
 class UpdateState(QObject):
@@ -186,16 +226,18 @@ class UpdateChecker(QObject):
                 self.completed.emit(None)
                 return
 
-            latest = parse_stable_release(bytes(reply.readAll()))
-            if latest is None:
+            release = parse_stable_release(bytes(reply.readAll()))
+            if release is None:
                 logger.debug("update check failed: invalid stable release response")
                 self.completed.emit(None)
                 return
 
             info = UpdateInfo(
                 current_version=__version__,
-                latest_version=latest,
-                available=is_newer_version(__version__, latest),
+                latest_version=release.version,
+                available=is_newer_version(__version__, release.version),
+                published_on=release.published_on,
+                release_notes_url=release.release_notes_url,
             )
             logger.info(
                 "update check: current=%s latest=%s available=%s",

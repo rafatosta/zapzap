@@ -374,12 +374,15 @@ class MainWindowController(MainWindowView):
         self.app_settings.open_about()
 
     def _on_update_info_changed(self, info):
-        latest = info.latest_version if info is not None and info.available else None
-        self.browser.set_update_available(latest)
+        self.browser.set_update_available(info)
 
     def open_update_website(self):
         """Open the official download page without selecting an installer."""
         return open_external_url(__downloadPage__, self._window_host)
+
+    def open_update_release_notes(self, url):
+        """Open release notes accepted by the update checker's URL policy."""
+        return open_external_url(url, self._window_host)
 
     def open_donations(self):
         """Open the single native donations route from any application entry."""
