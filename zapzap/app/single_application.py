@@ -3,7 +3,15 @@
 import subprocess
 import sys
 
-from PyQt6.QtCore import Qt, QTextStream, QTimer, pyqtSignal, pyqtSlot
+from PyQt6.QtCore import (
+    QCoreApplication,
+    QEvent,
+    Qt,
+    QTextStream,
+    QTimer,
+    pyqtSignal,
+    pyqtSlot,
+)
 from PyQt6.QtNetwork import QLocalServer, QLocalSocket
 from PyQt6.QtWidgets import QApplication
 
@@ -145,6 +153,13 @@ class SingleApplication(QApplication):
         browser = getattr(self.window, "browser", None)
         if browser:
             browser.shutdown()
+
+        # As páginas e os perfis WebEngine são liberados por deleteLater(), e um
+        # DeferredDelete postado fora de um laço de eventos nunca é entregue.
+        # Sem esta drenagem o QWebEngineProfile sobrevive ao encerramento, e o
+        # Chromium só descarrega cookies, localStorage e IndexedDB quando o
+        # perfil é destruído.
+        QCoreApplication.sendPostedEvents(None, QEvent.Type.DeferredDelete)
 
     def _restart_application_now(self):
         if self.window and hasattr(self.window, "save_window_state"):

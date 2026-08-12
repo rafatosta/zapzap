@@ -14,6 +14,7 @@ from zapzap.features.browser.shell.browser_controller import (
     load_webview_factory,
 )
 from zapzap.app.startup_options import apply_startup_options, parse_startup_options
+from zapzap.app.termination_signals import TerminationSignalWatcher
 from zapzap.app.window_lifecycle import ClientSideWindowHost
 from zapzap.core.diagnostics import crash_handler
 from zapzap.assets.icons.tray_icon import TrayIcon
@@ -139,6 +140,11 @@ def main():
         app.aboutToQuit.connect(desktop_application_dbus.stop)
     app.aboutToQuit.connect(ThemeManager.stop)
     app.aboutToQuit.connect(app.shutdownInterface)
+
+    # Um desligamento ou logout termina o processo em segundo plano por sinal, e
+    # nada acima roda quando ele morre pela disposição padrão do Python.
+    termination_signals = TerminationSignalWatcher(app)
+    termination_signals.install()
 
     exit_code = app.exec()
 

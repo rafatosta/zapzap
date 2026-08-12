@@ -43,8 +43,23 @@ O caminho principal está em `zapzap/app/application.py`:
 5. inicia tema e constrói a janela principal;
 6. no Flatpak, exporta `org.freedesktop.Application` por D-Bus;
 7. aplica proxy, decide visibilidade inicial e mostra o onboarding se preciso;
-8. no encerramento, remove notificações, para D-Bus e tema e libera páginas
+8. assume SIGINT, SIGTERM e SIGHUP por `TerminationSignalWatcher`;
+9. no encerramento, remove notificações, para D-Bus e tema e libera páginas
    WebEngine explicitamente.
+
+O passo 8 existe porque o aplicativo permanece em segundo plano por padrão e um
+desligamento ou logout o termina por sinal. A disposição padrão do Python mata o
+processo sem desmontar o laço de eventos, então `aboutToQuit` não roda e nada do
+passo 9 acontece. O watcher usa `signal.set_wakeup_fd` sobre um par de sockets,
+porque um handler Python só roda entre bytecodes e o processo ocioso fica
+bloqueado dentro do laço em C++. O primeiro sinal devolve as disposições
+anteriores, mantendo interrompível um encerramento que trave.
+
+`shutdownInterface()` drena os `DeferredDelete` pendentes ao final. Páginas e
+perfis são liberados por `deleteLater()`, e um `DeferredDelete` postado fora de
+um laço de eventos nunca é entregue; sem a drenagem o `QWebEngineProfile`
+sobrevive ao encerramento e o Chromium não descarrega cookies, localStorage e
+IndexedDB, que só são gravados quando o perfil é destruído.
 
 Depois que o event loop começa, `MainWindowController` inicia no máximo uma
 consulta assíncrona de release por execução. `core.update_checker`
