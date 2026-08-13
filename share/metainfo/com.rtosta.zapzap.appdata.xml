@@ -91,8 +91,9 @@
     <release version="7.4.1" date="2026-08-12">
       <description>
         <p>
-          This update includes corrective and preventive maintenance to keep ZapZap
-          running reliably.
+          Version 7.4.1 adds an update indicator with release details and quick access
+          to release notes and downloads. It also improves reliability when ZapZap is
+          closed by the operating system and includes performance improvements.
         </p>
       </description>
     </release>
