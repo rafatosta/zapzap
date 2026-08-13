@@ -107,6 +107,7 @@ documente o que ele protege.
 | `test_software_video_decoding.py` | flag Chromium, persistência, padrão e ordem do bootstrap |
 | `test_spellcheck_language_picker.py` | migração, seleção múltipla transacional, pesquisa, limite, recentes, menu e perfis WebEngine |
 | `test_system_startup_settings_ui.py` | semântica de fechamento, diálogo nativo e acessibilidade |
+| `test_unix_signal_shutdown.py` | ponte POSIX, restauração do estado global e `SIGTERM` real chegando a `aboutToQuit` em subprocesso isolado |
 | `test_update_checker.py` | versões, política de builds, respostas/falhas assíncronas, metadados seguros e popover acessível compartilhado entre sidebar e Sobre |
 | `test_window_state_restore.py` | ciclo de vida compartilhado, restauração normal, maximizada e fullscreen e destruição segura do host CSR |
 | `test_windows_packaging.py` | matriz nativa x86_64/ARM64, arquitetura do Python e nomes dos executáveis Windows |
@@ -147,6 +148,7 @@ documente o que ele protege.
 - `test_software_video_decoding.py`
 - `test_spellcheck_language_picker.py`
 - `test_system_startup_settings_ui.py`
+- `test_unix_signal_shutdown.py`
 - `test_update_checker.py`
 - `test_window_state_restore.py`
 - `test_windows_packaging.py`

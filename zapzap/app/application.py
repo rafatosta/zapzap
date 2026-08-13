@@ -14,6 +14,7 @@ from zapzap.features.browser.shell.browser_controller import (
     load_webview_factory,
 )
 from zapzap.app.startup_options import apply_startup_options, parse_startup_options
+from zapzap.app.unix_signal_bridge import install_unix_signal_bridge
 from zapzap.app.window_lifecycle import ClientSideWindowHost
 from zapzap.core.diagnostics import crash_handler
 from zapzap.assets.icons.tray_icon import TrayIcon
@@ -80,6 +81,7 @@ def main():
     app.setDesktopFileName(zapzap.__desktopid__)
     app.setOrganizationDomain(zapzap.__domain__)
     app.setWindowIcon(TrayIcon.getIcon())
+    unix_signal_bridge = install_unix_signal_bridge(app)
 
     SetupManager.apply_qt_scale_factor_rounding_policy()
 
@@ -139,6 +141,8 @@ def main():
         app.aboutToQuit.connect(desktop_application_dbus.stop)
     app.aboutToQuit.connect(ThemeManager.stop)
     app.aboutToQuit.connect(app.shutdownInterface)
+    if unix_signal_bridge is not None:
+        app.aboutToQuit.connect(unix_signal_bridge.close)
 
     exit_code = app.exec()
 
@@ -146,5 +150,7 @@ def main():
     NotificationService.shutdown()
     ThemeManager.stop()
     app.shutdownInterface()
+    if unix_signal_bridge is not None:
+        unix_signal_bridge.close()
 
     return exit_code

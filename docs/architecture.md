@@ -46,6 +46,15 @@ O caminho principal está em `zapzap/app/application.py`:
 8. no encerramento, remove notificações, para D-Bus e tema e libera páginas
    WebEngine explicitamente.
 
+Em sistemas POSIX, `app.unix_signal_bridge` converte `SIGTERM` em uma
+solicitação normal de saída. O handler Python não chama Qt: o wakeup fd escreve
+em um `socketpair` não bloqueante, um `QSocketNotifier` recebe o evento dentro
+do loop Qt e chama `QApplication.quit()`. Assim, `aboutToQuit` permanece como a
+autoridade do cleanup e continua chegando a `shutdownInterface()` e
+`BrowserController.shutdown()`. A ponte restaura o handler e o wakeup fd
+anteriores ao encerrar. Windows não instala essa integração; macOS usa o mesmo
+mecanismo POSIX. `SIGINT` e `SIGHUP` preservam sua semântica anterior.
+
 Depois que o event loop começa, `MainWindowController` inicia no máximo uma
 consulta assíncrona de release por execução. `core.update_checker`
 faz a política conservadora por `BuildInfo`, consulta somente a release estável

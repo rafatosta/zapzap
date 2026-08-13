@@ -40,10 +40,26 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 | Tema/widget | `ThemeManager`, paleta, QSS e componentes irmãos | teste de tipografia/estado e inspeção visual |
 | Tradução | fonte Python, POTFILES, POT, todos os PO e MO | `msgfmt` e carregamento do catálogo |
 | Download/permissão | manager, `PageController`, diálogo e preferências | unidade e operação manual |
+| Ciclo de vida do processo | bootstrap, `aboutToQuit`, páginas WebEngine e plataformas | subprocesso isolado e suíte completa |
 | Estrutura Python | árvore, imports e `pyproject.toml` | manifestos de pacote e documentação |
 | Build/release | workflow e script de plataforma | lint/sintaxe e build da plataforma |
 
 ## Receitas de mudança
+
+### Encerramento provocado pelo sistema
+
+- Mantenha o cleanup de notificações, tema, D-Bus e WebEngine conectado a
+  `aboutToQuit`; integrações de plataforma devem apenas solicitar a saída
+  normal do Qt.
+- Em POSIX, não chame APIs Qt dentro de handlers Unix. Encaminhe `SIGTERM` pelo
+  wakeup fd e pelo `QSocketNotifier` existentes em `app.unix_signal_bridge`.
+- Restaure handlers, wakeup fd e descritores ao desmontar a integração. Falhas
+  ao instalá-la não podem impedir a inicialização.
+- Não acrescente `SIGINT`, `SIGHUP`, Session Management ou drenagem manual de
+  `DeferredDelete` sem um cenário reproduzível e cobertura específica.
+- Teste sinais reais somente em subprocesso Unix isolado; nunca envie
+  `SIGTERM` ao runner principal nem faça esse teste depender de semântica Unix
+  no Windows.
 
 ### Nova configuração
 
