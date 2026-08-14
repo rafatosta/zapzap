@@ -1,5 +1,49 @@
+from __future__ import annotations
+
+import logging
+import math
+from typing import Any
+
 from zapzap.core.config.database import Database
 from zapzap.core.config.settings_manager import SettingsManager
+
+
+logger = logging.getLogger(__name__)
+DEFAULT_ZOOM_FACTOR = 1.0
+MIN_ZOOM_FACTOR = 0.25
+MAX_ZOOM_FACTOR = 5.0
+
+
+def normalize_zoom_factor(value: Any) -> tuple[float, bool]:
+    """Return a finite zoom factor accepted by QWebEngineView."""
+    try:
+        zoom = float(value)
+    except (TypeError, ValueError, OverflowError):
+        return DEFAULT_ZOOM_FACTOR, False
+    if not math.isfinite(zoom) or not MIN_ZOOM_FACTOR <= zoom <= MAX_ZOOM_FACTOR:
+        return DEFAULT_ZOOM_FACTOR, False
+    return zoom, True
+
+
+def apply_zoom_factor(view: Any, value: Any) -> float:
+    """Apply zoom without allowing a corrupt value or Qt failure to escape."""
+    zoom, _valid = normalize_zoom_factor(value)
+    try:
+        view.setZoomFactor(zoom)
+        return zoom
+    except Exception:
+        logger.exception(
+            "Failed to apply the account zoom factor; falling back to 100 percent"
+        )
+
+    try:
+        view.setZoomFactor(DEFAULT_ZOOM_FACTOR)
+    except Exception:
+        logger.exception(
+            "Failed to apply the account zoom fallback; continuing with "
+            "the current Qt value"
+        )
+    return DEFAULT_ZOOM_FACTOR
 
 
 class User:
@@ -59,11 +103,23 @@ class User:
 
     @property
     def zoomFactor(self):
-        return self._zoomFactor
+        zoom, valid = normalize_zoom_factor(self._zoomFactor)
+        if not valid:
+            logger.warning(
+                "Invalid stored account zoom factor; replacing it with 100 percent"
+            )
+            self._zoomFactor = zoom
+            self._persist()
+        return zoom
 
     @zoomFactor.setter
     def zoomFactor(self, value):
-        self._zoomFactor = value
+        zoom, valid = normalize_zoom_factor(value)
+        if not valid:
+            logger.warning(
+                "Invalid account zoom factor; storing 100 percent"
+            )
+        self._zoomFactor = zoom
         self._persist()
 
     def __str__(self):

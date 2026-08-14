@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from gettext import gettext as _
+import logging
 
 from PyQt6.QtWidgets import QApplication, QWidget
 
@@ -11,6 +12,9 @@ from zapzap.core.config.settings.window import WindowSettings
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.tray.sys_tray_manager import SysTrayManager
 from zapzap.ui.components.client_side_window import ClientSideWindow
+
+
+logger = logging.getLogger(__name__)
 
 
 class WindowLifecycle:
@@ -29,8 +33,29 @@ class WindowLifecycle:
         self._quit_requested = False
 
     def load_settings(self) -> None:
-        self.host.restoreGeometry(self._window_settings.geometry)
-        self.content.restoreState(self._window_settings.layout_state)
+        geometry = self._window_settings.geometry
+        if not geometry.isEmpty():
+            try:
+                restored = self.host.restoreGeometry(geometry)
+            except Exception:
+                logger.exception(
+                    "Failed to restore the saved window geometry; using defaults"
+                )
+                restored = False
+            if not restored:
+                self._window_settings.geometry = b""
+
+        layout_state = self._window_settings.layout_state
+        if not layout_state.isEmpty():
+            try:
+                restored = self.content.restoreState(layout_state)
+            except Exception:
+                logger.exception(
+                    "Failed to restore the saved window layout; using defaults"
+                )
+                restored = False
+            if not restored:
+                self._window_settings.layout_state = b""
         SysTrayManager.start()
 
     def save_window_state(self) -> None:

@@ -76,6 +76,18 @@ class FakeWebViewFactory:
         self.removed_user_ids.append(user_id)
 
 
+class FailingThenWorkingFactory(FakeWebViewFactory):
+    def __init__(self):
+        super().__init__()
+        self.failures = 1
+
+    def __call__(self, user, position):
+        if self.failures:
+            self.failures -= 1
+            raise RuntimeError("simulated profile failure")
+        return super().__call__(user, position)
+
+
 class FakeStack:
     def __init__(self):
         self.widgets = []
@@ -159,6 +171,33 @@ class BrowserAccountLifecycleTest(QtTestCase):
         self.assertEqual(enabled.state, AccountLifecycle.ACTIVE)
         self.assertIsNone(disabled.page)
         self.assertEqual(disabled.state, AccountLifecycle.DISABLED)
+
+    def test_one_profile_failure_is_isolated_and_can_be_retried(self):
+        self.controller._webview_factory = FailingThenWorkingFactory()
+
+        with self.assertLogs(
+            "zapzap.features.browser.shell.browser_controller",
+            level="ERROR",
+        ):
+            runtime = self._add(self._user("recoverable", True))
+
+        self.assertIsNone(runtime.page)
+        self.assertEqual(runtime.state, AccountLifecycle.ERROR)
+        self.assertIsNotNone(self.controller._create_webview(runtime))
+        self.assertEqual(runtime.state, AccountLifecycle.ACTIVE)
+
+    def test_disabling_a_failed_profile_clears_the_error_state(self):
+        self.controller._webview_factory = FailingThenWorkingFactory()
+        with self.assertLogs(
+            "zapzap.features.browser.shell.browser_controller",
+            level="ERROR",
+        ):
+            runtime = self._add(self._user("failed", True))
+
+        runtime.user.enable = False
+        self.controller.disable_page(runtime.user)
+
+        self.assertEqual(runtime.state, AccountLifecycle.DISABLED)
 
     def test_disable_enable_cycles_create_and_destroy_one_instance_each(self):
         user = self._user("cycle", True)

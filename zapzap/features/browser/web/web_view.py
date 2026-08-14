@@ -1,6 +1,7 @@
 import re
 import shutil
 import os
+import logging
 
 from PyQt6.QtWebChannel import QWebChannel
 from PyQt6.QtWebEngineWidgets import QWebEngineView
@@ -11,7 +12,12 @@ from PyQt6.QtGui import QAction
 
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.browser.web.page_controller import PageController
-from zapzap.features.accounts.domain.user import User
+from zapzap.features.accounts.domain.user import (
+    MAX_ZOOM_FACTOR,
+    MIN_ZOOM_FACTOR,
+    User,
+    apply_zoom_factor,
+)
 from zapzap import __user_agent__, __whatsapp_url__
 from zapzap.features.notifications.notification_service import NotificationService
 from zapzap.features.dictionaries.dictionaries_manager import DictionariesManager
@@ -20,11 +26,18 @@ from zapzap.features.dictionaries.spellcheck_language_picker import (
 )
 from zapzap.features.downloads.download_manager import DownloadManager
 from zapzap.core.config.settings_manager import SettingsManager
-from zapzap.core.config.settings.performance import PerformanceSettings
-from zapzap.core.config.settings.performance import apply_http_cache_size
+from zapzap.core.config.settings.performance import (
+    PerformanceSettings,
+    apply_http_cache_size,
+    apply_http_cache_type,
+    apply_persistent_cookies_policy,
+)
 from zapzap.core.diagnostics import crash_handler  # instância global
 
 from gettext import gettext as _
+
+
+logger = logging.getLogger(__name__)
 
 
 class WebView(QWebEngineView):
@@ -147,9 +160,21 @@ class WebView(QWebEngineView):
             self.profile,
             PerformanceSettings().cache_size_max,
         )
-        self.profile.setHttpCacheType(
-            self.QWEBENGINE_CACHE_TYPES.get(SettingsManager.get(
-                "performance/cache_type", "DiskHttpCache")))
+        performance_settings = PerformanceSettings()
+        apply_http_cache_type(
+            self.profile,
+            performance_settings.cache_type,
+            self.QWEBENGINE_CACHE_TYPES,
+        )
+        cookie_policies = {
+            False: QWebEngineProfile.PersistentCookiesPolicy.NoPersistentCookies,
+            True: QWebEngineProfile.PersistentCookiesPolicy.AllowPersistentCookies,
+        }
+        apply_persistent_cookies_policy(
+            self.profile,
+            performance_settings.get_boolean_setting("persistent_cookies"),
+            cookie_policies,
+        )
 
         self._install_ctrl_arrow_visual_navigation_fix()
 
@@ -199,24 +224,24 @@ class WebView(QWebEngineView):
 
     def _inject_web_theme_controller(self):
         """Injects the JavaScript code for the ZapZap WAWeb Theme Controller and QWebChannel support."""
-        self._setup_web_channel()
-
-        placeholders = {
-            "{qwebchannel_js_code}": self._get_web_channel_js_code(),
-            "{current_color_scheme}": ThemeManager.get_current_color_scheme().name.lower(),
-        }
-
-        base_dir = os.path.dirname(__file__)
-        js_path = os.path.join(base_dir, "scripts", "theme_controller.js")
-        file = QFile(js_path)
-        if not file.open(QFile.OpenModeFlag.ReadOnly):
-            raise RuntimeError(file.errorString())
-        js_code = QTextStream(file).readAll()
-
-        pattern = re.compile("|".join(re.escape(key)
-                             for key in placeholders.keys()))
-        js_code = pattern.sub(lambda m: placeholders[m.group(0)], js_code)
         try:
+            self._setup_web_channel()
+            placeholders = {
+                "{qwebchannel_js_code}": self._get_web_channel_js_code(),
+                "{current_color_scheme}": (
+                    ThemeManager.get_current_color_scheme().name.lower()
+                ),
+            }
+            base_dir = os.path.dirname(__file__)
+            js_path = os.path.join(base_dir, "scripts", "theme_controller.js")
+            file = QFile(js_path)
+            if not file.open(QFile.OpenModeFlag.ReadOnly):
+                raise RuntimeError(file.errorString())
+            js_code = QTextStream(file).readAll()
+            pattern = re.compile(
+                "|".join(re.escape(key) for key in placeholders)
+            )
+            js_code = pattern.sub(lambda m: placeholders[m.group(0)], js_code)
             script = QWebEngineScript()
             script.setName("zapzap_web_theme_controller")
             script.setInjectionPoint(
@@ -225,8 +250,18 @@ class WebView(QWebEngineView):
             script.setSourceCode(js_code)
             script.setWorldId(QWebEngineScript.ScriptWorldId.MainWorld)
             self.profile.scripts().insert(script)
-        except Exception as e:
-            print(f"Error injecting web theme controller: {e}")
+        except Exception:
+            logger.exception(
+                "Failed to install the web theme controller; using ForceDarkMode"
+            )
+            if self.whatsapp_page:
+                try:
+                    self.whatsapp_page.fall_back_to_force_dark_mode()
+                except Exception:
+                    logger.exception(
+                        "Failed to activate the web theme fallback; continuing "
+                        "with the page default"
+                    )
 
     def _setup_web_channel(self) -> None:
         class ZapZapBridge(QObject):
@@ -275,12 +310,25 @@ class WebView(QWebEngineView):
     def configure_spellcheck(self):
         """Configura o corretor ortográfico."""
         if self.user.enable:
-            self.profile.setSpellCheckEnabled(
-                SettingsManager.get("system/spellCheckers", True))
-
-            self.profile.setSpellCheckLanguages(
-                DictionariesManager.get_selected_languages()
-            )
+            try:
+                self.profile.setSpellCheckEnabled(
+                    SettingsManager.get("system/spellCheckers", True)
+                )
+                self.profile.setSpellCheckLanguages(
+                    DictionariesManager.get_selected_languages()
+                )
+            except Exception:
+                logger.exception(
+                    "Failed to apply spellcheck settings; disabling spellcheck"
+                )
+                try:
+                    self.profile.setSpellCheckLanguages([])
+                    self.profile.setSpellCheckEnabled(False)
+                except Exception:
+                    logger.exception(
+                        "Failed to disable spellcheck; continuing with the "
+                        "Qt profile default"
+                    )
 
     def _setup_page(self):
         """Configura a página e carrega a URL inicial."""
@@ -432,7 +480,10 @@ class WebView(QWebEngineView):
     def set_zoom_factor_page(self, factor=None):
         """Define ou ajusta o fator de zoom da página."""
         new_zoom = 1.0 if factor is None else self.zoomFactor() + factor
-        self.setZoomFactor(new_zoom)
+        new_zoom = max(MIN_ZOOM_FACTOR, min(new_zoom, MAX_ZOOM_FACTOR))
+        applied_zoom = apply_zoom_factor(self, new_zoom)
+        if self.user.zoomFactor != applied_zoom:
+            self.user.zoomFactor = applied_zoom
 
     def load_page(self):
         """Carrega a página do WhatsApp."""
@@ -442,7 +493,9 @@ class WebView(QWebEngineView):
         if self.user.enable and self.whatsapp_page:
             self.setPage(self.whatsapp_page)
             self.load(QUrl(__whatsapp_url__))
-            self.setZoomFactor(self.user.zoomFactor)
+            applied_zoom = apply_zoom_factor(self, self.user.zoomFactor)
+            if self.user.zoomFactor != applied_zoom:
+                self.user.zoomFactor = applied_zoom
 
     def apply_custom_css(self):
         if self.user.enable and self.whatsapp_page:

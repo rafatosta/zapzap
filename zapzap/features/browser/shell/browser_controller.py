@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
+import logging
 from typing import Callable, Dict, Iterator, Optional, TYPE_CHECKING
 
 from PyQt6.QtCore import QEvent, QEasingCurve
@@ -32,6 +33,9 @@ from zapzap.ui.components import UpdateAvailablePopover
 
 from gettext import gettext as _
 
+
+logger = logging.getLogger(__name__)
+
 if TYPE_CHECKING:
     from zapzap.features.browser.web.web_view import WebView
 
@@ -48,6 +52,7 @@ class AccountLifecycle(Enum):
 
     DISABLED = "disabled"
     ACTIVE = "active"
+    ERROR = "error"
     REMOVED = "removed"
 
 
@@ -398,15 +403,34 @@ class BrowserController(BrowserView):
         if runtime.page is not None:
             return runtime.page
 
-        page = self._webview_factory(runtime.user, runtime.position)
-        page.update_button_signal.connect(
-            lambda _position, count, entry=runtime: (
-                self._update_runtime_notifications(entry, count)
+        page = None
+        try:
+            page = self._webview_factory(runtime.user, runtime.position)
+            page.update_button_signal.connect(
+                lambda _position, count, entry=runtime: (
+                    self._update_runtime_notifications(entry, count)
+                )
             )
-        )
+            self.pages.addWidget(page)
+        except Exception:
+            runtime.state = AccountLifecycle.ERROR
+            logger.exception(
+                "Failed to create WebEngine page for account id=%s; "
+                "the account can be retried independently",
+                runtime.user.id,
+            )
+            if page is not None:
+                try:
+                    page.shutdown()
+                    page.close()
+                    page.deleteLater()
+                except Exception:
+                    logger.exception(
+                        "Failed to dispose a partially created WebEngine page"
+                    )
+            return None
         runtime.page = page
         runtime.state = AccountLifecycle.ACTIVE
-        self.pages.addWidget(page)
         return page
 
     def _destroy_webview(self, runtime: AccountRuntime, *, disabled=False,
@@ -414,6 +438,8 @@ class BrowserController(BrowserView):
         """Detach and dispose the current WebView at most once."""
         page = runtime.page
         if page is None:
+            if disabled:
+                runtime.state = AccountLifecycle.DISABLED
             return None
 
         runtime.page = None

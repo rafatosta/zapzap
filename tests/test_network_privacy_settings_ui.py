@@ -1,6 +1,7 @@
 """Regression tests for the Privacy and Network settings interface."""
 
 import unittest
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from PyQt6.QtWidgets import QLineEdit
@@ -41,6 +42,7 @@ class FakeNetworkPrivacySettingsModel:
         self.saved = []
         self.restored = []
         self.apply_count = 0
+        self.apply_result = SimpleNamespace(success=True)
 
     def list_scopes(self):
         return [("Global (Default)", None), ("Rafael Tosta", 7)]
@@ -75,6 +77,7 @@ class FakeNetworkPrivacySettingsModel:
 
     def apply_proxy(self):
         self.apply_count += 1
+        return self.apply_result
 
 
 class NetworkPrivacySettingsUiTests(QtTestCase):
@@ -124,6 +127,20 @@ class NetworkPrivacySettingsUiTests(QtTestCase):
         self.assertEqual(page.setHostName.text(), "saved.example.com")
         self.assertEqual(page.setPort.text(), "8080")
         self.assertFalse(page.pending_changes_bar.isHidden())
+
+    def test_qt_apply_failure_keeps_changes_pending_and_shows_feedback(self):
+        page, model = self._controller()
+        model.apply_result = SimpleNamespace(success=False)
+        page.proxyCheckBox.setChecked(True)
+        page.proxyComboBox.setCurrentIndex(
+            page.proxyComboBox.findData("HttpProxy")
+        )
+
+        self.assertFalse(page._set_proxy())
+
+        self.assertTrue(page._dirty)
+        self.assertFalse(page.validation_message.isHidden())
+        self.assertIn("previous proxy remains active", page.validation_message.text())
 
     def test_authentication_expands_only_when_credentials_exist(self):
         page, _model = self._controller()

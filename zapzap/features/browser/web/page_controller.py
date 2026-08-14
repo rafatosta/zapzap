@@ -1,4 +1,5 @@
 from typing import cast
+import logging
 
 from PyQt6.QtWebEngineCore import QWebEnginePage
 from PyQt6.QtWebEngineCore import QWebEngineSettings
@@ -19,6 +20,9 @@ from zapzap.ui.typography import Typography
 import urllib.parse  # Para normalizar URLs
 
 from gettext import gettext as _
+
+
+logger = logging.getLogger(__name__)
 
 
 class PageController(QWebEnginePage):
@@ -154,16 +158,23 @@ class PageController(QWebEnginePage):
         """Falls back to using ForceDarkMode to handle the WhatsApp Web Theme."""
         from zapzap.features.browser.web.web_view import WebView
 
-        profile = self.profile()
-        settings = profile.settings() if profile else None
-
-        if not settings:
+        try:
+            profile = self.profile()
+            settings = profile.settings() if profile else None
+            if not settings:
+                return
+            settings.setAttribute(
+                QWebEngineSettings.WebAttribute.ForceDarkMode,
+                (
+                    ThemeManager.get_current_color_scheme()
+                    == Qt.ColorScheme.Dark
+                ),
+            )
+        except Exception:
+            logger.exception(
+                "Failed to prepare the ForceDarkMode theme fallback"
+            )
             return
-
-        settings.setAttribute(
-            QWebEngineSettings.WebAttribute.ForceDarkMode,
-            (ThemeManager.get_current_color_scheme() == Qt.ColorScheme.Dark)
-        )
 
         if self._force_dark_mode_fallback_active:
             return
@@ -177,15 +188,20 @@ class PageController(QWebEnginePage):
         # Try to force WhatsApp Web to adopt the light theme by setting the related
         # localStorage persistency values and reloading the page, since ForceDarkMode
         # only works well if WAWeb is using its own light theme.
-        self.runJavaScript(
-            f'''(() => {{
-                localStorage["theme"] = JSON.stringify("{Qt.ColorScheme.Light.name.lower()}");
-                localStorage["system-theme-mode"] = JSON.stringify(false);
-            }})()'''
-        )
-        # Reload WhatsApp Web page to force it to load the theme settings saved
-        # in localStorage.
-        cast(WebView, cast(object, self.parent())).load_page()
+        try:
+            self.runJavaScript(
+                f'''(() => {{
+                    localStorage["theme"] = JSON.stringify("{Qt.ColorScheme.Light.name.lower()}");
+                    localStorage["system-theme-mode"] = JSON.stringify(false);
+                }})()'''
+            )
+            # Reload WhatsApp Web page to force it to load the theme settings saved
+            # in localStorage.
+            cast(WebView, cast(object, self.parent())).load_page()
+        except RuntimeError:
+            logger.exception(
+                "The page disappeared while applying the theme fallback"
+            )
 
     def new_chat(self):
         """Simula o atalho 'Ctrl+Alt+N' para iniciar um novo chat."""

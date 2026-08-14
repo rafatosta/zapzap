@@ -133,6 +133,18 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - Para `performance/cache_size_max`, use as constantes, normalização e aplicação
   segura de `core.config.settings.performance`; nunca converta MiB para bytes
   diretamente na `WebView` nem envie ao Qt um valor maior que `INT32_MAX`.
+- Para qualquer valor persistido passado ao Qt, valide tipo, enum e faixa antes
+  da chamada. O fallback deve permanecer restrito ao parâmetro opcional: cache,
+  cookies, zoom, spellcheck e tema não podem abortar todas as contas.
+- Ao aplicar proxy, inspecione `ProxyApplyResult`. Em falha, não substitua o
+  proxy ativo por `NoProxy`, não limpe o estado pendente e nunca registre host,
+  usuário ou senha.
+- Se uma construção de `WebView` falhar, mantenha a entrada sem página no estado
+  recuperável `ERROR`; ativação posterior deve tentar novamente sem recriar as
+  contas que já estão ativas.
+- Mantenha `performance/js_memory_limit_index` como fonte atual e sincronize
+  `performance/js_memory_limit_mb` para compatibilidade. A preferência de
+  cookies persistentes deve chegar a `setPersistentCookiesPolicy()`.
 
 ### Mudança no corretor ortográfico
 

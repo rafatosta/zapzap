@@ -80,7 +80,10 @@ Ele restaura e persiste geometria, coordena fechamento, segundo plano, bandeja e
 o estado normal, maximizado ou fullscreen observado diretamente no Qt. As chaves
 legadas `main/geometry` e `main/windowState` são preservadas por
 `WindowSettings`; preferências de fechamento e aparência usam seus domínios
-tipados existentes. `request_close()` respeita a permanência em segundo plano;
+tipados existentes. Valores com tipo inválido viram um `QByteArray` vazio; se
+`restoreGeometry()` ou `restoreState()` rejeitar o conteúdo, somente o estado
+inválido é descartado e a janela continua com os padrões. `request_close()`
+respeita a permanência em segundo plano;
 ações explicitamente chamadas “Sair” usam `request_quit()` e encerram o app.
 Somente a janela superior registra seu estado ao ser ocultada: no modo CSR, o
 host assume essa responsabilidade e eventos tardios do conteúdo incorporado são
@@ -108,6 +111,10 @@ O `user.id` é a identidade usada por sidebar, grade, atalhos e notificações.
 Índices da `QStackedWidget` e posições visuais nunca identificam contas. Em
 cada entrada há no máximo uma `WebView`; desativar ou remover anula a referência
 antes da desmontagem, e encerrar/desativar novamente é uma operação neutra.
+Uma falha ao construir um perfil altera somente aquela entrada para `ERROR`,
+sem abortar a criação das demais contas. Como a referência da página permanece
+nula, uma nova ativação tenta construí-la novamente; desativar a conta converte
+o estado para `DISABLED` normalmente.
 
 Na barra lateral, o contorno do card identifica a conta selecionada e o avatar
 não contém texto quantitativo. Um ponto verde-azulado indica não lidos e um
@@ -200,6 +207,20 @@ MiB, mas valores ausentes, malformados, negativos ou maiores que 2047 são
 normalizados e, quando persistidos, reparados para `0`. A aplicação ao perfil
 converte o valor seguro para bytes e trata `0` como gerenciamento automático do
 Qt, sem permitir que uma falha nessa otimização interrompa a inicialização.
+O mesmo domínio valida `performance/cache_type`, aplica
+`performance/persistent_cookies` ao perfil e mantém sincronizadas a seleção
+`performance/js_memory_limit_index` e a chave legada
+`performance/js_memory_limit_mb`. Assim, o valor apresentado pela página de
+Desempenho é o mesmo transformado em flag Chromium antes do QtWebEngine.
+
+Parâmetros persistidos enviados a APIs Qt são normalizados no domínio que
+possui a chave e aplicados por uma fronteira estreita que trata somente aquela
+operação opcional. Falha de proxy retorna `ProxyApplyResult`, conserva o proxy
+Qt anterior e mantém o rascunho visível para nova tentativa. Zoom inválido volta
+a `1.0`; corretor ortográfico inválido é desativado; falha do controlador de
+tema usa `ForceDarkMode`; e um destino de download rejeitado tenta o diretório
+padrão antes de cancelar. Esses fallbacks não envolvem o bootstrap ou a criação
+de todas as contas em um único `try/except`.
 
 A seleção global do corretor ortográfico é uma lista de até dez códigos
 estáveis em `system/spellCheckLanguages`. `DictionariesManager` descobre os

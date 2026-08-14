@@ -2,9 +2,18 @@
 
 from __future__ import annotations
 
+import logging
+from typing import Any
+
 from zapzap.assets.icons.tray_icon import TrayIcon
 from zapzap.core.config.settings.base import BaseSettings
 from zapzap.core.theme.theme_manager import ThemeManager
+
+
+logger = logging.getLogger(__name__)
+DEFAULT_SCALE = 100
+MIN_SCALE = 1
+MAX_SCALE = 1000
 
 
 class AppearanceSettings(BaseSettings):
@@ -12,7 +21,7 @@ class AppearanceSettings(BaseSettings):
 
     _BROWSER_SIDEBAR = ("system/sidebar", True)
     _MENUBAR = ("system/menubar", True)
-    _SCALE = ("system/scale", 100)
+    _SCALE = ("system/scale", DEFAULT_SCALE)
     _TRAY_ICON = ("system/tray_icon", True)
     _NOTIFICATION_COUNTER = ("system/notificationCounter", True)
     _CSR_ENABLED = ("system/csr", False)
@@ -42,11 +51,30 @@ class AppearanceSettings(BaseSettings):
 
     @property
     def scale(self) -> int:
-        return self._get_int(self._SCALE)
+        raw_value = self._get(self._SCALE)
+        try:
+            scale = int(raw_value)
+        except (TypeError, ValueError, OverflowError):
+            scale = DEFAULT_SCALE
+        if not MIN_SCALE <= scale <= MAX_SCALE:
+            scale = DEFAULT_SCALE
+        if scale != raw_value:
+            logger.warning(
+                "Invalid stored interface scale; replacing it with 100 percent"
+            )
+            self._set_int(self._SCALE, scale)
+        return scale
 
     @scale.setter
-    def scale(self, value: int) -> None:
-        self._set_int(self._SCALE, value)
+    def scale(self, value: Any) -> None:
+        try:
+            scale = int(value)
+        except (TypeError, ValueError, OverflowError):
+            scale = DEFAULT_SCALE
+        self._set_int(
+            self._SCALE,
+            scale if MIN_SCALE <= scale <= MAX_SCALE else DEFAULT_SCALE,
+        )
 
     @property
     def tray_icon_enabled(self) -> bool:
@@ -74,11 +102,29 @@ class AppearanceSettings(BaseSettings):
 
     @property
     def tray_theme(self) -> str:
-        return self._get_str(self._TRAY_THEME)
+        raw_value = self._get(self._TRAY_THEME)
+        valid_values = {item.value for item in TrayIcon.Type}
+        tray_theme = (
+            raw_value
+            if isinstance(raw_value, str) and raw_value in valid_values
+            else TrayIcon.Type.Default.value
+        )
+        if tray_theme != raw_value:
+            logger.warning(
+                "Invalid stored tray icon theme; replacing it with the default"
+            )
+            self._set_str(self._TRAY_THEME, tray_theme)
+        return tray_theme
 
     @tray_theme.setter
     def tray_theme(self, value: str) -> None:
-        self._set_str(self._TRAY_THEME, value)
+        valid_values = {item.value for item in TrayIcon.Type}
+        tray_theme = (
+            value
+            if isinstance(value, str) and value in valid_values
+            else TrayIcon.Type.Default.value
+        )
+        self._set_str(self._TRAY_THEME, tray_theme)
 
     @property
     def grid_columns(self) -> int:

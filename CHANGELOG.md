@@ -17,6 +17,15 @@ releases and the AppStream metadata.
 
 - Prevented invalid HTTP cache limits from stopping startup by repairing stored
   values and falling back to Qt's automatic cache management.
+- Prevented malformed Qt-facing settings from aborting startup or account
+  loading by repairing scale, window state, cache type, tray theme, zoom,
+  spellcheck, proxy, theme, and download parameters with scoped fallbacks.
+- Kept failed proxy changes pending with visible feedback while preserving the
+  previously active proxy, and isolated a failed WebEngine profile so other
+  accounts can still load and the failed account can be retried.
+- Connected the persistent-cookies preference to each WebEngine profile and
+  migrated the JavaScript memory-limit selector to the startup flag while
+  keeping its legacy key synchronized.
 
 ### Added
 

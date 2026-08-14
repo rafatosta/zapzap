@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from zapzap.features.accounts.domain.user import User
-from zapzap.core.environment.proxy_manager import ProxyManager
+from zapzap.core.environment.proxy_manager import ProxyApplyResult, ProxyManager
 from zapzap.core.config.settings.privacy import PrivacySettings
 from zapzap.core.config.settings_manager import SettingsManager
 
@@ -92,6 +92,6 @@ class NetworkPrivacySettingsModel:
     def webrtc_shield_enabled(self, value: bool) -> None:
         self._privacy_settings.webrtc_shield_enabled = value
 
-    def apply_proxy(self) -> None:
+    def apply_proxy(self) -> ProxyApplyResult:
         """Apply the currently persisted proxy configuration."""
-        ProxyManager.apply()
+        return ProxyManager.apply()

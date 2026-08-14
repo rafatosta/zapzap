@@ -12,6 +12,19 @@ selectable value is `2047 MiB`, which keeps the byte count within the signed
 32-bit range accepted by `QWebEngineProfile`. Older or corrupted values outside
 that range are repaired to automatic mode during loading; if Qt still rejects
 the setting, ZapZap retries with automatic mode and continues startup.
+Unsupported cache-type values are repaired to disk cache. If Qt rejects the
+selected type, ZapZap also retries with disk cache without stopping the account.
+
+## Persistent cookies and JavaScript memory
+
+**Persistent cookies** now maps directly to the persistent-cookie policy of
+every account profile. If Qt rejects that policy, ZapZap preserves Qt's
+persistent default so profile creation can continue.
+
+The JavaScript memory selector stores its current stable index and synchronizes
+the legacy MiB key for compatibility. At the next full restart, the selected
+numeric value becomes Chromium's `--max-old-space-size` setting; **Automatic**
+does not add a memory-limit flag.
 
 ## Software video decoding
 

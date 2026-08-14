@@ -5,6 +5,7 @@ from os import environ, getenv
 
 from PyQt6.QtCore import QFileInfo
 
+from zapzap.core.config.settings.appearance import AppearanceSettings
 from zapzap.core.config.settings.performance import PerformanceSettings
 from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.core.platform import IS_WINDOWS, IS_MAC
@@ -22,6 +23,8 @@ def update_chromium_flag(
 ) -> None:
     """Add or remove one exact Chromium flag without disturbing other flags."""
     current_flags = environment.get("QTWEBENGINE_CHROMIUM_FLAGS", "")
+    if not isinstance(current_flags, str):
+        current_flags = ""
     flags = current_flags.split()
     matching_indexes = [
         index for index, value in enumerate(flags) if value == flag
@@ -67,7 +70,7 @@ class SetupManager:
         # --------------------------------------------------
         # Escalonamento de tela
         # --------------------------------------------------
-        scale_factor = int(SettingsManager.get("system/scale", 100)) / 100
+        scale_factor = AppearanceSettings().scale / 100
         environ["QT_SCALE_FACTOR"] = f"{scale_factor:.2f}"
         environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
 
@@ -81,6 +84,10 @@ class SetupManager:
         # --------------------------------------------------
         existing_flags = environ.get("QTWEBENGINE_CHROMIUM_FLAGS", "")
         settings_flags = SettingsManager.get("QTWEBENGINE_CHROMIUM_FLAGS", "")
+        if not isinstance(existing_flags, str):
+            existing_flags = ""
+        if not isinstance(settings_flags, str):
+            settings_flags = ""
 
         flags = []
 
@@ -142,8 +149,8 @@ class SetupManager:
         # --------------------------------------------------
         # Memória JavaScript
         # --------------------------------------------------
-        js_mem = SettingsManager.get("performance/js_memory_limit_mb", "0")
-        if js_mem and js_mem != "0":
+        js_mem = PerformanceSettings().js_memory_limit_mb
+        if js_mem:
             add_flag(f"--js-flags=--max-old-space-size={js_mem}")
 
         if SettingsManager.get("performance/js_predictable_gc_schedule", False):

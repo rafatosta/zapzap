@@ -15,6 +15,12 @@ INT32_MAX = (1 << 31) - 1
 MEBIBYTE = 1024 * 1024
 MAX_HTTP_CACHE_MIB = INT32_MAX // MEBIBYTE
 AUTO_HTTP_CACHE_SIZE = 0
+DEFAULT_HTTP_CACHE_TYPE = "DiskHttpCache"
+HTTP_CACHE_TYPES = (
+    "MemoryHttpCache",
+    DEFAULT_HTTP_CACHE_TYPE,
+    "NoCache",
+)
 
 
 def _normalize_http_cache_mib(value: Any) -> tuple[int, bool]:
@@ -64,12 +70,69 @@ def apply_http_cache_size(profile: Any, configured_value: Any) -> int:
     return AUTO_HTTP_CACHE_SIZE
 
 
+def normalize_http_cache_type(value: Any) -> str:
+    """Return a supported QWebEngineProfile cache type name."""
+    return value if value in HTTP_CACHE_TYPES else DEFAULT_HTTP_CACHE_TYPE
+
+
+def apply_http_cache_type(
+    profile: Any,
+    configured_value: Any,
+    cache_types: dict[str, Any],
+) -> str:
+    """Apply a cache type and preserve startup if Qt rejects it."""
+    cache_type = normalize_http_cache_type(configured_value)
+    try:
+        profile.setHttpCacheType(cache_types[cache_type])
+        return cache_type
+    except Exception:
+        logger.exception(
+            "Failed to apply HTTP cache type; falling back to disk cache"
+        )
+
+    try:
+        profile.setHttpCacheType(cache_types[DEFAULT_HTTP_CACHE_TYPE])
+    except Exception:
+        logger.exception(
+            "Failed to apply the HTTP cache type fallback; continuing "
+            "with the Qt profile default"
+        )
+    return DEFAULT_HTTP_CACHE_TYPE
+
+
+def apply_persistent_cookies_policy(
+    profile: Any,
+    enabled: bool,
+    policies: dict[bool, Any],
+) -> bool:
+    """Apply cookie persistence and fall back to Qt's persistent policy."""
+    desired = bool(enabled)
+    try:
+        profile.setPersistentCookiesPolicy(policies[desired])
+        return desired
+    except Exception:
+        logger.exception(
+            "Failed to apply the persistent cookies policy; falling back "
+            "to Qt's persistent policy"
+        )
+
+    try:
+        profile.setPersistentCookiesPolicy(policies[True])
+    except Exception:
+        logger.exception(
+            "Failed to apply the persistent cookies policy fallback; "
+            "continuing with the Qt profile default"
+        )
+    return True
+
+
 class PerformanceSettings(BaseSettings):
     """Semantic access to Qt WebEngine/Chromium performance settings."""
 
-    _CACHE_TYPE = ("performance/cache_type", "DiskHttpCache")
+    _CACHE_TYPE = ("performance/cache_type", DEFAULT_HTTP_CACHE_TYPE)
     _CACHE_SIZE_MAX = ("performance/cache_size_max", "0")
     _JS_MEMORY_LIMIT_INDEX = ("performance/js_memory_limit_index", 0)
+    _LEGACY_JS_MEMORY_LIMIT_MB = ("performance/js_memory_limit_mb", "0")
 
     _BOOLEAN_SETTINGS = {
         "persistent_cookies": ("performance/persistent_cookies", True),
@@ -96,6 +159,7 @@ class PerformanceSettings(BaseSettings):
 
     BOOLEAN_SETTINGS = tuple(_BOOLEAN_SETTINGS)
     JS_MEMORY_LIMITS = ("Automatic", "256 MB", "1024 MB", "4096 MB")
+    JS_MEMORY_LIMIT_VALUES = (0, 256, 1024, 4096)
 
     @classmethod
     def _default_settings(cls) -> tuple[tuple[str, object], ...]:
@@ -103,6 +167,7 @@ class PerformanceSettings(BaseSettings):
             cls._CACHE_TYPE,
             cls._CACHE_SIZE_MAX,
             cls._JS_MEMORY_LIMIT_INDEX,
+            cls._LEGACY_JS_MEMORY_LIMIT_MB,
             *cls._BOOLEAN_SETTINGS.values(),
         )
 
@@ -114,11 +179,18 @@ class PerformanceSettings(BaseSettings):
 
     @property
     def cache_type(self) -> str:
-        return self._get_str(self._CACHE_TYPE)
+        raw_value = self._get(self._CACHE_TYPE)
+        cache_type = normalize_http_cache_type(raw_value)
+        if cache_type != raw_value:
+            logger.warning(
+                "Invalid stored HTTP cache type; replacing it with disk cache"
+            )
+            self._set_str(self._CACHE_TYPE, cache_type)
+        return cache_type
 
     @cache_type.setter
     def cache_type(self, value: str) -> None:
-        self._set_str(self._CACHE_TYPE, value)
+        self._set_str(self._CACHE_TYPE, normalize_http_cache_type(value))
 
     @property
     def cache_size_max(self) -> int:
@@ -146,15 +218,49 @@ class PerformanceSettings(BaseSettings):
 
     @property
     def js_memory_limit_index(self) -> int:
+        if not SettingsManager.contains(self._JS_MEMORY_LIMIT_INDEX[0]):
+            legacy_value = self._get(self._LEGACY_JS_MEMORY_LIMIT_MB)
+            try:
+                legacy_mb = int(legacy_value)
+                index = self.JS_MEMORY_LIMIT_VALUES.index(legacy_mb)
+            except (TypeError, ValueError, OverflowError):
+                index = 0
+            self.js_memory_limit_index = index
+            return index
+
         try:
             index = int(self._get(self._JS_MEMORY_LIMIT_INDEX))
-        except (TypeError, ValueError):
+            valid = True
+        except (TypeError, ValueError, OverflowError):
             index = 0
-        return max(0, min(index, len(self.JS_MEMORY_LIMITS) - 1))
+            valid = False
+        normalized = max(0, min(index, len(self.JS_MEMORY_LIMITS) - 1))
+        if not valid or normalized != index:
+            logger.warning(
+                "Invalid stored JavaScript memory limit; replacing it with "
+                "automatic management"
+            )
+            self.js_memory_limit_index = 0
+            return 0
+        return normalized
 
     @js_memory_limit_index.setter
     def js_memory_limit_index(self, value: int) -> None:
-        self._set_int(self._JS_MEMORY_LIMIT_INDEX, value)
+        try:
+            index = int(value)
+        except (TypeError, ValueError, OverflowError):
+            index = 0
+        if not 0 <= index < len(self.JS_MEMORY_LIMITS):
+            index = 0
+        self._set_int(self._JS_MEMORY_LIMIT_INDEX, index)
+        self._set_int(
+            self._LEGACY_JS_MEMORY_LIMIT_MB,
+            self.JS_MEMORY_LIMIT_VALUES[index],
+        )
+
+    @property
+    def js_memory_limit_mb(self) -> int:
+        return self.JS_MEMORY_LIMIT_VALUES[self.js_memory_limit_index]
 
     def restore_defaults(self) -> None:
         for key, value in self._default_settings():

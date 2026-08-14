@@ -297,6 +297,35 @@ class SpellcheckLanguagePickerIntegrationTests(QtTestCase):
 
         profile.setSpellCheckLanguages.assert_called_once_with(["pt_BR", "en_US"])
 
+    def test_webview_disables_spellcheck_when_qt_rejects_languages(self):
+        profile = Mock()
+        profile.setSpellCheckLanguages.side_effect = [
+            RuntimeError("simulated dictionary failure"),
+            None,
+        ]
+        fake = Mock()
+        fake.user.enable = True
+        fake.profile = profile
+
+        with (
+            patch.object(
+                DictionariesManager,
+                "get_selected_languages",
+                return_value=["invalid"],
+            ),
+            self.assertLogs(
+                "zapzap.features.browser.web.web_view",
+                level="ERROR",
+            ),
+        ):
+            WebView.configure_spellcheck(fake)
+
+        self.assertEqual(
+            profile.setSpellCheckLanguages.call_args_list[-1].args[0],
+            [],
+        )
+        profile.setSpellCheckEnabled.assert_called_with(False)
+
 
 if __name__ == "__main__":
     import unittest

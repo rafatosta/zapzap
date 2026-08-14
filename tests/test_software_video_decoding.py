@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import PropertyMock, patch
 
 from PyQt6.QtCore import QSettings
 
@@ -80,6 +80,16 @@ class ChromiumFlagTests(unittest.TestCase):
         self.assertEqual(
             spaced_environment["QTWEBENGINE_CHROMIUM_FLAGS"],
             f"--foo --bar {VIDEO_DECODE_FLAG}",
+        )
+
+    def test_corrupt_environment_flag_value_is_treated_as_empty(self):
+        environment = {"QTWEBENGINE_CHROMIUM_FLAGS": 42}
+
+        update_chromium_flag(VIDEO_DECODE_FLAG, True, environment)
+
+        self.assertEqual(
+            environment["QTWEBENGINE_CHROMIUM_FLAGS"],
+            VIDEO_DECODE_FLAG,
         )
 
 
@@ -205,6 +215,43 @@ class SoftwareVideoDecodingStartupTests(unittest.TestCase):
         )
 
         self.assertLess(setup_call.lineno, application_call.lineno)
+
+    def test_js_memory_index_value_reaches_the_chromium_flag(self):
+        with (
+            patch.dict(os.environ, {}, clear=True),
+            patch(
+                "zapzap.core.environment.setup_manager."
+                "DictionariesManager.get_path",
+                return_value="/tmp/dictionaries",
+            ),
+            patch(
+                "zapzap.core.environment.setup_manager.preferred_render_node",
+                return_value=None,
+            ),
+            patch(
+                "zapzap.core.environment.setup_manager."
+                "has_headless_secondary_gpu",
+                return_value=False,
+            ),
+            patch.object(
+                SettingsManager,
+                "get",
+                side_effect=lambda _key, default=None: default,
+            ),
+            patch.object(
+                PerformanceSettings,
+                "js_memory_limit_mb",
+                new_callable=PropertyMock,
+                return_value=1024,
+            ),
+        ):
+            SetupManager.apply()
+            flags = os.environ["QTWEBENGINE_CHROMIUM_FLAGS"].split()
+
+        self.assertIn(
+            "--js-flags=--max-old-space-size=1024",
+            flags,
+        )
 
 
 if __name__ == "__main__":

@@ -222,6 +222,15 @@ class NetworkPrivacySettingsController(NetworkPrivacySettingsView):
         self.validation_message.show()
         field.setFocus()
 
+    def _show_apply_failure(self):
+        self.validation_message.setText(
+            _(
+                "Unable to apply the proxy settings. The previous proxy "
+                "remains active."
+            )
+        )
+        self.validation_message.show()
+
     def _validate_proxy(self):
         if (
             not self.proxyCheckBox.isChecked()
@@ -262,7 +271,11 @@ class NetworkPrivacySettingsController(NetworkPrivacySettingsView):
         if not self._validate_proxy():
             return False
         self._save_settings()
-        self.model.apply_proxy()
+        result = self.model.apply_proxy()
+        if result is not None and not result.success:
+            self._show_apply_failure()
+            self._set_dirty(True)
+            return False
         self._set_dirty(False)
         self._update_proxy_status()
         return True
@@ -349,4 +362,6 @@ class NetworkPrivacySettingsController(NetworkPrivacySettingsView):
             return
         self.model.restore_proxy_settings(self._selected_user_id())
         self._load_settings()
-        self.model.apply_proxy()
+        result = self.model.apply_proxy()
+        if result is not None and not result.success:
+            self._show_apply_failure()
