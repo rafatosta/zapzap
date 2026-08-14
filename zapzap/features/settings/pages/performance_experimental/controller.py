@@ -4,6 +4,7 @@ from gettext import gettext as _
 
 from PyQt6.QtWidgets import QApplication
 
+from zapzap.core.config.settings.performance import MAX_HTTP_CACHE_MIB
 from zapzap.features.settings.pages.performance_experimental.model import PerformanceExperimentalSettingsModel
 from zapzap.features.settings.pages.performance_experimental.view import PerformanceExperimentalSettingsView
 from zapzap.ui.components import SettingsRestartBar
@@ -40,13 +41,17 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
         self.cache_type.clear()
         self.cache_type.addItems(self.model.CACHE_TYPES)
         self.cache_size_max.clear()
-        self.cache_size_max.addItems(self.model.CACHE_SIZES)
+        for cache_mib in self.model.CACHE_SIZES_MIB:
+            self.cache_size_max.addItem(f"{cache_mib} MiB", cache_mib)
         self.js_memory_limit.clear()
         self.js_memory_limit.addItems([_(label) for label in self.model.JS_MEMORY_LIMITS])
 
     def _load_settings(self):
         self.cache_type.setCurrentText(self.model.cache_type)
-        self.cache_size_max.setCurrentText(f"{self.model.cache_size_max} MB")
+        cache_size_index = self.cache_size_max.findData(
+            self.model.cache_size_max
+        )
+        self.cache_size_max.setCurrentIndex(cache_size_index)
 
         for setting_name in self.model.BOOLEAN_SETTINGS:
             getattr(self, setting_name).setChecked(
@@ -59,7 +64,7 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
 
     def _connect_signals(self):
         self.cache_type.textActivated.connect(self._handle_cache_type)
-        self.cache_size_max.textActivated.connect(self._handle_cache_size)
+        self.cache_size_max.activated.connect(self._handle_cache_size)
         for setting_name in self.model.BOOLEAN_SETTINGS:
             getattr(self, setting_name).clicked.connect(
                 lambda _checked=False, name=setting_name:
@@ -75,8 +80,8 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
         self.model.cache_type = value
         self._update_restart_requirement()
 
-    def _handle_cache_size(self, value):
-        self.model.cache_size_max = "".join(filter(str.isdigit, value))
+    def _handle_cache_size(self, index):
+        self.model.cache_size_max = self.cache_size_max.itemData(index)
         self._update_restart_requirement()
 
     def _handle_boolean_setting(self, setting_name):
@@ -143,7 +148,10 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
             )
         )
         self.cache_size_max.setToolTip(
-            _("Maximum HTTP cache size.\n0 MB uses the default Chromium behavior.")
+            _(
+                "Maximum HTTP cache size: {maximum} MiB.\n"
+                "0 MiB uses Chromium's automatic cache management."
+            ).format(maximum=MAX_HTTP_CACHE_MIB)
         )
         self.persistent_cookies.setToolTip(
             _("Keeps cookies between restarts.\nDisabling may cause frequent logouts.")

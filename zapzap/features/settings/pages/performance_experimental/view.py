@@ -63,7 +63,7 @@ class PerformanceExperimentalSettingsView(SettingsPage):
         )
         self.cache_size_max_row = SettingsSelectRow(
             _("Maximum cache size"),
-            _("0 MB uses Chromium's default behavior."),
+            _("0 MiB uses Chromium's automatic cache management."),
             [""]
         )
         self.persistent_cookies_row = SettingsSwitchRow(

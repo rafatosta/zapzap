@@ -1,6 +1,7 @@
 """UI regression tests for experimental performance settings."""
 
 from qt_test_case import QtTestCase
+from zapzap.core.config.settings.performance import MAX_HTTP_CACHE_MIB
 from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.ui.components import SettingsRestartBar
 from zapzap.features.settings.pages.performance_experimental.controller import (
@@ -35,3 +36,24 @@ class PerformanceExperimentalSettingsUiTests(QtTestCase):
             page.restart_bar.restart_kind,
             SettingsRestartBar.APPLICATION,
         )
+
+    def test_http_cache_selector_uses_qt_safe_mib_values(self):
+        page = PerformanceExperimentalSettingsController()
+        values = [
+            page.cache_size_max.itemData(index)
+            for index in range(page.cache_size_max.count())
+        ]
+
+        self.assertEqual(values[0], 0)
+        self.assertEqual(values[-1], MAX_HTTP_CACHE_MIB)
+        self.assertTrue(all(value <= MAX_HTTP_CACHE_MIB for value in values))
+        self.assertNotIn(2048, values)
+        self.assertEqual(
+            page.cache_size_max.itemText(page.cache_size_max.count() - 1),
+            "2047 MiB",
+        )
+        self.assertIn(
+            "automatic",
+            page.cache_size_max_row.description_label.text(),
+        )
+        self.assertIn("2047 MiB", page.cache_size_max.toolTip())

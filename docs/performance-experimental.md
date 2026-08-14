@@ -4,6 +4,15 @@ Experimental performance settings can change how QtWebEngine and Chromium use
 the GPU, memory, and processes. Restart ZapZap after changing an option when the
 restart prompt is shown.
 
+## HTTP cache size
+
+The cache size is expressed in MiB because Qt receives a byte count calculated
+with 1024 × 1024. `0 MiB` lets Qt manage the limit automatically. The largest
+selectable value is `2047 MiB`, which keeps the byte count within the signed
+32-bit range accepted by `QWebEngineProfile`. Older or corrupted values outside
+that range are repaired to automatic mode during loading; if Qt still rejects
+the setting, ZapZap retries with automatic mode and continues startup.
+
 ## Software video decoding
 
 Enable **Use software video decoding** when:

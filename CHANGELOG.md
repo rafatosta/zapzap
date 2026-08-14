@@ -13,6 +13,11 @@ releases and the AppStream metadata.
 
 ## [Unreleased]
 
+### Fixed
+
+- Prevented invalid HTTP cache limits from stopping startup by repairing stored
+  values and falling back to Qt's automatic cache management.
+
 ### Added
 
 - Added this changelog as the mandatory source of truth for all project changes

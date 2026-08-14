@@ -130,6 +130,9 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   valida e codifica a URL, e o `PageController` realiza a navegação direta sem
   JavaScript injetado. Nunca persista número ou mensagem.
 - Revalide grid, sidebar, conta ativa, zoom, downloads e notificações.
+- Para `performance/cache_size_max`, use as constantes, normalização e aplicação
+  segura de `core.config.settings.performance`; nunca converta MiB para bytes
+  diretamente na `WebView` nem envie ao Qt um valor maior que `INT32_MAX`.
 
 ### Mudança no corretor ortográfico
 

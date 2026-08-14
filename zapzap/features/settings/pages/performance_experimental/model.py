@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from zapzap.core.config.settings.performance import MAX_HTTP_CACHE_MIB
 from zapzap.core.config.settings.performance import PerformanceSettings
 
 
@@ -13,7 +14,7 @@ class PerformanceExperimentalSettingsModel:
         "MemoryHttpCache",
         "NoCache",
     ]
-    CACHE_SIZES = ["0 MB", "128 MB", "256 MB", "512 MB", "1024 MB", "2048 MB"]
+    CACHE_SIZES_MIB = (0, 128, 256, 512, 1024, MAX_HTTP_CACHE_MIB)
     JS_MEMORY_LIMITS = list(PerformanceSettings.JS_MEMORY_LIMITS)
     BOOLEAN_SETTINGS = PerformanceSettings.BOOLEAN_SETTINGS
 
@@ -37,11 +38,11 @@ class PerformanceExperimentalSettingsModel:
         self._settings.cache_type = value
 
     @property
-    def cache_size_max(self) -> str:
+    def cache_size_max(self) -> int:
         return self._settings.cache_size_max
 
     @cache_size_max.setter
-    def cache_size_max(self, value: str) -> None:
+    def cache_size_max(self, value: int) -> None:
         self._settings.cache_size_max = value
 
     @property

@@ -2,8 +2,66 @@
 
 from __future__ import annotations
 
+import logging
+from typing import Any
+
 from zapzap.core.config.settings.base import BaseSettings
 from zapzap.core.config.settings_manager import SettingsManager
+
+
+logger = logging.getLogger(__name__)
+
+INT32_MAX = (1 << 31) - 1
+MEBIBYTE = 1024 * 1024
+MAX_HTTP_CACHE_MIB = INT32_MAX // MEBIBYTE
+AUTO_HTTP_CACHE_SIZE = 0
+
+
+def _normalize_http_cache_mib(value: Any) -> tuple[int, bool]:
+    try:
+        cache_mib = int(value)
+    except (TypeError, ValueError, OverflowError):
+        return AUTO_HTTP_CACHE_SIZE, False
+
+    cache_bytes = cache_mib * MEBIBYTE
+    if cache_mib < 0 or cache_bytes > INT32_MAX:
+        return AUTO_HTTP_CACHE_SIZE, False
+
+    return cache_mib, True
+
+
+def normalize_http_cache_mib(value: Any) -> int:
+    """Return a Qt-safe HTTP cache size in MiB, or automatic mode."""
+    return _normalize_http_cache_mib(value)[0]
+
+
+def http_cache_size_bytes(value: Any) -> int:
+    """Convert a configured HTTP cache size to a Qt-safe byte count."""
+    return normalize_http_cache_mib(value) * MEBIBYTE
+
+
+def apply_http_cache_size(profile: Any, configured_value: Any) -> int:
+    """Apply the cache limit without allowing this optimization to abort startup."""
+    cache_mib = normalize_http_cache_mib(configured_value)
+    cache_bytes = http_cache_size_bytes(cache_mib)
+
+    try:
+        profile.setHttpCacheMaximumSize(cache_bytes)
+        return cache_mib
+    except Exception:
+        logger.exception(
+            "Failed to apply HTTP cache size; falling back to automatic management"
+        )
+
+    try:
+        profile.setHttpCacheMaximumSize(AUTO_HTTP_CACHE_SIZE)
+    except Exception:
+        logger.exception(
+            "Failed to enable automatic HTTP cache management; continuing "
+            "with the Qt profile default"
+        )
+
+    return AUTO_HTTP_CACHE_SIZE
 
 
 class PerformanceSettings(BaseSettings):
@@ -63,12 +121,28 @@ class PerformanceSettings(BaseSettings):
         self._set_str(self._CACHE_TYPE, value)
 
     @property
-    def cache_size_max(self) -> str:
-        return self._get_str(self._CACHE_SIZE_MAX)
+    def cache_size_max(self) -> int:
+        raw_value = self._get(self._CACHE_SIZE_MAX)
+        cache_mib, is_valid = _normalize_http_cache_mib(raw_value)
+        if not is_valid:
+            logger.warning(
+                "Invalid stored HTTP cache size; replacing it with automatic "
+                "management (accepted range: 0 to %d MiB)",
+                MAX_HTTP_CACHE_MIB,
+            )
+            self._set_int(self._CACHE_SIZE_MAX, AUTO_HTTP_CACHE_SIZE)
+        return cache_mib
 
     @cache_size_max.setter
-    def cache_size_max(self, value: str) -> None:
-        self._set_str(self._CACHE_SIZE_MAX, value)
+    def cache_size_max(self, value: Any) -> None:
+        cache_mib, is_valid = _normalize_http_cache_mib(value)
+        if not is_valid:
+            logger.warning(
+                "Invalid HTTP cache size; storing automatic management "
+                "(accepted range: 0 to %d MiB)",
+                MAX_HTTP_CACHE_MIB,
+            )
+        self._set_int(self._CACHE_SIZE_MAX, cache_mib)
 
     @property
     def js_memory_limit_index(self) -> int:

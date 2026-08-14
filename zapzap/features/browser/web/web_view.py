@@ -20,6 +20,8 @@ from zapzap.features.dictionaries.spellcheck_language_picker import (
 )
 from zapzap.features.downloads.download_manager import DownloadManager
 from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.core.config.settings.performance import PerformanceSettings
+from zapzap.core.config.settings.performance import apply_http_cache_size
 from zapzap.core.diagnostics import crash_handler  # instância global
 
 from gettext import gettext as _
@@ -141,8 +143,10 @@ class WebView(QWebEngineView):
 
         self.configure_spellcheck()
 
-        size_cache = SettingsManager.get("performance/cache_size_max", 0)
-        self.profile.setHttpCacheMaximumSize(1024 * 1024 * int(size_cache))
+        apply_http_cache_size(
+            self.profile,
+            PerformanceSettings().cache_size_max,
+        )
         self.profile.setHttpCacheType(
             self.QWEBENGINE_CACHE_TYPES.get(SettingsManager.get(
                 "performance/cache_type", "DiskHttpCache")))

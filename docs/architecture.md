@@ -194,6 +194,13 @@ consome propriedades desse domínio. Use `SettingsManager` diretamente apenas
 em código legado ou infraestrutura ainda não migrada; não crie uma segunda
 abstração dentro de uma página.
 
+`PerformanceSettings` também é a barreira para o limite do cache HTTP do
+QtWebEngine. A chave legada `performance/cache_size_max` continua expressa em
+MiB, mas valores ausentes, malformados, negativos ou maiores que 2047 são
+normalizados e, quando persistidos, reparados para `0`. A aplicação ao perfil
+converte o valor seguro para bytes e trata `0` como gerenciamento automático do
+Qt, sem permitir que uma falha nessa otimização interrompa a inicialização.
+
 A seleção global do corretor ortográfico é uma lista de até dez códigos
 estáveis em `system/spellCheckLanguages`. `DictionariesManager` descobre os
 dicionários instalados, normaliza a lista, remove duplicatas e itens ausentes e
