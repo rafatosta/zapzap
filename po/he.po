@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-12 09:22-0300\n"
+"POT-Creation-Date: 2026-08-14 12:42-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Hebrew\n"
@@ -19,15 +19,15 @@ msgstr ""
 "2 : 3);\n"
 "X-Generator: Lokalize 25.08.2\n"
 
-#: zapzap/app/window_lifecycle.py:54
+#: zapzap/app/window_lifecycle.py:79
 msgid "Close ZapZap"
 msgstr "סגור את ZapZap"
 
-#: zapzap/app/window_lifecycle.py:55
+#: zapzap/app/window_lifecycle.py:80
 msgid "Are you sure you want to close?"
 msgstr "האם אתה בטוח שאתה רוצה לסגור?"
 
-#: zapzap/app/window_lifecycle.py:56
+#: zapzap/app/window_lifecycle.py:81
 msgid "Don't ask again"
 msgstr "אל תשאל שוב"
 
@@ -85,27 +85,27 @@ msgstr "קהילה"
 msgid "Unknown"
 msgstr "לא ידוע"
 
-#: zapzap/core/environment/proxy_manager.py:9
+#: zapzap/core/environment/proxy_manager.py:31
 msgid "No proxying is used."
 msgstr "לא נעשה שימוש בתיווך."
 
-#: zapzap/core/environment/proxy_manager.py:10
+#: zapzap/core/environment/proxy_manager.py:35
 msgid "Proxy is determined based on the system proxy."
 msgstr "המתווך נקבע לפי מתווך המערכת."
 
-#: zapzap/core/environment/proxy_manager.py:11
+#: zapzap/core/environment/proxy_manager.py:39
 msgid "Socks5 proxying is used."
 msgstr "נעשה שימוש בתיווך Socks5."
 
-#: zapzap/core/environment/proxy_manager.py:12
+#: zapzap/core/environment/proxy_manager.py:43
 msgid "HTTP transparent proxying is used."
 msgstr "נעשה שימוש בתיווך HTTP שקוף."
 
-#: zapzap/core/environment/proxy_manager.py:13
+#: zapzap/core/environment/proxy_manager.py:47
 msgid "Proxying for HTTP requests only."
 msgstr "תיווך לבקשות HTTP בלבד."
 
-#: zapzap/core/environment/proxy_manager.py:14
+#: zapzap/core/environment/proxy_manager.py:51
 msgid "Proxying for FTP requests only."
 msgstr "תיווך לבקשות FTP בלבד."
 
@@ -162,8 +162,8 @@ msgstr "הסרה"
 
 #: zapzap/features/accounts/card_user_controller.py:173
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:642
-#: zapzap/features/settings/pages/network_privacy/controller.py:293
-#: zapzap/features/settings/pages/network_privacy/controller.py:341
+#: zapzap/features/settings/pages/network_privacy/controller.py:306
+#: zapzap/features/settings/pages/network_privacy/controller.py:354
 #: zapzap/features/downloads/ui/download_dialog.py:120
 #: zapzap/ui/components/edit_account_dialog.py:456
 #: zapzap/ui/components/send_message_to_number_dialog.py:262
@@ -242,7 +242,7 @@ msgid "Copy address"
 msgstr "העתקת כתובת קישור"
 
 #: zapzap/features/alerts/external_url.py:45
-#: zapzap/features/browser/shell/browser_controller.py:306
+#: zapzap/features/browser/shell/browser_controller.py:311
 #: zapzap/ui/components/edit_account_dialog.py:73
 #: zapzap/ui/components/send_message_to_number_dialog.py:135
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
@@ -393,7 +393,7 @@ msgstr "אל תראה שוב"
 msgid "Learn more about ZapZap ↗"
 msgstr "למידע נוסף על ZapZap ↗"
 
-#: zapzap/features/downloads/download_manager.py:100
+#: zapzap/features/downloads/download_manager.py:144
 msgid "Select folder"
 msgstr "בחר תיקייה"
 
@@ -844,7 +844,7 @@ msgstr "בחר והעתק פקודה זו בטרמינל שלך"
 #: zapzap/features/settings/pages/debugging/controller.py:87
 #: zapzap/features/settings/pages/debugging/view.py:223
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:314
+#: zapzap/features/browser/web/web_view.py:366
 msgid "Copy"
 msgstr "העתקה"
 
@@ -1037,7 +1037,7 @@ msgid "New conversation by phone number"
 msgstr "שיחה חדשה לפי מספר טלפון"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:500
+#: zapzap/features/browser/shell/browser_controller.py:526
 #: zapzap/ui/components/browser_sidebar.py:181
 msgid "New account"
 msgstr "חשבון חדש"
@@ -1246,7 +1246,7 @@ msgid "ZapZap {version} is available"
 msgstr "זמינים: {count}"
 
 #: zapzap/features/settings/pages/about/view.py:363
-#: zapzap/ui/components/browser_sidebar.py:202
+#: zapzap/ui/components/browser_sidebar.py:201
 msgid "Open the official ZapZap website to download it."
 msgstr ""
 
@@ -1709,7 +1709,7 @@ msgid "● There are unsaved changes."
 msgstr "● ישנם שינויים שלא נשמרו."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:417
-#: zapzap/features/settings/pages/network_privacy/controller.py:287
+#: zapzap/features/settings/pages/network_privacy/controller.py:300
 #: zapzap/features/settings/pages/network_privacy/view.py:110
 #: zapzap/ui/components/edit_account_dialog.py:770
 msgid "Discard"
@@ -1817,7 +1817,7 @@ msgid "Symbolic dark"
 msgstr "כהה סמלי"
 
 #: zapzap/features/settings/pages/appearance/view.py:118
-#: zapzap/features/browser/shell/browser_controller.py:163
+#: zapzap/features/browser/shell/browser_controller.py:168
 msgid "Grid view"
 msgstr "תצוגת רשת"
 
@@ -2145,7 +2145,7 @@ msgstr "תגדיר"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:66
 #: zapzap/features/settings/pages/language_downloads/view.py:99
-#: zapzap/features/settings/pages/network_privacy/controller.py:335
+#: zapzap/features/settings/pages/network_privacy/controller.py:348
 #: zapzap/features/settings/pages/performance_experimental/view.py:248
 msgid "Restore"
 msgstr "שחזור"
@@ -2218,42 +2218,46 @@ msgstr "{proxy_type} · {endpoint}"
 msgid "{status} · disabled"
 msgstr "{status} · מושבת"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:235
+#: zapzap/features/settings/pages/network_privacy/controller.py:228
+msgid "Unable to apply the proxy settings. The previous proxy remains active."
+msgstr ""
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:244
 msgid "Enter a proxy server."
 msgstr "הזן שרת פרוקסי."
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:243
+#: zapzap/features/settings/pages/network_privacy/controller.py:252
 msgid "Enter a port between 1 and 65535."
 msgstr "הזן יציאה בין 1 ל-65535."
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:276
+#: zapzap/features/settings/pages/network_privacy/controller.py:289
 msgid "Unapplied changes"
 msgstr "שינויים שלא יושמו"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:277
+#: zapzap/features/settings/pages/network_privacy/controller.py:290
 msgid "Apply changes before changing scope?"
 msgstr "להחיל שינויים לפני שינוי היקף?"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:278
+#: zapzap/features/settings/pages/network_privacy/controller.py:291
 msgid "You can apply or discard the changes made to this scope."
 msgstr "אתה יכול להחיל או למחוק את השינויים שנעשו בהיקף זה."
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:282
+#: zapzap/features/settings/pages/network_privacy/controller.py:295
 #: zapzap/features/settings/pages/network_privacy/view.py:111
 msgid "Apply changes"
 msgstr "החל שינויים"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:326
+#: zapzap/features/settings/pages/network_privacy/controller.py:339
 msgid "Restore proxy settings?"
 msgstr "לשחזר את הגדרות ה-proxy?"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:328
+#: zapzap/features/settings/pages/network_privacy/controller.py:341
 msgid ""
 "The proxy settings for this scope will be removed and the default values "
 "will be restored."
 msgstr "הגדרות ה-proxy עבור היקף זה יוסרו וערכי ברירת המחדל ישוחזרו."
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:331
+#: zapzap/features/settings/pages/network_privacy/controller.py:344
 msgid "WebRTC protection will not be changed."
 msgstr "ההגנה על WebRTC לא תשתנה."
 
@@ -2451,7 +2455,7 @@ msgstr "הסתר תוכן"
 msgid "Maximum privacy"
 msgstr "פרטיות מירבית"
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:139
+#: zapzap/features/settings/pages/performance_experimental/controller.py:144
 msgid ""
 "Defines where the HTTP cache will be stored.\n"
 "Disk: faster after restart.\n"
@@ -2463,15 +2467,16 @@ msgstr ""
 "זיכרון: מהיר יותר, אבל אבוד ביציאה.\n"
 "אין מטמון: שימוש נמוך יותר בדיסק, איטי יותר."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:146
+#: zapzap/features/settings/pages/performance_experimental/controller.py:152
+#, fuzzy, python-brace-format
 msgid ""
-"Maximum HTTP cache size.\n"
-"0 MB uses the default Chromium behavior."
+"Maximum HTTP cache size: {maximum} MiB.\n"
+"0 MiB uses Chromium's automatic cache management."
 msgstr ""
 "גודל מטמון HTTP מקסימלי.\n"
 "0 MB משתמש בהתנהגות ברירת המחדל של Chromium."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:149
+#: zapzap/features/settings/pages/performance_experimental/controller.py:157
 msgid ""
 "Keeps cookies between restarts.\n"
 "Disabling may cause frequent logouts."
@@ -2479,7 +2484,7 @@ msgstr ""
 "שומר עוגיות בין הפעלה מחדש.\n"
 "השבתה עלולה לגרום להתנתקות תכופה."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:153
+#: zapzap/features/settings/pages/performance_experimental/controller.py:161
 msgid ""
 "Runs GPU and rendering in the same process.\n"
 "May reduce memory usage, but can cause instability."
@@ -2487,7 +2492,7 @@ msgstr ""
 "מפעיל את GPU ועיבוד באותו תהליך.\n"
 "עשוי להפחית את השימוש בזיכרון, אך עלול לגרום לחוסר יציבות."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:159
+#: zapzap/features/settings/pages/performance_experimental/controller.py:167
 msgid ""
 "Disables GPU hardware acceleration.\n"
 "Recommended only for old GPUs or problematic drivers."
@@ -2495,7 +2500,7 @@ msgstr ""
 "משבית את האצת החומרה של GPU.\n"
 "מומלץ רק עבור GPUs ישנים או מנהלי התקנים בעייתיים."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:165
+#: zapzap/features/settings/pages/performance_experimental/controller.py:173
 msgid ""
 "Automatically honors an unambiguous DRI_PRIME selector on systems with "
 "multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
@@ -2509,7 +2514,7 @@ msgstr ""
 "\n"
 "השבת זאת רק אם הפתרון האוטומטי גורם לבעיות.נדרשת הפעלה מחדש."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:174
+#: zapzap/features/settings/pages/performance_experimental/controller.py:182
 msgid ""
 "Disables GPU VSync.\n"
 "May reduce latency, but can increase power usage and tearing."
@@ -2517,7 +2522,7 @@ msgstr ""
 "משבית את VSync GPU.\n"
 "עשוי להפחית את זמן האחזור, אך יכול להגביר את צריכת החשמל והקריעה."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:180
+#: zapzap/features/settings/pages/performance_experimental/controller.py:188
 msgid ""
 "Forces software rendering.\n"
 "Use only in case of graphical issues.\n"
@@ -2527,7 +2532,7 @@ msgstr ""
 "השתמש רק במקרה של בעיות גרפיות.\n"
 "עשוי להפחית משמעותית את הביצועים."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:187
+#: zapzap/features/settings/pages/performance_experimental/controller.py:195
 msgid ""
 "Disables hardware video decoding without disabling all GPU acceleration.\n"
 "Use when videos play only audio, appear white or black, flicker, or cause "
@@ -2539,7 +2544,7 @@ msgstr ""
 "גורמים לקריסות.\n"
 "עשוי להגדיל את השימוש במעבד ובסוללה. נדרשת הפעלה מחדש."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:196
+#: zapzap/features/settings/pages/performance_experimental/controller.py:204
 msgid ""
 "Forces the GBM backend on Wayland.\n"
 "Known to fix severe typing lag on NVIDIA drivers."
@@ -2547,7 +2552,7 @@ msgstr ""
 "מאלץ את הקצה האחורי של GBM על Wayland.\n"
 "ידוע לתקן עיכוב הקלדה חמור במנהלי התקנים של NVIDIA."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:202
+#: zapzap/features/settings/pages/performance_experimental/controller.py:210
 msgid ""
 "Disables the accessibility bus.\n"
 "Known to fix typing lag or CPU spikes in QtWebEngine."
@@ -2555,7 +2560,7 @@ msgstr ""
 "משבית את אוטובוס הנגישות.\n"
 "ידוע לתקן פיגור בהקלדה או עליות מעבד ב-QtWebEngine."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:208
+#: zapzap/features/settings/pages/performance_experimental/controller.py:216
 msgid ""
 "Runs the entire Chromium engine in a single process.\n"
 "Reduces memory usage, but may cause crashes.\n"
@@ -2565,7 +2570,7 @@ msgstr ""
 "מפחית את השימוש בזיכרון, אך עלול לגרום לקריסות.\n"
 "שימוש ניסיוני."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:215
+#: zapzap/features/settings/pages/performance_experimental/controller.py:223
 msgid ""
 "Uses a separate process per site.\n"
 "Safer and more stable.\n"
@@ -2575,7 +2580,7 @@ msgstr ""
 "בטוח יותר ויציב יותר.\n"
 "עשוי להגביר את השימוש בזיכרון."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:222
+#: zapzap/features/settings/pages/performance_experimental/controller.py:230
 msgid ""
 "JavaScript (V8) memory limit.\n"
 "Automatic is the safest option.\n"
@@ -2589,7 +2594,7 @@ msgstr ""
 "\n"
 "נדרשת הפעלה מחדש."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:230
+#: zapzap/features/settings/pages/performance_experimental/controller.py:238
 msgid ""
 "Enables V8 predictable garbage collection schedule.\n"
 "This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
@@ -2603,7 +2608,7 @@ msgstr ""
 "\n"
 "אפשרות נסיונית.נדרשת הפעלה מחדש."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:237
+#: zapzap/features/settings/pages/performance_experimental/controller.py:245
 msgid ""
 "Enables smooth scrolling animations.\n"
 "Disabling may reduce CPU usage."
@@ -2611,7 +2616,7 @@ msgstr ""
 "מאפשר גלילה חלקה של אנימציות.\n"
 "השבתה עשויה להפחית את השימוש במעבד."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:241
+#: zapzap/features/settings/pages/performance_experimental/controller.py:249
 msgid ""
 "Allows background tabs to reduce resource usage.\n"
 "Disabling keeps timers active, but uses more resources."
@@ -2619,7 +2624,7 @@ msgstr ""
 "מאפשר לכרטיסיות רקע להפחית את השימוש במשאבים.\n"
 "השבתה שומרת על טיימרים פעילים, אך משתמשת במשאבים רבים יותר."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:247
+#: zapzap/features/settings/pages/performance_experimental/controller.py:255
 msgid ""
 "Disables CSS and JavaScript animations.\n"
 "May improve performance on slower machines."
@@ -2627,7 +2632,7 @@ msgstr ""
 "משבית את הנפשות CSS ו-JavaScript.\n"
 "עשוי לשפר את הביצועים במכונות איטיות יותר."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:253
+#: zapzap/features/settings/pages/performance_experimental/controller.py:261
 msgid ""
 "Disables pinch-to-zoom gesture on touchpads.\n"
 "Useful if accidental zooming occurs during scrolling."
@@ -2635,7 +2640,7 @@ msgstr ""
 "משבית תנועת צביטה לזום במשטחי מגע.\n"
 "שימושי אם מתרחשת התקרבות בשוגג במהלך הגלילה."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:259
+#: zapzap/features/settings/pages/performance_experimental/controller.py:267
 msgid ""
 "Uses Selection.modify() with visual directions for Ctrl+Arrow word "
 "navigation.\n"
@@ -2649,7 +2654,7 @@ msgstr ""
 "\n"
 "הפעל מחדש או טען מחדש את WhatsApp Web לאחר שינוי אפשרות זו."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:265
+#: zapzap/features/settings/pages/performance_experimental/controller.py:273
 msgid ""
 "Restores all performance settings\n"
 "to safe default values."
@@ -2698,7 +2703,8 @@ msgid "Maximum cache size"
 msgstr "גודל מטמון מקסימלי"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:66
-msgid "0 MB uses Chromium's default behavior."
+#, fuzzy
+msgid "0 MiB uses Chromium's automatic cache management."
 msgstr "0 MB משתמש בהתנהגות ברירת המחדל של Chromium."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:70
@@ -3035,99 +3041,99 @@ msgstr "שמור בשם"
 msgid "Save file"
 msgstr "שמירת קובץ"
 
-#: zapzap/features/browser/shell/browser_controller.py:271
+#: zapzap/features/browser/shell/browser_controller.py:276
 msgid "Flatpak sandbox help"
 msgstr "עזרה בארגז חול Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:296
+#: zapzap/features/browser/shell/browser_controller.py:301
 msgid "Flatpak sandbox"
 msgstr "ארגז חול Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:297
+#: zapzap/features/browser/shell/browser_controller.py:302
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap פועל בארגז החול Flatpak."
 
-#: zapzap/features/browser/shell/browser_controller.py:299
+#: zapzap/features/browser/shell/browser_controller.py:304
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
 msgstr ""
 "תכונות מסוימות כמו פתיחת קבצים או גרירה ושחרור עשויות לדרוש הרשאות נוספות."
 
-#: zapzap/features/browser/shell/browser_controller.py:304
+#: zapzap/features/browser/shell/browser_controller.py:309
 msgid "Instructions"
 msgstr "הוראות"
 
-#: zapzap/features/browser/shell/browser_controller.py:305
+#: zapzap/features/browser/shell/browser_controller.py:310
 msgid "Copy command"
 msgstr "העתק פקודה"
 
-#: zapzap/features/browser/shell/browser_controller.py:517
-#: zapzap/features/browser/shell/browser_controller.py:601
+#: zapzap/features/browser/shell/browser_controller.py:543
+#: zapzap/features/browser/shell/browser_controller.py:627
 #, python-brace-format
 msgid "Account {}"
 msgstr "חשבון {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:614
+#: zapzap/features/browser/shell/browser_controller.py:640
 msgid "Account disabled"
 msgstr "החשבון מושבת"
 
-#: zapzap/features/browser/shell/browser_controller.py:615
+#: zapzap/features/browser/shell/browser_controller.py:641
 msgid "This account is disabled."
 msgstr "חשבון זה מושבת."
 
-#: zapzap/features/browser/shell/browser_controller.py:617
+#: zapzap/features/browser/shell/browser_controller.py:643
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "אתה יכול להפעיל אותו מחדש עכשיו או להשתמש בתפריט לחיצה ימנית כדי לנהל חשבון "
 "זה."
 
-#: zapzap/features/browser/shell/browser_controller.py:622
+#: zapzap/features/browser/shell/browser_controller.py:648
 msgid "Activate"
 msgstr "הפעל"
 
-#: zapzap/features/browser/shell/browser_controller.py:623
+#: zapzap/features/browser/shell/browser_controller.py:649
 msgid "Not now"
 msgstr "לא עכשיו"
 
-#: zapzap/features/browser/web/page_controller.py:242
+#: zapzap/features/browser/web/page_controller.py:258
 msgid "your microphone"
 msgstr "המיקרופון שלך"
 
-#: zapzap/features/browser/web/page_controller.py:243
+#: zapzap/features/browser/web/page_controller.py:259
 msgid "your camera"
 msgstr "המצלמה שלך"
 
-#: zapzap/features/browser/web/page_controller.py:244
+#: zapzap/features/browser/web/page_controller.py:260
 msgid "your camera and microphone"
 msgstr "המצלמה והמיקרופון שלך"
 
-#: zapzap/features/browser/web/page_controller.py:245
+#: zapzap/features/browser/web/page_controller.py:261
 msgid "your location"
 msgstr "המיקום שלך"
 
-#: zapzap/features/browser/web/page_controller.py:246
+#: zapzap/features/browser/web/page_controller.py:262
 msgid "your screen contents"
 msgstr "תוכן המסך שלך"
 
-#: zapzap/features/browser/web/page_controller.py:247
+#: zapzap/features/browser/web/page_controller.py:263
 msgid "your screen contents and audio"
 msgstr "תוכן המסך והשמע שלך"
 
-#: zapzap/features/browser/web/page_controller.py:248
+#: zapzap/features/browser/web/page_controller.py:264
 msgid "mouse lock"
 msgstr "נעילת עכבר"
 
-#: zapzap/features/browser/web/page_controller.py:250
+#: zapzap/features/browser/web/page_controller.py:266
 msgid "a system feature"
 msgstr "תכונת מערכת"
 
-#: zapzap/features/browser/web/page_controller.py:254
+#: zapzap/features/browser/web/page_controller.py:270
 msgid "Permission request"
 msgstr "בקשת רשות"
 
-#: zapzap/features/browser/web/page_controller.py:255
+#: zapzap/features/browser/web/page_controller.py:271
 #, python-brace-format
 msgid ""
 "WhatsApp Web is requesting access to {}.\n"
@@ -3138,57 +3144,57 @@ msgstr ""
 "\n"
 "לְהַתִיר?"
 
-#: zapzap/features/browser/web/web_view.py:313
+#: zapzap/features/browser/web/web_view.py:365
 msgid "Undo"
 msgstr "הסגה"
 
-#: zapzap/features/browser/web/web_view.py:313
+#: zapzap/features/browser/web/web_view.py:365
 msgid "Redo"
 msgstr "ביצוע מחדש"
 
-#: zapzap/features/browser/web/web_view.py:313
+#: zapzap/features/browser/web/web_view.py:365
 msgid "Cut"
 msgstr "גזירה"
 
-#: zapzap/features/browser/web/web_view.py:314
+#: zapzap/features/browser/web/web_view.py:366
 msgid "Paste"
 msgstr "הדבקה"
 
-#: zapzap/features/browser/web/web_view.py:314
+#: zapzap/features/browser/web/web_view.py:366
 msgid "Select all"
 msgstr "בחר הכל"
 
-#: zapzap/features/browser/web/web_view.py:315
+#: zapzap/features/browser/web/web_view.py:367
 msgid "Save image"
 msgstr "שמור תמונה"
 
-#: zapzap/features/browser/web/web_view.py:315
+#: zapzap/features/browser/web/web_view.py:367
 msgid "Copy image"
 msgstr "העתק תמונה"
 
-#: zapzap/features/browser/web/web_view.py:316
-#: zapzap/features/browser/web/web_view.py:346
+#: zapzap/features/browser/web/web_view.py:368
+#: zapzap/features/browser/web/web_view.py:398
 msgid "Copy link address"
 msgstr "העתקת כתובת קישור"
 
-#: zapzap/features/browser/web/web_view.py:364
+#: zapzap/features/browser/web/web_view.py:416
 msgid "Check Spelling"
 msgstr "בדיקת איות"
 
-#: zapzap/features/browser/web/web_view.py:370
+#: zapzap/features/browser/web/web_view.py:422
 msgid "Languages…"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:373
+#: zapzap/features/browser/web/web_view.py:425
 msgid "Choose the languages used by the spell checker."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:583
+#: zapzap/features/browser/web/web_view.py:640
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "חשבון"
 
-#: zapzap/features/browser/web/web_view.py:585
+#: zapzap/features/browser/web/web_view.py:642
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"
