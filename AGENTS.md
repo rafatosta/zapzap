@@ -1,7 +1,8 @@
 # Guia para agentes de manutenção
 
-Antes de alterar o ZapZap, leia `docs/README.md`, `docs/architecture.md`,
-`docs/maintenance.md` e a seção pertinente de `docs/testing.md`.
+Antes de alterar o ZapZap, leia `CHANGELOG.md`, `docs/README.md`,
+`docs/architecture.md`, `docs/maintenance.md` e a seção pertinente de
+`docs/testing.md`.
 
 - Preserve comportamento, chaves e valores persistidos; migre explicitamente
   quando uma mudança for inevitável.
@@ -11,6 +12,9 @@ Antes de alterar o ZapZap, leia `docs/README.md`, `docs/architecture.md`,
 - Mantenha IDs persistidos separados de rótulos traduzidos.
 - Audite páginas, backends e plataformas irmãs quando a mudança for transversal.
 - Não considere `offscreen` prova de foco, cursor, compositor ou aparência real.
+- Registre obrigatoriamente toda mudança ou adição na seção `Unreleased` de
+  `CHANGELOG.md`, inclusive documentação, testes, manutenção interna,
+  dependências, empacotamento e workflows.
 - Não conclua uma alteração estrutural sem atualizar a documentação técnica e
   seus inventários marcados no mesmo conjunto de mudanças.
 

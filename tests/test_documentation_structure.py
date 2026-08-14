@@ -17,6 +17,7 @@ MAINTENANCE_PATH = DOCS_ROOT / "maintenance.md"
 TESTING_PATH = DOCS_ROOT / "testing.md"
 DOCS_INDEX_PATH = DOCS_ROOT / "README.md"
 AGENT_GUIDE_PATH = REPOSITORY_ROOT / "AGENTS.md"
+CHANGELOG_PATH = REPOSITORY_ROOT / "CHANGELOG.md"
 
 
 def documented_inventory(path: Path, name: str) -> list[str]:
@@ -103,6 +104,7 @@ class DocumentationStructureTests(unittest.TestCase):
     def test_agent_guide_points_to_the_maintenance_contract(self):
         guide = AGENT_GUIDE_PATH.read_text(encoding="utf-8")
         for required_reference in (
+            "CHANGELOG.md",
             "docs/README.md",
             "docs/architecture.md",
             "docs/maintenance.md",
@@ -111,6 +113,10 @@ class DocumentationStructureTests(unittest.TestCase):
         ):
             with self.subTest(reference=required_reference):
                 self.assertIn(required_reference, guide)
+
+    def test_changelog_keeps_an_unreleased_section(self):
+        changelog = CHANGELOG_PATH.read_text(encoding="utf-8")
+        self.assertIn("## [Unreleased]", changelog)
 
 
 if __name__ == "__main__":

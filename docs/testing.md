@@ -85,7 +85,7 @@ documente o que ele protege.
 | `test_deeplink.py` | validação de URLs WhatsApp e resistência a injeção de script |
 | `test_desktop_application_dbus.py` | interface `org.freedesktop.Application` e ativação D-Bus |
 | `test_dictionary_options.py` | descoberta dinâmica, nomes amigáveis, ordenação, redimensionamento e fallback de dicionários personalizados |
-| `test_documentation_structure.py` | camadas de UI e sincronização entre árvore, inventários técnicos e guia para agentes |
+| `test_documentation_structure.py` | camadas de UI, contrato mínimo do changelog e sincronização entre árvore, inventários técnicos e guia para agentes |
 | `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
 | `test_external_link_lifecycle.py` | descarte da página WebEngine transitória após abrir links externos |
 | `test_gpu_environment.py` | detecção multi-GPU, conectores e seleção de render node |

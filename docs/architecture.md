@@ -395,6 +395,7 @@ arquitetura no nome final do artefato.
 
 | Caminho | Conteúdo |
 |---|---|
+| `CHANGELOG.md` | fonte obrigatória de todas as mudanças e adições do projeto |
 | `zapzap/` | código Python distribuído e catálogos `.mo` de runtime |
 | `tests/` | testes `unittest`, fixture Qt e verificações estáticas |
 | `docs/` | documentação técnica e contratos de manutenção |

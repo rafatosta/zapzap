@@ -31,6 +31,7 @@ Inventário de documentos técnicos:
 
 | Assunto | Fonte de verdade |
 |---|---|
+| Alterações e histórico de versões | `CHANGELOG.md` |
 | Pacotes distribuídos | `pyproject.toml`, seção `tool.setuptools.packages` |
 | Arquitetura e responsabilidades | `docs/architecture.md` |
 | Configurações persistidas | classes de domínio em `zapzap/core/config/settings/` |
@@ -40,7 +41,13 @@ Inventário de documentos técnicos:
 | Testes automatizados | `tests/test_*.py` |
 | Builds e releases | `.github/workflows/` e `.github/packaging/` |
 
-## Regra de atualização
+## Regras de atualização
+
+Toda mudança ou adição ao repositório deve atualizar obrigatoriamente a seção
+`Unreleased` de `CHANGELOG.md` no mesmo commit ou pull request. Essa exigência
+também se aplica a documentação, testes, manutenção interna, dependências,
+empacotamento e workflows; o histórico Git e as notas geradas pelo GitHub não
+substituem o registro curado.
 
 Uma alteração estrutural não está completa sem atualizar esta documentação.
 Isso inclui adicionar, remover, renomear ou mover pacotes, funcionalidades,

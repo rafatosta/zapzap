@@ -27,6 +27,8 @@ dados reais para testes destrutivos de conta, cache ou configurações.
    legadas.
 5. Considere Linux/Flatpak, Linux nativo, Windows e macOS quando a mudança tocar
    integração de sistema.
+6. Planeje a entrada correspondente em `CHANGELOG.md`; nenhuma mudança ou
+   adição está dispensada desse registro.
 
 ## Matriz de impacto
 
@@ -261,6 +263,36 @@ Repita para cada catálogo alterado e gere os `.mo` que o pacote distribui.
   mascarar um import anterior por monkeypatch posterior.
 - Consulte `docs/memory-benchmark.md` para cenários, schema e interpretação.
 
+## Registro obrigatório de mudanças
+
+`CHANGELOG.md`, na raiz do repositório, é a fonte de verdade do histórico do
+ZapZap. Toda mudança ou adição deve atualizar a seção `Unreleased` no mesmo
+commit ou pull request. A regra inclui funcionalidades, correções, mudanças de
+comportamento, documentação, testes, refatorações, dependências, ferramentas,
+empacotamento e workflows.
+
+Use as categorias `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed` e
+`Security`. Escreva entradas curtas que expliquem o efeito da mudança; para
+trabalho interno, descreva o impacto na manutenção, confiabilidade, desempenho
+ou processo de entrega. Não copie o `git log` e não considere commits, pull
+requests ou notas automáticas do GitHub substitutos do changelog.
+
+Ao preparar uma release:
+
+1. revise todas as entradas acumuladas desde a versão anterior;
+2. transforme `Unreleased` em uma seção com versão e data no formato
+   `YYYY-MM-DD`;
+3. crie uma nova seção `Unreleased` vazia;
+4. atualize os links de comparação no final do arquivo;
+5. use a seção da versão como base para as notas do GitHub Release.
+
+O bloco `<releases>` de
+`share/metainfo/com.rtosta.zapzap.appdata.xml` existe somente para a publicação
+no Flathub. Ele não é a fonte do histórico e não precisa ser atualizado a cada
+mudança. Na preparação de uma release do Flatpak, atualize-o manualmente com um
+resumo curto e voltado ao usuário, derivado das entradas de `CHANGELOG.md`
+acumuladas entre a versão anterior e a nova.
+
 ## Contrato de documentação estrutural
 
 Toda alteração estrutural deve atualizar os documentos no mesmo commit ou pull
@@ -334,10 +366,12 @@ Workflows mantidos:
 - `release-deploy.yml`
 <!-- structure-check:workflows:end -->
 
-Antes de uma release, revise a versão em `zapzap/__init__.py`, metadados
-AppStream em `share/metainfo/`, artefatos desktop/ícone, catálogos compilados e
-histórico real de mudanças. Valide XML/AppStream e o manifesto Flatpak com as
-ferramentas disponíveis; avisos do Flathub podem bloquear a publicação.
+Antes de uma release, revise a versão em `zapzap/__init__.py`, consolide a
+seção correspondente de `CHANGELOG.md` e verifique artefatos desktop/ícone e
+catálogos compilados. Quando houver publicação no Flathub, produza manualmente
+um resumo do changelog no bloco `<releases>` dos metadados AppStream em
+`share/metainfo/`; valide então XML/AppStream e o manifesto Flatpak com as
+ferramentas disponíveis, pois avisos do Flathub podem bloquear a publicação.
 
 No AppImage, o nome publicado deve ser definido antes da geração do arquivo
 `.zsync`. O script de geração fornece o basename final ao `quick-sharun` pela
@@ -371,5 +405,6 @@ publicação de cada release.
 - [ ] `python tests/check_unused_code.py --packages-only` passa;
 - [ ] `python -m compileall -q zapzap tests tools run.py` passa;
 - [ ] `git diff --check` passa;
+- [ ] toda mudança ou adição foi registrada em `CHANGELOG.md`;
 - [ ] documentação estrutural e inventários foram atualizados;
 - [ ] foi feita validação gráfica real quando `offscreen` não é suficiente.

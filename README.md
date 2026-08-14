@@ -75,6 +75,8 @@ Every contribution helps keep ZapZap free, maintained, and continuously improvin
 
 Architecture, maintenance procedures and automated-test instructions are
 available in the [technical documentation](docs/README.md).
+All project changes and additions are recorded in the
+[changelog](CHANGELOG.md).
 
 ## License
 ZapZap is licensed under the GNU General Public License v3.0 or later. See [LICENSE](LICENSE) for the full license text.
