@@ -31,6 +31,18 @@ releases and the AppStream metadata.
 
 - Added this changelog as the mandatory source of truth for all project changes
   and additions.
+- Added strict proxy isolation for explicit HTTP and SOCKS5 proxies, using
+  Chromium's native policy to block non-proxied WebRTC UDP after restart.
+
+### Changed
+
+- Applied the global proxy before any functional WebEngine profile is created
+  and kept proxy failures fail-closed without a direct-connection fallback.
+
+### Removed
+
+- Removed misleading per-account proxy settings and proxy changes during
+  account switching; all accounts now use the single global proxy.
 
 ## [7.4.1] - 2026-08-12
 

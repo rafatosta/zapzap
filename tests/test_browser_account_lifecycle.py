@@ -60,6 +60,10 @@ class FakePage:
         self.close = Mock()
         self.setParent = Mock()
         self.deleteLater = Mock()
+        self._page_controller = SimpleNamespace(show_toast=Mock())
+
+    def page(self):
+        return self._page_controller
 
 
 class FakeWebViewFactory:
@@ -105,6 +109,9 @@ class FakeStack:
     def currentWidget(self):
         return self.current
 
+    def setCurrentWidget(self, widget):
+        self.current = widget
+
 
 class BrowserAccountLifecycleTest(QtTestCase):
     class Harness:
@@ -122,6 +129,7 @@ class BrowserAccountLifecycleTest(QtTestCase):
         delete_page = BrowserController.delete_page
         close_pages = BrowserController.close_pages
         activate_account = BrowserController.activate_account
+        switch_to_page = BrowserController.switch_to_page
         update_account_notifications = (
             BrowserController.update_account_notifications
         )
@@ -141,6 +149,8 @@ class BrowserAccountLifecycleTest(QtTestCase):
         self.controller._shutting_down = False
         self.controller._last_active_webview = None
         self.controller._grid_thumbnails = Mock()
+        self.controller._capture_grid_thumbnail = Mock()
+        self.controller._reset_button_styles = Mock()
         self.controller.pages = FakeStack()
         self.controller.page_buttons_layout = Mock()
         self.controller.grid_view = Mock()
@@ -269,6 +279,25 @@ class BrowserAccountLifecycleTest(QtTestCase):
             runtime.page, runtime.button
         )
         self.assertFalse(self.controller.activate_account("missing"))
+
+    def test_switching_accounts_never_reapplies_the_global_proxy(self):
+        first = self._add(self._user("first", True))
+        second = self._add(self._user("second", True))
+
+        with patch(
+            "zapzap.core.environment.proxy_manager.ProxyManager.apply"
+        ) as apply_proxy:
+            self.assertTrue(
+                self.controller.switch_to_page(first.page, first.button)
+            )
+            self.assertTrue(
+                self.controller.switch_to_page(second.page, second.button)
+            )
+            self.assertTrue(
+                self.controller.switch_to_page(first.page, first.button)
+            )
+
+        apply_proxy.assert_not_called()
 
     def test_total_notifications_excludes_disabled_runtime(self):
         first = self._add(self._user("first", True))

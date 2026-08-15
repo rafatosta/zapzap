@@ -9,6 +9,7 @@ class PrivacySettings(BaseSettings):
     """Semantic access to privacy settings."""
 
     _WEBRTC_SHIELD = ("privacy/webrtc_shield", False)
+    _STRICT_PROXY = ("privacy/strict_proxy", False)
 
     @property
     def webrtc_shield_enabled(self) -> bool:
@@ -17,3 +18,12 @@ class PrivacySettings(BaseSettings):
     @webrtc_shield_enabled.setter
     def webrtc_shield_enabled(self, value: bool) -> None:
         self._set_bool(self._WEBRTC_SHIELD, value)
+
+    @property
+    def strict_proxy_enabled(self) -> bool:
+        """Whether explicit proxies should block non-proxied WebRTC UDP."""
+        return self._get_bool(self._STRICT_PROXY)
+
+    @strict_proxy_enabled.setter
+    def strict_proxy_enabled(self, value: bool) -> None:
+        self._set_bool(self._STRICT_PROXY, value)

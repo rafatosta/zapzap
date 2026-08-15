@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-14 12:42-0300\n"
+"POT-Creation-Date: 2026-08-14 20:24-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,27 +75,27 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: zapzap/core/environment/proxy_manager.py:31
+#: zapzap/core/environment/proxy_manager.py:32
 msgid "No proxying is used."
 msgstr ""
 
-#: zapzap/core/environment/proxy_manager.py:35
+#: zapzap/core/environment/proxy_manager.py:36
 msgid "Proxy is determined based on the system proxy."
 msgstr ""
 
-#: zapzap/core/environment/proxy_manager.py:39
+#: zapzap/core/environment/proxy_manager.py:40
 msgid "Socks5 proxying is used."
 msgstr ""
 
-#: zapzap/core/environment/proxy_manager.py:43
+#: zapzap/core/environment/proxy_manager.py:44
 msgid "HTTP transparent proxying is used."
 msgstr ""
 
-#: zapzap/core/environment/proxy_manager.py:47
+#: zapzap/core/environment/proxy_manager.py:48
 msgid "Proxying for HTTP requests only."
 msgstr ""
 
-#: zapzap/core/environment/proxy_manager.py:51
+#: zapzap/core/environment/proxy_manager.py:52
 msgid "Proxying for FTP requests only."
 msgstr ""
 
@@ -131,7 +131,6 @@ msgstr ""
 
 #: zapzap/features/accounts/card_user_controller.py:158
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:191
-#: zapzap/features/settings/pages/network_privacy/controller.py:58
 #: zapzap/ui/components/card_user.py:234 zapzap/ui/components/card_user.py:299
 #: zapzap/ui/components/card_user.py:469 zapzap/ui/components/card_user.py:684
 msgid "Unnamed account"
@@ -150,8 +149,7 @@ msgstr ""
 
 #: zapzap/features/accounts/card_user_controller.py:173
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:642
-#: zapzap/features/settings/pages/network_privacy/controller.py:306
-#: zapzap/features/settings/pages/network_privacy/controller.py:354
+#: zapzap/features/settings/pages/network_privacy/controller.py:282
 #: zapzap/features/downloads/ui/download_dialog.py:120
 #: zapzap/ui/components/edit_account_dialog.py:456
 #: zapzap/ui/components/send_message_to_number_dialog.py:262
@@ -817,7 +815,7 @@ msgstr ""
 #: zapzap/features/settings/pages/debugging/controller.py:87
 #: zapzap/features/settings/pages/debugging/view.py:223
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:366
+#: zapzap/features/browser/web/web_view.py:370
 msgid "Copy"
 msgstr ""
 
@@ -1251,12 +1249,10 @@ msgid "{count} of {limit} accounts configured."
 msgstr ""
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:52
-#: zapzap/features/settings/pages/network_privacy/controller.py:71
 msgid "All accounts"
 msgstr ""
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:53
-#: zapzap/features/settings/pages/network_privacy/controller.py:73
 msgid "This account"
 msgstr ""
 
@@ -1577,7 +1573,6 @@ msgid "Add custom CSS and JavaScript to WhatsApp Web."
 msgstr ""
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:203
-#: zapzap/features/settings/pages/network_privacy/view.py:167
 msgid "Scope"
 msgstr ""
 
@@ -1588,7 +1583,6 @@ msgid ""
 msgstr ""
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:208
-#: zapzap/features/settings/pages/network_privacy/view.py:172
 msgid "Apply to"
 msgstr ""
 
@@ -1676,7 +1670,6 @@ msgid "● There are unsaved changes."
 msgstr ""
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:417
-#: zapzap/features/settings/pages/network_privacy/controller.py:300
 #: zapzap/features/settings/pages/network_privacy/view.py:110
 #: zapzap/ui/components/edit_account_dialog.py:770
 msgid "Discard"
@@ -2099,7 +2092,7 @@ msgstr ""
 
 #: zapzap/features/settings/pages/language_downloads/view.py:66
 #: zapzap/features/settings/pages/language_downloads/view.py:99
-#: zapzap/features/settings/pages/network_privacy/controller.py:348
+#: zapzap/features/settings/pages/network_privacy/controller.py:276
 #: zapzap/features/settings/pages/performance_experimental/view.py:248
 msgid "Restore"
 msgstr ""
@@ -2124,95 +2117,77 @@ msgstr ""
 msgid "Note: changing dictionaries may require restarting the browser "
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:27
+#: zapzap/features/settings/pages/network_privacy/controller.py:29
 msgid "No proxy"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:28
-#: zapzap/features/settings/pages/network_privacy/controller.py:194
+#: zapzap/features/settings/pages/network_privacy/controller.py:30
+#: zapzap/features/settings/pages/network_privacy/controller.py:167
 msgid "System proxy"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:29
+#: zapzap/features/settings/pages/network_privacy/controller.py:31
 msgid "SOCKS5"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:30
+#: zapzap/features/settings/pages/network_privacy/controller.py:32
 msgid "HTTP"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:31
+#: zapzap/features/settings/pages/network_privacy/controller.py:33
 msgid "HTTP caching"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:32
+#: zapzap/features/settings/pages/network_privacy/controller.py:34
 msgid "FTP caching"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:65
-msgid "Unavailable"
+#: zapzap/features/settings/pages/network_privacy/controller.py:150
+msgid "Uses Chromium's native WebRTC policy after restarting ZapZap."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:81
-#, python-brace-format
-msgid "Current account: {}"
+#: zapzap/features/settings/pages/network_privacy/controller.py:155
+msgid "Available only while an HTTP or SOCKS5 proxy is enabled."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:192
+#: zapzap/features/settings/pages/network_privacy/controller.py:165
 msgid "No proxy configured"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:204
+#: zapzap/features/settings/pages/network_privacy/controller.py:177
 #, python-brace-format
 msgid "{proxy_type} · {endpoint}"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:210
+#: zapzap/features/settings/pages/network_privacy/controller.py:183
 #, python-brace-format
 msgid "{status} · disabled"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:228
+#: zapzap/features/settings/pages/network_privacy/controller.py:201
 msgid "Unable to apply the proxy settings. The previous proxy remains active."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:244
+#: zapzap/features/settings/pages/network_privacy/controller.py:217
 msgid "Enter a proxy server."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:252
+#: zapzap/features/settings/pages/network_privacy/controller.py:225
 msgid "Enter a port between 1 and 65535."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:289
-msgid "Unapplied changes"
-msgstr ""
-
-#: zapzap/features/settings/pages/network_privacy/controller.py:290
-msgid "Apply changes before changing scope?"
-msgstr ""
-
-#: zapzap/features/settings/pages/network_privacy/controller.py:291
-msgid "You can apply or discard the changes made to this scope."
-msgstr ""
-
-#: zapzap/features/settings/pages/network_privacy/controller.py:295
-#: zapzap/features/settings/pages/network_privacy/view.py:111
-msgid "Apply changes"
-msgstr ""
-
-#: zapzap/features/settings/pages/network_privacy/controller.py:339
+#: zapzap/features/settings/pages/network_privacy/controller.py:264
 msgid "Restore proxy settings?"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:341
+#: zapzap/features/settings/pages/network_privacy/controller.py:266
 msgid ""
-"The proxy settings for this scope will be removed and the default values "
-"will be restored."
+"The global proxy settings will be removed and the default values will be "
+"restored."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:344
-msgid "WebRTC protection will not be changed."
+#: zapzap/features/settings/pages/network_privacy/controller.py:270
+msgid "Strict proxy isolation and WebRTC protection will not be changed."
 msgstr ""
 
 #: zapzap/features/settings/pages/network_privacy/view.py:36
@@ -2244,97 +2219,106 @@ msgstr ""
 msgid "There are unapplied network changes."
 msgstr ""
 
+#: zapzap/features/settings/pages/network_privacy/view.py:111
+msgid "Apply changes"
+msgstr ""
+
 #: zapzap/features/settings/pages/network_privacy/view.py:150
 msgid "Configure proxy, privacy protection, and network options."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:168
-msgid "Choose where these settings will be applied."
-msgstr ""
-
-#: zapzap/features/settings/pages/network_privacy/view.py:173
-msgid "Settings for this account override the all-accounts default."
-msgstr ""
-
-#: zapzap/features/settings/pages/network_privacy/view.py:188
+#: zapzap/features/settings/pages/network_privacy/view.py:166
 msgid "Proxy"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:189
-msgid "Route WhatsApp Web traffic through a proxy server."
+#: zapzap/features/settings/pages/network_privacy/view.py:168
+msgid ""
+"Route WhatsApp Web traffic through a proxy server. Existing connections may "
+"require reloading."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:193
+#: zapzap/features/settings/pages/network_privacy/view.py:174
 msgid "Use proxy"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:194
+#: zapzap/features/settings/pages/network_privacy/view.py:175
 msgid "Route traffic through the proxy configured below."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:197
+#: zapzap/features/settings/pages/network_privacy/view.py:178
 msgid "Type"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:198
+#: zapzap/features/settings/pages/network_privacy/view.py:179
 msgid "Select the proxy mode."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:202
+#: zapzap/features/settings/pages/network_privacy/view.py:183
 msgid "Server"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:203
+#: zapzap/features/settings/pages/network_privacy/view.py:184
 msgid "Proxy host name or IP address."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:205
+#: zapzap/features/settings/pages/network_privacy/view.py:186
 msgid "Port"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:205
+#: zapzap/features/settings/pages/network_privacy/view.py:186
 msgid "Proxy port."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:222
+#: zapzap/features/settings/pages/network_privacy/view.py:191
+msgid "Strict proxy isolation"
+msgstr ""
+
+#: zapzap/features/settings/pages/network_privacy/view.py:193
+msgid ""
+"Prevent direct network connections when an explicit proxy is configured."
+msgstr ""
+
+#: zapzap/features/settings/pages/network_privacy/view.py:213
 msgid "Restore proxy…"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:223
-msgid "Remove proxy settings only from the selected scope."
+#: zapzap/features/settings/pages/network_privacy/view.py:214
+msgid "Remove the global proxy settings and restore defaults."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:224
+#: zapzap/features/settings/pages/network_privacy/view.py:215
 msgid "Restore…"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:243
+#: zapzap/features/settings/pages/network_privacy/view.py:236
 msgid "proxy.example.com"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:245
+#: zapzap/features/settings/pages/network_privacy/view.py:238
 msgid "8080"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:255
+#: zapzap/features/settings/pages/network_privacy/view.py:249
 #: zapzap/features/settings/pages/notifications/view.py:113
 msgid "Privacy"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:256
+#: zapzap/features/settings/pages/network_privacy/view.py:250
 msgid "Reduce the exposure of network information."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:260
+#: zapzap/features/settings/pages/network_privacy/view.py:254
 msgid "WebRTC protection"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:261
-msgid "Reduces IP address exposure through WebRTC."
+#: zapzap/features/settings/pages/network_privacy/view.py:256
+msgid ""
+"Blocks WebRTC APIs in page scripts. This is independent from strict proxy "
+"isolation."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:264
-msgid "Global setting"
+#: zapzap/features/settings/pages/network_privacy/view.py:261
+msgid "Legacy script-based protection"
 msgstr ""
 
 #: zapzap/features/settings/pages/notifications/view.py:20
@@ -2956,29 +2940,29 @@ msgid "Copy command"
 msgstr ""
 
 #: zapzap/features/browser/shell/browser_controller.py:543
-#: zapzap/features/browser/shell/browser_controller.py:627
+#: zapzap/features/browser/shell/browser_controller.py:624
 #, python-brace-format
 msgid "Account {}"
 msgstr ""
 
-#: zapzap/features/browser/shell/browser_controller.py:640
+#: zapzap/features/browser/shell/browser_controller.py:637
 msgid "Account disabled"
 msgstr ""
 
-#: zapzap/features/browser/shell/browser_controller.py:641
+#: zapzap/features/browser/shell/browser_controller.py:638
 msgid "This account is disabled."
 msgstr ""
 
-#: zapzap/features/browser/shell/browser_controller.py:643
+#: zapzap/features/browser/shell/browser_controller.py:640
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 
-#: zapzap/features/browser/shell/browser_controller.py:648
+#: zapzap/features/browser/shell/browser_controller.py:645
 msgid "Activate"
 msgstr ""
 
-#: zapzap/features/browser/shell/browser_controller.py:649
+#: zapzap/features/browser/shell/browser_controller.py:646
 msgid "Not now"
 msgstr ""
 
@@ -3026,57 +3010,57 @@ msgid ""
 "Allow?"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:365
+#: zapzap/features/browser/web/web_view.py:369
 msgid "Undo"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:365
+#: zapzap/features/browser/web/web_view.py:369
 msgid "Redo"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:365
+#: zapzap/features/browser/web/web_view.py:369
 msgid "Cut"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:366
+#: zapzap/features/browser/web/web_view.py:370
 msgid "Paste"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:366
+#: zapzap/features/browser/web/web_view.py:370
 msgid "Select all"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:367
+#: zapzap/features/browser/web/web_view.py:371
 msgid "Save image"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:367
+#: zapzap/features/browser/web/web_view.py:371
 msgid "Copy image"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:368
-#: zapzap/features/browser/web/web_view.py:398
+#: zapzap/features/browser/web/web_view.py:372
+#: zapzap/features/browser/web/web_view.py:402
 msgid "Copy link address"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:416
+#: zapzap/features/browser/web/web_view.py:420
 msgid "Check Spelling"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:422
+#: zapzap/features/browser/web/web_view.py:426
 msgid "Languages…"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:425
+#: zapzap/features/browser/web/web_view.py:429
 msgid "Choose the languages used by the spell checker."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:640
+#: zapzap/features/browser/web/web_view.py:644
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:642
+#: zapzap/features/browser/web/web_view.py:646
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr ""

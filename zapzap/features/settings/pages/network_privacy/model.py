@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from zapzap.features.accounts.domain.user import User
 from zapzap.core.environment.proxy_manager import ProxyApplyResult, ProxyManager
 from zapzap.core.config.settings.privacy import PrivacySettings
 from zapzap.core.config.settings_manager import SettingsManager
@@ -13,20 +12,13 @@ class NetworkPrivacySettingsModel:
 
     This class hides SettingsManager keys from controllers and views.
     Controllers should access network settings through semantic methods such as
-    `load_proxy_settings`, `save_proxy_settings`, and `webrtc_shield_enabled`.
+    `load_proxy_settings`, `save_proxy_settings`, and privacy properties.
     """
 
     _GLOBAL_PROXY_PREFIX = "proxy/"
 
     def __init__(self) -> None:
         self._privacy_settings = PrivacySettings()
-
-    def list_scopes(self) -> list[tuple[str, int | None]]:
-        """Return available proxy scopes as `(label, user_id)` pairs."""
-        scopes: list[tuple[str, int | None]] = [("Global (Default)", None)]
-        for user in User.select():
-            scopes.append((user.name or f"Account {user.id}", user.id))
-        return scopes
 
     def proxy_types(self) -> list[str]:
         """Return available proxy type keys."""
@@ -36,15 +28,14 @@ class NetworkPrivacySettingsModel:
         """Return a human-readable description for a proxy type."""
         return ProxyManager.get_proxy_description(proxy_type)
 
-    def _proxy_prefix(self, user_id: int | None = None) -> str:
-        return f"{user_id}/proxy/" if user_id else self._GLOBAL_PROXY_PREFIX
-
-    def load_proxy_settings(self, user_id: int | None = None) -> dict[str, str | bool]:
-        """Load proxy settings for a global or per-account scope."""
-        prefix = self._proxy_prefix(user_id)
+    def load_proxy_settings(self) -> dict[str, str | bool]:
+        """Load the sole application-wide proxy configuration."""
+        prefix = self._GLOBAL_PROXY_PREFIX
         return {
             "enabled": bool(SettingsManager.get(f"{prefix}proxyEnable", False)),
-            "proxy_type": str(SettingsManager.get(f"{prefix}proxyType", "NoProxy")),
+            "proxy_type": str(
+                SettingsManager.get(f"{prefix}proxyType", "NoProxy")
+            ),
             "host": str(SettingsManager.get(f"{prefix}hostName", "")),
             "port": str(SettingsManager.get(f"{prefix}port", "")),
             "user": str(SettingsManager.get(f"{prefix}user", "")),
@@ -53,7 +44,6 @@ class NetworkPrivacySettingsModel:
 
     def save_proxy_settings(
         self,
-        user_id: int | None,
         *,
         enabled: bool,
         proxy_type: str,
@@ -62,8 +52,8 @@ class NetworkPrivacySettingsModel:
         user: str,
         password: str,
     ) -> None:
-        """Persist proxy settings for a global or per-account scope."""
-        prefix = self._proxy_prefix(user_id)
+        """Persist the sole application-wide proxy configuration."""
+        prefix = self._GLOBAL_PROXY_PREFIX
         SettingsManager.set(f"{prefix}proxyEnable", bool(enabled))
         SettingsManager.set(f"{prefix}proxyType", str(proxy_type))
         SettingsManager.set(f"{prefix}hostName", str(host))
@@ -71,10 +61,9 @@ class NetworkPrivacySettingsModel:
         SettingsManager.set(f"{prefix}user", str(user))
         SettingsManager.set(f"{prefix}password", str(password))
 
-    def restore_proxy_settings(self, user_id: int | None = None) -> None:
-        """Reset proxy settings for a global or per-account scope."""
+    def restore_proxy_settings(self) -> None:
+        """Reset only the global proxy configuration."""
         self.save_proxy_settings(
-            user_id,
             enabled=False,
             proxy_type="NoProxy",
             host="",
@@ -91,6 +80,15 @@ class NetworkPrivacySettingsModel:
     @webrtc_shield_enabled.setter
     def webrtc_shield_enabled(self, value: bool) -> None:
         self._privacy_settings.webrtc_shield_enabled = value
+
+    @property
+    def strict_proxy_enabled(self) -> bool:
+        """Whether strict proxy isolation was requested globally."""
+        return self._privacy_settings.strict_proxy_enabled
+
+    @strict_proxy_enabled.setter
+    def strict_proxy_enabled(self, value: bool) -> None:
+        self._privacy_settings.strict_proxy_enabled = value
 
     def apply_proxy(self) -> ProxyApplyResult:
         """Apply the currently persisted proxy configuration."""

@@ -85,6 +85,10 @@ def main():
 
     SetupManager.apply_qt_scale_factor_rounding_policy()
 
+    # QNetworkProxy is application-wide. Apply the sole global configuration
+    # before any controller can construct a functional WebEngine profile.
+    ProxyManager.apply()
+
     def handle_instance_message(result):
         if result == app.RESTART_MESSAGE:
             app.restartApplication()
@@ -115,8 +119,6 @@ def main():
     if is_flatpak():
         desktop_application_dbus = DesktopApplicationDBus(app)
         desktop_application_dbus.start()
-
-    ProxyManager.apply()
 
     # Compatibilidade com comportamento legado de primeiro acesso
     if SettingsManager.get("website/open_page", True):

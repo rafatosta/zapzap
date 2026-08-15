@@ -40,10 +40,11 @@ O caminho principal está em `zapzap/app/application.py`:
    `QApplication`;
 3. instala idioma e tratamento de falhas;
 4. cria `SingleApplication`, impedindo duas instâncias concorrentes;
-5. inicia tema e constrói a janela principal;
-6. no Flatpak, exporta `org.freedesktop.Application` por D-Bus;
-7. aplica proxy, decide visibilidade inicial e mostra o onboarding se preciso;
-8. no encerramento, remove notificações, para D-Bus e tema e libera páginas
+5. aplica o proxy global antes de qualquer perfil WebEngine funcional;
+6. inicia tema e constrói a janela principal;
+7. no Flatpak, exporta `org.freedesktop.Application` por D-Bus;
+8. decide visibilidade inicial e mostra o onboarding se preciso;
+9. no encerramento, remove notificações, para D-Bus e tema e libera páginas
    WebEngine explicitamente.
 
 Em sistemas POSIX, `app.unix_signal_bridge` converte `SIGTERM` em uma
@@ -147,6 +148,16 @@ próxima reativação.
 WhatsApp. Scripts mantidos em `features/browser/web/scripts/` são ativos em
 tempo de execução e devem ser considerados pelo teste de código estático mesmo
 quando chamam identificadores Python indiretamente.
+
+O proxy é único e global ao processo. Somente as chaves `proxy/*` alimentam
+`ProxyManager`; trocar, ativar ou exibir uma conta não consulta nem reaplica
+proxy. As chaves históricas `<user_id>/proxy/*` não são migradas nem lidas, para
+evitar escolher silenciosamente uma configuração de conta como padrão global.
+No bootstrap, `privacy/strict_proxy` acrescenta a política nativa Chromium
+`disable_non_proxied_udp` apenas quando um proxy HTTP ou SOCKS5 explícito está
+habilitado. Proxy do sistema, `NoProxy` e proxies de cache não recebem essa
+garantia. O `webrtc_shield.js` continua como ofuscação legada de candidatos
+visíveis à página e não constitui a fronteira de isolamento de rede.
 
 A ação de conversa por número é coordenada por `MainWindowController`, que
 mantém no máximo um `SendMessageToNumberDialog` modal por vez. O diálogo

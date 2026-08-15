@@ -620,9 +620,6 @@ class BrowserController(BrowserView):
         self.pages.setCurrentWidget(page)
         self._last_active_webview = page
 
-        # Apply proxy for the active account
-        from zapzap.core.environment.proxy_manager import ProxyManager
-        ProxyManager.apply(user_id=page.user.id)
         page.page().show_toast(page.user.name if page.user.name !=
                                "" else _("Account {}").format(page.page_index))
         button.selected()

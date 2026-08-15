@@ -93,20 +93,20 @@ documente o que ele protege.
 | `test_http_cache_size.py` | cache em MiB, tipos de cache, política de cookies, memória JavaScript, autocura persistida e fallbacks de perfil sem WebEngine real |
 | `test_initial_setup_ui.py` | onboarding, som, fechamento, permissões, dicionários e persistência |
 | `test_memory_benchmark.py` | procfs/USS, schema JSON/CSV/Markdown, isolamento WebEngine, factory stub, cenários e comparação relativa |
-| `test_network_privacy_settings_ui.py` | proxy, credenciais, aplicar/descartar, feedback de falha do Qt, restauração e WebRTC |
+| `test_network_privacy_settings_ui.py` | proxy exclusivamente global, strict proxy, credenciais, aplicar/descartar, feedback de falha do Qt, restauração e WebRTC |
 | `test_notification_sound_setting.py` | mapeamento de som e tipos dos hints Portal/Freedesktop |
 | `test_notification_window_activation.py` | conexão QtDBus, tokens Portal/Wayland, startup X11, foco e limpeza |
 | `test_notifications_settings_ui.py` | rótulos, dependências, privacidade, som e lembrete de apoio |
 | `test_performance_experimental_settings_ui.py` | seção e reinício da decodificação por software |
 | `test_permissions_settings_ui.py` | grupos e ações globais/individuais de permissões |
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
-| `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, proxy, zoom e download inválidos com autocura ou fallback restrito |
+| `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
 | `test_segmented_control.py` | seleção exclusiva, sinais, mouse, teclado, acessibilidade, tamanhos, raios e temas |
 | `test_send_message_to_number.py` | normalização/URL, lista de países, validação, acessibilidade e teclado do diálogo de conversa por número |
 | `test_settings_card.py` | divisores e grupos do card compartilhado em `ui.components` |
 | `test_settings_lazy_loading.py` | subprocessos de importação, registro e instanciação lazy, singleton por painel, diagnóstico, empacotamento, APIs públicas e fechamento de Configurações |
 | `test_settings_radio_group.py` | divisores do grupo de rádio em `ui.components` |
-| `test_software_video_decoding.py` | flag Chromium, persistência, padrão e ordem do bootstrap |
+| `test_software_video_decoding.py` | flags Chromium de vídeo/strict proxy, persistência, compatibilidade e ordem do bootstrap |
 | `test_spellcheck_language_picker.py` | migração, seleção múltipla transacional, pesquisa, limite, recentes, menu e perfis WebEngine |
 | `test_system_startup_settings_ui.py` | semântica de fechamento, diálogo nativo e acessibilidade |
 | `test_unix_signal_shutdown.py` | ponte POSIX, restauração do estado global e `SIGTERM` real chegando a `aboutToQuit` em subprocesso isolado |
@@ -171,6 +171,37 @@ documente o que ele protege.
 6. Em backends de sistema, use fakes nas fronteiras D-Bus/Qt e mantenha pelo
    menos um roteiro manual em sessão real quando necessário.
 7. Atualize este inventário no mesmo commit.
+
+## Validação manual do proxy estrito
+
+Use um perfil XDG descartável e nunca credenciais reais. Estes cenários
+confirmam comportamento observável, não uma alegação de ausência absoluta de
+vazamentos.
+
+### Proxy indisponível no startup
+
+1. Configure um proxy HTTP ou SOCKS5 em `127.0.0.1` e uma porta sem serviço.
+2. Ative **Strict proxy isolation**, aplique e reinicie o ZapZap.
+3. Confirme nos diagnósticos que
+   `--force-webrtc-ip-handling-policy=disable_non_proxied_udp` está presente.
+4. Confirme que o WhatsApp Web falha ao conectar e que as chaves `proxy/*` não
+   mudam para `NoProxy`.
+
+### Proxy interrompido durante a sessão
+
+1. Inicie um proxy local de teste e abra o ZapZap por ele.
+2. Interrompa o proxy e provoque uma nova conexão ou recarregamento.
+3. Confirme a falha de conexão e a ausência de troca automática para uma
+   conexão direta.
+
+### WebRTC
+
+Com proxy HTTP/SOCKS5 explícito e modo estrito ativos após reinício, confirme a
+flag nativa nos diagnósticos. Se houver captura de tráfego disponível, verifique
+que o Chromium não cria UDP WebRTC não proxyficado. Desative separadamente o
+WebRTC Shield legado para confirmar que a política nativa não depende do script
+`webrtc_shield.js`. Repita com proxy do sistema e confirme que a UI não promete
+isolamento estrito e que a flag não é aplicada.
 
 ## Verificações estáticas
 

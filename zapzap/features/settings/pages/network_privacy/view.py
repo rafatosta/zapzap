@@ -158,35 +158,16 @@ class NetworkPrivacySettingsView(SettingsPage):
         self._apply_accessibility()
 
     def _setup_ui(self):
-        self._setup_scope_section()
         self._setup_proxy_section()
         self._setup_privacy_section()
-
-    def _setup_scope_section(self):
-        section = SettingsSection(
-            _("Scope"),
-            _("Choose where these settings will be applied."),
-        )
-        card = SettingsCard()
-        self.account_selector_row = SettingsSelectRow(
-            _("Apply to"),
-            _("Settings for this account override the all-accounts default."),
-            [""],
-        )
-        self.accountSelector = self.account_selector_row.combo
-        self.current_account_label = Label("", "row_description")
-        self.current_account_label.setObjectName("SettingsScopeMetadata")
-        self.current_account_label.setWordWrap(True)
-        self.current_account_label.hide()
-        card.add_row(self.account_selector_row)
-        card.add_subrow(self.current_account_label)
-        section.add_card(card)
-        self.add_section(section)
 
     def _setup_proxy_section(self):
         section = SettingsSection(
             _("Proxy"),
-            _("Route WhatsApp Web traffic through a proxy server."),
+            _(
+                "Route WhatsApp Web traffic through a proxy server. Existing "
+                "connections may require reloading."
+            ),
         )
         card = SettingsCard()
         self.proxy_enable_row = SettingsSwitchRow(
@@ -206,6 +187,16 @@ class NetworkPrivacySettingsView(SettingsPage):
         self.authentication = AuthenticationExpander()
         self.user_row = self.authentication.user_row
         self.password_row = self.authentication.password_row
+        self.strict_proxy_row = SettingsSwitchRow(
+            _("Strict proxy isolation"),
+            _(
+                "Prevent direct network connections when an explicit proxy "
+                "is configured."
+            ),
+        )
+        self.strict_proxy_status = Label("", "row_description")
+        self.strict_proxy_status.setObjectName("StrictProxyStatus")
+        self.strict_proxy_status.setWordWrap(True)
 
         self.proxy_status = Label("", "row_description")
         self.proxy_status.setObjectName("ProxyStatus")
@@ -220,7 +211,7 @@ class NetworkPrivacySettingsView(SettingsPage):
 
         self.restore_row = SettingsActionRow(
             _("Restore proxy…"),
-            _("Remove proxy settings only from the selected scope."),
+            _("Remove the global proxy settings and restore defaults."),
             _("Restore…"),
         )
 
@@ -231,6 +222,8 @@ class NetworkPrivacySettingsView(SettingsPage):
                 self.host_row,
                 self.port_row,
                 self.authentication,
+                self.strict_proxy_row,
+                self.strict_proxy_status,
                 self.validation_message,
                 self.proxy_status,
             ),
@@ -245,6 +238,7 @@ class NetworkPrivacySettingsView(SettingsPage):
         self.setPort.setPlaceholderText(_("8080"))
         self.setUser = self.user_row.line_edit
         self.setPassword = self.password_row.line_edit
+        self.strictProxyCheckBox = self.strict_proxy_row.checkbox
         self.btn_restore = self.restore_row.button
 
         section.add_card(card)
@@ -258,10 +252,13 @@ class NetworkPrivacySettingsView(SettingsPage):
         card = SettingsCard()
         self.webrtc_row = SettingsSwitchRow(
             _("WebRTC protection"),
-            _("Reduces IP address exposure through WebRTC."),
+            _(
+                "Blocks WebRTC APIs in page scripts. This is independent "
+                "from strict proxy isolation."
+            ),
         )
         self.webrtc_scope_label = Label(
-            _("Global setting"),
+            _("Legacy script-based protection"),
             "row_description",
         )
         self.webrtc_scope_label.setObjectName("SettingsScopeMetadata")
@@ -273,13 +270,13 @@ class NetworkPrivacySettingsView(SettingsPage):
 
     def _apply_accessibility(self):
         controls = (
-            (self.accountSelector, self.account_selector_row),
             (self.proxyCheckBox, self.proxy_enable_row),
             (self.proxyComboBox, self.proxy_type_row),
             (self.setHostName, self.host_row),
             (self.setPort, self.port_row),
             (self.setUser, self.user_row),
             (self.setPassword, self.password_row),
+            (self.strictProxyCheckBox, self.strict_proxy_row),
             (self.webrtcShieldCheckBox, self.webrtc_row),
         )
         for control, row in controls:

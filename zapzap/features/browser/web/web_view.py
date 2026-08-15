@@ -203,7 +203,11 @@ class WebView(QWebEngineView):
                 print(f"Error injecting ctrl_arrow_visual_navigation_fix: {e}")
 
     def _inject_webrtc_shield(self):
-        """Injeta script para prevenir vazamento de IP via WebRTC."""
+        """Inject the legacy page-level WebRTC candidate obfuscation shim.
+
+        Network isolation for explicit proxies is handled before WebEngine
+        starts through Chromium's native IP handling policy.
+        """
         if SettingsManager.get("privacy/webrtc_shield", False):
             try:
                 base_dir = os.path.dirname(__file__)

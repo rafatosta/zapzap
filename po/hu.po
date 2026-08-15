@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-14 12:42-0300\n"
+"POT-Creation-Date: 2026-08-14 20:24-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Hungarian\n"
@@ -85,27 +85,27 @@ msgstr "közösség"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: zapzap/core/environment/proxy_manager.py:31
+#: zapzap/core/environment/proxy_manager.py:32
 msgid "No proxying is used."
 msgstr "Proxyzás nincs használva."
 
-#: zapzap/core/environment/proxy_manager.py:35
+#: zapzap/core/environment/proxy_manager.py:36
 msgid "Proxy is determined based on the system proxy."
 msgstr "A proxy a rendszer proxyja alapján meghatározva."
 
-#: zapzap/core/environment/proxy_manager.py:39
+#: zapzap/core/environment/proxy_manager.py:40
 msgid "Socks5 proxying is used."
 msgstr "Soks5 proxyzás használva."
 
-#: zapzap/core/environment/proxy_manager.py:43
+#: zapzap/core/environment/proxy_manager.py:44
 msgid "HTTP transparent proxying is used."
 msgstr "Átlátszó HTTP proxyzás használva."
 
-#: zapzap/core/environment/proxy_manager.py:47
+#: zapzap/core/environment/proxy_manager.py:48
 msgid "Proxying for HTTP requests only."
 msgstr "Proxyzás csak a HTTP kéréseknek."
 
-#: zapzap/core/environment/proxy_manager.py:51
+#: zapzap/core/environment/proxy_manager.py:52
 msgid "Proxying for FTP requests only."
 msgstr "Proxyzás csak az FTP kéréseknek."
 
@@ -141,7 +141,6 @@ msgstr "A(z) „{name}” fiók el lesz távolítva a ZapZapból."
 
 #: zapzap/features/accounts/card_user_controller.py:158
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:191
-#: zapzap/features/settings/pages/network_privacy/controller.py:58
 #: zapzap/ui/components/card_user.py:234 zapzap/ui/components/card_user.py:299
 #: zapzap/ui/components/card_user.py:469 zapzap/ui/components/card_user.py:684
 msgid "Unnamed account"
@@ -162,8 +161,7 @@ msgstr "Eltávolítás"
 
 #: zapzap/features/accounts/card_user_controller.py:173
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:642
-#: zapzap/features/settings/pages/network_privacy/controller.py:306
-#: zapzap/features/settings/pages/network_privacy/controller.py:354
+#: zapzap/features/settings/pages/network_privacy/controller.py:282
 #: zapzap/features/downloads/ui/download_dialog.py:120
 #: zapzap/ui/components/edit_account_dialog.py:456
 #: zapzap/ui/components/send_message_to_number_dialog.py:262
@@ -870,7 +868,7 @@ msgstr "Válassza ki és másolja be ezt a parancsot a termináljába"
 #: zapzap/features/settings/pages/debugging/controller.py:87
 #: zapzap/features/settings/pages/debugging/view.py:223
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:366
+#: zapzap/features/browser/web/web_view.py:370
 msgid "Copy"
 msgstr "Másolás"
 
@@ -1321,12 +1319,10 @@ msgid "{count} of {limit} accounts configured."
 msgstr "{count}/{limit} fiók konfigurálva."
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:52
-#: zapzap/features/settings/pages/network_privacy/controller.py:71
 msgid "All accounts"
 msgstr "Minden fiók"
 
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:53
-#: zapzap/features/settings/pages/network_privacy/controller.py:73
 msgid "This account"
 msgstr "Ez a fiók"
 
@@ -1651,7 +1647,6 @@ msgstr ""
 "Adja hozzá az egyéni CSS és JavaScript elemet a következőhöz: WhatsApp Web."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:203
-#: zapzap/features/settings/pages/network_privacy/view.py:167
 msgid "Scope"
 msgstr "Hatókör"
 
@@ -1664,7 +1659,6 @@ msgstr ""
 "csak az aktuális fiókra."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:208
-#: zapzap/features/settings/pages/network_privacy/view.py:172
 msgid "Apply to"
 msgstr "Alkalmazni"
 
@@ -1758,7 +1752,6 @@ msgid "● There are unsaved changes."
 msgstr "● Vannak nem mentett módosítások."
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:417
-#: zapzap/features/settings/pages/network_privacy/controller.py:300
 #: zapzap/features/settings/pages/network_privacy/view.py:110
 #: zapzap/ui/components/edit_account_dialog.py:770
 msgid "Discard"
@@ -2203,7 +2196,7 @@ msgstr "Határozza meg"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:66
 #: zapzap/features/settings/pages/language_downloads/view.py:99
-#: zapzap/features/settings/pages/network_privacy/controller.py:348
+#: zapzap/features/settings/pages/network_privacy/controller.py:276
 #: zapzap/features/settings/pages/performance_experimental/view.py:248
 msgid "Restore"
 msgstr "Visszaállít"
@@ -2230,97 +2223,81 @@ msgstr ""
 "Megjegyzés: a szótárak megváltoztatásához szükség lehet a böngésző "
 "újraindítására"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:27
+#: zapzap/features/settings/pages/network_privacy/controller.py:29
 msgid "No proxy"
 msgstr "Nincs proxy"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:28
-#: zapzap/features/settings/pages/network_privacy/controller.py:194
+#: zapzap/features/settings/pages/network_privacy/controller.py:30
+#: zapzap/features/settings/pages/network_privacy/controller.py:167
 msgid "System proxy"
 msgstr "Rendszer proxy"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:29
+#: zapzap/features/settings/pages/network_privacy/controller.py:31
 msgid "SOCKS5"
 msgstr "SOCKS5"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:30
+#: zapzap/features/settings/pages/network_privacy/controller.py:32
 msgid "HTTP"
 msgstr "HTTP"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:31
+#: zapzap/features/settings/pages/network_privacy/controller.py:33
 msgid "HTTP caching"
 msgstr "HTTP gyorsítótár"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:32
+#: zapzap/features/settings/pages/network_privacy/controller.py:34
 msgid "FTP caching"
 msgstr "FTP gyorsítótár"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:65
-msgid "Unavailable"
-msgstr "Nem elérhető"
+#: zapzap/features/settings/pages/network_privacy/controller.py:150
+msgid "Uses Chromium's native WebRTC policy after restarting ZapZap."
+msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:81
-#, python-brace-format
-msgid "Current account: {}"
-msgstr "Jelenlegi fiók: {}"
+#: zapzap/features/settings/pages/network_privacy/controller.py:155
+msgid "Available only while an HTTP or SOCKS5 proxy is enabled."
+msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:192
+#: zapzap/features/settings/pages/network_privacy/controller.py:165
 msgid "No proxy configured"
 msgstr "Nincs beállítva proxy"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:204
+#: zapzap/features/settings/pages/network_privacy/controller.py:177
 #, python-brace-format
 msgid "{proxy_type} · {endpoint}"
 msgstr "{proxy_type} · {endpoint}"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:210
+#: zapzap/features/settings/pages/network_privacy/controller.py:183
 #, python-brace-format
 msgid "{status} · disabled"
 msgstr "{status} · letiltva"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:228
+#: zapzap/features/settings/pages/network_privacy/controller.py:201
 msgid "Unable to apply the proxy settings. The previous proxy remains active."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:244
+#: zapzap/features/settings/pages/network_privacy/controller.py:217
 msgid "Enter a proxy server."
 msgstr "Adjon meg egy proxyszervert."
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:252
+#: zapzap/features/settings/pages/network_privacy/controller.py:225
 msgid "Enter a port between 1 and 65535."
 msgstr "Adjon meg egy portot 1 és 65535 között."
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:289
-msgid "Unapplied changes"
-msgstr "Nem alkalmazott módosítások"
-
-#: zapzap/features/settings/pages/network_privacy/controller.py:290
-msgid "Apply changes before changing scope?"
-msgstr "Alkalmazza a módosításokat a hatókör módosítása előtt?"
-
-#: zapzap/features/settings/pages/network_privacy/controller.py:291
-msgid "You can apply or discard the changes made to this scope."
-msgstr "Alkalmazhatja vagy elvetheti a hatókörön végzett módosításokat."
-
-#: zapzap/features/settings/pages/network_privacy/controller.py:295
-#: zapzap/features/settings/pages/network_privacy/view.py:111
-msgid "Apply changes"
-msgstr "Módosítások alkalmazása"
-
-#: zapzap/features/settings/pages/network_privacy/controller.py:339
+#: zapzap/features/settings/pages/network_privacy/controller.py:264
 msgid "Restore proxy settings?"
 msgstr "Visszaállítja a proxybeállításokat?"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:341
+#: zapzap/features/settings/pages/network_privacy/controller.py:266
+#, fuzzy
 msgid ""
-"The proxy settings for this scope will be removed and the default values "
-"will be restored."
+"The global proxy settings will be removed and the default values will be "
+"restored."
 msgstr ""
 "A hatókör proxybeállításai el lesznek távolítva, és visszaállnak az "
 "alapértelmezett értékek."
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:344
-msgid "WebRTC protection will not be changed."
+#: zapzap/features/settings/pages/network_privacy/controller.py:270
+#, fuzzy
+msgid "Strict proxy isolation and WebRTC protection will not be changed."
 msgstr "A WebRTC védelem nem módosul."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:36
@@ -2352,101 +2329,110 @@ msgstr "Választható proxy jelszó."
 msgid "There are unapplied network changes."
 msgstr "Vannak nem alkalmazott hálózati változások."
 
+#: zapzap/features/settings/pages/network_privacy/view.py:111
+msgid "Apply changes"
+msgstr "Módosítások alkalmazása"
+
 #: zapzap/features/settings/pages/network_privacy/view.py:150
 msgid "Configure proxy, privacy protection, and network options."
 msgstr ""
 "Konfigurálja a proxyt, a magánélet védelmét és a hálózati beállításokat."
 
-#: zapzap/features/settings/pages/network_privacy/view.py:168
-msgid "Choose where these settings will be applied."
-msgstr "Válassza ki, hol kívánja alkalmazni ezeket a beállításokat."
-
-#: zapzap/features/settings/pages/network_privacy/view.py:173
-msgid "Settings for this account override the all-accounts default."
-msgstr ""
-"A fiók beállításai felülírják az összes fiókra vonatkozó alapértelmezett "
-"beállításokat."
-
-#: zapzap/features/settings/pages/network_privacy/view.py:188
+#: zapzap/features/settings/pages/network_privacy/view.py:166
 msgid "Proxy"
 msgstr "Proxy"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:189
-msgid "Route WhatsApp Web traffic through a proxy server."
+#: zapzap/features/settings/pages/network_privacy/view.py:168
+#, fuzzy
+msgid ""
+"Route WhatsApp Web traffic through a proxy server. Existing connections may "
+"require reloading."
 msgstr "A(z) WhatsApp Web forgalom irányítása proxyszerveren keresztül."
 
-#: zapzap/features/settings/pages/network_privacy/view.py:193
+#: zapzap/features/settings/pages/network_privacy/view.py:174
 msgid "Use proxy"
 msgstr "Használjon proxyt"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:194
+#: zapzap/features/settings/pages/network_privacy/view.py:175
 msgid "Route traffic through the proxy configured below."
 msgstr "A forgalom átirányítása az alább konfigurált proxyn keresztül."
 
-#: zapzap/features/settings/pages/network_privacy/view.py:197
+#: zapzap/features/settings/pages/network_privacy/view.py:178
 msgid "Type"
 msgstr "Típus"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:198
+#: zapzap/features/settings/pages/network_privacy/view.py:179
 msgid "Select the proxy mode."
 msgstr "Válassza ki a proxy módot."
 
-#: zapzap/features/settings/pages/network_privacy/view.py:202
+#: zapzap/features/settings/pages/network_privacy/view.py:183
 msgid "Server"
 msgstr "Szerver"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:203
+#: zapzap/features/settings/pages/network_privacy/view.py:184
 msgid "Proxy host name or IP address."
 msgstr "Proxy gazdagép neve vagy IP-címe."
 
-#: zapzap/features/settings/pages/network_privacy/view.py:205
+#: zapzap/features/settings/pages/network_privacy/view.py:186
 msgid "Port"
 msgstr "Port"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:205
+#: zapzap/features/settings/pages/network_privacy/view.py:186
 msgid "Proxy port."
 msgstr "Proxy port."
 
-#: zapzap/features/settings/pages/network_privacy/view.py:222
+#: zapzap/features/settings/pages/network_privacy/view.py:191
+msgid "Strict proxy isolation"
+msgstr ""
+
+#: zapzap/features/settings/pages/network_privacy/view.py:193
+msgid ""
+"Prevent direct network connections when an explicit proxy is configured."
+msgstr ""
+
+#: zapzap/features/settings/pages/network_privacy/view.py:213
 msgid "Restore proxy…"
 msgstr "Proxy visszaállítása…"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:223
-msgid "Remove proxy settings only from the selected scope."
+#: zapzap/features/settings/pages/network_privacy/view.py:214
+#, fuzzy
+msgid "Remove the global proxy settings and restore defaults."
 msgstr "Csak a kiválasztott hatókörből távolítsa el a proxybeállításokat."
 
-#: zapzap/features/settings/pages/network_privacy/view.py:224
+#: zapzap/features/settings/pages/network_privacy/view.py:215
 msgid "Restore…"
 msgstr "Visszaállítás…"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:243
+#: zapzap/features/settings/pages/network_privacy/view.py:236
 msgid "proxy.example.com"
 msgstr "proxy.example.com"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:245
+#: zapzap/features/settings/pages/network_privacy/view.py:238
 msgid "8080"
 msgstr "8080"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:255
+#: zapzap/features/settings/pages/network_privacy/view.py:249
 #: zapzap/features/settings/pages/notifications/view.py:113
 msgid "Privacy"
 msgstr "Adatvédelem"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:256
+#: zapzap/features/settings/pages/network_privacy/view.py:250
 msgid "Reduce the exposure of network information."
 msgstr "Csökkentse a hálózati információk kitettségét."
 
-#: zapzap/features/settings/pages/network_privacy/view.py:260
+#: zapzap/features/settings/pages/network_privacy/view.py:254
 msgid "WebRTC protection"
 msgstr "WebRTC védelem"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:261
-msgid "Reduces IP address exposure through WebRTC."
-msgstr "Csökkenti az IP-címek kitettségét a WebRTC révén."
+#: zapzap/features/settings/pages/network_privacy/view.py:256
+msgid ""
+"Blocks WebRTC APIs in page scripts. This is independent from strict proxy "
+"isolation."
+msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:264
-msgid "Global setting"
-msgstr "Globális beállítás"
+#: zapzap/features/settings/pages/network_privacy/view.py:261
+msgid "Legacy script-based protection"
+msgstr ""
 
 #: zapzap/features/settings/pages/notifications/view.py:20
 msgid "Configure notifications, privacy, and ZapZap messages."
@@ -3172,30 +3158,30 @@ msgid "Copy command"
 msgstr "Másolás parancs"
 
 #: zapzap/features/browser/shell/browser_controller.py:543
-#: zapzap/features/browser/shell/browser_controller.py:627
+#: zapzap/features/browser/shell/browser_controller.py:624
 #, python-brace-format
 msgid "Account {}"
 msgstr "Fiók: {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:640
+#: zapzap/features/browser/shell/browser_controller.py:637
 msgid "Account disabled"
 msgstr "Fiók letiltva"
 
-#: zapzap/features/browser/shell/browser_controller.py:641
+#: zapzap/features/browser/shell/browser_controller.py:638
 msgid "This account is disabled."
 msgstr "Ez a fiók le van tiltva."
 
-#: zapzap/features/browser/shell/browser_controller.py:643
+#: zapzap/features/browser/shell/browser_controller.py:640
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Most újraaktiválhatja, vagy a jobb gombbal kattintva kezelheti a fiókot."
 
-#: zapzap/features/browser/shell/browser_controller.py:648
+#: zapzap/features/browser/shell/browser_controller.py:645
 msgid "Activate"
 msgstr "Aktiválja"
 
-#: zapzap/features/browser/shell/browser_controller.py:649
+#: zapzap/features/browser/shell/browser_controller.py:646
 msgid "Not now"
 msgstr "Most nem"
 
@@ -3246,57 +3232,57 @@ msgstr ""
 "\n"
 "Engedélyezi?"
 
-#: zapzap/features/browser/web/web_view.py:365
+#: zapzap/features/browser/web/web_view.py:369
 msgid "Undo"
 msgstr "Visszavonás"
 
-#: zapzap/features/browser/web/web_view.py:365
+#: zapzap/features/browser/web/web_view.py:369
 msgid "Redo"
 msgstr "Újra végrahajtás"
 
-#: zapzap/features/browser/web/web_view.py:365
+#: zapzap/features/browser/web/web_view.py:369
 msgid "Cut"
 msgstr "Kivágás"
 
-#: zapzap/features/browser/web/web_view.py:366
+#: zapzap/features/browser/web/web_view.py:370
 msgid "Paste"
 msgstr "Beillesztás"
 
-#: zapzap/features/browser/web/web_view.py:366
+#: zapzap/features/browser/web/web_view.py:370
 msgid "Select all"
 msgstr "Válassza ki az összeset"
 
-#: zapzap/features/browser/web/web_view.py:367
+#: zapzap/features/browser/web/web_view.py:371
 msgid "Save image"
 msgstr "Kép mentése"
 
-#: zapzap/features/browser/web/web_view.py:367
+#: zapzap/features/browser/web/web_view.py:371
 msgid "Copy image"
 msgstr "Kép másolása"
 
-#: zapzap/features/browser/web/web_view.py:368
-#: zapzap/features/browser/web/web_view.py:398
+#: zapzap/features/browser/web/web_view.py:372
+#: zapzap/features/browser/web/web_view.py:402
 msgid "Copy link address"
 msgstr "Link címénel másolása"
 
-#: zapzap/features/browser/web/web_view.py:416
+#: zapzap/features/browser/web/web_view.py:420
 msgid "Check Spelling"
 msgstr "Helyesírás ellenörzése"
 
-#: zapzap/features/browser/web/web_view.py:422
+#: zapzap/features/browser/web/web_view.py:426
 msgid "Languages…"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:425
+#: zapzap/features/browser/web/web_view.py:429
 msgid "Choose the languages used by the spell checker."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:640
+#: zapzap/features/browser/web/web_view.py:644
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "fiók"
 
-#: zapzap/features/browser/web/web_view.py:642
+#: zapzap/features/browser/web/web_view.py:646
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"
@@ -3867,6 +3853,36 @@ msgstr ""
 #, python-brace-format
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
+
+#~ msgid "Unavailable"
+#~ msgstr "Nem elérhető"
+
+#, python-brace-format
+#~ msgid "Current account: {}"
+#~ msgstr "Jelenlegi fiók: {}"
+
+#~ msgid "Unapplied changes"
+#~ msgstr "Nem alkalmazott módosítások"
+
+#~ msgid "Apply changes before changing scope?"
+#~ msgstr "Alkalmazza a módosításokat a hatókör módosítása előtt?"
+
+#~ msgid "You can apply or discard the changes made to this scope."
+#~ msgstr "Alkalmazhatja vagy elvetheti a hatókörön végzett módosításokat."
+
+#~ msgid "Choose where these settings will be applied."
+#~ msgstr "Válassza ki, hol kívánja alkalmazni ezeket a beállításokat."
+
+#~ msgid "Settings for this account override the all-accounts default."
+#~ msgstr ""
+#~ "A fiók beállításai felülírják az összes fiókra vonatkozó alapértelmezett "
+#~ "beállításokat."
+
+#~ msgid "Reduces IP address exposure through WebRTC."
+#~ msgstr "Csökkenti az IP-címek kitettségét a WebRTC révén."
+
+#~ msgid "Global setting"
+#~ msgstr "Globális beállítás"
 
 #~ msgid "Donation"
 #~ msgstr "Adomány"

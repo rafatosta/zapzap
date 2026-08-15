@@ -146,6 +146,24 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   `performance/js_memory_limit_mb` para compatibilidade. A preferência de
   cookies persistentes deve chegar a `setPersistentCookiesPolicy()`.
 
+### Proxy global e isolamento estrito
+
+- Mantenha `proxy/*` como única fonte efetiva. Não leia nem migre
+  `<user_id>/proxy/*` e não reaplique proxy ao trocar de conta.
+- Aplique `ProxyManager.apply()` depois de criar `SingleApplication`, mas antes
+  de construir a janela, o `BrowserController` ou qualquer perfil WebEngine.
+- Em falha de validação ou do Qt, preserve o proxy anterior e o rascunho da UI;
+  nunca tente `NoProxy`, `DIRECT` ou outro fallback automático e nunca registre
+  host, usuário ou senha.
+- Considere `privacy/strict_proxy` efetivo somente com proxy habilitado dos
+  tipos `HttpProxy` ou `Socks5Proxy`. A flag Chromium correspondente deve ser
+  montada por `SetupManager` antes do WebEngine, sem duplicar nem apagar flags
+  externas, e mudanças na preferência exigem reinício completo.
+- Trate `webrtc_shield.js` somente como proteção JavaScript legada. Ele não
+  substitui a política nativa e não comprova isolamento de rede.
+- Valide alterações de proxy com testes sem rede e repita os cenários manuais
+  fail-closed de `docs/testing.md` em uma sessão descartável.
+
 ### Mudança no corretor ortográfico
 
 - Mantenha descoberta, normalização, migração, limite e recentes em

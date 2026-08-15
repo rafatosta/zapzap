@@ -2,10 +2,12 @@
 
 from pathlib import Path
 from types import SimpleNamespace
+import inspect
 import tempfile
 import unittest
 from unittest.mock import Mock, patch
 
+from PyQt6 import QtNetwork
 from PyQt6.QtCore import QByteArray, QSettings
 
 from zapzap.app.window_lifecycle import WindowLifecycle
@@ -106,6 +108,113 @@ class WindowStateFallbackTests(TemporarySettingsTest):
 
 class ProxyFallbackTests(TemporarySettingsTest):
 
+    def _configured_proxy(self, proxy_type, *, enabled=True):
+        SettingsManager.set("proxy/proxyEnable", enabled)
+        SettingsManager.set("proxy/proxyType", proxy_type)
+        SettingsManager.set("proxy/hostName", "proxy.example.com")
+        SettingsManager.set("proxy/port", "1080")
+        with patch(
+            "zapzap.core.environment.proxy_manager."
+            "QtNetwork.QNetworkProxy.setApplicationProxy"
+        ) as apply_proxy:
+            result = ProxyManager.apply()
+        self.assertTrue(result.success)
+        return apply_proxy.call_args.args[0]
+
+    def test_supported_global_proxy_types_reach_qt(self):
+        expected_types = {
+            "NoProxy": QtNetwork.QNetworkProxy.ProxyType.NoProxy,
+            "DefaultProxy": QtNetwork.QNetworkProxy.ProxyType.DefaultProxy,
+            "HttpProxy": QtNetwork.QNetworkProxy.ProxyType.HttpProxy,
+            "Socks5Proxy": QtNetwork.QNetworkProxy.ProxyType.Socks5Proxy,
+        }
+
+        for proxy_type, expected in expected_types.items():
+            with self.subTest(proxy_type=proxy_type):
+                proxy = self._configured_proxy(proxy_type)
+                self.assertEqual(proxy.type(), expected)
+                if proxy_type in {"HttpProxy", "Socks5Proxy"}:
+                    self.assertEqual(proxy.hostName(), "proxy.example.com")
+                    self.assertEqual(proxy.port(), 1080)
+
+    def test_explicit_proxy_authentication_is_preserved_for_qt(self):
+        SettingsManager.set("proxy/user", "proxy-user")
+        SettingsManager.set("proxy/password", "proxy-password")
+
+        proxy = self._configured_proxy("Socks5Proxy")
+
+        self.assertEqual(proxy.user(), "proxy-user")
+        self.assertEqual(proxy.password(), "proxy-password")
+
+    def test_proxy_logs_never_include_endpoint_or_credentials(self):
+        SettingsManager.set("proxy/proxyEnable", True)
+        SettingsManager.set("proxy/proxyType", "HttpProxy")
+        SettingsManager.set("proxy/hostName", "sensitive.example.com")
+        SettingsManager.set("proxy/port", "8080")
+        SettingsManager.set("proxy/user", "private-user")
+        SettingsManager.set("proxy/password", "private-password")
+
+        with (
+            patch(
+                "zapzap.core.environment.proxy_manager."
+                "QtNetwork.QNetworkProxy.setApplicationProxy"
+            ),
+            self.assertLogs(
+                "zapzap.core.environment.proxy_manager",
+                level="INFO",
+            ) as captured,
+        ):
+            ProxyManager.apply()
+
+        output = "\n".join(captured.output)
+        self.assertNotIn("sensitive.example.com", output)
+        self.assertNotIn("private-user", output)
+        self.assertNotIn("private-password", output)
+
+    def test_disabled_proxy_uses_default_without_reading_account_keys(self):
+        SettingsManager.set("7/proxy/proxyType", "HttpProxy")
+        SettingsManager.set("7/proxy/hostName", "account.example.com")
+        with patch.object(
+            SettingsManager,
+            "get",
+            wraps=SettingsManager.get,
+        ) as get_setting:
+            proxy = self._configured_proxy("HttpProxy", enabled=False)
+
+        self.assertEqual(
+            proxy.type(),
+            QtNetwork.QNetworkProxy.ProxyType.DefaultProxy,
+        )
+        self.assertNotIn(
+            "user_id",
+            inspect.signature(ProxyManager.apply).parameters,
+        )
+        self.assertTrue(
+            all(
+                call.args[0].startswith("proxy/")
+                for call in get_setting.call_args_list
+            )
+        )
+
+    def test_invalid_type_never_replaces_the_current_proxy(self):
+        SettingsManager.set("proxy/proxyEnable", True)
+        SettingsManager.set("proxy/proxyType", "UnsupportedProxy")
+
+        with (
+            patch(
+                "zapzap.core.environment.proxy_manager."
+                "QtNetwork.QNetworkProxy.setApplicationProxy"
+            ) as apply_proxy,
+            self.assertLogs(
+                "zapzap.core.environment.proxy_manager",
+                level="WARNING",
+            ),
+        ):
+            result = ProxyManager.apply()
+
+        self.assertFalse(result.success)
+        apply_proxy.assert_not_called()
+
     def test_out_of_range_port_does_not_replace_the_current_proxy(self):
         SettingsManager.set("proxy/proxyEnable", True)
         SettingsManager.set("proxy/proxyType", "HttpProxy")
@@ -133,7 +242,7 @@ class ProxyFallbackTests(TemporarySettingsTest):
                 "zapzap.core.environment.proxy_manager."
                 "QtNetwork.QNetworkProxy.setApplicationProxy",
                 side_effect=RuntimeError("simulated Qt failure"),
-            ),
+            ) as apply_proxy,
             self.assertLogs(
                 "zapzap.core.environment.proxy_manager",
                 level="ERROR",
@@ -143,6 +252,8 @@ class ProxyFallbackTests(TemporarySettingsTest):
 
         self.assertFalse(result.success)
         self.assertIsNotNone(result.error)
+        # There is no automatic retry with NoProxy or another direct fallback.
+        self.assertEqual(apply_proxy.call_count, 1)
 
 
 class ZoomFallbackTests(unittest.TestCase):

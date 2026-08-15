@@ -9,6 +9,7 @@ from typing import Any
 
 from PyQt6 import QtNetwork
 
+from zapzap.core.config.settings.privacy import PrivacySettings
 from zapzap.core.config.settings_manager import SettingsManager
 
 
@@ -57,28 +58,26 @@ class ProxyManager:
         "HttpCachingProxy",
         "FtpCachingProxy",
     }
+    EXPLICIT_PROXY_TYPES = {"Socks5Proxy", "HttpProxy"}
+    _PREFIX = "proxy/"
 
     @staticmethod
-    def _configuration(user_id=None) -> tuple[str, bool, str]:
-        prefix = f"{user_id}/proxy/" if user_id else "proxy/"
-        proxy_type = SettingsManager.get(f"{prefix}proxyType", "NoProxy")
-        enabled = bool(SettingsManager.get(f"{prefix}proxyEnable", False))
-
-        if user_id and not enabled:
-            prefix = "proxy/"
-            proxy_type = SettingsManager.get("proxy/proxyType", "NoProxy")
-            enabled = bool(SettingsManager.get("proxy/proxyEnable", False))
-
-        if not isinstance(proxy_type, str) or proxy_type not in ProxyManager.PROXY_TYPES:
+    def _configuration() -> tuple[str, bool]:
+        proxy_type = SettingsManager.get("proxy/proxyType", "NoProxy")
+        enabled = bool(SettingsManager.get("proxy/proxyEnable", False))
+        if (
+            not isinstance(proxy_type, str)
+            or proxy_type not in ProxyManager.PROXY_TYPES
+        ):
             raise ValueError("unsupported proxy type")
-        return proxy_type, enabled, prefix
+        return proxy_type, enabled
 
     @staticmethod
-    def _server_value(prefix: str, key: str) -> Any:
-        return SettingsManager.get(f"{prefix}{key}", "")
+    def _server_value(key: str) -> Any:
+        return SettingsManager.get(f"{ProxyManager._PREFIX}{key}", "")
 
     @staticmethod
-    def _build_proxy(proxy_type: str, enabled: bool, prefix: str):
+    def _build_proxy(proxy_type: str, enabled: bool):
         proxy = QtNetwork.QNetworkProxy()
         effective_type = proxy_type if enabled else "DefaultProxy"
         proxy.setType(ProxyManager.PROXY_TYPES[effective_type][0])
@@ -86,8 +85,8 @@ class ProxyManager:
         if not enabled or proxy_type not in ProxyManager.SERVER_PROXY_TYPES:
             return proxy
 
-        host = ProxyManager._server_value(prefix, "hostName")
-        port = ProxyManager._server_value(prefix, "port")
+        host = ProxyManager._server_value("hostName")
+        port = ProxyManager._server_value("port")
         if not isinstance(host, str) or not host.strip():
             raise ValueError("missing proxy host")
         try:
@@ -103,18 +102,18 @@ class ProxyManager:
             ("user", proxy.setUser),
             ("password", proxy.setPassword),
         ):
-            value = ProxyManager._server_value(prefix, key)
+            value = ProxyManager._server_value(key)
             if value not in (None, ""):
                 setter(str(value))
         return proxy
 
     @staticmethod
-    def apply(profile=None, user_id=None) -> ProxyApplyResult:
-        """Apply a proxy atomically, preserving the current proxy on failure."""
+    def apply() -> ProxyApplyResult:
+        """Apply the sole global proxy, preserving the current proxy on failure."""
         proxy_type = "NoProxy"
         try:
-            proxy_type, enabled, prefix = ProxyManager._configuration(user_id)
-            proxy = ProxyManager._build_proxy(proxy_type, enabled, prefix)
+            proxy_type, enabled = ProxyManager._configuration()
+            proxy = ProxyManager._build_proxy(proxy_type, enabled)
             QtNetwork.QNetworkProxy.setApplicationProxy(proxy)
         except ValueError as error:
             logger.warning(
@@ -127,14 +126,38 @@ class ProxyManager:
             )
             return ProxyApplyResult(False, proxy_type, str(error))
 
-        scope = "account" if user_id else "global"
         logger.info(
-            "Applied %s proxy configuration: type=%s enabled=%s",
-            scope,
+            "Applied global proxy configuration: type=%s enabled=%s",
             proxy_type,
             enabled,
         )
         return ProxyApplyResult(True, proxy_type)
+
+    @staticmethod
+    def strict_isolation_active() -> bool:
+        """Return whether native strict isolation applies at this bootstrap."""
+        try:
+            proxy_type, enabled = ProxyManager._configuration()
+            requested = PrivacySettings().strict_proxy_enabled
+            if not requested:
+                return False
+            if not enabled or proxy_type not in ProxyManager.EXPLICIT_PROXY_TYPES:
+                logger.info(
+                    "Strict proxy isolation is inactive: a compatible "
+                    "explicit proxy is not enabled"
+                )
+                return False
+            # Validate the endpoint as strictly as apply(), without mutating
+            # the application proxy during pre-QApplication environment setup.
+            ProxyManager._build_proxy(proxy_type, enabled)
+        except (TypeError, ValueError, OverflowError):
+            logger.warning(
+                "Strict proxy isolation is inactive: explicit proxy "
+                "settings are invalid"
+            )
+            return False
+        logger.info("Strict proxy isolation enabled for the global proxy")
+        return True
 
     @staticmethod
     def get_proxy_description(proxy_type_key):

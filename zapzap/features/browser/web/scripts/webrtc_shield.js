@@ -1,6 +1,6 @@
-// WebRTC IP-Leak Prevention Shim
-// Replaces host/srflx ICE candidates with 0.0.0.0 to prevent real IP leaks,
-// but leaves relay candidates intact so calls can still operate through TURN servers.
+// Legacy WebRTC candidate-obfuscation shim.
+// This changes page-visible ICE candidates, but it is not a network isolation
+// boundary. Strict proxy isolation is enforced separately by Chromium policy.
 
 (function() {
     const originalRTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection;

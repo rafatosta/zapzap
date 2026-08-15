@@ -14,6 +14,12 @@ from zapzap.core.environment.gpu_environment import (
     has_headless_secondary_gpu,
     preferred_render_node,
 )
+from zapzap.core.environment.proxy_manager import ProxyManager
+
+
+STRICT_PROXY_WEBRTC_FLAG = (
+    "--force-webrtc-ip-handling-policy=disable_non_proxied_udp"
+)
 
 
 def update_chromium_flag(
@@ -186,6 +192,10 @@ class SetupManager:
             PerformanceSettings().get_boolean_setting(
                 "software_video_decoding"
             ),
+        )
+        update_chromium_flag(
+            STRICT_PROXY_WEBRTC_FLAG,
+            ProxyManager.strict_isolation_active(),
         )
 
     @staticmethod
