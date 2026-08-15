@@ -13,6 +13,8 @@ releases and the AppStream metadata.
 
 ## [Unreleased]
 
+## [7.4.2] - 2026-08-14
+
 ### Fixed
 
 - Prevented invalid HTTP cache limits from stopping startup by repairing stored
@@ -58,5 +60,6 @@ releases and the AppStream metadata.
 - Improved reliability when ZapZap is closed by the operating system.
 - Included performance improvements.
 
-[Unreleased]: https://github.com/rafatosta/zapzap/compare/7.4.1...HEAD
+[Unreleased]: https://github.com/rafatosta/zapzap/compare/7.4.2...HEAD
+[7.4.2]: https://github.com/rafatosta/zapzap/compare/7.4.1...7.4.2
 [7.4.1]: https://github.com/rafatosta/zapzap/releases/tag/7.4.1
