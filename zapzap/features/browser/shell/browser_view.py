@@ -33,6 +33,7 @@ class BrowserView(QWidget):
         self.btn_new_account = self.sidebar.btn_new_account
         self.btn_new_chat_number = self.sidebar.btn_new_chat_number
         self.btn_new_chat = self.sidebar.btn_new_chat
+        self.btn_whatsapp_lock = self.sidebar.btn_whatsapp_lock
         self.btn_donations = self.sidebar.btn_donations
         self.btn_update_available = self.sidebar.btn_update_available
         self.line_2 = self.sidebar.line_2

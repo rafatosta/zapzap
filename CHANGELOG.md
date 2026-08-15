@@ -29,6 +29,8 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Added a sidebar shortcut for WhatsApp Web's native app lock, keeping lock
+  setup and authentication entirely inside WhatsApp.
 - Added this changelog as the mandatory source of truth for all project changes
   and additions.
 - Added strict proxy isolation for explicit HTTP and SOCKS5 proxies, using

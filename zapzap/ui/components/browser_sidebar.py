@@ -149,6 +149,13 @@ class BrowserSidebar(QFrame):
         )
         self.layout_2.addWidget(self.btn_new_chat)
 
+        self.btn_whatsapp_lock = BrowserSidebarButton(
+            "btn_whatsapp_lock",
+            self.settings_buttons_layout,
+        )
+        self.btn_whatsapp_lock.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
+        self.layout_2.addWidget(self.btn_whatsapp_lock)
+
         self.btn_donations = BrowserSidebarButton(
             "btn_donations",
             self.settings_buttons_layout,
@@ -183,6 +190,13 @@ class BrowserSidebar(QFrame):
             _("New conversation by the phone number")
         )
         self.btn_new_chat.setToolTip(_("New conversation"))
+        self.btn_whatsapp_lock.setToolTip(
+            _("Lock or configure WhatsApp Web app lock")
+        )
+        self.btn_whatsapp_lock.setAccessibleName(_("WhatsApp lock"))
+        self.btn_whatsapp_lock.setAccessibleDescription(
+            _("Lock or configure WhatsApp Web app lock")
+        )
         self.btn_donations.setToolTip(_("Support ZapZap"))
         self.btn_donations.setAccessibleName(_("Open donations page"))
         self.btn_donations.setAccessibleDescription(

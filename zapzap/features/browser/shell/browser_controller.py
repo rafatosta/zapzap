@@ -24,6 +24,9 @@ from zapzap.core.environment.setup_manager import SetupManager
 from zapzap.features.tray.sys_tray_manager import SysTrayManager
 from zapzap.features.browser.shell.browser_view import BrowserView
 from zapzap.features.browser.shell.grid_thumbnail_cache import GridThumbnailCache
+from zapzap.features.browser.web.native_shortcuts import (
+    request_whatsapp_app_lock,
+)
 from zapzap.features.donation.page import DonationsPageController
 from zapzap.ui.components import BrowserGridView
 from zapzap.ui.components import BrowserPageButton
@@ -118,6 +121,7 @@ class BrowserController(BrowserView):
             self.btn_new_account,
             self.btn_new_chat_number,
             self.btn_new_chat,
+            self.btn_whatsapp_lock,
             self.btn_donations,
             self.btn_update_available,
             self.btn_open_settings,
@@ -183,6 +187,7 @@ class BrowserController(BrowserView):
         self.btn_new_chat_number.clicked.connect(
             lambda: self.parent.new_chat_by_phone())
         self.btn_new_chat.clicked.connect(lambda: self.parent.new_chat())
+        self.btn_whatsapp_lock.clicked.connect(self.request_native_app_lock)
         self.btn_donations.clicked.connect(self.show_donations)
         self.btn_update_available.clicked.connect(
             lambda: self.show_update_popover(focus_actions=True)
@@ -715,6 +720,16 @@ class BrowserController(BrowserView):
             return self._last_active_webview
         return None
 
+    def request_native_app_lock(self):
+        """Forward WhatsApp Web's native app-lock shortcut to one account."""
+        if self._shutting_down:
+            logger.info(
+                "WhatsApp app lock was not requested: the browser is shutting "
+                "down"
+            )
+            return False
+        return request_whatsapp_app_lock(self.current_webview())
+
     def _capture_grid_thumbnail(self, page):
         """Capture a live visible page and retain only its bounded thumbnail."""
         if self._shutting_down or getattr(page, "_shutting_down", False):
@@ -921,6 +936,8 @@ class BrowserController(BrowserView):
         self.btn_new_chat.setIcon(SystemIcon.get_icon("new_chat", theme))
         self.btn_new_chat_number.setIcon(
             SystemIcon.get_icon("new_chat_number", theme))
+        self.btn_whatsapp_lock.setIcon(
+            SystemIcon.get_icon("whatsapp_lock", theme))
         self.btn_donations.setIcon(
             SystemIcon.get_icon("donation_heart", theme))
         self.btn_update_available.setIcon(

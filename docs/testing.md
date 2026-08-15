@@ -111,6 +111,7 @@ documente o que ele protege.
 | `test_system_startup_settings_ui.py` | semântica de fechamento, diálogo nativo e acessibilidade |
 | `test_unix_signal_shutdown.py` | ponte POSIX, restauração do estado global e `SIGTERM` real chegando a `aboutToQuit` em subprocesso isolado |
 | `test_update_checker.py` | versões, política de builds, respostas/falhas assíncronas, metadados seguros e popover acessível compartilhado entre sidebar e Sobre |
+| `test_whatsapp_app_lock.py` | botão acessível da sidebar, conta ativa, foco, sequência Qt nativa e estados transitórios do WebView |
 | `test_window_state_restore.py` | ciclo de vida compartilhado, restauração normal, maximizada e fullscreen e destruição segura do host CSR |
 | `test_windows_packaging.py` | matriz nativa x86_64/ARM64, arquitetura do Python e nomes dos executáveis Windows |
 
@@ -154,6 +155,7 @@ documente o que ele protege.
 - `test_system_startup_settings_ui.py`
 - `test_unix_signal_shutdown.py`
 - `test_update_checker.py`
+- `test_whatsapp_app_lock.py`
 - `test_window_state_restore.py`
 - `test_windows_packaging.py`
 <!-- structure-check:tests:end -->
@@ -202,6 +204,24 @@ que o Chromium não cria UDP WebRTC não proxyficado. Desative separadamente o
 WebRTC Shield legado para confirmar que a política nativa não depende do script
 `webrtc_shield.js`. Repita com proxy do sistema e confirme que a UI não promete
 isolamento estrito e que a flag não é aplicada.
+
+## Validação manual do bloqueio do WhatsApp Web
+
+Use contas de teste e uma sessão gráfica real; `offscreen` confirma a sequência
+Qt, mas não o foco do compositor nem a reação de uma versão remota do WhatsApp
+Web.
+
+1. Com o bloqueio ainda não configurado, clique no cadeado da sidebar e confirme
+   que o WhatsApp Web abre o próprio fluxo de configuração, sem tela do ZapZap.
+2. Conclua a configuração dentro do WhatsApp Web e clique novamente; confirme
+   que somente a conta selecionada é bloqueada.
+3. Com duas contas, alterne entre elas e repita o clique, verificando que a conta
+   em segundo plano não recebe a ação.
+4. Repita durante carregamento, após desativar uma conta e depois de reconstruir
+   a interface; confirme ausência de travamento, ação duplicada ou referência à
+   página anterior.
+5. Confirme também o atalho digitado diretamente dentro do WhatsApp Web e os
+   modos de janela nativa e CSR em cada plataforma mantida.
 
 ## Verificações estáticas
 

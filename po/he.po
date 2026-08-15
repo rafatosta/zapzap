@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-14 20:24-0300\n"
+"POT-Creation-Date: 2026-08-14 21:23-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Hebrew\n"
@@ -240,7 +240,7 @@ msgid "Copy address"
 msgstr "העתקת כתובת קישור"
 
 #: zapzap/features/alerts/external_url.py:45
-#: zapzap/features/browser/shell/browser_controller.py:311
+#: zapzap/features/browser/shell/browser_controller.py:316
 #: zapzap/ui/components/edit_account_dialog.py:73
 #: zapzap/ui/components/send_message_to_number_dialog.py:135
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
@@ -378,7 +378,7 @@ msgstr ""
 #: zapzap/features/settings/shell/settings_view.py:32
 #: zapzap/features/settings/shell/settings_view.py:34
 #: zapzap/features/settings/pages/about/view.py:274
-#: zapzap/ui/components/browser_sidebar.py:186
+#: zapzap/ui/components/browser_sidebar.py:200
 #, fuzzy
 msgid "Support ZapZap"
 msgstr "הגדרת ZapZap"
@@ -895,7 +895,7 @@ msgid "New message..."
 msgstr "הודעה חדשה…"
 
 #: zapzap/features/shortcuts/model.py:12
-#: zapzap/ui/components/browser_sidebar.py:185
+#: zapzap/ui/components/browser_sidebar.py:192
 msgid "New conversation"
 msgstr "שיחה חדשה"
 
@@ -1035,8 +1035,8 @@ msgid "New conversation by phone number"
 msgstr "שיחה חדשה לפי מספר טלפון"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:526
-#: zapzap/ui/components/browser_sidebar.py:181
+#: zapzap/features/browser/shell/browser_controller.py:531
+#: zapzap/ui/components/browser_sidebar.py:188
 msgid "New account"
 msgstr "חשבון חדש"
 
@@ -1238,13 +1238,13 @@ msgid ""
 msgstr "ZapZap הוא פרויקט עצמאי ואינו מזוהה עם WhatsApp או Meta."
 
 #: zapzap/features/settings/pages/about/view.py:357
-#: zapzap/ui/components/browser_sidebar.py:196
+#: zapzap/ui/components/browser_sidebar.py:210
 #, fuzzy, python-brace-format
 msgid "ZapZap {version} is available"
 msgstr "זמינים: {count}"
 
 #: zapzap/features/settings/pages/about/view.py:363
-#: zapzap/ui/components/browser_sidebar.py:201
+#: zapzap/ui/components/browser_sidebar.py:215
 msgid "Open the official ZapZap website to download it."
 msgstr ""
 
@@ -1810,7 +1810,7 @@ msgid "Symbolic dark"
 msgstr "כהה סמלי"
 
 #: zapzap/features/settings/pages/appearance/view.py:118
-#: zapzap/features/browser/shell/browser_controller.py:168
+#: zapzap/features/browser/shell/browser_controller.py:172
 msgid "Grid view"
 msgstr "תצוגת רשת"
 
@@ -3029,59 +3029,59 @@ msgstr "שמור בשם"
 msgid "Save file"
 msgstr "שמירת קובץ"
 
-#: zapzap/features/browser/shell/browser_controller.py:276
+#: zapzap/features/browser/shell/browser_controller.py:281
 msgid "Flatpak sandbox help"
 msgstr "עזרה בארגז חול Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:301
+#: zapzap/features/browser/shell/browser_controller.py:306
 msgid "Flatpak sandbox"
 msgstr "ארגז חול Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:302
+#: zapzap/features/browser/shell/browser_controller.py:307
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap פועל בארגז החול Flatpak."
 
-#: zapzap/features/browser/shell/browser_controller.py:304
+#: zapzap/features/browser/shell/browser_controller.py:309
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
 msgstr ""
 "תכונות מסוימות כמו פתיחת קבצים או גרירה ושחרור עשויות לדרוש הרשאות נוספות."
 
-#: zapzap/features/browser/shell/browser_controller.py:309
+#: zapzap/features/browser/shell/browser_controller.py:314
 msgid "Instructions"
 msgstr "הוראות"
 
-#: zapzap/features/browser/shell/browser_controller.py:310
+#: zapzap/features/browser/shell/browser_controller.py:315
 msgid "Copy command"
 msgstr "העתק פקודה"
 
-#: zapzap/features/browser/shell/browser_controller.py:543
-#: zapzap/features/browser/shell/browser_controller.py:624
+#: zapzap/features/browser/shell/browser_controller.py:548
+#: zapzap/features/browser/shell/browser_controller.py:629
 #, python-brace-format
 msgid "Account {}"
 msgstr "חשבון {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:637
+#: zapzap/features/browser/shell/browser_controller.py:642
 msgid "Account disabled"
 msgstr "החשבון מושבת"
 
-#: zapzap/features/browser/shell/browser_controller.py:638
+#: zapzap/features/browser/shell/browser_controller.py:643
 msgid "This account is disabled."
 msgstr "חשבון זה מושבת."
 
-#: zapzap/features/browser/shell/browser_controller.py:640
+#: zapzap/features/browser/shell/browser_controller.py:645
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "אתה יכול להפעיל אותו מחדש עכשיו או להשתמש בתפריט לחיצה ימנית כדי לנהל חשבון "
 "זה."
 
-#: zapzap/features/browser/shell/browser_controller.py:645
+#: zapzap/features/browser/shell/browser_controller.py:650
 msgid "Activate"
 msgstr "הפעל"
 
-#: zapzap/features/browser/shell/browser_controller.py:646
+#: zapzap/features/browser/shell/browser_controller.py:651
 msgid "Not now"
 msgstr "לא עכשיו"
 
@@ -3199,21 +3199,30 @@ msgstr "בחר חשבון כדי לחזור לצ'אט שלו."
 msgid "No active accounts to display."
 msgstr "אין חשבונות פעילים להצגה."
 
-#: zapzap/ui/components/browser_sidebar.py:183
+#: zapzap/ui/components/browser_sidebar.py:190
 msgid "New conversation by the phone number"
 msgstr "שיחה חדשה לפי מספר הטלפון"
 
-#: zapzap/ui/components/browser_sidebar.py:187
+#: zapzap/ui/components/browser_sidebar.py:194
+#: zapzap/ui/components/browser_sidebar.py:198
+msgid "Lock or configure WhatsApp Web app lock"
+msgstr "נעילה או הגדרה של נעילת WhatsApp Web"
+
+#: zapzap/ui/components/browser_sidebar.py:196
+msgid "WhatsApp lock"
+msgstr "נעילת WhatsApp"
+
+#: zapzap/ui/components/browser_sidebar.py:201
 #, fuzzy
 msgid "Open donations page"
 msgstr "מיקום פתוח"
 
-#: zapzap/ui/components/browser_sidebar.py:189
+#: zapzap/ui/components/browser_sidebar.py:203
 #, fuzzy
 msgid "Show ways to support ZapZap development."
 msgstr "הצג מדי פעם הודעות התומכות בפיתוח של ZapZap."
 
-#: zapzap/ui/components/browser_sidebar.py:191
+#: zapzap/ui/components/browser_sidebar.py:205
 msgid "ZapZap Settings"
 msgstr "הגדרות ZapZap"
 

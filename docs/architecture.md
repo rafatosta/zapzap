@@ -144,6 +144,13 @@ grayscale compartilhado em memória da barra lateral. O controle `Não perturbe`
 fica temporariamente desabilitado, preservando seu valor persistido para a
 próxima reativação.
 
+O botão de cadeado da sidebar resolve a `WebView` ativa somente no momento do
+clique e encaminha a sequência nativa `Ctrl+Alt+L` por eventos Qt de teclado.
+Ele não usa JavaScript, não retém a página e não registra estado, senha ou
+resultado de bloqueio: configuração, bloqueio e autenticação continuam sob
+responsabilidade exclusiva do WhatsApp Web. Páginas ausentes, em carregamento
+ou já destruídas recusam a solicitação de forma segura.
+
 `PageController` aplica permissões, scripts, navegação segura e ações do
 WhatsApp. Scripts mantidos em `features/browser/web/scripts/` são ativos em
 tempo de execução e devem ser considerados pelo teste de código estático mesmo

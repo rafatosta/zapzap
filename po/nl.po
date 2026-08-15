@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-14 20:24-0300\n"
+"POT-Creation-Date: 2026-08-14 21:23-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Dutch\n"
@@ -241,7 +241,7 @@ msgid "Copy address"
 msgstr "Linkadres kopiëren"
 
 #: zapzap/features/alerts/external_url.py:45
-#: zapzap/features/browser/shell/browser_controller.py:311
+#: zapzap/features/browser/shell/browser_controller.py:316
 #: zapzap/ui/components/edit_account_dialog.py:73
 #: zapzap/ui/components/send_message_to_number_dialog.py:135
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
@@ -379,7 +379,7 @@ msgstr ""
 #: zapzap/features/settings/shell/settings_view.py:32
 #: zapzap/features/settings/shell/settings_view.py:34
 #: zapzap/features/settings/pages/about/view.py:274
-#: zapzap/ui/components/browser_sidebar.py:186
+#: zapzap/ui/components/browser_sidebar.py:200
 #, fuzzy
 msgid "Support ZapZap"
 msgstr "ZapZap instellen"
@@ -921,7 +921,7 @@ msgid "New message..."
 msgstr "Nieuw bericht…"
 
 #: zapzap/features/shortcuts/model.py:12
-#: zapzap/ui/components/browser_sidebar.py:185
+#: zapzap/ui/components/browser_sidebar.py:192
 msgid "New conversation"
 msgstr "Nieuw gesprek"
 
@@ -1061,8 +1061,8 @@ msgid "New conversation by phone number"
 msgstr "Nieuw gesprek op basis van telefoonnummer"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:526
-#: zapzap/ui/components/browser_sidebar.py:181
+#: zapzap/features/browser/shell/browser_controller.py:531
+#: zapzap/ui/components/browser_sidebar.py:188
 msgid "New account"
 msgstr "Nieuw account"
 
@@ -1268,13 +1268,13 @@ msgstr ""
 "ZapZap is een onafhankelijk project en is niet gelieerd aan WhatsApp of Meta."
 
 #: zapzap/features/settings/pages/about/view.py:357
-#: zapzap/ui/components/browser_sidebar.py:196
+#: zapzap/ui/components/browser_sidebar.py:210
 #, fuzzy, python-brace-format
 msgid "ZapZap {version} is available"
 msgstr "{count} beschikbaar"
 
 #: zapzap/features/settings/pages/about/view.py:363
-#: zapzap/ui/components/browser_sidebar.py:201
+#: zapzap/ui/components/browser_sidebar.py:215
 msgid "Open the official ZapZap website to download it."
 msgstr ""
 
@@ -1851,7 +1851,7 @@ msgid "Symbolic dark"
 msgstr "Symbolisch (donker)"
 
 #: zapzap/features/settings/pages/appearance/view.py:118
-#: zapzap/features/browser/shell/browser_controller.py:168
+#: zapzap/features/browser/shell/browser_controller.py:172
 msgid "Grid view"
 msgstr "Rasterweergave"
 
@@ -3101,19 +3101,19 @@ msgstr "Opslaan als"
 msgid "Save file"
 msgstr "Bestand opslaan"
 
-#: zapzap/features/browser/shell/browser_controller.py:276
+#: zapzap/features/browser/shell/browser_controller.py:281
 msgid "Flatpak sandbox help"
 msgstr "Flatpak hulp bij sandbox"
 
-#: zapzap/features/browser/shell/browser_controller.py:301
+#: zapzap/features/browser/shell/browser_controller.py:306
 msgid "Flatpak sandbox"
 msgstr "Flatpak-sandbox"
 
-#: zapzap/features/browser/shell/browser_controller.py:302
+#: zapzap/features/browser/shell/browser_controller.py:307
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap draait in de Flatpak-sandbox."
 
-#: zapzap/features/browser/shell/browser_controller.py:304
+#: zapzap/features/browser/shell/browser_controller.py:309
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
@@ -3121,40 +3121,40 @@ msgstr ""
 "Voor sommige functies, zoals het openen van bestanden of slepen en "
 "neerzetten, zijn mogelijk extra machtigingen vereist."
 
-#: zapzap/features/browser/shell/browser_controller.py:309
+#: zapzap/features/browser/shell/browser_controller.py:314
 msgid "Instructions"
 msgstr "Instructies"
 
-#: zapzap/features/browser/shell/browser_controller.py:310
+#: zapzap/features/browser/shell/browser_controller.py:315
 msgid "Copy command"
 msgstr "Kopieer opdracht"
 
-#: zapzap/features/browser/shell/browser_controller.py:543
-#: zapzap/features/browser/shell/browser_controller.py:624
+#: zapzap/features/browser/shell/browser_controller.py:548
+#: zapzap/features/browser/shell/browser_controller.py:629
 #, python-brace-format
 msgid "Account {}"
 msgstr "Account {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:637
+#: zapzap/features/browser/shell/browser_controller.py:642
 msgid "Account disabled"
 msgstr "Account uitgeschakeld"
 
-#: zapzap/features/browser/shell/browser_controller.py:638
+#: zapzap/features/browser/shell/browser_controller.py:643
 msgid "This account is disabled."
 msgstr "Dit account is uitgeschakeld."
 
-#: zapzap/features/browser/shell/browser_controller.py:640
+#: zapzap/features/browser/shell/browser_controller.py:645
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "U kunt het nu opnieuw activeren of het contextmenu gebruiken om dit account "
 "te beheren."
 
-#: zapzap/features/browser/shell/browser_controller.py:645
+#: zapzap/features/browser/shell/browser_controller.py:650
 msgid "Activate"
 msgstr "Activeer"
 
-#: zapzap/features/browser/shell/browser_controller.py:646
+#: zapzap/features/browser/shell/browser_controller.py:651
 msgid "Not now"
 msgstr "Niet nu"
 
@@ -3272,21 +3272,30 @@ msgstr "Selecteer een account om terug te keren naar de chat."
 msgid "No active accounts to display."
 msgstr "Er zijn geen actieve accounts om weer te geven."
 
-#: zapzap/ui/components/browser_sidebar.py:183
+#: zapzap/ui/components/browser_sidebar.py:190
 msgid "New conversation by the phone number"
 msgstr "Nieuw gesprek op basis van telefoonnummer"
 
-#: zapzap/ui/components/browser_sidebar.py:187
+#: zapzap/ui/components/browser_sidebar.py:194
+#: zapzap/ui/components/browser_sidebar.py:198
+msgid "Lock or configure WhatsApp Web app lock"
+msgstr "WhatsApp Web vergrendelen of de vergrendeling instellen"
+
+#: zapzap/ui/components/browser_sidebar.py:196
+msgid "WhatsApp lock"
+msgstr "WhatsApp-vergrendeling"
+
+#: zapzap/ui/components/browser_sidebar.py:201
 #, fuzzy
 msgid "Open donations page"
 msgstr "Open locatie"
 
-#: zapzap/ui/components/browser_sidebar.py:189
+#: zapzap/ui/components/browser_sidebar.py:203
 #, fuzzy
 msgid "Show ways to support ZapZap development."
 msgstr "Toon af en toe berichten die de ontwikkeling van ZapZap ondersteunen."
 
-#: zapzap/ui/components/browser_sidebar.py:191
+#: zapzap/ui/components/browser_sidebar.py:205
 msgid "ZapZap Settings"
 msgstr "ZapZap-instellingen"
 
