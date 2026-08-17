@@ -84,6 +84,7 @@ documente o que ele protege.
 | `test_debugging_settings_ui.py` | manutenção, relatórios, informações de runtime, cópia e feedback |
 | `test_deeplink.py` | validação de URLs WhatsApp e resistência a injeção de script |
 | `test_desktop_application_dbus.py` | interface `org.freedesktop.Application` e ativação D-Bus |
+| `test_desktop_media_selection.py` | modelos dinâmicos, escolha explícita, resolução única, cancelamento, ciclo de vida e independência das permissões de captura |
 | `test_dictionary_options.py` | descoberta dinâmica, nomes amigáveis, ordenação, redimensionamento e fallback de dicionários personalizados |
 | `test_documentation_structure.py` | camadas de UI, contrato mínimo do changelog e sincronização entre árvore, inventários técnicos e guia para agentes |
 | `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
@@ -128,6 +129,7 @@ documente o que ele protege.
 - `test_debugging_settings_ui.py`
 - `test_deeplink.py`
 - `test_desktop_application_dbus.py`
+- `test_desktop_media_selection.py`
 - `test_dictionary_options.py`
 - `test_documentation_structure.py`
 - `test_donations_page.py`
@@ -222,6 +224,38 @@ Web.
    página anterior.
 5. Confirme também o atalho digitado diretamente dentro do WhatsApp Web e os
    modos de janela nativa e CSR em cada plataforma mantida.
+
+## Validação manual do compartilhamento de tela ou janela
+
+Use uma conta de teste, perfis XDG descartáveis e fontes sem conteúdo sensível.
+`offscreen` não comprova integração com portal, PipeWire, compositor nem a
+captura real. Execute os cenários abaixo sem ampliar preventivamente o sandbox:
+
+| Sessão | Empacotamento | Cenários mínimos |
+|---|---|---|
+| Wayland real | execução nativa | abrir o seletor, escolher tela, escolher janela, cancelar, usar `Esc` e repetir após parar o compartilhamento |
+| Wayland real | Flatpak oficial ou equivalente | repetir os cenários e observar portal, PipeWire e logs |
+| X11 real | execução nativa | escolher tela e janela, cancelar, repetir e confirmar a captura real |
+| X11 real | fallback X11 do Flatpak, se disponível | repetir sem alterar o sandbox |
+
+Em cada ambiente disponível:
+
+1. teste uma e múltiplas telas e confirme que uma fonte única não é escolhida
+   automaticamente;
+2. abra e feche uma janela com o seletor aberto e remova a fonte selecionada;
+3. cancele pelo botão, `Esc` e decoração da janela;
+4. confirme a prévia ou transmissão real, pare no WhatsApp e faça uma nova
+   solicitação na mesma sessão;
+5. repita com duas contas e confirme que nenhuma fonte é reaproveitada entre
+   perfis;
+6. confirme que logs não contêm títulos de telas ou janelas;
+7. teste `DesktopVideoCapture` e, quando oferecido, o fluxo existente de
+   `DesktopAudioVideoCapture`, sem inferir suporte a áudio do sistema.
+
+Registre separadamente erros de portal, PipeWire, app ID ou sandbox. Um erro
+como `sandbox_host_linux.cc:41 ... Operation not permitted` é uma limitação do
+ambiente até ser reproduzido em uma sessão apropriada, não evidência de falha
+do seletor.
 
 ## Verificações estáticas
 

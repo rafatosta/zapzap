@@ -13,6 +13,11 @@ releases and the AppStream metadata.
 
 ## [Unreleased]
 
+### Added
+
+- Added an explicit native screen and window picker when sharing desktop
+  content in WhatsApp Web.
+
 ## [7.4.2] - 2026-08-14
 
 ### Fixed

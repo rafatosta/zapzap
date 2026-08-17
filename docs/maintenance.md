@@ -146,6 +146,25 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   `performance/js_memory_limit_mb` para compatibilidade. A preferência de
   cookies persistentes deve chegar a `setPersistentCookiesPolicy()`.
 
+### Compartilhamento de tela ou janela
+
+- Trate a permissão WebEngine e a escolha da fonte como etapas independentes.
+  Mesmo com concessão automática, cada `desktopMediaRequested` exige uma nova
+  escolha explícita.
+- Mantenha os modelos dinâmicos e a apresentação em
+  `DesktopMediaPickerDialog`; chamadas `selectScreen()`, `selectWindow()` e
+  `cancel()` pertencem ao coordenador do `PageController`.
+- Preserve no máximo uma solicitação ativa por página e conclua cada uma uma
+  única vez. Cancelamento, fechamento, fonte removida e destruição da página
+  não podem deixar uma solicitação pendente.
+- Nunca selecione a primeira ou única fonte, persista uma fonte anterior nem
+  registre nomes de telas ou títulos de janelas.
+- A API requer Qt 6.7. Preserve a inicialização em bindings anteriores por uma
+  verificação estreita do sinal, sem simular a escolha.
+- Valide propriedades do diálogo em `offscreen`, mas execute a matriz de
+  Wayland/X11 descrita em `testing.md` para comprovar portal, compositor e
+  captura real. Não altere permissões de sandbox sem reprodução e evidência.
+
 ### Proxy global e isolamento estrito
 
 - Mantenha `proxy/*` como única fonte efetiva. Não leia nem migre

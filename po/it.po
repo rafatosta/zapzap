@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-14 21:23-0300\n"
+"POT-Creation-Date: 2026-08-17 09:55-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Italian\n"
@@ -165,6 +165,8 @@ msgstr "Rimuovi"
 #: zapzap/ui/components/send_message_to_number_dialog.py:262
 #: zapzap/ui/components/send_message_to_number_dialog.py:268
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:275
+#: zapzap/ui/components/desktop_media_picker_dialog.py:193
+#: zapzap/ui/components/desktop_media_picker_dialog.py:199
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -242,6 +244,7 @@ msgstr "Copia indirizzo del link"
 #: zapzap/ui/components/edit_account_dialog.py:73
 #: zapzap/ui/components/send_message_to_number_dialog.py:135
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
+#: zapzap/ui/components/desktop_media_picker_dialog.py:144
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "Chiudi"
@@ -1776,6 +1779,8 @@ msgid "iOS"
 msgstr "iOS"
 
 #: zapzap/features/settings/pages/appearance/controller.py:76
+#: zapzap/ui/components/desktop_media_picker_dialog.py:178
+#: zapzap/ui/components/desktop_media_picker_dialog.py:184
 msgid "Windows"
 msgstr "Finestre"
 
@@ -3170,43 +3175,43 @@ msgstr "Attiva"
 msgid "Not now"
 msgstr "Non ora"
 
-#: zapzap/features/browser/web/page_controller.py:258
+#: zapzap/features/browser/web/page_controller.py:513
 msgid "your microphone"
 msgstr "il tuo microfono"
 
-#: zapzap/features/browser/web/page_controller.py:259
+#: zapzap/features/browser/web/page_controller.py:514
 msgid "your camera"
 msgstr "la tua fotocamera"
 
-#: zapzap/features/browser/web/page_controller.py:260
+#: zapzap/features/browser/web/page_controller.py:515
 msgid "your camera and microphone"
 msgstr "la fotocamera e il microfono"
 
-#: zapzap/features/browser/web/page_controller.py:261
+#: zapzap/features/browser/web/page_controller.py:516
 msgid "your location"
 msgstr "la tua posizione"
 
-#: zapzap/features/browser/web/page_controller.py:262
+#: zapzap/features/browser/web/page_controller.py:517
 msgid "your screen contents"
 msgstr "il contenuto dello schermo"
 
-#: zapzap/features/browser/web/page_controller.py:263
+#: zapzap/features/browser/web/page_controller.py:518
 msgid "your screen contents and audio"
 msgstr "il contenuto dello schermo e l'audio"
 
-#: zapzap/features/browser/web/page_controller.py:264
+#: zapzap/features/browser/web/page_controller.py:519
 msgid "mouse lock"
 msgstr "blocco del mouse"
 
-#: zapzap/features/browser/web/page_controller.py:266
+#: zapzap/features/browser/web/page_controller.py:521
 msgid "a system feature"
 msgstr "una caratteristica del sistema"
 
-#: zapzap/features/browser/web/page_controller.py:270
+#: zapzap/features/browser/web/page_controller.py:525
 msgid "Permission request"
 msgstr "Richiesta di autorizzazione"
 
-#: zapzap/features/browser/web/page_controller.py:271
+#: zapzap/features/browser/web/page_controller.py:526
 #, python-brace-format
 msgid ""
 "WhatsApp Web is requesting access to {}.\n"
@@ -3850,6 +3855,61 @@ msgstr ""
 #: zapzap/ui/components/update_available_popover.py:171
 #, python-brace-format
 msgid "ZapZap {latest} is available. Current version: {current}."
+msgstr ""
+
+#: zapzap/ui/components/desktop_media_picker_dialog.py:73
+#: zapzap/ui/components/desktop_media_picker_dialog.py:130
+msgid "Share screen or window"
+msgstr ""
+
+#: zapzap/ui/components/desktop_media_picker_dialog.py:135
+msgid "Only the screen or window you choose will be shared."
+msgstr ""
+
+#: zapzap/ui/components/desktop_media_picker_dialog.py:148
+#: zapzap/ui/components/desktop_media_picker_dialog.py:201
+msgid "Cancel desktop media sharing."
+msgstr ""
+
+#: zapzap/ui/components/desktop_media_picker_dialog.py:163
+msgid "Source category"
+msgstr ""
+
+#: zapzap/ui/components/desktop_media_picker_dialog.py:165
+msgid "Choose whether to share a screen or a window."
+msgstr ""
+
+#: zapzap/ui/components/desktop_media_picker_dialog.py:170
+#: zapzap/ui/components/desktop_media_picker_dialog.py:183
+#, fuzzy
+msgid "Screens"
+msgstr "Condivisione dello schermo"
+
+#: zapzap/ui/components/desktop_media_picker_dialog.py:171
+#, fuzzy
+msgid "No screens are available."
+msgstr "Nessuna anteprima disponibile."
+
+#: zapzap/ui/components/desktop_media_picker_dialog.py:179
+#, fuzzy
+msgid "No windows are available."
+msgstr "Nessuna anteprima disponibile."
+
+#: zapzap/ui/components/desktop_media_picker_dialog.py:195
+#, fuzzy
+msgid "Share"
+msgstr "Condivisione"
+
+#: zapzap/ui/components/desktop_media_picker_dialog.py:202
+msgid "Share selected source"
+msgstr ""
+
+#: zapzap/ui/components/desktop_media_picker_dialog.py:204
+msgid "Share the explicitly selected screen or window."
+msgstr ""
+
+#: zapzap/ui/components/desktop_media_picker_dialog.py:244
+msgid "Select one source. Nothing is selected automatically."
 msgstr ""
 
 #~ msgid "Unavailable"
