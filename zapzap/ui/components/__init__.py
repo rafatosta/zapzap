@@ -8,11 +8,6 @@ from .browser_sidebar import (
 )
 from .card_user import AccountContextMenu, CardUserView
 from .client_side_window import ClientSideWindow
-from .desktop_media_picker_dialog import (
-    DesktopMediaKind,
-    DesktopMediaPickerDialog,
-    DesktopMediaSelection,
-)
 from .edit_account_dialog import EditAccountDialog
 from .main_window import MainWindowView
 from .navigation_item import NavigationItem

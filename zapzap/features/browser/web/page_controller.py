@@ -1,13 +1,11 @@
-from dataclasses import dataclass
-from typing import Callable, cast
+from typing import cast
 import logging
 
 from PyQt6.QtWebEngineCore import QWebEnginePage
 from PyQt6.QtWebEngineCore import QWebEngineSettings
-from PyQt6.QtCore import QAbstractItemModel, QModelIndex, Qt
+from PyQt6.QtCore import Qt
 from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
-from PyQt6.QtWidgets import QDialog, QWidget
 
 from zapzap import __allowed_hosts__
 from zapzap.features.customizations.addons_manager import AddonsManager
@@ -17,11 +15,6 @@ from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.permissions.permissions_manager import PermissionsManager
 from zapzap.features.browser.web.deeplink import build_open_chat_script
 from zapzap.features.browser.web.open_chat import ChatTarget, build_open_chat_url
-from zapzap.ui.components.desktop_media_picker_dialog import (
-    DesktopMediaKind,
-    DesktopMediaPickerDialog,
-    DesktopMediaSelection,
-)
 from zapzap.ui.typography import Typography
 
 import urllib.parse  # Para normalizar URLs
@@ -30,238 +23,6 @@ from gettext import gettext as _
 
 
 logger = logging.getLogger(__name__)
-
-
-def connect_desktop_media_requested(page, handler) -> bool:
-    """Connect Qt 6.7's desktop-media signal when the binding provides it."""
-    signal = getattr(page, "desktopMediaRequested", None)
-    if signal is None or not hasattr(signal, "connect"):
-        return False
-    signal.connect(handler)
-    return True
-
-
-@dataclass
-class _ActiveDesktopMediaRequest:
-    request: object
-    screens_model: QAbstractItemModel | None
-    windows_model: QAbstractItemModel | None
-    dialog: DesktopMediaPickerDialog | None = None
-    resolved: bool = False
-
-
-DesktopMediaDialogFactory = Callable[
-    [QAbstractItemModel | None, QAbstractItemModel | None, QWidget],
-    DesktopMediaPickerDialog,
-]
-
-
-class DesktopMediaRequestCoordinator:
-    """Resolve each WebEngine desktop-media request exactly once."""
-
-    def __init__(
-        self,
-        parent_provider: Callable[[], object],
-        dialog_factory: DesktopMediaDialogFactory = DesktopMediaPickerDialog,
-    ):
-        self._parent_provider = parent_provider
-        self._dialog_factory = dialog_factory
-        self._active: _ActiveDesktopMediaRequest | None = None
-
-    @property
-    def has_active_request(self) -> bool:
-        return self._active is not None
-
-    def handle(self, request) -> None:
-        if self._active is not None:
-            logger.warning(
-                "Cancelling a concurrent desktop-media request while another picker is active"
-            )
-            self._cancel_untracked(request, "concurrent_request")
-            return
-
-        try:
-            screens_model = self._usable_model(request.screensModel())
-            windows_model = self._usable_model(request.windowsModel())
-            screen_count = self._model_count(screens_model)
-            window_count = self._model_count(windows_model)
-        except (AttributeError, RuntimeError, TypeError):
-            logger.exception("Failed to query desktop-media source models")
-            self._cancel_untracked(request, "models_unavailable")
-            return
-
-        logger.info(
-            "Desktop-media request received with %d screens and %d windows",
-            screen_count,
-            window_count,
-        )
-        if screens_model is None and windows_model is None:
-            logger.warning(
-                "Cancelling desktop-media request because no usable source model is available"
-            )
-            self._cancel_untracked(request, "models_unavailable")
-            return
-
-        state = _ActiveDesktopMediaRequest(
-            request=request,
-            screens_model=screens_model,
-            windows_model=windows_model,
-        )
-        self._active = state
-        dialog = None
-        try:
-            parent = self._parent_widget()
-            if parent is None:
-                logger.warning(
-                    "Cancelling desktop-media request because its page has no live widget parent"
-                )
-                self._complete_cancel(state, "page_unavailable")
-                return
-
-            dialog = self._dialog_factory(
-                screens_model,
-                windows_model,
-                parent,
-            )
-            state.dialog = dialog
-            result = dialog.exec()
-            if state.resolved:
-                return
-            if result != QDialog.DialogCode.Accepted:
-                self._complete_cancel(
-                    state,
-                    getattr(dialog, "rejection_reason", "dialog_closed"),
-                )
-                return
-            self._complete_selection(state, dialog.selection)
-        except (RuntimeError, TypeError, ValueError):
-            logger.exception("Failed while handling a desktop-media picker")
-            self._complete_cancel(state, "picker_failure")
-        finally:
-            if dialog is not None:
-                try:
-                    dialog.deleteLater()
-                except RuntimeError:
-                    logger.debug(
-                        "Desktop-media picker was already destroyed during cleanup"
-                    )
-            state.dialog = None
-            if self._active is state:
-                self._active = None
-
-    def page_destroyed(self, _object=None) -> None:
-        state = self._active
-        if state is None:
-            return
-        self._complete_cancel(state, "page_destroyed")
-        dialog = state.dialog
-        if dialog is not None:
-            try:
-                dialog.reject()
-            except RuntimeError:
-                logger.debug(
-                    "Desktop-media picker disappeared with its page"
-                )
-
-    @staticmethod
-    def _usable_model(model) -> QAbstractItemModel | None:
-        if model is None:
-            return None
-        if not isinstance(model, QAbstractItemModel):
-            raise TypeError("desktop-media source is not a Qt item model")
-        model.rowCount()
-        return model
-
-    @staticmethod
-    def _model_count(model: QAbstractItemModel | None) -> int:
-        return model.rowCount() if model is not None else 0
-
-    def _parent_widget(self) -> QWidget | None:
-        try:
-            parent = self._parent_provider()
-        except RuntimeError:
-            logger.exception(
-                "Desktop-media page disappeared before the picker could open"
-            )
-            return None
-        return parent if isinstance(parent, QWidget) else None
-
-    def _complete_selection(
-        self,
-        state: _ActiveDesktopMediaRequest,
-        selection: DesktopMediaSelection | None,
-    ) -> None:
-        if state.resolved:
-            return
-        if not isinstance(selection, DesktopMediaSelection):
-            self._complete_cancel(state, "invalid_selection")
-            return
-
-        expected_model = (
-            state.screens_model
-            if selection.kind == DesktopMediaKind.SCREEN
-            else state.windows_model
-            if selection.kind == DesktopMediaKind.WINDOW
-            else None
-        )
-        index = QModelIndex(selection.index)
-        if (
-            expected_model is None
-            or not index.isValid()
-            or index.model() is not expected_model
-        ):
-            logger.warning(
-                "Cancelling desktop-media request because the selected source is no longer valid"
-            )
-            self._complete_cancel(state, "invalid_selection")
-            return
-
-        try:
-            if selection.kind == DesktopMediaKind.SCREEN:
-                state.request.selectScreen(index)
-            else:
-                state.request.selectWindow(index)
-        except RuntimeError:
-            logger.exception("Qt failed to accept the desktop-media selection")
-            self._complete_cancel(state, "selection_failure")
-            return
-
-        state.resolved = True
-        logger.info(
-            "Desktop-media request accepted with source category %s",
-            selection.kind.value,
-        )
-
-    @staticmethod
-    def _complete_cancel(
-        state: _ActiveDesktopMediaRequest,
-        reason: str,
-    ) -> None:
-        if state.resolved:
-            return
-        try:
-            state.request.cancel()
-        except RuntimeError:
-            logger.exception(
-                "Qt failed to cancel a desktop-media request (%s)",
-                reason,
-            )
-            state.resolved = True
-            return
-        state.resolved = True
-        logger.info("Desktop-media request cancelled (%s)", reason)
-
-    @staticmethod
-    def _cancel_untracked(request, reason: str) -> None:
-        try:
-            request.cancel()
-        except RuntimeError:
-            logger.exception(
-                "Qt failed to cancel a desktop-media request (%s)",
-                reason,
-            )
-        else:
-            logger.info("Desktop-media request cancelled (%s)", reason)
 
 
 class PageController(QWebEnginePage):
@@ -274,28 +35,12 @@ class PageController(QWebEnginePage):
         self.user_id = None
         self._force_dark_mode_fallback_active = False
         self._granted_features = set()
-        self._desktop_media_coordinator = DesktopMediaRequestCoordinator(
-            self.parent
-        )
 
         # Conecta sinais para funcionalidades específicas
         self.linkHovered.connect(self._on_link_hovered)
         self.loadFinished.connect(self._on_load_finished)
         self.featurePermissionRequested.connect(
             self._on_feature_permission_requested
-        )
-        if not connect_desktop_media_requested(
-            self,
-            self._on_desktop_media_requested,
-        ):
-            logger.warning(
-                "Desktop-media source selection is unavailable with this Qt version"
-            )
-        # A QObject does not invoke its own Python slot from destroyed because
-        # receiver connections are removed during teardown. The coordinator
-        # is a separate Python receiver and can still reject the live request.
-        self.destroyed.connect(
-            self._desktop_media_coordinator.page_destroyed
         )
 
     def createWindow(self, _type):
@@ -534,10 +279,6 @@ class PageController(QWebEnginePage):
             feature,
             Policy.PermissionGrantedByUser if allow else Policy.PermissionDeniedByUser,
         )
-
-    def _on_desktop_media_requested(self, request):
-        """Open the native picker and resolve Qt's request once."""
-        self._desktop_media_coordinator.handle(request)
 
     def _on_load_finished(self, success):
         """Ações realizadas após o carregamento da página."""

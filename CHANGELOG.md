@@ -13,15 +13,16 @@ releases and the AppStream metadata.
 
 ## [7.4.3] - In development
 
-### Added
-
-- Added an explicit native screen and window picker when sharing desktop
-  content in WhatsApp Web.
-
 ### Changed
 
 - Adopted versioned development cycles so new work identifies itself with the
   next numeric version while release builds retain the version being published.
+
+### Removed
+
+- Removed the experimental desktop-sharing picker after Wayland portal and
+  PipeWire sessions caused unbounded memory growth; the existing WebEngine
+  permission flow remains unchanged while the integration is redesigned.
 
 ## [7.4.2] - 2026-08-14
 

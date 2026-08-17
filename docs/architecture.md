@@ -156,16 +156,6 @@ WhatsApp. Scripts mantidos em `features/browser/web/scripts/` são ativos em
 tempo de execução e devem ser considerados pelo teste de código estático mesmo
 quando chamam identificadores Python indiretamente.
 
-O pedido `desktopMediaRequested` é tratado separadamente da concessão de
-permissão para captura. `PageController` conecta a API quando ela existe no Qt
-(6.7 ou posterior) e seu `DesktopMediaRequestCoordinator` mantém no máximo uma
-solicitação ativa, resolvendo-a uma única vez por `selectScreen()`,
-`selectWindow()` ou `cancel()`. O `DesktopMediaPickerDialog`, em
-`ui.components`, recebe diretamente os modelos dinâmicos de telas e janelas,
-não importa Qt WebEngine e devolve um índice persistente pertencente ao modelo
-original. Não há seleção inicial, escolha automática nem persistência da fonte;
-uma remoção que invalide a fonte selecionada cancela a solicitação.
-
 O proxy é único e global ao processo. Somente as chaves `proxy/*` alimentam
 `ProxyManager`; trocar, ativar ou exibir uma conta não consulta nem reaplica
 proxy. As chaves históricas `<user_id>/proxy/*` não são migradas nem lidas, para
