@@ -44,7 +44,9 @@ Inventário de documentos técnicos:
 ## Regras de atualização
 
 Toda mudança ou adição ao repositório deve atualizar obrigatoriamente a seção
-`Unreleased` de `CHANGELOG.md` no mesmo commit ou pull request. Essa exigência
+numérica marcada `In development` em `CHANGELOG.md` no mesmo commit ou pull
+request. Essa seção deve corresponder a `zapzap.__version__` e acumula todo o
+trabalho do ciclo atual sem incrementar a versão a cada mudança. A exigência
 também se aplica a documentação, testes, manutenção interna, dependências,
 empacotamento e workflows; o histórico Git e as notas geradas pelo GitHub não
 substituem o registro curado.

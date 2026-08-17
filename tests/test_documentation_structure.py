@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import ast
+from datetime import date
 from pathlib import Path
 import re
 import unittest
@@ -18,6 +20,54 @@ TESTING_PATH = DOCS_ROOT / "testing.md"
 DOCS_INDEX_PATH = DOCS_ROOT / "README.md"
 AGENT_GUIDE_PATH = REPOSITORY_ROOT / "AGENTS.md"
 CHANGELOG_PATH = REPOSITORY_ROOT / "CHANGELOG.md"
+PACKAGE_INIT_PATH = REPOSITORY_ROOT / "zapzap" / "__init__.py"
+
+VERSION_PATTERN = re.compile(r"\d+(?:\.\d+)+")
+VERSION_HEADING_PATTERN = re.compile(
+    r"^## \[(?P<version>\d+(?:\.\d+)+)\] - (?P<label>.+)$",
+    re.MULTILINE,
+)
+CHANGELOG_SECTION_PATTERN = re.compile(r"^## \[.+\].*$", re.MULTILINE)
+DEVELOPMENT_HEADING_PATTERN = re.compile(
+    r"^## \[(?P<version>\d+(?:\.\d+)+)\] - In development$",
+    re.MULTILINE,
+)
+DEVELOPMENT_MARKER_PATTERN = re.compile(
+    r"^## .+ - In development$",
+    re.MULTILINE,
+)
+
+
+def package_version() -> str:
+    """Read the package version without importing PyQt or application code."""
+    module = ast.parse(PACKAGE_INIT_PATH.read_text(encoding="utf-8"))
+    for node in module.body:
+        if not isinstance(node, ast.Assign):
+            continue
+        if any(
+            isinstance(target, ast.Name) and target.id == "__version__"
+            for target in node.targets
+        ):
+            value = ast.literal_eval(node.value)
+            if not isinstance(value, str):
+                raise AssertionError("zapzap.__version__ must be a string")
+            return value
+    raise AssertionError("zapzap.__version__ not found")
+
+
+def numeric_version(value: str) -> tuple[int, ...]:
+    """Convert one already-validated numeric version for ordering."""
+    return tuple(int(part) for part in value.split("."))
+
+
+def is_later_version(candidate: str, reference: str) -> bool:
+    """Compare numeric versions while treating trailing zeroes as insignificant."""
+    candidate_parts = numeric_version(candidate)
+    reference_parts = numeric_version(reference)
+    width = max(len(candidate_parts), len(reference_parts))
+    return candidate_parts + (0,) * (width - len(candidate_parts)) > (
+        reference_parts + (0,) * (width - len(reference_parts))
+    )
 
 
 def documented_inventory(path: Path, name: str) -> list[str]:
@@ -114,9 +164,57 @@ class DocumentationStructureTests(unittest.TestCase):
             with self.subTest(reference=required_reference):
                 self.assertIn(required_reference, guide)
 
-    def test_changelog_keeps_an_unreleased_section(self):
+    def test_changelog_has_one_current_numeric_development_version(self):
         changelog = CHANGELOG_PATH.read_text(encoding="utf-8")
-        self.assertIn("## [Unreleased]", changelog)
+        development_headings = list(DEVELOPMENT_HEADING_PATTERN.finditer(changelog))
+        development_markers = list(DEVELOPMENT_MARKER_PATTERN.finditer(changelog))
+        version_headings = list(VERSION_HEADING_PATTERN.finditer(changelog))
+        changelog_sections = list(CHANGELOG_SECTION_PATTERN.finditer(changelog))
+        self.assertEqual(len(development_markers), 1)
+        self.assertEqual(len(development_headings), 1)
+        self.assertTrue(version_headings)
+        self.assertTrue(changelog_sections)
+        self.assertEqual(development_headings[0].start(), version_headings[0].start())
+        self.assertEqual(development_headings[0].start(), changelog_sections[0].start())
+
+        current_version = package_version()
+        self.assertIsNotNone(VERSION_PATTERN.fullmatch(current_version))
+        self.assertEqual(development_headings[0].group("version"), current_version)
+        self.assertNotRegex(changelog, r"^## \[Unreleased\](?:\s|$)")
+
+    def test_development_version_precedes_a_dated_release_and_has_comparison_link(self):
+        changelog = CHANGELOG_PATH.read_text(encoding="utf-8")
+        headings = list(VERSION_HEADING_PATTERN.finditer(changelog))
+        self.assertGreaterEqual(len(headings), 2)
+
+        current, latest_release = headings[:2]
+        self.assertEqual(current.group("label"), "In development")
+        self.assertNotRegex(current.group(0), r"\d{4}-\d{2}-\d{2}")
+        self.assertNotEqual(current.group("version"), latest_release.group("version"))
+        self.assertTrue(
+            is_later_version(
+                current.group("version"),
+                latest_release.group("version"),
+            )
+        )
+
+        release_date = latest_release.group("label")
+        self.assertIsNotNone(re.fullmatch(r"\d{4}-\d{2}-\d{2}", release_date))
+        released_on = date.fromisoformat(release_date)
+        self.assertLessEqual(released_on, date.today())
+        comparison_link = (
+            f"[{current.group('version')}]: "
+            "https://github.com/rafatosta/zapzap/compare/"
+            f"{latest_release.group('version')}...HEAD"
+        )
+        self.assertIn(comparison_link, changelog)
+
+    def test_guides_require_the_versioned_development_section(self):
+        for path in (AGENT_GUIDE_PATH, DOCS_INDEX_PATH, MAINTENANCE_PATH):
+            with self.subTest(path=path.relative_to(REPOSITORY_ROOT)):
+                guide = path.read_text(encoding="utf-8")
+                self.assertIn("In development", guide)
+                self.assertNotIn("`Unreleased`", guide)
 
 
 if __name__ == "__main__":

@@ -4,19 +4,24 @@ All changes and additions to ZapZap are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/2.0.0/).
 Every pull request or commit that changes the repository must add or update an
-entry under `Unreleased`, including internal, documentation, test, packaging,
-and workflow changes.
+entry under the version currently marked `In development`, including internal,
+documentation, test, packaging, and workflow changes.
 
 This mandatory record starts after version 7.4.1. The 7.4.1 entry below is the
 historical baseline; older release summaries remain available in the GitHub
 releases and the AppStream metadata.
 
-## [Unreleased]
+## [7.4.3] - In development
 
 ### Added
 
 - Added an explicit native screen and window picker when sharing desktop
   content in WhatsApp Web.
+
+### Changed
+
+- Adopted versioned development cycles so new work identifies itself with the
+  next numeric version while release builds retain the version being published.
 
 ## [7.4.2] - 2026-08-14
 
@@ -65,6 +70,6 @@ releases and the AppStream metadata.
 - Improved reliability when ZapZap is closed by the operating system.
 - Included performance improvements.
 
-[Unreleased]: https://github.com/rafatosta/zapzap/compare/7.4.2...HEAD
+[7.4.3]: https://github.com/rafatosta/zapzap/compare/7.4.2...HEAD
 [7.4.2]: https://github.com/rafatosta/zapzap/compare/7.4.1...7.4.2
 [7.4.1]: https://github.com/rafatosta/zapzap/releases/tag/7.4.1

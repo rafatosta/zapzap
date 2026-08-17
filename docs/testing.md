@@ -86,7 +86,7 @@ documente o que ele protege.
 | `test_desktop_application_dbus.py` | interface `org.freedesktop.Application` e ativação D-Bus |
 | `test_desktop_media_selection.py` | modelos dinâmicos, escolha explícita, resolução única, cancelamento, ciclo de vida e independência das permissões de captura |
 | `test_dictionary_options.py` | descoberta dinâmica, nomes amigáveis, ordenação, redimensionamento e fallback de dicionários personalizados |
-| `test_documentation_structure.py` | camadas de UI, contrato mínimo do changelog e sincronização entre árvore, inventários técnicos e guia para agentes |
+| `test_documentation_structure.py` | camadas de UI, ciclo numérico versionado do changelog e sincronização entre árvore, inventários técnicos e guia para agentes |
 | `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
 | `test_external_link_lifecycle.py` | descarte da página WebEngine transitória após abrir links externos |
 | `test_gpu_environment.py` | detecção multi-GPU, conectores e seleção de render node |
@@ -286,6 +286,12 @@ Valide o contrato documental:
 ```bash
 python tests/test_documentation_structure.py -v
 ```
+
+Esse contrato lê `zapzap.__version__` estaticamente, sem importar PyQt, e exige
+que ela seja numérica e corresponda à primeira e única seção marcada
+`In development`. Também verifica a release datada imediatamente anterior, a
+ordem das versões e o link de comparação até `HEAD`, sem impor um incremento
+patch que impediria uma mudança minor ou major decidida pelo mantenedor.
 
 Validações complementares:
 

@@ -318,10 +318,14 @@ Repita para cada catálogo alterado e gere os `.mo` que o pacote distribui.
 ## Registro obrigatório de mudanças
 
 `CHANGELOG.md`, na raiz do repositório, é a fonte de verdade do histórico do
-ZapZap. Toda mudança ou adição deve atualizar a seção `Unreleased` no mesmo
-commit ou pull request. A regra inclui funcionalidades, correções, mudanças de
-comportamento, documentação, testes, refatorações, dependências, ferramentas,
-empacotamento e workflows.
+ZapZap. Toda mudança ou adição deve atualizar a seção numérica marcada
+`In development` no mesmo commit ou pull request. A regra inclui
+funcionalidades, correções, mudanças de comportamento, documentação, testes,
+refatorações, dependências, ferramentas, empacotamento e workflows. A versão
+dessa seção deve ser igual a `zapzap.__version__`, que permanece estritamente
+numérica; o estado de desenvolvimento pertence somente ao cabeçalho do
+changelog. Todas as mudanças do ciclo se acumulam nessa mesma seção, sem um
+incremento por commit ou por entrada.
 
 Use as categorias `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed` e
 `Security`. Escreva entradas curtas que expliquem o efeito da mudança; para
@@ -329,14 +333,47 @@ trabalho interno, descreva o impacto na manutenção, confiabilidade, desempenho
 ou processo de entrega. Não copie o `git log` e não considere commits, pull
 requests ou notas automáticas do GitHub substitutos do changelog.
 
-Ao preparar uma release:
+O ciclo permanente de versão e release é:
 
-1. revise todas as entradas acumuladas desde a versão anterior;
-2. transforme `Unreleased` em uma seção com versão e data no formato
-   `YYYY-MM-DD`;
-3. crie uma nova seção `Unreleased` vazia;
-4. atualize os links de comparação no final do arquivo;
-5. use a seção da versão como base para as notas do GitHub Release.
+1. **Desenvolvimento:** mantenha a próxima versão numérica em
+   `zapzap.__version__` e na primeira seção versionada do changelog, marcada
+   `In development`. Registre ali toda mudança do ciclo.
+2. **Fechamento:** revise as entradas e substitua somente `In development` pela
+   data real no formato `YYYY-MM-DD`. Mantenha `zapzap.__version__` nessa mesma
+   versão e altere o link de comparação para terminar na tag que será
+   publicada.
+3. **Tag, build e publicação:** gere as notas do GitHub Release a partir da
+   seção fechada e mantenha a versão inalterada durante o commit, a tag, os
+   builds e a publicação. Não abra a próxima versão antes dessa etapa, pois os
+   artefatos declarariam a versão errada.
+4. **Próximo ciclo:** somente depois da publicação, faça um novo commit que
+   atualize `zapzap.__version__`, crie no topo a nova seção marcada
+   `In development` e adicione seu link da última tag publicada até `HEAD`.
+
+Antes de abrir automaticamente o próximo ciclo, consulte as tags do Git e
+confirme qual é a última tag estável efetivamente publicada. Considere somente
+tags estritamente numéricas, com prefixo `v` quando essa for a convenção real;
+ignore drafts, prereleases, tags não numéricas e versões encontradas apenas em
+documentos, AppStream ou artefatos locais. Se as tags locais estiverem
+desatualizadas ou houver ambiguidade, confirme a tag oficial antes de editar e
+não invente a base.
+
+A próxima versão automática incrementa a última parte da tag publicada:
+
+```text
+7.4   -> 7.4.1
+7.4.2 -> 7.4.3
+7.4.3 -> 7.4.4
+7.5   -> 7.5.1
+7.5.1 -> 7.5.2
+```
+
+Uma versão minor ou major diferente desse resultado só pode ser usada quando o
+mantenedor informar explicitamente o destino. Nesse caso, use exatamente a
+versão pedida em `zapzap.__version__` e no cabeçalho em desenvolvimento,
+preserve todas as entradas acumuladas e ajuste o link dessa versão. O lado
+esquerdo do link continua sendo a última tag realmente publicada, nunca o nome
+anterior da seção ainda não lançada.
 
 O bloco `<releases>` de
 `share/metainfo/com.rtosta.zapzap.appdata.xml` existe somente para a publicação
@@ -419,11 +456,14 @@ Workflows mantidos:
 <!-- structure-check:workflows:end -->
 
 Antes de uma release, revise a versão em `zapzap/__init__.py`, consolide a
-seção correspondente de `CHANGELOG.md` e verifique artefatos desktop/ícone e
-catálogos compilados. Quando houver publicação no Flathub, produza manualmente
-um resumo do changelog no bloco `<releases>` dos metadados AppStream em
-`share/metainfo/`; valide então XML/AppStream e o manifesto Flatpak com as
-ferramentas disponíveis, pois avisos do Flathub podem bloquear a publicação.
+seção correspondente de `CHANGELOG.md`, feche-a com a data real e verifique
+artefatos desktop/ícone e catálogos compilados. Não altere
+`zapzap.__version__` até concluir a tag, os builds e a publicação dessa versão;
+abra o próximo ciclo somente depois. Quando houver publicação no Flathub,
+produza manualmente um resumo do changelog no bloco `<releases>` dos metadados
+AppStream em `share/metainfo/`; versões ainda em desenvolvimento não entram
+nesse bloco. Valide então XML/AppStream e o manifesto Flatpak com as ferramentas
+disponíveis, pois avisos do Flathub podem bloquear a publicação.
 
 No AppImage, o nome publicado deve ser definido antes da geração do arquivo
 `.zsync`. O script de geração fornece o basename final ao `quick-sharun` pela

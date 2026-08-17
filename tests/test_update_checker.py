@@ -242,6 +242,20 @@ class UpdateCheckerTests(QtTestCase):
             reply.finished.emit()
         self.assertEqual(state.info, UpdateInfo("7.4", "7.4", False))
 
+    def test_development_version_does_not_offer_the_last_stable_release(self):
+        reply = FakeReply(self._payload("7.4.2"))
+        checker, state, _manager = self._checker(reply)
+        with (
+            patch.object(
+                UpdatePolicy, "should_check_current_environment", return_value=True
+            ),
+            patch.object(update_module, "__version__", "7.4.3"),
+        ):
+            checker.start_once()
+            reply.finished.emit()
+
+        self.assertEqual(state.info, UpdateInfo("7.4.3", "7.4.2", False))
+
     def test_timeout_and_invalid_response_are_silent(self):
         replies = (
             FakeReply(error=QNetworkReply.NetworkError.TimeoutError),
