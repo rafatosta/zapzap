@@ -278,11 +278,14 @@ idiomas só são baixados por ação explícita do usuário. Falhas de rede ou
 ausência de correspondência mantêm a aplicação funcional e permitem nova
 tentativa em outra inicialização; não há rede antes do WebEngine.
 
-O diretório `/app/qtwebengine_dictionaries` observado na base Flatpak 6.10
-contém apenas cinco variantes de inglês e nenhum manifesto do catálogo do
-ZapZap. Ele é, portanto, parcial: não pode ocultar o gerenciador nem impedir o
-provisionamento do idioma do sistema. AppImage e Snap copiam o manifesto junto
-com os `.bdic`; uma cópia incompleta falha fechada para o modo gerenciado.
+Os pacotes oficiais não embarcam o catálogo remoto nem publicam
+`QTWEBENGINE_DICTIONARIES_PATH` para uma pasta interna. AppImage e Snap deixaram
+de clonar/copiar `.bdic`; o cleanup do Flatpak remove as cinco variantes de
+inglês herdadas da base PyQt em `/app/qtwebengine_dictionaries`.
+Todos iniciam no store gravável e provisionam apenas o idioma do sistema. A
+detecção de catálogo completo permanece para compatibilidade com instalações
+legadas ou pacotes de terceiros; uma origem parcial falha fechada para o modo
+gerenciado.
 
 Dentro de `features.dictionaries`, `dictionary_catalog` valida o
 `manifest.json` de `rafatosta/qtwebengine_dictionaries` e mantém a enumeração da

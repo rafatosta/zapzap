@@ -84,7 +84,7 @@ documente o que ele protege.
 | `test_debugging_settings_ui.py` | manutenção, relatórios, informações de runtime, cópia e feedback |
 | `test_deeplink.py` | validação de URLs WhatsApp e resistência a injeção de script |
 | `test_desktop_application_dbus.py` | interface `org.freedesktop.Application` e ativação D-Bus |
-| `test_dictionary_manager.py` | store próprio, migração, catálogo/cache, rede segura, downloads atômicos, importação/remoção, diálogo compartilhado, completude do diretório do pacote e provisionamento único do idioma do sistema |
+| `test_dictionary_manager.py` | store próprio, migração, catálogo/cache, rede segura, downloads atômicos, importação/remoção, diálogo compartilhado, provisionamento único do idioma do sistema e ausência de dicionários nos pacotes oficiais |
 | `test_dictionary_options.py` | descoberta dinâmica, nomes amigáveis, ordenação, redimensionamento e fallback de dicionários personalizados |
 | `test_documentation_structure.py` | camadas de UI, ciclo numérico versionado do changelog e sincronização entre árvore, inventários técnicos e guia para agentes |
 | `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
@@ -253,11 +253,11 @@ durante a execução.
    (ou uma variante do mesmo idioma), nunca para um idioma sem relação. Os
    demais só podem ser instalados manualmente. Reinicie, remova voluntariamente
    o idioma provisionado e confirme que ele não é baixado de novo em silêncio.
-7. No Flatpak baseado em Qt 6.10, confirme que as cinco variantes de inglês em
-   `/app/qtwebengine_dictionaries` são reconhecidas como catálogo parcial, que
-   **Gerenciar** aparece e que o idioma do sistema pode ser instalado. Se uma
-   versão futura incluir o catálogo completo com manifesto correspondente,
-   confirme o caminho direto descrito no passo 1.
+7. Nos artefatos oficiais de AppImage, Snap e Flatpak, confirme que nenhum
+   `.bdic` ou `QTWEBENGINE_DICTIONARIES_PATH` interno é instalado/configurado,
+   que **Gerenciar** aparece e que o idioma do sistema é salvo exclusivamente
+   no store gravável. No Flatpak, confirme também que o cleanup retirou o
+   diretório herdado da base PyQt do artefato final.
 
 Se o Chromium falhar com `sandbox_host_linux.cc ... Operation not permitted`,
 repita fora do sandbox e registre a limitação; não considere esse cenário como

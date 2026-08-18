@@ -28,7 +28,6 @@ apps:
       QTWEBENGINEPROCESS_PATH: $SNAP/usr/lib/qt6/libexec/QtWebEngineProcess
       QTWEBENGINE_RESOURCES_PATH: $SNAP/usr/share/qt6/resources
       QTWEBENGINE_LOCALES_PATH: $SNAP/usr/share/qt6/translations/qtwebengine_locales
-      QTWEBENGINE_DICTIONARIES_PATH: $SNAP/usr/share/zapzap/qtwebengine_dictionaries
 
       QTWEBENGINE_DISABLE_SANDBOX: "1"
       QTWEBENGINE_CHROMIUM_FLAGS: --no-sandbox --disable-gpu-sandbox --disable-dev-shm-usage --password-store=basic
@@ -55,7 +54,6 @@ parts:
     source: .
 
     build-packages:
-      - git
       - python3-build
       - python3-installer
       - python3-venv
@@ -84,12 +82,6 @@ parts:
       . .github/packaging/snap/prepare.sh
 
       craftctl set version="$(project_version)"
-
-      if [ ! -d qtwebengine_dictionaries ]; then
-        git clone \
-          --depth=1 \
-          https://github.com/rafatosta/qtwebengine_dictionaries.git
-      fi
 
       export DESTDIR="$CRAFT_PART_INSTALL"
       export PREFIX=/usr

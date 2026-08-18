@@ -20,9 +20,9 @@ finish-args:
   - "--talk-name=org.freedesktop.Notifications"
   - "--talk-name=org.kde.StatusNotifierWatcher"
   - "--env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess"
-  - "--env=QTWEBENGINE_DICTIONARIES_PATH=/app/qtwebengine_dictionaries"
 
 cleanup:
+  - /qtwebengine_dictionaries
   - /include
   - /lib/pkgconfig
   - "*.la"
@@ -59,4 +59,4 @@ modules:
 
     sources:
       - type: dir
-        path: ../ 
+        path: ../

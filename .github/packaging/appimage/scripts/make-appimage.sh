@@ -51,24 +51,6 @@ echo "Executável encontrado em: ${ZAPZAP_BIN}"
 
 echo
 echo "==============================================================="
-echo "Verificando dicionários instalados"
-echo "==============================================================="
-
-DICT_SRC="$(python - <<'EOF'
-from importlib.resources import files
-
-path = files("zapzap") / "qtwebengine_dictionaries"
-
-print(path)
-EOF
-)"
-
-echo "Origem: ${DICT_SRC}"
-
-find "${DICT_SRC}" -name "*.bdic" | sort
-
-echo
-echo "==============================================================="
 echo "Criando AppDir"
 echo "==============================================================="
 
@@ -114,27 +96,6 @@ if [ ! -d "${APPDIR}" ]; then
     echo "Erro: AppDir não encontrado."
     exit 1
 fi
-
-echo
-echo "==============================================================="
-echo "Copiando dicionários para o AppDir"
-echo "==============================================================="
-
-DICT_DST="${APPDIR}/qtwebengine_dictionaries"
-
-mkdir -p "${DICT_DST}"
-
-cp -av \
-    "${DICT_SRC}"/*.bdic \
-    "${DICT_DST}/"
-
-if [ -f "${DICT_SRC}/manifest.json" ]; then
-    cp -av "${DICT_SRC}/manifest.json" "${DICT_DST}/"
-fi
-
-echo
-echo "Dicionários no AppDir:"
-find "${APPDIR}" -name "*.bdic" | sort
 
 echo
 echo "==============================================================="

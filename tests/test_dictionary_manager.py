@@ -176,6 +176,35 @@ class FakeProvisionService(QObject):
         self.closed = True
 
 
+class DictionaryPackagingTests(unittest.TestCase):
+
+    def test_official_packages_do_not_embed_dictionary_catalogs(self):
+        root = Path(__file__).resolve().parents[1]
+        packaging_files = [
+            *sorted((root / ".github/packaging/appimage").rglob("*")),
+            *sorted((root / ".github/packaging/snap").rglob("*")),
+        ]
+        forbidden = (
+            "qtwebengine_dictionaries",
+            "QTWEBENGINE_DICTIONARIES_PATH",
+            ".bdic",
+        )
+        for path in packaging_files:
+            if not path.is_file():
+                continue
+            text = path.read_text(encoding="utf-8")
+            for marker in forbidden:
+                with self.subTest(path=path.relative_to(root), marker=marker):
+                    self.assertNotIn(marker, text)
+
+        flatpak_manifest = (
+            root / "tools/com.rtosta.zapzap.yaml"
+        ).read_text(encoding="utf-8")
+        self.assertNotIn("QTWEBENGINE_DICTIONARIES_PATH", flatpak_manifest)
+        self.assertNotIn(".bdic", flatpak_manifest)
+        self.assertIn("- /qtwebengine_dictionaries", flatpak_manifest)
+
+
 class ManagedDictionaryStoreTests(QtTestCase):
 
     def setUp(self):

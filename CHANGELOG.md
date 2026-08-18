@@ -33,6 +33,9 @@ releases and the AppStream metadata.
 
 ### Removed
 
+- Removed bundled Qt WebEngine dictionaries from AppImage and Snap and the
+  inherited dictionary directory from Flatpak; official packages now provision
+  the system language into writable data and leave other downloads to the user.
 - Removed the experimental desktop-sharing picker after Wayland portal and
   PipeWire sessions caused unbounded memory growth; the existing WebEngine
   permission flow remains unchanged while the integration is redesigned.

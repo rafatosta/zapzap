@@ -105,37 +105,6 @@ raise SystemExit('Qt6 installation directory not found')
 EOF_PY
 }
 
-install_dictionaries() {
-    _require_destdir
-    log "Installing QtWebEngine dictionaries into ${DESTDIR}"
-    dict_dst="${DESTDIR}${PREFIX}/share/zapzap/qtwebengine_dictionaries"
-    mkdir -p "${dict_dst}"
-
-    if [ -d "${ROOT_DIR}/qtwebengine_dictionaries" ]; then
-        dict_src="${ROOT_DIR}/qtwebengine_dictionaries"
-    elif [ -d "${ROOT_DIR}/zapzap/qtwebengine_dictionaries" ]; then
-        dict_src="${ROOT_DIR}/zapzap/qtwebengine_dictionaries"
-    else
-        echo "No qtwebengine_dictionaries directory found; skipping." >&2
-        return 0
-    fi
-
-    found=0
-    for dict in "${dict_src}"/*.bdic; do
-        [ -e "${dict}" ] || continue
-        cp -f "${dict}" "${dict_dst}/"
-        found=1
-    done
-
-    if [ -f "${dict_src}/manifest.json" ]; then
-        cp -f "${dict_src}/manifest.json" "${dict_dst}/"
-    fi
-
-    if [ "${found}" -eq 0 ]; then
-        echo "No .bdic dictionaries found in ${dict_src}; skipping." >&2
-    fi
-}
-
 validate_install() {
     _require_destdir
     log "Validating installation in ${DESTDIR}"
@@ -158,6 +127,5 @@ EOF_PY
 prepare_package() {
     build_wheel
     install_wheel
-    install_dictionaries
     validate_install
 }

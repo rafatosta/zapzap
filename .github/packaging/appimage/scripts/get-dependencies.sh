@@ -8,7 +8,6 @@ echo "---------------------------------------------------------------"
 pacman -Syu --noconfirm \
     base-devel \
     ffmpeg \
-    git \
     kvantum \
     lxqt-qtplugin \
     pipewire-audio \
@@ -34,21 +33,6 @@ echo "---------------------------------------------------------------"
 # The continuously published ffmpeg-mini package may temporarily expose an
 # older ABI on one architecture and make the Qt libraries unloadable.
 get-debloated-pkgs --add-common --prefer-nano
-
-echo "Downloading dictionaries..."
-git clone \
-  --depth=1 \
-  https://github.com/rafatosta/qtwebengine_dictionaries.git
-
-mkdir -p zapzap/qtwebengine_dictionaries
-
-cp \
-  qtwebengine_dictionaries/*.bdic \
-  zapzap/qtwebengine_dictionaries/
-
-if [ -f qtwebengine_dictionaries/manifest.json ]; then
-  cp qtwebengine_dictionaries/manifest.json zapzap/qtwebengine_dictionaries/
-fi
 
 echo "Building ZapZap..."
 echo "---------------------------------------------------------------"

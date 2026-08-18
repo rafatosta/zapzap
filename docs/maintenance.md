@@ -226,10 +226,11 @@ não há evidência rastreável; não os deduza de timestamps ou nomes do arquiv
 Antes de publicar, revise atribuição/licença na fonte real e não faça afirmação
 jurídica sem referência verificável.
 
-AppImage e Snap devem instalar `manifest.json` junto com os `.bdic`. Se o
-manifesto faltar ou a cópia não corresponder a ele, o comportamento correto é
-usar o store gerenciado; não relaxe a validação com contagem mínima ou lista
-fixa de idiomas.
+AppImage, Snap e Flatpak oficiais não devem clonar, copiar ou expor um diretório
+interno de `.bdic`; mantenha essa ausência coberta por teste estrutural. Todos
+usam o store gravável e o provisionamento inicial. A detecção de manifesto
+completo existe apenas para compatibilidade com instalações legadas ou pacotes
+de terceiros; não a use para reintroduzir o catálogo nos artefatos oficiais.
 
 Ao diagnosticar o gerenciador, registre apenas caminho efetivo, resultado da
 migração, revisão/idade do cache e categoria técnica da operação. Não registre

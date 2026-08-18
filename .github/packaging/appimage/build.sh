@@ -8,5 +8,4 @@ MAKE_APPIMAGE=".github/packaging/appimage/scripts/make-appimage.sh"
 
 chmod +x "$GET_DEPS" "$MAKE_APPIMAGE"
 "$GET_DEPS"
-find . -name "*.bdic" | sort || true
 "$MAKE_APPIMAGE"
