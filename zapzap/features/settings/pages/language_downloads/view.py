@@ -87,20 +87,18 @@ class LanguageDownloadSettingsView(SettingsPage):
         self.btn_select_spell_languages = self.spell_languages_row.button
         self.btn_select_spell_languages.setAccessibleName(
             _("Select spell checker languages"))
-        path_row = SettingsPathRow(
-            _("Dictionary directory"),
-            _("Note: changing dictionaries may require restarting the browser "),
-            button_text=_("Define"),
+        self.manage_dictionaries_row = SettingsActionRow(
+            _("Dictionary files"),
+            _("Install, remove, or import dictionaries in ZapZap storage."),
+            button_text=_("Manage…"),
         )
-        self.dic_path = path_row.line_edit
-        self.dic_path.setReadOnly(True)
-        self.btn_path_spell = path_row.button
-        self.btn_default_path_spell = Button(
-            _("Restore"), variant=Button.WARNING)
-        path_row.control.layout().addWidget(self.btn_default_path_spell)
+        self.btn_manage_dictionaries = self.manage_dictionaries_row.button
+        self.btn_manage_dictionaries.setAccessibleName(_("Manage dictionaries"))
+        self.btn_manage_dictionaries.setAccessibleDescription(
+            _("Open the Qt WebEngine dictionary manager."))
         self.spellchecker_options_group = card.add_group(
             self.spellchecker_groupBox,
-            (self.spell_languages_row, path_row),
+            (self.spell_languages_row, self.manage_dictionaries_row),
         )
         section.add_card(card)
         self.add_section(section)

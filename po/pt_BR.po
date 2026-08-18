@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-14 21:23-0300\n"
+"POT-Creation-Date: 2026-08-17 21:14-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -152,6 +152,7 @@ msgstr ""
 
 #: zapzap/features/accounts/card_user_controller.py:167
 #: zapzap/ui/components/card_user.py:153
+#: zapzap/ui/components/dictionary_manager_dialog.py:191
 msgid "Remove"
 msgstr "Remover"
 
@@ -237,9 +238,44 @@ msgstr "Copiar endereço"
 #: zapzap/ui/components/edit_account_dialog.py:73
 #: zapzap/ui/components/send_message_to_number_dialog.py:135
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
+#: zapzap/ui/components/dictionary_manager_dialog.py:91
+#: zapzap/ui/components/dictionary_manager_dialog.py:193
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "Fechar"
+
+#: zapzap/features/dictionaries/dictionary_manager.py:111
+msgid "Remove dictionary"
+msgstr "Remover dicionário"
+
+#: zapzap/features/dictionaries/dictionary_manager.py:112
+#, python-brace-format
+msgid "Remove the dictionary {code}?"
+msgstr "Remover o dicionário {code}?"
+
+#: zapzap/features/dictionaries/dictionary_manager.py:122
+msgid "Disable spell checker and remove"
+msgstr "Desativar corretor e remover"
+
+#: zapzap/features/dictionaries/dictionary_manager.py:124
+#, python-brace-format
+msgid ""
+"This is the last active dictionary. Disable the spell checker and remove "
+"{code}?"
+msgstr ""
+"Este é o último dicionário ativo. Desativar o corretor ortográfico e remover "
+"{code}?"
+
+#: zapzap/features/dictionaries/dictionary_manager.py:143
+#: zapzap/features/dictionaries/dictionary_manager.py:172
+msgid "Replace dictionary"
+msgstr "Substituir dicionário"
+
+#: zapzap/features/dictionaries/dictionary_manager.py:145
+#: zapzap/features/dictionaries/dictionary_manager.py:174
+#, python-brace-format
+msgid "A different dictionary named {code} is installed. Replace it?"
+msgstr "Há um dicionário diferente chamado {code} instalado. Substituí-lo?"
 
 #: zapzap/features/donation/model.py:40
 msgid "GitHub Sponsors"
@@ -396,7 +432,7 @@ msgid "Select folder"
 msgstr "Selecionar pasta"
 
 #: zapzap/features/initial_setup/controller.py:126
-#: zapzap/features/settings/pages/language_downloads/controller.py:63
+#: zapzap/features/settings/pages/language_downloads/controller.py:64
 msgid "System default"
 msgstr "Padrão do sistema"
 
@@ -472,6 +508,7 @@ msgstr "Comece com a linguagem da interface e um tema visual confortável."
 
 #: zapzap/features/initial_setup/view.py:143
 #: zapzap/features/settings/pages/language_downloads/view.py:35
+#: zapzap/ui/components/dictionary_manager_dialog.py:143
 msgid "Language"
 msgstr "Idioma"
 
@@ -2156,13 +2193,13 @@ msgstr "Diagnóstico copiado"
 msgid "Details copied"
 msgstr "Detalhes copiados"
 
-#: zapzap/features/settings/pages/language_downloads/controller.py:140
+#: zapzap/features/settings/pages/language_downloads/controller.py:141
 #: zapzap/features/settings/pages/language_downloads/view.py:84
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:255
 msgid "No dictionary available"
 msgstr "Nenhum dicionário disponível"
 
-#: zapzap/features/settings/pages/language_downloads/controller.py:144
+#: zapzap/features/settings/pages/language_downloads/controller.py:145
 #, python-brace-format
 msgid "{language} and {count} more"
 msgstr "{language} e mais {count}"
@@ -2183,12 +2220,10 @@ msgstr ""
 "Defina uma pasta personalizada ou restaure o local padrão de downloads."
 
 #: zapzap/features/settings/pages/language_downloads/view.py:60
-#: zapzap/features/settings/pages/language_downloads/view.py:93
 msgid "Define"
 msgstr "Definir"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:66
-#: zapzap/features/settings/pages/language_downloads/view.py:99
 #: zapzap/features/settings/pages/network_privacy/controller.py:276
 #: zapzap/features/settings/pages/performance_experimental/view.py:248
 msgid "Restore"
@@ -2207,12 +2242,27 @@ msgid "Select spell checker languages"
 msgstr "Selecionar idiomas do corretor"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:91
-msgid "Dictionary directory"
-msgstr "Diretório de dicionários"
+msgid "Dictionary files"
+msgstr "Arquivos de dicionário"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:92
-msgid "Note: changing dictionaries may require restarting the browser "
-msgstr "Observação: alterar dicionários pode exigir reiniciar o navegador "
+msgid "Install, remove, or import dictionaries in ZapZap storage."
+msgstr "Instale, remova ou importe dicionários no armazenamento do ZapZap."
+
+#: zapzap/features/settings/pages/language_downloads/view.py:93
+msgid "Manage…"
+msgstr "Gerenciar…"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:96
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:274
+#: zapzap/ui/components/dictionary_manager_dialog.py:50
+#: zapzap/ui/components/dictionary_manager_dialog.py:89
+msgid "Manage dictionaries"
+msgstr "Gerenciar dicionários"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:98
+msgid "Open the Qt WebEngine dictionary manager."
+msgstr "Abra o gerenciador de dicionários do Qt WebEngine."
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:29
 msgid "No proxy"
@@ -3160,53 +3210,6 @@ msgstr "Ativar"
 msgid "Not now"
 msgstr "Agora não"
 
-#: zapzap/features/browser/web/page_controller.py:258
-msgid "your microphone"
-msgstr "seu microfone"
-
-#: zapzap/features/browser/web/page_controller.py:259
-msgid "your camera"
-msgstr "sua câmera"
-
-#: zapzap/features/browser/web/page_controller.py:260
-msgid "your camera and microphone"
-msgstr "sua câmera e seu microfone"
-
-#: zapzap/features/browser/web/page_controller.py:261
-msgid "your location"
-msgstr "sua localização"
-
-#: zapzap/features/browser/web/page_controller.py:262
-msgid "your screen contents"
-msgstr "o conteúdo da sua tela"
-
-#: zapzap/features/browser/web/page_controller.py:263
-msgid "your screen contents and audio"
-msgstr "o conteúdo e o áudio da sua tela"
-
-#: zapzap/features/browser/web/page_controller.py:264
-msgid "mouse lock"
-msgstr "bloqueio do mouse"
-
-#: zapzap/features/browser/web/page_controller.py:266
-msgid "a system feature"
-msgstr "um recurso do sistema"
-
-#: zapzap/features/browser/web/page_controller.py:270
-msgid "Permission request"
-msgstr "Solicitação de permissão"
-
-#: zapzap/features/browser/web/page_controller.py:271
-#, python-brace-format
-msgid ""
-"WhatsApp Web is requesting access to {}.\n"
-"\n"
-"Allow?"
-msgstr ""
-"O WhatsApp Web está solicitando acesso a {}.\n"
-"\n"
-"Permitir?"
-
 #: zapzap/features/browser/web/web_view.py:369
 msgid "Undo"
 msgstr "Desfazer"
@@ -3261,6 +3264,53 @@ msgstr "Conta"
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"
+
+#: zapzap/features/browser/web/page_controller.py:258
+msgid "your microphone"
+msgstr "seu microfone"
+
+#: zapzap/features/browser/web/page_controller.py:259
+msgid "your camera"
+msgstr "sua câmera"
+
+#: zapzap/features/browser/web/page_controller.py:260
+msgid "your camera and microphone"
+msgstr "sua câmera e seu microfone"
+
+#: zapzap/features/browser/web/page_controller.py:261
+msgid "your location"
+msgstr "sua localização"
+
+#: zapzap/features/browser/web/page_controller.py:262
+msgid "your screen contents"
+msgstr "o conteúdo da sua tela"
+
+#: zapzap/features/browser/web/page_controller.py:263
+msgid "your screen contents and audio"
+msgstr "o conteúdo e o áudio da sua tela"
+
+#: zapzap/features/browser/web/page_controller.py:264
+msgid "mouse lock"
+msgstr "bloqueio do mouse"
+
+#: zapzap/features/browser/web/page_controller.py:266
+msgid "a system feature"
+msgstr "um recurso do sistema"
+
+#: zapzap/features/browser/web/page_controller.py:270
+msgid "Permission request"
+msgstr "Solicitação de permissão"
+
+#: zapzap/features/browser/web/page_controller.py:271
+#, python-brace-format
+msgid ""
+"WhatsApp Web is requesting access to {}.\n"
+"\n"
+"Allow?"
+msgstr ""
+"O WhatsApp Web está solicitando acesso a {}.\n"
+"\n"
+"Permitir?"
 
 #: zapzap/ui/components/browser_grid_view.py:75
 msgid "Accounts overview"
@@ -3743,10 +3793,6 @@ msgstr "Nenhum idioma encontrado"
 msgid "Install or configure a dictionary to use the spell checker."
 msgstr "Instale ou configure um dicionário para usar o corretor ortográfico."
 
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:274
-msgid "Manage dictionaries"
-msgstr "Gerenciar dicionários"
-
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:276
 msgid "Apply"
 msgstr "Aplicar"
@@ -3828,6 +3874,282 @@ msgstr "Lançada em {date}"
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 
+#: zapzap/ui/components/dictionary_manager_dialog.py:104
+msgid ""
+"Install dictionaries from the official ZapZap catalog for Qt WebEngine spell "
+"checking."
+msgstr ""
+"Instale dicionários do catálogo oficial do ZapZap para a correção "
+"ortográfica do Qt WebEngine."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:114
+msgid "Search language or code"
+msgstr "Pesquisar idioma ou código"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:116
+msgid "Search dictionaries"
+msgstr "Pesquisar dicionários"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:118
+msgid "Filter dictionaries by readable language name or technical code."
+msgstr "Filtre dicionários pelo nome legível do idioma ou código técnico."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:121
+msgid "All"
+msgstr "Todos"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:122
+#: zapzap/ui/components/dictionary_manager_dialog.py:332
+msgid "Installed"
+msgstr "Instalado"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:123
+#: zapzap/ui/components/dictionary_manager_dialog.py:334
+msgid "Available"
+msgstr "Disponível"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:124
+msgid "Dictionary filter"
+msgstr "Filtro de dicionários"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:125
+msgid "Refresh list"
+msgstr "Atualizar lista"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:127
+msgid "Download the latest dictionary catalog."
+msgstr "Baixe o catálogo de dicionários mais recente."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:133
+#: zapzap/ui/components/dictionary_manager_dialog.py:290
+msgid "Loading dictionary catalog…"
+msgstr "Carregando catálogo de dicionários…"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:134
+msgid "Dictionary catalog status"
+msgstr "Status do catálogo de dicionários"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:136
+#: zapzap/ui/components/dictionary_manager_dialog.py:326
+msgid "No active dictionary"
+msgstr "Nenhum dicionário ativo"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:137
+msgid "Active spell checker languages"
+msgstr "Idiomas ativos do corretor ortográfico"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:143
+msgid "Code"
+msgstr "Código"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:143
+msgid "Status"
+msgstr "Status"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:149
+msgid "Dictionaries"
+msgstr "Dicionários"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:151
+msgid "Select a dictionary to install, remove, or inspect its status."
+msgstr ""
+"Selecione um dicionário para instalar, remover ou verificar seu status."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:165
+msgid "No dictionary matches this view."
+msgstr "Nenhum dicionário corresponde a esta visualização."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:172
+msgid "Dictionary operation status"
+msgstr "Status da operação do dicionário"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:177
+msgid "Dictionary download progress"
+msgstr "Progresso do download do dicionário"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:187
+msgid "Import files…"
+msgstr "Importar arquivos…"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:188
+msgid "Import folder…"
+msgstr "Importar pasta…"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:189
+msgid "Active languages…"
+msgstr "Idiomas ativos…"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:190
+msgid "Install"
+msgstr "Instalar"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:192
+msgid "Cancel download"
+msgstr "Cancelar download"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:274
+#, python-brace-format
+msgid "Offline catalog from {date}"
+msgstr "Catálogo offline de {date}"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:278
+#, python-brace-format
+msgid "Catalog {revision}: {count} dictionaries"
+msgstr "Catálogo {revision}: {count} dicionários"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:294
+msgid ""
+"The online catalog is unavailable. Installed dictionaries remain usable."
+msgstr ""
+"O catálogo online está indisponível. Os dicionários instalados continuam "
+"utilizáveis."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:303
+#, python-brace-format
+msgid "Could not refresh the catalog; using the saved copy. {detail}"
+msgstr "Não foi possível atualizar o catálogo; usando a cópia salva. {detail}"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:309
+#, python-brace-format
+msgid "Could not load the dictionary catalog. {detail}"
+msgstr "Não foi possível carregar o catálogo de dicionários. {detail}"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:323
+#, python-brace-format
+msgid "Active: {languages}"
+msgstr "Ativos: {languages}"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:330
+msgid "Active"
+msgstr "Ativo"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:336
+msgid "Local"
+msgstr "Local"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:349
+#, python-brace-format
+msgid "{language}, {code}, {status}"
+msgstr "{language}, {code}, {status}"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:379
+msgid "No dictionary matches the search."
+msgstr "Nenhum dicionário corresponde à pesquisa."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:381
+msgid "The dictionary catalog is loading."
+msgstr "O catálogo de dicionários está carregando."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:383
+msgid "No dictionaries are installed."
+msgstr "Nenhum dicionário está instalado."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:385
+msgid "The available catalog could not be loaded."
+msgstr "Não foi possível carregar o catálogo disponível."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:387
+msgid "No dictionaries are available to install."
+msgstr "Nenhum dicionário está disponível para instalação."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:389
+msgid "No dictionaries are installed or available."
+msgstr "Nenhum dicionário está instalado ou disponível."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:460
+msgid "Import dictionaries"
+msgstr "Importar dicionários"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:462
+msgid "Qt WebEngine dictionaries (*.bdic)"
+msgstr "Dicionários do Qt WebEngine (*.bdic)"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:468
+msgid "Import dictionary folder"
+msgstr "Importar pasta de dicionários"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:478
+#, python-brace-format
+msgid "Downloading {code}…"
+msgstr "Baixando {code}…"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:499
+#, python-brace-format
+msgid "Dictionary {code} is ready."
+msgstr "O dicionário {code} está pronto."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:503
+#, python-brace-format
+msgid "Dictionary operation failed: {detail}"
+msgstr "Falha na operação do dicionário: {detail}"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:512
+msgid "The file or filename is invalid."
+msgstr "O arquivo ou nome do arquivo é inválido."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:513
+msgid "A different dictionary with this name already exists."
+msgstr "Já existe um dicionário diferente com esse nome."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:514
+msgid "ZapZap could not write to the dictionary directory."
+msgstr "O ZapZap não conseguiu gravar no diretório de dicionários."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:515
+msgid "There is not enough free disk space."
+msgstr "Não há espaço livre suficiente no disco."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:516
+msgid "The last active dictionary is protected."
+msgstr "O último dicionário ativo está protegido."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:517
+msgid "The dictionary is not installed."
+msgstr "O dicionário não está instalado."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:518
+msgid "The download was cancelled."
+msgstr "O download foi cancelado."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:519
+msgid "Check the connection and try again."
+msgstr "Verifique a conexão e tente novamente."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:520
+msgid "The download timed out. Try again."
+msgstr "O download expirou. Tente novamente."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:521
+msgid "GitHub temporarily limited catalog requests."
+msgstr "O GitHub limitou temporariamente as solicitações do catálogo."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:522
+msgid "The dictionary server returned an error."
+msgstr "O servidor de dicionários retornou um erro."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:523
+msgid "The server redirected to an untrusted address."
+msgstr "O servidor redirecionou para um endereço não confiável."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:524
+msgid "The downloaded size does not match the catalog."
+msgstr "O tamanho baixado não corresponde ao catálogo."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:525
+msgid "The downloaded file failed integrity verification."
+msgstr "O arquivo baixado falhou na verificação de integridade."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:526
+msgid "This dictionary operation is already in progress."
+msgstr "Esta operação de dicionário já está em andamento."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:529
+msgid "Unknown dictionary error."
+msgstr "Erro desconhecido de dicionário."
+
+#~ msgid "Note: changing dictionaries may require restarting the browser "
+#~ msgstr "Observação: alterar dicionários pode exigir reiniciar o navegador "
+
 #~ msgid "Unavailable"
 #~ msgstr "Indisponível"
 
@@ -3907,9 +4229,6 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 
 #~ msgid "Default icon selected."
 #~ msgstr "Ícone padrão selecionado."
-
-#~ msgid "Could not load this image."
-#~ msgstr "Não foi possível carregar a imagem de pré-visualização."
 
 #~ msgid "Keep running in the background"
 #~ msgstr "Iniciar oculto em segundo plano"
@@ -4337,9 +4656,6 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 #~ msgid "Note:Requires restart."
 #~ msgstr "Nota: Requer reinício."
 
-#~ msgid "Remove notification indicator"
-#~ msgstr "Remover notificação do indicador"
-
 #~ msgid "Scale"
 #~ msgstr "Escala"
 
@@ -4393,9 +4709,6 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 
 #~ msgid "Directory"
 #~ msgstr "Diretório"
-
-#~ msgid "Recognizes only compiled dictionaries (.bdic)"
-#~ msgstr "Reconhece apenas dicionários compilados (.bdic)"
 
 #~ msgid "Note: Required restart."
 #~ msgstr "Nota: Requer reinício."

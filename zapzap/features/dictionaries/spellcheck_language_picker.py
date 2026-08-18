@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Callable
 
-from PyQt6.QtWidgets import QApplication, QDialog, QWidget
+from PyQt6.QtWidgets import QDialog, QWidget
 
 from zapzap.features.dictionaries.dictionaries_manager import DictionariesManager
 from zapzap.ui.components.spellcheck_language_picker_dialog import (
@@ -13,12 +13,12 @@ from zapzap.ui.components.spellcheck_language_picker_dialog import (
 
 
 def open_dictionary_settings() -> None:
-    """Navigate to the existing dictionary management settings page."""
-    app = QApplication.instance()
-    window = getattr(app, "getWindow", lambda: None)() if app else None
-    navigate = getattr(window, "open_language_download_settings", None)
-    if callable(navigate):
-        navigate()
+    """Open the shared dictionary manager without a Settings dependency."""
+    from zapzap.features.dictionaries.dictionary_manager import (
+        open_dictionary_manager,
+    )
+
+    open_dictionary_manager()
 
 
 def open_spellcheck_language_picker(

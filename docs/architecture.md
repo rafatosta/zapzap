@@ -36,8 +36,9 @@ ela deve ficar em `ui.components`.
 O caminho principal está em `zapzap/app/application.py`:
 
 1. interpreta opções de linha de comando;
-2. aplica ambiente e flags do Qt/Chromium por `SetupManager` antes de criar
-   `QApplication`;
+2. define a identidade estável usada por `QStandardPaths` e aplica ambiente e
+   flags do Qt/Chromium por `SetupManager` antes de criar `QApplication` ou
+   carregar a factory real de WebEngine;
 3. instala idioma e tratamento de falhas;
 4. cria `SingleApplication`, impedindo duas instâncias concorrentes;
 5. aplica o proxy global antes de qualquer perfil WebEngine funcional;
@@ -248,6 +249,27 @@ A chave legada não é apagada e continua sincronizada com o primeiro idioma,
 preservando downgrade e `get_current_dict()`. Idiomas recentes ficam, como lista
 ordenada, em `system/recentSpellCheckLanguages`.
 
+Os arquivos `.bdic` usados pelo Qt ficam em uma única pasta gravável do ZapZap,
+`QStandardPaths.AppDataLocation/dictionaries`. `core.config.DictionaryStore`
+resolve e prepara esse caminho sem UI, rede ou WebEngine. Durante o bootstrap,
+`SetupManager` copia de forma versionada, atômica e não destrutiva arquivos
+regulares de caminhos legados, rejeita links e conflitos e só então publica
+`QTWEBENGINE_DICTIONARIES_PATH`. Se a pasta própria não puder ser criada, o
+único fallback aceito é um caminho legado real; nenhum override vazio é
+publicado.
+
+Dentro de `features.dictionaries`, `dictionary_catalog` valida o
+`manifest.json` de `rafatosta/qtwebengine_dictionaries` e mantém a enumeração da
+árvore GitHub como compatibilidade enquanto o manifesto não estiver publicado.
+URLs de `.bdic` são fixadas ao commit da entrada. `DictionaryService` concentra
+rede Qt assíncrona, allowlist HTTPS, ETag, cache offline, limite de concorrência,
+cancelamento, escrita incremental, tamanho, SHA-256/SHA Git e commit atômico.
+`DictionariesManager` mantém descoberta, seleção compatível, importação,
+remoção e metadados locais de proveniência. Nenhuma dessas camadas conhece
+widgets. O diálogo compartilhado pertence a `ui.components` e o coordenador da
+feature é responsável por mensagens, confirmações e pela atualização dos
+perfis ativos.
+
 Não renomeie chaves persistidas sem migração. Algumas propriedades positivas
 invertem chaves legadas negativas, por exemplo `keep_running_in_background`
 versus `system/quit_in_close` e `donation_message_enabled` versus
@@ -383,6 +405,14 @@ O menu de contexto do navegador expõe somente a ativação do corretor e a aç�
 recentes e checkboxes em estado temporário. A feature `dictionaries` coordena a
 persistência somente após `Aplicar`, e tanto o navegador quanto a página
 `Language and Download` abrem esse mesmo fluxo.
+
+O gerenciamento de arquivos usa um segundo diálogo reutilizável,
+`DictionaryManagerDialog`, aberto sob demanda tanto pela página quanto pela ação
+do seletor. Construir a página de Configurações não cria o serviço de rede. O
+diálogo apresenta instalados mesmo sem catálogo, pesquisa sem acentos, filtros,
+progresso, importação e acesso ao seletor transacional existente; instalar ou
+remover arquivo tem efeito imediato, enquanto a seleção só persiste em
+`Aplicar`.
 
 ## Funcionalidades transversais
 

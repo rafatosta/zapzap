@@ -41,6 +41,14 @@ class DictionaryOptionsTests(unittest.TestCase):
                     "ar_EG.bdic",
                 ],
             ),
+            patch(
+                "zapzap.features.dictionaries.dictionaries_manager.os.path.isfile",
+                return_value=True,
+            ),
+            patch(
+                "zapzap.features.dictionaries.dictionaries_manager.os.path.islink",
+                return_value=False,
+            ),
         ):
             options = DictionariesManager.options()
 

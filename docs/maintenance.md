@@ -168,6 +168,10 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 
 - Mantenha descoberta, normalização, migração, limite e recentes em
   `DictionariesManager`; views não devem persistir rótulos nem validar sozinhas.
+- Preserve `DictionaryStore` como única fonte do diretório gravável. Ele deve
+  preparar a pasta e concluir a migração antes de `load_webview_factory()`;
+  nunca faça rede no bootstrap nem volte a tornar uma pasta externa o caminho
+  ativo do Qt.
 - Preserve `system/spellCheckLanguage` como chave escalar de compatibilidade e
   use `system/spellCheckLanguages` como a fonte atual da seleção múltipla.
 - Use `SpellcheckLanguagePickerDialog` nos pontos de entrada do menu e de
@@ -175,6 +179,41 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   `Aplicar` persiste e chama `browser.update_spellcheck()`.
 - Não volte a criar submenus ou uma `QAction` por dicionário. Valide listas
   grandes, pesquisa por código/rótulo, ausência de dicionários e perfis ativos.
+- Downloads pertencem a `DictionaryService`: mantenha HTTPS e repositório em
+  allowlist, revisão imutável na URL, limites de tamanho/concorrência, validação
+  de hash e escrita temporária atômica. Uma falha nunca pode substituir um
+  `.bdic` instalado nem deixar parcial com extensão final.
+- O catálogo validado em cache é o fallback offline. Um catálogo novo só
+  substitui o anterior depois do parsing completo; sem nenhum catálogo, os
+  arquivos locais continuam listados e ativáveis.
+
+#### Atualização do catálogo-fonte
+
+O repositório `rafatosta/qtwebengine_dictionaries` mantém uma coleção plana de
+`.bdic` e um `manifest.json` determinístico. Para atualizar a partir do corpus
+Qt 6.11 fornecido pelo mantenedor, preserve a união com os arquivos legados e
+execute, no checkout daquele repositório:
+
+```bash
+python tools/dictionary_manifest.py generate \
+  --archive /caminho/para/locale-qt6.11.zip
+python tools/dictionary_manifest.py validate
+```
+
+O gerador aceita somente
+`locale/<idioma>/qtwebengine_dictionaries/<basename>.bdic`, verifica colisões,
+compara cada arquivo do ZIP que também existe no checkout e exige que o
+manifesto represente exatamente todos os `.bdic` publicados. Cada entrada
+registra código, nome, tamanho, SHA-256, versão Qt, origem e commit que introduziu
+o arquivo. Metadados de runtime Flatpak e arquitetura permanecem `null` quando
+não há evidência rastreável; não os deduza de timestamps ou nomes do arquivo.
+Antes de publicar, revise atribuição/licença na fonte real e não faça afirmação
+jurídica sem referência verificável.
+
+Ao diagnosticar o gerenciador, registre apenas caminho efetivo, resultado da
+migração, revisão/idade do cache e categoria técnica da operação. Não registre
+conteúdo dos arquivos, caminhos externos escolhidos pelo usuário ou dados de
+rede que possam ser sensíveis.
 
 ### Mudança em notificação ou ativação
 

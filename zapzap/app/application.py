@@ -3,7 +3,7 @@
 import sys
 
 import zapzap
-from PyQt6.QtCore import QTimer
+from PyQt6.QtCore import QCoreApplication, QTimer
 from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
 
@@ -61,6 +61,11 @@ def main():
 
     args, _unknown = parse_startup_options()
     apply_startup_options(args)
+
+    # QStandardPaths must know the stable application identity before the
+    # managed WebEngine dictionary directory is resolved by SetupManager.
+    QCoreApplication.setApplicationName(zapzap.__appname__)
+    QCoreApplication.setOrganizationDomain(zapzap.__domain__)
 
     SetupManager.apply()
     TranslationManager.apply()

@@ -8,8 +8,10 @@ from PyQt6.QtCore import QFileInfo
 from zapzap.core.config.settings.appearance import AppearanceSettings
 from zapzap.core.config.settings.performance import PerformanceSettings
 from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.core.config.dictionary_store import DictionaryStore
+from zapzap.core.config.path_manager import PathManager
 from zapzap.core.platform import IS_WINDOWS, IS_MAC
-from zapzap.features.dictionaries.dictionaries_manager import DictionariesManager
+from zapzap.core.environment.environment_manager import EnvironmentManager
 from zapzap.core.environment.gpu_environment import (
     has_headless_secondary_gpu,
     preferred_render_node,
@@ -83,7 +85,16 @@ class SetupManager:
         # --------------------------------------------------
         # Dicionários (spellcheck)
         # --------------------------------------------------
-        environ["QTWEBENGINE_DICTIONARIES_PATH"] = DictionariesManager.get_path()
+        previous_dictionary_path = environ.get("QTWEBENGINE_DICTIONARIES_PATH")
+        packaging = EnvironmentManager.identify_packaging()
+        legacy_paths = PathManager.get_paths(packaging) or {}
+        preparation = DictionaryStore.prepare(
+            (previous_dictionary_path, legacy_paths.get("path"))
+        )
+        if preparation.path:
+            environ["QTWEBENGINE_DICTIONARIES_PATH"] = preparation.path
+        else:
+            environ.pop("QTWEBENGINE_DICTIONARIES_PATH", None)
 
         # --------------------------------------------------
         # Flags do Chromium (Qt WebEngine)

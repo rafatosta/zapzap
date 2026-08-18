@@ -5,6 +5,9 @@ from gettext import gettext as _
 from PyQt6.QtCore import QLocale
 from PyQt6.QtWidgets import QApplication
 
+from zapzap.features.dictionaries.dictionary_manager import (
+    open_dictionary_manager,
+)
 from zapzap.features.dictionaries.spellcheck_language_picker import (
     open_spellcheck_language_picker,
 )
@@ -20,7 +23,6 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         self._connect_signals()
 
     def _load_settings(self):
-        self.dic_path.setText(self.model.get_dictionaries_path())
         self.spellchecker_groupBox.checkbox.setChecked(
             self.model.spellcheck_enabled
         )
@@ -47,9 +49,8 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         self.btn_select_spell_languages.clicked.connect(
             self._open_spellcheck_language_picker
         )
-        self.btn_path_spell.clicked.connect(self._handle_path_spell)
-        self.btn_default_path_spell.clicked.connect(
-            self._handle_default_folder_spell
+        self.btn_manage_dictionaries.clicked.connect(
+            self._open_dictionary_manager
         )
         self.btn_path_download.clicked.connect(self._handle_path_download)
         self.btn_restore_path_download.clicked.connect(
@@ -162,26 +163,21 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         self._update_spellcheck_language_summary()
 
     def focus_spellchecker_management(self):
-        """Expose and focus the existing dictionary management controls."""
-        self.ensureWidgetVisible(self.btn_path_spell)
-        self.btn_path_spell.setFocus()
+        """Open the shared manager used by Settings and the picker."""
+        self._open_dictionary_manager()
 
-    def _handle_path_spell(self):
-        new_path = self.model.open_folder_dialog(self)
-        if new_path:
-            self.dic_path.setText(new_path)
-            self.model.set_dictionary_path(new_path)
-            self._load_settings()
-            self._update_browser_spellcheck()
+    def _open_dictionary_manager(self):
+        open_dictionary_manager(
+            self,
+            on_changed=self._on_dictionaries_changed,
+        )
+
+    def _on_dictionaries_changed(self):
+        self._update_browser_spellcheck()
+        self._update_spellcheck_language_summary()
 
     def _handle_autostart(self):
         self.model.set_autostart(self.btn_start_system.isChecked())
-
-    def _handle_default_folder_spell(self):
-        new_path = self.model.restore_dictionary_path()
-        self.dic_path.setText(new_path)
-        self._load_settings()
-        self._update_browser_spellcheck()
 
     def _update_browser_spellcheck(self):
         QApplication.instance().getWindow().browser.update_spellcheck()

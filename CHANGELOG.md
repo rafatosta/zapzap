@@ -13,8 +13,18 @@ releases and the AppStream metadata.
 
 ## [7.4.3] - In development
 
+### Added
+
+- Added a cross-platform Qt WebEngine dictionary manager with verified
+  downloads from the official catalog, offline cache, local imports, removal,
+  progress, cancellation, search, filters, and accessible active-language
+  management.
+
 ### Changed
 
+- Moved spell-check dictionaries to one application-owned data directory and
+  non-destructively migrate valid dictionaries from legacy package or custom
+  locations before Qt WebEngine starts.
 - Adopted versioned development cycles so new work identifies itself with the
   next numeric version while release builds retain the version being published.
 

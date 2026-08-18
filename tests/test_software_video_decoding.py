@@ -9,6 +9,10 @@ from unittest.mock import PropertyMock, patch
 
 from PyQt6.QtCore import QSettings
 
+from zapzap.core.config.dictionary_store import (
+    DictionaryStore,
+    DictionaryStorePreparation,
+)
 from zapzap.core.config.settings.performance import PerformanceSettings
 from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.core.environment.setup_manager import (
@@ -169,10 +173,10 @@ class SoftwareVideoDecodingStartupTests(unittest.TestCase):
                 {"QTWEBENGINE_CHROMIUM_FLAGS": existing},
                 clear=True,
             ),
-            patch(
-                "zapzap.core.environment.setup_manager."
-                "DictionariesManager.get_path",
-                return_value="/tmp/dictionaries",
+            patch.object(
+                DictionaryStore,
+                "prepare",
+                return_value=DictionaryStorePreparation("/tmp/dictionaries"),
             ),
             patch(
                 "zapzap.core.environment.setup_manager.preferred_render_node",
@@ -263,10 +267,10 @@ class SoftwareVideoDecodingStartupTests(unittest.TestCase):
         }
         with (
             patch.dict(os.environ, {}, clear=True),
-            patch(
-                "zapzap.core.environment.setup_manager."
-                "DictionariesManager.get_path",
-                return_value="/tmp/dictionaries",
+            patch.object(
+                DictionaryStore,
+                "prepare",
+                return_value=DictionaryStorePreparation("/tmp/dictionaries"),
             ),
             patch(
                 "zapzap.core.environment.setup_manager.preferred_render_node",
@@ -308,10 +312,10 @@ class SoftwareVideoDecodingStartupTests(unittest.TestCase):
                 "get_boolean_setting",
                 return_value=True,
             ),
-            patch(
-                "zapzap.core.environment.setup_manager."
-                "DictionariesManager.get_path",
-                return_value="/tmp/dictionaries",
+            patch.object(
+                DictionaryStore,
+                "prepare",
+                return_value=DictionaryStorePreparation("/tmp/dictionaries"),
             ),
             patch(
                 "zapzap.core.environment.setup_manager."
@@ -365,7 +369,15 @@ class SoftwareVideoDecodingStartupTests(unittest.TestCase):
             and isinstance(node.func, ast.Name)
             and node.func.id == "SingleApplication"
         )
+        webview_factory_call = next(
+            node
+            for node in ast.walk(main)
+            if isinstance(node, ast.Call)
+            and isinstance(node.func, ast.Name)
+            and node.func.id == "load_webview_factory"
+        )
 
+        self.assertLess(setup_call.lineno, webview_factory_call.lineno)
         self.assertLess(setup_call.lineno, application_call.lineno)
 
     def test_global_proxy_is_applied_before_main_window_creation(self):
@@ -412,10 +424,10 @@ class SoftwareVideoDecodingStartupTests(unittest.TestCase):
     def test_js_memory_index_value_reaches_the_chromium_flag(self):
         with (
             patch.dict(os.environ, {}, clear=True),
-            patch(
-                "zapzap.core.environment.setup_manager."
-                "DictionariesManager.get_path",
-                return_value="/tmp/dictionaries",
+            patch.object(
+                DictionaryStore,
+                "prepare",
+                return_value=DictionaryStorePreparation("/tmp/dictionaries"),
             ),
             patch(
                 "zapzap.core.environment.setup_manager.preferred_render_node",

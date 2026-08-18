@@ -84,6 +84,7 @@ documente o que ele protege.
 | `test_debugging_settings_ui.py` | manutenção, relatórios, informações de runtime, cópia e feedback |
 | `test_deeplink.py` | validação de URLs WhatsApp e resistência a injeção de script |
 | `test_desktop_application_dbus.py` | interface `org.freedesktop.Application` e ativação D-Bus |
+| `test_dictionary_manager.py` | store próprio, migração, catálogo/cache, rede segura, downloads atômicos, importação/remoção e diálogo compartilhado |
 | `test_dictionary_options.py` | descoberta dinâmica, nomes amigáveis, ordenação, redimensionamento e fallback de dicionários personalizados |
 | `test_documentation_structure.py` | camadas de UI, ciclo numérico versionado do changelog e sincronização entre árvore, inventários técnicos e guia para agentes |
 | `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
@@ -128,6 +129,7 @@ documente o que ele protege.
 - `test_debugging_settings_ui.py`
 - `test_deeplink.py`
 - `test_desktop_application_dbus.py`
+- `test_dictionary_manager.py`
 - `test_dictionary_options.py`
 - `test_documentation_structure.py`
 - `test_donations_page.py`
@@ -222,6 +224,30 @@ Web.
    página anterior.
 5. Confirme também o atalho digitado diretamente dentro do WhatsApp Web e os
    modos de janela nativa e CSR em cada plataforma mantida.
+
+## Validação manual de dicionários QtWebEngine
+
+Use uma sessão gráfica real e diretórios XDG temporários; `offscreen` valida a
+UI e as fronteiras, mas não comprova que o processo Chromium recarrega arquivos
+durante a execução.
+
+1. Inicie com `python -m zapzap` e confirme nos diagnósticos que
+   `QTWEBENGINE_DICTIONARIES_PATH` aponta para o diretório temporário próprio.
+2. Abra **Gerenciar dicionários**, instale um idioma e selecione-o em
+   **Idiomas ativos**. Em um campo editável real do WhatsApp Web, confirme a
+   disponibilidade da correção e a atualização dos perfis já abertos.
+3. Cancele um download grande e confirme que não existe `.bdic` final/parcial;
+   repita com a rede indisponível e confirme que instalados e cache continuam
+   visíveis.
+4. Remova um idioma não ativo e, separadamente, o último idioma ativo. Confirme
+   a pergunta reforçada, a desativação explícita e o comportamento do WebEngine.
+5. Reinicie e confirme persistência, migração idempotente e ausência de
+   alteração na pasta legada. Repita nos formatos/plataformas mantidos antes de
+   retirar qualquer semente embarcada.
+
+Se o Chromium falhar com `sandbox_host_linux.cc ... Operation not permitted`,
+repita fora do sandbox e registre a limitação; não considere esse cenário como
+validação do spellchecker em runtime.
 
 ## Verificações estáticas
 
