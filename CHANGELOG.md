@@ -22,9 +22,12 @@ releases and the AppStream metadata.
 
 ### Changed
 
-- Moved spell-check dictionaries to one application-owned data directory and
-  non-destructively migrate valid dictionaries from legacy package or custom
-  locations before Qt WebEngine starts.
+- Moved managed spell-check dictionaries to one application-owned data
+  directory and non-destructively migrate valid dictionaries from legacy
+  package or custom locations before Qt WebEngine starts. Package catalogs
+  remain in place only when a matching manifest proves they are complete;
+  partial catalogs use the managed store, provision only the system-language
+  dictionary, and leave every other download user-driven.
 - Adopted versioned development cycles so new work identifies itself with the
   next numeric version while release builds retain the version being published.
 

@@ -14,8 +14,10 @@ import tempfile
 from PyQt6.QtCore import QLocale
 
 from zapzap.core.config.dictionary_store import DictionaryStore
+from zapzap.core.config.path_manager import PathManager
 from zapzap.core.config.settings.spellcheck import SpellcheckSettings
 from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.core.environment.environment_manager import EnvironmentManager
 
 
 logger = logging.getLogger(__name__)
@@ -46,6 +48,7 @@ class DictionaryError(str, Enum):
     SIZE = "size"
     HASH = "hash"
     BUSY = "busy"
+    MANAGED_EXTERNALLY = "managed_externally"
 
 
 @dataclass(frozen=True)
@@ -90,8 +93,33 @@ class DictionariesManager:
 
     @staticmethod
     def get_path() -> str:
-        """Return the single application-owned dictionary directory."""
+        """Return the effective directory used by Qt WebEngine."""
+        if DictionariesManager.uses_default_catalog():
+            return os.environ["QTWEBENGINE_DICTIONARIES_PATH"]
         return str(DictionaryStore.path())
+
+    @staticmethod
+    def uses_default_catalog() -> bool:
+        """Whether the package-defined directory is the effective catalog."""
+        packaging = EnvironmentManager.identify_packaging()
+        default_path = PathManager.get_default_path(packaging)
+        effective_path = os.environ.get("QTWEBENGINE_DICTIONARIES_PATH")
+        if not DictionaryStore.is_complete_dictionary_catalog(default_path):
+            return False
+        if not effective_path:
+            return False
+        try:
+            return (
+                Path(effective_path).resolve() == Path(default_path).resolve()
+                and Path(effective_path).resolve() != DictionaryStore.path().resolve()
+            )
+        except OSError:
+            return False
+
+    @staticmethod
+    def is_management_available() -> bool:
+        """Return whether ZapZap owns the effective dictionary files."""
+        return not DictionariesManager.uses_default_catalog()
 
     @staticmethod
     def list_files():
@@ -239,15 +267,24 @@ class DictionariesManager:
         """Choose the installed dictionary closest to the system locale."""
         if not installed:
             return None
+        return DictionariesManager.system_language_candidate(installed) or installed[0]
+
+    @staticmethod
+    def system_language_candidate(available: list[str]) -> str | None:
+        """Return the exact or closest same-language dictionary for the system."""
+        if not available:
+            return None
         system_code = DictionariesManager.get_system_language()
-        if system_code in installed:
+        if system_code in available:
             return system_code
-        system_language = QLocale(system_code).language()
-        for code in installed:
+        system_locale = QLocale(system_code)
+        if system_locale.language() == QLocale.Language.C:
+            return None
+        for code in available:
             locale_name = DictionariesManager._LOCALE_ASSOCIATIONS.get(code, code)
-            if QLocale(locale_name).language() == system_language:
+            if QLocale(locale_name).language() == system_locale.language():
                 return code
-        return installed[0]
+        return None
 
     @staticmethod
     def get_selected_languages() -> list[str]:
@@ -401,6 +438,13 @@ class DictionariesManager:
     ) -> DictionaryOperationResult:
         source = Path(path)
         code = source.stem
+        if not DictionariesManager.is_management_available():
+            return DictionaryOperationResult(
+                False,
+                code,
+                DictionaryError.MANAGED_EXTERNALLY,
+                "dictionaries are provided by the package-defined catalog",
+            )
         if not DictionaryStore.is_safe_filename(source.name):
             return DictionaryOperationResult(
                 False, code, DictionaryError.INVALID_FILE, "invalid .bdic filename"
@@ -476,6 +520,14 @@ class DictionariesManager:
 
     @staticmethod
     def import_directory(path: str | os.PathLike[str]) -> list[DictionaryOperationResult]:
+        if not DictionariesManager.is_management_available():
+            return [
+                DictionaryOperationResult(
+                    False,
+                    error=DictionaryError.MANAGED_EXTERNALLY,
+                    detail="dictionaries are provided by the package-defined catalog",
+                )
+            ]
         root = Path(path)
         try:
             candidates = sorted(root.iterdir(), key=lambda item: item.name)
@@ -497,6 +549,13 @@ class DictionariesManager:
         *,
         disable_if_last: bool = False,
     ) -> DictionaryOperationResult:
+        if not DictionariesManager.is_management_available():
+            return DictionaryOperationResult(
+                False,
+                code,
+                DictionaryError.MANAGED_EXTERNALLY,
+                "dictionaries are provided by the package-defined catalog",
+            )
         filename = f"{code}.bdic"
         if not DictionaryStore.is_safe_filename(filename):
             return DictionaryOperationResult(

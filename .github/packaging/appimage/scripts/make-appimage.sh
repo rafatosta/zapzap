@@ -128,6 +128,10 @@ cp -av \
     "${DICT_SRC}"/*.bdic \
     "${DICT_DST}/"
 
+if [ -f "${DICT_SRC}/manifest.json" ]; then
+    cp -av "${DICT_SRC}/manifest.json" "${DICT_DST}/"
+fi
+
 echo
 echo "Dicionários no AppDir:"
 find "${APPDIR}" -name "*.bdic" | sort

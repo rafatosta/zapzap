@@ -38,12 +38,15 @@ def open_spellcheck_language_picker(
         maximum_selected=DictionariesManager.MAX_SELECTED_LANGUAGES,
         maximum_recent=DictionariesManager.MAX_RECENT_LANGUAGES,
     )
+    management_available = DictionariesManager.is_management_available()
+    dialog.manage_button.setVisible(management_available)
 
     def manage_dictionaries():
         dialog.reject()
         (on_manage or open_dictionary_settings)()
 
-    dialog.manage_button.clicked.connect(manage_dictionaries)
+    if management_available:
+        dialog.manage_button.clicked.connect(manage_dictionaries)
     if dialog.exec() != QDialog.DialogCode.Accepted:
         return False
 

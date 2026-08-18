@@ -35,8 +35,10 @@ def open_dictionary_manager(
     parent: QWidget | None = None,
     *,
     on_changed=None,
-) -> None:
+) -> bool:
     """Open one manager; network activity starts only after this call."""
+    if not DictionariesManager.is_management_available():
+        return False
     dialog = DictionaryManagerDialog(parent)
     service = DictionaryService(dialog)
     catalog_snapshot = None
@@ -215,3 +217,4 @@ def open_dictionary_manager(
     dialog.set_installed_only(DictionariesManager.states(), loading=True)
     service.fetch_catalog()
     dialog.exec()
+    return True

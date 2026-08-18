@@ -28,6 +28,9 @@ from zapzap.core.update_checker import UpdateChecker, UpdateState
 from zapzap.core.i18n.translation_manager import TranslationManager
 from zapzap.features.initial_setup.controller import InitialSetupController
 from zapzap.features.donation.controller import DonationController
+from zapzap.features.dictionaries.system_dictionary_provisioner import (
+    SystemDictionaryProvisioner,
+)
 from zapzap.features.notifications.notification_service import (
     NotificationService,
     is_flatpak,
@@ -120,6 +123,12 @@ def main():
             update_checker,
         )
     )
+
+    system_dictionary_provisioner = SystemDictionaryProvisioner(app)
+    system_dictionary_provisioner.dictionary_installed.connect(
+        lambda _code: app.getWindow().browser.update_spellcheck()
+    )
+    system_dictionary_provisioner.start()
     desktop_application_dbus = None
     if is_flatpak():
         desktop_application_dbus = DesktopApplicationDBus(app)
@@ -144,6 +153,7 @@ def main():
             0, lambda: InitialSetupController(app.getWindow()).exec())
 
     app.aboutToQuit.connect(NotificationService.shutdown)
+    app.aboutToQuit.connect(system_dictionary_provisioner.close)
     if desktop_application_dbus is not None:
         app.aboutToQuit.connect(desktop_application_dbus.stop)
     app.aboutToQuit.connect(ThemeManager.stop)

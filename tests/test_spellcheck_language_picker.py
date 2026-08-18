@@ -282,6 +282,29 @@ class SpellcheckLanguagePickerIntegrationTests(QtTestCase):
         self.assertFalse(accepted)
         save.assert_not_called()
 
+    def test_packaged_flatpak_catalog_hides_the_management_action(self):
+        fake_dialog = Mock()
+        fake_dialog.manage_button = QPushButton()
+        fake_dialog.exec.return_value = QDialog.DialogCode.Rejected
+        with (
+            patch(
+                "zapzap.features.dictionaries.spellcheck_language_picker."
+                "SpellcheckLanguagePickerDialog",
+                return_value=fake_dialog,
+            ),
+            patch.object(DictionariesManager, "options", return_value=[]),
+            patch.object(DictionariesManager, "get_selected_languages", return_value=[]),
+            patch.object(DictionariesManager, "get_recent_languages", return_value=[]),
+            patch.object(
+                DictionariesManager,
+                "is_management_available",
+                return_value=False,
+            ),
+        ):
+            open_spellcheck_language_picker()
+
+        self.assertTrue(fake_dialog.manage_button.isHidden())
+
     def test_webview_configures_the_complete_language_list(self):
         profile = Mock()
         fake = Mock()

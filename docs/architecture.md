@@ -249,7 +249,8 @@ A chave legada não é apagada e continua sincronizada com o primeiro idioma,
 preservando downgrade e `get_current_dict()`. Idiomas recentes ficam, como lista
 ordenada, em `system/recentSpellCheckLanguages`.
 
-Os arquivos `.bdic` usados pelo Qt ficam em uma única pasta gravável do ZapZap,
+Nos formatos em que o ZapZap gerencia os arquivos, os `.bdic` usados pelo Qt
+ficam em uma única pasta gravável,
 `QStandardPaths.AppDataLocation/dictionaries`. `core.config.DictionaryStore`
 resolve e prepara esse caminho sem UI, rede ou WebEngine. Durante o bootstrap,
 `SetupManager` copia de forma versionada, atômica e não destrutiva arquivos
@@ -257,6 +258,31 @@ regulares de caminhos legados, rejeita links e conflitos e só então publica
 `QTWEBENGINE_DICTIONARIES_PATH`. Se a pasta própria não puder ser criada, o
 único fallback aceito é um caminho legado real; nenhum override vazio é
 publicado.
+
+Antes de preparar esse store, o bootstrap consulta o diretório padrão definido
+em `PathManager` para o formato atual. Esse diretório só é tratado como catálogo
+completo quando contém um `manifest.json` de schema 1 cuja lista de nomes e
+tamanhos corresponde exatamente aos `.bdic` regulares presentes. Nesse caso,
+torna-se a fonte efetiva sem cópia ou download automático; o seletor escolhe
+inicialmente o idioma do sistema e preserva escolhas posteriores do usuário.
+Como esse catálogo pertence ao pacote, importação, remoção e o diálogo de
+download não são oferecidos.
+
+Quando o diretório padrão está ausente, vazio, sem manifesto ou diverge dele, é
+considerado parcial e o bootstrap publica o store gerenciado. Arquivos válidos
+de locais anteriores podem ser migrados sem alterar a origem. Depois que a
+aplicação Qt existe, `SystemDictionaryProvisioner` consulta o catálogo remoto e
+instala uma única vez somente a correspondência exata do locale do sistema ou
+uma variante do mesmo idioma. A conclusão atualiza os perfis abertos. Os demais
+idiomas só são baixados por ação explícita do usuário. Falhas de rede ou
+ausência de correspondência mantêm a aplicação funcional e permitem nova
+tentativa em outra inicialização; não há rede antes do WebEngine.
+
+O diretório `/app/qtwebengine_dictionaries` observado na base Flatpak 6.10
+contém apenas cinco variantes de inglês e nenhum manifesto do catálogo do
+ZapZap. Ele é, portanto, parcial: não pode ocultar o gerenciador nem impedir o
+provisionamento do idioma do sistema. AppImage e Snap copiam o manifesto junto
+com os `.bdic`; uma cópia incompleta falha fechada para o modo gerenciado.
 
 Dentro de `features.dictionaries`, `dictionary_catalog` valida o
 `manifest.json` de `rafatosta/qtwebengine_dictionaries` e mantém a enumeração da
@@ -268,7 +294,9 @@ cancelamento, escrita incremental, tamanho, SHA-256/SHA Git e commit atômico.
 remoção e metadados locais de proveniência. Nenhuma dessas camadas conhece
 widgets. O diálogo compartilhado pertence a `ui.components` e o coordenador da
 feature é responsável por mensagens, confirmações e pela atualização dos
-perfis ativos.
+perfis ativos. Ele não é construído quando o diretório padrão do pacote é a
+fonte efetiva, evitando inclusive iniciar o serviço de catálogo e qualquer
+acesso de rede nesse modo.
 
 Não renomeie chaves persistidas sem migração. Algumas propriedades positivas
 invertem chaves legadas negativas, por exemplo `keep_running_in_background`

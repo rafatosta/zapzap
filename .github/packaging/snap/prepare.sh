@@ -127,6 +127,10 @@ install_dictionaries() {
         found=1
     done
 
+    if [ -f "${dict_src}/manifest.json" ]; then
+        cp -f "${dict_src}/manifest.json" "${dict_dst}/"
+    fi
+
     if [ "${found}" -eq 0 ]; then
         echo "No .bdic dictionaries found in ${dict_src}; skipping." >&2
     fi

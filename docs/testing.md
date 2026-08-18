@@ -84,7 +84,7 @@ documente o que ele protege.
 | `test_debugging_settings_ui.py` | manutenção, relatórios, informações de runtime, cópia e feedback |
 | `test_deeplink.py` | validação de URLs WhatsApp e resistência a injeção de script |
 | `test_desktop_application_dbus.py` | interface `org.freedesktop.Application` e ativação D-Bus |
-| `test_dictionary_manager.py` | store próprio, migração, catálogo/cache, rede segura, downloads atômicos, importação/remoção e diálogo compartilhado |
+| `test_dictionary_manager.py` | store próprio, migração, catálogo/cache, rede segura, downloads atômicos, importação/remoção, diálogo compartilhado, completude do diretório do pacote e provisionamento único do idioma do sistema |
 | `test_dictionary_options.py` | descoberta dinâmica, nomes amigáveis, ordenação, redimensionamento e fallback de dicionários personalizados |
 | `test_documentation_structure.py` | camadas de UI, ciclo numérico versionado do changelog e sincronização entre árvore, inventários técnicos e guia para agentes |
 | `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
@@ -231,8 +231,11 @@ Use uma sessão gráfica real e diretórios XDG temporários; `offscreen` valida
 UI e as fronteiras, mas não comprova que o processo Chromium recarrega arquivos
 durante a execução.
 
-1. Inicie com `python -m zapzap` e confirme nos diagnósticos que
-   `QTWEBENGINE_DICTIONARIES_PATH` aponta para o diretório temporário próprio.
+1. Inicie com um diretório padrão cujo `manifest.json` corresponda exatamente
+   aos nomes e tamanhos dos `.bdic`. Confirme que
+   `QTWEBENGINE_DICTIONARIES_PATH` permanece nesse diretório, sem cópia, rede ou
+   ações de gerenciamento. Em um perfil limpo, confirme a seleção inicial do
+   idioma do sistema e que uma escolha manual posterior é preservada.
 2. Abra **Gerenciar dicionários**, instale um idioma e selecione-o em
    **Idiomas ativos**. Em um campo editável real do WhatsApp Web, confirme a
    disponibilidade da correção e a atualização dos perfis já abertos.
@@ -244,6 +247,17 @@ durante a execução.
 5. Reinicie e confirme persistência, migração idempotente e ausência de
    alteração na pasta legada. Repita nos formatos/plataformas mantidos antes de
    retirar qualquer semente embarcada.
+6. Repita com o diretório padrão ausente, vazio e com cinco `.bdic` mas sem
+   manifesto. Confirme em todos esses casos o uso do store gerenciado, a ação
+   **Gerenciar** visível e um único download automático para o locale do sistema
+   (ou uma variante do mesmo idioma), nunca para um idioma sem relação. Os
+   demais só podem ser instalados manualmente. Reinicie, remova voluntariamente
+   o idioma provisionado e confirme que ele não é baixado de novo em silêncio.
+7. No Flatpak baseado em Qt 6.10, confirme que as cinco variantes de inglês em
+   `/app/qtwebengine_dictionaries` são reconhecidas como catálogo parcial, que
+   **Gerenciar** aparece e que o idioma do sistema pode ser instalado. Se uma
+   versão futura incluir o catálogo completo com manifesto correspondente,
+   confirme o caminho direto descrito no passo 1.
 
 Se o Chromium falhar com `sandbox_host_linux.cc ... Operation not permitted`,
 repita fora do sandbox e registre a limitação; não considere esse cenário como

@@ -8,6 +8,7 @@ from PyQt6.QtWidgets import QApplication
 from zapzap.features.dictionaries.dictionary_manager import (
     open_dictionary_manager,
 )
+from zapzap.features.dictionaries.dictionaries_manager import DictionariesManager
 from zapzap.features.dictionaries.spellcheck_language_picker import (
     open_spellcheck_language_picker,
 )
@@ -30,6 +31,9 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         self._update_spellcheck_language_summary()
         self.spellchecker_options_group.setEnabled(
             self.spellchecker_groupBox.checkbox.isChecked()
+        )
+        self.manage_dictionaries_row.setVisible(
+            DictionariesManager.is_management_available()
         )
 
         self.download_path.setText(self.model.get_download_path())

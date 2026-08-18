@@ -87,14 +87,22 @@ class SetupManager:
         # --------------------------------------------------
         previous_dictionary_path = environ.get("QTWEBENGINE_DICTIONARIES_PATH")
         packaging = EnvironmentManager.identify_packaging()
-        legacy_paths = PathManager.get_paths(packaging) or {}
-        preparation = DictionaryStore.prepare(
-            (previous_dictionary_path, legacy_paths.get("path"))
-        )
-        if preparation.path:
-            environ["QTWEBENGINE_DICTIONARIES_PATH"] = preparation.path
+        default_dictionary_path = PathManager.get_default_path(packaging)
+        if DictionaryStore.is_complete_dictionary_catalog(default_dictionary_path):
+            environ["QTWEBENGINE_DICTIONARIES_PATH"] = default_dictionary_path
         else:
-            environ.pop("QTWEBENGINE_DICTIONARIES_PATH", None)
+            legacy_paths = PathManager.get_paths(packaging) or {}
+            preparation = DictionaryStore.prepare(
+                (
+                    previous_dictionary_path,
+                    default_dictionary_path,
+                    legacy_paths.get("path"),
+                )
+            )
+            if preparation.path:
+                environ["QTWEBENGINE_DICTIONARIES_PATH"] = preparation.path
+            else:
+                environ.pop("QTWEBENGINE_DICTIONARIES_PATH", None)
 
         # --------------------------------------------------
         # Flags do Chromium (Qt WebEngine)

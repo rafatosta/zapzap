@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-17 21:14-0300\n"
+"POT-Creation-Date: 2026-08-18 15:22-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Swedish\n"
@@ -253,36 +253,36 @@ msgstr "Kopiera länkadress"
 msgid "Close"
 msgstr "Stäng"
 
-#: zapzap/features/dictionaries/dictionary_manager.py:111
+#: zapzap/features/dictionaries/dictionary_manager.py:113
 #, fuzzy
 msgid "Remove dictionary"
 msgstr "Inaktivera notisindikator"
 
-#: zapzap/features/dictionaries/dictionary_manager.py:112
+#: zapzap/features/dictionaries/dictionary_manager.py:114
 #, python-brace-format
 msgid "Remove the dictionary {code}?"
 msgstr ""
 
-#: zapzap/features/dictionaries/dictionary_manager.py:122
+#: zapzap/features/dictionaries/dictionary_manager.py:124
 #, fuzzy
 msgid "Disable spell checker and remove"
 msgstr "Aktivera stavningskontroll"
 
-#: zapzap/features/dictionaries/dictionary_manager.py:124
+#: zapzap/features/dictionaries/dictionary_manager.py:126
 #, python-brace-format
 msgid ""
 "This is the last active dictionary. Disable the spell checker and remove "
 "{code}?"
 msgstr ""
 
-#: zapzap/features/dictionaries/dictionary_manager.py:143
-#: zapzap/features/dictionaries/dictionary_manager.py:172
+#: zapzap/features/dictionaries/dictionary_manager.py:145
+#: zapzap/features/dictionaries/dictionary_manager.py:174
 #, fuzzy
 msgid "Replace dictionary"
 msgstr "Inaktivera notisindikator"
 
-#: zapzap/features/dictionaries/dictionary_manager.py:145
-#: zapzap/features/dictionaries/dictionary_manager.py:174
+#: zapzap/features/dictionaries/dictionary_manager.py:147
+#: zapzap/features/dictionaries/dictionary_manager.py:176
 #, python-brace-format
 msgid "A different dictionary named {code} is installed. Replace it?"
 msgstr ""
@@ -436,7 +436,7 @@ msgid "Select folder"
 msgstr "Välj katalog"
 
 #: zapzap/features/initial_setup/controller.py:126
-#: zapzap/features/settings/pages/language_downloads/controller.py:64
+#: zapzap/features/settings/pages/language_downloads/controller.py:68
 msgid "System default"
 msgstr "Systemstandard"
 
@@ -2176,13 +2176,13 @@ msgstr "Diagnostik kopierad"
 msgid "Details copied"
 msgstr "Detaljer kopierade"
 
-#: zapzap/features/settings/pages/language_downloads/controller.py:141
+#: zapzap/features/settings/pages/language_downloads/controller.py:145
 #: zapzap/features/settings/pages/language_downloads/view.py:84
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:255
 msgid "No dictionary available"
 msgstr ""
 
-#: zapzap/features/settings/pages/language_downloads/controller.py:145
+#: zapzap/features/settings/pages/language_downloads/controller.py:149
 #, python-brace-format
 msgid "{language} and {count} more"
 msgstr ""

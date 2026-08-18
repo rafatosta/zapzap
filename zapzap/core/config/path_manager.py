@@ -49,6 +49,12 @@ class PathManager:
     }
 
     @staticmethod
+    def get_default_path(packaging_type):
+        """Return the package-defined dictionary directory without overrides."""
+        paths = PathManager.paths.get(packaging_type)
+        return paths.get("default", "") if paths else ""
+
+    @staticmethod
     def get_paths(packaging_type):
         """Retorna os caminhos, considerando o caminho customizado ou o padrão."""
         paths = PathManager.paths.get(packaging_type, None)

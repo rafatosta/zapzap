@@ -168,10 +168,22 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 
 - Mantenha descoberta, normalização, migração, limite e recentes em
   `DictionariesManager`; views não devem persistir rótulos nem validar sozinhas.
-- Preserve `DictionaryStore` como única fonte do diretório gravável. Ele deve
-  preparar a pasta e concluir a migração antes de `load_webview_factory()`;
-  nunca faça rede no bootstrap nem volte a tornar uma pasta externa o caminho
-  ativo do Qt.
+- Preserve `DictionaryStore` como única fonte do diretório gravável gerenciado.
+  Ele deve preparar a pasta e concluir a migração antes de
+  `load_webview_factory()`; nunca faça rede no bootstrap.
+- Em qualquer formato, preserve como fonte efetiva o diretório padrão definido
+  em `PathManager` somente quando `manifest.json` corresponder exatamente aos
+  nomes e tamanhos de todos os `.bdic`. Não copie um catálogo comprovadamente
+  completo, não ofereça importação/remoção/download e não construa
+  `DictionaryService`; a seleção de idiomas instalados permanece disponível.
+- Use o store gerenciado quando o diretório padrão estiver ausente, vazio,
+  parcial, sem manifesto ou divergente. A mera presença de um `.bdic` nunca
+  prova completude; em particular, as cinco variantes de inglês da base
+  Flatpak não devem ocultar o gerenciador.
+- `SystemDictionaryProvisioner` pode baixar automaticamente apenas a
+  correspondência do idioma do sistema, uma única vez e depois da criação da
+  aplicação Qt. Os demais idiomas exigem ação explícita do usuário; nunca
+  substitua uma seleção manual nem reinstale silenciosamente após remoção.
 - Preserve `system/spellCheckLanguage` como chave escalar de compatibilidade e
   use `system/spellCheckLanguages` como a fonte atual da seleção múltipla.
 - Use `SpellcheckLanguagePickerDialog` nos pontos de entrada do menu e de
@@ -186,6 +198,10 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - O catálogo validado em cache é o fallback offline. Um catálogo novo só
   substitui o anterior depois do parsing completo; sem nenhum catálogo, os
   arquivos locais continuam listados e ativáveis.
+- Falha no provisionamento inicial é não fatal e pode ser repetida em outra
+  inicialização. Só marque o locale como provisionado depois de encontrar um
+  dicionário compatível já instalado ou concluir download e metadados; não use
+  um idioma sem relação como fallback de download.
 
 #### Atualização do catálogo-fonte
 
@@ -209,6 +225,11 @@ o arquivo. Metadados de runtime Flatpak e arquitetura permanecem `null` quando
 não há evidência rastreável; não os deduza de timestamps ou nomes do arquivo.
 Antes de publicar, revise atribuição/licença na fonte real e não faça afirmação
 jurídica sem referência verificável.
+
+AppImage e Snap devem instalar `manifest.json` junto com os `.bdic`. Se o
+manifesto faltar ou a cópia não corresponder a ele, o comportamento correto é
+usar o store gerenciado; não relaxe a validação com contagem mínima ou lista
+fixa de idiomas.
 
 Ao diagnosticar o gerenciador, registre apenas caminho efetivo, resultado da
 migração, revisão/idade do cache e categoria técnica da operação. Não registre

@@ -19,12 +19,15 @@ from zapzap.core.config.dictionary_store import (
     DictionaryStore,
     DictionaryStorePreparation,
 )
+from zapzap.core.config.path_manager import PathManager
 from zapzap.core.config.settings.spellcheck import SpellcheckSettings
 from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.core.environment.setup_manager import SetupManager
+from zapzap.core.environment.environment_manager import EnvironmentManager, Packaging
 from zapzap.features.dictionaries.dictionaries_manager import (
     DictionariesManager,
     DictionaryError,
+    DictionaryOperationResult,
     DictionaryState,
 )
 from zapzap.features.dictionaries.dictionary_catalog import (
@@ -37,6 +40,10 @@ from zapzap.features.dictionaries.dictionary_catalog import (
     parse_manifest,
 )
 from zapzap.features.dictionaries.dictionary_service import DictionaryService
+from zapzap.features.dictionaries.dictionary_manager import open_dictionary_manager
+from zapzap.features.dictionaries.system_dictionary_provisioner import (
+    SystemDictionaryProvisioner,
+)
 from zapzap.ui.components import DictionaryManagerDialog
 
 
@@ -59,6 +66,27 @@ def make_manifest(filename="pt_BR.bdic", payload=b"compiled dictionary"):
             ],
         }
     ).encode()
+
+
+def write_complete_local_manifest(directory: Path) -> None:
+    records = [
+        {
+            "filename": path.name,
+            "size": path.stat().st_size,
+        }
+        for path in sorted(directory.glob("*.bdic"))
+    ]
+    (directory / "manifest.json").write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "catalog_revision": "test",
+                "repository": DictionaryStore.CATALOG_REPOSITORY,
+                "dictionaries": records,
+            }
+        ),
+        encoding="utf-8",
+    )
 
 
 class FakeReply(QObject):
@@ -125,6 +153,27 @@ class FakeNetwork(QObject):
     def get(self, request):
         self.requests.append(request)
         return self.replies.pop(0)
+
+
+class FakeProvisionService(QObject):
+    catalog_loaded = pyqtSignal(object)
+    catalog_failed = pyqtSignal(str, bool)
+    download_finished = pyqtSignal(str, object)
+
+    def __init__(self):
+        super().__init__()
+        self.fetch_count = 0
+        self.installed = []
+        self.closed = False
+
+    def fetch_catalog(self):
+        self.fetch_count += 1
+
+    def install(self, entry):
+        self.installed.append(entry)
+
+    def close(self):
+        self.closed = True
 
 
 class ManagedDictionaryStoreTests(QtTestCase):
@@ -299,6 +348,7 @@ class ManagedDictionaryStoreTests(QtTestCase):
         result = DictionaryStorePreparation(str(self.managed))
         with (
             patch.object(DictionaryStore, "prepare", return_value=result),
+            patch.object(PathManager, "get_default_path", return_value=""),
             patch("zapzap.core.environment.setup_manager.PathManager.get_paths", return_value={}),
             patch("zapzap.core.environment.setup_manager.preferred_render_node", return_value=None),
             patch("zapzap.core.environment.setup_manager.has_headless_secondary_gpu", return_value=False),
@@ -322,6 +372,7 @@ class ManagedDictionaryStoreTests(QtTestCase):
                 "prepare",
                 return_value=DictionaryStorePreparation(None),
             ),
+            patch.object(PathManager, "get_default_path", return_value=""),
             patch("zapzap.core.environment.setup_manager.PathManager.get_paths", return_value={}),
             patch("zapzap.core.environment.setup_manager.preferred_render_node", return_value=None),
             patch("zapzap.core.environment.setup_manager.has_headless_secondary_gpu", return_value=False),
@@ -329,6 +380,359 @@ class ManagedDictionaryStoreTests(QtTestCase):
         ):
             SetupManager.apply()
             self.assertNotIn("QTWEBENGINE_DICTIONARIES_PATH", os.environ)
+
+    def test_package_default_catalog_is_used_without_copying_it(self):
+        package_default = self.root / "package-default"
+        package_default.mkdir()
+        (package_default / "pt_BR.bdic").write_bytes(b"packaged dictionary")
+        write_complete_local_manifest(package_default)
+        with (
+            patch.dict(
+                os.environ,
+                {
+                    "APPIMAGE": str(self.root / "ZapZap.AppImage"),
+                    "QTWEBENGINE_DICTIONARIES_PATH": str(self.root / "ignored"),
+                },
+                clear=True,
+            ),
+            patch.object(
+                EnvironmentManager,
+                "identify_packaging",
+                return_value=Packaging.APPIMAGE,
+            ),
+            patch.object(
+                PathManager,
+                "get_default_path",
+                return_value=str(package_default),
+            ),
+            patch.object(DictionaryStore, "prepare") as prepare,
+            patch(
+                "zapzap.core.environment.setup_manager.PathManager.get_paths"
+            ) as legacy_paths,
+            patch(
+                "zapzap.core.environment.setup_manager.preferred_render_node",
+                return_value=None,
+            ),
+            patch(
+                "zapzap.core.environment.setup_manager.has_headless_secondary_gpu",
+                return_value=False,
+            ),
+            patch.object(
+                SettingsManager,
+                "get",
+                side_effect=lambda _key, default=None: default,
+            ),
+        ):
+            SetupManager.apply()
+
+            self.assertEqual(
+                os.environ["QTWEBENGINE_DICTIONARIES_PATH"], str(package_default)
+            )
+            self.assertEqual(DictionariesManager.get_path(), str(package_default))
+            self.assertFalse(DictionariesManager.is_management_available())
+            self.assertEqual(DictionariesManager.list(), ["pt_BR"])
+            with patch.object(
+                DictionariesManager,
+                "get_system_language",
+                return_value="pt_BR",
+            ):
+                self.assertEqual(
+                    DictionariesManager.get_selected_languages(),
+                    ["pt_BR"],
+                )
+            self.assertEqual(
+                DictionariesManager.import_file(package_default / "pt_BR.bdic").error,
+                DictionaryError.MANAGED_EXTERNALLY,
+            )
+            self.assertEqual(
+                DictionariesManager.remove("pt_BR").error,
+                DictionaryError.MANAGED_EXTERNALLY,
+            )
+            prepare.assert_not_called()
+            legacy_paths.assert_not_called()
+            self.assertFalse(self.managed.exists())
+
+    def test_partial_package_catalog_uses_managed_store_and_keeps_management(self):
+        package_default = self.root / "partial-package-default"
+        package_default.mkdir()
+        for code in ("en_AU", "en_CA", "en_GB", "en_US", "en_ZA"):
+            (package_default / f"{code}.bdic").write_bytes(code.encode())
+
+        with (
+            patch.dict(
+                os.environ,
+                {
+                    "FLATPAK_ID": "com.rtosta.zapzap",
+                    "QTWEBENGINE_DICTIONARIES_PATH": str(package_default),
+                },
+                clear=True,
+            ),
+            patch.object(
+                EnvironmentManager,
+                "identify_packaging",
+                return_value=Packaging.FLATPAK,
+            ),
+            patch.object(
+                PathManager,
+                "get_default_path",
+                return_value=str(package_default),
+            ),
+            patch.object(
+                DictionaryStore,
+                "prepare",
+                return_value=DictionaryStorePreparation(str(self.managed)),
+            ) as prepare,
+            patch(
+                "zapzap.core.environment.setup_manager.PathManager.get_paths",
+                return_value={"path": str(package_default)},
+            ),
+            patch(
+                "zapzap.core.environment.setup_manager.preferred_render_node",
+                return_value=None,
+            ),
+            patch(
+                "zapzap.core.environment.setup_manager.has_headless_secondary_gpu",
+                return_value=False,
+            ),
+            patch.object(
+                SettingsManager,
+                "get",
+                side_effect=lambda _key, default=None: default,
+            ),
+        ):
+            SetupManager.apply()
+
+            self.assertEqual(
+                os.environ["QTWEBENGINE_DICTIONARIES_PATH"], str(self.managed)
+            )
+            self.assertTrue(DictionariesManager.is_management_available())
+
+        prepare.assert_called_once_with(
+            (str(package_default), str(package_default), str(package_default))
+        )
+
+    def test_complete_catalog_requires_manifest_to_match_files_and_sizes(self):
+        catalog = self.root / "catalog"
+        catalog.mkdir()
+        dictionary = catalog / "pt_BR.bdic"
+        dictionary.write_bytes(b"dictionary")
+
+        self.assertFalse(DictionaryStore.is_complete_dictionary_catalog(catalog))
+        write_complete_local_manifest(catalog)
+        self.assertTrue(DictionaryStore.is_complete_dictionary_catalog(catalog))
+
+        dictionary.write_bytes(b"changed size")
+        self.assertFalse(DictionaryStore.is_complete_dictionary_catalog(catalog))
+
+    def test_empty_package_default_falls_back_to_managed_store(self):
+        with (
+            patch.dict(
+                os.environ,
+                {
+                    "APPIMAGE": str(self.root / "ZapZap.AppImage"),
+                    "QTWEBENGINE_DICTIONARIES_PATH": str(self.root / "missing"),
+                },
+                clear=True,
+            ),
+            patch.object(
+                EnvironmentManager,
+                "identify_packaging",
+                return_value=Packaging.APPIMAGE,
+            ),
+            patch.object(
+                PathManager,
+                "get_default_path",
+                return_value=str(self.root / "empty-default"),
+            ),
+            patch.object(
+                DictionaryStore,
+                "prepare",
+                return_value=DictionaryStorePreparation(str(self.managed)),
+            ) as prepare,
+            patch(
+                "zapzap.core.environment.setup_manager.PathManager.get_paths",
+                return_value={},
+            ),
+            patch(
+                "zapzap.core.environment.setup_manager.preferred_render_node",
+                return_value=None,
+            ),
+            patch(
+                "zapzap.core.environment.setup_manager.has_headless_secondary_gpu",
+                return_value=False,
+            ),
+            patch.object(
+                SettingsManager,
+                "get",
+                side_effect=lambda _key, default=None: default,
+            ),
+        ):
+            SetupManager.apply()
+
+            self.assertEqual(
+                os.environ["QTWEBENGINE_DICTIONARIES_PATH"], str(self.managed)
+            )
+            self.assertTrue(DictionariesManager.is_management_available())
+            prepare.assert_called_once()
+
+    def test_system_language_candidate_never_falls_back_to_another_language(self):
+        with patch.object(
+            DictionariesManager,
+            "get_system_language",
+            return_value="pt_PT",
+        ):
+            self.assertEqual(
+                DictionariesManager.system_language_candidate(
+                    ["en_US", "pt_BR", "es_ES"]
+                ),
+                "pt_BR",
+            )
+            self.assertIsNone(
+                DictionariesManager.system_language_candidate(["en_US", "es_ES"])
+            )
+
+    def test_system_dictionary_provisioner_downloads_only_the_system_language(self):
+        service = FakeProvisionService()
+        provisioner = SystemDictionaryProvisioner(service=service)
+        entries = (
+            DictionaryCatalogEntry(
+                code="en_US",
+                filename="en_US.bdic",
+                size=2,
+                sha256=sha256(b"en").hexdigest(),
+                source_revision="a" * 40,
+                source="test",
+            ),
+            DictionaryCatalogEntry(
+                code="pt_BR",
+                filename="pt_BR.bdic",
+                size=2,
+                sha256=sha256(b"pt").hexdigest(),
+                source_revision="a" * 40,
+                source="test",
+            ),
+        )
+        snapshot = DictionaryCatalogSnapshot(
+            entries=entries,
+            revision="test",
+            fetched_at="now",
+        )
+        with (
+            patch.object(
+                DictionariesManager,
+                "get_system_language",
+                return_value="pt_BR",
+            ),
+            patch.object(
+                DictionariesManager,
+                "is_management_available",
+                return_value=True,
+            ),
+        ):
+            self.assertTrue(provisioner.start())
+            service.catalog_loaded.emit(snapshot)
+
+        self.assertEqual(service.fetch_count, 1)
+        self.assertEqual([entry.code for entry in service.installed], ["pt_BR"])
+
+    def test_successful_system_provision_is_one_time_and_keeps_other_languages_manual(self):
+        service = FakeProvisionService()
+        provisioner = SystemDictionaryProvisioner(service=service)
+        entry = DictionaryCatalogEntry(
+            code="pt_BR",
+            filename="pt_BR.bdic",
+            size=2,
+            sha256=sha256(b"pt").hexdigest(),
+            source_revision="a" * 40,
+            source="test",
+        )
+        snapshot = DictionaryCatalogSnapshot(
+            entries=(entry,),
+            revision="test",
+            fetched_at="now",
+        )
+        installed = []
+        with (
+            patch.object(
+                DictionariesManager,
+                "get_system_language",
+                return_value="pt_BR",
+            ),
+            patch.object(
+                DictionariesManager,
+                "is_management_available",
+                return_value=True,
+            ),
+            patch.object(DictionariesManager, "record_install") as record,
+        ):
+            provisioner.dictionary_installed.connect(installed.append)
+            self.assertTrue(provisioner.start())
+            service.catalog_loaded.emit(snapshot)
+            (self.managed / "pt_BR.bdic").parent.mkdir(parents=True, exist_ok=True)
+            (self.managed / "pt_BR.bdic").write_bytes(b"pt")
+            service.download_finished.emit(
+                "pt_BR",
+                DictionaryOperationResult(True, "pt_BR"),
+            )
+            (self.managed / "pt_BR.bdic").unlink()
+            second_service = FakeProvisionService()
+            second = SystemDictionaryProvisioner(service=second_service)
+            self.assertFalse(second.start())
+            self.assertEqual(second_service.fetch_count, 0)
+
+        record.assert_called_once()
+        self.assertEqual(installed, ["pt_BR"])
+        self.assertEqual(
+            SettingsManager.get(
+                SystemDictionaryProvisioner._PROVISIONED_LOCALE_KEY
+            ),
+            "pt_BR",
+        )
+
+    def test_package_catalog_skips_even_constructing_the_network_service(self):
+        with (
+            patch.object(
+                DictionariesManager,
+                "is_management_available",
+                return_value=False,
+            ),
+            patch(
+                "zapzap.features.dictionaries.system_dictionary_provisioner."
+                "DictionaryService"
+            ) as service,
+        ):
+            self.assertFalse(SystemDictionaryProvisioner().start())
+
+        service.assert_not_called()
+
+    def test_existing_system_dictionary_is_marked_without_network(self):
+        self.managed.mkdir()
+        (self.managed / "pt_BR.bdic").write_bytes(b"installed")
+        with (
+            patch.object(
+                DictionariesManager,
+                "get_system_language",
+                return_value="pt_BR",
+            ),
+            patch.object(
+                DictionariesManager,
+                "is_management_available",
+                return_value=True,
+            ),
+            patch(
+                "zapzap.features.dictionaries.system_dictionary_provisioner."
+                "DictionaryService"
+            ) as service,
+        ):
+            self.assertFalse(SystemDictionaryProvisioner().start())
+
+        service.assert_not_called()
+        self.assertEqual(
+            SettingsManager.get(
+                SystemDictionaryProvisioner._PROVISIONED_LOCALE_KEY
+            ),
+            "pt_BR",
+        )
 
 
 class DictionaryCatalogTests(unittest.TestCase):
@@ -756,6 +1160,41 @@ class DictionaryManagerUiTests(QtTestCase):
         self.assertEqual(page.btn_manage_dictionaries.text(), "Manage…")
         self.assertTrue(page.btn_manage_dictionaries.accessibleDescription())
         fetch.assert_not_called()
+
+    def test_package_catalog_hides_management_and_cannot_start_catalog_network(self):
+        from zapzap.features.settings.pages.language_downloads.controller import (
+            LanguageDownloadSettingsController,
+        )
+
+        model = SimpleNamespace(
+            spellcheck_enabled=True,
+            list_dictionary_options=lambda: [],
+            get_selected_dictionaries=lambda: [],
+            get_download_path=lambda: "/downloads",
+            list_available_languages=lambda: [],
+            get_current_language=lambda: "system",
+        )
+        with (
+            patch(
+                "zapzap.features.settings.pages.language_downloads.controller."
+                "LanguageDownloadSettingsModel",
+                return_value=model,
+            ),
+            patch.object(
+                DictionariesManager,
+                "is_management_available",
+                return_value=False,
+            ),
+            patch(
+                "zapzap.features.dictionaries.dictionary_manager.DictionaryService"
+            ) as service,
+        ):
+            page = LanguageDownloadSettingsController()
+            opened = open_dictionary_manager(page)
+
+        self.assertTrue(page.manage_dictionaries_row.isHidden())
+        self.assertFalse(opened)
+        service.assert_not_called()
 
 
 if __name__ == "__main__":

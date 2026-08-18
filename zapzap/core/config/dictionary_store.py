@@ -37,6 +37,8 @@ class DictionaryStore:
     """Resolve and prepare one application-owned dictionary directory."""
 
     MIGRATION_VERSION = 1
+    MAX_MANIFEST_BYTES = 2 * 1024 * 1024
+    CATALOG_REPOSITORY = "rafatosta/qtwebengine_dictionaries"
     _path_override: Path | None = None
 
     @classmethod
@@ -57,6 +59,84 @@ class DictionaryStore:
     @staticmethod
     def is_safe_filename(filename: str) -> bool:
         return bool(SAFE_DICTIONARY_FILENAME.fullmatch(filename or ""))
+
+    @classmethod
+    def is_dictionary_directory(
+        cls,
+        path: str | os.PathLike[str] | None,
+    ) -> bool:
+        """Return whether an existing directory provides usable dictionaries."""
+        if not path:
+            return False
+        directory = Path(path)
+        try:
+            if directory.is_symlink() or not directory.is_dir():
+                return False
+            return any(
+                cls.is_safe_filename(item.name)
+                and item.is_file()
+                and not item.is_symlink()
+                for item in directory.iterdir()
+            )
+        except OSError:
+            return False
+
+    @classmethod
+    def is_complete_dictionary_catalog(
+        cls,
+        path: str | os.PathLike[str] | None,
+    ) -> bool:
+        """Validate that a package directory matches its complete manifest."""
+        if not cls.is_dictionary_directory(path):
+            return False
+        directory = Path(path)
+        manifest = directory / "manifest.json"
+        try:
+            if manifest.is_symlink() or not manifest.is_file():
+                return False
+            if manifest.stat().st_size > cls.MAX_MANIFEST_BYTES:
+                return False
+            payload = json.loads(manifest.read_text(encoding="utf-8"))
+            if not isinstance(payload, dict):
+                return False
+            records = payload.get("dictionaries")
+            if (
+                payload.get("schema_version") != 1
+                or payload.get("repository") != cls.CATALOG_REPOSITORY
+                or not isinstance(payload.get("catalog_revision"), str)
+                or not payload["catalog_revision"]
+                or not isinstance(records, list)
+            ):
+                return False
+
+            expected: dict[str, int] = {}
+            for record in records:
+                if not isinstance(record, dict):
+                    return False
+                filename = record.get("filename")
+                size = record.get("size")
+                if (
+                    not isinstance(filename, str)
+                    or not cls.is_safe_filename(filename)
+                    or filename in expected
+                    or not isinstance(size, int)
+                    or size <= 0
+                ):
+                    return False
+                expected[filename] = size
+            if not expected:
+                return False
+
+            actual = {
+                item.name: item.stat().st_size
+                for item in directory.iterdir()
+                if cls.is_safe_filename(item.name)
+                and item.is_file()
+                and not item.is_symlink()
+            }
+            return actual == expected
+        except (OSError, UnicodeError, json.JSONDecodeError):
+            return False
 
     @staticmethod
     def _digest(path: Path) -> str:

@@ -46,6 +46,10 @@ cp \
   qtwebengine_dictionaries/*.bdic \
   zapzap/qtwebengine_dictionaries/
 
+if [ -f qtwebengine_dictionaries/manifest.json ]; then
+  cp qtwebengine_dictionaries/manifest.json zapzap/qtwebengine_dictionaries/
+fi
+
 echo "Building ZapZap..."
 echo "---------------------------------------------------------------"
 
