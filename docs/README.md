@@ -13,12 +13,15 @@ repetíveis pertencem aqui.
    documentação obrigatória, empacotamento e checklist de entrega.
 3. [Testes e verificações estáticas](testing.md): suíte `unittest`, isolamento
    Qt, cobertura por módulo e comandos de validação.
-4. [Opções experimentais de desempenho](performance-experimental.md):
+4. [Convenção de commits](COMMIT_CONVENTION.md): formato, tipos, escopos,
+   exemplos e regras para mensagens sugeridas por agentes.
+5. [Opções experimentais de desempenho](performance-experimental.md):
    comportamento e impacto das opções de renderização.
 
 Inventário de documentos técnicos:
 
 <!-- structure-check:docs:start -->
+- `COMMIT_CONVENTION.md`
 - `README.md`
 - `architecture.md`
 - `maintenance.md`
@@ -32,6 +35,7 @@ Inventário de documentos técnicos:
 | Assunto | Fonte de verdade |
 |---|---|
 | Alterações e histórico de versões | `CHANGELOG.md` |
+| Convenção e descrição de commits | `docs/COMMIT_CONVENTION.md` |
 | Pacotes distribuídos | `pyproject.toml`, seção `tool.setuptools.packages` |
 | Arquitetura e responsabilidades | `docs/architecture.md` |
 | Configurações persistidas | classes de domínio em `zapzap/core/config/settings/` |
@@ -55,6 +59,11 @@ Uma alteração estrutural não está completa sem atualizar esta documentação
 Isso inclui adicionar, remover, renomear ou mover pacotes, funcionalidades,
 páginas de configuração, testes, scripts de manutenção, integrações,
 empacotamentos ou workflows.
+
+Toda entrega que altere código ou estrutura também deve incluir uma sugestão
+de mensagem no padrão Conventional Commits. O formato, os tipos aceitos e a
+exigência de corpo para mudanças não triviais estão definidos no guia de
+[convenção de commits](COMMIT_CONVENTION.md).
 
 O teste `tests/test_documentation_structure.py` compara inventários marcados nos
 documentos com a árvore real. Ele detecta as mudanças estruturais mais objetivas

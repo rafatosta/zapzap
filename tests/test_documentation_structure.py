@@ -157,6 +157,7 @@ class DocumentationStructureTests(unittest.TestCase):
             "CHANGELOG.md",
             "docs/README.md",
             "docs/architecture.md",
+            "docs/COMMIT_CONVENTION.md",
             "docs/maintenance.md",
             "docs/testing.md",
             "test_documentation_structure.py",

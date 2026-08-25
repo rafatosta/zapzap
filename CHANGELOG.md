@@ -22,6 +22,8 @@ releases and the AppStream metadata.
 
 ### Changed
 
+- Added a dedicated Conventional Commits guide and required every code or
+  structural change to include a copy-ready commit suggestion.
 - Moved managed spell-check dictionaries to one application-owned data
   directory and non-destructively migrate valid dictionaries from legacy
   package or custom locations before Qt WebEngine starts. Package catalogs

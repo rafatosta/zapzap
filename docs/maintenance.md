@@ -375,6 +375,14 @@ trabalho interno, descreva o impacto na manutenção, confiabilidade, desempenho
 ou processo de entrega. Não copie o `git log` e não considere commits, pull
 requests ou notas automáticas do GitHub substitutos do changelog.
 
+## Convenção e descrição de commits
+
+A fonte de verdade para formato, tipos, escopos, exemplos, mudanças
+incompatíveis e entregas produzidas por agentes é
+[`COMMIT_CONVENTION.md`](COMMIT_CONVENTION.md). Toda alteração de código ou
+estrutura deve ser acompanhada de uma sugestão pronta de Conventional Commit.
+Essa mensagem complementa, mas não substitui, o registro em `CHANGELOG.md`.
+
 O ciclo permanente de versão e release é:
 
 1. **Desenvolvimento:** mantenha a próxima versão numérica em
@@ -541,4 +549,5 @@ publicação de cada release.
 - [ ] `git diff --check` passa;
 - [ ] toda mudança ou adição foi registrada em `CHANGELOG.md`;
 - [ ] documentação estrutural e inventários foram atualizados;
+- [ ] alterações de código ou estrutura têm uma sugestão de Conventional Commit;
 - [ ] foi feita validação gráfica real quando `offscreen` não é suficiente.

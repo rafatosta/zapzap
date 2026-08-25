@@ -1,8 +1,8 @@
 # Guia para agentes de manutenção
 
 Antes de alterar o ZapZap, leia `CHANGELOG.md`, `docs/README.md`,
-`docs/architecture.md`, `docs/maintenance.md` e a seção pertinente de
-`docs/testing.md`.
+`docs/architecture.md`, `docs/maintenance.md`, `docs/COMMIT_CONVENTION.md` e a
+seção pertinente de `docs/testing.md`.
 
 - Preserve comportamento, chaves e valores persistidos; migre explicitamente
   quando uma mudança for inevitável.
@@ -21,6 +21,10 @@ Antes de alterar o ZapZap, leia `CHANGELOG.md`, `docs/README.md`,
   major exigem uma versão de destino informada explicitamente pelo mantenedor.
 - Não conclua uma alteração estrutural sem atualizar a documentação técnica e
   seus inventários marcados no mesmo conjunto de mudanças.
+- Após alterar código ou estrutura, inclua na entrega uma sugestão de mensagem
+  no padrão Conventional Commits (`tipo(escopo): descrição`). Em mudanças não
+  triviais, acrescente um corpo curto com contexto e testes realmente
+  executados; consulte `docs/COMMIT_CONVENTION.md` para o contrato completo.
 
 Antes da entrega, execute:
 
