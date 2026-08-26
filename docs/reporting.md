@@ -87,9 +87,9 @@ documento sanitizado.
 `ReportDocument` congela o mapping sanitizado. A prévia completa e o clipboard
 são derivados do mesmo objeto por `ReportMarkdownFormatter`, evitando duas
 representações independentes. `GitHubReportLauncher` usa uma URL HTTPS fixa do
-repositório oficial e adiciona somente o título sanitizado. A abertura usa a
-integração Qt do sistema e tenta o navegador padrão como fallback quando essa
-integração rejeita a URL.
+repositório oficial e adiciona somente o título sanitizado. No Linux, a abertura
+chama `xdg-open` diretamente; nas demais plataformas usa a integração Qt. O
+navegador padrão do Python permanece como último fallback.
 
 `LocalReportStore` escreve JSON atomicamente no diretório de dados local e
 mantém no máximo 20 relatórios por 30 dias. Os estados observáveis são

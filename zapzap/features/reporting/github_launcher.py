@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+import shutil
+import sys
 import webbrowser
 
-from PyQt6.QtCore import QUrl, QUrlQuery
+from PyQt6.QtCore import QProcess, QUrl, QUrlQuery
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWidgets import QApplication
 
@@ -24,7 +26,7 @@ class GitHubReportLauncher:
         browser_opener=None,
         clipboard=None,
     ):
-        self._opener = opener or QDesktopServices.openUrl
+        self._opener = opener
         self._browser_opener = browser_opener or webbrowser.open
         self._clipboard = clipboard
 
@@ -38,13 +40,28 @@ class GitHubReportLauncher:
         query = QUrlQuery()
         query.addQueryItem("title", ReportMarkdownFormatter.title(document))
         url.setQuery(query)
+        encoded_url = bytes(url.toEncoded()).decode("ascii")
+
+        if self._opener is None and sys.platform.startswith("linux"):
+            xdg_open = shutil.which("xdg-open")
+            if xdg_open:
+                try:
+                    started, _process_id = QProcess.startDetached(
+                        xdg_open,
+                        [encoded_url],
+                    )
+                    if started:
+                        return True
+                except (OSError, RuntimeError):
+                    pass
+
+        opener = self._opener or QDesktopServices.openUrl
         try:
-            if self._opener(url):
+            if opener(url):
                 return True
         except (OSError, RuntimeError):
             pass
 
-        encoded_url = bytes(url.toEncoded()).decode("ascii")
         try:
             return bool(
                 self._browser_opener(

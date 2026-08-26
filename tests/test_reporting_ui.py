@@ -1,7 +1,7 @@
 """Mandatory review and explicit local GitHub handoff UI."""
 
 from PyQt6.QtCore import QUrlQuery
-from unittest.mock import patch
+from unittest.mock import call, patch
 
 from qt_test_case import QtTestCase
 from zapzap.core.reporting.builder import ReportBuilder
@@ -165,3 +165,41 @@ class ReportingUiTests(QtTestCase):
             )
         )
         self.assertEqual(browser_calls[0][1], {"new": 2, "autoraise": True})
+
+    def test_launcher_uses_xdg_open_directly_on_linux(self):
+        document = ReportBuilder(runtime_factory=_Runtime).manual(
+            category="files",
+            description="The picker does not open",
+            expected_behavior="Open the picker",
+            frequency="always",
+        )
+        with (
+            patch(
+                "zapzap.features.reporting.github_launcher.sys.platform",
+                "linux",
+            ),
+            patch(
+                "zapzap.features.reporting.github_launcher.shutil.which",
+                return_value="/usr/bin/xdg-open",
+            ),
+            patch(
+                "zapzap.features.reporting.github_launcher.QProcess.startDetached",
+                return_value=(True, 123),
+            ) as start_detached,
+            patch(
+                "zapzap.features.reporting.github_launcher.QDesktopServices.openUrl"
+            ) as qt_opener,
+        ):
+            launcher = GitHubReportLauncher(
+                browser_opener=lambda *_args, **_kwargs: False,
+            )
+            self.assertTrue(launcher.prepare_and_open(document))
+
+        self.assertEqual(start_detached.call_count, 1)
+        opened_url = start_detached.call_args.args[1][0]
+        self.assertTrue(opened_url.startswith("https://github.com/"))
+        self.assertEqual(
+            start_detached.call_args,
+            call("/usr/bin/xdg-open", [opened_url]),
+        )
+        qt_opener.assert_not_called()
