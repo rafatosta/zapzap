@@ -141,3 +141,27 @@ class ReportingUiTests(QtTestCase):
         self.assertTrue(query.queryItemValue("title"))
         self.assertEqual(query.queryItemValue("body"), "")
         self.assertNotIn("The picker does not open", opened[0].toString())
+
+    def test_launcher_uses_default_browser_fallback_when_qt_cannot_open(self):
+        browser_calls = []
+        document = ReportBuilder(runtime_factory=_Runtime).manual(
+            category="files",
+            description="The picker does not open",
+            expected_behavior="Open the picker",
+            frequency="always",
+        )
+        launcher = GitHubReportLauncher(
+            opener=lambda _url: False,
+            browser_opener=lambda url, **options: browser_calls.append(
+                (url, options)
+            ) or True,
+        )
+
+        self.assertTrue(launcher.prepare_and_open(document))
+        self.assertEqual(len(browser_calls), 1)
+        self.assertTrue(
+            browser_calls[0][0].startswith(
+                "https://github.com/rafatosta/zapzap/issues/new?title="
+            )
+        )
+        self.assertEqual(browser_calls[0][1], {"new": 2, "autoraise": True})

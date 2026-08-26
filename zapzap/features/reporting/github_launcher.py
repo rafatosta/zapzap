@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import webbrowser
+
 from PyQt6.QtCore import QUrl, QUrlQuery
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWidgets import QApplication
@@ -15,8 +17,15 @@ class GitHubReportLauncher:
 
     NEW_ISSUE_URL = "https://github.com/rafatosta/zapzap/issues/new"
 
-    def __init__(self, *, opener=None, clipboard=None):
+    def __init__(
+        self,
+        *,
+        opener=None,
+        browser_opener=None,
+        clipboard=None,
+    ):
         self._opener = opener or QDesktopServices.openUrl
+        self._browser_opener = browser_opener or webbrowser.open
         self._clipboard = clipboard
 
     @property
@@ -29,4 +38,20 @@ class GitHubReportLauncher:
         query = QUrlQuery()
         query.addQueryItem("title", ReportMarkdownFormatter.title(document))
         url.setQuery(query)
-        return bool(self._opener(url))
+        try:
+            if self._opener(url):
+                return True
+        except (OSError, RuntimeError):
+            pass
+
+        encoded_url = bytes(url.toEncoded()).decode("ascii")
+        try:
+            return bool(
+                self._browser_opener(
+                    encoded_url,
+                    new=2,
+                    autoraise=True,
+                )
+            )
+        except (OSError, webbrowser.Error):
+            return False

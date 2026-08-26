@@ -87,7 +87,9 @@ documento sanitizado.
 `ReportDocument` congela o mapping sanitizado. A prévia completa e o clipboard
 são derivados do mesmo objeto por `ReportMarkdownFormatter`, evitando duas
 representações independentes. `GitHubReportLauncher` usa uma URL HTTPS fixa do
-repositório oficial e adiciona somente o título sanitizado.
+repositório oficial e adiciona somente o título sanitizado. A abertura usa a
+integração Qt do sistema e tenta o navegador padrão como fallback quando essa
+integração rejeita a URL.
 
 `LocalReportStore` escreve JSON atomicamente no diretório de dados local e
 mantém no máximo 20 relatórios por 30 dias. Os estados observáveis são
