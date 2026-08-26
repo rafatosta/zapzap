@@ -17,8 +17,8 @@ repetíveis pertencem aqui.
    exemplos e regras para mensagens sugeridas por agentes.
 5. [Opções experimentais de desempenho](performance-experimental.md):
    comportamento e impacto das opções de renderização.
-6. [Relatórios de problemas](reporting.md): consentimento, sanitização, fila
-   local, backend e integração com GitHub.
+6. [Relatórios de problemas](reporting.md): revisão, sanitização, fila local e
+   publicação conduzida pela pessoa no GitHub.
 
 Inventário de documentos técnicos:
 

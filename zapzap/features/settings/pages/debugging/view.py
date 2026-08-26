@@ -158,7 +158,7 @@ class DebuggingSettingsView(SettingsPage):
     def __init__(self, parent=None):
         super().__init__(
             _("Report a problem"),
-            _("Tell us about failures or unexpected behavior without needing a GitHub account."),
+            _("Prepare a sanitized report to publish with your GitHub account."),
             parent,
         )
         self._runtime_json = ""
@@ -175,7 +175,10 @@ class DebuggingSettingsView(SettingsPage):
     def _setup_reporting_section(self):
         section = SettingsSection(
             _("Report a problem"),
-            _("You will always review the complete report before choosing whether to send it."),
+            _(
+                "You will always review the complete report before copying it "
+                "and opening GitHub."
+            ),
         )
         card = SettingsCard()
         self.report_problem_row = SettingsActionRow(
@@ -188,20 +191,26 @@ class DebuggingSettingsView(SettingsPage):
         self.btn_report_problem.set_variant(Button.PRIMARY)
         self.crash_prompts_row = SettingsSwitchRow(
             _("Notify me when a failure occurs"),
-            _("ZapZap will prepare a sanitized local report after a serious failure and ask whether you want to send it. Nothing is sent without your confirmation."),
+            _(
+                "ZapZap will prepare a sanitized local report after a serious "
+                "failure. It will never publish or transmit it automatically."
+            ),
             parent=card,
         )
         self.crash_prompts = self.crash_prompts_row.checkbox
         self.report_contents_row = SettingsActionRow(
             _("Information and privacy"),
-            _("See what reports may include, what is never sent, and their destination."),
+            _("See what reports may include and how publication on GitHub works."),
             _("View information"),
             card,
         )
         self.btn_report_contents = self.report_contents_row.button
         self.local_reports_row = SettingsActionRow(
             _("Recent local reports"),
-            _("Review reports kept on this device and their sending status."),
+            _(
+                "Review reports kept on this device and their GitHub handoff "
+                "status."
+            ),
             _("View local reports"),
             card,
         )

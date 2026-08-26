@@ -34,28 +34,27 @@ ela deve ficar em `ui.components`.
 ## Relatórios de problemas
 
 `core.reporting` contém o documento canônico imutável, sanitização, builder,
-fingerprint, política, fila local limitada e transmissão assíncrona. A captura
-de falhas pode importar builder e fila, mas não importa o submitter. Essa
-direção de dependência é a barreira que separa detecção de autorização para
-transmitir. `features.reporting` apresenta o formulário, a revisão e o
-histórico; somente o handler do botão **Confirmar e enviar** cria a capacidade
-de consentimento de uso único exigida por `ReportSubmitter`.
+fingerprint, política, fila local limitada e formatação Markdown. A captura de
+falhas pode importar builder e fila, mas não abre o navegador nem toca na área
+de transferência. `features.reporting` apresenta o formulário, a revisão e o
+histórico; somente a ação final copia o Markdown revisado e abre a página
+oficial de criação de issues.
 
 Os relatórios preparados ficam em `AppLocalDataLocation/ZapZap/reports`, no
 máximo 20 arquivos JSON sanitizados por 30 dias. A preferência
 `reporting/crash_prompts` autoriza apenas preparar localmente e avisar na
-próxima inicialização. O startup nunca envia nem tenta novamente. A prévia é
-renderizada a partir do mesmo `ReportDocument` que será serializado para
-`POST /api/v1/reports`; uma alteração posterior invalida o consentimento.
+próxima inicialização. O startup nunca abre serviços externos. A prévia é
+renderizada a partir do mesmo `ReportDocument` que será convertido no Markdown
+copiado. Somente o título segue na URL; descrição, diagnóstico e logs ficam na
+área de transferência para o usuário colar e editar no GitHub.
 Um marcador `.session-active`, criado depois da aplicação e removido em
 `aboutToQuit`, complementa os hooks Python para reconhecer processos nativos
 que não conseguiram executar um handler de exceção.
 
-O serviço separado em `backend/` valida tamanho e schema, limita taxa,
-sanitiza novamente e agrupa ocorrências no SQLite. Crashes usam o SHA-256
-determinístico produzido pelo cliente; relatos manuais usam uma chave derivada
-do conteúdo sanitizado. Somente o backend lê credenciais de GitHub App e cria
-ou comenta issues em `rafatosta/zapzap`.
+Não existe serviço intermediário nem credencial GitHub no cliente. A publicação
+é feita pelo próprio usuário, em sua sessão autenticada no navegador, e o
+estado local `opened_on_github` significa apenas que a página foi aberta — não
+que a issue foi efetivamente publicada.
 
 ## Inicialização e encerramento
 

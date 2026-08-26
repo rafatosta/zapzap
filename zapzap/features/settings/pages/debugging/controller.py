@@ -63,7 +63,7 @@ class DebuggingSettingsController(DebuggingSettingsView):
             _(
                 "Reports may include the ZapZap version, operating system, installation type, architecture, Python/Qt versions, error details, and sanitized logs.\n\n"
                 "Never sent: messages, contacts, phone numbers, cookies, WhatsApp session data, conversation content, passwords, or authentication tokens.\n\n"
-                "Reports go to the official GitHub repository rafatosta/zapzap and may become part of a public issue. You do not need a GitHub account."
+                "ZapZap does not send reports. After review, it copies the report and opens the official GitHub repository rafatosta/zapzap. You need a GitHub account to publish the public issue."
             ),
         )
 
@@ -73,7 +73,7 @@ class DebuggingSettingsController(DebuggingSettingsView):
                 self,
                 _("Notify me when a failure occurs?"),
                 _(
-                    "ZapZap can prepare a sanitized technical report locally after a serious failure. You will review it on the next startup.\n\nNo report is ever sent without your confirmation."
+                    "ZapZap can prepare a sanitized technical report locally after a serious failure. You will review it on the next startup.\n\nZapZap never transmits or publishes the report automatically."
                 ),
             )
             self.model.mark_crash_prompts_explained()

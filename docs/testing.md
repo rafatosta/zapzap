@@ -102,8 +102,8 @@ documente o que ele protege.
 | `test_permissions_settings_ui.py` | grupos e ações globais/individuais de permissões |
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
-| `test_reporting.py` | sanitização, minimização, fila/TTL, captura local e capacidade de consentimento de uso único |
-| `test_reporting_ui.py` | formulário em duas etapas, prévia canônica, edição, cancelamento e confirmação explícita |
+| `test_reporting.py` | sanitização, minimização, Markdown, fila/TTL e captura local de encerramentos inesperados |
+| `test_reporting_ui.py` | formulário em duas etapas, prévia canônica, edição, cancelamento, clipboard e abertura segura do GitHub |
 | `test_segmented_control.py` | seleção exclusiva, sinais, mouse, teclado, acessibilidade, tamanhos, raios e temas |
 | `test_send_message_to_number.py` | normalização/URL, lista de países, validação, acessibilidade e teclado do diálogo de conversa por número |
 | `test_settings_card.py` | divisores e grupos do card compartilhado em `ui.components` |

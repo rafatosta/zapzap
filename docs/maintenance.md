@@ -92,25 +92,24 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 
 ### Relatórios de problemas
 
-- Preserve a sequência `preencher -> revisar -> confirmar -> enviar`. O botão
-  de revisão não pode persistir, transmitir nem criar consentimento.
+- Preserve a sequência `preencher -> revisar -> copiar/abrir GitHub -> usuário
+  publica`. O botão de revisão não pode persistir, copiar nem abrir o navegador.
 - A captura de crashes pertence a `core.reporting.capture` e só pode gravar no
-  `LocalReportStore`; não importe `submitter` nesse caminho nem crie timers de
-  envio/retry no startup.
+  `LocalReportStore`; não acesse rede, área de transferência ou navegador nesse
+  caminho.
 - A opção `reporting/crash_prompts` autoriza somente preparação e aviso local.
-  Toda tentativa remota exige uma nova `ExplicitSubmissionConsent` vinculada
-  ao JSON exato que foi mostrado.
-- Ao acrescentar dados, atualize conjuntamente o builder, a prévia canônica,
-  sanitizadores do cliente e backend e testes de transparência/segurança.
+  A abertura do GitHub exige uma ação explícita na revisão.
+- Ao acrescentar dados, atualize conjuntamente o builder, o formatador Markdown,
+  a prévia canônica, o sanitizador e os testes de transparência/segurança.
   Nunca colete WebEngine storage, mensagens, contatos, cookies ou ambiente
   completo.
-- O endpoint oficial deve continuar HTTPS. Credenciais e chave privada da
-  GitHub App existem apenas no deploy do backend; nunca em build, preferência,
-  variável do cliente ou fixture distribuída.
-- A fila continua limitada a 20 itens e TTL de 30 dias. Falha de rede preserva
-  o relatório e qualquer nova tentativa parte de uma ação explícita.
-- Valide `python -m unittest discover -s tests/backend -v` além da suíte do
-  cliente. Mudanças visuais ainda exigem sessão gráfica real.
+- O launcher deve usar somente a página HTTPS oficial de criação de issues. Não
+  coloque corpo, logs ou diagnóstico na URL; somente o título pode ser query.
+- Não introduza tokens, credenciais GitHub ou envio HTTP no cliente.
+- A fila continua limitada a 20 itens e TTL de 30 dias. O estado
+  `opened_on_github` registra apenas o handoff local, não a publicação da issue.
+- Valide `test_reporting.py` e `test_reporting_ui.py` além da suíte completa.
+  Mudanças visuais ainda exigem sessão gráfica real.
 - Se houver ação destrutiva, peça confirmação e separe-a visualmente.
 
 ### Mudança no navegador ou em contas

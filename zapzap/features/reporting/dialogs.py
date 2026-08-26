@@ -1,10 +1,10 @@
-"""Two-step report form, exact preview, and explicit submission UI."""
+"""Two-step report form, exact preview, and explicit GitHub handoff UI."""
 
 from __future__ import annotations
 
 from gettext import gettext as _
 
-from PyQt6.QtCore import Qt, pyqtSignal
+from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFontDatabase
 from PyQt6.QtWidgets import (
     QDialog,
@@ -17,10 +17,11 @@ from PyQt6.QtWidgets import (
 )
 
 from zapzap.core.reporting.builder import ReportBuilder
+from zapzap.core.reporting.markdown import ReportMarkdownFormatter
 from zapzap.core.reporting.model import ReportDocument
 from zapzap.core.reporting.store import LocalReportStore
-from zapzap.core.reporting.submitter import ExplicitSubmissionConsent, ReportSubmitter
 from zapzap.features.alerts.alert_manager import AlertManager
+from zapzap.features.reporting.github_launcher import GitHubReportLauncher
 from zapzap.ui.primitives import Button, CheckBox, CheckBoxVariant, ComboBox, Label, TextEdit
 
 
@@ -54,7 +55,7 @@ def report_preview_text(document: ReportDocument) -> str:
     category_labels = dict(CATEGORY_OPTIONS)
     frequency_labels = dict(FREQUENCY_OPTIONS)
     lines = [
-        _("Check all the information below. Nothing will be sent until you confirm."),
+        _("Check all the information below before continuing to GitHub."),
         "",
         _("Your report"),
         _("Problem type: {value}").format(
@@ -99,7 +100,7 @@ def report_preview_text(document: ReportDocument) -> str:
         "",
         _("Report destination"),
         _("Official ZapZap repository on GitHub: rafatosta/zapzap"),
-        _("The report may create or update a public issue. You do not need a GitHub account."),
+        _("ZapZap will copy the report and open GitHub. You need a GitHub account to publish the public issue."),
         "",
         _("Privacy"),
         _("Never sent: messages, contacts, phone numbers, cookies, WhatsApp session data, conversation content, passwords, or authentication tokens."),
@@ -108,9 +109,7 @@ def report_preview_text(document: ReportDocument) -> str:
 
 
 class ProblemReportDialog(QDialog):
-    """Manual form followed by mandatory review and per-attempt confirmation."""
-
-    submission_started = pyqtSignal(object)
+    """Manual form followed by review and an explicit local GitHub handoff."""
 
     def __init__(
         self,
@@ -120,13 +119,13 @@ class ProblemReportDialog(QDialog):
         report_id: str | None = None,
         builder=None,
         store=None,
-        submitter=None,
+        launcher=None,
         logs_provider=None,
     ):
         super().__init__(parent)
         self.builder = builder or ReportBuilder()
         self.store = store or LocalReportStore()
-        self.submitter = submitter or ReportSubmitter(parent=self)
+        self.launcher = launcher or GitHubReportLauncher()
         self.logs_provider = logs_provider or (lambda: "")
         self.document = document
         self.report_id = report_id
@@ -145,9 +144,7 @@ class ProblemReportDialog(QDialog):
         self.review_button.clicked.connect(self.review_report)
         self.back_button.clicked.connect(self.back_to_edit)
         self.cancel_button.clicked.connect(self.reject)
-        self.confirm_button.clicked.connect(self.confirm_and_send)
-        self.submitter.succeeded.connect(self._submission_succeeded)
-        self.submitter.failed.connect(self._submission_failed)
+        self.confirm_button.clicked.connect(self.copy_and_open_github)
 
         if document is not None:
             self._show_review(document, can_edit=False)
@@ -157,7 +154,10 @@ class ProblemReportDialog(QDialog):
         layout = QVBoxLayout(page)
         title = Label(_("Report a problem"), "title", page)
         intro = Label(
-            _("Describe what happened. You will review everything before anything is sent."),
+            _(
+                "Describe what happened. You will review everything before "
+                "anything is copied or GitHub is opened."
+            ),
             "description",
             page,
         )
@@ -218,7 +218,7 @@ class ProblemReportDialog(QDialog):
         layout = QVBoxLayout(page)
         layout.addWidget(Label(_("Review your report"), "title", page))
         notice = Label(
-            _("Check all the information below. Nothing will be sent until you confirm."),
+            _("ZapZap will not send this report. It will be copied only when you choose to open GitHub."),
             "description",
             page,
         )
@@ -242,13 +242,17 @@ class ProblemReportDialog(QDialog):
             QFontDatabase.systemFont(QFontDatabase.SystemFont.FixedFont)
         )
         self.technical_preview.setAccessibleName(
-            _("Complete technical information to be sent")
+            _("Complete report to copy to GitHub")
         )
         self.technical_preview.setVisible(False)
         layout.addWidget(self.technical_preview, 1)
         actions = QHBoxLayout()
         self.back_button = Button(_("Back and edit"), parent=page)
-        self.confirm_button = Button(_("Confirm and send"), Button.PRIMARY, page)
+        self.confirm_button = Button(
+            _("Copy report and open GitHub"),
+            Button.PRIMARY,
+            page,
+        )
         actions.addWidget(self.back_button)
         actions.addStretch(1)
         actions.addWidget(self.confirm_button)
@@ -276,7 +280,9 @@ class ProblemReportDialog(QDialog):
     def _show_review(self, document: ReportDocument, *, can_edit: bool):
         self.document = document
         self.preview.setPlainText(report_preview_text(document))
-        self.technical_preview.setPlainText(ReportBuilder.preview_json(document))
+        self.technical_preview.setPlainText(
+            ReportMarkdownFormatter.format(document)
+        )
         self.technical_toggle.setChecked(False)
         self.back_button.setVisible(can_edit)
         self.pages.setCurrentWidget(self.review_page)
@@ -292,41 +298,24 @@ class ProblemReportDialog(QDialog):
     def back_to_edit(self):
         self.pages.setCurrentWidget(self.form_page)
 
-    def confirm_and_send(self):
+    def copy_and_open_github(self):
         if self.document is None:
             return
         if self.report_id is None:
-            self.report_id = self.store.save(self.document, status="sending")
+            self.report_id = self.store.save(self.document, status="copied")
         else:
-            self.store.set_status(self.report_id, "sending")
-        consent = ExplicitSubmissionConsent.from_confirmation(self.document)
-        self.confirm_button.setEnabled(False)
-        self.confirm_button.setText(_("Sending…"))
-        self.submission_started.emit(self.document)
-        self.submitter.submit(self.report_id, self.document, consent)
-
-    def _submission_succeeded(self, report_id, result):
-        if report_id != self.report_id:
+            self.store.set_status(self.report_id, "copied")
+        if self.launcher.prepare_and_open(self.document):
+            self.store.set_status(self.report_id, "opened_on_github")
+            self.accept()
             return
-        self.store.set_status(report_id, "sent")
-        self.confirm_button.setText(_("Sent"))
-        AlertManager.information(
-            self,
-            _("Report sent"),
-            _("Thank you. The report was sent successfully to the official ZapZap repository on GitHub."),
-        )
-        self.accept()
-
-    def _submission_failed(self, report_id, _error):
-        if report_id != self.report_id:
-            return
-        self.store.set_status(report_id, "send_failed")
-        self.confirm_button.setEnabled(True)
-        self.confirm_button.setText(_("Try again"))
         AlertManager.warning(
             self,
-            _("Could not send the report"),
-            _("The report was saved on this device and can be sent again later."),
+            _("Could not open GitHub"),
+            _(
+                "The report is still copied to the clipboard. Open the official "
+                "ZapZap repository and paste it into a new issue."
+            ),
         )
 
 
@@ -346,7 +335,7 @@ class RecentReportsDialog(QDialog):
         layout.addWidget(self.details, 2)
         actions = QHBoxLayout()
         self.review_selected_button = Button(
-            _("Review and send selected report"),
+            _("Review and open selected report"),
             Button.PRIMARY,
             self,
         )
@@ -362,7 +351,15 @@ class RecentReportsDialog(QDialog):
         for record in self.records:
             payload = record.get("document") or {}
             kind = _("Unexpected closing") if payload.get("report_type") == "automatic_crash" else _("Problem report")
-            self.list.addItem(f"{record.get('created_at', '')[:16]} — {kind} — {record.get('status', '')}")
+            status = {
+                "pending": _("Saved locally"),
+                "pending_review": _("Waiting for review"),
+                "copied": _("Copied"),
+                "opened_on_github": _("Opened on GitHub"),
+            }.get(record.get("status"), _("Saved locally"))
+            self.list.addItem(
+                f"{record.get('created_at', '')[:16]} — {kind} — {status}"
+            )
         self.list.currentRowChanged.connect(self._show_record)
         if self.records:
             self.list.setCurrentRow(0)
@@ -373,13 +370,11 @@ class RecentReportsDialog(QDialog):
             self.details.setPlainText(
                 report_preview_text(document)
                 + "\n\n"
-                + _("Complete technical information")
+                + _("Complete report to copy")
                 + "\n"
-                + ReportBuilder.preview_json(document)
+                + ReportMarkdownFormatter.format(document)
             )
-            self.review_selected_button.setEnabled(
-                self.records[row].get("status") != "sent"
-            )
+            self.review_selected_button.setEnabled(True)
         else:
             self.review_selected_button.setEnabled(False)
 

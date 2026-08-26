@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 import hashlib
-import json
 import platform
 import traceback
 
@@ -126,8 +125,3 @@ class ReportBuilder:
             ).hexdigest(),
             "timestamp": self._timestamp(),
         })
-
-    @staticmethod
-    def preview_json(document: ReportDocument) -> str:
-        """Expose the exact canonical payload used by submission."""
-        return json.dumps(document.payload(), indent=2, ensure_ascii=False, sort_keys=True)

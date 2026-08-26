@@ -1,9 +1,8 @@
-"""Canonical report representation shared by preview and submission."""
+"""Canonical report representation shared by preview and GitHub handoff."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass
-import json
 from types import MappingProxyType
 from typing import Any, Mapping
 
@@ -26,7 +25,7 @@ def _thaw(value):
 
 @dataclass(frozen=True)
 class ReportDocument:
-    """Immutable payload; the UI renders this exact object before sending it."""
+    """Immutable, sanitized content reviewed before local GitHub handoff."""
 
     data: Mapping[str, Any]
 
@@ -34,13 +33,5 @@ class ReportDocument:
         object.__setattr__(self, "data", _freeze(dict(self.data)))
 
     def payload(self) -> dict[str, Any]:
-        """Return the only serializable representation accepted by submitters."""
+        """Return a serializable copy used by local storage and formatting."""
         return _thaw(self.data)
-
-    def to_json(self, *, pretty: bool = False) -> str:
-        return json.dumps(
-            self.payload(),
-            ensure_ascii=False,
-            indent=2 if pretty else None,
-            sort_keys=True,
-        )

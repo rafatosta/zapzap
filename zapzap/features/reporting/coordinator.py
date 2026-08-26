@@ -11,7 +11,7 @@ from .dialogs import ProblemReportDialog
 
 
 class ReportingCoordinator:
-    """Offer review at startup without initiating or scheduling transmission."""
+    """Offer local review at startup without transmitting report content."""
 
     def __init__(self, parent, *, store=None):
         self.parent = parent
@@ -31,7 +31,10 @@ class ReportingCoordinator:
             self.parent,
             _("ZapZap found a problem"),
             _("ZapZap closed unexpectedly during the last run."),
-            _("A sanitized report was prepared on this device. Nothing will be sent without your confirmation."),
+            _(
+                "A sanitized report was prepared on this device. ZapZap will "
+                "not send it; after reviewing, you can copy it and open GitHub."
+            ),
             AlertManager.warning_icon,
             (
                 ("keep", _("Keep locally"), AlertManager.reject_role),

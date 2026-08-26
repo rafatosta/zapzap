@@ -131,7 +131,7 @@ class CrashDumpHandler:
             self._zip_dump(work_dir, zip_path)
 
             # This path is intentionally local-only. It has no import or call
-            # to the remote submitter; review is offered on a later startup.
+            # to the clipboard or browser; review is offered on a later startup.
             self._prepare_private_report(exc_type, exc_value, exc_traceback)
 
             # 6 Aviso ao usuário

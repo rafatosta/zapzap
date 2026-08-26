@@ -1,4 +1,4 @@
-"""Privacy, storage, capture, consent, and backend report contracts."""
+"""Privacy, storage, capture, and Markdown report contracts."""
 
 from datetime import datetime, timedelta, timezone
 import json
@@ -8,10 +8,10 @@ import unittest
 
 from zapzap.core.reporting.builder import ReportBuilder
 from zapzap.core.reporting.capture import CrashReportCapture, CrashSessionMonitor
+from zapzap.core.reporting.markdown import ReportMarkdownFormatter
 from zapzap.core.reporting.model import ReportDocument
 from zapzap.core.reporting.sanitizer import ReportSanitizer
 from zapzap.core.reporting.store import LocalReportStore
-from zapzap.core.reporting.submitter import ExplicitSubmissionConsent, ReportSubmitter
 
 
 class _Runtime:
@@ -75,8 +75,11 @@ class ReportingCoreTests(unittest.TestCase):
                 store.save(ReportDocument({"report_type": "manual_problem", "value": index}))
             self.assertEqual(len(store.records()), store.MAX_REPORTS)
             report_id = store.records()[0]["id"]
-            store.set_status(report_id, "sent")
-            self.assertEqual(store.records()[0]["status"], "sent")
+            store.set_status(report_id, "opened_on_github")
+            self.assertEqual(
+                store.records()[0]["status"],
+                "opened_on_github",
+            )
             old = store.directory / "old.json"
             old.write_text(json.dumps({
                 "id": "old",
@@ -113,25 +116,21 @@ class ReportingCoreTests(unittest.TestCase):
         self.assertEqual(len(store.saved), 1)
         self.assertEqual(store.saved[0][1], "pending_review")
 
-    def test_submitter_requires_matching_single_use_consent_and_queues_worker(self):
-        class Pool:
-            def __init__(self):
-                self.tasks = []
-            def start(self, task):
-                self.tasks.append(task)
-
-        document = ReportDocument({"schema_version": 1, "application": "zapzap"})
-        other = ReportDocument({"schema_version": 1, "application": "other"})
-        pool = Pool()
-        submitter = ReportSubmitter(thread_pool=pool)
-        consent = ExplicitSubmissionConsent.from_confirmation(document)
-        with self.assertRaises(PermissionError):
-            submitter.submit("id", other, consent)
-        consent = ExplicitSubmissionConsent.from_confirmation(document)
-        submitter.submit("id", document, consent)
-        self.assertEqual(len(pool.tasks), 1)
-        with self.assertRaises(PermissionError):
-            submitter.submit("id", document, consent)
+    def test_markdown_contains_only_the_selected_sanitized_document(self):
+        document = ReportBuilder(runtime_factory=_Runtime).manual(
+            category="files",
+            description="Contact alice@example.com about the picker",
+            expected_behavior="Open the picker",
+            frequency="always",
+            include_system=False,
+            include_error=False,
+            include_logs=False,
+        )
+        markdown = ReportMarkdownFormatter.format(document)
+        self.assertIn("## Problem report", markdown)
+        self.assertIn("Open the picker", markdown)
+        self.assertNotIn("alice@example.com", markdown)
+        self.assertNotIn("### Environment", markdown)
 
     def test_session_marker_prepares_hard_crash_report_only_after_unclean_exit(self):
         class Settings:

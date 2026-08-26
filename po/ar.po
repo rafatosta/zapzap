@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-26 11:24-0300\n"
+"POT-Creation-Date: 2026-08-26 11:56-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Arabic\n"
@@ -65,7 +65,7 @@ msgstr ""
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:41
 #: zapzap/features/settings/pages/advanced_customizations/view.py:101
-#: zapzap/features/settings/pages/debugging/view.py:232
+#: zapzap/features/settings/pages/debugging/view.py:241
 #: zapzap/features/downloads/ui/download_dialog.py:118
 msgid "Open folder"
 msgstr "افتح المجلد"
@@ -242,7 +242,7 @@ msgid "Copy address"
 msgstr "انسخ عنوان الرابط"
 
 #: zapzap/features/alerts/external_url.py:45
-#: zapzap/features/reporting/dialogs.py:355
+#: zapzap/features/reporting/dialogs.py:344
 #: zapzap/features/browser/shell/browser_controller.py:316
 #: zapzap/ui/components/dictionary_manager_dialog.py:91
 #: zapzap/ui/components/dictionary_manager_dialog.py:193
@@ -399,7 +399,7 @@ msgid ""
 msgstr ""
 
 #: zapzap/features/donation/view.py:213 zapzap/features/shortcuts/view.py:60
-#: zapzap/features/settings/pages/debugging/view.py:416
+#: zapzap/features/settings/pages/debugging/view.py:425
 #: zapzap/ui/components/main_window.py:133
 msgid "ZapZap"
 msgstr "ZapZap"
@@ -878,7 +878,7 @@ msgstr "حدد وانسخ هذا الأمر في جهازك الطرفي"
 
 #: zapzap/features/initial_setup/view.py:446
 #: zapzap/features/settings/pages/debugging/controller.py:131
-#: zapzap/features/settings/pages/debugging/view.py:266
+#: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
 #: zapzap/features/browser/web/web_view.py:370
 msgid "Copy"
@@ -1099,134 +1099,132 @@ msgstr "اظهِر"
 msgid "Quit"
 msgstr "غادِر"
 
-#: zapzap/features/reporting/dialogs.py:28
+#: zapzap/features/reporting/dialogs.py:29
 msgid "ZapZap closed unexpectedly"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:29
+#: zapzap/features/reporting/dialogs.py:30
 msgid "Something is not working"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:30
+#: zapzap/features/reporting/dialogs.py:31
 msgid "Notification problem"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:31
+#: zapzap/features/reporting/dialogs.py:32
 msgid "Audio or video problem"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:32
+#: zapzap/features/reporting/dialogs.py:33
 msgid "File problem"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:33
+#: zapzap/features/reporting/dialogs.py:34
 msgid "Visual problem"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:34
+#: zapzap/features/reporting/dialogs.py:35
 msgid "Other"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:37
+#: zapzap/features/reporting/dialogs.py:38
 msgid "Always"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:38
+#: zapzap/features/reporting/dialogs.py:39
 msgid "Sometimes"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:39
+#: zapzap/features/reporting/dialogs.py:40
 msgid "It happened once"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:40
+#: zapzap/features/reporting/dialogs.py:41
 msgid "I don't know"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:57
-#: zapzap/features/reporting/dialogs.py:221
-msgid ""
-"Check all the information below. Nothing will be sent until you confirm."
-msgstr ""
-
-#: zapzap/features/reporting/dialogs.py:59
-msgid "Your report"
+#: zapzap/features/reporting/dialogs.py:58
+msgid "Check all the information below before continuing to GitHub."
 msgstr ""
 
 #: zapzap/features/reporting/dialogs.py:60
+msgid "Your report"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:61
 #, python-brace-format
 msgid "Problem type: {value}"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:63
-#: zapzap/features/reporting/dialogs.py:364
+#: zapzap/features/reporting/dialogs.py:64
+#: zapzap/features/reporting/dialogs.py:353
 msgid "Unexpected closing"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:68
+#: zapzap/features/reporting/dialogs.py:69
 msgid "Description:"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:70
+#: zapzap/features/reporting/dialogs.py:71
 msgid "Expected result:"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:73
+#: zapzap/features/reporting/dialogs.py:74
 #, python-brace-format
 msgid "Frequency: {value}"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:81
+#: zapzap/features/reporting/dialogs.py:82
 msgid "Application information"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:91
+#: zapzap/features/reporting/dialogs.py:92
 msgid "Error information"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:93
+#: zapzap/features/reporting/dialogs.py:94
 #, python-brace-format
 msgid "Error type: {value}"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:95
+#: zapzap/features/reporting/dialogs.py:96
 #, python-brace-format
 msgid "Error details: {value}"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:97
+#: zapzap/features/reporting/dialogs.py:98
 msgid "Sanitized logs are included in the technical information."
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:100
+#: zapzap/features/reporting/dialogs.py:101
 msgid "Report destination"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:101
+#: zapzap/features/reporting/dialogs.py:102
 msgid "Official ZapZap repository on GitHub: rafatosta/zapzap"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:102
+#: zapzap/features/reporting/dialogs.py:103
 msgid ""
-"The report may create or update a public issue. You do not need a GitHub "
-"account."
+"ZapZap will copy the report and open GitHub. You need a GitHub account to "
+"publish the public issue."
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:104
+#: zapzap/features/reporting/dialogs.py:105
 #: zapzap/features/settings/pages/network_privacy/view.py:249
 #: zapzap/features/settings/pages/notifications/view.py:113
 msgid "Privacy"
 msgstr "الخصوصية"
 
-#: zapzap/features/reporting/dialogs.py:105
+#: zapzap/features/reporting/dialogs.py:106
 msgid ""
 "Never sent: messages, contacts, phone numbers, cookies, WhatsApp session "
 "data, conversation content, passwords, or authentication tokens."
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:133
-#: zapzap/features/reporting/dialogs.py:158
-#: zapzap/features/reporting/dialogs.py:272
+#: zapzap/features/reporting/dialogs.py:132
+#: zapzap/features/reporting/dialogs.py:155
+#: zapzap/features/reporting/dialogs.py:276
 #: zapzap/features/settings/shell/settings_controller.py:176
 #: zapzap/features/settings/pages/about/view.py:269
 #: zapzap/features/settings/pages/debugging/view.py:160
@@ -1234,9 +1232,10 @@ msgstr ""
 msgid "Report a problem"
 msgstr "الإبلاغ عن مشكلة"
 
-#: zapzap/features/reporting/dialogs.py:160
+#: zapzap/features/reporting/dialogs.py:158
 msgid ""
-"Describe what happened. You will review everything before anything is sent."
+"Describe what happened. You will review everything before anything is copied "
+"or GitHub is opened."
 msgstr ""
 
 #: zapzap/features/reporting/dialogs.py:166
@@ -1273,7 +1272,7 @@ msgid "Include sanitized logs, when available"
 msgstr ""
 
 #: zapzap/features/reporting/dialogs.py:210
-#: zapzap/features/reporting/coordinator.py:39
+#: zapzap/features/reporting/coordinator.py:42
 msgid "Review report"
 msgstr ""
 
@@ -1281,79 +1280,82 @@ msgstr ""
 msgid "Review your report"
 msgstr ""
 
+#: zapzap/features/reporting/dialogs.py:221
+msgid ""
+"ZapZap will not send this report. It will be copied only when you choose to "
+"open GitHub."
+msgstr ""
+
 #: zapzap/features/reporting/dialogs.py:230
 msgid "Complete report preview"
 msgstr ""
 
 #: zapzap/features/reporting/dialogs.py:233
-#: zapzap/features/reporting/dialogs.py:289
+#: zapzap/features/reporting/dialogs.py:295
 msgid "Show technical information"
 msgstr ""
 
 #: zapzap/features/reporting/dialogs.py:245
-msgid "Complete technical information to be sent"
+msgid "Complete report to copy to GitHub"
 msgstr ""
 
 #: zapzap/features/reporting/dialogs.py:250
 msgid "Back and edit"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:251
-msgid "Confirm and send"
+#: zapzap/features/reporting/dialogs.py:252
+msgid "Copy report and open GitHub"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:272
+#: zapzap/features/reporting/dialogs.py:276
 msgid "Describe what happened before continuing."
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:287
+#: zapzap/features/reporting/dialogs.py:293
 msgid "Hide technical information"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:304
-msgid "Sending…"
-msgstr ""
-
-#: zapzap/features/reporting/dialogs.py:312
-msgid "Sent"
-msgstr ""
-
-#: zapzap/features/reporting/dialogs.py:315
-msgid "Report sent"
+#: zapzap/features/reporting/dialogs.py:314
+msgid "Could not open GitHub"
 msgstr ""
 
 #: zapzap/features/reporting/dialogs.py:316
 msgid ""
-"Thank you. The report was sent successfully to the official ZapZap "
-"repository on GitHub."
-msgstr ""
-
-#: zapzap/features/reporting/dialogs.py:325
-msgid "Try again"
+"The report is still copied to the clipboard. Open the official ZapZap "
+"repository and paste it into a new issue."
 msgstr ""
 
 #: zapzap/features/reporting/dialogs.py:328
-msgid "Could not send the report"
-msgstr ""
-
-#: zapzap/features/reporting/dialogs.py:329
-msgid "The report was saved on this device and can be sent again later."
-msgstr ""
-
-#: zapzap/features/reporting/dialogs.py:339
 msgid "Local reports"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:349
-msgid "Review and send selected report"
+#: zapzap/features/reporting/dialogs.py:338
+msgid "Review and open selected report"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:364
+#: zapzap/features/reporting/dialogs.py:353
 msgid "Problem report"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:376
-msgid "Complete technical information"
+#: zapzap/features/reporting/dialogs.py:355
+#: zapzap/features/reporting/dialogs.py:359
+msgid "Saved locally"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:356
+msgid "Waiting for review"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:357
+msgid "Copied"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:358
+msgid "Opened on GitHub"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:373
+msgid "Complete report to copy"
 msgstr ""
 
 #: zapzap/features/reporting/coordinator.py:32
@@ -1364,17 +1366,17 @@ msgstr ""
 msgid "ZapZap closed unexpectedly during the last run."
 msgstr ""
 
-#: zapzap/features/reporting/coordinator.py:34
+#: zapzap/features/reporting/coordinator.py:35
 msgid ""
-"A sanitized report was prepared on this device. Nothing will be sent without "
-"your confirmation."
+"A sanitized report was prepared on this device. ZapZap will not send it; "
+"after reviewing, you can copy it and open GitHub."
 msgstr ""
 
-#: zapzap/features/reporting/coordinator.py:37
+#: zapzap/features/reporting/coordinator.py:40
 msgid "Keep locally"
 msgstr ""
 
-#: zapzap/features/reporting/coordinator.py:38
+#: zapzap/features/reporting/coordinator.py:41
 msgid "Discard report"
 msgstr ""
 
@@ -1467,13 +1469,13 @@ msgstr "الإصدار"
 
 #: zapzap/features/settings/pages/about/model.py:69
 #: zapzap/features/settings/pages/about/model.py:93
-#: zapzap/features/settings/pages/debugging/view.py:418
+#: zapzap/features/settings/pages/debugging/view.py:427
 msgid "Channel"
 msgstr "قناة"
 
 #: zapzap/features/settings/pages/about/model.py:70
 #: zapzap/features/settings/pages/about/model.py:92
-#: zapzap/features/settings/pages/debugging/view.py:417
+#: zapzap/features/settings/pages/debugging/view.py:426
 msgid "Packaging"
 msgstr "التعبئة والتغليف"
 
@@ -1486,7 +1488,7 @@ msgid "Repository"
 msgstr "مستودع"
 
 #: zapzap/features/settings/pages/about/model.py:90
-#: zapzap/features/settings/pages/debugging/view.py:422
+#: zapzap/features/settings/pages/debugging/view.py:431
 msgid "System"
 msgstr "النظام"
 
@@ -1509,7 +1511,7 @@ msgid "Version {version}"
 msgstr "الإصدار {version}"
 
 #: zapzap/features/settings/pages/about/view.py:148
-#: zapzap/features/settings/pages/debugging/view.py:217
+#: zapzap/features/settings/pages/debugging/view.py:226
 msgid "Technical details"
 msgstr "التفاصيل الفنية"
 
@@ -2192,7 +2194,7 @@ msgid "Left"
 msgstr "اليسار"
 
 #: zapzap/features/settings/pages/debugging/controller.py:62
-#: zapzap/features/settings/pages/debugging/view.py:196
+#: zapzap/features/settings/pages/debugging/view.py:202
 msgid "Information and privacy"
 msgstr ""
 
@@ -2204,8 +2206,9 @@ msgid ""
 "Never sent: messages, contacts, phone numbers, cookies, WhatsApp session "
 "data, conversation content, passwords, or authentication tokens.\n"
 "\n"
-"Reports go to the official GitHub repository rafatosta/zapzap and may become "
-"part of a public issue. You do not need a GitHub account."
+"ZapZap does not send reports. After review, it copies the report and opens "
+"the official GitHub repository rafatosta/zapzap. You need a GitHub account "
+"to publish the public issue."
 msgstr ""
 
 #: zapzap/features/settings/pages/debugging/controller.py:74
@@ -2217,11 +2220,11 @@ msgid ""
 "ZapZap can prepare a sanitized technical report locally after a serious "
 "failure. You will review it on the next startup.\n"
 "\n"
-"No report is ever sent without your confirmation."
+"ZapZap never transmits or publishes the report automatically."
 msgstr ""
 
 #: zapzap/features/settings/pages/debugging/controller.py:111
-#: zapzap/features/settings/pages/debugging/view.py:368
+#: zapzap/features/settings/pages/debugging/view.py:377
 #, python-brace-format
 msgid "{count} crash report"
 msgid_plural "{count} crash reports"
@@ -2254,12 +2257,12 @@ msgstr ""
 "{runtime}"
 
 #: zapzap/features/settings/pages/debugging/controller.py:132
-#: zapzap/features/settings/pages/debugging/view.py:236
+#: zapzap/features/settings/pages/debugging/view.py:245
 msgid "Copy diagnostics"
 msgstr "نسخ التشخيص"
 
 #: zapzap/features/settings/pages/debugging/controller.py:133
-#: zapzap/features/settings/pages/debugging/view.py:321
+#: zapzap/features/settings/pages/debugging/view.py:330
 msgid "Copy details"
 msgstr "نسخ التفاصيل"
 
@@ -2300,7 +2303,7 @@ msgstr ""
 
 #: zapzap/features/settings/pages/debugging/controller.py:186
 #: zapzap/features/settings/pages/debugging/controller.py:193
-#: zapzap/features/settings/pages/debugging/view.py:337
+#: zapzap/features/settings/pages/debugging/view.py:346
 msgid "Reset settings"
 msgstr "إعادة ضبط الإعدادات"
 
@@ -2322,133 +2325,130 @@ msgid "Full details"
 msgstr "التفاصيل الكاملة"
 
 #: zapzap/features/settings/pages/debugging/view.py:161
-msgid ""
-"Tell us about failures or unexpected behavior without needing a GitHub "
-"account."
+msgid "Prepare a sanitized report to publish with your GitHub account."
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:178
+#: zapzap/features/settings/pages/debugging/view.py:179
 msgid ""
-"You will always review the complete report before choosing whether to send "
-"it."
+"You will always review the complete report before copying it and opening "
+"GitHub."
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:182
+#: zapzap/features/settings/pages/debugging/view.py:185
 msgid "Something is not working?"
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:183
+#: zapzap/features/settings/pages/debugging/view.py:186
 msgid "Describe the problem in simple steps. Avoid personal information."
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:184
+#: zapzap/features/settings/pages/debugging/view.py:187
 msgid "Report a problem…"
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:190
+#: zapzap/features/settings/pages/debugging/view.py:193
 msgid "Notify me when a failure occurs"
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:191
+#: zapzap/features/settings/pages/debugging/view.py:195
 msgid ""
-"ZapZap will prepare a sanitized local report after a serious failure and ask "
-"whether you want to send it. Nothing is sent without your confirmation."
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/view.py:197
-msgid ""
-"See what reports may include, what is never sent, and their destination."
-msgstr ""
-
-#: zapzap/features/settings/pages/debugging/view.py:198
-msgid "View information"
+"ZapZap will prepare a sanitized local report after a serious failure. It "
+"will never publish or transmit it automatically."
 msgstr ""
 
 #: zapzap/features/settings/pages/debugging/view.py:203
-msgid "Recent local reports"
+msgid "See what reports may include and how publication on GitHub works."
 msgstr ""
 
 #: zapzap/features/settings/pages/debugging/view.py:204
-msgid "Review reports kept on this device and their sending status."
+msgid "View information"
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:205
+#: zapzap/features/settings/pages/debugging/view.py:209
+msgid "Recent local reports"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:211
+msgid "Review reports kept on this device and their GitHub handoff status."
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:214
 msgid "View local reports"
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:221
+#: zapzap/features/settings/pages/debugging/view.py:230
 msgid "Local crash files"
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:224
+#: zapzap/features/settings/pages/debugging/view.py:233
 msgid "Debug log"
 msgstr "سجل التصحيح"
 
-#: zapzap/features/settings/pages/debugging/view.py:249
+#: zapzap/features/settings/pages/debugging/view.py:258
 msgid "Technical files"
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:250
+#: zapzap/features/settings/pages/debugging/view.py:259
 msgid ""
 "Manage local files used to diagnose errors. These files are not sent "
 "automatically."
 msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:258
+#: zapzap/features/settings/pages/debugging/view.py:267
 msgid "Diagnostics folder"
 msgstr "مجلد التشخيص"
 
-#: zapzap/features/settings/pages/debugging/view.py:265
+#: zapzap/features/settings/pages/debugging/view.py:274
 #: zapzap/features/downloads/ui/download_dialog.py:101
 msgid "Open"
 msgstr "افتح"
 
-#: zapzap/features/settings/pages/debugging/view.py:277
+#: zapzap/features/settings/pages/debugging/view.py:286
 msgid "Clean up files…"
 msgstr "تنظيف الملفات…"
 
-#: zapzap/features/settings/pages/debugging/view.py:282
+#: zapzap/features/settings/pages/debugging/view.py:291
 msgid "Delete old files"
 msgstr "حذف الملفات القديمة"
 
-#: zapzap/features/settings/pages/debugging/view.py:285
+#: zapzap/features/settings/pages/debugging/view.py:294
 msgid "Remove only crash reports older than 30 days."
 msgstr "قم بإزالة تقارير الأعطال التي مر عليها أكثر من 30 يومًا فقط."
 
-#: zapzap/features/settings/pages/debugging/view.py:289
+#: zapzap/features/settings/pages/debugging/view.py:298
 msgid "Delete all logs and reports"
 msgstr "حذف كافة السجلات والتقارير"
 
-#: zapzap/features/settings/pages/debugging/view.py:293
+#: zapzap/features/settings/pages/debugging/view.py:302
 msgid "Remove every diagnostic file."
 msgstr "قم بإزالة كل ملف التشخيص."
 
-#: zapzap/features/settings/pages/debugging/view.py:305
+#: zapzap/features/settings/pages/debugging/view.py:314
 msgid "Runtime information"
 msgstr "معلومات وقت التشغيل"
 
-#: zapzap/features/settings/pages/debugging/view.py:306
+#: zapzap/features/settings/pages/debugging/view.py:315
 msgid "Useful data for support and bug reports."
 msgstr "بيانات مفيدة للدعم وتقارير الأخطاء."
 
-#: zapzap/features/settings/pages/debugging/view.py:320
+#: zapzap/features/settings/pages/debugging/view.py:329
 msgid "Refresh"
 msgstr "تحديث"
 
-#: zapzap/features/settings/pages/debugging/view.py:334
+#: zapzap/features/settings/pages/debugging/view.py:343
 msgid "Maintenance"
 msgstr "الصيانة"
 
-#: zapzap/features/settings/pages/debugging/view.py:339
+#: zapzap/features/settings/pages/debugging/view.py:348
 msgid ""
 "Restore ZapZap's default settings. The application will need to be restarted."
 msgstr "استعادة الإعدادات الافتراضية لـ ZapZap.سيلزم إعادة تشغيل التطبيق."
 
-#: zapzap/features/settings/pages/debugging/view.py:342
+#: zapzap/features/settings/pages/debugging/view.py:351
 msgid "Reset…"
 msgstr "إعادة تعيين…"
 
-#: zapzap/features/settings/pages/debugging/view.py:355
+#: zapzap/features/settings/pages/debugging/view.py:364
 #, python-brace-format
 msgid "{count} available"
 msgid_plural "{count} available"
@@ -2459,48 +2459,48 @@ msgstr[3] "المتاح: {count}"
 msgstr[4] "المتاح: {count}"
 msgstr[5] "المتاح: {count}"
 
-#: zapzap/features/settings/pages/debugging/view.py:360
+#: zapzap/features/settings/pages/debugging/view.py:369
 msgid "faulthandler.log available"
 msgstr "faulthandler.log متاح"
 
-#: zapzap/features/settings/pages/debugging/view.py:362
+#: zapzap/features/settings/pages/debugging/view.py:371
 msgid "Not available"
 msgstr "غير متوفر"
 
-#: zapzap/features/settings/pages/debugging/view.py:373
+#: zapzap/features/settings/pages/debugging/view.py:382
 #, python-brace-format
 msgid "{reports} and 1 log file"
 msgstr "{reports} وملف سجل واحد"
 
-#: zapzap/features/settings/pages/debugging/view.py:419
+#: zapzap/features/settings/pages/debugging/view.py:428
 msgid "Qt"
 msgstr "كيو تي"
 
-#: zapzap/features/settings/pages/debugging/view.py:420
+#: zapzap/features/settings/pages/debugging/view.py:429
 msgid "PyQt"
 msgstr "باي كيوت"
 
-#: zapzap/features/settings/pages/debugging/view.py:421
+#: zapzap/features/settings/pages/debugging/view.py:430
 msgid "Python"
 msgstr "بايثون"
 
-#: zapzap/features/settings/pages/debugging/view.py:424
+#: zapzap/features/settings/pages/debugging/view.py:433
 msgid "System graphics session"
 msgstr "جلسة رسومات النظام"
 
-#: zapzap/features/settings/pages/debugging/view.py:427
+#: zapzap/features/settings/pages/debugging/view.py:436
 msgid "ZapZap graphics backend"
 msgstr "الواجهة الخلفية للرسومات ZapZap."
 
-#: zapzap/features/settings/pages/debugging/view.py:457
+#: zapzap/features/settings/pages/debugging/view.py:466
 msgid "Path copied"
 msgstr "تم نسخ المسار"
 
-#: zapzap/features/settings/pages/debugging/view.py:460
+#: zapzap/features/settings/pages/debugging/view.py:469
 msgid "Diagnostics copied"
 msgstr "تم نسخ التشخيص"
 
-#: zapzap/features/settings/pages/debugging/view.py:463
+#: zapzap/features/settings/pages/debugging/view.py:472
 msgid "Details copied"
 msgstr "تم نسخ التفاصيل"
 
