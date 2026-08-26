@@ -1,5 +1,6 @@
 """Regression tests for the shared native/CSR window lifecycle."""
 
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from PyQt6.QtCore import QCoreApplication, QEvent
@@ -11,6 +12,7 @@ from zapzap.app.main_window_controller import MainWindowController
 from zapzap.app.window_lifecycle import ClientSideWindowHost, WindowLifecycle
 from zapzap.core.config.settings.system import SystemSettings
 from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.ui.components import ClientSideWindow
 
 
 class _Window(QMainWindow):
@@ -190,6 +192,29 @@ class WindowStateRestoreTest(QtTestCase):
 
         self.assertTrue(hide_results)
         self.assertTrue(all(result is None for result in hide_results))
+
+    def test_adwaita_close_button_uses_the_neutral_window_palette(self):
+        settings = SimpleNamespace(
+            csr_button_theme="adwaita",
+            csr_buttons_direction="right",
+            csr_show_minimize_button=True,
+            csr_show_maximize_button=True,
+        )
+        content = QMainWindow()
+        window = ClientSideWindow(content, settings)
+        self.addCleanup(window.deleteLater)
+
+        stylesheet = window.styleSheet()
+
+        self.assertIn("background: palette(button);", stylesheet)
+        self.assertIn("background: palette(alternate-base);", stylesheet)
+        self.assertNotIn("palette(bright-text)", stylesheet)
+
+        settings.csr_button_theme = "default"
+        default_window = ClientSideWindow(QMainWindow(), settings)
+        self.addCleanup(default_window.deleteLater)
+
+        self.assertIn("palette(bright-text)", default_window.styleSheet())
 
 
 if __name__ == "__main__":

@@ -341,6 +341,14 @@ class ClientSideWindow(QWidget):
             "csrFontSize") or str(Typography.BODY)
         border_radius = self.title_bar.minimize_button.property(
             "csrBorderRadius") or "6"
+        if self._button_theme == CSRButtonTheme.ADWAITA:
+            close_background = "palette(button)"
+            close_text = "palette(button-text)"
+            close_hover_background = "palette(alternate-base)"
+        else:
+            close_background = "palette(bright-text)"
+            close_text = "palette(highlighted-text)"
+            close_hover_background = "palette(bright-text)"
 
         self.setStyleSheet(
             """
@@ -371,14 +379,14 @@ class ClientSideWindow(QWidget):
                 color: palette(highlighted-text);
             }
             QPushButton#csrWindowCloseButton {
-                background: palette(bright-text);
-                color: palette(highlighted-text);
+                background: %(close_background)s;
+                color: %(close_text)s;
                 border: 1px solid transparent;
                 border-radius: %(radius)spx;
                 font-size: %(font)spx;
             }
             QPushButton#csrWindowCloseButton:hover {
-                background: palette(bright-text);
+                background: %(close_hover_background)s;
                 border-color: palette(mid);
             }
             QPushButton#csrWindowCloseButton:pressed {
@@ -386,5 +394,12 @@ class ClientSideWindow(QWidget):
                 border-color: palette(highlight);
                 color: palette(highlighted-text);
             }
-            """ % {"font": font_size, "radius": border_radius, "title_font": Typography.px(Typography.SMALL)}
+            """ % {
+                "font": font_size,
+                "radius": border_radius,
+                "title_font": Typography.px(Typography.SMALL),
+                "close_background": close_background,
+                "close_text": close_text,
+                "close_hover_background": close_hover_background,
+            }
         )

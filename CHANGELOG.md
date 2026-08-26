@@ -37,6 +37,11 @@ releases and the AppStream metadata.
 - Adopted versioned development cycles so new work identifies itself with the
   next numeric version while release builds retain the version being published.
 
+### Fixed
+
+- Matched the client-side Adwaita close button to the neutral window-control
+  palette instead of displaying it in red on GNOME.
+
 ### Removed
 
 - Removed bundled Qt WebEngine dictionaries from AppImage and Snap and the
