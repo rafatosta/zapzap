@@ -1277,8 +1277,8 @@ msgstr ""
 msgid ""
 "Avoid phone numbers, messages, contact names, or other personal information."
 msgstr ""
-"Evite números de telefone, mensagens, nomes de contatos ou outras informações "
-"pessoais."
+"Evite números de telefone, mensagens, nomes de contatos ou outras "
+"informações pessoais."
 
 #: zapzap/features/reporting/dialogs.py:186
 msgid "What is the problem?"
@@ -2277,17 +2277,17 @@ msgid ""
 "the official GitHub repository rafatosta/zapzap. You need a GitHub account "
 "to publish the public issue."
 msgstr ""
-"Os relatórios podem incluir a versão do ZapZap, o sistema operacional, o tipo "
-"de instalação, a arquitetura, as versões do Python/Qt, detalhes do erro e "
-"registros sanitizados.\n"
+"Os relatórios podem incluir a versão do ZapZap, o sistema operacional, o "
+"tipo de instalação, a arquitetura, as versões do Python/Qt, detalhes do erro "
+"e registros sanitizados.\n"
 "\n"
 "Nunca são enviados: mensagens, contatos, números de telefone, cookies, dados "
 "da sessão do WhatsApp, conteúdo de conversas, senhas ou tokens de "
 "autenticação.\n"
 "\n"
-"O ZapZap não envia relatórios. Depois da revisão, ele copia o relatório e abre "
-"o repositório oficial rafatosta/zapzap no GitHub. É necessário ter uma conta "
-"no GitHub para publicar a issue pública."
+"O ZapZap não envia relatórios. Depois da revisão, ele copia o relatório e "
+"abre o repositório oficial rafatosta/zapzap no GitHub. É necessário ter uma "
+"conta no GitHub para publicar a issue pública."
 
 #: zapzap/features/settings/pages/debugging/controller.py:74
 msgid "Notify me when a failure occurs?"
@@ -2441,7 +2441,9 @@ msgstr ""
 
 #: zapzap/features/settings/pages/debugging/view.py:203
 msgid "See what reports may include and how publication on GitHub works."
-msgstr "Veja o que os relatórios podem incluir e como funciona a publicação no GitHub."
+msgstr ""
+"Veja o que os relatórios podem incluir e como funciona a publicação no "
+"GitHub."
 
 #: zapzap/features/settings/pages/debugging/view.py:204
 msgid "View information"
@@ -2453,7 +2455,9 @@ msgstr "Relatórios locais recentes"
 
 #: zapzap/features/settings/pages/debugging/view.py:211
 msgid "Review reports kept on this device and their GitHub handoff status."
-msgstr "Revise os relatórios mantidos neste dispositivo e o status da abertura no GitHub."
+msgstr ""
+"Revise os relatórios mantidos neste dispositivo e o status da abertura no "
+"GitHub."
 
 #: zapzap/features/settings/pages/debugging/view.py:214
 msgid "View local reports"
