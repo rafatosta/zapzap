@@ -35,6 +35,8 @@ from zapzap.features.notifications.notification_service import (
     NotificationService,
     is_flatpak,
 )
+from zapzap.features.reporting.coordinator import ReportingCoordinator
+from zapzap.core.reporting.capture import CrashSessionMonitor
 
 
 def create_main_window(
@@ -90,6 +92,17 @@ def main():
     app.setOrganizationDomain(zapzap.__domain__)
     app.setWindowIcon(TrayIcon.getIcon())
     unix_signal_bridge = install_unix_signal_bridge(app)
+    crash_session_monitor = CrashSessionMonitor(
+        logs_provider=lambda: (
+            crash_handler.faulthandler_path.read_text(
+                encoding="utf-8",
+                errors="replace",
+            )[-16000:]
+            if crash_handler.faulthandler_path.exists()
+            else ""
+        )
+    )
+    crash_session_monitor.start()
 
     SetupManager.apply_qt_scale_factor_rounding_policy()
 
@@ -151,8 +164,13 @@ def main():
     if should_show_initial_setup:
         QTimer.singleShot(
             0, lambda: InitialSetupController(app.getWindow()).exec())
+    else:
+        reporting_coordinator = ReportingCoordinator(app.getWindow())
+        app._reporting_coordinator = reporting_coordinator
+        QTimer.singleShot(0, reporting_coordinator.show_prepared_crash)
 
     app.aboutToQuit.connect(NotificationService.shutdown)
+    app.aboutToQuit.connect(crash_session_monitor.close)
     app.aboutToQuit.connect(system_dictionary_provisioner.close)
     if desktop_application_dbus is not None:
         app.aboutToQuit.connect(desktop_application_dbus.stop)
@@ -165,6 +183,7 @@ def main():
 
     # Defensive fallback for abnormal shutdown paths where aboutToQuit may not have run.
     NotificationService.shutdown()
+    crash_session_monitor.close()
     ThemeManager.stop()
     app.shutdownInterface()
     if unix_signal_bridge is not None:

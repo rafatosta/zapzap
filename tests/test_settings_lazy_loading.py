@@ -201,7 +201,7 @@ class SettingsLazyLoadingTest(QtTestCase):
         "Privacy and Network",
         "Advanced Customizations",
         "Performance experimental",
-        "Debugging",
+        "Report a problem",
         "About",
     ]
 

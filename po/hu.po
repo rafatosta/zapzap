@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-18 15:57-0300\n"
+"POT-Creation-Date: 2026-08-26 11:24-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Hungarian\n"
@@ -64,7 +64,7 @@ msgstr ""
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:41
 #: zapzap/features/settings/pages/advanced_customizations/view.py:101
-#: zapzap/features/settings/pages/debugging/view.py:189
+#: zapzap/features/settings/pages/debugging/view.py:232
 #: zapzap/features/downloads/ui/download_dialog.py:118
 msgid "Open folder"
 msgstr "Nyissa meg a mappát"
@@ -161,6 +161,7 @@ msgid "Remove"
 msgstr "Eltávolítás"
 
 #: zapzap/features/accounts/card_user_controller.py:173
+#: zapzap/features/reporting/dialogs.py:209
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:642
 #: zapzap/features/settings/pages/network_privacy/controller.py:282
 #: zapzap/features/downloads/ui/download_dialog.py:120
@@ -242,6 +243,7 @@ msgid "Copy address"
 msgstr "Link címénel másolása"
 
 #: zapzap/features/alerts/external_url.py:45
+#: zapzap/features/reporting/dialogs.py:355
 #: zapzap/features/browser/shell/browser_controller.py:316
 #: zapzap/ui/components/dictionary_manager_dialog.py:91
 #: zapzap/ui/components/dictionary_manager_dialog.py:193
@@ -398,7 +400,7 @@ msgid ""
 msgstr ""
 
 #: zapzap/features/donation/view.py:213 zapzap/features/shortcuts/view.py:60
-#: zapzap/features/settings/pages/debugging/view.py:373
+#: zapzap/features/settings/pages/debugging/view.py:416
 #: zapzap/ui/components/main_window.py:133
 msgid "ZapZap"
 msgstr "ZapZap"
@@ -903,8 +905,8 @@ msgid "Select and copy this command in your terminal"
 msgstr "Válassza ki és másolja be ezt a parancsot a termináljába"
 
 #: zapzap/features/initial_setup/view.py:446
-#: zapzap/features/settings/pages/debugging/controller.py:87
-#: zapzap/features/settings/pages/debugging/view.py:223
+#: zapzap/features/settings/pages/debugging/controller.py:131
+#: zapzap/features/settings/pages/debugging/view.py:266
 #: zapzap/features/settings/pages/permissions/view.py:145
 #: zapzap/features/browser/web/web_view.py:370
 msgid "Copy"
@@ -1129,6 +1131,285 @@ msgstr "Mutasd"
 msgid "Quit"
 msgstr "Kilépés"
 
+#: zapzap/features/reporting/dialogs.py:28
+msgid "ZapZap closed unexpectedly"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:29
+msgid "Something is not working"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:30
+msgid "Notification problem"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:31
+msgid "Audio or video problem"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:32
+msgid "File problem"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:33
+msgid "Visual problem"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:34
+msgid "Other"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:37
+msgid "Always"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:38
+msgid "Sometimes"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:39
+msgid "It happened once"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:40
+msgid "I don't know"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:57
+#: zapzap/features/reporting/dialogs.py:221
+msgid ""
+"Check all the information below. Nothing will be sent until you confirm."
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:59
+msgid "Your report"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:60
+#, python-brace-format
+msgid "Problem type: {value}"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:63
+#: zapzap/features/reporting/dialogs.py:364
+msgid "Unexpected closing"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:68
+msgid "Description:"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:70
+msgid "Expected result:"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:73
+#, python-brace-format
+msgid "Frequency: {value}"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:81
+msgid "Application information"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:91
+msgid "Error information"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:93
+#, python-brace-format
+msgid "Error type: {value}"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:95
+#, python-brace-format
+msgid "Error details: {value}"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:97
+msgid "Sanitized logs are included in the technical information."
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:100
+msgid "Report destination"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:101
+msgid "Official ZapZap repository on GitHub: rafatosta/zapzap"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:102
+msgid ""
+"The report may create or update a public issue. You do not need a GitHub "
+"account."
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:104
+#: zapzap/features/settings/pages/network_privacy/view.py:249
+#: zapzap/features/settings/pages/notifications/view.py:113
+msgid "Privacy"
+msgstr "Adatvédelem"
+
+#: zapzap/features/reporting/dialogs.py:105
+msgid ""
+"Never sent: messages, contacts, phone numbers, cookies, WhatsApp session "
+"data, conversation content, passwords, or authentication tokens."
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:133
+#: zapzap/features/reporting/dialogs.py:158
+#: zapzap/features/reporting/dialogs.py:272
+#: zapzap/features/settings/shell/settings_controller.py:176
+#: zapzap/features/settings/pages/about/view.py:269
+#: zapzap/features/settings/pages/debugging/view.py:160
+#: zapzap/features/settings/pages/debugging/view.py:177
+msgid "Report a problem"
+msgstr "Probléma bejelentése"
+
+#: zapzap/features/reporting/dialogs.py:160
+msgid ""
+"Describe what happened. You will review everything before anything is sent."
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:166
+msgid ""
+"Avoid phone numbers, messages, contact names, or other personal information."
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:182
+msgid "What is the problem?"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:183
+msgid "Describe what happened"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:184
+msgid "What did you expect to happen?"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:185
+msgid "Can you repeat the problem?"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:189
+msgid "Include system technical information"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:194
+msgid "Include error technical information, when available"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:199
+msgid "Include sanitized logs, when available"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:210
+#: zapzap/features/reporting/coordinator.py:39
+msgid "Review report"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:219
+msgid "Review your report"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:230
+msgid "Complete report preview"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:233
+#: zapzap/features/reporting/dialogs.py:289
+msgid "Show technical information"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:245
+msgid "Complete technical information to be sent"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:250
+msgid "Back and edit"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:251
+msgid "Confirm and send"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:272
+msgid "Describe what happened before continuing."
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:287
+msgid "Hide technical information"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:304
+msgid "Sending…"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:312
+msgid "Sent"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:315
+msgid "Report sent"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:316
+msgid ""
+"Thank you. The report was sent successfully to the official ZapZap "
+"repository on GitHub."
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:325
+msgid "Try again"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:328
+msgid "Could not send the report"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:329
+msgid "The report was saved on this device and can be sent again later."
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:339
+msgid "Local reports"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:349
+msgid "Review and send selected report"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:364
+msgid "Problem report"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:376
+msgid "Complete technical information"
+msgstr ""
+
+#: zapzap/features/reporting/coordinator.py:32
+msgid "ZapZap found a problem"
+msgstr ""
+
+#: zapzap/features/reporting/coordinator.py:33
+msgid "ZapZap closed unexpectedly during the last run."
+msgstr ""
+
+#: zapzap/features/reporting/coordinator.py:34
+msgid ""
+"A sanitized report was prepared on this device. Nothing will be sent without "
+"your confirmation."
+msgstr ""
+
+#: zapzap/features/reporting/coordinator.py:37
+msgid "Keep locally"
+msgstr ""
+
+#: zapzap/features/reporting/coordinator.py:38
+msgid "Discard report"
+msgstr ""
+
 #: zapzap/features/settings/shell/settings_controller.py:122
 #: zapzap/features/settings/pages/accounts/view.py:17
 msgid "Accounts"
@@ -1162,11 +1443,6 @@ msgstr "Speciális testreszabások"
 #: zapzap/features/settings/pages/performance_experimental/view.py:19
 msgid "Performance experimental"
 msgstr "Kísérleti teljesítmény"
-
-#: zapzap/features/settings/shell/settings_controller.py:176
-#: zapzap/features/settings/pages/debugging/view.py:159
-msgid "Debugging"
-msgstr "Hibakeresés"
 
 #: zapzap/features/settings/shell/settings_controller.py:182
 #: zapzap/features/settings/pages/about/view.py:238
@@ -1227,13 +1503,13 @@ msgstr "Verzió"
 
 #: zapzap/features/settings/pages/about/model.py:69
 #: zapzap/features/settings/pages/about/model.py:93
-#: zapzap/features/settings/pages/debugging/view.py:375
+#: zapzap/features/settings/pages/debugging/view.py:418
 msgid "Channel"
 msgstr "Csatorna"
 
 #: zapzap/features/settings/pages/about/model.py:70
 #: zapzap/features/settings/pages/about/model.py:92
-#: zapzap/features/settings/pages/debugging/view.py:374
+#: zapzap/features/settings/pages/debugging/view.py:417
 msgid "Packaging"
 msgstr "Csomagolás"
 
@@ -1246,7 +1522,7 @@ msgid "Repository"
 msgstr "Adattár"
 
 #: zapzap/features/settings/pages/about/model.py:90
-#: zapzap/features/settings/pages/debugging/view.py:379
+#: zapzap/features/settings/pages/debugging/view.py:422
 msgid "System"
 msgstr "Rendszer"
 
@@ -1269,6 +1545,7 @@ msgid "Version {version}"
 msgstr "Verzió: {version}"
 
 #: zapzap/features/settings/pages/about/view.py:148
+#: zapzap/features/settings/pages/debugging/view.py:217
 msgid "Technical details"
 msgstr "Műszaki részletek"
 
@@ -1298,10 +1575,6 @@ msgstr "Projekt oldal"
 #: zapzap/features/settings/pages/about/view.py:265
 msgid "Official website, downloads, and documentation."
 msgstr "Hivatalos webhely, letöltések és dokumentáció."
-
-#: zapzap/features/settings/pages/about/view.py:269
-msgid "Report a problem"
-msgstr "Probléma bejelentése"
 
 #: zapzap/features/settings/pages/about/view.py:270
 msgid "Report bugs or suggest improvements on GitHub."
@@ -1970,23 +2243,52 @@ msgstr "Igaz"
 msgid "Left"
 msgstr "Balra"
 
-#: zapzap/features/settings/pages/debugging/controller.py:67
-#: zapzap/features/settings/pages/debugging/view.py:325
+#: zapzap/features/settings/pages/debugging/controller.py:62
+#: zapzap/features/settings/pages/debugging/view.py:196
+msgid "Information and privacy"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/controller.py:64
+msgid ""
+"Reports may include the ZapZap version, operating system, installation type, "
+"architecture, Python/Qt versions, error details, and sanitized logs.\n"
+"\n"
+"Never sent: messages, contacts, phone numbers, cookies, WhatsApp session "
+"data, conversation content, passwords, or authentication tokens.\n"
+"\n"
+"Reports go to the official GitHub repository rafatosta/zapzap and may become "
+"part of a public issue. You do not need a GitHub account."
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/controller.py:74
+msgid "Notify me when a failure occurs?"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/controller.py:76
+msgid ""
+"ZapZap can prepare a sanitized technical report locally after a serious "
+"failure. You will review it on the next startup.\n"
+"\n"
+"No report is ever sent without your confirmation."
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/controller.py:111
+#: zapzap/features/settings/pages/debugging/view.py:368
 #, python-brace-format
 msgid "{count} crash report"
 msgid_plural "{count} crash reports"
 msgstr[0] "{count} összeomlási jelentés"
 msgstr[1] "{count} összeomlási jelentés"
 
-#: zapzap/features/settings/pages/debugging/controller.py:72
+#: zapzap/features/settings/pages/debugging/controller.py:116
 msgid "available"
 msgstr "elérhető"
 
-#: zapzap/features/settings/pages/debugging/controller.py:72
+#: zapzap/features/settings/pages/debugging/controller.py:116
 msgid "not available"
 msgstr "nem elérhető"
 
-#: zapzap/features/settings/pages/debugging/controller.py:75
+#: zapzap/features/settings/pages/debugging/controller.py:119
 #, python-brace-format
 msgid ""
 "Diagnostic files: {reports}; debug log: {log_status}.\n"
@@ -1999,41 +2301,41 @@ msgstr ""
 "Futásidő információ:\n"
 "{runtime}"
 
-#: zapzap/features/settings/pages/debugging/controller.py:88
-#: zapzap/features/settings/pages/debugging/view.py:193
+#: zapzap/features/settings/pages/debugging/controller.py:132
+#: zapzap/features/settings/pages/debugging/view.py:236
 msgid "Copy diagnostics"
 msgstr "Diagnosztika másolása"
 
-#: zapzap/features/settings/pages/debugging/controller.py:89
-#: zapzap/features/settings/pages/debugging/view.py:278
+#: zapzap/features/settings/pages/debugging/controller.py:133
+#: zapzap/features/settings/pages/debugging/view.py:321
 msgid "Copy details"
 msgstr "Részletek másolása"
 
-#: zapzap/features/settings/pages/debugging/controller.py:99
-#: zapzap/features/settings/pages/debugging/controller.py:109
-#: zapzap/features/settings/pages/debugging/controller.py:119
+#: zapzap/features/settings/pages/debugging/controller.py:143
+#: zapzap/features/settings/pages/debugging/controller.py:153
+#: zapzap/features/settings/pages/debugging/controller.py:163
 msgid "Debug logs"
 msgstr "Hibakeresési naplók"
 
-#: zapzap/features/settings/pages/debugging/controller.py:100
+#: zapzap/features/settings/pages/debugging/controller.py:144
 #, python-brace-format
 msgid "Deleted {count} old crash report(s) (older than 30 days)."
 msgstr "{count} régi (30 napnál régebbi) hibajelentés törölve."
 
-#: zapzap/features/settings/pages/debugging/controller.py:110
+#: zapzap/features/settings/pages/debugging/controller.py:154
 msgid "Delete all crash reports and debug logs?"
 msgstr "Törli az összes hibajelentést és hibakeresési naplót?"
 
-#: zapzap/features/settings/pages/debugging/controller.py:120
+#: zapzap/features/settings/pages/debugging/controller.py:164
 #, python-brace-format
 msgid "Deleted {count} file(s)."
 msgstr "Törölt {count} fájl(ok)."
 
-#: zapzap/features/settings/pages/debugging/controller.py:127
+#: zapzap/features/settings/pages/debugging/controller.py:171
 msgid "Reset settings?"
 msgstr "Beállítások visszaállítása?"
 
-#: zapzap/features/settings/pages/debugging/controller.py:129
+#: zapzap/features/settings/pages/debugging/controller.py:173
 msgid ""
 "All custom ZapZap settings will be restored to their default values.\n"
 "\n"
@@ -2043,13 +2345,13 @@ msgstr ""
 "\n"
 "A művelet befejezéséhez az alkalmazást újra kell indítani."
 
-#: zapzap/features/settings/pages/debugging/controller.py:142
-#: zapzap/features/settings/pages/debugging/controller.py:149
-#: zapzap/features/settings/pages/debugging/view.py:294
+#: zapzap/features/settings/pages/debugging/controller.py:186
+#: zapzap/features/settings/pages/debugging/controller.py:193
+#: zapzap/features/settings/pages/debugging/view.py:337
 msgid "Reset settings"
 msgstr "Beállítások visszaállítása"
 
-#: zapzap/features/settings/pages/debugging/controller.py:143
+#: zapzap/features/settings/pages/debugging/controller.py:187
 #, python-brace-format
 msgid ""
 "Could not remove settings file:\n"
@@ -2058,146 +2360,194 @@ msgstr ""
 "Nem sikerült eltávolítani a beállításfájlt:\n"
 "{error}"
 
-#: zapzap/features/settings/pages/debugging/controller.py:150
+#: zapzap/features/settings/pages/debugging/controller.py:194
 msgid "Settings were reset successfully. Restart ZapZap now?"
 msgstr ""
 "A beállítások visszaállítása sikeresen megtörtént.Újraindítja a(z) ZapZap "
 "alkalmazást most?"
 
-#: zapzap/features/settings/pages/debugging/view.py:96
+#: zapzap/features/settings/pages/debugging/view.py:97
 msgid "Full details"
 msgstr "Teljes részletek"
 
-#: zapzap/features/settings/pages/debugging/view.py:160
-msgid "Diagnostics, logs, runtime information, and maintenance tools."
+#: zapzap/features/settings/pages/debugging/view.py:161
+msgid ""
+"Tell us about failures or unexpected behavior without needing a GitHub "
+"account."
 msgstr ""
-"Diagnosztika, naplók, futásidejű információk és karbantartási eszközök."
-
-#: zapzap/features/settings/pages/debugging/view.py:174
-msgid "Diagnostics"
-msgstr "Diagnosztika"
 
 #: zapzap/features/settings/pages/debugging/view.py:178
-msgid "Crash reports"
-msgstr "Baleseti jelentések"
+msgid ""
+"You will always review the complete report before choosing whether to send "
+"it."
+msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:181
+#: zapzap/features/settings/pages/debugging/view.py:182
+msgid "Something is not working?"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:183
+msgid "Describe the problem in simple steps. Avoid personal information."
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:184
+msgid "Report a problem…"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:190
+msgid "Notify me when a failure occurs"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:191
+msgid ""
+"ZapZap will prepare a sanitized local report after a serious failure and ask "
+"whether you want to send it. Nothing is sent without your confirmation."
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:197
+msgid ""
+"See what reports may include, what is never sent, and their destination."
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:198
+msgid "View information"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:203
+msgid "Recent local reports"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:204
+msgid "Review reports kept on this device and their sending status."
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:205
+msgid "View local reports"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:221
+msgid "Local crash files"
+msgstr ""
+
+#: zapzap/features/settings/pages/debugging/view.py:224
 msgid "Debug log"
 msgstr "Hibakeresési napló"
 
-#: zapzap/features/settings/pages/debugging/view.py:206
-msgid "Logs and crash reports"
-msgstr "Naplók és hibajelentések"
+#: zapzap/features/settings/pages/debugging/view.py:249
+msgid "Technical files"
+msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:207
-msgid "Manage files used to diagnose errors."
-msgstr "A hibák diagnosztizálására használt fájlok kezelése."
+#: zapzap/features/settings/pages/debugging/view.py:250
+msgid ""
+"Manage local files used to diagnose errors. These files are not sent "
+"automatically."
+msgstr ""
 
-#: zapzap/features/settings/pages/debugging/view.py:215
+#: zapzap/features/settings/pages/debugging/view.py:258
 msgid "Diagnostics folder"
 msgstr "Diagnosztikai mappa"
 
-#: zapzap/features/settings/pages/debugging/view.py:222
+#: zapzap/features/settings/pages/debugging/view.py:265
 #: zapzap/features/downloads/ui/download_dialog.py:101
 msgid "Open"
 msgstr "Megnyitás"
 
-#: zapzap/features/settings/pages/debugging/view.py:234
+#: zapzap/features/settings/pages/debugging/view.py:277
 msgid "Clean up files…"
 msgstr "Fájlok tisztítása…"
 
-#: zapzap/features/settings/pages/debugging/view.py:239
+#: zapzap/features/settings/pages/debugging/view.py:282
 msgid "Delete old files"
 msgstr "Törölje a régi fájlokat"
 
-#: zapzap/features/settings/pages/debugging/view.py:242
+#: zapzap/features/settings/pages/debugging/view.py:285
 msgid "Remove only crash reports older than 30 days."
 msgstr "Csak a 30 napnál régebbi hibajelentéseket távolítsa el."
 
-#: zapzap/features/settings/pages/debugging/view.py:246
+#: zapzap/features/settings/pages/debugging/view.py:289
 msgid "Delete all logs and reports"
 msgstr "Törölje az összes naplót és jelentést"
 
-#: zapzap/features/settings/pages/debugging/view.py:250
+#: zapzap/features/settings/pages/debugging/view.py:293
 msgid "Remove every diagnostic file."
 msgstr "Távolítson el minden diagnosztikai fájlt."
 
-#: zapzap/features/settings/pages/debugging/view.py:262
+#: zapzap/features/settings/pages/debugging/view.py:305
 msgid "Runtime information"
 msgstr "Futásidejű információk"
 
-#: zapzap/features/settings/pages/debugging/view.py:263
+#: zapzap/features/settings/pages/debugging/view.py:306
 msgid "Useful data for support and bug reports."
 msgstr "Hasznos adatok támogatáshoz és hibajelentésekhez."
 
-#: zapzap/features/settings/pages/debugging/view.py:277
+#: zapzap/features/settings/pages/debugging/view.py:320
 msgid "Refresh"
 msgstr "Frissítés"
 
-#: zapzap/features/settings/pages/debugging/view.py:291
+#: zapzap/features/settings/pages/debugging/view.py:334
 msgid "Maintenance"
 msgstr "Karbantartás"
 
-#: zapzap/features/settings/pages/debugging/view.py:296
+#: zapzap/features/settings/pages/debugging/view.py:339
 msgid ""
 "Restore ZapZap's default settings. The application will need to be restarted."
 msgstr ""
 "Állítsa vissza a(z) ZapZap alapértelmezett beállításait.Az alkalmazást újra "
 "kell indítani."
 
-#: zapzap/features/settings/pages/debugging/view.py:299
+#: zapzap/features/settings/pages/debugging/view.py:342
 msgid "Reset…"
 msgstr "Visszaállítás…"
 
-#: zapzap/features/settings/pages/debugging/view.py:312
+#: zapzap/features/settings/pages/debugging/view.py:355
 #, python-brace-format
 msgid "{count} available"
 msgid_plural "{count} available"
 msgstr[0] "{count} elérhető"
 msgstr[1] "{count} elérhető"
 
-#: zapzap/features/settings/pages/debugging/view.py:317
+#: zapzap/features/settings/pages/debugging/view.py:360
 msgid "faulthandler.log available"
 msgstr "faulthandler.log elérhető"
 
-#: zapzap/features/settings/pages/debugging/view.py:319
+#: zapzap/features/settings/pages/debugging/view.py:362
 msgid "Not available"
 msgstr "Nem elérhető"
 
-#: zapzap/features/settings/pages/debugging/view.py:330
+#: zapzap/features/settings/pages/debugging/view.py:373
 #, python-brace-format
 msgid "{reports} and 1 log file"
 msgstr "{reports} és 1 naplófájl"
 
-#: zapzap/features/settings/pages/debugging/view.py:376
+#: zapzap/features/settings/pages/debugging/view.py:419
 msgid "Qt"
 msgstr "Qt"
 
-#: zapzap/features/settings/pages/debugging/view.py:377
+#: zapzap/features/settings/pages/debugging/view.py:420
 msgid "PyQt"
 msgstr "PyQt"
 
-#: zapzap/features/settings/pages/debugging/view.py:378
+#: zapzap/features/settings/pages/debugging/view.py:421
 msgid "Python"
 msgstr "Python"
 
-#: zapzap/features/settings/pages/debugging/view.py:381
+#: zapzap/features/settings/pages/debugging/view.py:424
 msgid "System graphics session"
 msgstr "Rendszergrafikus munkamenet"
 
-#: zapzap/features/settings/pages/debugging/view.py:384
+#: zapzap/features/settings/pages/debugging/view.py:427
 msgid "ZapZap graphics backend"
 msgstr "ZapZap grafikus háttérrendszer"
 
-#: zapzap/features/settings/pages/debugging/view.py:414
+#: zapzap/features/settings/pages/debugging/view.py:457
 msgid "Path copied"
 msgstr "Útvonal másolva"
 
-#: zapzap/features/settings/pages/debugging/view.py:417
+#: zapzap/features/settings/pages/debugging/view.py:460
 msgid "Diagnostics copied"
 msgstr "Diagnosztika másolva"
 
-#: zapzap/features/settings/pages/debugging/view.py:420
+#: zapzap/features/settings/pages/debugging/view.py:463
 msgid "Details copied"
 msgstr "Részletek másolva"
 
@@ -2460,11 +2810,6 @@ msgstr "proxy.example.com"
 #: zapzap/features/settings/pages/network_privacy/view.py:238
 msgid "8080"
 msgstr "8080"
-
-#: zapzap/features/settings/pages/network_privacy/view.py:249
-#: zapzap/features/settings/pages/notifications/view.py:113
-msgid "Privacy"
-msgstr "Adatvédelem"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:250
 msgid "Reduce the exposure of network information."
@@ -4198,6 +4543,25 @@ msgstr ""
 #, python-brace-format
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
+
+#~ msgid "Debugging"
+#~ msgstr "Hibakeresés"
+
+#~ msgid "Diagnostics, logs, runtime information, and maintenance tools."
+#~ msgstr ""
+#~ "Diagnosztika, naplók, futásidejű információk és karbantartási eszközök."
+
+#~ msgid "Diagnostics"
+#~ msgstr "Diagnosztika"
+
+#~ msgid "Crash reports"
+#~ msgstr "Baleseti jelentések"
+
+#~ msgid "Logs and crash reports"
+#~ msgstr "Naplók és hibajelentések"
+
+#~ msgid "Manage files used to diagnose errors."
+#~ msgstr "A hibák diagnosztizálására használt fájlok kezelése."
 
 #~ msgid "Note: changing dictionaries may require restarting the browser "
 #~ msgstr ""

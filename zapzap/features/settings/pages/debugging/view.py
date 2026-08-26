@@ -22,6 +22,7 @@ from zapzap.ui.components import (
     SettingsCard,
     SettingsPage,
     SettingsSection,
+    SettingsSwitchRow,
 )
 from zapzap.ui.primitives import Button, Label
 
@@ -152,12 +153,12 @@ class ExpandableDiagnosticDetails(QWidget):
 
 
 class DebuggingSettingsView(SettingsPage):
-    """Composable debugging page view without filesystem or settings logic."""
+    """User-facing reporting page with technical maintenance kept secondary."""
 
     def __init__(self, parent=None):
         super().__init__(
-            _("Debugging"),
-            _("Diagnostics, logs, runtime information, and maintenance tools."),
+            _("Report a problem"),
+            _("Tell us about failures or unexpected behavior without needing a GitHub account."),
             parent,
         )
         self._runtime_json = ""
@@ -165,17 +166,59 @@ class DebuggingSettingsView(SettingsPage):
         self.add_stretch()
 
     def _setup_ui(self):
+        self._setup_reporting_section()
         self._setup_diagnostics_summary()
         self._setup_debug_logs_section()
         self._setup_runtime_section()
         self._setup_maintenance_section()
 
+    def _setup_reporting_section(self):
+        section = SettingsSection(
+            _("Report a problem"),
+            _("You will always review the complete report before choosing whether to send it."),
+        )
+        card = SettingsCard()
+        self.report_problem_row = SettingsActionRow(
+            _("Something is not working?"),
+            _("Describe the problem in simple steps. Avoid personal information."),
+            _("Report a problem…"),
+            card,
+        )
+        self.btn_report_problem = self.report_problem_row.button
+        self.btn_report_problem.set_variant(Button.PRIMARY)
+        self.crash_prompts_row = SettingsSwitchRow(
+            _("Notify me when a failure occurs"),
+            _("ZapZap will prepare a sanitized local report after a serious failure and ask whether you want to send it. Nothing is sent without your confirmation."),
+            parent=card,
+        )
+        self.crash_prompts = self.crash_prompts_row.checkbox
+        self.report_contents_row = SettingsActionRow(
+            _("Information and privacy"),
+            _("See what reports may include, what is never sent, and their destination."),
+            _("View information"),
+            card,
+        )
+        self.btn_report_contents = self.report_contents_row.button
+        self.local_reports_row = SettingsActionRow(
+            _("Recent local reports"),
+            _("Review reports kept on this device and their sending status."),
+            _("View local reports"),
+            card,
+        )
+        self.btn_local_reports = self.local_reports_row.button
+        card.add_row(self.report_problem_row)
+        card.add_row(self.crash_prompts_row)
+        card.add_row(self.report_contents_row)
+        card.add_row(self.local_reports_row)
+        section.add_card(card)
+        self.add_section(section)
+
     def _setup_diagnostics_summary(self):
-        section = SettingsSection(_("Diagnostics"))
+        section = SettingsSection(_("Technical details"))
         card = SettingsCard()
 
         self.diagnostic_reports_row = KeyValueInfoRow(
-            _("Crash reports"),
+            _("Local crash files"),
             parent=card,
         )
         self.diagnostic_log_row = KeyValueInfoRow(_("Debug log"), parent=card)
@@ -203,8 +246,8 @@ class DebuggingSettingsView(SettingsPage):
 
     def _setup_debug_logs_section(self):
         section = SettingsSection(
-            _("Logs and crash reports"),
-            _("Manage files used to diagnose errors."),
+            _("Technical files"),
+            _("Manage local files used to diagnose errors. These files are not sent automatically."),
         )
         card = SettingsCard()
 

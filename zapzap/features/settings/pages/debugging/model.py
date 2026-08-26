@@ -8,6 +8,8 @@ from pathlib import Path
 from zapzap.core.diagnostics import crash_handler
 from zapzap.core.diagnostics.runtime_environment_debug import RuntimeEnvironmentDebug
 from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.core.config.settings.reporting import ReportingSettings
+from zapzap.core.reporting.store import LocalReportStore
 
 
 class DebuggingSettingsModel:
@@ -29,6 +31,32 @@ class DebuggingSettingsModel:
             "zip_count": len(list(logs_dir.glob("*.zip"))),
             "has_faulthandler": (logs_dir / "faulthandler.log").exists(),
         }
+
+    @property
+    def crash_prompts_enabled(self) -> bool:
+        return ReportingSettings().crash_prompts_enabled
+
+    def set_crash_prompts_enabled(self, enabled: bool):
+        ReportingSettings().crash_prompts_enabled = enabled
+
+    @property
+    def crash_prompts_explained(self) -> bool:
+        return ReportingSettings().crash_prompts_explained
+
+    def mark_crash_prompts_explained(self):
+        ReportingSettings().crash_prompts_explained = True
+
+    def local_report_store(self):
+        return LocalReportStore()
+
+    def sanitized_log_excerpt(self) -> str:
+        path = self.debug_logs_dir / "faulthandler.log"
+        if not path.exists():
+            return ""
+        try:
+            return path.read_text(encoding="utf-8", errors="replace")[-16000:]
+        except OSError:
+            return ""
 
     def runtime_environment_json(self) -> str:
         return RuntimeEnvironmentDebug().to_json()

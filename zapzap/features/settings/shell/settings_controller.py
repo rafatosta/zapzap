@@ -173,7 +173,7 @@ class SettingsController(SettingsView):
             ),
             SettingsPageDescriptor(
                 "debugging",
-                _("Debugging"),
+                _("Report a problem"),
                 "zapzap.features.settings.pages.debugging.controller",
                 "DebuggingSettingsController",
             ),

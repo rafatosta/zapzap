@@ -1,4 +1,5 @@
 import sys
+import threading
 import traceback
 import json
 import zipfile
@@ -51,6 +52,7 @@ class CrashDumpHandler:
         self.dump_dir.mkdir(parents=True, exist_ok=True)
 
         self._profiles = set()
+        self._previous_threading_hook = None
 
         self.faulthandler_path = self.dump_dir / "faulthandler.log"
 
@@ -63,6 +65,19 @@ class CrashDumpHandler:
 
     def install(self) -> None:
         sys.excepthook = self._handle_exception
+        if hasattr(threading, "excepthook"):
+            self._previous_threading_hook = threading.excepthook
+            threading.excepthook = self._handle_thread_exception
+
+    def _handle_thread_exception(self, args) -> None:
+        self._handle_exception(
+            args.exc_type,
+            args.exc_value,
+            args.exc_traceback,
+            forward_to_default=False,
+        )
+        if self._previous_threading_hook is not None:
+            self._previous_threading_hook(args)
 
     # ==================================================
     # Registro / remoção de profiles
@@ -77,10 +92,18 @@ class CrashDumpHandler:
     # ==================================================
     # Handler principal de exceções
     # ==================================================
-    def _handle_exception(self, exc_type, exc_value, exc_traceback) -> None:
+    def _handle_exception(
+        self,
+        exc_type,
+        exc_value,
+        exc_traceback,
+        *,
+        forward_to_default=True,
+    ) -> None:
         # Ignora Ctrl+C
         if issubclass(exc_type, KeyboardInterrupt):
-            sys.__excepthook__(exc_type, exc_value, exc_traceback)
+            if forward_to_default:
+                sys.__excepthook__(exc_type, exc_value, exc_traceback)
             return
 
         timestamp = datetime.utcnow().strftime("%Y%m%d-%H%M%S")
@@ -107,6 +130,10 @@ class CrashDumpHandler:
             # 5 Compactação
             self._zip_dump(work_dir, zip_path)
 
+            # This path is intentionally local-only. It has no import or call
+            # to the remote submitter; review is offered on a later startup.
+            self._prepare_private_report(exc_type, exc_value, exc_traceback)
+
             # 6 Aviso ao usuário
             if self.show_dialog:
                 DialogDumpHandler.show_dialog(zip_path)
@@ -120,7 +147,17 @@ class CrashDumpHandler:
             self._cleanup_workdir(work_dir)
 
         # Encaminha para o handler padrão
-        sys.__excepthook__(exc_type, exc_value, exc_traceback)
+        if forward_to_default:
+            sys.__excepthook__(exc_type, exc_value, exc_traceback)
+
+    @staticmethod
+    def _prepare_private_report(exc_type, exc_value, exc_traceback) -> None:
+        try:
+            from zapzap.core.reporting.capture import CrashReportCapture
+
+            CrashReportCapture().capture(exc_type, exc_value, exc_traceback)
+        except Exception as report_error:
+            print("Falha ao preparar relatório local:", report_error)
 
     # ==================================================
     # Dumps individuais

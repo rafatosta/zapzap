@@ -15,6 +15,10 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Added an in-app, privacy-preserving problem reporter with mandatory review,
+  explicit per-report confirmation, sanitized crash preparation, bounded local
+  history, asynchronous delivery, and a deployable deduplicating GitHub App
+  backend.
 - Added a cross-platform Qt WebEngine dictionary manager with verified
   downloads from the official catalog, offline cache, local imports, removal,
   progress, cancellation, search, filters, and accessible active-language

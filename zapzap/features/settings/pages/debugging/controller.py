@@ -9,6 +9,7 @@ from PyQt6.QtWidgets import QApplication
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.settings.pages.debugging.model import DebuggingSettingsModel
 from zapzap.features.settings.pages.debugging.view import DebuggingSettingsView
+from zapzap.features.reporting import ProblemReportDialog, RecentReportsDialog
 
 
 class DebuggingSettingsController(DebuggingSettingsView):
@@ -21,10 +22,15 @@ class DebuggingSettingsController(DebuggingSettingsView):
         self._feedback_timer.setSingleShot(True)
         self._feedback_timer.timeout.connect(self._restore_feedback_text)
         self._configure_signals()
+        self.crash_prompts.setChecked(self.model.crash_prompts_enabled)
         self._refresh_debug_logs_ui()
         self._refresh_runtime_environment()
 
     def _configure_signals(self):
+        self.btn_report_problem.clicked.connect(self._open_problem_report)
+        self.btn_report_contents.clicked.connect(self._show_report_contents)
+        self.btn_local_reports.clicked.connect(self._show_local_reports)
+        self.crash_prompts.toggled.connect(self._set_crash_prompts)
         self.btn_open_debug_logs.clicked.connect(self._handle_open_debug_logs)
         self.btn_diagnostic_open_folder.clicked.connect(self._handle_open_debug_logs)
         self.btn_copy_debug_logs_path.clicked.connect(self._copy_debug_logs_path)
@@ -39,6 +45,44 @@ class DebuggingSettingsController(DebuggingSettingsView):
 
         self.btn_refresh_runtime.clicked.connect(self._refresh_runtime_environment)
         self.btn_copy_runtime.clicked.connect(self._copy_runtime_environment)
+
+    def _open_problem_report(self):
+        ProblemReportDialog(
+            self,
+            store=self.model.local_report_store(),
+            logs_provider=self.model.sanitized_log_excerpt,
+        ).exec()
+
+    def _show_local_reports(self):
+        RecentReportsDialog(self, store=self.model.local_report_store()).exec()
+
+    def _show_report_contents(self):
+        AlertManager.information(
+            self,
+            _("Information and privacy"),
+            _(
+                "Reports may include the ZapZap version, operating system, installation type, architecture, Python/Qt versions, error details, and sanitized logs.\n\n"
+                "Never sent: messages, contacts, phone numbers, cookies, WhatsApp session data, conversation content, passwords, or authentication tokens.\n\n"
+                "Reports go to the official GitHub repository rafatosta/zapzap and may become part of a public issue. You do not need a GitHub account."
+            ),
+        )
+
+    def _set_crash_prompts(self, enabled):
+        if enabled and not self.model.crash_prompts_explained:
+            accepted = AlertManager.question(
+                self,
+                _("Notify me when a failure occurs?"),
+                _(
+                    "ZapZap can prepare a sanitized technical report locally after a serious failure. You will review it on the next startup.\n\nNo report is ever sent without your confirmation."
+                ),
+            )
+            self.model.mark_crash_prompts_explained()
+            if not accepted:
+                self.crash_prompts.blockSignals(True)
+                self.crash_prompts.setChecked(False)
+                self.crash_prompts.blockSignals(False)
+                enabled = False
+        self.model.set_crash_prompts_enabled(enabled)
 
     def _refresh_debug_logs_ui(self):
         details = self.model.debug_logs_details()

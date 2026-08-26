@@ -17,6 +17,8 @@ repetíveis pertencem aqui.
    exemplos e regras para mensagens sugeridas por agentes.
 5. [Opções experimentais de desempenho](performance-experimental.md):
    comportamento e impacto das opções de renderização.
+6. [Relatórios de problemas](reporting.md): consentimento, sanitização, fila
+   local, backend e integração com GitHub.
 
 Inventário de documentos técnicos:
 
@@ -27,6 +29,7 @@ Inventário de documentos técnicos:
 - `maintenance.md`
 - `memory-benchmark.md`
 - `performance-experimental.md`
+- `reporting.md`
 - `testing.md`
 <!-- structure-check:docs:end -->
 

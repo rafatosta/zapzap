@@ -89,6 +89,28 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   semânticas existentes.
 - Mantenha texto curto, descrição útil, estado padrão real e nome acessível.
 - Não persista rótulos traduzidos; persista um ID estável.
+
+### Relatórios de problemas
+
+- Preserve a sequência `preencher -> revisar -> confirmar -> enviar`. O botão
+  de revisão não pode persistir, transmitir nem criar consentimento.
+- A captura de crashes pertence a `core.reporting.capture` e só pode gravar no
+  `LocalReportStore`; não importe `submitter` nesse caminho nem crie timers de
+  envio/retry no startup.
+- A opção `reporting/crash_prompts` autoriza somente preparação e aviso local.
+  Toda tentativa remota exige uma nova `ExplicitSubmissionConsent` vinculada
+  ao JSON exato que foi mostrado.
+- Ao acrescentar dados, atualize conjuntamente o builder, a prévia canônica,
+  sanitizadores do cliente e backend e testes de transparência/segurança.
+  Nunca colete WebEngine storage, mensagens, contatos, cookies ou ambiente
+  completo.
+- O endpoint oficial deve continuar HTTPS. Credenciais e chave privada da
+  GitHub App existem apenas no deploy do backend; nunca em build, preferência,
+  variável do cliente ou fixture distribuída.
+- A fila continua limitada a 20 itens e TTL de 30 dias. Falha de rede preserva
+  o relatório e qualquer nova tentativa parte de uma ação explícita.
+- Valide `python -m unittest discover -s tests/backend -v` além da suíte do
+  cliente. Mudanças visuais ainda exigem sessão gráfica real.
 - Se houver ação destrutiva, peça confirmação e separe-a visualmente.
 
 ### Mudança no navegador ou em contas

@@ -31,6 +31,32 @@ apresentação. Quando duas páginas precisam do mesmo comportamento, ele deve s
 movido para um domínio em `core`; quando compartilham uma composição visual,
 ela deve ficar em `ui.components`.
 
+## Relatórios de problemas
+
+`core.reporting` contém o documento canônico imutável, sanitização, builder,
+fingerprint, política, fila local limitada e transmissão assíncrona. A captura
+de falhas pode importar builder e fila, mas não importa o submitter. Essa
+direção de dependência é a barreira que separa detecção de autorização para
+transmitir. `features.reporting` apresenta o formulário, a revisão e o
+histórico; somente o handler do botão **Confirmar e enviar** cria a capacidade
+de consentimento de uso único exigida por `ReportSubmitter`.
+
+Os relatórios preparados ficam em `AppLocalDataLocation/ZapZap/reports`, no
+máximo 20 arquivos JSON sanitizados por 30 dias. A preferência
+`reporting/crash_prompts` autoriza apenas preparar localmente e avisar na
+próxima inicialização. O startup nunca envia nem tenta novamente. A prévia é
+renderizada a partir do mesmo `ReportDocument` que será serializado para
+`POST /api/v1/reports`; uma alteração posterior invalida o consentimento.
+Um marcador `.session-active`, criado depois da aplicação e removido em
+`aboutToQuit`, complementa os hooks Python para reconhecer processos nativos
+que não conseguiram executar um handler de exceção.
+
+O serviço separado em `backend/` valida tamanho e schema, limita taxa,
+sanitiza novamente e agrupa ocorrências no SQLite. Crashes usam o SHA-256
+determinístico produzido pelo cliente; relatos manuais usam uma chave derivada
+do conteúdo sanitizado. Somente o backend lê credenciais de GitHub App e cria
+ou comenta issues em `rafatosta/zapzap`.
+
 ## Inicialização e encerramento
 
 O caminho principal está em `zapzap/app/application.py`:
@@ -537,6 +563,7 @@ Este bloco é verificado automaticamente contra
 - `zapzap.core.environment`
 - `zapzap.core.i18n`
 - `zapzap.core.platform`
+- `zapzap.core.reporting`
 - `zapzap.core.theme`
 - `zapzap.features`
 - `zapzap.features.accounts`
@@ -553,6 +580,7 @@ Este bloco é verificado automaticamente contra
 - `zapzap.features.initial_setup`
 - `zapzap.features.notifications`
 - `zapzap.features.permissions`
+- `zapzap.features.reporting`
 - `zapzap.features.settings`
 - `zapzap.features.settings.pages`
 - `zapzap.features.settings.pages.about`
