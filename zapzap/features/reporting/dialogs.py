@@ -100,7 +100,11 @@ def report_preview_text(document: ReportDocument) -> str:
         "",
         _("Report destination"),
         _("Official ZapZap repository on GitHub: rafatosta/zapzap"),
-        _("ZapZap will copy the report and open GitHub. You need a GitHub account to publish the public issue."),
+        _(
+            "ZapZap will copy the report to the clipboard and open GitHub. "
+            "Paste it into the issue description before publishing. A GitHub "
+            "account is required."
+        ),
         "",
         _("Privacy"),
         _("Never sent: messages, contacts, phone numbers, cookies, WhatsApp session data, conversation content, passwords, or authentication tokens."),
@@ -218,7 +222,10 @@ class ProblemReportDialog(QDialog):
         layout = QVBoxLayout(page)
         layout.addWidget(Label(_("Review your report"), "title", page))
         notice = Label(
-            _("ZapZap will not send this report. It will be copied only when you choose to open GitHub."),
+            _(
+                "The complete report will be copied to the clipboard. After "
+                "GitHub opens, paste it into the issue description."
+            ),
             "description",
             page,
         )
@@ -249,9 +256,18 @@ class ProblemReportDialog(QDialog):
         actions = QHBoxLayout()
         self.back_button = Button(_("Back and edit"), parent=page)
         self.confirm_button = Button(
-            _("Copy report and open GitHub"),
+            _("Copy and open GitHub"),
             Button.PRIMARY,
             page,
+        )
+        self.confirm_button.setAccessibleName(
+            _("Copy report to the clipboard and open GitHub")
+        )
+        self.confirm_button.setToolTip(
+            _(
+                "After GitHub opens, paste the copied report into the issue "
+                "description."
+            )
         )
         actions.addWidget(self.back_button)
         actions.addStretch(1)

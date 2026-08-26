@@ -23,6 +23,10 @@ título na query string. Logs, descrições e detalhes técnicos nunca são
 colocados na URL. A pessoa cola o conteúdo, pode revisá-lo ou editá-lo novamente
 e decide se publica a issue dentro do GitHub.
 
+A tela de revisão informa explicitamente que o corpo não será preenchido pelo
+navegador: depois que o GitHub abrir, é necessário colar no campo de descrição
+o relatório mantido no clipboard.
+
 ```mermaid
 flowchart TD
     A[Pessoa preenche o formulário] --> B[Builder coleta o mínimo]

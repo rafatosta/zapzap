@@ -64,8 +64,12 @@ class ReportingUiTests(QtTestCase):
         self.assertEqual(launcher.calls, [])
         self.assertEqual(store.saved, [])
         self.assertIn("rafatosta/zapzap", dialog.preview.toPlainText())
-        self.assertIn("public issue", dialog.preview.toPlainText())
+        self.assertIn("GitHub account", dialog.preview.toPlainText())
         self.assertIn("Never sent", dialog.preview.toPlainText())
+        self.assertIn("clipboard", dialog.preview.toPlainText())
+        self.assertIn("paste", dialog.preview.toPlainText().lower())
+        self.assertEqual(dialog.confirm_button.text(), "Copy and open GitHub")
+        self.assertIn("clipboard", dialog.confirm_button.accessibleName())
         self.assertNotIn("fingerprint", dialog.preview.toPlainText())
         self.assertIn(
             ReportMarkdownFormatter.format(dialog.document),

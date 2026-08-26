@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-26 11:56-0300\n"
+"POT-Creation-Date: 2026-08-26 14:16-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Polish\n"
@@ -161,7 +161,7 @@ msgid "Remove"
 msgstr "Usuń"
 
 #: zapzap/features/accounts/card_user_controller.py:173
-#: zapzap/features/reporting/dialogs.py:209
+#: zapzap/features/reporting/dialogs.py:213
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:642
 #: zapzap/features/settings/pages/network_privacy/controller.py:282
 #: zapzap/features/downloads/ui/download_dialog.py:120
@@ -243,7 +243,7 @@ msgid "Copy address"
 msgstr "Kopiuj adres łącza"
 
 #: zapzap/features/alerts/external_url.py:45
-#: zapzap/features/reporting/dialogs.py:344
+#: zapzap/features/reporting/dialogs.py:360
 #: zapzap/features/browser/shell/browser_controller.py:316
 #: zapzap/ui/components/dictionary_manager_dialog.py:91
 #: zapzap/ui/components/dictionary_manager_dialog.py:193
@@ -1181,7 +1181,7 @@ msgid "Problem type: {value}"
 msgstr ""
 
 #: zapzap/features/reporting/dialogs.py:64
-#: zapzap/features/reporting/dialogs.py:353
+#: zapzap/features/reporting/dialogs.py:369
 msgid "Unexpected closing"
 msgstr ""
 
@@ -1228,27 +1228,27 @@ msgstr ""
 msgid "Official ZapZap repository on GitHub: rafatosta/zapzap"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:103
+#: zapzap/features/reporting/dialogs.py:104
 msgid ""
-"ZapZap will copy the report and open GitHub. You need a GitHub account to "
-"publish the public issue."
+"ZapZap will copy the report to the clipboard and open GitHub. Paste it into "
+"the issue description before publishing. A GitHub account is required."
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:105
+#: zapzap/features/reporting/dialogs.py:109
 #: zapzap/features/settings/pages/network_privacy/view.py:249
 #: zapzap/features/settings/pages/notifications/view.py:113
 msgid "Privacy"
 msgstr "Prywatność"
 
-#: zapzap/features/reporting/dialogs.py:106
+#: zapzap/features/reporting/dialogs.py:110
 msgid ""
 "Never sent: messages, contacts, phone numbers, cookies, WhatsApp session "
 "data, conversation content, passwords, or authentication tokens."
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:132
-#: zapzap/features/reporting/dialogs.py:155
-#: zapzap/features/reporting/dialogs.py:276
+#: zapzap/features/reporting/dialogs.py:136
+#: zapzap/features/reporting/dialogs.py:159
+#: zapzap/features/reporting/dialogs.py:292
 #: zapzap/features/settings/shell/settings_controller.py:176
 #: zapzap/features/settings/pages/about/view.py:269
 #: zapzap/features/settings/pages/debugging/view.py:160
@@ -1256,129 +1256,137 @@ msgstr ""
 msgid "Report a problem"
 msgstr "Zgłoś problem"
 
-#: zapzap/features/reporting/dialogs.py:158
+#: zapzap/features/reporting/dialogs.py:162
 msgid ""
 "Describe what happened. You will review everything before anything is copied "
 "or GitHub is opened."
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:166
+#: zapzap/features/reporting/dialogs.py:170
 msgid ""
 "Avoid phone numbers, messages, contact names, or other personal information."
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:182
+#: zapzap/features/reporting/dialogs.py:186
 msgid "What is the problem?"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:183
+#: zapzap/features/reporting/dialogs.py:187
 msgid "Describe what happened"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:184
+#: zapzap/features/reporting/dialogs.py:188
 msgid "What did you expect to happen?"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:185
+#: zapzap/features/reporting/dialogs.py:189
 msgid "Can you repeat the problem?"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:189
+#: zapzap/features/reporting/dialogs.py:193
 msgid "Include system technical information"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:194
+#: zapzap/features/reporting/dialogs.py:198
 msgid "Include error technical information, when available"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:199
+#: zapzap/features/reporting/dialogs.py:203
 msgid "Include sanitized logs, when available"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:210
+#: zapzap/features/reporting/dialogs.py:214
 #: zapzap/features/reporting/coordinator.py:42
 msgid "Review report"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:219
+#: zapzap/features/reporting/dialogs.py:223
 msgid "Review your report"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:221
+#: zapzap/features/reporting/dialogs.py:226
 msgid ""
-"ZapZap will not send this report. It will be copied only when you choose to "
-"open GitHub."
+"The complete report will be copied to the clipboard. After GitHub opens, "
+"paste it into the issue description."
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:230
+#: zapzap/features/reporting/dialogs.py:237
 msgid "Complete report preview"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:233
-#: zapzap/features/reporting/dialogs.py:295
+#: zapzap/features/reporting/dialogs.py:240
+#: zapzap/features/reporting/dialogs.py:311
 msgid "Show technical information"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:245
+#: zapzap/features/reporting/dialogs.py:252
 msgid "Complete report to copy to GitHub"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:250
+#: zapzap/features/reporting/dialogs.py:257
 msgid "Back and edit"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:252
-msgid "Copy report and open GitHub"
+#: zapzap/features/reporting/dialogs.py:259
+msgid "Copy and open GitHub"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:276
+#: zapzap/features/reporting/dialogs.py:264
+msgid "Copy report to the clipboard and open GitHub"
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:268
+msgid "After GitHub opens, paste the copied report into the issue description."
+msgstr ""
+
+#: zapzap/features/reporting/dialogs.py:292
 msgid "Describe what happened before continuing."
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:293
+#: zapzap/features/reporting/dialogs.py:309
 msgid "Hide technical information"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:314
+#: zapzap/features/reporting/dialogs.py:330
 msgid "Could not open GitHub"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:316
+#: zapzap/features/reporting/dialogs.py:332
 msgid ""
 "The report is still copied to the clipboard. Open the official ZapZap "
 "repository and paste it into a new issue."
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:328
+#: zapzap/features/reporting/dialogs.py:344
 msgid "Local reports"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:338
+#: zapzap/features/reporting/dialogs.py:354
 msgid "Review and open selected report"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:353
+#: zapzap/features/reporting/dialogs.py:369
 msgid "Problem report"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:355
-#: zapzap/features/reporting/dialogs.py:359
+#: zapzap/features/reporting/dialogs.py:371
+#: zapzap/features/reporting/dialogs.py:375
 msgid "Saved locally"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:356
+#: zapzap/features/reporting/dialogs.py:372
 msgid "Waiting for review"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:357
+#: zapzap/features/reporting/dialogs.py:373
 msgid "Copied"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:358
+#: zapzap/features/reporting/dialogs.py:374
 msgid "Opened on GitHub"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:373
+#: zapzap/features/reporting/dialogs.py:389
 msgid "Complete report to copy"
 msgstr ""
 
