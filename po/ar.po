@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-18 15:22-0300\n"
+"POT-Creation-Date: 2026-08-18 15:57-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Arabic\n"
@@ -242,11 +242,11 @@ msgstr "انسخ عنوان الرابط"
 
 #: zapzap/features/alerts/external_url.py:45
 #: zapzap/features/browser/shell/browser_controller.py:316
+#: zapzap/ui/components/dictionary_manager_dialog.py:91
+#: zapzap/ui/components/dictionary_manager_dialog.py:193
 #: zapzap/ui/components/edit_account_dialog.py:73
 #: zapzap/ui/components/send_message_to_number_dialog.py:135
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
-#: zapzap/ui/components/dictionary_manager_dialog.py:91
-#: zapzap/ui/components/dictionary_manager_dialog.py:193
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "إغلاق"
@@ -2212,9 +2212,9 @@ msgid "Manage…"
 msgstr ""
 
 #: zapzap/features/settings/pages/language_downloads/view.py:96
-#: zapzap/ui/components/spellcheck_language_picker_dialog.py:274
 #: zapzap/ui/components/dictionary_manager_dialog.py:50
 #: zapzap/ui/components/dictionary_manager_dialog.py:89
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:274
 msgid "Manage dictionaries"
 msgstr ""
 
@@ -3150,6 +3150,53 @@ msgstr "تفعيل"
 msgid "Not now"
 msgstr "ليس الآن"
 
+#: zapzap/features/browser/web/page_controller.py:258
+msgid "your microphone"
+msgstr "الميكروفون الخاص بك"
+
+#: zapzap/features/browser/web/page_controller.py:259
+msgid "your camera"
+msgstr "الكاميرا الخاصة بك"
+
+#: zapzap/features/browser/web/page_controller.py:260
+msgid "your camera and microphone"
+msgstr "الكاميرا والميكروفون الخاص بك"
+
+#: zapzap/features/browser/web/page_controller.py:261
+msgid "your location"
+msgstr "موقعك"
+
+#: zapzap/features/browser/web/page_controller.py:262
+msgid "your screen contents"
+msgstr "محتويات الشاشة الخاصة بك"
+
+#: zapzap/features/browser/web/page_controller.py:263
+msgid "your screen contents and audio"
+msgstr "محتويات الشاشة والصوت"
+
+#: zapzap/features/browser/web/page_controller.py:264
+msgid "mouse lock"
+msgstr "قفل الماوس"
+
+#: zapzap/features/browser/web/page_controller.py:266
+msgid "a system feature"
+msgstr "ميزة النظام"
+
+#: zapzap/features/browser/web/page_controller.py:270
+msgid "Permission request"
+msgstr "طلب الإذن"
+
+#: zapzap/features/browser/web/page_controller.py:271
+#, python-brace-format
+msgid ""
+"WhatsApp Web is requesting access to {}.\n"
+"\n"
+"Allow?"
+msgstr ""
+"يطلب WhatsApp Web الوصول إلى {}.\n"
+"\n"
+"يسمح؟"
+
 #: zapzap/features/browser/web/web_view.py:369
 msgid "Undo"
 msgstr "تراجع"
@@ -3204,53 +3251,6 @@ msgstr "الحساب"
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "أدوات التطوير - {}"
-
-#: zapzap/features/browser/web/page_controller.py:258
-msgid "your microphone"
-msgstr "الميكروفون الخاص بك"
-
-#: zapzap/features/browser/web/page_controller.py:259
-msgid "your camera"
-msgstr "الكاميرا الخاصة بك"
-
-#: zapzap/features/browser/web/page_controller.py:260
-msgid "your camera and microphone"
-msgstr "الكاميرا والميكروفون الخاص بك"
-
-#: zapzap/features/browser/web/page_controller.py:261
-msgid "your location"
-msgstr "موقعك"
-
-#: zapzap/features/browser/web/page_controller.py:262
-msgid "your screen contents"
-msgstr "محتويات الشاشة الخاصة بك"
-
-#: zapzap/features/browser/web/page_controller.py:263
-msgid "your screen contents and audio"
-msgstr "محتويات الشاشة والصوت"
-
-#: zapzap/features/browser/web/page_controller.py:264
-msgid "mouse lock"
-msgstr "قفل الماوس"
-
-#: zapzap/features/browser/web/page_controller.py:266
-msgid "a system feature"
-msgstr "ميزة النظام"
-
-#: zapzap/features/browser/web/page_controller.py:270
-msgid "Permission request"
-msgstr "طلب الإذن"
-
-#: zapzap/features/browser/web/page_controller.py:271
-#, python-brace-format
-msgid ""
-"WhatsApp Web is requesting access to {}.\n"
-"\n"
-"Allow?"
-msgstr ""
-"يطلب WhatsApp Web الوصول إلى {}.\n"
-"\n"
-"يسمح؟"
 
 #: zapzap/ui/components/browser_grid_view.py:75
 msgid "Accounts overview"
@@ -3366,6 +3366,296 @@ msgstr "الحساب {name}، نشط."
 #, python-brace-format
 msgid "Account {name}, disabled."
 msgstr "الحساب {name}، معطّل."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:104
+msgid ""
+"Install dictionaries from the official ZapZap catalog for Qt WebEngine spell "
+"checking."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:114
+msgid "Search language or code"
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:116
+#, fuzzy
+msgid "Search dictionaries"
+msgstr "ابحث في المحادثة"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:118
+msgid "Filter dictionaries by readable language name or technical code."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:121
+msgid "All"
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:122
+#: zapzap/ui/components/dictionary_manager_dialog.py:332
+msgid "Installed"
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:123
+#: zapzap/ui/components/dictionary_manager_dialog.py:334
+#, fuzzy
+msgid "Available"
+msgstr "متاح"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:124
+#, fuzzy
+msgid "Dictionary filter"
+msgstr "دليل القاموس"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:125
+#, fuzzy
+msgid "Refresh list"
+msgstr "تحديث"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:127
+msgid "Download the latest dictionary catalog."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:133
+#: zapzap/ui/components/dictionary_manager_dialog.py:290
+msgid "Loading dictionary catalog…"
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:134
+#, fuzzy
+msgid "Dictionary catalog status"
+msgstr "لغة القاموس"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:136
+#: zapzap/ui/components/dictionary_manager_dialog.py:326
+#, fuzzy
+msgid "No active dictionary"
+msgstr "اخفي مؤشر الإشعارات"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:137
+#, fuzzy
+msgid "Active spell checker languages"
+msgstr "لغة القاموس"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:143
+msgid "Code"
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:143
+msgid "Status"
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:149
+#, fuzzy
+msgid "Dictionaries"
+msgstr "دليل القاموس"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:151
+msgid "Select a dictionary to install, remove, or inspect its status."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:165
+msgid "No dictionary matches this view."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:172
+#, fuzzy
+msgid "Dictionary operation status"
+msgstr "لغة القاموس"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:177
+#, fuzzy
+msgid "Dictionary download progress"
+msgstr "لغة القاموس"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:187
+#, fuzzy
+msgid "Import files…"
+msgstr "استيراد الملف"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:188
+#, fuzzy
+msgid "Import folder…"
+msgstr "استيراد الملف"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:189
+#, fuzzy
+msgid "Active languages…"
+msgstr "لغة القاموس"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:190
+msgid "Install"
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:192
+#, fuzzy
+msgid "Cancel download"
+msgstr "اللغة والتحميل"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:274
+#, python-brace-format
+msgid "Offline catalog from {date}"
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:278
+#, python-brace-format
+msgid "Catalog {revision}: {count} dictionaries"
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:294
+msgid ""
+"The online catalog is unavailable. Installed dictionaries remain usable."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:303
+#, python-brace-format
+msgid "Could not refresh the catalog; using the saved copy. {detail}"
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:309
+#, python-brace-format
+msgid "Could not load the dictionary catalog. {detail}"
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:323
+#, fuzzy, python-brace-format
+msgid "Active: {languages}"
+msgstr "لغة القاموس"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:330
+#, fuzzy
+msgid "Active"
+msgstr "تفعيل"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:336
+#, fuzzy
+msgid "Local"
+msgstr "الموقع"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:349
+#, python-brace-format
+msgid "{language}, {code}, {status}"
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:379
+msgid "No dictionary matches the search."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:381
+#, fuzzy
+msgid "The dictionary catalog is loading."
+msgstr "لغة القاموس"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:383
+msgid "No dictionaries are installed."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:385
+#, fuzzy
+msgid "The available catalog could not be loaded."
+msgstr "تعذر تغيير حالة الحساب."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:387
+msgid "No dictionaries are available to install."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:389
+msgid "No dictionaries are installed or available."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:460
+#, fuzzy
+msgid "Import dictionaries"
+msgstr "استيراد الملف"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:462
+#, fuzzy
+msgid "Qt WebEngine dictionaries (*.bdic)"
+msgstr "يتعرف فقط على القواميس المجمَّعة (.bdic)"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:468
+msgid "Import dictionary folder"
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:478
+#, python-brace-format
+msgid "Downloading {code}…"
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:499
+#, fuzzy, python-brace-format
+msgid "Dictionary {code} is ready."
+msgstr "دليل القاموس"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:503
+#, python-brace-format
+msgid "Dictionary operation failed: {detail}"
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:512
+msgid "The file or filename is invalid."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:513
+msgid "A different dictionary with this name already exists."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:514
+msgid "ZapZap could not write to the dictionary directory."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:515
+msgid "There is not enough free disk space."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:516
+msgid "The last active dictionary is protected."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:517
+msgid "The dictionary is not installed."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:518
+#, fuzzy
+msgid "The download was cancelled."
+msgstr "تم إلغاء الحذف."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:519
+msgid "Check the connection and try again."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:520
+msgid "The download timed out. Try again."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:521
+msgid "GitHub temporarily limited catalog requests."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:522
+msgid "The dictionary server returned an error."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:523
+msgid "The server redirected to an untrusted address."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:524
+msgid "The downloaded size does not match the catalog."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:525
+msgid "The downloaded file failed integrity verification."
+msgstr ""
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:526
+#, fuzzy
+msgid "This dictionary operation is already in progress."
+msgstr "لغة القاموس"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:529
+msgid "Unknown dictionary error."
+msgstr ""
 
 #: zapzap/ui/components/edit_account_dialog.py:243
 msgid "Change the name and icon used to identify this account."
@@ -3820,296 +4110,6 @@ msgstr ""
 #: zapzap/ui/components/update_available_popover.py:171
 #, python-brace-format
 msgid "ZapZap {latest} is available. Current version: {current}."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:104
-msgid ""
-"Install dictionaries from the official ZapZap catalog for Qt WebEngine spell "
-"checking."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:114
-msgid "Search language or code"
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:116
-#, fuzzy
-msgid "Search dictionaries"
-msgstr "ابحث في المحادثة"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:118
-msgid "Filter dictionaries by readable language name or technical code."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:121
-msgid "All"
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:122
-#: zapzap/ui/components/dictionary_manager_dialog.py:332
-msgid "Installed"
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:123
-#: zapzap/ui/components/dictionary_manager_dialog.py:334
-#, fuzzy
-msgid "Available"
-msgstr "متاح"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:124
-#, fuzzy
-msgid "Dictionary filter"
-msgstr "دليل القاموس"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:125
-#, fuzzy
-msgid "Refresh list"
-msgstr "تحديث"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:127
-msgid "Download the latest dictionary catalog."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:133
-#: zapzap/ui/components/dictionary_manager_dialog.py:290
-msgid "Loading dictionary catalog…"
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:134
-#, fuzzy
-msgid "Dictionary catalog status"
-msgstr "لغة القاموس"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:136
-#: zapzap/ui/components/dictionary_manager_dialog.py:326
-#, fuzzy
-msgid "No active dictionary"
-msgstr "اخفي مؤشر الإشعارات"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:137
-#, fuzzy
-msgid "Active spell checker languages"
-msgstr "لغة القاموس"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:143
-msgid "Code"
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:143
-msgid "Status"
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:149
-#, fuzzy
-msgid "Dictionaries"
-msgstr "دليل القاموس"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:151
-msgid "Select a dictionary to install, remove, or inspect its status."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:165
-msgid "No dictionary matches this view."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:172
-#, fuzzy
-msgid "Dictionary operation status"
-msgstr "لغة القاموس"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:177
-#, fuzzy
-msgid "Dictionary download progress"
-msgstr "لغة القاموس"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:187
-#, fuzzy
-msgid "Import files…"
-msgstr "استيراد الملف"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:188
-#, fuzzy
-msgid "Import folder…"
-msgstr "استيراد الملف"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:189
-#, fuzzy
-msgid "Active languages…"
-msgstr "لغة القاموس"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:190
-msgid "Install"
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:192
-#, fuzzy
-msgid "Cancel download"
-msgstr "اللغة والتحميل"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:274
-#, python-brace-format
-msgid "Offline catalog from {date}"
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:278
-#, python-brace-format
-msgid "Catalog {revision}: {count} dictionaries"
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:294
-msgid ""
-"The online catalog is unavailable. Installed dictionaries remain usable."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:303
-#, python-brace-format
-msgid "Could not refresh the catalog; using the saved copy. {detail}"
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:309
-#, python-brace-format
-msgid "Could not load the dictionary catalog. {detail}"
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:323
-#, fuzzy, python-brace-format
-msgid "Active: {languages}"
-msgstr "لغة القاموس"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:330
-#, fuzzy
-msgid "Active"
-msgstr "تفعيل"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:336
-#, fuzzy
-msgid "Local"
-msgstr "الموقع"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:349
-#, python-brace-format
-msgid "{language}, {code}, {status}"
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:379
-msgid "No dictionary matches the search."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:381
-#, fuzzy
-msgid "The dictionary catalog is loading."
-msgstr "لغة القاموس"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:383
-msgid "No dictionaries are installed."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:385
-#, fuzzy
-msgid "The available catalog could not be loaded."
-msgstr "تعذر تغيير حالة الحساب."
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:387
-msgid "No dictionaries are available to install."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:389
-msgid "No dictionaries are installed or available."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:460
-#, fuzzy
-msgid "Import dictionaries"
-msgstr "استيراد الملف"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:462
-#, fuzzy
-msgid "Qt WebEngine dictionaries (*.bdic)"
-msgstr "يتعرف فقط على القواميس المجمَّعة (.bdic)"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:468
-msgid "Import dictionary folder"
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:478
-#, python-brace-format
-msgid "Downloading {code}…"
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:499
-#, fuzzy, python-brace-format
-msgid "Dictionary {code} is ready."
-msgstr "دليل القاموس"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:503
-#, python-brace-format
-msgid "Dictionary operation failed: {detail}"
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:512
-msgid "The file or filename is invalid."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:513
-msgid "A different dictionary with this name already exists."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:514
-msgid "ZapZap could not write to the dictionary directory."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:515
-msgid "There is not enough free disk space."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:516
-msgid "The last active dictionary is protected."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:517
-msgid "The dictionary is not installed."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:518
-#, fuzzy
-msgid "The download was cancelled."
-msgstr "تم إلغاء الحذف."
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:519
-msgid "Check the connection and try again."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:520
-msgid "The download timed out. Try again."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:521
-msgid "GitHub temporarily limited catalog requests."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:522
-msgid "The dictionary server returned an error."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:523
-msgid "The server redirected to an untrusted address."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:524
-msgid "The downloaded size does not match the catalog."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:525
-msgid "The downloaded file failed integrity verification."
-msgstr ""
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:526
-#, fuzzy
-msgid "This dictionary operation is already in progress."
-msgstr "لغة القاموس"
-
-#: zapzap/ui/components/dictionary_manager_dialog.py:529
-msgid "Unknown dictionary error."
 msgstr ""
 
 #~ msgid "Note: changing dictionaries may require restarting the browser "
