@@ -39,8 +39,8 @@ releases and the AppStream metadata.
 
 ### Fixed
 
-- Matched the client-side Adwaita close button to the neutral window-control
-  palette instead of displaying it in red on GNOME.
+- Matched the client-side Adwaita close button to the neutral gray
+  window-control palette instead of displaying it in red on GNOME.
 
 ### Removed
 

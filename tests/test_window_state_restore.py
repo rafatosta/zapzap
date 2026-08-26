@@ -206,8 +206,16 @@ class WindowStateRestoreTest(QtTestCase):
 
         stylesheet = window.styleSheet()
 
-        self.assertIn("background: palette(button);", stylesheet)
-        self.assertIn("background: palette(alternate-base);", stylesheet)
+        self.assertIn(
+            """QPushButton#csrWindowCloseButton {
+                background: palette(alternate-base);""",
+            stylesheet,
+        )
+        self.assertIn(
+            """QPushButton#csrWindowCloseButton:hover {
+                background: palette(mid);""",
+            stylesheet,
+        )
         self.assertNotIn("palette(bright-text)", stylesheet)
 
         settings.csr_button_theme = "default"

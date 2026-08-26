@@ -342,9 +342,9 @@ class ClientSideWindow(QWidget):
         border_radius = self.title_bar.minimize_button.property(
             "csrBorderRadius") or "6"
         if self._button_theme == CSRButtonTheme.ADWAITA:
-            close_background = "palette(button)"
+            close_background = "palette(alternate-base)"
             close_text = "palette(button-text)"
-            close_hover_background = "palette(alternate-base)"
+            close_hover_background = "palette(mid)"
         else:
             close_background = "palette(bright-text)"
             close_text = "palette(highlighted-text)"
