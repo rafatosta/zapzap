@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-08-26 14:16-0300\n"
-"PO-Revision-Date: 2026-07-26 11:59-0300\n"
+"PO-Revision-Date: 2026-08-26 14:30-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Brazilian Portuguese\n"
 "Language: pt_BR\n"
@@ -1128,114 +1128,117 @@ msgstr "Sair"
 
 #: zapzap/features/reporting/dialogs.py:29
 msgid "ZapZap closed unexpectedly"
-msgstr ""
+msgstr "O ZapZap fechou inesperadamente"
 
 #: zapzap/features/reporting/dialogs.py:30
 msgid "Something is not working"
-msgstr ""
+msgstr "Algo não está funcionando"
 
 #: zapzap/features/reporting/dialogs.py:31
 msgid "Notification problem"
-msgstr ""
+msgstr "Problema com notificações"
 
 #: zapzap/features/reporting/dialogs.py:32
 msgid "Audio or video problem"
-msgstr ""
+msgstr "Problema com áudio ou vídeo"
 
 #: zapzap/features/reporting/dialogs.py:33
 msgid "File problem"
-msgstr ""
+msgstr "Problema com arquivos"
 
 #: zapzap/features/reporting/dialogs.py:34
 msgid "Visual problem"
-msgstr ""
+msgstr "Problema visual"
 
 #: zapzap/features/reporting/dialogs.py:35
 msgid "Other"
-msgstr ""
+msgstr "Outro"
 
 #: zapzap/features/reporting/dialogs.py:38
 msgid "Always"
-msgstr ""
+msgstr "Sempre"
 
 #: zapzap/features/reporting/dialogs.py:39
 msgid "Sometimes"
-msgstr ""
+msgstr "Às vezes"
 
 #: zapzap/features/reporting/dialogs.py:40
 msgid "It happened once"
-msgstr ""
+msgstr "Aconteceu uma vez"
 
 #: zapzap/features/reporting/dialogs.py:41
 msgid "I don't know"
-msgstr ""
+msgstr "Não sei"
 
 #: zapzap/features/reporting/dialogs.py:58
 msgid "Check all the information below before continuing to GitHub."
-msgstr ""
+msgstr "Confira todas as informações abaixo antes de continuar para o GitHub."
 
 #: zapzap/features/reporting/dialogs.py:60
 msgid "Your report"
-msgstr ""
+msgstr "Seu relatório"
 
 #: zapzap/features/reporting/dialogs.py:61
 #, python-brace-format
 msgid "Problem type: {value}"
-msgstr ""
+msgstr "Tipo de problema: {value}"
 
 #: zapzap/features/reporting/dialogs.py:64
 #: zapzap/features/reporting/dialogs.py:369
 msgid "Unexpected closing"
-msgstr ""
+msgstr "Fechamento inesperado"
 
 #: zapzap/features/reporting/dialogs.py:69
 msgid "Description:"
-msgstr ""
+msgstr "Descrição:"
 
 #: zapzap/features/reporting/dialogs.py:71
 msgid "Expected result:"
-msgstr ""
+msgstr "Resultado esperado:"
 
 #: zapzap/features/reporting/dialogs.py:74
 #, python-brace-format
 msgid "Frequency: {value}"
-msgstr ""
+msgstr "Frequência: {value}"
 
 #: zapzap/features/reporting/dialogs.py:82
 msgid "Application information"
-msgstr ""
+msgstr "Informações do aplicativo"
 
 #: zapzap/features/reporting/dialogs.py:92
 msgid "Error information"
-msgstr ""
+msgstr "Informações do erro"
 
 #: zapzap/features/reporting/dialogs.py:94
 #, python-brace-format
 msgid "Error type: {value}"
-msgstr ""
+msgstr "Tipo do erro: {value}"
 
 #: zapzap/features/reporting/dialogs.py:96
 #, python-brace-format
 msgid "Error details: {value}"
-msgstr ""
+msgstr "Detalhes do erro: {value}"
 
 #: zapzap/features/reporting/dialogs.py:98
 msgid "Sanitized logs are included in the technical information."
-msgstr ""
+msgstr "Os registros sanitizados estão incluídos nas informações técnicas."
 
 #: zapzap/features/reporting/dialogs.py:101
 msgid "Report destination"
-msgstr ""
+msgstr "Destino do relatório"
 
 #: zapzap/features/reporting/dialogs.py:102
 msgid "Official ZapZap repository on GitHub: rafatosta/zapzap"
-msgstr ""
+msgstr "Repositório oficial do ZapZap no GitHub: rafatosta/zapzap"
 
 #: zapzap/features/reporting/dialogs.py:104
 msgid ""
 "ZapZap will copy the report to the clipboard and open GitHub. Paste it into "
 "the issue description before publishing. A GitHub account is required."
 msgstr ""
+"O ZapZap copiará o relatório para a área de transferência e abrirá o GitHub. "
+"Cole-o na descrição da issue antes de publicar. É necessário ter uma conta "
+"no GitHub."
 
 #: zapzap/features/reporting/dialogs.py:109
 #: zapzap/features/settings/pages/network_privacy/view.py:249
@@ -1248,6 +1251,9 @@ msgid ""
 "Never sent: messages, contacts, phone numbers, cookies, WhatsApp session "
 "data, conversation content, passwords, or authentication tokens."
 msgstr ""
+"Nunca são enviados: mensagens, contatos, números de telefone, cookies, dados "
+"da sessão do WhatsApp, conteúdo de conversas, senhas ou tokens de "
+"autenticação."
 
 #: zapzap/features/reporting/dialogs.py:136
 #: zapzap/features/reporting/dialogs.py:159
@@ -1264,156 +1270,166 @@ msgid ""
 "Describe what happened. You will review everything before anything is copied "
 "or GitHub is opened."
 msgstr ""
+"Descreva o que aconteceu. Você poderá revisar tudo antes que qualquer "
+"conteúdo seja copiado ou que o GitHub seja aberto."
 
 #: zapzap/features/reporting/dialogs.py:170
 msgid ""
 "Avoid phone numbers, messages, contact names, or other personal information."
 msgstr ""
+"Evite números de telefone, mensagens, nomes de contatos ou outras informações "
+"pessoais."
 
 #: zapzap/features/reporting/dialogs.py:186
 msgid "What is the problem?"
-msgstr ""
+msgstr "Qual é o problema?"
 
 #: zapzap/features/reporting/dialogs.py:187
 msgid "Describe what happened"
-msgstr ""
+msgstr "Descreva o que aconteceu"
 
 #: zapzap/features/reporting/dialogs.py:188
 msgid "What did you expect to happen?"
-msgstr ""
+msgstr "O que você esperava que acontecesse?"
 
 #: zapzap/features/reporting/dialogs.py:189
 msgid "Can you repeat the problem?"
-msgstr ""
+msgstr "Você consegue reproduzir o problema?"
 
 #: zapzap/features/reporting/dialogs.py:193
 msgid "Include system technical information"
-msgstr ""
+msgstr "Incluir informações técnicas do sistema"
 
 #: zapzap/features/reporting/dialogs.py:198
 msgid "Include error technical information, when available"
-msgstr ""
+msgstr "Incluir informações técnicas do erro, quando disponíveis"
 
 #: zapzap/features/reporting/dialogs.py:203
 msgid "Include sanitized logs, when available"
-msgstr ""
+msgstr "Incluir registros sanitizados, quando disponíveis"
 
 #: zapzap/features/reporting/dialogs.py:214
 #: zapzap/features/reporting/coordinator.py:42
 msgid "Review report"
-msgstr ""
+msgstr "Revisar relatório"
 
 #: zapzap/features/reporting/dialogs.py:223
 msgid "Review your report"
-msgstr ""
+msgstr "Revise seu relatório"
 
 #: zapzap/features/reporting/dialogs.py:226
 msgid ""
 "The complete report will be copied to the clipboard. After GitHub opens, "
 "paste it into the issue description."
 msgstr ""
+"O relatório completo será copiado para a área de transferência. Depois que o "
+"GitHub abrir, cole-o na descrição da issue."
 
 #: zapzap/features/reporting/dialogs.py:237
 msgid "Complete report preview"
-msgstr ""
+msgstr "Visualização completa do relatório"
 
 #: zapzap/features/reporting/dialogs.py:240
 #: zapzap/features/reporting/dialogs.py:311
 msgid "Show technical information"
-msgstr ""
+msgstr "Mostrar informações técnicas"
 
 #: zapzap/features/reporting/dialogs.py:252
 msgid "Complete report to copy to GitHub"
-msgstr ""
+msgstr "Relatório completo para copiar para o GitHub"
 
 #: zapzap/features/reporting/dialogs.py:257
 msgid "Back and edit"
-msgstr ""
+msgstr "Voltar e editar"
 
 #: zapzap/features/reporting/dialogs.py:259
 msgid "Copy and open GitHub"
-msgstr ""
+msgstr "Copiar e abrir o GitHub"
 
 #: zapzap/features/reporting/dialogs.py:264
 msgid "Copy report to the clipboard and open GitHub"
-msgstr ""
+msgstr "Copiar o relatório para a área de transferência e abrir o GitHub"
 
 #: zapzap/features/reporting/dialogs.py:268
 msgid "After GitHub opens, paste the copied report into the issue description."
-msgstr ""
+msgstr "Depois que o GitHub abrir, cole o relatório na descrição da issue."
 
 #: zapzap/features/reporting/dialogs.py:292
 msgid "Describe what happened before continuing."
-msgstr ""
+msgstr "Descreva o que aconteceu antes de continuar."
 
 #: zapzap/features/reporting/dialogs.py:309
 msgid "Hide technical information"
-msgstr ""
+msgstr "Ocultar informações técnicas"
 
 #: zapzap/features/reporting/dialogs.py:330
 msgid "Could not open GitHub"
-msgstr ""
+msgstr "Não foi possível abrir o GitHub"
 
 #: zapzap/features/reporting/dialogs.py:332
 msgid ""
 "The report is still copied to the clipboard. Open the official ZapZap "
 "repository and paste it into a new issue."
 msgstr ""
+"O relatório continua copiado na área de transferência. Abra o repositório "
+"oficial do ZapZap e cole-o em uma nova issue."
 
 #: zapzap/features/reporting/dialogs.py:344
 msgid "Local reports"
-msgstr ""
+msgstr "Relatórios locais"
 
 #: zapzap/features/reporting/dialogs.py:354
 msgid "Review and open selected report"
-msgstr ""
+msgstr "Revisar e abrir o relatório selecionado"
 
 #: zapzap/features/reporting/dialogs.py:369
 msgid "Problem report"
-msgstr ""
+msgstr "Relatório de problema"
 
 #: zapzap/features/reporting/dialogs.py:371
 #: zapzap/features/reporting/dialogs.py:375
 msgid "Saved locally"
-msgstr ""
+msgstr "Salvo localmente"
 
 #: zapzap/features/reporting/dialogs.py:372
 msgid "Waiting for review"
-msgstr ""
+msgstr "Aguardando revisão"
 
 #: zapzap/features/reporting/dialogs.py:373
 msgid "Copied"
-msgstr ""
+msgstr "Copiado"
 
 #: zapzap/features/reporting/dialogs.py:374
 msgid "Opened on GitHub"
-msgstr ""
+msgstr "Aberto no GitHub"
 
 #: zapzap/features/reporting/dialogs.py:389
 msgid "Complete report to copy"
-msgstr ""
+msgstr "Relatório completo para copiar"
 
 #: zapzap/features/reporting/coordinator.py:32
 msgid "ZapZap found a problem"
-msgstr ""
+msgstr "O ZapZap encontrou um problema"
 
 #: zapzap/features/reporting/coordinator.py:33
 msgid "ZapZap closed unexpectedly during the last run."
-msgstr ""
+msgstr "O ZapZap fechou inesperadamente durante a última execução."
 
 #: zapzap/features/reporting/coordinator.py:35
 msgid ""
 "A sanitized report was prepared on this device. ZapZap will not send it; "
 "after reviewing, you can copy it and open GitHub."
 msgstr ""
+"Um relatório sanitizado foi preparado neste dispositivo. O ZapZap não o "
+"enviará; depois de revisá-lo, você poderá copiá-lo e abrir o GitHub."
 
 #: zapzap/features/reporting/coordinator.py:40
 msgid "Keep locally"
-msgstr ""
+msgstr "Manter localmente"
 
 #: zapzap/features/reporting/coordinator.py:41
 msgid "Discard report"
-msgstr ""
+msgstr "Descartar relatório"
 
 #: zapzap/features/settings/shell/settings_controller.py:122
 #: zapzap/features/settings/pages/accounts/view.py:17
@@ -2247,7 +2263,7 @@ msgstr "Esquerda"
 #: zapzap/features/settings/pages/debugging/controller.py:62
 #: zapzap/features/settings/pages/debugging/view.py:202
 msgid "Information and privacy"
-msgstr ""
+msgstr "Informações e privacidade"
 
 #: zapzap/features/settings/pages/debugging/controller.py:64
 msgid ""
@@ -2261,10 +2277,21 @@ msgid ""
 "the official GitHub repository rafatosta/zapzap. You need a GitHub account "
 "to publish the public issue."
 msgstr ""
+"Os relatórios podem incluir a versão do ZapZap, o sistema operacional, o tipo "
+"de instalação, a arquitetura, as versões do Python/Qt, detalhes do erro e "
+"registros sanitizados.\n"
+"\n"
+"Nunca são enviados: mensagens, contatos, números de telefone, cookies, dados "
+"da sessão do WhatsApp, conteúdo de conversas, senhas ou tokens de "
+"autenticação.\n"
+"\n"
+"O ZapZap não envia relatórios. Depois da revisão, ele copia o relatório e abre "
+"o repositório oficial rafatosta/zapzap no GitHub. É necessário ter uma conta "
+"no GitHub para publicar a issue pública."
 
 #: zapzap/features/settings/pages/debugging/controller.py:74
 msgid "Notify me when a failure occurs?"
-msgstr ""
+msgstr "Notificar quando ocorrer uma falha?"
 
 #: zapzap/features/settings/pages/debugging/controller.py:76
 msgid ""
@@ -2273,6 +2300,10 @@ msgid ""
 "\n"
 "ZapZap never transmits or publishes the report automatically."
 msgstr ""
+"O ZapZap pode preparar localmente um relatório técnico sanitizado depois de "
+"uma falha grave. Você poderá revisá-lo na próxima inicialização.\n"
+"\n"
+"O ZapZap nunca transmite nem publica o relatório automaticamente."
 
 #: zapzap/features/settings/pages/debugging/controller.py:111
 #: zapzap/features/settings/pages/debugging/view.py:377
@@ -2375,59 +2406,62 @@ msgstr "Detalhes completos"
 
 #: zapzap/features/settings/pages/debugging/view.py:161
 msgid "Prepare a sanitized report to publish with your GitHub account."
-msgstr ""
+msgstr "Prepare um relatório sanitizado para publicar com sua conta do GitHub."
 
 #: zapzap/features/settings/pages/debugging/view.py:179
 msgid ""
 "You will always review the complete report before copying it and opening "
 "GitHub."
 msgstr ""
+"Você sempre revisará o relatório completo antes de copiá-lo e abrir o GitHub."
 
 #: zapzap/features/settings/pages/debugging/view.py:185
 msgid "Something is not working?"
-msgstr ""
+msgstr "Algo não está funcionando?"
 
 #: zapzap/features/settings/pages/debugging/view.py:186
 msgid "Describe the problem in simple steps. Avoid personal information."
-msgstr ""
+msgstr "Descreva o problema em etapas simples. Evite informações pessoais."
 
 #: zapzap/features/settings/pages/debugging/view.py:187
 msgid "Report a problem…"
-msgstr ""
+msgstr "Relatar um problema…"
 
 #: zapzap/features/settings/pages/debugging/view.py:193
 msgid "Notify me when a failure occurs"
-msgstr ""
+msgstr "Notificar quando ocorrer uma falha"
 
 #: zapzap/features/settings/pages/debugging/view.py:195
 msgid ""
 "ZapZap will prepare a sanitized local report after a serious failure. It "
 "will never publish or transmit it automatically."
 msgstr ""
+"O ZapZap preparará um relatório local sanitizado depois de uma falha grave. "
+"Ele nunca será publicado nem transmitido automaticamente."
 
 #: zapzap/features/settings/pages/debugging/view.py:203
 msgid "See what reports may include and how publication on GitHub works."
-msgstr ""
+msgstr "Veja o que os relatórios podem incluir e como funciona a publicação no GitHub."
 
 #: zapzap/features/settings/pages/debugging/view.py:204
 msgid "View information"
-msgstr ""
+msgstr "Ver informações"
 
 #: zapzap/features/settings/pages/debugging/view.py:209
 msgid "Recent local reports"
-msgstr ""
+msgstr "Relatórios locais recentes"
 
 #: zapzap/features/settings/pages/debugging/view.py:211
 msgid "Review reports kept on this device and their GitHub handoff status."
-msgstr ""
+msgstr "Revise os relatórios mantidos neste dispositivo e o status da abertura no GitHub."
 
 #: zapzap/features/settings/pages/debugging/view.py:214
 msgid "View local reports"
-msgstr ""
+msgstr "Ver relatórios locais"
 
 #: zapzap/features/settings/pages/debugging/view.py:230
 msgid "Local crash files"
-msgstr ""
+msgstr "Arquivos locais de falha"
 
 #: zapzap/features/settings/pages/debugging/view.py:233
 msgid "Debug log"
@@ -2435,13 +2469,15 @@ msgstr "Log de depuração"
 
 #: zapzap/features/settings/pages/debugging/view.py:258
 msgid "Technical files"
-msgstr ""
+msgstr "Arquivos técnicos"
 
 #: zapzap/features/settings/pages/debugging/view.py:259
 msgid ""
 "Manage local files used to diagnose errors. These files are not sent "
 "automatically."
 msgstr ""
+"Gerencie os arquivos locais usados para diagnosticar erros. Esses arquivos "
+"não são enviados automaticamente."
 
 #: zapzap/features/settings/pages/debugging/view.py:267
 msgid "Diagnostics folder"
