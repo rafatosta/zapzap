@@ -118,6 +118,34 @@ SEND_MESSAGE_JS_TEMPLATE = r"""
 """
 
 
+_READ_MESSAGES_JS = r"""
+(function(limit){
+  try {
+    let selectors = ['[data-testid="msg-container"]', 'div[data-id]', '[data-testid="conversation-panel-messages"] div[data-id]'];
+    let containers = [];
+    for(let sel of selectors){
+      let els = document.querySelectorAll(sel);
+      if(els.length>0){ containers = Array.from(els); break; }
+    }
+    if(containers.length===0){
+      containers = Array.from(document.querySelectorAll('div[data-testid="msg-container"]'));
+    }
+    let out = [];
+    let start = Math.max(0, containers.length - limit);
+    for(let i=start; i<containers.length; i++){
+      let c = containers[i];
+      let inner = c.querySelector('[data-lexical-text="true"], .selectable-text');
+      let text = inner ? (inner.innerText || inner.textContent || "") : (c.innerText || c.textContent || "");
+      text = text.trim().substring(0,500);
+      let isFromMe = c.innerHTML.includes('message-out') || c.innerHTML.includes('tail-out');
+      out.push({index:i, text:text, fromMe:isFromMe, html:c.outerHTML.substring(0,400)});
+    }
+    return JSON.stringify({ok:true, total:containers.length, messages:out, url:location.href});
+  } catch(e){ return JSON.stringify({ok:false, error:e.message}); }
+})(%s)
+"""
+
+
 @pyqtClassInfo("D-Bus Interface", "com.rtosta.zapzap.Control")
 class ZapZapControlAdaptor(QDBusAbstractAdaptor):
     def __init__(self, parent: QObject, controller):
@@ -135,7 +163,11 @@ class ZapZapControlAdaptor(QDBusAbstractAdaptor):
 
     PREFERRED_ACCOUNT_ID = "storage-whats"  # wid 593979363865:15@c.us - cuenta correcta, no usar 3 (593963066828)
 
-    def _get_page_and_webview(self, preferred_id=None):
+    def _get_page_and_webview(self, preferred_id=None, no_focus=False):
+        """no_focus=True: opera la página de la cuenta indicada SIN traerla al
+        frente — permite manejar un webview de fondo (otra cuenta de WhatsApp)
+        headless mientras el usuario usa la cuenta visible, sin robarle el foco.
+        QWebEnginePage.runJavaScript funciona sobre páginas no visibles."""
         w = self._get_window()
         if w is None:
             return None, None
@@ -169,10 +201,10 @@ class ZapZapControlAdaptor(QDBusAbstractAdaptor):
                             break
                 except Exception:
                     pass
-            if webview is not None and explicit:
+            if webview is not None and explicit and not no_focus:
                 # Cuenta explícita: tráela al frente para operar sobre la página visible.
                 self._focus_webview(browser, webview)
-            if not webview:
+            if not webview and not no_focus:
                 webview = browser.current_webview()
             # fallback si está en grid view: busca primer runtime activo
             if webview is None:
@@ -458,6 +490,34 @@ class ZapZapControlAdaptor(QDBusAbstractAdaptor):
             return "OK: SendMessage queued (insert + click 900ms)"
         except Exception as e:
             return f"ERR: {e}"
+
+    def _run_js_blocking(self, page, js_code, timeout_ms=2000):
+        """Corre JS en `page` y espera el resultado (bloqueante). Sirve para
+        páginas visibles o de fondo indistintamente."""
+        from PyQt6.QtCore import QEventLoop, QTimer
+        loop = QEventLoop()
+        holder = {"value": "timeout"}
+        def _cb(r):
+            holder["value"] = r
+            loop.quit()
+        try:
+            page.runJavaScript(js_code, _cb)
+            QTimer.singleShot(timeout_ms, loop.quit)
+            loop.exec()
+            return json.dumps(holder["value"], ensure_ascii=False)[:4000]
+        except Exception as e:
+            return f"ERR: {e}"
+
+    def _read_messages_on_page(self, page, limit):
+        js = _READ_MESSAGES_JS % limit
+        from PyQt6.QtCore import QEventLoop, QTimer
+        loop = QEventLoop(); holder = {"value": None}
+        def _cb(r): holder["value"] = r; loop.quit()
+        try:
+            page.runJavaScript(js, _cb); QTimer.singleShot(2500, loop.quit); loop.exec()
+            return holder["value"] or json.dumps({"ok": False, "error": "timeout"})
+        except Exception as e:
+            return json.dumps({"ok": False, "error": str(e)})
 
     @pyqtSlot(str, result=str)
     def EvalJS(self, js_code):
@@ -811,10 +871,10 @@ class ZapZapControlAdaptor(QDBusAbstractAdaptor):
         """Envía texto en el chat abierto de una cuenta concreta."""
         return self._send_on_account(text, account_id or None)
 
-    def _send_on_account(self, text, account_id):
+    def _send_on_account(self, text, account_id, no_focus=False):
         if not text or not text.strip():
             return "ERR: empty text"
-        page, _ = self._get_page_and_webview(account_id)
+        page, _ = self._get_page_and_webview(account_id, no_focus=no_focus)
         if page is None:
             return "ERR: no active page"
         js_insert = r"""
@@ -871,6 +931,50 @@ class ZapZapControlAdaptor(QDBusAbstractAdaptor):
     def EvalJSOnAccount(self, js_code, account_id=""):
         """Ejecuta JS arbitrario en la página de una cuenta concreta."""
         return self._eval_js_on_page(js_code, account_id or None)
+
+    # ── Variantes NO-FOCUS (background) ──────────────────────────────────────
+    # Operan la página de la cuenta indicada SIN traerla al frente — para
+    # automatizar una cuenta de WhatsApp mientras el usuario usa OTRA en la
+    # misma ventana, sin robarle el foco. Requieren account_id explícito.
+
+    @pyqtSlot(str, str, result=str)
+    def OpenChatOnAccountBg(self, phone, account_id):
+        phone = (phone or "").strip()
+        digits = "".join(c for c in phone if c.isdigit())
+        if digits.startswith("0") and len(digits) == 10:
+            digits = "593" + digits[1:]
+        elif len(digits) == 9:
+            digits = "593" + digits
+        page, _ = self._get_page_and_webview(account_id, no_focus=True)
+        if page is None:
+            return f"ERR: account {account_id} has no active WebView"
+        try:
+            if digits.startswith("593") and hasattr(page, "open_chat_by_number"):
+                target = validate_chat_target("593", digits[3:], "")
+                page.open_chat_by_number(target)  # navega la página de fondo, sin activar ventana
+                return f"OK: OpenChatBg {target.normalized_phone} (no-focus)"
+            page.setUrl(QUrl(f"https://web.whatsapp.com/send?phone={digits}"))
+            return f"OK: OpenChatBg queued {digits} (no-focus)"
+        except Exception as e:
+            return f"ERR: {e}"
+
+    @pyqtSlot(str, str, result=str)
+    def SendMessageOnAccountBg(self, text, account_id):
+        return self._send_on_account(text, account_id, no_focus=True)
+
+    @pyqtSlot(int, str, result=str)
+    def ReadMessagesOnAccountBg(self, limit, account_id):
+        page, _ = self._get_page_and_webview(account_id, no_focus=True)
+        if page is None:
+            return json.dumps({"ok": False, "error": f"account {account_id} has no page (bg)"})
+        return self._read_messages_on_page(page, limit)
+
+    @pyqtSlot(str, str, result=str)
+    def EvalJSOnAccountBg(self, js_code, account_id):
+        page, _ = self._get_page_and_webview(account_id, no_focus=True)
+        if page is None:
+            return "ERR: no page (bg)"
+        return self._run_js_blocking(page, js_code)
 
     def _eval_js_on_page(self, js_code, account_id):
         page, _ = self._get_page_and_webview(account_id)
