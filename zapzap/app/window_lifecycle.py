@@ -30,6 +30,7 @@ class WindowLifecycle:
         self._system_settings = SystemSettings()
         self._window_settings = WindowSettings()
         self._restore_mode = self.NORMAL
+        self._hide_in_progress = False
         self._quit_requested = False
 
     def load_settings(self) -> None:
@@ -65,6 +66,15 @@ class WindowLifecycle:
     def request_close(self) -> None:
         self.host.close()
 
+    def hide_window(self) -> None:
+        """Hide the top-level host after capturing its visible state."""
+        self.remember_window_state()
+        self._hide_in_progress = True
+        try:
+            self.host.hide()
+        finally:
+            self._hide_in_progress = False
+
     def request_quit(self) -> None:
         """Close the host while bypassing background-only window behavior."""
         self._quit_requested = True
@@ -96,7 +106,7 @@ class WindowLifecycle:
             and not quit_requested
         ):
             self.content.prepare_for_background()
-            self.host.hide()
+            self.hide_window()
             event.ignore()
             return
 
@@ -104,6 +114,8 @@ class WindowLifecycle:
 
     def remember_window_state(self, source: QWidget | None = None) -> None:
         if source is not None and source is not self.host:
+            return
+        if self._hide_in_progress:
             return
 
         if self.host.isFullScreen():
@@ -124,12 +136,15 @@ class WindowLifecycle:
     def show_window(self) -> None:
         if self.host.isHidden():
             self.restore_window()
+            self.host.show()
             QApplication.instance().setActiveWindow(self.host)
+            self.host.raise_()
+            self.host.activateWindow()
         elif not self.host.isActiveWindow():
             self.host.activateWindow()
             self.host.raise_()
         else:
-            self.host.hide()
+            self.hide_window()
 
 
 class ClientSideWindowHost(ClientSideWindow):
@@ -156,6 +171,9 @@ class ClientSideWindowHost(ClientSideWindow):
 
     def request_close(self):
         self.lifecycle.request_close()
+
+    def hide_window(self):
+        self.lifecycle.hide_window()
 
     def request_quit(self):
         self.lifecycle.request_quit()

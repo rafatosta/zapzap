@@ -31,6 +31,9 @@ class _Window(QMainWindow):
     def restore_window(self):
         self.lifecycle.restore_window()
 
+    def show_window(self):
+        self.lifecycle.show_window()
+
     def prepare_for_background(self):
         self.background_preparations += 1
 
@@ -88,17 +91,21 @@ class WindowStateRestoreTest(QtTestCase):
         self.window.showMaximized()
         self.assertTrue(self.window.isMaximized())
 
-        self.window.hide()
-        self.window.restore_window()
+        self.window.lifecycle.hide_window()
+        self.assertTrue(self.window.isHidden())
+        self.window.show_window()
 
+        self.assertTrue(self.window.isVisible())
         self.assertTrue(self.window.isMaximized())
 
     def test_normal_window_is_restored_normal(self):
         self.window.showNormal()
 
-        self.window.hide()
-        self.window.restore_window()
+        self.window.lifecycle.hide_window()
+        self.assertTrue(self.window.isHidden())
+        self.window.show_window()
 
+        self.assertTrue(self.window.isVisible())
         self.assertFalse(self.window.isMaximized())
         self.assertFalse(self.window.isFullScreen())
 
@@ -106,8 +113,8 @@ class WindowStateRestoreTest(QtTestCase):
         self.window.showFullScreen()
         self.assertTrue(self.window.isFullScreen())
 
-        self.window.hide()
-        self.window.restore_window()
+        self.window.lifecycle.hide_window()
+        self.window.show_window()
 
         self.assertTrue(self.window.isFullScreen())
 
@@ -121,8 +128,8 @@ class WindowStateRestoreTest(QtTestCase):
         self.window.showMaximized()
 
         for _ in range(2):
-            self.window.hide()
-            self.window.restore_window()
+            self.window.lifecycle.hide_window()
+            self.window.show_window()
 
         self.assertTrue(self.window.isMaximized())
 
@@ -178,6 +185,71 @@ class WindowStateRestoreTest(QtTestCase):
         self.assertIs(host.browser, content.browser)
         self.assertEqual(content.settings_opened, 1)
         self.assertNotIn("__getattr__", ClientSideWindowHost.__dict__)
+
+    def test_csr_ctrl_w_hides_host_and_restores_normal_window(self):
+        content = _MainWindowContent([])
+        host = ClientSideWindowHost(content)
+        self.addCleanup(host.deleteLater)
+        host.showNormal()
+        self.app.processEvents()
+
+        content.actionHide.trigger()
+        self.app.processEvents()
+
+        self.assertTrue(host.isHidden())
+        self.assertFalse(content.isHidden())
+        self.assertIs(content.window(), host)
+
+        host.show_window()
+        self.app.processEvents()
+
+        self.assertTrue(host.isVisible())
+        self.assertFalse(host.isMaximized())
+        self.assertFalse(host.isFullScreen())
+        self.assertFalse(content.isHidden())
+        self.assertIs(content.window(), host)
+
+    def test_csr_ctrl_w_hides_host_and_restores_maximized_window(self):
+        content = _MainWindowContent([])
+        host = ClientSideWindowHost(content)
+        self.addCleanup(host.deleteLater)
+        host.showMaximized()
+        self.app.processEvents()
+
+        content.actionHide.trigger()
+        self.app.processEvents()
+
+        self.assertTrue(host.isHidden())
+        self.assertFalse(content.isHidden())
+
+        host.show_window()
+        self.app.processEvents()
+
+        self.assertTrue(host.isVisible())
+        self.assertTrue(host.isMaximized())
+        self.assertFalse(content.isHidden())
+        self.assertIs(content.window(), host)
+
+    def test_csr_ctrl_w_hides_host_and_restores_fullscreen_window(self):
+        content = _MainWindowContent([])
+        host = ClientSideWindowHost(content)
+        self.addCleanup(host.deleteLater)
+        host.showFullScreen()
+        self.app.processEvents()
+
+        content.actionHide.trigger()
+        self.app.processEvents()
+
+        self.assertTrue(host.isHidden())
+        self.assertFalse(content.isHidden())
+
+        host.show_window()
+        self.app.processEvents()
+
+        self.assertTrue(host.isVisible())
+        self.assertTrue(host.isFullScreen())
+        self.assertFalse(content.isHidden())
+        self.assertIs(content.window(), host)
 
     def test_destroying_csr_host_does_not_query_it_from_embedded_content(self):
         hide_results = []

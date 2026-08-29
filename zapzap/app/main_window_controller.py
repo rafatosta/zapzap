@@ -132,7 +132,7 @@ class MainWindowController(MainWindowView):
         """Conectar ações do menu 'Arquivo'."""
         self.actionSettings.triggered.connect(self.open_settings)
         self.actionQuit.triggered.connect(self.request_quit)
-        self.actionHide.triggered.connect(self.hide)
+        self.actionHide.triggered.connect(self.hide_window)
         self.actionReload.triggered.connect(self.browser.reload_pages)
         self.actionNew_chat.triggered.connect(self.new_chat)
         self.actionBy_phone_number.triggered.connect(self.new_chat_by_phone)
@@ -289,6 +289,10 @@ class MainWindowController(MainWindowView):
     def request_close(self):
         """Request a real Qt close event from the active top-level host."""
         self.lifecycle.request_close()
+
+    def hide_window(self):
+        """Hide the active top-level host without changing close semantics."""
+        self.lifecycle.hide_window()
 
     def request_quit(self):
         """Explicitly quit even when closing the window keeps ZapZap running."""

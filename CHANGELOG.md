@@ -41,6 +41,8 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Restored client-side decorated windows correctly after hiding them with
+  Ctrl+W, including their normal, maximized, or fullscreen state.
 - Matched the client-side Adwaita close button to the neutral gray
   window-control palette instead of displaying it in red on GNOME.
 
