@@ -194,11 +194,11 @@ da conta, preservando sessão, User-Agent e permissões sem criar outro profile.
 Cada `WebView` mantém o registry dessas janelas e as encerra antes de destruir
 a página principal ou o profile; fechar uma janela interrompe, desacopla e
 agenda a destruição de sua página exatamente uma vez. Solicitações
-`windowCloseRequested` da página fecham a janela nativa. No fechamento iniciado
-pelo usuário, a página permanece anexada até o fim do evento Qt e é destruída
-no próximo ciclo, sem um `Stop` antecipado. Como o QtWebEngine não oferece ao
-aplicativo uma API que garanta o encerramento da chamada mantida pelo opener, a
-confirmação orienta o usuário a usar primeiro o botão de encerrar do WhatsApp.
+`windowCloseRequested` da página fecham a janela nativa. O fechamento manual é
+bloqueado porque destruir a página enquanto o WhatsApp mantém a chamada no
+opener pode deixar o processo WebEngine sem resposta. Um aviso somente com
+confirmação orienta o usuário a usar o botão de encerrar do WhatsApp; redirects,
+desativação de conta e shutdown ainda usam o cleanup controlado pelo host.
 
 O proxy é único e global ao processo. Somente as chaves `proxy/*` alimentam
 `ProxyManager`; trocar, ativar ou exibir uma conta não consulta nem reaplica

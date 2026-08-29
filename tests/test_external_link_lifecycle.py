@@ -317,29 +317,28 @@ class InternalPopupLifecycleTests(unittest.TestCase):
         self.assertFalse(popup._stop_before_cleanup)
         popup.close.assert_called_once_with()
 
-    def test_user_close_warning_explains_that_call_may_remain_active(self):
+    def test_user_cannot_force_close_the_popup(self):
         popup = SimpleNamespace(
             _programmatic_close=False,
             _page_requested_close=False,
-            _confirm_user_close=Mock(return_value=False),
+            _explain_manual_close_blocked=Mock(),
         )
 
         accepted = InternalWebPopup._should_accept_close(popup)
 
         self.assertFalse(accepted)
-        popup._confirm_user_close.assert_called_once_with()
+        popup._explain_manual_close_blocked.assert_called_once_with()
 
-    def test_user_close_warning_recommends_whatsapp_end_call_action(self):
+    def test_user_close_warning_has_only_acknowledgement_and_end_call_guidance(self):
         popup = object()
         with patch(
-            "zapzap.features.browser.web.popup_window.AlertManager.question",
-            return_value=True,
-        ) as question:
-            accepted = InternalWebPopup._confirm_user_close(popup)
+            "zapzap.features.browser.web.popup_window.AlertManager.warning",
+        ) as warning:
+            result = InternalWebPopup._explain_manual_close_blocked(popup)
 
-        self.assertTrue(accepted)
-        message = question.call_args.args[2]
-        self.assertIn("may not end an active call", message)
+        self.assertIsNone(result)
+        message = warning.call_args.args[2]
+        self.assertIn("cannot be closed manually", message)
         self.assertIn("WhatsApp's End call button", message)
 
     def test_host_close_bypasses_confirmation_and_cleans_synchronously(self):

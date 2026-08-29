@@ -54,22 +54,22 @@ class InternalWebPopup(QWebEngineView):
         # Host teardown must dispose the page before its shared profile.
         self.cleanup()
 
-    def _confirm_user_close(self) -> bool:
-        return AlertManager.question(
+    def _explain_manual_close_blocked(self) -> None:
+        AlertManager.warning(
             self,
-            _("Close WhatsApp window?"),
+            _("Manual close unavailable"),
             _(
-                "Closing this window may not end an active call. To ensure "
-                "the call ends, use WhatsApp's End call button before closing.\n\n"
-                "Close the window anyway?"
+                "To prevent the application from becoming unresponsive, this "
+                "window cannot be closed manually. Use WhatsApp's End call "
+                "button. The window will close when WhatsApp requests it."
             ),
-            icon=AlertManager.warning_icon,
         )
 
     def _should_accept_close(self) -> bool:
         if self._programmatic_close or self._page_requested_close:
             return True
-        return self._confirm_user_close()
+        self._explain_manual_close_blocked()
+        return False
 
     def cleanup(self):
         """Stop and detach the WebEngine page exactly once."""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-29 19:36-0300\n"
+"POT-Creation-Date: 2026-08-29 20:33-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Spanish\n"
@@ -3751,15 +3751,15 @@ msgid "DevTools - {}"
 msgstr "Herramientas de desarrollo: {}"
 
 #: zapzap/features/browser/web/popup_window.py:60
-msgid "Close WhatsApp window?"
-msgstr ""
+#, fuzzy
+msgid "Manual close unavailable"
+msgstr "no disponible"
 
 #: zapzap/features/browser/web/popup_window.py:62
 msgid ""
-"Closing this window may not end an active call. To ensure the call ends, use "
-"WhatsApp's End call button before closing.\n"
-"\n"
-"Close the window anyway?"
+"To prevent the application from becoming unresponsive, this window cannot be "
+"closed manually. Use WhatsApp's End call button. The window will close when "
+"WhatsApp requests it."
 msgstr ""
 
 #: zapzap/ui/components/browser_grid_view.py:75
