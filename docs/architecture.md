@@ -182,6 +182,24 @@ WhatsApp. Scripts mantidos em `features/browser/web/scripts/` são ativos em
 tempo de execução e devem ser considerados pelo teste de código estático mesmo
 quando chamam identificadores Python indiretamente.
 
+Novas janelas solicitadas pelo WhatsApp passam primeiro por
+`PopupRoutingPage`, que classifica a primeira URL significativa antes do
+carregamento. Hosts de `__allowed_hosts__` e os esquemas internos `blob`,
+`data` e `about` permanecem no WebEngine; destinos externos são recusados e
+entregues uma única vez ao navegador do sistema. `about:blank` é tratado como
+transitório e aguarda o destino seguinte com um timeout que descarta páginas
+sem navegação definitiva. Pop-ups internos usam
+`InternalWebPopup` com a própria página roteada e o mesmo `QWebEngineProfile`
+da conta, preservando sessão, User-Agent e permissões sem criar outro profile.
+Cada `WebView` mantém o registry dessas janelas e as encerra antes de destruir
+a página principal ou o profile; fechar uma janela interrompe, desacopla e
+agenda a destruição de sua página exatamente uma vez. Solicitações
+`windowCloseRequested` da página fecham a janela nativa. No fechamento iniciado
+pelo usuário, a página permanece anexada até o fim do evento Qt e é destruída
+no próximo ciclo, sem um `Stop` antecipado. Como o QtWebEngine não oferece ao
+aplicativo uma API que garanta o encerramento da chamada mantida pelo opener, a
+confirmação orienta o usuário a usar primeiro o botão de encerrar do WhatsApp.
+
 O proxy é único e global ao processo. Somente as chaves `proxy/*` alimentam
 `ProxyManager`; trocar, ativar ou exibir uma conta não consulta nem reaplica
 proxy. As chaves históricas `<user_id>/proxy/*` não são migradas nem lidas, para
@@ -214,8 +232,9 @@ para acompanhar imediatamente a troca do catálogo sem recriar a rota.
 `QDesktopServices` e oferece copiar o endereço quando o navegador não puder ser
 aberto.
 
-Páginas transitórias criadas para capturar links externos devem ser
-interrompidas e destruídas assim que a URL for entregue ao navegador padrão.
+Páginas transitórias criadas para classificar novas janelas devem bloquear o
+carregamento externo e ser interrompidas e destruídas assim que a URL for
+entregue ao navegador padrão.
 
 Ao remover ou desativar uma conta, preserve a captura e a limpeza dos diretórios
 do perfil. A limpeza de uma conta que nunca foi ativada pode resolver os caminhos

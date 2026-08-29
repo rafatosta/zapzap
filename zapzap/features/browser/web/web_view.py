@@ -12,6 +12,7 @@ from PyQt6.QtGui import QAction
 
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.browser.web.page_controller import PageController
+from zapzap.features.browser.web.popup_window import InternalWebPopup
 from zapzap.features.accounts.domain.user import (
     MAX_ZOOM_FACTOR,
     MIN_ZOOM_FACTOR,
@@ -67,6 +68,7 @@ class WebView(QWebEngineView):
         self.profile = None  # Inicializa o perfil como None
         self._gesture_filter_installed = False
         self.whatsapp_page = None
+        self._popup_windows = set()
 
         self._cache_path = None
         self._storage_path = None
@@ -336,7 +338,11 @@ class WebView(QWebEngineView):
 
     def _setup_page(self):
         """Configura a página e carrega a URL inicial."""
-        self.whatsapp_page = PageController(self.profile, parent=self)
+        self.whatsapp_page = PageController(
+            self.profile,
+            popup_host=self,
+            parent=self,
+        )
         self.whatsapp_page.user_id = self.user.id
         self.whatsapp_page.renderProcessTerminated.connect(
             self._on_render_crash)
@@ -516,6 +522,35 @@ class WebView(QWebEngineView):
 
         self.whatsapp_page.apply_theme(current_theme, current_color_scheme)
 
+    def open_internal_popup(self, page):
+        """Promote a routed page to an independent authenticated window."""
+        if self._shutting_down:
+            return None
+
+        popup = InternalWebPopup(page, self._on_popup_closed)
+        popup.page_index = self.page_index
+        self._popup_windows.add(popup)
+        popup.show()
+        popup.raise_()
+        popup.activateWindow()
+        return popup
+
+    def _on_popup_closed(self, popup):
+        self._popup_windows.discard(popup)
+
+    def close_popup_page(self, page):
+        """Close the registered window that owns a redirected popup page."""
+        for popup in tuple(self._popup_windows):
+            if popup.popup_page is page:
+                popup.close_from_host()
+                return True
+        return False
+
+    def _close_internal_popups(self):
+        for popup in tuple(self._popup_windows):
+            popup.close_from_host()
+        self._popup_windows.clear()
+
     @staticmethod
     def profile_paths(user_id) -> tuple[str, str]:
         """Resolve o cache e o armazenamento de um perfil sem abri-lo."""
@@ -590,6 +625,7 @@ class WebView(QWebEngineView):
         self._stop_timers()
         self._save_zoom_factor()
         self.stop()
+        self._close_internal_popups()
 
         if self._gesture_filter_installed:
             app = QApplication.instance()

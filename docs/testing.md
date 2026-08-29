@@ -89,7 +89,7 @@ documente o que ele protege.
 | `test_display_backend.py` | seleção automática/forçada do backend Qt, precedência de ambiente/CLI/plataforma e migração da chave Wayland legada |
 | `test_documentation_structure.py` | camadas de UI, ciclo numérico versionado do changelog e sincronização entre árvore, inventários técnicos, convenção de commits e guia para agentes |
 | `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
-| `test_external_link_lifecycle.py` | descarte da página WebEngine transitória após abrir links externos |
+| `test_external_link_lifecycle.py` | classificação interna/externa de pop-ups, profile compartilhado, entrega única ao navegador e cleanup no fechamento/shutdown |
 | `test_gpu_environment.py` | detecção multi-GPU, conectores e seleção de render node |
 | `test_grid_thumbnail_cache.py` | limite físico/DPR, reutilização, fallback, seleção e ciclo de vida das miniaturas da grade |
 | `test_http_cache_size.py` | cache em MiB, tipos de cache, política de cookies, memória JavaScript, autocura persistida e fallbacks de perfil sem WebEngine real |

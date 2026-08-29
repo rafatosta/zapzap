@@ -44,6 +44,11 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Kept WhatsApp voice and video call pop-ups inside authenticated ZapZap
+  windows while continuing to hand external links to the default browser and
+  cleaning every temporary or internal WebEngine page. Page-requested closure
+  now closes the native popup, while manual closure preserves graceful teardown
+  and warns that WhatsApp's End call action is the only guaranteed hang-up.
 - Selected the native Qt display backend automatically on Linux, using Wayland
   for Wayland sessions and XCB for X11 while preserving explicit environment,
   command-line, user fallback, and Flatpak behavior.
