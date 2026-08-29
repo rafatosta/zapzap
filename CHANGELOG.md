@@ -26,6 +26,8 @@ releases and the AppStream metadata.
 
 ### Changed
 
+- Expanded interface scale choices from 50% through 200% to use 5% increments
+  while preserving the existing global scale setting and restart behavior.
 - Added a dedicated Conventional Commits guide and required every code or
   structural change to include a copy-ready commit suggestion.
 - Moved managed spell-check dictionaries to one application-owned data

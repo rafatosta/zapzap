@@ -7,21 +7,25 @@ from PyQt6.QtGui import QResizeEvent
 from PyQt6.QtWidgets import QApplication, QBoxLayout
 
 from qt_test_case import QtTestCase
-from zapzap.ui.components import SUBSETTING_INDENT, SettingsDivider
 from zapzap.features.settings.pages.appearance.controller import (
     AppearanceSettingsController,
 )
 from zapzap.features.settings.pages.appearance.view import (
     AppearanceSettingsView,
 )
+from zapzap.ui.components import (
+    SUBSETTING_INDENT,
+    SettingsDivider,
+    SettingsRestartBar,
+)
 
 
 class FakeAppearanceSettingsModel:
 
-    def __init__(self, tray_enabled=False, csr_enabled=False):
+    def __init__(self, tray_enabled=False, csr_enabled=False, scale=100):
         self.browser_sidebar_visible = True
         self.menubar_visible = True
-        self.scale = 100
+        self.scale = scale
         self.tray_icon_enabled = tray_enabled
         self.notification_counter_enabled = True
         self.grid_columns = 2
@@ -93,6 +97,40 @@ class AppearanceSettingsUiTests(QtTestCase):
         self.assertEqual(
             page.csr_direction_row.title_label.text(),
             "Button position",
+        )
+
+    def test_interface_scale_options_cover_full_range_in_five_percent_steps(self):
+        page = AppearanceSettingsView()
+        scales = [
+            int(page.scaleComboBox.itemText(index).split()[0])
+            for index in range(page.scaleComboBox.count())
+        ]
+
+        self.assertEqual(scales[0], 50)
+        self.assertEqual(scales[-1], 200)
+        self.assertIn(95, scales)
+        self.assertIn(105, scales)
+        self.assertTrue(all(
+            current - previous == 5
+            for previous, current in zip(scales, scales[1:])
+        ))
+
+    def test_persisted_interface_scales_are_loaded(self):
+        for scale in (75, 95, 100, 125, 150):
+            with self.subTest(scale=scale):
+                page, _model = self._controller(scale=scale)
+                self.assertEqual(page.scaleComboBox.currentText(), f"{scale} %")
+                page.close()
+
+    def test_changing_interface_scale_saves_integer_and_requires_restart(self):
+        page, model = self._controller(scale=95)
+
+        page.scaleComboBox.setCurrentText("105 %")
+
+        self.assertEqual(model.scale, 105)
+        self.assertEqual(
+            page.restart_bar.restart_kind,
+            SettingsRestartBar.APPLICATION,
         )
 
     def test_child_groups_have_no_dividers_and_share_the_same_indent(self):

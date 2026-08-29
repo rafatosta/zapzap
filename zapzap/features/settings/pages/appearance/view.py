@@ -49,7 +49,7 @@ class AppearanceSettingsView(SettingsPage):
         self.scale_row = SettingsSelectRow(
             _("Interface scale"),
             _("Scale the interface for high-DPI or accessibility needs."),
-            ["50 %", "75 %", "100 %", "125 %", "150 %", "175 %", "200 %"],
+            [f"{scale} %" for scale in range(50, 201, 5)],
         )
         self.browser_sidebar = self.browser_sidebar_row.checkbox
         self.mainwindow_menu = self.mainwindow_menu_row.checkbox
