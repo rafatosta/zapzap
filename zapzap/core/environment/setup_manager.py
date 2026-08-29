@@ -22,6 +22,11 @@ from zapzap.core.environment.proxy_manager import ProxyManager
 STRICT_PROXY_WEBRTC_FLAG = (
     "--force-webrtc-ip-handling-policy=disable_non_proxied_udp"
 )
+GPU_MEMORY_BUFFER_VIDEO_FRAMES_FLAG = (
+    "--disable-gpu-memory-buffer-video-frames"
+)
+ZERO_COPY_FLAG = "--disable-zero-copy"
+SOFTWARE_VIDEO_DECODING_FLAG = "--disable-accelerated-video-decode"
 
 
 def update_chromium_flag(
@@ -206,9 +211,20 @@ class SetupManager:
         flags = [f for f in flags if not f.startswith("--ozone-platform")]
 
         environ["QTWEBENGINE_CHROMIUM_FLAGS"] = " ".join(flags)
+        performance_settings = PerformanceSettings()
         update_chromium_flag(
-            "--disable-accelerated-video-decode",
-            PerformanceSettings().get_boolean_setting(
+            GPU_MEMORY_BUFFER_VIDEO_FRAMES_FLAG,
+            performance_settings.get_boolean_setting(
+                "disable_gpu_memory_buffer_video_frames"
+            ),
+        )
+        update_chromium_flag(
+            ZERO_COPY_FLAG,
+            performance_settings.get_boolean_setting("disable_zero_copy"),
+        )
+        update_chromium_flag(
+            SOFTWARE_VIDEO_DECODING_FLAG,
+            performance_settings.get_boolean_setting(
                 "software_video_decoding"
             ),
         )

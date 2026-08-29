@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-26 14:16-0300\n"
+"POT-Creation-Date: 2026-08-29 18:12-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Dutch\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.5\n"
 
-#: zapzap/app/window_lifecycle.py:79
+#: zapzap/app/window_lifecycle.py:89
 msgid "Close ZapZap"
 msgstr "Sluiten ZapZap"
 
-#: zapzap/app/window_lifecycle.py:80
+#: zapzap/app/window_lifecycle.py:90
 msgid "Are you sure you want to close?"
 msgstr "Weet u zeker dat u wilt sluiten?"
 
-#: zapzap/app/window_lifecycle.py:81
+#: zapzap/app/window_lifecycle.py:91
 msgid "Don't ask again"
 msgstr "Vraag het niet opnieuw"
 
@@ -960,170 +960,32 @@ msgstr ""
 msgid "New message..."
 msgstr "Nieuw bericht…"
 
-#: zapzap/features/shortcuts/model.py:12
-#: zapzap/ui/components/browser_sidebar.py:192
-msgid "New conversation"
-msgstr "Nieuw gesprek"
+#: zapzap/features/reporting/coordinator.py:32
+msgid "ZapZap found a problem"
+msgstr ""
 
-#: zapzap/features/shortcuts/model.py:13
-msgid "Mark as unread"
-msgstr "Markeren als ongelezen"
+#: zapzap/features/reporting/coordinator.py:33
+msgid "ZapZap closed unexpectedly during the last run."
+msgstr ""
 
-#: zapzap/features/shortcuts/model.py:14
-msgid "Archive conversation"
-msgstr "Gesprek archiveren"
+#: zapzap/features/reporting/coordinator.py:35
+msgid ""
+"A sanitized report was prepared on this device. ZapZap will not send it; "
+"after reviewing, you can copy it and open GitHub."
+msgstr ""
 
-#: zapzap/features/shortcuts/model.py:15
-msgid "Pin conversation"
-msgstr "Gesprek vastmaken"
+#: zapzap/features/reporting/coordinator.py:40
+msgid "Keep locally"
+msgstr ""
 
-#: zapzap/features/shortcuts/model.py:16
-msgid "Next conversation"
-msgstr "Volgend gesprek"
+#: zapzap/features/reporting/coordinator.py:41
+msgid "Discard report"
+msgstr ""
 
-#: zapzap/features/shortcuts/model.py:17
-msgid "Close conversation"
-msgstr "Gesprek sluiten"
-
-#: zapzap/features/shortcuts/model.py:18
-msgid "Search in conversation"
-msgstr "Gesprek doorzoeken"
-
-#: zapzap/features/shortcuts/model.py:19
-msgid "Previous conversation"
-msgstr "Vorig gesprek"
-
-#: zapzap/features/shortcuts/model.py:20
-msgid "Delete conversation"
-msgstr "Gesprek verwijderen"
-
-#: zapzap/features/shortcuts/model.py:21
-msgid "Profile and status"
-msgstr "Profiel en status"
-
-#: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
-#: zapzap/features/tray/sys_tray_manager.py:51
-#: zapzap/features/settings/shell/settings_controller.py:234
-#: zapzap/features/settings/shell/settings_sidebar.py:61
-#: zapzap/ui/components/main_window.py:143
-msgid "Settings"
-msgstr "Instellingen"
-
-#: zapzap/features/shortcuts/model.py:23
-msgid "Decrease speed of selected voice message"
-msgstr "Snelheid van gekozen spraakbericht verlagen"
-
-#: zapzap/features/shortcuts/model.py:24
-msgid "Increase speed of selected voice message"
-msgstr "Snelheid van gekozen spraakbericht verhogen"
-
-#: zapzap/features/shortcuts/model.py:25
-msgid "Emoji panel"
-msgstr "Emojipaneel"
-
-#: zapzap/features/shortcuts/model.py:26
-msgid "Sticker panel"
-msgstr "Stickerpaneel"
-
-#: zapzap/features/shortcuts/model.py:27
-msgid "GIF panel"
-msgstr "GIF-paneel"
-
-#: zapzap/features/shortcuts/model.py:28
-msgid "Lock the app"
-msgstr "App vergrendelen"
-
-#: zapzap/features/shortcuts/model.py:29
-msgid "Mute"
-msgstr "Dempen"
-
-#: zapzap/features/shortcuts/model.py:30
-msgid "Search"
-msgstr "Zoeken"
-
-#: zapzap/features/shortcuts/model.py:31
-msgid "New group"
-msgstr "Nieuwe groep"
-
-#: zapzap/features/shortcuts/model.py:32
-msgid "Extended search"
-msgstr "Uitgebreid zoeken"
-
-#: zapzap/features/shortcuts/model.py:39
-#: zapzap/ui/components/main_window.py:141
-msgid "Hide"
-msgstr "Verbergen"
-
-#: zapzap/features/shortcuts/model.py:40
-msgid "Exit"
-msgstr "Afsluiten"
-
-#: zapzap/features/shortcuts/model.py:41
-msgid "Fullscreen"
-msgstr "Schermvullende weergave"
-
-#: zapzap/features/shortcuts/model.py:42
-#: zapzap/ui/components/main_window.py:158
-msgid "Automatic theme"
-msgstr "Automatisch thema"
-
-#: zapzap/features/shortcuts/model.py:43
-#: zapzap/ui/components/main_window.py:160
-msgid "Light theme"
-msgstr "Licht thema"
-
-#: zapzap/features/shortcuts/model.py:44
-#: zapzap/ui/components/main_window.py:162
-msgid "Dark theme"
-msgstr "Donker thema"
-
-#: zapzap/features/shortcuts/model.py:45
-#: zapzap/ui/components/main_window.py:145
-msgid "Reset zoom"
-msgstr "Oorspronkelijk zoomniveau"
-
-#: zapzap/features/shortcuts/model.py:46
-#: zapzap/ui/components/main_window.py:147
-msgid "Zoom in"
-msgstr "Inzoomen"
-
-#: zapzap/features/shortcuts/model.py:47
-#: zapzap/ui/components/main_window.py:149
-msgid "Zoom out"
-msgstr "Uitzoomen"
-
-#: zapzap/features/shortcuts/model.py:48
-msgid "Reload pages"
-msgstr "Pagina's herladen"
-
-#: zapzap/features/shortcuts/model.py:49
-msgid "New conversation by phone number"
-msgstr "Nieuw gesprek op basis van telefoonnummer"
-
-#: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:531
-#: zapzap/ui/components/browser_sidebar.py:188
-msgid "New account"
-msgstr "Nieuw account"
-
-#: zapzap/features/shortcuts/view.py:34 zapzap/features/shortcuts/view.py:42
-#: zapzap/ui/components/main_window.py:170
-msgid "Keyboard shortcuts"
-msgstr "Sneltoetsen"
-
-#: zapzap/features/shortcuts/view.py:49
-msgid "WhatsApp Web"
-msgstr "WhatsApp Web"
-
-#: zapzap/features/tray/sys_tray_manager.py:50
-msgid "Show"
-msgstr "Bekijken"
-
-#: zapzap/features/tray/sys_tray_manager.py:53
-#: zapzap/features/settings/shell/settings_view.py:38
-#: zapzap/ui/components/main_window.py:139
-msgid "Quit"
-msgstr "Afsluiten"
+#: zapzap/features/reporting/coordinator.py:42
+#: zapzap/features/reporting/dialogs.py:214
+msgid "Review report"
+msgstr ""
 
 #: zapzap/features/reporting/dialogs.py:29
 msgid "ZapZap closed unexpectedly"
@@ -1297,11 +1159,6 @@ msgstr ""
 msgid "Include sanitized logs, when available"
 msgstr ""
 
-#: zapzap/features/reporting/dialogs.py:214
-#: zapzap/features/reporting/coordinator.py:42
-msgid "Review report"
-msgstr ""
-
 #: zapzap/features/reporting/dialogs.py:223
 msgid "Review your report"
 msgstr ""
@@ -1392,27 +1249,170 @@ msgstr ""
 msgid "Complete report to copy"
 msgstr ""
 
-#: zapzap/features/reporting/coordinator.py:32
-msgid "ZapZap found a problem"
-msgstr ""
+#: zapzap/features/shortcuts/model.py:12
+#: zapzap/ui/components/browser_sidebar.py:192
+msgid "New conversation"
+msgstr "Nieuw gesprek"
 
-#: zapzap/features/reporting/coordinator.py:33
-msgid "ZapZap closed unexpectedly during the last run."
-msgstr ""
+#: zapzap/features/shortcuts/model.py:13
+msgid "Mark as unread"
+msgstr "Markeren als ongelezen"
 
-#: zapzap/features/reporting/coordinator.py:35
-msgid ""
-"A sanitized report was prepared on this device. ZapZap will not send it; "
-"after reviewing, you can copy it and open GitHub."
-msgstr ""
+#: zapzap/features/shortcuts/model.py:14
+msgid "Archive conversation"
+msgstr "Gesprek archiveren"
 
-#: zapzap/features/reporting/coordinator.py:40
-msgid "Keep locally"
-msgstr ""
+#: zapzap/features/shortcuts/model.py:15
+msgid "Pin conversation"
+msgstr "Gesprek vastmaken"
 
-#: zapzap/features/reporting/coordinator.py:41
-msgid "Discard report"
-msgstr ""
+#: zapzap/features/shortcuts/model.py:16
+msgid "Next conversation"
+msgstr "Volgend gesprek"
+
+#: zapzap/features/shortcuts/model.py:17
+msgid "Close conversation"
+msgstr "Gesprek sluiten"
+
+#: zapzap/features/shortcuts/model.py:18
+msgid "Search in conversation"
+msgstr "Gesprek doorzoeken"
+
+#: zapzap/features/shortcuts/model.py:19
+msgid "Previous conversation"
+msgstr "Vorig gesprek"
+
+#: zapzap/features/shortcuts/model.py:20
+msgid "Delete conversation"
+msgstr "Gesprek verwijderen"
+
+#: zapzap/features/shortcuts/model.py:21
+msgid "Profile and status"
+msgstr "Profiel en status"
+
+#: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
+#: zapzap/features/tray/sys_tray_manager.py:51
+#: zapzap/features/settings/shell/settings_controller.py:234
+#: zapzap/features/settings/shell/settings_sidebar.py:61
+#: zapzap/ui/components/main_window.py:143
+msgid "Settings"
+msgstr "Instellingen"
+
+#: zapzap/features/shortcuts/model.py:23
+msgid "Decrease speed of selected voice message"
+msgstr "Snelheid van gekozen spraakbericht verlagen"
+
+#: zapzap/features/shortcuts/model.py:24
+msgid "Increase speed of selected voice message"
+msgstr "Snelheid van gekozen spraakbericht verhogen"
+
+#: zapzap/features/shortcuts/model.py:25
+msgid "Emoji panel"
+msgstr "Emojipaneel"
+
+#: zapzap/features/shortcuts/model.py:26
+msgid "Sticker panel"
+msgstr "Stickerpaneel"
+
+#: zapzap/features/shortcuts/model.py:27
+msgid "GIF panel"
+msgstr "GIF-paneel"
+
+#: zapzap/features/shortcuts/model.py:28
+msgid "Lock the app"
+msgstr "App vergrendelen"
+
+#: zapzap/features/shortcuts/model.py:29
+msgid "Mute"
+msgstr "Dempen"
+
+#: zapzap/features/shortcuts/model.py:30
+msgid "Search"
+msgstr "Zoeken"
+
+#: zapzap/features/shortcuts/model.py:31
+msgid "New group"
+msgstr "Nieuwe groep"
+
+#: zapzap/features/shortcuts/model.py:32
+msgid "Extended search"
+msgstr "Uitgebreid zoeken"
+
+#: zapzap/features/shortcuts/model.py:39
+#: zapzap/ui/components/main_window.py:141
+msgid "Hide"
+msgstr "Verbergen"
+
+#: zapzap/features/shortcuts/model.py:40
+msgid "Exit"
+msgstr "Afsluiten"
+
+#: zapzap/features/shortcuts/model.py:41
+msgid "Fullscreen"
+msgstr "Schermvullende weergave"
+
+#: zapzap/features/shortcuts/model.py:42
+#: zapzap/ui/components/main_window.py:158
+msgid "Automatic theme"
+msgstr "Automatisch thema"
+
+#: zapzap/features/shortcuts/model.py:43
+#: zapzap/ui/components/main_window.py:160
+msgid "Light theme"
+msgstr "Licht thema"
+
+#: zapzap/features/shortcuts/model.py:44
+#: zapzap/ui/components/main_window.py:162
+msgid "Dark theme"
+msgstr "Donker thema"
+
+#: zapzap/features/shortcuts/model.py:45
+#: zapzap/ui/components/main_window.py:145
+msgid "Reset zoom"
+msgstr "Oorspronkelijk zoomniveau"
+
+#: zapzap/features/shortcuts/model.py:46
+#: zapzap/ui/components/main_window.py:147
+msgid "Zoom in"
+msgstr "Inzoomen"
+
+#: zapzap/features/shortcuts/model.py:47
+#: zapzap/ui/components/main_window.py:149
+msgid "Zoom out"
+msgstr "Uitzoomen"
+
+#: zapzap/features/shortcuts/model.py:48
+msgid "Reload pages"
+msgstr "Pagina's herladen"
+
+#: zapzap/features/shortcuts/model.py:49
+msgid "New conversation by phone number"
+msgstr "Nieuw gesprek op basis van telefoonnummer"
+
+#: zapzap/features/shortcuts/model.py:50
+#: zapzap/features/browser/shell/browser_controller.py:531
+#: zapzap/ui/components/browser_sidebar.py:188
+msgid "New account"
+msgstr "Nieuw account"
+
+#: zapzap/features/shortcuts/view.py:34 zapzap/features/shortcuts/view.py:42
+#: zapzap/ui/components/main_window.py:170
+msgid "Keyboard shortcuts"
+msgstr "Sneltoetsen"
+
+#: zapzap/features/shortcuts/view.py:49
+msgid "WhatsApp Web"
+msgstr "WhatsApp Web"
+
+#: zapzap/features/tray/sys_tray_manager.py:50
+msgid "Show"
+msgstr "Bekijken"
+
+#: zapzap/features/tray/sys_tray_manager.py:53
+#: zapzap/features/settings/shell/settings_view.py:38
+#: zapzap/ui/components/main_window.py:139
+msgid "Quit"
+msgstr "Afsluiten"
 
 #: zapzap/features/settings/shell/settings_controller.py:122
 #: zapzap/features/settings/pages/accounts/view.py:17
@@ -1444,7 +1444,7 @@ msgid "Advanced Customizations"
 msgstr "Geavanceerde aanpassingen"
 
 #: zapzap/features/settings/shell/settings_controller.py:170
-#: zapzap/features/settings/pages/performance_experimental/view.py:19
+#: zapzap/features/settings/pages/performance_experimental/view.py:21
 msgid "Performance experimental"
 msgstr "Prestaties experimenteel"
 
@@ -2076,6 +2076,7 @@ msgstr "Pagina opnieuw laden"
 
 #: zapzap/features/settings/pages/appearance/controller.py:72
 #: zapzap/features/settings/pages/appearance/view.py:95
+#: zapzap/features/settings/pages/performance_experimental/view.py:65
 #: zapzap/ui/components/edit_account_dialog.py:276
 #: zapzap/ui/components/edit_account_dialog.py:418
 #: zapzap/ui/components/edit_account_dialog.py:424
@@ -2574,7 +2575,7 @@ msgstr "Definieer"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:66
 #: zapzap/features/settings/pages/network_privacy/controller.py:276
-#: zapzap/features/settings/pages/performance_experimental/view.py:248
+#: zapzap/features/settings/pages/performance_experimental/view.py:310
 msgid "Restore"
 msgstr "Herstellen"
 
@@ -2892,7 +2893,7 @@ msgstr "Inhoud verbergen"
 msgid "Maximum privacy"
 msgstr "Maximale privacy"
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:144
+#: zapzap/features/settings/pages/performance_experimental/controller.py:205
 msgid ""
 "Defines where the HTTP cache will be stored.\n"
 "Disk: faster after restart.\n"
@@ -2904,7 +2905,7 @@ msgstr ""
 "Geheugen: sneller, maar verloren bij het afsluiten.\n"
 "Geen cache: lager schijfgebruik, langzamer."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:152
+#: zapzap/features/settings/pages/performance_experimental/controller.py:213
 #, fuzzy, python-brace-format
 msgid ""
 "Maximum HTTP cache size: {maximum} MiB.\n"
@@ -2913,7 +2914,7 @@ msgstr ""
 "Maximale HTTP-cachegrootte.\n"
 "0 MB gebruikt het standaardgedrag Chromium."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:157
+#: zapzap/features/settings/pages/performance_experimental/controller.py:218
 msgid ""
 "Keeps cookies between restarts.\n"
 "Disabling may cause frequent logouts."
@@ -2921,7 +2922,7 @@ msgstr ""
 "Bewaart cookies tussen herstarts.\n"
 "Als u dit uitschakelt, kan dit ertoe leiden dat u regelmatig wordt afgemeld."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:161
+#: zapzap/features/settings/pages/performance_experimental/controller.py:222
 msgid ""
 "Runs GPU and rendering in the same process.\n"
 "May reduce memory usage, but can cause instability."
@@ -2929,7 +2930,7 @@ msgstr ""
 "Voert GPU uit en rendert in hetzelfde proces.\n"
 "Kan het geheugengebruik verminderen, maar kan instabiliteit veroorzaken."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:167
+#: zapzap/features/settings/pages/performance_experimental/controller.py:228
 msgid ""
 "Disables GPU hardware acceleration.\n"
 "Recommended only for old GPUs or problematic drivers."
@@ -2937,7 +2938,7 @@ msgstr ""
 "Schakelt hardwareversnelling van GPU uit.\n"
 "Alleen aanbevolen voor oude GPU's of problematische stuurprogramma's."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:173
+#: zapzap/features/settings/pages/performance_experimental/controller.py:234
 msgid ""
 "Automatically honors an unambiguous DRI_PRIME selector on systems with "
 "multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
@@ -2953,7 +2954,7 @@ msgstr ""
 "Schakel dit alleen uit als de automatische oplossing problemen "
 "veroorzaakt.Opnieuw opstarten vereist."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:182
+#: zapzap/features/settings/pages/performance_experimental/controller.py:243
 msgid ""
 "Disables GPU VSync.\n"
 "May reduce latency, but can increase power usage and tearing."
@@ -2962,7 +2963,7 @@ msgstr ""
 "Kan de latentie verminderen, maar kan het stroomverbruik en de tearing "
 "verhogen."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:188
+#: zapzap/features/settings/pages/performance_experimental/controller.py:249
 msgid ""
 "Forces software rendering.\n"
 "Use only in case of graphical issues.\n"
@@ -2972,7 +2973,21 @@ msgstr ""
 "Alleen gebruiken bij grafische problemen.\n"
 "Kan de prestaties aanzienlijk verminderen."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:195
+#: zapzap/features/settings/pages/performance_experimental/controller.py:256
+msgid ""
+"Avoids GPU-backed video frame buffers.\n"
+"May help with black screens, flickering, and GPU crashes.\n"
+"Restart required."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:263
+msgid ""
+"Disables zero-copy GPU buffer transfers.\n"
+"May improve compatibility with some graphics drivers.\n"
+"Restart required."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:270
 msgid ""
 "Disables hardware video decoding without disabling all GPU acceleration.\n"
 "Use when videos play only audio, appear white or black, flicker, or cause "
@@ -2985,7 +3000,7 @@ msgstr ""
 "weergegeven, flikkeren of crashes veroorzaken.\n"
 "Kan het CPU- en batterijgebruik verhogen. Opnieuw opstarten vereist."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:204
+#: zapzap/features/settings/pages/performance_experimental/controller.py:279
 msgid ""
 "Forces the GBM backend on Wayland.\n"
 "Known to fix severe typing lag on NVIDIA drivers."
@@ -2993,7 +3008,7 @@ msgstr ""
 "Forceert de GBM-backend op Wayland.\n"
 "Bekend om het oplossen van ernstige typvertraging op NVIDIA-stuurprogramma's."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:210
+#: zapzap/features/settings/pages/performance_experimental/controller.py:285
 msgid ""
 "Disables the accessibility bus.\n"
 "Known to fix typing lag or CPU spikes in QtWebEngine."
@@ -3001,7 +3016,7 @@ msgstr ""
 "Schakelt de toegankelijkheidsbus uit.\n"
 "Staat bekend om het oplossen van typvertraging of CPU-pieken in QtWebEngine."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:216
+#: zapzap/features/settings/pages/performance_experimental/controller.py:291
 msgid ""
 "Runs the entire Chromium engine in a single process.\n"
 "Reduces memory usage, but may cause crashes.\n"
@@ -3011,7 +3026,7 @@ msgstr ""
 "Vermindert het geheugengebruik, maar kan crashes veroorzaken.\n"
 "Experimenteel gebruik."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:223
+#: zapzap/features/settings/pages/performance_experimental/controller.py:298
 msgid ""
 "Uses a separate process per site.\n"
 "Safer and more stable.\n"
@@ -3021,7 +3036,7 @@ msgstr ""
 "Veiliger en stabieler.\n"
 "Kan het geheugenverbruik verhogen."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:230
+#: zapzap/features/settings/pages/performance_experimental/controller.py:305
 msgid ""
 "JavaScript (V8) memory limit.\n"
 "Automatic is the safest option.\n"
@@ -3035,7 +3050,7 @@ msgstr ""
 "\n"
 "Opnieuw opstarten vereist."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:238
+#: zapzap/features/settings/pages/performance_experimental/controller.py:313
 msgid ""
 "Enables V8 predictable garbage collection schedule.\n"
 "This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
@@ -3049,7 +3064,7 @@ msgstr ""
 "\n"
 "Experimentele optie.Opnieuw opstarten vereist."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:245
+#: zapzap/features/settings/pages/performance_experimental/controller.py:320
 msgid ""
 "Enables smooth scrolling animations.\n"
 "Disabling may reduce CPU usage."
@@ -3057,7 +3072,7 @@ msgstr ""
 "Maakt soepel scrollende animaties mogelijk.\n"
 "Uitschakelen kan het CPU-gebruik verminderen."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:249
+#: zapzap/features/settings/pages/performance_experimental/controller.py:324
 msgid ""
 "Allows background tabs to reduce resource usage.\n"
 "Disabling keeps timers active, but uses more resources."
@@ -3067,7 +3082,7 @@ msgstr ""
 "Als u deze uitschakelt, blijven de timers actief, maar worden er meer "
 "bronnen gebruikt."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:255
+#: zapzap/features/settings/pages/performance_experimental/controller.py:330
 msgid ""
 "Disables CSS and JavaScript animations.\n"
 "May improve performance on slower machines."
@@ -3075,7 +3090,7 @@ msgstr ""
 "Schakelt de animaties CSS en JavaScript uit.\n"
 "Kan de prestaties op langzamere machines verbeteren."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:261
+#: zapzap/features/settings/pages/performance_experimental/controller.py:336
 msgid ""
 "Disables pinch-to-zoom gesture on touchpads.\n"
 "Useful if accidental zooming occurs during scrolling."
@@ -3083,7 +3098,7 @@ msgstr ""
 "Schakelt knijpen om te zoomen op touchpads uit.\n"
 "Handig als er per ongeluk wordt ingezoomd tijdens het scrollen."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:267
+#: zapzap/features/settings/pages/performance_experimental/controller.py:342
 msgid ""
 "Uses Selection.modify() with visual directions for Ctrl+Arrow word "
 "navigation.\n"
@@ -3100,7 +3115,7 @@ msgstr ""
 "Start WhatsApp Web opnieuw op of laad het opnieuw na het wijzigen van deze "
 "optie."
 
-#: zapzap/features/settings/pages/performance_experimental/controller.py:273
+#: zapzap/features/settings/pages/performance_experimental/controller.py:348
 msgid ""
 "Restores all performance settings\n"
 "to safe default values."
@@ -3108,21 +3123,21 @@ msgstr ""
 "Herstelt alle prestatie-instellingen\n"
 "naar veilige standaardwaarden."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:20
+#: zapzap/features/settings/pages/performance_experimental/view.py:22
 msgid "Tune cache, GPU, processes, and advanced behavior."
 msgstr "Stem cache, GPU, processen en geavanceerd gedrag af."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:37
+#: zapzap/features/settings/pages/performance_experimental/view.py:40
 msgid "Advanced warning"
 msgstr "Geavanceerde waarschuwing"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:38
+#: zapzap/features/settings/pages/performance_experimental/view.py:41
 msgid "These options may require restart and can affect stability."
 msgstr ""
 "Deze opties vereisen mogelijk een herstart en kunnen de stabiliteit "
 "beïnvloeden."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:44
+#: zapzap/features/settings/pages/performance_experimental/view.py:47
 msgid ""
 "Change these settings only if you understand the trade-offs. Restart ZapZap "
 "after changing rendering, process, or JavaScript memory options."
@@ -3131,96 +3146,148 @@ msgstr ""
 "opnieuw nadat u de weergave-, proces- of JavaScript-geheugenopties hebt "
 "gewijzigd."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:55
+#: zapzap/features/settings/pages/performance_experimental/view.py:58
+msgid "Rendering profile"
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:60
+msgid ""
+"Choose a predefined rendering configuration or customize individual options."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:66
+msgid "Compatibility"
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:67
+msgid "Manual"
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:69
+msgid "Recommended settings with hardware acceleration enabled."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:71
+msgid ""
+"Improves stability on systems with video, flickering or GPU rendering issues."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:74
+#, fuzzy
+msgid "Use custom GPU and rendering options."
+msgstr "GPU en weergave"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:97
 msgid "Cache"
 msgstr "Cache"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:56
+#: zapzap/features/settings/pages/performance_experimental/view.py:98
 msgid "Control HTTP cache and persistent cookies."
 msgstr "Beheer HTTP-cache en permanente cookies."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:60
+#: zapzap/features/settings/pages/performance_experimental/view.py:102
 msgid "Cache type"
 msgstr "Cachetype"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:61
+#: zapzap/features/settings/pages/performance_experimental/view.py:103
 msgid "Defines where the HTTP cache is stored."
 msgstr "Definieert waar de HTTP-cache wordt opgeslagen."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:65
+#: zapzap/features/settings/pages/performance_experimental/view.py:107
 msgid "Maximum cache size"
 msgstr "Maximale cachegrootte"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:66
+#: zapzap/features/settings/pages/performance_experimental/view.py:108
 #, fuzzy
 msgid "0 MiB uses Chromium's automatic cache management."
 msgstr "0 MB gebruikt het standaardgedrag van Chromium."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:70
+#: zapzap/features/settings/pages/performance_experimental/view.py:112
 msgid "Persistent cookies"
 msgstr "Permanente cookies"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:71
+#: zapzap/features/settings/pages/performance_experimental/view.py:113
 msgid "Keeps cookies between restarts."
 msgstr "Bewaart cookies tussen herstarts."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:86
+#: zapzap/features/settings/pages/performance_experimental/view.py:128
 msgid "GPU and rendering"
 msgstr "GPU en weergave"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:87
+#: zapzap/features/settings/pages/performance_experimental/view.py:129
 msgid "Rendering options for problematic drivers or hardware."
 msgstr "Weergaveopties voor problematische stuurprogramma's of hardware."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:91
+#: zapzap/features/settings/pages/performance_experimental/view.py:133
 msgid "In-process GPU"
 msgstr "In behandeling GPU"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:92
+#: zapzap/features/settings/pages/performance_experimental/view.py:134
 msgid "May reduce memory usage, but can cause instability."
 msgstr ""
 "Kan het geheugengebruik verminderen, maar kan instabiliteit veroorzaken."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:95
+#: zapzap/features/settings/pages/performance_experimental/view.py:137
 msgid "Disable GPU"
 msgstr "Schakel GPU uit"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:96
+#: zapzap/features/settings/pages/performance_experimental/view.py:138
 msgid "Recommended only for old GPUs or problematic drivers."
 msgstr "Alleen aanbevolen voor oude GPU's of problematische stuurprogramma's."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:99
+#: zapzap/features/settings/pages/performance_experimental/view.py:141
 msgid "Automatic multi-GPU workaround"
 msgstr "Automatische oplossing voor meerdere GPU"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:101
+#: zapzap/features/settings/pages/performance_experimental/view.py:143
 msgid ""
 "Honors DRI_PRIME or adjusts GPU compositing for a headless secondary GPU."
 msgstr ""
 "Eert DRI_PRIME of past de compositie van GPU aan voor een secundaire "
 "secundaire GPU zonder hoofd."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:105
+#: zapzap/features/settings/pages/performance_experimental/view.py:147
 msgid "Disable GPU VSync"
 msgstr "Schakel GPU VSync uit"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:106
+#: zapzap/features/settings/pages/performance_experimental/view.py:148
 msgid "May reduce latency, but can increase tearing."
 msgstr "Kan de latentie verminderen, maar kan de tranen vergroten."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:109
+#: zapzap/features/settings/pages/performance_experimental/view.py:151
 msgid "Force software rendering"
 msgstr "Forceer softwarerendering"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:110
+#: zapzap/features/settings/pages/performance_experimental/view.py:152
 msgid "Use only for graphical issues."
 msgstr "Alleen gebruiken voor grafische problemen."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:113
+#: zapzap/features/settings/pages/performance_experimental/view.py:155
+msgid "Disable GPU memory buffer for video"
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:157
+msgid ""
+"Avoid GPU-backed video frame buffers. May help with black screens, "
+"flickering and GPU crashes."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:162
+#, fuzzy
+msgid "Disable zero-copy"
+msgstr "Account uitschakelen"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:164
+msgid ""
+"Disable zero-copy GPU buffer transfers. May improve compatibility with some "
+"graphics drivers."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:169
 msgid "Use software video decoding"
 msgstr "Softwarematige videodecodering gebruiken"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:115
+#: zapzap/features/settings/pages/performance_experimental/view.py:171
 msgid ""
 "Disables hardware video decoding to fix videos that appear white, black, "
 "flicker, or cause crashes. This may increase CPU and battery usage."
@@ -3229,118 +3296,118 @@ msgstr ""
 "of zwart worden weergegeven, flikkeren of crashes veroorzaken. Dit kan het "
 "CPU- en batterijgebruik verhogen."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:121
+#: zapzap/features/settings/pages/performance_experimental/view.py:177
 msgid "Force GBM"
 msgstr "GBM forceren"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:122
+#: zapzap/features/settings/pages/performance_experimental/view.py:178
 msgid "Known NVIDIA typing lag fix."
 msgstr "Bekende oplossing voor NVIDIA-typevertraging."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:125
+#: zapzap/features/settings/pages/performance_experimental/view.py:181
 msgid "Disable accessibility bus"
 msgstr "Schakel de toegankelijkheidsbus uit"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:126
+#: zapzap/features/settings/pages/performance_experimental/view.py:182
 msgid "Known typing lag or CPU spike fix in QtWebEngine."
 msgstr "Bekende probleem met typen of CPU-pieken in QtWebEngine."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:152
+#: zapzap/features/settings/pages/performance_experimental/view.py:214
 msgid "Processes"
 msgstr "Processen"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:153
+#: zapzap/features/settings/pages/performance_experimental/view.py:215
 msgid "Chromium process model options."
 msgstr "Chromium procesmodelopties."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:157
+#: zapzap/features/settings/pages/performance_experimental/view.py:219
 msgid "Single process"
 msgstr "Eén proces"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:158
+#: zapzap/features/settings/pages/performance_experimental/view.py:220
 msgid "Experimental; reduces memory usage but may cause crashes."
 msgstr ""
 "Experimenteel;vermindert het geheugengebruik, maar kan crashes veroorzaken."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:161
+#: zapzap/features/settings/pages/performance_experimental/view.py:223
 msgid "Process per site"
 msgstr "Proces per locatie"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:162
+#: zapzap/features/settings/pages/performance_experimental/view.py:224
 msgid "Safer and more stable, but may increase memory usage."
 msgstr "Veiliger en stabieler, maar kan het geheugengebruik verhogen."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:173
+#: zapzap/features/settings/pages/performance_experimental/view.py:235
 msgid "JavaScript memory"
 msgstr "JavaScript geheugen"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:174
+#: zapzap/features/settings/pages/performance_experimental/view.py:236
 msgid "V8 memory limit. Restart required."
 msgstr "V8 geheugengrens. Herstart vereist."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:178
+#: zapzap/features/settings/pages/performance_experimental/view.py:240
 msgid "JavaScript memory limit"
 msgstr "JavaScript geheugenlimiet"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:179
+#: zapzap/features/settings/pages/performance_experimental/view.py:241
 msgid "Automatic is the safest option."
 msgstr "Automatisch is de veiligste optie."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:183
+#: zapzap/features/settings/pages/performance_experimental/view.py:245
 msgid "JavaScript GC predictable schedule (experimental)"
 msgstr "JavaScript Voorspelbaar GC-schema (experimenteel)"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:184
+#: zapzap/features/settings/pages/performance_experimental/view.py:246
 msgid "Enables predictable V8 garbage collection and disables GPU."
 msgstr "Schakelt voorspelbare V8-garbagecollection in en schakelt GPU uit."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:195
+#: zapzap/features/settings/pages/performance_experimental/view.py:257
 msgid "Web behavior"
 msgstr "Webgedrag"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:196
+#: zapzap/features/settings/pages/performance_experimental/view.py:258
 msgid "Behavior options for rendered web content."
 msgstr "Gedragsopties voor weergegeven webinhoud."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:200
+#: zapzap/features/settings/pages/performance_experimental/view.py:262
 msgid "Smooth scrolling"
 msgstr "Vloeiend scrollen"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:201
+#: zapzap/features/settings/pages/performance_experimental/view.py:263
 msgid "Disabling may reduce CPU usage."
 msgstr "Uitschakelen kan het CPU-gebruik verminderen."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:204
+#: zapzap/features/settings/pages/performance_experimental/view.py:266
 msgid "Background throttling"
 msgstr "Achtergrondbeperking"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:205
+#: zapzap/features/settings/pages/performance_experimental/view.py:267
 msgid "Allows background tabs to reduce resource usage."
 msgstr ""
 "Maakt achtergrondtabbladen mogelijk om het gebruik van bronnen te "
 "verminderen."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:208
+#: zapzap/features/settings/pages/performance_experimental/view.py:270
 msgid "Disable animations"
 msgstr "Schakel animaties uit"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:209
+#: zapzap/features/settings/pages/performance_experimental/view.py:271
 msgid "May improve performance on slower machines."
 msgstr "Kan de prestaties op langzamere machines verbeteren."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:212
+#: zapzap/features/settings/pages/performance_experimental/view.py:274
 msgid "Disable pinch-to-zoom"
 msgstr "Schakel knijpen om te zoomen uit"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:213
+#: zapzap/features/settings/pages/performance_experimental/view.py:275
 msgid "Useful if accidental zooming occurs during scrolling."
 msgstr "Nuttig als per ongeluk in- of uitzoomen voorkomt tijdens het scrollen."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:216
+#: zapzap/features/settings/pages/performance_experimental/view.py:278
 msgid "Fix Ctrl+Arrow cursor movement"
 msgstr "Corrigeer de cursorbeweging van Ctrl+Arrow"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:218
+#: zapzap/features/settings/pages/performance_experimental/view.py:280
 msgid ""
 "Use visual word navigation in editable fields to fix RTL text cursor "
 "movement."
@@ -3348,19 +3415,19 @@ msgstr ""
 "Gebruik visuele woordnavigatie in bewerkbare velden om de beweging van de "
 "tekstcursor van RTL te corrigeren."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:241
+#: zapzap/features/settings/pages/performance_experimental/view.py:303
 msgid "Restore defaults"
 msgstr "Standaardwaarden herstellen"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:242
+#: zapzap/features/settings/pages/performance_experimental/view.py:304
 msgid "Return performance settings to safe defaults."
 msgstr "Zet de prestatie-instellingen terug naar veilige standaardwaarden."
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:246
+#: zapzap/features/settings/pages/performance_experimental/view.py:308
 msgid "Restore performance defaults"
 msgstr "Prestatiestandaarden herstellen"
 
-#: zapzap/features/settings/pages/performance_experimental/view.py:247
+#: zapzap/features/settings/pages/performance_experimental/view.py:309
 msgid "Restores all performance settings to safe default values."
 msgstr "Herstelt alle prestatie-instellingen naar veilige standaardwaarden."
 

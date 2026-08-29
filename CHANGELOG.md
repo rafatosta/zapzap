@@ -15,6 +15,9 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Added Default, Compatibility, and automatically detected Manual rendering
+  profiles while retaining every advanced performance control, including new
+  GPU video-buffer and zero-copy compatibility switches.
 - Added an in-app, privacy-preserving problem reporter with a localized,
   mandatory review, sanitized crash preparation, bounded local history,
   Markdown copying, and a safe handoff to GitHub for account-authenticated

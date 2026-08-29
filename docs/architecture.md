@@ -257,6 +257,14 @@ O mesmo domínio valida `performance/cache_type`, aplica
 `performance/js_memory_limit_mb`. Assim, o valor apresentado pela página de
 Desempenho é o mesmo transformado em flag Chromium antes do QtWebEngine.
 
+O mesmo domínio centraliza os perfis de renderização `Default` e
+`Compatibility` como combinações explícitas de preferências booleanas. O modo
+`Manual` é derivado quando os valores efetivos não correspondem exatamente a
+nenhum preset; não existe marcador persistido que possa divergir dos switches.
+A página aplica presets somente às opções de GPU/renderização definidas pelo
+domínio, enquanto `SetupManager` continua responsável apenas por transformar
+as preferências persistidas em ambiente e flags antes do QtWebEngine.
+
 Parâmetros persistidos enviados a APIs Qt são normalizados no domínio que
 possui a chave e aplicados por uma fronteira estreita que trata somente aquela
 operação opcional. Falha de proxy retorna `ProxyApplyResult`, conserva o proxy

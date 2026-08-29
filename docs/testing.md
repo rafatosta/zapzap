@@ -98,7 +98,7 @@ documente o que ele protege.
 | `test_notification_sound_setting.py` | mapeamento de som e tipos dos hints Portal/Freedesktop |
 | `test_notification_window_activation.py` | conexão QtDBus, tokens Portal/Wayland, startup X11, foco e limpeza |
 | `test_notifications_settings_ui.py` | rótulos, dependências, privacidade, som e lembrete de apoio |
-| `test_performance_experimental_settings_ui.py` | seção e reinício da decodificação por software |
+| `test_performance_experimental_settings_ui.py` | perfis de renderização, controles manuais, migração e reinício |
 | `test_permissions_settings_ui.py` | grupos e ações globais/individuais de permissões |
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
@@ -109,7 +109,7 @@ documente o que ele protege.
 | `test_settings_card.py` | divisores e grupos do card compartilhado em `ui.components` |
 | `test_settings_lazy_loading.py` | subprocessos de importação, registro e instanciação lazy, singleton por painel, diagnóstico, empacotamento, APIs públicas e fechamento de Configurações |
 | `test_settings_radio_group.py` | divisores do grupo de rádio em `ui.components` |
-| `test_software_video_decoding.py` | flags Chromium de vídeo/strict proxy, persistência, compatibilidade e ordem do bootstrap |
+| `test_software_video_decoding.py` | presets, flags Chromium de renderização/strict proxy, persistência e ordem do bootstrap |
 | `test_spellcheck_language_picker.py` | migração, seleção múltipla transacional, pesquisa, limite, recentes, menu e perfis WebEngine |
 | `test_system_startup_settings_ui.py` | semântica de fechamento, diálogo nativo e acessibilidade |
 | `test_unix_signal_shutdown.py` | ponte POSIX, restauração do estado global e `SIGTERM` real chegando a `aboutToQuit` em subprocesso isolado |

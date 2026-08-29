@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from enum import Enum
 import logging
 from typing import Any
 
@@ -21,6 +22,54 @@ HTTP_CACHE_TYPES = (
     DEFAULT_HTTP_CACHE_TYPE,
     "NoCache",
 )
+
+
+class RenderingProfile(str, Enum):
+    """Rendering configuration represented by the persisted settings state."""
+
+    DEFAULT = "default"
+    COMPATIBILITY = "compatibility"
+    MANUAL = "manual"
+
+
+DEFAULT_RENDERING_PRESET = {
+    "in_process_gpu": False,
+    "disable_gpu": False,
+    "auto_gpu_workaround": True,
+    "disable_gpu_vsync": False,
+    "software_rendering": False,
+    "disable_gpu_memory_buffer_video_frames": False,
+    "disable_zero_copy": False,
+    "software_video_decoding": False,
+    "force_gbm": False,
+}
+
+RENDERING_SETTING_KEYS = {
+    "in_process_gpu": "performance/in_process_gpu",
+    "disable_gpu": "performance/disable_gpu",
+    "auto_gpu_workaround": "performance/auto_gpu_workaround",
+    "disable_gpu_vsync": "performance/disable_gpu_vsync",
+    "software_rendering": "performance/software_rendering",
+    "disable_gpu_memory_buffer_video_frames": (
+        "performance/disable_gpu_memory_buffer_video_frames"
+    ),
+    "disable_zero_copy": "performance/disable_zero_copy",
+    "software_video_decoding": "performance/software_video_decoding",
+    "force_gbm": "performance/force_gbm",
+}
+
+COMPATIBILITY_RENDERING_PRESET = {
+    **DEFAULT_RENDERING_PRESET,
+    "disable_gpu_memory_buffer_video_frames": True,
+    "disable_zero_copy": True,
+    "software_video_decoding": True,
+}
+
+RENDERING_PRESETS = {
+    RenderingProfile.DEFAULT: DEFAULT_RENDERING_PRESET,
+    RenderingProfile.COMPATIBILITY: COMPATIBILITY_RENDERING_PRESET,
+}
+RENDERING_SETTING_NAMES = tuple(DEFAULT_RENDERING_PRESET)
 
 
 def _normalize_http_cache_mib(value: Any) -> tuple[int, bool]:
@@ -136,16 +185,10 @@ class PerformanceSettings(BaseSettings):
 
     _BOOLEAN_SETTINGS = {
         "persistent_cookies": ("performance/persistent_cookies", True),
-        "in_process_gpu": ("performance/in_process_gpu", False),
-        "disable_gpu": ("performance/disable_gpu", False),
-        "auto_gpu_workaround": ("performance/auto_gpu_workaround", True),
-        "disable_gpu_vsync": ("performance/disable_gpu_vsync", False),
-        "software_rendering": ("performance/software_rendering", False),
-        "software_video_decoding": (
-            "performance/software_video_decoding",
-            False,
-        ),
-        "force_gbm": ("performance/force_gbm", False),
+        **{
+            name: (RENDERING_SETTING_KEYS[name], default)
+            for name, default in DEFAULT_RENDERING_PRESET.items()
+        },
         "disable_accessibility": ("performance/disable_accessibility", False),
         "single_process": ("performance/single_process", False),
         "process_per_site": ("performance/process_per_site", True),
@@ -158,6 +201,7 @@ class PerformanceSettings(BaseSettings):
     }
 
     BOOLEAN_SETTINGS = tuple(_BOOLEAN_SETTINGS)
+    RENDERING_SETTINGS = RENDERING_SETTING_NAMES
     JS_MEMORY_LIMITS = ("Automatic", "256 MB", "1024 MB", "4096 MB")
     JS_MEMORY_LIMIT_VALUES = (0, 256, 1024, 4096)
 
@@ -176,6 +220,31 @@ class PerformanceSettings(BaseSettings):
 
     def set_boolean_setting(self, name: str, value: bool) -> None:
         self._set(self._BOOLEAN_SETTINGS[name], bool(value))
+
+    def rendering_state(self) -> dict[str, bool]:
+        """Return the preset-controlled settings as their effective state."""
+        return {
+            name: self.get_boolean_setting(name)
+            for name in RENDERING_SETTING_NAMES
+        }
+
+    @property
+    def rendering_profile(self) -> RenderingProfile:
+        """Detect the profile from values instead of trusting a mode marker."""
+        state = self.rendering_state()
+        for profile, preset in RENDERING_PRESETS.items():
+            if state == preset:
+                return profile
+        return RenderingProfile.MANUAL
+
+    def apply_rendering_profile(self, profile: RenderingProfile | str) -> None:
+        """Persist the exact settings controlled by a predefined profile."""
+        profile = RenderingProfile(profile)
+        preset = RENDERING_PRESETS.get(profile)
+        if preset is None:
+            return
+        for name, value in preset.items():
+            self.set_boolean_setting(name, value)
 
     @property
     def cache_type(self) -> str:

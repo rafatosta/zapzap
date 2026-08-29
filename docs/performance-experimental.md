@@ -4,6 +4,40 @@ Experimental performance settings can change how QtWebEngine and Chromium use
 the GPU, memory, and processes. Restart ZapZap after changing an option when the
 restart prompt is shown.
 
+## Rendering profiles
+
+The rendering profile is a convenience layer over the existing GPU and
+rendering switches. All advanced controls remain visible and editable. The
+effective values are the source of truth: ZapZap reports **Default** or
+**Compatibility** only when every controlled setting matches that preset, and
+reports **Manual** otherwise. This preserves settings created by older versions
+without a migration or a separate mode marker. Editing a controlled switch
+immediately recalculates the profile; recreating an exact preset selects it
+again automatically.
+
+Both presets keep the automatic multi-GPU workaround enabled and leave cache,
+process, JavaScript memory, background, accessibility, zoom, proxy, Wayland and
+account preferences unchanged. Their exact controlled values are:
+
+| Setting | Default | Compatibility |
+|---|---:|---:|
+| In-process GPU | off | off |
+| Disable GPU | off | off |
+| Automatic multi-GPU workaround | on | on |
+| Disable GPU VSync | off | off |
+| Force software rendering | off | off |
+| Disable GPU memory buffer for video | off | on |
+| Disable zero-copy | off | on |
+| Use software video decoding | off | on |
+| Force GBM | off | off |
+
+Compatibility therefore adds
+`--disable-gpu-memory-buffer-video-frames`, `--disable-zero-copy`, and
+`--disable-accelerated-video-decode` at the next application start. It does not
+add `--disable-gpu`, set `QT_OPENGL=software`, or change the Chromium process
+model. Existing unrelated Chromium flags and ZapZap's mandatory flags remain
+in place.
+
 ## HTTP cache size
 
 The cache size is expressed in MiB because Qt receives a byte count calculated

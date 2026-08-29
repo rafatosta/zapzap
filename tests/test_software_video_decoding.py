@@ -13,16 +13,24 @@ from zapzap.core.config.dictionary_store import (
     DictionaryStore,
     DictionaryStorePreparation,
 )
-from zapzap.core.config.settings.performance import PerformanceSettings
+from zapzap.core.config.settings.performance import (
+    COMPATIBILITY_RENDERING_PRESET,
+    DEFAULT_RENDERING_PRESET,
+    PerformanceSettings,
+    RenderingProfile,
+)
 from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.core.environment.setup_manager import (
+    GPU_MEMORY_BUFFER_VIDEO_FRAMES_FLAG,
+    SOFTWARE_VIDEO_DECODING_FLAG,
     SetupManager,
     STRICT_PROXY_WEBRTC_FLAG,
+    ZERO_COPY_FLAG,
     update_chromium_flag,
 )
 
 
-VIDEO_DECODE_FLAG = "--disable-accelerated-video-decode"
+VIDEO_DECODE_FLAG = SOFTWARE_VIDEO_DECODING_FLAG
 
 
 class ChromiumFlagTests(unittest.TestCase):
@@ -149,8 +157,133 @@ class SoftwareVideoDecodingPersistenceTests(unittest.TestCase):
             )
         )
 
+    def test_compatibility_options_persist_after_reload(self):
+        settings = PerformanceSettings()
+        settings.set_boolean_setting(
+            "disable_gpu_memory_buffer_video_frames",
+            True,
+        )
+        settings.set_boolean_setting("disable_zero_copy", True)
+
+        reloaded = self._reload_settings()
+
+        self.assertTrue(reloaded.get_boolean_setting(
+            "disable_gpu_memory_buffer_video_frames"
+        ))
+        self.assertTrue(reloaded.get_boolean_setting("disable_zero_copy"))
+
+    def test_profiles_are_applied_and_detected_from_effective_settings(self):
+        settings = PerformanceSettings()
+
+        self.assertEqual(settings.rendering_profile, RenderingProfile.DEFAULT)
+        self.assertEqual(settings.rendering_state(), DEFAULT_RENDERING_PRESET)
+
+        settings.set_boolean_setting("single_process", True)
+        settings.apply_rendering_profile(RenderingProfile.COMPATIBILITY)
+
+        self.assertEqual(
+            settings.rendering_profile,
+            RenderingProfile.COMPATIBILITY,
+        )
+        self.assertEqual(
+            settings.rendering_state(),
+            COMPATIBILITY_RENDERING_PRESET,
+        )
+        self.assertTrue(settings.get_boolean_setting("single_process"))
+
+        settings.set_boolean_setting("disable_zero_copy", False)
+
+        self.assertEqual(settings.rendering_profile, RenderingProfile.MANUAL)
+        self.assertFalse(SettingsManager.contains("performance/rendering_mode"))
+
 
 class SoftwareVideoDecodingStartupTests(unittest.TestCase):
+
+    def _rendering_flags(self, preset, existing="--existing"):
+        persisted = {
+            f"performance/{name}": value
+            for name, value in preset.items()
+        }
+        with (
+            patch.dict(
+                os.environ,
+                {"QTWEBENGINE_CHROMIUM_FLAGS": existing},
+                clear=True,
+            ),
+            patch.object(
+                DictionaryStore,
+                "prepare",
+                return_value=DictionaryStorePreparation("/tmp/dictionaries"),
+            ),
+            patch(
+                "zapzap.core.environment.setup_manager.preferred_render_node",
+                return_value=None,
+            ),
+            patch(
+                "zapzap.core.environment.setup_manager."
+                "has_headless_secondary_gpu",
+                return_value=False,
+            ),
+            patch.object(
+                SettingsManager,
+                "get",
+                side_effect=lambda key, default=None: persisted.get(key, default),
+            ),
+            patch.object(
+                PerformanceSettings,
+                "js_memory_limit_mb",
+                new_callable=PropertyMock,
+                return_value=0,
+            ),
+            patch.object(
+                PerformanceSettings,
+                "get_boolean_setting",
+                side_effect=lambda name: preset.get(name, False),
+            ),
+        ):
+            SetupManager.apply()
+            return (
+                os.environ["QTWEBENGINE_CHROMIUM_FLAGS"].split(),
+                os.environ.get("QT_OPENGL"),
+            )
+
+    def test_compatibility_profile_generates_only_conservative_gpu_flags(self):
+        duplicate_flags = (
+            f"--external {GPU_MEMORY_BUFFER_VIDEO_FRAMES_FLAG} "
+            f"{ZERO_COPY_FLAG} {ZERO_COPY_FLAG}"
+        )
+
+        flags, qt_opengl = self._rendering_flags(
+            COMPATIBILITY_RENDERING_PRESET,
+            duplicate_flags,
+        )
+
+        self.assertIn("--external", flags)
+        self.assertEqual(flags.count(GPU_MEMORY_BUFFER_VIDEO_FRAMES_FLAG), 1)
+        self.assertEqual(flags.count(ZERO_COPY_FLAG), 1)
+        self.assertEqual(flags.count(VIDEO_DECODE_FLAG), 1)
+        self.assertNotIn("--disable-gpu", flags)
+        self.assertNotIn("--in-process-gpu", flags)
+        self.assertNotIn("--single-process", flags)
+        self.assertIsNone(qt_opengl)
+
+    def test_default_profile_removes_compatibility_flags(self):
+        existing = " ".join((
+            "--external",
+            GPU_MEMORY_BUFFER_VIDEO_FRAMES_FLAG,
+            ZERO_COPY_FLAG,
+            VIDEO_DECODE_FLAG,
+        ))
+
+        flags, _qt_opengl = self._rendering_flags(
+            DEFAULT_RENDERING_PRESET,
+            existing,
+        )
+
+        self.assertIn("--external", flags)
+        self.assertNotIn(GPU_MEMORY_BUFFER_VIDEO_FRAMES_FLAG, flags)
+        self.assertNotIn(ZERO_COPY_FLAG, flags)
+        self.assertNotIn(VIDEO_DECODE_FLAG, flags)
 
     def _strict_proxy_flags(
         self,

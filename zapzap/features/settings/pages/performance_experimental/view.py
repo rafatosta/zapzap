@@ -2,10 +2,12 @@
 
 from gettext import gettext as _
 
+from zapzap.ui.primitives import RadioButton
 from zapzap.ui.components import SettingsActionRow
 from zapzap.ui.components import SettingsCard
 from zapzap.ui.components import SettingsInfoBox
 from zapzap.ui.components import SettingsPage
+from zapzap.ui.components import SettingsRadioGroup
 from zapzap.ui.components import SettingsSection
 from zapzap.ui.components import SettingsSelectRow
 from zapzap.ui.components import SettingsSwitchRow
@@ -25,6 +27,7 @@ class PerformanceExperimentalSettingsView(SettingsPage):
 
     def _setup_ui(self):
         self._setup_warning_section()
+        self._setup_rendering_profile_section()
         self._setup_cache_section()
         self._setup_gpu_section()
         self._setup_process_section()
@@ -47,6 +50,45 @@ class PerformanceExperimentalSettingsView(SettingsPage):
                 "warning",
             )
         )
+        section.add_card(card)
+        self.add_section(section)
+
+    def _setup_rendering_profile_section(self):
+        section = SettingsSection(
+            _("Rendering profile"),
+            _(
+                "Choose a predefined rendering configuration or customize "
+                "individual options."
+            ),
+        )
+        card = SettingsCard()
+        self.rendering_default_radio = RadioButton(_("Default"))
+        self.rendering_compatibility_radio = RadioButton(_("Compatibility"))
+        self.rendering_manual_radio = RadioButton(_("Manual"))
+        descriptions = (
+            _("Recommended settings with hardware acceleration enabled."),
+            _(
+                "Improves stability on systems with video, flickering or GPU "
+                "rendering issues."
+            ),
+            _("Use custom GPU and rendering options."),
+        )
+        for radio, description in zip(
+            (
+                self.rendering_default_radio,
+                self.rendering_compatibility_radio,
+                self.rendering_manual_radio,
+            ),
+            descriptions,
+        ):
+            radio.setAccessibleDescription(description)
+            radio.setToolTip(description)
+        self.rendering_profile_group = SettingsRadioGroup(
+            self.rendering_default_radio,
+            self.rendering_compatibility_radio,
+            self.rendering_manual_radio,
+        )
+        card.add_row(self.rendering_profile_group)
         section.add_card(card)
         self.add_section(section)
 
@@ -109,6 +151,20 @@ class PerformanceExperimentalSettingsView(SettingsPage):
             _("Force software rendering"),
             _("Use only for graphical issues."),
         )
+        self.disable_gpu_memory_buffer_video_frames_row = SettingsSwitchRow(
+            _("Disable GPU memory buffer for video"),
+            _(
+                "Avoid GPU-backed video frame buffers. May help with black "
+                "screens, flickering and GPU crashes."
+            ),
+        )
+        self.disable_zero_copy_row = SettingsSwitchRow(
+            _("Disable zero-copy"),
+            _(
+                "Disable zero-copy GPU buffer transfers. May improve "
+                "compatibility with some graphics drivers."
+            ),
+        )
         self.software_video_decoding_row = SettingsSwitchRow(
             _("Use software video decoding"),
             _(
@@ -130,6 +186,10 @@ class PerformanceExperimentalSettingsView(SettingsPage):
         self.auto_gpu_workaround = self.auto_gpu_workaround_row.checkbox
         self.disable_gpu_vsync = self.disable_gpu_vsync_row.checkbox
         self.software_rendering = self.software_rendering_row.checkbox
+        self.disable_gpu_memory_buffer_video_frames = (
+            self.disable_gpu_memory_buffer_video_frames_row.checkbox
+        )
+        self.disable_zero_copy = self.disable_zero_copy_row.checkbox
         self.software_video_decoding = self.software_video_decoding_row.checkbox
         self.force_gbm = self.force_gbm_row.checkbox
         self.disable_accessibility = self.disable_accessibility_row.checkbox
@@ -139,6 +199,8 @@ class PerformanceExperimentalSettingsView(SettingsPage):
             self.auto_gpu_workaround_row,
             self.disable_gpu_vsync_row,
             self.software_rendering_row,
+            self.disable_gpu_memory_buffer_video_frames_row,
+            self.disable_zero_copy_row,
             self.software_video_decoding_row,
             self.force_gbm_row,
             self.disable_accessibility_row,

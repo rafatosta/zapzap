@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from zapzap.core.config.settings.performance import MAX_HTTP_CACHE_MIB
 from zapzap.core.config.settings.performance import PerformanceSettings
+from zapzap.core.config.settings.performance import RenderingProfile
 
 
 class PerformanceExperimentalSettingsModel:
@@ -17,6 +18,7 @@ class PerformanceExperimentalSettingsModel:
     CACHE_SIZES_MIB = (0, 128, 256, 512, 1024, MAX_HTTP_CACHE_MIB)
     JS_MEMORY_LIMITS = list(PerformanceSettings.JS_MEMORY_LIMITS)
     BOOLEAN_SETTINGS = PerformanceSettings.BOOLEAN_SETTINGS
+    RENDERING_SETTINGS = PerformanceSettings.RENDERING_SETTINGS
 
     def __init__(self) -> None:
         self._settings = PerformanceSettings()
@@ -28,6 +30,15 @@ class PerformanceExperimentalSettingsModel:
     def set_boolean_setting(self, name: str, value: bool) -> None:
         """Persist a boolean performance setting by semantic name."""
         self._settings.set_boolean_setting(name, value)
+
+    @property
+    def rendering_profile(self) -> RenderingProfile:
+        """Return the profile detected from current rendering settings."""
+        return self._settings.rendering_profile
+
+    def apply_rendering_profile(self, profile: RenderingProfile) -> None:
+        """Persist a predefined rendering profile."""
+        self._settings.apply_rendering_profile(profile)
 
     @property
     def cache_type(self) -> str:

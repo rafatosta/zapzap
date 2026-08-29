@@ -5,8 +5,13 @@ from gettext import gettext as _
 from PyQt6.QtWidgets import QApplication
 
 from zapzap.core.config.settings.performance import MAX_HTTP_CACHE_MIB
-from zapzap.features.settings.pages.performance_experimental.model import PerformanceExperimentalSettingsModel
-from zapzap.features.settings.pages.performance_experimental.view import PerformanceExperimentalSettingsView
+from zapzap.core.config.settings.performance import RenderingProfile
+from zapzap.features.settings.pages.performance_experimental.model import (
+    PerformanceExperimentalSettingsModel,
+)
+from zapzap.features.settings.pages.performance_experimental.view import (
+    PerformanceExperimentalSettingsView,
+)
 from zapzap.ui.components import SettingsRestartBar
 
 
@@ -19,6 +24,8 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
         "auto_gpu_workaround",
         "disable_gpu_vsync",
         "software_rendering",
+        "disable_gpu_memory_buffer_video_frames",
+        "disable_zero_copy",
         "software_video_decoding",
         "force_gbm",
         "disable_accessibility",
@@ -61,6 +68,7 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
         self.js_memory_limit.blockSignals(True)
         self.js_memory_limit.setCurrentIndex(self.model.js_memory_limit_index)
         self.js_memory_limit.blockSignals(False)
+        self._sync_rendering_profile()
 
     def _connect_signals(self):
         self.cache_type.textActivated.connect(self._handle_cache_type)
@@ -69,6 +77,11 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
             getattr(self, setting_name).clicked.connect(
                 lambda _checked=False, name=setting_name:
                 self._handle_boolean_setting(name)
+            )
+        for profile, radio in self._rendering_profile_radios().items():
+            radio.clicked.connect(
+                lambda checked=False, selected=profile:
+                self._handle_rendering_profile(selected) if checked else None
             )
         self.js_memory_limit.currentIndexChanged.connect(
             self._handle_js_memory_limit
@@ -89,6 +102,54 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
             setting_name,
             getattr(self, setting_name).isChecked(),
         )
+        if setting_name in self.model.RENDERING_SETTINGS:
+            self._sync_rendering_profile()
+        self._update_restart_requirement()
+
+    def _rendering_profile_radios(self):
+        return {
+            RenderingProfile.DEFAULT: self.rendering_default_radio,
+            RenderingProfile.COMPATIBILITY: self.rendering_compatibility_radio,
+            RenderingProfile.MANUAL: self.rendering_manual_radio,
+        }
+
+    def _set_rendering_profile(self, profile):
+        radios = self._rendering_profile_radios()
+        for radio in radios.values():
+            radio.blockSignals(True)
+        try:
+            radios[profile].setChecked(True)
+        finally:
+            for radio in radios.values():
+                radio.blockSignals(False)
+
+    def _sync_rendering_profile(self):
+        self._set_rendering_profile(self.model.rendering_profile)
+
+    def _handle_rendering_profile(self, profile):
+        if profile == RenderingProfile.MANUAL:
+            return
+
+        controls = [
+            getattr(self, name)
+            for name in self.model.RENDERING_SETTINGS
+        ]
+        for control in controls:
+            control.blockSignals(True)
+        try:
+            self.model.apply_rendering_profile(profile)
+            for setting_name, control in zip(
+                self.model.RENDERING_SETTINGS,
+                controls,
+            ):
+                control.setChecked(
+                    self.model.get_boolean_setting(setting_name)
+                )
+        finally:
+            for control in controls:
+                control.blockSignals(False)
+
+        self._sync_rendering_profile()
         self._update_restart_requirement()
 
     def _handle_js_memory_limit(self, index):
@@ -188,6 +249,20 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
                 "Forces software rendering.\n"
                 "Use only in case of graphical issues.\n"
                 "May significantly reduce performance."
+            )
+        )
+        self.disable_gpu_memory_buffer_video_frames.setToolTip(
+            _(
+                "Avoids GPU-backed video frame buffers.\n"
+                "May help with black screens, flickering, and GPU crashes.\n"
+                "Restart required."
+            )
+        )
+        self.disable_zero_copy.setToolTip(
+            _(
+                "Disables zero-copy GPU buffer transfers.\n"
+                "May improve compatibility with some graphics drivers.\n"
+                "Restart required."
             )
         )
         self.software_video_decoding.setToolTip(
