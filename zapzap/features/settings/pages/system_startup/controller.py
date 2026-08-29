@@ -17,16 +17,18 @@ class SystemStartupSettingsController(SystemStartupSettingsView):
         self.model = SystemStartupSettingsModel()
         self._load_settings()
         self._connect_signals()
-        self._not_flatpak()
+        self._configure_display_backend()
 
-    def _not_flatpak(self):
-
+    def _configure_display_backend(self):
         if not SetupManager._is_flatpak:
-            self.btn_wayland.setChecked(
-                self.model.wayland_enabled
+            backend = self.model.display_backend.value
+            self.display_backend.setCurrentIndex(
+                self.display_backend.findData(backend)
             )
-            self._wayland_restart_baseline = self.model.wayland_enabled
-            self.btn_wayland.clicked.connect(self._handle_wayland)
+            self._display_backend_restart_baseline = backend
+            self.display_backend.currentIndexChanged.connect(
+                self._handle_display_backend
+            )
             self.restart_bar.restart_requested.connect(
                 self._restart_required)
 
@@ -95,11 +97,12 @@ class SystemStartupSettingsController(SystemStartupSettingsView):
     def _handle_autostart(self):
         self.model.set_autostart(self.btn_start_system.isChecked())
 
-    def _handle_wayland(self):
-        self.model.wayland_enabled = self.btn_wayland.isChecked()
+    def _handle_display_backend(self, _index):
+        self.model.display_backend = self.display_backend.currentData()
         restart_kind = (
             SettingsRestartBar.APPLICATION
-            if self.model.wayland_enabled != self._wayland_restart_baseline
+            if self.model.display_backend.value
+            != self._display_backend_restart_baseline
             else None
         )
         self.set_restart_required(restart_kind)

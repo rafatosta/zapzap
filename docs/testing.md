@@ -86,6 +86,7 @@ documente o que ele protege.
 | `test_desktop_application_dbus.py` | interface `org.freedesktop.Application` e ativação D-Bus |
 | `test_dictionary_manager.py` | store próprio, migração, catálogo/cache, rede segura, downloads atômicos, importação/remoção, diálogo compartilhado, provisionamento único do idioma do sistema e ausência de dicionários nos pacotes oficiais |
 | `test_dictionary_options.py` | descoberta dinâmica, nomes amigáveis, ordenação, redimensionamento e fallback de dicionários personalizados |
+| `test_display_backend.py` | seleção automática/forçada do backend Qt, precedência de ambiente/CLI/plataforma e migração da chave Wayland legada |
 | `test_documentation_structure.py` | camadas de UI, ciclo numérico versionado do changelog e sincronização entre árvore, inventários técnicos, convenção de commits e guia para agentes |
 | `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
 | `test_external_link_lifecycle.py` | descarte da página WebEngine transitória após abrir links externos |
@@ -111,7 +112,7 @@ documente o que ele protege.
 | `test_settings_radio_group.py` | divisores do grupo de rádio em `ui.components` |
 | `test_software_video_decoding.py` | presets, flags Chromium de renderização/strict proxy, persistência e ordem do bootstrap |
 | `test_spellcheck_language_picker.py` | migração, seleção múltipla transacional, pesquisa, limite, recentes, menu e perfis WebEngine |
-| `test_system_startup_settings_ui.py` | semântica de fechamento, diálogo nativo e acessibilidade |
+| `test_system_startup_settings_ui.py` | semântica de fechamento, diálogo nativo, seleção do backend gráfico, reinício e acessibilidade |
 | `test_unix_signal_shutdown.py` | ponte POSIX, restauração do estado global e `SIGTERM` real chegando a `aboutToQuit` em subprocesso isolado |
 | `test_update_checker.py` | versões, política de builds, respostas/falhas assíncronas, metadados seguros e popover acessível compartilhado entre sidebar e Sobre |
 | `test_whatsapp_app_lock.py` | botão acessível da sidebar, conta ativa, foco, sequência Qt nativa e estados transitórios do WebView |
@@ -133,6 +134,7 @@ documente o que ele protege.
 - `test_desktop_application_dbus.py`
 - `test_dictionary_manager.py`
 - `test_dictionary_options.py`
+- `test_display_backend.py`
 - `test_documentation_structure.py`
 - `test_donations_page.py`
 - `test_external_link_lifecycle.py`

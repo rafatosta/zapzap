@@ -265,6 +265,22 @@ A página aplica presets somente às opções de GPU/renderização definidas pe
 domínio, enquanto `SetupManager` continua responsável apenas por transformar
 as preferências persistidas em ambiente e flags antes do QtWebEngine.
 
+`SystemSettings` centraliza também a seleção do backend Qt/QPA em
+`system/display_backend`, com os IDs estáveis `auto`, `wayland` e `xcb`.
+Quando a nova chave ainda não existe, o booleano legado `system/wayland` é
+migrado: `true` força Wayland e `false` passa a `auto`. A chave antiga permanece
+sincronizada para compatibilidade, mas não participa da seleção após a
+migração. No modo automático, `SetupManager` escolhe Wayland para uma sessão
+Wayland e XCB para uma sessão X11 ou desconhecida. Windows e macOS deixam a
+escolha para o Qt; no Linux, uma variável `QT_QPA_PLATFORM` externa e o
+argumento legado `--wayland` têm precedência sobre a preferência persistida.
+
+O bootstrap Flatpak continua sem definir `QT_QPA_PLATFORM`: o manifesto oferece
+os sockets Wayland e `fallback-x11`, e o runtime Qt escolhe o backend dentro do
+sandbox. Por isso, a escolha persistida não é exposta nesse empacotamento. Essa
+exceção preserva a fronteira existente do Flatpak e evita impor pelo aplicativo
+uma política que pertence ao runtime/sandbox.
+
 Parâmetros persistidos enviados a APIs Qt são normalizados no domínio que
 possui a chave e aplicados por uma fronteira estreita que trata somente aquela
 operação opcional. Falha de proxy retorna `ProxyApplyResult`, conserva o proxy

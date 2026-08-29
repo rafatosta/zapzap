@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 from collections.abc import MutableMapping
-from os import environ, getenv
+from os import environ
 
 from PyQt6.QtCore import QFileInfo
 
 from zapzap.core.config.settings.appearance import AppearanceSettings
 from zapzap.core.config.settings.performance import PerformanceSettings
+from zapzap.core.config.settings.system import DisplayBackend, SystemSettings
 from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.core.config.dictionary_store import DictionaryStore
 from zapzap.core.config.path_manager import PathManager
@@ -259,10 +260,14 @@ class SetupManager:
         if "--wayland" in sys.argv:
             return "wayland"
 
-        XDG_SESSION_TYPE = getenv("XDG_SESSION_TYPE")
-        print("XDG_SESSION_TYPE:", XDG_SESSION_TYPE)
+        backend = SystemSettings().display_backend
+        if backend == DisplayBackend.WAYLAND:
+            return "wayland"
+        if backend == DisplayBackend.XCB:
+            return SetupManager._qt_platform_xcb
 
-        if XDG_SESSION_TYPE == "wayland":
-            return "wayland" if SettingsManager.get("system/wayland", False) else "xcb"
+        session_type = environ.get("XDG_SESSION_TYPE", "").lower()
+        if session_type == "wayland":
+            return "wayland"
 
         return SetupManager._qt_platform_xcb

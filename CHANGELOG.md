@@ -44,6 +44,9 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Selected the native Qt display backend automatically on Linux, using Wayland
+  for Wayland sessions and XCB for X11 while preserving explicit environment,
+  command-line, user fallback, and Flatpak behavior.
 - Restored client-side decorated windows correctly after hiding them with
   Ctrl+W, including their normal, maximized, or fullscreen state.
 - Matched the client-side Adwaita close button to the neutral gray

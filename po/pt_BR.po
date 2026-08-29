@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-29 18:12-0300\n"
+"POT-Creation-Date: 2026-08-29 18:42-0300\n"
 "PO-Revision-Date: 2026-08-26 14:30-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -540,6 +540,7 @@ msgstr "Escolha o tema visual."
 
 #: zapzap/features/initial_setup/view.py:164
 #: zapzap/features/settings/pages/appearance/view.py:66
+#: zapzap/features/settings/pages/system_startup/view.py:140
 msgid "Automatic"
 msgstr "Automático"
 
@@ -3577,24 +3578,40 @@ msgid "Use the file picker provided by the desktop environment."
 msgstr "Usar o seletor de arquivos fornecido pelo ambiente de desktop."
 
 #: zapzap/features/settings/pages/system_startup/view.py:128
-msgid "Run natively on Wayland"
-msgstr "Executar nativamente no Wayland"
+msgid "Display backend"
+msgstr ""
 
-#: zapzap/features/settings/pages/system_startup/view.py:129
-msgid "Use the Wayland backend when available."
-msgstr "Usar o backend Wayland quando disponível."
-
-#: zapzap/features/settings/pages/system_startup/view.py:135
-msgid "Use the Wayland backend when available. Requires restart."
-msgstr "Usar o backend Wayland quando disponível. Requer reinício."
-
-#: zapzap/features/settings/pages/system_startup/view.py:139
-msgid "Requires restart"
-msgstr "Requer reinício"
+#: zapzap/features/settings/pages/system_startup/view.py:130
+msgid ""
+"Automatic is recommended and uses the native backend for the current "
+"session. X11 is available as a compatibility fallback."
+msgstr ""
 
 #: zapzap/features/settings/pages/system_startup/view.py:143
-msgid "Wayland changes require restart"
-msgstr "Alterações do Wayland requerem reinício"
+msgid "Recommended. Use Wayland in Wayland sessions and X11 in X11 sessions."
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py:148
+msgid "Wayland"
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py:150
+#, fuzzy
+msgid "Force the native Wayland backend."
+msgstr "Usar o backend Wayland quando disponível."
+
+#: zapzap/features/settings/pages/system_startup/view.py:153
+msgid "X11 / XWayland"
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py:156
+msgid "Use the X11 backend. In Wayland sessions, this runs through XWayland."
+msgstr ""
+
+#: zapzap/features/settings/pages/system_startup/view.py:172
+#, fuzzy
+msgid "Choose the Qt display backend. Changes require restart."
+msgstr "Usar o backend Wayland quando disponível. Requer reinício."
 
 #: zapzap/features/downloads/ui/download_dialog.py:47
 #: zapzap/ui/components/update_available_popover.py:109
@@ -4606,6 +4623,15 @@ msgstr "Lançada em {date}"
 #, python-brace-format
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
+
+#~ msgid "Run natively on Wayland"
+#~ msgstr "Executar nativamente no Wayland"
+
+#~ msgid "Requires restart"
+#~ msgstr "Requer reinício"
+
+#~ msgid "Wayland changes require restart"
+#~ msgstr "Alterações do Wayland requerem reinício"
 
 #~ msgid "Debugging"
 #~ msgstr "Depuração"

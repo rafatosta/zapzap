@@ -2,10 +2,10 @@ from gettext import gettext as _
 
 from PyQt6.QtCore import Qt
 
+from zapzap.core.config.settings.system import DisplayBackend
 from zapzap.core.environment.setup_manager import SetupManager
 
 from zapzap.ui.components import (
-    SettingsBadge,
     SettingsCard,
     SettingsPage,
     SettingsSection,
@@ -124,31 +124,55 @@ class SystemStartupSettingsView(SettingsPage):
         card.add_row(self.native_file_dialogs_row)
 
         if not SetupManager._is_flatpak:
-            self.btn_wayland_row = SettingsSwitchRow(
-                _("Run natively on Wayland"),
-                _("Use the Wayland backend when available."),
+            self.display_backend_row = SettingsSelectRow(
+                _("Display backend"),
+                _(
+                    "Automatic is recommended and uses the native backend "
+                    "for the current session. X11 is available as a "
+                    "compatibility fallback."
+                ),
+                [""],
             )
-            self.btn_wayland = self.btn_wayland_row.checkbox
-            self._configure_accessibility(
-                self.btn_wayland_row,
-                description=_(
-                    "Use the Wayland backend when available. Requires restart."
+            self.display_backend = self.display_backend_row.combo
+            self.display_backend.clear()
+            backend_options = (
+                (
+                    _("Automatic"),
+                    DisplayBackend.AUTO.value,
+                    _(
+                        "Recommended. Use Wayland in Wayland sessions and "
+                        "X11 in X11 sessions."
+                    ),
+                ),
+                (
+                    _("Wayland"),
+                    DisplayBackend.WAYLAND.value,
+                    _("Force the native Wayland backend."),
+                ),
+                (
+                    _("X11 / XWayland"),
+                    DisplayBackend.XCB.value,
+                    _(
+                        "Use the X11 backend. In Wayland sessions, this runs "
+                        "through XWayland."
+                    ),
                 ),
             )
-            self.wayland_restart_badge = SettingsBadge(
-                _("Requires restart"),
-                parent=self.btn_wayland_row,
+            for label, value, tooltip in backend_options:
+                self.display_backend.addItem(label, value)
+                self.display_backend.setItemData(
+                    self.display_backend.count() - 1,
+                    tooltip,
+                    Qt.ItemDataRole.ToolTipRole,
+                )
+            self._configure_accessibility(
+                self.display_backend_row,
+                self.display_backend,
+                description=_(
+                    "Choose the Qt display backend. Changes require restart."
+                ),
             )
-            self.wayland_restart_badge.setAccessibleName(
-                _("Wayland changes require restart")
-            )
-            card.add_row(self.btn_wayland_row)
-            text_column = self.btn_wayland_row.layout().itemAt(0).widget()
-            text_column.layout().addWidget(
-                self.wayland_restart_badge,
-                0,
-                Qt.AlignmentFlag.AlignLeft,
-            )
+            card.add_row(self.display_backend_row)
 
         section.add_card(card)
         self.add_section(section)

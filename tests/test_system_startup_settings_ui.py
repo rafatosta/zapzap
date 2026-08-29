@@ -4,6 +4,7 @@ import unittest
 from unittest.mock import patch
 
 from qt_test_case import QtTestCase
+from zapzap.core.config.settings.system import DisplayBackend
 from zapzap.features.settings.pages.system_startup.controller import (
     SystemStartupSettingsController,
 )
@@ -20,14 +21,23 @@ class FakeSystemStartupSettingsModel:
         quit_on_close=False,
         confirm_on_close=True,
         dont_use_native_dialog=False,
+        display_backend=DisplayBackend.AUTO,
     ):
         self.quit_on_close = quit_on_close
         self.confirm_on_close = confirm_on_close
         self.dont_use_native_dialog = dont_use_native_dialog
         self.start_in_background = True
         self.start_with_system = False
-        self.wayland_enabled = False
+        self._display_backend = DisplayBackend(display_backend)
         self.autostart_updates = []
+
+    @property
+    def display_backend(self):
+        return self._display_backend
+
+    @display_backend.setter
+    def display_backend(self, value):
+        self._display_backend = DisplayBackend(value)
 
     def set_autostart(self, enabled):
         self.start_with_system = enabled
@@ -36,18 +46,18 @@ class FakeSystemStartupSettingsModel:
 
 class SystemStartupSettingsUiTests(QtTestCase):
 
-    def _controller(self, **states):
+    def _controller(self, *, flatpak=True, **states):
         model = FakeSystemStartupSettingsModel(**states)
         with (
             patch(
                 "zapzap.features.settings.pages.system_startup.view."
                 "SetupManager._is_flatpak",
-                True,
+                flatpak,
             ),
             patch(
                 "zapzap.features.settings.pages.system_startup.controller."
                 "SetupManager._is_flatpak",
-                True,
+                flatpak,
             ),
             patch(
                 "zapzap.features.settings.pages.system_startup.controller."
@@ -96,13 +106,59 @@ class SystemStartupSettingsUiTests(QtTestCase):
             "System file dialogs",
         )
         self.assertEqual(
-            page.btn_wayland_row.title_label.text(),
-            "Run natively on Wayland",
+            page.display_backend_row.title_label.text(),
+            "Display backend",
+        )
+
+    def test_display_backend_offers_clear_choices_and_defaults_to_automatic(self):
+        page, model = self._controller(flatpak=False)
+
+        self.assertEqual(
+            [page.display_backend.itemText(index) for index in range(3)],
+            ["Automatic", "Wayland", "X11 / XWayland"],
+        )
+        self.assertEqual(page.display_backend.currentData(), "auto")
+        self.assertEqual(model.display_backend, DisplayBackend.AUTO)
+        self.assertIn(
+            "recommended",
+            page.display_backend_row.description_label.text().lower(),
         )
         self.assertEqual(
-            page.wayland_restart_badge.text(),
-            "Requires restart",
+            page.display_backend.accessibleName(),
+            "Display backend",
         )
+        self.assertTrue(page.display_backend.accessibleDescription())
+
+    def test_flatpak_keeps_runtime_backend_selection_hidden(self):
+        page, _model = self._controller(flatpak=True)
+
+        self.assertFalse(hasattr(page, "display_backend"))
+
+    def test_display_backend_loads_saves_and_tracks_application_restart(self):
+        page, model = self._controller(
+            flatpak=False,
+            display_backend=DisplayBackend.WAYLAND,
+        )
+
+        self.assertEqual(page.display_backend.currentData(), "wayland")
+        self.assertFalse(page.restart_bar.isVisible())
+
+        page.display_backend.setCurrentIndex(
+            page.display_backend.findData("xcb")
+        )
+
+        self.assertEqual(model.display_backend, DisplayBackend.XCB)
+        self.assertEqual(
+            page.restart_bar.restart_kind,
+            "application",
+        )
+
+        page.display_backend.setCurrentIndex(
+            page.display_backend.findData("wayland")
+        )
+
+        self.assertEqual(model.display_backend, DisplayBackend.WAYLAND)
+        self.assertIsNone(page.restart_bar.restart_kind)
 
     def test_close_choice_maps_to_existing_boolean_and_preserves_confirmation(self):
         page, model = self._controller(

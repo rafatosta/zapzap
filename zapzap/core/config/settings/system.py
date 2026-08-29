@@ -2,13 +2,25 @@
 
 from __future__ import annotations
 
+from enum import Enum
+
 from zapzap.core.config.settings.base import BaseSettings
+from zapzap.core.config.settings_manager import SettingsManager
+
+
+class DisplayBackend(str, Enum):
+    """Qt platform backend selected before QApplication is created."""
+
+    AUTO = "auto"
+    WAYLAND = "wayland"
+    XCB = "xcb"
 
 
 class SystemSettings(BaseSettings):
     """Semantic access to system integration settings."""
 
     _WAYLAND = ("system/wayland", False)
+    _DISPLAY_BACKEND = ("system/display_backend", DisplayBackend.AUTO.value)
     _CONFIRM_ON_CLOSE = ("system/confirm_on_close", False)
     _QUIT_ON_CLOSE = ("system/quit_in_close", False)
     _START_IN_BACKGROUND = ("system/start_background", False)
@@ -17,11 +29,44 @@ class SystemSettings(BaseSettings):
 
     @property
     def wayland_enabled(self) -> bool:
-        return self._get_bool(self._WAYLAND)
+        """Compatibility facade for the former Wayland boolean setting."""
+        return self.display_backend == DisplayBackend.WAYLAND
 
     @wayland_enabled.setter
     def wayland_enabled(self, value: bool) -> None:
-        self._set_bool(self._WAYLAND, value)
+        self.display_backend = (
+            DisplayBackend.WAYLAND if value else DisplayBackend.AUTO
+        )
+
+    @property
+    def display_backend(self) -> DisplayBackend:
+        """Return the explicit backend choice, migrating the legacy switch."""
+        key, _default = self._DISPLAY_BACKEND
+        if not SettingsManager.contains(key):
+            backend = (
+                DisplayBackend.WAYLAND
+                if SettingsManager.contains(self._WAYLAND[0])
+                and self._get_bool(self._WAYLAND)
+                else DisplayBackend.AUTO
+            )
+            self.display_backend = backend
+            return backend
+
+        raw_value = self._get_str(self._DISPLAY_BACKEND)
+        try:
+            return DisplayBackend(raw_value)
+        except ValueError:
+            self.display_backend = DisplayBackend.AUTO
+            return DisplayBackend.AUTO
+
+    @display_backend.setter
+    def display_backend(self, value: DisplayBackend | str) -> None:
+        try:
+            backend = DisplayBackend(value)
+        except (TypeError, ValueError):
+            backend = DisplayBackend.AUTO
+        self._set_str(self._DISPLAY_BACKEND, backend.value)
+        self._set_bool(self._WAYLAND, backend == DisplayBackend.WAYLAND)
 
     @property
     def confirm_on_close(self) -> bool:

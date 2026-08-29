@@ -3,7 +3,7 @@
 from zapzap.features.startup.autostart_manager import AutostartManager
 from zapzap.features.dictionaries.dictionaries_manager import DictionariesManager
 from zapzap.features.downloads.download_manager import DownloadManager
-from zapzap.core.config.settings.system import SystemSettings
+from zapzap.core.config.settings.system import DisplayBackend, SystemSettings
 from zapzap.core.environment.setup_manager import SetupManager
 from zapzap.core.i18n.translation_manager import TranslationManager
 
@@ -20,12 +20,12 @@ class SystemStartupSettingsModel:
         self._system_settings = SystemSettings()
 
     @property
-    def wayland_enabled(self) -> bool:
-        return self._system_settings.wayland_enabled
+    def display_backend(self) -> DisplayBackend:
+        return self._system_settings.display_backend
 
-    @wayland_enabled.setter
-    def wayland_enabled(self, value: bool) -> None:
-        self._system_settings.wayland_enabled = value
+    @display_backend.setter
+    def display_backend(self, value: DisplayBackend | str) -> None:
+        self._system_settings.display_backend = value
 
     @property
     def confirm_on_close(self) -> bool:
