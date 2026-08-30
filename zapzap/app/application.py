@@ -9,6 +9,7 @@ from PyQt6.QtGui import QDesktopServices
 
 from zapzap.app.single_application import SingleApplication
 from zapzap.app.desktop_application_dbus import DesktopApplicationDBus
+from zapzap.app.zapzap_control_dbus import ZapZapControlDBus
 from zapzap.app.main_window_controller import MainWindowController
 from zapzap.features.browser.shell.browser_controller import (
     load_webview_factory,
@@ -114,7 +115,73 @@ def main():
         if result == app.RESTART_MESSAGE:
             app.restartApplication()
             return
-
+        # JSON control via QLocalServer (fallback sin D-Bus)
+        if result.strip().startswith("{"):
+            try:
+                import json as _json
+                data = _json.loads(result)
+                if data.get("action") in ("open_chat", "send", "send_to"):
+                    # lazy import para evitar ciclo
+                    from zapzap.app.zapzap_control_dbus import ZapZapControlAdaptor
+                    # crea adaptor efímero sobre ventana actual para reusar lógica
+                    w = app.getWindow()
+                    if w is not None:
+                        # acceso al page directo
+                        try:
+                            browser = getattr(w, "browser", None)
+                            if browser is None and hasattr(w, "inner_window"):
+                                browser = getattr(w.inner_window, "browser", None)
+                            webview = browser.current_webview() if browser else None
+                            page = webview.page() if webview else None
+                        except Exception:
+                            page = None
+                        act = data.get("action")
+                        if act == "open_chat":
+                            phone = data.get("phone", "")
+                            # usa deeplink
+                            from zapzap.features.browser.web.deeplink import build_open_chat_script
+                            import urllib.parse
+                            # normaliza phone a url
+                            digits = "".join(c for c in phone if c.isdigit())
+                            if digits.startswith("0") and len(digits)==10:
+                                digits="593"+digits[1:]
+                            elif len(digits)==9:
+                                digits="593"+digits
+                            url = f"https://wa.me/{digits}"
+                            script = build_open_chat_script(url)
+                            if script and page:
+                                page.runJavaScript(script)
+                                w.show(); w.raise_(); w.activateWindow()
+                        elif act == "send":
+                            text = data.get("text","")
+                            if page and text:
+                                import json as _j
+                                from zapzap.app.zapzap_control_dbus import SEND_MESSAGE_JS_TEMPLATE
+                                js = SEND_MESSAGE_JS_TEMPLATE % _j.dumps(text)
+                                page.runJavaScript(js)
+                        elif act == "send_to":
+                            phone = data.get("phone","")
+                            text = data.get("text","")
+                            if phone and page:
+                                digits = "".join(c for c in phone if c.isdigit())
+                                if digits.startswith("0") and len(digits)==10:
+                                    digits="593"+digits[1:]
+                                elif len(digits)==9:
+                                    digits="593"+digits
+                                url = f"https://wa.me/{digits}"
+                                script = build_open_chat_script(url)
+                                if script:
+                                    page.runJavaScript(script)
+                                    w.show(); w.raise_(); w.activateWindow()
+                                    if text:
+                                        from PyQt6.QtCore import QTimer as _QTimer
+                                        import json as _j2
+                                        from zapzap.app.zapzap_control_dbus import SEND_MESSAGE_JS_TEMPLATE as _TPL
+                                        js2 = _TPL % _j2.dumps(text)
+                                        _QTimer.singleShot(1800, lambda: page.runJavaScript(js2))
+                        return
+            except Exception:
+                pass
         app.getWindow().xdgOpenChat(result)
 
     # Callback instance
@@ -147,6 +214,10 @@ def main():
         desktop_application_dbus = DesktopApplicationDBus(app)
         desktop_application_dbus.start()
 
+    # Control D-Bus: siempre activo (AppImage, nativo, Flatpak) para automatización
+    zapzap_control_dbus = ZapZapControlDBus(app, app.getWindow)
+    zapzap_control_dbus.start()
+
     # Compatibilidade com comportamento legado de primeiro acesso
     if SettingsManager.get("website/open_page", True):
         QDesktopServices.openUrl(QUrl(zapzap.__website__))
@@ -174,6 +245,7 @@ def main():
     app.aboutToQuit.connect(system_dictionary_provisioner.close)
     if desktop_application_dbus is not None:
         app.aboutToQuit.connect(desktop_application_dbus.stop)
+    app.aboutToQuit.connect(zapzap_control_dbus.stop)
     app.aboutToQuit.connect(ThemeManager.stop)
     app.aboutToQuit.connect(app.shutdownInterface)
     if unix_signal_bridge is not None:

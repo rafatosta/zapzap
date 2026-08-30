@@ -31,10 +31,20 @@ class SingleApplication(QApplication):
 
         if self._isRunning:
             self._outStream = QTextStream(self._outSocket)
+            # Compat: deeplink whatsapp o comando JSON zapzap-control
+            sent = False
             for message in argv[0]:
-                if 'whatsapp' in message or message == self.RESTART_MESSAGE:
+                if 'whatsapp' in message or message == self.RESTART_MESSAGE or message.startswith("zapzap:"):
                     self.sendMessage(message)
+                    sent = True
                     break
+            # si argv es un solo JSON (zapzap-control), también reenviar
+            if not sent:
+                for message in argv[0]:
+                    if message.strip().startswith("{") and "zapzap" in message:
+                        self.sendMessage(message)
+                        sent = True
+                        break
             sys.exit(0)
         else:
             error = self._outSocket.error()
