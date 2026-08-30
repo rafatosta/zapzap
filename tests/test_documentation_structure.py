@@ -165,32 +165,31 @@ class DocumentationStructureTests(unittest.TestCase):
             with self.subTest(reference=required_reference):
                 self.assertIn(required_reference, guide)
 
-    def test_changelog_has_one_current_numeric_development_version(self):
+    def test_changelog_has_current_numeric_version_and_valid_release_state(self):
         changelog = CHANGELOG_PATH.read_text(encoding="utf-8")
         development_headings = list(DEVELOPMENT_HEADING_PATTERN.finditer(changelog))
         development_markers = list(DEVELOPMENT_MARKER_PATTERN.finditer(changelog))
         version_headings = list(VERSION_HEADING_PATTERN.finditer(changelog))
         changelog_sections = list(CHANGELOG_SECTION_PATTERN.finditer(changelog))
-        self.assertEqual(len(development_markers), 1)
-        self.assertEqual(len(development_headings), 1)
+        self.assertLessEqual(len(development_markers), 1)
+        self.assertEqual(len(development_headings), len(development_markers))
         self.assertTrue(version_headings)
         self.assertTrue(changelog_sections)
-        self.assertEqual(development_headings[0].start(), version_headings[0].start())
-        self.assertEqual(development_headings[0].start(), changelog_sections[0].start())
+        self.assertEqual(version_headings[0].start(), changelog_sections[0].start())
 
         current_version = package_version()
         self.assertIsNotNone(VERSION_PATTERN.fullmatch(current_version))
-        self.assertEqual(development_headings[0].group("version"), current_version)
+        self.assertEqual(version_headings[0].group("version"), current_version)
+        if development_headings:
+            self.assertEqual(development_headings[0].start(), version_headings[0].start())
         self.assertNotRegex(changelog, r"^## \[Unreleased\](?:\s|$)")
 
-    def test_development_version_precedes_a_dated_release_and_has_comparison_link(self):
+    def test_current_version_has_valid_date_order_and_comparison_link(self):
         changelog = CHANGELOG_PATH.read_text(encoding="utf-8")
         headings = list(VERSION_HEADING_PATTERN.finditer(changelog))
         self.assertGreaterEqual(len(headings), 2)
 
         current, latest_release = headings[:2]
-        self.assertEqual(current.group("label"), "In development")
-        self.assertNotRegex(current.group(0), r"\d{4}-\d{2}-\d{2}")
         self.assertNotEqual(current.group("version"), latest_release.group("version"))
         self.assertTrue(
             is_later_version(
@@ -203,10 +202,18 @@ class DocumentationStructureTests(unittest.TestCase):
         self.assertIsNotNone(re.fullmatch(r"\d{4}-\d{2}-\d{2}", release_date))
         released_on = date.fromisoformat(release_date)
         self.assertLessEqual(released_on, date.today())
+        if current.group("label") == "In development":
+            comparison_target = "HEAD"
+        else:
+            current_date = current.group("label")
+            self.assertIsNotNone(re.fullmatch(r"\d{4}-\d{2}-\d{2}", current_date))
+            self.assertLessEqual(date.fromisoformat(current_date), date.today())
+            self.assertGreaterEqual(date.fromisoformat(current_date), released_on)
+            comparison_target = current.group("version")
         comparison_link = (
             f"[{current.group('version')}]: "
             "https://github.com/rafatosta/zapzap/compare/"
-            f"{latest_release.group('version')}...HEAD"
+            f"{latest_release.group('version')}...{comparison_target}"
         )
         self.assertIn(comparison_link, changelog)
 

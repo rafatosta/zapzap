@@ -88,6 +88,15 @@
   <content_rating type="oars-1.1" />
 
   <releases>
+    <release version="7.4.3" date="2026-08-30">
+      <description>
+        <p>
+          Version 7.4.3 adds granular interface scaling, rendering profiles, a
+          privacy-preserving problem reporter, and managed spell-check dictionaries.
+          It also improves call pop-ups, Linux display-backend selection, and window controls.
+        </p>
+      </description>
+    </release>
     <release version="7.4.2" date="2026-08-14">
       <description>
         <p>

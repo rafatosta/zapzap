@@ -11,7 +11,7 @@ This mandatory record starts after version 7.4.1. The 7.4.1 entry below is the
 historical baseline; older release summaries remain available in the GitHub
 releases and the AppStream metadata.
 
-## [7.4.3] - In development
+## [7.4.3] - 2026-08-30
 
 ### Added
 
@@ -41,6 +41,8 @@ releases and the AppStream metadata.
   dictionary, and leave every other download user-driven.
 - Adopted versioned development cycles so new work identifies itself with the
   next numeric version while release builds retain the version being published.
+- Allowed the documentation validator to verify both an active development
+  cycle and the documented closed-release state used for publication.
 
 ### Fixed
 
@@ -113,6 +115,6 @@ releases and the AppStream metadata.
 - Improved reliability when ZapZap is closed by the operating system.
 - Included performance improvements.
 
-[7.4.3]: https://github.com/rafatosta/zapzap/compare/7.4.2...HEAD
+[7.4.3]: https://github.com/rafatosta/zapzap/compare/7.4.2...7.4.3
 [7.4.2]: https://github.com/rafatosta/zapzap/compare/7.4.1...7.4.2
 [7.4.1]: https://github.com/rafatosta/zapzap/releases/tag/7.4.1
