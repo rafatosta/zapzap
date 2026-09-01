@@ -13,6 +13,12 @@ releases and the AppStream metadata.
 
 ## [7.4.4] - In development
 
+### Added
+
+- Added a read-only clipboard diagnostics collector for reproducing browser,
+  LibreOffice, and desktop clipboard interoperability problems without storing
+  clipboard payload contents.
+
 ### Fixed
 
 - Prevented external conversation links from crashing Qt WebEngine by avoiding
