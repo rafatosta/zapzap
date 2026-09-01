@@ -66,7 +66,7 @@ class ExternalLinkLifecycleTests(unittest.TestCase):
             )
             return open_url, opened
 
-    def test_external_page_is_stopped_and_deleted_after_handoff(self):
+    def test_external_page_is_deleted_without_reentrant_stop_after_handoff(self):
         open_url, opened = self._open("https://example.com/path")
 
         self.assertTrue(opened)
@@ -76,10 +76,7 @@ class ExternalLinkLifecycleTests(unittest.TestCase):
             "https://example.com/path",
         )
         self.assertTrue(self.page.property("externalUrlOpened"))
-        self.assertEqual(
-            self.page.triggered_actions,
-            [_ExternalPage.WebAction.Stop],
-        )
+        self.assertEqual(self.page.triggered_actions, [])
         self.assertEqual(self.page.delete_later_calls, 1)
 
     def test_redirect_signal_does_not_reopen_or_dispose_twice(self):
@@ -90,10 +87,7 @@ class ExternalLinkLifecycleTests(unittest.TestCase):
         self.assertFalse(second_result)
         first_open.assert_called_once()
         second_open.assert_not_called()
-        self.assertEqual(
-            self.page.triggered_actions,
-            [_ExternalPage.WebAction.Stop],
-        )
+        self.assertEqual(self.page.triggered_actions, [])
         self.assertEqual(self.page.delete_later_calls, 1)
 
     def test_invalid_url_does_not_consume_the_valid_handoff(self):
@@ -105,10 +99,7 @@ class ExternalLinkLifecycleTests(unittest.TestCase):
         invalid_open.assert_not_called()
         valid_open.assert_called_once()
         self.assertTrue(self.page.property("externalUrlOpened"))
-        self.assertEqual(
-            self.page.triggered_actions,
-            [_ExternalPage.WebAction.Stop],
-        )
+        self.assertEqual(self.page.triggered_actions, [])
         self.assertEqual(self.page.delete_later_calls, 1)
 
 
@@ -204,7 +195,7 @@ class PopupRoutingTests(unittest.TestCase):
         self.assertFalse(redirect_route)
         open_url.assert_called_once()
         self.assertEqual(host.internal_pages, [])
-        self.assertEqual(page.triggered_actions, [_ExternalPage.WebAction.Stop])
+        self.assertEqual(page.triggered_actions, [])
         self.assertEqual(page.delete_later_calls, 1)
 
     def test_about_blank_waits_for_the_meaningful_url(self):
