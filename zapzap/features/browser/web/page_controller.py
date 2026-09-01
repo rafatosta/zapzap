@@ -107,9 +107,9 @@ class PageController(QWebEnginePage):
                     popup_was_closed = self._popup_host.close_popup_page(page)
                 if not popup_was_closed:
                     # A página existe apenas para receber a URL solicitada por
-                    # createWindow(). Sem o descarte explícito, ela continua
-                    # carregando o site externo e retém seu renderizador.
-                    page.triggerAction(QWebEnginePage.WebAction.Stop)
+                    # createWindow(). A navegação será recusada pelo callback;
+                    # deleteLater() evita destruir ou parar o WebEngine de
+                    # forma reentrante enquanto ele processa a solicitação.
                     page.deleteLater()
         return True
 
