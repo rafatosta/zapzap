@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-29 20:33-0300\n"
+"POT-Creation-Date: 2026-09-01 10:30-0300\n"
 "PO-Revision-Date: 2026-08-26 14:30-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -3687,53 +3687,6 @@ msgstr "Ativar"
 msgid "Not now"
 msgstr "Agora não"
 
-#: zapzap/features/browser/web/page_controller.py:295
-msgid "your microphone"
-msgstr "seu microfone"
-
-#: zapzap/features/browser/web/page_controller.py:296
-msgid "your camera"
-msgstr "sua câmera"
-
-#: zapzap/features/browser/web/page_controller.py:297
-msgid "your camera and microphone"
-msgstr "sua câmera e seu microfone"
-
-#: zapzap/features/browser/web/page_controller.py:298
-msgid "your location"
-msgstr "sua localização"
-
-#: zapzap/features/browser/web/page_controller.py:299
-msgid "your screen contents"
-msgstr "o conteúdo da sua tela"
-
-#: zapzap/features/browser/web/page_controller.py:300
-msgid "your screen contents and audio"
-msgstr "o conteúdo e o áudio da sua tela"
-
-#: zapzap/features/browser/web/page_controller.py:301
-msgid "mouse lock"
-msgstr "bloqueio do mouse"
-
-#: zapzap/features/browser/web/page_controller.py:303
-msgid "a system feature"
-msgstr "um recurso do sistema"
-
-#: zapzap/features/browser/web/page_controller.py:307
-msgid "Permission request"
-msgstr "Solicitação de permissão"
-
-#: zapzap/features/browser/web/page_controller.py:308
-#, python-brace-format
-msgid ""
-"WhatsApp Web is requesting access to {}.\n"
-"\n"
-"Allow?"
-msgstr ""
-"O WhatsApp Web está solicitando acesso a {}.\n"
-"\n"
-"Permitir?"
-
 #: zapzap/features/browser/web/web_view.py:375
 msgid "Undo"
 msgstr "Desfazer"
@@ -3802,6 +3755,53 @@ msgstr ""
 "Para evitar que o aplicativo pare de responder, esta janela não pode ser "
 "fechada manualmente. Use o botão Encerrar chamada do WhatsApp. A janela será "
 "fechada quando o WhatsApp solicitar."
+
+#: zapzap/features/browser/web/page_controller.py:295
+msgid "your microphone"
+msgstr "seu microfone"
+
+#: zapzap/features/browser/web/page_controller.py:296
+msgid "your camera"
+msgstr "sua câmera"
+
+#: zapzap/features/browser/web/page_controller.py:297
+msgid "your camera and microphone"
+msgstr "sua câmera e seu microfone"
+
+#: zapzap/features/browser/web/page_controller.py:298
+msgid "your location"
+msgstr "sua localização"
+
+#: zapzap/features/browser/web/page_controller.py:299
+msgid "your screen contents"
+msgstr "o conteúdo da sua tela"
+
+#: zapzap/features/browser/web/page_controller.py:300
+msgid "your screen contents and audio"
+msgstr "o conteúdo e o áudio da sua tela"
+
+#: zapzap/features/browser/web/page_controller.py:301
+msgid "mouse lock"
+msgstr "bloqueio do mouse"
+
+#: zapzap/features/browser/web/page_controller.py:303
+msgid "a system feature"
+msgstr "um recurso do sistema"
+
+#: zapzap/features/browser/web/page_controller.py:307
+msgid "Permission request"
+msgstr "Solicitação de permissão"
+
+#: zapzap/features/browser/web/page_controller.py:308
+#, python-brace-format
+msgid ""
+"WhatsApp Web is requesting access to {}.\n"
+"\n"
+"Allow?"
+msgstr ""
+"O WhatsApp Web está solicitando acesso a {}.\n"
+"\n"
+"Permitir?"
 
 #: zapzap/ui/components/browser_grid_view.py:75
 msgid "Accounts overview"

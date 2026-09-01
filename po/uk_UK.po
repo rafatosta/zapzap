@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-29 20:33-0300\n"
+"POT-Creation-Date: 2026-09-01 10:30-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Ukrainian\n"
@@ -3641,53 +3641,6 @@ msgstr "Активувати"
 msgid "Not now"
 msgstr "Не зараз"
 
-#: zapzap/features/browser/web/page_controller.py:295
-msgid "your microphone"
-msgstr "ваш мікрофон"
-
-#: zapzap/features/browser/web/page_controller.py:296
-msgid "your camera"
-msgstr "ваша камера"
-
-#: zapzap/features/browser/web/page_controller.py:297
-msgid "your camera and microphone"
-msgstr "ваша камера та мікрофон"
-
-#: zapzap/features/browser/web/page_controller.py:298
-msgid "your location"
-msgstr "ваше місцезнаходження"
-
-#: zapzap/features/browser/web/page_controller.py:299
-msgid "your screen contents"
-msgstr "вміст вашого екрана"
-
-#: zapzap/features/browser/web/page_controller.py:300
-msgid "your screen contents and audio"
-msgstr "вміст вашого екрана та аудіо"
-
-#: zapzap/features/browser/web/page_controller.py:301
-msgid "mouse lock"
-msgstr "блокування миші"
-
-#: zapzap/features/browser/web/page_controller.py:303
-msgid "a system feature"
-msgstr "системна функція"
-
-#: zapzap/features/browser/web/page_controller.py:307
-msgid "Permission request"
-msgstr "Запит на надання дозволу"
-
-#: zapzap/features/browser/web/page_controller.py:308
-#, python-brace-format
-msgid ""
-"WhatsApp Web is requesting access to {}.\n"
-"\n"
-"Allow?"
-msgstr ""
-"WhatsApp Web запитує доступ до {}.\n"
-"\n"
-"Дозволити?"
-
 #: zapzap/features/browser/web/web_view.py:375
 msgid "Undo"
 msgstr "Відмінити"
@@ -3754,6 +3707,53 @@ msgid ""
 "closed manually. Use WhatsApp's End call button. The window will close when "
 "WhatsApp requests it."
 msgstr ""
+
+#: zapzap/features/browser/web/page_controller.py:295
+msgid "your microphone"
+msgstr "ваш мікрофон"
+
+#: zapzap/features/browser/web/page_controller.py:296
+msgid "your camera"
+msgstr "ваша камера"
+
+#: zapzap/features/browser/web/page_controller.py:297
+msgid "your camera and microphone"
+msgstr "ваша камера та мікрофон"
+
+#: zapzap/features/browser/web/page_controller.py:298
+msgid "your location"
+msgstr "ваше місцезнаходження"
+
+#: zapzap/features/browser/web/page_controller.py:299
+msgid "your screen contents"
+msgstr "вміст вашого екрана"
+
+#: zapzap/features/browser/web/page_controller.py:300
+msgid "your screen contents and audio"
+msgstr "вміст вашого екрана та аудіо"
+
+#: zapzap/features/browser/web/page_controller.py:301
+msgid "mouse lock"
+msgstr "блокування миші"
+
+#: zapzap/features/browser/web/page_controller.py:303
+msgid "a system feature"
+msgstr "системна функція"
+
+#: zapzap/features/browser/web/page_controller.py:307
+msgid "Permission request"
+msgstr "Запит на надання дозволу"
+
+#: zapzap/features/browser/web/page_controller.py:308
+#, python-brace-format
+msgid ""
+"WhatsApp Web is requesting access to {}.\n"
+"\n"
+"Allow?"
+msgstr ""
+"WhatsApp Web запитує доступ до {}.\n"
+"\n"
+"Дозволити?"
 
 #: zapzap/ui/components/browser_grid_view.py:75
 msgid "Accounts overview"

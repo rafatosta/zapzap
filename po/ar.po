@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-29 20:33-0300\n"
+"POT-Creation-Date: 2026-09-01 10:30-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Arabic\n"
@@ -3588,53 +3588,6 @@ msgstr "تفعيل"
 msgid "Not now"
 msgstr "ليس الآن"
 
-#: zapzap/features/browser/web/page_controller.py:295
-msgid "your microphone"
-msgstr "الميكروفون الخاص بك"
-
-#: zapzap/features/browser/web/page_controller.py:296
-msgid "your camera"
-msgstr "الكاميرا الخاصة بك"
-
-#: zapzap/features/browser/web/page_controller.py:297
-msgid "your camera and microphone"
-msgstr "الكاميرا والميكروفون الخاص بك"
-
-#: zapzap/features/browser/web/page_controller.py:298
-msgid "your location"
-msgstr "موقعك"
-
-#: zapzap/features/browser/web/page_controller.py:299
-msgid "your screen contents"
-msgstr "محتويات الشاشة الخاصة بك"
-
-#: zapzap/features/browser/web/page_controller.py:300
-msgid "your screen contents and audio"
-msgstr "محتويات الشاشة والصوت"
-
-#: zapzap/features/browser/web/page_controller.py:301
-msgid "mouse lock"
-msgstr "قفل الماوس"
-
-#: zapzap/features/browser/web/page_controller.py:303
-msgid "a system feature"
-msgstr "ميزة النظام"
-
-#: zapzap/features/browser/web/page_controller.py:307
-msgid "Permission request"
-msgstr "طلب الإذن"
-
-#: zapzap/features/browser/web/page_controller.py:308
-#, python-brace-format
-msgid ""
-"WhatsApp Web is requesting access to {}.\n"
-"\n"
-"Allow?"
-msgstr ""
-"يطلب WhatsApp Web الوصول إلى {}.\n"
-"\n"
-"يسمح؟"
-
 #: zapzap/features/browser/web/web_view.py:375
 msgid "Undo"
 msgstr "تراجع"
@@ -3701,6 +3654,53 @@ msgid ""
 "closed manually. Use WhatsApp's End call button. The window will close when "
 "WhatsApp requests it."
 msgstr ""
+
+#: zapzap/features/browser/web/page_controller.py:295
+msgid "your microphone"
+msgstr "الميكروفون الخاص بك"
+
+#: zapzap/features/browser/web/page_controller.py:296
+msgid "your camera"
+msgstr "الكاميرا الخاصة بك"
+
+#: zapzap/features/browser/web/page_controller.py:297
+msgid "your camera and microphone"
+msgstr "الكاميرا والميكروفون الخاص بك"
+
+#: zapzap/features/browser/web/page_controller.py:298
+msgid "your location"
+msgstr "موقعك"
+
+#: zapzap/features/browser/web/page_controller.py:299
+msgid "your screen contents"
+msgstr "محتويات الشاشة الخاصة بك"
+
+#: zapzap/features/browser/web/page_controller.py:300
+msgid "your screen contents and audio"
+msgstr "محتويات الشاشة والصوت"
+
+#: zapzap/features/browser/web/page_controller.py:301
+msgid "mouse lock"
+msgstr "قفل الماوس"
+
+#: zapzap/features/browser/web/page_controller.py:303
+msgid "a system feature"
+msgstr "ميزة النظام"
+
+#: zapzap/features/browser/web/page_controller.py:307
+msgid "Permission request"
+msgstr "طلب الإذن"
+
+#: zapzap/features/browser/web/page_controller.py:308
+#, python-brace-format
+msgid ""
+"WhatsApp Web is requesting access to {}.\n"
+"\n"
+"Allow?"
+msgstr ""
+"يطلب WhatsApp Web الوصول إلى {}.\n"
+"\n"
+"يسمح؟"
 
 #: zapzap/ui/components/browser_grid_view.py:75
 msgid "Accounts overview"
