@@ -102,16 +102,28 @@ class PageController(QWebEnginePage):
             QDesktopServices.openUrl(QUrl(normalized_url))
         finally:
             if isinstance(page, QWebEnginePage):
-                popup_was_closed = False
-                if self._popup_host is not None:
-                    popup_was_closed = self._popup_host.close_popup_page(page)
-                if not popup_was_closed:
-                    # A página existe apenas para receber a URL solicitada por
-                    # createWindow(). A navegação será recusada pelo callback;
-                    # deleteLater() evita destruir ou parar o WebEngine de
-                    # forma reentrante enquanto ele processa a solicitação.
-                    page.deleteLater()
+                # Este descarte corre dentro de acceptNavigationRequest. Fechar
+                # a janela do pop-up esconde a QWebEngineView, e o Chromium
+                # descarta o WebContents durante a navegação em curso, o que é
+                # reentrante e aborta o processo. Adiar um ciclo do laço de
+                # eventos mantém o descarte fora do callback de navegação.
+                QTimer.singleShot(0, lambda: self._dispose_external_page(page))
         return True
+
+    def _dispose_external_page(self, page):
+        """Close or delete a handed-off page, outside the navigation callback."""
+
+        try:
+            popup_was_closed = False
+            if self._popup_host is not None:
+                popup_was_closed = self._popup_host.close_popup_page(page)
+            if not popup_was_closed:
+                # A página existe apenas para receber a URL solicitada por
+                # createWindow(); nada mais a mantém viva.
+                page.deleteLater()
+        except RuntimeError:
+            # A página ou a janela já foi destruída pelo Qt nesse intervalo.
+            pass
 
     def normalize_url(self, url: str) -> str:
         """Normaliza a URL removendo parâmetros redundantes."""
@@ -418,7 +430,8 @@ class PopupRoutingPage(PageController):
                     return False
                 popup = self._popup_host.open_internal_popup(self)
                 if popup is None:
-                    self.triggerAction(QWebEnginePage.WebAction.Stop)
+                    # A navegação é recusada pelo retorno False; parar a página
+                    # aqui seria reentrante durante acceptNavigationRequest.
                     self.deleteLater()
                     return False
                 self._internal_popup_opened = True
