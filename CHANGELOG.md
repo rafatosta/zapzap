@@ -11,6 +11,24 @@ This mandatory record starts after version 7.4.1. The 7.4.1 entry below is the
 historical baseline; older release summaries remain available in the GitHub
 releases and the AppStream metadata.
 
+## [7.4.5] - In development
+
+### Fixed
+
+- Prevented links opened from an internal WhatsApp popup, such as a call
+  window, from crashing Qt WebEngine by deferring the popup disposal until
+  after its navigation request has been processed. Closing the window from
+  inside the navigation callback hid its view and made Chromium discard the
+  web contents of the navigation still in flight.
+- Prevented a popup whose internal window cannot be created during shutdown
+  from stopping its page inside the same navigation callback.
+
+### Changed
+
+- Extended the internal popup and external link regression tests to cover the
+  deferred disposal and the shutdown path that still stopped a page
+  reentrantly.
+
 ## [7.4.4] - 2026-09-01
 
 ### Added
@@ -128,6 +146,7 @@ releases and the AppStream metadata.
 - Improved reliability when ZapZap is closed by the operating system.
 - Included performance improvements.
 
+[7.4.5]: https://github.com/rafatosta/zapzap/compare/7.4.4...HEAD
 [7.4.4]: https://github.com/rafatosta/zapzap/compare/7.4.3...7.4.4
 [7.4.3]: https://github.com/rafatosta/zapzap/compare/7.4.2...7.4.3
 [7.4.2]: https://github.com/rafatosta/zapzap/compare/7.4.1...7.4.2

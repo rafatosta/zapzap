@@ -39,20 +39,47 @@ class _ExternalPage:
         self.delete_later_calls += 1
 
 
+class _DeferredTimer:
+    """Capture QTimer.singleShot callbacks so tests can run them explicitly.
+
+    Disposal must stay out of acceptNavigationRequest, so the tests assert both
+    that nothing happens synchronously and what happens once the event loop
+    turns.
+    """
+
+    def __init__(self):
+        self.pending = []
+
+    def singleShot(self, interval, callback):
+        self.pending.append((interval, callback))
+
+    def run_pending(self):
+        pending, self.pending = self.pending, []
+        for _, callback in pending:
+            callback()
+
+
 class ExternalLinkLifecycleTests(unittest.TestCase):
     def setUp(self):
         self.page = _ExternalPage()
+        self.timer = _DeferredTimer()
         self.controller = Mock()
         self.controller._popup_host = None
         self.controller.normalize_url.side_effect = lambda url: url
+        self.controller._dispose_external_page.side_effect = (
+            lambda page: PageController._dispose_external_page(
+                self.controller, page
+            )
+        )
 
-    def _open(self, url):
+    def _open(self, url, run_deferred=True):
         with (
             patch.object(
                 page_controller_module,
                 "QWebEnginePage",
                 _ExternalPage,
             ),
+            patch.object(page_controller_module, "QTimer", self.timer),
             patch.object(
                 page_controller_module.QDesktopServices,
                 "openUrl",
@@ -64,6 +91,8 @@ class ExternalLinkLifecycleTests(unittest.TestCase):
                 QUrl(url),
                 self.page,
             )
+            if run_deferred:
+                self.timer.run_pending()
             return open_url, opened
 
     def test_external_page_is_deleted_without_reentrant_stop_after_handoff(self):
@@ -102,12 +131,30 @@ class ExternalLinkLifecycleTests(unittest.TestCase):
         self.assertEqual(self.page.triggered_actions, [])
         self.assertEqual(self.page.delete_later_calls, 1)
 
+    def test_disposal_is_deferred_out_of_the_navigation_callback(self):
+        open_url, opened = self._open(
+            "https://example.com/path", run_deferred=False
+        )
+
+        # The handoff happens immediately, the disposal does not: touching the
+        # page or its window here would be reentrant inside Qt WebEngine.
+        self.assertTrue(opened)
+        open_url.assert_called_once()
+        self.assertEqual(self.page.triggered_actions, [])
+        self.assertEqual(self.page.delete_later_calls, 0)
+        self.assertEqual([interval for interval, _ in self.timer.pending], [0])
+
+        self.timer.run_pending()
+
+        self.assertEqual(self.page.delete_later_calls, 1)
+
 
 class _PopupHost:
     def __init__(self):
         self.internal_pages = []
         self.closed_pages = []
         self.popup = object()
+        self.registered_page = None
 
     def open_internal_popup(self, page):
         self.internal_pages.append(page)
@@ -115,12 +162,13 @@ class _PopupHost:
 
     def close_popup_page(self, page):
         self.closed_pages.append(page)
-        return False
+        return page is self.registered_page
 
 
 class _RoutingPage(_ExternalPage):
     _route_main_frame_url = PopupRoutingPage._route_main_frame_url
     _expire_pending_popup = PopupRoutingPage._expire_pending_popup
+    _dispose_external_page = PageController._dispose_external_page
     ROUTING_TIMEOUT_MS = PopupRoutingPage.ROUTING_TIMEOUT_MS
 
     def __init__(self, popup_host):
@@ -175,9 +223,11 @@ class PopupRoutingTests(unittest.TestCase):
     def test_external_url_opens_once_and_leaves_no_internal_popup(self):
         host = _PopupHost()
         page = _RoutingPage(host)
+        timer = _DeferredTimer()
 
         with (
             patch.object(page_controller_module, "QWebEnginePage", _ExternalPage),
+            patch.object(page_controller_module, "QTimer", timer),
             patch.object(
                 page_controller_module.QDesktopServices,
                 "openUrl",
@@ -190,11 +240,53 @@ class PopupRoutingTests(unittest.TestCase):
             redirect_route = page._route_main_frame_url(
                 QUrl("https://example.com/redirect")
             )
+            timer.run_pending()
 
         self.assertFalse(first_route)
         self.assertFalse(redirect_route)
         open_url.assert_called_once()
         self.assertEqual(host.internal_pages, [])
+        self.assertEqual(page.triggered_actions, [])
+        self.assertEqual(page.delete_later_calls, 1)
+
+    def test_registered_popup_window_is_closed_after_the_callback_returns(self):
+        host = _PopupHost()
+        page = _RoutingPage(host)
+        host.registered_page = page
+        timer = _DeferredTimer()
+
+        with (
+            patch.object(page_controller_module, "QWebEnginePage", _ExternalPage),
+            patch.object(page_controller_module, "QTimer", timer),
+            patch.object(
+                page_controller_module.QDesktopServices,
+                "openUrl",
+                return_value=True,
+            ) as open_url,
+        ):
+            route = page._route_main_frame_url(QUrl("https://example.com/first"))
+
+            # Closing the window hides its QWebEngineView, and Qt WebEngine
+            # discards the WebContents of the navigation still in flight.
+            self.assertEqual(host.closed_pages, [])
+
+            timer.run_pending()
+
+        self.assertFalse(route)
+        open_url.assert_called_once()
+        self.assertEqual(host.closed_pages, [page])
+        # The host owns the window, so the page is disposed with it.
+        self.assertEqual(page.triggered_actions, [])
+        self.assertEqual(page.delete_later_calls, 0)
+
+    def test_unavailable_internal_popup_is_deleted_without_a_stop(self):
+        host = _PopupHost()
+        host.open_internal_popup = lambda page: None
+        page = _RoutingPage(host)
+
+        route = page._route_main_frame_url(QUrl("https://web.whatsapp.com/call"))
+
+        self.assertFalse(route)
         self.assertEqual(page.triggered_actions, [])
         self.assertEqual(page.delete_later_calls, 1)
 
