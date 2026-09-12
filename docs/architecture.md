@@ -447,6 +447,19 @@ backend Freedesktop compartilham o event loop do Qt e não dependem de
 hints preservam o mapa `a{sv}` e seus tipos de protocolo, inclusive `urgency`
 como `BYTE`.
 
+Nenhuma falha de backend pode ser silenciosa. No backend Freedesktop, a
+`DBusConnection` registra um aviso em cada saída antecipada da inicialização
+(sem bus de sessão, `org.freedesktop.Notifications` não registrado, falha ao
+assinar os sinais) e ao ficar indisponível em tempo de execução (`Notify` ou
+`CloseNotification` lançando exceção, devolvendo erro ou resposta sem id). O
+aviso de indisponibilidade é emitido apenas na transição disponível para
+indisponível, para que falhas repetidas não inundem o log; a reconexão
+preguiçosa em `notify()` continua tentando reinicializar. Quando nenhum backend
+resta, `NotificationService` também avisa antes de desabilitar as notificações
+da sessão. O som da notificação vem do áudio da página do WhatsApp Web, não do
+backend, então sem esses avisos a ausência de balões parecia um problema do
+desktop.
+
 Fechamento de uma notificação WebEngine e encerramento do app devem retirar a
 notificação nativa de forma idempotente. A ativação pode carregar tokens Portal
 ou Wayland e dados de inicialização X11. Mudanças nessa área precisam ser

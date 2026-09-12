@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+import logging
 import os
 from collections import OrderedDict
 
@@ -29,6 +30,8 @@ from zapzap.assets.icons.tray_icon import TrayIcon
 from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.features.notifications.window_activation import activate_window
 from zapzap import __appname__
+
+logger = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
     from zapzap.features.browser.web.web_view import WebView
@@ -141,6 +144,10 @@ class DBusConnection(QObject):
         self.available = False
 
         if not self.bus.isConnected():
+            logger.warning(
+                "Freedesktop notifications unavailable: "
+                "there is no session D-Bus connection."
+            )
             return
 
         interface = QDBusInterface(
@@ -150,9 +157,19 @@ class DBusConnection(QObject):
             self.bus,
         )
         if not interface.isValid():
+            logger.warning(
+                "Freedesktop notifications unavailable: %s is not registered "
+                "on the session bus.",
+                self.SERVICE,
+            )
             return
 
         if not self._signals_connected and not self._connect_signals():
+            logger.warning(
+                "Freedesktop notifications unavailable: could not subscribe to "
+                "the %s signals.",
+                self.SERVICE,
+            )
             return
 
         self.interface = interface
@@ -185,7 +202,18 @@ class DBusConnection(QObject):
         self._signals_connected = True
         return True
 
-    def _mark_unavailable(self):
+    def _mark_unavailable(
+        self,
+        reason: str = "the notification service became unavailable",
+        *,
+        exc_info: bool = False,
+    ):
+        if self.available:
+            logger.warning(
+                "Freedesktop notifications disabled: %s",
+                reason,
+                exc_info=exc_info,
+            )
         self.available = False
         self.interface = None
 
@@ -251,16 +279,20 @@ class DBusConnection(QObject):
                 notification.timeout,
             )
         except Exception:
-            self._mark_unavailable()
+            self._mark_unavailable(
+                "the Notify call raised an exception", exc_info=True
+            )
             return False
 
         if reply.type() == QDBusMessage.MessageType.ErrorMessage:
-            self._mark_unavailable()
+            self._mark_unavailable(
+                f"the Notify call returned an error ({reply.errorMessage()})"
+            )
             return False
 
         arguments = reply.arguments()
         if not arguments:
-            self._mark_unavailable()
+            self._mark_unavailable("the Notify call returned no notification id")
             return False
 
         for old in list(self._notifications.values()):
@@ -279,9 +311,14 @@ class DBusConnection(QObject):
                     self._dbus_uint(notification.id),
                 )
                 if reply.type() == QDBusMessage.MessageType.ErrorMessage:
-                    self._mark_unavailable()
+                    self._mark_unavailable(
+                        "the CloseNotification call returned an error "
+                        f"({reply.errorMessage()})"
+                    )
             except Exception:
-                self._mark_unavailable()
+                self._mark_unavailable(
+                    "the CloseNotification call raised an exception", exc_info=True
+                )
 
     # ------------------------------------------------------------------
     # DBus callbacks

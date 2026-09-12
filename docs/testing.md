@@ -90,6 +90,7 @@ documente o que ele protege.
 | `test_documentation_structure.py` | camadas de UI, ciclo numérico versionado do changelog e sincronização entre árvore, inventários técnicos, convenção de commits e guia para agentes |
 | `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
 | `test_external_link_lifecycle.py` | classificação interna/externa de pop-ups, profile compartilhado, entrega única ao navegador e cleanup no fechamento/shutdown |
+| `test_freedesktop_notification_backend.py` | avisos nas saídas antecipadas da inicialização D-Bus, falhas de `Notify`/`CloseNotification`, aviso único na transição para indisponível e fachada sem backend |
 | `test_gpu_environment.py` | detecção multi-GPU, conectores e seleção de render node |
 | `test_grid_thumbnail_cache.py` | limite físico/DPR, reutilização, fallback, seleção e ciclo de vida das miniaturas da grade |
 | `test_http_cache_size.py` | cache em MiB, tipos de cache, política de cookies, memória JavaScript, autocura persistida e fallbacks de perfil sem WebEngine real |
@@ -139,6 +140,7 @@ documente o que ele protege.
 - `test_documentation_structure.py`
 - `test_donations_page.py`
 - `test_external_link_lifecycle.py`
+- `test_freedesktop_notification_backend.py`
 - `test_gpu_environment.py`
 - `test_grid_thumbnail_cache.py`
 - `test_http_cache_size.py`
@@ -270,6 +272,31 @@ durante a execução.
 Se o Chromium falhar com `sandbox_host_linux.cc ... Operation not permitted`,
 repita fora do sandbox e registre a limitação; não considere esse cenário como
 validação do spellchecker em runtime.
+
+## Validação manual do backend Freedesktop indisponível
+
+Use um perfil XDG descartável. O objetivo é confirmar que a ausência de balões
+deixa rastro no log em vez de parecer um problema do desktop; o som continua
+vindo da página do WhatsApp Web e não prova nada sobre o backend.
+
+### Sem bus de sessão
+
+1. Fora do Flatpak, inicie o ZapZap com `DBUS_SESSION_BUS_ADDRESS` apontando
+   para um socket inexistente, por exemplo `unix:path=/nonexistent`.
+2. Confirme no log um aviso do backend Freedesktop dizendo que não há conexão
+   com o bus de sessão e um aviso de `NotificationService` dizendo que as
+   notificações foram desabilitadas para a sessão.
+3. Confirme que o app continua utilizável e que nenhuma outra exceção aparece.
+
+### Daemon reiniciado durante a sessão
+
+1. Em uma sessão gráfica real, com o ZapZap aberto e conectado, encerre o
+   daemon de notificações do desktop (por exemplo, o processo que possui
+   `org.freedesktop.Notifications` no bus de sessão).
+2. Provoque uma notificação e confirme um único aviso de indisponibilidade no
+   log, sem repetição a cada nova mensagem.
+3. Restaure o daemon, provoque outra notificação e confirme que o balão volta a
+   aparecer sem reiniciar o ZapZap.
 
 ## Verificações estáticas
 

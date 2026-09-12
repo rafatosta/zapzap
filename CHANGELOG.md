@@ -28,6 +28,14 @@ releases and the AppStream metadata.
   web contents of the navigation still in flight.
 - Prevented a popup whose internal window cannot be created during shutdown
   from stopping its page inside the same navigation callback.
+- Logged why the Freedesktop notification backend is unavailable instead of
+  disabling desktop notifications silently. The three early returns of the
+  D-Bus connection setup (no session bus, `org.freedesktop.Notifications` not
+  registered, signal subscription failure), the runtime `Notify` and
+  `CloseNotification` failures, and the facade fallback to no backend now emit
+  a warning; the notification sound kept playing from the WhatsApp Web page,
+  so the missing balloons looked like a desktop problem. Added regression
+  coverage and documented the manual validation.
 
 ### Changed
 

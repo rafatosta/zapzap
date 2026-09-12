@@ -65,7 +65,14 @@ class NotificationService:
             return PortalNotificationBackend()
 
         backend = FreedesktopNotificationBackend()
-        return backend if backend.available() else None
+        if backend.available():
+            return backend
+
+        logger.warning(
+            "No notification backend is available; "
+            "desktop notifications are disabled for this session."
+        )
+        return None
 
     @classmethod
     def shutdown(cls):
