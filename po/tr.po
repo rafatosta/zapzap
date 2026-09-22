@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-22 11:13-0300\n"
+"POT-Creation-Date: 2026-09-22 11:25-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Turkish\n"
@@ -3582,7 +3582,7 @@ msgstr "Daha fazlası"
 msgid "Save as"
 msgstr "Farklı kaydet"
 
-#: zapzap/features/downloads/ui/download_dialog.py:301
+#: zapzap/features/downloads/ui/download_dialog.py:302
 msgid "Save file"
 msgstr "Dosyayı kaydet"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-22 11:13-0300\n"
+"POT-Creation-Date: 2026-09-22 11:25-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3391,7 +3391,7 @@ msgstr ""
 msgid "Save as"
 msgstr ""
 
-#: zapzap/features/downloads/ui/download_dialog.py:301
+#: zapzap/features/downloads/ui/download_dialog.py:302
 msgid "Save file"
 msgstr ""
 

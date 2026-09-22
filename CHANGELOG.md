@@ -19,8 +19,9 @@ releases and the AppStream metadata.
   the existing unread-counter preference. Added regression coverage and
   documented the integration and manual validation.
 - Remembered, in memory only and for the currently open conversation, the last
-  directory picked in a download's save dialog, suggesting it as the initial
-  directory for the next downloads of the same conversation. The state is
+  directory picked with a download's "Save as", suggesting it as the initial
+  directory for the next downloads of the same conversation; plain "Save"
+  keeps its default behavior and does not update this state. The state is
   discarded when the conversation closes, the window closes, or the app
   quits, and never touches the persisted global download directory.
 

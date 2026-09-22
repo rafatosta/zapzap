@@ -217,7 +217,10 @@ class DownloadDialog(QDialog):
         self.reject()
 
     def _remember_download_directory(self, directory):
-        """Keep the chosen directory in memory for the current conversation only."""
+        """Keep the "Save as" directory in memory for the current conversation only.
+
+        Only "Save as" updates this; plain "Save" keeps its default behavior.
+        """
         owner = self.parent()
         if owner is None or not hasattr(owner, "last_download_directory"):
             return
@@ -252,7 +255,6 @@ class DownloadDialog(QDialog):
         try:
             self.download.stateChanged.connect(open_when_done)
             self.download.accept()
-            self._remember_download_directory(directory)
             self.accept()
         except RuntimeError:
             self._close_unavailable_download()
@@ -269,7 +271,6 @@ class DownloadDialog(QDialog):
 
         try:
             self.download.accept()
-            self._remember_download_directory(self.initial_directory)
             self.accept()
         except RuntimeError:
             self._close_unavailable_download()

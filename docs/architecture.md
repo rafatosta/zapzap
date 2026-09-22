@@ -310,11 +310,13 @@ padrão antes de cancelar. Esses fallbacks não envolvem o bootstrap ou a criaç
 de todas as contas em um único `try/except`.
 
 Cada `WebView` guarda `last_download_directory` apenas em memória: o diretório
-efetivamente escolhido em um download é sugerido como diretório inicial para os
-próximos downloads da mesma conversa, sem tocar no destino configurado
-globalmente (`DownloadManager.get_path`) nem sobreviver ao encerramento da
-conversa (`close_conversation`), da janela ou do aplicativo, que já derrubam a
-página WebEngine e descartam esse estado junto com a instância.
+escolhido via "Salvar como" em `DownloadDialog` é sugerido como diretório
+inicial para os próximos downloads da mesma conversa; "Salvar" mantém o
+comportamento padrão e não atualiza esse estado. Ele não toca no destino
+configurado globalmente (`DownloadManager.get_path`) nem sobrevive ao
+encerramento da conversa (`close_conversation`), da janela ou do aplicativo,
+que já derrubam a página WebEngine e descartam esse estado junto com a
+instância.
 
 A seleção global do corretor ortográfico é uma lista de até dez códigos
 estáveis em `system/spellCheckLanguages`. `DictionariesManager` descobre os
