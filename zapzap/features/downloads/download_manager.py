@@ -66,7 +66,7 @@ class DownloadManager:
         if download.state() != QWebEngineDownloadRequest.DownloadState.DownloadRequested:
             return
 
-        if not DownloadManager._set_initial_download_parameters(download):
+        if not DownloadManager._set_initial_download_parameters(download, parent):
             return
 
         DownloadManager._active_downloads.append(download)
@@ -99,9 +99,21 @@ class DownloadManager:
             download.setDownloadFileName(file_name)
 
     @staticmethod
-    def _set_initial_download_parameters(download) -> bool:
+    def _session_directory(parent):
+        """Return the in-memory directory last picked for this conversation, if any.
+
+        This is never persisted: it only lives on the WebView instance for the
+        duration of the current conversation session.
+        """
+        directory = getattr(parent, "last_download_directory", None)
+        return directory if isinstance(directory, str) and directory.strip() else None
+
+    @staticmethod
+    def _set_initial_download_parameters(download, parent=None) -> bool:
         """Set the target safely, retrying with the default before cancelling."""
-        configured_path = DownloadManager.get_path()
+        configured_path = (
+            DownloadManager._session_directory(parent) or DownloadManager.get_path()
+        )
         try:
             download.setDownloadDirectory(configured_path)
             DownloadManager._normalize_download_file_name(download)

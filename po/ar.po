@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-01 10:30-0300\n"
+"POT-Creation-Date: 2026-09-22 11:13-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Arabic\n"
@@ -428,7 +428,7 @@ msgstr "لا تظهر مرة أخرى"
 msgid "Learn more about ZapZap ↗"
 msgstr "تعرف على المزيد حول ZapZap ↗"
 
-#: zapzap/features/downloads/download_manager.py:144
+#: zapzap/features/downloads/download_manager.py:156
 msgid "Select folder"
 msgstr "حدد المجلد"
 
@@ -881,7 +881,7 @@ msgstr "حدد وانسخ هذا الأمر في جهازك الطرفي"
 #: zapzap/features/settings/pages/debugging/controller.py:131
 #: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:376
+#: zapzap/features/browser/web/web_view.py:381
 msgid "Copy"
 msgstr "نسخ"
 
@@ -931,7 +931,7 @@ msgstr ""
 "يمكنك إعادة النظر في جميع الاختيارات من الإعدادات في أي وقت.الوكيل والأذونات "
 "المخصصة CSS/JavaScript وFlatpak وتعديلات الأداء لا تزال متاحة هناك."
 
-#: zapzap/features/notifications/notification_service.py:115
+#: zapzap/features/notifications/notification_service.py:122
 msgid "New message..."
 msgstr "رسالة جديدة..."
 
@@ -3528,7 +3528,7 @@ msgstr "المزيد"
 msgid "Save as"
 msgstr "حفظ باسم"
 
-#: zapzap/features/downloads/ui/download_dialog.py:289
+#: zapzap/features/downloads/ui/download_dialog.py:301
 msgid "Save file"
 msgstr "احفظ الملف"
 
@@ -3588,60 +3588,52 @@ msgstr "تفعيل"
 msgid "Not now"
 msgstr "ليس الآن"
 
-#: zapzap/features/browser/web/web_view.py:375
-msgid "Undo"
-msgstr "تراجع"
+#: zapzap/features/browser/web/page_controller.py:307
+msgid "your microphone"
+msgstr "الميكروفون الخاص بك"
 
-#: zapzap/features/browser/web/web_view.py:375
-msgid "Redo"
-msgstr "إعادة"
+#: zapzap/features/browser/web/page_controller.py:308
+msgid "your camera"
+msgstr "الكاميرا الخاصة بك"
 
-#: zapzap/features/browser/web/web_view.py:375
-msgid "Cut"
-msgstr "قص"
+#: zapzap/features/browser/web/page_controller.py:309
+msgid "your camera and microphone"
+msgstr "الكاميرا والميكروفون الخاص بك"
 
-#: zapzap/features/browser/web/web_view.py:376
-msgid "Paste"
-msgstr "لصق"
+#: zapzap/features/browser/web/page_controller.py:310
+msgid "your location"
+msgstr "موقعك"
 
-#: zapzap/features/browser/web/web_view.py:376
-msgid "Select all"
-msgstr "حدد الكل"
+#: zapzap/features/browser/web/page_controller.py:311
+msgid "your screen contents"
+msgstr "محتويات الشاشة الخاصة بك"
 
-#: zapzap/features/browser/web/web_view.py:377
-msgid "Save image"
-msgstr "حفظ الصورة"
+#: zapzap/features/browser/web/page_controller.py:312
+msgid "your screen contents and audio"
+msgstr "محتويات الشاشة والصوت"
 
-#: zapzap/features/browser/web/web_view.py:377
-msgid "Copy image"
-msgstr "نسخ الصورة"
+#: zapzap/features/browser/web/page_controller.py:313
+msgid "mouse lock"
+msgstr "قفل الماوس"
 
-#: zapzap/features/browser/web/web_view.py:378
-#: zapzap/features/browser/web/web_view.py:408
-msgid "Copy link address"
-msgstr "انسخ عنوان الرابط"
+#: zapzap/features/browser/web/page_controller.py:315
+msgid "a system feature"
+msgstr "ميزة النظام"
 
-#: zapzap/features/browser/web/web_view.py:426
-msgid "Check Spelling"
-msgstr "تأكد من الهجاء"
+#: zapzap/features/browser/web/page_controller.py:319
+msgid "Permission request"
+msgstr "طلب الإذن"
 
-#: zapzap/features/browser/web/web_view.py:432
-msgid "Languages…"
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:435
-msgid "Choose the languages used by the spell checker."
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:680
-#: zapzap/ui/components/card_user.py:304
-msgid "Account"
-msgstr "الحساب"
-
-#: zapzap/features/browser/web/web_view.py:682
+#: zapzap/features/browser/web/page_controller.py:320
 #, python-brace-format
-msgid "DevTools - {}"
-msgstr "أدوات التطوير - {}"
+msgid ""
+"WhatsApp Web is requesting access to {}.\n"
+"\n"
+"Allow?"
+msgstr ""
+"يطلب WhatsApp Web الوصول إلى {}.\n"
+"\n"
+"يسمح؟"
 
 #: zapzap/features/browser/web/popup_window.py:60
 #, fuzzy
@@ -3655,52 +3647,60 @@ msgid ""
 "WhatsApp requests it."
 msgstr ""
 
-#: zapzap/features/browser/web/page_controller.py:295
-msgid "your microphone"
-msgstr "الميكروفون الخاص بك"
+#: zapzap/features/browser/web/web_view.py:380
+msgid "Undo"
+msgstr "تراجع"
 
-#: zapzap/features/browser/web/page_controller.py:296
-msgid "your camera"
-msgstr "الكاميرا الخاصة بك"
+#: zapzap/features/browser/web/web_view.py:380
+msgid "Redo"
+msgstr "إعادة"
 
-#: zapzap/features/browser/web/page_controller.py:297
-msgid "your camera and microphone"
-msgstr "الكاميرا والميكروفون الخاص بك"
+#: zapzap/features/browser/web/web_view.py:380
+msgid "Cut"
+msgstr "قص"
 
-#: zapzap/features/browser/web/page_controller.py:298
-msgid "your location"
-msgstr "موقعك"
+#: zapzap/features/browser/web/web_view.py:381
+msgid "Paste"
+msgstr "لصق"
 
-#: zapzap/features/browser/web/page_controller.py:299
-msgid "your screen contents"
-msgstr "محتويات الشاشة الخاصة بك"
+#: zapzap/features/browser/web/web_view.py:381
+msgid "Select all"
+msgstr "حدد الكل"
 
-#: zapzap/features/browser/web/page_controller.py:300
-msgid "your screen contents and audio"
-msgstr "محتويات الشاشة والصوت"
+#: zapzap/features/browser/web/web_view.py:382
+msgid "Save image"
+msgstr "حفظ الصورة"
 
-#: zapzap/features/browser/web/page_controller.py:301
-msgid "mouse lock"
-msgstr "قفل الماوس"
+#: zapzap/features/browser/web/web_view.py:382
+msgid "Copy image"
+msgstr "نسخ الصورة"
 
-#: zapzap/features/browser/web/page_controller.py:303
-msgid "a system feature"
-msgstr "ميزة النظام"
+#: zapzap/features/browser/web/web_view.py:383
+#: zapzap/features/browser/web/web_view.py:413
+msgid "Copy link address"
+msgstr "انسخ عنوان الرابط"
 
-#: zapzap/features/browser/web/page_controller.py:307
-msgid "Permission request"
-msgstr "طلب الإذن"
+#: zapzap/features/browser/web/web_view.py:431
+msgid "Check Spelling"
+msgstr "تأكد من الهجاء"
 
-#: zapzap/features/browser/web/page_controller.py:308
-#, python-brace-format
-msgid ""
-"WhatsApp Web is requesting access to {}.\n"
-"\n"
-"Allow?"
+#: zapzap/features/browser/web/web_view.py:437
+msgid "Languages…"
 msgstr ""
-"يطلب WhatsApp Web الوصول إلى {}.\n"
-"\n"
-"يسمح؟"
+
+#: zapzap/features/browser/web/web_view.py:440
+msgid "Choose the languages used by the spell checker."
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:687
+#: zapzap/ui/components/card_user.py:304
+msgid "Account"
+msgstr "الحساب"
+
+#: zapzap/features/browser/web/web_view.py:689
+#, python-brace-format
+msgid "DevTools - {}"
+msgstr "أدوات التطوير - {}"
 
 #: zapzap/ui/components/browser_grid_view.py:75
 msgid "Accounts overview"

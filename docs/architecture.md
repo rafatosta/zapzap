@@ -309,6 +309,13 @@ tema usa `ForceDarkMode`; e um destino de download rejeitado tenta o diretório
 padrão antes de cancelar. Esses fallbacks não envolvem o bootstrap ou a criação
 de todas as contas em um único `try/except`.
 
+Cada `WebView` guarda `last_download_directory` apenas em memória: o diretório
+efetivamente escolhido em um download é sugerido como diretório inicial para os
+próximos downloads da mesma conversa, sem tocar no destino configurado
+globalmente (`DownloadManager.get_path`) nem sobreviver ao encerramento da
+conversa (`close_conversation`), da janela ou do aplicativo, que já derrubam a
+página WebEngine e descartam esse estado junto com a instância.
+
 A seleção global do corretor ortográfico é uma lista de até dez códigos
 estáveis em `system/spellCheckLanguages`. `DictionariesManager` descobre os
 dicionários instalados, normaliza a lista, remove duplicatas e itens ausentes e
