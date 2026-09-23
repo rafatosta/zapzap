@@ -4959,3 +4959,17 @@ msgstr "Automatski otvaraj slike"
 
 msgid "Open completed image downloads with the system default application."
 msgstr "Otvaraj završena preuzimanja slika zadanim sistemskim programom."
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "All download history"
+msgstr "Kompletna historija preuzimanja"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Show in folder"
+msgstr "Prikaži u mapi"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Remove from download history"
+msgstr "Ukloni iz historije preuzimanja"
