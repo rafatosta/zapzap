@@ -11,7 +11,7 @@ This mandatory record starts after version 7.4.1. The 7.4.1 entry below is the
 historical baseline; older release summaries remain available in the GitHub
 releases and the AppStream metadata.
 
-## [7.4.5] - In development
+## [7.4.5] - 2026-09-23
 
 ### Added
 
@@ -24,6 +24,10 @@ releases and the AppStream metadata.
   keeps its default behavior and does not update this state. The state is
   discarded when the conversation closes, the window closes, or the app
   quits, and never touches the persisted global download directory.
+- Added a structured graphics/runtime diagnostic snapshot to the project
+  reporting flow, with allowlisted environment data and explicit handling for
+  missing GPU, VAAPI, Vulkan, and Flatpak metadata so the report stays robust
+  on unsupported or minimal Linux systems.
 
 ### Fixed
 
@@ -53,13 +57,6 @@ releases and the AppStream metadata.
   metadata, and the effective Chromium flags assembled for the app. The
   structured data is kept in the same report builder and Markdown flow without
   broadening the runtime surface or enabling automatic workarounds.
-
-### Added
-
-- Added a structured graphics/runtime diagnostic snapshot to the project
-  reporting flow, with allowlisted environment data and explicit handling for
-  missing GPU, VAAPI, Vulkan, and Flatpak metadata so the report stays robust
-  on unsupported or minimal Linux systems.
 
 ## [7.4.4] - 2026-09-01
 
@@ -178,7 +175,7 @@ releases and the AppStream metadata.
 - Improved reliability when ZapZap is closed by the operating system.
 - Included performance improvements.
 
-[7.4.5]: https://github.com/rafatosta/zapzap/compare/7.4.4...HEAD
+[7.4.5]: https://github.com/rafatosta/zapzap/compare/7.4.4...7.4.5
 [7.4.4]: https://github.com/rafatosta/zapzap/compare/7.4.3...7.4.4
 [7.4.3]: https://github.com/rafatosta/zapzap/compare/7.4.2...7.4.3
 [7.4.2]: https://github.com/rafatosta/zapzap/compare/7.4.1...7.4.2
