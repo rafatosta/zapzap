@@ -33,10 +33,9 @@ class DownloadManager:
     )
 
     MAX_ACTIVE_DOWNLOADS = 6
-    PROGRESS_PERCENT_MIN_BYTES = 10 * 1024 * 1024
-    PROGRESS_PERCENT_MIN_SECONDS = 5.0
-    MAX_RECENT_DOWNLOADS = 10
-    MAX_SESSION_RECORDS = 10
+    PROGRESS_RING_MIN_ETA_SECONDS = 5.0
+    MAX_RECENT_DOWNLOADS = 100
+    MAX_SESSION_RECORDS = 100
 
     _floating_cards = []
     _active_downloads = []
@@ -171,6 +170,9 @@ class DownloadManager:
             "terminal_override": None,
             "suppress_terminal": False,
             "started_at": None,
+            "speed_last_at": None,
+            "speed_last_received": None,
+            "speed_bps": None,
         }
 
         download.stateChanged.connect(
@@ -290,6 +292,13 @@ class DownloadManager:
         if download in DownloadManager._queued_downloads:
             DownloadManager._queued_downloads.remove(download)
         meta["status"] = "active"
+        meta["speed_last_at"] = time.monotonic()
+        meta["speed_last_received"] = DownloadManager._safe_int(
+            download,
+            "receivedBytes",
+            0,
+        )
+        meta["speed_bps"] = None
         download_events.items_changed.emit()
         download_events.progress_changed.emit()
         return "started"
@@ -668,6 +677,13 @@ class DownloadManager:
         except RuntimeError:
             return None
 
+        speed_bps, eta_seconds = DownloadManager._speed_and_eta(
+            meta,
+            received,
+            total,
+            status,
+        )
+
         return {
             "key": DownloadManager._download_key(download),
             "path": path,
@@ -685,7 +701,53 @@ class DownloadManager:
             "live": True,
             "sequence": meta.get("sequence", 0),
             "started_at": meta.get("started_at"),
+            "speed_bps": speed_bps,
+            "eta_seconds": eta_seconds,
         }
+
+    @staticmethod
+    def _speed_and_eta(meta, received, total, status):
+        """Return smoothed transfer speed and estimated seconds remaining."""
+        if status != "active" or received < 0:
+            return None, None
+
+        now = time.monotonic()
+        last_at = meta.get("speed_last_at")
+        last_received = meta.get("speed_last_received")
+        speed = meta.get("speed_bps")
+
+        if (
+            last_at is None
+            or last_received is None
+            or received < last_received
+        ):
+            meta["speed_last_at"] = now
+            meta["speed_last_received"] = received
+            return speed if speed and speed > 0 else None, None
+
+        elapsed = now - last_at
+        if elapsed >= 0.25:
+            transferred = max(0, received - last_received)
+            instant_speed = transferred / elapsed
+
+            if instant_speed > 0:
+                if speed is None or speed <= 0:
+                    speed = instant_speed
+                else:
+                    speed = (speed * 0.65) + (instant_speed * 0.35)
+                meta["speed_bps"] = speed
+
+            meta["speed_last_at"] = now
+            meta["speed_last_received"] = received
+
+        if speed is None or speed <= 0:
+            return None, None
+
+        eta_seconds = None
+        if total > 0 and received < total:
+            eta_seconds = max(0.0, (total - received) / speed)
+
+        return speed, eta_seconds
 
     @staticmethod
     def item_snapshot(key):
@@ -744,7 +806,7 @@ class DownloadManager:
 
     @staticmethod
     def progress_indicator():
-        """Return active count, weighted percent and compact badge mode."""
+        """Return active count, weighted progress and whether to show the ring."""
         items = [
             item
             for item in DownloadManager.download_items()
@@ -755,31 +817,29 @@ class DownloadManager:
 
         received_total = 0
         expected_total = 0
+        eta_values = []
+
         for item in items:
             received = item.get("received", -1)
             total = item.get("total", -1)
             if total <= 0 or received < 0:
                 return len(items), None, False
+
             received_total += min(received, total)
             expected_total += total
+
+            eta = item.get("eta_seconds")
+            if eta is not None:
+                eta_values.append(float(eta))
 
         percent = round((received_total * 100) / expected_total)
         percent = max(0, min(99, percent))
 
-        started_at = [
-            item.get("started_at")
-            for item in items
-            if item.get("started_at") is not None
-        ]
-        if not started_at:
-            return len(items), percent, False
-
-        elapsed = time.monotonic() - min(started_at)
-        show_percent = (
-            expected_total >= DownloadManager.PROGRESS_PERCENT_MIN_BYTES
-            and elapsed >= DownloadManager.PROGRESS_PERCENT_MIN_SECONDS
+        show_ring = (
+            bool(eta_values)
+            and max(eta_values) > DownloadManager.PROGRESS_RING_MIN_ETA_SECONDS
         )
-        return len(items), percent, show_percent
+        return len(items), percent, show_ring
 
     @staticmethod
     def recent_downloads():
@@ -804,6 +864,51 @@ class DownloadManager:
                 valid,
             )
         return valid
+
+    @staticmethod
+    def remove_history_item(key, path=""):
+        """Remove one finished item from ZapZap history, never from disk."""
+        for item in DownloadManager._active_downloads:
+            if DownloadManager._download_key(item) == key:
+                return False
+
+        before = len(DownloadManager._terminal_records)
+        DownloadManager._terminal_records = [
+            record
+            for record in DownloadManager._terminal_records
+            if record.get("key") != key
+        ]
+        removed = len(DownloadManager._terminal_records) != before
+
+        if path:
+            normalized = os.path.normcase(os.path.normpath(path))
+            recent = SettingsManager.get(
+                DownloadManager._RECENT_DOWNLOADS_KEY,
+                [],
+            )
+            if isinstance(recent, str):
+                recent = [recent]
+            elif not isinstance(recent, (list, tuple)):
+                recent = []
+
+            filtered = [
+                item
+                for item in recent
+                if not (
+                    isinstance(item, str)
+                    and os.path.normcase(os.path.normpath(item)) == normalized
+                )
+            ]
+            if list(recent) != filtered:
+                SettingsManager.set(
+                    DownloadManager._RECENT_DOWNLOADS_KEY,
+                    filtered,
+                )
+                removed = True
+
+        if removed:
+            download_events.items_changed.emit()
+        return removed
 
     @staticmethod
     def clear_recent_downloads():

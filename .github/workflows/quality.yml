@@ -52,6 +52,13 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Configure headless Qt on Linux
+        if: runner.os == 'Linux'
+        run: |
+          echo "QT_QPA_PLATFORM=offscreen" >> "$GITHUB_ENV"
+          sudo apt-get update
+          sudo apt-get install -y libegl1
+
       - name: Install Qt runtime dependencies
         run: python -m pip install --upgrade PyQt6 PyQt6-WebEngine
 

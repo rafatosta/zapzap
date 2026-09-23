@@ -7,24 +7,36 @@ from gettext import gettext as _
 from PyQt6.QtCore import (
     QFileInfo,
     QMimeDatabase,
+    QPoint,
     QSize,
     Qt,
     QTimer,
     QUrl,
     pyqtSignal,
 )
-from PyQt6.QtGui import QAbstractFileIconProvider, QDesktopServices, QIcon
+from PyQt6.QtGui import (
+    QAbstractFileIconProvider,
+    QColor,
+    QDesktopServices,
+    QGuiApplication,
+    QIcon,
+    QPainter,
+    QPen,
+    QPixmap,
+)
 from PyQt6.QtWidgets import (
+    QDialog,
     QFileIconProvider,
+    QFrame,
+    QGraphicsDropShadowEffect,
     QHBoxLayout,
     QLabel,
-    QMenu,
     QProgressBar,
     QPushButton,
+    QScrollArea,
     QStyle,
     QVBoxLayout,
     QWidget,
-    QWidgetAction,
 )
 
 from zapzap.assets.icons.system_icon import SystemIcon
@@ -33,7 +45,69 @@ from zapzap.features.downloads.download_events import download_events
 from zapzap.features.downloads.download_manager import DownloadManager
 
 
-class DownloadRow(QWidget):
+def _outline_icon(widget, kind: str, size: int = 20) -> QIcon:
+    """Draw a transparent outline icon using the current palette text color."""
+    pixmap = QPixmap(size, size)
+    pixmap.fill(Qt.GlobalColor.transparent)
+    painter = QPainter(pixmap)
+    painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+    pen = QPen(widget.palette().text().color())
+    pen.setWidth(2)
+    pen.setCapStyle(Qt.PenCapStyle.RoundCap)
+    pen.setJoinStyle(Qt.PenJoinStyle.RoundJoin)
+    painter.setPen(pen)
+    painter.setBrush(Qt.BrushStyle.NoBrush)
+
+    if kind == "folder":
+        painter.drawLine(3, 6, 8, 6)
+        painter.drawLine(8, 6, 10, 8)
+        painter.drawLine(10, 8, 17, 8)
+        painter.drawLine(17, 8, 17, 16)
+        painter.drawLine(17, 16, 3, 16)
+        painter.drawLine(3, 16, 3, 6)
+    elif kind == "trash":
+        painter.drawLine(5, 6, 15, 6)
+        painter.drawLine(8, 4, 12, 4)
+        painter.drawRect(6, 7, 8, 10)
+        painter.drawLine(9, 9, 9, 15)
+        painter.drawLine(11, 9, 11, 15)
+    elif kind == "settings":
+        painter.drawEllipse(6, 6, 8, 8)
+        painter.drawEllipse(9, 9, 2, 2)
+        painter.drawLine(10, 2, 10, 5)
+        painter.drawLine(10, 15, 10, 18)
+        painter.drawLine(2, 10, 5, 10)
+        painter.drawLine(15, 10, 18, 10)
+        painter.drawLine(4, 4, 6, 6)
+        painter.drawLine(14, 14, 16, 16)
+        painter.drawLine(16, 4, 14, 6)
+        painter.drawLine(6, 14, 4, 16)
+    painter.end()
+    return QIcon(pixmap)
+
+
+def _configure_outline_button(button, tooltip: str):
+    button.setFlat(True)
+    button.setFixedSize(QSize(30, 30))
+    button.setIconSize(QSize(20, 20))
+    button.setCursor(Qt.CursorShape.PointingHandCursor)
+    button.setToolTip(tooltip)
+    button.setStyleSheet(
+        """
+        QPushButton {
+            border: 0;
+            border-radius: 15px;
+            background: transparent;
+            padding: 4px;
+        }
+        QPushButton:hover {
+            background: palette(alternate-base);
+        }
+        """
+    )
+
+
+class DownloadRow(QFrame):
     """Chrome-like download row with the platform's native file-type icon."""
 
     open_requested = pyqtSignal(str)
@@ -53,6 +127,7 @@ class DownloadRow(QWidget):
         self.item = dict(item)
         self.key = item.get("key")
         self.path = item.get("path", "")
+        self.setObjectName("DownloadRow")
 
         self.setMinimumWidth(360)
         self.setMaximumWidth(520)
@@ -108,6 +183,13 @@ class DownloadRow(QWidget):
         progress_layout.addWidget(self.progress_percent)
         center_layout.addWidget(self.progress_row)
 
+        self.transfer_details = QLabel(center)
+        self.transfer_details.setStyleSheet(
+            "color: palette(placeholder-text);"
+        )
+        self.transfer_details.hide()
+        center_layout.addWidget(self.transfer_details)
+
         self.status_row = QWidget(center)
         status_layout = QHBoxLayout(self.status_row)
         status_layout.setContentsMargins(0, 0, 0, 0)
@@ -128,14 +210,23 @@ class DownloadRow(QWidget):
         actions_layout.setContentsMargins(0, 0, 0, 0)
         actions_layout.setSpacing(2)
 
-        self.folder_button = self._icon_button(
-            QStyle.StandardPixmap.SP_DirOpenIcon,
-            _("Open folder"),
+        self.folder_button = QPushButton(self)
+        _configure_outline_button(
+            self.folder_button,
+            _("Show in folder"),
         )
         self.folder_button.clicked.connect(
             lambda: self.folder_requested.emit(self.path)
         )
         actions_layout.addWidget(self.folder_button)
+
+        self.remove_button = QPushButton(self)
+        _configure_outline_button(
+            self.remove_button,
+            _("Remove from download history"),
+        )
+        self.remove_button.clicked.connect(self._remove_from_history)
+        actions_layout.addWidget(self.remove_button)
 
         self.pause_button = self._icon_button(
             QStyle.StandardPixmap.SP_MediaPause,
@@ -161,6 +252,10 @@ class DownloadRow(QWidget):
         self.actions.hide()
         root.addWidget(self.actions, 0, Qt.AlignmentFlag.AlignTop)
 
+        self._refresh_outline_icons()
+        ThemeManager.instance().theme_changed.connect(
+            self._refresh_outline_icons
+        )
         self._update_from_item(self.item)
 
         self._refresh_timer = QTimer(self)
@@ -168,6 +263,14 @@ class DownloadRow(QWidget):
         self._refresh_timer.timeout.connect(self._refresh_live_item)
         if self.item.get("live"):
             self._refresh_timer.start()
+
+    def _refresh_outline_icons(self, *_args):
+        self.folder_button.setIcon(
+            _outline_icon(self.folder_button, "folder")
+        )
+        self.remove_button.setIcon(
+            _outline_icon(self.remove_button, "trash")
+        )
 
     def _icon_button(self, standard_icon, tooltip):
         button = QPushButton(self)
@@ -201,57 +304,74 @@ class DownloadRow(QWidget):
         )
 
     @classmethod
+    def _mime_theme_icon(cls, path: str, name: str) -> QIcon:
+        """Resolve the current desktop theme icon for the file MIME type."""
+        candidate = path or name
+        if not candidate:
+            return QIcon()
+
+        match_mode = (
+            QMimeDatabase.MatchMode.MatchDefault
+            if path and QFileInfo.exists(path)
+            else QMimeDatabase.MatchMode.MatchExtension
+        )
+        mime = QMimeDatabase().mimeTypeForFile(candidate, match_mode)
+        if not mime.isValid():
+            return QIcon()
+
+        icon_names = []
+        for icon_name in (mime.iconName(), mime.genericIconName()):
+            if icon_name and icon_name not in icon_names:
+                icon_names.append(icon_name)
+
+        # These are Freedesktop/system-theme names, not bundled artwork.
+        # They help desktops whose MIME database exposes a generic icon name.
+        mime_name = mime.name()
+        if mime_name == "application/pdf":
+            icon_names.extend(
+                name
+                for name in ("application-pdf", "application-x-pdf")
+                if name not in icon_names
+            )
+        elif mime_name.startswith("image/"):
+            if "image-x-generic" not in icon_names:
+                icon_names.append("image-x-generic")
+
+        for icon_name in icon_names:
+            icon = QIcon.fromTheme(icon_name)
+            if not icon.isNull():
+                return icon
+        return QIcon()
+
+    @classmethod
     def _system_file_icon(cls, path: str, name: str) -> QIcon:
-        """Resolve the native file-type icon without generating a preview."""
+        """Use the host desktop's MIME/file icon without generating previews."""
         provider = cls._native_icon_provider()
         candidate = path or name
 
-        # Existing files get the exact icon chosen by the host OS/desktop.
-        # This is the primary path for completed and most active downloads.
+        # On Linux desktops the MIME icon theme is what file managers commonly
+        # use for PDF/image/type artwork. Prefer it before QFileIconProvider,
+        # because some Qt platform plugins return a generic white file icon.
+        themed = cls._mime_theme_icon(path, name)
+        if not themed.isNull():
+            return themed
+
         if path and QFileInfo.exists(path):
             icon = provider.icon(QFileInfo(path))
             if not icon.isNull():
                 return icon
 
-        # Ask the native provider for the filename/extension even when the
-        # target does not exist yet (queued/requested downloads). Some native
-        # backends can resolve the associated application/type from this.
         native_candidate = (
             provider.icon(QFileInfo(candidate))
             if candidate
             else QIcon()
         )
+        if not native_candidate.isNull():
+            return native_candidate
+
         generic_native = provider.icon(
             QAbstractFileIconProvider.IconType.File
         )
-        if (
-            not native_candidate.isNull()
-            and (
-                generic_native.isNull()
-                or native_candidate.cacheKey() != generic_native.cacheKey()
-            )
-        ):
-            return native_candidate
-
-        # Freedesktop MIME icons are especially useful on Linux. On Qt 6.7+
-        # QIcon can also access native icon libraries on Windows and macOS, so
-        # these names are a safe cross-platform fallback when available.
-        mime = QMimeDatabase().mimeTypeForFile(
-            name or candidate,
-            QMimeDatabase.MatchMode.MatchExtension,
-        )
-        if mime.isValid():
-            for icon_name in (mime.iconName(), mime.genericIconName()):
-                if not icon_name:
-                    continue
-                icon = QIcon.fromTheme(icon_name)
-                if not icon.isNull():
-                    return icon
-
-        # Never invent a bundled PDF/image icon: if the platform has no
-        # type-specific icon, use its own generic file icon.
-        if not native_candidate.isNull():
-            return native_candidate
         if not generic_native.isNull():
             return generic_native
         return QIcon()
@@ -322,6 +442,12 @@ class DownloadRow(QWidget):
                 self.progress.setValue(int(percent))
                 self.progress_percent.setText(f"{int(percent)}%")
 
+            details = self._transfer_details_text(item)
+            self.transfer_details.setText(details)
+            self.transfer_details.setVisible(bool(details))
+        else:
+            self.transfer_details.hide()
+
         if not show_progress:
             status_icon = self.style().standardIcon(
                 self._status_standard_icon(status)
@@ -331,6 +457,7 @@ class DownloadRow(QWidget):
 
         live = bool(item.get("live"))
         self.folder_button.setVisible(bool(self.path))
+        self.remove_button.setVisible(not live)
         self.pause_button.setVisible(live and status == "active")
         self.resume_button.setVisible(
             live
@@ -352,6 +479,45 @@ class DownloadRow(QWidget):
                 "interrupted",
             }
         )
+
+    @staticmethod
+    def _format_speed(speed_bps):
+        if speed_bps is None or speed_bps <= 0:
+            return ""
+
+        value = float(speed_bps)
+        units = ("B/s", "KB/s", "MB/s", "GB/s")
+        unit = units[0]
+        for candidate in units:
+            unit = candidate
+            if value < 1024.0 or candidate == units[-1]:
+                break
+            value /= 1024.0
+
+        if value >= 100:
+            return f"{value:.0f} {unit}"
+        if value >= 10:
+            return f"{value:.1f} {unit}"
+        return f"{value:.2f} {unit}"
+
+    @staticmethod
+    def _format_eta(eta_seconds):
+        if eta_seconds is None or eta_seconds < 0:
+            return ""
+
+        seconds = max(0, int(round(eta_seconds)))
+        hours, remainder = divmod(seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
+
+        if hours:
+            return f"⏱ {hours}:{minutes:02d}:{seconds:02d}"
+        return f"⏱ {minutes}:{seconds:02d}"
+
+    @classmethod
+    def _transfer_details_text(cls, item):
+        speed = cls._format_speed(item.get("speed_bps"))
+        eta = cls._format_eta(item.get("eta_seconds"))
+        return "  •  ".join(part for part in (speed, eta) if part)
 
     def _refresh_live_item(self):
         item = DownloadManager.item_snapshot(self.key)
@@ -375,6 +541,9 @@ class DownloadRow(QWidget):
     def _cancel(self):
         DownloadManager.cancel_download(self.key)
 
+    def _remove_from_history(self):
+        DownloadManager.remove_history_item(self.key, self.path)
+
     def enterEvent(self, event):
         self.actions.show()
         super().enterEvent(event)
@@ -384,19 +553,216 @@ class DownloadRow(QWidget):
         super().leaveEvent(event)
 
 
-class DownloadsMenu(QMenu):
-    """Shared recent-download menu used by sidebar and menubar buttons."""
+class _DownloadsListMixin:
+    """Shared download-row rendering used by popup and history window."""
+
+    def _clear_rows(self):
+        while self.items_layout.count():
+            item = self.items_layout.takeAt(0)
+            widget = item.widget()
+            if widget is not None:
+                widget.deleteLater()
+
+    def _populate_rows(self, items, *, limit=None):
+        self._clear_rows()
+        visible_items = items if limit is None else items[:limit]
+
+        if visible_items:
+            for item in visible_items:
+                row = DownloadRow(item, self.items_widget)
+                row.open_requested.connect(self._open_file)
+                row.folder_requested.connect(self._open_parent_folder)
+                self.items_layout.addWidget(row)
+        else:
+            empty = QLabel(_("No recent downloads"), self.items_widget)
+            empty.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            empty.setContentsMargins(16, 18, 16, 18)
+            empty.setEnabled(False)
+            self.items_layout.addWidget(empty)
+
+        return visible_items
+
+    @staticmethod
+    def _open_file_path(path: str):
+        QDesktopServices.openUrl(QUrl.fromLocalFile(path))
+
+    @staticmethod
+    def _open_parent_path(path: str):
+        directory = path if os.path.isdir(path) else os.path.dirname(path)
+        if directory:
+            QDesktopServices.openUrl(QUrl.fromLocalFile(directory))
+
+    @staticmethod
+    def _open_downloads_folder_path():
+        QDesktopServices.openUrl(
+            QUrl.fromLocalFile(DownloadManager.get_path())
+        )
+
+
+class DownloadsPopover(QFrame, _DownloadsListMixin):
+    """Chrome-like dropdown showing the five most recent download items."""
+
+    interacted = pyqtSignal()
+    show_all_requested = pyqtSignal()
+
+    WIDTH = 420
+    SHADOW_MARGIN = 10
+    POPUP_ITEM_LIMIT = 5
 
     def __init__(self, parent=None):
-        super().__init__(parent)
-        self.setObjectName("downloads_menu")
-        self.aboutToShow.connect(self.refresh)
+        super().__init__(
+            parent,
+            Qt.WindowType.Popup | Qt.WindowType.FramelessWindowHint,
+        )
+        self.setObjectName("DownloadsPopover")
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground, True)
+        self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
+        self.setFixedWidth(self.WIDTH)
+
+        self._setup_ui()
+        self._apply_style()
+        self._refresh_theme()
 
         self._refresh_timer = QTimer(self)
         self._refresh_timer.setSingleShot(True)
         self._refresh_timer.setInterval(75)
         self._refresh_timer.timeout.connect(self._refresh_if_visible)
         download_events.items_changed.connect(self._schedule_refresh)
+        ThemeManager.instance().theme_changed.connect(self._refresh_theme)
+
+    def _setup_ui(self):
+        outer = QVBoxLayout(self)
+        outer.setContentsMargins(
+            self.SHADOW_MARGIN,
+            self.SHADOW_MARGIN,
+            self.SHADOW_MARGIN,
+            self.SHADOW_MARGIN,
+        )
+
+        self.surface = QFrame(self)
+        self.surface.setObjectName("DownloadsPopoverSurface")
+        outer.addWidget(self.surface)
+
+        shadow = QGraphicsDropShadowEffect(self.surface)
+        shadow.setBlurRadius(28)
+        shadow.setOffset(0, 6)
+        shadow.setColor(QColor(0, 0, 0, 75))
+        self.surface.setGraphicsEffect(shadow)
+
+        layout = QVBoxLayout(self.surface)
+        layout.setContentsMargins(12, 10, 12, 10)
+        layout.setSpacing(8)
+
+        header = QHBoxLayout()
+        header.setContentsMargins(4, 0, 0, 0)
+        header.setSpacing(6)
+
+        self.title_label = QLabel(_("Downloads"), self.surface)
+        title_font = self.title_label.font()
+        title_font.setBold(True)
+        self.title_label.setFont(title_font)
+        header.addWidget(self.title_label)
+        header.addStretch(1)
+
+        self.open_folder_button = QPushButton(self.surface)
+        self.open_folder_button.setObjectName("DownloadsHeaderButton")
+        _configure_outline_button(
+            self.open_folder_button,
+            _("Open downloads folder"),
+        )
+        self.open_folder_button.clicked.connect(self._open_downloads_folder)
+        header.addWidget(self.open_folder_button)
+
+        layout.addLayout(header)
+
+        separator = QFrame(self.surface)
+        separator.setFrameShape(QFrame.Shape.HLine)
+        separator.setFrameShadow(QFrame.Shadow.Sunken)
+        layout.addWidget(separator)
+
+        self.items_scroll = QScrollArea(self.surface)
+        self.items_scroll.setObjectName("DownloadsScroll")
+        self.items_scroll.setFrameShape(QFrame.Shape.NoFrame)
+        self.items_scroll.setWidgetResizable(True)
+        self.items_scroll.setHorizontalScrollBarPolicy(
+            Qt.ScrollBarPolicy.ScrollBarAlwaysOff
+        )
+        self.items_scroll.setVerticalScrollBarPolicy(
+            Qt.ScrollBarPolicy.ScrollBarAlwaysOff
+        )
+
+        self.items_widget = QWidget(self.items_scroll)
+        self.items_widget.setObjectName("DownloadsItems")
+        self.items_layout = QVBoxLayout(self.items_widget)
+        self.items_layout.setContentsMargins(0, 0, 0, 0)
+        self.items_layout.setSpacing(2)
+        self.items_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.items_scroll.setWidget(self.items_widget)
+        layout.addWidget(self.items_scroll)
+
+        footer_separator = QFrame(self.surface)
+        footer_separator.setFrameShape(QFrame.Shape.HLine)
+        footer_separator.setFrameShadow(QFrame.Shadow.Sunken)
+        layout.addWidget(footer_separator)
+
+        self.show_all_button = QPushButton(
+            f"{_('All download history')}  →",
+            self.surface,
+        )
+        self.show_all_button.setObjectName("DownloadsShowAllButton")
+        self.show_all_button.setFlat(True)
+        self.show_all_button.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.show_all_button.clicked.connect(self._show_all)
+        layout.addWidget(self.show_all_button)
+
+    def _apply_style(self):
+        self.setStyleSheet(
+            """
+            QFrame#DownloadsPopover {
+                background: transparent;
+                border: 0;
+            }
+            QFrame#DownloadsPopoverSurface {
+                background: palette(base);
+                border: 1px solid palette(mid);
+                border-radius: 12px;
+            }
+            QWidget#DownloadsItems,
+            QScrollArea#DownloadsScroll,
+            QScrollArea#DownloadsScroll > QWidget > QWidget {
+                background: transparent;
+                border: 0;
+            }
+            QFrame#DownloadRow {
+                background: transparent;
+                border: 0;
+                border-radius: 8px;
+            }
+            QFrame#DownloadRow:hover {
+                background: palette(alternate-base);
+            }
+            QPushButton#DownloadsHeaderButton,
+            QPushButton#DownloadsShowAllButton {
+                border: 0;
+                border-radius: 7px;
+                padding: 6px 8px;
+                background: transparent;
+            }
+            QPushButton#DownloadsHeaderButton:hover,
+            QPushButton#DownloadsShowAllButton:hover {
+                background: palette(alternate-base);
+            }
+            QPushButton#DownloadsShowAllButton {
+                text-align: left;
+            }
+            """
+        )
+
+    def _refresh_theme(self, *_args):
+        self.open_folder_button.setIcon(
+            _outline_icon(self.open_folder_button, "folder")
+        )
+        self.update()
 
     def _schedule_refresh(self):
         if self.isVisible() and not self._refresh_timer.isActive():
@@ -407,59 +773,294 @@ class DownloadsMenu(QMenu):
             self.refresh()
 
     def refresh(self):
-        self.clear()
-
         items = DownloadManager.download_items()
-        if items:
-            for item in items:
-                action = QWidgetAction(self)
-                row = DownloadRow(item, self)
-                row.open_requested.connect(self._open_file)
-                row.folder_requested.connect(self._open_parent_folder)
-                action.setDefaultWidget(row)
-                self.addAction(action)
-        else:
-            empty = QLabel(_("No recent downloads"), self)
-            empty.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            empty.setContentsMargins(16, 12, 16, 12)
-            empty.setEnabled(False)
-            action = QWidgetAction(self)
-            action.setDefaultWidget(empty)
-            self.addAction(action)
-
-        self.addSeparator()
-
-        clear_action = self.addAction(_("Clear download history"))
-        clear_action.setEnabled(any(not item.get("live") for item in items))
-        icon_theme = SystemIcon.Type[
-            ThemeManager.get_current_color_scheme().name
-        ]
-        clear_action.setIcon(SystemIcon.get_icon("trash", icon_theme))
-        clear_action.triggered.connect(self._clear_history)
-
-        open_folder_action = self.addAction(_("Open downloads folder"))
-        open_folder_action.setIcon(
-            self.style().standardIcon(QStyle.StandardPixmap.SP_DirOpenIcon)
+        visible_items = self._populate_rows(
+            items,
+            limit=self.POPUP_ITEM_LIMIT,
         )
-        open_folder_action.triggered.connect(self._open_downloads_folder)
+        body_height = (
+            max(72, len(visible_items) * 76)
+            if visible_items
+            else 72
+        )
+        self.items_scroll.setFixedHeight(body_height)
+        self.show_all_button.setEnabled(bool(items))
+        self._refresh_theme()
+        self.adjustSize()
+
+    def popup_for(self, anchor, *, below=False, activate=True):
+        self.refresh()
+        self.adjustSize()
+
+        if below:
+            anchor_point = anchor.mapToGlobal(
+                QPoint(anchor.width(), anchor.height() + 4)
+            )
+            target = QPoint(
+                anchor_point.x() - self.width(),
+                anchor_point.y(),
+            )
+        else:
+            anchor_point = anchor.mapToGlobal(
+                QPoint(anchor.width() + 8, 0)
+            )
+            target = QPoint(
+                anchor_point.x(),
+                anchor_point.y() + (anchor.height() - self.height()) // 2,
+            )
+
+        screen = (
+            QGuiApplication.screenAt(
+                anchor.mapToGlobal(anchor.rect().center())
+            )
+            or QGuiApplication.primaryScreen()
+        )
+        if screen is not None:
+            available = screen.availableGeometry()
+            target.setX(
+                min(
+                    max(target.x(), available.left()),
+                    available.right() - self.width() + 1,
+                )
+            )
+            target.setY(
+                min(
+                    max(target.y(), available.top()),
+                    available.bottom() - self.height() + 1,
+                )
+            )
+
+        self.move(target)
+        self.show()
+        self.raise_()
+        if activate:
+            self.activateWindow()
+            self.setFocus(Qt.FocusReason.PopupFocusReason)
+        return True
+
+    def _show_all(self):
+        self.interacted.emit()
+        self.close()
+        self.show_all_requested.emit()
 
     def _open_file(self, path: str):
         self.close()
-        QDesktopServices.openUrl(QUrl.fromLocalFile(path))
+        self._open_file_path(path)
 
     def _open_parent_folder(self, path: str):
-        directory = path if os.path.isdir(path) else os.path.dirname(path)
-        if not directory:
-            return
         self.close()
-        QDesktopServices.openUrl(QUrl.fromLocalFile(directory))
-
-    def _clear_history(self):
-        DownloadManager.clear_recent_downloads()
-        self.close()
+        self._open_parent_path(path)
 
     def _open_downloads_folder(self):
         self.close()
-        QDesktopServices.openUrl(
-            QUrl.fromLocalFile(DownloadManager.get_path())
+        self._open_downloads_folder_path()
+
+    def enterEvent(self, event):
+        self.interacted.emit()
+        super().enterEvent(event)
+
+    def mousePressEvent(self, event):
+        self.interacted.emit()
+        super().mousePressEvent(event)
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key.Key_Escape:
+            self.close()
+            event.accept()
+            return
+        super().keyPressEvent(event)
+
+
+class DownloadsWindow(QDialog, _DownloadsListMixin):
+    """Small modeless history window with the full retained download list."""
+
+    settings_requested = pyqtSignal()
+
+    WIDTH = 540
+    HEIGHT = 620
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setObjectName("DownloadsWindow")
+        self.setWindowTitle(_("Downloads"))
+        self.setModal(False)
+        self.setMinimumSize(QSize(430, 420))
+        self.resize(self.WIDTH, self.HEIGHT)
+
+        self._setup_ui()
+        self._apply_style()
+        self._refresh_theme()
+
+        self._refresh_timer = QTimer(self)
+        self._refresh_timer.setSingleShot(True)
+        self._refresh_timer.setInterval(100)
+        self._refresh_timer.timeout.connect(self._refresh_if_visible)
+        download_events.items_changed.connect(self._schedule_refresh)
+        ThemeManager.instance().theme_changed.connect(self._refresh_theme)
+
+    def _setup_ui(self):
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(12, 12, 12, 12)
+        layout.setSpacing(8)
+
+        header = QHBoxLayout()
+        header.setContentsMargins(4, 0, 4, 0)
+
+        self.title_label = QLabel(_("Downloads"), self)
+        title_font = self.title_label.font()
+        title_font.setBold(True)
+        title_font.setPointSize(title_font.pointSize() + 2)
+        self.title_label.setFont(title_font)
+        header.addWidget(self.title_label)
+        header.addStretch(1)
+        layout.addLayout(header)
+
+        self.items_scroll = QScrollArea(self)
+        self.items_scroll.setObjectName("DownloadsHistoryScroll")
+        self.items_scroll.setFrameShape(QFrame.Shape.NoFrame)
+        self.items_scroll.setWidgetResizable(True)
+        self.items_scroll.setHorizontalScrollBarPolicy(
+            Qt.ScrollBarPolicy.ScrollBarAlwaysOff
         )
+
+        self.items_widget = QWidget(self.items_scroll)
+        self.items_widget.setObjectName("DownloadsHistoryItems")
+        self.items_layout = QVBoxLayout(self.items_widget)
+        self.items_layout.setContentsMargins(0, 0, 0, 0)
+        self.items_layout.setSpacing(4)
+        self.items_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.items_scroll.setWidget(self.items_widget)
+        layout.addWidget(self.items_scroll, 1)
+
+        footer = QHBoxLayout()
+        footer.setContentsMargins(0, 0, 0, 0)
+        footer.setSpacing(8)
+
+        footer.addStretch(1)
+
+        self.clear_button = QPushButton(self)
+        self.clear_button.setObjectName("DownloadsWindowIconButton")
+        _configure_outline_button(
+            self.clear_button,
+            _("Clear download history"),
+        )
+        self.clear_button.clicked.connect(self._clear_history)
+        footer.addWidget(self.clear_button)
+
+        self.open_folder_button = QPushButton(self)
+        self.open_folder_button.setObjectName("DownloadsWindowIconButton")
+        _configure_outline_button(
+            self.open_folder_button,
+            _("Open downloads folder"),
+        )
+        self.open_folder_button.clicked.connect(
+            self._open_downloads_folder
+        )
+        footer.addWidget(self.open_folder_button)
+
+        self.settings_button = QPushButton(self)
+        self.settings_button.setObjectName("DownloadsWindowIconButton")
+        _configure_outline_button(
+            self.settings_button,
+            _("Settings"),
+        )
+        self.settings_button.clicked.connect(
+            self._open_download_settings
+        )
+        footer.addWidget(self.settings_button)
+
+        layout.addLayout(footer)
+
+    def _apply_style(self):
+        self.setStyleSheet(
+            """
+            QDialog#DownloadsWindow {
+                background: palette(window);
+            }
+            QWidget#DownloadsHistoryItems,
+            QScrollArea#DownloadsHistoryScroll,
+            QScrollArea#DownloadsHistoryScroll > QWidget > QWidget {
+                background: transparent;
+                border: 0;
+            }
+            QFrame#DownloadRow {
+                background: transparent;
+                border: 0;
+                border-radius: 8px;
+            }
+            QFrame#DownloadRow:hover {
+                background: palette(alternate-base);
+            }
+            QPushButton#DownloadsWindowIconButton {
+                border: 0;
+                background: transparent;
+            }
+            """
+        )
+
+    def _refresh_theme(self, *_args):
+        self.clear_button.setIcon(
+            _outline_icon(self.clear_button, "trash")
+        )
+        self.open_folder_button.setIcon(
+            _outline_icon(self.open_folder_button, "folder")
+        )
+        self.settings_button.setIcon(
+            _outline_icon(self.settings_button, "settings")
+        )
+        self.update()
+
+    def _schedule_refresh(self):
+        if self.isVisible() and not self._refresh_timer.isActive():
+            self._refresh_timer.start()
+
+    def _refresh_if_visible(self):
+        if self.isVisible():
+            self.refresh()
+
+    def refresh(self):
+        items = DownloadManager.download_items()
+        self._populate_rows(items)
+        self.clear_button.setEnabled(
+            any(not item.get("live") for item in items)
+        )
+        self._refresh_theme()
+
+    def show_window(self):
+        self.refresh()
+        screen = (
+            QGuiApplication.screenAt(
+                self.parentWidget().mapToGlobal(
+                    self.parentWidget().rect().center()
+                )
+            )
+            if self.parentWidget() is not None
+            else QGuiApplication.primaryScreen()
+        )
+        if screen is not None:
+            available = screen.availableGeometry()
+            width = min(self.WIDTH, max(430, available.width() - 120))
+            height = min(self.HEIGHT, max(420, available.height() - 120))
+            self.resize(width, height)
+
+        self.show()
+        self.raise_()
+        self.activateWindow()
+        return True
+
+    def _open_file(self, path: str):
+        self._open_file_path(path)
+
+    def _open_parent_folder(self, path: str):
+        self._open_parent_path(path)
+
+    def _clear_history(self):
+        DownloadManager.clear_recent_downloads()
+        self.refresh()
+
+    def _open_downloads_folder(self):
+        self._open_downloads_folder_path()
+
+    def _open_download_settings(self):
+        self.close()
+        self.settings_requested.emit()

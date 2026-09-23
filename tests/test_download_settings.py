@@ -8,6 +8,7 @@ import unittest
 from unittest.mock import patch
 
 from PyQt6.QtCore import QSettings
+from PyQt6.QtGui import QIcon
 from PyQt6.QtWebEngineCore import QWebEngineDownloadRequest
 
 from zapzap.core.config.settings.downloads import (
@@ -21,7 +22,10 @@ from zapzap.features.downloads.download_naming_service import DownloadNamingServ
 from zapzap.features.downloads.ui.multiple_download_dialog import (
     MultipleDownloadDecision,
 )
-from zapzap.features.downloads.ui.downloads_menu import DownloadRow
+from zapzap.features.downloads.ui.downloads_menu import (
+    DownloadRow,
+    DownloadsPopover,
+)
 
 
 class TemporarySettingsTest(unittest.TestCase):
@@ -337,6 +341,7 @@ class DownloadQueueTests(unittest.TestCase):
 
     def test_whatsapp_active_limit_is_global(self):
         self.assertEqual(DownloadManager.MAX_ACTIVE_DOWNLOADS, 6)
+        self.assertGreaterEqual(DownloadManager.MAX_RECENT_DOWNLOADS, 50)
 
         for index in range(6):
             self.track(
@@ -383,6 +388,26 @@ class DownloadQueueTests(unittest.TestCase):
         self.assertEqual(DownloadManager._terminal_records, [])
         self.assertNotIn(download, DownloadManager._active_downloads)
 
+    def test_finished_item_can_be_removed_from_history_without_deleting_file(self):
+        DownloadManager._terminal_records = [
+            {
+                "key": "terminal-test",
+                "path": "",
+                "name": "old.pdf",
+                "status": "completed",
+                "live": False,
+                "sequence": 1,
+            }
+        ]
+
+        removed = DownloadManager.remove_history_item(
+            "terminal-test",
+            "",
+        )
+
+        self.assertTrue(removed)
+        self.assertEqual(DownloadManager._terminal_records, [])
+
     def test_terminal_state_keeps_original_sequence_position(self):
         older = FakeDownload(10, 100, name="older.bin")
         newer = FakeDownload(20, 100, name="newer.bin")
@@ -397,50 +422,50 @@ class DownloadQueueTests(unittest.TestCase):
         self.assertEqual(items[1]["name"], "older.bin")
         self.assertEqual(items[1]["status"], "cancelled")
 
-    def test_progress_percent_badge_waits_for_large_slow_download(self):
+    def test_progress_ring_shows_when_estimated_time_exceeds_five_seconds(self):
         download = FakeDownload(
             5 * 1024 * 1024,
             20 * 1024 * 1024,
             name="large.bin",
         )
         self.track(download, sequence=1)
-        DownloadManager._download_meta[id(download)]["started_at"] = (
-            time.monotonic() - 6
-        )
+        meta = DownloadManager._download_meta[id(download)]
+        meta["speed_last_at"] = time.monotonic() - 1
+        meta["speed_last_received"] = 4 * 1024 * 1024
+        meta["speed_bps"] = 1024 * 1024
 
-        count, percent, show_percent = DownloadManager.progress_indicator()
+        count, percent, show_ring = DownloadManager.progress_indicator()
 
         self.assertEqual(count, 1)
         self.assertEqual(percent, 25)
-        self.assertTrue(show_percent)
+        self.assertTrue(show_ring)
 
-    def test_progress_percent_badge_stays_hidden_for_small_or_fast_download(self):
-        small = FakeDownload(
-            1 * 1024 * 1024,
-            5 * 1024 * 1024,
-            name="small.bin",
-        )
-        self.track(small, sequence=1)
-        DownloadManager._download_meta[id(small)]["started_at"] = (
-            time.monotonic() - 10
-        )
-        self.assertEqual(
-            DownloadManager.progress_indicator(),
-            (1, 20, False),
-        )
-
-        DownloadManager._active_downloads = []
-        DownloadManager._download_meta = {}
-
-        fast = FakeDownload(
-            5 * 1024 * 1024,
+    def test_progress_ring_stays_hidden_when_estimated_time_is_short(self):
+        download = FakeDownload(
+            18 * 1024 * 1024,
             20 * 1024 * 1024,
             name="fast.bin",
         )
-        self.track(fast, sequence=2)
-        DownloadManager._download_meta[id(fast)]["started_at"] = (
-            time.monotonic() - 1
+        self.track(download, sequence=1)
+        meta = DownloadManager._download_meta[id(download)]
+        meta["speed_last_at"] = time.monotonic() - 1
+        meta["speed_last_received"] = 17 * 1024 * 1024
+        meta["speed_bps"] = 1024 * 1024
+
+        count, percent, show_ring = DownloadManager.progress_indicator()
+
+        self.assertEqual(count, 1)
+        self.assertEqual(percent, 90)
+        self.assertFalse(show_ring)
+
+    def test_progress_ring_stays_hidden_until_speed_is_known(self):
+        download = FakeDownload(
+            5 * 1024 * 1024,
+            20 * 1024 * 1024,
+            name="warming-up.bin",
         )
+        self.track(download, sequence=1)
+
         self.assertEqual(
             DownloadManager.progress_indicator(),
             (1, 25, False),
@@ -464,6 +489,9 @@ class DownloadQueueTests(unittest.TestCase):
 
 
 class DownloadMenuPresentationTests(unittest.TestCase):
+
+    def test_compact_popup_shows_five_recent_items(self):
+        self.assertEqual(DownloadsPopover.POPUP_ITEM_LIMIT, 5)
 
     class _FakeIcon:
         def __init__(self, key):
@@ -490,7 +518,28 @@ class DownloadMenuPresentationTests(unittest.TestCase):
         provider = self._FakeProvider()
         DownloadRow._file_icon_provider = provider
         try:
-            icon = DownloadRow._system_file_icon("", "report.pdf")
+            with patch.object(
+                DownloadRow,
+                "_mime_theme_icon",
+                return_value=self._FakeIcon(3),
+            ):
+                icon = DownloadRow._system_file_icon("", "report.pdf")
+        finally:
+            DownloadRow._file_icon_provider = previous
+
+        self.assertEqual(icon.cacheKey(), 3)
+
+    def test_provider_is_fallback_when_desktop_theme_has_no_mime_icon(self):
+        previous = DownloadRow._file_icon_provider
+        provider = self._FakeProvider()
+        DownloadRow._file_icon_provider = provider
+        try:
+            with patch.object(
+                DownloadRow,
+                "_mime_theme_icon",
+                return_value=QIcon(),
+            ):
+                icon = DownloadRow._system_file_icon("", "report.pdf")
         finally:
             DownloadRow._file_icon_provider = previous
 
@@ -508,6 +557,22 @@ class DownloadMenuPresentationTests(unittest.TestCase):
         self.assertIn("…", rendered)
         self.assertTrue(rendered.endswith(".pdf"))
         self.assertTrue(rendered.startswith("deneme"))
+
+    def test_transfer_speed_and_eta_are_compact_and_language_neutral(self):
+        self.assertEqual(
+            DownloadRow._format_speed(1024 * 1024),
+            "1.00 MB/s",
+        )
+        self.assertEqual(DownloadRow._format_eta(65), "⏱ 1:05")
+        self.assertEqual(
+            DownloadRow._transfer_details_text(
+                {
+                    "speed_bps": 1024 * 1024,
+                    "eta_seconds": 65,
+                }
+            ),
+            "1.00 MB/s  •  ⏱ 1:05",
+        )
 
 
 class DownloadAutoOpenTypeTests(unittest.TestCase):
