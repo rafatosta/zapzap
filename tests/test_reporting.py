@@ -1,10 +1,12 @@
 """Privacy, storage, capture, and Markdown report contracts."""
 
+import os
 from datetime import datetime, timedelta, timezone
 import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from zapzap.core.reporting.builder import ReportBuilder
 from zapzap.core.reporting.capture import CrashReportCapture, CrashSessionMonitor
@@ -160,6 +162,52 @@ class ReportingCoreTests(unittest.TestCase):
             self.assertNotIn("private", serialized)
             second_monitor.close()
             self.assertFalse(second_monitor.marker.exists())
+
+    def test_runtime_environment_reports_structured_graphics_and_chromium_flags(self):
+        from zapzap.core.diagnostics.runtime_environment_debug import RuntimeEnvironmentDebug
+
+        with patch.dict(
+            os.environ,
+            {
+                "XDG_SESSION_TYPE": "wayland",
+                "DISPLAY": ":0",
+                "WAYLAND_DISPLAY": "wayland-0",
+                "QT_QPA_PLATFORM": "xcb",
+                "QTWEBENGINE_CHROMIUM_FLAGS": "--existing --enable-features=UseOzonePlatform",
+                "LIBVA_DRIVER_NAME": "iHD",
+            },
+            clear=True,
+        ):
+            report = RuntimeEnvironmentDebug().build_report()
+
+        self.assertIn("graphics", report)
+        self.assertEqual(report["graphics"]["graphics"]["xdg_session_type"], "wayland")
+        self.assertEqual(report["graphics"]["graphics"]["qt_platform_name"], "xcb")
+        self.assertEqual(report["graphics"]["vaapi"]["libva_driver_name"], "iHD")
+        self.assertIn("effective", report["qt_webengine"]["chromium_flags"])
+        self.assertIn("--existing", report["qt_webengine"]["chromium_flags"]["effective"])
+
+    def test_graphics_report_is_sanitized_and_uses_allowlist(self):
+        from zapzap.core.diagnostics.runtime_environment_debug import RuntimeEnvironmentDebug
+
+        with patch.dict(
+            os.environ,
+            {
+                "HOME": "/home/alice",
+                "WT_SESSION": "something",
+                "XDG_SESSION_TYPE": "x11",
+                "DISPLAY": ":3",
+                "LIBVA_DRIVER_NAME": "nvidia",
+            },
+            clear=True,
+        ):
+            report = RuntimeEnvironmentDebug().build_report()
+
+        serialized = json.dumps(report)
+        self.assertNotIn("/home/alice", serialized)
+        self.assertNotIn("WT_SESSION", serialized)
+        self.assertIn("x11", serialized)
+        self.assertIn("nvidia", serialized)
 
 
 if __name__ == "__main__":

@@ -48,6 +48,18 @@ releases and the AppStream metadata.
 - Extended the internal popup and external link regression tests to cover the
   deferred disposal and the shutdown path that still stopped a page
   reentrantly.
+- Expanded the runtime diagnostics report with a privacy-safe graphics section
+  covering the active Qt session, GPU topology, VAAPI and Vulkan hints, Flatpak
+  metadata, and the effective Chromium flags assembled for the app. The
+  structured data is kept in the same report builder and Markdown flow without
+  broadening the runtime surface or enabling automatic workarounds.
+
+### Added
+
+- Added a structured graphics/runtime diagnostic snapshot to the project
+  reporting flow, with allowlisted environment data and explicit handling for
+  missing GPU, VAAPI, Vulkan, and Flatpak metadata so the report stays robust
+  on unsupported or minimal Linux systems.
 
 ## [7.4.4] - 2026-09-01
 
