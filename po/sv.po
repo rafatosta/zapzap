@@ -4987,3 +4987,17 @@ msgstr "Öppna bilder automatiskt"
 
 msgid "Open completed image downloads with the system default application."
 msgstr "Öppna slutförda bildnedladdningar med systemets standardprogram."
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "All download history"
+msgstr "Hela nedladdningshistoriken"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Show in folder"
+msgstr "Visa i mapp"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Remove from download history"
+msgstr "Ta bort från nedladdningshistoriken"
