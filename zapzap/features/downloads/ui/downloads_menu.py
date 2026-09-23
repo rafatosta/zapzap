@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 import os
 
 from gettext import gettext as _
@@ -8,6 +9,7 @@ from PyQt6.QtCore import (
     QFileInfo,
     QMimeDatabase,
     QPoint,
+    QPointF,
     QSize,
     Qt,
     QTimer,
@@ -23,6 +25,7 @@ from PyQt6.QtGui import (
     QPainter,
     QPen,
     QPixmap,
+    QPolygonF,
 )
 from PyQt6.QtWidgets import (
     QDialog,
@@ -73,16 +76,27 @@ def _outline_icon(widget, kind: str, size: int = 20) -> QIcon:
         painter.drawLine(9, 9, 9, 15)
         painter.drawLine(11, 9, 11, 15)
     elif kind == "settings":
-        painter.drawEllipse(6, 6, 8, 8)
-        painter.drawEllipse(9, 9, 2, 2)
-        painter.drawLine(10, 2, 10, 5)
-        painter.drawLine(10, 15, 10, 18)
-        painter.drawLine(2, 10, 5, 10)
-        painter.drawLine(15, 10, 18, 10)
-        painter.drawLine(4, 4, 6, 6)
-        painter.drawLine(14, 14, 16, 16)
-        painter.drawLine(16, 4, 14, 6)
-        painter.drawLine(6, 14, 4, 16)
+        center = size / 2
+        outer_radius = size * 0.43
+        inner_radius = size * 0.32
+        points = []
+        teeth = 10
+        for index in range(teeth * 2):
+            angle = (-math.pi / 2) + (index * math.pi / teeth)
+            radius = outer_radius if index % 2 == 0 else inner_radius
+            points.append(
+                QPointF(
+                    center + (math.cos(angle) * radius),
+                    center + (math.sin(angle) * radius),
+                )
+            )
+        painter.drawPolygon(QPolygonF(points))
+        hole_radius = size * 0.13
+        painter.drawEllipse(
+            QPointF(center, center),
+            hole_radius,
+            hole_radius,
+        )
     painter.end()
     return QIcon(pixmap)
 
@@ -224,7 +238,7 @@ class DownloadRow(QFrame):
         self.delete_button = QPushButton(self)
         _configure_outline_button(
             self.delete_button,
-            _("Delete file"),
+            _("Delete"),
         )
         self.delete_button.clicked.connect(self._delete_file)
         actions_layout.addWidget(self.delete_button)
@@ -403,13 +417,6 @@ class DownloadRow(QFrame):
             "blocked": _("Blocked"),
             "completed": _("Completed"),
         }
-        if (
-            status == "completed"
-            and item.get("path")
-            and not item.get("file_exists", os.path.isfile(item.get("path", "")))
-        ):
-            return _("File deleted")
-
         label = labels.get(status, "")
         reason = item.get("reason", "")
         if reason and status == "interrupted":
@@ -585,7 +592,7 @@ class DownloadRow(QFrame):
         )
 
         if status == "completed" and file_exists:
-            open_action = menu.addAction(_("Open file"))
+            open_action = menu.addAction(_("Open"))
             open_action.triggered.connect(self._open_if_completed)
 
             folder_action = menu.addAction(_("Show in folder"))
@@ -1092,11 +1099,8 @@ class DownloadsWindow(QDialog, _DownloadsListMixin):
         self.open_folder_button.setIcon(
             _outline_icon(self.open_folder_button, "folder")
         )
-        icon_theme = SystemIcon.Type[
-            ThemeManager.get_current_color_scheme().name
-        ]
         self.settings_button.setIcon(
-            SystemIcon.get_icon("settings_gear", icon_theme)
+            _outline_icon(self.settings_button, "settings")
         )
         self.update()
 
