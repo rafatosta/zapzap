@@ -4488,3 +4488,17 @@ msgstr ""
 
 msgid "Open completed image downloads with the system default application."
 msgstr ""
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "All download history"
+msgstr ""
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Show in folder"
+msgstr ""
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Remove from download history"
+msgstr ""

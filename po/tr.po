@@ -4963,3 +4963,17 @@ msgstr "Görselleri otomatik aç"
 
 msgid "Open completed image downloads with the system default application."
 msgstr "Tamamlanan görsel indirmelerini sistemin varsayılan uygulamasıyla aç."
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "All download history"
+msgstr "Tüm indirme geçmişi"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Show in folder"
+msgstr "Klasörde göster"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Remove from download history"
+msgstr "İndirme geçmişinden kaldır"
