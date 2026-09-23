@@ -4878,3 +4878,106 @@ msgstr ""
 
 #~ msgid "Enable single process for GPU and rendering"
 #~ msgstr "Включіть єдиний процес для GPU і рендерингу"
+
+
+msgid "No recent downloads"
+msgstr "Немає нещодавніх завантажень"
+
+msgid "Clear download history"
+msgstr "Очистити історію завантажень"
+
+msgid "Open downloads folder"
+msgstr "Відкрити папку завантажень"
+
+msgid "Download behavior"
+msgstr "Поведінка завантажень"
+
+msgid "Choose what happens when a download starts."
+msgstr "Виберіть, що відбувається після початку завантаження."
+
+msgid "Automatically open PDFs and images"
+msgstr "Автоматично відкривати PDF-файли та зображення"
+
+msgid "Open completed PDF and image downloads with the system default application."
+msgstr "Відкривати завершені завантаження PDF-файлів і зображень системною програмою за замовчуванням."
+
+msgid "Show download window"
+msgstr "Показувати вікно завантаження"
+
+msgid "Save automatically to selected folder"
+msgstr "Автоматично зберігати у вибрану папку"
+
+msgid "Ask where to save every time"
+msgstr "Щоразу запитувати, куди зберегти"
+
+msgid "Multiple downloads"
+msgstr "Кілька завантажень"
+
+msgid "{site} wants to download multiple files."
+msgstr "{site} хоче завантажити кілька файлів."
+
+msgid "Do you want to allow these additional downloads?"
+msgstr "Дозволити ці додаткові завантаження?"
+
+msgid "Allow once"
+msgstr "Дозволити один раз"
+
+msgid "Always allow"
+msgstr "Завжди дозволяти"
+
+msgid "Block"
+msgstr "Блокувати"
+
+msgid "Automatic download site permissions"
+msgstr "Дозволи сайтів на автоматичні завантаження"
+
+msgid "Clear remembered allow or block decisions for sites that request multiple downloads."
+msgstr "Очистити збережені рішення про дозвіл або блокування сайтів, які запитують кілька завантажень."
+
+msgid "Pause"
+msgstr "Призупинити"
+
+msgid "Resume"
+msgstr "Продовжити"
+
+msgid "Queued"
+msgstr "У черзі"
+
+msgid "Paused"
+msgstr "Призупинено"
+
+msgid "Interrupted"
+msgstr "Перервано"
+
+msgid "Cancelled"
+msgstr "Скасовано"
+
+msgid "Blocked"
+msgstr "Заблоковано"
+
+msgid "Completed"
+msgstr "Завершено"
+
+msgid "This site"
+msgstr "Цей сайт"
+
+msgid "WhatsApp wants to download multiple files."
+msgstr "WhatsApp хоче завантажити кілька файлів."
+
+msgid "WhatsApp multiple-download permission"
+msgstr "Дозвіл на кілька завантажень WhatsApp"
+
+msgid "Clear the remembered allow or block decision for repeated WhatsApp downloads."
+msgstr "Очистити збережене рішення про дозвіл або блокування повторних завантажень WhatsApp."
+
+msgid "Automatically open PDFs"
+msgstr "Автоматично відкривати PDF"
+
+msgid "Open completed PDF downloads with the system default application."
+msgstr "Відкривати завершені завантаження PDF системною програмою за замовчуванням."
+
+msgid "Automatically open images"
+msgstr "Автоматично відкривати зображення"
+
+msgid "Open completed image downloads with the system default application."
+msgstr "Відкривати завершені завантаження зображень системною програмою за замовчуванням."

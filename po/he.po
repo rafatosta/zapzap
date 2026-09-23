@@ -4799,3 +4799,106 @@ msgstr ""
 
 #~ msgid "Enable single process for GPU and rendering"
 #~ msgstr "הפעלת תהליך יחיד למעבד גרפי ותיצוג"
+
+
+msgid "No recent downloads"
+msgstr "אין הורדות אחרונות"
+
+msgid "Clear download history"
+msgstr "נקה את היסטוריית ההורדות"
+
+msgid "Open downloads folder"
+msgstr "פתח את תיקיית ההורדות"
+
+msgid "Download behavior"
+msgstr "התנהגות הורדות"
+
+msgid "Choose what happens when a download starts."
+msgstr "בחר מה יקרה כאשר הורדה מתחילה."
+
+msgid "Automatically open PDFs and images"
+msgstr "פתח קובצי PDF ותמונות באופן אוטומטי"
+
+msgid "Open completed PDF and image downloads with the system default application."
+msgstr "פתח הורדות PDF ותמונות שהושלמו באמצעות יישום ברירת המחדל של המערכת."
+
+msgid "Show download window"
+msgstr "הצג חלון הורדה"
+
+msgid "Save automatically to selected folder"
+msgstr "שמור אוטומטית בתיקייה שנבחרה"
+
+msgid "Ask where to save every time"
+msgstr "שאל היכן לשמור בכל פעם"
+
+msgid "Multiple downloads"
+msgstr "הורדות מרובות"
+
+msgid "{site} wants to download multiple files."
+msgstr "{site} רוצה להוריד קבצים מרובים."
+
+msgid "Do you want to allow these additional downloads?"
+msgstr "האם לאפשר את ההורדות הנוספות האלה?"
+
+msgid "Allow once"
+msgstr "אפשר פעם אחת"
+
+msgid "Always allow"
+msgstr "אפשר תמיד"
+
+msgid "Block"
+msgstr "חסום"
+
+msgid "Automatic download site permissions"
+msgstr "הרשאות אתר להורדות אוטומטיות"
+
+msgid "Clear remembered allow or block decisions for sites that request multiple downloads."
+msgstr "נקה החלטות שמורות של אישור או חסימה לאתרים שמבקשים הורדות מרובות."
+
+msgid "Pause"
+msgstr "השהה"
+
+msgid "Resume"
+msgstr "המשך"
+
+msgid "Queued"
+msgstr "בתור"
+
+msgid "Paused"
+msgstr "מושהה"
+
+msgid "Interrupted"
+msgstr "הופסק"
+
+msgid "Cancelled"
+msgstr "בוטל"
+
+msgid "Blocked"
+msgstr "נחסם"
+
+msgid "Completed"
+msgstr "הושלם"
+
+msgid "This site"
+msgstr "אתר זה"
+
+msgid "WhatsApp wants to download multiple files."
+msgstr "WhatsApp רוצה להוריד קבצים מרובים."
+
+msgid "WhatsApp multiple-download permission"
+msgstr "הרשאה להורדות מרובות של WhatsApp"
+
+msgid "Clear the remembered allow or block decision for repeated WhatsApp downloads."
+msgstr "נקה את ההחלטה השמורה לאשר או לחסום הורדות חוזרות של WhatsApp."
+
+msgid "Automatically open PDFs"
+msgstr "פתח קובצי PDF אוטומטית"
+
+msgid "Open completed PDF downloads with the system default application."
+msgstr "פתח הורדות PDF שהושלמו באמצעות יישום ברירת המחדל של המערכת."
+
+msgid "Automatically open images"
+msgstr "פתח תמונות אוטומטית"
+
+msgid "Open completed image downloads with the system default application."
+msgstr "פתח הורדות תמונה שהושלמו באמצעות יישום ברירת המחדל של המערכת."

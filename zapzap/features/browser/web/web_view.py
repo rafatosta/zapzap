@@ -82,9 +82,8 @@ class WebView(QWebEngineView):
 
         self._web_channel_bridge = None
 
-        # In-memory only: the last directory chosen for a download in this
-        # conversation session. Never persisted; cleared when the
-        # conversation closes, the window closes or the app quits.
+        # In-memory only: last directory chosen with Save As for this
+        # conversation. Never persisted.
         self.last_download_directory = None
 
         self._reload_timer = QTimer(self)

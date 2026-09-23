@@ -15,6 +15,46 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Added shared recent-download menus to the sidebar and right side of the
+  menubar, including native platform file-type icons, per-item progress bars
+  and percentages, queued/paused/interrupted/cancelled/blocked/completed
+  states, pause/resume/cancel controls, per-item folder access, history
+  clearing, the downloads-folder shortcut, localized labels, and a five-second
+  automatic popup after direct downloads. File icons are resolved through Qt's
+  native file-icon provider on Linux, Windows and macOS, with MIME-theme and
+  generic-system fallbacks rather than bundled type artwork.
+- Added Chrome-style repeated-download protection for WhatsApp: only the first
+  download request in an application session is implicitly allowed; every
+  later request requires the shared ask/allow/block permission, so spacing
+  automated requests apart cannot bypass the prompt. Remembered decisions can
+  be reset in Settings, and a global cap of six active WhatsApp downloads
+  queues excess requests. Paused transfers do not occupy an active slot.
+- Added download behavior preferences for preserving the existing confirmation
+  dialog, saving directly to the selected folder, or asking for a destination
+  every time, plus independent opt-in automatic opening for completed PDFs and
+  raster images with the system default applications. Both auto-open switches
+  remain disabled by default and require verified file content, a compatible
+  safe extension and no conflicting server MIME type. Download names and final
+  target paths are sanitized/canonicalized to prevent directory traversal and
+  symlink escape.
+- Kept the download menu stable during fast transfers: unstarted requests
+  dismissed from the save dialog no longer appear as cancelled, terminal states
+  retain their original request position, long names are middle-elided while
+  preserving the extension, and the fixed-size download buttons use a spinner
+  for short/small transfers. A percentage appears only after five seconds when
+  the known aggregate size is at least 10 MiB, without resizing the button or
+  icon.
+- Added a Linux/Windows/macOS quality matrix for download and tray regression
+  coverage so queueing, path hardening, settings, MIME validation, native file
+  presentation and tray interaction behavior are exercised on maintained
+  desktop operating systems.
+- Changed tray activation to respect each desktop's native contract. On
+  Windows/macOS and tray backends that report primary activation, a primary
+  click toggles the application window and a context/right click opens the
+  menu. Linux StatusNotifier/AppIndicator keeps its native context menu because
+  GNOME-style hosts may consume primary/context clicks themselves; when those
+  hosts emit their Activate event as Qt Trigger or DoubleClick, ZapZap toggles
+  the window without opening a second application-side menu.
 - Show native taskbar/dock unread badges on supported Qt platforms, following
   the existing unread-counter preference. Added regression coverage and
   documented the integration and manual validation.

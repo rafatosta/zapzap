@@ -4,11 +4,13 @@ from gettext import gettext as _
 
 from PyQt6.QtGui import QAction
 from PyQt6.QtGui import QFont
+from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtWidgets import QHBoxLayout
 from PyQt6.QtWidgets import QMainWindow
 from PyQt6.QtWidgets import QMenu
 from PyQt6.QtWidgets import QMenuBar
 from PyQt6.QtWidgets import QStackedWidget
+from PyQt6.QtWidgets import QToolButton
 from PyQt6.QtWidgets import QWidget
 
 
@@ -52,6 +54,23 @@ class MainWindowView(QMainWindow):
         self.menuUsers.setObjectName("menuUsers")
         self.menuHelp = QMenu(self.menubar)
         self.menuHelp.setObjectName("menuHelp")
+
+        self.btn_menubar_downloads = QToolButton(self.menubar)
+        self.btn_menubar_downloads.setObjectName("btn_menubar_downloads")
+        self.btn_menubar_downloads.setAutoRaise(True)
+        self.btn_menubar_downloads.setToolButtonStyle(
+            Qt.ToolButtonStyle.ToolButtonIconOnly
+        )
+        self.btn_menubar_downloads.setCursor(
+            Qt.CursorShape.PointingHandCursor
+        )
+        self.btn_menubar_downloads.setToolTip(_("Downloads"))
+        self.btn_menubar_downloads.setAccessibleName(_("Downloads"))
+        self.menubar.setCornerWidget(
+            self.btn_menubar_downloads,
+            Qt.Corner.TopRightCorner,
+        )
+
         self.setMenuBar(self.menubar)
 
         self._create_actions()
@@ -128,6 +147,13 @@ class MainWindowView(QMainWindow):
         self.menubar.addAction(self.menuChat.menuAction())
         self.menubar.addAction(self.menuUsers.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
+        self.sync_menubar_downloads_button_size()
+
+    def sync_menubar_downloads_button_size(self):
+        height = max(28, self.menubar.sizeHint().height())
+        icon_size = max(20, height - 8)
+        self.btn_menubar_downloads.setFixedSize(QSize(height + 8, height))
+        self.btn_menubar_downloads.setIconSize(QSize(icon_size, icon_size))
 
     def retranslate_ui(self):
         self.setWindowTitle(_("ZapZap"))
@@ -136,6 +162,8 @@ class MainWindowView(QMainWindow):
         self.menuChat.setTitle(_("Chat"))
         self.menuUsers.setTitle(_("Users"))
         self.menuHelp.setTitle(_("Help"))
+        self.btn_menubar_downloads.setToolTip(_("Downloads"))
+        self.btn_menubar_downloads.setAccessibleName(_("Downloads"))
         self.actionQuit.setText(_("Quit"))
         self.actionQuit.setShortcut(_("Ctrl+Q"))
         self.actionHide.setText(_("Hide"))

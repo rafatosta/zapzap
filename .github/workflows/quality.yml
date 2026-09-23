@@ -30,3 +30,33 @@ jobs:
 
       - name: Compile Python sources
         run: python -m compileall -q zapzap tests tools run.py
+
+  downloads-cross-platform:
+    name: Downloads (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+
+    env:
+      PYTHONUTF8: 1
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Qt runtime dependencies
+        run: python -m pip install --upgrade PyQt6 PyQt6-WebEngine
+
+      - name: Validate download behavior
+        run: python -m unittest discover -s tests -p "test_download_settings.py" -v
+
+      - name: Validate tray behavior
+        run: python -m unittest discover -s tests -p "test_taskbar_badge.py" -v

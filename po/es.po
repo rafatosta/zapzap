@@ -4881,3 +4881,106 @@ msgstr ""
 
 #~ msgid "Enable single process for GPU and rendering"
 #~ msgstr "Habilitar un solo proceso para GPU y renderizado"
+
+
+msgid "No recent downloads"
+msgstr "No hay descargas recientes"
+
+msgid "Clear download history"
+msgstr "Borrar historial de descargas"
+
+msgid "Open downloads folder"
+msgstr "Abrir carpeta de descargas"
+
+msgid "Download behavior"
+msgstr "Comportamiento de las descargas"
+
+msgid "Choose what happens when a download starts."
+msgstr "Elige qué ocurre cuando comienza una descarga."
+
+msgid "Automatically open PDFs and images"
+msgstr "Abrir PDF e imágenes automáticamente"
+
+msgid "Open completed PDF and image downloads with the system default application."
+msgstr "Abrir las descargas de PDF e imágenes completadas con la aplicación predeterminada del sistema."
+
+msgid "Show download window"
+msgstr "Mostrar ventana de descarga"
+
+msgid "Save automatically to selected folder"
+msgstr "Guardar automáticamente en la carpeta seleccionada"
+
+msgid "Ask where to save every time"
+msgstr "Preguntar dónde guardar cada vez"
+
+msgid "Multiple downloads"
+msgstr "Descargas múltiples"
+
+msgid "{site} wants to download multiple files."
+msgstr "{site} quiere descargar varios archivos."
+
+msgid "Do you want to allow these additional downloads?"
+msgstr "¿Quieres permitir estas descargas adicionales?"
+
+msgid "Allow once"
+msgstr "Permitir una vez"
+
+msgid "Always allow"
+msgstr "Permitir siempre"
+
+msgid "Block"
+msgstr "Bloquear"
+
+msgid "Automatic download site permissions"
+msgstr "Permisos de sitios para descargas automáticas"
+
+msgid "Clear remembered allow or block decisions for sites that request multiple downloads."
+msgstr "Borrar las decisiones recordadas de permitir o bloquear sitios que solicitan varias descargas."
+
+msgid "Pause"
+msgstr "Pausar"
+
+msgid "Resume"
+msgstr "Reanudar"
+
+msgid "Queued"
+msgstr "En cola"
+
+msgid "Paused"
+msgstr "Pausado"
+
+msgid "Interrupted"
+msgstr "Interrumpido"
+
+msgid "Cancelled"
+msgstr "Cancelado"
+
+msgid "Blocked"
+msgstr "Bloqueado"
+
+msgid "Completed"
+msgstr "Completado"
+
+msgid "This site"
+msgstr "Este sitio"
+
+msgid "WhatsApp wants to download multiple files."
+msgstr "WhatsApp quiere descargar varios archivos."
+
+msgid "WhatsApp multiple-download permission"
+msgstr "Permiso para varias descargas de WhatsApp"
+
+msgid "Clear the remembered allow or block decision for repeated WhatsApp downloads."
+msgstr "Borrar la decisión recordada de permitir o bloquear descargas repetidas de WhatsApp."
+
+msgid "Automatically open PDFs"
+msgstr "Abrir PDF automáticamente"
+
+msgid "Open completed PDF downloads with the system default application."
+msgstr "Abrir las descargas PDF completadas con la aplicación predeterminada del sistema."
+
+msgid "Automatically open images"
+msgstr "Abrir imágenes automáticamente"
+
+msgid "Open completed image downloads with the system default application."
+msgstr "Abrir las descargas de imágenes completadas con la aplicación predeterminada del sistema."

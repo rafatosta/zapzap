@@ -5035,3 +5035,106 @@ msgstr ""
 
 #~ msgid "Creating temporary directory:"
 #~ msgstr "A criar um diretório temporário:"
+
+
+msgid "No recent downloads"
+msgstr "Nenhuma transferência recente"
+
+msgid "Clear download history"
+msgstr "Limpar histórico de transferências"
+
+msgid "Open downloads folder"
+msgstr "Abrir pasta de Transferências"
+
+msgid "Download behavior"
+msgstr "Comportamento das transferências"
+
+msgid "Choose what happens when a download starts."
+msgstr "Escolha o que acontece quando uma transferência é iniciada."
+
+msgid "Automatically open PDFs and images"
+msgstr "Abrir PDFs e imagens automaticamente"
+
+msgid "Open completed PDF and image downloads with the system default application."
+msgstr "Abrir transferências concluídas de PDF e imagens com a aplicação predefinida do sistema."
+
+msgid "Show download window"
+msgstr "Mostrar janela de transferência"
+
+msgid "Save automatically to selected folder"
+msgstr "Guardar automaticamente na pasta selecionada"
+
+msgid "Ask where to save every time"
+msgstr "Perguntar onde guardar de cada vez"
+
+msgid "Multiple downloads"
+msgstr "Várias transferências"
+
+msgid "{site} wants to download multiple files."
+msgstr "{site} pretende transferir vários ficheiros."
+
+msgid "Do you want to allow these additional downloads?"
+msgstr "Pretende permitir estas transferências adicionais?"
+
+msgid "Allow once"
+msgstr "Permitir uma vez"
+
+msgid "Always allow"
+msgstr "Permitir sempre"
+
+msgid "Block"
+msgstr "Bloquear"
+
+msgid "Automatic download site permissions"
+msgstr "Permissões de sites para transferências automáticas"
+
+msgid "Clear remembered allow or block decisions for sites that request multiple downloads."
+msgstr "Limpar decisões memorizadas de permitir ou bloquear sites que pedem várias transferências."
+
+msgid "Pause"
+msgstr "Pausar"
+
+msgid "Resume"
+msgstr "Retomar"
+
+msgid "Queued"
+msgstr "Em fila"
+
+msgid "Paused"
+msgstr "Em pausa"
+
+msgid "Interrupted"
+msgstr "Interrompido"
+
+msgid "Cancelled"
+msgstr "Cancelado"
+
+msgid "Blocked"
+msgstr "Bloqueado"
+
+msgid "Completed"
+msgstr "Concluído"
+
+msgid "This site"
+msgstr "Este site"
+
+msgid "WhatsApp wants to download multiple files."
+msgstr "O WhatsApp pretende transferir vários ficheiros."
+
+msgid "WhatsApp multiple-download permission"
+msgstr "Permissão para várias transferências do WhatsApp"
+
+msgid "Clear the remembered allow or block decision for repeated WhatsApp downloads."
+msgstr "Limpar a decisão memorizada de permitir ou bloquear transferências repetidas do WhatsApp."
+
+msgid "Automatically open PDFs"
+msgstr "Abrir PDFs automaticamente"
+
+msgid "Open completed PDF downloads with the system default application."
+msgstr "Abrir transferências PDF concluídas com a aplicação predefinida do sistema."
+
+msgid "Automatically open images"
+msgstr "Abrir imagens automaticamente"
+
+msgid "Open completed image downloads with the system default application."
+msgstr "Abrir transferências de imagens concluídas com a aplicação predefinida do sistema."

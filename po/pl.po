@@ -4871,3 +4871,106 @@ msgstr ""
 
 #~ msgid "Enable single process for GPU and rendering"
 #~ msgstr "Włącz pojedynczy proces dla GPU oraz renderowania"
+
+
+msgid "No recent downloads"
+msgstr "Brak ostatnich pobrań"
+
+msgid "Clear download history"
+msgstr "Wyczyść historię pobrań"
+
+msgid "Open downloads folder"
+msgstr "Otwórz folder Pobrane"
+
+msgid "Download behavior"
+msgstr "Zachowanie pobierania"
+
+msgid "Choose what happens when a download starts."
+msgstr "Wybierz, co ma się stać po rozpoczęciu pobierania."
+
+msgid "Automatically open PDFs and images"
+msgstr "Automatycznie otwieraj pliki PDF i obrazy"
+
+msgid "Open completed PDF and image downloads with the system default application."
+msgstr "Otwieraj ukończone pobrania plików PDF i obrazów w domyślnej aplikacji systemowej."
+
+msgid "Show download window"
+msgstr "Pokaż okno pobierania"
+
+msgid "Save automatically to selected folder"
+msgstr "Automatycznie zapisuj w wybranym folderze"
+
+msgid "Ask where to save every time"
+msgstr "Za każdym razem pytaj, gdzie zapisać"
+
+msgid "Multiple downloads"
+msgstr "Wiele pobrań"
+
+msgid "{site} wants to download multiple files."
+msgstr "{site} chce pobrać wiele plików."
+
+msgid "Do you want to allow these additional downloads?"
+msgstr "Czy zezwolić na te dodatkowe pobrania?"
+
+msgid "Allow once"
+msgstr "Zezwól raz"
+
+msgid "Always allow"
+msgstr "Zawsze zezwalaj"
+
+msgid "Block"
+msgstr "Blokuj"
+
+msgid "Automatic download site permissions"
+msgstr "Uprawnienia witryn do automatycznego pobierania"
+
+msgid "Clear remembered allow or block decisions for sites that request multiple downloads."
+msgstr "Wyczyść zapamiętane decyzje o zezwoleniu lub blokowaniu witryn żądających wielu pobrań."
+
+msgid "Pause"
+msgstr "Wstrzymaj"
+
+msgid "Resume"
+msgstr "Wznów"
+
+msgid "Queued"
+msgstr "W kolejce"
+
+msgid "Paused"
+msgstr "Wstrzymano"
+
+msgid "Interrupted"
+msgstr "Przerwano"
+
+msgid "Cancelled"
+msgstr "Anulowano"
+
+msgid "Blocked"
+msgstr "Zablokowano"
+
+msgid "Completed"
+msgstr "Ukończono"
+
+msgid "This site"
+msgstr "Ta witryna"
+
+msgid "WhatsApp wants to download multiple files."
+msgstr "WhatsApp chce pobrać wiele plików."
+
+msgid "WhatsApp multiple-download permission"
+msgstr "Uprawnienie do wielu pobrań WhatsApp"
+
+msgid "Clear the remembered allow or block decision for repeated WhatsApp downloads."
+msgstr "Wyczyść zapamiętaną decyzję o zezwoleniu lub blokowaniu powtarzających się pobrań WhatsApp."
+
+msgid "Automatically open PDFs"
+msgstr "Automatycznie otwieraj pliki PDF"
+
+msgid "Open completed PDF downloads with the system default application."
+msgstr "Otwieraj ukończone pobrania PDF w domyślnej aplikacji systemowej."
+
+msgid "Automatically open images"
+msgstr "Automatycznie otwieraj obrazy"
+
+msgid "Open completed image downloads with the system default application."
+msgstr "Otwieraj ukończone pobrania obrazów w domyślnej aplikacji systemowej."

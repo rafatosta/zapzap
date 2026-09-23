@@ -4932,3 +4932,106 @@ msgstr ""
 
 #~ msgid "Enable single process for GPU and rendering"
 #~ msgstr "Einzelnen Prozess für GPU und Rendering aktivieren"
+
+
+msgid "No recent downloads"
+msgstr "Keine kürzlich heruntergeladenen Dateien"
+
+msgid "Clear download history"
+msgstr "Downloadverlauf löschen"
+
+msgid "Open downloads folder"
+msgstr "Download-Ordner öffnen"
+
+msgid "Download behavior"
+msgstr "Download-Verhalten"
+
+msgid "Choose what happens when a download starts."
+msgstr "Wählen Sie, was beim Start eines Downloads geschieht."
+
+msgid "Automatically open PDFs and images"
+msgstr "PDFs und Bilder automatisch öffnen"
+
+msgid "Open completed PDF and image downloads with the system default application."
+msgstr "Abgeschlossene PDF- und Bild-Downloads mit der Standardanwendung des Systems öffnen."
+
+msgid "Show download window"
+msgstr "Downloadfenster anzeigen"
+
+msgid "Save automatically to selected folder"
+msgstr "Automatisch im ausgewählten Ordner speichern"
+
+msgid "Ask where to save every time"
+msgstr "Jedes Mal nach dem Speicherort fragen"
+
+msgid "Multiple downloads"
+msgstr "Mehrere Downloads"
+
+msgid "{site} wants to download multiple files."
+msgstr "{site} möchte mehrere Dateien herunterladen."
+
+msgid "Do you want to allow these additional downloads?"
+msgstr "Möchten Sie diese zusätzlichen Downloads zulassen?"
+
+msgid "Allow once"
+msgstr "Einmal zulassen"
+
+msgid "Always allow"
+msgstr "Immer zulassen"
+
+msgid "Block"
+msgstr "Blockieren"
+
+msgid "Automatic download site permissions"
+msgstr "Website-Berechtigungen für automatische Downloads"
+
+msgid "Clear remembered allow or block decisions for sites that request multiple downloads."
+msgstr "Gespeicherte Zulassungs- oder Blockierungsentscheidungen für Websites löschen, die mehrere Downloads anfordern."
+
+msgid "Pause"
+msgstr "Pausieren"
+
+msgid "Resume"
+msgstr "Fortsetzen"
+
+msgid "Queued"
+msgstr "In Warteschlange"
+
+msgid "Paused"
+msgstr "Pausiert"
+
+msgid "Interrupted"
+msgstr "Unterbrochen"
+
+msgid "Cancelled"
+msgstr "Abgebrochen"
+
+msgid "Blocked"
+msgstr "Blockiert"
+
+msgid "Completed"
+msgstr "Abgeschlossen"
+
+msgid "This site"
+msgstr "Diese Website"
+
+msgid "WhatsApp wants to download multiple files."
+msgstr "WhatsApp möchte mehrere Dateien herunterladen."
+
+msgid "WhatsApp multiple-download permission"
+msgstr "Berechtigung für mehrere WhatsApp-Downloads"
+
+msgid "Clear the remembered allow or block decision for repeated WhatsApp downloads."
+msgstr "Gespeicherte Zulassungs- oder Blockierungsentscheidung für wiederholte WhatsApp-Downloads löschen."
+
+msgid "Automatically open PDFs"
+msgstr "PDFs automatisch öffnen"
+
+msgid "Open completed PDF downloads with the system default application."
+msgstr "Abgeschlossene PDF-Downloads mit der Standardanwendung des Systems öffnen."
+
+msgid "Automatically open images"
+msgstr "Bilder automatisch öffnen"
+
+msgid "Open completed image downloads with the system default application."
+msgstr "Abgeschlossene Bild-Downloads mit der Standardanwendung des Systems öffnen."

@@ -1,6 +1,8 @@
 from gettext import gettext as _
+import sys
+from PyQt6.QtCore import QTimer
 from PyQt6.QtWidgets import QApplication, QSystemTrayIcon, QMenu
-from PyQt6.QtGui import QAction
+from PyQt6.QtGui import QAction, QCursor
 
 from zapzap.assets.icons.tray_icon import TrayIcon
 from zapzap.core.config.settings.appearance import AppearanceSettings
@@ -40,7 +42,18 @@ class SysTrayManager:
 
         self._actions = self._create_actions()
         self._trayMenu = self._create_menu()
-        self._tray.setContextMenu(self._trayMenu)
+
+        # Linux StatusNotifier/AppIndicator hosts may consume primary/context
+        # clicks without emitting QSystemTrayIcon.activated unless a native
+        # context menu is attached. Keep that native integration on Linux;
+        # Windows/macOS use the explicit activation routing below.
+        self._native_context_menu = sys.platform.startswith("linux")
+        if self._native_context_menu:
+            self._tray.setContextMenu(self._trayMenu)
+
+        self._activation_timer = QTimer(self._tray)
+        self._activation_timer.setSingleShot(True)
+        self._activation_timer.timeout.connect(self._toggle_bound_window)
 
         self._setup_connections()
 
@@ -76,13 +89,70 @@ class SysTrayManager:
         if main_window:
             self.bind_window(main_window)
 
+    def _toggle_bound_window(self):
+        main_window = getattr(self, "_bound_window", None)
+        if main_window is not None:
+            main_window.show_window()
+
+    def _show_tray_menu(self):
+        if self._trayMenu.isVisible():
+            return
+        self._trayMenu.popup(QCursor.pos())
+
+    def _schedule_primary_toggle(self):
+        application = QApplication.instance()
+        interval = (
+            application.doubleClickInterval()
+            if application is not None
+            else 400
+        )
+        self._activation_timer.start(max(1, int(interval)))
+
+    def _on_tray_activated(self, reason):
+        activation = QSystemTrayIcon.ActivationReason
+
+        if self._native_context_menu:
+            # StatusNotifier/AppIndicator hosts own the context menu on Linux.
+            # Do not popup a second QMenu from the application: doing so can
+            # leave the shell cursor busy while it resolves two menu requests.
+            if reason in {
+                activation.Trigger,
+                activation.DoubleClick,
+            }:
+                # GNOME AppIndicator commonly exposes its "activate" gesture
+                # as Trigger even when that gesture came from a double click.
+                if self._trayMenu.isVisible():
+                    self._trayMenu.close()
+                self._toggle_bound_window()
+            return
+
+        if reason == activation.Context:
+            self._activation_timer.stop()
+            self._show_tray_menu()
+            return
+
+        if reason == activation.DoubleClick:
+            # Cancel the delayed first click so a double click toggles once.
+            self._activation_timer.stop()
+            self._toggle_bound_window()
+            return
+
+        if reason == activation.Trigger:
+            # Delay a normal primary click just enough to distinguish it from
+            # a double click on Windows/macOS and non-SNI tray backends.
+            self._schedule_primary_toggle()
+            return
+
+        # Unknown and middle-click activations intentionally do nothing.
+
     @classmethod
     def bind_window(cls, main_window):
         """Reconnect tray actions to the current MainWindow instance."""
         instance = cls.instance()
+        instance._activation_timer.stop()
         instance._disconnect_window_actions()
         instance._bound_window = main_window
-        instance._tray.activated.connect(main_window.show_window)
+        instance._tray.activated.connect(instance._on_tray_activated)
         instance._actions["show"].triggered.connect(main_window.show_window)
         instance._actions["settings"].triggered.connect(
             lambda: instance._open_settings(main_window))

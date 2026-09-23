@@ -109,6 +109,13 @@ class SystemIcon:
             </svg>
             """
         ),
+        "trash": (
+            """
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="{fill_color}" viewBox="0 0 256 256">
+                <path d="M216 48h-40V40a24 24 0 0 0-24-24h-48a24 24 0 0 0-24 24v8H40a8 8 0 0 0 0 16h8v144a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16V64h8a8 8 0 0 0 0-16ZM96 40a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8v8H96Zm96 168H64V64h128ZM104 96v80a8 8 0 0 1-16 0V96a8 8 0 0 1 16 0Zm64 0v80a8 8 0 0 1-16 0V96a8 8 0 0 1 16 0Z"/>
+            </svg>
+            """
+        ),
         "external_link": (
             """
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="{fill_color}" viewBox="0 0 256 256">

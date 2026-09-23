@@ -5,6 +5,7 @@ from gettext import gettext as _
 from PyQt6.QtCore import QLocale
 from PyQt6.QtWidgets import QApplication
 
+from zapzap.core.config.settings.downloads import DownloadBehavior
 from zapzap.features.dictionaries.dictionary_manager import (
     open_dictionary_manager,
 )
@@ -37,6 +38,13 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         )
 
         self.download_path.setText(self.model.get_download_path())
+        self._load_download_behavior_options()
+        self.auto_open_pdf_row.checkbox.setChecked(
+            self.model.auto_open_pdf
+        )
+        self.auto_open_images_row.checkbox.setChecked(
+            self.model.auto_open_images
+        )
 
         self._load_interface_languages()
 
@@ -60,6 +68,38 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         self.btn_restore_path_download.clicked.connect(
             self._handle_restore_path_download
         )
+        self.download_behavior_combo.currentIndexChanged.connect(
+            self._handle_download_behavior
+        )
+        self.auto_open_pdf_row.checkbox.toggled.connect(
+            self._handle_auto_open_pdf
+        )
+        self.auto_open_images_row.checkbox.toggled.connect(
+            self._handle_auto_open_images
+        )
+        self.btn_reset_download_permissions.clicked.connect(
+            self._handle_reset_download_permissions
+        )
+
+    def _load_download_behavior_options(self):
+        combo = self.download_behavior_combo
+        combo.blockSignals(True)
+        combo.clear()
+        combo.addItem(
+            _("Show download window"),
+            DownloadBehavior.DIALOG,
+        )
+        combo.addItem(
+            _("Save automatically to selected folder"),
+            DownloadBehavior.AUTOMATIC,
+        )
+        combo.addItem(
+            _("Ask where to save every time"),
+            DownloadBehavior.ASK_EVERY_TIME,
+        )
+        index = combo.findData(self.model.download_behavior)
+        combo.setCurrentIndex(max(0, index))
+        combo.blockSignals(False)
 
     def _load_interface_languages(self):
         combo = self.interface_language_comboBox
@@ -185,6 +225,19 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
 
     def _update_browser_spellcheck(self):
         QApplication.instance().getWindow().browser.update_spellcheck()
+
+    def _handle_download_behavior(self, *_args):
+        value = self.download_behavior_combo.currentData()
+        self.model.download_behavior = value
+
+    def _handle_auto_open_pdf(self, enabled):
+        self.model.auto_open_pdf = enabled
+
+    def _handle_auto_open_images(self, enabled):
+        self.model.auto_open_images = enabled
+
+    def _handle_reset_download_permissions(self):
+        self.model.clear_multiple_download_permissions()
 
     def _handle_path_download(self):
         new_path = self.model.open_folder_dialog(self)

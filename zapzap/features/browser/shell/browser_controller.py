@@ -124,6 +124,7 @@ class BrowserController(BrowserView):
             self.btn_whatsapp_lock,
             self.btn_donations,
             self.btn_update_available,
+            self.btn_downloads,
             self.btn_open_settings,
         ):
             button.setMinimumSize(40, 40)
@@ -189,6 +190,9 @@ class BrowserController(BrowserView):
         self.btn_new_chat.clicked.connect(lambda: self.parent.new_chat())
         self.btn_whatsapp_lock.clicked.connect(self.request_native_app_lock)
         self.btn_donations.clicked.connect(self.show_donations)
+        self.btn_downloads.clicked.connect(
+            lambda: self.parent.show_downloads_menu(self.btn_downloads)
+        )
         self.btn_update_available.clicked.connect(
             lambda: self.show_update_popover(focus_actions=True)
         )
@@ -941,6 +945,8 @@ class BrowserController(BrowserView):
         self.btn_donations.setIcon(
             SystemIcon.get_icon("donation_heart", theme))
         self.btn_update_available.setIcon(
+            SystemIcon.get_icon("update_available", theme))
+        self.btn_downloads.setIcon(
             SystemIcon.get_icon("update_available", theme))
         if hasattr(self, "btn_flatpak_help"):
             self.btn_flatpak_help.setIcon(
