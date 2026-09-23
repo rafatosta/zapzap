@@ -5138,3 +5138,17 @@ msgstr "Abrir imagens automaticamente"
 
 msgid "Open completed image downloads with the system default application."
 msgstr "Abrir transferências de imagens concluídas com a aplicação predefinida do sistema."
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "All download history"
+msgstr "Todo o histórico de transferências"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Show in folder"
+msgstr "Mostrar na pasta"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Remove from download history"
+msgstr "Remover do histórico de transferências"
