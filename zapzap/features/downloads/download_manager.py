@@ -532,6 +532,7 @@ class DownloadManager:
                 "live": False,
                 "sequence": meta.get("sequence", 0),
                 "started_at": meta.get("started_at"),
+                "file_exists": bool(path and os.path.isfile(path)),
             },
         )
         DownloadManager._terminal_records.sort(
@@ -631,6 +632,7 @@ class DownloadManager:
                     "live": False,
                     "sequence": -(index + 1),
                     "started_at": None,
+                    "file_exists": bool(path and os.path.isfile(path)),
                 }
             )
 
@@ -703,6 +705,7 @@ class DownloadManager:
             "started_at": meta.get("started_at"),
             "speed_bps": speed_bps,
             "eta_seconds": eta_seconds,
+            "file_exists": bool(path and os.path.isfile(path)),
         }
 
     @staticmethod
@@ -864,6 +867,23 @@ class DownloadManager:
                 valid,
             )
         return valid
+
+    @staticmethod
+    def delete_downloaded_file(path):
+        """Delete exactly one downloaded file from disk, keeping history."""
+        if not path:
+            return False
+
+        try:
+            if not os.path.isfile(path) and not os.path.islink(path):
+                return False
+            os.remove(path)
+        except OSError:
+            logger.exception("Downloaded file could not be deleted: %s", path)
+            return False
+
+        download_events.items_changed.emit()
+        return True
 
     @staticmethod
     def remove_history_item(key, path=""):

@@ -42,9 +42,13 @@ releases and the AppStream metadata.
   most recent items, while its footer opens a separate small, vertically
   scrollable history window retaining up to 100 recent/session records.
   Hovering a finished row reveals outline-only palette-aware folder and trash
-  actions; the trash removes only the ZapZap history entry, never the downloaded
-  file. The history window footer uses icon-only clear-history, downloads-folder
-  and download-settings shortcuts. Active rows show percentage, smoothed current
+  actions; the trash deletes the downloaded file from disk while keeping its
+  history record. Right-click menus expose state-appropriate actions including
+  pause/resume/cancel, show-in-folder, delete-file and remove-from-history.
+  Active transfers expose a right-side X that cancels into the Cancelled state.
+  The history window footer uses icon-only clear-history, downloads-folder and a
+  true gear-shaped download-settings shortcut. Active rows show percentage,
+  smoothed current
   transfer speed and estimated time remaining. The download button no longer
   overlays a percentage; a proportional circular progress ring is drawn around
   the icon only while the estimated remaining time is greater than five seconds,

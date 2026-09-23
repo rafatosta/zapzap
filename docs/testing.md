@@ -258,11 +258,17 @@ gráfica real.
     Confirme que ele funciona como um menu suspenso compacto e mostra somente
     os cinco itens mais recentes. Passe o ponteiro sobre uma linha e confirme
     que aparecem à direita os ícones de mostrar na pasta e, para itens
-    concluídos, remover do histórico. O botão inferior deve abrir **Todo o
+    concluídos, excluir o arquivo do disco. Durante um download ativo, confirme
+    que aparece um botão **X** à direita e que ele cancela a transferência,
+    movendo o item para o estado **Cancelado**. Clique com o botão direito em
+    itens ativos/concluídos e confirme as ações contextuais apropriadas:
+    pausar/retomar/cancelar, mostrar na pasta, excluir o arquivo e remover
+    somente do histórico. O botão inferior deve abrir **Todo o
     histórico de downloads** em uma janela maior, mas ainda compacta, com
     rolagem vertical e histórico ampliado. No rodapé dessa janela confirme três
     controles apenas por ícone: limpar histórico, abrir a pasta de downloads e
-    abrir diretamente as configurações de download. Teste tema
+    abrir diretamente as configurações de download. O último deve usar um ícone
+    de engrenagem, não um símbolo semelhante a sol. Teste tema
     claro, escuro e automático; ambos devem seguir a paleta Qt sem áreas
     ilegíveis. Em Linux, valide pelo menos uma sessão X11 e uma Wayland quando
     disponíveis.

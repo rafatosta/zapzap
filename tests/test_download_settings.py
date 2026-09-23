@@ -388,6 +388,35 @@ class DownloadQueueTests(unittest.TestCase):
         self.assertEqual(DownloadManager._terminal_records, [])
         self.assertNotIn(download, DownloadManager._active_downloads)
 
+    def test_delete_downloaded_file_removes_disk_file_but_keeps_history(self):
+        temporary = tempfile.NamedTemporaryFile(delete=False)
+        temporary.write(b"download")
+        temporary.close()
+        path = temporary.name
+        DownloadManager._terminal_records = [
+            {
+                "key": "terminal-delete",
+                "path": path,
+                "name": os.path.basename(path),
+                "status": "completed",
+                "live": False,
+                "sequence": 1,
+            }
+        ]
+
+        try:
+            deleted = DownloadManager.delete_downloaded_file(path)
+
+            self.assertTrue(deleted)
+            self.assertFalse(os.path.exists(path))
+            self.assertEqual(
+                DownloadManager._terminal_records[0]["key"],
+                "terminal-delete",
+            )
+        finally:
+            if os.path.exists(path):
+                os.unlink(path)
+
     def test_finished_item_can_be_removed_from_history_without_deleting_file(self):
         DownloadManager._terminal_records = [
             {

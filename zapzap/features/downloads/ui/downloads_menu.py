@@ -31,6 +31,7 @@ from PyQt6.QtWidgets import (
     QGraphicsDropShadowEffect,
     QHBoxLayout,
     QLabel,
+    QMenu,
     QProgressBar,
     QPushButton,
     QScrollArea,
@@ -220,13 +221,13 @@ class DownloadRow(QFrame):
         )
         actions_layout.addWidget(self.folder_button)
 
-        self.remove_button = QPushButton(self)
+        self.delete_button = QPushButton(self)
         _configure_outline_button(
-            self.remove_button,
-            _("Remove from download history"),
+            self.delete_button,
+            _("Delete file"),
         )
-        self.remove_button.clicked.connect(self._remove_from_history)
-        actions_layout.addWidget(self.remove_button)
+        self.delete_button.clicked.connect(self._delete_file)
+        actions_layout.addWidget(self.delete_button)
 
         self.pause_button = self._icon_button(
             QStyle.StandardPixmap.SP_MediaPause,
@@ -268,8 +269,8 @@ class DownloadRow(QFrame):
         self.folder_button.setIcon(
             _outline_icon(self.folder_button, "folder")
         )
-        self.remove_button.setIcon(
-            _outline_icon(self.remove_button, "trash")
+        self.delete_button.setIcon(
+            _outline_icon(self.delete_button, "trash")
         )
 
     def _icon_button(self, standard_icon, tooltip):
@@ -402,6 +403,13 @@ class DownloadRow(QFrame):
             "blocked": _("Blocked"),
             "completed": _("Completed"),
         }
+        if (
+            status == "completed"
+            and item.get("path")
+            and not item.get("file_exists", os.path.isfile(item.get("path", "")))
+        ):
+            return _("File deleted")
+
         label = labels.get(status, "")
         reason = item.get("reason", "")
         if reason and status == "interrupted":
@@ -419,7 +427,14 @@ class DownloadRow(QFrame):
 
         self.name_button.setText(self._elide_file_name(name))
         name_font = self.name_button.font()
-        name_font.setStrikeOut(status in {"cancelled", "blocked"})
+        missing_completed_file = (
+            status == "completed"
+            and bool(self.path)
+            and not item.get("file_exists", os.path.isfile(self.path))
+        )
+        name_font.setStrikeOut(
+            status in {"cancelled", "blocked"} or missing_completed_file
+        )
         self.name_button.setFont(name_font)
         self.name_button.setToolTip(self.path or name)
         self.name_button.setCursor(
@@ -456,17 +471,26 @@ class DownloadRow(QFrame):
             self.status_text.setText(self._status_label(item))
 
         live = bool(item.get("live"))
-        self.folder_button.setVisible(bool(self.path))
-        self.remove_button.setVisible(not live)
-        self.pause_button.setVisible(live and status == "active")
+        file_exists = bool(
+            self.path
+            and item.get("file_exists", os.path.isfile(self.path))
+        )
+
+        # Chrome-like row actions: an active transfer exposes only the X
+        # cancel button. Finished files expose show-in-folder and delete-file.
+        self.folder_button.setVisible(
+            not live and bool(self.path) and file_exists
+        )
+        self.delete_button.setVisible(
+            not live and status == "completed" and file_exists
+        )
+        self.pause_button.setVisible(False)
         self.resume_button.setVisible(
             live
+            and status in {"paused", "interrupted"}
             and (
                 status == "paused"
-                or (
-                    status == "interrupted"
-                    and bool(item.get("resumable"))
-                )
+                or bool(item.get("resumable"))
             )
         )
         self.cancel_button.setVisible(
@@ -541,8 +565,71 @@ class DownloadRow(QFrame):
     def _cancel(self):
         DownloadManager.cancel_download(self.key)
 
+    def _delete_file(self):
+        DownloadManager.delete_downloaded_file(self.path)
+
     def _remove_from_history(self):
         DownloadManager.remove_history_item(self.key, self.path)
+
+    def _show_in_folder(self):
+        if self.path:
+            self.folder_requested.emit(self.path)
+
+    def contextMenuEvent(self, event):
+        menu = QMenu(self)
+        status = self.item.get("status", "completed")
+        live = bool(self.item.get("live"))
+        file_exists = bool(
+            self.path
+            and self.item.get("file_exists", os.path.isfile(self.path))
+        )
+
+        if status == "completed" and file_exists:
+            open_action = menu.addAction(_("Open file"))
+            open_action.triggered.connect(self._open_if_completed)
+
+            folder_action = menu.addAction(_("Show in folder"))
+            folder_action.triggered.connect(self._show_in_folder)
+
+            delete_action = menu.addAction(_("Delete file"))
+            delete_action.triggered.connect(self._delete_file)
+
+            menu.addSeparator()
+
+        if live and status == "active":
+            pause_action = menu.addAction(_("Pause"))
+            pause_action.triggered.connect(self._pause)
+
+        if (
+            live
+            and status in {"paused", "interrupted"}
+            and (
+                status == "paused"
+                or bool(self.item.get("resumable"))
+            )
+        ):
+            resume_action = menu.addAction(_("Resume"))
+            resume_action.triggered.connect(self._resume)
+
+        if live and status in {
+            "active",
+            "paused",
+            "queued",
+            "requested",
+            "interrupted",
+        }:
+            cancel_action = menu.addAction(_("Cancel"))
+            cancel_action.triggered.connect(self._cancel)
+
+        if not live:
+            if not menu.isEmpty():
+                menu.addSeparator()
+            history_action = menu.addAction(_("Remove from download history"))
+            history_action.triggered.connect(self._remove_from_history)
+
+        if not menu.isEmpty():
+            menu.exec(event.globalPos())
+        event.accept()
 
     def enterEvent(self, event):
         self.actions.show()
@@ -1005,8 +1092,11 @@ class DownloadsWindow(QDialog, _DownloadsListMixin):
         self.open_folder_button.setIcon(
             _outline_icon(self.open_folder_button, "folder")
         )
+        icon_theme = SystemIcon.Type[
+            ThemeManager.get_current_color_scheme().name
+        ]
         self.settings_button.setIcon(
-            _outline_icon(self.settings_button, "settings")
+            SystemIcon.get_icon("settings_gear", icon_theme)
         )
         self.update()
 
