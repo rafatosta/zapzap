@@ -151,7 +151,7 @@ class MainWindowView(QMainWindow):
 
     def sync_menubar_downloads_button_size(self):
         height = max(28, self.menubar.sizeHint().height())
-        icon_size = max(20, height - 8)
+        icon_size = max(24, height - 16)
         self.btn_menubar_downloads.setFixedSize(QSize(height + 8, height))
         self.btn_menubar_downloads.setIconSize(QSize(icon_size, icon_size))
 
