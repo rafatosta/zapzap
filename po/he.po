@@ -4902,3 +4902,17 @@ msgstr "פתח תמונות אוטומטית"
 
 msgid "Open completed image downloads with the system default application."
 msgstr "פתח הורדות תמונה שהושלמו באמצעות יישום ברירת המחדל של המערכת."
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "All download history"
+msgstr "כל היסטוריית ההורדות"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Show in folder"
+msgstr "הצג בתיקייה"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Remove from download history"
+msgstr "הסר מהיסטוריית ההורדות"

@@ -5010,3 +5010,17 @@ msgstr "Képek automatikus megnyitása"
 
 msgid "Open completed image downloads with the system default application."
 msgstr "A befejezett képletöltések megnyitása a rendszer alapértelmezett alkalmazásával."
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "All download history"
+msgstr "Teljes letöltési előzmények"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Show in folder"
+msgstr "Megjelenítés mappában"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Remove from download history"
+msgstr "Eltávolítás a letöltési előzményekből"
