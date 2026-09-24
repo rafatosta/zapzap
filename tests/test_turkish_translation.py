@@ -2,12 +2,14 @@
 
 from pathlib import Path
 import ast
+import gettext
 import re
 import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
 PO_FILE = ROOT / "po" / "tr.po"
+MO_FILE = ROOT / "zapzap" / "po" / "tr" / "LC_MESSAGES" / "zapzap.mo"
 
 
 def _read_field(lines, prefix):
@@ -55,6 +57,23 @@ class TurkishTranslationTests(unittest.TestCase):
             problems,
             [],
             "Untranslated/fuzzy Turkish UI entries: " + ", ".join(problems),
+        )
+
+    def test_compiled_catalog_matches_new_translations(self):
+        with MO_FILE.open("rb") as stream:
+            catalog = gettext.GNUTranslations(stream)
+
+        self.assertEqual(
+            catalog.gettext("Could not open link"),
+            "Bağlantı açılamadı",
+        )
+        self.assertEqual(
+            catalog.gettext("Update available"),
+            "Güncelleme mevcut",
+        )
+        self.assertEqual(
+            catalog.gettext("Send message to number"),
+            "Numaraya mesaj gönder",
         )
 
 
