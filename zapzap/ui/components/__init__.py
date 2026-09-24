@@ -10,6 +10,7 @@ from .card_user import AccountContextMenu, CardUserView
 from .client_side_window import ClientSideWindow
 from .dictionary_manager_dialog import DictionaryManagerDialog
 from .edit_account_dialog import EditAccountDialog
+from .floating_account_button import FloatingAccountButton
 from .main_window import MainWindowView
 from .navigation_item import NavigationItem
 from .settings_badge import SettingsBadge, SettingsInfoBox

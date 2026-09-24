@@ -97,6 +97,7 @@ documente o que ele protege.
 | `test_documentation_structure.py` | camadas de UI, ciclo numérico versionado do changelog e sincronização entre árvore, inventários técnicos, convenção de commits e guia para agentes |
 | `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
 | `test_external_link_lifecycle.py` | classificação interna/externa de pop-ups, profile compartilhado, entrega única ao navegador e cleanup no fechamento/shutdown |
+| `test_floating_account_button.py` | botão flutuante visível apenas com a sidebar oculta, avatar sincronizado com a conta ativa e clique reaproveitando a grade existente de troca de contas |
 | `test_freedesktop_notification_backend.py` | avisos nas saídas antecipadas da inicialização D-Bus, falhas de `Notify`/`CloseNotification`, aviso único na transição para indisponível e fachada sem backend |
 | `test_gpu_environment.py` | detecção multi-GPU, conectores e seleção de render node |
 | `test_grid_thumbnail_cache.py` | limite físico/DPR, reutilização, fallback, seleção e ciclo de vida das miniaturas da grade |
@@ -148,6 +149,7 @@ documente o que ele protege.
 - `test_donations_page.py`
 - `test_download_settings.py`
 - `test_external_link_lifecycle.py`
+- `test_floating_account_button.py`
 - `test_freedesktop_notification_backend.py`
 - `test_gpu_environment.py`
 - `test_grid_thumbnail_cache.py`

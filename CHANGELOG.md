@@ -15,6 +15,11 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Added a compact floating account button in the top-left corner of the
+  browser content area, shown only while the sidebar is hidden. It mirrors the
+  active account's avatar, stays anchored on window resize, and opens the
+  existing account grid switcher on click, without duplicating any account
+  management logic.
 - Added shared recent-download menus to the sidebar and right side of the
   menubar, including native platform file-type icons, per-item progress bars
   and percentages, queued/paused/interrupted/cancelled/blocked/completed

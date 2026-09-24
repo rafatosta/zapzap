@@ -130,6 +130,9 @@ class BrowserAccountLifecycleTest(QtTestCase):
         close_pages = BrowserController.close_pages
         activate_account = BrowserController.activate_account
         switch_to_page = BrowserController.switch_to_page
+        _refresh_floating_account_button = (
+            BrowserController._refresh_floating_account_button
+        )
         update_account_notifications = (
             BrowserController.update_account_notifications
         )

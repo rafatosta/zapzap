@@ -31,6 +31,7 @@ from zapzap.features.donation.page import DonationsPageController
 from zapzap.ui.components import BrowserGridView
 from zapzap.ui.components import BrowserPageButton
 from zapzap.ui.components import BrowserSidebarButton
+from zapzap.ui.components import FloatingAccountButton
 from zapzap.ui.components import UpdateAvailablePopover
 
 
@@ -103,6 +104,8 @@ class BrowserController(BrowserView):
         self._update_popover_close_timer.timeout.connect(
             self._update_popover.close
         )
+        self._floating_account_button = FloatingAccountButton(self.pages)
+        self._floating_account_button.clicked.connect(self.show_grid_view)
         app = QApplication.instance()
         if app is not None:
             app.installEventFilter(self)
@@ -525,6 +528,7 @@ class BrowserController(BrowserView):
                 runtime.page.user = user
 
         self._update_user_menu()
+        self._refresh_floating_account_button()
 
     def _update_user_menu(self):
         """Constroi o menu de usuários na barra de menu da janela principal."""
@@ -598,6 +602,15 @@ class BrowserController(BrowserView):
                 return runtime
         return None
 
+    def _refresh_floating_account_button(self):
+        """Keep the floating account button in sync with the visible account."""
+        button = getattr(self, "_floating_account_button", None)
+        if button is None:
+            return
+        runtime = self._runtime_for_page(self.current_webview())
+        button.set_account(runtime.user if runtime else None)
+        button.reposition()
+
     # === Ações do Navegador ===
     def activate_account(self, user_id):
         """Activate an account through its stable persisted identifier."""
@@ -632,6 +645,7 @@ class BrowserController(BrowserView):
         page.page().show_toast(page.user.name if page.user.name !=
                                "" else _("Account {}").format(page.page_index))
         button.selected()
+        self._refresh_floating_account_button()
         return True
 
     def _handle_account_button_click(self, user_id):
@@ -790,6 +804,7 @@ class BrowserController(BrowserView):
             self.grid_view.set_empty_state_visible(True)
             self._reset_button_styles()
             self.pages.setCurrentIndex(self.grid_page_index)
+            self._refresh_floating_account_button()
             return
 
         # Calculate grid geometry
@@ -839,6 +854,7 @@ class BrowserController(BrowserView):
 
         self._reset_button_styles()
         self.pages.setCurrentIndex(self.grid_page_index)
+        self._refresh_floating_account_button()
 
     def show_donations(self):
         """Select the native donations route without navigating any WebView."""
@@ -857,6 +873,7 @@ class BrowserController(BrowserView):
         self.pages.setCurrentWidget(self.donations_page)
         self.btn_donations.setChecked(True)
         self.donations_page.setFocus(Qt.FocusReason.OtherFocusReason)
+        self._refresh_floating_account_button()
         return self.donations_page
 
     def close_donations(self):
@@ -966,6 +983,7 @@ class BrowserController(BrowserView):
         )
 
     def set_sidebar_visible(self, visible: bool, animated: bool = True):
+        self._floating_account_button.setVisible(not visible)
         if not visible:
             self._update_popover.close()
         if self._sidebar_animation_group:
