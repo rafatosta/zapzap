@@ -19,6 +19,8 @@ releases and the AppStream metadata.
   (Cmd+Shift+V on macOS) now triggers Qt WebEngine's native
   `PasteAndMatchStyle` action, so spreadsheet/HTML clipboard content can be
   inserted as text without changing the existing Ctrl+V rich-paste behavior.
+- Added Ctrl+J as a discoverable View-menu shortcut for opening the full
+  downloads history window.
 - Aligned native window decorations with the explicit ZapZap light/dark theme
   when the installed Qt exposes an application color-scheme override. Auto
   continues to follow the desktop scheme, and older distribution Qt builds
@@ -115,6 +117,9 @@ releases and the AppStream metadata.
 
 ### Changed
 
+- Completed the Turkish interface catalog for currently active UI strings,
+  replacing missing and fuzzy entries across reporting, dictionaries,
+  donations, update UI, network/rendering settings and related dialogs.
 - Extended the internal popup and external link regression tests to cover the
   deferred disposal and the shutdown path that still stopped a page
   reentrantly.

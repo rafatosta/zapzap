@@ -28,6 +28,9 @@ jobs:
       - name: Validate documented structure
         run: python tests/test_documentation_structure.py -v
 
+      - name: Validate Turkish catalog
+        run: python tests/test_turkish_translation.py -v
+
       - name: Compile Python sources
         run: python -m compileall -q zapzap tests tools run.py
 
@@ -70,6 +73,9 @@ jobs:
 
       - name: Validate plain-text paste
         run: python -m unittest discover -s tests -p "test_plain_text_paste.py" -v
+
+      - name: Validate main-window shortcuts
+        run: python -m unittest discover -s tests -p "test_main_window_shortcuts.py" -v
 
       - name: Validate native titlebar theme
         run: python -m unittest discover -s tests -p "test_native_titlebar_theme.py" -v

@@ -248,6 +248,7 @@ class MainWindowController(MainWindowView):
     def _connect_view_menu_actions(self):
         """Conectar ações do menu 'Exibir'."""
         self.actionGrid_view.triggered.connect(self.browser.show_grid_view)
+        self.actionDownloads.triggered.connect(self.show_downloads_window)
         self.actionOpen_DevTools.triggered.connect(self.open_devtools)
         self.actionToggle_sidebar.triggered.connect(self.set_sidebar_visible)
         self.actionTheme_auto.triggered.connect(

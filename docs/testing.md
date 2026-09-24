@@ -103,6 +103,7 @@ documente o que ele protege.
 | `test_grid_thumbnail_cache.py` | limite físico/DPR, reutilização, fallback, seleção e ciclo de vida das miniaturas da grade |
 | `test_http_cache_size.py` | cache em MiB, tipos de cache, política de cookies, memória JavaScript, autocura persistida e fallbacks de perfil sem WebEngine real |
 | `test_initial_setup_ui.py` | onboarding, som, fechamento, permissões, dicionários e persistência |
+| `test_main_window_shortcuts.py` | kısayol atamaları ve ana pencere menü eylemlerinin keşfedilebilirliği |
 | `test_memory_benchmark.py` | procfs/USS, schema JSON/CSV/Markdown, isolamento WebEngine, factory stub, cenários e comparação relativa |
 | `test_network_privacy_settings_ui.py` | proxy exclusivamente global, strict proxy, credenciais, aplicar/descartar, feedback de falha do Qt, restauração e WebRTC |
 | `test_native_titlebar_theme.py` | sincronização do esquema claro/escuro com decorações nativas, modo automático e fallback para Qt antigo |
@@ -124,6 +125,7 @@ documente o que ele protege.
 | `test_software_video_decoding.py` | presets, flags Chromium de renderização/strict proxy, persistência e ordem do bootstrap |
 | `test_spellcheck_language_picker.py` | migração, seleção múltipla transacional, pesquisa, limite, recentes, menu e perfis WebEngine |
 | `test_taskbar_badge.py` | contador nativo, zero, preferência, bandeja oculta, ativação primária/contexto por backend, integração StatusNotifier/AppIndicator e compatibilidade com Qt anterior |
+| `test_turkish_translation.py` | Türkçe arayüz kataloğunda boş veya fuzzy etkin çeviri bırakılmaması |
 | `test_system_startup_settings_ui.py` | semântica de fechamento, diálogo nativo, seleção do backend gráfico, reinício e acessibilidade |
 | `test_unix_signal_shutdown.py` | ponte POSIX, restauração do estado global e `SIGTERM` real chegando a `aboutToQuit` em subprocesso isolado |
 | `test_update_checker.py` | versões, política de builds, respostas/falhas assíncronas, metadados seguros e popover acessível compartilhado entre sidebar e Sobre |
@@ -156,6 +158,7 @@ documente o que ele protege.
 - `test_grid_thumbnail_cache.py`
 - `test_http_cache_size.py`
 - `test_initial_setup_ui.py`
+- `test_main_window_shortcuts.py`
 - `test_memory_benchmark.py`
 - `test_network_privacy_settings_ui.py`
 - `test_native_titlebar_theme.py`
@@ -178,6 +181,7 @@ documente o que ele protege.
 - `test_spellcheck_language_picker.py`
 - `test_system_startup_settings_ui.py`
 - `test_taskbar_badge.py`
+- `test_turkish_translation.py`
 - `test_unix_signal_shutdown.py`
 - `test_update_checker.py`
 - `test_whatsapp_app_lock.py`
@@ -298,6 +302,14 @@ fornecida pelo compositor/plataforma.
 4. Em uma distribuição com Qt antigo sem `setColorScheme`, confirme que a
    aplicação continua abrindo normalmente; nesse caso a decoração nativa pode
    continuar sendo controlada exclusivamente pelo compositor.
+
+## Validação manual do atalho de downloads
+
+1. Com a janela principal ativa, pressione **Ctrl+J** e confirme que a janela
+   completa de histórico de downloads é aberta, não apenas o menu compacto.
+2. Abra o menu **Exibir** e confirme que **Downloads** aparece com **Ctrl+J**.
+3. Confirme que nenhum atalho existente mudou e que clicar nos botões de
+   downloads continua usando o fluxo normal.
 
 ## Validação manual de colagem sem formatação
 
