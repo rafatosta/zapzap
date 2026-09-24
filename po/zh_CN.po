@@ -1,0 +1,4488 @@
+# Simplified Chinese translations for ZapZap.
+# This file is distributed under the same license as the ZapZap package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ZapZap\n"
+"Report-Msgid-Bugs-To: https://github.com/rafatosta/zapzap/issues\n"
+"POT-Creation-Date: 2026-09-25 00:00+0800\n"
+"PO-Revision-Date: 2026-09-25 00:00+0800\n"
+"Last-Translator: ZapZap contributors\n"
+"Language: zh_CN\n"
+"Language-Team: Simplified Chinese\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: zapzap/app/window_lifecycle.py:89
+msgid "Close ZapZap"
+msgstr "关闭 ZapZap"
+
+#: zapzap/app/window_lifecycle.py:90
+msgid "Are you sure you want to close?"
+msgstr "确定要关闭吗？"
+
+#: zapzap/app/window_lifecycle.py:91
+msgid "Don't ask again"
+msgstr "不再询问"
+
+#: zapzap/core/diagnostics/dialog_dump_handler.py:27
+msgid "Unexpected Error"
+msgstr "意外错误"
+
+#: zapzap/core/diagnostics/dialog_dump_handler.py:28
+msgid "The application encountered an unexpected error."
+msgstr "应用程序遇到意外错误。"
+
+#: zapzap/core/diagnostics/dialog_dump_handler.py:30
+#, python-brace-format
+msgid ""
+"A diagnostic report was generated automatically at:\n"
+"\n"
+"{path}\n"
+"\n"
+"Please send this file to support so we can investigate the issue.\n"
+"\n"
+"Report channels:\n"
+" - Issue tracker: {issue_url}\n"
+" - Email: {email}"
+msgstr ""
+"已自动生成诊断报告：\n"
+"\n"
+"{path}\n"
+"\n"
+"请将此文件发送给支持人员，以便我们调查问题。\n"
+"\n"
+"反馈渠道：\n"
+" - 问题追踪：{issue_url}\n"
+" - 电子邮件：{email}"
+
+#: zapzap/core/diagnostics/dialog_dump_handler.py:41
+#: zapzap/features/downloads/ui/download_dialog.py:118
+#: zapzap/features/settings/pages/advanced_customizations/view.py:101
+#: zapzap/features/settings/pages/debugging/view.py:241
+msgid "Open folder"
+msgstr "打开文件夹"
+
+#: zapzap/core/environment/environment_detector.py:5
+msgid "Official"
+msgstr "官方"
+
+#: zapzap/core/environment/environment_detector.py:6
+msgid "Community"
+msgstr "社区"
+
+#: zapzap/core/environment/environment_detector.py:7
+#: zapzap/core/environment/environment_detector.py:19
+#: zapzap/core/environment/environment_detector.py:20
+#: zapzap/core/environment/environment_detector.py:21
+#: zapzap/features/settings/pages/about/model.py:58
+msgid "Unknown"
+msgstr "未知"
+
+#: zapzap/core/environment/proxy_manager.py:32
+msgid "No proxying is used."
+msgstr "未使用代理。"
+
+#: zapzap/core/environment/proxy_manager.py:36
+msgid "Proxy is determined based on the system proxy."
+msgstr "根据系统代理设置决定代理方式。"
+
+#: zapzap/core/environment/proxy_manager.py:40
+msgid "Socks5 proxying is used."
+msgstr "使用 Socks5 代理。"
+
+#: zapzap/core/environment/proxy_manager.py:44
+msgid "HTTP transparent proxying is used."
+msgstr "使用 HTTP 透明代理。"
+
+#: zapzap/core/environment/proxy_manager.py:48
+msgid "Proxying for HTTP requests only."
+msgstr "仅为 HTTP 请求使用代理。"
+
+#: zapzap/core/environment/proxy_manager.py:52
+msgid "Proxying for FTP requests only."
+msgstr "仅为 FTP 请求使用代理。"
+
+#: zapzap/features/accounts/card_user_controller.py:58
+#: zapzap/features/accounts/card_user_controller.py:229
+#: zapzap/features/accounts/card_user_controller.py:241
+msgid "Could not update account"
+msgstr "无法更新账户"
+
+#: zapzap/features/accounts/card_user_controller.py:59
+#: zapzap/features/accounts/card_user_controller.py:242
+msgid "The account state could not be changed."
+msgstr "无法更改账户状态。"
+
+#: zapzap/features/accounts/card_user_controller.py:78
+#: zapzap/features/accounts/card_user_controller.py:191
+msgid "Could not remove account"
+msgstr "无法移除账户"
+
+#: zapzap/features/accounts/card_user_controller.py:79
+#: zapzap/features/accounts/card_user_controller.py:192
+msgid "The account could not be removed. Please try again."
+msgstr "无法移除该账户。请重试。"
+
+#: zapzap/features/accounts/card_user_controller.py:155
+msgid "Remove account?"
+msgstr "移除账户？"
+
+#: zapzap/features/accounts/card_user_controller.py:157
+#, python-brace-format
+msgid "The account \"{name}\" will be removed from ZapZap."
+msgstr "账户“{name}”将从 ZapZap 中移除。"
+
+#: zapzap/features/accounts/card_user_controller.py:158
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:191
+#: zapzap/ui/components/card_user.py:234 zapzap/ui/components/card_user.py:299
+#: zapzap/ui/components/card_user.py:469 zapzap/ui/components/card_user.py:684
+msgid "Unnamed account"
+msgstr "未命名账户"
+
+#: zapzap/features/accounts/card_user_controller.py:160
+msgid ""
+"Its session will be closed and related local data may be permanently "
+"removed. This action cannot be undone."
+msgstr "其会话将被关闭，相关本地数据可能被永久删除。此操作无法撤销。"
+
+#: zapzap/features/accounts/card_user_controller.py:167
+#: zapzap/ui/components/card_user.py:153
+#: zapzap/ui/components/dictionary_manager_dialog.py:191
+msgid "Remove"
+msgstr "移除"
+
+#: zapzap/features/accounts/card_user_controller.py:173
+#: zapzap/features/downloads/ui/download_dialog.py:120
+#: zapzap/features/reporting/dialogs.py:213
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:642
+#: zapzap/features/settings/pages/network_privacy/controller.py:282
+#: zapzap/ui/components/edit_account_dialog.py:456
+#: zapzap/ui/components/send_message_to_number_dialog.py:262
+#: zapzap/ui/components/send_message_to_number_dialog.py:268
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:275
+msgid "Cancel"
+msgstr "取消"
+
+#: zapzap/features/accounts/card_user_controller.py:202
+msgid "User-Agent Changed"
+msgstr "User-Agent 已更改"
+
+#: zapzap/features/accounts/card_user_controller.py:204
+msgid ""
+"Please restart this session (or the application) to apply the new User-"
+"Agent."
+msgstr "请重启此会话（或应用程序）以应用新的 User-Agent。"
+
+#: zapzap/features/accounts/card_user_controller.py:230
+msgid "The notification state could not be changed."
+msgstr "无法更改通知状态。"
+
+#: zapzap/features/alerts/alert_manager.py:72
+#: zapzap/features/alerts/alert_manager.py:91
+#: zapzap/features/alerts/alert_manager.py:110
+#: zapzap/features/alerts/alert_manager.py:173
+msgid "OK"
+msgstr "确定"
+
+#: zapzap/features/alerts/alert_manager.py:214
+msgid "Yes"
+msgstr "是"
+
+#: zapzap/features/alerts/alert_manager.py:222
+msgid "No"
+msgstr "否"
+
+#: zapzap/features/alerts/alert_manager.py:244
+#: zapzap/features/settings/pages/about/view.py:291
+msgid "Information"
+msgstr "信息"
+
+#: zapzap/features/alerts/alert_manager.py:246
+#, python-brace-format
+msgid ""
+"Limit of {} users reached.\n"
+"It is not possible to create more users!"
+msgstr ""
+"已达到 {} 个用户的上限。\n"
+"无法创建更多用户！"
+
+#: zapzap/features/alerts/alert_manager.py:253
+msgid "Attention"
+msgstr "注意"
+
+#: zapzap/features/alerts/alert_manager.py:253
+msgid "No active account!"
+msgstr "没有活动账户！"
+
+#: zapzap/features/alerts/external_url.py:39
+msgid "Could not open link"
+msgstr "无法打开链接"
+
+#: zapzap/features/alerts/external_url.py:40
+msgid "The address could not be opened in your default browser."
+msgstr "无法在默认浏览器中打开该地址。"
+
+#: zapzap/features/alerts/external_url.py:41
+msgid "You can copy the address and open it manually."
+msgstr "您可以复制地址并手动打开。"
+
+#: zapzap/features/alerts/external_url.py:44
+msgid "Copy address"
+msgstr "复制地址"
+
+#: zapzap/features/alerts/external_url.py:45
+#: zapzap/features/browser/shell/browser_controller.py:316
+#: zapzap/features/reporting/dialogs.py:360
+#: zapzap/ui/components/dictionary_manager_dialog.py:91
+#: zapzap/ui/components/dictionary_manager_dialog.py:193
+#: zapzap/ui/components/edit_account_dialog.py:73
+#: zapzap/ui/components/send_message_to_number_dialog.py:135
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
+#: zapzap/ui/primitives/close_button.py:66
+msgid "Close"
+msgstr "关闭"
+
+#: zapzap/features/dictionaries/dictionary_manager.py:113
+msgid "Remove dictionary"
+msgstr "移除词典"
+
+#: zapzap/features/dictionaries/dictionary_manager.py:114
+#, python-brace-format
+msgid "Remove the dictionary {code}?"
+msgstr "移除词典 {code}？"
+
+#: zapzap/features/dictionaries/dictionary_manager.py:124
+msgid "Disable spell checker and remove"
+msgstr "禁用拼写检查器并移除"
+
+#: zapzap/features/dictionaries/dictionary_manager.py:126
+#, python-brace-format
+msgid ""
+"This is the last active dictionary. Disable the spell checker and remove "
+"{code}?"
+msgstr "这是最后一个活动词典。要禁用拼写检查器并移除 {code} 吗？"
+
+#: zapzap/features/dictionaries/dictionary_manager.py:145
+#: zapzap/features/dictionaries/dictionary_manager.py:174
+msgid "Replace dictionary"
+msgstr "替换词典"
+
+#: zapzap/features/dictionaries/dictionary_manager.py:147
+#: zapzap/features/dictionaries/dictionary_manager.py:176
+#, python-brace-format
+msgid "A different dictionary named {code} is installed. Replace it?"
+msgstr "已安装另一个名为 {code} 的词典。要替换它吗？"
+
+#: zapzap/features/donation/model.py:40
+msgid "GitHub Sponsors"
+msgstr "GitHub Sponsors"
+
+#: zapzap/features/donation/model.py:42
+msgid "Support ZapZap through GitHub and help fund its long-term development."
+msgstr "通过 GitHub 支持 ZapZap，帮助项目持续开发。"
+
+#: zapzap/features/donation/model.py:50
+msgid "Pix"
+msgstr "Pix"
+
+#: zapzap/features/donation/model.py:52
+msgid ""
+"Continue securely in your browser and complete the contribution with your"
+" banking app."
+msgstr "在浏览器中安全继续，并使用银行应用完成捐助。"
+
+#: zapzap/features/donation/model.py:60
+msgid "PayPal"
+msgstr "PayPal"
+
+#: zapzap/features/donation/model.py:61
+msgid "A simple and secure way to support ZapZap from anywhere."
+msgstr "一种简单、安全的方式，可在任何地方支持 ZapZap。"
+
+#: zapzap/features/donation/model.py:67
+msgid "Wise"
+msgstr "Wise"
+
+#: zapzap/features/donation/model.py:69
+msgid ""
+"International contributions with reduced fees and competitive exchange "
+"rates."
+msgstr "手续费更低、汇率更具竞争力的国际捐助方式。"
+
+#: zapzap/features/donation/model.py:77
+msgid "Ko-fi"
+msgstr "Ko-fi"
+
+#: zapzap/features/donation/model.py:79
+msgid ""
+"Make a one-time or recurring contribution and help keep the project "
+"active."
+msgstr "进行一次性或定期捐助，帮助项目保持活跃。"
+
+#: zapzap/features/donation/page.py:62 zapzap/features/donation/page.py:106
+msgid "Opens in your browser"
+msgstr "在浏览器中打开"
+
+#: zapzap/features/donation/page.py:67 zapzap/features/donation/page.py:108
+msgid "External link. Opens in your default browser."
+msgstr "外部链接。将在默认浏览器中打开。"
+
+#: zapzap/features/donation/page.py:71 zapzap/features/donation/page.py:110
+msgid "Donate"
+msgstr "捐助"
+
+#: zapzap/features/donation/page.py:73 zapzap/features/donation/page.py:112
+#, python-brace-format
+msgid "Open {method} in your browser"
+msgstr "在浏览器中打开 {method}"
+
+#: zapzap/features/donation/page.py:76 zapzap/features/donation/page.py:115
+msgid "Opens the official external contribution page."
+msgstr "打开官方外部捐助页面。"
+
+#: zapzap/features/donation/page.py:79 zapzap/features/donation/page.py:118
+#, python-brace-format
+msgid "Open the official {method} page in your browser"
+msgstr "在浏览器中打开官方 {method} 页面"
+
+#: zapzap/features/donation/page.py:163 zapzap/features/donation/page.py:272
+msgid "Help keep ZapZap alive"
+msgstr "帮助 ZapZap 持续发展"
+
+#: zapzap/features/donation/page.py:165 zapzap/features/donation/page.py:275
+msgid ""
+"ZapZap is free and open source. Your contributions help keep the project "
+"active, improve the application, and develop new features."
+msgstr "ZapZap 是自由开源软件。您的捐助有助于保持项目活跃、改进应用并开发新功能。"
+
+#: zapzap/features/donation/page.py:195 zapzap/features/donation/page.py:280
+msgid "Close donations page"
+msgstr "关闭捐助页面"
+
+#: zapzap/features/donation/page.py:198 zapzap/features/donation/page.py:283
+msgid "Return to the previous browser page."
+msgstr "返回上一个浏览器页面。"
+
+#: zapzap/features/donation/page.py:216 zapzap/features/donation/page.py:285
+msgid "Choose how to support"
+msgstr "选择支持方式"
+
+#: zapzap/features/donation/page.py:218 zapzap/features/donation/page.py:288
+msgid ""
+"Every option opens its official page in your default browser. ZapZap "
+"never processes payment information."
+msgstr "每个选项都会在默认浏览器中打开其官方页面。ZapZap 从不处理付款信息。"
+
+#: zapzap/features/donation/page.py:245 zapzap/features/donation/page.py:292
+msgid "Your support makes a difference"
+msgstr "您的支持意义重大"
+
+#: zapzap/features/donation/page.py:252 zapzap/features/donation/page.py:295
+msgid ""
+"Every contribution helps cover infrastructure costs, fix problems, and "
+"keep ZapZap free for everyone."
+msgstr "每一笔捐助都有助于支付基础设施费用、修复问题，并让所有人免费使用 ZapZap。"
+
+#: zapzap/features/donation/view.py:213
+#: zapzap/features/settings/pages/debugging/view.py:425
+#: zapzap/features/shortcuts/view.py:60 zapzap/ui/components/main_window.py:133
+msgid "ZapZap"
+msgstr "ZapZap"
+
+#: zapzap/features/donation/view.py:216
+msgid ""
+"Your donation helps keep the project running, improve resources and "
+"guarantee your privacy and freedom."
+msgstr "您的捐助有助于项目持续运行、改进功能，并保障您的隐私与自由。"
+
+#: zapzap/features/donation/view.py:220
+#: zapzap/features/settings/pages/about/view.py:274
+#: zapzap/features/settings/shell/settings_view.py:32
+#: zapzap/features/settings/shell/settings_view.py:34
+#: zapzap/features/tray/sys_tray_manager.py:52
+#: zapzap/ui/components/browser_sidebar.py:200
+msgid "Support ZapZap"
+msgstr "支持 ZapZap"
+
+#: zapzap/features/donation/view.py:221
+msgid "Don't show again"
+msgstr "不再显示"
+
+#: zapzap/features/donation/view.py:222
+msgid "Learn more about ZapZap ↗"
+msgstr "进一步了解 ZapZap ↗"
+
+#: zapzap/features/downloads/download_manager.py:156
+msgid "Select folder"
+msgstr "选择文件夹"
+
+#: zapzap/features/initial_setup/controller.py:126
+#: zapzap/features/settings/pages/language_downloads/controller.py:68
+msgid "System default"
+msgstr "系统默认"
+
+#: zapzap/features/initial_setup/controller.py:158
+msgid "English"
+msgstr "英语"
+
+#: zapzap/features/initial_setup/view.py:42
+msgid "Setup ZapZap"
+msgstr "设置 ZapZap"
+
+#: zapzap/features/initial_setup/view.py:87
+msgid "Welcome to ZapZap"
+msgstr "欢迎使用 ZapZap"
+
+#: zapzap/features/initial_setup/view.py:90
+msgid "Choose the essentials now. You can change everything later in Settings."
+msgstr "现在选择基本设置。之后可随时在“设置”中更改全部选项。"
+
+#: zapzap/features/initial_setup/view.py:105
+msgid "Basics"
+msgstr "基础设置"
+
+#: zapzap/features/initial_setup/view.py:106
+#: zapzap/features/settings/pages/notifications/view.py:19
+#: zapzap/features/settings/pages/notifications/view.py:33
+#: zapzap/features/settings/shell/settings_controller.py:134
+msgid "Notifications"
+msgstr "通知"
+
+#: zapzap/features/initial_setup/view.py:107
+msgid "Background"
+msgstr "后台行为"
+
+#: zapzap/features/initial_setup/view.py:108
+#: zapzap/features/settings/pages/advanced_customizations/view.py:73
+msgid "Files"
+msgstr "文件"
+
+#: zapzap/features/initial_setup/view.py:109
+#: zapzap/features/initial_setup/view.py:378
+#: zapzap/features/settings/pages/permissions/view.py:22
+#: zapzap/features/settings/shell/settings_controller.py:140
+msgid "Permissions"
+msgstr "权限"
+
+#: zapzap/features/initial_setup/view.py:110
+#: zapzap/features/initial_setup/view.py:120
+msgid "Finish"
+msgstr "完成"
+
+#: zapzap/features/initial_setup/view.py:117
+msgid "Skip setup"
+msgstr "跳过设置"
+
+#: zapzap/features/initial_setup/view.py:118
+msgid "Back"
+msgstr "上一步"
+
+#: zapzap/features/initial_setup/view.py:119
+msgid "Next"
+msgstr "下一步"
+
+#: zapzap/features/initial_setup/view.py:137
+msgid "Language and appearance"
+msgstr "语言和外观"
+
+#: zapzap/features/initial_setup/view.py:138
+msgid "Start with the interface language and a comfortable visual theme."
+msgstr "先选择界面语言和舒适的视觉主题。"
+
+#: zapzap/features/initial_setup/view.py:143
+#: zapzap/features/settings/pages/language_downloads/view.py:35
+#: zapzap/ui/components/dictionary_manager_dialog.py:143
+msgid "Language"
+msgstr "语言"
+
+#: zapzap/features/initial_setup/view.py:144
+#: zapzap/features/settings/pages/language_downloads/view.py:36
+msgid "Choose the interface language used by ZapZap."
+msgstr "选择 ZapZap 使用的界面语言。"
+
+#: zapzap/features/initial_setup/view.py:149
+#: zapzap/features/settings/pages/language_downloads/view.py:40
+msgid "Interface language"
+msgstr "界面语言"
+
+#: zapzap/features/initial_setup/view.py:150
+msgid "The interface language is applied when you finish setup."
+msgstr "完成设置后将应用所选界面语言。"
+
+#: zapzap/features/initial_setup/view.py:159
+#: zapzap/features/settings/pages/appearance/view.py:64
+msgid "Theme"
+msgstr "主题"
+
+#: zapzap/features/initial_setup/view.py:160
+#: zapzap/features/settings/pages/appearance/view.py:64
+msgid "Choose the visual theme."
+msgstr "选择视觉主题。"
+
+#: zapzap/features/initial_setup/view.py:164
+#: zapzap/features/settings/pages/appearance/view.py:66
+#: zapzap/features/settings/pages/system_startup/view.py:140
+msgid "Automatic"
+msgstr "自动"
+
+#: zapzap/features/initial_setup/view.py:165
+#: zapzap/features/settings/pages/appearance/view.py:67
+msgid "Light"
+msgstr "浅色"
+
+#: zapzap/features/initial_setup/view.py:166
+#: zapzap/features/settings/pages/appearance/view.py:68
+msgid "Dark"
+msgstr "深色"
+
+#: zapzap/features/initial_setup/view.py:183
+msgid "Notifications and privacy"
+msgstr "通知和隐私"
+
+#: zapzap/features/initial_setup/view.py:184
+msgid ""
+"Decide how much message information appears in native notification "
+"banners."
+msgstr "决定原生通知横幅中显示多少消息信息。"
+
+#: zapzap/features/initial_setup/view.py:188
+#: zapzap/features/settings/pages/notifications/view.py:39
+msgid "Desktop notifications"
+msgstr "桌面通知"
+
+#: zapzap/features/initial_setup/view.py:189
+msgid "Choose whether ZapZap may show desktop notifications."
+msgstr "选择是否允许 ZapZap 显示桌面通知。"
+
+#: zapzap/features/initial_setup/view.py:194
+msgid "Enable notifications"
+msgstr "启用通知"
+
+#: zapzap/features/initial_setup/view.py:195
+msgid ""
+"Allow ZapZap to publish native desktop notifications for WhatsApp "
+"activity."
+msgstr "允许 ZapZap 为 WhatsApp 活动发布原生桌面通知。"
+
+#: zapzap/features/initial_setup/view.py:203
+msgid "Notification privacy"
+msgstr "通知隐私"
+
+#: zapzap/features/initial_setup/view.py:204
+msgid "Limit what is visible in notification banners."
+msgstr "限制通知横幅中可见的内容。"
+
+#: zapzap/features/initial_setup/view.py:209
+msgid "Show contact photo"
+msgstr "显示联系人照片"
+
+#: zapzap/features/initial_setup/view.py:210
+msgid "Display the sender avatar when it is available."
+msgstr "可用时显示发送者头像。"
+
+#: zapzap/features/initial_setup/view.py:213
+msgid "Show contact name"
+msgstr "显示联系人姓名"
+
+#: zapzap/features/initial_setup/view.py:214
+msgid "Display the sender or group name."
+msgstr "显示发送者或群组名称。"
+
+#: zapzap/features/initial_setup/view.py:217
+msgid "Show message preview"
+msgstr "显示消息预览"
+
+#: zapzap/features/initial_setup/view.py:218
+msgid "Display the message text in the notification."
+msgstr "在通知中显示消息文本。"
+
+#: zapzap/features/initial_setup/view.py:221
+#: zapzap/features/settings/pages/notifications/view.py:59
+msgid "Notification sound"
+msgstr "通知声音"
+
+#: zapzap/features/initial_setup/view.py:222
+#: zapzap/features/settings/pages/notifications/view.py:60
+msgid "Let the desktop play its alert sound for new messages."
+msgstr "让桌面为新消息播放提示音。"
+
+#: zapzap/features/initial_setup/view.py:242
+msgid "Background behavior"
+msgstr "后台行为"
+
+#: zapzap/features/initial_setup/view.py:243
+msgid ""
+"Choose whether ZapZap should stay available from the tray and start with "
+"your session."
+msgstr "选择 ZapZap 是否继续在托盘中可用并随会话启动。"
+
+#: zapzap/features/initial_setup/view.py:247
+#: zapzap/features/settings/pages/appearance/view.py:81
+msgid "Tray icon"
+msgstr "托盘图标"
+
+#: zapzap/features/initial_setup/view.py:248
+msgid "Control tray icon visibility and unread counter."
+msgstr "控制托盘图标可见性和未读计数。"
+
+#: zapzap/features/initial_setup/view.py:253
+msgid "Enable tray icon"
+msgstr "启用托盘图标"
+
+#: zapzap/features/initial_setup/view.py:254
+msgid "Show ZapZap in the system tray."
+msgstr "在系统托盘中显示 ZapZap。"
+
+#: zapzap/features/initial_setup/view.py:257
+msgid "Notification counter"
+msgstr "通知计数"
+
+#: zapzap/features/initial_setup/view.py:258
+msgid "Show unread notifications on the tray icon."
+msgstr "在托盘图标上显示未读通知数。"
+
+#: zapzap/features/initial_setup/view.py:268
+msgid "Window behavior"
+msgstr "窗口行为"
+
+#: zapzap/features/initial_setup/view.py:269
+msgid "Configure close behavior."
+msgstr "配置关闭行为。"
+
+#: zapzap/features/initial_setup/view.py:274
+#: zapzap/features/settings/pages/system_startup/view.py:68
+msgid "Close behavior"
+msgstr "关闭行为"
+
+#: zapzap/features/initial_setup/view.py:275
+#: zapzap/features/settings/pages/system_startup/view.py:70
+msgid "Choose whether ZapZap continues in the background or quits."
+msgstr "选择 ZapZap 是继续在后台运行还是退出。"
+
+#: zapzap/features/initial_setup/view.py:281
+#: zapzap/features/settings/pages/system_startup/view.py:77
+msgid "Continue in the background"
+msgstr "继续在后台运行"
+
+#: zapzap/features/initial_setup/view.py:285
+#: zapzap/features/settings/pages/system_startup/view.py:81
+msgid "Quit ZapZap"
+msgstr "退出 ZapZap"
+
+#: zapzap/features/initial_setup/view.py:289
+#: zapzap/features/settings/pages/system_startup/view.py:88
+msgid "Confirm before quitting"
+msgstr "退出前确认"
+
+#: zapzap/features/initial_setup/view.py:290
+#: zapzap/features/settings/pages/system_startup/view.py:89
+msgid "Ask for confirmation before completely closing ZapZap."
+msgstr "完全关闭 ZapZap 前先请求确认。"
+
+#: zapzap/features/initial_setup/view.py:301
+#: zapzap/features/settings/pages/system_startup/view.py:40
+msgid "Startup"
+msgstr "启动"
+
+#: zapzap/features/initial_setup/view.py:302
+msgid "Control how ZapZap behaves when your desktop session starts."
+msgstr "控制桌面会话启动时 ZapZap 的行为。"
+
+#: zapzap/features/initial_setup/view.py:307
+#: zapzap/features/settings/pages/system_startup/view.py:45
+msgid "Start with the system"
+msgstr "随系统启动"
+
+#: zapzap/features/initial_setup/view.py:308
+msgid "Create or remove the desktop autostart entry."
+msgstr "创建或移除桌面自动启动项。"
+
+#: zapzap/features/initial_setup/view.py:311
+msgid "Start minimized"
+msgstr "启动时最小化"
+
+#: zapzap/features/initial_setup/view.py:312
+msgid "Open ZapZap in the background instead of showing the main window."
+msgstr "在后台打开 ZapZap，而不显示主窗口。"
+
+#: zapzap/features/initial_setup/view.py:325
+msgid "Downloads and typing"
+msgstr "下载和输入"
+
+#: zapzap/features/initial_setup/view.py:326
+msgid ""
+"Choose where files are saved and enable spell checking when dictionaries "
+"are available."
+msgstr "选择文件保存位置，并在有词典时启用拼写检查。"
+
+#: zapzap/features/initial_setup/view.py:330
+#: zapzap/features/settings/pages/language_downloads/view.py:53
+msgid "Downloads"
+msgstr "下载"
+
+#: zapzap/features/initial_setup/view.py:331
+#: zapzap/features/settings/pages/language_downloads/view.py:54
+msgid "Choose where downloaded files are saved."
+msgstr "选择下载文件的保存位置。"
+
+#: zapzap/features/initial_setup/view.py:336
+#: zapzap/features/settings/pages/language_downloads/view.py:58
+msgid "Download directory"
+msgstr "下载目录"
+
+#: zapzap/features/initial_setup/view.py:337
+msgid "Set a custom folder or keep the current download location."
+msgstr "设置自定义文件夹，或保留当前下载位置。"
+
+#: zapzap/features/initial_setup/view.py:338
+msgid "Choose folder"
+msgstr "选择文件夹"
+
+#: zapzap/features/initial_setup/view.py:348
+#: zapzap/features/settings/pages/language_downloads/view.py:74
+msgid "Spell checker"
+msgstr "拼写检查器"
+
+#: zapzap/features/initial_setup/view.py:349
+#: zapzap/features/settings/pages/language_downloads/view.py:75
+msgid "Select compiled dictionaries and where ZapZap should look for them."
+msgstr "选择已编译的词典以及 ZapZap 查找词典的位置。"
+
+#: zapzap/features/initial_setup/view.py:354
+#: zapzap/features/settings/pages/language_downloads/view.py:79
+msgid "Enable spell checker"
+msgstr "启用拼写检查器"
+
+#: zapzap/features/initial_setup/view.py:355
+#: zapzap/features/settings/pages/language_downloads/view.py:80
+msgid "Use Qt WebEngine spell checking with the selected dictionary."
+msgstr "使用所选词典启用 Qt WebEngine 拼写检查。"
+
+#: zapzap/features/initial_setup/view.py:358
+msgid "Dictionary language"
+msgstr "词典语言"
+
+#: zapzap/features/initial_setup/view.py:359
+msgid "Recognizes only compiled dictionaries (.bdic)."
+msgstr "仅识别已编译的词典（.bdic）。"
+
+#: zapzap/features/initial_setup/view.py:373
+msgid "Essential permissions"
+msgstr "基本权限"
+
+#: zapzap/features/initial_setup/view.py:374
+msgid "Allow only the WhatsApp Web permissions you want to grant automatically."
+msgstr "仅自动授予您希望允许的 WhatsApp Web 权限。"
+
+#: zapzap/features/initial_setup/view.py:379
+msgid "When an option is unchecked, ZapZap will ask again in each session."
+msgstr "取消选择某个选项后，ZapZap 会在每个会话中再次询问。"
+
+#: zapzap/features/initial_setup/view.py:385
+msgid ""
+"Enable only the permissions you want to grant automatically when the page"
+" requests them."
+msgstr "仅启用您希望在页面请求时自动授予的权限。"
+
+#: zapzap/features/initial_setup/view.py:389
+#: zapzap/features/settings/pages/permissions/view.py:64
+msgid "Microphone"
+msgstr "麦克风"
+
+#: zapzap/features/initial_setup/view.py:390
+#: zapzap/features/settings/pages/permissions/view.py:65
+msgid "Automatically allow access to your microphone."
+msgstr "自动允许访问麦克风。"
+
+#: zapzap/features/initial_setup/view.py:393
+#: zapzap/features/settings/pages/permissions/view.py:69
+msgid "Camera"
+msgstr "摄像头"
+
+#: zapzap/features/initial_setup/view.py:394
+#: zapzap/features/settings/pages/permissions/view.py:70
+msgid "Automatically allow access to your camera."
+msgstr "自动允许访问摄像头。"
+
+#: zapzap/features/initial_setup/view.py:397
+#: zapzap/features/settings/pages/permissions/view.py:74
+msgid "Camera and microphone"
+msgstr "摄像头和麦克风"
+
+#: zapzap/features/initial_setup/view.py:398
+#: zapzap/features/settings/pages/permissions/view.py:76
+msgid "Automatically allow simultaneous access to the camera and microphone."
+msgstr "自动允许同时访问摄像头和麦克风。"
+
+#: zapzap/features/initial_setup/view.py:401
+#: zapzap/features/settings/pages/permissions/view.py:93
+msgid "Screen sharing"
+msgstr "屏幕共享"
+
+#: zapzap/features/initial_setup/view.py:402
+#: zapzap/features/settings/pages/permissions/view.py:94
+msgid "Automatically allow sharing of screen contents."
+msgstr "自动允许共享屏幕内容。"
+
+#: zapzap/features/initial_setup/view.py:405
+#: zapzap/features/settings/pages/permissions/view.py:98
+msgid "Screen with audio"
+msgstr "屏幕和音频"
+
+#: zapzap/features/initial_setup/view.py:406
+#: zapzap/features/settings/pages/permissions/view.py:99
+msgid "Automatically allow screen sharing with audio."
+msgstr "自动允许带音频的屏幕共享。"
+
+#: zapzap/features/initial_setup/view.py:427
+#: zapzap/features/settings/pages/permissions/view.py:130
+msgid "Flatpak permissions"
+msgstr "Flatpak 权限"
+
+#: zapzap/features/initial_setup/view.py:428
+#: zapzap/features/settings/pages/permissions/view.py:131
+msgid ""
+"Grant filesystem access if downloads, imports, or dictionaries cannot "
+"reach folders outside the sandbox."
+msgstr "如果下载、导入或词典无法访问沙盒外的文件夹，请授予文件系统访问权限。"
+
+#: zapzap/features/initial_setup/view.py:434
+#: zapzap/features/settings/pages/permissions/view.py:135
+msgid ""
+"Flatpak sandbox: if file access fails, grant folder permissions using "
+"Flatseal or flatpak override."
+msgstr "Flatpak 沙盒：如果文件访问失败，请使用 Flatseal 或 flatpak override 授予文件夹权限。"
+
+#: zapzap/features/initial_setup/view.py:444
+#: zapzap/features/settings/pages/permissions/view.py:143
+msgid "Select and copy this command in your terminal"
+msgstr "在终端中选择并复制此命令"
+
+#: zapzap/features/browser/web/web_view.py:381
+#: zapzap/features/initial_setup/view.py:446
+#: zapzap/features/settings/pages/debugging/controller.py:131
+#: zapzap/features/settings/pages/debugging/view.py:275
+#: zapzap/features/settings/pages/permissions/view.py:145
+msgid "Copy"
+msgstr "复制"
+
+#: zapzap/features/initial_setup/view.py:450
+#: zapzap/features/settings/pages/permissions/view.py:149
+msgid "Flatseal"
+msgstr "Flatseal"
+
+#: zapzap/features/initial_setup/view.py:451
+#: zapzap/features/settings/pages/permissions/view.py:150
+msgid ""
+"Flatseal is a graphical utility to review and modify permissions from "
+"your Flatpak applications."
+msgstr "Flatseal 是用于查看和修改 Flatpak 应用权限的图形工具。"
+
+#: zapzap/features/initial_setup/view.py:452
+#: zapzap/features/settings/pages/permissions/view.py:151
+msgid "Install Flatseal on Linux | Flathub"
+msgstr "在 Linux 上安装 Flatseal | Flathub"
+
+#: zapzap/features/initial_setup/view.py:467
+msgid "You're ready"
+msgstr "准备就绪"
+
+#: zapzap/features/initial_setup/view.py:468
+msgid ""
+"ZapZap will save these preferences now. Advanced options remain available"
+" in Settings."
+msgstr "ZapZap 将立即保存这些偏好设置。高级选项仍可在“设置”中使用。"
+
+#: zapzap/features/initial_setup/view.py:472
+msgid "Finish setup"
+msgstr "完成设置"
+
+#: zapzap/features/initial_setup/view.py:473
+msgid "Review advanced options later whenever you need them."
+msgstr "之后可随时查看高级选项。"
+
+#: zapzap/features/initial_setup/view.py:479
+msgid ""
+"You can revisit all choices from Settings at any time. Proxy, custom "
+"CSS/JavaScript, Flatpak permissions, and performance tweaks are still "
+"available there."
+msgstr "您可随时在“设置”中重新查看所有选择。代理、自定义 CSS/JavaScript、Flatpak 权限和性能调整仍可在那里使用。"
+
+#: zapzap/features/notifications/notification_service.py:122
+msgid "New message..."
+msgstr "新消息..."
+
+#: zapzap/features/reporting/coordinator.py:32
+msgid "ZapZap found a problem"
+msgstr "ZapZap 发现问题"
+
+#: zapzap/features/reporting/coordinator.py:33
+msgid "ZapZap closed unexpectedly during the last run."
+msgstr "上次运行期间 ZapZap 意外关闭。"
+
+#: zapzap/features/reporting/coordinator.py:35
+msgid ""
+"A sanitized report was prepared on this device. ZapZap will not send it; "
+"after reviewing, you can copy it and open GitHub."
+msgstr "本设备上已准备一份脱敏报告。ZapZap 不会发送该报告；您可以审阅后复制并打开 GitHub。"
+
+#: zapzap/features/reporting/coordinator.py:40
+msgid "Keep locally"
+msgstr "保留在本地"
+
+#: zapzap/features/reporting/coordinator.py:41
+msgid "Discard report"
+msgstr "丢弃报告"
+
+#: zapzap/features/reporting/coordinator.py:42
+#: zapzap/features/reporting/dialogs.py:214
+msgid "Review report"
+msgstr "审阅报告"
+
+#: zapzap/features/reporting/dialogs.py:29
+msgid "ZapZap closed unexpectedly"
+msgstr "ZapZap 意外关闭"
+
+#: zapzap/features/reporting/dialogs.py:30
+msgid "Something is not working"
+msgstr "某些功能无法正常工作"
+
+#: zapzap/features/reporting/dialogs.py:31
+msgid "Notification problem"
+msgstr "通知问题"
+
+#: zapzap/features/reporting/dialogs.py:32
+msgid "Audio or video problem"
+msgstr "音频或视频问题"
+
+#: zapzap/features/reporting/dialogs.py:33
+msgid "File problem"
+msgstr "文件问题"
+
+#: zapzap/features/reporting/dialogs.py:34
+msgid "Visual problem"
+msgstr "显示问题"
+
+#: zapzap/features/reporting/dialogs.py:35
+msgid "Other"
+msgstr "其他"
+
+#: zapzap/features/reporting/dialogs.py:38
+msgid "Always"
+msgstr "总是"
+
+#: zapzap/features/reporting/dialogs.py:39
+msgid "Sometimes"
+msgstr "有时"
+
+#: zapzap/features/reporting/dialogs.py:40
+msgid "It happened once"
+msgstr "只发生过一次"
+
+#: zapzap/features/reporting/dialogs.py:41
+msgid "I don't know"
+msgstr "不知道"
+
+#: zapzap/features/reporting/dialogs.py:58
+msgid "Check all the information below before continuing to GitHub."
+msgstr "继续前往 GitHub 前，请检查以下全部信息。"
+
+#: zapzap/features/reporting/dialogs.py:60
+msgid "Your report"
+msgstr "您的报告"
+
+#: zapzap/features/reporting/dialogs.py:61
+#, python-brace-format
+msgid "Problem type: {value}"
+msgstr "问题类型：{value}"
+
+#: zapzap/features/reporting/dialogs.py:64
+#: zapzap/features/reporting/dialogs.py:369
+msgid "Unexpected closing"
+msgstr "意外关闭"
+
+#: zapzap/features/reporting/dialogs.py:69
+msgid "Description:"
+msgstr "描述："
+
+#: zapzap/features/reporting/dialogs.py:71
+msgid "Expected result:"
+msgstr "预期结果："
+
+#: zapzap/features/reporting/dialogs.py:74
+#, python-brace-format
+msgid "Frequency: {value}"
+msgstr "频率：{value}"
+
+#: zapzap/features/reporting/dialogs.py:82
+msgid "Application information"
+msgstr "应用程序信息"
+
+#: zapzap/features/reporting/dialogs.py:92
+msgid "Error information"
+msgstr "错误信息"
+
+#: zapzap/features/reporting/dialogs.py:94
+#, python-brace-format
+msgid "Error type: {value}"
+msgstr "错误类型：{value}"
+
+#: zapzap/features/reporting/dialogs.py:96
+#, python-brace-format
+msgid "Error details: {value}"
+msgstr "错误详情：{value}"
+
+#: zapzap/features/reporting/dialogs.py:98
+msgid "Sanitized logs are included in the technical information."
+msgstr "技术信息中包含脱敏日志。"
+
+#: zapzap/features/reporting/dialogs.py:101
+msgid "Report destination"
+msgstr "报告目标"
+
+#: zapzap/features/reporting/dialogs.py:102
+msgid "Official ZapZap repository on GitHub: rafatosta/zapzap"
+msgstr "GitHub 上的 ZapZap 官方仓库：rafatosta/zapzap"
+
+#: zapzap/features/reporting/dialogs.py:104
+msgid ""
+"ZapZap will copy the report to the clipboard and open GitHub. Paste it "
+"into the issue description before publishing. A GitHub account is "
+"required."
+msgstr "ZapZap 会将报告复制到剪贴板并打开 GitHub。发布前请将其粘贴到问题描述中。需要 GitHub 账户。"
+
+#: zapzap/features/reporting/dialogs.py:109
+#: zapzap/features/settings/pages/network_privacy/view.py:249
+#: zapzap/features/settings/pages/notifications/view.py:113
+msgid "Privacy"
+msgstr "隐私"
+
+#: zapzap/features/reporting/dialogs.py:110
+msgid ""
+"Never sent: messages, contacts, phone numbers, cookies, WhatsApp session "
+"data, conversation content, passwords, or authentication tokens."
+msgstr "绝不发送：消息、联系人、电话号码、Cookie、WhatsApp 会话数据、对话内容、密码或身份验证令牌。"
+
+#: zapzap/features/reporting/dialogs.py:136
+#: zapzap/features/reporting/dialogs.py:159
+#: zapzap/features/reporting/dialogs.py:292
+#: zapzap/features/settings/pages/about/view.py:269
+#: zapzap/features/settings/pages/debugging/view.py:160
+#: zapzap/features/settings/pages/debugging/view.py:177
+#: zapzap/features/settings/shell/settings_controller.py:176
+msgid "Report a problem"
+msgstr "报告问题"
+
+#: zapzap/features/reporting/dialogs.py:162
+msgid ""
+"Describe what happened. You will review everything before anything is "
+"copied or GitHub is opened."
+msgstr "描述发生的情况。在复制任何内容或打开 GitHub 前，您可以审阅全部内容。"
+
+#: zapzap/features/reporting/dialogs.py:170
+msgid ""
+"Avoid phone numbers, messages, contact names, or other personal "
+"information."
+msgstr "请勿包含电话号码、消息、联系人姓名或其他个人信息。"
+
+#: zapzap/features/reporting/dialogs.py:186
+msgid "What is the problem?"
+msgstr "出现了什么问题？"
+
+#: zapzap/features/reporting/dialogs.py:187
+msgid "Describe what happened"
+msgstr "描述发生的情况"
+
+#: zapzap/features/reporting/dialogs.py:188
+msgid "What did you expect to happen?"
+msgstr "您预期会出现什么结果？"
+
+#: zapzap/features/reporting/dialogs.py:189
+msgid "Can you repeat the problem?"
+msgstr "能否重现该问题？"
+
+#: zapzap/features/reporting/dialogs.py:193
+msgid "Include system technical information"
+msgstr "包含系统技术信息"
+
+#: zapzap/features/reporting/dialogs.py:198
+msgid "Include error technical information, when available"
+msgstr "可用时包含错误技术信息"
+
+#: zapzap/features/reporting/dialogs.py:203
+msgid "Include sanitized logs, when available"
+msgstr "可用时包含脱敏日志"
+
+#: zapzap/features/reporting/dialogs.py:223
+msgid "Review your report"
+msgstr "审阅您的报告"
+
+#: zapzap/features/reporting/dialogs.py:226
+msgid ""
+"The complete report will be copied to the clipboard. After GitHub opens, "
+"paste it into the issue description."
+msgstr "完整报告将复制到剪贴板。GitHub 打开后，请将其粘贴到问题描述中。"
+
+#: zapzap/features/reporting/dialogs.py:237
+msgid "Complete report preview"
+msgstr "完整报告预览"
+
+#: zapzap/features/reporting/dialogs.py:240
+#: zapzap/features/reporting/dialogs.py:311
+msgid "Show technical information"
+msgstr "显示技术信息"
+
+#: zapzap/features/reporting/dialogs.py:252
+msgid "Complete report to copy to GitHub"
+msgstr "复制到 GitHub 的完整报告"
+
+#: zapzap/features/reporting/dialogs.py:257
+msgid "Back and edit"
+msgstr "返回并编辑"
+
+#: zapzap/features/reporting/dialogs.py:259
+msgid "Copy and open GitHub"
+msgstr "复制并打开 GitHub"
+
+#: zapzap/features/reporting/dialogs.py:264
+msgid "Copy report to the clipboard and open GitHub"
+msgstr "将报告复制到剪贴板并打开 GitHub"
+
+#: zapzap/features/reporting/dialogs.py:268
+msgid "After GitHub opens, paste the copied report into the issue description."
+msgstr "GitHub 打开后，请将复制的报告粘贴到问题描述中。"
+
+#: zapzap/features/reporting/dialogs.py:292
+msgid "Describe what happened before continuing."
+msgstr "继续前请描述发生的情况。"
+
+#: zapzap/features/reporting/dialogs.py:309
+msgid "Hide technical information"
+msgstr "隐藏技术信息"
+
+#: zapzap/features/reporting/dialogs.py:330
+msgid "Could not open GitHub"
+msgstr "无法打开 GitHub"
+
+#: zapzap/features/reporting/dialogs.py:332
+msgid ""
+"The report is still copied to the clipboard. Open the official ZapZap "
+"repository and paste it into a new issue."
+msgstr "报告仍已复制到剪贴板。请打开 ZapZap 官方仓库，并将其粘贴到新问题中。"
+
+#: zapzap/features/reporting/dialogs.py:344
+msgid "Local reports"
+msgstr "本地报告"
+
+#: zapzap/features/reporting/dialogs.py:354
+msgid "Review and open selected report"
+msgstr "审阅并打开所选报告"
+
+#: zapzap/features/reporting/dialogs.py:369
+msgid "Problem report"
+msgstr "问题报告"
+
+#: zapzap/features/reporting/dialogs.py:371
+#: zapzap/features/reporting/dialogs.py:375
+msgid "Saved locally"
+msgstr "已保存在本地"
+
+#: zapzap/features/reporting/dialogs.py:372
+msgid "Waiting for review"
+msgstr "等待审阅"
+
+#: zapzap/features/reporting/dialogs.py:373
+msgid "Copied"
+msgstr "已复制"
+
+#: zapzap/features/reporting/dialogs.py:374
+msgid "Opened on GitHub"
+msgstr "已在 GitHub 打开"
+
+#: zapzap/features/reporting/dialogs.py:389
+msgid "Complete report to copy"
+msgstr "待复制的完整报告"
+
+#: zapzap/features/shortcuts/model.py:12
+#: zapzap/ui/components/browser_sidebar.py:192
+msgid "New conversation"
+msgstr "新对话"
+
+#: zapzap/features/shortcuts/model.py:13
+msgid "Mark as unread"
+msgstr "标记为未读"
+
+#: zapzap/features/shortcuts/model.py:14
+msgid "Archive conversation"
+msgstr "归档对话"
+
+#: zapzap/features/shortcuts/model.py:15
+msgid "Pin conversation"
+msgstr "置顶对话"
+
+#: zapzap/features/shortcuts/model.py:16
+msgid "Next conversation"
+msgstr "下一个对话"
+
+#: zapzap/features/shortcuts/model.py:17
+msgid "Close conversation"
+msgstr "关闭对话"
+
+#: zapzap/features/shortcuts/model.py:18
+msgid "Search in conversation"
+msgstr "在对话中搜索"
+
+#: zapzap/features/shortcuts/model.py:19
+msgid "Previous conversation"
+msgstr "上一个对话"
+
+#: zapzap/features/shortcuts/model.py:20
+msgid "Delete conversation"
+msgstr "删除对话"
+
+#: zapzap/features/shortcuts/model.py:21
+msgid "Profile and status"
+msgstr "个人资料和状态"
+
+#: zapzap/features/settings/shell/settings_controller.py:234
+#: zapzap/features/settings/shell/settings_sidebar.py:61
+#: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
+#: zapzap/features/tray/sys_tray_manager.py:51
+#: zapzap/ui/components/main_window.py:143
+msgid "Settings"
+msgstr "设置"
+
+#: zapzap/features/shortcuts/model.py:23
+msgid "Decrease speed of selected voice message"
+msgstr "降低所选语音消息的播放速度"
+
+#: zapzap/features/shortcuts/model.py:24
+msgid "Increase speed of selected voice message"
+msgstr "提高所选语音消息的播放速度"
+
+#: zapzap/features/shortcuts/model.py:25
+msgid "Emoji panel"
+msgstr "表情面板"
+
+#: zapzap/features/shortcuts/model.py:26
+msgid "Sticker panel"
+msgstr "贴纸面板"
+
+#: zapzap/features/shortcuts/model.py:27
+msgid "GIF panel"
+msgstr "GIF 面板"
+
+#: zapzap/features/shortcuts/model.py:28
+msgid "Lock the app"
+msgstr "锁定应用"
+
+#: zapzap/features/shortcuts/model.py:29
+msgid "Mute"
+msgstr "静音"
+
+#: zapzap/features/shortcuts/model.py:30
+msgid "Search"
+msgstr "搜索"
+
+#: zapzap/features/shortcuts/model.py:31
+msgid "New group"
+msgstr "新建群组"
+
+#: zapzap/features/shortcuts/model.py:32
+msgid "Extended search"
+msgstr "高级搜索"
+
+#: zapzap/features/shortcuts/model.py:39
+#: zapzap/ui/components/main_window.py:141
+msgid "Hide"
+msgstr "隐藏"
+
+#: zapzap/features/shortcuts/model.py:40
+msgid "Exit"
+msgstr "退出"
+
+#: zapzap/features/shortcuts/model.py:41
+msgid "Fullscreen"
+msgstr "全屏"
+
+#: zapzap/features/shortcuts/model.py:42
+#: zapzap/ui/components/main_window.py:158
+msgid "Automatic theme"
+msgstr "自动主题"
+
+#: zapzap/features/shortcuts/model.py:43
+#: zapzap/ui/components/main_window.py:160
+msgid "Light theme"
+msgstr "浅色主题"
+
+#: zapzap/features/shortcuts/model.py:44
+#: zapzap/ui/components/main_window.py:162
+msgid "Dark theme"
+msgstr "深色主题"
+
+#: zapzap/features/shortcuts/model.py:45
+#: zapzap/ui/components/main_window.py:145
+msgid "Reset zoom"
+msgstr "重置缩放"
+
+#: zapzap/features/shortcuts/model.py:46
+#: zapzap/ui/components/main_window.py:147
+msgid "Zoom in"
+msgstr "放大"
+
+#: zapzap/features/shortcuts/model.py:47
+#: zapzap/ui/components/main_window.py:149
+msgid "Zoom out"
+msgstr "缩小"
+
+#: zapzap/features/shortcuts/model.py:48
+msgid "Reload pages"
+msgstr "重新加载页面"
+
+#: zapzap/features/shortcuts/model.py:49
+msgid "New conversation by phone number"
+msgstr "按电话号码开始新对话"
+
+#: zapzap/features/browser/shell/browser_controller.py:531
+#: zapzap/features/shortcuts/model.py:50
+#: zapzap/ui/components/browser_sidebar.py:188
+msgid "New account"
+msgstr "新账户"
+
+#: zapzap/features/shortcuts/view.py:34 zapzap/features/shortcuts/view.py:42
+#: zapzap/ui/components/main_window.py:170
+msgid "Keyboard shortcuts"
+msgstr "键盘快捷键"
+
+#: zapzap/features/shortcuts/view.py:49
+msgid "WhatsApp Web"
+msgstr "WhatsApp Web"
+
+#: zapzap/features/tray/sys_tray_manager.py:50
+msgid "Show"
+msgstr "显示"
+
+#: zapzap/features/settings/shell/settings_view.py:38
+#: zapzap/features/tray/sys_tray_manager.py:53
+#: zapzap/ui/components/main_window.py:139
+msgid "Quit"
+msgstr "退出"
+
+#: zapzap/features/settings/pages/accounts/view.py:17
+#: zapzap/features/settings/shell/settings_controller.py:122
+msgid "Accounts"
+msgstr "账户"
+
+#: zapzap/features/settings/pages/appearance/view.py:21
+#: zapzap/features/settings/shell/settings_controller.py:128
+msgid "Appearance"
+msgstr "外观"
+
+#: zapzap/features/settings/pages/system_startup/view.py:22
+#: zapzap/features/settings/shell/settings_controller.py:146
+msgid "System and startup"
+msgstr "系统和启动"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:21
+#: zapzap/features/settings/shell/settings_controller.py:152
+msgid "Language and Download"
+msgstr "语言和下载"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:149
+#: zapzap/features/settings/shell/settings_controller.py:158
+msgid "Privacy and Network"
+msgstr "隐私和网络"
+
+#: zapzap/features/settings/shell/settings_controller.py:164
+msgid "Advanced Customizations"
+msgstr "高级自定义"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:21
+#: zapzap/features/settings/shell/settings_controller.py:170
+msgid "Performance experimental"
+msgstr "实验性能"
+
+#: zapzap/features/settings/pages/about/view.py:238
+#: zapzap/features/settings/shell/settings_controller.py:182
+#: zapzap/ui/components/main_window.py:172
+msgid "About"
+msgstr "关于"
+
+#: zapzap/features/settings/shell/settings_sidebar.py:64
+msgid "Adjust accounts, appearance, notifications and advanced options."
+msgstr "调整账户、外观、通知和高级选项。"
+
+#: zapzap/features/settings/shell/settings_sidebar.py:69
+msgid "Close settings"
+msgstr "关闭设置"
+
+#: zapzap/features/settings/pages/about/view.py:275
+#: zapzap/features/settings/shell/settings_view.py:36
+msgid "Learn how to contribute to the project's development."
+msgstr "了解如何为项目开发做出贡献。"
+
+#: zapzap/features/settings/pages/about/controller.py:57
+#: zapzap/features/settings/pages/about/view.py:323
+#: zapzap/features/settings/pages/about/view.py:327
+msgid "Copy system information"
+msgstr "复制系统信息"
+
+#: zapzap/features/settings/pages/about/controller.py:62
+#: zapzap/features/settings/pages/about/view.py:296
+msgid "License"
+msgstr "许可证"
+
+#: zapzap/features/settings/pages/about/controller.py:64
+#, python-brace-format
+msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
+msgstr "ZapZap 是自由软件，依据 {license_id}（GPL-3.0-or-later）授权。"
+
+#: zapzap/features/settings/pages/about/controller.py:72
+#: zapzap/features/settings/pages/about/view.py:301
+msgid "Credits and contributors"
+msgstr "致谢和贡献者"
+
+#: zapzap/features/settings/pages/about/controller.py:74
+#, python-brace-format
+msgid ""
+"Created and maintained by {author}. Thanks to everyone who contributes "
+"translations, code, testing, and feedback."
+msgstr "由 {author} 创建并维护。感谢所有贡献翻译、代码、测试和反馈的人。"
+
+#: zapzap/features/settings/pages/about/model.py:64
+msgid "Version"
+msgstr "版本"
+
+#: zapzap/features/settings/pages/about/model.py:69
+#: zapzap/features/settings/pages/about/model.py:93
+#: zapzap/features/settings/pages/debugging/view.py:427
+msgid "Channel"
+msgstr "渠道"
+
+#: zapzap/features/settings/pages/about/model.py:70
+#: zapzap/features/settings/pages/about/model.py:92
+#: zapzap/features/settings/pages/debugging/view.py:426
+msgid "Packaging"
+msgstr "打包方式"
+
+#: zapzap/features/settings/pages/about/model.py:71
+msgid "Provider"
+msgstr "提供商"
+
+#: zapzap/features/settings/pages/about/model.py:72
+msgid "Repository"
+msgstr "仓库"
+
+#: zapzap/features/settings/pages/about/model.py:90
+#: zapzap/features/settings/pages/debugging/view.py:431
+msgid "System"
+msgstr "系统"
+
+#: zapzap/features/settings/pages/about/model.py:91
+msgid "Session"
+msgstr "会话"
+
+#: zapzap/features/settings/pages/about/view.py:37
+#: zapzap/ui/components/update_available_popover.py:82
+msgid "ZapZap application icon"
+msgstr "ZapZap 应用图标"
+
+#: zapzap/features/settings/pages/about/view.py:49
+msgid "WhatsApp Web for Linux"
+msgstr "适用于 Linux 的 WhatsApp Web"
+
+#: zapzap/features/settings/pages/about/view.py:61
+#, python-brace-format
+msgid "Version {version}"
+msgstr "版本 {version}"
+
+#: zapzap/features/settings/pages/about/view.py:148
+#: zapzap/features/settings/pages/debugging/view.py:226
+msgid "Technical details"
+msgstr "技术详情"
+
+#: zapzap/features/settings/pages/about/view.py:239
+msgid "Information about ZapZap, the project, and support."
+msgstr "有关 ZapZap、项目和支持的信息。"
+
+#: zapzap/features/settings/pages/about/view.py:253
+msgid "Project and support"
+msgstr "项目和支持"
+
+#: zapzap/features/settings/pages/about/view.py:257
+#: zapzap/ui/components/update_available_popover.py:70
+#: zapzap/ui/components/update_available_popover.py:173
+msgid "Update available"
+msgstr "有可用更新"
+
+#: zapzap/features/settings/pages/about/view.py:258
+msgid "Visit the official website"
+msgstr "访问官方网站"
+
+#: zapzap/features/settings/pages/about/view.py:264
+msgid "Project page"
+msgstr "项目页面"
+
+#: zapzap/features/settings/pages/about/view.py:265
+msgid "Official website, downloads, and documentation."
+msgstr "官方网站、下载和文档。"
+
+#: zapzap/features/settings/pages/about/view.py:270
+msgid "Report bugs or suggest improvements on GitHub."
+msgstr "在 GitHub 上报告错误或提出改进建议。"
+
+#: zapzap/features/settings/pages/about/view.py:337
+msgid ""
+"ZapZap is an independent project and is not affiliated with WhatsApp or "
+"Meta."
+msgstr "ZapZap 是独立项目，与 WhatsApp 或 Meta 无关。"
+
+#: zapzap/features/settings/pages/about/view.py:357
+#: zapzap/ui/components/browser_sidebar.py:210
+#, python-brace-format
+msgid "ZapZap {version} is available"
+msgstr "ZapZap {version} 已可用"
+
+#: zapzap/features/settings/pages/about/view.py:363
+#: zapzap/ui/components/browser_sidebar.py:215
+msgid "Open the official ZapZap website to download it."
+msgstr "打开 ZapZap 官方网站下载。"
+
+#: zapzap/features/settings/pages/about/view.py:368
+msgid "Information copied"
+msgstr "信息已复制"
+
+#: zapzap/features/settings/pages/accounts/view.py:18
+msgid "Manage your accounts and individual preferences."
+msgstr "管理您的账户和个人偏好设置。"
+
+#: zapzap/features/settings/pages/accounts/view.py:38
+msgid "Account list"
+msgstr "账户列表"
+
+#: zapzap/features/settings/pages/accounts/view.py:40
+#: zapzap/features/settings/pages/accounts/view.py:41
+msgid "Add account"
+msgstr "添加账户"
+
+#: zapzap/features/settings/pages/accounts/view.py:51
+msgid "Each account can have independent settings."
+msgstr "每个账户都可拥有独立设置。"
+
+#: zapzap/features/settings/pages/accounts/view.py:81
+#, python-brace-format
+msgid "Account limit of {limit} reached."
+msgstr "已达到 {limit} 个账户的上限。"
+
+#: zapzap/features/settings/pages/accounts/view.py:85
+#, python-brace-format
+msgid "{count} of {limit} accounts configured."
+msgstr "已配置 {limit} 个账户中的 {count} 个。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:52
+msgid "All accounts"
+msgstr "所有账户"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:53
+msgid "This account"
+msgstr "此账户"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:152
+msgid "Unsaved changes discarded."
+msgstr "未保存的更改已丢弃。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:193
+#, python-brace-format
+msgid "Current account: {} ({})"
+msgstr "当前账户：{}（{}）"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:197
+msgid "Current account: unavailable"
+msgstr "当前账户：不可用"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:203
+msgid "Changes to the previous scope were saved."
+msgstr "上一作用范围的更改已保存。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:290
+#, python-brace-format
+msgid "CSS file enabled: {}"
+msgstr "已启用 CSS 文件：{}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:290
+#, python-brace-format
+msgid "CSS file disabled: {}"
+msgstr "已禁用 CSS 文件：{}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:293
+#, python-brace-format
+msgid "JavaScript file enabled: {}"
+msgstr "已启用 JavaScript 文件：{}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:295
+#, python-brace-format
+msgid "JavaScript file disabled: {}"
+msgstr "已禁用 JavaScript 文件：{}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:301
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:317
+msgid "This userstyle does not target WhatsApp Web."
+msgstr "此用户样式不针对 WhatsApp Web。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:308
+msgid "Only HTTPS URLs are allowed."
+msgstr "仅允许 HTTPS URL。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:312
+msgid "Download is too large."
+msgstr "下载内容过大。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:321
+msgid "Could not download CSS from URL."
+msgstr "无法从 URL 下载 CSS。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:323
+msgid "Could not download JavaScript from URL."
+msgstr "无法从 URL 下载 JavaScript。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:335
+msgid "Select a file first."
+msgstr "请先选择文件。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:367
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:406
+msgid "Select a CSS file to preview."
+msgstr "请选择要预览的 CSS 文件。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:416
+msgid "No preview available."
+msgstr "没有可用预览。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:423
+#: zapzap/ui/components/edit_account_dialog.py:660
+msgid "Could not load preview image."
+msgstr "无法加载预览图片。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:453
+msgid "Enter a CSS HTTPS URL."
+msgstr "请输入 CSS HTTPS URL。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:455
+msgid "Enter a JavaScript HTTPS URL."
+msgstr "请输入 JavaScript HTTPS URL。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:475
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:485
+#, python-brace-format
+msgid "File imported: {}"
+msgstr "已导入文件：{}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:489
+#, python-brace-format
+msgid "File imported: {}. No preview found, upload one manually."
+msgstr "已导入文件：{}。未找到预览，请手动上传。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:500
+msgid "Select preview image"
+msgstr "选择预览图片"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:516
+msgid "Could not set preview image."
+msgstr "无法设置预览图片。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:520
+#: zapzap/ui/components/edit_account_dialog.py:679
+msgid "Preview image updated."
+msgstr "预览图片已更新。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:526
+msgid "Import from URL"
+msgstr "从 URL 导入"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:537
+msgid "https://example.com/theme.user.css"
+msgstr "https://example.com/theme.user.css"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:539
+msgid "https://example.com/script.js"
+msgstr "https://example.com/script.js"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:543
+#, python-brace-format
+msgid "Optional file name (e.g. 10-custom.{})"
+msgstr "可选文件名（例如 10-custom.{}）"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:546
+msgid "URL"
+msgstr "URL"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:547
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:611
+msgid "File name"
+msgstr "文件名"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:602
+msgid "Edit the stylesheet content and choose the file name."
+msgstr "编辑样式表内容并选择文件名。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:604
+msgid "Edit the script content and choose the file name."
+msgstr "编辑脚本内容并选择文件名。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:614
+#, python-brace-format
+msgid "custom.{}"
+msgstr "custom.{}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:619
+msgid "CSS code"
+msgstr "CSS 代码"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:621
+msgid "JavaScript code"
+msgstr "JavaScript 代码"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:641
+msgid "Ctrl+S to save"
+msgstr "Ctrl+S 保存"
+
+#: zapzap/features/downloads/ui/download_dialog.py:103
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:643
+#: zapzap/features/settings/pages/advanced_customizations/view.py:418
+#: zapzap/ui/components/edit_account_dialog.py:458
+msgid "Save"
+msgstr "保存"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:670
+msgid "Select file"
+msgstr "选择文件"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:688
+msgid "Could not import file."
+msgstr "无法导入文件。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:692
+msgid "File imported successfully."
+msgstr "文件导入成功。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:724
+msgid "Create file"
+msgstr "创建文件"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:732
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:783
+msgid "File name cannot be empty."
+msgstr "文件名不能为空。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:745
+msgid "Could not create file."
+msgstr "无法创建文件。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:749
+#, python-brace-format
+msgid "File created: {}"
+msgstr "已创建文件：{}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:768
+msgid "Could not open file for editing."
+msgstr "无法打开文件进行编辑。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:771
+#, python-brace-format
+msgid "Edit CSS: {}"
+msgstr "编辑 CSS：{}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:772
+#, python-brace-format
+msgid "Edit JavaScript: {}"
+msgstr "编辑 JavaScript：{}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:806
+msgid "Could not save file."
+msgstr "无法保存文件。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:810
+#, python-brace-format
+msgid "File saved: {}"
+msgstr "文件已保存：{}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:885
+msgid "Reload complete."
+msgstr "重新加载完成。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:914
+#, python-brace-format
+msgid "{}. Save and reload to apply changes."
+msgstr "{}。保存并重新加载以应用更改。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:927
+#: zapzap/features/settings/pages/advanced_customizations/view.py:253
+msgid "CSS"
+msgstr "CSS"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:927
+msgid "JS"
+msgstr "JS"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:930
+msgid "Confirm deletion"
+msgstr "确认删除"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:931
+#, python-brace-format
+msgid "Delete selected {} file: {}?"
+msgstr "删除所选 {} 文件：{}？"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:935
+msgid "Deletion cancelled."
+msgstr "已取消删除。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:946
+msgid "File deleted."
+msgstr "文件已删除。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:948
+msgid "Could not delete file."
+msgstr "无法删除文件。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:974
+msgid "Could not duplicate file."
+msgstr "无法复制文件。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:979
+#, python-brace-format
+msgid "File duplicated: {}"
+msgstr "文件已复制：{}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:1009
+msgid "Customizations saved. Reload pages to apply changes."
+msgstr "自定义设置已保存。重新加载页面以应用更改。"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:1021
+msgid "All pages reloaded."
+msgstr "所有页面已重新加载。"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:75
+msgid "+ Create"
+msgstr "+ 创建"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:99
+msgid "Import file"
+msgstr "导入文件"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:100
+msgid "Import URL"
+msgstr "导入 URL"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:158
+msgid "File actions"
+msgstr "文件操作"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:161
+#: zapzap/ui/components/card_user.py:148
+msgid "Edit"
+msgstr "编辑"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:162
+msgid "Duplicate"
+msgstr "复制"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:163
+msgid "Open location"
+msgstr "打开所在位置"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:165
+msgid "Delete"
+msgstr "删除"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:188
+msgid "Advanced customizations"
+msgstr "高级自定义"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:189
+msgid "Add custom CSS and JavaScript to WhatsApp Web."
+msgstr "为 WhatsApp Web 添加自定义 CSS 和 JavaScript。"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:203
+msgid "Scope"
+msgstr "作用范围"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:204
+msgid ""
+"Choose whether customizations apply to all accounts or only to the "
+"current account."
+msgstr "选择自定义设置应用于所有账户，还是仅应用于当前账户。"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:208
+msgid "Apply to"
+msgstr "应用于"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:209
+msgid "Account customizations can inherit or extend the global configuration."
+msgstr "账户自定义设置可以继承或扩展全局配置。"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:217
+msgid "Inherit global settings"
+msgstr "继承全局设置"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:218
+msgid "Use only the global customizations for this account."
+msgstr "此账户仅使用全局自定义设置。"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:237
+msgid "Customizations"
+msgstr "自定义设置"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:238
+msgid "Manage custom files for the selected scope."
+msgstr "管理所选作用范围的自定义文件。"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:255
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:326
+msgid "Custom CSS"
+msgstr "自定义 CSS"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:327
+msgid "Enables or disables all CSS files in this scope."
+msgstr "启用或禁用此作用范围内的所有 CSS 文件。"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:331
+msgid "No CSS files"
+msgstr "没有 CSS 文件"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:332
+msgid "Create or import a style to get started."
+msgstr "创建或导入样式以开始使用。"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:343
+msgid "Preview"
+msgstr "预览"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:353
+msgid "No preview available. Select a CSS file to view an associated screenshot."
+msgstr "没有可用预览。请选择 CSS 文件以查看关联截图。"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:358
+msgid "Upload preview image"
+msgstr "上传预览图片"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:371
+msgid "Replace preview image"
+msgstr "替换预览图片"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:389
+msgid "Custom JavaScript"
+msgstr "自定义 JavaScript"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:390
+msgid "Enables or disables all JavaScript files in this scope."
+msgstr "启用或禁用此作用范围内的所有 JavaScript 文件。"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:394
+msgid ""
+"⚠ Custom scripts have full access to page content. Use code only from "
+"trusted sources."
+msgstr "⚠ 自定义脚本可完全访问页面内容。请仅使用来自可信来源的代码。"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:398
+msgid "No JavaScript files"
+msgstr "没有 JavaScript 文件"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:399
+msgid "Create or import a script to get started."
+msgstr "创建或导入脚本以开始使用。"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:416
+msgid "● There are unsaved changes."
+msgstr "● 有未保存的更改。"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:417
+#: zapzap/features/settings/pages/network_privacy/view.py:110
+#: zapzap/ui/components/edit_account_dialog.py:770
+msgid "Discard"
+msgstr "放弃"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:419
+msgid "Save and reload"
+msgstr "保存并重新加载"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:420
+msgid "Reload page"
+msgstr "重新加载页面"
+
+#: zapzap/features/settings/pages/appearance/controller.py:72
+#: zapzap/features/settings/pages/appearance/view.py:95
+#: zapzap/features/settings/pages/performance_experimental/view.py:65
+#: zapzap/ui/components/edit_account_dialog.py:276
+#: zapzap/ui/components/edit_account_dialog.py:418
+#: zapzap/ui/components/edit_account_dialog.py:424
+msgid "Default"
+msgstr "默认"
+
+#: zapzap/features/settings/pages/appearance/controller.py:73
+msgid "Adwaita"
+msgstr "Adwaita"
+
+#: zapzap/features/settings/pages/appearance/controller.py:74
+msgid "Plasma"
+msgstr "Plasma"
+
+#: zapzap/features/settings/pages/appearance/controller.py:75
+msgid "iOS"
+msgstr "iOS"
+
+#: zapzap/features/settings/pages/appearance/controller.py:76
+msgid "Windows"
+msgstr "Windows"
+
+#: zapzap/features/settings/pages/appearance/view.py:22
+msgid ""
+"Adjust interface chrome, theme, tray icon, grid view, and window "
+"decorations."
+msgstr "调整界面结构、主题、托盘图标、网格视图和窗口装饰。"
+
+#: zapzap/features/settings/pages/appearance/view.py:37
+msgid "Interface"
+msgstr "界面"
+
+#: zapzap/features/settings/pages/appearance/view.py:38
+msgid "Show or hide primary application chrome."
+msgstr "显示或隐藏主要应用界面结构。"
+
+#: zapzap/features/settings/pages/appearance/view.py:42
+msgid "Browser sidebar"
+msgstr "浏览器侧栏"
+
+#: zapzap/features/settings/pages/appearance/view.py:43
+msgid "Show account navigation in the browser shell."
+msgstr "在浏览器外壳中显示账户导航。"
+
+#: zapzap/features/settings/pages/appearance/view.py:46
+msgid "Menu bar"
+msgstr "菜单栏"
+
+#: zapzap/features/settings/pages/appearance/view.py:47
+msgid "Show the main window menu bar."
+msgstr "显示主窗口菜单栏。"
+
+#: zapzap/features/settings/pages/appearance/view.py:50
+msgid "Interface scale"
+msgstr "界面缩放"
+
+#: zapzap/features/settings/pages/appearance/view.py:51
+msgid "Scale the interface for high-DPI or accessibility needs."
+msgstr "为高 DPI 或辅助功能需求调整界面大小。"
+
+#: zapzap/features/settings/pages/appearance/view.py:82
+msgid "Control tray icon visibility, style, and unread counter."
+msgstr "控制托盘图标可见性、样式和未读计数。"
+
+#: zapzap/features/settings/pages/appearance/view.py:86
+msgid "Show tray icon"
+msgstr "显示托盘图标"
+
+#: zapzap/features/settings/pages/appearance/view.py:87
+msgid "Display ZapZap in the system notification area."
+msgstr "在系统通知区域显示 ZapZap。"
+
+#: zapzap/features/settings/pages/appearance/view.py:90
+msgid "Unread counter"
+msgstr "未读计数"
+
+#: zapzap/features/settings/pages/appearance/view.py:91
+msgid "Show the number of unread messages."
+msgstr "显示未读消息数量。"
+
+#: zapzap/features/settings/pages/appearance/view.py:94
+msgid "Icon style"
+msgstr "图标样式"
+
+#: zapzap/features/settings/pages/appearance/view.py:96
+msgid "Symbolic light"
+msgstr "浅色符号图标"
+
+#: zapzap/features/settings/pages/appearance/view.py:97
+msgid "Symbolic dark"
+msgstr "深色符号图标"
+
+#: zapzap/features/browser/shell/browser_controller.py:172
+#: zapzap/features/settings/pages/appearance/view.py:118
+msgid "Grid view"
+msgstr "网格视图"
+
+#: zapzap/features/settings/pages/appearance/view.py:119
+msgid "Choose how many columns are used by grid view."
+msgstr "选择网格视图使用的列数。"
+
+#: zapzap/features/settings/pages/appearance/view.py:123
+msgid "Grid columns"
+msgstr "网格列数"
+
+#: zapzap/features/settings/pages/appearance/view.py:124
+msgid "Number of account columns in grid view."
+msgstr "网格视图中的账户列数。"
+
+#: zapzap/features/settings/pages/appearance/view.py:134
+msgid "Window decoration"
+msgstr "窗口装饰"
+
+#: zapzap/features/settings/pages/appearance/view.py:135
+msgid "Customize the window controls drawn by ZapZap."
+msgstr "自定义 ZapZap 绘制的窗口控件。"
+
+#: zapzap/features/settings/pages/appearance/view.py:139
+msgid "Use custom decoration"
+msgstr "使用自定义装饰"
+
+#: zapzap/features/settings/pages/appearance/view.py:140
+msgid "Use window controls drawn by ZapZap."
+msgstr "使用 ZapZap 绘制的窗口控件。"
+
+#: zapzap/features/settings/pages/appearance/view.py:143
+msgid "Button style"
+msgstr "按钮样式"
+
+#: zapzap/features/settings/pages/appearance/view.py:144
+msgid "Visual style used by custom window buttons."
+msgstr "自定义窗口按钮使用的视觉样式。"
+
+#: zapzap/features/settings/pages/appearance/view.py:148
+msgid "Minimize"
+msgstr "最小化"
+
+#: zapzap/features/settings/pages/appearance/view.py:149
+msgid "Maximize"
+msgstr "最大化"
+
+#: zapzap/features/settings/pages/appearance/view.py:153
+msgid "Visible buttons"
+msgstr "可见按钮"
+
+#: zapzap/features/settings/pages/appearance/view.py:158
+msgid "Button position"
+msgstr "按钮位置"
+
+#: zapzap/features/settings/pages/appearance/view.py:159
+msgid "Place window buttons on the right or left."
+msgstr "将窗口按钮放置在右侧或左侧。"
+
+#: zapzap/features/settings/pages/appearance/view.py:164
+msgid "Right"
+msgstr "右侧"
+
+#: zapzap/features/settings/pages/appearance/view.py:165
+msgid "Left"
+msgstr "左侧"
+
+#: zapzap/features/settings/pages/debugging/controller.py:62
+#: zapzap/features/settings/pages/debugging/view.py:202
+msgid "Information and privacy"
+msgstr "信息和隐私"
+
+#: zapzap/features/settings/pages/debugging/controller.py:64
+msgid ""
+"Reports may include the ZapZap version, operating system, installation "
+"type, architecture, Python/Qt versions, error details, and sanitized "
+"logs.\n"
+"\n"
+"Never sent: messages, contacts, phone numbers, cookies, WhatsApp session "
+"data, conversation content, passwords, or authentication tokens.\n"
+"\n"
+"ZapZap does not send reports. After review, it copies the report and "
+"opens the official GitHub repository rafatosta/zapzap. You need a GitHub "
+"account to publish the public issue."
+msgstr ""
+"报告可能包含 ZapZap 版本、操作系统、安装类型、架构、Python/Qt 版本、错误详情和脱敏日志。\n"
+"\n"
+"绝不发送：消息、联系人、电话号码、Cookie、WhatsApp 会话数据、对话内容、密码或身份验证令牌。\n"
+"\n"
+"ZapZap 不会发送报告。审阅后，它会复制报告并打开 GitHub 官方仓库 rafatosta/zapzap。发布公开问题需要 GitHub "
+"账户。"
+
+#: zapzap/features/settings/pages/debugging/controller.py:74
+msgid "Notify me when a failure occurs?"
+msgstr "发生故障时通知我？"
+
+#: zapzap/features/settings/pages/debugging/controller.py:76
+msgid ""
+"ZapZap can prepare a sanitized technical report locally after a serious "
+"failure. You will review it on the next startup.\n"
+"\n"
+"ZapZap never transmits or publishes the report automatically."
+msgstr ""
+"严重故障后，ZapZap 可以在本地准备一份脱敏技术报告。您将在下次启动时审阅。\n"
+"\n"
+"ZapZap 绝不会自动传输或发布该报告。"
+
+#: zapzap/features/settings/pages/debugging/controller.py:111
+#: zapzap/features/settings/pages/debugging/view.py:377
+#, python-brace-format
+msgid "{count} crash report"
+msgid_plural "{count} crash reports"
+msgstr[0] "{count} 份崩溃报告"
+
+#: zapzap/features/settings/pages/debugging/controller.py:116
+msgid "available"
+msgstr "可用"
+
+#: zapzap/features/settings/pages/debugging/controller.py:116
+msgid "not available"
+msgstr "不可用"
+
+#: zapzap/features/settings/pages/debugging/controller.py:119
+#, python-brace-format
+msgid ""
+"Diagnostic files: {reports}; debug log: {log_status}.\n"
+"\n"
+"Runtime information:\n"
+"{runtime}"
+msgstr ""
+"诊断文件：{reports}；调试日志：{log_status}。\n"
+"\n"
+"运行时信息：\n"
+"{runtime}"
+
+#: zapzap/features/settings/pages/debugging/controller.py:132
+#: zapzap/features/settings/pages/debugging/view.py:245
+msgid "Copy diagnostics"
+msgstr "复制诊断信息"
+
+#: zapzap/features/settings/pages/debugging/controller.py:133
+#: zapzap/features/settings/pages/debugging/view.py:330
+msgid "Copy details"
+msgstr "复制详情"
+
+#: zapzap/features/settings/pages/debugging/controller.py:143
+#: zapzap/features/settings/pages/debugging/controller.py:153
+#: zapzap/features/settings/pages/debugging/controller.py:163
+msgid "Debug logs"
+msgstr "调试日志"
+
+#: zapzap/features/settings/pages/debugging/controller.py:144
+#, python-brace-format
+msgid "Deleted {count} old crash report(s) (older than 30 days)."
+msgstr "已删除 {count} 份旧崩溃报告（超过 30 天）。"
+
+#: zapzap/features/settings/pages/debugging/controller.py:154
+msgid "Delete all crash reports and debug logs?"
+msgstr "删除所有崩溃报告和调试日志？"
+
+#: zapzap/features/settings/pages/debugging/controller.py:164
+#, python-brace-format
+msgid "Deleted {count} file(s)."
+msgstr "已删除 {count} 个文件。"
+
+#: zapzap/features/settings/pages/debugging/controller.py:171
+msgid "Reset settings?"
+msgstr "重置设置？"
+
+#: zapzap/features/settings/pages/debugging/controller.py:173
+msgid ""
+"All custom ZapZap settings will be restored to their default values.\n"
+"\n"
+"The application will need to be restarted to complete the operation."
+msgstr ""
+"所有 ZapZap 自定义设置都将恢复为默认值。\n"
+"\n"
+"需要重启应用程序才能完成操作。"
+
+#: zapzap/features/settings/pages/debugging/controller.py:186
+#: zapzap/features/settings/pages/debugging/controller.py:193
+#: zapzap/features/settings/pages/debugging/view.py:346
+msgid "Reset settings"
+msgstr "重置设置"
+
+#: zapzap/features/settings/pages/debugging/controller.py:187
+#, python-brace-format
+msgid ""
+"Could not remove settings file:\n"
+"{error}"
+msgstr ""
+"无法移除设置文件：\n"
+"{error}"
+
+#: zapzap/features/settings/pages/debugging/controller.py:194
+msgid "Settings were reset successfully. Restart ZapZap now?"
+msgstr "设置已成功重置。现在重启 ZapZap 吗？"
+
+#: zapzap/features/settings/pages/debugging/view.py:97
+msgid "Full details"
+msgstr "完整详情"
+
+#: zapzap/features/settings/pages/debugging/view.py:161
+msgid "Prepare a sanitized report to publish with your GitHub account."
+msgstr "准备脱敏报告，以便使用 GitHub 账户发布。"
+
+#: zapzap/features/settings/pages/debugging/view.py:179
+msgid ""
+"You will always review the complete report before copying it and opening "
+"GitHub."
+msgstr "复制报告并打开 GitHub 前，您始终可以审阅完整报告。"
+
+#: zapzap/features/settings/pages/debugging/view.py:185
+msgid "Something is not working?"
+msgstr "某些功能无法正常工作？"
+
+#: zapzap/features/settings/pages/debugging/view.py:186
+msgid "Describe the problem in simple steps. Avoid personal information."
+msgstr "用简单步骤描述问题。请避免包含个人信息。"
+
+#: zapzap/features/settings/pages/debugging/view.py:187
+msgid "Report a problem…"
+msgstr "报告问题…"
+
+#: zapzap/features/settings/pages/debugging/view.py:193
+msgid "Notify me when a failure occurs"
+msgstr "发生故障时通知我"
+
+#: zapzap/features/settings/pages/debugging/view.py:195
+msgid ""
+"ZapZap will prepare a sanitized local report after a serious failure. It "
+"will never publish or transmit it automatically."
+msgstr "严重故障后，ZapZap 会准备一份脱敏的本地报告。绝不会自动发布或传输。"
+
+#: zapzap/features/settings/pages/debugging/view.py:203
+msgid "See what reports may include and how publication on GitHub works."
+msgstr "了解报告可能包含的内容，以及如何在 GitHub 上发布。"
+
+#: zapzap/features/settings/pages/debugging/view.py:204
+msgid "View information"
+msgstr "查看信息"
+
+#: zapzap/features/settings/pages/debugging/view.py:209
+msgid "Recent local reports"
+msgstr "最近的本地报告"
+
+#: zapzap/features/settings/pages/debugging/view.py:211
+msgid "Review reports kept on this device and their GitHub handoff status."
+msgstr "审阅保存在此设备上的报告及其 GitHub 交接状态。"
+
+#: zapzap/features/settings/pages/debugging/view.py:214
+msgid "View local reports"
+msgstr "查看本地报告"
+
+#: zapzap/features/settings/pages/debugging/view.py:230
+msgid "Local crash files"
+msgstr "本地崩溃文件"
+
+#: zapzap/features/settings/pages/debugging/view.py:233
+msgid "Debug log"
+msgstr "调试日志"
+
+#: zapzap/features/settings/pages/debugging/view.py:258
+msgid "Technical files"
+msgstr "技术文件"
+
+#: zapzap/features/settings/pages/debugging/view.py:259
+msgid ""
+"Manage local files used to diagnose errors. These files are not sent "
+"automatically."
+msgstr "管理用于诊断错误的本地文件。这些文件不会自动发送。"
+
+#: zapzap/features/settings/pages/debugging/view.py:267
+msgid "Diagnostics folder"
+msgstr "诊断文件夹"
+
+#: zapzap/features/downloads/ui/download_dialog.py:101
+#: zapzap/features/settings/pages/debugging/view.py:274
+msgid "Open"
+msgstr "打开"
+
+#: zapzap/features/settings/pages/debugging/view.py:286
+msgid "Clean up files…"
+msgstr "清理文件…"
+
+#: zapzap/features/settings/pages/debugging/view.py:291
+msgid "Delete old files"
+msgstr "删除旧文件"
+
+#: zapzap/features/settings/pages/debugging/view.py:294
+msgid "Remove only crash reports older than 30 days."
+msgstr "仅删除超过 30 天的崩溃报告。"
+
+#: zapzap/features/settings/pages/debugging/view.py:298
+msgid "Delete all logs and reports"
+msgstr "删除所有日志和报告"
+
+#: zapzap/features/settings/pages/debugging/view.py:302
+msgid "Remove every diagnostic file."
+msgstr "删除所有诊断文件。"
+
+#: zapzap/features/settings/pages/debugging/view.py:314
+msgid "Runtime information"
+msgstr "运行时信息"
+
+#: zapzap/features/settings/pages/debugging/view.py:315
+msgid "Useful data for support and bug reports."
+msgstr "对支持和错误报告有用的数据。"
+
+#: zapzap/features/settings/pages/debugging/view.py:329
+msgid "Refresh"
+msgstr "刷新"
+
+#: zapzap/features/settings/pages/debugging/view.py:343
+msgid "Maintenance"
+msgstr "维护"
+
+#: zapzap/features/settings/pages/debugging/view.py:348
+msgid ""
+"Restore ZapZap's default settings. The application will need to be "
+"restarted."
+msgstr "恢复 ZapZap 的默认设置。需要重启应用程序。"
+
+#: zapzap/features/settings/pages/debugging/view.py:351
+msgid "Reset…"
+msgstr "重置…"
+
+#: zapzap/features/settings/pages/debugging/view.py:364
+#, python-brace-format
+msgid "{count} available"
+msgid_plural "{count} available"
+msgstr[0] "{count} 个可用"
+
+#: zapzap/features/settings/pages/debugging/view.py:369
+msgid "faulthandler.log available"
+msgstr "faulthandler.log 可用"
+
+#: zapzap/features/settings/pages/debugging/view.py:371
+msgid "Not available"
+msgstr "不可用"
+
+#: zapzap/features/settings/pages/debugging/view.py:382
+#, python-brace-format
+msgid "{reports} and 1 log file"
+msgstr "{reports} 和 1 个日志文件"
+
+#: zapzap/features/settings/pages/debugging/view.py:428
+msgid "Qt"
+msgstr "Qt"
+
+#: zapzap/features/settings/pages/debugging/view.py:429
+msgid "PyQt"
+msgstr "PyQt"
+
+#: zapzap/features/settings/pages/debugging/view.py:430
+msgid "Python"
+msgstr "Python"
+
+#: zapzap/features/settings/pages/debugging/view.py:433
+msgid "System graphics session"
+msgstr "系统图形会话"
+
+#: zapzap/features/settings/pages/debugging/view.py:436
+msgid "ZapZap graphics backend"
+msgstr "ZapZap 图形后端"
+
+#: zapzap/features/settings/pages/debugging/view.py:466
+msgid "Path copied"
+msgstr "路径已复制"
+
+#: zapzap/features/settings/pages/debugging/view.py:469
+msgid "Diagnostics copied"
+msgstr "诊断信息已复制"
+
+#: zapzap/features/settings/pages/debugging/view.py:472
+msgid "Details copied"
+msgstr "详情已复制"
+
+#: zapzap/features/settings/pages/language_downloads/controller.py:145
+#: zapzap/features/settings/pages/language_downloads/view.py:84
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:255
+msgid "No dictionary available"
+msgstr "没有可用词典"
+
+#: zapzap/features/settings/pages/language_downloads/controller.py:149
+#, python-brace-format
+msgid "{language} and {count} more"
+msgstr "{language}，另有 {count} 种"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:22
+msgid "Manage interface language, downloads folder and spell checker."
+msgstr "管理界面语言、下载文件夹和拼写检查器。"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:41
+msgid "The interface language is applied immediately."
+msgstr "界面语言会立即应用。"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:59
+msgid "Set a custom folder or restore the default download location."
+msgstr "设置自定义文件夹，或恢复默认下载位置。"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:60
+msgid "Define"
+msgstr "设置"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:66
+#: zapzap/features/settings/pages/network_privacy/controller.py:276
+#: zapzap/features/settings/pages/performance_experimental/view.py:310
+msgid "Restore"
+msgstr "恢复"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:83
+msgid "Spell checker languages"
+msgstr "拼写检查语言"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:85
+msgid "Select…"
+msgstr "选择…"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:89
+msgid "Select spell checker languages"
+msgstr "选择拼写检查语言"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:91
+msgid "Dictionary files"
+msgstr "词典文件"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:92
+msgid "Install, remove, or import dictionaries in ZapZap storage."
+msgstr "在 ZapZap 存储中安装、移除或导入词典。"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:93
+msgid "Manage…"
+msgstr "管理…"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:96
+#: zapzap/ui/components/dictionary_manager_dialog.py:50
+#: zapzap/ui/components/dictionary_manager_dialog.py:89
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:274
+msgid "Manage dictionaries"
+msgstr "管理词典"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:98
+msgid "Open the Qt WebEngine dictionary manager."
+msgstr "打开 Qt WebEngine 词典管理器。"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:29
+msgid "No proxy"
+msgstr "无代理"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:30
+#: zapzap/features/settings/pages/network_privacy/controller.py:167
+msgid "System proxy"
+msgstr "系统代理"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:31
+msgid "SOCKS5"
+msgstr "SOCKS5"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:32
+msgid "HTTP"
+msgstr "HTTP"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:33
+msgid "HTTP caching"
+msgstr "HTTP 缓存"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:34
+msgid "FTP caching"
+msgstr "FTP 缓存"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:150
+msgid "Uses Chromium's native WebRTC policy after restarting ZapZap."
+msgstr "重启 ZapZap 后使用 Chromium 原生 WebRTC 策略。"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:155
+msgid "Available only while an HTTP or SOCKS5 proxy is enabled."
+msgstr "仅在启用 HTTP 或 SOCKS5 代理时可用。"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:165
+msgid "No proxy configured"
+msgstr "未配置代理"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:177
+#, python-brace-format
+msgid "{proxy_type} · {endpoint}"
+msgstr "{proxy_type} · {endpoint}"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:183
+#, python-brace-format
+msgid "{status} · disabled"
+msgstr "{status} · 已禁用"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:201
+msgid "Unable to apply the proxy settings. The previous proxy remains active."
+msgstr "无法应用代理设置。之前的代理仍保持活动状态。"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:217
+msgid "Enter a proxy server."
+msgstr "请输入代理服务器。"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:225
+msgid "Enter a port between 1 and 65535."
+msgstr "请输入 1 到 65535 之间的端口。"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:264
+msgid "Restore proxy settings?"
+msgstr "恢复代理设置？"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:266
+msgid ""
+"The global proxy settings will be removed and the default values will be "
+"restored."
+msgstr "全局代理设置将被移除，并恢复默认值。"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:270
+msgid "Strict proxy isolation and WebRTC protection will not be changed."
+msgstr "严格代理隔离和 WebRTC 保护不会更改。"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:36
+#: zapzap/features/settings/pages/network_privacy/view.py:42
+msgid "Authentication"
+msgstr "身份验证"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:44
+msgid "Show or hide optional proxy credentials."
+msgstr "显示或隐藏可选的代理凭据。"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:54
+msgid "User"
+msgstr "用户"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:55
+msgid "Optional proxy user."
+msgstr "可选的代理用户名。"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:58
+msgid "Password"
+msgstr "密码"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:59
+msgid "Optional proxy password."
+msgstr "可选的代理密码。"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:106
+msgid "There are unapplied network changes."
+msgstr "有尚未应用的网络更改。"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:111
+msgid "Apply changes"
+msgstr "应用更改"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:150
+msgid "Configure proxy, privacy protection, and network options."
+msgstr "配置代理、隐私保护和网络选项。"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:166
+msgid "Proxy"
+msgstr "代理"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:168
+msgid ""
+"Route WhatsApp Web traffic through a proxy server. Existing connections "
+"may require reloading."
+msgstr "通过代理服务器路由 WhatsApp Web 流量。现有连接可能需要重新加载。"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:174
+msgid "Use proxy"
+msgstr "使用代理"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:175
+msgid "Route traffic through the proxy configured below."
+msgstr "通过下面配置的代理路由流量。"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:178
+msgid "Type"
+msgstr "类型"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:179
+msgid "Select the proxy mode."
+msgstr "选择代理模式。"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:183
+msgid "Server"
+msgstr "服务器"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:184
+msgid "Proxy host name or IP address."
+msgstr "代理主机名或 IP 地址。"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:186
+msgid "Port"
+msgstr "端口"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:186
+msgid "Proxy port."
+msgstr "代理端口。"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:191
+msgid "Strict proxy isolation"
+msgstr "严格代理隔离"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:193
+msgid "Prevent direct network connections when an explicit proxy is configured."
+msgstr "配置明确代理后，阻止直接网络连接。"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:213
+msgid "Restore proxy…"
+msgstr "恢复代理…"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:214
+msgid "Remove the global proxy settings and restore defaults."
+msgstr "移除全局代理设置并恢复默认值。"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:215
+msgid "Restore…"
+msgstr "恢复…"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:236
+msgid "proxy.example.com"
+msgstr "proxy.example.com"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:238
+msgid "8080"
+msgstr "8080"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:250
+msgid "Reduce the exposure of network information."
+msgstr "减少网络信息暴露。"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:254
+msgid "WebRTC protection"
+msgstr "WebRTC 保护"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:256
+msgid ""
+"Blocks WebRTC APIs in page scripts. This is independent from strict proxy"
+" isolation."
+msgstr "阻止页面脚本中的 WebRTC API。此功能与严格代理隔离相互独立。"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:261
+msgid "Legacy script-based protection"
+msgstr "基于旧版脚本的保护"
+
+#: zapzap/features/settings/pages/notifications/view.py:20
+msgid "Configure notifications, privacy, and ZapZap messages."
+msgstr "配置通知、隐私和 ZapZap 消息。"
+
+#: zapzap/features/settings/pages/notifications/view.py:34
+msgid "Choose which information may appear in notifications."
+msgstr "选择通知中可以显示哪些信息。"
+
+#: zapzap/features/settings/pages/notifications/view.py:41
+msgid "Show WhatsApp notifications using the desktop notification system."
+msgstr "使用桌面通知系统显示 WhatsApp 通知。"
+
+#: zapzap/features/settings/pages/notifications/view.py:47
+msgid "Contact photo"
+msgstr "联系人照片"
+
+#: zapzap/features/settings/pages/notifications/view.py:48
+msgid "Show the sender's photo when available."
+msgstr "可用时显示发送者照片。"
+
+#: zapzap/features/settings/pages/notifications/view.py:51
+msgid "Contact name"
+msgstr "联系人姓名"
+
+#: zapzap/features/settings/pages/notifications/view.py:52
+msgid "Show the sender or group name."
+msgstr "显示发送者或群组名称。"
+
+#: zapzap/features/settings/pages/notifications/view.py:55
+msgid "Message preview"
+msgstr "消息预览"
+
+#: zapzap/features/settings/pages/notifications/view.py:56
+msgid "Show the content of the received message."
+msgstr "显示收到消息的内容。"
+
+#: zapzap/features/settings/pages/notifications/view.py:80
+msgid "ZapZap messages"
+msgstr "ZapZap 消息"
+
+#: zapzap/features/settings/pages/notifications/view.py:81
+msgid "Control occasional messages shown by the application itself."
+msgstr "控制应用自身偶尔显示的消息。"
+
+#: zapzap/features/settings/pages/notifications/view.py:85
+msgid "Support reminders"
+msgstr "支持提醒"
+
+#: zapzap/features/settings/pages/notifications/view.py:87
+msgid "Occasionally show messages supporting ZapZap's development."
+msgstr "偶尔显示支持 ZapZap 开发的消息。"
+
+#: zapzap/features/settings/pages/notifications/view.py:115
+msgid "Privacy presets"
+msgstr "隐私预设"
+
+#: zapzap/features/settings/pages/notifications/view.py:118
+msgid "Quickly choose which notification details are visible."
+msgstr "快速选择可见的通知详情。"
+
+#: zapzap/features/settings/pages/notifications/view.py:122
+msgid "Show everything"
+msgstr "显示全部"
+
+#: zapzap/features/settings/pages/notifications/view.py:125
+msgid "Hide content"
+msgstr "隐藏内容"
+
+#: zapzap/features/settings/pages/notifications/view.py:128
+msgid "Maximum privacy"
+msgstr "最高隐私"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:205
+msgid ""
+"Defines where the HTTP cache will be stored.\n"
+"Disk: faster after restart.\n"
+"Memory: faster, but lost on exit.\n"
+"No cache: lower disk usage, slower."
+msgstr ""
+"指定 HTTP 缓存的存储位置。\n"
+"磁盘：重启后更快。\n"
+"内存：更快，但退出后丢失。\n"
+"无缓存：磁盘占用更低，速度更慢。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:213
+#, python-brace-format
+msgid ""
+"Maximum HTTP cache size: {maximum} MiB.\n"
+"0 MiB uses Chromium's automatic cache management."
+msgstr ""
+"HTTP 缓存上限：{maximum} MiB。\n"
+"0 MiB 表示使用 Chromium 自动缓存管理。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:218
+msgid ""
+"Keeps cookies between restarts.\n"
+"Disabling may cause frequent logouts."
+msgstr ""
+"在重启之间保留 Cookie。\n"
+"禁用可能导致频繁退出登录。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:222
+msgid ""
+"Runs GPU and rendering in the same process.\n"
+"May reduce memory usage, but can cause instability."
+msgstr ""
+"在同一进程中运行 GPU 和渲染。\n"
+"可能降低内存占用，但可能导致不稳定。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:228
+msgid ""
+"Disables GPU hardware acceleration.\n"
+"Recommended only for old GPUs or problematic drivers."
+msgstr ""
+"禁用 GPU 硬件加速。\n"
+"仅建议用于旧 GPU 或有问题的驱动程序。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:234
+msgid ""
+"Automatically honors an unambiguous DRI_PRIME selector on systems with "
+"multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing "
+"when one GPU has no connected display.\n"
+"\n"
+"Disable this only if the automatic workaround causes problems. Restart "
+"required."
+msgstr ""
+"在具有多个 Linux 渲染 GPU 的系统上，自动采用明确的 DRI_PRIME 选择器。否则，当某个 GPU 未连接显示器时，添加 "
+"--disable-gpu-compositing。\n"
+"\n"
+"仅在自动解决方法引发问题时禁用此选项。需要重启。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:243
+msgid ""
+"Disables GPU VSync.\n"
+"May reduce latency, but can increase power usage and tearing."
+msgstr ""
+"禁用 GPU VSync。\n"
+"可能降低延迟，但可能增加耗电和画面撕裂。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:249
+msgid ""
+"Forces software rendering.\n"
+"Use only in case of graphical issues.\n"
+"May significantly reduce performance."
+msgstr ""
+"强制使用软件渲染。\n"
+"仅在出现图形问题时使用。\n"
+"可能显著降低性能。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:256
+msgid ""
+"Avoids GPU-backed video frame buffers.\n"
+"May help with black screens, flickering, and GPU crashes.\n"
+"Restart required."
+msgstr ""
+"避免使用 GPU 支持的视频帧缓冲区。\n"
+"可能有助于解决黑屏、闪烁和 GPU 崩溃。\n"
+"需要重启。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:263
+msgid ""
+"Disables zero-copy GPU buffer transfers.\n"
+"May improve compatibility with some graphics drivers.\n"
+"Restart required."
+msgstr ""
+"禁用零复制 GPU 缓冲区传输。\n"
+"可能改善与某些图形驱动程序的兼容性。\n"
+"需要重启。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:270
+msgid ""
+"Disables hardware video decoding without disabling all GPU acceleration.\n"
+"Use when videos play only audio, appear white or black, flicker, or cause"
+" crashes.\n"
+"May increase CPU and battery usage. Restart required."
+msgstr ""
+"禁用硬件视频解码，但不禁用全部 GPU 加速。\n"
+"当视频只有声音、显示白色或黑色、闪烁或导致崩溃时使用。\n"
+"可能增加 CPU 和电池消耗。需要重启。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:279
+msgid ""
+"Forces the GBM backend on Wayland.\n"
+"Known to fix severe typing lag on NVIDIA drivers."
+msgstr ""
+"在 Wayland 上强制使用 GBM 后端。\n"
+"已知可修复 NVIDIA 驱动程序上的严重输入延迟。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:285
+msgid ""
+"Disables the accessibility bus.\n"
+"Known to fix typing lag or CPU spikes in QtWebEngine."
+msgstr ""
+"禁用辅助功能总线。\n"
+"已知可修复 QtWebEngine 中的输入延迟或 CPU 峰值。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:291
+msgid ""
+"Runs the entire Chromium engine in a single process.\n"
+"Reduces memory usage, but may cause crashes.\n"
+"Experimental usage."
+msgstr ""
+"在整个 Chromium 引擎中使用单一进程运行。\n"
+"降低内存占用，但可能导致崩溃。\n"
+"实验性用法。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:298
+msgid ""
+"Uses a separate process per site.\n"
+"Safer and more stable.\n"
+"May increase memory usage."
+msgstr ""
+"每个站点使用独立进程。\n"
+"更安全、更稳定。\n"
+"可能增加内存占用。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:305
+msgid ""
+"JavaScript (V8) memory limit.\n"
+"Automatic is the safest option.\n"
+"Higher values allow heavier pages.\n"
+"\n"
+"Restart required."
+msgstr ""
+"JavaScript（V8）内存上限。\n"
+"“自动”是最安全的选项。\n"
+"更高数值可加载更复杂的页面。\n"
+"\n"
+"需要重启。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:313
+msgid ""
+"Enables V8 predictable garbage collection schedule.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"\n"
+"Experimental option. Restart required."
+msgstr ""
+"启用 V8 可预测垃圾回收计划。\n"
+"这会将 --js-flags=--predictable-gc-schedule 和 --disable-gpu 添加到 "
+"QTWEBENGINE_CHROMIUM_FLAGS。\n"
+"\n"
+"实验性选项。需要重启。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:320
+msgid ""
+"Enables smooth scrolling animations.\n"
+"Disabling may reduce CPU usage."
+msgstr ""
+"启用平滑滚动动画。\n"
+"禁用可能降低 CPU 占用。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:324
+msgid ""
+"Allows background tabs to reduce resource usage.\n"
+"Disabling keeps timers active, but uses more resources."
+msgstr ""
+"允许后台标签页降低资源占用。\n"
+"禁用后计时器保持活动，但会使用更多资源。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:330
+msgid ""
+"Disables CSS and JavaScript animations.\n"
+"May improve performance on slower machines."
+msgstr ""
+"禁用 CSS 和 JavaScript 动画。\n"
+"可能提升较慢设备上的性能。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:336
+msgid ""
+"Disables pinch-to-zoom gesture on touchpads.\n"
+"Useful if accidental zooming occurs during scrolling."
+msgstr ""
+"禁用触摸板双指缩放手势。\n"
+"适用于滚动时意外缩放的情况。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:342
+msgid ""
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
+"navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web "
+"message fields.\n"
+"\n"
+"Restart or reload WhatsApp Web after changing this option."
+msgstr ""
+"使用 Selection.modify() 和可视方向执行 Ctrl+方向键单词导航。\n"
+"可修复 WhatsApp Web 消息输入框中 RTL 文本光标移动方向相反的问题。\n"
+"\n"
+"更改此选项后，需要重启或重新加载 WhatsApp Web。"
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:348
+msgid ""
+"Restores all performance settings\n"
+"to safe default values."
+msgstr ""
+"将所有性能设置恢复\n"
+"为安全默认值。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:22
+msgid "Tune cache, GPU, processes, and advanced behavior."
+msgstr "调整缓存、GPU、进程和高级行为。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:40
+msgid "Advanced warning"
+msgstr "高级警告"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:41
+msgid "These options may require restart and can affect stability."
+msgstr "这些选项可能需要重启，并可能影响稳定性。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:47
+msgid ""
+"Change these settings only if you understand the trade-offs. Restart "
+"ZapZap after changing rendering, process, or JavaScript memory options."
+msgstr "仅在了解权衡后更改这些设置。更改渲染、进程或 JavaScript 内存选项后，请重启 ZapZap。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:58
+msgid "Rendering profile"
+msgstr "渲染配置"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:60
+msgid ""
+"Choose a predefined rendering configuration or customize individual "
+"options."
+msgstr "选择预定义渲染配置，或自定义各个选项。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:66
+msgid "Compatibility"
+msgstr "兼容性"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:67
+msgid "Manual"
+msgstr "手动"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:69
+msgid "Recommended settings with hardware acceleration enabled."
+msgstr "启用硬件加速的推荐设置。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:71
+msgid ""
+"Improves stability on systems with video, flickering or GPU rendering "
+"issues."
+msgstr "改善存在视频、闪烁或 GPU 渲染问题的系统上的稳定性。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:74
+msgid "Use custom GPU and rendering options."
+msgstr "使用自定义 GPU 和渲染选项。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:97
+msgid "Cache"
+msgstr "缓存"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:98
+msgid "Control HTTP cache and persistent cookies."
+msgstr "控制 HTTP 缓存和持久 Cookie。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:102
+msgid "Cache type"
+msgstr "缓存类型"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:103
+msgid "Defines where the HTTP cache is stored."
+msgstr "指定 HTTP 缓存的存储位置。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:107
+msgid "Maximum cache size"
+msgstr "缓存上限"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:108
+msgid "0 MiB uses Chromium's automatic cache management."
+msgstr "0 MiB 表示使用 Chromium 自动缓存管理。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:112
+msgid "Persistent cookies"
+msgstr "持久 Cookie"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:113
+msgid "Keeps cookies between restarts."
+msgstr "在重启之间保留 Cookie。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:128
+msgid "GPU and rendering"
+msgstr "GPU 和渲染"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:129
+msgid "Rendering options for problematic drivers or hardware."
+msgstr "适用于有问题的驱动程序或硬件的渲染选项。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:133
+msgid "In-process GPU"
+msgstr "进程内 GPU"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:134
+msgid "May reduce memory usage, but can cause instability."
+msgstr "可能降低内存占用，但可能导致不稳定。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:137
+msgid "Disable GPU"
+msgstr "禁用 GPU"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:138
+msgid "Recommended only for old GPUs or problematic drivers."
+msgstr "仅建议用于旧 GPU 或有问题的驱动程序。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:141
+msgid "Automatic multi-GPU workaround"
+msgstr "自动多 GPU 解决方法"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:143
+msgid "Honors DRI_PRIME or adjusts GPU compositing for a headless secondary GPU."
+msgstr "遵循 DRI_PRIME，或为无显示器的辅助 GPU 调整 GPU 合成。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:147
+msgid "Disable GPU VSync"
+msgstr "禁用 GPU VSync"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:148
+msgid "May reduce latency, but can increase tearing."
+msgstr "可能降低延迟，但可能增加画面撕裂。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:151
+msgid "Force software rendering"
+msgstr "强制软件渲染"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:152
+msgid "Use only for graphical issues."
+msgstr "仅用于图形问题。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:155
+msgid "Disable GPU memory buffer for video"
+msgstr "禁用视频 GPU 内存缓冲区"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:157
+msgid ""
+"Avoid GPU-backed video frame buffers. May help with black screens, "
+"flickering and GPU crashes."
+msgstr "避免使用 GPU 支持的视频帧缓冲区。可能有助于解决黑屏、闪烁和 GPU 崩溃。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:162
+msgid "Disable zero-copy"
+msgstr "禁用零复制"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:164
+msgid ""
+"Disable zero-copy GPU buffer transfers. May improve compatibility with "
+"some graphics drivers."
+msgstr "禁用零复制 GPU 缓冲区传输。可能改善与某些图形驱动程序的兼容性。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:169
+msgid "Use software video decoding"
+msgstr "使用软件视频解码"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:171
+msgid ""
+"Disables hardware video decoding to fix videos that appear white, black, "
+"flicker, or cause crashes. This may increase CPU and battery usage."
+msgstr "禁用硬件视频解码，以修复显示为白色、黑色、闪烁或导致崩溃的视频。这可能增加 CPU 和电池消耗。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:177
+msgid "Force GBM"
+msgstr "强制 GBM"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:178
+msgid "Known NVIDIA typing lag fix."
+msgstr "已知的 NVIDIA 输入延迟修复方法。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:181
+msgid "Disable accessibility bus"
+msgstr "禁用辅助功能总线"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:182
+msgid "Known typing lag or CPU spike fix in QtWebEngine."
+msgstr "已知的 QtWebEngine 输入延迟或 CPU 峰值修复方法。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:214
+msgid "Processes"
+msgstr "进程"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:215
+msgid "Chromium process model options."
+msgstr "Chromium 进程模型选项。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:219
+msgid "Single process"
+msgstr "单进程"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:220
+msgid "Experimental; reduces memory usage but may cause crashes."
+msgstr "实验性；降低内存占用，但可能导致崩溃。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:223
+msgid "Process per site"
+msgstr "每站点一个进程"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:224
+msgid "Safer and more stable, but may increase memory usage."
+msgstr "更安全、更稳定，但可能增加内存占用。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:235
+msgid "JavaScript memory"
+msgstr "JavaScript 内存"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:236
+msgid "V8 memory limit. Restart required."
+msgstr "V8 内存上限。需要重启。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:240
+msgid "JavaScript memory limit"
+msgstr "JavaScript 内存上限"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:241
+msgid "Automatic is the safest option."
+msgstr "“自动”是最安全的选项。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:245
+msgid "JavaScript GC predictable schedule (experimental)"
+msgstr "JavaScript GC 可预测计划（实验性）"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:246
+msgid "Enables predictable V8 garbage collection and disables GPU."
+msgstr "启用可预测的 V8 垃圾回收并禁用 GPU。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:257
+msgid "Web behavior"
+msgstr "网页行为"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:258
+msgid "Behavior options for rendered web content."
+msgstr "已渲染网页内容的行为选项。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:262
+msgid "Smooth scrolling"
+msgstr "平滑滚动"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:263
+msgid "Disabling may reduce CPU usage."
+msgstr "禁用可能降低 CPU 占用。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:266
+msgid "Background throttling"
+msgstr "后台节流"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:267
+msgid "Allows background tabs to reduce resource usage."
+msgstr "允许后台标签页降低资源占用。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:270
+msgid "Disable animations"
+msgstr "禁用动画"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:271
+msgid "May improve performance on slower machines."
+msgstr "可能提升较慢设备上的性能。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:274
+msgid "Disable pinch-to-zoom"
+msgstr "禁用双指缩放"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:275
+msgid "Useful if accidental zooming occurs during scrolling."
+msgstr "适用于滚动时意外缩放的情况。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:278
+msgid "Fix Ctrl+Arrow cursor movement"
+msgstr "修复 Ctrl+方向键光标移动"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:280
+msgid ""
+"Use visual word navigation in editable fields to fix RTL text cursor "
+"movement."
+msgstr "在可编辑字段中使用可视单词导航，以修复 RTL 文本光标移动。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:303
+msgid "Restore defaults"
+msgstr "恢复默认值"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:304
+msgid "Return performance settings to safe defaults."
+msgstr "将性能设置恢复为安全默认值。"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:308
+msgid "Restore performance defaults"
+msgstr "恢复性能默认值"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:309
+msgid "Restores all performance settings to safe default values."
+msgstr "将所有性能设置恢复为安全默认值。"
+
+#: zapzap/features/settings/pages/permissions/view.py:23
+msgid "Define which permissions can be granted automatically to WhatsApp Web."
+msgstr "指定哪些权限可以自动授予 WhatsApp Web。"
+
+#: zapzap/features/settings/pages/permissions/view.py:40
+msgid "Disabled permissions will continue to be requested when needed."
+msgstr "禁用的权限仍会在需要时继续请求。"
+
+#: zapzap/features/settings/pages/permissions/view.py:51
+msgid "Allow all"
+msgstr "全部允许"
+
+#: zapzap/features/settings/pages/permissions/view.py:52
+msgid "Remove all"
+msgstr "全部移除"
+
+#: zapzap/features/settings/pages/permissions/view.py:60
+msgid "Device access"
+msgstr "设备访问"
+
+#: zapzap/features/settings/pages/permissions/view.py:82
+msgid "Location"
+msgstr "位置"
+
+#: zapzap/features/settings/pages/permissions/view.py:83
+msgid "Automatically allow access to your location."
+msgstr "自动允许访问您的位置。"
+
+#: zapzap/features/settings/pages/permissions/view.py:89
+msgid "Sharing"
+msgstr "共享"
+
+#: zapzap/features/settings/pages/permissions/view.py:105
+msgid "Advanced"
+msgstr "高级"
+
+#: zapzap/features/settings/pages/permissions/view.py:109
+msgid "Pointer lock"
+msgstr "指针锁定"
+
+#: zapzap/features/settings/pages/permissions/view.py:110
+msgid "Automatically allow the page to capture the mouse pointer."
+msgstr "自动允许页面捕获鼠标指针。"
+
+#: zapzap/features/settings/pages/system_startup/view.py:24
+msgid ""
+"Configure how ZapZap starts, behaves in the system, and integrates with "
+"Linux."
+msgstr "配置 ZapZap 的启动方式、系统行为和 Linux 集成。"
+
+#: zapzap/features/settings/pages/system_startup/view.py:41
+msgid "Define how ZapZap behaves when your session starts."
+msgstr "指定会话启动时 ZapZap 的行为。"
+
+#: zapzap/features/settings/pages/system_startup/view.py:46
+msgid "Open ZapZap automatically when the session starts."
+msgstr "会话启动时自动打开 ZapZap。"
+
+#: zapzap/features/settings/pages/system_startup/view.py:49
+msgid "Start in the background"
+msgstr "在后台启动"
+
+#: zapzap/features/settings/pages/system_startup/view.py:50
+msgid "Open without showing the main window."
+msgstr "打开时不显示主窗口。"
+
+#: zapzap/features/settings/pages/system_startup/view.py:63
+msgid "Window"
+msgstr "窗口"
+
+#: zapzap/features/settings/pages/system_startup/view.py:64
+msgid "Define what happens when the main window is closed."
+msgstr "指定关闭主窗口时的行为。"
+
+#: zapzap/features/settings/pages/system_startup/view.py:96
+msgid ""
+"Choose whether ZapZap continues in the background or quits when the "
+"window is closed."
+msgstr "选择关闭窗口时，ZapZap 是继续在后台运行还是退出。"
+
+#: zapzap/features/settings/pages/system_startup/view.py:110
+msgid "Linux integration"
+msgstr "Linux 集成"
+
+#: zapzap/features/settings/pages/system_startup/view.py:111
+msgid "Settings related to the desktop environment and platform."
+msgstr "与桌面环境和平台相关的设置。"
+
+#: zapzap/features/settings/pages/system_startup/view.py:115
+msgid "System file dialogs"
+msgstr "系统文件对话框"
+
+#: zapzap/features/settings/pages/system_startup/view.py:116
+msgid "Use the file picker provided by the desktop environment."
+msgstr "使用桌面环境提供的文件选择器。"
+
+#: zapzap/features/settings/pages/system_startup/view.py:128
+msgid "Display backend"
+msgstr "显示后端"
+
+#: zapzap/features/settings/pages/system_startup/view.py:130
+msgid ""
+"Automatic is recommended and uses the native backend for the current "
+"session. X11 is available as a compatibility fallback."
+msgstr "推荐使用“自动”，它会为当前会话使用原生后端。X11 可作为兼容性后备。"
+
+#: zapzap/features/settings/pages/system_startup/view.py:143
+msgid "Recommended. Use Wayland in Wayland sessions and X11 in X11 sessions."
+msgstr "推荐。Wayland 会话使用 Wayland，X11 会话使用 X11。"
+
+#: zapzap/features/settings/pages/system_startup/view.py:148
+msgid "Wayland"
+msgstr "Wayland"
+
+#: zapzap/features/settings/pages/system_startup/view.py:150
+msgid "Force the native Wayland backend."
+msgstr "强制使用原生 Wayland 后端。"
+
+#: zapzap/features/settings/pages/system_startup/view.py:153
+msgid "X11 / XWayland"
+msgstr "X11 / XWayland"
+
+#: zapzap/features/settings/pages/system_startup/view.py:156
+msgid "Use the X11 backend. In Wayland sessions, this runs through XWayland."
+msgstr "使用 X11 后端。在 Wayland 会话中，它通过 XWayland 运行。"
+
+#: zapzap/features/settings/pages/system_startup/view.py:172
+msgid "Choose the Qt display backend. Changes require restart."
+msgstr "选择 Qt 显示后端。更改需要重启。"
+
+#: zapzap/features/downloads/ui/download_dialog.py:47
+#: zapzap/ui/components/update_available_popover.py:109
+msgid "Download"
+msgstr "下载"
+
+#: zapzap/features/downloads/ui/download_dialog.py:112
+msgid "More"
+msgstr "更多"
+
+#: zapzap/features/downloads/ui/download_dialog.py:116
+msgid "Save as"
+msgstr "另存为"
+
+#: zapzap/features/downloads/ui/download_dialog.py:302
+msgid "Save file"
+msgstr "保存文件"
+
+#: zapzap/features/browser/shell/browser_controller.py:281
+msgid "Flatpak sandbox help"
+msgstr "Flatpak 沙盒帮助"
+
+#: zapzap/features/browser/shell/browser_controller.py:306
+msgid "Flatpak sandbox"
+msgstr "Flatpak 沙盒"
+
+#: zapzap/features/browser/shell/browser_controller.py:307
+msgid "ZapZap is running in Flatpak sandbox."
+msgstr "ZapZap 正在 Flatpak 沙盒中运行。"
+
+#: zapzap/features/browser/shell/browser_controller.py:309
+msgid ""
+"Some features like opening files or drag-and-drop may require additional "
+"permissions."
+msgstr "打开文件或拖放等部分功能可能需要额外权限。"
+
+#: zapzap/features/browser/shell/browser_controller.py:314
+msgid "Instructions"
+msgstr "说明"
+
+#: zapzap/features/browser/shell/browser_controller.py:315
+msgid "Copy command"
+msgstr "复制命令"
+
+#: zapzap/features/browser/shell/browser_controller.py:548
+#: zapzap/features/browser/shell/browser_controller.py:629
+#, python-brace-format
+msgid "Account {}"
+msgstr "账户 {}"
+
+#: zapzap/features/browser/shell/browser_controller.py:642
+msgid "Account disabled"
+msgstr "账户已禁用"
+
+#: zapzap/features/browser/shell/browser_controller.py:643
+msgid "This account is disabled."
+msgstr "此账户已禁用。"
+
+#: zapzap/features/browser/shell/browser_controller.py:645
+msgid ""
+"You can reactivate it now or use the right-click menu to manage this "
+"account."
+msgstr "您可以立即重新启用，或使用右键菜单管理此账户。"
+
+#: zapzap/features/browser/shell/browser_controller.py:650
+msgid "Activate"
+msgstr "启用"
+
+#: zapzap/features/browser/shell/browser_controller.py:651
+msgid "Not now"
+msgstr "暂不"
+
+#: zapzap/features/browser/web/page_controller.py:307
+msgid "your microphone"
+msgstr "您的麦克风"
+
+#: zapzap/features/browser/web/page_controller.py:308
+msgid "your camera"
+msgstr "您的摄像头"
+
+#: zapzap/features/browser/web/page_controller.py:309
+msgid "your camera and microphone"
+msgstr "您的摄像头和麦克风"
+
+#: zapzap/features/browser/web/page_controller.py:310
+msgid "your location"
+msgstr "您的位置"
+
+#: zapzap/features/browser/web/page_controller.py:311
+msgid "your screen contents"
+msgstr "您的屏幕内容"
+
+#: zapzap/features/browser/web/page_controller.py:312
+msgid "your screen contents and audio"
+msgstr "您的屏幕内容和音频"
+
+#: zapzap/features/browser/web/page_controller.py:313
+msgid "mouse lock"
+msgstr "鼠标锁定"
+
+#: zapzap/features/browser/web/page_controller.py:315
+msgid "a system feature"
+msgstr "系统功能"
+
+#: zapzap/features/browser/web/page_controller.py:319
+msgid "Permission request"
+msgstr "权限请求"
+
+#: zapzap/features/browser/web/page_controller.py:320
+#, python-brace-format
+msgid ""
+"WhatsApp Web is requesting access to {}.\n"
+"\n"
+"Allow?"
+msgstr ""
+"WhatsApp Web 请求访问 {}。\n"
+"\n"
+"允许吗？"
+
+#: zapzap/features/browser/web/popup_window.py:60
+msgid "Manual close unavailable"
+msgstr "无法手动关闭"
+
+#: zapzap/features/browser/web/popup_window.py:62
+msgid ""
+"To prevent the application from becoming unresponsive, this window cannot"
+" be closed manually. Use WhatsApp's End call button. The window will "
+"close when WhatsApp requests it."
+msgstr "为防止应用无响应，此窗口无法手动关闭。请使用 WhatsApp 的“结束通话”按钮。WhatsApp 请求关闭时，窗口会自动关闭。"
+
+#: zapzap/features/browser/web/web_view.py:380
+msgid "Undo"
+msgstr "撤销"
+
+#: zapzap/features/browser/web/web_view.py:380
+msgid "Redo"
+msgstr "重做"
+
+#: zapzap/features/browser/web/web_view.py:380
+msgid "Cut"
+msgstr "剪切"
+
+#: zapzap/features/browser/web/web_view.py:381
+msgid "Paste"
+msgstr "粘贴"
+
+#: zapzap/features/browser/web/web_view.py:381
+msgid "Select all"
+msgstr "全选"
+
+#: zapzap/features/browser/web/web_view.py:382
+msgid "Save image"
+msgstr "保存图片"
+
+#: zapzap/features/browser/web/web_view.py:382
+msgid "Copy image"
+msgstr "复制图片"
+
+#: zapzap/features/browser/web/web_view.py:383
+#: zapzap/features/browser/web/web_view.py:413
+msgid "Copy link address"
+msgstr "复制链接地址"
+
+#: zapzap/features/browser/web/web_view.py:431
+msgid "Check Spelling"
+msgstr "检查拼写"
+
+#: zapzap/features/browser/web/web_view.py:437
+msgid "Languages…"
+msgstr "语言…"
+
+#: zapzap/features/browser/web/web_view.py:440
+msgid "Choose the languages used by the spell checker."
+msgstr "选择拼写检查器使用的语言。"
+
+#: zapzap/features/browser/web/web_view.py:687
+#: zapzap/ui/components/card_user.py:304
+msgid "Account"
+msgstr "账户"
+
+#: zapzap/features/browser/web/web_view.py:689
+#, python-brace-format
+msgid "DevTools - {}"
+msgstr "开发者工具 - {}"
+
+#: zapzap/ui/components/browser_grid_view.py:75
+msgid "Accounts overview"
+msgstr "账户概览"
+
+#: zapzap/ui/components/browser_grid_view.py:79
+msgid "Select an account to return to its chat."
+msgstr "选择账户以返回其聊天。"
+
+#: zapzap/ui/components/browser_grid_view.py:92
+msgid "No active accounts to display."
+msgstr "没有可显示的活动账户。"
+
+#: zapzap/ui/components/browser_sidebar.py:190
+msgid "New conversation by the phone number"
+msgstr "按电话号码开始新对话"
+
+#: zapzap/ui/components/browser_sidebar.py:194
+#: zapzap/ui/components/browser_sidebar.py:198
+msgid "Lock or configure WhatsApp Web app lock"
+msgstr "锁定或配置 WhatsApp Web 应用锁"
+
+#: zapzap/ui/components/browser_sidebar.py:196
+msgid "WhatsApp lock"
+msgstr "WhatsApp 锁"
+
+#: zapzap/ui/components/browser_sidebar.py:201
+msgid "Open donations page"
+msgstr "打开捐助页面"
+
+#: zapzap/ui/components/browser_sidebar.py:203
+msgid "Show ways to support ZapZap development."
+msgstr "查看支持 ZapZap 开发的方式。"
+
+#: zapzap/ui/components/browser_sidebar.py:205
+msgid "ZapZap Settings"
+msgstr "ZapZap 设置"
+
+#: zapzap/ui/components/card_user.py:149 zapzap/ui/components/card_user.py:150
+#: zapzap/ui/components/card_user.py:483 zapzap/ui/components/card_user.py:486
+#: zapzap/ui/components/edit_account_dialog.py:65
+#: zapzap/ui/components/edit_account_dialog.py:167
+msgid "Edit account"
+msgstr "编辑账户"
+
+#: zapzap/ui/components/card_user.py:158 zapzap/ui/components/card_user.py:159
+#: zapzap/ui/components/card_user.py:282 zapzap/ui/components/card_user.py:506
+#: zapzap/ui/components/card_user.py:510
+msgid "Remove account"
+msgstr "移除账户"
+
+#: zapzap/ui/components/card_user.py:173 zapzap/ui/components/card_user.py:306
+msgid "Account status"
+msgstr "账户状态"
+
+#: zapzap/ui/components/card_user.py:175
+msgid ""
+"Disabled accounts remain saved, but are not loaded and do not receive "
+"notifications."
+msgstr "已禁用的账户仍会保留，但不会加载，也不会接收通知。"
+
+#: zapzap/ui/components/card_user.py:179 zapzap/ui/components/card_user.py:300
+#: zapzap/ui/components/card_user.py:302
+msgid "Enabled"
+msgstr "已启用"
+
+#: zapzap/ui/components/card_user.py:180 zapzap/ui/components/card_user.py:300
+#: zapzap/ui/components/card_user.py:302
+msgid "Disabled"
+msgstr "已禁用"
+
+#: zapzap/ui/components/card_user.py:190 zapzap/ui/components/card_user.py:194
+#: zapzap/ui/components/card_user.py:307 zapzap/ui/components/card_user.py:490
+msgid "Do not disturb"
+msgstr "请勿打扰"
+
+#: zapzap/ui/components/card_user.py:191
+msgid "Silences notifications for this account."
+msgstr "将此账户的通知静音。"
+
+#: zapzap/ui/components/card_user.py:249 zapzap/ui/components/card_user.py:677
+msgid "Unavailable while the account is disabled."
+msgstr "账户禁用期间不可用。"
+
+#: zapzap/ui/components/card_user.py:284 zapzap/ui/components/card_user.py:646
+msgid "The default account cannot be removed."
+msgstr "默认账户无法移除。"
+
+#: zapzap/ui/components/card_user.py:497
+msgid "Disable account"
+msgstr "禁用账户"
+
+#: zapzap/ui/components/card_user.py:512 zapzap/ui/components/card_user.py:644
+msgid "Destructive action: removes this account."
+msgstr "破坏性操作：移除此账户。"
+
+#: zapzap/ui/components/card_user.py:657
+msgid "Active account"
+msgstr "活动账户"
+
+#: zapzap/ui/components/card_user.py:659
+msgid "Disabled account"
+msgstr "已禁用账户"
+
+#: zapzap/ui/components/card_user.py:686
+#, python-brace-format
+msgid "Account {name}, active."
+msgstr "账户 {name}，活动。"
+
+#: zapzap/ui/components/card_user.py:688
+#, python-brace-format
+msgid "Account {name}, disabled."
+msgstr "账户 {name}，已禁用。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:104
+msgid ""
+"Install dictionaries from the official ZapZap catalog for Qt WebEngine "
+"spell checking."
+msgstr "从 ZapZap 官方目录安装词典，用于 Qt WebEngine 拼写检查。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:114
+msgid "Search language or code"
+msgstr "搜索语言或代码"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:116
+msgid "Search dictionaries"
+msgstr "搜索词典"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:118
+msgid "Filter dictionaries by readable language name or technical code."
+msgstr "按可读语言名称或技术代码筛选词典。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:121
+msgid "All"
+msgstr "全部"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:122
+#: zapzap/ui/components/dictionary_manager_dialog.py:332
+msgid "Installed"
+msgstr "已安装"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:123
+#: zapzap/ui/components/dictionary_manager_dialog.py:334
+msgid "Available"
+msgstr "可用"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:124
+msgid "Dictionary filter"
+msgstr "词典筛选"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:125
+msgid "Refresh list"
+msgstr "刷新列表"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:127
+msgid "Download the latest dictionary catalog."
+msgstr "下载最新词典目录。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:133
+#: zapzap/ui/components/dictionary_manager_dialog.py:290
+msgid "Loading dictionary catalog…"
+msgstr "正在加载词典目录…"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:134
+msgid "Dictionary catalog status"
+msgstr "词典目录状态"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:136
+#: zapzap/ui/components/dictionary_manager_dialog.py:326
+msgid "No active dictionary"
+msgstr "没有活动词典"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:137
+msgid "Active spell checker languages"
+msgstr "活动拼写检查语言"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:143
+msgid "Code"
+msgstr "代码"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:143
+msgid "Status"
+msgstr "状态"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:149
+msgid "Dictionaries"
+msgstr "词典"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:151
+msgid "Select a dictionary to install, remove, or inspect its status."
+msgstr "选择要安装、移除或查看状态的词典。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:165
+msgid "No dictionary matches this view."
+msgstr "没有符合此视图的词典。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:172
+msgid "Dictionary operation status"
+msgstr "词典操作状态"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:177
+msgid "Dictionary download progress"
+msgstr "词典下载进度"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:187
+msgid "Import files…"
+msgstr "导入文件…"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:188
+msgid "Import folder…"
+msgstr "导入文件夹…"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:189
+msgid "Active languages…"
+msgstr "活动语言…"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:190
+msgid "Install"
+msgstr "安装"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:192
+msgid "Cancel download"
+msgstr "取消下载"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:274
+#, python-brace-format
+msgid "Offline catalog from {date}"
+msgstr "{date} 的离线目录"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:278
+#, python-brace-format
+msgid "Catalog {revision}: {count} dictionaries"
+msgstr "目录 {revision}：{count} 个词典"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:294
+msgid "The online catalog is unavailable. Installed dictionaries remain usable."
+msgstr "在线目录不可用。已安装的词典仍可使用。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:303
+#, python-brace-format
+msgid "Could not refresh the catalog; using the saved copy. {detail}"
+msgstr "无法刷新目录；正在使用已保存的副本。{detail}"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:309
+#, python-brace-format
+msgid "Could not load the dictionary catalog. {detail}"
+msgstr "无法加载词典目录。{detail}"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:323
+#, python-brace-format
+msgid "Active: {languages}"
+msgstr "活动：{languages}"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:330
+msgid "Active"
+msgstr "活动"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:336
+msgid "Local"
+msgstr "本地"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:349
+#, python-brace-format
+msgid "{language}, {code}, {status}"
+msgstr "{language}，{code}，{status}"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:379
+msgid "No dictionary matches the search."
+msgstr "没有符合搜索条件的词典。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:381
+msgid "The dictionary catalog is loading."
+msgstr "词典目录正在加载。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:383
+msgid "No dictionaries are installed."
+msgstr "尚未安装词典。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:385
+msgid "The available catalog could not be loaded."
+msgstr "无法加载可用目录。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:387
+msgid "No dictionaries are available to install."
+msgstr "没有可安装的词典。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:389
+msgid "No dictionaries are installed or available."
+msgstr "没有已安装或可用的词典。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:460
+msgid "Import dictionaries"
+msgstr "导入词典"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:462
+msgid "Qt WebEngine dictionaries (*.bdic)"
+msgstr "Qt WebEngine 词典（*.bdic）"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:468
+msgid "Import dictionary folder"
+msgstr "导入词典文件夹"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:478
+#, python-brace-format
+msgid "Downloading {code}…"
+msgstr "正在下载 {code}…"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:499
+#, python-brace-format
+msgid "Dictionary {code} is ready."
+msgstr "词典 {code} 已就绪。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:503
+#, python-brace-format
+msgid "Dictionary operation failed: {detail}"
+msgstr "词典操作失败：{detail}"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:512
+msgid "The file or filename is invalid."
+msgstr "文件或文件名无效。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:513
+msgid "A different dictionary with this name already exists."
+msgstr "已存在同名的其他词典。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:514
+msgid "ZapZap could not write to the dictionary directory."
+msgstr "ZapZap 无法写入词典目录。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:515
+msgid "There is not enough free disk space."
+msgstr "磁盘可用空间不足。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:516
+msgid "The last active dictionary is protected."
+msgstr "最后一个活动词典受保护。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:517
+msgid "The dictionary is not installed."
+msgstr "该词典尚未安装。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:518
+msgid "The download was cancelled."
+msgstr "下载已取消。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:519
+msgid "Check the connection and try again."
+msgstr "检查连接后重试。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:520
+msgid "The download timed out. Try again."
+msgstr "下载超时。请重试。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:521
+msgid "GitHub temporarily limited catalog requests."
+msgstr "GitHub 暂时限制了目录请求。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:522
+msgid "The dictionary server returned an error."
+msgstr "词典服务器返回错误。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:523
+msgid "The server redirected to an untrusted address."
+msgstr "服务器重定向到了不受信任的地址。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:524
+msgid "The downloaded size does not match the catalog."
+msgstr "下载大小与目录不匹配。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:525
+msgid "The downloaded file failed integrity verification."
+msgstr "下载文件未通过完整性验证。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:526
+msgid "This dictionary operation is already in progress."
+msgstr "此词典操作已在进行中。"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:529
+msgid "Unknown dictionary error."
+msgstr "未知词典错误。"
+
+#: zapzap/ui/components/edit_account_dialog.py:243
+msgid "Change the name and icon used to identify this account."
+msgstr "更改用于识别此账户的名称和图标。"
+
+#: zapzap/ui/components/edit_account_dialog.py:251
+#: zapzap/ui/components/edit_account_dialog.py:253
+msgid "Account name"
+msgstr "账户名称"
+
+#: zapzap/ui/components/edit_account_dialog.py:257
+msgid "Account name error"
+msgstr "账户名称错误"
+
+#: zapzap/ui/components/edit_account_dialog.py:265
+#: zapzap/ui/components/edit_account_dialog.py:285
+msgid "Account icon"
+msgstr "账户图标"
+
+#: zapzap/ui/components/edit_account_dialog.py:277
+msgid "Photo"
+msgstr "照片"
+
+#: zapzap/ui/components/edit_account_dialog.py:307
+#: zapzap/ui/components/edit_account_dialog.py:315
+msgid "Current icon"
+msgstr "当前图标"
+
+#: zapzap/ui/components/edit_account_dialog.py:326
+msgid "Change icon"
+msgstr "更改图标"
+
+#: zapzap/ui/components/edit_account_dialog.py:331
+msgid "Generate new colors for the icon"
+msgstr "为图标生成新颜色"
+
+#: zapzap/ui/components/edit_account_dialog.py:333
+msgid "Restore standard"
+msgstr "恢复标准图标"
+
+#: zapzap/ui/components/edit_account_dialog.py:343
+#: zapzap/ui/components/edit_account_dialog.py:351
+#: zapzap/ui/components/edit_account_dialog.py:649
+msgid "Choose photo"
+msgstr "选择照片"
+
+#: zapzap/ui/components/edit_account_dialog.py:358
+#: zapzap/ui/components/edit_account_dialog.py:371
+#: zapzap/ui/components/edit_account_dialog.py:701
+msgid "Keep current icon"
+msgstr "保留当前图标"
+
+#: zapzap/ui/components/edit_account_dialog.py:384
+msgid "Advanced options"
+msgstr "高级选项"
+
+#: zapzap/ui/components/edit_account_dialog.py:396
+#: zapzap/ui/components/edit_account_dialog.py:415
+msgid "User-Agent"
+msgstr "User-Agent"
+
+#: zapzap/ui/components/edit_account_dialog.py:402
+msgid "Changes the identification used by this account when loading pages."
+msgstr "更改此账户加载页面时使用的标识。"
+
+#: zapzap/ui/components/edit_account_dialog.py:406
+msgid "User-Agent information"
+msgstr "User-Agent 信息"
+
+#: zapzap/ui/components/edit_account_dialog.py:611
+msgid "New icon colors selected."
+msgstr "已选择新的图标颜色。"
+
+#: zapzap/ui/components/edit_account_dialog.py:616
+#: zapzap/ui/components/edit_account_dialog.py:629
+msgid "Standard icon selected."
+msgstr "已选择标准图标。"
+
+#: zapzap/ui/components/edit_account_dialog.py:728
+msgid "Account name is required."
+msgstr "账户名称为必填项。"
+
+#: zapzap/ui/components/edit_account_dialog.py:763
+msgid "Discard account changes?"
+msgstr "放弃账户更改？"
+
+#: zapzap/ui/components/edit_account_dialog.py:764
+msgid "There are unsaved changes to this account."
+msgstr "此账户有未保存的更改。"
+
+#: zapzap/ui/components/edit_account_dialog.py:765
+msgid "Discarding them restores the values from before editing."
+msgstr "放弃更改将恢复编辑前的值。"
+
+#: zapzap/ui/components/edit_account_dialog.py:776
+msgid "Keep editing"
+msgstr "继续编辑"
+
+#: zapzap/ui/components/main_window.py:134
+msgid "File"
+msgstr "文件"
+
+#: zapzap/ui/components/main_window.py:135
+msgid "View"
+msgstr "查看"
+
+#: zapzap/ui/components/main_window.py:136
+msgid "Chat"
+msgstr "聊天"
+
+#: zapzap/ui/components/main_window.py:137
+msgid "Users"
+msgstr "用户"
+
+#: zapzap/ui/components/main_window.py:138
+msgid "Help"
+msgstr "帮助"
+
+#: zapzap/ui/components/main_window.py:140
+msgid "Ctrl+Q"
+msgstr "Ctrl+Q"
+
+#: zapzap/ui/components/main_window.py:142
+msgid "Ctrl+W"
+msgstr "Ctrl+W"
+
+#: zapzap/ui/components/main_window.py:144
+msgid "Ctrl+P"
+msgstr "Ctrl+P"
+
+#: zapzap/ui/components/main_window.py:146
+msgid "Ctrl+0"
+msgstr "Ctrl+0"
+
+#: zapzap/ui/components/main_window.py:148
+msgid "Ctrl++"
+msgstr "Ctrl++"
+
+#: zapzap/ui/components/main_window.py:150
+msgid "Ctrl+-"
+msgstr "Ctrl+-"
+
+#: zapzap/ui/components/main_window.py:151
+msgid "Toggle full screen"
+msgstr "切换全屏"
+
+#: zapzap/ui/components/main_window.py:152
+msgid "F11"
+msgstr "F11"
+
+#: zapzap/ui/components/main_window.py:153
+msgid "Open DevTools"
+msgstr "打开开发者工具"
+
+#: zapzap/ui/components/main_window.py:154
+msgid "Ctrl+Shift+I"
+msgstr "Ctrl+Shift+I"
+
+#: zapzap/ui/components/main_window.py:155
+msgid "Grid View"
+msgstr "网格视图"
+
+#: zapzap/ui/components/main_window.py:156
+msgid "Ctrl+G"
+msgstr "Ctrl+G"
+
+#: zapzap/ui/components/main_window.py:157
+msgid "Show sidebar"
+msgstr "显示侧栏"
+
+#: zapzap/ui/components/main_window.py:159
+msgid "Ctrl+Alt+1"
+msgstr "Ctrl+Alt+1"
+
+#: zapzap/ui/components/main_window.py:161
+msgid "Ctrl+Alt+2"
+msgstr "Ctrl+Alt+2"
+
+#: zapzap/ui/components/main_window.py:163
+msgid "Ctrl+Alt+3"
+msgstr "Ctrl+Alt+3"
+
+#: zapzap/ui/components/main_window.py:164
+msgid "Reload"
+msgstr "重新加载"
+
+#: zapzap/ui/components/main_window.py:165
+msgid "F5"
+msgstr "F5"
+
+#: zapzap/ui/components/main_window.py:166
+msgid "New chat"
+msgstr "新聊天"
+
+#: zapzap/ui/components/main_window.py:167
+msgid "Ctrl+N"
+msgstr "Ctrl+N"
+
+#: zapzap/ui/components/main_window.py:168
+msgid "By number phone"
+msgstr "按电话号码"
+
+#: zapzap/ui/components/main_window.py:169
+msgid "Ctrl+M"
+msgstr "Ctrl+M"
+
+#: zapzap/ui/components/main_window.py:171
+msgid "Ctrl+Shift+/, Ctrl+?"
+msgstr "Ctrl+Shift+/, Ctrl+?"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:71
+#: zapzap/ui/components/send_message_to_number_dialog.py:122
+msgid "Send message to number"
+msgstr "向号码发送消息"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:127
+msgid "Chat with someone who is not in your contact list."
+msgstr "与不在联系人列表中的人聊天。"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:157
+#: zapzap/ui/components/send_message_to_number_dialog.py:166
+msgid "Country code"
+msgstr "国家/地区代码"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:158
+#: zapzap/ui/components/send_message_to_number_dialog.py:181
+msgid "Phone number"
+msgstr "电话号码"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:168
+msgid "Search by country name, region code, or international prefix."
+msgstr "按国家/地区名称、地区代码或国际区号搜索。"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:173
+msgid "Example: 11 99999-9999"
+msgstr "示例：11 99999-9999"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:183
+msgid "Enter the national number without repeating the country code."
+msgstr "请输入国内号码，不要重复输入国家/地区代码。"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:194
+msgid "Enter the national number without the country code."
+msgstr "请输入不包含国家/地区代码的国内号码。"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:202
+msgid "Phone number error"
+msgstr "电话号码错误"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:208
+#: zapzap/ui/components/send_message_to_number_dialog.py:223
+msgid "Optional message"
+msgstr "可选消息"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:213
+msgid "Message character count"
+msgstr "消息字符数"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:220
+msgid "Hello! How are you?"
+msgstr "你好！最近怎么样？"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:225
+msgid "Type an initial message. Press Control+Enter to continue."
+msgstr "输入初始消息。按 Control+Enter 继续。"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:232
+msgid "Type a message to start the conversation."
+msgstr "输入消息以开始对话。"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:244
+msgid "Your privacy is protected"
+msgstr "您的隐私受到保护"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:248
+msgid "The message will be sent directly to the number provided."
+msgstr "消息将直接发送到所提供的号码。"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:264
+#: zapzap/ui/components/send_message_to_number_dialog.py:269
+msgid "Send message"
+msgstr "发送消息"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:413
+#, python-brace-format
+msgid "{count} of {maximum} characters used."
+msgstr "已使用 {maximum} 个字符中的 {count} 个。"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:434
+msgid "Select a country code."
+msgstr "请选择国家/地区代码。"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:435
+msgid "Enter a phone number."
+msgstr "请输入电话号码。"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:437
+msgid "The phone number appears to be incomplete."
+msgstr "电话号码似乎不完整。"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:440
+msgid "The phone number exceeds the international limit."
+msgstr "电话号码超过国际号码长度限制。"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:443
+msgid "Do not include the country code again in this field."
+msgstr "此字段中不要再次包含国家/地区代码。"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:446
+msgid "The message can contain up to 500 characters."
+msgstr "消息最多可包含 500 个字符。"
+
+#: zapzap/ui/components/settings_restart_bar.py:54
+msgid "A restart is required to apply the changes."
+msgstr "需要重启才能应用更改。"
+
+#: zapzap/ui/components/settings_restart_bar.py:55
+msgid "Restart now"
+msgstr "立即重启"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:126
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:169
+msgid "Languages"
+msgstr "语言"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:184
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:186
+msgid "Search language"
+msgstr "搜索语言"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:188
+msgid "Filter languages by name or dictionary code."
+msgstr "按名称或词典代码筛选语言。"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:195
+msgid "Selected languages"
+msgstr "所选语言"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:201
+msgid "They will be used for spell checking."
+msgstr "它们将用于拼写检查。"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:217
+msgid "Language selection status"
+msgstr "语言选择状态"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:225
+msgid "Recent"
+msgstr "最近使用"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:231
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:239
+msgid "All languages"
+msgstr "所有语言"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:241
+msgid "Use Space to select or remove the focused language."
+msgstr "使用空格键选择或移除当前聚焦的语言。"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:246
+msgid "No language found"
+msgstr "未找到语言"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:259
+msgid "Install or configure a dictionary to use the spell checker."
+msgstr "安装或配置词典后才能使用拼写检查器。"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:276
+msgid "Apply"
+msgstr "应用"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:279
+msgid "Open the spell checker dictionary settings."
+msgstr "打开拼写检查词典设置。"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:411
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:477
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:512
+msgid "You can select up to 10 languages."
+msgstr "最多可选择 10 种语言。"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:421
+msgid "At least one language must remain selected."
+msgstr "至少必须保留一种已选语言。"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:451
+#, python-brace-format
+msgid "Remove {language}"
+msgstr "移除 {language}"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:453
+msgid "Remove this language from the temporary selection."
+msgstr "从临时选择中移除此语言。"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:462
+#, python-brace-format
+msgid "{count} of {maximum} languages selected"
+msgstr "已选择 {maximum} 种语言中的 {count} 种"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:485
+msgid "selected"
+msgstr "已选择"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:485
+msgid "not selected"
+msgstr "未选择"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:506
+#, python-brace-format
+msgid "Add {language}"
+msgstr "添加 {language}"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:508
+msgid "Add this recent language to the temporary selection."
+msgstr "将此最近使用的语言添加到临时选择。"
+
+#: zapzap/ui/components/update_available_popover.py:106
+msgid "Release notes"
+msgstr "发行说明"
+
+#: zapzap/ui/components/update_available_popover.py:107
+msgid "Open release notes"
+msgstr "打开发行说明"
+
+#: zapzap/ui/components/update_available_popover.py:113
+msgid "Open downloads page"
+msgstr "打开下载页面"
+
+#: zapzap/ui/components/update_available_popover.py:146
+#, python-brace-format
+msgid "Current version: {version}"
+msgstr "当前版本：{version}"
+
+#: zapzap/ui/components/update_available_popover.py:149
+#, python-brace-format
+msgid "Latest version: {version}"
+msgstr "最新版本：{version}"
+
+#: zapzap/ui/components/update_available_popover.py:166
+#, python-brace-format
+msgid "Released on {date}"
+msgstr "发布于 {date}"
+
+#: zapzap/ui/components/update_available_popover.py:171
+#, python-brace-format
+msgid "ZapZap {latest} is available. Current version: {current}."
+msgstr "ZapZap {latest} 已可用。当前版本：{current}。"
