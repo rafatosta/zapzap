@@ -4816,3 +4816,120 @@ msgstr ""
 
 #~ msgid "Creating temporary directory:"
 #~ msgstr "جارٍ إنشاء مسار مؤقت"
+
+
+msgid "No recent downloads"
+msgstr "لا توجد تنزيلات حديثة"
+
+msgid "Clear download history"
+msgstr "مسح سجل التنزيلات"
+
+msgid "Open downloads folder"
+msgstr "فتح مجلد التنزيلات"
+
+msgid "Download behavior"
+msgstr "سلوك التنزيل"
+
+msgid "Choose what happens when a download starts."
+msgstr "اختر ما يحدث عند بدء التنزيل."
+
+msgid "Automatically open PDFs and images"
+msgstr "فتح ملفات PDF والصور تلقائيًا"
+
+msgid "Open completed PDF and image downloads with the system default application."
+msgstr "افتح تنزيلات PDF والصور المكتملة باستخدام التطبيق الافتراضي للنظام."
+
+msgid "Show download window"
+msgstr "إظهار نافذة التنزيل"
+
+msgid "Save automatically to selected folder"
+msgstr "الحفظ تلقائيًا في المجلد المحدد"
+
+msgid "Ask where to save every time"
+msgstr "السؤال عن مكان الحفظ في كل مرة"
+
+msgid "Multiple downloads"
+msgstr "تنزيلات متعددة"
+
+msgid "{site} wants to download multiple files."
+msgstr "يريد {site} تنزيل ملفات متعددة."
+
+msgid "Do you want to allow these additional downloads?"
+msgstr "هل تريد السماح بهذه التنزيلات الإضافية؟"
+
+msgid "Allow once"
+msgstr "السماح مرة واحدة"
+
+msgid "Always allow"
+msgstr "السماح دائمًا"
+
+msgid "Block"
+msgstr "حظر"
+
+msgid "Automatic download site permissions"
+msgstr "أذونات التنزيل التلقائي للمواقع"
+
+msgid "Clear remembered allow or block decisions for sites that request multiple downloads."
+msgstr "مسح قرارات السماح أو الحظر المحفوظة للمواقع التي تطلب تنزيلات متعددة."
+
+msgid "Pause"
+msgstr "إيقاف مؤقت"
+
+msgid "Resume"
+msgstr "استئناف"
+
+msgid "Queued"
+msgstr "في قائمة الانتظار"
+
+msgid "Paused"
+msgstr "متوقف مؤقتًا"
+
+msgid "Interrupted"
+msgstr "انقطع"
+
+msgid "Cancelled"
+msgstr "أُلغي"
+
+msgid "Blocked"
+msgstr "محظور"
+
+msgid "Completed"
+msgstr "اكتمل"
+
+msgid "This site"
+msgstr "هذا الموقع"
+
+msgid "WhatsApp wants to download multiple files."
+msgstr "يريد WhatsApp تنزيل ملفات متعددة."
+
+msgid "WhatsApp multiple-download permission"
+msgstr "إذن WhatsApp للتنزيلات المتعددة"
+
+msgid "Clear the remembered allow or block decision for repeated WhatsApp downloads."
+msgstr "امسح قرار السماح أو الحظر المحفوظ للتنزيلات المتكررة من WhatsApp."
+
+msgid "Automatically open PDFs"
+msgstr "فتح ملفات PDF تلقائيًا"
+
+msgid "Open completed PDF downloads with the system default application."
+msgstr "افتح تنزيلات PDF المكتملة باستخدام التطبيق الافتراضي للنظام."
+
+msgid "Automatically open images"
+msgstr "فتح الصور تلقائيًا"
+
+msgid "Open completed image downloads with the system default application."
+msgstr "افتح تنزيلات الصور المكتملة باستخدام التطبيق الافتراضي للنظام."
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "All download history"
+msgstr "سجل التنزيلات بالكامل"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Show in folder"
+msgstr "إظهار في المجلد"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Remove from download history"
+msgstr "إزالة من سجل التنزيلات"

@@ -74,6 +74,9 @@ class FakeLanguageDownloadSettingsModel:
 
     def __init__(self):
         self.spellcheck_enabled = True
+        self.download_behavior = None
+        self.auto_open_pdf = False
+        self.auto_open_images = False
         self.saved_dictionary = None
         self.current_dictionary = "pt_BR"
         self.selected_dictionaries = ["pt_BR"]

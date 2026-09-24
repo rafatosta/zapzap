@@ -82,9 +82,8 @@ class WebView(QWebEngineView):
 
         self._web_channel_bridge = None
 
-        # In-memory only: the last directory chosen for a download in this
-        # conversation session. Never persisted; cleared when the
-        # conversation closes, the window closes or the app quits.
+        # In-memory only: last directory chosen with Save As for this
+        # conversation. Never persisted.
         self.last_download_directory = None
 
         self._reload_timer = QTimer(self)
@@ -470,7 +469,8 @@ class WebView(QWebEngineView):
     def event(self, event):
         """Intercept native gesture events to optionally disable pinch-to-zoom.
         Handles the rare case where QWebEngineView itself receives the event."""
-        if event.type() == QEvent.Type.NativeGesture:
+        native_gesture_type = getattr(QEvent.Type, "NativeGesture", None)
+        if native_gesture_type is not None and event.type() == native_gesture_type:
             if (SettingsManager.get("web/disable_pinch", False) and
                     hasattr(event, 'gestureType') and
                     event.gestureType() == Qt.NativeGestureType.ZoomNativeGesture):
@@ -481,7 +481,8 @@ class WebView(QWebEngineView):
         """Application-level filter that blocks pinch-to-zoom on child widgets.
         QNativeGestureEvent is routed directly to the child render widget (not to
         QWebEngineView.event()), so an app-level filter is required to intercept it."""
-        if event.type() == QEvent.Type.NativeGesture:
+        native_gesture_type = getattr(QEvent.Type, "NativeGesture", None)
+        if native_gesture_type is not None and event.type() == native_gesture_type:
             if SettingsManager.get("web/disable_pinch", False):
                 try:
                     if event.gestureType() == Qt.NativeGestureType.ZoomNativeGesture:

@@ -14,9 +14,9 @@ from gettext import gettext as _
 import os
 
 from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.features.downloads.download_manager import DownloadManager
 from zapzap.ui.primitives.button import Button
 from zapzap.ui.primitives.label import Label
-from zapzap.features.downloads.download_naming_service import DownloadNamingService
 
 
 class DownloadDialog(QDialog):
@@ -217,10 +217,7 @@ class DownloadDialog(QDialog):
         self.reject()
 
     def _remember_download_directory(self, directory):
-        """Keep the "Save as" directory in memory for the current conversation only.
-
-        Only "Save as" updates this; plain "Save" keeps its default behavior.
-        """
+        """Keep the Save As directory only for this conversation session."""
         owner = self.parent()
         if owner is None or not hasattr(owner, "last_download_directory"):
             return
@@ -238,23 +235,11 @@ class DownloadDialog(QDialog):
             self._close_unavailable_download()
             return
 
-        directory = self.initial_directory
-        file_name = self.initial_file_name
-
-        def open_when_done(state):
-            if (
-                state ==
-                QWebEngineDownloadRequest.DownloadState.DownloadCompleted
-            ):
-                path = os.path.join(directory, file_name)
-
-                QDesktopServices.openUrl(
-                    QUrl.fromLocalFile(path)
-                )
-
         try:
-            self.download.stateChanged.connect(open_when_done)
-            self.download.accept()
+            DownloadManager.start_or_queue(
+                self.download,
+                open_on_complete=True,
+            )
             self.accept()
         except RuntimeError:
             self._close_unavailable_download()
@@ -270,7 +255,7 @@ class DownloadDialog(QDialog):
             return
 
         try:
-            self.download.accept()
+            DownloadManager.start_or_queue(self.download)
             self.accept()
         except RuntimeError:
             self._close_unavailable_download()
@@ -308,29 +293,22 @@ class DownloadDialog(QDialog):
         if not path:
             return
 
-        normalized_file_name = DownloadNamingService.normalized_file_name(
-            os.path.basename(path),
-            self.initial_mime_type,
-            self.initial_url
-        )
-
         if not self._is_download_available():
             self._close_unavailable_download()
             return
 
         try:
-            self.download.setDownloadDirectory(
-                os.path.dirname(path)
+            DownloadManager.set_download_target(
+                self.download,
+                os.path.dirname(path),
+                os.path.basename(path),
+                self.initial_mime_type,
+                self.initial_url,
             )
-
-            self.download.setDownloadFileName(
-                normalized_file_name
-            )
-
-            self.download.accept()
+            DownloadManager.start_or_queue(self.download)
             self._remember_download_directory(os.path.dirname(path))
             self.accept()
-        except RuntimeError:
+        except (RuntimeError, ValueError):
             self._close_unavailable_download()
 
     def _cancel(self):
@@ -339,7 +317,7 @@ class DownloadDialog(QDialog):
             return
 
         try:
-            self.download.cancel()
+            DownloadManager._discard_unstarted_download(self.download)
             self.reject()
         except RuntimeError:
             self._close_unavailable_download()

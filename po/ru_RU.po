@@ -4892,3 +4892,120 @@ msgstr ""
 
 #~ msgid "Enable single process for GPU and rendering"
 #~ msgstr "Включите единый процесс для GPU и рендеринга"
+
+
+msgid "No recent downloads"
+msgstr "Нет недавних загрузок"
+
+msgid "Clear download history"
+msgstr "Очистить историю загрузок"
+
+msgid "Open downloads folder"
+msgstr "Открыть папку загрузок"
+
+msgid "Download behavior"
+msgstr "Поведение загрузок"
+
+msgid "Choose what happens when a download starts."
+msgstr "Выберите, что происходит при начале загрузки."
+
+msgid "Automatically open PDFs and images"
+msgstr "Автоматически открывать PDF и изображения"
+
+msgid "Open completed PDF and image downloads with the system default application."
+msgstr "Открывать завершённые загрузки PDF и изображений в приложении системы по умолчанию."
+
+msgid "Show download window"
+msgstr "Показывать окно загрузки"
+
+msgid "Save automatically to selected folder"
+msgstr "Автоматически сохранять в выбранную папку"
+
+msgid "Ask where to save every time"
+msgstr "Каждый раз спрашивать, куда сохранить"
+
+msgid "Multiple downloads"
+msgstr "Несколько загрузок"
+
+msgid "{site} wants to download multiple files."
+msgstr "{site} хочет скачать несколько файлов."
+
+msgid "Do you want to allow these additional downloads?"
+msgstr "Разрешить эти дополнительные загрузки?"
+
+msgid "Allow once"
+msgstr "Разрешить один раз"
+
+msgid "Always allow"
+msgstr "Всегда разрешать"
+
+msgid "Block"
+msgstr "Блокировать"
+
+msgid "Automatic download site permissions"
+msgstr "Разрешения сайтов на автоматические загрузки"
+
+msgid "Clear remembered allow or block decisions for sites that request multiple downloads."
+msgstr "Очистить сохранённые решения о разрешении или блокировке сайтов, запрашивающих несколько загрузок."
+
+msgid "Pause"
+msgstr "Пауза"
+
+msgid "Resume"
+msgstr "Продолжить"
+
+msgid "Queued"
+msgstr "В очереди"
+
+msgid "Paused"
+msgstr "Приостановлено"
+
+msgid "Interrupted"
+msgstr "Прервано"
+
+msgid "Cancelled"
+msgstr "Отменено"
+
+msgid "Blocked"
+msgstr "Заблокировано"
+
+msgid "Completed"
+msgstr "Завершено"
+
+msgid "This site"
+msgstr "Этот сайт"
+
+msgid "WhatsApp wants to download multiple files."
+msgstr "WhatsApp хочет скачать несколько файлов."
+
+msgid "WhatsApp multiple-download permission"
+msgstr "Разрешение на несколько загрузок WhatsApp"
+
+msgid "Clear the remembered allow or block decision for repeated WhatsApp downloads."
+msgstr "Очистить сохранённое решение о разрешении или блокировке повторных загрузок WhatsApp."
+
+msgid "Automatically open PDFs"
+msgstr "Автоматически открывать PDF"
+
+msgid "Open completed PDF downloads with the system default application."
+msgstr "Открывать завершённые загрузки PDF системным приложением по умолчанию."
+
+msgid "Automatically open images"
+msgstr "Автоматически открывать изображения"
+
+msgid "Open completed image downloads with the system default application."
+msgstr "Открывать завершённые загрузки изображений системным приложением по умолчанию."
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "All download history"
+msgstr "Вся история загрузок"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Show in folder"
+msgstr "Показать в папке"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Remove from download history"
+msgstr "Удалить из истории загрузок"

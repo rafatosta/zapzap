@@ -45,6 +45,7 @@ class LanguageDownloadSettingsView(SettingsPage):
         self.interface_language_comboBox.setMinimumWidth(240)
         self.interface_language_comboBox.setMinimumContentsLength(18)
         card.add_row(row)
+
         section.add_card(card)
         self.add_section(section)
 
@@ -54,6 +55,16 @@ class LanguageDownloadSettingsView(SettingsPage):
             _("Choose where downloaded files are saved."),
         )
         card = SettingsCard()
+
+        behavior_row = SettingsSelectRow(
+            _("Download behavior"),
+            _("Choose what happens when a download starts."),
+            [""],
+        )
+        self.download_behavior_combo = behavior_row.combo
+        self.download_behavior_combo.setMinimumWidth(280)
+        card.add_row(behavior_row)
+
         row = SettingsPathRow(
             _("Download directory"),
             _("Set a custom folder or restore the default download location."),
@@ -66,6 +77,38 @@ class LanguageDownloadSettingsView(SettingsPage):
             _("Restore"), variant=Button.WARNING)
         row.control.layout().addWidget(self.btn_restore_path_download)
         card.add_row(row)
+
+        self.auto_open_pdf_row = SettingsSwitchRow(
+            _("Automatically open PDFs"),
+            _(
+                "Open completed PDF downloads with the system default "
+                "application."
+            ),
+        )
+        card.add_row(self.auto_open_pdf_row)
+
+        self.auto_open_images_row = SettingsSwitchRow(
+            _("Automatically open images"),
+            _(
+                "Open completed image downloads with the system default "
+                "application."
+            ),
+        )
+        card.add_row(self.auto_open_images_row)
+
+        self.reset_download_permissions_row = SettingsActionRow(
+            _("WhatsApp multiple-download permission"),
+            _(
+                "Clear the remembered allow or block decision for repeated "
+                "WhatsApp downloads."
+            ),
+            button_text=_("Reset"),
+        )
+        self.btn_reset_download_permissions = (
+            self.reset_download_permissions_row.button
+        )
+        card.add_row(self.reset_download_permissions_row)
+
         section.add_card(card)
         self.add_section(section)
 

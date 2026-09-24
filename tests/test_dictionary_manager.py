@@ -1172,6 +1172,9 @@ class DictionaryManagerUiTests(QtTestCase):
             ],
             get_selected_dictionaries=lambda: ["pt_BR"],
             get_download_path=lambda: "/downloads",
+            download_behavior=None,
+            auto_open_pdf=False,
+            auto_open_images=False,
             list_available_languages=lambda: [],
             get_current_language=lambda: "system",
         )
@@ -1200,6 +1203,9 @@ class DictionaryManagerUiTests(QtTestCase):
             list_dictionary_options=lambda: [],
             get_selected_dictionaries=lambda: [],
             get_download_path=lambda: "/downloads",
+            download_behavior=None,
+            auto_open_pdf=False,
+            auto_open_images=False,
             list_available_languages=lambda: [],
             get_current_language=lambda: "system",
         )

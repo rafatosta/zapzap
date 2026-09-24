@@ -4790,3 +4790,120 @@ msgstr ""
 
 #~ msgid "Reduce WebRTC IP exposure."
 #~ msgstr "Réduisez l’exposition IP WebRTC."
+
+
+msgid "No recent downloads"
+msgstr "Aucun téléchargement récent"
+
+msgid "Clear download history"
+msgstr "Effacer l'historique des téléchargements"
+
+msgid "Open downloads folder"
+msgstr "Ouvrir le dossier Téléchargements"
+
+msgid "Download behavior"
+msgstr "Comportement des téléchargements"
+
+msgid "Choose what happens when a download starts."
+msgstr "Choisissez ce qui se passe lorsqu'un téléchargement démarre."
+
+msgid "Automatically open PDFs and images"
+msgstr "Ouvrir automatiquement les PDF et les images"
+
+msgid "Open completed PDF and image downloads with the system default application."
+msgstr "Ouvrir les téléchargements PDF et image terminés avec l'application par défaut du système."
+
+msgid "Show download window"
+msgstr "Afficher la fenêtre de téléchargement"
+
+msgid "Save automatically to selected folder"
+msgstr "Enregistrer automatiquement dans le dossier sélectionné"
+
+msgid "Ask where to save every time"
+msgstr "Demander où enregistrer à chaque fois"
+
+msgid "Multiple downloads"
+msgstr "Téléchargements multiples"
+
+msgid "{site} wants to download multiple files."
+msgstr "{site} souhaite télécharger plusieurs fichiers."
+
+msgid "Do you want to allow these additional downloads?"
+msgstr "Voulez-vous autoriser ces téléchargements supplémentaires ?"
+
+msgid "Allow once"
+msgstr "Autoriser une fois"
+
+msgid "Always allow"
+msgstr "Toujours autoriser"
+
+msgid "Block"
+msgstr "Bloquer"
+
+msgid "Automatic download site permissions"
+msgstr "Autorisations de téléchargement automatique des sites"
+
+msgid "Clear remembered allow or block decisions for sites that request multiple downloads."
+msgstr "Effacer les décisions mémorisées d’autorisation ou de blocage pour les sites demandant plusieurs téléchargements."
+
+msgid "Pause"
+msgstr "Mettre en pause"
+
+msgid "Resume"
+msgstr "Reprendre"
+
+msgid "Queued"
+msgstr "En attente"
+
+msgid "Paused"
+msgstr "En pause"
+
+msgid "Interrupted"
+msgstr "Interrompu"
+
+msgid "Cancelled"
+msgstr "Annulé"
+
+msgid "Blocked"
+msgstr "Bloqué"
+
+msgid "Completed"
+msgstr "Terminé"
+
+msgid "This site"
+msgstr "Ce site"
+
+msgid "WhatsApp wants to download multiple files."
+msgstr "WhatsApp souhaite télécharger plusieurs fichiers."
+
+msgid "WhatsApp multiple-download permission"
+msgstr "Autorisation de téléchargements multiples WhatsApp"
+
+msgid "Clear the remembered allow or block decision for repeated WhatsApp downloads."
+msgstr "Effacer la décision mémorisée d’autoriser ou de bloquer les téléchargements WhatsApp répétés."
+
+msgid "Automatically open PDFs"
+msgstr "Ouvrir automatiquement les PDF"
+
+msgid "Open completed PDF downloads with the system default application."
+msgstr "Ouvrir les téléchargements PDF terminés avec l’application système par défaut."
+
+msgid "Automatically open images"
+msgstr "Ouvrir automatiquement les images"
+
+msgid "Open completed image downloads with the system default application."
+msgstr "Ouvrir les téléchargements d’images terminés avec l’application système par défaut."
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "All download history"
+msgstr "Tout l'historique des téléchargements"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Show in folder"
+msgstr "Afficher dans le dossier"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Remove from download history"
+msgstr "Supprimer de l'historique des téléchargements"

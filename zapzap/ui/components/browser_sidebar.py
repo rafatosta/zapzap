@@ -176,6 +176,12 @@ class BrowserSidebar(QFrame):
         self.line_2.setObjectName("line_2")
         self.layout_2.addWidget(self.line_2)
 
+        self.btn_downloads = BrowserSidebarButton(
+            "btn_downloads",
+            self.settings_buttons_layout,
+        )
+        self.layout_2.addWidget(self.btn_downloads)
+
         self.btn_open_settings = BrowserSidebarButton(
             "btn_open_settings",
             self.settings_buttons_layout,
@@ -202,6 +208,8 @@ class BrowserSidebar(QFrame):
         self.btn_donations.setAccessibleDescription(
             _("Show ways to support ZapZap development.")
         )
+        self.btn_downloads.setToolTip(_("Downloads"))
+        self.btn_downloads.setAccessibleName(_("Downloads"))
         self.btn_open_settings.setToolTip(_("ZapZap Settings"))
 
     def set_update_available(self, latest_version=None):
