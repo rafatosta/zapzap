@@ -79,6 +79,10 @@ releases and the AppStream metadata.
   keeps its default behavior and does not update this state. The state is
   discarded when the conversation closes, the window closes, or the app
   quits, and never touches the persisted global download directory.
+- Added a structured graphics/runtime diagnostic snapshot to the project
+  reporting flow, with allowlisted environment data and explicit handling for
+  missing GPU, VAAPI, Vulkan, and Flatpak metadata so the report stays robust
+  on unsupported or minimal Linux systems.
 
 ### Fixed
 
@@ -106,6 +110,11 @@ releases and the AppStream metadata.
 - Extended the internal popup and external link regression tests to cover the
   deferred disposal and the shutdown path that still stopped a page
   reentrantly.
+- Expanded the runtime diagnostics report with a privacy-safe graphics section
+  covering the active Qt session, GPU topology, VAAPI and Vulkan hints, Flatpak
+  metadata, and the effective Chromium flags assembled for the app. The
+  structured data is kept in the same report builder and Markdown flow without
+  broadening the runtime surface or enabling automatic workarounds.
 
 ## [7.4.5] - 2026-09-23
 

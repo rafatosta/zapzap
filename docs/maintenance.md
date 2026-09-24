@@ -103,6 +103,11 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   a prévia canônica, o sanitizador e os testes de transparência/segurança.
   Nunca colete WebEngine storage, mensagens, contatos, cookies ou ambiente
   completo.
+- Os diagnósticos de runtime e gráficos devem usar allowlists explícitas e
+  compactar a coleta em blocos estruturados como `graphics`, `gpu`, `vaapi`,
+  `vulkan`, `flatpak` e `qt_webengine`; campos indisponíveis permanecem
+  `null`, vazios ou ausentes em vez de depender de ferramentas opcionais como
+  `lspci`, `vainfo` ou `vulkaninfo`.
 - O launcher deve usar somente a página HTTPS oficial de criação de issues. Não
   coloque corpo, logs ou diagnóstico na URL; somente o título pode ser query.
 - Não introduza tokens, credenciais GitHub ou envio HTTP no cliente.

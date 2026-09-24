@@ -91,10 +91,11 @@
     <release version="7.4.5" date="2026-09-23">
       <description>
         <p>
-          Version 7.4.5 adds native unread badges, conversation-scoped download
-          directory suggestions, and privacy-safe graphics diagnostics. It also
-          improves popup navigation shutdown handling and reports unavailable
-          desktop notification backends instead of failing silently.
+          Version 7.4.5 adds native unread badges on supported taskbars and docks and
+          remembers the last download folder used for each open conversation. It also
+          expands structured runtime diagnostics for graphics and Chromium settings, and
+          fixes popup shutdown and notification problems that could interrupt Qt WebEngine
+          or hide the real backend issue.
         </p>
       </description>
     </release>

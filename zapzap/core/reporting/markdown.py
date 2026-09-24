@@ -91,6 +91,32 @@ class ReportMarkdownFormatter:
                     lines.append(f"- **{label}:** {system[key]}")
             lines.append("")
 
+        graphics = system.get("graphics_diagnostics") or {}
+        if graphics:
+            lines.extend(("### Graphics", ""))
+            session = graphics.get("session") or {}
+            if session.get("xdg_session_type") or session.get("qt_platform_name"):
+                lines.append(
+                    f"- **Session:** {session.get('xdg_session_type') or 'unknown'} / {session.get('qt_platform_name') or 'unknown'}"
+                )
+            gpu = graphics.get("gpu") or {}
+            if gpu.get("count") is not None:
+                lines.append(f"- **GPU:** {gpu.get('count')} device(s); vendor={gpu.get('vendor') or 'unknown'}")
+            vaapi = graphics.get("vaapi") or {}
+            if vaapi.get("libva_driver_name"):
+                lines.append(f"- **VAAPI:** {vaapi.get('libva_driver_name')}")
+            vulkan = graphics.get("vulkan") or {}
+            if vulkan.get("available") is not None:
+                lines.append(f"- **Vulkan:** {'available' if vulkan.get('available') else 'unavailable'}")
+            lines.append("")
+
+            qt_flags = (graphics.get("qt_webengine") or {}).get("chromium_flags") or {}
+            effective_flags = qt_flags.get("effective")
+            if effective_flags:
+                lines.extend(("### QtWebEngine", ""))
+                lines.append(f"- **Chromium flags:** {', '.join(effective_flags[:8])}{'…' if len(effective_flags) > 8 else ''}")
+                lines.append("")
+
         error = payload.get("error_information") or {}
         if error:
             lines.extend(("<details>", "<summary>Technical error information</summary>", ""))

@@ -43,8 +43,10 @@ class ReportBuilder:
         system = distro.get("runtime_distro") or {}
         qt = runtime.get("qt") or {}
         graphics = (runtime.get("app_config") or {}).get("graphics_session") or {}
+        graphics_report = runtime.get("graphics") or {}
+        qt_webengine = runtime.get("qt_webengine") or {}
         python = runtime.get("python") or {}
-        return self.sanitizer.sanitize({
+        base = self.sanitizer.sanitize({
             "zapzap_version": app.get("version"),
             "package_type": app.get("packaging") or "unknown",
             "operating_system": host.get("PRETTY_NAME") or system.get("PRETTY_NAME") or platform.system(),
@@ -54,7 +56,17 @@ class ReportBuilder:
             "python_version": str(python.get("python_version") or "").split()[0],
             "qt_version": qt.get("qt_version"),
             "pyqt_version": qt.get("pyqt_version"),
+            "graphics_diagnostics": self.sanitizer.sanitize({
+                "session": graphics_report.get("graphics") or {},
+                "gpu": graphics_report.get("gpu") or {},
+                "vaapi": graphics_report.get("vaapi") or {},
+                "vulkan": graphics_report.get("vulkan") or {},
+                "flatpak": graphics_report.get("flatpak") or {},
+                "qt_webengine": qt_webengine,
+                "settings": graphics_report.get("settings") or {},
+            }),
         })
+        return base
 
     def manual(
         self,
