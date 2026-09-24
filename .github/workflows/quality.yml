@@ -67,3 +67,6 @@ jobs:
 
       - name: Validate tray behavior
         run: python -m unittest discover -s tests -p "test_taskbar_badge.py" -v
+
+      - name: Validate plain-text paste
+        run: python -m unittest discover -s tests -p "test_plain_text_paste.py" -v
