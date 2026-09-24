@@ -105,8 +105,8 @@ documente o que ele protege.
 | `test_initial_setup_ui.py` | onboarding, som, fechamento, permissões, dicionários e persistência |
 | `test_main_window_shortcuts.py` | kısayol atamaları ve ana pencere menü eylemlerinin keşfedilebilirliği |
 | `test_memory_benchmark.py` | procfs/USS, schema JSON/CSV/Markdown, isolamento WebEngine, factory stub, cenários e comparação relativa |
-| `test_network_privacy_settings_ui.py` | proxy exclusivamente global, strict proxy, credenciais, aplicar/descartar, feedback de falha do Qt, restauração e WebRTC |
 | `test_native_titlebar_theme.py` | sincronização do esquema claro/escuro com decorações nativas, modo automático e fallback para Qt antigo |
+| `test_network_privacy_settings_ui.py` | proxy exclusivamente global, strict proxy, credenciais, aplicar/descartar, feedback de falha do Qt, restauração e WebRTC |
 | `test_notification_sound_setting.py` | mapeamento de som e tipos dos hints Portal/Freedesktop |
 | `test_notification_window_activation.py` | conexão QtDBus, tokens Portal/Wayland, startup X11, foco e limpeza |
 | `test_notifications_settings_ui.py` | rótulos, dependências, privacidade, som e lembrete de apoio |
@@ -160,8 +160,8 @@ documente o que ele protege.
 - `test_initial_setup_ui.py`
 - `test_main_window_shortcuts.py`
 - `test_memory_benchmark.py`
-- `test_network_privacy_settings_ui.py`
 - `test_native_titlebar_theme.py`
+- `test_network_privacy_settings_ui.py`
 - `test_notification_sound_setting.py`
 - `test_notification_window_activation.py`
 - `test_notifications_settings_ui.py`
