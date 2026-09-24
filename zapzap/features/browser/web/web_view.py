@@ -2,6 +2,7 @@ import re
 import shutil
 import os
 import logging
+import sys
 
 from PyQt6.QtWebChannel import QWebChannel
 from PyQt6.QtWebEngineWidgets import QWebEngineView
@@ -113,10 +114,9 @@ class WebView(QWebEngineView):
 
         self._setup_page()
 
-        # Install application-level filter to intercept pinch gesture events.
-        # We do this here because QNativeGestureEvent is delivered directly
-        # to the internal render widget (child of QWebEngineView), so
-        # overriding event() on QWebEngineView alone is insufficient.
+        # Install one application-level filter for events delivered directly
+        # to the internal WebEngine render widget. It handles native pinch
+        # gestures and the plain-text paste shortcut without changing Ctrl+V.
         if not self._gesture_filter_installed:
             QApplication.instance().installEventFilter(self)
             self._gesture_filter_installed = True
@@ -477,17 +477,53 @@ class WebView(QWebEngineView):
                 return True  # Consume the event without zooming
         return super().event(event)
 
+    @staticmethod
+    def _plain_text_paste_modifiers():
+        primary = (
+            Qt.KeyboardModifier.MetaModifier
+            if sys.platform == "darwin"
+            else Qt.KeyboardModifier.ControlModifier
+        )
+        return primary | Qt.KeyboardModifier.ShiftModifier
+
+    @staticmethod
+    def _is_plain_text_paste_shortcut(event):
+        if event.type() != QEvent.Type.KeyPress:
+            return False
+        return (
+            event.key() == Qt.Key.Key_V
+            and event.modifiers() == WebView._plain_text_paste_modifiers()
+        )
+
+    def _paste_as_plain_text(self):
+        action = getattr(
+            QWebEnginePage.WebAction,
+            "PasteAndMatchStyle",
+            None,
+        )
+        if action is None:
+            return False
+        try:
+            self.page().triggerAction(action)
+        except RuntimeError:
+            return False
+        return True
+
     def eventFilter(self, watched, event):
-        """Application-level filter that blocks pinch-to-zoom on child widgets.
-        QNativeGestureEvent is routed directly to the child render widget (not to
-        QWebEngineView.event()), so an app-level filter is required to intercept it."""
+        """Handle WebEngine child events that do not reach WebView directly."""
+        targets_web_content = watched is self or (
+            isinstance(watched, QWidget) and self.isAncestorOf(watched)
+        )
+
+        if targets_web_content and self._is_plain_text_paste_shortcut(event):
+            return self._paste_as_plain_text()
+
         native_gesture_type = getattr(QEvent.Type, "NativeGesture", None)
         if native_gesture_type is not None and event.type() == native_gesture_type:
             if SettingsManager.get("web/disable_pinch", False):
                 try:
                     if event.gestureType() == Qt.NativeGestureType.ZoomNativeGesture:
-                        if watched is self or (
-                                isinstance(watched, QWidget) and self.isAncestorOf(watched)):
+                        if targets_web_content:
                             return True  # Consume — block the zoom
                 except AttributeError:
                     pass

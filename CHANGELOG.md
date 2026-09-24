@@ -15,6 +15,10 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Added plain-text paste inside WhatsApp Web: Ctrl+Shift+V on Linux/Windows
+  (Cmd+Shift+V on macOS) now triggers Qt WebEngine's native
+  `PasteAndMatchStyle` action, so spreadsheet/HTML clipboard content can be
+  inserted as text without changing the existing Ctrl+V rich-paste behavior.
 - Added shared recent-download menus to the sidebar and right side of the
   menubar, including native platform file-type icons, per-item progress bars
   and percentages, queued/paused/interrupted/cancelled/blocked/completed

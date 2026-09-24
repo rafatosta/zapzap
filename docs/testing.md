@@ -109,6 +109,7 @@ documente o que ele protege.
 | `test_notifications_settings_ui.py` | rótulos, dependências, privacidade, som e lembrete de apoio |
 | `test_performance_experimental_settings_ui.py` | perfis de renderização, controles manuais, migração e reinício |
 | `test_permissions_settings_ui.py` | grupos e ações globais/individuais de permissões |
+| `test_plain_text_paste.py` | atalho de colagem sem formatação, modificador nativo por plataforma, ação WebEngine e preservação do Ctrl+V |
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
 | `test_reporting.py` | sanitização, minimização, Markdown, fila/TTL e captura local de encerramentos inesperados |
@@ -160,6 +161,7 @@ documente o que ele protege.
 - `test_notifications_settings_ui.py`
 - `test_performance_experimental_settings_ui.py`
 - `test_permissions_settings_ui.py`
+- `test_plain_text_paste.py`
 - `test_portal_notification_backend.py`
 - `test_qt_parameter_fallbacks.py`
 - `test_reporting.py`
@@ -278,6 +280,20 @@ gráfica real.
     inclusive para PDF e imagens, sem gerar miniatura do conteúdo. Para um item
     ainda em fila, aceite fallback genérico apenas
     quando a plataforma não fornecer um ícone específico para a extensão.
+
+## Validação manual de colagem sem formatação
+
+Use uma conversa de teste e uma sessão gráfica real.
+
+1. Copie várias células de uma planilha no Excel ou LibreOffice Calc e use
+   **Ctrl+Shift+V** no campo de mensagem do WhatsApp Web. No macOS, use
+   **Cmd+Shift+V**. Confirme que o conteúdo entra como texto, sem ser convertido
+   em imagem ou preservar a formatação rica da planilha.
+2. Repita a mesma cópia com **Ctrl+V** e confirme que o comportamento normal do
+   WhatsApp Web permanece inalterado.
+3. Repita com texto rico/HTML copiado de um navegador ou editor e confirme que o
+   atalho sem formatação usa apenas a apresentação textual compatível com o
+   campo de mensagem.
 
 ## Validação manual do proxy estrito
 
