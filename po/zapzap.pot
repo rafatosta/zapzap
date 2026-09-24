@@ -4385,3 +4385,120 @@ msgstr ""
 #, python-brace-format
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
+
+
+msgid "No recent downloads"
+msgstr ""
+
+msgid "Clear download history"
+msgstr ""
+
+msgid "Open downloads folder"
+msgstr ""
+
+msgid "Download behavior"
+msgstr ""
+
+msgid "Choose what happens when a download starts."
+msgstr ""
+
+msgid "Automatically open PDFs and images"
+msgstr ""
+
+msgid "Open completed PDF and image downloads with the system default application."
+msgstr ""
+
+msgid "Show download window"
+msgstr ""
+
+msgid "Save automatically to selected folder"
+msgstr ""
+
+msgid "Ask where to save every time"
+msgstr ""
+
+msgid "Multiple downloads"
+msgstr ""
+
+msgid "{site} wants to download multiple files."
+msgstr ""
+
+msgid "Do you want to allow these additional downloads?"
+msgstr ""
+
+msgid "Allow once"
+msgstr ""
+
+msgid "Always allow"
+msgstr ""
+
+msgid "Block"
+msgstr ""
+
+msgid "Automatic download site permissions"
+msgstr ""
+
+msgid "Clear remembered allow or block decisions for sites that request multiple downloads."
+msgstr ""
+
+msgid "Pause"
+msgstr ""
+
+msgid "Resume"
+msgstr ""
+
+msgid "Queued"
+msgstr ""
+
+msgid "Paused"
+msgstr ""
+
+msgid "Interrupted"
+msgstr ""
+
+msgid "Cancelled"
+msgstr ""
+
+msgid "Blocked"
+msgstr ""
+
+msgid "Completed"
+msgstr ""
+
+msgid "This site"
+msgstr ""
+
+msgid "WhatsApp wants to download multiple files."
+msgstr ""
+
+msgid "WhatsApp multiple-download permission"
+msgstr ""
+
+msgid "Clear the remembered allow or block decision for repeated WhatsApp downloads."
+msgstr ""
+
+msgid "Automatically open PDFs"
+msgstr ""
+
+msgid "Open completed PDF downloads with the system default application."
+msgstr ""
+
+msgid "Automatically open images"
+msgstr ""
+
+msgid "Open completed image downloads with the system default application."
+msgstr ""
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "All download history"
+msgstr ""
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Show in folder"
+msgstr ""
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Remove from download history"
+msgstr ""

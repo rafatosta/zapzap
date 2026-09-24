@@ -4884,3 +4884,120 @@ msgstr ""
 
 #~ msgid "Creating temporary directory:"
 #~ msgstr "Skapar temporär katalog:"
+
+
+msgid "No recent downloads"
+msgstr "Inga senaste nedladdningar"
+
+msgid "Clear download history"
+msgstr "Rensa nedladdningshistorik"
+
+msgid "Open downloads folder"
+msgstr "Öppna mappen Hämtade filer"
+
+msgid "Download behavior"
+msgstr "Nedladdningsbeteende"
+
+msgid "Choose what happens when a download starts."
+msgstr "Välj vad som händer när en nedladdning startar."
+
+msgid "Automatically open PDFs and images"
+msgstr "Öppna PDF-filer och bilder automatiskt"
+
+msgid "Open completed PDF and image downloads with the system default application."
+msgstr "Öppna slutförda PDF- och bildnedladdningar med systemets standardprogram."
+
+msgid "Show download window"
+msgstr "Visa nedladdningsfönster"
+
+msgid "Save automatically to selected folder"
+msgstr "Spara automatiskt i vald mapp"
+
+msgid "Ask where to save every time"
+msgstr "Fråga var filen ska sparas varje gång"
+
+msgid "Multiple downloads"
+msgstr "Flera nedladdningar"
+
+msgid "{site} wants to download multiple files."
+msgstr "{site} vill ladda ner flera filer."
+
+msgid "Do you want to allow these additional downloads?"
+msgstr "Vill du tillåta dessa ytterligare nedladdningar?"
+
+msgid "Allow once"
+msgstr "Tillåt en gång"
+
+msgid "Always allow"
+msgstr "Tillåt alltid"
+
+msgid "Block"
+msgstr "Blockera"
+
+msgid "Automatic download site permissions"
+msgstr "Webbplatsbehörigheter för automatiska nedladdningar"
+
+msgid "Clear remembered allow or block decisions for sites that request multiple downloads."
+msgstr "Rensa sparade beslut om att tillåta eller blockera webbplatser som begär flera nedladdningar."
+
+msgid "Pause"
+msgstr "Pausa"
+
+msgid "Resume"
+msgstr "Återuppta"
+
+msgid "Queued"
+msgstr "I kö"
+
+msgid "Paused"
+msgstr "Pausad"
+
+msgid "Interrupted"
+msgstr "Avbruten"
+
+msgid "Cancelled"
+msgstr "Avbruten"
+
+msgid "Blocked"
+msgstr "Blockerad"
+
+msgid "Completed"
+msgstr "Slutförd"
+
+msgid "This site"
+msgstr "Den här webbplatsen"
+
+msgid "WhatsApp wants to download multiple files."
+msgstr "WhatsApp vill ladda ner flera filer."
+
+msgid "WhatsApp multiple-download permission"
+msgstr "Behörighet för flera WhatsApp-nedladdningar"
+
+msgid "Clear the remembered allow or block decision for repeated WhatsApp downloads."
+msgstr "Rensa det sparade beslutet att tillåta eller blockera upprepade WhatsApp-nedladdningar."
+
+msgid "Automatically open PDFs"
+msgstr "Öppna PDF-filer automatiskt"
+
+msgid "Open completed PDF downloads with the system default application."
+msgstr "Öppna slutförda PDF-nedladdningar med systemets standardprogram."
+
+msgid "Automatically open images"
+msgstr "Öppna bilder automatiskt"
+
+msgid "Open completed image downloads with the system default application."
+msgstr "Öppna slutförda bildnedladdningar med systemets standardprogram."
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "All download history"
+msgstr "Hela nedladdningshistoriken"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Show in folder"
+msgstr "Visa i mapp"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Remove from download history"
+msgstr "Ta bort från nedladdningshistoriken"

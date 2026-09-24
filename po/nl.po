@@ -4883,3 +4883,120 @@ msgstr ""
 
 #~ msgid "Enable single process for GPU and rendering"
 #~ msgstr "Eén proces gebruiken voor gpu en vensteropmaak"
+
+
+msgid "No recent downloads"
+msgstr "Geen recente downloads"
+
+msgid "Clear download history"
+msgstr "Downloadgeschiedenis wissen"
+
+msgid "Open downloads folder"
+msgstr "Downloadmap openen"
+
+msgid "Download behavior"
+msgstr "Downloadgedrag"
+
+msgid "Choose what happens when a download starts."
+msgstr "Kies wat er gebeurt wanneer een download start."
+
+msgid "Automatically open PDFs and images"
+msgstr "PDF's en afbeeldingen automatisch openen"
+
+msgid "Open completed PDF and image downloads with the system default application."
+msgstr "Voltooide PDF- en afbeeldingsdownloads openen met de standaardtoepassing van het systeem."
+
+msgid "Show download window"
+msgstr "Downloadvenster tonen"
+
+msgid "Save automatically to selected folder"
+msgstr "Automatisch opslaan in de geselecteerde map"
+
+msgid "Ask where to save every time"
+msgstr "Elke keer vragen waar op te slaan"
+
+msgid "Multiple downloads"
+msgstr "Meerdere downloads"
+
+msgid "{site} wants to download multiple files."
+msgstr "{site} wil meerdere bestanden downloaden."
+
+msgid "Do you want to allow these additional downloads?"
+msgstr "Wilt u deze extra downloads toestaan?"
+
+msgid "Allow once"
+msgstr "Eenmalig toestaan"
+
+msgid "Always allow"
+msgstr "Altijd toestaan"
+
+msgid "Block"
+msgstr "Blokkeren"
+
+msgid "Automatic download site permissions"
+msgstr "Sitemachtigingen voor automatische downloads"
+
+msgid "Clear remembered allow or block decisions for sites that request multiple downloads."
+msgstr "Opgeslagen toestaan- of blokkeerbeslissingen wissen voor sites die meerdere downloads aanvragen."
+
+msgid "Pause"
+msgstr "Pauzeren"
+
+msgid "Resume"
+msgstr "Hervatten"
+
+msgid "Queued"
+msgstr "In wachtrij"
+
+msgid "Paused"
+msgstr "Gepauzeerd"
+
+msgid "Interrupted"
+msgstr "Onderbroken"
+
+msgid "Cancelled"
+msgstr "Geannuleerd"
+
+msgid "Blocked"
+msgstr "Geblokkeerd"
+
+msgid "Completed"
+msgstr "Voltooid"
+
+msgid "This site"
+msgstr "Deze site"
+
+msgid "WhatsApp wants to download multiple files."
+msgstr "WhatsApp wil meerdere bestanden downloaden."
+
+msgid "WhatsApp multiple-download permission"
+msgstr "Toestemming voor meerdere WhatsApp-downloads"
+
+msgid "Clear the remembered allow or block decision for repeated WhatsApp downloads."
+msgstr "De opgeslagen beslissing om herhaalde WhatsApp-downloads toe te staan of te blokkeren wissen."
+
+msgid "Automatically open PDFs"
+msgstr "PDF's automatisch openen"
+
+msgid "Open completed PDF downloads with the system default application."
+msgstr "Voltooide PDF-downloads openen met de standaardtoepassing van het systeem."
+
+msgid "Automatically open images"
+msgstr "Afbeeldingen automatisch openen"
+
+msgid "Open completed image downloads with the system default application."
+msgstr "Voltooide afbeeldingsdownloads openen met de standaardtoepassing van het systeem."
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "All download history"
+msgstr "Volledige downloadgeschiedenis"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Show in folder"
+msgstr "In map weergeven"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Remove from download history"
+msgstr "Uit downloadgeschiedenis verwijderen"

@@ -4907,3 +4907,120 @@ msgstr ""
 
 #~ msgid "Enable single process for GPU and rendering"
 #~ msgstr "Grafikus kártya és megjelenítés egy folyamatban bekacsolása"
+
+
+msgid "No recent downloads"
+msgstr "Nincsenek legutóbbi letöltések"
+
+msgid "Clear download history"
+msgstr "Letöltési előzmények törlése"
+
+msgid "Open downloads folder"
+msgstr "Letöltések mappa megnyitása"
+
+msgid "Download behavior"
+msgstr "Letöltési viselkedés"
+
+msgid "Choose what happens when a download starts."
+msgstr "Válassza ki, mi történjen egy letöltés indításakor."
+
+msgid "Automatically open PDFs and images"
+msgstr "PDF-ek és képek automatikus megnyitása"
+
+msgid "Open completed PDF and image downloads with the system default application."
+msgstr "A befejezett PDF- és képletöltések megnyitása a rendszer alapértelmezett alkalmazásával."
+
+msgid "Show download window"
+msgstr "Letöltési ablak megjelenítése"
+
+msgid "Save automatically to selected folder"
+msgstr "Automatikus mentés a kiválasztott mappába"
+
+msgid "Ask where to save every time"
+msgstr "Minden alkalommal kérdezze meg a mentési helyet"
+
+msgid "Multiple downloads"
+msgstr "Több letöltés"
+
+msgid "{site} wants to download multiple files."
+msgstr "A(z) {site} több fájlt szeretne letölteni."
+
+msgid "Do you want to allow these additional downloads?"
+msgstr "Engedélyezi ezeket a további letöltéseket?"
+
+msgid "Allow once"
+msgstr "Engedélyezés egyszer"
+
+msgid "Always allow"
+msgstr "Mindig engedélyezze"
+
+msgid "Block"
+msgstr "Letiltás"
+
+msgid "Automatic download site permissions"
+msgstr "Webhelyek automatikus letöltési engedélyei"
+
+msgid "Clear remembered allow or block decisions for sites that request multiple downloads."
+msgstr "A több letöltést kérő webhelyek megjegyzett engedélyezési vagy tiltási döntéseinek törlése."
+
+msgid "Pause"
+msgstr "Szünet"
+
+msgid "Resume"
+msgstr "Folytatás"
+
+msgid "Queued"
+msgstr "Sorban"
+
+msgid "Paused"
+msgstr "Szüneteltetve"
+
+msgid "Interrupted"
+msgstr "Megszakítva"
+
+msgid "Cancelled"
+msgstr "Megszakítva"
+
+msgid "Blocked"
+msgstr "Letiltva"
+
+msgid "Completed"
+msgstr "Befejezve"
+
+msgid "This site"
+msgstr "Ez a webhely"
+
+msgid "WhatsApp wants to download multiple files."
+msgstr "A WhatsApp több fájlt szeretne letölteni."
+
+msgid "WhatsApp multiple-download permission"
+msgstr "WhatsApp többes letöltési engedély"
+
+msgid "Clear the remembered allow or block decision for repeated WhatsApp downloads."
+msgstr "A megjegyzett engedélyezési vagy tiltási döntés törlése az ismételt WhatsApp-letöltésekhez."
+
+msgid "Automatically open PDFs"
+msgstr "PDF-ek automatikus megnyitása"
+
+msgid "Open completed PDF downloads with the system default application."
+msgstr "A befejezett PDF-letöltések megnyitása a rendszer alapértelmezett alkalmazásával."
+
+msgid "Automatically open images"
+msgstr "Képek automatikus megnyitása"
+
+msgid "Open completed image downloads with the system default application."
+msgstr "A befejezett képletöltések megnyitása a rendszer alapértelmezett alkalmazásával."
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "All download history"
+msgstr "Teljes letöltési előzmények"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Show in folder"
+msgstr "Megjelenítés mappában"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Remove from download history"
+msgstr "Eltávolítás a letöltési előzményekből"

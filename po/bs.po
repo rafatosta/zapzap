@@ -4856,3 +4856,120 @@ msgstr ""
 
 #~ msgid "Enable single process for GPU and rendering"
 #~ msgstr "Omogući jedan proces za GPU i renderovanje"
+
+
+msgid "No recent downloads"
+msgstr "Nema nedavnih preuzimanja"
+
+msgid "Clear download history"
+msgstr "Očisti historiju preuzimanja"
+
+msgid "Open downloads folder"
+msgstr "Otvori mapu preuzimanja"
+
+msgid "Download behavior"
+msgstr "Ponašanje preuzimanja"
+
+msgid "Choose what happens when a download starts."
+msgstr "Odaberite šta se dešava kada preuzimanje počne."
+
+msgid "Automatically open PDFs and images"
+msgstr "Automatski otvaraj PDF-ove i slike"
+
+msgid "Open completed PDF and image downloads with the system default application."
+msgstr "Otvori završena preuzimanja PDF-ova i slika zadanom sistemskom aplikacijom."
+
+msgid "Show download window"
+msgstr "Prikaži prozor za preuzimanje"
+
+msgid "Save automatically to selected folder"
+msgstr "Automatski sačuvaj u odabranu mapu"
+
+msgid "Ask where to save every time"
+msgstr "Pitaj gdje sačuvati svaki put"
+
+msgid "Multiple downloads"
+msgstr "Višestruka preuzimanja"
+
+msgid "{site} wants to download multiple files."
+msgstr "{site} želi preuzeti više datoteka."
+
+msgid "Do you want to allow these additional downloads?"
+msgstr "Želite li dozvoliti ova dodatna preuzimanja?"
+
+msgid "Allow once"
+msgstr "Dozvoli jednom"
+
+msgid "Always allow"
+msgstr "Uvijek dozvoli"
+
+msgid "Block"
+msgstr "Blokiraj"
+
+msgid "Automatic download site permissions"
+msgstr "Dozvole za automatska preuzimanja sa stranica"
+
+msgid "Clear remembered allow or block decisions for sites that request multiple downloads."
+msgstr "Obriši zapamćene odluke dozvole ili blokiranja za stranice koje traže više preuzimanja."
+
+msgid "Pause"
+msgstr "Pauziraj"
+
+msgid "Resume"
+msgstr "Nastavi"
+
+msgid "Queued"
+msgstr "Na čekanju"
+
+msgid "Paused"
+msgstr "Pauzirano"
+
+msgid "Interrupted"
+msgstr "Prekinuto"
+
+msgid "Cancelled"
+msgstr "Otkazano"
+
+msgid "Blocked"
+msgstr "Blokirano"
+
+msgid "Completed"
+msgstr "Završeno"
+
+msgid "This site"
+msgstr "Ova stranica"
+
+msgid "WhatsApp wants to download multiple files."
+msgstr "WhatsApp želi preuzeti više datoteka."
+
+msgid "WhatsApp multiple-download permission"
+msgstr "Dozvola za višestruka WhatsApp preuzimanja"
+
+msgid "Clear the remembered allow or block decision for repeated WhatsApp downloads."
+msgstr "Obriši zapamćenu odluku dozvole ili blokiranja za ponovljena WhatsApp preuzimanja."
+
+msgid "Automatically open PDFs"
+msgstr "Automatski otvaraj PDF datoteke"
+
+msgid "Open completed PDF downloads with the system default application."
+msgstr "Otvaraj završena PDF preuzimanja zadanim sistemskim programom."
+
+msgid "Automatically open images"
+msgstr "Automatski otvaraj slike"
+
+msgid "Open completed image downloads with the system default application."
+msgstr "Otvaraj završena preuzimanja slika zadanim sistemskim programom."
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "All download history"
+msgstr "Kompletna historija preuzimanja"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Show in folder"
+msgstr "Prikaži u mapi"
+
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Remove from download history"
+msgstr "Ukloni iz historije preuzimanja"

@@ -79,7 +79,7 @@ class _BaseRow(QWidget):
 
         layout.addWidget(text_col, 1)
 
-        if control:
+        if control is not None:
             layout.addWidget(
                 control,
                 control_stretch,

@@ -64,6 +64,12 @@ Nos testes visuais, importe controles básicos de `zapzap.ui.primitives` e
 composições de `zapzap.ui.components`. Imports por caminhos internos de uma
 feature não devem ser usados para alcançar widgets compartilhados.
 
+O workflow `quality.yml` executa `test_download_settings.py` e `test_taskbar_badge.py`
+também em Ubuntu, Windows e macOS. Essa matriz protege os contratos portáveis
+do gerenciador de downloads e das ativações da bandeja; a aparência exata dos
+ícones nativos e o comportamento imposto pelo shell ainda exigem validação
+gráfica em cada sistema.
+
 ## Cobertura por módulo
 
 O inventário abaixo descreve a responsabilidade de cada módulo. O bloco de
@@ -87,6 +93,7 @@ documente o que ele protege.
 | `test_dictionary_manager.py` | store próprio, migração, catálogo/cache, rede segura, downloads atômicos, importação/remoção, diálogo compartilhado, provisionamento único do idioma do sistema e ausência de dicionários nos pacotes oficiais |
 | `test_dictionary_options.py` | descoberta dinâmica, nomes amigáveis, ordenação, redimensionamento e fallback de dicionários personalizados |
 | `test_display_backend.py` | seleção automática/forçada do backend Qt, precedência de ambiente/CLI/plataforma e migração da chave Wayland legada |
+| `test_download_settings.py` | modos persistidos, permissão múltipla sem bypass temporal, fila global, ordem/dispensa de itens, indicador compacto, ícones nativos de tipo, elisão de nomes, sanitização de alvos e abertura separada de PDF/imagens por MIME verificado |
 | `test_documentation_structure.py` | camadas de UI, ciclo numérico versionado do changelog e sincronização entre árvore, inventários técnicos, convenção de commits e guia para agentes |
 | `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
 | `test_external_link_lifecycle.py` | classificação interna/externa de pop-ups, profile compartilhado, entrega única ao navegador e cleanup no fechamento/shutdown |
@@ -113,7 +120,7 @@ documente o que ele protege.
 | `test_settings_radio_group.py` | divisores do grupo de rádio em `ui.components` |
 | `test_software_video_decoding.py` | presets, flags Chromium de renderização/strict proxy, persistência e ordem do bootstrap |
 | `test_spellcheck_language_picker.py` | migração, seleção múltipla transacional, pesquisa, limite, recentes, menu e perfis WebEngine |
-| `test_taskbar_badge.py` | contador nativo, zero, preferência, bandeja oculta e compatibilidade com Qt anterior |
+| `test_taskbar_badge.py` | contador nativo, zero, preferência, bandeja oculta, ativação primária/contexto por backend, integração StatusNotifier/AppIndicator e compatibilidade com Qt anterior |
 | `test_system_startup_settings_ui.py` | semântica de fechamento, diálogo nativo, seleção do backend gráfico, reinício e acessibilidade |
 | `test_unix_signal_shutdown.py` | ponte POSIX, restauração do estado global e `SIGTERM` real chegando a `aboutToQuit` em subprocesso isolado |
 | `test_update_checker.py` | versões, política de builds, respostas/falhas assíncronas, metadados seguros e popover acessível compartilhado entre sidebar e Sobre |
@@ -139,6 +146,7 @@ documente o que ele protege.
 - `test_display_backend.py`
 - `test_documentation_structure.py`
 - `test_donations_page.py`
+- `test_download_settings.py`
 - `test_external_link_lifecycle.py`
 - `test_freedesktop_notification_backend.py`
 - `test_gpu_environment.py`
@@ -186,6 +194,91 @@ documente o que ele protege.
    menos um roteiro manual em sessão real quando necessário.
 7. Atualize este inventário no mesmo commit.
 
+## Validação manual de downloads
+
+Use arquivos de teste sem dados sensíveis e valide cada modo em uma sessão
+gráfica real.
+
+1. Em **Comportamento de download**, mantenha o modo de janela e confirme que o diálogo
+   Salvar/Abrir/Mais continua sendo exibido.
+2. Selecione o modo automático, baixe um arquivo e confirme que ele vai para a
+   pasta configurada sem diálogo; ao iniciar, o menu de downloads deve abrir e
+   fechar sozinho após cinco segundos.
+3. Durante um download, confirme que os dois botões de downloads reduzem o
+   ícone e exibem a porcentagem no canto inferior direito. Com dois downloads
+   de tamanhos diferentes, confirme que a porcentagem é ponderada pelo total de
+   bytes e não pela quantidade de arquivos. Ao terminar a fila ativa, confirme
+   o breve efeito de conclusão e o retorno do ícone ao tamanho normal.
+4. Abra o menu manualmente pelos botões da barra lateral e da barra de menus e
+   confirme que ele não fecha por temporizador, mas fecha ao clicar fora.
+5. Selecione **perguntar sempre**, faça um download e confirme que o seletor de
+   arquivo aparece para cada download e que cancelar não inicia a transferência.
+6. Teste separadamente **abrir PDFs automaticamente** e **abrir imagens
+   automaticamente**. Com apenas uma opção ativa, o outro tipo deve permanecer
+   fechado. Renomeie um PDF válido para extensão executável, use conteúdo de
+   texto com extensão de imagem e teste SVG: nenhum deles deve abrir
+   automaticamente. ZIP, texto e outros tipos também devem permanecer fechados.
+7. Em cada item do histórico, clique no nome para abrir o arquivo e use o ícone
+   de pasta exibido no hover para abrir a pasta. Valide também limpar histórico
+   e abrir a pasta de downloads.
+8. Troque o idioma da interface e confirme a tradução do menu e dos novos
+   controles de download.
+9. Inicie sete downloads do WhatsApp após permitir downloads múltiplos.
+   Confirme que no máximo seis ficam ativos no ZapZap inteiro, o excedente
+   aparece como **Na fila** e inicia automaticamente quando uma vaga é liberada.
+   Com várias contas do WhatsApp abertas, confirme que todas compartilham o
+   mesmo limite de seis.
+10. Sem decisão salva, faça um primeiro download do WhatsApp e confirme que ele
+    segue normalmente. Depois faça novos pedidos, inclusive esperando mais de
+    dez segundos entre eles: cada pedido posterior deve pedir permissão enquanto
+    a decisão permanecer em **perguntar**. Teste **permitir uma vez**, confirme
+    que o pedido seguinte volta a perguntar, depois teste **permitir sempre** e
+    **bloquear**; por fim use Configurações para limpar a decisão lembrada.
+11. Durante um download, confira o ícone de tipo de arquivo fornecido pelo
+    sistema, a barra de progresso, o percentual, a velocidade instantânea e a
+    estimativa de tempo restante. A velocidade deve permanecer estável o bastante
+    para leitura, sem saltos extremos a cada atualização. Pause e retome. Force uma
+    interrupção de rede e confirme **Interrompido**; quando Qt indicar que o item é
+    retomável, **Retomar** deve continuar a mesma solicitação. Cancele outro
+    item e confirme o estado visual **Cancelado** sem animação de sucesso.
+12. Teste nomes recebidos como `../../arquivo.pdf`, separadores Windows,
+    caracteres de controle e nomes reservados; o destino final deve permanecer
+    dentro da pasta escolhida. Crie também um link simbólico no destino apontando
+    para fora e confirme que o alvo é rejeitado.
+13. Feche o diálogo padrão sem salvar e cancele o seletor de destino antes de a
+    transferência começar; nenhum desses pedidos deve aparecer como
+    **Cancelado**. Cancele depois uma transferência realmente iniciada e
+    confirme que ela permanece na posição original da lista.
+14. Baixe um arquivo com nome longo e confirme a elisão no meio, mantendo a
+    extensão visível. No botão de downloads não deve aparecer percentual:
+    quando a estimativa restante for superior a cinco segundos, confirme um
+    anel circular proporcional ao progresso ao redor do ícone. Quando restarem
+    cinco segundos ou menos, o anel deve desaparecer sem redimensionar o botão.
+15. Abra o menu de downloads pelos botões da barra lateral e da barra de menu.
+    Confirme que ele funciona como um menu suspenso compacto e mostra somente
+    os cinco itens mais recentes. Passe o ponteiro sobre uma linha e confirme
+    que aparecem à direita os ícones de mostrar na pasta e, para itens
+    concluídos, excluir o arquivo do disco. Durante um download ativo, confirme
+    que aparece um botão **X** à direita e que ele cancela a transferência,
+    movendo o item para o estado **Cancelado**. Clique com o botão direito em
+    itens ativos/concluídos e confirme as ações contextuais apropriadas:
+    pausar/retomar/cancelar, mostrar na pasta, excluir o arquivo e remover
+    somente do histórico. O botão inferior deve abrir **Todo o
+    histórico de downloads** em uma janela maior, mas ainda compacta, com
+    rolagem vertical e histórico ampliado. No rodapé dessa janela confirme três
+    controles apenas por ícone: limpar histórico, abrir a pasta de downloads e
+    abrir diretamente as configurações de download. O último deve usar um ícone
+    de engrenagem, não um símbolo semelhante a sol. Teste tema
+    claro, escuro e automático; ambos devem seguir a paleta Qt sem áreas
+    ilegíveis. Em Linux, valide pelo menos uma sessão X11 e uma Wayland quando
+    disponíveis.
+16. Em Linux, Windows e macOS, baixe pelo menos PDF, imagem, arquivo compactado
+    e um tipo genérico. Compare com o gerenciador de arquivos do sistema:
+    ZapZap deve usar primeiro o ícone MIME do tema de ícones do sistema,
+    inclusive para PDF e imagens, sem gerar miniatura do conteúdo. Para um item
+    ainda em fila, aceite fallback genérico apenas
+    quando a plataforma não fornecer um ícone específico para a extensão.
+
 ## Validação manual do proxy estrito
 
 Use um perfil XDG descartável e nunca credenciais reais. Estes cenários
@@ -216,6 +309,20 @@ que o Chromium não cria UDP WebRTC não proxyficado. Desative separadamente o
 WebRTC Shield legado para confirmar que a política nativa não depende do script
 `webrtc_shield.js`. Repita com proxy do sistema e confirme que a UI não promete
 isolamento estrito e que a flag não é aplicada.
+
+## Validação manual da bandeja do sistema
+
+1. Em Windows/macOS ou em um backend Linux que entregue `Trigger`, clique uma
+   vez com o botão principal e confirme que a janela alterna entre visível e
+   oculta; clique com o botão direito/contexto e confirme o menu.
+2. Em GNOME com AppIndicator/StatusNotifier, confirme primeiro o comportamento
+   imposto pelo shell. O menu pode abrir tanto no clique principal quanto no
+   contexto sem que o aplicativo receba esses eventos.
+3. Nesse backend Linux, faça a ação de ativação fornecida pelo shell
+   (normalmente duplo clique). Quando ela chegar como `Trigger` ou
+   `DoubleClick`, ZapZap deve alternar a janela e não abrir um segundo `QMenu`.
+4. Confirme que abrir o menu nativo não deixa o cursor do painel em estado de
+   carregamento por causa de um segundo popup criado pelo aplicativo.
 
 ## Validação manual do bloqueio do WhatsApp Web
 
