@@ -116,6 +116,11 @@ class TranslationCatalogTests(unittest.TestCase):
         )
         self.assertEqual(catalog.gettext("Close ZapZap"), "关闭 ZapZap")
         self.assertEqual(catalog.gettext("Version {version}"), "版本 {version}")
+        self.assertEqual(catalog.gettext("Download behavior"), "下载行为")
+        self.assertEqual(
+            catalog.gettext("{site} wants to download multiple files."),
+            "{site} 请求下载多个文件。",
+        )
 
     def test_english_and_existing_catalog_fallbacks_remain_available(self):
         english = gettext.translation(
@@ -136,7 +141,7 @@ class TranslationCatalogTests(unittest.TestCase):
 
     def test_zh_cn_catalog_is_complete_and_preserves_placeholders(self):
         entries = parse_po_entries(PO_FILE)
-        self.assertEqual(len(entries), 964)
+        self.assertEqual(len(entries), 1001)
 
         for entry in entries:
             self.assertNotIn("fuzzy", entry["flags"], entry["msgid"])

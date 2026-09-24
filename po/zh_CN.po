@@ -1,18 +1,21 @@
-# Simplified Chinese translations for ZapZap.
-# This file is distributed under the same license as the ZapZap package.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: ZapZap\n"
+"Project-Id-Version:  ZapZap\n"
 "Report-Msgid-Bugs-To: https://github.com/rafatosta/zapzap/issues\n"
-"POT-Creation-Date: 2026-09-25 00:00+0800\n"
+"POT-Creation-Date: 2026-09-22 11:25-0300\n"
 "PO-Revision-Date: 2026-09-25 00:00+0800\n"
 "Last-Translator: ZapZap contributors\n"
 "Language: zh_CN\n"
 "Language-Team: Simplified Chinese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
@@ -4486,3 +4489,124 @@ msgstr "发布于 {date}"
 #, python-brace-format
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr "ZapZap {latest} 已可用。当前版本：{current}。"
+
+msgid "No recent downloads"
+msgstr "没有最近的下载"
+
+msgid "Clear download history"
+msgstr "清除下载历史"
+
+msgid "Open downloads folder"
+msgstr "打开下载文件夹"
+
+msgid "Download behavior"
+msgstr "下载行为"
+
+msgid "Choose what happens when a download starts."
+msgstr "选择下载开始时的行为。"
+
+msgid "Automatically open PDFs and images"
+msgstr "自动打开 PDF 和图片"
+
+msgid ""
+"Open completed PDF and image downloads with the system default "
+"application."
+msgstr "使用系统默认应用打开已完成的 PDF 和图片下载。"
+
+msgid "Show download window"
+msgstr "显示下载窗口"
+
+msgid "Save automatically to selected folder"
+msgstr "自动保存到所选文件夹"
+
+msgid "Ask where to save every time"
+msgstr "每次询问保存位置"
+
+msgid "Multiple downloads"
+msgstr "多个下载"
+
+#, python-brace-format
+msgid "{site} wants to download multiple files."
+msgstr "{site} 请求下载多个文件。"
+
+msgid "Do you want to allow these additional downloads?"
+msgstr "是否允许这些额外下载？"
+
+msgid "Allow once"
+msgstr "允许一次"
+
+msgid "Always allow"
+msgstr "始终允许"
+
+msgid "Block"
+msgstr "阻止"
+
+msgid "Automatic download site permissions"
+msgstr "自动下载站点权限"
+
+msgid ""
+"Clear remembered allow or block decisions for sites that request multiple"
+" downloads."
+msgstr "清除请求多个下载的站点已记住的允许或阻止决定。"
+
+msgid "Pause"
+msgstr "暂停"
+
+msgid "Resume"
+msgstr "继续"
+
+msgid "Queued"
+msgstr "排队中"
+
+msgid "Paused"
+msgstr "已暂停"
+
+msgid "Interrupted"
+msgstr "已中断"
+
+msgid "Cancelled"
+msgstr "已取消"
+
+msgid "Blocked"
+msgstr "已阻止"
+
+msgid "Completed"
+msgstr "已完成"
+
+msgid "This site"
+msgstr "此站点"
+
+msgid "WhatsApp wants to download multiple files."
+msgstr "WhatsApp 请求下载多个文件。"
+
+msgid "WhatsApp multiple-download permission"
+msgstr "WhatsApp 多个下载权限"
+
+msgid ""
+"Clear the remembered allow or block decision for repeated WhatsApp "
+"downloads."
+msgstr "清除重复 WhatsApp 下载已记住的允许或阻止决定。"
+
+msgid "Automatically open PDFs"
+msgstr "自动打开 PDF"
+
+msgid "Open completed PDF downloads with the system default application."
+msgstr "使用系统默认应用打开已完成的 PDF 下载。"
+
+msgid "Automatically open images"
+msgstr "自动打开图片"
+
+msgid "Open completed image downloads with the system default application."
+msgstr "使用系统默认应用打开已完成的图片下载。"
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "All download history"
+msgstr "全部下载历史"
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Show in folder"
+msgstr "在文件夹中显示"
+
+#: zapzap/features/downloads/ui/downloads_menu.py
+msgid "Remove from download history"
+msgstr "从下载历史中移除"
