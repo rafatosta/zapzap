@@ -105,6 +105,7 @@ documente o que ele protege.
 | `test_initial_setup_ui.py` | onboarding, som, fechamento, permissões, dicionários e persistência |
 | `test_memory_benchmark.py` | procfs/USS, schema JSON/CSV/Markdown, isolamento WebEngine, factory stub, cenários e comparação relativa |
 | `test_network_privacy_settings_ui.py` | proxy exclusivamente global, strict proxy, credenciais, aplicar/descartar, feedback de falha do Qt, restauração e WebRTC |
+| `test_native_titlebar_theme.py` | sincronização do esquema claro/escuro com decorações nativas, modo automático e fallback para Qt antigo |
 | `test_notification_sound_setting.py` | mapeamento de som e tipos dos hints Portal/Freedesktop |
 | `test_notification_window_activation.py` | conexão QtDBus, tokens Portal/Wayland, startup X11, foco e limpeza |
 | `test_notifications_settings_ui.py` | rótulos, dependências, privacidade, som e lembrete de apoio |
@@ -157,6 +158,7 @@ documente o que ele protege.
 - `test_initial_setup_ui.py`
 - `test_memory_benchmark.py`
 - `test_network_privacy_settings_ui.py`
+- `test_native_titlebar_theme.py`
 - `test_notification_sound_setting.py`
 - `test_notification_window_activation.py`
 - `test_notifications_settings_ui.py`
@@ -281,6 +283,21 @@ gráfica real.
     inclusive para PDF e imagens, sem gerar miniatura do conteúdo. Para um item
     ainda em fila, aceite fallback genérico apenas
     quando a plataforma não fornecer um ícone específico para a extensão.
+
+## Validação manual da barra de título nativa
+
+Use uma sessão gráfica real, pois o modo `offscreen` não desenha a decoração
+fornecida pelo compositor/plataforma.
+
+1. Com **Usar decoração personalizada** desativado, selecione o tema **Escuro**
+   e confirme que a barra de título nativa acompanha o fundo escuro do ZapZap
+   quando a versão instalada do Qt oferece suporte ao override de esquema de cor.
+2. Selecione **Claro** e confirme o retorno da decoração nativa clara.
+3. Selecione **Automático** e confirme que a decoração volta a seguir o esquema
+   claro/escuro do desktop, sem ficar presa ao último override explícito.
+4. Em uma distribuição com Qt antigo sem `setColorScheme`, confirme que a
+   aplicação continua abrindo normalmente; nesse caso a decoração nativa pode
+   continuar sendo controlada exclusivamente pelo compositor.
 
 ## Validação manual de colagem sem formatação
 

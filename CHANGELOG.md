@@ -19,6 +19,10 @@ releases and the AppStream metadata.
   (Cmd+Shift+V on macOS) now triggers Qt WebEngine's native
   `PasteAndMatchStyle` action, so spreadsheet/HTML clipboard content can be
   inserted as text without changing the existing Ctrl+V rich-paste behavior.
+- Aligned native window decorations with the explicit ZapZap light/dark theme
+  when the installed Qt exposes an application color-scheme override. Auto
+  continues to follow the desktop scheme, and older distribution Qt builds
+  remain compatible.
 - Added shared recent-download menus to the sidebar and right side of the
   menubar, including native platform file-type icons, per-item progress bars
   and percentages, queued/paused/interrupted/cancelled/blocked/completed

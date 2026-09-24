@@ -250,8 +250,57 @@ class ThemeManager(QObject):
     def _apply_color_scheme(self) -> None:
         current_color_scheme = self._get_theme_color_scheme(self._current_theme)
         self._current_color_scheme = current_color_scheme
+        self._apply_native_color_scheme_hint(
+            self._current_theme,
+            current_color_scheme,
+        )
         self._apply_palette_for_color_scheme(current_color_scheme)
         self._emit_theme_changed(self._current_theme, current_color_scheme)
+
+    @classmethod
+    def _apply_native_color_scheme_hint(
+        cls,
+        theme: Type,
+        effective_color_scheme: Qt.ColorScheme,
+    ) -> bool:
+        """Ask Qt to keep native window decorations aligned with ZapZap."""
+        app = cls._get_app_instance()
+        if app is None:
+            return False
+
+        style_hints = app.styleHints()
+
+        if theme == cls.Type.Auto:
+            unset_color_scheme = getattr(
+                style_hints,
+                "unsetColorScheme",
+                None,
+            )
+            if callable(unset_color_scheme):
+                unset_color_scheme()
+                return True
+
+            set_color_scheme = getattr(
+                style_hints,
+                "setColorScheme",
+                None,
+            )
+            if callable(set_color_scheme):
+                set_color_scheme(Qt.ColorScheme.Unknown)
+                return True
+
+            return False
+
+        set_color_scheme = getattr(
+            style_hints,
+            "setColorScheme",
+            None,
+        )
+        if not callable(set_color_scheme):
+            return False
+
+        set_color_scheme(effective_color_scheme)
+        return True
 
     def add_theme_observer(self, callback) -> None:
         """Registers a callback to be called whenever the theme changes."""

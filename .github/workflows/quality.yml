@@ -70,3 +70,6 @@ jobs:
 
       - name: Validate plain-text paste
         run: python -m unittest discover -s tests -p "test_plain_text_paste.py" -v
+
+      - name: Validate native titlebar theme
+        run: python -m unittest discover -s tests -p "test_native_titlebar_theme.py" -v
