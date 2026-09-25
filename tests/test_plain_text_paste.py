@@ -132,12 +132,21 @@ class PlainTextPasteTests(QtTestCase):
             WebView._plain_text_paste_script("A\tB\n1\t2"),
         )
         self.assertTrue(inserted)
+        content_text, rendered_text = self._javascript(
+            page,
+            """(() => {
+                const editor = document.getElementById("editor");
+                return [editor.textContent, editor.innerText];
+            })();""",
+        )
+        # Chromium keeps TABs in the text nodes, while some platforms render
+        # them as spaces. Newlines may be represented by block/BR nodes, so
+        # assert both the underlying text and the rendered line structure.
+        self.assertIn("A\tB", content_text)
+        self.assertIn("1\t2", content_text)
         self.assertEqual(
-            self._javascript(
-                page,
-                'document.getElementById("editor").innerText',
-            ),
-            "startA\tB\n1\t2",
+            rendered_text.replace("\t", " ").splitlines(),
+            ["startA B", "1 2"],
         )
 
     def test_plain_text_paste_uses_only_clipboard_text(self):
