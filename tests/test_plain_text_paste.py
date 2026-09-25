@@ -3,6 +3,8 @@
 import unittest
 from unittest.mock import patch
 
+from qt_test_case import QtTestCase
+from PyQt6.QtCore import QEventLoop, QTimer
 from PyQt6.QtWebEngineCore import QWebEnginePage
 
 from zapzap.features.browser.web.web_view import WebView
@@ -49,7 +51,30 @@ class DestroyedPageHost(PageHost):
         raise RuntimeError("wrapped C/C++ object has been deleted")
 
 
-class PlainTextPasteTests(unittest.TestCase):
+class PlainTextPasteTests(QtTestCase):
+
+    def _wait_for_load(self, page, html):
+        result = []
+        loop = QEventLoop()
+        page.loadFinished.connect(
+            lambda ok: (result.append(bool(ok)), loop.quit())
+        )
+        QTimer.singleShot(5000, loop.quit)
+        page.setHtml(html)
+        loop.exec()
+        self.assertEqual(result, [True])
+
+    def _javascript(self, page, script):
+        result = []
+        loop = QEventLoop()
+        page.runJavaScript(
+            script,
+            lambda value: (result.append(value), loop.quit()),
+        )
+        QTimer.singleShot(5000, loop.quit)
+        loop.exec()
+        self.assertEqual(len(result), 1)
+        return result[0]
 
     def test_script_finds_contenteditable_from_the_selection_not_only_active_element(self):
         script = WebView._plain_text_paste_script("A\tB\n1\t2")
@@ -67,6 +92,53 @@ class PlainTextPasteTests(unittest.TestCase):
         self.assertIn('const text = "A\\tB\\n1\\t2";', script)
         self.assertNotIn("text/html", script)
         self.assertNotIn("image/", script)
+
+    def test_real_webengine_inserts_into_selection_owned_contenteditable(self):
+        page = QWebEnginePage()
+        self.addCleanup(page.deleteLater)
+        self._wait_for_load(
+            page,
+            """
+            <html><body tabindex="-1">
+              <div id="editor" contenteditable="true"><span id="inner">start</span></div>
+              <button id="outside">outside</button>
+            </body></html>
+            """,
+        )
+
+        selection_state = self._javascript(
+            page,
+            """
+            (() => {
+                const text = document.getElementById("inner").firstChild;
+                const range = document.createRange();
+                range.setStart(text, text.length);
+                range.collapse(true);
+                const selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+                document.getElementById("outside").focus();
+                return [
+                    document.activeElement.id,
+                    selection.anchorNode.parentElement.id,
+                ];
+            })();
+            """,
+        )
+        self.assertEqual(selection_state, ["outside", "inner"])
+
+        inserted = self._javascript(
+            page,
+            WebView._plain_text_paste_script("A\tB\n1\t2"),
+        )
+        self.assertTrue(inserted)
+        self.assertEqual(
+            self._javascript(
+                page,
+                'document.getElementById("editor").textContent',
+            ),
+            "startA\tB\n1\t2",
+        )
 
     def test_plain_text_paste_uses_only_clipboard_text(self):
         page = RecordingPage()
