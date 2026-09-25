@@ -4,6 +4,9 @@ from __future__ import annotations
 
 from unittest.mock import patch
 
+from PyQt6.QtCore import QPoint, QPointF, Qt
+from PyQt6.QtGui import QMouseEvent
+
 from qt_test_case import QtTestCase
 from tools.memory.stub_webview import StubWebView
 from zapzap.app.main_window_controller import MainWindowController
@@ -89,3 +92,41 @@ class FloatingAccountButtonTests(QtTestCase):
             window.browser.pages.currentIndex(),
             window.browser.grid_page_index,
         )
+
+    def test_button_can_be_dragged_without_triggering_account_switch(self):
+        window = self._window()
+        window.set_sidebar_visible(False, animated=False)
+        button = window.browser._floating_account_button
+        original_position = button.pos()
+        click_count = []
+        button.clicked.connect(lambda: click_count.append(True))
+
+        press = QMouseEvent(
+            QMouseEvent.Type.MouseButtonPress,
+            QPointF(12, 12),
+            QPointF(button.mapToGlobal(QPoint(12, 12))),
+            Qt.MouseButton.LeftButton,
+            Qt.MouseButton.LeftButton,
+            Qt.KeyboardModifier.NoModifier,
+        )
+        move = QMouseEvent(
+            QMouseEvent.Type.MouseMove,
+            QPointF(32, 28),
+            QPointF(button.mapToGlobal(QPoint(32, 28))),
+            Qt.MouseButton.NoButton,
+            Qt.MouseButton.LeftButton,
+            Qt.KeyboardModifier.NoModifier,
+        )
+        release = QMouseEvent(
+            QMouseEvent.Type.MouseButtonRelease,
+            QPointF(32, 28),
+            QPointF(button.mapToGlobal(QPoint(32, 28))),
+            Qt.MouseButton.LeftButton,
+            Qt.MouseButton.NoButton,
+            Qt.KeyboardModifier.NoModifier,
+        )
+        for event in (press, move, release):
+            self.app.sendEvent(button, event)
+
+        self.assertNotEqual(button.pos(), original_position)
+        self.assertEqual(click_count, [])

@@ -1,7 +1,7 @@
 """Floating compact account button shown when the browser sidebar is hidden."""
 
-from PyQt6.QtCore import QSize, Qt
-from PyQt6.QtGui import QColor, QIcon
+from PyQt6.QtCore import QEvent, QPoint, QSize, Qt
+from PyQt6.QtGui import QColor, QGuiApplication, QIcon
 from PyQt6.QtWidgets import QGraphicsDropShadowEffect, QToolButton
 
 from zapzap.assets.icons.user_icon import UserIcon
@@ -45,6 +45,11 @@ class FloatingAccountButton(QToolButton):
         self.setIconSize(QSize(self.ICON_SIZE, self.ICON_SIZE))
         self.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonIconOnly)
         self.setStyleSheet(self.STYLE)
+        self._drag_start = None
+        self._dragging = False
+        self._position_initialized = False
+        if parent is not None:
+            parent.installEventFilter(self)
 
         shadow = QGraphicsDropShadowEffect(self)
         shadow.setBlurRadius(16)
@@ -53,6 +58,50 @@ class FloatingAccountButton(QToolButton):
         self.setGraphicsEffect(shadow)
 
         self.hide()
+
+    def eventFilter(self, watched, event):
+        if watched is self.parentWidget() and event.type() == QEvent.Type.Resize:
+            self._clamp_position()
+        return super().eventFilter(watched, event)
+
+    def mousePressEvent(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self._drag_start = event.position().toPoint()
+            self._dragging = False
+        super().mousePressEvent(event)
+
+    def mouseMoveEvent(self, event):
+        distance = 0
+        if self._drag_start is not None:
+            distance = (
+                event.position().toPoint() - self._drag_start
+            ).manhattanLength()
+        if (
+            self._drag_start is not None
+            and event.buttons() & Qt.MouseButton.LeftButton
+            and distance >= QGuiApplication.styleHints().startDragDistance()
+        ):
+            self._dragging = True
+            self.setCursor(Qt.CursorShape.ClosedHandCursor)
+            self.move(self._clamped_position(
+                self.pos() + event.position().toPoint() - self._drag_start
+            ))
+            self._position_initialized = True
+            self.setDown(False)
+            event.accept()
+            return
+        super().mouseMoveEvent(event)
+
+    def mouseReleaseEvent(self, event):
+        dragging = self._dragging
+        self._drag_start = None
+        self._dragging = False
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
+        if dragging:
+            self.setDown(False)
+            event.accept()
+            return
+        super().mouseReleaseEvent(event)
 
     def set_account(self, user):
         """Reflect the given account's identity, or clear when none is active."""
@@ -67,6 +116,21 @@ class FloatingAccountButton(QToolButton):
         self.setAccessibleName(name)
 
     def reposition(self):
-        """Anchor the button to the top-left corner of its parent widget."""
-        self.move(self.MARGIN, self.MARGIN)
+        """Keep the button's position valid after its parent is resized."""
+        if not self._position_initialized:
+            self.move(self.MARGIN, self.MARGIN)
+            self._position_initialized = True
+        self._clamp_position()
         self.raise_()
+
+    def _clamped_position(self, position):
+        parent = self.parentWidget()
+        if parent is None:
+            return position
+        return QPoint(
+            max(0, min(position.x(), parent.width() - self.width())),
+            max(0, min(position.y(), parent.height() - self.height())),
+        )
+
+    def _clamp_position(self):
+        self.move(self._clamped_position(self.pos()))

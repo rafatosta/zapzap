@@ -19,7 +19,8 @@ releases and the AppStream metadata.
   browser content area, shown only while the sidebar is hidden. It mirrors the
   active account's avatar, stays anchored on window resize, and opens the
   existing account grid switcher on click, without duplicating any account
-  management logic.
+  management logic. The button can also be moved by clicking and holding the
+  left mouse button; ordinary clicks continue to open the account switcher.
 - Added shared recent-download menus to the sidebar and right side of the
   menubar, including native platform file-type icons, per-item progress bars
   and percentages, queued/paused/interrupted/cancelled/blocked/completed

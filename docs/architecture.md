@@ -164,7 +164,9 @@ seu lugar um `FloatingAccountButton` sobreposto ao canto superior esquerdo de
 `BrowserPages`, mostrando apenas o avatar da conta atualmente visível (ou a
 última ativa, na grade ou nas doações). O clique reaproveita `show_grid_view()`
 sem abrir um segundo mecanismo de troca de contas; a âncora fixa no canto
-dispensa reposicionamento a cada redimensionamento da janela.
+dispensa reposicionamento a cada redimensionamento da janela. O botão pode ser
+reposicionado por arrasto com o botão esquerdo, limitado à área de conteúdo;
+um clique sem movimento mantém o acesso à grade de contas.
 O botão não possui tooltip nativo, pois ele competiria visualmente com o
 popover; nome e descrição acessíveis continuam informando a atualização.
 O clique de contexto abre um popover compacto com identidade, estado, edição,
