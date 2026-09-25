@@ -143,6 +143,9 @@ releases and the AppStream metadata.
 
 ### Changed
 
+- Increased the WebEngine integration-test timeout for plain-text paste so
+  slower macOS CI startup does not produce a false failure while preserving
+  the same real QWebEnginePage behavior check.
 - Completed the Turkish interface catalog for currently active UI strings,
   replacing missing and fuzzy entries across reporting, dictionaries,
   donations, update UI, network/rendering settings and related dialogs.

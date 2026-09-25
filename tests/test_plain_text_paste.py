@@ -56,6 +56,8 @@ class DestroyedPageHost(PageHost):
 
 class PlainTextPasteTests(QtTestCase):
 
+    WEBENGINE_TIMEOUT_MS = 15000
+
     def _wait_for_load(self, page, html):
         result = []
         loop = QEventLoop()
@@ -65,7 +67,11 @@ class PlainTextPasteTests(QtTestCase):
         QTimer.singleShot(WEBENGINE_TIMEOUT_MS, loop.quit)
         page.setHtml(html)
         loop.exec()
-        self.assertEqual(result, [True])
+        self.assertEqual(
+            result,
+            [True],
+            "QWebEnginePage did not finish loading before the test timeout",
+        )
 
     def _javascript(self, page, script):
         result = []
