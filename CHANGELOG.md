@@ -97,6 +97,9 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Preserved mixed text/image clipboard formats when ZapZap gains focus so spreadsheet copies retain their text representation for Ctrl+Shift+V, and added a real Qt child-widget shortcut as a fallback to the WebEngine event path.
+- Used the existing client-side frame automatically for dark-themed Linux main windows so the title bar follows the application palette instead of remaining bright.
+- Reduced the compact downloads popover by 20 percent horizontally and about 30 percent vertically while keeping the full downloads window unchanged.
 - Avoided accessing the optional Qt NativeGesture event enum when it is not
   exposed by older distribution PyQt6 builds, preventing startup failures on
   those systems while keeping gesture handling enabled where supported.

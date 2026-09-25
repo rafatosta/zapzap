@@ -10,7 +10,7 @@ from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings, QWebEnginePage, QWebEngineScript
 from PyQt6.QtCore import QUrl, pyqtSignal, QTimer, QEvent, Qt, QFile, QTextStream, QObject, pyqtSlot
 from PyQt6.QtWidgets import QApplication, QWidget
-from PyQt6.QtGui import QAction
+from PyQt6.QtGui import QAction, QKeySequence, QShortcut
 
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.browser.web.page_controller import PageController
@@ -97,6 +97,7 @@ class WebView(QWebEngineView):
         self._render_crash_reload_timer.timeout.connect(self.load_page)
 
         self._signals_configured = False
+        self._plain_text_paste_shortcut = None
 
         if user.enable:
             self._initialize()
@@ -114,6 +115,7 @@ class WebView(QWebEngineView):
         self._configure_profile()
 
         self._setup_page()
+        self._install_plain_text_paste_shortcut()
 
         # Install one application-level filter for events delivered directly
         # to the internal WebEngine render widget. It handles native pinch
@@ -477,6 +479,16 @@ class WebView(QWebEngineView):
                     event.gestureType() == Qt.NativeGestureType.ZoomNativeGesture):
                 return True  # Consume the event without zooming
         return super().event(event)
+
+    def _install_plain_text_paste_shortcut(self):
+        """Register plain-text paste in WebEngine child widgets."""
+        if self._plain_text_paste_shortcut is not None:
+            return
+        sequence = "Meta+Shift+V" if sys.platform == "darwin" else "Ctrl+Shift+V"
+        shortcut = QShortcut(QKeySequence(sequence), self)
+        shortcut.setContext(Qt.ShortcutContext.WidgetWithChildrenShortcut)
+        shortcut.activated.connect(self._paste_as_plain_text)
+        self._plain_text_paste_shortcut = shortcut
 
     @staticmethod
     def _plain_text_paste_modifiers():

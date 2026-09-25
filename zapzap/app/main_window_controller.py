@@ -160,8 +160,14 @@ class MainWindowController(MainWindowView):
 
     def _on_paste(self):
         clipboard = QApplication.clipboard()
-        image = clipboard.image()
+        mime_data = clipboard.mimeData()
 
+        # Spreadsheet/rich-text clipboards may expose an image preview too.
+        # Keep their text representation intact for Ctrl+Shift+V.
+        if mime_data is not None and mime_data.hasText():
+            return
+
+        image = clipboard.image()
         if image.isNull():
             return
 
