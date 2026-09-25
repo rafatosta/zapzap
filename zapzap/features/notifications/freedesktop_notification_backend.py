@@ -473,6 +473,7 @@ class FreedesktopNotificationBackend:
         notify.set_category("im.received")
         notify.set_suppress_sound(
             not SettingsManager.get("notification/sound", True)
+            or SettingsManager.get("system/audio_muted", False)
         )
         notify.setIconPath(icon_path)  # 👈 ESSENCIAL
 
