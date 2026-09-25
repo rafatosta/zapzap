@@ -1313,7 +1313,12 @@ msgstr "Uygulamayı kilitle"
 
 #: zapzap/features/shortcuts/model.py:29
 msgid "Mute"
-msgstr "Sustur"
+msgstr "Sessize al"
+
+#: zapzap/app/main_window_controller.py
+#: zapzap/features/tray/sys_tray_manager.py
+msgid "Unmute"
+msgstr "Sesliye al"
 
 #: zapzap/features/shortcuts/model.py:30
 msgid "Search"
