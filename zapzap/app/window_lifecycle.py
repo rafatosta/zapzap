@@ -194,6 +194,9 @@ class ClientSideWindowHost(ClientSideWindow):
     def open_settings(self):
         self.inner_window.open_settings()
 
+    def toggle_audio_muted(self):
+        return self.inner_window.toggle_audio_muted()
+
     def open_donations(self):
         return self.inner_window.open_donations()
 
