@@ -130,6 +130,9 @@ class BrowserAccountLifecycleTest(QtTestCase):
         close_pages = BrowserController.close_pages
         activate_account = BrowserController.activate_account
         switch_to_page = BrowserController.switch_to_page
+        _refresh_floating_account_button = (
+            BrowserController._refresh_floating_account_button
+        )
         update_account_notifications = (
             BrowserController.update_account_notifications
         )
@@ -148,8 +151,6 @@ class BrowserAccountLifecycleTest(QtTestCase):
         self.controller._webview_factory = self.factory
         self.controller._shutting_down = False
         self.controller._last_active_webview = None
-        self.controller._grid_thumbnails = Mock()
-        self.controller._capture_grid_thumbnail = Mock()
         self.controller._reset_button_styles = Mock()
         self.controller.pages = FakeStack()
         self.controller.page_buttons_layout = Mock()

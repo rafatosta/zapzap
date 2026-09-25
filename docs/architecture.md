@@ -121,11 +121,10 @@ entrada possui o `User`, o botão lateral, a posição de apresentação, um est
 de ciclo de vida e uma referência opcional para a `WebView`. Uma conta
 desativada é registrada sem construir `QWebEngineView` ou perfil; todas as
 contas habilitadas, inclusive as que não estão selecionadas, são iniciadas
-automaticamente. Ele também possui o cache efêmero da grade, com no máximo uma
-miniatura de 480 × 300 pixels físicos por conta, indexada pelo ID estável e
-limpa ao desativar, excluir, recarregar ou encerrar páginas. Capturas integrais
-não ficam retidas nas `WebView`s. Cada conta usa um perfil WebEngine próprio. O
-fluxo básico é:
+automaticamente. A grade de contas é uma composição nativa de cartões PyQt6,
+alimentada pelos mesmos `User`, `BrowserPageButton` e contadores de notificações
+da sidebar; ela não captura nem renderiza `WebView`s. Cada conta usa um perfil
+WebEngine próprio. O fluxo básico é:
 
 ```text
 User (SQLite) -> registro desativado (botão, page=None)
@@ -158,6 +157,15 @@ saída do conjunto botão/popover fecham o painel. A transição do ponteiro pos
 um pequeno atraso para não fechar o painel entre os dois elementos. O mesmo
 `UpdateState` alimenta a página Sobre, inclusive quando a sidebar está oculta,
 sem duplicar consulta ou comparação.
+
+Quando `system/sidebar` oculta a `BrowserSidebar`, `BrowserController` exibe em
+seu lugar um `FloatingAccountButton` sobreposto ao canto superior esquerdo de
+`BrowserPages`, mostrando apenas o avatar da conta atualmente visível (ou a
+última ativa, na grade ou nas doações). O clique reaproveita `show_grid_view()`
+sem abrir um segundo mecanismo de troca de contas; a âncora fixa no canto
+dispensa reposicionamento a cada redimensionamento da janela. O botão pode ser
+reposicionado por arrasto com o botão esquerdo, limitado à área de conteúdo;
+um clique sem movimento mantém o acesso à grade de contas.
 O botão não possui tooltip nativo, pois ele competiria visualmente com o
 popover; nome e descrição acessíveis continuam informando a atualização.
 O clique de contexto abre um popover compacto com identidade, estado, edição,

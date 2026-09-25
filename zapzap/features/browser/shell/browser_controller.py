@@ -24,7 +24,6 @@ from zapzap.core.config.settings.system import SystemSettings
 from zapzap.core.environment.setup_manager import SetupManager
 from zapzap.features.tray.sys_tray_manager import SysTrayManager
 from zapzap.features.browser.shell.browser_view import BrowserView
-from zapzap.features.browser.shell.grid_thumbnail_cache import GridThumbnailCache
 from zapzap.features.browser.web.native_shortcuts import (
     request_whatsapp_app_lock,
 )
@@ -32,6 +31,7 @@ from zapzap.features.donation.page import DonationsPageController
 from zapzap.ui.components import BrowserGridView
 from zapzap.ui.components import BrowserPageButton
 from zapzap.ui.components import BrowserSidebarButton
+from zapzap.ui.components import FloatingAccountButton
 from zapzap.ui.components import UpdateAvailablePopover
 
 
@@ -95,7 +95,6 @@ class BrowserController(BrowserView):
         self._page_before_donations = None
         self._account_context_menu = None
         self._shutting_down = False
-        self._grid_thumbnails = GridThumbnailCache()
         self._update_info = None
         self._update_popover = UpdateAvailablePopover(self)
         self._update_popover_close_timer = QTimer(self)
@@ -104,6 +103,8 @@ class BrowserController(BrowserView):
         self._update_popover_close_timer.timeout.connect(
             self._update_popover.close
         )
+        self._floating_account_button = FloatingAccountButton(self.pages)
+        self._floating_account_button.clicked.connect(self.show_grid_view)
         app = QApplication.instance()
         if app is not None:
             app.installEventFilter(self)
@@ -163,8 +164,6 @@ class BrowserController(BrowserView):
     def _setup_grid_view(self):
         """Create the styled account overview page and sidebar entry point."""
         self.grid_view = BrowserGridView(self)
-        self.grid_scroll = self.grid_view.scroll
-        self.grid_layout = self.grid_view.grid_layout
 
         self.pages.addWidget(self.grid_view)
         self.grid_page_index = self.pages.indexOf(self.grid_view)
@@ -483,8 +482,6 @@ class BrowserController(BrowserView):
             return
         runtime.user = user
         runtime.button.user = user
-        self._grid_thumbnails.invalidate(user.id)
-
         was_current = self.pages.currentWidget() is runtime.page
         if user.enable:
             runtime.button.show()
@@ -504,7 +501,6 @@ class BrowserController(BrowserView):
         runtime = self._accounts.get(user.id)
         if runtime is None:
             return
-        self._grid_thumbnails.invalidate(user.id)
         was_current = self.pages.currentWidget() is runtime.page
         page = self._destroy_webview(runtime, remove_files=True)
         if page is None:
@@ -531,6 +527,7 @@ class BrowserController(BrowserView):
                 runtime.page.user = user
 
         self._update_user_menu()
+        self._refresh_floating_account_button()
 
     def _update_user_menu(self):
         """Constroi o menu de usuários na barra de menu da janela principal."""
@@ -604,6 +601,15 @@ class BrowserController(BrowserView):
                 return runtime
         return None
 
+    def _refresh_floating_account_button(self):
+        """Keep the floating account button in sync with the visible account."""
+        button = getattr(self, "_floating_account_button", None)
+        if button is None:
+            return
+        runtime = self._runtime_for_page(self.current_webview())
+        button.set_account(runtime.user if runtime else None)
+        button.reposition()
+
     # === Ações do Navegador ===
     def activate_account(self, user_id):
         """Activate an account through its stable persisted identifier."""
@@ -624,13 +630,6 @@ class BrowserController(BrowserView):
             return False
         button = button or runtime.button
         old_page = self.pages.currentWidget()
-        if old_page is not page and self._runtime_for_page(old_page):
-            self._capture_grid_thumbnail(old_page)
-        elif old_page is self.grid_view:
-            # Grid labels share the cached native buffers. Release those
-            # references before a future capture replaces any cache entry.
-            self.grid_view.clear_thumbnails()
-
         self._reset_button_styles()
         self.pages.setCurrentWidget(page)
         self._last_active_webview = page
@@ -638,6 +637,7 @@ class BrowserController(BrowserView):
         page.page().show_toast(page.user.name if page.user.name !=
                                "" else _("Account {}").format(page.page_index))
         button.selected()
+        self._refresh_floating_account_button()
         return True
 
     def _handle_account_button_click(self, user_id):
@@ -694,8 +694,7 @@ class BrowserController(BrowserView):
 
     def close_pages(self):
         """Fecha e limpa todas as páginas existentes."""
-        self._grid_thumbnails.clear()
-        self.grid_view.clear_thumbnails()
+        self.grid_view.clear_cards()
         for runtime in list(self._accounts.values()):
             self._destroy_webview(runtime)
             runtime.button.close()
@@ -707,10 +706,8 @@ class BrowserController(BrowserView):
 
     def reload_pages(self):
         """Recarrega todas as páginas existentes."""
-        self.grid_view.clear_thumbnails()
         for runtime in self._active_runtimes():
             page = runtime.page
-            self._grid_thumbnails.invalidate(page.user.id)
             page.load_page()
 
     def close_conversations(self):
@@ -747,129 +744,32 @@ class BrowserController(BrowserView):
             return False
         return request_whatsapp_app_lock(self.current_webview())
 
-    def _capture_grid_thumbnail(self, page):
-        """Capture a live visible page and retain only its bounded thumbnail."""
-        if self._shutting_down or getattr(page, "_shutting_down", False):
-            return None
-        if not page.user.enable:
-            self._grid_thumbnails.invalidate(page.user.id)
-            return None
-
-        try:
-            if not page.isVisible():
-                return None
-            return self._grid_thumbnails.store(page.user.id, page.grab())
-        except RuntimeError:
-            # The underlying C++ widget may already have been destroyed.
-            self._grid_thumbnails.invalidate(page.user.id)
-            return None
-
-    def _grid_thumbnail(self, page):
-        thumbnail = self._grid_thumbnails.get(page.user.id)
-        if thumbnail is None or thumbnail.isNull():
-            thumbnail = self._capture_grid_thumbnail(page)
-        return thumbnail
-
     def show_grid_view(self):
-        """Generates thumbnails and displays the grid view."""
-        from zapzap.ui.primitives import Label
-
-        class ClickableLabel(Label):
-            def __init__(self, user_id, switch_cb, parent=None):
-                super().__init__(parent=parent)
-                self.user_id = user_id
-                self.switch_cb = switch_cb
-                self.setCursor(Qt.CursorShape.PointingHandCursor)
-
-            def mousePressEvent(self, event):
-                if event.button() == Qt.MouseButton.LeftButton:
-                    self.switch_cb(self.user_id)
-
-        current_page = self.pages.currentWidget()
-        if current_page and self._runtime_for_page(current_page):
-            self._grid_thumbnail(current_page)
-
-        self.grid_view.clear_thumbnails()
-        self.grid_view.set_empty_state_visible(False)
-
+        """Display native account cards without rendering any WebView."""
         cols = max(1, self._appearance_settings.grid_columns)
-        row, col = 0, 0
-
-        # Count active accounts first to calculate layout
-        active_pages = [runtime.page for runtime in self._active_runtimes()]
-
-        num_accounts = len(active_pages)
-        if num_accounts == 0:
-            self.grid_view.set_empty_state_visible(True)
-            self._reset_button_styles()
-            self.pages.setCurrentIndex(self.grid_page_index)
-            return
-
-        # Calculate grid geometry
-        viewport_width = self.grid_scroll.viewport().width()
-        viewport_height = self.grid_scroll.viewport().height()
-
-        # Calculate optimal rows/cols
-        # If user wants e.g. 3 cols but has 2 accounts, we still use 3 cols logic for consistency
-        # but for sizing we want to fill the screen
-        effective_rows = (num_accounts + cols - 1) // cols
-
-        content_margin = 56
-        grid_padding = 32
-        grid_spacing = 16
-        available_width = viewport_width - content_margin - grid_padding
-        available_height = viewport_height - content_margin - grid_padding - 64
-        target_width = (available_width - (grid_spacing * (cols - 1))) // cols
-        target_height = (
-            available_height - (grid_spacing * max(0, effective_rows - 1))
-        ) // max(1, effective_rows)
-
-        # Ensure thumbnails stay readable and balanced with the new card layout.
-        target_width = max(220, target_width)
-        target_height = max(170, min(360, target_height))
-
-        for page_widget in active_pages:
-            pixmap = self._grid_thumbnail(page_widget)
-
-            # Image Label
-            img_label = ClickableLabel(
-                page_widget.user.id,
-                self._switch_from_grid,
-            )
-            img_label.setObjectName("BrowserGridThumbnail")
-            if pixmap is not None:
-                img_label.setPixmap(pixmap)
-            img_label.setScaledContents(True)
-            img_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            img_label.setFixedSize(target_width, target_height)
-
-            self.grid_layout.addWidget(img_label, row, col)
-
-            col += 1
-            if col >= cols:
-                col = 0
-                row += 1
+        self.grid_view.render_accounts(
+            list(self._accounts.values()),
+            self._handle_account_button_click,
+            cols,
+        )
 
         self._reset_button_styles()
         self.pages.setCurrentIndex(self.grid_page_index)
+        self._refresh_floating_account_button()
 
     def show_donations(self):
         """Select the native donations route without navigating any WebView."""
         old_page = self.pages.currentWidget()
         if old_page is not self.donations_page:
             self._page_before_donations = old_page
-        if (
-            old_page is not self.donations_page
-            and self._runtime_for_page(old_page)
-        ):
-            self._capture_grid_thumbnail(old_page)
-        elif old_page is self.grid_view:
-            self.grid_view.clear_thumbnails()
+        if old_page is self.grid_view:
+            self.grid_view.clear_cards()
 
         self._reset_button_styles()
         self.pages.setCurrentWidget(self.donations_page)
         self.btn_donations.setChecked(True)
         self.donations_page.setFocus(Qt.FocusReason.OtherFocusReason)
+        self._refresh_floating_account_button()
         return self.donations_page
 
     def close_donations(self):
@@ -893,9 +793,6 @@ class BrowserController(BrowserView):
 
         self.show_grid_view()
         return self.grid_view
-
-    def _switch_from_grid(self, user_id):
-        self.activate_account(user_id)
 
     def update_spellcheck(self):
         for runtime in self._active_runtimes():
@@ -979,6 +876,7 @@ class BrowserController(BrowserView):
         )
 
     def set_sidebar_visible(self, visible: bool, animated: bool = True):
+        self._floating_account_button.setVisible(not visible)
         if not visible:
             self._update_popover.close()
         if self._sidebar_animation_group:

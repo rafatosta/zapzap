@@ -64,12 +64,13 @@ Nos testes visuais, importe controles básicos de `zapzap.ui.primitives` e
 composições de `zapzap.ui.components`. Imports por caminhos internos de uma
 feature não devem ser usados para alcançar widgets compartilhados.
 
-O workflow `quality.yml` executa `test_download_settings.py`, `test_taskbar_badge.py`
-e `test_plain_text_paste.py` também em Ubuntu, Windows e macOS. Essa matriz
-protege os contratos portáveis do gerenciador de downloads, das ativações da
-bandeja e do atalho nativo de colagem sem formatação; a aparência exata dos
-ícones nativos, o comportamento imposto pelo shell e a integração real com o
-clipboard ainda exigem validação gráfica em cada sistema.
+O workflow `quality.yml` executa `test_download_settings.py`,
+`test_taskbar_badge.py` e `test_plain_text_paste.py` também em Ubuntu,
+Windows e macOS. Essa matriz protege os contratos portáveis do gerenciador de
+downloads, das ativações da bandeja e do atalho nativo de colagem sem
+formatação; a aparência exata dos ícones nativos, o comportamento imposto pelo
+shell e a integração real com o clipboard ainda exigem validação gráfica em
+cada sistema.
 
 ## Cobertura por módulo
 
@@ -98,13 +99,14 @@ documente o que ele protege.
 | `test_documentation_structure.py` | camadas de UI, ciclo numérico versionado do changelog e sincronização entre árvore, inventários técnicos, convenção de commits e guia para agentes |
 | `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
 | `test_external_link_lifecycle.py` | classificação interna/externa de pop-ups, profile compartilhado, entrega única ao navegador e cleanup no fechamento/shutdown |
+| `test_floating_account_button.py` | botão flutuante visível apenas com a sidebar oculta, avatar sincronizado com a conta ativa e clique reaproveitando a grade existente de troca de contas |
 | `test_freedesktop_notification_backend.py` | avisos nas saídas antecipadas da inicialização D-Bus, falhas de `Notify`/`CloseNotification`, aviso único na transição para indisponível e fachada sem backend |
-| `test_global_mute.py` | estado persistente de mute global, sincronização dos dois botões, fan-out para todas as contas e roteamento do atalho de colagem para a conta ativa |
+| `test_global_mute.py` | estado persistente de mute global, sincronização dos controles, fan-out para todas as contas e roteamento do atalho de colagem para a conta ativa |
 | `test_gpu_environment.py` | detecção multi-GPU, conectores e seleção de render node |
-| `test_grid_thumbnail_cache.py` | limite físico/DPR, reutilização, fallback, seleção e ciclo de vida das miniaturas da grade |
+| `test_browser_grid_view_ui.py` | cartões nativos da grade, avatar/nome, badge de não lidas, atualização por sinal e seleção por ID |
 | `test_http_cache_size.py` | cache em MiB, tipos de cache, política de cookies, memória JavaScript, autocura persistida e fallbacks de perfil sem WebEngine real |
 | `test_initial_setup_ui.py` | onboarding, som, fechamento, permissões, dicionários e persistência |
-| `test_main_window_shortcuts.py` | kısayol atamaları ve ana pencere menü eylemlerinin keşfedilebilirliği |
+| `test_main_window_shortcuts.py` | atalhos da janela principal, ações de menu correspondentes e descoberta do Ctrl+J |
 | `test_memory_benchmark.py` | procfs/USS, schema JSON/CSV/Markdown, isolamento WebEngine, factory stub, cenários e comparação relativa |
 | `test_native_titlebar_theme.py` | sincronização do esquema claro/escuro com decorações nativas, modo automático e fallback para Qt antigo |
 | `test_network_privacy_settings_ui.py` | proxy exclusivamente global, strict proxy, credenciais, aplicar/descartar, feedback de falha do Qt, restauração e WebRTC |
@@ -126,7 +128,7 @@ documente o que ele protege.
 | `test_software_video_decoding.py` | presets, flags Chromium de renderização/strict proxy, persistência e ordem do bootstrap |
 | `test_spellcheck_language_picker.py` | migração, seleção múltipla transacional, pesquisa, limite, recentes, menu e perfis WebEngine |
 | `test_taskbar_badge.py` | contador nativo, zero, preferência, bandeja oculta, ativação primária/contexto por backend, integração StatusNotifier/AppIndicator e compatibilidade com Qt anterior |
-| `test_turkish_translation.py` | Türkçe arayüz kataloğunda boş veya fuzzy etkin çeviri bırakılmaması |
+| `test_turkish_translation.py` | catálogo turco sem traduções ativas vazias ou marcadas como fuzzy |
 | `test_system_startup_settings_ui.py` | semântica de fechamento, diálogo nativo, seleção do backend gráfico, reinício e acessibilidade |
 | `test_unix_signal_shutdown.py` | ponte POSIX, restauração do estado global e `SIGTERM` real chegando a `aboutToQuit` em subprocesso isolado |
 | `test_update_checker.py` | versões, política de builds, respostas/falhas assíncronas, metadados seguros e popover acessível compartilhado entre sidebar e Sobre |
@@ -141,6 +143,7 @@ documente o que ele protege.
 - `test_appearance_settings_ui.py`
 - `test_appimage_packaging.py`
 - `test_browser_account_lifecycle.py`
+- `test_browser_grid_view_ui.py`
 - `test_browser_page_button_ui.py`
 - `test_check_box.py`
 - `test_component_typography.py`
@@ -154,10 +157,10 @@ documente o que ele protege.
 - `test_donations_page.py`
 - `test_download_settings.py`
 - `test_external_link_lifecycle.py`
+- `test_floating_account_button.py`
 - `test_freedesktop_notification_backend.py`
 - `test_global_mute.py`
 - `test_gpu_environment.py`
-- `test_grid_thumbnail_cache.py`
 - `test_http_cache_size.py`
 - `test_initial_setup_ui.py`
 - `test_main_window_shortcuts.py`

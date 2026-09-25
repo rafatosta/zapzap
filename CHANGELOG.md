@@ -33,6 +33,16 @@ releases and the AppStream metadata.
   when the installed Qt exposes an application color-scheme override. Auto
   continues to follow the desktop scheme, and older distribution Qt builds
   remain compatible.
+- Added a native PyQt6 account overview with lightweight cards that reuse each
+  account's persisted avatar and name plus the existing unread counter. The
+  overview no longer captures, caches or renders WebView thumbnails and keeps
+  account activation on the existing stable-ID path.
+- Added a compact floating account button in the top-left corner of the
+  browser content area, shown only while the sidebar is hidden. It mirrors the
+  active account's avatar, stays anchored on window resize, and opens the
+  existing account grid switcher on click, without duplicating any account
+  management logic. The button can also be moved by clicking and holding the
+  left mouse button; ordinary clicks continue to open the account switcher.
 - Added shared recent-download menus to the sidebar and right side of the
   menubar, including native platform file-type icons, per-item progress bars
   and percentages, queued/paused/interrupted/cancelled/blocked/completed
@@ -110,7 +120,8 @@ releases and the AppStream metadata.
   explicit dark/light themes use Qt's native color-scheme hint, Auto releases
   the override back to the system, and ZapZap no longer forces its client-side
   frame merely to mimic a dark server-side decoration.
-- Reduced the compact downloads popover by 20 percent horizontally and about 30 percent vertically while keeping the full downloads window unchanged.
+- Reduced the compact downloads popover by 20 percent horizontally and about
+  30 percent vertically while keeping the full downloads window unchanged.
 - Avoided accessing the optional Qt NativeGesture event enum when it is not
   exposed by older distribution PyQt6 builds, preventing startup failures on
   those systems while keeping gesture handling enabled where supported.
