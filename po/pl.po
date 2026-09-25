@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-25 11:47-0300\n"
+"POT-Creation-Date: 2026-09-25 12:33-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Polish\n"
@@ -109,44 +109,75 @@ msgstr "Proxy tylko dla żądań HTTP."
 msgid "Proxying for FTP requests only."
 msgstr "Proxy tylko dla żądań FTP."
 
-#: zapzap/features/accounts/card_user_controller.py:58
-#: zapzap/features/accounts/card_user_controller.py:235
-#: zapzap/features/accounts/card_user_controller.py:247
+#: zapzap/features/accounts/card_user_controller.py:60
+#: zapzap/features/accounts/card_user_controller.py:297
+#: zapzap/features/accounts/card_user_controller.py:309
 msgid "Could not update account"
 msgstr "Nie udało się zaktualizować konta"
 
-#: zapzap/features/accounts/card_user_controller.py:59
-#: zapzap/features/accounts/card_user_controller.py:248
+#: zapzap/features/accounts/card_user_controller.py:61
+#: zapzap/features/accounts/card_user_controller.py:310
 msgid "The account state could not be changed."
 msgstr "Nie udało się zmienić stanu konta."
 
-#: zapzap/features/accounts/card_user_controller.py:78
-#: zapzap/features/accounts/card_user_controller.py:197
+#: zapzap/features/accounts/card_user_controller.py:80
+#: zapzap/features/accounts/card_user_controller.py:256
 msgid "Could not remove account"
 msgstr "Nie można usunąć konta"
 
-#: zapzap/features/accounts/card_user_controller.py:79
-#: zapzap/features/accounts/card_user_controller.py:198
+#: zapzap/features/accounts/card_user_controller.py:81
+#: zapzap/features/accounts/card_user_controller.py:257
 msgid "The account could not be removed. Please try again."
 msgstr "Nie udało się usunąć konta. Spróbuj ponownie."
 
-#: zapzap/features/accounts/card_user_controller.py:161
+#: zapzap/features/accounts/card_user_controller.py:112
+#: zapzap/features/accounts/card_user_controller.py:121
+#: zapzap/features/accounts/card_user_controller.py:128
+#: zapzap/ui/components/edit_account_dialog.py:683
+#: zapzap/ui/components/edit_account_dialog.py:698
+#, fuzzy
+msgid "Could not sync profile photo"
+msgstr "Nie można było zapisać pliku."
+
+#: zapzap/features/accounts/card_user_controller.py:113
+#: zapzap/ui/components/edit_account_dialog.py:684
+#, fuzzy
+msgid "This account does not have an active WhatsApp session."
+msgstr "Ten styl użytkownika nie dotyczy WhatsApp Web."
+
+#: zapzap/features/accounts/card_user_controller.py:129
+#: zapzap/features/accounts/domain/profile_sync.py:70
+#, fuzzy
+msgid "No profile photo is available."
+msgstr "Brak podglądu."
+
+#: zapzap/features/accounts/card_user_controller.py:135
+#: zapzap/ui/components/edit_account_dialog.py:705
+msgid "WhatsApp profile photo found"
+msgstr ""
+
+#: zapzap/features/accounts/card_user_controller.py:136
+#: zapzap/ui/components/edit_account_dialog.py:706
+msgid "Update this account photo?"
+msgstr ""
+
+#: zapzap/features/accounts/card_user_controller.py:220
 msgid "Remove account?"
 msgstr "Usunąć konto?"
 
-#: zapzap/features/accounts/card_user_controller.py:163
+#: zapzap/features/accounts/card_user_controller.py:222
 #, python-brace-format
 msgid "The account \"{name}\" will be removed from ZapZap."
 msgstr "Konto „{name}” zostanie usunięte z ZapZap."
 
-#: zapzap/features/accounts/card_user_controller.py:164
+#: zapzap/features/accounts/card_user_controller.py:223
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:191
 #: zapzap/ui/components/card_user.py:234 zapzap/ui/components/card_user.py:299
-#: zapzap/ui/components/card_user.py:469 zapzap/ui/components/card_user.py:684
+#: zapzap/ui/components/card_user.py:470 zapzap/ui/components/card_user.py:697
 msgid "Unnamed account"
 msgstr "Nieokreślone konto"
 
-#: zapzap/features/accounts/card_user_controller.py:166
+#: zapzap/features/accounts/card_user_controller.py:225
 msgid ""
 "Its session will be closed and related local data may be permanently "
 "removed. This action cannot be undone."
@@ -154,13 +185,13 @@ msgstr ""
 "Jego sesja zostanie zamknięta, a powiązane dane lokalne mogą zostać trwale "
 "usunięte. Tej czynności nie można cofnąć."
 
-#: zapzap/features/accounts/card_user_controller.py:173
+#: zapzap/features/accounts/card_user_controller.py:232
 #: zapzap/ui/components/card_user.py:153
 #: zapzap/ui/components/dictionary_manager_dialog.py:191
 msgid "Remove"
 msgstr "Usuń"
 
-#: zapzap/features/accounts/card_user_controller.py:179
+#: zapzap/features/accounts/card_user_controller.py:238
 #: zapzap/features/reporting/dialogs.py:213
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:642
 #: zapzap/features/settings/pages/network_privacy/controller.py:282
@@ -174,18 +205,18 @@ msgstr "Usuń"
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: zapzap/features/accounts/card_user_controller.py:208
+#: zapzap/features/accounts/card_user_controller.py:267
 msgid "User-Agent Changed"
 msgstr "User-Agent zmieniony"
 
-#: zapzap/features/accounts/card_user_controller.py:210
+#: zapzap/features/accounts/card_user_controller.py:269
 msgid ""
 "Please restart this session (or the application) to apply the new User-Agent."
 msgstr ""
 "Proszę ponownie uruchomić tę sesję (lub aplikację), aby zastosować nowy User-"
 "Agent."
 
-#: zapzap/features/accounts/card_user_controller.py:236
+#: zapzap/features/accounts/card_user_controller.py:298
 msgid "The notification state could not be changed."
 msgstr "Nie udało się zmienić stanu powiadomień."
 
@@ -3923,11 +3954,6 @@ msgstr "{count} dostępny"
 msgid "The WhatsApp page returned invalid avatar data."
 msgstr ""
 
-#: zapzap/features/accounts/domain/profile_sync.py:70
-#, fuzzy
-msgid "No profile photo is available."
-msgstr "Brak podglądu."
-
 #: zapzap/features/accounts/domain/profile_sync.py:81
 msgid "The profile photo URL is invalid."
 msgstr ""
@@ -3972,15 +3998,15 @@ msgid "No active accounts to display."
 msgstr "Brak aktywnych kont do wyświetlenia."
 
 #: zapzap/ui/components/card_user.py:149 zapzap/ui/components/card_user.py:150
-#: zapzap/ui/components/card_user.py:483 zapzap/ui/components/card_user.py:486
+#: zapzap/ui/components/card_user.py:491 zapzap/ui/components/card_user.py:494
 #: zapzap/ui/components/edit_account_dialog.py:66
 #: zapzap/ui/components/edit_account_dialog.py:171
 msgid "Edit account"
 msgstr "Edytuj konto"
 
 #: zapzap/ui/components/card_user.py:158 zapzap/ui/components/card_user.py:159
-#: zapzap/ui/components/card_user.py:282 zapzap/ui/components/card_user.py:506
-#: zapzap/ui/components/card_user.py:510
+#: zapzap/ui/components/card_user.py:282 zapzap/ui/components/card_user.py:514
+#: zapzap/ui/components/card_user.py:518
 msgid "Remove account"
 msgstr "Usuń konto"
 
@@ -4007,7 +4033,7 @@ msgid "Disabled"
 msgstr "Wyłączone"
 
 #: zapzap/ui/components/card_user.py:190 zapzap/ui/components/card_user.py:194
-#: zapzap/ui/components/card_user.py:307 zapzap/ui/components/card_user.py:490
+#: zapzap/ui/components/card_user.py:307 zapzap/ui/components/card_user.py:498
 msgid "Do not disturb"
 msgstr "Nie przeszkadzać"
 
@@ -4015,36 +4041,42 @@ msgstr "Nie przeszkadzać"
 msgid "Silences notifications for this account."
 msgstr "Wycisza powiadomienia dla tego konta."
 
-#: zapzap/ui/components/card_user.py:249 zapzap/ui/components/card_user.py:677
+#: zapzap/ui/components/card_user.py:249 zapzap/ui/components/card_user.py:690
 msgid "Unavailable while the account is disabled."
 msgstr "Niedostępne, gdy konto jest wyłączone."
 
-#: zapzap/ui/components/card_user.py:284 zapzap/ui/components/card_user.py:646
+#: zapzap/ui/components/card_user.py:284 zapzap/ui/components/card_user.py:659
 msgid "The default account cannot be removed."
 msgstr "Nie można usunąć konta domyślnego."
 
-#: zapzap/ui/components/card_user.py:497
+#: zapzap/ui/components/card_user.py:484 zapzap/ui/components/card_user.py:487
+#: zapzap/ui/components/edit_account_dialog.py:358
+#: zapzap/ui/components/edit_account_dialog.py:361
+msgid "Sync profile photo"
+msgstr ""
+
+#: zapzap/ui/components/card_user.py:505
 msgid "Disable account"
 msgstr "Wyłącz konto"
 
-#: zapzap/ui/components/card_user.py:512 zapzap/ui/components/card_user.py:644
+#: zapzap/ui/components/card_user.py:520 zapzap/ui/components/card_user.py:657
 msgid "Destructive action: removes this account."
 msgstr "Działanie destrukcyjne: usuwa to konto."
 
-#: zapzap/ui/components/card_user.py:657
+#: zapzap/ui/components/card_user.py:670
 msgid "Active account"
 msgstr "Aktywne konto"
 
-#: zapzap/ui/components/card_user.py:659
+#: zapzap/ui/components/card_user.py:672
 msgid "Disabled account"
 msgstr "Wyłączone konto"
 
-#: zapzap/ui/components/card_user.py:686
+#: zapzap/ui/components/card_user.py:699
 #, python-brace-format
 msgid "Account {name}, active."
 msgstr "Konto {name}, aktywne."
 
-#: zapzap/ui/components/card_user.py:688
+#: zapzap/ui/components/card_user.py:701
 #, python-brace-format
 msgid "Account {name}, disabled."
 msgstr "Konto {name}, wyłączone."
@@ -4384,11 +4416,6 @@ msgstr "Przywróć standardowe"
 msgid "Choose photo"
 msgstr "Wybierz zdjęcie"
 
-#: zapzap/ui/components/edit_account_dialog.py:358
-#: zapzap/ui/components/edit_account_dialog.py:361
-msgid "Sync profile photo"
-msgstr ""
-
 #: zapzap/ui/components/edit_account_dialog.py:368
 #: zapzap/ui/components/edit_account_dialog.py:382
 #: zapzap/ui/components/edit_account_dialog.py:751
@@ -4420,25 +4447,6 @@ msgstr "Wybrano nowe kolory ikon."
 #: zapzap/ui/components/edit_account_dialog.py:641
 msgid "Standard icon selected."
 msgstr "Wybrano standardową ikonę."
-
-#: zapzap/ui/components/edit_account_dialog.py:683
-#: zapzap/ui/components/edit_account_dialog.py:698
-#, fuzzy
-msgid "Could not sync profile photo"
-msgstr "Nie można było zapisać pliku."
-
-#: zapzap/ui/components/edit_account_dialog.py:684
-#, fuzzy
-msgid "This account does not have an active WhatsApp session."
-msgstr "Ten styl użytkownika nie dotyczy WhatsApp Web."
-
-#: zapzap/ui/components/edit_account_dialog.py:705
-msgid "WhatsApp profile photo found"
-msgstr ""
-
-#: zapzap/ui/components/edit_account_dialog.py:706
-msgid "Update this account photo?"
-msgstr ""
 
 #: zapzap/ui/components/edit_account_dialog.py:778
 msgid "Account name is required."
