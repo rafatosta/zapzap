@@ -20,6 +20,7 @@ from zapzap.assets.icons.system_icon import SystemIcon
 from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.core.config.settings.appearance import AppearanceSettings
+from zapzap.core.config.settings.system import SystemSettings
 from zapzap.core.environment.setup_manager import SetupManager
 from zapzap.features.tray.sys_tray_manager import SysTrayManager
 from zapzap.features.browser.shell.browser_view import BrowserView
@@ -417,6 +418,9 @@ class BrowserController(BrowserView):
         page = None
         try:
             page = self._webview_factory(runtime.user, runtime.position)
+            set_muted = getattr(page, "set_audio_muted", None)
+            if callable(set_muted):
+                set_muted(SystemSettings().audio_muted)
             page.update_button_signal.connect(
                 lambda _position, count, entry=runtime: (
                     self._update_runtime_notifications(entry, count)
