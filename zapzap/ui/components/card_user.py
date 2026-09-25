@@ -395,6 +395,7 @@ class AccountContextMenu(QFrame):
     """Keyboard-accessible account popover for the browser sidebar."""
 
     edit_requested = pyqtSignal()
+    sync_requested = pyqtSignal()
     notifications_silenced_changed = pyqtSignal(bool)
     account_disabled_changed = pyqtSignal(bool)
     remove_requested = pyqtSignal()
@@ -479,6 +480,13 @@ class AccountContextMenu(QFrame):
 
         layout.addWidget(self._divider("AccountMenuHeaderDivider"))
 
+        self.sync_photo_action = _AccountMenuAction(
+            _("Sync profile photo"),
+            self.surface,
+        )
+        self.sync_photo_action.setAccessibleName(_("Sync profile photo"))
+        layout.addWidget(self.sync_photo_action)
+
         self.edit_action = _AccountMenuAction(
             _("Edit account"),
             self.surface,
@@ -513,6 +521,9 @@ class AccountContextMenu(QFrame):
         )
         layout.addWidget(self.remove_action)
 
+        self.sync_photo_action.clicked.connect(
+            lambda: self._close_and_emit(self.sync_requested)
+        )
         self.edit_action.clicked.connect(
             lambda: self._close_and_emit(self.edit_requested)
         )
@@ -529,6 +540,7 @@ class AccountContextMenu(QFrame):
         for control in self._controls():
             control.installEventFilter(self)
 
+        QWidget.setTabOrder(self.sync_photo_action, self.edit_action)
         QWidget.setTabOrder(self.edit_action, self.notifications_switch)
         QWidget.setTabOrder(
             self.notifications_switch,
@@ -628,6 +640,7 @@ class AccountContextMenu(QFrame):
 
     def _controls(self):
         return (
+            self.sync_photo_action,
             self.edit_action,
             self.notifications_switch,
             self.disable_switch,

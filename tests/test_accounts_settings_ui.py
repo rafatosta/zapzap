@@ -488,6 +488,7 @@ class AccountsSettingsUiTests(QtTestCase):
         self.assertEqual(menu.name_label.fullText(), "Rafael Tosta")
         self.assertIsInstance(menu.notifications_switch, ToggleSwitch)
         self.assertIsInstance(menu.disable_switch, ToggleSwitch)
+        self.assertIn("Sync profile photo", action_texts)
         self.assertIn("Edit account", action_texts)
         self.assertIn("Remove account", action_texts)
         forbidden = {
@@ -624,8 +625,20 @@ class AccountsSettingsUiTests(QtTestCase):
         QTest.keyClick(menu, Qt.Key.Key_Up)
         self.assertTrue(menu.remove_action.hasFocus())
 
-    def test_account_context_menu_edit_and_remove_delegate_to_existing_flows(self):
+    def test_account_context_menu_edit_sync_and_remove_delegate_to_existing_flows(self):
         user = User(id=2, name="Personal")
+
+        with patch.object(
+            CardUserController,
+            "sync_profile_photo",
+            return_value=True,
+        ) as sync_profile_photo:
+            sync_menu = CardUserController.create_page_button_context_menu(
+                None,
+                user,
+            )
+            sync_menu.sync_photo_action.click()
+        sync_profile_photo.assert_called_once_with(None, user)
 
         with patch.object(
             CardUserController,

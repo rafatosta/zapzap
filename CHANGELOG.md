@@ -15,6 +15,14 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Added a direct WhatsApp profile photo sync action to the account popup on the
+  initial user menu, reusing the same authenticated avatar lookup and
+  photo-only validation as the account editor without changing the account name.
+- Added an optional manual WhatsApp profile photo synchronization action to the
+  account editor. It reads one avatar from that account's active WebEngine
+  session, validates and normalizes it through the existing embedded avatar
+  format, and applies the photo only after explicit confirmation and the
+  existing Save action.
 - Added plain-text paste inside WhatsApp Web: Ctrl+Shift+V on Linux/Windows
   (Cmd+Shift+V on macOS) now reads only the system clipboard's text
   representation and routes it from a window-level Qt shortcut to the active
@@ -114,6 +122,13 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Fixed manual WhatsApp profile photo synchronization ignoring the authenticated
+  CDN avatar in the chat-list header. The action now reads the avatar URL from
+  that header, downloads its bytes, and converts them to the embedded PNG
+  format, without touching the local account name.
+- Updated the Portuguese locale entries for the WhatsApp profile photo sync
+  action and confirmation dialogs so the new localized strings are applied in
+  the Brazilian and European Portuguese catalogs.
 - Preserved mixed text/image clipboard formats when ZapZap gains focus so
   spreadsheet copies retain their text representation for Ctrl+Shift+V.
 - Kept Linux native title bars under the window manager/compositor's ownership:

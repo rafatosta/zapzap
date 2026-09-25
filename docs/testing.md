@@ -117,6 +117,7 @@ documente o que ele protege.
 | `test_permissions_settings_ui.py` | grupos e ações globais/individuais de permissões |
 | `test_plain_text_paste.py` | inserção text/plain no editor WebEngine selecionado, resolução de contenteditable pela seleção DOM e fallback PasteAndMatchStyle sem tocar no Ctrl+V |
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
+| `test_profile_sync.py` | validação de dados pontuais do perfil WhatsApp e normalização da foto |
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
 | `test_reporting.py` | sanitização, minimização, Markdown, fila/TTL e captura local de encerramentos inesperados |
 | `test_reporting_ui.py` | formulário em duas etapas, prévia canônica, edição, cancelamento, clipboard e abertura segura do GitHub |
@@ -174,6 +175,7 @@ documente o que ele protege.
 - `test_permissions_settings_ui.py`
 - `test_plain_text_paste.py`
 - `test_portal_notification_backend.py`
+- `test_profile_sync.py`
 - `test_qt_parameter_fallbacks.py`
 - `test_reporting.py`
 - `test_reporting_ui.py`

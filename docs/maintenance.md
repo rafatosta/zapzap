@@ -130,6 +130,10 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - Preserve os SVGs existentes em `User.icon`; fotos de conta são recortadas,
   reduzidas e incorporadas como PNG no mesmo campo, junto às cores do ícone
   padrão, para permitir alternância sem depender de caminhos externos.
+- A sincronização manual da foto deve usar somente a `QWebEnginePage` do mesmo
+  `User.id`, executar uma consulta pontual e preencher o rascunho do diálogo;
+  não adicione polling, estado paralelo de avatar ou persistência antes da
+  confirmação do usuário, e não altere o nome local.
 - No diálogo de edição, mantenha nome, ícone/foto e User-Agent em rascunho até
   `Salvar`; `Cancelar`, `Esc` e o botão de fechar devem seguir o mesmo fluxo de
   descarte, com confirmação quando houver alterações.
