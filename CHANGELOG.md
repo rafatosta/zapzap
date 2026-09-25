@@ -113,6 +113,9 @@ releases and the AppStream metadata.
   reporting flow, with allowlisted environment data and explicit handling for
   missing GPU, VAAPI, Vulkan, and Flatpak metadata so the report stays robust
   on unsupported or minimal Linux systems.
+- Added a complete Simplified Chinese (`zh_CN`) interface translation,
+  including the compiled gettext catalog and regression coverage for catalog
+  loading, language discovery, fallback behavior, and placeholder integrity.
 
 ### Fixed
 
