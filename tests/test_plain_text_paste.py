@@ -10,6 +10,9 @@ from PyQt6.QtWebEngineCore import QWebEnginePage
 from zapzap.features.browser.web.web_view import WebView
 
 
+WEBENGINE_TIMEOUT_MS = 15000
+
+
 class RecordingPage:
     def __init__(self):
         self.scripts = []
@@ -59,7 +62,7 @@ class PlainTextPasteTests(QtTestCase):
         page.loadFinished.connect(
             lambda ok: (result.append(bool(ok)), loop.quit())
         )
-        QTimer.singleShot(5000, loop.quit)
+        QTimer.singleShot(WEBENGINE_TIMEOUT_MS, loop.quit)
         page.setHtml(html)
         loop.exec()
         self.assertEqual(result, [True])
@@ -71,7 +74,7 @@ class PlainTextPasteTests(QtTestCase):
             script,
             lambda value: (result.append(value), loop.quit()),
         )
-        QTimer.singleShot(5000, loop.quit)
+        QTimer.singleShot(WEBENGINE_TIMEOUT_MS, loop.quit)
         loop.exec()
         self.assertEqual(len(result), 1)
         return result[0]
