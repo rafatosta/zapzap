@@ -130,6 +130,7 @@ documente o que ele protege.
 | `test_software_video_decoding.py` | presets, flags Chromium de renderização/strict proxy, persistência e ordem do bootstrap |
 | `test_spellcheck_language_picker.py` | migração, seleção múltipla transacional, pesquisa, limite, recentes, menu e perfis WebEngine |
 | `test_taskbar_badge.py` | contador nativo, zero, preferência, bandeja oculta, ativação primária/contexto por backend, integração StatusNotifier/AppIndicator e compatibilidade com Qt anterior |
+| `test_translations.py` | descoberta de catálogos gettext e traduções chinesas sem entradas vazias ou fuzzy |
 | `test_turkish_translation.py` | catálogo turco sem traduções ativas vazias ou marcadas como fuzzy |
 | `test_system_startup_settings_ui.py` | semântica de fechamento, diálogo nativo, seleção do backend gráfico, reinício e acessibilidade |
 | `test_unix_signal_shutdown.py` | ponte POSIX, restauração do estado global e `SIGTERM` real chegando a `aboutToQuit` em subprocesso isolado |
@@ -190,6 +191,7 @@ documente o que ele protege.
 - `test_spellcheck_language_picker.py`
 - `test_system_startup_settings_ui.py`
 - `test_taskbar_badge.py`
+- `test_translations.py`
 - `test_turkish_translation.py`
 - `test_unix_signal_shutdown.py`
 - `test_update_checker.py`

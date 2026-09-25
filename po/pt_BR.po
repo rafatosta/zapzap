@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-25 18:42-0300\n"
+"POT-Creation-Date: 2026-09-25 19:10-0300\n"
 "PO-Revision-Date: 2026-08-26 14:30-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -14,6 +14,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: zapzap/app/main_window_controller.py:278
+#: zapzap/features/tray/sys_tray_manager.py:66
+#: zapzap/features/tray/sys_tray_manager.py:225
+msgid "Unmute"
+msgstr ""
+
+#: zapzap/app/main_window_controller.py:278
+#: zapzap/features/shortcuts/model.py:29
+#: zapzap/features/tray/sys_tray_manager.py:66
+#: zapzap/features/tray/sys_tray_manager.py:225
+#: zapzap/ui/components/browser_sidebar.py:217
+#: zapzap/ui/components/browser_sidebar.py:218
+#: zapzap/ui/components/main_window.py:81
+#: zapzap/ui/components/main_window.py:82
+msgid "Mute"
+msgstr "Silenciar"
 
 #: zapzap/app/window_lifecycle.py:89
 msgid "Close ZapZap"
@@ -189,8 +206,8 @@ msgstr "Remover"
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:642
 #: zapzap/features/settings/pages/network_privacy/controller.py:282
 #: zapzap/features/downloads/ui/download_dialog.py:120
-#: zapzap/features/downloads/ui/downloads_menu.py:262
-#: zapzap/features/downloads/ui/downloads_menu.py:628
+#: zapzap/features/downloads/ui/downloads_menu.py:269
+#: zapzap/features/downloads/ui/downloads_menu.py:649
 #: zapzap/ui/components/edit_account_dialog.py:467
 #: zapzap/ui/components/send_message_to_number_dialog.py:262
 #: zapzap/ui/components/send_message_to_number_dialog.py:268
@@ -266,7 +283,7 @@ msgstr "Copiar endereço"
 
 #: zapzap/features/alerts/external_url.py:45
 #: zapzap/features/reporting/dialogs.py:360
-#: zapzap/features/browser/shell/browser_controller.py:319
+#: zapzap/features/browser/shell/browser_controller.py:322
 #: zapzap/ui/components/dictionary_manager_dialog.py:91
 #: zapzap/ui/components/dictionary_manager_dialog.py:193
 #: zapzap/ui/components/edit_account_dialog.py:74
@@ -430,7 +447,7 @@ msgstr ""
 
 #: zapzap/features/donation/view.py:213 zapzap/features/shortcuts/view.py:60
 #: zapzap/features/settings/pages/debugging/view.py:425
-#: zapzap/ui/components/main_window.py:159
+#: zapzap/ui/components/main_window.py:180
 msgid "ZapZap"
 msgstr "ZapZap"
 
@@ -443,11 +460,11 @@ msgstr ""
 "privacidade e liberdade."
 
 #: zapzap/features/donation/view.py:220
-#: zapzap/features/tray/sys_tray_manager.py:65
+#: zapzap/features/tray/sys_tray_manager.py:69
 #: zapzap/features/settings/shell/settings_view.py:32
 #: zapzap/features/settings/shell/settings_view.py:34
 #: zapzap/features/settings/pages/about/view.py:274
-#: zapzap/ui/components/browser_sidebar.py:206
+#: zapzap/ui/components/browser_sidebar.py:212
 msgid "Support ZapZap"
 msgstr "Apoiar o ZapZap"
 
@@ -463,7 +480,7 @@ msgstr "Saiba mais sobre o ZapZap ↗"
 #: zapzap/features/downloads/download_manager.py:1084
 #: zapzap/features/downloads/download_manager.py:1087
 #: zapzap/features/downloads/ui/download_dialog.py:47
-#: zapzap/features/downloads/ui/downloads_menu.py:429
+#: zapzap/features/downloads/ui/downloads_menu.py:447
 #: zapzap/ui/components/update_available_popover.py:109
 msgid "Download"
 msgstr "Baixar"
@@ -791,15 +808,16 @@ msgstr ""
 
 #: zapzap/features/initial_setup/view.py:330
 #: zapzap/features/settings/pages/language_downloads/view.py:54
-#: zapzap/features/downloads/ui/downloads_menu.py:754
-#: zapzap/features/downloads/ui/downloads_menu.py:979
-#: zapzap/features/downloads/ui/downloads_menu.py:1003
-#: zapzap/ui/components/browser_sidebar.py:211
-#: zapzap/ui/components/browser_sidebar.py:212
-#: zapzap/ui/components/main_window.py:67
-#: zapzap/ui/components/main_window.py:68
-#: zapzap/ui/components/main_window.py:165
-#: zapzap/ui/components/main_window.py:166
+#: zapzap/features/downloads/ui/downloads_menu.py:775
+#: zapzap/features/downloads/ui/downloads_menu.py:1001
+#: zapzap/features/downloads/ui/downloads_menu.py:1025
+#: zapzap/ui/components/browser_sidebar.py:219
+#: zapzap/ui/components/browser_sidebar.py:220
+#: zapzap/ui/components/main_window.py:83
+#: zapzap/ui/components/main_window.py:84
+#: zapzap/ui/components/main_window.py:186
+#: zapzap/ui/components/main_window.py:187
+#: zapzap/ui/components/main_window.py:206
 msgid "Downloads"
 msgstr "Downloads"
 
@@ -958,7 +976,7 @@ msgstr "Selecione e copie este comando em seu terminal"
 #: zapzap/features/settings/pages/debugging/controller.py:131
 #: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:443
+#: zapzap/features/browser/web/web_view.py:444
 msgid "Copy"
 msgstr "Copiar"
 
@@ -1321,7 +1339,7 @@ msgid "Complete report to copy"
 msgstr "Relatório completo para copiar"
 
 #: zapzap/features/shortcuts/model.py:12
-#: zapzap/ui/components/browser_sidebar.py:198
+#: zapzap/ui/components/browser_sidebar.py:204
 msgid "New conversation"
 msgstr "Nova conversa"
 
@@ -1362,11 +1380,11 @@ msgid "Profile and status"
 msgstr "Perfil e status"
 
 #: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
-#: zapzap/features/tray/sys_tray_manager.py:64
+#: zapzap/features/tray/sys_tray_manager.py:68
 #: zapzap/features/settings/shell/settings_controller.py:234
 #: zapzap/features/settings/shell/settings_sidebar.py:61
-#: zapzap/features/downloads/ui/downloads_menu.py:1059
-#: zapzap/ui/components/main_window.py:171
+#: zapzap/features/downloads/ui/downloads_menu.py:1081
+#: zapzap/ui/components/main_window.py:192
 msgid "Settings"
 msgstr "Configurações"
 
@@ -1394,10 +1412,6 @@ msgstr "Painel de GIFs"
 msgid "Lock the app"
 msgstr "Bloquear o aplicativo"
 
-#: zapzap/features/shortcuts/model.py:29
-msgid "Mute"
-msgstr "Silenciar"
-
 #: zapzap/features/shortcuts/model.py:30
 msgid "Search"
 msgstr "Pesquisar"
@@ -1411,7 +1425,7 @@ msgid "Extended search"
 msgstr "Pesquisa avançada"
 
 #: zapzap/features/shortcuts/model.py:39
-#: zapzap/ui/components/main_window.py:169
+#: zapzap/ui/components/main_window.py:190
 msgid "Hide"
 msgstr "Ocultar"
 
@@ -1424,32 +1438,32 @@ msgid "Fullscreen"
 msgstr "Tela cheia"
 
 #: zapzap/features/shortcuts/model.py:42
-#: zapzap/ui/components/main_window.py:186
+#: zapzap/ui/components/main_window.py:209
 msgid "Automatic theme"
 msgstr "Tema automático"
 
 #: zapzap/features/shortcuts/model.py:43
-#: zapzap/ui/components/main_window.py:188
+#: zapzap/ui/components/main_window.py:211
 msgid "Light theme"
 msgstr "Tema claro"
 
 #: zapzap/features/shortcuts/model.py:44
-#: zapzap/ui/components/main_window.py:190
+#: zapzap/ui/components/main_window.py:213
 msgid "Dark theme"
 msgstr "Tema escuro"
 
 #: zapzap/features/shortcuts/model.py:45
-#: zapzap/ui/components/main_window.py:173
+#: zapzap/ui/components/main_window.py:194
 msgid "Reset zoom"
 msgstr "Redefinir zoom"
 
 #: zapzap/features/shortcuts/model.py:46
-#: zapzap/ui/components/main_window.py:175
+#: zapzap/ui/components/main_window.py:196
 msgid "Zoom in"
 msgstr "Aumentar zoom"
 
 #: zapzap/features/shortcuts/model.py:47
-#: zapzap/ui/components/main_window.py:177
+#: zapzap/ui/components/main_window.py:198
 msgid "Zoom out"
 msgstr "Diminuir zoom"
 
@@ -1462,13 +1476,13 @@ msgid "New conversation by phone number"
 msgstr "Nova conversa por número de telefone"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:544
-#: zapzap/ui/components/browser_sidebar.py:194
+#: zapzap/features/browser/shell/browser_controller.py:550
+#: zapzap/ui/components/browser_sidebar.py:200
 msgid "New account"
 msgstr "Nova conta"
 
 #: zapzap/features/shortcuts/view.py:34 zapzap/features/shortcuts/view.py:42
-#: zapzap/ui/components/main_window.py:198
+#: zapzap/ui/components/main_window.py:221
 msgid "Keyboard shortcuts"
 msgstr "Atalhos de teclado"
 
@@ -1476,13 +1490,13 @@ msgstr "Atalhos de teclado"
 msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
-#: zapzap/features/tray/sys_tray_manager.py:63
+#: zapzap/features/tray/sys_tray_manager.py:64
 msgid "Show"
 msgstr "Exibir"
 
-#: zapzap/features/tray/sys_tray_manager.py:66
+#: zapzap/features/tray/sys_tray_manager.py:70
 #: zapzap/features/settings/shell/settings_view.py:38
-#: zapzap/ui/components/main_window.py:167
+#: zapzap/ui/components/main_window.py:188
 msgid "Quit"
 msgstr "Sair"
 
@@ -1522,7 +1536,7 @@ msgstr "Desempenho experimental"
 
 #: zapzap/features/settings/shell/settings_controller.py:182
 #: zapzap/features/settings/pages/about/view.py:238
-#: zapzap/ui/components/main_window.py:200
+#: zapzap/ui/components/main_window.py:223
 msgid "About"
 msgstr "Sobre"
 
@@ -1661,13 +1675,13 @@ msgstr ""
 "a Meta."
 
 #: zapzap/features/settings/pages/about/view.py:357
-#: zapzap/ui/components/browser_sidebar.py:218
+#: zapzap/ui/components/browser_sidebar.py:226
 #, python-brace-format
 msgid "ZapZap {version} is available"
 msgstr "ZapZap {version} está disponível"
 
 #: zapzap/features/settings/pages/about/view.py:363
-#: zapzap/ui/components/browser_sidebar.py:223
+#: zapzap/ui/components/browser_sidebar.py:231
 msgid "Open the official ZapZap website to download it."
 msgstr "Abra o site oficial do ZapZap para baixá-lo."
 
@@ -2018,7 +2032,7 @@ msgid "Open location"
 msgstr "Abrir localização"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:165
-#: zapzap/features/downloads/ui/downloads_menu.py:241
+#: zapzap/features/downloads/ui/downloads_menu.py:248
 msgid "Delete"
 msgstr "Excluir"
 
@@ -2257,7 +2271,7 @@ msgid "Symbolic dark"
 msgstr "Simbólico escuro"
 
 #: zapzap/features/settings/pages/appearance/view.py:131
-#: zapzap/features/browser/shell/browser_controller.py:172
+#: zapzap/features/browser/shell/browser_controller.py:174
 msgid "Grid view"
 msgstr "Visualização em grade"
 
@@ -2554,7 +2568,7 @@ msgstr "Pasta de diagnóstico"
 
 #: zapzap/features/settings/pages/debugging/view.py:274
 #: zapzap/features/downloads/ui/download_dialog.py:101
-#: zapzap/features/downloads/ui/downloads_menu.py:595
+#: zapzap/features/downloads/ui/downloads_menu.py:616
 msgid "Open"
 msgstr "Abrir"
 
@@ -3738,72 +3752,6 @@ msgstr "Mais"
 msgid "Save as"
 msgstr "Salvar como"
 
-#: zapzap/features/downloads/ui/downloads_menu.py:231
-#: zapzap/features/downloads/ui/downloads_menu.py:598
-msgid "Show in folder"
-msgstr "Mostrar na pasta"
-
-#: zapzap/features/downloads/ui/downloads_menu.py:248
-#: zapzap/features/downloads/ui/downloads_menu.py:607
-msgid "Pause"
-msgstr "Pausar"
-
-#: zapzap/features/downloads/ui/downloads_menu.py:255
-#: zapzap/features/downloads/ui/downloads_menu.py:618
-msgid "Resume"
-msgstr "Retomar"
-
-#: zapzap/features/downloads/ui/downloads_menu.py:412
-#: zapzap/features/downloads/ui/downloads_menu.py:413
-msgid "Queued"
-msgstr "Na fila"
-
-#: zapzap/features/downloads/ui/downloads_menu.py:414
-msgid "Paused"
-msgstr "Pausado"
-
-#: zapzap/features/downloads/ui/downloads_menu.py:415
-msgid "Interrupted"
-msgstr "Interrompido"
-
-#: zapzap/features/downloads/ui/downloads_menu.py:416
-msgid "Cancelled"
-msgstr "Cancelado"
-
-#: zapzap/features/downloads/ui/downloads_menu.py:417
-msgid "Blocked"
-msgstr "Bloqueado"
-
-#: zapzap/features/downloads/ui/downloads_menu.py:418
-msgid "Completed"
-msgstr "Concluído"
-
-#: zapzap/features/downloads/ui/downloads_menu.py:601
-#, fuzzy
-msgid "Delete file"
-msgstr "Selecionar arquivo"
-
-#: zapzap/features/downloads/ui/downloads_menu.py:634
-msgid "Remove from download history"
-msgstr "Remover do histórico de downloads"
-
-#: zapzap/features/downloads/ui/downloads_menu.py:671
-msgid "No recent downloads"
-msgstr "Nenhum download recente"
-
-#: zapzap/features/downloads/ui/downloads_menu.py:765
-#: zapzap/features/downloads/ui/downloads_menu.py:1048
-msgid "Open downloads folder"
-msgstr "Abrir pasta de Downloads"
-
-#: zapzap/features/downloads/ui/downloads_menu.py:803
-msgid "All download history"
-msgstr "Todo o histórico de downloads"
-
-#: zapzap/features/downloads/ui/downloads_menu.py:1039
-msgid "Clear download history"
-msgstr "Limpar histórico de downloads"
-
 #: zapzap/features/downloads/ui/multiple_download_dialog.py:21
 msgid "Multiple downloads"
 msgstr "Vários downloads"
@@ -3828,19 +3776,85 @@ msgstr "Sempre permitir"
 msgid "Block"
 msgstr "Bloquear"
 
-#: zapzap/features/browser/shell/browser_controller.py:284
+#: zapzap/features/downloads/ui/downloads_menu.py:238
+#: zapzap/features/downloads/ui/downloads_menu.py:619
+msgid "Show in folder"
+msgstr "Mostrar na pasta"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:255
+#: zapzap/features/downloads/ui/downloads_menu.py:628
+msgid "Pause"
+msgstr "Pausar"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:262
+#: zapzap/features/downloads/ui/downloads_menu.py:639
+msgid "Resume"
+msgstr "Retomar"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:430
+#: zapzap/features/downloads/ui/downloads_menu.py:431
+msgid "Queued"
+msgstr "Na fila"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:432
+msgid "Paused"
+msgstr "Pausado"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:433
+msgid "Interrupted"
+msgstr "Interrompido"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:434
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:435
+msgid "Blocked"
+msgstr "Bloqueado"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:436
+msgid "Completed"
+msgstr "Concluído"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:622
+#, fuzzy
+msgid "Delete file"
+msgstr "Selecionar arquivo"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:655
+msgid "Remove from download history"
+msgstr "Remover do histórico de downloads"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:692
+msgid "No recent downloads"
+msgstr "Nenhum download recente"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:786
+#: zapzap/features/downloads/ui/downloads_menu.py:1070
+msgid "Open downloads folder"
+msgstr "Abrir pasta de Downloads"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:824
+msgid "All download history"
+msgstr "Todo o histórico de downloads"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:1061
+msgid "Clear download history"
+msgstr "Limpar histórico de downloads"
+
+#: zapzap/features/browser/shell/browser_controller.py:287
 msgid "Flatpak sandbox help"
 msgstr "Ajuda Flatpak sandbox"
 
-#: zapzap/features/browser/shell/browser_controller.py:309
+#: zapzap/features/browser/shell/browser_controller.py:312
 msgid "Flatpak sandbox"
 msgstr "Sandbox do Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:310
+#: zapzap/features/browser/shell/browser_controller.py:313
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap está rodando no Flatpak sandbox."
 
-#: zapzap/features/browser/shell/browser_controller.py:312
+#: zapzap/features/browser/shell/browser_controller.py:315
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
@@ -3848,89 +3862,42 @@ msgstr ""
 "Alguns recursos, como abrir arquivos ou arrastar e soltar, podem exigir "
 "permissões adicionais."
 
-#: zapzap/features/browser/shell/browser_controller.py:317
+#: zapzap/features/browser/shell/browser_controller.py:320
 msgid "Instructions"
 msgstr "Instruções"
 
-#: zapzap/features/browser/shell/browser_controller.py:318
+#: zapzap/features/browser/shell/browser_controller.py:321
 msgid "Copy command"
 msgstr "Copiar comando"
 
-#: zapzap/features/browser/shell/browser_controller.py:561
-#: zapzap/features/browser/shell/browser_controller.py:671
+#: zapzap/features/browser/shell/browser_controller.py:567
+#: zapzap/features/browser/shell/browser_controller.py:677
 #, python-brace-format
 msgid "Account {}"
 msgstr "Conta {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:685
+#: zapzap/features/browser/shell/browser_controller.py:691
 msgid "Account disabled"
 msgstr "Conta desativada"
 
-#: zapzap/features/browser/shell/browser_controller.py:686
+#: zapzap/features/browser/shell/browser_controller.py:692
 msgid "This account is disabled."
 msgstr "Esta conta está desativada."
 
-#: zapzap/features/browser/shell/browser_controller.py:688
+#: zapzap/features/browser/shell/browser_controller.py:694
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Você pode reativá-lo agora ou usar o menu do botão direito para gerenciar "
 "esta conta."
 
-#: zapzap/features/browser/shell/browser_controller.py:693
+#: zapzap/features/browser/shell/browser_controller.py:699
 msgid "Activate"
 msgstr "Ativar"
 
-#: zapzap/features/browser/shell/browser_controller.py:694
+#: zapzap/features/browser/shell/browser_controller.py:700
 msgid "Not now"
 msgstr "Agora não"
-
-#: zapzap/features/browser/web/page_controller.py:307
-msgid "your microphone"
-msgstr "seu microfone"
-
-#: zapzap/features/browser/web/page_controller.py:308
-msgid "your camera"
-msgstr "sua câmera"
-
-#: zapzap/features/browser/web/page_controller.py:309
-msgid "your camera and microphone"
-msgstr "sua câmera e seu microfone"
-
-#: zapzap/features/browser/web/page_controller.py:310
-msgid "your location"
-msgstr "sua localização"
-
-#: zapzap/features/browser/web/page_controller.py:311
-msgid "your screen contents"
-msgstr "o conteúdo da sua tela"
-
-#: zapzap/features/browser/web/page_controller.py:312
-msgid "your screen contents and audio"
-msgstr "o conteúdo e o áudio da sua tela"
-
-#: zapzap/features/browser/web/page_controller.py:313
-msgid "mouse lock"
-msgstr "bloqueio do mouse"
-
-#: zapzap/features/browser/web/page_controller.py:315
-msgid "a system feature"
-msgstr "um recurso do sistema"
-
-#: zapzap/features/browser/web/page_controller.py:319
-msgid "Permission request"
-msgstr "Solicitação de permissão"
-
-#: zapzap/features/browser/web/page_controller.py:320
-#, python-brace-format
-msgid ""
-"WhatsApp Web is requesting access to {}.\n"
-"\n"
-"Allow?"
-msgstr ""
-"O WhatsApp Web está solicitando acesso a {}.\n"
-"\n"
-"Permitir?"
 
 #: zapzap/features/browser/web/popup_window.py:60
 msgid "Manual close unavailable"
@@ -3946,57 +3913,104 @@ msgstr ""
 "fechada manualmente. Use o botão Encerrar chamada do WhatsApp. A janela será "
 "fechada quando o WhatsApp solicitar."
 
-#: zapzap/features/browser/web/web_view.py:442
+#: zapzap/features/browser/web/page_controller.py:308
+msgid "your microphone"
+msgstr "seu microfone"
+
+#: zapzap/features/browser/web/page_controller.py:309
+msgid "your camera"
+msgstr "sua câmera"
+
+#: zapzap/features/browser/web/page_controller.py:310
+msgid "your camera and microphone"
+msgstr "sua câmera e seu microfone"
+
+#: zapzap/features/browser/web/page_controller.py:311
+msgid "your location"
+msgstr "sua localização"
+
+#: zapzap/features/browser/web/page_controller.py:312
+msgid "your screen contents"
+msgstr "o conteúdo da sua tela"
+
+#: zapzap/features/browser/web/page_controller.py:313
+msgid "your screen contents and audio"
+msgstr "o conteúdo e o áudio da sua tela"
+
+#: zapzap/features/browser/web/page_controller.py:314
+msgid "mouse lock"
+msgstr "bloqueio do mouse"
+
+#: zapzap/features/browser/web/page_controller.py:316
+msgid "a system feature"
+msgstr "um recurso do sistema"
+
+#: zapzap/features/browser/web/page_controller.py:320
+msgid "Permission request"
+msgstr "Solicitação de permissão"
+
+#: zapzap/features/browser/web/page_controller.py:321
+#, python-brace-format
+msgid ""
+"WhatsApp Web is requesting access to {}.\n"
+"\n"
+"Allow?"
+msgstr ""
+"O WhatsApp Web está solicitando acesso a {}.\n"
+"\n"
+"Permitir?"
+
+#: zapzap/features/browser/web/web_view.py:443
 msgid "Undo"
 msgstr "Desfazer"
 
-#: zapzap/features/browser/web/web_view.py:442
+#: zapzap/features/browser/web/web_view.py:443
 msgid "Redo"
 msgstr "Refazer"
 
-#: zapzap/features/browser/web/web_view.py:442
+#: zapzap/features/browser/web/web_view.py:443
 msgid "Cut"
 msgstr "Recortar"
 
-#: zapzap/features/browser/web/web_view.py:443
+#: zapzap/features/browser/web/web_view.py:444
 msgid "Paste"
 msgstr "Colar"
 
-#: zapzap/features/browser/web/web_view.py:443
+#: zapzap/features/browser/web/web_view.py:444
 msgid "Select all"
 msgstr "Selecionar tudo"
 
-#: zapzap/features/browser/web/web_view.py:444
+#: zapzap/features/browser/web/web_view.py:445
 msgid "Save image"
 msgstr "Salvar imagem"
 
-#: zapzap/features/browser/web/web_view.py:444
+#: zapzap/features/browser/web/web_view.py:445
 msgid "Copy image"
 msgstr "Copiar imagem"
 
-#: zapzap/features/browser/web/web_view.py:445
-#: zapzap/features/browser/web/web_view.py:475
+#: zapzap/features/browser/web/web_view.py:446
+#: zapzap/features/browser/web/web_view.py:476
 msgid "Copy link address"
 msgstr "Copiar endereço do link"
 
-#: zapzap/features/browser/web/web_view.py:493
+#: zapzap/features/browser/web/web_view.py:494
 msgid "Check Spelling"
 msgstr "Verificar a ortografia"
 
-#: zapzap/features/browser/web/web_view.py:499
+#: zapzap/features/browser/web/web_view.py:500
 msgid "Languages…"
 msgstr "Idiomas…"
 
-#: zapzap/features/browser/web/web_view.py:502
+#: zapzap/features/browser/web/web_view.py:503
 msgid "Choose the languages used by the spell checker."
 msgstr "Escolha os idiomas usados pelo corretor ortográfico."
 
-#: zapzap/features/browser/web/web_view.py:755
+#: zapzap/features/browser/web/web_view.py:921
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "Conta"
 
-#: zapzap/features/browser/web/web_view.py:757
+#: zapzap/features/browser/web/web_view.py:923
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"
@@ -4742,140 +4756,140 @@ msgstr "Lançada em {date}"
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 
-#: zapzap/ui/components/browser_sidebar.py:196
+#: zapzap/ui/components/browser_sidebar.py:202
 msgid "New conversation by the phone number"
 msgstr "Nova conversa pelo número de telefone"
 
-#: zapzap/ui/components/browser_sidebar.py:200
-#: zapzap/ui/components/browser_sidebar.py:204
+#: zapzap/ui/components/browser_sidebar.py:206
+#: zapzap/ui/components/browser_sidebar.py:210
 msgid "Lock or configure WhatsApp Web app lock"
 msgstr "Bloquear ou configurar o bloqueio do WhatsApp Web"
 
-#: zapzap/ui/components/browser_sidebar.py:202
+#: zapzap/ui/components/browser_sidebar.py:208
 msgid "WhatsApp lock"
 msgstr "Bloqueio do WhatsApp"
 
-#: zapzap/ui/components/browser_sidebar.py:207
+#: zapzap/ui/components/browser_sidebar.py:213
 msgid "Open donations page"
 msgstr "Abrir página de doações"
 
-#: zapzap/ui/components/browser_sidebar.py:209
+#: zapzap/ui/components/browser_sidebar.py:215
 msgid "Show ways to support ZapZap development."
 msgstr "Mostrar formas de apoiar o desenvolvimento do ZapZap."
 
-#: zapzap/ui/components/browser_sidebar.py:213
+#: zapzap/ui/components/browser_sidebar.py:221
 msgid "ZapZap Settings"
 msgstr "Configurações do ZapZap"
 
-#: zapzap/ui/components/main_window.py:160
+#: zapzap/ui/components/main_window.py:181
 msgid "File"
 msgstr "Arquivo"
 
-#: zapzap/ui/components/main_window.py:161
+#: zapzap/ui/components/main_window.py:182
 msgid "View"
 msgstr "Exibir"
 
-#: zapzap/ui/components/main_window.py:162
+#: zapzap/ui/components/main_window.py:183
 msgid "Chat"
 msgstr "Bate-papo"
 
-#: zapzap/ui/components/main_window.py:163
+#: zapzap/ui/components/main_window.py:184
 msgid "Users"
 msgstr "Contas"
 
-#: zapzap/ui/components/main_window.py:164
+#: zapzap/ui/components/main_window.py:185
 msgid "Help"
 msgstr "Ajuda"
 
-#: zapzap/ui/components/main_window.py:168
+#: zapzap/ui/components/main_window.py:189
 msgid "Ctrl+Q"
 msgstr "Ctrl+Q"
 
-#: zapzap/ui/components/main_window.py:170
+#: zapzap/ui/components/main_window.py:191
 msgid "Ctrl+W"
 msgstr "Ctrl+W"
 
-#: zapzap/ui/components/main_window.py:172
+#: zapzap/ui/components/main_window.py:193
 msgid "Ctrl+P"
 msgstr "Ctrl+P"
 
-#: zapzap/ui/components/main_window.py:174
+#: zapzap/ui/components/main_window.py:195
 msgid "Ctrl+0"
 msgstr "Ctrl+0"
 
-#: zapzap/ui/components/main_window.py:176
+#: zapzap/ui/components/main_window.py:197
 msgid "Ctrl++"
 msgstr "Ctrl++"
 
-#: zapzap/ui/components/main_window.py:178
+#: zapzap/ui/components/main_window.py:199
 msgid "Ctrl+-"
 msgstr "Ctrl+-"
 
-#: zapzap/ui/components/main_window.py:179
+#: zapzap/ui/components/main_window.py:200
 msgid "Toggle full screen"
 msgstr "Alternar tela cheia"
 
-#: zapzap/ui/components/main_window.py:180
+#: zapzap/ui/components/main_window.py:201
 msgid "F11"
 msgstr "F11"
 
-#: zapzap/ui/components/main_window.py:181
+#: zapzap/ui/components/main_window.py:202
 msgid "Open DevTools"
 msgstr "Abrir DevTools"
 
-#: zapzap/ui/components/main_window.py:182
+#: zapzap/ui/components/main_window.py:203
 msgid "Ctrl+Shift+I"
 msgstr "Ctrl+Shift+I"
 
-#: zapzap/ui/components/main_window.py:183
+#: zapzap/ui/components/main_window.py:204
 msgid "Grid View"
 msgstr "Visualização em grade"
 
-#: zapzap/ui/components/main_window.py:184
+#: zapzap/ui/components/main_window.py:205
 msgid "Ctrl+G"
 msgstr "Ctrl+G"
 
-#: zapzap/ui/components/main_window.py:185
+#: zapzap/ui/components/main_window.py:208
 msgid "Show sidebar"
 msgstr "Exibir barra lateral"
 
-#: zapzap/ui/components/main_window.py:187
+#: zapzap/ui/components/main_window.py:210
 msgid "Ctrl+Alt+1"
 msgstr "Ctrl+Alt+1"
 
-#: zapzap/ui/components/main_window.py:189
+#: zapzap/ui/components/main_window.py:212
 msgid "Ctrl+Alt+2"
 msgstr "Ctrl+Alt+2"
 
-#: zapzap/ui/components/main_window.py:191
+#: zapzap/ui/components/main_window.py:214
 msgid "Ctrl+Alt+3"
 msgstr "Ctrl+Alt+3"
 
-#: zapzap/ui/components/main_window.py:192
+#: zapzap/ui/components/main_window.py:215
 msgid "Reload"
 msgstr "Recarregar"
 
-#: zapzap/ui/components/main_window.py:193
+#: zapzap/ui/components/main_window.py:216
 msgid "F5"
 msgstr "F5"
 
-#: zapzap/ui/components/main_window.py:194
+#: zapzap/ui/components/main_window.py:217
 msgid "New chat"
 msgstr "Novo bate-papo"
 
-#: zapzap/ui/components/main_window.py:195
+#: zapzap/ui/components/main_window.py:218
 msgid "Ctrl+N"
 msgstr "Ctrl+N"
 
-#: zapzap/ui/components/main_window.py:196
+#: zapzap/ui/components/main_window.py:219
 msgid "By number phone"
 msgstr "Por número de telefone"
 
-#: zapzap/ui/components/main_window.py:197
+#: zapzap/ui/components/main_window.py:220
 msgid "Ctrl+M"
 msgstr "Ctrl+M"
 
-#: zapzap/ui/components/main_window.py:199
+#: zapzap/ui/components/main_window.py:222
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
