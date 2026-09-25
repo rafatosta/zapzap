@@ -2,7 +2,6 @@ import re
 import shutil
 import os
 import logging
-import sys
 import json
 
 from PyQt6.QtWebChannel import QWebChannel
@@ -10,7 +9,7 @@ from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings, QWebEnginePage, QWebEngineScript
 from PyQt6.QtCore import QUrl, pyqtSignal, QTimer, QEvent, Qt, QFile, QTextStream, QObject, pyqtSlot
 from PyQt6.QtWidgets import QApplication, QWidget
-from PyQt6.QtGui import QAction, QKeySequence, QShortcut
+from PyQt6.QtGui import QAction
 
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.browser.web.page_controller import PageController
@@ -29,6 +28,7 @@ from zapzap.features.dictionaries.spellcheck_language_picker import (
 )
 from zapzap.features.downloads.download_manager import DownloadManager
 from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.core.config.settings.system import SystemSettings
 from zapzap.core.config.settings.performance import (
     PerformanceSettings,
     apply_http_cache_size,
@@ -97,7 +97,6 @@ class WebView(QWebEngineView):
         self._render_crash_reload_timer.timeout.connect(self.load_page)
 
         self._signals_configured = False
-        self._plain_text_paste_shortcut = None
 
         if user.enable:
             self._initialize()
@@ -115,11 +114,9 @@ class WebView(QWebEngineView):
         self._configure_profile()
 
         self._setup_page()
-        self._install_plain_text_paste_shortcut()
 
-        # Install one application-level filter for events delivered directly
-        # to the internal WebEngine render widget. It handles native pinch
-        # gestures and the plain-text paste shortcut without changing Ctrl+V.
+        # Install one application-level filter for native gestures delivered
+        # directly to the internal WebEngine render widget.
         if not self._gesture_filter_installed:
             QApplication.instance().installEventFilter(self)
             self._gesture_filter_installed = True
@@ -351,6 +348,7 @@ class WebView(QWebEngineView):
             parent=self,
         )
         self.whatsapp_page.user_id = self.user.id
+        self.whatsapp_page.setAudioMuted(SystemSettings().audio_muted)
         self.whatsapp_page.renderProcessTerminated.connect(
             self._on_render_crash)
         self.load_page()
@@ -480,46 +478,31 @@ class WebView(QWebEngineView):
                 return True  # Consume the event without zooming
         return super().event(event)
 
-    def _install_plain_text_paste_shortcut(self):
-        """Register plain-text paste in WebEngine child widgets."""
-        if self._plain_text_paste_shortcut is not None:
-            return
-        sequence = "Meta+Shift+V" if sys.platform == "darwin" else "Ctrl+Shift+V"
-        shortcut = QShortcut(QKeySequence(sequence), self)
-        shortcut.setContext(Qt.ShortcutContext.WidgetWithChildrenShortcut)
-        shortcut.activated.connect(self._paste_as_plain_text)
-        self._plain_text_paste_shortcut = shortcut
-
-    @staticmethod
-    def _plain_text_paste_modifiers():
-        primary = (
-            Qt.KeyboardModifier.MetaModifier
-            if sys.platform == "darwin"
-            else Qt.KeyboardModifier.ControlModifier
-        )
-        return primary | Qt.KeyboardModifier.ShiftModifier
-
-    @staticmethod
-    def _is_plain_text_paste_shortcut(event):
-        if event.type() != QEvent.Type.KeyPress:
-            return False
-        return (
-            event.key() == Qt.Key.Key_V
-            and event.modifiers() == WebView._plain_text_paste_modifiers()
-        )
-
     @staticmethod
     def _plain_text_paste_script(text):
+        """Insert text into the editor that owns the current DOM selection."""
         payload = json.dumps(text)
         return f"""
 (() => {{
     const text = {payload};
     const active = document.activeElement;
-    if (!active) return false;
+    const selection = window.getSelection();
 
-    const tag = active.tagName;
-    const inputType = String(active.type || "text").toLowerCase();
-    const textInput = (
+    const editableAncestor = (node) => {{
+        let element = node;
+        if (element && element.nodeType !== Node.ELEMENT_NODE) {{
+            element = element.parentElement;
+        }}
+        while (element && element !== document.documentElement) {{
+            if (element.isContentEditable) return element;
+            element = element.parentElement;
+        }}
+        return null;
+    }};
+
+    const tag = active ? active.tagName : "";
+    const inputType = String((active && active.type) || "text").toLowerCase();
+    const textInput = active && (
         tag === "TEXTAREA"
         || (
             tag === "INPUT"
@@ -527,17 +510,13 @@ class WebView(QWebEngineView):
                  "reset", "submit"].includes(inputType)
         )
     );
-    if (!active.isContentEditable && !textInput) return false;
-
-    try {{
-        if (document.execCommand("insertText", false, text)) {{
-            return true;
-        }}
-    }} catch (_error) {{
-        // Fall back to direct insertion below.
-    }}
 
     if (textInput) {{
+        try {{
+            active.focus({{preventScroll: true}});
+        }} catch (_error) {{
+            active.focus();
+        }}
         const start = active.selectionStart ?? active.value.length;
         const end = active.selectionEnd ?? start;
         active.setRangeText(text, start, end, "end");
@@ -549,13 +528,54 @@ class WebView(QWebEngineView):
         return true;
     }}
 
-    const selection = window.getSelection();
-    if (!selection || selection.rangeCount === 0) return false;
+    const editor = (
+        (active && active.isContentEditable ? active : null)
+        || editableAncestor(selection && selection.anchorNode)
+        || editableAncestor(selection && selection.focusNode)
+    );
+    if (!editor) return false;
 
-    const range = selection.getRangeAt(0);
-    const container = range.commonAncestorContainer;
-    if (container !== active && !active.contains(container)) return false;
+    let range = null;
+    if (selection && selection.rangeCount > 0) {{
+        const candidate = selection.getRangeAt(0).cloneRange();
+        const container = candidate.commonAncestorContainer;
+        const containerElement = (
+            container.nodeType === Node.ELEMENT_NODE
+                ? container
+                : container.parentElement
+        );
+        if (
+            containerElement
+            && (containerElement === editor || editor.contains(containerElement))
+        ) {{
+            range = candidate;
+        }}
+    }}
 
+    try {{
+        editor.focus({{preventScroll: true}});
+    }} catch (_error) {{
+        editor.focus();
+    }}
+
+    if (!selection) return false;
+    selection.removeAllRanges();
+    if (!range) {{
+        range = document.createRange();
+        range.selectNodeContents(editor);
+        range.collapse(false);
+    }}
+    selection.addRange(range);
+
+    try {{
+        if (document.execCommand("insertText", false, text)) {{
+            return true;
+        }}
+    }} catch (_error) {{
+        // Fall back to direct range insertion below.
+    }}
+
+    range = selection.getRangeAt(0);
     range.deleteContents();
     const node = document.createTextNode(text);
     range.insertNode(node);
@@ -564,7 +584,7 @@ class WebView(QWebEngineView):
     selection.removeAllRanges();
     selection.addRange(range);
 
-    active.dispatchEvent(new InputEvent("input", {{
+    editor.dispatchEvent(new InputEvent("input", {{
         bubbles: true,
         inputType: "insertText",
         data: text,
@@ -573,18 +593,33 @@ class WebView(QWebEngineView):
 }})();
 """
 
-    def _paste_as_plain_text(self):
+    @staticmethod
+    def _finish_plain_text_paste(page, inserted):
+        """Use Chromium's native plain-paste action if DOM insertion failed."""
+        if bool(inserted):
+            return
+        try:
+            page.triggerAction(QWebEnginePage.WebAction.PasteAndMatchStyle)
+        except RuntimeError:
+            pass
+
+    def paste_as_plain_text(self):
+        """Paste only clipboard text without changing normal Ctrl+V behavior."""
         clipboard = QApplication.clipboard()
         text = clipboard.text() if clipboard is not None else ""
 
-        # Consume the shortcut even if the clipboard has no text so an image
-        # representation from apps such as spreadsheets is never pasted.
+        # Consume this shortcut even if the clipboard also exposes HTML/image.
+        # Empty text must never fall through to an image representation.
         if not text:
             return True
 
         try:
-            self.page().runJavaScript(
-                self._plain_text_paste_script(text)
+            page = self.page()
+            page.runJavaScript(
+                self._plain_text_paste_script(text),
+                lambda inserted, target=page: (
+                    self._finish_plain_text_paste(target, inserted)
+                ),
             )
         except RuntimeError:
             return False
@@ -595,9 +630,6 @@ class WebView(QWebEngineView):
         targets_web_content = watched is self or (
             isinstance(watched, QWidget) and self.isAncestorOf(watched)
         )
-
-        if targets_web_content and self._is_plain_text_paste_shortcut(event):
-            return self._paste_as_plain_text()
 
         native_gesture_type = getattr(QEvent.Type, "NativeGesture", None)
         if native_gesture_type is not None and event.type() == native_gesture_type:
@@ -630,6 +662,22 @@ class WebView(QWebEngineView):
             if self.user.zoomFactor != applied_zoom:
                 self.user.zoomFactor = applied_zoom
 
+    def set_audio_muted(self, muted: bool) -> None:
+        """Apply the global audio state to this account and its popups."""
+        muted = bool(muted)
+        if self.whatsapp_page is not None:
+            try:
+                self.whatsapp_page.setAudioMuted(muted)
+            except RuntimeError:
+                pass
+        for popup in tuple(self._popup_windows):
+            page = getattr(popup, "popup_page", None)
+            if page is not None:
+                try:
+                    page.setAudioMuted(muted)
+                except RuntimeError:
+                    pass
+
     def apply_custom_css(self):
         if self.user.enable and self.whatsapp_page:
             self.whatsapp_page.apply_custom_css()
@@ -651,6 +699,7 @@ class WebView(QWebEngineView):
         if self._shutting_down:
             return None
 
+        page.setAudioMuted(SystemSettings().audio_muted)
         popup = InternalWebPopup(page, self._on_popup_closed)
         popup.page_index = self.page_index
         self._popup_windows.add(popup)
