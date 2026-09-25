@@ -36,6 +36,7 @@ class BrowserView(QWidget):
         self.btn_whatsapp_lock = self.sidebar.btn_whatsapp_lock
         self.btn_donations = self.sidebar.btn_donations
         self.btn_update_available = self.sidebar.btn_update_available
+        self.btn_mute = self.sidebar.btn_mute
         self.btn_downloads = self.sidebar.btn_downloads
         self.line_2 = self.sidebar.line_2
         self.btn_open_settings = self.sidebar.btn_open_settings
