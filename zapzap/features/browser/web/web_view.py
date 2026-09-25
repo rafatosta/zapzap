@@ -11,6 +11,7 @@ from PyQt6.QtWidgets import QApplication, QWidget
 from PyQt6.QtGui import QAction
 
 from zapzap.core.theme.theme_manager import ThemeManager
+from zapzap.assets.icons.system_icon import SystemIcon
 from zapzap.features.browser.web.page_controller import PageController
 from zapzap.features.browser.web.popup_window import InternalWebPopup
 from zapzap.features.accounts.domain.user import (
@@ -246,6 +247,15 @@ class WebView(QWebEngineView):
                 "{quick_accounts_visible}": (
                     "true" if self.quick_accounts_button_visible else "false"
                 ),
+                "{quick_accounts_icon}": SystemIcon.SVG_ICONS[
+                    "view_grid"
+                ].format(
+                    fill_color=(
+                        "#202C33"
+                        if ThemeManager.get_current_color_scheme().name == "Light"
+                        else "#f7f5f3"
+                    )
+                ),
             }
             base_dir = os.path.dirname(__file__)
             js_path = os.path.join(base_dir, "scripts", "theme_controller.js")
@@ -305,9 +315,7 @@ class WebView(QWebEngineView):
 
             @pyqtSlot()
             def on_quick_accounts_controller_ready(self):
-                self._webview.set_quick_accounts_button_visible(
-                    self._webview.quick_accounts_button_visible
-                )
+                self._webview.sync_quick_accounts_state()
 
             @pyqtSlot()
             def open_recent_accounts(self):
@@ -334,6 +342,30 @@ class WebView(QWebEngineView):
         self.whatsapp_page.runJavaScript(
             "window._zapZapQuickAccountsController && "
             f"window._zapZapQuickAccountsController.setVisible({visibility});"
+        )
+
+    def sync_quick_accounts_state(self):
+        """Synchronize the injected button with current sidebar and theme state."""
+        color = self._quick_accounts_icon_color(
+            ThemeManager.get_current_color_scheme()
+        )
+        self._run_quick_accounts_javascript(
+            "setState("
+            f"{'true' if self.quick_accounts_button_visible else 'false'}, "
+            f"'{color}'"
+            ")"
+        )
+
+    @staticmethod
+    def _quick_accounts_icon_color(color_scheme):
+        return "#f7f5f3" if color_scheme == Qt.ColorScheme.Dark else "#202C33"
+
+    def _run_quick_accounts_javascript(self, expression: str):
+        if self.whatsapp_page is None:
+            return
+        self.whatsapp_page.runJavaScript(
+            "window._zapZapQuickAccountsController && "
+            f"window._zapZapQuickAccountsController.{expression};"
         )
 
     @staticmethod
@@ -550,6 +582,10 @@ class WebView(QWebEngineView):
             self.whatsapp_page.close_conversation()
 
     def apply_theme(self, current_theme, current_color_scheme) -> None:
+        color = self._quick_accounts_icon_color(current_color_scheme)
+        self._run_quick_accounts_javascript(
+            f"setIconColor('{color}')"
+        )
         if self.whatsapp_page is None:
             return
 

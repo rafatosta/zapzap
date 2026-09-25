@@ -38,8 +38,9 @@ releases and the AppStream metadata.
   native account grid, reinserts itself after dynamic DOM changes, and fails
   silently without affecting the WhatsApp page or account lifecycle. It now
   prefers the tall left navigation rail, centers the button horizontally near
-  its bottom while leaving room for the WhatsApp profile control, and migrates
-  an existing fallback button into that rail when it becomes available.
+  its bottom while leaving room for the WhatsApp profile control, reuses the
+  sidebar's `view_grid` icon with live light/dark theme updates, and migrates an
+  existing fallback button into that rail when it becomes available.
 - Added shared recent-download menus to the sidebar and right side of the
   menubar, including native platform file-type icons, per-item progress bars
   and percentages, queued/paused/interrupted/cancelled/blocked/completed

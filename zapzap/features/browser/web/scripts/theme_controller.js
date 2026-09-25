@@ -110,6 +110,7 @@
         framePending: false,
         visible: {quick_accounts_visible},
         resizeHandler: null,
+        iconColor: null,
 
         boot() {
             const previous = window._zapZapQuickAccountsController;
@@ -146,6 +147,22 @@
                 button.hidden = !this.visible;
             }
             this.ensureButton();
+        },
+
+        setState(visible, iconColor) {
+            this.visible = Boolean(visible);
+            this.setIconColor(iconColor);
+            this.ensureButton();
+        },
+
+        setIconColor(color) {
+            this.iconColor = color;
+            const icon = document.querySelector(
+                '[data-zapzap-component="quick-accounts"] svg'
+            );
+            if (icon) {
+                icon.setAttribute("fill", color);
+            }
         },
 
         scheduleEnsure() {
@@ -199,7 +216,7 @@
             button.style.position = "fixed";
             button.style.left = isFallback
                 ? "12px"
-                : `${Math.max(0, bounds.left + (bounds.width - 40) / 2)}px`;
+                : `${Math.max(0, bounds.left + (bounds.width - 46) / 2)}px`;
             button.style.top = "auto";
             button.style.bottom = isFallback
                 ? "12px"
@@ -242,7 +259,16 @@
                 );
             }
             button.style.cssText = styles.join(";");
-            button.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M15 5.5a3 3 0 0 1 0 5.8M17 14a5.5 5.5 0 0 1 3.5 5"/></svg>';
+            button.innerHTML = `{quick_accounts_icon}`;
+            const icon = button.querySelector("svg");
+            if (icon) {
+                icon.setAttribute("aria-hidden", "true");
+                icon.setAttribute("width", "20");
+                icon.setAttribute("height", "20");
+                if (this.iconColor) {
+                    icon.setAttribute("fill", this.iconColor);
+                }
+            }
             button.addEventListener("click", () => {
                 try {
                     if (this.bridge && typeof this.bridge.open_recent_accounts === "function") {

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-25 12:33-0300\n"
+"POT-Creation-Date: 2026-09-25 17:09-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Ukrainian\n"
@@ -959,7 +959,7 @@ msgstr "Виберіть та скопіюйте цю команду у вашо
 #: zapzap/features/settings/pages/debugging/controller.py:131
 #: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:406
+#: zapzap/features/browser/web/web_view.py:438
 msgid "Copy"
 msgstr "Копіювати"
 
@@ -3897,57 +3897,57 @@ msgid ""
 "WhatsApp requests it."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:405
+#: zapzap/features/browser/web/web_view.py:437
 msgid "Undo"
 msgstr "Відмінити"
 
-#: zapzap/features/browser/web/web_view.py:405
+#: zapzap/features/browser/web/web_view.py:437
 msgid "Redo"
 msgstr "Повторити"
 
-#: zapzap/features/browser/web/web_view.py:405
+#: zapzap/features/browser/web/web_view.py:437
 msgid "Cut"
 msgstr "Вирізати"
 
-#: zapzap/features/browser/web/web_view.py:406
+#: zapzap/features/browser/web/web_view.py:438
 msgid "Paste"
 msgstr "Вставити"
 
-#: zapzap/features/browser/web/web_view.py:406
+#: zapzap/features/browser/web/web_view.py:438
 msgid "Select all"
 msgstr "Вибрати все"
 
-#: zapzap/features/browser/web/web_view.py:407
+#: zapzap/features/browser/web/web_view.py:439
 msgid "Save image"
 msgstr "Зберегти зображення"
 
-#: zapzap/features/browser/web/web_view.py:407
+#: zapzap/features/browser/web/web_view.py:439
 msgid "Copy image"
 msgstr "Копіювати зображення"
 
-#: zapzap/features/browser/web/web_view.py:408
-#: zapzap/features/browser/web/web_view.py:438
+#: zapzap/features/browser/web/web_view.py:440
+#: zapzap/features/browser/web/web_view.py:470
 msgid "Copy link address"
 msgstr "Копіювати адресу посилання"
 
-#: zapzap/features/browser/web/web_view.py:456
+#: zapzap/features/browser/web/web_view.py:488
 msgid "Check Spelling"
 msgstr "Перевірка орфографії"
 
-#: zapzap/features/browser/web/web_view.py:462
+#: zapzap/features/browser/web/web_view.py:494
 msgid "Languages…"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:465
+#: zapzap/features/browser/web/web_view.py:497
 msgid "Choose the languages used by the spell checker."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:714
+#: zapzap/features/browser/web/web_view.py:750
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "Обліковий запис"
 
-#: zapzap/features/browser/web/web_view.py:716
+#: zapzap/features/browser/web/web_view.py:752
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "Інструменти розробника - {}"

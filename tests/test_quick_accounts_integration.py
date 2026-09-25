@@ -23,8 +23,8 @@ class QuickAccountsIntegrationTests(unittest.TestCase):
         self.assertIn("bounds.height >= window.innerHeight * 0.5", self.script)
         self.assertIn("target.appendChild(button)", self.script)
         self.assertNotIn("target.insertBefore(button", self.script)
-        self.assertIn("window.innerHeight - bounds.bottom + 84", self.script)
-        self.assertIn("bounds.width - 40", self.script)
+        self.assertIn("window.innerHeight - bounds.bottom + 90", self.script)
+        self.assertIn("bounds.width - 46", self.script)
         self.assertIn('window.addEventListener("resize"', self.script)
         self.assertIn("button.parentElement !== target", self.script)
         self.assertIn("main > div:first-child", self.script)
@@ -32,6 +32,9 @@ class QuickAccountsIntegrationTests(unittest.TestCase):
         self.assertIn("requestAnimationFrame", self.script)
         self.assertIn('data-zapzap-component", "quick-accounts"', self.script)
         self.assertIn("createButton(isFallback)", self.script)
+        self.assertIn("button.innerHTML = `{quick_accounts_icon}`", self.script)
+        self.assertIn("setIconColor(color)", self.script)
+        self.assertIn("setState(visible, iconColor)", self.script)
         self.assertIn('"left:12px"', self.script)
         self.assertNotIn('"right:18px"', self.script)
         self.assertIn("open_recent_accounts", self.script)
@@ -50,6 +53,11 @@ class QuickAccountsIntegrationTests(unittest.TestCase):
         self.assertIn("def open_recent_accounts(self)", self.web_view)
         self.assertIn("open_recent_accounts.connect(self.show_grid_view)", self.browser_controller)
         self.assertIn("set_quick_accounts_button_visible", self.browser_controller)
+        self.assertIn('"view_grid"', self.web_view)
+        self.assertIn('"{quick_accounts_icon}"', self.web_view)
+        self.assertIn("def sync_quick_accounts_state(self)", self.web_view)
+        self.assertIn("def _quick_accounts_icon_color(color_scheme)", self.web_view)
+        self.assertIn('f"setIconColor(\'{color}\')"', self.web_view)
 
     def test_web_script_is_registered_before_initial_navigation(self):
         setup_page = self.web_view.split("def _setup_page(self):", 1)[1]

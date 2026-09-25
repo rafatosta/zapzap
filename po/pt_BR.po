@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-25 12:33-0300\n"
+"POT-Creation-Date: 2026-09-25 17:09-0300\n"
 "PO-Revision-Date: 2026-08-26 14:30-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -958,7 +958,7 @@ msgstr "Selecione e copie este comando em seu terminal"
 #: zapzap/features/settings/pages/debugging/controller.py:131
 #: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:406
+#: zapzap/features/browser/web/web_view.py:438
 msgid "Copy"
 msgstr "Copiar"
 
@@ -3938,57 +3938,57 @@ msgstr ""
 "fechada manualmente. Use o botão Encerrar chamada do WhatsApp. A janela será "
 "fechada quando o WhatsApp solicitar."
 
-#: zapzap/features/browser/web/web_view.py:405
+#: zapzap/features/browser/web/web_view.py:437
 msgid "Undo"
 msgstr "Desfazer"
 
-#: zapzap/features/browser/web/web_view.py:405
+#: zapzap/features/browser/web/web_view.py:437
 msgid "Redo"
 msgstr "Refazer"
 
-#: zapzap/features/browser/web/web_view.py:405
+#: zapzap/features/browser/web/web_view.py:437
 msgid "Cut"
 msgstr "Recortar"
 
-#: zapzap/features/browser/web/web_view.py:406
+#: zapzap/features/browser/web/web_view.py:438
 msgid "Paste"
 msgstr "Colar"
 
-#: zapzap/features/browser/web/web_view.py:406
+#: zapzap/features/browser/web/web_view.py:438
 msgid "Select all"
 msgstr "Selecionar tudo"
 
-#: zapzap/features/browser/web/web_view.py:407
+#: zapzap/features/browser/web/web_view.py:439
 msgid "Save image"
 msgstr "Salvar imagem"
 
-#: zapzap/features/browser/web/web_view.py:407
+#: zapzap/features/browser/web/web_view.py:439
 msgid "Copy image"
 msgstr "Copiar imagem"
 
-#: zapzap/features/browser/web/web_view.py:408
-#: zapzap/features/browser/web/web_view.py:438
+#: zapzap/features/browser/web/web_view.py:440
+#: zapzap/features/browser/web/web_view.py:470
 msgid "Copy link address"
 msgstr "Copiar endereço do link"
 
-#: zapzap/features/browser/web/web_view.py:456
+#: zapzap/features/browser/web/web_view.py:488
 msgid "Check Spelling"
 msgstr "Verificar a ortografia"
 
-#: zapzap/features/browser/web/web_view.py:462
+#: zapzap/features/browser/web/web_view.py:494
 msgid "Languages…"
 msgstr "Idiomas…"
 
-#: zapzap/features/browser/web/web_view.py:465
+#: zapzap/features/browser/web/web_view.py:497
 msgid "Choose the languages used by the spell checker."
 msgstr "Escolha os idiomas usados pelo corretor ortográfico."
 
-#: zapzap/features/browser/web/web_view.py:714
+#: zapzap/features/browser/web/web_view.py:750
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "Conta"
 
-#: zapzap/features/browser/web/web_view.py:716
+#: zapzap/features/browser/web/web_view.py:752
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"
