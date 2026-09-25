@@ -65,6 +65,7 @@ class ProfileSyncServiceTest(unittest.TestCase):
         )
 
         self.assertTrue(any("chatlist-header" in script for script in page.scripts))
+        self.assertTrue(any("querySelectorAll('img')" in script for script in page.scripts))
         self.assertIsNone(received[0][0])
         self.assertIsInstance(received[0][1], ProfileSyncError)
 

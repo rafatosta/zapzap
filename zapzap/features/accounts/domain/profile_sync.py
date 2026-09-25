@@ -27,10 +27,17 @@ class ProfileSyncService:
 
     SCRIPT = """
 (() => {
-    const image = document.querySelector(
-        'header[data-testid="chatlist-header"] button img'
-    );
-    return image && image.src ? {avatar: image.src} : null;
+    const header = document.querySelector('header[data-testid="chatlist-header"]');
+    if (!header) return null;
+
+    const image = Array.from(header.querySelectorAll('img'))
+        .reverse()
+        .find((node) => {
+            const src = node.currentSrc || node.src || '';
+            return src && src.startsWith('http') && node.naturalWidth > 16;
+        });
+
+    return image ? { avatar: image.currentSrc || image.src } : null;
 })()
 """
 
