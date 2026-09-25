@@ -75,6 +75,8 @@ class TurkishTranslationTests(unittest.TestCase):
             catalog.gettext("Send message to number"),
             "Numaraya mesaj gönder",
         )
+        self.assertEqual(catalog.gettext("Mute"), "Sessize al")
+        self.assertEqual(catalog.gettext("Unmute"), "Sesliye al")
 
 
 if __name__ == "__main__":
