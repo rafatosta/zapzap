@@ -203,7 +203,7 @@
             button.style.top = "auto";
             button.style.bottom = isFallback
                 ? "12px"
-                : `${Math.max(0, window.innerHeight - bounds.bottom + 84)}px`;
+                : `${Math.max(0, window.innerHeight - bounds.bottom + 90)}px`;
             button.style.right = "";
             button.style.zIndex = "2147483647";
 
