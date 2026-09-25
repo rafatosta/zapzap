@@ -4,7 +4,9 @@ from gettext import gettext as _
 
 from PyQt6.QtWidgets import QApplication, QMessageBox
 
+from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.features.alerts.alert_manager import AlertManager
+from zapzap.features.accounts.domain.profile_sync import ProfileSyncService
 from zapzap.features.accounts.domain.user import User
 from zapzap.features.accounts.card_user_model import CardUserModel
 from zapzap.ui.components.edit_account_dialog import EditAccountDialog
@@ -95,6 +97,63 @@ class CardUserController(CardUserView):
             return
         self._load_data()
         self._update_user_icon()
+
+    @classmethod
+    def sync_profile_photo(cls, parent, user: User):
+        browser = cls._get_browser()
+        profile_view = (
+            browser.webview_for_user_id(user.id)
+            if browser else None
+        )
+        profile_page = profile_view.page() if profile_view else None
+        if profile_page is None:
+            AlertManager.warning(
+                parent,
+                _("Could not sync profile photo"),
+                _("This account does not have an active WhatsApp session."),
+            )
+            return False
+
+        def apply(result, error):
+            if error:
+                AlertManager.warning(
+                    parent,
+                    _("Could not sync profile photo"),
+                    str(error),
+                )
+                return
+            if result is None or not result.photo_data:
+                AlertManager.warning(
+                    parent,
+                    _("Could not sync profile photo"),
+                    _("No profile photo is available."),
+                )
+                return
+
+            answer = QMessageBox.question(
+                parent,
+                _("WhatsApp profile photo found"),
+                _("Update this account photo?"),
+                QMessageBox.StandardButton.Yes
+                | QMessageBox.StandardButton.No,
+                QMessageBox.StandardButton.No,
+            )
+            if answer != QMessageBox.StandardButton.Yes:
+                return
+
+            model = CardUserModel(user)
+            model.set_icon(
+                UserIcon.persisted_image(
+                    UserIcon.default_icon(model.user.icon),
+                    result.photo_data,
+                    use_photo=True,
+                )
+            )
+            if browser:
+                browser.update_icons_page_button(user)
+
+        ProfileSyncService.capture(profile_page, apply)
+        return True
 
     @classmethod
     def edit_user(cls, parent, user: User):
@@ -219,6 +278,9 @@ class CardUserController(CardUserView):
         menu.set_notifications_silenced(not model.notifications_enabled)
         menu.set_remove_available(not model.is_default_user)
 
+        menu.sync_requested.connect(
+            lambda: cls.sync_profile_photo(parent, user)
+        )
         menu.edit_requested.connect(
             lambda: cls.edit_user(parent, user)
         )

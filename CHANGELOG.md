@@ -15,6 +15,9 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Added a direct WhatsApp profile photo sync action to the account popup on the
+  initial user menu, reusing the same authenticated avatar lookup and
+  photo-only validation as the account editor without changing the account name.
 - Added an optional manual WhatsApp profile photo synchronization action to the
   account editor. It reads one avatar from that account's active WebEngine
   session, validates and normalizes it through the existing embedded avatar
