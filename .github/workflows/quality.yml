@@ -74,6 +74,15 @@ jobs:
       - name: Validate plain-text paste
         run: python -m unittest discover -s tests -p "test_plain_text_paste.py" -v
 
+      - name: Validate global mute
+        run: python -m unittest discover -s tests -p "test_global_mute.py" -v
+
+      - name: Validate notification sound override
+        run: python -m unittest discover -s tests -p "test_notification_sound_setting.py" -v
+
+      - name: Validate popup audio inheritance
+        run: python -m unittest discover -s tests -p "test_external_link_lifecycle.py" -v
+
       - name: Validate main-window shortcuts
         run: python -m unittest discover -s tests -p "test_main_window_shortcuts.py" -v
 
