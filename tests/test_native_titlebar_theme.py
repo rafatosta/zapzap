@@ -1,10 +1,12 @@
 """Regression tests for synchronizing native window decoration color scheme."""
 
 import unittest
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from PyQt6.QtCore import Qt
 
+from zapzap.app import application as application_module
 from zapzap.core.theme.theme_manager import ThemeManager
 
 
@@ -82,6 +84,40 @@ class NativeTitlebarThemeTests(unittest.TestCase):
             )
 
         self.assertFalse(applied)
+
+    def test_dark_theme_does_not_force_client_side_window(self):
+        content = object()
+
+        with (
+            patch.object(
+                application_module,
+                "MainWindowController",
+                return_value=content,
+            ),
+            patch.object(
+                application_module,
+                "AppearanceSettings",
+                return_value=SimpleNamespace(csr_enabled=False),
+            ),
+            patch.object(
+                application_module,
+                "ClientSideWindowHost",
+            ) as client_side_host,
+            patch.object(
+                application_module.ThemeManager,
+                "get_current_color_scheme",
+                return_value=Qt.ColorScheme.Dark,
+            ),
+            patch.object(
+                application_module.DonationController,
+                "should_show",
+                return_value=False,
+            ),
+        ):
+            window = application_module.create_main_window()
+
+        self.assertIs(window, content)
+        client_side_host.assert_not_called()
 
 
 if __name__ == "__main__":
