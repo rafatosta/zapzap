@@ -1,3 +1,5 @@
+import sys
+
 from PyQt6.QtCore import QBuffer
 from PyQt6.QtCore import QEvent
 from PyQt6.QtCore import QIODevice
@@ -5,6 +7,8 @@ from PyQt6.QtCore import QRectF
 from PyQt6.QtCore import QTimer
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QActionGroup
+from PyQt6.QtGui import QKeySequence
+from PyQt6.QtGui import QShortcut
 from PyQt6.QtGui import QImage
 from PyQt6.QtGui import QPainter
 from PyQt6.QtGui import QPen
@@ -13,6 +17,7 @@ from PyQt6.QtWidgets import QApplication, QDialog, QLabel, QWidget
 from zapzap.app.window_lifecycle import WindowLifecycle
 from zapzap.assets.icons.system_icon import SystemIcon
 from zapzap.core.config.settings.appearance import AppearanceSettings
+from zapzap.core.config.settings.system import SystemSettings
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.core.update_checker import UpdateChecker, UpdateState
 from zapzap import __downloadPage__
@@ -106,6 +111,8 @@ class MainWindowController(MainWindowView):
                  user_provider=None, update_state=None, update_checker=None):
         super().__init__(parent)
         self._appearance_settings = AppearanceSettings()
+        self._system_settings = SystemSettings()
+        self._plain_text_paste_shortcut = None
         self._window_host = self
         self.lifecycle = WindowLifecycle(self, self)
         self.browser = BrowserController(
@@ -199,6 +206,8 @@ class MainWindowController(MainWindowView):
         self.stackedWidget.addWidget(self.browser)
         self._setup_theme_menu()
         self._connect_menu_actions()
+        self._setup_plain_text_paste_shortcut()
+        self.btn_menubar_mute.clicked.connect(self.toggle_audio_muted)
         self.btn_menubar_downloads.clicked.connect(
             lambda: self.show_downloads_menu(
                 self.btn_menubar_downloads,
@@ -215,12 +224,69 @@ class MainWindowController(MainWindowView):
         QTimer.singleShot(0, self._refresh_download_progress)
         self.settings_menubar()
         self.refresh_theme_menu()
+        self.set_audio_muted(self._system_settings.audio_muted, persist=False)
         self.set_sidebar_visible(
             self._appearance_settings.browser_sidebar_visible,
             animated=False,
             persist=False,
         )
         ThemeManager.instance().theme_changed.connect(self.refresh_theme_menu)
+
+    @staticmethod
+    def _plain_text_paste_sequence() -> str:
+        return "Meta+Shift+V" if sys.platform == "darwin" else "Ctrl+Shift+V"
+
+    def _setup_plain_text_paste_shortcut(self) -> None:
+        """Own plain-text paste at the active top-level window boundary."""
+        if self._plain_text_paste_shortcut is not None:
+            return
+        shortcut = QShortcut(
+            QKeySequence(self._plain_text_paste_sequence()),
+            self,
+        )
+        shortcut.setContext(Qt.ShortcutContext.WindowShortcut)
+        shortcut.activated.connect(self._paste_plain_text_current_page)
+        self._plain_text_paste_shortcut = shortcut
+
+    def _paste_plain_text_current_page(self):
+        page = self.browser.current_webview()
+        if page is None:
+            return False
+        paste = getattr(page, "paste_as_plain_text", None)
+        return bool(callable(paste) and paste())
+
+    def toggle_audio_muted(self):
+        """Toggle the persistent application-wide mute override."""
+        return self.set_audio_muted(not self._system_settings.audio_muted)
+
+    def set_audio_muted(self, muted: bool, *, persist: bool = True):
+        muted = bool(muted)
+        if persist:
+            self._system_settings.audio_muted = muted
+        self.browser.set_audio_muted(muted)
+        self._refresh_mute_controls(muted)
+
+        # Do not create the tray eagerly; update it only when it already exists.
+        from zapzap.features.tray.sys_tray_manager import SysTrayManager
+        SysTrayManager.sync_audio_muted(muted)
+        return muted
+
+    def _refresh_mute_controls(self, muted=None) -> None:
+        if muted is None:
+            muted = self._system_settings.audio_muted
+
+        label = _("Unmute") if muted else _("Mute")
+        icon_name = "volume_muted" if muted else "volume_on"
+        icon_theme = SystemIcon.Type[
+            ThemeManager.get_current_color_scheme().name
+        ]
+        icon = SystemIcon.get_icon(icon_name, icon_theme)
+
+        for button in (self.btn_menubar_mute, self.browser.btn_mute):
+            button.setIcon(icon)
+            button.setToolTip(label)
+            button.setAccessibleName(label)
+            button.setAccessibleDescription(label)
 
     def load_settings(self):
         """Restaura as configurações salvas da janela e do sistema."""
@@ -309,6 +375,7 @@ class MainWindowController(MainWindowView):
         self.btn_menubar_downloads.setIcon(
             SystemIcon.get_icon("update_available", icon_theme)
         )
+        self._refresh_mute_controls()
         QTimer.singleShot(0, self.sync_menubar_downloads_button_size)
         QTimer.singleShot(0, self._refresh_download_progress)
 
