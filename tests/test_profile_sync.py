@@ -23,14 +23,20 @@ class ProfileSyncServiceTest(unittest.TestCase):
             bytes(buffer.data())
         ).decode("ascii")
 
-    def test_payload_normalizes_photo_and_keeps_name_separate(self):
+    def test_payload_normalizes_photo_only(self):
         result = ProfileSyncService.result_from_payload({
             "name": " Rafael Tosta ",
             "avatar": self._png_data_url(),
         })
 
-        self.assertEqual(result.name, "Rafael Tosta")
         self.assertTrue(result.photo_data.startswith(UserIcon.PHOTO_PREFIX))
+
+    def test_temporary_avatar_is_not_treated_as_a_persisted_url(self):
+        with self.assertRaises(ProfileSyncError):
+            ProfileSyncService.result_from_payload({
+                "name": "Rafael",
+                "avatar": "blob:temporary",
+            })
 
     def test_invalid_payload_does_not_create_data(self):
         with self.assertRaises(ProfileSyncError):
@@ -42,20 +48,25 @@ class ProfileSyncServiceTest(unittest.TestCase):
 
     def test_capture_runs_javascript_once_and_returns_validated_result(self):
         class FakePage:
-            def runJavaScript(self, script, callback):
-                self.script = script
-                callback({"name": "Rafael", "avatar": None})
+            def __init__(self):
+                self.scripts = []
+
+            def runJavaScript(self, script, callback=None):
+                self.scripts.append(script)
+                if callback:
+                    callback({"ready": True, "avatar": self._avatar})
 
         page = FakePage()
+        page._avatar = None
         received = []
         ProfileSyncService.capture(
             page,
             lambda result, error: received.append((result, error)),
         )
 
-        self.assertIn("return {", page.script)
-        self.assertEqual(received[0][0].name, "Rafael")
-        self.assertIsNone(received[0][1])
+        self.assertTrue(any("chatlist-header" in script for script in page.scripts))
+        self.assertIsNone(received[0][0])
+        self.assertIsInstance(received[0][1], ProfileSyncError)
 
 
 if __name__ == "__main__":

@@ -189,11 +189,12 @@ A edição de conta usa `User` como fonte persistida no SQLite: o nome local fic
 em `users.name` e o avatar fica em `users.icon`. `UserIcon` mantém fotos como
 PNG embutido em uma representação versionada, recortada e limitada a 256 px;
 não há caminho de arquivo adicional nem BLOB de imagem. A sincronização manual
-opcional usa `ProfileSyncService` para executar uma única consulta JavaScript
-na `QWebEnginePage` pertencente ao mesmo `User.id`, valida o retorno e converte
-uma data URL em `UserIcon` antes de preencher o rascunho do diálogo. O banco só
-é alterado pelo fluxo existente de `Salvar`, e falhas ou cancelamento deixam o
-nome e o avatar persistidos intactos.
+opcional da foto usa `ProfileSyncService` para executar uma única consulta
+JavaScript na `QWebEnginePage` pertencente ao mesmo `User.id`, valida o retorno
+e baixa os bytes da URL autenticada do avatar antes de convertê-los em
+`UserIcon` e preencher o rascunho do diálogo. O banco só é alterado pelo fluxo
+existente de `Salvar`, e falhas ou cancelamento deixam o nome e o avatar
+persistidos intactos.
 
 `PageController` aplica permissões, scripts, navegação segura e ações do
 WhatsApp. Scripts mantidos em `features/browser/web/scripts/` são ativos em

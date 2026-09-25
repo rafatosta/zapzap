@@ -355,10 +355,10 @@ class EditAccountDialog(QDialog):
         self.choose_photo_button.setAccessibleName(_("Choose photo"))
 
         self.sync_profile_button = Button(
-            _("Sync with WhatsApp"),
+            _("Sync profile photo"),
             parent=preview_details,
         )
-        self.sync_profile_button.setAccessibleName(_("Sync with WhatsApp"))
+        self.sync_profile_button.setAccessibleName(_("Sync profile photo"))
 
         self.photo_action_divider = self._vertical_divider(
             "AccountPhotoActionDivider",
@@ -680,7 +680,7 @@ class EditAccountDialog(QDialog):
         if self._profile_page is None:
             AlertManager.warning(
                 self,
-                _("Could not sync with WhatsApp"),
+                _("Could not sync profile photo"),
                 _("This account does not have an active WhatsApp session."),
             )
             return
@@ -695,20 +695,15 @@ class EditAccountDialog(QDialog):
         if error:
             AlertManager.warning(
                 self,
-                _("Could not sync with WhatsApp"),
+                _("Could not sync profile photo"),
                 str(error),
             )
             return
 
-        found = []
-        if result.photo_data:
-            found.append(_("Photo"))
-        if result.name:
-            found.append(_("Name: {}").format(result.name))
         answer = QMessageBox.question(
             self,
-            _("WhatsApp profile data found"),
-            _("Update this account with {}?").format(", ".join(found)),
+            _("WhatsApp profile photo found"),
+            _("Update this account photo?"),
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
             QMessageBox.StandardButton.No,
         )
@@ -716,8 +711,6 @@ class EditAccountDialog(QDialog):
             return
         if result.photo_data:
             self._stage_photo(result.photo_data)
-        if result.name:
-            self.name_edit.setText(result.name)
 
     def _stage_photo(self, photo_data):
         self._staged_photo_data = photo_data

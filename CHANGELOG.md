@@ -15,11 +15,11 @@ releases and the AppStream metadata.
 
 ### Added
 
-- Added an optional manual WhatsApp profile synchronization action to the
-  account editor. It reads one profile payload from that account's active
-  WebEngine session, validates and normalizes an available photo through the
-  existing embedded avatar format, and applies changes only after explicit
-  confirmation and the existing Save action.
+- Added an optional manual WhatsApp profile photo synchronization action to the
+  account editor. It reads one avatar from that account's active WebEngine
+  session, validates and normalizes it through the existing embedded avatar
+  format, and applies the photo only after explicit confirmation and the
+  existing Save action.
 - Added a native PyQt6 account overview with lightweight cards that reuse each
   account's persisted avatar and name plus the existing unread counter. The
   overview no longer captures, caches or renders WebView thumbnails and keeps
@@ -101,6 +101,10 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Fixed manual WhatsApp profile photo synchronization ignoring the authenticated
+  CDN avatar in the chat-list header. The action now reads the avatar URL from
+  that header, downloads its bytes, and converts them to the embedded PNG
+  format, without touching the local account name.
 - Avoided accessing the optional Qt NativeGesture event enum when it is not
   exposed by older distribution PyQt6 builds, preventing startup failures on
   those systems while keeping gesture handling enabled where supported.
