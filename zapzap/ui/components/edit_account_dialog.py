@@ -23,6 +23,7 @@ from PyQt6.QtWidgets import (
 from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.core.config.settings.system import SystemSettings
 from zapzap.features.alerts.alert_manager import AlertManager
+from zapzap.features.accounts.domain.profile_sync import ProfileSyncService
 from zapzap.ui.primitives import (
     Button,
     CloseButton,
@@ -140,6 +141,7 @@ class EditAccountDialog(QDialog):
         current_icon=None,
         user_agent_items=None,
         current_user_agent="Default",
+        profile_page=None,
         parent=None,
     ):
         super().__init__(parent)
@@ -152,6 +154,8 @@ class EditAccountDialog(QDialog):
         )
         self._initial_name = current_name
         self._initial_user_agent = current_user_agent
+        self._profile_page = profile_page
+        self._sync_in_progress = False
         self._initial_photo_data = UserIcon.photo(self._current_icon_data)
         self._staged_photo_data = self._initial_photo_data
         current_default_icon = UserIcon.default_icon(self._current_icon_data)
@@ -350,6 +354,12 @@ class EditAccountDialog(QDialog):
         )
         self.choose_photo_button.setAccessibleName(_("Choose photo"))
 
+        self.sync_profile_button = Button(
+            _("Sync with WhatsApp"),
+            parent=preview_details,
+        )
+        self.sync_profile_button.setAccessibleName(_("Sync with WhatsApp"))
+
         self.photo_action_divider = self._vertical_divider(
             "AccountPhotoActionDivider",
             preview_details,
@@ -362,6 +372,7 @@ class EditAccountDialog(QDialog):
 
         actions.addWidget(self.change_icon_button)
         actions.addWidget(self.choose_photo_button)
+        actions.addWidget(self.sync_profile_button)
         actions.addWidget(self.photo_action_divider)
         actions.addWidget(self.keep_current_button)
         actions.addStretch(1)
@@ -477,6 +488,7 @@ class EditAccountDialog(QDialog):
             self._handle_image_type_changed
         )
         self.choose_photo_button.clicked.connect(self._choose_photo)
+        self.sync_profile_button.clicked.connect(self._sync_profile)
         self.keep_current_button.clicked.connect(self._restore_current_icon)
         self.name_edit.textChanged.connect(self._validate_name)
 
@@ -661,6 +673,51 @@ class EditAccountDialog(QDialog):
             )
             return False
         return True
+
+    def _sync_profile(self):
+        if self._sync_in_progress:
+            return
+        if self._profile_page is None:
+            AlertManager.warning(
+                self,
+                _("Could not sync with WhatsApp"),
+                _("This account does not have an active WhatsApp session."),
+            )
+            return
+
+        self._sync_in_progress = True
+        self.sync_profile_button.setEnabled(False)
+        ProfileSyncService.capture(self._profile_page, self._on_profile_sync)
+
+    def _on_profile_sync(self, result, error):
+        self._sync_in_progress = False
+        self.sync_profile_button.setEnabled(True)
+        if error:
+            AlertManager.warning(
+                self,
+                _("Could not sync with WhatsApp"),
+                str(error),
+            )
+            return
+
+        found = []
+        if result.photo_data:
+            found.append(_("Photo"))
+        if result.name:
+            found.append(_("Name: {}").format(result.name))
+        answer = QMessageBox.question(
+            self,
+            _("WhatsApp profile data found"),
+            _("Update this account with {}?").format(", ".join(found)),
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No,
+        )
+        if answer != QMessageBox.StandardButton.Yes:
+            return
+        if result.photo_data:
+            self._stage_photo(result.photo_data)
+        if result.name:
+            self.name_edit.setText(result.name)
 
     def _stage_photo(self, photo_data):
         self._staged_photo_data = photo_data

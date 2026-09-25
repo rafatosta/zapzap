@@ -99,11 +99,18 @@ class CardUserController(CardUserView):
     @classmethod
     def edit_user(cls, parent, user: User):
         model = CardUserModel(user)
+        browser = cls._get_browser()
+        profile_view = (
+            browser.webview_for_user_id(user.id)
+            if browser else None
+        )
+        profile_page = profile_view.page() if profile_view else None
         dialog = EditAccountDialog(
             model.name,
             model.user.icon,
             model.available_user_agents(),
             model.user_agent,
+            profile_page,
             parent,
         )
         dialog.name_edit.setFocus()
@@ -116,7 +123,6 @@ class CardUserController(CardUserView):
         if dialog.user_agent() != model.user_agent:
             cls.set_user_agent(parent, user, dialog.user_agent())
 
-        browser = cls._get_browser()
         if browser:
             browser.update_icons_page_button(user)
         return True

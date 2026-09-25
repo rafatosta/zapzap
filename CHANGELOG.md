@@ -15,6 +15,11 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Added an optional manual WhatsApp profile synchronization action to the
+  account editor. It reads one profile payload from that account's active
+  WebEngine session, validates and normalizes an available photo through the
+  existing embedded avatar format, and applies changes only after explicit
+  confirmation and the existing Save action.
 - Added a native PyQt6 account overview with lightweight cards that reuse each
   account's persisted avatar and name plus the existing unread counter. The
   overview no longer captures, caches or renders WebView thumbnails and keeps
