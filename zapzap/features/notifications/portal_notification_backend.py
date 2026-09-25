@@ -69,7 +69,10 @@ class PortalNotificationBackend(QObject):
             "display-hint": ["show-as-new"],
             "category": "im.received",
         }
-        if not SettingsManager.get("notification/sound", True):
+        if (
+            not SettingsManager.get("notification/sound", True)
+            or SettingsManager.get("system/audio_muted", False)
+        ):
             fields["sound"] = "silent"
         return fields
 

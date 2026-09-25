@@ -23,6 +23,24 @@ releases and the AppStream metadata.
   session, validates and normalizes it through the existing embedded avatar
   format, and applies the photo only after explicit confirmation and the
   existing Save action.
+- Added plain-text paste inside WhatsApp Web: Ctrl+Shift+V on Linux/Windows
+  (Cmd+Shift+V on macOS) now reads only the system clipboard's text
+  representation and routes it from a window-level Qt shortcut to the active
+  account. The insertion resolves the contenteditable owning the current DOM
+  selection, with Chromium's native PasteAndMatchStyle as a fallback, so
+  spreadsheet/HTML clipboard content is not pasted as an image while the
+  existing Ctrl+V rich-paste behavior remains unchanged.
+- Added Ctrl+J as a discoverable View-menu shortcut for opening the full
+  downloads history window.
+- Added an application-wide persistent mute override with synchronized tray,
+  menubar and sidebar controls. It mutes every live WhatsApp Web page and
+  internal popup without disabling notifications or overwriting the existing
+  notification-sound preference; supported Linux notification backends also
+  suppress their own alert sound while the override is active.
+- Aligned native window decorations with the explicit ZapZap light/dark theme
+  when the installed Qt exposes an application color-scheme override. Auto
+  continues to follow the desktop scheme, and older distribution Qt builds
+  remain compatible.
 - Added a native PyQt6 account overview with lightweight cards that reuse each
   account's persisted avatar and name plus the existing unread counter. The
   overview no longer captures, caches or renders WebView thumbnails and keeps
@@ -126,6 +144,14 @@ releases and the AppStream metadata.
 - Updated the Portuguese locale entries for the WhatsApp profile photo sync
   action and confirmation dialogs so the new localized strings are applied in
   the Brazilian and European Portuguese catalogs.
+- Preserved mixed text/image clipboard formats when ZapZap gains focus so
+  spreadsheet copies retain their text representation for Ctrl+Shift+V.
+- Kept Linux native title bars under the window manager/compositor's ownership:
+  explicit dark/light themes use Qt's native color-scheme hint, Auto releases
+  the override back to the system, and ZapZap no longer forces its client-side
+  frame merely to mimic a dark server-side decoration.
+- Reduced the compact downloads popover by 20 percent horizontally and about
+  30 percent vertically while keeping the full downloads window unchanged.
 - Avoided accessing the optional Qt NativeGesture event enum when it is not
   exposed by older distribution PyQt6 builds, preventing startup failures on
   those systems while keeping gesture handling enabled where supported.
@@ -147,6 +173,12 @@ releases and the AppStream metadata.
 
 ### Changed
 
+- Increased the WebEngine integration-test timeout for plain-text paste so
+  slower macOS CI startup does not produce a false failure while preserving
+  the same real QWebEnginePage behavior check.
+- Completed the Turkish interface catalog for currently active UI strings,
+  replacing missing and fuzzy entries across reporting, dictionaries,
+  donations, update UI, network/rendering settings and related dialogs.
 - Extended the internal popup and external link regression tests to cover the
   deferred disposal and the shutdown path that still stopped a page
   reentrantly.

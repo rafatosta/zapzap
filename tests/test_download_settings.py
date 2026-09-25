@@ -522,6 +522,10 @@ class DownloadMenuPresentationTests(unittest.TestCase):
     def test_compact_popup_shows_five_recent_items(self):
         self.assertEqual(DownloadsPopover.POPUP_ITEM_LIMIT, 5)
 
+    def test_compact_popup_keeps_the_reduced_width(self):
+        self.assertEqual(DownloadsPopover.WIDTH, 336)
+        self.assertEqual(DownloadsPopover.WIDTH, round(420 * 0.8))
+
     class _FakeIcon:
         def __init__(self, key):
             self.key = key

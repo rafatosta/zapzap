@@ -25,6 +25,21 @@ class SystemIcon:
             </svg>
             """
         ),
+        "volume_on": (
+            """
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
+                <path fill="{fill_color}" d="M136 45.8a12 12 0 0 0-12.7 1.6L73.8 88H40a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h33.8l49.5 40.6A12 12 0 0 0 143 199V57a12 12 0 0 0-7-11.2ZM127 183.9 82.4 147.3A12 12 0 0 0 74.8 144H48v-32h26.8a12 12 0 0 0 7.6-2.7L127 72.7Zm49.5-80.4a12 12 0 0 1 17 0 34.7 34.7 0 0 1 0 49 12 12 0 0 1-17-17 10.7 10.7 0 0 0 0-15 12 12 0 0 1 0-17Zm30-30a12 12 0 0 1 17 0 77.2 77.2 0 0 1 0 109 12 12 0 1 1-17-17 53.1 53.1 0 0 0 0-75 12 12 0 0 1 0-17Z"/>
+            </svg>
+            """
+        ),
+        "volume_muted": (
+            """
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
+                <path fill="{fill_color}" d="M136 45.8a12 12 0 0 0-12.7 1.6L73.8 88H40a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h33.8l49.5 40.6A12 12 0 0 0 143 199V57a12 12 0 0 0-7-11.2ZM127 183.9 82.4 147.3A12 12 0 0 0 74.8 144H48v-32h26.8a12 12 0 0 0 7.6-2.7L127 72.7Z"/>
+                <path fill="none" stroke="{fill_color}" stroke-width="18" stroke-linecap="round" d="m174 104 54 54m0-54-54 54"/>
+            </svg>
+            """
+        ),
         "update_available": (
             """
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="{fill_color}" viewBox="0 0 256 256">

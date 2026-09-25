@@ -64,11 +64,13 @@ Nos testes visuais, importe controles básicos de `zapzap.ui.primitives` e
 composições de `zapzap.ui.components`. Imports por caminhos internos de uma
 feature não devem ser usados para alcançar widgets compartilhados.
 
-O workflow `quality.yml` executa `test_download_settings.py` e `test_taskbar_badge.py`
-também em Ubuntu, Windows e macOS. Essa matriz protege os contratos portáveis
-do gerenciador de downloads e das ativações da bandeja; a aparência exata dos
-ícones nativos e o comportamento imposto pelo shell ainda exigem validação
-gráfica em cada sistema.
+O workflow `quality.yml` executa `test_download_settings.py`,
+`test_taskbar_badge.py` e `test_plain_text_paste.py` também em Ubuntu,
+Windows e macOS. Essa matriz protege os contratos portáveis do gerenciador de
+downloads, das ativações da bandeja e do atalho nativo de colagem sem
+formatação; a aparência exata dos ícones nativos, o comportamento imposto pelo
+shell e a integração real com o clipboard ainda exigem validação gráfica em
+cada sistema.
 
 ## Cobertura por módulo
 
@@ -99,17 +101,21 @@ documente o que ele protege.
 | `test_external_link_lifecycle.py` | classificação interna/externa de pop-ups, profile compartilhado, entrega única ao navegador e cleanup no fechamento/shutdown |
 | `test_floating_account_button.py` | botão flutuante visível apenas com a sidebar oculta, avatar sincronizado com a conta ativa e clique reaproveitando a grade existente de troca de contas |
 | `test_freedesktop_notification_backend.py` | avisos nas saídas antecipadas da inicialização D-Bus, falhas de `Notify`/`CloseNotification`, aviso único na transição para indisponível e fachada sem backend |
+| `test_global_mute.py` | estado persistente de mute global, sincronização dos controles, fan-out para todas as contas e roteamento do atalho de colagem para a conta ativa |
 | `test_gpu_environment.py` | detecção multi-GPU, conectores e seleção de render node |
 | `test_browser_grid_view_ui.py` | cartões nativos da grade, avatar/nome, badge de não lidas, atualização por sinal e seleção por ID |
 | `test_http_cache_size.py` | cache em MiB, tipos de cache, política de cookies, memória JavaScript, autocura persistida e fallbacks de perfil sem WebEngine real |
 | `test_initial_setup_ui.py` | onboarding, som, fechamento, permissões, dicionários e persistência |
+| `test_main_window_shortcuts.py` | atalhos da janela principal, ações de menu correspondentes e descoberta do Ctrl+J |
 | `test_memory_benchmark.py` | procfs/USS, schema JSON/CSV/Markdown, isolamento WebEngine, factory stub, cenários e comparação relativa |
+| `test_native_titlebar_theme.py` | sincronização do esquema claro/escuro com decorações nativas, modo automático e fallback para Qt antigo |
 | `test_network_privacy_settings_ui.py` | proxy exclusivamente global, strict proxy, credenciais, aplicar/descartar, feedback de falha do Qt, restauração e WebRTC |
 | `test_notification_sound_setting.py` | mapeamento de som e tipos dos hints Portal/Freedesktop |
 | `test_notification_window_activation.py` | conexão QtDBus, tokens Portal/Wayland, startup X11, foco e limpeza |
 | `test_notifications_settings_ui.py` | rótulos, dependências, privacidade, som e lembrete de apoio |
 | `test_performance_experimental_settings_ui.py` | perfis de renderização, controles manuais, migração e reinício |
 | `test_permissions_settings_ui.py` | grupos e ações globais/individuais de permissões |
+| `test_plain_text_paste.py` | inserção text/plain no editor WebEngine selecionado, resolução de contenteditable pela seleção DOM e fallback PasteAndMatchStyle sem tocar no Ctrl+V |
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
 | `test_profile_sync.py` | validação de dados pontuais do perfil WhatsApp e normalização da foto |
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
@@ -124,7 +130,7 @@ documente o que ele protege.
 | `test_software_video_decoding.py` | presets, flags Chromium de renderização/strict proxy, persistência e ordem do bootstrap |
 | `test_spellcheck_language_picker.py` | migração, seleção múltipla transacional, pesquisa, limite, recentes, menu e perfis WebEngine |
 | `test_taskbar_badge.py` | contador nativo, zero, preferência, bandeja oculta, ativação primária/contexto por backend, integração StatusNotifier/AppIndicator e compatibilidade com Qt anterior |
-| `test_translations.py` | catálogo gettext `zh_CN`, descoberta de idiomas, fallback, placeholders e carregamento em runtime |
+| `test_turkish_translation.py` | catálogo turco sem traduções ativas vazias ou marcadas como fuzzy |
 | `test_system_startup_settings_ui.py` | semântica de fechamento, diálogo nativo, seleção do backend gráfico, reinício e acessibilidade |
 | `test_unix_signal_shutdown.py` | ponte POSIX, restauração do estado global e `SIGTERM` real chegando a `aboutToQuit` em subprocesso isolado |
 | `test_update_checker.py` | versões, política de builds, respostas/falhas assíncronas, metadados seguros e popover acessível compartilhado entre sidebar e Sobre |
@@ -155,16 +161,20 @@ documente o que ele protege.
 - `test_external_link_lifecycle.py`
 - `test_floating_account_button.py`
 - `test_freedesktop_notification_backend.py`
+- `test_global_mute.py`
 - `test_gpu_environment.py`
 - `test_http_cache_size.py`
 - `test_initial_setup_ui.py`
+- `test_main_window_shortcuts.py`
 - `test_memory_benchmark.py`
+- `test_native_titlebar_theme.py`
 - `test_network_privacy_settings_ui.py`
 - `test_notification_sound_setting.py`
 - `test_notification_window_activation.py`
 - `test_notifications_settings_ui.py`
 - `test_performance_experimental_settings_ui.py`
 - `test_permissions_settings_ui.py`
+- `test_plain_text_paste.py`
 - `test_portal_notification_backend.py`
 - `test_profile_sync.py`
 - `test_qt_parameter_fallbacks.py`
@@ -180,7 +190,7 @@ documente o que ele protege.
 - `test_spellcheck_language_picker.py`
 - `test_system_startup_settings_ui.py`
 - `test_taskbar_badge.py`
-- `test_translations.py`
+- `test_turkish_translation.py`
 - `test_unix_signal_shutdown.py`
 - `test_update_checker.py`
 - `test_whatsapp_app_lock.py`
@@ -286,6 +296,61 @@ gráfica real.
     inclusive para PDF e imagens, sem gerar miniatura do conteúdo. Para um item
     ainda em fila, aceite fallback genérico apenas
     quando a plataforma não fornecer um ícone específico para a extensão.
+
+## Validação manual da barra de título nativa
+
+Use uma sessão gráfica real, pois o modo `offscreen` não desenha a decoração
+fornecida pelo compositor/plataforma.
+
+1. Com **Usar decoração personalizada** desativado, selecione o tema **Escuro**
+   e confirme que a barra de título nativa acompanha o fundo escuro do ZapZap
+   quando a versão instalada do Qt oferece suporte ao override de esquema de cor.
+2. Selecione **Claro** e confirme o retorno da decoração nativa clara.
+3. Selecione **Automático** e confirme que a decoração volta a seguir o esquema
+   claro/escuro do desktop, sem ficar presa ao último override explícito.
+4. Em uma distribuição com Qt antigo sem `setColorScheme`, confirme que a
+   aplicação continua abrindo normalmente; nesse caso a decoração nativa pode
+   continuar sendo controlada exclusivamente pelo compositor.
+5. Em GNOME/Pardus com decoração server-side, aceite que o compositor pode
+   ignorar o hint mesmo em Qt novo e manter a barra no tema do sistema. Isso não
+   deve ativar decoração personalizada, janela frameless ou botões próprios.
+
+## Validação manual do atalho de downloads
+
+1. Com a janela principal ativa, pressione **Ctrl+J** e confirme que a janela
+   completa de histórico de downloads é aberta, não apenas o menu compacto.
+2. Abra o menu **Exibir** e confirme que **Downloads** aparece com **Ctrl+J**.
+3. Confirme que nenhum atalho existente mudou e que clicar nos botões de
+   downloads continua usando o fluxo normal.
+
+## Validação manual de colagem sem formatação
+
+Use uma conversa de teste e uma sessão gráfica real.
+
+1. Copie várias células de uma planilha no Excel ou LibreOffice Calc e use
+   **Ctrl+Shift+V** no campo de mensagem do WhatsApp Web. No macOS, use
+   **Cmd+Shift+V**. Confirme que o conteúdo entra como texto, sem ser convertido
+   em imagem ou preservar a formatação rica da planilha. O atalho usa apenas a
+   representação textual do clipboard e insere esse texto no editor focado.
+2. Repita a mesma cópia com **Ctrl+V** e confirme que o comportamento normal do
+   WhatsApp Web permanece inalterado.
+3. Repita com texto rico/HTML copiado de um navegador ou editor e confirme que o
+   atalho sem formatação usa apenas a apresentação textual compatível com o
+   campo de mensagem.
+
+## Validação manual do mute global
+
+1. Com o som aberto, confirme que tray, botão da barra superior e botão da
+   sidebar exibem **Mute/Sessize al** e o mesmo ícone de som aberto.
+2. Acione qualquer um deles e confirme que os três pontos passam para
+   **Unmute/Sesliye al**, mensagens, chamadas/toques e mídia das contas abertas
+   ficam sem áudio, mas as notificações continuam aparecendo.
+3. Com duas contas e uma janela interna de chamada/popup, alterne entre contas e
+   confirme que todas permanecem mudas; abra uma nova página/popup depois do
+   mute e confirme que ela nasce muda.
+4. Reinicie o ZapZap e confirme que o estado de mute persiste. Desative o mute e
+   confirme que a preferência anterior de som de notificações volta a valer sem
+   ter sido alterada.
 
 ## Validação manual do proxy estrito
 

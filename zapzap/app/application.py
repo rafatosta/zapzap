@@ -50,9 +50,10 @@ def create_main_window(
         update_state=update_state,
         update_checker=update_checker,
     )
+    appearance = AppearanceSettings()
     window = (
         ClientSideWindowHost(content)
-        if AppearanceSettings().csr_enabled
+        if appearance.csr_enabled
         else content
     )
     if DonationController.should_show():

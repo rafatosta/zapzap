@@ -55,7 +55,21 @@ class MainWindowView(QMainWindow):
         self.menuHelp = QMenu(self.menubar)
         self.menuHelp.setObjectName("menuHelp")
 
-        self.btn_menubar_downloads = QToolButton(self.menubar)
+        self.menubar_corner = QWidget(self.menubar)
+        self.menubar_corner_layout = QHBoxLayout(self.menubar_corner)
+        self.menubar_corner_layout.setContentsMargins(0, 0, 0, 0)
+        self.menubar_corner_layout.setSpacing(5)
+
+        self.btn_menubar_mute = QToolButton(self.menubar_corner)
+        self.btn_menubar_mute.setObjectName("btn_menubar_mute")
+        self.btn_menubar_mute.setAutoRaise(True)
+        self.btn_menubar_mute.setToolButtonStyle(
+            Qt.ToolButtonStyle.ToolButtonIconOnly
+        )
+        self.btn_menubar_mute.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.menubar_corner_layout.addWidget(self.btn_menubar_mute)
+
+        self.btn_menubar_downloads = QToolButton(self.menubar_corner)
         self.btn_menubar_downloads.setObjectName("btn_menubar_downloads")
         self.btn_menubar_downloads.setAutoRaise(True)
         self.btn_menubar_downloads.setToolButtonStyle(
@@ -64,10 +78,13 @@ class MainWindowView(QMainWindow):
         self.btn_menubar_downloads.setCursor(
             Qt.CursorShape.PointingHandCursor
         )
+        self.btn_menubar_mute.setToolTip(_("Mute"))
+        self.btn_menubar_mute.setAccessibleName(_("Mute"))
         self.btn_menubar_downloads.setToolTip(_("Downloads"))
         self.btn_menubar_downloads.setAccessibleName(_("Downloads"))
+        self.menubar_corner_layout.addWidget(self.btn_menubar_downloads)
         self.menubar.setCornerWidget(
-            self.btn_menubar_downloads,
+            self.menubar_corner,
             Qt.Corner.TopRightCorner,
         )
 
@@ -95,6 +112,8 @@ class MainWindowView(QMainWindow):
         self.actionOpen_DevTools.setObjectName("actionOpen_DevTools")
         self.actionGrid_view = QAction(self)
         self.actionGrid_view.setObjectName("actionGrid_view")
+        self.actionDownloads = QAction(self)
+        self.actionDownloads.setObjectName("actionDownloads")
         self.actionToggle_sidebar = QAction(self)
         self.actionToggle_sidebar.setCheckable(True)
         self.actionToggle_sidebar.setObjectName("actionToggle_sidebar")
@@ -124,6 +143,7 @@ class MainWindowView(QMainWindow):
         self.menuFile.addAction(self.actionHide)
         self.menuFile.addAction(self.actionQuit)
         self.menuView.addAction(self.actionGrid_view)
+        self.menuView.addAction(self.actionDownloads)
         self.menuView.addAction(self.actionOpen_DevTools)
         self.menuView.addSeparator()
         self.menuView.addAction(self.actionToggle_sidebar)
@@ -152,8 +172,9 @@ class MainWindowView(QMainWindow):
     def sync_menubar_downloads_button_size(self):
         height = max(28, self.menubar.sizeHint().height())
         icon_size = max(24, height - 16)
-        self.btn_menubar_downloads.setFixedSize(QSize(height + 8, height))
-        self.btn_menubar_downloads.setIconSize(QSize(icon_size, icon_size))
+        for button in (self.btn_menubar_mute, self.btn_menubar_downloads):
+            button.setFixedSize(QSize(height + 8, height))
+            button.setIconSize(QSize(icon_size, icon_size))
 
     def retranslate_ui(self):
         self.setWindowTitle(_("ZapZap"))
@@ -182,6 +203,8 @@ class MainWindowView(QMainWindow):
         self.actionOpen_DevTools.setShortcut(_("Ctrl+Shift+I"))
         self.actionGrid_view.setText(_("Grid View"))
         self.actionGrid_view.setShortcut(_("Ctrl+G"))
+        self.actionDownloads.setText(_("Downloads"))
+        self.actionDownloads.setShortcut("Ctrl+J")
         self.actionToggle_sidebar.setText(_("Show sidebar"))
         self.actionTheme_auto.setText(_("Automatic theme"))
         self.actionTheme_auto.setShortcut(_("Ctrl+Alt+1"))

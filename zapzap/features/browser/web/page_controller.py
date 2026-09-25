@@ -81,6 +81,7 @@ class PageController(QWebEnginePage):
             granted_features=self._granted_features,
         )
         new_page.user_id = self.user_id
+        new_page.setAudioMuted(self.isAudioMuted())
         return new_page
 
     def _open_external_url(self, url: QUrl, page=None):

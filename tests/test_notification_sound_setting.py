@@ -1,25 +1,33 @@
 """Tests for muting the desktop alert sound for new messages."""
 
 import unittest
-from unittest.mock import patch
+from types import SimpleNamespace
+from unittest.mock import MagicMock, patch
 
 from PyQt6.QtCore import QMetaType, QVariant
 
 import qt_test_case  # noqa: F401  puts the repository root on sys.path
 from zapzap.features.notifications.freedesktop_notification_backend import (
     DBusNotification,
+    FreedesktopNotificationBackend,
 )
 from zapzap.features.notifications.portal_notification_backend import (
     PortalNotificationBackend,
 )
 
 
-def _with_sound(enabled, module):
-    """Patch SettingsManager.get so notification/sound reads as `enabled`."""
+def _with_sound(enabled, module, *, globally_muted=False):
+    """Patch the user sound preference and the separate global mute override."""
     return patch(
         f"zapzap.features.notifications.{module}.SettingsManager.get",
         side_effect=lambda key, default=None: (
-            enabled if key == "notification/sound" else default
+            enabled
+            if key == "notification/sound"
+            else (
+                globally_muted
+                if key == "system/audio_muted"
+                else default
+            )
         ),
     )
 
@@ -81,12 +89,63 @@ class PortalSoundFieldTests(unittest.TestCase):
 
         self.assertNotIn("sound", fields)
 
+    def test_global_mute_overrides_enabled_portal_sound_preference(self):
+        with _with_sound(
+            True,
+            "portal_notification_backend",
+            globally_muted=True,
+        ):
+            fields = PortalNotificationBackend._extra_fields()
+
+        self.assertEqual(fields["sound"], "silent")
+
     def test_the_other_extra_fields_are_kept_when_muting(self):
         with _with_sound(False, "portal_notification_backend"):
             fields = PortalNotificationBackend._extra_fields()
 
         self.assertEqual(fields["category"], "im.received")
         self.assertEqual(fields["display-hint"], ["show-as-new"])
+
+
+class FreedesktopGlobalMuteTests(unittest.TestCase):
+    def test_global_mute_sets_suppress_sound_without_changing_preference(self):
+        backend = object.__new__(FreedesktopNotificationBackend)
+        connection = SimpleNamespace(
+            available=True,
+            notify=MagicMock(return_value=True),
+            close_notification=MagicMock(),
+        )
+        backend._connection = connection
+        page = SimpleNamespace(user=SimpleNamespace(id="account"))
+        web_notification = SimpleNamespace(
+            icon=lambda: None,
+            closed=MagicMock(),
+            click=MagicMock(),
+        )
+
+        with (
+            _with_sound(
+                True,
+                "freedesktop_notification_backend",
+                globally_muted=True,
+            ),
+            patch(
+                "zapzap.features.notifications."
+                "freedesktop_notification_backend.IconRenderer."
+                "from_notification_icon",
+                return_value="",
+            ),
+            patch(
+                "zapzap.features.notifications."
+                "freedesktop_notification_backend.IconRenderer.default_icon",
+                return_value="icon",
+            ),
+        ):
+            backend.notify(page, web_notification, "Title", "Body")
+
+        notification = connection.notify.call_args.args[0]
+        self.assertIs(notification.hints["suppress-sound"], True)
+
 
 
 if __name__ == "__main__":

@@ -137,29 +137,36 @@ class DownloadRow(QFrame):
             cls._file_icon_provider = QFileIconProvider()
         return cls._file_icon_provider
 
-    def __init__(self, item: dict, parent=None):
+    def __init__(self, item: dict, parent=None, *, compact=False):
         super().__init__(parent)
+        self.compact = bool(compact)
         self.item = dict(item)
         self.key = item.get("key")
         self.path = item.get("path", "")
         self.setObjectName("DownloadRow")
 
-        self.setMinimumWidth(360)
-        self.setMaximumWidth(520)
+        self.setMinimumWidth(270 if self.compact else 360)
+        self.setMaximumWidth(420 if self.compact else 520)
 
         root = QHBoxLayout(self)
-        root.setContentsMargins(8, 5, 5, 5)
-        root.setSpacing(8)
+        root.setContentsMargins(
+            6 if self.compact else 8,
+            3 if self.compact else 5,
+            4 if self.compact else 5,
+            3 if self.compact else 5,
+        )
+        root.setSpacing(6 if self.compact else 8)
 
         self.file_icon = QLabel(self)
-        self.file_icon.setFixedSize(QSize(34, 34))
+        icon_side = 28 if self.compact else 34
+        self.file_icon.setFixedSize(QSize(icon_side, icon_side))
         self.file_icon.setAlignment(Qt.AlignmentFlag.AlignCenter)
         root.addWidget(self.file_icon, 0, Qt.AlignmentFlag.AlignTop)
 
         center = QWidget(self)
         center_layout = QVBoxLayout(center)
         center_layout.setContentsMargins(0, 0, 0, 0)
-        center_layout.setSpacing(3)
+        center_layout.setSpacing(1 if self.compact else 3)
 
         self.name_button = QPushButton(self)
         self.name_button.setFlat(True)
@@ -187,10 +194,10 @@ class DownloadRow(QFrame):
 
         self.progress = QProgressBar(self.progress_row)
         self.progress.setTextVisible(False)
-        self.progress.setFixedHeight(7)
-        self.progress.setMinimumWidth(220)
+        self.progress.setFixedHeight(5 if self.compact else 7)
+        self.progress.setMinimumWidth(145 if self.compact else 220)
         self.progress_percent = QLabel(self.progress_row)
-        self.progress_percent.setMinimumWidth(34)
+        self.progress_percent.setMinimumWidth(28 if self.compact else 34)
         self.progress_percent.setAlignment(
             Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter
         )
@@ -266,6 +273,17 @@ class DownloadRow(QFrame):
 
         self.actions.hide()
         root.addWidget(self.actions, 0, Qt.AlignmentFlag.AlignTop)
+
+        if self.compact:
+            for button in (
+                self.folder_button,
+                self.delete_button,
+                self.pause_button,
+                self.resume_button,
+                self.cancel_button,
+            ):
+                button.setFixedSize(QSize(24, 24))
+                button.setIconSize(QSize(15, 15))
 
         self._refresh_outline_icons()
         ThemeManager.instance().theme_changed.connect(
@@ -430,9 +448,12 @@ class DownloadRow(QFrame):
         status = item.get("status", "completed")
 
         icon = self._system_file_icon(self.path, name)
-        self.file_icon.setPixmap(icon.pixmap(QSize(30, 30)))
+        pixmap_side = 24 if self.compact else 30
+        self.file_icon.setPixmap(icon.pixmap(QSize(pixmap_side, pixmap_side)))
 
-        self.name_button.setText(self._elide_file_name(name))
+        self.name_button.setText(
+            self._elide_file_name(name, 28 if self.compact else 38)
+        )
         name_font = self.name_button.font()
         missing_completed_file = (
             status == "completed"
@@ -657,13 +678,13 @@ class _DownloadsListMixin:
             if widget is not None:
                 widget.deleteLater()
 
-    def _populate_rows(self, items, *, limit=None):
+    def _populate_rows(self, items, *, limit=None, compact=False):
         self._clear_rows()
         visible_items = items if limit is None else items[:limit]
 
         if visible_items:
             for item in visible_items:
-                row = DownloadRow(item, self.items_widget)
+                row = DownloadRow(item, self.items_widget, compact=compact)
                 row.open_requested.connect(self._open_file)
                 row.folder_requested.connect(self._open_parent_folder)
                 self.items_layout.addWidget(row)
@@ -699,7 +720,7 @@ class DownloadsPopover(QFrame, _DownloadsListMixin):
     interacted = pyqtSignal()
     show_all_requested = pyqtSignal()
 
-    WIDTH = 420
+    WIDTH = 336
     SHADOW_MARGIN = 10
     POPUP_ITEM_LIMIT = 5
 
@@ -871,11 +892,12 @@ class DownloadsPopover(QFrame, _DownloadsListMixin):
         visible_items = self._populate_rows(
             items,
             limit=self.POPUP_ITEM_LIMIT,
+            compact=True,
         )
         body_height = (
-            max(72, len(visible_items) * 76)
+            max(50, len(visible_items) * 53)
             if visible_items
-            else 72
+            else 50
         )
         self.items_scroll.setFixedHeight(body_height)
         self.show_all_button.setEnabled(bool(items))

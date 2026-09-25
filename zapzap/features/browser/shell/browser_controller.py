@@ -20,6 +20,7 @@ from zapzap.assets.icons.system_icon import SystemIcon
 from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.core.config.settings.appearance import AppearanceSettings
+from zapzap.core.config.settings.system import SystemSettings
 from zapzap.core.environment.setup_manager import SetupManager
 from zapzap.features.tray.sys_tray_manager import SysTrayManager
 from zapzap.features.browser.shell.browser_view import BrowserView
@@ -125,6 +126,7 @@ class BrowserController(BrowserView):
             self.btn_whatsapp_lock,
             self.btn_donations,
             self.btn_update_available,
+            self.btn_mute,
             self.btn_downloads,
             self.btn_open_settings,
         ):
@@ -189,6 +191,7 @@ class BrowserController(BrowserView):
         self.btn_new_chat.clicked.connect(lambda: self.parent.new_chat())
         self.btn_whatsapp_lock.clicked.connect(self.request_native_app_lock)
         self.btn_donations.clicked.connect(self.show_donations)
+        self.btn_mute.clicked.connect(self.parent.toggle_audio_muted)
         self.btn_downloads.clicked.connect(
             lambda: self.parent.show_downloads_menu(self.btn_downloads)
         )
@@ -414,6 +417,9 @@ class BrowserController(BrowserView):
         page = None
         try:
             page = self._webview_factory(runtime.user, runtime.position)
+            set_muted = getattr(page, "set_audio_muted", None)
+            if callable(set_muted):
+                set_muted(SystemSettings().audio_muted)
             page.update_button_signal.connect(
                 lambda _position, count, entry=runtime: (
                     self._update_runtime_notifications(entry, count)
@@ -751,6 +757,13 @@ class BrowserController(BrowserView):
     def apply_custom_css_all_pages(self):
         for runtime in self._active_runtimes():
             runtime.page.apply_custom_css()
+
+    def set_audio_muted(self, muted: bool) -> None:
+        """Apply one application-wide audio state to every live account."""
+        for runtime in self._active_runtimes():
+            setter = getattr(runtime.page, "set_audio_muted", None)
+            if callable(setter):
+                setter(bool(muted))
 
     def current_webview(self):
         current = self.pages.currentWidget()

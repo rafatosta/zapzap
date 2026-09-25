@@ -6,6 +6,7 @@ from PyQt6.QtGui import QAction, QCursor
 
 from zapzap.assets.icons.tray_icon import TrayIcon
 from zapzap.core.config.settings.appearance import AppearanceSettings
+from zapzap.core.config.settings.system import SystemSettings
 
 
 class SysTrayManager:
@@ -61,6 +62,9 @@ class SysTrayManager:
         """Cria as ações disponíveis no menu da bandeja."""
         return {
             "show": QAction(_("Show")),
+            "mute": QAction(
+                _("Unmute") if SystemSettings().audio_muted else _("Mute")
+            ),
             "settings": QAction(_("Settings")),
             "donation": QAction(_("Support ZapZap")),
             "exit": QAction(_("Quit")),
@@ -70,6 +74,7 @@ class SysTrayManager:
         """Cria o menu da bandeja do sistema."""
         tray_menu = QMenu()
         tray_menu.addAction(self._actions["show"])
+        tray_menu.addAction(self._actions["mute"])
         tray_menu.addAction(self._actions["settings"])
         tray_menu.addAction(self._actions["donation"])
         tray_menu.addSeparator()
@@ -154,6 +159,9 @@ class SysTrayManager:
         instance._bound_window = main_window
         instance._tray.activated.connect(instance._on_tray_activated)
         instance._actions["show"].triggered.connect(main_window.show_window)
+        instance._actions["mute"].triggered.connect(
+            main_window.toggle_audio_muted
+        )
         instance._actions["settings"].triggered.connect(
             lambda: instance._open_settings(main_window))
         instance._actions["donation"].triggered.connect(
@@ -164,6 +172,7 @@ class SysTrayManager:
         for signal in (
             self._tray.activated,
             self._actions["show"].triggered,
+            self._actions["mute"].triggered,
             self._actions["settings"].triggered,
             self._actions["donation"].triggered,
             self._actions["exit"].triggered,
@@ -205,6 +214,16 @@ class SysTrayManager:
         """Inicia o SysTrayManager e carrega o estado inicial."""
         instance = SysTrayManager.instance()
         instance._load_state()
+
+    @classmethod
+    def sync_audio_muted(cls, muted: bool) -> None:
+        """Refresh the tray label without forcing tray initialization."""
+        instance = cls._instance
+        if instance is None or not hasattr(instance, "_actions"):
+            return
+        instance._actions["mute"].setText(
+            _("Unmute") if muted else _("Mute")
+        )
 
     @staticmethod
     def set_number_notifications(number_notifications):
