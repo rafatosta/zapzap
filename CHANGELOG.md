@@ -15,6 +15,10 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Added a native PyQt6 account overview with lightweight cards that reuse each
+  account's persisted avatar and name plus the existing unread counter. The
+  overview no longer captures, caches or renders WebView thumbnails and keeps
+  account activation on the existing stable-ID path.
 - Added a compact floating account button in the top-left corner of the
   browser content area, shown only while the sidebar is hidden. It mirrors the
   active account's avatar, stays anchored on window resize, and opens the

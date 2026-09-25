@@ -2,15 +2,110 @@
 
 from gettext import gettext as _
 
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, pyqtSignal
+from PyQt6.QtGui import QPainter, QPen
 from PyQt6.QtWidgets import QFrame
 from PyQt6.QtWidgets import QGridLayout
+from PyQt6.QtWidgets import QLabel
 from PyQt6.QtWidgets import QScrollArea
 from PyQt6.QtWidgets import QVBoxLayout
 from PyQt6.QtWidgets import QWidget
 
 from zapzap.ui.primitives import Label
 from zapzap.ui.typography import Typography
+
+
+class AccountCard(QFrame):
+    """Native account switcher card without a WebView dependency."""
+
+    clicked = pyqtSignal()
+
+    def __init__(self, user, page_button, parent=None):
+        super().__init__(parent)
+        self.user = user
+        self.page_button = page_button
+        self.setObjectName("AccountCard")
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
+        self.page_button.account_state_changed.connect(self.update_from_button)
+        self._setup_ui()
+        self.update_from_button()
+
+    def _setup_ui(self):
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(20, 22, 20, 20)
+        layout.setSpacing(10)
+
+        self.avatar = QLabel(self)
+        self.avatar.setObjectName("AccountCardAvatar")
+        self.avatar.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(self.avatar, 1, Qt.AlignmentFlag.AlignCenter)
+
+        self.name_label = Label("", "subtitle", self)
+        self.name_label.setObjectName("AccountCardName")
+        self.name_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.name_label.setWordWrap(True)
+        layout.addWidget(self.name_label)
+
+        self.unread_label = Label("", "small", self)
+        self.unread_label.setObjectName("AccountCardUnread")
+        self.unread_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(self.unread_label)
+
+    def update_from_button(self):
+        icon_size = max(72, min(112, int(self.width() * 0.34)))
+        self.avatar.setFixedSize(icon_size, icon_size)
+        self.avatar.setPixmap(
+            self.page_button.icon().pixmap(icon_size, icon_size)
+        )
+        self.name_label.setText(self.user.name or self.tr("Unnamed account"))
+        count = self.page_button.number_notifications
+        self.unread_label.setText(str(count) if count > 0 else "")
+        self.unread_label.setVisible(count > 0)
+        self.setAccessibleName(self.user.name or self.tr("Account"))
+        self.setAccessibleDescription(
+            self.tr("Unread messages: {}").format(count) if count > 0 else ""
+        )
+
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        self.update_from_button()
+
+    def mousePressEvent(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self.clicked.emit()
+            event.accept()
+            return
+        super().mousePressEvent(event)
+
+    def keyPressEvent(self, event):
+        if event.key() in (
+            Qt.Key.Key_Return,
+            Qt.Key.Key_Enter,
+            Qt.Key.Key_Space,
+        ):
+            self.clicked.emit()
+            event.accept()
+            return
+        super().keyPressEvent(event)
+
+    def paintEvent(self, event):
+        super().paintEvent(event)
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        color = self.palette().color(self.palette().ColorRole.Mid)
+        color.setAlpha(42)
+        painter.setPen(QPen(color, 2))
+        width = self.width()
+        height = self.height()
+        for offset in (0.28, 0.48, 0.68):
+            y = int(height * offset)
+            painter.drawLine(22, y, int(width * 0.42), y)
+            painter.drawLine(int(width * 0.62), y + 6, width - 22, y + 6)
+        painter.setBrush(color)
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.drawEllipse(22, int(height * 0.28) - 4, 8, 8)
+        painter.drawEllipse(22, int(height * 0.68) - 4, 8, 8)
 
 
 class BrowserGridView(QWidget):
@@ -35,15 +130,26 @@ class BrowserGridView(QWidget):
         border: 1px solid palette(mid);
         border-radius: 18px;
     }
-    QLabel#BrowserGridThumbnail {
+    QFrame#AccountCard {
+        background: palette(base);
+        border: 1px solid palette(mid);
+        border-radius: 16px;
+    }
+    QFrame#AccountCard:hover {
+        border-color: palette(highlight);
+        background: palette(alternate-base);
+    }
+    QLabel#AccountCardAvatar {
         background: palette(alternate-base);
         border: 1px solid palette(mid);
-        border-radius: 14px;
-        padding: 4px;
+        border-radius: 56px;
     }
-    QLabel#BrowserGridThumbnail:hover {
-        border-color: palette(highlight);
-        background: palette(base);
+    QLabel#AccountCardUnread {
+        color: palette(highlight);
+        font-weight: bold;
+    }
+    QFrame#AccountCard:focus {
+        border: 2px solid palette(highlight);
     }
     """.replace("@font-heading", Typography.px(Typography.HEADING)).replace("@font-small", Typography.px(Typography.SMALL))
 
@@ -96,7 +202,30 @@ class BrowserGridView(QWidget):
         self.empty_state.hide()
         self.grid_layout.addWidget(self.empty_state, 0, 0)
 
-    def clear_thumbnails(self):
+    def render_accounts(self, accounts, switch_callback, columns):
+        self.clear_cards()
+        self.set_empty_state_visible(not accounts)
+        if not accounts:
+            return
+
+        viewport_width = self.scroll.viewport().width()
+        spacing = self.grid_layout.horizontalSpacing()
+        available_width = max(220, viewport_width - 56 - 32)
+        card_width = max(
+            220,
+            (available_width - spacing * (columns - 1)) // columns,
+        )
+        card_height = max(250, min(360, int(card_width * 0.78)))
+
+        for index, runtime in enumerate(accounts):
+            card = AccountCard(runtime.user, runtime.button, self.grid_container)
+            card.setFixedSize(card_width, card_height)
+            card.clicked.connect(
+                lambda user_id=runtime.user.id: switch_callback(user_id)
+            )
+            self.grid_layout.addWidget(card, index // columns, index % columns)
+
+    def clear_cards(self):
         for index in reversed(range(self.grid_layout.count())):
             item = self.grid_layout.itemAt(index)
             widget = item.widget()
@@ -105,8 +234,6 @@ class BrowserGridView(QWidget):
             item = self.grid_layout.takeAt(index)
             widget = item.widget()
             if widget:
-                if isinstance(widget, Label):
-                    widget.clear()
                 widget.deleteLater()
 
     def set_empty_state_visible(self, visible):

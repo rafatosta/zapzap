@@ -151,8 +151,6 @@ class BrowserAccountLifecycleTest(QtTestCase):
         self.controller._webview_factory = self.factory
         self.controller._shutting_down = False
         self.controller._last_active_webview = None
-        self.controller._grid_thumbnails = Mock()
-        self.controller._capture_grid_thumbnail = Mock()
         self.controller._reset_button_styles = Mock()
         self.controller.pages = FakeStack()
         self.controller.page_buttons_layout = Mock()

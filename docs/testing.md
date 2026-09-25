@@ -100,7 +100,7 @@ documente o que ele protege.
 | `test_floating_account_button.py` | botão flutuante visível apenas com a sidebar oculta, avatar sincronizado com a conta ativa e clique reaproveitando a grade existente de troca de contas |
 | `test_freedesktop_notification_backend.py` | avisos nas saídas antecipadas da inicialização D-Bus, falhas de `Notify`/`CloseNotification`, aviso único na transição para indisponível e fachada sem backend |
 | `test_gpu_environment.py` | detecção multi-GPU, conectores e seleção de render node |
-| `test_grid_thumbnail_cache.py` | limite físico/DPR, reutilização, fallback, seleção e ciclo de vida das miniaturas da grade |
+| `test_browser_grid_view_ui.py` | cartões nativos da grade, avatar/nome, badge de não lidas, atualização por sinal e seleção por ID |
 | `test_http_cache_size.py` | cache em MiB, tipos de cache, política de cookies, memória JavaScript, autocura persistida e fallbacks de perfil sem WebEngine real |
 | `test_initial_setup_ui.py` | onboarding, som, fechamento, permissões, dicionários e persistência |
 | `test_memory_benchmark.py` | procfs/USS, schema JSON/CSV/Markdown, isolamento WebEngine, factory stub, cenários e comparação relativa |
@@ -136,6 +136,7 @@ documente o que ele protege.
 - `test_appearance_settings_ui.py`
 - `test_appimage_packaging.py`
 - `test_browser_account_lifecycle.py`
+- `test_browser_grid_view_ui.py`
 - `test_browser_page_button_ui.py`
 - `test_check_box.py`
 - `test_component_typography.py`
@@ -152,7 +153,6 @@ documente o que ele protege.
 - `test_floating_account_button.py`
 - `test_freedesktop_notification_backend.py`
 - `test_gpu_environment.py`
-- `test_grid_thumbnail_cache.py`
 - `test_http_cache_size.py`
 - `test_initial_setup_ui.py`
 - `test_memory_benchmark.py`

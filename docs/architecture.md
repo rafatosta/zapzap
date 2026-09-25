@@ -121,11 +121,10 @@ entrada possui o `User`, o botão lateral, a posição de apresentação, um est
 de ciclo de vida e uma referência opcional para a `WebView`. Uma conta
 desativada é registrada sem construir `QWebEngineView` ou perfil; todas as
 contas habilitadas, inclusive as que não estão selecionadas, são iniciadas
-automaticamente. Ele também possui o cache efêmero da grade, com no máximo uma
-miniatura de 480 × 300 pixels físicos por conta, indexada pelo ID estável e
-limpa ao desativar, excluir, recarregar ou encerrar páginas. Capturas integrais
-não ficam retidas nas `WebView`s. Cada conta usa um perfil WebEngine próprio. O
-fluxo básico é:
+automaticamente. A grade de contas é uma composição nativa de cartões PyQt6,
+alimentada pelos mesmos `User`, `BrowserPageButton` e contadores de notificações
+da sidebar; ela não captura nem renderiza `WebView`s. Cada conta usa um perfil
+WebEngine próprio. O fluxo básico é:
 
 ```text
 User (SQLite) -> registro desativado (botão, page=None)

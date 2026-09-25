@@ -147,10 +147,8 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - Faça o encerramento idempotente; QtWebEngine é sensível à ordem de destruição.
 - Injete uma fábrica falsa de `WebView` nos testes de ciclo de vida para contar
   criação, desmontagem, limpeza e callbacks sem iniciar Chromium.
-- Preserve o cache de miniaturas da grade sob propriedade do
-  `BrowserController`: capture apenas páginas visíveis, limite buffers em
-  pixels físicos e invalide-os antes de desativar, excluir, recarregar ou
-  encerrar a conta.
+- Mantenha a grade de contas nativa e alimentada por `User`/`BrowserPageButton`;
+  ela não deve capturar, armazenar ou manter referências visuais de `WebView`.
 - Na conversa por número, preserve a separação entre código do país e número
   nacional. O diálogo apenas coleta e apresenta erros; `open_chat.py` normaliza,
   valida e codifica a URL, e o `PageController` realiza a navegação direta sem

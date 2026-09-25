@@ -2,7 +2,7 @@
 
 from enum import Enum
 
-from PyQt6.QtCore import QRectF, QSize
+from PyQt6.QtCore import pyqtSignal, QRectF, QSize
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import (
     QColor,
@@ -38,6 +38,8 @@ class AccountIndicatorState(Enum):
 
 class BrowserPageButton(QPushButton):
     """Sidebar button that represents one user/account page."""
+
+    account_state_changed = pyqtSignal()
 
     BUTTON_SIZE = 48
     ICON_SIZE = 34
@@ -187,6 +189,7 @@ class BrowserPageButton(QPushButton):
         self.setAccessibleName(self._user.name or self.tr("Account"))
         self.setAccessibleDescription(self._build_accessible_description())
         self.update()
+        self.account_state_changed.emit()
 
     def _resolve_indicator_state(self):
         if self._user is None:
