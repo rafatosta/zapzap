@@ -26,6 +26,7 @@ class SystemSettings(BaseSettings):
     _START_IN_BACKGROUND = ("system/start_background", False)
     _START_WITH_SYSTEM = ("system/start_system", False)
     _DONT_USE_NATIVE_DIALOG = ("system/DontUseNativeDialog", False)
+    _AUDIO_MUTED = ("system/audio_muted", False)
 
     @property
     def wayland_enabled(self) -> bool:
@@ -107,6 +108,15 @@ class SystemSettings(BaseSettings):
     @start_with_system.setter
     def start_with_system(self, value: bool) -> None:
         self._set_bool(self._START_WITH_SYSTEM, value)
+
+    @property
+    def audio_muted(self) -> bool:
+        """Whether every WhatsApp Web page is globally muted."""
+        return self._get_bool(self._AUDIO_MUTED)
+
+    @audio_muted.setter
+    def audio_muted(self, value: bool) -> None:
+        self._set_bool(self._AUDIO_MUTED, value)
 
     @property
     def dont_use_native_dialog(self) -> bool:
