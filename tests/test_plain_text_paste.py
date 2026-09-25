@@ -135,7 +135,7 @@ class PlainTextPasteTests(QtTestCase):
         self.assertEqual(
             self._javascript(
                 page,
-                'document.getElementById("editor").textContent',
+                'document.getElementById("editor").innerText',
             ),
             "startA\tB\n1\t2",
         )
