@@ -318,6 +318,7 @@ class PopupRoutingTests(unittest.TestCase):
             _granted_features=granted_features,
             user_id="account-id",
             profile=lambda: profile,
+            isAudioMuted=lambda: True,
         )
 
         class FakeRoutingPage:
@@ -334,6 +335,10 @@ class PopupRoutingTests(unittest.TestCase):
                 self.popup_host = popup_host
                 self.granted_features = granted_features
                 self.user_id = None
+                self.audio_muted = None
+
+            def setAudioMuted(self, muted):
+                self.audio_muted = bool(muted)
 
         with patch.object(
             page_controller_module,
@@ -346,6 +351,7 @@ class PopupRoutingTests(unittest.TestCase):
         self.assertIs(popup_page.popup_host, host)
         self.assertIs(popup_page.granted_features, granted_features)
         self.assertEqual(popup_page.user_id, "account-id")
+        self.assertTrue(popup_page.audio_muted)
 
 
 class InternalPopupLifecycleTests(unittest.TestCase):
