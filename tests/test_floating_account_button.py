@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 from PyQt6.QtCore import QPoint, QPointF, Qt
 from PyQt6.QtGui import QMouseEvent
@@ -25,11 +25,18 @@ class FloatingAccountButtonTests(QtTestCase):
         self.addCleanup(tray_patch.stop)
         self.settings = AppearanceSettings()
         self._original_sidebar_visible = self.settings.browser_sidebar_visible
+        self._original_button_mode = self.settings.sidebar_button_mode
         self.addCleanup(
             setattr,
             self.settings,
             "browser_sidebar_visible",
             self._original_sidebar_visible,
+        )
+        self.addCleanup(
+            setattr,
+            self.settings,
+            "sidebar_button_mode",
+            self._original_button_mode,
         )
 
     def _window(self, user_ids=("first", "second")):
@@ -92,6 +99,24 @@ class FloatingAccountButtonTests(QtTestCase):
             window.browser.pages.currentIndex(),
             window.browser.grid_page_index,
         )
+
+    def test_integrated_and_floating_buttons_are_mutually_exclusive(self):
+        self.settings.sidebar_button_mode = "integrated"
+        window = self._window()
+        runtime = window.browser._accounts["first"]
+        set_integrated_visible = Mock()
+        runtime.page.set_quick_accounts_button_visible = set_integrated_visible
+
+        window.set_sidebar_visible(False, animated=False)
+
+        self.assertTrue(window.browser._floating_account_button.isHidden())
+        set_integrated_visible.assert_called_with(True)
+
+        self.settings.sidebar_button_mode = "floating"
+        window.browser.refresh_sidebar_button_mode()
+
+        self.assertFalse(window.browser._floating_account_button.isHidden())
+        set_integrated_visible.assert_called_with(False)
 
     def test_button_can_be_dragged_without_triggering_account_switch(self):
         window = self._window()

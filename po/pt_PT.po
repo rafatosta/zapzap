@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-25 17:09-0300\n"
+"POT-Creation-Date: 2026-09-25 18:42-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: European Portuguese\n"
@@ -573,28 +573,28 @@ msgid "The interface language is applied when you finish setup."
 msgstr "O idioma da interface é aplicado quando termina a configuração."
 
 #: zapzap/features/initial_setup/view.py:159
-#: zapzap/features/settings/pages/appearance/view.py:64
+#: zapzap/features/settings/pages/appearance/view.py:77
 msgid "Theme"
 msgstr "Tema"
 
 #: zapzap/features/initial_setup/view.py:160
-#: zapzap/features/settings/pages/appearance/view.py:64
+#: zapzap/features/settings/pages/appearance/view.py:77
 msgid "Choose the visual theme."
 msgstr "Escolha o tema visual."
 
 #: zapzap/features/initial_setup/view.py:164
-#: zapzap/features/settings/pages/appearance/view.py:66
+#: zapzap/features/settings/pages/appearance/view.py:79
 #: zapzap/features/settings/pages/system_startup/view.py:140
 msgid "Automatic"
 msgstr "Automático"
 
 #: zapzap/features/initial_setup/view.py:165
-#: zapzap/features/settings/pages/appearance/view.py:67
+#: zapzap/features/settings/pages/appearance/view.py:80
 msgid "Light"
 msgstr "Claro"
 
 #: zapzap/features/initial_setup/view.py:166
-#: zapzap/features/settings/pages/appearance/view.py:68
+#: zapzap/features/settings/pages/appearance/view.py:81
 msgid "Dark"
 msgstr "Escuro"
 
@@ -685,7 +685,7 @@ msgstr ""
 "com a sua sessão."
 
 #: zapzap/features/initial_setup/view.py:247
-#: zapzap/features/settings/pages/appearance/view.py:81
+#: zapzap/features/settings/pages/appearance/view.py:94
 msgid "Tray icon"
 msgstr "Ícone do tabuleiro"
 
@@ -957,7 +957,7 @@ msgstr "Selecione e copie este comando no seu terminal"
 #: zapzap/features/settings/pages/debugging/controller.py:131
 #: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:438
+#: zapzap/features/browser/web/web_view.py:443
 msgid "Copy"
 msgstr "Copiar"
 
@@ -1445,7 +1445,7 @@ msgid "New conversation by phone number"
 msgstr "Nova conversação por número de telefone"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:547
+#: zapzap/features/browser/shell/browser_controller.py:544
 #: zapzap/ui/components/browser_sidebar.py:194
 msgid "New account"
 msgstr "Nova conta"
@@ -2130,8 +2130,8 @@ msgstr "Guardar e recarregar"
 msgid "Reload page"
 msgstr "Recarregar página"
 
-#: zapzap/features/settings/pages/appearance/controller.py:72
-#: zapzap/features/settings/pages/appearance/view.py:95
+#: zapzap/features/settings/pages/appearance/controller.py:79
+#: zapzap/features/settings/pages/appearance/view.py:108
 #: zapzap/features/settings/pages/performance_experimental/view.py:65
 #: zapzap/ui/components/edit_account_dialog.py:280
 #: zapzap/ui/components/edit_account_dialog.py:429
@@ -2139,19 +2139,19 @@ msgstr "Recarregar página"
 msgid "Default"
 msgstr "Predefinição"
 
-#: zapzap/features/settings/pages/appearance/controller.py:73
+#: zapzap/features/settings/pages/appearance/controller.py:80
 msgid "Adwaita"
 msgstr "Adwaita"
 
-#: zapzap/features/settings/pages/appearance/controller.py:74
+#: zapzap/features/settings/pages/appearance/controller.py:81
 msgid "Plasma"
 msgstr "Plasma"
 
-#: zapzap/features/settings/pages/appearance/controller.py:75
+#: zapzap/features/settings/pages/appearance/controller.py:82
 msgid "iOS"
 msgstr "iOS"
 
-#: zapzap/features/settings/pages/appearance/controller.py:76
+#: zapzap/features/settings/pages/appearance/controller.py:83
 msgid "Windows"
 msgstr "Janelas"
 
@@ -2179,121 +2179,129 @@ msgid "Show account navigation in the browser shell."
 msgstr "Mostrar navegação da conta na interface do navegador."
 
 #: zapzap/features/settings/pages/appearance/view.py:46
+msgid "Integrated in WhatsApp"
+msgstr "Integrado no WhatsApp"
+
+#: zapzap/features/settings/pages/appearance/view.py:49
+msgid "Floating ZapZap button"
+msgstr "Botão flutuante do ZapZap"
+
+#: zapzap/features/settings/pages/appearance/view.py:56
 msgid "Menu bar"
 msgstr "Barra de menu"
 
-#: zapzap/features/settings/pages/appearance/view.py:47
+#: zapzap/features/settings/pages/appearance/view.py:57
 msgid "Show the main window menu bar."
 msgstr "Mostrar a barra de menu da janela principal."
 
-#: zapzap/features/settings/pages/appearance/view.py:50
+#: zapzap/features/settings/pages/appearance/view.py:60
 msgid "Interface scale"
 msgstr "Escala da interface"
 
-#: zapzap/features/settings/pages/appearance/view.py:51
+#: zapzap/features/settings/pages/appearance/view.py:61
 msgid "Scale the interface for high-DPI or accessibility needs."
 msgstr ""
 "Dimensionar a interface para necessidades de alto DPI ou acessibilidade."
 
-#: zapzap/features/settings/pages/appearance/view.py:82
+#: zapzap/features/settings/pages/appearance/view.py:95
 msgid "Control tray icon visibility, style, and unread counter."
 msgstr ""
 "Controlar a visibilidade, estilo e contador de não lidos do ícone da bandeja."
 
-#: zapzap/features/settings/pages/appearance/view.py:86
+#: zapzap/features/settings/pages/appearance/view.py:99
 msgid "Show tray icon"
 msgstr "Mostrar ícone na bandeja"
 
-#: zapzap/features/settings/pages/appearance/view.py:87
+#: zapzap/features/settings/pages/appearance/view.py:100
 msgid "Display ZapZap in the system notification area."
 msgstr "Mostrar ZapZap na área de notificações do sistema."
 
-#: zapzap/features/settings/pages/appearance/view.py:90
+#: zapzap/features/settings/pages/appearance/view.py:103
 msgid "Unread counter"
 msgstr "Contador de não lidos"
 
-#: zapzap/features/settings/pages/appearance/view.py:91
+#: zapzap/features/settings/pages/appearance/view.py:104
 msgid "Show the number of unread messages."
 msgstr "Mostrar o número de mensagens não lidas."
 
-#: zapzap/features/settings/pages/appearance/view.py:94
+#: zapzap/features/settings/pages/appearance/view.py:107
 msgid "Icon style"
 msgstr "Estilo de ícone"
 
-#: zapzap/features/settings/pages/appearance/view.py:96
+#: zapzap/features/settings/pages/appearance/view.py:109
 msgid "Symbolic light"
 msgstr "Claro simbólico"
 
-#: zapzap/features/settings/pages/appearance/view.py:97
+#: zapzap/features/settings/pages/appearance/view.py:110
 msgid "Symbolic dark"
 msgstr "Escuro simbólico"
 
-#: zapzap/features/settings/pages/appearance/view.py:118
+#: zapzap/features/settings/pages/appearance/view.py:131
 #: zapzap/features/browser/shell/browser_controller.py:172
 msgid "Grid view"
 msgstr "Vista de grelha"
 
-#: zapzap/features/settings/pages/appearance/view.py:119
+#: zapzap/features/settings/pages/appearance/view.py:132
 msgid "Choose how many columns are used by grid view."
 msgstr "Escolha quantas colunas são usadas pela vista em grelha."
 
-#: zapzap/features/settings/pages/appearance/view.py:123
+#: zapzap/features/settings/pages/appearance/view.py:136
 msgid "Grid columns"
 msgstr "Colunas da grelha"
 
-#: zapzap/features/settings/pages/appearance/view.py:124
+#: zapzap/features/settings/pages/appearance/view.py:137
 msgid "Number of account columns in grid view."
 msgstr "Número de colunas de conta em vista de grelha."
 
-#: zapzap/features/settings/pages/appearance/view.py:134
+#: zapzap/features/settings/pages/appearance/view.py:147
 msgid "Window decoration"
 msgstr "Decoração da janela"
 
-#: zapzap/features/settings/pages/appearance/view.py:135
+#: zapzap/features/settings/pages/appearance/view.py:148
 msgid "Customize the window controls drawn by ZapZap."
 msgstr "Personalizar os controlos da janela desenhados por ZapZap."
 
-#: zapzap/features/settings/pages/appearance/view.py:139
+#: zapzap/features/settings/pages/appearance/view.py:152
 msgid "Use custom decoration"
 msgstr "Usar decoração personalizada"
 
-#: zapzap/features/settings/pages/appearance/view.py:140
+#: zapzap/features/settings/pages/appearance/view.py:153
 msgid "Use window controls drawn by ZapZap."
 msgstr "Usar controlos de janela desenhados por ZapZap."
 
-#: zapzap/features/settings/pages/appearance/view.py:143
+#: zapzap/features/settings/pages/appearance/view.py:156
 msgid "Button style"
 msgstr "Estilo do botão"
 
-#: zapzap/features/settings/pages/appearance/view.py:144
+#: zapzap/features/settings/pages/appearance/view.py:157
 msgid "Visual style used by custom window buttons."
 msgstr "Estilo visual utilizado por botões de janela personalizados."
 
-#: zapzap/features/settings/pages/appearance/view.py:148
+#: zapzap/features/settings/pages/appearance/view.py:161
 msgid "Minimize"
 msgstr "Minimizar"
 
-#: zapzap/features/settings/pages/appearance/view.py:149
+#: zapzap/features/settings/pages/appearance/view.py:162
 msgid "Maximize"
 msgstr "Maximizar"
 
-#: zapzap/features/settings/pages/appearance/view.py:153
+#: zapzap/features/settings/pages/appearance/view.py:166
 msgid "Visible buttons"
 msgstr "Botões visíveis"
 
-#: zapzap/features/settings/pages/appearance/view.py:158
+#: zapzap/features/settings/pages/appearance/view.py:171
 msgid "Button position"
 msgstr "Posição do botão"
 
-#: zapzap/features/settings/pages/appearance/view.py:159
+#: zapzap/features/settings/pages/appearance/view.py:172
 msgid "Place window buttons on the right or left."
 msgstr "Colocar os botões da janela à direita ou à esquerda."
 
-#: zapzap/features/settings/pages/appearance/view.py:164
+#: zapzap/features/settings/pages/appearance/view.py:177
 msgid "Right"
 msgstr "Direito"
 
-#: zapzap/features/settings/pages/appearance/view.py:165
+#: zapzap/features/settings/pages/appearance/view.py:178
 msgid "Left"
 msgstr "Esquerda"
 
@@ -3807,32 +3815,32 @@ msgstr "Instruções"
 msgid "Copy command"
 msgstr "Copiar comando"
 
-#: zapzap/features/browser/shell/browser_controller.py:564
-#: zapzap/features/browser/shell/browser_controller.py:647
+#: zapzap/features/browser/shell/browser_controller.py:561
+#: zapzap/features/browser/shell/browser_controller.py:671
 #, python-brace-format
 msgid "Account {}"
 msgstr "Conta {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:661
+#: zapzap/features/browser/shell/browser_controller.py:685
 msgid "Account disabled"
 msgstr "Conta desativada"
 
-#: zapzap/features/browser/shell/browser_controller.py:662
+#: zapzap/features/browser/shell/browser_controller.py:686
 msgid "This account is disabled."
 msgstr "Esta conta está desativada."
 
-#: zapzap/features/browser/shell/browser_controller.py:664
+#: zapzap/features/browser/shell/browser_controller.py:688
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Pode reativar a mesma agora ou usar o menu de contexto com o botão direito "
 "do rato para gerir esta conta."
 
-#: zapzap/features/browser/shell/browser_controller.py:669
+#: zapzap/features/browser/shell/browser_controller.py:693
 msgid "Activate"
 msgstr "Ativar"
 
-#: zapzap/features/browser/shell/browser_controller.py:670
+#: zapzap/features/browser/shell/browser_controller.py:694
 msgid "Not now"
 msgstr "Agora não"
 
@@ -3897,57 +3905,57 @@ msgstr ""
 "fechada manualmente. Utilize o botão Terminar chamada do WhatsApp. A janela "
 "será fechada quando o WhatsApp o solicitar."
 
-#: zapzap/features/browser/web/web_view.py:437
+#: zapzap/features/browser/web/web_view.py:442
 msgid "Undo"
 msgstr "Desfazer"
 
-#: zapzap/features/browser/web/web_view.py:437
+#: zapzap/features/browser/web/web_view.py:442
 msgid "Redo"
 msgstr "Refazer"
 
-#: zapzap/features/browser/web/web_view.py:437
+#: zapzap/features/browser/web/web_view.py:442
 msgid "Cut"
 msgstr "Cortar"
 
-#: zapzap/features/browser/web/web_view.py:438
+#: zapzap/features/browser/web/web_view.py:443
 msgid "Paste"
 msgstr "Colar"
 
-#: zapzap/features/browser/web/web_view.py:438
+#: zapzap/features/browser/web/web_view.py:443
 msgid "Select all"
 msgstr "Selecionar tudo"
 
-#: zapzap/features/browser/web/web_view.py:439
+#: zapzap/features/browser/web/web_view.py:444
 msgid "Save image"
 msgstr "Guardar imagem"
 
-#: zapzap/features/browser/web/web_view.py:439
+#: zapzap/features/browser/web/web_view.py:444
 msgid "Copy image"
 msgstr "Copiar imagem"
 
-#: zapzap/features/browser/web/web_view.py:440
-#: zapzap/features/browser/web/web_view.py:470
+#: zapzap/features/browser/web/web_view.py:445
+#: zapzap/features/browser/web/web_view.py:475
 msgid "Copy link address"
 msgstr "Copiar link do endereço"
 
-#: zapzap/features/browser/web/web_view.py:488
+#: zapzap/features/browser/web/web_view.py:493
 msgid "Check Spelling"
 msgstr "Verificar ortografia"
 
-#: zapzap/features/browser/web/web_view.py:494
+#: zapzap/features/browser/web/web_view.py:499
 msgid "Languages…"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:497
+#: zapzap/features/browser/web/web_view.py:502
 msgid "Choose the languages used by the spell checker."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:750
+#: zapzap/features/browser/web/web_view.py:755
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "Conta"
 
-#: zapzap/features/browser/web/web_view.py:752
+#: zapzap/features/browser/web/web_view.py:757
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"

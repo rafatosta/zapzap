@@ -41,6 +41,10 @@ releases and the AppStream metadata.
   its bottom while leaving room for the WhatsApp profile control, reuses the
   sidebar's `view_grid` icon with live light/dark theme updates, and migrates an
   existing fallback button into that rail when it becomes available.
+- Added a sidebar suboption to choose the account shortcut presentation while
+  the sidebar is hidden: integrated in WhatsApp or the floating ZapZap button.
+  The setting preserves floating as the default and ensures only the selected
+  shortcut is shown.
 - Added shared recent-download menus to the sidebar and right side of the
   menubar, including native platform file-type icons, per-item progress bars
   and percentages, queued/paused/interrupted/cancelled/blocked/completed

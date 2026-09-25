@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-25 17:09-0300\n"
+"POT-Creation-Date: 2026-09-25 18:42-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Dutch\n"
@@ -577,28 +577,28 @@ msgstr ""
 "De interfacetaal wordt toegepast wanneer u klaar bent met de installatie."
 
 #: zapzap/features/initial_setup/view.py:159
-#: zapzap/features/settings/pages/appearance/view.py:64
+#: zapzap/features/settings/pages/appearance/view.py:77
 msgid "Theme"
 msgstr "Thema"
 
 #: zapzap/features/initial_setup/view.py:160
-#: zapzap/features/settings/pages/appearance/view.py:64
+#: zapzap/features/settings/pages/appearance/view.py:77
 msgid "Choose the visual theme."
 msgstr "Kies het visuele thema."
 
 #: zapzap/features/initial_setup/view.py:164
-#: zapzap/features/settings/pages/appearance/view.py:66
+#: zapzap/features/settings/pages/appearance/view.py:79
 #: zapzap/features/settings/pages/system_startup/view.py:140
 msgid "Automatic"
 msgstr "Automatisch"
 
 #: zapzap/features/initial_setup/view.py:165
-#: zapzap/features/settings/pages/appearance/view.py:67
+#: zapzap/features/settings/pages/appearance/view.py:80
 msgid "Light"
 msgstr "Licht thema"
 
 #: zapzap/features/initial_setup/view.py:166
-#: zapzap/features/settings/pages/appearance/view.py:68
+#: zapzap/features/settings/pages/appearance/view.py:81
 msgid "Dark"
 msgstr "Donker thema"
 
@@ -688,7 +688,7 @@ msgstr ""
 "Kies of ZapZap beschikbaar moet blijven in de lade en begin met uw sessie."
 
 #: zapzap/features/initial_setup/view.py:247
-#: zapzap/features/settings/pages/appearance/view.py:81
+#: zapzap/features/settings/pages/appearance/view.py:94
 msgid "Tray icon"
 msgstr "Systeemvakpictogram"
 
@@ -960,7 +960,7 @@ msgstr "Selecteer en kopieer deze opdracht in uw terminal"
 #: zapzap/features/settings/pages/debugging/controller.py:131
 #: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:438
+#: zapzap/features/browser/web/web_view.py:443
 msgid "Copy"
 msgstr "Kopiëren"
 
@@ -1448,7 +1448,7 @@ msgid "New conversation by phone number"
 msgstr "Nieuw gesprek op basis van telefoonnummer"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:547
+#: zapzap/features/browser/shell/browser_controller.py:544
 #: zapzap/ui/components/browser_sidebar.py:194
 msgid "New account"
 msgstr "Nieuw account"
@@ -2133,8 +2133,8 @@ msgstr "Opslaan en opnieuw laden"
 msgid "Reload page"
 msgstr "Pagina opnieuw laden"
 
-#: zapzap/features/settings/pages/appearance/controller.py:72
-#: zapzap/features/settings/pages/appearance/view.py:95
+#: zapzap/features/settings/pages/appearance/controller.py:79
+#: zapzap/features/settings/pages/appearance/view.py:108
 #: zapzap/features/settings/pages/performance_experimental/view.py:65
 #: zapzap/ui/components/edit_account_dialog.py:280
 #: zapzap/ui/components/edit_account_dialog.py:429
@@ -2142,19 +2142,19 @@ msgstr "Pagina opnieuw laden"
 msgid "Default"
 msgstr "Standaard"
 
-#: zapzap/features/settings/pages/appearance/controller.py:73
+#: zapzap/features/settings/pages/appearance/controller.py:80
 msgid "Adwaita"
 msgstr "Advaita"
 
-#: zapzap/features/settings/pages/appearance/controller.py:74
+#: zapzap/features/settings/pages/appearance/controller.py:81
 msgid "Plasma"
 msgstr "Plasma"
 
-#: zapzap/features/settings/pages/appearance/controller.py:75
+#: zapzap/features/settings/pages/appearance/controller.py:82
 msgid "iOS"
 msgstr "iOS"
 
-#: zapzap/features/settings/pages/appearance/controller.py:76
+#: zapzap/features/settings/pages/appearance/controller.py:83
 msgid "Windows"
 msgstr "Vensters"
 
@@ -2182,121 +2182,129 @@ msgid "Show account navigation in the browser shell."
 msgstr "Toon accountnavigatie in de browsershell."
 
 #: zapzap/features/settings/pages/appearance/view.py:46
+msgid "Integrated in WhatsApp"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:49
+msgid "Floating ZapZap button"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:56
 msgid "Menu bar"
 msgstr "Menubalk"
 
-#: zapzap/features/settings/pages/appearance/view.py:47
+#: zapzap/features/settings/pages/appearance/view.py:57
 msgid "Show the main window menu bar."
 msgstr "Toon de menubalk van het hoofdvenster."
 
-#: zapzap/features/settings/pages/appearance/view.py:50
+#: zapzap/features/settings/pages/appearance/view.py:60
 msgid "Interface scale"
 msgstr "Interfaceschaal"
 
-#: zapzap/features/settings/pages/appearance/view.py:51
+#: zapzap/features/settings/pages/appearance/view.py:61
 msgid "Scale the interface for high-DPI or accessibility needs."
 msgstr "Schaal de interface voor hoge DPI- of toegankelijkheidsbehoeften."
 
-#: zapzap/features/settings/pages/appearance/view.py:82
+#: zapzap/features/settings/pages/appearance/view.py:95
 msgid "Control tray icon visibility, style, and unread counter."
 msgstr ""
 "Controleer de zichtbaarheid, stijl en ongelezen teller van het pictogram in "
 "het systeemvak."
 
-#: zapzap/features/settings/pages/appearance/view.py:86
+#: zapzap/features/settings/pages/appearance/view.py:99
 msgid "Show tray icon"
 msgstr "Systeemvakpictogram weergeven"
 
-#: zapzap/features/settings/pages/appearance/view.py:87
+#: zapzap/features/settings/pages/appearance/view.py:100
 msgid "Display ZapZap in the system notification area."
 msgstr "Geef ZapZap weer in het systeemmeldingsgebied."
 
-#: zapzap/features/settings/pages/appearance/view.py:90
+#: zapzap/features/settings/pages/appearance/view.py:103
 msgid "Unread counter"
 msgstr "Ongelezen teller"
 
-#: zapzap/features/settings/pages/appearance/view.py:91
+#: zapzap/features/settings/pages/appearance/view.py:104
 msgid "Show the number of unread messages."
 msgstr "Toon het aantal ongelezen berichten."
 
-#: zapzap/features/settings/pages/appearance/view.py:94
+#: zapzap/features/settings/pages/appearance/view.py:107
 msgid "Icon style"
 msgstr "Pictogramstijl"
 
-#: zapzap/features/settings/pages/appearance/view.py:96
+#: zapzap/features/settings/pages/appearance/view.py:109
 msgid "Symbolic light"
 msgstr "Symbolisch (licht)"
 
-#: zapzap/features/settings/pages/appearance/view.py:97
+#: zapzap/features/settings/pages/appearance/view.py:110
 msgid "Symbolic dark"
 msgstr "Symbolisch (donker)"
 
-#: zapzap/features/settings/pages/appearance/view.py:118
+#: zapzap/features/settings/pages/appearance/view.py:131
 #: zapzap/features/browser/shell/browser_controller.py:172
 msgid "Grid view"
 msgstr "Rasterweergave"
 
-#: zapzap/features/settings/pages/appearance/view.py:119
+#: zapzap/features/settings/pages/appearance/view.py:132
 msgid "Choose how many columns are used by grid view."
 msgstr "Kies hoeveel kolommen er worden gebruikt in de rasterweergave."
 
-#: zapzap/features/settings/pages/appearance/view.py:123
+#: zapzap/features/settings/pages/appearance/view.py:136
 msgid "Grid columns"
 msgstr "Rasterkolommen"
 
-#: zapzap/features/settings/pages/appearance/view.py:124
+#: zapzap/features/settings/pages/appearance/view.py:137
 msgid "Number of account columns in grid view."
 msgstr "Aantal accountkolommen in rasterweergave."
 
-#: zapzap/features/settings/pages/appearance/view.py:134
+#: zapzap/features/settings/pages/appearance/view.py:147
 msgid "Window decoration"
 msgstr "Vensterdecoratie"
 
-#: zapzap/features/settings/pages/appearance/view.py:135
+#: zapzap/features/settings/pages/appearance/view.py:148
 msgid "Customize the window controls drawn by ZapZap."
 msgstr "Pas de vensterbesturingselementen aan die zijn getekend door ZapZap."
 
-#: zapzap/features/settings/pages/appearance/view.py:139
+#: zapzap/features/settings/pages/appearance/view.py:152
 msgid "Use custom decoration"
 msgstr "Gebruik aangepaste decoratie"
 
-#: zapzap/features/settings/pages/appearance/view.py:140
+#: zapzap/features/settings/pages/appearance/view.py:153
 msgid "Use window controls drawn by ZapZap."
 msgstr "Gebruik vensterbesturingselementen getekend door ZapZap."
 
-#: zapzap/features/settings/pages/appearance/view.py:143
+#: zapzap/features/settings/pages/appearance/view.py:156
 msgid "Button style"
 msgstr "Knoopstijl"
 
-#: zapzap/features/settings/pages/appearance/view.py:144
+#: zapzap/features/settings/pages/appearance/view.py:157
 msgid "Visual style used by custom window buttons."
 msgstr "Visuele stijl gebruikt door aangepaste vensterknoppen."
 
-#: zapzap/features/settings/pages/appearance/view.py:148
+#: zapzap/features/settings/pages/appearance/view.py:161
 msgid "Minimize"
 msgstr "Minimaliseer"
 
-#: zapzap/features/settings/pages/appearance/view.py:149
+#: zapzap/features/settings/pages/appearance/view.py:162
 msgid "Maximize"
 msgstr "Maximaliseer"
 
-#: zapzap/features/settings/pages/appearance/view.py:153
+#: zapzap/features/settings/pages/appearance/view.py:166
 msgid "Visible buttons"
 msgstr "Zichtbare knoppen"
 
-#: zapzap/features/settings/pages/appearance/view.py:158
+#: zapzap/features/settings/pages/appearance/view.py:171
 msgid "Button position"
 msgstr "Knop positie"
 
-#: zapzap/features/settings/pages/appearance/view.py:159
+#: zapzap/features/settings/pages/appearance/view.py:172
 msgid "Place window buttons on the right or left."
 msgstr "Plaats vensterknoppen rechts of links."
 
-#: zapzap/features/settings/pages/appearance/view.py:164
+#: zapzap/features/settings/pages/appearance/view.py:177
 msgid "Right"
 msgstr "Juist"
 
-#: zapzap/features/settings/pages/appearance/view.py:165
+#: zapzap/features/settings/pages/appearance/view.py:178
 msgid "Left"
 msgstr "Links"
 
@@ -3812,32 +3820,32 @@ msgstr "Instructies"
 msgid "Copy command"
 msgstr "Kopieer opdracht"
 
-#: zapzap/features/browser/shell/browser_controller.py:564
-#: zapzap/features/browser/shell/browser_controller.py:647
+#: zapzap/features/browser/shell/browser_controller.py:561
+#: zapzap/features/browser/shell/browser_controller.py:671
 #, python-brace-format
 msgid "Account {}"
 msgstr "Account {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:661
+#: zapzap/features/browser/shell/browser_controller.py:685
 msgid "Account disabled"
 msgstr "Account uitgeschakeld"
 
-#: zapzap/features/browser/shell/browser_controller.py:662
+#: zapzap/features/browser/shell/browser_controller.py:686
 msgid "This account is disabled."
 msgstr "Dit account is uitgeschakeld."
 
-#: zapzap/features/browser/shell/browser_controller.py:664
+#: zapzap/features/browser/shell/browser_controller.py:688
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "U kunt het nu opnieuw activeren of het contextmenu gebruiken om dit account "
 "te beheren."
 
-#: zapzap/features/browser/shell/browser_controller.py:669
+#: zapzap/features/browser/shell/browser_controller.py:693
 msgid "Activate"
 msgstr "Activeer"
 
-#: zapzap/features/browser/shell/browser_controller.py:670
+#: zapzap/features/browser/shell/browser_controller.py:694
 msgid "Not now"
 msgstr "Niet nu"
 
@@ -3900,57 +3908,57 @@ msgid ""
 "WhatsApp requests it."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:437
+#: zapzap/features/browser/web/web_view.py:442
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: zapzap/features/browser/web/web_view.py:437
+#: zapzap/features/browser/web/web_view.py:442
 msgid "Redo"
 msgstr "Opnieuw uitvoeren"
 
-#: zapzap/features/browser/web/web_view.py:437
+#: zapzap/features/browser/web/web_view.py:442
 msgid "Cut"
 msgstr "Knippen"
 
-#: zapzap/features/browser/web/web_view.py:438
+#: zapzap/features/browser/web/web_view.py:443
 msgid "Paste"
 msgstr "Plakken"
 
-#: zapzap/features/browser/web/web_view.py:438
+#: zapzap/features/browser/web/web_view.py:443
 msgid "Select all"
 msgstr "Selecteer alles"
 
-#: zapzap/features/browser/web/web_view.py:439
+#: zapzap/features/browser/web/web_view.py:444
 msgid "Save image"
 msgstr "Afbeelding opslaan"
 
-#: zapzap/features/browser/web/web_view.py:439
+#: zapzap/features/browser/web/web_view.py:444
 msgid "Copy image"
 msgstr "Kopieer afbeelding"
 
-#: zapzap/features/browser/web/web_view.py:440
-#: zapzap/features/browser/web/web_view.py:470
+#: zapzap/features/browser/web/web_view.py:445
+#: zapzap/features/browser/web/web_view.py:475
 msgid "Copy link address"
 msgstr "Linkadres kopiëren"
 
-#: zapzap/features/browser/web/web_view.py:488
+#: zapzap/features/browser/web/web_view.py:493
 msgid "Check Spelling"
 msgstr "Spelling controleren"
 
-#: zapzap/features/browser/web/web_view.py:494
+#: zapzap/features/browser/web/web_view.py:499
 msgid "Languages…"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:497
+#: zapzap/features/browser/web/web_view.py:502
 msgid "Choose the languages used by the spell checker."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:750
+#: zapzap/features/browser/web/web_view.py:755
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "Account"
 
-#: zapzap/features/browser/web/web_view.py:752
+#: zapzap/features/browser/web/web_view.py:757
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "Ontwikkelaarstools - {}"

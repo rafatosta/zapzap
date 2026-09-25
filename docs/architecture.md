@@ -166,6 +166,11 @@ sem abrir um segundo mecanismo de troca de contas; a âncora fixa no canto
 dispensa reposicionamento a cada redimensionamento da janela. O botão pode ser
 reposicionado por arrasto com o botão esquerdo, limitado à área de conteúdo;
 um clique sem movimento mantém o acesso à grade de contas.
+Em Aparência > Interface, a subopção da sidebar escolhe entre esse botão
+flutuante e o botão integrado no trilho do WhatsApp. A subopção só aparece
+quando `system/sidebar` está desativado. `system/sidebar_button_mode` persiste
+os IDs `floating` e `integrated`, com `floating` como padrão compatível; em
+runtime o BrowserController mostra somente o ponto de entrada selecionado.
 O botão não possui tooltip nativo, pois ele competiria visualmente com o
 popover; nome e descrição acessíveis continuam informando a atualização.
 O clique de contexto abre um popover compacto com identidade, estado, edição,

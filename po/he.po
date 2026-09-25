@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-25 17:09-0300\n"
+"POT-Creation-Date: 2026-09-25 18:42-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Hebrew\n"
@@ -575,28 +575,28 @@ msgid "The interface language is applied when you finish setup."
 msgstr "שפת הממשק מוחלת כאשר אתה מסיים את ההגדרה."
 
 #: zapzap/features/initial_setup/view.py:159
-#: zapzap/features/settings/pages/appearance/view.py:64
+#: zapzap/features/settings/pages/appearance/view.py:77
 msgid "Theme"
 msgstr "נושא"
 
 #: zapzap/features/initial_setup/view.py:160
-#: zapzap/features/settings/pages/appearance/view.py:64
+#: zapzap/features/settings/pages/appearance/view.py:77
 msgid "Choose the visual theme."
 msgstr "בחר את הנושא החזותי."
 
 #: zapzap/features/initial_setup/view.py:164
-#: zapzap/features/settings/pages/appearance/view.py:66
+#: zapzap/features/settings/pages/appearance/view.py:79
 #: zapzap/features/settings/pages/system_startup/view.py:140
 msgid "Automatic"
 msgstr "אוטומטי"
 
 #: zapzap/features/initial_setup/view.py:165
-#: zapzap/features/settings/pages/appearance/view.py:67
+#: zapzap/features/settings/pages/appearance/view.py:80
 msgid "Light"
 msgstr "בהיר"
 
 #: zapzap/features/initial_setup/view.py:166
-#: zapzap/features/settings/pages/appearance/view.py:68
+#: zapzap/features/settings/pages/appearance/view.py:81
 msgid "Dark"
 msgstr "כהה"
 
@@ -680,7 +680,7 @@ msgid ""
 msgstr "בחר אם ZapZap יישאר זמין מהמגש והתחל עם ההפעלה שלך."
 
 #: zapzap/features/initial_setup/view.py:247
-#: zapzap/features/settings/pages/appearance/view.py:81
+#: zapzap/features/settings/pages/appearance/view.py:94
 msgid "Tray icon"
 msgstr "סמל בשורת המערכת"
 
@@ -939,7 +939,7 @@ msgstr "בחר והעתק פקודה זו בטרמינל שלך"
 #: zapzap/features/settings/pages/debugging/controller.py:131
 #: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:438
+#: zapzap/features/browser/web/web_view.py:443
 msgid "Copy"
 msgstr "העתקה"
 
@@ -1422,7 +1422,7 @@ msgid "New conversation by phone number"
 msgstr "שיחה חדשה לפי מספר טלפון"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:547
+#: zapzap/features/browser/shell/browser_controller.py:544
 #: zapzap/ui/components/browser_sidebar.py:194
 msgid "New account"
 msgstr "חשבון חדש"
@@ -2096,8 +2096,8 @@ msgstr "שמור וטען מחדש"
 msgid "Reload page"
 msgstr "טען מחדש את הדף"
 
-#: zapzap/features/settings/pages/appearance/controller.py:72
-#: zapzap/features/settings/pages/appearance/view.py:95
+#: zapzap/features/settings/pages/appearance/controller.py:79
+#: zapzap/features/settings/pages/appearance/view.py:108
 #: zapzap/features/settings/pages/performance_experimental/view.py:65
 #: zapzap/ui/components/edit_account_dialog.py:280
 #: zapzap/ui/components/edit_account_dialog.py:429
@@ -2105,19 +2105,19 @@ msgstr "טען מחדש את הדף"
 msgid "Default"
 msgstr "ברירת מחדל"
 
-#: zapzap/features/settings/pages/appearance/controller.py:73
+#: zapzap/features/settings/pages/appearance/controller.py:80
 msgid "Adwaita"
 msgstr "אדוואיטה"
 
-#: zapzap/features/settings/pages/appearance/controller.py:74
+#: zapzap/features/settings/pages/appearance/controller.py:81
 msgid "Plasma"
 msgstr "פלזמה"
 
-#: zapzap/features/settings/pages/appearance/controller.py:75
+#: zapzap/features/settings/pages/appearance/controller.py:82
 msgid "iOS"
 msgstr "iOS"
 
-#: zapzap/features/settings/pages/appearance/controller.py:76
+#: zapzap/features/settings/pages/appearance/controller.py:83
 msgid "Windows"
 msgstr "חלונות"
 
@@ -2143,119 +2143,127 @@ msgid "Show account navigation in the browser shell."
 msgstr "הצג ניווט בחשבון במעטפת הדפדפן."
 
 #: zapzap/features/settings/pages/appearance/view.py:46
+msgid "Integrated in WhatsApp"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:49
+msgid "Floating ZapZap button"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:56
 msgid "Menu bar"
 msgstr "שורת תפריטים"
 
-#: zapzap/features/settings/pages/appearance/view.py:47
+#: zapzap/features/settings/pages/appearance/view.py:57
 msgid "Show the main window menu bar."
 msgstr "הצג את שורת התפריטים של החלון הראשי."
 
-#: zapzap/features/settings/pages/appearance/view.py:50
+#: zapzap/features/settings/pages/appearance/view.py:60
 msgid "Interface scale"
 msgstr "סולם ממשק"
 
-#: zapzap/features/settings/pages/appearance/view.py:51
+#: zapzap/features/settings/pages/appearance/view.py:61
 msgid "Scale the interface for high-DPI or accessibility needs."
 msgstr "קנה קנה מידה של הממשק לצרכי DPI גבוהים או נגישות."
 
-#: zapzap/features/settings/pages/appearance/view.py:82
+#: zapzap/features/settings/pages/appearance/view.py:95
 msgid "Control tray icon visibility, style, and unread counter."
 msgstr "שליטה בנראות של סמל מגש, בסגנון ובמונה שלא נקרא."
 
-#: zapzap/features/settings/pages/appearance/view.py:86
+#: zapzap/features/settings/pages/appearance/view.py:99
 msgid "Show tray icon"
 msgstr "הצג את סמל המגש"
 
-#: zapzap/features/settings/pages/appearance/view.py:87
+#: zapzap/features/settings/pages/appearance/view.py:100
 msgid "Display ZapZap in the system notification area."
 msgstr "הצג את ZapZap באזור הודעות המערכת."
 
-#: zapzap/features/settings/pages/appearance/view.py:90
+#: zapzap/features/settings/pages/appearance/view.py:103
 msgid "Unread counter"
 msgstr "מונה שלא נקרא"
 
-#: zapzap/features/settings/pages/appearance/view.py:91
+#: zapzap/features/settings/pages/appearance/view.py:104
 msgid "Show the number of unread messages."
 msgstr "הצג את מספר ההודעות שלא נקראו."
 
-#: zapzap/features/settings/pages/appearance/view.py:94
+#: zapzap/features/settings/pages/appearance/view.py:107
 msgid "Icon style"
 msgstr "סגנון אייקון"
 
-#: zapzap/features/settings/pages/appearance/view.py:96
+#: zapzap/features/settings/pages/appearance/view.py:109
 msgid "Symbolic light"
 msgstr "בהיר סמלי"
 
-#: zapzap/features/settings/pages/appearance/view.py:97
+#: zapzap/features/settings/pages/appearance/view.py:110
 msgid "Symbolic dark"
 msgstr "כהה סמלי"
 
-#: zapzap/features/settings/pages/appearance/view.py:118
+#: zapzap/features/settings/pages/appearance/view.py:131
 #: zapzap/features/browser/shell/browser_controller.py:172
 msgid "Grid view"
 msgstr "תצוגת רשת"
 
-#: zapzap/features/settings/pages/appearance/view.py:119
+#: zapzap/features/settings/pages/appearance/view.py:132
 msgid "Choose how many columns are used by grid view."
 msgstr "בחר בכמה עמודות ישתמשו בתצוגת רשת."
 
-#: zapzap/features/settings/pages/appearance/view.py:123
+#: zapzap/features/settings/pages/appearance/view.py:136
 msgid "Grid columns"
 msgstr "עמודות רשת"
 
-#: zapzap/features/settings/pages/appearance/view.py:124
+#: zapzap/features/settings/pages/appearance/view.py:137
 msgid "Number of account columns in grid view."
 msgstr "מספר עמודות החשבון בתצוגת רשת."
 
-#: zapzap/features/settings/pages/appearance/view.py:134
+#: zapzap/features/settings/pages/appearance/view.py:147
 msgid "Window decoration"
 msgstr "קישוט חלון"
 
-#: zapzap/features/settings/pages/appearance/view.py:135
+#: zapzap/features/settings/pages/appearance/view.py:148
 msgid "Customize the window controls drawn by ZapZap."
 msgstr "התאם אישית את פקדי החלון שצוירו על ידי ZapZap."
 
-#: zapzap/features/settings/pages/appearance/view.py:139
+#: zapzap/features/settings/pages/appearance/view.py:152
 msgid "Use custom decoration"
 msgstr "השתמש בקישוט מותאם אישית"
 
-#: zapzap/features/settings/pages/appearance/view.py:140
+#: zapzap/features/settings/pages/appearance/view.py:153
 msgid "Use window controls drawn by ZapZap."
 msgstr "השתמש בפקדי חלון שצוירו על ידי ZapZap."
 
-#: zapzap/features/settings/pages/appearance/view.py:143
+#: zapzap/features/settings/pages/appearance/view.py:156
 msgid "Button style"
 msgstr "סגנון כפתורים"
 
-#: zapzap/features/settings/pages/appearance/view.py:144
+#: zapzap/features/settings/pages/appearance/view.py:157
 msgid "Visual style used by custom window buttons."
 msgstr "סגנון חזותי בשימוש על ידי לחצני חלון מותאמים אישית."
 
-#: zapzap/features/settings/pages/appearance/view.py:148
+#: zapzap/features/settings/pages/appearance/view.py:161
 msgid "Minimize"
 msgstr "הקטינו"
 
-#: zapzap/features/settings/pages/appearance/view.py:149
+#: zapzap/features/settings/pages/appearance/view.py:162
 msgid "Maximize"
 msgstr "למקסם"
 
-#: zapzap/features/settings/pages/appearance/view.py:153
+#: zapzap/features/settings/pages/appearance/view.py:166
 msgid "Visible buttons"
 msgstr "כפתורים גלויים"
 
-#: zapzap/features/settings/pages/appearance/view.py:158
+#: zapzap/features/settings/pages/appearance/view.py:171
 msgid "Button position"
 msgstr "מיקום הכפתור"
 
-#: zapzap/features/settings/pages/appearance/view.py:159
+#: zapzap/features/settings/pages/appearance/view.py:172
 msgid "Place window buttons on the right or left."
 msgstr "מקם לחצני חלון בצד ימין או שמאל."
 
-#: zapzap/features/settings/pages/appearance/view.py:164
+#: zapzap/features/settings/pages/appearance/view.py:177
 msgid "Right"
 msgstr "נכון"
 
-#: zapzap/features/settings/pages/appearance/view.py:165
+#: zapzap/features/settings/pages/appearance/view.py:178
 msgid "Left"
 msgstr "שמאל"
 
@@ -3736,32 +3744,32 @@ msgstr "הוראות"
 msgid "Copy command"
 msgstr "העתק פקודה"
 
-#: zapzap/features/browser/shell/browser_controller.py:564
-#: zapzap/features/browser/shell/browser_controller.py:647
+#: zapzap/features/browser/shell/browser_controller.py:561
+#: zapzap/features/browser/shell/browser_controller.py:671
 #, python-brace-format
 msgid "Account {}"
 msgstr "חשבון {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:661
+#: zapzap/features/browser/shell/browser_controller.py:685
 msgid "Account disabled"
 msgstr "החשבון מושבת"
 
-#: zapzap/features/browser/shell/browser_controller.py:662
+#: zapzap/features/browser/shell/browser_controller.py:686
 msgid "This account is disabled."
 msgstr "חשבון זה מושבת."
 
-#: zapzap/features/browser/shell/browser_controller.py:664
+#: zapzap/features/browser/shell/browser_controller.py:688
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "אתה יכול להפעיל אותו מחדש עכשיו או להשתמש בתפריט לחיצה ימנית כדי לנהל חשבון "
 "זה."
 
-#: zapzap/features/browser/shell/browser_controller.py:669
+#: zapzap/features/browser/shell/browser_controller.py:693
 msgid "Activate"
 msgstr "הפעל"
 
-#: zapzap/features/browser/shell/browser_controller.py:670
+#: zapzap/features/browser/shell/browser_controller.py:694
 msgid "Not now"
 msgstr "לא עכשיו"
 
@@ -3824,57 +3832,57 @@ msgid ""
 "WhatsApp requests it."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:437
+#: zapzap/features/browser/web/web_view.py:442
 msgid "Undo"
 msgstr "הסגה"
 
-#: zapzap/features/browser/web/web_view.py:437
+#: zapzap/features/browser/web/web_view.py:442
 msgid "Redo"
 msgstr "ביצוע מחדש"
 
-#: zapzap/features/browser/web/web_view.py:437
+#: zapzap/features/browser/web/web_view.py:442
 msgid "Cut"
 msgstr "גזירה"
 
-#: zapzap/features/browser/web/web_view.py:438
+#: zapzap/features/browser/web/web_view.py:443
 msgid "Paste"
 msgstr "הדבקה"
 
-#: zapzap/features/browser/web/web_view.py:438
+#: zapzap/features/browser/web/web_view.py:443
 msgid "Select all"
 msgstr "בחר הכל"
 
-#: zapzap/features/browser/web/web_view.py:439
+#: zapzap/features/browser/web/web_view.py:444
 msgid "Save image"
 msgstr "שמור תמונה"
 
-#: zapzap/features/browser/web/web_view.py:439
+#: zapzap/features/browser/web/web_view.py:444
 msgid "Copy image"
 msgstr "העתק תמונה"
 
-#: zapzap/features/browser/web/web_view.py:440
-#: zapzap/features/browser/web/web_view.py:470
+#: zapzap/features/browser/web/web_view.py:445
+#: zapzap/features/browser/web/web_view.py:475
 msgid "Copy link address"
 msgstr "העתקת כתובת קישור"
 
-#: zapzap/features/browser/web/web_view.py:488
+#: zapzap/features/browser/web/web_view.py:493
 msgid "Check Spelling"
 msgstr "בדיקת איות"
 
-#: zapzap/features/browser/web/web_view.py:494
+#: zapzap/features/browser/web/web_view.py:499
 msgid "Languages…"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:497
+#: zapzap/features/browser/web/web_view.py:502
 msgid "Choose the languages used by the spell checker."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:750
+#: zapzap/features/browser/web/web_view.py:755
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "חשבון"
 
-#: zapzap/features/browser/web/web_view.py:752
+#: zapzap/features/browser/web/web_view.py:757
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"

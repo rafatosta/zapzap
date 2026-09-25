@@ -11,6 +11,7 @@ from PyQt6.QtWidgets import QApplication, QWidget
 from PyQt6.QtGui import QAction
 
 from zapzap.core.theme.theme_manager import ThemeManager
+from zapzap.core.config.settings.appearance import AppearanceSettings
 from zapzap.assets.icons.system_icon import SystemIcon
 from zapzap.features.browser.web.page_controller import PageController
 from zapzap.features.browser.web.popup_window import InternalWebPopup
@@ -83,7 +84,11 @@ class WebView(QWebEngineView):
         self._shutting_down = False
 
         self._web_channel_bridge = None
-        self.quick_accounts_button_visible = True
+        appearance_settings = AppearanceSettings()
+        self.quick_accounts_button_visible = bool(
+            not appearance_settings.browser_sidebar_visible
+            and appearance_settings.sidebar_button_mode == "integrated"
+        )
 
         # In-memory only: last directory chosen with Save As for this
         # conversation. Never persisted.

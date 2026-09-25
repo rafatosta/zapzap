@@ -58,6 +58,7 @@ class QuickAccountsIntegrationTests(unittest.TestCase):
         self.assertIn("def sync_quick_accounts_state(self)", self.web_view)
         self.assertIn("def _quick_accounts_icon_color(color_scheme)", self.web_view)
         self.assertIn('f"setIconColor(\'{color}\')"', self.web_view)
+        self.assertIn("appearance_settings.sidebar_button_mode == \"integrated\"", self.web_view)
 
     def test_web_script_is_registered_before_initial_navigation(self):
         setup_page = self.web_view.split("def _setup_page(self):", 1)[1]

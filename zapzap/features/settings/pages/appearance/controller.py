@@ -32,6 +32,13 @@ class AppearanceSettingsController(AppearanceSettingsView):
         self.notificationCounter.setChecked(
             self.model.notification_counter_enabled)
         self.gridColsComboBox.setCurrentText(str(self.model.grid_columns))
+        self._set_selected_radio(
+            self.model.sidebar_button_mode,
+            {
+                "integrated": self.sidebar_button_integrated_radioButton,
+                "floating": self.sidebar_button_floating_radioButton,
+            },
+        )
 
         self.csr_groupBox.checkbox.setChecked(self.model.csr_enabled)
         self._load_csr_button_themes()
@@ -87,6 +94,16 @@ class AppearanceSettingsController(AppearanceSettingsView):
 
     def _connect_signals(self):
         self.browser_sidebar.clicked.connect(self._handle_sidebar)
+        self.sidebar_button_integrated_radioButton.toggled.connect(
+            lambda checked: checked and self._handle_sidebar_button_mode(
+                "integrated"
+            )
+        )
+        self.sidebar_button_floating_radioButton.toggled.connect(
+            lambda checked: checked and self._handle_sidebar_button_mode(
+                "floating"
+            )
+        )
         self.mainwindow_menu.clicked.connect(self._handle_menubar)
         self.scaleComboBox.currentTextChanged.connect(self._handle_scale)
         self.tray_groupBox.checkbox.toggled.connect(self._handle_tray_enabled)
@@ -130,7 +147,18 @@ class AppearanceSettingsController(AppearanceSettingsView):
     def _handle_sidebar(self):
         enabled = self.browser_sidebar.isChecked()
         self.model.browser_sidebar_visible = enabled
+        self._sync_sidebar_button_options_visibility()
         QApplication.instance().getWindow().set_sidebar_visible(enabled)
+
+    def _handle_sidebar_button_mode(self, mode):
+        self.model.sidebar_button_mode = mode
+        window = QApplication.instance().getWindow()
+        window.browser.refresh_sidebar_button_mode()
+
+    def _sync_sidebar_button_options_visibility(self):
+        self.sidebar_button_options_group.setVisible(
+            not self.browser_sidebar.isChecked()
+        )
 
     def _handle_menubar(self):
         self.model.menubar_visible = self.mainwindow_menu.isChecked()
@@ -190,6 +218,7 @@ class AppearanceSettingsController(AppearanceSettingsView):
         self._update_restart_requirement()
 
     def _sync_dependent_controls(self):
+        self._sync_sidebar_button_options_visibility()
         self.tray_options_group.setEnabled(
             self.tray_groupBox.checkbox.isChecked()
         )

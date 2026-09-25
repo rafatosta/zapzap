@@ -42,6 +42,16 @@ class AppearanceSettingsView(SettingsPage):
             _("Browser sidebar"),
             _("Show account navigation in the browser shell."),
         )
+        self.sidebar_button_integrated_radioButton = RadioButton(
+            _("Integrated in WhatsApp")
+        )
+        self.sidebar_button_floating_radioButton = RadioButton(
+            _("Floating ZapZap button")
+        )
+        self.sidebar_button_mode_group = SettingsRadioGroup(
+            self.sidebar_button_integrated_radioButton,
+            self.sidebar_button_floating_radioButton,
+        )
         self.mainwindow_menu_row = SettingsSwitchRow(
             _("Menu bar"),
             _("Show the main window menu bar."),
@@ -54,7 +64,10 @@ class AppearanceSettingsView(SettingsPage):
         self.browser_sidebar = self.browser_sidebar_row.checkbox
         self.mainwindow_menu = self.mainwindow_menu_row.checkbox
         self.scaleComboBox = self.scale_row.combo
-        card.add_row(self.browser_sidebar_row)
+        self.sidebar_button_options_group = card.add_group(
+            self.browser_sidebar_row,
+            (self.sidebar_button_mode_group,),
+        )
         card.add_row(self.mainwindow_menu_row)
         card.add_row(self.scale_row)
         section.add_card(card)

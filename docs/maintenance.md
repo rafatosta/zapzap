@@ -89,6 +89,10 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   semânticas existentes.
 - Mantenha texto curto, descrição útil, estado padrão real e nome acessível.
 - Não persista rótulos traduzidos; persista um ID estável.
+- Para a subopção de acesso rápido da sidebar, mantenha `floating` como valor
+  legado/padrão e `integrated` como escolha explícita. O grupo deve ficar
+  invisível com a sidebar ativa e apenas um dos dois pontos de entrada pode
+  aparecer quando ela estiver oculta.
 
 ### Relatórios de problemas
 
