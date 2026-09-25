@@ -318,7 +318,8 @@ Use uma conversa de teste e uma sessão gráfica real.
 1. Copie várias células de uma planilha no Excel ou LibreOffice Calc e use
    **Ctrl+Shift+V** no campo de mensagem do WhatsApp Web. No macOS, use
    **Cmd+Shift+V**. Confirme que o conteúdo entra como texto, sem ser convertido
-   em imagem ou preservar a formatação rica da planilha.
+   em imagem ou preservar a formatação rica da planilha. O atalho usa apenas a
+   representação textual do clipboard e insere esse texto no editor focado.
 2. Repita a mesma cópia com **Ctrl+V** e confirme que o comportamento normal do
    WhatsApp Web permanece inalterado.
 3. Repita com texto rico/HTML copiado de um navegador ou editor e confirme que o

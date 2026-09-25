@@ -3,6 +3,7 @@ import shutil
 import os
 import logging
 import sys
+import json
 
 from PyQt6.QtWebChannel import QWebChannel
 from PyQt6.QtWebEngineWidgets import QWebEngineView
@@ -495,16 +496,84 @@ class WebView(QWebEngineView):
             and event.modifiers() == WebView._plain_text_paste_modifiers()
         )
 
-    def _paste_as_plain_text(self):
-        action = getattr(
-            QWebEnginePage.WebAction,
-            "PasteAndMatchStyle",
-            None,
+    @staticmethod
+    def _plain_text_paste_script(text):
+        payload = json.dumps(text)
+        return f"""
+(() => {{
+    const text = {payload};
+    const active = document.activeElement;
+    if (!active) return false;
+
+    const tag = active.tagName;
+    const inputType = String(active.type || "text").toLowerCase();
+    const textInput = (
+        tag === "TEXTAREA"
+        || (
+            tag === "INPUT"
+            && !["button", "checkbox", "file", "hidden", "image", "radio",
+                 "reset", "submit"].includes(inputType)
         )
-        if action is None:
-            return False
+    );
+    if (!active.isContentEditable && !textInput) return false;
+
+    try {{
+        if (document.execCommand("insertText", false, text)) {{
+            return true;
+        }}
+    }} catch (_error) {{
+        // Fall back to direct insertion below.
+    }}
+
+    if (textInput) {{
+        const start = active.selectionStart ?? active.value.length;
+        const end = active.selectionEnd ?? start;
+        active.setRangeText(text, start, end, "end");
+        active.dispatchEvent(new InputEvent("input", {{
+            bubbles: true,
+            inputType: "insertText",
+            data: text,
+        }}));
+        return true;
+    }}
+
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0) return false;
+
+    const range = selection.getRangeAt(0);
+    const container = range.commonAncestorContainer;
+    if (container !== active && !active.contains(container)) return false;
+
+    range.deleteContents();
+    const node = document.createTextNode(text);
+    range.insertNode(node);
+    range.setStartAfter(node);
+    range.collapse(true);
+    selection.removeAllRanges();
+    selection.addRange(range);
+
+    active.dispatchEvent(new InputEvent("input", {{
+        bubbles: true,
+        inputType: "insertText",
+        data: text,
+    }}));
+    return true;
+}})();
+"""
+
+    def _paste_as_plain_text(self):
+        clipboard = QApplication.clipboard()
+        text = clipboard.text() if clipboard is not None else ""
+
+        # Consume the shortcut even if the clipboard has no text so an image
+        # representation from apps such as spreadsheets is never pasted.
+        if not text:
+            return True
+
         try:
-            self.page().triggerAction(action)
+            self.page().runJavaScript(
+                self._plain_text_paste_script(text)
+            )
         except RuntimeError:
             return False
         return True

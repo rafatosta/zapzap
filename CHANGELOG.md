@@ -16,9 +16,10 @@ releases and the AppStream metadata.
 ### Added
 
 - Added plain-text paste inside WhatsApp Web: Ctrl+Shift+V on Linux/Windows
-  (Cmd+Shift+V on macOS) now triggers Qt WebEngine's native
-  `PasteAndMatchStyle` action, so spreadsheet/HTML clipboard content can be
-  inserted as text without changing the existing Ctrl+V rich-paste behavior.
+  (Cmd+Shift+V on macOS) now reads only the system clipboard's text
+  representation and inserts it into the focused WhatsApp editor, so
+  spreadsheet/HTML clipboard content is not pasted as an image while the
+  existing Ctrl+V rich-paste behavior remains unchanged.
 - Added Ctrl+J as a discoverable View-menu shortcut for opening the full
   downloads history window.
 - Aligned native window decorations with the explicit ZapZap light/dark theme

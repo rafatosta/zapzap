@@ -4,7 +4,6 @@ import unittest
 from unittest.mock import patch
 
 from PyQt6.QtCore import QEvent, Qt
-from PyQt6.QtWebEngineCore import QWebEnginePage
 
 from zapzap.features.browser.web.web_view import WebView
 
@@ -40,10 +39,18 @@ class RecordingFilterHost:
 
 class RecordingPage:
     def __init__(self):
-        self.actions = []
+        self.scripts = []
 
-    def triggerAction(self, action):
-        self.actions.append(action)
+    def runJavaScript(self, script):
+        self.scripts.append(script)
+
+
+class FakeClipboard:
+    def __init__(self, text):
+        self._text = text
+
+    def text(self):
+        return self._text
 
 
 class PageHost:
@@ -151,25 +158,44 @@ class PlainTextPasteTests(unittest.TestCase):
             )
             self.assertEqual(host.paste_calls, 1)
 
-    def test_plain_text_paste_triggers_native_webengine_action(self):
-        action = getattr(
-            QWebEnginePage.WebAction,
-            "PasteAndMatchStyle",
-            None,
-        )
-        if action is None:
-            self.skipTest("Qt WebEngine lacks PasteAndMatchStyle")
+    def test_plain_text_paste_injects_only_clipboard_text(self):
+        page = RecordingPage()
+        host = PageHost(page)
+        clipboard_text = "A\\tB\\n1\\t2"
 
+        with patch(
+            "zapzap.features.browser.web.web_view.QApplication.clipboard",
+            return_value=FakeClipboard(clipboard_text),
+        ):
+            self.assertTrue(WebView._paste_as_plain_text(host))
+
+        self.assertEqual(len(page.scripts), 1)
+        script = page.scripts[0]
+        self.assertIn('document.execCommand("insertText", false, text)', script)
+        self.assertIn('const text = "A\\\\tB\\\\n1\\\\t2";', script)
+        self.assertNotIn("text/html", script)
+        self.assertNotIn("image/", script)
+
+    def test_empty_text_clipboard_is_consumed_without_pasting_image(self):
         page = RecordingPage()
         host = PageHost(page)
 
-        self.assertTrue(WebView._paste_as_plain_text(host))
-        self.assertEqual(page.actions, [action])
+        with patch(
+            "zapzap.features.browser.web.web_view.QApplication.clipboard",
+            return_value=FakeClipboard(""),
+        ):
+            self.assertTrue(WebView._paste_as_plain_text(host))
+
+        self.assertEqual(page.scripts, [])
 
     def test_destroyed_page_fails_open(self):
-        self.assertFalse(
-            WebView._paste_as_plain_text(DestroyedPageHost())
-        )
+        with patch(
+            "zapzap.features.browser.web.web_view.QApplication.clipboard",
+            return_value=FakeClipboard("plain text"),
+        ):
+            self.assertFalse(
+                WebView._paste_as_plain_text(DestroyedPageHost())
+            )
 
 
 if __name__ == "__main__":
