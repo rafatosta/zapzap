@@ -99,6 +99,7 @@ documente o que ele protege.
 | `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
 | `test_external_link_lifecycle.py` | classificação interna/externa de pop-ups, profile compartilhado, entrega única ao navegador e cleanup no fechamento/shutdown |
 | `test_freedesktop_notification_backend.py` | avisos nas saídas antecipadas da inicialização D-Bus, falhas de `Notify`/`CloseNotification`, aviso único na transição para indisponível e fachada sem backend |
+| `test_global_mute.py` | estado persistente de mute global, sincronização dos dois botões, fan-out para todas as contas e roteamento do atalho de colagem para a conta ativa |
 | `test_gpu_environment.py` | detecção multi-GPU, conectores e seleção de render node |
 | `test_grid_thumbnail_cache.py` | limite físico/DPR, reutilização, fallback, seleção e ciclo de vida das miniaturas da grade |
 | `test_http_cache_size.py` | cache em MiB, tipos de cache, política de cookies, memória JavaScript, autocura persistida e fallbacks de perfil sem WebEngine real |
@@ -112,7 +113,7 @@ documente o que ele protege.
 | `test_notifications_settings_ui.py` | rótulos, dependências, privacidade, som e lembrete de apoio |
 | `test_performance_experimental_settings_ui.py` | perfis de renderização, controles manuais, migração e reinício |
 | `test_permissions_settings_ui.py` | grupos e ações globais/individuais de permissões |
-| `test_plain_text_paste.py` | atalho de colagem sem formatação, modificador nativo por plataforma, ação WebEngine e preservação do Ctrl+V |
+| `test_plain_text_paste.py` | inserção text/plain no editor WebEngine selecionado, resolução de contenteditable pela seleção DOM e fallback PasteAndMatchStyle sem tocar no Ctrl+V |
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
 | `test_reporting.py` | sanitização, minimização, Markdown, fila/TTL e captura local de encerramentos inesperados |
@@ -154,6 +155,7 @@ documente o que ele protege.
 - `test_download_settings.py`
 - `test_external_link_lifecycle.py`
 - `test_freedesktop_notification_backend.py`
+- `test_global_mute.py`
 - `test_gpu_environment.py`
 - `test_grid_thumbnail_cache.py`
 - `test_http_cache_size.py`
@@ -302,6 +304,9 @@ fornecida pelo compositor/plataforma.
 4. Em uma distribuição com Qt antigo sem `setColorScheme`, confirme que a
    aplicação continua abrindo normalmente; nesse caso a decoração nativa pode
    continuar sendo controlada exclusivamente pelo compositor.
+5. Em GNOME/Pardus com decoração server-side, aceite que o compositor pode
+   ignorar o hint mesmo em Qt novo e manter a barra no tema do sistema. Isso não
+   deve ativar decoração personalizada, janela frameless ou botões próprios.
 
 ## Validação manual do atalho de downloads
 
@@ -325,6 +330,20 @@ Use uma conversa de teste e uma sessão gráfica real.
 3. Repita com texto rico/HTML copiado de um navegador ou editor e confirme que o
    atalho sem formatação usa apenas a apresentação textual compatível com o
    campo de mensagem.
+
+## Validação manual do mute global
+
+1. Com o som aberto, confirme que tray, botão da barra superior e botão da
+   sidebar exibem **Mute/Sessize al** e o mesmo ícone de som aberto.
+2. Acione qualquer um deles e confirme que os três pontos passam para
+   **Unmute/Sesliye al**, mensagens, chamadas/toques e mídia das contas abertas
+   ficam sem áudio, mas as notificações continuam aparecendo.
+3. Com duas contas e uma janela interna de chamada/popup, alterne entre contas e
+   confirme que todas permanecem mudas; abra uma nova página/popup depois do
+   mute e confirme que ela nasce muda.
+4. Reinicie o ZapZap e confirme que o estado de mute persiste. Desative o mute e
+   confirme que a preferência anterior de som de notificações volta a valer sem
+   ter sido alterada.
 
 ## Validação manual do proxy estrito
 
