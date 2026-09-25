@@ -43,6 +43,7 @@ logger = logging.getLogger(__name__)
 
 class WebView(QWebEngineView):
     update_button_signal = pyqtSignal(int, int)  # Sinal para atualizar botões
+    open_recent_accounts_requested = pyqtSignal()
 
     QWEBENGINE_CACHE_TYPES = {
         "MemoryHttpCache": QWebEngineProfile.HttpCacheType.MemoryHttpCache,
@@ -81,6 +82,7 @@ class WebView(QWebEngineView):
         self._shutting_down = False
 
         self._web_channel_bridge = None
+        self.quick_accounts_button_visible = True
 
         # In-memory only: last directory chosen with Save As for this
         # conversation. Never persisted.
@@ -241,6 +243,9 @@ class WebView(QWebEngineView):
                 "{current_color_scheme}": (
                     ThemeManager.get_current_color_scheme().name.lower()
                 ),
+                "{quick_accounts_visible}": (
+                    "true" if self.quick_accounts_button_visible else "false"
+                ),
             }
             base_dir = os.path.dirname(__file__)
             js_path = os.path.join(base_dir, "scripts", "theme_controller.js")
@@ -298,6 +303,16 @@ class WebView(QWebEngineView):
                         False, message)
                     self._webview.whatsapp_page.fall_back_to_force_dark_mode()
 
+            @pyqtSlot()
+            def on_quick_accounts_controller_ready(self):
+                self._webview.set_quick_accounts_button_visible(
+                    self._webview.quick_accounts_button_visible
+                )
+
+            @pyqtSlot()
+            def open_recent_accounts(self):
+                self._webview.open_recent_accounts_requested.emit()
+
             def __init__(self, webview):
                 super().__init__()
                 self.web_channel = QWebChannel(self)
@@ -308,6 +323,17 @@ class WebView(QWebEngineView):
         self.whatsapp_page.setWebChannel(
             self._web_channel_bridge.web_channel,
             QWebEngineScript.ScriptWorldId.MainWorld
+        )
+
+    def set_quick_accounts_button_visible(self, visible: bool):
+        """Update the injected account entry without changing Web WhatsApp state."""
+        self.quick_accounts_button_visible = bool(visible)
+        if self.whatsapp_page is None:
+            return
+        visibility = "true" if self.quick_accounts_button_visible else "false"
+        self.whatsapp_page.runJavaScript(
+            "window._zapZapQuickAccountsController && "
+            f"window._zapZapQuickAccountsController.setVisible({visibility});"
         )
 
     @staticmethod
@@ -350,8 +376,8 @@ class WebView(QWebEngineView):
         self.whatsapp_page.user_id = self.user.id
         self.whatsapp_page.renderProcessTerminated.connect(
             self._on_render_crash)
-        self.load_page()
         self._inject_web_theme_controller()
+        self.load_page()
 
     def _on_render_crash(self, terminationStatus, exitCode):
         if self._shutting_down or not self.user.enable or not self.whatsapp_page:

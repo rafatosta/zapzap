@@ -201,6 +201,19 @@ WhatsApp. Scripts mantidos em `features/browser/web/scripts/` são ativos em
 tempo de execução e devem ser considerados pelo teste de código estático mesmo
 quando chamam identificadores Python indiretamente.
 
+O script `theme_controller.js` também mantém o ponto de entrada opcional
+`QuickAccountsController` no DOM do WhatsApp Web. Ele usa apenas seletores
+semânticos e detecta também o trilho de navegação estreito, alto e encostado à
+esquerda. Alinha o botão ao centro horizontal, acima do controle de perfil no
+rodapé desse trilho; somente sem um ponto de montagem disponível usa um fallback
+fixo no alto à esquerda. Um
+`MutationObserver` agendado e o marcador
+`data-zapzap-component="quick-accounts"`; a lista e a troca de contas continuam
+na grade nativa. A bridge `zapZapBridge` encaminha somente a solicitação de
+abertura e o estado da sidebar, e o botão integrado permanece oculto enquanto
+a sidebar nativa está visível. A falha ou ausência do ponto de montagem não
+interrompe o WebEngine nem substitui o botão flutuante existente.
+
 Novas janelas solicitadas pelo WhatsApp passam primeiro por
 `PopupRoutingPage`, que classifica a primeira URL significativa antes do
 carregamento. Hosts de `__allowed_hosts__` e os esquemas internos `blob`,

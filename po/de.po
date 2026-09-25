@@ -970,7 +970,7 @@ msgstr "Wählen Sie diesen Befehl aus und kopieren Sie ihn in Ihr Terminal"
 #: zapzap/features/settings/pages/debugging/controller.py:131
 #: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:380
+#: zapzap/features/browser/web/web_view.py:406
 msgid "Copy"
 msgstr "Kopieren"
 
@@ -1459,7 +1459,7 @@ msgid "New conversation by phone number"
 msgstr "Neues Gespräch per Telefonnummer"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:532
+#: zapzap/features/browser/shell/browser_controller.py:547
 #: zapzap/ui/components/browser_sidebar.py:194
 msgid "New account"
 msgstr "Neues Konto"
@@ -3848,32 +3848,32 @@ msgstr "Anweisungen"
 msgid "Copy command"
 msgstr "Befehl kopieren"
 
-#: zapzap/features/browser/shell/browser_controller.py:549
-#: zapzap/features/browser/shell/browser_controller.py:632
+#: zapzap/features/browser/shell/browser_controller.py:564
+#: zapzap/features/browser/shell/browser_controller.py:647
 #, python-brace-format
 msgid "Account {}"
 msgstr "Konto {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:646
+#: zapzap/features/browser/shell/browser_controller.py:661
 msgid "Account disabled"
 msgstr "Konto deaktiviert"
 
-#: zapzap/features/browser/shell/browser_controller.py:647
+#: zapzap/features/browser/shell/browser_controller.py:662
 msgid "This account is disabled."
 msgstr "Dieses Konto ist deaktiviert."
 
-#: zapzap/features/browser/shell/browser_controller.py:649
+#: zapzap/features/browser/shell/browser_controller.py:664
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Sie können es jetzt reaktivieren oder das Rechtsklick-Menü verwenden, um "
 "dieses Konto zu verwalten."
 
-#: zapzap/features/browser/shell/browser_controller.py:654
+#: zapzap/features/browser/shell/browser_controller.py:669
 msgid "Activate"
 msgstr "Aktivieren"
 
-#: zapzap/features/browser/shell/browser_controller.py:655
+#: zapzap/features/browser/shell/browser_controller.py:670
 msgid "Not now"
 msgstr "Nicht jetzt"
 
@@ -3936,57 +3936,57 @@ msgid ""
 "WhatsApp requests it."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:379
+#: zapzap/features/browser/web/web_view.py:405
 msgid "Undo"
 msgstr "Rückgängig"
 
-#: zapzap/features/browser/web/web_view.py:379
+#: zapzap/features/browser/web/web_view.py:405
 msgid "Redo"
 msgstr "Wiederholen"
 
-#: zapzap/features/browser/web/web_view.py:379
+#: zapzap/features/browser/web/web_view.py:405
 msgid "Cut"
 msgstr "Ausschneiden"
 
-#: zapzap/features/browser/web/web_view.py:380
+#: zapzap/features/browser/web/web_view.py:406
 msgid "Paste"
 msgstr "Einfügen"
 
-#: zapzap/features/browser/web/web_view.py:380
+#: zapzap/features/browser/web/web_view.py:406
 msgid "Select all"
 msgstr "Alles auswählen"
 
-#: zapzap/features/browser/web/web_view.py:381
+#: zapzap/features/browser/web/web_view.py:407
 msgid "Save image"
 msgstr "Bild speichern"
 
-#: zapzap/features/browser/web/web_view.py:381
+#: zapzap/features/browser/web/web_view.py:407
 msgid "Copy image"
 msgstr "Bild kopieren"
 
-#: zapzap/features/browser/web/web_view.py:382
-#: zapzap/features/browser/web/web_view.py:412
+#: zapzap/features/browser/web/web_view.py:408
+#: zapzap/features/browser/web/web_view.py:438
 msgid "Copy link address"
 msgstr "Linkadresse kopieren"
 
-#: zapzap/features/browser/web/web_view.py:430
+#: zapzap/features/browser/web/web_view.py:456
 msgid "Check Spelling"
 msgstr "Rechtschreibung überprüfen"
 
-#: zapzap/features/browser/web/web_view.py:436
+#: zapzap/features/browser/web/web_view.py:462
 msgid "Languages…"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:439
+#: zapzap/features/browser/web/web_view.py:465
 msgid "Choose the languages used by the spell checker."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:688
+#: zapzap/features/browser/web/web_view.py:714
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "Konto"
 
-#: zapzap/features/browser/web/web_view.py:690
+#: zapzap/features/browser/web/web_view.py:716
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"

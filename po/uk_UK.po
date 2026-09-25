@@ -960,7 +960,7 @@ msgstr "Виберіть та скопіюйте цю команду у вашо
 #: zapzap/features/settings/pages/debugging/controller.py:131
 #: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:380
+#: zapzap/features/browser/web/web_view.py:406
 msgid "Copy"
 msgstr "Копіювати"
 
@@ -1448,7 +1448,7 @@ msgid "New conversation by phone number"
 msgstr "Нова розмова за номером телефону"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:532
+#: zapzap/features/browser/shell/browser_controller.py:547
 #: zapzap/ui/components/browser_sidebar.py:194
 msgid "New account"
 msgstr "Новий акаунт"
@@ -3807,32 +3807,32 @@ msgstr "Інструкції"
 msgid "Copy command"
 msgstr "Копіювати команду"
 
-#: zapzap/features/browser/shell/browser_controller.py:549
-#: zapzap/features/browser/shell/browser_controller.py:632
+#: zapzap/features/browser/shell/browser_controller.py:564
+#: zapzap/features/browser/shell/browser_controller.py:647
 #, python-brace-format
 msgid "Account {}"
 msgstr "Акаунт {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:646
+#: zapzap/features/browser/shell/browser_controller.py:661
 msgid "Account disabled"
 msgstr "Обліковий запис вимкнено"
 
-#: zapzap/features/browser/shell/browser_controller.py:647
+#: zapzap/features/browser/shell/browser_controller.py:662
 msgid "This account is disabled."
 msgstr "Цей обліковий запис вимкнено."
 
-#: zapzap/features/browser/shell/browser_controller.py:649
+#: zapzap/features/browser/shell/browser_controller.py:664
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Ви можете повторно активувати його зараз або скористатися меню правої кнопки "
 "миші для керування цим обліковим записом."
 
-#: zapzap/features/browser/shell/browser_controller.py:654
+#: zapzap/features/browser/shell/browser_controller.py:669
 msgid "Activate"
 msgstr "Активувати"
 
-#: zapzap/features/browser/shell/browser_controller.py:655
+#: zapzap/features/browser/shell/browser_controller.py:670
 msgid "Not now"
 msgstr "Не зараз"
 
@@ -3895,57 +3895,57 @@ msgid ""
 "WhatsApp requests it."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:379
+#: zapzap/features/browser/web/web_view.py:405
 msgid "Undo"
 msgstr "Відмінити"
 
-#: zapzap/features/browser/web/web_view.py:379
+#: zapzap/features/browser/web/web_view.py:405
 msgid "Redo"
 msgstr "Повторити"
 
-#: zapzap/features/browser/web/web_view.py:379
+#: zapzap/features/browser/web/web_view.py:405
 msgid "Cut"
 msgstr "Вирізати"
 
-#: zapzap/features/browser/web/web_view.py:380
+#: zapzap/features/browser/web/web_view.py:406
 msgid "Paste"
 msgstr "Вставити"
 
-#: zapzap/features/browser/web/web_view.py:380
+#: zapzap/features/browser/web/web_view.py:406
 msgid "Select all"
 msgstr "Вибрати все"
 
-#: zapzap/features/browser/web/web_view.py:381
+#: zapzap/features/browser/web/web_view.py:407
 msgid "Save image"
 msgstr "Зберегти зображення"
 
-#: zapzap/features/browser/web/web_view.py:381
+#: zapzap/features/browser/web/web_view.py:407
 msgid "Copy image"
 msgstr "Копіювати зображення"
 
-#: zapzap/features/browser/web/web_view.py:382
-#: zapzap/features/browser/web/web_view.py:412
+#: zapzap/features/browser/web/web_view.py:408
+#: zapzap/features/browser/web/web_view.py:438
 msgid "Copy link address"
 msgstr "Копіювати адресу посилання"
 
-#: zapzap/features/browser/web/web_view.py:430
+#: zapzap/features/browser/web/web_view.py:456
 msgid "Check Spelling"
 msgstr "Перевірка орфографії"
 
-#: zapzap/features/browser/web/web_view.py:436
+#: zapzap/features/browser/web/web_view.py:462
 msgid "Languages…"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:439
+#: zapzap/features/browser/web/web_view.py:465
 msgid "Choose the languages used by the spell checker."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:688
+#: zapzap/features/browser/web/web_view.py:714
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "Обліковий запис"
 
-#: zapzap/features/browser/web/web_view.py:690
+#: zapzap/features/browser/web/web_view.py:716
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "Інструменти розробника - {}"

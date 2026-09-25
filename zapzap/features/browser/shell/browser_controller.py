@@ -419,6 +419,21 @@ class BrowserController(BrowserView):
                     self._update_runtime_notifications(entry, count)
                 )
             )
+            open_recent_accounts = getattr(
+                page, "open_recent_accounts_requested", None
+            )
+            if open_recent_accounts is not None:
+                open_recent_accounts.connect(self.show_grid_view)
+            set_button_visible = getattr(
+                page, "set_quick_accounts_button_visible", None
+            )
+            if set_button_visible is not None:
+                set_button_visible(
+                    not (
+                        self.browser_sidebar.isVisible()
+                        and self.browser_sidebar.maximumWidth() > 0
+                    )
+                )
             self.pages.addWidget(page)
         except Exception:
             runtime.state = AccountLifecycle.ERROR
@@ -864,6 +879,12 @@ class BrowserController(BrowserView):
 
     def set_sidebar_visible(self, visible: bool, animated: bool = True):
         self._floating_account_button.setVisible(not visible)
+        for runtime in self._active_runtimes():
+            set_button_visible = getattr(
+                runtime.page, "set_quick_accounts_button_visible", None
+            )
+            if set_button_visible is not None:
+                set_button_visible(not visible)
         if not visible:
             self._update_popover.close()
         if self._sidebar_animation_group:

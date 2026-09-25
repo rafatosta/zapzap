@@ -952,7 +952,7 @@ msgstr "Odaberite i kopirajte ovu naredbu u svoj terminal"
 #: zapzap/features/settings/pages/debugging/controller.py:131
 #: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:380
+#: zapzap/features/browser/web/web_view.py:406
 msgid "Copy"
 msgstr "Kopiraj"
 
@@ -1440,7 +1440,7 @@ msgid "New conversation by phone number"
 msgstr "Novi razgovor prema broju telefona"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:532
+#: zapzap/features/browser/shell/browser_controller.py:547
 #: zapzap/ui/components/browser_sidebar.py:194
 msgid "New account"
 msgstr "Novi nalog"
@@ -3788,32 +3788,32 @@ msgstr "Uputstva"
 msgid "Copy command"
 msgstr "Kopiraj komandu"
 
-#: zapzap/features/browser/shell/browser_controller.py:549
-#: zapzap/features/browser/shell/browser_controller.py:632
+#: zapzap/features/browser/shell/browser_controller.py:564
+#: zapzap/features/browser/shell/browser_controller.py:647
 #, python-brace-format
 msgid "Account {}"
 msgstr "Nalog {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:646
+#: zapzap/features/browser/shell/browser_controller.py:661
 msgid "Account disabled"
 msgstr "Račun je onemogućen"
 
-#: zapzap/features/browser/shell/browser_controller.py:647
+#: zapzap/features/browser/shell/browser_controller.py:662
 msgid "This account is disabled."
 msgstr "Ovaj račun je onemogućen."
 
-#: zapzap/features/browser/shell/browser_controller.py:649
+#: zapzap/features/browser/shell/browser_controller.py:664
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Možete ga ponovo aktivirati sada ili koristiti meni desnim klikom za "
 "upravljanje ovim računom."
 
-#: zapzap/features/browser/shell/browser_controller.py:654
+#: zapzap/features/browser/shell/browser_controller.py:669
 msgid "Activate"
 msgstr "Aktiviraj"
 
-#: zapzap/features/browser/shell/browser_controller.py:655
+#: zapzap/features/browser/shell/browser_controller.py:670
 msgid "Not now"
 msgstr "Ne sada"
 
@@ -3876,57 +3876,57 @@ msgid ""
 "WhatsApp requests it."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:379
+#: zapzap/features/browser/web/web_view.py:405
 msgid "Undo"
 msgstr "Poništi"
 
-#: zapzap/features/browser/web/web_view.py:379
+#: zapzap/features/browser/web/web_view.py:405
 msgid "Redo"
 msgstr "Ponovi"
 
-#: zapzap/features/browser/web/web_view.py:379
+#: zapzap/features/browser/web/web_view.py:405
 msgid "Cut"
 msgstr "Izreži"
 
-#: zapzap/features/browser/web/web_view.py:380
+#: zapzap/features/browser/web/web_view.py:406
 msgid "Paste"
 msgstr "Zalijepi"
 
-#: zapzap/features/browser/web/web_view.py:380
+#: zapzap/features/browser/web/web_view.py:406
 msgid "Select all"
 msgstr "Odaberite sve"
 
-#: zapzap/features/browser/web/web_view.py:381
+#: zapzap/features/browser/web/web_view.py:407
 msgid "Save image"
 msgstr "Sačuvaj sliku"
 
-#: zapzap/features/browser/web/web_view.py:381
+#: zapzap/features/browser/web/web_view.py:407
 msgid "Copy image"
 msgstr "Kopiraj sliku"
 
-#: zapzap/features/browser/web/web_view.py:382
-#: zapzap/features/browser/web/web_view.py:412
+#: zapzap/features/browser/web/web_view.py:408
+#: zapzap/features/browser/web/web_view.py:438
 msgid "Copy link address"
 msgstr "Kopiraj adresu linka"
 
-#: zapzap/features/browser/web/web_view.py:430
+#: zapzap/features/browser/web/web_view.py:456
 msgid "Check Spelling"
 msgstr "Provjeri pravopis"
 
-#: zapzap/features/browser/web/web_view.py:436
+#: zapzap/features/browser/web/web_view.py:462
 msgid "Languages…"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:439
+#: zapzap/features/browser/web/web_view.py:465
 msgid "Choose the languages used by the spell checker."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:688
+#: zapzap/features/browser/web/web_view.py:714
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "Račun"
 
-#: zapzap/features/browser/web/web_view.py:690
+#: zapzap/features/browser/web/web_view.py:716
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"

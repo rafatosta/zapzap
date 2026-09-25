@@ -113,6 +113,7 @@ documente o que ele protege.
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
 | `test_profile_sync.py` | validação de dados pontuais do perfil WhatsApp e normalização da foto |
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
+| `test_quick_accounts_integration.py` | contrato estático do botão integrado de contas, bridge, fallback e isolamento do JavaScript |
 | `test_reporting.py` | sanitização, minimização, Markdown, fila/TTL e captura local de encerramentos inesperados |
 | `test_reporting_ui.py` | formulário em duas etapas, prévia canônica, edição, cancelamento, clipboard e abertura segura do GitHub |
 | `test_segmented_control.py` | seleção exclusiva, sinais, mouse, teclado, acessibilidade, tamanhos, raios e temas |
@@ -166,6 +167,7 @@ documente o que ele protege.
 - `test_portal_notification_backend.py`
 - `test_profile_sync.py`
 - `test_qt_parameter_fallbacks.py`
+- `test_quick_accounts_integration.py`
 - `test_reporting.py`
 - `test_reporting_ui.py`
 - `test_segmented_control.py`

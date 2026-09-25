@@ -33,6 +33,13 @@ releases and the AppStream metadata.
   existing account grid switcher on click, without duplicating any account
   management logic. The button can also be moved by clicking and holding the
   left mouse button; ordinary clicks continue to open the account switcher.
+- Added an optional WhatsApp Web quick-accounts entry point that appears only
+  while the native sidebar is hidden. It reuses the existing WebChannel and
+  native account grid, reinserts itself after dynamic DOM changes, and fails
+  silently without affecting the WhatsApp page or account lifecycle. It now
+  prefers the tall left navigation rail, centers the button horizontally near
+  its bottom while leaving room for the WhatsApp profile control, and migrates
+  an existing fallback button into that rail when it becomes available.
 - Added shared recent-download menus to the sidebar and right side of the
   menubar, including native platform file-type icons, per-item progress bars
   and percentages, queued/paused/interrupted/cancelled/blocked/completed

@@ -158,6 +158,11 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   valida e codifica a URL, e o `PageController` realiza a navegação direta sem
   JavaScript injetado. Nunca persista número ou mensagem.
 - Revalide grid, sidebar, conta ativa, zoom, downloads e notificações.
+- Para pontos de entrada integrados ao WhatsApp Web, mantenha o JavaScript
+  limitado à apresentação, localização resiliente e clique; encaminhe a ação
+  por `zapZapBridge` para a lógica nativa existente. Reutilize o estado da
+  sidebar, marque o elemento com `data-zapzap-component`, limite observers a
+  um por página e preserve o botão flutuante como fallback.
 - Para `performance/cache_size_max`, use as constantes, normalização e aplicação
   segura de `core.config.settings.performance`; nunca converta MiB para bytes
   diretamente na `WebView` nem envie ao Qt um valor maior que `INT32_MAX`.
