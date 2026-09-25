@@ -89,6 +89,10 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   semânticas existentes.
 - Mantenha texto curto, descrição útil, estado padrão real e nome acessível.
 - Não persista rótulos traduzidos; persista um ID estável.
+- Para a subopção de acesso rápido da sidebar, mantenha `floating` como valor
+  legado/padrão e `integrated` como escolha explícita. O grupo deve ficar
+  invisível com a sidebar ativa e apenas um dos dois pontos de entrada pode
+  aparecer quando ela estiver oculta.
 
 ### Relatórios de problemas
 
@@ -158,6 +162,11 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   valida e codifica a URL, e o `PageController` realiza a navegação direta sem
   JavaScript injetado. Nunca persista número ou mensagem.
 - Revalide grid, sidebar, conta ativa, zoom, downloads e notificações.
+- Para pontos de entrada integrados ao WhatsApp Web, mantenha o JavaScript
+  limitado à apresentação, localização resiliente e clique; encaminhe a ação
+  por `zapZapBridge` para a lógica nativa existente. Reutilize o estado da
+  sidebar, marque o elemento com `data-zapzap-component`, limite observers a
+  um por página e preserve o botão flutuante como fallback.
 - Para `performance/cache_size_max`, use as constantes, normalização e aplicação
   segura de `core.config.settings.performance`; nunca converta MiB para bytes
   diretamente na `WebView` nem envie ao Qt um valor maior que `INT32_MAX`.

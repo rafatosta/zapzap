@@ -83,7 +83,7 @@ documente o que ele protege.
 | `test_about_settings_ui.py` | identidade, links, detalhes técnicos, cópia, licença e créditos |
 | `test_account_data_removal.py` | remoção segura e idempotente de dados de perfis desativados |
 | `test_accounts_settings_ui.py` | card responsivo com ações diretas, remoção, estados/avisos e diálogo transacional sem moldura |
-| `test_appearance_settings_ui.py` | grupos, dependências, layout responsivo, persistência e acessibilidade |
+| `test_appearance_settings_ui.py` | grupos, dependências, subopções condicionais da sidebar, layout responsivo, persistência e acessibilidade |
 | `test_appimage_packaging.py` | coerência FFmpeg/Qt WebEngine, verificação de ABI, nome final fornecido ao quick-sharun e ausência de renomeação posterior do AppImage/zsync |
 | `test_browser_account_lifecycle.py` | registro estável, criação lazy de contas desativadas, isolamento/retentativa de perfil com erro, reativação, remoção, notificações e encerramento idempotente |
 | `test_browser_page_button_ui.py` | avatar sem número, grayscale de conta desativada, ponto de estado, card, temas, escala e clique |
@@ -119,6 +119,7 @@ documente o que ele protege.
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
 | `test_profile_sync.py` | validação de dados pontuais do perfil WhatsApp e normalização da foto |
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
+| `test_quick_accounts_integration.py` | contrato estático do botão integrado de contas, bridge, fallback e isolamento do JavaScript |
 | `test_reporting.py` | sanitização, minimização, Markdown, fila/TTL e captura local de encerramentos inesperados |
 | `test_reporting_ui.py` | formulário em duas etapas, prévia canônica, edição, cancelamento, clipboard e abertura segura do GitHub |
 | `test_segmented_control.py` | seleção exclusiva, sinais, mouse, teclado, acessibilidade, tamanhos, raios e temas |
@@ -177,6 +178,7 @@ documente o que ele protege.
 - `test_portal_notification_backend.py`
 - `test_profile_sync.py`
 - `test_qt_parameter_fallbacks.py`
+- `test_quick_accounts_integration.py`
 - `test_reporting.py`
 - `test_reporting_ui.py`
 - `test_segmented_control.py`

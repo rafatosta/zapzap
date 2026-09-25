@@ -1,7 +1,7 @@
 """Regression tests for the appearance settings hierarchy."""
 
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 from PyQt6.QtGui import QResizeEvent
 from PyQt6.QtWidgets import QApplication, QBoxLayout
@@ -18,12 +18,20 @@ from zapzap.ui.components import (
     SettingsDivider,
     SettingsRestartBar,
 )
+from zapzap.core.config.settings.appearance import AppearanceSettings
 
 
 class FakeAppearanceSettingsModel:
 
-    def __init__(self, tray_enabled=False, csr_enabled=False, scale=100):
+    def __init__(
+        self,
+        tray_enabled=False,
+        csr_enabled=False,
+        scale=100,
+        sidebar_button_mode="floating",
+    ):
         self.browser_sidebar_visible = True
+        self.sidebar_button_mode = sidebar_button_mode
         self.menubar_visible = True
         self.scale = scale
         self.tray_icon_enabled = tray_enabled
@@ -237,6 +245,47 @@ class AppearanceSettingsUiTests(QtTestCase):
                 row.title_label.text(),
             )
             self.assertTrue(row.control.accessibleDescription())
+
+    def test_sidebar_button_options_are_hidden_until_sidebar_is_hidden(self):
+        page, _model = self._controller()
+
+        self.assertTrue(page.sidebar_button_options_group.isHidden())
+
+        page.browser_sidebar.setChecked(False)
+        page._sync_sidebar_button_options_visibility()
+        self.assertFalse(page.sidebar_button_options_group.isHidden())
+
+        page.browser_sidebar.setChecked(True)
+        page._sync_sidebar_button_options_visibility()
+        self.assertTrue(page.sidebar_button_options_group.isHidden())
+
+    def test_sidebar_button_mode_is_persisted_and_applied(self):
+        page, model = self._controller()
+        browser = Mock()
+        window = Mock(browser=browser)
+        app = Mock()
+        app.getWindow.return_value = window
+
+        with patch(
+            "zapzap.features.settings.pages.appearance.controller."
+            "QApplication.instance",
+            return_value=app,
+        ):
+            page.sidebar_button_integrated_radioButton.setChecked(True)
+
+        self.assertEqual(model.sidebar_button_mode, "integrated")
+        browser.refresh_sidebar_button_mode.assert_called_once_with()
+
+    def test_sidebar_button_mode_setting_validates_stable_ids(self):
+        settings = AppearanceSettings()
+        original_mode = settings.sidebar_button_mode
+        self.addCleanup(setattr, settings, "sidebar_button_mode", original_mode)
+
+        settings.sidebar_button_mode = "integrated"
+        self.assertEqual(settings.sidebar_button_mode, "integrated")
+
+        settings.sidebar_button_mode = "unknown"
+        self.assertEqual(settings.sidebar_button_mode, "floating")
 
 
 if __name__ == "__main__":

@@ -51,6 +51,18 @@ releases and the AppStream metadata.
   existing account grid switcher on click, without duplicating any account
   management logic. The button can also be moved by clicking and holding the
   left mouse button; ordinary clicks continue to open the account switcher.
+- Added an optional WhatsApp Web quick-accounts entry point that appears only
+  while the native sidebar is hidden. It reuses the existing WebChannel and
+  native account grid, reinserts itself after dynamic DOM changes, and fails
+  silently without affecting the WhatsApp page or account lifecycle. It now
+  prefers the tall left navigation rail, centers the button horizontally near
+  its bottom while leaving room for the WhatsApp profile control, reuses the
+  sidebar's `view_grid` icon with live light/dark theme updates, and migrates an
+  existing fallback button into that rail when it becomes available.
+- Added a sidebar suboption to choose the account shortcut presentation while
+  the sidebar is hidden: integrated in WhatsApp or the floating ZapZap button.
+  The setting preserves floating as the default and ensures only the selected
+  shortcut is shown.
 - Added shared recent-download menus to the sidebar and right side of the
   menubar, including native platform file-type icons, per-item progress bars
   and percentages, queued/paused/interrupted/cancelled/blocked/completed
@@ -119,6 +131,9 @@ releases and the AppStream metadata.
   reporting flow, with allowlisted environment data and explicit handling for
   missing GPU, VAAPI, Vulkan, and Flatpak metadata so the report stays robust
   on unsupported or minimal Linux systems.
+- Added a complete Simplified Chinese (`zh_CN`) interface translation,
+  including the compiled gettext catalog and regression coverage for catalog
+  loading, language discovery, fallback behavior, and placeholder integrity.
 
 ### Fixed
 

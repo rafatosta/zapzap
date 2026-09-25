@@ -166,6 +166,11 @@ sem abrir um segundo mecanismo de troca de contas; a âncora fixa no canto
 dispensa reposicionamento a cada redimensionamento da janela. O botão pode ser
 reposicionado por arrasto com o botão esquerdo, limitado à área de conteúdo;
 um clique sem movimento mantém o acesso à grade de contas.
+Em Aparência > Interface, a subopção da sidebar escolhe entre esse botão
+flutuante e o botão integrado no trilho do WhatsApp. A subopção só aparece
+quando `system/sidebar` está desativado. `system/sidebar_button_mode` persiste
+os IDs `floating` e `integrated`, com `floating` como padrão compatível; em
+runtime o BrowserController mostra somente o ponto de entrada selecionado.
 O botão não possui tooltip nativo, pois ele competiria visualmente com o
 popover; nome e descrição acessíveis continuam informando a atualização.
 O clique de contexto abre um popover compacto com identidade, estado, edição,
@@ -200,6 +205,19 @@ persistidos intactos.
 WhatsApp. Scripts mantidos em `features/browser/web/scripts/` são ativos em
 tempo de execução e devem ser considerados pelo teste de código estático mesmo
 quando chamam identificadores Python indiretamente.
+
+O script `theme_controller.js` também mantém o ponto de entrada opcional
+`QuickAccountsController` no DOM do WhatsApp Web. Ele usa apenas seletores
+semânticos e detecta também o trilho de navegação estreito, alto e encostado à
+esquerda. Alinha o botão ao centro horizontal, acima do controle de perfil no
+rodapé desse trilho; somente sem um ponto de montagem disponível usa um fallback
+fixo no alto à esquerda. Um
+`MutationObserver` agendado e o marcador
+`data-zapzap-component="quick-accounts"`; a lista e a troca de contas continuam
+na grade nativa. A bridge `zapZapBridge` encaminha somente a solicitação de
+abertura e o estado da sidebar, e o botão integrado permanece oculto enquanto
+a sidebar nativa está visível. A falha ou ausência do ponto de montagem não
+interrompe o WebEngine nem substitui o botão flutuante existente.
 
 Novas janelas solicitadas pelo WhatsApp passam primeiro por
 `PopupRoutingPage`, que classifica a primeira URL significativa antes do

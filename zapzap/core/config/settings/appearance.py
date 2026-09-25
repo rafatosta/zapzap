@@ -20,6 +20,7 @@ class AppearanceSettings(BaseSettings):
     """Semantic access to appearance and layout settings."""
 
     _BROWSER_SIDEBAR = ("system/sidebar", True)
+    _SIDEBAR_BUTTON_MODE = ("system/sidebar_button_mode", "floating")
     _MENUBAR = ("system/menubar", True)
     _SCALE = ("system/scale", DEFAULT_SCALE)
     _TRAY_ICON = ("system/tray_icon", True)
@@ -40,6 +41,19 @@ class AppearanceSettings(BaseSettings):
     @browser_sidebar_visible.setter
     def browser_sidebar_visible(self, value: bool) -> None:
         self._set_bool(self._BROWSER_SIDEBAR, value)
+
+    @property
+    def sidebar_button_mode(self) -> str:
+        mode = self._get_str(self._SIDEBAR_BUTTON_MODE)
+        if mode not in {"integrated", "floating"}:
+            mode = "floating"
+            self._set_str(self._SIDEBAR_BUTTON_MODE, mode)
+        return mode
+
+    @sidebar_button_mode.setter
+    def sidebar_button_mode(self, value: str) -> None:
+        mode = value if value in {"integrated", "floating"} else "floating"
+        self._set_str(self._SIDEBAR_BUTTON_MODE, mode)
 
     @property
     def menubar_visible(self) -> bool:

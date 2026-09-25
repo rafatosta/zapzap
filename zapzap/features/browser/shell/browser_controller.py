@@ -425,6 +425,18 @@ class BrowserController(BrowserView):
                     self._update_runtime_notifications(entry, count)
                 )
             )
+            open_recent_accounts = getattr(
+                page, "open_recent_accounts_requested", None
+            )
+            if open_recent_accounts is not None:
+                open_recent_accounts.connect(self.show_grid_view)
+            set_button_visible = getattr(
+                page, "set_quick_accounts_button_visible", None
+            )
+            if set_button_visible is not None:
+                set_button_visible(
+                    self._is_integrated_account_button_visible()
+                )
             self.pages.addWidget(page)
         except Exception:
             runtime.state = AccountLifecycle.ERROR
@@ -609,6 +621,33 @@ class BrowserController(BrowserView):
         runtime = self._runtime_for_page(self.current_webview())
         button.set_account(runtime.user if runtime else None)
         button.reposition()
+
+    def _is_integrated_account_button_visible(self):
+        return bool(
+            not self._appearance_settings.browser_sidebar_visible
+            and self._appearance_settings.sidebar_button_mode == "integrated"
+        )
+
+    def _sync_account_switcher_buttons(self, sidebar_visible=None):
+        if sidebar_visible is None:
+            sidebar_visible = self._appearance_settings.browser_sidebar_visible
+        integrated_visible = bool(
+            not sidebar_visible
+            and self._appearance_settings.sidebar_button_mode == "integrated"
+        )
+        self._floating_account_button.setVisible(
+            not sidebar_visible and not integrated_visible
+        )
+        for runtime in self._active_runtimes():
+            set_button_visible = getattr(
+                runtime.page, "set_quick_accounts_button_visible", None
+            )
+            if set_button_visible is not None:
+                set_button_visible(integrated_visible)
+
+    def refresh_sidebar_button_mode(self):
+        """Apply the persisted account-switcher presentation choice."""
+        self._sync_account_switcher_buttons()
 
     # === Ações do Navegador ===
     def activate_account(self, user_id):
@@ -876,7 +915,7 @@ class BrowserController(BrowserView):
         )
 
     def set_sidebar_visible(self, visible: bool, animated: bool = True):
-        self._floating_account_button.setVisible(not visible)
+        self._sync_account_switcher_buttons(visible)
         if not visible:
             self._update_popover.close()
         if self._sidebar_animation_group:

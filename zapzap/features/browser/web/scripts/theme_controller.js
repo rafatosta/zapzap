@@ -104,6 +104,203 @@
         },
     };
 
+    const QuickAccountsController = {
+        bridge: null,
+        observer: null,
+        framePending: false,
+        visible: {quick_accounts_visible},
+        resizeHandler: null,
+        iconColor: null,
+
+        boot() {
+            const previous = window._zapZapQuickAccountsController;
+            if (previous && previous.observer) {
+                previous.observer.disconnect();
+            }
+            if (previous && previous.resizeHandler) {
+                window.removeEventListener("resize", previous.resizeHandler);
+            }
+            window._zapZapQuickAccountsController = this;
+            this.ensureButton();
+            this.resizeHandler = () => this.scheduleEnsure();
+            window.addEventListener("resize", this.resizeHandler);
+            if (document.documentElement) {
+                this.observer = new MutationObserver(() => this.scheduleEnsure());
+                this.observer.observe(document.documentElement, {
+                    childList: true,
+                    subtree: true,
+                });
+            }
+        },
+
+        setBridge(bridge) {
+            this.bridge = bridge;
+            if (this.bridge && typeof this.bridge.on_quick_accounts_controller_ready === "function") {
+                this.bridge.on_quick_accounts_controller_ready();
+            }
+        },
+
+        setVisible(visible) {
+            this.visible = Boolean(visible);
+            const button = document.querySelector('[data-zapzap-component="quick-accounts"]');
+            if (button) {
+                button.hidden = !this.visible;
+            }
+            this.ensureButton();
+        },
+
+        setState(visible, iconColor) {
+            this.visible = Boolean(visible);
+            this.setIconColor(iconColor);
+            this.ensureButton();
+        },
+
+        setIconColor(color) {
+            this.iconColor = color;
+            const icon = document.querySelector(
+                '[data-zapzap-component="quick-accounts"] svg'
+            );
+            if (icon) {
+                icon.setAttribute("fill", color);
+            }
+        },
+
+        scheduleEnsure() {
+            if (this.framePending) {
+                return;
+            }
+            this.framePending = true;
+            requestAnimationFrame(() => {
+                this.framePending = false;
+                this.ensureButton();
+            });
+        },
+
+        findQuickAccountsMountPoint() {
+            const navigationCandidates = document.querySelectorAll(
+                'nav, [role="navigation"], aside'
+            );
+            for (const candidate of navigationCandidates) {
+                const bounds = candidate.getBoundingClientRect();
+                if (
+                    bounds.left <= 24 &&
+                    bounds.width >= 48 &&
+                    bounds.width <= 120 &&
+                    bounds.height >= window.innerHeight * 0.5
+                ) {
+                    return candidate;
+                }
+            }
+
+            const selectors = [
+                'header[role="banner"]',
+                '[role="navigation"]',
+                '[data-testid="chat-list-header"]',
+                'main header',
+                'main > div:first-child',
+                '[role="main"] > div:first-child',
+                'header',
+            ];
+            for (const selector of selectors) {
+                const target = document.querySelector(selector);
+                if (target) {
+                    return target;
+                }
+            }
+            return document.body || null;
+        },
+
+        placeButton(button, target) {
+            const isFallback = target === document.body;
+            const bounds = target.getBoundingClientRect();
+            button.style.position = "fixed";
+            button.style.left = isFallback
+                ? "12px"
+                : `${Math.max(0, bounds.left + (bounds.width - 46) / 2)}px`;
+            button.style.top = "auto";
+            button.style.bottom = isFallback
+                ? "12px"
+                : `${Math.max(0, window.innerHeight - bounds.bottom + 90)}px`;
+            button.style.right = "";
+            button.style.zIndex = "2147483647";
+
+            if (button.parentElement !== target) {
+                target.appendChild(button);
+            }
+        },
+
+        createButton(isFallback) {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.setAttribute("data-zapzap-component", "quick-accounts");
+            button.setAttribute("aria-label", "Open recent accounts");
+            button.title = "Open recent accounts";
+            button.hidden = !this.visible;
+            const styles = [
+                "align-items:center",
+                "background:transparent",
+                "border:0",
+                "border-radius:8px",
+                "color:inherit",
+                "cursor:pointer",
+                "display:inline-flex",
+                "height:40px",
+                "justify-content:center",
+                "margin:4px",
+                "padding:8px",
+                "width:40px",
+            ];
+            if (isFallback) {
+                styles.push(
+                    "position:fixed",
+                    "left:12px",
+                    "top:12px",
+                    "z-index:2147483647",
+                );
+            }
+            button.style.cssText = styles.join(";");
+            button.innerHTML = `{quick_accounts_icon}`;
+            const icon = button.querySelector("svg");
+            if (icon) {
+                icon.setAttribute("aria-hidden", "true");
+                icon.setAttribute("width", "20");
+                icon.setAttribute("height", "20");
+                if (this.iconColor) {
+                    icon.setAttribute("fill", this.iconColor);
+                }
+            }
+            button.addEventListener("click", () => {
+                try {
+                    if (this.bridge && typeof this.bridge.open_recent_accounts === "function") {
+                        this.bridge.open_recent_accounts();
+                    }
+                } catch (_) {
+                    // The integration is optional and must not affect WhatsApp Web.
+                }
+            });
+            return button;
+        },
+
+        ensureButton() {
+            try {
+                const target = this.findQuickAccountsMountPoint();
+                if (!target) {
+                    return;
+                }
+                const existing = document.querySelector('[data-zapzap-component="quick-accounts"]');
+                if (existing) {
+                    existing.hidden = !this.visible;
+                    this.placeButton(existing, target);
+                    return;
+                }
+                const button = this.createButton(target === document.body);
+                this.placeButton(button, target);
+            } catch (_) {
+                // DOM changes in WhatsApp Web must never break the host page.
+            }
+        },
+    };
+
     const ThemeController = {
         _failed: false,
         _is_ready: false,
@@ -217,6 +414,9 @@
             try {
                 new QWebChannel(qt.webChannelTransport, (channel) => {
                     this.bridge = channel.objects && channel.objects.zapZapBridge;
+                    if (typeof QuickAccountsController !== "undefined") {
+                        QuickAccountsController.setBridge(this.bridge);
+                    }
                     this._notifyInjectionSuccess();
                 });
             } catch (_) {
@@ -462,5 +662,6 @@
         },
     };
 
+    QuickAccountsController.boot();
     ThemeController.boot();
 })();
