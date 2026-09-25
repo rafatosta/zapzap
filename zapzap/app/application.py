@@ -3,7 +3,7 @@
 import sys
 
 import zapzap
-from PyQt6.QtCore import QCoreApplication, QTimer, Qt
+from PyQt6.QtCore import QCoreApplication, QTimer
 from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
 
@@ -51,13 +51,9 @@ def create_main_window(
         update_checker=update_checker,
     )
     appearance = AppearanceSettings()
-    dark_linux_frame = (
-        sys.platform.startswith("linux")
-        and ThemeManager.get_current_color_scheme() == Qt.ColorScheme.Dark
-    )
     window = (
         ClientSideWindowHost(content)
-        if appearance.csr_enabled or dark_linux_frame
+        if appearance.csr_enabled
         else content
     )
     if DonationController.should_show():
