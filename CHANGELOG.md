@@ -105,6 +105,9 @@ releases and the AppStream metadata.
   CDN avatar in the chat-list header. The action now reads the avatar URL from
   that header, downloads its bytes, and converts them to the embedded PNG
   format, without touching the local account name.
+- Updated the Portuguese locale entries for the WhatsApp profile photo sync
+  action and confirmation dialogs so the new localized strings are applied in
+  the Brazilian and European Portuguese catalogs.
 - Avoided accessing the optional Qt NativeGesture event enum when it is not
   exposed by older distribution PyQt6 builds, preventing startup failures on
   those systems while keeping gesture handling enabled where supported.

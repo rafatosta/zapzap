@@ -3,6 +3,7 @@
 import base64
 import binascii
 from dataclasses import dataclass
+from gettext import gettext as _
 
 from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QImage
@@ -45,14 +46,14 @@ class ProfileSyncService:
     def capture(cls, page, callback):
         """Read the avatar URL once, then download and normalize its bytes."""
         if page is None or not hasattr(page, "runJavaScript"):
-            callback(None, ProfileSyncError("WhatsApp Web is unavailable."))
+            callback(None, ProfileSyncError(_("WhatsApp Web is unavailable.")))
             return
 
         def handle_payload(payload):
             try:
                 if not isinstance(payload, dict):
                     raise ProfileSyncError(
-                        "The WhatsApp page returned invalid avatar data."
+                        _("The WhatsApp page returned invalid avatar data.")
                     )
                 cls._download_avatar(page, payload.get("avatar"), callback)
             except (TypeError, ValueError) as error:
@@ -66,7 +67,7 @@ class ProfileSyncService:
     @classmethod
     def _download_avatar(cls, page, value, callback):
         if not isinstance(value, str) or not value:
-            callback(None, ProfileSyncError("No profile photo is available."))
+            callback(None, ProfileSyncError(_("No profile photo is available.")))
             return
         if value.startswith("data:image/"):
             try:
@@ -77,7 +78,7 @@ class ProfileSyncService:
 
         url = QUrl(value)
         if not url.isValid() or url.scheme() not in {"http", "https"}:
-            callback(None, ProfileSyncError("The profile photo URL is invalid."))
+            callback(None, ProfileSyncError(_("The profile photo URL is invalid.")))
             return
 
         manager = QNetworkAccessManager(page)
@@ -87,11 +88,11 @@ class ProfileSyncService:
             try:
                 if reply.error() != reply.NetworkError.NoError:
                     raise ProfileSyncError(
-                        "The profile photo could not be downloaded."
+                        _("The profile photo could not be downloaded.")
                     )
                 image = QImage()
                 if not image.loadFromData(bytes(reply.readAll())):
-                    raise ProfileSyncError("The profile photo is invalid.")
+                    raise ProfileSyncError(_("The profile photo is invalid."))
                 callback(
                     ProfileSyncResult(UserIcon.photo_from_image(image)),
                     None,
@@ -108,22 +109,24 @@ class ProfileSyncService:
     def result_from_payload(cls, payload) -> ProfileSyncResult:
         """Normalize a data URL payload for unit tests and local callers."""
         if not isinstance(payload, dict):
-            raise ProfileSyncError("The WhatsApp page returned invalid avatar data.")
+            raise ProfileSyncError(
+                _("The WhatsApp page returned invalid avatar data.")
+            )
         return ProfileSyncResult(cls._photo_from_url(payload.get("avatar")))
 
     @staticmethod
     def _photo_from_url(value):
         if not isinstance(value, str) or not value.startswith("data:image/"):
-            raise ProfileSyncError("The profile photo is not readable.")
+            raise ProfileSyncError(_("The profile photo is not readable."))
         try:
             header, encoded = value.split(",", 1)
             if ";base64" not in header:
-                raise ValueError("The profile photo is not base64 encoded.")
+                raise ValueError(_("The profile photo is not base64 encoded."))
             image_bytes = base64.b64decode(encoded, validate=True)
         except (ValueError, binascii.Error) as error:
-            raise ProfileSyncError("The profile photo could not be decoded.") from error
+            raise ProfileSyncError(_("The profile photo could not be decoded.")) from error
 
         image = QImage()
         if not image.loadFromData(image_bytes):
-            raise ProfileSyncError("The profile photo could not be read.")
+            raise ProfileSyncError(_("The profile photo could not be read."))
         return UserIcon.photo_from_image(image)
