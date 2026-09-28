@@ -346,14 +346,17 @@ tema usa `ForceDarkMode`; e um destino de download rejeitado tenta o diretório
 padrão antes de cancelar. Esses fallbacks não envolvem o bootstrap ou a criação
 de todas as contas em um único `try/except`.
 
-Cada `WebView` guarda `last_download_directory` apenas em memória: o diretório
-escolhido via "Salvar como" em `DownloadDialog` é sugerido como diretório
-inicial para os próximos downloads da mesma conversa; "Salvar" mantém o
-comportamento padrão e não atualiza esse estado. Ele não toca no destino
-configurado globalmente (`DownloadManager.get_path`) nem sobrevive ao
-encerramento da conversa (`close_conversation`), da janela ou do aplicativo,
-que já derrubam a página WebEngine e descartam esse estado junto com a
-instância.
+Cada `WebView` guarda `last_download_directory` apenas em memória, isolado por
+conta. `DownloadManager._choose_download_target` compartilha o seletor entre
+"Salvar como" e "perguntar sempre"; somente uma escolha válida atualiza a
+sugestão. "Salvar" e o modo automático sempre usam `system/download_path`.
+A preferência `downloads/remember_last_save_as_directory` (padrão `True`)
+controla a sugestão, sem persistir o diretório. Desativá-la emite um sinal do
+domínio para limpar imediatamente as WebViews vivas. O filtro existente observa
+`Esc` no conteúdo web sem consumir a tecla; `close_conversation`, fechamento
+para segundo plano e teardown também descartam o estado. Alternar contas sem
+destruí-las preserva suas sugestões independentes. Os seletores continuam usando
+as opções Qt/portal existentes, sem caminhos específicos de distribuição.
 
 A seleção global do corretor ortográfico é uma lista de até dez códigos
 estáveis em `system/spellCheckLanguages`. `DictionariesManager` descobre os

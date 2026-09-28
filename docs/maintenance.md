@@ -201,6 +201,15 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - Valide alterações de proxy com testes sem rede e repita os cenários manuais
   fail-closed de `docs/testing.md` em uma sessão descartável.
 
+### Memória temporária de downloads
+
+- Preserve a pasta persistida de downloads para Salvar e modo automático.
+- Use o seletor compartilhado do DownloadManager para Salvar como e perguntar
+  sempre; não grave a sugestão em QSettings ou SQLite.
+- Mantenha a limpeza por conta em Esc, fechamento e teardown, e o sinal de
+  desativação da preferência conectado uma única vez por WebView.
+- Valide o seletor nativo/portal em sessão real nos formatos mantidos.
+
 ### Mudança no corretor ortográfico
 
 - Mantenha descoberta, normalização, migração, limite e recentes em

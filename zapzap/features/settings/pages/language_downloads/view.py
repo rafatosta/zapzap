@@ -78,6 +78,15 @@ class LanguageDownloadSettingsView(SettingsPage):
         row.control.layout().addWidget(self.btn_restore_path_download)
         card.add_row(row)
 
+        self.remember_save_as_row = SettingsSwitchRow(
+            _('Remember last folder when using "Save as"'),
+            _("Only for the current account session."),
+        )
+        self.remember_save_as_row.checkbox.setAccessibleName(
+            _('Remember last folder when using "Save as"')
+        )
+        card.add_row(self.remember_save_as_row)
+
         self.auto_open_pdf_row = SettingsSwitchRow(
             _("Automatically open PDFs"),
             _(

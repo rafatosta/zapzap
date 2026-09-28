@@ -12,6 +12,7 @@ from PyQt6.QtWidgets import QApplication, QWidget
 from PyQt6.QtGui import QAction
 
 from zapzap.core.theme.theme_manager import ThemeManager
+from zapzap.core.config.settings.downloads import download_settings_events
 from zapzap.core.config.settings.appearance import AppearanceSettings
 from zapzap.assets.icons.system_icon import SystemIcon
 from zapzap.features.browser.web.page_controller import PageController
@@ -95,6 +96,9 @@ class WebView(QWebEngineView):
         # In-memory only: last directory chosen with Save As for this
         # conversation. Never persisted.
         self.last_download_directory = None
+        download_settings_events.clear_save_as_directories.connect(
+            self.clear_download_directory
+        )
 
         self._reload_timer = QTimer(self)
         self._reload_timer.setSingleShot(True)
@@ -694,6 +698,14 @@ class WebView(QWebEngineView):
             isinstance(watched, QWidget) and self.isAncestorOf(watched)
         )
 
+        if (
+            targets_web_content
+            and (watched is self or watched.window() is self.window())
+            and event.type() == QEvent.Type.KeyPress
+            and event.key() == Qt.Key.Key_Escape
+        ):
+            self.clear_download_directory()
+
         native_gesture_type = getattr(QEvent.Type, "NativeGesture", None)
         if native_gesture_type is not None and event.type() == native_gesture_type:
             if SettingsManager.get("web/disable_pinch", False):
@@ -745,9 +757,13 @@ class WebView(QWebEngineView):
         if self.user.enable and self.whatsapp_page:
             self.whatsapp_page.apply_custom_css()
 
+    def clear_download_directory(self):
+        """Discard the account-local Save As suggestion."""
+        self.last_download_directory = None
+
     def close_conversation(self):
         """Simula o pressionamento da tecla 'Escape' na página."""
-        self.last_download_directory = None
+        self.clear_download_directory()
         if self.user.enable and self.whatsapp_page:
             self.whatsapp_page.close_conversation()
 
@@ -862,7 +878,7 @@ class WebView(QWebEngineView):
 
     def _teardown_webengine(self, clear_cache: bool = False):
         """Destrói objetos Qt associados à WebEngine de forma ordenada."""
-        self.last_download_directory = None
+        self.clear_download_directory()
         self._stop_timers()
         self._save_zoom_factor()
         self.stop()

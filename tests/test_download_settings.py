@@ -5,7 +5,10 @@ import os
 import tempfile
 import time
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, Mock
+from types import SimpleNamespace
+
+from qt_test_case import QtTestCase
 
 from PyQt6.QtCore import QSettings
 from PyQt6.QtGui import QIcon
@@ -123,6 +126,148 @@ class DownloadSettingsTests(TemporarySettingsTest):
             DownloadSettings().multiple_download_permission,
             MultipleDownloadPermission.ASK,
         )
+
+
+
+class SaveAsDirectoryTests(TemporarySettingsTest):
+
+    def setUp(self):
+        super().setUp()
+        self.default = self._temporary_directory.name
+        DownloadManager.set_path(self.default)
+        self.owner = SimpleNamespace(last_download_directory=None)
+        self.download = Mock()
+        self.download.downloadFileName.return_value = "file.txt"
+        self.download.downloadDirectory.return_value = self.default
+        self.download.mimeType.return_value = "text/plain"
+        self.download.url.return_value.toString.return_value = "https://example.com/file.txt"
+
+    def choose(self, directory):
+        path = str(Path(directory) / "file.txt") if directory else ""
+        with patch(
+            "zapzap.features.downloads.download_manager.QFileDialog.getSaveFileName",
+            return_value=(path, ""),
+        ) as dialog, patch.object(DownloadManager, "set_download_target"):
+            result = DownloadManager._choose_download_target(self.download, self.owner)
+        return result, dialog.call_args.args[2]
+
+    def test_first_and_next_save_as_leave_plain_save_at_configured_path(self):
+        chosen = str(Path(self.default) / "images")
+        result, initial = self.choose(chosen)
+        self.assertTrue(result)
+        self.assertEqual(initial, str(Path(self.default) / "file.txt"))
+        self.assertEqual(self.owner.last_download_directory, chosen)
+        _, initial = self.choose(chosen)
+        self.assertEqual(initial, str(Path(chosen) / "file.txt"))
+        with patch.object(DownloadManager, "set_download_target") as target:
+            self.assertTrue(DownloadManager._set_initial_download_parameters(
+                self.download, self.owner
+            ))
+        self.assertEqual(target.call_args.args[1], self.default)
+        self.assertEqual(DownloadManager.get_path(), self.default)
+        self.assertNotIn(chosen, [SettingsManager.get(key) for key in SettingsManager.all_keys()])
+
+    def test_disabled_setting_neither_uses_nor_remembers_directory(self):
+        DownloadSettings().remember_last_save_as_directory = False
+        chosen = str(Path(self.default) / "images")
+        self.choose(chosen)
+        self.assertIsNone(self.owner.last_download_directory)
+        _, initial = self.choose(chosen)
+        self.assertEqual(initial, str(Path(self.default) / "file.txt"))
+        self.assertFalse(DownloadSettings().remember_last_save_as_directory)
+
+    def test_cancel_and_invalid_target_preserve_previous_suggestion(self):
+        self.owner.last_download_directory = self.default
+        self.assertFalse(self.choose(None)[0])
+        with patch(
+            "zapzap.features.downloads.download_manager.QFileDialog.getSaveFileName",
+            return_value=(str(Path(self.default) / "bad.txt"), ""),
+        ), patch.object(DownloadManager, "set_download_target", side_effect=ValueError):
+            self.assertFalse(DownloadManager._choose_download_target(
+                self.download, self.owner
+            ))
+        self.assertEqual(self.owner.last_download_directory, self.default)
+
+    def test_accounts_have_independent_suggestions(self):
+        first = self.owner
+        self.choose(str(Path(self.default) / "images"))
+        self.owner = SimpleNamespace(last_download_directory=None)
+        self.choose(str(Path(self.default) / "documents"))
+        self.assertNotEqual(first.last_download_directory, self.owner.last_download_directory)
+
+    def test_disabling_clears_live_accounts_before_reenabling(self):
+        from zapzap.core.config.settings.downloads import download_settings_events
+        from zapzap.features.browser.web.web_view import WebView
+        owner = self.owner
+        owner.last_download_directory = self.default
+        clear = lambda: WebView.clear_download_directory(owner)
+        download_settings_events.clear_save_as_directories.connect(clear)
+        try:
+            DownloadSettings().remember_last_save_as_directory = False
+            self.assertIsNone(owner.last_download_directory)
+            DownloadSettings().remember_last_save_as_directory = True
+            self.assertIsNone(owner.last_download_directory)
+        finally:
+            download_settings_events.clear_save_as_directories.disconnect(clear)
+
+    def test_escape_and_close_conversation_discard_suggestion(self):
+        from PyQt6.QtCore import QEvent, Qt
+        from PyQt6.QtGui import QKeyEvent
+        from zapzap.features.browser.web.web_view import WebView
+        owner = self.owner
+        owner.clear_download_directory = lambda: WebView.clear_download_directory(owner)
+        owner.last_download_directory = self.default
+        event = QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_Escape, Qt.KeyboardModifier.NoModifier)
+        self.assertFalse(WebView.eventFilter(owner, owner, event))
+        self.assertIsNone(owner.last_download_directory)
+        owner.last_download_directory = self.default
+        owner.user = SimpleNamespace(enable=True)
+        owner.whatsapp_page = Mock()
+        WebView.close_conversation(owner)
+        self.assertIsNone(owner.last_download_directory)
+        owner.whatsapp_page.close_conversation.assert_called_once()
+
+class SaveAsSettingsUiTests(QtTestCase):
+
+    def test_escape_in_file_dialog_does_not_clear_account_suggestion(self):
+        from PyQt6.QtCore import QEvent, Qt
+        from PyQt6.QtGui import QKeyEvent
+        from PyQt6.QtWidgets import QWidget, QDialog
+        from zapzap.features.browser.web.web_view import WebView
+        owner = QWidget()
+        owner.last_download_directory = "/remembered"
+        owner.clear_download_directory = lambda: WebView.clear_download_directory(owner)
+        dialog = QDialog(owner)
+        event = QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_Escape, Qt.KeyboardModifier.NoModifier)
+        self.assertFalse(WebView.eventFilter(owner, dialog, event))
+        self.assertEqual(owner.last_download_directory, "/remembered")
+        dialog.deleteLater()
+        owner.deleteLater()
+
+
+    def test_switch_loads_persists_and_has_accessible_name(self):
+        from zapzap.features.settings.pages.language_downloads.controller import (
+            LanguageDownloadSettingsController,
+        )
+        previous = SettingsManager._settings
+        with tempfile.TemporaryDirectory() as directory:
+            SettingsManager._settings = QSettings(
+                str(Path(directory) / "settings.ini"), QSettings.Format.IniFormat
+            )
+            page = None
+            try:
+                page = LanguageDownloadSettingsController()
+                checkbox = page.remember_save_as_row.checkbox
+                self.assertTrue(checkbox.isChecked())
+                self.assertTrue(checkbox.accessibleName())
+                checkbox.setChecked(False)
+                self.assertFalse(DownloadSettings().remember_last_save_as_directory)
+                checkbox.setChecked(True)
+                self.assertTrue(DownloadSettings().remember_last_save_as_directory)
+            finally:
+                if page:
+                    page.deleteLater()
+                SettingsManager._settings = previous
 
 
 class RepeatedDownloadSecurityTests(TemporarySettingsTest):

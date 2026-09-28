@@ -4853,32 +4853,6 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 #~ msgid "Enable single process for GPU and rendering"
 #~ msgstr "GPU ve render için tek işlem modunu etkinleştir"
 
-#~ msgid "Automatically open PDFs and images"
-#~ msgstr "PDF'leri ve görselleri otomatik aç"
-
-#~ msgid ""
-#~ "Open completed PDF and image downloads with the system default "
-#~ "application."
-#~ msgstr ""
-#~ "Tamamlanan PDF ve görsel indirmelerini sistemin varsayılan uygulamasıyla "
-#~ "aç."
-
-#~ msgid "{site} wants to download multiple files."
-#~ msgstr "{site} birden fazla dosya indirmek istiyor."
-
-#~ msgid "Automatic download site permissions"
-#~ msgstr "Otomatik indirme site izinleri"
-
-#~ msgid ""
-#~ "Clear remembered allow or block decisions for sites that request multiple "
-#~ "downloads."
-#~ msgstr ""
-#~ "Birden fazla indirme isteyen siteler için hatırlanan izin verme veya "
-#~ "engelleme kararlarını temizle."
-
-#~ msgid "This site"
-#~ msgstr "Bu site"
-
 #: zapzap/app/main_window_controller.py
 #: zapzap/features/tray/sys_tray_manager.py
 msgid "Unmute"
@@ -4901,3 +4875,11 @@ msgstr "Birden fazla indirme isteyen siteler için hatırlanan izin verme veya e
 
 msgid "This site"
 msgstr "Bu site"
+
+#: zapzap/features/settings/pages/language_downloads/view.py
+msgid "Remember last folder when using \"Save as\""
+msgstr "Farklı kaydet kullanırken son klasörü hatırla"
+
+#: zapzap/features/settings/pages/language_downloads/view.py
+msgid "Only for the current account session."
+msgstr "Yalnızca geçerli hesap oturumu için."

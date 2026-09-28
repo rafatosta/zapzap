@@ -3692,30 +3692,6 @@ msgstr "Više"
 msgid "Save as"
 msgstr "Sačuvaj kao"
 
-#: zapzap/features/downloads/ui/multiple_download_dialog.py:21
-msgid "Multiple downloads"
-msgstr "Višestruka preuzimanja"
-
-#: zapzap/features/downloads/ui/multiple_download_dialog.py:22
-msgid "WhatsApp wants to download multiple files."
-msgstr "WhatsApp želi preuzeti više datoteka."
-
-#: zapzap/features/downloads/ui/multiple_download_dialog.py:24
-msgid "Do you want to allow these additional downloads?"
-msgstr "Želite li dozvoliti ova dodatna preuzimanja?"
-
-#: zapzap/features/downloads/ui/multiple_download_dialog.py:28
-msgid "Allow once"
-msgstr "Dozvoli jednom"
-
-#: zapzap/features/downloads/ui/multiple_download_dialog.py:32
-msgid "Always allow"
-msgstr "Uvijek dozvoli"
-
-#: zapzap/features/downloads/ui/multiple_download_dialog.py:36
-msgid "Block"
-msgstr "Blokiraj"
-
 #: zapzap/features/downloads/ui/downloads_menu.py:238
 #: zapzap/features/downloads/ui/downloads_menu.py:619
 msgid "Show in folder"
@@ -3782,6 +3758,30 @@ msgstr "Kompletna historija preuzimanja"
 msgid "Clear download history"
 msgstr "Očisti historiju preuzimanja"
 
+#: zapzap/features/downloads/ui/multiple_download_dialog.py:21
+msgid "Multiple downloads"
+msgstr "Višestruka preuzimanja"
+
+#: zapzap/features/downloads/ui/multiple_download_dialog.py:22
+msgid "WhatsApp wants to download multiple files."
+msgstr "WhatsApp želi preuzeti više datoteka."
+
+#: zapzap/features/downloads/ui/multiple_download_dialog.py:24
+msgid "Do you want to allow these additional downloads?"
+msgstr "Želite li dozvoliti ova dodatna preuzimanja?"
+
+#: zapzap/features/downloads/ui/multiple_download_dialog.py:28
+msgid "Allow once"
+msgstr "Dozvoli jednom"
+
+#: zapzap/features/downloads/ui/multiple_download_dialog.py:32
+msgid "Always allow"
+msgstr "Uvijek dozvoli"
+
+#: zapzap/features/downloads/ui/multiple_download_dialog.py:36
+msgid "Block"
+msgstr "Blokiraj"
+
 #: zapzap/features/browser/shell/browser_controller.py:287
 msgid "Flatpak sandbox help"
 msgstr "Flatpak pomoć za sandbox"
@@ -3839,18 +3839,6 @@ msgstr "Aktiviraj"
 msgid "Not now"
 msgstr "Ne sada"
 
-#: zapzap/features/browser/web/popup_window.py:60
-#, fuzzy
-msgid "Manual close unavailable"
-msgstr "nije dostupno"
-
-#: zapzap/features/browser/web/popup_window.py:62
-msgid ""
-"To prevent the application from becoming unresponsive, this window cannot be "
-"closed manually. Use WhatsApp's End call button. The window will close when "
-"WhatsApp requests it."
-msgstr ""
-
 #: zapzap/features/browser/web/page_controller.py:308
 msgid "your microphone"
 msgstr "vaš mikrofon"
@@ -3897,6 +3885,18 @@ msgstr ""
 "WhatsApp Web traži pristup {}.\n"
 "\n"
 "Dozvoliti?"
+
+#: zapzap/features/browser/web/popup_window.py:60
+#, fuzzy
+msgid "Manual close unavailable"
+msgstr "nije dostupno"
+
+#: zapzap/features/browser/web/popup_window.py:62
+msgid ""
+"To prevent the application from becoming unresponsive, this window cannot be "
+"closed manually. Use WhatsApp's End call button. The window will close when "
+"WhatsApp requests it."
+msgstr ""
 
 #: zapzap/features/browser/web/web_view.py:443
 msgid "Undo"
@@ -4005,6 +4005,33 @@ msgstr "Odaberite račun da se vratite na njegov chat."
 #: zapzap/ui/components/browser_grid_view.py:198
 msgid "No active accounts to display."
 msgstr "Nema aktivnih naloga za prikaz."
+
+#: zapzap/ui/components/browser_sidebar.py:202
+msgid "New conversation by the phone number"
+msgstr "Novi razgovor prema broju telefona"
+
+#: zapzap/ui/components/browser_sidebar.py:206
+#: zapzap/ui/components/browser_sidebar.py:210
+msgid "Lock or configure WhatsApp Web app lock"
+msgstr "Zaključajte ili podesite zaključavanje WhatsApp Weba"
+
+#: zapzap/ui/components/browser_sidebar.py:208
+msgid "WhatsApp lock"
+msgstr "WhatsApp zaključavanje"
+
+#: zapzap/ui/components/browser_sidebar.py:213
+#, fuzzy
+msgid "Open donations page"
+msgstr "Otvorena lokacija"
+
+#: zapzap/ui/components/browser_sidebar.py:215
+#, fuzzy
+msgid "Show ways to support ZapZap development."
+msgstr "Povremeno prikažite poruke koje podržavaju razvoj ZapZap."
+
+#: zapzap/ui/components/browser_sidebar.py:221
+msgid "ZapZap Settings"
+msgstr "ZapZap postavke"
 
 #: zapzap/ui/components/card_user.py:149 zapzap/ui/components/card_user.py:150
 #: zapzap/ui/components/card_user.py:491 zapzap/ui/components/card_user.py:494
@@ -4479,6 +4506,118 @@ msgstr "Odbacivanjem se vraćaju vrijednosti od prije uređivanja."
 msgid "Keep editing"
 msgstr "Nastavi uređivanje"
 
+#: zapzap/ui/components/main_window.py:181
+msgid "File"
+msgstr "Fajl"
+
+#: zapzap/ui/components/main_window.py:182
+msgid "View"
+msgstr "Prikaz"
+
+#: zapzap/ui/components/main_window.py:183
+msgid "Chat"
+msgstr "Ćaskanje"
+
+#: zapzap/ui/components/main_window.py:184
+msgid "Users"
+msgstr "Korisnici"
+
+#: zapzap/ui/components/main_window.py:185
+msgid "Help"
+msgstr "Pomoć"
+
+#: zapzap/ui/components/main_window.py:189
+msgid "Ctrl+Q"
+msgstr "Ctrl+Q"
+
+#: zapzap/ui/components/main_window.py:191
+msgid "Ctrl+W"
+msgstr "Ctrl+W"
+
+#: zapzap/ui/components/main_window.py:193
+msgid "Ctrl+P"
+msgstr "Ctrl+P"
+
+#: zapzap/ui/components/main_window.py:195
+msgid "Ctrl+0"
+msgstr "Ctrl+0"
+
+#: zapzap/ui/components/main_window.py:197
+msgid "Ctrl++"
+msgstr "Ctrl++"
+
+#: zapzap/ui/components/main_window.py:199
+msgid "Ctrl+-"
+msgstr "Ctrl+-"
+
+#: zapzap/ui/components/main_window.py:200
+msgid "Toggle full screen"
+msgstr "Prebaci na cijeli ekran"
+
+#: zapzap/ui/components/main_window.py:201
+msgid "F11"
+msgstr "F11"
+
+#: zapzap/ui/components/main_window.py:202
+msgid "Open DevTools"
+msgstr "Otvorite DevTools"
+
+#: zapzap/ui/components/main_window.py:203
+msgid "Ctrl+Shift+I"
+msgstr "Ctrl+Shift+I"
+
+#: zapzap/ui/components/main_window.py:204
+msgid "Grid View"
+msgstr "Mrežni prikaz"
+
+#: zapzap/ui/components/main_window.py:205
+msgid "Ctrl+G"
+msgstr "Ctrl+G"
+
+#: zapzap/ui/components/main_window.py:208
+msgid "Show sidebar"
+msgstr "Prikaži bočnu traku"
+
+#: zapzap/ui/components/main_window.py:210
+msgid "Ctrl+Alt+1"
+msgstr "Ctrl+Alt+1"
+
+#: zapzap/ui/components/main_window.py:212
+msgid "Ctrl+Alt+2"
+msgstr "Ctrl+Alt+2"
+
+#: zapzap/ui/components/main_window.py:214
+msgid "Ctrl+Alt+3"
+msgstr "Ctrl+Alt+3"
+
+#: zapzap/ui/components/main_window.py:215
+msgid "Reload"
+msgstr "Ponovo učitaj"
+
+#: zapzap/ui/components/main_window.py:216
+msgid "F5"
+msgstr "F5"
+
+#: zapzap/ui/components/main_window.py:217
+msgid "New chat"
+msgstr "Novi razgovor"
+
+#: zapzap/ui/components/main_window.py:218
+msgid "Ctrl+N"
+msgstr "Ctrl+N"
+
+#: zapzap/ui/components/main_window.py:219
+msgid "By number phone"
+msgstr "Prema broju telefona"
+
+#: zapzap/ui/components/main_window.py:220
+msgid "Ctrl+M"
+msgstr "Ctrl+M"
+
+#: zapzap/ui/components/main_window.py:222
+msgid "Ctrl+Shift+/, Ctrl+?"
+msgstr "Ctrl+Shift+/, Ctrl+?"
+
 #: zapzap/ui/components/send_message_to_number_dialog.py:71
 #: zapzap/ui/components/send_message_to_number_dialog.py:122
 msgid "Send message to number"
@@ -4724,145 +4863,6 @@ msgstr ""
 #, python-brace-format
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
-
-#: zapzap/ui/components/browser_sidebar.py:202
-msgid "New conversation by the phone number"
-msgstr "Novi razgovor prema broju telefona"
-
-#: zapzap/ui/components/browser_sidebar.py:206
-#: zapzap/ui/components/browser_sidebar.py:210
-msgid "Lock or configure WhatsApp Web app lock"
-msgstr "Zaključajte ili podesite zaključavanje WhatsApp Weba"
-
-#: zapzap/ui/components/browser_sidebar.py:208
-msgid "WhatsApp lock"
-msgstr "WhatsApp zaključavanje"
-
-#: zapzap/ui/components/browser_sidebar.py:213
-#, fuzzy
-msgid "Open donations page"
-msgstr "Otvorena lokacija"
-
-#: zapzap/ui/components/browser_sidebar.py:215
-#, fuzzy
-msgid "Show ways to support ZapZap development."
-msgstr "Povremeno prikažite poruke koje podržavaju razvoj ZapZap."
-
-#: zapzap/ui/components/browser_sidebar.py:221
-msgid "ZapZap Settings"
-msgstr "ZapZap postavke"
-
-#: zapzap/ui/components/main_window.py:181
-msgid "File"
-msgstr "Fajl"
-
-#: zapzap/ui/components/main_window.py:182
-msgid "View"
-msgstr "Prikaz"
-
-#: zapzap/ui/components/main_window.py:183
-msgid "Chat"
-msgstr "Ćaskanje"
-
-#: zapzap/ui/components/main_window.py:184
-msgid "Users"
-msgstr "Korisnici"
-
-#: zapzap/ui/components/main_window.py:185
-msgid "Help"
-msgstr "Pomoć"
-
-#: zapzap/ui/components/main_window.py:189
-msgid "Ctrl+Q"
-msgstr "Ctrl+Q"
-
-#: zapzap/ui/components/main_window.py:191
-msgid "Ctrl+W"
-msgstr "Ctrl+W"
-
-#: zapzap/ui/components/main_window.py:193
-msgid "Ctrl+P"
-msgstr "Ctrl+P"
-
-#: zapzap/ui/components/main_window.py:195
-msgid "Ctrl+0"
-msgstr "Ctrl+0"
-
-#: zapzap/ui/components/main_window.py:197
-msgid "Ctrl++"
-msgstr "Ctrl++"
-
-#: zapzap/ui/components/main_window.py:199
-msgid "Ctrl+-"
-msgstr "Ctrl+-"
-
-#: zapzap/ui/components/main_window.py:200
-msgid "Toggle full screen"
-msgstr "Prebaci na cijeli ekran"
-
-#: zapzap/ui/components/main_window.py:201
-msgid "F11"
-msgstr "F11"
-
-#: zapzap/ui/components/main_window.py:202
-msgid "Open DevTools"
-msgstr "Otvorite DevTools"
-
-#: zapzap/ui/components/main_window.py:203
-msgid "Ctrl+Shift+I"
-msgstr "Ctrl+Shift+I"
-
-#: zapzap/ui/components/main_window.py:204
-msgid "Grid View"
-msgstr "Mrežni prikaz"
-
-#: zapzap/ui/components/main_window.py:205
-msgid "Ctrl+G"
-msgstr "Ctrl+G"
-
-#: zapzap/ui/components/main_window.py:208
-msgid "Show sidebar"
-msgstr "Prikaži bočnu traku"
-
-#: zapzap/ui/components/main_window.py:210
-msgid "Ctrl+Alt+1"
-msgstr "Ctrl+Alt+1"
-
-#: zapzap/ui/components/main_window.py:212
-msgid "Ctrl+Alt+2"
-msgstr "Ctrl+Alt+2"
-
-#: zapzap/ui/components/main_window.py:214
-msgid "Ctrl+Alt+3"
-msgstr "Ctrl+Alt+3"
-
-#: zapzap/ui/components/main_window.py:215
-msgid "Reload"
-msgstr "Ponovo učitaj"
-
-#: zapzap/ui/components/main_window.py:216
-msgid "F5"
-msgstr "F5"
-
-#: zapzap/ui/components/main_window.py:217
-msgid "New chat"
-msgstr "Novi razgovor"
-
-#: zapzap/ui/components/main_window.py:218
-msgid "Ctrl+N"
-msgstr "Ctrl+N"
-
-#: zapzap/ui/components/main_window.py:219
-msgid "By number phone"
-msgstr "Prema broju telefona"
-
-#: zapzap/ui/components/main_window.py:220
-msgid "Ctrl+M"
-msgstr "Ctrl+M"
-
-#: zapzap/ui/components/main_window.py:222
-msgid "Ctrl+Shift+/, Ctrl+?"
-msgstr "Ctrl+Shift+/, Ctrl+?"
 
 #~ msgid "Run natively on Wayland"
 #~ msgstr "Pokreni izvorno na Wayland"
@@ -5143,3 +5143,11 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 
 #~ msgid "This site"
 #~ msgstr "Ova stranica"
+
+#: zapzap/features/settings/pages/language_downloads/view.py
+msgid "Remember last folder when using \"Save as\""
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py
+msgid "Only for the current account session."
+msgstr ""

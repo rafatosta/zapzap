@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import logging
 
+from PyQt6.QtCore import QObject, pyqtSignal
+
 from zapzap.core.config.settings.base import BaseSettings
 from zapzap.core.config.settings_manager import SettingsManager
 
@@ -31,9 +33,19 @@ class MultipleDownloadPermission:
     VALUES = {ASK, ALLOW, BLOCK}
 
 
+class DownloadSettingsEvents(QObject):
+    """Notify live account contexts when temporary folders must be discarded."""
+
+    clear_save_as_directories = pyqtSignal()
+
+
+download_settings_events = DownloadSettingsEvents()
+
+
 class DownloadSettings(BaseSettings):
     """Semantic access to download behavior preferences."""
 
+    _REMEMBER_SAVE_AS = ("downloads/remember_last_save_as_directory", True)
     _BEHAVIOR = ("downloads/behavior", DownloadBehavior.DIALOG)
     _AUTO_OPEN_MEDIA_LEGACY = ("downloads/auto_open_media", False)
     _AUTO_OPEN_PDF = ("downloads/auto_open_pdf", False)
@@ -42,6 +54,16 @@ class DownloadSettings(BaseSettings):
         "downloads/whatsapp_multiple_download_permission",
         MultipleDownloadPermission.ASK,
     )
+
+    @property
+    def remember_last_save_as_directory(self) -> bool:
+        return self._get_bool(self._REMEMBER_SAVE_AS)
+
+    @remember_last_save_as_directory.setter
+    def remember_last_save_as_directory(self, value: bool) -> None:
+        self._set_bool(self._REMEMBER_SAVE_AS, value)
+        if not value:
+            download_settings_events.clear_save_as_directories.emit()
 
     @property
     def behavior(self) -> str:

@@ -1118,7 +1118,9 @@ class DownloadManager:
 
     @staticmethod
     def _session_directory(parent):
-        """Return the in-memory directory remembered for this conversation."""
+        """Return the optional account-local Save As suggestion."""
+        if not DownloadSettings().remember_last_save_as_directory:
+            return None
         directory = getattr(parent, "last_download_directory", None)
         return (
             directory
@@ -1128,10 +1130,7 @@ class DownloadManager:
 
     @staticmethod
     def _set_initial_download_parameters(download, parent=None) -> bool:
-        configured_path = (
-            DownloadManager._session_directory(parent)
-            or DownloadManager.get_path()
-        )
+        configured_path = DownloadManager.get_path()
         try:
             DownloadManager.set_download_target(
                 download,
@@ -1176,9 +1175,12 @@ class DownloadManager:
         )
 
     @staticmethod
-    def _choose_download_target(download, parent=None) -> bool:
+    def _choose_download_target(download, parent=None, *, dialog_parent=None) -> bool:
         try:
-            directory = download.downloadDirectory()
+            directory = (
+                DownloadManager._session_directory(parent)
+                or download.downloadDirectory()
+            )
             file_name = download.downloadFileName()
             mime_type = download.mimeType()
             url = download.url().toString()
@@ -1189,7 +1191,7 @@ class DownloadManager:
         name_filter = f"*.{suffix}" if suffix else "*"
 
         path, _selected_filter = QFileDialog.getSaveFileName(
-            parent,
+            dialog_parent if dialog_parent is not None else parent,
             _("Save file"),
             os.path.join(directory, file_name),
             name_filter,
@@ -1209,6 +1211,12 @@ class DownloadManager:
         except (RuntimeError, ValueError):
             logger.exception("Rejected unsafe selected download target")
             return False
+        if (
+            DownloadSettings().remember_last_save_as_directory
+            and hasattr(parent, "last_download_directory")
+            and not getattr(parent, "_shutting_down", False)
+        ):
+            parent.last_download_directory = os.path.dirname(path)
         return True
 
     @staticmethod

@@ -95,7 +95,7 @@ documente o que ele protege.
 | `test_dictionary_manager.py` | store próprio, migração, catálogo/cache, rede segura, downloads atômicos, importação/remoção, diálogo compartilhado, provisionamento único do idioma do sistema e ausência de dicionários nos pacotes oficiais |
 | `test_dictionary_options.py` | descoberta dinâmica, nomes amigáveis, ordenação, redimensionamento e fallback de dicionários personalizados |
 | `test_display_backend.py` | seleção automática/forçada do backend Qt, precedência de ambiente/CLI/plataforma e migração da chave Wayland legada |
-| `test_download_settings.py` | modos persistidos, permissão múltipla sem bypass temporal, fila global, ordem/dispensa de itens, indicador compacto, ícones nativos de tipo, elisão de nomes, sanitização de alvos e abertura separada de PDF/imagens por MIME verificado |
+| `test_download_settings.py` | memória opcional de Salvar como por conta, Esc, cancelamento, destino padrão, modos persistidos, permissão múltipla sem bypass temporal, fila global, ordem/dispensa de itens, indicador compacto, ícones nativos de tipo, elisão de nomes, sanitização de alvos e abertura separada de PDF/imagens por MIME verificado |
 | `test_documentation_structure.py` | camadas de UI, ciclo numérico versionado do changelog e sincronização entre árvore, inventários técnicos, convenção de commits e guia para agentes |
 | `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
 | `test_external_link_lifecycle.py` | classificação interna/externa de pop-ups, profile compartilhado, entrega única ao navegador e cleanup no fechamento/shutdown |
@@ -298,6 +298,18 @@ gráfica real.
     inclusive para PDF e imagens, sem gerar miniatura do conteúdo. Para um item
     ainda em fila, aceite fallback genérico apenas
     quando a plataforma não fornecer um ícone específico para a extensão.
+
+### Memória de Salvar como
+
+Em execução nativa/RPM, AppImage e Flatpak com portal, habilite a opção de
+lembrar pasta e escolha uma pasta diferente da configurada. Repita Salvar como
+e confirme a sugestão; use Salvar e modo automático e confirme a pasta padrão.
+Repita em duas contas, cancele o seletor e desabilite/reabilite a opção: a memória
+deve permanecer isolada, cancelamento não deve alterá-la e desativação deve
+apagá-la imediatamente. Teste também perguntar sempre, Esc no conteúdo web,
+fechar a janela para a bandeja e desativar/reativar uma conta. Reabrir um contexto
+encerrado não deve restaurar a sugestão. O portal pode controlar a pasta
+efetivamente apresentada; mocks não comprovam esse comportamento.
 
 ## Validação manual da barra de título nativa
 

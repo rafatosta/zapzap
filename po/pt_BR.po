@@ -3752,30 +3752,6 @@ msgstr "Mais"
 msgid "Save as"
 msgstr "Salvar como"
 
-#: zapzap/features/downloads/ui/multiple_download_dialog.py:21
-msgid "Multiple downloads"
-msgstr "Vários downloads"
-
-#: zapzap/features/downloads/ui/multiple_download_dialog.py:22
-msgid "WhatsApp wants to download multiple files."
-msgstr "O WhatsApp quer baixar vários arquivos."
-
-#: zapzap/features/downloads/ui/multiple_download_dialog.py:24
-msgid "Do you want to allow these additional downloads?"
-msgstr "Deseja permitir esses downloads adicionais?"
-
-#: zapzap/features/downloads/ui/multiple_download_dialog.py:28
-msgid "Allow once"
-msgstr "Permitir uma vez"
-
-#: zapzap/features/downloads/ui/multiple_download_dialog.py:32
-msgid "Always allow"
-msgstr "Sempre permitir"
-
-#: zapzap/features/downloads/ui/multiple_download_dialog.py:36
-msgid "Block"
-msgstr "Bloquear"
-
 #: zapzap/features/downloads/ui/downloads_menu.py:238
 #: zapzap/features/downloads/ui/downloads_menu.py:619
 msgid "Show in folder"
@@ -3842,6 +3818,30 @@ msgstr "Todo o histórico de downloads"
 msgid "Clear download history"
 msgstr "Limpar histórico de downloads"
 
+#: zapzap/features/downloads/ui/multiple_download_dialog.py:21
+msgid "Multiple downloads"
+msgstr "Vários downloads"
+
+#: zapzap/features/downloads/ui/multiple_download_dialog.py:22
+msgid "WhatsApp wants to download multiple files."
+msgstr "O WhatsApp quer baixar vários arquivos."
+
+#: zapzap/features/downloads/ui/multiple_download_dialog.py:24
+msgid "Do you want to allow these additional downloads?"
+msgstr "Deseja permitir esses downloads adicionais?"
+
+#: zapzap/features/downloads/ui/multiple_download_dialog.py:28
+msgid "Allow once"
+msgstr "Permitir uma vez"
+
+#: zapzap/features/downloads/ui/multiple_download_dialog.py:32
+msgid "Always allow"
+msgstr "Sempre permitir"
+
+#: zapzap/features/downloads/ui/multiple_download_dialog.py:36
+msgid "Block"
+msgstr "Bloquear"
+
 #: zapzap/features/browser/shell/browser_controller.py:287
 msgid "Flatpak sandbox help"
 msgstr "Ajuda Flatpak sandbox"
@@ -3899,20 +3899,6 @@ msgstr "Ativar"
 msgid "Not now"
 msgstr "Agora não"
 
-#: zapzap/features/browser/web/popup_window.py:60
-msgid "Manual close unavailable"
-msgstr "Fechamento manual indisponível"
-
-#: zapzap/features/browser/web/popup_window.py:62
-msgid ""
-"To prevent the application from becoming unresponsive, this window cannot be "
-"closed manually. Use WhatsApp's End call button. The window will close when "
-"WhatsApp requests it."
-msgstr ""
-"Para evitar que o aplicativo pare de responder, esta janela não pode ser "
-"fechada manualmente. Use o botão Encerrar chamada do WhatsApp. A janela será "
-"fechada quando o WhatsApp solicitar."
-
 #: zapzap/features/browser/web/page_controller.py:308
 msgid "your microphone"
 msgstr "seu microfone"
@@ -3959,6 +3945,20 @@ msgstr ""
 "O WhatsApp Web está solicitando acesso a {}.\n"
 "\n"
 "Permitir?"
+
+#: zapzap/features/browser/web/popup_window.py:60
+msgid "Manual close unavailable"
+msgstr "Fechamento manual indisponível"
+
+#: zapzap/features/browser/web/popup_window.py:62
+msgid ""
+"To prevent the application from becoming unresponsive, this window cannot be "
+"closed manually. Use WhatsApp's End call button. The window will close when "
+"WhatsApp requests it."
+msgstr ""
+"Para evitar que o aplicativo pare de responder, esta janela não pode ser "
+"fechada manualmente. Use o botão Encerrar chamada do WhatsApp. A janela será "
+"fechada quando o WhatsApp solicitar."
 
 #: zapzap/features/browser/web/web_view.py:443
 msgid "Undo"
@@ -4063,6 +4063,31 @@ msgstr "Selecione uma conta para retornar ao chat."
 #: zapzap/ui/components/browser_grid_view.py:198
 msgid "No active accounts to display."
 msgstr "Nenhuma conta ativa para exibir."
+
+#: zapzap/ui/components/browser_sidebar.py:202
+msgid "New conversation by the phone number"
+msgstr "Nova conversa pelo número de telefone"
+
+#: zapzap/ui/components/browser_sidebar.py:206
+#: zapzap/ui/components/browser_sidebar.py:210
+msgid "Lock or configure WhatsApp Web app lock"
+msgstr "Bloquear ou configurar o bloqueio do WhatsApp Web"
+
+#: zapzap/ui/components/browser_sidebar.py:208
+msgid "WhatsApp lock"
+msgstr "Bloqueio do WhatsApp"
+
+#: zapzap/ui/components/browser_sidebar.py:213
+msgid "Open donations page"
+msgstr "Abrir página de doações"
+
+#: zapzap/ui/components/browser_sidebar.py:215
+msgid "Show ways to support ZapZap development."
+msgstr "Mostrar formas de apoiar o desenvolvimento do ZapZap."
+
+#: zapzap/ui/components/browser_sidebar.py:221
+msgid "ZapZap Settings"
+msgstr "Configurações do ZapZap"
 
 #: zapzap/ui/components/card_user.py:149 zapzap/ui/components/card_user.py:150
 #: zapzap/ui/components/card_user.py:491 zapzap/ui/components/card_user.py:494
@@ -4518,6 +4543,118 @@ msgstr "Descartá-las restaura os valores anteriores à edição."
 msgid "Keep editing"
 msgstr "Continuar editando"
 
+#: zapzap/ui/components/main_window.py:181
+msgid "File"
+msgstr "Arquivo"
+
+#: zapzap/ui/components/main_window.py:182
+msgid "View"
+msgstr "Exibir"
+
+#: zapzap/ui/components/main_window.py:183
+msgid "Chat"
+msgstr "Bate-papo"
+
+#: zapzap/ui/components/main_window.py:184
+msgid "Users"
+msgstr "Contas"
+
+#: zapzap/ui/components/main_window.py:185
+msgid "Help"
+msgstr "Ajuda"
+
+#: zapzap/ui/components/main_window.py:189
+msgid "Ctrl+Q"
+msgstr "Ctrl+Q"
+
+#: zapzap/ui/components/main_window.py:191
+msgid "Ctrl+W"
+msgstr "Ctrl+W"
+
+#: zapzap/ui/components/main_window.py:193
+msgid "Ctrl+P"
+msgstr "Ctrl+P"
+
+#: zapzap/ui/components/main_window.py:195
+msgid "Ctrl+0"
+msgstr "Ctrl+0"
+
+#: zapzap/ui/components/main_window.py:197
+msgid "Ctrl++"
+msgstr "Ctrl++"
+
+#: zapzap/ui/components/main_window.py:199
+msgid "Ctrl+-"
+msgstr "Ctrl+-"
+
+#: zapzap/ui/components/main_window.py:200
+msgid "Toggle full screen"
+msgstr "Alternar tela cheia"
+
+#: zapzap/ui/components/main_window.py:201
+msgid "F11"
+msgstr "F11"
+
+#: zapzap/ui/components/main_window.py:202
+msgid "Open DevTools"
+msgstr "Abrir DevTools"
+
+#: zapzap/ui/components/main_window.py:203
+msgid "Ctrl+Shift+I"
+msgstr "Ctrl+Shift+I"
+
+#: zapzap/ui/components/main_window.py:204
+msgid "Grid View"
+msgstr "Visualização em grade"
+
+#: zapzap/ui/components/main_window.py:205
+msgid "Ctrl+G"
+msgstr "Ctrl+G"
+
+#: zapzap/ui/components/main_window.py:208
+msgid "Show sidebar"
+msgstr "Exibir barra lateral"
+
+#: zapzap/ui/components/main_window.py:210
+msgid "Ctrl+Alt+1"
+msgstr "Ctrl+Alt+1"
+
+#: zapzap/ui/components/main_window.py:212
+msgid "Ctrl+Alt+2"
+msgstr "Ctrl+Alt+2"
+
+#: zapzap/ui/components/main_window.py:214
+msgid "Ctrl+Alt+3"
+msgstr "Ctrl+Alt+3"
+
+#: zapzap/ui/components/main_window.py:215
+msgid "Reload"
+msgstr "Recarregar"
+
+#: zapzap/ui/components/main_window.py:216
+msgid "F5"
+msgstr "F5"
+
+#: zapzap/ui/components/main_window.py:217
+msgid "New chat"
+msgstr "Novo bate-papo"
+
+#: zapzap/ui/components/main_window.py:218
+msgid "Ctrl+N"
+msgstr "Ctrl+N"
+
+#: zapzap/ui/components/main_window.py:219
+msgid "By number phone"
+msgstr "Por número de telefone"
+
+#: zapzap/ui/components/main_window.py:220
+msgid "Ctrl+M"
+msgstr "Ctrl+M"
+
+#: zapzap/ui/components/main_window.py:222
+msgid "Ctrl+Shift+/, Ctrl+?"
+msgstr "Ctrl+Shift+/, Ctrl+?"
+
 #: zapzap/ui/components/send_message_to_number_dialog.py:71
 #: zapzap/ui/components/send_message_to_number_dialog.py:122
 msgid "Send message to number"
@@ -4755,143 +4892,6 @@ msgstr "Lançada em {date}"
 #, python-brace-format
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
-
-#: zapzap/ui/components/browser_sidebar.py:202
-msgid "New conversation by the phone number"
-msgstr "Nova conversa pelo número de telefone"
-
-#: zapzap/ui/components/browser_sidebar.py:206
-#: zapzap/ui/components/browser_sidebar.py:210
-msgid "Lock or configure WhatsApp Web app lock"
-msgstr "Bloquear ou configurar o bloqueio do WhatsApp Web"
-
-#: zapzap/ui/components/browser_sidebar.py:208
-msgid "WhatsApp lock"
-msgstr "Bloqueio do WhatsApp"
-
-#: zapzap/ui/components/browser_sidebar.py:213
-msgid "Open donations page"
-msgstr "Abrir página de doações"
-
-#: zapzap/ui/components/browser_sidebar.py:215
-msgid "Show ways to support ZapZap development."
-msgstr "Mostrar formas de apoiar o desenvolvimento do ZapZap."
-
-#: zapzap/ui/components/browser_sidebar.py:221
-msgid "ZapZap Settings"
-msgstr "Configurações do ZapZap"
-
-#: zapzap/ui/components/main_window.py:181
-msgid "File"
-msgstr "Arquivo"
-
-#: zapzap/ui/components/main_window.py:182
-msgid "View"
-msgstr "Exibir"
-
-#: zapzap/ui/components/main_window.py:183
-msgid "Chat"
-msgstr "Bate-papo"
-
-#: zapzap/ui/components/main_window.py:184
-msgid "Users"
-msgstr "Contas"
-
-#: zapzap/ui/components/main_window.py:185
-msgid "Help"
-msgstr "Ajuda"
-
-#: zapzap/ui/components/main_window.py:189
-msgid "Ctrl+Q"
-msgstr "Ctrl+Q"
-
-#: zapzap/ui/components/main_window.py:191
-msgid "Ctrl+W"
-msgstr "Ctrl+W"
-
-#: zapzap/ui/components/main_window.py:193
-msgid "Ctrl+P"
-msgstr "Ctrl+P"
-
-#: zapzap/ui/components/main_window.py:195
-msgid "Ctrl+0"
-msgstr "Ctrl+0"
-
-#: zapzap/ui/components/main_window.py:197
-msgid "Ctrl++"
-msgstr "Ctrl++"
-
-#: zapzap/ui/components/main_window.py:199
-msgid "Ctrl+-"
-msgstr "Ctrl+-"
-
-#: zapzap/ui/components/main_window.py:200
-msgid "Toggle full screen"
-msgstr "Alternar tela cheia"
-
-#: zapzap/ui/components/main_window.py:201
-msgid "F11"
-msgstr "F11"
-
-#: zapzap/ui/components/main_window.py:202
-msgid "Open DevTools"
-msgstr "Abrir DevTools"
-
-#: zapzap/ui/components/main_window.py:203
-msgid "Ctrl+Shift+I"
-msgstr "Ctrl+Shift+I"
-
-#: zapzap/ui/components/main_window.py:204
-msgid "Grid View"
-msgstr "Visualização em grade"
-
-#: zapzap/ui/components/main_window.py:205
-msgid "Ctrl+G"
-msgstr "Ctrl+G"
-
-#: zapzap/ui/components/main_window.py:208
-msgid "Show sidebar"
-msgstr "Exibir barra lateral"
-
-#: zapzap/ui/components/main_window.py:210
-msgid "Ctrl+Alt+1"
-msgstr "Ctrl+Alt+1"
-
-#: zapzap/ui/components/main_window.py:212
-msgid "Ctrl+Alt+2"
-msgstr "Ctrl+Alt+2"
-
-#: zapzap/ui/components/main_window.py:214
-msgid "Ctrl+Alt+3"
-msgstr "Ctrl+Alt+3"
-
-#: zapzap/ui/components/main_window.py:215
-msgid "Reload"
-msgstr "Recarregar"
-
-#: zapzap/ui/components/main_window.py:216
-msgid "F5"
-msgstr "F5"
-
-#: zapzap/ui/components/main_window.py:217
-msgid "New chat"
-msgstr "Novo bate-papo"
-
-#: zapzap/ui/components/main_window.py:218
-msgid "Ctrl+N"
-msgstr "Ctrl+N"
-
-#: zapzap/ui/components/main_window.py:219
-msgid "By number phone"
-msgstr "Por número de telefone"
-
-#: zapzap/ui/components/main_window.py:220
-msgid "Ctrl+M"
-msgstr "Ctrl+M"
-
-#: zapzap/ui/components/main_window.py:222
-msgid "Ctrl+Shift+/, Ctrl+?"
-msgstr "Ctrl+Shift+/, Ctrl+?"
 
 #~ msgid "Close WhatsApp window?"
 #~ msgstr "Fechar janela do WhatsApp?"
@@ -5616,3 +5616,11 @@ msgstr "Ctrl+Shift+/, Ctrl+?"
 
 #~ msgid "This site"
 #~ msgstr "Este site"
+
+#: zapzap/features/settings/pages/language_downloads/view.py
+msgid "Remember last folder when using \"Save as\""
+msgstr "Lembrar última pasta ao usar \"Salvar como\""
+
+#: zapzap/features/settings/pages/language_downloads/view.py
+msgid "Only for the current account session."
+msgstr "Apenas durante a sessão atual da conta."

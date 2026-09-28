@@ -455,6 +455,7 @@ class InternalPopupLifecycleTests(unittest.TestCase):
         popup_registry = {first_popup, second_popup}
         webview = SimpleNamespace(
             _popup_windows=popup_registry,
+            last_download_directory="/temporary/save-as",
             _stop_timers=Mock(),
             _save_zoom_factor=Mock(),
             stop=Mock(),
@@ -466,7 +467,9 @@ class InternalPopupLifecycleTests(unittest.TestCase):
             setVisible=Mock(),
         )
 
+        webview.clear_download_directory = lambda: WebView.clear_download_directory(webview)
         WebView._teardown_webengine(webview)
+        self.assertIsNone(webview.last_download_directory)
 
         first_popup.close_from_host.assert_called_once_with()
         second_popup.close_from_host.assert_called_once_with()

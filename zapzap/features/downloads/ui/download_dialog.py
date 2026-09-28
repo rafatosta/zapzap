@@ -4,16 +4,13 @@ from PyQt6.QtWidgets import (
     QHBoxLayout,
     QVBoxLayout,
     QFrame,
-    QFileDialog,
     QMenu,
 )
 from PyQt6.QtGui import QDesktopServices, QAction
-from PyQt6.QtCore import QUrl, QFileInfo, Qt
+from PyQt6.QtCore import QUrl, Qt
 from PyQt6.QtWebEngineCore import QWebEngineDownloadRequest
 from gettext import gettext as _
-import os
 
-from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.features.downloads.download_manager import DownloadManager
 from zapzap.ui.primitives.button import Button
 from zapzap.ui.primitives.label import Label
@@ -31,14 +28,6 @@ class DownloadDialog(QDialog):
         )
         self.initial_file_name = self._safe_download_value(
             download.downloadFileName,
-            ""
-        )
-        self.initial_mime_type = self._safe_download_value(
-            download.mimeType,
-            ""
-        )
-        self.initial_url = self._safe_download_value(
-            lambda: download.url().toString(),
             ""
         )
 
@@ -216,16 +205,6 @@ class DownloadDialog(QDialog):
         self.download = None
         self.reject()
 
-    def _remember_download_directory(self, directory):
-        """Keep the Save As directory only for this conversation session."""
-        owner = self.parent()
-        if owner is None or not hasattr(owner, "last_download_directory"):
-            return
-        try:
-            owner.last_download_directory = directory
-        except RuntimeError:
-            pass
-
     # ===============================
     # Actions
     # ===============================
@@ -265,50 +244,17 @@ class DownloadDialog(QDialog):
             self._close_unavailable_download()
             return
 
-        directory = self.initial_directory
-
-        file_name = self.initial_file_name
-
-        suffix = QFileInfo(file_name).suffix()
-
-        options = (
-            QFileDialog.Option.DontUseNativeDialog
-            if SettingsManager.get(
-                "system/DontUseNativeDialog",
-                False
-            )
-            else QFileDialog.Option(0)
-        )
-
-        name_filter = f"*.{suffix}" if suffix else "*"
-
-        path, __ = QFileDialog.getSaveFileName(
-            self,
-            _("Save file"),
-            os.path.join(directory, file_name),
-            name_filter,
-            options=options
-        )
-
-        if not path:
-            return
-
-        if not self._is_download_available():
-            self._close_unavailable_download()
+        if not DownloadManager._choose_download_target(
+            self.download, self.parent(), dialog_parent=self
+        ):
+            if not self._is_download_available():
+                self._close_unavailable_download()
             return
 
         try:
-            DownloadManager.set_download_target(
-                self.download,
-                os.path.dirname(path),
-                os.path.basename(path),
-                self.initial_mime_type,
-                self.initial_url,
-            )
             DownloadManager.start_or_queue(self.download)
-            self._remember_download_directory(os.path.dirname(path))
             self.accept()
-        except (RuntimeError, ValueError):
+        except RuntimeError:
             self._close_unavailable_download()
 
     def _cancel(self):

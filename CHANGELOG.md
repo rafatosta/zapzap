@@ -15,6 +15,13 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Added a live Downloads preference for remembering the Save As folder only
+  within each account context. Unified destination selection, kept plain Save
+  and automatic downloads in the configured folder, and cleared suggestions
+  on Escape, context closure and disabling the preference. Added regression
+  coverage, translations and lifecycle documentation; removed duplicate obsolete
+  Turkish catalog entries that prevented gettext compilation.
+
 - Added a direct WhatsApp profile photo sync action to the account popup on the
   initial user menu, reusing the same authenticated avatar lookup and
   photo-only validation as the account editor without changing the account name.
@@ -121,12 +128,6 @@ releases and the AppStream metadata.
 - Show native taskbar/dock unread badges on supported Qt platforms, following
   the existing unread-counter preference. Added regression coverage and
   documented the integration and manual validation.
-- Remembered, in memory only and for the currently open conversation, the last
-  directory picked with a download's "Save as", suggesting it as the initial
-  directory for the next downloads of the same conversation; plain "Save"
-  keeps its default behavior and does not update this state. The state is
-  discarded when the conversation closes, the window closes, or the app
-  quits, and never touches the persisted global download directory.
 - Added a structured graphics/runtime diagnostic snapshot to the project
   reporting flow, with allowlisted environment data and explicit handling for
   missing GPU, VAAPI, Vulkan, and Flatpak metadata so the report stays robust
