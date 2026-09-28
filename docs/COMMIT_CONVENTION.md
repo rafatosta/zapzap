@@ -57,8 +57,8 @@ Keep disabled accounts registered without constructing a WebEngine profile
 and recreate the profile only after explicit activation.
 
 Tests:
-- python tests/test_browser_account_lifecycle.py -v
-- python -m compileall -q zapzap tests tools run.py
+- flatpak_python tests/test_browser_account_lifecycle.py -v
+- flatpak_python -m compileall -q zapzap tests tools run.py
 ```
 
 Não registre como aprovado um teste que falhou ou não foi executado. Quando uma

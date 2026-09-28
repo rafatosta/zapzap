@@ -5,12 +5,14 @@ ZapZap usando controllers e widgets reais, mas substituindo a fronteira do
 navegador por `StubWebView`, uma subclasse de `QWidget` que não acessa a rede,
 não cria perfil e não inicia Chromium.
 
-## Execução no Fedora
+## Execução no Flatpak
 
-Use o mesmo ambiente Python/PyQt6 empregado para desenvolver o ZapZap:
+Execute a partir da raiz do repositório, usando o wrapper
+`flatpak_python` definido em [testes](testing.md#como-executar). O benchmark
+usa PyQt6, portanto não execute o Python do host nem instale dependências nele.
 
 ```bash
-python tools/memory/benchmark_memory.py \
+flatpak_python tools/memory/benchmark_memory.py \
   --without-webengine \
   --accounts 1,3,5 \
   --repeat 5 \
@@ -61,7 +63,7 @@ resultado artificial.
 Sem uma regra explícita, o comparador é informativo e sempre termina com sucesso:
 
 ```bash
-python tools/memory/compare_memory_results.py \
+flatpak_python tools/memory/compare_memory_results.py \
   baseline/benchmark_memory.json candidate/benchmark_memory.json
 ```
 
@@ -70,7 +72,7 @@ exemplo retorna código 2 se a mediana de PSS crescer mais de 10% em qualquer
 cenário comum:
 
 ```bash
-python tools/memory/compare_memory_results.py \
+flatpak_python tools/memory/compare_memory_results.py \
   baseline/benchmark_memory.json candidate/benchmark_memory.json \
   --metric pss_bytes \
   --regression-threshold-percent 10
@@ -87,5 +89,5 @@ settings_close: PSS mediana 92 MiB; observar junto da tendência dos ciclos
 O teste leve reproduzível é:
 
 ```bash
-python -m unittest discover -s tests -p 'test_memory_benchmark.py' -v
+flatpak_python -m unittest discover -s tests -p 'test_memory_benchmark.py' -v
 ```

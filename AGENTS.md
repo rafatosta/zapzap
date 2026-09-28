@@ -29,13 +29,25 @@ seção pertinente de `docs/testing.md`.
 Antes da entrega, execute:
 
 ```bash
-python -m unittest discover -s tests -q
-python tests/check_unused_code.py --packages-only
-python tests/test_documentation_structure.py -v
-python -m compileall -q zapzap tests tools run.py
+flatpak_python() {
+  flatpak run \
+    --filesystem="$PWD" \
+    --command=python3 \
+    --env=PYTHONPATH="$PWD:$PWD/tests" \
+    --env=LC_ALL=C.UTF-8 \
+    com.rtosta.zapzap "$@"
+}
+
+flatpak_python -m unittest discover -s tests -q
+flatpak_python tests/check_unused_code.py --packages-only
+flatpak_python tests/test_documentation_structure.py -v
+flatpak_python -m compileall -q zapzap tests tools run.py
 git diff --check
 ```
 
-Se uma validação não puder ser executada, registre claramente qual foi e por
-quê. Consulte `docs/maintenance.md` para validadores específicos de tradução,
-AppStream, Flatpak e empacotamento.
+O Flatpak é o ambiente oficial de execução e testes. Não crie `.venv`/`venv`,
+não instale PyQt6 no host e não interprete a ausência de PyQt6 no Python do
+Fedora como dependência ausente do projeto. Se uma validação Python não puder
+ser executada no Flatpak, registre claramente qual foi e por quê; não altere o
+ambiente Python do host. Consulte `docs/maintenance.md` para validadores
+específicos de tradução, AppStream, Flatpak e empacotamento.

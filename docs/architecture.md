@@ -33,16 +33,35 @@ ela deve ficar em `ui.components`.
 
 ## Ambiente de desenvolvimento
 
-O ZapZap é executado e testado através do Flatpak.
+O ambiente oficial de execução e teste do ZapZap é o Flatpak instalado
+`com.rtosta.zapzap`. O editor e as ferramentas de desenvolvimento podem rodar
+no host, mas Python, PyQt6, Qt/QtWebEngine e as demais dependências do
+aplicativo pertencem ao ambiente Flatpak:
+
+```text
+Fedora host
+├── VS Code / editor
+├── Git
+├── GitHub Copilot / agentes
+├── código-fonte
+└── Flatpak com.rtosta.zapzap
+        ├── Python
+        ├── PyQt6
+        ├── Qt / QtWebEngine
+        └── demais dependências do ZapZap
+```
 
 - Não criar ambientes Python `.venv` ou `venv`.
-- Não instalar PyQt6 ou outras dependências Python diretamente no sistema host.
-- Não tentar localizar outros interpretadores Python no sistema.
+- Não instalar PyQt6 no Fedora host apenas para satisfazer imports ou testes.
+- Não procurar repetidamente por interpretadores Python alternativos no host.
 - O Python do Fedora host não representa o ambiente de execução do aplicativo.
+- `ModuleNotFoundError: No module named 'PyQt6'` no Python do host é esperado e
+  não deve ser tratado automaticamente como dependência ausente do projeto.
 - Para testes que dependam de PyQt6, Qt ou dependências do aplicativo,
-  utilizar o ambiente Flatpak/flatpak-builder existente.
+  utilizar o ambiente Flatpak existente, conforme os comandos em
+  [testes](testing.md#como-executar).
 - Se não for possível executar um teste dentro do Flatpak, informar a
-  limitação em vez de criar automaticamente outro ambiente Python.
+  limitação em vez de alterar o ambiente Python do host.
 
 ## Relatórios de problemas
 

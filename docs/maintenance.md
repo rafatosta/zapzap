@@ -2,20 +2,23 @@
 
 ## Preparação do ambiente
 
-O projeto requer Python 3.8 ou superior, PyQt6 e PyQt6-WebEngine. Para trabalhar
-em um ambiente virtual:
+O ambiente oficial para executar e testar o ZapZap é o Flatpak
+`com.rtosta.zapzap`; o host fornece o editor, Git e o código-fonte. As
+dependências Python e Qt do aplicativo estão no Flatpak, não necessariamente no
+Python do Fedora host. Não crie `.venv`/`venv` nem instale PyQt6 no host para
+contornar imports ou executar testes. Uma falha de importação como
+`ModuleNotFoundError: No module named 'PyQt6'` no Python do host não indica, por
+si só, dependência ausente do projeto.
 
-```bash
-python -m venv .venv
-. .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -e .
-```
+Use os comandos Flatpak reutilizáveis em [testes](testing.md#como-executar) para
+testes e verificações Python. Se um teste não puder ser executado nesse
+ambiente, registre a limitação em vez de procurar outro interpretador ou
+modificar o ambiente Python do host.
 
 As integrações D-Bus usam `PyQt6.QtDBus`, já fornecido pelo PyQt6. Não instale
 `dbus-python` nem configure um segundo adaptador de event loop para elas.
 
-Execute o aplicativo da raiz com `python run.py` ou `python -m zapzap`. Não use
+Execute o aplicativo instalado com `flatpak run com.rtosta.zapzap`. Não use
 dados reais para testes destrutivos de conta, cache ou configurações.
 
 ## Antes de alterar
@@ -516,7 +519,7 @@ Atualize:
 O comando abaixo falha se os inventários verificáveis divergirem da árvore:
 
 ```bash
-python tests/test_documentation_structure.py -v
+flatpak_python tests/test_documentation_structure.py -v
 ```
 
 Ele cobre pacotes declarados, módulos de teste, formatos de empacotamento e
@@ -605,8 +608,8 @@ publicação de cada release.
 - [ ] acessibilidade, tema e traduções foram revisados;
 - [ ] plataformas e backends irmãos foram auditados;
 - [ ] testes novos cobrem a regressão e os testes existentes passam;
-- [ ] `python tests/check_unused_code.py --packages-only` passa;
-- [ ] `python -m compileall -q zapzap tests tools run.py` passa;
+- [ ] `flatpak_python tests/check_unused_code.py --packages-only` passa;
+- [ ] `flatpak_python -m compileall -q zapzap tests tools run.py` passa;
 - [ ] `git diff --check` passa;
 - [ ] toda mudança ou adição foi registrada em `CHANGELOG.md`;
 - [ ] documentação estrutural e inventários foram atualizados;

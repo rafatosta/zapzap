@@ -13,38 +13,59 @@ Wayland/X11 ou aparência final.
 
 ## Como executar
 
-Da raiz do repositório, execute a suíte completa:
+Execute os comandos a partir da raiz do repositório. Defina este wrapper uma
+vez no shell para rodar Python dentro do Flatpak instalado, compartilhando
+somente o checkout com o sandbox:
 
 ```bash
-python -m unittest discover -s tests -q
+flatpak_python() {
+   flatpak run \
+      --filesystem="$PWD" \
+      --command=python3 \
+      --env=PYTHONPATH="$PWD:$PWD/tests" \
+      --env=LC_ALL=C.UTF-8 \
+      com.rtosta.zapzap "$@"
+}
 ```
 
-Para ver cada teste:
+Suíte completa:
 
 ```bash
-python -m unittest discover -s tests -v
+flatpak_python -m unittest discover -s tests -q
 ```
 
-Somente módulos de UI:
+Para ver cada teste, executar somente módulos de UI ou um módulo específico:
 
 ```bash
-python -m unittest discover -s tests -p 'test_*_ui.py' -v
+flatpak_python -m unittest discover -s tests -v
+flatpak_python -m unittest discover -s tests -p 'test_*_ui.py' -v
+flatpak_python -m unittest discover -s tests -p 'test_portal_notification_backend.py' -v
+flatpak_python -m unittest discover -s tests -p 'test_quick_accounts_popover_ui.py' -v
 ```
 
-Um módulo por descoberta:
+Para executar um arquivo de teste diretamente:
 
 ```bash
-python -m unittest discover -s tests -p 'test_portal_notification_backend.py' -v
-```
-
-Um módulo diretamente:
-
-```bash
-python tests/test_about_settings_ui.py -v
+flatpak_python tests/test_about_settings_ui.py -v
 ```
 
 Prefira descoberta quando um módulo importar helpers pelo nome
 `qt_test_case`; ela garante que `tests/` esteja no caminho de importação.
+Não use `python` do host para testes dependentes de PyQt6, Qt ou das
+dependências do aplicativo. A ausência de PyQt6 nesse interpretador é esperada;
+não crie um ambiente virtual nem instale PyQt6 no Fedora para corrigi-la. Se o
+teste não puder rodar no Flatpak, informe a limitação. Mensagens Qt como
+`This plugin does not support propagateSizeHints()` e
+`This plugin does not support raise()` não representam falha quando a suíte
+termina com `OK`.
+
+O comando reutilizável acima foi validado para `test_quick_accounts_popover_ui.py`:
+
+```text
+Ran 10 tests in 1.037s
+
+OK
+```
 
 ## Isolamento Qt
 
@@ -501,7 +522,7 @@ classes provavelmente não usados e compara pacotes Python com
 `tool.setuptools.packages`:
 
 ```bash
-python tests/check_unused_code.py
+flatpak_python tests/check_unused_code.py
 ```
 
 Como sinais Qt, overrides, scripts JavaScript e chamadas dinâmicas podem gerar
@@ -509,19 +530,19 @@ falsos positivos, revise cada achado antes de remover código. Para apenas
 inventariar:
 
 ```bash
-python tests/check_unused_code.py --no-fail
+flatpak_python tests/check_unused_code.py --no-fail
 ```
 
 Para validar somente o manifesto de pacotes:
 
 ```bash
-python tests/check_unused_code.py --packages-only
+flatpak_python tests/check_unused_code.py --packages-only
 ```
 
 Valide o contrato documental:
 
 ```bash
-python tests/test_documentation_structure.py -v
+flatpak_python tests/test_documentation_structure.py -v
 ```
 
 Esse contrato lê `zapzap.__version__` estaticamente, sem importar PyQt, e exige
@@ -536,7 +557,7 @@ pelo mantenedor.
 Validações complementares:
 
 ```bash
-python -m compileall -q zapzap tests tools run.py
+flatpak_python -m compileall -q zapzap tests tools run.py
 git diff --check
 ```
 

@@ -201,6 +201,10 @@ releases and the AppStream metadata.
 
 ### Changed
 
+- Clarified that the installed Flatpak is the official Python, Qt and test
+  environment, replaced host/virtualenv test instructions with a validated
+  reusable Flatpak command, and documented expected host-side PyQt6 import
+  failures for maintainers and coding agents.
 - Increased the WebEngine integration-test timeout for plain-text paste so
   slower macOS CI startup does not produce a false failure while preserving
   the same real QWebEnginePage behavior check.
