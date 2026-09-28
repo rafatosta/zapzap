@@ -120,7 +120,7 @@ documente o que ele protege.
 | `test_documentation_structure.py` | camadas de UI, ciclo numérico versionado do changelog e sincronização entre árvore, inventários técnicos, convenção de commits e guia para agentes |
 | `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
 | `test_external_link_lifecycle.py` | classificação interna/externa de pop-ups, profile compartilhado, entrega única ao navegador e cleanup no fechamento/shutdown |
-| `test_floating_account_button.py` | botão flutuante visível apenas com a sidebar oculta, painel rápido, avatar sincronizado, drag e ativação direta da página selecionada por ID |
+| `test_floating_account_button.py` | botão flutuante, janela Quick Access independente e reutilizada, atualização do registro de contas, avatar sincronizado, drag e ativação direta da página selecionada por ID |
 | `test_freedesktop_notification_backend.py` | avisos nas saídas antecipadas da inicialização D-Bus, falhas de `Notify`/`CloseNotification`, aviso único na transição para indisponível e fachada sem backend |
 | `test_global_mute.py` | estado persistente de mute global, sincronização dos controles, fan-out para todas as contas e roteamento do atalho de colagem para a conta ativa |
 | `test_gpu_environment.py` | detecção multi-GPU, conectores e seleção de render node |

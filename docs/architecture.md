@@ -201,11 +201,18 @@ seu lugar um `FloatingAccountButton` sobreposto ao canto superior esquerdo de
 troca; a grade completa continua acessível por uma ação secundária. O painel
 também encaminha áudio, downloads, configurações e adição de conta para as
 fachadas existentes, sem injetar uma interface no DOM do WhatsApp Web.
-O popover é uma instância única, limita a altura da lista com scroll interno,
-fecha por ação, clique externo, perda de contexto ou `Esc`, e calcula sua
-posição dentro da geometria disponível da tela. O botão continua podendo ser
-reposicionado por arrasto com o botão esquerdo, limitado à área de conteúdo;
-arrastar não dispara a abertura do painel.
+O botão dedicado `Accounts and quick actions` da sidebar abre esse mesmo painel
+como uma janela Qt independente, inclusive com a sidebar visível. A janela e o
+popover são apresentações da mesma instância: lista, pesquisa, seleção e ações
+não são duplicadas. A janela independente permanece aberta quando a sidebar ou
+a janela principal é ocultada; fechá-la apenas a oculta e não encerra a
+aplicação. Adição, remoção, edição de identidade, seleção e contadores são
+refletidos pelos runtimes e sinais existentes, sem polling. O popover continua
+fechando por ação, clique externo, perda de contexto ou `Esc`, e calcula sua
+posição dentro da geometria disponível da tela. O botão flutuante continua
+podendo ser reposicionado por arrasto com o botão esquerdo, limitado à área de
+conteúdo; arrastar não dispara a abertura do painel. A Overview/grade continua
+separada e não é removida por esta integração.
 Em Aparência > Interface, a subopção da sidebar escolhe entre esse botão
 flutuante e o botão integrado no trilho do WhatsApp. A subopção só aparece
 quando `system/sidebar` está desativado. `system/sidebar_button_mode` persiste

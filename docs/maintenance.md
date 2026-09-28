@@ -160,12 +160,15 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   criação, desmontagem, limpeza e callbacks sem iniciar Chromium.
 - Mantenha a grade de contas nativa e alimentada por `User`/`BrowserPageButton`;
   ela não deve capturar, armazenar ou manter referências visuais de `WebView`.
-- O `QuickAccountsPopover` deve permanecer uma camada nativa sobre o
-  `BrowserController`: reutilize `AccountRuntime`, `BrowserPageButton` e as
+- Quick Access deve reutilizar uma única instância nativa sobre o
+  `BrowserController`, os mesmos `AccountRuntime`/`BrowserPageButton` e as
   fachadas existentes de troca, áudio, downloads, configurações e cadastro.
-  Mantenha a lista rolável separada das ações rápidas, uma única instância do
-  popup e o clamp de posicionamento; não mova essa funcionalidade para o DOM
-  do WhatsApp Web nem acione widgets visuais da sidebar como proxy.
+  Popup flutuante e janela independente são apresentações desse mesmo painel;
+  mantenha a lista rolável separada das ações rápidas, atualize a lista em
+  mutações do registro e preserve o clamp de posicionamento do popup. Fechar a
+  janela independente não pode encerrar a aplicação nem destruir perfis. Não
+  mova essa funcionalidade para o DOM do WhatsApp Web nem use widgets visuais
+  da sidebar como proxy.
 - Na conversa por número, preserve a separação entre código do país e número
   nacional. O diálogo apenas coleta e apresenta erros; `open_chat.py` normaliza,
   valida e codifica a URL, e o `PageController` realiza a navegação direta sem

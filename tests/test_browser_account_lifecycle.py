@@ -133,6 +133,9 @@ class BrowserAccountLifecycleTest(QtTestCase):
         _refresh_floating_account_button = (
             BrowserController._refresh_floating_account_button
         )
+        _refresh_quick_access_accounts = (
+            BrowserController._refresh_quick_access_accounts
+        )
         update_account_notifications = (
             BrowserController.update_account_notifications
         )

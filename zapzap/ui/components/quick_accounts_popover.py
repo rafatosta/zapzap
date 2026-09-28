@@ -234,8 +234,42 @@ class QuickAccountsPopover(QFrame):
         self.setFixedWidth(self.WIDTH)
         self.setStyleSheet(self.STYLE)
         self._rows = []
+        self._owner = parent
+        self._independent_window = False
         self._setup_ui()
         self.hide()
+
+    @property
+    def is_independent_window(self):
+        return self._independent_window
+
+    def show_window(self):
+        """Show this shared account panel as an independently owned window."""
+        self._set_presentation(independent=True)
+        self.setWindowTitle("ZapZap")
+        self.adjustSize()
+        self.show()
+        self.raise_()
+        self.activateWindow()
+
+    def _set_presentation(self, independent):
+        if self._independent_window == independent:
+            return
+        pinned = self.pin_button.isChecked()
+        self._independent_window = independent
+        if independent:
+            self.setParent(None, Qt.WindowType.Window)
+            self.setAttribute(Qt.WidgetAttribute.WA_ShowWithoutActivating, False)
+            self.setAttribute(Qt.WidgetAttribute.WA_QuitOnClose, False)
+            self.setWindowTitle("ZapZap")
+        else:
+            self.setParent(
+                self._owner,
+                Qt.WindowType.Tool | Qt.WindowType.FramelessWindowHint,
+            )
+            self.setAttribute(Qt.WidgetAttribute.WA_ShowWithoutActivating, True)
+            self.setAttribute(Qt.WidgetAttribute.WA_QuitOnClose, True)
+        self.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint, pinned)
 
     def _setup_ui(self):
         outer = QVBoxLayout(self)
@@ -441,6 +475,7 @@ class QuickAccountsPopover(QFrame):
             self.raise_()
 
     def popup_for(self, anchor):
+        self._set_presentation(independent=False)
         self.adjustSize()
         screen = (
             QGuiApplication.screenAt(anchor.mapToGlobal(anchor.rect().center()))

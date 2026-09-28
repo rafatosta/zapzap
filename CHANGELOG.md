@@ -69,6 +69,11 @@ releases and the AppStream metadata.
   vertically arranged quick actions. The pin is local to the panel window;
   search filters only existing account rows and leaves account state and action
   routing unchanged. Expanded the panel width to 320 px for improved spacing.
+- Added a dedicated sidebar launcher for Quick Access and an independent Qt
+  window presentation that reuses the existing account panel, runtime data and
+  action callbacks. The window remains available when the main window or
+  sidebar is hidden, updates on account-registry changes, and closes without
+  quitting the application; the existing Overview remains unchanged.
 - Fixed quick-panel account selection for numeric persisted user IDs by keeping
   the signal argument's original type instead of requiring a string, and kept
   account switching safe in controller harnesses without the optional panel.

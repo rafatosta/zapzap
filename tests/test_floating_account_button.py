@@ -129,6 +129,47 @@ class FloatingAccountButtonTests(QtTestCase):
         )
         self.assertTrue(window.browser._accounts["second"].button.isSelected)
 
+    def test_sidebar_quick_access_window_is_reused_and_tracks_account_changes(self):
+        window = self._window()
+        browser = window.browser
+        panel = browser._quick_accounts_popover
+
+        window.set_sidebar_visible(True, animated=False)
+        browser.btn_quick_access.click()
+        self.assertTrue(panel.isVisible())
+        self.assertTrue(panel.is_independent_window)
+        self.assertIsNone(panel.parentWidget())
+        self.assertFalse(
+            panel.testAttribute(Qt.WidgetAttribute.WA_QuitOnClose)
+        )
+
+        window.hide_window()
+        self.assertTrue(panel.isVisible())
+        window.set_sidebar_visible(False, animated=False)
+        self.assertTrue(panel.isVisible())
+        window.set_sidebar_visible(True, animated=False)
+        self.assertTrue(panel.isVisible())
+
+        new_user = User(
+            id="third",
+            name="Third",
+            icon=UserIcon.ICON_DEFAULT,
+            enable=False,
+        )
+        browser.add_new_user(new_user)
+        self.assertEqual(
+            [row.runtime.user.id for row in panel._rows],
+            ["first", "second", "third"],
+        )
+
+        panel.close()
+        self.assertFalse(panel.isVisible())
+        self.assertEqual(len(browser._accounts), 3)
+
+        browser.show_quick_access_window()
+        self.assertTrue(panel.isVisible())
+        self.assertIs(browser._quick_accounts_popover, panel)
+
     def test_integrated_and_floating_buttons_are_mutually_exclusive(self):
         self.settings.sidebar_button_mode = "integrated"
         window = self._window()

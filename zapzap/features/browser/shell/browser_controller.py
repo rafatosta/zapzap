@@ -80,6 +80,15 @@ class BrowserController(BrowserView):
         super().__init__(parent)
         self.parent = parent
         self._appearance_settings = AppearanceSettings()
+        self.btn_quick_access = BrowserSidebarButton(
+            "btn_quick_access",
+            self.settings_buttons_layout,
+        )
+        self.btn_quick_access.setToolTip(_("Accounts and quick actions"))
+        self.btn_quick_access.setAccessibleName(
+            _("Accounts and quick actions")
+        )
+        self.layout_2.insertWidget(1, self.btn_quick_access)
 
         self.page_count = 0
         self._accounts: Dict[str, AccountRuntime] = {}
@@ -144,6 +153,7 @@ class BrowserController(BrowserView):
             self.btn_new_chat,
             self.btn_whatsapp_lock,
             self.btn_donations,
+            self.btn_quick_access,
             self.btn_update_available,
             self.btn_mute,
             self.btn_downloads,
@@ -211,6 +221,7 @@ class BrowserController(BrowserView):
         self.btn_new_chat.clicked.connect(lambda: self.parent.new_chat())
         self.btn_whatsapp_lock.clicked.connect(self.request_native_app_lock)
         self.btn_donations.clicked.connect(self.show_donations)
+        self.btn_quick_access.clicked.connect(self.show_quick_access_window)
         self.btn_mute.clicked.connect(self.parent.toggle_audio_muted)
         self.btn_downloads.clicked.connect(
             lambda: self.parent.show_downloads_menu(self.btn_downloads)
@@ -270,7 +281,8 @@ class BrowserController(BrowserView):
     def _handle_application_state_changed(self, state):
         if state != Qt.ApplicationState.ApplicationActive:
             self._update_popover.close()
-            self._quick_accounts_popover.close()
+            if not self._quick_accounts_popover.is_independent_window:
+                self._quick_accounts_popover.close()
 
     def eventFilter(self, watched, event):
         if (
@@ -290,6 +302,7 @@ class BrowserController(BrowserView):
         if (
             event.type() == QEvent.Type.MouseButtonPress
             and self._quick_accounts_popover.isVisible()
+            and not self._quick_accounts_popover.is_independent_window
             and hasattr(event, "globalPosition")
         ):
             position = event.globalPosition().toPoint()
@@ -415,6 +428,7 @@ class BrowserController(BrowserView):
             existing.button.user = user
             if user.enable and existing.page is None:
                 self._create_webview(existing)
+            self._refresh_quick_access_accounts()
             return existing
 
         self.page_count += 1
@@ -439,7 +453,13 @@ class BrowserController(BrowserView):
         self._accounts[user.id] = runtime
         if user.enable:
             self._create_webview(runtime)
+        self._refresh_quick_access_accounts()
         return runtime
+
+    def _refresh_quick_access_accounts(self):
+        popover = getattr(self, "_quick_accounts_popover", None)
+        if popover is not None and popover.isVisible():
+            popover.set_accounts(self._accounts.values())
 
     def _create_webview(self, runtime: AccountRuntime):
         """Create exactly one WebView for an enabled registry entry."""
@@ -545,6 +565,7 @@ class BrowserController(BrowserView):
             self._ensure_valid_selection()
         self._update_total_notifications()
         self._update_user_menu()
+        self._refresh_quick_access_accounts()
 
     def delete_page(self, user: User):
         """Remove uma página e seu botão correspondente."""
@@ -560,6 +581,7 @@ class BrowserController(BrowserView):
         runtime.button.close()
         runtime.button.deleteLater()
         del self._accounts[user.id]
+        self._refresh_quick_access_accounts()
         if was_current:
             self._select_default_page()
         else:
@@ -576,6 +598,7 @@ class BrowserController(BrowserView):
             if runtime.page:
                 runtime.page.user = user
 
+        self._refresh_quick_access_accounts()
         self._update_user_menu()
         self._refresh_floating_account_button()
 
@@ -677,7 +700,8 @@ class BrowserController(BrowserView):
             not sidebar_visible and not integrated_visible
         )
         if sidebar_visible or integrated_visible:
-            self._quick_accounts_popover.close()
+            if not self._quick_accounts_popover.is_independent_window:
+                self._quick_accounts_popover.close()
         for runtime in self._active_runtimes():
             set_button_visible = getattr(
                 runtime.page, "set_quick_accounts_button_visible", None
@@ -691,11 +715,19 @@ class BrowserController(BrowserView):
 
     def toggle_quick_accounts_panel(self):
         """Toggle the compact native account and actions panel."""
+        if self._quick_accounts_popover.is_independent_window:
+            self._quick_accounts_popover.close()
+            self._quick_accounts_popover._set_presentation(independent=False)
         if self._quick_accounts_popover.isVisible():
             self._quick_accounts_popover.close()
             return
         self._quick_accounts_popover.set_accounts(self._accounts.values())
         self._quick_accounts_popover.popup_for(self._floating_account_button)
+
+    def show_quick_access_window(self):
+        """Show the shared quick-access panel as a standalone window."""
+        self._quick_accounts_popover.set_accounts(self._accounts.values())
+        self._quick_accounts_popover.show_window()
 
     def _handle_quick_account_request(self, user_id):
         self._quick_accounts_popover.close()
@@ -978,6 +1010,7 @@ class BrowserController(BrowserView):
             SystemIcon.get_icon("whatsapp_lock", theme))
         self.btn_donations.setIcon(
             SystemIcon.get_icon("donation_heart", theme))
+        self.btn_quick_access.setIcon(SystemIcon.get_icon("view_grid", theme))
         self.btn_update_available.setIcon(
             SystemIcon.get_icon("update_available", theme))
         self.btn_downloads.setIcon(
