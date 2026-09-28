@@ -218,6 +218,15 @@ flutuante e o botão integrado no trilho do WhatsApp. A subopção só aparece
 quando `system/sidebar` está desativado. `system/sidebar_button_mode` persiste
 os IDs `floating` e `integrated`, com `floating` como padrão compatível; em
 runtime o BrowserController mostra somente o ponto de entrada selecionado.
+Em Aparência > Quick Access, `system/quick_access_enabled` controla os
+acionamentos existentes e tem padrão `true`, preservando a disponibilidade
+anterior do painel para instalações sem a chave. Já
+`system/quick_access_on_sidebar_hidden` tem padrão `false`, mantendo o
+comportamento anterior de não abrir o painel automaticamente. As duas escolhas
+são independentes: desligar Quick Access oculta o painel e bloqueia seus
+acionamentos, sem apagar a preferência de abertura automática. A integração
+automática reutiliza a instância do painel pertencente ao BrowserController;
+restaurar a sidebar fecha somente uma exibição iniciada por essa integração.
 O botão não possui tooltip nativo, pois ele competiria visualmente com o
 popover; nome e descrição acessíveis continuam informando a atualização.
 O clique de contexto abre um popover compacto com identidade, estado, edição,

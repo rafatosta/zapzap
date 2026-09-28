@@ -19,6 +19,7 @@ from zapzap.ui.components import (
     SettingsRestartBar,
 )
 from zapzap.core.config.settings.appearance import AppearanceSettings
+from zapzap.core.config.settings_manager import SettingsManager
 
 
 class FakeAppearanceSettingsModel:
@@ -29,9 +30,13 @@ class FakeAppearanceSettingsModel:
         csr_enabled=False,
         scale=100,
         sidebar_button_mode="floating",
+        quick_access_enabled=True,
+        quick_access_on_sidebar_hidden=False,
     ):
         self.browser_sidebar_visible = True
         self.sidebar_button_mode = sidebar_button_mode
+        self.quick_access_enabled = quick_access_enabled
+        self.quick_access_on_sidebar_hidden = quick_access_on_sidebar_hidden
         self.menubar_visible = True
         self.scale = scale
         self.tray_icon_enabled = tray_enabled
@@ -250,7 +255,6 @@ class AppearanceSettingsUiTests(QtTestCase):
         page, _model = self._controller()
 
         self.assertTrue(page.sidebar_button_options_group.isHidden())
-
         page.browser_sidebar.setChecked(False)
         page._sync_sidebar_button_options_visibility()
         self.assertFalse(page.sidebar_button_options_group.isHidden())
@@ -258,6 +262,53 @@ class AppearanceSettingsUiTests(QtTestCase):
         page.browser_sidebar.setChecked(True)
         page._sync_sidebar_button_options_visibility()
         self.assertTrue(page.sidebar_button_options_group.isHidden())
+
+    def test_quick_access_suboption_tracks_master_without_losing_its_value(self):
+        page, model = self._controller(quick_access_on_sidebar_hidden=True)
+        browser = Mock()
+        window = Mock(browser=browser)
+        app = Mock()
+        app.getWindow.return_value = window
+
+        self.assertTrue(page.quick_access_enabled.isChecked())
+        self.assertFalse(page.quick_access_options_group.isHidden())
+        self.assertTrue(page.quick_access_on_sidebar_hidden.isChecked())
+
+        with patch(
+            "zapzap.features.settings.pages.appearance.controller."
+            "QApplication.instance",
+            return_value=app,
+        ):
+            page.quick_access_enabled.setChecked(False)
+
+        self.assertFalse(model.quick_access_enabled)
+        self.assertTrue(page.quick_access_options_group.isHidden())
+        self.assertTrue(page.quick_access_on_sidebar_hidden.isChecked())
+        self.assertTrue(model.quick_access_on_sidebar_hidden)
+
+        with patch(
+            "zapzap.features.settings.pages.appearance.controller."
+            "QApplication.instance",
+            return_value=app,
+        ):
+            page.quick_access_enabled.setChecked(True)
+
+        self.assertFalse(page.quick_access_options_group.isHidden())
+        self.assertTrue(page.quick_access_on_sidebar_hidden.isChecked())
+        self.assertEqual(browser.refresh_quick_access_settings.call_count, 2)
+
+    def test_quick_access_rows_have_accessible_names_and_descriptions(self):
+        page = AppearanceSettingsView()
+
+        for row in (
+            page.quick_access_enabled_row,
+            page.quick_access_on_sidebar_hidden_row,
+        ):
+            self.assertEqual(
+                row.control.accessibleName(),
+                row.title_label.text(),
+            )
+            self.assertTrue(row.control.accessibleDescription())
 
     def test_sidebar_button_mode_is_persisted_and_applied(self):
         page, model = self._controller()
@@ -287,6 +338,36 @@ class AppearanceSettingsUiTests(QtTestCase):
         settings.sidebar_button_mode = "unknown"
         self.assertEqual(settings.sidebar_button_mode, "floating")
 
+    def test_quick_access_preferences_default_without_writing_and_persist(self):
+        keys = (
+            "system/quick_access_enabled",
+            "system/quick_access_on_sidebar_hidden",
+        )
+        original = {
+            key: (SettingsManager.contains(key), SettingsManager.get(key))
+            for key in keys
+        }
+        settings = AppearanceSettings()
+        try:
+            for key in keys:
+                SettingsManager.remove(key)
+
+            self.assertTrue(settings.quick_access_enabled)
+            self.assertFalse(settings.quick_access_on_sidebar_hidden)
+            self.assertFalse(any(SettingsManager.contains(key) for key in keys))
+
+            settings.quick_access_enabled = False
+            settings.quick_access_on_sidebar_hidden = True
+            reloaded = AppearanceSettings()
+
+            self.assertFalse(reloaded.quick_access_enabled)
+            self.assertTrue(reloaded.quick_access_on_sidebar_hidden)
+        finally:
+            for key, (existed, value) in original.items():
+                if existed:
+                    SettingsManager.set(key, value)
+                else:
+                    SettingsManager.remove(key)
 
 if __name__ == "__main__":
     unittest.main()

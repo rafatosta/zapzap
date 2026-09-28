@@ -27,6 +27,7 @@ class AppearanceSettingsView(SettingsPage):
 
     def _setup_ui(self):
         self._setup_interface_section()
+        self._setup_quick_access_section()
         self._setup_theme_section()
         self._setup_tray_section()
         self._setup_grid_section()
@@ -70,6 +71,36 @@ class AppearanceSettingsView(SettingsPage):
         )
         card.add_row(self.mainwindow_menu_row)
         card.add_row(self.scale_row)
+        section.add_card(card)
+        self.add_section(section)
+
+    def _setup_quick_access_section(self):
+        section = SettingsSection(
+            _("Quick Access"),
+            _("Control the Quick Access panel and its sidebar behavior."),
+        )
+        card = SettingsCard()
+        self.quick_access_enabled_row = SettingsSwitchRow(
+            _("Enable Quick Access"),
+            _("Allows you to use the Quick Access panel."),
+        )
+        self.quick_access_on_sidebar_hidden_row = SettingsSwitchRow(
+            _("Show when hiding the sidebar"),
+            _("Show Quick Access automatically when the sidebar is hidden."),
+        )
+        self.quick_access_enabled = self.quick_access_enabled_row.checkbox
+        self.quick_access_on_sidebar_hidden = (
+            self.quick_access_on_sidebar_hidden_row.checkbox
+        )
+        for row in (
+            self.quick_access_enabled_row,
+            self.quick_access_on_sidebar_hidden_row,
+        ):
+            self._configure_row_accessibility(row)
+        self.quick_access_options_group = card.add_group(
+            self.quick_access_enabled_row,
+            (self.quick_access_on_sidebar_hidden_row,),
+        )
         section.add_card(card)
         self.add_section(section)
 

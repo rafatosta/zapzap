@@ -27,6 +27,10 @@ class FloatingAccountButtonTests(QtTestCase):
         self.settings = AppearanceSettings()
         self._original_sidebar_visible = self.settings.browser_sidebar_visible
         self._original_button_mode = self.settings.sidebar_button_mode
+        self._original_quick_access_enabled = self.settings.quick_access_enabled
+        self._original_quick_access_auto = (
+            self.settings.quick_access_on_sidebar_hidden
+        )
         self.addCleanup(
             setattr,
             self.settings,
@@ -39,6 +43,20 @@ class FloatingAccountButtonTests(QtTestCase):
             "sidebar_button_mode",
             self._original_button_mode,
         )
+        self.addCleanup(
+            setattr,
+            self.settings,
+            "quick_access_enabled",
+            self._original_quick_access_enabled,
+        )
+        self.addCleanup(
+            setattr,
+            self.settings,
+            "quick_access_on_sidebar_hidden",
+            self._original_quick_access_auto,
+        )
+        self.settings.quick_access_enabled = True
+        self.settings.quick_access_on_sidebar_hidden = False
 
     def _window(self, user_ids=("first", "second")):
         users = [
@@ -187,6 +205,88 @@ class FloatingAccountButtonTests(QtTestCase):
 
         self.assertFalse(window.browser._floating_account_button.isHidden())
         set_integrated_visible.assert_called_with(False)
+
+    def test_sidebar_auto_open_tracks_transitions_and_manual_close(self):
+        window = self._window()
+        browser = window.browser
+        panel = browser._quick_accounts_popover
+
+        window.set_sidebar_visible(False, animated=False)
+        self.assertFalse(panel.isVisible())
+
+        self.settings.quick_access_on_sidebar_hidden = True
+        browser.refresh_quick_access_settings()
+        self.assertTrue(panel.isVisible())
+        self.assertTrue(panel.is_independent_window)
+        self.assertTrue(browser._quick_access_auto_open)
+
+        panel.close()
+        self.assertFalse(panel.isVisible())
+        self.assertTrue(browser._quick_access_auto_suppressed)
+        window.set_sidebar_visible(False, animated=False)
+        self.assertFalse(panel.isVisible())
+
+        window.set_sidebar_visible(True, animated=False)
+        self.assertFalse(panel.isVisible())
+        window.set_sidebar_visible(False, animated=False)
+        self.assertTrue(panel.isVisible())
+        self.assertTrue(browser._quick_access_auto_open)
+
+        window.set_sidebar_visible(True, animated=False)
+        self.assertFalse(panel.isVisible())
+        self.assertFalse(browser._quick_access_auto_open)
+
+    def test_saved_auto_open_is_applied_when_sidebar_starts_hidden(self):
+        self.settings.browser_sidebar_visible = False
+        self.settings.quick_access_on_sidebar_hidden = True
+
+        window = self._window()
+
+        self.assertTrue(window.browser._quick_accounts_popover.isVisible())
+        self.assertTrue(window.browser._quick_access_auto_open)
+
+    def test_disabling_auto_option_closes_only_its_panel(self):
+        window = self._window()
+        browser = window.browser
+        panel = browser._quick_accounts_popover
+        window.set_sidebar_visible(False, animated=False)
+
+        self.settings.quick_access_on_sidebar_hidden = True
+        browser.refresh_quick_access_settings()
+        self.assertTrue(panel.isVisible())
+
+        self.settings.quick_access_on_sidebar_hidden = False
+        browser.refresh_quick_access_settings()
+        self.assertFalse(panel.isVisible())
+
+        browser.show_quick_access_window()
+        self.settings.quick_access_on_sidebar_hidden = True
+        browser.refresh_quick_access_settings()
+        self.assertTrue(panel.isVisible())
+        self.assertFalse(browser._quick_access_auto_open)
+
+        window.set_sidebar_visible(True, animated=False)
+        self.assertTrue(panel.isVisible())
+        self.settings.quick_access_on_sidebar_hidden = False
+        browser.refresh_quick_access_settings()
+        self.assertTrue(panel.isVisible())
+
+    def test_disabling_quick_access_hides_existing_panel_and_launchers(self):
+        window = self._window()
+        browser = window.browser
+        window.set_sidebar_visible(True, animated=False)
+        browser.show_quick_access_window()
+        self.assertTrue(browser._quick_accounts_popover.isVisible())
+
+        self.settings.quick_access_enabled = False
+        browser.refresh_quick_access_settings()
+        self.assertFalse(browser._quick_accounts_popover.isVisible())
+        self.assertTrue(browser.btn_quick_access.isHidden())
+        self.assertTrue(browser._floating_account_button.isHidden())
+
+        browser.show_quick_access_window()
+        browser.toggle_quick_accounts_panel()
+        self.assertFalse(browser._quick_accounts_popover.isVisible())
 
     def test_button_can_be_dragged_without_triggering_account_switch(self):
         window = self._window()

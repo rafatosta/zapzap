@@ -26,6 +26,10 @@ class AppearanceSettingsController(AppearanceSettingsView):
 
     def _load_settings(self):
         self.browser_sidebar.setChecked(self.model.browser_sidebar_visible)
+        self.quick_access_enabled.setChecked(self.model.quick_access_enabled)
+        self.quick_access_on_sidebar_hidden.setChecked(
+            self.model.quick_access_on_sidebar_hidden
+        )
         self.mainwindow_menu.setChecked(self.model.menubar_visible)
         self.scaleComboBox.setCurrentText(f"{self.model.scale} %")
         self.tray_groupBox.checkbox.setChecked(self.model.tray_icon_enabled)
@@ -94,6 +98,12 @@ class AppearanceSettingsController(AppearanceSettingsView):
 
     def _connect_signals(self):
         self.browser_sidebar.clicked.connect(self._handle_sidebar)
+        self.quick_access_enabled.toggled.connect(
+            self._handle_quick_access_enabled
+        )
+        self.quick_access_on_sidebar_hidden.toggled.connect(
+            self._handle_quick_access_on_sidebar_hidden
+        )
         self.sidebar_button_integrated_radioButton.toggled.connect(
             lambda checked: checked and self._handle_sidebar_button_mode(
                 "integrated"
@@ -146,9 +156,17 @@ class AppearanceSettingsController(AppearanceSettingsView):
 
     def _handle_sidebar(self):
         enabled = self.browser_sidebar.isChecked()
-        self.model.browser_sidebar_visible = enabled
         self._sync_sidebar_button_options_visibility()
         QApplication.instance().getWindow().set_sidebar_visible(enabled)
+
+    def _handle_quick_access_enabled(self, enabled):
+        self.model.quick_access_enabled = enabled
+        self._sync_quick_access_options_visibility()
+        QApplication.instance().getWindow().browser.refresh_quick_access_settings()
+
+    def _handle_quick_access_on_sidebar_hidden(self, enabled):
+        self.model.quick_access_on_sidebar_hidden = enabled
+        QApplication.instance().getWindow().browser.refresh_quick_access_settings()
 
     def _handle_sidebar_button_mode(self, mode):
         self.model.sidebar_button_mode = mode
@@ -219,11 +237,17 @@ class AppearanceSettingsController(AppearanceSettingsView):
 
     def _sync_dependent_controls(self):
         self._sync_sidebar_button_options_visibility()
+        self._sync_quick_access_options_visibility()
         self.tray_options_group.setEnabled(
             self.tray_groupBox.checkbox.isChecked()
         )
         self.csr_options_group.setEnabled(
             self.csr_groupBox.checkbox.isChecked()
+        )
+
+    def _sync_quick_access_options_visibility(self):
+        self.quick_access_options_group.setVisible(
+            self.quick_access_enabled.isChecked()
         )
 
     def _handle_csr_theme(self, _index):

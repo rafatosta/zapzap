@@ -15,6 +15,11 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Added Quick Access controls to Appearance settings, with the existing panel
+  enabled by default and automatic display on sidebar hide disabled by default.
+  The setting reuses the existing panel instance, preserves the subordinate
+  choice when disabled, and tracks automatic versus manual display.
+
 - Added a live Downloads preference for remembering the Save As folder only
   within each account context. Unified destination selection, kept plain Save
   and automatic downloads in the configured folder, and cleared suggestions
@@ -158,12 +163,10 @@ releases and the AppStream metadata.
 
 ### Fixed
 
-- Kept the integrated overview button visible in plain-div WhatsApp rails and
   clipped navigation containers, with a measured free-slot fallback and
   WebEngine regression checks for visibility, reinsertion and clicking.
 
 - Prevented the integrated overview button from overlapping WhatsApp navigation
-  actions by placing it in the native column layout instead of a fixed bottom
   offset. Added layout regression coverage for extra actions and resizing.
 
 - Made the integrated accounts overview icon follow the visible WhatsApp

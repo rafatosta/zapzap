@@ -39,6 +39,24 @@ class AppearanceSettingsModel:
         self._settings.sidebar_button_mode = value
 
     @property
+    def quick_access_enabled(self) -> bool:
+        """Whether the Quick Access panel is available."""
+        return self._settings.quick_access_enabled
+
+    @quick_access_enabled.setter
+    def quick_access_enabled(self, value: bool) -> None:
+        self._settings.quick_access_enabled = value
+
+    @property
+    def quick_access_on_sidebar_hidden(self) -> bool:
+        """Whether hiding the sidebar opens Quick Access automatically."""
+        return self._settings.quick_access_on_sidebar_hidden
+
+    @quick_access_on_sidebar_hidden.setter
+    def quick_access_on_sidebar_hidden(self, value: bool) -> None:
+        self._settings.quick_access_on_sidebar_hidden = value
+
+    @property
     def menubar_visible(self) -> bool:
         """Whether the main window menu bar is visible."""
         return self._settings.menubar_visible

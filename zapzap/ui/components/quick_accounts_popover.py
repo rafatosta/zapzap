@@ -94,6 +94,7 @@ class QuickAccountRow(QPushButton):
 class QuickAccountsPopover(QFrame):
     """Native compact panel displayed next to the floating account button."""
 
+    closed = pyqtSignal()
     account_requested = pyqtSignal(object)
     add_account_requested = pyqtSignal()
     audio_requested = pyqtSignal()
@@ -243,14 +244,23 @@ class QuickAccountsPopover(QFrame):
     def is_independent_window(self):
         return self._independent_window
 
-    def show_window(self):
+    def show_window(self, activate=True):
         """Show this shared account panel as an independently owned window."""
         self._set_presentation(independent=True)
+        self.setAttribute(
+            Qt.WidgetAttribute.WA_ShowWithoutActivating,
+            not activate,
+        )
         self.setWindowTitle("ZapZap")
         self.adjustSize()
         self.show()
-        self.raise_()
-        self.activateWindow()
+        if activate:
+            self.raise_()
+            self.activateWindow()
+
+    def closeEvent(self, event):
+        self.closed.emit()
+        super().closeEvent(event)
 
     def _set_presentation(self, independent):
         if self._independent_window == independent:

@@ -89,7 +89,8 @@ class WebView(QWebEngineView):
         self._web_channel_bridge = None
         appearance_settings = AppearanceSettings()
         self.quick_accounts_button_visible = bool(
-            not appearance_settings.browser_sidebar_visible
+            appearance_settings.quick_access_enabled
+            and not appearance_settings.browser_sidebar_visible
             and appearance_settings.sidebar_button_mode == "integrated"
         )
 

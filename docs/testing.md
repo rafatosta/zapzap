@@ -81,6 +81,26 @@ de `unittest.TestCase`. Restaure monkey patches, singletons e variáveis de
 ambiente em `tearDown` ou com `addCleanup`; a suíte roda em um único processo e
 vazamentos tornam o resultado dependente da ordem.
 
+### Verificação manual do Quick Access
+
+Em uma sessão gráfica real, execute o ZapZap pelo Flatpak; `offscreen` não
+valida foco, compositor ou apresentação de janelas independentes.
+
+1. Abra Quick Access pelo acionamento existente e desative o recurso em
+   Aparência. Confirme que o painel e os acionamentos somem sem alterar a
+   visibilidade da sidebar ou da janela principal.
+2. Ative o recurso com a opção automática desligada. Ocultar a sidebar não
+   deve abrir o painel; o acionamento manual existente deve continuar abrindo.
+3. Com a sidebar oculta, ative a opção automática. Confirme uma única janela
+   Quick Access, sem tomar foco da janela principal. Feche-a manualmente e
+   confirme que não reabre até mostrar e ocultar novamente a sidebar.
+4. Com uma exibição automática aberta, mostre a sidebar e confirme que ela
+   fecha. Abra depois o painel manualmente e confirme que restaurar a sidebar
+   ou desligar a opção automática não o fecha.
+5. Salve ambas as opções ligadas e a sidebar oculta, reinicie o aplicativo e
+   confirme que a janela independente existente aparece uma única vez após a
+   inicialização.
+
 Nos testes visuais, importe controles básicos de `zapzap.ui.primitives` e
 composições de `zapzap.ui.components`. Imports por caminhos internos de uma
 feature não devem ser usados para alcançar widgets compartilhados.
@@ -104,7 +124,7 @@ documente o que ele protege.
 | `test_about_settings_ui.py` | identidade, links, detalhes técnicos, cópia, licença e créditos |
 | `test_account_data_removal.py` | remoção segura e idempotente de dados de perfis desativados |
 | `test_accounts_settings_ui.py` | card responsivo com ações diretas, remoção, estados/avisos e diálogo transacional sem moldura |
-| `test_appearance_settings_ui.py` | grupos, dependências, subopções condicionais da sidebar, layout responsivo, persistência e acessibilidade |
+| `test_appearance_settings_ui.py` | grupos, dependências, subopções condicionais da sidebar e Quick Access, layout responsivo, persistência e acessibilidade |
 | `test_appimage_packaging.py` | coerência FFmpeg/Qt WebEngine, verificação de ABI, nome final fornecido ao quick-sharun e ausência de renomeação posterior do AppImage/zsync |
 | `test_browser_account_lifecycle.py` | registro estável, criação lazy de contas desativadas, isolamento/retentativa de perfil com erro, reativação, remoção, notificações e encerramento idempotente |
 | `test_browser_page_button_ui.py` | avatar sem número, grayscale de conta desativada, ponto de estado, card, temas, escala e clique |
@@ -120,7 +140,7 @@ documente o que ele protege.
 | `test_documentation_structure.py` | camadas de UI, ciclo numérico versionado do changelog e sincronização entre árvore, inventários técnicos, convenção de commits e guia para agentes |
 | `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
 | `test_external_link_lifecycle.py` | classificação interna/externa de pop-ups, profile compartilhado, entrega única ao navegador e cleanup no fechamento/shutdown |
-| `test_floating_account_button.py` | botão flutuante, janela Quick Access independente e reutilizada, atualização do registro de contas, avatar sincronizado, drag e ativação direta da página selecionada por ID |
+| `test_floating_account_button.py` | botão flutuante, janela Quick Access independente e reutilizada, integração automática com a sidebar, fechamento manual, atualização do registro, avatar, drag e ativação por ID |
 | `test_freedesktop_notification_backend.py` | avisos nas saídas antecipadas da inicialização D-Bus, falhas de `Notify`/`CloseNotification`, aviso único na transição para indisponível e fachada sem backend |
 | `test_global_mute.py` | estado persistente de mute global, sincronização dos controles, fan-out para todas as contas e roteamento do atalho de colagem para a conta ativa |
 | `test_gpu_environment.py` | detecção multi-GPU, conectores e seleção de render node |

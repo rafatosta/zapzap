@@ -21,6 +21,11 @@ class AppearanceSettings(BaseSettings):
 
     _BROWSER_SIDEBAR = ("system/sidebar", True)
     _SIDEBAR_BUTTON_MODE = ("system/sidebar_button_mode", "floating")
+    _QUICK_ACCESS_ENABLED = ("system/quick_access_enabled", True)
+    _QUICK_ACCESS_ON_SIDEBAR_HIDDEN = (
+        "system/quick_access_on_sidebar_hidden",
+        False,
+    )
     _MENUBAR = ("system/menubar", True)
     _SCALE = ("system/scale", DEFAULT_SCALE)
     _TRAY_ICON = ("system/tray_icon", True)
@@ -54,6 +59,22 @@ class AppearanceSettings(BaseSettings):
     def sidebar_button_mode(self, value: str) -> None:
         mode = value if value in {"integrated", "floating"} else "floating"
         self._set_str(self._SIDEBAR_BUTTON_MODE, mode)
+
+    @property
+    def quick_access_enabled(self) -> bool:
+        return self._get_bool(self._QUICK_ACCESS_ENABLED)
+
+    @quick_access_enabled.setter
+    def quick_access_enabled(self, value: bool) -> None:
+        self._set_bool(self._QUICK_ACCESS_ENABLED, value)
+
+    @property
+    def quick_access_on_sidebar_hidden(self) -> bool:
+        return self._get_bool(self._QUICK_ACCESS_ON_SIDEBAR_HIDDEN)
+
+    @quick_access_on_sidebar_hidden.setter
+    def quick_access_on_sidebar_hidden(self, value: bool) -> None:
+        self._set_bool(self._QUICK_ACCESS_ON_SIDEBAR_HIDDEN, value)
 
     @property
     def menubar_visible(self) -> bool:
