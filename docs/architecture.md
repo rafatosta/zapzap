@@ -31,6 +31,19 @@ apresentação. Quando duas páginas precisam do mesmo comportamento, ele deve s
 movido para um domínio em `core`; quando compartilham uma composição visual,
 ela deve ficar em `ui.components`.
 
+## Ambiente de desenvolvimento
+
+O ZapZap é executado e testado através do Flatpak.
+
+- Não criar ambientes Python `.venv` ou `venv`.
+- Não instalar PyQt6 ou outras dependências Python diretamente no sistema host.
+- Não tentar localizar outros interpretadores Python no sistema.
+- O Python do Fedora host não representa o ambiente de execução do aplicativo.
+- Para testes que dependam de PyQt6, Qt ou dependências do aplicativo,
+  utilizar o ambiente Flatpak/flatpak-builder existente.
+- Se não for possível executar um teste dentro do Flatpak, informar a
+  limitação em vez de criar automaticamente outro ambiente Python.
+
 ## Relatórios de problemas
 
 `core.reporting` contém o documento canônico imutável, sanitização, builder,
