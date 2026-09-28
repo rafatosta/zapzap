@@ -60,11 +60,14 @@ releases and the AppStream metadata.
   left mouse button; ordinary clicks continue to open the account switcher.
 - Replaced the floating account button's direct grid navigation with a compact
   native quick panel. The panel reuses persisted account avatars, names and
-  unread counts, activates the selected page directly by stable ID without
-  coercing integer or reserved string IDs, exposes the existing account
-  overview and add-account flow, and routes audio, downloads and settings to
-  their existing controllers while preserving drag behavior and screen-bound
+  unread counts, activates the selected page directly by stable ID, exposes the
+  existing add-account flow, and routes audio, downloads and settings to their
+  existing controllers while preserving drag behavior and screen-bound
   positioning.
+- Fixed quick-panel account selection for numeric persisted user IDs by keeping
+  the signal argument's original type instead of requiring a string, and kept
+  account switching safe in controller harnesses without the optional panel.
+- Fixed the missing gettext import used by the main window's mute controls.
 - Added an optional WhatsApp Web quick-accounts entry point that appears only
   while the native sidebar is hidden. It reuses the existing WebChannel and
   native account grid, reinserts itself after dynamic DOM changes, and fails

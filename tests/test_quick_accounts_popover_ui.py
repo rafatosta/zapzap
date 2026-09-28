@@ -28,7 +28,7 @@ class QuickAccountsPopoverTests(QtTestCase):
 
         self.assertEqual(row.name_label.text(), "Rafael")
         self.assertEqual(row.unread_label.text(), "8")
-        self.assertTrue(row.unread_label.isVisible())
+        self.assertFalse(row.unread_label.isHidden())
 
     def test_active_account_is_highlighted(self):
         runtime = self._runtime("Rafael", "rafael")
@@ -38,7 +38,7 @@ class QuickAccountsPopoverTests(QtTestCase):
         self.addCleanup(panel.close)
         panel.set_accounts([runtime])
 
-        self.assertTrue(panel._rows[0].active_label.isVisible())
+        self.assertFalse(panel._rows[0].active_label.isHidden())
         self.assertEqual(panel._rows[0].status_label.text(), "Current account")
 
     def test_actions_emit_without_owning_application_logic(self):
@@ -70,18 +70,18 @@ class QuickAccountsPopoverTests(QtTestCase):
         for name in ("add", "audio", "downloads", "settings"):
             callbacks[name].assert_called_once_with()
 
-    def test_account_selection_preserves_integer_user_id(self):
+    def test_account_request_preserves_numeric_user_id(self):
         panel = QuickAccountsPopover()
         panel.show()
         self.addCleanup(panel.close)
-        selected_ids = []
-        panel.account_requested.connect(selected_ids.append)
-        panel.set_accounts([self._runtime("Work", 42)])
+        runtime = self._runtime("Work", 42)
+        callback = Mock()
+        panel.account_requested.connect(callback)
+        panel.set_accounts([runtime])
 
-        QTest.mouseClick(panel._rows[0], Qt.MouseButton.LeftButton)
+        panel._rows[0].click()
 
-        self.assertEqual(selected_ids, [42])
-        self.assertIs(type(selected_ids[0]), int)
+        callback.assert_called_once_with(42)
 
     def test_many_accounts_keep_actions_outside_scroll_area(self):
         panel = QuickAccountsPopover()

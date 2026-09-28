@@ -1,4 +1,5 @@
 import sys
+from gettext import gettext as _
 
 from PyQt6.QtCore import QBuffer
 from PyQt6.QtCore import QEvent

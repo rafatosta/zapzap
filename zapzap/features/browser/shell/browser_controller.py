@@ -751,7 +751,13 @@ class BrowserController(BrowserView):
                                "" else _("Account {}").format(page.page_index))
         button.selected()
         self._refresh_floating_account_button()
-        self._quick_accounts_popover.update_active_account()
+        quick_accounts_popover = getattr(
+            self,
+            "_quick_accounts_popover",
+            None,
+        )
+        if quick_accounts_popover is not None:
+            quick_accounts_popover.update_active_account()
         return True
 
     def _handle_account_button_click(self, user_id):
