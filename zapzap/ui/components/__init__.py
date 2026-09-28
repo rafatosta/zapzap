@@ -13,6 +13,7 @@ from .edit_account_dialog import EditAccountDialog
 from .floating_account_button import FloatingAccountButton
 from .main_window import MainWindowView
 from .navigation_item import NavigationItem
+from .quick_accounts_popover import QuickAccountsPopover
 from .settings_badge import SettingsBadge, SettingsInfoBox
 from .settings_card import (
     SUBSETTING_INDENT,

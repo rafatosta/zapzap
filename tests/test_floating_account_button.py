@@ -88,16 +88,35 @@ class FloatingAccountButtonTests(QtTestCase):
             button.toolTip(), second_runtime.user.name
         )
 
-    def test_click_reuses_the_existing_grid_switch_mechanism(self):
+    def test_click_opens_and_closes_the_quick_accounts_panel(self):
         window = self._window()
         window.set_sidebar_visible(False, animated=False)
         button = window.browser._floating_account_button
+        panel = window.browser._quick_accounts_popover
 
         button.click()
+        self.assertTrue(panel.isVisible())
+        self.assertIsNot(
+            window.browser.pages.currentWidget(),
+            window.browser.grid_view,
+        )
 
-        self.assertEqual(
-            window.browser.pages.currentIndex(),
-            window.browser.grid_page_index,
+        button.click()
+        self.assertFalse(panel.isVisible())
+
+    def test_quick_panel_switches_account_by_stable_id(self):
+        window = self._window()
+        window.set_sidebar_visible(False, animated=False)
+        button = window.browser._floating_account_button
+        panel = window.browser._quick_accounts_popover
+
+        button.click()
+        panel.account_requested.emit("second")
+
+        self.assertFalse(panel.isVisible())
+        self.assertIs(
+            window.browser.current_webview(),
+            window.browser._accounts["second"].page,
         )
 
     def test_integrated_and_floating_buttons_are_mutually_exclusive(self):

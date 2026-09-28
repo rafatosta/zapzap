@@ -32,6 +32,7 @@ from zapzap.ui.components import BrowserGridView
 from zapzap.ui.components import BrowserPageButton
 from zapzap.ui.components import BrowserSidebarButton
 from zapzap.ui.components import FloatingAccountButton
+from zapzap.ui.components import QuickAccountsPopover
 from zapzap.ui.components import UpdateAvailablePopover
 
 
@@ -103,8 +104,29 @@ class BrowserController(BrowserView):
         self._update_popover_close_timer.timeout.connect(
             self._update_popover.close
         )
+        self._quick_accounts_popover = QuickAccountsPopover(self)
+        self._quick_accounts_popover.account_requested.connect(
+            self._handle_quick_account_request
+        )
+        self._quick_accounts_popover.add_account_requested.connect(
+            self._handle_quick_add_account
+        )
+        self._quick_accounts_popover.overview_requested.connect(
+            self._handle_quick_overview_request
+        )
+        self._quick_accounts_popover.audio_requested.connect(
+            self._handle_quick_audio_request
+        )
+        self._quick_accounts_popover.downloads_requested.connect(
+            self._handle_quick_downloads_request
+        )
+        self._quick_accounts_popover.settings_requested.connect(
+            self._handle_quick_settings_request
+        )
         self._floating_account_button = FloatingAccountButton(self.pages)
-        self._floating_account_button.clicked.connect(self.show_grid_view)
+        self._floating_account_button.clicked.connect(
+            self.toggle_quick_accounts_panel
+        )
         app = QApplication.instance()
         if app is not None:
             app.installEventFilter(self)
@@ -143,6 +165,7 @@ class BrowserController(BrowserView):
         if app is not None:
             app.removeEventFilter(self)
         self._update_popover.close()
+        self._quick_accounts_popover.close()
         self.close_pages()
 
     # === Inicialização ===
@@ -250,6 +273,7 @@ class BrowserController(BrowserView):
     def _handle_application_state_changed(self, state):
         if state != Qt.ApplicationState.ApplicationActive:
             self._update_popover.close()
+            self._quick_accounts_popover.close()
 
     def eventFilter(self, watched, event):
         if (
@@ -266,11 +290,28 @@ class BrowserController(BrowserView):
             )
             if not over_button and not over_popover:
                 self._update_popover.close()
+        if (
+            event.type() == QEvent.Type.MouseButtonPress
+            and self._quick_accounts_popover.isVisible()
+            and hasattr(event, "globalPosition")
+        ):
+            position = event.globalPosition().toPoint()
+            over_button = self._floating_account_button.rect().contains(
+                self._floating_account_button.mapFromGlobal(position)
+            )
+            over_popover = self._quick_accounts_popover.rect().contains(
+                self._quick_accounts_popover.mapFromGlobal(position)
+            )
+            if not over_button and not over_popover:
+                self._quick_accounts_popover.close()
         return super().eventFilter(watched, event)
 
     def _update_buttons(self, _current_theme, current_color_scheme):
-        self.__set_button_icons(
-            SystemIcon.Type[current_color_scheme.name]
+        theme = SystemIcon.Type[current_color_scheme.name]
+        self.__set_button_icons(theme)
+        self._quick_accounts_popover.update_action_icons(
+            theme,
+            muted=SystemSettings().audio_muted,
         )
 
     def _configure_flatpak_guidance(self):
@@ -638,6 +679,8 @@ class BrowserController(BrowserView):
         self._floating_account_button.setVisible(
             not sidebar_visible and not integrated_visible
         )
+        if sidebar_visible or integrated_visible:
+            self._quick_accounts_popover.close()
         for runtime in self._active_runtimes():
             set_button_visible = getattr(
                 runtime.page, "set_quick_accounts_button_visible", None
@@ -648,6 +691,38 @@ class BrowserController(BrowserView):
     def refresh_sidebar_button_mode(self):
         """Apply the persisted account-switcher presentation choice."""
         self._sync_account_switcher_buttons()
+
+    def toggle_quick_accounts_panel(self):
+        """Toggle the compact native account and actions panel."""
+        if self._quick_accounts_popover.isVisible():
+            self._quick_accounts_popover.close()
+            return
+        self._quick_accounts_popover.set_accounts(self._accounts.values())
+        self._quick_accounts_popover.popup_for(self._floating_account_button)
+
+    def _handle_quick_account_request(self, user_id):
+        self._quick_accounts_popover.close()
+        self._handle_account_button_click(user_id)
+
+    def _handle_quick_add_account(self):
+        self._quick_accounts_popover.close()
+        self.add_new_user()
+
+    def _handle_quick_overview_request(self):
+        self._quick_accounts_popover.close()
+        self.show_grid_view()
+
+    def _handle_quick_audio_request(self):
+        self._quick_accounts_popover.close()
+        self.parent.toggle_audio_muted()
+
+    def _handle_quick_downloads_request(self):
+        self._quick_accounts_popover.close()
+        self.parent.show_downloads_menu(self._quick_accounts_popover)
+
+    def _handle_quick_settings_request(self):
+        self._quick_accounts_popover.close()
+        self.parent.open_settings()
 
     # === Ações do Navegador ===
     def activate_account(self, user_id):
@@ -677,6 +752,7 @@ class BrowserController(BrowserView):
                                "" else _("Account {}").format(page.page_index))
         button.selected()
         self._refresh_floating_account_button()
+        self._quick_accounts_popover.update_active_account()
         return True
 
     def _handle_account_button_click(self, user_id):
@@ -764,6 +840,10 @@ class BrowserController(BrowserView):
             setter = getattr(runtime.page, "set_audio_muted", None)
             if callable(setter):
                 setter(bool(muted))
+        theme = SystemIcon.Type[
+            ThemeManager.get_current_color_scheme().name
+        ]
+        self._quick_accounts_popover.update_action_icons(theme, muted=muted)
 
     def current_webview(self):
         current = self.pages.currentWidget()

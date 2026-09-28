@@ -161,11 +161,19 @@ sem duplicar consulta ou comparação.
 Quando `system/sidebar` oculta a `BrowserSidebar`, `BrowserController` exibe em
 seu lugar um `FloatingAccountButton` sobreposto ao canto superior esquerdo de
 `BrowserPages`, mostrando apenas o avatar da conta atualmente visível (ou a
-última ativa, na grade ou nas doações). O clique reaproveita `show_grid_view()`
-sem abrir um segundo mecanismo de troca de contas; a âncora fixa no canto
-dispensa reposicionamento a cada redimensionamento da janela. O botão pode ser
+última ativa, na grade ou nas doações). Um clique sem arrasto abre o
+`QuickAccountsPopover`, um painel Qt nativo que lê a lista de
+`AccountRuntime` e exibe os avatares, nomes e contadores já mantidos por cada
+`BrowserPageButton`. A seleção encaminha o `User.id` para o mesmo
+`_handle_account_button_click()` usado pela sidebar e fecha o painel após a
+troca; a grade completa continua acessível por uma ação secundária. O painel
+também encaminha áudio, downloads, configurações e adição de conta para as
+fachadas existentes, sem injetar uma interface no DOM do WhatsApp Web.
+O popover é uma instância única, limita a altura da lista com scroll interno,
+fecha por ação, clique externo, perda de contexto ou `Esc`, e calcula sua
+posição dentro da geometria disponível da tela. O botão continua podendo ser
 reposicionado por arrasto com o botão esquerdo, limitado à área de conteúdo;
-um clique sem movimento mantém o acesso à grade de contas.
+arrastar não dispara a abertura do painel.
 Em Aparência > Interface, a subopção da sidebar escolhe entre esse botão
 flutuante e o botão integrado no trilho do WhatsApp. A subopção só aparece
 quando `system/sidebar` está desativado. `system/sidebar_button_mode` persiste

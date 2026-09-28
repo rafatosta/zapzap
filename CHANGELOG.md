@@ -58,6 +58,12 @@ releases and the AppStream metadata.
   existing account grid switcher on click, without duplicating any account
   management logic. The button can also be moved by clicking and holding the
   left mouse button; ordinary clicks continue to open the account switcher.
+- Replaced the floating account button's direct grid navigation with a compact
+  native quick panel. The panel reuses persisted account avatars, names and
+  unread counts, switches accounts by stable ID, exposes the existing account
+  overview and add-account flow, and routes audio, downloads and settings to
+  their existing controllers while preserving drag behavior and screen-bound
+  positioning.
 - Added an optional WhatsApp Web quick-accounts entry point that appears only
   while the native sidebar is hidden. It reuses the existing WebChannel and
   native account grid, reinserts itself after dynamic DOM changes, and fails
