@@ -120,7 +120,7 @@ documente o que ele protege.
 | `test_profile_sync.py` | validação de dados pontuais do perfil WhatsApp e normalização da foto |
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
 | `test_quick_accounts_integration.py` | contrato do botão integrado de contas, aparência dinâmica no WebEngine, bridge, fallback e isolamento do JavaScript |
-| `test_quick_accounts_popover_ui.py` | painel nativo de contas, avatar/nome, badge de não lidas, ações por sinais e lista longa com ações fora do scroll |
+| `test_quick_accounts_popover_ui.py` | painel nativo de contas, avatar/nome, badge de não lidas, preservação de ID inteiro, ações por sinais e lista longa com ações fora do scroll |
 | `test_reporting.py` | sanitização, minimização, Markdown, fila/TTL e captura local de encerramentos inesperados |
 | `test_reporting_ui.py` | formulário em duas etapas, prévia canônica, edição, cancelamento, clipboard e abertura segura do GitHub |
 | `test_segmented_control.py` | seleção exclusiva, sinais, mouse, teclado, acessibilidade, tamanhos, raios e temas |

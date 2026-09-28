@@ -92,7 +92,7 @@ class QuickAccountRow(QPushButton):
 class QuickAccountsPopover(QFrame):
     """Native compact panel displayed next to the floating account button."""
 
-    account_requested = pyqtSignal(str)
+    account_requested = pyqtSignal(object)
     add_account_requested = pyqtSignal()
     audio_requested = pyqtSignal()
     downloads_requested = pyqtSignal()

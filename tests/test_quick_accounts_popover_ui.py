@@ -70,6 +70,19 @@ class QuickAccountsPopoverTests(QtTestCase):
         for name in ("add", "audio", "downloads", "settings"):
             callbacks[name].assert_called_once_with()
 
+    def test_account_selection_preserves_integer_user_id(self):
+        panel = QuickAccountsPopover()
+        panel.show()
+        self.addCleanup(panel.close)
+        selected_ids = []
+        panel.account_requested.connect(selected_ids.append)
+        panel.set_accounts([self._runtime("Work", 42)])
+
+        QTest.mouseClick(panel._rows[0], Qt.MouseButton.LeftButton)
+
+        self.assertEqual(selected_ids, [42])
+        self.assertIs(type(selected_ids[0]), int)
+
     def test_many_accounts_keep_actions_outside_scroll_area(self):
         panel = QuickAccountsPopover()
         panel.show()
