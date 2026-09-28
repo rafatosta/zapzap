@@ -94,13 +94,13 @@ class QuickAccountsPopover(QFrame):
 
     account_requested = pyqtSignal(str)
     add_account_requested = pyqtSignal()
-    overview_requested = pyqtSignal()
     audio_requested = pyqtSignal()
     downloads_requested = pyqtSignal()
     settings_requested = pyqtSignal()
 
     WIDTH = 320
-    MAX_ACCOUNTS_HEIGHT = 280
+    MAX_VISIBLE_ACCOUNTS = 4
+    ACCOUNT_ROW_HEIGHT = 55
     SHADOW_MARGIN = 10
 
     STYLE = """
@@ -219,12 +219,6 @@ class QuickAccountsPopover(QFrame):
         self.add_account_button.clicked.connect(self.add_account_requested)
         layout.addWidget(self.add_account_button)
 
-        self.overview_button = self._action_button(
-            "overview", _("Accounts overview"), SystemIcon.get_icon("view_grid")
-        )
-        self.overview_button.clicked.connect(self.overview_requested)
-        layout.addWidget(self.overview_button)
-
         divider = QFrame(self.surface)
         divider.setObjectName("QuickAccountsDivider")
         divider.setFrameShape(QFrame.Shape.HLine)
@@ -273,8 +267,13 @@ class QuickAccountsPopover(QFrame):
             )
             self.account_layout.addWidget(row)
             self._rows.append(row)
-        self.account_container.setMinimumHeight(max(0, len(self._rows) * 55))
-        self.scroll.setMaximumHeight(self.MAX_ACCOUNTS_HEIGHT)
+        account_count = len(self._rows)
+        self.account_container.setMinimumHeight(
+            account_count * self.ACCOUNT_ROW_HEIGHT
+        )
+        visible_count = min(account_count, self.MAX_VISIBLE_ACCOUNTS)
+        self.scroll.setFixedHeight(visible_count * self.ACCOUNT_ROW_HEIGHT)
+        self.scroll.setVisible(account_count > 0)
         self.adjustSize()
 
     def update_active_account(self):
@@ -289,7 +288,6 @@ class QuickAccountsPopover(QFrame):
             SystemIcon.get_icon("update_available", theme)
         )
         self.settings_button.setIcon(SystemIcon.get_icon("open_settings", theme))
-        self.overview_button.setIcon(SystemIcon.get_icon("view_grid", theme))
         self.add_account_button.setIcon(SystemIcon.get_icon("new_account", theme))
 
     def popup_for(self, anchor):

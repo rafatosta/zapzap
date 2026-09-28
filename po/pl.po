@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-28 08:59-0300\n"
+"POT-Creation-Date: 2026-09-28 10:18-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Polish\n"
@@ -294,7 +294,7 @@ msgstr "Kopiuj adres łącza"
 
 #: zapzap/features/alerts/external_url.py:45
 #: zapzap/features/reporting/dialogs.py:360
-#: zapzap/features/browser/shell/browser_controller.py:322
+#: zapzap/features/browser/shell/browser_controller.py:360
 #: zapzap/ui/components/dictionary_manager_dialog.py:91
 #: zapzap/ui/components/dictionary_manager_dialog.py:193
 #: zapzap/ui/components/edit_account_dialog.py:74
@@ -819,6 +819,7 @@ msgstr ""
 #: zapzap/ui/components/main_window.py:186
 #: zapzap/ui/components/main_window.py:187
 #: zapzap/ui/components/main_window.py:206
+#: zapzap/ui/components/quick_accounts_popover.py:234
 msgid "Downloads"
 msgstr "Pobrane"
 
@@ -1368,6 +1369,7 @@ msgstr "Profil i status"
 #: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/downloads/ui/downloads_menu.py:1081
 #: zapzap/ui/components/main_window.py:192
+#: zapzap/ui/components/quick_accounts_popover.py:237
 msgid "Settings"
 msgstr "Ustawienia"
 
@@ -1459,7 +1461,7 @@ msgid "New conversation by phone number"
 msgstr "Nowa konwersacja po numerze"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:550
+#: zapzap/features/browser/shell/browser_controller.py:588
 #: zapzap/ui/components/browser_sidebar.py:200
 msgid "New account"
 msgstr "Nowe konto"
@@ -1682,6 +1684,7 @@ msgstr "Lista kont"
 
 #: zapzap/features/settings/pages/accounts/view.py:40
 #: zapzap/features/settings/pages/accounts/view.py:41
+#: zapzap/ui/components/quick_accounts_popover.py:217
 msgid "Add account"
 msgstr "Dodaj konto"
 
@@ -2248,7 +2251,7 @@ msgid "Symbolic dark"
 msgstr "Jednolity ciemny"
 
 #: zapzap/features/settings/pages/appearance/view.py:131
-#: zapzap/features/browser/shell/browser_controller.py:174
+#: zapzap/features/browser/shell/browser_controller.py:194
 msgid "Grid view"
 msgstr "Widok siatki"
 
@@ -3803,19 +3806,19 @@ msgstr "Zawsze zezwalaj"
 msgid "Block"
 msgstr "Blokuj"
 
-#: zapzap/features/browser/shell/browser_controller.py:287
+#: zapzap/features/browser/shell/browser_controller.py:325
 msgid "Flatpak sandbox help"
 msgstr "Pomoc piaskownicy Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:312
+#: zapzap/features/browser/shell/browser_controller.py:350
 msgid "Flatpak sandbox"
 msgstr "Piaskownica Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:313
+#: zapzap/features/browser/shell/browser_controller.py:351
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap działa w piaskownicy Flatpak."
 
-#: zapzap/features/browser/shell/browser_controller.py:315
+#: zapzap/features/browser/shell/browser_controller.py:353
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
@@ -3823,40 +3826,40 @@ msgstr ""
 "Niektóre funkcje, takie jak otwieranie plików lub przeciąganie i "
 "upuszczanie, mogą wymagać dodatkowych uprawnień."
 
-#: zapzap/features/browser/shell/browser_controller.py:320
+#: zapzap/features/browser/shell/browser_controller.py:358
 msgid "Instructions"
 msgstr "Instrukcje"
 
-#: zapzap/features/browser/shell/browser_controller.py:321
+#: zapzap/features/browser/shell/browser_controller.py:359
 msgid "Copy command"
 msgstr "Kopiuj polecenie"
 
-#: zapzap/features/browser/shell/browser_controller.py:567
-#: zapzap/features/browser/shell/browser_controller.py:677
+#: zapzap/features/browser/shell/browser_controller.py:605
+#: zapzap/features/browser/shell/browser_controller.py:751
 #, python-brace-format
 msgid "Account {}"
 msgstr "Konto {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:691
+#: zapzap/features/browser/shell/browser_controller.py:766
 msgid "Account disabled"
 msgstr "Konto wyłączone"
 
-#: zapzap/features/browser/shell/browser_controller.py:692
+#: zapzap/features/browser/shell/browser_controller.py:767
 msgid "This account is disabled."
 msgstr "To konto jest wyłączone."
 
-#: zapzap/features/browser/shell/browser_controller.py:694
+#: zapzap/features/browser/shell/browser_controller.py:769
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Możesz teraz ją reaktywować lub użyć menu kontekstowego, aby zarządzać tym "
 "kontem."
 
-#: zapzap/features/browser/shell/browser_controller.py:699
+#: zapzap/features/browser/shell/browser_controller.py:774
 msgid "Activate"
 msgstr "Aktywuj"
 
-#: zapzap/features/browser/shell/browser_controller.py:700
+#: zapzap/features/browser/shell/browser_controller.py:775
 msgid "Not now"
 msgstr "Nie teraz"
 
@@ -4883,6 +4886,27 @@ msgstr ""
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
 
+#: zapzap/ui/components/quick_accounts_popover.py:67
+#: zapzap/ui/components/quick_accounts_popover.py:80
+#: zapzap/ui/components/quick_accounts_popover.py:84
+#, fuzzy
+msgid "Current account"
+msgstr "Aktualne konto: {}"
+
+#: zapzap/ui/components/quick_accounts_popover.py:85
+#, fuzzy, python-brace-format
+msgid "Unread messages: {count}"
+msgstr "Licznik nieprzeczytanych"
+
+#: zapzap/ui/components/quick_accounts_popover.py:200
+#, fuzzy
+msgid "Accounts and quick actions"
+msgstr "Akcje konta"
+
+#: zapzap/ui/components/quick_accounts_popover.py:231
+msgid "Audio"
+msgstr ""
+
 #~ msgid "Run natively on Wayland"
 #~ msgstr "Uruchamiaj natywnie na Wayland"
 
@@ -4918,10 +4942,6 @@ msgstr ""
 
 #~ msgid "Unavailable"
 #~ msgstr "Niedostępne"
-
-#, python-brace-format
-#~ msgid "Current account: {}"
-#~ msgstr "Aktualne konto: {}"
 
 #~ msgid "Unapplied changes"
 #~ msgstr "Niezastosowane zmiany"
@@ -4966,9 +4986,6 @@ msgstr ""
 
 #~ msgid "Disable"
 #~ msgstr "Wyłącz"
-
-#~ msgid "Account actions"
-#~ msgstr "Akcje konta"
 
 #~ msgid "Confirm exclusion"
 #~ msgstr "Potwierdź wykluczenie"

@@ -111,9 +111,6 @@ class BrowserController(BrowserView):
         self._quick_accounts_popover.add_account_requested.connect(
             self._handle_quick_add_account
         )
-        self._quick_accounts_popover.overview_requested.connect(
-            self._handle_quick_overview_request
-        )
         self._quick_accounts_popover.audio_requested.connect(
             self._handle_quick_audio_request
         )
@@ -702,15 +699,17 @@ class BrowserController(BrowserView):
 
     def _handle_quick_account_request(self, user_id):
         self._quick_accounts_popover.close()
+        runtime = self._accounts.get(user_id)
+        if runtime is None:
+            return False
+        if runtime.user.enable:
+            return self.activate_account(user_id)
         self._handle_account_button_click(user_id)
+        return False
 
     def _handle_quick_add_account(self):
         self._quick_accounts_popover.close()
         self.add_new_user()
-
-    def _handle_quick_overview_request(self):
-        self._quick_accounts_popover.close()
-        self.show_grid_view()
 
     def _handle_quick_audio_request(self):
         self._quick_accounts_popover.close()

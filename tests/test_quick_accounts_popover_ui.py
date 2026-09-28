@@ -48,14 +48,12 @@ class QuickAccountsPopoverTests(QtTestCase):
         callbacks = {
             "account": Mock(),
             "add": Mock(),
-            "overview": Mock(),
             "audio": Mock(),
             "downloads": Mock(),
             "settings": Mock(),
         }
         panel.account_requested.connect(callbacks["account"])
         panel.add_account_requested.connect(callbacks["add"])
-        panel.overview_requested.connect(callbacks["overview"])
         panel.audio_requested.connect(callbacks["audio"])
         panel.downloads_requested.connect(callbacks["downloads"])
         panel.settings_requested.connect(callbacks["settings"])
@@ -64,13 +62,12 @@ class QuickAccountsPopoverTests(QtTestCase):
         panel.set_accounts([runtime])
         QTest.mouseClick(panel._rows[0], Qt.MouseButton.LeftButton)
         QTest.mouseClick(panel.add_account_button, Qt.MouseButton.LeftButton)
-        QTest.mouseClick(panel.overview_button, Qt.MouseButton.LeftButton)
         QTest.mouseClick(panel.audio_button, Qt.MouseButton.LeftButton)
         QTest.mouseClick(panel.downloads_button, Qt.MouseButton.LeftButton)
         QTest.mouseClick(panel.settings_button, Qt.MouseButton.LeftButton)
 
         callbacks["account"].assert_called_once_with("rafael")
-        for name in ("add", "overview", "audio", "downloads", "settings"):
+        for name in ("add", "audio", "downloads", "settings"):
             callbacks[name].assert_called_once_with()
 
     def test_many_accounts_keep_actions_outside_scroll_area(self):
@@ -84,9 +81,29 @@ class QuickAccountsPopoverTests(QtTestCase):
         panel.set_accounts(runtimes)
 
         self.assertEqual(len(panel._rows), 12)
-        self.assertEqual(panel.scroll.maximumHeight(), panel.MAX_ACCOUNTS_HEIGHT)
+        self.assertEqual(
+            panel.scroll.height(),
+            panel.MAX_VISIBLE_ACCOUNTS * panel.ACCOUNT_ROW_HEIGHT,
+        )
         self.assertTrue(panel.add_account_button.isVisible())
         self.assertTrue(panel.audio_button.isVisible())
+        self.assertGreater(panel.scroll.verticalScrollBar().maximum(), 0)
+
+    def test_list_height_tracks_one_to_four_accounts_without_scroll(self):
+        panel = QuickAccountsPopover()
+        panel.show()
+        self.addCleanup(panel.close)
+
+        for account_count in range(1, panel.MAX_VISIBLE_ACCOUNTS + 1):
+            panel.set_accounts([
+                self._runtime(f"Account {index}", str(index))
+                for index in range(account_count)
+            ])
+            self.assertEqual(
+                panel.scroll.height(),
+                account_count * panel.ACCOUNT_ROW_HEIGHT,
+            )
+            self.assertEqual(panel.scroll.verticalScrollBar().maximum(), 0)
 
     def test_popup_is_clamped_and_escape_closes_it(self):
         anchor = QWidget()

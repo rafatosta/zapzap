@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-28 08:59-0300\n"
+"POT-Creation-Date: 2026-09-28 10:18-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Ukrainian\n"
@@ -296,7 +296,7 @@ msgstr "Копіювати адресу посилання"
 
 #: zapzap/features/alerts/external_url.py:45
 #: zapzap/features/reporting/dialogs.py:360
-#: zapzap/features/browser/shell/browser_controller.py:322
+#: zapzap/features/browser/shell/browser_controller.py:360
 #: zapzap/ui/components/dictionary_manager_dialog.py:91
 #: zapzap/ui/components/dictionary_manager_dialog.py:193
 #: zapzap/ui/components/edit_account_dialog.py:74
@@ -823,6 +823,7 @@ msgstr ""
 #: zapzap/ui/components/main_window.py:186
 #: zapzap/ui/components/main_window.py:187
 #: zapzap/ui/components/main_window.py:206
+#: zapzap/ui/components/quick_accounts_popover.py:234
 msgid "Downloads"
 msgstr "Завантаження"
 
@@ -1370,6 +1371,7 @@ msgstr "Профіль і статус"
 #: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/downloads/ui/downloads_menu.py:1081
 #: zapzap/ui/components/main_window.py:192
+#: zapzap/ui/components/quick_accounts_popover.py:237
 msgid "Settings"
 msgstr "Налаштування"
 
@@ -1461,7 +1463,7 @@ msgid "New conversation by phone number"
 msgstr "Нова розмова за номером телефону"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:550
+#: zapzap/features/browser/shell/browser_controller.py:588
 #: zapzap/ui/components/browser_sidebar.py:200
 msgid "New account"
 msgstr "Новий акаунт"
@@ -1684,6 +1686,7 @@ msgstr "Список рахунків"
 
 #: zapzap/features/settings/pages/accounts/view.py:40
 #: zapzap/features/settings/pages/accounts/view.py:41
+#: zapzap/ui/components/quick_accounts_popover.py:217
 msgid "Add account"
 msgstr "Додати рахунок"
 
@@ -2253,7 +2256,7 @@ msgid "Symbolic dark"
 msgstr "Символічна темна"
 
 #: zapzap/features/settings/pages/appearance/view.py:131
-#: zapzap/features/browser/shell/browser_controller.py:174
+#: zapzap/features/browser/shell/browser_controller.py:194
 msgid "Grid view"
 msgstr "Вигляд сітки"
 
@@ -3809,19 +3812,19 @@ msgstr "Завжди дозволяти"
 msgid "Block"
 msgstr "Блокувати"
 
-#: zapzap/features/browser/shell/browser_controller.py:287
+#: zapzap/features/browser/shell/browser_controller.py:325
 msgid "Flatpak sandbox help"
 msgstr "Допомога з пісочницею Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:312
+#: zapzap/features/browser/shell/browser_controller.py:350
 msgid "Flatpak sandbox"
 msgstr "Пісочниця Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:313
+#: zapzap/features/browser/shell/browser_controller.py:351
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap працює в Flatpak пісочниці."
 
-#: zapzap/features/browser/shell/browser_controller.py:315
+#: zapzap/features/browser/shell/browser_controller.py:353
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
@@ -3829,40 +3832,40 @@ msgstr ""
 "Деякі функції, такі як відкриття файлів або перетягування, можуть вимагати "
 "додаткових дозволів."
 
-#: zapzap/features/browser/shell/browser_controller.py:320
+#: zapzap/features/browser/shell/browser_controller.py:358
 msgid "Instructions"
 msgstr "Інструкції"
 
-#: zapzap/features/browser/shell/browser_controller.py:321
+#: zapzap/features/browser/shell/browser_controller.py:359
 msgid "Copy command"
 msgstr "Копіювати команду"
 
-#: zapzap/features/browser/shell/browser_controller.py:567
-#: zapzap/features/browser/shell/browser_controller.py:677
+#: zapzap/features/browser/shell/browser_controller.py:605
+#: zapzap/features/browser/shell/browser_controller.py:751
 #, python-brace-format
 msgid "Account {}"
 msgstr "Акаунт {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:691
+#: zapzap/features/browser/shell/browser_controller.py:766
 msgid "Account disabled"
 msgstr "Обліковий запис вимкнено"
 
-#: zapzap/features/browser/shell/browser_controller.py:692
+#: zapzap/features/browser/shell/browser_controller.py:767
 msgid "This account is disabled."
 msgstr "Цей обліковий запис вимкнено."
 
-#: zapzap/features/browser/shell/browser_controller.py:694
+#: zapzap/features/browser/shell/browser_controller.py:769
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Ви можете повторно активувати його зараз або скористатися меню правої кнопки "
 "миші для керування цим обліковим записом."
 
-#: zapzap/features/browser/shell/browser_controller.py:699
+#: zapzap/features/browser/shell/browser_controller.py:774
 msgid "Activate"
 msgstr "Активувати"
 
-#: zapzap/features/browser/shell/browser_controller.py:700
+#: zapzap/features/browser/shell/browser_controller.py:775
 msgid "Not now"
 msgstr "Не зараз"
 
@@ -4895,6 +4898,27 @@ msgstr ""
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
 
+#: zapzap/ui/components/quick_accounts_popover.py:67
+#: zapzap/ui/components/quick_accounts_popover.py:80
+#: zapzap/ui/components/quick_accounts_popover.py:84
+#, fuzzy
+msgid "Current account"
+msgstr "Поточний обліковий запис: {}"
+
+#: zapzap/ui/components/quick_accounts_popover.py:85
+#, fuzzy, python-brace-format
+msgid "Unread messages: {count}"
+msgstr "Лічильник непрочитаних"
+
+#: zapzap/ui/components/quick_accounts_popover.py:200
+#, fuzzy
+msgid "Accounts and quick actions"
+msgstr "Дії з обліковим записом"
+
+#: zapzap/ui/components/quick_accounts_popover.py:231
+msgid "Audio"
+msgstr ""
+
 #~ msgid "Run natively on Wayland"
 #~ msgstr "Запускати нативно на Wayland"
 
@@ -4929,10 +4953,6 @@ msgstr ""
 
 #~ msgid "Unavailable"
 #~ msgstr "Недоступно"
-
-#, python-brace-format
-#~ msgid "Current account: {}"
-#~ msgstr "Поточний обліковий запис: {}"
 
 #~ msgid "Unapplied changes"
 #~ msgstr "Незастосовані зміни"
@@ -4978,9 +4998,6 @@ msgstr ""
 
 #~ msgid "Disable"
 #~ msgstr "Відключити"
-
-#~ msgid "Account actions"
-#~ msgstr "Дії з обліковим записом"
 
 #~ msgid "Confirm exclusion"
 #~ msgstr "Підтвердити винятки"

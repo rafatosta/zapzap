@@ -6,6 +6,7 @@ from unittest.mock import Mock, patch
 
 from PyQt6.QtCore import QPoint, QPointF, Qt
 from PyQt6.QtGui import QMouseEvent
+from PyQt6.QtTest import QTest
 
 from qt_test_case import QtTestCase
 from tools.memory.stub_webview import StubWebView
@@ -111,13 +112,22 @@ class FloatingAccountButtonTests(QtTestCase):
         panel = window.browser._quick_accounts_popover
 
         button.click()
-        panel.account_requested.emit("second")
+        second_row = next(
+            row for row in panel._rows
+            if row.runtime.user.id == "second"
+        )
+        QTest.mouseClick(
+            second_row,
+            Qt.MouseButton.LeftButton,
+            pos=second_row.rect().center(),
+        )
 
         self.assertFalse(panel.isVisible())
         self.assertIs(
-            window.browser.current_webview(),
+            window.browser.pages.currentWidget(),
             window.browser._accounts["second"].page,
         )
+        self.assertTrue(window.browser._accounts["second"].button.isSelected)
 
     def test_integrated_and_floating_buttons_are_mutually_exclusive(self):
         self.settings.sidebar_button_mode = "integrated"
