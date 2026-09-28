@@ -554,7 +554,9 @@ Durante desenvolvimento, rode o módulo afetado. Antes de entregar:
 ## Validação manual do ícone integrado de contas
 
 Com a sidebar oculta e o atalho integrado selecionado, compare o ícone de
-visão geral com os ícones não selecionados da barra do WhatsApp. Alterne tema
+visão geral com os ícones não selecionados da barra do WhatsApp. Confirme que
+o botão ocupa espaço próprio sem sobrepor Configurações, Beta ou o perfil,
+inclusive quando surgem ações extras. Alterne tema
 claro/escuro, redimensione a janela e recarregue a página: cor e dimensões
 devem acompanhar a barra, com um único botão que continue abrindo a grade.
 Repita nas plataformas mantidas; o teste WebEngine com DOM sintético não

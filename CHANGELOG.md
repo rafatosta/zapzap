@@ -138,6 +138,10 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Prevented the integrated overview button from overlapping WhatsApp navigation
+  actions by placing it in the native column layout instead of a fixed bottom
+  offset. Added layout regression coverage for extra actions and resizing.
+
 - Made the integrated accounts overview icon follow the visible WhatsApp
   navigation icons’ color and dimensions after DOM and theme changes, retaining
   the native theme fallback when no reference icon is available.

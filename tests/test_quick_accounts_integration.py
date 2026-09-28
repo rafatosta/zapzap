@@ -23,8 +23,8 @@ class QuickAccountsIntegrationTests(unittest.TestCase):
         self.assertIn("bounds.height >= window.innerHeight * 0.5", self.script)
         self.assertIn("target.appendChild(button)", self.script)
         self.assertNotIn("target.insertBefore(button", self.script)
-        self.assertIn("window.innerHeight - bounds.bottom + 90", self.script)
-        self.assertIn("bounds.width - 46", self.script)
+        self.assertNotIn("window.innerHeight - bounds.bottom + 90", self.script)
+        self.assertIn("parent.insertBefore(button, anchor)", self.script)
         self.assertIn('window.addEventListener("resize"', self.script)
         self.assertIn("button.parentElement !== target", self.script)
         self.assertIn("main > div:first-child", self.script)
@@ -102,7 +102,13 @@ class QuickAccountsAppearanceTests(QtTestCase):
         page.setHtml("""<style>
             nav svg { fill: rgb(12, 34, 56); width:24px; height:24px }
             body.dark nav svg { fill: rgb(210, 220, 230); width:28px; height:28px }
-            </style><nav role="navigation"><button><svg></svg></button></nav>""")
+            nav { display:flex; flex-direction:column; width:64px; height:100vh }
+            .bottom { display:flex; flex-direction:column; margin-top:auto; gap:8px }
+            .bottom > * { min-height:40px; flex-shrink:0 }
+            </style><nav role="navigation"><button><svg></svg></button>
+            <div class="bottom"><button id="extra">Bug</button>
+            <button id="settings">Settings</button><span>BETA</span>
+            <button id="profile">Profile</button></div></nav>""")
         QTimer.singleShot(15000, loop.quit)
         loop.exec()
         self.assertEqual(loaded, [True])
@@ -128,6 +134,30 @@ class QuickAccountsAppearanceTests(QtTestCase):
         wait.exec()
         self.assertEqual(self.javascript(page, snapshot),
                          ["rgb(210, 220, 230)", "28px", "28px"])
+        layout = """(() => {
+            const button = document.querySelector('[data-zapzap-component]');
+            const box = button.getBoundingClientRect();
+            const others = [...document.querySelectorAll('.bottom > :not([data-zapzap-component])')];
+            return getComputedStyle(button).position === 'static' && others.every(item => {
+                const rect = item.getBoundingClientRect();
+                return rect.bottom <= box.top || rect.top >= box.bottom;
+            });
+        })()"""
+        self.assertTrue(self.javascript(page, layout))
+        self.javascript(page, """
+            const extra = document.createElement('button');
+            extra.textContent = 'Another action';
+            document.querySelector('.bottom').prepend(extra);
+        """)
+        view.resize(800, 450)
+        wait = QEventLoop()
+        QTimer.singleShot(250, wait.quit)
+        wait.exec()
+        self.assertTrue(self.javascript(page, layout))
+        self.javascript(page, "QuickAccountsController.setVisible(false)")
+        self.assertEqual(self.javascript(page,
+            "document.querySelector('[data-zapzap-component]').getBoundingClientRect().height"), 0)
+        self.javascript(page, "QuickAccountsController.setVisible(true)")
         self.javascript(page, """
             document.querySelector('nav > button').remove();
             QuickAccountsController.setIconColor('#abcdef');

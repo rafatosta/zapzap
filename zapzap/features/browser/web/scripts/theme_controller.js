@@ -256,19 +256,46 @@
 
         placeButton(button, target) {
             const isFallback = target === document.body;
-            const bounds = target.getBoundingClientRect();
-            button.style.position = "fixed";
-            button.style.left = isFallback
-                ? "12px"
-                : `${Math.max(0, bounds.left + (bounds.width - 46) / 2)}px`;
+            let parent = target;
+            let anchor = null;
+            // Join the native column containing the bottom actions. Never use
+            // viewport offsets: extra actions (including Beta) need real space.
+            const actions = [...target.querySelectorAll('button, [role="button"], [role="tab"]')]
+                .filter((action) => action !== button && !button.contains(action)
+                    && action.getBoundingClientRect().height > 0);
+            if (!isFallback) {
+                for (const action of actions.reverse()) {
+                    let item = action;
+                    while (item.parentElement && target.contains(item.parentElement)) {
+                        const container = item.parentElement;
+                        const style = getComputedStyle(container);
+                        if (style.display === "flex" && style.flexDirection === "column"
+                            && container.children.length >= 2) {
+                            parent = container;
+                            anchor = item;
+                            break;
+                        }
+                        item = container;
+                    }
+                    if (anchor) {
+                        break;
+                    }
+                }
+            }
+            button.style.position = isFallback ? "fixed" : "static";
+            button.style.left = isFallback ? "12px" : "auto";
             button.style.top = "auto";
-            button.style.bottom = isFallback
-                ? "12px"
-                : `${Math.max(0, window.innerHeight - bounds.bottom + 90)}px`;
-            button.style.right = "";
-            button.style.zIndex = "2147483647";
-
-            if (button.parentElement !== target) {
+            button.style.bottom = isFallback ? "12px" : "auto";
+            button.style.right = "auto";
+            button.style.zIndex = isFallback ? "2147483647" : "auto";
+            button.style.flexShrink = "0";
+            button.style.alignSelf = "center";
+            button.style.display = this.visible ? "inline-flex" : "none";
+            if (anchor) {
+                if (button.parentElement !== parent || button.nextElementSibling !== anchor) {
+                    parent.insertBefore(button, anchor);
+                }
+            } else if (button.parentElement !== target) {
                 target.appendChild(button);
             }
         },
@@ -288,11 +315,12 @@
                 "color:inherit",
                 "cursor:pointer",
                 "display:inline-flex",
-                "height:40px",
+                "min-height:40px",
+                "box-sizing:border-box",
                 "justify-content:center",
                 "margin:4px",
                 "padding:8px",
-                "width:40px",
+                "min-width:40px",
             ];
             if (isFallback) {
                 styles.push(
