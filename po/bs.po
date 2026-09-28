@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-28 10:18-0300\n"
+"POT-Creation-Date: 2026-09-28 11:19-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Bosnian\n"
@@ -18,13 +18,13 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: zapzap/app/main_window_controller.py:278
+#: zapzap/app/main_window_controller.py:279
 #: zapzap/features/tray/sys_tray_manager.py:66
 #: zapzap/features/tray/sys_tray_manager.py:225
 msgid "Unmute"
 msgstr ""
 
-#: zapzap/app/main_window_controller.py:278
+#: zapzap/app/main_window_controller.py:279
 #: zapzap/features/shortcuts/model.py:29
 #: zapzap/features/tray/sys_tray_manager.py:66
 #: zapzap/features/tray/sys_tray_manager.py:225
@@ -816,7 +816,7 @@ msgstr ""
 #: zapzap/ui/components/main_window.py:186
 #: zapzap/ui/components/main_window.py:187
 #: zapzap/ui/components/main_window.py:206
-#: zapzap/ui/components/quick_accounts_popover.py:234
+#: zapzap/ui/components/quick_accounts_popover.py:343
 msgid "Downloads"
 msgstr "Preuzimanja"
 
@@ -1363,7 +1363,8 @@ msgstr "Profil i status"
 #: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/downloads/ui/downloads_menu.py:1081
 #: zapzap/ui/components/main_window.py:192
-#: zapzap/ui/components/quick_accounts_popover.py:237
+#: zapzap/ui/components/quick_accounts_popover.py:281
+#: zapzap/ui/components/quick_accounts_popover.py:346
 msgid "Settings"
 msgstr "Postavke"
 
@@ -1676,7 +1677,7 @@ msgstr "Lista naloga"
 
 #: zapzap/features/settings/pages/accounts/view.py:40
 #: zapzap/features/settings/pages/accounts/view.py:41
-#: zapzap/ui/components/quick_accounts_popover.py:217
+#: zapzap/ui/components/quick_accounts_popover.py:321
 msgid "Add account"
 msgstr "Dodaj račun"
 
@@ -3827,26 +3828,26 @@ msgstr "Kopiraj komandu"
 msgid "Account {}"
 msgstr "Nalog {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:766
+#: zapzap/features/browser/shell/browser_controller.py:772
 msgid "Account disabled"
 msgstr "Račun je onemogućen"
 
-#: zapzap/features/browser/shell/browser_controller.py:767
+#: zapzap/features/browser/shell/browser_controller.py:773
 msgid "This account is disabled."
 msgstr "Ovaj račun je onemogućen."
 
-#: zapzap/features/browser/shell/browser_controller.py:769
+#: zapzap/features/browser/shell/browser_controller.py:775
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Možete ga ponovo aktivirati sada ili koristiti meni desnim klikom za "
 "upravljanje ovim računom."
 
-#: zapzap/features/browser/shell/browser_controller.py:774
+#: zapzap/features/browser/shell/browser_controller.py:780
 msgid "Activate"
 msgstr "Aktiviraj"
 
-#: zapzap/features/browser/shell/browser_controller.py:775
+#: zapzap/features/browser/shell/browser_controller.py:781
 msgid "Not now"
 msgstr "Ne sada"
 
@@ -4875,24 +4876,36 @@ msgstr ""
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
 
-#: zapzap/ui/components/quick_accounts_popover.py:67
-#: zapzap/ui/components/quick_accounts_popover.py:80
-#: zapzap/ui/components/quick_accounts_popover.py:84
+#: zapzap/ui/components/quick_accounts_popover.py:69
+#: zapzap/ui/components/quick_accounts_popover.py:82
+#: zapzap/ui/components/quick_accounts_popover.py:86
 #, fuzzy
 msgid "Current account"
 msgstr "Trenutni račun: {}"
 
-#: zapzap/ui/components/quick_accounts_popover.py:85
+#: zapzap/ui/components/quick_accounts_popover.py:87
 #, fuzzy, python-brace-format
 msgid "Unread messages: {count}"
 msgstr "Nepročitani brojač"
 
-#: zapzap/ui/components/quick_accounts_popover.py:200
+#: zapzap/ui/components/quick_accounts_popover.py:271
 #, fuzzy
 msgid "Accounts and quick actions"
 msgstr "Radnje na računu"
 
-#: zapzap/ui/components/quick_accounts_popover.py:231
+#: zapzap/ui/components/quick_accounts_popover.py:276
+msgid "Pin panel"
+msgstr "Zakači panel"
+
+#: zapzap/ui/components/quick_accounts_popover.py:302
+msgid "Search accounts..."
+msgstr "Pretraži račune..."
+
+#: zapzap/ui/components/quick_accounts_popover.py:332
+msgid "Quick actions"
+msgstr "Brze radnje"
+
+#: zapzap/ui/components/quick_accounts_popover.py:340
 msgid "Audio"
 msgstr ""
 
@@ -5036,9 +5049,6 @@ msgstr ""
 
 #~ msgid "Enter the user name"
 #~ msgstr "Unesite korisničko ime"
-
-#~ msgid "My accounts"
-#~ msgstr "Moji nalozi"
 
 #~ msgid "Style"
 #~ msgstr "Stil"

@@ -82,6 +82,13 @@ class SystemIcon:
             </svg>
             """
         ),
+        "push_pin": (
+            """
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="{fill_color}" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 256 256">
+                <path d="M88 32h80l-12 56 28 28v20H72v-20l28-28-12-56Zm40 104v88"/>
+            </svg>
+            """
+        ),
         "donation_heart": (
             """
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="{fill_color}" viewBox="0 0 256 256">

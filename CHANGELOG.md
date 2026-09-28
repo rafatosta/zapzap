@@ -64,6 +64,11 @@ releases and the AppStream metadata.
   existing add-account flow, and routes audio, downloads and settings to their
   existing controllers while preserving drag behavior and screen-bound
   positioning.
+- Refined the native quick account panel with a compact account search, clearer
+  active-account and unread states, header pin/settings shortcuts, and
+  vertically arranged quick actions. The pin is local to the panel window;
+  search filters only existing account rows and leaves account state and action
+  routing unchanged.
 - Fixed quick-panel account selection for numeric persisted user IDs by keeping
   the signal argument's original type instead of requiring a string, and kept
   account switching safe in controller harnesses without the optional panel.

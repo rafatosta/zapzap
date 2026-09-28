@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-28 10:18-0300\n"
+"POT-Creation-Date: 2026-09-28 11:19-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: zapzap/app/main_window_controller.py:278
+#: zapzap/app/main_window_controller.py:279
 #: zapzap/features/tray/sys_tray_manager.py:66
 #: zapzap/features/tray/sys_tray_manager.py:225
 msgid "Unmute"
 msgstr ""
 
-#: zapzap/app/main_window_controller.py:278
+#: zapzap/app/main_window_controller.py:279
 #: zapzap/features/shortcuts/model.py:29
 #: zapzap/features/tray/sys_tray_manager.py:66
 #: zapzap/features/tray/sys_tray_manager.py:225
@@ -777,7 +777,7 @@ msgstr ""
 #: zapzap/ui/components/main_window.py:186
 #: zapzap/ui/components/main_window.py:187
 #: zapzap/ui/components/main_window.py:206
-#: zapzap/ui/components/quick_accounts_popover.py:234
+#: zapzap/ui/components/quick_accounts_popover.py:343
 msgid "Downloads"
 msgstr ""
 
@@ -1310,7 +1310,8 @@ msgstr ""
 #: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/downloads/ui/downloads_menu.py:1081
 #: zapzap/ui/components/main_window.py:192
-#: zapzap/ui/components/quick_accounts_popover.py:237
+#: zapzap/ui/components/quick_accounts_popover.py:281
+#: zapzap/ui/components/quick_accounts_popover.py:346
 msgid "Settings"
 msgstr ""
 
@@ -1619,7 +1620,7 @@ msgstr ""
 
 #: zapzap/features/settings/pages/accounts/view.py:40
 #: zapzap/features/settings/pages/accounts/view.py:41
-#: zapzap/ui/components/quick_accounts_popover.py:217
+#: zapzap/ui/components/quick_accounts_popover.py:321
 msgid "Add account"
 msgstr ""
 
@@ -3645,24 +3646,24 @@ msgstr ""
 msgid "Account {}"
 msgstr ""
 
-#: zapzap/features/browser/shell/browser_controller.py:766
+#: zapzap/features/browser/shell/browser_controller.py:772
 msgid "Account disabled"
 msgstr ""
 
-#: zapzap/features/browser/shell/browser_controller.py:767
+#: zapzap/features/browser/shell/browser_controller.py:773
 msgid "This account is disabled."
 msgstr ""
 
-#: zapzap/features/browser/shell/browser_controller.py:769
+#: zapzap/features/browser/shell/browser_controller.py:775
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 
-#: zapzap/features/browser/shell/browser_controller.py:774
+#: zapzap/features/browser/shell/browser_controller.py:780
 msgid "Activate"
 msgstr ""
 
-#: zapzap/features/browser/shell/browser_controller.py:775
+#: zapzap/features/browser/shell/browser_controller.py:781
 msgid "Not now"
 msgstr ""
 
@@ -4647,21 +4648,33 @@ msgstr ""
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
 
-#: zapzap/ui/components/quick_accounts_popover.py:67
-#: zapzap/ui/components/quick_accounts_popover.py:80
-#: zapzap/ui/components/quick_accounts_popover.py:84
+#: zapzap/ui/components/quick_accounts_popover.py:69
+#: zapzap/ui/components/quick_accounts_popover.py:82
+#: zapzap/ui/components/quick_accounts_popover.py:86
 msgid "Current account"
 msgstr ""
 
-#: zapzap/ui/components/quick_accounts_popover.py:85
+#: zapzap/ui/components/quick_accounts_popover.py:87
 #, python-brace-format
 msgid "Unread messages: {count}"
 msgstr ""
 
-#: zapzap/ui/components/quick_accounts_popover.py:200
+#: zapzap/ui/components/quick_accounts_popover.py:271
 msgid "Accounts and quick actions"
 msgstr ""
 
-#: zapzap/ui/components/quick_accounts_popover.py:231
+#: zapzap/ui/components/quick_accounts_popover.py:276
+msgid "Pin panel"
+msgstr ""
+
+#: zapzap/ui/components/quick_accounts_popover.py:302
+msgid "Search accounts..."
+msgstr ""
+
+#: zapzap/ui/components/quick_accounts_popover.py:332
+msgid "Quick actions"
+msgstr ""
+
+#: zapzap/ui/components/quick_accounts_popover.py:340
 msgid "Audio"
 msgstr ""

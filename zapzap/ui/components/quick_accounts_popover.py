@@ -3,15 +3,17 @@
 from gettext import gettext as _
 
 from PyQt6.QtCore import QPoint, QSize, Qt, pyqtSignal
-from PyQt6.QtGui import QColor, QGuiApplication
+from PyQt6.QtGui import QColor, QGuiApplication, QIcon
 from PyQt6.QtWidgets import (
     QFrame,
     QGraphicsDropShadowEffect,
     QHBoxLayout,
     QLabel,
+    QLineEdit,
     QPushButton,
     QScrollArea,
     QSizePolicy,
+    QToolButton,
     QVBoxLayout,
     QWidget,
 )
@@ -28,7 +30,7 @@ class QuickAccountRow(QPushButton):
         self.runtime = runtime
         self.setObjectName("QuickAccountRow")
         self.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.setMinimumHeight(52)
+        self.setMinimumHeight(54)
         self.setSizePolicy(
             QSizePolicy.Policy.Expanding,
             QSizePolicy.Policy.Fixed,
@@ -40,11 +42,11 @@ class QuickAccountRow(QPushButton):
     def _setup_ui(self):
         layout = QHBoxLayout(self)
         layout.setContentsMargins(8, 6, 8, 6)
-        layout.setSpacing(10)
+        layout.setSpacing(9)
 
         self.avatar = QLabel(self)
         self.avatar.setObjectName("QuickAccountAvatar")
-        self.avatar.setFixedSize(34, 34)
+        self.avatar.setFixedSize(36, 36)
         self.avatar.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(self.avatar)
 
@@ -70,7 +72,7 @@ class QuickAccountRow(QPushButton):
     def refresh(self):
         button = self.runtime.button
         user = self.runtime.user
-        self.avatar.setPixmap(button.icon().pixmap(34, 34))
+        self.avatar.setPixmap(button.icon().pixmap(36, 36))
         self.name_label.setText(user.name or self.tr("Unnamed account"))
         count = button.number_notifications
         self.unread_label.setText(str(count) if count > 0 else "")
@@ -98,10 +100,10 @@ class QuickAccountsPopover(QFrame):
     downloads_requested = pyqtSignal()
     settings_requested = pyqtSignal()
 
-    WIDTH = 320
+    WIDTH = 290
     MAX_VISIBLE_ACCOUNTS = 4
-    ACCOUNT_ROW_HEIGHT = 55
-    SHADOW_MARGIN = 10
+    ACCOUNT_ROW_HEIGHT = 56
+    SHADOW_MARGIN = 8
 
     STYLE = """
     QFrame#QuickAccountsPopover {
@@ -111,48 +113,108 @@ class QuickAccountsPopover(QFrame):
     QFrame#QuickAccountsSurface {
         background: palette(base);
         border: 1px solid palette(mid);
-        border-radius: 12px;
+        border-radius: 18px;
     }
     QPushButton#QuickAccountRow {
         text-align: left;
         background: transparent;
         border: 1px solid transparent;
-        border-radius: 9px;
+        border-radius: 11px;
         padding: 0;
     }
     QPushButton#QuickAccountRow:hover {
         background: palette(alternate-base);
-        border-color: palette(mid);
     }
     QPushButton#QuickAccountRow[selected="true"] {
         background: palette(alternate-base);
-        border-color: palette(highlight);
+        border-color: transparent;
     }
     QLabel#QuickAccountAvatar {
         background: palette(alternate-base);
         border: 1px solid palette(mid);
         border-radius: 17px;
     }
-    QLabel#QuickAccountUnread,
-    QLabel#QuickAccountActive {
+    QLabel#QuickAccountUnread {
         color: palette(highlight);
+        font-weight: bold;
+        background: palette(alternate-base);
+        border-radius: 10px;
+        padding: 2px 5px;
+        min-width: 18px;
+    }
+    QLabel#QuickAccountActive {
+        color: palette(highlighted-text);
+        background: palette(highlight);
+        border-radius: 10px;
+        min-width: 20px;
+        max-width: 20px;
+        min-height: 20px;
+        max-height: 20px;
+        qproperty-alignment: AlignCenter;
+        font-size: 12px;
         font-weight: bold;
     }
     QScrollArea#QuickAccountsScroll {
         background: transparent;
         border: 0;
     }
-    QPushButton#QuickAccountsAction {
-        min-height: 34px;
+    QFrame#QuickAccountsSearch {
+        background: palette(alternate-base);
+        border: 1px solid palette(mid);
+        border-radius: 9px;
+    }
+    QLineEdit#QuickAccountsSearchInput {
+        background: transparent;
+        border: 0;
+        color: palette(text);
+        font-size: 12px;
+        min-height: 30px;
+    }
+    QToolButton#QuickAccountsHeaderAction {
+        background: transparent;
         border: 1px solid transparent;
         border-radius: 8px;
-        background: transparent;
-        padding: 4px 8px;
-        text-align: left;
     }
-    QPushButton#QuickAccountsAction:hover {
+    QToolButton#QuickAccountsHeaderAction:hover {
         background: palette(alternate-base);
-        border-color: palette(mid);
+    }
+    QToolButton#QuickAccountsHeaderAction:checked {
+        background: palette(highlight);
+    }
+    QPushButton#QuickAccountsAddAction {
+        min-height: 42px;
+        border: 1px solid transparent;
+        border-radius: 11px;
+        background: palette(alternate-base);
+        padding: 5px 10px;
+        text-align: left;
+        font-size: 12px;
+        font-weight: 600;
+    }
+    QPushButton#QuickAccountsAddAction:hover,
+    QToolButton#QuickAccountsAction:hover {
+        background: palette(midlight);
+    }
+    QToolButton#QuickAccountsAction {
+        min-width: 68px;
+        min-height: 64px;
+        border: 1px solid transparent;
+        border-radius: 12px;
+        background: palette(alternate-base);
+        padding: 5px 3px;
+        color: palette(text);
+        font-size: 11px;
+        font-weight: normal;
+    }
+    QPushButton#QuickAccountsAddAction:pressed,
+    QToolButton#QuickAccountsAction:pressed,
+    QToolButton#QuickAccountsHeaderAction:pressed {
+        background: palette(mid);
+    }
+    QPushButton#QuickAccountsAddAction:focus,
+    QToolButton#QuickAccountsAction:focus,
+    QToolButton#QuickAccountsHeaderAction:focus {
+        border-color: palette(highlight);
     }
     QFrame#QuickAccountsDivider {
         background: palette(mid);
@@ -193,13 +255,55 @@ class QuickAccountsPopover(QFrame):
         self.surface.setGraphicsEffect(shadow)
 
         layout = QVBoxLayout(self.surface)
-        layout.setContentsMargins(14, 14, 14, 12)
-        layout.setSpacing(8)
+        layout.setContentsMargins(14, 13, 14, 12)
+        layout.setSpacing(7)
 
+        header = QHBoxLayout()
+        header.setContentsMargins(0, 0, 0, 0)
+        header.setSpacing(4)
+        identity = QVBoxLayout()
+        identity.setContentsMargins(0, 0, 0, 0)
+        identity.setSpacing(1)
         self.title_label = Label("ZapZap", "section_title", self.surface)
+        self.title_label.setStyleSheet(
+            "color: palette(text); font-size: 18px; font-weight: 600;"
+        )
         self.subtitle_label = Label(_("Accounts and quick actions"), "small", self.surface)
-        layout.addWidget(self.title_label)
-        layout.addWidget(self.subtitle_label)
+        identity.addWidget(self.title_label)
+        identity.addWidget(self.subtitle_label)
+        header.addLayout(identity, 1)
+
+        self.pin_button = self._header_button("push_pin", _("Pin panel"))
+        self.pin_button.setCheckable(True)
+        self.pin_button.toggled.connect(self._set_pinned)
+        header.addWidget(self.pin_button)
+
+        self.header_settings_button = self._header_button("open_settings", _("Settings"))
+        self.header_settings_button.clicked.connect(self.settings_requested)
+        header.addWidget(self.header_settings_button)
+        layout.addLayout(header)
+
+        search_frame = QFrame(self.surface)
+        search_frame.setObjectName("QuickAccountsSearch")
+        search_layout = QHBoxLayout(search_frame)
+        search_layout.setContentsMargins(8, 1, 8, 1)
+        search_layout.setSpacing(6)
+        search_icon = QToolButton(search_frame)
+        search_icon.setObjectName("QuickAccountsSearchIcon")
+        search_icon.setAutoRaise(True)
+        search_icon.setFixedSize(18, 26)
+        search_icon.setIcon(QIcon.fromTheme("edit-find"))
+        search_icon.setIconSize(QSize(14, 14))
+        search_icon.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        search_icon.setEnabled(False)
+        search_layout.addWidget(search_icon)
+        self.search_input = QLineEdit(search_frame)
+        self.search_input.setObjectName("QuickAccountsSearchInput")
+        self.search_input.setPlaceholderText(_("Search accounts..."))
+        self.search_input.setClearButtonEnabled(True)
+        self.search_input.textChanged.connect(self._filter_accounts)
+        search_layout.addWidget(self.search_input, 1)
+        layout.addWidget(search_frame)
 
         self.scroll = QScrollArea(self.surface)
         self.scroll.setObjectName("QuickAccountsScroll")
@@ -224,17 +328,22 @@ class QuickAccountsPopover(QFrame):
         divider.setFrameShape(QFrame.Shape.HLine)
         layout.addWidget(divider)
 
+        self.quick_actions_label = Label(
+            _("Quick actions"), "small", self.surface
+        )
+        layout.addWidget(self.quick_actions_label)
+
         actions = QHBoxLayout()
         actions.setContentsMargins(0, 0, 0, 0)
-        actions.setSpacing(3)
+        actions.setSpacing(7)
         self.audio_button = self._action_button(
-            "audio", _("Audio"), SystemIcon.get_icon("volume_on")
+            "audio", _("Audio"), SystemIcon.get_icon("volume_on"), vertical=True
         )
         self.downloads_button = self._action_button(
-            "downloads", _("Downloads"), SystemIcon.get_icon("update_available")
+            "downloads", _("Downloads"), SystemIcon.get_icon("update_available"), vertical=True
         )
         self.settings_button = self._action_button(
-            "settings", _("Settings"), SystemIcon.get_icon("open_settings")
+            "settings", _("Settings"), SystemIcon.get_icon("open_settings"), vertical=True
         )
         for button, signal in (
             (self.audio_button, self.audio_requested),
@@ -245,13 +354,51 @@ class QuickAccountsPopover(QFrame):
             actions.addWidget(button, 1)
         layout.addLayout(actions)
 
-    def _action_button(self, object_name, text, icon):
-        button = QPushButton(icon, text, self.surface)
-        button.setObjectName("QuickAccountsAction")
+    def _header_button(self, icon_name, text):
+        button = QToolButton(self.surface)
+        button.setObjectName("QuickAccountsHeaderAction")
+        button.setIcon(SystemIcon.get_icon(icon_name))
+        button.setIconSize(QSize(18, 18))
+        button.setFixedSize(32, 32)
         button.setCursor(Qt.CursorShape.PointingHandCursor)
-        button.setIconSize(QSize(16, 16))
+        button.setToolTip(text)
         button.setAccessibleName(text)
         return button
+
+    def _action_button(self, object_name, text, icon, vertical=False):
+        if vertical:
+            button = QToolButton(self.surface)
+            button.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonTextUnderIcon)
+            button.setText(text)
+        else:
+            button = QPushButton(icon, text, self.surface)
+            button.setObjectName("QuickAccountsAddAction")
+        button.setObjectName(
+            "QuickAccountsAction" if vertical else "QuickAccountsAddAction"
+        )
+        button.setIcon(icon)
+        button.setCursor(Qt.CursorShape.PointingHandCursor)
+        button.setIconSize(QSize(20 if vertical else 18, 20 if vertical else 18))
+        button.setAccessibleName(text)
+        button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+        return button
+
+    def _filter_accounts(self, text):
+        query = text.strip().casefold()
+        visible_count = 0
+        for row in self._rows:
+            name = row.runtime.user.name or self.tr("Unnamed account")
+            row_visible = not query or query in name.casefold()
+            row.setVisible(row_visible)
+            visible_count += int(row_visible)
+
+        self.account_container.setMinimumHeight(
+            visible_count * self.ACCOUNT_ROW_HEIGHT
+        )
+        scroll_rows = min(visible_count, self.MAX_VISIBLE_ACCOUNTS)
+        self.scroll.setFixedHeight(scroll_rows * self.ACCOUNT_ROW_HEIGHT)
+        self.scroll.setVisible(scroll_rows > 0)
+        self.adjustSize()
 
     def set_accounts(self, accounts):
         for row in self._rows:
@@ -267,14 +414,7 @@ class QuickAccountsPopover(QFrame):
             )
             self.account_layout.addWidget(row)
             self._rows.append(row)
-        account_count = len(self._rows)
-        self.account_container.setMinimumHeight(
-            account_count * self.ACCOUNT_ROW_HEIGHT
-        )
-        visible_count = min(account_count, self.MAX_VISIBLE_ACCOUNTS)
-        self.scroll.setFixedHeight(visible_count * self.ACCOUNT_ROW_HEIGHT)
-        self.scroll.setVisible(account_count > 0)
-        self.adjustSize()
+        self._filter_accounts(self.search_input.text())
 
     def update_active_account(self):
         for row in self._rows:
@@ -288,7 +428,17 @@ class QuickAccountsPopover(QFrame):
             SystemIcon.get_icon("update_available", theme)
         )
         self.settings_button.setIcon(SystemIcon.get_icon("open_settings", theme))
+        self.header_settings_button.setIcon(
+            SystemIcon.get_icon("open_settings", theme)
+        )
+        self.pin_button.setIcon(SystemIcon.get_icon("push_pin", theme))
         self.add_account_button.setIcon(SystemIcon.get_icon("new_account", theme))
+
+    def _set_pinned(self, pinned):
+        self.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint, pinned)
+        if self.isVisible():
+            self.show()
+            self.raise_()
 
     def popup_for(self, anchor):
         self.adjustSize()

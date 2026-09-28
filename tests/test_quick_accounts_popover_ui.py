@@ -83,6 +83,52 @@ class QuickAccountsPopoverTests(QtTestCase):
 
         callback.assert_called_once_with(42)
 
+    def test_search_filters_only_accounts_and_header_settings_reuses_action(self):
+        panel = QuickAccountsPopover()
+        panel.show()
+        self.addCleanup(panel.close)
+        panel.set_accounts([
+            self._runtime("Personal", "personal"),
+            self._runtime("Work", "work"),
+        ])
+        settings_callback = Mock()
+        panel.settings_requested.connect(settings_callback)
+
+        panel.search_input.setText("wOrK")
+
+        self.assertTrue(panel._rows[0].isHidden())
+        self.assertFalse(panel._rows[1].isHidden())
+        self.assertEqual(panel.scroll.height(), panel.ACCOUNT_ROW_HEIGHT)
+        self.assertTrue(panel.add_account_button.isVisible())
+        self.assertTrue(panel.audio_button.isVisible())
+        self.assertTrue(panel.downloads_button.isVisible())
+        self.assertTrue(panel.settings_button.isVisible())
+
+        QTest.mouseClick(panel.header_settings_button, Qt.MouseButton.LeftButton)
+        settings_callback.assert_called_once_with()
+
+        panel.search_input.clear()
+        self.assertTrue(all(not row.isHidden() for row in panel._rows))
+
+    def test_pin_button_toggles_only_the_popup_window_flag(self):
+        panel = QuickAccountsPopover()
+        panel.show()
+        self.addCleanup(panel.close)
+
+        QTest.mouseClick(panel.pin_button, Qt.MouseButton.LeftButton)
+
+        self.assertTrue(panel.pin_button.isChecked())
+        self.assertTrue(
+            panel.windowFlags() & Qt.WindowType.WindowStaysOnTopHint
+        )
+
+        QTest.mouseClick(panel.pin_button, Qt.MouseButton.LeftButton)
+
+        self.assertFalse(panel.pin_button.isChecked())
+        self.assertFalse(
+            panel.windowFlags() & Qt.WindowType.WindowStaysOnTopHint
+        )
+
     def test_many_accounts_keep_actions_outside_scroll_area(self):
         panel = QuickAccountsPopover()
         panel.show()

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-28 10:18-0300\n"
+"POT-Creation-Date: 2026-09-28 11:19-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Swedish\n"
@@ -19,13 +19,13 @@ msgstr ""
 "X-Generator: Poedit 3.8\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: zapzap/app/main_window_controller.py:278
+#: zapzap/app/main_window_controller.py:279
 #: zapzap/features/tray/sys_tray_manager.py:66
 #: zapzap/features/tray/sys_tray_manager.py:225
 msgid "Unmute"
 msgstr ""
 
-#: zapzap/app/main_window_controller.py:278
+#: zapzap/app/main_window_controller.py:279
 #: zapzap/features/shortcuts/model.py:29
 #: zapzap/features/tray/sys_tray_manager.py:66
 #: zapzap/features/tray/sys_tray_manager.py:225
@@ -817,7 +817,7 @@ msgstr ""
 #: zapzap/ui/components/main_window.py:186
 #: zapzap/ui/components/main_window.py:187
 #: zapzap/ui/components/main_window.py:206
-#: zapzap/ui/components/quick_accounts_popover.py:234
+#: zapzap/ui/components/quick_accounts_popover.py:343
 msgid "Downloads"
 msgstr "Nedladdningar"
 
@@ -1363,7 +1363,8 @@ msgstr "Profil och status"
 #: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/downloads/ui/downloads_menu.py:1081
 #: zapzap/ui/components/main_window.py:192
-#: zapzap/ui/components/quick_accounts_popover.py:237
+#: zapzap/ui/components/quick_accounts_popover.py:281
+#: zapzap/ui/components/quick_accounts_popover.py:346
 msgid "Settings"
 msgstr "Inställningar"
 
@@ -1679,7 +1680,7 @@ msgstr "Kontolista"
 
 #: zapzap/features/settings/pages/accounts/view.py:40
 #: zapzap/features/settings/pages/accounts/view.py:41
-#: zapzap/ui/components/quick_accounts_popover.py:217
+#: zapzap/ui/components/quick_accounts_popover.py:321
 msgid "Add account"
 msgstr "Lägg till konto"
 
@@ -3824,26 +3825,26 @@ msgstr "Kopiera kommando"
 msgid "Account {}"
 msgstr "Konto {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:766
+#: zapzap/features/browser/shell/browser_controller.py:772
 msgid "Account disabled"
 msgstr "Konto inaktiverat"
 
-#: zapzap/features/browser/shell/browser_controller.py:767
+#: zapzap/features/browser/shell/browser_controller.py:773
 msgid "This account is disabled."
 msgstr "Det här kontot är inaktiverat."
 
-#: zapzap/features/browser/shell/browser_controller.py:769
+#: zapzap/features/browser/shell/browser_controller.py:775
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Du kan återaktivera det nu eller använda högerklicksmenyn för att hantera "
 "detta konto."
 
-#: zapzap/features/browser/shell/browser_controller.py:774
+#: zapzap/features/browser/shell/browser_controller.py:780
 msgid "Activate"
 msgstr "Aktivera"
 
-#: zapzap/features/browser/shell/browser_controller.py:775
+#: zapzap/features/browser/shell/browser_controller.py:781
 msgid "Not now"
 msgstr "Inte nu"
 
@@ -4881,24 +4882,36 @@ msgstr ""
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
 
-#: zapzap/ui/components/quick_accounts_popover.py:67
-#: zapzap/ui/components/quick_accounts_popover.py:80
-#: zapzap/ui/components/quick_accounts_popover.py:84
+#: zapzap/ui/components/quick_accounts_popover.py:69
+#: zapzap/ui/components/quick_accounts_popover.py:82
+#: zapzap/ui/components/quick_accounts_popover.py:86
 #, fuzzy
 msgid "Current account"
 msgstr "Aktuellt konto: {}"
 
-#: zapzap/ui/components/quick_accounts_popover.py:85
+#: zapzap/ui/components/quick_accounts_popover.py:87
 #, fuzzy, python-brace-format
 msgid "Unread messages: {count}"
 msgstr "Oläst räknare"
 
-#: zapzap/ui/components/quick_accounts_popover.py:200
+#: zapzap/ui/components/quick_accounts_popover.py:271
 #, fuzzy
 msgid "Accounts and quick actions"
 msgstr "Kontohändelser"
 
-#: zapzap/ui/components/quick_accounts_popover.py:231
+#: zapzap/ui/components/quick_accounts_popover.py:276
+msgid "Pin panel"
+msgstr "Fäst panelen"
+
+#: zapzap/ui/components/quick_accounts_popover.py:302
+msgid "Search accounts..."
+msgstr "Sök konton..."
+
+#: zapzap/ui/components/quick_accounts_popover.py:332
+msgid "Quick actions"
+msgstr "Snabbåtgärder"
+
+#: zapzap/ui/components/quick_accounts_popover.py:340
 msgid "Audio"
 msgstr ""
 
@@ -5068,9 +5081,6 @@ msgstr ""
 
 #~ msgid "Enter the user name"
 #~ msgstr "Skriv in användarnamn"
-
-#~ msgid "My accounts"
-#~ msgstr "Mina konton"
 
 #~ msgid "Style"
 #~ msgstr "Stil"
