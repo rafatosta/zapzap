@@ -100,7 +100,7 @@ class QuickAccountsPopover(QFrame):
     downloads_requested = pyqtSignal()
     settings_requested = pyqtSignal()
 
-    WIDTH = 290
+    WIDTH = 320
     MAX_VISIBLE_ACCOUNTS = 4
     ACCOUNT_ROW_HEIGHT = 56
     SHADOW_MARGIN = 8

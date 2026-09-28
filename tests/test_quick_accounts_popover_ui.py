@@ -30,6 +30,12 @@ class QuickAccountsPopoverTests(QtTestCase):
         self.assertEqual(row.unread_label.text(), "8")
         self.assertFalse(row.unread_label.isHidden())
 
+    def test_popup_uses_compact_fixed_width(self):
+        panel = QuickAccountsPopover()
+        self.addCleanup(panel.close)
+
+        self.assertEqual(panel.width(), 320)
+
     def test_active_account_is_highlighted(self):
         runtime = self._runtime("Rafael", "rafael")
         runtime.button.selected()

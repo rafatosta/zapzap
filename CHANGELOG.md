@@ -68,7 +68,7 @@ releases and the AppStream metadata.
   active-account and unread states, header pin/settings shortcuts, and
   vertically arranged quick actions. The pin is local to the panel window;
   search filters only existing account rows and leaves account state and action
-  routing unchanged.
+  routing unchanged. Expanded the panel width to 320 px for improved spacing.
 - Fixed quick-panel account selection for numeric persisted user IDs by keeping
   the signal argument's original type instead of requiring a string, and kept
   account switching safe in controller harnesses without the optional panel.
