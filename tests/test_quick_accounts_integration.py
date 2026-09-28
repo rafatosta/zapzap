@@ -74,5 +74,68 @@ class QuickAccountsIntegrationTests(unittest.TestCase):
         )
 
 
+from qt_test_case import QtTestCase
+from PyQt6.QtCore import QEventLoop, QTimer
+from PyQt6 import sip
+from PyQt6.QtWebEngineWidgets import QWebEngineView
+
+
+class QuickAccountsAppearanceTests(QtTestCase):
+    def javascript(self, page, script):
+        result = []
+        loop = QEventLoop()
+        page.runJavaScript(script, lambda value: (result.append(value), loop.quit()))
+        QTimer.singleShot(15000, loop.quit)
+        loop.exec()
+        self.assertEqual(len(result), 1)
+        return result[0]
+
+    def test_icon_tracks_navigation_styles_and_falls_back(self):
+        view = QWebEngineView()
+        self.addCleanup(lambda: sip.delete(view))
+        view.resize(800, 600)
+        view.show()
+        page = view.page()
+        loop = QEventLoop()
+        loaded = []
+        page.loadFinished.connect(lambda ok: (loaded.append(ok), loop.quit()))
+        page.setHtml("""<style>
+            nav svg { fill: rgb(12, 34, 56); width:24px; height:24px }
+            body.dark nav svg { fill: rgb(210, 220, 230); width:28px; height:28px }
+            </style><nav role="navigation"><button><svg></svg></button></nav>""")
+        QTimer.singleShot(15000, loop.quit)
+        loop.exec()
+        self.assertEqual(loaded, [True])
+        controller = SCRIPT.read_text().split("    const QuickAccountsController =", 1)[1]
+        controller = controller.split("    const ThemeController =", 1)[0]
+        controller = controller.replace("{quick_accounts_visible}", "true").replace(
+            "{quick_accounts_icon}", '<svg viewBox="0 0 24 24"></svg>'
+        )
+        self.javascript(page, "const QuickAccountsController =" + controller +
+                        "QuickAccountsController.boot();")
+        snapshot = """(() => {
+            const icon = document.querySelector('[data-zapzap-component] svg');
+            const style = getComputedStyle(icon);
+            return [style.fill, style.width, style.height];
+        })()"""
+        self.assertEqual(self.javascript(page, snapshot),
+                         ["rgb(12, 34, 56)", "24px", "24px"])
+        self.javascript(page, 'document.body.className = "dark";')
+        # Wait for the real MutationObserver and requestAnimationFrame, without
+        # invoking ensureButton explicitly.
+        wait = QEventLoop()
+        QTimer.singleShot(250, wait.quit)
+        wait.exec()
+        self.assertEqual(self.javascript(page, snapshot),
+                         ["rgb(210, 220, 230)", "28px", "28px"])
+        self.javascript(page, """
+            document.querySelector('nav > button').remove();
+            QuickAccountsController.setIconColor('#abcdef');
+            QuickAccountsController.ensureButton();
+        """)
+        self.assertEqual(self.javascript(page, snapshot),
+                         ["rgb(171, 205, 239)", "20px", "20px"])
+
+
 if __name__ == "__main__":
     unittest.main()

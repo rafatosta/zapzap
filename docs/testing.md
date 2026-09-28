@@ -119,7 +119,7 @@ documente o que ele protege.
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
 | `test_profile_sync.py` | validação de dados pontuais do perfil WhatsApp e normalização da foto |
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
-| `test_quick_accounts_integration.py` | contrato estático do botão integrado de contas, bridge, fallback e isolamento do JavaScript |
+| `test_quick_accounts_integration.py` | contrato do botão integrado de contas, aparência dinâmica no WebEngine, bridge, fallback e isolamento do JavaScript |
 | `test_reporting.py` | sanitização, minimização, Markdown, fila/TTL e captura local de encerramentos inesperados |
 | `test_reporting_ui.py` | formulário em duas etapas, prévia canônica, edição, cancelamento, clipboard e abertura segura do GitHub |
 | `test_segmented_control.py` | seleção exclusiva, sinais, mouse, teclado, acessibilidade, tamanhos, raios e temas |
@@ -550,3 +550,12 @@ Durante desenvolvimento, rode o módulo afetado. Antes de entregar:
 3. manifestos de pacote e documentação;
 4. `compileall` e `git diff --check`;
 5. validação manual nas plataformas ou sessões gráficas afetadas.
+
+## Validação manual do ícone integrado de contas
+
+Com a sidebar oculta e o atalho integrado selecionado, compare o ícone de
+visão geral com os ícones não selecionados da barra do WhatsApp. Alterne tema
+claro/escuro, redimensione a janela e recarregue a página: cor e dimensões
+devem acompanhar a barra, com um único botão que continue abrindo a grade.
+Repita nas plataformas mantidas; o teste WebEngine com DOM sintético não
+comprova a aparência na versão remota do WhatsApp.

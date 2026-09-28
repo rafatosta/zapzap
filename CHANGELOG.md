@@ -138,6 +138,10 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Made the integrated accounts overview icon follow the visible WhatsApp
+  navigation icons’ color and dimensions after DOM and theme changes, retaining
+  the native theme fallback when no reference icon is available.
+
 - Fixed manual WhatsApp profile photo synchronization ignoring the authenticated
   CDN avatar in the chat-list header. The action now reads the avatar URL from
   that header, downloads its bytes, and converts them to the embedded PNG

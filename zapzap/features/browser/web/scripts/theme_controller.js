@@ -125,10 +125,20 @@
             this.resizeHandler = () => this.scheduleEnsure();
             window.addEventListener("resize", this.resizeHandler);
             if (document.documentElement) {
-                this.observer = new MutationObserver(() => this.scheduleEnsure());
+                this.observer = new MutationObserver((records) => {
+                    // Ignore our own styles to avoid a perpetual animation-frame loop.
+                    if (records.some((record) => !record.target.closest?.(
+                        '[data-zapzap-component="quick-accounts"]'
+                    ))) {
+                        this.scheduleEnsure();
+                    }
+                });
                 this.observer.observe(document.documentElement, {
                     childList: true,
                     subtree: true,
+                    attributes: true,
+                    attributeFilter: ["class", "style", "fill", "width", "height",
+                        "aria-selected", "aria-pressed", "aria-current", "disabled", "aria-disabled"],
                 });
             }
         },
@@ -157,12 +167,46 @@
 
         setIconColor(color) {
             this.iconColor = color;
-            const icon = document.querySelector(
-                '[data-zapzap-component="quick-accounts"] svg'
-            );
-            if (icon) {
-                icon.setAttribute("fill", color);
+            this.scheduleEnsure();
+        },
+
+        syncIconAppearance(button, target) {
+            const icon = button.querySelector("svg");
+            if (!icon) {
+                return;
             }
+            let color = this.iconColor || "currentColor";
+            let width = "20px";
+            let height = "20px";
+            // Sample an ordinary navigation action, never our own icon or an
+            // active/disabled action whose color represents a special state.
+            const candidates = target === document.body ? [] : target.querySelectorAll(
+                'button svg, [role="button"] svg, [role="tab"] svg'
+            );
+            for (const candidate of candidates) {
+                if (button.contains(candidate) || candidate.closest(
+                    '[aria-selected="true"], [aria-pressed="true"], ' +
+                    '[aria-current]:not([aria-current="false"]), [disabled], [aria-disabled="true"]'
+                )) {
+                    continue;
+                }
+                const bounds = candidate.getBoundingClientRect();
+                const style = getComputedStyle(candidate);
+                if (bounds.width <= 0 || bounds.height <= 0 || style.visibility === "hidden") {
+                    continue;
+                }
+                const paint = getComputedStyle(candidate.querySelector("path") || candidate);
+                color = paint.fill !== "none" && paint.fill !== "rgba(0, 0, 0, 0)"
+                    ? paint.fill : paint.color;
+                width = style.width;
+                height = style.height;
+                break;
+            }
+            icon.style.fill = color;
+            icon.style.color = color;
+            icon.style.width = width;
+            icon.style.height = height;
+            icon.style.flexShrink = "0";
         },
 
         scheduleEnsure() {
@@ -291,10 +335,12 @@
                 if (existing) {
                     existing.hidden = !this.visible;
                     this.placeButton(existing, target);
+                    this.syncIconAppearance(existing, target);
                     return;
                 }
                 const button = this.createButton(target === document.body);
                 this.placeButton(button, target);
+                this.syncIconAppearance(button, target);
             } catch (_) {
                 // DOM changes in WhatsApp Web must never break the host page.
             }

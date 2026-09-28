@@ -212,7 +212,11 @@ semânticos e detecta também o trilho de navegação estreito, alto e encostado
 esquerda. Alinha o botão ao centro horizontal, acima do controle de perfil no
 rodapé desse trilho; somente sem um ponto de montagem disponível usa um fallback
 fixo no alto à esquerda. Um
-`MutationObserver` agendado e o marcador
+`MutationObserver` agendado acompanha inserções e mudanças de atributos de
+aparência, ignorando alterações no próprio botão para evitar ciclos. O SVG
+acompanha cor e dimensões computadas de um ícone de navegação visível e não
+selecionado; sem referência, mantém 20 px e a cor enviada pelo tema nativo.
+O script usa o marcador
 `data-zapzap-component="quick-accounts"`; a lista e a troca de contas continuam
 na grade nativa. A bridge `zapZapBridge` encaminha somente a solicitação de
 abertura e o estado da sidebar, e o botão integrado permanece oculto enquanto
