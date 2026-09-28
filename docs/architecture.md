@@ -208,11 +208,13 @@ quando chamam identificadores Python indiretamente.
 
 O script `theme_controller.js` também mantém o ponto de entrada opcional
 `QuickAccountsController` no DOM do WhatsApp Web. Ele usa apenas seletores
-semânticos e detecta também o trilho de navegação estreito, alto e encostado à
+semânticos e ancestrais dos botões nativos, detectando também o trilho de navegação estreito, alto e encostado à
 esquerda. Insere o botão no fluxo da coluna de ações inferiores, antes da última ação,
 reservando espaço mesmo quando há itens adicionais como Beta. Sem coluna,
 usa o fluxo do ponto de montagem; somente sem esse ponto usa um fallback
-fixo no canto inferior esquerdo. Um
+fixo no canto inferior esquerdo. Após inserir, verifica geometria e hit testing:
+se o contêiner recortar o botão, move-o para o body em um espaço livre medido
+no trilho; sem espaço disponível, usa a região ao lado do trilho. Um
 `MutationObserver` agendado acompanha inserções e mudanças de atributos de
 aparência, ignorando alterações no próprio botão para evitar ciclos. O SVG
 acompanha cor e dimensões computadas de um ícone de navegação visível e não

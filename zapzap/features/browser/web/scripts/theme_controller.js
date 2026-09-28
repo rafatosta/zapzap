@@ -127,9 +127,13 @@
             if (document.documentElement) {
                 this.observer = new MutationObserver((records) => {
                     // Ignore our own styles to avoid a perpetual animation-frame loop.
-                    if (records.some((record) => !record.target.closest?.(
-                        '[data-zapzap-component="quick-accounts"]'
-                    ))) {
+                    const own = (node) => node.nodeType === 1 &&
+                        (node.matches('[data-zapzap-component="quick-accounts"]') ||
+                         node.closest('[data-zapzap-component="quick-accounts"]'));
+                    if (records.some((record) => !own(record.target) &&
+                        (record.type !== "childList" ||
+                         [...record.removedNodes].some((node) => own(node) && !node.isConnected) ||
+                         [...record.addedNodes, ...record.removedNodes].some((node) => !own(node))))) {
                         this.scheduleEnsure();
                     }
                 });
@@ -221,16 +225,27 @@
         },
 
         findQuickAccountsMountPoint() {
-            const navigationCandidates = document.querySelectorAll(
+            const navigationCandidates = new Set(document.querySelectorAll(
                 'nav, [role="navigation"], aside'
-            );
+            ));
+            // WhatsApp also uses plain divs for its rail. Discover those from
+            // native actions rather than relying on generated class names.
+            for (const action of document.querySelectorAll('button, [role="button"], [role="tab"]')) {
+                if (action.closest('[data-zapzap-component="quick-accounts"]')) {
+                    continue;
+                }
+                for (let node = action.parentElement; node && node !== document.body; node = node.parentElement) {
+                    navigationCandidates.add(node);
+                }
+            }
             for (const candidate of navigationCandidates) {
                 const bounds = candidate.getBoundingClientRect();
                 if (
                     bounds.left <= 24 &&
                     bounds.width >= 48 &&
                     bounds.width <= 120 &&
-                    bounds.height >= window.innerHeight * 0.5
+                    bounds.height >= window.innerHeight * 0.5 &&
+                    getComputedStyle(candidate).visibility !== "hidden"
                 ) {
                     return candidate;
                 }
@@ -282,6 +297,7 @@
                     }
                 }
             }
+            button.style.margin = "4px";
             button.style.position = isFallback ? "fixed" : "static";
             button.style.left = isFallback ? "12px" : "auto";
             button.style.top = "auto";
@@ -298,6 +314,55 @@
             } else if (button.parentElement !== target) {
                 target.appendChild(button);
             }
+        },
+
+        ensureButtonVisible(button, target) {
+            if (!this.visible) {
+                return;
+            }
+            const rect = button.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const points = [rect.top + 2, rect.top + rect.height / 2, rect.bottom - 2];
+            if (rect.width > 0 && rect.height > 0 && rect.left >= 0 &&
+                rect.right <= window.innerWidth && rect.top >= 0 && rect.bottom <= window.innerHeight &&
+                points.every((y) => button.contains(document.elementFromPoint(centerX, y)))) {
+                return;
+            }
+            // A fixed-height/overflow-hidden React wrapper can clip injected
+            // children. Use a measured empty rail slot outside that wrapper.
+            const rail = target.getBoundingClientRect();
+            const width = Math.max(40, rect.width);
+            const height = Math.max(40, rect.height);
+            const occupied = [...target.querySelectorAll('*')].filter((node) =>
+                node !== button && !button.contains(node) && !node.contains(button) &&
+                (node.matches('button, [role="button"], [role="tab"], img, svg') ||
+                 (node.children.length === 0 && node.textContent.trim()))
+            ).map((node) => node.getBoundingClientRect()).filter((box) => box.width && box.height);
+            let left = Math.max(4, rail.left + (rail.width - width) / 2);
+            let top = null;
+            if (rail.width >= width && rail.width <= 120) {
+                for (let y = Math.min(rail.bottom, window.innerHeight) - height - 4;
+                     y >= Math.max(4, rail.top); y -= 4) {
+                    if (occupied.every((box) => box.bottom + 4 <= y || box.top - 4 >= y + height)) {
+                        top = y;
+                        break;
+                    }
+                }
+            }
+            if (top === null) {
+                // Keep the entry point available even before a usable rail exists.
+                left = Math.min(Math.max(12, rail.right + 8), Math.max(0, window.innerWidth - width - 8));
+                top = 12;
+            }
+            if (button.parentElement !== document.body) {
+                document.body.appendChild(button);
+            }
+            button.style.position = "fixed";
+            button.style.margin = "0";
+            button.style.left = `${left}px`;
+            button.style.top = `${top}px`;
+            button.style.bottom = "auto";
+            button.style.zIndex = "2147483647";
         },
 
         createButton(isFallback) {
@@ -364,11 +429,13 @@
                     existing.hidden = !this.visible;
                     this.placeButton(existing, target);
                     this.syncIconAppearance(existing, target);
+                    this.ensureButtonVisible(existing, target);
                     return;
                 }
                 const button = this.createButton(target === document.body);
                 this.placeButton(button, target);
                 this.syncIconAppearance(button, target);
+                this.ensureButtonVisible(button, target);
             } catch (_) {
                 // DOM changes in WhatsApp Web must never break the host page.
             }

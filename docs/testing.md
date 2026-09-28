@@ -556,7 +556,9 @@ Durante desenvolvimento, rode o módulo afetado. Antes de entregar:
 Com a sidebar oculta e o atalho integrado selecionado, compare o ícone de
 visão geral com os ícones não selecionados da barra do WhatsApp. Confirme que
 o botão ocupa espaço próprio sem sobrepor Configurações, Beta ou o perfil,
-inclusive quando surgem ações extras. Alterne tema
+inclusive quando surgem ações extras. Verifique também barras sem nav/ARIA e
+contêineres com altura fixa/overflow: o botão deve continuar visível e clicável,
+sem duplicação após mudanças do DOM. Alterne tema
 claro/escuro, redimensione a janela e recarregue a página: cor e dimensões
 devem acompanhar a barra, com um único botão que continue abrindo a grade.
 Repita nas plataformas mantidas; o teste WebEngine com DOM sintético não

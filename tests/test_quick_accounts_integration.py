@@ -154,12 +154,56 @@ class QuickAccountsAppearanceTests(QtTestCase):
         QTimer.singleShot(250, wait.quit)
         wait.exec()
         self.assertTrue(self.javascript(page, layout))
+        # A plain-div rail must be found without nav/aside/ARIA landmarks.
+        self.javascript(page, """
+            const nav = document.querySelector('nav');
+            const rail = document.createElement('div');
+            rail.id = 'plain-rail';
+            rail.style.cssText = 'display:flex;flex-direction:column;width:64px;height:100vh';
+            while (nav.firstChild) rail.appendChild(nav.firstChild);
+            nav.replaceWith(rail);
+            QuickAccountsController.ensureButton();
+        """)
+        self.assertEqual(self.javascript(page,
+            "QuickAccountsController.findQuickAccountsMountPoint().id"), "plain-rail")
+        # Simulate a fixed-height wrapper that clips the injected child.
+        self.javascript(page, """
+            const bottom = document.querySelector('.bottom');
+            bottom.style.cssText = 'height:40px;overflow:hidden;flex-shrink:0';
+            QuickAccountsController.ensureButton();
+        """)
+        visible = """(() => {
+            const button = document.querySelector('[data-zapzap-component]');
+            const rect = button.getBoundingClientRect();
+            return rect.height > 0 && rect.top >= 0 && rect.bottom <= innerHeight &&
+                button.contains(document.elementFromPoint(rect.left + rect.width / 2,
+                                                          rect.top + rect.height / 2));
+        })()"""
+        self.assertTrue(self.javascript(page, visible))
+        self.assertEqual(self.javascript(page,
+            "document.querySelector('[data-zapzap-component]').parentElement.tagName"), "BODY")
+        self.javascript(page, """
+            window.calls = 0;
+            QuickAccountsController.setBridge({open_recent_accounts: () => window.calls++});
+            document.querySelector('[data-zapzap-component]').click();
+        """)
+        self.assertEqual(self.javascript(page, "window.calls"), 1)
+        # Repeated DOM checks must neither duplicate nor lose the fallback.
+        self.javascript(page, "QuickAccountsController.ensureButton();")
+        self.assertTrue(self.javascript(page, visible))
+        self.assertEqual(self.javascript(page,
+            "document.querySelectorAll('[data-zapzap-component]').length"), 1)
+        self.javascript(page, "document.querySelector('[data-zapzap-component]').remove()")
+        wait = QEventLoop()
+        QTimer.singleShot(250, wait.quit)
+        wait.exec()
+        self.assertTrue(self.javascript(page, visible))
         self.javascript(page, "QuickAccountsController.setVisible(false)")
         self.assertEqual(self.javascript(page,
             "document.querySelector('[data-zapzap-component]').getBoundingClientRect().height"), 0)
         self.javascript(page, "QuickAccountsController.setVisible(true)")
         self.javascript(page, """
-            document.querySelector('nav > button').remove();
+            document.querySelector('#plain-rail > button').remove();
             QuickAccountsController.setIconColor('#abcdef');
             QuickAccountsController.ensureButton();
         """)

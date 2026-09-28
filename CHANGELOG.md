@@ -138,6 +138,10 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Kept the integrated overview button visible in plain-div WhatsApp rails and
+  clipped navigation containers, with a measured free-slot fallback and
+  WebEngine regression checks for visibility, reinsertion and clicking.
+
 - Prevented the integrated overview button from overlapping WhatsApp navigation
   actions by placing it in the native column layout instead of a fixed bottom
   offset. Added layout regression coverage for extra actions and resizing.
