@@ -128,14 +128,15 @@ class QuickAccountsPopoverTests(QtTestCase):
         panel.search_input.clear()
         self.assertTrue(all(not row.isHidden() for row in panel._rows))
 
-    def test_pin_button_toggles_only_the_popup_window_flag(self):
+    def test_pin_button_keeps_the_independent_window_visible(self):
         panel = QuickAccountsPopover()
-        panel.show()
+        panel.show_window()
         self.addCleanup(panel.close)
 
         QTest.mouseClick(panel.pin_button, Qt.MouseButton.LeftButton)
 
         self.assertTrue(panel.pin_button.isChecked())
+        self.assertTrue(panel.isVisible())
         self.assertTrue(
             panel.windowFlags() & Qt.WindowType.WindowStaysOnTopHint
         )
@@ -143,6 +144,7 @@ class QuickAccountsPopoverTests(QtTestCase):
         QTest.mouseClick(panel.pin_button, Qt.MouseButton.LeftButton)
 
         self.assertFalse(panel.pin_button.isChecked())
+        self.assertTrue(panel.isVisible())
         self.assertFalse(
             panel.windowFlags() & Qt.WindowType.WindowStaysOnTopHint
         )

@@ -557,8 +557,9 @@ class QuickAccountsPopover(QFrame):
         self.always_on_top_changed.emit(bool(pinned))
 
     def _apply_always_on_top(self, pinned):
+        was_visible = self.isVisible()
         self.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint, pinned)
-        if self.isVisible():
+        if was_visible:
             self.show()
             self.raise_()
 

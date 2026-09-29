@@ -104,7 +104,8 @@ valida foco, compositor ou apresentação de janelas independentes.
    confirme que o pop-up continua sem moldura.
 6. Mova o painel entre monitores com “Lembrar posição” ativo e reinicie. Valide
    a restauração dentro da área disponível; depois confirme que “Bloquear
-   posição” impede movimento e que “Manter acima” acompanha o botão de pin.
+   posição” impede movimento e que “Manter acima” acompanha o botão de pin,
+   sem ocultar a janela independente.
 
 Nos testes visuais, importe controles básicos de `zapzap.ui.primitives` e
 composições de `zapzap.ui.components`. Imports por caminhos internos de uma

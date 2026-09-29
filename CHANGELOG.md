@@ -165,6 +165,8 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Kept the independent Quick Access window visible when changing its pin state.
+
 - Restored the main window when an account or quick action is selected from
   Quick Access while ZapZap is hidden.
 
