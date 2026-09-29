@@ -2149,7 +2149,7 @@ msgid "Quick Access"
 msgstr ""
 
 #: zapzap/features/settings/pages/appearance/view.py:80
-msgid "Control the Quick Access panel and its sidebar behavior."
+msgid "Control how the Quick Access panel is displayed."
 msgstr ""
 
 #: zapzap/features/settings/pages/appearance/view.py:84
@@ -2161,11 +2161,31 @@ msgid "Allows you to use the Quick Access panel."
 msgstr ""
 
 #: zapzap/features/settings/pages/appearance/view.py:88
-msgid "Show when hiding the sidebar"
+msgid "Display mode"
 msgstr ""
 
-#: zapzap/features/settings/pages/appearance/view.py:89
-msgid "Show Quick Access automatically when the sidebar is hidden."
+#: zapzap/features/settings/pages/appearance/view.py:91
+msgid "When needed"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:94
+msgid "When ZapZap is hidden"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:96
+msgid "Always visible"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:103
+msgid "Remember position"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:106
+msgid "Lock position"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:109
+msgid "Keep above other windows"
 msgstr ""
 
 #: zapzap/features/settings/pages/appearance/view.py:126

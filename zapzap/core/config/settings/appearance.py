@@ -7,6 +7,7 @@ from typing import Any
 
 from zapzap.assets.icons.tray_icon import TrayIcon
 from zapzap.core.config.settings.base import BaseSettings
+from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.core.theme.theme_manager import ThemeManager
 
 
@@ -24,6 +25,28 @@ class AppearanceSettings(BaseSettings):
     _QUICK_ACCESS_ENABLED = ("system/quick_access_enabled", True)
     _QUICK_ACCESS_ON_SIDEBAR_HIDDEN = (
         "system/quick_access_on_sidebar_hidden",
+        False,
+    )
+    _QUICK_ACCESS_DISPLAY_MODE = (
+        "system/quick_access_display_mode",
+        "on_demand",
+    )
+    _QUICK_ACCESS_REMEMBER_POSITION = (
+        "system/quick_access_remember_position",
+        True,
+    )
+    _QUICK_ACCESS_LOCK_POSITION = (
+        "system/quick_access_lock_position",
+        False,
+    )
+    _QUICK_ACCESS_ALWAYS_ON_TOP = (
+        "system/quick_access_always_on_top",
+        False,
+    )
+    _QUICK_ACCESS_POSITION_X = ("system/quick_access_position_x", 0)
+    _QUICK_ACCESS_POSITION_Y = ("system/quick_access_position_y", 0)
+    _QUICK_ACCESS_POSITION_VALID = (
+        "system/quick_access_position_valid",
         False,
     )
     _MENUBAR = ("system/menubar", True)
@@ -75,6 +98,73 @@ class AppearanceSettings(BaseSettings):
     @quick_access_on_sidebar_hidden.setter
     def quick_access_on_sidebar_hidden(self, value: bool) -> None:
         self._set_bool(self._QUICK_ACCESS_ON_SIDEBAR_HIDDEN, value)
+
+    @property
+    def quick_access_display_mode(self) -> str:
+        """Return a stable display-mode ID, migrating the legacy preference."""
+        key, _default = self._QUICK_ACCESS_DISPLAY_MODE
+        if not SettingsManager.contains(key):
+            mode = (
+                "when_hidden"
+                if self.quick_access_on_sidebar_hidden
+                else "on_demand"
+            )
+            self._set_str(self._QUICK_ACCESS_DISPLAY_MODE, mode)
+            return mode
+        mode = self._get_str(self._QUICK_ACCESS_DISPLAY_MODE)
+        if mode not in {"on_demand", "when_hidden", "always"}:
+            mode = "on_demand"
+            self._set_str(self._QUICK_ACCESS_DISPLAY_MODE, mode)
+        return mode
+
+    @quick_access_display_mode.setter
+    def quick_access_display_mode(self, value: str) -> None:
+        mode = (
+            value
+            if value in {"on_demand", "when_hidden", "always"}
+            else "on_demand"
+        )
+        self._set_str(self._QUICK_ACCESS_DISPLAY_MODE, mode)
+
+    @property
+    def quick_access_remember_position(self) -> bool:
+        return self._get_bool(self._QUICK_ACCESS_REMEMBER_POSITION)
+
+    @quick_access_remember_position.setter
+    def quick_access_remember_position(self, value: bool) -> None:
+        self._set_bool(self._QUICK_ACCESS_REMEMBER_POSITION, value)
+
+    @property
+    def quick_access_lock_position(self) -> bool:
+        return self._get_bool(self._QUICK_ACCESS_LOCK_POSITION)
+
+    @quick_access_lock_position.setter
+    def quick_access_lock_position(self, value: bool) -> None:
+        self._set_bool(self._QUICK_ACCESS_LOCK_POSITION, value)
+
+    @property
+    def quick_access_always_on_top(self) -> bool:
+        return self._get_bool(self._QUICK_ACCESS_ALWAYS_ON_TOP)
+
+    @quick_access_always_on_top.setter
+    def quick_access_always_on_top(self, value: bool) -> None:
+        self._set_bool(self._QUICK_ACCESS_ALWAYS_ON_TOP, value)
+
+    @property
+    def quick_access_position(self) -> tuple[int, int] | None:
+        if not self._get_bool(self._QUICK_ACCESS_POSITION_VALID):
+            return None
+        return (
+            self._get_int(self._QUICK_ACCESS_POSITION_X),
+            self._get_int(self._QUICK_ACCESS_POSITION_Y),
+        )
+
+    @quick_access_position.setter
+    def quick_access_position(self, value: tuple[int, int]) -> None:
+        x, y = value
+        self._set_int(self._QUICK_ACCESS_POSITION_X, x)
+        self._set_int(self._QUICK_ACCESS_POSITION_Y, y)
+        self._set_bool(self._QUICK_ACCESS_POSITION_VALID, True)
 
     @property
     def menubar_visible(self) -> bool:

@@ -72,6 +72,7 @@ class WindowLifecycle:
         self._hide_in_progress = True
         try:
             self.host.hide()
+            self._notify_browser_visibility(True)
         finally:
             self._hide_in_progress = False
 
@@ -140,11 +141,18 @@ class WindowLifecycle:
             QApplication.instance().setActiveWindow(self.host)
             self.host.raise_()
             self.host.activateWindow()
+            self._notify_browser_visibility(False)
         elif not self.host.isActiveWindow():
             self.host.activateWindow()
             self.host.raise_()
         else:
             self.hide_window()
+
+    def _notify_browser_visibility(self, hidden: bool) -> None:
+        browser = getattr(self.content, "browser", None)
+        notify = getattr(browser, "main_window_visibility_changed", None)
+        if notify is not None:
+            notify(hidden)
 
 
 class ClientSideWindowHost(ClientSideWindow):

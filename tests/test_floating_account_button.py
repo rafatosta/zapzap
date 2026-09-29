@@ -7,6 +7,7 @@ from unittest.mock import Mock, patch
 from PyQt6.QtCore import QPoint, QPointF, Qt
 from PyQt6.QtGui import QMouseEvent
 from PyQt6.QtTest import QTest
+from PyQt6.QtWidgets import QApplication
 
 from qt_test_case import QtTestCase
 from tools.memory.stub_webview import StubWebView
@@ -30,6 +31,9 @@ class FloatingAccountButtonTests(QtTestCase):
         self._original_quick_access_enabled = self.settings.quick_access_enabled
         self._original_quick_access_auto = (
             self.settings.quick_access_on_sidebar_hidden
+        )
+        self._original_quick_access_mode = (
+            self.settings.quick_access_display_mode
         )
         self.addCleanup(
             setattr,
@@ -55,8 +59,15 @@ class FloatingAccountButtonTests(QtTestCase):
             "quick_access_on_sidebar_hidden",
             self._original_quick_access_auto,
         )
+        self.addCleanup(
+            setattr,
+            self.settings,
+            "quick_access_display_mode",
+            self._original_quick_access_mode,
+        )
         self.settings.quick_access_enabled = True
         self.settings.quick_access_on_sidebar_hidden = False
+        self.settings.quick_access_display_mode = "on_demand"
 
     def _window(self, user_ids=("first", "second")):
         users = [
@@ -206,68 +217,100 @@ class FloatingAccountButtonTests(QtTestCase):
         self.assertFalse(window.browser._floating_account_button.isHidden())
         set_integrated_visible.assert_called_with(False)
 
-    def test_sidebar_auto_open_tracks_transitions_and_manual_close(self):
+    def test_hidden_mode_tracks_main_window_and_manual_close(self):
         window = self._window()
         browser = window.browser
         panel = browser._quick_accounts_popover
 
-        window.set_sidebar_visible(False, animated=False)
         self.assertFalse(panel.isVisible())
 
-        self.settings.quick_access_on_sidebar_hidden = True
+        self.settings.quick_access_display_mode = "when_hidden"
         browser.refresh_quick_access_settings()
+        browser.main_window_visibility_changed(True)
         self.assertTrue(panel.isVisible())
         self.assertTrue(panel.is_independent_window)
         self.assertTrue(browser._quick_access_auto_open)
 
+        window.set_sidebar_visible(False, animated=False)
+        window.set_sidebar_visible(True, animated=False)
+        self.assertTrue(panel.isVisible())
+
         panel.close()
         self.assertFalse(panel.isVisible())
         self.assertTrue(browser._quick_access_auto_suppressed)
-        window.set_sidebar_visible(False, animated=False)
+        browser.main_window_visibility_changed(True)
         self.assertFalse(panel.isVisible())
 
-        window.set_sidebar_visible(True, animated=False)
+        browser.main_window_visibility_changed(False)
         self.assertFalse(panel.isVisible())
-        window.set_sidebar_visible(False, animated=False)
+        browser.main_window_visibility_changed(True)
         self.assertTrue(panel.isVisible())
         self.assertTrue(browser._quick_access_auto_open)
 
-        window.set_sidebar_visible(True, animated=False)
+        browser.main_window_visibility_changed(False)
         self.assertFalse(panel.isVisible())
         self.assertFalse(browser._quick_access_auto_open)
 
-    def test_saved_auto_open_is_applied_when_sidebar_starts_hidden(self):
-        self.settings.browser_sidebar_visible = False
-        self.settings.quick_access_on_sidebar_hidden = True
+    def test_always_mode_is_applied_at_startup(self):
+        self.settings.quick_access_display_mode = "always"
 
         window = self._window()
 
         self.assertTrue(window.browser._quick_accounts_popover.isVisible())
         self.assertTrue(window.browser._quick_access_auto_open)
 
+        window.toggle_audio_muted = Mock()
+        window.browser._handle_quick_audio_request()
+        self.assertTrue(window.browser._quick_accounts_popover.isVisible())
+
+        window.browser._quick_accounts_popover.close()
+        QApplication.processEvents()
+        self.assertTrue(window.browser._quick_accounts_popover.isVisible())
+
+    def test_quick_access_window_applies_position_lock_and_always_on_top(self):
+        window = self._window()
+        panel = window.browser._quick_accounts_popover
+        panel.configure_window_behavior(
+            remember_position=True,
+            position_locked=True,
+            always_on_top=True,
+            position=(40, 50),
+        )
+        panel.show_window()
+        QApplication.processEvents()
+        locked_position = panel.pos()
+
+        panel.move(locked_position + QPoint(40, 40))
+        QApplication.processEvents()
+
+        self.assertEqual(panel.pos(), locked_position)
+        self.assertTrue(
+            panel.windowFlags() & Qt.WindowType.WindowStaysOnTopHint
+        )
+        self.assertTrue(panel.pin_button.isChecked())
+
     def test_disabling_auto_option_closes_only_its_panel(self):
         window = self._window()
         browser = window.browser
         panel = browser._quick_accounts_popover
-        window.set_sidebar_visible(False, animated=False)
-
-        self.settings.quick_access_on_sidebar_hidden = True
+        self.settings.quick_access_display_mode = "when_hidden"
         browser.refresh_quick_access_settings()
+        browser.main_window_visibility_changed(True)
         self.assertTrue(panel.isVisible())
 
-        self.settings.quick_access_on_sidebar_hidden = False
+        self.settings.quick_access_display_mode = "on_demand"
         browser.refresh_quick_access_settings()
         self.assertFalse(panel.isVisible())
 
         browser.show_quick_access_window()
-        self.settings.quick_access_on_sidebar_hidden = True
+        self.settings.quick_access_display_mode = "when_hidden"
         browser.refresh_quick_access_settings()
         self.assertTrue(panel.isVisible())
         self.assertFalse(browser._quick_access_auto_open)
 
-        window.set_sidebar_visible(True, animated=False)
+        browser.main_window_visibility_changed(False)
         self.assertTrue(panel.isVisible())
-        self.settings.quick_access_on_sidebar_hidden = False
+        self.settings.quick_access_display_mode = "on_demand"
         browser.refresh_quick_access_settings()
         self.assertTrue(panel.isVisible())
 

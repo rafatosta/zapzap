@@ -16,9 +16,11 @@ releases and the AppStream metadata.
 ### Added
 
 - Added Quick Access controls to Appearance settings, with the existing panel
-  enabled by default and automatic display on sidebar hide disabled by default.
-  The setting reuses the existing panel instance, preserves the subordinate
-  choice when disabled, and tracks automatic versus manual display.
+  enabled by default and three persisted display modes: on demand, while the
+  main window is hidden, or always visible. The same panel now optionally
+  remembers or locks its position and stays above other windows, preserves all
+  subordinate choices while disabled, and migrates the former sidebar-hide
+  preference to the closest new mode.
 
 - Added a live Downloads preference for remembering the Save As folder only
   within each account context. Unified destination selection, kept plain Save

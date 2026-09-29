@@ -57,6 +57,38 @@ class AppearanceSettingsModel:
         self._settings.quick_access_on_sidebar_hidden = value
 
     @property
+    def quick_access_display_mode(self) -> str:
+        return self._settings.quick_access_display_mode
+
+    @quick_access_display_mode.setter
+    def quick_access_display_mode(self, value: str) -> None:
+        self._settings.quick_access_display_mode = value
+
+    @property
+    def quick_access_remember_position(self) -> bool:
+        return self._settings.quick_access_remember_position
+
+    @quick_access_remember_position.setter
+    def quick_access_remember_position(self, value: bool) -> None:
+        self._settings.quick_access_remember_position = value
+
+    @property
+    def quick_access_lock_position(self) -> bool:
+        return self._settings.quick_access_lock_position
+
+    @quick_access_lock_position.setter
+    def quick_access_lock_position(self, value: bool) -> None:
+        self._settings.quick_access_lock_position = value
+
+    @property
+    def quick_access_always_on_top(self) -> bool:
+        return self._settings.quick_access_always_on_top
+
+    @quick_access_always_on_top.setter
+    def quick_access_always_on_top(self, value: bool) -> None:
+        self._settings.quick_access_always_on_top = value
+
+    @property
     def menubar_visible(self) -> bool:
         """Whether the main window menu bar is visible."""
         return self._settings.menubar_visible

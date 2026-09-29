@@ -100,6 +100,8 @@ class QuickAccountsPopover(QFrame):
     audio_requested = pyqtSignal()
     downloads_requested = pyqtSignal()
     settings_requested = pyqtSignal()
+    position_changed = pyqtSignal(int, int)
+    always_on_top_changed = pyqtSignal(bool)
 
     WIDTH = 320
     MAX_VISIBLE_ACCOUNTS = 4
@@ -237,6 +239,10 @@ class QuickAccountsPopover(QFrame):
         self._rows = []
         self._owner = parent
         self._independent_window = False
+        self._remember_position = True
+        self._position_locked = False
+        self._restored_position = None
+        self._restoring_position = False
         self._setup_ui()
         self.hide()
 
@@ -253,6 +259,8 @@ class QuickAccountsPopover(QFrame):
         )
         self.setWindowTitle("ZapZap")
         self.adjustSize()
+        if self._remember_position and self._restored_position is not None:
+            self._move_to_available_position(self._restored_position)
         self.show()
         if activate:
             self.raise_()
@@ -261,6 +269,63 @@ class QuickAccountsPopover(QFrame):
     def closeEvent(self, event):
         self.closed.emit()
         super().closeEvent(event)
+
+    def moveEvent(self, event):
+        super().moveEvent(event)
+        if not self._independent_window or self._restoring_position:
+            return
+        if self._position_locked and self._restored_position is not None:
+            if self.pos() != self._restored_position:
+                self._restoring_position = True
+                self.move(self._restored_position)
+                self._restoring_position = False
+            return
+        self._restored_position = self.pos()
+        if self._remember_position:
+            self.position_changed.emit(self.x(), self.y())
+
+    def configure_window_behavior(
+        self,
+        *,
+        remember_position,
+        position_locked,
+        always_on_top,
+        position=None,
+    ):
+        """Apply persisted independent-window behavior without replacing it."""
+        self._remember_position = bool(remember_position)
+        self._position_locked = bool(position_locked)
+        if self._remember_position and position is not None:
+            self._restored_position = QPoint(*position)
+        elif not self._remember_position:
+            self._restored_position = self.pos() if self.isVisible() else None
+        self.pin_button.blockSignals(True)
+        self.pin_button.setChecked(bool(always_on_top))
+        self.pin_button.blockSignals(False)
+        self._apply_always_on_top(bool(always_on_top))
+
+    def _move_to_available_position(self, position):
+        screen = (
+            QGuiApplication.screenAt(position)
+            or QGuiApplication.primaryScreen()
+        )
+        if screen is None:
+            return
+        available = screen.availableGeometry()
+        target = QPoint(
+            min(
+                max(position.x(), available.left()),
+                available.right() - self.width() + 1,
+            ),
+            min(
+                max(position.y(), available.top()),
+                available.bottom() - self.height() + 1,
+            ),
+        )
+        self._restoring_position = True
+        self.move(target)
+        self._restoring_position = False
+        self._restored_position = target
 
     def _set_presentation(self, independent):
         if self._independent_window == independent:
@@ -479,6 +544,10 @@ class QuickAccountsPopover(QFrame):
         self.add_account_button.setIcon(SystemIcon.get_icon("new_account", theme))
 
     def _set_pinned(self, pinned):
+        self._apply_always_on_top(pinned)
+        self.always_on_top_changed.emit(bool(pinned))
+
+    def _apply_always_on_top(self, pinned):
         self.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint, pinned)
         if self.isVisible():
             self.show()

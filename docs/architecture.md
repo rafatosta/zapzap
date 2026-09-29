@@ -220,13 +220,18 @@ os IDs `floating` e `integrated`, com `floating` como padrão compatível; em
 runtime o BrowserController mostra somente o ponto de entrada selecionado.
 Em Aparência > Quick Access, `system/quick_access_enabled` controla os
 acionamentos existentes e tem padrão `true`, preservando a disponibilidade
-anterior do painel para instalações sem a chave. Já
-`system/quick_access_on_sidebar_hidden` tem padrão `false`, mantendo o
-comportamento anterior de não abrir o painel automaticamente. As duas escolhas
-são independentes: desligar Quick Access oculta o painel e bloqueia seus
-acionamentos, sem apagar a preferência de abertura automática. A integração
-automática reutiliza a instância do painel pertencente ao BrowserController;
-restaurar a sidebar fecha somente uma exibição iniciada por essa integração.
+anterior do painel. `system/quick_access_display_mode` persiste os IDs estáveis
+`on_demand`, `when_hidden` e `always`: o primeiro abre por ação e pode fechar
+depois dela; o segundo acompanha a janela principal oculta; o terceiro mantém
+o painel independente aberto, inclusive depois de suas ações. Instalações sem
+a chave nova migram `system/quick_access_on_sidebar_hidden=true` para
+`when_hidden` e qualquer outro caso para `on_demand`.
+`system/quick_access_remember_position`, `system/quick_access_lock_position` e
+`system/quick_access_always_on_top` controlam a geometria e as flags da mesma
+instância. A posição só é restaurada e atualizada quando a memória está ativa;
+o bloqueio restringe o movimento à posição corrente, e o botão de pin do painel
+permanece sincronizado com “manter acima”. Desligar Quick Access oculta o painel
+e seus acionamentos sem apagar as escolhas subordinadas.
 O botão não possui tooltip nativo, pois ele competiria visualmente com o
 popover; nome e descrição acessíveis continuam informando a atualização.
 O clique de contexto abre um popover compacto com identidade, estado, edição,

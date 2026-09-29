@@ -82,6 +82,10 @@ class BrowserController(BrowserView):
         self._appearance_settings = AppearanceSettings()
         self._quick_access_auto_open = False
         self._quick_access_auto_suppressed = False
+        self._main_window_hidden = False
+        self._quick_access_display_mode = (
+            self._appearance_settings.quick_access_display_mode
+        )
         self._closing_quick_access_internally = False
         self.btn_quick_access = BrowserSidebarButton(
             "btn_quick_access",
@@ -119,6 +123,12 @@ class BrowserController(BrowserView):
         self._quick_accounts_popover = QuickAccountsPopover(self)
         self._quick_accounts_popover.closed.connect(
             self._handle_quick_access_closed
+        )
+        self._quick_accounts_popover.position_changed.connect(
+            self._save_quick_access_position
+        )
+        self._quick_accounts_popover.always_on_top_changed.connect(
+            self._save_quick_access_always_on_top
         )
         self._quick_accounts_popover.account_requested.connect(
             self._handle_quick_account_request
@@ -728,13 +738,31 @@ class BrowserController(BrowserView):
     def refresh_quick_access_settings(self):
         """Apply Quick Access preferences without replacing its shared panel."""
         enabled = self._appearance_settings.quick_access_enabled
+        display_mode = self._appearance_settings.quick_access_display_mode
+        if display_mode != self._quick_access_display_mode:
+            self._quick_access_auto_suppressed = False
+            self._quick_access_display_mode = display_mode
         self.btn_quick_access.setVisible(enabled)
         if not enabled:
             self._close_quick_access_panel()
+        self._configure_quick_access_window()
         self._sync_account_switcher_buttons()
-        self._sync_automatic_quick_access(
-            self._appearance_settings.browser_sidebar_visible
+        self._sync_automatic_quick_access()
+
+    def _configure_quick_access_window(self):
+        self._quick_accounts_popover.configure_window_behavior(
+            remember_position=self._appearance_settings.quick_access_remember_position,
+            position_locked=self._appearance_settings.quick_access_lock_position,
+            always_on_top=self._appearance_settings.quick_access_always_on_top,
+            position=self._appearance_settings.quick_access_position,
         )
+
+    def _save_quick_access_position(self, x, y):
+        if self._appearance_settings.quick_access_remember_position:
+            self._appearance_settings.quick_access_position = (x, y)
+
+    def _save_quick_access_always_on_top(self, enabled):
+        self._appearance_settings.quick_access_always_on_top = enabled
 
     def _close_quick_access_panel(self, *, user_initiated=False):
         if user_initiated and self._quick_access_auto_open:
@@ -750,17 +778,26 @@ class BrowserController(BrowserView):
         if (
             self._quick_access_auto_open
             and not self._closing_quick_access_internally
+            and self._appearance_settings.quick_access_display_mode != "always"
         ):
             self._quick_access_auto_suppressed = True
         self._quick_access_auto_open = False
+        if (
+            self._appearance_settings.quick_access_enabled
+            and self._appearance_settings.quick_access_display_mode == "always"
+            and not self._closing_quick_access_internally
+            and not self._shutting_down
+        ):
+            QTimer.singleShot(0, self._sync_automatic_quick_access)
 
-    def _sync_automatic_quick_access(self, sidebar_visible=None):
-        if sidebar_visible is None:
-            sidebar_visible = self._appearance_settings.browser_sidebar_visible
+    def _sync_automatic_quick_access(self, _sidebar_visible=None):
+        mode = self._appearance_settings.quick_access_display_mode
         should_show = (
             self._appearance_settings.quick_access_enabled
-            and self._appearance_settings.quick_access_on_sidebar_hidden
-            and not sidebar_visible
+            and (
+                mode == "always"
+                or (mode == "when_hidden" and self._main_window_hidden)
+            )
             and not self._quick_access_auto_suppressed
         )
         if not should_show:
@@ -772,6 +809,13 @@ class BrowserController(BrowserView):
         self._quick_accounts_popover.set_accounts(self._accounts.values())
         self._quick_accounts_popover.show_window(activate=False)
         self._quick_access_auto_open = True
+
+    def main_window_visibility_changed(self, hidden):
+        """Apply display modes tied to the main window's visibility."""
+        self._main_window_hidden = bool(hidden)
+        if not hidden:
+            self._quick_access_auto_suppressed = False
+        self._sync_automatic_quick_access()
 
     def toggle_quick_accounts_panel(self):
         """Toggle the compact native account and actions panel."""
@@ -794,8 +838,12 @@ class BrowserController(BrowserView):
         self._quick_accounts_popover.set_accounts(self._accounts.values())
         self._quick_accounts_popover.show_window()
 
+    def _close_after_quick_access_action(self):
+        if self._appearance_settings.quick_access_display_mode != "always":
+            self._close_quick_access_panel()
+
     def _handle_quick_account_request(self, user_id):
-        self._close_quick_access_panel()
+        self._close_after_quick_access_action()
         runtime = self._accounts.get(user_id)
         if runtime is None:
             return False
@@ -805,19 +853,19 @@ class BrowserController(BrowserView):
         return False
 
     def _handle_quick_add_account(self):
-        self._close_quick_access_panel()
+        self._close_after_quick_access_action()
         self.add_new_user()
 
     def _handle_quick_audio_request(self):
-        self._close_quick_access_panel()
+        self._close_after_quick_access_action()
         self.parent.toggle_audio_muted()
 
     def _handle_quick_downloads_request(self):
-        self._close_quick_access_panel()
+        self._close_after_quick_access_action()
         self.parent.show_downloads_menu(self._quick_accounts_popover)
 
     def _handle_quick_settings_request(self):
-        self._close_quick_access_panel()
+        self._close_after_quick_access_action()
         self.parent.open_settings()
 
     # === Ações do Navegador ===
@@ -1096,16 +1144,12 @@ class BrowserController(BrowserView):
             self._appearance_settings.browser_sidebar_visible,
             animated=False,
         )
+        self._configure_quick_access_window()
+        self._sync_automatic_quick_access()
 
     def set_sidebar_visible(self, visible: bool, animated: bool = True):
         visible = bool(visible)
-        previous_visible = self._appearance_settings.browser_sidebar_visible
-        if previous_visible and not visible:
-            self._quick_access_auto_suppressed = False
-        elif not previous_visible and visible and self._quick_access_auto_open:
-            self._close_quick_access_panel()
         self._sync_account_switcher_buttons(visible)
-        self._sync_automatic_quick_access(visible)
         if not visible:
             self._update_popover.close()
         if self._sidebar_animation_group:

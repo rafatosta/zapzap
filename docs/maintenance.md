@@ -77,10 +77,10 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   criação do perfil WebEngine precisam de reinício completo.
 - Atualize onboarding e páginas irmãs quando expõem a mesma preferência.
 - Cubra padrão, persistência, alteração e restauração.
-- Para Quick Access, preserve `system/quick_access_enabled=true` e
-  `system/quick_access_on_sidebar_hidden=false` como padrões de compatibilidade:
-  disponibilidade manual continua igual à anterior e a abertura automática
-  permanece opt-in.
+- Para Quick Access, preserve `system/quick_access_enabled=true` e migre a
+  preferência legada `system/quick_access_on_sidebar_hidden` explicitamente
+  para `system/quick_access_display_mode`: `true` vira `when_hidden`; ausência
+  ou `false` vira `on_demand`. IDs persistidos não podem depender da tradução.
 
 ### Nova página de configurações
 

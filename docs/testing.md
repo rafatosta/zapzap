@@ -89,17 +89,17 @@ valida foco, compositor ou apresentação de janelas independentes.
 1. Abra Quick Access pelo acionamento existente e desative o recurso em
    Aparência. Confirme que o painel e os acionamentos somem sem alterar a
    visibilidade da sidebar ou da janela principal.
-2. Ative o recurso com a opção automática desligada. Ocultar a sidebar não
-   deve abrir o painel; o acionamento manual existente deve continuar abrindo.
-3. Com a sidebar oculta, ative a opção automática. Confirme uma única janela
-   Quick Access, sem tomar foco da janela principal. Feche-a manualmente e
-   confirme que não reabre até mostrar e ocultar novamente a sidebar.
-4. Com uma exibição automática aberta, mostre a sidebar e confirme que ela
-   fecha. Abra depois o painel manualmente e confirme que restaurar a sidebar
-   ou desligar a opção automática não o fecha.
-5. Salve ambas as opções ligadas e a sidebar oculta, reinicie o aplicativo e
-   confirme que a janela independente existente aparece uma única vez após a
-   inicialização.
+2. Em “Quando necessário”, confirme que ocultar a janela principal não abre o
+   painel; o acionamento manual deve abri-lo e uma ação pode fechá-lo.
+3. Em “Quando o ZapZap estiver oculto”, oculte a janela principal e confirme
+   uma única janela Quick Access sem roubar foco. Feche-a manualmente e confirme
+   que não reabre até a janela principal ser mostrada e ocultada novamente.
+4. Em “Sempre visível”, confirme que o painel abre, permanece depois de trocar
+   conta ou executar uma ação e reabre caso seja fechado manualmente. Desative
+   a chave principal e confirme que então ele fecha.
+5. Mova o painel entre monitores com “Lembrar posição” ativo e reinicie. Valide
+   a restauração dentro da área disponível; depois confirme que “Bloquear
+   posição” impede movimento e que “Manter acima” acompanha o botão de pin.
 
 Nos testes visuais, importe controles básicos de `zapzap.ui.primitives` e
 composições de `zapzap.ui.components`. Imports por caminhos internos de uma

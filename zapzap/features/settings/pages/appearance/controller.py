@@ -27,8 +27,22 @@ class AppearanceSettingsController(AppearanceSettingsView):
     def _load_settings(self):
         self.browser_sidebar.setChecked(self.model.browser_sidebar_visible)
         self.quick_access_enabled.setChecked(self.model.quick_access_enabled)
-        self.quick_access_on_sidebar_hidden.setChecked(
-            self.model.quick_access_on_sidebar_hidden
+        self._set_selected_radio(
+            self.model.quick_access_display_mode,
+            {
+                "on_demand": self.quick_access_on_demand_radioButton,
+                "when_hidden": self.quick_access_when_hidden_radioButton,
+                "always": self.quick_access_always_radioButton,
+            },
+        )
+        self.quick_access_remember_position.setChecked(
+            self.model.quick_access_remember_position
+        )
+        self.quick_access_lock_position.setChecked(
+            self.model.quick_access_lock_position
+        )
+        self.quick_access_always_on_top.setChecked(
+            self.model.quick_access_always_on_top
         )
         self.mainwindow_menu.setChecked(self.model.menubar_visible)
         self.scaleComboBox.setCurrentText(f"{self.model.scale} %")
@@ -101,8 +115,24 @@ class AppearanceSettingsController(AppearanceSettingsView):
         self.quick_access_enabled.toggled.connect(
             self._handle_quick_access_enabled
         )
-        self.quick_access_on_sidebar_hidden.toggled.connect(
-            self._handle_quick_access_on_sidebar_hidden
+        for button, mode in (
+            (self.quick_access_on_demand_radioButton, "on_demand"),
+            (self.quick_access_when_hidden_radioButton, "when_hidden"),
+            (self.quick_access_always_radioButton, "always"),
+        ):
+            button.toggled.connect(
+                lambda checked, value=mode: (
+                    checked and self._handle_quick_access_mode(value)
+                )
+            )
+        self.quick_access_remember_position.toggled.connect(
+            self._handle_quick_access_remember_position
+        )
+        self.quick_access_lock_position.toggled.connect(
+            self._handle_quick_access_lock_position
+        )
+        self.quick_access_always_on_top.toggled.connect(
+            self._handle_quick_access_always_on_top
         )
         self.sidebar_button_integrated_radioButton.toggled.connect(
             lambda checked: checked and self._handle_sidebar_button_mode(
@@ -164,8 +194,20 @@ class AppearanceSettingsController(AppearanceSettingsView):
         self._sync_quick_access_options_visibility()
         QApplication.instance().getWindow().browser.refresh_quick_access_settings()
 
-    def _handle_quick_access_on_sidebar_hidden(self, enabled):
-        self.model.quick_access_on_sidebar_hidden = enabled
+    def _handle_quick_access_mode(self, mode):
+        self.model.quick_access_display_mode = mode
+        QApplication.instance().getWindow().browser.refresh_quick_access_settings()
+
+    def _handle_quick_access_remember_position(self, enabled):
+        self.model.quick_access_remember_position = enabled
+        QApplication.instance().getWindow().browser.refresh_quick_access_settings()
+
+    def _handle_quick_access_lock_position(self, enabled):
+        self.model.quick_access_lock_position = enabled
+        QApplication.instance().getWindow().browser.refresh_quick_access_settings()
+
+    def _handle_quick_access_always_on_top(self, enabled):
+        self.model.quick_access_always_on_top = enabled
         QApplication.instance().getWindow().browser.refresh_quick_access_settings()
 
     def _handle_sidebar_button_mode(self, mode):

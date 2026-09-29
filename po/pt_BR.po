@@ -2244,10 +2244,8 @@ msgid "Quick Access"
 msgstr "Acesso rápido"
 
 #: zapzap/features/settings/pages/appearance/view.py:80
-msgid "Control the Quick Access panel and its sidebar behavior."
-msgstr ""
-"Controle o painel de acesso rápido e seu comportamento em relação à barra "
-"lateral."
+msgid "Control how the Quick Access panel is displayed."
+msgstr "Controle como o painel de acesso rápido é exibido."
 
 #: zapzap/features/settings/pages/appearance/view.py:84
 msgid "Enable Quick Access"
@@ -2258,13 +2256,26 @@ msgid "Allows you to use the Quick Access panel."
 msgstr "Permite usar o painel de acesso rápido."
 
 #: zapzap/features/settings/pages/appearance/view.py:88
-msgid "Show when hiding the sidebar"
-msgstr "Mostrar ao ocultar a barra lateral"
+msgid "Display mode"
+msgstr "Modo de exibição"
 
-#: zapzap/features/settings/pages/appearance/view.py:89
-msgid "Show Quick Access automatically when the sidebar is hidden."
-msgstr ""
-"Exibe o acesso rápido automaticamente quando a barra lateral estiver oculta."
+msgid "When needed"
+msgstr "Quando necessário"
+
+msgid "When ZapZap is hidden"
+msgstr "Quando o ZapZap estiver oculto"
+
+msgid "Always visible"
+msgstr "Sempre visível"
+
+msgid "Remember position"
+msgstr "Lembrar posição"
+
+msgid "Lock position"
+msgstr "Bloquear posição"
+
+msgid "Keep above other windows"
+msgstr "Manter acima de outras janelas"
 
 #: zapzap/features/settings/pages/appearance/view.py:126
 msgid "Control tray icon visibility, style, and unread counter."
