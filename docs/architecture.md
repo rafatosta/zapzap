@@ -673,7 +673,7 @@ remover arquivo tem efeito imediato, enquanto a seleção só persiste em
 | `settings` | navegação e edição das preferências |
 | `shortcuts` | catálogo e diálogo de atalhos |
 | `startup` | inicialização automática por plataforma |
-| `tray` | ícone, menu, contador e vínculo com a janela |
+| `tray` | ícone, menu, contador, acesso à grade de contas e vínculo com a janela |
 
 ## Verificação passiva de versão
 

@@ -62,6 +62,7 @@ class SysTrayManager:
         """Cria as ações disponíveis no menu da bandeja."""
         return {
             "show": QAction(_("Show")),
+            "accounts": QAction(_("Accounts")),
             "mute": QAction(
                 _("Unmute") if SystemSettings().audio_muted else _("Mute")
             ),
@@ -74,6 +75,7 @@ class SysTrayManager:
         """Cria o menu da bandeja do sistema."""
         tray_menu = QMenu()
         tray_menu.addAction(self._actions["show"])
+        tray_menu.addAction(self._actions["accounts"])
         tray_menu.addAction(self._actions["mute"])
         tray_menu.addAction(self._actions["settings"])
         tray_menu.addAction(self._actions["donation"])
@@ -159,6 +161,8 @@ class SysTrayManager:
         instance._bound_window = main_window
         instance._tray.activated.connect(instance._on_tray_activated)
         instance._actions["show"].triggered.connect(main_window.show_window)
+        instance._actions["accounts"].triggered.connect(
+            lambda: instance._open_accounts(main_window))
         instance._actions["mute"].triggered.connect(
             main_window.toggle_audio_muted
         )
@@ -172,6 +176,7 @@ class SysTrayManager:
         for signal in (
             self._tray.activated,
             self._actions["show"].triggered,
+            self._actions["accounts"].triggered,
             self._actions["mute"].triggered,
             self._actions["settings"].triggered,
             self._actions["donation"].triggered,
@@ -199,6 +204,13 @@ class SysTrayManager:
 
     def _open_settings(self, main_window):
         main_window.open_settings()
+        main_window.restore_window()
+        main_window.activateWindow()
+        main_window.raise_()
+
+    def _open_accounts(self, main_window):
+        """Show the native account overview and bring its window forward."""
+        main_window.browser.show_grid_view()
         main_window.restore_window()
         main_window.activateWindow()
         main_window.raise_()

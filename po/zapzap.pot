@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 09:45-0300\n"
+"POT-Creation-Date: 2026-09-29 09:51-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,15 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: zapzap/app/main_window_controller.py:279
-#: zapzap/features/tray/sys_tray_manager.py:66
-#: zapzap/features/tray/sys_tray_manager.py:225
+#: zapzap/features/tray/sys_tray_manager.py:67
+#: zapzap/features/tray/sys_tray_manager.py:237
 msgid "Unmute"
 msgstr ""
 
 #: zapzap/app/main_window_controller.py:279
 #: zapzap/features/shortcuts/model.py:29
-#: zapzap/features/tray/sys_tray_manager.py:66
-#: zapzap/features/tray/sys_tray_manager.py:225
+#: zapzap/features/tray/sys_tray_manager.py:67
+#: zapzap/features/tray/sys_tray_manager.py:237
 #: zapzap/ui/components/browser_sidebar.py:217
 #: zapzap/ui/components/browser_sidebar.py:218
 #: zapzap/ui/components/main_window.py:81
@@ -435,7 +435,7 @@ msgid ""
 msgstr ""
 
 #: zapzap/features/donation/view.py:220
-#: zapzap/features/tray/sys_tray_manager.py:69
+#: zapzap/features/tray/sys_tray_manager.py:70
 #: zapzap/features/settings/shell/settings_view.py:32
 #: zapzap/features/settings/shell/settings_view.py:34
 #: zapzap/features/settings/pages/about/view.py:274
@@ -1305,7 +1305,7 @@ msgid "Profile and status"
 msgstr ""
 
 #: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
-#: zapzap/features/tray/sys_tray_manager.py:68
+#: zapzap/features/tray/sys_tray_manager.py:69
 #: zapzap/features/settings/shell/settings_controller.py:234
 #: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/downloads/ui/downloads_menu.py:1081
@@ -1421,15 +1421,16 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: zapzap/features/tray/sys_tray_manager.py:70
-#: zapzap/features/settings/shell/settings_view.py:38
-#: zapzap/ui/components/main_window.py:188
-msgid "Quit"
-msgstr ""
-
+#: zapzap/features/tray/sys_tray_manager.py:65
 #: zapzap/features/settings/shell/settings_controller.py:122
 #: zapzap/features/settings/pages/accounts/view.py:17
 msgid "Accounts"
+msgstr ""
+
+#: zapzap/features/tray/sys_tray_manager.py:71
+#: zapzap/features/settings/shell/settings_view.py:38
+#: zapzap/ui/components/main_window.py:188
+msgid "Quit"
 msgstr ""
 
 #: zapzap/features/settings/shell/settings_controller.py:128

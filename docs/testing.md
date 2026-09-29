@@ -463,6 +463,8 @@ isolamento estrito e que a flag não é aplicada.
    `DoubleClick`, ZapZap deve alternar a janela e não abrir um segundo `QMenu`.
 4. Confirme que abrir o menu nativo não deixa o cursor do painel em estado de
    carregamento por causa de um segundo popup criado pelo aplicativo.
+5. Escolha **Contas** no menu e confirme que a janela é restaurada, recebe foco
+   e mostra a grade nativa com as contas disponíveis.
 
 ## Validação manual do bloqueio do WhatsApp Web
 

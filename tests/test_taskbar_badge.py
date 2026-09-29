@@ -121,6 +121,16 @@ class TrayActivationTests(QtTestCase):
         self.manager._trayMenu.popup.assert_not_called()
         self.manager._bound_window.show_window.assert_not_called()
 
+    def test_accounts_action_opens_overview_and_restores_window(self):
+        window = MagicMock()
+
+        self.manager._open_accounts(window)
+
+        window.browser.show_grid_view.assert_called_once_with()
+        window.restore_window.assert_called_once_with()
+        window.activateWindow.assert_called_once_with()
+        window.raise_.assert_called_once_with()
+
 
 
 

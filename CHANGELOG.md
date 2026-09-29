@@ -15,6 +15,9 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Added a tray-menu Accounts shortcut that restores ZapZap and opens the
+  existing native account overview.
+
 - Added Quick Access controls to Appearance settings, with the existing panel
   enabled by default and three persisted display modes: on demand, while the
   main window is hidden, or always visible. The same panel now optionally
