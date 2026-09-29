@@ -42,7 +42,7 @@ class QuickAccountsPopoverTests(QtTestCase):
 
         panel.show_window()
 
-        self.assertTrue(panel.windowFlags() & Qt.WindowType.Window)
+        self.assertEqual(panel.windowType(), Qt.WindowType.Tool)
         self.assertFalse(
             panel.windowFlags() & Qt.WindowType.FramelessWindowHint
         )

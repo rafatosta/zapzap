@@ -333,9 +333,9 @@ class QuickAccountsPopover(QFrame):
         pinned = self.pin_button.isChecked()
         self._independent_window = independent
         if independent:
-            self.setParent(None, Qt.WindowType.Window)
+            self.setParent(None, Qt.WindowType.Tool)
             self.setWindowFlags(
-                Qt.WindowType.Window
+                Qt.WindowType.Tool
                 | Qt.WindowType.WindowTitleHint
                 | Qt.WindowType.WindowSystemMenuHint
                 | Qt.WindowType.WindowCloseButtonHint

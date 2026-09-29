@@ -102,6 +102,8 @@ valida foco, compositor ou apresentação de janelas independentes.
 5. Na apresentação como janela independente, confirme a barra de título e o
    botão de fechar fornecidos pelo sistema; ao abrir pelo botão flutuante,
    confirme que o pop-up continua sem moldura.
+   No GNOME, abra e feche a janela repetidamente e confirme que o shell não
+   mostra uma notificação para cada abertura.
 6. Mova o painel entre monitores com “Lembrar posição” ativo e reinicie. Valide
    a restauração dentro da área disponível; depois confirme que “Bloquear
    posição” impede movimento e que “Manter acima” acompanha o botão de pin,

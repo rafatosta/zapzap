@@ -229,7 +229,8 @@ a chave nova migram `system/quick_access_on_sidebar_hidden=true` para
 `system/quick_access_remember_position`, `system/quick_access_lock_position` e
 `system/quick_access_always_on_top` controlam a geometria e as flags da mesma
 instância. Como janela independente, Quick Access usa a decoração nativa do
-sistema; como pop-up junto ao botão flutuante, mantém a apresentação sem
+sistema como janela de ferramenta, sem anunciar uma nova janela principal ao
+shell; como pop-up junto ao botão flutuante, mantém a apresentação sem
 moldura. A posição só é restaurada e atualizada quando a memória está ativa;
 o bloqueio restringe o movimento à posição corrente, e o botão de pin do painel
 permanece sincronizado com “manter acima”. Desligar Quick Access oculta o painel
