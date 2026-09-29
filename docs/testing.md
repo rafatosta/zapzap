@@ -104,6 +104,8 @@ valida foco, compositor ou apresentação de janelas independentes.
    confirme que o pop-up continua sem moldura.
    No GNOME, abra e feche a janela repetidamente e confirme que o shell não
    mostra uma notificação para cada abertura.
+   Confirme também que a janela independente não apresenta faixa transparente
+   ao redor do conteúdo, enquanto o pop-up mantém sua sombra.
 6. Mova o painel entre monitores com “Lembrar posição” ativo e reinicie. Valide
    a restauração dentro da área disponível; depois confirme que “Bloquear
    posição” impede movimento e que “Manter acima” acompanha o botão de pin,

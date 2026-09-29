@@ -165,6 +165,9 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Removed the transparent outer margin from the independent Quick Access window
+  so its content uses the full available area.
+
 - Prevented GNOME from treating each Quick Access opening as a new main window
   notification while retaining the system window decoration.
 

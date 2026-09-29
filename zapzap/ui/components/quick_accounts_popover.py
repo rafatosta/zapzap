@@ -113,10 +113,17 @@ class QuickAccountsPopover(QFrame):
         background: transparent;
         border: 0;
     }
+    QFrame#QuickAccountsPopover[independent="true"] {
+        background: palette(base);
+    }
     QFrame#QuickAccountsSurface {
         background: palette(base);
         border: 1px solid palette(mid);
         border-radius: 18px;
+    }
+    QFrame#QuickAccountsSurface[independent="true"] {
+        border: 0;
+        border-radius: 0;
     }
     QPushButton#QuickAccountRow {
         text-align: left;
@@ -353,11 +360,27 @@ class QuickAccountsPopover(QFrame):
             )
             self.setAttribute(Qt.WidgetAttribute.WA_ShowWithoutActivating, True)
             self.setAttribute(Qt.WidgetAttribute.WA_QuitOnClose, True)
+        self._apply_presentation_chrome(independent)
         self.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint, pinned)
 
+    def _apply_presentation_chrome(self, independent):
+        """Match the panel chrome to its native window or anchored popup."""
+        self.setAttribute(
+            Qt.WidgetAttribute.WA_TranslucentBackground,
+            not independent,
+        )
+        margin = 0 if independent else self.SHADOW_MARGIN
+        self._outer_layout.setContentsMargins(margin, margin, margin, margin)
+        self.setProperty("independent", independent)
+        self.surface.setProperty("independent", independent)
+        self._shadow.setEnabled(not independent)
+        for widget in (self, self.surface):
+            widget.style().unpolish(widget)
+            widget.style().polish(widget)
+
     def _setup_ui(self):
-        outer = QVBoxLayout(self)
-        outer.setContentsMargins(
+        self._outer_layout = QVBoxLayout(self)
+        self._outer_layout.setContentsMargins(
             self.SHADOW_MARGIN,
             self.SHADOW_MARGIN,
             self.SHADOW_MARGIN,
@@ -365,12 +388,12 @@ class QuickAccountsPopover(QFrame):
         )
         self.surface = QFrame(self)
         self.surface.setObjectName("QuickAccountsSurface")
-        outer.addWidget(self.surface)
-        shadow = QGraphicsDropShadowEffect(self.surface)
-        shadow.setBlurRadius(24)
-        shadow.setOffset(0, 5)
-        shadow.setColor(QColor(0, 0, 0, 75))
-        self.surface.setGraphicsEffect(shadow)
+        self._outer_layout.addWidget(self.surface)
+        self._shadow = QGraphicsDropShadowEffect(self.surface)
+        self._shadow.setBlurRadius(24)
+        self._shadow.setOffset(0, 5)
+        self._shadow.setColor(QColor(0, 0, 0, 75))
+        self.surface.setGraphicsEffect(self._shadow)
 
         layout = QVBoxLayout(self.surface)
         layout.setContentsMargins(14, 13, 14, 12)

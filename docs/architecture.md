@@ -231,7 +231,9 @@ a chave nova migram `system/quick_access_on_sidebar_hidden=true` para
 instância. Como janela independente, Quick Access usa a decoração nativa do
 sistema como janela de ferramenta, sem anunciar uma nova janela principal ao
 shell; como pop-up junto ao botão flutuante, mantém a apresentação sem
-moldura. A posição só é restaurada e atualizada quando a memória está ativa;
+moldura. A janela independente tem fundo opaco e usa toda sua área de conteúdo;
+somente o pop-up reserva espaço transparente para a sombra. A posição só é
+restaurada e atualizada quando a memória está ativa;
 o bloqueio restringe o movimento à posição corrente, e o botão de pin do painel
 permanece sincronizado com “manter acima”. Desligar Quick Access oculta o painel
 e seus acionamentos sem apagar as escolhas subordinadas.

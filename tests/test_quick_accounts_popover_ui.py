@@ -47,6 +47,15 @@ class QuickAccountsPopoverTests(QtTestCase):
             panel.windowFlags() & Qt.WindowType.FramelessWindowHint
         )
         self.assertIn("Quick Access", panel.windowTitle())
+        self.assertFalse(
+            panel.testAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        )
+        margins = panel._outer_layout.contentsMargins()
+        self.assertEqual(
+            (margins.left(), margins.top(), margins.right(), margins.bottom()),
+            (0, 0, 0, 0),
+        )
+        self.assertFalse(panel._shadow.isEnabled())
 
     def test_active_account_is_highlighted(self):
         runtime = self._runtime("Rafael", "rafael")
