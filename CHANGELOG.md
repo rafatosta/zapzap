@@ -165,6 +165,10 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Made the independent Quick Access window request the system title bar and
+  close control, while preserving the frameless presentation of its anchored
+  pop-up.
+
   clipped navigation containers, with a measured free-slot fallback and
   WebEngine regression checks for visibility, reinsertion and clicking.
 

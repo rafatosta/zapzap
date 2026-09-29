@@ -251,13 +251,13 @@ class QuickAccountsPopover(QFrame):
         return self._independent_window
 
     def show_window(self, activate=True):
-        """Show this shared account panel as an independently owned window."""
+        """Show this shared account panel in a system-decorated window."""
         self._set_presentation(independent=True)
         self.setAttribute(
             Qt.WidgetAttribute.WA_ShowWithoutActivating,
             not activate,
         )
-        self.setWindowTitle("ZapZap")
+        self.setWindowTitle(f"ZapZap — {_('Quick Access')}")
         self.adjustSize()
         if self._remember_position and self._restored_position is not None:
             self._move_to_available_position(self._restored_position)
@@ -334,13 +334,22 @@ class QuickAccountsPopover(QFrame):
         self._independent_window = independent
         if independent:
             self.setParent(None, Qt.WindowType.Window)
+            self.setWindowFlags(
+                Qt.WindowType.Window
+                | Qt.WindowType.WindowTitleHint
+                | Qt.WindowType.WindowSystemMenuHint
+                | Qt.WindowType.WindowCloseButtonHint
+            )
             self.setAttribute(Qt.WidgetAttribute.WA_ShowWithoutActivating, False)
             self.setAttribute(Qt.WidgetAttribute.WA_QuitOnClose, False)
-            self.setWindowTitle("ZapZap")
+            self.setWindowTitle(f"ZapZap — {_('Quick Access')}")
         else:
             self.setParent(
                 self._owner,
                 Qt.WindowType.Tool | Qt.WindowType.FramelessWindowHint,
+            )
+            self.setWindowFlags(
+                Qt.WindowType.Tool | Qt.WindowType.FramelessWindowHint
             )
             self.setAttribute(Qt.WidgetAttribute.WA_ShowWithoutActivating, True)
             self.setAttribute(Qt.WidgetAttribute.WA_QuitOnClose, True)

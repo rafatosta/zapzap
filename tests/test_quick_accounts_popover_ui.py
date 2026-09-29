@@ -36,6 +36,18 @@ class QuickAccountsPopoverTests(QtTestCase):
 
         self.assertEqual(panel.width(), 320)
 
+    def test_independent_window_uses_system_decoration(self):
+        panel = QuickAccountsPopover()
+        self.addCleanup(panel.close)
+
+        panel.show_window()
+
+        self.assertTrue(panel.windowFlags() & Qt.WindowType.Window)
+        self.assertFalse(
+            panel.windowFlags() & Qt.WindowType.FramelessWindowHint
+        )
+        self.assertIn("Quick Access", panel.windowTitle())
+
     def test_active_account_is_highlighted(self):
         runtime = self._runtime("Rafael", "rafael")
         runtime.button.selected()

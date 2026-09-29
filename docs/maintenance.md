@@ -173,6 +173,9 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   janela independente não pode encerrar a aplicação nem destruir perfis. Não
   mova essa funcionalidade para o DOM do WhatsApp Web nem use widgets visuais
   da sidebar como proxy.
+- A apresentação como janela independente do Quick Access deve pedir a
+  decoração do sistema (barra de título e controle de fechar); somente o
+  pop-up ancorado ao botão flutuante usa `FramelessWindowHint`.
 - Na conversa por número, preserve a separação entre código do país e número
   nacional. O diálogo apenas coleta e apresenta erros; `open_chat.py` normaliza,
   valida e codifica a URL, e o `PageController` realiza a navegação direta sem
