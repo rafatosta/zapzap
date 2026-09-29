@@ -2223,9 +2223,8 @@ msgid "Quick Access"
 msgstr "Hızlı Erişim"
 
 #: zapzap/features/settings/pages/appearance/view.py:80
-#, fuzzy
 msgid "Control how the Quick Access panel is displayed."
-msgstr "Hızlı Erişim panelini ve kenar çubuğu davranışını yönetin."
+msgstr "Hızlı Erişim panelinin nasıl görüntüleneceğini belirleyin."
 
 #: zapzap/features/settings/pages/appearance/view.py:84
 msgid "Enable Quick Access"
@@ -2236,35 +2235,32 @@ msgid "Allows you to use the Quick Access panel."
 msgstr "Hızlı Erişim panelini kullanmanızı sağlar."
 
 #: zapzap/features/settings/pages/appearance/view.py:88
-#, fuzzy
 msgid "Display mode"
-msgstr "Görüntü arka ucu"
+msgstr "Görüntüleme modu"
 
 #: zapzap/features/settings/pages/appearance/view.py:91
 msgid "When needed"
-msgstr ""
+msgstr "Gerektiğinde"
 
 #: zapzap/features/settings/pages/appearance/view.py:94
 msgid "When ZapZap is hidden"
-msgstr ""
+msgstr "ZapZap gizlendiğinde"
 
 #: zapzap/features/settings/pages/appearance/view.py:96
-#, fuzzy
 msgid "Always visible"
-msgstr "Her zaman izin ver"
+msgstr "Her zaman görünür"
 
 #: zapzap/features/settings/pages/appearance/view.py:103
 msgid "Remember position"
-msgstr ""
+msgstr "Konumu hatırla"
 
 #: zapzap/features/settings/pages/appearance/view.py:106
-#, fuzzy
 msgid "Lock position"
-msgstr "Düğme konumu"
+msgstr "Konumu kilitle"
 
 #: zapzap/features/settings/pages/appearance/view.py:109
 msgid "Keep above other windows"
-msgstr ""
+msgstr "Diğer pencerelerin üzerinde tut"
 
 #: zapzap/features/settings/pages/appearance/view.py:160
 msgid "Control tray icon visibility, style, and unread counter."

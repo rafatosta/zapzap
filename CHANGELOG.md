@@ -168,6 +168,9 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Completed the Turkish Quick Access settings translations and removed their
+  obsolete fuzzy markers so the shipped catalog passes validation.
+
 - Removed the transparent outer margin from the independent Quick Access window
   so its content uses the full available area.
 
