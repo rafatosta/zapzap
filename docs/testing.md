@@ -94,6 +94,8 @@ valida foco, compositor ou apresentação de janelas independentes.
 3. Em “Quando o ZapZap estiver oculto”, oculte a janela principal e confirme
    uma única janela Quick Access sem roubar foco. Feche-a manualmente e confirme
    que não reabre até a janela principal ser mostrada e ocultada novamente.
+   Selecione uma conta e cada ação rápida; confirme que a janela principal é
+   restaurada e que a ação solicitada é executada.
 4. Em “Sempre visível”, confirme que o painel abre, permanece depois de trocar
    conta ou executar uma ação e reabre caso seja fechado manualmente. Desative
    a chave principal e confirme que então ele fecha.

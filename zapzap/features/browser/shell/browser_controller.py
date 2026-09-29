@@ -841,6 +841,10 @@ class BrowserController(BrowserView):
     def _close_after_quick_access_action(self):
         if self._appearance_settings.quick_access_display_mode != "always":
             self._close_quick_access_panel()
+        if self._main_window_hidden:
+            show_window = getattr(self.parent, "show_window", None)
+            if show_window is not None:
+                show_window()
 
     def _handle_quick_account_request(self, user_id):
         self._close_after_quick_access_action()

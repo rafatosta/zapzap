@@ -165,6 +165,9 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Restored the main window when an account or quick action is selected from
+  Quick Access while ZapZap is hidden.
+
 - Made the independent Quick Access window request the system title bar and
   close control, while preserving the frameless presentation of its anchored
   pop-up.

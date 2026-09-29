@@ -158,6 +158,37 @@ class FloatingAccountButtonTests(QtTestCase):
         )
         self.assertTrue(window.browser._accounts["second"].button.isSelected)
 
+    def test_quick_access_action_restores_a_hidden_main_window(self):
+        window = self._window()
+        browser = window.browser
+        panel = browser._quick_accounts_popover
+        window.show()
+        QApplication.processEvents()
+        window.hide_window()
+        QApplication.processEvents()
+
+        self.assertTrue(window.isHidden())
+        self.assertTrue(browser._main_window_hidden)
+
+        browser.show_quick_access_window()
+        second_row = next(
+            row for row in panel._rows
+            if row.runtime.user.id == "second"
+        )
+        QTest.mouseClick(
+            second_row,
+            Qt.MouseButton.LeftButton,
+            pos=second_row.rect().center(),
+        )
+        QApplication.processEvents()
+
+        self.assertTrue(window.isVisible())
+        self.assertFalse(browser._main_window_hidden)
+        self.assertIs(
+            browser.pages.currentWidget(),
+            browser._accounts["second"].page,
+        )
+
     def test_sidebar_quick_access_window_is_reused_and_tracks_account_changes(self):
         window = self._window()
         browser = window.browser

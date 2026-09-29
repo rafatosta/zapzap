@@ -234,6 +234,8 @@ moldura. A posição só é restaurada e atualizada quando a memória está ativ
 o bloqueio restringe o movimento à posição corrente, e o botão de pin do painel
 permanece sincronizado com “manter acima”. Desligar Quick Access oculta o painel
 e seus acionamentos sem apagar as escolhas subordinadas.
+Qualquer ação do painel enquanto a janela principal estiver oculta solicita a
+restauração pelo ciclo de vida existente antes de devolver o foco ao conteúdo.
 O botão não possui tooltip nativo, pois ele competiria visualmente com o
 popover; nome e descrição acessíveis continuam informando a atualização.
 O clique de contexto abre um popover compacto com identidade, estado, edição,
