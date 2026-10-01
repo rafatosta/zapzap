@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-01 11:14-0300\n"
+"POT-Creation-Date: 2026-10-01 11:51-0300\n"
 "PO-Revision-Date: 2026-09-25 00:00+0800\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Simplified Chinese\n"
@@ -19,13 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: zapzap/app/main_window_controller.py:271
+#: zapzap/app/main_window_controller.py:279
 #: zapzap/features/tray/sys_tray_manager.py:67
 #: zapzap/features/tray/sys_tray_manager.py:237
 msgid "Unmute"
 msgstr ""
 
-#: zapzap/app/main_window_controller.py:271
+#: zapzap/app/main_window_controller.py:279
 #: zapzap/features/shortcuts/model.py:29
 #: zapzap/features/tray/sys_tray_manager.py:67
 #: zapzap/features/tray/sys_tray_manager.py:237
@@ -286,13 +286,13 @@ msgstr "复制地址"
 
 #: zapzap/features/alerts/external_url.py:45
 #: zapzap/features/reporting/dialogs.py:360
-#: zapzap/features/browser/shell/browser_controller.py:318
+#: zapzap/features/browser/shell/browser_controller.py:321
 #: zapzap/ui/components/dictionary_manager_dialog.py:91
 #: zapzap/ui/components/dictionary_manager_dialog.py:193
 #: zapzap/ui/components/edit_account_dialog.py:74
 #: zapzap/ui/components/send_message_to_number_dialog.py:135
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
-#: zapzap/ui/components/floating_monitoring_panel.py:122
+#: zapzap/ui/components/floating_monitoring_panel.py:280
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "关闭"
@@ -789,6 +789,8 @@ msgstr "选择文件保存位置，并在有词典时启用拼写检查。"
 #: zapzap/ui/components/browser_sidebar.py:219
 #: zapzap/ui/components/browser_sidebar.py:220
 #: zapzap/ui/components/main_window.py:161
+#: zapzap/ui/components/floating_monitoring_panel.py:285
+#: zapzap/ui/components/floating_monitoring_panel.py:286
 msgid "Downloads"
 msgstr "下载"
 
@@ -1331,6 +1333,8 @@ msgstr "个人资料和状态"
 #: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/downloads/ui/downloads_menu.py:1081
 #: zapzap/ui/components/main_window.py:147
+#: zapzap/ui/components/floating_monitoring_panel.py:287
+#: zapzap/ui/components/floating_monitoring_panel.py:288
 msgid "Settings"
 msgstr "设置"
 
@@ -1422,8 +1426,10 @@ msgid "New conversation by phone number"
 msgstr "按电话号码开始新对话"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:533
+#: zapzap/features/browser/shell/browser_controller.py:536
 #: zapzap/ui/components/browser_sidebar.py:200
+#: zapzap/ui/components/floating_monitoring_panel.py:281
+#: zapzap/ui/components/floating_monitoring_panel.py:282
 #: zapzap/ui/components/integrated_account_selector.py:131
 #: zapzap/ui/components/integrated_account_selector.py:132
 msgid "New account"
@@ -2221,7 +2227,7 @@ msgid "Symbolic dark"
 msgstr "深色符号图标"
 
 #: zapzap/features/settings/pages/appearance/view.py:160
-#: zapzap/features/browser/shell/browser_controller.py:171
+#: zapzap/features/browser/shell/browser_controller.py:174
 msgid "Grid view"
 msgstr "网格视图"
 
@@ -3746,56 +3752,56 @@ msgstr "始终允许"
 msgid "Block"
 msgstr "阻止"
 
-#: zapzap/features/browser/shell/browser_controller.py:283
+#: zapzap/features/browser/shell/browser_controller.py:286
 msgid "Flatpak sandbox help"
 msgstr "Flatpak 沙盒帮助"
 
-#: zapzap/features/browser/shell/browser_controller.py:308
+#: zapzap/features/browser/shell/browser_controller.py:311
 msgid "Flatpak sandbox"
 msgstr "Flatpak 沙盒"
 
-#: zapzap/features/browser/shell/browser_controller.py:309
+#: zapzap/features/browser/shell/browser_controller.py:312
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap 正在 Flatpak 沙盒中运行。"
 
-#: zapzap/features/browser/shell/browser_controller.py:311
+#: zapzap/features/browser/shell/browser_controller.py:314
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
 msgstr "打开文件或拖放等部分功能可能需要额外权限。"
 
-#: zapzap/features/browser/shell/browser_controller.py:316
+#: zapzap/features/browser/shell/browser_controller.py:319
 msgid "Instructions"
 msgstr "说明"
 
-#: zapzap/features/browser/shell/browser_controller.py:317
+#: zapzap/features/browser/shell/browser_controller.py:320
 msgid "Copy command"
 msgstr "复制命令"
 
-#: zapzap/features/browser/shell/browser_controller.py:550
-#: zapzap/features/browser/shell/browser_controller.py:624
+#: zapzap/features/browser/shell/browser_controller.py:553
+#: zapzap/features/browser/shell/browser_controller.py:627
 #, python-brace-format
 msgid "Account {}"
 msgstr "账户 {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:637
+#: zapzap/features/browser/shell/browser_controller.py:640
 msgid "Account disabled"
 msgstr "账户已禁用"
 
-#: zapzap/features/browser/shell/browser_controller.py:638
+#: zapzap/features/browser/shell/browser_controller.py:641
 msgid "This account is disabled."
 msgstr "此账户已禁用。"
 
-#: zapzap/features/browser/shell/browser_controller.py:640
+#: zapzap/features/browser/shell/browser_controller.py:643
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr "您可以立即重新启用，或使用右键菜单管理此账户。"
 
-#: zapzap/features/browser/shell/browser_controller.py:645
+#: zapzap/features/browser/shell/browser_controller.py:648
 msgid "Activate"
 msgstr "启用"
 
-#: zapzap/features/browser/shell/browser_controller.py:646
+#: zapzap/features/browser/shell/browser_controller.py:649
 msgid "Not now"
 msgstr "暂不"
 
@@ -4791,19 +4797,25 @@ msgstr "发布于 {date}"
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr "ZapZap {latest} 已可用。当前版本：{current}。"
 
-#: zapzap/ui/components/floating_monitoring_panel.py:118
-#: zapzap/ui/components/floating_monitoring_panel.py:120
-msgid "Monitoring"
-msgstr ""
+#: zapzap/ui/components/floating_monitoring_panel.py:276
+#: zapzap/ui/components/floating_monitoring_panel.py:278
+#, fuzzy
+msgid "Quick access"
+msgstr "快速访问"
 
-#: zapzap/ui/components/floating_monitoring_panel.py:119
+#: zapzap/ui/components/floating_monitoring_panel.py:277
 msgid "No account activity to show yet."
 msgstr ""
 
-#: zapzap/ui/components/floating_monitoring_panel.py:121
+#: zapzap/ui/components/floating_monitoring_panel.py:279
 #, fuzzy
 msgid "Monitoring panel"
 msgstr "固定面板"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:283
+#: zapzap/ui/components/floating_monitoring_panel.py:284
+msgid "Audio"
+msgstr ""
 
 #: zapzap/ui/components/integrated_account_selector.py:130
 #, fuzzy

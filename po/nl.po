@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-01 11:14-0300\n"
+"POT-Creation-Date: 2026-10-01 11:51-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Dutch\n"
@@ -18,13 +18,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.5\n"
 
-#: zapzap/app/main_window_controller.py:271
+#: zapzap/app/main_window_controller.py:279
 #: zapzap/features/tray/sys_tray_manager.py:67
 #: zapzap/features/tray/sys_tray_manager.py:237
 msgid "Unmute"
 msgstr ""
 
-#: zapzap/app/main_window_controller.py:271
+#: zapzap/app/main_window_controller.py:279
 #: zapzap/features/shortcuts/model.py:29
 #: zapzap/features/tray/sys_tray_manager.py:67
 #: zapzap/features/tray/sys_tray_manager.py:237
@@ -292,13 +292,13 @@ msgstr "Linkadres kopiëren"
 
 #: zapzap/features/alerts/external_url.py:45
 #: zapzap/features/reporting/dialogs.py:360
-#: zapzap/features/browser/shell/browser_controller.py:318
+#: zapzap/features/browser/shell/browser_controller.py:321
 #: zapzap/ui/components/dictionary_manager_dialog.py:91
 #: zapzap/ui/components/dictionary_manager_dialog.py:193
 #: zapzap/ui/components/edit_account_dialog.py:74
 #: zapzap/ui/components/send_message_to_number_dialog.py:135
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
-#: zapzap/ui/components/floating_monitoring_panel.py:122
+#: zapzap/ui/components/floating_monitoring_panel.py:280
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "Sluiten"
@@ -815,6 +815,8 @@ msgstr ""
 #: zapzap/ui/components/browser_sidebar.py:219
 #: zapzap/ui/components/browser_sidebar.py:220
 #: zapzap/ui/components/main_window.py:161
+#: zapzap/ui/components/floating_monitoring_panel.py:285
+#: zapzap/ui/components/floating_monitoring_panel.py:286
 msgid "Downloads"
 msgstr "Downloads"
 
@@ -1365,6 +1367,8 @@ msgstr "Profiel en status"
 #: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/downloads/ui/downloads_menu.py:1081
 #: zapzap/ui/components/main_window.py:147
+#: zapzap/ui/components/floating_monitoring_panel.py:287
+#: zapzap/ui/components/floating_monitoring_panel.py:288
 msgid "Settings"
 msgstr "Instellingen"
 
@@ -1456,8 +1460,10 @@ msgid "New conversation by phone number"
 msgstr "Nieuw gesprek op basis van telefoonnummer"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:533
+#: zapzap/features/browser/shell/browser_controller.py:536
 #: zapzap/ui/components/browser_sidebar.py:200
+#: zapzap/ui/components/floating_monitoring_panel.py:281
+#: zapzap/ui/components/floating_monitoring_panel.py:282
 #: zapzap/ui/components/integrated_account_selector.py:131
 #: zapzap/ui/components/integrated_account_selector.py:132
 msgid "New account"
@@ -2275,7 +2281,7 @@ msgid "Symbolic dark"
 msgstr "Symbolisch (donker)"
 
 #: zapzap/features/settings/pages/appearance/view.py:160
-#: zapzap/features/browser/shell/browser_controller.py:171
+#: zapzap/features/browser/shell/browser_controller.py:174
 msgid "Grid view"
 msgstr "Rasterweergave"
 
@@ -3836,19 +3842,19 @@ msgstr "Altijd toestaan"
 msgid "Block"
 msgstr "Blokkeren"
 
-#: zapzap/features/browser/shell/browser_controller.py:283
+#: zapzap/features/browser/shell/browser_controller.py:286
 msgid "Flatpak sandbox help"
 msgstr "Flatpak hulp bij sandbox"
 
-#: zapzap/features/browser/shell/browser_controller.py:308
+#: zapzap/features/browser/shell/browser_controller.py:311
 msgid "Flatpak sandbox"
 msgstr "Flatpak-sandbox"
 
-#: zapzap/features/browser/shell/browser_controller.py:309
+#: zapzap/features/browser/shell/browser_controller.py:312
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap draait in de Flatpak-sandbox."
 
-#: zapzap/features/browser/shell/browser_controller.py:311
+#: zapzap/features/browser/shell/browser_controller.py:314
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
@@ -3856,40 +3862,40 @@ msgstr ""
 "Voor sommige functies, zoals het openen van bestanden of slepen en "
 "neerzetten, zijn mogelijk extra machtigingen vereist."
 
-#: zapzap/features/browser/shell/browser_controller.py:316
+#: zapzap/features/browser/shell/browser_controller.py:319
 msgid "Instructions"
 msgstr "Instructies"
 
-#: zapzap/features/browser/shell/browser_controller.py:317
+#: zapzap/features/browser/shell/browser_controller.py:320
 msgid "Copy command"
 msgstr "Kopieer opdracht"
 
-#: zapzap/features/browser/shell/browser_controller.py:550
-#: zapzap/features/browser/shell/browser_controller.py:624
+#: zapzap/features/browser/shell/browser_controller.py:553
+#: zapzap/features/browser/shell/browser_controller.py:627
 #, python-brace-format
 msgid "Account {}"
 msgstr "Account {}"
 
-#: zapzap/features/browser/shell/browser_controller.py:637
+#: zapzap/features/browser/shell/browser_controller.py:640
 msgid "Account disabled"
 msgstr "Account uitgeschakeld"
 
-#: zapzap/features/browser/shell/browser_controller.py:638
+#: zapzap/features/browser/shell/browser_controller.py:641
 msgid "This account is disabled."
 msgstr "Dit account is uitgeschakeld."
 
-#: zapzap/features/browser/shell/browser_controller.py:640
+#: zapzap/features/browser/shell/browser_controller.py:643
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "U kunt het nu opnieuw activeren of het contextmenu gebruiken om dit account "
 "te beheren."
 
-#: zapzap/features/browser/shell/browser_controller.py:645
+#: zapzap/features/browser/shell/browser_controller.py:648
 msgid "Activate"
 msgstr "Activeer"
 
-#: zapzap/features/browser/shell/browser_controller.py:646
+#: zapzap/features/browser/shell/browser_controller.py:649
 msgid "Not now"
 msgstr "Niet nu"
 
@@ -4921,19 +4927,25 @@ msgstr ""
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
 
-#: zapzap/ui/components/floating_monitoring_panel.py:118
-#: zapzap/ui/components/floating_monitoring_panel.py:120
-msgid "Monitoring"
-msgstr ""
+#: zapzap/ui/components/floating_monitoring_panel.py:276
+#: zapzap/ui/components/floating_monitoring_panel.py:278
+#, fuzzy
+msgid "Quick access"
+msgstr "Snelle acties"
 
-#: zapzap/ui/components/floating_monitoring_panel.py:119
+#: zapzap/ui/components/floating_monitoring_panel.py:277
 msgid "No account activity to show yet."
 msgstr ""
 
-#: zapzap/ui/components/floating_monitoring_panel.py:121
+#: zapzap/ui/components/floating_monitoring_panel.py:279
 #, fuzzy
 msgid "Monitoring panel"
 msgstr "Paneel vastzetten"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:283
+#: zapzap/ui/components/floating_monitoring_panel.py:284
+msgid "Audio"
+msgstr ""
 
 #: zapzap/ui/components/integrated_account_selector.py:130
 #, fuzzy
