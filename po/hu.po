@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-01 12:30-0300\n"
+"POT-Creation-Date: 2026-10-01 13:56-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Hungarian\n"
@@ -17,31 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
-
-#: zapzap/app/main_window_controller.py:282
-#: zapzap/features/tray/sys_tray_manager.py:67
-#: zapzap/features/tray/sys_tray_manager.py:237
-#: zapzap/ui/components/floating_monitoring_panel.py:316
-msgid "Unmute"
-msgstr ""
-
-#: zapzap/app/main_window_controller.py:282
-#: zapzap/features/shortcuts/model.py:29
-#: zapzap/features/tray/sys_tray_manager.py:67
-#: zapzap/features/tray/sys_tray_manager.py:237
-#: zapzap/ui/components/browser_sidebar.py:217
-#: zapzap/ui/components/browser_sidebar.py:218
-#: zapzap/ui/components/floating_monitoring_panel.py:316
-msgid "Mute"
-msgstr "Némítás"
-
-#: zapzap/app/main_window_controller.py:515
-#: zapzap/features/browser/shell/browser_controller.py:570
-#: zapzap/features/browser/shell/browser_controller.py:644
-#: zapzap/features/browser/shell/browser_controller.py:908
-#, python-brace-format
-msgid "Account {}"
-msgstr "Fiók: {}"
 
 #: zapzap/app/window_lifecycle.py:89
 msgid "Close ZapZap"
@@ -54,6 +29,31 @@ msgstr "Biztosan bezárja?"
 #: zapzap/app/window_lifecycle.py:91
 msgid "Don't ask again"
 msgstr "Ne kérdezd újra"
+
+#: zapzap/app/main_window_controller.py:282
+#: zapzap/features/tray/sys_tray_manager.py:68
+#: zapzap/features/tray/sys_tray_manager.py:250
+#: zapzap/ui/components/floating_monitoring_panel.py:335
+msgid "Unmute"
+msgstr ""
+
+#: zapzap/app/main_window_controller.py:282
+#: zapzap/features/shortcuts/model.py:29
+#: zapzap/features/tray/sys_tray_manager.py:68
+#: zapzap/features/tray/sys_tray_manager.py:250
+#: zapzap/ui/components/browser_sidebar.py:217
+#: zapzap/ui/components/browser_sidebar.py:218
+#: zapzap/ui/components/floating_monitoring_panel.py:335
+msgid "Mute"
+msgstr "Némítás"
+
+#: zapzap/app/main_window_controller.py:534
+#: zapzap/features/browser/shell/browser_controller.py:570
+#: zapzap/features/browser/shell/browser_controller.py:644
+#: zapzap/features/browser/shell/browser_controller.py:908
+#, python-brace-format
+msgid "Account {}"
+msgstr "Fiók: {}"
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:27
 msgid "Unexpected Error"
@@ -308,7 +308,6 @@ msgstr "Link címénel másolása"
 #: zapzap/ui/components/edit_account_dialog.py:74
 #: zapzap/ui/components/send_message_to_number_dialog.py:135
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
-#: zapzap/ui/components/floating_monitoring_panel.py:269
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "Bezárás"
@@ -460,7 +459,7 @@ msgstr ""
 
 #: zapzap/features/donation/view.py:213 zapzap/features/shortcuts/view.py:60
 #: zapzap/features/settings/pages/debugging/view.py:425
-#: zapzap/ui/components/main_window.py:137
+#: zapzap/ui/components/main_window.py:139
 msgid "ZapZap"
 msgstr "ZapZap"
 
@@ -473,7 +472,7 @@ msgstr ""
 "az Ön magánéletét és szabadságát."
 
 #: zapzap/features/donation/view.py:220
-#: zapzap/features/tray/sys_tray_manager.py:70
+#: zapzap/features/tray/sys_tray_manager.py:71
 #: zapzap/features/settings/shell/settings_view.py:32
 #: zapzap/features/settings/shell/settings_view.py:34
 #: zapzap/features/settings/pages/about/view.py:274
@@ -603,28 +602,28 @@ msgid "The interface language is applied when you finish setup."
 msgstr "Az interfész nyelve a beállítás befejezésekor kerül alkalmazásra."
 
 #: zapzap/features/initial_setup/view.py:159
-#: zapzap/features/settings/pages/appearance/view.py:106
+#: zapzap/features/settings/pages/appearance/view.py:159
 msgid "Theme"
 msgstr "téma"
 
 #: zapzap/features/initial_setup/view.py:160
-#: zapzap/features/settings/pages/appearance/view.py:106
+#: zapzap/features/settings/pages/appearance/view.py:159
 msgid "Choose the visual theme."
 msgstr "Válassza ki a vizuális témát."
 
 #: zapzap/features/initial_setup/view.py:164
-#: zapzap/features/settings/pages/appearance/view.py:108
+#: zapzap/features/settings/pages/appearance/view.py:161
 #: zapzap/features/settings/pages/system_startup/view.py:140
 msgid "Automatic"
 msgstr "Automatikus"
 
 #: zapzap/features/initial_setup/view.py:165
-#: zapzap/features/settings/pages/appearance/view.py:109
+#: zapzap/features/settings/pages/appearance/view.py:162
 msgid "Light"
 msgstr "Világos"
 
 #: zapzap/features/initial_setup/view.py:166
-#: zapzap/features/settings/pages/appearance/view.py:110
+#: zapzap/features/settings/pages/appearance/view.py:163
 msgid "Dark"
 msgstr "Sötét"
 
@@ -716,7 +715,7 @@ msgstr ""
 "munkamenetet."
 
 #: zapzap/features/initial_setup/view.py:247
-#: zapzap/features/settings/pages/appearance/view.py:123
+#: zapzap/features/settings/pages/appearance/view.py:176
 msgid "Tray icon"
 msgstr "Panel ikon"
 
@@ -827,9 +826,9 @@ msgstr ""
 #: zapzap/features/downloads/ui/downloads_menu.py:1025
 #: zapzap/ui/components/browser_sidebar.py:219
 #: zapzap/ui/components/browser_sidebar.py:220
-#: zapzap/ui/components/main_window.py:161
-#: zapzap/ui/components/floating_monitoring_panel.py:274
-#: zapzap/ui/components/floating_monitoring_panel.py:275
+#: zapzap/ui/components/main_window.py:164
+#: zapzap/ui/components/floating_monitoring_panel.py:293
+#: zapzap/ui/components/floating_monitoring_panel.py:294
 msgid "Downloads"
 msgstr "Letöltések"
 
@@ -1104,6 +1103,7 @@ msgid "Other"
 msgstr ""
 
 #: zapzap/features/reporting/dialogs.py:38
+#: zapzap/features/settings/pages/appearance/view.py:108
 msgid "Always"
 msgstr ""
 
@@ -1379,13 +1379,13 @@ msgid "Profile and status"
 msgstr "Profil és státus"
 
 #: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
-#: zapzap/features/tray/sys_tray_manager.py:69
+#: zapzap/features/tray/sys_tray_manager.py:70
 #: zapzap/features/settings/shell/settings_controller.py:234
 #: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/downloads/ui/downloads_menu.py:1081
-#: zapzap/ui/components/main_window.py:147
-#: zapzap/ui/components/floating_monitoring_panel.py:276
-#: zapzap/ui/components/floating_monitoring_panel.py:277
+#: zapzap/ui/components/main_window.py:149
+#: zapzap/ui/components/floating_monitoring_panel.py:295
+#: zapzap/ui/components/floating_monitoring_panel.py:296
 msgid "Settings"
 msgstr "Beállítások"
 
@@ -1426,7 +1426,7 @@ msgid "Extended search"
 msgstr "Bővjtett keresés"
 
 #: zapzap/features/shortcuts/model.py:39
-#: zapzap/ui/components/main_window.py:145
+#: zapzap/ui/components/main_window.py:147
 msgid "Hide"
 msgstr "Elrejtés"
 
@@ -1439,32 +1439,32 @@ msgid "Fullscreen"
 msgstr "Teljes képernyő"
 
 #: zapzap/features/shortcuts/model.py:42
-#: zapzap/ui/components/main_window.py:164
+#: zapzap/ui/components/main_window.py:167
 msgid "Automatic theme"
 msgstr "Automatikus téma"
 
 #: zapzap/features/shortcuts/model.py:43
-#: zapzap/ui/components/main_window.py:166
+#: zapzap/ui/components/main_window.py:169
 msgid "Light theme"
 msgstr "Világos téma"
 
 #: zapzap/features/shortcuts/model.py:44
-#: zapzap/ui/components/main_window.py:168
+#: zapzap/ui/components/main_window.py:171
 msgid "Dark theme"
 msgstr "Sötét téma"
 
 #: zapzap/features/shortcuts/model.py:45
-#: zapzap/ui/components/main_window.py:149
+#: zapzap/ui/components/main_window.py:151
 msgid "Reset zoom"
 msgstr "Nagyítás visszaállítása"
 
 #: zapzap/features/shortcuts/model.py:46
-#: zapzap/ui/components/main_window.py:151
+#: zapzap/ui/components/main_window.py:153
 msgid "Zoom in"
 msgstr "Nagyítás"
 
 #: zapzap/features/shortcuts/model.py:47
-#: zapzap/ui/components/main_window.py:153
+#: zapzap/ui/components/main_window.py:155
 msgid "Zoom out"
 msgstr "Kicsinyítés"
 
@@ -1479,13 +1479,13 @@ msgstr "Új társalgás telefonszámon keresztül"
 #: zapzap/features/shortcuts/model.py:50
 #: zapzap/features/browser/shell/browser_controller.py:553
 #: zapzap/ui/components/browser_sidebar.py:200
-#: zapzap/ui/components/floating_monitoring_panel.py:270
-#: zapzap/ui/components/floating_monitoring_panel.py:271
+#: zapzap/ui/components/floating_monitoring_panel.py:289
+#: zapzap/ui/components/floating_monitoring_panel.py:290
 msgid "New account"
 msgstr "Új fiók"
 
 #: zapzap/features/shortcuts/view.py:34 zapzap/features/shortcuts/view.py:42
-#: zapzap/ui/components/main_window.py:176
+#: zapzap/ui/components/main_window.py:179
 msgid "Keyboard shortcuts"
 msgstr "Gyorsbillentyűk"
 
@@ -1494,6 +1494,7 @@ msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
 #: zapzap/features/tray/sys_tray_manager.py:64
+#: zapzap/features/settings/pages/appearance/view.py:133
 msgid "Show"
 msgstr "Mutasd"
 
@@ -1503,14 +1504,20 @@ msgstr "Mutasd"
 msgid "Accounts"
 msgstr "Fiókok"
 
-#: zapzap/features/tray/sys_tray_manager.py:71
+#: zapzap/features/tray/sys_tray_manager.py:66
+#: zapzap/features/settings/pages/appearance/view.py:131
+#: zapzap/ui/components/main_window.py:163
+msgid "Show monitoring panel"
+msgstr ""
+
+#: zapzap/features/tray/sys_tray_manager.py:72
 #: zapzap/features/settings/shell/settings_view.py:38
-#: zapzap/ui/components/main_window.py:143
+#: zapzap/ui/components/main_window.py:145
 msgid "Quit"
 msgstr "Kilépés"
 
 #: zapzap/features/settings/shell/settings_controller.py:128
-#: zapzap/features/settings/pages/appearance/view.py:21
+#: zapzap/features/settings/pages/appearance/view.py:23
 msgid "Appearance"
 msgstr "Megjelenés"
 
@@ -1540,7 +1547,7 @@ msgstr "Kísérleti teljesítmény"
 
 #: zapzap/features/settings/shell/settings_controller.py:182
 #: zapzap/features/settings/pages/about/view.py:238
-#: zapzap/ui/components/main_window.py:178
+#: zapzap/ui/components/main_window.py:181
 msgid "About"
 msgstr "Alkalmazásról"
 
@@ -2171,8 +2178,8 @@ msgstr "Mentés és újratöltés"
 msgid "Reload page"
 msgstr "Oldal újratöltése"
 
-#: zapzap/features/settings/pages/appearance/controller.py:79
-#: zapzap/features/settings/pages/appearance/view.py:137
+#: zapzap/features/settings/pages/appearance/controller.py:85
+#: zapzap/features/settings/pages/appearance/view.py:190
 #: zapzap/features/settings/pages/performance_experimental/view.py:65
 #: zapzap/ui/components/edit_account_dialog.py:280
 #: zapzap/ui/components/edit_account_dialog.py:429
@@ -2180,23 +2187,23 @@ msgstr "Oldal újratöltése"
 msgid "Default"
 msgstr "Alapértelmezett"
 
-#: zapzap/features/settings/pages/appearance/controller.py:80
+#: zapzap/features/settings/pages/appearance/controller.py:86
 msgid "Adwaita"
 msgstr "Adwaita"
 
-#: zapzap/features/settings/pages/appearance/controller.py:81
+#: zapzap/features/settings/pages/appearance/controller.py:87
 msgid "Plasma"
 msgstr "Plazma"
 
-#: zapzap/features/settings/pages/appearance/controller.py:82
+#: zapzap/features/settings/pages/appearance/controller.py:88
 msgid "iOS"
 msgstr "iOS"
 
-#: zapzap/features/settings/pages/appearance/controller.py:83
+#: zapzap/features/settings/pages/appearance/controller.py:89
 msgid "Windows"
 msgstr "Windows"
 
-#: zapzap/features/settings/pages/appearance/view.py:23
+#: zapzap/features/settings/pages/appearance/view.py:25
 #, fuzzy
 msgid ""
 "Adjust interface chrome, quick access, theme, tray icon, grid view, and "
@@ -2205,169 +2212,233 @@ msgstr ""
 "Állítsa be a felület krómját, témáját, tálcaikonját, rácsnézetét és "
 "ablakdekorációit."
 
-#: zapzap/features/settings/pages/appearance/view.py:41
+#: zapzap/features/settings/pages/appearance/view.py:43
 msgid "Interface"
 msgstr "Interfész"
 
-#: zapzap/features/settings/pages/appearance/view.py:42
+#: zapzap/features/settings/pages/appearance/view.py:44
 msgid "Show or hide primary application chrome."
 msgstr "Az elsődleges alkalmazás Chrome megjelenítése vagy elrejtése."
 
-#: zapzap/features/settings/pages/appearance/view.py:47
+#: zapzap/features/settings/pages/appearance/view.py:49
 msgid "Browser sidebar"
 msgstr "Böngésző oldalsáv"
 
-#: zapzap/features/settings/pages/appearance/view.py:48
+#: zapzap/features/settings/pages/appearance/view.py:50
 msgid "Show account navigation in the browser shell."
 msgstr "A fióknavigáció megjelenítése a böngészőhéjban."
 
-#: zapzap/features/settings/pages/appearance/view.py:51
+#: zapzap/features/settings/pages/appearance/view.py:53
 msgid "Menu bar"
 msgstr "Menüsor"
 
-#: zapzap/features/settings/pages/appearance/view.py:52
+#: zapzap/features/settings/pages/appearance/view.py:54
 msgid "Show the main window menu bar."
 msgstr "A főablak menüsorának megjelenítése."
 
-#: zapzap/features/settings/pages/appearance/view.py:55
+#: zapzap/features/settings/pages/appearance/view.py:57
 msgid "Interface scale"
 msgstr "Interfész skála"
 
-#: zapzap/features/settings/pages/appearance/view.py:56
+#: zapzap/features/settings/pages/appearance/view.py:58
 msgid "Scale the interface for high-DPI or accessibility needs."
 msgstr ""
 "Méretezze az interfészt a nagy DPI-értékek vagy a kisegítő lehetőségek "
 "igényeihez."
 
-#: zapzap/features/settings/pages/appearance/view.py:70
+#: zapzap/features/settings/pages/appearance/view.py:72
 #, fuzzy
 msgid "Quick Access"
 msgstr "Gyorsműveletek"
 
-#: zapzap/features/settings/pages/appearance/view.py:72
+#: zapzap/features/settings/pages/appearance/view.py:74
 msgid ""
 "Control the floating monitoring panel and the account selector integrated "
 "into WhatsApp Web. Both are independent and can be shown at the same time."
 msgstr ""
 
-#: zapzap/features/settings/pages/appearance/view.py:79
+#: zapzap/features/settings/pages/appearance/view.py:81
 #, fuzzy
 msgid "Floating monitoring panel"
 msgstr "Panel rögzítése"
 
-#: zapzap/features/settings/pages/appearance/view.py:80
-msgid "Show a permanent floating panel for account monitoring."
+#: zapzap/features/settings/pages/appearance/view.py:82
+msgid ""
+"Monitor accounts in a separate window. Closing it only hides it temporarily."
 msgstr ""
 
-#: zapzap/features/settings/pages/appearance/view.py:83
+#: zapzap/features/settings/pages/appearance/view.py:85
 #, fuzzy
 msgid "Integrated account selector"
 msgstr "Számlák listája"
 
-#: zapzap/features/settings/pages/appearance/view.py:85
+#: zapzap/features/settings/pages/appearance/view.py:87
 #, fuzzy
 msgid "Show a compact account selector integrated into WhatsApp Web."
 msgstr "A fióknavigáció megjelenítése a böngészőhéjban."
 
-#: zapzap/features/settings/pages/appearance/view.py:124
+#: zapzap/features/settings/pages/appearance/view.py:103
+msgid "Show panel"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:104
+msgid "Choose when the panel appears automatically."
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:109
+msgid "When the main window is hidden"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:110
+msgid "On demand"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:114
+msgid "Keep above other windows"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:115
+msgid "Keep the panel visible while working in other applications."
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:119
+msgid "Restore the panel position the next time ZapZap starts."
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:120
+#: zapzap/features/settings/pages/appearance/view.py:128
+msgid "Your Wayland desktop controls window placement."
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:123
+msgid "Remember position"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:126
+msgid "Lock position"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:127
+msgid "Prevent dragging. Unlock directly in the panel to move it again."
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:132
+msgid "Reopen the panel without changing its display mode."
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:136
+msgid "Reset panel position"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:137
+msgid "Bring the panel back into the available screen area."
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:138
+#: zapzap/features/settings/pages/language_downloads/view.py:114
+#, fuzzy
+msgid "Reset"
+msgstr "Visszaállítás…"
+
+#: zapzap/features/settings/pages/appearance/view.py:177
 msgid "Control tray icon visibility, style, and unread counter."
 msgstr ""
 "Vezérelje a tálca ikonjának láthatóságát, stílusát és olvasatlan számlálóját."
 
-#: zapzap/features/settings/pages/appearance/view.py:128
+#: zapzap/features/settings/pages/appearance/view.py:181
 msgid "Show tray icon"
 msgstr "Tálca ikon megjelenítése"
 
-#: zapzap/features/settings/pages/appearance/view.py:129
+#: zapzap/features/settings/pages/appearance/view.py:182
 msgid "Display ZapZap in the system notification area."
 msgstr "Jelenítse meg a következőt: ZapZap a rendszer értesítési területén."
 
-#: zapzap/features/settings/pages/appearance/view.py:132
+#: zapzap/features/settings/pages/appearance/view.py:185
 msgid "Unread counter"
 msgstr "Olvasatlan számláló"
 
-#: zapzap/features/settings/pages/appearance/view.py:133
+#: zapzap/features/settings/pages/appearance/view.py:186
 msgid "Show the number of unread messages."
 msgstr "Az olvasatlan üzenetek számának megjelenítése."
 
-#: zapzap/features/settings/pages/appearance/view.py:136
+#: zapzap/features/settings/pages/appearance/view.py:189
 msgid "Icon style"
 msgstr "Ikon stílus"
 
-#: zapzap/features/settings/pages/appearance/view.py:138
+#: zapzap/features/settings/pages/appearance/view.py:191
 msgid "Symbolic light"
 msgstr "Szimbólikus világos"
 
-#: zapzap/features/settings/pages/appearance/view.py:139
+#: zapzap/features/settings/pages/appearance/view.py:192
 msgid "Symbolic dark"
 msgstr "Simbólikus sötét"
 
-#: zapzap/features/settings/pages/appearance/view.py:160
+#: zapzap/features/settings/pages/appearance/view.py:213
 #: zapzap/features/browser/shell/browser_controller.py:181
 msgid "Grid view"
 msgstr "Rács nézet"
 
-#: zapzap/features/settings/pages/appearance/view.py:161
+#: zapzap/features/settings/pages/appearance/view.py:214
 msgid "Choose how many columns are used by grid view."
 msgstr "Válassza ki, hogy hány oszlopot használjon a rácsnézet."
 
-#: zapzap/features/settings/pages/appearance/view.py:165
+#: zapzap/features/settings/pages/appearance/view.py:218
 msgid "Grid columns"
 msgstr "Rács oszlopok"
 
-#: zapzap/features/settings/pages/appearance/view.py:166
+#: zapzap/features/settings/pages/appearance/view.py:219
 msgid "Number of account columns in grid view."
 msgstr "Fiókoszlopok száma rácsnézetben."
 
-#: zapzap/features/settings/pages/appearance/view.py:176
+#: zapzap/features/settings/pages/appearance/view.py:229
 msgid "Window decoration"
 msgstr "Ablak dekoráció"
 
-#: zapzap/features/settings/pages/appearance/view.py:177
+#: zapzap/features/settings/pages/appearance/view.py:230
 msgid "Customize the window controls drawn by ZapZap."
 msgstr "Testreszabhatja a ZapZap által rajzolt ablakvezérlőket."
 
-#: zapzap/features/settings/pages/appearance/view.py:181
+#: zapzap/features/settings/pages/appearance/view.py:234
 msgid "Use custom decoration"
 msgstr "Használjon egyedi dekorációt"
 
-#: zapzap/features/settings/pages/appearance/view.py:182
+#: zapzap/features/settings/pages/appearance/view.py:235
 msgid "Use window controls drawn by ZapZap."
 msgstr "Használja a ZapZap által rajzolt ablakvezérlőket."
 
-#: zapzap/features/settings/pages/appearance/view.py:185
+#: zapzap/features/settings/pages/appearance/view.py:238
 msgid "Button style"
 msgstr "Gomb stílus"
 
-#: zapzap/features/settings/pages/appearance/view.py:186
+#: zapzap/features/settings/pages/appearance/view.py:239
 msgid "Visual style used by custom window buttons."
 msgstr "Az egyéni ablakgombok által használt vizuális stílus."
 
-#: zapzap/features/settings/pages/appearance/view.py:190
+#: zapzap/features/settings/pages/appearance/view.py:243
 msgid "Minimize"
 msgstr "Minimalizálás"
 
-#: zapzap/features/settings/pages/appearance/view.py:191
+#: zapzap/features/settings/pages/appearance/view.py:244
 msgid "Maximize"
 msgstr "Maximalizálás"
 
-#: zapzap/features/settings/pages/appearance/view.py:195
+#: zapzap/features/settings/pages/appearance/view.py:248
 msgid "Visible buttons"
 msgstr "Látható gombok"
 
-#: zapzap/features/settings/pages/appearance/view.py:200
+#: zapzap/features/settings/pages/appearance/view.py:253
 msgid "Button position"
 msgstr "A gomb pozíciója"
 
-#: zapzap/features/settings/pages/appearance/view.py:201
+#: zapzap/features/settings/pages/appearance/view.py:254
 msgid "Place window buttons on the right or left."
 msgstr "Helyezze az ablak gombjait jobbra vagy balra."
 
-#: zapzap/features/settings/pages/appearance/view.py:206
+#: zapzap/features/settings/pages/appearance/view.py:259
 msgid "Right"
 msgstr "Igaz"
 
-#: zapzap/features/settings/pages/appearance/view.py:207
+#: zapzap/features/settings/pages/appearance/view.py:260
 msgid "Left"
 msgstr "Balra"
 
@@ -2773,11 +2844,6 @@ msgid ""
 msgstr ""
 "A megjegyzett engedélyezési vagy tiltási döntés törlése az ismételt WhatsApp-"
 "letöltésekhez."
-
-#: zapzap/features/settings/pages/language_downloads/view.py:114
-#, fuzzy
-msgid "Reset"
-msgstr "Visszaállítás…"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:135
 msgid "Spell checker languages"
@@ -3989,7 +4055,7 @@ msgid ""
 msgstr ""
 
 #: zapzap/features/browser/web/web_view.py:252
-#: zapzap/ui/components/integrated_account_selector.py:56
+#: zapzap/ui/components/integrated_account_selector.py:57
 #, fuzzy
 msgid "Account selector"
 msgstr "Számlák listája"
@@ -4099,7 +4165,7 @@ msgid "Select an account to return to its chat."
 msgstr "Válasszon ki egy fiókot a csevegéshez való visszatéréshez."
 
 #: zapzap/ui/components/browser_grid_view.py:198
-#: zapzap/ui/components/integrated_account_selector.py:32
+#: zapzap/ui/components/integrated_account_selector.py:33
 msgid "No active accounts to display."
 msgstr "Nincsenek megjeleníthető aktív fiókok."
 
@@ -4601,115 +4667,115 @@ msgstr "Elvetésükkel visszaállnak a szerkesztés előtti értékek."
 msgid "Keep editing"
 msgstr "Szerkesztés folytatása"
 
-#: zapzap/ui/components/main_window.py:138
+#: zapzap/ui/components/main_window.py:140
 msgid "File"
 msgstr "Fájl"
 
-#: zapzap/ui/components/main_window.py:139
+#: zapzap/ui/components/main_window.py:141
 msgid "View"
 msgstr "Nézet"
 
-#: zapzap/ui/components/main_window.py:140
+#: zapzap/ui/components/main_window.py:142
 msgid "Chat"
 msgstr "Csevegés"
 
-#: zapzap/ui/components/main_window.py:141
+#: zapzap/ui/components/main_window.py:143
 msgid "Users"
 msgstr "Felhasználók"
 
-#: zapzap/ui/components/main_window.py:142
+#: zapzap/ui/components/main_window.py:144
 msgid "Help"
 msgstr "Segítség"
 
-#: zapzap/ui/components/main_window.py:144
+#: zapzap/ui/components/main_window.py:146
 msgid "Ctrl+Q"
 msgstr "Ctrl+Q"
 
-#: zapzap/ui/components/main_window.py:146
+#: zapzap/ui/components/main_window.py:148
 msgid "Ctrl+W"
 msgstr "Ctrl+W"
 
-#: zapzap/ui/components/main_window.py:148
+#: zapzap/ui/components/main_window.py:150
 msgid "Ctrl+P"
 msgstr "Ctrl+P"
 
-#: zapzap/ui/components/main_window.py:150
+#: zapzap/ui/components/main_window.py:152
 msgid "Ctrl+0"
 msgstr "Ctrl+0"
 
-#: zapzap/ui/components/main_window.py:152
+#: zapzap/ui/components/main_window.py:154
 msgid "Ctrl++"
 msgstr "Ctrl++"
 
-#: zapzap/ui/components/main_window.py:154
+#: zapzap/ui/components/main_window.py:156
 msgid "Ctrl+-"
 msgstr "Ctrl+-"
 
-#: zapzap/ui/components/main_window.py:155
+#: zapzap/ui/components/main_window.py:157
 msgid "Toggle full screen"
 msgstr "Teljes képernyő ki/be kapcsolása"
 
-#: zapzap/ui/components/main_window.py:156
+#: zapzap/ui/components/main_window.py:158
 msgid "F11"
 msgstr "F11"
 
-#: zapzap/ui/components/main_window.py:157
+#: zapzap/ui/components/main_window.py:159
 msgid "Open DevTools"
 msgstr "Nyissa meg a DevTools alkalmazást"
 
-#: zapzap/ui/components/main_window.py:158
+#: zapzap/ui/components/main_window.py:160
 msgid "Ctrl+Shift+I"
 msgstr "Ctrl+Shift+I"
 
-#: zapzap/ui/components/main_window.py:159
+#: zapzap/ui/components/main_window.py:161
 msgid "Grid View"
 msgstr "Rács nézet"
 
-#: zapzap/ui/components/main_window.py:160
+#: zapzap/ui/components/main_window.py:162
 msgid "Ctrl+G"
 msgstr "Ctrl+G"
 
-#: zapzap/ui/components/main_window.py:163
+#: zapzap/ui/components/main_window.py:166
 msgid "Show sidebar"
 msgstr "Oldalpanel megjelenítése"
 
-#: zapzap/ui/components/main_window.py:165
+#: zapzap/ui/components/main_window.py:168
 msgid "Ctrl+Alt+1"
 msgstr "Ctrl+Alt+1"
 
-#: zapzap/ui/components/main_window.py:167
+#: zapzap/ui/components/main_window.py:170
 msgid "Ctrl+Alt+2"
 msgstr "Ctrl+Alt+2"
 
-#: zapzap/ui/components/main_window.py:169
+#: zapzap/ui/components/main_window.py:172
 msgid "Ctrl+Alt+3"
 msgstr "Ctrl+Alt+3"
 
-#: zapzap/ui/components/main_window.py:170
+#: zapzap/ui/components/main_window.py:173
 msgid "Reload"
 msgstr "Újratöltés"
 
-#: zapzap/ui/components/main_window.py:171
+#: zapzap/ui/components/main_window.py:174
 msgid "F5"
 msgstr "F5"
 
-#: zapzap/ui/components/main_window.py:172
+#: zapzap/ui/components/main_window.py:175
 msgid "New chat"
 msgstr "Új csevegés"
 
-#: zapzap/ui/components/main_window.py:173
+#: zapzap/ui/components/main_window.py:176
 msgid "Ctrl+N"
 msgstr "Ctrl+N"
 
-#: zapzap/ui/components/main_window.py:174
+#: zapzap/ui/components/main_window.py:177
 msgid "By number phone"
 msgstr "Telefonszámon keresztül"
 
-#: zapzap/ui/components/main_window.py:175
+#: zapzap/ui/components/main_window.py:178
 msgid "Ctrl+M"
 msgstr "Ctrl+M"
 
-#: zapzap/ui/components/main_window.py:177
+#: zapzap/ui/components/main_window.py:180
 msgid "Ctrl+Shift+/, Ctrl+?"
 msgstr "Ctrl+Shift+/, Ctrl+?"
 
@@ -4959,23 +5025,28 @@ msgstr ""
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
 
-#: zapzap/ui/components/floating_monitoring_panel.py:265
-#: zapzap/ui/components/floating_monitoring_panel.py:267
+#: zapzap/ui/components/floating_monitoring_panel.py:283
+#: zapzap/ui/components/floating_monitoring_panel.py:285
 #, fuzzy
 msgid "Quick access"
 msgstr "Gyorsműveletek"
 
-#: zapzap/ui/components/floating_monitoring_panel.py:266
+#: zapzap/ui/components/floating_monitoring_panel.py:284
 msgid "No account activity to show yet."
 msgstr ""
 
-#: zapzap/ui/components/floating_monitoring_panel.py:268
+#: zapzap/ui/components/floating_monitoring_panel.py:286
 #, fuzzy
 msgid "Monitoring panel"
 msgstr "Panel rögzítése"
 
-#: zapzap/ui/components/floating_monitoring_panel.py:272
-#: zapzap/ui/components/floating_monitoring_panel.py:273
+#: zapzap/ui/components/floating_monitoring_panel.py:287
+#: zapzap/ui/components/floating_monitoring_panel.py:288
+msgid "Unlock position"
+msgstr ""
+
+#: zapzap/ui/components/floating_monitoring_panel.py:291
+#: zapzap/ui/components/floating_monitoring_panel.py:292
 msgid "Audio"
 msgstr ""
 
@@ -5288,71 +5359,3 @@ msgstr ""
 
 #~ msgid "This site"
 #~ msgstr "Ez a webhely"
-
-#: zapzap/features/settings/pages/appearance/view.py:82
-msgid "Monitor accounts in a separate window. Closing it only hides it temporarily."
-msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py:103
-msgid "Show panel"
-msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py:104
-msgid "Choose when the panel appears automatically."
-msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py:114
-msgid "Keep above other windows"
-msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py:115
-msgid "Keep the panel visible while working in other applications."
-msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py:119
-msgid "Restore the panel position the next time ZapZap starts."
-msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py:120 zapzap/features/settings/pages/appearance/view.py:128
-msgid "Your Wayland desktop controls window placement."
-msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py:123
-msgid "Remember position"
-msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py:126
-msgid "Lock position"
-msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py:131 zapzap/ui/components/main_window.py:163 zapzap/features/tray/sys_tray_manager.py:66
-msgid "Show monitoring panel"
-msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py:132
-msgid "Reopen the panel without changing its display mode."
-msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py:136
-msgid "Reset panel position"
-msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py:137
-msgid "Bring the panel back into the available screen area."
-msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py:109
-msgid "When the main window is hidden"
-msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py:110
-msgid "On demand"
-msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py:127
-msgid "Prevent dragging. Unlock directly in the panel to move it again."
-msgstr ""
-
-#: zapzap/ui/components/floating_monitoring_panel.py:289 zapzap/ui/components/floating_monitoring_panel.py:290
-msgid "Unlock position"
-msgstr ""
