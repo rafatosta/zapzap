@@ -2191,8 +2191,8 @@ msgid ""
 "Adjust interface chrome, quick access, theme, tray icon, grid view, and "
 "window decorations."
 msgstr ""
-"Arayüz çerçevesini, hızlı erişimi, temayı, sistem tepsisindeki ikonu, "
-"ızgara görünümünü ve pencere süslemelerini ayarla."
+"Arayüz çerçevesini, hızlı erişimi, temayı, sistem tepsisindeki ikonu, ızgara "
+"görünümünü ve pencere süslemelerini ayarla."
 
 #: zapzap/features/settings/pages/appearance/view.py:41
 msgid "Interface"
