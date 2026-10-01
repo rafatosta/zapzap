@@ -2,12 +2,11 @@
 Quick Access visual scaffolds: the floating monitoring panel and the
 integrated account selector.
 
-These tests only assert rendered structure, initial methods and
-independent/coexisting visibility. They must not assert any future
-functional behavior (account switching, monitoring data, persistence or
-auto show/close), since the components only provide visual scaffolding at
-this stage.
+These tests cover presentation and independent/coexisting visibility.
+Controller action routing is exercised by the integration tests.
 """
+
+from PyQt6.QtCore import Qt
 
 from PyQt6.QtWidgets import QPushButton, QToolButton, QWidget
 
@@ -23,6 +22,23 @@ from zapzap.ui.primitives import CloseButton, Label
 
 
 class FloatingMonitoringPanelUiTests(QtTestCase):
+
+    def test_panel_requests_native_decoration_without_quit_on_close(self):
+        panel = FloatingMonitoringPanel()
+        self.assertTrue(panel.windowFlags() & Qt.WindowType.WindowTitleHint)
+        self.assertTrue(panel.windowFlags() & Qt.WindowType.WindowCloseButtonHint)
+        self.assertFalse(panel.windowFlags() & Qt.WindowType.FramelessWindowHint)
+        self.assertFalse(panel.testAttribute(Qt.WidgetAttribute.WA_QuitOnClose))
+        self.assertEqual(panel.layout().contentsMargins().left(), 0)
+
+    def test_account_updates_preserve_rows_and_original_numeric_ids(self):
+        panel = FloatingMonitoringPanel()
+        panel.set_accounts([FloatingAccountEntry(42, "Account")])
+        row = panel._account_rows[0]
+        panel.set_accounts([FloatingAccountEntry(42, "Updated", unread_count=9)])
+        self.assertIs(panel._account_rows[0], row)
+        self.assertEqual(row.badge.text(), "9")
+        self.assertFalse(panel.accounts_scroll.isHidden())
 
     def test_panel_renders_header_and_placeholder_structure(self):
         panel = FloatingMonitoringPanel()

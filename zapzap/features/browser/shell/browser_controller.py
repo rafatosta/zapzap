@@ -5,7 +5,7 @@ from enum import Enum
 import logging
 from typing import Callable, Dict, Iterator, Optional, TYPE_CHECKING
 
-from PyQt6.QtCore import QEvent, QEasingCurve
+from PyQt6.QtCore import QEvent, QEasingCurve, pyqtSignal
 from PyQt6.QtCore import QParallelAnimationGroup
 from PyQt6.QtCore import QPropertyAnimation
 from PyQt6.QtCore import QTimer
@@ -73,6 +73,8 @@ class AccountRuntime:
 
 class BrowserController(BrowserView):
     """Gerencia as páginas e interações do navegador no aplicativo."""
+
+    accounts_changed = pyqtSignal()
 
     def __init__(self, parent=None, webview_factory: Optional[Callable] = None,
                  user_provider: Optional[Callable] = None):
@@ -527,9 +529,14 @@ class BrowserController(BrowserView):
 
         self._update_user_menu()
 
+    def account_runtimes(self):
+        """Read the current registry without constructing account pages."""
+        return tuple(self._accounts.values())
+
     def _update_user_menu(self):
         """Constroi o menu de usuários na barra de menu da janela principal."""
         # Reinicia o menu de usuários
+        self.accounts_changed.emit()
         self.parent.menuUsers.clear()
 
         # Adiciona a opção para criar um novo usuário
@@ -626,6 +633,7 @@ class BrowserController(BrowserView):
         page.page().show_toast(page.user.name if page.user.name !=
                                "" else _("Account {}").format(page.page_index))
         button.selected()
+        self.accounts_changed.emit()
         return True
 
     def _handle_account_button_click(self, user_id):
@@ -820,6 +828,7 @@ class BrowserController(BrowserView):
             for runtime in self._active_runtimes()
         )
         SysTrayManager.set_number_notifications(total_notifications)
+        self.accounts_changed.emit()
 
     # === Estilo e Interface ===
     def _reset_button_styles(self):

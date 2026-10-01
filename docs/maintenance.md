@@ -93,8 +93,12 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - Mantenha texto curto, descrição útil, estado padrão real e nome acessível.
 - Não persista rótulos traduzidos; persista um ID estável.
 - A seção de interface expõe a visibilidade da sidebar sem subopções de
-  apresentação; mantenha essa preferência independente das futuras
-  apresentações de acesso a contas.
+  apresentação; mantenha essa preferência independente do painel flutuante
+  e do seletor integrado de acesso a contas.
+- No painel flutuante, reutilize IDs originais e ações existentes; mantenha o
+  componente desacoplado de User/WebEngine e atualize via accounts_changed.
+  Fechar o painel não desativa sua preferência. Valide decoração, movimento e
+  foco em sessão gráfica real, incluindo janela principal oculta e CSR.
 
 ### Relatórios de problemas
 

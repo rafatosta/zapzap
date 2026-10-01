@@ -197,41 +197,33 @@ referências visuais a `WebView`, e ativa contas pelo ID estável. A barra later
 é controlada apenas pela preferência `system/sidebar`, sem relação com os dois
 componentes a seguir.
 
-`ui.components.FloatingMonitoringPanel` e `ui.components.IntegratedAccountSelector`
-existem atualmente apenas como estrutura visual e API inicial (mostrar,
-ocultar, alternar e sinal de mudança de visibilidade), sem qualquer dado de
-monitoramento, troca real de conta, persistência de outro estado ou
-abertura/fechamento automático além da preferência explícita do usuário.
-Cada um mantém seu próprio estado de visibilidade e ciclo de vida, pode
-coexistir com o outro e não lê nem depende da visibilidade da
-`BrowserSidebar`. O `MainWindowController` instancia um
-`FloatingMonitoringPanel` (janela `Qt.WindowType.Tool` própria, independente
-da hierarquia de exibição do navegador) e o `BrowserController` instancia um
-`IntegratedAccountSelector` ancorado sobre `self.pages` (a área de conteúdo
-do WhatsApp Web, sem incluir a `BrowserSidebar`); a integração funcional e o
-acoplamento a contas reais ficam para uma etapa seguinte.
-O `FloatingMonitoringPanel` renderiza uma lista de linhas de conta (avatar
-genérico via `UserIcon`, nome e emblema `SettingsBadge` de não lidas ocultado
-quando zero), uma linha "+ Nova conta", um `SettingsDivider` e um rodapé com
-botões Áudio/Downloads/Configurações usando ícones SVG existentes do
-`SystemIcon` (incluindo um novo ícone `download`). `set_accounts`/
-`clear_accounts` recebem apenas o scaffold `FloatingAccountEntry`
-(`account_id`, `name`, `unread_count`, `active`), desacoplado de
-`zapzap.features.accounts.domain.User`, e só atualizam as linhas renderizadas.
-Os sinais `account_activation_requested`, `add_account_requested`,
-`audio_toggle_requested`, `downloads_requested` e `settings_requested` apenas
-emitem; nenhum troca de conta, abre downloads, alterna áudio real ou navega
-até Configurações ainda.
-A página Aparência expõe uma seção "Quick Access" com dois interruptores
-independentes (`system/floating_monitoring_panel_enabled` e
-`system/integrated_account_selector_enabled`, ambos `False` por padrão) que
-persistem a preferência do usuário e, ao vivo, mostram ou ocultam a
-instância real do respectivo scaffold via
-`MainWindowController.set_floating_monitoring_panel_enabled` e
-`BrowserController.set_integrated_account_selector_enabled`; a preferência
-persistida também é aplicada na inicialização. Cada interruptor controla
-apenas a visibilidade do seu próprio scaffold, sem modo exclusivo entre os
-dois e sem qualquer outro efeito.
+`ui.components.FloatingMonitoringPanel` é uma janela flutuante nativa
+`Qt.WindowType.Tool`, sem parent visual, com título e fechamento do sistema.
+`MainWindowController` mantém sua instância e a libera ao destruir a interface;
+o shutdown oculta a janela. Fechar ou usar Esc somente oculta o painel, sem
+alterar a preferência nem encerrar o aplicativo. A janela permanece disponível
+quando a principal está oculta, inclusive com decoração CSR.
+
+O controller adapta `BrowserController.account_runtimes()` em descritores
+`FloatingAccountEntry`: ID original (inclusive numérico), nome, avatar persistido,
+contagem de não lidas, seleção e habilitação. O componente não conhece `User`
+nem WebEngine. `accounts_changed` e `pages.currentChanged` atualizam a lista
+em adições, edição, desativação, remoção, notificações e navegação. Contas
+desativadas continuam visíveis sem ativação e sem contagem. A lista usa rolagem vertical para manter o rodapé acessível.
+
+Os sinais do painel reutilizam ativação por ID, criação de conta, mute global,
+histórico de downloads e configurações. Selecionar conta ou abrir configurações
+restaura a janela principal; áudio e downloads mantêm seus fluxos existentes.
+Ícones e ação de áudio acompanham o tema e estado global.
+
+`IntegratedAccountSelector` continua sendo estrutura visual independente,
+ancorada sobre `BrowserController.pages`, sem troca funcional de contas.
+A seção "Quick Access" de Aparência mantém os dois interruptores independentes
+`system/floating_monitoring_panel_enabled` e
+`system/integrated_account_selector_enabled`, ambos `False` por padrão.
+As preferências são aplicadas na inicialização e ao vivo, sem exclusividade ou
+dependência da sidebar. Nenhuma chave antiga é reintroduzida.
+
 O botão de atualização não possui tooltip nativo, pois ele competiria
 visualmente com o popover; nome e descrição acessíveis continuam informando a
 atualização.

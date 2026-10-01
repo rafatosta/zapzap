@@ -35,6 +35,7 @@ from zapzap.features.settings.shell.settings_controller import SettingsControlle
 from zapzap.features.shortcuts.controller import ShortcutsController
 from zapzap.ui.components.floating_monitoring_panel import (
     FloatingMonitoringPanel,
+    FloatingAccountEntry,
 )
 from zapzap.ui.components.main_window import MainWindowView
 from zapzap.ui.components.send_message_to_number_dialog import (
@@ -124,7 +125,9 @@ class MainWindowController(MainWindowView):
             webview_factory=webview_factory,
             user_provider=user_provider,
         )
-        self.floating_monitoring_panel = FloatingMonitoringPanel(self)
+        self.floating_monitoring_panel = FloatingMonitoringPanel()
+        self.destroyed.connect(self.floating_monitoring_panel.deleteLater)
+        self._setup_floating_monitoring_panel()
         self._downloads_menu = DownloadsPopover(self)
         self._downloads_window = DownloadsWindow(self)
         self._downloads_menu_generation = 0
@@ -283,6 +286,9 @@ class MainWindowController(MainWindowView):
         ]
         icon = SystemIcon.get_icon(icon_name, icon_theme)
 
+        panel = getattr(self, "floating_monitoring_panel", None)
+        if panel is not None:
+            panel.update_action_icons(icon_theme, muted)
         button = self.browser.btn_mute
         button.setIcon(icon)
         button.setToolTip(label)
@@ -490,16 +496,52 @@ class MainWindowController(MainWindowView):
         if persist:
             self._appearance_settings.browser_sidebar_visible = visible
 
+    def _setup_floating_monitoring_panel(self):
+        panel = self.floating_monitoring_panel
+        panel.account_activation_requested.connect(self._activate_floating_account)
+        panel.add_account_requested.connect(self._add_floating_account)
+        panel.audio_toggle_requested.connect(self.toggle_audio_muted)
+        panel.downloads_requested.connect(self.show_downloads_window)
+        panel.settings_requested.connect(self._open_floating_settings)
+        self.browser.accounts_changed.connect(self._refresh_floating_accounts)
+        self.browser.pages.currentChanged.connect(self._refresh_floating_accounts)
+        self._refresh_floating_accounts()
+
+    def _refresh_floating_accounts(self, *_args):
+        current = self.browser.pages.currentWidget()
+        self.floating_monitoring_panel.set_accounts([
+            FloatingAccountEntry(
+                account_id=runtime.user.id,
+                name=runtime.user.name or _("Account {}").format(runtime.position),
+                unread_count=(runtime.button.number_notifications
+                              if runtime.user.enable else 0),
+                active=runtime.page is not None and runtime.page is current,
+                icon_data=runtime.user.icon,
+                enabled=runtime.user.enable,
+            )
+            for runtime in self.browser.account_runtimes()
+        ])
+
+    def _activate_floating_account(self, account_id):
+        if self.browser.activate_account(account_id):
+            self.restore_window()
+            self.close_settings()
+
+    def _add_floating_account(self):
+        self.restore_window()
+        self.close_settings()
+        self.browser.add_new_user()
+
+    def _open_floating_settings(self):
+        self.restore_window()
+        self.open_settings()
+
     def set_floating_monitoring_panel_enabled(
         self,
         enabled: bool,
         persist: bool = True,
     ):
-        """Show or hide the floating monitoring panel visual scaffold.
-
-        This only toggles the panel's own visibility; it does not read
-        monitoring data, switch accounts, or auto show/close on its own.
-        """
+        """Apply the independent floating window preference."""
         if enabled:
             self.floating_monitoring_panel.show_panel()
         else:

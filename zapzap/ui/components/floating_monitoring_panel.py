@@ -1,29 +1,16 @@
-"""Visual scaffolding for the permanent floating monitoring panel.
-
-This module only provides the panel's structure and its independent
-show/hide lifecycle, plus initial, inert hooks for the actions the panel is
-meant to expose (account rows, "new account", and the audio/downloads/
-settings shortcuts). It intentionally does not collect, display or refresh
-any real monitoring data, does not switch accounts or perform any of the
-shortcut actions, and it never shows or hides itself: callers decide when
-the panel becomes visible. ``set_accounts`` only accepts the lightweight,
-read-only ``FloatingAccountEntry`` describe below; it never reads or
-depends on ``zapzap.features.accounts.domain.User`` or any other real
-account source.
-"""
+"""Independent Quick Access window rendering controller-provided account data."""
 
 from dataclasses import dataclass
 from gettext import gettext as _
 
 from PyQt6.QtCore import Qt, pyqtSignal
-from PyQt6.QtGui import QColor
 from PyQt6.QtWidgets import (
     QFrame,
-    QGraphicsDropShadowEffect,
     QHBoxLayout,
     QLabel,
     QPushButton,
     QVBoxLayout,
+    QScrollArea,
 )
 
 from zapzap.assets.icons.system_icon import SystemIcon
@@ -42,10 +29,12 @@ class FloatingAccountEntry:
     knowledge of where they came from.
     """
 
-    account_id: str
+    account_id: object
     name: str
     unread_count: int = 0
     active: bool = False
+    icon_data: str = UserIcon.ICON_DEFAULT
+    enabled: bool = True
 
 
 class _FloatingAccountRow(QFrame):
@@ -91,7 +80,8 @@ class _FloatingAccountRow(QFrame):
         self._account_id = entry.account_id
         self.name_label.setText(entry.name)
         self.setAccessibleName(entry.name)
-        self.set_avatar(UserIcon.get_icon())
+        self.set_avatar(UserIcon.get_icon(entry.icon_data))
+        self.setEnabled(entry.enabled)
         if entry.unread_count > 0:
             self.badge.setText(str(entry.unread_count))
             self.badge.show()
@@ -119,7 +109,7 @@ class _FloatingAccountRow(QFrame):
 
 
 class FloatingMonitoringPanel(QFrame):
-    """Permanent panel reserved for future account monitoring content.
+    """Independent window for account monitoring and existing quick actions.
 
     The panel keeps its own visibility state, independent from any other
     ZapZap interface (including the browser sidebar and the integrated
@@ -128,7 +118,7 @@ class FloatingMonitoringPanel(QFrame):
     """
 
     visibility_changed = pyqtSignal(bool)
-    account_activation_requested = pyqtSignal(str)
+    account_activation_requested = pyqtSignal(object)
     add_account_requested = pyqtSignal()
     audio_toggle_requested = pyqtSignal()
     downloads_requested = pyqtSignal()
@@ -136,16 +126,16 @@ class FloatingMonitoringPanel(QFrame):
 
     WIDTH = 320
     MIN_HEIGHT = 220
-    SHADOW_MARGIN = 10
 
     def __init__(self, parent=None):
         super().__init__(
             parent,
-            Qt.WindowType.Tool | Qt.WindowType.FramelessWindowHint,
+            Qt.WindowType.Tool | Qt.WindowType.WindowTitleHint
+            | Qt.WindowType.WindowCloseButtonHint,
         )
         self.setObjectName("FloatingMonitoringPanel")
-        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground, True)
         self.setAttribute(Qt.WidgetAttribute.WA_ShowWithoutActivating, True)
+        self.setAttribute(Qt.WidgetAttribute.WA_QuitOnClose, False)
         self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
         self.setFixedWidth(self.WIDTH)
         self.setMinimumHeight(self.MIN_HEIGHT)
@@ -158,22 +148,11 @@ class FloatingMonitoringPanel(QFrame):
 
     def _setup_ui(self):
         outer = QVBoxLayout(self)
-        outer.setContentsMargins(
-            self.SHADOW_MARGIN,
-            self.SHADOW_MARGIN,
-            self.SHADOW_MARGIN,
-            self.SHADOW_MARGIN,
-        )
+        outer.setContentsMargins(0, 0, 0, 0)
 
         self.surface = QFrame(self)
         self.surface.setObjectName("FloatingMonitoringPanelSurface")
         outer.addWidget(self.surface)
-
-        shadow = QGraphicsDropShadowEffect(self.surface)
-        shadow.setBlurRadius(28)
-        shadow.setOffset(0, 6)
-        shadow.setColor(QColor(0, 0, 0, 75))
-        self.surface.setGraphicsEffect(shadow)
 
         layout = QVBoxLayout(self.surface)
         layout.setContentsMargins(16, 14, 16, 14)
@@ -193,10 +172,20 @@ class FloatingMonitoringPanel(QFrame):
         self.empty_state_label.setWordWrap(True)
         layout.addWidget(self.empty_state_label)
 
-        self.accounts_layout = QVBoxLayout()
+        self.accounts_scroll = QScrollArea(self.surface)
+        self.accounts_scroll.setWidgetResizable(True)
+        self.accounts_scroll.setFrameShape(QFrame.Shape.NoFrame)
+        self.accounts_scroll.setHorizontalScrollBarPolicy(
+            Qt.ScrollBarPolicy.ScrollBarAlwaysOff
+        )
+        self.accounts_scroll.setMaximumHeight(360)
+        self.accounts_content = QFrame(self.accounts_scroll)
+        self.accounts_layout = QVBoxLayout(self.accounts_content)
         self.accounts_layout.setContentsMargins(0, 0, 0, 0)
         self.accounts_layout.setSpacing(2)
-        layout.addLayout(self.accounts_layout, 1)
+        self.accounts_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.accounts_scroll.setWidget(self.accounts_content)
+        layout.addWidget(self.accounts_scroll, 1)
 
         self.add_account_row = _FloatingAccountRow(self.surface)
         self.add_account_row.set_avatar(
@@ -294,27 +283,49 @@ class FloatingMonitoringPanel(QFrame):
         never reads, caches or refreshes any real account/notification
         data on its own.
         """
-        while self._account_rows:
-            row = self._account_rows.pop()
-            self.accounts_layout.removeWidget(row)
-            row.deleteLater()
-
+        entries = tuple(entries)
+        previous = {row.account_id: row for row in self._account_rows}
+        self._account_rows = []
         for entry in entries:
-            row = _FloatingAccountRow(self.surface)
-            row.set_entry(entry)
-            row.activated.connect(
-                lambda account_id=entry.account_id: (
-                    self.account_activation_requested.emit(account_id)
+            row = previous.pop(entry.account_id, None)
+            if row is None:
+                row = _FloatingAccountRow(self.accounts_content)
+                row.activated.connect(
+                    lambda account_id=entry.account_id: (
+                        self.account_activation_requested.emit(account_id)
+                    )
                 )
-            )
+            row.set_entry(entry)
             self.accounts_layout.addWidget(row)
             self._account_rows.append(row)
 
+        for row in previous.values():
+            self.accounts_layout.removeWidget(row)
+            row.hide()
+            row.deleteLater()
+
         self.empty_state_label.setVisible(not entries)
+        self.accounts_scroll.setVisible(bool(entries))
 
     def clear_accounts(self):
         """Remove all rendered account rows, restoring the empty state."""
         self.set_accounts([])
+
+    def update_action_icons(self, theme, muted=False):
+        """Reflect the same audio state and theme as the main window."""
+        label = _("Unmute") if muted else _("Mute")
+        self.audio_button.setText(label)
+        self.audio_button.setAccessibleName(label)
+        for button, name in (
+            (self.audio_button, "volume_muted" if muted else "volume_on"),
+            (self.downloads_button, "download"),
+            (self.settings_button, "open_settings"),
+        ):
+            button.setIcon(SystemIcon.get_icon(name, theme))
+
+    def closeEvent(self, event):
+        self.hide_panel()
+        event.ignore()
 
     def show_panel(self):
         """Show this panel without affecting any other interface."""

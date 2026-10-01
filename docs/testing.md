@@ -132,8 +132,8 @@ documente o que ele protege.
 | `test_plain_text_paste.py` | inserção text/plain no editor WebEngine selecionado, resolução de contenteditable pela seleção DOM e fallback PasteAndMatchStyle sem tocar no Ctrl+V |
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
 | `test_profile_sync.py` | validação de dados pontuais do perfil WhatsApp e normalização da foto |
-| `test_quick_access_integration.py` | integração dos dois interruptores "Quick Access" em Aparência com as instâncias reais do painel flutuante e do seletor integrado: visibilidade inicial a partir da preferência persistida, alternância ao vivo e coexistência das duas |
-| `test_quick_access_panels_ui.py` | estrutura renderizada, métodos iniciais de mostrar/ocultar/alternar e visibilidade independente/coexistente do painel flutuante de monitoramento e do seletor de contas integrado ao WhatsApp Web |
+| `test_quick_access_integration.py` | integração dos interruptores de Aparência, atualização de contas e não lidas, IDs numéricos, ações existentes, fechamento e independência da janela flutuante |
+| `test_quick_access_panels_ui.py` | estrutura renderizada, decoração nativa solicitada, atualização de linhas sem recriar controles, métodos de visibilidade e coexistência do painel flutuante e do seletor integrado |
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
 | `test_reporting.py` | sanitização, minimização, Markdown, fila/TTL e captura local de encerramentos inesperados |
 | `test_reporting_ui.py` | formulário em duas etapas, prévia canônica, edição, cancelamento, clipboard e abertura segura do GitHub |
@@ -580,3 +580,14 @@ claro/escuro, redimensione a janela e recarregue a página: cor e dimensões
 devem acompanhar a barra, com um único botão que continue abrindo a grade.
 Repita nas plataformas mantidas; o teste WebEngine com DOM sintético não
 comprova a aparência na versão remota do WhatsApp.
+
+## Validação manual da janela flutuante de Acesso rápido
+
+Em sessão gráfica real, habilite o painel em Aparência, mova-o pela barra de
+título e confirme rolagem com várias contas, temas claro/escuro e ícones de
+mute. Oculte/minimize a janela principal: o painel deve continuar disponível.
+Selecione uma conta e abra configurações, verificando restauração e foco da
+principal. Teste áudio e downloads e confirme que fechar o painel não encerra
+o app nem desativa a preferência. Desative/reative em Aparência, reinicie a
+interface e confirme ausência de janela órfã. Repita com CSR, X11/Wayland e
+Windows/macOS; testes offscreen não comprovam decoração ou foco do compositor.

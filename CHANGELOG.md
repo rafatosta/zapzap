@@ -15,6 +15,14 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Implemented the Appearance floating monitoring panel as an independent native
+  Quick Access window with real account avatars, names, unread counts, active
+  selection and a scrollable account list. Reused the previous stable-ID
+  activation and existing account, mute, downloads and settings flows, including
+  numeric IDs and restoring the hidden main window. Closing only hides the
+  panel; preferences and the integrated selector remain independent. Added
+  regression coverage and updated lifecycle and manual-validation documentation.
+
 - Added visual-only scaffolding for the next Quick Access iteration: a
   `FloatingMonitoringPanel` permanent monitoring interface and an
   `IntegratedAccountSelector` compact account-navigation interface meant to sit

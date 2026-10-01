@@ -1,13 +1,4 @@
-"""Regression tests wiring the Quick Access Appearance toggles to the two
-visual scaffolds (``FloatingMonitoringPanel`` and
-``IntegratedAccountSelector``).
-
-These only assert that the persisted preference controls each scaffold's
-own visibility independently, at startup and when toggled live from
-Appearance settings; they do not assert any future functional behavior
-(account switching, monitoring data, or persistence of anything beyond the
-existing enabled/disabled preference).
-"""
+"""Regression coverage for Quick Access preferences and floating actions."""
 
 from unittest.mock import patch
 
@@ -89,6 +80,60 @@ class QuickAccessAppearanceIntegrationTests(QtTestCase):
         self.addCleanup(window.browser.shutdown)
         self.addCleanup(window.deleteLater)
         return window
+
+    def test_panel_tracks_accounts_notifications_and_edits(self):
+        window = self._window()
+        panel = window.floating_monitoring_panel
+        self.assertEqual(panel._account_rows[0].account_id, "first")
+        window.browser.update_account_notifications("first", 7)
+        self.assertEqual(panel._account_rows[0].badge.text(), "7")
+        user = window.browser.account_runtimes()[0].user
+        user.name = "Renamed"
+        window.browser.update_icons_page_button(user)
+        self.assertEqual(panel._account_rows[0].name_label.text(), "Renamed")
+        user.enable = False
+        window.browser.disable_page(user)
+        self.assertFalse(panel._account_rows[0].isEnabled())
+        window.browser.delete_page(user)
+        self.assertEqual(panel._account_rows, [])
+
+    def test_numeric_account_activation_restores_main_window(self):
+        window = self._window()
+        user = User(id=42, name="Numeric", icon=UserIcon.ICON_DEFAULT, enable=True)
+        window.browser.add_new_user(user)
+        window.hide()
+        panel = window.floating_monitoring_panel
+        panel.show_panel()
+        panel._account_rows[1].activated.emit()
+        self.assertIs(window.browser.pages.currentWidget(),
+                      window.browser.webview_for_user_id(42))
+        self.assertTrue(window.isVisible())
+        self.assertTrue(panel.isVisible())
+
+    def test_panel_audio_and_shortcuts_use_existing_actions(self):
+        window = self._window()
+        panel = window.floating_monitoring_panel
+        with patch.object(window, "set_audio_muted") as mute:
+            panel.audio_button.click()
+            mute.assert_called_once()
+        with patch.object(window, "open_settings") as settings:
+            panel.settings_button.click()
+            settings.assert_called_once()
+        with patch.object(window.browser, "add_new_user") as add:
+            panel.add_account_row.activated.emit()
+            add.assert_called_once_with()
+        with patch.object(window._downloads_window, "show_window") as downloads:
+            panel.downloads_button.click()
+            downloads.assert_called_once()
+
+    def test_panel_remains_visible_when_main_window_hides(self):
+        window = self._window()
+        window.set_floating_monitoring_panel_enabled(True)
+        window.hide_window()
+        self.assertTrue(window.floating_monitoring_panel.isVisible())
+        window.floating_monitoring_panel.close()
+        self.assertFalse(window.floating_monitoring_panel.isVisible())
+        self.assertTrue(AppearanceSettings().floating_monitoring_panel_enabled)
 
     def test_floating_panel_instance_is_hidden_when_preference_is_disabled(self):
         window = self._window()

@@ -143,6 +143,7 @@ class BrowserAccountLifecycleTest(QtTestCase):
     def setUp(self):
         self.factory = FakeWebViewFactory()
         self.controller = self.Harness()
+        self.controller.accounts_changed = FakeSignal()
         self.controller.page_count = 0
         self.controller._accounts = {}
         self.controller._webview_factory = self.factory

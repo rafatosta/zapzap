@@ -142,6 +142,10 @@ class SingleApplication(QApplication):
         if not self.window:
             return
 
+        panel = getattr(self.window, "floating_monitoring_panel", None)
+        if panel is not None:
+            panel.hide_panel()
+
         browser = getattr(self.window, "browser", None)
         if browser:
             browser.shutdown()
