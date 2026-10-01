@@ -246,6 +246,12 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Fixed custom JavaScript files not running on WhatsApp Web. Each enabled file
+  is now executed through `runJavaScript` instead of an inline `<script>`
+  element, which the nonce-based Content Security Policy of the page blocked.
+  Files keep their order and shared global scope, and a file with a syntax
+  error no longer affects the others; added a WebEngine regression test.
+
 - Kept the integrated account popup anchored above its button after Qt layout
   or live account updates change its height; added resize regression coverage.
 

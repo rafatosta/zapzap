@@ -593,37 +593,8 @@ class CustomizationsManager:
         """
 
     @staticmethod
-    def js_injection_script(entries):
-        payload = [
-            {
-                "id": CustomizationsManager._entry_id("js", entry_key),
-                "content": content,
-            }
+    def js_injection_scripts(entries):
+        return [
+            f"{content}\n//# sourceURL=zapzap-custom-js/{entry_key}"
             for entry_key, content in entries
         ]
-        payload_json = json.dumps(payload)
-
-        return """
-            (function() {
-                var head = document.head || document.documentElement;
-                if (!head) {
-                    return;
-                }
-
-                var attr = 'data-zapzap-custom-js';
-                var payload = %s;
-                var managedNodes = head.querySelectorAll('script[' + attr + ']');
-                for (var i = 0; i < managedNodes.length; i++) {
-                    managedNodes[i].remove();
-                }
-
-                for (var j = 0; j < payload.length; j++) {
-                    var item = payload[j];
-                    var scriptNode = document.createElement('script');
-                    scriptNode.id = item.id;
-                    scriptNode.setAttribute(attr, '1');
-                    scriptNode.text = item.content;
-                    head.appendChild(scriptNode);
-                }
-            })();
-        """ % payload_json

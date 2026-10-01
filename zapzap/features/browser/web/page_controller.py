@@ -361,8 +361,8 @@ class PageController(QWebEnginePage):
             CustomizationsManager.TYPE_JS,
             self.user_id,
         )
-        self.runJavaScript(
-            CustomizationsManager.js_injection_script(js_entries))
+        for script in CustomizationsManager.js_injection_scripts(js_entries):
+            self.runJavaScript(script)
 
     def show_toast(self, message, duration=1000):
         """Exibe um toast na página utilizando JavaScript."""
