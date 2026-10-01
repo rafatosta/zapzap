@@ -159,7 +159,7 @@ class BrowserAccountLifecycleTest(QtTestCase):
 
     @staticmethod
     def _user(user_id, enabled):
-        return SimpleNamespace(id=user_id, name=user_id, enable=enabled)
+        return SimpleNamespace(id=user_id, name=user_id, enable=enabled, icon="")
 
     def _add(self, user):
         with patch(

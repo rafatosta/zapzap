@@ -32,6 +32,7 @@ from zapzap.ui.components import BrowserGridView
 from zapzap.ui.components import BrowserPageButton
 from zapzap.ui.components import BrowserSidebarButton
 from zapzap.ui.components import IntegratedAccountSelector
+from zapzap.ui.components.floating_monitoring_panel import FloatingAccountEntry
 from zapzap.ui.components import UpdateAvailablePopover
 
 
@@ -105,7 +106,10 @@ class BrowserController(BrowserView):
         self._update_popover_close_timer.timeout.connect(
             self._update_popover.close
         )
-        self.account_selector = IntegratedAccountSelector(self.pages)
+        self.account_selector = IntegratedAccountSelector(self)
+        self.account_selector.account_activation_requested.connect(self.activate_account)
+        self.accounts_changed.connect(self._refresh_integrated_selector)
+        self.pages.currentChanged.connect(self._integrated_selection_changed)
         app = QApplication.instance()
         if app is not None:
             app.installEventFilter(self)
@@ -144,6 +148,7 @@ class BrowserController(BrowserView):
         if app is not None:
             app.removeEventFilter(self)
         self._update_popover.close()
+        self.account_selector.hide_selector()
         self.close_pages()
 
     # === Inicialização ===
@@ -426,6 +431,11 @@ class BrowserController(BrowserView):
                     self._update_runtime_notifications(entry, count)
                 )
             )
+            selector_requested = getattr(page, "integrated_selector_requested", None)
+            if selector_requested is not None:
+                selector_requested.connect(
+                    lambda rect, entry=runtime: self._open_integrated_selector(entry, rect)
+                )
             self.pages.addWidget(page)
         except Exception:
             runtime.state = AccountLifecycle.ERROR
@@ -877,16 +887,50 @@ class BrowserController(BrowserView):
         )
 
     def set_integrated_account_selector_enabled(self, enabled: bool):
-        """Show or hide the integrated account selector visual scaffold.
-
-        This only toggles the selector's own visibility; it does not
-        switch accounts, render real account data, or depend on the
-        browser sidebar's visibility.
-        """
+        """Apply the preference independently of native sidebar visibility."""
         if enabled:
             self.account_selector.show_selector()
         else:
             self.account_selector.hide_selector()
+        self._refresh_integrated_selector()
+
+    def _integrated_selection_changed(self, *_args):
+        self.account_selector.hide()
+        self._refresh_integrated_selector()
+
+    def _refresh_integrated_selector(self):
+        if self._shutting_down:
+            return
+        current = self.pages.currentWidget()
+        entries = [
+            FloatingAccountEntry(
+                runtime.user.id,
+                runtime.user.name or _("Account {}").format(runtime.position),
+                runtime.button.number_notifications if runtime.user.enable else 0,
+                runtime.page is not None and runtime.page is current,
+                runtime.user.icon,
+                runtime.user.enable,
+            )
+            for runtime in self.account_runtimes()
+        ]
+        self.account_selector.set_accounts(entries)
+        enabled = self.account_selector.is_selector_visible()
+        for runtime in self._active_runtimes():
+            setter = getattr(runtime.page, "set_integrated_selector_state", None)
+            if callable(setter):
+                has_other_unread = any(
+                    entry.enabled and entry.account_id != runtime.user.id
+                    and entry.unread_count > 0 for entry in entries
+                )
+                setter(enabled, has_other_unread)
+
+    def _open_integrated_selector(self, runtime, rect):
+        if (self._shutting_down or self._accounts.get(runtime.user.id) is not runtime
+                or runtime.page is None or runtime.page is not self.pages.currentWidget()
+                or not self.account_selector.is_selector_visible()):
+            return
+        self._refresh_integrated_selector()
+        self.account_selector.popup_for(rect)
 
     def set_sidebar_visible(self, visible: bool, animated: bool = True):
         visible = bool(visible)

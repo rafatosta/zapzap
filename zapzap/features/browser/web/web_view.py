@@ -7,11 +7,13 @@ import json
 from PyQt6.QtWebChannel import QWebChannel
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings, QWebEnginePage, QWebEngineScript
-from PyQt6.QtCore import QUrl, pyqtSignal, QTimer, QEvent, Qt, QFile, QTextStream, QObject, pyqtSlot
+from PyQt6.QtCore import QUrl, pyqtSignal, QTimer, QEvent, Qt, QFile, QTextStream, QObject, pyqtSlot, QRect
 from PyQt6.QtWidgets import QApplication, QWidget
 from PyQt6.QtGui import QAction
 
 from zapzap.core.theme.theme_manager import ThemeManager
+from zapzap.core.config.settings.appearance import AppearanceSettings
+from zapzap.assets.icons.system_icon import SystemIcon
 from zapzap.core.config.settings.downloads import download_settings_events
 from zapzap.features.browser.web.page_controller import PageController
 from zapzap.features.browser.web.popup_window import InternalWebPopup
@@ -45,6 +47,7 @@ logger = logging.getLogger(__name__)
 
 
 class WebView(QWebEngineView):
+    integrated_selector_requested = pyqtSignal(object)
     update_button_signal = pyqtSignal(int, int)  # Sinal para atualizar botões
 
     QWEBENGINE_CACHE_TYPES = {
@@ -84,6 +87,8 @@ class WebView(QWebEngineView):
         self._shutting_down = False
 
         self._web_channel_bridge = None
+        self._integrated_selector_enabled = AppearanceSettings().integrated_account_selector_enabled
+        self._integrated_other_unread = False
 
         # In-memory only: last directory chosen with Save As for this
         # conversation. Never persisted.
@@ -242,6 +247,10 @@ class WebView(QWebEngineView):
             self._setup_web_channel()
             placeholders = {
                 "{qwebchannel_js_code}": self._get_web_channel_js_code(),
+                "{quick_accounts_visible}": json.dumps(self._integrated_selector_enabled),
+                "{quick_accounts_icon}": SystemIcon.SVG_ICONS["view_grid"].format(fill_color="currentColor"),
+                "{selector_label}": json.dumps(_("Account selector")),
+                "{selector_activity_label}": json.dumps(_("Notifications")),
                 "{current_color_scheme}": (
                     ThemeManager.get_current_color_scheme().name.lower()
                 ),
@@ -302,6 +311,23 @@ class WebView(QWebEngineView):
                         False, message)
                     self._webview.whatsapp_page.fall_back_to_force_dark_mode()
 
+            @pyqtSlot()
+            def on_quick_accounts_controller_ready(self):
+                self._webview._sync_integrated_selector()
+
+            @pyqtSlot(int, int, int, int)
+            def open_recent_accounts(self, x, y, width, height):
+                view = self._webview
+                if view._shutting_down or not view._integrated_selector_enabled:
+                    return
+                zoom = view.zoomFactor()
+                local = QRect(round(x * zoom), round(y * zoom),
+                              round(width * zoom), round(height * zoom)).intersected(view.rect())
+                if not local.isEmpty():
+                    view.integrated_selector_requested.emit(
+                        QRect(view.mapToGlobal(local.topLeft()), local.size())
+                    )
+
             def __init__(self, webview):
                 super().__init__()
                 self.web_channel = QWebChannel(self)
@@ -312,6 +338,20 @@ class WebView(QWebEngineView):
         self.whatsapp_page.setWebChannel(
             self._web_channel_bridge.web_channel,
             QWebEngineScript.ScriptWorldId.MainWorld
+        )
+
+    def set_integrated_selector_state(self, enabled, has_other_unread):
+        self._integrated_selector_enabled = bool(enabled)
+        self._integrated_other_unread = bool(has_other_unread)
+        self._sync_integrated_selector()
+
+    def _sync_integrated_selector(self):
+        if self.whatsapp_page is None or self._shutting_down:
+            return
+        state = json.dumps([self._integrated_selector_enabled, self._integrated_other_unread])
+        self.whatsapp_page.runJavaScript(
+            "window._zapZapQuickAccountsController && "
+            f"window._zapZapQuickAccountsController.setState(...{state});"
         )
 
     @staticmethod

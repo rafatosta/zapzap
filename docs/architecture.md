@@ -216,8 +216,30 @@ histórico de downloads e configurações. Selecionar conta ou abrir configuraç
 restaura a janela principal; áudio e downloads mantêm seus fluxos existentes.
 Ícones e ação de áudio acompanham o tema e estado global.
 
-`IntegratedAccountSelector` continua sendo estrutura visual independente,
-ancorada sobre `BrowserController.pages`, sem troca funcional de contas.
+`IntegratedAccountSelector` é um popover nativo `Qt.WindowType.Popup` compacto,
+sem cabeçalho da conta atual ou ações de gerenciamento. A sidebar do WhatsApp
+recebe apenas um botão `view_grid`, sem avatar, com ponto de atividade quando
+outras contas habilitadas possuem não lidas. `BrowserController` calcula esse
+estado por página a partir do registro existente, excluindo a própria conta.
+O popover recebe descritores `FloatingAccountEntry`, omite a conta selecionada
+e as desativadas e prioriza as que têm não lidas, mostrando suas contagens.
+A seleção reutiliza `activate_account` com ID original e oculta o popover.
+Atualizações preservam os controles existentes; Qt fecha o popup em Esc ou
+clique externo, e a navegação também o oculta.
+
+`WebView.set_integrated_selector_state` sincroniza preferência e atividade com
+`QuickAccountsController` no script `theme_controller.js`, inclusive após cada
+reinjeção/recarga via handshake WebChannel. A inicialização do botão independe
+da disponibilidade dos módulos de tema do WhatsApp. A integração procura uma
+sidebar vertical real, reutiliza cores/dimensões de ícones nativos e reinsere o
+botão após mutações do DOM. Em containers que cortam conteúdo, pode ocupar
+somente um espaço livre medido dentro da sidebar; sem sidebar/espaço não exibe
+um botão sobre conversas. O clique envia só a geometria CSS do botão pela ponte;
+WebView aplica o zoom e converte para coordenadas globais Qt. O controller
+recusa pedidos de páginas em segundo plano, desativadas, removidas ou durante
+shutdown. O popover permanece oculto até o clique, mesmo com a opção habilitada.
+`show_selector`/`hide_selector` e `is_selector_visible` controlam a disponibilidade
+do botão integrado; `isVisible` representa a abertura efetiva do popover.
 A seção "Quick Access" de Aparência mantém os dois interruptores independentes
 `system/floating_monitoring_panel_enabled` e
 `system/integrated_account_selector_enabled`, ambos `False` por padrão.

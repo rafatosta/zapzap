@@ -99,6 +99,13 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   componente desacoplado de User/WebEngine e atualize via accounts_changed.
   Fechar o painel não desativa sua preferência. Valide decoração, movimento e
   foco em sessão gráfica real, incluindo janela principal oculta e CSR.
+- O seletor integrado ocupa um único botão na sidebar do WhatsApp: não restaure
+  fallbacks sobre conversas nem duplique a conta atual. Calcule atividade das
+  outras contas no controller, preserve IDs numéricos e valide pedidos pela
+  página atual e pelo registro vivo. Reutilize a ponte WebChannel existente,
+  sincronize após recargas e ajuste a geometria pelo zoom da WebView.
+  Teste mutações do DOM, ausência da sidebar, clipping, temas, Esc/clique externo
+  e coexistência com o painel flutuante nas plataformas mantidas.
 
 ### Relatórios de problemas
 

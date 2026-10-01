@@ -104,6 +104,327 @@
         },
     };
 
+    const QuickAccountsController = {
+        bridge: null,
+        observer: null,
+        framePending: false,
+        visible: {quick_accounts_visible},
+        resizeHandler: null,
+        iconColor: null,
+        hasOtherUnread: false,
+        label: {selector_label},
+        activityLabel: {selector_activity_label},
+
+        boot() {
+            const previous = window._zapZapQuickAccountsController;
+            if (previous && previous.observer) {
+                previous.observer.disconnect();
+            }
+            if (previous && previous.resizeHandler) {
+                window.removeEventListener("resize", previous.resizeHandler);
+            }
+            window._zapZapQuickAccountsController = this;
+            this.ensureButton();
+            this.resizeHandler = () => this.scheduleEnsure();
+            window.addEventListener("resize", this.resizeHandler);
+            if (document.documentElement) {
+                this.observer = new MutationObserver((records) => {
+                    // Ignore our own styles to avoid a perpetual animation-frame loop.
+                    const own = (node) => node.nodeType === 1 &&
+                        (node.matches('[data-zapzap-component="quick-accounts"]') ||
+                         node.closest('[data-zapzap-component="quick-accounts"]'));
+                    if (records.some((record) => !own(record.target) &&
+                        (record.type !== "childList" ||
+                         [...record.removedNodes].some((node) => own(node) && !node.isConnected) ||
+                         [...record.addedNodes, ...record.removedNodes].some((node) => !own(node))))) {
+                        this.scheduleEnsure();
+                    }
+                });
+                this.observer.observe(document.documentElement, {
+                    childList: true,
+                    subtree: true,
+                    attributes: true,
+                    attributeFilter: ["class", "style", "fill", "width", "height",
+                        "aria-selected", "aria-pressed", "aria-current", "disabled", "aria-disabled"],
+                });
+            }
+        },
+
+        setBridge(bridge) {
+            this.bridge = bridge;
+            if (this.bridge && typeof this.bridge.on_quick_accounts_controller_ready === "function") {
+                this.bridge.on_quick_accounts_controller_ready();
+            }
+        },
+
+        setVisible(visible) {
+            this.visible = Boolean(visible);
+            const button = document.querySelector('[data-zapzap-component="quick-accounts"]');
+            if (button) {
+                button.hidden = !this.visible;
+            }
+            this.ensureButton();
+        },
+
+        setState(visible, hasOtherUnread) {
+            this.visible = Boolean(visible);
+            this.hasOtherUnread = Boolean(hasOtherUnread);
+            this.ensureButton();
+        },
+
+        setIconColor(color) {
+            this.iconColor = color;
+            this.scheduleEnsure();
+        },
+
+        syncIconAppearance(button, target) {
+            const icon = button.querySelector("svg");
+            if (!icon) {
+                return;
+            }
+            let color = this.iconColor || "currentColor";
+            let width = "20px";
+            let height = "20px";
+            // Sample an ordinary navigation action, never our own icon or an
+            // active/disabled action whose color represents a special state.
+            const candidates = target === document.body ? [] : target.querySelectorAll(
+                'button svg, [role="button"] svg, [role="tab"] svg'
+            );
+            for (const candidate of candidates) {
+                if (button.contains(candidate) || candidate.closest(
+                    '[aria-selected="true"], [aria-pressed="true"], ' +
+                    '[aria-current]:not([aria-current="false"]), [disabled], [aria-disabled="true"]'
+                )) {
+                    continue;
+                }
+                const bounds = candidate.getBoundingClientRect();
+                const style = getComputedStyle(candidate);
+                if (bounds.width <= 0 || bounds.height <= 0 || style.visibility === "hidden") {
+                    continue;
+                }
+                const paint = getComputedStyle(candidate.querySelector("path") || candidate);
+                color = paint.fill !== "none" && paint.fill !== "rgba(0, 0, 0, 0)"
+                    ? paint.fill : paint.color;
+                width = style.width;
+                height = style.height;
+                break;
+            }
+            icon.style.fill = color;
+            icon.style.color = color;
+            icon.style.width = width;
+            icon.style.height = height;
+            icon.style.flexShrink = "0";
+        },
+
+        scheduleEnsure() {
+            if (this.framePending) {
+                return;
+            }
+            this.framePending = true;
+            requestAnimationFrame(() => {
+                this.framePending = false;
+                this.ensureButton();
+            });
+        },
+
+        findQuickAccountsMountPoint() {
+            const navigationCandidates = new Set(document.querySelectorAll(
+                'nav, [role="navigation"], aside'
+            ));
+            // WhatsApp also uses plain divs for its rail. Discover those from
+            // native actions rather than relying on generated class names.
+            for (const action of document.querySelectorAll('button, [role="button"], [role="tab"]')) {
+                if (action.closest('[data-zapzap-component="quick-accounts"]')) {
+                    continue;
+                }
+                for (let node = action.parentElement; node && node !== document.body; node = node.parentElement) {
+                    navigationCandidates.add(node);
+                }
+            }
+            for (const candidate of navigationCandidates) {
+                const bounds = candidate.getBoundingClientRect();
+                if (
+                    bounds.left <= 24 &&
+                    bounds.width >= 48 &&
+                    bounds.width <= 120 &&
+                    bounds.height >= window.innerHeight * 0.5 &&
+                    getComputedStyle(candidate).visibility !== "hidden"
+                ) {
+                    return candidate;
+                }
+            }
+
+            return null;
+        },
+
+        placeButton(button, target) {
+            let parent = target;
+            let anchor = null;
+            // Join the native column containing the bottom actions. Never use
+            // viewport offsets: extra actions (including Beta) need real space.
+            const actions = [...target.querySelectorAll('button, [role="button"], [role="tab"]')]
+                .filter((action) => action !== button && !button.contains(action)
+                    && action.getBoundingClientRect().height > 0);
+            for (const action of actions.reverse()) {
+                let item = action;
+                while (item.parentElement && target.contains(item.parentElement)) {
+                    const container = item.parentElement;
+                    const style = getComputedStyle(container);
+                    if (style.display === "flex" && style.flexDirection === "column"
+                        && container.children.length >= 2) {
+                        parent = container;
+                        anchor = item;
+                        break;
+                    }
+                    item = container;
+                }
+                if (anchor) {
+                    break;
+                }
+            }
+            button.style.margin = "4px";
+            button.style.position = "relative";
+            button.style.left = "auto";
+            button.style.top = "auto";
+            button.style.bottom = "auto";
+            button.style.right = "auto";
+            button.style.zIndex = "auto";
+            button.style.flexShrink = "0";
+            button.style.alignSelf = "center";
+            button.style.display = this.visible ? "inline-flex" : "none";
+            if (anchor) {
+                if (button.parentElement !== parent || button.nextElementSibling !== anchor) {
+                    parent.insertBefore(button, anchor);
+                }
+            } else if (button.parentElement !== target) {
+                target.appendChild(button);
+            }
+        },
+
+        ensureButtonVisible(button, target) {
+            if (!this.visible) {
+                return;
+            }
+            const rect = button.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const points = [rect.top + 2, rect.top + rect.height / 2, rect.bottom - 2];
+            if (rect.width > 0 && rect.height > 0 && rect.left >= 0 &&
+                rect.right <= window.innerWidth && rect.top >= 0 && rect.bottom <= window.innerHeight &&
+                points.every((y) => button.contains(document.elementFromPoint(centerX, y)))) {
+                return;
+            }
+            // A fixed-height/overflow-hidden React wrapper can clip injected
+            // children. Use a measured empty rail slot outside that wrapper.
+            const rail = target.getBoundingClientRect();
+            const width = Math.max(40, rect.width);
+            const height = Math.max(40, rect.height);
+            const occupied = [...target.querySelectorAll('*')].filter((node) =>
+                node !== button && !button.contains(node) && !node.contains(button) &&
+                (node.matches('button, [role="button"], [role="tab"], img, svg') ||
+                 (node.children.length === 0 && node.textContent.trim()))
+            ).map((node) => node.getBoundingClientRect()).filter((box) => box.width && box.height);
+            let left = Math.max(4, rail.left + (rail.width - width) / 2);
+            let top = null;
+            if (rail.width >= width && rail.width <= 120) {
+                for (let y = Math.min(rail.bottom, window.innerHeight) - height - 4;
+                     y >= Math.max(4, rail.top); y -= 4) {
+                    if (occupied.every((box) => box.bottom + 4 <= y || box.top - 4 >= y + height)) {
+                        top = y;
+                        break;
+                    }
+                }
+            }
+            if (top === null) {
+                button.style.display = "none";
+                return;
+            }
+            if (button.parentElement !== document.body) {
+                document.body.appendChild(button);
+            }
+            button.style.position = "fixed";
+            button.style.margin = "0";
+            button.style.left = `${left}px`;
+            button.style.top = `${top}px`;
+            button.style.bottom = "auto";
+            button.style.zIndex = "2147483647";
+        },
+
+        createButton() {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.setAttribute("data-zapzap-component", "quick-accounts");
+            button.setAttribute("aria-label", this.label);
+            button.title = this.label;
+            button.hidden = !this.visible;
+            const styles = [
+                "align-items:center",
+                "background:transparent",
+                "border:0",
+                "border-radius:8px",
+                "color:inherit",
+                "cursor:pointer",
+                "display:inline-flex",
+                "min-height:40px",
+                "box-sizing:border-box",
+                "justify-content:center",
+                "margin:4px",
+                "padding:8px",
+                "min-width:40px",
+            ];
+            button.style.cssText = styles.join(";");
+            button.innerHTML = `{quick_accounts_icon}`;
+            const icon = button.querySelector("svg");
+            if (icon) {
+                icon.setAttribute("aria-hidden", "true");
+                icon.setAttribute("width", "20");
+                icon.setAttribute("height", "20");
+                if (this.iconColor) {
+                    icon.setAttribute("fill", this.iconColor);
+                }
+            }
+            const badge = document.createElement("span");
+            badge.setAttribute("data-zapzap-unread", "true");
+            badge.setAttribute("aria-hidden", "true");
+            badge.style.cssText = "position:absolute;right:3px;top:3px;width:8px;height:8px;" +
+                "border-radius:50%;background:var(--unread-marker-background,#25d366);pointer-events:none";
+            button.appendChild(badge);
+            button.addEventListener("click", () => {
+                try {
+                    if (this.bridge && typeof this.bridge.open_recent_accounts === "function") {
+                        const rect = button.getBoundingClientRect();
+                        this.bridge.open_recent_accounts(Math.round(rect.x), Math.round(rect.y),
+                            Math.round(rect.width), Math.round(rect.height));
+                    }
+                } catch (_) {
+                    // The integration is optional and must not affect WhatsApp Web.
+                }
+            });
+            return button;
+        },
+
+        ensureButton() {
+            try {
+                const target = this.findQuickAccountsMountPoint();
+                let button = document.querySelector('[data-zapzap-component="quick-accounts"]');
+                if (!target || !this.visible) {
+                    if (button) button.remove();
+                    return;
+                }
+                if (!button) button = this.createButton();
+                button.hidden = false;
+                button.querySelector('[data-zapzap-unread]').hidden = !this.hasOtherUnread;
+                const label = this.label + (this.hasOtherUnread ? " — " + this.activityLabel : "");
+                button.setAttribute("aria-label", label);
+                button.title = label;
+                this.placeButton(button, target);
+                this.syncIconAppearance(button, target);
+                this.ensureButtonVisible(button, target);
+            } catch (_) {
+                // Optional navigation must never interfere with WhatsApp Web.
+            }
+        },
+    };
+
     const ThemeController = {
         _failed: false,
         _is_ready: false,
@@ -217,6 +538,7 @@
             try {
                 new QWebChannel(qt.webChannelTransport, (channel) => {
                     this.bridge = channel.objects && channel.objects.zapZapBridge;
+                    QuickAccountsController.setBridge(this.bridge);
                     this._notifyInjectionSuccess();
                 });
             } catch (_) {
@@ -462,5 +784,6 @@
         },
     };
 
+    QuickAccountsController.boot();
     ThemeController.boot();
 })();

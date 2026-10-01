@@ -3,6 +3,8 @@
 from unittest.mock import patch
 
 from PyQt6.QtWidgets import QApplication
+from PyQt6.QtCore import pyqtSignal, QRect, QEventLoop, QTimer
+from PyQt6 import sip
 
 from qt_test_case import QtTestCase
 from tools.memory.stub_webview import StubWebView
@@ -11,10 +13,18 @@ from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.core.config.settings.appearance import AppearanceSettings
 from zapzap.core.i18n.translation_manager import TranslationManager
 from zapzap.features.accounts.domain.user import User
+from zapzap.features.browser.web.web_view import WebView
 from zapzap.ui.components import (
     FloatingMonitoringPanel,
     IntegratedAccountSelector,
 )
+
+
+class SelectorStubWebView(StubWebView):
+    integrated_selector_requested = pyqtSignal(object)
+
+    def set_integrated_selector_state(self, enabled, has_other_unread):
+        self.selector_state = (enabled, has_other_unread)
 
 
 class QuickAccessAppearanceIntegrationTests(QtTestCase):
@@ -72,7 +82,7 @@ class QuickAccessAppearanceIntegrationTests(QtTestCase):
             ),
         ]
         window = MainWindowController(
-            webview_factory=StubWebView,
+            webview_factory=SelectorStubWebView,
             user_provider=lambda: users,
         )
         window.show()
@@ -165,6 +175,50 @@ class QuickAccessAppearanceIntegrationTests(QtTestCase):
             AppearanceSettings().floating_monitoring_panel_enabled
         )
 
+    def test_integrated_button_reports_only_other_accounts_and_switches(self):
+        window = self._window()
+        browser = window.browser
+        browser.add_new_user(User(id=42, name="Other", icon=UserIcon.ICON_DEFAULT, enable=True))
+        browser.set_integrated_account_selector_enabled(True)
+        first = browser.webview_for_user_id("first")
+        other = browser.webview_for_user_id(42)
+        browser.update_account_notifications("first", 8)
+        self.assertEqual(first.selector_state, (True, False))
+        self.assertEqual(other.selector_state, (True, True))
+        browser.update_account_notifications(42, 3)
+        self.assertEqual(first.selector_state, (True, True))
+        other.integrated_selector_requested.emit(QRect(10, 10, 40, 40))
+        self.assertFalse(browser.account_selector.isVisible())
+        first.integrated_selector_requested.emit(QRect(10, 10, 40, 40))
+        self.assertTrue(browser.account_selector.isVisible())
+        self.assertEqual(len(browser.account_selector._account_buttons), 1)
+        browser.account_selector._account_buttons[0].click()
+        self.assertIs(browser.pages.currentWidget(), other)
+        self.assertFalse(browser.account_selector.isVisible())
+        self.assertEqual(other.selector_state, (True, True))
+        browser.update_account_notifications("first", 0)
+        self.assertEqual(other.selector_state, (True, False))
+        browser.set_integrated_account_selector_enabled(False)
+        self.assertEqual(other.selector_state, (False, False))
+        other.integrated_selector_requested.emit(QRect(10, 10, 40, 40))
+        self.assertFalse(browser.account_selector.isVisible())
+
+    def test_integrated_selector_ignores_disabled_deleted_and_stale_accounts(self):
+        window = self._window()
+        browser = window.browser
+        user = User(id=42, name="Other", icon=UserIcon.ICON_DEFAULT, enable=True)
+        browser.add_new_user(user)
+        browser.set_integrated_account_selector_enabled(True)
+        runtime = browser.account_runtimes()[1]
+        browser.update_account_notifications(42, 5)
+        user.enable = False
+        browser.disable_page(user)
+        self.assertEqual(browser.webview_for_user_id("first").selector_state, (True, False))
+        self.assertEqual(browser.account_selector._account_buttons, [])
+        browser.delete_page(user)
+        browser._open_integrated_selector(runtime, QRect(10, 10, 40, 40))
+        self.assertFalse(browser.account_selector.isVisible())
+
     def test_account_selector_instance_is_hidden_when_preference_is_disabled(self):
         window = self._window()
 
@@ -234,3 +288,138 @@ class QuickAccessAppearanceIntegrationTests(QtTestCase):
             self.assertTrue(
                 window.browser.account_selector.is_selector_visible()
             )
+
+
+class IntegratedSelectorWebTests(QtTestCase):
+    """Real WebEngine checks reusing the previous DOM integration fixtures."""
+
+    def javascript(self, page, script):
+        result = []
+        loop = QEventLoop()
+        page.runJavaScript(script, lambda value: (result.append(value), loop.quit()))
+        QTimer.singleShot(15000, loop.quit)
+        loop.exec()
+        self.assertEqual(len(result), 1)
+        return result[0]
+
+    def wait_frames(self):
+        loop = QEventLoop()
+        QTimer.singleShot(250, loop.quit)
+        loop.exec()
+
+    def test_button_sidebar_unread_reinsertion_theme_and_click_geometry(self):
+        from pathlib import Path
+        view = WebView(User(id="dom", enable=False), 1)
+        self.addCleanup(lambda: sip.delete(view))
+        view.resize(800, 600)
+        view.whatsapp_page = view.page()
+        view._setup_web_channel()
+        view.set_integrated_selector_state(True, False)
+        received = []
+        view.integrated_selector_requested.connect(received.append)
+        view.show()
+        page = view.page()
+        loop = QEventLoop()
+        loaded = []
+        page.loadFinished.connect(lambda ok: (loaded.append(ok), loop.quit()))
+        page.setHtml("""<style>
+            body {margin:0} nav {display:flex;flex-direction:column;width:64px;height:100vh}
+            nav svg {fill:rgb(12,34,56);width:24px;height:24px}
+            body.dark nav svg {fill:rgb(210,220,230)}
+            .bottom {display:flex;flex-direction:column;margin-top:auto;gap:8px}
+            .bottom>* {min-height:40px;flex-shrink:0}
+            </style><nav><button><svg></svg></button><div class="bottom">
+            <button>Settings</button><span>BETA</span><button>Profile</button></div></nav>""")
+        QTimer.singleShot(15000, loop.quit)
+        loop.exec()
+        self.assertEqual(loaded, [True])
+        script = (Path(__file__).parents[1] /
+                  "zapzap/features/browser/web/scripts/theme_controller.js").read_text()
+        controller = script.split("    const QuickAccountsController =", 1)[1].split(
+            "    const ThemeController =", 1)[0]
+        controller = controller.replace("{quick_accounts_visible}", "true").replace(
+            "{quick_accounts_icon}", '<svg viewBox="0 0 24 24"></svg>').replace(
+            "{selector_label}", '"Account selector"').replace(
+            "{selector_activity_label}", '"Notifications"')
+        self.javascript(page, view._get_web_channel_js_code() +
+                        "const QuickAccountsController =" + controller +
+                        "QuickAccountsController.boot();" +
+                        "new QWebChannel(qt.webChannelTransport,channel=>" +
+                        "QuickAccountsController.setBridge(channel.objects.zapZapBridge));")
+        self.wait_frames()
+        self.javascript(page, "document.querySelector('[data-zapzap-component]').click()")
+        self.wait_frames()
+        self.assertEqual(len(received), 1)
+        self.assertGreater(received[0].width(), 0)
+        snapshot = """(() => {
+            const b=document.querySelector('[data-zapzap-component]');
+            return [document.querySelectorAll('[data-zapzap-component]').length,
+                getComputedStyle(b.querySelector('svg')).fill,
+                b.querySelector('[data-zapzap-unread]').hidden];
+        })()"""
+        self.assertEqual(self.javascript(page, snapshot), [1, "rgb(12, 34, 56)", True])
+        self.javascript(page, "QuickAccountsController.setState(true,true); document.body.className='dark'")
+        self.wait_frames()
+        self.assertEqual(self.javascript(page, snapshot), [1, "rgb(210, 220, 230)", False])
+        self.javascript(page, """
+            window.clicked = null;
+            QuickAccountsController.setBridge({open_recent_accounts:(...rect)=>window.clicked=rect});
+            document.querySelector('[data-zapzap-component]').click();
+        """)
+        rect = self.javascript(page, "window.clicked")
+        self.assertEqual(len(rect), 4)
+        self.assertGreater(rect[2], 0)
+        self.javascript(page, "document.querySelector('[data-zapzap-component]').remove()")
+        self.wait_frames()
+        self.assertEqual(self.javascript(page, snapshot)[0], 1)
+        self.javascript(page, "QuickAccountsController.setState(false,true)")
+        self.assertEqual(self.javascript(page, "document.querySelectorAll('[data-zapzap-component]').length"), 0)
+        self.javascript(page, "QuickAccountsController.setState(true,false)")
+        self.assertEqual(self.javascript(page, snapshot)[2], True)
+        # Preserve the old clipping regression: a measured slot within the rail
+        # is allowed, but it must not cover native actions.
+        self.javascript(page, "document.querySelector('.bottom').style.cssText='height:40px;overflow:hidden;flex-shrink:0'")
+        self.wait_frames()
+        self.assertTrue(self.javascript(page, """(() => {
+            const b=document.querySelector('[data-zapzap-component]');
+            const r=b.getBoundingClientRect();
+            return r.width>0 && r.left>=0 && r.right<=64 && r.top>=0 && r.bottom<=innerHeight &&
+                b.contains(document.elementFromPoint(r.left+r.width/2,r.top+r.height/2));
+        })()"""))
+        self.javascript(page, """
+            const nav=document.querySelector('nav');
+            const rail=document.createElement('div'); rail.id='plain-rail';
+            rail.style.cssText='display:flex;flex-direction:column;width:64px;height:100vh';
+            while(nav.firstChild) rail.appendChild(nav.firstChild);
+            nav.replaceWith(rail);
+        """)
+        self.wait_frames()
+        self.assertEqual(self.javascript(page,
+            "QuickAccountsController.findQuickAccountsMountPoint().id"), "plain-rail")
+        # No arbitrary floating fallback when WhatsApp's rail disappears.
+        self.javascript(page, "document.querySelector('#plain-rail').remove()")
+        self.wait_frames()
+        self.assertEqual(self.javascript(page, "document.querySelectorAll('[data-zapzap-component]').length"), 0)
+
+    def test_webchannel_bridge_maps_zoom_and_ignores_disabled_or_shutdown_requests(self):
+        view = WebView(User(id="bridge", enable=False), 1)
+        self.addCleanup(lambda: sip.delete(view))
+        view.resize(800, 600)
+        view.whatsapp_page = view.page()
+        view._setup_web_channel()
+        view.setZoomFactor(1.5)
+        view.set_integrated_selector_state(True, False)
+        received = []
+        view.integrated_selector_requested.connect(received.append)
+        bridge = view._web_channel_bridge
+        bridge.open_recent_accounts(10, 20, 40, 40)
+        self.assertEqual(received, [QRect(view.mapToGlobal(QRect(15,30,60,60).topLeft()),
+                                        QRect(15,30,60,60).size())])
+        bridge.open_recent_accounts(-500, -500, 40, 40)
+        self.assertEqual(len(received), 1)
+        view.set_integrated_selector_state(False, True)
+        bridge.open_recent_accounts(10, 20, 40, 40)
+        view._integrated_selector_enabled = True
+        view._shutting_down = True
+        bridge.open_recent_accounts(10, 20, 40, 40)
+        self.assertEqual(len(received), 1)

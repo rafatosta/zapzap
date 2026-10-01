@@ -6,9 +6,9 @@ These tests cover presentation and independent/coexisting visibility.
 Controller action routing is exercised by the integration tests.
 """
 
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QRect
 
-from PyQt6.QtWidgets import QPushButton, QToolButton, QWidget
+from PyQt6.QtWidgets import QPushButton, QWidget
 
 from qt_test_case import QtTestCase
 from zapzap.ui.components import (
@@ -162,16 +162,13 @@ class FloatingMonitoringPanelUiTests(QtTestCase):
 
 class IntegratedAccountSelectorUiTests(QtTestCase):
 
-    def test_selector_renders_add_account_affordance_and_empty_state(self):
+    def test_selector_has_only_other_account_navigation(self):
         selector = IntegratedAccountSelector()
-
-        self.assertIsInstance(selector.add_account_button, QToolButton)
-        self.assertFalse(selector.add_account_button.icon().isNull())
         self.assertIsInstance(selector.empty_state_label, Label)
-        self.assertEqual(selector.empty_state_label.text(), "No accounts yet")
-        self.assertEqual(
-            selector.accessibleName(), "Account selector"
-        )
+        self.assertEqual(selector.empty_state_label.text(), "No active accounts to display.")
+        self.assertEqual(selector.accessibleName(), "Account selector")
+        self.assertFalse(hasattr(selector, "add_account_button"))
+        self.assertTrue(selector.windowFlags() & Qt.WindowType.Popup)
 
     def test_selector_is_hidden_by_default_and_never_auto_shows(self):
         selector = IntegratedAccountSelector()
@@ -192,25 +189,37 @@ class IntegratedAccountSelectorUiTests(QtTestCase):
         selector.toggle_selector()
         self.assertFalse(selector.is_selector_visible())
 
-    def test_add_account_button_only_emits_the_scaffolded_signal(self):
+    def test_popover_excludes_current_and_disabled_and_sorts_unread_first(self):
         selector = IntegratedAccountSelector()
-        requests = []
-        selector.add_account_requested.connect(lambda: requests.append(True))
-
-        selector.add_account_button.click()
-
-        self.assertEqual(requests, [True])
-
-    def test_reposition_anchors_selector_to_parent_width_without_sidebar_state(self):
-        host = QWidget()
-        host.resize(400, 300)
-        selector = IntegratedAccountSelector(host)
-
+        selector.set_accounts([
+            FloatingAccountEntry(1, "Current", unread_count=3, active=True),
+            FloatingAccountEntry(2, "Quiet"),
+            FloatingAccountEntry(3, "Unread", unread_count=7),
+            FloatingAccountEntry(4, "Disabled", unread_count=9, enabled=False),
+        ])
+        buttons = selector._account_buttons
+        self.assertEqual([button.property("account_id") for button in buttons], [3, 2])
+        self.assertEqual(buttons[0].text(), "Unread  (7)")
         selector.show_selector()
+        self.assertFalse(selector.isVisible())
+        selector.popup_for(QRect(20, 30, 40, 40))
+        self.assertTrue(selector.isVisible())
+        selected = []
+        selector.account_activation_requested.connect(selected.append)
+        buttons[0].click()
+        self.assertEqual(selected, [3])
+        self.assertFalse(selector.isVisible())
+        self.assertTrue(selector.is_selector_visible())
 
-        self.assertEqual(selector.width(), host.width())
-        self.assertEqual(selector.x(), 0)
-        self.assertEqual(selector.y(), selector.MARGIN)
+    def test_disabled_preference_prevents_popup_and_escape_closes_it(self):
+        from PyQt6.QtTest import QTest
+        selector = IntegratedAccountSelector()
+        selector.popup_for(QRect(10, 10, 40, 40))
+        self.assertFalse(selector.isVisible())
+        selector.show_selector()
+        selector.popup_for(QRect(10, 10, 40, 40))
+        QTest.keyClick(selector, Qt.Key.Key_Escape)
+        self.assertFalse(selector.isVisible())
 
     def test_visibility_changed_signal_reports_both_transitions(self):
         selector = IntegratedAccountSelector()

@@ -132,8 +132,8 @@ documente o que ele protege.
 | `test_plain_text_paste.py` | inserção text/plain no editor WebEngine selecionado, resolução de contenteditable pela seleção DOM e fallback PasteAndMatchStyle sem tocar no Ctrl+V |
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
 | `test_profile_sync.py` | validação de dados pontuais do perfil WhatsApp e normalização da foto |
-| `test_quick_access_integration.py` | integração dos interruptores de Aparência, atualização de contas e não lidas, IDs numéricos, ações existentes, fechamento e independência da janela flutuante |
-| `test_quick_access_panels_ui.py` | estrutura renderizada, decoração nativa solicitada, atualização de linhas sem recriar controles, métodos de visibilidade e coexistência do painel flutuante e do seletor integrado |
+| `test_quick_access_integration.py` | integração dos interruptores de Aparência, atualização de contas e não lidas, IDs numéricos, ações existentes, fechamento e independência da janela flutuante; seletor de outras contas, sinal de atividade por página, IDs numéricos, pedidos tardios, DOM/reinserção/tema e geometria WebChannel com zoom |
+| `test_quick_access_panels_ui.py` | estrutura renderizada, decoração nativa solicitada, atualização de linhas sem recriar controles, métodos de visibilidade e coexistência do painel flutuante e do seletor integrado; popover compacto sem conta atual, ordenação por atividade e fechamento após seleção/Esc |
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
 | `test_reporting.py` | sanitização, minimização, Markdown, fila/TTL e captura local de encerramentos inesperados |
 | `test_reporting_ui.py` | formulário em duas etapas, prévia canônica, edição, cancelamento, clipboard e abertura segura do GitHub |
@@ -568,18 +568,26 @@ Durante desenvolvimento, rode o módulo afetado. Antes de entregar:
 4. `compileall` e `git diff --check`;
 5. validação manual nas plataformas ou sessões gráficas afetadas.
 
-## Validação manual do ícone integrado de contas
+## Validação manual do seletor integrado de contas
 
-Com a sidebar oculta e o atalho integrado selecionado, compare o ícone de
-visão geral com os ícones não selecionados da barra do WhatsApp. Confirme que
-o botão ocupa espaço próprio sem sobrepor Configurações, Beta ou o perfil,
-inclusive quando surgem ações extras. Verifique também barras sem nav/ARIA e
-contêineres com altura fixa/overflow: o botão deve continuar visível e clicável,
-sem duplicação após mudanças do DOM. Alterne tema
-claro/escuro, redimensione a janela e recarregue a página: cor e dimensões
-devem acompanhar a barra, com um único botão que continue abrindo a grade.
-Repita nas plataformas mantidas; o teste WebEngine com DOM sintético não
-comprova a aparência na versão remota do WhatsApp.
+Em sessão gráfica real, habilite o seletor em Aparência com pelo menos duas
+contas. A sidebar do WhatsApp deve conter um único botão de navegação sem
+avatar/nome da conta atual, com cor e dimensões dos ícones vizinhos. Mensagens
+não lidas na própria conta não devem acender o indicador; em outra conta devem
+acendê-lo. Clique e confirme que o popover mostra só outras contas habilitadas,
+prioriza as com atividade e apresenta suas contagens. Selecione outra conta:
+a troca deve ser imediata e o popover deve fechar. Teste teclado, Esc e clique
+externo, chegada de novas mensagens com o popover aberto e desativação/remoção
+de uma conta. Confirme o estado vazio quando não há outra conta habilitada.
+
+Alterne a sidebar nativa do ZapZap e o painel flutuante: as preferências devem
+continuar independentes. Desative o seletor com o popup aberto, recarregue a
+página e reative: deve existir somente um botão e nenhum popup automático.
+Teste temas claro/escuro, zoom WebEngine, escala Qt, mudança de monitor e CSR.
+Verifique reinserção após mudanças do DOM, ações extras (Beta/perfil), containers
+com clipping e ausência da sidebar: nunca sobreponha conversas ou controles
+nativos. Repita em Linux X11/Wayland, Windows e macOS. O DOM sintético nos testes
+WebEngine não comprova aparência, foco ou compatibilidade com o WhatsApp remoto.
 
 ## Validação manual da janela flutuante de Acesso rápido
 

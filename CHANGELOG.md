@@ -15,6 +15,15 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Implemented the integrated WhatsApp account selector as one sidebar button
+  indicating unread activity in other enabled accounts. Its compact native
+  popover omits the current account, lists unread accounts first with counts,
+  switches immediately by the original stable ID and closes after selection.
+  Reused resilient DOM mounting, icon/theme matching and WebChannel from the
+  previous integration, without restoring its outside-sidebar fallback or grid
+  navigation. Added DOM, zoom/bridge, lifecycle and controller regression tests
+  and updated technical documentation; existing Appearance keys stay unchanged.
+
 - Implemented the Appearance floating monitoring panel as an independent native
   Quick Access window with real account avatars, names, unread counts, active
   selection and a scrollable account list. Reused the previous stable-ID
