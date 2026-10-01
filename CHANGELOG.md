@@ -15,6 +15,11 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Simplified the floating panel to fill its client area without a rounded card
+  border or duplicate close button. Kept native decoration and its close action
+  when position is locked, retaining move correction and in-panel unlocking.
+  Updated regressions and lifecycle/manual-validation documentation.
+
 - Added floating-panel display modes (always, while the main window is hidden
   or minimized, and on demand), optional stay-on-top, remembered screen position,
   position locking with an in-panel unlock action, and screen-position recovery.

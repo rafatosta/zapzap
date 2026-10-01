@@ -18,7 +18,7 @@ from zapzap.assets.icons.system_icon import SystemIcon
 from zapzap.assets.icons.user_icon import UserIcon
 from zapzap.ui.components.settings_badge import SettingsBadge
 from zapzap.ui.components.settings_divider import SettingsDivider
-from zapzap.ui.primitives import CloseButton, Label
+from zapzap.ui.primitives import Label
 
 
 @dataclass(frozen=True)
@@ -184,9 +184,6 @@ class FloatingMonitoringPanel(QFrame):
         self.unlock_button.clicked.connect(self.unlock_requested.emit)
         self.unlock_button.hide()
         header.addWidget(self.unlock_button)
-        self.close_button = CloseButton(self.surface)
-        self.close_button.clicked.connect(self.dismiss_panel)
-        header.addWidget(self.close_button, 0)
         layout.addLayout(header)
 
         self.empty_state_label = Label("", "row_description", self.surface)
@@ -255,8 +252,8 @@ class FloatingMonitoringPanel(QFrame):
             }
             QFrame#FloatingMonitoringPanelSurface {
                 background: palette(base);
-                border: 1px solid palette(mid);
-                border-radius: 14px;
+                border: 0;
+                border-radius: 0;
             }
             QFrame#FloatingAccountRow {
                 border-radius: 10px;
@@ -287,7 +284,6 @@ class FloatingMonitoringPanel(QFrame):
         self.empty_state_label.setText(_("No account activity to show yet."))
         self.setWindowTitle(f"ZapZap — {_('Quick access')}")
         self.setAccessibleName(_("Monitoring panel"))
-        self.close_button.setToolTip(_("Close"))
         self.unlock_button.setToolTip(_("Unlock position"))
         self.unlock_button.setAccessibleName(_("Unlock position"))
         self.add_account_row.name_label.setText(_("New account"))
@@ -358,23 +354,26 @@ class FloatingMonitoringPanel(QFrame):
     def set_window_options(self, on_top=False, locked=False):
         """Apply flags without reopening a dismissed panel or changing its position.
 
-        A locked panel has no native draggable title bar. The internal header
-        retains an explicit unlock action and the close button.
+        Native decoration and closing remain available while position is
+        locked; move correction enforces the saved anchor.
         """
         locked = bool(locked and self.supports_positioning())
-        flags = Qt.WindowType.Tool
-        if locked:
-            flags |= Qt.WindowType.FramelessWindowHint
-        else:
-            flags |= (
-                Qt.WindowType.WindowTitleHint | Qt.WindowType.WindowCloseButtonHint
-            )
+        flags = (
+            Qt.WindowType.Tool | Qt.WindowType.WindowTitleHint
+            | Qt.WindowType.WindowCloseButtonHint
+        )
         if on_top:
             flags |= Qt.WindowType.WindowStaysOnTopHint
         self.unlock_button.setVisible(locked)
         if self._window_options == (bool(on_top), locked):
             return
+        previous_on_top = self._window_options[0]
         self._window_options = (bool(on_top), locked)
+        self._position_locked = locked
+        self._locked_position = QPoint(self.pos()) if locked else None
+        self._position_timer.stop()
+        if previous_on_top == bool(on_top):
+            return
         visible = self.isVisible()
         position = self.pos()
         self._changing_position = True

@@ -18,7 +18,7 @@ from zapzap.ui.components import (
 from zapzap.ui.components.floating_monitoring_panel import (
     FloatingAccountEntry,
 )
-from zapzap.ui.primitives import CloseButton, Label
+from zapzap.ui.primitives import Label
 
 
 class FloatingMonitoringPanelUiTests(QtTestCase):
@@ -73,7 +73,7 @@ class FloatingMonitoringPanelUiTests(QtTestCase):
 
         self.assertIsInstance(panel.title_label, Label)
         self.assertEqual(panel.title_label.text(), "Quick access")
-        self.assertIsInstance(panel.close_button, CloseButton)
+        self.assertFalse(hasattr(panel, "close_button"))
         self.assertIsInstance(panel.empty_state_label, Label)
         self.assertFalse(panel.empty_state_label.isHidden())
         self.assertEqual(panel.accessibleName(), "Monitoring panel")
@@ -167,11 +167,11 @@ class FloatingMonitoringPanelUiTests(QtTestCase):
         panel.toggle_panel()
         self.assertFalse(panel.is_panel_visible())
 
-    def test_close_button_hides_without_destroying_the_panel(self):
+    def test_native_close_hides_without_destroying_the_panel(self):
         panel = FloatingMonitoringPanel()
         panel.show_panel()
 
-        panel.close_button.click()
+        panel.close()
 
         self.assertFalse(panel.is_panel_visible())
         # The panel is "permanent": hiding it must not delete or reset it.

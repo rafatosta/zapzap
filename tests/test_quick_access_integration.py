@@ -211,7 +211,7 @@ class QuickAccessAppearanceIntegrationTests(QtTestCase):
         window = self._window()
         window.set_floating_monitoring_panel_enabled(True)
         panel = window.floating_monitoring_panel
-        panel.close_button.click()
+        panel.close()
         window.browser.update_account_notifications("first", 8)
         window.apply_floating_panel_options()
         window._sync_floating_visibility()
@@ -278,7 +278,8 @@ class QuickAccessAppearanceIntegrationTests(QtTestCase):
         settings.floating_panel_lock_position = True
         window.apply_floating_panel_options()
         self.assertTrue(panel.windowFlags() & Qt.WindowType.WindowStaysOnTopHint)
-        self.assertTrue(panel.windowFlags() & Qt.WindowType.FramelessWindowHint)
+        self.assertFalse(panel.windowFlags() & Qt.WindowType.FramelessWindowHint)
+        self.assertTrue(panel.windowFlags() & Qt.WindowType.WindowCloseButtonHint)
         self.assertTrue(panel.isVisible())
         position = panel.pos()
         panel.move(position + QPoint(10, 10))

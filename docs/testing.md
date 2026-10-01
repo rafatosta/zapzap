@@ -601,7 +601,7 @@ interface e confirme ausência de janela órfã. Repita com CSR, X11/Wayland e
 Windows/macOS; testes offscreen não comprovam decoração ou foco do compositor.
 
 Para as opções do painel, teste os três modos: sempre, principal oculta ou
-minimizada, e sob demanda. Em cada modo, feche por botão nativo, cabeçalho e Esc;
+minimizada, e sob demanda. Em cada modo, feche pelo botão nativo e Esc;
 confirme que dados/contadores/opções não reabrem uma janela dispensada. No modo
 automático, um novo ciclo de ocultar/restaurar deve reaplicar a política; sob
 demanda, somente uma solicitação explícita abre. Reabra por Exibir, bandeja e
@@ -611,7 +611,8 @@ Mova o painel, reinicie app/interface, confira restauração, desative lembrar
 posição e confirme que novas posições não sobrescrevem a salva. Remova o monitor
 original e use Reset para recuperar o painel. Ligue manter acima com outros apps
 ativos, verificando foco e diálogos modais. Bloqueie a posição: a barra de título
-nativa desaparece, fechamento e desbloqueio no cabeçalho continuam acessíveis;
+nativa e seu fechamento permanecem disponíveis, sem botão de fechar duplicado
+no conteúdo; o desbloqueio no cabeçalho continua acessível;
 tente arrastar pelo sistema e desbloqueie novamente. Valide com tema claro/escuro,
 tradução, teclado, escalas e telas pequenas. Em Wayland, controles de
 posicionamento devem ficar indisponíveis com explicação e conservar os valores.

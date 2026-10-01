@@ -221,10 +221,11 @@ A posição e a altura são limitadas à área disponível de um monitor ao abri
 a lista rolável mantém o rodapé acessível em telas menores. Reset recupera
 posições inacessíveis. Manter acima solicita `WindowStaysOnTopHint` sem reabrir
 um painel dispensado. `WA_MacAlwaysShowToolWindow` mantém a janela Tool disponível
-quando outra aplicação recebe foco no macOS. Bloquear remove a barra de título
-nativa arrastável e
-corrige movimentos posteriores via timer, mantendo cabeçalho, fechamento e ação
-acessível para desbloquear. No Wayland, o compositor controla posicionamento:
+quando outra aplicação recebe foco no macOS. Bloquear conserva a decoração nativa e
+corrige movimentos posteriores via timer, mantendo o fechamento do sistema e
+uma ação acessível no cabeçalho para desbloquear. A superfície interna ocupa
+toda a área cliente, sem borda ou cantos arredondados e sem botão de fechar
+duplicado. No Wayland, o compositor controla posicionamento:
 lembrar/bloquear/reset ficam indisponíveis com explicação; valores persistidos
 são conservados para sessões em outros backends. A efetividade de manter acima
 continua sujeita às políticas do gerenciador de janelas.
