@@ -97,8 +97,14 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   e do seletor integrado de acesso a contas.
 - No painel flutuante, reutilize IDs originais e ações existentes; mantenha o
   componente desacoplado de User/WebEngine e atualize via accounts_changed.
-  Fechar o painel não desativa sua preferência. Valide decoração, movimento e
-  foco em sessão gráfica real, incluindo janela principal oculta e CSR.
+  Fechar o painel não desativa sua preferência: respeite a dispensa temporária,
+  modos `always`/`when_hidden`/`on_demand` e reabertura explícita. Observe somente
+  o host superior, incluindo CSR e minimização; pare timers no shutdown. Preserve
+  escolhas subordinadas ao desabilitar e IDs estáveis separados das traduções.
+  Não persista tamanho da janela junto com posição nem force posicionamento no
+  Wayland. Mantenha reset de posição e desbloqueio acessíveis; mudanças de flags
+  não podem reabrir painel dispensado. Valide decoração, movimento, manter acima
+  e foco em sessão gráfica real, incluindo principal oculta e CSR.
 - O seletor integrado ocupa um único botão na sidebar do WhatsApp: não restaure
   fallbacks sobre conversas nem duplique a conta atual. Calcule atividade das
   outras contas no controller, preserve IDs numéricos e valide pedidos pela

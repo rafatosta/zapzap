@@ -4854,10 +4854,6 @@ msgstr ""
 #~ msgstr "始终允许"
 
 #, fuzzy
-#~ msgid "Lock position"
-#~ msgstr "按钮位置"
-
-#, fuzzy
 #~ msgid "Accounts and quick actions"
 #~ msgstr "账户图标"
 
@@ -4903,3 +4899,71 @@ msgstr ""
 
 #~ msgid "This site"
 #~ msgstr "此站点"
+
+#: zapzap/features/settings/pages/appearance/view.py:82
+msgid "Monitor accounts in a separate window. Closing it only hides it temporarily."
+msgstr "在独立窗口中监控账户。关闭面板只会暂时隐藏它。"
+
+#: zapzap/features/settings/pages/appearance/view.py:103
+msgid "Show panel"
+msgstr "显示面板"
+
+#: zapzap/features/settings/pages/appearance/view.py:104
+msgid "Choose when the panel appears automatically."
+msgstr "选择面板自动显示的时机。"
+
+#: zapzap/features/settings/pages/appearance/view.py:114
+msgid "Keep above other windows"
+msgstr "保持在其他窗口上方"
+
+#: zapzap/features/settings/pages/appearance/view.py:115
+msgid "Keep the panel visible while working in other applications."
+msgstr "使用其他应用时保持面板可见。"
+
+#: zapzap/features/settings/pages/appearance/view.py:119
+msgid "Restore the panel position the next time ZapZap starts."
+msgstr "下次启动 ZapZap 时恢复面板位置。"
+
+#: zapzap/features/settings/pages/appearance/view.py:120 zapzap/features/settings/pages/appearance/view.py:128
+msgid "Your Wayland desktop controls window placement."
+msgstr "您的 Wayland 桌面控制窗口的位置。"
+
+#: zapzap/features/settings/pages/appearance/view.py:123
+msgid "Remember position"
+msgstr "记住位置"
+
+#: zapzap/features/settings/pages/appearance/view.py:126
+msgid "Lock position"
+msgstr "锁定位置"
+
+#: zapzap/features/settings/pages/appearance/view.py:131 zapzap/ui/components/main_window.py:163 zapzap/features/tray/sys_tray_manager.py:66
+msgid "Show monitoring panel"
+msgstr "显示监控面板"
+
+#: zapzap/features/settings/pages/appearance/view.py:132
+msgid "Reopen the panel without changing its display mode."
+msgstr "重新打开面板，不更改其显示模式。"
+
+#: zapzap/features/settings/pages/appearance/view.py:136
+msgid "Reset panel position"
+msgstr "重置面板位置"
+
+#: zapzap/features/settings/pages/appearance/view.py:137
+msgid "Bring the panel back into the available screen area."
+msgstr "将面板移回可用的屏幕区域。"
+
+#: zapzap/features/settings/pages/appearance/view.py:109
+msgid "When the main window is hidden"
+msgstr "主窗口隐藏时"
+
+#: zapzap/features/settings/pages/appearance/view.py:110
+msgid "On demand"
+msgstr "按需显示"
+
+#: zapzap/features/settings/pages/appearance/view.py:127
+msgid "Prevent dragging. Unlock directly in the panel to move it again."
+msgstr "防止拖动。可直接在面板中解锁，以便再次移动。"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:289 zapzap/ui/components/floating_monitoring_panel.py:290
+msgid "Unlock position"
+msgstr "解锁位置"

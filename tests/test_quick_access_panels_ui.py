@@ -29,7 +29,35 @@ class FloatingMonitoringPanelUiTests(QtTestCase):
         self.assertTrue(panel.windowFlags() & Qt.WindowType.WindowCloseButtonHint)
         self.assertFalse(panel.windowFlags() & Qt.WindowType.FramelessWindowHint)
         self.assertFalse(panel.testAttribute(Qt.WidgetAttribute.WA_QuitOnClose))
+        self.assertTrue(panel.testAttribute(
+            Qt.WidgetAttribute.WA_MacAlwaysShowToolWindow
+        ))
         self.assertEqual(panel.layout().contentsMargins().left(), 0)
+
+    def test_small_screen_keeps_scrollable_accounts_and_footer_inside_panel(self):
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        panel = FloatingMonitoringPanel()
+        panel.set_accounts([
+            FloatingAccountEntry(i, f"Account {i}") for i in range(20)
+        ])
+        screen = SimpleNamespace(availableGeometry=lambda: QRect(0, 0, 800, 400))
+        with (
+            patch.object(panel, "screen", return_value=screen),
+            patch(
+                "zapzap.ui.components.floating_monitoring_panel.QGuiApplication.screenAt",
+                return_value=screen,
+            ),
+        ):
+            panel.place_on_screen()
+            panel.show()
+            self.app.processEvents()
+        self.assertLessEqual(panel.frameGeometry().height(), 400)
+        footer_corner = panel.settings_button.mapTo(
+            panel, panel.settings_button.rect().bottomRight()
+        )
+        self.assertTrue(panel.rect().contains(footer_corner))
+        panel.hide_panel()
 
     def test_account_updates_preserve_rows_and_original_numeric_ids(self):
         panel = FloatingMonitoringPanel()
@@ -210,6 +238,18 @@ class IntegratedAccountSelectorUiTests(QtTestCase):
         self.assertEqual(selected, [3])
         self.assertFalse(selector.isVisible())
         self.assertTrue(selector.is_selector_visible())
+
+    def test_popup_stays_above_button_after_height_changes(self):
+        selector = IntegratedAccountSelector()
+        self.addCleanup(selector.close)
+        screen = selector.screen().availableGeometry()
+        anchor = QRect(screen.left() + 30, screen.bottom() - 80, 40, 40)
+        selector.show_selector()
+        selector.popup_for(anchor)
+        self.assertEqual(selector.x(), anchor.left())
+        self.assertEqual(selector.geometry().bottom(), anchor.top() - 7)
+        selector.resize(selector.width(), selector.height() + 44)
+        self.assertEqual(selector.geometry().bottom(), anchor.top() - 7)
 
     def test_disabled_preference_prevents_popup_and_escape_closes_it(self):
         from PyQt6.QtTest import QTest

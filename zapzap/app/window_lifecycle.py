@@ -210,3 +210,22 @@ class ClientSideWindowHost(ClientSideWindow):
 
     def xdgOpenChat(self, url):
         self.inner_window.xdgOpenChat(url)
+
+    @property
+    def floating_monitoring_panel(self):
+        return self.inner_window.floating_monitoring_panel
+
+    def show_floating_panel(self):
+        self.inner_window.show_floating_panel()
+
+    def shutdown_floating_panel(self):
+        self.inner_window.shutdown_floating_panel()
+
+    def set_floating_monitoring_panel_enabled(self, enabled, persist=True):
+        self.inner_window.set_floating_monitoring_panel_enabled(enabled, persist)
+
+    def apply_floating_panel_options(self, reset_visibility=False):
+        self.inner_window.apply_floating_panel_options(reset_visibility)
+
+    def reset_floating_panel_position(self):
+        self.inner_window.reset_floating_panel_position()

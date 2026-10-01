@@ -36,6 +36,12 @@ class AppearanceSettingsController(AppearanceSettingsView):
         self.floating_monitoring_panel_enabled.setChecked(
             self.model.floating_monitoring_panel_enabled
         )
+        self.floating_mode.setCurrentIndex(
+            self.floating_mode.findData(self.model.floating_panel_mode)
+        )
+        self.floating_on_top_row.checkbox.setChecked(self.model.floating_panel_on_top)
+        self.floating_remember_row.checkbox.setChecked(self.model.floating_panel_remember_position)
+        self.floating_lock_row.checkbox.setChecked(self.model.floating_panel_lock_position)
         self.integrated_account_selector_enabled.setChecked(
             self.model.integrated_account_selector_enabled
         )
@@ -104,6 +110,22 @@ class AppearanceSettingsController(AppearanceSettingsView):
         self.floating_monitoring_panel_enabled.toggled.connect(
             self._handle_floating_monitoring_panel_enabled
         )
+        self.floating_mode.currentIndexChanged.connect(self._handle_floating_mode)
+        self.floating_on_top_row.checkbox.toggled.connect(
+            lambda value: self._handle_floating_option("on_top", value)
+        )
+        self.floating_remember_row.checkbox.toggled.connect(
+            lambda value: self._handle_floating_option("remember_position", value)
+        )
+        self.floating_lock_row.checkbox.toggled.connect(
+            lambda value: self._handle_floating_option("lock_position", value)
+        )
+        self.floating_show_row.button.clicked.connect(
+            lambda: QApplication.instance().getWindow().show_floating_panel()
+        )
+        self.floating_reset_row.button.clicked.connect(
+            lambda: QApplication.instance().getWindow().reset_floating_panel_position()
+        )
         self.integrated_account_selector_enabled.toggled.connect(
             self._handle_integrated_account_selector_enabled
         )
@@ -168,10 +190,19 @@ class AppearanceSettingsController(AppearanceSettingsView):
             self.model.grid_columns = int(text)
 
     def _handle_floating_monitoring_panel_enabled(self, enabled):
+        self.floating_options_group.setEnabled(enabled)
         self.model.floating_monitoring_panel_enabled = enabled
         QApplication.instance().getWindow().set_floating_monitoring_panel_enabled(
             enabled, persist=False
         )
+
+    def _handle_floating_mode(self, _index):
+        self.model.floating_panel_mode = self.floating_mode.currentData()
+        QApplication.instance().getWindow().apply_floating_panel_options(reset_visibility=True)
+
+    def _handle_floating_option(self, name, value):
+        setattr(self.model, f"floating_panel_{name}", value)
+        QApplication.instance().getWindow().apply_floating_panel_options()
 
     def _handle_integrated_account_selector_enabled(self, enabled):
         self.model.integrated_account_selector_enabled = enabled
@@ -213,6 +244,9 @@ class AppearanceSettingsController(AppearanceSettingsView):
         self._update_restart_requirement()
 
     def _sync_dependent_controls(self):
+        self.floating_options_group.setEnabled(
+            self.floating_monitoring_panel_enabled.isChecked()
+        )
         self.tray_options_group.setEnabled(
             self.tray_groupBox.checkbox.isChecked()
         )

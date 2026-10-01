@@ -5,6 +5,8 @@ from __future__ import annotations
 import logging
 from typing import Any
 
+from PyQt6.QtCore import QPoint
+
 from zapzap.assets.icons.tray_icon import TrayIcon
 from zapzap.core.config.settings.base import BaseSettings
 from zapzap.core.theme.theme_manager import ThemeManager
@@ -40,6 +42,64 @@ class AppearanceSettings(BaseSettings):
         "system/integrated_account_selector_enabled",
         False,
     )
+
+    _FLOATING_MODE = ("system/floating_monitoring_panel_mode", "always")
+    _FLOATING_ON_TOP = ("system/floating_monitoring_panel_on_top", False)
+    _FLOATING_REMEMBER_POSITION = (
+        "system/floating_monitoring_panel_remember_position", True,
+    )
+    _FLOATING_LOCK_POSITION = (
+        "system/floating_monitoring_panel_lock_position", False,
+    )
+    _FLOATING_POSITION = ("system/floating_monitoring_panel_position", None)
+    FLOATING_MODES = ("always", "when_hidden", "on_demand")
+
+    @property
+    def floating_panel_mode(self) -> str:
+        value = self._get(self._FLOATING_MODE)
+        return value if value in self.FLOATING_MODES else "always"
+
+    @floating_panel_mode.setter
+    def floating_panel_mode(self, value: str) -> None:
+        self._set_str(
+            self._FLOATING_MODE, value if value in self.FLOATING_MODES else "always"
+        )
+
+    @property
+    def floating_panel_on_top(self) -> bool:
+        return self._get_bool(self._FLOATING_ON_TOP)
+
+    @floating_panel_on_top.setter
+    def floating_panel_on_top(self, value: bool) -> None:
+        self._set_bool(self._FLOATING_ON_TOP, value)
+
+    @property
+    def floating_panel_remember_position(self) -> bool:
+        return self._get_bool(self._FLOATING_REMEMBER_POSITION)
+
+    @floating_panel_remember_position.setter
+    def floating_panel_remember_position(self, value: bool) -> None:
+        self._set_bool(self._FLOATING_REMEMBER_POSITION, value)
+
+    @property
+    def floating_panel_lock_position(self) -> bool:
+        return self._get_bool(self._FLOATING_LOCK_POSITION)
+
+    @floating_panel_lock_position.setter
+    def floating_panel_lock_position(self, value: bool) -> None:
+        self._set_bool(self._FLOATING_LOCK_POSITION, value)
+
+    @property
+    def floating_panel_position(self) -> QPoint | None:
+        value = self._get(self._FLOATING_POSITION)
+        return QPoint(value) if isinstance(value, QPoint) else None
+
+    @floating_panel_position.setter
+    def floating_panel_position(self, value: QPoint | None) -> None:
+        self._set(
+            self._FLOATING_POSITION,
+            QPoint(value) if isinstance(value, QPoint) else None,
+        )
 
     @property
     def browser_sidebar_visible(self) -> bool:

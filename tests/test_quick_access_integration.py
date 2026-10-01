@@ -3,7 +3,7 @@
 from unittest.mock import patch
 
 from PyQt6.QtWidgets import QApplication
-from PyQt6.QtCore import pyqtSignal, QRect, QEventLoop, QTimer
+from PyQt6.QtCore import pyqtSignal, QRect, QEventLoop, QTimer, QPoint, Qt
 from PyQt6 import sip
 
 from qt_test_case import QtTestCase
@@ -41,6 +41,15 @@ class QuickAccessAppearanceIntegrationTests(QtTestCase):
         self.original_selector_enabled = (
             settings.integrated_account_selector_enabled
         )
+        self.original_floating_options = {
+            name: getattr(settings, f"floating_panel_{name}")
+            for name in ("mode", "on_top", "remember_position", "lock_position", "position")
+        }
+        settings.floating_panel_mode = "always"
+        settings.floating_panel_on_top = False
+        settings.floating_panel_remember_position = True
+        settings.floating_panel_lock_position = False
+        settings.floating_panel_position = None
         settings.floating_monitoring_panel_enabled = False
         settings.integrated_account_selector_enabled = False
         self.addCleanup(self._restore_settings)
@@ -65,6 +74,8 @@ class QuickAccessAppearanceIntegrationTests(QtTestCase):
 
     def _restore_settings(self):
         settings = AppearanceSettings()
+        for name, value in self.original_floating_options.items():
+            setattr(settings, f"floating_panel_{name}", value)
         settings.floating_monitoring_panel_enabled = (
             self.original_panel_enabled
         )
@@ -89,6 +100,7 @@ class QuickAccessAppearanceIntegrationTests(QtTestCase):
         QApplication.instance().processEvents()
         self.addCleanup(window.browser.shutdown)
         self.addCleanup(window.deleteLater)
+        self.addCleanup(window.shutdown_floating_panel)
         return window
 
     def test_panel_tracks_accounts_notifications_and_edits(self):
@@ -174,6 +186,176 @@ class QuickAccessAppearanceIntegrationTests(QtTestCase):
         self.assertFalse(
             AppearanceSettings().floating_monitoring_panel_enabled
         )
+
+    def test_hidden_mode_tracks_hide_minimize_and_restore(self):
+        window = self._window()
+        settings = AppearanceSettings()
+        settings.floating_panel_mode = "when_hidden"
+        window.set_floating_monitoring_panel_enabled(True)
+        panel = window.floating_monitoring_panel
+        self.assertFalse(panel.isVisible())
+        window.hide()
+        self.app.processEvents()
+        self.assertTrue(panel.isVisible())
+        window.show()
+        self.app.processEvents()
+        self.assertFalse(panel.isVisible())
+        window.showMinimized()
+        self.app.processEvents()
+        self.assertTrue(panel.isVisible())
+        window.showNormal()
+        self.app.processEvents()
+        self.assertFalse(panel.isVisible())
+
+    def test_dismissal_survives_refresh_and_reopens_from_view_action(self):
+        window = self._window()
+        window.set_floating_monitoring_panel_enabled(True)
+        panel = window.floating_monitoring_panel
+        panel.close_button.click()
+        window.browser.update_account_notifications("first", 8)
+        window.apply_floating_panel_options()
+        window._sync_floating_visibility()
+        self.assertFalse(panel.isVisible())
+        self.assertTrue(AppearanceSettings().floating_monitoring_panel_enabled)
+        window.actionShow_monitoring_panel.trigger()
+        self.assertTrue(panel.isVisible())
+
+    def test_on_demand_only_shows_explicitly_and_preserves_mode(self):
+        window = self._window()
+        settings = AppearanceSettings()
+        settings.floating_panel_mode = "on_demand"
+        window.set_floating_monitoring_panel_enabled(True)
+        panel = window.floating_monitoring_panel
+        window.hide()
+        self.app.processEvents()
+        self.assertFalse(panel.isVisible())
+        window.show_floating_panel()
+        self.assertTrue(panel.isVisible())
+        self.assertEqual(settings.floating_panel_mode, "on_demand")
+        panel.close()
+        window.show()
+        self.app.processEvents()
+        self.assertFalse(panel.isVisible())
+
+    def test_hidden_mode_dismissal_resets_on_next_visibility_cycle(self):
+        window = self._window()
+        AppearanceSettings().floating_panel_mode = "when_hidden"
+        window.set_floating_monitoring_panel_enabled(True)
+        window.hide()
+        self.app.processEvents()
+        panel = window.floating_monitoring_panel
+        panel.close()
+        window._sync_floating_visibility()
+        self.assertFalse(panel.isVisible())
+        window.show()
+        self.app.processEvents()
+        window.hide()
+        self.app.processEvents()
+        self.assertTrue(panel.isVisible())
+
+    def test_position_is_restored_and_remembering_can_be_disabled(self):
+        settings = AppearanceSettings()
+        settings.floating_panel_position = QPoint(75, 90)
+        window = self._window()
+        panel = window.floating_monitoring_panel
+        self.assertEqual(panel.pos(), QPoint(75, 90))
+        window.set_floating_monitoring_panel_enabled(True)
+        panel.move(110, 120)
+        self.app.processEvents()
+        self.assertEqual(settings.floating_panel_position, panel.pos())
+        previous = settings.floating_panel_position
+        settings.floating_panel_remember_position = False
+        panel.move(150, 160)
+        self.app.processEvents()
+        self.assertEqual(settings.floating_panel_position, previous)
+
+    def test_window_options_preserve_visibility_and_unlock_in_panel(self):
+        window = self._window()
+        window.set_floating_monitoring_panel_enabled(True)
+        settings = AppearanceSettings()
+        panel = window.floating_monitoring_panel
+        settings.floating_panel_on_top = True
+        settings.floating_panel_lock_position = True
+        window.apply_floating_panel_options()
+        self.assertTrue(panel.windowFlags() & Qt.WindowType.WindowStaysOnTopHint)
+        self.assertTrue(panel.windowFlags() & Qt.WindowType.FramelessWindowHint)
+        self.assertTrue(panel.isVisible())
+        position = panel.pos()
+        panel.move(position + QPoint(10, 10))
+        from PyQt6.QtTest import QTest
+        QTest.qWait(20)
+        self.assertEqual(panel.pos(), position)
+        panel.unlock_button.click()
+        self.assertFalse(settings.floating_panel_lock_position)
+        self.assertFalse(panel.windowFlags() & Qt.WindowType.FramelessWindowHint)
+        self.assertTrue(panel.windowFlags() & Qt.WindowType.WindowStaysOnTopHint)
+        panel.close()
+        settings.floating_panel_on_top = False
+        window.apply_floating_panel_options()
+        self.assertFalse(panel.isVisible())
+
+    def test_reset_recovers_offscreen_position_even_while_locked(self):
+        window = self._window()
+        window.set_floating_monitoring_panel_enabled(True)
+        panel = window.floating_monitoring_panel
+        panel.move(-10000, -10000)
+        AppearanceSettings().floating_panel_lock_position = True
+        window.apply_floating_panel_options()
+        window.reset_floating_panel_position()
+        self.assertTrue(panel.screen().availableGeometry().contains(panel.frameGeometry()))
+        self.assertEqual(AppearanceSettings().floating_panel_position, panel.pos())
+
+    def test_csr_host_visibility_controls_panel_and_shutdown_stops_automatic_show(self):
+        from zapzap.app.window_lifecycle import ClientSideWindowHost
+        window = self._window()
+        settings = AppearanceSettings()
+        settings.floating_panel_mode = "when_hidden"
+        window.set_floating_monitoring_panel_enabled(True)
+        host = ClientSideWindowHost(window)
+        self.addCleanup(host.deleteLater)
+        host.show()
+        self.app.processEvents()
+        self.assertFalse(window.floating_monitoring_panel.isVisible())
+        host.hide()
+        self.app.processEvents()
+        self.assertTrue(window.floating_monitoring_panel.isVisible())
+        host.shutdown_floating_panel()
+        host.show()
+        host.hide()
+        self.app.processEvents()
+        self.assertFalse(window.floating_monitoring_panel.isVisible())
+
+    def test_floating_preferences_survive_a_settings_file_reload(self):
+        from tempfile import TemporaryDirectory
+        from PyQt6.QtCore import QSettings
+        from zapzap.core.config.settings_manager import SettingsManager
+        with TemporaryDirectory() as directory:
+            filename = directory + "/settings.ini"
+            stored = QSettings(filename, QSettings.Format.IniFormat)
+            with patch.object(SettingsManager, "_settings", stored):
+                settings = AppearanceSettings()
+                settings.floating_panel_position = QPoint(-300, 45)
+                settings.floating_panel_mode = "when_hidden"
+                settings.floating_panel_on_top = True
+                settings.floating_panel_lock_position = True
+                stored.sync()
+            reloaded = QSettings(filename, QSettings.Format.IniFormat)
+            with patch.object(SettingsManager, "_settings", reloaded):
+                settings = AppearanceSettings()
+                self.assertEqual(settings.floating_panel_position, QPoint(-300, 45))
+                self.assertEqual(settings.floating_panel_mode, "when_hidden")
+                self.assertTrue(settings.floating_panel_on_top)
+                self.assertTrue(settings.floating_panel_lock_position)
+
+    def test_invalid_mode_and_position_fall_back_without_changing_existing_keys(self):
+        from zapzap.core.config.settings_manager import SettingsManager
+        settings = AppearanceSettings()
+        settings.floating_monitoring_panel_enabled = True
+        SettingsManager.set("system/floating_monitoring_panel_mode", "translated label")
+        SettingsManager.set("system/floating_monitoring_panel_position", "bad")
+        self.assertEqual(settings.floating_panel_mode, "always")
+        self.assertIsNone(settings.floating_panel_position)
+        self.assertTrue(settings.floating_monitoring_panel_enabled)
 
     def test_integrated_button_reports_only_other_accounts_and_switches(self):
         window = self._window()

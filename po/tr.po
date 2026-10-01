@@ -4946,9 +4946,8 @@ msgstr "ZapZap {latest} kullanılabilir. Mevcut sürüm: {current}."
 
 #: zapzap/ui/components/floating_monitoring_panel.py:265
 #: zapzap/ui/components/floating_monitoring_panel.py:267
-#, fuzzy
 msgid "Quick access"
-msgstr "Hızlı Erişim"
+msgstr "Hızlı erişim"
 
 #: zapzap/ui/components/floating_monitoring_panel.py:266
 msgid "No account activity to show yet."
@@ -4998,15 +4997,6 @@ msgstr "Ses"
 
 #~ msgid "Always visible"
 #~ msgstr "Her zaman görünür"
-
-#~ msgid "Remember position"
-#~ msgstr "Konumu hatırla"
-
-#~ msgid "Lock position"
-#~ msgstr "Konumu kilitle"
-
-#~ msgid "Keep above other windows"
-#~ msgstr "Diğer pencerelerin üzerinde tut"
 
 #~ msgid "Accounts and quick actions"
 #~ msgstr "Hesaplar ve hızlı işlemler"
@@ -5288,3 +5278,71 @@ msgstr "Ses"
 
 #~ msgid "This site"
 #~ msgstr "Bu site"
+
+#: zapzap/features/settings/pages/appearance/view.py:82
+msgid "Monitor accounts in a separate window. Closing it only hides it temporarily."
+msgstr "Hesapları ayrı bir pencerede izleyin. Kapatmak paneli yalnızca geçici olarak gizler."
+
+#: zapzap/features/settings/pages/appearance/view.py:103
+msgid "Show panel"
+msgstr "Paneli göster"
+
+#: zapzap/features/settings/pages/appearance/view.py:104
+msgid "Choose when the panel appears automatically."
+msgstr "Panelin ne zaman otomatik olarak görüneceğini seçin."
+
+#: zapzap/features/settings/pages/appearance/view.py:114
+msgid "Keep above other windows"
+msgstr "Diğer pencerelerin üzerinde tut"
+
+#: zapzap/features/settings/pages/appearance/view.py:115
+msgid "Keep the panel visible while working in other applications."
+msgstr "Diğer uygulamalarda çalışırken paneli görünür tutun."
+
+#: zapzap/features/settings/pages/appearance/view.py:119
+msgid "Restore the panel position the next time ZapZap starts."
+msgstr "ZapZap bir sonraki başlatıldığında panelin konumunu geri yükleyin."
+
+#: zapzap/features/settings/pages/appearance/view.py:120 zapzap/features/settings/pages/appearance/view.py:128
+msgid "Your Wayland desktop controls window placement."
+msgstr "Wayland masaüstünüz pencere yerleşimini yönetir."
+
+#: zapzap/features/settings/pages/appearance/view.py:123
+msgid "Remember position"
+msgstr "Konumu hatırla"
+
+#: zapzap/features/settings/pages/appearance/view.py:126
+msgid "Lock position"
+msgstr "Konumu kilitle"
+
+#: zapzap/features/settings/pages/appearance/view.py:131 zapzap/ui/components/main_window.py:163 zapzap/features/tray/sys_tray_manager.py:66
+msgid "Show monitoring panel"
+msgstr "İzleme panelini göster"
+
+#: zapzap/features/settings/pages/appearance/view.py:132
+msgid "Reopen the panel without changing its display mode."
+msgstr "Görüntüleme modunu değiştirmeden paneli yeniden açın."
+
+#: zapzap/features/settings/pages/appearance/view.py:136
+msgid "Reset panel position"
+msgstr "Panel konumunu sıfırla"
+
+#: zapzap/features/settings/pages/appearance/view.py:137
+msgid "Bring the panel back into the available screen area."
+msgstr "Paneli kullanılabilir ekran alanına geri getirin."
+
+#: zapzap/features/settings/pages/appearance/view.py:109
+msgid "When the main window is hidden"
+msgstr "Ana pencere gizliyken"
+
+#: zapzap/features/settings/pages/appearance/view.py:110
+msgid "On demand"
+msgstr "İsteğe bağlı"
+
+#: zapzap/features/settings/pages/appearance/view.py:127
+msgid "Prevent dragging. Unlock directly in the panel to move it again."
+msgstr "Sürüklemeyi engelleyin. Yeniden taşımak için doğrudan panelden kilidi açın."
+
+#: zapzap/ui/components/floating_monitoring_panel.py:289 zapzap/ui/components/floating_monitoring_panel.py:290
+msgid "Unlock position"
+msgstr "Konum kilidini aç"

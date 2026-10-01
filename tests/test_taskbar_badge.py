@@ -121,6 +121,24 @@ class TrayActivationTests(QtTestCase):
         self.manager._trayMenu.popup.assert_not_called()
         self.manager._bound_window.show_window.assert_not_called()
 
+    def test_monitoring_action_reopens_panel_and_tracks_enabled_preference(self):
+        manager = self.manager
+        manager._settings = SimpleNamespace(floating_monitoring_panel_enabled=True)
+        manager._tray = MagicMock()
+        manager._actions = manager._create_actions()
+        first = MagicMock()
+        second = MagicMock()
+        with patch.object(SysTrayManager, "_instance", manager):
+            SysTrayManager.bind_window(first)
+            manager._actions["monitoring"].trigger()
+            first.show_floating_panel.assert_called_once()
+            SysTrayManager.bind_window(second)
+            manager._actions["monitoring"].trigger()
+            second.show_floating_panel.assert_called_once()
+            first.show_floating_panel.assert_called_once()
+            SysTrayManager.sync_floating_panel_enabled(False)
+            self.assertFalse(manager._actions["monitoring"].isEnabled())
+
     def test_accounts_action_opens_overview_and_restores_window(self):
         window = MagicMock()
 

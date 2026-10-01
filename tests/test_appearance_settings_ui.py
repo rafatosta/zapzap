@@ -28,6 +28,10 @@ class FakeAppearanceSettingsModel:
         floating_monitoring_panel_enabled=False,
         integrated_account_selector_enabled=False,
     ):
+        self.floating_panel_mode = "always"
+        self.floating_panel_on_top = False
+        self.floating_panel_remember_position = True
+        self.floating_panel_lock_position = False
         self.browser_sidebar_visible = True
         self.menubar_visible = True
         self.scale = scale
@@ -299,6 +303,50 @@ class AppearanceSettingsUiTests(QtTestCase):
             window.browser.set_integrated_account_selector_enabled.assert_called_once_with(
                 True
             )
+        page.close()
+
+    def test_floating_options_are_grouped_disabled_and_preserved(self):
+        page, model = self._controller()
+        self.assertFalse(page.floating_options_group.isEnabled())
+        self.assertTrue(page.floating_remember_row.checkbox.isChecked())
+        self.assertEqual(page.floating_mode.currentData(), "always")
+        self.assertEqual(page.floating_options_group.layout.contentsMargins().left(), SUBSETTING_INDENT)
+        self.assertTrue(model.floating_panel_remember_position)
+        page.close()
+
+    def test_floating_controls_apply_live_and_show_without_toggling_preference(self):
+        page, model = self._controller(floating_monitoring_panel_enabled=True)
+        window = Mock()
+        app = Mock()
+        app.getWindow.return_value = window
+        with patch(
+            "zapzap.features.settings.pages.appearance.controller.QApplication.instance",
+            return_value=app,
+        ):
+            page.floating_mode.setCurrentIndex(page.floating_mode.findData("when_hidden"))
+            self.assertEqual(model.floating_panel_mode, "when_hidden")
+            window.apply_floating_panel_options.assert_called_with(reset_visibility=True)
+            page.floating_on_top_row.checkbox.click()
+            self.assertTrue(model.floating_panel_on_top)
+            page.floating_show_row.button.click()
+            window.show_floating_panel.assert_called_once_with()
+            page.floating_reset_row.button.click()
+            window.reset_floating_panel_position.assert_called_once_with()
+            page.floating_monitoring_panel_enabled.click()
+            self.assertFalse(page.floating_options_group.isEnabled())
+            self.assertTrue(model.floating_panel_on_top)
+            self.assertEqual(model.floating_panel_mode, "when_hidden")
+        page.close()
+
+    def test_wayland_placement_controls_explain_desktop_limitation(self):
+        with patch(
+            "zapzap.ui.components.floating_monitoring_panel.QGuiApplication.platformName",
+            return_value="wayland",
+        ):
+            page = AppearanceSettingsView()
+        for row in (page.floating_remember_row, page.floating_lock_row, page.floating_reset_row):
+            self.assertFalse(row.isEnabled())
+        self.assertIn("Wayland", page.floating_remember_row.description_label.text())
         page.close()
 
     def test_child_controls_have_accessible_names(self):

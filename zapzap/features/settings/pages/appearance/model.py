@@ -174,3 +174,35 @@ class AppearanceSettingsModel:
     def refresh_tray(self) -> None:
         """Refresh tray icon state after appearance changes."""
         SysTrayManager.refresh()
+
+    @property
+    def floating_panel_mode(self) -> str:
+        return self._settings.floating_panel_mode
+
+    @floating_panel_mode.setter
+    def floating_panel_mode(self, value: str) -> None:
+        self._settings.floating_panel_mode = value
+
+    @property
+    def floating_panel_on_top(self) -> bool:
+        return self._settings.floating_panel_on_top
+
+    @floating_panel_on_top.setter
+    def floating_panel_on_top(self, value: bool) -> None:
+        self._settings.floating_panel_on_top = value
+
+    @property
+    def floating_panel_remember_position(self) -> bool:
+        return self._settings.floating_panel_remember_position
+
+    @floating_panel_remember_position.setter
+    def floating_panel_remember_position(self, value: bool) -> None:
+        self._settings.floating_panel_remember_position = value
+
+    @property
+    def floating_panel_lock_position(self) -> bool:
+        return self._settings.floating_panel_lock_position
+
+    @floating_panel_lock_position.setter
+    def floating_panel_lock_position(self, value: bool) -> None:
+        self._settings.floating_panel_lock_position = value

@@ -3,7 +3,8 @@
 from dataclasses import dataclass
 from gettext import gettext as _
 
-from PyQt6.QtCore import Qt, pyqtSignal
+from PyQt6.QtCore import Qt, QPoint, QTimer, pyqtSignal
+from PyQt6.QtGui import QGuiApplication
 from PyQt6.QtWidgets import (
     QFrame,
     QHBoxLayout,
@@ -117,6 +118,9 @@ class FloatingMonitoringPanel(QFrame):
     affected by, those other surfaces.
     """
 
+    dismissed = pyqtSignal()
+    position_changed = pyqtSignal(object)
+    unlock_requested = pyqtSignal()
     visibility_changed = pyqtSignal(bool)
     account_activation_requested = pyqtSignal(object)
     add_account_requested = pyqtSignal()
@@ -136,9 +140,19 @@ class FloatingMonitoringPanel(QFrame):
         self.setObjectName("FloatingMonitoringPanel")
         self.setAttribute(Qt.WidgetAttribute.WA_ShowWithoutActivating, True)
         self.setAttribute(Qt.WidgetAttribute.WA_QuitOnClose, False)
+        # macOS otherwise hides Tool windows when another application is active.
+        self.setAttribute(Qt.WidgetAttribute.WA_MacAlwaysShowToolWindow, True)
         self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
         self.setFixedWidth(self.WIDTH)
         self.setMinimumHeight(self.MIN_HEIGHT)
+        self._window_options = (False, False)
+        self._position_locked = False
+        self._changing_position = False
+        self._locked_position = None
+        self._position_timer = QTimer(self)
+        self._position_timer.setSingleShot(True)
+        self._position_timer.timeout.connect(self._restore_locked_position)
+        self._position_corrections_left = 0
         self._account_rows = []
         self._setup_ui()
         self._apply_style()
@@ -163,8 +177,15 @@ class FloatingMonitoringPanel(QFrame):
         header.setSpacing(8)
         self.title_label = Label("", "section_title", self.surface)
         header.addWidget(self.title_label, 1)
+        self.unlock_button = QPushButton(self.surface)
+        self.unlock_button.setFixedSize(28, 28)
+        self.unlock_button.setIcon(SystemIcon.get_icon("push_pin"))
+        self.unlock_button.setFlat(True)
+        self.unlock_button.clicked.connect(self.unlock_requested.emit)
+        self.unlock_button.hide()
+        header.addWidget(self.unlock_button)
         self.close_button = CloseButton(self.surface)
-        self.close_button.clicked.connect(self.hide_panel)
+        self.close_button.clicked.connect(self.dismiss_panel)
         header.addWidget(self.close_button, 0)
         layout.addLayout(header)
 
@@ -267,6 +288,8 @@ class FloatingMonitoringPanel(QFrame):
         self.setWindowTitle(f"ZapZap — {_('Quick access')}")
         self.setAccessibleName(_("Monitoring panel"))
         self.close_button.setToolTip(_("Close"))
+        self.unlock_button.setToolTip(_("Unlock position"))
+        self.unlock_button.setAccessibleName(_("Unlock position"))
         self.add_account_row.name_label.setText(_("New account"))
         self.add_account_row.setAccessibleName(_("New account"))
         self.audio_button.setText(_("Audio"))
@@ -316,6 +339,7 @@ class FloatingMonitoringPanel(QFrame):
         label = _("Unmute") if muted else _("Mute")
         self.audio_button.setText(label)
         self.audio_button.setAccessibleName(label)
+        self.unlock_button.setIcon(SystemIcon.get_icon("push_pin", theme))
         for button, name in (
             (self.audio_button, "volume_muted" if muted else "volume_on"),
             (self.downloads_button, "download"),
@@ -324,16 +348,115 @@ class FloatingMonitoringPanel(QFrame):
             button.setIcon(SystemIcon.get_icon(name, theme))
 
     def closeEvent(self, event):
-        self.hide_panel()
+        self.dismiss_panel()
         event.ignore()
+
+    @staticmethod
+    def supports_positioning():
+        return not QGuiApplication.platformName().lower().startswith("wayland")
+
+    def set_window_options(self, on_top=False, locked=False):
+        """Apply flags without reopening a dismissed panel or changing its position.
+
+        A locked panel has no native draggable title bar. The internal header
+        retains an explicit unlock action and the close button.
+        """
+        locked = bool(locked and self.supports_positioning())
+        flags = Qt.WindowType.Tool
+        if locked:
+            flags |= Qt.WindowType.FramelessWindowHint
+        else:
+            flags |= (
+                Qt.WindowType.WindowTitleHint | Qt.WindowType.WindowCloseButtonHint
+            )
+        if on_top:
+            flags |= Qt.WindowType.WindowStaysOnTopHint
+        self.unlock_button.setVisible(locked)
+        if self._window_options == (bool(on_top), locked):
+            return
+        self._window_options = (bool(on_top), locked)
+        visible = self.isVisible()
+        position = self.pos()
+        self._changing_position = True
+        self._position_locked = locked
+        try:
+            self.setWindowFlags(flags)
+            self.move(position)
+            if visible:
+                self.show()
+        finally:
+            self._changing_position = False
+        self._locked_position = QPoint(self.pos()) if locked else None
+
+    def place_on_screen(self, position=None):
+        """Recover stale/off-screen positions without persisting a window size."""
+        positioning = self.supports_positioning()
+        screen = (
+            QGuiApplication.screenAt(position)
+            if positioning and position is not None else None
+        )
+        screen = screen or self.screen() or QGuiApplication.primaryScreen()
+        if screen is None:
+            return
+        area = screen.availableGeometry()
+        frame_height = max(0, self.frameGeometry().height() - self.height())
+        self.setMaximumHeight(max(self.minimumHeight(), area.height() - frame_height))
+        if self.height() > self.maximumHeight():
+            self.resize(self.width(), self.maximumHeight())
+        if not positioning:
+            return
+        frame = self.frameGeometry().size()
+        if position is None:
+            position = QPoint(area.right() - frame.width() - 15, area.top() + 16)
+        position = QPoint(
+            max(area.left(), min(position.x(), area.right() - frame.width() + 1)),
+            max(area.top(), min(position.y(), area.bottom() - frame.height() + 1)),
+        )
+        self._changing_position = True
+        try:
+            self.move(position)
+        finally:
+            self._changing_position = False
+        if self._position_locked:
+            self._locked_position = QPoint(self.pos())
+
+    def moveEvent(self, event):
+        super().moveEvent(event)
+        if self._changing_position or not self.supports_positioning():
+            return
+        if self._position_locked and self._locked_position is not None:
+            # Native frame margins may settle after this event. Correct on
+            # two loop iterations instead of recursively moving in moveEvent.
+            self._position_corrections_left = 2
+            self._position_timer.start(0)
+            return
+        if self.isVisible():
+            self.position_changed.emit(QPoint(self.pos()))
+
+    def _restore_locked_position(self):
+        if self._position_locked and self._locked_position is not None:
+            self._changing_position = True
+            try:
+                self.move(self._locked_position)
+            finally:
+                self._changing_position = False
+            self._position_corrections_left -= 1
+            if self._position_corrections_left > 0:
+                self._position_timer.start(0)
+
+    def dismiss_panel(self):
+        self.hide_panel()
+        self.dismissed.emit()
 
     def show_panel(self):
         """Show this panel without affecting any other interface."""
+        self.place_on_screen(self.pos())
         self.show()
         self.raise_()
 
     def hide_panel(self):
         """Hide this panel without affecting any other interface."""
+        self._position_timer.stop()
         self.hide()
 
     def toggle_panel(self):
@@ -348,6 +471,8 @@ class FloatingMonitoringPanel(QFrame):
 
     def showEvent(self, event):
         super().showEvent(event)
+        # Native decoration margins are available only after the first show.
+        self.place_on_screen(self.pos())
         self.visibility_changed.emit(True)
 
     def hideEvent(self, event):
@@ -356,7 +481,7 @@ class FloatingMonitoringPanel(QFrame):
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key.Key_Escape:
-            self.hide_panel()
+            self.dismiss_panel()
             event.accept()
             return
         super().keyPressEvent(event)

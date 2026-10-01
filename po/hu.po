@@ -4992,10 +4992,6 @@ msgstr ""
 #~ msgstr "Mindig engedélyezze"
 
 #, fuzzy
-#~ msgid "Lock position"
-#~ msgstr "A gomb pozíciója"
-
-#, fuzzy
 #~ msgid "Accounts and quick actions"
 #~ msgstr "Fiókműveletek"
 
@@ -5292,3 +5288,71 @@ msgstr ""
 
 #~ msgid "This site"
 #~ msgstr "Ez a webhely"
+
+#: zapzap/features/settings/pages/appearance/view.py:82
+msgid "Monitor accounts in a separate window. Closing it only hides it temporarily."
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:103
+msgid "Show panel"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:104
+msgid "Choose when the panel appears automatically."
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:114
+msgid "Keep above other windows"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:115
+msgid "Keep the panel visible while working in other applications."
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:119
+msgid "Restore the panel position the next time ZapZap starts."
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:120 zapzap/features/settings/pages/appearance/view.py:128
+msgid "Your Wayland desktop controls window placement."
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:123
+msgid "Remember position"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:126
+msgid "Lock position"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:131 zapzap/ui/components/main_window.py:163 zapzap/features/tray/sys_tray_manager.py:66
+msgid "Show monitoring panel"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:132
+msgid "Reopen the panel without changing its display mode."
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:136
+msgid "Reset panel position"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:137
+msgid "Bring the panel back into the available screen area."
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:109
+msgid "When the main window is hidden"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:110
+msgid "On demand"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py:127
+msgid "Prevent dragging. Unlock directly in the panel to move it again."
+msgstr ""
+
+#: zapzap/ui/components/floating_monitoring_panel.py:289 zapzap/ui/components/floating_monitoring_panel.py:290
+msgid "Unlock position"
+msgstr ""

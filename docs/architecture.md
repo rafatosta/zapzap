@@ -200,9 +200,39 @@ componentes a seguir.
 `ui.components.FloatingMonitoringPanel` é uma janela flutuante nativa
 `Qt.WindowType.Tool`, sem parent visual, com título e fechamento do sistema.
 `MainWindowController` mantém sua instância e a libera ao destruir a interface;
-o shutdown oculta a janela. Fechar ou usar Esc somente oculta o painel, sem
-alterar a preferência nem encerrar o aplicativo. A janela permanece disponível
-quando a principal está oculta, inclusive com decoração CSR.
+o shutdown oculta a janela. Fechar ou usar Esc dispensa o painel temporariamente,
+sem alterar a preferência
+nem encerrar o aplicativo. `MainWindowController` observa Show/Hide e alterações
+de estado do host superior (nativo ou CSR), usando um timer de atualização
+coalescida. Os IDs de modo persistidos são `always` (padrão compatível),
+`when_hidden` (principal oculta ou minimizada) e `on_demand`. Uma dispensa impede
+reabertura em atualizações de dados/opções; a próxima transição real de
+visibilidade da principal ou uma solicitação explícita remove a dispensa.
+No modo sob demanda, transições não abrem o painel. Uma abertura explícita
+permanece até o fechamento ou a próxima transição da principal.
+
+Aparência contém as opções subordinadas de modo, manter acima (False por padrão),
+lembrar posição (True) e bloquear posição (False), preservadas quando o painel
+é desabilitado. `AppearanceSettings` mantém as novas chaves
+`system/floating_monitoring_panel_{mode,on_top,remember_position,lock_position,position}`;
+a posição é um QPoint independente da geometria da principal. Tipos inválidos
+são ignorados e modos desconhecidos usam `always`. Nenhuma chave legada muda.
+A posição e a altura são limitadas à área disponível de um monitor ao abrir;
+a lista rolável mantém o rodapé acessível em telas menores. Reset recupera
+posições inacessíveis. Manter acima solicita `WindowStaysOnTopHint` sem reabrir
+um painel dispensado. `WA_MacAlwaysShowToolWindow` mantém a janela Tool disponível
+quando outra aplicação recebe foco no macOS. Bloquear remove a barra de título
+nativa arrastável e
+corrige movimentos posteriores via timer, mantendo cabeçalho, fechamento e ação
+acessível para desbloquear. No Wayland, o compositor controla posicionamento:
+lembrar/bloquear/reset ficam indisponíveis com explicação; valores persistidos
+são conservados para sessões em outros backends. A efetividade de manter acima
+continua sujeita às políticas do gerenciador de janelas.
+
+Exibir, bandeja e Aparência expõem uma ação para mostrar novamente o painel
+habilitado, independentemente do modo. A ação não liga implicitamente um recurso
+desabilitado. O shutdown para o timer, registra posição quando permitido e
+oculta o painel; a fachada CSR encaminha as mesmas operações.
 
 O controller adapta `BrowserController.account_runtimes()` em descritores
 `FloatingAccountEntry`: ID original (inclusive numérico), nome, avatar persistido,
@@ -225,7 +255,8 @@ O popover recebe descritores `FloatingAccountEntry`, omite a conta selecionada
 e as desativadas e prioriza as que têm não lidas, mostrando suas contagens.
 A seleção reutiliza `activate_account` com ID original e oculta o popover.
 O popover abre acima do botão, alinhado à sua borda esquerda, com posição
-limitada à área disponível do monitor.
+limitada à área disponível do monitor. O alinhamento é recalculado em cada
+redimensionamento, inclusive após atualizações da lista de contas.
 Atualizações preservam os controles existentes; Qt fecha o popup em Esc ou
 clique externo, e a navegação também o oculta.
 

@@ -98,7 +98,7 @@ documente o que ele protege.
 | `test_about_settings_ui.py` | identidade, links, detalhes técnicos, cópia, licença e créditos |
 | `test_account_data_removal.py` | remoção segura e idempotente de dados de perfis desativados |
 | `test_accounts_settings_ui.py` | card responsivo com ações diretas, remoção, estados/avisos e diálogo transacional sem moldura |
-| `test_appearance_settings_ui.py` | grupos, dependências, visibilidade da sidebar sem subopções, layout responsivo, persistência e acessibilidade |
+| `test_appearance_settings_ui.py` | grupos, dependências, visibilidade da sidebar sem subopções, layout responsivo, persistência, opções subordinadas do painel flutuante, aplicação ao vivo e limitação de posicionamento Wayland, acessibilidade |
 | `test_appimage_packaging.py` | coerência FFmpeg/Qt WebEngine, verificação de ABI, nome final fornecido ao quick-sharun e ausência de renomeação posterior do AppImage/zsync |
 | `test_browser_account_lifecycle.py` | registro estável, criação lazy de contas desativadas, isolamento/retentativa de perfil com erro, reativação, remoção, notificações e encerramento idempotente |
 | `test_browser_page_button_ui.py` | avatar sem número, grayscale de conta desativada, ponto de estado, card, temas, escala e clique |
@@ -132,7 +132,7 @@ documente o que ele protege.
 | `test_plain_text_paste.py` | inserção text/plain no editor WebEngine selecionado, resolução de contenteditable pela seleção DOM e fallback PasteAndMatchStyle sem tocar no Ctrl+V |
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
 | `test_profile_sync.py` | validação de dados pontuais do perfil WhatsApp e normalização da foto |
-| `test_quick_access_integration.py` | integração dos interruptores de Aparência, atualização de contas e não lidas, IDs numéricos, ações existentes, fechamento e independência da janela flutuante; seletor de outras contas, sinal de atividade por página, IDs numéricos, pedidos tardios, DOM/reinserção/tema e geometria WebChannel com zoom |
+| `test_quick_access_integration.py` | integração dos interruptores de Aparência, atualização de contas e não lidas, IDs numéricos, ações existentes, fechamento e independência da janela flutuante, modos automáticos/sob demanda, dispensa e reabertura, persistência/recuperação/bloqueio de posição, flags de manter acima e host CSR/shutdown; seletor de outras contas, sinal de atividade por página, IDs numéricos, pedidos tardios, DOM/reinserção/tema e geometria WebChannel com zoom |
 | `test_quick_access_panels_ui.py` | estrutura renderizada, decoração nativa solicitada, atualização de linhas sem recriar controles, métodos de visibilidade e coexistência do painel flutuante e do seletor integrado; popover compacto sem conta atual, ordenação por atividade e fechamento após seleção/Esc |
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
 | `test_reporting.py` | sanitização, minimização, Markdown, fila/TTL e captura local de encerramentos inesperados |
@@ -144,7 +144,7 @@ documente o que ele protege.
 | `test_settings_radio_group.py` | divisores do grupo de rádio em `ui.components` |
 | `test_software_video_decoding.py` | presets, flags Chromium de renderização/strict proxy, persistência e ordem do bootstrap |
 | `test_spellcheck_language_picker.py` | migração, seleção múltipla transacional, pesquisa, limite, recentes, menu e perfis WebEngine |
-| `test_taskbar_badge.py` | contador nativo, zero, preferência, bandeja oculta, ativação primária/contexto por backend, integração StatusNotifier/AppIndicator e compatibilidade com Qt anterior |
+| `test_taskbar_badge.py` | contador nativo, zero, preferência, bandeja oculta, ativação primária/contexto por backend, integração StatusNotifier/AppIndicator, reabertura do painel e reconexão após reinício da interface, compatibilidade com Qt anterior |
 | `test_translations.py` | descoberta de catálogos gettext e traduções chinesas sem entradas vazias ou fuzzy |
 | `test_turkish_translation.py` | catálogo turco sem traduções ativas vazias ou marcadas como fuzzy |
 | `test_system_startup_settings_ui.py` | semântica de fechamento, diálogo nativo, seleção do backend gráfico, reinício e acessibilidade |
@@ -599,3 +599,21 @@ principal. Teste áudio e downloads e confirme que fechar o painel não encerra
 o app nem desativa a preferência. Desative/reative em Aparência, reinicie a
 interface e confirme ausência de janela órfã. Repita com CSR, X11/Wayland e
 Windows/macOS; testes offscreen não comprovam decoração ou foco do compositor.
+
+Para as opções do painel, teste os três modos: sempre, principal oculta ou
+minimizada, e sob demanda. Em cada modo, feche por botão nativo, cabeçalho e Esc;
+confirme que dados/contadores/opções não reabrem uma janela dispensada. No modo
+automático, um novo ciclo de ocultar/restaurar deve reaplicar a política; sob
+demanda, somente uma solicitação explícita abre. Reabra por Exibir, bandeja e
+Aparência sem alternar o interruptor. Teste bandeja desativada e menu oculto.
+
+Mova o painel, reinicie app/interface, confira restauração, desative lembrar
+posição e confirme que novas posições não sobrescrevem a salva. Remova o monitor
+original e use Reset para recuperar o painel. Ligue manter acima com outros apps
+ativos, verificando foco e diálogos modais. Bloqueie a posição: a barra de título
+nativa desaparece, fechamento e desbloqueio no cabeçalho continuam acessíveis;
+tente arrastar pelo sistema e desbloqueie novamente. Valide com tema claro/escuro,
+tradução, teclado, escalas e telas pequenas. Em Wayland, controles de
+posicionamento devem ficar indisponíveis com explicação e conservar os valores.
+Repita em X11, Windows/macOS e CSR. Flags e testes offscreen comprovam contratos
+Qt, não a aplicação das políticas pelo compositor.

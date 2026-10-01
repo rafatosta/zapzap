@@ -63,6 +63,7 @@ class SysTrayManager:
         return {
             "show": QAction(_("Show")),
             "accounts": QAction(_("Accounts")),
+            "monitoring": QAction(_("Show monitoring panel")),
             "mute": QAction(
                 _("Unmute") if SystemSettings().audio_muted else _("Mute")
             ),
@@ -76,6 +77,7 @@ class SysTrayManager:
         tray_menu = QMenu()
         tray_menu.addAction(self._actions["show"])
         tray_menu.addAction(self._actions["accounts"])
+        tray_menu.addAction(self._actions["monitoring"])
         tray_menu.addAction(self._actions["mute"])
         tray_menu.addAction(self._actions["settings"])
         tray_menu.addAction(self._actions["donation"])
@@ -163,6 +165,10 @@ class SysTrayManager:
         instance._actions["show"].triggered.connect(main_window.show_window)
         instance._actions["accounts"].triggered.connect(
             lambda: instance._open_accounts(main_window))
+        instance._actions["monitoring"].setEnabled(
+            instance._settings.floating_monitoring_panel_enabled
+        )
+        instance._actions["monitoring"].triggered.connect(main_window.show_floating_panel)
         instance._actions["mute"].triggered.connect(
             main_window.toggle_audio_muted
         )
@@ -177,6 +183,7 @@ class SysTrayManager:
             self._tray.activated,
             self._actions["show"].triggered,
             self._actions["accounts"].triggered,
+            self._actions["monitoring"].triggered,
             self._actions["mute"].triggered,
             self._actions["settings"].triggered,
             self._actions["donation"].triggered,
@@ -226,6 +233,12 @@ class SysTrayManager:
         """Inicia o SysTrayManager e carrega o estado inicial."""
         instance = SysTrayManager.instance()
         instance._load_state()
+
+    @classmethod
+    def sync_floating_panel_enabled(cls, enabled):
+        instance = cls._instance
+        if instance is not None and hasattr(instance, "_actions"):
+            instance._actions["monitoring"].setEnabled(enabled)
 
     @classmethod
     def sync_audio_muted(cls, muted: bool) -> None:

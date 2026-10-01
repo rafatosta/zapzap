@@ -2231,26 +2231,23 @@ msgstr "Acesso rápido"
 msgid ""
 "Control the floating monitoring panel and the account selector integrated "
 "into WhatsApp Web. Both are independent and can be shown at the same time."
-msgstr ""
+msgstr "Controle o painel flutuante de monitoramento e o seletor de contas integrado ao WhatsApp Web. Ambos são independentes e podem ser exibidos ao mesmo tempo."
 
 #: zapzap/features/settings/pages/appearance/view.py:79
-#, fuzzy
 msgid "Floating monitoring panel"
-msgstr "Fixar painel"
+msgstr "Painel flutuante de monitoramento"
 
 #: zapzap/features/settings/pages/appearance/view.py:80
 msgid "Show a permanent floating panel for account monitoring."
 msgstr ""
 
 #: zapzap/features/settings/pages/appearance/view.py:83
-#, fuzzy
 msgid "Integrated account selector"
-msgstr "Lista de contas"
+msgstr "Seletor integrado de contas"
 
 #: zapzap/features/settings/pages/appearance/view.py:85
-#, fuzzy
 msgid "Show a compact account selector integrated into WhatsApp Web."
-msgstr "Mostrar navegação da conta na interface do navegador."
+msgstr "Exiba um seletor compacto de contas integrado ao WhatsApp Web."
 
 #: zapzap/features/settings/pages/appearance/view.py:124
 msgid "Control tray icon visibility, style, and unread counter."
@@ -2757,9 +2754,8 @@ msgstr ""
 "do WhatsApp."
 
 #: zapzap/features/settings/pages/language_downloads/view.py:114
-#, fuzzy
 msgid "Reset"
-msgstr "Repor…"
+msgstr "Redefinir"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:135
 msgid "Spell checker languages"
@@ -4928,7 +4924,6 @@ msgstr ""
 
 #: zapzap/ui/components/floating_monitoring_panel.py:265
 #: zapzap/ui/components/floating_monitoring_panel.py:267
-#, fuzzy
 msgid "Quick access"
 msgstr "Acesso rápido"
 
@@ -4980,15 +4975,6 @@ msgstr ""
 
 #~ msgid "Always visible"
 #~ msgstr "Sempre visível"
-
-#~ msgid "Remember position"
-#~ msgstr "Lembrar posição"
-
-#~ msgid "Lock position"
-#~ msgstr "Bloquear posição"
-
-#~ msgid "Keep above other windows"
-#~ msgstr "Manter acima de outras janelas"
 
 #, fuzzy
 #~ msgid "Accounts and quick actions"
@@ -5435,3 +5421,71 @@ msgstr ""
 
 #~ msgid "This site"
 #~ msgstr "Este site"
+
+#: zapzap/features/settings/pages/appearance/view.py:82
+msgid "Monitor accounts in a separate window. Closing it only hides it temporarily."
+msgstr "Acompanhe contas em uma janela separada. Fechá-la apenas a oculta temporariamente."
+
+#: zapzap/features/settings/pages/appearance/view.py:103
+msgid "Show panel"
+msgstr "Exibir painel"
+
+#: zapzap/features/settings/pages/appearance/view.py:104
+msgid "Choose when the panel appears automatically."
+msgstr "Escolha quando o painel aparece automaticamente."
+
+#: zapzap/features/settings/pages/appearance/view.py:114
+msgid "Keep above other windows"
+msgstr "Manter acima de outras janelas"
+
+#: zapzap/features/settings/pages/appearance/view.py:115
+msgid "Keep the panel visible while working in other applications."
+msgstr "Mantenha o painel visível enquanto trabalha em outros aplicações."
+
+#: zapzap/features/settings/pages/appearance/view.py:119
+msgid "Restore the panel position the next time ZapZap starts."
+msgstr "Restaure a posição do painel na próxima inicialização do ZapZap."
+
+#: zapzap/features/settings/pages/appearance/view.py:120 zapzap/features/settings/pages/appearance/view.py:128
+msgid "Your Wayland desktop controls window placement."
+msgstr "O seu ambiente Wayland controla o posicionamento das janelas."
+
+#: zapzap/features/settings/pages/appearance/view.py:123
+msgid "Remember position"
+msgstr "Lembrar posição"
+
+#: zapzap/features/settings/pages/appearance/view.py:126
+msgid "Lock position"
+msgstr "Bloquear posição"
+
+#: zapzap/features/settings/pages/appearance/view.py:131 zapzap/ui/components/main_window.py:163 zapzap/features/tray/sys_tray_manager.py:66
+msgid "Show monitoring panel"
+msgstr "Exibir painel de monitoramento"
+
+#: zapzap/features/settings/pages/appearance/view.py:132
+msgid "Reopen the panel without changing its display mode."
+msgstr "Reabra o painel sem alterar seu modo de exibição."
+
+#: zapzap/features/settings/pages/appearance/view.py:136
+msgid "Reset panel position"
+msgstr "Redefinir posição do painel"
+
+#: zapzap/features/settings/pages/appearance/view.py:137
+msgid "Bring the panel back into the available screen area."
+msgstr "Traga o painel de volta à área disponível da ecrã."
+
+#: zapzap/features/settings/pages/appearance/view.py:109
+msgid "When the main window is hidden"
+msgstr "Quando a janela principal estiver oculta"
+
+#: zapzap/features/settings/pages/appearance/view.py:110
+msgid "On demand"
+msgstr "Sob demanda"
+
+#: zapzap/features/settings/pages/appearance/view.py:127
+msgid "Prevent dragging. Unlock directly in the panel to move it again."
+msgstr "Impeça o arraste. Desbloqueie diretamente no painel para movê-lo novamente."
+
+#: zapzap/ui/components/floating_monitoring_panel.py:289 zapzap/ui/components/floating_monitoring_panel.py:290
+msgid "Unlock position"
+msgstr "Desbloquear posição"

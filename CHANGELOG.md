@@ -15,6 +15,18 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Added floating-panel display modes (always, while the main window is hidden
+  or minimized, and on demand), optional stay-on-top, remembered screen position,
+  position locking with an in-panel unlock action, and screen-position recovery.
+  Kept the footer reachable on smaller screens and macOS tool windows available
+  when another application has focus.
+  Added direct reopening from View, tray and Appearance without changing the
+  mode or enabled preference. Closing dismisses the panel until a new main-window
+  visibility cycle or an explicit request. Preserved existing settings and
+  independent sidebar/selector behavior; Wayland placement controls explain the
+  compositor limitation. Added native/CSR lifecycle regressions, translated
+  Portuguese, Turkish and Chinese controls and updated technical/manual-validation documentation.
+
 - Implemented the integrated WhatsApp account selector as one sidebar button
   indicating unread activity in other enabled accounts. Its compact native
   popover omits the current account, lists unread accounts first with counts,
@@ -228,6 +240,9 @@ releases and the AppStream metadata.
   account selector as separate features.
 
 ### Fixed
+
+- Kept the integrated account popup anchored above its button after Qt layout
+  or live account updates change its height; added resize regression coverage.
 
 - Positioned the integrated account selector popover above its sidebar button,
   aligned to its left edge and constrained to the available screen.

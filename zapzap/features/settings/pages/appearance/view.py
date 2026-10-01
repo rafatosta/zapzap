@@ -3,6 +3,8 @@
 from gettext import gettext as _
 
 from zapzap.ui.primitives import RadioButton
+from zapzap.ui.components import SettingsActionRow
+from zapzap.ui.components import FloatingMonitoringPanel
 from zapzap.ui.components import SettingsRadioGroup
 from zapzap.ui.components import SettingsCard
 from zapzap.ui.components import SettingsPage
@@ -77,7 +79,7 @@ class AppearanceSettingsView(SettingsPage):
         card = SettingsCard()
         self.floating_monitoring_panel_row = SettingsSwitchRow(
             _("Floating monitoring panel"),
-            _("Show a permanent floating panel for account monitoring."),
+            _("Monitor accounts in a separate window. Closing it only hides it temporarily."),
         )
         self.integrated_account_selector_row = SettingsSwitchRow(
             _("Integrated account selector"),
@@ -97,7 +99,58 @@ class AppearanceSettingsView(SettingsPage):
             self.integrated_account_selector_row,
         ):
             self._configure_row_accessibility(row)
-        card.add_row(self.floating_monitoring_panel_row)
+        self.floating_mode_row = SettingsSelectRow(
+            _("Show panel"),
+            _("Choose when the panel appears automatically."),
+        )
+        self.floating_mode = self.floating_mode_row.combo
+        for label, value in (
+            (_("Always"), "always"),
+            (_("When the main window is hidden"), "when_hidden"),
+            (_("On demand"), "on_demand"),
+        ):
+            self.floating_mode.addItem(label, value)
+        self.floating_on_top_row = SettingsSwitchRow(
+            _("Keep above other windows"),
+            _("Keep the panel visible while working in other applications."),
+        )
+        positioning = FloatingMonitoringPanel.supports_positioning()
+        position_description = (
+            _("Restore the panel position the next time ZapZap starts.")
+            if positioning else _("Your Wayland desktop controls window placement.")
+        )
+        self.floating_remember_row = SettingsSwitchRow(
+            _("Remember position"), position_description,
+        )
+        self.floating_lock_row = SettingsSwitchRow(
+            _("Lock position"),
+            _("Prevent dragging. Unlock directly in the panel to move it again.")
+            if positioning else _("Your Wayland desktop controls window placement."),
+        )
+        self.floating_show_row = SettingsActionRow(
+            _("Show monitoring panel"),
+            _("Reopen the panel without changing its display mode."),
+            _("Show"),
+        )
+        self.floating_reset_row = SettingsActionRow(
+            _("Reset panel position"),
+            _("Bring the panel back into the available screen area."),
+            _("Reset"),
+        )
+        self.floating_options_group = card.add_group(
+            self.floating_monitoring_panel_row,
+            (self.floating_mode_row, self.floating_on_top_row,
+             self.floating_remember_row, self.floating_lock_row,
+             self.floating_show_row, self.floating_reset_row),
+        )
+        for row in (
+            self.floating_mode_row, self.floating_on_top_row,
+            self.floating_remember_row, self.floating_lock_row,
+            self.floating_show_row, self.floating_reset_row,
+        ):
+            self._configure_row_accessibility(row)
+        for row in (self.floating_remember_row, self.floating_lock_row, self.floating_reset_row):
+            row.setEnabled(positioning)
         card.add_row(self.integrated_account_selector_row)
         section.add_card(card)
         self.add_section(section)

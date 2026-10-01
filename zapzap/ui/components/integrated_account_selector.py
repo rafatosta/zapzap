@@ -2,7 +2,7 @@
 
 from gettext import gettext as _
 
-from PyQt6.QtCore import QPoint, Qt, pyqtSignal
+from PyQt6.QtCore import QPoint, QRect, Qt, pyqtSignal
 from PyQt6.QtGui import QGuiApplication
 from PyQt6.QtWidgets import QFrame, QPushButton, QScrollArea, QVBoxLayout
 
@@ -24,6 +24,7 @@ class IntegratedAccountSelector(QFrame):
         self.setObjectName("IntegratedAccountSelector")
         self.setAttribute(Qt.WidgetAttribute.WA_QuitOnClose, False)
         self.setFixedWidth(self.WIDTH)
+        self._anchor = None
         self._enabled = False
         self._account_buttons = []
         layout = QVBoxLayout(self)
@@ -108,15 +109,26 @@ class IntegratedAccountSelector(QFrame):
         if not self._enabled:
             return
         self.adjustSize()
+        self._anchor = QRect(anchor)
+        self._position_above_anchor()
+        self.show()
+        self.raise_()
+        if self._account_buttons:
+            self._account_buttons[0].setFocus()
+
+    def _position_above_anchor(self):
+        if self._anchor is None:
+            return
+        anchor = self._anchor
         screen = (QGuiApplication.screenAt(anchor.center()) or self.screen()).availableGeometry()
         position = QPoint(anchor.left(), anchor.top() - self.height() - 6)
         position.setX(max(screen.left(), min(position.x(), screen.right() - self.width() + 1)))
         position.setY(max(screen.top(), min(position.y(), screen.bottom() - self.height() + 1)))
         self.move(position)
-        self.show()
-        self.raise_()
-        if self._account_buttons:
-            self._account_buttons[0].setFocus()
+
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        self._position_above_anchor()
 
     def show_selector(self):
         """Enable the web entry point without automatically opening the popover."""

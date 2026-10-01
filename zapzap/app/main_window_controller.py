@@ -498,6 +498,25 @@ class MainWindowController(MainWindowView):
 
     def _setup_floating_monitoring_panel(self):
         panel = self.floating_monitoring_panel
+        self._floating_dismissed = False
+        self._floating_manual = False
+        self._floating_stopped = False
+        self._floating_host_unavailable = None
+        self._floating_visibility_timer = QTimer(self)
+        self._floating_visibility_timer.setSingleShot(True)
+        self._floating_visibility_timer.timeout.connect(
+            self._sync_floating_visibility
+        )
+        self.installEventFilter(self)
+        panel.dismissed.connect(self._dismiss_floating_panel)
+        panel.position_changed.connect(self._remember_floating_position)
+        panel.unlock_requested.connect(self._unlock_floating_position)
+        self.actionShow_monitoring_panel.triggered.connect(self.show_floating_panel)
+        self.apply_floating_panel_options()
+        if self._appearance_settings.floating_panel_remember_position:
+            panel.place_on_screen(self._appearance_settings.floating_panel_position)
+        else:
+            panel.place_on_screen()
         panel.account_activation_requested.connect(self._activate_floating_account)
         panel.add_account_requested.connect(self._add_floating_account)
         panel.audio_toggle_requested.connect(self.toggle_audio_muted)
@@ -541,16 +560,104 @@ class MainWindowController(MainWindowView):
         enabled: bool,
         persist: bool = True,
     ):
-        """Apply the independent floating window preference."""
-        if enabled:
-            self.floating_monitoring_panel.show_panel()
-        else:
-            self.floating_monitoring_panel.hide_panel()
-
+        """Apply the preference while preserving all subordinate choices."""
         if persist:
-            self._appearance_settings.floating_monitoring_panel_enabled = (
-                enabled
-            )
+            self._appearance_settings.floating_monitoring_panel_enabled = enabled
+        self._floating_enabled = bool(enabled)
+        self._floating_dismissed = False
+        self._floating_manual = False
+        self.apply_floating_panel_options()
+        self.actionShow_monitoring_panel.setEnabled(enabled)
+        from zapzap.features.tray.sys_tray_manager import SysTrayManager
+        SysTrayManager.sync_floating_panel_enabled(enabled)
+        if (self._floating_host_unavailable is None
+                and self._appearance_settings.floating_panel_mode != "always"):
+            # Startup has not chosen native/CSR host visibility yet. Avoid
+            # flashing a hidden-mode panel before the main window is shown.
+            self._floating_visibility_timer.start(0)
+        else:
+            self._sync_floating_visibility()
+
+    def apply_floating_panel_options(self, reset_visibility=False):
+        settings = self._appearance_settings
+        self.floating_monitoring_panel.set_window_options(
+            settings.floating_panel_on_top, settings.floating_panel_lock_position
+        )
+        if reset_visibility:
+            self._floating_dismissed = False
+            self._floating_manual = False
+            self._sync_floating_visibility()
+
+    def _dismiss_floating_panel(self):
+        self._floating_dismissed = True
+        self._floating_manual = False
+
+    def _remember_floating_position(self, position):
+        if self._appearance_settings.floating_panel_remember_position:
+            self._appearance_settings.floating_panel_position = position
+
+    def _unlock_floating_position(self):
+        self._appearance_settings.floating_panel_lock_position = False
+        self.apply_floating_panel_options()
+        if self.app_settings is not None:
+            page = self.app_settings.page_instance("appearance")
+            if page is not None:
+                control = page.floating_lock_row.checkbox
+                control.blockSignals(True)
+                control.setChecked(False)
+                control.blockSignals(False)
+
+    def reset_floating_panel_position(self):
+        self._appearance_settings.floating_panel_position = None
+        self.floating_monitoring_panel.place_on_screen()
+        self._remember_floating_position(self.floating_monitoring_panel.pos())
+        self.show_floating_panel()
+
+    def show_floating_panel(self):
+        """Explicitly reopen the enabled panel, including in on-demand mode."""
+        if not self._floating_enabled or self._floating_stopped:
+            return
+        self._floating_dismissed = False
+        self._floating_manual = True
+        self.floating_monitoring_panel.show_panel()
+
+    def _sync_floating_visibility(self):
+        if self._floating_stopped:
+            return
+        unavailable = (
+            not self._window_host.isVisible() or self._window_host.isMinimized()
+        )
+        if unavailable != self._floating_host_unavailable:
+            self._floating_host_unavailable = unavailable
+            self._floating_dismissed = False
+            self._floating_manual = False
+        mode = self._appearance_settings.floating_panel_mode
+        visible = (
+            getattr(self, "_floating_enabled", False)
+            and not self._floating_dismissed
+            and (self._floating_manual or mode == "always"
+                 or (mode == "when_hidden" and unavailable))
+        )
+        panel = self.floating_monitoring_panel
+        if visible and not panel.isVisible():
+            panel.show_panel()
+        elif not visible and panel.isVisible():
+            panel.hide_panel()
+
+    def eventFilter(self, watched, event):
+        if watched is self._window_host and event.type() in (
+            QEvent.Type.Show, QEvent.Type.Hide, QEvent.Type.WindowStateChange,
+        ):
+            self._floating_visibility_timer.start(0)
+        return super().eventFilter(watched, event)
+
+    def shutdown_floating_panel(self):
+        self._floating_stopped = True
+        self._floating_visibility_timer.stop()
+        panel = self.floating_monitoring_panel
+        if panel.isVisible() and panel.supports_positioning():
+            self._remember_floating_position(panel.pos())
+        panel.hide_panel()
 
     def _connect_help_menu_actions(self):
         """Conectar ações do menu 'Ajuda'."""
@@ -733,8 +840,11 @@ class MainWindowController(MainWindowView):
 
     def attach_window_host(self, host, lifecycle):
         """Use a CSR host while keeping this controller as application content."""
+        self._window_host.removeEventFilter(self)
         self._window_host = host
+        host.installEventFilter(self)
         self.lifecycle = lifecycle
+        self._floating_visibility_timer.start(0)
 
     # === Funções de Configuração ===
     def open_settings(self):
