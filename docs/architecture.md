@@ -200,12 +200,16 @@ componentes a seguir.
 `ui.components.FloatingMonitoringPanel` e `ui.components.IntegratedAccountSelector`
 existem atualmente apenas como estrutura visual e API inicial (mostrar,
 ocultar, alternar e sinal de mudança de visibilidade), sem qualquer dado de
-monitoramento, troca real de conta, persistência ou abertura/fechamento
-automático. Cada um mantém seu próprio estado de visibilidade e ciclo de vida,
-pode coexistir com o outro e não lê nem depende da visibilidade da
-`BrowserSidebar`. Nenhum dos dois está instanciado pelo `BrowserController` ou
-pelo `MainWindowController`; a integração funcional e o acoplamento a contas
-reais ficam para uma etapa seguinte.
+monitoramento, troca real de conta, persistência de outro estado ou
+abertura/fechamento automático além da preferência explícita do usuário.
+Cada um mantém seu próprio estado de visibilidade e ciclo de vida, pode
+coexistir com o outro e não lê nem depende da visibilidade da
+`BrowserSidebar`. O `MainWindowController` instancia um
+`FloatingMonitoringPanel` (janela `Qt.WindowType.Tool` própria, independente
+da hierarquia de exibição do navegador) e o `BrowserController` instancia um
+`IntegratedAccountSelector` ancorado sobre `self.pages` (a área de conteúdo
+do WhatsApp Web, sem incluir a `BrowserSidebar`); a integração funcional e o
+acoplamento a contas reais ficam para uma etapa seguinte.
 O `FloatingMonitoringPanel` renderiza uma lista de linhas de conta (avatar
 genérico via `UserIcon`, nome e emblema `SettingsBadge` de não lidas ocultado
 quando zero), uma linha "+ Nova conta", um `SettingsDivider` e um rodapé com
@@ -221,8 +225,13 @@ até Configurações ainda.
 A página Aparência expõe uma seção "Quick Access" com dois interruptores
 independentes (`system/floating_monitoring_panel_enabled` e
 `system/integrated_account_selector_enabled`, ambos `False` por padrão) que
-apenas persistem a preferência do usuário; como nenhum dos dois componentes é
-instanciado ainda, alternar os interruptores não produz efeito visível.
+persistem a preferência do usuário e, ao vivo, mostram ou ocultam a
+instância real do respectivo scaffold via
+`MainWindowController.set_floating_monitoring_panel_enabled` e
+`BrowserController.set_integrated_account_selector_enabled`; a preferência
+persistida também é aplicada na inicialização. Cada interruptor controla
+apenas a visibilidade do seu próprio scaffold, sem modo exclusivo entre os
+dois e sem qualquer outro efeito.
 O botão de atualização não possui tooltip nativo, pois ele competiria
 visualmente com o popover; nome e descrição acessíveis continuam informando a
 atualização.

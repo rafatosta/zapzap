@@ -272,17 +272,33 @@ class AppearanceSettingsUiTests(QtTestCase):
 
     def test_toggling_quick_access_switches_saves_independent_preferences(self):
         page, model = self._controller()
+        window = Mock()
+        app = Mock()
+        app.getWindow.return_value = window
 
-        page.floating_monitoring_panel_enabled.click()
+        with patch(
+            "zapzap.features.settings.pages.appearance.controller."
+            "QApplication.instance",
+            return_value=app,
+        ):
+            page.floating_monitoring_panel_enabled.click()
 
-        self.assertTrue(model.floating_monitoring_panel_enabled)
-        self.assertFalse(model.integrated_account_selector_enabled)
-        self.assertFalse(page.integrated_account_selector_enabled.isChecked())
+            self.assertTrue(model.floating_monitoring_panel_enabled)
+            self.assertFalse(model.integrated_account_selector_enabled)
+            self.assertFalse(
+                page.integrated_account_selector_enabled.isChecked()
+            )
+            window.set_floating_monitoring_panel_enabled.assert_called_once_with(
+                True, persist=False
+            )
 
-        page.integrated_account_selector_enabled.click()
+            page.integrated_account_selector_enabled.click()
 
-        self.assertTrue(model.floating_monitoring_panel_enabled)
-        self.assertTrue(model.integrated_account_selector_enabled)
+            self.assertTrue(model.floating_monitoring_panel_enabled)
+            self.assertTrue(model.integrated_account_selector_enabled)
+            window.browser.set_integrated_account_selector_enabled.assert_called_once_with(
+                True
+            )
         page.close()
 
     def test_child_controls_have_accessible_names(self):

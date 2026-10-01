@@ -36,12 +36,21 @@ releases and the AppStream metadata.
   accounts, or perform audio/download/settings actions yet.
 
 - Added a "Quick Access" section to Appearance settings with two independent
-  switches, disabled by default, that only persist whether the
+  switches, disabled by default, that persist whether the
   `FloatingMonitoringPanel` and `IntegratedAccountSelector` scaffolds are
   enabled (`system/floating_monitoring_panel_enabled` and
-  `system/integrated_account_selector_enabled`). Neither switch wires the
-  preference to an actual panel instance yet, so toggling them has no visible
-  effect until the components are integrated in a later stage.
+  `system/integrated_account_selector_enabled`).
+
+- Wired both Quick Access switches to the real scaffold instances:
+  `MainWindowController` now owns one `FloatingMonitoringPanel` and
+  `BrowserController` owns one `IntegratedAccountSelector` (anchored over
+  the WhatsApp Web pages area), applied from the persisted preference at
+  startup and toggled live from Appearance settings via
+  `set_floating_monitoring_panel_enabled`/
+  `set_integrated_account_selector_enabled`. Each switch only shows or hides
+  its own scaffold; neither performs real account switching, monitoring
+  data, or exclusive mode between the two, and each remains independent from
+  the browser sidebar's visibility.
 
 - Added a tray-menu Accounts shortcut that restores ZapZap and opens the
   existing native account overview.

@@ -31,6 +31,7 @@ from zapzap.features.donation.page import DonationsPageController
 from zapzap.ui.components import BrowserGridView
 from zapzap.ui.components import BrowserPageButton
 from zapzap.ui.components import BrowserSidebarButton
+from zapzap.ui.components import IntegratedAccountSelector
 from zapzap.ui.components import UpdateAvailablePopover
 
 
@@ -102,6 +103,7 @@ class BrowserController(BrowserView):
         self._update_popover_close_timer.timeout.connect(
             self._update_popover.close
         )
+        self.account_selector = IntegratedAccountSelector(self.pages)
         app = QApplication.instance()
         if app is not None:
             app.installEventFilter(self)
@@ -153,6 +155,7 @@ class BrowserController(BrowserView):
         self._select_default_page()
         self._update_user_menu()
         self.settings_sidebar()
+        self.settings_integrated_account_selector()
         self._update_buttons(
             ThemeManager.get_current_theme(),
             ThemeManager.get_current_color_scheme()
@@ -857,6 +860,24 @@ class BrowserController(BrowserView):
             self._appearance_settings.browser_sidebar_visible,
             animated=False,
         )
+
+    def settings_integrated_account_selector(self):
+        """Apply the persisted Quick Access preference for the selector."""
+        self.set_integrated_account_selector_enabled(
+            self._appearance_settings.integrated_account_selector_enabled,
+        )
+
+    def set_integrated_account_selector_enabled(self, enabled: bool):
+        """Show or hide the integrated account selector visual scaffold.
+
+        This only toggles the selector's own visibility; it does not
+        switch accounts, render real account data, or depend on the
+        browser sidebar's visibility.
+        """
+        if enabled:
+            self.account_selector.show_selector()
+        else:
+            self.account_selector.hide_selector()
 
     def set_sidebar_visible(self, visible: bool, animated: bool = True):
         visible = bool(visible)

@@ -132,6 +132,7 @@ documente o que ele protege.
 | `test_plain_text_paste.py` | inserção text/plain no editor WebEngine selecionado, resolução de contenteditable pela seleção DOM e fallback PasteAndMatchStyle sem tocar no Ctrl+V |
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
 | `test_profile_sync.py` | validação de dados pontuais do perfil WhatsApp e normalização da foto |
+| `test_quick_access_integration.py` | integração dos dois interruptores "Quick Access" em Aparência com as instâncias reais do painel flutuante e do seletor integrado: visibilidade inicial a partir da preferência persistida, alternância ao vivo e coexistência das duas |
 | `test_quick_access_panels_ui.py` | estrutura renderizada, métodos iniciais de mostrar/ocultar/alternar e visibilidade independente/coexistente do painel flutuante de monitoramento e do seletor de contas integrado ao WhatsApp Web |
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
 | `test_reporting.py` | sanitização, minimização, Markdown, fila/TTL e captura local de encerramentos inesperados |
@@ -192,6 +193,7 @@ documente o que ele protege.
 - `test_portal_notification_backend.py`
 - `test_profile_sync.py`
 - `test_qt_parameter_fallbacks.py`
+- `test_quick_access_integration.py`
 - `test_quick_access_panels_ui.py`
 - `test_reporting.py`
 - `test_reporting_ui.py`

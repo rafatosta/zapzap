@@ -169,9 +169,14 @@ class AppearanceSettingsController(AppearanceSettingsView):
 
     def _handle_floating_monitoring_panel_enabled(self, enabled):
         self.model.floating_monitoring_panel_enabled = enabled
+        QApplication.instance().getWindow().set_floating_monitoring_panel_enabled(
+            enabled, persist=False
+        )
 
     def _handle_integrated_account_selector_enabled(self, enabled):
         self.model.integrated_account_selector_enabled = enabled
+        window = QApplication.instance().getWindow()
+        window.browser.set_integrated_account_selector_enabled(enabled)
 
     def _handle_tray_mode(self):
         selected_tray_mode = self._get_selected_radio(

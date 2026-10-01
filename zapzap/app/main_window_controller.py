@@ -33,6 +33,9 @@ from zapzap.features.downloads.ui.downloads_menu import (
 )
 from zapzap.features.settings.shell.settings_controller import SettingsController
 from zapzap.features.shortcuts.controller import ShortcutsController
+from zapzap.ui.components.floating_monitoring_panel import (
+    FloatingMonitoringPanel,
+)
 from zapzap.ui.components.main_window import MainWindowView
 from zapzap.ui.components.send_message_to_number_dialog import (
     SendMessageToNumberDialog,
@@ -121,6 +124,7 @@ class MainWindowController(MainWindowView):
             webview_factory=webview_factory,
             user_provider=user_provider,
         )
+        self.floating_monitoring_panel = FloatingMonitoringPanel(self)
         self._downloads_menu = DownloadsPopover(self)
         self._downloads_window = DownloadsWindow(self)
         self._downloads_menu_generation = 0
@@ -221,6 +225,10 @@ class MainWindowController(MainWindowView):
         self.set_sidebar_visible(
             self._appearance_settings.browser_sidebar_visible,
             animated=False,
+            persist=False,
+        )
+        self.set_floating_monitoring_panel_enabled(
+            self._appearance_settings.floating_monitoring_panel_enabled,
             persist=False,
         )
         ThemeManager.instance().theme_changed.connect(self.refresh_theme_menu)
@@ -481,6 +489,26 @@ class MainWindowController(MainWindowView):
 
         if persist:
             self._appearance_settings.browser_sidebar_visible = visible
+
+    def set_floating_monitoring_panel_enabled(
+        self,
+        enabled: bool,
+        persist: bool = True,
+    ):
+        """Show or hide the floating monitoring panel visual scaffold.
+
+        This only toggles the panel's own visibility; it does not read
+        monitoring data, switch accounts, or auto show/close on its own.
+        """
+        if enabled:
+            self.floating_monitoring_panel.show_panel()
+        else:
+            self.floating_monitoring_panel.hide_panel()
+
+        if persist:
+            self._appearance_settings.floating_monitoring_panel_enabled = (
+                enabled
+            )
 
     def _connect_help_menu_actions(self):
         """Conectar ações do menu 'Ajuda'."""
