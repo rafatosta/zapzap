@@ -235,6 +235,8 @@ releases and the AppStream metadata.
 
 ### Changed
 
+- Removed the browser-sidebar presentation radio options from Appearance while
+  retaining each installation's saved floating/integrated behavior.
 - Removed the mute and downloads icon buttons from the window menu bar while
   keeping mute in the browser sidebar and downloads accessible from the sidebar
   and View menu.

@@ -29,7 +29,6 @@ class FakeAppearanceSettingsModel:
         tray_enabled=False,
         csr_enabled=False,
         scale=100,
-        sidebar_button_mode="floating",
         quick_access_enabled=True,
         quick_access_display_mode="on_demand",
         quick_access_remember_position=True,
@@ -37,7 +36,6 @@ class FakeAppearanceSettingsModel:
         quick_access_always_on_top=False,
     ):
         self.browser_sidebar_visible = True
-        self.sidebar_button_mode = sidebar_button_mode
         self.quick_access_enabled = quick_access_enabled
         self.quick_access_display_mode = quick_access_display_mode
         self.quick_access_remember_position = quick_access_remember_position
@@ -257,17 +255,31 @@ class AppearanceSettingsUiTests(QtTestCase):
             )
             self.assertTrue(row.control.accessibleDescription())
 
-    def test_sidebar_button_options_are_hidden_until_sidebar_is_hidden(self):
+    def test_browser_sidebar_has_only_the_visibility_setting(self):
+        page = AppearanceSettingsView()
+
+        self.assertIs(
+            page.interface_card.layout.itemAt(0).widget(),
+            page.browser_sidebar_row,
+        )
+        self.assertFalse(hasattr(page, "sidebar_button_options_group"))
+        self.assertFalse(hasattr(page, "sidebar_button_integrated_radioButton"))
+        self.assertFalse(hasattr(page, "sidebar_button_floating_radioButton"))
+
+    def test_browser_sidebar_switch_only_changes_sidebar_visibility(self):
         page, _model = self._controller()
+        window = Mock()
+        app = Mock()
+        app.getWindow.return_value = window
 
-        self.assertTrue(page.sidebar_button_options_group.isHidden())
-        page.browser_sidebar.setChecked(False)
-        page._sync_sidebar_button_options_visibility()
-        self.assertFalse(page.sidebar_button_options_group.isHidden())
+        with patch(
+            "zapzap.features.settings.pages.appearance.controller."
+            "QApplication.instance",
+            return_value=app,
+        ):
+            page.browser_sidebar.click()
 
-        page.browser_sidebar.setChecked(True)
-        page._sync_sidebar_button_options_visibility()
-        self.assertTrue(page.sidebar_button_options_group.isHidden())
+        window.set_sidebar_visible.assert_called_once_with(False)
 
     def test_quick_access_options_track_master_without_losing_values(self):
         page, model = self._controller(
@@ -323,23 +335,6 @@ class AppearanceSettingsUiTests(QtTestCase):
                 row.title_label.text(),
             )
             self.assertTrue(row.control.accessibleDescription())
-
-    def test_sidebar_button_mode_is_persisted_and_applied(self):
-        page, model = self._controller()
-        browser = Mock()
-        window = Mock(browser=browser)
-        app = Mock()
-        app.getWindow.return_value = window
-
-        with patch(
-            "zapzap.features.settings.pages.appearance.controller."
-            "QApplication.instance",
-            return_value=app,
-        ):
-            page.sidebar_button_integrated_radioButton.setChecked(True)
-
-        self.assertEqual(model.sidebar_button_mode, "integrated")
-        browser.refresh_sidebar_button_mode.assert_called_once_with()
 
     def test_sidebar_button_mode_setting_validates_stable_ids(self):
         settings = AppearanceSettings()

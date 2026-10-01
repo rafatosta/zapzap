@@ -30,15 +30,6 @@ class AppearanceSettingsModel:
         self._settings.browser_sidebar_visible = value
 
     @property
-    def sidebar_button_mode(self) -> str:
-        """Account shortcut presentation used while the sidebar is hidden."""
-        return self._settings.sidebar_button_mode
-
-    @sidebar_button_mode.setter
-    def sidebar_button_mode(self, value: str) -> None:
-        self._settings.sidebar_button_mode = value
-
-    @property
     def quick_access_enabled(self) -> bool:
         """Whether the Quick Access panel is available."""
         return self._settings.quick_access_enabled

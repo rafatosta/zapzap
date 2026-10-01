@@ -96,10 +96,10 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   semânticas existentes.
 - Mantenha texto curto, descrição útil, estado padrão real e nome acessível.
 - Não persista rótulos traduzidos; persista um ID estável.
-- Para a subopção de acesso rápido da sidebar, mantenha `floating` como valor
-  legado/padrão e `integrated` como escolha explícita. O grupo deve ficar
-  invisível com a sidebar ativa e apenas um dos dois pontos de entrada pode
-  aparecer quando ela estiver oculta.
+- A seção de interface expõe a visibilidade da sidebar sem subopções de
+  apresentação. Preserve `system/sidebar_button_mode` em runtime para honrar
+  valores `floating` ou `integrated` já persistidos; instalações novas usam
+  `floating` como padrão.
 
 ### Relatórios de problemas
 
