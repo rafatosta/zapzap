@@ -194,8 +194,18 @@ sem duplicar consulta ou comparação.
 `BrowserGridView` é uma página separada de visão geral: usa os mesmos
 `AccountRuntime`, `User` e contadores da sidebar, não captura nem mantém
 referências visuais a `WebView`, e ativa contas pelo ID estável. A barra lateral
-é controlada apenas pela preferência `system/sidebar`; não há atualmente um
-painel flutuante nem um seletor integrado ao DOM do WhatsApp Web.
+é controlada apenas pela preferência `system/sidebar`, sem relação com os dois
+componentes a seguir.
+
+`ui.components.FloatingMonitoringPanel` e `ui.components.IntegratedAccountSelector`
+existem atualmente apenas como estrutura visual e API inicial (mostrar,
+ocultar, alternar e sinal de mudança de visibilidade), sem qualquer dado de
+monitoramento, troca real de conta, persistência ou abertura/fechamento
+automático. Cada um mantém seu próprio estado de visibilidade e ciclo de vida,
+pode coexistir com o outro e não lê nem depende da visibilidade da
+`BrowserSidebar`. Nenhum dos dois está instanciado pelo `BrowserController` ou
+pelo `MainWindowController`; a integração funcional e o acoplamento a contas
+reais ficam para uma etapa seguinte.
 O botão de atualização não possui tooltip nativo, pois ele competiria
 visualmente com o popover; nome e descrição acessíveis continuam informando a
 atualização.

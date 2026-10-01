@@ -15,6 +15,15 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Added visual-only scaffolding for the next Quick Access iteration: a
+  `FloatingMonitoringPanel` permanent monitoring interface and an
+  `IntegratedAccountSelector` compact account-navigation interface meant to sit
+  over WhatsApp Web. Both are independent components with their own
+  show/hide/toggle lifecycle and visibility signal, can be visible at the same
+  time, and do not read or depend on the browser sidebar's visibility. Neither
+  switches accounts, shows monitoring data, persists state, nor opens or
+  closes automatically; that functional wiring is deferred to a later stage.
+
 - Added a tray-menu Accounts shortcut that restores ZapZap and opens the
   existing native account overview.
 
