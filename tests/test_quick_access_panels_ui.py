@@ -9,12 +9,15 @@ auto show/close), since the components only provide visual scaffolding at
 this stage.
 """
 
-from PyQt6.QtWidgets import QListWidget, QToolButton, QWidget
+from PyQt6.QtWidgets import QPushButton, QToolButton, QWidget
 
 from qt_test_case import QtTestCase
 from zapzap.ui.components import (
     FloatingMonitoringPanel,
     IntegratedAccountSelector,
+)
+from zapzap.ui.components.floating_monitoring_panel import (
+    FloatingAccountEntry,
 )
 from zapzap.ui.primitives import CloseButton, Label
 
@@ -25,12 +28,81 @@ class FloatingMonitoringPanelUiTests(QtTestCase):
         panel = FloatingMonitoringPanel()
 
         self.assertIsInstance(panel.title_label, Label)
-        self.assertEqual(panel.title_label.text(), "Monitoring")
+        self.assertEqual(panel.title_label.text(), "Quick access")
         self.assertIsInstance(panel.close_button, CloseButton)
         self.assertIsInstance(panel.empty_state_label, Label)
-        self.assertIsInstance(panel.monitoring_list, QListWidget)
-        self.assertEqual(panel.monitoring_list.count(), 0)
+        self.assertFalse(panel.empty_state_label.isHidden())
         self.assertEqual(panel.accessibleName(), "Monitoring panel")
+
+    def test_panel_renders_add_account_row_and_footer_actions(self):
+        panel = FloatingMonitoringPanel()
+
+        self.assertEqual(panel.add_account_row.name_label.text(), "New account")
+        self.assertFalse(panel.add_account_row.avatar_label.pixmap().isNull())
+
+        for button in (
+            panel.audio_button,
+            panel.downloads_button,
+            panel.settings_button,
+        ):
+            self.assertIsInstance(button, QPushButton)
+            self.assertFalse(button.icon().isNull())
+
+        self.assertEqual(panel.audio_button.text(), "Audio")
+        self.assertEqual(panel.downloads_button.text(), "Downloads")
+        self.assertEqual(panel.settings_button.text(), "Settings")
+
+    def test_set_accounts_renders_rows_and_toggles_empty_state(self):
+        panel = FloatingMonitoringPanel()
+
+        panel.set_accounts(
+            [
+                FloatingAccountEntry("a1", "Rafael", unread_count=12),
+                FloatingAccountEntry("a2", "Trabalho", unread_count=0, active=True),
+            ]
+        )
+
+        self.assertTrue(panel.empty_state_label.isHidden())
+        self.assertEqual(len(panel._account_rows), 2)
+
+        first_row, second_row = panel._account_rows
+        self.assertEqual(first_row.account_id, "a1")
+        self.assertEqual(first_row.name_label.text(), "Rafael")
+        self.assertFalse(first_row.badge.isHidden())
+        self.assertEqual(first_row.badge.text(), "12")
+
+        self.assertEqual(second_row.account_id, "a2")
+        self.assertTrue(second_row.badge.isHidden())
+        self.assertEqual(second_row.property("active"), True)
+
+        panel.clear_accounts()
+        self.assertEqual(panel._account_rows, [])
+        self.assertFalse(panel.empty_state_label.isHidden())
+
+    def test_account_row_activation_emits_signal_without_switching(self):
+        panel = FloatingMonitoringPanel()
+        panel.set_accounts([FloatingAccountEntry("a1", "Rafael")])
+        activated = []
+        panel.account_activation_requested.connect(activated.append)
+
+        panel._account_rows[0].activated.emit()
+
+        self.assertEqual(activated, ["a1"])
+
+    def test_footer_and_add_account_only_emit_scaffolded_signals(self):
+        panel = FloatingMonitoringPanel()
+        signals = []
+        panel.add_account_requested.connect(lambda: signals.append("add"))
+        panel.audio_toggle_requested.connect(lambda: signals.append("audio"))
+        panel.downloads_requested.connect(lambda: signals.append("downloads"))
+        panel.settings_requested.connect(lambda: signals.append("settings"))
+
+        panel.add_account_row.activated.emit()
+        panel.audio_button.click()
+        panel.downloads_button.click()
+        panel.settings_button.click()
+
+        self.assertEqual(signals, ["add", "audio", "downloads", "settings"])
 
     def test_panel_is_hidden_by_default_and_never_auto_shows(self):
         panel = FloatingMonitoringPanel()
@@ -59,7 +131,7 @@ class FloatingMonitoringPanelUiTests(QtTestCase):
 
         self.assertFalse(panel.is_panel_visible())
         # The panel is "permanent": hiding it must not delete or reset it.
-        self.assertIsInstance(panel.monitoring_list, QListWidget)
+        self.assertIsInstance(panel.empty_state_label, Label)
 
     def test_visibility_changed_signal_reports_both_transitions(self):
         panel = FloatingMonitoringPanel()

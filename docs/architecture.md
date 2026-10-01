@@ -206,6 +206,18 @@ pode coexistir com o outro e não lê nem depende da visibilidade da
 `BrowserSidebar`. Nenhum dos dois está instanciado pelo `BrowserController` ou
 pelo `MainWindowController`; a integração funcional e o acoplamento a contas
 reais ficam para uma etapa seguinte.
+O `FloatingMonitoringPanel` renderiza uma lista de linhas de conta (avatar
+genérico via `UserIcon`, nome e emblema `SettingsBadge` de não lidas ocultado
+quando zero), uma linha "+ Nova conta", um `SettingsDivider` e um rodapé com
+botões Áudio/Downloads/Configurações usando ícones SVG existentes do
+`SystemIcon` (incluindo um novo ícone `download`). `set_accounts`/
+`clear_accounts` recebem apenas o scaffold `FloatingAccountEntry`
+(`account_id`, `name`, `unread_count`, `active`), desacoplado de
+`zapzap.features.accounts.domain.User`, e só atualizam as linhas renderizadas.
+Os sinais `account_activation_requested`, `add_account_requested`,
+`audio_toggle_requested`, `downloads_requested` e `settings_requested` apenas
+emitem; nenhum troca de conta, abre downloads, alterna áudio real ou navega
+até Configurações ainda.
 A página Aparência expõe uma seção "Quick Access" com dois interruptores
 independentes (`system/floating_monitoring_panel_enabled` e
 `system/integrated_account_selector_enabled`, ambos `False` por padrão) que

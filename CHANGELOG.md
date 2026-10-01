@@ -24,6 +24,17 @@ releases and the AppStream metadata.
   switches accounts, shows monitoring data, persists state, nor opens or
   closes automatically; that functional wiring is deferred to a later stage.
 
+- Reshaped `FloatingMonitoringPanel`'s internal layout to match the account
+  list, "+ New account" row, divider, and Audio/Downloads/Settings footer
+  described for the permanent panel, using existing SVG icons (including a
+  new `download` icon), `UserIcon` placeholder avatars, `SettingsBadge`
+  unread indicators, and `SettingsDivider`. Added a `FloatingAccountEntry`
+  scaffold dataclass and `set_accounts`/`clear_accounts` methods that only
+  render rows, plus `account_activation_requested`, `add_account_requested`,
+  `audio_toggle_requested`, `downloads_requested`, and `settings_requested`
+  signals that only emit; none of them read real account data, switch
+  accounts, or perform audio/download/settings actions yet.
+
 - Added a "Quick Access" section to Appearance settings with two independent
   switches, disabled by default, that only persist whether the
   `FloatingMonitoringPanel` and `IntegratedAccountSelector` scaffolds are
