@@ -208,20 +208,12 @@ class MainWindowController(MainWindowView):
         self._setup_theme_menu()
         self._connect_menu_actions()
         self._setup_plain_text_paste_shortcut()
-        self.btn_menubar_mute.clicked.connect(self.toggle_audio_muted)
-        self.btn_menubar_downloads.clicked.connect(
-            lambda: self.show_downloads_menu(
-                self.btn_menubar_downloads,
-                auto_close=False,
-            )
-        )
         self._setup_download_progress_badges()
         download_events.started.connect(self._on_direct_download_started)
         download_events.completed.connect(self._on_download_completed)
         download_events.progress_changed.connect(
             self._refresh_download_progress
         )
-        QTimer.singleShot(0, self.sync_menubar_downloads_button_size)
         QTimer.singleShot(0, self._refresh_download_progress)
         self.settings_menubar()
         self.refresh_theme_menu()
@@ -283,11 +275,11 @@ class MainWindowController(MainWindowView):
         ]
         icon = SystemIcon.get_icon(icon_name, icon_theme)
 
-        for button in (self.btn_menubar_mute, self.browser.btn_mute):
-            button.setIcon(icon)
-            button.setToolTip(label)
-            button.setAccessibleName(label)
-            button.setAccessibleDescription(label)
+        button = self.browser.btn_mute
+        button.setIcon(icon)
+        button.setToolTip(label)
+        button.setAccessibleName(label)
+        button.setAccessibleDescription(label)
 
     def load_settings(self):
         """Restaura as configurações salvas da janela e do sistema."""
@@ -370,21 +362,11 @@ class MainWindowController(MainWindowView):
             action.setChecked(theme_value == value)
             action.blockSignals(False)
 
-        icon_theme = SystemIcon.Type[
-            ThemeManager.get_current_color_scheme().name
-        ]
-        self.btn_menubar_downloads.setIcon(
-            SystemIcon.get_icon("update_available", icon_theme)
-        )
         self._refresh_mute_controls()
-        QTimer.singleShot(0, self.sync_menubar_downloads_button_size)
         QTimer.singleShot(0, self._refresh_download_progress)
 
     def _download_buttons(self):
-        return (
-            self.browser.btn_downloads,
-            self.btn_menubar_downloads,
-        )
+        return (self.browser.btn_downloads,)
 
     def _setup_download_progress_badges(self):
         for button in self._download_buttons():
@@ -513,7 +495,7 @@ class MainWindowController(MainWindowView):
 
         self._downloads_menu.popup_for(
             anchor,
-            below=anchor is self.btn_menubar_downloads,
+            below=anchor is self.menubar,
             activate=not auto_close,
         )
 
@@ -541,7 +523,7 @@ class MainWindowController(MainWindowView):
 
     def _downloads_anchor(self):
         return (
-            self.btn_menubar_downloads
+            self.menubar
             if self._appearance_settings.menubar_visible
             else self.browser.btn_downloads
         )

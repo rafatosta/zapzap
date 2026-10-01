@@ -87,7 +87,7 @@ class GlobalMuteTests(QtTestCase):
         self.addCleanup(window.deleteLater)
         return window
 
-    def test_both_buttons_toggle_one_persistent_state_and_all_accounts(self):
+    def test_sidebar_mute_toggles_one_persistent_state_and_all_accounts(self):
         window = self._window()
         browser = window.browser
         first = browser.webview_for_user_id("first")
@@ -96,31 +96,22 @@ class GlobalMuteTests(QtTestCase):
         self.assertFalse(SystemSettings().audio_muted)
         self.assertEqual(first.audio_states[-1], False)
         self.assertEqual(second.audio_states[-1], False)
-        self.assertFalse(window.btn_menubar_mute.icon().isNull())
+        self.assertIsNone(window.menubar.cornerWidget(Qt.Corner.TopRightCorner))
         self.assertFalse(browser.btn_mute.icon().isNull())
-        self.assertEqual(
-            window.btn_menubar_mute.iconSize(),
-            window.btn_menubar_downloads.iconSize(),
-        )
         self.assertEqual(
             browser.btn_mute.iconSize(),
             browser.btn_downloads.iconSize(),
-        )
-        self.assertLess(
-            window.menubar_corner_layout.indexOf(window.btn_menubar_mute),
-            window.menubar_corner_layout.indexOf(window.btn_menubar_downloads),
         )
         self.assertLess(
             browser.layout_2.indexOf(browser.btn_mute),
             browser.layout_2.indexOf(browser.btn_downloads),
         )
 
-        window.btn_menubar_mute.click()
+        browser.btn_mute.click()
 
         self.assertTrue(SystemSettings().audio_muted)
         self.assertEqual(first.audio_states[-1], True)
         self.assertEqual(second.audio_states[-1], True)
-        self.assertEqual(window.btn_menubar_mute.toolTip(), "Unmute")
         self.assertEqual(browser.btn_mute.toolTip(), "Unmute")
         self.sync_audio.assert_called_with(True)
 
@@ -129,7 +120,6 @@ class GlobalMuteTests(QtTestCase):
         self.assertFalse(SystemSettings().audio_muted)
         self.assertEqual(first.audio_states[-1], False)
         self.assertEqual(second.audio_states[-1], False)
-        self.assertEqual(window.btn_menubar_mute.toolTip(), "Mute")
         self.assertEqual(browser.btn_mute.toolTip(), "Mute")
         self.sync_audio.assert_called_with(False)
 

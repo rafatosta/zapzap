@@ -235,6 +235,9 @@ releases and the AppStream metadata.
 
 ### Changed
 
+- Removed the mute and downloads icon buttons from the window menu bar while
+  keeping mute in the browser sidebar and downloads accessible from the sidebar
+  and View menu.
 - Updated the testing guide to list all tests in the Ubuntu/Windows/macOS
   quality matrix and distinguish them from the Ubuntu structural checks.
 - Clarified that the installed Flatpak is the official Python, Qt and test
