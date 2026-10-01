@@ -27,6 +27,9 @@ class AppearanceSettingsController(AppearanceSettingsView):
     def _load_settings(self):
         self.browser_sidebar.setChecked(self.model.browser_sidebar_visible)
         self.mainwindow_menu.setChecked(self.model.menubar_visible)
+        self.resizable_chat_list.setChecked(
+            self.model.resizable_chat_list_enabled
+        )
         self.scaleComboBox.setCurrentText(f"{self.model.scale} %")
         self.tray_groupBox.checkbox.setChecked(self.model.tray_icon_enabled)
         self.notificationCounter.setChecked(
@@ -101,6 +104,9 @@ class AppearanceSettingsController(AppearanceSettingsView):
     def _connect_signals(self):
         self.browser_sidebar.clicked.connect(self._handle_sidebar)
         self.mainwindow_menu.clicked.connect(self._handle_menubar)
+        self.resizable_chat_list.toggled.connect(
+            self._handle_resizable_chat_list_enabled
+        )
         self.scaleComboBox.currentTextChanged.connect(self._handle_scale)
         self.tray_groupBox.checkbox.toggled.connect(self._handle_tray_enabled)
         self.notificationCounter.clicked.connect(
@@ -169,6 +175,11 @@ class AppearanceSettingsController(AppearanceSettingsView):
     def _handle_menubar(self):
         self.model.menubar_visible = self.mainwindow_menu.isChecked()
         QApplication.instance().getWindow().settings_menubar()
+
+    def _handle_resizable_chat_list_enabled(self, enabled):
+        self.model.resizable_chat_list_enabled = enabled
+        window = QApplication.instance().getWindow()
+        window.browser.set_resizable_chat_list_enabled(enabled)
 
     def _handle_scale(self, text):
         digits = "".join(filter(str.isdigit, text))

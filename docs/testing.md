@@ -98,7 +98,7 @@ documente o que ele protege.
 | `test_about_settings_ui.py` | identidade, links, detalhes técnicos, cópia, licença e créditos |
 | `test_account_data_removal.py` | remoção segura e idempotente de dados de perfis desativados |
 | `test_accounts_settings_ui.py` | card responsivo com ações diretas, remoção, estados/avisos e diálogo transacional sem moldura |
-| `test_appearance_settings_ui.py` | grupos, dependências, visibilidade da sidebar sem subopções, layout responsivo, persistência, opções subordinadas do painel flutuante, aplicação ao vivo e limitação de posicionamento Wayland, acessibilidade |
+| `test_appearance_settings_ui.py` | grupos, dependências, visibilidade da sidebar sem subopções, layout responsivo, persistência, opções subordinadas do painel flutuante, aplicação ao vivo e limitação de posicionamento Wayland, interruptor da lista de conversas redimensionável, acessibilidade |
 | `test_appimage_packaging.py` | coerência FFmpeg/Qt WebEngine, verificação de ABI, nome final fornecido ao quick-sharun e ausência de renomeação posterior do AppImage/zsync |
 | `test_browser_account_lifecycle.py` | registro estável, criação lazy de contas desativadas, isolamento/retentativa de perfil com erro, reativação, remoção, notificações e encerramento idempotente |
 | `test_browser_page_button_ui.py` | avatar sem número, grayscale de conta desativada, ponto de estado, card, temas, escala e clique |
@@ -138,6 +138,7 @@ documente o que ele protege.
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
 | `test_reporting.py` | sanitização, minimização, Markdown, fila/TTL e captura local de encerramentos inesperados |
 | `test_reporting_ui.py` | formulário em duas etapas, prévia canônica, edição, cancelamento, clipboard e abertura segura do GitHub |
+| `test_resizable_chat_list.py` | largura salva aplicada à coluna e à camada sobreposta, limites mínimos da lista e da conversa, alça na borda como separador focável com faixa de largura, setas, Home, End e Enter, duplo clique restaurando o padrão, desativação ao vivo sem script de recarga, reinstalação sem duplicar após recarga e encaminhamento às contas ativas |
 | `test_segmented_control.py` | seleção exclusiva, sinais, mouse, teclado, acessibilidade, tamanhos, raios e temas |
 | `test_send_message_to_number.py` | normalização/URL, lista de países, validação, acessibilidade e teclado do diálogo de conversa por número |
 | `test_settings_card.py` | divisores e grupos do card compartilhado em `ui.components` |
@@ -199,6 +200,7 @@ documente o que ele protege.
 - `test_quick_access_panels_ui.py`
 - `test_reporting.py`
 - `test_reporting_ui.py`
+- `test_resizable_chat_list.py`
 - `test_segmented_control.py`
 - `test_send_message_to_number.py`
 - `test_settings_card.py`

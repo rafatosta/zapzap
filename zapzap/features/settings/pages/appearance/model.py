@@ -155,6 +155,15 @@ class AppearanceSettingsModel:
     def integrated_account_selector_enabled(self, value: bool) -> None:
         self._settings.integrated_account_selector_enabled = value
 
+    @property
+    def resizable_chat_list_enabled(self) -> bool:
+        """Whether the WhatsApp Web chat list can be resized by dragging."""
+        return self._settings.resizable_chat_list_enabled
+
+    @resizable_chat_list_enabled.setter
+    def resizable_chat_list_enabled(self, value: bool) -> None:
+        self._settings.resizable_chat_list_enabled = value
+
     def available_csr_button_themes(self) -> list[str]:
         """Return available CSR button theme names."""
         return CSRButtonThemeProvider.available_theme_names()
