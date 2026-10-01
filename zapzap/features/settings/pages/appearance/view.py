@@ -19,7 +19,10 @@ class AppearanceSettingsView(SettingsPage):
     def __init__(self, parent=None):
         super().__init__(
             _("Appearance"),
-            _("Adjust interface chrome, theme, tray icon, grid view, and window decorations."),
+            _(
+                "Adjust interface chrome, quick access, theme, tray icon, "
+                "grid view, and window decorations."
+            ),
             parent,
         )
         self._setup_ui()
@@ -27,6 +30,7 @@ class AppearanceSettingsView(SettingsPage):
 
     def _setup_ui(self):
         self._setup_interface_section()
+        self._setup_quick_access_section()
         self._setup_theme_section()
         self._setup_tray_section()
         self._setup_grid_section()
@@ -58,6 +62,43 @@ class AppearanceSettingsView(SettingsPage):
         card.add_row(self.browser_sidebar_row)
         card.add_row(self.mainwindow_menu_row)
         card.add_row(self.scale_row)
+        section.add_card(card)
+        self.add_section(section)
+
+    def _setup_quick_access_section(self):
+        section = SettingsSection(
+            _("Quick Access"),
+            _(
+                "Control the floating monitoring panel and the account "
+                "selector integrated into WhatsApp Web. Both are "
+                "independent and can be shown at the same time."
+            ),
+        )
+        card = SettingsCard()
+        self.floating_monitoring_panel_row = SettingsSwitchRow(
+            _("Floating monitoring panel"),
+            _("Show a permanent floating panel for account monitoring."),
+        )
+        self.integrated_account_selector_row = SettingsSwitchRow(
+            _("Integrated account selector"),
+            _(
+                "Show a compact account selector integrated into "
+                "WhatsApp Web."
+            ),
+        )
+        self.floating_monitoring_panel_enabled = (
+            self.floating_monitoring_panel_row.checkbox
+        )
+        self.integrated_account_selector_enabled = (
+            self.integrated_account_selector_row.checkbox
+        )
+        for row in (
+            self.floating_monitoring_panel_row,
+            self.integrated_account_selector_row,
+        ):
+            self._configure_row_accessibility(row)
+        card.add_row(self.floating_monitoring_panel_row)
+        card.add_row(self.integrated_account_selector_row)
         section.add_card(card)
         self.add_section(section)
 

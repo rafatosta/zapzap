@@ -24,6 +24,14 @@ releases and the AppStream metadata.
   switches accounts, shows monitoring data, persists state, nor opens or
   closes automatically; that functional wiring is deferred to a later stage.
 
+- Added a "Quick Access" section to Appearance settings with two independent
+  switches, disabled by default, that only persist whether the
+  `FloatingMonitoringPanel` and `IntegratedAccountSelector` scaffolds are
+  enabled (`system/floating_monitoring_panel_enabled` and
+  `system/integrated_account_selector_enabled`). Neither switch wires the
+  preference to an actual panel instance yet, so toggling them has no visible
+  effect until the components are integrated in a later stage.
+
 - Added a tray-menu Accounts shortcut that restores ZapZap and opens the
   existing native account overview.
 

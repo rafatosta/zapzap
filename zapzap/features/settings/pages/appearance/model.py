@@ -137,6 +137,24 @@ class AppearanceSettingsModel:
     def csr_buttons_direction(self, value: str) -> None:
         self._settings.csr_buttons_direction = value
 
+    @property
+    def floating_monitoring_panel_enabled(self) -> bool:
+        """Whether the floating monitoring panel preference is enabled."""
+        return self._settings.floating_monitoring_panel_enabled
+
+    @floating_monitoring_panel_enabled.setter
+    def floating_monitoring_panel_enabled(self, value: bool) -> None:
+        self._settings.floating_monitoring_panel_enabled = value
+
+    @property
+    def integrated_account_selector_enabled(self) -> bool:
+        """Whether the integrated account selector preference is enabled."""
+        return self._settings.integrated_account_selector_enabled
+
+    @integrated_account_selector_enabled.setter
+    def integrated_account_selector_enabled(self, value: bool) -> None:
+        self._settings.integrated_account_selector_enabled = value
+
     def available_csr_button_themes(self) -> list[str]:
         """Return available CSR button theme names."""
         return CSRButtonThemeProvider.available_theme_names()

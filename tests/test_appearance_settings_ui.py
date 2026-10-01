@@ -25,6 +25,8 @@ class FakeAppearanceSettingsModel:
         tray_enabled=False,
         csr_enabled=False,
         scale=100,
+        floating_monitoring_panel_enabled=False,
+        integrated_account_selector_enabled=False,
     ):
         self.browser_sidebar_visible = True
         self.menubar_visible = True
@@ -39,6 +41,10 @@ class FakeAppearanceSettingsModel:
         self.csr_buttons_direction = "right"
         self.theme = "auto"
         self.tray_theme = "default"
+        self.floating_monitoring_panel_enabled = floating_monitoring_panel_enabled
+        self.integrated_account_selector_enabled = (
+            integrated_account_selector_enabled
+        )
 
     @staticmethod
     def available_csr_button_themes():
@@ -222,6 +228,62 @@ class AppearanceSettingsUiTests(QtTestCase):
         self.assertTrue(model.notification_counter_enabled)
         self.assertTrue(model.csr_show_minimize_button)
         self.assertFalse(model.csr_show_maximize_button)
+
+    def test_quick_access_section_has_two_independent_switches(self):
+        page = AppearanceSettingsView()
+
+        self.assertEqual(
+            page.floating_monitoring_panel_row.title_label.text(),
+            "Floating monitoring panel",
+        )
+        self.assertEqual(
+            page.integrated_account_selector_row.title_label.text(),
+            "Integrated account selector",
+        )
+        self.assertIsNot(
+            page.floating_monitoring_panel_enabled,
+            page.integrated_account_selector_enabled,
+        )
+        page.close()
+
+    def test_quick_access_switches_have_accessible_names(self):
+        page = AppearanceSettingsView()
+
+        for row in (
+            page.floating_monitoring_panel_row,
+            page.integrated_account_selector_row,
+        ):
+            self.assertEqual(
+                row.control.accessibleName(),
+                row.title_label.text(),
+            )
+            self.assertTrue(row.control.accessibleDescription())
+        page.close()
+
+    def test_persisted_quick_access_preferences_are_loaded(self):
+        page, _model = self._controller(
+            floating_monitoring_panel_enabled=True,
+            integrated_account_selector_enabled=True,
+        )
+
+        self.assertTrue(page.floating_monitoring_panel_enabled.isChecked())
+        self.assertTrue(page.integrated_account_selector_enabled.isChecked())
+        page.close()
+
+    def test_toggling_quick_access_switches_saves_independent_preferences(self):
+        page, model = self._controller()
+
+        page.floating_monitoring_panel_enabled.click()
+
+        self.assertTrue(model.floating_monitoring_panel_enabled)
+        self.assertFalse(model.integrated_account_selector_enabled)
+        self.assertFalse(page.integrated_account_selector_enabled.isChecked())
+
+        page.integrated_account_selector_enabled.click()
+
+        self.assertTrue(model.floating_monitoring_panel_enabled)
+        self.assertTrue(model.integrated_account_selector_enabled)
+        page.close()
 
     def test_child_controls_have_accessible_names(self):
         page = AppearanceSettingsView()

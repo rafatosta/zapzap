@@ -32,6 +32,14 @@ class AppearanceSettings(BaseSettings):
     _THEME = ("system/theme", ThemeManager.Type.Auto.value)
     _TRAY_THEME = ("system/tray_theme", TrayIcon.Type.Default.value)
     _GRID_COLUMNS = ("system/grid_cols", 2)
+    _FLOATING_MONITORING_PANEL_ENABLED = (
+        "system/floating_monitoring_panel_enabled",
+        False,
+    )
+    _INTEGRATED_ACCOUNT_SELECTOR_ENABLED = (
+        "system/integrated_account_selector_enabled",
+        False,
+    )
 
     @property
     def browser_sidebar_visible(self) -> bool:
@@ -175,3 +183,21 @@ class AppearanceSettings(BaseSettings):
     def csr_buttons_direction(self, value: str) -> None:
         direction = "left" if value.strip().lower() == "left" else "right"
         self._set_str(self._CSR_BUTTONS_DIRECTION, direction)
+
+    @property
+    def floating_monitoring_panel_enabled(self) -> bool:
+        """Whether the floating monitoring panel preference is enabled."""
+        return self._get_bool(self._FLOATING_MONITORING_PANEL_ENABLED)
+
+    @floating_monitoring_panel_enabled.setter
+    def floating_monitoring_panel_enabled(self, value: bool) -> None:
+        self._set_bool(self._FLOATING_MONITORING_PANEL_ENABLED, value)
+
+    @property
+    def integrated_account_selector_enabled(self) -> bool:
+        """Whether the integrated account selector preference is enabled."""
+        return self._get_bool(self._INTEGRATED_ACCOUNT_SELECTOR_ENABLED)
+
+    @integrated_account_selector_enabled.setter
+    def integrated_account_selector_enabled(self, value: bool) -> None:
+        self._set_bool(self._INTEGRATED_ACCOUNT_SELECTOR_ENABLED, value)

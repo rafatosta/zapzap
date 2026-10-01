@@ -206,6 +206,11 @@ pode coexistir com o outro e não lê nem depende da visibilidade da
 `BrowserSidebar`. Nenhum dos dois está instanciado pelo `BrowserController` ou
 pelo `MainWindowController`; a integração funcional e o acoplamento a contas
 reais ficam para uma etapa seguinte.
+A página Aparência expõe uma seção "Quick Access" com dois interruptores
+independentes (`system/floating_monitoring_panel_enabled` e
+`system/integrated_account_selector_enabled`, ambos `False` por padrão) que
+apenas persistem a preferência do usuário; como nenhum dos dois componentes é
+instanciado ainda, alternar os interruptores não produz efeito visível.
 O botão de atualização não possui tooltip nativo, pois ele competiria
 visualmente com o popover; nome e descrição acessíveis continuam informando a
 atualização.

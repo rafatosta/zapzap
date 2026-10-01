@@ -33,6 +33,13 @@ class AppearanceSettingsController(AppearanceSettingsView):
             self.model.notification_counter_enabled)
         self.gridColsComboBox.setCurrentText(str(self.model.grid_columns))
 
+        self.floating_monitoring_panel_enabled.setChecked(
+            self.model.floating_monitoring_panel_enabled
+        )
+        self.integrated_account_selector_enabled.setChecked(
+            self.model.integrated_account_selector_enabled
+        )
+
         self.csr_groupBox.checkbox.setChecked(self.model.csr_enabled)
         self._load_csr_button_themes()
         self.csr_show_minimize_checkBox.setChecked(
@@ -94,6 +101,12 @@ class AppearanceSettingsController(AppearanceSettingsView):
             self._handle_notification_counter)
         self.gridColsComboBox.currentTextChanged.connect(
             self._handle_grid_cols)
+        self.floating_monitoring_panel_enabled.toggled.connect(
+            self._handle_floating_monitoring_panel_enabled
+        )
+        self.integrated_account_selector_enabled.toggled.connect(
+            self._handle_integrated_account_selector_enabled
+        )
         self.tray_default_radioButton.toggled.connect(self._handle_tray_mode)
         self.tray_slight_radioButton.toggled.connect(self._handle_tray_mode)
         self.tray_sdark_radioButton.toggled.connect(self._handle_tray_mode)
@@ -153,6 +166,12 @@ class AppearanceSettingsController(AppearanceSettingsView):
     def _handle_grid_cols(self, text):
         if text:
             self.model.grid_columns = int(text)
+
+    def _handle_floating_monitoring_panel_enabled(self, enabled):
+        self.model.floating_monitoring_panel_enabled = enabled
+
+    def _handle_integrated_account_selector_enabled(self, enabled):
+        self.model.integrated_account_selector_enabled = enabled
 
     def _handle_tray_mode(self):
         selected_tray_mode = self._get_selected_radio(
