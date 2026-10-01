@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-01 13:56-0300\n"
+"POT-Creation-Date: 2026-10-01 19:31-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Turkish\n"
@@ -16,18 +16,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: zapzap/app/window_lifecycle.py:89
-msgid "Close ZapZap"
-msgstr "ZapZapi kapat"
-
-#: zapzap/app/window_lifecycle.py:90
-msgid "Are you sure you want to close?"
-msgstr "Kapatmak istediğinizden emin misiniz?"
-
-#: zapzap/app/window_lifecycle.py:91
-msgid "Don't ask again"
-msgstr "Bir daha sorma"
 
 #: zapzap/app/main_window_controller.py:282
 #: zapzap/features/tray/sys_tray_manager.py:68
@@ -49,10 +37,22 @@ msgstr "Sessize al"
 #: zapzap/app/main_window_controller.py:534
 #: zapzap/features/browser/shell/browser_controller.py:570
 #: zapzap/features/browser/shell/browser_controller.py:644
-#: zapzap/features/browser/shell/browser_controller.py:908
+#: zapzap/features/browser/shell/browser_controller.py:915
 #, python-brace-format
 msgid "Account {}"
 msgstr "Hesap {}"
+
+#: zapzap/app/window_lifecycle.py:89
+msgid "Close ZapZap"
+msgstr "ZapZapi kapat"
+
+#: zapzap/app/window_lifecycle.py:90
+msgid "Are you sure you want to close?"
+msgstr "Kapatmak istediğinizden emin misiniz?"
+
+#: zapzap/app/window_lifecycle.py:91
+msgid "Don't ask again"
+msgstr "Bir daha sorma"
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:27
 msgid "Unexpected Error"
@@ -538,7 +538,7 @@ msgstr "Temel bilgiler"
 #: zapzap/features/settings/shell/settings_controller.py:134
 #: zapzap/features/settings/pages/notifications/view.py:19
 #: zapzap/features/settings/pages/notifications/view.py:33
-#: zapzap/features/browser/web/web_view.py:253
+#: zapzap/features/browser/web/web_view.py:255
 msgid "Notifications"
 msgstr "Bildirimler"
 
@@ -604,28 +604,28 @@ msgid "The interface language is applied when you finish setup."
 msgstr "Arayüz dili, kurulum tamamlandığında uygulanır."
 
 #: zapzap/features/initial_setup/view.py:159
-#: zapzap/features/settings/pages/appearance/view.py:159
+#: zapzap/features/settings/pages/appearance/view.py:169
 msgid "Theme"
 msgstr "Tema"
 
 #: zapzap/features/initial_setup/view.py:160
-#: zapzap/features/settings/pages/appearance/view.py:159
+#: zapzap/features/settings/pages/appearance/view.py:169
 msgid "Choose the visual theme."
 msgstr "Görsel temayı seçin."
 
 #: zapzap/features/initial_setup/view.py:164
-#: zapzap/features/settings/pages/appearance/view.py:161
+#: zapzap/features/settings/pages/appearance/view.py:171
 #: zapzap/features/settings/pages/system_startup/view.py:140
 msgid "Automatic"
 msgstr "Otomatik"
 
 #: zapzap/features/initial_setup/view.py:165
-#: zapzap/features/settings/pages/appearance/view.py:162
+#: zapzap/features/settings/pages/appearance/view.py:172
 msgid "Light"
 msgstr "Açık"
 
 #: zapzap/features/initial_setup/view.py:166
-#: zapzap/features/settings/pages/appearance/view.py:163
+#: zapzap/features/settings/pages/appearance/view.py:173
 msgid "Dark"
 msgstr "Koyu"
 
@@ -717,7 +717,7 @@ msgstr ""
 "başlayıp başlamayacağını seçin."
 
 #: zapzap/features/initial_setup/view.py:247
-#: zapzap/features/settings/pages/appearance/view.py:176
+#: zapzap/features/settings/pages/appearance/view.py:186
 msgid "Tray icon"
 msgstr "Tepsi simgesi"
 
@@ -828,9 +828,9 @@ msgstr ""
 #: zapzap/features/downloads/ui/downloads_menu.py:1025
 #: zapzap/ui/components/browser_sidebar.py:219
 #: zapzap/ui/components/browser_sidebar.py:220
-#: zapzap/ui/components/main_window.py:164
 #: zapzap/ui/components/floating_monitoring_panel.py:293
 #: zapzap/ui/components/floating_monitoring_panel.py:294
+#: zapzap/ui/components/main_window.py:164
 msgid "Downloads"
 msgstr "İndirilenler"
 
@@ -985,7 +985,7 @@ msgstr "Terminalinizde bu komutu seçin ve kopyalayın"
 #: zapzap/features/settings/pages/debugging/controller.py:131
 #: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:425
+#: zapzap/features/browser/web/web_view.py:485
 msgid "Copy"
 msgstr "Kopyala"
 
@@ -1099,7 +1099,7 @@ msgid "Other"
 msgstr "Diğer"
 
 #: zapzap/features/reporting/dialogs.py:38
-#: zapzap/features/settings/pages/appearance/view.py:108
+#: zapzap/features/settings/pages/appearance/view.py:118
 msgid "Always"
 msgstr "Her zaman"
 
@@ -1393,9 +1393,9 @@ msgstr "Profil ve durum"
 #: zapzap/features/settings/shell/settings_controller.py:234
 #: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/downloads/ui/downloads_menu.py:1081
-#: zapzap/ui/components/main_window.py:149
 #: zapzap/ui/components/floating_monitoring_panel.py:295
 #: zapzap/ui/components/floating_monitoring_panel.py:296
+#: zapzap/ui/components/main_window.py:149
 msgid "Settings"
 msgstr "Ayarlar"
 
@@ -1504,7 +1504,7 @@ msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
 #: zapzap/features/tray/sys_tray_manager.py:64
-#: zapzap/features/settings/pages/appearance/view.py:133
+#: zapzap/features/settings/pages/appearance/view.py:143
 msgid "Show"
 msgstr "Göster"
 
@@ -1515,7 +1515,7 @@ msgid "Accounts"
 msgstr "Hesaplar"
 
 #: zapzap/features/tray/sys_tray_manager.py:66
-#: zapzap/features/settings/pages/appearance/view.py:131
+#: zapzap/features/settings/pages/appearance/view.py:141
 #: zapzap/ui/components/main_window.py:163
 msgid "Show monitoring panel"
 msgstr "İzleme panelini göster"
@@ -2183,8 +2183,8 @@ msgstr "Kaydet ve yeniden yükle"
 msgid "Reload page"
 msgstr "Sayfayı yeniden yükle"
 
-#: zapzap/features/settings/pages/appearance/controller.py:85
-#: zapzap/features/settings/pages/appearance/view.py:190
+#: zapzap/features/settings/pages/appearance/controller.py:88
+#: zapzap/features/settings/pages/appearance/view.py:200
 #: zapzap/features/settings/pages/performance_experimental/view.py:65
 #: zapzap/ui/components/edit_account_dialog.py:280
 #: zapzap/ui/components/edit_account_dialog.py:429
@@ -2192,19 +2192,19 @@ msgstr "Sayfayı yeniden yükle"
 msgid "Default"
 msgstr "Varsayılan"
 
-#: zapzap/features/settings/pages/appearance/controller.py:86
+#: zapzap/features/settings/pages/appearance/controller.py:89
 msgid "Adwaita"
 msgstr "Adwaita"
 
-#: zapzap/features/settings/pages/appearance/controller.py:87
+#: zapzap/features/settings/pages/appearance/controller.py:90
 msgid "Plasma"
 msgstr "Plazma"
 
-#: zapzap/features/settings/pages/appearance/controller.py:88
+#: zapzap/features/settings/pages/appearance/controller.py:91
 msgid "iOS"
 msgstr "iOS"
 
-#: zapzap/features/settings/pages/appearance/controller.py:89
+#: zapzap/features/settings/pages/appearance/controller.py:92
 msgid "Windows"
 msgstr "Pencereler"
 
@@ -2241,19 +2241,31 @@ msgid "Show the main window menu bar."
 msgstr "Ana pencere menü çubuğunu göster."
 
 #: zapzap/features/settings/pages/appearance/view.py:57
+msgid "Resizable chat list"
+msgstr "Yeniden boyutlandırılabilir sohbet listesi"
+
+#: zapzap/features/settings/pages/appearance/view.py:59
+msgid ""
+"Drag the edge of the WhatsApp Web chat list to change its width. Double-"
+"click the edge to restore the default width."
+msgstr ""
+"Genişliğini değiştirmek için WhatsApp Web sohbet listesinin kenarını "
+"sürükleyin. Varsayılan genişliğe dönmek için kenara çift tıklayın."
+
+#: zapzap/features/settings/pages/appearance/view.py:65
 msgid "Interface scale"
 msgstr "Arayüz ölçeği"
 
-#: zapzap/features/settings/pages/appearance/view.py:58
+#: zapzap/features/settings/pages/appearance/view.py:66
 msgid "Scale the interface for high-DPI or accessibility needs."
 msgstr ""
 "Yüksek DPI veya erişilebilirlik gereksinimleri için arayüzü ölçeklendir."
 
-#: zapzap/features/settings/pages/appearance/view.py:72
+#: zapzap/features/settings/pages/appearance/view.py:82
 msgid "Quick Access"
 msgstr "Hızlı Erişim"
 
-#: zapzap/features/settings/pages/appearance/view.py:74
+#: zapzap/features/settings/pages/appearance/view.py:84
 msgid ""
 "Control the floating monitoring panel and the account selector integrated "
 "into WhatsApp Web. Both are independent and can be shown at the same time."
@@ -2261,188 +2273,188 @@ msgstr ""
 "Kayan izleme panelini ve WhatsApp Web'e entegre hesap seçicisini yönetin. "
 "İkisi birbirinden bağımsızdır ve aynı anda görünür olabilir."
 
-#: zapzap/features/settings/pages/appearance/view.py:81
+#: zapzap/features/settings/pages/appearance/view.py:91
 msgid "Floating monitoring panel"
 msgstr "Kayan izleme paneli"
 
-#: zapzap/features/settings/pages/appearance/view.py:82
+#: zapzap/features/settings/pages/appearance/view.py:92
 msgid ""
 "Monitor accounts in a separate window. Closing it only hides it temporarily."
 msgstr ""
 "Hesapları ayrı bir pencerede izleyin. Kapatmak paneli yalnızca geçici olarak "
 "gizler."
 
-#: zapzap/features/settings/pages/appearance/view.py:85
+#: zapzap/features/settings/pages/appearance/view.py:95
 msgid "Integrated account selector"
 msgstr "Entegre hesap seçici"
 
-#: zapzap/features/settings/pages/appearance/view.py:87
+#: zapzap/features/settings/pages/appearance/view.py:97
 msgid "Show a compact account selector integrated into WhatsApp Web."
 msgstr "WhatsApp Web'e entegre kompakt bir hesap seçici göster."
 
-#: zapzap/features/settings/pages/appearance/view.py:103
+#: zapzap/features/settings/pages/appearance/view.py:113
 msgid "Show panel"
 msgstr "Paneli göster"
 
-#: zapzap/features/settings/pages/appearance/view.py:104
+#: zapzap/features/settings/pages/appearance/view.py:114
 msgid "Choose when the panel appears automatically."
 msgstr "Panelin ne zaman otomatik olarak görüneceğini seçin."
 
-#: zapzap/features/settings/pages/appearance/view.py:109
+#: zapzap/features/settings/pages/appearance/view.py:119
 msgid "When the main window is hidden"
 msgstr "Ana pencere gizliyken"
 
-#: zapzap/features/settings/pages/appearance/view.py:110
+#: zapzap/features/settings/pages/appearance/view.py:120
 msgid "On demand"
 msgstr "İsteğe bağlı"
 
-#: zapzap/features/settings/pages/appearance/view.py:114
+#: zapzap/features/settings/pages/appearance/view.py:124
 msgid "Keep above other windows"
 msgstr "Diğer pencerelerin üzerinde tut"
 
-#: zapzap/features/settings/pages/appearance/view.py:115
+#: zapzap/features/settings/pages/appearance/view.py:125
 msgid "Keep the panel visible while working in other applications."
 msgstr "Diğer uygulamalarda çalışırken paneli görünür tutun."
 
-#: zapzap/features/settings/pages/appearance/view.py:119
+#: zapzap/features/settings/pages/appearance/view.py:129
 msgid "Restore the panel position the next time ZapZap starts."
 msgstr "ZapZap bir sonraki başlatıldığında panelin konumunu geri yükleyin."
 
-#: zapzap/features/settings/pages/appearance/view.py:120
-#: zapzap/features/settings/pages/appearance/view.py:128
+#: zapzap/features/settings/pages/appearance/view.py:130
+#: zapzap/features/settings/pages/appearance/view.py:138
 msgid "Your Wayland desktop controls window placement."
 msgstr "Wayland masaüstünüz pencere yerleşimini yönetir."
 
-#: zapzap/features/settings/pages/appearance/view.py:123
+#: zapzap/features/settings/pages/appearance/view.py:133
 msgid "Remember position"
 msgstr "Konumu hatırla"
 
-#: zapzap/features/settings/pages/appearance/view.py:126
+#: zapzap/features/settings/pages/appearance/view.py:136
 msgid "Lock position"
 msgstr "Konumu kilitle"
 
-#: zapzap/features/settings/pages/appearance/view.py:127
+#: zapzap/features/settings/pages/appearance/view.py:137
 msgid "Prevent dragging. Unlock directly in the panel to move it again."
 msgstr ""
 "Sürüklemeyi engelleyin. Yeniden taşımak için doğrudan panelden kilidi açın."
 
-#: zapzap/features/settings/pages/appearance/view.py:132
+#: zapzap/features/settings/pages/appearance/view.py:142
 msgid "Reopen the panel without changing its display mode."
 msgstr "Görüntüleme modunu değiştirmeden paneli yeniden açın."
 
-#: zapzap/features/settings/pages/appearance/view.py:136
+#: zapzap/features/settings/pages/appearance/view.py:146
 msgid "Reset panel position"
 msgstr "Panel konumunu sıfırla"
 
-#: zapzap/features/settings/pages/appearance/view.py:137
+#: zapzap/features/settings/pages/appearance/view.py:147
 msgid "Bring the panel back into the available screen area."
 msgstr "Paneli kullanılabilir ekran alanına geri getirin."
 
-#: zapzap/features/settings/pages/appearance/view.py:138
+#: zapzap/features/settings/pages/appearance/view.py:148
 #: zapzap/features/settings/pages/language_downloads/view.py:114
 msgid "Reset"
 msgstr "Sıfırla"
 
-#: zapzap/features/settings/pages/appearance/view.py:177
+#: zapzap/features/settings/pages/appearance/view.py:187
 msgid "Control tray icon visibility, style, and unread counter."
 msgstr ""
 "Simge tepsisindeki simge görünürlüğünü, stilini ve okunmamış sayacını "
 "kontrol edin."
 
-#: zapzap/features/settings/pages/appearance/view.py:181
+#: zapzap/features/settings/pages/appearance/view.py:191
 msgid "Show tray icon"
 msgstr "Tepsi simgesini göster"
 
-#: zapzap/features/settings/pages/appearance/view.py:182
+#: zapzap/features/settings/pages/appearance/view.py:192
 msgid "Display ZapZap in the system notification area."
 msgstr "Sistemdeki bildirim alanında ZapZap görüntüle."
 
-#: zapzap/features/settings/pages/appearance/view.py:185
+#: zapzap/features/settings/pages/appearance/view.py:195
 msgid "Unread counter"
 msgstr "Okunmamış sayacı"
 
-#: zapzap/features/settings/pages/appearance/view.py:186
+#: zapzap/features/settings/pages/appearance/view.py:196
 msgid "Show the number of unread messages."
 msgstr "Okunmamış mesaj sayısını göster."
 
-#: zapzap/features/settings/pages/appearance/view.py:189
+#: zapzap/features/settings/pages/appearance/view.py:199
 msgid "Icon style"
 msgstr "Simge stili"
 
-#: zapzap/features/settings/pages/appearance/view.py:191
+#: zapzap/features/settings/pages/appearance/view.py:201
 msgid "Symbolic light"
 msgstr "Sembolik açık"
 
-#: zapzap/features/settings/pages/appearance/view.py:192
+#: zapzap/features/settings/pages/appearance/view.py:202
 msgid "Symbolic dark"
 msgstr "Sembolik koyu"
 
-#: zapzap/features/settings/pages/appearance/view.py:213
+#: zapzap/features/settings/pages/appearance/view.py:223
 #: zapzap/features/browser/shell/browser_controller.py:181
 msgid "Grid view"
 msgstr "Kılavuz görünümü"
 
-#: zapzap/features/settings/pages/appearance/view.py:214
+#: zapzap/features/settings/pages/appearance/view.py:224
 msgid "Choose how many columns are used by grid view."
 msgstr "Grid görünümünde kullanılacak sütun sayısını seçin."
 
-#: zapzap/features/settings/pages/appearance/view.py:218
+#: zapzap/features/settings/pages/appearance/view.py:228
 msgid "Grid columns"
 msgstr "Kılavuz sütunları"
 
-#: zapzap/features/settings/pages/appearance/view.py:219
+#: zapzap/features/settings/pages/appearance/view.py:229
 msgid "Number of account columns in grid view."
 msgstr "Grid görünümünde hesap sütunlarının sayısı."
 
-#: zapzap/features/settings/pages/appearance/view.py:229
+#: zapzap/features/settings/pages/appearance/view.py:239
 msgid "Window decoration"
 msgstr "Pencere dekorasyonu"
 
-#: zapzap/features/settings/pages/appearance/view.py:230
+#: zapzap/features/settings/pages/appearance/view.py:240
 msgid "Customize the window controls drawn by ZapZap."
 msgstr "ZapZap tarafından çizilen pencere kontrollerini özelleştirin."
 
-#: zapzap/features/settings/pages/appearance/view.py:234
+#: zapzap/features/settings/pages/appearance/view.py:244
 msgid "Use custom decoration"
 msgstr "Özel süslemeyi kullan"
 
-#: zapzap/features/settings/pages/appearance/view.py:235
+#: zapzap/features/settings/pages/appearance/view.py:245
 msgid "Use window controls drawn by ZapZap."
 msgstr "ZapZap tarafından çizilen pencere kontrollerini kullanın."
 
-#: zapzap/features/settings/pages/appearance/view.py:238
+#: zapzap/features/settings/pages/appearance/view.py:248
 msgid "Button style"
 msgstr "Düğme stili"
 
-#: zapzap/features/settings/pages/appearance/view.py:239
+#: zapzap/features/settings/pages/appearance/view.py:249
 msgid "Visual style used by custom window buttons."
 msgstr "Özel pencere düğmeleri tarafından kullanılan görsel stil."
 
-#: zapzap/features/settings/pages/appearance/view.py:243
+#: zapzap/features/settings/pages/appearance/view.py:253
 msgid "Minimize"
 msgstr "Minimize et"
 
-#: zapzap/features/settings/pages/appearance/view.py:244
+#: zapzap/features/settings/pages/appearance/view.py:254
 msgid "Maximize"
 msgstr "Maksimize"
 
-#: zapzap/features/settings/pages/appearance/view.py:248
+#: zapzap/features/settings/pages/appearance/view.py:258
 msgid "Visible buttons"
 msgstr "Görünür düğmeler"
 
-#: zapzap/features/settings/pages/appearance/view.py:253
+#: zapzap/features/settings/pages/appearance/view.py:263
 msgid "Button position"
 msgstr "Düğme konumu"
 
-#: zapzap/features/settings/pages/appearance/view.py:254
+#: zapzap/features/settings/pages/appearance/view.py:264
 msgid "Place window buttons on the right or left."
 msgstr "Pencere düğmelerini sağa veya sola yerleştir."
 
-#: zapzap/features/settings/pages/appearance/view.py:259
+#: zapzap/features/settings/pages/appearance/view.py:269
 msgid "Right"
 msgstr "Sağ"
 
-#: zapzap/features/settings/pages/appearance/view.py:260
+#: zapzap/features/settings/pages/appearance/view.py:270
 msgid "Left"
 msgstr "Sol"
 
@@ -4012,6 +4024,92 @@ msgstr "Etkinleştir"
 msgid "Not now"
 msgstr "Şimdi değil"
 
+#: zapzap/features/browser/web/popup_window.py:60
+msgid "Manual close unavailable"
+msgstr "Elle kapatma kullanılamıyor"
+
+#: zapzap/features/browser/web/popup_window.py:62
+msgid ""
+"To prevent the application from becoming unresponsive, this window cannot be "
+"closed manually. Use WhatsApp's End call button. The window will close when "
+"WhatsApp requests it."
+msgstr ""
+"Uygulamanın yanıt vermemesini önlemek için bu pencere elle kapatılamaz. "
+"WhatsApp'ın Aramayı bitir düğmesini kullanın. WhatsApp istediğinde pencere "
+"kapanacaktır."
+
+#: zapzap/features/browser/web/web_view.py:254
+#: zapzap/ui/components/integrated_account_selector.py:57
+msgid "Account selector"
+msgstr "Hesap seçici"
+
+#: zapzap/features/browser/web/web_view.py:404
+msgid "Chat list width"
+msgstr "Sohbet listesi genişliği"
+
+#: zapzap/features/browser/web/web_view.py:406
+msgid ""
+"Drag or use the arrow keys to resize. Double-click or press Enter to restore "
+"the default width."
+msgstr ""
+"Yeniden boyutlandırmak için sürükleyin veya ok tuşlarını kullanın. "
+"Varsayılan genişliğe dönmek için çift tıklayın ya da Enter tuşuna basın."
+
+#: zapzap/features/browser/web/web_view.py:484
+msgid "Undo"
+msgstr "Geri al"
+
+#: zapzap/features/browser/web/web_view.py:484
+msgid "Redo"
+msgstr "Yinele"
+
+#: zapzap/features/browser/web/web_view.py:484
+msgid "Cut"
+msgstr "Kes"
+
+#: zapzap/features/browser/web/web_view.py:485
+msgid "Paste"
+msgstr "Yapıştır"
+
+#: zapzap/features/browser/web/web_view.py:485
+msgid "Select all"
+msgstr "Tümünü seç"
+
+#: zapzap/features/browser/web/web_view.py:486
+msgid "Save image"
+msgstr "Resmi kaydet"
+
+#: zapzap/features/browser/web/web_view.py:486
+msgid "Copy image"
+msgstr "Resmi kopyala"
+
+#: zapzap/features/browser/web/web_view.py:487
+#: zapzap/features/browser/web/web_view.py:517
+msgid "Copy link address"
+msgstr "Bağlantı adresini kopyala"
+
+#: zapzap/features/browser/web/web_view.py:535
+msgid "Check Spelling"
+msgstr "Yazım denetimi yap"
+
+#: zapzap/features/browser/web/web_view.py:541
+msgid "Languages…"
+msgstr "Diller…"
+
+#: zapzap/features/browser/web/web_view.py:544
+msgid "Choose the languages used by the spell checker."
+msgstr "Yazım denetleyicinin kullanacağı dilleri seçin."
+
+#: zapzap/features/browser/web/web_view.py:970
+#: zapzap/ui/components/card_user.py:304
+msgid "Account"
+msgstr "Hesap"
+
+#: zapzap/features/browser/web/web_view.py:972
+#, python-brace-format
+msgid "DevTools - {}"
+msgstr "Geliştirici Araçları - {}"
+
 #: zapzap/features/browser/web/page_controller.py:308
 msgid "your microphone"
 msgstr "mikrofonunuz"
@@ -4058,80 +4156,6 @@ msgstr ""
 "WhatsApp Web {} erişim talebinde bulunuyor.\n"
 "\n"
 "İzin verilsin mi?"
-
-#: zapzap/features/browser/web/popup_window.py:60
-msgid "Manual close unavailable"
-msgstr "Elle kapatma kullanılamıyor"
-
-#: zapzap/features/browser/web/popup_window.py:62
-msgid ""
-"To prevent the application from becoming unresponsive, this window cannot be "
-"closed manually. Use WhatsApp's End call button. The window will close when "
-"WhatsApp requests it."
-msgstr ""
-"Uygulamanın yanıt vermemesini önlemek için bu pencere elle kapatılamaz. "
-"WhatsApp'ın Aramayı bitir düğmesini kullanın. WhatsApp istediğinde pencere "
-"kapanacaktır."
-
-#: zapzap/features/browser/web/web_view.py:252
-#: zapzap/ui/components/integrated_account_selector.py:57
-msgid "Account selector"
-msgstr "Hesap seçici"
-
-#: zapzap/features/browser/web/web_view.py:424
-msgid "Undo"
-msgstr "Geri al"
-
-#: zapzap/features/browser/web/web_view.py:424
-msgid "Redo"
-msgstr "Yinele"
-
-#: zapzap/features/browser/web/web_view.py:424
-msgid "Cut"
-msgstr "Kes"
-
-#: zapzap/features/browser/web/web_view.py:425
-msgid "Paste"
-msgstr "Yapıştır"
-
-#: zapzap/features/browser/web/web_view.py:425
-msgid "Select all"
-msgstr "Tümünü seç"
-
-#: zapzap/features/browser/web/web_view.py:426
-msgid "Save image"
-msgstr "Resmi kaydet"
-
-#: zapzap/features/browser/web/web_view.py:426
-msgid "Copy image"
-msgstr "Resmi kopyala"
-
-#: zapzap/features/browser/web/web_view.py:427
-#: zapzap/features/browser/web/web_view.py:457
-msgid "Copy link address"
-msgstr "Bağlantı adresini kopyala"
-
-#: zapzap/features/browser/web/web_view.py:475
-msgid "Check Spelling"
-msgstr "Yazım denetimi yap"
-
-#: zapzap/features/browser/web/web_view.py:481
-msgid "Languages…"
-msgstr "Diller…"
-
-#: zapzap/features/browser/web/web_view.py:484
-msgid "Choose the languages used by the spell checker."
-msgstr "Yazım denetleyicinin kullanacağı dilleri seçin."
-
-#: zapzap/features/browser/web/web_view.py:910
-#: zapzap/ui/components/card_user.py:304
-msgid "Account"
-msgstr "Hesap"
-
-#: zapzap/features/browser/web/web_view.py:912
-#, python-brace-format
-msgid "DevTools - {}"
-msgstr "Geliştirici Araçları - {}"
 
 #: zapzap/features/accounts/domain/profile_sync.py:49
 msgid "WhatsApp Web is unavailable."
@@ -4661,6 +4685,29 @@ msgstr "Bunları atmak, düzenleme öncesindeki değerleri geri yükler."
 msgid "Keep editing"
 msgstr "Düzenlemeye devam et"
 
+#: zapzap/ui/components/floating_monitoring_panel.py:283
+#: zapzap/ui/components/floating_monitoring_panel.py:285
+msgid "Quick access"
+msgstr "Hızlı erişim"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:284
+msgid "No account activity to show yet."
+msgstr "Henüz gösterilecek hesap etkinliği yok."
+
+#: zapzap/ui/components/floating_monitoring_panel.py:286
+msgid "Monitoring panel"
+msgstr "İzleme paneli"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:287
+#: zapzap/ui/components/floating_monitoring_panel.py:288
+msgid "Unlock position"
+msgstr "Konum kilidini aç"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:291
+#: zapzap/ui/components/floating_monitoring_panel.py:292
+msgid "Audio"
+msgstr "Ses"
+
 #: zapzap/ui/components/main_window.py:140
 msgid "File"
 msgstr "Dosya"
@@ -5012,29 +5059,6 @@ msgstr "Yayın tarihi: {date}"
 #, python-brace-format
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr "ZapZap {latest} kullanılabilir. Mevcut sürüm: {current}."
-
-#: zapzap/ui/components/floating_monitoring_panel.py:283
-#: zapzap/ui/components/floating_monitoring_panel.py:285
-msgid "Quick access"
-msgstr "Hızlı erişim"
-
-#: zapzap/ui/components/floating_monitoring_panel.py:284
-msgid "No account activity to show yet."
-msgstr "Henüz gösterilecek hesap etkinliği yok."
-
-#: zapzap/ui/components/floating_monitoring_panel.py:286
-msgid "Monitoring panel"
-msgstr "İzleme paneli"
-
-#: zapzap/ui/components/floating_monitoring_panel.py:287
-#: zapzap/ui/components/floating_monitoring_panel.py:288
-msgid "Unlock position"
-msgstr "Konum kilidini aç"
-
-#: zapzap/ui/components/floating_monitoring_panel.py:291
-#: zapzap/ui/components/floating_monitoring_panel.py:292
-msgid "Audio"
-msgstr "Ses"
 
 #~ msgid "Show a permanent floating panel for account monitoring."
 #~ msgstr "Hesap izleme için kalıcı bir kayan panel göster."
