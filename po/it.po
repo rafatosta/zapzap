@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-01 11:51-0300\n"
+"POT-Creation-Date: 2026-10-01 12:30-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Italian\n"
@@ -17,20 +17,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: zapzap/app/main_window_controller.py:279
+#: zapzap/app/main_window_controller.py:282
 #: zapzap/features/tray/sys_tray_manager.py:67
 #: zapzap/features/tray/sys_tray_manager.py:237
+#: zapzap/ui/components/floating_monitoring_panel.py:316
 msgid "Unmute"
 msgstr ""
 
-#: zapzap/app/main_window_controller.py:279
+#: zapzap/app/main_window_controller.py:282
 #: zapzap/features/shortcuts/model.py:29
 #: zapzap/features/tray/sys_tray_manager.py:67
 #: zapzap/features/tray/sys_tray_manager.py:237
 #: zapzap/ui/components/browser_sidebar.py:217
 #: zapzap/ui/components/browser_sidebar.py:218
+#: zapzap/ui/components/floating_monitoring_panel.py:316
 msgid "Mute"
 msgstr "Disattiva audio"
+
+#: zapzap/app/main_window_controller.py:515
+#: zapzap/features/browser/shell/browser_controller.py:570
+#: zapzap/features/browser/shell/browser_controller.py:644
+#: zapzap/features/browser/shell/browser_controller.py:908
+#, python-brace-format
+msgid "Account {}"
+msgstr "Account {}"
 
 #: zapzap/app/window_lifecycle.py:89
 msgid "Close ZapZap"
@@ -289,13 +299,13 @@ msgstr "Copia indirizzo del link"
 
 #: zapzap/features/alerts/external_url.py:45
 #: zapzap/features/reporting/dialogs.py:360
-#: zapzap/features/browser/shell/browser_controller.py:321
+#: zapzap/features/browser/shell/browser_controller.py:328
 #: zapzap/ui/components/dictionary_manager_dialog.py:91
 #: zapzap/ui/components/dictionary_manager_dialog.py:193
 #: zapzap/ui/components/edit_account_dialog.py:74
 #: zapzap/ui/components/send_message_to_number_dialog.py:135
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
-#: zapzap/ui/components/floating_monitoring_panel.py:280
+#: zapzap/ui/components/floating_monitoring_panel.py:269
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "Chiudi"
@@ -524,6 +534,7 @@ msgstr "Nozioni di base"
 #: zapzap/features/settings/shell/settings_controller.py:134
 #: zapzap/features/settings/pages/notifications/view.py:19
 #: zapzap/features/settings/pages/notifications/view.py:33
+#: zapzap/features/browser/web/web_view.py:253
 msgid "Notifications"
 msgstr "Notifiche"
 
@@ -813,8 +824,8 @@ msgstr ""
 #: zapzap/ui/components/browser_sidebar.py:219
 #: zapzap/ui/components/browser_sidebar.py:220
 #: zapzap/ui/components/main_window.py:161
-#: zapzap/ui/components/floating_monitoring_panel.py:285
-#: zapzap/ui/components/floating_monitoring_panel.py:286
+#: zapzap/ui/components/floating_monitoring_panel.py:274
+#: zapzap/ui/components/floating_monitoring_panel.py:275
 msgid "Downloads"
 msgstr "Download"
 
@@ -975,7 +986,7 @@ msgstr "Seleziona e copia questo comando nel tuo terminale"
 #: zapzap/features/settings/pages/debugging/controller.py:131
 #: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:385
+#: zapzap/features/browser/web/web_view.py:425
 msgid "Copy"
 msgstr "Copia"
 
@@ -1368,8 +1379,8 @@ msgstr "Profilo e stato"
 #: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/downloads/ui/downloads_menu.py:1081
 #: zapzap/ui/components/main_window.py:147
-#: zapzap/ui/components/floating_monitoring_panel.py:287
-#: zapzap/ui/components/floating_monitoring_panel.py:288
+#: zapzap/ui/components/floating_monitoring_panel.py:276
+#: zapzap/ui/components/floating_monitoring_panel.py:277
 msgid "Settings"
 msgstr "Impostazioni"
 
@@ -1461,12 +1472,10 @@ msgid "New conversation by phone number"
 msgstr "Nuova conversazione per numero di telefono"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:536
+#: zapzap/features/browser/shell/browser_controller.py:553
 #: zapzap/ui/components/browser_sidebar.py:200
-#: zapzap/ui/components/floating_monitoring_panel.py:281
-#: zapzap/ui/components/floating_monitoring_panel.py:282
-#: zapzap/ui/components/integrated_account_selector.py:131
-#: zapzap/ui/components/integrated_account_selector.py:132
+#: zapzap/ui/components/floating_monitoring_panel.py:270
+#: zapzap/ui/components/floating_monitoring_panel.py:271
 msgid "New account"
 msgstr "Nuovo account"
 
@@ -2284,7 +2293,7 @@ msgid "Symbolic dark"
 msgstr "Simbolico scuro"
 
 #: zapzap/features/settings/pages/appearance/view.py:160
-#: zapzap/features/browser/shell/browser_controller.py:174
+#: zapzap/features/browser/shell/browser_controller.py:181
 msgid "Grid view"
 msgstr "Visualizzazione griglia"
 
@@ -3854,19 +3863,19 @@ msgstr "Consenti sempre"
 msgid "Block"
 msgstr "Blocca"
 
-#: zapzap/features/browser/shell/browser_controller.py:286
+#: zapzap/features/browser/shell/browser_controller.py:293
 msgid "Flatpak sandbox help"
 msgstr "Guida sandbox Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:311
+#: zapzap/features/browser/shell/browser_controller.py:318
 msgid "Flatpak sandbox"
 msgstr "Sandbox Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:312
+#: zapzap/features/browser/shell/browser_controller.py:319
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "ZapZap è in esecuzione nella sandbox Flatpak."
 
-#: zapzap/features/browser/shell/browser_controller.py:314
+#: zapzap/features/browser/shell/browser_controller.py:321
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
@@ -3874,40 +3883,34 @@ msgstr ""
 "Alcune funzionalità come l'apertura di file o il trascinamento della "
 "selezione potrebbero richiedere autorizzazioni aggiuntive."
 
-#: zapzap/features/browser/shell/browser_controller.py:319
+#: zapzap/features/browser/shell/browser_controller.py:326
 msgid "Instructions"
 msgstr "Istruzioni"
 
-#: zapzap/features/browser/shell/browser_controller.py:320
+#: zapzap/features/browser/shell/browser_controller.py:327
 msgid "Copy command"
 msgstr "Copia comando"
 
-#: zapzap/features/browser/shell/browser_controller.py:553
-#: zapzap/features/browser/shell/browser_controller.py:627
-#, python-brace-format
-msgid "Account {}"
-msgstr "Account {}"
-
-#: zapzap/features/browser/shell/browser_controller.py:640
+#: zapzap/features/browser/shell/browser_controller.py:658
 msgid "Account disabled"
 msgstr "Conto disabilitato"
 
-#: zapzap/features/browser/shell/browser_controller.py:641
+#: zapzap/features/browser/shell/browser_controller.py:659
 msgid "This account is disabled."
 msgstr "Questo account è disabilitato."
 
-#: zapzap/features/browser/shell/browser_controller.py:643
+#: zapzap/features/browser/shell/browser_controller.py:661
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Puoi riattivarlo ora o utilizzare il menu contestuale per gestire questo "
 "account."
 
-#: zapzap/features/browser/shell/browser_controller.py:648
+#: zapzap/features/browser/shell/browser_controller.py:666
 msgid "Activate"
 msgstr "Attiva"
 
-#: zapzap/features/browser/shell/browser_controller.py:649
+#: zapzap/features/browser/shell/browser_controller.py:667
 msgid "Not now"
 msgstr "Non ora"
 
@@ -3970,57 +3973,63 @@ msgid ""
 "WhatsApp requests it."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:384
+#: zapzap/features/browser/web/web_view.py:252
+#: zapzap/ui/components/integrated_account_selector.py:56
+#, fuzzy
+msgid "Account selector"
+msgstr "Elenco dei conti"
+
+#: zapzap/features/browser/web/web_view.py:424
 msgid "Undo"
 msgstr "Annulla"
 
-#: zapzap/features/browser/web/web_view.py:384
+#: zapzap/features/browser/web/web_view.py:424
 msgid "Redo"
 msgstr "Ripeti"
 
-#: zapzap/features/browser/web/web_view.py:384
+#: zapzap/features/browser/web/web_view.py:424
 msgid "Cut"
 msgstr "Taglia"
 
-#: zapzap/features/browser/web/web_view.py:385
+#: zapzap/features/browser/web/web_view.py:425
 msgid "Paste"
 msgstr "Incolla"
 
-#: zapzap/features/browser/web/web_view.py:385
+#: zapzap/features/browser/web/web_view.py:425
 msgid "Select all"
 msgstr "Seleziona tutto"
 
-#: zapzap/features/browser/web/web_view.py:386
+#: zapzap/features/browser/web/web_view.py:426
 msgid "Save image"
 msgstr "Salva immagine"
 
-#: zapzap/features/browser/web/web_view.py:386
+#: zapzap/features/browser/web/web_view.py:426
 msgid "Copy image"
 msgstr "Copia immagine"
 
-#: zapzap/features/browser/web/web_view.py:387
-#: zapzap/features/browser/web/web_view.py:417
+#: zapzap/features/browser/web/web_view.py:427
+#: zapzap/features/browser/web/web_view.py:457
 msgid "Copy link address"
 msgstr "Copia indirizzo del link"
 
-#: zapzap/features/browser/web/web_view.py:435
+#: zapzap/features/browser/web/web_view.py:475
 msgid "Check Spelling"
 msgstr "Controllo ortografico"
 
-#: zapzap/features/browser/web/web_view.py:441
+#: zapzap/features/browser/web/web_view.py:481
 msgid "Languages…"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:444
+#: zapzap/features/browser/web/web_view.py:484
 msgid "Choose the languages used by the spell checker."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:870
+#: zapzap/features/browser/web/web_view.py:910
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "Account"
 
-#: zapzap/features/browser/web/web_view.py:872
+#: zapzap/features/browser/web/web_view.py:912
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "Strumenti di sviluppo - {}"
@@ -4075,6 +4084,7 @@ msgid "Select an account to return to its chat."
 msgstr "Seleziona un account per tornare alla sua chat."
 
 #: zapzap/ui/components/browser_grid_view.py:198
+#: zapzap/ui/components/integrated_account_selector.py:32
 msgid "No active accounts to display."
 msgstr "Nessun account attivo da visualizzare."
 
@@ -4938,40 +4948,33 @@ msgstr ""
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
 
-#: zapzap/ui/components/floating_monitoring_panel.py:276
-#: zapzap/ui/components/floating_monitoring_panel.py:278
+#: zapzap/ui/components/floating_monitoring_panel.py:265
+#: zapzap/ui/components/floating_monitoring_panel.py:267
 #, fuzzy
 msgid "Quick access"
 msgstr "Azioni rapide"
 
-#: zapzap/ui/components/floating_monitoring_panel.py:277
+#: zapzap/ui/components/floating_monitoring_panel.py:266
 msgid "No account activity to show yet."
 msgstr ""
 
-#: zapzap/ui/components/floating_monitoring_panel.py:279
+#: zapzap/ui/components/floating_monitoring_panel.py:268
 #, fuzzy
 msgid "Monitoring panel"
 msgstr "Fissa pannello"
 
-#: zapzap/ui/components/floating_monitoring_panel.py:283
-#: zapzap/ui/components/floating_monitoring_panel.py:284
+#: zapzap/ui/components/floating_monitoring_panel.py:272
+#: zapzap/ui/components/floating_monitoring_panel.py:273
 msgid "Audio"
 msgstr ""
 
-#: zapzap/ui/components/integrated_account_selector.py:130
 #, fuzzy
-msgid "No accounts yet"
-msgstr "Nuovo account"
+#~ msgid "No accounts yet"
+#~ msgstr "Nuovo account"
 
-#: zapzap/ui/components/integrated_account_selector.py:133
 #, fuzzy
-msgid "Account selector"
-msgstr "Elenco dei conti"
-
-#: zapzap/ui/components/integrated_account_selector.py:135
-#, fuzzy
-msgid "Compact account navigation integrated into WhatsApp Web"
-msgstr "Mostra la navigazione dell'account nella shell del browser."
+#~ msgid "Compact account navigation integrated into WhatsApp Web"
+#~ msgstr "Mostra la navigazione dell'account nella shell del browser."
 
 #, fuzzy
 #~ msgid "Always visible"
