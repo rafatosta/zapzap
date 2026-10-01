@@ -229,6 +229,9 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Positioned the integrated account selector popover above its sidebar button,
+  aligned to its left edge and constrained to the available screen.
+
 - Disabled the AppImage self-updater on release candidate builds so a candidate
   is no longer replaced in place by the previous stable release.
 

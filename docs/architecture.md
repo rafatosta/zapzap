@@ -224,6 +224,8 @@ estado por página a partir do registro existente, excluindo a própria conta.
 O popover recebe descritores `FloatingAccountEntry`, omite a conta selecionada
 e as desativadas e prioriza as que têm não lidas, mostrando suas contagens.
 A seleção reutiliza `activate_account` com ID original e oculta o popover.
+O popover abre acima do botão, alinhado à sua borda esquerda, com posição
+limitada à área disponível do monitor.
 Atualizações preservam os controles existentes; Qt fecha o popup em Esc ou
 clique externo, e a navegação também o oculta.
 

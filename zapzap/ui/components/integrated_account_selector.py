@@ -104,12 +104,12 @@ class IntegratedAccountSelector(QFrame):
         self.account_activation_requested.emit(account_id)
 
     def popup_for(self, anchor):
-        """Place the popover beside a global rectangle from the web button."""
+        """Place the popover above the web button, within the available screen."""
         if not self._enabled:
             return
         self.adjustSize()
         screen = (QGuiApplication.screenAt(anchor.center()) or self.screen()).availableGeometry()
-        position = QPoint(anchor.right() + 6, anchor.top())
+        position = QPoint(anchor.left(), anchor.top() - self.height() - 6)
         position.setX(max(screen.left(), min(position.x(), screen.right() - self.width() + 1)))
         position.setY(max(screen.top(), min(position.y(), screen.bottom() - self.height() + 1)))
         self.move(position)
