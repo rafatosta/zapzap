@@ -166,6 +166,13 @@ releases and the AppStream metadata.
   including the compiled gettext catalog and regression coverage for catalog
   loading, language discovery, fallback behavior, and placeholder integrity.
 
+### Removed
+
+- Removed the previous Quick Access popover, floating launcher and injected
+  WhatsApp account selector, together with their preference controls, in
+  preparation for implementing the floating monitoring panel and integrated
+  account selector as separate features.
+
 ### Fixed
 
 - Disabled the AppImage self-updater on release candidate builds so a candidate

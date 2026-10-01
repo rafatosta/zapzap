@@ -190,59 +190,15 @@ um pequeno atraso para não fechar o painel entre os dois elementos. O mesmo
 `UpdateState` alimenta a página Sobre, inclusive quando a sidebar está oculta,
 sem duplicar consulta ou comparação.
 
-Quando `system/sidebar` oculta a `BrowserSidebar`, `BrowserController` exibe em
-seu lugar um `FloatingAccountButton` sobreposto ao canto superior esquerdo de
-`BrowserPages`, mostrando apenas o avatar da conta atualmente visível (ou a
-última ativa, na grade ou nas doações). Um clique sem arrasto abre o
-`QuickAccountsPopover`, um painel Qt nativo que lê a lista de
-`AccountRuntime` e exibe os avatares, nomes e contadores já mantidos por cada
-`BrowserPageButton`. A seleção encaminha o `User.id` para o mesmo
-`_handle_account_button_click()` usado pela sidebar e fecha o painel após a
-troca; a grade completa continua acessível por uma ação secundária. O painel
-também encaminha áudio, downloads, configurações e adição de conta para as
-fachadas existentes, sem injetar uma interface no DOM do WhatsApp Web.
-O botão dedicado `Accounts and quick actions` da sidebar abre esse mesmo painel
-como uma janela Qt independente, inclusive com a sidebar visível. A janela e o
-popover são apresentações da mesma instância: lista, pesquisa, seleção e ações
-não são duplicadas. A janela independente permanece aberta quando a sidebar ou
-a janela principal é ocultada; fechá-la apenas a oculta e não encerra a
-aplicação. Adição, remoção, edição de identidade, seleção e contadores são
-refletidos pelos runtimes e sinais existentes, sem polling. O popover continua
-fechando por ação, clique externo, perda de contexto ou `Esc`, e calcula sua
-posição dentro da geometria disponível da tela. O botão flutuante continua
-podendo ser reposicionado por arrasto com o botão esquerdo, limitado à área de
-conteúdo; arrastar não dispara a abertura do painel. A Overview/grade continua
-separada e não é removida por esta integração.
-Em Aparência > Interface, a barra lateral tem somente o controle de
-visibilidade. A apresentação do acesso a contas quando ela está oculta não é
-mais configurável nessa página; `system/sidebar_button_mode` continua sendo
-lido para preservar a escolha persistida em instalações existentes (`floating`
-por padrão, ou `integrated` quando previamente selecionado). O modo integrado
-mantém o botão no trilho do WhatsApp; o modo flutuante mantém o botão nativo
-sobre o conteúdo.
-Em Aparência > Quick Access, `system/quick_access_enabled` controla os
-acionamentos existentes e tem padrão `true`, preservando a disponibilidade
-anterior do painel. `system/quick_access_display_mode` persiste os IDs estáveis
-`on_demand`, `when_hidden` e `always`: o primeiro abre por ação e pode fechar
-depois dela; o segundo acompanha a janela principal oculta; o terceiro mantém
-o painel independente aberto, inclusive depois de suas ações. Instalações sem
-a chave nova migram `system/quick_access_on_sidebar_hidden=true` para
-`when_hidden` e qualquer outro caso para `on_demand`.
-`system/quick_access_remember_position`, `system/quick_access_lock_position` e
-`system/quick_access_always_on_top` controlam a geometria e as flags da mesma
-instância. Como janela independente, Quick Access usa a decoração nativa do
-sistema como janela de ferramenta, sem anunciar uma nova janela principal ao
-shell; como pop-up junto ao botão flutuante, mantém a apresentação sem
-moldura. A janela independente tem fundo opaco e usa toda sua área de conteúdo;
-somente o pop-up reserva espaço transparente para a sombra. A posição só é
-restaurada e atualizada quando a memória está ativa;
-o bloqueio restringe o movimento à posição corrente, e o botão de pin do painel
-permanece sincronizado com “manter acima”. Desligar Quick Access oculta o painel
-e seus acionamentos sem apagar as escolhas subordinadas.
-Qualquer ação do painel enquanto a janela principal estiver oculta solicita a
-restauração pelo ciclo de vida existente antes de devolver o foco ao conteúdo.
-O botão não possui tooltip nativo, pois ele competiria visualmente com o
-popover; nome e descrição acessíveis continuam informando a atualização.
+`BrowserSidebar` apresenta as ações do navegador e os botões de conta.
+`BrowserGridView` é uma página separada de visão geral: usa os mesmos
+`AccountRuntime`, `User` e contadores da sidebar, não captura nem mantém
+referências visuais a `WebView`, e ativa contas pelo ID estável. A barra lateral
+é controlada apenas pela preferência `system/sidebar`; não há atualmente um
+painel flutuante nem um seletor integrado ao DOM do WhatsApp Web.
+O botão de atualização não possui tooltip nativo, pois ele competiria
+visualmente com o popover; nome e descrição acessíveis continuam informando a
+atualização.
 O clique de contexto abre um popover compacto com identidade, estado, edição,
 Não perturbe, desativação e remoção. As opções avançadas de User-Agent e
 personalização do avatar permanecem exclusivamente no diálogo de edição.
@@ -275,26 +231,6 @@ persistidos intactos.
 WhatsApp. Scripts mantidos em `features/browser/web/scripts/` são ativos em
 tempo de execução e devem ser considerados pelo teste de código estático mesmo
 quando chamam identificadores Python indiretamente.
-
-O script `theme_controller.js` também mantém o ponto de entrada opcional
-`QuickAccountsController` no DOM do WhatsApp Web. Ele usa apenas seletores
-semânticos e ancestrais dos botões nativos, detectando também o trilho de navegação estreito, alto e encostado à
-esquerda. Insere o botão no fluxo da coluna de ações inferiores, antes da última ação,
-reservando espaço mesmo quando há itens adicionais como Beta. Sem coluna,
-usa o fluxo do ponto de montagem; somente sem esse ponto usa um fallback
-fixo no canto inferior esquerdo. Após inserir, verifica geometria e hit testing:
-se o contêiner recortar o botão, move-o para o body em um espaço livre medido
-no trilho; sem espaço disponível, usa a região ao lado do trilho. Um
-`MutationObserver` agendado acompanha inserções e mudanças de atributos de
-aparência, ignorando alterações no próprio botão para evitar ciclos. O SVG
-acompanha cor e dimensões computadas de um ícone de navegação visível e não
-selecionado; sem referência, mantém 20 px e a cor enviada pelo tema nativo.
-O script usa o marcador
-`data-zapzap-component="quick-accounts"`; a lista e a troca de contas continuam
-na grade nativa. A bridge `zapZapBridge` encaminha somente a solicitação de
-abertura e o estado da sidebar, e o botão integrado permanece oculto enquanto
-a sidebar nativa está visível. A falha ou ausência do ponto de montagem não
-interrompe o WebEngine nem substitui o botão flutuante existente.
 
 Novas janelas solicitadas pelo WhatsApp passam primeiro por
 `PopupRoutingPage`, que classifica a primeira URL significativa antes do

@@ -18,10 +18,6 @@ from zapzap.ui.components import (
     SettingsDivider,
     SettingsRestartBar,
 )
-from zapzap.core.config.settings.appearance import AppearanceSettings
-from zapzap.core.config.settings_manager import SettingsManager
-
-
 class FakeAppearanceSettingsModel:
 
     def __init__(
@@ -29,18 +25,8 @@ class FakeAppearanceSettingsModel:
         tray_enabled=False,
         csr_enabled=False,
         scale=100,
-        quick_access_enabled=True,
-        quick_access_display_mode="on_demand",
-        quick_access_remember_position=True,
-        quick_access_lock_position=False,
-        quick_access_always_on_top=False,
     ):
         self.browser_sidebar_visible = True
-        self.quick_access_enabled = quick_access_enabled
-        self.quick_access_display_mode = quick_access_display_mode
-        self.quick_access_remember_position = quick_access_remember_position
-        self.quick_access_lock_position = quick_access_lock_position
-        self.quick_access_always_on_top = quick_access_always_on_top
         self.menubar_visible = True
         self.scale = scale
         self.tray_icon_enabled = tray_enabled
@@ -265,6 +251,7 @@ class AppearanceSettingsUiTests(QtTestCase):
         self.assertFalse(hasattr(page, "sidebar_button_options_group"))
         self.assertFalse(hasattr(page, "sidebar_button_integrated_radioButton"))
         self.assertFalse(hasattr(page, "sidebar_button_floating_radioButton"))
+        self.assertFalse(hasattr(page, "quick_access_enabled"))
 
     def test_browser_sidebar_switch_only_changes_sidebar_visibility(self):
         page, _model = self._controller()
@@ -280,136 +267,6 @@ class AppearanceSettingsUiTests(QtTestCase):
             page.browser_sidebar.click()
 
         window.set_sidebar_visible.assert_called_once_with(False)
-
-    def test_quick_access_options_track_master_without_losing_values(self):
-        page, model = self._controller(
-            quick_access_display_mode="when_hidden",
-            quick_access_lock_position=True,
-        )
-        browser = Mock()
-        window = Mock(browser=browser)
-        app = Mock()
-        app.getWindow.return_value = window
-
-        self.assertTrue(page.quick_access_enabled.isChecked())
-        self.assertFalse(page.quick_access_options_group.isHidden())
-        self.assertTrue(page.quick_access_when_hidden_radioButton.isChecked())
-        self.assertTrue(page.quick_access_lock_position.isChecked())
-
-        with patch(
-            "zapzap.features.settings.pages.appearance.controller."
-            "QApplication.instance",
-            return_value=app,
-        ):
-            page.quick_access_enabled.setChecked(False)
-
-        self.assertFalse(model.quick_access_enabled)
-        self.assertTrue(page.quick_access_options_group.isHidden())
-        self.assertTrue(page.quick_access_when_hidden_radioButton.isChecked())
-        self.assertTrue(page.quick_access_lock_position.isChecked())
-        self.assertEqual(model.quick_access_display_mode, "when_hidden")
-
-        with patch(
-            "zapzap.features.settings.pages.appearance.controller."
-            "QApplication.instance",
-            return_value=app,
-        ):
-            page.quick_access_enabled.setChecked(True)
-
-        self.assertFalse(page.quick_access_options_group.isHidden())
-        self.assertTrue(page.quick_access_when_hidden_radioButton.isChecked())
-        self.assertTrue(page.quick_access_lock_position.isChecked())
-        self.assertEqual(browser.refresh_quick_access_settings.call_count, 2)
-
-    def test_quick_access_rows_have_accessible_names_and_descriptions(self):
-        page = AppearanceSettingsView()
-
-        for row in (
-            page.quick_access_enabled_row,
-            page.quick_access_remember_position_row,
-            page.quick_access_lock_position_row,
-            page.quick_access_always_on_top_row,
-        ):
-            self.assertEqual(
-                row.control.accessibleName(),
-                row.title_label.text(),
-            )
-            self.assertTrue(row.control.accessibleDescription())
-
-    def test_sidebar_button_mode_setting_validates_stable_ids(self):
-        settings = AppearanceSettings()
-        original_mode = settings.sidebar_button_mode
-        self.addCleanup(setattr, settings, "sidebar_button_mode", original_mode)
-
-        settings.sidebar_button_mode = "integrated"
-        self.assertEqual(settings.sidebar_button_mode, "integrated")
-
-        settings.sidebar_button_mode = "unknown"
-        self.assertEqual(settings.sidebar_button_mode, "floating")
-
-    def test_quick_access_preferences_default_without_writing_and_persist(self):
-        keys = (
-            "system/quick_access_enabled",
-            "system/quick_access_display_mode",
-            "system/quick_access_remember_position",
-            "system/quick_access_lock_position",
-            "system/quick_access_always_on_top",
-        )
-        original = {
-            key: (SettingsManager.contains(key), SettingsManager.get(key))
-            for key in keys
-        }
-        settings = AppearanceSettings()
-        try:
-            for key in keys:
-                SettingsManager.remove(key)
-
-            self.assertTrue(settings.quick_access_enabled)
-            self.assertEqual(settings.quick_access_display_mode, "on_demand")
-            self.assertTrue(settings.quick_access_remember_position)
-            self.assertFalse(settings.quick_access_lock_position)
-            self.assertFalse(settings.quick_access_always_on_top)
-
-            settings.quick_access_enabled = False
-            settings.quick_access_display_mode = "always"
-            settings.quick_access_remember_position = False
-            settings.quick_access_lock_position = True
-            settings.quick_access_always_on_top = True
-            reloaded = AppearanceSettings()
-
-            self.assertFalse(reloaded.quick_access_enabled)
-            self.assertEqual(reloaded.quick_access_display_mode, "always")
-            self.assertFalse(reloaded.quick_access_remember_position)
-            self.assertTrue(reloaded.quick_access_lock_position)
-            self.assertTrue(reloaded.quick_access_always_on_top)
-        finally:
-            for key, (existed, value) in original.items():
-                if existed:
-                    SettingsManager.set(key, value)
-                else:
-                    SettingsManager.remove(key)
-
-    def test_quick_access_mode_uses_stable_ids_and_migrates_legacy_value(self):
-        settings = AppearanceSettings()
-        mode_key = "system/quick_access_display_mode"
-        legacy_key = "system/quick_access_on_sidebar_hidden"
-        original = {
-            key: (SettingsManager.contains(key), SettingsManager.get(key))
-            for key in (mode_key, legacy_key)
-        }
-        try:
-            SettingsManager.remove(mode_key)
-            SettingsManager.set(legacy_key, True)
-            self.assertEqual(settings.quick_access_display_mode, "when_hidden")
-
-            settings.quick_access_display_mode = "invalid"
-            self.assertEqual(settings.quick_access_display_mode, "on_demand")
-        finally:
-            for key, (existed, value) in original.items():
-                if existed:
-                    SettingsManager.set(key, value)
-                else:
-                    SettingsManager.remove(key)
 
 if __name__ == "__main__":
     unittest.main()

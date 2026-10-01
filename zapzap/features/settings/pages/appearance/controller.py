@@ -26,24 +26,6 @@ class AppearanceSettingsController(AppearanceSettingsView):
 
     def _load_settings(self):
         self.browser_sidebar.setChecked(self.model.browser_sidebar_visible)
-        self.quick_access_enabled.setChecked(self.model.quick_access_enabled)
-        self._set_selected_radio(
-            self.model.quick_access_display_mode,
-            {
-                "on_demand": self.quick_access_on_demand_radioButton,
-                "when_hidden": self.quick_access_when_hidden_radioButton,
-                "always": self.quick_access_always_radioButton,
-            },
-        )
-        self.quick_access_remember_position.setChecked(
-            self.model.quick_access_remember_position
-        )
-        self.quick_access_lock_position.setChecked(
-            self.model.quick_access_lock_position
-        )
-        self.quick_access_always_on_top.setChecked(
-            self.model.quick_access_always_on_top
-        )
         self.mainwindow_menu.setChecked(self.model.menubar_visible)
         self.scaleComboBox.setCurrentText(f"{self.model.scale} %")
         self.tray_groupBox.checkbox.setChecked(self.model.tray_icon_enabled)
@@ -105,28 +87,6 @@ class AppearanceSettingsController(AppearanceSettingsView):
 
     def _connect_signals(self):
         self.browser_sidebar.clicked.connect(self._handle_sidebar)
-        self.quick_access_enabled.toggled.connect(
-            self._handle_quick_access_enabled
-        )
-        for button, mode in (
-            (self.quick_access_on_demand_radioButton, "on_demand"),
-            (self.quick_access_when_hidden_radioButton, "when_hidden"),
-            (self.quick_access_always_radioButton, "always"),
-        ):
-            button.toggled.connect(
-                lambda checked, value=mode: (
-                    checked and self._handle_quick_access_mode(value)
-                )
-            )
-        self.quick_access_remember_position.toggled.connect(
-            self._handle_quick_access_remember_position
-        )
-        self.quick_access_lock_position.toggled.connect(
-            self._handle_quick_access_lock_position
-        )
-        self.quick_access_always_on_top.toggled.connect(
-            self._handle_quick_access_always_on_top
-        )
         self.mainwindow_menu.clicked.connect(self._handle_menubar)
         self.scaleComboBox.currentTextChanged.connect(self._handle_scale)
         self.tray_groupBox.checkbox.toggled.connect(self._handle_tray_enabled)
@@ -170,27 +130,6 @@ class AppearanceSettingsController(AppearanceSettingsView):
     def _handle_sidebar(self):
         enabled = self.browser_sidebar.isChecked()
         QApplication.instance().getWindow().set_sidebar_visible(enabled)
-
-    def _handle_quick_access_enabled(self, enabled):
-        self.model.quick_access_enabled = enabled
-        self._sync_quick_access_options_visibility()
-        QApplication.instance().getWindow().browser.refresh_quick_access_settings()
-
-    def _handle_quick_access_mode(self, mode):
-        self.model.quick_access_display_mode = mode
-        QApplication.instance().getWindow().browser.refresh_quick_access_settings()
-
-    def _handle_quick_access_remember_position(self, enabled):
-        self.model.quick_access_remember_position = enabled
-        QApplication.instance().getWindow().browser.refresh_quick_access_settings()
-
-    def _handle_quick_access_lock_position(self, enabled):
-        self.model.quick_access_lock_position = enabled
-        QApplication.instance().getWindow().browser.refresh_quick_access_settings()
-
-    def _handle_quick_access_always_on_top(self, enabled):
-        self.model.quick_access_always_on_top = enabled
-        QApplication.instance().getWindow().browser.refresh_quick_access_settings()
 
     def _handle_menubar(self):
         self.model.menubar_visible = self.mainwindow_menu.isChecked()
@@ -250,17 +189,11 @@ class AppearanceSettingsController(AppearanceSettingsView):
         self._update_restart_requirement()
 
     def _sync_dependent_controls(self):
-        self._sync_quick_access_options_visibility()
         self.tray_options_group.setEnabled(
             self.tray_groupBox.checkbox.isChecked()
         )
         self.csr_options_group.setEnabled(
             self.csr_groupBox.checkbox.isChecked()
-        )
-
-    def _sync_quick_access_options_visibility(self):
-        self.quick_access_options_group.setVisible(
-            self.quick_access_enabled.isChecked()
         )
 
     def _handle_csr_theme(self, _index):

@@ -27,7 +27,6 @@ class AppearanceSettingsView(SettingsPage):
 
     def _setup_ui(self):
         self._setup_interface_section()
-        self._setup_quick_access_section()
         self._setup_theme_section()
         self._setup_tray_section()
         self._setup_grid_section()
@@ -59,70 +58,6 @@ class AppearanceSettingsView(SettingsPage):
         card.add_row(self.browser_sidebar_row)
         card.add_row(self.mainwindow_menu_row)
         card.add_row(self.scale_row)
-        section.add_card(card)
-        self.add_section(section)
-
-    def _setup_quick_access_section(self):
-        section = SettingsSection(
-            _("Quick Access"),
-            _("Control how the Quick Access panel is displayed."),
-        )
-        card = SettingsCard()
-        self.quick_access_enabled_row = SettingsSwitchRow(
-            _("Enable Quick Access"),
-            _("Allows you to use the Quick Access panel."),
-        )
-        self.quick_access_display_mode_header = SettingsSubgroupHeader(
-            _("Display mode")
-        )
-        self.quick_access_on_demand_radioButton = RadioButton(
-            _("When needed")
-        )
-        self.quick_access_when_hidden_radioButton = RadioButton(
-            _("When ZapZap is hidden")
-        )
-        self.quick_access_always_radioButton = RadioButton(_("Always visible"))
-        self.quick_access_display_mode_group = SettingsRadioGroup(
-            self.quick_access_on_demand_radioButton,
-            self.quick_access_when_hidden_radioButton,
-            self.quick_access_always_radioButton,
-        )
-        self.quick_access_remember_position_row = SettingsSwitchRow(
-            _("Remember position")
-        )
-        self.quick_access_lock_position_row = SettingsSwitchRow(
-            _("Lock position")
-        )
-        self.quick_access_always_on_top_row = SettingsSwitchRow(
-            _("Keep above other windows")
-        )
-        self.quick_access_enabled = self.quick_access_enabled_row.checkbox
-        self.quick_access_remember_position = (
-            self.quick_access_remember_position_row.checkbox
-        )
-        self.quick_access_lock_position = (
-            self.quick_access_lock_position_row.checkbox
-        )
-        self.quick_access_always_on_top = (
-            self.quick_access_always_on_top_row.checkbox
-        )
-        for row in (
-            self.quick_access_enabled_row,
-            self.quick_access_remember_position_row,
-            self.quick_access_lock_position_row,
-            self.quick_access_always_on_top_row,
-        ):
-            self._configure_row_accessibility(row)
-        self.quick_access_options_group = card.add_group(
-            self.quick_access_enabled_row,
-            (
-                self.quick_access_display_mode_header,
-                self.quick_access_display_mode_group,
-                self.quick_access_remember_position_row,
-                self.quick_access_lock_position_row,
-                self.quick_access_always_on_top_row,
-            ),
-        )
         section.add_card(card)
         self.add_section(section)
 

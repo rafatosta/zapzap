@@ -77,10 +77,6 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   criação do perfil WebEngine precisam de reinício completo.
 - Atualize onboarding e páginas irmãs quando expõem a mesma preferência.
 - Cubra padrão, persistência, alteração e restauração.
-- Para Quick Access, preserve `system/quick_access_enabled=true` e migre a
-  preferência legada `system/quick_access_on_sidebar_hidden` explicitamente
-  para `system/quick_access_display_mode`: `true` vira `when_hidden`; ausência
-  ou `false` vira `on_demand`. IDs persistidos não podem depender da tradução.
 
 ### Nova página de configurações
 
@@ -97,9 +93,8 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - Mantenha texto curto, descrição útil, estado padrão real e nome acessível.
 - Não persista rótulos traduzidos; persista um ID estável.
 - A seção de interface expõe a visibilidade da sidebar sem subopções de
-  apresentação. Preserve `system/sidebar_button_mode` em runtime para honrar
-  valores `floating` ou `integrated` já persistidos; instalações novas usam
-  `floating` como padrão.
+  apresentação; mantenha essa preferência independente das futuras
+  apresentações de acesso a contas.
 
 ### Relatórios de problemas
 
@@ -164,28 +159,11 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   criação, desmontagem, limpeza e callbacks sem iniciar Chromium.
 - Mantenha a grade de contas nativa e alimentada por `User`/`BrowserPageButton`;
   ela não deve capturar, armazenar ou manter referências visuais de `WebView`.
-- Quick Access deve reutilizar uma única instância nativa sobre o
-  `BrowserController`, os mesmos `AccountRuntime`/`BrowserPageButton` e as
-  fachadas existentes de troca, áudio, downloads, configurações e cadastro.
-  Popup flutuante e janela independente são apresentações desse mesmo painel;
-  mantenha a lista rolável separada das ações rápidas, atualize a lista em
-  mutações do registro e preserve o clamp de posicionamento do popup. Fechar a
-  janela independente não pode encerrar a aplicação nem destruir perfis. Não
-  mova essa funcionalidade para o DOM do WhatsApp Web nem use widgets visuais
-  da sidebar como proxy.
-- A apresentação como janela independente do Quick Access deve pedir a
-  decoração do sistema (barra de título e controle de fechar); somente o
-  pop-up ancorado ao botão flutuante usa `FramelessWindowHint`.
 - Na conversa por número, preserve a separação entre código do país e número
   nacional. O diálogo apenas coleta e apresenta erros; `open_chat.py` normaliza,
   valida e codifica a URL, e o `PageController` realiza a navegação direta sem
   JavaScript injetado. Nunca persista número ou mensagem.
 - Revalide grid, sidebar, conta ativa, zoom, downloads e notificações.
-- Para pontos de entrada integrados ao WhatsApp Web, mantenha o JavaScript
-  limitado à apresentação, localização resiliente e clique; encaminhe a ação
-  por `zapZapBridge` para a lógica nativa existente. Reutilize o estado da
-  sidebar, marque o elemento com `data-zapzap-component`, limite observers a
-  um por página e preserve o botão flutuante como fallback.
 - Para `performance/cache_size_max`, use as constantes, normalização e aplicação
   segura de `core.config.settings.performance`; nunca converta MiB para bytes
   diretamente na `WebView` nem envie ao Qt um valor maior que `INT32_MAX`.

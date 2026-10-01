@@ -40,7 +40,6 @@ Para ver cada teste, executar somente módulos de UI ou um módulo específico:
 flatpak_python -m unittest discover -s tests -v
 flatpak_python -m unittest discover -s tests -p 'test_*_ui.py' -v
 flatpak_python -m unittest discover -s tests -p 'test_portal_notification_backend.py' -v
-flatpak_python -m unittest discover -s tests -p 'test_quick_accounts_popover_ui.py' -v
 ```
 
 Para executar um arquivo de teste diretamente:
@@ -59,14 +58,6 @@ teste não puder rodar no Flatpak, informe a limitação. Mensagens Qt como
 `This plugin does not support raise()` não representam falha quando a suíte
 termina com `OK`.
 
-O comando reutilizável acima foi validado para `test_quick_accounts_popover_ui.py`:
-
-```text
-Ran 10 tests in 1.037s
-
-OK
-```
-
 ## Isolamento Qt
 
 `tests/qt_test_case.py`:
@@ -80,36 +71,6 @@ Testes que criam widgets devem herdar de `QtTestCase`. Testes puros podem herdar
 de `unittest.TestCase`. Restaure monkey patches, singletons e variáveis de
 ambiente em `tearDown` ou com `addCleanup`; a suíte roda em um único processo e
 vazamentos tornam o resultado dependente da ordem.
-
-### Verificação manual do Quick Access
-
-Em uma sessão gráfica real, execute o ZapZap pelo Flatpak; `offscreen` não
-valida foco, compositor ou apresentação de janelas independentes.
-
-1. Abra Quick Access pelo acionamento existente e desative o recurso em
-   Aparência. Confirme que o painel e os acionamentos somem sem alterar a
-   visibilidade da sidebar ou da janela principal.
-2. Em “Quando necessário”, confirme que ocultar a janela principal não abre o
-   painel; o acionamento manual deve abri-lo e uma ação pode fechá-lo.
-3. Em “Quando o ZapZap estiver oculto”, oculte a janela principal e confirme
-   uma única janela Quick Access sem roubar foco. Feche-a manualmente e confirme
-   que não reabre até a janela principal ser mostrada e ocultada novamente.
-   Selecione uma conta e cada ação rápida; confirme que a janela principal é
-   restaurada e que a ação solicitada é executada.
-4. Em “Sempre visível”, confirme que o painel abre, permanece depois de trocar
-   conta ou executar uma ação e reabre caso seja fechado manualmente. Desative
-   a chave principal e confirme que então ele fecha.
-5. Na apresentação como janela independente, confirme a barra de título e o
-   botão de fechar fornecidos pelo sistema; ao abrir pelo botão flutuante,
-   confirme que o pop-up continua sem moldura.
-   No GNOME, abra e feche a janela repetidamente e confirme que o shell não
-   mostra uma notificação para cada abertura.
-   Confirme também que a janela independente não apresenta faixa transparente
-   ao redor do conteúdo, enquanto o pop-up mantém sua sombra.
-6. Mova o painel entre monitores com “Lembrar posição” ativo e reinicie. Valide
-   a restauração dentro da área disponível; depois confirme que “Bloquear
-   posição” impede movimento e que “Manter acima” acompanha o botão de pin,
-   sem ocultar a janela independente.
 
 Nos testes visuais, importe controles básicos de `zapzap.ui.primitives` e
 composições de `zapzap.ui.components`. Imports por caminhos internos de uma
@@ -137,7 +98,7 @@ documente o que ele protege.
 | `test_about_settings_ui.py` | identidade, links, detalhes técnicos, cópia, licença e créditos |
 | `test_account_data_removal.py` | remoção segura e idempotente de dados de perfis desativados |
 | `test_accounts_settings_ui.py` | card responsivo com ações diretas, remoção, estados/avisos e diálogo transacional sem moldura |
-| `test_appearance_settings_ui.py` | grupos, dependências, visibilidade da sidebar sem subopções, Quick Access, layout responsivo, persistência e acessibilidade |
+| `test_appearance_settings_ui.py` | grupos, dependências, visibilidade da sidebar sem subopções, layout responsivo, persistência e acessibilidade |
 | `test_appimage_packaging.py` | coerência FFmpeg/Qt WebEngine, verificação de ABI, nome final fornecido ao quick-sharun e ausência de renomeação posterior do AppImage/zsync |
 | `test_browser_account_lifecycle.py` | registro estável, criação lazy de contas desativadas, isolamento/retentativa de perfil com erro, reativação, remoção, notificações e encerramento idempotente |
 | `test_browser_page_button_ui.py` | avatar sem número, grayscale de conta desativada, ponto de estado, card, temas, escala e clique |
@@ -153,7 +114,6 @@ documente o que ele protege.
 | `test_documentation_structure.py` | camadas de UI, ciclo numérico versionado do changelog e sincronização entre árvore, inventários técnicos, convenção de commits e guia para agentes |
 | `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
 | `test_external_link_lifecycle.py` | classificação interna/externa de pop-ups, profile compartilhado, entrega única ao navegador e cleanup no fechamento/shutdown |
-| `test_floating_account_button.py` | botão flutuante, janela Quick Access independente e reutilizada, integração automática com a sidebar, fechamento manual, atualização do registro, avatar, drag e ativação por ID |
 | `test_freedesktop_notification_backend.py` | avisos nas saídas antecipadas da inicialização D-Bus, falhas de `Notify`/`CloseNotification`, aviso único na transição para indisponível e fachada sem backend |
 | `test_global_mute.py` | estado persistente de mute global, sincronização dos controles, fan-out para todas as contas e roteamento do atalho de colagem para a conta ativa |
 | `test_gpu_environment.py` | detecção multi-GPU, conectores e seleção de render node |
@@ -173,8 +133,6 @@ documente o que ele protege.
 | `test_portal_notification_backend.py` | ciclo de vida, falhas, ações e token no backend Portal |
 | `test_profile_sync.py` | validação de dados pontuais do perfil WhatsApp e normalização da foto |
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
-| `test_quick_accounts_integration.py` | contrato do botão integrado de contas, aparência dinâmica no WebEngine, bridge, fallback e isolamento do JavaScript |
-| `test_quick_accounts_popover_ui.py` | painel nativo de contas, avatar/nome, badge de não lidas, ações por sinais e lista longa com ações fora do scroll |
 | `test_reporting.py` | sanitização, minimização, Markdown, fila/TTL e captura local de encerramentos inesperados |
 | `test_reporting_ui.py` | formulário em duas etapas, prévia canônica, edição, cancelamento, clipboard e abertura segura do GitHub |
 | `test_segmented_control.py` | seleção exclusiva, sinais, mouse, teclado, acessibilidade, tamanhos, raios e temas |
@@ -215,7 +173,6 @@ documente o que ele protege.
 - `test_donations_page.py`
 - `test_download_settings.py`
 - `test_external_link_lifecycle.py`
-- `test_floating_account_button.py`
 - `test_freedesktop_notification_backend.py`
 - `test_global_mute.py`
 - `test_gpu_environment.py`
@@ -234,8 +191,6 @@ documente o que ele protege.
 - `test_portal_notification_backend.py`
 - `test_profile_sync.py`
 - `test_qt_parameter_fallbacks.py`
-- `test_quick_accounts_integration.py`
-- `test_quick_accounts_popover_ui.py`
 - `test_reporting.py`
 - `test_reporting_ui.py`
 - `test_segmented_control.py`

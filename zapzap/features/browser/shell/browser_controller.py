@@ -31,8 +31,6 @@ from zapzap.features.donation.page import DonationsPageController
 from zapzap.ui.components import BrowserGridView
 from zapzap.ui.components import BrowserPageButton
 from zapzap.ui.components import BrowserSidebarButton
-from zapzap.ui.components import FloatingAccountButton
-from zapzap.ui.components import QuickAccountsPopover
 from zapzap.ui.components import UpdateAvailablePopover
 
 
@@ -80,22 +78,6 @@ class BrowserController(BrowserView):
         super().__init__(parent)
         self.parent = parent
         self._appearance_settings = AppearanceSettings()
-        self._quick_access_auto_open = False
-        self._quick_access_auto_suppressed = False
-        self._main_window_hidden = False
-        self._quick_access_display_mode = (
-            self._appearance_settings.quick_access_display_mode
-        )
-        self._closing_quick_access_internally = False
-        self.btn_quick_access = BrowserSidebarButton(
-            "btn_quick_access",
-            self.settings_buttons_layout,
-        )
-        self.btn_quick_access.setToolTip(_("Accounts and quick actions"))
-        self.btn_quick_access.setAccessibleName(
-            _("Accounts and quick actions")
-        )
-        self.layout_2.insertWidget(1, self.btn_quick_access)
 
         self.page_count = 0
         self._accounts: Dict[str, AccountRuntime] = {}
@@ -120,35 +102,6 @@ class BrowserController(BrowserView):
         self._update_popover_close_timer.timeout.connect(
             self._update_popover.close
         )
-        self._quick_accounts_popover = QuickAccountsPopover(self)
-        self._quick_accounts_popover.closed.connect(
-            self._handle_quick_access_closed
-        )
-        self._quick_accounts_popover.position_changed.connect(
-            self._save_quick_access_position
-        )
-        self._quick_accounts_popover.always_on_top_changed.connect(
-            self._save_quick_access_always_on_top
-        )
-        self._quick_accounts_popover.account_requested.connect(
-            self._handle_quick_account_request
-        )
-        self._quick_accounts_popover.add_account_requested.connect(
-            self._handle_quick_add_account
-        )
-        self._quick_accounts_popover.audio_requested.connect(
-            self._handle_quick_audio_request
-        )
-        self._quick_accounts_popover.downloads_requested.connect(
-            self._handle_quick_downloads_request
-        )
-        self._quick_accounts_popover.settings_requested.connect(
-            self._handle_quick_settings_request
-        )
-        self._floating_account_button = FloatingAccountButton(self.pages)
-        self._floating_account_button.clicked.connect(
-            self.toggle_quick_accounts_panel
-        )
         app = QApplication.instance()
         if app is not None:
             app.installEventFilter(self)
@@ -169,7 +122,6 @@ class BrowserController(BrowserView):
             self.btn_new_chat,
             self.btn_whatsapp_lock,
             self.btn_donations,
-            self.btn_quick_access,
             self.btn_update_available,
             self.btn_mute,
             self.btn_downloads,
@@ -188,7 +140,6 @@ class BrowserController(BrowserView):
         if app is not None:
             app.removeEventFilter(self)
         self._update_popover.close()
-        self._close_quick_access_panel()
         self.close_pages()
 
     # === Inicialização ===
@@ -237,7 +188,6 @@ class BrowserController(BrowserView):
         self.btn_new_chat.clicked.connect(lambda: self.parent.new_chat())
         self.btn_whatsapp_lock.clicked.connect(self.request_native_app_lock)
         self.btn_donations.clicked.connect(self.show_donations)
-        self.btn_quick_access.clicked.connect(self.show_quick_access_window)
         self.btn_mute.clicked.connect(self.parent.toggle_audio_muted)
         self.btn_downloads.clicked.connect(
             lambda: self.parent.show_downloads_menu(self.btn_downloads)
@@ -297,8 +247,6 @@ class BrowserController(BrowserView):
     def _handle_application_state_changed(self, state):
         if state != Qt.ApplicationState.ApplicationActive:
             self._update_popover.close()
-            if not self._quick_accounts_popover.is_independent_window:
-                self._close_quick_access_panel()
 
     def eventFilter(self, watched, event):
         if (
@@ -315,30 +263,11 @@ class BrowserController(BrowserView):
             )
             if not over_button and not over_popover:
                 self._update_popover.close()
-        if (
-            event.type() == QEvent.Type.MouseButtonPress
-            and self._quick_accounts_popover.isVisible()
-            and not self._quick_accounts_popover.is_independent_window
-            and hasattr(event, "globalPosition")
-        ):
-            position = event.globalPosition().toPoint()
-            over_button = self._floating_account_button.rect().contains(
-                self._floating_account_button.mapFromGlobal(position)
-            )
-            over_popover = self._quick_accounts_popover.rect().contains(
-                self._quick_accounts_popover.mapFromGlobal(position)
-            )
-            if not over_button and not over_popover:
-                self._close_quick_access_panel(user_initiated=True)
         return super().eventFilter(watched, event)
 
     def _update_buttons(self, _current_theme, current_color_scheme):
         theme = SystemIcon.Type[current_color_scheme.name]
         self.__set_button_icons(theme)
-        self._quick_accounts_popover.update_action_icons(
-            theme,
-            muted=SystemSettings().audio_muted,
-        )
 
     def _configure_flatpak_guidance(self):
         if not SetupManager._is_flatpak:
@@ -444,7 +373,6 @@ class BrowserController(BrowserView):
             existing.button.user = user
             if user.enable and existing.page is None:
                 self._create_webview(existing)
-            self._refresh_quick_access_accounts()
             return existing
 
         self.page_count += 1
@@ -469,13 +397,7 @@ class BrowserController(BrowserView):
         self._accounts[user.id] = runtime
         if user.enable:
             self._create_webview(runtime)
-        self._refresh_quick_access_accounts()
         return runtime
-
-    def _refresh_quick_access_accounts(self):
-        popover = getattr(self, "_quick_accounts_popover", None)
-        if popover is not None and popover.isVisible():
-            popover.set_accounts(self._accounts.values())
 
     def _create_webview(self, runtime: AccountRuntime):
         """Create exactly one WebView for an enabled registry entry."""
@@ -499,18 +421,6 @@ class BrowserController(BrowserView):
                     self._update_runtime_notifications(entry, count)
                 )
             )
-            open_recent_accounts = getattr(
-                page, "open_recent_accounts_requested", None
-            )
-            if open_recent_accounts is not None:
-                open_recent_accounts.connect(self.show_grid_view)
-            set_button_visible = getattr(
-                page, "set_quick_accounts_button_visible", None
-            )
-            if set_button_visible is not None:
-                set_button_visible(
-                    self._is_integrated_account_button_visible()
-                )
             self.pages.addWidget(page)
         except Exception:
             runtime.state = AccountLifecycle.ERROR
@@ -581,7 +491,6 @@ class BrowserController(BrowserView):
             self._ensure_valid_selection()
         self._update_total_notifications()
         self._update_user_menu()
-        self._refresh_quick_access_accounts()
 
     def delete_page(self, user: User):
         """Remove uma página e seu botão correspondente."""
@@ -597,7 +506,6 @@ class BrowserController(BrowserView):
         runtime.button.close()
         runtime.button.deleteLater()
         del self._accounts[user.id]
-        self._refresh_quick_access_accounts()
         if was_current:
             self._select_default_page()
         else:
@@ -614,9 +522,7 @@ class BrowserController(BrowserView):
             if runtime.page:
                 runtime.page.user = user
 
-        self._refresh_quick_access_accounts()
         self._update_user_menu()
-        self._refresh_floating_account_button()
 
     def _update_user_menu(self):
         """Constroi o menu de usuários na barra de menu da janela principal."""
@@ -690,188 +596,6 @@ class BrowserController(BrowserView):
                 return runtime
         return None
 
-    def _refresh_floating_account_button(self):
-        """Keep the floating account button in sync with the visible account."""
-        button = getattr(self, "_floating_account_button", None)
-        if button is None:
-            return
-        runtime = self._runtime_for_page(self.current_webview())
-        button.set_account(runtime.user if runtime else None)
-        button.reposition()
-
-    def _is_integrated_account_button_visible(self):
-        return bool(
-            self._appearance_settings.quick_access_enabled
-            and not self._appearance_settings.browser_sidebar_visible
-            and self._appearance_settings.sidebar_button_mode == "integrated"
-        )
-
-    def _sync_account_switcher_buttons(self, sidebar_visible=None):
-        if sidebar_visible is None:
-            sidebar_visible = self._appearance_settings.browser_sidebar_visible
-        quick_access_enabled = self._appearance_settings.quick_access_enabled
-        integrated_visible = bool(
-            quick_access_enabled
-            and not sidebar_visible
-            and self._appearance_settings.sidebar_button_mode == "integrated"
-        )
-        self._floating_account_button.setVisible(
-            quick_access_enabled
-            and not sidebar_visible
-            and not integrated_visible
-        )
-        self.btn_quick_access.setVisible(quick_access_enabled)
-        if sidebar_visible or integrated_visible or not quick_access_enabled:
-            if not self._quick_accounts_popover.is_independent_window:
-                self._close_quick_access_panel()
-        for runtime in self._active_runtimes():
-            set_button_visible = getattr(
-                runtime.page, "set_quick_accounts_button_visible", None
-            )
-            if set_button_visible is not None:
-                set_button_visible(integrated_visible)
-
-    def refresh_sidebar_button_mode(self):
-        """Apply the persisted account-switcher presentation choice."""
-        self._sync_account_switcher_buttons()
-
-    def refresh_quick_access_settings(self):
-        """Apply Quick Access preferences without replacing its shared panel."""
-        enabled = self._appearance_settings.quick_access_enabled
-        display_mode = self._appearance_settings.quick_access_display_mode
-        if display_mode != self._quick_access_display_mode:
-            self._quick_access_auto_suppressed = False
-            self._quick_access_display_mode = display_mode
-        self.btn_quick_access.setVisible(enabled)
-        if not enabled:
-            self._close_quick_access_panel()
-        self._configure_quick_access_window()
-        self._sync_account_switcher_buttons()
-        self._sync_automatic_quick_access()
-
-    def _configure_quick_access_window(self):
-        self._quick_accounts_popover.configure_window_behavior(
-            remember_position=self._appearance_settings.quick_access_remember_position,
-            position_locked=self._appearance_settings.quick_access_lock_position,
-            always_on_top=self._appearance_settings.quick_access_always_on_top,
-            position=self._appearance_settings.quick_access_position,
-        )
-
-    def _save_quick_access_position(self, x, y):
-        if self._appearance_settings.quick_access_remember_position:
-            self._appearance_settings.quick_access_position = (x, y)
-
-    def _save_quick_access_always_on_top(self, enabled):
-        self._appearance_settings.quick_access_always_on_top = enabled
-
-    def _close_quick_access_panel(self, *, user_initiated=False):
-        if user_initiated and self._quick_access_auto_open:
-            self._quick_access_auto_suppressed = True
-        self._quick_access_auto_open = False
-        self._closing_quick_access_internally = True
-        try:
-            self._quick_accounts_popover.close()
-        finally:
-            self._closing_quick_access_internally = False
-
-    def _handle_quick_access_closed(self):
-        if (
-            self._quick_access_auto_open
-            and not self._closing_quick_access_internally
-            and self._appearance_settings.quick_access_display_mode != "always"
-        ):
-            self._quick_access_auto_suppressed = True
-        self._quick_access_auto_open = False
-        if (
-            self._appearance_settings.quick_access_enabled
-            and self._appearance_settings.quick_access_display_mode == "always"
-            and not self._closing_quick_access_internally
-            and not self._shutting_down
-        ):
-            QTimer.singleShot(0, self._sync_automatic_quick_access)
-
-    def _sync_automatic_quick_access(self, _sidebar_visible=None):
-        mode = self._appearance_settings.quick_access_display_mode
-        should_show = (
-            self._appearance_settings.quick_access_enabled
-            and (
-                mode == "always"
-                or (mode == "when_hidden" and self._main_window_hidden)
-            )
-            and not self._quick_access_auto_suppressed
-        )
-        if not should_show:
-            if self._quick_access_auto_open:
-                self._close_quick_access_panel()
-            return
-        if self._quick_accounts_popover.isVisible():
-            return
-        self._quick_accounts_popover.set_accounts(self._accounts.values())
-        self._quick_accounts_popover.show_window(activate=False)
-        self._quick_access_auto_open = True
-
-    def main_window_visibility_changed(self, hidden):
-        """Apply display modes tied to the main window's visibility."""
-        self._main_window_hidden = bool(hidden)
-        if not hidden:
-            self._quick_access_auto_suppressed = False
-        self._sync_automatic_quick_access()
-
-    def toggle_quick_accounts_panel(self):
-        """Toggle the compact native account and actions panel."""
-        if not self._appearance_settings.quick_access_enabled:
-            return
-        if self._quick_accounts_popover.is_independent_window:
-            self._close_quick_access_panel(user_initiated=True)
-            self._quick_accounts_popover._set_presentation(independent=False)
-        if self._quick_accounts_popover.isVisible():
-            self._close_quick_access_panel(user_initiated=True)
-            return
-        self._quick_accounts_popover.set_accounts(self._accounts.values())
-        self._quick_accounts_popover.popup_for(self._floating_account_button)
-
-    def show_quick_access_window(self):
-        """Show the shared quick-access panel as a standalone window."""
-        if not self._appearance_settings.quick_access_enabled:
-            return
-        self._quick_access_auto_open = False
-        self._quick_accounts_popover.set_accounts(self._accounts.values())
-        self._quick_accounts_popover.show_window()
-
-    def _close_after_quick_access_action(self):
-        if self._appearance_settings.quick_access_display_mode != "always":
-            self._close_quick_access_panel()
-        if self._main_window_hidden:
-            show_window = getattr(self.parent, "show_window", None)
-            if show_window is not None:
-                show_window()
-
-    def _handle_quick_account_request(self, user_id):
-        self._close_after_quick_access_action()
-        runtime = self._accounts.get(user_id)
-        if runtime is None:
-            return False
-        if runtime.user.enable:
-            return self.activate_account(user_id)
-        self._handle_account_button_click(user_id)
-        return False
-
-    def _handle_quick_add_account(self):
-        self._close_after_quick_access_action()
-        self.add_new_user()
-
-    def _handle_quick_audio_request(self):
-        self._close_after_quick_access_action()
-        self.parent.toggle_audio_muted()
-
-    def _handle_quick_downloads_request(self):
-        self._close_after_quick_access_action()
-        self.parent.show_downloads_menu(self._quick_accounts_popover)
-
-    def _handle_quick_settings_request(self):
-        self._close_after_quick_access_action()
-        self.parent.open_settings()
-
     # === Ações do Navegador ===
     def activate_account(self, user_id):
         """Activate an account through its stable persisted identifier."""
@@ -899,14 +623,6 @@ class BrowserController(BrowserView):
         page.page().show_toast(page.user.name if page.user.name !=
                                "" else _("Account {}").format(page.page_index))
         button.selected()
-        self._refresh_floating_account_button()
-        quick_accounts_popover = getattr(
-            self,
-            "_quick_accounts_popover",
-            None,
-        )
-        if quick_accounts_popover is not None:
-            quick_accounts_popover.update_active_account()
         return True
 
     def _handle_account_button_click(self, user_id):
@@ -994,10 +710,6 @@ class BrowserController(BrowserView):
             setter = getattr(runtime.page, "set_audio_muted", None)
             if callable(setter):
                 setter(bool(muted))
-        theme = SystemIcon.Type[
-            ThemeManager.get_current_color_scheme().name
-        ]
-        self._quick_accounts_popover.update_action_icons(theme, muted=muted)
 
     def current_webview(self):
         current = self.pages.currentWidget()
@@ -1028,7 +740,6 @@ class BrowserController(BrowserView):
 
         self._reset_button_styles()
         self.pages.setCurrentIndex(self.grid_page_index)
-        self._refresh_floating_account_button()
 
     def show_donations(self):
         """Select the native donations route without navigating any WebView."""
@@ -1042,7 +753,6 @@ class BrowserController(BrowserView):
         self.pages.setCurrentWidget(self.donations_page)
         self.btn_donations.setChecked(True)
         self.donations_page.setFocus(Qt.FocusReason.OtherFocusReason)
-        self._refresh_floating_account_button()
         return self.donations_page
 
     def close_donations(self):
@@ -1127,7 +837,6 @@ class BrowserController(BrowserView):
             SystemIcon.get_icon("whatsapp_lock", theme))
         self.btn_donations.setIcon(
             SystemIcon.get_icon("donation_heart", theme))
-        self.btn_quick_access.setIcon(SystemIcon.get_icon("view_grid", theme))
         self.btn_update_available.setIcon(
             SystemIcon.get_icon("update_available", theme))
         self.btn_downloads.setIcon(
@@ -1148,12 +857,9 @@ class BrowserController(BrowserView):
             self._appearance_settings.browser_sidebar_visible,
             animated=False,
         )
-        self._configure_quick_access_window()
-        self._sync_automatic_quick_access()
 
     def set_sidebar_visible(self, visible: bool, animated: bool = True):
         visible = bool(visible)
-        self._sync_account_switcher_buttons(visible)
         if not visible:
             self._update_popover.close()
         if self._sidebar_animation_group:
