@@ -115,11 +115,14 @@ Nos testes visuais, importe controles básicos de `zapzap.ui.primitives` e
 composições de `zapzap.ui.components`. Imports por caminhos internos de uma
 feature não devem ser usados para alcançar widgets compartilhados.
 
-O workflow `quality.yml` executa `test_download_settings.py`,
-`test_taskbar_badge.py` e `test_plain_text_paste.py` também em Ubuntu,
-Windows e macOS. Essa matriz protege os contratos portáveis do gerenciador de
-downloads, das ativações da bandeja e do atalho nativo de colagem sem
-formatação; a aparência exata dos ícones nativos, o comportamento imposto pelo
+O workflow `quality.yml` executa no Ubuntu as verificações do manifesto de
+pacotes, da estrutura documentada, do catálogo turco e da compilação Python.
+Também executa os testes `test_download_settings.py`,
+`test_taskbar_badge.py`, `test_plain_text_paste.py`, `test_global_mute.py`,
+`test_notification_sound_setting.py`, `test_external_link_lifecycle.py`,
+`test_main_window_shortcuts.py` e `test_native_titlebar_theme.py` em Ubuntu,
+Windows e macOS. Essa matriz cobre contratos selecionados, não a suíte
+completa; a aparência exata dos ícones nativos, o comportamento imposto pelo
 shell e a integração real com o clipboard ainda exigem validação gráfica em
 cada sistema.
 

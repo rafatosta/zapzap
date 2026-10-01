@@ -235,6 +235,8 @@ releases and the AppStream metadata.
 
 ### Changed
 
+- Updated the testing guide to list all tests in the Ubuntu/Windows/macOS
+  quality matrix and distinguish them from the Ubuntu structural checks.
 - Clarified that the installed Flatpak is the official Python, Qt and test
   environment, replaced host/virtualenv test instructions with a validated
   reusable Flatpak command, and documented expected host-side PyQt6 import
