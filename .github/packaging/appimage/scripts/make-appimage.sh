@@ -10,7 +10,10 @@ export OUTPATH="./dist"
 export OUTNAME="ZapZap-${VERSION}-linux-${ARCH}.AppImage"
 
 # Hooks
-export ADD_HOOKS="self-updater.hook"
+case "${RELEASE_TAG:-}" in
+    *-rc.*|*-rc) ;;
+    *) export ADD_HOOKS="self-updater.hook" ;;
+esac
 
 # AppImageUpdate
 export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}|latest|*${ARCH}*.AppImage.zsync"

@@ -168,6 +168,9 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Disabled the AppImage self-updater on release candidate builds so a candidate
+  is no longer replaced in place by the previous stable release.
+
 - Completed the Turkish Quick Access settings translations and removed their
   obsolete fuzzy markers so the shipped catalog passes validation.
 
