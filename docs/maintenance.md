@@ -320,7 +320,7 @@ rede que possam ser sensíveis.
 ### Lista redimensionável de conversas
 
 - Preserve `system/resizable_chat_list_enabled` e `zapzap.chatListWidth` por
-  conta. O mínimo é 80 CSS px, sem modo compacto separado.
+  conta. O mínimo é 85 CSS px, sem modo compacto separado.
 - A ação **Compact chat list** deve aplicar/salvar o mínimo nas contas ativas
   e habilitar o redimensionamento normal; não crie um modo fixo ou outra chave.
 - Modifique somente a largura da coluna e das camadas sobrepostas; mantenha

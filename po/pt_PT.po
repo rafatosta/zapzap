@@ -2238,9 +2238,9 @@ msgid "Compact chat list"
 msgstr "Lista compacta de conversas"
 
 #: zapzap/features/settings/pages/appearance/view.py:66
-msgid "Set the chat list to 80 px. You can resize it again afterwards."
+msgid "Set the chat list to 85 px. You can resize it again afterwards."
 msgstr ""
-"Defina a lista de conversas para 80 px. Pode redimensioná-la novamente "
+"Defina a lista de conversas para 85 px. Pode redimensioná-la novamente "
 "depois."
 
 #: zapzap/features/settings/pages/appearance/view.py:67

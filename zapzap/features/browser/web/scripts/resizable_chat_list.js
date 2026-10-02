@@ -4,7 +4,7 @@
   const resizeHandleLabel = {resize_handle_label};
   const resizeHandleHint = {resize_handle_hint};
   const savedWidthStorageKey = 'zapzap.chatListWidth';
-  const minimumColumnWidth = 80;
+  const minimumColumnWidth = 85;
   const minimumConversationWidth = 380;
   const keyboardResizeStep = 20;
   const columnSlotAttribute = 'data-zapzap-chat-list-slot';

@@ -2188,8 +2188,8 @@ msgid "Compact chat list"
 msgstr "紧凑聊天列表"
 
 #: zapzap/features/settings/pages/appearance/view.py:66
-msgid "Set the chat list to 80 px. You can resize it again afterwards."
-msgstr "将聊天列表设为 80 像素。之后仍可调整宽度。"
+msgid "Set the chat list to 85 px. You can resize it again afterwards."
+msgstr "将聊天列表设为 85 像素。之后仍可调整宽度。"
 
 #: zapzap/features/settings/pages/appearance/view.py:67
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:276

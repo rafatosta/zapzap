@@ -329,7 +329,7 @@ focável com `aria-valuenow`, `aria-valuemin` e `aria-valuemax`; setas, Home e
 End redimensionam e Enter restaura a largura padrão. A largura escolhida fica
 no `localStorage` da conta em `zapzap.chatListWidth`.
 
-O limite mínimo da lista redimensionável é 80 CSS px e a conversa mantém o
+O limite mínimo da lista redimensionável é 85 CSS px e a conversa mantém o
 limite existente de 380 px. O script altera apenas a coluna e as camadas
 sobrepostas: não reposiciona avatares, não modifica a altura das linhas nem
 oculta cabeçalho, busca, filtros ou conteúdo textual. A apresentação estreita
@@ -340,7 +340,7 @@ largura do redimensionamento continuam sendo as fontes de verdade.
 A ação **Compact chat list** em Aparência habilita o redimensionamento existente
 quando necessário e chama `BrowserController.compact_chat_list` nas contas
 ativas. `WebView.compact_chat_list` instala o controlador e solicita `compact()`:
-ele aplica/salva 80 CSS px, inclusive antes da montagem de `#side`, sem travar
+ele aplica/salva 85 CSS px, inclusive antes da montagem de `#side`, sem travar
 arraste/teclado ou criar outro estado persistido. A largura continua restaurável
 por Enter/duplo clique e reaplicada após recarga pelo armazenamento da conta.
 

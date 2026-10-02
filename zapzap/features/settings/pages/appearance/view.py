@@ -63,7 +63,7 @@ class AppearanceSettingsView(SettingsPage):
         self._configure_row_accessibility(self.resizable_chat_list_row)
         self.compact_chat_list_row = SettingsActionRow(
             _("Compact chat list"),
-            _("Set the chat list to 80 px. You can resize it again afterwards."),
+            _("Set the chat list to 85 px. You can resize it again afterwards."),
             _("Apply"),
         )
         self.scale_row = SettingsSelectRow(
