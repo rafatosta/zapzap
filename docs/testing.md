@@ -605,7 +605,9 @@ interface e confirme ausência de janela órfã. Repita com CSR, X11/Wayland e
 Windows/macOS; testes offscreen não comprovam decoração ou foco do compositor.
 
 Para as opções do painel, teste os três modos: sempre, principal oculta ou
-minimizada, e sob demanda. Em cada modo, feche pelo botão nativo e Esc;
+minimizada, e sob demanda. Em Aparência, confirme que os subitens ficam ocultos
+com o painel desativado e reaparecem com os valores anteriores ao reativá-lo.
+Em cada modo, feche pelo botão nativo e Esc;
 confirme que dados/contadores/opções não reabrem uma janela dispensada. No modo
 automático, um novo ciclo de ocultar/restaurar deve reaplicar a política; sob
 demanda, somente uma solicitação explícita abre. Reabra por Exibir, bandeja e

@@ -371,9 +371,10 @@ class AppearanceSettingsUiTests(QtTestCase):
             )
         page.close()
 
-    def test_floating_options_are_grouped_disabled_and_preserved(self):
+    def test_floating_options_are_grouped_hidden_and_preserved(self):
         page, model = self._controller()
         self.assertFalse(page.floating_options_group.isEnabled())
+        self.assertTrue(page.floating_options_group.isHidden())
         self.assertTrue(page.floating_remember_row.checkbox.isChecked())
         self.assertEqual(page.floating_mode.currentData(), "always")
         self.assertEqual(page.floating_options_group.layout.contentsMargins().left(), SUBSETTING_INDENT)
@@ -382,6 +383,7 @@ class AppearanceSettingsUiTests(QtTestCase):
 
     def test_floating_controls_apply_live_and_show_without_toggling_preference(self):
         page, model = self._controller(floating_monitoring_panel_enabled=True)
+        self.assertFalse(page.floating_options_group.isHidden())
         window = Mock()
         app = Mock()
         app.getWindow.return_value = window
@@ -400,6 +402,12 @@ class AppearanceSettingsUiTests(QtTestCase):
             window.reset_floating_panel_position.assert_called_once_with()
             page.floating_monitoring_panel_enabled.click()
             self.assertFalse(page.floating_options_group.isEnabled())
+            self.assertTrue(page.floating_options_group.isHidden())
+            self.assertTrue(model.floating_panel_on_top)
+            self.assertEqual(model.floating_panel_mode, "when_hidden")
+            page.floating_monitoring_panel_enabled.click()
+            self.assertTrue(page.floating_options_group.isEnabled())
+            self.assertFalse(page.floating_options_group.isHidden())
             self.assertTrue(model.floating_panel_on_top)
             self.assertEqual(model.floating_panel_mode, "when_hidden")
         page.close()

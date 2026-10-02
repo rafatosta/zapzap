@@ -15,6 +15,9 @@ releases and the AppStream metadata.
 
 ### Changed
 
+- Hide floating monitoring panel suboptions in Appearance until the panel is
+  enabled, preserving their saved values when disabled.
+
 - Simplified the checkout launcher to call FlatpakRunner directly and removed
   unused browser account adapters and the aggregate auto-open-media accessor.
   Preserved download preference migration and all other persisted settings.

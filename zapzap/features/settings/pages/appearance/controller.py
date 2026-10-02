@@ -208,6 +208,7 @@ class AppearanceSettingsController(AppearanceSettingsView):
 
     def _handle_floating_monitoring_panel_enabled(self, enabled):
         self.floating_options_group.setEnabled(enabled)
+        self.floating_options_group.setVisible(enabled)
         self.model.floating_monitoring_panel_enabled = enabled
         QApplication.instance().getWindow().set_floating_monitoring_panel_enabled(
             enabled, persist=False
@@ -261,6 +262,9 @@ class AppearanceSettingsController(AppearanceSettingsView):
         self._update_restart_requirement()
 
     def _sync_dependent_controls(self):
+        self.floating_options_group.setVisible(
+            self.floating_monitoring_panel_enabled.isChecked()
+        )
         self.floating_options_group.setEnabled(
             self.floating_monitoring_panel_enabled.isChecked()
         )

@@ -220,8 +220,8 @@ No modo sob demanda, transições não abrem o painel. Uma abertura explícita
 permanece até o fechamento ou a próxima transição da principal.
 
 Aparência contém as opções subordinadas de modo, manter acima (False por padrão),
-lembrar posição (True) e bloquear posição (False), preservadas quando o painel
-é desabilitado. `AppearanceSettings` mantém as novas chaves
+lembrar posição (True) e bloquear posição (False), ocultas quando o painel
+é desabilitado e com seus valores preservados. `AppearanceSettings` mantém as novas chaves
 `system/floating_monitoring_panel_{mode,on_top,remember_position,lock_position,position}`;
 a posição é um QPoint independente da geometria da principal. Tipos inválidos
 são ignorados e modos desconhecidos usam `always`. Nenhuma chave legada muda.
