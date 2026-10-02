@@ -317,6 +317,18 @@ rede que possam ser sensíveis.
 - Valide contagem positiva, zero, preferência desativada e bandeja oculta.
   Confirme o resultado em uma sessão gráfica; mocks não comprovam o painel.
 
+### Lista compacta de conversas
+
+- Preserve as preferências independentes `system/compact_chat_list_enabled` e
+  `system/resizable_chat_list_enabled`, além de `zapzap.chatListWidth` por conta.
+- Mantenha o compacto fixo, sem alça ou redimensionamento por teclado. Ao sair,
+  restaure a largura anterior e o estado do redimensionamento.
+- Adapte apenas a apresentação das linhas nativas; não duplique navegação nem
+  remova espaçadores de listas virtualizadas. Avatares padrão de grupos/contatos
+  precisam continuar visíveis e clicáveis.
+- Verifique o DOM remoto em sessão gráfica real: os testes WebEngine usam um
+  layout sintético e não comprovam compatibilidade com novas versões do WhatsApp.
+
 ### Mudança visual compartilhada
 
 - Corrija primeiro o componente central e audite consumidores.

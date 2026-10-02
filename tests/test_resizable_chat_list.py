@@ -137,6 +137,81 @@ class ResizableChatListTests(QtTestCase):
     def _widest_column_width(self):
         return VIEWPORT_WIDTH - NAVIGATION_WIDTH - MINIMUM_CONVERSATION_WIDTH
 
+    def _add_chat_rows(self):
+        self._javascript("""
+          document.getElementById('side').innerHTML = `
+            <header id="chat-header">Chats <button>New chat</button></header>
+            <div id="chat-search"><input placeholder="Search"></div>
+            <div role="grid" style="height:600px;overflow:auto">
+              <div role="row" aria-label="Alice" style="height:72px" onclick="window.clickedChat='Alice'">
+                <div style="position:relative;min-width:260px">
+                  <img id="alice-avatar" alt="Alice" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" style="width:49px;height:49px">
+                  <span id="chat-preview">Alice: Hello</span>
+                </div>
+              </div>
+              <div role="row" aria-label="Group" style="height:72px">
+                <span data-icon="default-group"><svg></svg></span><span>Group</span>
+              </div>
+            </div>`;
+        """)
+
+    def test_compact_mode_is_fixed_avatar_only_and_preserves_native_clicks(self):
+        self._add_chat_rows()
+        self._save_width(500)
+        self.view.set_resizable_chat_list_enabled(True)
+        self.view.set_compact_chat_list_enabled(True)
+        state = self._layout_state()
+        self.assertEqual(state["column"], 80)
+        self.assertEqual(state["drawer"], 360)
+        self.assertIsNone(state["handleLeft"])
+        self._press_on_handle("End")
+        self.assertEqual(self._layout_state()["column"], 80)
+        self.assertEqual(self._layout_state()["savedWidth"], "500")
+        presentation = self._javascript("""
+          (() => {
+            const avatar = document.getElementById('alice-avatar');
+            avatar.click();
+            return {
+              avatar: getComputedStyle(avatar).visibility,
+              preview: getComputedStyle(document.getElementById('chat-preview')).visibility,
+              header: getComputedStyle(document.getElementById('chat-header')).display,
+              search: getComputedStyle(document.getElementById('chat-search')).display,
+              count: document.querySelectorAll('[data-zapzap-chat-list-avatar]').length,
+              clicked: window.clickedChat,
+              center: avatar.getBoundingClientRect().left + avatar.getBoundingClientRect().width / 2,
+            };
+          })()
+        """)
+        self.assertEqual(presentation["avatar"], "visible")
+        self.assertEqual(presentation["preview"], "hidden")
+        self.assertEqual(presentation["header"], "none")
+        self.assertEqual(presentation["search"], "none")
+        self.assertEqual(presentation["count"], 2)
+        self.assertEqual(presentation["clicked"], "Alice")
+        self.assertEqual(presentation["center"], NAVIGATION_WIDTH + 40)
+        self.view.set_compact_chat_list_enabled(False)
+        self.assertEqual(self._layout_state()["column"], 500)
+        self.assertEqual(self._javascript("document.querySelectorAll('[data-zapzap-chat-list-avatar]').length"), 0)
+        self.assertEqual(self._javascript("getComputedStyle(document.getElementById('chat-preview')).visibility"), "visible")
+
+    def test_compact_without_resizing_survives_reload_and_dynamic_rows(self):
+        self.view.set_resizable_chat_list_enabled(False)
+        self.view.set_compact_chat_list_enabled(True)
+        self._load_layout()
+        # Until native rows/avatars are available, leave the native layout intact.
+        self.assertEqual(self._layout_state()["column"], self._default_column_width())
+        self._add_chat_rows()
+        self._javascript("new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))")
+        # Pump the Qt loop for the MutationObserver's scheduled layout frame.
+        loop = QEventLoop()
+        QTimer.singleShot(100, loop.quit)
+        loop.exec()
+        self.assertEqual(self._layout_state()["column"], 80)
+        self.view.set_compact_chat_list_enabled(False)
+        self.assertEqual(self._layout_state()["column"], self._default_column_width())
+        self.assertEqual(self._layout_state()["handleCount"], 0)
+        self.assertEqual(self._installed_scripts(), [])
+
     def test_saved_width_resizes_the_column_and_its_drawer_slot(self):
         self._save_width(500)
 
@@ -257,6 +332,15 @@ class ResizableChatListTests(QtTestCase):
 
 
 class ResizableChatListRoutingTests(unittest.TestCase):
+
+    def test_compact_preference_reaches_every_active_account_page(self):
+        pages = [Mock(), Mock()]
+        browser = SimpleNamespace(
+            _active_runtimes=lambda: iter(SimpleNamespace(page=page) for page in pages)
+        )
+        BrowserController.set_compact_chat_list_enabled(browser, True)
+        for page in pages:
+            page.set_compact_chat_list_enabled.assert_called_once_with(True)
 
     def test_preference_reaches_every_active_account_page(self):
         pages = [Mock(), Mock()]

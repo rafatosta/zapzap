@@ -15,6 +15,13 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Added an optional fixed-width compact WhatsApp chat list in Appearance,
+  showing only native chat avatars (including default contact/group icons).
+  It takes priority over resizing without changing the saved preference or
+  per-account width, applies live to active accounts and survives reloads.
+  Kept overlay panels wider, restored the previous layout when disabled, and
+  added WebEngine/settings regressions, translations and technical documentation.
+
 - Added an Appearance switch that makes the WhatsApp Web chat list resizable.
   Dragging the edge of the list changes its width, double-clicking restores the
   WhatsApp default, and the width is kept per account across restarts. The edge

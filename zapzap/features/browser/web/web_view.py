@@ -360,10 +360,14 @@ class WebView(QWebEngineView):
         """Turn chat list resizing on or off in the loaded page and on reloads."""
         if self.profile is None or self.whatsapp_page is None or self._shutting_down:
             return
-        enabled = bool(enabled)
+        self._resizable_chat_list_enabled = bool(enabled)
+        enabled = bool(enabled) or getattr(self, "_compact_chat_list_enabled", False)
         self._install_resizable_chat_list(enabled)
         if enabled:
-            source = self._resizable_chat_list_source()
+            source = self._resizable_chat_list_source(
+                compact=getattr(self, "_compact_chat_list_enabled", False),
+                resizable=getattr(self, "_resizable_chat_list_enabled", True),
+            )
             if source:
                 self.whatsapp_page.runJavaScript(source)
         else:
@@ -372,13 +376,24 @@ class WebView(QWebEngineView):
                 "window._zapZapResizableChatList.destroy();"
             )
 
+    def set_compact_chat_list_enabled(self, enabled: bool) -> None:
+        """Apply compact presentation without changing the saved resize preference."""
+        self._compact_chat_list_enabled = bool(enabled)
+        self.set_resizable_chat_list_enabled(
+            getattr(self, "_resizable_chat_list_enabled",
+                    AppearanceSettings().resizable_chat_list_enabled)
+        )
+
     def _install_resizable_chat_list(self, enabled: bool) -> None:
         scripts = self.profile.scripts()
         for script in scripts.find(self.RESIZABLE_CHAT_LIST_SCRIPT_NAME):
             scripts.remove(script)
         if not enabled:
             return
-        source = self._resizable_chat_list_source()
+        source = self._resizable_chat_list_source(
+            compact=getattr(self, "_compact_chat_list_enabled", False),
+            resizable=getattr(self, "_resizable_chat_list_enabled", True),
+        )
         if not source:
             return
         script = QWebEngineScript()
@@ -390,7 +405,7 @@ class WebView(QWebEngineView):
         scripts.insert(script)
 
     @staticmethod
-    def _resizable_chat_list_source() -> str:
+    def _resizable_chat_list_source(compact=False, resizable=True) -> str:
         js_path = os.path.join(
             os.path.dirname(__file__), "scripts", "resizable_chat_list.js"
         )
@@ -401,6 +416,8 @@ class WebView(QWebEngineView):
             logger.exception("Failed to read the resizable chat list script")
             return ""
         placeholders = {
+            "{compact_enabled}": json.dumps(bool(compact)),
+            "{resizable_enabled}": json.dumps(bool(resizable)),
             "{resize_handle_label}": json.dumps(_("Chat list width")),
             "{resize_handle_hint}": json.dumps(
                 _("Drag or use the arrow keys to resize. Double-click or "
@@ -453,8 +470,11 @@ class WebView(QWebEngineView):
         self.whatsapp_page.renderProcessTerminated.connect(
             self._on_render_crash)
         self._inject_web_theme_controller()
+        appearance = AppearanceSettings()
+        self._compact_chat_list_enabled = appearance.compact_chat_list_enabled
+        self._resizable_chat_list_enabled = appearance.resizable_chat_list_enabled
         self._install_resizable_chat_list(
-            AppearanceSettings().resizable_chat_list_enabled
+            self._compact_chat_list_enabled or self._resizable_chat_list_enabled
         )
         self.load_page()
 

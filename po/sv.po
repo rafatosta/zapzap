@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-01 19:31-0300\n"
+"POT-Creation-Date: 2026-10-01 19:33-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Swedish\n"
@@ -18,6 +18,18 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.8\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+
+#: zapzap/app/window_lifecycle.py:89
+msgid "Close ZapZap"
+msgstr "Stäng ZapZap"
+
+#: zapzap/app/window_lifecycle.py:90
+msgid "Are you sure you want to close?"
+msgstr "Är du säker på att du vill stänga?"
+
+#: zapzap/app/window_lifecycle.py:91
+msgid "Don't ask again"
+msgstr "Fråga inte igen"
 
 #: zapzap/app/main_window_controller.py:282
 #: zapzap/features/tray/sys_tray_manager.py:68
@@ -43,18 +55,6 @@ msgstr "Tysta"
 #, python-brace-format
 msgid "Account {}"
 msgstr "Konto {}"
-
-#: zapzap/app/window_lifecycle.py:89
-msgid "Close ZapZap"
-msgstr "Stäng ZapZap"
-
-#: zapzap/app/window_lifecycle.py:90
-msgid "Are you sure you want to close?"
-msgstr "Är du säker på att du vill stänga?"
-
-#: zapzap/app/window_lifecycle.py:91
-msgid "Don't ask again"
-msgstr "Fråga inte igen"
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:27
 msgid "Unexpected Error"
@@ -821,9 +821,9 @@ msgstr ""
 #: zapzap/features/downloads/ui/downloads_menu.py:1025
 #: zapzap/ui/components/browser_sidebar.py:219
 #: zapzap/ui/components/browser_sidebar.py:220
+#: zapzap/ui/components/main_window.py:164
 #: zapzap/ui/components/floating_monitoring_panel.py:293
 #: zapzap/ui/components/floating_monitoring_panel.py:294
-#: zapzap/ui/components/main_window.py:164
 msgid "Downloads"
 msgstr "Nedladdningar"
 
@@ -1369,9 +1369,9 @@ msgstr "Profil och status"
 #: zapzap/features/settings/shell/settings_controller.py:234
 #: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/downloads/ui/downloads_menu.py:1081
+#: zapzap/ui/components/main_window.py:149
 #: zapzap/ui/components/floating_monitoring_panel.py:295
 #: zapzap/ui/components/floating_monitoring_panel.py:296
-#: zapzap/ui/components/main_window.py:149
 msgid "Settings"
 msgstr "Inställningar"
 
@@ -3963,6 +3963,53 @@ msgid ""
 "WhatsApp requests it."
 msgstr ""
 
+#: zapzap/features/browser/web/page_controller.py:308
+msgid "your microphone"
+msgstr "din mikrofon"
+
+#: zapzap/features/browser/web/page_controller.py:309
+msgid "your camera"
+msgstr "din kamera"
+
+#: zapzap/features/browser/web/page_controller.py:310
+msgid "your camera and microphone"
+msgstr "din kamera och mikrofon"
+
+#: zapzap/features/browser/web/page_controller.py:311
+msgid "your location"
+msgstr "din plats"
+
+#: zapzap/features/browser/web/page_controller.py:312
+msgid "your screen contents"
+msgstr "ditt skärminnehåll"
+
+#: zapzap/features/browser/web/page_controller.py:313
+msgid "your screen contents and audio"
+msgstr "ditt skärminnehåll och ljud"
+
+#: zapzap/features/browser/web/page_controller.py:314
+msgid "mouse lock"
+msgstr "musslås"
+
+#: zapzap/features/browser/web/page_controller.py:316
+msgid "a system feature"
+msgstr "en systemfunktion"
+
+#: zapzap/features/browser/web/page_controller.py:320
+msgid "Permission request"
+msgstr "Behörighetsförfrågan"
+
+#: zapzap/features/browser/web/page_controller.py:321
+#, python-brace-format
+msgid ""
+"WhatsApp Web is requesting access to {}.\n"
+"\n"
+"Allow?"
+msgstr ""
+"WhatsApp Web begär åtkomst till {}.\n"
+"\n"
+"Tillåt?"
+
 #: zapzap/features/browser/web/web_view.py:254
 #: zapzap/ui/components/integrated_account_selector.py:57
 #, fuzzy
@@ -4033,53 +4080,6 @@ msgstr "Konto"
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"
-
-#: zapzap/features/browser/web/page_controller.py:308
-msgid "your microphone"
-msgstr "din mikrofon"
-
-#: zapzap/features/browser/web/page_controller.py:309
-msgid "your camera"
-msgstr "din kamera"
-
-#: zapzap/features/browser/web/page_controller.py:310
-msgid "your camera and microphone"
-msgstr "din kamera och mikrofon"
-
-#: zapzap/features/browser/web/page_controller.py:311
-msgid "your location"
-msgstr "din plats"
-
-#: zapzap/features/browser/web/page_controller.py:312
-msgid "your screen contents"
-msgstr "ditt skärminnehåll"
-
-#: zapzap/features/browser/web/page_controller.py:313
-msgid "your screen contents and audio"
-msgstr "ditt skärminnehåll och ljud"
-
-#: zapzap/features/browser/web/page_controller.py:314
-msgid "mouse lock"
-msgstr "musslås"
-
-#: zapzap/features/browser/web/page_controller.py:316
-msgid "a system feature"
-msgstr "en systemfunktion"
-
-#: zapzap/features/browser/web/page_controller.py:320
-msgid "Permission request"
-msgstr "Behörighetsförfrågan"
-
-#: zapzap/features/browser/web/page_controller.py:321
-#, python-brace-format
-msgid ""
-"WhatsApp Web is requesting access to {}.\n"
-"\n"
-"Allow?"
-msgstr ""
-"WhatsApp Web begär åtkomst till {}.\n"
-"\n"
-"Tillåt?"
 
 #: zapzap/features/accounts/domain/profile_sync.py:49
 #, fuzzy
@@ -4633,31 +4633,6 @@ msgstr "Om de kastas återställs värdena från före redigeringen."
 msgid "Keep editing"
 msgstr "Fortsätt redigera"
 
-#: zapzap/ui/components/floating_monitoring_panel.py:283
-#: zapzap/ui/components/floating_monitoring_panel.py:285
-#, fuzzy
-msgid "Quick access"
-msgstr "Snabbåtgärder"
-
-#: zapzap/ui/components/floating_monitoring_panel.py:284
-msgid "No account activity to show yet."
-msgstr ""
-
-#: zapzap/ui/components/floating_monitoring_panel.py:286
-#, fuzzy
-msgid "Monitoring panel"
-msgstr "Fäst panelen"
-
-#: zapzap/ui/components/floating_monitoring_panel.py:287
-#: zapzap/ui/components/floating_monitoring_panel.py:288
-msgid "Unlock position"
-msgstr ""
-
-#: zapzap/ui/components/floating_monitoring_panel.py:291
-#: zapzap/ui/components/floating_monitoring_panel.py:292
-msgid "Audio"
-msgstr ""
-
 #: zapzap/ui/components/main_window.py:140
 msgid "File"
 msgstr "Arkiv"
@@ -5027,6 +5002,31 @@ msgstr ""
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
 
+#: zapzap/ui/components/floating_monitoring_panel.py:283
+#: zapzap/ui/components/floating_monitoring_panel.py:285
+#, fuzzy
+msgid "Quick access"
+msgstr "Snabbåtgärder"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:284
+msgid "No account activity to show yet."
+msgstr ""
+
+#: zapzap/ui/components/floating_monitoring_panel.py:286
+#, fuzzy
+msgid "Monitoring panel"
+msgstr "Fäst panelen"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:287
+#: zapzap/ui/components/floating_monitoring_panel.py:288
+msgid "Unlock position"
+msgstr ""
+
+#: zapzap/ui/components/floating_monitoring_panel.py:291
+#: zapzap/ui/components/floating_monitoring_panel.py:292
+msgid "Audio"
+msgstr ""
+
 #, fuzzy
 #~ msgid "No accounts yet"
 #~ msgstr "Nytt konto"
@@ -5351,3 +5351,11 @@ msgstr ""
 
 #~ msgid "This site"
 #~ msgstr "Den här webbplatsen"
+
+#: zapzap/features/settings/pages/appearance/view.py
+msgid "Compact chat list"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py
+msgid "Show only chat avatars at a fixed width. Resizing is unavailable while enabled."
+msgstr ""

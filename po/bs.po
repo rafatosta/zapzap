@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-01 19:31-0300\n"
+"POT-Creation-Date: 2026-10-01 19:33-0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Bosnian\n"
@@ -17,6 +17,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: zapzap/app/window_lifecycle.py:89
+msgid "Close ZapZap"
+msgstr "Zatvori ZapZap"
+
+#: zapzap/app/window_lifecycle.py:90
+msgid "Are you sure you want to close?"
+msgstr "Jeste li sigurni da želite zatvoriti?"
+
+#: zapzap/app/window_lifecycle.py:91
+msgid "Don't ask again"
+msgstr "Ne pitaj ponovo"
 
 #: zapzap/app/main_window_controller.py:282
 #: zapzap/features/tray/sys_tray_manager.py:68
@@ -42,18 +54,6 @@ msgstr "Isključi zvuk"
 #, python-brace-format
 msgid "Account {}"
 msgstr "Nalog {}"
-
-#: zapzap/app/window_lifecycle.py:89
-msgid "Close ZapZap"
-msgstr "Zatvori ZapZap"
-
-#: zapzap/app/window_lifecycle.py:90
-msgid "Are you sure you want to close?"
-msgstr "Jeste li sigurni da želite zatvoriti?"
-
-#: zapzap/app/window_lifecycle.py:91
-msgid "Don't ask again"
-msgstr "Ne pitaj ponovo"
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:27
 msgid "Unexpected Error"
@@ -820,9 +820,9 @@ msgstr ""
 #: zapzap/features/downloads/ui/downloads_menu.py:1025
 #: zapzap/ui/components/browser_sidebar.py:219
 #: zapzap/ui/components/browser_sidebar.py:220
+#: zapzap/ui/components/main_window.py:164
 #: zapzap/ui/components/floating_monitoring_panel.py:293
 #: zapzap/ui/components/floating_monitoring_panel.py:294
-#: zapzap/ui/components/main_window.py:164
 msgid "Downloads"
 msgstr "Preuzimanja"
 
@@ -1369,9 +1369,9 @@ msgstr "Profil i status"
 #: zapzap/features/settings/shell/settings_controller.py:234
 #: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/downloads/ui/downloads_menu.py:1081
+#: zapzap/ui/components/main_window.py:149
 #: zapzap/ui/components/floating_monitoring_panel.py:295
 #: zapzap/ui/components/floating_monitoring_panel.py:296
-#: zapzap/ui/components/main_window.py:149
 msgid "Settings"
 msgstr "Postavke"
 
@@ -3966,6 +3966,53 @@ msgid ""
 "WhatsApp requests it."
 msgstr ""
 
+#: zapzap/features/browser/web/page_controller.py:308
+msgid "your microphone"
+msgstr "vaš mikrofon"
+
+#: zapzap/features/browser/web/page_controller.py:309
+msgid "your camera"
+msgstr "svoju kameru"
+
+#: zapzap/features/browser/web/page_controller.py:310
+msgid "your camera and microphone"
+msgstr "svoju kameru i mikrofon"
+
+#: zapzap/features/browser/web/page_controller.py:311
+msgid "your location"
+msgstr "svoju lokaciju"
+
+#: zapzap/features/browser/web/page_controller.py:312
+msgid "your screen contents"
+msgstr "sadržaj vašeg ekrana"
+
+#: zapzap/features/browser/web/page_controller.py:313
+msgid "your screen contents and audio"
+msgstr "sadržaj vašeg ekrana i zvuk"
+
+#: zapzap/features/browser/web/page_controller.py:314
+msgid "mouse lock"
+msgstr "zaključavanje miša"
+
+#: zapzap/features/browser/web/page_controller.py:316
+msgid "a system feature"
+msgstr "sistemska karakteristika"
+
+#: zapzap/features/browser/web/page_controller.py:320
+msgid "Permission request"
+msgstr "Zahtjev za dozvolu"
+
+#: zapzap/features/browser/web/page_controller.py:321
+#, python-brace-format
+msgid ""
+"WhatsApp Web is requesting access to {}.\n"
+"\n"
+"Allow?"
+msgstr ""
+"WhatsApp Web traži pristup {}.\n"
+"\n"
+"Dozvoliti?"
+
 #: zapzap/features/browser/web/web_view.py:254
 #: zapzap/ui/components/integrated_account_selector.py:57
 #, fuzzy
@@ -4036,53 +4083,6 @@ msgstr "Račun"
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "DevTools - {}"
-
-#: zapzap/features/browser/web/page_controller.py:308
-msgid "your microphone"
-msgstr "vaš mikrofon"
-
-#: zapzap/features/browser/web/page_controller.py:309
-msgid "your camera"
-msgstr "svoju kameru"
-
-#: zapzap/features/browser/web/page_controller.py:310
-msgid "your camera and microphone"
-msgstr "svoju kameru i mikrofon"
-
-#: zapzap/features/browser/web/page_controller.py:311
-msgid "your location"
-msgstr "svoju lokaciju"
-
-#: zapzap/features/browser/web/page_controller.py:312
-msgid "your screen contents"
-msgstr "sadržaj vašeg ekrana"
-
-#: zapzap/features/browser/web/page_controller.py:313
-msgid "your screen contents and audio"
-msgstr "sadržaj vašeg ekrana i zvuk"
-
-#: zapzap/features/browser/web/page_controller.py:314
-msgid "mouse lock"
-msgstr "zaključavanje miša"
-
-#: zapzap/features/browser/web/page_controller.py:316
-msgid "a system feature"
-msgstr "sistemska karakteristika"
-
-#: zapzap/features/browser/web/page_controller.py:320
-msgid "Permission request"
-msgstr "Zahtjev za dozvolu"
-
-#: zapzap/features/browser/web/page_controller.py:321
-#, python-brace-format
-msgid ""
-"WhatsApp Web is requesting access to {}.\n"
-"\n"
-"Allow?"
-msgstr ""
-"WhatsApp Web traži pristup {}.\n"
-"\n"
-"Dozvoliti?"
 
 #: zapzap/features/accounts/domain/profile_sync.py:49
 #, fuzzy
@@ -4638,31 +4638,6 @@ msgstr "Odbacivanjem se vraćaju vrijednosti od prije uređivanja."
 msgid "Keep editing"
 msgstr "Nastavi uređivanje"
 
-#: zapzap/ui/components/floating_monitoring_panel.py:283
-#: zapzap/ui/components/floating_monitoring_panel.py:285
-#, fuzzy
-msgid "Quick access"
-msgstr "Brze radnje"
-
-#: zapzap/ui/components/floating_monitoring_panel.py:284
-msgid "No account activity to show yet."
-msgstr ""
-
-#: zapzap/ui/components/floating_monitoring_panel.py:286
-#, fuzzy
-msgid "Monitoring panel"
-msgstr "Zakači panel"
-
-#: zapzap/ui/components/floating_monitoring_panel.py:287
-#: zapzap/ui/components/floating_monitoring_panel.py:288
-msgid "Unlock position"
-msgstr ""
-
-#: zapzap/ui/components/floating_monitoring_panel.py:291
-#: zapzap/ui/components/floating_monitoring_panel.py:292
-msgid "Audio"
-msgstr ""
-
 #: zapzap/ui/components/main_window.py:140
 msgid "File"
 msgstr "Fajl"
@@ -5021,6 +4996,31 @@ msgstr ""
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
 
+#: zapzap/ui/components/floating_monitoring_panel.py:283
+#: zapzap/ui/components/floating_monitoring_panel.py:285
+#, fuzzy
+msgid "Quick access"
+msgstr "Brze radnje"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:284
+msgid "No account activity to show yet."
+msgstr ""
+
+#: zapzap/ui/components/floating_monitoring_panel.py:286
+#, fuzzy
+msgid "Monitoring panel"
+msgstr "Zakači panel"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:287
+#: zapzap/ui/components/floating_monitoring_panel.py:288
+msgid "Unlock position"
+msgstr ""
+
+#: zapzap/ui/components/floating_monitoring_panel.py:291
+#: zapzap/ui/components/floating_monitoring_panel.py:292
+msgid "Audio"
+msgstr ""
+
 #, fuzzy
 #~ msgid "No accounts yet"
 #~ msgstr "Novi nalog"
@@ -5324,3 +5324,11 @@ msgstr ""
 
 #~ msgid "This site"
 #~ msgstr "Ova stranica"
+
+#: zapzap/features/settings/pages/appearance/view.py
+msgid "Compact chat list"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py
+msgid "Show only chat avatars at a fixed width. Resizing is unavailable while enabled."
+msgstr ""

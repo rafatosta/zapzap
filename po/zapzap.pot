@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-01 19:31-0300\n"
+"POT-Creation-Date: 2026-10-01 19:33-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: zapzap/app/window_lifecycle.py:89
+msgid "Close ZapZap"
+msgstr ""
+
+#: zapzap/app/window_lifecycle.py:90
+msgid "Are you sure you want to close?"
+msgstr ""
+
+#: zapzap/app/window_lifecycle.py:91
+msgid "Don't ask again"
+msgstr ""
 
 #: zapzap/app/main_window_controller.py:282
 #: zapzap/features/tray/sys_tray_manager.py:68
@@ -41,18 +53,6 @@ msgstr ""
 #: zapzap/features/browser/shell/browser_controller.py:915
 #, python-brace-format
 msgid "Account {}"
-msgstr ""
-
-#: zapzap/app/window_lifecycle.py:89
-msgid "Close ZapZap"
-msgstr ""
-
-#: zapzap/app/window_lifecycle.py:90
-msgid "Are you sure you want to close?"
-msgstr ""
-
-#: zapzap/app/window_lifecycle.py:91
-msgid "Don't ask again"
 msgstr ""
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:27
@@ -781,9 +781,9 @@ msgstr ""
 #: zapzap/features/downloads/ui/downloads_menu.py:1025
 #: zapzap/ui/components/browser_sidebar.py:219
 #: zapzap/ui/components/browser_sidebar.py:220
+#: zapzap/ui/components/main_window.py:164
 #: zapzap/ui/components/floating_monitoring_panel.py:293
 #: zapzap/ui/components/floating_monitoring_panel.py:294
-#: zapzap/ui/components/main_window.py:164
 msgid "Downloads"
 msgstr ""
 
@@ -1316,9 +1316,9 @@ msgstr ""
 #: zapzap/features/settings/shell/settings_controller.py:234
 #: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/downloads/ui/downloads_menu.py:1081
+#: zapzap/ui/components/main_window.py:149
 #: zapzap/ui/components/floating_monitoring_panel.py:295
 #: zapzap/ui/components/floating_monitoring_panel.py:296
-#: zapzap/ui/components/main_window.py:149
 msgid "Settings"
 msgstr ""
 
@@ -3776,6 +3776,50 @@ msgid ""
 "WhatsApp requests it."
 msgstr ""
 
+#: zapzap/features/browser/web/page_controller.py:308
+msgid "your microphone"
+msgstr ""
+
+#: zapzap/features/browser/web/page_controller.py:309
+msgid "your camera"
+msgstr ""
+
+#: zapzap/features/browser/web/page_controller.py:310
+msgid "your camera and microphone"
+msgstr ""
+
+#: zapzap/features/browser/web/page_controller.py:311
+msgid "your location"
+msgstr ""
+
+#: zapzap/features/browser/web/page_controller.py:312
+msgid "your screen contents"
+msgstr ""
+
+#: zapzap/features/browser/web/page_controller.py:313
+msgid "your screen contents and audio"
+msgstr ""
+
+#: zapzap/features/browser/web/page_controller.py:314
+msgid "mouse lock"
+msgstr ""
+
+#: zapzap/features/browser/web/page_controller.py:316
+msgid "a system feature"
+msgstr ""
+
+#: zapzap/features/browser/web/page_controller.py:320
+msgid "Permission request"
+msgstr ""
+
+#: zapzap/features/browser/web/page_controller.py:321
+#, python-brace-format
+msgid ""
+"WhatsApp Web is requesting access to {}.\n"
+"\n"
+"Allow?"
+msgstr ""
+
 #: zapzap/features/browser/web/web_view.py:254
 #: zapzap/ui/components/integrated_account_selector.py:57
 msgid "Account selector"
@@ -3844,50 +3888,6 @@ msgstr ""
 #: zapzap/features/browser/web/web_view.py:972
 #, python-brace-format
 msgid "DevTools - {}"
-msgstr ""
-
-#: zapzap/features/browser/web/page_controller.py:308
-msgid "your microphone"
-msgstr ""
-
-#: zapzap/features/browser/web/page_controller.py:309
-msgid "your camera"
-msgstr ""
-
-#: zapzap/features/browser/web/page_controller.py:310
-msgid "your camera and microphone"
-msgstr ""
-
-#: zapzap/features/browser/web/page_controller.py:311
-msgid "your location"
-msgstr ""
-
-#: zapzap/features/browser/web/page_controller.py:312
-msgid "your screen contents"
-msgstr ""
-
-#: zapzap/features/browser/web/page_controller.py:313
-msgid "your screen contents and audio"
-msgstr ""
-
-#: zapzap/features/browser/web/page_controller.py:314
-msgid "mouse lock"
-msgstr ""
-
-#: zapzap/features/browser/web/page_controller.py:316
-msgid "a system feature"
-msgstr ""
-
-#: zapzap/features/browser/web/page_controller.py:320
-msgid "Permission request"
-msgstr ""
-
-#: zapzap/features/browser/web/page_controller.py:321
-#, python-brace-format
-msgid ""
-"WhatsApp Web is requesting access to {}.\n"
-"\n"
-"Allow?"
 msgstr ""
 
 #: zapzap/features/accounts/domain/profile_sync.py:49
@@ -4412,29 +4412,6 @@ msgstr ""
 msgid "Keep editing"
 msgstr ""
 
-#: zapzap/ui/components/floating_monitoring_panel.py:283
-#: zapzap/ui/components/floating_monitoring_panel.py:285
-msgid "Quick access"
-msgstr ""
-
-#: zapzap/ui/components/floating_monitoring_panel.py:284
-msgid "No account activity to show yet."
-msgstr ""
-
-#: zapzap/ui/components/floating_monitoring_panel.py:286
-msgid "Monitoring panel"
-msgstr ""
-
-#: zapzap/ui/components/floating_monitoring_panel.py:287
-#: zapzap/ui/components/floating_monitoring_panel.py:288
-msgid "Unlock position"
-msgstr ""
-
-#: zapzap/ui/components/floating_monitoring_panel.py:291
-#: zapzap/ui/components/floating_monitoring_panel.py:292
-msgid "Audio"
-msgstr ""
-
 #: zapzap/ui/components/main_window.py:140
 msgid "File"
 msgstr ""
@@ -4783,4 +4760,35 @@ msgstr ""
 #: zapzap/ui/components/update_available_popover.py:171
 #, python-brace-format
 msgid "ZapZap {latest} is available. Current version: {current}."
+msgstr ""
+
+#: zapzap/ui/components/floating_monitoring_panel.py:283
+#: zapzap/ui/components/floating_monitoring_panel.py:285
+msgid "Quick access"
+msgstr ""
+
+#: zapzap/ui/components/floating_monitoring_panel.py:284
+msgid "No account activity to show yet."
+msgstr ""
+
+#: zapzap/ui/components/floating_monitoring_panel.py:286
+msgid "Monitoring panel"
+msgstr ""
+
+#: zapzap/ui/components/floating_monitoring_panel.py:287
+#: zapzap/ui/components/floating_monitoring_panel.py:288
+msgid "Unlock position"
+msgstr ""
+
+#: zapzap/ui/components/floating_monitoring_panel.py:291
+#: zapzap/ui/components/floating_monitoring_panel.py:292
+msgid "Audio"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py
+msgid "Compact chat list"
+msgstr ""
+
+#: zapzap/features/settings/pages/appearance/view.py
+msgid "Show only chat avatars at a fixed width. Resizing is unavailable while enabled."
 msgstr ""

@@ -28,6 +28,7 @@ class FakeAppearanceSettingsModel:
         floating_monitoring_panel_enabled=False,
         integrated_account_selector_enabled=False,
         resizable_chat_list_enabled=False,
+        compact_chat_list_enabled=False,
     ):
         self.floating_panel_mode = "always"
         self.floating_panel_on_top = False
@@ -51,6 +52,7 @@ class FakeAppearanceSettingsModel:
             integrated_account_selector_enabled
         )
         self.resizable_chat_list_enabled = resizable_chat_list_enabled
+        self.compact_chat_list_enabled = compact_chat_list_enabled
 
     @staticmethod
     def available_csr_button_themes():
@@ -306,6 +308,26 @@ class AppearanceSettingsUiTests(QtTestCase):
                 True
             )
         page.close()
+
+    def test_compact_chat_list_preserves_resize_preference_and_applies_live(self):
+        page, model = self._controller(resizable_chat_list_enabled=True)
+        window = Mock()
+        with patch.object(QApplication.instance(), "getWindow", return_value=window, create=True):
+            page.compact_chat_list.click()
+            self.assertTrue(model.compact_chat_list_enabled)
+            self.assertFalse(page.resizable_chat_list.isEnabled())
+            self.assertTrue(model.resizable_chat_list_enabled)
+            window.browser.set_compact_chat_list_enabled.assert_called_once_with(True)
+            page.compact_chat_list.click()
+            self.assertFalse(model.compact_chat_list_enabled)
+            self.assertTrue(page.resizable_chat_list.isEnabled())
+            self.assertTrue(page.resizable_chat_list.isChecked())
+
+    def test_persisted_compact_chat_list_disables_resize_control(self):
+        page, _model = self._controller(compact_chat_list_enabled=True)
+        self.assertTrue(page.compact_chat_list.isChecked())
+        self.assertFalse(page.resizable_chat_list.isEnabled())
+        self.assertTrue(page.compact_chat_list.accessibleDescription())
 
     def test_resizable_chat_list_switch_lives_in_the_interface_card(self):
         page = AppearanceSettingsView()

@@ -329,6 +329,18 @@ focável com `aria-valuenow`, `aria-valuemin` e `aria-valuemax`; setas, Home e
 End redimensionam e Enter restaura a largura padrão. A largura escolhida fica
 no `localStorage` da conta em `zapzap.chatListWidth`.
 
+A opção `system/compact_chat_list_enabled` (False por padrão) usa o mesmo
+script com prioridade sobre o redimensionamento, sem alterar sua preferência
+nem a largura salva. `set_compact_chat_list_enabled` propaga o modo às contas
+ativas; novas páginas recebem os dois estados em DocumentReady. O modo fixa a
+coluna em 80 CSS px, oculta a alça, cabeçalho, busca/filtros e conteúdo textual,
+e mostra somente avatares nas linhas nativas (incluindo placeholders), mantendo
+cliques e seleção. Os ancestrais da lista virtual preservam seus espaçadores.
+Camadas sobrepostas usam até 360 px, limitadas para reservar 380 px à conversa.
+Sem linhas/avatares reconhecidos, mantém o layout nativo até o DOM estar pronto;
+desativar restaura estilos e o modo/largura anterior. A UI desabilita o controle
+de redimensionamento enquanto o compacto está ligado.
+
 Novas janelas solicitadas pelo WhatsApp passam primeiro por
 `PopupRoutingPage`, que classifica a primeira URL significativa antes do
 carregamento. Hosts de `__allowed_hosts__` e os esquemas internos `blob`,
