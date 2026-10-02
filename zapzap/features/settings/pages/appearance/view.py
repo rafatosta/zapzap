@@ -61,6 +61,11 @@ class AppearanceSettingsView(SettingsPage):
             ),
         )
         self._configure_row_accessibility(self.resizable_chat_list_row)
+        self.compact_chat_list_row = SettingsActionRow(
+            _("Compact chat list"),
+            _("Set the chat list to 80 px. You can resize it again afterwards."),
+            _("Apply"),
+        )
         self.scale_row = SettingsSelectRow(
             _("Interface scale"),
             _("Scale the interface for high-DPI or accessibility needs."),
@@ -73,6 +78,7 @@ class AppearanceSettingsView(SettingsPage):
         card.add_row(self.browser_sidebar_row)
         card.add_row(self.mainwindow_menu_row)
         card.add_row(self.resizable_chat_list_row)
+        card.add_row(self.compact_chat_list_row)
         card.add_row(self.scale_row)
         section.add_card(card)
         self.add_section(section)

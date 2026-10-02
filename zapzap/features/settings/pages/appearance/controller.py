@@ -107,6 +107,7 @@ class AppearanceSettingsController(AppearanceSettingsView):
         self.resizable_chat_list.toggled.connect(
             self._handle_resizable_chat_list_enabled
         )
+        self.compact_chat_list_row.button.clicked.connect(self._compact_chat_list)
         self.scaleComboBox.currentTextChanged.connect(self._handle_scale)
         self.tray_groupBox.checkbox.toggled.connect(self._handle_tray_enabled)
         self.notificationCounter.clicked.connect(
@@ -180,6 +181,11 @@ class AppearanceSettingsController(AppearanceSettingsView):
         self.model.resizable_chat_list_enabled = enabled
         window = QApplication.instance().getWindow()
         window.browser.set_resizable_chat_list_enabled(enabled)
+
+    def _compact_chat_list(self):
+        # The action uses the existing resize preference and per-account width.
+        self.resizable_chat_list.setChecked(True)
+        QApplication.instance().getWindow().browser.compact_chat_list()
 
     def _handle_scale(self, text):
         digits = "".join(filter(str.isdigit, text))

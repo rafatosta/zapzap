@@ -15,6 +15,12 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Added a Compact chat list action in Appearance that immediately sets active
+  accounts' native chat lists to 80 CSS px and enables existing resizing.
+  The width is saved per account and remains freely adjustable afterwards,
+  without a fixed mode or presentation changes. Added UI/WebEngine regressions,
+  translations and technical/manual-validation documentation.
+
 - Lowered the resizable chat list minimum to 80 CSS px, allowing the existing
   edge to reach avatar width without changing native rows, avatar placement,
   chat header, search, filters or selection. Removed the fixed compact mode

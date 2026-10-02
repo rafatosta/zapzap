@@ -214,6 +214,31 @@ class ResizableChatListTests(QtTestCase):
         self._press_on_handle("Enter")
         self.assertEqual(self._layout_state()["column"], self._default_column_width())
 
+    def test_compact_action_saves_minimum_without_locking_the_list(self):
+        self._save_width(500)
+        self.view.compact_chat_list()
+        state = self._layout_state()
+        self.assertEqual(state["column"], MINIMUM_COLUMN_WIDTH)
+        self.assertEqual(state["savedWidth"], str(MINIMUM_COLUMN_WIDTH))
+        self.assertEqual(state["handleLeft"], state["columnRight"])
+        self._load_layout()
+        self.assertEqual(self._layout_state()["column"], MINIMUM_COLUMN_WIDTH)
+        self._press_on_handle("ArrowRight")
+        self.assertEqual(self._layout_state()["column"], MINIMUM_COLUMN_WIDTH + 20)
+        self.assertEqual(self._layout_state()["savedWidth"], str(MINIMUM_COLUMN_WIDTH + 20))
+        self._press_on_handle("Enter")
+        self.assertIsNone(self._layout_state()["savedWidth"])
+
+    def test_compact_action_before_chat_mount_applies_when_list_appears(self):
+        self._javascript("window.savedSide=document.getElementById('side'); window.savedSide.remove()")
+        self.view.compact_chat_list()
+        self.assertEqual(self._layout_state()["savedWidth"], str(MINIMUM_COLUMN_WIDTH))
+        self._javascript("document.querySelector('.column').appendChild(window.savedSide)")
+        loop = QEventLoop()
+        QTimer.singleShot(100, loop.quit)
+        loop.exec()
+        self.assertEqual(self._layout_state()["column"], MINIMUM_COLUMN_WIDTH)
+
     def test_double_click_restores_the_whatsapp_default_width(self):
         self._save_width(500)
         self.view.set_resizable_chat_list_enabled(True)
@@ -303,6 +328,15 @@ class ResizableChatListTests(QtTestCase):
 
 
 class ResizableChatListRoutingTests(unittest.TestCase):
+
+    def test_compact_action_reaches_every_active_account_page(self):
+        pages = [Mock(), Mock()]
+        browser = SimpleNamespace(
+            _active_runtimes=lambda: iter(SimpleNamespace(page=page) for page in pages)
+        )
+        BrowserController.compact_chat_list(browser)
+        for page in pages:
+            page.compact_chat_list.assert_called_once_with()
 
     def test_preference_reaches_every_active_account_page(self):
         pages = [Mock(), Mock()]

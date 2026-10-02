@@ -739,6 +739,11 @@ class BrowserController(BrowserView):
             if callable(setter):
                 setter(bool(enabled))
 
+    def compact_chat_list(self) -> None:
+        """Move every live chat list to its minimum width."""
+        for runtime in self._active_runtimes():
+            runtime.page.compact_chat_list()
+
     def current_webview(self):
         current = self.pages.currentWidget()
         if self._runtime_for_page(current):

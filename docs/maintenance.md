@@ -321,6 +321,8 @@ rede que possam ser sensíveis.
 
 - Preserve `system/resizable_chat_list_enabled` e `zapzap.chatListWidth` por
   conta. O mínimo é 80 CSS px, sem modo compacto separado.
+- A ação **Compact chat list** deve aplicar/salvar o mínimo nas contas ativas
+  e habilitar o redimensionamento normal; não crie um modo fixo ou outra chave.
 - Modifique somente a largura da coluna e das camadas sobrepostas; mantenha
   estrutura, alturas, controles e posicionamento nativos do WhatsApp.
 - A antiga chave `system/compact_chat_list_enabled` é ignorada, sem apagar ou

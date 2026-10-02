@@ -337,6 +337,12 @@ oculta cabeçalho, busca, filtros ou conteúdo textual. A apresentação estreit
 a chave anteriormente criada `system/compact_chat_list_enabled` permanece
 intacta no armazenamento, mas não é lida nem aplicada. A preferência e a
 largura do redimensionamento continuam sendo as fontes de verdade.
+A ação **Compact chat list** em Aparência habilita o redimensionamento existente
+quando necessário e chama `BrowserController.compact_chat_list` nas contas
+ativas. `WebView.compact_chat_list` instala o controlador e solicita `compact()`:
+ele aplica/salva 80 CSS px, inclusive antes da montagem de `#side`, sem travar
+arraste/teclado ou criar outro estado persistido. A largura continua restaurável
+por Enter/duplo clique e reaplicada após recarga pelo armazenamento da conta.
 
 Novas janelas solicitadas pelo WhatsApp passam primeiro por
 `PopupRoutingPage`, que classifica a primeira URL significativa antes do

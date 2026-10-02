@@ -15,6 +15,8 @@
 
   const root = document.documentElement;
   let stopResizing = null;
+  let applyMinimumWidth = null;
+  let compactRequested = false;
 
   const startResizing = () => {
     const stylesheet = new CSSStyleSheet();
@@ -249,7 +251,14 @@
       event.stopPropagation();
     });
 
-    syncLayout();
+    applyMinimumWidth = () => {
+      finishDrag();
+      preferredWidth = minimumColumnWidth;
+      persistWidth(preferredWidth);
+      syncLayout();
+    };
+    if (compactRequested) applyMinimumWidth();
+    else syncLayout();
 
     stopResizing = () => {
       cancelAnimationFrame(pendingFrame);
@@ -273,6 +282,10 @@
   else document.addEventListener('DOMContentLoaded', startResizing, { once: true });
 
   window._zapZapResizableChatList = {
+    compact() {
+      compactRequested = true;
+      applyMinimumWidth?.();
+    },
     destroy() {
       document.removeEventListener('DOMContentLoaded', startResizing);
       stopResizing?.();

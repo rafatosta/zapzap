@@ -138,7 +138,7 @@ documente o que ele protege.
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
 | `test_reporting.py` | sanitização, minimização, Markdown, fila/TTL e captura local de encerramentos inesperados |
 | `test_reporting_ui.py` | formulário em duas etapas, prévia canônica, edição, cancelamento, clipboard e abertura segura do GitHub |
-| `test_resizable_chat_list.py` | limite de 80 px preservando alturas, avatares, cabeçalho, busca, texto e clique nativos; largura salva aplicada à coluna e à camada sobreposta, limites mínimos da lista e da conversa, alça na borda como separador focável com faixa de largura, setas, Home, End e Enter, duplo clique restaurando o padrão, desativação ao vivo sem script de recarga, reinstalação sem duplicar após recarga e encaminhamento às contas ativas |
+| `test_resizable_chat_list.py` | ação compacta aplicando/salvando o mínimo, recarga, montagem tardia e redimensionamento posterior; limite de 80 px preservando alturas, avatares, cabeçalho, busca, texto e clique nativos; largura salva aplicada à coluna e à camada sobreposta, limites mínimos da lista e da conversa, alça na borda como separador focável com faixa de largura, setas, Home, End e Enter, duplo clique restaurando o padrão, desativação ao vivo sem script de recarga, reinstalação sem duplicar após recarga e encaminhamento às contas ativas |
 | `test_segmented_control.py` | seleção exclusiva, sinais, mouse, teclado, acessibilidade, tamanhos, raios e temas |
 | `test_send_message_to_number.py` | normalização/URL, lista de países, validação, acessibilidade e teclado do diálogo de conversa por número |
 | `test_settings_card.py` | divisores e grupos do card compartilhado em `ui.components` |
@@ -625,6 +625,11 @@ Qt, não a aplicação das políticas pelo compositor.
 
 
 ## Validação manual da lista redimensionável de conversas
+
+Clique em **Compact chat list → Aplicar** em Aparência. Confirme que a lista
+vai diretamente a 80 px em todas as contas ativas, que o redimensionamento é
+habilitado e que arraste/teclado continuam disponíveis. Amplie novamente e
+repita a ação, incluindo após recarga e antes da montagem da lista.
 
 Habilite **Lista de conversas redimensionável** em Aparência, em sessão gráfica
 real. Arraste a borda até o mínimo de 80 CSS px: confira a largura dos avatares,

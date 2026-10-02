@@ -307,6 +307,23 @@ class AppearanceSettingsUiTests(QtTestCase):
             )
         page.close()
 
+    def test_compact_action_enables_resizing_and_applies_minimum(self):
+        page, model = self._controller()
+        window = Mock()
+        app = Mock()
+        app.getWindow.return_value = window
+        with patch(
+            "zapzap.features.settings.pages.appearance.controller.QApplication.instance",
+            return_value=app,
+        ):
+            page.compact_chat_list_row.button.click()
+            self.assertTrue(model.resizable_chat_list_enabled)
+            self.assertTrue(page.resizable_chat_list.isChecked())
+            self.assertTrue(page.resizable_chat_list.isEnabled())
+            window.browser.set_resizable_chat_list_enabled.assert_called_once_with(True)
+            window.browser.compact_chat_list.assert_called_once_with()
+        page.close()
+
     def test_resizable_chat_list_switch_lives_in_the_interface_card(self):
         page = AppearanceSettingsView()
 

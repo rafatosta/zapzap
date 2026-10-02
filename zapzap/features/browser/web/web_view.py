@@ -372,6 +372,16 @@ class WebView(QWebEngineView):
                 "window._zapZapResizableChatList.destroy();"
             )
 
+    def compact_chat_list(self) -> None:
+        """Apply the minimum width using the native list resize controller."""
+        if self.profile is None or self.whatsapp_page is None or self._shutting_down:
+            return
+        self.set_resizable_chat_list_enabled(True)
+        self.whatsapp_page.runJavaScript(
+            "window._zapZapResizableChatList && "
+            "window._zapZapResizableChatList.compact();"
+        )
+
     def _install_resizable_chat_list(self, enabled: bool) -> None:
         scripts = self.profile.scripts()
         for script in scripts.find(self.RESIZABLE_CHAT_LIST_SCRIPT_NAME):
