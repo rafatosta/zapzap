@@ -30,6 +30,7 @@
         cursor: col-resize !important;
         user-select: none !important;
       }
+      [data-zapzap-new-chat-source] { display: none !important; }
       .${resizeHandleClass} {
         position: fixed;
         width: 8px;
@@ -90,6 +91,81 @@
     let isDragging = false;
     let pendingFrame = 0;
 
+    let newChatSource = null;
+    let newChatProxy = null;
+
+    const restoreNewChat = () => {
+      newChatSource?.removeAttribute('data-zapzap-new-chat-source');
+      newChatProxy?.remove();
+      newChatSource = null;
+      newChatProxy = null;
+    };
+
+    const syncNewChat = () => {
+      const compact = root.hasAttribute(customWidthAttribute) &&
+        Number.parseInt(root.style.getPropertyValue(columnWidthProperty), 10) === minimumColumnWidth;
+      if (!compact || !column?.isConnected) {
+        restoreNewChat();
+        return;
+      }
+      // Keep React's source in its original tree and forward the action to it.
+      const source = [...column.querySelectorAll('button')].find((button) =>
+        button.querySelector('svg title')?.textContent === 'wds-ic-new-chat-filled');
+      const actions = document.querySelectorAll('button, [role="tab"], [role="button"]');
+      let rail = null;
+      for (const action of actions) {
+        if (column.contains(action) || action === newChatProxy) continue;
+        for (let node = action.parentElement; node && node !== document.body; node = node.parentElement) {
+          const bounds = node.getBoundingClientRect();
+          if (bounds.left <= 24 && bounds.width >= 48 && bounds.width <= 120 &&
+              bounds.height >= window.innerHeight * 0.5 &&
+              getComputedStyle(node).visibility !== 'hidden') {
+            rail = node;
+            break;
+          }
+        }
+        if (rail) break;
+      }
+      if (!source || !rail) {
+        restoreNewChat();
+        return;
+      }
+      const firstAction = [...rail.querySelectorAll('button, [role="tab"], [role="button"]')]
+        .find((action) => action !== newChatProxy);
+      if (!firstAction) { restoreNewChat(); return; }
+      let item = firstAction;
+      while (item.parentElement !== rail && item.parentElement) {
+        const parent = item.parentElement;
+        const style = getComputedStyle(parent);
+        if (style.display === 'flex' && style.flexDirection === 'column') break;
+        item = parent;
+      }
+      if (source !== newChatSource || !newChatProxy?.isConnected) {
+        restoreNewChat();
+        newChatSource = source;
+        newChatProxy = source.cloneNode(true);
+        newChatProxy.removeAttribute('id');
+        newChatProxy.querySelectorAll('[id]').forEach((node) => node.removeAttribute('id'));
+        newChatProxy.removeAttribute('data-zapzap-new-chat-source');
+        newChatProxy.setAttribute('data-zapzap-component', 'compact-new-chat');
+        newChatProxy.style.cssText = 'display:flex;align-items:center;justify-content:center;align-self:center;flex-shrink:0;width:40px;height:40px;margin:4px;padding:8px;';
+        newChatProxy.addEventListener('click', () => {
+          if (newChatSource?.isConnected && !newChatSource.disabled &&
+              newChatSource.getAttribute('aria-disabled') !== 'true') newChatSource.click();
+        });
+        newChatSource.setAttribute('data-zapzap-new-chat-source', '');
+      }
+      newChatProxy.disabled = source.disabled;
+      for (const attribute of ['aria-label', 'aria-disabled', 'title']) {
+        const value = source.getAttribute(attribute);
+        if (value === null) newChatProxy.removeAttribute(attribute);
+        else newChatProxy.setAttribute(attribute, value);
+      }
+      if (newChatProxy.parentElement !== item.parentElement || newChatProxy.nextElementSibling !== item) {
+        item.parentElement.insertBefore(newChatProxy, item);
+      }
+    };
+
     const positionHandle = () => {
       const columnBounds = column?.isConnected ? column.getBoundingClientRect() : null;
       if (!columnBounds?.width) {
@@ -101,6 +177,7 @@
       resizeHandle.style.left = `${columnBounds.right}px`;
       resizeHandle.style.top = `${columnBounds.top}px`;
       resizeHandle.style.height = `${columnBounds.height}px`;
+      syncNewChat();
     };
 
     const columnResizeObserver = new ResizeObserver(positionHandle);
@@ -176,6 +253,7 @@
       if (!columnContainer) {
         finishDrag();
         clearColumnWidth();
+        restoreNewChat();
         positionHandle();
         return;
       }
@@ -196,7 +274,8 @@
       chatList?.contains(node) || document.getElementById('main')?.contains(node);
 
     const layoutMutationObserver = new MutationObserver((mutations) => {
-      if (mutations.some((mutation) => !isInsideFrequentlyUpdatedArea(mutation.target))) {
+      if (mutations.some((mutation) => !isInsideFrequentlyUpdatedArea(mutation.target) ||
+          mutation.target.closest?.('header'))) {
         scheduleSync();
       }
     });
@@ -265,6 +344,7 @@
       layoutMutationObserver.disconnect();
       columnResizeObserver.disconnect();
       window.removeEventListener('resize', scheduleSync);
+      restoreNewChat();
       resizeHandle.remove();
       document.adoptedStyleSheets = document.adoptedStyleSheets.filter(
         (adoptedStylesheet) => adoptedStylesheet !== stylesheet,

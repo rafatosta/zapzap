@@ -643,3 +643,9 @@ Repita com duas contas, painéis sobrepostos, temas, zoom e plataformas mantidas
 Uma antiga preferência de compacto habilitada não deve fixar a largura ou
 impedir o redimensionamento. Testes sintéticos/offscreen não comprovam aparência
 nem o comportamento da versão remota do WhatsApp.
+
+O botão **Nova conversa** aparece no início da barra do WhatsApp somente com
+a lista redimensionável em 85 CSS px. Um botão espelho encaminha o clique ao
+original, oculto sem sair da árvore React; ao ampliar, restaurar ou desativar,
+o original reaparece. Sem ação/rail reconhecíveis, o cabeçalho é preservado.
+Valide clique, teclado, recarga, montagem tardia, temas e zoom em sessão real.

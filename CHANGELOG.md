@@ -15,6 +15,11 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Show New conversation at the start of the WhatsApp rail only while the
+  resizable chat list is at its compact 85 px width. Forward to the original
+  action and restore it on expansion or disabling, preserving persisted keys.
+  Documented lifecycle and manual checks and added WebEngine regressions.
+
 - Added a Compact chat list action in Appearance that immediately sets active
   accounts' native chat lists to 85 CSS px and enables existing resizing.
   The width is saved per account and remains freely adjustable afterwards,

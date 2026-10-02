@@ -344,6 +344,12 @@ ele aplica/salva 85 CSS px, inclusive antes da montagem de `#side`, sem travar
 arraste/teclado ou criar outro estado persistido. A largura continua restaurável
 por Enter/duplo clique e reaplicada após recarga pelo armazenamento da conta.
 
+O botão **Nova conversa** aparece no início da barra do WhatsApp somente com
+a lista redimensionável em 85 CSS px. Um botão espelho encaminha o clique ao
+original, oculto sem sair da árvore React; ao ampliar, restaurar ou desativar,
+o original reaparece. Sem ação/rail reconhecíveis, o cabeçalho é preservado.
+Valide clique, teclado, recarga, montagem tardia, temas e zoom em sessão real.
+
 Novas janelas solicitadas pelo WhatsApp passam primeiro por
 `PopupRoutingPage`, que classifica a primeira URL significativa antes do
 carregamento. Hosts de `__allowed_hosts__` e os esquemas internos `blob`,

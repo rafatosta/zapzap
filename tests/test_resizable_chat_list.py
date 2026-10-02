@@ -214,6 +214,40 @@ class ResizableChatListTests(QtTestCase):
         self._press_on_handle("Enter")
         self.assertEqual(self._layout_state()["column"], self._default_column_width())
 
+    def test_compact_new_chat_proxy_restores_source_and_forwards_click(self):
+        self._javascript("""
+          document.querySelector('.navigation').innerHTML =
+            '<button id="chats">Chats</button>';
+          document.getElementById('side').innerHTML =
+            '<header><button id="new-chat" aria-label="Nova conversa"><svg>' +
+            '<title>wds-ic-new-chat-filled</title></svg></button></header>';
+          window.newChatClicks = 0;
+          document.getElementById('new-chat').onclick = () => window.newChatClicks++;
+        """)
+        self.view.set_resizable_chat_list_enabled(True)
+        self.assertEqual(self._javascript(
+            "document.querySelectorAll('[data-zapzap-component=compact-new-chat]').length"
+        ), 0)
+        self.view.compact_chat_list()
+        self.assertTrue(self._javascript("""
+          (() => {
+            const proxy = document.querySelector('[data-zapzap-component=compact-new-chat]');
+            proxy.click();
+            return proxy.nextElementSibling.id === 'chats' && window.newChatClicks === 1 &&
+              getComputedStyle(document.getElementById('new-chat')).display === 'none';
+          })()
+        """))
+        self._press_on_handle('ArrowRight')
+        self.assertTrue(self._javascript("""
+          !document.querySelector('[data-zapzap-component=compact-new-chat]') &&
+          !document.getElementById('new-chat').hasAttribute('data-zapzap-new-chat-source')
+        """))
+        self.view.compact_chat_list()
+        self.view.set_resizable_chat_list_enabled(False)
+        self.assertEqual(self._javascript(
+            "document.querySelectorAll('[data-zapzap-new-chat-source], [data-zapzap-component=compact-new-chat]').length"
+        ), 0)
+
     def test_compact_action_saves_minimum_without_locking_the_list(self):
         self._save_width(500)
         self.view.compact_chat_list()
