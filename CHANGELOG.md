@@ -15,6 +15,10 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Keep the integrated account selector icon matched to native WhatsApp rail
+  actions when compact New conversation is present; ignore injected icons
+  when sampling theme colors and cover light/dark coexistence in WebEngine.
+
 - Show New conversation at the start of the WhatsApp rail only while the
   resizable chat list is at its compact 85 px width. Forward to the original
   action and restore it on expansion or disabling, preserving persisted keys.

@@ -185,13 +185,13 @@
             let color = this.iconColor || "currentColor";
             let width = "20px";
             let height = "20px";
-            // Sample an ordinary navigation action, never our own icon or an
+            // Sample an ordinary native navigation action, never an injected icon or an
             // active/disabled action whose color represents a special state.
             const candidates = target === document.body ? [] : target.querySelectorAll(
                 'button svg, [role="button"] svg, [role="tab"] svg'
             );
             for (const candidate of candidates) {
-                if (button.contains(candidate) || candidate.closest(
+                if (candidate.closest('[data-zapzap-component]') || candidate.closest(
                     '[aria-selected="true"], [aria-pressed="true"], ' +
                     '[aria-current]:not([aria-current="false"]), [disabled], [aria-disabled="true"]'
                 )) {

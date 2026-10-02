@@ -530,16 +530,24 @@ class IntegratedSelectorWebTests(QtTestCase):
                         "new QWebChannel(qt.webChannelTransport,channel=>" +
                         "QuickAccountsController.setBridge(channel.objects.zapZapBridge));")
         self.wait_frames()
-        self.javascript(page, "document.querySelector('[data-zapzap-component]').click()")
+        self.javascript(page, "document.querySelector('[data-zapzap-component=quick-accounts]').click()")
         self.wait_frames()
         self.assertEqual(len(received), 1)
         self.assertGreater(received[0].width(), 0)
         snapshot = """(() => {
-            const b=document.querySelector('[data-zapzap-component]');
-            return [document.querySelectorAll('[data-zapzap-component]').length,
+            const b=document.querySelector('[data-zapzap-component=quick-accounts]');
+            return [document.querySelectorAll('[data-zapzap-component=quick-accounts]').length,
                 getComputedStyle(b.querySelector('svg')).fill,
                 b.querySelector('[data-zapzap-unread]').hidden];
         })()"""
+        self.assertEqual(self.javascript(page, snapshot), [1, "rgb(12, 34, 56)", True])
+        self.javascript(page, """
+            const proxy = document.createElement('button');
+            proxy.setAttribute('data-zapzap-component', 'compact-new-chat');
+            proxy.innerHTML = '<svg style="fill:rgb(250,10,20);width:24px;height:24px"></svg>';
+            document.querySelector('nav').prepend(proxy);
+        """)
+        self.wait_frames()
         self.assertEqual(self.javascript(page, snapshot), [1, "rgb(12, 34, 56)", True])
         self.javascript(page, "QuickAccountsController.setState(true,true); document.body.className='dark'")
         self.wait_frames()
@@ -547,16 +555,16 @@ class IntegratedSelectorWebTests(QtTestCase):
         self.javascript(page, """
             window.clicked = null;
             QuickAccountsController.setBridge({open_recent_accounts:(...rect)=>window.clicked=rect});
-            document.querySelector('[data-zapzap-component]').click();
+            document.querySelector('[data-zapzap-component=quick-accounts]').click();
         """)
         rect = self.javascript(page, "window.clicked")
         self.assertEqual(len(rect), 4)
         self.assertGreater(rect[2], 0)
-        self.javascript(page, "document.querySelector('[data-zapzap-component]').remove()")
+        self.javascript(page, "document.querySelector('[data-zapzap-component=quick-accounts]').remove()")
         self.wait_frames()
         self.assertEqual(self.javascript(page, snapshot)[0], 1)
         self.javascript(page, "QuickAccountsController.setState(false,true)")
-        self.assertEqual(self.javascript(page, "document.querySelectorAll('[data-zapzap-component]').length"), 0)
+        self.assertEqual(self.javascript(page, "document.querySelectorAll('[data-zapzap-component=quick-accounts]').length"), 0)
         self.javascript(page, "QuickAccountsController.setState(true,false)")
         self.assertEqual(self.javascript(page, snapshot)[2], True)
         # Preserve the old clipping regression: a measured slot within the rail
@@ -564,7 +572,7 @@ class IntegratedSelectorWebTests(QtTestCase):
         self.javascript(page, "document.querySelector('.bottom').style.cssText='height:40px;overflow:hidden;flex-shrink:0'")
         self.wait_frames()
         self.assertTrue(self.javascript(page, """(() => {
-            const b=document.querySelector('[data-zapzap-component]');
+            const b=document.querySelector('[data-zapzap-component=quick-accounts]');
             const r=b.getBoundingClientRect();
             return r.width>0 && r.left>=0 && r.right<=64 && r.top>=0 && r.bottom<=innerHeight &&
                 b.contains(document.elementFromPoint(r.left+r.width/2,r.top+r.height/2));
@@ -582,7 +590,7 @@ class IntegratedSelectorWebTests(QtTestCase):
         # No arbitrary floating fallback when WhatsApp's rail disappears.
         self.javascript(page, "document.querySelector('#plain-rail').remove()")
         self.wait_frames()
-        self.assertEqual(self.javascript(page, "document.querySelectorAll('[data-zapzap-component]').length"), 0)
+        self.assertEqual(self.javascript(page, "document.querySelectorAll('[data-zapzap-component=quick-accounts]').length"), 0)
 
     def test_webchannel_bridge_maps_zoom_and_ignores_disabled_or_shutdown_requests(self):
         view = WebView(User(id="bridge", enable=False), 1)
