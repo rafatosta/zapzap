@@ -15,6 +15,18 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Added an Appearance switch that makes the WhatsApp Web chat list resizable.
+  Dragging the edge of the list changes its width, double-clicking restores the
+  WhatsApp default, and the width is kept per account across restarts. The edge
+  is also a focusable separator: arrow keys, Home and End resize the list and
+  Enter restores the default. The width
+  is limited so the conversation keeps at least 380 px, and panels opened over
+  the list (profile, archived chats, settings) follow it. The new
+  `system/resizable_chat_list_enabled` preference is `False` by default and
+  applies live to every active account. Translated the new texts into
+  Portuguese, Turkish and Chinese, added real WebEngine and settings regression
+  tests and updated technical documentation.
+
 - Simplified the floating panel to fill its client area without a rounded card
   border or duplicate close button. Kept native decoration and its close action
   when position is locked, retaining move correction and in-panel unlocking.

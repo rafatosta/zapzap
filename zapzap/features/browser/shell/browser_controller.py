@@ -732,6 +732,13 @@ class BrowserController(BrowserView):
             if callable(setter):
                 setter(bool(muted))
 
+    def set_resizable_chat_list_enabled(self, enabled: bool) -> None:
+        """Apply the chat list resizing preference to every live account."""
+        for runtime in self._active_runtimes():
+            setter = getattr(runtime.page, "set_resizable_chat_list_enabled", None)
+            if callable(setter):
+                setter(bool(enabled))
+
     def current_webview(self):
         current = self.pages.currentWidget()
         if self._runtime_for_page(current):

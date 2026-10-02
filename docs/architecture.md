@@ -316,6 +316,19 @@ WhatsApp. Scripts mantidos em `features/browser/web/scripts/` são ativos em
 tempo de execução e devem ser considerados pelo teste de código estático mesmo
 quando chamam identificadores Python indiretamente.
 
+`system/resizable_chat_list_enabled` (Aparência, `False` por padrão) controla o
+`resizable_chat_list.js`. Quando ligado, `WebView` registra o script no perfil
+da conta em `DocumentReady`, para que ele volte após recargas, e o executa na
+página já aberta; ao desligar, remove o script do perfil e chama
+`window._zapZapResizableChatList.destroy()`, que devolve o layout original. A
+alteração chega a todas as contas ativas por
+`BrowserController.set_resizable_chat_list_enabled`. O script se ancora em
+`#side`, porque as classes do WhatsApp Web mudam a cada build, e reconhece as
+camadas sobrepostas pela base flexível em porcentagem. A alça é um separador
+focável com `aria-valuenow`, `aria-valuemin` e `aria-valuemax`; setas, Home e
+End redimensionam e Enter restaura a largura padrão. A largura escolhida fica
+no `localStorage` da conta em `zapzap.chatListWidth`.
+
 Novas janelas solicitadas pelo WhatsApp passam primeiro por
 `PopupRoutingPage`, que classifica a primeira URL significativa antes do
 carregamento. Hosts de `__allowed_hosts__` e os esquemas internos `blob`,

@@ -53,6 +53,14 @@ class AppearanceSettingsView(SettingsPage):
             _("Menu bar"),
             _("Show the main window menu bar."),
         )
+        self.resizable_chat_list_row = SettingsSwitchRow(
+            _("Resizable chat list"),
+            _(
+                "Drag the edge of the WhatsApp Web chat list to change its "
+                "width. Double-click the edge to restore the default width."
+            ),
+        )
+        self._configure_row_accessibility(self.resizable_chat_list_row)
         self.scale_row = SettingsSelectRow(
             _("Interface scale"),
             _("Scale the interface for high-DPI or accessibility needs."),
@@ -60,9 +68,11 @@ class AppearanceSettingsView(SettingsPage):
         )
         self.browser_sidebar = self.browser_sidebar_row.checkbox
         self.mainwindow_menu = self.mainwindow_menu_row.checkbox
+        self.resizable_chat_list = self.resizable_chat_list_row.checkbox
         self.scaleComboBox = self.scale_row.combo
         card.add_row(self.browser_sidebar_row)
         card.add_row(self.mainwindow_menu_row)
+        card.add_row(self.resizable_chat_list_row)
         card.add_row(self.scale_row)
         section.add_card(card)
         self.add_section(section)

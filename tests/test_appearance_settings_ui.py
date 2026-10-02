@@ -27,6 +27,7 @@ class FakeAppearanceSettingsModel:
         scale=100,
         floating_monitoring_panel_enabled=False,
         integrated_account_selector_enabled=False,
+        resizable_chat_list_enabled=False,
     ):
         self.floating_panel_mode = "always"
         self.floating_panel_on_top = False
@@ -49,6 +50,7 @@ class FakeAppearanceSettingsModel:
         self.integrated_account_selector_enabled = (
             integrated_account_selector_enabled
         )
+        self.resizable_chat_list_enabled = resizable_chat_list_enabled
 
     @staticmethod
     def available_csr_button_themes():
@@ -302,6 +304,53 @@ class AppearanceSettingsUiTests(QtTestCase):
             self.assertTrue(model.integrated_account_selector_enabled)
             window.browser.set_integrated_account_selector_enabled.assert_called_once_with(
                 True
+            )
+        page.close()
+
+    def test_resizable_chat_list_switch_lives_in_the_interface_card(self):
+        page = AppearanceSettingsView()
+
+        self.assertIs(page.resizable_chat_list_row.parentWidget(), page.interface_card)
+        self.assertIs(
+            page.resizable_chat_list,
+            page.resizable_chat_list_row.checkbox,
+        )
+        self.assertEqual(
+            page.resizable_chat_list.accessibleName(),
+            page.resizable_chat_list_row.title_label.text(),
+        )
+        self.assertTrue(page.resizable_chat_list.accessibleDescription())
+        page.close()
+
+    def test_persisted_resizable_chat_list_preference_is_loaded(self):
+        page, _model = self._controller(resizable_chat_list_enabled=True)
+
+        self.assertTrue(page.resizable_chat_list.isChecked())
+        page.close()
+
+    def test_toggling_resizable_chat_list_saves_and_applies_live(self):
+        page, model = self._controller()
+        window = Mock()
+        app = Mock()
+        app.getWindow.return_value = window
+
+        with patch(
+            "zapzap.features.settings.pages.appearance.controller."
+            "QApplication.instance",
+            return_value=app,
+        ):
+            page.resizable_chat_list.click()
+
+            self.assertTrue(model.resizable_chat_list_enabled)
+            window.browser.set_resizable_chat_list_enabled.assert_called_once_with(
+                True
+            )
+
+            page.resizable_chat_list.click()
+
+            self.assertFalse(model.resizable_chat_list_enabled)
+            window.browser.set_resizable_chat_list_enabled.assert_called_with(
+                False
             )
         page.close()
 

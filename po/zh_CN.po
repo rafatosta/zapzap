@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-01 13:56-0300\n"
+"POT-Creation-Date: 2026-10-01 19:31-0300\n"
 "PO-Revision-Date: 2026-09-25 00:00+0800\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Simplified Chinese\n"
@@ -18,18 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.18.0\n"
-
-#: zapzap/app/window_lifecycle.py:89
-msgid "Close ZapZap"
-msgstr "关闭 ZapZap"
-
-#: zapzap/app/window_lifecycle.py:90
-msgid "Are you sure you want to close?"
-msgstr "确定要关闭吗？"
-
-#: zapzap/app/window_lifecycle.py:91
-msgid "Don't ask again"
-msgstr "不再询问"
 
 #: zapzap/app/main_window_controller.py:282
 #: zapzap/features/tray/sys_tray_manager.py:68
@@ -51,10 +39,22 @@ msgstr "静音"
 #: zapzap/app/main_window_controller.py:534
 #: zapzap/features/browser/shell/browser_controller.py:570
 #: zapzap/features/browser/shell/browser_controller.py:644
-#: zapzap/features/browser/shell/browser_controller.py:908
+#: zapzap/features/browser/shell/browser_controller.py:915
 #, python-brace-format
 msgid "Account {}"
 msgstr "账户 {}"
+
+#: zapzap/app/window_lifecycle.py:89
+msgid "Close ZapZap"
+msgstr "关闭 ZapZap"
+
+#: zapzap/app/window_lifecycle.py:90
+msgid "Are you sure you want to close?"
+msgstr "确定要关闭吗？"
+
+#: zapzap/app/window_lifecycle.py:91
+msgid "Don't ask again"
+msgstr "不再询问"
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:27
 msgid "Unexpected Error"
@@ -522,7 +522,7 @@ msgstr "基础设置"
 #: zapzap/features/settings/shell/settings_controller.py:134
 #: zapzap/features/settings/pages/notifications/view.py:19
 #: zapzap/features/settings/pages/notifications/view.py:33
-#: zapzap/features/browser/web/web_view.py:253
+#: zapzap/features/browser/web/web_view.py:255
 msgid "Notifications"
 msgstr "通知"
 
@@ -588,28 +588,28 @@ msgid "The interface language is applied when you finish setup."
 msgstr "完成设置后将应用所选界面语言。"
 
 #: zapzap/features/initial_setup/view.py:159
-#: zapzap/features/settings/pages/appearance/view.py:159
+#: zapzap/features/settings/pages/appearance/view.py:169
 msgid "Theme"
 msgstr "主题"
 
 #: zapzap/features/initial_setup/view.py:160
-#: zapzap/features/settings/pages/appearance/view.py:159
+#: zapzap/features/settings/pages/appearance/view.py:169
 msgid "Choose the visual theme."
 msgstr "选择视觉主题。"
 
 #: zapzap/features/initial_setup/view.py:164
-#: zapzap/features/settings/pages/appearance/view.py:161
+#: zapzap/features/settings/pages/appearance/view.py:171
 #: zapzap/features/settings/pages/system_startup/view.py:140
 msgid "Automatic"
 msgstr "自动"
 
 #: zapzap/features/initial_setup/view.py:165
-#: zapzap/features/settings/pages/appearance/view.py:162
+#: zapzap/features/settings/pages/appearance/view.py:172
 msgid "Light"
 msgstr "浅色"
 
 #: zapzap/features/initial_setup/view.py:166
-#: zapzap/features/settings/pages/appearance/view.py:163
+#: zapzap/features/settings/pages/appearance/view.py:173
 msgid "Dark"
 msgstr "深色"
 
@@ -693,7 +693,7 @@ msgid ""
 msgstr "选择 ZapZap 是否继续在托盘中可用并随会话启动。"
 
 #: zapzap/features/initial_setup/view.py:247
-#: zapzap/features/settings/pages/appearance/view.py:176
+#: zapzap/features/settings/pages/appearance/view.py:186
 msgid "Tray icon"
 msgstr "托盘图标"
 
@@ -798,9 +798,9 @@ msgstr "选择文件保存位置，并在有词典时启用拼写检查。"
 #: zapzap/features/downloads/ui/downloads_menu.py:1025
 #: zapzap/ui/components/browser_sidebar.py:219
 #: zapzap/ui/components/browser_sidebar.py:220
-#: zapzap/ui/components/main_window.py:164
 #: zapzap/ui/components/floating_monitoring_panel.py:293
 #: zapzap/ui/components/floating_monitoring_panel.py:294
+#: zapzap/ui/components/main_window.py:164
 msgid "Downloads"
 msgstr "下载"
 
@@ -949,7 +949,7 @@ msgstr "在终端中选择并复制此命令"
 #: zapzap/features/settings/pages/debugging/controller.py:131
 #: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:425
+#: zapzap/features/browser/web/web_view.py:485
 msgid "Copy"
 msgstr "复制"
 
@@ -1059,7 +1059,7 @@ msgid "Other"
 msgstr "其他"
 
 #: zapzap/features/reporting/dialogs.py:38
-#: zapzap/features/settings/pages/appearance/view.py:108
+#: zapzap/features/settings/pages/appearance/view.py:118
 msgid "Always"
 msgstr "总是"
 
@@ -1343,9 +1343,9 @@ msgstr "个人资料和状态"
 #: zapzap/features/settings/shell/settings_controller.py:234
 #: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/downloads/ui/downloads_menu.py:1081
-#: zapzap/ui/components/main_window.py:149
 #: zapzap/ui/components/floating_monitoring_panel.py:295
 #: zapzap/ui/components/floating_monitoring_panel.py:296
+#: zapzap/ui/components/main_window.py:149
 msgid "Settings"
 msgstr "设置"
 
@@ -1454,7 +1454,7 @@ msgid "WhatsApp Web"
 msgstr "WhatsApp Web"
 
 #: zapzap/features/tray/sys_tray_manager.py:64
-#: zapzap/features/settings/pages/appearance/view.py:133
+#: zapzap/features/settings/pages/appearance/view.py:143
 msgid "Show"
 msgstr "显示"
 
@@ -1465,7 +1465,7 @@ msgid "Accounts"
 msgstr "账户"
 
 #: zapzap/features/tray/sys_tray_manager.py:66
-#: zapzap/features/settings/pages/appearance/view.py:131
+#: zapzap/features/settings/pages/appearance/view.py:141
 #: zapzap/ui/components/main_window.py:163
 msgid "Show monitoring panel"
 msgstr "显示监控面板"
@@ -2117,8 +2117,8 @@ msgstr "保存并重新加载"
 msgid "Reload page"
 msgstr "重新加载页面"
 
-#: zapzap/features/settings/pages/appearance/controller.py:85
-#: zapzap/features/settings/pages/appearance/view.py:190
+#: zapzap/features/settings/pages/appearance/controller.py:88
+#: zapzap/features/settings/pages/appearance/view.py:200
 #: zapzap/features/settings/pages/performance_experimental/view.py:65
 #: zapzap/ui/components/edit_account_dialog.py:280
 #: zapzap/ui/components/edit_account_dialog.py:429
@@ -2126,19 +2126,19 @@ msgstr "重新加载页面"
 msgid "Default"
 msgstr "默认"
 
-#: zapzap/features/settings/pages/appearance/controller.py:86
+#: zapzap/features/settings/pages/appearance/controller.py:89
 msgid "Adwaita"
 msgstr "Adwaita"
 
-#: zapzap/features/settings/pages/appearance/controller.py:87
+#: zapzap/features/settings/pages/appearance/controller.py:90
 msgid "Plasma"
 msgstr "Plasma"
 
-#: zapzap/features/settings/pages/appearance/controller.py:88
+#: zapzap/features/settings/pages/appearance/controller.py:91
 msgid "iOS"
 msgstr "iOS"
 
-#: zapzap/features/settings/pages/appearance/controller.py:89
+#: zapzap/features/settings/pages/appearance/controller.py:92
 msgid "Windows"
 msgstr "Windows"
 
@@ -2174,204 +2174,214 @@ msgid "Show the main window menu bar."
 msgstr "显示主窗口菜单栏。"
 
 #: zapzap/features/settings/pages/appearance/view.py:57
+msgid "Resizable chat list"
+msgstr "可调整宽度的聊天列表"
+
+#: zapzap/features/settings/pages/appearance/view.py:59
+msgid ""
+"Drag the edge of the WhatsApp Web chat list to change its width. Double-"
+"click the edge to restore the default width."
+msgstr "拖动 WhatsApp Web 聊天列表的边缘可更改其宽度。双击边缘可恢复默认宽度。"
+
+#: zapzap/features/settings/pages/appearance/view.py:65
 msgid "Interface scale"
 msgstr "界面缩放"
 
-#: zapzap/features/settings/pages/appearance/view.py:58
+#: zapzap/features/settings/pages/appearance/view.py:66
 msgid "Scale the interface for high-DPI or accessibility needs."
 msgstr "为高 DPI 或辅助功能需求调整界面大小。"
 
-#: zapzap/features/settings/pages/appearance/view.py:72
+#: zapzap/features/settings/pages/appearance/view.py:82
 msgid "Quick Access"
 msgstr "快速访问"
 
-#: zapzap/features/settings/pages/appearance/view.py:74
+#: zapzap/features/settings/pages/appearance/view.py:84
 msgid ""
 "Control the floating monitoring panel and the account selector integrated "
 "into WhatsApp Web. Both are independent and can be shown at the same time."
 msgstr ""
 
-#: zapzap/features/settings/pages/appearance/view.py:81
+#: zapzap/features/settings/pages/appearance/view.py:91
 #, fuzzy
 msgid "Floating monitoring panel"
 msgstr "固定面板"
 
-#: zapzap/features/settings/pages/appearance/view.py:82
+#: zapzap/features/settings/pages/appearance/view.py:92
 msgid ""
 "Monitor accounts in a separate window. Closing it only hides it temporarily."
 msgstr "在独立窗口中监控账户。关闭面板只会暂时隐藏它。"
 
-#: zapzap/features/settings/pages/appearance/view.py:85
+#: zapzap/features/settings/pages/appearance/view.py:95
 #, fuzzy
 msgid "Integrated account selector"
 msgstr "账户列表"
 
-#: zapzap/features/settings/pages/appearance/view.py:87
+#: zapzap/features/settings/pages/appearance/view.py:97
 #, fuzzy
 msgid "Show a compact account selector integrated into WhatsApp Web."
 msgstr "在浏览器外壳中显示账户导航。"
 
-#: zapzap/features/settings/pages/appearance/view.py:103
+#: zapzap/features/settings/pages/appearance/view.py:113
 msgid "Show panel"
 msgstr "显示面板"
 
-#: zapzap/features/settings/pages/appearance/view.py:104
+#: zapzap/features/settings/pages/appearance/view.py:114
 msgid "Choose when the panel appears automatically."
 msgstr "选择面板自动显示的时机。"
 
-#: zapzap/features/settings/pages/appearance/view.py:109
+#: zapzap/features/settings/pages/appearance/view.py:119
 msgid "When the main window is hidden"
 msgstr "主窗口隐藏时"
 
-#: zapzap/features/settings/pages/appearance/view.py:110
+#: zapzap/features/settings/pages/appearance/view.py:120
 msgid "On demand"
 msgstr "按需显示"
 
-#: zapzap/features/settings/pages/appearance/view.py:114
+#: zapzap/features/settings/pages/appearance/view.py:124
 msgid "Keep above other windows"
 msgstr "保持在其他窗口上方"
 
-#: zapzap/features/settings/pages/appearance/view.py:115
+#: zapzap/features/settings/pages/appearance/view.py:125
 msgid "Keep the panel visible while working in other applications."
 msgstr "使用其他应用时保持面板可见。"
 
-#: zapzap/features/settings/pages/appearance/view.py:119
+#: zapzap/features/settings/pages/appearance/view.py:129
 msgid "Restore the panel position the next time ZapZap starts."
 msgstr "下次启动 ZapZap 时恢复面板位置。"
 
-#: zapzap/features/settings/pages/appearance/view.py:120
-#: zapzap/features/settings/pages/appearance/view.py:128
+#: zapzap/features/settings/pages/appearance/view.py:130
+#: zapzap/features/settings/pages/appearance/view.py:138
 msgid "Your Wayland desktop controls window placement."
 msgstr "您的 Wayland 桌面控制窗口的位置。"
 
-#: zapzap/features/settings/pages/appearance/view.py:123
+#: zapzap/features/settings/pages/appearance/view.py:133
 msgid "Remember position"
 msgstr "记住位置"
 
-#: zapzap/features/settings/pages/appearance/view.py:126
+#: zapzap/features/settings/pages/appearance/view.py:136
 msgid "Lock position"
 msgstr "锁定位置"
 
-#: zapzap/features/settings/pages/appearance/view.py:127
+#: zapzap/features/settings/pages/appearance/view.py:137
 msgid "Prevent dragging. Unlock directly in the panel to move it again."
 msgstr "防止拖动。可直接在面板中解锁，以便再次移动。"
 
-#: zapzap/features/settings/pages/appearance/view.py:132
+#: zapzap/features/settings/pages/appearance/view.py:142
 msgid "Reopen the panel without changing its display mode."
 msgstr "重新打开面板，不更改其显示模式。"
 
-#: zapzap/features/settings/pages/appearance/view.py:136
+#: zapzap/features/settings/pages/appearance/view.py:146
 msgid "Reset panel position"
 msgstr "重置面板位置"
 
-#: zapzap/features/settings/pages/appearance/view.py:137
+#: zapzap/features/settings/pages/appearance/view.py:147
 msgid "Bring the panel back into the available screen area."
 msgstr "将面板移回可用的屏幕区域。"
 
-#: zapzap/features/settings/pages/appearance/view.py:138
+#: zapzap/features/settings/pages/appearance/view.py:148
 #: zapzap/features/settings/pages/language_downloads/view.py:114
 #, fuzzy
 msgid "Reset"
 msgstr "重置…"
 
-#: zapzap/features/settings/pages/appearance/view.py:177
+#: zapzap/features/settings/pages/appearance/view.py:187
 msgid "Control tray icon visibility, style, and unread counter."
 msgstr "控制托盘图标可见性、样式和未读计数。"
 
-#: zapzap/features/settings/pages/appearance/view.py:181
+#: zapzap/features/settings/pages/appearance/view.py:191
 msgid "Show tray icon"
 msgstr "显示托盘图标"
 
-#: zapzap/features/settings/pages/appearance/view.py:182
+#: zapzap/features/settings/pages/appearance/view.py:192
 msgid "Display ZapZap in the system notification area."
 msgstr "在系统通知区域显示 ZapZap。"
 
-#: zapzap/features/settings/pages/appearance/view.py:185
+#: zapzap/features/settings/pages/appearance/view.py:195
 msgid "Unread counter"
 msgstr "未读计数"
 
-#: zapzap/features/settings/pages/appearance/view.py:186
+#: zapzap/features/settings/pages/appearance/view.py:196
 msgid "Show the number of unread messages."
 msgstr "显示未读消息数量。"
 
-#: zapzap/features/settings/pages/appearance/view.py:189
+#: zapzap/features/settings/pages/appearance/view.py:199
 msgid "Icon style"
 msgstr "图标样式"
 
-#: zapzap/features/settings/pages/appearance/view.py:191
+#: zapzap/features/settings/pages/appearance/view.py:201
 msgid "Symbolic light"
 msgstr "浅色符号图标"
 
-#: zapzap/features/settings/pages/appearance/view.py:192
+#: zapzap/features/settings/pages/appearance/view.py:202
 msgid "Symbolic dark"
 msgstr "深色符号图标"
 
-#: zapzap/features/settings/pages/appearance/view.py:213
+#: zapzap/features/settings/pages/appearance/view.py:223
 #: zapzap/features/browser/shell/browser_controller.py:181
 msgid "Grid view"
 msgstr "网格视图"
 
-#: zapzap/features/settings/pages/appearance/view.py:214
+#: zapzap/features/settings/pages/appearance/view.py:224
 msgid "Choose how many columns are used by grid view."
 msgstr "选择网格视图使用的列数。"
 
-#: zapzap/features/settings/pages/appearance/view.py:218
+#: zapzap/features/settings/pages/appearance/view.py:228
 msgid "Grid columns"
 msgstr "网格列数"
 
-#: zapzap/features/settings/pages/appearance/view.py:219
+#: zapzap/features/settings/pages/appearance/view.py:229
 msgid "Number of account columns in grid view."
 msgstr "网格视图中的账户列数。"
 
-#: zapzap/features/settings/pages/appearance/view.py:229
+#: zapzap/features/settings/pages/appearance/view.py:239
 msgid "Window decoration"
 msgstr "窗口装饰"
 
-#: zapzap/features/settings/pages/appearance/view.py:230
+#: zapzap/features/settings/pages/appearance/view.py:240
 msgid "Customize the window controls drawn by ZapZap."
 msgstr "自定义 ZapZap 绘制的窗口控件。"
 
-#: zapzap/features/settings/pages/appearance/view.py:234
+#: zapzap/features/settings/pages/appearance/view.py:244
 msgid "Use custom decoration"
 msgstr "使用自定义装饰"
 
-#: zapzap/features/settings/pages/appearance/view.py:235
+#: zapzap/features/settings/pages/appearance/view.py:245
 msgid "Use window controls drawn by ZapZap."
 msgstr "使用 ZapZap 绘制的窗口控件。"
 
-#: zapzap/features/settings/pages/appearance/view.py:238
+#: zapzap/features/settings/pages/appearance/view.py:248
 msgid "Button style"
 msgstr "按钮样式"
 
-#: zapzap/features/settings/pages/appearance/view.py:239
+#: zapzap/features/settings/pages/appearance/view.py:249
 msgid "Visual style used by custom window buttons."
 msgstr "自定义窗口按钮使用的视觉样式。"
 
-#: zapzap/features/settings/pages/appearance/view.py:243
+#: zapzap/features/settings/pages/appearance/view.py:253
 msgid "Minimize"
 msgstr "最小化"
 
-#: zapzap/features/settings/pages/appearance/view.py:244
+#: zapzap/features/settings/pages/appearance/view.py:254
 msgid "Maximize"
 msgstr "最大化"
 
-#: zapzap/features/settings/pages/appearance/view.py:248
+#: zapzap/features/settings/pages/appearance/view.py:258
 msgid "Visible buttons"
 msgstr "可见按钮"
 
-#: zapzap/features/settings/pages/appearance/view.py:253
+#: zapzap/features/settings/pages/appearance/view.py:263
 msgid "Button position"
 msgstr "按钮位置"
 
-#: zapzap/features/settings/pages/appearance/view.py:254
+#: zapzap/features/settings/pages/appearance/view.py:264
 msgid "Place window buttons on the right or left."
 msgstr "将窗口按钮放置在右侧或左侧。"
 
-#: zapzap/features/settings/pages/appearance/view.py:259
+#: zapzap/features/settings/pages/appearance/view.py:269
 msgid "Right"
 msgstr "右侧"
 
-#: zapzap/features/settings/pages/appearance/view.py:260
+#: zapzap/features/settings/pages/appearance/view.py:270
 msgid "Left"
 msgstr "左侧"
 
@@ -3874,6 +3884,90 @@ msgstr "启用"
 msgid "Not now"
 msgstr "暂不"
 
+#: zapzap/features/browser/web/popup_window.py:60
+msgid "Manual close unavailable"
+msgstr "无法手动关闭"
+
+#: zapzap/features/browser/web/popup_window.py:62
+msgid ""
+"To prevent the application from becoming unresponsive, this window cannot be "
+"closed manually. Use WhatsApp's End call button. The window will close when "
+"WhatsApp requests it."
+msgstr ""
+"为防止应用无响应，此窗口无法手动关闭。请使用 WhatsApp 的“结束通话”按钮。"
+"WhatsApp 请求关闭时，窗口会自动关闭。"
+
+#: zapzap/features/browser/web/web_view.py:254
+#: zapzap/ui/components/integrated_account_selector.py:57
+#, fuzzy
+msgid "Account selector"
+msgstr "账户列表"
+
+#: zapzap/features/browser/web/web_view.py:404
+msgid "Chat list width"
+msgstr "聊天列表宽度"
+
+#: zapzap/features/browser/web/web_view.py:406
+msgid ""
+"Drag or use the arrow keys to resize. Double-click or press Enter to restore "
+"the default width."
+msgstr "拖动或使用方向键调整宽度。双击或按 Enter 键恢复默认宽度。"
+
+#: zapzap/features/browser/web/web_view.py:484
+msgid "Undo"
+msgstr "撤销"
+
+#: zapzap/features/browser/web/web_view.py:484
+msgid "Redo"
+msgstr "重做"
+
+#: zapzap/features/browser/web/web_view.py:484
+msgid "Cut"
+msgstr "剪切"
+
+#: zapzap/features/browser/web/web_view.py:485
+msgid "Paste"
+msgstr "粘贴"
+
+#: zapzap/features/browser/web/web_view.py:485
+msgid "Select all"
+msgstr "全选"
+
+#: zapzap/features/browser/web/web_view.py:486
+msgid "Save image"
+msgstr "保存图片"
+
+#: zapzap/features/browser/web/web_view.py:486
+msgid "Copy image"
+msgstr "复制图片"
+
+#: zapzap/features/browser/web/web_view.py:487
+#: zapzap/features/browser/web/web_view.py:517
+msgid "Copy link address"
+msgstr "复制链接地址"
+
+#: zapzap/features/browser/web/web_view.py:535
+msgid "Check Spelling"
+msgstr "检查拼写"
+
+#: zapzap/features/browser/web/web_view.py:541
+msgid "Languages…"
+msgstr "语言…"
+
+#: zapzap/features/browser/web/web_view.py:544
+msgid "Choose the languages used by the spell checker."
+msgstr "选择拼写检查器使用的语言。"
+
+#: zapzap/features/browser/web/web_view.py:970
+#: zapzap/ui/components/card_user.py:304
+msgid "Account"
+msgstr "账户"
+
+#: zapzap/features/browser/web/web_view.py:972
+#, python-brace-format
+msgid "DevTools - {}"
+msgstr "开发者工具 - {}"
+
 #: zapzap/features/browser/web/page_controller.py:308
 msgid "your microphone"
 msgstr "您的麦克风"
@@ -3920,80 +4014,6 @@ msgstr ""
 "WhatsApp Web 请求访问 {}。\n"
 "\n"
 "允许吗？"
-
-#: zapzap/features/browser/web/popup_window.py:60
-msgid "Manual close unavailable"
-msgstr "无法手动关闭"
-
-#: zapzap/features/browser/web/popup_window.py:62
-msgid ""
-"To prevent the application from becoming unresponsive, this window cannot be "
-"closed manually. Use WhatsApp's End call button. The window will close when "
-"WhatsApp requests it."
-msgstr ""
-"为防止应用无响应，此窗口无法手动关闭。请使用 WhatsApp 的“结束通话”按钮。"
-"WhatsApp 请求关闭时，窗口会自动关闭。"
-
-#: zapzap/features/browser/web/web_view.py:252
-#: zapzap/ui/components/integrated_account_selector.py:57
-#, fuzzy
-msgid "Account selector"
-msgstr "账户列表"
-
-#: zapzap/features/browser/web/web_view.py:424
-msgid "Undo"
-msgstr "撤销"
-
-#: zapzap/features/browser/web/web_view.py:424
-msgid "Redo"
-msgstr "重做"
-
-#: zapzap/features/browser/web/web_view.py:424
-msgid "Cut"
-msgstr "剪切"
-
-#: zapzap/features/browser/web/web_view.py:425
-msgid "Paste"
-msgstr "粘贴"
-
-#: zapzap/features/browser/web/web_view.py:425
-msgid "Select all"
-msgstr "全选"
-
-#: zapzap/features/browser/web/web_view.py:426
-msgid "Save image"
-msgstr "保存图片"
-
-#: zapzap/features/browser/web/web_view.py:426
-msgid "Copy image"
-msgstr "复制图片"
-
-#: zapzap/features/browser/web/web_view.py:427
-#: zapzap/features/browser/web/web_view.py:457
-msgid "Copy link address"
-msgstr "复制链接地址"
-
-#: zapzap/features/browser/web/web_view.py:475
-msgid "Check Spelling"
-msgstr "检查拼写"
-
-#: zapzap/features/browser/web/web_view.py:481
-msgid "Languages…"
-msgstr "语言…"
-
-#: zapzap/features/browser/web/web_view.py:484
-msgid "Choose the languages used by the spell checker."
-msgstr "选择拼写检查器使用的语言。"
-
-#: zapzap/features/browser/web/web_view.py:910
-#: zapzap/ui/components/card_user.py:304
-msgid "Account"
-msgstr "账户"
-
-#: zapzap/features/browser/web/web_view.py:912
-#, python-brace-format
-msgid "DevTools - {}"
-msgstr "开发者工具 - {}"
 
 #: zapzap/features/accounts/domain/profile_sync.py:49
 #, fuzzy
@@ -4523,6 +4543,31 @@ msgstr "放弃更改将恢复编辑前的值。"
 msgid "Keep editing"
 msgstr "继续编辑"
 
+#: zapzap/ui/components/floating_monitoring_panel.py:283
+#: zapzap/ui/components/floating_monitoring_panel.py:285
+#, fuzzy
+msgid "Quick access"
+msgstr "快速访问"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:284
+msgid "No account activity to show yet."
+msgstr ""
+
+#: zapzap/ui/components/floating_monitoring_panel.py:286
+#, fuzzy
+msgid "Monitoring panel"
+msgstr "固定面板"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:287
+#: zapzap/ui/components/floating_monitoring_panel.py:288
+msgid "Unlock position"
+msgstr "解锁位置"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:291
+#: zapzap/ui/components/floating_monitoring_panel.py:292
+msgid "Audio"
+msgstr ""
+
 #: zapzap/ui/components/main_window.py:140
 msgid "File"
 msgstr "文件"
@@ -4872,31 +4917,6 @@ msgstr "发布于 {date}"
 #, python-brace-format
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr "ZapZap {latest} 已可用。当前版本：{current}。"
-
-#: zapzap/ui/components/floating_monitoring_panel.py:283
-#: zapzap/ui/components/floating_monitoring_panel.py:285
-#, fuzzy
-msgid "Quick access"
-msgstr "快速访问"
-
-#: zapzap/ui/components/floating_monitoring_panel.py:284
-msgid "No account activity to show yet."
-msgstr ""
-
-#: zapzap/ui/components/floating_monitoring_panel.py:286
-#, fuzzy
-msgid "Monitoring panel"
-msgstr "固定面板"
-
-#: zapzap/ui/components/floating_monitoring_panel.py:287
-#: zapzap/ui/components/floating_monitoring_panel.py:288
-msgid "Unlock position"
-msgstr "解锁位置"
-
-#: zapzap/ui/components/floating_monitoring_panel.py:291
-#: zapzap/ui/components/floating_monitoring_panel.py:292
-msgid "Audio"
-msgstr ""
 
 #, fuzzy
 #~ msgid "No accounts yet"
