@@ -212,11 +212,20 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   externas, e mudanças na preferência exigem reinício completo.
 - Trate `webrtc_shield.js` somente como proteção JavaScript legada. Ele não
   substitui a política nativa e não comprova isolamento de rede.
+- Antes de alterar ou retirar o Shield, valide chamadas com a opção ligada e
+  desligada e revise a descrição traduzida da UI: o script atual reescreve
+  candidatos recebidos em `addIceCandidate`, sem bloquear APIs nem filtrar
+  candidatos de saída. Preserve `privacy/webrtc_shield`; não a converta
+  automaticamente em `privacy/strict_proxy`, pois os escopos são diferentes.
 - Valide alterações de proxy com testes sem rede e repita os cenários manuais
   fail-closed de `docs/testing.md` em uma sessão descartável.
 
 ### Memória temporária de downloads
 
+- A API de abertura automática usa `auto_open_pdf` e `auto_open_images`.
+  A propriedade agregada sem consumidores foi retirada, mas a migração de
+  `downloads/auto_open_media` permanece: copia apenas para chaves novas ausentes
+  e remove a chave antiga depois, conforme o comportamento já existente.
 - Preserve a pasta persistida de downloads para Salvar e modo automático.
 - Use o seletor compartilhado do DownloadManager para Salvar como e perguntar
   sempre; não grave a sugestão em QSettings ou SQLite.

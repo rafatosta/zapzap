@@ -124,16 +124,6 @@ class DownloadSettings(BaseSettings):
         self._set_bool(self._AUTO_OPEN_IMAGES, value)
 
     @property
-    def auto_open_media(self) -> bool:
-        """Compatibility view used by older callers."""
-        return self.auto_open_pdf and self.auto_open_images
-
-    @auto_open_media.setter
-    def auto_open_media(self, value: bool) -> None:
-        self.auto_open_pdf = value
-        self.auto_open_images = value
-
-    @property
     def multiple_download_permission(self) -> str:
         raw_value = self._get_str(self._MULTIPLE_DOWNLOAD_PERMISSION)
         if raw_value in MultipleDownloadPermission.VALUES:

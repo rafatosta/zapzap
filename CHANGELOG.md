@@ -13,7 +13,20 @@ releases and the AppStream metadata.
 
 ## [7.5] - In development
 
+### Changed
+
+- Simplified the checkout launcher to call FlatpakRunner directly and removed
+  unused browser account adapters and the aggregate auto-open-media accessor.
+  Preserved download preference migration and all other persisted settings.
+  Documented the legacy WebRTC Shield's incoming-candidate-only scope and the
+  mismatch with its current UI description, retaining its behavior and option.
+
 ### Added
+
+- Prefer native bottom utility icons for account-selector colors, avoiding
+  highlighted conversation tabs without ARIA selection. Retain the last
+  sampled color while native actions are temporarily unavailable; extend
+  WebEngine theme regressions.
 
 - Keep the integrated account selector icon matched to native WhatsApp rail
   actions when compact New conversation is present; ignore injected icons

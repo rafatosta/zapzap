@@ -676,11 +676,6 @@ class BrowserController(BrowserView):
 
         self.activate_account(user_id)
 
-    def _handle_page_button_click(self, page: WebView,
-                                  button: BrowserPageButton):
-        """Compatibility entry point that resolves the stable account ID."""
-        self._handle_account_button_click(button.user.id)
-
     def _show_page_button_context_menu(self, button: BrowserPageButton, position):
         """Exibe no botão da conta o menu com as opções do CardUser."""
         if self._account_context_menu is not None:
@@ -833,15 +828,6 @@ class BrowserController(BrowserView):
         if runtime is not None:
             runtime.button.update_notifications(number_notifications)
             self._update_total_notifications()
-
-    def update_page_button_number_notifications(self, page_index,
-                                                number_notifications):
-        """Compatibility adapter for callers that still emit display order."""
-        for runtime in self._accounts.values():
-            if runtime.position == page_index:
-                self.update_account_notifications(
-                    runtime.user.id, number_notifications)
-                return
 
     def _update_total_notifications(self):
         """Atualiza o total de notificações no SysTrayManager."""

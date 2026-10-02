@@ -512,7 +512,7 @@ class IntegratedSelectorWebTests(QtTestCase):
             .bottom {display:flex;flex-direction:column;margin-top:auto;gap:8px}
             .bottom>* {min-height:40px;flex-shrink:0}
             </style><nav><button><svg></svg></button><div class="bottom">
-            <button>Settings</button><span>BETA</span><button>Profile</button></div></nav>""")
+            <button><svg></svg>Settings</button><span>BETA</span><button>Profile</button></div></nav>""")
         QTimer.singleShot(15000, loop.quit)
         loop.exec()
         self.assertEqual(loaded, [True])
@@ -546,6 +546,12 @@ class IntegratedSelectorWebTests(QtTestCase):
             proxy.setAttribute('data-zapzap-component', 'compact-new-chat');
             proxy.innerHTML = '<svg style="fill:rgb(250,10,20);width:24px;height:24px"></svg>';
             document.querySelector('nav').prepend(proxy);
+        """)
+        self.wait_frames()
+        self.assertEqual(self.javascript(page, snapshot), [1, "rgb(12, 34, 56)", True])
+        # WhatsApp may highlight the current tab with generated CSS alone.
+        self.javascript(page, """
+            document.querySelector('nav>button:not([data-zapzap-component]) svg').style.fill = 'rgb(0,200,50)';
         """)
         self.wait_frames()
         self.assertEqual(self.javascript(page, snapshot), [1, "rgb(12, 34, 56)", True])

@@ -111,6 +111,7 @@
         visible: {quick_accounts_visible},
         resizeHandler: null,
         iconColor: null,
+        sampledIconColor: null,
         hasOtherUnread: false,
         label: {selector_label},
         activityLabel: {selector_activity_label},
@@ -182,15 +183,16 @@
             if (!icon) {
                 return;
             }
-            let color = this.iconColor || "currentColor";
+            let color = this.iconColor || this.sampledIconColor || "currentColor";
             let width = "20px";
             let height = "20px";
-            // Sample an ordinary native navigation action, never an injected icon or an
-            // active/disabled action whose color represents a special state.
+            // Prefer bottom utility actions: the first navigation icon may be
+            // highlighted by generated CSS without an ARIA selected state.
+            // Never sample injected or explicitly active/disabled actions.
             const candidates = target === document.body ? [] : target.querySelectorAll(
                 'button svg, [role="button"] svg, [role="tab"] svg'
             );
-            for (const candidate of candidates) {
+            for (const candidate of [...candidates].reverse()) {
                 if (candidate.closest('[data-zapzap-component]') || candidate.closest(
                     '[aria-selected="true"], [aria-pressed="true"], ' +
                     '[aria-current]:not([aria-current="false"]), [disabled], [aria-disabled="true"]'
@@ -205,6 +207,7 @@
                 const paint = getComputedStyle(candidate.querySelector("path") || candidate);
                 color = paint.fill !== "none" && paint.fill !== "rgba(0, 0, 0, 0)"
                     ? paint.fill : paint.color;
+                this.sampledIconColor = color;
                 width = style.width;
                 height = style.height;
                 break;

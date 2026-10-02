@@ -90,6 +90,10 @@ que a issue foi efetivamente publicada.
 
 ## Inicialização e encerramento
 
+`run.py` encaminha os argumentos diretamente para `FlatpakRunner`, que prepara
+o SDK, compila o checkout e inicia o aplicativo no Flatpak. Não há despacho
+alternativo de modos nesse lançador.
+
 O caminho principal está em `zapzap/app/application.py`:
 
 1. interpreta opções de linha de comando;
@@ -167,7 +171,11 @@ User (SQLite) -> registro desativado (botão, page=None)
 
 O `user.id` é a identidade usada por sidebar, grade, atalhos e notificações.
 Índices da `QStackedWidget` e posições visuais nunca identificam contas. Em
-cada entrada há no máximo uma `WebView`; desativar ou remover anula a referência
+particular, cliques usam `_handle_account_button_click` e notificações usam o
+runtime registrado ou `update_account_notifications`; os adaptadores antigos
+de clique por página e contador por posição foram retirados por não terem
+consumidores.
+Em cada entrada há no máximo uma `WebView`; desativar ou remover anula a referência
 antes da desmontagem, e encerrar/desativar novamente é uma operação neutra.
 Uma falha ao construir um perfil altera somente aquela entrada para `ERROR`,
 sem abortar a criação das demais contas. Como a referência da página permanece
@@ -377,6 +385,12 @@ No bootstrap, `privacy/strict_proxy` acrescenta a política nativa Chromium
 habilitado. Proxy do sistema, `NoProxy` e proxies de cache não recebem essa
 garantia. O `webrtc_shield.js` continua como ofuscação legada de candidatos
 visíveis à página e não constitui a fronteira de isolamento de rede.
+O shim intercepta `addIceCandidate` e reescreve endereços em candidatos
+recebidos dos tipos `host`/`srflx`; não bloqueia `RTCPeerConnection`, não filtra
+eventos `icecandidate` de saída e não modifica o SDP de ofertas/respostas.
+A descrição atual da UI de que bloqueia APIs WebRTC não corresponde a esse
+escopo. Nesta avaliação, a opção e `privacy/webrtc_shield` são preservadas;
+uma revisão funcional deve tratar separadamente script, descrição e chamadas.
 
 A ação de conversa por número é coordenada por `MainWindowController`, que
 mantém no máximo um `SendMessageToNumberDialog` modal por vez. O diálogo

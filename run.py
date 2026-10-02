@@ -2,30 +2,9 @@ import sys
 
 from tools.flatpak_runner import FlatpakRunner
 
-def run(args):
-    """Usage: python run.py [args...]"""
-
-    runner = FlatpakRunner(sys.argv[1:])
-    runner.run()
-
-
 def main():
-    """Main entry point for the script."""
-
-    args = sys.argv[1:]
-
-    methods = {}
-
-    selected_method = run
-
-    # Procura argumentos especiais independentemente da ordem
-    for key, method in methods.items():
-        if key in args:
-            selected_method = method
-            args.remove(key)
-            break
-
-    selected_method(args)
+    """Build and launch the checkout in Flatpak with the supplied arguments."""
+    FlatpakRunner(sys.argv[1:]).run()
 
 
 if __name__ == "__main__":
