@@ -138,7 +138,7 @@ documente o que ele protege.
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
 | `test_reporting.py` | sanitização, minimização, Markdown, fila/TTL e captura local de encerramentos inesperados |
 | `test_reporting_ui.py` | formulário em duas etapas, prévia canônica, edição, cancelamento, clipboard e abertura segura do GitHub |
-| `test_resizable_chat_list.py` | modo compacto fixo de 80 px com avatares/fallback, texto e chrome ocultos, clique nativo, restauração da largura, recarga e montagem dinâmica sem redimensionamento; largura salva aplicada à coluna e à camada sobreposta, limites mínimos da lista e da conversa, alça na borda como separador focável com faixa de largura, setas, Home, End e Enter, duplo clique restaurando o padrão, desativação ao vivo sem script de recarga, reinstalação sem duplicar após recarga e encaminhamento às contas ativas |
+| `test_resizable_chat_list.py` | limite de 80 px preservando alturas, avatares, cabeçalho, busca, texto e clique nativos; largura salva aplicada à coluna e à camada sobreposta, limites mínimos da lista e da conversa, alça na borda como separador focável com faixa de largura, setas, Home, End e Enter, duplo clique restaurando o padrão, desativação ao vivo sem script de recarga, reinstalação sem duplicar após recarga e encaminhamento às contas ativas |
 | `test_segmented_control.py` | seleção exclusiva, sinais, mouse, teclado, acessibilidade, tamanhos, raios e temas |
 | `test_send_message_to_number.py` | normalização/URL, lista de países, validação, acessibilidade e teclado do diálogo de conversa por número |
 | `test_settings_card.py` | divisores e grupos do card compartilhado em `ui.components` |
@@ -624,20 +624,17 @@ Repita em X11, Windows/macOS e CSR. Flags e testes offscreen comprovam contratos
 Qt, não a aplicação das políticas pelo compositor.
 
 
-## Validação manual da lista compacta de conversas
+## Validação manual da lista redimensionável de conversas
 
-Em sessão gráfica real, habilite **Lista compacta de conversas** em Aparência.
-Confirme uma coluna fixa com apenas avatares, incluindo contatos sem foto e
-grupos, sem nomes, prévias, busca, filtros ou alça. Clique em várias conversas,
-role uma lista longa e confirme seleção, carregamento de novas linhas e
-preservação dos espaçadores da lista virtual. Repita em duas contas, após
-recarga, reinício e desativação/reativação de conta. Sem conversas ou antes do
-DOM reconhecível, o layout nativo deve permanecer utilizável.
+Habilite **Lista de conversas redimensionável** em Aparência, em sessão gráfica
+real. Arraste a borda até o mínimo de 80 CSS px: confira a largura dos avatares,
+altura/posição das linhas e rolagem nativas, sem grandes espaços entre contatos.
+Cabeçalho, busca, filtros e menu continuam sendo os controles originais do
+WhatsApp; a mudança não os oculta nem substitui. Amplie a lista e confira que
+todo o conteúdo volta a caber normalmente. Teste cliques, teclado, Home/End,
+Enter e duplo clique; ao reiniciar/recarregar, a largura salva deve voltar.
 
-Com redimensionamento previamente ligado e largura personalizada, ative o
-compacto: seu controle deve ficar indisponível sem perder a preferência.
-Desative o compacto e confira restauração da largura e da alça. Repita com
-redimensionamento desligado. Abra painéis de perfil, configurações e arquivadas
-pela navegação disponível e confira largura legível, sem comprimir a conversa.
-Teste temas claro/escuro, zoom, teclado, Linux X11/Wayland, Windows e macOS.
-O layout sintético e offscreen não comprovam aparência, foco ou DOM remoto.
+Repita com duas contas, painéis sobrepostos, temas, zoom e plataformas mantidas.
+Uma antiga preferência de compacto habilitada não deve fixar a largura ou
+impedir o redimensionamento. Testes sintéticos/offscreen não comprovam aparência
+nem o comportamento da versão remota do WhatsApp.

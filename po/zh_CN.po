@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-01 19:33-0300\n"
+"POT-Creation-Date: 2026-10-02 10:37-0300\n"
 "PO-Revision-Date: 2026-09-25 00:00+0800\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Simplified Chinese\n"
@@ -4918,6 +4918,14 @@ msgstr "解锁位置"
 msgid "Audio"
 msgstr ""
 
+#~ msgid "Compact chat list"
+#~ msgstr "紧凑聊天列表"
+
+#~ msgid ""
+#~ "Show only chat avatars at a fixed width. Resizing is unavailable while "
+#~ "enabled."
+#~ msgstr "以固定宽度仅显示聊天头像。启用后无法调整宽度。"
+
 #, fuzzy
 #~ msgid "No accounts yet"
 #~ msgstr "新账户"
@@ -4990,11 +4998,3 @@ msgstr ""
 
 #~ msgid "This site"
 #~ msgstr "此站点"
-
-#: zapzap/features/settings/pages/appearance/view.py
-msgid "Compact chat list"
-msgstr "紧凑聊天列表"
-
-#: zapzap/features/settings/pages/appearance/view.py
-msgid "Show only chat avatars at a fixed width. Resizing is unavailable while enabled."
-msgstr "以固定宽度仅显示聊天头像。启用后无法调整宽度。"

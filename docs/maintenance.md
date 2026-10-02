@@ -317,17 +317,16 @@ rede que possam ser sensíveis.
 - Valide contagem positiva, zero, preferência desativada e bandeja oculta.
   Confirme o resultado em uma sessão gráfica; mocks não comprovam o painel.
 
-### Lista compacta de conversas
+### Lista redimensionável de conversas
 
-- Preserve as preferências independentes `system/compact_chat_list_enabled` e
-  `system/resizable_chat_list_enabled`, além de `zapzap.chatListWidth` por conta.
-- Mantenha o compacto fixo, sem alça ou redimensionamento por teclado. Ao sair,
-  restaure a largura anterior e o estado do redimensionamento.
-- Adapte apenas a apresentação das linhas nativas; não duplique navegação nem
-  remova espaçadores de listas virtualizadas. Avatares padrão de grupos/contatos
-  precisam continuar visíveis e clicáveis.
-- Verifique o DOM remoto em sessão gráfica real: os testes WebEngine usam um
-  layout sintético e não comprovam compatibilidade com novas versões do WhatsApp.
+- Preserve `system/resizable_chat_list_enabled` e `zapzap.chatListWidth` por
+  conta. O mínimo é 80 CSS px, sem modo compacto separado.
+- Modifique somente a largura da coluna e das camadas sobrepostas; mantenha
+  estrutura, alturas, controles e posicionamento nativos do WhatsApp.
+- A antiga chave `system/compact_chat_list_enabled` é ignorada, sem apagar ou
+  converter seu valor. Não a use para habilitar ou fixar o redimensionamento.
+- Verifique o DOM remoto em sessão gráfica real, inclusive cabeçalho, rolagem,
+  painéis e expansão da lista. O DOM sintético não comprova aparência remota.
 
 ### Mudança visual compartilhada
 

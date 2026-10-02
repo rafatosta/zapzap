@@ -61,12 +61,6 @@ class AppearanceSettingsView(SettingsPage):
             ),
         )
         self._configure_row_accessibility(self.resizable_chat_list_row)
-        self.compact_chat_list_row = SettingsSwitchRow(
-            _("Compact chat list"),
-            _("Show only chat avatars at a fixed width. Resizing is unavailable while enabled."),
-        )
-        self._configure_row_accessibility(self.compact_chat_list_row)
-        self.compact_chat_list = self.compact_chat_list_row.checkbox
         self.scale_row = SettingsSelectRow(
             _("Interface scale"),
             _("Scale the interface for high-DPI or accessibility needs."),
@@ -79,7 +73,6 @@ class AppearanceSettingsView(SettingsPage):
         card.add_row(self.browser_sidebar_row)
         card.add_row(self.mainwindow_menu_row)
         card.add_row(self.resizable_chat_list_row)
-        card.add_row(self.compact_chat_list_row)
         card.add_row(self.scale_row)
         section.add_card(card)
         self.add_section(section)

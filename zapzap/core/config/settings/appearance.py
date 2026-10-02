@@ -42,7 +42,6 @@ class AppearanceSettings(BaseSettings):
         "system/integrated_account_selector_enabled",
         False,
     )
-    _COMPACT_CHAT_LIST_ENABLED = ("system/compact_chat_list_enabled", False)
     _RESIZABLE_CHAT_LIST_ENABLED = (
         "system/resizable_chat_list_enabled",
         False,
@@ -275,12 +274,3 @@ class AppearanceSettings(BaseSettings):
     @resizable_chat_list_enabled.setter
     def resizable_chat_list_enabled(self, value: bool) -> None:
         self._set_bool(self._RESIZABLE_CHAT_LIST_ENABLED, value)
-
-    @property
-    def compact_chat_list_enabled(self) -> bool:
-        """Whether the chat list shows only avatars at a fixed width."""
-        return self._get_bool(self._COMPACT_CHAT_LIST_ENABLED)
-
-    @compact_chat_list_enabled.setter
-    def compact_chat_list_enabled(self, value: bool) -> None:
-        self._set_bool(self._COMPACT_CHAT_LIST_ENABLED, value)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-01 19:33-0300\n"
+"POT-Creation-Date: 2026-10-02 10:37-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4783,12 +4783,4 @@ msgstr ""
 #: zapzap/ui/components/floating_monitoring_panel.py:291
 #: zapzap/ui/components/floating_monitoring_panel.py:292
 msgid "Audio"
-msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py
-msgid "Compact chat list"
-msgstr ""
-
-#: zapzap/features/settings/pages/appearance/view.py
-msgid "Show only chat avatars at a fixed width. Resizing is unavailable while enabled."
 msgstr ""

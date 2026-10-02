@@ -164,14 +164,6 @@ class AppearanceSettingsModel:
     def resizable_chat_list_enabled(self, value: bool) -> None:
         self._settings.resizable_chat_list_enabled = value
 
-    @property
-    def compact_chat_list_enabled(self) -> bool:
-        return self._settings.compact_chat_list_enabled
-
-    @compact_chat_list_enabled.setter
-    def compact_chat_list_enabled(self, value: bool) -> None:
-        self._settings.compact_chat_list_enabled = value
-
     def available_csr_button_themes(self) -> list[str]:
         """Return available CSR button theme names."""
         return CSRButtonThemeProvider.available_theme_names()

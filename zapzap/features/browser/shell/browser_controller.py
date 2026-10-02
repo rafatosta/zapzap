@@ -739,13 +739,6 @@ class BrowserController(BrowserView):
             if callable(setter):
                 setter(bool(enabled))
 
-    def set_compact_chat_list_enabled(self, enabled: bool) -> None:
-        """Apply the fixed avatar list to every live account."""
-        for runtime in self._active_runtimes():
-            setter = getattr(runtime.page, "set_compact_chat_list_enabled", None)
-            if callable(setter):
-                setter(bool(enabled))
-
     def current_webview(self):
         current = self.pages.currentWidget()
         if self._runtime_for_page(current):
