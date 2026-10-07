@@ -270,10 +270,10 @@
       });
     };
 
-    const isInsideFrequentlyUpdatedArea = (node) =>
-      chatList?.contains(node) || document.getElementById('main')?.contains(node);
-
     const layoutMutationObserver = new MutationObserver((mutations) => {
+      const conversation = document.getElementById('main');
+      const isInsideFrequentlyUpdatedArea = (node) =>
+        chatList?.contains(node) || conversation?.contains(node);
       if (mutations.some((mutation) => !isInsideFrequentlyUpdatedArea(mutation.target) ||
           mutation.target.closest?.('header'))) {
         scheduleSync();

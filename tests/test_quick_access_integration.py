@@ -620,3 +620,79 @@ class IntegratedSelectorWebTests(QtTestCase):
         view._shutting_down = True
         bridge.open_recent_accounts(10, 20, 40, 40)
         self.assertEqual(len(received), 1)
+
+    def test_selector_skips_rail_scans_while_hidden_or_for_conversation_updates(self):
+        from pathlib import Path
+        view = WebView(User(id="dom-idle", enable=False), 1)
+        self.addCleanup(lambda: sip.delete(view))
+        view.resize(800, 600)
+        view.show()
+        page = view.page()
+        loop = QEventLoop()
+        loaded = []
+        page.loadFinished.connect(lambda ok: (loaded.append(ok), loop.quit()))
+        page.setHtml("""<style>body {margin:0;display:flex}
+            nav {display:flex;flex-direction:column;width:64px;height:100vh}</style>
+            <nav><button>Chats</button></nav><div id="side"><button>Row</button></div>
+            <div id="main"><footer><div contenteditable="true"></div></footer></div>""")
+        QTimer.singleShot(15000, loop.quit)
+        loop.exec()
+        self.assertEqual(loaded, [True])
+        script = (Path(__file__).parents[1] /
+                  "zapzap/features/browser/web/scripts/theme_controller.js").read_text()
+        controller = script.split("    const QuickAccountsController =", 1)[1].split(
+            "    const ThemeController =", 1)[0]
+        controller = controller.replace("{quick_accounts_visible}", "false").replace(
+            "{quick_accounts_icon}", '<svg viewBox="0 0 24 24"></svg>').replace(
+            "{selector_label}", '"Account selector"').replace(
+            "{selector_activity_label}", '"Notifications"')
+        self.javascript(page, "window.QuickAccountsController =" + controller +
+                        "QuickAccountsController.boot();" +
+                        "window.scans = 0;" +
+                        "const find = QuickAccountsController.findQuickAccountsMountPoint;" +
+                        "QuickAccountsController.findQuickAccountsMountPoint = function () {" +
+                        "window.scans++; return find.call(this); }; true")
+        typing = """(() => {
+            const editor = document.querySelector('#main [contenteditable]');
+            for (let i = 0; i < 20; i++) {
+                const span = document.createElement('span');
+                span.textContent = 'x';
+                editor.appendChild(span);
+                editor.className = 'typing-' + i;
+                document.querySelector('#side button').className = 'row-' + i;
+            }
+            return true;
+        })()"""
+        # A disabled selector must not scan the rail for any DOM change.
+        self.javascript(page, typing)
+        self.javascript(page, "document.body.appendChild(document.createElement('div')); true")
+        self.wait_frames()
+        self.assertEqual(self.javascript(page, "window.scans"), 0)
+        self.assertEqual(self.javascript(page,
+            "document.querySelectorAll('[data-zapzap-component=quick-accounts]').length"), 0)
+        # Once visible, composer and chat-list updates still skip the scan.
+        self.javascript(page, "QuickAccountsController.setState(true, false); true")
+        self.wait_frames()
+        self.assertEqual(self.javascript(page,
+            "document.querySelectorAll('[data-zapzap-component=quick-accounts]').length"), 1)
+        self.javascript(page, "window.scans = 0; true")
+        self.javascript(page, typing)
+        self.wait_frames()
+        self.assertEqual(self.javascript(page, "window.scans"), 0)
+        # Layout changes outside those areas still reach the selector.
+        self.javascript(page, "document.body.appendChild(document.createElement('div')); true")
+        self.wait_frames()
+        self.assertGreater(self.javascript(page, "window.scans"), 0)
+
+
+class WebViewEventFilterTests(QtTestCase):
+    def test_unrelated_events_skip_widget_ancestry_checks(self):
+        from unittest.mock import Mock
+        from PyQt6.QtCore import QEvent
+        from PyQt6.QtGui import QKeyEvent
+        owner = Mock()
+        event = QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_A, Qt.KeyboardModifier.NoModifier)
+        self.assertFalse(WebView.eventFilter(owner, object(), event))
+        self.assertFalse(WebView.eventFilter(owner, object(), QEvent(QEvent.Type.UpdateRequest)))
+        owner.isAncestorOf.assert_not_called()
+        owner.clear_download_directory.assert_not_called()

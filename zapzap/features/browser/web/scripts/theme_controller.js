@@ -110,6 +110,7 @@
         framePending: false,
         visible: {quick_accounts_visible},
         resizeHandler: null,
+        mountPoint: null,
         iconColor: null,
         sampledIconColor: null,
         hasOtherUnread: false,
@@ -130,11 +131,20 @@
             window.addEventListener("resize", this.resizeHandler);
             if (document.documentElement) {
                 this.observer = new MutationObserver((records) => {
+                    // A hidden selector has nothing to place or remove.
+                    if (!this.visible && !document.querySelector('[data-zapzap-component="quick-accounts"]')) {
+                        return;
+                    }
                     // Ignore our own styles to avoid a perpetual animation-frame loop.
                     const own = (node) => node.nodeType === 1 &&
                         (node.matches('[data-zapzap-component="quick-accounts"]') ||
                          node.closest('[data-zapzap-component="quick-accounts"]'));
-                    if (records.some((record) => !own(record.target) &&
+                    // The composer, messages and chat rows change on every
+                    // keystroke or update but never contain the rail.
+                    const busyAreas = [document.getElementById("main"), document.getElementById("side")]
+                        .filter(Boolean);
+                    const busy = (node) => busyAreas.some((area) => area.contains(node));
+                    if (records.some((record) => !own(record.target) && !busy(record.target) &&
                         (record.type !== "childList" ||
                          [...record.removedNodes].some((node) => own(node) && !node.isConnected) ||
                          [...record.addedNodes, ...record.removedNodes].some((node) => !own(node))))) {
@@ -230,7 +240,24 @@
             });
         },
 
+        isQuickAccountsMountPoint(candidate) {
+            const bounds = candidate.getBoundingClientRect();
+            return (
+                bounds.left <= 24 &&
+                bounds.width >= 48 &&
+                bounds.width <= 120 &&
+                bounds.height >= window.innerHeight * 0.5 &&
+                getComputedStyle(candidate).visibility !== "hidden"
+            );
+        },
+
         findQuickAccountsMountPoint() {
+            // Revalidate the previous rail before scanning every native action.
+            if (this.mountPoint && this.mountPoint.isConnected &&
+                this.isQuickAccountsMountPoint(this.mountPoint)) {
+                return this.mountPoint;
+            }
+            this.mountPoint = null;
             const navigationCandidates = new Set(document.querySelectorAll(
                 'nav, [role="navigation"], aside'
             ));
@@ -245,14 +272,8 @@
                 }
             }
             for (const candidate of navigationCandidates) {
-                const bounds = candidate.getBoundingClientRect();
-                if (
-                    bounds.left <= 24 &&
-                    bounds.width >= 48 &&
-                    bounds.width <= 120 &&
-                    bounds.height >= window.innerHeight * 0.5 &&
-                    getComputedStyle(candidate).visibility !== "hidden"
-                ) {
+                if (this.isQuickAccountsMountPoint(candidate)) {
+                    this.mountPoint = candidate;
                     return candidate;
                 }
             }
@@ -407,9 +428,13 @@
 
         ensureButton() {
             try {
-                const target = this.findQuickAccountsMountPoint();
                 let button = document.querySelector('[data-zapzap-component="quick-accounts"]');
-                if (!target || !this.visible) {
+                if (!this.visible) {
+                    if (button) button.remove();
+                    return;
+                }
+                const target = this.findQuickAccountsMountPoint();
+                if (!target) {
                     if (button) button.remove();
                     return;
                 }
@@ -700,11 +725,24 @@
                 return;
             }
 
+            let scheduled = false;
             this.themeContextObserver = new MutationObserver(() => {
-                const ctx = ReactHelper.findThemeContext();
-                if (ctx) {
-                    this._initialize(ctx);
+                // Each search walks every element, so run at most once per frame.
+                if (scheduled) {
+                    return;
                 }
+
+                scheduled = true;
+                requestAnimationFrame(() => {
+                    scheduled = false;
+                    if (!this.themeContextObserver) {
+                        return;
+                    }
+                    const ctx = ReactHelper.findThemeContext();
+                    if (ctx) {
+                        this._initialize(ctx);
+                    }
+                });
             });
 
             this.themeContextObserver.observe(document.documentElement, {

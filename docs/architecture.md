@@ -274,7 +274,10 @@ clique externo, e a navegação também o oculta.
 reinjeção/recarga via handshake WebChannel. A inicialização do botão independe
 da disponibilidade dos módulos de tema do WhatsApp. A integração procura uma
 sidebar vertical real, reutiliza cores/dimensões de ícones nativos e reinsere o
-botão após mutações do DOM. Em containers que cortam conteúdo, pode ocupar
+botão após mutações do DOM. Com a opção desligada o observer não varre o DOM;
+mutações dentro de `#main` (composer e mensagens) e `#side` (lista de chats)
+são ignoradas, e a sidebar encontrada é revalidada antes de nova varredura,
+evitando layout forçado a cada tecla digitada. Em containers que cortam conteúdo, pode ocupar
 somente um espaço livre medido dentro da sidebar; sem sidebar/espaço não exibe
 um botão sobre conversas. O clique envia só a geometria CSS do botão pela ponte;
 WebView aplica o zoom e converte para coordenadas globais Qt. O controller
