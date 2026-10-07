@@ -13,6 +13,17 @@ releases and the AppStream metadata.
 
 ## [7.5] - In development
 
+### Fixed
+
+- Reduced typing stutter in chats: the integrated account selector script no
+  longer scans the whole page and forces layout on every DOM change while the
+  selector is disabled, ignores composer, message and chat-list updates, and
+  reuses the sidebar it already found. ThemeContext discovery coalesces bursts
+  of DOM changes with a short timer that also runs in background accounts, and
+  the application-wide WebView event filter checks the event type before
+  widget ancestry. Added WebEngine and event filter regressions; no persisted
+  settings changed.
+
 ### Changed
 
 - Hide floating monitoring panel suboptions in Appearance until the panel is

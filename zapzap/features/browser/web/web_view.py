@@ -741,20 +741,29 @@ class WebView(QWebEngineView):
 
     def eventFilter(self, watched, event):
         """Handle WebEngine child events that do not reach WebView directly."""
+        # This filter sees every application event once per account; check the
+        # cheap event type before walking widget ancestry.
+        event_type = event.type()
+        is_escape = (
+            event_type == QEvent.Type.KeyPress
+            and event.key() == Qt.Key.Key_Escape
+        )
+        is_native_gesture = event_type == QEvent.Type.NativeGesture
+        if not is_escape and not is_native_gesture:
+            return False
+
         targets_web_content = watched is self or (
             isinstance(watched, QWidget) and self.isAncestorOf(watched)
         )
 
         if (
-            targets_web_content
+            is_escape
+            and targets_web_content
             and (watched is self or watched.window() is self.window())
-            and event.type() == QEvent.Type.KeyPress
-            and event.key() == Qt.Key.Key_Escape
         ):
             self.clear_download_directory()
 
-        native_gesture_type = getattr(QEvent.Type, "NativeGesture", None)
-        if native_gesture_type is not None and event.type() == native_gesture_type:
+        if is_native_gesture:
             if SettingsManager.get("web/disable_pinch", False):
                 try:
                     if event.gestureType() == Qt.NativeGestureType.ZoomNativeGesture:
