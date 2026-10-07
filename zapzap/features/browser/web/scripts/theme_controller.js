@@ -4,6 +4,7 @@
     const LOG_PREFIX = "[ZapZap WAWeb Theme Controller]";
 
     const THEME_CONTEXT_PENDING_TIMEOUT = 60000; // 60 seconds
+    const THEME_CONTEXT_SEARCH_DELAY = 100; // milliseconds
 
     const MODULES = {
         prefs: {
@@ -131,8 +132,8 @@
             window.addEventListener("resize", this.resizeHandler);
             if (document.documentElement) {
                 this.observer = new MutationObserver((records) => {
-                    // A hidden selector has nothing to place or remove.
-                    if (!this.visible && !document.querySelector('[data-zapzap-component="quick-accounts"]')) {
+                    // A hidden selector has nothing to place; setState removes the button.
+                    if (!this.visible) {
                         return;
                     }
                     // Ignore our own styles to avoid a perpetual animation-frame loop.
@@ -727,13 +728,14 @@
 
             let scheduled = false;
             this.themeContextObserver = new MutationObserver(() => {
-                // Each search walks every element, so run at most once per frame.
+                // Each search walks every element, so coalesce bursts. Use a
+                // timer: animation frames never run in background accounts.
                 if (scheduled) {
                     return;
                 }
 
                 scheduled = true;
-                requestAnimationFrame(() => {
+                setTimeout(() => {
                     scheduled = false;
                     if (!this.themeContextObserver) {
                         return;
@@ -742,7 +744,7 @@
                     if (ctx) {
                         this._initialize(ctx);
                     }
-                });
+                }, THEME_CONTEXT_SEARCH_DELAY);
             });
 
             this.themeContextObserver.observe(document.documentElement, {

@@ -45,8 +45,6 @@ from gettext import gettext as _
 
 logger = logging.getLogger(__name__)
 
-_NATIVE_GESTURE_EVENT = getattr(QEvent.Type, "NativeGesture", None)
-
 
 class WebView(QWebEngineView):
     integrated_selector_requested = pyqtSignal(object)
@@ -750,10 +748,7 @@ class WebView(QWebEngineView):
             event_type == QEvent.Type.KeyPress
             and event.key() == Qt.Key.Key_Escape
         )
-        is_native_gesture = (
-            _NATIVE_GESTURE_EVENT is not None
-            and event_type == _NATIVE_GESTURE_EVENT
-        )
+        is_native_gesture = event_type == QEvent.Type.NativeGesture
         if not is_escape and not is_native_gesture:
             return False
 

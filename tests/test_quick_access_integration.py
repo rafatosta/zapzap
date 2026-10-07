@@ -696,3 +696,59 @@ class WebViewEventFilterTests(QtTestCase):
         self.assertFalse(WebView.eventFilter(owner, object(), QEvent(QEvent.Type.UpdateRequest)))
         owner.isAncestorOf.assert_not_called()
         owner.clear_download_directory.assert_not_called()
+
+
+class ThemeContextDiscoveryWebTests(QtTestCase):
+    javascript = IntegratedSelectorWebTests.javascript
+
+    def test_theme_context_is_found_in_a_hidden_background_account(self):
+        import json
+        from pathlib import Path
+        from PyQt6.QtWidgets import QStackedWidget
+        from PyQt6.QtWebEngineWidgets import QWebEngineView
+        stack = QStackedWidget()
+        self.addCleanup(lambda: sip.delete(stack))
+        front, background = QWebEngineView(), QWebEngineView()
+        stack.addWidget(front)
+        stack.addWidget(background)
+        stack.resize(400, 300)
+        stack.show()
+        page = background.page()
+        loop = QEventLoop()
+        page.loadFinished.connect(loop.quit)
+        page.setHtml("<div id='app'></div>")
+        QTimer.singleShot(15000, loop.quit)
+        loop.exec()
+        self.assertEqual(self.javascript(page, "document.visibilityState"), "hidden")
+        script = (Path(__file__).parents[1] /
+                  "zapzap/features/browser/web/scripts/theme_controller.js").read_text()
+        for key, value in {
+            "{qwebchannel_js_code}": "",
+            "{quick_accounts_visible}": "false",
+            "{quick_accounts_icon}": "<svg></svg>",
+            "{selector_label}": json.dumps("Account selector"),
+            "{selector_activity_label}": json.dumps("Notifications"),
+            "{current_color_scheme}": "light",
+        }.items():
+            script = script.replace(key, value)
+        self.javascript(page, """
+            window.require = (name) => name === 'WAWebSettingsFBT'
+                ? {themeTitle: () => 'Theme'}
+                : {getTheme: () => 'light', setTheme() {},
+                   getSystemThemeMode: () => false, setSystemThemeMode() {}};
+            true""")
+        self.javascript(page, script + ";true")
+        # WhatsApp mounts its React tree after the controller boots.
+        self.javascript(page, """
+            const node = document.createElement('div');
+            node['__reactFiber$test'] = {memoizedProps: {value: {
+                setTheme() {}, setSystemThemeMode() {}}}};
+            document.getElementById('app').appendChild(node);
+            true""")
+        # Hidden pages align timers to one-second wake-ups.
+        loop = QEventLoop()
+        QTimer.singleShot(2500, loop.quit)
+        loop.exec()
+        self.assertEqual(self.javascript(page, """[
+            window._zapZapWAWebThemeController.is_ready(),
+            window._zapZapWAWebThemeController.has_failed()]"""), [True, False])
