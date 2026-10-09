@@ -216,7 +216,9 @@ class WebView(QWebEngineView):
         )
         if pdf_viewer_attr is not None:
             settings.setAttribute(pdf_viewer_attr, preview)
-        if self.whatsapp_page is not None and not self._shutting_down:
+        if getattr(self, "whatsapp_page", None) is not None and not getattr(
+            self, "_shutting_down", False
+        ):
             # Browser settings do not control WhatsApp Web's own PDF overlay.
             mode = json.dumps(DownloadSettings().pdf_click_behavior)
             self.whatsapp_page.runJavaScript(

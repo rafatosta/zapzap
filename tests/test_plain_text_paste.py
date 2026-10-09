@@ -215,6 +215,28 @@ class PlainTextPasteTests(QtTestCase):
         self.assertTrue(self._javascript(page, WebView._plain_text_paste_script(text)))
         self.assertEqual(self._javascript(page, "window.received"), text)
 
+    def test_calc_html_clipboard_is_used_before_flattened_text(self):
+        page = RecordingPage()
+        host = PageHost(page)
+        clipboard = FakeClipboard("A C B D")
+        clipboard.mimeData = lambda: type("Mime", (), {
+            "hasHtml": lambda _self: True,
+            "html": lambda _self: (
+                "<table><tr><td>A</td><td></td><td>C</td></tr>"
+                "<tr><td></td><td></td><td></td></tr>"
+                "<tr><td>B</td><td></td><td>D</td></tr></table>"
+            ),
+        })()
+        with patch(
+            "zapzap.features.browser.web.web_view.QApplication.clipboard",
+            return_value=clipboard,
+        ):
+            self.assertTrue(WebView.paste_as_plain_text(host))
+        self.assertIn(
+            'const text = "A  C\\n  \\nB  D";',
+            page.scripts[0],
+        )
+
     def test_plain_text_paste_uses_only_clipboard_text(self):
         page = RecordingPage()
         host = PageHost(page)
