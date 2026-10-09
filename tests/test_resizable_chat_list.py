@@ -202,13 +202,13 @@ class ResizableChatListTests(QtTestCase):
             };
           })()
         """)
-        self.assertEqual(native["menuHeight"], 60)
+        self.assertEqual(native["menuHeight"], 0)
         self.assertEqual(native["rowHeight"], 72)
         self.assertEqual(native["avatarWidth"], 49)
         self.assertEqual(native["textVisibility"], "visible")
-        self.assertNotEqual(native["searchDisplay"], "none")
+        self.assertEqual(native["searchDisplay"], "none")
         self.assertTrue(native["clicked"])
-        self.assertEqual(native["compactMarks"], 0)
+        self.assertEqual(native["compactMarks"], 1)
         self._press_on_handle("ArrowRight")
         self.assertEqual(self._layout_state()["column"], MINIMUM_COLUMN_WIDTH + 20)
         self._press_on_handle("Enter")
@@ -237,7 +237,7 @@ class ResizableChatListTests(QtTestCase):
               getComputedStyle(document.getElementById('new-chat')).display === 'none';
           })()
         """))
-        self._press_on_handle('ArrowRight')
+        self._press_on_handle('End')
         self.assertTrue(self._javascript("""
           !document.querySelector('[data-zapzap-component=compact-new-chat]') &&
           !document.getElementById('new-chat').hasAttribute('data-zapzap-new-chat-source')
@@ -262,6 +262,37 @@ class ResizableChatListTests(QtTestCase):
         self.assertEqual(self._layout_state()["savedWidth"], str(MINIMUM_COLUMN_WIDTH + 20))
         self._press_on_handle("Enter")
         self.assertIsNone(self._layout_state()["savedWidth"])
+
+    def test_compact_action_restores_previous_custom_width(self):
+        self._save_width(500)
+        self.view.compact_chat_list()
+        self.view.compact_chat_list()
+        self.assertEqual(self._layout_state()["column"], 500)
+        self.assertEqual(self._layout_state()["savedWidth"], "500")
+
+    def test_compact_threshold_titles_and_native_unread_overlay(self):
+        self._javascript("""
+          document.getElementById('side').innerHTML = `
+            <header>Chats</header><div role="tablist">Filters</div>
+            <div role="grid"><div role="row" id="alice">
+              <img alt="Alice"><span title="Alice">Alice</span>
+              <span data-testid="icon-unread-count">3</span>
+            </div></div>`;
+        """)
+        self._save_width(199)
+        self.view.set_resizable_chat_list_enabled(True)
+        self.assertTrue(self._javascript("""
+          document.documentElement.hasAttribute('data-zapzap-chat-list-compact') &&
+          document.getElementById('alice').title === 'Alice' &&
+          getComputedStyle(document.querySelector('[data-testid="icon-unread-count"]')).position === 'absolute' &&
+          getComputedStyle(document.querySelector('[role="tablist"]')).display === 'none'
+        """))
+        self._press_on_handle('ArrowRight')
+        self.assertTrue(self._javascript("""
+          !document.documentElement.hasAttribute('data-zapzap-chat-list-compact') &&
+          !document.getElementById('alice').hasAttribute('title') &&
+          getComputedStyle(document.querySelector('[data-testid="icon-unread-count"]')).position !== 'absolute'
+        """))
 
     def test_compact_action_before_chat_mount_applies_when_list_appears(self):
         self._javascript("window.savedSide=document.getElementById('side'); window.savedSide.remove()")

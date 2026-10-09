@@ -638,8 +638,10 @@ repita a ação, incluindo após recarga e antes da montagem da lista.
 Habilite **Lista de conversas redimensionável** em Aparência, em sessão gráfica
 real. Arraste a borda até o mínimo de 85 CSS px: confira a largura dos avatares,
 altura/posição das linhas e rolagem nativas, sem grandes espaços entre contatos.
-Cabeçalho, busca, filtros e menu continuam sendo os controles originais do
-WhatsApp; a mudança não os oculta nem substitui. Amplie a lista e confira que
+Abaixo de 200 px, cabeçalho, busca, filtros e menu ficam ocultos por CSS.
+Confirme contador sobre a foto e nome do contato no tooltip, incluindo novas
+mensagens e linhas reutilizadas após rolagem. Um segundo clique em Aplicar
+deve restaurar a largura anterior da página. Amplie a lista e confira que
 todo o conteúdo volta a caber normalmente. Teste cliques, teclado, Home/End,
 Enter e duplo clique; ao reiniciar/recarregar, a largura salva deve voltar.
 
@@ -649,7 +651,7 @@ impedir o redimensionamento. Testes sintéticos/offscreen não comprovam aparên
 nem o comportamento da versão remota do WhatsApp.
 
 O botão **Nova conversa** aparece no início da barra do WhatsApp somente com
-a lista redimensionável em 85 CSS px. Um botão espelho encaminha o clique ao
+a lista redimensionável abaixo de 200 CSS px. Um botão espelho encaminha o clique ao
 original, oculto sem sair da árvore React; ao ampliar, restaurar ou desativar,
 o original reaparece. Sem ação/rail reconhecíveis, o cabeçalho é preservado.
 Valide clique, teclado, recarga, montagem tardia, temas e zoom em sessão real.

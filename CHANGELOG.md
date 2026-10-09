@@ -15,6 +15,12 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Treat chat lists below 200 CSS px as compact through an HTML attribute,
+  hide search/header/filters with CSS, overlay native unread counts on avatars
+  and expose contact names as row titles. Compact chat list now restores the
+  previous page width on a second click. Added WebEngine regressions and updated
+  technical/manual documentation; existing persisted keys remain unchanged.
+
 - Stopped the resizable chat list handle from covering WhatsApp panels that
   open over the chat list edge, such as the emoji, GIF and sticker picker.
   The handle now only takes the pointer where the chat list edge is visible,

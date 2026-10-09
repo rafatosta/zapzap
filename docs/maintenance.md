@@ -331,8 +331,9 @@ rede que possam ser sensíveis.
 - Preserve `system/resizable_chat_list_enabled` e `zapzap.chatListWidth` por
   conta. O mínimo é 85 CSS px, sem modo compacto separado.
 - A ação **Compact chat list** deve aplicar/salvar o mínimo nas contas ativas
-  e habilitar o redimensionamento normal; não crie um modo fixo ou outra chave.
-- Preserve estrutura e alturas nativas. A exceção é Nova conversa: em 85 px,
+  e habilitar o redimensionamento normal; um segundo clique restaura a largura
+  anterior da página, sem criar modo fixo ou outra chave.
+- Preserve estrutura e alturas nativas. A exceção é Nova conversa: abaixo de 200 px,
   apresente a ação no início da barra por um espelho do botão original.
 - A antiga chave `system/compact_chat_list_enabled` é ignorada, sem apagar ou
   converter seu valor. Não a use para habilitar ou fixar o redimensionamento.
@@ -340,7 +341,7 @@ rede que possam ser sensíveis.
   painéis e expansão da lista. O DOM sintético não comprova aparência remota.
 
 O botão **Nova conversa** aparece no início da barra do WhatsApp somente com
-a lista redimensionável em 85 CSS px. Um botão espelho encaminha o clique ao
+a lista redimensionável abaixo de 200 CSS px. Um botão espelho encaminha o clique ao
 original, oculto sem sair da árvore React; ao ampliar, restaurar ou desativar,
 o original reaparece. Sem ação/rail reconhecíveis, o cabeçalho é preservado.
 Valide clique, teclado, recarga, montagem tardia, temas e zoom em sessão real.

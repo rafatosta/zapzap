@@ -5,6 +5,8 @@
   const resizeHandleHint = {resize_handle_hint};
   const savedWidthStorageKey = 'zapzap.chatListWidth';
   const minimumColumnWidth = 85;
+  const compactThreshold = 200;
+  const compactAttribute = 'data-zapzap-chat-list-compact';
   const minimumConversationWidth = 380;
   const keyboardResizeStep = 20;
   const handleReachDistance = 8;
@@ -30,6 +32,22 @@
       :root[${draggingAttribute}], :root[${draggingAttribute}] * {
         cursor: col-resize !important;
         user-select: none !important;
+      }
+      :root[${compactAttribute}] #side header,
+      :root[${compactAttribute}] #side [data-zapzap-chat-list-controls] {
+        display: none !important;
+      }
+      :root[${compactAttribute}] [data-zapzap-chat-list-row] { position: relative; }
+      :root[${compactAttribute}] [data-zapzap-chat-list-unread-path] {
+        position: static !important;
+        overflow: visible !important;
+      }
+      :root[${compactAttribute}] [data-zapzap-chat-list-unread] {
+        position: absolute !important;
+        top: 6px;
+        left: 40px;
+        z-index: 1;
+        pointer-events: none;
       }
       [data-zapzap-new-chat-source] { display: none !important; }
       .${resizeHandleClass} {
@@ -87,6 +105,8 @@
     };
 
     let preferredWidth = readSavedWidth();
+    let previousWidth = null;
+    const decoratedRows = new Map();
     let chatList = null;
     let column = null;
     let isDragging = false;
@@ -104,8 +124,7 @@
     };
 
     const syncNewChat = () => {
-      const compact = root.hasAttribute(customWidthAttribute) &&
-        Number.parseInt(root.style.getPropertyValue(columnWidthProperty), 10) === minimumColumnWidth;
+      const compact = root.hasAttribute(compactAttribute);
       if (!compact || !column?.isConnected) {
         restoreNewChat();
         return;
@@ -168,6 +187,65 @@
       }
     };
 
+    const restoreRows = () => {
+      for (const [row, title] of decoratedRows) {
+        if (title === null) row.removeAttribute('title');
+        else row.setAttribute('title', title);
+        row.removeAttribute('data-zapzap-chat-list-row');
+      }
+      decoratedRows.clear();
+      chatList?.querySelectorAll('[data-zapzap-chat-list-unread], [data-zapzap-chat-list-unread-path], [data-zapzap-chat-list-controls]')
+        .forEach((node) => {
+          node.removeAttribute('data-zapzap-chat-list-unread');
+          node.removeAttribute('data-zapzap-chat-list-unread-path');
+          node.removeAttribute('data-zapzap-chat-list-controls');
+        });
+    };
+
+    const syncCompactRows = () => {
+      if (!root.hasAttribute(compactAttribute)) { restoreRows(); return; }
+      if (!chatList) return;
+      for (const [row, title] of decoratedRows) {
+        if (chatList.contains(row)) continue;
+        if (title === null) row.removeAttribute('title');
+        else row.title = title;
+        row.removeAttribute('data-zapzap-chat-list-row');
+        decoratedRows.delete(row);
+      }
+      // Mark native controls, leaving React ownership and event handlers intact.
+      for (const control of chatList.querySelectorAll(
+        'input, [role="search"], [role="searchbox"], [role="tablist"], [data-testid="chat-list-filters"]',
+      )) {
+        let wrapper = control;
+        while (wrapper.parentElement !== chatList && wrapper.parentElement &&
+               !wrapper.parentElement.querySelector('[role="grid"], [role="row"], [role="listitem"]')) {
+          wrapper = wrapper.parentElement;
+        }
+        wrapper.setAttribute('data-zapzap-chat-list-controls', '');
+      }
+      for (const row of chatList.querySelectorAll('[role="row"], [role="listitem"]')) {
+        const name = row.querySelector('span[title], [data-testid="cell-frame-title"]')?.getAttribute('title') ||
+          row.querySelector('[data-testid="cell-frame-title"]')?.textContent ||
+          row.querySelector('img[alt]')?.alt;
+        if (!name) continue;
+        if (!decoratedRows.has(row)) decoratedRows.set(row, row.getAttribute('title'));
+        if (row.title !== name) row.title = name;
+        row.setAttribute('data-zapzap-chat-list-row', '');
+        row.querySelectorAll('[data-zapzap-chat-list-unread], [data-zapzap-chat-list-unread-path]').forEach(
+          (node) => {
+            node.removeAttribute('data-zapzap-chat-list-unread');
+            node.removeAttribute('data-zapzap-chat-list-unread-path');
+          });
+        // Native unread counters expose a numeric value and an accessible label.
+        const unread = row.querySelector('[data-testid="icon-unread-count"]') ||
+          [...row.querySelectorAll('span[aria-label]')].find((node) => /^\d+$/.test(node.textContent.trim()));
+        unread?.setAttribute('data-zapzap-chat-list-unread', '');
+        for (let node = unread?.parentElement; node && node !== row; node = node.parentElement) {
+          node.setAttribute('data-zapzap-chat-list-unread-path', '');
+        }
+      }
+    };
+
     const positionHandle = () => {
       const columnBounds = column?.isConnected ? column.getBoundingClientRect() : null;
       if (!columnBounds?.width) {
@@ -181,6 +259,8 @@
       resizeHandle.style.left = `${columnBounds.right}px`;
       resizeHandle.style.top = `${columnBounds.top}px`;
       resizeHandle.style.height = `${columnBounds.height}px`;
+      root.toggleAttribute(compactAttribute, columnBounds.width < compactThreshold);
+      syncCompactRows();
       syncNewChat();
     };
 
@@ -204,6 +284,8 @@
 
     const clearColumnWidth = () => {
       root.removeAttribute(customWidthAttribute);
+      root.removeAttribute(compactAttribute);
+      restoreRows();
       root.style.removeProperty(columnWidthProperty);
     };
 
@@ -278,12 +360,16 @@
       chatList?.contains(node) || document.getElementById('main')?.contains(node);
 
     const layoutMutationObserver = new MutationObserver((mutations) => {
+      if (root.hasAttribute(compactAttribute) && mutations.some((mutation) => chatList?.contains(mutation.target))) {
+        syncCompactRows();
+      }
       if (mutations.some((mutation) => !isInsideFrequentlyUpdatedArea(mutation.target) ||
           mutation.target.closest?.('header'))) {
         scheduleSync();
       }
     });
-    layoutMutationObserver.observe(document.body, { childList: true, subtree: true });
+    layoutMutationObserver.observe(document.body, { childList: true, characterData: true, subtree: true, attributes: true,
+      attributeFilter: ['title', 'aria-label'] });
     window.addEventListener('resize', scheduleSync);
 
     const isColumnEdgeExposedAt = (clientY) => {
@@ -356,7 +442,12 @@
 
     applyMinimumWidth = () => {
       finishDrag();
-      preferredWidth = minimumColumnWidth;
+      if ((preferredWidth ?? column?.getBoundingClientRect().width) < compactThreshold) {
+        preferredWidth = previousWidth;
+      } else {
+        previousWidth = preferredWidth;
+        preferredWidth = minimumColumnWidth;
+      }
       persistWidth(preferredWidth);
       syncLayout();
     };
@@ -370,6 +461,8 @@
       window.removeEventListener('resize', scheduleSync);
       document.removeEventListener('pointermove', updateHandleReachability, { capture: true });
       restoreNewChat();
+      restoreRows();
+      root.removeAttribute(compactAttribute);
       resizeHandle.remove();
       document.adoptedStyleSheets = document.adoptedStyleSheets.filter(
         (adoptedStylesheet) => adoptedStylesheet !== stylesheet,

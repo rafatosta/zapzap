@@ -340,23 +340,20 @@ focável com `aria-valuenow`, `aria-valuemin` e `aria-valuemax`; setas, Home e
 End redimensionam e Enter restaura a largura padrão. A largura escolhida fica
 no `localStorage` da conta em `zapzap.chatListWidth`.
 
-O limite mínimo da lista redimensionável é 85 CSS px e a conversa mantém o
-limite existente de 380 px. O script altera apenas a coluna e as camadas
-sobrepostas: não reposiciona avatares, não modifica a altura das linhas nem
-oculta cabeçalho, busca, filtros ou conteúdo textual. A apresentação estreita
-é consequência do layout nativo do WhatsApp. O modo compacto fixo foi retirado;
-a chave anteriormente criada `system/compact_chat_list_enabled` permanece
-intacta no armazenamento, mas não é lida nem aplicada. A preferência e a
-largura do redimensionamento continuam sendo as fontes de verdade.
-A ação **Compact chat list** em Aparência habilita o redimensionamento existente
-quando necessário e chama `BrowserController.compact_chat_list` nas contas
-ativas. `WebView.compact_chat_list` instala o controlador e solicita `compact()`:
-ele aplica/salva 85 CSS px, inclusive antes da montagem de `#side`, sem travar
-arraste/teclado ou criar outro estado persistido. A largura continua restaurável
-por Enter/duplo clique e reaplicada após recarga pelo armazenamento da conta.
+O limite mínimo é 85 CSS px e a conversa mantém pelo menos 380 px.
+Abaixo de 200 px, `data-zapzap-chat-list-compact` no `<html>` ativa CSS
+que oculta cabeçalho, busca e filtros e sobrepõe o contador nativo à foto.
+As linhas recebem o nome do contato como `title`, atualizado nas mutações da
+lista e restaurado ao expandir/desativar; alturas e ações nativas são preservadas.
+A chave legada `system/compact_chat_list_enabled` continua ignorada.
+A ação **Compact chat list** habilita o redimensionamento e alterna entre 85 px
+e a largura preferida anterior (ou o padrão nativo), guardada no controlador
+da página. A largura aplicada continua persistida em `zapzap.chatListWidth`;
+Enter/duplo clique continuam restaurando o padrão. Uma recarga preserva a largura
+aplicada, mas reinicia a memória da largura anterior.
 
 O botão **Nova conversa** aparece no início da barra do WhatsApp somente com
-a lista redimensionável em 85 CSS px. Um botão espelho encaminha o clique ao
+a lista redimensionável abaixo de 200 CSS px. Um botão espelho encaminha o clique ao
 original, oculto sem sair da árvore React; ao ampliar, restaurar ou desativar,
 o original reaparece. Sem ação/rail reconhecíveis, o cabeçalho é preservado.
 Valide clique, teclado, recarga, montagem tardia, temas e zoom em sessão real.
