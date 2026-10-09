@@ -571,6 +571,7 @@ Ferramentas e manifestos locais mantidos em `tools/`:
 - `com.rtosta.zapzap.yaml`
 - `flatpak_runner.py`
 - `translation_manager.py`
+- `webengine_ab.py`
 <!-- structure-check:tools:end -->
 
 Formatos mantidos:
@@ -648,3 +649,19 @@ publicação de cada release.
 - [ ] documentação estrutural e inventários foram atualizados;
 - [ ] alterações de código ou estrutura têm uma sugestão de Conventional Commit;
 - [ ] foi feita validação gráfica real quando `offscreen` não é suficiente.
+
+## Investigação de crashes do WebEngine
+
+Consulte [webengine-crash-investigation.md](webengine-crash-investigation.md).
+Mantenha separados o encerramento detectado por marcador e a assinatura fatal.
+Nunca use logs anteriores ao offset salvo nem o ambiente da execução seguinte
+para preencher dados desconhecidos. Preserve o filtro global ao testar ausência
+de override, e cubra descendentes no teste de todos os NativeGesture. Não
+transforme as variantes temporárias em preferências ou workarounds de produção.
+
+O probe precisa falhar aberto, limitar retenção e não consultar `page()`/conteúdo
+para instrumentar. Mantenha os testes de sessão, rotação, sinal, privacidade,
+destruição, variantes em processos novos e I/O. A validação `offscreen` não
+reproduz touchpad, compositor ou o SIGSEGV de usuários. A/B de runtime exige
+bibliotecas coerentes e símbolos do artefato; o launcher não instala ou altera
+runtime, configurações, flags de GPU/sandbox nem perfis.

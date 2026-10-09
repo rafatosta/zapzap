@@ -8,7 +8,7 @@ from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 from typing import Any, Dict
 
-from PyQt6.QtCore import PYQT_VERSION_STR, QT_VERSION_STR
+from PyQt6.QtCore import PYQT_VERSION_STR, QT_VERSION_STR, qVersion
 from PyQt6.QtGui import QGuiApplication
 
 from zapzap import __appname__, __version__
@@ -453,9 +453,22 @@ class RuntimeEnvironmentDebug:
             return None
 
     def qt_info(self) -> Dict[str, str | None]:
+        # Never import WebEngine just for diagnostics (isolated tools must stay
+        # WebEngine-free). Production bootstrap has already loaded this module.
+        webengine = sys.modules.get("PyQt6.QtWebEngineCore")
+        def engine_version(name):
+            getter = getattr(webengine, name, None)
+            return getter() if callable(getter) else None
+        from PyQt6 import sip
+
         return {
             "qt_version": QT_VERSION_STR,
+            "qt_runtime_version": qVersion(),
+            "qt_webengine_version": engine_version("qWebEngineVersion"),
+            "chromium_version": engine_version("qWebEngineChromiumVersion"),
             "pyqt_version": PYQT_VERSION_STR,
+            "pyqt_webengine_version": self._package_version("PyQt6-WebEngine"),
+            "sip_version": getattr(sip, "SIP_VERSION_STR", None),
             "pyqt6_package_version": self._package_version("PyQt6"),
             "pyqt6_webengine_package_version": self._package_version("PyQt6-WebEngine"),
         }

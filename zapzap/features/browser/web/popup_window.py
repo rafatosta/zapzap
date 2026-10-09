@@ -9,6 +9,7 @@ from PyQt6.QtWebEngineCore import QWebEnginePage
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 
 from zapzap.features.alerts.alert_manager import AlertManager
+from zapzap.core.diagnostics.webengine_probe import probe
 
 
 class InternalWebPopup(QWebEngineView):
@@ -16,6 +17,8 @@ class InternalWebPopup(QWebEngineView):
 
     def __init__(self, page: QWebEnginePage, on_closed, parent=None):
         super().__init__(parent)
+        probe.watch(self, "popup")
+        probe.watch(page, "popup-page", self)
         self._popup_page = page
         self._on_closed = on_closed
         self._cleaned_up = False
@@ -43,16 +46,18 @@ class InternalWebPopup(QWebEngineView):
 
     def _handle_page_close_requested(self):
         """Honor window.close() requests emitted by the WhatsApp page."""
-        self._page_requested_close = True
-        self._stop_before_cleanup = False
-        self.close()
+        with probe.scope("window_close_callback", self):
+            self._page_requested_close = True
+            self._stop_before_cleanup = False
+            self.close()
 
     def close_from_host(self):
         """Close without prompting during redirects, account teardown or exit."""
-        self._programmatic_close = True
-        self.close()
-        # Host teardown must dispose the page before its shared profile.
-        self.cleanup()
+        with probe.scope("popup_close_from_host", self):
+            self._programmatic_close = True
+            self.close()
+            # Host teardown must dispose the page before its shared profile.
+            self.cleanup()
 
     def _explain_manual_close_blocked(self) -> None:
         AlertManager.warning(
@@ -73,36 +78,41 @@ class InternalWebPopup(QWebEngineView):
 
     def cleanup(self):
         """Stop and detach the WebEngine page exactly once."""
-        if self._cleaned_up:
-            return
-        self._cleaned_up = True
+        with probe.scope("popup_cleanup", self):
+            if self._cleaned_up:
+                return
+            self._cleaned_up = True
 
-        page = self._popup_page
-        self._popup_page = None
-        if page is not None:
-            try:
-                if self._stop_before_cleanup:
-                    page.triggerAction(QWebEnginePage.WebAction.Stop)
-                self.setPage(None)
-                page.deleteLater()
-            except RuntimeError:
-                pass
+            page = self._popup_page
+            self._popup_page = None
+            if page is not None:
+                try:
+                    if self._stop_before_cleanup:
+                        page.triggerAction(QWebEnginePage.WebAction.Stop)
+                    probe.record("detach_page", self)
+                    self.setPage(None)
+                    probe.record("delete_later", page)
+                    page.deleteLater()
+                except RuntimeError:
+                    pass
 
-        callback = self._on_closed
-        self._on_closed = None
-        if callback is not None:
-            callback(self)
-        self.deleteLater()
+            callback = self._on_closed
+            self._on_closed = None
+            if callback is not None:
+                callback(self)
+            probe.record("delete_later", self)
+            self.deleteLater()
 
     def closeEvent(self, event):
-        if not self._should_accept_close():
-            event.ignore()
-            return
+        with probe.scope("popup_close_event", self):
+            if not self._should_accept_close():
+                event.ignore()
+                return
 
-        if not self._programmatic_close:
-            # Keep the page attached until Qt finishes processing the native
-            # close event, then release it on the next event-loop turn.
-            self._stop_before_cleanup = False
-        super().closeEvent(event)
-        if event.isAccepted() and not self._programmatic_close:
-            QTimer.singleShot(0, self.cleanup)
+            if not self._programmatic_close:
+                # Keep the page attached until Qt finishes processing the native
+                # close event, then release it on the next event-loop turn.
+                self._stop_before_cleanup = False
+            super().closeEvent(event)
+            if event.isAccepted() and not self._programmatic_close:
+                QTimer.singleShot(0, self.cleanup)

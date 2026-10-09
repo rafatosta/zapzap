@@ -50,7 +50,8 @@ JSON sanitizado somente quando `reporting/crash_prompts` estiver habilitada. A
 captura também cobre `threading.excepthook` e não abre UI durante o estado
 instável.
 
-Um marcador de sessão removido somente no encerramento limpo permite que a
+Um marcador JSON por sessão removido somente após completar o encerramento
+limpo permite que a
 próxima execução reconheça também aborts nativos, `SIGKILL` e quedas que não
 chegaram ao hook Python. Perda de energia pode aparecer conservadoramente como
 encerramento inesperado. Na próxima inicialização, a pessoa pode manter,
@@ -68,6 +69,17 @@ flowchart TD
     G -->|Descartar| H[Excluir localmente]
     G -->|Revisar| I[Mesmo fluxo manual]
 ```
+
+O ambiente e a fase vêm da sessão anterior; logs são limitados ao último
+registro fatal depois do offset salvo. Marcadores legados e logs ausentes,
+rotacionados ou truncados ficam sem atribuição; não se publica o histórico como
+se fosse um crash novo. O fingerprint v2 usa sinal/componente/frames e uma
+segunda assinatura distingue bibliotecas carregadas. Sem assinatura suficiente,
+o relatório continua desconhecido e não autoriza deduplicação por causa raiz.
+Instrumentação opt-in pode incluir uma cauda sanitizada do trace da sessão que
+caiu, sempre no mesmo fluxo de revisão, sem publicação automática.
+Detalhes e testes A/B estão em
+[webengine-crash-investigation.md](webengine-crash-investigation.md).
 
 ## Dados e privacidade
 

@@ -574,6 +574,24 @@ versus `system/quit_in_close` e `donation_message_enabled` versus
 Dados e caches seguem `QStandardPaths`. Testes substituem os diretórios XDG por
 temporários; nunca devem usar o perfil real do mantenedor.
 
+## Diagnóstico de encerramentos nativos
+
+`core.reporting.capture.CrashSessionMonitor` mantém um marcador JSON por sessão
+com ambiente sanitizado, fase e offset do faulthandler. Inicia depois da seleção
+single-instance e preserva o marcador durante shutdown/fallback. Na execução
+seguinte, `ReportBuilder` usa o ambiente anterior e somente o último registro
+fatal dessa sessão; atribuição ausente não incorpora o histórico nem o ambiente
+novo. `core.reporting.fingerprint` separa família (sinal/componente/frames) de
+variante de bibliotecas carregadas. A fronteira Python não prova causa nativa.
+
+`core.diagnostics.webengine_probe` é opt-in por variável de processo. Observa
+entrada/saída de eventos/callbacks, profundidade, timers, descarte e `destroyed`
+sem consultar conteúdo ou recriar páginas. O padrão não grava trace nem muda
+gestos/lifecycle. As variantes A/B são selecionadas no import da WebView;
+`tools/webengine_ab.py` executa o checkout com bibliotecas do Flatpak instalado,
+sem configuração persistida, build ou troca de runtime. Contratos, limites e
+comparações estão em [webengine-crash-investigation.md](webengine-crash-investigation.md).
+
 ## Instrumentação de memória
 
 O benchmark em `tools/memory/` mantém seu processo coordenador limitado à

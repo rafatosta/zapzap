@@ -42,6 +42,10 @@ from zapzap.core.config.settings.performance import (
     apply_persistent_cookies_policy,
 )
 from zapzap.core.diagnostics import crash_handler  # instância global
+from zapzap.core.diagnostics.webengine_probe import diagnostic_mode, probe
+
+
+_EVENT_MODE = diagnostic_mode()
 
 from gettext import gettext as _
 
@@ -74,6 +78,7 @@ class WebView(QWebEngineView):
 
     def __init__(self, user: User = None, page_index=None, parent=None):
         super().__init__(parent)
+        probe.watch(self, "view")
         self.user = user
         self.page_index = page_index
         self.profile = None  # Inicializa o perfil como None
@@ -112,6 +117,8 @@ class WebView(QWebEngineView):
         self._render_crash_reload_timer = QTimer(self)
         self._render_crash_reload_timer.setSingleShot(True)
         self._render_crash_reload_timer.timeout.connect(self.load_page)
+        probe.watch(self._reload_timer, "reload-timer", self)
+        probe.watch(self._render_crash_reload_timer, "renderer-reload-timer", self)
 
         self._signals_configured = False
 
@@ -150,6 +157,7 @@ class WebView(QWebEngineView):
     def _configure_profile(self):
         """Configura o perfil do QWebEngine."""
         self.profile = QWebEngineProfile(str(self.user.id), self)
+        probe.watch(self.profile, "profile", self)
 
         self._cache_path = self.profile.cachePath()
         self._storage_path = self.profile.persistentStoragePath()
@@ -505,6 +513,7 @@ class WebView(QWebEngineView):
             popup_host=self,
             parent=self,
         )
+        probe.watch(self.whatsapp_page, "page", self)
         self.whatsapp_page.user_id = self.user.id
         self.whatsapp_page.setAudioMuted(SystemSettings().audio_muted)
         self.whatsapp_page.renderProcessTerminated.connect(
@@ -517,11 +526,12 @@ class WebView(QWebEngineView):
         self.load_page()
 
     def _on_render_crash(self, terminationStatus, exitCode):
-        if self._shutting_down or not self.user.enable or not self.whatsapp_page:
-            return
-        print(
-            f"Tab renderer crashed (status={terminationStatus}, code={exitCode}). Reloading...")
-        self._render_crash_reload_timer.start(1000)
+        with probe.scope("renderer_terminated", self, status=terminationStatus, exit_code=exitCode):
+            if self._shutting_down or not self.user.enable or not self.whatsapp_page:
+                return
+            print(
+                f"Tab renderer crashed (status={terminationStatus}, code={exitCode}). Reloading...")
+            self._render_crash_reload_timer.start(1000)
 
     def contextMenuEvent(self, event):
         """Cria o menu de contexto personalizado ao clicar com o botão direito."""
@@ -618,26 +628,34 @@ class WebView(QWebEngineView):
 
     def _on_title_changed(self, title):
         """Manipula mudanças no título da página."""
-        num = ''.join(filter(str.isdigit, title))
-        qtd = int(num) if num else 0
-        self.update_button_signal.emit(self.page_index, qtd)
+        with probe.scope("title_callback", self):
+            num = ''.join(filter(str.isdigit, title))
+            qtd = int(num) if num else 0
+            self.update_button_signal.emit(self.page_index, qtd)
 
     def _on_load_finished(self, success):
-        if self._shutting_down or not self.user.enable or not self.whatsapp_page:
-            return
-        if not success:
-            print("You are not connected to the Internet.")
-            self._reload_timer.start(5000)
+        with probe.scope("load_callback", self):
+            if self._shutting_down or not self.user.enable or not self.whatsapp_page:
+                return
+            if not success:
+                print("You are not connected to the Internet.")
+                self._reload_timer.start(5000)
 
     def event(self, event):
         """Intercept native gesture events to optionally disable pinch-to-zoom.
         Handles the rare case where QWebEngineView itself receives the event."""
         native_gesture_type = getattr(QEvent.Type, "NativeGesture", None)
         if native_gesture_type is not None and event.type() == native_gesture_type:
+            if _EVENT_MODE == "consume-native-gestures":
+                if probe.enabled:
+                    probe.record("gesture_consumed", self)
+                return True
             if (SettingsManager.get("web/disable_pinch", False) and
                     hasattr(event, 'gestureType') and
                     event.gestureType() == Qt.NativeGestureType.ZoomNativeGesture):
                 return True  # Consume the event without zooming
+        if probe.enabled:
+            return probe.dispatch_event(self, event, super().event)
         return super().event(event)
 
     @staticmethod
@@ -845,6 +863,8 @@ class WebView(QWebEngineView):
         # This filter sees every application event once per account; check the
         # cheap event type before walking widget ancestry.
         event_type = event.type()
+        if probe.enabled and watched is self:
+            probe.record("filter_event", self, event_type=event_type)
         is_escape = (
             event_type == QEvent.Type.KeyPress
             and event.key() == Qt.Key.Key_Escape
@@ -864,6 +884,14 @@ class WebView(QWebEngineView):
         ):
             self.clear_download_directory()
 
+        if is_native_gesture and targets_web_content:
+            if probe.enabled:
+                probe.watch(watched, "render-widget", self)
+                gesture = event.gestureType() if hasattr(event, "gestureType") else None
+                probe.record("gesture_filtered", watched, owner=probe.key(self),
+                             gesture_type=gesture)
+            if _EVENT_MODE == "consume-native-gestures":
+                return True
         if is_native_gesture:
             if SettingsManager.get("web/disable_pinch", False):
                 try:
@@ -884,15 +912,17 @@ class WebView(QWebEngineView):
 
     def load_page(self):
         """Carrega a página do WhatsApp."""
-        if self._shutting_down:
-            return
+        with probe.scope("load_page", self):
+            if self._shutting_down:
+                return
 
-        if self.user.enable and self.whatsapp_page:
-            self.setPage(self.whatsapp_page)
-            self.load(QUrl(__whatsapp_url__))
-            applied_zoom = apply_zoom_factor(self, self.user.zoomFactor)
-            if self.user.zoomFactor != applied_zoom:
-                self.user.zoomFactor = applied_zoom
+            if self.user.enable and self.whatsapp_page:
+                probe.record("set_page", self, owner=probe.key(self.whatsapp_page) if probe.enabled else None)
+                self.setPage(self.whatsapp_page)
+                self.load(QUrl(__whatsapp_url__))
+                applied_zoom = apply_zoom_factor(self, self.user.zoomFactor)
+                if self.user.zoomFactor != applied_zoom:
+                    self.user.zoomFactor = applied_zoom
 
     def set_audio_muted(self, muted: bool) -> None:
         """Apply the global audio state to this account and its popups."""
@@ -1015,11 +1045,12 @@ class WebView(QWebEngineView):
         self._teardown_webengine(clear_cache=True)
 
     def shutdown(self):
-        if self._shutting_down:
-            return
+        with probe.scope("shutdown", self):
+            if self._shutting_down:
+                return
 
-        self._shutting_down = True
-        self._teardown_webengine(clear_cache=False)
+            self._shutting_down = True
+            self._teardown_webengine(clear_cache=False)
 
     def _stop_timers(self):
         for timer in (
@@ -1031,52 +1062,57 @@ class WebView(QWebEngineView):
 
     def _teardown_webengine(self, clear_cache: bool = False):
         """Destrói objetos Qt associados à WebEngine de forma ordenada."""
-        self.clear_download_directory()
-        self._stop_timers()
-        self._save_zoom_factor()
-        self.stop()
-        self._close_internal_popups()
+        with probe.scope("teardown", self):
+            self.clear_download_directory()
+            self._stop_timers()
+            self._save_zoom_factor()
+            self.stop()
+            self._close_internal_popups()
 
-        if self._gesture_filter_installed:
-            app = QApplication.instance()
-            if app:
-                app.removeEventFilter(self)
-            self._gesture_filter_installed = False
+            if self._gesture_filter_installed:
+                app = QApplication.instance()
+                if app:
+                    app.removeEventFilter(self)
+                self._gesture_filter_installed = False
 
-        page = self.whatsapp_page
-        if page:
-            try:
-                page.setDevToolsPage(None)
-                self.setPage(None)
-                page.deleteLater()
-            except RuntimeError:
-                pass
-            finally:
-                self.whatsapp_page = None
+            page = self.whatsapp_page
+            if page:
+                try:
+                    page.setDevToolsPage(None)
+                    probe.record("detach_page", self)
+                    self.setPage(None)
+                    probe.record("delete_later", page)
+                    page.deleteLater()
+                except RuntimeError:
+                    pass
+                finally:
+                    self.whatsapp_page = None
 
-        if self._devtools_view:
-            try:
-                self._devtools_view.setPage(None)
-                self._devtools_view.close()
-                self._devtools_view.deleteLater()
-            except RuntimeError:
-                pass
-            finally:
-                self._devtools_view = None
-                self._devtools_page = None
+            if self._devtools_view:
+                try:
+                    self._devtools_view.setPage(None)
+                    self._devtools_view.close()
+                    self._devtools_view.deleteLater()
+                except RuntimeError:
+                    pass
+                finally:
+                    self._devtools_view = None
+                    self._devtools_page = None
 
-        if self.profile:
-            try:
-                crash_handler.unregister_profile(self.profile)
-                if clear_cache:
-                    self.profile.clearHttpCache()
-                self.profile.deleteLater()
-            except RuntimeError:
-                pass
-            finally:
-                self.profile = None
+            if self.profile:
+                try:
+                    crash_handler.unregister_profile(self.profile)
+                    if clear_cache:
+                        self.profile.clearHttpCache()
+                    probe.record("delete_later", self.profile)
+                    self.profile.deleteLater()
+                except RuntimeError:
+                    pass
+                finally:
+                    self.profile = None
 
-        self.setVisible(False)
+            probe.record("hide_after_detach", self)
+            self.setVisible(False)
 
     def open_devtools(self):
         """Abre a janela de DevTools para a página atual."""
@@ -1086,6 +1122,7 @@ class WebView(QWebEngineView):
 
         if self._devtools_view is None:
             self._devtools_view = QWebEngineView()
+            probe.watch(self._devtools_view, "devtools-view", self)
 
             account_name = self.user.name if self.user.name else _("Account")
             self._devtools_view.setWindowTitle(
@@ -1096,9 +1133,16 @@ class WebView(QWebEngineView):
         if self._devtools_page is None:
             self._devtools_page = QWebEnginePage(
                 self.profile, self._devtools_view)
+            probe.watch(self._devtools_page, "devtools-page", self._devtools_view)
 
         current_page.setDevToolsPage(self._devtools_page)
         self._devtools_view.setPage(self._devtools_page)
         self._devtools_view.show()
         self._devtools_view.raise_()
         self._devtools_view.activateWindow()
+
+
+# Import-time, process-only A/B: inherit Qt dispatch without a Python override.
+# The application-level filter remains installed and preferences are untouched.
+if _EVENT_MODE == "no-event-override":
+    del WebView.event

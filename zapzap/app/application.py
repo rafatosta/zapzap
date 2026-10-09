@@ -37,6 +37,7 @@ from zapzap.features.notifications.notification_service import (
 )
 from zapzap.features.reporting.coordinator import ReportingCoordinator
 from zapzap.core.reporting.capture import CrashSessionMonitor
+from zapzap.core.diagnostics.webengine_probe import probe
 
 
 def create_main_window(
@@ -91,19 +92,13 @@ def main():
     app.setApplicationVersion(zapzap.__version__)
     app.setDesktopFileName(zapzap.__desktopid__)
     app.setOrganizationDomain(zapzap.__domain__)
-    app.setWindowIcon(TrayIcon.getIcon())
-    unix_signal_bridge = install_unix_signal_bridge(app)
     crash_session_monitor = CrashSessionMonitor(
-        logs_provider=lambda: (
-            crash_handler.faulthandler_path.read_text(
-                encoding="utf-8",
-                errors="replace",
-            )[-16000:]
-            if crash_handler.faulthandler_path.exists()
-            else ""
-        )
+        faulthandler_path=crash_handler.faulthandler_path,
     )
     crash_session_monitor.start()
+    probe.configure(crash_handler.dump_dir, crash_session_monitor.session_id)
+    app.setWindowIcon(TrayIcon.getIcon())
+    unix_signal_bridge = install_unix_signal_bridge(app)
 
     SetupManager.apply_qt_scale_factor_rounding_policy()
 
@@ -170,8 +165,8 @@ def main():
         app._reporting_coordinator = reporting_coordinator
         QTimer.singleShot(0, reporting_coordinator.show_prepared_crash)
 
+    app.aboutToQuit.connect(crash_session_monitor.mark_shutdown)
     app.aboutToQuit.connect(NotificationService.shutdown)
-    app.aboutToQuit.connect(crash_session_monitor.close)
     app.aboutToQuit.connect(system_dictionary_provisioner.close)
     if desktop_application_dbus is not None:
         app.aboutToQuit.connect(desktop_application_dbus.stop)
@@ -180,14 +175,20 @@ def main():
     if unix_signal_bridge is not None:
         app.aboutToQuit.connect(unix_signal_bridge.close)
 
+    crash_session_monitor.mark_running()
     exit_code = app.exec()
 
     # Defensive fallback for abnormal shutdown paths where aboutToQuit may not have run.
+    crash_session_monitor.mark_shutdown()
     NotificationService.shutdown()
-    crash_session_monitor.close()
     ThemeManager.stop()
     app.shutdownInterface()
     if unix_signal_bridge is not None:
         unix_signal_bridge.close()
+
+    # Keep the marker through shutdown, including the defensive fallback.
+    probe.record("session_end", phase="clean-exit")
+    probe.close()
+    crash_session_monitor.close()
 
     return exit_code

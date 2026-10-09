@@ -3,11 +3,10 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
-import hashlib
 import platform
 import traceback
 
-from .fingerprint import crash_fingerprint
+from .fingerprint import crash_fingerprint, native_crash_signature, native_crash_fingerprints
 from .model import ReportDocument
 from .sanitizer import ReportSanitizer
 
@@ -56,6 +55,10 @@ class ReportBuilder:
             "python_version": str(python.get("python_version") or "").split()[0],
             "qt_version": qt.get("qt_version"),
             "pyqt_version": qt.get("pyqt_version"),
+            **{key: qt.get(key) for key in (
+                "qt_runtime_version", "qt_webengine_version", "chromium_version",
+                "pyqt_webengine_version", "sip_version",
+            )},
             "graphics_diagnostics": self.sanitizer.sanitize({
                 "session": graphics_report.get("graphics") or {},
                 "gpu": graphics_report.get("gpu") or {},
@@ -117,23 +120,30 @@ class ReportBuilder:
             "timestamp": self._timestamp(),
         })
 
-    def unexpected_shutdown(self, *, logs: str = "") -> ReportDocument:
-        """Build a generic report when the previous process could not clean up."""
+    def unexpected_shutdown(self, *, logs: str = "", system_information=None,
+                            session=None, diagnostic_trace: str = "") -> ReportDocument:
+        """Build a report from the failed session, not the new process runtime."""
         error = {
             "type": "UnexpectedTermination",
             "message": "The previous ZapZap process did not finish cleanly.",
         }
         if logs:
             error["details"] = logs[-16000:]
+        system = self.sanitizer.sanitize(system_information if isinstance(system_information, dict) else {})
+        signature = native_crash_signature(logs)
+        fingerprint, variant = native_crash_fingerprints(signature, system)
+        error["native_signature"] = signature
         return ReportDocument({
             "schema_version": self.SCHEMA_VERSION,
             "application": "zapzap",
             "report_type": "automatic_crash",
             "severity": "fatal_crash",
-            "system_information": self._system_information(),
+            "system_information": system,
+            "session_information": self.sanitizer.sanitize(session or {}),
             "error_information": self.sanitizer.sanitize(error),
-            "fingerprint": hashlib.sha256(
-                b"UnexpectedTermination\napplication"
-            ).hexdigest(),
+            "fingerprint_version": 2,
+            "fingerprint": fingerprint,
+            "runtime_fingerprint": variant,
+            "diagnostic_trace": self.sanitizer.sanitize_text(diagnostic_trace)[-16000:],
             "timestamp": self._timestamp(),
         })

@@ -14,6 +14,7 @@ from PyQt6.QtGui import QAction
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWidgets import QApplication
 from zapzap.core.theme.theme_manager import ThemeManager
+from zapzap.core.diagnostics.webengine_probe import probe
 from zapzap.features.accounts.domain.user import User
 from zapzap.features.accounts.card_user_controller import CardUserController as CardUser
 from zapzap.assets.icons.system_icon import SystemIcon
@@ -474,6 +475,7 @@ class BrowserController(BrowserView):
         )
         if self._last_active_webview is page:
             self._last_active_webview = None
+        probe.record("remove_widget", page)
         self.pages.removeWidget(page)
         if disabled:
             page.disable_page()
@@ -481,8 +483,10 @@ class BrowserController(BrowserView):
             page.shutdown()
         if remove_files:
             page.remove_files()
+        probe.record("close_view", page)
         page.close()
         page.setParent(None)
+        probe.record("delete_later", page)
         page.deleteLater()
         return page
 

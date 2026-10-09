@@ -8,6 +8,7 @@ from PyQt6.QtCore import QTimer
 from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
 
+from zapzap.core.diagnostics.webengine_probe import probe
 from zapzap import __allowed_hosts__
 from zapzap.features.customizations.addons_manager import AddonsManager
 from zapzap.features.alerts.alert_manager import AlertManager
@@ -56,6 +57,7 @@ class PageController(QWebEnginePage):
         **kwargs,
     ):
         super().__init__(*args, **kwargs)
+        probe.watch(self, "page-controller")
         self.link_url = ""
         self.link_context = ''
         self.user_id = None
@@ -108,23 +110,25 @@ class PageController(QWebEnginePage):
                 # descarta o WebContents durante a navegação em curso, o que é
                 # reentrante e aborta o processo. Adiar um ciclo do laço de
                 # eventos mantém o descarte fora do callback de navegação.
+                probe.record("popup_disposal_scheduled", page)
                 QTimer.singleShot(0, lambda: self._dispose_external_page(page))
         return True
 
     def _dispose_external_page(self, page):
         """Close or delete a handed-off page, outside the navigation callback."""
 
-        try:
-            popup_was_closed = False
-            if self._popup_host is not None:
-                popup_was_closed = self._popup_host.close_popup_page(page)
-            if not popup_was_closed:
-                # A página existe apenas para receber a URL solicitada por
-                # createWindow(); nada mais a mantém viva.
-                page.deleteLater()
-        except RuntimeError:
-            # A página ou a janela já foi destruída pelo Qt nesse intervalo.
-            pass
+        with probe.scope("popup_disposal", self):
+            try:
+                popup_was_closed = False
+                if self._popup_host is not None:
+                    popup_was_closed = self._popup_host.close_popup_page(page)
+                if not popup_was_closed:
+                    # A página existe apenas para receber a URL solicitada por
+                    # createWindow(); nada mais a mantém viva.
+                    page.deleteLater()
+            except RuntimeError:
+                # A página ou a janela já foi destruída pelo Qt nesse intervalo.
+                pass
 
     def normalize_url(self, url: str) -> str:
         """Normaliza a URL removendo parâmetros redundantes."""
@@ -135,18 +139,19 @@ class PageController(QWebEnginePage):
 
     def acceptNavigationRequest(self, url, type, isMainFrame):
         """Bloqueia a navegação para fora dos hosts usados pelo WhatsApp Web."""
-        scheme = (url.scheme() or "").lower()
+        with probe.scope("navigation_callback", self, main_frame=isMainFrame):
+            scheme = (url.scheme() or "").lower()
 
-        # WhatsApp Web usa recursos internos (ex.: visor PDF) em URLs blob/about.
-        # Permitir esses esquemas evita bloqueios de renderização interna.
-        if is_internal_web_url(url) or scheme == "about":
+            # WhatsApp Web usa recursos internos (ex.: visor PDF) em URLs blob/about.
+            # Permitir esses esquemas evita bloqueios de renderização interna.
+            if is_internal_web_url(url) or scheme == "about":
+                return super().acceptNavigationRequest(url, type, isMainFrame)
+
+            if scheme in {"http", "https"}:
+                if url.host().lower() not in __allowed_hosts__:
+                    return False  # Impede a navegação
+
             return super().acceptNavigationRequest(url, type, isMainFrame)
-
-        if scheme in {"http", "https"}:
-            if url.host().lower() not in __allowed_hosts__:
-                return False  # Impede a navegação
-
-        return super().acceptNavigationRequest(url, type, isMainFrame)
 
     def close_conversation(self):
         """Simula o pressionamento da tecla 'Escape' na página."""
@@ -196,13 +201,14 @@ class PageController(QWebEnginePage):
         self.runJavaScript(script, self.on_apply_theme_result)
 
     def on_apply_theme_result(self, result: bool, message: str | None = None) -> None:
-        if result:
-            return
+        with probe.scope("theme_callback", self):
+            if result:
+                return
 
-        print(
-            "[ZapZap WAWeb Theme Controller] "
-            f"{message or 'Unable to set the WhatsApp Web Theme via JavaScript'}"
-        )
+            print(
+                "[ZapZap WAWeb Theme Controller] "
+                f"{message or 'Unable to set the WhatsApp Web Theme via JavaScript'}"
+            )
 
     def fall_back_to_force_dark_mode(self) -> None:
         """Falls back to using ForceDarkMode to handle the WhatsApp Web Theme."""
@@ -411,10 +417,11 @@ class PopupRoutingPage(PageController):
         self._routing_timeout.timeout.connect(self._expire_pending_popup)
 
     def _expire_pending_popup(self):
-        if self._internal_popup_opened or self.property("externalUrlOpened"):
-            return
-        self.triggerAction(QWebEnginePage.WebAction.Stop)
-        self.deleteLater()
+        with probe.scope("popup_timeout", self):
+            if self._internal_popup_opened or self.property("externalUrlOpened"):
+                return
+            self.triggerAction(QWebEnginePage.WebAction.Stop)
+            self.deleteLater()
 
     def _route_main_frame_url(self, url: QUrl) -> bool | None:
         normalized = url.toString().lower() if url.isValid() else ""
@@ -442,8 +449,9 @@ class PopupRoutingPage(PageController):
         return False
 
     def acceptNavigationRequest(self, url, type, isMainFrame):
-        if isMainFrame:
-            route = self._route_main_frame_url(url)
-            if route is False:
-                return False
-        return super().acceptNavigationRequest(url, type, isMainFrame)
+        with probe.scope("navigation_callback", self, main_frame=isMainFrame):
+            if isMainFrame:
+                route = self._route_main_frame_url(url)
+                if route is False:
+                    return False
+            return super().acceptNavigationRequest(url, type, isMainFrame)

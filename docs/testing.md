@@ -152,6 +152,7 @@ documente o que ele protege.
 | `test_system_startup_settings_ui.py` | semântica de fechamento, diálogo nativo, seleção do backend gráfico, reinício e acessibilidade |
 | `test_unix_signal_shutdown.py` | ponte POSIX, restauração do estado global e `SIGTERM` real chegando a `aboutToQuit` em subprocesso isolado |
 | `test_update_checker.py` | versões, política de builds, respostas/falhas assíncronas, metadados seguros e popover acessível compartilhado entre sidebar e Sobre |
+| `test_webengine_diagnostics.py` | assinatura fatal por thread/sinal, ambiente da sessão anterior, rotação/truncamento/legado, trace opt-in limitado, falhas de I/O e variantes WebView em processos novos |
 | `test_whatsapp_app_lock.py` | botão acessível da sidebar, conta ativa, foco, sequência Qt nativa e estados transitórios do WebView |
 | `test_window_state_restore.py` | ciclo de vida compartilhado, restauração normal, maximizada e fullscreen e destruição segura do host CSR |
 | `test_windows_packaging.py` | matriz nativa x86_64/ARM64, arquitetura do Python e nomes dos executáveis Windows |
@@ -214,6 +215,7 @@ documente o que ele protege.
 - `test_turkish_translation.py`
 - `test_unix_signal_shutdown.py`
 - `test_update_checker.py`
+- `test_webengine_diagnostics.py`
 - `test_whatsapp_app_lock.py`
 - `test_window_state_restore.py`
 - `test_windows_packaging.py`
@@ -651,3 +653,19 @@ a lista redimensionável em 85 CSS px. Um botão espelho encaminha o clique ao
 original, oculto sem sair da árvore React; ao ampliar, restaurar ou desativar,
 o original reaparece. Sem ação/rail reconhecíveis, o cabeçalho é preservado.
 Valide clique, teclado, recarga, montagem tardia, temas e zoom em sessão real.
+
+## Diagnóstico de crashes e variantes A/B
+
+`flatpak_python -m unittest discover -s tests -p test_webengine_diagnostics.py -v`
+cobre atribuição de sessão, ambiente anterior, histórico não reutilizado,
+fingerprint por sinal/frames, variante de runtime, marcador legado, rotação,
+truncamento, privacidade, append/rotação do trace, `destroyed`, reentrância e
+falha de disco sem alteração do despacho. Os testes de variantes usam processos
+novos com Qt real e dados XDG temporários, preservando o filtro global e o
+comportamento baseline. Não acessam contas reais nem reproduzem o crash relatado.
+
+Para campanhas gráficas e gdb, siga
+[webengine-crash-investigation.md](webengine-crash-investigation.md). Não considere
+uma sessão curta sem crash, ausência do frame `WebView.event`, nem um teste
+`offscreen` prova de correção. Registre fonte/revisão do checkout e bibliotecas;
+um resultado no ciclo 7.5 não é um teste da aplicação 7.4.5.

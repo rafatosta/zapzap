@@ -20,6 +20,9 @@ repetíveis pertencem aqui.
 6. [Relatórios de problemas](reporting.md): revisão, sanitização, fila local e
    publicação conduzida pela pessoa no GitHub.
 
+7. [Crashes do QtWebEngine](webengine-crash-investigation.md): atribuição por
+   sessão, instrumentação opt-in, A/B e captura de backtrace nativo.
+
 Inventário de documentos técnicos:
 
 <!-- structure-check:docs:start -->
@@ -31,6 +34,7 @@ Inventário de documentos técnicos:
 - `performance-experimental.md`
 - `reporting.md`
 - `testing.md`
+- `webengine-crash-investigation.md`
 <!-- structure-check:docs:end -->
 
 ## Fontes de verdade

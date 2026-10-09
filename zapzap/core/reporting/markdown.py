@@ -32,6 +32,11 @@ SYSTEM_LABELS = {
     "python_version": "Python",
     "qt_version": "Qt",
     "pyqt_version": "PyQt",
+    "qt_runtime_version": "Qt loaded",
+    "qt_webengine_version": "QtWebEngine loaded",
+    "chromium_version": "Chromium",
+    "pyqt_webengine_version": "PyQt-WebEngine",
+    "sip_version": "SIP",
 }
 
 
@@ -118,12 +123,25 @@ class ReportMarkdownFormatter:
                 lines.append("")
 
         error = payload.get("error_information") or {}
+        crash_session = payload.get("session_information") or {}
+        if crash_session:
+            lines.extend(("### Failed session", ""))
+            for key in ("started_at", "phase", "log_attribution", "diagnostic_variant"):
+                if crash_session.get(key):
+                    lines.append(f"- **{key}:** {crash_session[key]}")
+            if not system:
+                lines.append("- Previous runtime unavailable; current runtime is not substituted.")
+            lines.append("")
         if error:
             lines.extend(("<details>", "<summary>Technical error information</summary>", ""))
             if error.get("type"):
                 lines.append(f"**Type:** {error['type']}")
             if error.get("message"):
                 lines.append(f"**Message:** {error['message']}")
+            signature = error.get("native_signature") or {}
+            if signature:
+                lines.append(f"**Signal:** {signature.get('signal', 'unknown')}")
+                lines.append(f"**Component:** {signature.get('component', 'unknown')} (dispatch evidence, not a confirmed cause)")
             if error.get("details"):
                 lines.extend(("", "<pre>", escape(str(error["details"])), "</pre>"))
             lines.extend(("", "</details>", ""))
@@ -143,6 +161,11 @@ class ReportMarkdownFormatter:
         if payload.get("fingerprint"):
             lines.append(f"**Error fingerprint:** `{payload['fingerprint']}`")
             lines.append("")
+        if payload.get("runtime_fingerprint"):
+            lines.extend((f"**Runtime fingerprint:** `{payload['runtime_fingerprint']}`", ""))
+        if payload.get("diagnostic_trace"):
+            lines.extend(("<details>", "<summary>Opt-in WebEngine trace (failed session)</summary>",
+                          "", "<pre>", escape(payload["diagnostic_trace"]), "</pre>", "", "</details>", ""))
         lines.extend((
             "---",
             "Prepared locally by ZapZap after review by the user.",

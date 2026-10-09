@@ -37,6 +37,15 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Attribute unexpected termination reports to the failed process session and
+  its loaded Qt/WebEngine/PyQt versions; fingerprint the latest fatal record
+  by signal and application frames instead of one generic constant. Preserve
+  unknown attribution for legacy, rotated or missing logs.
+- Add opt-in bounded WebEngine event/lifecycle traces and process-only A/B
+  variants for removing the event override or consuming native gestures.
+  Document runtime comparisons and native backtrace collection; default
+  gesture and lifecycle behavior is preserved, with no crash workaround.
+
 - Prefer native bottom utility icons for account-selector colors, avoiding
   highlighted conversation tabs without ARIA selection. Retain the last
   sampled color while native actions are temporarily unavailable; extend
