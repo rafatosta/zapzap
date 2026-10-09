@@ -7,6 +7,7 @@
   const minimumColumnWidth = 85;
   const minimumConversationWidth = 380;
   const keyboardResizeStep = 20;
+  const handleReachDistance = 8;
   const columnSlotAttribute = 'data-zapzap-chat-list-slot';
   const customWidthAttribute = 'data-zapzap-chat-list-custom-width';
   const draggingAttribute = 'data-zapzap-chat-list-dragging';
@@ -90,6 +91,7 @@
     let column = null;
     let isDragging = false;
     let pendingFrame = 0;
+    let columnRightEdge = null;
 
     let newChatSource = null;
     let newChatProxy = null;
@@ -170,9 +172,11 @@
       const columnBounds = column?.isConnected ? column.getBoundingClientRect() : null;
       if (!columnBounds?.width) {
         resizeHandle.hidden = true;
+        columnRightEdge = null;
         return;
       }
       resizeHandle.hidden = false;
+      columnRightEdge = columnBounds.right;
       resizeHandle.setAttribute('aria-valuenow', String(Math.round(columnBounds.width)));
       resizeHandle.style.left = `${columnBounds.right}px`;
       resizeHandle.style.top = `${columnBounds.top}px`;
@@ -282,8 +286,28 @@
     layoutMutationObserver.observe(document.body, { childList: true, subtree: true });
     window.addEventListener('resize', scheduleSync);
 
+    const isColumnEdgeExposedAt = (clientY) => {
+      const elementAtColumnEdge = document
+        .elementsFromPoint(columnRightEdge - 1, clientY)
+        .find((element) => element !== resizeHandle);
+      return Boolean(elementAtColumnEdge?.closest(`[${columnSlotAttribute}]`));
+    };
+
+    const updateHandleReachability = (event) => {
+      if (isDragging || columnRightEdge === null) return;
+      if (Math.abs(event.clientX - columnRightEdge) > handleReachDistance) return;
+      const isReachable = isColumnEdgeExposedAt(event.clientY);
+      resizeHandle.style.pointerEvents = isReachable ? '' : 'none';
+    };
+
+    document.addEventListener('pointermove', updateHandleReachability, { capture: true, passive: true });
+
     resizeHandle.addEventListener('pointerdown', (event) => {
       if (event.button !== 0 || !column?.isConnected) return;
+      if (!isColumnEdgeExposedAt(event.clientY)) {
+        resizeHandle.style.pointerEvents = 'none';
+        return;
+      }
       isDragging = true;
       resizeHandle.setPointerCapture(event.pointerId);
       root.setAttribute(draggingAttribute, '');
@@ -344,6 +368,7 @@
       layoutMutationObserver.disconnect();
       columnResizeObserver.disconnect();
       window.removeEventListener('resize', scheduleSync);
+      document.removeEventListener('pointermove', updateHandleReachability, { capture: true });
       restoreNewChat();
       resizeHandle.remove();
       document.adoptedStyleSheets = document.adoptedStyleSheets.filter(

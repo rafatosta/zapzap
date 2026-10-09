@@ -15,6 +15,12 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Stopped the resizable chat list handle from covering WhatsApp panels that
+  open over the chat list edge, such as the emoji, GIF and sticker picker.
+  The handle now only takes the pointer where the chat list edge is visible,
+  so the line no longer shows on top of those panels and clicks under it reach
+  the panel. Added a WebEngine regression; no persisted settings changed.
+
 - Reduced typing stutter in chats: the integrated account selector script no
   longer scans the whole page and forces layout on every DOM change while the
   selector is disabled, ignores composer, message and chat-list updates, and
