@@ -67,6 +67,14 @@ class LanguageDownloadSettingsModel:
         self._download_settings.remember_last_save_as_directory = value
 
     @property
+    def pdf_click_behavior(self):
+        return self._download_settings.pdf_click_behavior
+
+    @pdf_click_behavior.setter
+    def pdf_click_behavior(self, value):
+        self._download_settings.pdf_click_behavior = value
+
+    @property
     def auto_open_pdf(self):
         return self._download_settings.auto_open_pdf
 

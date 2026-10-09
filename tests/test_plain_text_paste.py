@@ -36,6 +36,7 @@ class FakeClipboard:
 
 
 class PageHost:
+    _normalize_plain_text_paste = staticmethod(WebView._normalize_plain_text_paste)
     _plain_text_paste_script = staticmethod(WebView._plain_text_paste_script)
     _finish_plain_text_paste = staticmethod(WebView._finish_plain_text_paste)
 
@@ -156,6 +157,84 @@ class PlainTextPasteTests(QtTestCase):
         self.assertEqual(
             rendered_text.replace("\t", " ").splitlines(),
             ["startA B", "1 2"],
+        )
+
+    def test_calc_line_endings_and_blank_cells_are_preserved(self):
+        self.assertEqual(
+            WebView._normalize_plain_text_paste("A\r\n\r\nB"),
+            "A\n\nB",
+        )
+        script = WebView._plain_text_paste_script("A\n\nB")
+        self.assertIn('document.execCommand("insertLineBreak", false, null)', script)
+        self.assertIn('const lines = text.split("\\n")', script)
+
+    def test_real_webengine_inserts_blank_spreadsheet_rows(self):
+        page = QWebEnginePage()
+        self.addCleanup(page.deleteLater)
+        self._wait_for_load(
+            page,
+            '<html><body><div id="editor" contenteditable="true"></div></body></html>',
+        )
+        self._javascript(page, 'document.getElementById("editor").focus(); true;')
+        self.assertTrue(
+            self._javascript(page, WebView._plain_text_paste_script("A\n\nB"))
+        )
+        result = self._javascript(
+            page, 'document.getElementById("editor").innerText'
+        )
+        self.assertEqual(result.splitlines(), ["A", "", "B"])
+
+    def test_clipboard_table_keeps_empty_rows_and_columns(self):
+        from zapzap.features.browser.web.clipboard_table import calc_table_as_plain_text
+
+        html = (
+            "<table><tr><td>A</td><td></td><td>C</td></tr>"
+            "<tr><td></td><td></td><td></td></tr>"
+            "<tr><td>B</td><td></td><td>D</td></tr></table>"
+        )
+        self.assertEqual(calc_table_as_plain_text(html), "A  C\n  \nB  D")
+        self.assertIsNone(calc_table_as_plain_text("<p>A B</p>"))
+
+    def test_lexical_editor_receives_plain_clipboard_paste_event(self):
+        page = QWebEnginePage()
+        self.addCleanup(page.deleteLater)
+        self._wait_for_load(
+            page,
+            """<html><body><div id="editor" contenteditable="true"
+                data-lexical-editor="true"></div>
+                <script>
+                window.received = null;
+                document.getElementById('editor').addEventListener('paste', e => {
+                    window.received = e.clipboardData.getData('text/plain');
+                    e.preventDefault();
+                });
+                </script></body></html>""",
+        )
+        self._javascript(page, 'document.getElementById("editor").focus(); true;')
+        text = "First\n\nLast"
+        self.assertTrue(self._javascript(page, WebView._plain_text_paste_script(text)))
+        self.assertEqual(self._javascript(page, "window.received"), text)
+
+    def test_calc_html_clipboard_is_used_before_flattened_text(self):
+        page = RecordingPage()
+        host = PageHost(page)
+        clipboard = FakeClipboard("A C B D")
+        clipboard.mimeData = lambda: type("Mime", (), {
+            "hasHtml": lambda _self: True,
+            "html": lambda _self: (
+                "<table><tr><td>A</td><td></td><td>C</td></tr>"
+                "<tr><td></td><td></td><td></td></tr>"
+                "<tr><td>B</td><td></td><td>D</td></tr></table>"
+            ),
+        })()
+        with patch(
+            "zapzap.features.browser.web.web_view.QApplication.clipboard",
+            return_value=clipboard,
+        ):
+            self.assertTrue(WebView.paste_as_plain_text(host))
+        self.assertIn(
+            'const text = "A  C\\n  \\nB  D";',
+            page.scripts[0],
         )
 
     def test_plain_text_paste_uses_only_clipboard_text(self):

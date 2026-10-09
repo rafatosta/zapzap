@@ -5397,3 +5397,15 @@ msgstr "Ses"
 
 #~ msgid "This site"
 #~ msgstr "Bu site"
+
+msgid "PDF file clicks"
+msgstr "PDF dosyasına tıklanınca"
+
+msgid "Preview PDF files in WhatsApp or download them when the browser handles the PDF. WhatsApp's own preview may still open."
+msgstr "PDF dosyalarını WhatsApp'ta önizle veya tarayıcı PDF'yi işlediğinde indir. WhatsApp'ın kendi önizlemesi yine açılabilir."
+
+msgid "Preview in WhatsApp"
+msgstr "WhatsApp'ta önizle"
+
+msgid "Download directly (where supported)"
+msgstr "Doğrudan indir (destekleniyorsa)"

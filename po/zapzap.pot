@@ -4793,3 +4793,15 @@ msgstr ""
 #: zapzap/ui/components/floating_monitoring_panel.py:292
 msgid "Audio"
 msgstr ""
+
+msgid "PDF file clicks"
+msgstr ""
+
+msgid "Preview PDF files in WhatsApp or download them when the browser handles the PDF. WhatsApp's own preview may still open."
+msgstr ""
+
+msgid "Preview in WhatsApp"
+msgstr ""
+
+msgid "Download directly (where supported)"
+msgstr ""

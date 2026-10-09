@@ -23,6 +23,15 @@ class DownloadBehavior:
     VALUES = {DIALOG, AUTOMATIC, ASK_EVERY_TIME}
 
 
+class PDFClickBehavior:
+    """Preference for PDF navigation handled by Qt WebEngine."""
+
+    PREVIEW = "preview"
+    DOWNLOAD = "download"
+
+    VALUES = {PREVIEW, DOWNLOAD}
+
+
 class MultipleDownloadPermission:
     """Stable permission values for repeated WhatsApp downloads."""
 
@@ -37,6 +46,7 @@ class DownloadSettingsEvents(QObject):
     """Notify live account contexts when temporary folders must be discarded."""
 
     clear_save_as_directories = pyqtSignal()
+    pdf_click_behavior_changed = pyqtSignal()
 
 
 download_settings_events = DownloadSettingsEvents()
@@ -49,6 +59,7 @@ class DownloadSettings(BaseSettings):
     _BEHAVIOR = ("downloads/behavior", DownloadBehavior.DIALOG)
     _AUTO_OPEN_MEDIA_LEGACY = ("downloads/auto_open_media", False)
     _AUTO_OPEN_PDF = ("downloads/auto_open_pdf", False)
+    _PDF_CLICK_BEHAVIOR = ("downloads/pdf_click_behavior", PDFClickBehavior.PREVIEW)
     _AUTO_OPEN_IMAGES = ("downloads/auto_open_images", False)
     _MULTIPLE_DOWNLOAD_PERMISSION = (
         "downloads/whatsapp_multiple_download_permission",
@@ -88,6 +99,24 @@ class DownloadSettings(BaseSettings):
             else DownloadBehavior.DIALOG
         )
         self._set_str(self._BEHAVIOR, normalized)
+
+    @property
+    def pdf_click_behavior(self) -> str:
+        raw = self._get_str(self._PDF_CLICK_BEHAVIOR)
+        if raw in PDFClickBehavior.VALUES:
+            return raw
+        self._set_str(self._PDF_CLICK_BEHAVIOR, PDFClickBehavior.PREVIEW)
+        return PDFClickBehavior.PREVIEW
+
+    @pdf_click_behavior.setter
+    def pdf_click_behavior(self, value: str) -> None:
+        normalized = (
+            value if value in PDFClickBehavior.VALUES
+            else PDFClickBehavior.PREVIEW
+        )
+        if self.pdf_click_behavior != normalized:
+            self._set_str(self._PDF_CLICK_BEHAVIOR, normalized)
+            download_settings_events.pdf_click_behavior_changed.emit()
 
     def _migrate_legacy_auto_open(self) -> None:
         legacy_key, _default = self._AUTO_OPEN_MEDIA_LEGACY

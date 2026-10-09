@@ -65,6 +65,16 @@ class LanguageDownloadSettingsView(SettingsPage):
         self.download_behavior_combo.setMinimumWidth(280)
         card.add_row(behavior_row)
 
+        pdf_click_row = SettingsSelectRow(
+            _("PDF file clicks"),
+            _("Preview PDF files in WhatsApp or download them when the "
+              "browser handles the PDF. WhatsApp's own preview may still open."),
+            [""],
+        )
+        self.pdf_click_behavior_combo = pdf_click_row.combo
+        self.pdf_click_behavior_combo.setMinimumWidth(280)
+        card.add_row(pdf_click_row)
+
         row = SettingsPathRow(
             _("Download directory"),
             _("Set a custom folder or restore the default download location."),
