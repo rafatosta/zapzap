@@ -333,6 +333,8 @@ rede que possam ser sensíveis.
 - A ação **Compact chat list** deve aplicar/salvar o mínimo nas contas ativas
   e habilitar o redimensionamento normal; um segundo clique restaura a largura
   anterior da página, sem criar modo fixo ou outra chave.
+- Preserve o posicionamento absoluto e os transforms das linhas virtualizadas;
+  use um contexto relativo para contadores somente em linhas originalmente estáticas.
 - Preserve estrutura e alturas nativas. A exceção é Nova conversa: abaixo de 200 px,
   apresente a ação no início da barra por um espelho do botão original.
 - A antiga chave `system/compact_chat_list_enabled` é ignorada, sem apagar ou

@@ -15,6 +15,10 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Preserve absolute positioning of virtualized chat rows in compact mode,
+  preventing avatar gaps caused by adding normal-flow height to native offsets.
+  Keep unread badges anchored and add a WebEngine spacing regression.
+
 - Treat chat lists below 200 CSS px as compact through an HTML attribute,
   hide search/header/filters with CSS, overlay native unread counts on avatars
   and expose contact names as row titles. Compact chat list now restores the

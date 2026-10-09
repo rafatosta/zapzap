@@ -37,7 +37,7 @@
       :root[${compactAttribute}] #side [data-zapzap-chat-list-controls] {
         display: none !important;
       }
-      :root[${compactAttribute}] [data-zapzap-chat-list-row] { position: relative; }
+      :root[${compactAttribute}] [data-zapzap-chat-list-static-row] { position: relative; }
       :root[${compactAttribute}] [data-zapzap-chat-list-unread-path] {
         position: static !important;
         overflow: visible !important;
@@ -192,6 +192,7 @@
         if (title === null) row.removeAttribute('title');
         else row.setAttribute('title', title);
         row.removeAttribute('data-zapzap-chat-list-row');
+        row.removeAttribute('data-zapzap-chat-list-static-row');
       }
       decoratedRows.clear();
       chatList?.querySelectorAll('[data-zapzap-chat-list-unread], [data-zapzap-chat-list-unread-path], [data-zapzap-chat-list-controls]')
@@ -210,6 +211,7 @@
         if (title === null) row.removeAttribute('title');
         else row.title = title;
         row.removeAttribute('data-zapzap-chat-list-row');
+        row.removeAttribute('data-zapzap-chat-list-static-row');
         decoratedRows.delete(row);
       }
       // Mark native controls, leaving React ownership and event handlers intact.
@@ -228,7 +230,13 @@
           row.querySelector('[data-testid="cell-frame-title"]')?.textContent ||
           row.querySelector('img[alt]')?.alt;
         if (!name) continue;
-        if (!decoratedRows.has(row)) decoratedRows.set(row, row.getAttribute('title'));
+        if (!decoratedRows.has(row)) {
+          decoratedRows.set(row, row.getAttribute('title'));
+          // Virtualized rows must keep their absolute position and transforms.
+          if (getComputedStyle(row).position === 'static') {
+            row.setAttribute('data-zapzap-chat-list-static-row', '');
+          }
+        }
         if (row.title !== name) row.title = name;
         row.setAttribute('data-zapzap-chat-list-row', '');
         row.querySelectorAll('[data-zapzap-chat-list-unread], [data-zapzap-chat-list-unread-path]').forEach(

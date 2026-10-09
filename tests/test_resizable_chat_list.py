@@ -294,6 +294,34 @@ class ResizableChatListTests(QtTestCase):
           getComputedStyle(document.querySelector('[data-testid="icon-unread-count"]')).position !== 'absolute'
         """))
 
+    def test_compact_preserves_absolute_virtualized_row_spacing(self):
+        self._javascript("""
+          document.getElementById('side').innerHTML = `
+            <div role="grid" style="position:relative;height:300px">
+              <div role="row" id="first" style="position:absolute;height:72px;transform:translateY(0px)">
+                <span title="Alice">Alice</span>
+                <span data-testid="icon-unread-count">2</span>
+              </div>
+              <div role="row" id="second" style="position:absolute;height:72px;transform:translateY(72px)">
+                <span title="Bob">Bob</span>
+              </div>
+              <div role="row" id="third" style="position:absolute;height:72px;transform:translateY(144px)">
+                <span title="Carol">Carol</span>
+              </div>
+            </div>`;
+        """)
+        self._save_width(85)
+        self.view.set_resizable_chat_list_enabled(True)
+        for compact in (True, False):
+            if not compact:
+                self._press_on_handle('Enter')
+            self.assertEqual(self._javascript("""
+              ['first', 'second', 'third'].map((id) => {
+                const row = document.getElementById(id);
+                return [getComputedStyle(row).position, row.getBoundingClientRect().top];
+              })
+            """), [['absolute', 0], ['absolute', 72], ['absolute', 144]])
+
     def test_compact_action_before_chat_mount_applies_when_list_appears(self):
         self._javascript("window.savedSide=document.getElementById('side'); window.savedSide.remove()")
         self.view.compact_chat_list()
