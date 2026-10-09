@@ -286,6 +286,45 @@ class ResizableChatListTests(QtTestCase):
         self.assertEqual(state["column"], self._default_column_width())
         self.assertIsNone(state["savedWidth"])
 
+    def test_panels_over_the_column_edge_keep_the_pointer(self):
+        self.view.set_resizable_chat_list_enabled(True)
+
+        pointer_targets = self._javascript("""
+          (() => {
+            const columnRight = document.querySelector('.column').getBoundingClientRect().right;
+            const panel = document.createElement('div');
+            panel.id = 'expression-panel';
+            panel.style.cssText =
+              `position:fixed;z-index:10;left:${columnRight - 100}px;top:300px;width:300px;height:200px`;
+            document.body.appendChild(panel);
+            const pointerTargetAt = (clientY) => {
+              document.dispatchEvent(new PointerEvent('pointermove', {
+                clientX: columnRight, clientY, bubbles: true,
+              }));
+              const target = document.elementFromPoint(columnRight, clientY);
+              return target.id || target.className;
+            };
+            const handle = document.querySelector('.zapzap-chat-list-resize-handle');
+            const besidePanel = pointerTargetAt(100);
+            handle.dispatchEvent(new PointerEvent('pointerdown', {
+              clientX: columnRight, clientY: 400, button: 0, bubbles: true,
+            }));
+            return {
+              tapOverPanelStartsDrag: document.documentElement.hasAttribute('data-zapzap-chat-list-dragging'),
+              afterTapOverPanel: document.elementFromPoint(columnRight, 400).id,
+              overPanel: pointerTargetAt(400),
+              besidePanel,
+            };
+          })()
+        """)
+
+        self.assertFalse(pointer_targets["tapOverPanelStartsDrag"])
+        self.assertEqual(pointer_targets["afterTapOverPanel"], "expression-panel")
+        self.assertEqual(pointer_targets["overPanel"], "expression-panel")
+        self.assertEqual(
+            pointer_targets["besidePanel"], "zapzap-chat-list-resize-handle"
+        )
+
     def _press_on_handle(self, key):
         self._javascript(
             "document.querySelector('.zapzap-chat-list-resize-handle')"
