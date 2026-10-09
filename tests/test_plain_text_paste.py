@@ -158,6 +158,31 @@ class PlainTextPasteTests(QtTestCase):
             ["startA B", "1 2"],
         )
 
+    def test_calc_line_endings_and_blank_cells_are_preserved(self):
+        self.assertEqual(
+            WebView._normalize_plain_text_paste("A\r\n\r\nB"),
+            "A\n\nB",
+        )
+        script = WebView._plain_text_paste_script("A\n\nB")
+        self.assertIn('document.execCommand("insertLineBreak", false, null)', script)
+        self.assertIn('const lines = text.split("\\n")', script)
+
+    def test_real_webengine_inserts_blank_spreadsheet_rows(self):
+        page = QWebEnginePage()
+        self.addCleanup(page.deleteLater)
+        self._wait_for_load(
+            page,
+            '<html><body><div id="editor" contenteditable="true"></div></body></html>',
+        )
+        self._javascript(page, 'document.getElementById("editor").focus(); true;')
+        self.assertTrue(
+            self._javascript(page, WebView._plain_text_paste_script("A\n\nB"))
+        )
+        result = self._javascript(
+            page, 'document.getElementById("editor").innerText'
+        )
+        self.assertEqual(result.splitlines(), ["A", "", "B"])
+
     def test_plain_text_paste_uses_only_clipboard_text(self):
         page = RecordingPage()
         host = PageHost(page)

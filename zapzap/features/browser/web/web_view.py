@@ -14,7 +14,9 @@ from PyQt6.QtGui import QAction
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.core.config.settings.appearance import AppearanceSettings
 from zapzap.assets.icons.system_icon import SystemIcon
-from zapzap.core.config.settings.downloads import download_settings_events
+from zapzap.core.config.settings.downloads import (
+    DownloadSettings, PDFClickBehavior, download_settings_events,
+)
 from zapzap.features.browser.web.page_controller import PageController
 from zapzap.features.browser.web.popup_window import InternalWebPopup
 from zapzap.features.accounts.domain.user import (
@@ -98,6 +100,9 @@ class WebView(QWebEngineView):
         download_settings_events.clear_save_as_directories.connect(
             self.clear_download_directory
         )
+        download_settings_events.pdf_click_behavior_changed.connect(
+            self._apply_pdf_click_behavior
+        )
 
         self._reload_timer = QTimer(self)
         self._reload_timer.setSingleShot(True)
@@ -165,11 +170,7 @@ class WebView(QWebEngineView):
         )
         self.profile.settings().setAttribute(
             QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, SettingsManager.get("web/scroll_animator", False))
-        pdf_viewer_attr = getattr(
-            QWebEngineSettings.WebAttribute, "PdfViewerEnabled", None
-        )
-        if pdf_viewer_attr is not None:
-            self.profile.settings().setAttribute(pdf_viewer_attr, True)
+        self._apply_pdf_click_behavior()
 
         self.configure_spellcheck()
 
@@ -198,6 +199,22 @@ class WebView(QWebEngineView):
         # Instala o handler de crash específico para este WebView
         crash_handler.register_profile(self.profile)
         self._inject_webrtc_shield()
+
+    def _apply_pdf_click_behavior(self):
+        """Enable PDF plugin for previews or download PDF navigations."""
+        if self.profile is None:
+            return
+        preview = DownloadSettings().pdf_click_behavior == PDFClickBehavior.PREVIEW
+        settings = self.profile.settings()
+        # Qt WebEngine needs PluginsEnabled as well as PdfViewerEnabled.
+        settings.setAttribute(
+            QWebEngineSettings.WebAttribute.PluginsEnabled, preview
+        )
+        pdf_viewer_attr = getattr(
+            QWebEngineSettings.WebAttribute, "PdfViewerEnabled", None
+        )
+        if pdf_viewer_attr is not None:
+            settings.setAttribute(pdf_viewer_attr, preview)
 
     def _install_ctrl_arrow_visual_navigation_fix(self):
         if SettingsManager.get("web/ctrl_arrow_visual_navigation_fix", True):
@@ -682,6 +699,27 @@ class WebView(QWebEngineView):
     selection.addRange(range);
 
     try {{
+        // WhatsApp may flatten a single insertText event containing LF.
+        // Separate insertLineBreak commands preserve empty spreadsheet rows.
+        if (text.includes("\\n")) {{
+            const lines = text.split("\\n");
+            let inserted = false;
+            for (let index = 0; index < lines.length; index++) {{
+                if (index > 0) {{
+                    if (!document.execCommand("insertLineBreak", false, null)) {{
+                        return inserted;
+                    }}
+                    inserted = true;
+                }}
+                if (lines[index]) {{
+                    if (!document.execCommand("insertText", false, lines[index])) {{
+                        return inserted;
+                    }}
+                    inserted = true;
+                }}
+            }}
+            return true;
+        }}
         if (document.execCommand("insertText", false, text)) {{
             return true;
         }}
@@ -717,10 +755,22 @@ class WebView(QWebEngineView):
         except RuntimeError:
             pass
 
+    @staticmethod
+    def _normalize_plain_text_paste(text):
+        """Preserve sheet rows, including blank rows, across line endings."""
+        return text.replace("\r\n", "\n").replace("\r", "\n").replace("\u2029", "\n")
+
     def paste_as_plain_text(self):
         """Paste only clipboard text without changing normal Ctrl+V behavior."""
         clipboard = QApplication.clipboard()
         text = clipboard.text() if clipboard is not None else ""
+        text = self._normalize_plain_text_paste(text)
+        if clipboard is not None and hasattr(clipboard, "mimeData"):
+            mime = clipboard.mimeData()
+            # Calc tables use TAB for columns; each TAB becomes one space,
+            # including empty cells between populated columns.
+            if mime and mime.hasHtml() and "<table" in mime.html().lower():
+                text = text.replace("\t", " ")
 
         # Consume this shortcut even if the clipboard also exposes HTML/image.
         # Empty text must never fall through to an image representation.

@@ -18,6 +18,7 @@ from zapzap.core.config.settings.downloads import (
     DownloadBehavior,
     DownloadSettings,
     MultipleDownloadPermission,
+    PDFClickBehavior,
 )
 from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.features.downloads.download_manager import DownloadManager
@@ -75,6 +76,43 @@ class DownloadSettingsTests(TemporarySettingsTest):
             SettingsManager.get("downloads/behavior"),
             DownloadBehavior.DIALOG,
         )
+
+    def test_pdf_click_mode_defaults_to_preview_and_persists(self):
+        settings = DownloadSettings()
+        self.assertEqual(settings.pdf_click_behavior, PDFClickBehavior.PREVIEW)
+        settings.pdf_click_behavior = PDFClickBehavior.DOWNLOAD
+        self.assertEqual(
+            DownloadSettings().pdf_click_behavior, PDFClickBehavior.DOWNLOAD
+        )
+        settings.pdf_click_behavior = "invalid"
+        self.assertEqual(settings.pdf_click_behavior, PDFClickBehavior.PREVIEW)
+
+    def test_pdf_preview_plugin_configuration_follows_preference(self):
+        from PyQt6.QtWebEngineCore import QWebEngineSettings
+        from zapzap.features.browser.web.web_view import WebView
+
+        profile = Mock()
+        owner = SimpleNamespace(profile=profile)
+
+        DownloadSettings().pdf_click_behavior = PDFClickBehavior.PREVIEW
+        WebView._apply_pdf_click_behavior(owner)
+        profile.settings.return_value.setAttribute.assert_any_call(
+            QWebEngineSettings.WebAttribute.PluginsEnabled, True
+        )
+
+        profile.settings.return_value.setAttribute.reset_mock()
+        DownloadSettings().pdf_click_behavior = PDFClickBehavior.DOWNLOAD
+        WebView._apply_pdf_click_behavior(owner)
+        profile.settings.return_value.setAttribute.assert_any_call(
+            QWebEngineSettings.WebAttribute.PluginsEnabled, False
+        )
+        pdf_attribute = getattr(
+            QWebEngineSettings.WebAttribute, "PdfViewerEnabled", None
+        )
+        if pdf_attribute is not None:
+            profile.settings.return_value.setAttribute.assert_any_call(
+                pdf_attribute, False
+            )
 
     def test_pdf_and_image_auto_open_settings_are_independent(self):
         settings = DownloadSettings()
