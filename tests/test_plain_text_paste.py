@@ -36,6 +36,7 @@ class FakeClipboard:
 
 
 class PageHost:
+    _normalize_plain_text_paste = staticmethod(WebView._normalize_plain_text_paste)
     _plain_text_paste_script = staticmethod(WebView._plain_text_paste_script)
     _finish_plain_text_paste = staticmethod(WebView._finish_plain_text_paste)
 
