@@ -88,6 +88,21 @@
   <content_rating type="oars-1.1" />
 
   <releases>
+    <release version="7.5" date="2026-10-09">
+      <description>
+        <p>
+          Version 7.5 adds a floating Quick Access window and an integrated
+          account selector with unread activity. Chat lists can now be resized
+          and compacted, with unread counts over avatars and contact-name tooltips.
+        </p>
+        <p>
+          Downloads gain configurable saving behavior, automatic opening options,
+          progress controls and recent-download menus. This release also adds
+          global mute, plain-text paste, WhatsApp profile photo synchronization
+          and improved crash diagnostics, and reduces typing stutter.
+        </p>
+      </description>
+    </release>
     <release version="7.4.5" date="2026-09-23">
       <description>
         <p>

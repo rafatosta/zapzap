@@ -11,45 +11,7 @@ This mandatory record starts after version 7.4.1. The 7.4.1 entry below is the
 historical baseline; older release summaries remain available in the GitHub
 releases and the AppStream metadata.
 
-## [7.5] - In development
-
-### Fixed
-
-- Preserve absolute positioning of virtualized chat rows in compact mode,
-  preventing avatar gaps caused by adding normal-flow height to native offsets.
-  Keep unread badges anchored and add a WebEngine spacing regression.
-
-- Treat chat lists below 200 CSS px as compact through an HTML attribute,
-  hide search/header/filters with CSS, overlay native unread counts on avatars
-  and expose contact names as row titles. Compact chat list now restores the
-  previous page width on a second click. Added WebEngine regressions and updated
-  technical/manual documentation; existing persisted keys remain unchanged.
-
-- Stopped the resizable chat list handle from covering WhatsApp panels that
-  open over the chat list edge, such as the emoji, GIF and sticker picker.
-  The handle now only takes the pointer where the chat list edge is visible,
-  so the line no longer shows on top of those panels and clicks under it reach
-  the panel. Added a WebEngine regression; no persisted settings changed.
-
-- Reduced typing stutter in chats: the integrated account selector script no
-  longer scans the whole page and forces layout on every DOM change while the
-  selector is disabled, ignores composer, message and chat-list updates, and
-  reuses the sidebar it already found. ThemeContext discovery coalesces bursts
-  of DOM changes with a short timer that also runs in background accounts, and
-  the application-wide WebView event filter checks the event type before
-  widget ancestry. Added WebEngine and event filter regressions; no persisted
-  settings changed.
-
-### Changed
-
-- Hide floating monitoring panel suboptions in Appearance until the panel is
-  enabled, preserving their saved values when disabled.
-
-- Simplified the checkout launcher to call FlatpakRunner directly and removed
-  unused browser account adapters and the aggregate auto-open-media accessor.
-  Preserved download preference migration and all other persisted settings.
-  Documented the legacy WebRTC Shield's incoming-candidate-only scope and the
-  mismatch with its current UI description, retaining its behavior and option.
+## [7.5] - 2026-10-09
 
 ### Added
 
@@ -323,6 +285,47 @@ releases and the AppStream metadata.
   including the compiled gettext catalog and regression coverage for catalog
   loading, language discovery, fallback behavior, and placeholder integrity.
 
+### Changed
+
+- Hide floating monitoring panel suboptions in Appearance until the panel is
+  enabled, preserving their saved values when disabled.
+
+- Simplified the checkout launcher to call FlatpakRunner directly and removed
+  unused browser account adapters and the aggregate auto-open-media accessor.
+  Preserved download preference migration and all other persisted settings.
+  Documented the legacy WebRTC Shield's incoming-candidate-only scope and the
+  mismatch with its current UI description, retaining its behavior and option.
+
+- Removed the browser-sidebar presentation radio options from Appearance while
+  retaining each installation's saved floating/integrated behavior.
+- Removed the mute and downloads icon buttons from the window menu bar while
+  keeping mute in the browser sidebar and downloads accessible from the sidebar
+  and View menu.
+- Updated the testing guide to list all tests in the Ubuntu/Windows/macOS
+  quality matrix and distinguish them from the Ubuntu structural checks.
+- Clarified that the installed Flatpak is the official Python, Qt and test
+  environment, replaced host/virtualenv test instructions with a validated
+  reusable Flatpak command, and documented expected host-side PyQt6 import
+  failures for maintainers and coding agents.
+- Increased the WebEngine integration-test timeout for plain-text paste so
+  slower macOS CI startup does not produce a false failure while preserving
+  the same real QWebEnginePage behavior check.
+- Completed the Turkish interface catalog for currently active UI strings,
+  replacing missing and fuzzy entries across reporting, dictionaries,
+  donations, update UI, network/rendering settings and related dialogs.
+- Extended the internal popup and external link regression tests to cover the
+  deferred disposal and the shutdown path that still stopped a page
+  reentrantly.
+- Expanded the runtime diagnostics report with a privacy-safe graphics section
+  covering the active Qt session, GPU topology, VAAPI and Vulkan hints, Flatpak
+  metadata, and the effective Chromium flags assembled for the app. The
+  structured data is kept in the same report builder and Markdown flow without
+  broadening the runtime surface or enabling automatic workarounds.
+
+- Prepared version 7.5 for publication: closed the changelog, aligned its
+  comparison link with the release tag, verified distributed gettext catalogs
+  and added the user-facing AppStream release summary.
+
 ### Removed
 
 - Removed the previous Quick Access popover, floating launcher and injected
@@ -331,6 +334,31 @@ releases and the AppStream metadata.
   account selector as separate features.
 
 ### Fixed
+
+- Preserve absolute positioning of virtualized chat rows in compact mode,
+  preventing avatar gaps caused by adding normal-flow height to native offsets.
+  Keep unread badges anchored and add a WebEngine spacing regression.
+
+- Treat chat lists below 200 CSS px as compact through an HTML attribute,
+  hide search/header/filters with CSS, overlay native unread counts on avatars
+  and expose contact names as row titles. Compact chat list now restores the
+  previous page width on a second click. Added WebEngine regressions and updated
+  technical/manual documentation; existing persisted keys remain unchanged.
+
+- Stopped the resizable chat list handle from covering WhatsApp panels that
+  open over the chat list edge, such as the emoji, GIF and sticker picker.
+  The handle now only takes the pointer where the chat list edge is visible,
+  so the line no longer shows on top of those panels and clicks under it reach
+  the panel. Added a WebEngine regression; no persisted settings changed.
+
+- Reduced typing stutter in chats: the integrated account selector script no
+  longer scans the whole page and forces layout on every DOM change while the
+  selector is disabled, ignores composer, message and chat-list updates, and
+  reuses the sidebar it already found. ThemeContext discovery coalesces bursts
+  of DOM changes with a short timer that also runs in background accounts, and
+  the application-wide WebView event filter checks the event type before
+  widget ancestry. Added WebEngine and event filter regressions; no persisted
+  settings changed.
 
 - Fixed custom JavaScript files not running on WhatsApp Web. Each enabled file
   is now executed through `runJavaScript` instead of an inline `<script>`
@@ -408,34 +436,6 @@ releases and the AppStream metadata.
   a warning; the notification sound kept playing from the WhatsApp Web page,
   so the missing balloons looked like a desktop problem. Added regression
   coverage and documented the manual validation.
-
-### Changed
-
-- Removed the browser-sidebar presentation radio options from Appearance while
-  retaining each installation's saved floating/integrated behavior.
-- Removed the mute and downloads icon buttons from the window menu bar while
-  keeping mute in the browser sidebar and downloads accessible from the sidebar
-  and View menu.
-- Updated the testing guide to list all tests in the Ubuntu/Windows/macOS
-  quality matrix and distinguish them from the Ubuntu structural checks.
-- Clarified that the installed Flatpak is the official Python, Qt and test
-  environment, replaced host/virtualenv test instructions with a validated
-  reusable Flatpak command, and documented expected host-side PyQt6 import
-  failures for maintainers and coding agents.
-- Increased the WebEngine integration-test timeout for plain-text paste so
-  slower macOS CI startup does not produce a false failure while preserving
-  the same real QWebEnginePage behavior check.
-- Completed the Turkish interface catalog for currently active UI strings,
-  replacing missing and fuzzy entries across reporting, dictionaries,
-  donations, update UI, network/rendering settings and related dialogs.
-- Extended the internal popup and external link regression tests to cover the
-  deferred disposal and the shutdown path that still stopped a page
-  reentrantly.
-- Expanded the runtime diagnostics report with a privacy-safe graphics section
-  covering the active Qt session, GPU topology, VAAPI and Vulkan hints, Flatpak
-  metadata, and the effective Chromium flags assembled for the app. The
-  structured data is kept in the same report builder and Markdown flow without
-  broadening the runtime surface or enabling automatic workarounds.
 
 ## [7.4.5] - 2026-09-23
 
@@ -601,7 +601,7 @@ releases and the AppStream metadata.
 - Improved reliability when ZapZap is closed by the operating system.
 - Included performance improvements.
 
-[7.5]: https://github.com/rafatosta/zapzap/compare/7.4.5...HEAD
+[7.5]: https://github.com/rafatosta/zapzap/compare/7.4.5...7.5
 [7.4.5]: https://github.com/rafatosta/zapzap/compare/7.4.4...7.4.5
 [7.4.4]: https://github.com/rafatosta/zapzap/compare/7.4.3...7.4.4
 [7.4.3]: https://github.com/rafatosta/zapzap/compare/7.4.2...7.4.3
