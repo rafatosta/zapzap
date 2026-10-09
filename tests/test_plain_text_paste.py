@@ -184,6 +184,37 @@ class PlainTextPasteTests(QtTestCase):
         )
         self.assertEqual(result.splitlines(), ["A", "", "B"])
 
+    def test_clipboard_table_keeps_empty_rows_and_columns(self):
+        from zapzap.features.browser.web.clipboard_table import calc_table_as_plain_text
+
+        html = (
+            "<table><tr><td>A</td><td></td><td>C</td></tr>"
+            "<tr><td></td><td></td><td></td></tr>"
+            "<tr><td>B</td><td></td><td>D</td></tr></table>"
+        )
+        self.assertEqual(calc_table_as_plain_text(html), "A  C\n  \nB  D")
+        self.assertIsNone(calc_table_as_plain_text("<p>A B</p>"))
+
+    def test_lexical_editor_receives_plain_clipboard_paste_event(self):
+        page = QWebEnginePage()
+        self.addCleanup(page.deleteLater)
+        self._wait_for_load(
+            page,
+            """<html><body><div id="editor" contenteditable="true"
+                data-lexical-editor="true"></div>
+                <script>
+                window.received = null;
+                document.getElementById('editor').addEventListener('paste', e => {
+                    window.received = e.clipboardData.getData('text/plain');
+                    e.preventDefault();
+                });
+                </script></body></html>""",
+        )
+        self._javascript(page, 'document.getElementById("editor").focus(); true;')
+        text = "First\n\nLast"
+        self.assertTrue(self._javascript(page, WebView._plain_text_paste_script(text)))
+        self.assertEqual(self._javascript(page, "window.received"), text)
+
     def test_plain_text_paste_uses_only_clipboard_text(self):
         page = RecordingPage()
         host = PageHost(page)

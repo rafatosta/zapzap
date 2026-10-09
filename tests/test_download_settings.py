@@ -114,6 +114,26 @@ class DownloadSettingsTests(TemporarySettingsTest):
                 pdf_attribute, False
             )
 
+    def test_pdf_click_handler_is_a_document_ready_main_world_script(self):
+        from PyQt6.QtWebEngineCore import QWebEngineScript
+        from zapzap.features.browser.web.web_view import WebView
+
+        profile = Mock()
+        owner = SimpleNamespace(profile=profile)
+        WebView._install_pdf_click_controller(owner)
+
+        inserted = profile.scripts.return_value.insert.call_args.args[0]
+        self.assertEqual(inserted.name(), "zapzap_pdf_click_controller")
+        self.assertEqual(
+            inserted.injectionPoint(),
+            QWebEngineScript.InjectionPoint.DocumentReady,
+        )
+        self.assertEqual(
+            inserted.worldId(),
+            QWebEngineScript.ScriptWorldId.MainWorld,
+        )
+        self.assertIn('document.addEventListener("click", onClick, true)', inserted.sourceCode())
+
     def test_pdf_and_image_auto_open_settings_are_independent(self):
         settings = DownloadSettings()
         settings.auto_open_pdf = True
