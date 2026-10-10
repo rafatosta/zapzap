@@ -630,6 +630,14 @@ ABIs incompatíveis. Antes do `quick-sharun`, valide com `ldd` que as biblioteca
 Qt WebEngine não contêm dependências `not found`; essa verificação deve falhar
 antes da coleta, exibindo as bibliotecas ausentes.
 
+O `quick-sharun` coleta os recursos WebEngine em `lib/qt6/resources`, mas o Qt
+embarcado pode procurar `share/qt6/resources`. O script AppImage valida os
+`.pak`, snapshot V8, locale `en-US` e helper antes da geração e grava na `.env`
+os três caminhos `QTWEBENGINE_*` relativos a `${SHARUN_DIR}`. Não grave o ponto
+de montagem temporário nem use recursos Qt do host. Valide o AppDir extraído
+com HTML local em perfil descartável, inclusive depois de mover o diretório;
+repita em x86_64 e aarch64. Esse probe não substitui a abertura gráfica real.
+
 No Windows, `build-windows.yml` executa uma matriz nativa para `x86_64` e
 `arm64`. Preserve a correspondência entre runner, arquitetura solicitada ao
 `setup-python`, argumento de `build.ps1` e sufixo do artefato; o script deve

@@ -1,4 +1,6 @@
 from pathlib import Path
+import subprocess
+import tempfile
 import unittest
 
 
@@ -28,6 +30,54 @@ NORMALIZE_SCRIPT = (
 
 
 class AppImagePackagingTest(unittest.TestCase):
+    def test_webengine_paths_and_missing_bundle_data(self):
+        script = MAKE_APPIMAGE_SCRIPT.read_text(encoding="utf-8")
+        start = script.index("# quick-sharun collects WebEngine data")
+        end = script.index("\nEOF", start) + len("\nEOF")
+        validation = script[start:end]
+        self.assertLess(end, script.index("quick-sharun --make-appimage"))
+        resources = (
+            "qtwebengine_resources.pak",
+            "qtwebengine_resources_100p.pak",
+            "qtwebengine_resources_200p.pak",
+            "qtwebengine_devtools_resources.pak",
+            "v8_context_snapshot.bin",
+        )
+        with tempfile.TemporaryDirectory(prefix="appimage paths ") as temporary:
+            root = Path(temporary)
+            resource_dir = root / "lib/qt6/resources"
+            resource_dir.mkdir(parents=True)
+            required = [resource_dir / name for name in resources]
+            required.append(root / "lib/qt6/translations/qtwebengine_locales/en-US.pak")
+            helper = root / "bin/QtWebEngineProcess"
+            required.append(helper)
+            for path in required:
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("fixture", encoding="utf-8")
+            helper.chmod(0o755)
+
+            def run_validation():
+                return subprocess.run(
+                    ["sh", "-eu", "-c", 'APPDIR="$1"\n' + validation, "sh", str(root)],
+                    capture_output=True, text=True, check=False,
+                )
+
+            result = run_validation()
+            self.assertEqual(result.returncode, 0, result.stderr)
+            environment = (root / ".env").read_text(encoding="utf-8")
+            self.assertIn("QTWEBENGINE_RESOURCES_PATH=${SHARUN_DIR}/lib/qt6/resources", environment)
+            self.assertIn("QTWEBENGINE_LOCALES_PATH=${SHARUN_DIR}/lib/qt6/translations/qtwebengine_locales", environment)
+            self.assertIn("QTWEBENGINEPROCESS_PATH=${SHARUN_DIR}/bin/QtWebEngineProcess", environment)
+            self.assertNotIn(str(root), environment)
+            for path in required:
+                with self.subTest(missing=path.name):
+                    path.write_text("", encoding="utf-8")
+                    if path == helper:
+                        helper.chmod(0o644)
+                    self.assertNotEqual(run_validation().returncode, 0)
+                    path.write_text("fixture", encoding="utf-8")
+                    helper.chmod(0o755)
+
     def test_ffmpeg_uses_the_same_repository_transaction_as_qt_webengine(self):
         script = GET_DEPENDENCIES_SCRIPT.read_text(encoding="utf-8")
 

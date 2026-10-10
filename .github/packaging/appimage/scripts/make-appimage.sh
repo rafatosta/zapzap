@@ -100,6 +100,31 @@ if [ ! -d "${APPDIR}" ]; then
     exit 1
 fi
 
+# quick-sharun collects WebEngine data under lib/qt6, while this Qt build
+# searches share/qt6. Resolve paths relative to sharun at launch, not /tmp.
+for WEBENGINE_RESOURCE in \
+    qtwebengine_resources.pak \
+    qtwebengine_resources_100p.pak \
+    qtwebengine_resources_200p.pak \
+    qtwebengine_devtools_resources.pak \
+    v8_context_snapshot.bin
+do
+    if [ ! -s "${APPDIR}/lib/qt6/resources/${WEBENGINE_RESOURCE}" ]; then
+        echo "Erro: recurso WebEngine ausente: ${WEBENGINE_RESOURCE}" >&2
+        exit 1
+    fi
+done
+if [ ! -s "${APPDIR}/lib/qt6/translations/qtwebengine_locales/en-US.pak" ] || \
+   [ ! -x "${APPDIR}/bin/QtWebEngineProcess" ]; then
+    echo "Erro: locales ou processo auxiliar WebEngine ausentes." >&2
+    exit 1
+fi
+cat >> "${APPDIR}/.env" <<'EOF'
+QTWEBENGINE_RESOURCES_PATH=${SHARUN_DIR}/lib/qt6/resources
+QTWEBENGINE_LOCALES_PATH=${SHARUN_DIR}/lib/qt6/translations/qtwebengine_locales
+QTWEBENGINEPROCESS_PATH=${SHARUN_DIR}/bin/QtWebEngineProcess
+EOF
+
 echo
 echo "==============================================================="
 echo "Gerando AppImage"

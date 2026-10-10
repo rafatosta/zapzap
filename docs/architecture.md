@@ -31,6 +31,11 @@ apresentação. Quando duas páginas precisam do mesmo comportamento, ele deve s
 movido para um domínio em `core`; quando compartilham uma composição visual,
 ela deve ficar em `ui.components`.
 
+O AppImage usa `quick-sharun` para coletar Qt/Python. Seu script de geração
+valida os dados WebEngine e configura recursos, locales e processo auxiliar
+na `.env` do bundle, relativos a `SHARUN_DIR`, para acompanhar a montagem e
+evitar dependência dos caminhos Qt do host.
+
 ## Ambiente de desenvolvimento
 
 O ambiente oficial de execução e teste do ZapZap é o Flatpak instalado
