@@ -11,14 +11,6 @@ This mandatory record starts after version 7.4.1. The 7.4.1 entry below is the
 historical baseline; older release summaries remain available in the GitHub
 releases and the AppStream metadata.
 
-## [7.5.1] - In development
-
-### Fixed
-
-- Resolve AppImage Qt WebEngine resources, locales and helper paths relative
-  to the mounted bundle. Fail packaging when required data is missing; add
-  regression coverage and document artifact validation.
-
 ## [7.5] - 2026-10-09
 
 ### Added
@@ -343,6 +335,10 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Resolve AppImage Qt WebEngine resources, locales and helper paths relative
+  to the mounted bundle. Fail packaging when required data is missing; add
+  regression coverage and document artifact validation.
+
 - Preserve absolute positioning of virtualized chat rows in compact mode,
   preventing avatar gaps caused by adding normal-flow height to native offsets.
   Keep unread badges anchored and add a WebEngine spacing regression.
@@ -609,7 +605,6 @@ releases and the AppStream metadata.
 - Improved reliability when ZapZap is closed by the operating system.
 - Included performance improvements.
 
-[7.5.1]: https://github.com/rafatosta/zapzap/compare/7.5...HEAD
 [7.5]: https://github.com/rafatosta/zapzap/compare/7.4.5...7.5
 [7.4.5]: https://github.com/rafatosta/zapzap/compare/7.4.4...7.4.5
 [7.4.4]: https://github.com/rafatosta/zapzap/compare/7.4.3...7.4.4
