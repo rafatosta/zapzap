@@ -43,6 +43,7 @@ from zapzap.core.config.settings.performance import (
 )
 from zapzap.core.diagnostics import crash_handler  # instância global
 from zapzap.core.diagnostics.webengine_probe import diagnostic_mode, probe
+from zapzap.core.environment.renderer_crash_guard import RendererCrashGuard
 
 
 _EVENT_MODE = diagnostic_mode()
@@ -117,6 +118,7 @@ class WebView(QWebEngineView):
         self._render_crash_reload_timer = QTimer(self)
         self._render_crash_reload_timer.setSingleShot(True)
         self._render_crash_reload_timer.timeout.connect(self.load_page)
+        self._renderer_crash_guard = RendererCrashGuard()
         probe.watch(self._reload_timer, "reload-timer", self)
         probe.watch(self._render_crash_reload_timer, "renderer-reload-timer", self)
 
@@ -529,8 +531,28 @@ class WebView(QWebEngineView):
         with probe.scope("renderer_terminated", self, status=terminationStatus, exit_code=exitCode):
             if self._shutting_down or not self.user.enable or not self.whatsapp_page:
                 return
-            print(
-                f"Tab renderer crashed (status={terminationStatus}, code={exitCode}). Reloading...")
+            if self._renderer_crash_guard.record_crash():
+                # Crash loop: repeated renderer deaths in a short window.
+                # Persist GPU-compositing fallback so the next startup
+                # avoids the trapping path; keep reloading this session.
+                try:
+                    PerformanceSettings().set_boolean_setting(
+                        "disable_gpu_memory_buffer_video_frames", True)
+                    PerformanceSettings().set_boolean_setting(
+                        "disable_zero_copy", True)
+                    PerformanceSettings().set_boolean_setting(
+                        "software_video_decoding", True)
+                    print(
+                        "Tab renderer crashed repeatedly "
+                        f"(status={terminationStatus}, code={exitCode}). "
+                        "Enabled compatibility rendering preset; "
+                        "restart ZapZap to apply.")
+                except Exception:
+                    logger.exception(
+                        "Failed to persist compatibility rendering preset")
+            else:
+                print(
+                    f"Tab renderer crashed (status={terminationStatus}, code={exitCode}). Reloading...")
             self._render_crash_reload_timer.start(1000)
 
     def contextMenuEvent(self, event):
@@ -637,7 +659,9 @@ class WebView(QWebEngineView):
         with probe.scope("load_callback", self):
             if self._shutting_down or not self.user.enable or not self.whatsapp_page:
                 return
-            if not success:
+            if success:
+                self._renderer_crash_guard.record_recovery()
+            else:
                 print("You are not connected to the Internet.")
                 self._reload_timer.start(5000)
 

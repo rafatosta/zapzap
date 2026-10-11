@@ -335,6 +335,12 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Escalate repeated tab renderer crashes to the compatibility rendering
+  preset instead of reloading forever. Three renderer deaths within five
+  minutes persist software video decoding, zero-copy and GPU memory buffer
+  fallbacks for the next startup; a successful page load resets the counter.
+  Single crash behavior is unchanged. Added unit coverage.
+
 - Resolve AppImage Qt WebEngine resources, locales and helper paths relative
   to the mounted bundle. Fail packaging when required data is missing; add
   regression coverage and document artifact validation.
