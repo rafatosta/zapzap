@@ -348,6 +348,8 @@ no `localStorage` da conta em `zapzap.chatListWidth`.
 O limite mínimo é 85 CSS px e a conversa mantém pelo menos 380 px.
 Abaixo de 200 px, `data-zapzap-chat-list-compact` no `<html>` ativa CSS
 que oculta cabeçalho, busca e filtros e sobrepõe o contador nativo à foto.
+Nesse modo, as margens laterais de `#side [data-testid="cell-frame-container"]`
+são zeradas para o destaque envolver o avatar; ao sair, volta o CSS nativo.
 As linhas recebem o nome do contato como `title`, atualizado nas mutações da
 lista e restaurado ao expandir/desativar; alturas e ações nativas são preservadas.
 A chave legada `system/compact_chat_list_enabled` continua ignorada.

@@ -37,6 +37,9 @@
       :root[${compactAttribute}] #side [data-zapzap-chat-list-controls] {
         display: none !important;
       }
+      :root[${compactAttribute}] #side [data-testid="cell-frame-container"] {
+        margin-inline: 0 !important;
+      }
       :root[${compactAttribute}] [data-zapzap-chat-list-static-row] { position: relative; }
       :root[${compactAttribute}] [data-zapzap-chat-list-unread-path] {
         position: static !important;

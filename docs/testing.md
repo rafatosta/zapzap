@@ -138,7 +138,7 @@ documente o que ele protege.
 | `test_qt_parameter_fallbacks.py` | escala, tema da bandeja, geometria, tipos e fail-closed do proxy global, zoom e download inválidos com autocura ou fallback restrito |
 | `test_reporting.py` | sanitização, minimização, Markdown, fila/TTL e captura local de encerramentos inesperados |
 | `test_reporting_ui.py` | formulário em duas etapas, prévia canônica, edição, cancelamento, clipboard e abertura segura do GitHub |
-| `test_resizable_chat_list.py` | ação compacta aplicando/salvando o mínimo, recarga, montagem tardia e redimensionamento posterior; limite de 85 px preservando alturas, avatares, cabeçalho, busca, texto e clique nativos; largura salva aplicada à coluna e à camada sobreposta, limites mínimos da lista e da conversa, alça na borda como separador focável com faixa de largura, setas, Home, End e Enter, duplo clique restaurando o padrão, alça cedendo o ponteiro a painéis sobre a borda, desativação ao vivo sem script de recarga, reinstalação sem duplicar após recarga e encaminhamento às contas ativas |
+| `test_resizable_chat_list.py` | geometria do frame envolvendo o avatar, margens compactas abaixo de 200 px, restauração e escopo restrito à lista; ação compacta aplicando/salvando o mínimo, recarga, montagem tardia e redimensionamento posterior; limite de 85 px preservando alturas, avatares, cabeçalho, busca, texto e clique nativos; largura salva aplicada à coluna e à camada sobreposta, limites mínimos da lista e da conversa, alça na borda como separador focável com faixa de largura, setas, Home, End e Enter, duplo clique restaurando o padrão, alça cedendo o ponteiro a painéis sobre a borda, desativação ao vivo sem script de recarga, reinstalação sem duplicar após recarga e encaminhamento às contas ativas |
 | `test_segmented_control.py` | seleção exclusiva, sinais, mouse, teclado, acessibilidade, tamanhos, raios e temas |
 | `test_send_message_to_number.py` | normalização/URL, lista de países, validação, acessibilidade e teclado do diálogo de conversa por número |
 | `test_settings_card.py` | divisores e grupos do card compartilhado em `ui.components` |
@@ -639,6 +639,10 @@ Habilite **Lista de conversas redimensionável** em Aparência, em sessão gráf
 real. Arraste a borda até o mínimo de 85 CSS px: confira a largura dos avatares,
 altura/posição das linhas e rolagem nativas, sem grandes espaços entre contatos.
 Abaixo de 200 px, cabeçalho, busca, filtros e menu ficam ocultos por CSS.
+Com CSS customizado desligado, confira hover e seleção em 85 px: o destaque
+deve envolver e centralizar o avatar. Repita pelo botão e pelo arraste,
+nos temas claro/escuro e após rolagem. Ao chegar a 200 px, restaurar a largura
+ou desativar o recurso, confirme o retorno das margens nativas do frame.
 Confirme contador sobre a foto e nome do contato no tooltip, incluindo novas
 mensagens e linhas reutilizadas após rolagem. Um segundo clique em Aplicar
 deve restaurar a largura anterior da página. Amplie a lista e confira que

@@ -294,6 +294,63 @@ class ResizableChatListTests(QtTestCase):
           getComputedStyle(document.querySelector('[data-testid="icon-unread-count"]')).position !== 'absolute'
         """))
 
+    def test_compact_frame_encloses_avatar_and_restores_native_margins(self):
+        self._javascript("""
+          const style = document.createElement('style');
+          style.textContent = '[data-testid="cell-frame-container"] { margin-inline:10px; height:72px; }';
+          document.head.appendChild(style);
+          document.getElementById('side').innerHTML = `
+            <div role="grid"><div role="row" style="width:calc(100% - 11px)">
+              <div id="chat-frame" data-testid="cell-frame-container">
+                <div style="padding-inline-start:13px">
+                  <img id="frame-avatar" alt="Alice" style="width:48px;height:48px">
+                </div>
+              </div>
+            </div></div>`;
+          document.getElementById('main').innerHTML =
+            '<div id="outside-frame" data-testid="cell-frame-container"></div>';
+        """)
+        frame_state = """
+          (() => {
+            const frame = document.getElementById('chat-frame');
+            const avatar = document.getElementById('frame-avatar').getBoundingClientRect();
+            const bounds = frame.getBoundingClientRect();
+            const style = getComputedStyle(frame);
+            return {
+              width: bounds.width, height: bounds.height,
+              avatarWidth: avatar.width,
+              contained: avatar.left >= bounds.left && avatar.right <= bounds.right,
+              centerOffset: Math.abs((bounds.left + bounds.right - avatar.left - avatar.right) / 2),
+              margins: [style.marginInlineStart, style.marginInlineEnd],
+              outsideMargin: getComputedStyle(document.getElementById('outside-frame')).marginInlineStart,
+            };
+          })()
+        """
+        self._save_width(85)
+        self.view.set_resizable_chat_list_enabled(True)
+        state = self._javascript(frame_state)
+        self.assertEqual(state["width"], 74)
+        self.assertEqual(state["height"], 72)
+        self.assertEqual(state["avatarWidth"], 48)
+        self.assertTrue(state["contained"])
+        self.assertLessEqual(state["centerOffset"], 1)
+        self.assertEqual(state["margins"], ["0px", "0px"])
+        self.assertEqual(state["outsideMargin"], "10px")
+
+        for width, margins in ((199, ["0px", "0px"]), (200, ["10px", "10px"])):
+            self.view.set_resizable_chat_list_enabled(False)
+            self._save_width(width)
+            self.view.set_resizable_chat_list_enabled(True)
+            self.assertEqual(self._javascript(frame_state)["margins"], margins)
+
+        self.view.compact_chat_list()
+        self.assertEqual(self._javascript(frame_state)["margins"], ["0px", "0px"])
+        self._press_on_handle("Enter")
+        self.assertEqual(self._javascript(frame_state)["margins"], ["10px", "10px"])
+        self.view.compact_chat_list()
+        self.view.set_resizable_chat_list_enabled(False)
+        self.assertEqual(self._javascript(frame_state)["margins"], ["10px", "10px"])
+
     def test_compact_preserves_absolute_virtualized_row_spacing(self):
         self._javascript("""
           document.getElementById('side').innerHTML = `
