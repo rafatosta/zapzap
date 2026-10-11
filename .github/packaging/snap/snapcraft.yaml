@@ -45,6 +45,7 @@ apps:
       - opengl
       - audio-playback
       - audio-record
+      - camera
       - home
       - removable-media
 
