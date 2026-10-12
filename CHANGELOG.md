@@ -19,6 +19,13 @@ releases and the AppStream metadata.
   and selection highlights enclose the avatar at 85 CSS px (#962). Add a
   WebEngine geometry regression covering the compact threshold, restoration
   and scope, and document manual validation.
+- Stop replacing newer clipboard content with an older image when the window
+  gains focus (#969, #523). Clipboard images are no longer written back while
+  ZapZap already owns the selection, which Wayland still reports right after
+  refocus, and a normalized image is discarded if the clipboard changed while
+  it was being re-encoded. Images copied in other applications are still
+  normalized for pasting (#284) and mixed text clipboards stay untouched
+  (#498). Add regression tests and document the manual validation.
 
 ## [7.5] - 2026-10-09
 
