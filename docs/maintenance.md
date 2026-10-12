@@ -386,6 +386,13 @@ Valide clique, teclado, recarga, montagem tardia, temas e zoom em sessão real.
   respeita o segundo plano; ações “Sair” usam `request_quit()`.
 - Valide restauração normal, maximizada e fullscreen. Aparência, movimento e
   redimensionamento da moldura CSR ainda exigem uma sessão gráfica real.
+- A normalização de imagens do clipboard ao ativar a janela não deve regravar
+  uma seleção que o ZapZap já possui (`ownsClipboard()`). No Wayland, a posse
+  ainda é informada logo após o foco, antes de chegar uma seleção mais nova de
+  outro cliente; regravar nesse momento substitui o conteúdo novo pela imagem
+  anterior. Pelo mesmo motivo, a escrita adiada é descartada se `dataChanged`
+  ocorrer durante a recodificação, que leva centenas de milissegundos em
+  imagens grandes. Preserve também os formatos de texto de clipboards mistos.
 
 ### Verificação passiva de versão
 

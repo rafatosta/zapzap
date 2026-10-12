@@ -158,9 +158,11 @@ class MainWindowController(MainWindowView):
         )
         self.app_settings = None
         self._last_sanitized_key = None
+        self._clipboard_generation = 0
         self._send_message_dialog = None
         self.theme_action_group = None
         self._setup_ui()
+        QApplication.clipboard().dataChanged.connect(self._on_clipboard_changed)
         self.update_state.changed.connect(self._on_update_info_changed)
         self._on_update_info_changed(self.update_state.info)
         QTimer.singleShot(0, self.update_checker.start_once)
@@ -175,6 +177,14 @@ class MainWindowController(MainWindowView):
 
     def _on_paste(self):
         clipboard = QApplication.clipboard()
+
+        # Our own selection is already normalized. On Wayland, ownership is
+        # still reported briefly after refocus, before a newer selection from
+        # another client arrives; writing back then replaces it (#969).
+        if clipboard.ownsClipboard():
+            return
+
+        generation = self._clipboard_generation
         mime_data = clipboard.mimeData()
 
         # Spreadsheet/rich-text clipboards may expose an image preview too.
@@ -202,10 +212,22 @@ class MainWindowController(MainWindowView):
                 clean_img.loadFromData(buffer.data(), "PNG")
                 QTimer.singleShot(
                     0,
-                    lambda img=clean_img.copy(): clipboard.setImage(img),
+                    lambda img=clean_img.copy(): self._write_normalized_image(
+                        img, generation
+                    ),
                 )
         finally:
             buffer.close()
+
+    def _on_clipboard_changed(self):
+        self._clipboard_generation += 1
+
+    def _write_normalized_image(self, image, generation):
+        # Re-encoding a large image takes hundreds of milliseconds. If another
+        # selection arrived meanwhile, writing would replace it (#969).
+        if generation != self._clipboard_generation:
+            return
+        QApplication.clipboard().setImage(image)
 
     # === Configuração Inicial ===
 
