@@ -13,6 +13,19 @@ releases and the AppStream metadata.
 
 ## [7.5.1] - In development
 
+### Added
+
+- Deliver supplied macOS notification images through public UserNotifications
+  communication content, with an image-attachment and Qt fallback. Keep each
+  request paired with its own account/click callback, bound pending submission
+  lifetime, contain asynchronous Qt fallback failures and remove requests on
+  close, timeout or shutdown. Respect hidden
+  sender photos and existing sound policy without Siri donation. Accept group
+  name/photo metadata only when explicitly supplied; the normal WebEngine
+  presenter still supplies one image and live group pairing is not implemented.
+  Compile the bridge on native Mac builders, declare the messaging activity in
+  the bundle and cover lifecycle, privacy, native ABI and portable packaging.
+
 ### Fixed
 
 - Remove native chat frame side margins only in compact chat lists so hover

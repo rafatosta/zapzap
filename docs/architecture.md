@@ -660,6 +660,32 @@ seleciona um backend:
 | Windows | backend Windows |
 | macOS | backend macOS |
 
+No macOS 12 ou posterior, o backend usa `macos_native_notifications.py` e a
+biblioteca `libZapZapNotifications.dylib`, compilada de `macos_notifications.m`,
+para chamar UserNotifications e Intents públicos dentro da identidade existente
+do aplicativo. O conteúdo de comunicação recebe a imagem fornecida pelo
+WebEngine. Não há doação de interação à Siri, busca de contatos, leitura de
+perfis ou download de fotos pelo backend. Se a decoração falhar, uma única
+tentativa usa anexo PNG; falha nativa ou biblioteca ausente usa o backend Qt,
+incluindo o overload `QIcon` em vez do símbolo genérico Information.
+
+Cada pedido mantém sua própria notificação WebEngine e conta. Um watchdog de
+cinco segundos limita pedidos sem resposta; a aceitação troca esse prazo pelo
+timeout de exibição existente de quatro segundos. Fechamento, clique e shutdown
+retiram somente os IDs desse backend; limpeza nativa no thread principal é
+imediata para não depender de outra iteração após `aboutToQuit`. PNGs temporários
+usam diretório 0700/arquivo 0600 e são removidos ao concluir a submissão ou
+cancelar. Esconder nomes também esconde fotos e metadados de grupo. Som continua
+vindo da página, sem duplicação nativa ou mudança nas regras de mute.
+
+`group_name`, `group_icon` e `sender_name` são entradas opcionais explícitas do
+backend. O presenter atual fornece apenas `QWebEngineNotification.icon()`;
+não existe descoberta ou pareamento automático de remetente/grupo neste fluxo.
+O badge Web padrão representa aplicativo/categoria e não é tratado como foto
+de grupo. Uma integração futura deve provar as duas identidades e imagens, sem
+inferência pelo texto da mensagem. A aparência de comunicação é decidida pelo
+macOS e exige validação gráfica real; aceitação do pedido não prova aparência.
+
 As integrações D-Bus usam exclusivamente `PyQt6.QtDBus`: o backend Portal e o
 backend Freedesktop compartilham o event loop do Qt e não dependem de
 `dbus-python` nem de um adaptador GLib adicional. No backend Freedesktop, os
@@ -798,6 +824,14 @@ com atualização própria ou gerenciada externamente não recebem um aviso
 upstream conflitante.
 
 ## Empacotamento multiplataforma
+
+O builder macOS compila a ponte Objective-C em `build/native/` com o SDK local
+e deployment target 12.0. `macos/ZapZap.spec` deriva caminhos da raiz do checkout,
+inclui a dylib como binário e mantém traduções, assets e scripts WebEngine. O
+Info.plist conserva a identidade `ZapZap` e declara `NSUserActivityTypes` com
+`INSendMessageIntent`. Wheels/checkouts sem a biblioteca usam o fallback Qt;
+nenhum binário local é versionado. As arquiteturas ARM64/x86_64 são compiladas
+nos respectivos runners nativos, sem bibliotecas privadas do Qt.
 
 O workflow de Windows produz executáveis nativos em uma matriz com `x86_64` e
 `arm64`. Cada arquitetura usa um runner e um Python da mesma arquitetura; o

@@ -317,6 +317,15 @@ rede que possam ser sensíveis.
 - Preserve tokens de ativação Portal/Wayland e o caminho X11.
 - Teste pelo menos o backend alterado e as preferências de privacidade/som.
 
+No macOS, mantenha a ponte Objective-C limitada a APIs públicas e preserve o
+fallback Qt quando a biblioteca, contexto de bundle, autorização ou decoração
+de comunicação estiver indisponível. Não adicione doação à Siri, arquivos de
+diagnóstico com payload, scraping ou um segundo app/helper de notificações.
+Metadados opcionais de grupo são fornecidos explicitamente; não trate o badge
+Web ou o texto da notificação como prova de identidade. Preserve watchdog de
+submissão, descarte de callbacks tardios e remoção síncrona no thread principal
+durante shutdown. Testes com fakes não substituem validação gráfica nativa.
+
 ### Contador nativo de não lidos
 
 - Preserve `system/notificationCounter` e atualize o badge junto ao contador
@@ -574,6 +583,21 @@ inferidas com segurança e permanecem item obrigatório da revisão.
 `pyproject.toml` define metadados Python, dependências, entry point, pacotes e
 dados incluídos. `tools/com.rtosta.zapzap.yaml` é o manifesto Flatpak usado no
 projeto. Scripts de outras plataformas ficam em `.github/packaging/`.
+
+Para macOS, `macos/build-native.sh` compila `macos_notifications.m` com Xcode
+ou Command Line Tools, deployment target 12.0 e warnings como erros.
+`macos/build.sh` chama esse passo após limpar o build e passa o spec
+`macos/ZapZap.spec` ao PyInstaller. O spec exige a biblioteca compilada, deriva
+recursos/caminhos do checkout e inclui `NSUserActivityTypes` para
+`INSendMessageIntent`. Não use caminhos de `/Applications`, bibliotecas locais
+pré-compiladas ou flags de uma arquitetura diferente do runner. Confirme em
+ARM64 e x86_64 a importação normal, assinatura do bundle e aparência real antes
+de publicar. O guard Python usa fallback Qt em macOS anterior a 12 ou quando a
+ponte não foi empacotada.
+
+`macos/test-native.sh` valida os caminhos nativos de registro, cancelamento e
+shutdown contra um centro em memória. Execute-o junto aos testes Python; ele
+não lança o ZapZap nem envia uma notificação real.
 
 Ferramentas e manifestos locais mantidos em `tools/`:
 

@@ -87,6 +87,17 @@ completa; a aparência exata dos ícones nativos, o comportamento imposto pelo
 shell e a integração real com o clipboard ainda exigem validação gráfica em
 cada sistema.
 
+Essa matriz também executa `test_macos_notification_backend.py` e
+`test_macos_notification_packaging.py`. No runner macOS, compila primeiro a
+ponte nativa e verifica seus símbolos sem chamar o centro de notificações.
+`macos/test-native.sh` compila `tests/macos_notification_bridge.m` contra a
+ponte real e um centro em memória: registro imediato, close/shutdown síncrono,
+callback após cancelamento e recusa de send fora do thread principal. Nenhum
+pedido chega ao serviço nativo de notificações.
+Os demais testes usam fakes; não enviam notificações, não solicitam permissões
+e não leem dados de conta. O teste do spec usa um checkout temporário e exige
+caminhos portáveis, recursos preservados e atividade de mensagem no Info.plist.
+
 ## Cobertura por módulo
 
 O inventário abaixo descreve a responsabilidade de cada módulo. O bloco de
@@ -123,6 +134,8 @@ documente o que ele protege.
 | `test_http_cache_size.py` | cache em MiB, tipos de cache, política de cookies, memória JavaScript, autocura persistida e fallbacks de perfil sem WebEngine real |
 | `test_initial_setup_ui.py` | onboarding, som, fechamento, permissões, dicionários e persistência |
 | `test_main_window_shortcuts.py` | atalhos da janela principal, ações de menu correspondentes e descoberta do Ctrl+J |
+| `test_macos_notification_backend.py` | imagens, privacidade, metadados explícitos de grupo, fallback, conta/clique, watchdog, callbacks tardios, objetos Qt destruídos e falhas de fallback assíncrono |
+| `test_macos_notification_packaging.py` | spec relocável, recursos/identidade/atividade, ponte obrigatória e ABI nativa sem submissão de notificação |
 | `test_memory_benchmark.py` | procfs/USS, schema JSON/CSV/Markdown, isolamento WebEngine, factory stub, cenários e comparação relativa |
 | `test_native_titlebar_theme.py` | sincronização do esquema claro/escuro com decorações nativas, modo automático e fallback para Qt antigo |
 | `test_network_privacy_settings_ui.py` | proxy exclusivamente global, strict proxy, credenciais, aplicar/descartar, feedback de falha do Qt, restauração e WebRTC |
@@ -186,6 +199,8 @@ documente o que ele protege.
 - `test_gpu_environment.py`
 - `test_http_cache_size.py`
 - `test_initial_setup_ui.py`
+- `test_macos_notification_backend.py`
+- `test_macos_notification_packaging.py`
 - `test_main_window_shortcuts.py`
 - `test_memory_benchmark.py`
 - `test_native_titlebar_theme.py`
