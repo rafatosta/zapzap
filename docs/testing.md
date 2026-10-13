@@ -97,6 +97,12 @@ pedido chega ao serviço nativo de notificações.
 Os demais testes usam fakes; não enviam notificações, não solicitam permissões
 e não leem dados de conta. O teste do spec usa um checkout temporário e exige
 caminhos portáveis, recursos preservados e atividade de mensagem no Info.plist.
+Os testes do backend também verificam que a variável experimental ausente ou
+diferente de `1` mantém Qt sem inicializar a ponte, e que o opt-in exato continua
+usando fallback Qt quando a biblioteca está indisponível. Testes do fluxo
+nativo habilitam `ZAPZAP_EXPERIMENTAL_NATIVE_NOTIFICATIONS=1` apenas no processo
+de teste com a ponte substituída por um fake. Aceitação sintética não qualifica
+entrega visível na sessão macOS.
 
 ## Cobertura por módulo
 
@@ -134,7 +140,7 @@ documente o que ele protege.
 | `test_http_cache_size.py` | cache em MiB, tipos de cache, política de cookies, memória JavaScript, autocura persistida e fallbacks de perfil sem WebEngine real |
 | `test_initial_setup_ui.py` | onboarding, som, fechamento, permissões, dicionários e persistência |
 | `test_main_window_shortcuts.py` | atalhos da janela principal, ações de menu correspondentes e descoberta do Ctrl+J |
-| `test_macos_notification_backend.py` | imagens, privacidade, metadados explícitos de grupo, fallback, conta/clique, watchdog, callbacks tardios, objetos Qt destruídos e falhas de fallback assíncrono |
+| `test_macos_notification_backend.py` | roteamento Qt por padrão, opt-in nativo exato, imagens, privacidade, metadados explícitos de grupo, fallback, conta/clique, watchdog, callbacks tardios, objetos Qt destruídos e falhas de fallback assíncrono |
 | `test_macos_notification_packaging.py` | spec relocável, recursos/identidade/atividade, ponte obrigatória e ABI nativa sem submissão de notificação |
 | `test_memory_benchmark.py` | procfs/USS, schema JSON/CSV/Markdown, isolamento WebEngine, factory stub, cenários e comparação relativa |
 | `test_native_titlebar_theme.py` | sincronização do esquema claro/escuro com decorações nativas, modo automático e fallback para Qt antigo |

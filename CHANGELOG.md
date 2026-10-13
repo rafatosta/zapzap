@@ -15,8 +15,12 @@ releases and the AppStream metadata.
 
 ### Added
 
-- Deliver supplied macOS notification images through public UserNotifications
-  communication content, with an image-attachment and Qt fallback. Keep each
+- Add an experimental opt-in for supplied macOS notification images through
+  public UserNotifications communication content, with an image-attachment and
+  Qt fallback. Normal installations keep Qt notifications; the native bridge
+  loads only with `ZAPZAP_EXPERIMENTAL_NATIVE_NOTIFICATIONS=1`. Native request
+  acceptance has not established visible delivery on all Mac installations.
+  Cover default routing, exact opt-in and unavailable bridge fallback. Keep each
   request paired with its own account/click callback, bound pending submission
   lifetime, contain asynchronous Qt fallback failures and remove requests on
   close, timeout or shutdown. Respect hidden

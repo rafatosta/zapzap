@@ -660,7 +660,14 @@ seleciona um backend:
 | Windows | backend Windows |
 | macOS | backend macOS |
 
-No macOS 12 ou posterior, o backend usa `macos_native_notifications.py` e a
+No macOS, o backend Qt é o padrão. A ponte nativa só é inicializada quando o
+processo recebe `ZAPZAP_EXPERIMENTAL_NATIVE_NOTIFICATIONS=1`; variável ausente ou
+outro valor mantém Qt, sem carregar a biblioteca nem instalar o delegate
+nativo. Aceitação por UserNotifications ainda não comprova entrega visível em
+todas as instalações e não deve alterar o caminho normal de notificações.
+
+Com esse opt-in experimental em macOS 12 ou posterior, o backend usa
+`macos_native_notifications.py` e a
 biblioteca `libZapZapNotifications.dylib`, compilada de `macos_notifications.m`,
 para chamar UserNotifications e Intents públicos dentro da identidade existente
 do aplicativo. O conteúdo de comunicação recebe a imagem fornecida pelo

@@ -1,8 +1,9 @@
-"""Public macOS communication notifications with a Qt image fallback."""
+"""Qt macOS notifications with an opt-in native communication bridge."""
 from __future__ import annotations
 
 import hashlib
 import logging
+import os
 from types import SimpleNamespace
 from typing import TYPE_CHECKING
 import uuid
@@ -30,6 +31,12 @@ class MacosNotificationBackend(QObject):
         self._active = {}
         self._conversation_seed = uuid.uuid4().hex
         self._warned_communication_fallback = False
+        self._native = None
+        # Native acceptance has not been qualified as visible delivery on all
+        # supported Mac installations. Keep normal notifications on Qt until
+        # the experimental bridge is explicitly enabled for this process.
+        if os.environ.get("ZAPZAP_EXPERIMENTAL_NATIVE_NOTIFICATIONS") != "1":
+            return
         try:
             self._native = NativeMacNotifications(self)
             self._native.event.connect(self._on_native_event)

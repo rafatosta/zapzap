@@ -592,8 +592,14 @@ recursos/caminhos do checkout e inclui `NSUserActivityTypes` para
 `INSendMessageIntent`. Não use caminhos de `/Applications`, bibliotecas locais
 pré-compiladas ou flags de uma arquitetura diferente do runner. Confirme em
 ARM64 e x86_64 a importação normal, assinatura do bundle e aparência real antes
-de publicar. O guard Python usa fallback Qt em macOS anterior a 12 ou quando a
-ponte não foi empacotada.
+de publicar. O backend Qt continua sendo o padrão, inclusive quando a ponte é
+empacotada. `ZAPZAP_EXPERIMENTAL_NATIVE_NOTIFICATIONS=1` habilita a ponte somente
+para o processo iniciado com essa variável; outros valores não a habilitam.
+Não defina esse opt-in em builds ou releases normais. Sem a variável, a
+biblioteca não é carregada e nenhum delegate nativo é instalado. Remova a
+variável e reinicie para voltar ao caminho Qt. O guard Python também usa Qt em
+macOS anterior a 12 ou quando a ponte não foi empacotada. Aceitação nativa não
+substitui a validação de entrega visível, clique e remoção em uma sessão real.
 
 `macos/test-native.sh` valida os caminhos nativos de registro, cancelamento e
 shutdown contra um centro em memória. Execute-o junto aos testes Python; ele

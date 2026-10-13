@@ -1,6 +1,7 @@
 """Synthetic native-notification payload tests; no real banner is delivered."""
 
 from types import SimpleNamespace
+import os
 from unittest.mock import MagicMock, call, patch
 
 from PyQt6.QtCore import QObject, pyqtSignal
@@ -43,8 +44,8 @@ class MacosNotificationBackendTests(QtTestCase):
         self.page = SimpleNamespace(user=SimpleNamespace(id=73))
         self.notification = MagicMock()
         self.notification.icon.return_value = solid_image("#cc2255")
-        with patch.object(module, "NativeMacNotifications", side_effect=OSError("unavailable")):
-            with self.assertLogs(module.logger, level="WARNING"):
+        with patch.dict(os.environ, {"ZAPZAP_EXPERIMENTAL_NATIVE_NOTIFICATIONS": ""}):
+            with patch.object(module, "NativeMacNotifications"):
                 self.backend = MacosNotificationBackend()
 
         for patcher in (
@@ -141,6 +142,56 @@ class FakeNative(QObject):
         self.removed.append(identifier)
 
 
+class MacosNotificationOptInTests(QtTestCase):
+    def setUp(self):
+        super().setUp()
+        self.page = SimpleNamespace(user=SimpleNamespace(id=73))
+        self.notification = MagicMock()
+        self.notification.icon.return_value = solid_image("#cc2255")
+        settings = patch.object(module.SettingsManager, "get", return_value=True)
+        settings.start()
+        self.addCleanup(settings.stop)
+
+    def test_default_route_never_loads_native_bridge(self):
+        with patch.dict(os.environ, {}, clear=True):
+            with patch.object(module, "NativeMacNotifications") as load:
+                backend = MacosNotificationBackend()
+                self.addCleanup(backend.close_all)
+                backend._notify_legacy = MagicMock()
+                backend.notify(self.page, self.notification, "Sender", "Body")
+        load.assert_not_called()
+        backend._notify_legacy.assert_called_once_with(self.page, self.notification, "Sender", "Body")
+        self.assertIsNone(backend._native)
+        self.assertEqual(backend._active, {})
+
+    def test_only_exact_one_enables_native_bridge(self):
+        for value in ("", "0", "false", "true", "yes", "1 ", " 1"):
+            with self.subTest(value=value):
+                with patch.dict(os.environ, {"ZAPZAP_EXPERIMENTAL_NATIVE_NOTIFICATIONS": value}):
+                    with patch.object(module, "NativeMacNotifications") as load:
+                        backend = MacosNotificationBackend()
+                        self.addCleanup(backend.close_all)
+                load.assert_not_called()
+                self.assertIsNone(backend._native)
+
+    def test_explicit_opt_in_initializes_native_bridge(self):
+        native = FakeNative()
+        with patch.dict(os.environ, {"ZAPZAP_EXPERIMENTAL_NATIVE_NOTIFICATIONS": "1"}):
+            with patch.object(module, "NativeMacNotifications", return_value=native) as load:
+                backend = MacosNotificationBackend()
+                self.addCleanup(backend.close_all)
+        load.assert_called_once_with(backend)
+        self.assertIs(backend._native, native)
+
+    def test_unavailable_opt_in_keeps_qt_route(self):
+        with patch.dict(os.environ, {"ZAPZAP_EXPERIMENTAL_NATIVE_NOTIFICATIONS": "1"}):
+            with patch.object(module, "NativeMacNotifications", side_effect=OSError("unavailable")):
+                with self.assertLogs(module.logger, level="WARNING"):
+                    backend = MacosNotificationBackend()
+        self.assertIsNone(backend._native)
+        self.assertTrue(backend.available())
+
+
 class ModernMacosNotificationBackendTests(QtTestCase):
     def setUp(self):
         super().setUp()
@@ -151,6 +202,7 @@ class ModernMacosNotificationBackendTests(QtTestCase):
         self.notification.icon.return_value = solid_image("#cc2255")
         self.page = SimpleNamespace(user=SimpleNamespace(id=73))
         for patcher in (
+            patch.dict(os.environ, {"ZAPZAP_EXPERIMENTAL_NATIVE_NOTIFICATIONS": "1"}),
             patch.object(module, "NativeMacNotifications", return_value=self.native),
             patch.object(module.QApplication, "instance", return_value=self.application),
             patch.object(module.SettingsManager, "get", return_value=True),
