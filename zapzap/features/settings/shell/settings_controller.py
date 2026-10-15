@@ -1,3 +1,5 @@
+
+from zapzap.core.diagnostics.webengine_probe import probe
 """Controller for the settings shell."""
 
 from dataclasses import dataclass
@@ -244,6 +246,7 @@ class SettingsController(SettingsView):
 
     def open_page_id(self, page_id):
         """Create a registered page on first use and select it."""
+        probe.technical("settings", page_id)
         page = self._ensure_page(page_id)
         if page is None:
             return None

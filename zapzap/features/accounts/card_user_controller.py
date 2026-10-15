@@ -1,3 +1,5 @@
+
+from zapzap.core.diagnostics.webengine_probe import probe
 """Controller for the shared account card."""
 
 from gettext import gettext as _
@@ -157,6 +159,7 @@ class CardUserController(CardUserView):
 
     @classmethod
     def edit_user(cls, parent, user: User):
+        probe.technical("account", "edit-open")
         model = CardUserModel(user)
         browser = cls._get_browser()
         profile_view = (
@@ -174,8 +177,10 @@ class CardUserController(CardUserView):
         )
         dialog.name_edit.setFocus()
         if dialog.exec() != dialog.DialogCode.Accepted:
+            probe.technical("account", "edit-cancelled")
             return False
 
+        probe.technical("account", "edit-accepted")
         model.name = dialog.account_name()
         if dialog.icon_action() != EditAccountDialog.KEEP_ICON:
             model.set_icon(dialog.staged_icon())

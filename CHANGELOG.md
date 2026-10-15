@@ -29,6 +29,15 @@ releases and the AppStream metadata.
   presenter still supplies one image and live group pairing is not implemented.
   Compile the bridge on native Mac builders, declare the messaging activity in
   the bundle and cover lifecycle, privacy, native ABI and portable packaging.
+- Improve diagnostic evidence without changing application behavior: explicitly
+  distinguish previous-session termination, current Python exceptions and
+  unattributed history; preserve structured Chromium versions and UTC times,
+  report process flags rather than recomputed preferences, and expose bounded
+  Flatpak runtime metadata. Extend existing opt-in traces with content-free
+  operation stages. Minimize local crash ZIPs, bound retained ZIPs/fatal history
+  and manual tail reads, and remove URL identifiers and unknown flag values.
+  Add precision/privacy regressions and document the issue diagnostic matrix,
+  resource costs and remaining manual investigation requirements.
 
 ### Fixed
 

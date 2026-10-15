@@ -1,5 +1,7 @@
+import configparser
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -66,7 +68,7 @@ class RuntimeEnvironmentDebug:
 
     def _safe_env(self) -> Dict[str, str]:
         return {
-            key: value
+            key: " ".join(self._split_flags(value)) if key == "QTWEBENGINE_CHROMIUM_FLAGS" else value
             for key, value in self.env.items()
             if key in self._ENV_ALLOWLIST and value
         }
@@ -100,7 +102,18 @@ class RuntimeEnvironmentDebug:
     def _split_flags(value: Any) -> list[str]:
         if not isinstance(value, str):
             return []
-        return [flag for flag in value.split() if flag]
+        safe = []
+        valued = {"--enable-features", "--disable-features", "--force-webrtc-ip-handling-policy", "--autoplay-policy", "--use-gl", "--use-angle"}
+        for flag in value.split()[:128]:
+            name, separator, argument = flag.partition("=")
+            if not re.fullmatch(r"--[a-z][a-z0-9-]{0,80}", name):
+                continue
+            if separator:
+                argument = argument if name in valued and re.fullmatch(r"[A-Za-z0-9_,.-]{1,512}", argument) else "[removed]"
+                safe.append(name + "=" + argument)
+            else:
+                safe.append(name)
+        return safe
 
     @staticmethod
     def _unique(items: list[str]) -> list[str]:
@@ -246,12 +259,15 @@ class RuntimeEnvironmentDebug:
             application.append("--single-process")
         if performance.get_boolean_setting("process_per_site"):
             application.append("--process-per-site")
-        effective = self._unique(inherited + persisted + application)
+        # SetupManager has already assembled the process environment. Preferences
+        # describe next-start intent and must not be unioned into runtime facts.
+        effective = self._unique(inherited)
         return {
             "inherited": inherited,
             "application": application,
             "settings": persisted,
             "effective": effective,
+            "source": "process-environment (Chromium internal defaults not observed)",
         }
 
     def _graphics_session_summary(self) -> Dict[str, Any]:
@@ -288,6 +304,24 @@ class RuntimeEnvironmentDebug:
             "container": self._get_env("container"),
             "metadata_file": "/.flatpak-info" if Path("/.flatpak-info").exists() else None,
         }
+        try:
+            parser = configparser.ConfigParser(interpolation=None)
+            content = self._read_file("/.flatpak-info")
+            if content:
+                parser.read_string(content[:65536])
+                for key in ("runtime", "app-commit", "runtime-commit", "branch", "arch"):
+                    value = parser.get("Instance", key, fallback=None)
+                    if key == "runtime" and not value:
+                        value = parser.get("Application", key, fallback=None)
+                    if value:
+                        metadata[key.replace("-", "_")] = value
+                metadata["permissions"] = {
+                    key: parser.get("Context", key, fallback="").split(";")[:32]
+                    for key in ("shared", "sockets", "devices")
+                }
+                # Filesystem paths and environment overrides are deliberately excluded.
+        except (OSError, configparser.Error):
+            pass
         return metadata
 
     def _command_output(self, command: list[str]) -> str | None:
@@ -479,6 +513,7 @@ class RuntimeEnvironmentDebug:
     def build_report(self) -> Dict[str, Any]:
         app_config = self.AppConfigReport(self.env)
 
+        process_details = self._process_details()
         report = {
             "meta": {
                 "generated_at": datetime.utcnow().isoformat() + "Z"
@@ -489,8 +524,8 @@ class RuntimeEnvironmentDebug:
             "runtime": self.runtime_info(),
             "qt": self.qt_info(),
             "app_config": app_config.build(),
-            "graphics": self._process_details(),
-            "qt_webengine": self._process_details()["qt_webengine"],
+            "graphics": process_details,
+            "qt_webengine": process_details["qt_webengine"],
             "audio": self.audio_info(),
             "locale": self.locale_info(),
             "python": self.python_info(),

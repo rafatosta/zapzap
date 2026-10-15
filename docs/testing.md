@@ -715,3 +715,20 @@ Para campanhas gráficas e gdb, siga
 uma sessão curta sem crash, ausência do frame `WebView.event`, nem um teste
 `offscreen` prova de correção. Registre fonte/revisão do checkout e bibliotecas;
 um resultado no ciclo 7.5 não é um teste da aplicação 7.4.5.
+
+### Precisão dos relatórios no ciclo 7.5.1
+
+`test_reporting.py` cobre preservação de versão Chromium/UTC estruturados,
+remoção de identificadores em paths/query/fragmentos de URLs, separação de
+histórico, marcador sem sinal versus fatal confirmado e flags do processo sem
+misturar preferências posteriores. `test_webengine_diagnostics.py` também
+confirma vocabulário fechado e horário UTC dos eventos técnicos opt-in; mantém
+as regressões de offset/inode, legado, rotação e truncamento.
+
+Os testes não reproduzem as issues, não comprovam entrega de notificação,
+codec/driver funcional, QR disponível, paste nativo ou integridade de downloads.
+Valide esses cenários em sessão gráfica real e com dados descartáveis conforme
+a matriz de investigação de `reporting.md`.
+
+Também há regressões para a allowlist de metadados Flatpak, retenção de ZIPs e
+anexos de faulthandler sem histórico, incluindo truncamento.

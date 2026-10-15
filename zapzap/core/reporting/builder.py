@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
+import json
 import platform
 import traceback
 
@@ -47,8 +48,10 @@ class ReportBuilder:
         python = runtime.get("python") or {}
         base = self.sanitizer.sanitize({
             "zapzap_version": app.get("version"),
+            "kernel_version": platform.release(),
             "package_type": app.get("packaging") or "unknown",
             "operating_system": host.get("PRETTY_NAME") or system.get("PRETTY_NAME") or platform.system(),
+            "operating_system_source": "host os-release" if host.get("PRETTY_NAME") else "runtime os-release (host unknown)" if system.get("PRETTY_NAME") else "platform API",
             "desktop_environment": ReportSanitizer.safe_environment().get("XDG_CURRENT_DESKTOP"),
             "session_type": graphics.get("xdg_session_type"),
             "architecture": platform.machine(),
@@ -70,6 +73,29 @@ class ReportBuilder:
             }),
         })
         return base
+
+    def _trace_text(self, text):
+        # Sanitize parsed records so validated UTC fields survive phone masking.
+        records = []
+        for line in text[-16000:].splitlines():
+            try:
+                value = json.loads(line)
+                if isinstance(value, dict):
+                    records.append(json.dumps(self.sanitizer.sanitize(value), sort_keys=True))
+            except ValueError:
+                continue
+        return "\n".join(records)[-16000:]
+
+    def _current_trace(self):
+        from zapzap.core.diagnostics.webengine_probe import probe
+        if not probe.enabled or not probe.path:
+            return ""
+        try:
+            with probe.path.open("rb") as stream:
+                stream.seek(max(0, probe.path.stat().st_size - 16000))
+                return self._trace_text(stream.read(16000).decode("utf-8", errors="replace"))
+        except OSError:
+            return ""
 
     def manual(
         self,
@@ -99,7 +125,12 @@ class ReportBuilder:
         if include_error and exception:
             report["error_information"] = self.sanitizer.sanitize(exception)
         if include_logs and logs:
+            report["log_scope"] = "historical-unattributed"
             report["sanitized_logs"] = self.sanitizer.sanitize_text(logs)[-16000:]
+        if include_logs:
+            trace = self._current_trace()
+            if trace:
+                report["session_events"] = trace
         return ReportDocument(report)
 
     def crash(self, exc_type, exc_value, exc_traceback, *, severity: str) -> ReportDocument:
@@ -114,6 +145,8 @@ class ReportBuilder:
             "application": "zapzap",
             "report_type": "automatic_crash",
             "severity": severity,
+            "failure_scope": "current-session-python-exception",
+            "session_events": self._current_trace(),
             "system_information": self._system_information(),
             "error_information": self.sanitizer.sanitize(error),
             "fingerprint": crash_fingerprint(exc_type, exc_traceback),
@@ -137,13 +170,16 @@ class ReportBuilder:
             "schema_version": self.SCHEMA_VERSION,
             "application": "zapzap",
             "report_type": "automatic_crash",
-            "severity": "fatal_crash",
+            "severity": "fatal_crash" if signature["signal"] != "unknown" else "unexpected_termination",
+            "failure_scope": "previous-session",
+            "termination_evidence": "fatal-signal" if signature["signal"] != "unknown" else "unclean-marker-only",
+            "investigation_note": "An unclean marker does not distinguish crash, forced kill or power loss. Last events are context, not proof of cause.",
             "system_information": system,
             "session_information": self.sanitizer.sanitize(session or {}),
             "error_information": self.sanitizer.sanitize(error),
             "fingerprint_version": 2,
             "fingerprint": fingerprint,
             "runtime_fingerprint": variant,
-            "diagnostic_trace": self.sanitizer.sanitize_text(diagnostic_trace)[-16000:],
+            "diagnostic_trace": self._trace_text(diagnostic_trace),
             "timestamp": self._timestamp(),
         })

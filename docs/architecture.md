@@ -923,3 +923,11 @@ Este bloco é verificado automaticamente contra
 - `zapzap.ui.components`
 - `zapzap.ui.primitives`
 <!-- structure-check:packages:end -->
+
+O diagnóstico mantém a mesma divisão: `CrashDumpHandler` gera artefatos locais,
+`CrashSessionMonitor` atribui evidência à sessão anterior, `ReportBuilder`
+minimiza/sanitiza e `ReportMarkdownFormatter` apresenta o documento canônico.
+`WebEngineProbe.technical` reutiliza o trace opt-in para operações de downloads,
+configurações, contas, página, colagem sem formatação e notificações, com
+vocabulário fechado sem identidade de conta. Consulte a matriz e os limites em
+[reporting.md](reporting.md#auditoria-de-diagnóstico--ciclo-751).

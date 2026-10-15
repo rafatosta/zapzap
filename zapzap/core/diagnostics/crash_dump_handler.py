@@ -4,7 +4,7 @@ import traceback
 import json
 import zipfile
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from typing import Optional
 import faulthandler
 
@@ -56,6 +56,9 @@ class CrashDumpHandler:
 
         self.faulthandler_path = self.dump_dir / "faulthandler.log"
 
+        self._prune_dumps()
+        self._fault_offset = 0
+        self._fault_identity = None
         if self.enable_faulthandler:
             self._enable_faulthandler()
 
@@ -129,6 +132,7 @@ class CrashDumpHandler:
 
             # 5 Compactação
             self._zip_dump(work_dir, zip_path)
+            self._prune_dumps()
 
             # This path is intentionally local-only. It has no import or call
             # to the clipboard or browser; review is offered on a later startup.
@@ -168,7 +172,9 @@ class CrashDumpHandler:
         )
 
         path = work_dir / "runtime-debug.json"
-        RuntimeEnvironmentDebug().save_json(str(path))
+        from zapzap.core.reporting.builder import ReportBuilder
+        data = ReportBuilder(runtime_factory=RuntimeEnvironmentDebug)._system_information()
+        path.write_text(json.dumps(data, indent=2), encoding="utf-8")
 
     def _dump_all_webengine_profiles(self, work_dir: Path) -> None:
         for idx, profile in enumerate(list(self._profiles)):
@@ -180,14 +186,9 @@ class CrashDumpHandler:
 
     def _dump_single_webengine_profile(self, profile, path: Path) -> None:
         data = {
-            "storage_name": profile.storageName(),
-            "cache_path": profile.cachePath(),
             "http_cache_type": profile.httpCacheType().name,
             "http_cache_max_size": profile.httpCacheMaximumSize(),
             "persistent_cookies_policy": profile.persistentCookiesPolicy().name,
-            "persistent_storage_path": profile.persistentStoragePath(),
-            "download_path": profile.downloadPath(),
-            "user_agent": profile.httpUserAgent(),
             "spellcheck_enabled": profile.isSpellCheckEnabled(),
             "spellcheck_languages": profile.spellCheckLanguages(),
         }
@@ -200,9 +201,9 @@ class CrashDumpHandler:
     ) -> None:
         path = work_dir / "traceback.log"
         with open(path, "w", encoding="utf-8") as f:
-            traceback.print_exception(
-                exc_type, exc_value, exc_traceback, file=f
-            )
+            from zapzap.core.reporting.sanitizer import ReportSanitizer
+            text = "".join(traceback.format_exception(exc_type, exc_value, exc_traceback))
+            f.write(ReportSanitizer().sanitize_text(text)[-24000:])
 
     # ==================================================
     # Utilidades
@@ -225,10 +226,16 @@ class CrashDumpHandler:
         Ativa o faulthandler para capturar segfaults e sinais fatais.
         """
         try:
+            # Bound retained history at startup, before enabling the fatal fd.
+            if self.faulthandler_path.exists() and self.faulthandler_path.stat().st_size > 1024 * 1024:
+                self.faulthandler_path.replace(self.faulthandler_path.with_suffix(".previous.log"))
             # append → preserva histórico
             self._faulthandler_file = open(
                 self.faulthandler_path, "a", encoding="utf-8"
             )
+            stat = self.faulthandler_path.stat()
+            self._fault_offset = stat.st_size
+            self._fault_identity = (stat.st_dev, stat.st_ino)
             faulthandler.enable(
                 file=self._faulthandler_file,
                 all_threads=True
@@ -239,10 +246,26 @@ class CrashDumpHandler:
     def _attach_faulthandler_log(self, work_dir: Path) -> None:
         try:
             if self.faulthandler_path.exists():
-                target = work_dir / "faulthandler.log"
-                target.write_text(
-                    self.faulthandler_path.read_text(errors="ignore"),
-                    encoding="utf-8"
-                )
+                from zapzap.core.reporting.sanitizer import ReportSanitizer
+                with self.faulthandler_path.open("rb") as stream:
+                    stat = self.faulthandler_path.stat()
+                    if (stat.st_dev, stat.st_ino) != self._fault_identity or stat.st_size < self._fault_offset:
+                        return
+                    stream.seek(max(self._fault_offset, stat.st_size - 16000))
+                    text = stream.read(16000).decode("utf-8", errors="replace")
+                if text:
+                    (work_dir / "faulthandler-current-session.log").write_text(
+                        ReportSanitizer().sanitize_text(text), encoding="utf-8")
         except Exception as e:
             print("Falha ao anexar faulthandler.log:", e)
+
+    def _prune_dumps(self):
+        try:
+            cutoff = datetime.now(timezone.utc) - timedelta(days=30)
+            files = sorted(self.dump_dir.glob(f"{self.app_name}-crash-*.zip"),
+                           key=lambda p: p.stat().st_mtime, reverse=True)
+            for index, path in enumerate(files):
+                if index >= 20 or datetime.fromtimestamp(path.stat().st_mtime, timezone.utc) < cutoff:
+                    path.unlink(missing_ok=True)
+        except OSError:
+            pass

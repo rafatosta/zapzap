@@ -634,6 +634,7 @@ class WebView(QWebEngineView):
             self.update_button_signal.emit(self.page_index, qtd)
 
     def _on_load_finished(self, success):
+        probe.technical("page", "load-ok" if success else "load-failed")
         with probe.scope("load_callback", self):
             if self._shutting_down or not self.user.enable or not self.whatsapp_page:
                 return
@@ -829,11 +830,13 @@ class WebView(QWebEngineView):
 
     def paste_as_plain_text(self):
         """Paste only clipboard text without changing normal Ctrl+V behavior."""
+        probe.technical("clipboard", "plain-text-paste")
         clipboard = QApplication.clipboard()
         text = clipboard.text() if clipboard is not None else ""
         text = self._normalize_plain_text_paste(text)
         if clipboard is not None and hasattr(clipboard, "mimeData"):
             mime = clipboard.mimeData()
+            probe.clipboard_formats(mime)
             if mime and mime.hasHtml():
                 # LibreOffice also publishes an HTML table. Unlike Qt's
                 # flattened text, it explicitly represents empty TR/TD cells.

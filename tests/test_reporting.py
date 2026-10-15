@@ -70,6 +70,87 @@ class ReportingCoreTests(unittest.TestCase):
         self.assertNotIn("sanitized_logs", payload)
         self.assertNotIn("alice@example.com", payload["user_description"])
 
+    def test_technical_versions_and_dates_survive_without_weakening_free_text(self):
+        sanitizer = ReportSanitizer()
+        result = sanitizer.sanitize({"chromium_version": "146.0.7680.165",
+                                     "started_at": "2026-10-13T14:14:39.123+00:00",
+                                     "description": "+55 71 99999-8888"})
+        self.assertEqual(result["chromium_version"], "146.0.7680.165")
+        self.assertEqual(result["started_at"], "2026-10-13T14:14:39.123+00:00")
+        self.assertNotIn("99999", result["description"])
+
+    def test_urls_drop_path_arbitrary_query_and_fragment_identifiers(self):
+        result = ReportSanitizer().sanitize_text("https://user:pass@example.org/conversation/private?unknown=private#private")
+        self.assertEqual(result, "https://example.org/[removed]")
+
+    def test_unknown_termination_is_not_confirmed_fatal_signal(self):
+        builder = ReportBuilder(runtime_factory=_Runtime)
+        payload = builder.unexpected_shutdown(session={"phase": "running"}).payload()
+        self.assertEqual(payload["severity"], "unexpected_termination")
+        self.assertEqual(payload["termination_evidence"], "unclean-marker-only")
+        self.assertEqual(payload["failure_scope"], "previous-session")
+        confirmed = builder.unexpected_shutdown(logs="Fatal Python error: Segmentation fault\n").payload()
+        self.assertEqual(confirmed["termination_evidence"], "fatal-signal")
+        manual = builder.manual(category="other", description="", expected_behavior="", frequency="unknown", logs="old fatal").payload()
+        self.assertEqual(manual["log_scope"], "historical-unattributed")
+        self.assertIn("Historical / unattributed", ReportMarkdownFormatter.format(ReportDocument(manual)))
+
+    def test_effective_flags_do_not_use_changed_preferences_or_leak_values(self):
+        from zapzap.core.diagnostics.runtime_environment_debug import RuntimeEnvironmentDebug
+        with patch.dict(os.environ, {"QTWEBENGINE_CHROMIUM_FLAGS": "--disable-gpu --proxy-server=private:999 --custom=secret"}, clear=True):
+            with patch("zapzap.core.diagnostics.runtime_environment_debug.SettingsManager.get", return_value="--single-process"):
+                flags = RuntimeEnvironmentDebug()._chromium_flags_summary()
+        self.assertEqual(flags["effective"], ["--disable-gpu", "--proxy-server=[removed]", "--custom=[removed]"])
+        self.assertNotIn("--single-process", flags["effective"])
+
+    def test_flatpak_metadata_selects_runtime_commits_and_safe_permissions(self):
+        from zapzap.core.diagnostics.runtime_environment_debug import RuntimeEnvironmentDebug
+        content = ("[Application]\nruntime=org.kde.Platform/x86_64/6.11\n"
+                   "[Instance]\napp-commit=" + "a" * 64 + "\nruntime-commit=" + "b" * 64 +
+                   "\n[Context]\nsockets=wayland;pulseaudio;\nfilesystems=/home/private;\n"
+                   "[Environment]\nSECRET=hidden\n")
+        runtime = RuntimeEnvironmentDebug()
+        with patch.object(runtime, "_read_file", return_value=content):
+            result = runtime._flatpak_runtime_summary()
+        self.assertEqual(result["runtime"], "org.kde.Platform/x86_64/6.11")
+        self.assertEqual(result["app_commit"], "a" * 64)
+        self.assertIn("wayland", result["permissions"]["sockets"])
+        self.assertNotIn("private", json.dumps(result))
+        self.assertNotIn("hidden", json.dumps(result))
+
+    def test_zip_attachment_excludes_history_and_bounds_tail(self):
+        from zapzap.core.diagnostics.crash_dump_handler import CrashDumpHandler
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            handler = CrashDumpHandler(dump_dir=root, enable_faulthandler=False)
+            handler.faulthandler_path.write_text("historical secret\n")
+            stat = handler.faulthandler_path.stat()
+            handler._fault_offset = stat.st_size
+            handler._fault_identity = (stat.st_dev, stat.st_ino)
+            work = root / "work"
+            work.mkdir()
+            with handler.faulthandler_path.open("a") as stream:
+                stream.write("current alice@example.com\n")
+            handler._attach_faulthandler_log(work)
+            text = (work / "faulthandler-current-session.log").read_text()
+            self.assertNotIn("historical", text)
+            self.assertNotIn("alice@example.com", text)
+            self.assertIn("current", text)
+            handler.faulthandler_path.write_text("")
+            (work / "faulthandler-current-session.log").unlink()
+            handler._attach_faulthandler_log(work)
+            self.assertEqual(list(work.iterdir()), [])
+
+    def test_zip_retention_is_bounded(self):
+        from zapzap.core.diagnostics.crash_dump_handler import CrashDumpHandler
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            handler = CrashDumpHandler(dump_dir=root, enable_faulthandler=False)
+            for index in range(23):
+                (root / f"{handler.app_name}-crash-{index}.zip").write_bytes(b"zip")
+            handler._prune_dumps()
+            self.assertEqual(len(list(root.glob("*.zip"))), 20)
+
     def test_store_is_bounded_expires_old_entries_and_preserves_status(self):
         with tempfile.TemporaryDirectory() as directory:
             store = LocalReportStore(Path(directory))
@@ -182,7 +263,9 @@ class ReportingCoreTests(unittest.TestCase):
 
         self.assertIn("graphics", report)
         self.assertEqual(report["graphics"]["graphics"]["xdg_session_type"], "wayland")
-        self.assertEqual(report["graphics"]["graphics"]["qt_platform_name"], "xcb")
+        from PyQt6.QtGui import QGuiApplication
+        app = QGuiApplication.instance()
+        self.assertEqual(report["graphics"]["graphics"]["qt_platform_name"], app.platformName() if app else "xcb")
         self.assertEqual(report["graphics"]["vaapi"]["libva_driver_name"], "iHD")
         self.assertIn("effective", report["qt_webengine"]["chromium_flags"])
         self.assertIn("--existing", report["qt_webengine"]["chromium_flags"]["effective"])

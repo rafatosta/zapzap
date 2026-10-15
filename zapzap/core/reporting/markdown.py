@@ -25,7 +25,9 @@ FREQUENCY_LABELS = {
 SYSTEM_LABELS = {
     "zapzap_version": "ZapZap",
     "package_type": "Package",
+    "kernel_version": "Kernel",
     "operating_system": "Operating system",
+    "operating_system_source": "OS information source",
     "desktop_environment": "Desktop",
     "session_type": "Session",
     "architecture": "Architecture",
@@ -107,31 +109,50 @@ class ReportMarkdownFormatter:
             gpu = graphics.get("gpu") or {}
             if gpu.get("count") is not None:
                 lines.append(f"- **GPU:** {gpu.get('count')} device(s); vendor={gpu.get('vendor') or 'unknown'}")
+            if gpu.get("pci_ids"):
+                lines.append(f"- **Visible GPU PCI IDs:** {', '.join(gpu['pci_ids'])}")
+            for device in gpu.get("devices") or []:
+                if device.get("driver"):
+                    lines.append(f"- **Visible GPU driver:** {device['driver']}")
+            lines.append("- GPU inventory does not establish the renderer or active acceleration.")
             vaapi = graphics.get("vaapi") or {}
             if vaapi.get("libva_driver_name"):
                 lines.append(f"- **VAAPI:** {vaapi.get('libva_driver_name')}")
             vulkan = graphics.get("vulkan") or {}
             if vulkan.get("available") is not None:
-                lines.append(f"- **Vulkan:** {'available' if vulkan.get('available') else 'unavailable'}")
+                lines.append(f"- **Vulkan ICD directory:** {'present' if vulkan.get('available') else 'not observed'} (does not prove acceleration)")
             lines.append("")
 
             qt_flags = (graphics.get("qt_webengine") or {}).get("chromium_flags") or {}
             effective_flags = qt_flags.get("effective")
             if effective_flags:
                 lines.extend(("### QtWebEngine", ""))
-                lines.append(f"- **Chromium flags:** {', '.join(effective_flags[:8])}{'…' if len(effective_flags) > 8 else ''}")
+                lines.append("- Source: process environment; internal Chromium defaults are not observed.")
+                lines.append(f"- **Chromium flags:** {', '.join(effective_flags)}")
                 lines.append("")
 
+        flatpak = graphics.get("flatpak") or {}
+        if flatpak.get("is_flatpak"):
+            lines.extend(("### Flatpak runtime", "", "<pre>", escape(str(flatpak)), "</pre>", ""))
+        if payload.get("session_events"):
+            lines.extend(("### Current session events (opt-in)", "", "<pre>",
+                          escape(payload["session_events"]), "</pre>",
+                          "Last operations are context, not confirmed causes.", ""))
         error = payload.get("error_information") or {}
         crash_session = payload.get("session_information") or {}
         if crash_session:
             lines.extend(("### Failed session", ""))
-            for key in ("started_at", "phase", "log_attribution", "diagnostic_variant"):
+            for key in ("session_id", "started_at", "phase", "log_attribution", "diagnostic_variant"):
                 if crash_session.get(key):
                     lines.append(f"- **{key}:** {crash_session[key]}")
             if not system:
                 lines.append("- Previous runtime unavailable; current runtime is not substituted.")
             lines.append("")
+        if payload.get("failure_scope"):
+            lines.extend(("### Failure evidence", "", f"- **Scope:** {payload['failure_scope']}",
+                          f"- **Evidence:** {payload.get('termination_evidence', 'unhandled Python exception; process death not established')}", ""))
+        if payload.get("investigation_note"):
+            lines.extend((payload["investigation_note"], ""))
         if error:
             lines.extend(("<details>", "<summary>Technical error information</summary>", ""))
             if error.get("type"):
@@ -150,6 +171,7 @@ class ReportMarkdownFormatter:
             lines.extend((
                 "<details>",
                 "<summary>Sanitized logs</summary>",
+                "Historical / unattributed logs; not evidence of a failure in this session.",
                 "",
                 "<pre>",
                 escape(str(payload["sanitized_logs"])),
@@ -166,6 +188,8 @@ class ReportMarkdownFormatter:
         if payload.get("diagnostic_trace"):
             lines.extend(("<details>", "<summary>Opt-in WebEngine trace (failed session)</summary>",
                           "", "<pre>", escape(payload["diagnostic_trace"]), "</pre>", "", "</details>", ""))
+        lines.extend(("### Additional information needed", "",
+                      "Provide reproduction steps, observed event time and timezone, and comparisons with a browser or another environment. Do not attach private conversations, QR codes or media.", ""))
         lines.extend((
             "---",
             "Prepared locally by ZapZap after review by the user.",

@@ -141,6 +141,7 @@ class CrashSessionMonitor:
                     diagnostic_trace=self._diagnostic_tail(previous),
                     system_information=previous.get("system_information"),
                     session={
+                        "session_id": previous.get("session_id"),
                         "started_at": previous.get("started_at"),
                         "phase": previous.get("phase", "unknown"),
                         "log_attribution": attribution,

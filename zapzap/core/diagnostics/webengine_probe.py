@@ -1,6 +1,7 @@
 """Opt-in local WebEngine evidence; never change lifecycle or handle signals."""
 
 from contextlib import contextmanager
+from datetime import datetime, timezone
 from enum import Enum
 import json
 import logging
@@ -33,6 +34,7 @@ class WebEngineProbe:
         self._objects = {}
         self._watched = set()
         self._counter = 0
+        self._session_id = None
         self._local = threading.local()
         self._lock = threading.RLock()
 
@@ -41,6 +43,7 @@ class WebEngineProbe:
         if os.environ.get("ZAPZAP_WEBENGINE_TRACE") != "1":
             return
         try:
+            self._session_id = session_id
             self.path = Path(directory) / f"webengine-{session_id}.jsonl"
             self.path.parent.mkdir(parents=True, exist_ok=True)
             self._fd = os.open(self.path, os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o600)
@@ -58,6 +61,39 @@ class WebEngineProbe:
         except OSError:
             self.close()
             logging.getLogger(__name__).warning("WebEngine trace unavailable", exc_info=True)
+
+    def clipboard_formats(self, mime):
+        if not self.enabled or mime is None:
+            return
+        try:
+            formats = set(mime.formats())
+            for name, known in (("text", {"text/plain"}), ("html", {"text/html"}),
+                                ("image", {"image/png", "image/jpeg", "application/x-qt-image"}),
+                                ("uri", {"text/uri-list"})):
+                if formats & known:
+                    self.technical("clipboard", "mime-" + name)
+        except Exception:
+            pass
+
+    def technical(self, category, stage):
+        """Record only fixed, content-free operation vocabulary; fail open."""
+        if not self.enabled:
+            return
+        allowed = {
+            "download": {"requested", "save-dialog", "completed", "cancelled", "interrupted", "blocked", "failed", "type-image", "type-video", "type-audio", "type-zip", "type-other"},
+            "settings": {"accounts", "appearance", "notifications", "language_downloads", "network_privacy", "performance_experimental", "debugging", "system_startup", "permissions", "advanced_customizations", "about"},
+            "account": {"edit-open", "edit-accepted", "edit-cancelled"},
+            "page": {"load-ok", "load-failed"},
+            "clipboard": {"plain-text-paste", "mime-text", "mime-html", "mime-image", "mime-uri"},
+            "notification": {"global-disabled", "account-disabled", "backend-unavailable", "forwarded", "forward-failed"},
+        }
+        if not self.enabled or stage not in allowed.get(category, ()):
+            return
+        try:
+            self.record("technical_operation", kind=category, phase=stage)
+        except Exception:
+            # Evidence must never change the operation being observed.
+            pass
 
     def key(self, obj):
         object_id = id(obj)
@@ -110,7 +146,7 @@ class WebEngineProbe:
     def _write(self, action, key, fields):
         if not self.enabled:
             return
-        entry = {"time_ns": time.monotonic_ns(), "thread": threading.get_ident(),
+        entry = {"session_id": self._session_id, "recorded_at": datetime.now(timezone.utc).isoformat(), "time_ns": time.monotonic_ns(), "thread": threading.get_ident(),
                  "action": action, "object": key, **fields}
         data = (json.dumps(entry, sort_keys=True) + "\n").encode()
         try:
