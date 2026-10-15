@@ -11,7 +11,7 @@ This mandatory record starts after version 7.4.1. The 7.4.1 entry below is the
 historical baseline; older release summaries remain available in the GitHub
 releases and the AppStream metadata.
 
-## [7.5.1] - In development
+## [7.5.1] - 2026-10-15
 
 ### Added
 
@@ -38,6 +38,11 @@ releases and the AppStream metadata.
   and manual tail reads, and remove URL identifiers and unknown flag values.
   Add precision/privacy regressions and document the issue diagnostic matrix,
   resource costs and remaining manual investigation requirements.
+
+### Changed
+
+- Prepare 7.5.1 for publication with dated release notes, a versioned
+  comparison link and a user-facing AppStream summary for Flathub.
 
 ### Fixed
 
@@ -647,7 +652,7 @@ releases and the AppStream metadata.
 - Improved reliability when ZapZap is closed by the operating system.
 - Included performance improvements.
 
-[7.5.1]: https://github.com/rafatosta/zapzap/compare/7.5...HEAD
+[7.5.1]: https://github.com/rafatosta/zapzap/compare/7.5...7.5.1
 [7.5]: https://github.com/rafatosta/zapzap/compare/7.4.5...7.5
 [7.4.5]: https://github.com/rafatosta/zapzap/compare/7.4.4...7.4.5
 [7.4.4]: https://github.com/rafatosta/zapzap/compare/7.4.3...7.4.4

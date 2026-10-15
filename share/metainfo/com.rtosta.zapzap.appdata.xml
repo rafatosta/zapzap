@@ -88,6 +88,21 @@
   <content_rating type="oars-1.1" />
 
   <releases>
+    <release version="7.5.1" date="2026-10-15">
+      <description>
+        <p>
+          Version 7.5.1 fixes clipboard images being replaced by older content
+          when returning to ZapZap and improves avatar highlights in compact
+          chat lists.
+        </p>
+        <p>
+          Problem reports gain more precise crash diagnostics and stronger
+          privacy protections. On macOS, native notification images are
+          available through an experimental opt-in; normal installations
+          continue to use Qt notifications.
+        </p>
+      </description>
+    </release>
     <release version="7.5" date="2026-10-09">
       <description>
         <p>
