@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+cd "$(dirname "${BASH_SOURCE[0]}")/../../.."
+
 echo "# === macOS Builder ==="
 
 APP_NAME="ZapZap"
@@ -10,7 +12,7 @@ python -m pip install --upgrade pip
 python -m pip install pyinstaller
 python -m pip install -r requirements.txt
 
-VERSION=$(python3 -c "import sys, os; sys.path.insert(0, os.getcwd()); import zapzap; print(zapzap.__version__)")
+VERSION=$(bash .github/packaging/common/version.sh)
 if [ -z "$VERSION" ]; then
     VERSION="dev"
 fi
@@ -18,16 +20,13 @@ fi
 echo "# === Cleaning previous builds ==="
 rm -rf dist build
 
+echo "# === Compiling native notification bridge ==="
+bash .github/packaging/macos/build-native.sh
+
 echo "# === Running PyInstaller ==="
 python -m PyInstaller \
-    --name "$APP_NAME" \
-    --windowed \
     --noconfirm \
-    --collect-submodules "zapzap.features.settings.pages" \
-    --add-data "zapzap/po:zapzap/po" \
-    --add-data "zapzap/assets:zapzap/assets" \
-    --add-data "zapzap/features/browser/web/scripts:zapzap/features/browser/web/scripts" \
-    zapzap/__main__.py
+    .github/packaging/macos/ZapZap.spec
 
 echo "# === Packaging into DMG ==="
 ARCH=$(uname -m)

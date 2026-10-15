@@ -88,3 +88,12 @@ jobs:
 
       - name: Validate native titlebar theme
         run: python -m unittest discover -s tests -p "test_native_titlebar_theme.py" -v
+
+      - name: Compile macOS notification bridge
+        if: runner.os == 'macOS'
+        run: |
+          bash .github/packaging/macos/build-native.sh
+          bash .github/packaging/macos/test-native.sh
+
+      - name: Validate macOS notification contracts
+        run: python -m unittest discover -s tests -p "test_macos_notification*.py" -v
