@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from zapzap.core.diagnostics.webengine_probe import probe
+
 from typing import TYPE_CHECKING
 
 from pathlib import Path
@@ -97,14 +99,17 @@ class NotificationService:
         # 1. Regras globais (app / usuário)
         # =================================================
         if not SettingsManager.get("notification/app", True):
+            probe.technical("notification", "global-disabled")
             return
 
         if not SettingsManager.get(
             f"{page.user.id}/notification", True
         ):
+            probe.technical("notification", "account-disabled")
             return
 
         if not self.backend:
+            probe.technical("notification", "backend-unavailable")
             return
 
         # =================================================
@@ -132,7 +137,9 @@ class NotificationService:
                 title=title,
                 message=message,
             )
+            probe.technical("notification", "forwarded")
         except Exception:
+            probe.technical("notification", "forward-failed")
             # Notification failures must never crash the app.
             logger.warning(
                 "Notification backend failed; dropping notification",

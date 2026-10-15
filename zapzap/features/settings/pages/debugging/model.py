@@ -54,7 +54,11 @@ class DebuggingSettingsModel:
         if not path.exists():
             return ""
         try:
-            return path.read_text(encoding="utf-8", errors="replace")[-16000:]
+            from zapzap.core.reporting.sanitizer import ReportSanitizer
+            with path.open("rb") as stream:
+                stream.seek(max(0, path.stat().st_size - 16000))
+                text = stream.read(16000).decode("utf-8", errors="replace")
+            return ReportSanitizer().sanitize_text(text)
         except OSError:
             return ""
 

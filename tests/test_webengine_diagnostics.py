@@ -40,6 +40,19 @@ class _Runtime:
 
 
 class NativeReportingTests(unittest.TestCase):
+    def test_technical_trace_accepts_only_fixed_operations_and_has_utc_time(self):
+        with tempfile.TemporaryDirectory() as directory, patch.dict(os.environ, {"ZAPZAP_WEBENGINE_TRACE": "1"}):
+            probe = WebEngineProbe()
+            probe.configure(directory, "a" * 32)
+            probe.technical("account", "private account name")
+            probe.technical("account", "edit-open")
+            probe.close()
+            records = [json.loads(line) for line in probe.path.read_text().splitlines()]
+        self.assertEqual(len(records), 2)
+        self.assertEqual(records[-1]["phase"], "edit-open")
+        self.assertIn("+00:00", records[-1]["recorded_at"])
+        self.assertNotIn("private", str(records))
+
     def test_signal_and_shutdown_split_families_but_lines_addresses_and_versions_do_not(self):
         dispatch = native_crash_signature(fatal())
         relocated = native_crash_signature(fatal(line=999).replace("/app/lib/", "/home/private/site/").replace("0x0123456789abcdef", "0x123"))

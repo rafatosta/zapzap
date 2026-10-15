@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from zapzap.core.diagnostics.webengine_probe import probe
+
 import logging
 import os
 import time
@@ -97,6 +99,16 @@ class DownloadManager:
     ):
         from PyQt6.QtWebEngineCore import QWebEngineDownloadRequest
         from zapzap.features.downloads.ui.download_dialog import DownloadDialog
+
+        probe.technical("download", "requested")
+        if probe.enabled:
+            try:
+                mime = DownloadManager._safe_mime_type(download)
+                kind = next((kind for kind in ("image", "video", "audio") if mime.startswith(kind + "/")),
+                            "zip" if mime == "application/zip" else "other")
+                probe.technical("download", "type-" + kind)
+            except Exception:
+                pass
 
         if (
             download.state()
@@ -503,6 +515,7 @@ class DownloadManager:
 
     @staticmethod
     def _record_terminal(download, status):
+        probe.technical("download", status)
         meta = DownloadManager._meta(download) or {}
         path = DownloadManager._download_path(download)
         try:
@@ -1176,6 +1189,7 @@ class DownloadManager:
 
     @staticmethod
     def _choose_download_target(download, parent=None, *, dialog_parent=None) -> bool:
+        probe.technical("download", "save-dialog")
         try:
             directory = (
                 DownloadManager._session_directory(parent)

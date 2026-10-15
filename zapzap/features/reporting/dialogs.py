@@ -94,7 +94,7 @@ def report_preview_text(document: ReportDocument) -> str:
             lines.append(_("Error type: {value}").format(value=error["type"]))
         if error.get("message"):
             lines.append(_("Error details: {value}").format(value=error["message"]))
-    if payload.get("sanitized_logs"):
+    if payload.get("sanitized_logs") or payload.get("session_events") or payload.get("diagnostic_trace"):
         lines.extend(("", _("Sanitized logs are included in the technical information.")))
     lines.extend([
         "",

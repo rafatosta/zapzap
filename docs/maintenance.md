@@ -683,3 +683,11 @@ destruição, variantes em processos novos e I/O. A validação `offscreen` não
 reproduz touchpad, compositor ou o SIGSEGV de usuários. A/B de runtime exige
 bibliotecas coerentes e símbolos do artefato; o launcher não instala ou altera
 runtime, configurações, flags de GPU/sandbox nem perfis.
+
+Para diagnóstico, preserve a distinção entre evidência de sinal fatal, marcador
+pendente e histórico sem atribuição. Não una preferências atuais às flags do
+processo nem descreva inventário GPU/ICD como aceleração comprovada. Eventos
+adicionais devem reutilizar `WebEngineProbe.technical`, com vocabulário fechado,
+opt-in e sem identificadores. Mantenha os limites e a matriz de lacunas em
+[relatórios](reporting.md#auditoria-de-diagnóstico--ciclo-751) atualizados;
+ZIPs antigos não são sanitizados retroativamente.

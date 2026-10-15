@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from pathlib import Path
 import re
-from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
+from urllib.parse import urlsplit, urlunsplit
 
 
 class ReportSanitizer:
@@ -23,10 +23,7 @@ class ReportSanitizer:
     _github_token = re.compile(r"\b(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,})\b")
     _chat_id = re.compile(r"\b\d{6,20}@(c|g)\.us\b", re.IGNORECASE)
     _home_path = re.compile(r"(?<![\w])(?:/home/[^/\s]+|/Users/[^/\s]+|[A-Za-z]:\\Users\\[^\\\s]+)")
-    _sensitive_query_keys = {
-        "access_token", "auth", "authorization", "code", "cookie",
-        "key", "password", "secret", "session", "signature", "token",
-    }
+
 
     def __init__(self, home: str | Path | None = None):
         self.home = str(home or Path.home())
@@ -36,6 +33,7 @@ class ReportSanitizer:
         if self.home and self.home not in {"/", "."}:
             text = text.replace(self.home, "$HOME")
         text = self._home_path.sub("$HOME", text)
+        text = self._sanitize_urls(text)
         for pattern in (
             self._email,
             self._chat_id,
@@ -46,27 +44,17 @@ class ReportSanitizer:
             self._phone,
         ):
             text = pattern.sub(self.REDACTED, text)
-        return self._sanitize_urls(text)
+        return text
 
     def _sanitize_urls(self, text: str) -> str:
         def clean(match):
             raw = match.group(0)
             try:
                 parts = urlsplit(raw)
-                if parts.username or parts.password:
-                    host = parts.hostname or ""
-                    if parts.port:
-                        host += f":{parts.port}"
-                else:
-                    host = parts.netloc
-                query = []
-                for key, value in parse_qsl(parts.query, keep_blank_values=True):
-                    query.append(
-                        (key, self.REDACTED)
-                        if key.lower() in self._sensitive_query_keys
-                        else (key, self.sanitize_text(value))
-                    )
-                return urlunsplit((parts.scheme, host, parts.path, urlencode(query), ""))
+                # Paths, arbitrary query keys and fragments can all identify a
+                # conversation/resource. Preserve only the public origin.
+                host = parts.hostname or ""
+                return urlunsplit((parts.scheme, host, "/[removed]", "", ""))
             except (ValueError, UnicodeError):
                 return "[removed URL]"
 
@@ -84,7 +72,14 @@ class ReportSanitizer:
                     "localstorage", "sessionstorage",
                 )):
                     continue
-                clean[str(key)] = self.sanitize(item)
+                if lowered in {"session_id", "app_commit", "runtime_commit"} and isinstance(item, str) and re.fullmatch(r"[0-9a-f]{32,64}", item):
+                    clean[str(key)] = item
+                elif lowered.endswith("version") and isinstance(item, str) and re.fullmatch(r"\d+(?:\.\d+){1,4}", item):
+                    clean[str(key)] = item
+                elif lowered in {"started_at", "timestamp", "recorded_at"} and isinstance(item, str) and re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})", item):
+                    clean[str(key)] = item
+                else:
+                    clean[str(key)] = self.sanitize(item)
             return clean
         if isinstance(value, (list, tuple)):
             return [self.sanitize(item) for item in value]
