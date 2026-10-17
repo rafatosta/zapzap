@@ -174,6 +174,13 @@ User (SQLite) -> registro desativado (botão, page=None)
        remover   -> limpeza + retirada definitiva do registro
 ```
 
+`PageController.chooseFiles()` usa o diálogo Qt da plataforma sem restringir a
+seleção pelos MIME types sugeridos pela página. No Flatpak, o diálogo nativo
+pode pedir ao portal acesso pontual a arquivos fora das pastas compartilhadas.
+Drops de arquivos externos passam por esse mesmo diálogo para obter uma
+concessão do portal antes de o evento de drop ser encaminhado ao WebEngine;
+arquivos nas pastas compartilhadas continuam no caminho direto.
+
 O `user.id` é a identidade usada por sidebar, grade, atalhos e notificações.
 Índices da `QStackedWidget` e posições visuais nunca identificam contas. Em
 particular, cliques usam `_handle_account_button_click` e notificações usam o

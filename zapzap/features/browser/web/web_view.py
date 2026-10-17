@@ -3,13 +3,27 @@ import shutil
 import os
 import logging
 import json
+from pathlib import Path
 
 from PyQt6.QtWebChannel import QWebChannel
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings, QWebEnginePage, QWebEngineScript
-from PyQt6.QtCore import QUrl, pyqtSignal, QTimer, QEvent, Qt, QFile, QTextStream, QObject, pyqtSlot, QRect
+from PyQt6.QtCore import (
+    QEvent,
+    QMimeData,
+    QStandardPaths,
+    QTimer,
+    QUrl,
+    Qt,
+    QFile,
+    QObject,
+    QRect,
+    QTextStream,
+    pyqtSignal,
+    pyqtSlot,
+)
 from PyQt6.QtWidgets import QApplication, QWidget
-from PyQt6.QtGui import QAction
+from PyQt6.QtGui import QAction, QDropEvent
 
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.core.config.settings.appearance import AppearanceSettings
@@ -17,7 +31,10 @@ from zapzap.assets.icons.system_icon import SystemIcon
 from zapzap.core.config.settings.downloads import (
     DownloadSettings, PDFClickBehavior, download_settings_events,
 )
-from zapzap.features.browser.web.page_controller import PageController
+from zapzap.features.browser.web.page_controller import (
+    PageController,
+    _choose_files_with_system_dialog,
+)
 from zapzap.features.browser.web.popup_window import InternalWebPopup
 from zapzap.features.accounts.domain.user import (
     MAX_ZOOM_FACTOR,
@@ -35,6 +52,7 @@ from zapzap.features.downloads.download_manager import DownloadManager
 from zapzap.features.browser.web.clipboard_table import calc_table_as_plain_text
 from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.core.config.settings.system import SystemSettings
+from zapzap.core.environment.setup_manager import SetupManager
 from zapzap.core.config.settings.performance import (
     PerformanceSettings,
     apply_http_cache_size,
@@ -51,6 +69,76 @@ from gettext import gettext as _
 
 
 logger = logging.getLogger(__name__)
+
+
+def _drop_paths_need_portal_confirmation(paths):
+    """Identify dropped files outside the Flatpak manifest's shared paths."""
+    if not SetupManager._is_flatpak:
+        return False
+
+    locations = QStandardPaths.StandardLocation
+    allowed_roots = [
+        QStandardPaths.writableLocation(locations.DocumentsLocation),
+        QStandardPaths.writableLocation(locations.PicturesLocation),
+        QStandardPaths.writableLocation(locations.DownloadLocation),
+        QStandardPaths.writableLocation(locations.TempLocation),
+        "/tmp",
+    ]
+    allowed_roots = [
+        Path(root).resolve() for root in allowed_roots if root
+    ]
+
+    for value in paths:
+        try:
+            dropped_path = Path(value).resolve()
+        except (OSError, RuntimeError):
+            return True
+
+        for root in allowed_roots:
+            try:
+                dropped_path.relative_to(root)
+                break
+            except ValueError:
+                continue
+        else:
+            return True
+
+    return False
+
+
+def _prepare_portal_drop_event(parent, event):
+    """Return a confirmed drop event and retain its replacement MIME data."""
+    mime_data = event.mimeData()
+    urls = mime_data.urls()
+    if not urls or not all(url.isLocalFile() for url in urls):
+        return event, None
+
+    paths = [url.toLocalFile() for url in urls]
+    if not _drop_paths_need_portal_confirmation(paths):
+        return event, None
+
+    selected_paths = _choose_files_with_system_dialog(
+        parent,
+        QWebEnginePage.FileSelectionMode.FileSelectOpenMultiple,
+        paths,
+    )
+    if not selected_paths:
+        return None, None
+
+    confirmed_mime_data = QMimeData()
+    confirmed_mime_data.setUrls(
+        [QUrl.fromLocalFile(path) for path in selected_paths]
+    )
+
+    confirmed_event = QDropEvent(
+        event.position(),
+        event.possibleActions(),
+        confirmed_mime_data,
+        event.buttons(),
+        event.modifiers(),
+    )
+    confirmed_event.setDropAction(event.dropAction())
+    return confirmed_event, confirmed_mime_data
 
 
 class WebView(QWebEngineView):
@@ -979,6 +1067,25 @@ class WebView(QWebEngineView):
 
     def _on_popup_closed(self, popup):
         self._popup_windows.discard(popup)
+
+    def dropEvent(self, event):
+        """Confirm external Flatpak file drops through the system portal."""
+        confirmed_event, confirmed_mime_data = _prepare_portal_drop_event(
+            self, event
+        )
+        if confirmed_event is None:
+            event.ignore()
+            return
+
+        if confirmed_mime_data is None:
+            return super().dropEvent(event)
+
+        QWebEngineView.dropEvent(self, confirmed_event)
+        if confirmed_event.isAccepted():
+            event.setDropAction(confirmed_event.dropAction())
+            event.accept()
+        else:
+            event.ignore()
 
     def close_popup_page(self, page):
         """Close the registered window that owns a redirected popup page."""

@@ -171,6 +171,10 @@ dados reais para testes destrutivos de conta, cache ou configurações.
 - Não reutilize armazenamento, cache ou scripts entre perfis por conveniência.
 - Capture caminhos antes de destruir o perfil quando for necessário remover
   dados.
+- Preserve `PageController.chooseFiles()` como fronteira de seleção para
+  uploads WebEngine: use o diálogo Qt nativo/portal, não aplique filtros MIME
+  que escondam arquivos e confirme drops fora dos caminhos Flatpak
+  compartilhados pelo portal sem ampliar as permissões do pacote.
 - Faça o encerramento idempotente; QtWebEngine é sensível à ordem de destruição.
 - Injete uma fábrica falsa de `WebView` nos testes de ciclo de vida para contar
   criação, desmontagem, limpeza e callbacks sem iniciar Chromium.
