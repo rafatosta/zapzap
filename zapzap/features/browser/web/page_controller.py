@@ -1,5 +1,6 @@
 from typing import cast
 import logging
+from pathlib import Path
 
 from PyQt6.QtWebEngineCore import QWebEnginePage
 from PyQt6.QtWebEngineCore import QWebEngineSettings
@@ -7,8 +8,10 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtCore import QTimer
 from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtWidgets import QFileDialog
 
 from zapzap.core.diagnostics.webengine_probe import probe
+from zapzap.core.config.settings.system import SystemSettings
 from zapzap import __allowed_hosts__
 from zapzap.features.customizations.addons_manager import AddonsManager
 from zapzap.features.alerts.alert_manager import AlertManager
@@ -28,6 +31,49 @@ logger = logging.getLogger(__name__)
 
 INTERNAL_POPUP_SCHEMES = frozenset({"blob", "data"})
 TRANSIENT_POPUP_URLS = frozenset({"", "about:blank"})
+
+
+def _choose_files_with_system_dialog(parent, mode, old_files=()):
+    """Use Qt's platform dialog so sandbox portals can grant file access."""
+    options = QFileDialog.Option(0)
+    if SystemSettings().dont_use_native_dialog:
+        options |= QFileDialog.Option.DontUseNativeDialog
+
+    previous_path = next((path for path in old_files if path), "")
+    if previous_path:
+        previous = Path(previous_path)
+        directory = str(
+            previous if previous.is_dir() else previous.parent
+        )
+    else:
+        directory = ""
+
+    selection_mode = QWebEnginePage.FileSelectionMode
+    if mode == selection_mode.FileSelectOpen:
+        file_path, _selected_filter = QFileDialog.getOpenFileName(
+            parent, "", directory, "", options
+        )
+        return [file_path] if file_path else []
+
+    if mode == selection_mode.FileSelectOpenMultiple:
+        file_paths, _selected_filter = QFileDialog.getOpenFileNames(
+            parent, "", directory, "", options
+        )
+        return file_paths
+
+    if mode == selection_mode.FileSelectUploadFolder:
+        folder = QFileDialog.getExistingDirectory(
+            parent, "", directory, options=options
+        )
+        return [folder] if folder else []
+
+    if mode == selection_mode.FileSelectSave:
+        file_path, _selected_filter = QFileDialog.getSaveFileName(
+            parent, "", directory, "", options
+        )
+        return [file_path] if file_path else []
+
+    raise ValueError(f"Unsupported WebEngine file selection mode: {mode!r}")
 
 
 def is_internal_web_url(url: QUrl) -> bool:
@@ -85,6 +131,21 @@ class PageController(QWebEnginePage):
         new_page.user_id = self.user_id
         new_page.setAudioMuted(self.isAudioMuted())
         return new_page
+
+    def chooseFiles(self, mode, oldFiles, acceptedMimeTypes):
+        """Open the platform file dialog without filtering permitted files."""
+        supported_modes = QWebEnginePage.FileSelectionMode
+        if mode not in (
+            supported_modes.FileSelectOpen,
+            supported_modes.FileSelectOpenMultiple,
+            supported_modes.FileSelectUploadFolder,
+            supported_modes.FileSelectSave,
+        ):
+            return super().chooseFiles(mode, oldFiles, acceptedMimeTypes)
+
+        return _choose_files_with_system_dialog(
+            self.view(), mode, oldFiles or ()
+        )
 
     def _open_external_url(self, url: QUrl, page=None):
         """Hand one URL to the desktop and dispose its transient popup page."""

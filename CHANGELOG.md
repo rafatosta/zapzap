@@ -11,6 +11,15 @@ This mandatory record starts after version 7.4.1. The 7.4.1 entry below is the
 historical baseline; older release summaries remain available in the GitHub
 releases and the AppStream metadata.
 
+## [7.5.2] - In development
+
+### Fixed
+
+- Route WebEngine file selection through Qt's platform file dialog without
+  MIME filters, allowing Flatpak portals to grant access to files outside the
+  sandbox's shared folders. When dropping files from other locations in
+  Flatpak, confirm them through the same portal before forwarding the drop.
+
 ## [7.5.1] - 2026-10-15
 
 ### Added
@@ -652,6 +661,7 @@ releases and the AppStream metadata.
 - Improved reliability when ZapZap is closed by the operating system.
 - Included performance improvements.
 
+[7.5.2]: https://github.com/rafatosta/zapzap/compare/7.5.1...HEAD
 [7.5.1]: https://github.com/rafatosta/zapzap/compare/7.5...7.5.1
 [7.5]: https://github.com/rafatosta/zapzap/compare/7.4.5...7.5
 [7.4.5]: https://github.com/rafatosta/zapzap/compare/7.4.4...7.4.5

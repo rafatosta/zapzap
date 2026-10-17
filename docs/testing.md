@@ -173,7 +173,8 @@ documente o que ele protege.
 | `test_unix_signal_shutdown.py` | ponte POSIX, restauração do estado global e `SIGTERM` real chegando a `aboutToQuit` em subprocesso isolado |
 | `test_update_checker.py` | versões, política de builds, respostas/falhas assíncronas, metadados seguros e popover acessível compartilhado entre sidebar e Sobre |
 | `test_webengine_diagnostics.py` | assinatura fatal por thread/sinal, ambiente da sessão anterior, rotação/truncamento/legado, trace opt-in limitado, falhas de I/O e variantes WebView em processos novos |
-| `test_whatsapp_app_lock.py` | botão acessível da sidebar, conta ativa, foco, sequência Qt nativa e estados transitórios do WebView |
+| `test_webengine_file_upload.py` | modos do seletor WebEngine sem filtro MIME, escolha de arquivos/pastas, respeito à preferência de diálogo Qt e confirmação via portal de drops externos no Flatpak |
+| `test_whatsapp_app_lock.py` | botão acessível da sidebar, conta ativa, foco, sequência Qt nativa e estados transitórios do  WebView |
 | `test_window_state_restore.py` | ciclo de vida compartilhado, restauração normal, maximizada e fullscreen e destruição segura do host CSR |
 | `test_windows_packaging.py` | matriz nativa x86_64/ARM64, arquitetura do Python e nomes dos executáveis Windows |
 
@@ -239,6 +240,7 @@ documente o que ele protege.
 - `test_unix_signal_shutdown.py`
 - `test_update_checker.py`
 - `test_webengine_diagnostics.py`
+- `test_webengine_file_upload.py`
 - `test_whatsapp_app_lock.py`
 - `test_window_state_restore.py`
 - `test_windows_packaging.py`
@@ -634,6 +636,19 @@ Verifique reinserção após mudanças do DOM, ações extras (Beta/perfil), con
 com clipping e ausência da sidebar: nunca sobreponha conversas ou controles
 nativos. Repita em Linux X11/Wayland, Windows e macOS. O DOM sintético nos testes
 WebEngine não comprova aparência, foco ou compatibilidade com o WhatsApp remoto.
+
+## Validação manual de anexos WebEngine no Linux/Flatpak
+
+Em uma sessão gráfica Flatpak, abra o seletor de documentos e escolha um
+arquivo em um disco externo: o diálogo do sistema deve permitir a navegação e
+conceder acesso ao arquivo sem adicionar permissão ampla ao sandbox. Repita com
+seleção múltipla e com uma pasta, quando oferecidas pela página. Arraste um
+arquivo de Downloads para a conversa e confirme que o fluxo permanece direto;
+arraste outro de um disco externo, confirme a seleção no portal e verifique que
+o WhatsApp recebe o conteúdo completo. Cancele a confirmação e verifique que
+nada é anexado. Repita com “System file dialogs” ligado e desligado. Uma
+validação `offscreen` não prova o comportamento do portal, do Nemo ou do
+compositor.
 
 ## Validação manual da janela flutuante de Acesso rápido
 
