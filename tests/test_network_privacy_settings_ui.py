@@ -21,7 +21,6 @@ from zapzap.features.settings.pages.network_privacy.view import (
 
 
 class FakeNetworkPrivacySettingsModel:
-
     def __init__(self, settings=None):
         self.settings = {
             "enabled": False,
@@ -33,7 +32,6 @@ class FakeNetworkPrivacySettingsModel:
         }
         if settings is not None:
             self.settings.update(settings)
-        self.webrtc_shield_enabled = True
         self.strict_proxy_enabled = False
         self.saved = []
         self.restore_count = 0
@@ -74,7 +72,6 @@ class FakeNetworkPrivacySettingsModel:
 
 
 class NetworkPrivacySettingsUiTests(QtTestCase):
-
     def _controller(self, settings=None):
         model = FakeNetworkPrivacySettingsModel(settings)
         with patch(
@@ -127,10 +124,12 @@ class NetworkPrivacySettingsUiTests(QtTestCase):
         self.assertFalse(page.pending_changes_bar.isHidden())
 
     def test_strict_proxy_is_unavailable_for_system_and_caching_proxies(self):
-        page, _model = self._controller({
-            "enabled": True,
-            "proxy_type": "DefaultProxy",
-        })
+        page, _model = self._controller(
+            {
+                "enabled": True,
+                "proxy_type": "DefaultProxy",
+            }
+        )
 
         self.assertFalse(page.strictProxyCheckBox.isEnabled())
         self.assertIn("Available only", page.strict_proxy_status.text())
@@ -140,9 +139,7 @@ class NetworkPrivacySettingsUiTests(QtTestCase):
         )
         self.assertFalse(page.strictProxyCheckBox.isEnabled())
 
-        page.proxyComboBox.setCurrentIndex(
-            page.proxyComboBox.findData("Socks5Proxy")
-        )
+        page.proxyComboBox.setCurrentIndex(page.proxyComboBox.findData("Socks5Proxy"))
         self.assertTrue(page.strictProxyCheckBox.isEnabled())
         self.assertIn("native WebRTC policy", page.strict_proxy_status.text())
 
@@ -160,14 +157,16 @@ class NetworkPrivacySettingsUiTests(QtTestCase):
         )
 
     def test_authentication_expands_only_when_credentials_exist(self):
-        page, _model = self._controller({
-            "enabled": True,
-            "proxy_type": "Socks5Proxy",
-            "host": "127.0.0.1",
-            "port": "9050",
-            "user": "rafael",
-            "password": "secret",
-        })
+        page, _model = self._controller(
+            {
+                "enabled": True,
+                "proxy_type": "Socks5Proxy",
+                "host": "127.0.0.1",
+                "port": "9050",
+                "user": "rafael",
+                "password": "secret",
+            }
+        )
 
         self.assertTrue(page.authentication.toggle.isChecked())
         self.assertEqual(page.setUser.text(), "rafael")
@@ -196,14 +195,16 @@ class NetworkPrivacySettingsUiTests(QtTestCase):
         self.assertEqual(page.restart_bar.restart_kind, "application")
 
     def test_proxy_status_never_contains_credentials(self):
-        page, _model = self._controller({
-            "enabled": True,
-            "proxy_type": "Socks5Proxy",
-            "host": "127.0.0.1",
-            "port": "9050",
-            "user": "rafael",
-            "password": "secret",
-        })
+        page, _model = self._controller(
+            {
+                "enabled": True,
+                "proxy_type": "Socks5Proxy",
+                "host": "127.0.0.1",
+                "port": "9050",
+                "user": "rafael",
+                "password": "secret",
+            }
+        )
 
         self.assertEqual(
             page.proxy_status.text(),
@@ -223,17 +224,18 @@ class NetworkPrivacySettingsUiTests(QtTestCase):
             page.btn_restore.click()
 
         self.assertEqual(model.restore_count, 1)
-        self.assertTrue(model.webrtc_shield_enabled)
         self.assertFalse(model.strict_proxy_enabled)
         self.assertEqual(model.apply_count, 1)
         self.assertEqual(page.proxy_status.text(), "No proxy configured")
 
     def test_invalid_server_proxy_is_not_applied(self):
-        page, model = self._controller({
-            "enabled": True,
-            "host": "",
-            "port": "70000",
-        })
+        page, model = self._controller(
+            {
+                "enabled": True,
+                "host": "",
+                "port": "70000",
+            }
+        )
 
         page.btn_ok.click()
         self.assertEqual(model.saved, [])
@@ -245,7 +247,6 @@ class NetworkPrivacySettingsUiTests(QtTestCase):
 
 
 class NetworkPrivacySettingsModelTests(QtTestCase):
-
     def setUp(self):
         super().setUp()
         SettingsManager.clear()

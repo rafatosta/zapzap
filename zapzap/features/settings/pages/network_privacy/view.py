@@ -35,9 +35,7 @@ class AuthenticationExpander(QWidget):
         self.toggle.setObjectName("SettingsDisclosure")
         self.toggle.setText(_("Authentication"))
         self.toggle.setCheckable(True)
-        self.toggle.setToolButtonStyle(
-            Qt.ToolButtonStyle.ToolButtonTextBesideIcon
-        )
+        self.toggle.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonTextBesideIcon)
         self.toggle.setArrowType(Qt.ArrowType.RightArrow)
         self.toggle.setAccessibleName(_("Authentication"))
         self.toggle.setAccessibleDescription(
@@ -82,9 +80,7 @@ class AuthenticationExpander(QWidget):
         self.toggle.setChecked(expanded)
         self.toggle.blockSignals(False)
         self.toggle.setArrowType(
-            Qt.ArrowType.DownArrow
-            if expanded
-            else Qt.ArrowType.RightArrow
+            Qt.ArrowType.DownArrow if expanded else Qt.ArrowType.RightArrow
         )
         self.contents.setVisible(expanded)
 
@@ -159,7 +155,6 @@ class NetworkPrivacySettingsView(SettingsPage):
 
     def _setup_ui(self):
         self._setup_proxy_section()
-        self._setup_privacy_section()
 
     def _setup_proxy_section(self):
         section = SettingsSection(
@@ -204,9 +199,7 @@ class NetworkPrivacySettingsView(SettingsPage):
         self.validation_message = Label("", "row_description")
         self.validation_message.setObjectName("ProxyValidationMessage")
         self.validation_message.setWordWrap(True)
-        self.validation_message.setStyleSheet(
-            "color: palette(bright-text);"
-        )
+        self.validation_message.setStyleSheet("color: palette(bright-text);")
         self.validation_message.hide()
 
         self.restore_row = SettingsActionRow(
@@ -244,30 +237,6 @@ class NetworkPrivacySettingsView(SettingsPage):
         section.add_card(card)
         self.add_section(section)
 
-    def _setup_privacy_section(self):
-        section = SettingsSection(
-            _("Privacy"),
-            _("Reduce the exposure of network information."),
-        )
-        card = SettingsCard()
-        self.webrtc_row = SettingsSwitchRow(
-            _("WebRTC protection"),
-            _(
-                "Blocks WebRTC APIs in page scripts. This is independent "
-                "from strict proxy isolation."
-            ),
-        )
-        self.webrtc_scope_label = Label(
-            _("Legacy script-based protection"),
-            "row_description",
-        )
-        self.webrtc_scope_label.setObjectName("SettingsScopeMetadata")
-        self.webrtcShieldCheckBox = self.webrtc_row.checkbox
-        card.add_row(self.webrtc_row)
-        card.add_subrow(self.webrtc_scope_label)
-        section.add_card(card)
-        self.add_section(section)
-
     def _apply_accessibility(self):
         controls = (
             (self.proxyCheckBox, self.proxy_enable_row),
@@ -277,7 +246,6 @@ class NetworkPrivacySettingsView(SettingsPage):
             (self.setUser, self.user_row),
             (self.setPassword, self.password_row),
             (self.strictProxyCheckBox, self.strict_proxy_row),
-            (self.webrtcShieldCheckBox, self.webrtc_row),
         )
         for control, row in controls:
             control.setAccessibleName(row.title_label.text())

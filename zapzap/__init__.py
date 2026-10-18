@@ -1,38 +1,39 @@
 from PyQt6.QtCore import QFileInfo, QUrl
 
-__version__ = '7.5.1'
-__appname__ = 'ZapZap'
-__comment__ = 'WhatsApp Messenger for linux'
-__domain__ = 'com.rtosta'
-__desktopid__ = 'com.rtosta.zapzap'
-__appid__ = 'zapzap-application'
+__version__ = "7.5.2"
+__appname__ = "ZapZap"
+__comment__ = "WhatsApp Messenger for linux"
+__domain__ = "com.rtosta"
+__desktopid__ = "com.rtosta.zapzap"
+__appid__ = "zapzap-application"
 
-__author__ = 'Rafael Tosta'
-__email__ = 'rafa.ecomp@gmail.com'
-__website__ = 'https://rtosta.com/zapzap/'
-__bugreport__ = 'https://github.com/rafatosta/zapzap/issues'
-__releases__ = 'https://github.com/rafatosta/zapzap/releases'
-__paypal__ = 'https://www.paypal.com/donate/?business=E7R4BVR45GRC2&no_recurring=0&item_name=ZapZap+-+Whatsapp+Desktop+for+linux%0AAn+unofficial+WhatsApp+desktop+application+written+in+Pyqt6+%2B+PyQt6-WebEngine.&currency_code=USD'
-__pix__ = 'https://nubank.com.br/pagar/3c3r2/LS2hiJJKzv'
-__kofi__ = 'https://ko-fi.com/rafaeltosta'
-__wise__ = 'https://wise.com/pay/me/rafaelt2487'
-__githubSponsor__ = 'https://github.com/sponsors/rafatosta'
+__author__ = "Rafael Tosta"
+__email__ = "rafa.ecomp@gmail.com"
+__website__ = "https://rtosta.com/zapzap/"
+__bugreport__ = "https://github.com/rafatosta/zapzap/issues"
+__releases__ = "https://github.com/rafatosta/zapzap/releases"
+__paypal__ = "https://www.paypal.com/donate/?business=E7R4BVR45GRC2&no_recurring=0&item_name=ZapZap+-+Whatsapp+Desktop+for+linux%0AAn+unofficial+WhatsApp+desktop+application+written+in+Pyqt6+%2B+PyQt6-WebEngine.&currency_code=USD"
+__pix__ = "https://nubank.com.br/pagar/3c3r2/LS2hiJJKzv"
+__kofi__ = "https://ko-fi.com/rafaeltosta"
+__wise__ = "https://wise.com/pay/me/rafaelt2487"
+__githubSponsor__ = "https://github.com/sponsors/rafatosta"
 # Compatibility with the historical misspelled public constant.
 __githubSponor__ = __githubSponsor__
-__licence__ = 'GNU General Public License v3.0'
+__licence__ = "GNU General Public License v3.0"
 
-__donationPage__ = 'https://rtosta.com/zapzap/#donate'
-__downloadPage__ = 'https://rtosta.com/zapzap/#download'
+__donationPage__ = "https://rtosta.com/zapzap/#donate"
+__downloadPage__ = "https://rtosta.com/zapzap/#download"
 
-__whatsapp_url__ = 'https://web.whatsapp.com/'
+__whatsapp_url__ = "https://web.whatsapp.com/"
 __allowed_hosts__ = [
     QUrl(__whatsapp_url__).host().lower(),
     "webtp.whatsapp.net",
-    "static.whatsapp.net"
+    "static.whatsapp.net",
 ]
 
 # Link para pegar o userAgent: http://httpbin.org/user-agent
 import sys
+
 if sys.platform == "win32":
     # User agent para Windows, para evitar que o WhatsApp Web mostre a mensagem de "navegador não suportado", porém aparece a mensagem de baixar aplicativo nativo. Usar o do linux funciona e permite realizar as chamadas.
     __user_agent__ = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"

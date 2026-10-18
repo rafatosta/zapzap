@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-09 12:06-0300\n"
+"POT-Creation-Date: 2026-10-17 17:07-0300\n"
 "PO-Revision-Date: 2026-09-25 00:00+0800\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Simplified Chinese\n"
@@ -18,6 +18,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.18.0\n"
+
+#: zapzap/app/main_window_controller.py:304
+#: zapzap/features/tray/sys_tray_manager.py:68
+#: zapzap/features/tray/sys_tray_manager.py:250
+#: zapzap/ui/components/floating_monitoring_panel.py:335
+msgid "Unmute"
+msgstr ""
+
+#: zapzap/app/main_window_controller.py:304
+#: zapzap/features/shortcuts/model.py:29
+#: zapzap/features/tray/sys_tray_manager.py:68
+#: zapzap/features/tray/sys_tray_manager.py:250
+#: zapzap/ui/components/browser_sidebar.py:217
+#: zapzap/ui/components/browser_sidebar.py:218
+#: zapzap/ui/components/floating_monitoring_panel.py:335
+msgid "Mute"
+msgstr "静音"
+
+#: zapzap/app/main_window_controller.py:556
+#: zapzap/features/browser/shell/browser_controller.py:574
+#: zapzap/features/browser/shell/browser_controller.py:648
+#: zapzap/features/browser/shell/browser_controller.py:910
+#, python-brace-format
+msgid "Account {}"
+msgstr "账户 {}"
 
 #: zapzap/app/window_lifecycle.py:89
 msgid "Close ZapZap"
@@ -30,31 +55,6 @@ msgstr "确定要关闭吗？"
 #: zapzap/app/window_lifecycle.py:91
 msgid "Don't ask again"
 msgstr "不再询问"
-
-#: zapzap/app/main_window_controller.py:282
-#: zapzap/features/tray/sys_tray_manager.py:68
-#: zapzap/features/tray/sys_tray_manager.py:250
-#: zapzap/ui/components/floating_monitoring_panel.py:335
-msgid "Unmute"
-msgstr ""
-
-#: zapzap/app/main_window_controller.py:282
-#: zapzap/features/shortcuts/model.py:29
-#: zapzap/features/tray/sys_tray_manager.py:68
-#: zapzap/features/tray/sys_tray_manager.py:250
-#: zapzap/ui/components/browser_sidebar.py:217
-#: zapzap/ui/components/browser_sidebar.py:218
-#: zapzap/ui/components/floating_monitoring_panel.py:335
-msgid "Mute"
-msgstr "静音"
-
-#: zapzap/app/main_window_controller.py:534
-#: zapzap/features/browser/shell/browser_controller.py:574
-#: zapzap/features/browser/shell/browser_controller.py:648
-#: zapzap/features/browser/shell/browser_controller.py:910
-#, python-brace-format
-msgid "Account {}"
-msgstr "账户 {}"
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:27
 msgid "Unexpected Error"
@@ -134,90 +134,90 @@ msgstr "仅为 HTTP 请求使用代理。"
 msgid "Proxying for FTP requests only."
 msgstr "仅为 FTP 请求使用代理。"
 
-#: zapzap/features/accounts/card_user_controller.py:60
-#: zapzap/features/accounts/card_user_controller.py:297
-#: zapzap/features/accounts/card_user_controller.py:309
+#: zapzap/features/accounts/card_user_controller.py:62
+#: zapzap/features/accounts/card_user_controller.py:302
+#: zapzap/features/accounts/card_user_controller.py:314
 msgid "Could not update account"
 msgstr "无法更新账户"
 
-#: zapzap/features/accounts/card_user_controller.py:61
-#: zapzap/features/accounts/card_user_controller.py:310
+#: zapzap/features/accounts/card_user_controller.py:63
+#: zapzap/features/accounts/card_user_controller.py:315
 msgid "The account state could not be changed."
 msgstr "无法更改账户状态。"
 
-#: zapzap/features/accounts/card_user_controller.py:80
-#: zapzap/features/accounts/card_user_controller.py:256
+#: zapzap/features/accounts/card_user_controller.py:82
+#: zapzap/features/accounts/card_user_controller.py:261
 msgid "Could not remove account"
 msgstr "无法移除账户"
 
-#: zapzap/features/accounts/card_user_controller.py:81
-#: zapzap/features/accounts/card_user_controller.py:257
+#: zapzap/features/accounts/card_user_controller.py:83
+#: zapzap/features/accounts/card_user_controller.py:262
 msgid "The account could not be removed. Please try again."
 msgstr "无法移除该账户。请重试。"
 
-#: zapzap/features/accounts/card_user_controller.py:112
-#: zapzap/features/accounts/card_user_controller.py:121
-#: zapzap/features/accounts/card_user_controller.py:128
+#: zapzap/features/accounts/card_user_controller.py:114
+#: zapzap/features/accounts/card_user_controller.py:123
+#: zapzap/features/accounts/card_user_controller.py:130
 #: zapzap/ui/components/edit_account_dialog.py:683
 #: zapzap/ui/components/edit_account_dialog.py:698
 #, fuzzy
 msgid "Could not sync profile photo"
 msgstr "无法保存文件。"
 
-#: zapzap/features/accounts/card_user_controller.py:113
+#: zapzap/features/accounts/card_user_controller.py:115
 #: zapzap/ui/components/edit_account_dialog.py:684
 #, fuzzy
 msgid "This account does not have an active WhatsApp session."
 msgstr "此用户样式不针对 WhatsApp Web。"
 
-#: zapzap/features/accounts/card_user_controller.py:129
+#: zapzap/features/accounts/card_user_controller.py:131
 #: zapzap/features/accounts/domain/profile_sync.py:70
 #, fuzzy
 msgid "No profile photo is available."
 msgstr "没有可用预览。"
 
-#: zapzap/features/accounts/card_user_controller.py:135
+#: zapzap/features/accounts/card_user_controller.py:137
 #: zapzap/ui/components/edit_account_dialog.py:705
 msgid "WhatsApp profile photo found"
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:136
+#: zapzap/features/accounts/card_user_controller.py:138
 #: zapzap/ui/components/edit_account_dialog.py:706
 msgid "Update this account photo?"
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:220
+#: zapzap/features/accounts/card_user_controller.py:225
 msgid "Remove account?"
 msgstr "移除账户？"
 
-#: zapzap/features/accounts/card_user_controller.py:222
+#: zapzap/features/accounts/card_user_controller.py:227
 #, python-brace-format
 msgid "The account \"{name}\" will be removed from ZapZap."
 msgstr "账户“{name}”将从 ZapZap 中移除。"
 
-#: zapzap/features/accounts/card_user_controller.py:223
+#: zapzap/features/accounts/card_user_controller.py:228
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:191
 #: zapzap/ui/components/card_user.py:234 zapzap/ui/components/card_user.py:299
 #: zapzap/ui/components/card_user.py:470 zapzap/ui/components/card_user.py:697
 msgid "Unnamed account"
 msgstr "未命名账户"
 
-#: zapzap/features/accounts/card_user_controller.py:225
+#: zapzap/features/accounts/card_user_controller.py:230
 msgid ""
 "Its session will be closed and related local data may be permanently "
 "removed. This action cannot be undone."
 msgstr "其会话将被关闭，相关本地数据可能被永久删除。此操作无法撤销。"
 
-#: zapzap/features/accounts/card_user_controller.py:232
+#: zapzap/features/accounts/card_user_controller.py:237
 #: zapzap/ui/components/card_user.py:153
 #: zapzap/ui/components/dictionary_manager_dialog.py:191
 msgid "Remove"
 msgstr "移除"
 
-#: zapzap/features/accounts/card_user_controller.py:238
+#: zapzap/features/accounts/card_user_controller.py:243
 #: zapzap/features/reporting/dialogs.py:213
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:642
-#: zapzap/features/settings/pages/network_privacy/controller.py:282
+#: zapzap/features/settings/pages/network_privacy/controller.py:253
 #: zapzap/features/downloads/ui/download_dialog.py:109
 #: zapzap/features/downloads/ui/downloads_menu.py:269
 #: zapzap/features/downloads/ui/downloads_menu.py:649
@@ -228,16 +228,16 @@ msgstr "移除"
 msgid "Cancel"
 msgstr "取消"
 
-#: zapzap/features/accounts/card_user_controller.py:267
+#: zapzap/features/accounts/card_user_controller.py:272
 msgid "User-Agent Changed"
 msgstr "User-Agent 已更改"
 
-#: zapzap/features/accounts/card_user_controller.py:269
+#: zapzap/features/accounts/card_user_controller.py:274
 msgid ""
 "Please restart this session (or the application) to apply the new User-Agent."
 msgstr "请重启此会话（或应用程序）以应用新的 User-Agent。"
 
-#: zapzap/features/accounts/card_user_controller.py:298
+#: zapzap/features/accounts/card_user_controller.py:303
 msgid "The notification state could not be changed."
 msgstr "无法更改通知状态。"
 
@@ -476,20 +476,20 @@ msgstr "不再显示"
 msgid "Learn more about ZapZap ↗"
 msgstr "进一步了解 ZapZap ↗"
 
-#: zapzap/features/downloads/download_manager.py:517
-#: zapzap/features/downloads/download_manager.py:1084
-#: zapzap/features/downloads/download_manager.py:1087
+#: zapzap/features/downloads/download_manager.py:530
+#: zapzap/features/downloads/download_manager.py:1097
+#: zapzap/features/downloads/download_manager.py:1100
 #: zapzap/features/downloads/ui/download_dialog.py:36
 #: zapzap/features/downloads/ui/downloads_menu.py:447
 #: zapzap/ui/components/update_available_popover.py:109
 msgid "Download"
 msgstr "下载"
 
-#: zapzap/features/downloads/download_manager.py:1195
+#: zapzap/features/downloads/download_manager.py:1209
 msgid "Save file"
 msgstr "保存文件"
 
-#: zapzap/features/downloads/download_manager.py:1227
+#: zapzap/features/downloads/download_manager.py:1241
 msgid "Select folder"
 msgstr "选择文件夹"
 
@@ -519,10 +519,10 @@ msgid "Basics"
 msgstr "基础设置"
 
 #: zapzap/features/initial_setup/view.py:106
-#: zapzap/features/settings/shell/settings_controller.py:134
+#: zapzap/features/settings/shell/settings_controller.py:136
 #: zapzap/features/settings/pages/notifications/view.py:19
 #: zapzap/features/settings/pages/notifications/view.py:33
-#: zapzap/features/browser/web/web_view.py:310
+#: zapzap/features/browser/web/web_view.py:304
 msgid "Notifications"
 msgstr "通知"
 
@@ -537,7 +537,7 @@ msgstr "文件"
 
 #: zapzap/features/initial_setup/view.py:109
 #: zapzap/features/initial_setup/view.py:378
-#: zapzap/features/settings/shell/settings_controller.py:140
+#: zapzap/features/settings/shell/settings_controller.py:142
 #: zapzap/features/settings/pages/permissions/view.py:22
 msgid "Permissions"
 msgstr "权限"
@@ -798,9 +798,9 @@ msgstr "选择文件保存位置，并在有词典时启用拼写检查。"
 #: zapzap/features/downloads/ui/downloads_menu.py:1025
 #: zapzap/ui/components/browser_sidebar.py:219
 #: zapzap/ui/components/browser_sidebar.py:220
-#: zapzap/ui/components/main_window.py:164
 #: zapzap/ui/components/floating_monitoring_panel.py:293
 #: zapzap/ui/components/floating_monitoring_panel.py:294
+#: zapzap/ui/components/main_window.py:164
 msgid "Downloads"
 msgstr "下载"
 
@@ -949,7 +949,7 @@ msgstr "在终端中选择并复制此命令"
 #: zapzap/features/settings/pages/debugging/controller.py:131
 #: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:553
+#: zapzap/features/browser/web/web_view.py:564
 msgid "Copy"
 msgstr "复制"
 
@@ -997,7 +997,7 @@ msgstr ""
 "您可随时在“设置”中重新查看所有选择。代理、自定义 CSS/JavaScript、Flatpak 权限"
 "和性能调整仍可在那里使用。"
 
-#: zapzap/features/notifications/notification_service.py:122
+#: zapzap/features/notifications/notification_service.py:127
 msgid "New message..."
 msgstr "新消息..."
 
@@ -1145,7 +1145,6 @@ msgstr ""
 "GitHub 账户。"
 
 #: zapzap/features/reporting/dialogs.py:109
-#: zapzap/features/settings/pages/network_privacy/view.py:249
 #: zapzap/features/settings/pages/notifications/view.py:113
 msgid "Privacy"
 msgstr "隐私"
@@ -1161,7 +1160,7 @@ msgstr ""
 #: zapzap/features/reporting/dialogs.py:136
 #: zapzap/features/reporting/dialogs.py:159
 #: zapzap/features/reporting/dialogs.py:292
-#: zapzap/features/settings/shell/settings_controller.py:176
+#: zapzap/features/settings/shell/settings_controller.py:178
 #: zapzap/features/settings/pages/about/view.py:269
 #: zapzap/features/settings/pages/debugging/view.py:160
 #: zapzap/features/settings/pages/debugging/view.py:177
@@ -1340,12 +1339,12 @@ msgstr "个人资料和状态"
 
 #: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
 #: zapzap/features/tray/sys_tray_manager.py:70
-#: zapzap/features/settings/shell/settings_controller.py:234
+#: zapzap/features/settings/shell/settings_controller.py:236
 #: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/downloads/ui/downloads_menu.py:1081
-#: zapzap/ui/components/main_window.py:149
 #: zapzap/ui/components/floating_monitoring_panel.py:295
 #: zapzap/ui/components/floating_monitoring_panel.py:296
+#: zapzap/ui/components/main_window.py:149
 msgid "Settings"
 msgstr "设置"
 
@@ -1459,7 +1458,7 @@ msgid "Show"
 msgstr "显示"
 
 #: zapzap/features/tray/sys_tray_manager.py:65
-#: zapzap/features/settings/shell/settings_controller.py:122
+#: zapzap/features/settings/shell/settings_controller.py:124
 #: zapzap/features/settings/pages/accounts/view.py:17
 msgid "Accounts"
 msgstr "账户"
@@ -1476,36 +1475,36 @@ msgstr "显示监控面板"
 msgid "Quit"
 msgstr "退出"
 
-#: zapzap/features/settings/shell/settings_controller.py:128
+#: zapzap/features/settings/shell/settings_controller.py:130
 #: zapzap/features/settings/pages/appearance/view.py:23
 msgid "Appearance"
 msgstr "外观"
 
-#: zapzap/features/settings/shell/settings_controller.py:146
+#: zapzap/features/settings/shell/settings_controller.py:148
 #: zapzap/features/settings/pages/system_startup/view.py:22
 msgid "System and startup"
 msgstr "系统和启动"
 
-#: zapzap/features/settings/shell/settings_controller.py:152
+#: zapzap/features/settings/shell/settings_controller.py:154
 #: zapzap/features/settings/pages/language_downloads/view.py:21
 msgid "Language and Download"
 msgstr "语言和下载"
 
-#: zapzap/features/settings/shell/settings_controller.py:158
-#: zapzap/features/settings/pages/network_privacy/view.py:149
+#: zapzap/features/settings/shell/settings_controller.py:160
+#: zapzap/features/settings/pages/network_privacy/view.py:145
 msgid "Privacy and Network"
 msgstr "隐私和网络"
 
-#: zapzap/features/settings/shell/settings_controller.py:164
+#: zapzap/features/settings/shell/settings_controller.py:166
 msgid "Advanced Customizations"
 msgstr "高级自定义"
 
-#: zapzap/features/settings/shell/settings_controller.py:170
+#: zapzap/features/settings/shell/settings_controller.py:172
 #: zapzap/features/settings/pages/performance_experimental/view.py:21
 msgid "Performance experimental"
 msgstr "实验性能"
 
-#: zapzap/features/settings/shell/settings_controller.py:182
+#: zapzap/features/settings/shell/settings_controller.py:184
 #: zapzap/features/settings/pages/about/view.py:238
 #: zapzap/ui/components/main_window.py:181
 msgid "About"
@@ -2104,7 +2103,7 @@ msgid "● There are unsaved changes."
 msgstr "● 有未保存的更改。"
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:417
-#: zapzap/features/settings/pages/network_privacy/view.py:110
+#: zapzap/features/settings/pages/network_privacy/view.py:106
 #: zapzap/ui/components/edit_account_dialog.py:820
 msgid "Discard"
 msgstr "放弃"
@@ -2777,7 +2776,7 @@ msgid "Define"
 msgstr "设置"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:87
-#: zapzap/features/settings/pages/network_privacy/controller.py:276
+#: zapzap/features/settings/pages/network_privacy/controller.py:247
 #: zapzap/features/settings/pages/performance_experimental/view.py:310
 msgid "Restore"
 msgstr "恢复"
@@ -2856,7 +2855,7 @@ msgid "No proxy"
 msgstr "无代理"
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:30
-#: zapzap/features/settings/pages/network_privacy/controller.py:167
+#: zapzap/features/settings/pages/network_privacy/controller.py:144
 msgid "System proxy"
 msgstr "系统代理"
 
@@ -2876,179 +2875,162 @@ msgstr "HTTP 缓存"
 msgid "FTP caching"
 msgstr "FTP 缓存"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:150
+#: zapzap/features/settings/pages/network_privacy/controller.py:131
 msgid "Uses Chromium's native WebRTC policy after restarting ZapZap."
 msgstr "重启 ZapZap 后使用 Chromium 原生 WebRTC 策略。"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:155
+#: zapzap/features/settings/pages/network_privacy/controller.py:133
 msgid "Available only while an HTTP or SOCKS5 proxy is enabled."
 msgstr "仅在启用 HTTP 或 SOCKS5 代理时可用。"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:165
+#: zapzap/features/settings/pages/network_privacy/controller.py:142
 msgid "No proxy configured"
 msgstr "未配置代理"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:177
+#: zapzap/features/settings/pages/network_privacy/controller.py:154
 #, python-brace-format
 msgid "{proxy_type} · {endpoint}"
 msgstr "{proxy_type} · {endpoint}"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:183
+#: zapzap/features/settings/pages/network_privacy/controller.py:160
 #, python-brace-format
 msgid "{status} · disabled"
 msgstr "{status} · 已禁用"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:201
+#: zapzap/features/settings/pages/network_privacy/controller.py:177
 msgid "Unable to apply the proxy settings. The previous proxy remains active."
 msgstr "无法应用代理设置。之前的代理仍保持活动状态。"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:217
+#: zapzap/features/settings/pages/network_privacy/controller.py:191
 msgid "Enter a proxy server."
 msgstr "请输入代理服务器。"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:225
+#: zapzap/features/settings/pages/network_privacy/controller.py:199
 msgid "Enter a port between 1 and 65535."
 msgstr "请输入 1 到 65535 之间的端口。"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:264
+#: zapzap/features/settings/pages/network_privacy/controller.py:238
 msgid "Restore proxy settings?"
 msgstr "恢复代理设置？"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:266
+#: zapzap/features/settings/pages/network_privacy/controller.py:240
 msgid ""
 "The global proxy settings will be removed and the default values will be "
 "restored."
 msgstr "全局代理设置将被移除，并恢复默认值。"
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:270
-msgid "Strict proxy isolation and WebRTC protection will not be changed."
+#: zapzap/features/settings/pages/network_privacy/controller.py:243
+#, fuzzy
+msgid "Strict proxy isolation will not be changed."
 msgstr "严格代理隔离和 WebRTC 保护不会更改。"
 
 #: zapzap/features/settings/pages/network_privacy/view.py:36
-#: zapzap/features/settings/pages/network_privacy/view.py:42
+#: zapzap/features/settings/pages/network_privacy/view.py:40
 msgid "Authentication"
 msgstr "身份验证"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:44
+#: zapzap/features/settings/pages/network_privacy/view.py:42
 msgid "Show or hide optional proxy credentials."
 msgstr "显示或隐藏可选的代理凭据。"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:54
+#: zapzap/features/settings/pages/network_privacy/view.py:52
 msgid "User"
 msgstr "用户"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:55
+#: zapzap/features/settings/pages/network_privacy/view.py:53
 msgid "Optional proxy user."
 msgstr "可选的代理用户名。"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:58
+#: zapzap/features/settings/pages/network_privacy/view.py:56
 msgid "Password"
 msgstr "密码"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:59
+#: zapzap/features/settings/pages/network_privacy/view.py:57
 msgid "Optional proxy password."
 msgstr "可选的代理密码。"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:106
+#: zapzap/features/settings/pages/network_privacy/view.py:102
 msgid "There are unapplied network changes."
 msgstr "有尚未应用的网络更改。"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:111
+#: zapzap/features/settings/pages/network_privacy/view.py:107
 msgid "Apply changes"
 msgstr "应用更改"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:150
+#: zapzap/features/settings/pages/network_privacy/view.py:146
 msgid "Configure proxy, privacy protection, and network options."
 msgstr "配置代理、隐私保护和网络选项。"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:166
+#: zapzap/features/settings/pages/network_privacy/view.py:161
 msgid "Proxy"
 msgstr "代理"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:168
+#: zapzap/features/settings/pages/network_privacy/view.py:163
 msgid ""
 "Route WhatsApp Web traffic through a proxy server. Existing connections may "
 "require reloading."
 msgstr "通过代理服务器路由 WhatsApp Web 流量。现有连接可能需要重新加载。"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:174
+#: zapzap/features/settings/pages/network_privacy/view.py:169
 msgid "Use proxy"
 msgstr "使用代理"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:175
+#: zapzap/features/settings/pages/network_privacy/view.py:170
 msgid "Route traffic through the proxy configured below."
 msgstr "通过下面配置的代理路由流量。"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:178
+#: zapzap/features/settings/pages/network_privacy/view.py:173
 msgid "Type"
 msgstr "类型"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:179
+#: zapzap/features/settings/pages/network_privacy/view.py:174
 msgid "Select the proxy mode."
 msgstr "选择代理模式。"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:183
+#: zapzap/features/settings/pages/network_privacy/view.py:178
 msgid "Server"
 msgstr "服务器"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:184
+#: zapzap/features/settings/pages/network_privacy/view.py:179
 msgid "Proxy host name or IP address."
 msgstr "代理主机名或 IP 地址。"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:186
+#: zapzap/features/settings/pages/network_privacy/view.py:181
 msgid "Port"
 msgstr "端口"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:186
+#: zapzap/features/settings/pages/network_privacy/view.py:181
 msgid "Proxy port."
 msgstr "代理端口。"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:191
+#: zapzap/features/settings/pages/network_privacy/view.py:186
 msgid "Strict proxy isolation"
 msgstr "严格代理隔离"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:193
+#: zapzap/features/settings/pages/network_privacy/view.py:188
 msgid ""
 "Prevent direct network connections when an explicit proxy is configured."
 msgstr "配置明确代理后，阻止直接网络连接。"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:213
+#: zapzap/features/settings/pages/network_privacy/view.py:206
 msgid "Restore proxy…"
 msgstr "恢复代理…"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:214
+#: zapzap/features/settings/pages/network_privacy/view.py:207
 msgid "Remove the global proxy settings and restore defaults."
 msgstr "移除全局代理设置并恢复默认值。"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:215
+#: zapzap/features/settings/pages/network_privacy/view.py:208
 msgid "Restore…"
 msgstr "恢复…"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:236
+#: zapzap/features/settings/pages/network_privacy/view.py:229
 msgid "proxy.example.com"
 msgstr "proxy.example.com"
 
-#: zapzap/features/settings/pages/network_privacy/view.py:238
+#: zapzap/features/settings/pages/network_privacy/view.py:231
 msgid "8080"
 msgstr "8080"
-
-#: zapzap/features/settings/pages/network_privacy/view.py:250
-msgid "Reduce the exposure of network information."
-msgstr "减少网络信息暴露。"
-
-#: zapzap/features/settings/pages/network_privacy/view.py:254
-msgid "WebRTC protection"
-msgstr "WebRTC 保护"
-
-#: zapzap/features/settings/pages/network_privacy/view.py:256
-msgid ""
-"Blocks WebRTC APIs in page scripts. This is independent from strict proxy "
-"isolation."
-msgstr "阻止页面脚本中的 WebRTC API。此功能与严格代理隔离相互独立。"
-
-#: zapzap/features/settings/pages/network_privacy/view.py:261
-msgid "Legacy script-based protection"
-msgstr "基于旧版脚本的保护"
 
 #: zapzap/features/settings/pages/notifications/view.py:20
 msgid "Configure notifications, privacy, and ZapZap messages."
@@ -3916,77 +3898,6 @@ msgstr "启用"
 msgid "Not now"
 msgstr "暂不"
 
-#: zapzap/features/browser/web/web_view.py:309
-#: zapzap/ui/components/integrated_account_selector.py:57
-#, fuzzy
-msgid "Account selector"
-msgstr "账户列表"
-
-#: zapzap/features/browser/web/web_view.py:469
-msgid "Chat list width"
-msgstr "聊天列表宽度"
-
-#: zapzap/features/browser/web/web_view.py:471
-msgid ""
-"Drag or use the arrow keys to resize. Double-click or press Enter to restore "
-"the default width."
-msgstr "拖动或使用方向键调整宽度。双击或按 Enter 键恢复默认宽度。"
-
-#: zapzap/features/browser/web/web_view.py:552
-msgid "Undo"
-msgstr "撤销"
-
-#: zapzap/features/browser/web/web_view.py:552
-msgid "Redo"
-msgstr "重做"
-
-#: zapzap/features/browser/web/web_view.py:552
-msgid "Cut"
-msgstr "剪切"
-
-#: zapzap/features/browser/web/web_view.py:553
-msgid "Paste"
-msgstr "粘贴"
-
-#: zapzap/features/browser/web/web_view.py:553
-msgid "Select all"
-msgstr "全选"
-
-#: zapzap/features/browser/web/web_view.py:554
-msgid "Save image"
-msgstr "保存图片"
-
-#: zapzap/features/browser/web/web_view.py:554
-msgid "Copy image"
-msgstr "复制图片"
-
-#: zapzap/features/browser/web/web_view.py:555
-#: zapzap/features/browser/web/web_view.py:585
-msgid "Copy link address"
-msgstr "复制链接地址"
-
-#: zapzap/features/browser/web/web_view.py:603
-msgid "Check Spelling"
-msgstr "检查拼写"
-
-#: zapzap/features/browser/web/web_view.py:609
-msgid "Languages…"
-msgstr "语言…"
-
-#: zapzap/features/browser/web/web_view.py:612
-msgid "Choose the languages used by the spell checker."
-msgstr "选择拼写检查器使用的语言。"
-
-#: zapzap/features/browser/web/web_view.py:1127
-#: zapzap/ui/components/card_user.py:304
-msgid "Account"
-msgstr "账户"
-
-#: zapzap/features/browser/web/web_view.py:1129
-#, python-brace-format
-msgid "DevTools - {}"
-msgstr "开发者工具 - {}"
-
 #: zapzap/features/browser/web/page_controller.py:314
 msgid "your microphone"
 msgstr "您的麦克风"
@@ -4046,6 +3957,77 @@ msgid ""
 msgstr ""
 "为防止应用无响应，此窗口无法手动关闭。请使用 WhatsApp 的“结束通话”按钮。"
 "WhatsApp 请求关闭时，窗口会自动关闭。"
+
+#: zapzap/features/browser/web/web_view.py:303
+#: zapzap/ui/components/integrated_account_selector.py:57
+#, fuzzy
+msgid "Account selector"
+msgstr "账户列表"
+
+#: zapzap/features/browser/web/web_view.py:467
+msgid "Chat list width"
+msgstr "聊天列表宽度"
+
+#: zapzap/features/browser/web/web_view.py:470
+msgid ""
+"Drag or use the arrow keys to resize. Double-click or press Enter to restore "
+"the default width."
+msgstr "拖动或使用方向键调整宽度。双击或按 Enter 键恢复默认宽度。"
+
+#: zapzap/features/browser/web/web_view.py:561
+msgid "Undo"
+msgstr "撤销"
+
+#: zapzap/features/browser/web/web_view.py:562
+msgid "Redo"
+msgstr "重做"
+
+#: zapzap/features/browser/web/web_view.py:563
+msgid "Cut"
+msgstr "剪切"
+
+#: zapzap/features/browser/web/web_view.py:565
+msgid "Paste"
+msgstr "粘贴"
+
+#: zapzap/features/browser/web/web_view.py:566
+msgid "Select all"
+msgstr "全选"
+
+#: zapzap/features/browser/web/web_view.py:567
+msgid "Save image"
+msgstr "保存图片"
+
+#: zapzap/features/browser/web/web_view.py:568
+msgid "Copy image"
+msgstr "复制图片"
+
+#: zapzap/features/browser/web/web_view.py:569
+#: zapzap/features/browser/web/web_view.py:599
+msgid "Copy link address"
+msgstr "复制链接地址"
+
+#: zapzap/features/browser/web/web_view.py:616
+msgid "Check Spelling"
+msgstr "检查拼写"
+
+#: zapzap/features/browser/web/web_view.py:622
+msgid "Languages…"
+msgstr "语言…"
+
+#: zapzap/features/browser/web/web_view.py:624
+msgid "Choose the languages used by the spell checker."
+msgstr "选择拼写检查器使用的语言。"
+
+#: zapzap/features/browser/web/web_view.py:1152
+#: zapzap/ui/components/card_user.py:304
+msgid "Account"
+msgstr "账户"
+
+#: zapzap/features/browser/web/web_view.py:1153
+#, python-brace-format
+msgid "DevTools - {}"
+msgstr "开发者工具 - {}"
 
 #: zapzap/features/accounts/domain/profile_sync.py:49
 #, fuzzy
@@ -4575,6 +4557,31 @@ msgstr "放弃更改将恢复编辑前的值。"
 msgid "Keep editing"
 msgstr "继续编辑"
 
+#: zapzap/ui/components/floating_monitoring_panel.py:283
+#: zapzap/ui/components/floating_monitoring_panel.py:285
+#, fuzzy
+msgid "Quick access"
+msgstr "快速访问"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:284
+msgid "No account activity to show yet."
+msgstr ""
+
+#: zapzap/ui/components/floating_monitoring_panel.py:286
+#, fuzzy
+msgid "Monitoring panel"
+msgstr "固定面板"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:287
+#: zapzap/ui/components/floating_monitoring_panel.py:288
+msgid "Unlock position"
+msgstr "解锁位置"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:291
+#: zapzap/ui/components/floating_monitoring_panel.py:292
+msgid "Audio"
+msgstr ""
+
 #: zapzap/ui/components/main_window.py:140
 msgid "File"
 msgstr "文件"
@@ -4921,30 +4928,19 @@ msgstr "发布于 {date}"
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr "ZapZap {latest} 已可用。当前版本：{current}。"
 
-#: zapzap/ui/components/floating_monitoring_panel.py:283
-#: zapzap/ui/components/floating_monitoring_panel.py:285
-#, fuzzy
-msgid "Quick access"
-msgstr "快速访问"
+#~ msgid "Reduce the exposure of network information."
+#~ msgstr "减少网络信息暴露。"
 
-#: zapzap/ui/components/floating_monitoring_panel.py:284
-msgid "No account activity to show yet."
-msgstr ""
+#~ msgid "WebRTC protection"
+#~ msgstr "WebRTC 保护"
 
-#: zapzap/ui/components/floating_monitoring_panel.py:286
-#, fuzzy
-msgid "Monitoring panel"
-msgstr "固定面板"
+#~ msgid ""
+#~ "Blocks WebRTC APIs in page scripts. This is independent from strict proxy "
+#~ "isolation."
+#~ msgstr "阻止页面脚本中的 WebRTC API。此功能与严格代理隔离相互独立。"
 
-#: zapzap/ui/components/floating_monitoring_panel.py:287
-#: zapzap/ui/components/floating_monitoring_panel.py:288
-msgid "Unlock position"
-msgstr "解锁位置"
-
-#: zapzap/ui/components/floating_monitoring_panel.py:291
-#: zapzap/ui/components/floating_monitoring_panel.py:292
-msgid "Audio"
-msgstr ""
+#~ msgid "Legacy script-based protection"
+#~ msgstr "基于旧版脚本的保护"
 
 #~ msgid ""
 #~ "Show only chat avatars at a fixed width. Resizing is unavailable while "
