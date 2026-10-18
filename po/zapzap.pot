@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-09 12:06-0300\n"
+"POT-Creation-Date: 2026-10-17 17:07-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,31 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: zapzap/app/main_window_controller.py:304
+#: zapzap/features/tray/sys_tray_manager.py:68
+#: zapzap/features/tray/sys_tray_manager.py:250
+#: zapzap/ui/components/floating_monitoring_panel.py:335
+msgid "Unmute"
+msgstr ""
+
+#: zapzap/app/main_window_controller.py:304
+#: zapzap/features/shortcuts/model.py:29
+#: zapzap/features/tray/sys_tray_manager.py:68
+#: zapzap/features/tray/sys_tray_manager.py:250
+#: zapzap/ui/components/browser_sidebar.py:217
+#: zapzap/ui/components/browser_sidebar.py:218
+#: zapzap/ui/components/floating_monitoring_panel.py:335
+msgid "Mute"
+msgstr ""
+
+#: zapzap/app/main_window_controller.py:556
+#: zapzap/features/browser/shell/browser_controller.py:574
+#: zapzap/features/browser/shell/browser_controller.py:648
+#: zapzap/features/browser/shell/browser_controller.py:910
+#, python-brace-format
+msgid "Account {}"
+msgstr ""
 
 #: zapzap/app/window_lifecycle.py:89
 msgid "Close ZapZap"
@@ -28,31 +53,6 @@ msgstr ""
 
 #: zapzap/app/window_lifecycle.py:91
 msgid "Don't ask again"
-msgstr ""
-
-#: zapzap/app/main_window_controller.py:282
-#: zapzap/features/tray/sys_tray_manager.py:68
-#: zapzap/features/tray/sys_tray_manager.py:250
-#: zapzap/ui/components/floating_monitoring_panel.py:335
-msgid "Unmute"
-msgstr ""
-
-#: zapzap/app/main_window_controller.py:282
-#: zapzap/features/shortcuts/model.py:29
-#: zapzap/features/tray/sys_tray_manager.py:68
-#: zapzap/features/tray/sys_tray_manager.py:250
-#: zapzap/ui/components/browser_sidebar.py:217
-#: zapzap/ui/components/browser_sidebar.py:218
-#: zapzap/ui/components/floating_monitoring_panel.py:335
-msgid "Mute"
-msgstr ""
-
-#: zapzap/app/main_window_controller.py:534
-#: zapzap/features/browser/shell/browser_controller.py:574
-#: zapzap/features/browser/shell/browser_controller.py:648
-#: zapzap/features/browser/shell/browser_controller.py:910
-#, python-brace-format
-msgid "Account {}"
 msgstr ""
 
 #: zapzap/core/diagnostics/dialog_dump_handler.py:27
@@ -124,87 +124,87 @@ msgstr ""
 msgid "Proxying for FTP requests only."
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:60
-#: zapzap/features/accounts/card_user_controller.py:297
-#: zapzap/features/accounts/card_user_controller.py:309
+#: zapzap/features/accounts/card_user_controller.py:62
+#: zapzap/features/accounts/card_user_controller.py:302
+#: zapzap/features/accounts/card_user_controller.py:314
 msgid "Could not update account"
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:61
-#: zapzap/features/accounts/card_user_controller.py:310
+#: zapzap/features/accounts/card_user_controller.py:63
+#: zapzap/features/accounts/card_user_controller.py:315
 msgid "The account state could not be changed."
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:80
-#: zapzap/features/accounts/card_user_controller.py:256
+#: zapzap/features/accounts/card_user_controller.py:82
+#: zapzap/features/accounts/card_user_controller.py:261
 msgid "Could not remove account"
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:81
-#: zapzap/features/accounts/card_user_controller.py:257
+#: zapzap/features/accounts/card_user_controller.py:83
+#: zapzap/features/accounts/card_user_controller.py:262
 msgid "The account could not be removed. Please try again."
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:112
-#: zapzap/features/accounts/card_user_controller.py:121
-#: zapzap/features/accounts/card_user_controller.py:128
+#: zapzap/features/accounts/card_user_controller.py:114
+#: zapzap/features/accounts/card_user_controller.py:123
+#: zapzap/features/accounts/card_user_controller.py:130
 #: zapzap/ui/components/edit_account_dialog.py:683
 #: zapzap/ui/components/edit_account_dialog.py:698
 msgid "Could not sync profile photo"
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:113
+#: zapzap/features/accounts/card_user_controller.py:115
 #: zapzap/ui/components/edit_account_dialog.py:684
 msgid "This account does not have an active WhatsApp session."
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:129
+#: zapzap/features/accounts/card_user_controller.py:131
 #: zapzap/features/accounts/domain/profile_sync.py:70
 msgid "No profile photo is available."
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:135
+#: zapzap/features/accounts/card_user_controller.py:137
 #: zapzap/ui/components/edit_account_dialog.py:705
 msgid "WhatsApp profile photo found"
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:136
+#: zapzap/features/accounts/card_user_controller.py:138
 #: zapzap/ui/components/edit_account_dialog.py:706
 msgid "Update this account photo?"
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:220
+#: zapzap/features/accounts/card_user_controller.py:225
 msgid "Remove account?"
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:222
+#: zapzap/features/accounts/card_user_controller.py:227
 #, python-brace-format
 msgid "The account \"{name}\" will be removed from ZapZap."
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:223
+#: zapzap/features/accounts/card_user_controller.py:228
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:191
 #: zapzap/ui/components/card_user.py:234 zapzap/ui/components/card_user.py:299
 #: zapzap/ui/components/card_user.py:470 zapzap/ui/components/card_user.py:697
 msgid "Unnamed account"
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:225
+#: zapzap/features/accounts/card_user_controller.py:230
 msgid ""
 "Its session will be closed and related local data may be permanently "
 "removed. This action cannot be undone."
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:232
+#: zapzap/features/accounts/card_user_controller.py:237
 #: zapzap/ui/components/card_user.py:153
 #: zapzap/ui/components/dictionary_manager_dialog.py:191
 msgid "Remove"
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:238
+#: zapzap/features/accounts/card_user_controller.py:243
 #: zapzap/features/reporting/dialogs.py:213
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:642
-#: zapzap/features/settings/pages/network_privacy/controller.py:282
+#: zapzap/features/settings/pages/network_privacy/controller.py:253
 #: zapzap/features/downloads/ui/download_dialog.py:109
 #: zapzap/features/downloads/ui/downloads_menu.py:269
 #: zapzap/features/downloads/ui/downloads_menu.py:649
@@ -215,16 +215,16 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:267
+#: zapzap/features/accounts/card_user_controller.py:272
 msgid "User-Agent Changed"
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:269
+#: zapzap/features/accounts/card_user_controller.py:274
 msgid ""
 "Please restart this session (or the application) to apply the new User-Agent."
 msgstr ""
 
-#: zapzap/features/accounts/card_user_controller.py:298
+#: zapzap/features/accounts/card_user_controller.py:303
 msgid "The notification state could not be changed."
 msgstr ""
 
@@ -459,20 +459,20 @@ msgstr ""
 msgid "Learn more about ZapZap ↗"
 msgstr ""
 
-#: zapzap/features/downloads/download_manager.py:517
-#: zapzap/features/downloads/download_manager.py:1084
-#: zapzap/features/downloads/download_manager.py:1087
+#: zapzap/features/downloads/download_manager.py:530
+#: zapzap/features/downloads/download_manager.py:1097
+#: zapzap/features/downloads/download_manager.py:1100
 #: zapzap/features/downloads/ui/download_dialog.py:36
 #: zapzap/features/downloads/ui/downloads_menu.py:447
 #: zapzap/ui/components/update_available_popover.py:109
 msgid "Download"
 msgstr ""
 
-#: zapzap/features/downloads/download_manager.py:1195
+#: zapzap/features/downloads/download_manager.py:1209
 msgid "Save file"
 msgstr ""
 
-#: zapzap/features/downloads/download_manager.py:1227
+#: zapzap/features/downloads/download_manager.py:1241
 msgid "Select folder"
 msgstr ""
 
@@ -502,10 +502,10 @@ msgid "Basics"
 msgstr ""
 
 #: zapzap/features/initial_setup/view.py:106
-#: zapzap/features/settings/shell/settings_controller.py:134
+#: zapzap/features/settings/shell/settings_controller.py:136
 #: zapzap/features/settings/pages/notifications/view.py:19
 #: zapzap/features/settings/pages/notifications/view.py:33
-#: zapzap/features/browser/web/web_view.py:310
+#: zapzap/features/browser/web/web_view.py:304
 msgid "Notifications"
 msgstr ""
 
@@ -520,7 +520,7 @@ msgstr ""
 
 #: zapzap/features/initial_setup/view.py:109
 #: zapzap/features/initial_setup/view.py:378
-#: zapzap/features/settings/shell/settings_controller.py:140
+#: zapzap/features/settings/shell/settings_controller.py:142
 #: zapzap/features/settings/pages/permissions/view.py:22
 msgid "Permissions"
 msgstr ""
@@ -781,9 +781,9 @@ msgstr ""
 #: zapzap/features/downloads/ui/downloads_menu.py:1025
 #: zapzap/ui/components/browser_sidebar.py:219
 #: zapzap/ui/components/browser_sidebar.py:220
-#: zapzap/ui/components/main_window.py:164
 #: zapzap/ui/components/floating_monitoring_panel.py:293
 #: zapzap/ui/components/floating_monitoring_panel.py:294
+#: zapzap/ui/components/main_window.py:164
 msgid "Downloads"
 msgstr ""
 
@@ -930,7 +930,7 @@ msgstr ""
 #: zapzap/features/settings/pages/debugging/controller.py:131
 #: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:553
+#: zapzap/features/browser/web/web_view.py:564
 msgid "Copy"
 msgstr ""
 
@@ -976,7 +976,7 @@ msgid ""
 "there."
 msgstr ""
 
-#: zapzap/features/notifications/notification_service.py:122
+#: zapzap/features/notifications/notification_service.py:127
 msgid "New message..."
 msgstr ""
 
@@ -1120,7 +1120,6 @@ msgid ""
 msgstr ""
 
 #: zapzap/features/reporting/dialogs.py:109
-#: zapzap/features/settings/pages/network_privacy/view.py:249
 #: zapzap/features/settings/pages/notifications/view.py:113
 msgid "Privacy"
 msgstr ""
@@ -1134,7 +1133,7 @@ msgstr ""
 #: zapzap/features/reporting/dialogs.py:136
 #: zapzap/features/reporting/dialogs.py:159
 #: zapzap/features/reporting/dialogs.py:292
-#: zapzap/features/settings/shell/settings_controller.py:176
+#: zapzap/features/settings/shell/settings_controller.py:178
 #: zapzap/features/settings/pages/about/view.py:269
 #: zapzap/features/settings/pages/debugging/view.py:160
 #: zapzap/features/settings/pages/debugging/view.py:177
@@ -1313,12 +1312,12 @@ msgstr ""
 
 #: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
 #: zapzap/features/tray/sys_tray_manager.py:70
-#: zapzap/features/settings/shell/settings_controller.py:234
+#: zapzap/features/settings/shell/settings_controller.py:236
 #: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/downloads/ui/downloads_menu.py:1081
-#: zapzap/ui/components/main_window.py:149
 #: zapzap/ui/components/floating_monitoring_panel.py:295
 #: zapzap/ui/components/floating_monitoring_panel.py:296
+#: zapzap/ui/components/main_window.py:149
 msgid "Settings"
 msgstr ""
 
@@ -1432,7 +1431,7 @@ msgid "Show"
 msgstr ""
 
 #: zapzap/features/tray/sys_tray_manager.py:65
-#: zapzap/features/settings/shell/settings_controller.py:122
+#: zapzap/features/settings/shell/settings_controller.py:124
 #: zapzap/features/settings/pages/accounts/view.py:17
 msgid "Accounts"
 msgstr ""
@@ -1449,36 +1448,36 @@ msgstr ""
 msgid "Quit"
 msgstr ""
 
-#: zapzap/features/settings/shell/settings_controller.py:128
+#: zapzap/features/settings/shell/settings_controller.py:130
 #: zapzap/features/settings/pages/appearance/view.py:23
 msgid "Appearance"
 msgstr ""
 
-#: zapzap/features/settings/shell/settings_controller.py:146
+#: zapzap/features/settings/shell/settings_controller.py:148
 #: zapzap/features/settings/pages/system_startup/view.py:22
 msgid "System and startup"
 msgstr ""
 
-#: zapzap/features/settings/shell/settings_controller.py:152
+#: zapzap/features/settings/shell/settings_controller.py:154
 #: zapzap/features/settings/pages/language_downloads/view.py:21
 msgid "Language and Download"
 msgstr ""
 
-#: zapzap/features/settings/shell/settings_controller.py:158
-#: zapzap/features/settings/pages/network_privacy/view.py:149
+#: zapzap/features/settings/shell/settings_controller.py:160
+#: zapzap/features/settings/pages/network_privacy/view.py:145
 msgid "Privacy and Network"
 msgstr ""
 
-#: zapzap/features/settings/shell/settings_controller.py:164
+#: zapzap/features/settings/shell/settings_controller.py:166
 msgid "Advanced Customizations"
 msgstr ""
 
-#: zapzap/features/settings/shell/settings_controller.py:170
+#: zapzap/features/settings/shell/settings_controller.py:172
 #: zapzap/features/settings/pages/performance_experimental/view.py:21
 msgid "Performance experimental"
 msgstr ""
 
-#: zapzap/features/settings/shell/settings_controller.py:182
+#: zapzap/features/settings/shell/settings_controller.py:184
 #: zapzap/features/settings/pages/about/view.py:238
 #: zapzap/ui/components/main_window.py:181
 msgid "About"
@@ -2077,7 +2076,7 @@ msgid "● There are unsaved changes."
 msgstr ""
 
 #: zapzap/features/settings/pages/advanced_customizations/view.py:417
-#: zapzap/features/settings/pages/network_privacy/view.py:110
+#: zapzap/features/settings/pages/network_privacy/view.py:106
 #: zapzap/ui/components/edit_account_dialog.py:820
 msgid "Discard"
 msgstr ""
@@ -2726,7 +2725,7 @@ msgid "Define"
 msgstr ""
 
 #: zapzap/features/settings/pages/language_downloads/view.py:87
-#: zapzap/features/settings/pages/network_privacy/controller.py:276
+#: zapzap/features/settings/pages/network_privacy/controller.py:247
 #: zapzap/features/settings/pages/performance_experimental/view.py:310
 msgid "Restore"
 msgstr ""
@@ -2805,7 +2804,7 @@ msgid "No proxy"
 msgstr ""
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:30
-#: zapzap/features/settings/pages/network_privacy/controller.py:167
+#: zapzap/features/settings/pages/network_privacy/controller.py:144
 msgid "System proxy"
 msgstr ""
 
@@ -2825,178 +2824,160 @@ msgstr ""
 msgid "FTP caching"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:150
+#: zapzap/features/settings/pages/network_privacy/controller.py:131
 msgid "Uses Chromium's native WebRTC policy after restarting ZapZap."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:155
+#: zapzap/features/settings/pages/network_privacy/controller.py:133
 msgid "Available only while an HTTP or SOCKS5 proxy is enabled."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:165
+#: zapzap/features/settings/pages/network_privacy/controller.py:142
 msgid "No proxy configured"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:177
+#: zapzap/features/settings/pages/network_privacy/controller.py:154
 #, python-brace-format
 msgid "{proxy_type} · {endpoint}"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:183
+#: zapzap/features/settings/pages/network_privacy/controller.py:160
 #, python-brace-format
 msgid "{status} · disabled"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:201
+#: zapzap/features/settings/pages/network_privacy/controller.py:177
 msgid "Unable to apply the proxy settings. The previous proxy remains active."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:217
+#: zapzap/features/settings/pages/network_privacy/controller.py:191
 msgid "Enter a proxy server."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:225
+#: zapzap/features/settings/pages/network_privacy/controller.py:199
 msgid "Enter a port between 1 and 65535."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:264
+#: zapzap/features/settings/pages/network_privacy/controller.py:238
 msgid "Restore proxy settings?"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:266
+#: zapzap/features/settings/pages/network_privacy/controller.py:240
 msgid ""
 "The global proxy settings will be removed and the default values will be "
 "restored."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/controller.py:270
-msgid "Strict proxy isolation and WebRTC protection will not be changed."
+#: zapzap/features/settings/pages/network_privacy/controller.py:243
+msgid "Strict proxy isolation will not be changed."
 msgstr ""
 
 #: zapzap/features/settings/pages/network_privacy/view.py:36
-#: zapzap/features/settings/pages/network_privacy/view.py:42
+#: zapzap/features/settings/pages/network_privacy/view.py:40
 msgid "Authentication"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:44
+#: zapzap/features/settings/pages/network_privacy/view.py:42
 msgid "Show or hide optional proxy credentials."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:54
+#: zapzap/features/settings/pages/network_privacy/view.py:52
 msgid "User"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:55
+#: zapzap/features/settings/pages/network_privacy/view.py:53
 msgid "Optional proxy user."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:58
+#: zapzap/features/settings/pages/network_privacy/view.py:56
 msgid "Password"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:59
+#: zapzap/features/settings/pages/network_privacy/view.py:57
 msgid "Optional proxy password."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:106
+#: zapzap/features/settings/pages/network_privacy/view.py:102
 msgid "There are unapplied network changes."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:111
+#: zapzap/features/settings/pages/network_privacy/view.py:107
 msgid "Apply changes"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:150
+#: zapzap/features/settings/pages/network_privacy/view.py:146
 msgid "Configure proxy, privacy protection, and network options."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:166
+#: zapzap/features/settings/pages/network_privacy/view.py:161
 msgid "Proxy"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:168
+#: zapzap/features/settings/pages/network_privacy/view.py:163
 msgid ""
 "Route WhatsApp Web traffic through a proxy server. Existing connections may "
 "require reloading."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:174
+#: zapzap/features/settings/pages/network_privacy/view.py:169
 msgid "Use proxy"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:175
+#: zapzap/features/settings/pages/network_privacy/view.py:170
 msgid "Route traffic through the proxy configured below."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:178
+#: zapzap/features/settings/pages/network_privacy/view.py:173
 msgid "Type"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:179
+#: zapzap/features/settings/pages/network_privacy/view.py:174
 msgid "Select the proxy mode."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:183
+#: zapzap/features/settings/pages/network_privacy/view.py:178
 msgid "Server"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:184
+#: zapzap/features/settings/pages/network_privacy/view.py:179
 msgid "Proxy host name or IP address."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:186
+#: zapzap/features/settings/pages/network_privacy/view.py:181
 msgid "Port"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:186
+#: zapzap/features/settings/pages/network_privacy/view.py:181
 msgid "Proxy port."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:191
+#: zapzap/features/settings/pages/network_privacy/view.py:186
 msgid "Strict proxy isolation"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:193
+#: zapzap/features/settings/pages/network_privacy/view.py:188
 msgid ""
 "Prevent direct network connections when an explicit proxy is configured."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:213
+#: zapzap/features/settings/pages/network_privacy/view.py:206
 msgid "Restore proxy…"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:214
+#: zapzap/features/settings/pages/network_privacy/view.py:207
 msgid "Remove the global proxy settings and restore defaults."
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:215
+#: zapzap/features/settings/pages/network_privacy/view.py:208
 msgid "Restore…"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:236
+#: zapzap/features/settings/pages/network_privacy/view.py:229
 msgid "proxy.example.com"
 msgstr ""
 
-#: zapzap/features/settings/pages/network_privacy/view.py:238
+#: zapzap/features/settings/pages/network_privacy/view.py:231
 msgid "8080"
-msgstr ""
-
-#: zapzap/features/settings/pages/network_privacy/view.py:250
-msgid "Reduce the exposure of network information."
-msgstr ""
-
-#: zapzap/features/settings/pages/network_privacy/view.py:254
-msgid "WebRTC protection"
-msgstr ""
-
-#: zapzap/features/settings/pages/network_privacy/view.py:256
-msgid ""
-"Blocks WebRTC APIs in page scripts. This is independent from strict proxy "
-"isolation."
-msgstr ""
-
-#: zapzap/features/settings/pages/network_privacy/view.py:261
-msgid "Legacy script-based protection"
 msgstr ""
 
 #: zapzap/features/settings/pages/notifications/view.py:20
@@ -3796,76 +3777,6 @@ msgstr ""
 msgid "Not now"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:309
-#: zapzap/ui/components/integrated_account_selector.py:57
-msgid "Account selector"
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:469
-msgid "Chat list width"
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:471
-msgid ""
-"Drag or use the arrow keys to resize. Double-click or press Enter to restore "
-"the default width."
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:552
-msgid "Undo"
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:552
-msgid "Redo"
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:552
-msgid "Cut"
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:553
-msgid "Paste"
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:553
-msgid "Select all"
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:554
-msgid "Save image"
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:554
-msgid "Copy image"
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:555
-#: zapzap/features/browser/web/web_view.py:585
-msgid "Copy link address"
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:603
-msgid "Check Spelling"
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:609
-msgid "Languages…"
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:612
-msgid "Choose the languages used by the spell checker."
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:1127
-#: zapzap/ui/components/card_user.py:304
-msgid "Account"
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:1129
-#, python-brace-format
-msgid "DevTools - {}"
-msgstr ""
-
 #: zapzap/features/browser/web/page_controller.py:314
 msgid "your microphone"
 msgstr ""
@@ -3919,6 +3830,76 @@ msgid ""
 "To prevent the application from becoming unresponsive, this window cannot be "
 "closed manually. Use WhatsApp's End call button. The window will close when "
 "WhatsApp requests it."
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:303
+#: zapzap/ui/components/integrated_account_selector.py:57
+msgid "Account selector"
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:467
+msgid "Chat list width"
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:470
+msgid ""
+"Drag or use the arrow keys to resize. Double-click or press Enter to restore "
+"the default width."
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:561
+msgid "Undo"
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:562
+msgid "Redo"
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:563
+msgid "Cut"
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:565
+msgid "Paste"
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:566
+msgid "Select all"
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:567
+msgid "Save image"
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:568
+msgid "Copy image"
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:569
+#: zapzap/features/browser/web/web_view.py:599
+msgid "Copy link address"
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:616
+msgid "Check Spelling"
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:622
+msgid "Languages…"
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:624
+msgid "Choose the languages used by the spell checker."
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:1152
+#: zapzap/ui/components/card_user.py:304
+msgid "Account"
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:1153
+#, python-brace-format
+msgid "DevTools - {}"
 msgstr ""
 
 #: zapzap/features/accounts/domain/profile_sync.py:49
@@ -4443,6 +4424,29 @@ msgstr ""
 msgid "Keep editing"
 msgstr ""
 
+#: zapzap/ui/components/floating_monitoring_panel.py:283
+#: zapzap/ui/components/floating_monitoring_panel.py:285
+msgid "Quick access"
+msgstr ""
+
+#: zapzap/ui/components/floating_monitoring_panel.py:284
+msgid "No account activity to show yet."
+msgstr ""
+
+#: zapzap/ui/components/floating_monitoring_panel.py:286
+msgid "Monitoring panel"
+msgstr ""
+
+#: zapzap/ui/components/floating_monitoring_panel.py:287
+#: zapzap/ui/components/floating_monitoring_panel.py:288
+msgid "Unlock position"
+msgstr ""
+
+#: zapzap/ui/components/floating_monitoring_panel.py:291
+#: zapzap/ui/components/floating_monitoring_panel.py:292
+msgid "Audio"
+msgstr ""
+
 #: zapzap/ui/components/main_window.py:140
 msgid "File"
 msgstr ""
@@ -4787,27 +4791,4 @@ msgstr ""
 #: zapzap/ui/components/update_available_popover.py:171
 #, python-brace-format
 msgid "ZapZap {latest} is available. Current version: {current}."
-msgstr ""
-
-#: zapzap/ui/components/floating_monitoring_panel.py:283
-#: zapzap/ui/components/floating_monitoring_panel.py:285
-msgid "Quick access"
-msgstr ""
-
-#: zapzap/ui/components/floating_monitoring_panel.py:284
-msgid "No account activity to show yet."
-msgstr ""
-
-#: zapzap/ui/components/floating_monitoring_panel.py:286
-msgid "Monitoring panel"
-msgstr ""
-
-#: zapzap/ui/components/floating_monitoring_panel.py:287
-#: zapzap/ui/components/floating_monitoring_panel.py:288
-msgid "Unlock position"
-msgstr ""
-
-#: zapzap/ui/components/floating_monitoring_panel.py:291
-#: zapzap/ui/components/floating_monitoring_panel.py:292
-msgid "Audio"
 msgstr ""

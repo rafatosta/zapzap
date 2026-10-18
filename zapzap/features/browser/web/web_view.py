@@ -6,8 +6,24 @@ import json
 
 from PyQt6.QtWebChannel import QWebChannel
 from PyQt6.QtWebEngineWidgets import QWebEngineView
-from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings, QWebEnginePage, QWebEngineScript
-from PyQt6.QtCore import QUrl, pyqtSignal, QTimer, QEvent, Qt, QFile, QTextStream, QObject, pyqtSlot, QRect
+from PyQt6.QtWebEngineCore import (
+    QWebEngineProfile,
+    QWebEngineSettings,
+    QWebEnginePage,
+    QWebEngineScript,
+)
+from PyQt6.QtCore import (
+    QUrl,
+    pyqtSignal,
+    QTimer,
+    QEvent,
+    Qt,
+    QFile,
+    QTextStream,
+    QObject,
+    pyqtSlot,
+    QRect,
+)
 from PyQt6.QtWidgets import QApplication, QWidget
 from PyQt6.QtGui import QAction
 
@@ -15,7 +31,9 @@ from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.core.config.settings.appearance import AppearanceSettings
 from zapzap.assets.icons.system_icon import SystemIcon
 from zapzap.core.config.settings.downloads import (
-    DownloadSettings, PDFClickBehavior, download_settings_events,
+    DownloadSettings,
+    PDFClickBehavior,
+    download_settings_events,
 )
 from zapzap.features.browser.web.page_controller import PageController
 from zapzap.features.browser.web.popup_window import InternalWebPopup
@@ -60,7 +78,7 @@ class WebView(QWebEngineView):
     QWEBENGINE_CACHE_TYPES = {
         "MemoryHttpCache": QWebEngineProfile.HttpCacheType.MemoryHttpCache,
         "DiskHttpCache": QWebEngineProfile.HttpCacheType.DiskHttpCache,
-        "NoCache": QWebEngineProfile.HttpCacheType.NoCache
+        "NoCache": QWebEngineProfile.HttpCacheType.NoCache,
     }
 
     USER_AGENTS = {
@@ -71,7 +89,7 @@ class WebView(QWebEngineView):
         "Mac Safari": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2.1 Safari/605.1.15",
         "Mac Chrome": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         "Linux Firefox": "Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0",
-        "Linux Chrome": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        "Linux Chrome": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     }
 
     RESIZABLE_CHAT_LIST_SCRIPT_NAME = "zapzap_resizable_chat_list"
@@ -97,7 +115,9 @@ class WebView(QWebEngineView):
         self._shutting_down = False
 
         self._web_channel_bridge = None
-        self._integrated_selector_enabled = AppearanceSettings().integrated_account_selector_enabled
+        self._integrated_selector_enabled = (
+            AppearanceSettings().integrated_account_selector_enabled
+        )
         self._integrated_other_unread = False
 
         # In-memory only: last directory chosen with Save As for this
@@ -162,23 +182,20 @@ class WebView(QWebEngineView):
         self._cache_path = self.profile.cachePath()
         self._storage_path = self.profile.persistentStoragePath()
 
-        selected_ua_name = SettingsManager.get(
-            f"{self.user.id}/user_agent", "Default")
-        ua_string = self.USER_AGENTS.get(
-            selected_ua_name, self.USER_AGENTS["Default"])
+        selected_ua_name = SettingsManager.get(f"{self.user.id}/user_agent", "Default")
+        ua_string = self.USER_AGENTS.get(selected_ua_name, self.USER_AGENTS["Default"])
         self.profile.setHttpUserAgent(ua_string)
 
         self.profile.downloadRequested.connect(
-            lambda download: DownloadManager.on_downloadRequested(
-                download,
-                self
-            )
+            lambda download: DownloadManager.on_downloadRequested(download, self)
         )
         self.profile.setNotificationPresenter(
             lambda notification: self.notifications.notify(self, notification)
         )
         self.profile.settings().setAttribute(
-            QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled, SettingsManager.get("web/scroll_animator", False))
+            QWebEngineSettings.WebAttribute.ScrollAnimatorEnabled,
+            SettingsManager.get("web/scroll_animator", False),
+        )
         self._apply_pdf_click_behavior()
 
         self.configure_spellcheck()
@@ -207,7 +224,6 @@ class WebView(QWebEngineView):
 
         # Instala o handler de crash específico para este WebView
         crash_handler.register_profile(self.profile)
-        self._inject_webrtc_shield()
 
     def _apply_pdf_click_behavior(self):
         """Enable PDF plugin for previews or download PDF navigations."""
@@ -216,9 +232,7 @@ class WebView(QWebEngineView):
         preview = DownloadSettings().pdf_click_behavior == PDFClickBehavior.PREVIEW
         settings = self.profile.settings()
         # Qt WebEngine needs PluginsEnabled as well as PdfViewerEnabled.
-        settings.setAttribute(
-            QWebEngineSettings.WebAttribute.PluginsEnabled, preview
-        )
+        settings.setAttribute(QWebEngineSettings.WebAttribute.PluginsEnabled, preview)
         pdf_viewer_attr = getattr(
             QWebEngineSettings.WebAttribute, "PdfViewerEnabled", None
         )
@@ -247,9 +261,7 @@ class WebView(QWebEngineView):
             script.setRunsOnSubFrames(False)
             script.setWorldId(QWebEngineScript.ScriptWorldId.MainWorld)
             mode = json.dumps(DownloadSettings().pdf_click_behavior)
-            script.setSourceCode(
-                source.replace("__ZAPZAP_PDF_CLICK_MODE__", mode)
-            )
+            script.setSourceCode(source.replace("__ZAPZAP_PDF_CLICK_MODE__", mode))
             self.profile.scripts().insert(script)
         except Exception:
             logger.exception("Failed to install PDF document click handler")
@@ -259,14 +271,16 @@ class WebView(QWebEngineView):
             try:
                 base_dir = os.path.dirname(__file__)
                 js_path = os.path.join(
-                    base_dir, "scripts", "ctrl_arrow_visual_navigation_fix.js")
+                    base_dir, "scripts", "ctrl_arrow_visual_navigation_fix.js"
+                )
                 with open(js_path, "r", encoding="utf-8") as f:
                     js_code = f.read()
 
                 script = QWebEngineScript()
                 script.setName("ctrl_arrow_visual_navigation_fix")
                 script.setInjectionPoint(
-                    QWebEngineScript.InjectionPoint.DocumentCreation)
+                    QWebEngineScript.InjectionPoint.DocumentCreation
+                )
                 script.setRunsOnSubFrames(True)
                 script.setSourceCode(js_code)
                 script.setWorldId(QWebEngineScript.ScriptWorldId.MainWorld)
@@ -274,38 +288,18 @@ class WebView(QWebEngineView):
             except Exception as e:
                 print(f"Error injecting ctrl_arrow_visual_navigation_fix: {e}")
 
-    def _inject_webrtc_shield(self):
-        """Inject the legacy page-level WebRTC candidate obfuscation shim.
-
-        Network isolation for explicit proxies is handled before WebEngine
-        starts through Chromium's native IP handling policy.
-        """
-        if SettingsManager.get("privacy/webrtc_shield", False):
-            try:
-                base_dir = os.path.dirname(__file__)
-                js_path = os.path.join(base_dir, "scripts", "webrtc_shield.js")
-                with open(js_path, "r", encoding="utf-8") as f:
-                    js_code = f.read()
-
-                script = QWebEngineScript()
-                script.setName("webrtc_shield")
-                script.setInjectionPoint(
-                    QWebEngineScript.InjectionPoint.DocumentCreation)
-                script.setRunsOnSubFrames(True)
-                script.setSourceCode(js_code)
-                script.setWorldId(QWebEngineScript.ScriptWorldId.MainWorld)
-                self.profile.scripts().insert(script)
-            except Exception as e:
-                print(f"Error injecting WebRTC shield: {e}")
-
     def _inject_web_theme_controller(self):
         """Injects the JavaScript code for the ZapZap WAWeb Theme Controller and QWebChannel support."""
         try:
             self._setup_web_channel()
             placeholders = {
                 "{qwebchannel_js_code}": self._get_web_channel_js_code(),
-                "{quick_accounts_visible}": json.dumps(self._integrated_selector_enabled),
-                "{quick_accounts_icon}": SystemIcon.SVG_ICONS["view_grid"].format(fill_color="currentColor"),
+                "{quick_accounts_visible}": json.dumps(
+                    self._integrated_selector_enabled
+                ),
+                "{quick_accounts_icon}": SystemIcon.SVG_ICONS["view_grid"].format(
+                    fill_color="currentColor"
+                ),
                 "{selector_label}": json.dumps(_("Account selector")),
                 "{selector_activity_label}": json.dumps(_("Notifications")),
                 "{current_color_scheme}": (
@@ -318,14 +312,11 @@ class WebView(QWebEngineView):
             if not file.open(QFile.OpenModeFlag.ReadOnly):
                 raise RuntimeError(file.errorString())
             js_code = QTextStream(file).readAll()
-            pattern = re.compile(
-                "|".join(re.escape(key) for key in placeholders)
-            )
+            pattern = re.compile("|".join(re.escape(key) for key in placeholders))
             js_code = pattern.sub(lambda m: placeholders[m.group(0)], js_code)
             script = QWebEngineScript()
             script.setName("zapzap_web_theme_controller")
-            script.setInjectionPoint(
-                QWebEngineScript.InjectionPoint.DocumentReady)
+            script.setInjectionPoint(QWebEngineScript.InjectionPoint.DocumentReady)
             script.setRunsOnSubFrames(False)
             script.setSourceCode(js_code)
             script.setWorldId(QWebEngineScript.ScriptWorldId.MainWorld)
@@ -349,23 +340,24 @@ class WebView(QWebEngineView):
             def on_theme_controller_injection_success(self):
                 self._webview.apply_theme(
                     ThemeManager.get_current_theme(),
-                    ThemeManager.get_current_color_scheme()
+                    ThemeManager.get_current_color_scheme(),
                 )
 
             @pyqtSlot(str, bool)
-            def on_waweb_theme_changed(self, new_theme_value: str, system_theme_mode: bool):
+            def on_waweb_theme_changed(
+                self, new_theme_value: str, system_theme_mode: bool
+            ):
                 # Redundant protection against theme changes fired from the WhatsApp Web settings.
                 # Force WAWeb to always use the theme from the ZapZap settings.
                 self._webview.apply_theme(
                     ThemeManager.get_current_theme(),
-                    ThemeManager.get_current_color_scheme()
+                    ThemeManager.get_current_color_scheme(),
                 )
 
             @pyqtSlot(str)
             def on_theme_controller_failure(self, message: str):
                 if self._webview.whatsapp_page:
-                    self._webview.whatsapp_page.on_apply_theme_result(
-                        False, message)
+                    self._webview.whatsapp_page.on_apply_theme_result(False, message)
                     self._webview.whatsapp_page.fall_back_to_force_dark_mode()
 
             @pyqtSlot()
@@ -378,8 +370,12 @@ class WebView(QWebEngineView):
                 if view._shutting_down or not view._integrated_selector_enabled:
                     return
                 zoom = view.zoomFactor()
-                local = QRect(round(x * zoom), round(y * zoom),
-                              round(width * zoom), round(height * zoom)).intersected(view.rect())
+                local = QRect(
+                    round(x * zoom),
+                    round(y * zoom),
+                    round(width * zoom),
+                    round(height * zoom),
+                ).intersected(view.rect())
                 if not local.isEmpty():
                     view.integrated_selector_requested.emit(
                         QRect(view.mapToGlobal(local.topLeft()), local.size())
@@ -394,7 +390,7 @@ class WebView(QWebEngineView):
         self._web_channel_bridge = ZapZapBridge(self)
         self.whatsapp_page.setWebChannel(
             self._web_channel_bridge.web_channel,
-            QWebEngineScript.ScriptWorldId.MainWorld
+            QWebEngineScript.ScriptWorldId.MainWorld,
         )
 
     def set_integrated_selector_state(self, enabled, has_other_unread):
@@ -405,7 +401,9 @@ class WebView(QWebEngineView):
     def _sync_integrated_selector(self):
         if self.whatsapp_page is None or self._shutting_down:
             return
-        state = json.dumps([self._integrated_selector_enabled, self._integrated_other_unread])
+        state = json.dumps(
+            [self._integrated_selector_enabled, self._integrated_other_unread]
+        )
         self.whatsapp_page.runJavaScript(
             "window._zapZapQuickAccountsController && "
             f"window._zapZapQuickAccountsController.setState(...{state});"
@@ -468,8 +466,10 @@ class WebView(QWebEngineView):
         placeholders = {
             "{resize_handle_label}": json.dumps(_("Chat list width")),
             "{resize_handle_hint}": json.dumps(
-                _("Drag or use the arrow keys to resize. Double-click or "
-                  "press Enter to restore the default width.")
+                _(
+                    "Drag or use the arrow keys to resize. Double-click or "
+                    "press Enter to restore the default width."
+                )
             ),
         }
         for placeholder, value in placeholders.items():
@@ -516,8 +516,7 @@ class WebView(QWebEngineView):
         probe.watch(self.whatsapp_page, "page", self)
         self.whatsapp_page.user_id = self.user.id
         self.whatsapp_page.setAudioMuted(SystemSettings().audio_muted)
-        self.whatsapp_page.renderProcessTerminated.connect(
-            self._on_render_crash)
+        self.whatsapp_page.renderProcessTerminated.connect(self._on_render_crash)
         self._inject_web_theme_controller()
         self._install_pdf_click_controller()
         self._install_resizable_chat_list(
@@ -526,11 +525,14 @@ class WebView(QWebEngineView):
         self.load_page()
 
     def _on_render_crash(self, terminationStatus, exitCode):
-        with probe.scope("renderer_terminated", self, status=terminationStatus, exit_code=exitCode):
+        with probe.scope(
+            "renderer_terminated", self, status=terminationStatus, exit_code=exitCode
+        ):
             if self._shutting_down or not self.user.enable or not self.whatsapp_page:
                 return
             print(
-                f"Tab renderer crashed (status={terminationStatus}, code={exitCode}). Reloading...")
+                f"Tab renderer crashed (status={terminationStatus}, code={exitCode}). Reloading..."
+            )
             self._render_crash_reload_timer.start(1000)
 
     def contextMenuEvent(self, event):
@@ -541,18 +543,30 @@ class WebView(QWebEngineView):
 
         # 1. Remoção de ações indesejadas
         actions_to_remove = [
-            'Back', 'View page source', 'Save page', 'Forward',
-            'Open link in new tab', 'Save link', 'Open link in new window',
-            'Paste and match style', 'Reload', 'Copy image address'
+            "Back",
+            "View page source",
+            "Save page",
+            "Forward",
+            "Open link in new tab",
+            "Save link",
+            "Open link in new window",
+            "Paste and match style",
+            "Reload",
+            "Copy image address",
         ]
         menu = self._remove_actions(menu, actions_to_remove)
 
         # 2. Aplicação de traduções às ações
         translations = {
-            'Undo': _('Undo'), 'Redo': _('Redo'), 'Cut': _('Cut'),
-            'Copy': _('Copy'), 'Paste': _('Paste'), 'Select all': _('Select all'),
-            'Save image': _('Save image'), 'Copy image': _('Copy image'),
-            'Copy link address': _('Copy link address')
+            "Undo": _("Undo"),
+            "Redo": _("Redo"),
+            "Cut": _("Cut"),
+            "Copy": _("Copy"),
+            "Paste": _("Paste"),
+            "Select all": _("Select all"),
+            "Save image": _("Save image"),
+            "Copy image": _("Copy image"),
+            "Copy link address": _("Copy link address"),
         }
         self._translate_actions(menu, translations)
 
@@ -591,8 +605,7 @@ class WebView(QWebEngineView):
                 def setClipboard():
                     cb = QApplication.clipboard()
                     cb.clear(mode=cb.Mode.Clipboard)
-                    cb.setText(self.whatsapp_page.link_context,
-                               mode=cb.Mode.Clipboard)
+                    cb.setText(self.whatsapp_page.link_context, mode=cb.Mode.Clipboard)
 
                 action.triggered.connect(setClipboard)
 
@@ -608,8 +621,7 @@ class WebView(QWebEngineView):
 
         language_action = QAction(_("Languages…"), self)
         language_action.setEnabled(profile.isSpellCheckEnabled())
-        language_action.setToolTip(
-            _("Choose the languages used by the spell checker."))
+        language_action.setToolTip(_("Choose the languages used by the spell checker."))
         language_action.triggered.connect(self._open_spellcheck_language_picker)
         menu.addAction(language_action)
 
@@ -622,14 +634,15 @@ class WebView(QWebEngineView):
     def _open_spellcheck_language_picker(self):
         open_spellcheck_language_picker(
             self,
-            on_applied=lambda: QApplication.instance()
-            .getWindow().browser.update_spellcheck(),
+            on_applied=lambda: (
+                QApplication.instance().getWindow().browser.update_spellcheck()
+            ),
         )
 
     def _on_title_changed(self, title):
         """Manipula mudanças no título da página."""
         with probe.scope("title_callback", self):
-            num = ''.join(filter(str.isdigit, title))
+            num = "".join(filter(str.isdigit, title))
             qtd = int(num) if num else 0
             self.update_button_signal.emit(self.page_index, qtd)
 
@@ -651,9 +664,11 @@ class WebView(QWebEngineView):
                 if probe.enabled:
                     probe.record("gesture_consumed", self)
                 return True
-            if (SettingsManager.get("web/disable_pinch", False) and
-                    hasattr(event, 'gestureType') and
-                    event.gestureType() == Qt.NativeGestureType.ZoomNativeGesture):
+            if (
+                SettingsManager.get("web/disable_pinch", False)
+                and hasattr(event, "gestureType")
+                and event.gestureType() == Qt.NativeGestureType.ZoomNativeGesture
+            ):
                 return True  # Consume the event without zooming
         if probe.enabled:
             return probe.dispatch_event(self, event, super().event)
@@ -853,8 +868,8 @@ class WebView(QWebEngineView):
             page = self.page()
             page.runJavaScript(
                 self._plain_text_paste_script(text),
-                lambda inserted, target=page: (
-                    self._finish_plain_text_paste(target, inserted)
+                lambda inserted, target=page: self._finish_plain_text_paste(
+                    target, inserted
                 ),
             )
         except RuntimeError:
@@ -869,8 +884,7 @@ class WebView(QWebEngineView):
         if probe.enabled and watched is self:
             probe.record("filter_event", self, event_type=event_type)
         is_escape = (
-            event_type == QEvent.Type.KeyPress
-            and event.key() == Qt.Key.Key_Escape
+            event_type == QEvent.Type.KeyPress and event.key() == Qt.Key.Key_Escape
         )
         is_native_gesture = event_type == QEvent.Type.NativeGesture
         if not is_escape and not is_native_gesture:
@@ -891,8 +905,12 @@ class WebView(QWebEngineView):
             if probe.enabled:
                 probe.watch(watched, "render-widget", self)
                 gesture = event.gestureType() if hasattr(event, "gestureType") else None
-                probe.record("gesture_filtered", watched, owner=probe.key(self),
-                             gesture_type=gesture)
+                probe.record(
+                    "gesture_filtered",
+                    watched,
+                    owner=probe.key(self),
+                    gesture_type=gesture,
+                )
             if _EVENT_MODE == "consume-native-gestures":
                 return True
         if is_native_gesture:
@@ -920,7 +938,11 @@ class WebView(QWebEngineView):
                 return
 
             if self.user.enable and self.whatsapp_page:
-                probe.record("set_page", self, owner=probe.key(self.whatsapp_page) if probe.enabled else None)
+                probe.record(
+                    "set_page",
+                    self,
+                    owner=probe.key(self.whatsapp_page) if probe.enabled else None,
+                )
                 self.setPage(self.whatsapp_page)
                 self.load(QUrl(__whatsapp_url__))
                 applied_zoom = apply_zoom_factor(self, self.user.zoomFactor)
@@ -1057,8 +1079,8 @@ class WebView(QWebEngineView):
 
     def _stop_timers(self):
         for timer in (
-                getattr(self, "_reload_timer", None),
-                getattr(self, "_render_crash_reload_timer", None),
+            getattr(self, "_reload_timer", None),
+            getattr(self, "_render_crash_reload_timer", None),
         ):
             if timer:
                 timer.stop()
@@ -1128,14 +1150,11 @@ class WebView(QWebEngineView):
             probe.watch(self._devtools_view, "devtools-view", self)
 
             account_name = self.user.name if self.user.name else _("Account")
-            self._devtools_view.setWindowTitle(
-                _("DevTools - {}").format(account_name)
-            )
+            self._devtools_view.setWindowTitle(_("DevTools - {}").format(account_name))
             self._devtools_view.resize(1100, 700)
 
         if self._devtools_page is None:
-            self._devtools_page = QWebEnginePage(
-                self.profile, self._devtools_view)
+            self._devtools_page = QWebEnginePage(self.profile, self._devtools_view)
             probe.watch(self._devtools_page, "devtools-page", self._devtools_view)
 
         current_page.setDevToolsPage(self._devtools_page)

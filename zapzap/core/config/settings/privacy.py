@@ -8,16 +8,7 @@ from zapzap.core.config.settings.base import BaseSettings
 class PrivacySettings(BaseSettings):
     """Semantic access to privacy settings."""
 
-    _WEBRTC_SHIELD = ("privacy/webrtc_shield", False)
     _STRICT_PROXY = ("privacy/strict_proxy", False)
-
-    @property
-    def webrtc_shield_enabled(self) -> bool:
-        return self._get_bool(self._WEBRTC_SHIELD)
-
-    @webrtc_shield_enabled.setter
-    def webrtc_shield_enabled(self, value: bool) -> None:
-        self._set_bool(self._WEBRTC_SHIELD, value)
 
     @property
     def strict_proxy_enabled(self) -> bool:

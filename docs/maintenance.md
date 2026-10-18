@@ -210,13 +210,12 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   tipos `HttpProxy` ou `Socks5Proxy`. A flag Chromium correspondente deve ser
   montada por `SetupManager` antes do WebEngine, sem duplicar nem apagar flags
   externas, e mudanças na preferência exigem reinício completo.
-- Trate `webrtc_shield.js` somente como proteção JavaScript legada. Ele não
-  substitui a política nativa e não comprova isolamento de rede.
-- Antes de alterar ou retirar o Shield, valide chamadas com a opção ligada e
-  desligada e revise a descrição traduzida da UI: o script atual reescreve
-  candidatos recebidos em `addIceCandidate`, sem bloquear APIs nem filtrar
-  candidatos de saída. Preserve `privacy/webrtc_shield`; não a converta
-  automaticamente em `privacy/strict_proxy`, pois os escopos são diferentes.
+- O shield legado `webrtc_shield.js` foi removido: ele reescrevia candidatos
+  ICE recebidos e travava chamadas de voz e vídeo sem bloquear o vazamento
+  real. Não o reintroduza sem validar chamadas de voz e vídeo nos dois
+  sentidos. O valor `privacy/webrtc_shield` eventualmente persistido é
+  ignorado e não deve ser convertido automaticamente em
+  `privacy/strict_proxy`, pois os escopos são diferentes.
 - Valide alterações de proxy com testes sem rede e repita os cenários manuais
   fail-closed de `docs/testing.md` em uma sessão descartável.
 

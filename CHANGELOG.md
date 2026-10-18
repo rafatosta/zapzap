@@ -11,6 +11,20 @@ This mandatory record starts after version 7.4.1. The 7.4.1 entry below is the
 historical baseline; older release summaries remain available in the GitHub
 releases and the AppStream metadata.
 
+## [7.5.2] - In development
+
+### Fixed
+
+- Fix voice and video calls never connecting by removing the legacy WebRTC
+  shield (#673). The page-level `webrtc_shield.js` shim rewrote incoming ICE
+  candidates to `0.0.0.0`/`::`, so call media could never be established and
+  calls stayed on "Connecting...". The shield never filtered the outgoing
+  candidates that carry the actual IP leak and Chromium already hides local
+  IPs behind native mDNS candidates, so the option, its settings UI row, the
+  `privacy/webrtc_shield` setting and the injected script are removed.
+  Previously persisted `privacy/webrtc_shield` values are simply ignored and
+  strict proxy isolation continues to use Chromium's native policy.
+
 ## [7.5.1] - 2026-10-15
 
 ### Added
@@ -652,6 +666,7 @@ releases and the AppStream metadata.
 - Improved reliability when ZapZap is closed by the operating system.
 - Included performance improvements.
 
+[7.5.2]: https://github.com/rafatosta/zapzap/compare/7.5.1...HEAD
 [7.5.1]: https://github.com/rafatosta/zapzap/compare/7.5...7.5.1
 [7.5]: https://github.com/rafatosta/zapzap/compare/7.4.5...7.5
 [7.4.5]: https://github.com/rafatosta/zapzap/compare/7.4.4...7.4.5

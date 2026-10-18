@@ -68,15 +68,8 @@ class NetworkPrivacySettingsController(NetworkPrivacySettingsView):
         self.setPort.setText(str(settings["port"]))
         self.setUser.setText(str(settings["user"]))
         self.setPassword.setText(str(settings["password"]))
-        self.authentication.set_expanded(
-            bool(settings["user"] or settings["password"])
-        )
-        self.strictProxyCheckBox.setChecked(
-            self.model.strict_proxy_enabled
-        )
-        self.webrtcShieldCheckBox.setChecked(
-            self.model.webrtc_shield_enabled
-        )
+        self.authentication.set_expanded(bool(settings["user"] or settings["password"]))
+        self.strictProxyCheckBox.setChecked(self.model.strict_proxy_enabled)
         self._set_dirty(False)
         self._clear_validation()
         self._update_proxy_controls()
@@ -86,15 +79,11 @@ class NetworkPrivacySettingsController(NetworkPrivacySettingsView):
 
     def _connect_signals(self):
         self.pending_changes_bar.apply_requested.connect(self._set_proxy)
-        self.pending_changes_bar.discard_requested.connect(
-            self._discard_changes
-        )
+        self.pending_changes_bar.discard_requested.connect(self._discard_changes)
         self.btn_restore.clicked.connect(self._restore_proxy)
 
         self.proxyCheckBox.toggled.connect(self._on_proxy_form_changed)
-        self.proxyComboBox.currentIndexChanged.connect(
-            self._on_proxy_form_changed
-        )
+        self.proxyComboBox.currentIndexChanged.connect(self._on_proxy_form_changed)
         for field in (
             self.setHostName,
             self.setPort,
@@ -102,10 +91,7 @@ class NetworkPrivacySettingsController(NetworkPrivacySettingsView):
             self.setPassword,
         ):
             field.textChanged.connect(self._on_proxy_form_changed)
-        self.strictProxyCheckBox.toggled.connect(
-            self._on_proxy_form_changed
-        )
-        self.webrtcShieldCheckBox.toggled.connect(self._save_webrtc_setting)
+        self.strictProxyCheckBox.toggled.connect(self._on_proxy_form_changed)
         self.restart_bar.restart_requested.connect(self._restart_required)
 
     def _set_dirty(self, dirty):
@@ -119,10 +105,6 @@ class NetworkPrivacySettingsController(NetworkPrivacySettingsView):
         self._update_proxy_controls()
         self._update_proxy_status()
         self._set_dirty(True)
-
-    def _save_webrtc_setting(self, checked):
-        if not self._loading:
-            self.model.webrtc_shield_enabled = checked
 
     def _update_proxy_controls(self):
         enabled = self.proxyCheckBox.isChecked()
@@ -146,14 +128,9 @@ class NetworkPrivacySettingsController(NetworkPrivacySettingsView):
             strict_available or self.strictProxyCheckBox.isChecked()
         )
         self.strict_proxy_status.setText(
-            _(
-                "Uses Chromium's native WebRTC policy after restarting "
-                "ZapZap."
-            )
+            _("Uses Chromium's native WebRTC policy after restarting ZapZap.")
             if strict_available
-            else _(
-                "Available only while an HTTP or SOCKS5 proxy is enabled."
-            )
+            else _("Available only while an HTTP or SOCKS5 proxy is enabled.")
         )
 
     def _proxy_type_label(self):
@@ -197,10 +174,7 @@ class NetworkPrivacySettingsController(NetworkPrivacySettingsView):
 
     def _show_apply_failure(self):
         self.validation_message.setText(
-            _(
-                "Unable to apply the proxy settings. The previous proxy "
-                "remains active."
-            )
+            _("Unable to apply the proxy settings. The previous proxy remains active.")
         )
         self.validation_message.show()
 
@@ -266,10 +240,7 @@ class NetworkPrivacySettingsController(NetworkPrivacySettingsView):
                 "The global proxy settings will be removed and the default "
                 "values will be restored."
             ),
-            _(
-                "Strict proxy isolation and WebRTC protection will not be "
-                "changed."
-            ),
+            _("Strict proxy isolation will not be changed."),
             actions=(
                 (
                     "restore",
@@ -296,8 +267,7 @@ class NetworkPrivacySettingsController(NetworkPrivacySettingsView):
 
     def _update_restart_requirement(self):
         restart_required = (
-            self.model.strict_proxy_enabled
-            != self._strict_proxy_restart_baseline
+            self.model.strict_proxy_enabled != self._strict_proxy_restart_baseline
         )
         self.set_restart_required(
             SettingsRestartBar.APPLICATION if restart_required else None

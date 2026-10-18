@@ -33,9 +33,7 @@ class NetworkPrivacySettingsModel:
         prefix = self._GLOBAL_PROXY_PREFIX
         return {
             "enabled": bool(SettingsManager.get(f"{prefix}proxyEnable", False)),
-            "proxy_type": str(
-                SettingsManager.get(f"{prefix}proxyType", "NoProxy")
-            ),
+            "proxy_type": str(SettingsManager.get(f"{prefix}proxyType", "NoProxy")),
             "host": str(SettingsManager.get(f"{prefix}hostName", "")),
             "port": str(SettingsManager.get(f"{prefix}port", "")),
             "user": str(SettingsManager.get(f"{prefix}user", "")),
@@ -71,15 +69,6 @@ class NetworkPrivacySettingsModel:
             user="",
             password="",
         )
-
-    @property
-    def webrtc_shield_enabled(self) -> bool:
-        """Whether WebRTC IP exposure protection is enabled."""
-        return self._privacy_settings.webrtc_shield_enabled
-
-    @webrtc_shield_enabled.setter
-    def webrtc_shield_enabled(self, value: bool) -> None:
-        self._privacy_settings.webrtc_shield_enabled = value
 
     @property
     def strict_proxy_enabled(self) -> bool:

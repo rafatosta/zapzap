@@ -390,14 +390,10 @@ evitar escolher silenciosamente uma configuração de conta como padrão global.
 No bootstrap, `privacy/strict_proxy` acrescenta a política nativa Chromium
 `disable_non_proxied_udp` apenas quando um proxy HTTP ou SOCKS5 explícito está
 habilitado. Proxy do sistema, `NoProxy` e proxies de cache não recebem essa
-garantia. O `webrtc_shield.js` continua como ofuscação legada de candidatos
-visíveis à página e não constitui a fronteira de isolamento de rede.
-O shim intercepta `addIceCandidate` e reescreve endereços em candidatos
-recebidos dos tipos `host`/`srflx`; não bloqueia `RTCPeerConnection`, não filtra
-eventos `icecandidate` de saída e não modifica o SDP de ofertas/respostas.
-A descrição atual da UI de que bloqueia APIs WebRTC não corresponde a esse
-escopo. Nesta avaliação, a opção e `privacy/webrtc_shield` são preservadas;
-uma revisão funcional deve tratar separadamente script, descrição e chamadas.
+garantia. O shim legado `webrtc_shield.js`, que reescrevia candidatos ICE
+recebidos e travava as chamadas de voz e vídeo, foi removido junto com a opção
+e a linha correspondente na UI; o valor `privacy/webrtc_shield` eventualmente
+persistido é simplesmente ignorado.
 
 A ação de conversa por número é coordenada por `MainWindowController`, que
 mantém no máximo um `SendMessageToNumberDialog` modal por vez. O diálogo

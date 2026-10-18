@@ -453,10 +453,10 @@ vazamentos.
 
 Com proxy HTTP/SOCKS5 explícito e modo estrito ativos após reinício, confirme a
 flag nativa nos diagnósticos. Se houver captura de tráfego disponível, verifique
-que o Chromium não cria UDP WebRTC não proxyficado. Desative separadamente o
-WebRTC Shield legado para confirmar que a política nativa não depende do script
-`webrtc_shield.js`. Repita com proxy do sistema e confirme que a UI não promete
-isolamento estrito e que a flag não é aplicada.
+que o Chromium não cria UDP WebRTC não proxyficado. Repita com proxy do sistema
+e confirme que a UI não promete isolamento estrito e que a flag não é aplicada.
+Confirme também que chamadas de voz e vídeo conectam e mantêm mídia, sem o
+script legado de ofuscação de candidatos.
 
 ## Validação manual da bandeja do sistema
 
