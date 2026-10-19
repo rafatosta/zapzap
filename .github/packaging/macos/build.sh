@@ -26,6 +26,7 @@ bash .github/packaging/macos/build-native.sh
 echo "# === Running PyInstaller ==="
 python -m PyInstaller \
     --noconfirm \
+    --collect-submodules zapzap.features.settings.pages \
     .github/packaging/macos/ZapZap.spec
 
 echo "# === Packaging into DMG ==="

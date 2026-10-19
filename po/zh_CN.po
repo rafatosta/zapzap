@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version:  ZapZap\n"
@@ -160,19 +159,16 @@ msgstr "无法移除该账户。请重试。"
 #: zapzap/features/accounts/card_user_controller.py:128
 #: zapzap/ui/components/edit_account_dialog.py:683
 #: zapzap/ui/components/edit_account_dialog.py:698
-#, fuzzy
 msgid "Could not sync profile photo"
 msgstr "无法保存文件。"
 
 #: zapzap/features/accounts/card_user_controller.py:113
 #: zapzap/ui/components/edit_account_dialog.py:684
-#, fuzzy
 msgid "This account does not have an active WhatsApp session."
 msgstr "此用户样式不针对 WhatsApp Web。"
 
 #: zapzap/features/accounts/card_user_controller.py:129
 #: zapzap/features/accounts/domain/profile_sync.py:70
-#, fuzzy
 msgid "No profile photo is available."
 msgstr "没有可用预览。"
 
@@ -2143,7 +2139,6 @@ msgid "Windows"
 msgstr "Windows"
 
 #: zapzap/features/settings/pages/appearance/view.py:25
-#, fuzzy
 msgid ""
 "Adjust interface chrome, quick access, theme, tray icon, grid view, and "
 "window decorations."
@@ -2215,7 +2210,6 @@ msgid ""
 msgstr ""
 
 #: zapzap/features/settings/pages/appearance/view.py:97
-#, fuzzy
 msgid "Floating monitoring panel"
 msgstr "固定面板"
 
@@ -2225,12 +2219,10 @@ msgid ""
 msgstr "在独立窗口中监控账户。关闭面板只会暂时隐藏它。"
 
 #: zapzap/features/settings/pages/appearance/view.py:101
-#, fuzzy
 msgid "Integrated account selector"
 msgstr "账户列表"
 
 #: zapzap/features/settings/pages/appearance/view.py:103
-#, fuzzy
 msgid "Show a compact account selector integrated into WhatsApp Web."
 msgstr "在浏览器外壳中显示账户导航。"
 
@@ -2293,7 +2285,6 @@ msgstr "将面板移回可用的屏幕区域。"
 
 #: zapzap/features/settings/pages/appearance/view.py:154
 #: zapzap/features/settings/pages/language_downloads/view.py:124
-#, fuzzy
 msgid "Reset"
 msgstr "重置…"
 
@@ -2727,7 +2718,6 @@ msgid "Preview in WhatsApp"
 msgstr ""
 
 #: zapzap/features/settings/pages/language_downloads/controller.py:119
-#, fuzzy
 msgid "Download directly (where supported)"
 msgstr "下载目录"
 
@@ -3820,7 +3810,6 @@ msgid "Completed"
 msgstr "已完成"
 
 #: zapzap/features/downloads/ui/downloads_menu.py:622
-#, fuzzy
 msgid "Delete file"
 msgstr "选择文件"
 
@@ -3918,7 +3907,6 @@ msgstr "暂不"
 
 #: zapzap/features/browser/web/web_view.py:309
 #: zapzap/ui/components/integrated_account_selector.py:57
-#, fuzzy
 msgid "Account selector"
 msgstr "账户列表"
 
@@ -4048,7 +4036,6 @@ msgstr ""
 "WhatsApp 请求关闭时，窗口会自动关闭。"
 
 #: zapzap/features/accounts/domain/profile_sync.py:49
-#, fuzzy
 msgid "WhatsApp Web is unavailable."
 msgstr "ZapZap {version} 已可用"
 
@@ -4058,17 +4045,14 @@ msgid "The WhatsApp page returned invalid avatar data."
 msgstr ""
 
 #: zapzap/features/accounts/domain/profile_sync.py:81
-#, fuzzy
 msgid "The profile photo URL is invalid."
 msgstr "文件或文件名无效。"
 
 #: zapzap/features/accounts/domain/profile_sync.py:91
-#, fuzzy
 msgid "The profile photo could not be downloaded."
 msgstr "无法加载可用目录。"
 
 #: zapzap/features/accounts/domain/profile_sync.py:95
-#, fuzzy
 msgid "The profile photo is invalid."
 msgstr "文件或文件名无效。"
 
@@ -4081,12 +4065,10 @@ msgid "The profile photo is not base64 encoded."
 msgstr ""
 
 #: zapzap/features/accounts/domain/profile_sync.py:127
-#, fuzzy
 msgid "The profile photo could not be decoded."
 msgstr "无法加载可用目录。"
 
 #: zapzap/features/accounts/domain/profile_sync.py:131
-#, fuzzy
 msgid "The profile photo could not be read."
 msgstr "无法加载可用目录。"
 
@@ -4923,7 +4905,6 @@ msgstr "ZapZap {latest} 已可用。当前版本：{current}。"
 
 #: zapzap/ui/components/floating_monitoring_panel.py:283
 #: zapzap/ui/components/floating_monitoring_panel.py:285
-#, fuzzy
 msgid "Quick access"
 msgstr "快速访问"
 
@@ -4932,7 +4913,6 @@ msgid "No account activity to show yet."
 msgstr ""
 
 #: zapzap/ui/components/floating_monitoring_panel.py:286
-#, fuzzy
 msgid "Monitoring panel"
 msgstr "固定面板"
 
@@ -4951,15 +4931,12 @@ msgstr ""
 #~ "enabled."
 #~ msgstr "以固定宽度仅显示聊天头像。启用后无法调整宽度。"
 
-#, fuzzy
 #~ msgid "No accounts yet"
 #~ msgstr "新账户"
 
-#, fuzzy
 #~ msgid "Compact account navigation integrated into WhatsApp Web"
 #~ msgstr "在浏览器外壳中显示账户导航。"
 
-#, fuzzy
 #~ msgid "Control how the Quick Access panel is displayed."
 #~ msgstr "控制快速访问面板及其侧边栏行为。"
 
@@ -4969,31 +4946,27 @@ msgstr ""
 #~ msgid "Allows you to use the Quick Access panel."
 #~ msgstr "允许使用快速访问面板。"
 
-#, fuzzy
 #~ msgid "Display mode"
 #~ msgstr "显示后端"
 
-#, fuzzy
 #~ msgid "Always visible"
 #~ msgstr "始终允许"
 
-#, fuzzy
 #~ msgid "Accounts and quick actions"
 #~ msgstr "账户图标"
 
-#, fuzzy
 #~ msgid "Current account"
 #~ msgstr "当前图标"
 
-#, fuzzy, python-brace-format
+#, python-brace-format
 #~ msgid "Unread messages: {count}"
 #~ msgstr "未读计数"
 
-#~ msgid "Search accounts..."
-#~ msgstr "搜索账户..."
+msgid "Search accounts..."
+msgstr "搜索账户..."
 
-#~ msgid "Quick actions"
-#~ msgstr "快捷操作"
+msgid "Quick actions"
+msgstr "快捷操作"
 
 #~ msgid "Show when hiding the sidebar"
 #~ msgstr "隐藏侧边栏时显示"
@@ -5010,8 +4983,8 @@ msgstr ""
 #~ msgstr "使用系统默认应用打开已完成的 PDF 和图片下载。"
 
 #, python-brace-format
-#~ msgid "{site} wants to download multiple files."
-#~ msgstr "{site} 请求下载多个文件。"
+msgid "{site} wants to download multiple files."
+msgstr "{site} 请求下载多个文件。"
 
 #~ msgid "Automatic download site permissions"
 #~ msgstr "自动下载站点权限"

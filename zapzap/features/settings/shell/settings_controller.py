@@ -113,9 +113,6 @@ class SettingsController(SettingsView):
         self._setup_signals()
         self._select_default_page()
 
-    def __del__(self):
-        """Destrói o widget e limpa recursos."""
-
     def _pages(self):
         """Return page descriptors with labels translated at runtime."""
         return [
@@ -180,6 +177,12 @@ class SettingsController(SettingsView):
                 "DebuggingSettingsController",
             ),
             SettingsPageDescriptor(
+                "wa_js",
+                _("WhatsApp API (experimental)"),
+                "zapzap.features.settings.pages.wa_js.controller",
+                "WaJsSettingsController",
+            ),
+            SettingsPageDescriptor(
                 self.ABOUT_PAGE_ID,
                 _("About"),
                 "zapzap.features.settings.pages.about.controller",
@@ -203,15 +206,16 @@ class SettingsController(SettingsView):
 
     def _setup_signals(self):
         """Conecta os sinais dos botões gerais."""
-        window = QApplication.instance().getWindow()
-        self.btn_quit.clicked.connect(window.request_quit)
-        self.sidebar.btn_close.clicked.connect(window.close_settings)
+        window = QApplication.instance().getWindow() if QApplication.instance() else None
         self.close_shortcut = QShortcut(QKeySequence("Escape"), self)
         self.close_shortcut.setContext(
             Qt.ShortcutContext.WidgetWithChildrenShortcut
         )
-        self.close_shortcut.activated.connect(window.close_settings)
-        self.btn_donate.clicked.connect(window.open_donations)
+        if window is not None:
+            self.btn_quit.clicked.connect(window.request_quit)
+            self.sidebar.btn_close.clicked.connect(window.close_settings)
+            self.close_shortcut.activated.connect(window.close_settings)
+            self.btn_donate.clicked.connect(window.open_donations)
 
     def _ensure_page(self, page_id):
         page = self._page_instances.get(page_id)

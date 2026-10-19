@@ -130,8 +130,8 @@ class BrowserSidebar(QFrame):
         self.layout_2.addWidget(self.btn_new_account)
 
         spacer = QSpacerItem(
-            20,
-            473,
+            0,
+            0,
             QSizePolicy.Policy.Minimum,
             QSizePolicy.Policy.Expanding,
         )
@@ -219,6 +219,10 @@ class BrowserSidebar(QFrame):
         self.btn_downloads.setToolTip(_("Downloads"))
         self.btn_downloads.setAccessibleName(_("Downloads"))
         self.btn_open_settings.setToolTip(_("ZapZap Settings"))
+        self.btn_open_settings.setAccessibleName(_("ZapZap Settings"))
+        self.btn_open_settings.setAccessibleDescription(
+            _("Open ZapZap settings.")
+        )
 
     def set_update_available(self, latest_version=None):
         available = bool(latest_version)

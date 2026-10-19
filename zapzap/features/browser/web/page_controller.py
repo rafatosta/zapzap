@@ -17,6 +17,7 @@ from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.features.permissions.permissions_manager import PermissionsManager
 from zapzap.features.browser.web.deeplink import build_open_chat_script
 from zapzap.features.browser.web.open_chat import ChatTarget, build_open_chat_url
+from zapzap.features.wa_js.manager import WaJsManager
 from zapzap.ui.typography import Typography
 
 import urllib.parse  # Para normalizar URLs
@@ -150,6 +151,9 @@ class PageController(QWebEnginePage):
             if scheme in {"http", "https"}:
                 if url.host().lower() not in __allowed_hosts__:
                     return False  # Impede a navegação
+            else:
+                # Block any scheme that is not explicitly handled above.
+                return False
 
             return super().acceptNavigationRequest(url, type, isMainFrame)
 
@@ -342,6 +346,8 @@ class PageController(QWebEnginePage):
             # Injeta os addons
             AddonsManager.inject_addons(self)
             self.apply_customizations()
+            if WaJsManager.is_enabled():
+                WaJsManager.on_load_finished(self)
 
             # Permite notificações automaticamente
             self.setFeaturePermission(

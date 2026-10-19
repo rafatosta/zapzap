@@ -11,6 +11,54 @@ This mandatory record starts after version 7.4.1. The 7.4.1 entry below is the
 historical baseline; older release summaries remain available in the GitHub
 releases and the AppStream metadata.
 
+## [7.5.2] - In development
+
+### Added
+
+- Research and document additional WhatsApp Web features available through the unofficial WA-JS (WPP) API, including messaging, chat management, groups/communities/channels, commerce, status, organization, profile/privacy and events; propose opt-in injection/bridge integration (no code changes yet).
+
+- Add experimental WhatsApp Web WA-JS (WPP) bridge helpers under `zapzap.features.wa_js`, including settings toggle, bundle injection, Qt bridge and a generic console dialog.
+- Add `WhatsApp API (experimental)` settings page to enable the WA-JS bridge and run WPP calls.
+- Vendor the WA-JS bundle under `zapzap/features/browser/web/scripts/wppconnect-wa.js`.
+- Register `zapzap.features.wa_js` in the architecture package inventory.
+
+- Add experimental WhatsApp Web WA-JS (WPP) bridge helpers under ``zapzap.features.wa_js``.
+- Expand ``WaJsManager`` with WA-JS bundle/glue injection, load handling and ``call`` API.
+- Wire the experimental WA-JS bridge into WebView and PageController: register zapzapWaJsBridge, inject WaJsManager when enabled, and notify on page load.
+- Add experimental WA-JS settings page under settings.
+- Add WA-JS console dialog and 'Open console' action on the WA-JS settings page.
+
+### Fixed
+
+- Keep the account context menu open and focus its first action when Tab is
+  pressed from the popup surface.
+- Avoid crashing the language and download settings page when a settings model
+  does not expose PDF click behavior.
+- Collect dynamically loaded settings page submodules in the macOS packaging
+  build script.
+- Make the macOS native notification ABI test cross-platform by verifying
+  the source exports when the compiled library is unavailable.
+- Reduce noisy portal notification fallback diagnostics by using debug
+  logging instead of console output.
+
+- Avoid mutating the shared path map and missing-key crashes in the path
+  manager.
+- Make crash-dump directories unique and release the faulthandler handle on
+  close.
+- Skip missing sysfs nodes while probing GPU environment data.
+- Broaden proxy isolation exception handling.
+- Guard malformed records in the local report store.
+- Fall back to Auto when an invalid theme value is supplied.
+- Block navigation schemes that are not explicitly handled by the page
+  controller.
+- Persist browser sidebar visibility from Appearance settings.
+- Guard notification privacy presets when notifications are disabled.
+- Use the toggled signal for system autostart handling.
+- Tolerate a missing main window in the settings shell.
+- Adjust the browser sidebar spacer and settings-button accessibility.
+- Update the distributed packages inventory in docs/architecture.md to include zapzap.features.settings.pages.wa_js.
+
+
 ## [7.5.1] - 2026-10-15
 
 ### Added
@@ -652,6 +700,7 @@ releases and the AppStream metadata.
 - Improved reliability when ZapZap is closed by the operating system.
 - Included performance improvements.
 
+[7.5.2]: https://github.com/rafatosta/zapzap/compare/7.5.1...HEAD
 [7.5.1]: https://github.com/rafatosta/zapzap/compare/7.5...7.5.1
 [7.5]: https://github.com/rafatosta/zapzap/compare/7.4.5...7.5
 [7.4.5]: https://github.com/rafatosta/zapzap/compare/7.4.4...7.4.5

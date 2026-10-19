@@ -54,7 +54,11 @@ class LocalReportStore:
         for path in self.directory.glob("*.json"):
             try:
                 record = json.loads(path.read_text(encoding="utf-8"))
+                if not isinstance(record, dict):
+                    continue
                 document = record.get("document") or {}
+                if not isinstance(document, dict):
+                    document = {}
                 if report_type and document.get("report_type") != report_type:
                     continue
                 if status and record.get("status") != status:
@@ -65,18 +69,31 @@ class LocalReportStore:
         return sorted(records, key=lambda item: item.get("created_at", ""), reverse=True)
 
     def document(self, report_id: str) -> ReportDocument | None:
-        record = next((item for item in self.records() if item.get("id") == report_id), None)
-        return ReportDocument(record["document"]) if record else None
+        record = next(
+            (item for item in self.records() if isinstance(item, dict) and item.get("id") == report_id),
+            None,
+        )
+        if not isinstance(record, dict) or not isinstance(record.get("document"), dict):
+            return None
+        try:
+            return ReportDocument(record["document"])
+        except (TypeError, ValueError, KeyError):
+            return None
 
     def set_status(self, report_id: str, status: str):
         path = self.directory / f"{report_id}.json"
         if not path.exists():
             return
-        record = json.loads(path.read_text(encoding="utf-8"))
-        record["status"] = status
-        temporary = path.with_suffix(".tmp")
-        temporary.write_text(json.dumps(record, ensure_ascii=False, sort_keys=True), encoding="utf-8")
-        temporary.replace(path)
+        try:
+            record = json.loads(path.read_text(encoding="utf-8"))
+            if not isinstance(record, dict):
+                return
+            record["status"] = status
+            temporary = path.with_suffix(".tmp")
+            temporary.write_text(json.dumps(record, ensure_ascii=False, sort_keys=True), encoding="utf-8")
+            temporary.replace(path)
+        except (OSError, ValueError, TypeError):
+            return
 
     def delete(self, report_id: str):
         (self.directory / f"{report_id}.json").unlink(missing_ok=True)

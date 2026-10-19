@@ -86,7 +86,11 @@ def _render_nodes_by_device(drm_dir: Path) -> Dict[Path, Path]:
     for render_node in sorted(drm_dir.glob("renderD*")):
         if not render_node.name[7:].isdigit():
             continue
-        nodes[_device_path(render_node)] = render_node
+        try:
+            device = _device_path(render_node)
+        except OSError:
+            continue
+        nodes[device] = render_node
     return nodes
 
 
@@ -145,9 +149,13 @@ def _connector_states_by_device(drm_dir: Path) -> Dict[Path, List[str]]:
         card = drm_dir / card_name
         if not card.exists():
             continue
+        try:
+            device = _device_path(card)
+        except OSError:
+            continue
 
         state = status_file.read_text(encoding="utf-8").strip().lower()
-        states_by_device.setdefault(_device_path(card), []).append(state)
+        states_by_device.setdefault(device, []).append(state)
 
     return states_by_device
 

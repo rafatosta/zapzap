@@ -915,10 +915,12 @@ Este bloco é verificado automaticamente contra
 - `zapzap.features.settings.pages.performance_experimental`
 - `zapzap.features.settings.pages.permissions`
 - `zapzap.features.settings.pages.system_startup`
+- `zapzap.features.settings.pages.wa_js`
 - `zapzap.features.settings.shell`
 - `zapzap.features.shortcuts`
 - `zapzap.features.startup`
 - `zapzap.features.tray`
+- `zapzap.features.wa_js`
 - `zapzap.ui`
 - `zapzap.ui.components`
 - `zapzap.ui.primitives`

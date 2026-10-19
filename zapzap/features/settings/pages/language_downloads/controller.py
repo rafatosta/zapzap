@@ -117,7 +117,9 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         combo.clear()
         combo.addItem(_("Preview in WhatsApp"), PDFClickBehavior.PREVIEW)
         combo.addItem(_("Download directly (where supported)"), PDFClickBehavior.DOWNLOAD)
-        combo.setCurrentIndex(max(0, combo.findData(self.model.pdf_click_behavior)))
+        combo.setCurrentIndex(
+            max(0, combo.findData(getattr(self.model, "pdf_click_behavior", PDFClickBehavior.PREVIEW)))
+        )
         combo.blockSignals(False)
 
     def _load_interface_languages(self):
@@ -250,6 +252,8 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         self.model.download_behavior = value
 
     def _handle_pdf_click_behavior(self, *_args):
+        if not hasattr(self.model, "pdf_click_behavior"):
+            return
         self.model.pdf_click_behavior = self.pdf_click_behavior_combo.currentData()
 
     def _handle_remember_save_as(self, enabled):

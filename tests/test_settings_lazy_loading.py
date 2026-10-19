@@ -202,6 +202,7 @@ class SettingsLazyLoadingTest(QtTestCase):
         "Advanced Customizations",
         "Performance experimental",
         "Report a problem",
+        "WhatsApp API (experimental)",
         "About",
     ]
 

@@ -150,7 +150,7 @@ class ProxyManager:
             # Validate the endpoint as strictly as apply(), without mutating
             # the application proxy during pre-QApplication environment setup.
             ProxyManager._build_proxy(proxy_type, enabled)
-        except (TypeError, ValueError, OverflowError):
+        except Exception:
             logger.warning(
                 "Strict proxy isolation is inactive: explicit proxy "
                 "settings are invalid"

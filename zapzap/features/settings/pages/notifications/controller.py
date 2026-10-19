@@ -68,6 +68,8 @@ class NotificationsSettingsController(NotificationsSettingsView):
         show_message: bool,
     ):
         """Apply a shortcut through the existing switches and persistence."""
+        if not self.notify_groupBox.checkbox.isChecked():
+            return
         self.show_photo.checkbox.setChecked(show_photo)
         self.show_name.checkbox.setChecked(show_name)
         self.show_msg.checkbox.setChecked(show_message)

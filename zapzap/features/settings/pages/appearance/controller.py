@@ -171,6 +171,7 @@ class AppearanceSettingsController(AppearanceSettingsView):
 
     def _handle_sidebar(self):
         enabled = self.browser_sidebar.isChecked()
+        self.model.browser_sidebar_visible = enabled
         QApplication.instance().getWindow().set_sidebar_visible(enabled)
 
     def _handle_menubar(self):

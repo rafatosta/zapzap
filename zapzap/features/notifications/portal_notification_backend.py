@@ -16,6 +16,10 @@ from PyQt6.QtDBus import (
 from PyQt6.QtWebEngineCore import QWebEngineNotification
 from PyQt6.QtWidgets import QApplication
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 from zapzap.features.notifications.freedesktop_notification_backend import IconRenderer
 from zapzap.features.notifications.window_activation import (
     activate_window,
@@ -151,7 +155,7 @@ class PortalNotificationBackend(QObject):
                 notification.show()
                 break
 
-            print(error_msg.format(reply.errorMessage()))
+                logger.debug(error_msg.format(reply.errorMessage()))
 
         self._supports_icon_field = (
             used_payload is not None
@@ -249,7 +253,7 @@ class PortalNotificationBackend(QObject):
             return data
 
         except Exception as e:
-            print("[Portal] Failed to create notification icon:", e)
+            logger.debug("[Portal] Failed to create notification icon: %s", e)
             return None
 
 
@@ -289,6 +293,6 @@ class PortalNotificationBackend(QObject):
                 notification.close()
 
         except Exception as e:
-            print("Portal ActionInvoked error:", e)
+            logger.debug("Portal ActionInvoked error: %s", e)
         finally:
             self._remove_notification(notification_id)
