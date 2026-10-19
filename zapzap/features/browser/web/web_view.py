@@ -18,6 +18,9 @@ from zapzap.core.config.settings.downloads import (
     DownloadSettings, PDFClickBehavior, download_settings_events,
 )
 from zapzap.features.browser.web.page_controller import PageController
+from zapzap.core.config.settings.wa_js import WaJsSettings
+from zapzap.features.wa_js.bridge import WaJsBridge
+from zapzap.features.wa_js.manager import WaJsManager
 from zapzap.features.browser.web.popup_window import InternalWebPopup
 from zapzap.features.accounts.domain.user import (
     MAX_ZOOM_FACTOR,
@@ -97,6 +100,8 @@ class WebView(QWebEngineView):
         self._shutting_down = False
 
         self._web_channel_bridge = None
+        self._wa_js_bridge = None
+        self._wa_js_manager = None
         self._integrated_selector_enabled = AppearanceSettings().integrated_account_selector_enabled
         self._integrated_other_unread = False
 
@@ -392,6 +397,10 @@ class WebView(QWebEngineView):
                 self._webview = webview
 
         self._web_channel_bridge = ZapZapBridge(self)
+        self._wa_js_bridge = WaJsBridge(self)
+        self._web_channel_bridge.web_channel.registerObject(
+            "zapzapWaJsBridge", self._wa_js_bridge
+        )
         self.whatsapp_page.setWebChannel(
             self._web_channel_bridge.web_channel,
             QWebEngineScript.ScriptWorldId.MainWorld
@@ -519,6 +528,9 @@ class WebView(QWebEngineView):
         self.whatsapp_page.renderProcessTerminated.connect(
             self._on_render_crash)
         self._inject_web_theme_controller()
+        if WaJsSettings().enabled:
+            self._wa_js_manager = WaJsManager(self, self._wa_js_bridge)
+            WaJsManager.inject(self)
         self._install_pdf_click_controller()
         self._install_resizable_chat_list(
             AppearanceSettings().resizable_chat_list_enabled

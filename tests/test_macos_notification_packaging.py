@@ -65,11 +65,17 @@ class MacosNotificationPackagingTests(unittest.TestCase):
             with self.assertRaisesRegex(SystemExit, "build-native.sh"):
                 self.run_spec(root)
 
-    @unittest.skipUnless(sys.platform == "darwin", "native Mac library load")
     def test_compiled_native_library_has_the_complete_public_abi(self):
+        symbols = ("zn_install", "zn_send", "zn_send_message", "zn_remove")
         library = ROOT / "build" / "native" / "libZapZapNotifications.dylib"
-        if not library.is_file():
-            self.skipTest("run build-native.sh first")
-        bridge = ctypes.CDLL(str(library))
-        for symbol in ("zn_install", "zn_send", "zn_send_message", "zn_remove"):
-            self.assertTrue(callable(getattr(bridge, symbol)))
+        if library.is_file():
+            bridge = ctypes.CDLL(str(library))
+            for symbol in symbols:
+                self.assertTrue(callable(getattr(bridge, symbol)))
+            return
+
+        source = (
+            ROOT / "zapzap" / "features" / "notifications" / "macos_notifications.m"
+        ).read_text(encoding="utf-8")
+        for symbol in symbols:
+            self.assertRegex(source, rf"\b{symbol}\b")

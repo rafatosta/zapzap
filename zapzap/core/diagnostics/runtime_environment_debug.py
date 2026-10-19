@@ -5,7 +5,7 @@ import re
 import shutil
 import subprocess
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 from typing import Any, Dict
@@ -516,7 +516,7 @@ class RuntimeEnvironmentDebug:
         process_details = self._process_details()
         report = {
             "meta": {
-                "generated_at": datetime.utcnow().isoformat() + "Z"
+                "generated_at": datetime.now(timezone.utc).isoformat()
             },
             "app": self.app_info(),
             "sandbox": self.sandbox_info(),

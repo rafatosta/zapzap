@@ -739,6 +739,14 @@ class AccountContextMenu(QFrame):
         self.activateWindow()
         self.setFocus(Qt.FocusReason.PopupFocusReason)
 
+    def focusNextPrevChild(self, next):
+        if not any(control.hasFocus() for control in self._controls()):
+            target = self.edit_action if next else self.remove_action
+            if target.isEnabled():
+                target.setFocus(Qt.FocusReason.TabFocusReason)
+                return True
+        return super().focusNextPrevChild(next)
+
     def keyPressEvent(self, event):
         if event.key() == Qt.Key.Key_Escape:
             self.close()
@@ -759,6 +767,23 @@ class AccountContextMenu(QFrame):
                 target.setFocus(Qt.FocusReason.ShortcutFocusReason)
             event.accept()
             return
+        if event.key() == Qt.Key.Key_Tab and not (event.modifiers() & Qt.KeyboardModifier.ShiftModifier):
+            if not any(control.hasFocus() for control in self._controls()):
+                target = self.edit_action if self.edit_action.isEnabled() else None
+                if target is None:
+                    enabled = [c for c in self._controls() if c.isEnabled()]
+                    target = enabled[0] if enabled else None
+                if target is not None:
+                    target.setFocus(Qt.FocusReason.TabFocusReason)
+                    event.accept()
+                    return
+        if event.key() == Qt.Key.Key_Backtab:
+            if not any(control.hasFocus() for control in self._controls()):
+                enabled = [c for c in self._controls() if c.isEnabled()]
+                if enabled:
+                    enabled[-1].setFocus(Qt.FocusReason.TabFocusReason)
+                    event.accept()
+                    return
         super().keyPressEvent(event)
 
     def eventFilter(self, watched, event):

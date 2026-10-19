@@ -92,6 +92,17 @@ class CrashDumpHandler:
     def unregister_profile(self, profile) -> None:
         self._profiles.discard(profile)
 
+    def close(self) -> None:
+        """Release resources held by this handler."""
+        file_handle = getattr(self, "_faulthandler_file", None)
+        if file_handle is not None:
+            try:
+                file_handle.flush()
+                file_handle.close()
+            except Exception:
+                pass
+            self._faulthandler_file = None
+
     # ==================================================
     # Handler principal de exceções
     # ==================================================
@@ -109,11 +120,17 @@ class CrashDumpHandler:
                 sys.__excepthook__(exc_type, exc_value, exc_traceback)
             return
 
-        timestamp = datetime.utcnow().strftime("%Y%m%d-%H%M%S")
+        timestamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S-%f")
         work_dir = self.dump_dir / f"crash-{timestamp}"
+        suffix = 0
+        while work_dir.exists():
+            suffix += 1
+            work_dir = self.dump_dir / f"crash-{timestamp}-{suffix}"
         work_dir.mkdir(parents=True, exist_ok=True)
 
         zip_path = self.dump_dir / f"{self.app_name}-crash-{timestamp}.zip"
+        if suffix:
+            zip_path = self.dump_dir / f"{self.app_name}-crash-{timestamp}-{suffix}.zip"
 
         try:
             # 1 Dump do ambiente

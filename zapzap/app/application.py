@@ -165,6 +165,7 @@ def main():
         app._reporting_coordinator = reporting_coordinator
         QTimer.singleShot(0, reporting_coordinator.show_prepared_crash)
 
+    app.aboutToQuit.connect(crash_handler.close)
     app.aboutToQuit.connect(crash_session_monitor.mark_shutdown)
     app.aboutToQuit.connect(NotificationService.shutdown)
     app.aboutToQuit.connect(system_dictionary_provisioner.close)
@@ -179,6 +180,7 @@ def main():
     exit_code = app.exec()
 
     # Defensive fallback for abnormal shutdown paths where aboutToQuit may not have run.
+    crash_handler.close()
     crash_session_monitor.mark_shutdown()
     NotificationService.shutdown()
     ThemeManager.stop()

@@ -71,7 +71,7 @@ class SystemStartupSettingsController(SystemStartupSettingsView):
                 self.btn_start_background.isChecked(),
             )
         )
-        self.btn_start_system.clicked.connect(self._handle_autostart)
+        self.btn_start_system.toggled.connect(self._handle_autostart)
         self.native_file_dialogs.toggled.connect(
             self._handle_native_file_dialogs
         )

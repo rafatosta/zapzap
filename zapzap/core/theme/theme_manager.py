@@ -192,7 +192,11 @@ class ThemeManager(QObject):
     def set_theme(cls, theme: Type | str) -> None:
         """Sets the ZapZap theme chosen by the user."""
         instance = cls.instance()
-        theme = cls.Type(theme)
+        try:
+            theme = cls.Type(theme)
+        except (ValueError, TypeError):
+            theme = cls.Type.Auto
+            SettingsManager.set("system/theme", theme.value)
 
         if instance._current_theme == theme:
             return

@@ -57,15 +57,17 @@ class PathManager:
     @staticmethod
     def get_paths(packaging_type):
         """Retorna os caminhos, considerando o caminho customizado ou o padrão."""
-        paths = PathManager.paths.get(packaging_type, None)
-        if paths:
-            # Obtém o caminho customizado, se existir, ou o caminho padrão
-            path = SettingsManager.get(
-                f"spellcheck/folder_{packaging_type.value}", paths["default"])
-            if path:
-                paths["path"] = path  # Substitui o caminho do dicionário
-            return paths
-        return None
+        base = PathManager.paths.get(packaging_type, None)
+        if not base:
+            return None
+        # Do not mutate the shared class-level mapping; build a per-call copy.
+        paths = dict(base)
+        path = SettingsManager.get(
+            f"spellcheck/folder_{packaging_type.value}", paths.get("default", "")
+        )
+        paths["path"] = path or paths.get("default", "")
+        paths["user_friendly"] = paths["path"]
+        return paths
 
     @staticmethod
     def show_paths(packaging_type):
