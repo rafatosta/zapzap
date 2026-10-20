@@ -177,5 +177,5 @@ class MainWindowView(QMainWindow):
         self.actionBy_phone_number.setText(_("By number phone"))
         self.actionBy_phone_number.setShortcut(_("Ctrl+M"))
         self.actionShortcuts.setText(_("Keyboard shortcuts"))
-        self.actionShortcuts.setShortcut(_("Ctrl+Shift+/, Ctrl+?"))
+        self.actionShortcuts.setShortcut("Ctrl+?")
         self.actionSobre_o_ZapZap.setText(_("About"))
