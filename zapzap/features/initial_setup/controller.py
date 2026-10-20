@@ -22,6 +22,7 @@ class InitialSetupController(InitialSetupView):
         super().__init__(parent)
         self.model = InitialSetupModel()
         self.current_step = 0
+        self._dictionary_chosen = False
         self._load_settings()
         self._connect_signals()
         self.set_step(0)
@@ -54,6 +55,7 @@ class InitialSetupController(InitialSetupView):
             self._sync_close_controls
         )
         self.spellcheck_enabled.toggled.connect(self._sync_dictionary_controls)
+        self.dictionary_combo.activated.connect(self._mark_dictionary_chosen)
 
     def _load_settings(self):
         self._load_languages()
@@ -153,6 +155,19 @@ class InitialSetupController(InitialSetupView):
         self.spell_section.setVisible(has_dictionaries)
         self.dictionary_row.setVisible(has_dictionaries)
 
+    def reload_dictionaries(self, _code: str = ""):
+        """Refresh the dictionary list, keeping a dictionary the user chose."""
+        chosen = self.dictionary_combo.currentData() if self._dictionary_chosen else None
+        self._load_dictionaries()
+        if chosen:
+            index = self.dictionary_combo.findData(chosen)
+            if index >= 0:
+                self.dictionary_combo.setCurrentIndex(index)
+        self._sync_dictionary_controls()
+
+    def _mark_dictionary_chosen(self, _index: int):
+        self._dictionary_chosen = True
+
     def _language_label(self, language: str) -> str:
         if language == TranslationManager.ENGLISH_LANGUAGE:
             return f"{_('English')} - {language}"
@@ -249,7 +264,11 @@ class InitialSetupController(InitialSetupView):
             self.model.set_download_path(self.download_path.text())
         self.model.spellcheck_enabled = self.spellcheck_enabled.isChecked()
         selected_dictionary = self.dictionary_combo.currentData()
-        if self.spellcheck_enabled.isChecked() and selected_dictionary:
+        if (
+            self.spellcheck_enabled.isChecked()
+            and selected_dictionary
+            and self._dictionary_chosen
+        ):
             self.model.set_dictionary(selected_dictionary)
         self.model.set_microphone_permission(self.permission_microphone.isChecked())
         self.model.set_camera_permission(self.permission_camera.isChecked())

@@ -11,6 +11,19 @@ This mandatory record starts after version 7.4.1. The 7.4.1 entry below is the
 historical baseline; older release summaries remain available in the GitHub
 releases and the AppStream metadata.
 
+## [7.5.2] - In development
+
+### Fixed
+
+- Select the system-language spell checker dictionary on first launch (#911).
+  When only unrelated dictionaries were installed, the first one (English
+  (Australia)) was saved as the selection before the system dictionary was
+  provisioned, and onboarding saved it again as a manual choice. Keep that
+  default provisional, refresh the onboarding list when the system dictionary
+  arrives and save the dictionary only when the user picks one. Earlier manual
+  and same-language selections are preserved. Add regression coverage and
+  document the manual first-run validation.
+
 ## [7.5.1] - 2026-10-15
 
 ### Added
@@ -652,6 +665,7 @@ releases and the AppStream metadata.
 - Improved reliability when ZapZap is closed by the operating system.
 - Included performance improvements.
 
+[7.5.2]: https://github.com/rafatosta/zapzap/compare/7.5.1...HEAD
 [7.5.1]: https://github.com/rafatosta/zapzap/compare/7.5...7.5.1
 [7.5]: https://github.com/rafatosta/zapzap/compare/7.4.5...7.5
 [7.4.5]: https://github.com/rafatosta/zapzap/compare/7.4.4...7.4.5

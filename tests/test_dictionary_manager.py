@@ -718,6 +718,80 @@ class ManagedDictionaryStoreTests(QtTestCase):
             "pt_BR",
         )
 
+    def test_provisioned_system_dictionary_replaces_an_unrelated_first_run_default(self):
+        self.managed.mkdir()
+        for code in ("en_AU", "en_CA", "en_GB", "en_US", "en_ZA"):
+            (self.managed / f"{code}.bdic").write_bytes(code.encode())
+        service = FakeProvisionService()
+        provisioner = SystemDictionaryProvisioner(service=service)
+        entry = DictionaryCatalogEntry(
+            code="pt_BR",
+            filename="pt_BR.bdic",
+            size=2,
+            sha256=sha256(b"pt").hexdigest(),
+            source_revision="a" * 40,
+            source="test",
+        )
+        snapshot = DictionaryCatalogSnapshot(
+            entries=(entry,),
+            revision="test",
+            fetched_at="now",
+        )
+        with (
+            patch.object(
+                DictionariesManager,
+                "get_system_language",
+                return_value="pt_BR",
+            ),
+            patch.object(
+                DictionariesManager,
+                "is_management_available",
+                return_value=True,
+            ),
+            patch.object(DictionariesManager, "record_install"),
+        ):
+            self.assertEqual(DictionariesManager.get_selected_languages(), ["en_AU"])
+            self.assertFalse(
+                SettingsManager.contains(DictionariesManager._SELECTED_LANGUAGES_KEY)
+            )
+            self.assertFalse(
+                SettingsManager.contains(DictionariesManager._LEGACY_LANGUAGE_KEY)
+            )
+
+            self.assertTrue(provisioner.start())
+            service.catalog_loaded.emit(snapshot)
+            (self.managed / "pt_BR.bdic").write_bytes(b"pt")
+            service.download_finished.emit(
+                "pt_BR",
+                DictionaryOperationResult(True, "pt_BR"),
+            )
+
+            self.assertEqual(DictionariesManager.get_selected_languages(), ["pt_BR"])
+            self.assertEqual(DictionariesManager.get_current_dict(), "pt_BR")
+
+        self.assertEqual(
+            SettingsManager.get(DictionariesManager._SELECTED_LANGUAGES_KEY),
+            ["pt_BR"],
+        )
+        self.assertEqual(
+            SettingsManager.get(DictionariesManager._LEGACY_LANGUAGE_KEY),
+            "pt_BR",
+        )
+
+    def test_manual_selection_is_kept_after_the_system_dictionary_is_provisioned(self):
+        self.managed.mkdir()
+        for code in ("en_AU", "en_US"):
+            (self.managed / f"{code}.bdic").write_bytes(code.encode())
+        with patch.object(
+            DictionariesManager,
+            "get_system_language",
+            return_value="pt_BR",
+        ):
+            DictionariesManager.set_selected_languages(["en_US"])
+            (self.managed / "pt_BR.bdic").write_bytes(b"pt")
+
+            self.assertEqual(DictionariesManager.get_selected_languages(), ["en_US"])
+
     def test_package_catalog_skips_even_constructing_the_network_service(self):
         with (
             patch.object(

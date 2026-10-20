@@ -126,7 +126,7 @@ documente o que ele protege.
 | `test_debugging_settings_ui.py` | manutenção, relatórios, informações de runtime, cópia e feedback |
 | `test_deeplink.py` | validação de URLs WhatsApp e resistência a injeção de script |
 | `test_desktop_application_dbus.py` | interface `org.freedesktop.Application` e ativação D-Bus |
-| `test_dictionary_manager.py` | store próprio, migração, catálogo/cache, rede segura, downloads atômicos, importação/remoção, diálogo compartilhado, provisionamento único do idioma do sistema e ausência de dicionários nos pacotes oficiais |
+| `test_dictionary_manager.py` | store próprio, migração, catálogo/cache, rede segura, downloads atômicos, importação/remoção, diálogo compartilhado, provisionamento único do idioma do sistema, seleção provisória substituída pelo idioma provisionado e ausência de dicionários nos pacotes oficiais |
 | `test_dictionary_options.py` | descoberta dinâmica, nomes amigáveis, ordenação, redimensionamento e fallback de dicionários personalizados |
 | `test_display_backend.py` | seleção automática/forçada do backend Qt, precedência de ambiente/CLI/plataforma e migração da chave Wayland legada |
 | `test_download_settings.py` | memória opcional de Salvar como por conta, Esc, cancelamento, destino padrão, modos persistidos, permissão múltipla sem bypass temporal, fila global, ordem/dispensa de itens, indicador compacto, ícones nativos de tipo, elisão de nomes, sanitização de alvos e abertura separada de PDF/imagens por MIME verificado |
@@ -138,7 +138,7 @@ documente o que ele protege.
 | `test_gpu_environment.py` | detecção multi-GPU, conectores e seleção de render node |
 | `test_browser_grid_view_ui.py` | cartões nativos da grade, avatar/nome, badge de não lidas, atualização por sinal e seleção por ID |
 | `test_http_cache_size.py` | cache em MiB, tipos de cache, política de cookies, memória JavaScript, autocura persistida e fallbacks de perfil sem WebEngine real |
-| `test_initial_setup_ui.py` | onboarding, som, fechamento, permissões, dicionários e persistência |
+| `test_initial_setup_ui.py` | onboarding, som, fechamento, permissões, dicionários (inclusive atualização após o provisionamento e escolha explícita) e persistência |
 | `test_main_window_shortcuts.py` | atalhos da janela principal, ações de menu correspondentes e descoberta do Ctrl+J |
 | `test_macos_notification_backend.py` | roteamento Qt por padrão, opt-in nativo exato, imagens, privacidade, metadados explícitos de grupo, fallback, conta/clique, watchdog, callbacks tardios, objetos Qt destruídos e falhas de fallback assíncrono |
 | `test_macos_notification_packaging.py` | spec relocável, recursos/identidade/atividade, ponte obrigatória e ABI nativa sem submissão de notificação |
@@ -520,6 +520,10 @@ durante a execução.
    (ou uma variante do mesmo idioma), nunca para um idioma sem relação. Os
    demais só podem ser instalados manualmente. Reinicie, remova voluntariamente
    o idioma provisionado e confirme que ele não é baixado de novo em silêncio.
+   Em um perfil limpo com apenas as variantes de inglês, confirme que o
+   onboarding passa a exibir o idioma do sistema quando o download termina e
+   que concluir antes do download não grava o inglês como escolha; uma escolha
+   feita no seletor antes do download deve ser mantida.
 7. Nos artefatos oficiais de AppImage, Snap e Flatpak, confirme que nenhum
    `.bdic` ou `QTWEBENGINE_DICTIONARIES_PATH` interno é instalado/configurado,
    que **Gerenciar** aparece e que o idioma do sistema é salvo exclusivamente
