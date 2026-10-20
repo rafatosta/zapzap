@@ -11,6 +11,17 @@ This mandatory record starts after version 7.4.1. The 7.4.1 entry below is the
 historical baseline; older release summaries remain available in the GitHub
 releases and the AppStream metadata.
 
+## [7.5.2] - In development
+
+### Fixed
+
+- Open the keyboard shortcuts window with Ctrl+? (#888), which is Ctrl+Shift+/
+  on US and ABNT2 layouts. Both keys were registered as one two-step sequence,
+  which made the action unreachable from the keyboard. Register a single
+  shortcut, since alternatives for the same physical key are ambiguous for Qt
+  and trigger nothing. Add regression coverage for the registered shortcut and
+  the key dispatch.
+
 ## [7.5.1] - 2026-10-15
 
 ### Added
@@ -652,6 +663,7 @@ releases and the AppStream metadata.
 - Improved reliability when ZapZap is closed by the operating system.
 - Included performance improvements.
 
+[7.5.2]: https://github.com/rafatosta/zapzap/compare/7.5.1...HEAD
 [7.5.1]: https://github.com/rafatosta/zapzap/compare/7.5...7.5.1
 [7.5]: https://github.com/rafatosta/zapzap/compare/7.4.5...7.5
 [7.4.5]: https://github.com/rafatosta/zapzap/compare/7.4.4...7.4.5
