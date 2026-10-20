@@ -158,8 +158,17 @@ def main():
         main_window.show()
 
     if should_show_initial_setup:
-        QTimer.singleShot(
-            0, lambda: InitialSetupController(app.getWindow()).exec())
+        def show_initial_setup():
+            initial_setup = InitialSetupController(app.getWindow())
+            system_dictionary_provisioner.dictionary_installed.connect(
+                initial_setup.reload_dictionaries
+            )
+            initial_setup.exec()
+            system_dictionary_provisioner.dictionary_installed.disconnect(
+                initial_setup.reload_dictionaries
+            )
+
+        QTimer.singleShot(0, show_initial_setup)
     else:
         reporting_coordinator = ReportingCoordinator(app.getWindow())
         app._reporting_coordinator = reporting_coordinator

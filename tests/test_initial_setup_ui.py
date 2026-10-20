@@ -207,9 +207,52 @@ class InitialSetupUiTests(QtTestCase):
         )
         self.assertEqual(dialog.dictionary_combo.currentData(), "pt_BR")
 
+        dialog.dictionary_combo.activated.emit(0)
         dialog._save_settings()
 
         self.assertEqual(model.saved_dictionary, "pt_BR")
+
+    def test_untouched_dictionary_default_is_not_saved_as_a_choice(self):
+        dialog, model = self._controller(dictionaries=["en_AU", "en_US"])
+
+        dialog._save_settings()
+
+        self.assertIsNone(model.saved_dictionary)
+
+    def test_provisioned_system_dictionary_replaces_the_untouched_default(self):
+        dialog, model = self._controller(dictionaries=["en_AU", "en_US"])
+        self.assertEqual(dialog.dictionary_combo.currentData(), "en_AU")
+
+        model._dictionaries = ["pt_BR", "en_AU", "en_US"]
+        dialog.reload_dictionaries("pt_BR")
+
+        self.assertEqual(dialog.dictionary_combo.currentData(), "pt_BR")
+        self.assertEqual(dialog.dictionary_combo.count(), 3)
+
+    def test_provisioned_system_dictionary_keeps_the_dictionary_user_chose(self):
+        dialog, model = self._controller(dictionaries=["en_AU", "en_US"])
+        index = dialog.dictionary_combo.findData("en_US")
+        dialog.dictionary_combo.setCurrentIndex(index)
+        dialog.dictionary_combo.activated.emit(index)
+
+        model._dictionaries = ["pt_BR", "en_AU", "en_US"]
+        dialog.reload_dictionaries("pt_BR")
+        dialog._save_settings()
+
+        self.assertEqual(dialog.dictionary_combo.currentData(), "en_US")
+        self.assertNotEqual(dialog.dictionary_combo.findData("pt_BR"), -1)
+        self.assertEqual(model.saved_dictionary, "en_US")
+
+    def test_spellchecker_section_appears_when_the_first_dictionary_arrives(self):
+        dialog, model = self._controller(dictionaries=[])
+        self.assertTrue(dialog.spell_section.isHidden())
+
+        model._dictionaries = ["pt_BR"]
+        dialog.reload_dictionaries("pt_BR")
+
+        self.assertFalse(dialog.spell_section.isHidden())
+        self.assertTrue(dialog.dictionary_combo.isEnabled())
+        self.assertEqual(dialog.dictionary_combo.currentData(), "pt_BR")
 
     def test_combined_permission_facade_uses_distinct_permission_ids(self):
         model = InitialSetupModel()

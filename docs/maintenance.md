@@ -253,6 +253,11 @@ dados reais para testes destrutivos de conta, cache ou configurações.
   correspondência do idioma do sistema, uma única vez e depois da criação da
   aplicação Qt. Os demais idiomas exigem ação explícita do usuário; nunca
   substitua uma seleção manual nem reinstale silenciosamente após remoção.
+- Sem seleção válida, uma correspondência do idioma do sistema é persistida;
+  um dicionário sem relação com ele é apenas um padrão provisório, retornado
+  sem gravar `system/spellCheckLanguages`, para que o idioma provisionado o
+  substitua. O onboarding recarrega a lista com `dictionary_installed` e só
+  persiste o dicionário quando o usuário o escolhe no seletor.
 - Preserve `system/spellCheckLanguage` como chave escalar de compatibilidade e
   use `system/spellCheckLanguages` como a fonte atual da seleção múltipla.
 - Use `SpellcheckLanguagePickerDialog` nos pontos de entrada do menu e de

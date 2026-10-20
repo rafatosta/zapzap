@@ -542,7 +542,9 @@ considerado parcial e o bootstrap publica o store gerenciado. Arquivos válidos
 de locais anteriores podem ser migrados sem alterar a origem. Depois que a
 aplicação Qt existe, `SystemDictionaryProvisioner` consulta o catálogo remoto e
 instala uma única vez somente a correspondência exata do locale do sistema ou
-uma variante do mesmo idioma. A conclusão atualiza os perfis abertos. Os demais
+uma variante do mesmo idioma. A conclusão atualiza os perfis abertos e, se o
+onboarding estiver aberto, sua lista de dicionários; até lá, um dicionário sem
+relação com o idioma do sistema é usado sem ser gravado como seleção. Os demais
 idiomas só são baixados por ação explícita do usuário. Falhas de rede ou
 ausência de correspondência mantêm a aplicação funcional e permitem nova
 tentativa em outra inicialização; não há rede antes do WebEngine.

@@ -291,7 +291,9 @@ class DictionariesManager:
         """Return the normalized selection, migrating the legacy scalar key.
 
         The legacy key remains in place and is kept synchronized so downgrading
-        ZapZap still leaves a usable primary dictionary.
+        ZapZap still leaves a usable primary dictionary. A dictionary unrelated
+        to the system language is returned without being persisted, so the
+        system dictionary can still be selected once it is provisioned.
         """
         installed = [option.code for option in DictionariesManager.options()]
         if not installed:
@@ -310,12 +312,13 @@ class DictionariesManager:
             )
             selected = DictionariesManager._normalize_languages([legacy], installed)
         if not selected:
-            fallback = DictionariesManager._fallback_language(installed)
-            selected = [fallback] if fallback else []
+            fallback = DictionariesManager.system_language_candidate(installed)
+            if not fallback:
+                return [installed[0]]
+            selected = [fallback]
 
         SettingsManager.set(DictionariesManager._SELECTED_LANGUAGES_KEY, selected)
-        if selected:
-            SettingsManager.set(DictionariesManager._LEGACY_LANGUAGE_KEY, selected[0])
+        SettingsManager.set(DictionariesManager._LEGACY_LANGUAGE_KEY, selected[0])
         return selected
 
     @staticmethod
