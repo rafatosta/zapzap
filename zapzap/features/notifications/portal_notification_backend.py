@@ -231,12 +231,17 @@ class PortalNotificationBackend(QObject):
         title: str,
     ):
         try:
-            icon_path = IconRenderer.default_icon()
+            icon_path = ""
             if SettingsManager.get("notification/show_photo", True):
                 icon_path = IconRenderer.from_notification_icon(
                     notification.icon(),
                     title
                 )
+
+            # Same fallback as the Freedesktop backend: use the app icon when
+            # the photo is hidden or could not be rendered.
+            if not icon_path:
+                icon_path = IconRenderer.default_icon()
 
             if not icon_path:
                 return None

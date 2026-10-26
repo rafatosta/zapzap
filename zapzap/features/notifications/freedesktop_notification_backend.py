@@ -66,7 +66,10 @@ class IconRenderer:
         Retorna string vazia em caso de falha (quem chama faz fallback).
         """
         try:
-            path = os.path.join(cls.temp_dir(), f"{title}.png")
+            # Chat names may contain "/" (e.g. "Class 25/26"), which would
+            # point the file into a missing subdirectory and fail the save.
+            file_name = title.replace("/", "_").replace("\0", "_")
+            path = os.path.join(cls.temp_dir(), f"{file_name}.png")
 
             output_image = QImage(
                 icon.width(),

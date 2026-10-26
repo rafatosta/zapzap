@@ -1,8 +1,10 @@
 """Regression tests for the Freedesktop notification backend failure logging."""
 
+import os
 from unittest.mock import MagicMock, patch
 
 from PyQt6.QtDBus import QDBusMessage
+from PyQt6.QtGui import QImage
 
 from qt_test_case import QtTestCase
 from zapzap.features.notifications import (
@@ -11,6 +13,7 @@ from zapzap.features.notifications import (
 from zapzap.features.notifications.freedesktop_notification_backend import (
     DBusConnection,
     FreedesktopNotificationBackend,
+    IconRenderer,
 )
 from zapzap.features.notifications import notification_service
 
@@ -187,6 +190,18 @@ class FreedesktopNotificationBackendTests(QtTestCase):
             service = notification_service.NotificationService()
         self.assertIsNone(service.backend)
         self.assertIn("No notification backend is available", logs.output[0])
+
+
+class IconRendererTests(QtTestCase):
+    def test_title_with_slash_is_saved_inside_temp_dir(self):
+        photo = QImage(16, 16, QImage.Format.Format_ARGB32)
+        photo.fill(0xFF336699)
+
+        path = IconRenderer.from_notification_icon(photo, "Class 25/26")
+
+        self.assertTrue(path)
+        self.assertEqual(os.path.dirname(path), IconRenderer.temp_dir())
+        self.assertTrue(os.path.isfile(path))
 
 
 if __name__ == "__main__":
