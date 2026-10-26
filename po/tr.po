@@ -5091,6 +5091,19 @@ msgstr "Konum kilidini aç"
 msgid "Audio"
 msgstr "Ses"
 
+#: zapzap/features/settings/pages/notifications/view.py:76
+msgid "Respect Do Not Disturb"
+msgstr "Rahatsız Etme modunu dikkate al"
+
+#: zapzap/features/settings/pages/notifications/view.py:78
+#: zapzap/features/settings/pages/notifications/view.py:79
+msgid ""
+"Silence WhatsApp's message tone while the desktop's Do Not Disturb mode is "
+"on."
+msgstr ""
+"Masaüstünde Rahatsız Etme modu açıkken WhatsApp mesaj sesini "
+"sessize al."
+
 #~ msgid ""
 #~ "Show only chat avatars at a fixed width. Resizing is unavailable while "
 #~ "enabled."

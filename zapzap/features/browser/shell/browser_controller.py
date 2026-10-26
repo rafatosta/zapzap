@@ -92,6 +92,7 @@ class BrowserController(BrowserView):
             else load_webview_factory()
         )
         self._user_provider = user_provider
+        self._notification_sound_suppressed = False
         self._configure_sidebar_appearance()
         self._sidebar_expanded_width = 72
         self._sidebar_animation_group = None
@@ -427,6 +428,9 @@ class BrowserController(BrowserView):
             set_muted = getattr(page, "set_audio_muted", None)
             if callable(set_muted):
                 set_muted(SystemSettings().audio_muted)
+            set_tone = getattr(page, "set_notification_sound_suppressed", None)
+            if callable(set_tone):
+                set_tone(self._notification_sound_suppressed)
             page.update_button_signal.connect(
                 lambda _position, count, entry=runtime: (
                     self._update_runtime_notifications(entry, count)
@@ -730,6 +734,16 @@ class BrowserController(BrowserView):
             setter = getattr(runtime.page, "set_audio_muted", None)
             if callable(setter):
                 setter(bool(muted))
+
+    def set_notification_sound_suppressed(self, suppressed: bool) -> None:
+        """Silence the message tone of every live account (not persisted)."""
+        self._notification_sound_suppressed = bool(suppressed)
+        for runtime in self._active_runtimes():
+            setter = getattr(
+                runtime.page, "set_notification_sound_suppressed", None
+            )
+            if callable(setter):
+                setter(self._notification_sound_suppressed)
 
     def set_resizable_chat_list_enabled(self, enabled: bool) -> None:
         """Apply the chat list resizing preference to every live account."""

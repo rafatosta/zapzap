@@ -4946,6 +4946,17 @@ msgstr "解锁位置"
 msgid "Audio"
 msgstr ""
 
+#: zapzap/features/settings/pages/notifications/view.py:76
+msgid "Respect Do Not Disturb"
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:78
+#: zapzap/features/settings/pages/notifications/view.py:79
+msgid ""
+"Silence WhatsApp's message tone while the desktop's Do Not Disturb mode is "
+"on."
+msgstr ""
+
 #~ msgid ""
 #~ "Show only chat avatars at a fixed width. Resizing is unavailable while "
 #~ "enabled."

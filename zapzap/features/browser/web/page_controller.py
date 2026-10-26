@@ -336,6 +336,13 @@ class PageController(QWebEnginePage):
             Policy.PermissionGrantedByUser if allow else Policy.PermissionDeniedByUser,
         )
 
+    def set_notification_sound_suppressed(self, suppressed: bool) -> None:
+        """Push the state to the already loaded document's sound guard."""
+        state = "true" if suppressed else "false"
+        self.runJavaScript(
+            "window.__zapzapNotificationSound?.setSuppressed(" + state + ")"
+        )
+
     def _on_load_finished(self, success):
         """Ações realizadas após o carregamento da página."""
         if success:
