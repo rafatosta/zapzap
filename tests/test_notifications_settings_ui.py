@@ -24,7 +24,9 @@ class FakeNotificationsSettingsModel:
         name=True,
         message=True,
         sound=True,
+        respect_dnd=True,
     ):
+        self.respect_dnd = respect_dnd
         self.enabled = enabled
         self.show_photo = photo
         self.show_name = name
@@ -122,6 +124,15 @@ class NotificationsSettingsUiTests(QtTestCase):
 
         page.sound.checkbox.setChecked(True)
         self.assertTrue(model.sound)
+
+    def test_respect_dnd_switch_persists_and_ignores_the_master_switch(self):
+        page, model = self._controller(enabled=False, respect_dnd=True)
+
+        self.assertTrue(page.respect_dnd.checkbox.isChecked())
+        self.assertTrue(page.respect_dnd.isEnabled())
+
+        page.respect_dnd.checkbox.setChecked(False)
+        self.assertFalse(model.respect_dnd)
 
     def test_privacy_presets_leave_the_notification_sound_alone(self):
         page, model = self._controller(sound=True)

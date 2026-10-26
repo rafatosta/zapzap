@@ -2,7 +2,18 @@
 
 from __future__ import annotations
 
+from PyQt6.QtCore import QObject, pyqtSignal
+
 from zapzap.core.config.settings.base import BaseSettings
+
+
+class NotificationSettingsEvents(QObject):
+    """Notify live components when a notification preference changes."""
+
+    respect_dnd_changed = pyqtSignal()
+
+
+notification_settings_events = NotificationSettingsEvents()
 
 
 class NotificationSettings(BaseSettings):
@@ -13,6 +24,7 @@ class NotificationSettings(BaseSettings):
     _SHOW_NAME = ("notification/show_name", True)
     _SHOW_MESSAGE_PREVIEW = ("notification/show_msg", True)
     _SOUND = ("notification/sound", True)
+    _RESPECT_DND = ("notification/respect_dnd", True)
     # This legacy key stores whether reminders are hidden, despite its name.
     _DONATION_MESSAGE_HIDDEN = ("notification/donation_message", False)
 
@@ -55,6 +67,16 @@ class NotificationSettings(BaseSettings):
     @sound.setter
     def sound(self, value: bool) -> None:
         self._set_bool(self._SOUND, value)
+
+    @property
+    def respect_dnd(self) -> bool:
+        """Whether the message tone follows the desktop Do Not Disturb."""
+        return self._get_bool(self._RESPECT_DND)
+
+    @respect_dnd.setter
+    def respect_dnd(self, value: bool) -> None:
+        self._set_bool(self._RESPECT_DND, value)
+        notification_settings_events.respect_dnd_changed.emit()
 
     @property
     def donation_message_enabled(self) -> bool:

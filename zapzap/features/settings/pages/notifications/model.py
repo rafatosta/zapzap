@@ -28,6 +28,15 @@ class NotificationsSettingsModel:
         self._settings.sound = value
 
     @property
+    def respect_dnd(self) -> bool:
+        """Whether the message tone follows the desktop Do Not Disturb."""
+        return self._settings.respect_dnd
+
+    @respect_dnd.setter
+    def respect_dnd(self, value: bool) -> None:
+        self._settings.respect_dnd = value
+
+    @property
     def show_photo(self) -> bool:
         """Whether contact photos are shown in notifications."""
         return self._settings.show_photo

@@ -4811,3 +4811,14 @@ msgstr ""
 #: zapzap/ui/components/floating_monitoring_panel.py:292
 msgid "Audio"
 msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:76
+msgid "Respect Do Not Disturb"
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:78
+#: zapzap/features/settings/pages/notifications/view.py:79
+msgid ""
+"Silence WhatsApp's message tone while the desktop's Do Not Disturb mode is "
+"on."
+msgstr ""
