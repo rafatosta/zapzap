@@ -153,16 +153,18 @@ class PortalNotificationBackend(QObject):
 
             print(error_msg.format(reply.errorMessage()))
 
-        self._supports_icon_field = (
-            used_payload is not None
-            and bool(icon_field)
-            and icon_field.items() <= used_payload.items()
-        )
-        self._supports_extra_fields = (
-            used_payload is not None
-            and bool(extra_fields)
-            and extra_fields.items() <= used_payload.items()
-        )
+        # Only learn from a field that was actually sent: a notification that
+        # had no icon to offer must not disable icons for the rest of the session.
+        if icon_field:
+            self._supports_icon_field = (
+                used_payload is not None
+                and icon_field.items() <= used_payload.items()
+            )
+        if extra_fields:
+            self._supports_extra_fields = (
+                used_payload is not None
+                and extra_fields.items() <= used_payload.items()
+            )
 
     def _track_notification(
         self,

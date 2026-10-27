@@ -22,6 +22,12 @@ releases and the AppStream metadata.
   instead of falling back to the app icon like the Freedesktop backend does.
   Replace slashes in the file name, restore the app-icon fallback in the portal
   backend and add regression tests for both.
+- Keep notification photos enabled for the whole session in the Flatpak. The
+  portal backend turned the icon field off whenever a notification was sent
+  without an icon, even when the portal had never rejected one, so a single
+  photo that failed to render removed photos from every later notification
+  until ZapZap restarted. Now it only learns from fields it actually sent, with
+  a regression test.
 
 ## [7.5.1] - 2026-10-15
 

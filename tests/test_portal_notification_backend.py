@@ -223,6 +223,18 @@ class PortalNotificationBackendTests(QtTestCase):
             "portal-token",
         )
 
+    def test_notification_without_icon_keeps_icons_enabled(self):
+        self.backend._get_icon_data = MagicMock(return_value=None)
+        self.backend.notify(self._page(), FakeNotification(), "Title", "Body")
+        self.assertTrue(self.backend._supports_icon_field)
+
+        self.backend._get_icon_data = MagicMock(return_value=b"photo")
+        self.backend._create_icon_arg = MagicMock(return_value="icon-arg")
+        self.backend.notify(self._page(), FakeNotification(), "Title", "Body")
+
+        add_calls = [c for c in self.interface.calls if c[0] == "AddNotification"]
+        self.assertEqual(add_calls[-1][2].get("icon"), "icon-arg")
+
     def test_icon_falls_back_to_app_icon_when_photo_fails(self):
         with tempfile.NamedTemporaryFile(suffix=".png") as app_icon:
             app_icon.write(b"app-icon")
