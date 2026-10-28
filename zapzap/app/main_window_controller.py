@@ -18,6 +18,10 @@ from PyQt6.QtWidgets import QApplication, QDialog, QLabel, QWidget
 from zapzap.app.window_lifecycle import WindowLifecycle
 from zapzap.assets.icons.system_icon import SystemIcon
 from zapzap.core.config.settings.appearance import AppearanceSettings
+from zapzap.core.config.settings.notifications import (
+    NotificationSettings,
+    notification_settings_events,
+)
 from zapzap.core.config.settings.system import SystemSettings
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.core.update_checker import UpdateChecker, UpdateState
@@ -30,6 +34,9 @@ from zapzap.features.downloads.download_manager import DownloadManager
 from zapzap.features.downloads.ui.downloads_menu import (
     DownloadsPopover,
     DownloadsWindow,
+)
+from zapzap.features.notifications.do_not_disturb_monitor import (
+    DoNotDisturbMonitor,
 )
 from zapzap.features.settings.shell.settings_controller import SettingsController
 from zapzap.features.shortcuts.controller import ShortcutsController
@@ -125,6 +132,14 @@ class MainWindowController(MainWindowView):
             webview_factory=webview_factory,
             user_provider=user_provider,
         )
+        self._notification_settings = NotificationSettings()
+        self._dnd_monitor = DoNotDisturbMonitor(self)
+        self._dnd_monitor.changed.connect(self._sync_notification_sound)
+        notification_settings_events.respect_dnd_changed.connect(
+            self._sync_notification_sound
+        )
+        self._dnd_monitor.start()
+        self._sync_notification_sound()
         self.floating_monitoring_panel = FloatingMonitoringPanel()
         self.destroyed.connect(self.floating_monitoring_panel.deleteLater)
         self._setup_floating_monitoring_panel()
@@ -280,6 +295,13 @@ class MainWindowController(MainWindowView):
             return False
         paste = getattr(page, "paste_as_plain_text", None)
         return bool(callable(paste) and paste())
+
+    def _sync_notification_sound(self, *_args) -> None:
+        """Silence WhatsApp's message tone only while DND is on and respected."""
+        self.browser.set_notification_sound_suppressed(
+            self._notification_settings.respect_dnd
+            and self._dnd_monitor.active
+        )
 
     def toggle_audio_muted(self):
         """Toggle the persistent application-wide mute override."""

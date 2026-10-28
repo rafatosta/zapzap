@@ -72,6 +72,17 @@ class NotificationsSettingsView(SettingsPage):
             self.notification_content_rows,
             child_dividers=True,
         )
+        self.respect_dnd = SettingsSwitchRow(
+            _("Respect Do Not Disturb"),
+            _(
+                "Silence WhatsApp's message tone while the desktop's "
+                "Do Not Disturb mode is on."
+            ),
+        )
+        self._configure_accessibility(self.respect_dnd)
+        # Kept outside the dependent group: the tone plays even when desktop
+        # notifications are disabled.
+        card.add_row(self.respect_dnd)
         section.layout().addWidget(card)
         self.add_section(section)
 
