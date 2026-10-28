@@ -67,7 +67,7 @@ ZapZap is a free and open-source project maintained in my spare time. If you fin
 | Ko-fi | https://ko-fi.com/rafaeltosta |
 | PayPal | https://www.paypal.com/donate/?business=E7R4BVR45GRC2 |
 | Wise | https://wise.com/pay/me/rafaelt2487 |
-| Pix (Brazil) | **Pix Key:** `c86378c4-c34a-4951-bad0-42d5c1774f79` |
+| Pix (Brazil) | https://nubank.com.br/pagar/3c3r2/LS2hiJJKzv |
 
 Every contribution helps keep ZapZap free, maintained, and continuously improving. ❤️
 
