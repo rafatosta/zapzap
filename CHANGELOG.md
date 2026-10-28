@@ -11,6 +11,24 @@ This mandatory record starts after version 7.4.1. The 7.4.1 entry below is the
 historical baseline; older release summaries remain available in the GitHub
 releases and the AppStream metadata.
 
+## [7.5.2] - In development
+
+### Fixed
+
+- Show the contact or group photo in Linux notifications when the chat name
+  contains a slash, such as `Class 25/26`. The photo was saved under the chat
+  name, so the slash pointed into a missing subdirectory and the save failed.
+  The Flatpak portal backend then sent the notification with no icon at all
+  instead of falling back to the app icon like the Freedesktop backend does.
+  Replace slashes in the file name, restore the app-icon fallback in the portal
+  backend and add regression tests for both.
+- Keep notification photos enabled for the whole session in the Flatpak. The
+  portal backend turned the icon field off whenever a notification was sent
+  without an icon, even when the portal had never rejected one, so a single
+  photo that failed to render removed photos from every later notification
+  until ZapZap restarted. Now it only learns from fields it actually sent, with
+  a regression test.
+
 ## [7.5.1] - 2026-10-15
 
 ### Added
@@ -652,6 +670,7 @@ releases and the AppStream metadata.
 - Improved reliability when ZapZap is closed by the operating system.
 - Included performance improvements.
 
+[7.5.2]: https://github.com/rafatosta/zapzap/compare/7.5.1...HEAD
 [7.5.1]: https://github.com/rafatosta/zapzap/compare/7.5...7.5.1
 [7.5]: https://github.com/rafatosta/zapzap/compare/7.4.5...7.5
 [7.4.5]: https://github.com/rafatosta/zapzap/compare/7.4.4...7.4.5

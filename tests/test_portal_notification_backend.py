@@ -1,10 +1,14 @@
 """Regression tests for the XDG Portal notification lifecycle."""
 
+import tempfile
 from unittest.mock import MagicMock, patch
 
 from PyQt6.QtDBus import QDBusMessage, QDBusVariant
 
 from qt_test_case import QtTestCase
+from zapzap.features.notifications.freedesktop_notification_backend import (
+    IconRenderer,
+)
 from zapzap.features.notifications.portal_notification_backend import (
     PortalNotificationBackend,
 )
@@ -218,6 +222,36 @@ class PortalNotificationBackendTests(QtTestCase):
             main_window,
             "portal-token",
         )
+
+    def test_notification_without_icon_keeps_icons_enabled(self):
+        self.backend._get_icon_data = MagicMock(return_value=None)
+        self.backend.notify(self._page(), FakeNotification(), "Title", "Body")
+        self.assertTrue(self.backend._supports_icon_field)
+
+        self.backend._get_icon_data = MagicMock(return_value=b"photo")
+        self.backend._create_icon_arg = MagicMock(return_value="icon-arg")
+        self.backend.notify(self._page(), FakeNotification(), "Title", "Body")
+
+        add_calls = [c for c in self.interface.calls if c[0] == "AddNotification"]
+        self.assertEqual(add_calls[-1][2].get("icon"), "icon-arg")
+
+    def test_icon_falls_back_to_app_icon_when_photo_fails(self):
+        with tempfile.NamedTemporaryFile(suffix=".png") as app_icon:
+            app_icon.write(b"app-icon")
+            app_icon.flush()
+            with (
+                patch.object(
+                    IconRenderer, "from_notification_icon", return_value=""
+                ),
+                patch.object(
+                    IconRenderer, "default_icon", return_value=app_icon.name
+                ),
+            ):
+                data = PortalNotificationBackend._get_icon_data(
+                    self.backend, MagicMock(), "Class 25/26"
+                )
+
+        self.assertEqual(data, b"app-icon")
 
 
 if __name__ == "__main__":
