@@ -601,6 +601,10 @@ class DownloadNamingSecurityTests(unittest.TestCase):
         self.assertIsNone(f("..."))
         self.assertIsNone(f(""))
         self.assertIsNone(f("   "))
+        self.assertIsNone(f("\u00a0"))
+        self.assertIsNone(f("\u3000"))
+        self.assertIsNone(f("\u2003"))
+        self.assertIsNone(f(" .\u3000"))
         self.assertIsNone(f(None))
         self.assertLessEqual(
             len(f("x" * 1000).encode("utf-8")),
