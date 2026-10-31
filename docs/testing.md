@@ -119,6 +119,7 @@ documente o que ele protege.
 | `test_appimage_packaging.py` | coerência FFmpeg/Qt WebEngine, verificação de ABI, caminhos relocáveis e rejeição de recursos/locales/helper ausentes, nome final fornecido ao quick-sharun e ausência de renomeação posterior do AppImage/zsync |
 | `test_browser_account_lifecycle.py` | registro estável, criação lazy de contas desativadas, isolamento/retentativa de perfil com erro, reativação, remoção, notificações e encerramento idempotente |
 | `test_browser_page_button_ui.py` | avatar sem número, grayscale de conta desativada, ponto de estado, card, temas, escala e clique |
+| `test_chat_folder_tracker.py` | regra do `#main`, gaveta e camada flutuante do rastreador, `alt` de emoji no título, ponte ausente ou tardia, `reset`, `QWebChannel` único, ligar/desligar a configuração e limpeza do ciclo de vida |
 | `test_check_box.py` | API, variantes, tamanhos, pintura, temas, tri-state, mouse, teclado e acessibilidade do CheckBox |
 | `test_clipboard_image_normalization.py` | normalização da imagem do clipboard ao ativar a janela, sem regravar seleção própria do ZapZap, sem substituir uma seleção mais nova recebida durante a recodificação e sem descartar formatos de texto |
 | `test_component_typography.py` | pesos de fonte de primitives, menus, combos, atalhos e tabs |
@@ -129,7 +130,7 @@ documente o que ele protege.
 | `test_dictionary_manager.py` | store próprio, migração, catálogo/cache, rede segura, downloads atômicos, importação/remoção, diálogo compartilhado, provisionamento único do idioma do sistema e ausência de dicionários nos pacotes oficiais |
 | `test_dictionary_options.py` | descoberta dinâmica, nomes amigáveis, ordenação, redimensionamento e fallback de dicionários personalizados |
 | `test_display_backend.py` | seleção automática/forçada do backend Qt, precedência de ambiente/CLI/plataforma e migração da chave Wayland legada |
-| `test_download_settings.py` | memória opcional de Salvar como por conta, Esc, cancelamento, destino padrão, modos persistidos, permissão múltipla sem bypass temporal, fila global, ordem/dispensa de itens, indicador compacto, ícones nativos de tipo, elisão de nomes, sanitização de alvos e abertura separada de PDF/imagens por MIME verificado |
+| `test_download_settings.py` | memória opcional de Salvar como por conta, Esc, cancelamento, destino padrão, destino em subpasta do chat (pasta criada, recuo ao diretório base, cancelamento em dupla falha, sem `makedirs` com a opção desligada) e chave da tela de configurações, modos persistidos, permissão múltipla sem bypass temporal, fila global, ordem/dispensa de itens, indicador compacto, ícones nativos de tipo, elisão de nomes, sanitização de alvos e abertura separada de PDF/imagens por MIME verificado |
 | `test_documentation_structure.py` | camadas de UI, ciclo numérico versionado do changelog e sincronização entre árvore, inventários técnicos, convenção de commits e guia para agentes |
 | `test_donations_page.py` | URLs HTTPS oficiais, fallback externo, cartões responsivos/acessíveis, troca imediata de idioma e rota única pela sidebar, Configurações e Sobre |
 | `test_external_link_lifecycle.py` | classificação interna/externa de pop-ups, profile compartilhado, entrega única ao navegador e cleanup no fechamento/shutdown |
@@ -186,6 +187,7 @@ documente o que ele protege.
 - `test_browser_account_lifecycle.py`
 - `test_browser_grid_view_ui.py`
 - `test_browser_page_button_ui.py`
+- `test_chat_folder_tracker.py`
 - `test_check_box.py`
 - `test_clipboard_image_normalization.py`
 - `test_component_typography.py`

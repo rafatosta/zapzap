@@ -359,6 +359,21 @@ da página. A largura aplicada continua persistida em `zapzap.chatListWidth`;
 Enter/duplo clique continuam restaurando o padrão. Uma recarga preserva a largura
 aplicada, mas reinicia a memória da largura anterior.
 
+`downloads/organize_by_chat` (Downloads, `False` por padrão) controla o
+`chat_folder_tracker.js`. Quando ligado, `WebView` registra o script no perfil
+da conta em `DocumentReady` e o executa na página já aberta; ao desligar,
+remove o script do perfil e chama `window._zapZapChatFolderTracker.destroy()`.
+A alteração chega a toda `WebView` viva por
+`download_settings_events.organize_by_chat_changed`, não por
+`BrowserController`. O script reutiliza o `QWebChannel` único do controlador de
+tema (`window._zapZapWAWebThemeController.bridge`) e envia o título pelo slot
+`on_active_chat_changed`; sem a ponte, o valor fica pendente e é reenviado no
+próximo toque. O último `pointerdown` decide em três estados: dentro de `#main`
+informa o título do chat; no restante de `wa-web-main-screen` (lista, gavetas)
+informa vazio; em camadas flutuantes (visualizador de mídia, menus) mantém o
+valor anterior. O título vem do atributo `title` ou do percurso dos nós de
+texto, com o `alt` das imagens de emoji; o script não usa `innerText`.
+
 O botão **Nova conversa** aparece no início da barra do WhatsApp somente com
 a lista redimensionável abaixo de 200 CSS px. Um botão espelho encaminha o clique ao
 original, oculto sem sair da árvore React; ao ampliar, restaurar ou desativar,
@@ -501,7 +516,16 @@ de todas as contas em um único `try/except`.
 Cada `WebView` guarda `last_download_directory` apenas em memória, isolado por
 conta. `DownloadManager._choose_download_target` compartilha o seletor entre
 "Salvar como" e "perguntar sempre"; somente uma escolha válida atualiza a
-sugestão. "Salvar" e o modo automático sempre usam `system/download_path`.
+sugestão. "Salvar" e o modo automático usam `system/download_path`, exceto com
+`downloads/organize_by_chat`: então `DownloadManager._ensure_target_directory`
+cria, ao iniciar o download ou antes do diálogo, o subdiretório
+`DownloadNamingService.chat_folder_name` do chat aberto, e recai no diretório
+base se ele não puder ser criado; `restore_path` nunca é tocado, e trocar de
+chat limpa a sugestão de "Salvar como". Chats com o mesmo nome exibido (e, em
+sistemas de arquivos sem distinção de maiúsculas, que só diferem nelas)
+compartilham a pasta, um chat renomeado abre uma nova, e downloads de
+mensagens favoritas, busca, dados do contato ou mídia geral vão para o
+diretório base.
 A preferência `downloads/remember_last_save_as_directory` (padrão `True`)
 controla a sugestão, sem persistir o diretório. Desativá-la emite um sinal do
 domínio para limpar imediatamente as WebViews vivas. O filtro existente observa
