@@ -47,6 +47,7 @@ WHATSAPP_PAGE = """
           </header>
           <button id="main-button">Open image</button>
         </div>
+        <div data-testid="drawer-left"><button id="starred-button">Starred</button></div>
         <div data-testid="drawer-right"><button id="drawer-button">Media</button></div>
       </div>
       <div id="menu"><button id="menu-button">Download</button></div>
@@ -132,11 +133,20 @@ class ChatFolderTrackerScriptTests(QtTestCase):
         self._javascript(click("main-button"))
         self.assertEqual(self._received(), ["Al Quran \U0001F4D6"])
 
-    def test_drawer_click_clears_title(self):
+    def test_left_drawer_click_clears_title(self):
         self._javascript(FAKE_BRIDGE_SCRIPT)
         self._javascript(click("main-button"))
-        self._javascript(click("drawer-button"))
+        self._javascript(click("starred-button"))
         self.assertEqual(self._received(), ["Yaver", ""])
+
+    def test_right_drawer_click_reports_open_chat(self):
+        # Contact and group info, including its media tab, belong to the open chat.
+        self._javascript(FAKE_BRIDGE_SCRIPT)
+        self._javascript(click("starred-button"))
+        self._javascript(click("drawer-button"))
+        self.assertEqual(self._received(), ["", "Yaver"])
+        self._javascript(click("menu-button"))
+        self.assertEqual(self._current(), "Yaver")
 
     def test_floating_layer_click_keeps_title(self):
         self._javascript(FAKE_BRIDGE_SCRIPT)
@@ -181,7 +191,7 @@ class ChatFolderTrackerScriptTests(QtTestCase):
         self.assertEqual(self._javascript("window.__errors"), [])
         self.assertEqual(self._current(), "Yaver")
         self._javascript("window._zapZapWAWebThemeController = {bridge: null};")
-        self._javascript(click("drawer-button"))
+        self._javascript(click("starred-button"))
         self.assertEqual(self._javascript("window.__errors"), [])
         self.assertEqual(self._current(), "")
 
@@ -214,7 +224,7 @@ class ChatFolderTrackerScriptTests(QtTestCase):
         self._javascript(FAKE_BRIDGE_SCRIPT)
         self._javascript(click("main-button"))
         self._javascript(RESET_SCRIPT)
-        self._javascript(click("drawer-button"))
+        self._javascript(click("starred-button"))
         self.assertEqual(self._received(), ["Yaver", ""])
 
 
