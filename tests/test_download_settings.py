@@ -524,6 +524,31 @@ class SaveAsSettingsUiTests(QtTestCase):
                 SettingsManager._settings = previous
 
 
+    def test_chat_folder_switch_loads_persists_and_has_accessible_name(self):
+        from zapzap.features.settings.pages.language_downloads.controller import (
+            LanguageDownloadSettingsController,
+        )
+        previous = SettingsManager._settings
+        with tempfile.TemporaryDirectory() as directory:
+            SettingsManager._settings = QSettings(
+                str(Path(directory) / "settings.ini"), QSettings.Format.IniFormat
+            )
+            page = None
+            try:
+                page = LanguageDownloadSettingsController()
+                checkbox = page.organize_by_chat_row.checkbox
+                self.assertFalse(checkbox.isChecked())
+                self.assertTrue(checkbox.accessibleName())
+                checkbox.setChecked(True)
+                self.assertTrue(DownloadSettings().organize_by_chat)
+                checkbox.setChecked(False)
+                self.assertFalse(DownloadSettings().organize_by_chat)
+            finally:
+                if page:
+                    page.deleteLater()
+                SettingsManager._settings = previous
+
+
 class RepeatedDownloadSecurityTests(TemporarySettingsTest):
 
     def setUp(self):
