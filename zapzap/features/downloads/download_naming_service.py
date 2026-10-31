@@ -67,7 +67,8 @@ class DownloadNamingService:
         if not isinstance(title, str):
             return None
         value = title.replace("/", "_").replace("\\", "_")
-        if not value.strip(" .\t\r\n"):
+        # Any Unicode whitespace and dots alone would not name a folder.
+        if not re.sub(r"[\s.]+", "", value):
             return None
         return DownloadNamingService.sanitize_file_name(value)
 
