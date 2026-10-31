@@ -147,6 +147,15 @@ class DownloadManager:
                 DownloadManager._discard_unstarted_download(download)
             return
 
+        # The dialog shows and opens the target folder, so the chat folder
+        # must exist before it is built.
+        try:
+            DownloadManager._ensure_target_directory(download)
+        except (RuntimeError, ValueError, OSError):
+            logger.exception("Download folder could not be prepared")
+            DownloadManager._discard_unstarted_download(download)
+            return
+
         dialog = DownloadDialog(download, parent)
         DownloadManager._floating_cards.append(dialog)
 

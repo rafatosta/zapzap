@@ -449,6 +449,39 @@ class ChatFolderTargetTests(TemporarySettingsTest):
         makedirs.assert_not_called()
         self.download.setDownloadDirectory.assert_not_called()
 
+    def _request_with_dialog(self, dialog_factory):
+        DownloadSettings().behavior = DownloadBehavior.DIALOG
+        with patch.object(
+            DownloadManager, "_authorize_repeated_download", return_value=True
+        ), patch(
+            "zapzap.features.downloads.ui.download_dialog.DownloadDialog",
+            side_effect=dialog_factory,
+        ) as dialog_class:
+            DownloadManager.on_downloadRequested(self.download, self.owner)
+        return dialog_class
+
+    def test_dialog_mode_creates_chat_folder_before_dialog(self):
+        seen = {}
+
+        def dialog_factory(download, parent):
+            seen["exists"] = os.path.isdir(download.downloadDirectory())
+            return Mock()
+
+        self.assertFalse(os.path.exists(self.chat_dir))
+        dialog_class = self._request_with_dialog(dialog_factory)
+        dialog_class.assert_called_once()
+        self.assertEqual(seen, {"exists": True})
+
+    def test_dialog_mode_discards_when_folder_cannot_be_prepared(self):
+        with patch.object(
+            DownloadManager, "_ensure_target_directory", side_effect=ValueError
+        ), patch.object(
+            DownloadManager, "_discard_unstarted_download"
+        ) as discard:
+            dialog_class = self._request_with_dialog(lambda *args: Mock())
+        dialog_class.assert_not_called()
+        discard.assert_called_once_with(self.download)
+
     def test_chat_directory_error_falls_back_to_configured_path(self):
         with patch.object(
             DownloadManager, "_chat_directory", side_effect=ValueError
