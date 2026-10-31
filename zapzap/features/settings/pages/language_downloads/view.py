@@ -92,8 +92,9 @@ class LanguageDownloadSettingsView(SettingsPage):
             _("Save into a folder named after the chat"),
             _(
                 "Files go to a subfolder of the download directory named "
-                "after the open chat. Files from starred messages, search or "
-                "contact info go to the download directory."
+                "after the open chat, also from contact or group info. Files "
+                "from starred messages, chat list search or the all-chats "
+                "media gallery go to the download directory."
             ),
         )
         self.organize_by_chat_row.checkbox.setAccessibleName(

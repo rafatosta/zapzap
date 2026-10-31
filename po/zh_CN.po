@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 18:02+0300\n"
+"POT-Creation-Date: 2026-10-31 22:59+0300\n"
 "PO-Revision-Date: 2026-09-25 00:00+0800\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Simplified Chinese\n"
@@ -476,20 +476,20 @@ msgstr "不再显示"
 msgid "Learn more about ZapZap ↗"
 msgstr "进一步了解 ZapZap ↗"
 
-#: zapzap/features/downloads/download_manager.py:531
-#: zapzap/features/downloads/download_manager.py:1098
-#: zapzap/features/downloads/download_manager.py:1101
+#: zapzap/features/downloads/download_manager.py:540
+#: zapzap/features/downloads/download_manager.py:1107
+#: zapzap/features/downloads/download_manager.py:1110
 #: zapzap/features/downloads/ui/download_dialog.py:36
 #: zapzap/features/downloads/ui/downloads_menu.py:447
 #: zapzap/ui/components/update_available_popover.py:109
 msgid "Download"
 msgstr "下载"
 
-#: zapzap/features/downloads/download_manager.py:1265
+#: zapzap/features/downloads/download_manager.py:1278
 msgid "Save file"
 msgstr "保存文件"
 
-#: zapzap/features/downloads/download_manager.py:1297
+#: zapzap/features/downloads/download_manager.py:1310
 msgid "Select folder"
 msgstr "选择文件夹"
 
@@ -522,7 +522,7 @@ msgstr "基础设置"
 #: zapzap/features/settings/shell/settings_controller.py:136
 #: zapzap/features/settings/pages/notifications/view.py:19
 #: zapzap/features/settings/pages/notifications/view.py:33
-#: zapzap/features/browser/web/web_view.py:319
+#: zapzap/features/browser/web/web_view.py:321
 msgid "Notifications"
 msgstr "通知"
 
@@ -823,22 +823,22 @@ msgid "Choose folder"
 msgstr "选择文件夹"
 
 #: zapzap/features/initial_setup/view.py:348
-#: zapzap/features/settings/pages/language_downloads/view.py:149
+#: zapzap/features/settings/pages/language_downloads/view.py:150
 msgid "Spell checker"
 msgstr "拼写检查器"
 
 #: zapzap/features/initial_setup/view.py:349
-#: zapzap/features/settings/pages/language_downloads/view.py:150
+#: zapzap/features/settings/pages/language_downloads/view.py:151
 msgid "Select compiled dictionaries and where ZapZap should look for them."
 msgstr "选择已编译的词典以及 ZapZap 查找词典的位置。"
 
 #: zapzap/features/initial_setup/view.py:354
-#: zapzap/features/settings/pages/language_downloads/view.py:154
+#: zapzap/features/settings/pages/language_downloads/view.py:155
 msgid "Enable spell checker"
 msgstr "启用拼写检查器"
 
 #: zapzap/features/initial_setup/view.py:355
-#: zapzap/features/settings/pages/language_downloads/view.py:155
+#: zapzap/features/settings/pages/language_downloads/view.py:156
 msgid "Use Qt WebEngine spell checking with the selected dictionary."
 msgstr "使用所选词典启用 Qt WebEngine 拼写检查。"
 
@@ -949,7 +949,7 @@ msgstr "在终端中选择并复制此命令"
 #: zapzap/features/settings/pages/debugging/controller.py:131
 #: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:643
+#: zapzap/features/browser/web/web_view.py:645
 msgid "Copy"
 msgstr "复制"
 
@@ -2292,7 +2292,7 @@ msgid "Bring the panel back into the available screen area."
 msgstr "将面板移回可用的屏幕区域。"
 
 #: zapzap/features/settings/pages/appearance/view.py:154
-#: zapzap/features/settings/pages/language_downloads/view.py:137
+#: zapzap/features/settings/pages/language_downloads/view.py:138
 #, fuzzy
 msgid "Reset"
 msgstr "重置…"
@@ -2732,7 +2732,7 @@ msgid "Download directly (where supported)"
 msgstr "下载目录"
 
 #: zapzap/features/settings/pages/language_downloads/controller.py:210
-#: zapzap/features/settings/pages/language_downloads/view.py:159
+#: zapzap/features/settings/pages/language_downloads/view.py:160
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:255
 msgid "No dictionary available"
 msgstr "没有可用词典"
@@ -2783,85 +2783,85 @@ msgid "Restore"
 msgstr "恢复"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:92
-#: zapzap/features/settings/pages/language_downloads/view.py:100
+#: zapzap/features/settings/pages/language_downloads/view.py:101
 msgid "Save into a folder named after the chat"
 msgstr "保存到以聊天命名的文件夹"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:94
 msgid ""
-"Files go to a subfolder of the download directory named after the open chat. "
-"Files from starred messages, search or contact info go to the download "
-"directory."
+"Files go to a subfolder of the download directory named after the open chat, "
+"also from contact or group info. Files from starred messages, chat list "
+"search or the all-chats media gallery go to the download directory."
 msgstr ""
-"文件将保存到下载目录中以当前打开的聊天命名的子文件夹。来自星标消息、搜索或联"
-"系人信息的文件将保存到下载目录。"
+"文件会保存到下载目录中以当前聊天命名的子文件夹，从联系人或群组信息下载的文件"
+"也是如此。来自星标消息、聊天列表搜索或所有聊天媒体库的文件会保存到下载目录。"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:105
-#: zapzap/features/settings/pages/language_downloads/view.py:109
+#: zapzap/features/settings/pages/language_downloads/view.py:106
+#: zapzap/features/settings/pages/language_downloads/view.py:110
 msgid "Remember last folder when using \"Save as\""
 msgstr "使用“另存为”时记住上次使用的文件夹"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:106
+#: zapzap/features/settings/pages/language_downloads/view.py:107
 msgid "Only for the current account session."
 msgstr "仅用于当前账户会话。"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:114
+#: zapzap/features/settings/pages/language_downloads/view.py:115
 msgid "Automatically open PDFs"
 msgstr "自动打开 PDF"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:116
+#: zapzap/features/settings/pages/language_downloads/view.py:117
 msgid "Open completed PDF downloads with the system default application."
 msgstr "使用系统默认应用打开已完成的 PDF 下载。"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:123
+#: zapzap/features/settings/pages/language_downloads/view.py:124
 msgid "Automatically open images"
 msgstr "自动打开图片"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:125
+#: zapzap/features/settings/pages/language_downloads/view.py:126
 msgid "Open completed image downloads with the system default application."
 msgstr "使用系统默认应用打开已完成的图片下载。"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:132
+#: zapzap/features/settings/pages/language_downloads/view.py:133
 msgid "WhatsApp multiple-download permission"
 msgstr "WhatsApp 多个下载权限"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:134
+#: zapzap/features/settings/pages/language_downloads/view.py:135
 msgid ""
 "Clear the remembered allow or block decision for repeated WhatsApp downloads."
 msgstr "清除重复 WhatsApp 下载已记住的允许或阻止决定。"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:158
+#: zapzap/features/settings/pages/language_downloads/view.py:159
 msgid "Spell checker languages"
 msgstr "拼写检查语言"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:160
+#: zapzap/features/settings/pages/language_downloads/view.py:161
 msgid "Select…"
 msgstr "选择…"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:164
+#: zapzap/features/settings/pages/language_downloads/view.py:165
 msgid "Select spell checker languages"
 msgstr "选择拼写检查语言"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:166
+#: zapzap/features/settings/pages/language_downloads/view.py:167
 msgid "Dictionary files"
 msgstr "词典文件"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:167
+#: zapzap/features/settings/pages/language_downloads/view.py:168
 msgid "Install, remove, or import dictionaries in ZapZap storage."
 msgstr "在 ZapZap 存储中安装、移除或导入词典。"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:168
+#: zapzap/features/settings/pages/language_downloads/view.py:169
 msgid "Manage…"
 msgstr "管理…"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:171
+#: zapzap/features/settings/pages/language_downloads/view.py:172
 #: zapzap/ui/components/dictionary_manager_dialog.py:50
 #: zapzap/ui/components/dictionary_manager_dialog.py:89
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:274
 msgid "Manage dictionaries"
 msgstr "管理词典"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:173
+#: zapzap/features/settings/pages/language_downloads/view.py:174
 msgid "Open the Qt WebEngine dictionary manager."
 msgstr "打开 Qt WebEngine 词典管理器。"
 
@@ -3990,73 +3990,73 @@ msgstr ""
 "为防止应用无响应，此窗口无法手动关闭。请使用 WhatsApp 的“结束通话”按钮。"
 "WhatsApp 请求关闭时，窗口会自动关闭。"
 
-#: zapzap/features/browser/web/web_view.py:318
+#: zapzap/features/browser/web/web_view.py:320
 #: zapzap/ui/components/integrated_account_selector.py:57
 #, fuzzy
 msgid "Account selector"
 msgstr "账户列表"
 
-#: zapzap/features/browser/web/web_view.py:482
+#: zapzap/features/browser/web/web_view.py:484
 msgid "Chat list width"
 msgstr "聊天列表宽度"
 
-#: zapzap/features/browser/web/web_view.py:484
+#: zapzap/features/browser/web/web_view.py:486
 msgid ""
 "Drag or use the arrow keys to resize. Double-click or press Enter to restore "
 "the default width."
 msgstr "拖动或使用方向键调整宽度。双击或按 Enter 键恢复默认宽度。"
 
-#: zapzap/features/browser/web/web_view.py:642
+#: zapzap/features/browser/web/web_view.py:644
 msgid "Undo"
 msgstr "撤销"
 
-#: zapzap/features/browser/web/web_view.py:642
+#: zapzap/features/browser/web/web_view.py:644
 msgid "Redo"
 msgstr "重做"
 
-#: zapzap/features/browser/web/web_view.py:642
+#: zapzap/features/browser/web/web_view.py:644
 msgid "Cut"
 msgstr "剪切"
 
-#: zapzap/features/browser/web/web_view.py:643
+#: zapzap/features/browser/web/web_view.py:645
 msgid "Paste"
 msgstr "粘贴"
 
-#: zapzap/features/browser/web/web_view.py:643
+#: zapzap/features/browser/web/web_view.py:645
 msgid "Select all"
 msgstr "全选"
 
-#: zapzap/features/browser/web/web_view.py:644
+#: zapzap/features/browser/web/web_view.py:646
 msgid "Save image"
 msgstr "保存图片"
 
-#: zapzap/features/browser/web/web_view.py:644
+#: zapzap/features/browser/web/web_view.py:646
 msgid "Copy image"
 msgstr "复制图片"
 
-#: zapzap/features/browser/web/web_view.py:645
-#: zapzap/features/browser/web/web_view.py:675
+#: zapzap/features/browser/web/web_view.py:647
+#: zapzap/features/browser/web/web_view.py:677
 msgid "Copy link address"
 msgstr "复制链接地址"
 
-#: zapzap/features/browser/web/web_view.py:693
+#: zapzap/features/browser/web/web_view.py:695
 msgid "Check Spelling"
 msgstr "检查拼写"
 
-#: zapzap/features/browser/web/web_view.py:699
+#: zapzap/features/browser/web/web_view.py:701
 msgid "Languages…"
 msgstr "语言…"
 
-#: zapzap/features/browser/web/web_view.py:702
+#: zapzap/features/browser/web/web_view.py:704
 msgid "Choose the languages used by the spell checker."
 msgstr "选择拼写检查器使用的语言。"
 
-#: zapzap/features/browser/web/web_view.py:1222
+#: zapzap/features/browser/web/web_view.py:1224
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "账户"
 
-#: zapzap/features/browser/web/web_view.py:1224
+#: zapzap/features/browser/web/web_view.py:1226
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "开发者工具 - {}"

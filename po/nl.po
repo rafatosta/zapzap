@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 18:02+0300\n"
+"POT-Creation-Date: 2026-10-31 22:59+0300\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Dutch\n"
@@ -489,20 +489,20 @@ msgstr "Niet meer laten zien"
 msgid "Learn more about ZapZap ↗"
 msgstr "Meer informatie over ZapZap ↗"
 
-#: zapzap/features/downloads/download_manager.py:531
-#: zapzap/features/downloads/download_manager.py:1098
-#: zapzap/features/downloads/download_manager.py:1101
+#: zapzap/features/downloads/download_manager.py:540
+#: zapzap/features/downloads/download_manager.py:1107
+#: zapzap/features/downloads/download_manager.py:1110
 #: zapzap/features/downloads/ui/download_dialog.py:36
 #: zapzap/features/downloads/ui/downloads_menu.py:447
 #: zapzap/ui/components/update_available_popover.py:109
 msgid "Download"
 msgstr "Downloaden"
 
-#: zapzap/features/downloads/download_manager.py:1265
+#: zapzap/features/downloads/download_manager.py:1278
 msgid "Save file"
 msgstr "Bestand opslaan"
 
-#: zapzap/features/downloads/download_manager.py:1297
+#: zapzap/features/downloads/download_manager.py:1310
 msgid "Select folder"
 msgstr "Selecteer map"
 
@@ -535,7 +535,7 @@ msgstr "Basisprincipes"
 #: zapzap/features/settings/shell/settings_controller.py:136
 #: zapzap/features/settings/pages/notifications/view.py:19
 #: zapzap/features/settings/pages/notifications/view.py:33
-#: zapzap/features/browser/web/web_view.py:319
+#: zapzap/features/browser/web/web_view.py:321
 msgid "Notifications"
 msgstr "Meldingen"
 
@@ -849,22 +849,22 @@ msgid "Choose folder"
 msgstr "Kies map"
 
 #: zapzap/features/initial_setup/view.py:348
-#: zapzap/features/settings/pages/language_downloads/view.py:149
+#: zapzap/features/settings/pages/language_downloads/view.py:150
 msgid "Spell checker"
 msgstr "Spellingcontrole"
 
 #: zapzap/features/initial_setup/view.py:349
-#: zapzap/features/settings/pages/language_downloads/view.py:150
+#: zapzap/features/settings/pages/language_downloads/view.py:151
 msgid "Select compiled dictionaries and where ZapZap should look for them."
 msgstr "Selecteer gecompileerde woordenboeken en waar ZapZap ze moet zoeken."
 
 #: zapzap/features/initial_setup/view.py:354
-#: zapzap/features/settings/pages/language_downloads/view.py:154
+#: zapzap/features/settings/pages/language_downloads/view.py:155
 msgid "Enable spell checker"
 msgstr "Schakel de spellingcontrole in"
 
 #: zapzap/features/initial_setup/view.py:355
-#: zapzap/features/settings/pages/language_downloads/view.py:155
+#: zapzap/features/settings/pages/language_downloads/view.py:156
 msgid "Use Qt WebEngine spell checking with the selected dictionary."
 msgstr ""
 "Gebruik de spellingcontrole van Qt WebEngine met het geselecteerde "
@@ -984,7 +984,7 @@ msgstr "Selecteer en kopieer deze opdracht in uw terminal"
 #: zapzap/features/settings/pages/debugging/controller.py:131
 #: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:643
+#: zapzap/features/browser/web/web_view.py:645
 msgid "Copy"
 msgstr "Kopiëren"
 
@@ -2344,7 +2344,7 @@ msgid "Bring the panel back into the available screen area."
 msgstr ""
 
 #: zapzap/features/settings/pages/appearance/view.py:154
-#: zapzap/features/settings/pages/language_downloads/view.py:137
+#: zapzap/features/settings/pages/language_downloads/view.py:138
 #, fuzzy
 msgid "Reset"
 msgstr "Opnieuw instellen…"
@@ -2780,7 +2780,7 @@ msgid "Download directly (where supported)"
 msgstr "Directory downloaden"
 
 #: zapzap/features/settings/pages/language_downloads/controller.py:210
-#: zapzap/features/settings/pages/language_downloads/view.py:159
+#: zapzap/features/settings/pages/language_downloads/view.py:160
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:255
 msgid "No dictionary available"
 msgstr ""
@@ -2831,89 +2831,89 @@ msgid "Restore"
 msgstr "Herstellen"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:92
-#: zapzap/features/settings/pages/language_downloads/view.py:100
+#: zapzap/features/settings/pages/language_downloads/view.py:101
 msgid "Save into a folder named after the chat"
 msgstr ""
 
 #: zapzap/features/settings/pages/language_downloads/view.py:94
 msgid ""
-"Files go to a subfolder of the download directory named after the open chat. "
-"Files from starred messages, search or contact info go to the download "
-"directory."
-msgstr ""
-
-#: zapzap/features/settings/pages/language_downloads/view.py:105
-#: zapzap/features/settings/pages/language_downloads/view.py:109
-msgid "Remember last folder when using \"Save as\""
+"Files go to a subfolder of the download directory named after the open chat, "
+"also from contact or group info. Files from starred messages, chat list "
+"search or the all-chats media gallery go to the download directory."
 msgstr ""
 
 #: zapzap/features/settings/pages/language_downloads/view.py:106
+#: zapzap/features/settings/pages/language_downloads/view.py:110
+msgid "Remember last folder when using \"Save as\""
+msgstr ""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:107
 msgid "Only for the current account session."
 msgstr ""
 
-#: zapzap/features/settings/pages/language_downloads/view.py:114
+#: zapzap/features/settings/pages/language_downloads/view.py:115
 msgid "Automatically open PDFs"
 msgstr "PDF's automatisch openen"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:116
+#: zapzap/features/settings/pages/language_downloads/view.py:117
 msgid "Open completed PDF downloads with the system default application."
 msgstr ""
 "Voltooide PDF-downloads openen met de standaardtoepassing van het systeem."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:123
+#: zapzap/features/settings/pages/language_downloads/view.py:124
 msgid "Automatically open images"
 msgstr "Afbeeldingen automatisch openen"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:125
+#: zapzap/features/settings/pages/language_downloads/view.py:126
 msgid "Open completed image downloads with the system default application."
 msgstr ""
 "Voltooide afbeeldingsdownloads openen met de standaardtoepassing van het "
 "systeem."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:132
+#: zapzap/features/settings/pages/language_downloads/view.py:133
 msgid "WhatsApp multiple-download permission"
 msgstr "Toestemming voor meerdere WhatsApp-downloads"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:134
+#: zapzap/features/settings/pages/language_downloads/view.py:135
 msgid ""
 "Clear the remembered allow or block decision for repeated WhatsApp downloads."
 msgstr ""
 "De opgeslagen beslissing om herhaalde WhatsApp-downloads toe te staan of te "
 "blokkeren wissen."
 
-#: zapzap/features/settings/pages/language_downloads/view.py:158
+#: zapzap/features/settings/pages/language_downloads/view.py:159
 msgid "Spell checker languages"
 msgstr ""
 
-#: zapzap/features/settings/pages/language_downloads/view.py:160
+#: zapzap/features/settings/pages/language_downloads/view.py:161
 msgid "Select…"
 msgstr ""
 
-#: zapzap/features/settings/pages/language_downloads/view.py:164
+#: zapzap/features/settings/pages/language_downloads/view.py:165
 msgid "Select spell checker languages"
 msgstr ""
 
-#: zapzap/features/settings/pages/language_downloads/view.py:166
+#: zapzap/features/settings/pages/language_downloads/view.py:167
 #, fuzzy
 msgid "Dictionary files"
 msgstr "Woordenboek taal"
 
-#: zapzap/features/settings/pages/language_downloads/view.py:167
+#: zapzap/features/settings/pages/language_downloads/view.py:168
 msgid "Install, remove, or import dictionaries in ZapZap storage."
 msgstr ""
 
-#: zapzap/features/settings/pages/language_downloads/view.py:168
+#: zapzap/features/settings/pages/language_downloads/view.py:169
 msgid "Manage…"
 msgstr ""
 
-#: zapzap/features/settings/pages/language_downloads/view.py:171
+#: zapzap/features/settings/pages/language_downloads/view.py:172
 #: zapzap/ui/components/dictionary_manager_dialog.py:50
 #: zapzap/ui/components/dictionary_manager_dialog.py:89
 #: zapzap/ui/components/spellcheck_language_picker_dialog.py:274
 msgid "Manage dictionaries"
 msgstr ""
 
-#: zapzap/features/settings/pages/language_downloads/view.py:173
+#: zapzap/features/settings/pages/language_downloads/view.py:174
 msgid "Open the Qt WebEngine dictionary manager."
 msgstr ""
 
@@ -4081,73 +4081,73 @@ msgid ""
 "WhatsApp requests it."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:318
+#: zapzap/features/browser/web/web_view.py:320
 #: zapzap/ui/components/integrated_account_selector.py:57
 #, fuzzy
 msgid "Account selector"
 msgstr "Accountlijst"
 
-#: zapzap/features/browser/web/web_view.py:482
+#: zapzap/features/browser/web/web_view.py:484
 msgid "Chat list width"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:484
+#: zapzap/features/browser/web/web_view.py:486
 msgid ""
 "Drag or use the arrow keys to resize. Double-click or press Enter to restore "
 "the default width."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:642
+#: zapzap/features/browser/web/web_view.py:644
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: zapzap/features/browser/web/web_view.py:642
+#: zapzap/features/browser/web/web_view.py:644
 msgid "Redo"
 msgstr "Opnieuw uitvoeren"
 
-#: zapzap/features/browser/web/web_view.py:642
+#: zapzap/features/browser/web/web_view.py:644
 msgid "Cut"
 msgstr "Knippen"
 
-#: zapzap/features/browser/web/web_view.py:643
+#: zapzap/features/browser/web/web_view.py:645
 msgid "Paste"
 msgstr "Plakken"
 
-#: zapzap/features/browser/web/web_view.py:643
+#: zapzap/features/browser/web/web_view.py:645
 msgid "Select all"
 msgstr "Selecteer alles"
 
-#: zapzap/features/browser/web/web_view.py:644
+#: zapzap/features/browser/web/web_view.py:646
 msgid "Save image"
 msgstr "Afbeelding opslaan"
 
-#: zapzap/features/browser/web/web_view.py:644
+#: zapzap/features/browser/web/web_view.py:646
 msgid "Copy image"
 msgstr "Kopieer afbeelding"
 
-#: zapzap/features/browser/web/web_view.py:645
-#: zapzap/features/browser/web/web_view.py:675
+#: zapzap/features/browser/web/web_view.py:647
+#: zapzap/features/browser/web/web_view.py:677
 msgid "Copy link address"
 msgstr "Linkadres kopiëren"
 
-#: zapzap/features/browser/web/web_view.py:693
+#: zapzap/features/browser/web/web_view.py:695
 msgid "Check Spelling"
 msgstr "Spelling controleren"
 
-#: zapzap/features/browser/web/web_view.py:699
+#: zapzap/features/browser/web/web_view.py:701
 msgid "Languages…"
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:702
+#: zapzap/features/browser/web/web_view.py:704
 msgid "Choose the languages used by the spell checker."
 msgstr ""
 
-#: zapzap/features/browser/web/web_view.py:1222
+#: zapzap/features/browser/web/web_view.py:1224
 #: zapzap/ui/components/card_user.py:304
 msgid "Account"
 msgstr "Account"
 
-#: zapzap/features/browser/web/web_view.py:1224
+#: zapzap/features/browser/web/web_view.py:1226
 #, python-brace-format
 msgid "DevTools - {}"
 msgstr "Ontwikkelaarstools - {}"
