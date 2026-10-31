@@ -375,8 +375,10 @@ A alteração chega a toda `WebView` viva por
 tema (`window._zapZapWAWebThemeController.bridge`) e envia o título pelo slot
 `on_active_chat_changed`; sem a ponte, o valor fica pendente e é reenviado no
 próximo toque. O último `pointerdown` decide em três estados: dentro de `#main`
-informa o título do chat; no restante de `wa-web-main-screen` (lista, gavetas)
-informa vazio; em camadas flutuantes (visualizador de mídia, menus) mantém o
+ou da gaveta direita (`drawer-right`: dados do contato ou do grupo e sua mídia,
+que pertencem ao chat aberto) informa o título do chat; no restante de
+`wa-web-main-screen` (lista, gaveta esquerda, galeria de mídia de todos os
+chats) informa vazio; em camadas flutuantes (visualizador de mídia, menus) mantém o
 valor anterior, mas relê uma vez o título do cabeçalho de `#main` e informa
 vazio se ele mudou (troca de chat pelo teclado). O título vem do atributo
 `title`, quando não é só espaços, ou do percurso dos nós de texto, com o `alt`
@@ -527,9 +529,10 @@ seletor só quando a sessão não tem sugestão de "Salvar como". Se não puder 
 criado, recai no diretório base; `restore_path` nunca é tocado, e trocar de
 chat limpa a sugestão de "Salvar como". Chats com o mesmo nome exibido (e, em
 sistemas de arquivos sem distinção de maiúsculas, que só diferem nelas)
-compartilham a pasta, um chat renomeado abre uma nova, e downloads de
-mensagens favoritas, busca, dados do contato ou mídia geral vão para o
-diretório base.
+compartilham a pasta, um chat renomeado abre uma nova. Downloads feitos a partir
+dos dados do contato ou do grupo vão para a pasta do chat aberto; os de
+mensagens favoritas, da busca da lista de conversas ou da galeria de mídia de
+todos os chats vão para o diretório base.
 A preferência `downloads/remember_last_save_as_directory` (padrão `True`)
 controla a sugestão, sem persistir o diretório. Desativá-la emite um sinal do
 domínio para limpar imediatamente as WebViews vivas. O filtro existente observa

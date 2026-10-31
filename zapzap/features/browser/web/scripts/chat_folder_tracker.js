@@ -1,8 +1,9 @@
 (() => {
   // Tell ZapZap which chat is open so downloads can go into a folder named
-  // after it. The last pointer press decides: inside the conversation pane it
-  // reports the chat title, inside the rest of the main screen (chat list,
-  // drawers) it reports no chat, and on floating layers (media viewer, menus)
+  // after it. The last pointer press decides: inside the conversation pane or
+  // the right drawer (contact or group info and its media, which belong to the
+  // open chat) it reports the chat title, inside the rest of the main screen
+  // (chat list, left drawers, the all-chats media gallery) it reports no chat, and on floating layers (media viewer, menus)
   // it keeps the previous value unless the header now shows another chat
   // (switched with the keyboard), in which case it reports no chat.
   window._zapZapChatFolderTracker?.destroy();
@@ -10,6 +11,7 @@
   const chatTitleSelector =
     'header [data-testid="conversation-info-header-chat-title"]';
   const mainScreenSelector = '[data-testid="wa-web-main-screen"]';
+  const chatDrawerSelector = '[data-testid="drawer-right"]';
 
   let current = '';
   let lastSent = null;
@@ -40,6 +42,7 @@
   const classify = (target) => {
     const main = target.closest('#main');
     if (main) return titleText(main.querySelector(chatTitleSelector));
+    if (target.closest(chatDrawerSelector)) return openChatTitle();
     const screen = document.querySelector(mainScreenSelector);
     if (screen) return screen.contains(target) ? '' : null;
     return target.closest('#side, [data-testid^="drawer"]') ? '' : null;
