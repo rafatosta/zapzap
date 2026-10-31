@@ -377,8 +377,9 @@ tema (`window._zapZapWAWebThemeController.bridge`) e envia o título pelo slot
 próximo toque. O último `pointerdown` decide em três estados: dentro de `#main`
 ou da gaveta direita (`drawer-right`: dados do contato ou do grupo e sua mídia,
 que pertencem ao chat aberto) informa o título do chat; no restante de
-`wa-web-main-screen` (lista, gaveta esquerda, galeria de mídia de todos os
-chats) informa vazio; em camadas flutuantes (visualizador de mídia, menus) mantém o
+`wa-web-main-screen` (lista, gaveta esquerda) e na galeria de mídia de todos
+os chats (`media-hub-modal`, mesmo quando aberta pela gaveta direita) informa
+vazio; em camadas flutuantes (visualizador de mídia, menus) mantém o
 valor anterior, mas relê uma vez o título do cabeçalho de `#main` e informa
 vazio se ele mudou (troca de chat pelo teclado). O título vem do atributo
 `title`, quando não é só espaços, ou do percurso dos nós de texto, com o `alt`
