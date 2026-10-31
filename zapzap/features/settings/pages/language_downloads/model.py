@@ -67,6 +67,14 @@ class LanguageDownloadSettingsModel:
         self._download_settings.remember_last_save_as_directory = value
 
     @property
+    def organize_by_chat(self):
+        return self._download_settings.organize_by_chat
+
+    @organize_by_chat.setter
+    def organize_by_chat(self, value):
+        self._download_settings.organize_by_chat = value
+
+    @property
     def pdf_click_behavior(self):
         return self._download_settings.pdf_click_behavior
 
