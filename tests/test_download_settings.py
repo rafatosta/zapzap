@@ -482,6 +482,20 @@ class ChatFolderTargetTests(TemporarySettingsTest):
         dialog_class.assert_not_called()
         discard.assert_called_once_with(self.download)
 
+    def test_chat_folder_symlink_cannot_escape_base(self):
+        outside = tempfile.TemporaryDirectory()
+        self.addCleanup(outside.cleanup)
+        os.symlink(outside.name, os.path.join(self.base, "Evil"))
+        self.owner.active_chat_title = "Evil"
+        with patch.object(DownloadManager, "restore_path") as restore:
+            result = DownloadManager._set_initial_download_parameters(
+                self.download, self.owner
+            )
+        self.assertTrue(result)
+        restore.assert_not_called()
+        self.download.setDownloadDirectory.assert_called_with(self.real_base)
+        self.assertEqual(DownloadManager.get_path(), self.base)
+
     def test_chat_directory_error_falls_back_to_configured_path(self):
         with patch.object(
             DownloadManager, "_chat_directory", side_effect=ValueError
@@ -564,7 +578,6 @@ class SaveAsSettingsUiTests(QtTestCase):
                 if page:
                     page.deleteLater()
                 SettingsManager._settings = previous
-
 
     def test_chat_folder_switch_loads_persists_and_has_accessible_name(self):
         from zapzap.features.settings.pages.language_downloads.controller import (
