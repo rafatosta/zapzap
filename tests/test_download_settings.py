@@ -303,6 +303,7 @@ class SaveAsDirectoryTests(TemporarySettingsTest):
         self.assertIsNone(owner.last_download_directory)
         owner.whatsapp_page.close_conversation.assert_called_once()
 
+
 class ChatFolderTargetTests(TemporarySettingsTest):
 
     def setUp(self):
@@ -436,6 +437,30 @@ class ChatFolderTargetTests(TemporarySettingsTest):
             os.path.commonpath([self.real_base, os.path.realpath(chat_dir)]),
             self.real_base,
         )
+
+    def test_chat_directory_error_falls_back_to_configured_path(self):
+        with patch.object(
+            DownloadManager, "_chat_directory", side_effect=ValueError
+        ), patch.object(DownloadManager, "restore_path") as restore:
+            result = DownloadManager._set_initial_download_parameters(
+                self.download, self.owner
+            )
+        self.assertTrue(result)
+        restore.assert_not_called()
+        self.download.setDownloadDirectory.assert_called_with(self.real_base)
+        self.assertEqual(DownloadManager.get_path(), self.base)
+
+    def test_ask_dialog_returns_false_when_ensure_fails(self):
+        with patch.object(
+            DownloadManager, "_ensure_target_directory", side_effect=ValueError
+        ), patch(
+            "zapzap.features.downloads.download_manager.QFileDialog.getSaveFileName"
+        ) as dialog:
+            result = DownloadManager._choose_download_target(
+                self.download, self.owner
+            )
+        self.assertFalse(result)
+        dialog.assert_not_called()
 
     def test_ask_dialog_opens_in_existing_chat_folder(self):
         seen = {}
