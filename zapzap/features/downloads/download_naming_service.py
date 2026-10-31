@@ -1,6 +1,7 @@
 import mimetypes
 import os
 import re
+from collections.abc import Iterable
 from urllib.parse import unquote
 
 
@@ -126,6 +127,47 @@ class DownloadNamingService:
             raise ValueError("Download target is outside its directory")
 
         return base, safe_name
+
+    @staticmethod
+    def available_file_name(
+        directory: str,
+        file_name: str,
+        taken: Iterable[str] = (),
+    ) -> str:
+        """Return file_name, or "name (n).ext" when it is already in use.
+
+        A name is in use when anything exists at that path in directory or
+        when its os.path.normcase'd full path is in taken (targets of other
+        downloads that have not been written yet). The result always passes
+        sanitize_file_name unchanged, so the suffix survives later checks.
+        """
+        taken = set(taken)
+
+        def in_use(name: str) -> bool:
+            path = os.path.join(directory, name)
+            return os.path.lexists(path) or os.path.normcase(path) in taken
+
+        if not in_use(file_name):
+            return file_name
+
+        maximum = DownloadNamingService._MAX_FILE_NAME_BYTES
+        stem, extension = os.path.splitext(file_name)
+        for number in range(1, 10000):
+            suffix = f" ({number})"
+            budget = maximum - len((suffix + extension).encode("utf-8"))
+            stem_part = DownloadNamingService._truncate_utf8(stem, max(1, budget))
+            if not stem_part.strip():
+                stem_part = "download"
+            candidate = f"{stem_part}{suffix}{extension}"
+            if (
+                len(candidate.encode("utf-8")) > maximum
+                or DownloadNamingService.sanitize_file_name(candidate) != candidate
+            ):
+                candidate = DownloadNamingService.sanitize_file_name(candidate)
+            if not in_use(candidate):
+                return candidate
+
+        raise ValueError("No free file name is left for this download")
 
     @staticmethod
     def extension_for_mime_type(mime_type: str) -> str:

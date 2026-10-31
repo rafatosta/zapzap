@@ -270,6 +270,19 @@ class DownloadManager:
         if meta is None:
             return "unavailable"
 
+        if not meta.get("target_chosen_by_user"):
+            try:
+                requested = (
+                    download.state()
+                    == QWebEngineDownloadRequest.DownloadState.DownloadRequested
+                )
+            except RuntimeError:
+                requested = False
+            if requested:
+                # The name may have been taken while the download waited in
+                # the dialog or the queue.
+                DownloadManager._keep_existing_files(download)
+
         try:
             state = download.state()
             if meta.get("started_at") is None:
@@ -1089,6 +1102,44 @@ class DownloadManager:
         return os.path.join(safe_directory, safe_name)
 
     @staticmethod
+    def _reserved_paths(download) -> set[str]:
+        """Return the targets of the other registered downloads."""
+        reserved = set()
+        for other in tuple(DownloadManager._active_downloads):
+            if other is download:
+                continue
+            path = DownloadManager._download_path(other)
+            if path:
+                reserved.add(os.path.normcase(path))
+        return reserved
+
+    @staticmethod
+    def _keep_existing_files(download):
+        """Rename the target to "name (n).ext" when that name is in use."""
+        try:
+            directory = download.downloadDirectory()
+            current_name = download.downloadFileName()
+            safe_directory, safe_name = (
+                DownloadNamingService.safe_download_target(
+                    directory,
+                    current_name,
+                )
+            )
+            free_name = DownloadNamingService.available_file_name(
+                safe_directory,
+                safe_name,
+                DownloadManager._reserved_paths(download),
+            )
+            if free_name != current_name:
+                download.setDownloadFileName(free_name)
+        except (RuntimeError, ValueError, OSError):
+            logger.warning(
+                "Could not check the download target for an existing file; "
+                "keeping its name",
+                exc_info=True,
+            )
+
+    @staticmethod
     def _safe_file_name(download):
         try:
             return (
@@ -1143,6 +1194,8 @@ class DownloadManager:
 
     @staticmethod
     def _set_initial_download_parameters(download, parent=None) -> bool:
+        # Numbering runs in the else clauses so that its errors never reach
+        # the fallback below, which would reset the configured folder.
         configured_path = DownloadManager.get_path()
         try:
             DownloadManager.set_download_target(
@@ -1150,12 +1203,14 @@ class DownloadManager:
                 configured_path,
                 download.downloadFileName() or download.suggestedFileName(),
             )
-            return True
         except Exception:
             logger.exception(
                 "Failed to apply the configured download target; retrying "
                 "with the default directory"
             )
+        else:
+            DownloadManager._keep_existing_files(download)
+            return True
 
         try:
             DownloadManager.set_download_target(
@@ -1164,12 +1219,14 @@ class DownloadManager:
                 download.downloadFileName() or download.suggestedFileName(),
             )
             DownloadManager.restore_path()
-            return True
         except Exception:
             logger.exception(
                 "Failed to apply the default download target; cancelling "
                 "the download"
             )
+        else:
+            DownloadManager._keep_existing_files(download)
+            return True
 
         try:
             download.cancel()
@@ -1225,6 +1282,10 @@ class DownloadManager:
         except (RuntimeError, ValueError):
             logger.exception("Rejected unsafe selected download target")
             return False
+        meta = DownloadManager._meta(download)
+        if meta is not None:
+            # The file picker already asked before replacing a file.
+            meta["target_chosen_by_user"] = True
         if (
             DownloadSettings().remember_last_save_as_directory
             and hasattr(parent, "last_download_directory")
