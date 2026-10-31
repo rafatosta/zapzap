@@ -1144,20 +1144,20 @@ class DownloadManager:
 
     @staticmethod
     def _set_initial_download_parameters(download, parent=None) -> bool:
-        chat_directory = DownloadManager._chat_directory(parent)
-        if chat_directory:
-            try:
+        try:
+            chat_directory = DownloadManager._chat_directory(parent)
+            if chat_directory:
                 DownloadManager.set_download_target(
                     download,
                     chat_directory,
                     download.downloadFileName() or download.suggestedFileName(),
                 )
                 return True
-            except Exception:
-                logger.exception(
-                    "Failed to apply the chat download folder; using the "
-                    "configured directory"
-                )
+        except Exception:
+            logger.exception(
+                "Failed to apply the chat download folder; using the "
+                "configured directory"
+            )
 
         configured_path = DownloadManager.get_path()
         try:
