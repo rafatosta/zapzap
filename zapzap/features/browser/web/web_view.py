@@ -75,6 +75,7 @@ class WebView(QWebEngineView):
     }
 
     RESIZABLE_CHAT_LIST_SCRIPT_NAME = "zapzap_resizable_chat_list"
+    CHAT_FOLDER_TRACKER_SCRIPT_NAME = "zapzap_chat_folder_tracker"
 
     def __init__(self, user: User = None, page_index=None, parent=None):
         super().__init__(parent)
@@ -108,6 +109,15 @@ class WebView(QWebEngineView):
         )
         download_settings_events.pdf_click_behavior_changed.connect(
             self._apply_pdf_click_behavior
+        )
+        # Title of the chat open in WhatsApp Web, reported by the page when
+        # downloads are organized by chat. Empty when no chat is known.
+        self.active_chat_title = ""
+        # Survives reload, crash and close_conversation on purpose: reopening
+        # the same chat keeps the Save As suggestion.
+        self._last_nonempty_chat_title = ""
+        download_settings_events.organize_by_chat_changed.connect(
+            self.set_chat_folder_tracker_enabled
         )
 
         self._reload_timer = QTimer(self)
@@ -151,6 +161,7 @@ class WebView(QWebEngineView):
             return
         self.titleChanged.connect(self._on_title_changed)
         self.loadFinished.connect(self._on_load_finished)
+        self.loadStarted.connect(self._clear_active_chat_title)
         ThemeManager.instance().theme_changed.connect(self.apply_theme)
         self._signals_configured = True
 
@@ -372,6 +383,10 @@ class WebView(QWebEngineView):
             def on_quick_accounts_controller_ready(self):
                 self._webview._sync_integrated_selector()
 
+            @pyqtSlot(str)
+            def on_active_chat_changed(self, title):
+                self._webview.set_active_chat_title(title)
+
             @pyqtSlot(int, int, int, int)
             def open_recent_accounts(self, x, y, width, height):
                 view = self._webview
@@ -476,6 +491,81 @@ class WebView(QWebEngineView):
             js_code = js_code.replace(placeholder, value)
         return js_code
 
+    def set_active_chat_title(self, title: object) -> None:
+        """Remember the chat reported by the page for download folders."""
+        if not isinstance(title, str):
+            return
+        title = title[:512]
+        if not DownloadSettings().organize_by_chat:
+            self.active_chat_title = ""
+            return
+        if title and title != self._last_nonempty_chat_title:
+            # Only a switch to another chat drops the Save As suggestion;
+            # passing through the chat list or a drawer does not.
+            self.clear_download_directory()
+            self._last_nonempty_chat_title = title
+        self.active_chat_title = title
+
+    def _clear_active_chat_title(self) -> None:
+        """Forget the open chat and make the page report it again."""
+        self.active_chat_title = ""
+        if (
+            self.whatsapp_page is not None
+            and not self._shutting_down
+            and DownloadSettings().organize_by_chat
+        ):
+            self.whatsapp_page.runJavaScript(
+                "window._zapZapChatFolderTracker && "
+                "window._zapZapChatFolderTracker.reset();"
+            )
+
+    def set_chat_folder_tracker_enabled(self) -> None:
+        """Apply the organize-by-chat setting to the loaded page and reloads."""
+        if self.profile is None or self.whatsapp_page is None or self._shutting_down:
+            return
+        enabled = DownloadSettings().organize_by_chat
+        self._install_chat_folder_tracker(enabled)
+        if enabled:
+            source = self._chat_folder_tracker_source()
+            if source:
+                self.whatsapp_page.runJavaScript(source)
+        else:
+            self.whatsapp_page.runJavaScript(
+                "window._zapZapChatFolderTracker && "
+                "window._zapZapChatFolderTracker.destroy();"
+            )
+            self.active_chat_title = ""
+            self._last_nonempty_chat_title = ""
+
+    def _install_chat_folder_tracker(self, enabled: bool) -> None:
+        scripts = self.profile.scripts()
+        for script in scripts.find(self.CHAT_FOLDER_TRACKER_SCRIPT_NAME):
+            scripts.remove(script)
+        if not enabled:
+            return
+        source = self._chat_folder_tracker_source()
+        if not source:
+            return
+        script = QWebEngineScript()
+        script.setName(self.CHAT_FOLDER_TRACKER_SCRIPT_NAME)
+        script.setInjectionPoint(QWebEngineScript.InjectionPoint.DocumentReady)
+        script.setRunsOnSubFrames(False)
+        script.setSourceCode(source)
+        script.setWorldId(QWebEngineScript.ScriptWorldId.MainWorld)
+        scripts.insert(script)
+
+    @staticmethod
+    def _chat_folder_tracker_source() -> str:
+        js_path = os.path.join(
+            os.path.dirname(__file__), "scripts", "chat_folder_tracker.js"
+        )
+        try:
+            with open(js_path, "r", encoding="utf-8") as js_file:
+                return js_file.read()
+        except OSError:
+            logger.exception("Failed to read the chat folder tracker script")
+            return ""
+
     @staticmethod
     def _get_web_channel_js_code() -> str:
         file = QFile(":/qtwebchannel/qwebchannel.js")
@@ -523,10 +613,12 @@ class WebView(QWebEngineView):
         self._install_resizable_chat_list(
             AppearanceSettings().resizable_chat_list_enabled
         )
+        self._install_chat_folder_tracker(DownloadSettings().organize_by_chat)
         self.load_page()
 
     def _on_render_crash(self, terminationStatus, exitCode):
         with probe.scope("renderer_terminated", self, status=terminationStatus, exit_code=exitCode):
+            self.active_chat_title = ""
             if self._shutting_down or not self.user.enable or not self.whatsapp_page:
                 return
             print(
@@ -954,6 +1046,7 @@ class WebView(QWebEngineView):
     def close_conversation(self):
         """Simula o pressionamento da tecla 'Escape' na página."""
         self.clear_download_directory()
+        self._clear_active_chat_title()
         if self.user.enable and self.whatsapp_page:
             self.whatsapp_page.close_conversation()
 
@@ -1067,6 +1160,7 @@ class WebView(QWebEngineView):
         """Destrói objetos Qt associados à WebEngine de forma ordenada."""
         with probe.scope("teardown", self):
             self.clear_download_directory()
+            self.active_chat_title = ""
             self._stop_timers()
             self._save_zoom_factor()
             self.stop()

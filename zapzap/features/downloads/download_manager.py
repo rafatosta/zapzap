@@ -147,6 +147,15 @@ class DownloadManager:
                 DownloadManager._discard_unstarted_download(download)
             return
 
+        # The dialog shows and opens the target folder, so the chat folder
+        # must exist before it is built.
+        try:
+            DownloadManager._ensure_target_directory(download)
+        except (RuntimeError, ValueError, OSError):
+            logger.exception("Download folder could not be prepared")
+            DownloadManager._discard_unstarted_download(download)
+            return
+
         dialog = DownloadDialog(download, parent)
         DownloadManager._floating_cards.append(dialog)
 
@@ -279,6 +288,7 @@ class DownloadManager:
                 state
                 == QWebEngineDownloadRequest.DownloadState.DownloadRequested
             ):
+                DownloadManager._ensure_target_directory(download)
                 download.accept()
             elif (
                 state
@@ -296,7 +306,7 @@ class DownloadManager:
                 != QWebEngineDownloadRequest.DownloadState.DownloadInProgress
             ):
                 return "unavailable"
-        except RuntimeError:
+        except (RuntimeError, ValueError):
             logger.exception("Download could not be started or resumed")
             DownloadManager._cancel_download(download, "cancelled")
             return "unavailable"
@@ -1143,6 +1153,21 @@ class DownloadManager:
 
     @staticmethod
     def _set_initial_download_parameters(download, parent=None) -> bool:
+        try:
+            chat_directory = DownloadManager._chat_directory(parent)
+            if chat_directory:
+                DownloadManager.set_download_target(
+                    download,
+                    chat_directory,
+                    download.downloadFileName() or download.suggestedFileName(),
+                )
+                return True
+        except Exception:
+            logger.exception(
+                "Failed to apply the chat download folder; using the "
+                "configured directory"
+            )
+
         configured_path = DownloadManager.get_path()
         try:
             DownloadManager.set_download_target(
@@ -1180,6 +1205,50 @@ class DownloadManager:
         return False
 
     @staticmethod
+    def _chat_directory(parent) -> str | None:
+        """Return the chat subfolder for the active chat, if enabled."""
+        if not DownloadSettings().organize_by_chat:
+            return None
+        title = getattr(parent, "active_chat_title", "")
+        if not isinstance(title, str):
+            title = ""
+        name = DownloadNamingService.chat_folder_name(title)
+        if name is None:
+            return None
+        base, folder = DownloadNamingService.safe_download_target(
+            DownloadManager.get_path(),
+            name,
+        )
+        return os.path.join(base, folder)
+
+    @staticmethod
+    def _ensure_target_directory(download) -> None:
+        """Create the chat folder before accepting; fall back to the base."""
+        if not DownloadSettings().organize_by_chat:
+            return
+        directory = download.downloadDirectory()
+        base = DownloadManager.get_path()
+        if os.path.realpath(directory) == os.path.realpath(base):
+            return
+        if os.path.isdir(directory):
+            # Only missing chat folders are created; an existing directory,
+            # including one picked by the user, is kept as is.
+            return
+        try:
+            os.makedirs(directory, exist_ok=True)
+        except OSError:
+            logger.warning(
+                "Could not create the chat download folder; using the "
+                "configured directory",
+                exc_info=True,
+            )
+            DownloadManager.set_download_target(
+                download,
+                base,
+                download.downloadFileName(),
+            )
+
+    @staticmethod
     def _file_dialog_options():
         return (
             QFileDialog.Option.DontUseNativeDialog
@@ -1191,14 +1260,14 @@ class DownloadManager:
     def _choose_download_target(download, parent=None, *, dialog_parent=None) -> bool:
         probe.technical("download", "save-dialog")
         try:
-            directory = (
-                DownloadManager._session_directory(parent)
-                or download.downloadDirectory()
-            )
+            directory = DownloadManager._session_directory(parent)
+            if not directory:
+                DownloadManager._ensure_target_directory(download)
+                directory = download.downloadDirectory()
             file_name = download.downloadFileName()
             mime_type = download.mimeType()
             url = download.url().toString()
-        except RuntimeError:
+        except (RuntimeError, ValueError, OSError):
             return False
 
         suffix = os.path.splitext(file_name)[1].lstrip(".")

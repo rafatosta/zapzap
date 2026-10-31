@@ -40,6 +40,9 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         self.download_path.setText(self.model.get_download_path())
         self._load_download_behavior_options()
         self._load_pdf_click_behavior_options()
+        self.organize_by_chat_row.checkbox.setChecked(
+            self.model.organize_by_chat
+        )
         self.remember_save_as_row.checkbox.setChecked(
             self.model.remember_last_save_as_directory
         )
@@ -77,6 +80,9 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
         )
         self.pdf_click_behavior_combo.currentIndexChanged.connect(
             self._handle_pdf_click_behavior
+        )
+        self.organize_by_chat_row.checkbox.toggled.connect(
+            self._handle_organize_by_chat
         )
         self.remember_save_as_row.checkbox.toggled.connect(
             self._handle_remember_save_as
@@ -254,6 +260,9 @@ class LanguageDownloadSettingsController(LanguageDownloadSettingsView):
 
     def _handle_remember_save_as(self, enabled):
         self.model.remember_last_save_as_directory = enabled
+
+    def _handle_organize_by_chat(self, enabled):
+        self.model.organize_by_chat = enabled
 
     def _handle_auto_open_pdf(self, enabled):
         self.model.auto_open_pdf = enabled

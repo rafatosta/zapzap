@@ -47,6 +47,7 @@ class DownloadSettingsEvents(QObject):
 
     clear_save_as_directories = pyqtSignal()
     pdf_click_behavior_changed = pyqtSignal()
+    organize_by_chat_changed = pyqtSignal()
 
 
 download_settings_events = DownloadSettingsEvents()
@@ -61,6 +62,7 @@ class DownloadSettings(BaseSettings):
     _AUTO_OPEN_PDF = ("downloads/auto_open_pdf", False)
     _PDF_CLICK_BEHAVIOR = ("downloads/pdf_click_behavior", PDFClickBehavior.PREVIEW)
     _AUTO_OPEN_IMAGES = ("downloads/auto_open_images", False)
+    _ORGANIZE_BY_CHAT = ("downloads/organize_by_chat", False)
     _MULTIPLE_DOWNLOAD_PERMISSION = (
         "downloads/whatsapp_multiple_download_permission",
         MultipleDownloadPermission.ASK,
@@ -117,6 +119,17 @@ class DownloadSettings(BaseSettings):
         if self.pdf_click_behavior != normalized:
             self._set_str(self._PDF_CLICK_BEHAVIOR, normalized)
             download_settings_events.pdf_click_behavior_changed.emit()
+
+    @property
+    def organize_by_chat(self) -> bool:
+        return self._get_bool(self._ORGANIZE_BY_CHAT)
+
+    @organize_by_chat.setter
+    def organize_by_chat(self, value: bool) -> None:
+        value = bool(value)
+        if self.organize_by_chat != value:
+            self._set_bool(self._ORGANIZE_BY_CHAT, value)
+            download_settings_events.organize_by_chat_changed.emit()
 
     def _migrate_legacy_auto_open(self) -> None:
         legacy_key, _default = self._AUTO_OPEN_MEDIA_LEGACY
