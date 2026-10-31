@@ -356,7 +356,7 @@ class ChatFolderTrackerViewTests(TemporarySettingsTestCase):
         WebView.set_chat_folder_tracker_enabled(owner)
         owner.whatsapp_page.runJavaScript.assert_not_called()
 
-    def test_close_conversation_and_crash_clear_title(self):
+    def test_close_conversation_clears_title_and_resets_tracker(self):
         owner = self.owner
         owner.whatsapp_page = Mock()
         owner.active_chat_title = "A"
@@ -367,25 +367,37 @@ class ChatFolderTrackerViewTests(TemporarySettingsTestCase):
         owner.whatsapp_page.runJavaScript.assert_called_once_with(RESET_SCRIPT)
         owner.whatsapp_page.close_conversation.assert_called_once()
 
-        # No reset call once the page is shutting down or the setting is off.
-        owner.whatsapp_page.reset_mock()
+    def test_clear_title_skips_reset_while_shutting_down(self):
+        owner = self.owner
+        owner.whatsapp_page = Mock()
+        owner.active_chat_title = "A"
         owner._shutting_down = True
         WebView._clear_active_chat_title(owner)
-        owner._shutting_down = False
+        self.assertEqual(owner.active_chat_title, "")
+        owner.whatsapp_page.runJavaScript.assert_not_called()
+
+    def test_clear_title_skips_reset_when_setting_off(self):
+        owner = self.owner
+        owner.whatsapp_page = Mock()
+        owner.active_chat_title = "A"
         DownloadSettings().organize_by_chat = False
         WebView._clear_active_chat_title(owner)
+        self.assertEqual(owner.active_chat_title, "")
         owner.whatsapp_page.runJavaScript.assert_not_called()
-        DownloadSettings().organize_by_chat = True
 
+    def test_render_crash_clears_title(self):
+        owner = self.owner
         for shutting_down, page in ((True, Mock()), (False, None)):
-            owner.active_chat_title = "A"
-            owner._shutting_down = shutting_down
-            owner.whatsapp_page = page
-            owner._render_crash_reload_timer = Mock()
-            WebView._on_render_crash(owner, 0, 0)
-            self.assertEqual(owner.active_chat_title, "")
-            owner._render_crash_reload_timer.start.assert_not_called()
+            with self.subTest(shutting_down=shutting_down, page=page):
+                owner.active_chat_title = "A"
+                owner._shutting_down = shutting_down
+                owner.whatsapp_page = page
+                owner._render_crash_reload_timer = Mock()
+                WebView._on_render_crash(owner, 0, 0)
+                self.assertEqual(owner.active_chat_title, "")
+                owner._render_crash_reload_timer.start.assert_not_called()
 
+    def test_load_started_clears_title(self):
         view = WebView(User(id="chat-folder-load", enable=False), 1)
         self.addCleanup(lambda: sip.delete(view))
         view._configure_signals()
