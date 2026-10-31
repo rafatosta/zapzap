@@ -299,9 +299,11 @@ class SaveAsDirectoryTests(TemporarySettingsTest):
         owner.last_download_directory = self.default
         owner.user = SimpleNamespace(enable=True)
         owner.whatsapp_page = Mock()
+        owner._clear_active_chat_title = Mock()
         WebView.close_conversation(owner)
         self.assertIsNone(owner.last_download_directory)
         owner.whatsapp_page.close_conversation.assert_called_once()
+        owner._clear_active_chat_title.assert_called_once_with()
 
 
 class ChatFolderTargetTests(TemporarySettingsTest):
