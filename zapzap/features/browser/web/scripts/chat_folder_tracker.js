@@ -3,7 +3,8 @@
   // after it. The last pointer press decides: inside the conversation pane it
   // reports the chat title, inside the rest of the main screen (chat list,
   // drawers) it reports no chat, and on floating layers (media viewer, menus)
-  // it keeps the previous value.
+  // it keeps the previous value unless the header now shows another chat
+  // (switched with the keyboard), in which case it reports no chat.
   window._zapZapChatFolderTracker?.destroy();
 
   const chatTitleSelector =
@@ -16,7 +17,7 @@
   const titleText = (element) => {
     if (!element) return '';
     const title = element.getAttribute('title');
-    if (title) return title.trim();
+    if (title && title.trim()) return title.trim();
     let text = '';
     const walk = (node) => {
       for (const child of node.childNodes) {
@@ -28,6 +29,11 @@
     };
     walk(element);
     return text.trim();
+  };
+
+  const openChatTitle = () => {
+    const main = document.getElementById('main');
+    return main ? titleText(main.querySelector(chatTitleSelector)) : '';
   };
 
   // Returns the chat title to report, '' for no chat, or null to keep it.
@@ -54,6 +60,8 @@
     if (!target || typeof target.closest !== 'function') return;
     const value = classify(target);
     if (value !== null) current = value;
+    // A floating layer keeps the chat only while the header still shows it.
+    else if (current !== '' && openChatTitle() !== current) current = '';
     publish();
   };
 

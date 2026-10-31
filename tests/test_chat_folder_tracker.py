@@ -145,6 +145,27 @@ class ChatFolderTrackerScriptTests(QtTestCase):
         self.assertEqual(self._received(), ["Yaver"])
         self.assertEqual(self._current(), "Yaver")
 
+    def test_floating_layer_click_after_header_change_clears_title(self):
+        # A keyboard chat switch changes the header without a pointer press.
+        self._javascript(FAKE_BRIDGE_SCRIPT)
+        self._javascript(click("main-button"))
+        self._javascript(
+            "document.getElementById('title').textContent = 'Other chat';"
+        )
+        self._javascript(click("menu-button"))
+        self.assertEqual(self._received(), ["Yaver", ""])
+        self.assertEqual(self._current(), "")
+
+    def test_whitespace_title_attribute_falls_back_to_text(self):
+        self._javascript(FAKE_BRIDGE_SCRIPT)
+        self._javascript(
+            "document.querySelector("
+            "'[data-testid=\"conversation-info-header-chat-title\"]')"
+            ".setAttribute('title', '   ');"
+        )
+        self._javascript(click("main-button"))
+        self.assertEqual(self._received(), ["Yaver"])
+
     def test_unchanged_title_not_resent(self):
         self._javascript(FAKE_BRIDGE_SCRIPT)
         self._javascript(click("main-button"))
