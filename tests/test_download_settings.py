@@ -443,6 +443,78 @@ class DownloadNamingSecurityTests(unittest.TestCase):
                     )
 
 
+
+class AvailableFileNameTests(unittest.TestCase):
+
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.dir, _ = DownloadNamingService.safe_download_target(
+            temporary.name, "x"
+        )
+
+    def touch(self, name, content=b""):
+        with open(os.path.join(self.dir, name), "wb") as handle:
+            handle.write(content)
+
+    def available(self, name, taken=()):
+        return DownloadNamingService.available_file_name(self.dir, name, taken)
+
+    def test_free_name_is_kept(self):
+        self.assertEqual(self.available("a.jpeg"), "a.jpeg")
+
+    def test_existing_file_gets_first_number(self):
+        self.touch("a.jpeg", b"old")
+        self.assertEqual(self.available("a.jpeg"), "a (1).jpeg")
+        with open(os.path.join(self.dir, "a.jpeg"), "rb") as handle:
+            self.assertEqual(handle.read(), b"old")
+
+    def test_skips_taken_numbers(self):
+        self.touch("a.jpeg")
+        self.touch("a (1).jpeg")
+        self.assertEqual(self.available("a.jpeg"), "a (2).jpeg")
+
+    def test_existing_directory_counts(self):
+        os.mkdir(os.path.join(self.dir, "a.jpeg"))
+        self.assertEqual(self.available("a.jpeg"), "a (1).jpeg")
+
+    def test_taken_paths_count(self):
+        taken = {os.path.normcase(os.path.join(self.dir, "a.jpeg"))}
+        self.assertEqual(self.available("a.jpeg", taken), "a (1).jpeg")
+
+    def test_name_without_extension(self):
+        self.touch("notes")
+        self.assertEqual(self.available("notes"), "notes (1)")
+
+    def test_long_multibyte_name_keeps_suffix(self):
+        name = DownloadNamingService.sanitize_file_name("\u015f" * 200 + ".jpeg")
+        self.touch(name)
+        result = self.available(name)
+        self.assertTrue(result.endswith(" (1).jpeg"))
+        self.assertLessEqual(
+            len(result.encode("utf-8")),
+            DownloadNamingService._MAX_FILE_NAME_BYTES,
+        )
+        self.assertEqual(DownloadNamingService.sanitize_file_name(result), result)
+
+    def test_long_extension_keeps_suffix(self):
+        name = DownloadNamingService.sanitize_file_name("a." + "x" * 236)
+        self.touch(name)
+        result = self.available(name)
+        self.assertIn("(1)", result)
+        self.assertNotEqual(result, name)
+        self.assertLessEqual(
+            len(result.encode("utf-8")),
+            DownloadNamingService._MAX_FILE_NAME_BYTES,
+        )
+        self.assertEqual(DownloadNamingService.sanitize_file_name(result), result)
+
+    def test_exhausted_numbers_raise(self):
+        with patch("os.path.lexists", return_value=True):
+            with self.assertRaises(ValueError):
+                self.available("a.jpeg")
+
+
 class FakeDownload:
 
     def __init__(
