@@ -297,7 +297,7 @@ class DownloadManager:
                 != QWebEngineDownloadRequest.DownloadState.DownloadInProgress
             ):
                 return "unavailable"
-        except Exception:
+        except (RuntimeError, ValueError):
             logger.exception("Download could not be started or resumed")
             DownloadManager._cancel_download(download, "cancelled")
             return "unavailable"
@@ -1220,6 +1220,10 @@ class DownloadManager:
         directory = download.downloadDirectory()
         base = DownloadManager.get_path()
         if os.path.realpath(directory) == os.path.realpath(base):
+            return
+        if os.path.isdir(directory):
+            # Only missing chat folders are created; an existing directory,
+            # including one picked by the user, is kept as is.
             return
         try:
             os.makedirs(directory, exist_ok=True)
