@@ -485,7 +485,10 @@ class ChatFolderTargetTests(TemporarySettingsTest):
     def test_chat_folder_symlink_cannot_escape_base(self):
         outside = tempfile.TemporaryDirectory()
         self.addCleanup(outside.cleanup)
-        os.symlink(outside.name, os.path.join(self.base, "Evil"))
+        try:
+            os.symlink(outside.name, os.path.join(self.base, "Evil"))
+        except (OSError, NotImplementedError) as error:
+            self.skipTest(f"symlink creation is unavailable: {error}")
         self.owner.active_chat_title = "Evil"
         with patch.object(DownloadManager, "restore_path") as restore:
             result = DownloadManager._set_initial_download_parameters(
