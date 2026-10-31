@@ -113,6 +113,8 @@ class WebView(QWebEngineView):
         # Title of the chat open in WhatsApp Web, reported by the page when
         # downloads are organized by chat. Empty when no chat is known.
         self.active_chat_title = ""
+        # Survives reload, crash and close_conversation on purpose: reopening
+        # the same chat keeps the Save As suggestion.
         self._last_nonempty_chat_title = ""
         download_settings_events.organize_by_chat_changed.connect(
             self.set_chat_folder_tracker_enabled
