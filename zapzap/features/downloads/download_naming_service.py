@@ -62,6 +62,16 @@ class DownloadNamingService:
         )
 
     @staticmethod
+    def chat_folder_name(title: object) -> str | None:
+        """Return a safe single-folder name for a chat title, or None."""
+        if not isinstance(title, str):
+            return None
+        value = title.replace("/", "_").replace("\\", "_")
+        if not value.strip(" .\t\r\n"):
+            return None
+        return DownloadNamingService.sanitize_file_name(value)
+
+    @staticmethod
     def sanitize_file_name(file_name: str) -> str:
         """Return one safe cross-platform basename with no path semantics."""
         value = str(file_name or "").replace("\\", "/")
