@@ -3,6 +3,7 @@
 from pathlib import Path
 from types import SimpleNamespace
 import inspect
+import os
 import tempfile
 import unittest
 from unittest.mock import Mock, patch
@@ -297,6 +298,9 @@ class FakeDownload:
         self.directories = []
         self.cancel = Mock()
 
+    def downloadDirectory(self):
+        return self.directories[-1] if self.directories else ""
+
     def setDownloadDirectory(self, path):
         self.directories.append(path)
         if self.directory_failures:
@@ -321,6 +325,19 @@ class FakeDownload:
 
 class DownloadFallbackTests(TemporarySettingsTest):
 
+    def setUp(self):
+        super().setUp()
+        # Keep the default-folder fallback out of the real Downloads folder.
+        # It must never contain file.txt: FakeDownload refuses renames.
+        default_directory = tempfile.TemporaryDirectory()
+        self.addCleanup(default_directory.cleanup)
+        self.default_path = os.path.realpath(default_directory.name)
+        patcher = patch.object(
+            DownloadManager, "DOWNLOAD_PATH", self.default_path
+        )
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
     def test_invalid_download_path_is_repaired(self):
         SettingsManager.set("system/download_path", 42)
         with self.assertLogs(
@@ -344,7 +361,7 @@ class DownloadFallbackTests(TemporarySettingsTest):
 
         self.assertEqual(
             download.directories,
-            ["/configured", DownloadManager.DOWNLOAD_PATH],
+            [os.path.realpath("/configured"), self.default_path],
         )
         download.cancel.assert_not_called()
 
