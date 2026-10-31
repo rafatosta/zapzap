@@ -15,6 +15,14 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Stop downloads from overwriting an existing file with the same name.
+  WhatsApp gives photos sent in the same second the same name, so the second
+  download replaced the first. ZapZap now saves the new file as `name (1).ext`,
+  `name (2).ext` and so on. It also checks downloads that are still running or
+  waiting, so two files with the same name downloaded together keep both. A
+  name picked in Save As or "ask every time" is kept, because the file picker
+  already asks before replacing a file. Add tests for the naming and the
+  download flow, and keep the fallback tests out of the real Downloads folder.
 - Show the contact or group photo in Linux notifications when the chat name
   contains a slash, such as `Class 25/26`. The photo was saved under the chat
   name, so the slash pointed into a missing subdirectory and the save failed.
