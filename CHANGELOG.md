@@ -17,9 +17,10 @@ releases and the AppStream metadata.
 
 - Add an opt-in setting under Settings > Downloads to save files into a
   subfolder of the download directory named after the open chat. It is off by
-  default. Files opened from starred messages, search or contact info, and
-  chats whose folder cannot be created, go to the download directory. Add tests
-  for the chat tracking script, the folder handling and the settings switch.
+  default. Files opened from starred messages, search or contact info go to the
+  download directory. So do files from a chat whose folder cannot be created.
+  Add tests for the chat tracking script, the folder handling and the settings
+  switch.
 
 ### Fixed
 
