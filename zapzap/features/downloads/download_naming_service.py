@@ -156,6 +156,8 @@ class DownloadNamingService:
             suffix = f" ({number})"
             budget = maximum - len((suffix + extension).encode("utf-8"))
             stem_part = DownloadNamingService._truncate_utf8(stem, max(1, budget))
+            if not stem_part.strip():
+                stem_part = "download"
             candidate = f"{stem_part}{suffix}{extension}"
             if (
                 len(candidate.encode("utf-8")) > maximum

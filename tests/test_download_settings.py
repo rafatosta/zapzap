@@ -497,11 +497,13 @@ class AvailableFileNameTests(unittest.TestCase):
         )
         self.assertEqual(DownloadNamingService.sanitize_file_name(result), result)
 
-    def test_long_extension_keeps_suffix(self):
+    def test_oversized_extension_still_gets_unique_suffix(self):
         name = DownloadNamingService.sanitize_file_name("a." + "x" * 236)
-        self.touch(name)
-        result = self.available(name)
-        self.assertIn("(1)", result)
+        # Mark the name as taken instead of creating a file: the full path
+        # would pass the Windows MAX_PATH limit.
+        taken = {os.path.normcase(os.path.join(self.dir, name))}
+        result = self.available(name, taken)
+        self.assertTrue(result.startswith("a (1)."))
         self.assertNotEqual(result, name)
         self.assertLessEqual(
             len(result.encode("utf-8")),
@@ -1195,6 +1197,20 @@ class KeepExistingFilesTests(TemporarySettingsTest):
         self.assertEqual(DownloadManager._begin_download(download), "started")
         self.assertEqual(download.file_name_calls, [])
         self.assertEqual(download.resume_count, 1)
+
+    def test_unexpected_numbering_error_never_resets_folder(self):
+        # Numbering sits outside the try that falls back to restore_path().
+        with patch.object(
+            DownloadManager,
+            "_keep_existing_files",
+            side_effect=AttributeError("unexpected"),
+        ), patch.object(DownloadManager, "restore_path") as restore:
+            with self.assertRaises(AttributeError):
+                DownloadManager._set_initial_download_parameters(
+                    KeepFakeDownload("a.jpeg")
+                )
+        restore.assert_not_called()
+        self.assertEqual(DownloadManager.get_path(), self.base)
 
     def test_numbering_error_keeps_name_and_folder(self):
         self.touch("a.jpeg")
