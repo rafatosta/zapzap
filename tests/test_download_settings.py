@@ -17,6 +17,7 @@ from PyQt6.QtWebEngineCore import QWebEngineDownloadRequest
 from zapzap.core.config.settings.downloads import (
     DownloadBehavior,
     DownloadSettings,
+    download_settings_events,
     MultipleDownloadPermission,
     PDFClickBehavior,
 )
@@ -49,6 +50,23 @@ class TemporarySettingsTest(unittest.TestCase):
 
 
 class DownloadSettingsTests(TemporarySettingsTest):
+
+    def test_organize_by_chat_defaults_off_and_persists(self):
+        self.assertFalse(DownloadSettings().organize_by_chat)
+        DownloadSettings().organize_by_chat = True
+        self.assertTrue(DownloadSettings().organize_by_chat)
+        self.assertTrue(SettingsManager.get("downloads/organize_by_chat"))
+
+    def test_organize_by_chat_change_emits_once(self):
+        calls = []
+        slot = lambda: calls.append(1)
+        download_settings_events.organize_by_chat_changed.connect(slot)
+        try:
+            DownloadSettings().organize_by_chat = True
+            DownloadSettings().organize_by_chat = True
+        finally:
+            download_settings_events.organize_by_chat_changed.disconnect(slot)
+        self.assertEqual(calls, [1])
 
     def test_defaults_preserve_existing_download_dialog(self):
         settings = DownloadSettings()
@@ -370,6 +388,21 @@ class RepeatedDownloadSecurityTests(TemporarySettingsTest):
 
 
 class DownloadNamingSecurityTests(unittest.TestCase):
+
+    def test_chat_folder_name_keeps_whole_title(self):
+        f = DownloadNamingService.chat_folder_name
+        self.assertEqual(f("AC/DC Fans"), "AC_DC Fans")
+        self.assertEqual(f("Okul 25\\26"), "Okul 25_26")
+        self.assertEqual(f("Al Quran 📖"), "Al Quran 📖")
+        self.assertIsNone(f(".."))
+        self.assertIsNone(f("..."))
+        self.assertIsNone(f(""))
+        self.assertIsNone(f("   "))
+        self.assertIsNone(f(None))
+        self.assertLessEqual(
+            len(f("x" * 1000).encode("utf-8")),
+            DownloadNamingService._MAX_FILE_NAME_BYTES,
+        )
 
     def test_path_components_are_removed_from_file_name(self):
         self.assertEqual(
