@@ -12,6 +12,9 @@
     'header [data-testid="conversation-info-header-chat-title"]';
   const mainScreenSelector = '[data-testid="wa-web-main-screen"]';
   const chatDrawerSelector = '[data-testid="drawer-right"]';
+  // The all-chats media gallery is a floating dialog that the right drawer can
+  // open too; its files may come from any chat.
+  const mediaGallerySelector = '[data-testid="media-hub-modal"]';
 
   let current = '';
   let lastSent = null;
@@ -43,6 +46,7 @@
     const main = target.closest('#main');
     if (main) return titleText(main.querySelector(chatTitleSelector));
     if (target.closest(chatDrawerSelector)) return openChatTitle();
+    if (target.closest(mediaGallerySelector)) return '';
     const screen = document.querySelector(mainScreenSelector);
     if (screen) return screen.contains(target) ? '' : null;
     return target.closest('#side, [data-testid^="drawer"]') ? '' : null;

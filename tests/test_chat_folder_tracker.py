@@ -51,6 +51,7 @@ WHATSAPP_PAGE = """
         <div data-testid="drawer-right"><button id="drawer-button">Media</button></div>
       </div>
       <div id="menu"><button id="menu-button">Download</button></div>
+      <div data-testid="media-hub-modal"><button id="gallery-button">Photo</button></div>
     </div>
   </body>
 </html>
@@ -147,6 +148,15 @@ class ChatFolderTrackerScriptTests(QtTestCase):
         self.assertEqual(self._received(), ["", "Yaver"])
         self._javascript(click("menu-button"))
         self.assertEqual(self._current(), "Yaver")
+
+    def test_all_chats_media_gallery_click_clears_title(self):
+        # The right drawer links to the gallery, which shows media of every chat.
+        self._javascript(FAKE_BRIDGE_SCRIPT)
+        self._javascript(click("drawer-button"))
+        self._javascript(click("gallery-button"))
+        self.assertEqual(self._received(), ["Yaver", ""])
+        self._javascript(click("menu-button"))
+        self.assertEqual(self._current(), "")
 
     def test_floating_layer_click_keeps_title(self):
         self._javascript(FAKE_BRIDGE_SCRIPT)
