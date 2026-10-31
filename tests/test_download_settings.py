@@ -440,6 +440,15 @@ class ChatFolderTargetTests(TemporarySettingsTest):
             self.real_base,
         )
 
+    def test_existing_directory_is_not_recreated(self):
+        os.makedirs(self.chat_dir)
+        with patch(
+            "zapzap.features.downloads.download_manager.os.makedirs"
+        ) as makedirs:
+            DownloadManager._ensure_target_directory(self.download)
+        makedirs.assert_not_called()
+        self.download.setDownloadDirectory.assert_not_called()
+
     def test_chat_directory_error_falls_back_to_configured_path(self):
         with patch.object(
             DownloadManager, "_chat_directory", side_effect=ValueError
