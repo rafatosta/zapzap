@@ -359,6 +359,12 @@ da página. A largura aplicada continua persistida em `zapzap.chatListWidth`;
 Enter/duplo clique continuam restaurando o padrão. Uma recarga preserva a largura
 aplicada, mas reinicia a memória da largura anterior.
 
+O botão **Nova conversa** aparece no início da barra do WhatsApp somente com
+a lista redimensionável abaixo de 200 CSS px. Um botão espelho encaminha o clique ao
+original, oculto sem sair da árvore React; ao ampliar, restaurar ou desativar,
+o original reaparece. Sem ação/rail reconhecíveis, o cabeçalho é preservado.
+Valide clique, teclado, recarga, montagem tardia, temas e zoom em sessão real.
+
 `downloads/organize_by_chat` (Downloads, `False` por padrão) controla o
 `chat_folder_tracker.js`. Quando ligado, `WebView` registra o script no perfil
 da conta em `DocumentReady` e o executa na página já aberta; ao desligar,
@@ -371,14 +377,10 @@ tema (`window._zapZapWAWebThemeController.bridge`) e envia o título pelo slot
 próximo toque. O último `pointerdown` decide em três estados: dentro de `#main`
 informa o título do chat; no restante de `wa-web-main-screen` (lista, gavetas)
 informa vazio; em camadas flutuantes (visualizador de mídia, menus) mantém o
-valor anterior. O título vem do atributo `title` ou do percurso dos nós de
-texto, com o `alt` das imagens de emoji; o script não usa `innerText`.
-
-O botão **Nova conversa** aparece no início da barra do WhatsApp somente com
-a lista redimensionável abaixo de 200 CSS px. Um botão espelho encaminha o clique ao
-original, oculto sem sair da árvore React; ao ampliar, restaurar ou desativar,
-o original reaparece. Sem ação/rail reconhecíveis, o cabeçalho é preservado.
-Valide clique, teclado, recarga, montagem tardia, temas e zoom em sessão real.
+valor anterior, mas relê uma vez o título do cabeçalho de `#main` e informa
+vazio se ele mudou (troca de chat pelo teclado). O título vem do atributo
+`title`, quando não é só espaços, ou do percurso dos nós de texto, com o `alt`
+das imagens de emoji; o script não usa `innerText`.
 
 Novas janelas solicitadas pelo WhatsApp passam primeiro por
 `PopupRoutingPage`, que classifica a primeira URL significativa antes do
@@ -518,9 +520,11 @@ conta. `DownloadManager._choose_download_target` compartilha o seletor entre
 "Salvar como" e "perguntar sempre"; somente uma escolha válida atualiza a
 sugestão. "Salvar" e o modo automático usam `system/download_path`, exceto com
 `downloads/organize_by_chat`: então `DownloadManager._ensure_target_directory`
-cria, ao iniciar o download ou antes do diálogo, o subdiretório
-`DownloadNamingService.chat_folder_name` do chat aberto, e recai no diretório
-base se ele não puder ser criado; `restore_path` nunca é tocado, e trocar de
+cria o subdiretório `DownloadNamingService.chat_folder_name` do chat aberto,
+se ainda não existir, antes de o download começar. No modo de diálogo padrão
+ele é criado antes de abrir `DownloadDialog`; em "perguntar sempre", antes do
+seletor só quando a sessão não tem sugestão de "Salvar como". Se não puder ser
+criado, recai no diretório base; `restore_path` nunca é tocado, e trocar de
 chat limpa a sugestão de "Salvar como". Chats com o mesmo nome exibido (e, em
 sistemas de arquivos sem distinção de maiúsculas, que só diferem nelas)
 compartilham a pasta, um chat renomeado abre uma nova, e downloads de
