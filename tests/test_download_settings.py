@@ -303,6 +303,157 @@ class SaveAsDirectoryTests(TemporarySettingsTest):
         self.assertIsNone(owner.last_download_directory)
         owner.whatsapp_page.close_conversation.assert_called_once()
 
+class ChatFolderTargetTests(TemporarySettingsTest):
+
+    def setUp(self):
+        super().setUp()
+        self._saved_state = (
+            DownloadManager._active_downloads,
+            DownloadManager._queued_downloads,
+            DownloadManager._download_meta,
+            DownloadManager._terminal_records,
+        )
+        DownloadManager._active_downloads = []
+        DownloadManager._queued_downloads = []
+        DownloadManager._download_meta = {}
+        DownloadManager._terminal_records = []
+        self.base = self._temporary_directory.name
+        self.real_base = os.path.realpath(self.base)
+        DownloadManager.set_path(self.base)
+        DownloadSettings().organize_by_chat = True
+        self.owner = SimpleNamespace(
+            active_chat_title="AC/DC Fans",
+            last_download_directory=None,
+        )
+        self.chat_dir = os.path.join(self.real_base, "AC_DC Fans")
+        self.download = Mock()
+        self.download.downloadFileName.return_value = "a.jpg"
+        self.download.suggestedFileName.return_value = "a.jpg"
+        self.download.mimeType.return_value = "image/jpeg"
+        self.download.url.return_value.toString.return_value = "blob:x"
+        self.download.downloadDirectory.return_value = self.chat_dir
+        self.download.state.return_value = (
+            QWebEngineDownloadRequest.DownloadState.DownloadRequested
+        )
+
+    def tearDown(self):
+        (
+            DownloadManager._active_downloads,
+            DownloadManager._queued_downloads,
+            DownloadManager._download_meta,
+            DownloadManager._terminal_records,
+        ) = self._saved_state
+        super().tearDown()
+
+    def test_target_is_chat_subfolder(self):
+        self.assertTrue(DownloadManager._set_initial_download_parameters(
+            self.download, self.owner
+        ))
+        self.download.setDownloadDirectory.assert_called_once_with(self.chat_dir)
+
+    def test_off_or_blank_title_uses_configured_path(self):
+        DownloadSettings().organize_by_chat = False
+        DownloadManager._set_initial_download_parameters(self.download, self.owner)
+        self.download.setDownloadDirectory.assert_called_with(self.real_base)
+        DownloadSettings().organize_by_chat = True
+        self.download.reset_mock()
+        self.owner.active_chat_title = ""
+        DownloadManager._set_initial_download_parameters(self.download, self.owner)
+        self.download.setDownloadDirectory.assert_called_with(self.real_base)
+        self.download.reset_mock()
+        DownloadManager._set_initial_download_parameters(self.download, None)
+        self.download.setDownloadDirectory.assert_called_with(self.real_base)
+
+    def test_chat_folder_failure_never_restores_path(self):
+        real = DownloadManager.set_download_target
+        calls = []
+
+        def flaky(*args, **kwargs):
+            calls.append(args[1])
+            if len(calls) == 1:
+                raise ValueError("boom")
+            return real(*args, **kwargs)
+
+        with patch.object(
+            DownloadManager, "set_download_target", side_effect=flaky
+        ), patch.object(DownloadManager, "restore_path") as restore:
+            result = DownloadManager._set_initial_download_parameters(
+                self.download, self.owner
+            )
+        self.assertTrue(result)
+        restore.assert_not_called()
+        self.assertEqual(os.path.realpath(calls[-1]), self.real_base)
+        self.download.setDownloadDirectory.assert_called_with(self.real_base)
+        self.assertEqual(DownloadManager.get_path(), self.base)
+
+    def test_begin_creates_missing_chat_folder(self):
+        self.assertFalse(os.path.exists(self.chat_dir))
+        DownloadManager._register_download(self.download)
+        DownloadManager._begin_download(self.download)
+        self.assertTrue(os.path.isdir(self.chat_dir))
+        self.download.accept.assert_called_once()
+
+    def test_unwritable_chat_folder_falls_back_without_touching_setting(self):
+        DownloadManager._register_download(self.download)
+        with patch(
+            "zapzap.features.downloads.download_manager.os.makedirs",
+            side_effect=PermissionError,
+        ):
+            DownloadManager._ensure_target_directory(self.download)
+        self.download.setDownloadDirectory.assert_called_with(self.real_base)
+        self.assertEqual(DownloadManager.get_path(), self.base)
+        self.assertTrue(DownloadSettings().organize_by_chat)
+
+    def test_double_failure_cancels_download(self):
+        DownloadManager._register_download(self.download)
+        with patch(
+            "zapzap.features.downloads.download_manager.os.makedirs",
+            side_effect=PermissionError,
+        ), patch.object(
+            DownloadManager, "set_download_target", side_effect=ValueError
+        ), patch.object(DownloadManager, "_cancel_download") as cancel:
+            result = DownloadManager._begin_download(self.download)
+        self.assertEqual(result, "unavailable")
+        cancel.assert_called_once_with(self.download, "cancelled")
+        self.download.accept.assert_not_called()
+
+    def test_setting_off_does_not_create_directory(self):
+        DownloadSettings().organize_by_chat = False
+        self.download.downloadDirectory.return_value = os.path.join(
+            self.real_base, "missing"
+        )
+        with patch(
+            "zapzap.features.downloads.download_manager.os.makedirs"
+        ) as makedirs:
+            DownloadManager._ensure_target_directory(self.download)
+        makedirs.assert_not_called()
+
+    def test_chat_directory_cannot_escape_base(self):
+        self.owner.active_chat_title = "../x"
+        chat_dir = DownloadManager._chat_directory(self.owner)
+        self.assertIsNotNone(chat_dir)
+        self.assertEqual(
+            os.path.commonpath([self.real_base, os.path.realpath(chat_dir)]),
+            self.real_base,
+        )
+
+    def test_ask_dialog_opens_in_existing_chat_folder(self):
+        seen = {}
+
+        def dialog(parent, caption, initial, *args, **kwargs):
+            seen["exists"] = os.path.isdir(self.chat_dir)
+            seen["initial"] = initial
+            return "", ""
+
+        with patch(
+            "zapzap.features.downloads.download_manager.QFileDialog.getSaveFileName",
+            side_effect=dialog,
+        ):
+            DownloadManager._choose_download_target(self.download, self.owner)
+        self.assertTrue(seen["exists"])
+        self.assertEqual(seen["initial"], os.path.join(self.chat_dir, "a.jpg"))
+
+
 class SaveAsSettingsUiTests(QtTestCase):
 
     def test_escape_in_file_dialog_does_not_clear_account_suggestion(self):
