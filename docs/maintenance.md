@@ -401,7 +401,11 @@ Valide clique, teclado, recarga, montagem tardia, temas e zoom em sessão real.
   outro cliente; regravar nesse momento substitui o conteúdo novo pela imagem
   anterior. Pelo mesmo motivo, a escrita adiada é descartada se `dataChanged`
   ocorrer durante a recodificação, que leva centenas de milissegundos em
-  imagens grandes. Preserve também os formatos de texto de clipboards mistos.
+  imagens grandes. Ela também é descartada se a janela não estiver mais ativa:
+  no Wayland o compositor ignora a seleção de uma janela sem foco de teclado e
+  o Qt não é avisado, então continua informando a posse e devolve a imagem
+  antiga em cada colagem no ZapZap até reiniciar. Preserve também os formatos
+  de texto de clipboards mistos.
 
 ### Verificação passiva de versão
 

@@ -15,6 +15,14 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Stop pasting an old image in ZapZap after switching windows on Wayland. The
+  image normalization on window activation writes its result after a delay
+  that grows with the image, and when the user had already moved to another
+  window the compositor ignored that write without telling Qt. Qt then kept
+  reporting ownership of the clipboard and answered every later paste in
+  ZapZap with that image, whatever had been copied since, until ZapZap
+  restarted. The write is now skipped when the window is no longer active,
+  with a regression test.
 - Show the contact or group photo in Linux notifications when the chat name
   contains a slash, such as `Class 25/26`. The photo was saved under the chat
   name, so the slash pointed into a missing subdirectory and the save failed.
