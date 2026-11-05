@@ -120,7 +120,7 @@ documente o que ele protege.
 | `test_browser_account_lifecycle.py` | registro estável, criação lazy de contas desativadas, isolamento/retentativa de perfil com erro, reativação, remoção, notificações e encerramento idempotente |
 | `test_browser_page_button_ui.py` | avatar sem número, grayscale de conta desativada, ponto de estado, card, temas, escala e clique |
 | `test_check_box.py` | API, variantes, tamanhos, pintura, temas, tri-state, mouse, teclado e acessibilidade do CheckBox |
-| `test_clipboard_image_normalization.py` | normalização da imagem do clipboard ao ativar a janela, sem regravar seleção própria do ZapZap, sem substituir uma seleção mais nova recebida durante a recodificação e sem descartar formatos de texto |
+| `test_clipboard_image_normalization.py` | normalização da imagem do clipboard ao ativar a janela, sem regravar seleção própria do ZapZap, sem substituir uma seleção mais nova recebida durante a recodificação, sem gravar depois que a janela perdeu o foco e sem descartar formatos de texto |
 | `test_component_typography.py` | pesos de fonte de primitives, menus, combos, atalhos e tabs |
 | `test_custom_js_injection.py` | JavaScript customizado executado sob CSP com nonce, um arquivo por chamada, escopo global compartilhado e arquivo quebrado sem afetar os demais |
 | `test_debugging_settings_ui.py` | manutenção, relatórios, informações de runtime, cópia e feedback |

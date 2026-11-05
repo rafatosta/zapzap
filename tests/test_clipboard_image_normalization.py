@@ -41,10 +41,13 @@ class FakeClipboard:
 
 class ClipboardImageNormalizationTests(QtTestCase):
 
-    def _activate_paste_normalization(self, clipboard, newer_selection=False):
+    def _activate_paste_normalization(
+        self, clipboard, newer_selection=False, window_active=True
+    ):
         harness = SimpleNamespace(
             _last_sanitized_key=None,
             _clipboard_generation=0,
+            isActiveWindow=lambda: window_active,
         )
         harness._write_normalized_image = (
             lambda image, generation: MainWindowController._write_normalized_image(
@@ -86,6 +89,17 @@ class ClipboardImageNormalizationTests(QtTestCase):
 
         self.assertEqual(
             self._activate_paste_normalization(clipboard, newer_selection=True),
+            [],
+        )
+
+    def test_image_is_not_written_after_the_window_lost_focus(self):
+        # The user moved to another window while the image was re-encoded.
+        # The compositor would ignore the write, but Qt would keep reporting
+        # ownership and paste this image in ZapZap until restart.
+        clipboard = FakeClipboard(owns_clipboard=False)
+
+        self.assertEqual(
+            self._activate_paste_normalization(clipboard, window_active=False),
             [],
         )
 

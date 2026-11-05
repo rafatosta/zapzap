@@ -227,6 +227,12 @@ class MainWindowController(MainWindowView):
         # selection arrived meanwhile, writing would replace it (#969).
         if generation != self._clipboard_generation:
             return
+        # On Wayland the compositor ignores a selection set by a window that
+        # no longer has keyboard focus, and Qt is not told: it keeps reporting
+        # ownership and answers every later paste in ZapZap with this image
+        # until restart. Write only while the window is still active.
+        if not self.isActiveWindow():
+            return
         QApplication.clipboard().setImage(image)
 
     # === Configuração Inicial ===
