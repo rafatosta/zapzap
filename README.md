@@ -57,6 +57,10 @@ ZapZap is an unofficial WhatsApp Web desktop client built with Python, PyQt6 and
 | Fedora (COPR) | https://copr.fedorainfracloud.org/coprs/rafatosta/zapzap |
 | Python | `pip install zapzap` |
 
+## Troubleshooting
+
+- **Stickers keep loading forever:** in WhatsApp's own settings, not ZapZap's, open `Settings > Chats` and turn on automatic download for `Photos`. WhatsApp Web applies this option to stickers too. While it is off, a sticker with no local copy is not downloaded and shows a spinner with no download button.
+
 ## Donations
 
 ZapZap is a free and open-source project maintained in my spare time. If you find it useful, consider supporting its continued development through one of the following methods:

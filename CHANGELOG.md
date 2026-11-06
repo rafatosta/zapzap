@@ -13,6 +13,12 @@ releases and the AppStream metadata.
 
 ## [7.5.2] - In development
 
+### Changed
+
+- Add a troubleshooting note to the README for stickers that keep loading
+  forever while WhatsApp's automatic photo download is off. The same guidance
+  left the documentation when `docs/technical-documentation.md` was removed.
+
 ### Fixed
 
 - Show the contact or group photo in Linux notifications when the chat name
