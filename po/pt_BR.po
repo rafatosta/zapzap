@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-09 12:06-0300\n"
-"PO-Revision-Date: 2026-08-26 14:30-0300\n"
+"PO-Revision-Date: 2026-11-04 19:05-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Brazilian Portuguese\n"
 "Language: pt_BR\n"
@@ -32,7 +32,7 @@ msgstr "Não pergunte novamente"
 #: zapzap/features/tray/sys_tray_manager.py:250
 #: zapzap/ui/components/floating_monitoring_panel.py:335
 msgid "Unmute"
-msgstr ""
+msgstr "Reativar som"
 
 #: zapzap/app/main_window_controller.py:282
 #: zapzap/features/shortcuts/model.py:29
@@ -2207,13 +2207,12 @@ msgid "Windows"
 msgstr "Windows"
 
 #: zapzap/features/settings/pages/appearance/view.py:25
-#, fuzzy
 msgid ""
 "Adjust interface chrome, quick access, theme, tray icon, grid view, and "
 "window decorations."
 msgstr ""
-"Ajuste a interface, o tema, o ícone da bandeja, a visualização em grade e as "
-"decorações da janela."
+"Ajuste os elementos da interface, o acesso rápido, o tema, o ícone da "
+"bandeja, a visualização em grade e as decorações da janela."
 
 #: zapzap/features/settings/pages/appearance/view.py:43
 msgid "Interface"
@@ -2818,14 +2817,12 @@ msgid "Ask where to save every time"
 msgstr "Perguntar onde salvar sempre"
 
 #: zapzap/features/settings/pages/language_downloads/controller.py:118
-#, fuzzy
 msgid "Preview in WhatsApp"
-msgstr "Integrado ao WhatsApp"
+msgstr "Pré-visualizar no WhatsApp"
 
 #: zapzap/features/settings/pages/language_downloads/controller.py:119
-#, fuzzy
 msgid "Download directly (where supported)"
-msgstr "Diretório de downloads"
+msgstr "Baixar direto (quando houver suporte)"
 
 #: zapzap/features/settings/pages/language_downloads/controller.py:204
 #: zapzap/features/settings/pages/language_downloads/view.py:146
@@ -2858,13 +2855,15 @@ msgstr "Escolha o que acontece quando um download começa."
 
 #: zapzap/features/settings/pages/language_downloads/view.py:69
 msgid "PDF file clicks"
-msgstr ""
+msgstr "Ao clicar em arquivos PDF"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:70
 msgid ""
 "Preview PDF files in WhatsApp or download them when the browser handles the "
 "PDF. WhatsApp's own preview may still open."
 msgstr ""
+"Pré-visualizar arquivos PDF no WhatsApp ou baixá-los quando o navegador "
+"abrir o PDF. A pré-visualização do próprio WhatsApp ainda pode abrir."
 
 #: zapzap/features/settings/pages/language_downloads/view.py:80
 msgid "Set a custom folder or restore the default download location."
@@ -3322,6 +3321,9 @@ msgid ""
 "May help with black screens, flickering, and GPU crashes.\n"
 "Restart required."
 msgstr ""
+"Evita buffers de quadros de vídeo na GPU.\n"
+"Pode ajudar com tela preta, tremulação e travamentos da GPU.\n"
+"Requer reinício."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:263
 msgid ""
@@ -3329,6 +3331,9 @@ msgid ""
 "May improve compatibility with some graphics drivers.\n"
 "Restart required."
 msgstr ""
+"Desativa as transferências de buffer da GPU sem cópia (zero-copy).\n"
+"Pode melhorar a compatibilidade com alguns drivers gráficos.\n"
+"Requer reinício."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:270
 msgid ""
@@ -3485,34 +3490,37 @@ msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:58
 msgid "Rendering profile"
-msgstr ""
+msgstr "Perfil de renderização"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:60
 msgid ""
 "Choose a predefined rendering configuration or customize individual options."
 msgstr ""
+"Escolha uma configuração de renderização predefinida ou personalize cada "
+"opção."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:66
 msgid "Compatibility"
-msgstr ""
+msgstr "Compatibilidade"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:67
 msgid "Manual"
-msgstr ""
+msgstr "Manual"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:69
 msgid "Recommended settings with hardware acceleration enabled."
-msgstr ""
+msgstr "Configurações recomendadas, com aceleração por hardware ativada."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:71
 msgid ""
 "Improves stability on systems with video, flickering or GPU rendering issues."
 msgstr ""
+"Melhora a estabilidade em sistemas com problemas de vídeo, tremulação ou "
+"renderização pela GPU."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:74
-#, fuzzy
 msgid "Use custom GPU and rendering options."
-msgstr "GPU e renderização"
+msgstr "Usar opções personalizadas de GPU e renderização."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:97
 msgid "Cache"
@@ -3599,24 +3607,27 @@ msgstr "Use apenas para problemas gráficos."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:155
 msgid "Disable GPU memory buffer for video"
-msgstr ""
+msgstr "Desativar buffer de memória da GPU para vídeo"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:157
 msgid ""
 "Avoid GPU-backed video frame buffers. May help with black screens, "
 "flickering and GPU crashes."
 msgstr ""
+"Evita buffers de quadros de vídeo na GPU. Pode ajudar com tela preta, "
+"tremulação e travamentos da GPU."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:162
-#, fuzzy
 msgid "Disable zero-copy"
-msgstr "Desativar conta"
+msgstr "Desativar zero-copy"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:164
 msgid ""
 "Disable zero-copy GPU buffer transfers. May improve compatibility with some "
 "graphics drivers."
 msgstr ""
+"Desativa as transferências de buffer da GPU sem cópia (zero-copy). Pode "
+"melhorar a compatibilidade com alguns drivers gráficos."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:169
 msgid "Use software video decoding"
@@ -3868,39 +3879,39 @@ msgstr "Usar o seletor de arquivos fornecido pelo ambiente de desktop."
 
 #: zapzap/features/settings/pages/system_startup/view.py:128
 msgid "Display backend"
-msgstr ""
+msgstr "Backend de exibição"
 
 #: zapzap/features/settings/pages/system_startup/view.py:130
 msgid ""
 "Automatic is recommended and uses the native backend for the current "
 "session. X11 is available as a compatibility fallback."
 msgstr ""
+"O automático é o recomendado e usa o backend nativo da sessão atual. O X11 "
+"fica disponível como alternativa de compatibilidade."
 
 #: zapzap/features/settings/pages/system_startup/view.py:143
 msgid "Recommended. Use Wayland in Wayland sessions and X11 in X11 sessions."
-msgstr ""
+msgstr "Recomendado. Usar Wayland em sessões Wayland e X11 em sessões X11."
 
 #: zapzap/features/settings/pages/system_startup/view.py:148
 msgid "Wayland"
-msgstr ""
+msgstr "Wayland"
 
 #: zapzap/features/settings/pages/system_startup/view.py:150
-#, fuzzy
 msgid "Force the native Wayland backend."
-msgstr "Usar o backend Wayland quando disponível."
+msgstr "Forçar o backend nativo Wayland."
 
 #: zapzap/features/settings/pages/system_startup/view.py:153
 msgid "X11 / XWayland"
-msgstr ""
+msgstr "X11 / XWayland"
 
 #: zapzap/features/settings/pages/system_startup/view.py:156
 msgid "Use the X11 backend. In Wayland sessions, this runs through XWayland."
-msgstr ""
+msgstr "Usar o backend X11. Em sessões Wayland, ele roda pelo XWayland."
 
 #: zapzap/features/settings/pages/system_startup/view.py:172
-#, fuzzy
 msgid "Choose the Qt display backend. Changes require restart."
-msgstr "Usar o backend Wayland quando disponível. Requer reinício."
+msgstr "Escolha o backend de exibição do Qt. As mudanças exigem reinício."
 
 #: zapzap/features/downloads/ui/download_dialog.py:101
 msgid "More"
@@ -3951,9 +3962,8 @@ msgid "Completed"
 msgstr "Concluído"
 
 #: zapzap/features/downloads/ui/downloads_menu.py:622
-#, fuzzy
 msgid "Delete file"
-msgstr "Selecionar arquivo"
+msgstr "Excluir arquivo"
 
 #: zapzap/features/downloads/ui/downloads_menu.py:655
 msgid "Remove from download history"
@@ -4053,9 +4063,8 @@ msgstr "Agora não"
 
 #: zapzap/features/browser/web/web_view.py:309
 #: zapzap/ui/components/integrated_account_selector.py:57
-#, fuzzy
 msgid "Account selector"
-msgstr "Lista de contas"
+msgstr "Seletor de contas"
 
 #: zapzap/features/browser/web/web_view.py:469
 msgid "Chat list width"
@@ -5067,12 +5076,11 @@ msgstr "Acesso rápido"
 
 #: zapzap/ui/components/floating_monitoring_panel.py:284
 msgid "No account activity to show yet."
-msgstr ""
+msgstr "Ainda não há atividade das contas para mostrar."
 
 #: zapzap/ui/components/floating_monitoring_panel.py:286
-#, fuzzy
 msgid "Monitoring panel"
-msgstr "Fixar painel"
+msgstr "Painel de monitoramento"
 
 #: zapzap/ui/components/floating_monitoring_panel.py:287
 #: zapzap/ui/components/floating_monitoring_panel.py:288
@@ -5082,7 +5090,7 @@ msgstr "Desbloquear posição"
 #: zapzap/ui/components/floating_monitoring_panel.py:291
 #: zapzap/ui/components/floating_monitoring_panel.py:292
 msgid "Audio"
-msgstr ""
+msgstr "Áudio"
 
 #~ msgid ""
 #~ "Show only chat avatars at a fixed width. Resizing is unavailable while "
