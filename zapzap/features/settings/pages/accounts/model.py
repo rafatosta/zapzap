@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from zapzap import LIMITE_USERS
-from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.features.accounts.domain.user import User
 
 
@@ -20,7 +18,11 @@ class AccountsSettingsModel:
 
     def account_limit(self) -> int:
         """Return the configured account limit."""
-        return int(SettingsManager.get("users/size", LIMITE_USERS))
+        return User.user_limit()
+
+    def is_single_process_mode(self) -> bool:
+        """Return whether QtWebEngine single-process mode restricts accounts to 1."""
+        return User.is_single_process_mode()
 
     def account_count(self) -> int:
         """Return the number of persisted accounts."""

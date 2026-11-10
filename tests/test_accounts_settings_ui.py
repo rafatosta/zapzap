@@ -934,6 +934,27 @@ class AccountsSettingsUiTests(QtTestCase):
         page.set_account_limit(4, 4)
         self.assertFalse(page.btn_new_user.isEnabled())
         self.assertIn("4", page.account_limit_label.text())
+        page.set_account_limit(1, 1, single_process=True)
+        self.assertFalse(page.btn_new_user.isEnabled())
+        self.assertIn("Single process mode", page.account_limit_label.text())
+
+    def test_single_process_mode_limits_user_creation_and_shows_warning(self):
+        with (
+            patch(
+                "zapzap.features.accounts.domain.user.SettingsManager.get",
+                side_effect=lambda key, default=None: (
+                    True if key == "performance/single_process" else default
+                ),
+            ),
+            patch.object(User, "count_users", return_value=1),
+            patch.object(AlertManager, "warning") as warning,
+        ):
+            self.assertTrue(User.is_single_process_mode())
+            self.assertEqual(User.user_limit(), 1)
+            self.assertIsNone(User.create_new_user())
+            AlertManager.limit_users(None)
+            warning.assert_called_once()
+            self.assertIn("Single process", warning.call_args.args[1])
 
 
 if __name__ == "__main__":

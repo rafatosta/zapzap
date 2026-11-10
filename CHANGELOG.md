@@ -15,6 +15,14 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Prevent QtWebEngine `SIGABRT` (`Single mode supports only single profile.`)
+  when Single Process mode (`performance/single_process` or `--single-process`)
+  is active. Cap the effective account limit to 1 in Single Process mode,
+  display a warning dialog explaining the single-profile limitation when trying
+  to add or enable a second account or when enabling Single Process mode with
+  multiple existing accounts, and automatically disable extra active accounts
+  on startup if Single Process mode is already configured. Add regression tests
+  for account creation, browser startup/activation, and performance settings.
 - Show the contact or group photo in Linux notifications when the chat name
   contains a slash, such as `Class 25/26`. The photo was saved under the chat
   name, so the slash pointed into a missing subdirectory and the save failed.

@@ -72,11 +72,20 @@ class AccountsSettingsView(SettingsPage):
     def add_user_card(self, card):
         self.user_list_layout.addWidget(card)
 
-    def set_account_limit(self, count: int, limit: int):
+    def set_account_limit(
+        self, count: int, limit: int, single_process: bool = False
+    ):
         """Update account-limit feedback and the add action state."""
         limit_reached = count >= limit
         self.btn_new_user.setEnabled(not limit_reached)
-        if limit_reached:
+        if single_process and limit_reached:
+            self.account_limit_label.setText(
+                _(
+                    "Single process mode supports only 1 account. "
+                    "Disable 'Single process' in Performance settings to add more accounts."
+                )
+            )
+        elif limit_reached:
             self.account_limit_label.setText(
                 _("Account limit of {limit} reached.").format(limit=limit)
             )

@@ -139,6 +139,8 @@ class BrowserAccountLifecycleTest(QtTestCase):
         _update_runtime_notifications = (
             BrowserController._update_runtime_notifications
         )
+        _load_users = BrowserController._load_users
+        add_new_user = BrowserController.add_new_user
 
     def setUp(self):
         self.factory = FakeWebViewFactory()
@@ -395,6 +397,61 @@ class BrowserAccountLifecycleTest(QtTestCase):
         )
         account_actions[1].trigger()
         browser.activate_account.assert_called_once_with("third")
+
+    def test_single_process_startup_disables_extra_enabled_accounts_and_warns(self):
+        first = self._user("first", True)
+        first.save = Mock()
+        second = self._user("second", True)
+        second.save = Mock()
+        self.controller._user_provider = lambda: [first, second]
+
+        with (
+            patch(
+                "zapzap.features.browser.shell.browser_controller."
+                "BrowserPageButton",
+                FakeButton,
+            ),
+            patch(
+                "zapzap.features.accounts.domain.user.User.is_single_process_mode",
+                return_value=True,
+            ),
+            patch(
+                "zapzap.features.alerts.alert_manager."
+                "AlertManager.single_process_account_limit"
+            ) as warn_limit,
+        ):
+            self.controller._load_users()
+
+        self.assertTrue(first.enable)
+        self.assertFalse(second.enable)
+        second.save.assert_called_once_with()
+        self.assertEqual(len(self.factory.pages), 1)
+        warn_limit.assert_called_once_with(self.controller)
+
+    def test_single_process_blocks_adding_or_enabling_second_account(self):
+        first = self._add(self._user("first", True))
+        second_user = self._user("second", False)
+        second_user.save = Mock()
+        second = self._add(second_user)
+
+        with (
+            patch(
+                "zapzap.features.accounts.domain.user.User.is_single_process_mode",
+                return_value=True,
+            ),
+            patch(
+                "zapzap.features.alerts.alert_manager.AlertManager.limit_users"
+            ) as limit_alert,
+        ):
+            self.controller.add_new_user()
+            second_user.enable = True
+            self.controller.disable_page(second_user)
+
+        self.assertIsNotNone(first.page)
+        self.assertIsNone(second.page)
+        self.assertFalse(second_user.enable)
+        second_user.save.assert_called_once_with()
+        self.assertEqual(limit_alert.call_count, 2)
 
 
 if __name__ == "__main__":

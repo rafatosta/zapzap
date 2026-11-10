@@ -344,8 +344,22 @@ class BrowserController(BrowserView):
         else:
             users = self._user_provider()
 
+        single_process = User.is_single_process_mode()
+        active_assigned = False
+        extra_enabled_disabled = False
         for user in users:
+            if single_process and user.enable:
+                if active_assigned:
+                    user.enable = False
+                    if hasattr(user, "save"):
+                        user.save()
+                    extra_enabled_disabled = True
+                else:
+                    active_assigned = True
             self._add_page(user)
+
+        if extra_enabled_disabled:
+            AlertManager.single_process_account_limit(self)
 
     def _create_user_in_first_access(self):
         """Cria o usuário no primeiro acesso."""
@@ -363,6 +377,9 @@ class BrowserController(BrowserView):
 
     def add_new_user(self, new_user=None):
         """Adiciona um novo usuário e cria a página correspondente."""
+        if User.is_single_process_mode() and len(self._accounts) >= 1:
+            AlertManager.limit_users(self)
+            return
 
         if not new_user:
             new_user = User.create_new_user()
@@ -494,6 +511,21 @@ class BrowserController(BrowserView):
         """Habilita ou desabilita uma página com base no status do usuário."""
         runtime = self._accounts.get(user.id)
         if runtime is None or runtime.state is AccountLifecycle.REMOVED:
+            return
+        if (
+            user.enable
+            and User.is_single_process_mode()
+            and any(
+                entry.user.id != user.id and entry.page is not None
+                for entry in self._accounts.values()
+            )
+        ):
+            user.enable = False
+            if hasattr(user, "save"):
+                user.save()
+            runtime.user = user
+            runtime.button.user = user
+            AlertManager.limit_users(self)
             return
         runtime.user = user
         runtime.button.user = user

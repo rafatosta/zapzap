@@ -6,6 +6,8 @@ from PyQt6.QtWidgets import QApplication
 
 from zapzap.core.config.settings.performance import MAX_HTTP_CACHE_MIB
 from zapzap.core.config.settings.performance import RenderingProfile
+from zapzap.features.accounts.domain.user import User
+from zapzap.features.alerts.alert_manager import AlertManager
 from zapzap.features.settings.pages.performance_experimental.model import (
     PerformanceExperimentalSettingsModel,
 )
@@ -98,9 +100,20 @@ class PerformanceExperimentalSettingsController(PerformanceExperimentalSettingsV
         self._update_restart_requirement()
 
     def _handle_boolean_setting(self, setting_name):
+        checked = getattr(self, setting_name).isChecked()
+        if (
+            setting_name == "single_process"
+            and checked
+            and User.count_users() > 1
+        ):
+            self.single_process.blockSignals(True)
+            self.single_process.setChecked(False)
+            self.single_process.blockSignals(False)
+            AlertManager.single_process_requires_single_account(self)
+            return
         self.model.set_boolean_setting(
             setting_name,
-            getattr(self, setting_name).isChecked(),
+            checked,
         )
         if setting_name in self.model.RENDERING_SETTINGS:
             self._sync_rendering_profile()

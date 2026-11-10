@@ -50,6 +50,7 @@ class AccountsSettingsController(AccountsSettingsView):
         self.set_account_limit(
             self.model.account_count(),
             self.model.account_limit(),
+            self.model.is_single_process_mode(),
         )
 
     @staticmethod
