@@ -1,5 +1,7 @@
 """UI regression tests for experimental performance settings."""
 
+from unittest.mock import patch
+
 from qt_test_case import QtTestCase
 from zapzap.core.config.settings.performance import (
     COMPATIBILITY_RENDERING_PRESET,
@@ -193,3 +195,24 @@ class PerformanceExperimentalSettingsUiTests(QtTestCase):
             page.cache_size_max_row.description_label.text(),
         )
         self.assertIn("2047 MiB", page.cache_size_max.toolTip())
+
+    def test_single_process_cannot_be_enabled_when_multiple_accounts_exist(self):
+        page = PerformanceExperimentalSettingsController()
+
+        with (
+            patch(
+                "zapzap.features.settings.pages.performance_experimental."
+                "controller.User.count_users",
+                return_value=2,
+            ),
+            patch(
+                "zapzap.features.settings.pages.performance_experimental."
+                "controller.AlertManager.single_process_requires_single_account"
+            ) as warn_single,
+        ):
+            page.single_process.click()
+
+        self.assertFalse(page.single_process.isChecked())
+        self.assertFalse(page.model.get_boolean_setting("single_process"))
+        warn_single.assert_called_once_with(page)
+        self.assertIsNone(page.restart_bar.restart_kind)

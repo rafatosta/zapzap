@@ -239,6 +239,11 @@ class AlertManager:
 
     @classmethod
     def limit_users(cls, parent):
+        from zapzap.features.accounts.domain.user import User
+
+        if User.is_single_process_mode():
+            cls.single_process_account_limit(parent)
+            return
         cls.information(
             parent,
             _("Information"),
@@ -246,6 +251,28 @@ class AlertManager:
                 "Limit of {} users reached.\n"
                 "It is not possible to create more users!"
             ).format(SettingsManager.get("users/size", LIMITE_USERS)),
+        )
+
+    @classmethod
+    def single_process_account_limit(cls, parent):
+        cls.warning(
+            parent,
+            _("Single process mode active"),
+            _(
+                "Single process mode supports only 1 account profile.\n"
+                "Disable 'Single process' in Performance settings and restart ZapZap to use multiple accounts."
+            ),
+        )
+
+    @classmethod
+    def single_process_requires_single_account(cls, parent):
+        cls.warning(
+            parent,
+            _("Cannot enable single process mode"),
+            _(
+                "Single process mode supports only 1 account profile.\n"
+                "Remove extra accounts before enabling 'Single process'."
+            ),
         )
 
     @classmethod

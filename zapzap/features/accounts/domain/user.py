@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import logging
 import math
+from os import environ
 from typing import Any
 
 from zapzap.core.config.database import Database
@@ -263,6 +264,27 @@ class User:
             conn.close()
 
     @staticmethod
+    def is_single_process_mode() -> bool:
+        """Return whether QtWebEngine single-process mode is active or configured."""
+        if bool(SettingsManager.get("performance/single_process", False)):
+            return True
+        for raw_flags in (
+            environ.get("QTWEBENGINE_CHROMIUM_FLAGS", ""),
+            SettingsManager.get("QTWEBENGINE_CHROMIUM_FLAGS", ""),
+        ):
+            if isinstance(raw_flags, str) and "--single-process" in raw_flags.split():
+                return True
+        return False
+
+    @staticmethod
+    def user_limit() -> int:
+        """Return the effective maximum number of accounts allowed."""
+        if User.is_single_process_mode():
+            return 1
+        from zapzap import LIMITE_USERS
+        return int(SettingsManager.get("users/size", LIMITE_USERS))
+
+    @staticmethod
     def create_new_user(name='', icon=None):
         """
         Cria e retorna um novo usuário se o limite de usuários cadastrados não for excedido.
@@ -277,10 +299,10 @@ class User:
             User | None: Retorna o novo usuário se criado; caso contrário, retorna None.
         """
         # Verifica o número de usuários cadastrados
-        from zapzap import LIMITE_USERS
-        if User.count_users() >= int(SettingsManager.get("users/size", LIMITE_USERS)):
+        limit = User.user_limit()
+        if User.count_users() >= limit:
             print(f"""Limite de {
-                  SettingsManager.get("users/size", LIMITE_USERS)} usuários atingido. Não é possível criar mais usuários.""")
+                  limit} usuários atingido. Não é possível criar mais usuários.""")
             return None
 
         # Define o ícone, se necessário
