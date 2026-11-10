@@ -19,7 +19,7 @@ export
 .qt_for_python
 
 # Vscode
-.vscode
+#.vscode
 # Distribution / packaging
 .Python
 build/
