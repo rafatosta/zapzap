@@ -22,6 +22,7 @@ class NotificationsSettingsController(NotificationsSettingsView):
         self.show_name.checkbox.setChecked(self.model.show_name)
         self.show_msg.checkbox.setChecked(self.model.show_message_preview)
         self.sound.checkbox.setChecked(self.model.sound)
+        self.respect_dnd.checkbox.setChecked(self.model.respect_dnd)
         self.donationMessage.checkbox.setChecked(
             self.model.donation_message_enabled
         )
@@ -47,6 +48,9 @@ class NotificationsSettingsController(NotificationsSettingsView):
         )
         self.sound.checkbox.toggled.connect(
             self._handle_toggle_sound
+        )
+        self.respect_dnd.checkbox.toggled.connect(
+            self._handle_toggle_respect_dnd
         )
         self.donationMessage.checkbox.toggled.connect(
             self._handle_toggle_donation_message
@@ -87,6 +91,9 @@ class NotificationsSettingsController(NotificationsSettingsView):
 
     def _handle_toggle_sound(self, is_enabled: bool):
         self.model.sound = is_enabled
+
+    def _handle_toggle_respect_dnd(self, is_enabled: bool):
+        self.model.respect_dnd = is_enabled
 
     def _handle_toggle_donation_message(self, is_enabled: bool):
         self.model.donation_message_enabled = is_enabled

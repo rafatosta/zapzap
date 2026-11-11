@@ -13,6 +13,21 @@ releases and the AppStream metadata.
 
 ## [7.5.2] - In development
 
+### Added
+
+- Respect the system Do Not Disturb status for WhatsApp Web's message tone
+  (#896, #624). A new QtDBus monitor follows the notification server's
+  `Inhibited` property (KDE Plasma) and the portal show-banners setting
+  (GNOME), including when the notification server disappears or restarts.
+  While Do Not Disturb is on and the new "Respect Do Not Disturb"
+  notification setting (enabled by default) is active, an injected script
+  makes the page's `play()` a no-op for WhatsApp Web's message tone only, so
+  calls, voice notes and videos keep their sound. The state is baked into
+  the script source so reloads start with the right value. Cover the
+  monitor, the tone guard against a real WebEngine and the settings UI with
+  regression tests, translate the two new strings for Italian and Brazilian
+  Portuguese and document the manual validation.
+
 ### Fixed
 
 - Prevent QtWebEngine `SIGABRT` (`Single mode supports only single profile.`)

@@ -91,6 +91,8 @@ class WebView(QWebEngineView):
 
         self.notifications = NotificationService()
         self._devtools_view = None
+        self._notification_sound_suppressed = False
+        self._notification_sound_script = None
         self._devtools_page = None
 
         self._last_tmp_file = None
@@ -208,6 +210,52 @@ class WebView(QWebEngineView):
         # Instala o handler de crash específico para este WebView
         crash_handler.register_profile(self.profile)
         self._inject_webrtc_shield()
+        self._inject_notification_sound_guard()
+
+    def _inject_notification_sound_guard(self):
+        """Register the script that can silence WhatsApp's message tone.
+
+        The initial state is baked into the source so that every new document,
+        including reloads, starts with the current Do Not Disturb decision.
+        """
+        js_path = os.path.join(
+            os.path.dirname(__file__),
+            "scripts",
+            "notification_sound_guard.js",
+        )
+        try:
+            with open(js_path, "r", encoding="utf-8") as f:
+                js_code = f.read()
+        except OSError as e:
+            logger.warning("Could not load notification_sound_guard.js: %s", e)
+            return
+
+        previous = self._notification_sound_script
+        if previous is not None:
+            self.profile.scripts().remove(previous)
+
+        initial = "true" if self._notification_sound_suppressed else "false"
+        script = QWebEngineScript()
+        script.setName("zapzap_notification_sound_guard")
+        script.setInjectionPoint(
+            QWebEngineScript.InjectionPoint.DocumentCreation)
+        script.setRunsOnSubFrames(False)
+        script.setSourceCode(
+            f"window.__zapzapNotificationSoundInitial = {initial};\n{js_code}"
+        )
+        script.setWorldId(QWebEngineScript.ScriptWorldId.MainWorld)
+        self.profile.scripts().insert(script)
+        self._notification_sound_script = script
+
+    def set_notification_sound_suppressed(self, suppressed: bool) -> None:
+        """Silence or restore the message tone of this account's page."""
+        suppressed = bool(suppressed)
+        if suppressed == self._notification_sound_suppressed:
+            return
+        self._notification_sound_suppressed = suppressed
+        self._inject_notification_sound_guard()
+        if self.whatsapp_page is not None:
+            self.whatsapp_page.set_notification_sound_suppressed(suppressed)
 
     def _apply_pdf_click_behavior(self):
         """Enable PDF plugin for previews or download PDF navigations."""

@@ -145,6 +145,8 @@ documente o que ele protege.
 | `test_memory_benchmark.py` | procfs/USS, schema JSON/CSV/Markdown, isolamento WebEngine, factory stub, cenários e comparação relativa |
 | `test_native_titlebar_theme.py` | sincronização do esquema claro/escuro com decorações nativas, modo automático e fallback para Qt antigo |
 | `test_network_privacy_settings_ui.py` | proxy exclusivamente global, strict proxy, credenciais, aplicar/descartar, feedback de falha do Qt, restauração e WebRTC |
+| `test_do_not_disturb_monitor.py` | detecção do Não Perturbe (`Inhibited` e `show-banners`), transições e leitura tolerante de respostas D-Bus |
+| `test_notification_sound_guard.py` | script que silencia só o toque de mensagem (WebEngine real: voz, vídeo, chamada e anexados passam) e propagação do Não Perturbe a todas as contas |
 | `test_notification_sound_setting.py` | mapeamento de som e tipos dos hints Portal/Freedesktop |
 | `test_notification_window_activation.py` | conexão QtDBus, tokens Portal/Wayland, startup X11, foco e limpeza |
 | `test_notifications_settings_ui.py` | rótulos, dependências, privacidade, som e lembrete de apoio |
@@ -196,6 +198,7 @@ documente o que ele protege.
 - `test_dictionary_manager.py`
 - `test_dictionary_options.py`
 - `test_display_backend.py`
+- `test_do_not_disturb_monitor.py`
 - `test_documentation_structure.py`
 - `test_donations_page.py`
 - `test_download_settings.py`
@@ -211,6 +214,7 @@ documente o que ele protege.
 - `test_memory_benchmark.py`
 - `test_native_titlebar_theme.py`
 - `test_network_privacy_settings_ui.py`
+- `test_notification_sound_guard.py`
 - `test_notification_sound_setting.py`
 - `test_notification_window_activation.py`
 - `test_notifications_settings_ui.py`
@@ -426,6 +430,20 @@ sensíveis.
 4. Reinicie o ZapZap e confirme que o estado de mute persiste. Desative o mute e
    confirme que a preferência anterior de som de notificações volta a valer sem
    ter sido alterada.
+
+## Validação manual do Não Perturbe
+
+Exige sessão gráfica real (KDE Plasma ou GNOME); `offscreen` não prova nada
+aqui.
+
+1. Com **Respeitar Não perturbe** ligado e o Não Perturbe do desktop ativo,
+   envie uma mensagem à conta com a janela sem foco: não deve haver toque.
+2. No mesmo estado, reproduza um áudio de voz e um vídeo e receba uma chamada:
+   voz, vídeo e toque de chamada devem tocar normalmente.
+3. Desative o Não Perturbe sem reiniciar: o toque volta na mensagem seguinte.
+4. Desligue a opção com o Não Perturbe ativo: o toque volta imediatamente.
+5. No GNOME, confirme se o portal expõe `show-banners`; se não expuser, a
+   detecção não funciona ali (não verificado).
 
 ## Validação manual do proxy estrito
 

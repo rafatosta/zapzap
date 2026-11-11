@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-09 12:06-0300\n"
+"POT-Creation-Date: 2026-11-11 19:12+0100\n"
 "PO-Revision-Date: 2026-07-26 11:59-0300\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: European Portuguese\n"
@@ -29,14 +29,14 @@ msgstr "Tem a certeza de que deseja fechar?"
 msgid "Don't ask again"
 msgstr "Não perguntar novamente"
 
-#: zapzap/app/main_window_controller.py:282
+#: zapzap/app/main_window_controller.py:326
 #: zapzap/features/tray/sys_tray_manager.py:68
 #: zapzap/features/tray/sys_tray_manager.py:250
 #: zapzap/ui/components/floating_monitoring_panel.py:335
 msgid "Unmute"
 msgstr ""
 
-#: zapzap/app/main_window_controller.py:282
+#: zapzap/app/main_window_controller.py:326
 #: zapzap/features/shortcuts/model.py:29
 #: zapzap/features/tray/sys_tray_manager.py:68
 #: zapzap/features/tray/sys_tray_manager.py:250
@@ -46,10 +46,10 @@ msgstr ""
 msgid "Mute"
 msgstr "Silenciar"
 
-#: zapzap/app/main_window_controller.py:534
-#: zapzap/features/browser/shell/browser_controller.py:574
-#: zapzap/features/browser/shell/browser_controller.py:648
-#: zapzap/features/browser/shell/browser_controller.py:910
+#: zapzap/app/main_window_controller.py:578
+#: zapzap/features/browser/shell/browser_controller.py:610
+#: zapzap/features/browser/shell/browser_controller.py:684
+#: zapzap/features/browser/shell/browser_controller.py:956
 #, python-brace-format
 msgid "Account {}"
 msgstr "Conta {}"
@@ -133,72 +133,72 @@ msgstr "Apenas proxy para solicitações HTTP."
 msgid "Proxying for FTP requests only."
 msgstr "Apenas proxy para solicitações FTP."
 
-#: zapzap/features/accounts/card_user_controller.py:60
-#: zapzap/features/accounts/card_user_controller.py:297
-#: zapzap/features/accounts/card_user_controller.py:309
+#: zapzap/features/accounts/card_user_controller.py:62
+#: zapzap/features/accounts/card_user_controller.py:302
+#: zapzap/features/accounts/card_user_controller.py:314
 msgid "Could not update account"
 msgstr "Não foi possível atualizar a conta"
 
-#: zapzap/features/accounts/card_user_controller.py:61
-#: zapzap/features/accounts/card_user_controller.py:310
+#: zapzap/features/accounts/card_user_controller.py:63
+#: zapzap/features/accounts/card_user_controller.py:315
 msgid "The account state could not be changed."
 msgstr "Não foi possível alterar o estado da conta."
 
-#: zapzap/features/accounts/card_user_controller.py:80
-#: zapzap/features/accounts/card_user_controller.py:256
+#: zapzap/features/accounts/card_user_controller.py:82
+#: zapzap/features/accounts/card_user_controller.py:261
 msgid "Could not remove account"
 msgstr "Não foi possível remover a conta"
 
-#: zapzap/features/accounts/card_user_controller.py:81
-#: zapzap/features/accounts/card_user_controller.py:257
+#: zapzap/features/accounts/card_user_controller.py:83
+#: zapzap/features/accounts/card_user_controller.py:262
 msgid "The account could not be removed. Please try again."
 msgstr "Não foi possível remover a conta. Tente novamente."
 
-#: zapzap/features/accounts/card_user_controller.py:112
-#: zapzap/features/accounts/card_user_controller.py:121
-#: zapzap/features/accounts/card_user_controller.py:128
+#: zapzap/features/accounts/card_user_controller.py:114
+#: zapzap/features/accounts/card_user_controller.py:123
+#: zapzap/features/accounts/card_user_controller.py:130
 #: zapzap/ui/components/edit_account_dialog.py:683
 #: zapzap/ui/components/edit_account_dialog.py:698
 msgid "Could not sync profile photo"
 msgstr "Não foi possível sincronizar a fotografia do perfil."
 
-#: zapzap/features/accounts/card_user_controller.py:113
+#: zapzap/features/accounts/card_user_controller.py:115
 #: zapzap/ui/components/edit_account_dialog.py:684
 msgid "This account does not have an active WhatsApp session."
 msgstr "Esta conta não tem uma sessão ativa do WhatsApp."
 
-#: zapzap/features/accounts/card_user_controller.py:129
+#: zapzap/features/accounts/card_user_controller.py:131
 #: zapzap/features/accounts/domain/profile_sync.py:70
 msgid "No profile photo is available."
 msgstr "Nenhuma fotografia de perfil está disponível."
 
-#: zapzap/features/accounts/card_user_controller.py:135
+#: zapzap/features/accounts/card_user_controller.py:137
 #: zapzap/ui/components/edit_account_dialog.py:705
 msgid "WhatsApp profile photo found"
 msgstr "Fotografia do perfil do WhatsApp encontrada"
 
-#: zapzap/features/accounts/card_user_controller.py:136
+#: zapzap/features/accounts/card_user_controller.py:138
 #: zapzap/ui/components/edit_account_dialog.py:706
 msgid "Update this account photo?"
 msgstr "Atualizar esta fotografia da conta?"
 
-#: zapzap/features/accounts/card_user_controller.py:220
+#: zapzap/features/accounts/card_user_controller.py:225
 msgid "Remove account?"
 msgstr "Remover conta?"
 
-#: zapzap/features/accounts/card_user_controller.py:222
+#: zapzap/features/accounts/card_user_controller.py:227
 #, python-brace-format
 msgid "The account \"{name}\" will be removed from ZapZap."
 msgstr "A conta \"{name}\" será removida do ZapZap."
 
-#: zapzap/features/accounts/card_user_controller.py:223
+#: zapzap/features/accounts/card_user_controller.py:228
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:191
 #: zapzap/ui/components/card_user.py:234 zapzap/ui/components/card_user.py:299
 #: zapzap/ui/components/card_user.py:470 zapzap/ui/components/card_user.py:697
 msgid "Unnamed account"
 msgstr "Conta sem nome"
 
-#: zapzap/features/accounts/card_user_controller.py:225
+#: zapzap/features/accounts/card_user_controller.py:230
 msgid ""
 "Its session will be closed and related local data may be permanently "
 "removed. This action cannot be undone."
@@ -206,13 +206,13 @@ msgstr ""
 "A sessão será encerrada e os dados locais relacionados poderão ser removidos "
 "permanentemente. Esta ação não pode ser anulada."
 
-#: zapzap/features/accounts/card_user_controller.py:232
+#: zapzap/features/accounts/card_user_controller.py:237
 #: zapzap/ui/components/card_user.py:153
 #: zapzap/ui/components/dictionary_manager_dialog.py:191
 msgid "Remove"
 msgstr "Remover"
 
-#: zapzap/features/accounts/card_user_controller.py:238
+#: zapzap/features/accounts/card_user_controller.py:243
 #: zapzap/features/reporting/dialogs.py:213
 #: zapzap/features/settings/pages/advanced_customizations/controller.py:642
 #: zapzap/features/settings/pages/network_privacy/controller.py:282
@@ -226,57 +226,20 @@ msgstr "Remover"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: zapzap/features/accounts/card_user_controller.py:267
+#: zapzap/features/accounts/card_user_controller.py:272
 msgid "User-Agent Changed"
 msgstr "Agente de utilizador alterado"
 
-#: zapzap/features/accounts/card_user_controller.py:269
+#: zapzap/features/accounts/card_user_controller.py:274
 msgid ""
 "Please restart this session (or the application) to apply the new User-Agent."
 msgstr ""
 "Reinicie esta sessão (ou a aplicação) para aplicar o novo agente de "
 "utilizador, por favor."
 
-#: zapzap/features/accounts/card_user_controller.py:298
+#: zapzap/features/accounts/card_user_controller.py:303
 msgid "The notification state could not be changed."
 msgstr "Não foi possível alterar o estado das notificações."
-
-#: zapzap/features/alerts/alert_manager.py:72
-#: zapzap/features/alerts/alert_manager.py:91
-#: zapzap/features/alerts/alert_manager.py:110
-#: zapzap/features/alerts/alert_manager.py:173
-msgid "OK"
-msgstr "OK"
-
-#: zapzap/features/alerts/alert_manager.py:214
-msgid "Yes"
-msgstr "Sim"
-
-#: zapzap/features/alerts/alert_manager.py:222
-msgid "No"
-msgstr "Não"
-
-#: zapzap/features/alerts/alert_manager.py:244
-#: zapzap/features/settings/pages/about/view.py:291
-msgid "Information"
-msgstr "Informação"
-
-#: zapzap/features/alerts/alert_manager.py:246
-#, python-brace-format
-msgid ""
-"Limit of {} users reached.\n"
-"It is not possible to create more users!"
-msgstr ""
-"O limite de {} utilizadores foi alcançado!\n"
-"Não é possível criar mais utilizadores!"
-
-#: zapzap/features/alerts/alert_manager.py:253
-msgid "Attention"
-msgstr "Atenção"
-
-#: zapzap/features/alerts/alert_manager.py:253
-msgid "No active account!"
-msgstr "Nenhuma conta ativa!"
 
 #: zapzap/features/alerts/external_url.py:39
 #, fuzzy
@@ -298,7 +261,7 @@ msgstr "Copiar link do endereço"
 
 #: zapzap/features/alerts/external_url.py:45
 #: zapzap/features/reporting/dialogs.py:360
-#: zapzap/features/browser/shell/browser_controller.py:329
+#: zapzap/features/browser/shell/browser_controller.py:330
 #: zapzap/ui/components/dictionary_manager_dialog.py:91
 #: zapzap/ui/components/dictionary_manager_dialog.py:193
 #: zapzap/ui/components/edit_account_dialog.py:74
@@ -307,6 +270,66 @@ msgstr "Copiar link do endereço"
 #: zapzap/ui/primitives/close_button.py:66
 msgid "Close"
 msgstr "Fechar"
+
+#: zapzap/features/alerts/alert_manager.py:72
+#: zapzap/features/alerts/alert_manager.py:91
+#: zapzap/features/alerts/alert_manager.py:110
+#: zapzap/features/alerts/alert_manager.py:173
+msgid "OK"
+msgstr "OK"
+
+#: zapzap/features/alerts/alert_manager.py:214
+msgid "Yes"
+msgstr "Sim"
+
+#: zapzap/features/alerts/alert_manager.py:222
+msgid "No"
+msgstr "Não"
+
+#: zapzap/features/alerts/alert_manager.py:249
+#: zapzap/features/settings/pages/about/view.py:291
+msgid "Information"
+msgstr "Informação"
+
+#: zapzap/features/alerts/alert_manager.py:251
+#, python-brace-format
+msgid ""
+"Limit of {} users reached.\n"
+"It is not possible to create more users!"
+msgstr ""
+"O limite de {} utilizadores foi alcançado!\n"
+"Não é possível criar mais utilizadores!"
+
+#: zapzap/features/alerts/alert_manager.py:260
+#, fuzzy
+msgid "Single process mode active"
+msgstr "Processo único"
+
+#: zapzap/features/alerts/alert_manager.py:262
+msgid ""
+"Single process mode supports only 1 account profile.\n"
+"Disable 'Single process' in Performance settings and restart ZapZap to use "
+"multiple accounts."
+msgstr ""
+
+#: zapzap/features/alerts/alert_manager.py:271
+#, fuzzy
+msgid "Cannot enable single process mode"
+msgstr "Ativar processo úncio para a GPU e renderização"
+
+#: zapzap/features/alerts/alert_manager.py:273
+msgid ""
+"Single process mode supports only 1 account profile.\n"
+"Remove extra accounts before enabling 'Single process'."
+msgstr ""
+
+#: zapzap/features/alerts/alert_manager.py:280
+msgid "Attention"
+msgstr "Atenção"
+
+#: zapzap/features/alerts/alert_manager.py:280
+msgid "No active account!"
+msgstr "Nenhuma conta ativa!"
 
 #: zapzap/features/dictionaries/dictionary_manager.py:113
 #, fuzzy
@@ -485,20 +508,20 @@ msgstr "Não mostrar novamente"
 msgid "Learn more about ZapZap ↗"
 msgstr "Saiba mais sobre ZapZap ↗"
 
-#: zapzap/features/downloads/download_manager.py:517
-#: zapzap/features/downloads/download_manager.py:1084
-#: zapzap/features/downloads/download_manager.py:1087
+#: zapzap/features/downloads/download_manager.py:530
+#: zapzap/features/downloads/download_manager.py:1097
+#: zapzap/features/downloads/download_manager.py:1100
 #: zapzap/features/downloads/ui/download_dialog.py:36
 #: zapzap/features/downloads/ui/downloads_menu.py:447
 #: zapzap/ui/components/update_available_popover.py:109
 msgid "Download"
 msgstr "Descarregar"
 
-#: zapzap/features/downloads/download_manager.py:1195
+#: zapzap/features/downloads/download_manager.py:1209
 msgid "Save file"
 msgstr "Guardar ficheiro"
 
-#: zapzap/features/downloads/download_manager.py:1227
+#: zapzap/features/downloads/download_manager.py:1241
 msgid "Select folder"
 msgstr "Selecionar pasta"
 
@@ -529,10 +552,10 @@ msgid "Basics"
 msgstr "Noções básicas"
 
 #: zapzap/features/initial_setup/view.py:106
-#: zapzap/features/settings/shell/settings_controller.py:134
+#: zapzap/features/settings/shell/settings_controller.py:136
 #: zapzap/features/settings/pages/notifications/view.py:19
 #: zapzap/features/settings/pages/notifications/view.py:33
-#: zapzap/features/browser/web/web_view.py:310
+#: zapzap/features/browser/web/web_view.py:358
 msgid "Notifications"
 msgstr "Notificações"
 
@@ -547,7 +570,7 @@ msgstr "Ficheiros"
 
 #: zapzap/features/initial_setup/view.py:109
 #: zapzap/features/initial_setup/view.py:378
-#: zapzap/features/settings/shell/settings_controller.py:140
+#: zapzap/features/settings/shell/settings_controller.py:142
 #: zapzap/features/settings/pages/permissions/view.py:22
 msgid "Permissions"
 msgstr "Permissões"
@@ -820,9 +843,9 @@ msgstr ""
 #: zapzap/features/downloads/ui/downloads_menu.py:1025
 #: zapzap/ui/components/browser_sidebar.py:219
 #: zapzap/ui/components/browser_sidebar.py:220
-#: zapzap/ui/components/main_window.py:164
 #: zapzap/ui/components/floating_monitoring_panel.py:293
 #: zapzap/ui/components/floating_monitoring_panel.py:294
+#: zapzap/ui/components/main_window.py:164
 msgid "Downloads"
 msgstr "Descargas"
 
@@ -981,7 +1004,7 @@ msgstr "Selecione e copie este comando no seu terminal"
 #: zapzap/features/settings/pages/debugging/controller.py:131
 #: zapzap/features/settings/pages/debugging/view.py:275
 #: zapzap/features/settings/pages/permissions/view.py:145
-#: zapzap/features/browser/web/web_view.py:553
+#: zapzap/features/browser/web/web_view.py:601
 msgid "Copy"
 msgstr "Copiar"
 
@@ -1034,7 +1057,7 @@ msgstr ""
 "JavaScript personalizado, permissões de Flatpak, e ajustes de desempenho "
 "continuam disponíveis lá."
 
-#: zapzap/features/notifications/notification_service.py:122
+#: zapzap/features/notifications/notification_service.py:127
 msgid "New message..."
 msgstr "Nova mensagem..."
 
@@ -1179,7 +1202,7 @@ msgstr ""
 
 #: zapzap/features/reporting/dialogs.py:109
 #: zapzap/features/settings/pages/network_privacy/view.py:249
-#: zapzap/features/settings/pages/notifications/view.py:113
+#: zapzap/features/settings/pages/notifications/view.py:124
 msgid "Privacy"
 msgstr "Privacidade"
 
@@ -1192,7 +1215,7 @@ msgstr ""
 #: zapzap/features/reporting/dialogs.py:136
 #: zapzap/features/reporting/dialogs.py:159
 #: zapzap/features/reporting/dialogs.py:292
-#: zapzap/features/settings/shell/settings_controller.py:176
+#: zapzap/features/settings/shell/settings_controller.py:178
 #: zapzap/features/settings/pages/about/view.py:269
 #: zapzap/features/settings/pages/debugging/view.py:160
 #: zapzap/features/settings/pages/debugging/view.py:177
@@ -1371,12 +1394,12 @@ msgstr "Perfil e estado"
 
 #: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
 #: zapzap/features/tray/sys_tray_manager.py:70
-#: zapzap/features/settings/shell/settings_controller.py:234
+#: zapzap/features/settings/shell/settings_controller.py:236
 #: zapzap/features/settings/shell/settings_sidebar.py:61
 #: zapzap/features/downloads/ui/downloads_menu.py:1081
-#: zapzap/ui/components/main_window.py:149
 #: zapzap/ui/components/floating_monitoring_panel.py:295
 #: zapzap/ui/components/floating_monitoring_panel.py:296
+#: zapzap/ui/components/main_window.py:149
 msgid "Settings"
 msgstr "Definições"
 
@@ -1468,7 +1491,7 @@ msgid "New conversation by phone number"
 msgstr "Nova conversação por número de telefone"
 
 #: zapzap/features/shortcuts/model.py:50
-#: zapzap/features/browser/shell/browser_controller.py:557
+#: zapzap/features/browser/shell/browser_controller.py:593
 #: zapzap/ui/components/browser_sidebar.py:200
 #: zapzap/ui/components/floating_monitoring_panel.py:289
 #: zapzap/ui/components/floating_monitoring_panel.py:290
@@ -1490,7 +1513,7 @@ msgid "Show"
 msgstr "Mostrar"
 
 #: zapzap/features/tray/sys_tray_manager.py:65
-#: zapzap/features/settings/shell/settings_controller.py:122
+#: zapzap/features/settings/shell/settings_controller.py:124
 #: zapzap/features/settings/pages/accounts/view.py:17
 msgid "Accounts"
 msgstr "Contas"
@@ -1507,36 +1530,36 @@ msgstr "Exibir painel de monitoramento"
 msgid "Quit"
 msgstr "Sair"
 
-#: zapzap/features/settings/shell/settings_controller.py:128
+#: zapzap/features/settings/shell/settings_controller.py:130
 #: zapzap/features/settings/pages/appearance/view.py:23
 msgid "Appearance"
 msgstr "Aspeto"
 
-#: zapzap/features/settings/shell/settings_controller.py:146
+#: zapzap/features/settings/shell/settings_controller.py:148
 #: zapzap/features/settings/pages/system_startup/view.py:22
 msgid "System and startup"
 msgstr "Sistema e início"
 
-#: zapzap/features/settings/shell/settings_controller.py:152
+#: zapzap/features/settings/shell/settings_controller.py:154
 #: zapzap/features/settings/pages/language_downloads/view.py:21
 msgid "Language and Download"
 msgstr "Idioma e Transferência"
 
-#: zapzap/features/settings/shell/settings_controller.py:158
+#: zapzap/features/settings/shell/settings_controller.py:160
 #: zapzap/features/settings/pages/network_privacy/view.py:149
 msgid "Privacy and Network"
 msgstr "Privacidade e Rede"
 
-#: zapzap/features/settings/shell/settings_controller.py:164
+#: zapzap/features/settings/shell/settings_controller.py:166
 msgid "Advanced Customizations"
 msgstr "Personalizações avançadas"
 
-#: zapzap/features/settings/shell/settings_controller.py:170
+#: zapzap/features/settings/shell/settings_controller.py:172
 #: zapzap/features/settings/pages/performance_experimental/view.py:21
 msgid "Performance experimental"
 msgstr "Desempenho experimental"
 
-#: zapzap/features/settings/shell/settings_controller.py:182
+#: zapzap/features/settings/shell/settings_controller.py:184
 #: zapzap/features/settings/pages/about/view.py:238
 #: zapzap/ui/components/main_window.py:181
 msgid "About"
@@ -1707,12 +1730,18 @@ msgstr "Adicionar conta"
 msgid "Each account can have independent settings."
 msgstr "Cada conta pode ter definições independentes."
 
-#: zapzap/features/settings/pages/accounts/view.py:81
+#: zapzap/features/settings/pages/accounts/view.py:84
+msgid ""
+"Single process mode supports only 1 account. Disable 'Single process' in "
+"Performance settings to add more accounts."
+msgstr ""
+
+#: zapzap/features/settings/pages/accounts/view.py:90
 #, python-brace-format
 msgid "Account limit of {limit} reached."
 msgstr "Limite de conta de {limit} atingido."
 
-#: zapzap/features/settings/pages/accounts/view.py:85
+#: zapzap/features/settings/pages/accounts/view.py:94
 #, python-brace-format
 msgid "{count} of {limit} accounts configured."
 msgstr "{count} de {limit} contas configuradas."
@@ -2385,7 +2414,7 @@ msgid "Symbolic dark"
 msgstr "Escuro simbólico"
 
 #: zapzap/features/settings/pages/appearance/view.py:229
-#: zapzap/features/browser/shell/browser_controller.py:182
+#: zapzap/features/browser/shell/browser_controller.py:183
 msgid "Grid view"
 msgstr "Vista de grelha"
 
@@ -3154,269 +3183,51 @@ msgstr "Pré-visualização da mensagem"
 msgid "Show the content of the received message."
 msgstr "Mostrar o conteúdo da mensagem recebida."
 
-#: zapzap/features/settings/pages/notifications/view.py:80
+#: zapzap/features/settings/pages/notifications/view.py:76
+msgid "Respect Do Not Disturb"
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:78
+msgid ""
+"Silence WhatsApp's message tone while the desktop's Do Not Disturb mode is "
+"on."
+msgstr ""
+
+#: zapzap/features/settings/pages/notifications/view.py:91
 msgid "ZapZap messages"
 msgstr "Mensagens de ZapZap"
 
-#: zapzap/features/settings/pages/notifications/view.py:81
+#: zapzap/features/settings/pages/notifications/view.py:92
 msgid "Control occasional messages shown by the application itself."
 msgstr "Controlar mensagens ocasionais mostradas pela própria aplicação."
 
-#: zapzap/features/settings/pages/notifications/view.py:85
+#: zapzap/features/settings/pages/notifications/view.py:96
 msgid "Support reminders"
 msgstr "Lembretes de suporte"
 
-#: zapzap/features/settings/pages/notifications/view.py:87
+#: zapzap/features/settings/pages/notifications/view.py:98
 msgid "Occasionally show messages supporting ZapZap's development."
 msgstr "Mostrar ocasionalmente mensagens a apoiar o desenvolvimento de ZapZap."
 
-#: zapzap/features/settings/pages/notifications/view.py:115
+#: zapzap/features/settings/pages/notifications/view.py:126
 msgid "Privacy presets"
 msgstr "Definições de privacidade"
 
-#: zapzap/features/settings/pages/notifications/view.py:118
+#: zapzap/features/settings/pages/notifications/view.py:129
 msgid "Quickly choose which notification details are visible."
 msgstr "Escolher rapidamente quais detalhes da notificação são visíveis."
 
-#: zapzap/features/settings/pages/notifications/view.py:122
+#: zapzap/features/settings/pages/notifications/view.py:133
 msgid "Show everything"
 msgstr "Mostrar tudo"
 
-#: zapzap/features/settings/pages/notifications/view.py:125
+#: zapzap/features/settings/pages/notifications/view.py:136
 msgid "Hide content"
 msgstr "Ocultar conteúdo"
 
-#: zapzap/features/settings/pages/notifications/view.py:128
+#: zapzap/features/settings/pages/notifications/view.py:139
 msgid "Maximum privacy"
 msgstr "Privacidade máxima"
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:205
-msgid ""
-"Defines where the HTTP cache will be stored.\n"
-"Disk: faster after restart.\n"
-"Memory: faster, but lost on exit.\n"
-"No cache: lower disk usage, slower."
-msgstr ""
-"Define onde o cache do HTTP vai ser armazenado.\n"
-"Disco: mais rápido depois de reiniciar a aplicação.\n"
-"Memória: mais rápida mas é perdida ao sair.\n"
-"Sem cache: menor utilização do disco, mais lento."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:213
-#, fuzzy, python-brace-format
-msgid ""
-"Maximum HTTP cache size: {maximum} MiB.\n"
-"0 MiB uses Chromium's automatic cache management."
-msgstr ""
-"Tamanho máximo do cache HTTP.\n"
-"0 MB usa o comportamento padrão do Chromium."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:218
-msgid ""
-"Keeps cookies between restarts.\n"
-"Disabling may cause frequent logouts."
-msgstr ""
-"Guarda os cookies ao abrir e fechar a aplicação.\n"
-"Se desativar, pode causar o fecho frequente de sessões."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:222
-msgid ""
-"Runs GPU and rendering in the same process.\n"
-"May reduce memory usage, but can cause instability."
-msgstr ""
-"Executa a GPU e renderização no mesmo processo.\n"
-"Pode reduzir a utilização de memória mas pode causar instabilidade."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:228
-msgid ""
-"Disables GPU hardware acceleration.\n"
-"Recommended only for old GPUs or problematic drivers."
-msgstr ""
-"Desativa a acelaração de hardware da GPU.\n"
-"Só é recomendado para GPU's mais antigas ou controladores problemáticos."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:234
-msgid ""
-"Automatically honors an unambiguous DRI_PRIME selector on systems with "
-"multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
-"one GPU has no connected display.\n"
-"\n"
-"Disable this only if the automatic workaround causes problems. Restart "
-"required."
-msgstr ""
-"Honra automaticamente um seletor DRI_PRIME inequívoco em sistemas com "
-"múltiplos GPUs de renderização Linux. Caso contrário, adiciona --disable-gpu-"
-"compositing quando um GPU não tiver ecrã ligado.\n"
-"\n"
-"Desative isto apenas se a solução automática causar problemas. É necessário "
-"reiniciar."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:243
-msgid ""
-"Disables GPU VSync.\n"
-"May reduce latency, but can increase power usage and tearing."
-msgstr ""
-"Desativa o VSync da GPU.\n"
-"Pode reduzir a latência mas pode aumentar o consumo de energia e artefactos "
-"na aplicação."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:249
-msgid ""
-"Forces software rendering.\n"
-"Use only in case of graphical issues.\n"
-"May significantly reduce performance."
-msgstr ""
-"Força a renderização em software.\n"
-"Utilize só no caso que tenha problemas na renderização.\n"
-"Pode reduzir significamente o desempenho."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:256
-msgid ""
-"Avoids GPU-backed video frame buffers.\n"
-"May help with black screens, flickering, and GPU crashes.\n"
-"Restart required."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:263
-msgid ""
-"Disables zero-copy GPU buffer transfers.\n"
-"May improve compatibility with some graphics drivers.\n"
-"Restart required."
-msgstr ""
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:270
-msgid ""
-"Disables hardware video decoding without disabling all GPU acceleration.\n"
-"Use when videos play only audio, appear white or black, flicker, or cause "
-"crashes.\n"
-"May increase CPU and battery usage. Restart required."
-msgstr ""
-"Desativa a descodificação de vídeo por hardware sem desativar toda a "
-"aceleração da GPU.\n"
-"Use quando os vídeos reproduzem apenas áudio, aparecem brancos ou pretos, "
-"cintilam ou causam falhas.\n"
-"Pode aumentar a utilização do processador e da bateria. É necessário "
-"reiniciar."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:279
-msgid ""
-"Forces the GBM backend on Wayland.\n"
-"Known to fix severe typing lag on NVIDIA drivers."
-msgstr ""
-"Força o backend GBM em Wayland.\n"
-"Conhecido por corrigir atrasos graves de digitação em drivers NVIDIA."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:285
-msgid ""
-"Disables the accessibility bus.\n"
-"Known to fix typing lag or CPU spikes in QtWebEngine."
-msgstr ""
-"Desativa o barramento de acessibilidade.\n"
-"Sabe-se que corrige atraso na digitação ou picos de CPU em QtWebEngine."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:291
-msgid ""
-"Runs the entire Chromium engine in a single process.\n"
-"Reduces memory usage, but may cause crashes.\n"
-"Experimental usage."
-msgstr ""
-"Executa totalmente o motor do Chromium num único processo.\n"
-"Reduz a utilização de memória mas pode causar problemas.\n"
-"Utilização experimental."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:298
-msgid ""
-"Uses a separate process per site.\n"
-"Safer and more stable.\n"
-"May increase memory usage."
-msgstr ""
-"Usa um processo em separada para cada website.\n"
-"É mais seguro e estável.\n"
-"Pode aumentar a utilização da memória."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:305
-msgid ""
-"JavaScript (V8) memory limit.\n"
-"Automatic is the safest option.\n"
-"Higher values allow heavier pages.\n"
-"\n"
-"Restart required."
-msgstr ""
-"Limite de memória de JavaScript (V8).\n"
-"Automático é a opção mais segura.\n"
-"Valores mais altos permitem páginas mais pesadas.\n"
-"\n"
-"É necessário reiniciar."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:313
-msgid ""
-"Enables V8 predictable garbage collection schedule.\n"
-"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
-"QTWEBENGINE_CHROMIUM_FLAGS.\n"
-"\n"
-"Experimental option. Restart required."
-msgstr ""
-"Ativa o agendamento de recolha de lixo previsível do V8.\n"
-"Isto adiciona --js-flags=--predictable-gc-schedule e --disable-gpu a "
-"QTWEBENGINE_CHROMIUM_FLAGS.\n"
-"\n"
-"Opção experimental. É necessário reiniciar."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:320
-msgid ""
-"Enables smooth scrolling animations.\n"
-"Disabling may reduce CPU usage."
-msgstr ""
-"Ativa animações de deslocamento suave.\n"
-"Desativar pode reduzir a utilização da CPU."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:324
-msgid ""
-"Allows background tabs to reduce resource usage.\n"
-"Disabling keeps timers active, but uses more resources."
-msgstr ""
-"Permite separadores em segundo plano para reduzir a utilização de recursos.\n"
-"Desativar mantém os temporizadores ativos mas usa mais recursos."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:330
-msgid ""
-"Disables CSS and JavaScript animations.\n"
-"May improve performance on slower machines."
-msgstr ""
-"Desativa as animações de CSS e JavaScript.\n"
-"Pode melhorar o desempenho em computadores mais lentos."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:336
-msgid ""
-"Disables pinch-to-zoom gesture on touchpads.\n"
-"Useful if accidental zooming occurs during scrolling."
-msgstr ""
-"Desativa o gesto de apertar para fazer zoom nos touchpads.\n"
-"É útil para impedir zoom indesejado enquando desliza."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:342
-msgid ""
-"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
-"navigation.\n"
-"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
-"fields.\n"
-"\n"
-"Restart or reload WhatsApp Web after changing this option."
-msgstr ""
-"Usa Selection.modify() com direções visuais para a navegação por palavras de "
-"Ctrl+Arrow.\n"
-"Isto corrige o movimento invertido do cursor em texto RTL dentro de campos "
-"de mensagens WhatsApp Web.\n"
-"\n"
-"Reinicie ou recarregue WhatsApp Web após alterar esta opção."
-
-#: zapzap/features/settings/pages/performance_experimental/controller.py:348
-msgid ""
-"Restores all performance settings\n"
-"to safe default values."
-msgstr ""
-"Restaura todas as definições de desempenho\n"
-"para os valores padrão seguros."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:22
 msgid "Tune cache, GPU, processes, and advanced behavior."
@@ -3723,6 +3534,234 @@ msgid "Restores all performance settings to safe default values."
 msgstr ""
 "Restaura todas as definições de desempenho para valores padrão seguros."
 
+#: zapzap/features/settings/pages/performance_experimental/controller.py:218
+msgid ""
+"Defines where the HTTP cache will be stored.\n"
+"Disk: faster after restart.\n"
+"Memory: faster, but lost on exit.\n"
+"No cache: lower disk usage, slower."
+msgstr ""
+"Define onde o cache do HTTP vai ser armazenado.\n"
+"Disco: mais rápido depois de reiniciar a aplicação.\n"
+"Memória: mais rápida mas é perdida ao sair.\n"
+"Sem cache: menor utilização do disco, mais lento."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:226
+#, fuzzy, python-brace-format
+msgid ""
+"Maximum HTTP cache size: {maximum} MiB.\n"
+"0 MiB uses Chromium's automatic cache management."
+msgstr ""
+"Tamanho máximo do cache HTTP.\n"
+"0 MB usa o comportamento padrão do Chromium."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:231
+msgid ""
+"Keeps cookies between restarts.\n"
+"Disabling may cause frequent logouts."
+msgstr ""
+"Guarda os cookies ao abrir e fechar a aplicação.\n"
+"Se desativar, pode causar o fecho frequente de sessões."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:235
+msgid ""
+"Runs GPU and rendering in the same process.\n"
+"May reduce memory usage, but can cause instability."
+msgstr ""
+"Executa a GPU e renderização no mesmo processo.\n"
+"Pode reduzir a utilização de memória mas pode causar instabilidade."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:241
+msgid ""
+"Disables GPU hardware acceleration.\n"
+"Recommended only for old GPUs or problematic drivers."
+msgstr ""
+"Desativa a acelaração de hardware da GPU.\n"
+"Só é recomendado para GPU's mais antigas ou controladores problemáticos."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:247
+msgid ""
+"Automatically honors an unambiguous DRI_PRIME selector on systems with "
+"multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
+"one GPU has no connected display.\n"
+"\n"
+"Disable this only if the automatic workaround causes problems. Restart "
+"required."
+msgstr ""
+"Honra automaticamente um seletor DRI_PRIME inequívoco em sistemas com "
+"múltiplos GPUs de renderização Linux. Caso contrário, adiciona --disable-gpu-"
+"compositing quando um GPU não tiver ecrã ligado.\n"
+"\n"
+"Desative isto apenas se a solução automática causar problemas. É necessário "
+"reiniciar."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:256
+msgid ""
+"Disables GPU VSync.\n"
+"May reduce latency, but can increase power usage and tearing."
+msgstr ""
+"Desativa o VSync da GPU.\n"
+"Pode reduzir a latência mas pode aumentar o consumo de energia e artefactos "
+"na aplicação."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:262
+msgid ""
+"Forces software rendering.\n"
+"Use only in case of graphical issues.\n"
+"May significantly reduce performance."
+msgstr ""
+"Força a renderização em software.\n"
+"Utilize só no caso que tenha problemas na renderização.\n"
+"Pode reduzir significamente o desempenho."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:269
+msgid ""
+"Avoids GPU-backed video frame buffers.\n"
+"May help with black screens, flickering, and GPU crashes.\n"
+"Restart required."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:276
+msgid ""
+"Disables zero-copy GPU buffer transfers.\n"
+"May improve compatibility with some graphics drivers.\n"
+"Restart required."
+msgstr ""
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:283
+msgid ""
+"Disables hardware video decoding without disabling all GPU acceleration.\n"
+"Use when videos play only audio, appear white or black, flicker, or cause "
+"crashes.\n"
+"May increase CPU and battery usage. Restart required."
+msgstr ""
+"Desativa a descodificação de vídeo por hardware sem desativar toda a "
+"aceleração da GPU.\n"
+"Use quando os vídeos reproduzem apenas áudio, aparecem brancos ou pretos, "
+"cintilam ou causam falhas.\n"
+"Pode aumentar a utilização do processador e da bateria. É necessário "
+"reiniciar."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:292
+msgid ""
+"Forces the GBM backend on Wayland.\n"
+"Known to fix severe typing lag on NVIDIA drivers."
+msgstr ""
+"Força o backend GBM em Wayland.\n"
+"Conhecido por corrigir atrasos graves de digitação em drivers NVIDIA."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:298
+msgid ""
+"Disables the accessibility bus.\n"
+"Known to fix typing lag or CPU spikes in QtWebEngine."
+msgstr ""
+"Desativa o barramento de acessibilidade.\n"
+"Sabe-se que corrige atraso na digitação ou picos de CPU em QtWebEngine."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:304
+msgid ""
+"Runs the entire Chromium engine in a single process.\n"
+"Reduces memory usage, but may cause crashes.\n"
+"Experimental usage."
+msgstr ""
+"Executa totalmente o motor do Chromium num único processo.\n"
+"Reduz a utilização de memória mas pode causar problemas.\n"
+"Utilização experimental."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:311
+msgid ""
+"Uses a separate process per site.\n"
+"Safer and more stable.\n"
+"May increase memory usage."
+msgstr ""
+"Usa um processo em separada para cada website.\n"
+"É mais seguro e estável.\n"
+"Pode aumentar a utilização da memória."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:318
+msgid ""
+"JavaScript (V8) memory limit.\n"
+"Automatic is the safest option.\n"
+"Higher values allow heavier pages.\n"
+"\n"
+"Restart required."
+msgstr ""
+"Limite de memória de JavaScript (V8).\n"
+"Automático é a opção mais segura.\n"
+"Valores mais altos permitem páginas mais pesadas.\n"
+"\n"
+"É necessário reiniciar."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:326
+msgid ""
+"Enables V8 predictable garbage collection schedule.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"\n"
+"Experimental option. Restart required."
+msgstr ""
+"Ativa o agendamento de recolha de lixo previsível do V8.\n"
+"Isto adiciona --js-flags=--predictable-gc-schedule e --disable-gpu a "
+"QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"\n"
+"Opção experimental. É necessário reiniciar."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:333
+msgid ""
+"Enables smooth scrolling animations.\n"
+"Disabling may reduce CPU usage."
+msgstr ""
+"Ativa animações de deslocamento suave.\n"
+"Desativar pode reduzir a utilização da CPU."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:337
+msgid ""
+"Allows background tabs to reduce resource usage.\n"
+"Disabling keeps timers active, but uses more resources."
+msgstr ""
+"Permite separadores em segundo plano para reduzir a utilização de recursos.\n"
+"Desativar mantém os temporizadores ativos mas usa mais recursos."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:343
+msgid ""
+"Disables CSS and JavaScript animations.\n"
+"May improve performance on slower machines."
+msgstr ""
+"Desativa as animações de CSS e JavaScript.\n"
+"Pode melhorar o desempenho em computadores mais lentos."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:349
+msgid ""
+"Disables pinch-to-zoom gesture on touchpads.\n"
+"Useful if accidental zooming occurs during scrolling."
+msgstr ""
+"Desativa o gesto de apertar para fazer zoom nos touchpads.\n"
+"É útil para impedir zoom indesejado enquando desliza."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:355
+msgid ""
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
+"navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
+"fields.\n"
+"\n"
+"Restart or reload WhatsApp Web after changing this option."
+msgstr ""
+"Usa Selection.modify() com direções visuais para a navegação por palavras de "
+"Ctrl+Arrow.\n"
+"Isto corrige o movimento invertido do cursor em texto RTL dentro de campos "
+"de mensagens WhatsApp Web.\n"
+"\n"
+"Reinicie ou recarregue WhatsApp Web após alterar esta opção."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:361
+msgid ""
+"Restores all performance settings\n"
+"to safe default values."
+msgstr ""
+"Restaura todas as definições de desempenho\n"
+"para os valores padrão seguros."
+
 #: zapzap/features/settings/pages/permissions/view.py:23
 msgid "Define which permissions can be granted automatically to WhatsApp Web."
 msgstr ""
@@ -3959,19 +3998,19 @@ msgstr "Permitir sempre"
 msgid "Block"
 msgstr "Bloquear"
 
-#: zapzap/features/browser/shell/browser_controller.py:294
+#: zapzap/features/browser/shell/browser_controller.py:295
 msgid "Flatpak sandbox help"
 msgstr "Ajuda da sandbox Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:319
+#: zapzap/features/browser/shell/browser_controller.py:320
 msgid "Flatpak sandbox"
 msgstr "Sandbox Flatpak"
 
-#: zapzap/features/browser/shell/browser_controller.py:320
+#: zapzap/features/browser/shell/browser_controller.py:321
 msgid "ZapZap is running in Flatpak sandbox."
 msgstr "O ZapZap está a executar numa sandbox Flatpak."
 
-#: zapzap/features/browser/shell/browser_controller.py:322
+#: zapzap/features/browser/shell/browser_controller.py:323
 msgid ""
 "Some features like opening files or drag-and-drop may require additional "
 "permissions."
@@ -3979,109 +4018,50 @@ msgstr ""
 "Algumas funcionalidades, como abrir ficheiros ou arrastar e largar, podem "
 "exigir permissões adicionais."
 
-#: zapzap/features/browser/shell/browser_controller.py:327
+#: zapzap/features/browser/shell/browser_controller.py:328
 msgid "Instructions"
 msgstr "Instruções"
 
-#: zapzap/features/browser/shell/browser_controller.py:328
+#: zapzap/features/browser/shell/browser_controller.py:329
 msgid "Copy command"
 msgstr "Copiar comando"
 
-#: zapzap/features/browser/shell/browser_controller.py:662
+#: zapzap/features/browser/shell/browser_controller.py:698
 msgid "Account disabled"
 msgstr "Conta desativada"
 
-#: zapzap/features/browser/shell/browser_controller.py:663
+#: zapzap/features/browser/shell/browser_controller.py:699
 msgid "This account is disabled."
 msgstr "Esta conta está desativada."
 
-#: zapzap/features/browser/shell/browser_controller.py:665
+#: zapzap/features/browser/shell/browser_controller.py:701
 msgid ""
 "You can reactivate it now or use the right-click menu to manage this account."
 msgstr ""
 "Pode reativar a mesma agora ou usar o menu de contexto com o botão direito "
 "do rato para gerir esta conta."
 
-#: zapzap/features/browser/shell/browser_controller.py:670
+#: zapzap/features/browser/shell/browser_controller.py:706
 msgid "Activate"
 msgstr "Ativar"
 
-#: zapzap/features/browser/shell/browser_controller.py:671
+#: zapzap/features/browser/shell/browser_controller.py:707
 msgid "Not now"
 msgstr "Agora não"
 
-#: zapzap/features/browser/web/web_view.py:309
-#: zapzap/ui/components/integrated_account_selector.py:57
-#, fuzzy
-msgid "Account selector"
-msgstr "Lista de contas"
+#: zapzap/features/browser/web/popup_window.py:65
+msgid "Manual close unavailable"
+msgstr "Fecho manual indisponível"
 
-#: zapzap/features/browser/web/web_view.py:469
-msgid "Chat list width"
-msgstr "Largura da lista de conversas"
-
-#: zapzap/features/browser/web/web_view.py:471
+#: zapzap/features/browser/web/popup_window.py:67
 msgid ""
-"Drag or use the arrow keys to resize. Double-click or press Enter to restore "
-"the default width."
+"To prevent the application from becoming unresponsive, this window cannot be "
+"closed manually. Use WhatsApp's End call button. The window will close when "
+"WhatsApp requests it."
 msgstr ""
-"Arraste ou utilize as teclas de seta para redimensionar. Faça duplo clique "
-"ou prima Enter para repor a largura predefinida."
-
-#: zapzap/features/browser/web/web_view.py:552
-msgid "Undo"
-msgstr "Desfazer"
-
-#: zapzap/features/browser/web/web_view.py:552
-msgid "Redo"
-msgstr "Refazer"
-
-#: zapzap/features/browser/web/web_view.py:552
-msgid "Cut"
-msgstr "Cortar"
-
-#: zapzap/features/browser/web/web_view.py:553
-msgid "Paste"
-msgstr "Colar"
-
-#: zapzap/features/browser/web/web_view.py:553
-msgid "Select all"
-msgstr "Selecionar tudo"
-
-#: zapzap/features/browser/web/web_view.py:554
-msgid "Save image"
-msgstr "Guardar imagem"
-
-#: zapzap/features/browser/web/web_view.py:554
-msgid "Copy image"
-msgstr "Copiar imagem"
-
-#: zapzap/features/browser/web/web_view.py:555
-#: zapzap/features/browser/web/web_view.py:585
-msgid "Copy link address"
-msgstr "Copiar link do endereço"
-
-#: zapzap/features/browser/web/web_view.py:603
-msgid "Check Spelling"
-msgstr "Verificar ortografia"
-
-#: zapzap/features/browser/web/web_view.py:609
-msgid "Languages…"
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:612
-msgid "Choose the languages used by the spell checker."
-msgstr ""
-
-#: zapzap/features/browser/web/web_view.py:1127
-#: zapzap/ui/components/card_user.py:304
-msgid "Account"
-msgstr "Conta"
-
-#: zapzap/features/browser/web/web_view.py:1129
-#, python-brace-format
-msgid "DevTools - {}"
-msgstr "DevTools - {}"
+"Para evitar que a aplicação deixe de responder, esta janela não pode ser "
+"fechada manualmente. Utilize o botão Terminar chamada do WhatsApp. A janela "
+"será fechada quando o WhatsApp o solicitar."
 
 #: zapzap/features/browser/web/page_controller.py:314
 msgid "your microphone"
@@ -4130,19 +4110,78 @@ msgstr ""
 "\n"
 "Permitir?"
 
-#: zapzap/features/browser/web/popup_window.py:65
-msgid "Manual close unavailable"
-msgstr "Fecho manual indisponível"
+#: zapzap/features/browser/web/web_view.py:357
+#: zapzap/ui/components/integrated_account_selector.py:57
+#, fuzzy
+msgid "Account selector"
+msgstr "Lista de contas"
 
-#: zapzap/features/browser/web/popup_window.py:67
+#: zapzap/features/browser/web/web_view.py:517
+msgid "Chat list width"
+msgstr "Largura da lista de conversas"
+
+#: zapzap/features/browser/web/web_view.py:519
 msgid ""
-"To prevent the application from becoming unresponsive, this window cannot be "
-"closed manually. Use WhatsApp's End call button. The window will close when "
-"WhatsApp requests it."
+"Drag or use the arrow keys to resize. Double-click or press Enter to restore "
+"the default width."
 msgstr ""
-"Para evitar que a aplicação deixe de responder, esta janela não pode ser "
-"fechada manualmente. Utilize o botão Terminar chamada do WhatsApp. A janela "
-"será fechada quando o WhatsApp o solicitar."
+"Arraste ou utilize as teclas de seta para redimensionar. Faça duplo clique "
+"ou prima Enter para repor a largura predefinida."
+
+#: zapzap/features/browser/web/web_view.py:600
+msgid "Undo"
+msgstr "Desfazer"
+
+#: zapzap/features/browser/web/web_view.py:600
+msgid "Redo"
+msgstr "Refazer"
+
+#: zapzap/features/browser/web/web_view.py:600
+msgid "Cut"
+msgstr "Cortar"
+
+#: zapzap/features/browser/web/web_view.py:601
+msgid "Paste"
+msgstr "Colar"
+
+#: zapzap/features/browser/web/web_view.py:601
+msgid "Select all"
+msgstr "Selecionar tudo"
+
+#: zapzap/features/browser/web/web_view.py:602
+msgid "Save image"
+msgstr "Guardar imagem"
+
+#: zapzap/features/browser/web/web_view.py:602
+msgid "Copy image"
+msgstr "Copiar imagem"
+
+#: zapzap/features/browser/web/web_view.py:603
+#: zapzap/features/browser/web/web_view.py:633
+msgid "Copy link address"
+msgstr "Copiar link do endereço"
+
+#: zapzap/features/browser/web/web_view.py:651
+msgid "Check Spelling"
+msgstr "Verificar ortografia"
+
+#: zapzap/features/browser/web/web_view.py:657
+msgid "Languages…"
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:660
+msgid "Choose the languages used by the spell checker."
+msgstr ""
+
+#: zapzap/features/browser/web/web_view.py:1178
+#: zapzap/ui/components/card_user.py:304
+msgid "Account"
+msgstr "Conta"
+
+#: zapzap/features/browser/web/web_view.py:1180
+#, python-brace-format
+msgid "DevTools - {}"
+msgstr "DevTools - {}"
 
 #: zapzap/features/accounts/domain/profile_sync.py:49
 msgid "WhatsApp Web is unavailable."
@@ -4692,6 +4731,30 @@ msgstr "Descartá-las repõe os valores anteriores à edição."
 msgid "Keep editing"
 msgstr "Continuar a editar"
 
+#: zapzap/ui/components/floating_monitoring_panel.py:283
+#: zapzap/ui/components/floating_monitoring_panel.py:285
+msgid "Quick access"
+msgstr "Acesso rápido"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:284
+msgid "No account activity to show yet."
+msgstr ""
+
+#: zapzap/ui/components/floating_monitoring_panel.py:286
+#, fuzzy
+msgid "Monitoring panel"
+msgstr "Fixar painel"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:287
+#: zapzap/ui/components/floating_monitoring_panel.py:288
+msgid "Unlock position"
+msgstr "Desbloquear posição"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:291
+#: zapzap/ui/components/floating_monitoring_panel.py:292
+msgid "Audio"
+msgstr ""
+
 #: zapzap/ui/components/main_window.py:140
 msgid "File"
 msgstr "Ficheiro"
@@ -5046,30 +5109,6 @@ msgstr ""
 #: zapzap/ui/components/update_available_popover.py:171
 #, python-brace-format
 msgid "ZapZap {latest} is available. Current version: {current}."
-msgstr ""
-
-#: zapzap/ui/components/floating_monitoring_panel.py:283
-#: zapzap/ui/components/floating_monitoring_panel.py:285
-msgid "Quick access"
-msgstr "Acesso rápido"
-
-#: zapzap/ui/components/floating_monitoring_panel.py:284
-msgid "No account activity to show yet."
-msgstr ""
-
-#: zapzap/ui/components/floating_monitoring_panel.py:286
-#, fuzzy
-msgid "Monitoring panel"
-msgstr "Fixar painel"
-
-#: zapzap/ui/components/floating_monitoring_panel.py:287
-#: zapzap/ui/components/floating_monitoring_panel.py:288
-msgid "Unlock position"
-msgstr "Desbloquear posição"
-
-#: zapzap/ui/components/floating_monitoring_panel.py:291
-#: zapzap/ui/components/floating_monitoring_panel.py:292
-msgid "Audio"
 msgstr ""
 
 #~ msgid ""
@@ -5524,9 +5563,6 @@ msgstr ""
 
 #~ msgid "QWebEngine Behavior"
 #~ msgstr "Comportamento do QWebEngine"
-
-#~ msgid "Enable single process for GPU and rendering"
-#~ msgstr "Ativar processo úncio para a GPU e renderização"
 
 #~ msgid "Creating temporary directory:"
 #~ msgstr "A criar um diretório temporário:"
