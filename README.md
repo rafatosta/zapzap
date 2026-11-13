@@ -57,6 +57,34 @@ ZapZap is an unofficial WhatsApp Web desktop client built with Python, PyQt6 and
 | Fedora (COPR) | https://copr.fedorainfracloud.org/coprs/rafatosta/zapzap |
 | Python | `pip install zapzap` |
 
+## Codec support
+
+WhatsApp Web needs H.264 video and AAC audio. Whether those work depends on the
+Qt WebEngine build shipped with the package, not on ZapZap itself:
+
+| Package | Qt WebEngine | H.264 / AAC |
+|---------|--------------|-------------|
+| Flatpak | bundled runtime | included |
+| AppImage | bundled Qt | included |
+| DEB (Debian / Ubuntu) | distribution package | usually **not** included; Debian builds Qt WebEngine without proprietary codecs |
+| RPM / Fedora COPR | distribution package | depends on the distribution build |
+| Snap | bundled runtime | check the runtime information below |
+| Windows, macOS | bundled | included |
+
+Open **Settings → Report a problem → Runtime information** to see what the
+running engine advertises. The `media_codecs` block reports `h264` and `aac`
+through `canPlayType` and Media Source Extensions, and the same block is
+included in problem reports. An unsupported codec explains silent or missing
+chat media; it cannot be fixed by changing a ZapZap setting, because the
+package must ship a Qt WebEngine built with proprietary codecs. On Debian and
+Ubuntu the AppImage or the Flatpak are the packages that include them.
+
+Videos can also be silent while everything else is audible when the global mute
+is active (the speaker button in the toolbar, the tray menu or the floating
+panel). Video and audio playback on ARM64 Linux usually uses software decoding,
+so very high-resolution files may stutter even when the codecs are present;
+that is a performance limit, not a missing codec.
+
 ## Donations
 
 ZapZap is a free and open-source project maintained in my spare time. If you find it useful, consider supporting its continued development through one of the following methods:

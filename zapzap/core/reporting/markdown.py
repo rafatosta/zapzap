@@ -42,6 +42,14 @@ SYSTEM_LABELS = {
 }
 
 
+def _codec_flag(value) -> str:
+    if value is True:
+        return "yes"
+    if value is False:
+        return "no"
+    return "unknown"
+
+
 class ReportMarkdownFormatter:
     """Format exactly the sanitized content that the user will paste."""
 
@@ -130,6 +138,43 @@ class ReportMarkdownFormatter:
                 lines.append("- Source: process environment; internal Chromium defaults are not observed.")
                 lines.append(f"- **Chromium flags:** {', '.join(effective_flags)}")
                 lines.append("")
+
+        media_codecs = system.get("media_codecs") or {}
+        if media_codecs.get("measured"):
+            lines.extend(("### Media codecs", ""))
+            can_play = media_codecs.get("can_play") or {}
+            if can_play:
+                lines.append(
+                    "- **Engine support:** "
+                    + ", ".join(
+                        f"{name}={value}" for name, value in sorted(can_play.items())
+                    )
+                )
+            mse = media_codecs.get("mse") or {}
+            if mse:
+                lines.append(
+                    "- **Media Source Extensions:** "
+                    + ", ".join(
+                        f"{name}={_codec_flag(value)}"
+                        for name, value in sorted(mse.items())
+                    )
+                )
+            missing = media_codecs.get("missing") or []
+            lines.append(
+                "- **Not supported:** " + (", ".join(missing) if missing else "none")
+            )
+            lines.append(
+                "- Engine support is what QtWebEngine advertises; it does not "
+                "prove that a specific file decodes or renders."
+            )
+            lines.append("")
+        elif media_codecs:
+            lines.extend((
+                "### Media codecs",
+                "",
+                f"- **Not measured:** {media_codecs.get('reason') or 'unknown'}",
+                "",
+            ))
 
         flatpak = graphics.get("flatpak") or {}
         if flatpak.get("is_flatpak"):

@@ -588,6 +588,12 @@ fatal dessa sessão; atribuição ausente não incorpora o histórico nem o ambi
 novo. `core.reporting.fingerprint` separa família (sinal/componente/frames) de
 variante de bibliotecas carregadas. A fronteira Python não prova causa nativa.
 
+`core.diagnostics.media_codec_probe` mede uma vez por página carregada o
+suporte *anunciado* pelo Qt WebEngine a H.264/AAC (`canPlayType` e
+`MediaSource.isTypeSupported`), sem ler conteúdo ou mídia. O resultado entra em
+`RuntimeEnvironmentDebug.build_report()` como `media_codecs` e no relatório
+manual; ausência de medição permanece `measured: false` com motivo explícito.
+
 `core.diagnostics.webengine_probe` é opt-in por variável de processo. Observa
 entrada/saída de eventos/callbacks, profundidade, timers, descarte e `destroyed`
 sem consultar conteúdo ou recriar páginas. O padrão não grava trace nem muda

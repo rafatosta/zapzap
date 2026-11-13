@@ -9,6 +9,7 @@ from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
 
 from zapzap.core.diagnostics.webengine_probe import probe
+from zapzap.core.diagnostics.media_codec_probe import media_codecs
 from zapzap import __allowed_hosts__
 from zapzap.features.customizations.addons_manager import AddonsManager
 from zapzap.features.alerts.alert_manager import AlertManager
@@ -356,6 +357,10 @@ class PageController(QWebEnginePage):
                 QWebEnginePage.Feature.Notifications,
                 QWebEnginePage.PermissionPolicy.PermissionGrantedByUser
             )
+
+            # Evidence only: collect the codecs the engine advertises once per
+            # page. It runs after load and never touches page content.
+            media_codecs.request(self)
 
     def apply_customizations(self):
         self.apply_custom_css()
