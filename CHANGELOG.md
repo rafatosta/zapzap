@@ -36,6 +36,14 @@ releases and the AppStream metadata.
   Document which packages ship H.264/AAC (Flatpak and AppImage do; Debian's Qt
   WebEngine does not) and that ARM64 software decoding can stutter without
   meaning a missing codec (#907).
+- Show a persistent notice above the account pages while the global mute is
+  active, with one explicit "Unmute" action. The state was previously visible
+  only as a toolbar, tray or floating-panel icon, so videos and voice messages
+  playing silently were easily mistaken for a codec or playback failure. The
+  notice follows the persisted state at startup and every toggle, and its
+  action unmutes instead of toggling a stale value. Translate the notice for
+  Brazilian Portuguese, European Portuguese, Italian and Turkish, and fill the
+  missing "Unmute" entries in the first three catalogs.
 
 ### Fixed
 

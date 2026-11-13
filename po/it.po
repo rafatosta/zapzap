@@ -34,7 +34,7 @@ msgstr "Non chiedermelo più"
 #: zapzap/features/tray/sys_tray_manager.py:250
 #: zapzap/ui/components/floating_monitoring_panel.py:335
 msgid "Unmute"
-msgstr ""
+msgstr "Attiva audio"
 
 #: zapzap/app/main_window_controller.py:326
 #: zapzap/features/shortcuts/model.py:29
@@ -5127,6 +5127,13 @@ msgstr ""
 #, python-brace-format
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
+
+#: zapzap/ui/components/audio_muted_bar.py:50
+msgid ""
+"Audio is muted for every account, so videos and voice messages play silently."
+msgstr ""
+"L'audio è disattivato per tutti gli account, quindi i video e i messaggi "
+"vocali vengono riprodotti senza audio."
 
 #, fuzzy
 #~ msgid "No accounts yet"

@@ -123,6 +123,33 @@ class GlobalMuteTests(QtTestCase):
         self.assertEqual(browser.btn_mute.toolTip(), "Mute")
         self.sync_audio.assert_called_with(False)
 
+    def test_global_mute_notice_explains_silent_media_and_unmutes(self):
+        window = self._window()
+        browser = window.browser
+        bar = browser.audio_muted_bar
+        first = browser.webview_for_user_id("first")
+
+        self.assertTrue(bar.isHidden())
+
+        browser.btn_mute.click()
+
+        self.assertFalse(bar.isHidden())
+        self.assertEqual(bar.unmute_button.text(), "Unmute")
+        self.assertIn("muted", bar.message.text())
+
+        bar.unmute_button.click()
+
+        self.assertFalse(SystemSettings().audio_muted)
+        self.assertTrue(bar.isHidden())
+        self.assertEqual(first.audio_states[-1], False)
+
+    def test_notice_is_visible_when_the_app_starts_muted(self):
+        SystemSettings().audio_muted = True
+
+        window = self._window()
+
+        self.assertFalse(window.browser.audio_muted_bar.isHidden())
+
     def test_window_shortcut_routes_to_the_current_account(self):
         window = self._window()
         browser = window.browser

@@ -201,6 +201,7 @@ class BrowserController(BrowserView):
         self.btn_whatsapp_lock.clicked.connect(self.request_native_app_lock)
         self.btn_donations.clicked.connect(self.show_donations)
         self.btn_mute.clicked.connect(self.parent.toggle_audio_muted)
+        self.audio_muted_bar.unmute_requested.connect(self._request_unmute)
         self.btn_downloads.clicked.connect(
             lambda: self.parent.show_downloads_menu(self.btn_downloads)
         )
@@ -762,10 +763,17 @@ class BrowserController(BrowserView):
 
     def set_audio_muted(self, muted: bool) -> None:
         """Apply one application-wide audio state to every live account."""
+        self.audio_muted_bar.set_muted(bool(muted))
         for runtime in self._active_runtimes():
             setter = getattr(runtime.page, "set_audio_muted", None)
             if callable(setter):
                 setter(bool(muted))
+
+    def _request_unmute(self) -> None:
+        """Unmute explicitly; never toggle an already stale state."""
+        setter = getattr(self.parent, "set_audio_muted", None)
+        if callable(setter):
+            setter(False)
 
     def set_notification_sound_suppressed(self, suppressed: bool) -> None:
         """Silence the message tone of every live account (not persisted)."""
