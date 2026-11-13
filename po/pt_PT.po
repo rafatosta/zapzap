@@ -34,7 +34,7 @@ msgstr "Não perguntar novamente"
 #: zapzap/features/tray/sys_tray_manager.py:250
 #: zapzap/ui/components/floating_monitoring_panel.py:335
 msgid "Unmute"
-msgstr ""
+msgstr "Ativar som"
 
 #: zapzap/app/main_window_controller.py:326
 #: zapzap/features/shortcuts/model.py:29
@@ -5110,6 +5110,13 @@ msgstr ""
 #, python-brace-format
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
+
+#: zapzap/ui/components/audio_muted_bar.py:50
+msgid ""
+"Audio is muted for every account, so videos and voice messages play silently."
+msgstr ""
+"O áudio está silenciado em todas as contas, por isso os vídeos e as "
+"mensagens de voz são reproduzidos sem som."
 
 #~ msgid ""
 #~ "Show only chat avatars at a fixed width. Resizing is unavailable while "

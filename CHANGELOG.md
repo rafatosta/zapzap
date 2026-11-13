@@ -27,6 +27,23 @@ releases and the AppStream metadata.
   monitor, the tone guard against a real WebEngine and the settings UI with
   regression tests, translate the two new strings for Italian and Brazilian
   Portuguese and document the manual validation.
+- Record the media codecs Qt WebEngine actually advertises. A read-only probe
+  runs once per loaded page (`canPlayType` and `MediaSource.isTypeSupported`
+  for H.264/AAC), keeps only a fixed allowlist and never reads page content,
+  media, network or storage. The result appears as `media_codecs` under
+  Settings → Report a problem → Runtime information and in manual problem
+  reports, with `measured: false` and a reason when no page has loaded yet.
+  Document which packages ship H.264/AAC (Flatpak and AppImage do; Debian's Qt
+  WebEngine does not) and that ARM64 software decoding can stutter without
+  meaning a missing codec (#907).
+- Show a persistent notice above the account pages while the global mute is
+  active, with one explicit "Unmute" action. The state was previously visible
+  only as a toolbar, tray or floating-panel icon, so videos and voice messages
+  playing silently were easily mistaken for a codec or playback failure. The
+  notice follows the persisted state at startup and every toggle, and its
+  action unmutes instead of toggling a stale value. Translate the notice for
+  Brazilian Portuguese, European Portuguese, Italian and Turkish, and fill the
+  missing "Unmute" entries in the first three catalogs.
 
 ### Fixed
 

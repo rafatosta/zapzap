@@ -5099,6 +5099,11 @@ msgstr ""
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr ""
 
+#: zapzap/ui/components/audio_muted_bar.py:50
+msgid ""
+"Audio is muted for every account, so videos and voice messages play silently."
+msgstr ""
+
 #, fuzzy
 #~ msgid "No accounts yet"
 #~ msgstr "Nowe konto"

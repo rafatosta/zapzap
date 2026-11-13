@@ -1,8 +1,10 @@
 """Browser view for ZapZap account pages."""
 
 from PyQt6.QtWidgets import QHBoxLayout
+from PyQt6.QtWidgets import QVBoxLayout
 from PyQt6.QtWidgets import QWidget
 
+from zapzap.ui.components.audio_muted_bar import AudioMutedBar
 from zapzap.ui.components.browser_pages import BrowserPages
 from zapzap.ui.components.browser_sidebar import BrowserSidebar
 
@@ -42,5 +44,15 @@ class BrowserView(QWidget):
         self.btn_open_settings = self.sidebar.btn_open_settings
         self.horizontalLayout.addWidget(self.sidebar)
 
+        self.content = QWidget(self)
+        self.contentLayout = QVBoxLayout(self.content)
+        self.contentLayout.setContentsMargins(0, 0, 0, 0)
+        self.contentLayout.setSpacing(0)
+        self.audio_muted_bar = AudioMutedBar(self.content)
+        self.contentLayout.addWidget(self.audio_muted_bar)
+
         self.pages = BrowserPages(self)
-        self.horizontalLayout.addWidget(self.pages)
+        self.contentLayout.addWidget(self.pages)
+        self.horizontalLayout.addWidget(self.content)
+        self.horizontalLayout.activate()
+        self.contentLayout.activate()

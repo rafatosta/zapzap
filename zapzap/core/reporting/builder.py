@@ -71,6 +71,9 @@ class ReportBuilder:
                 "qt_webengine": qt_webengine,
                 "settings": graphics_report.get("settings") or {},
             }),
+            "media_codecs": self.sanitizer.sanitize(
+                runtime.get("media_codecs") or {}
+            ),
         })
         return base
 

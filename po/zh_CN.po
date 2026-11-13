@@ -4984,6 +4984,11 @@ msgstr "发布于 {date}"
 msgid "ZapZap {latest} is available. Current version: {current}."
 msgstr "ZapZap {latest} 已可用。当前版本：{current}。"
 
+#: zapzap/ui/components/audio_muted_bar.py:50
+msgid ""
+"Audio is muted for every account, so videos and voice messages play silently."
+msgstr ""
+
 #~ msgid ""
 #~ "Show only chat avatars at a fixed width. Resizing is unavailable while "
 #~ "enabled."

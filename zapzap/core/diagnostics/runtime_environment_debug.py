@@ -16,6 +16,7 @@ from PyQt6.QtGui import QGuiApplication
 from zapzap import __appname__, __version__
 from zapzap.core.config.settings.performance import PerformanceSettings
 from zapzap.core.config.settings_manager import SettingsManager
+from zapzap.core.diagnostics.media_codec_probe import media_codecs
 from zapzap.core.environment.environment_detector import EnvironmentDetector
 
 
@@ -526,6 +527,7 @@ class RuntimeEnvironmentDebug:
             "app_config": app_config.build(),
             "graphics": process_details,
             "qt_webengine": process_details["qt_webengine"],
+            "media_codecs": media_codecs.snapshot(),
             "audio": self.audio_info(),
             "locale": self.locale_info(),
             "python": self.python_info(),

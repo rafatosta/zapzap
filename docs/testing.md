@@ -142,6 +142,7 @@ documente o que ele protege.
 | `test_main_window_shortcuts.py` | atalhos da janela principal, ações de menu correspondentes e descoberta do Ctrl+J |
 | `test_macos_notification_backend.py` | roteamento Qt por padrão, opt-in nativo exato, imagens, privacidade, metadados explícitos de grupo, fallback, conta/clique, watchdog, callbacks tardios, objetos Qt destruídos e falhas de fallback assíncrono |
 | `test_macos_notification_packaging.py` | spec relocável, recursos/identidade/atividade, ponte obrigatória e ABI nativa sem submissão de notificação |
+| `test_media_codec_probe.py` | suporte anunciado a H.264/AAC por `canPlayType`/MSE em WebEngine real, allowlist, medição única por página, página destruída e blocos `media_codecs` no relatório e no Markdown |
 | `test_memory_benchmark.py` | procfs/USS, schema JSON/CSV/Markdown, isolamento WebEngine, factory stub, cenários e comparação relativa |
 | `test_native_titlebar_theme.py` | sincronização do esquema claro/escuro com decorações nativas, modo automático e fallback para Qt antigo |
 | `test_network_privacy_settings_ui.py` | proxy exclusivamente global, strict proxy, credenciais, aplicar/descartar, feedback de falha do Qt, restauração e WebRTC |
@@ -211,6 +212,7 @@ documente o que ele protege.
 - `test_macos_notification_backend.py`
 - `test_macos_notification_packaging.py`
 - `test_main_window_shortcuts.py`
+- `test_media_codec_probe.py`
 - `test_memory_benchmark.py`
 - `test_native_titlebar_theme.py`
 - `test_network_privacy_settings_ui.py`

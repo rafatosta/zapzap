@@ -144,7 +144,7 @@ relatório automático, mas o relatório manual e o ZIP ainda eram ambíguos.
 | #284, #974 | Colagem sem formatação e presença de classes MIME conhecidas; Ctrl+V continua nativo e não é interceptado. Comparação com o aplicativo de origem e clipboard real continua manual. |
 | #841, #975 | Resultado técnico de carregamento; sucesso não prova login nem presença de QR. Não se consulta nem captura QR, DOM de conversas ou storage. |
 | #928 | Resultado de carregamento da página não identifica recursos de figurinhas; tipo de recurso/código de erro ainda exige reprodução assistida sem URL/conteúdo. |
-| #876, #914, #961, #968 | Bibliotecas, flags, sessão Qt, GPU/driver visível e mute informado manualmente; codecs, erros de captura/reprodução, dispositivos e xruns não são comprovados por esse inventário. |
+| #876, #907, #914, #961, #968 | Bibliotecas, flags, sessão Qt, GPU/driver visível, mute informado manualmente e o suporte de codecs *anunciado* pelo Qt WebEngine (H.264/AAC via `canPlayType` e MSE); decodificação real de um arquivo específico, erros de captura/reprodução, dispositivos e xruns não são comprovados por esse inventário. |
 | #976 | Bloqueio global/por conta, backend ausente, retorno/exceção do encaminhamento no trace; retorno sem exceção não confirma entrega no desktop nem controle do áudio da página. |
 
 ### Contrato de evidência e custo
@@ -174,6 +174,14 @@ formatos sem revisão embarcada exigem informar manualmente a revisão exata.
 Ausência de GPU no sandbox significa não observada; diretório ICD Vulkan
 presente não prova aceleração, driver funcional ou uso pelo Chromium.
 
+O bloco `media_codecs` é coletado uma única vez por página carregada, com
+`canPlayType` para H.264/AAC e `MediaSource.isTypeSupported`, sem ler conteúdo,
+mídia, rede ou storage e sem alterar reprodução ou flags. Ele descreve o que o
+Qt WebEngine anuncia, não o que um arquivo específico decodifica; por isso o
+relatório inclui essa ressalva. Antes de qualquer página carregar, ou se a
+página não estiver disponível, o bloco permanece `measured: false` com o motivo
+(`not-run` ou `unavailable`) em vez de inferir suporte.
+
 O trace existente, habilitado explicitamente com
 `ZAPZAP_WEBENGINE_TRACE=1`, recebe operações com vocabulário fixo, horário UTC e
 relógio monotônico. Nenhum polling, dependência, alteração de flags ou leitura de
@@ -202,7 +210,8 @@ entre ambientes. Para mídia, informe reprodução versus captura/chamada, mute,
 codec e stack de áudio quando conhecidos, sem enviar mídia pessoal. Para login,
 informe se a página carrega e a interface de autenticação aparece, sem QR.
 Para figurinhas, informe se afeta todos os recursos e se o mesmo acontece no
-navegador. Captura de rede, dispositivos, codecs e DOM não foi automatizada:
-pode revelar dados ou confundir suporte anunciado com funcionamento real.
+navegador. A captura de rede, de dispositivos e do DOM não foi automatizada:
+pode revelar dados ou confundir suporte anunciado com funcionamento real; o
+bloco `media_codecs` mede somente o suporte anunciado pelo motor.
 Backtraces nativos devem seguir o procedimento de investigação e ser revisados
 antes de compartilhar. Não há envio automático nem fechamento de issues.
