@@ -14,6 +14,7 @@
   const customWidthAttribute = 'data-zapzap-chat-list-custom-width';
   const draggingAttribute = 'data-zapzap-chat-list-dragging';
   const columnWidthProperty = '--zapzap-chat-list-width';
+  const measuredWidthProperty = '--zapzap-chat-list-measured-width';
   const resizeHandleClass = 'zapzap-chat-list-resize-handle';
 
   const root = document.documentElement;
@@ -53,7 +54,7 @@
         pointer-events: none;
       }
       :root[${compactAttribute}] div[role="application"]:has([data-testid="expressions-panel"]) {
-        left: calc(var(${columnWidthProperty}, ${minimumColumnWidth}px) + 8px) !important;
+        left: calc(var(${measuredWidthProperty}, ${minimumColumnWidth}px) + 8px) !important;
       }
       [data-zapzap-new-chat-source] { display: none !important; }
       .${resizeHandleClass} {
@@ -274,6 +275,7 @@
       resizeHandle.style.top = `${columnBounds.top}px`;
       resizeHandle.style.height = `${columnBounds.height}px`;
       root.toggleAttribute(compactAttribute, columnBounds.width < compactThreshold);
+      root.style.setProperty(measuredWidthProperty, `${Math.round(columnBounds.width)}px`);
       syncCompactRows();
       syncNewChat();
     };
@@ -301,6 +303,7 @@
       root.removeAttribute(compactAttribute);
       restoreRows();
       root.style.removeProperty(columnWidthProperty);
+      root.style.removeProperty(measuredWidthProperty);
     };
 
     const widestColumnWidth = () => Math.round(
@@ -487,6 +490,7 @@
       root.removeAttribute(customWidthAttribute);
       root.removeAttribute(draggingAttribute);
       root.style.removeProperty(columnWidthProperty);
+      root.style.removeProperty(measuredWidthProperty);
     };
   };
 
