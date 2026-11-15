@@ -294,6 +294,30 @@ class ResizableChatListTests(QtTestCase):
           getComputedStyle(document.querySelector('[data-testid="icon-unread-count"]')).position !== 'absolute'
         """))
 
+    def test_compact_mode_aligns_message_yourself_row_with_other_rows(self):
+        self._javascript("""
+          const style = document.createElement('style');
+          style.textContent =
+            '[data-testid="cell-frame-container"], [data-testid="message-yourself-row"] { margin: 0 10px; }';
+          document.head.appendChild(style);
+          document.getElementById('side').innerHTML = `
+            <div role="grid">
+              <div role="row"><div id="chat-frame" data-testid="cell-frame-container"></div></div>
+              <div role="row"><div id="self-row" data-testid="message-yourself-row"></div></div>
+            </div>`;
+        """)
+        margins = """
+          (() => {
+            const margin = (id) => getComputedStyle(document.getElementById(id)).marginInlineStart;
+            return [margin('chat-frame'), margin('self-row')];
+          })()
+        """
+        self._save_width(MINIMUM_COLUMN_WIDTH)
+        self.view.set_resizable_chat_list_enabled(True)
+        self.assertEqual(self._javascript(margins), ["0px", "0px"])
+        self.view.set_resizable_chat_list_enabled(False)
+        self.assertEqual(self._javascript(margins), ["10px", "10px"])
+
     def test_compact_frame_encloses_avatar_and_restores_native_margins(self):
         self._javascript("""
           const style = document.createElement('style');
