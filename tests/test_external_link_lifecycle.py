@@ -131,6 +131,37 @@ class ExternalLinkLifecycleTests(unittest.TestCase):
         self.assertEqual(self.page.triggered_actions, [])
         self.assertEqual(self.page.delete_later_calls, 1)
 
+    def test_popup_url_with_a_local_scheme_is_not_handed_to_the_desktop(self):
+        for url in (
+            "file:///etc/passwd",
+            "smb://attacker.example/share",
+            "ssh://attacker.example",
+            "custom-handler:payload",
+        ):
+            with self.subTest(url=url):
+                self.page = _ExternalPage()
+                with self.assertLogs(page_controller_module.logger, "WARNING"):
+                    open_url, opened = self._open(url)
+
+                self.assertFalse(opened)
+                open_url.assert_not_called()
+                self.assertTrue(self.page.property("externalUrlOpened"))
+                self.assertEqual(self.page.triggered_actions, [])
+                self.assertEqual(self.page.delete_later_calls, 1)
+
+    def test_popup_url_with_a_web_or_mail_scheme_is_handed_to_the_desktop(self):
+        for url in (
+            "http://example.com/a",
+            "https://example.com/b",
+            "mailto:someone@example.com",
+        ):
+            with self.subTest(url=url):
+                self.page = _ExternalPage()
+                open_url, opened = self._open(url)
+
+                self.assertTrue(opened)
+                open_url.assert_called_once()
+
     def test_disposal_is_deferred_out_of_the_navigation_callback(self):
         open_url, opened = self._open(
             "https://example.com/path", run_deferred=False

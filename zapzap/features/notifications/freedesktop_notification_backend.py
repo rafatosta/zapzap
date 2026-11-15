@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+import html
 import logging
 import os
 from collections import OrderedDict
@@ -137,6 +138,7 @@ class DBusConnection(QObject):
         self.interface = None
         self.available = False
         self._signals_connected = False
+        self._body_markup = False
         self._notifications: dict[int, DBusNotification] = {}
         self._activation_tokens: dict[int, str] = {}
 
@@ -145,6 +147,7 @@ class DBusConnection(QObject):
     def _init(self):
         self.interface = None
         self.available = False
+        self._body_markup = False
 
         if not self.bus.isConnected():
             logger.warning(
@@ -177,6 +180,32 @@ class DBusConnection(QObject):
 
         self.interface = interface
         self.available = True
+        self._body_markup = self._server_supports_body_markup(interface)
+
+    @staticmethod
+    def _server_supports_body_markup(interface) -> bool:
+        """Return whether the server interprets markup in the body.
+
+        Servers that advertise ``body-markup`` render a subset of HTML in the
+        body. The body comes from the web page (contact names and message
+        text), so it must then be escaped. A failed query keeps plain text.
+        """
+        try:
+            reply = interface.call("GetCapabilities")
+            if reply.type() == QDBusMessage.MessageType.ErrorMessage:
+                return False
+            arguments = reply.arguments()
+        except Exception:
+            logger.debug("GetCapabilities failed", exc_info=True)
+            return False
+        if not arguments or not isinstance(arguments[0], (list, tuple)):
+            return False
+        return "body-markup" in arguments[0]
+
+    def _body_for_server(self, body: str) -> str:
+        if self._body_markup:
+            return html.escape(body or "", quote=False)
+        return body
 
     def _connect_signals(self) -> bool:
         connected = []
@@ -276,7 +305,7 @@ class DBusConnection(QObject):
                 self._dbus_uint(notification.id),
                 notification.icon,   # fallback
                 notification.title,
-                notification.body,
+                self._body_for_server(notification.body),
                 self._build_string_array(notification.actions_list()),
                 self._build_hints(notification.hints),
                 notification.timeout,
