@@ -294,6 +294,24 @@ class ResizableChatListTests(QtTestCase):
           getComputedStyle(document.querySelector('[data-testid="icon-unread-count"]')).position !== 'absolute'
         """))
 
+    def test_compact_mode_keeps_expressions_panel_inside_the_window(self):
+        self._javascript("""
+          document.body.insertAdjacentHTML('beforeend', `
+            <div role="application" id="panel"
+                 style="position:absolute; top:100px; left:-117px; width:560px">
+              <div data-testid="expressions-panel"></div>
+            </div>`);
+        """)
+        self._save_width(MINIMUM_COLUMN_WIDTH)
+        self.view.set_resizable_chat_list_enabled(True)
+        self.assertEqual(self._javascript("""
+          document.getElementById('panel').getBoundingClientRect().left
+        """), MINIMUM_COLUMN_WIDTH + 8)
+        self.view.set_resizable_chat_list_enabled(False)
+        self.assertEqual(self._javascript("""
+          document.getElementById('panel').getBoundingClientRect().left
+        """), -117)
+
     def test_compact_frame_encloses_avatar_and_restores_native_margins(self):
         self._javascript("""
           const style = document.createElement('style');

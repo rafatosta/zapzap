@@ -52,6 +52,9 @@
         z-index: 1;
         pointer-events: none;
       }
+      :root[${compactAttribute}] div[role="application"]:has([data-testid="expressions-panel"]) {
+        left: calc(var(${columnWidthProperty}, ${minimumColumnWidth}px) + 8px) !important;
+      }
       [data-zapzap-new-chat-source] { display: none !important; }
       .${resizeHandleClass} {
         position: fixed;
