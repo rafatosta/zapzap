@@ -51,6 +51,11 @@ releases and the AppStream metadata.
   photo that failed to render removed photos from every later notification
   until ZapZap restarted. Now it only learns from fields it actually sent, with
   a regression test.
+- Keep the emoji, GIF and sticker panel inside the window when the chat list
+  is compact (#1026). WhatsApp Web centres the panel on the composer button
+  without clamping it to the viewport, so with the 85 px list it opened about
+  117 px off-screen to the left. In compact mode the panel now starts to the
+  right of the chat list, with a regression test.
 
 ## [7.5.1] - 2026-10-15
 

@@ -294,6 +294,41 @@ class ResizableChatListTests(QtTestCase):
           getComputedStyle(document.querySelector('[data-testid="icon-unread-count"]')).position !== 'absolute'
         """))
 
+    def test_compact_mode_keeps_expressions_panel_inside_the_window(self):
+        self._javascript("""
+          document.body.insertAdjacentHTML('beforeend', `
+            <div role="application" id="panel"
+                 style="position:absolute; top:100px; left:-117px; width:560px">
+              <div data-testid="expressions-panel"></div>
+            </div>`);
+        """)
+        self._save_width(MINIMUM_COLUMN_WIDTH)
+        self.view.set_resizable_chat_list_enabled(True)
+        self.assertEqual(self._javascript("""
+          document.getElementById('panel').getBoundingClientRect().left
+        """), MINIMUM_COLUMN_WIDTH + 8)
+        self.view.set_resizable_chat_list_enabled(False)
+        self.assertEqual(self._javascript("""
+          document.getElementById('panel').getBoundingClientRect().left
+        """), -117)
+
+    def test_expressions_panel_follows_the_measured_column_without_saved_width(self):
+        self._javascript("""
+          document.querySelector('.column').style.cssText = 'flex:0 0 150px;max-width:150px';
+          document.body.insertAdjacentHTML('beforeend', `
+            <div role="application" id="panel"
+                 style="position:absolute; top:100px; left:-117px; width:560px">
+              <div data-testid="expressions-panel"></div>
+            </div>`);
+        """)
+        self.view.set_resizable_chat_list_enabled(True)
+        self.assertTrue(self._javascript(
+            "document.documentElement.hasAttribute('data-zapzap-chat-list-compact')"
+        ))
+        self.assertEqual(self._javascript("""
+          document.getElementById('panel').getBoundingClientRect().left
+        """), 150 + 8)
+
     def test_compact_frame_encloses_avatar_and_restores_native_margins(self):
         self._javascript("""
           const style = document.createElement('style');
