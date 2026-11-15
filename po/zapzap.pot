@@ -4576,15 +4576,15 @@ msgid "Show sidebar"
 msgstr ""
 
 #: zapzap/ui/components/main_window.py:168
-msgid "Ctrl+Alt+1"
+msgid "Ctrl+Shift+1"
 msgstr ""
 
 #: zapzap/ui/components/main_window.py:170
-msgid "Ctrl+Alt+2"
+msgid "Ctrl+Shift+2"
 msgstr ""
 
 #: zapzap/ui/components/main_window.py:172
-msgid "Ctrl+Alt+3"
+msgid "Ctrl+Shift+3"
 msgstr ""
 
 #: zapzap/ui/components/main_window.py:173

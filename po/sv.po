@@ -4810,16 +4810,16 @@ msgid "Show sidebar"
 msgstr "Visa sidofält"
 
 #: zapzap/ui/components/main_window.py:168
-msgid "Ctrl+Alt+1"
-msgstr "Ctrl+Alt+1"
+msgid "Ctrl+Shift+1"
+msgstr "Ctrl+Shift+1"
 
 #: zapzap/ui/components/main_window.py:170
-msgid "Ctrl+Alt+2"
-msgstr "Ctrl+Alt+2"
+msgid "Ctrl+Shift+2"
+msgstr "Ctrl+Shift+2"
 
 #: zapzap/ui/components/main_window.py:172
-msgid "Ctrl+Alt+3"
-msgstr "Ctrl+Alt+3"
+msgid "Ctrl+Shift+3"
+msgstr "Ctrl+Shift+3"
 
 #: zapzap/ui/components/main_window.py:173
 msgid "Reload"

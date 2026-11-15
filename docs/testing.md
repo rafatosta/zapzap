@@ -166,6 +166,7 @@ documente o que ele protege.
 | `test_settings_card.py` | divisores e grupos do card compartilhado em `ui.components` |
 | `test_settings_lazy_loading.py` | subprocessos de importação, registro e instanciação lazy, singleton por painel, diagnóstico, empacotamento, APIs públicas e fechamento de Configurações |
 | `test_settings_radio_group.py` | divisores do grupo de rádio em `ui.components` |
+| `test_shortcuts_model.py` | atalhos de tema exibidos no diálogo de atalhos, sem combinações com `Ctrl+Alt` que colidem com AltGr |
 | `test_software_video_decoding.py` | presets, flags Chromium de renderização/strict proxy, persistência e ordem do bootstrap |
 | `test_spellcheck_language_picker.py` | migração, seleção múltipla transacional, pesquisa, limite, recentes, menu e perfis WebEngine |
 | `test_taskbar_badge.py` | contador nativo, zero, preferência, bandeja oculta, ativação primária/contexto por backend, integração StatusNotifier/AppIndicator, reabertura do painel e reconexão após reinício da interface, compatibilidade com Qt anterior |
@@ -234,6 +235,7 @@ documente o que ele protege.
 - `test_settings_card.py`
 - `test_settings_lazy_loading.py`
 - `test_settings_radio_group.py`
+- `test_shortcuts_model.py`
 - `test_software_video_decoding.py`
 - `test_spellcheck_language_picker.py`
 - `test_system_startup_settings_ui.py`
