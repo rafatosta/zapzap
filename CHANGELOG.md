@@ -51,6 +51,10 @@ releases and the AppStream metadata.
   photo that failed to render removed photos from every later notification
   until ZapZap restarted. Now it only learns from fields it actually sent, with
   a regression test.
+- Align the "Message yourself" row with the other chats in the compact chat
+  list (#962). Only the regular chat frame had its side margins cleared, so
+  the self-chat avatar sat 10 px to the right of every other avatar. Clear the
+  margins of `message-yourself-row` too, with a regression test.
 
 ## [7.5.1] - 2026-10-15
 
