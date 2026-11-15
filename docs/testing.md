@@ -138,6 +138,7 @@ documente o que ele protege.
 | `test_gpu_environment.py` | detecção multi-GPU, conectores e seleção de render node |
 | `test_browser_grid_view_ui.py` | cartões nativos da grade, avatar/nome, badge de não lidas, atualização por sinal e seleção por ID |
 | `test_http_cache_size.py` | cache em MiB, tipos de cache, política de cookies, memória JavaScript, autocura persistida e fallbacks de perfil sem WebEngine real |
+| `test_indonesian_translation.py` | catálogo de tradução indonésio (`po/id.po`, `po/LINGUAS`, `.mo` compilado e placeholders) |
 | `test_initial_setup_ui.py` | onboarding, som, fechamento, permissões, dicionários e persistência |
 | `test_main_window_shortcuts.py` | atalhos da janela principal, ações de menu correspondentes e descoberta do Ctrl+J |
 | `test_macos_notification_backend.py` | roteamento Qt por padrão, opt-in nativo exato, imagens, privacidade, metadados explícitos de grupo, fallback, conta/clique, watchdog, callbacks tardios, objetos Qt destruídos e falhas de fallback assíncrono |
@@ -207,6 +208,7 @@ documente o que ele protege.
 - `test_global_mute.py`
 - `test_gpu_environment.py`
 - `test_http_cache_size.py`
+- `test_indonesian_translation.py`
 - `test_initial_setup_ui.py`
 - `test_macos_notification_backend.py`
 - `test_macos_notification_packaging.py`

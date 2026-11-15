@@ -1,0 +1,4812 @@
+# Indonesian translation for ZapZap.
+# Copyright (C) 2026 ZapZap contributors
+# This file is distributed under the same license as the ZapZap package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ZapZap\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-11 19:12+0100\n"
+"PO-Revision-Date: 2026-11-15 20:00+0700\n"
+"Last-Translator: ZapZap contributors\n"
+"Language-Team: Indonesian\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: zapzap/app/window_lifecycle.py:89
+msgid "Close ZapZap"
+msgstr "Tutup ZapZap"
+
+#: zapzap/app/window_lifecycle.py:90
+msgid "Are you sure you want to close?"
+msgstr "Yakin ingin menutup?"
+
+#: zapzap/app/window_lifecycle.py:91
+msgid "Don't ask again"
+msgstr "Jangan tanya lagi"
+
+#: zapzap/app/main_window_controller.py:326
+#: zapzap/features/tray/sys_tray_manager.py:68
+#: zapzap/features/tray/sys_tray_manager.py:250
+#: zapzap/ui/components/floating_monitoring_panel.py:335
+msgid "Unmute"
+msgstr "Bunyikan"
+
+#: zapzap/app/main_window_controller.py:326
+#: zapzap/features/shortcuts/model.py:29
+#: zapzap/features/tray/sys_tray_manager.py:68
+#: zapzap/features/tray/sys_tray_manager.py:250
+#: zapzap/ui/components/browser_sidebar.py:217
+#: zapzap/ui/components/browser_sidebar.py:218
+#: zapzap/ui/components/floating_monitoring_panel.py:335
+msgid "Mute"
+msgstr "Bisukan"
+
+#: zapzap/app/main_window_controller.py:578
+#: zapzap/features/browser/shell/browser_controller.py:610
+#: zapzap/features/browser/shell/browser_controller.py:684
+#: zapzap/features/browser/shell/browser_controller.py:956
+#, python-brace-format
+msgid "Account {}"
+msgstr "Akun {}"
+
+#: zapzap/core/diagnostics/dialog_dump_handler.py:27
+msgid "Unexpected Error"
+msgstr "Kesalahan Tak Terduga"
+
+#: zapzap/core/diagnostics/dialog_dump_handler.py:28
+msgid "The application encountered an unexpected error."
+msgstr "Aplikasi mengalami kesalahan yang tidak terduga."
+
+#: zapzap/core/diagnostics/dialog_dump_handler.py:30
+#, python-brace-format
+msgid ""
+"A diagnostic report was generated automatically at:\n"
+"\n"
+"{path}\n"
+"\n"
+"Please send this file to support so we can investigate the issue.\n"
+"\n"
+"Report channels:\n"
+" - Issue tracker: {issue_url}\n"
+" - Email: {email}"
+msgstr ""
+"Laporan diagnostik dibuat secara otomatis di:\n"
+"\n"
+"{path}\n"
+"\n"
+"Silakan kirim file ini ke tim dukungan agar kami dapat menyelidiki masalahnya.\n"
+"\n"
+"Saluran laporan:\n"
+" - Pelacak isu: {issue_url}\n"
+" - Email: {email}"
+
+#: zapzap/core/diagnostics/dialog_dump_handler.py:41
+#: zapzap/features/settings/pages/advanced_customizations/view.py:101
+#: zapzap/features/settings/pages/debugging/view.py:241
+#: zapzap/features/downloads/ui/download_dialog.py:107
+msgid "Open folder"
+msgstr "Buka folder"
+
+#: zapzap/core/environment/environment_detector.py:5
+msgid "Official"
+msgstr "Resmi"
+
+#: zapzap/core/environment/environment_detector.py:6
+msgid "Community"
+msgstr "Komunitas"
+
+#: zapzap/core/environment/environment_detector.py:7
+#: zapzap/core/environment/environment_detector.py:19
+#: zapzap/core/environment/environment_detector.py:20
+#: zapzap/core/environment/environment_detector.py:21
+#: zapzap/features/settings/pages/about/model.py:58
+msgid "Unknown"
+msgstr "Tidak diketahui"
+
+#: zapzap/core/environment/proxy_manager.py:32
+msgid "No proxying is used."
+msgstr "Tidak menggunakan proxy."
+
+#: zapzap/core/environment/proxy_manager.py:36
+msgid "Proxy is determined based on the system proxy."
+msgstr "Proxy ditentukan berdasarkan pengaturan proxy sistem."
+
+#: zapzap/core/environment/proxy_manager.py:40
+msgid "Socks5 proxying is used."
+msgstr "Menggunakan proxy SOCKS5."
+
+#: zapzap/core/environment/proxy_manager.py:44
+msgid "HTTP transparent proxying is used."
+msgstr "Menggunakan proxy transparan HTTP."
+
+#: zapzap/core/environment/proxy_manager.py:48
+msgid "Proxying for HTTP requests only."
+msgstr "Proxy hanya untuk permintaan HTTP."
+
+#: zapzap/core/environment/proxy_manager.py:52
+msgid "Proxying for FTP requests only."
+msgstr "Proxy hanya untuk permintaan FTP."
+
+#: zapzap/features/accounts/card_user_controller.py:62
+#: zapzap/features/accounts/card_user_controller.py:302
+#: zapzap/features/accounts/card_user_controller.py:314
+msgid "Could not update account"
+msgstr "Tidak dapat memperbarui akun"
+
+#: zapzap/features/accounts/card_user_controller.py:63
+#: zapzap/features/accounts/card_user_controller.py:315
+msgid "The account state could not be changed."
+msgstr "Status akun tidak dapat diubah."
+
+#: zapzap/features/accounts/card_user_controller.py:82
+#: zapzap/features/accounts/card_user_controller.py:261
+msgid "Could not remove account"
+msgstr "Tidak dapat menghapus akun"
+
+#: zapzap/features/accounts/card_user_controller.py:83
+#: zapzap/features/accounts/card_user_controller.py:262
+msgid "The account could not be removed. Please try again."
+msgstr "Akun tidak dapat dihapus. Silakan coba lagi."
+
+#: zapzap/features/accounts/card_user_controller.py:114
+#: zapzap/features/accounts/card_user_controller.py:123
+#: zapzap/features/accounts/card_user_controller.py:130
+#: zapzap/ui/components/edit_account_dialog.py:683
+#: zapzap/ui/components/edit_account_dialog.py:698
+msgid "Could not sync profile photo"
+msgstr "Tidak dapat menyinkronkan foto profil"
+
+#: zapzap/features/accounts/card_user_controller.py:115
+#: zapzap/ui/components/edit_account_dialog.py:684
+msgid "This account does not have an active WhatsApp session."
+msgstr "Akun ini tidak memiliki sesi WhatsApp yang aktif."
+
+#: zapzap/features/accounts/card_user_controller.py:131
+#: zapzap/features/accounts/domain/profile_sync.py:70
+msgid "No profile photo is available."
+msgstr "Foto profil tidak tersedia."
+
+#: zapzap/features/accounts/card_user_controller.py:137
+#: zapzap/ui/components/edit_account_dialog.py:705
+msgid "WhatsApp profile photo found"
+msgstr "Foto profil WhatsApp ditemukan"
+
+#: zapzap/features/accounts/card_user_controller.py:138
+#: zapzap/ui/components/edit_account_dialog.py:706
+msgid "Update this account photo?"
+msgstr "Perbarui foto akun ini?"
+
+#: zapzap/features/accounts/card_user_controller.py:225
+msgid "Remove account?"
+msgstr "Hapus akun?"
+
+#: zapzap/features/accounts/card_user_controller.py:227
+#, python-brace-format
+msgid "The account \"{name}\" will be removed from ZapZap."
+msgstr "Akun \"{name}\" akan dihapus dari ZapZap."
+
+#: zapzap/features/accounts/card_user_controller.py:228
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:191
+#: zapzap/ui/components/card_user.py:234 zapzap/ui/components/card_user.py:299
+#: zapzap/ui/components/card_user.py:470 zapzap/ui/components/card_user.py:697
+msgid "Unnamed account"
+msgstr "Akun tanpa nama"
+
+#: zapzap/features/accounts/card_user_controller.py:230
+msgid "Its session will be closed and related local data may be permanently removed. This action cannot be undone."
+msgstr "Sesinya akan ditutup dan data lokal terkait mungkin dihapus secara permanen. Tindakan ini tidak dapat dibatalkan."
+
+#: zapzap/features/accounts/card_user_controller.py:237
+#: zapzap/ui/components/card_user.py:153
+#: zapzap/ui/components/dictionary_manager_dialog.py:191
+msgid "Remove"
+msgstr "Hapus"
+
+#: zapzap/features/accounts/card_user_controller.py:243
+#: zapzap/features/reporting/dialogs.py:213
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:642
+#: zapzap/features/settings/pages/network_privacy/controller.py:282
+#: zapzap/features/downloads/ui/download_dialog.py:109
+#: zapzap/features/downloads/ui/downloads_menu.py:269
+#: zapzap/features/downloads/ui/downloads_menu.py:649
+#: zapzap/ui/components/edit_account_dialog.py:467
+#: zapzap/ui/components/send_message_to_number_dialog.py:262
+#: zapzap/ui/components/send_message_to_number_dialog.py:268
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:275
+msgid "Cancel"
+msgstr "Batal"
+
+#: zapzap/features/accounts/card_user_controller.py:272
+msgid "User-Agent Changed"
+msgstr "User-Agent Diubah"
+
+#: zapzap/features/accounts/card_user_controller.py:274
+msgid "Please restart this session (or the application) to apply the new User-Agent."
+msgstr "Silakan mulai ulang sesi ini (atau aplikasi) untuk menerapkan User-Agent baru."
+
+#: zapzap/features/accounts/card_user_controller.py:303
+msgid "The notification state could not be changed."
+msgstr "Status notifikasi tidak dapat diubah."
+
+#: zapzap/features/alerts/external_url.py:39
+msgid "Could not open link"
+msgstr "Tidak dapat membuka tautan"
+
+#: zapzap/features/alerts/external_url.py:40
+msgid "The address could not be opened in your default browser."
+msgstr "Alamat tidak dapat dibuka di peramban bawaan Anda."
+
+#: zapzap/features/alerts/external_url.py:41
+msgid "You can copy the address and open it manually."
+msgstr "Anda dapat menyalin alamatnya dan membukanya secara manual."
+
+#: zapzap/features/alerts/external_url.py:44
+msgid "Copy address"
+msgstr "Salin alamat"
+
+#: zapzap/features/alerts/external_url.py:45
+#: zapzap/features/reporting/dialogs.py:360
+#: zapzap/features/browser/shell/browser_controller.py:330
+#: zapzap/ui/components/dictionary_manager_dialog.py:91
+#: zapzap/ui/components/dictionary_manager_dialog.py:193
+#: zapzap/ui/components/edit_account_dialog.py:74
+#: zapzap/ui/components/send_message_to_number_dialog.py:135
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:170
+#: zapzap/ui/primitives/close_button.py:66
+msgid "Close"
+msgstr "Tutup"
+
+#: zapzap/features/alerts/alert_manager.py:72
+#: zapzap/features/alerts/alert_manager.py:91
+#: zapzap/features/alerts/alert_manager.py:110
+#: zapzap/features/alerts/alert_manager.py:173
+msgid "OK"
+msgstr "OK"
+
+#: zapzap/features/alerts/alert_manager.py:214
+msgid "Yes"
+msgstr "Ya"
+
+#: zapzap/features/alerts/alert_manager.py:222
+msgid "No"
+msgstr "Tidak"
+
+#: zapzap/features/alerts/alert_manager.py:249
+#: zapzap/features/settings/pages/about/view.py:291
+msgid "Information"
+msgstr "Informasi"
+
+#: zapzap/features/alerts/alert_manager.py:251
+#, python-brace-format
+msgid ""
+"Limit of {} users reached.\n"
+"It is not possible to create more users!"
+msgstr ""
+"Batas {} pengguna tercapai.\n"
+"Tidak dapat membuat pengguna lagi!"
+
+#: zapzap/features/alerts/alert_manager.py:260
+msgid "Single process mode active"
+msgstr "Mode proses tunggal aktif"
+
+#: zapzap/features/alerts/alert_manager.py:262
+msgid ""
+"Single process mode supports only 1 account profile.\n"
+"Disable 'Single process' in Performance settings and restart ZapZap to use multiple accounts."
+msgstr ""
+"Mode proses tunggal hanya mendukung 1 profil akun.\n"
+"Nonaktifkan 'Proses tunggal' di pengaturan Performa lalu mulai ulang ZapZap untuk menggunakan beberapa akun."
+
+#: zapzap/features/alerts/alert_manager.py:271
+msgid "Cannot enable single process mode"
+msgstr "Tidak dapat mengaktifkan mode proses tunggal"
+
+#: zapzap/features/alerts/alert_manager.py:273
+msgid ""
+"Single process mode supports only 1 account profile.\n"
+"Remove extra accounts before enabling 'Single process'."
+msgstr ""
+"Mode proses tunggal hanya mendukung 1 profil akun.\n"
+"Hapus akun tambahan sebelum mengaktifkan 'Proses tunggal'."
+
+#: zapzap/features/alerts/alert_manager.py:280
+msgid "Attention"
+msgstr "Perhatian"
+
+#: zapzap/features/alerts/alert_manager.py:280
+msgid "No active account!"
+msgstr "Tidak ada akun aktif!"
+
+#: zapzap/features/dictionaries/dictionary_manager.py:113
+msgid "Remove dictionary"
+msgstr "Hapus kamus"
+
+#: zapzap/features/dictionaries/dictionary_manager.py:114
+#, python-brace-format
+msgid "Remove the dictionary {code}?"
+msgstr "Hapus kamus {code}?"
+
+#: zapzap/features/dictionaries/dictionary_manager.py:124
+msgid "Disable spell checker and remove"
+msgstr "Nonaktifkan pemeriksa ejaan dan hapus"
+
+#: zapzap/features/dictionaries/dictionary_manager.py:126
+#, python-brace-format
+msgid "This is the last active dictionary. Disable the spell checker and remove {code}?"
+msgstr "Ini adalah kamus aktif terakhir. Nonaktifkan pemeriksa ejaan dan hapus {code}?"
+
+#: zapzap/features/dictionaries/dictionary_manager.py:145
+#: zapzap/features/dictionaries/dictionary_manager.py:174
+msgid "Replace dictionary"
+msgstr "Ganti kamus"
+
+#: zapzap/features/dictionaries/dictionary_manager.py:147
+#: zapzap/features/dictionaries/dictionary_manager.py:176
+#, python-brace-format
+msgid "A different dictionary named {code} is installed. Replace it?"
+msgstr "Kamus lain bernama {code} sudah terpasang. Ganti?"
+
+#: zapzap/features/donation/model.py:40
+msgid "GitHub Sponsors"
+msgstr "GitHub Sponsors"
+
+#: zapzap/features/donation/model.py:42
+msgid "Support ZapZap through GitHub and help fund its long-term development."
+msgstr "Dukung ZapZap melalui GitHub dan bantu mendanai pengembangan jangka panjangnya."
+
+#: zapzap/features/donation/model.py:50
+msgid "Pix"
+msgstr "Pix"
+
+#: zapzap/features/donation/model.py:52
+msgid "Continue securely in your browser and complete the contribution with your banking app."
+msgstr "Lanjutkan dengan aman di peramban Anda dan selesaikan kontribusi melalui aplikasi perbankan."
+
+#: zapzap/features/donation/model.py:60
+msgid "PayPal"
+msgstr "PayPal"
+
+#: zapzap/features/donation/model.py:61
+msgid "A simple and secure way to support ZapZap from anywhere."
+msgstr "Cara mudah dan aman untuk mendukung ZapZap dari mana saja."
+
+#: zapzap/features/donation/model.py:67
+msgid "Wise"
+msgstr "Wise"
+
+#: zapzap/features/donation/model.py:69
+msgid "International contributions with reduced fees and competitive exchange rates."
+msgstr "Kontribusi internasional dengan biaya rendah dan nilai tukar yang kompetitif."
+
+#: zapzap/features/donation/model.py:77
+msgid "Ko-fi"
+msgstr "Ko-fi"
+
+#: zapzap/features/donation/model.py:79
+msgid "Make a one-time or recurring contribution and help keep the project active."
+msgstr "Berikan kontribusi sekali atau berulang dan bantu menjaga proyek tetap aktif."
+
+#: zapzap/features/donation/page.py:62 zapzap/features/donation/page.py:106
+msgid "Opens in your browser"
+msgstr "Terbuka di peramban Anda"
+
+#: zapzap/features/donation/page.py:67 zapzap/features/donation/page.py:108
+msgid "External link. Opens in your default browser."
+msgstr "Tautan eksternal. Terbuka di peramban bawaan Anda."
+
+#: zapzap/features/donation/page.py:71 zapzap/features/donation/page.py:110
+msgid "Donate"
+msgstr "Donasi"
+
+#: zapzap/features/donation/page.py:73 zapzap/features/donation/page.py:112
+#, python-brace-format
+msgid "Open {method} in your browser"
+msgstr "Buka {method} di peramban Anda"
+
+#: zapzap/features/donation/page.py:76 zapzap/features/donation/page.py:115
+msgid "Opens the official external contribution page."
+msgstr "Membuka halaman kontribusi eksternal resmi."
+
+#: zapzap/features/donation/page.py:79 zapzap/features/donation/page.py:118
+#, python-brace-format
+msgid "Open the official {method} page in your browser"
+msgstr "Buka halaman resmi {method} di peramban Anda"
+
+#: zapzap/features/donation/page.py:163 zapzap/features/donation/page.py:272
+msgid "Help keep ZapZap alive"
+msgstr "Bantu menjaga ZapZap tetap hidup"
+
+#: zapzap/features/donation/page.py:165 zapzap/features/donation/page.py:275
+msgid "ZapZap is free and open source. Your contributions help keep the project active, improve the application, and develop new features."
+msgstr "ZapZap gratis dan bersumber terbuka. Kontribusi Anda membantu menjaga proyek tetap aktif, menyempurnakan aplikasi, dan mengembangkan fitur baru."
+
+#: zapzap/features/donation/page.py:195 zapzap/features/donation/page.py:280
+msgid "Close donations page"
+msgstr "Tutup halaman donasi"
+
+#: zapzap/features/donation/page.py:198 zapzap/features/donation/page.py:283
+msgid "Return to the previous browser page."
+msgstr "Kembali ke halaman peramban sebelumnya."
+
+#: zapzap/features/donation/page.py:216 zapzap/features/donation/page.py:285
+msgid "Choose how to support"
+msgstr "Pilih cara mendukung"
+
+#: zapzap/features/donation/page.py:218 zapzap/features/donation/page.py:288
+msgid "Every option opens its official page in your default browser. ZapZap never processes payment information."
+msgstr "Setiap opsi membuka halaman resminya di peramban bawaan Anda. ZapZap tidak pernah memproses informasi pembayaran."
+
+#: zapzap/features/donation/page.py:245 zapzap/features/donation/page.py:292
+msgid "Your support makes a difference"
+msgstr "Dukungan Anda sangat berarti"
+
+#: zapzap/features/donation/page.py:252 zapzap/features/donation/page.py:295
+msgid "Every contribution helps cover infrastructure costs, fix problems, and keep ZapZap free for everyone."
+msgstr "Setiap kontribusi membantu menutupi biaya infrastruktur, memperbaiki masalah, dan menjaga ZapZap tetap gratis untuk semua orang."
+
+#: zapzap/features/donation/view.py:213 zapzap/features/shortcuts/view.py:60
+#: zapzap/features/settings/pages/debugging/view.py:425
+#: zapzap/ui/components/main_window.py:139
+msgid "ZapZap"
+msgstr "ZapZap"
+
+#: zapzap/features/donation/view.py:216
+msgid "Your donation helps keep the project running, improve resources and guarantee your privacy and freedom."
+msgstr "Donasi Anda membantu menjaga proyek tetap berjalan, meningkatkan sumber daya, serta menjamin privasi dan kebebasan Anda."
+
+#: zapzap/features/donation/view.py:220
+#: zapzap/features/tray/sys_tray_manager.py:71
+#: zapzap/features/settings/shell/settings_view.py:32
+#: zapzap/features/settings/shell/settings_view.py:34
+#: zapzap/features/settings/pages/about/view.py:274
+#: zapzap/ui/components/browser_sidebar.py:212
+msgid "Support ZapZap"
+msgstr "Dukung ZapZap"
+
+#: zapzap/features/donation/view.py:221
+msgid "Don't show again"
+msgstr "Jangan tampilkan lagi"
+
+#: zapzap/features/donation/view.py:222
+msgid "Learn more about ZapZap ↗"
+msgstr "Pelajari lebih lanjut tentang ZapZap ↗"
+
+#: zapzap/features/downloads/download_manager.py:530
+#: zapzap/features/downloads/download_manager.py:1097
+#: zapzap/features/downloads/download_manager.py:1100
+#: zapzap/features/downloads/ui/download_dialog.py:36
+#: zapzap/features/downloads/ui/downloads_menu.py:447
+#: zapzap/ui/components/update_available_popover.py:109
+msgid "Download"
+msgstr "Unduh"
+
+#: zapzap/features/downloads/download_manager.py:1209
+msgid "Save file"
+msgstr "Simpan file"
+
+#: zapzap/features/downloads/download_manager.py:1241
+msgid "Select folder"
+msgstr "Pilih folder"
+
+#: zapzap/features/initial_setup/controller.py:126
+#: zapzap/features/settings/pages/language_downloads/controller.py:127
+msgid "System default"
+msgstr "Bawaan sistem"
+
+#: zapzap/features/initial_setup/controller.py:158
+msgid "English"
+msgstr "Inggris"
+
+#: zapzap/features/initial_setup/view.py:42
+msgid "Setup ZapZap"
+msgstr "Pengaturan Awal ZapZap"
+
+#: zapzap/features/initial_setup/view.py:87
+msgid "Welcome to ZapZap"
+msgstr "Selamat datang di ZapZap"
+
+#: zapzap/features/initial_setup/view.py:90
+msgid "Choose the essentials now. You can change everything later in Settings."
+msgstr "Pilih pengaturan penting sekarang. Anda dapat mengubah semuanya nanti di Pengaturan."
+
+#: zapzap/features/initial_setup/view.py:105
+msgid "Basics"
+msgstr "Dasar"
+
+#: zapzap/features/initial_setup/view.py:106
+#: zapzap/features/settings/shell/settings_controller.py:136
+#: zapzap/features/settings/pages/notifications/view.py:19
+#: zapzap/features/settings/pages/notifications/view.py:33
+#: zapzap/features/browser/web/web_view.py:358
+msgid "Notifications"
+msgstr "Notifikasi"
+
+#: zapzap/features/initial_setup/view.py:107
+msgid "Background"
+msgstr "Latar Belakang"
+
+#: zapzap/features/initial_setup/view.py:108
+#: zapzap/features/settings/pages/advanced_customizations/view.py:73
+msgid "Files"
+msgstr "File"
+
+#: zapzap/features/initial_setup/view.py:109
+#: zapzap/features/initial_setup/view.py:378
+#: zapzap/features/settings/shell/settings_controller.py:142
+#: zapzap/features/settings/pages/permissions/view.py:22
+msgid "Permissions"
+msgstr "Izin"
+
+#: zapzap/features/initial_setup/view.py:110
+#: zapzap/features/initial_setup/view.py:120
+msgid "Finish"
+msgstr "Selesai"
+
+#: zapzap/features/initial_setup/view.py:117
+msgid "Skip setup"
+msgstr "Lewati pengaturan"
+
+#: zapzap/features/initial_setup/view.py:118
+msgid "Back"
+msgstr "Kembali"
+
+#: zapzap/features/initial_setup/view.py:119
+msgid "Next"
+msgstr "Lanjut"
+
+#: zapzap/features/initial_setup/view.py:137
+msgid "Language and appearance"
+msgstr "Bahasa dan tampilan"
+
+#: zapzap/features/initial_setup/view.py:138
+msgid "Start with the interface language and a comfortable visual theme."
+msgstr "Mulai dengan bahasa antarmuka dan tema visual yang nyaman."
+
+#: zapzap/features/initial_setup/view.py:143
+#: zapzap/features/settings/pages/language_downloads/view.py:35
+#: zapzap/ui/components/dictionary_manager_dialog.py:143
+msgid "Language"
+msgstr "Bahasa"
+
+#: zapzap/features/initial_setup/view.py:144
+#: zapzap/features/settings/pages/language_downloads/view.py:36
+msgid "Choose the interface language used by ZapZap."
+msgstr "Pilih bahasa antarmuka yang digunakan oleh ZapZap."
+
+#: zapzap/features/initial_setup/view.py:149
+#: zapzap/features/settings/pages/language_downloads/view.py:40
+msgid "Interface language"
+msgstr "Bahasa antarmuka"
+
+#: zapzap/features/initial_setup/view.py:150
+msgid "The interface language is applied when you finish setup."
+msgstr "Bahasa antarmuka diterapkan setelah Anda menyelesaikan pengaturan awal."
+
+#: zapzap/features/initial_setup/view.py:159
+#: zapzap/features/settings/pages/appearance/view.py:175
+msgid "Theme"
+msgstr "Tema"
+
+#: zapzap/features/initial_setup/view.py:160
+#: zapzap/features/settings/pages/appearance/view.py:175
+msgid "Choose the visual theme."
+msgstr "Pilih tema visual."
+
+#: zapzap/features/initial_setup/view.py:164
+#: zapzap/features/settings/pages/appearance/view.py:177
+#: zapzap/features/settings/pages/system_startup/view.py:140
+msgid "Automatic"
+msgstr "Otomatis"
+
+#: zapzap/features/initial_setup/view.py:165
+#: zapzap/features/settings/pages/appearance/view.py:178
+msgid "Light"
+msgstr "Terang"
+
+#: zapzap/features/initial_setup/view.py:166
+#: zapzap/features/settings/pages/appearance/view.py:179
+msgid "Dark"
+msgstr "Gelap"
+
+#: zapzap/features/initial_setup/view.py:183
+msgid "Notifications and privacy"
+msgstr "Notifikasi dan privasi"
+
+#: zapzap/features/initial_setup/view.py:184
+msgid "Decide how much message information appears in native notification banners."
+msgstr "Tentukan seberapa banyak informasi pesan yang tampil di spanduk notifikasi sistem."
+
+#: zapzap/features/initial_setup/view.py:188
+#: zapzap/features/settings/pages/notifications/view.py:39
+msgid "Desktop notifications"
+msgstr "Notifikasi desktop"
+
+#: zapzap/features/initial_setup/view.py:189
+msgid "Choose whether ZapZap may show desktop notifications."
+msgstr "Pilih apakah ZapZap boleh menampilkan notifikasi desktop."
+
+#: zapzap/features/initial_setup/view.py:194
+msgid "Enable notifications"
+msgstr "Aktifkan notifikasi"
+
+#: zapzap/features/initial_setup/view.py:195
+msgid "Allow ZapZap to publish native desktop notifications for WhatsApp activity."
+msgstr "Izinkan ZapZap mengirim notifikasi desktop sistem untuk aktivitas WhatsApp."
+
+#: zapzap/features/initial_setup/view.py:203
+msgid "Notification privacy"
+msgstr "Privasi notifikasi"
+
+#: zapzap/features/initial_setup/view.py:204
+msgid "Limit what is visible in notification banners."
+msgstr "Batasi apa yang terlihat di spanduk notifikasi."
+
+#: zapzap/features/initial_setup/view.py:209
+msgid "Show contact photo"
+msgstr "Tampilkan foto kontak"
+
+#: zapzap/features/initial_setup/view.py:210
+msgid "Display the sender avatar when it is available."
+msgstr "Tampilkan avatar pengirim jika tersedia."
+
+#: zapzap/features/initial_setup/view.py:213
+msgid "Show contact name"
+msgstr "Tampilkan nama kontak"
+
+#: zapzap/features/initial_setup/view.py:214
+msgid "Display the sender or group name."
+msgstr "Tampilkan nama pengirim atau grup."
+
+#: zapzap/features/initial_setup/view.py:217
+msgid "Show message preview"
+msgstr "Tampilkan pratinjau pesan"
+
+#: zapzap/features/initial_setup/view.py:218
+msgid "Display the message text in the notification."
+msgstr "Tampilkan teks pesan di dalam notifikasi."
+
+#: zapzap/features/initial_setup/view.py:221
+#: zapzap/features/settings/pages/notifications/view.py:59
+msgid "Notification sound"
+msgstr "Suara notifikasi"
+
+#: zapzap/features/initial_setup/view.py:222
+#: zapzap/features/settings/pages/notifications/view.py:60
+msgid "Let the desktop play its alert sound for new messages."
+msgstr "Biarkan desktop memutar suara peringatan untuk pesan baru."
+
+#: zapzap/features/initial_setup/view.py:242
+msgid "Background behavior"
+msgstr "Perilaku latar belakang"
+
+#: zapzap/features/initial_setup/view.py:243
+msgid "Choose whether ZapZap should stay available from the tray and start with your session."
+msgstr "Pilih apakah ZapZap tetap tersedia di tray sistem dan berjalan saat sesi dimulai."
+
+#: zapzap/features/initial_setup/view.py:247
+#: zapzap/features/settings/pages/appearance/view.py:192
+msgid "Tray icon"
+msgstr "Ikon tray"
+
+#: zapzap/features/initial_setup/view.py:248
+msgid "Control tray icon visibility and unread counter."
+msgstr "Atur tampilan ikon tray dan penghitung pesan belum dibaca."
+
+#: zapzap/features/initial_setup/view.py:253
+msgid "Enable tray icon"
+msgstr "Aktifkan ikon tray"
+
+#: zapzap/features/initial_setup/view.py:254
+msgid "Show ZapZap in the system tray."
+msgstr "Tampilkan ZapZap di tray sistem."
+
+#: zapzap/features/initial_setup/view.py:257
+msgid "Notification counter"
+msgstr "Penghitung notifikasi"
+
+#: zapzap/features/initial_setup/view.py:258
+msgid "Show unread notifications on the tray icon."
+msgstr "Tampilkan jumlah notifikasi belum dibaca di ikon tray."
+
+#: zapzap/features/initial_setup/view.py:268
+msgid "Window behavior"
+msgstr "Perilaku jendela"
+
+#: zapzap/features/initial_setup/view.py:269
+msgid "Configure close behavior."
+msgstr "Atur perilaku saat jendela ditutup."
+
+#: zapzap/features/initial_setup/view.py:274
+#: zapzap/features/settings/pages/system_startup/view.py:68
+msgid "Close behavior"
+msgstr "Perilaku tutup"
+
+#: zapzap/features/initial_setup/view.py:275
+#: zapzap/features/settings/pages/system_startup/view.py:70
+msgid "Choose whether ZapZap continues in the background or quits."
+msgstr "Pilih apakah ZapZap tetap berjalan di latar belakang atau keluar."
+
+#: zapzap/features/initial_setup/view.py:281
+#: zapzap/features/settings/pages/system_startup/view.py:77
+msgid "Continue in the background"
+msgstr "Lanjutkan di latar belakang"
+
+#: zapzap/features/initial_setup/view.py:285
+#: zapzap/features/settings/pages/system_startup/view.py:81
+msgid "Quit ZapZap"
+msgstr "Keluar dari ZapZap"
+
+#: zapzap/features/initial_setup/view.py:289
+#: zapzap/features/settings/pages/system_startup/view.py:88
+msgid "Confirm before quitting"
+msgstr "Konfirmasi sebelum keluar"
+
+#: zapzap/features/initial_setup/view.py:290
+#: zapzap/features/settings/pages/system_startup/view.py:89
+msgid "Ask for confirmation before completely closing ZapZap."
+msgstr "Minta konfirmasi sebelum menutup ZapZap sepenuhnya."
+
+#: zapzap/features/initial_setup/view.py:301
+#: zapzap/features/settings/pages/system_startup/view.py:40
+msgid "Startup"
+msgstr "Startup"
+
+#: zapzap/features/initial_setup/view.py:302
+msgid "Control how ZapZap behaves when your desktop session starts."
+msgstr "Atur perilaku ZapZap saat sesi desktop Anda dimulai."
+
+#: zapzap/features/initial_setup/view.py:307
+#: zapzap/features/settings/pages/system_startup/view.py:45
+msgid "Start with the system"
+msgstr "Jalankan saat sistem dimulai"
+
+#: zapzap/features/initial_setup/view.py:308
+msgid "Create or remove the desktop autostart entry."
+msgstr "Buat atau hapus entri autostart desktop."
+
+#: zapzap/features/initial_setup/view.py:311
+msgid "Start minimized"
+msgstr "Mulai dalam keadaan diminimalkan"
+
+#: zapzap/features/initial_setup/view.py:312
+msgid "Open ZapZap in the background instead of showing the main window."
+msgstr "Buka ZapZap di latar belakang tanpa menampilkan jendela utama."
+
+#: zapzap/features/initial_setup/view.py:325
+msgid "Downloads and typing"
+msgstr "Unduhan dan pengetikan"
+
+#: zapzap/features/initial_setup/view.py:326
+msgid "Choose where files are saved and enable spell checking when dictionaries are available."
+msgstr "Pilih lokasi penyimpanan file dan aktifkan pemeriksa ejaan jika kamus tersedia."
+
+#: zapzap/features/initial_setup/view.py:330
+#: zapzap/features/settings/pages/language_downloads/view.py:54
+#: zapzap/features/downloads/ui/downloads_menu.py:775
+#: zapzap/features/downloads/ui/downloads_menu.py:1001
+#: zapzap/features/downloads/ui/downloads_menu.py:1025
+#: zapzap/ui/components/browser_sidebar.py:219
+#: zapzap/ui/components/browser_sidebar.py:220
+#: zapzap/ui/components/floating_monitoring_panel.py:293
+#: zapzap/ui/components/floating_monitoring_panel.py:294
+#: zapzap/ui/components/main_window.py:164
+msgid "Downloads"
+msgstr "Unduhan"
+
+#: zapzap/features/initial_setup/view.py:331
+#: zapzap/features/settings/pages/language_downloads/view.py:55
+msgid "Choose where downloaded files are saved."
+msgstr "Pilih lokasi penyimpanan file yang diunduh."
+
+#: zapzap/features/initial_setup/view.py:336
+#: zapzap/features/settings/pages/language_downloads/view.py:79
+msgid "Download directory"
+msgstr "Direktori unduhan"
+
+#: zapzap/features/initial_setup/view.py:337
+msgid "Set a custom folder or keep the current download location."
+msgstr "Atur folder khusus atau pertahankan lokasi unduhan saat ini."
+
+#: zapzap/features/initial_setup/view.py:338
+msgid "Choose folder"
+msgstr "Pilih folder"
+
+#: zapzap/features/initial_setup/view.py:348
+#: zapzap/features/settings/pages/language_downloads/view.py:136
+msgid "Spell checker"
+msgstr "Pemeriksa ejaan"
+
+#: zapzap/features/initial_setup/view.py:349
+#: zapzap/features/settings/pages/language_downloads/view.py:137
+msgid "Select compiled dictionaries and where ZapZap should look for them."
+msgstr "Pilih kamus terkompilasi dan lokasi pencarian ZapZap."
+
+#: zapzap/features/initial_setup/view.py:354
+#: zapzap/features/settings/pages/language_downloads/view.py:141
+msgid "Enable spell checker"
+msgstr "Aktifkan pemeriksa ejaan"
+
+#: zapzap/features/initial_setup/view.py:355
+#: zapzap/features/settings/pages/language_downloads/view.py:142
+msgid "Use Qt WebEngine spell checking with the selected dictionary."
+msgstr "Gunakan pemeriksa ejaan Qt WebEngine dengan kamus yang dipilih."
+
+#: zapzap/features/initial_setup/view.py:358
+msgid "Dictionary language"
+msgstr "Bahasa kamus"
+
+#: zapzap/features/initial_setup/view.py:359
+msgid "Recognizes only compiled dictionaries (.bdic)."
+msgstr "Hanya mengenali kamus terkompilasi (.bdic)."
+
+#: zapzap/features/initial_setup/view.py:373
+msgid "Essential permissions"
+msgstr "Izin penting"
+
+#: zapzap/features/initial_setup/view.py:374
+msgid "Allow only the WhatsApp Web permissions you want to grant automatically."
+msgstr "Izinkan hanya izin WhatsApp Web yang ingin Anda berikan secara otomatis."
+
+#: zapzap/features/initial_setup/view.py:379
+msgid "When an option is unchecked, ZapZap will ask again in each session."
+msgstr "Jika opsi tidak dicentang, ZapZap akan bertanya lagi di setiap sesi."
+
+#: zapzap/features/initial_setup/view.py:385
+msgid "Enable only the permissions you want to grant automatically when the page requests them."
+msgstr "Aktifkan hanya izin yang ingin Anda berikan secara otomatis saat halaman memintanya."
+
+#: zapzap/features/initial_setup/view.py:389
+#: zapzap/features/settings/pages/permissions/view.py:64
+msgid "Microphone"
+msgstr "Mikrofon"
+
+#: zapzap/features/initial_setup/view.py:390
+#: zapzap/features/settings/pages/permissions/view.py:65
+msgid "Automatically allow access to your microphone."
+msgstr "Izinkan akses ke mikrofon Anda secara otomatis."
+
+#: zapzap/features/initial_setup/view.py:393
+#: zapzap/features/settings/pages/permissions/view.py:69
+msgid "Camera"
+msgstr "Kamera"
+
+#: zapzap/features/initial_setup/view.py:394
+#: zapzap/features/settings/pages/permissions/view.py:70
+msgid "Automatically allow access to your camera."
+msgstr "Izinkan akses ke kamera Anda secara otomatis."
+
+#: zapzap/features/initial_setup/view.py:397
+#: zapzap/features/settings/pages/permissions/view.py:74
+msgid "Camera and microphone"
+msgstr "Kamera dan mikrofon"
+
+#: zapzap/features/initial_setup/view.py:398
+#: zapzap/features/settings/pages/permissions/view.py:76
+msgid "Automatically allow simultaneous access to the camera and microphone."
+msgstr "Izinkan akses bersamaan ke kamera dan mikrofon secara otomatis."
+
+#: zapzap/features/initial_setup/view.py:401
+#: zapzap/features/settings/pages/permissions/view.py:93
+msgid "Screen sharing"
+msgstr "Berbagi layar"
+
+#: zapzap/features/initial_setup/view.py:402
+#: zapzap/features/settings/pages/permissions/view.py:94
+msgid "Automatically allow sharing of screen contents."
+msgstr "Izinkan berbagi konten layar secara otomatis."
+
+#: zapzap/features/initial_setup/view.py:405
+#: zapzap/features/settings/pages/permissions/view.py:98
+msgid "Screen with audio"
+msgstr "Layar dengan audio"
+
+#: zapzap/features/initial_setup/view.py:406
+#: zapzap/features/settings/pages/permissions/view.py:99
+msgid "Automatically allow screen sharing with audio."
+msgstr "Izinkan berbagi layar beserta audio secara otomatis."
+
+#: zapzap/features/initial_setup/view.py:427
+#: zapzap/features/settings/pages/permissions/view.py:130
+msgid "Flatpak permissions"
+msgstr "Izin Flatpak"
+
+#: zapzap/features/initial_setup/view.py:428
+#: zapzap/features/settings/pages/permissions/view.py:131
+msgid "Grant filesystem access if downloads, imports, or dictionaries cannot reach folders outside the sandbox."
+msgstr "Berikan akses sistem file jika unduhan, impor, atau kamus tidak dapat menjangkau folder di luar sandbox."
+
+#: zapzap/features/initial_setup/view.py:434
+#: zapzap/features/settings/pages/permissions/view.py:135
+msgid "Flatpak sandbox: if file access fails, grant folder permissions using Flatseal or flatpak override."
+msgstr "Sandbox Flatpak: jika akses file gagal, berikan izin folder menggunakan Flatseal atau flatpak override."
+
+#: zapzap/features/initial_setup/view.py:444
+#: zapzap/features/settings/pages/permissions/view.py:143
+msgid "Select and copy this command in your terminal"
+msgstr "Pilih dan salin perintah ini di terminal Anda"
+
+#: zapzap/features/initial_setup/view.py:446
+#: zapzap/features/settings/pages/debugging/controller.py:131
+#: zapzap/features/settings/pages/debugging/view.py:275
+#: zapzap/features/settings/pages/permissions/view.py:145
+#: zapzap/features/browser/web/web_view.py:601
+msgid "Copy"
+msgstr "Salin"
+
+#: zapzap/features/initial_setup/view.py:450
+#: zapzap/features/settings/pages/permissions/view.py:149
+msgid "Flatseal"
+msgstr "Flatseal"
+
+#: zapzap/features/initial_setup/view.py:451
+#: zapzap/features/settings/pages/permissions/view.py:150
+msgid "Flatseal is a graphical utility to review and modify permissions from your Flatpak applications."
+msgstr "Flatseal adalah utilitas grafis untuk meninjau dan mengubah izin aplikasi Flatpak Anda."
+
+#: zapzap/features/initial_setup/view.py:452
+#: zapzap/features/settings/pages/permissions/view.py:151
+msgid "Install Flatseal on Linux | Flathub"
+msgstr "Pasang Flatseal di Linux | Flathub"
+
+#: zapzap/features/initial_setup/view.py:467
+msgid "You're ready"
+msgstr "Anda siap"
+
+#: zapzap/features/initial_setup/view.py:468
+msgid "ZapZap will save these preferences now. Advanced options remain available in Settings."
+msgstr "ZapZap akan menyimpan preferensi ini sekarang. Opsi lanjutan tetap tersedia di Pengaturan."
+
+#: zapzap/features/initial_setup/view.py:472
+msgid "Finish setup"
+msgstr "Selesaikan pengaturan"
+
+#: zapzap/features/initial_setup/view.py:473
+msgid "Review advanced options later whenever you need them."
+msgstr "Tinjau opsi lanjutan kapan pun Anda membutuhkannya."
+
+#: zapzap/features/initial_setup/view.py:479
+msgid "You can revisit all choices from Settings at any time. Proxy, custom CSS/JavaScript, Flatpak permissions, and performance tweaks are still available there."
+msgstr "Anda dapat meninjau ulang semua pilihan di Pengaturan kapan saja. Proxy, CSS/JavaScript kustom, izin Flatpak, dan penyesuaian performa tetap tersedia di sana."
+
+#: zapzap/features/notifications/notification_service.py:127
+msgid "New message..."
+msgstr "Pesan baru..."
+
+#: zapzap/features/reporting/coordinator.py:32
+msgid "ZapZap found a problem"
+msgstr "ZapZap menemukan masalah"
+
+#: zapzap/features/reporting/coordinator.py:33
+msgid "ZapZap closed unexpectedly during the last run."
+msgstr "ZapZap tertutup secara tidak terduga pada sesi terakhir."
+
+#: zapzap/features/reporting/coordinator.py:35
+msgid "A sanitized report was prepared on this device. ZapZap will not send it; after reviewing, you can copy it and open GitHub."
+msgstr "Laporan yang telah disanitasi telah disiapkan di perangkat ini. ZapZap tidak akan mengirimkannya; setelah meninjau, Anda dapat menyalinnya dan membuka GitHub."
+
+#: zapzap/features/reporting/coordinator.py:40
+msgid "Keep locally"
+msgstr "Simpan secara lokal"
+
+#: zapzap/features/reporting/coordinator.py:41
+msgid "Discard report"
+msgstr "Buang laporan"
+
+#: zapzap/features/reporting/coordinator.py:42
+#: zapzap/features/reporting/dialogs.py:214
+msgid "Review report"
+msgstr "Tinjau laporan"
+
+#: zapzap/features/reporting/dialogs.py:29
+msgid "ZapZap closed unexpectedly"
+msgstr "ZapZap tertutup secara tidak terduga"
+
+#: zapzap/features/reporting/dialogs.py:30
+msgid "Something is not working"
+msgstr "Ada sesuatu yang tidak berfungsi"
+
+#: zapzap/features/reporting/dialogs.py:31
+msgid "Notification problem"
+msgstr "Masalah notifikasi"
+
+#: zapzap/features/reporting/dialogs.py:32
+msgid "Audio or video problem"
+msgstr "Masalah audio atau video"
+
+#: zapzap/features/reporting/dialogs.py:33
+msgid "File problem"
+msgstr "Masalah file"
+
+#: zapzap/features/reporting/dialogs.py:34
+msgid "Visual problem"
+msgstr "Masalah visual"
+
+#: zapzap/features/reporting/dialogs.py:35
+msgid "Other"
+msgstr "Lainnya"
+
+#: zapzap/features/reporting/dialogs.py:38
+#: zapzap/features/settings/pages/appearance/view.py:124
+msgid "Always"
+msgstr "Selalu"
+
+#: zapzap/features/reporting/dialogs.py:39
+msgid "Sometimes"
+msgstr "Kadang-kadang"
+
+#: zapzap/features/reporting/dialogs.py:40
+msgid "It happened once"
+msgstr "Terjadi sekali"
+
+#: zapzap/features/reporting/dialogs.py:41
+msgid "I don't know"
+msgstr "Saya tidak tahu"
+
+#: zapzap/features/reporting/dialogs.py:58
+msgid "Check all the information below before continuing to GitHub."
+msgstr "Periksa semua informasi di bawah ini sebelum melanjutkan ke GitHub."
+
+#: zapzap/features/reporting/dialogs.py:60
+msgid "Your report"
+msgstr "Laporan Anda"
+
+#: zapzap/features/reporting/dialogs.py:61
+#, python-brace-format
+msgid "Problem type: {value}"
+msgstr "Jenis masalah: {value}"
+
+#: zapzap/features/reporting/dialogs.py:64
+#: zapzap/features/reporting/dialogs.py:369
+msgid "Unexpected closing"
+msgstr "Penutupan tak terduga"
+
+#: zapzap/features/reporting/dialogs.py:69
+msgid "Description:"
+msgstr "Deskripsi:"
+
+#: zapzap/features/reporting/dialogs.py:71
+msgid "Expected result:"
+msgstr "Hasil yang diharapkan:"
+
+#: zapzap/features/reporting/dialogs.py:74
+#, python-brace-format
+msgid "Frequency: {value}"
+msgstr "Frekuensi: {value}"
+
+#: zapzap/features/reporting/dialogs.py:82
+msgid "Application information"
+msgstr "Informasi aplikasi"
+
+#: zapzap/features/reporting/dialogs.py:92
+msgid "Error information"
+msgstr "Informasi kesalahan"
+
+#: zapzap/features/reporting/dialogs.py:94
+#, python-brace-format
+msgid "Error type: {value}"
+msgstr "Jenis kesalahan: {value}"
+
+#: zapzap/features/reporting/dialogs.py:96
+#, python-brace-format
+msgid "Error details: {value}"
+msgstr "Detail kesalahan: {value}"
+
+#: zapzap/features/reporting/dialogs.py:98
+msgid "Sanitized logs are included in the technical information."
+msgstr "Log yang telah disanitasi disertakan dalam informasi teknis."
+
+#: zapzap/features/reporting/dialogs.py:101
+msgid "Report destination"
+msgstr "Tujuan laporan"
+
+#: zapzap/features/reporting/dialogs.py:102
+msgid "Official ZapZap repository on GitHub: rafatosta/zapzap"
+msgstr "Repositori resmi ZapZap di GitHub: rafatosta/zapzap"
+
+#: zapzap/features/reporting/dialogs.py:104
+msgid "ZapZap will copy the report to the clipboard and open GitHub. Paste it into the issue description before publishing. A GitHub account is required."
+msgstr "ZapZap akan menyalin laporan ke papan klip dan membuka GitHub. Tempelkan ke deskripsi isu sebelum menerbitkannya. Akun GitHub diperlukan."
+
+#: zapzap/features/reporting/dialogs.py:109
+#: zapzap/features/settings/pages/network_privacy/view.py:249
+#: zapzap/features/settings/pages/notifications/view.py:124
+msgid "Privacy"
+msgstr "Privasi"
+
+#: zapzap/features/reporting/dialogs.py:110
+msgid "Never sent: messages, contacts, phone numbers, cookies, WhatsApp session data, conversation content, passwords, or authentication tokens."
+msgstr "Tidak pernah dikirim: pesan, kontak, nomor telepon, cookie, data sesi WhatsApp, isi percakapan, kata sandi, atau token autentikasi."
+
+#: zapzap/features/reporting/dialogs.py:136
+#: zapzap/features/reporting/dialogs.py:159
+#: zapzap/features/reporting/dialogs.py:292
+#: zapzap/features/settings/shell/settings_controller.py:178
+#: zapzap/features/settings/pages/about/view.py:269
+#: zapzap/features/settings/pages/debugging/view.py:160
+#: zapzap/features/settings/pages/debugging/view.py:177
+msgid "Report a problem"
+msgstr "Laporkan masalah"
+
+#: zapzap/features/reporting/dialogs.py:162
+msgid "Describe what happened. You will review everything before anything is copied or GitHub is opened."
+msgstr "Jelaskan apa yang terjadi. Anda akan meninjau semuanya sebelum apa pun disalin atau GitHub dibuka."
+
+#: zapzap/features/reporting/dialogs.py:170
+msgid "Avoid phone numbers, messages, contact names, or other personal information."
+msgstr "Hindari mencantumkan nomor telepon, pesan, nama kontak, atau informasi pribadi lainnya."
+
+#: zapzap/features/reporting/dialogs.py:186
+msgid "What is the problem?"
+msgstr "Apa masalahnya?"
+
+#: zapzap/features/reporting/dialogs.py:187
+msgid "Describe what happened"
+msgstr "Jelaskan apa yang terjadi"
+
+#: zapzap/features/reporting/dialogs.py:188
+msgid "What did you expect to happen?"
+msgstr "Apa yang seharusnya terjadi?"
+
+#: zapzap/features/reporting/dialogs.py:189
+msgid "Can you repeat the problem?"
+msgstr "Apakah masalah ini dapat diulang?"
+
+#: zapzap/features/reporting/dialogs.py:193
+msgid "Include system technical information"
+msgstr "Sertakan informasi teknis sistem"
+
+#: zapzap/features/reporting/dialogs.py:198
+msgid "Include error technical information, when available"
+msgstr "Sertakan informasi teknis kesalahan, jika tersedia"
+
+#: zapzap/features/reporting/dialogs.py:203
+msgid "Include sanitized logs, when available"
+msgstr "Sertakan log yang telah disanitasi, jika tersedia"
+
+#: zapzap/features/reporting/dialogs.py:223
+msgid "Review your report"
+msgstr "Tinjau laporan Anda"
+
+#: zapzap/features/reporting/dialogs.py:226
+msgid "The complete report will be copied to the clipboard. After GitHub opens, paste it into the issue description."
+msgstr "Laporan lengkap akan disalin ke papan klip. Setelah GitHub terbuka, tempelkan ke deskripsi isu."
+
+#: zapzap/features/reporting/dialogs.py:237
+msgid "Complete report preview"
+msgstr "Pratinjau laporan lengkap"
+
+#: zapzap/features/reporting/dialogs.py:240
+#: zapzap/features/reporting/dialogs.py:311
+msgid "Show technical information"
+msgstr "Tampilkan informasi teknis"
+
+#: zapzap/features/reporting/dialogs.py:252
+msgid "Complete report to copy to GitHub"
+msgstr "Laporan lengkap untuk disalin ke GitHub"
+
+#: zapzap/features/reporting/dialogs.py:257
+msgid "Back and edit"
+msgstr "Kembali dan sunting"
+
+#: zapzap/features/reporting/dialogs.py:259
+msgid "Copy and open GitHub"
+msgstr "Salin dan buka GitHub"
+
+#: zapzap/features/reporting/dialogs.py:264
+msgid "Copy report to the clipboard and open GitHub"
+msgstr "Salin laporan ke papan klip dan buka GitHub"
+
+#: zapzap/features/reporting/dialogs.py:268
+msgid "After GitHub opens, paste the copied report into the issue description."
+msgstr "Setelah GitHub terbuka, tempelkan laporan yang disalin ke deskripsi isu."
+
+#: zapzap/features/reporting/dialogs.py:292
+msgid "Describe what happened before continuing."
+msgstr "Jelaskan apa yang terjadi sebelum melanjutkan."
+
+#: zapzap/features/reporting/dialogs.py:309
+msgid "Hide technical information"
+msgstr "Sembunyikan informasi teknis"
+
+#: zapzap/features/reporting/dialogs.py:330
+msgid "Could not open GitHub"
+msgstr "Tidak dapat membuka GitHub"
+
+#: zapzap/features/reporting/dialogs.py:332
+msgid "The report is still copied to the clipboard. Open the official ZapZap repository and paste it into a new issue."
+msgstr "Laporan tetap disalin ke papan klip. Buka repositori resmi ZapZap dan tempelkan ke isu baru."
+
+#: zapzap/features/reporting/dialogs.py:344
+msgid "Local reports"
+msgstr "Laporan lokal"
+
+#: zapzap/features/reporting/dialogs.py:354
+msgid "Review and open selected report"
+msgstr "Tinjau dan buka laporan yang dipilih"
+
+#: zapzap/features/reporting/dialogs.py:369
+msgid "Problem report"
+msgstr "Laporan masalah"
+
+#: zapzap/features/reporting/dialogs.py:371
+#: zapzap/features/reporting/dialogs.py:375
+msgid "Saved locally"
+msgstr "Tersimpan secara lokal"
+
+#: zapzap/features/reporting/dialogs.py:372
+msgid "Waiting for review"
+msgstr "Menunggu peninjauan"
+
+#: zapzap/features/reporting/dialogs.py:373
+msgid "Copied"
+msgstr "Disalin"
+
+#: zapzap/features/reporting/dialogs.py:374
+msgid "Opened on GitHub"
+msgstr "Dibuka di GitHub"
+
+#: zapzap/features/reporting/dialogs.py:389
+msgid "Complete report to copy"
+msgstr "Laporan lengkap untuk disalin"
+
+#: zapzap/features/shortcuts/model.py:12
+#: zapzap/ui/components/browser_sidebar.py:204
+msgid "New conversation"
+msgstr "Percakapan baru"
+
+#: zapzap/features/shortcuts/model.py:13
+msgid "Mark as unread"
+msgstr "Tandai belum dibaca"
+
+#: zapzap/features/shortcuts/model.py:14
+msgid "Archive conversation"
+msgstr "Arsipkan percakapan"
+
+#: zapzap/features/shortcuts/model.py:15
+msgid "Pin conversation"
+msgstr "Sematkan percakapan"
+
+#: zapzap/features/shortcuts/model.py:16
+msgid "Next conversation"
+msgstr "Percakapan berikutnya"
+
+#: zapzap/features/shortcuts/model.py:17
+msgid "Close conversation"
+msgstr "Tutup percakapan"
+
+#: zapzap/features/shortcuts/model.py:18
+msgid "Search in conversation"
+msgstr "Cari dalam percakapan"
+
+#: zapzap/features/shortcuts/model.py:19
+msgid "Previous conversation"
+msgstr "Percakapan sebelumnya"
+
+#: zapzap/features/shortcuts/model.py:20
+msgid "Delete conversation"
+msgstr "Hapus percakapan"
+
+#: zapzap/features/shortcuts/model.py:21
+msgid "Profile and status"
+msgstr "Profil dan status"
+
+#: zapzap/features/shortcuts/model.py:22 zapzap/features/shortcuts/model.py:38
+#: zapzap/features/tray/sys_tray_manager.py:70
+#: zapzap/features/settings/shell/settings_controller.py:236
+#: zapzap/features/settings/shell/settings_sidebar.py:61
+#: zapzap/features/downloads/ui/downloads_menu.py:1081
+#: zapzap/ui/components/floating_monitoring_panel.py:295
+#: zapzap/ui/components/floating_monitoring_panel.py:296
+#: zapzap/ui/components/main_window.py:149
+msgid "Settings"
+msgstr "Pengaturan"
+
+#: zapzap/features/shortcuts/model.py:23
+msgid "Decrease speed of selected voice message"
+msgstr "Kurangi kecepatan pesan suara yang dipilih"
+
+#: zapzap/features/shortcuts/model.py:24
+msgid "Increase speed of selected voice message"
+msgstr "Tambah kecepatan pesan suara yang dipilih"
+
+#: zapzap/features/shortcuts/model.py:25
+msgid "Emoji panel"
+msgstr "Panel emoji"
+
+#: zapzap/features/shortcuts/model.py:26
+msgid "Sticker panel"
+msgstr "Panel stiker"
+
+#: zapzap/features/shortcuts/model.py:27
+msgid "GIF panel"
+msgstr "Panel GIF"
+
+#: zapzap/features/shortcuts/model.py:28
+msgid "Lock the app"
+msgstr "Kunci aplikasi"
+
+#: zapzap/features/shortcuts/model.py:30
+msgid "Search"
+msgstr "Cari"
+
+#: zapzap/features/shortcuts/model.py:31
+msgid "New group"
+msgstr "Grup baru"
+
+#: zapzap/features/shortcuts/model.py:32
+msgid "Extended search"
+msgstr "Pencarian lanjutan"
+
+#: zapzap/features/shortcuts/model.py:39
+#: zapzap/ui/components/main_window.py:147
+msgid "Hide"
+msgstr "Sembunyikan"
+
+#: zapzap/features/shortcuts/model.py:40
+msgid "Exit"
+msgstr "Keluar"
+
+#: zapzap/features/shortcuts/model.py:41
+msgid "Fullscreen"
+msgstr "Layar penuh"
+
+#: zapzap/features/shortcuts/model.py:42
+#: zapzap/ui/components/main_window.py:167
+msgid "Automatic theme"
+msgstr "Tema otomatis"
+
+#: zapzap/features/shortcuts/model.py:43
+#: zapzap/ui/components/main_window.py:169
+msgid "Light theme"
+msgstr "Tema terang"
+
+#: zapzap/features/shortcuts/model.py:44
+#: zapzap/ui/components/main_window.py:171
+msgid "Dark theme"
+msgstr "Tema gelap"
+
+#: zapzap/features/shortcuts/model.py:45
+#: zapzap/ui/components/main_window.py:151
+msgid "Reset zoom"
+msgstr "Reset zoom"
+
+#: zapzap/features/shortcuts/model.py:46
+#: zapzap/ui/components/main_window.py:153
+msgid "Zoom in"
+msgstr "Perbesar"
+
+#: zapzap/features/shortcuts/model.py:47
+#: zapzap/ui/components/main_window.py:155
+msgid "Zoom out"
+msgstr "Perkecil"
+
+#: zapzap/features/shortcuts/model.py:48
+msgid "Reload pages"
+msgstr "Muat ulang halaman"
+
+#: zapzap/features/shortcuts/model.py:49
+msgid "New conversation by phone number"
+msgstr "Percakapan baru lewat nomor telepon"
+
+#: zapzap/features/shortcuts/model.py:50
+#: zapzap/features/browser/shell/browser_controller.py:593
+#: zapzap/ui/components/browser_sidebar.py:200
+#: zapzap/ui/components/floating_monitoring_panel.py:289
+#: zapzap/ui/components/floating_monitoring_panel.py:290
+msgid "New account"
+msgstr "Akun baru"
+
+#: zapzap/features/shortcuts/view.py:34 zapzap/features/shortcuts/view.py:42
+#: zapzap/ui/components/main_window.py:179
+msgid "Keyboard shortcuts"
+msgstr "Pintasan keyboard"
+
+#: zapzap/features/shortcuts/view.py:49
+msgid "WhatsApp Web"
+msgstr "WhatsApp Web"
+
+#: zapzap/features/tray/sys_tray_manager.py:64
+#: zapzap/features/settings/pages/appearance/view.py:149
+msgid "Show"
+msgstr "Tampilkan"
+
+#: zapzap/features/tray/sys_tray_manager.py:65
+#: zapzap/features/settings/shell/settings_controller.py:124
+#: zapzap/features/settings/pages/accounts/view.py:17
+msgid "Accounts"
+msgstr "Akun"
+
+#: zapzap/features/tray/sys_tray_manager.py:66
+#: zapzap/features/settings/pages/appearance/view.py:147
+#: zapzap/ui/components/main_window.py:163
+msgid "Show monitoring panel"
+msgstr "Tampilkan panel pemantauan"
+
+#: zapzap/features/tray/sys_tray_manager.py:72
+#: zapzap/features/settings/shell/settings_view.py:38
+#: zapzap/ui/components/main_window.py:145
+msgid "Quit"
+msgstr "Keluar"
+
+#: zapzap/features/settings/shell/settings_controller.py:130
+#: zapzap/features/settings/pages/appearance/view.py:23
+msgid "Appearance"
+msgstr "Tampilan"
+
+#: zapzap/features/settings/shell/settings_controller.py:148
+#: zapzap/features/settings/pages/system_startup/view.py:22
+msgid "System and startup"
+msgstr "Sistem dan startup"
+
+#: zapzap/features/settings/shell/settings_controller.py:154
+#: zapzap/features/settings/pages/language_downloads/view.py:21
+msgid "Language and Download"
+msgstr "Bahasa dan Unduhan"
+
+#: zapzap/features/settings/shell/settings_controller.py:160
+#: zapzap/features/settings/pages/network_privacy/view.py:149
+msgid "Privacy and Network"
+msgstr "Privasi dan Jaringan"
+
+#: zapzap/features/settings/shell/settings_controller.py:166
+msgid "Advanced Customizations"
+msgstr "Kustomisasi Lanjutan"
+
+#: zapzap/features/settings/shell/settings_controller.py:172
+#: zapzap/features/settings/pages/performance_experimental/view.py:21
+msgid "Performance experimental"
+msgstr "Performa eksperimental"
+
+#: zapzap/features/settings/shell/settings_controller.py:184
+#: zapzap/features/settings/pages/about/view.py:238
+#: zapzap/ui/components/main_window.py:181
+msgid "About"
+msgstr "Tentang"
+
+#: zapzap/features/settings/shell/settings_sidebar.py:64
+msgid "Adjust accounts, appearance, notifications and advanced options."
+msgstr "Atur akun, tampilan, notifikasi, dan opsi lanjutan."
+
+#: zapzap/features/settings/shell/settings_sidebar.py:69
+msgid "Close settings"
+msgstr "Tutup pengaturan"
+
+#: zapzap/features/settings/shell/settings_view.py:36
+#: zapzap/features/settings/pages/about/view.py:275
+msgid "Learn how to contribute to the project's development."
+msgstr "Pelajari cara berkontribusi pada pengembangan proyek ini."
+
+#: zapzap/features/settings/pages/about/controller.py:57
+#: zapzap/features/settings/pages/about/view.py:323
+#: zapzap/features/settings/pages/about/view.py:327
+msgid "Copy system information"
+msgstr "Salin informasi sistem"
+
+#: zapzap/features/settings/pages/about/controller.py:62
+#: zapzap/features/settings/pages/about/view.py:296
+msgid "License"
+msgstr "Lisensi"
+
+#: zapzap/features/settings/pages/about/controller.py:64
+#, python-brace-format
+msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
+msgstr "ZapZap adalah perangkat lunak bebas yang dilisensikan di bawah {license_id} (GPL-3.0-or-later)."
+
+#: zapzap/features/settings/pages/about/controller.py:72
+#: zapzap/features/settings/pages/about/view.py:301
+msgid "Credits and contributors"
+msgstr "Kredit dan kontributor"
+
+#: zapzap/features/settings/pages/about/controller.py:74
+#, python-brace-format
+msgid "Created and maintained by {author}. Thanks to everyone who contributes translations, code, testing, and feedback."
+msgstr "Dibuat dan dikelola oleh {author}. Terima kasih kepada semua yang berkontribusi dalam terjemahan, kode, pengujian, dan masukan."
+
+#: zapzap/features/settings/pages/about/model.py:64
+msgid "Version"
+msgstr "Versi"
+
+#: zapzap/features/settings/pages/about/model.py:69
+#: zapzap/features/settings/pages/about/model.py:93
+#: zapzap/features/settings/pages/debugging/view.py:427
+msgid "Channel"
+msgstr "Saluran"
+
+#: zapzap/features/settings/pages/about/model.py:70
+#: zapzap/features/settings/pages/about/model.py:92
+#: zapzap/features/settings/pages/debugging/view.py:426
+msgid "Packaging"
+msgstr "Pemaketan"
+
+#: zapzap/features/settings/pages/about/model.py:71
+msgid "Provider"
+msgstr "Penyedia"
+
+#: zapzap/features/settings/pages/about/model.py:72
+msgid "Repository"
+msgstr "Repositori"
+
+#: zapzap/features/settings/pages/about/model.py:90
+#: zapzap/features/settings/pages/debugging/view.py:431
+msgid "System"
+msgstr "Sistem"
+
+#: zapzap/features/settings/pages/about/model.py:91
+msgid "Session"
+msgstr "Sesi"
+
+#: zapzap/features/settings/pages/about/view.py:37
+#: zapzap/ui/components/update_available_popover.py:82
+msgid "ZapZap application icon"
+msgstr "Ikon aplikasi ZapZap"
+
+#: zapzap/features/settings/pages/about/view.py:49
+msgid "WhatsApp Web for Linux"
+msgstr "WhatsApp Web untuk Linux"
+
+#: zapzap/features/settings/pages/about/view.py:61
+#, python-brace-format
+msgid "Version {version}"
+msgstr "Versi {version}"
+
+#: zapzap/features/settings/pages/about/view.py:148
+#: zapzap/features/settings/pages/debugging/view.py:226
+msgid "Technical details"
+msgstr "Detail teknis"
+
+#: zapzap/features/settings/pages/about/view.py:239
+msgid "Information about ZapZap, the project, and support."
+msgstr "Informasi tentang ZapZap, proyek, dan dukungan."
+
+#: zapzap/features/settings/pages/about/view.py:253
+msgid "Project and support"
+msgstr "Proyek dan dukungan"
+
+#: zapzap/features/settings/pages/about/view.py:257
+#: zapzap/ui/components/update_available_popover.py:70
+#: zapzap/ui/components/update_available_popover.py:173
+msgid "Update available"
+msgstr "Pembaruan tersedia"
+
+#: zapzap/features/settings/pages/about/view.py:258
+msgid "Visit the official website"
+msgstr "Kunjungi situs web resmi"
+
+#: zapzap/features/settings/pages/about/view.py:264
+msgid "Project page"
+msgstr "Halaman proyek"
+
+#: zapzap/features/settings/pages/about/view.py:265
+msgid "Official website, downloads, and documentation."
+msgstr "Situs web resmi, unduhan, dan dokumentasi."
+
+#: zapzap/features/settings/pages/about/view.py:270
+msgid "Report bugs or suggest improvements on GitHub."
+msgstr "Laporkan bug atau sarankan perbaikan di GitHub."
+
+#: zapzap/features/settings/pages/about/view.py:337
+msgid "ZapZap is an independent project and is not affiliated with WhatsApp or Meta."
+msgstr "ZapZap adalah proyek independen dan tidak berafiliasi dengan WhatsApp atau Meta."
+
+#: zapzap/features/settings/pages/about/view.py:357
+#: zapzap/ui/components/browser_sidebar.py:226
+#, python-brace-format
+msgid "ZapZap {version} is available"
+msgstr "ZapZap {version} tersedia"
+
+#: zapzap/features/settings/pages/about/view.py:363
+#: zapzap/ui/components/browser_sidebar.py:231
+msgid "Open the official ZapZap website to download it."
+msgstr "Buka situs web resmi ZapZap untuk mengunduhnya."
+
+#: zapzap/features/settings/pages/about/view.py:368
+msgid "Information copied"
+msgstr "Informasi disalin"
+
+#: zapzap/features/settings/pages/accounts/view.py:18
+msgid "Manage your accounts and individual preferences."
+msgstr "Kelola akun dan preferensi masing-masing."
+
+#: zapzap/features/settings/pages/accounts/view.py:38
+msgid "Account list"
+msgstr "Daftar akun"
+
+#: zapzap/features/settings/pages/accounts/view.py:40
+#: zapzap/features/settings/pages/accounts/view.py:41
+msgid "Add account"
+msgstr "Tambah akun"
+
+#: zapzap/features/settings/pages/accounts/view.py:51
+msgid "Each account can have independent settings."
+msgstr "Setiap akun dapat memiliki pengaturan tersendiri."
+
+#: zapzap/features/settings/pages/accounts/view.py:84
+msgid "Single process mode supports only 1 account. Disable 'Single process' in Performance settings to add more accounts."
+msgstr "Mode proses tunggal hanya mendukung 1 akun. Nonaktifkan 'Proses tunggal' di pengaturan Performa untuk menambah akun lagi."
+
+#: zapzap/features/settings/pages/accounts/view.py:90
+#, python-brace-format
+msgid "Account limit of {limit} reached."
+msgstr "Batas {limit} akun tercapai."
+
+#: zapzap/features/settings/pages/accounts/view.py:94
+#, python-brace-format
+msgid "{count} of {limit} accounts configured."
+msgstr "{count} dari {limit} akun telah dikonfigurasi."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:52
+msgid "All accounts"
+msgstr "Semua akun"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:53
+msgid "This account"
+msgstr "Akun ini"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:152
+msgid "Unsaved changes discarded."
+msgstr "Perubahan yang belum disimpan dibuang."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:193
+#, python-brace-format
+msgid "Current account: {} ({})"
+msgstr "Akun saat ini: {} ({})"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:197
+msgid "Current account: unavailable"
+msgstr "Akun saat ini: tidak tersedia"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:203
+msgid "Changes to the previous scope were saved."
+msgstr "Perubahan pada cakupan sebelumnya telah disimpan."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:290
+#, python-brace-format
+msgid "CSS file enabled: {}"
+msgstr "File CSS diaktifkan: {}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:290
+#, python-brace-format
+msgid "CSS file disabled: {}"
+msgstr "File CSS dinonaktifkan: {}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:293
+#, python-brace-format
+msgid "JavaScript file enabled: {}"
+msgstr "File JavaScript diaktifkan: {}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:295
+#, python-brace-format
+msgid "JavaScript file disabled: {}"
+msgstr "File JavaScript dinonaktifkan: {}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:301
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:317
+msgid "This userstyle does not target WhatsApp Web."
+msgstr "Userstyle ini tidak menargetkan WhatsApp Web."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:308
+msgid "Only HTTPS URLs are allowed."
+msgstr "Hanya URL HTTPS yang diizinkan."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:312
+msgid "Download is too large."
+msgstr "Unduhan terlalu besar."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:321
+msgid "Could not download CSS from URL."
+msgstr "Tidak dapat mengunduh CSS dari URL."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:323
+msgid "Could not download JavaScript from URL."
+msgstr "Tidak dapat mengunduh JavaScript dari URL."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:335
+msgid "Select a file first."
+msgstr "Pilih file terlebih dahulu."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:367
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:406
+msgid "Select a CSS file to preview."
+msgstr "Pilih file CSS untuk pratinjau."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:416
+msgid "No preview available."
+msgstr "Pratinjau tidak tersedia."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:423
+#: zapzap/ui/components/edit_account_dialog.py:672
+msgid "Could not load preview image."
+msgstr "Tidak dapat memuat gambar pratinjau."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:453
+msgid "Enter a CSS HTTPS URL."
+msgstr "Masukkan URL HTTPS CSS."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:455
+msgid "Enter a JavaScript HTTPS URL."
+msgstr "Masukkan URL HTTPS JavaScript."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:475
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:485
+#, python-brace-format
+msgid "File imported: {}"
+msgstr "File diimpor: {}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:489
+#, python-brace-format
+msgid "File imported: {}. No preview found, upload one manually."
+msgstr "File diimpor: {}. Pratinjau tidak ditemukan, unggah secara manual."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:500
+msgid "Select preview image"
+msgstr "Pilih gambar pratinjau"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:516
+msgid "Could not set preview image."
+msgstr "Tidak dapat mengatur gambar pratinjau."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:520
+#: zapzap/ui/components/edit_account_dialog.py:729
+msgid "Preview image updated."
+msgstr "Gambar pratinjau diperbarui."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:526
+msgid "Import from URL"
+msgstr "Impor dari URL"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:537
+msgid "https://example.com/theme.user.css"
+msgstr "https://example.com/theme.user.css"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:539
+msgid "https://example.com/script.js"
+msgstr "https://example.com/script.js"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:543
+#, python-brace-format
+msgid "Optional file name (e.g. 10-custom.{})"
+msgstr "Nama file opsional (mis. 10-custom.{})"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:546
+msgid "URL"
+msgstr "URL"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:547
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:611
+msgid "File name"
+msgstr "Nama file"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:602
+msgid "Edit the stylesheet content and choose the file name."
+msgstr "Sunting isi stylesheet dan pilih nama file."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:604
+msgid "Edit the script content and choose the file name."
+msgstr "Sunting isi skrip dan pilih nama file."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:614
+#, python-brace-format
+msgid "custom.{}"
+msgstr "custom.{}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:619
+msgid "CSS code"
+msgstr "Kode CSS"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:621
+msgid "JavaScript code"
+msgstr "Kode JavaScript"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:641
+msgid "Ctrl+S to save"
+msgstr "Ctrl+S untuk menyimpan"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:643
+#: zapzap/features/settings/pages/advanced_customizations/view.py:418
+#: zapzap/features/downloads/ui/download_dialog.py:92
+#: zapzap/ui/components/edit_account_dialog.py:469
+msgid "Save"
+msgstr "Simpan"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:670
+msgid "Select file"
+msgstr "Pilih file"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:688
+msgid "Could not import file."
+msgstr "Tidak dapat mengimpor file."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:692
+msgid "File imported successfully."
+msgstr "File berhasil diimpor."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:724
+msgid "Create file"
+msgstr "Buat file"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:732
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:783
+msgid "File name cannot be empty."
+msgstr "Nama file tidak boleh kosong."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:745
+msgid "Could not create file."
+msgstr "Tidak dapat membuat file."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:749
+#, python-brace-format
+msgid "File created: {}"
+msgstr "File dibuat: {}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:768
+msgid "Could not open file for editing."
+msgstr "Tidak dapat membuka file untuk disunting."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:771
+#, python-brace-format
+msgid "Edit CSS: {}"
+msgstr "Sunting CSS: {}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:772
+#, python-brace-format
+msgid "Edit JavaScript: {}"
+msgstr "Sunting JavaScript: {}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:806
+msgid "Could not save file."
+msgstr "Tidak dapat menyimpan file."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:810
+#, python-brace-format
+msgid "File saved: {}"
+msgstr "File disimpan: {}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:885
+msgid "Reload complete."
+msgstr "Muat ulang selesai."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:914
+#, python-brace-format
+msgid "{}. Save and reload to apply changes."
+msgstr "{}. Simpan dan muat ulang untuk menerapkan perubahan."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:927
+#: zapzap/features/settings/pages/advanced_customizations/view.py:253
+msgid "CSS"
+msgstr "CSS"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:927
+msgid "JS"
+msgstr "JS"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:930
+msgid "Confirm deletion"
+msgstr "Konfirmasi penghapusan"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:931
+#, python-brace-format
+msgid "Delete selected {} file: {}?"
+msgstr "Hapus file {} yang dipilih: {}?"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:935
+msgid "Deletion cancelled."
+msgstr "Penghapusan dibatalkan."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:946
+msgid "File deleted."
+msgstr "File dihapus."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:948
+msgid "Could not delete file."
+msgstr "Tidak dapat menghapus file."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:974
+msgid "Could not duplicate file."
+msgstr "Tidak dapat menduplikasi file."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:979
+#, python-brace-format
+msgid "File duplicated: {}"
+msgstr "File diduplikasi: {}"
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:1009
+msgid "Customizations saved. Reload pages to apply changes."
+msgstr "Kustomisasi disimpan. Muat ulang halaman untuk menerapkan perubahan."
+
+#: zapzap/features/settings/pages/advanced_customizations/controller.py:1021
+msgid "All pages reloaded."
+msgstr "Semua halaman dimuat ulang."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:75
+msgid "+ Create"
+msgstr "+ Buat"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:99
+msgid "Import file"
+msgstr "Impor file"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:100
+msgid "Import URL"
+msgstr "Impor URL"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:158
+msgid "File actions"
+msgstr "Tindakan file"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:161
+#: zapzap/ui/components/card_user.py:148
+msgid "Edit"
+msgstr "Sunting"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:162
+msgid "Duplicate"
+msgstr "Duplikasi"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:163
+msgid "Open location"
+msgstr "Buka lokasi"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:165
+#: zapzap/features/downloads/ui/downloads_menu.py:248
+msgid "Delete"
+msgstr "Hapus"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:188
+msgid "Advanced customizations"
+msgstr "Kustomisasi lanjutan"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:189
+msgid "Add custom CSS and JavaScript to WhatsApp Web."
+msgstr "Tambahkan CSS dan JavaScript kustom ke WhatsApp Web."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:203
+msgid "Scope"
+msgstr "Cakupan"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:204
+msgid "Choose whether customizations apply to all accounts or only to the current account."
+msgstr "Pilih apakah kustomisasi berlaku untuk semua akun atau hanya akun saat ini."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:208
+msgid "Apply to"
+msgstr "Terapkan ke"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:209
+msgid "Account customizations can inherit or extend the global configuration."
+msgstr "Kustomisasi akun dapat mewarisi atau memperluas konfigurasi global."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:217
+msgid "Inherit global settings"
+msgstr "Warisi pengaturan global"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:218
+msgid "Use only the global customizations for this account."
+msgstr "Gunakan hanya kustomisasi global untuk akun ini."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:237
+msgid "Customizations"
+msgstr "Kustomisasi"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:238
+msgid "Manage custom files for the selected scope."
+msgstr "Kelola file kustom untuk cakupan yang dipilih."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:255
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:326
+msgid "Custom CSS"
+msgstr "CSS Kustom"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:327
+msgid "Enables or disables all CSS files in this scope."
+msgstr "Mengaktifkan atau menonaktifkan semua file CSS di cakupan ini."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:331
+msgid "No CSS files"
+msgstr "Tidak ada file CSS"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:332
+msgid "Create or import a style to get started."
+msgstr "Buat atau impor gaya untuk memulai."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:343
+msgid "Preview"
+msgstr "Pratinjau"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:353
+msgid "No preview available. Select a CSS file to view an associated screenshot."
+msgstr "Pratinjau tidak tersedia. Pilih file CSS untuk melihat tangkapan layar terkait."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:358
+msgid "Upload preview image"
+msgstr "Unggah gambar pratinjau"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:371
+msgid "Replace preview image"
+msgstr "Ganti gambar pratinjau"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:389
+msgid "Custom JavaScript"
+msgstr "JavaScript Kustom"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:390
+msgid "Enables or disables all JavaScript files in this scope."
+msgstr "Mengaktifkan atau menonaktifkan semua file JavaScript di cakupan ini."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:394
+msgid "⚠ Custom scripts have full access to page content. Use code only from trusted sources."
+msgstr "⚠ Skrip kustom memiliki akses penuh ke konten halaman. Gunakan kode hanya dari sumber tepercaya."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:398
+msgid "No JavaScript files"
+msgstr "Tidak ada file JavaScript"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:399
+msgid "Create or import a script to get started."
+msgstr "Buat atau impor skrip untuk memulai."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:416
+msgid "● There are unsaved changes."
+msgstr "● Ada perubahan yang belum disimpan."
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:417
+#: zapzap/features/settings/pages/network_privacy/view.py:110
+#: zapzap/ui/components/edit_account_dialog.py:820
+msgid "Discard"
+msgstr "Buang"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:419
+msgid "Save and reload"
+msgstr "Simpan dan muat ulang"
+
+#: zapzap/features/settings/pages/advanced_customizations/view.py:420
+msgid "Reload page"
+msgstr "Muat ulang halaman"
+
+#: zapzap/features/settings/pages/appearance/controller.py:88
+#: zapzap/features/settings/pages/appearance/view.py:206
+#: zapzap/features/settings/pages/performance_experimental/view.py:65
+#: zapzap/ui/components/edit_account_dialog.py:280
+#: zapzap/ui/components/edit_account_dialog.py:429
+#: zapzap/ui/components/edit_account_dialog.py:435
+msgid "Default"
+msgstr "Bawaan"
+
+#: zapzap/features/settings/pages/appearance/controller.py:89
+msgid "Adwaita"
+msgstr "Adwaita"
+
+#: zapzap/features/settings/pages/appearance/controller.py:90
+msgid "Plasma"
+msgstr "Plasma"
+
+#: zapzap/features/settings/pages/appearance/controller.py:91
+msgid "iOS"
+msgstr "iOS"
+
+#: zapzap/features/settings/pages/appearance/controller.py:92
+msgid "Windows"
+msgstr "Windows"
+
+#: zapzap/features/settings/pages/appearance/view.py:25
+msgid "Adjust interface chrome, quick access, theme, tray icon, grid view, and window decorations."
+msgstr "Sesuaikan elemen antarmuka, akses cepat, tema, ikon tray, tampilan kisi, dan dekorasi jendela."
+
+#: zapzap/features/settings/pages/appearance/view.py:43
+msgid "Interface"
+msgstr "Antarmuka"
+
+#: zapzap/features/settings/pages/appearance/view.py:44
+msgid "Show or hide primary application chrome."
+msgstr "Tampilkan atau sembunyikan elemen antarmuka utama aplikasi."
+
+#: zapzap/features/settings/pages/appearance/view.py:49
+msgid "Browser sidebar"
+msgstr "Bilah sisi peramban"
+
+#: zapzap/features/settings/pages/appearance/view.py:50
+msgid "Show account navigation in the browser shell."
+msgstr "Tampilkan navigasi akun di kerangka peramban."
+
+#: zapzap/features/settings/pages/appearance/view.py:53
+msgid "Menu bar"
+msgstr "Bilah menu"
+
+#: zapzap/features/settings/pages/appearance/view.py:54
+msgid "Show the main window menu bar."
+msgstr "Tampilkan bilah menu jendela utama."
+
+#: zapzap/features/settings/pages/appearance/view.py:57
+msgid "Resizable chat list"
+msgstr "Daftar obrolan dapat diubah ukurannya"
+
+#: zapzap/features/settings/pages/appearance/view.py:59
+msgid "Drag the edge of the WhatsApp Web chat list to change its width. Double-click the edge to restore the default width."
+msgstr "Seret tepi daftar obrolan WhatsApp Web untuk mengubah lebarnya. Klik dua kali tepinya untuk mengembalikan lebar bawaan."
+
+#: zapzap/features/settings/pages/appearance/view.py:65
+msgid "Compact chat list"
+msgstr "Daftar obrolan ringkas"
+
+#: zapzap/features/settings/pages/appearance/view.py:66
+msgid "Set the chat list to 85 px. You can resize it again afterwards."
+msgstr "Atur daftar obrolan ke 85 px. Anda dapat mengubah ukurannya lagi setelahnya."
+
+#: zapzap/features/settings/pages/appearance/view.py:67
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:276
+msgid "Apply"
+msgstr "Terapkan"
+
+#: zapzap/features/settings/pages/appearance/view.py:70
+msgid "Interface scale"
+msgstr "Skala antarmuka"
+
+#: zapzap/features/settings/pages/appearance/view.py:71
+msgid "Scale the interface for high-DPI or accessibility needs."
+msgstr "Skalakan antarmuka untuk kebutuhan layar high-DPI atau aksesibilitas."
+
+#: zapzap/features/settings/pages/appearance/view.py:88
+msgid "Quick Access"
+msgstr "Akses Cepat"
+
+#: zapzap/features/settings/pages/appearance/view.py:90
+msgid "Control the floating monitoring panel and the account selector integrated into WhatsApp Web. Both are independent and can be shown at the same time."
+msgstr "Atur panel pemantauan mengambang dan pemilih akun yang terintegrasi ke WhatsApp Web. Keduanya berdiri sendiri dan dapat ditampilkan bersamaan."
+
+#: zapzap/features/settings/pages/appearance/view.py:97
+msgid "Floating monitoring panel"
+msgstr "Panel pemantauan mengambang"
+
+#: zapzap/features/settings/pages/appearance/view.py:98
+msgid "Monitor accounts in a separate window. Closing it only hides it temporarily."
+msgstr "Pantau akun di jendela terpisah. Menutupnya hanya menyembunyikannya sementara."
+
+#: zapzap/features/settings/pages/appearance/view.py:101
+msgid "Integrated account selector"
+msgstr "Pemilih akun terintegrasi"
+
+#: zapzap/features/settings/pages/appearance/view.py:103
+msgid "Show a compact account selector integrated into WhatsApp Web."
+msgstr "Tampilkan pemilih akun ringkas yang terintegrasi ke WhatsApp Web."
+
+#: zapzap/features/settings/pages/appearance/view.py:119
+msgid "Show panel"
+msgstr "Tampilkan panel"
+
+#: zapzap/features/settings/pages/appearance/view.py:120
+msgid "Choose when the panel appears automatically."
+msgstr "Pilih kapan panel muncul secara otomatis."
+
+#: zapzap/features/settings/pages/appearance/view.py:125
+msgid "When the main window is hidden"
+msgstr "Saat jendela utama disembunyikan"
+
+#: zapzap/features/settings/pages/appearance/view.py:126
+msgid "On demand"
+msgstr "Sesuai permintaan"
+
+#: zapzap/features/settings/pages/appearance/view.py:130
+msgid "Keep above other windows"
+msgstr "Selalu di atas jendela lain"
+
+#: zapzap/features/settings/pages/appearance/view.py:131
+msgid "Keep the panel visible while working in other applications."
+msgstr "Pertahankan panel tetap terlihat saat bekerja di aplikasi lain."
+
+#: zapzap/features/settings/pages/appearance/view.py:135
+msgid "Restore the panel position the next time ZapZap starts."
+msgstr "Pulihkan posisi panel saat ZapZap dijalankan berikutnya."
+
+#: zapzap/features/settings/pages/appearance/view.py:136
+#: zapzap/features/settings/pages/appearance/view.py:144
+msgid "Your Wayland desktop controls window placement."
+msgstr "Desktop Wayland Anda mengatur penempatan jendela."
+
+#: zapzap/features/settings/pages/appearance/view.py:139
+msgid "Remember position"
+msgstr "Ingat posisi"
+
+#: zapzap/features/settings/pages/appearance/view.py:142
+msgid "Lock position"
+msgstr "Kunci posisi"
+
+#: zapzap/features/settings/pages/appearance/view.py:143
+msgid "Prevent dragging. Unlock directly in the panel to move it again."
+msgstr "Cegah penyeretan. Buka kunci langsung di panel untuk memindahkannya lagi."
+
+#: zapzap/features/settings/pages/appearance/view.py:148
+msgid "Reopen the panel without changing its display mode."
+msgstr "Buka kembali panel tanpa mengubah mode tampilannya."
+
+#: zapzap/features/settings/pages/appearance/view.py:152
+msgid "Reset panel position"
+msgstr "Reset posisi panel"
+
+#: zapzap/features/settings/pages/appearance/view.py:153
+msgid "Bring the panel back into the available screen area."
+msgstr "Kembalikan panel ke dalam area layar yang tersedia."
+
+#: zapzap/features/settings/pages/appearance/view.py:154
+#: zapzap/features/settings/pages/language_downloads/view.py:124
+msgid "Reset"
+msgstr "Reset"
+
+#: zapzap/features/settings/pages/appearance/view.py:193
+msgid "Control tray icon visibility, style, and unread counter."
+msgstr "Atur visibilitas, gaya, dan penghitung pesan belum dibaca pada ikon tray."
+
+#: zapzap/features/settings/pages/appearance/view.py:197
+msgid "Show tray icon"
+msgstr "Tampilkan ikon tray"
+
+#: zapzap/features/settings/pages/appearance/view.py:198
+msgid "Display ZapZap in the system notification area."
+msgstr "Tampilkan ZapZap di area notifikasi sistem."
+
+#: zapzap/features/settings/pages/appearance/view.py:201
+msgid "Unread counter"
+msgstr "Penghitung belum dibaca"
+
+#: zapzap/features/settings/pages/appearance/view.py:202
+msgid "Show the number of unread messages."
+msgstr "Tampilkan jumlah pesan belum dibaca."
+
+#: zapzap/features/settings/pages/appearance/view.py:205
+msgid "Icon style"
+msgstr "Gaya ikon"
+
+#: zapzap/features/settings/pages/appearance/view.py:207
+msgid "Symbolic light"
+msgstr "Simbolik terang"
+
+#: zapzap/features/settings/pages/appearance/view.py:208
+msgid "Symbolic dark"
+msgstr "Simbolik gelap"
+
+#: zapzap/features/settings/pages/appearance/view.py:229
+#: zapzap/features/browser/shell/browser_controller.py:183
+msgid "Grid view"
+msgstr "Tampilan kisi"
+
+#: zapzap/features/settings/pages/appearance/view.py:230
+msgid "Choose how many columns are used by grid view."
+msgstr "Pilih jumlah kolom yang digunakan pada tampilan kisi."
+
+#: zapzap/features/settings/pages/appearance/view.py:234
+msgid "Grid columns"
+msgstr "Kolom kisi"
+
+#: zapzap/features/settings/pages/appearance/view.py:235
+msgid "Number of account columns in grid view."
+msgstr "Jumlah kolom akun pada tampilan kisi."
+
+#: zapzap/features/settings/pages/appearance/view.py:245
+msgid "Window decoration"
+msgstr "Dekorasi jendela"
+
+#: zapzap/features/settings/pages/appearance/view.py:246
+msgid "Customize the window controls drawn by ZapZap."
+msgstr "Sesuaikan kontrol jendela yang digambar oleh ZapZap."
+
+#: zapzap/features/settings/pages/appearance/view.py:250
+msgid "Use custom decoration"
+msgstr "Gunakan dekorasi kustom"
+
+#: zapzap/features/settings/pages/appearance/view.py:251
+msgid "Use window controls drawn by ZapZap."
+msgstr "Gunakan kontrol jendela yang digambar oleh ZapZap."
+
+#: zapzap/features/settings/pages/appearance/view.py:254
+msgid "Button style"
+msgstr "Gaya tombol"
+
+#: zapzap/features/settings/pages/appearance/view.py:255
+msgid "Visual style used by custom window buttons."
+msgstr "Gaya visual yang digunakan oleh tombol jendela kustom."
+
+#: zapzap/features/settings/pages/appearance/view.py:259
+msgid "Minimize"
+msgstr "Minimalkan"
+
+#: zapzap/features/settings/pages/appearance/view.py:260
+msgid "Maximize"
+msgstr "Maksimalkan"
+
+#: zapzap/features/settings/pages/appearance/view.py:264
+msgid "Visible buttons"
+msgstr "Tombol yang terlihat"
+
+#: zapzap/features/settings/pages/appearance/view.py:269
+msgid "Button position"
+msgstr "Posisi tombol"
+
+#: zapzap/features/settings/pages/appearance/view.py:270
+msgid "Place window buttons on the right or left."
+msgstr "Tempatkan tombol jendela di sisi kanan atau kiri."
+
+#: zapzap/features/settings/pages/appearance/view.py:275
+msgid "Right"
+msgstr "Kanan"
+
+#: zapzap/features/settings/pages/appearance/view.py:276
+msgid "Left"
+msgstr "Kiri"
+
+#: zapzap/features/settings/pages/debugging/controller.py:62
+#: zapzap/features/settings/pages/debugging/view.py:202
+msgid "Information and privacy"
+msgstr "Informasi dan privasi"
+
+#: zapzap/features/settings/pages/debugging/controller.py:64
+msgid ""
+"Reports may include the ZapZap version, operating system, installation type, architecture, Python/Qt versions, error details, and sanitized logs.\n"
+"\n"
+"Never sent: messages, contacts, phone numbers, cookies, WhatsApp session data, conversation content, passwords, or authentication tokens.\n"
+"\n"
+"ZapZap does not send reports. After review, it copies the report and opens the official GitHub repository rafatosta/zapzap. You need a GitHub account to publish the public issue."
+msgstr ""
+"Laporan dapat mencakup versi ZapZap, sistem operasi, jenis instalasi, arsitektur, versi Python/Qt, detail kesalahan, dan log yang telah disanitasi.\n"
+"\n"
+"Tidak pernah dikirim: pesan, kontak, nomor telepon, cookie, data sesi WhatsApp, isi percakapan, kata sandi, atau token autentikasi.\n"
+"\n"
+"ZapZap tidak mengirim laporan. Setelah ditinjau, laporan disalin dan repositori resmi GitHub rafatosta/zapzap akan dibuka. Anda memerlukan akun GitHub untuk menerbitkan isu publik."
+
+#: zapzap/features/settings/pages/debugging/controller.py:74
+msgid "Notify me when a failure occurs?"
+msgstr "Beri tahu saya jika terjadi kegagalan?"
+
+#: zapzap/features/settings/pages/debugging/controller.py:76
+msgid ""
+"ZapZap can prepare a sanitized technical report locally after a serious failure. You will review it on the next startup.\n"
+"\n"
+"ZapZap never transmits or publishes the report automatically."
+msgstr ""
+"ZapZap dapat menyiapkan laporan teknis yang telah disanitasi secara lokal setelah kegagalan serius. Anda akan meninjaunya pada saat aplikasi dijalankan berikutnya.\n"
+"\n"
+"ZapZap tidak pernah mengirimkan atau menerbitkan laporan secara otomatis."
+
+#: zapzap/features/settings/pages/debugging/controller.py:111
+#: zapzap/features/settings/pages/debugging/view.py:377
+#, python-brace-format
+msgid "{count} crash report"
+msgid_plural "{count} crash reports"
+msgstr[0] "{count} laporan crash"
+
+#: zapzap/features/settings/pages/debugging/controller.py:116
+msgid "available"
+msgstr "tersedia"
+
+#: zapzap/features/settings/pages/debugging/controller.py:116
+msgid "not available"
+msgstr "tidak tersedia"
+
+#: zapzap/features/settings/pages/debugging/controller.py:119
+#, python-brace-format
+msgid ""
+"Diagnostic files: {reports}; debug log: {log_status}.\n"
+"\n"
+"Runtime information:\n"
+"{runtime}"
+msgstr ""
+"File diagnostik: {reports}; log debug: {log_status}.\n"
+"\n"
+"Informasi runtime:\n"
+"{runtime}"
+
+#: zapzap/features/settings/pages/debugging/controller.py:132
+#: zapzap/features/settings/pages/debugging/view.py:245
+msgid "Copy diagnostics"
+msgstr "Salin diagnostik"
+
+#: zapzap/features/settings/pages/debugging/controller.py:133
+#: zapzap/features/settings/pages/debugging/view.py:330
+msgid "Copy details"
+msgstr "Salin detail"
+
+#: zapzap/features/settings/pages/debugging/controller.py:143
+#: zapzap/features/settings/pages/debugging/controller.py:153
+#: zapzap/features/settings/pages/debugging/controller.py:163
+msgid "Debug logs"
+msgstr "Log debug"
+
+#: zapzap/features/settings/pages/debugging/controller.py:144
+#, python-brace-format
+msgid "Deleted {count} old crash report(s) (older than 30 days)."
+msgstr "{count} laporan crash lama (lebih dari 30 hari) telah dihapus."
+
+#: zapzap/features/settings/pages/debugging/controller.py:154
+msgid "Delete all crash reports and debug logs?"
+msgstr "Hapus semua laporan crash dan log debug?"
+
+#: zapzap/features/settings/pages/debugging/controller.py:164
+#, python-brace-format
+msgid "Deleted {count} file(s)."
+msgstr "{count} file dihapus."
+
+#: zapzap/features/settings/pages/debugging/controller.py:171
+msgid "Reset settings?"
+msgstr "Reset pengaturan?"
+
+#: zapzap/features/settings/pages/debugging/controller.py:173
+msgid ""
+"All custom ZapZap settings will be restored to their default values.\n"
+"\n"
+"The application will need to be restarted to complete the operation."
+msgstr ""
+"Semua pengaturan kustom ZapZap akan dikembalikan ke nilai bawaan.\n"
+"\n"
+"Aplikasi perlu dimulai ulang untuk menyelesaikan proses ini."
+
+#: zapzap/features/settings/pages/debugging/controller.py:186
+#: zapzap/features/settings/pages/debugging/controller.py:193
+#: zapzap/features/settings/pages/debugging/view.py:346
+msgid "Reset settings"
+msgstr "Reset pengaturan"
+
+#: zapzap/features/settings/pages/debugging/controller.py:187
+#, python-brace-format
+msgid ""
+"Could not remove settings file:\n"
+"{error}"
+msgstr ""
+"Tidak dapat menghapus file pengaturan:\n"
+"{error}"
+
+#: zapzap/features/settings/pages/debugging/controller.py:194
+msgid "Settings were reset successfully. Restart ZapZap now?"
+msgstr "Pengaturan berhasil direset. Mulai ulang ZapZap sekarang?"
+
+#: zapzap/features/settings/pages/debugging/view.py:97
+msgid "Full details"
+msgstr "Detail lengkap"
+
+#: zapzap/features/settings/pages/debugging/view.py:161
+msgid "Prepare a sanitized report to publish with your GitHub account."
+msgstr "Siapkan laporan yang telah disanitasi untuk diterbitkan menggunakan akun GitHub Anda."
+
+#: zapzap/features/settings/pages/debugging/view.py:179
+msgid "You will always review the complete report before copying it and opening GitHub."
+msgstr "Anda akan selalu meninjau laporan lengkap sebelum menyalinnya dan membuka GitHub."
+
+#: zapzap/features/settings/pages/debugging/view.py:185
+msgid "Something is not working?"
+msgstr "Ada sesuatu yang tidak berfungsi?"
+
+#: zapzap/features/settings/pages/debugging/view.py:186
+msgid "Describe the problem in simple steps. Avoid personal information."
+msgstr "Jelaskan masalahnya dalam langkah-langkah sederhana. Hindari informasi pribadi."
+
+#: zapzap/features/settings/pages/debugging/view.py:187
+msgid "Report a problem…"
+msgstr "Laporkan masalah…"
+
+#: zapzap/features/settings/pages/debugging/view.py:193
+msgid "Notify me when a failure occurs"
+msgstr "Beri tahu saya saat terjadi kegagalan"
+
+#: zapzap/features/settings/pages/debugging/view.py:195
+msgid "ZapZap will prepare a sanitized local report after a serious failure. It will never publish or transmit it automatically."
+msgstr "ZapZap akan menyiapkan laporan lokal yang telah disanitasi setelah kegagalan serius. Laporan tidak akan pernah diterbitkan atau dikirim secara otomatis."
+
+#: zapzap/features/settings/pages/debugging/view.py:203
+msgid "See what reports may include and how publication on GitHub works."
+msgstr "Lihat apa saja yang dapat disertakan dalam laporan dan cara penerbitannya di GitHub."
+
+#: zapzap/features/settings/pages/debugging/view.py:204
+msgid "View information"
+msgstr "Lihat informasi"
+
+#: zapzap/features/settings/pages/debugging/view.py:209
+msgid "Recent local reports"
+msgstr "Laporan lokal terbaru"
+
+#: zapzap/features/settings/pages/debugging/view.py:211
+msgid "Review reports kept on this device and their GitHub handoff status."
+msgstr "Tinjau laporan yang disimpan di perangkat ini dan status pengirimannya ke GitHub."
+
+#: zapzap/features/settings/pages/debugging/view.py:214
+msgid "View local reports"
+msgstr "Lihat laporan lokal"
+
+#: zapzap/features/settings/pages/debugging/view.py:230
+msgid "Local crash files"
+msgstr "File crash lokal"
+
+#: zapzap/features/settings/pages/debugging/view.py:233
+msgid "Debug log"
+msgstr "Log debug"
+
+#: zapzap/features/settings/pages/debugging/view.py:258
+msgid "Technical files"
+msgstr "File teknis"
+
+#: zapzap/features/settings/pages/debugging/view.py:259
+msgid "Manage local files used to diagnose errors. These files are not sent automatically."
+msgstr "Kelola file lokal yang digunakan untuk mendiagnosis kesalahan. File ini tidak dikirim secara otomatis."
+
+#: zapzap/features/settings/pages/debugging/view.py:267
+msgid "Diagnostics folder"
+msgstr "Folder diagnostik"
+
+#: zapzap/features/settings/pages/debugging/view.py:274
+#: zapzap/features/downloads/ui/download_dialog.py:90
+#: zapzap/features/downloads/ui/downloads_menu.py:616
+msgid "Open"
+msgstr "Buka"
+
+#: zapzap/features/settings/pages/debugging/view.py:286
+msgid "Clean up files…"
+msgstr "Bersihkan file…"
+
+#: zapzap/features/settings/pages/debugging/view.py:291
+msgid "Delete old files"
+msgstr "Hapus file lama"
+
+#: zapzap/features/settings/pages/debugging/view.py:294
+msgid "Remove only crash reports older than 30 days."
+msgstr "Hanya hapus laporan crash yang lebih lama dari 30 hari."
+
+#: zapzap/features/settings/pages/debugging/view.py:298
+msgid "Delete all logs and reports"
+msgstr "Hapus semua log dan laporan"
+
+#: zapzap/features/settings/pages/debugging/view.py:302
+msgid "Remove every diagnostic file."
+msgstr "Hapus setiap file diagnostik."
+
+#: zapzap/features/settings/pages/debugging/view.py:314
+msgid "Runtime information"
+msgstr "Informasi runtime"
+
+#: zapzap/features/settings/pages/debugging/view.py:315
+msgid "Useful data for support and bug reports."
+msgstr "Data yang berguna untuk dukungan dan laporan bug."
+
+#: zapzap/features/settings/pages/debugging/view.py:329
+msgid "Refresh"
+msgstr "Muat ulang"
+
+#: zapzap/features/settings/pages/debugging/view.py:343
+msgid "Maintenance"
+msgstr "Pemeliharaan"
+
+#: zapzap/features/settings/pages/debugging/view.py:348
+msgid "Restore ZapZap's default settings. The application will need to be restarted."
+msgstr "Kembalikan pengaturan bawaan ZapZap. Aplikasi perlu dimulai ulang."
+
+#: zapzap/features/settings/pages/debugging/view.py:351
+msgid "Reset…"
+msgstr "Reset…"
+
+#: zapzap/features/settings/pages/debugging/view.py:364
+#, python-brace-format
+msgid "{count} available"
+msgid_plural "{count} available"
+msgstr[0] "{count} tersedia"
+
+#: zapzap/features/settings/pages/debugging/view.py:369
+msgid "faulthandler.log available"
+msgstr "faulthandler.log tersedia"
+
+#: zapzap/features/settings/pages/debugging/view.py:371
+msgid "Not available"
+msgstr "Tidak tersedia"
+
+#: zapzap/features/settings/pages/debugging/view.py:382
+#, python-brace-format
+msgid "{reports} and 1 log file"
+msgstr "{reports} dan 1 file log"
+
+#: zapzap/features/settings/pages/debugging/view.py:428
+msgid "Qt"
+msgstr "Qt"
+
+#: zapzap/features/settings/pages/debugging/view.py:429
+msgid "PyQt"
+msgstr "PyQt"
+
+#: zapzap/features/settings/pages/debugging/view.py:430
+msgid "Python"
+msgstr "Python"
+
+#: zapzap/features/settings/pages/debugging/view.py:433
+msgid "System graphics session"
+msgstr "Sesi grafis sistem"
+
+#: zapzap/features/settings/pages/debugging/view.py:436
+msgid "ZapZap graphics backend"
+msgstr "Backend grafis ZapZap"
+
+#: zapzap/features/settings/pages/debugging/view.py:466
+msgid "Path copied"
+msgstr "Jalur disalin"
+
+#: zapzap/features/settings/pages/debugging/view.py:469
+msgid "Diagnostics copied"
+msgstr "Diagnostik disalin"
+
+#: zapzap/features/settings/pages/debugging/view.py:472
+msgid "Details copied"
+msgstr "Detail disalin"
+
+#: zapzap/features/settings/pages/language_downloads/controller.py:99
+msgid "Show download window"
+msgstr "Tampilkan jendela unduhan"
+
+#: zapzap/features/settings/pages/language_downloads/controller.py:103
+msgid "Save automatically to selected folder"
+msgstr "Simpan otomatis ke folder yang dipilih"
+
+#: zapzap/features/settings/pages/language_downloads/controller.py:107
+msgid "Ask where to save every time"
+msgstr "Tanya lokasi penyimpanan setiap kali"
+
+#: zapzap/features/settings/pages/language_downloads/controller.py:118
+msgid "Preview in WhatsApp"
+msgstr "Pratinjau di WhatsApp"
+
+#: zapzap/features/settings/pages/language_downloads/controller.py:119
+msgid "Download directly (where supported)"
+msgstr "Unduh langsung (jika didukung)"
+
+#: zapzap/features/settings/pages/language_downloads/controller.py:204
+#: zapzap/features/settings/pages/language_downloads/view.py:146
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:255
+msgid "No dictionary available"
+msgstr "Tidak ada kamus yang tersedia"
+
+#: zapzap/features/settings/pages/language_downloads/controller.py:208
+#, python-brace-format
+msgid "{language} and {count} more"
+msgstr "{language} dan {count} lainnya"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:22
+msgid "Manage interface language, downloads folder and spell checker."
+msgstr "Kelola bahasa antarmuka, folder unduhan, dan pemeriksa ejaan."
+
+#: zapzap/features/settings/pages/language_downloads/view.py:41
+msgid "The interface language is applied immediately."
+msgstr "Bahasa antarmuka langsung diterapkan."
+
+#: zapzap/features/settings/pages/language_downloads/view.py:60
+msgid "Download behavior"
+msgstr "Perilaku unduhan"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:61
+msgid "Choose what happens when a download starts."
+msgstr "Pilih apa yang terjadi saat unduhan dimulai."
+
+#: zapzap/features/settings/pages/language_downloads/view.py:69
+msgid "PDF file clicks"
+msgstr "Klik file PDF"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:70
+msgid "Preview PDF files in WhatsApp or download them when the browser handles the PDF. WhatsApp's own preview may still open."
+msgstr "Pratinjau file PDF di WhatsApp atau unduh saat peramban menangani PDF. Pratinjau bawaan WhatsApp mungkin tetap terbuka."
+
+#: zapzap/features/settings/pages/language_downloads/view.py:80
+msgid "Set a custom folder or restore the default download location."
+msgstr "Atur folder khusus atau kembalikan lokasi unduhan bawaan."
+
+#: zapzap/features/settings/pages/language_downloads/view.py:81
+msgid "Define"
+msgstr "Tentukan"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:87
+#: zapzap/features/settings/pages/network_privacy/controller.py:276
+#: zapzap/features/settings/pages/performance_experimental/view.py:310
+msgid "Restore"
+msgstr "Pulihkan"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:92
+#: zapzap/features/settings/pages/language_downloads/view.py:96
+msgid "Remember last folder when using \"Save as\""
+msgstr "Ingat folder terakhir saat menggunakan \"Simpan sebagai\""
+
+#: zapzap/features/settings/pages/language_downloads/view.py:93
+msgid "Only for the current account session."
+msgstr "Hanya untuk sesi akun saat ini."
+
+#: zapzap/features/settings/pages/language_downloads/view.py:101
+msgid "Automatically open PDFs"
+msgstr "Buka PDF secara otomatis"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:103
+msgid "Open completed PDF downloads with the system default application."
+msgstr "Buka unduhan PDF yang selesai dengan aplikasi bawaan sistem."
+
+#: zapzap/features/settings/pages/language_downloads/view.py:110
+msgid "Automatically open images"
+msgstr "Buka gambar secara otomatis"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:112
+msgid "Open completed image downloads with the system default application."
+msgstr "Buka unduhan gambar yang selesai dengan aplikasi bawaan sistem."
+
+#: zapzap/features/settings/pages/language_downloads/view.py:119
+msgid "WhatsApp multiple-download permission"
+msgstr "Izin multi-unduhan WhatsApp"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:121
+msgid "Clear the remembered allow or block decision for repeated WhatsApp downloads."
+msgstr "Hapus keputusan izinkan atau blokir yang diingat untuk unduhan WhatsApp berulang."
+
+#: zapzap/features/settings/pages/language_downloads/view.py:145
+msgid "Spell checker languages"
+msgstr "Bahasa pemeriksa ejaan"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:147
+msgid "Select…"
+msgstr "Pilih…"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:151
+msgid "Select spell checker languages"
+msgstr "Pilih bahasa pemeriksa ejaan"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:153
+msgid "Dictionary files"
+msgstr "File kamus"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:154
+msgid "Install, remove, or import dictionaries in ZapZap storage."
+msgstr "Pasang, hapus, atau impor kamus di penyimpanan ZapZap."
+
+#: zapzap/features/settings/pages/language_downloads/view.py:155
+msgid "Manage…"
+msgstr "Kelola…"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:158
+#: zapzap/ui/components/dictionary_manager_dialog.py:50
+#: zapzap/ui/components/dictionary_manager_dialog.py:89
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:274
+msgid "Manage dictionaries"
+msgstr "Kelola kamus"
+
+#: zapzap/features/settings/pages/language_downloads/view.py:160
+msgid "Open the Qt WebEngine dictionary manager."
+msgstr "Buka pengelola kamus Qt WebEngine."
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:29
+msgid "No proxy"
+msgstr "Tanpa proxy"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:30
+#: zapzap/features/settings/pages/network_privacy/controller.py:167
+msgid "System proxy"
+msgstr "Proxy sistem"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:31
+msgid "SOCKS5"
+msgstr "SOCKS5"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:32
+msgid "HTTP"
+msgstr "HTTP"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:33
+msgid "HTTP caching"
+msgstr "Tembolok HTTP"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:34
+msgid "FTP caching"
+msgstr "Tembolok FTP"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:150
+msgid "Uses Chromium's native WebRTC policy after restarting ZapZap."
+msgstr "Menggunakan kebijakan WebRTC bawaan Chromium setelah memulai ulang ZapZap."
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:155
+msgid "Available only while an HTTP or SOCKS5 proxy is enabled."
+msgstr "Hanya tersedia saat proxy HTTP atau SOCKS5 diaktifkan."
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:165
+msgid "No proxy configured"
+msgstr "Tidak ada proxy yang dikonfigurasi"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:177
+#, python-brace-format
+msgid "{proxy_type} · {endpoint}"
+msgstr "{proxy_type} · {endpoint}"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:183
+#, python-brace-format
+msgid "{status} · disabled"
+msgstr "{status} · dinonaktifkan"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:201
+msgid "Unable to apply the proxy settings. The previous proxy remains active."
+msgstr "Tidak dapat menerapkan pengaturan proxy. Proxy sebelumnya tetap aktif."
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:217
+msgid "Enter a proxy server."
+msgstr "Masukkan server proxy."
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:225
+msgid "Enter a port between 1 and 65535."
+msgstr "Masukkan port antara 1 dan 65535."
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:264
+msgid "Restore proxy settings?"
+msgstr "Pulihkan pengaturan proxy?"
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:266
+msgid "The global proxy settings will be removed and the default values will be restored."
+msgstr "Pengaturan proxy global akan dihapus dan nilai bawaan akan dipulihkan."
+
+#: zapzap/features/settings/pages/network_privacy/controller.py:270
+msgid "Strict proxy isolation and WebRTC protection will not be changed."
+msgstr "Isolasi proxy ketat dan perlindungan WebRTC tidak akan diubah."
+
+#: zapzap/features/settings/pages/network_privacy/view.py:36
+#: zapzap/features/settings/pages/network_privacy/view.py:42
+msgid "Authentication"
+msgstr "Autentikasi"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:44
+msgid "Show or hide optional proxy credentials."
+msgstr "Tampilkan atau sembunyikan kredensial proxy opsional."
+
+#: zapzap/features/settings/pages/network_privacy/view.py:54
+msgid "User"
+msgstr "Pengguna"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:55
+msgid "Optional proxy user."
+msgstr "Pengguna proxy opsional."
+
+#: zapzap/features/settings/pages/network_privacy/view.py:58
+msgid "Password"
+msgstr "Kata sandi"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:59
+msgid "Optional proxy password."
+msgstr "Kata sandi proxy opsional."
+
+#: zapzap/features/settings/pages/network_privacy/view.py:106
+msgid "There are unapplied network changes."
+msgstr "Ada perubahan jaringan yang belum diterapkan."
+
+#: zapzap/features/settings/pages/network_privacy/view.py:111
+msgid "Apply changes"
+msgstr "Terapkan perubahan"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:150
+msgid "Configure proxy, privacy protection, and network options."
+msgstr "Konfigurasikan proxy, perlindungan privasi, dan opsi jaringan."
+
+#: zapzap/features/settings/pages/network_privacy/view.py:166
+msgid "Proxy"
+msgstr "Proxy"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:168
+msgid "Route WhatsApp Web traffic through a proxy server. Existing connections may require reloading."
+msgstr "Arahkan lalu lintas WhatsApp Web melalui server proxy. Koneksi yang sudah ada mungkin perlu dimuat ulang."
+
+#: zapzap/features/settings/pages/network_privacy/view.py:174
+msgid "Use proxy"
+msgstr "Gunakan proxy"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:175
+msgid "Route traffic through the proxy configured below."
+msgstr "Arahkan lalu lintas melalui proxy yang dikonfigurasi di bawah ini."
+
+#: zapzap/features/settings/pages/network_privacy/view.py:178
+msgid "Type"
+msgstr "Jenis"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:179
+msgid "Select the proxy mode."
+msgstr "Pilih mode proxy."
+
+#: zapzap/features/settings/pages/network_privacy/view.py:183
+msgid "Server"
+msgstr "Server"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:184
+msgid "Proxy host name or IP address."
+msgstr "Nama host atau alamat IP proxy."
+
+#: zapzap/features/settings/pages/network_privacy/view.py:186
+msgid "Port"
+msgstr "Port"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:186
+msgid "Proxy port."
+msgstr "Port proxy."
+
+#: zapzap/features/settings/pages/network_privacy/view.py:191
+msgid "Strict proxy isolation"
+msgstr "Isolasi proxy ketat"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:193
+msgid "Prevent direct network connections when an explicit proxy is configured."
+msgstr "Cegah koneksi jaringan langsung saat proxy eksplisit dikonfigurasi."
+
+#: zapzap/features/settings/pages/network_privacy/view.py:213
+msgid "Restore proxy…"
+msgstr "Pulihkan proxy…"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:214
+msgid "Remove the global proxy settings and restore defaults."
+msgstr "Hapus pengaturan proxy global dan pulihkan ke bawaan."
+
+#: zapzap/features/settings/pages/network_privacy/view.py:215
+msgid "Restore…"
+msgstr "Pulihkan…"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:236
+msgid "proxy.example.com"
+msgstr "proxy.example.com"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:238
+msgid "8080"
+msgstr "8080"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:250
+msgid "Reduce the exposure of network information."
+msgstr "Kurangi paparan informasi jaringan."
+
+#: zapzap/features/settings/pages/network_privacy/view.py:254
+msgid "WebRTC protection"
+msgstr "Perlindungan WebRTC"
+
+#: zapzap/features/settings/pages/network_privacy/view.py:256
+msgid "Blocks WebRTC APIs in page scripts. This is independent from strict proxy isolation."
+msgstr "Memblokir API WebRTC di skrip halaman. Ini terpisah dari isolasi proxy ketat."
+
+#: zapzap/features/settings/pages/network_privacy/view.py:261
+msgid "Legacy script-based protection"
+msgstr "Perlindungan berbasis skrip lawas"
+
+#: zapzap/features/settings/pages/notifications/view.py:20
+msgid "Configure notifications, privacy, and ZapZap messages."
+msgstr "Konfigurasikan notifikasi, privasi, dan pesan ZapZap."
+
+#: zapzap/features/settings/pages/notifications/view.py:34
+msgid "Choose which information may appear in notifications."
+msgstr "Pilih informasi yang boleh muncul di notifikasi."
+
+#: zapzap/features/settings/pages/notifications/view.py:41
+msgid "Show WhatsApp notifications using the desktop notification system."
+msgstr "Tampilkan notifikasi WhatsApp menggunakan sistem notifikasi desktop."
+
+#: zapzap/features/settings/pages/notifications/view.py:47
+msgid "Contact photo"
+msgstr "Foto kontak"
+
+#: zapzap/features/settings/pages/notifications/view.py:48
+msgid "Show the sender's photo when available."
+msgstr "Tampilkan foto pengirim jika tersedia."
+
+#: zapzap/features/settings/pages/notifications/view.py:51
+msgid "Contact name"
+msgstr "Nama kontak"
+
+#: zapzap/features/settings/pages/notifications/view.py:52
+msgid "Show the sender or group name."
+msgstr "Tampilkan nama pengirim atau grup."
+
+#: zapzap/features/settings/pages/notifications/view.py:55
+msgid "Message preview"
+msgstr "Pratinjau pesan"
+
+#: zapzap/features/settings/pages/notifications/view.py:56
+msgid "Show the content of the received message."
+msgstr "Tampilkan isi pesan yang diterima."
+
+#: zapzap/features/settings/pages/notifications/view.py:76
+msgid "Respect Do Not Disturb"
+msgstr "Ikuti mode Jangan Ganggu"
+
+#: zapzap/features/settings/pages/notifications/view.py:78
+msgid "Silence WhatsApp's message tone while the desktop's Do Not Disturb mode is on."
+msgstr "Bisukan nada pesan WhatsApp saat mode Jangan Ganggu desktop aktif."
+
+#: zapzap/features/settings/pages/notifications/view.py:91
+msgid "ZapZap messages"
+msgstr "Pesan ZapZap"
+
+#: zapzap/features/settings/pages/notifications/view.py:92
+msgid "Control occasional messages shown by the application itself."
+msgstr "Atur pesan sesekali yang ditampilkan oleh aplikasi ini."
+
+#: zapzap/features/settings/pages/notifications/view.py:96
+msgid "Support reminders"
+msgstr "Pengingat dukungan"
+
+#: zapzap/features/settings/pages/notifications/view.py:98
+msgid "Occasionally show messages supporting ZapZap's development."
+msgstr "Sesekali tampilkan pesan untuk mendukung pengembangan ZapZap."
+
+#: zapzap/features/settings/pages/notifications/view.py:126
+msgid "Privacy presets"
+msgstr "Prasetel privasi"
+
+#: zapzap/features/settings/pages/notifications/view.py:129
+msgid "Quickly choose which notification details are visible."
+msgstr "Pilih dengan cepat detail notifikasi yang terlihat."
+
+#: zapzap/features/settings/pages/notifications/view.py:133
+msgid "Show everything"
+msgstr "Tampilkan semua"
+
+#: zapzap/features/settings/pages/notifications/view.py:136
+msgid "Hide content"
+msgstr "Sembunyikan isi"
+
+#: zapzap/features/settings/pages/notifications/view.py:139
+msgid "Maximum privacy"
+msgstr "Privasi maksimal"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:22
+msgid "Tune cache, GPU, processes, and advanced behavior."
+msgstr "Sesuaikan tembolok, GPU, proses, dan perilaku lanjutan."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:40
+msgid "Advanced warning"
+msgstr "Peringatan lanjutan"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:41
+msgid "These options may require restart and can affect stability."
+msgstr "Opsi ini mungkin memerlukan mulai ulang dan dapat memengaruhi stabilitas."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:47
+msgid "Change these settings only if you understand the trade-offs. Restart ZapZap after changing rendering, process, or JavaScript memory options."
+msgstr "Ubah pengaturan ini hanya jika Anda memahami risikonya. Mulai ulang ZapZap setelah mengubah opsi rendering, proses, atau memori JavaScript."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:58
+msgid "Rendering profile"
+msgstr "Profil rendering"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:60
+msgid "Choose a predefined rendering configuration or customize individual options."
+msgstr "Pilih konfigurasi rendering yang sudah tersedia atau sesuaikan opsi satu per satu."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:66
+msgid "Compatibility"
+msgstr "Kompatibilitas"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:67
+msgid "Manual"
+msgstr "Manual"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:69
+msgid "Recommended settings with hardware acceleration enabled."
+msgstr "Pengaturan yang disarankan dengan akselerasi perangkat keras aktif."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:71
+msgid "Improves stability on systems with video, flickering or GPU rendering issues."
+msgstr "Meningkatkan stabilitas pada sistem dengan masalah video, layar berkedip, atau rendering GPU."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:74
+msgid "Use custom GPU and rendering options."
+msgstr "Gunakan opsi GPU dan rendering kustom."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:97
+msgid "Cache"
+msgstr "Tembolok"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:98
+msgid "Control HTTP cache and persistent cookies."
+msgstr "Atur tembolok HTTP dan cookie persisten."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:102
+msgid "Cache type"
+msgstr "Jenis tembolok"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:103
+msgid "Defines where the HTTP cache is stored."
+msgstr "Menentukan tempat penyimpanan tembolok HTTP."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:107
+msgid "Maximum cache size"
+msgstr "Ukuran tembolok maksimal"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:108
+msgid "0 MiB uses Chromium's automatic cache management."
+msgstr "0 MiB menggunakan pengelolaan tembolok otomatis Chromium."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:112
+msgid "Persistent cookies"
+msgstr "Cookie persisten"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:113
+msgid "Keeps cookies between restarts."
+msgstr "Menyimpan cookie di antara sesi mulai ulang."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:128
+msgid "GPU and rendering"
+msgstr "GPU dan rendering"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:129
+msgid "Rendering options for problematic drivers or hardware."
+msgstr "Opsi rendering untuk driver atau perangkat keras yang bermasalah."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:133
+msgid "In-process GPU"
+msgstr "GPU dalam proses"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:134
+msgid "May reduce memory usage, but can cause instability."
+msgstr "Dapat mengurangi penggunaan memori, tetapi bisa menyebabkan ketidakstabilan."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:137
+msgid "Disable GPU"
+msgstr "Nonaktifkan GPU"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:138
+msgid "Recommended only for old GPUs or problematic drivers."
+msgstr "Hanya disarankan untuk GPU lama atau driver bermasalah."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:141
+msgid "Automatic multi-GPU workaround"
+msgstr "Penanganan multi-GPU otomatis"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:143
+msgid "Honors DRI_PRIME or adjusts GPU compositing for a headless secondary GPU."
+msgstr "Mengikuti DRI_PRIME atau menyesuaikan komposisi GPU untuk GPU sekunder tanpa layar."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:147
+msgid "Disable GPU VSync"
+msgstr "Nonaktifkan VSync GPU"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:148
+msgid "May reduce latency, but can increase tearing."
+msgstr "Dapat mengurangi latensi, tetapi bisa meningkatkan screen tearing."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:151
+msgid "Force software rendering"
+msgstr "Paksa rendering perangkat lunak"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:152
+msgid "Use only for graphical issues."
+msgstr "Gunakan hanya jika mengalami masalah grafis."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:155
+msgid "Disable GPU memory buffer for video"
+msgstr "Nonaktifkan buffer memori GPU untuk video"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:157
+msgid "Avoid GPU-backed video frame buffers. May help with black screens, flickering and GPU crashes."
+msgstr "Hindari buffer frame video berbasis GPU. Dapat membantu mengatasi layar hitam, berkedip, dan crash GPU."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:162
+msgid "Disable zero-copy"
+msgstr "Nonaktifkan zero-copy"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:164
+msgid "Disable zero-copy GPU buffer transfers. May improve compatibility with some graphics drivers."
+msgstr "Nonaktifkan transfer buffer GPU zero-copy. Dapat meningkatkan kompatibilitas dengan beberapa driver grafis."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:169
+msgid "Use software video decoding"
+msgstr "Gunakan dekode video perangkat lunak"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:171
+msgid "Disables hardware video decoding to fix videos that appear white, black, flicker, or cause crashes. This may increase CPU and battery usage."
+msgstr "Menonaktifkan dekode video perangkat keras untuk memperbaiki video yang tampak putih, hitam, berkedip, atau menyebabkan crash. Ini dapat meningkatkan penggunaan CPU dan baterai."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:177
+msgid "Force GBM"
+msgstr "Paksa GBM"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:178
+msgid "Known NVIDIA typing lag fix."
+msgstr "Perbaikan yang dikenal untuk jeda pengetikan pada NVIDIA."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:181
+msgid "Disable accessibility bus"
+msgstr "Nonaktifkan bus aksesibilitas"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:182
+msgid "Known typing lag or CPU spike fix in QtWebEngine."
+msgstr "Perbaikan yang dikenal untuk jeda pengetikan atau lonjakan CPU di QtWebEngine."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:214
+msgid "Processes"
+msgstr "Proses"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:215
+msgid "Chromium process model options."
+msgstr "Opsi model proses Chromium."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:219
+msgid "Single process"
+msgstr "Proses tunggal"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:220
+msgid "Experimental; reduces memory usage but may cause crashes."
+msgstr "Eksperimental; mengurangi penggunaan memori tetapi dapat menyebabkan crash."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:223
+msgid "Process per site"
+msgstr "Proses per situs"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:224
+msgid "Safer and more stable, but may increase memory usage."
+msgstr "Lebih aman dan stabil, tetapi dapat meningkatkan penggunaan memori."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:235
+msgid "JavaScript memory"
+msgstr "Memori JavaScript"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:236
+msgid "V8 memory limit. Restart required."
+msgstr "Batas memori V8. Perlu mulai ulang."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:240
+msgid "JavaScript memory limit"
+msgstr "Batas memori JavaScript"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:241
+msgid "Automatic is the safest option."
+msgstr "Otomatis adalah opsi paling aman."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:245
+msgid "JavaScript GC predictable schedule (experimental)"
+msgstr "Jadwal GC JavaScript terprediksi (eksperimental)"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:246
+msgid "Enables predictable V8 garbage collection and disables GPU."
+msgstr "Mengaktifkan garbage collection V8 yang terprediksi dan menonaktifkan GPU."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:257
+msgid "Web behavior"
+msgstr "Perilaku web"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:258
+msgid "Behavior options for rendered web content."
+msgstr "Opsi perilaku untuk konten web yang dirender."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:262
+msgid "Smooth scrolling"
+msgstr "Gulir halus"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:263
+msgid "Disabling may reduce CPU usage."
+msgstr "Menonaktifkannya dapat mengurangi penggunaan CPU."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:266
+msgid "Background throttling"
+msgstr "Pembatasan latar belakang"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:267
+msgid "Allows background tabs to reduce resource usage."
+msgstr "Memungkinkan tab latar belakang mengurangi penggunaan sumber daya."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:270
+msgid "Disable animations"
+msgstr "Nonaktifkan animasi"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:271
+msgid "May improve performance on slower machines."
+msgstr "Dapat meningkatkan performa pada perangkat yang lebih lambat."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:274
+msgid "Disable pinch-to-zoom"
+msgstr "Nonaktifkan cubit untuk zoom"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:275
+msgid "Useful if accidental zooming occurs during scrolling."
+msgstr "Berguna jika sering terjadi zoom tidak sengaja saat menggulir."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:278
+msgid "Fix Ctrl+Arrow cursor movement"
+msgstr "Perbaiki pergerakan kursor Ctrl+Panah"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:280
+msgid "Use visual word navigation in editable fields to fix RTL text cursor movement."
+msgstr "Gunakan navigasi kata visual pada kolom sunting untuk memperbaiki pergerakan kursor teks RTL."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:303
+msgid "Restore defaults"
+msgstr "Kembalikan ke bawaan"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:304
+msgid "Return performance settings to safe defaults."
+msgstr "Kembalikan pengaturan performa ke nilai bawaan yang aman."
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:308
+msgid "Restore performance defaults"
+msgstr "Pulihkan bawaan performa"
+
+#: zapzap/features/settings/pages/performance_experimental/view.py:309
+msgid "Restores all performance settings to safe default values."
+msgstr "Mengembalikan semua pengaturan performa ke nilai bawaan yang aman."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:218
+msgid ""
+"Defines where the HTTP cache will be stored.\n"
+"Disk: faster after restart.\n"
+"Memory: faster, but lost on exit.\n"
+"No cache: lower disk usage, slower."
+msgstr ""
+"Menentukan tempat penyimpanan tembolok HTTP.\n"
+"Disk: lebih cepat setelah mulai ulang.\n"
+"Memori: lebih cepat, tetapi hilang saat keluar.\n"
+"Tanpa tembolok: penggunaan disk lebih rendah, lebih lambat."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:226
+#, python-brace-format
+msgid ""
+"Maximum HTTP cache size: {maximum} MiB.\n"
+"0 MiB uses Chromium's automatic cache management."
+msgstr ""
+"Ukuran maksimum tembolok HTTP: {maximum} MiB.\n"
+"0 MiB menggunakan pengelolaan tembolok otomatis Chromium."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:231
+msgid ""
+"Keeps cookies between restarts.\n"
+"Disabling may cause frequent logouts."
+msgstr ""
+"Menyimpan cookie di antara sesi mulai ulang.\n"
+"Menonaktifkannya dapat menyebabkan sering keluar akun."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:235
+msgid ""
+"Runs GPU and rendering in the same process.\n"
+"May reduce memory usage, but can cause instability."
+msgstr ""
+"Menjalankan GPU dan rendering dalam proses yang sama.\n"
+"Dapat mengurangi penggunaan memori, tetapi bisa menyebabkan ketidakstabilan."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:241
+msgid ""
+"Disables GPU hardware acceleration.\n"
+"Recommended only for old GPUs or problematic drivers."
+msgstr ""
+"Menonaktifkan akselerasi perangkat keras GPU.\n"
+"Hanya disarankan untuk GPU lama atau driver bermasalah."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:247
+msgid ""
+"Automatically honors an unambiguous DRI_PRIME selector on systems with multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when one GPU has no connected display.\n"
+"\n"
+"Disable this only if the automatic workaround causes problems. Restart required."
+msgstr ""
+"Secara otomatis mengikuti pemilih DRI_PRIME yang jelas pada sistem dengan beberapa GPU render Linux. Jika tidak, menambahkan --disable-gpu-compositing saat salah satu GPU tidak terhubung ke layar.\n"
+"\n"
+"Nonaktifkan ini hanya jika penanganan otomatis menimbulkan masalah. Perlu mulai ulang."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:256
+msgid ""
+"Disables GPU VSync.\n"
+"May reduce latency, but can increase power usage and tearing."
+msgstr ""
+"Menonaktifkan VSync GPU.\n"
+"Dapat mengurangi latensi, tetapi bisa meningkatkan penggunaan daya dan screen tearing."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:262
+msgid ""
+"Forces software rendering.\n"
+"Use only in case of graphical issues.\n"
+"May significantly reduce performance."
+msgstr ""
+"Memaksa rendering perangkat lunak.\n"
+"Gunakan hanya jika terjadi masalah grafis.\n"
+"Dapat menurunkan performa secara signifikan."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:269
+msgid ""
+"Avoids GPU-backed video frame buffers.\n"
+"May help with black screens, flickering, and GPU crashes.\n"
+"Restart required."
+msgstr ""
+"Menghindari buffer frame video berbasis GPU.\n"
+"Dapat membantu mengatasi layar hitam, berkedip, dan crash GPU.\n"
+"Perlu mulai ulang."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:276
+msgid ""
+"Disables zero-copy GPU buffer transfers.\n"
+"May improve compatibility with some graphics drivers.\n"
+"Restart required."
+msgstr ""
+"Menonaktifkan transfer buffer GPU zero-copy.\n"
+"Dapat meningkatkan kompatibilitas dengan beberapa driver grafis.\n"
+"Perlu mulai ulang."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:283
+msgid ""
+"Disables hardware video decoding without disabling all GPU acceleration.\n"
+"Use when videos play only audio, appear white or black, flicker, or cause crashes.\n"
+"May increase CPU and battery usage. Restart required."
+msgstr ""
+"Menonaktifkan dekode video perangkat keras tanpa menonaktifkan seluruh akselerasi GPU.\n"
+"Gunakan saat video hanya memutar audio, tampak putih atau hitam, berkedip, atau menyebabkan crash.\n"
+"Dapat meningkatkan penggunaan CPU dan baterai. Perlu mulai ulang."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:292
+msgid ""
+"Forces the GBM backend on Wayland.\n"
+"Known to fix severe typing lag on NVIDIA drivers."
+msgstr ""
+"Memaksa backend GBM di Wayland.\n"
+"Dikenal dapat memperbaiki jeda pengetikan parah pada driver NVIDIA."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:298
+msgid ""
+"Disables the accessibility bus.\n"
+"Known to fix typing lag or CPU spikes in QtWebEngine."
+msgstr ""
+"Menonaktifkan bus aksesibilitas.\n"
+"Dikenal dapat memperbaiki jeda pengetikan atau lonjakan CPU di QtWebEngine."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:304
+msgid ""
+"Runs the entire Chromium engine in a single process.\n"
+"Reduces memory usage, but may cause crashes.\n"
+"Experimental usage."
+msgstr ""
+"Menjalankan seluruh mesin Chromium dalam satu proses.\n"
+"Mengurangi penggunaan memori, tetapi dapat menyebabkan crash.\n"
+"Penggunaan eksperimental."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:311
+msgid ""
+"Uses a separate process per site.\n"
+"Safer and more stable.\n"
+"May increase memory usage."
+msgstr ""
+"Menggunakan proses terpisah per situs.\n"
+"Lebih aman dan stabil.\n"
+"Dapat meningkatkan penggunaan memori."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:318
+msgid ""
+"JavaScript (V8) memory limit.\n"
+"Automatic is the safest option.\n"
+"Higher values allow heavier pages.\n"
+"\n"
+"Restart required."
+msgstr ""
+"Batas memori JavaScript (V8).\n"
+"Otomatis adalah opsi paling aman.\n"
+"Nilai yang lebih tinggi mendukung halaman yang lebih berat.\n"
+"\n"
+"Perlu mulai ulang."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:326
+msgid ""
+"Enables V8 predictable garbage collection schedule.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"\n"
+"Experimental option. Restart required."
+msgstr ""
+"Mengaktifkan jadwal garbage collection V8 yang terprediksi.\n"
+"Ini menambahkan --js-flags=--predictable-gc-schedule dan --disable-gpu ke QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"\n"
+"Opsi eksperimental. Perlu mulai ulang."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:333
+msgid ""
+"Enables smooth scrolling animations.\n"
+"Disabling may reduce CPU usage."
+msgstr ""
+"Mengaktifkan animasi gulir halus.\n"
+"Menonaktifkannya dapat mengurangi penggunaan CPU."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:337
+msgid ""
+"Allows background tabs to reduce resource usage.\n"
+"Disabling keeps timers active, but uses more resources."
+msgstr ""
+"Memungkinkan tab latar belakang mengurangi penggunaan sumber daya.\n"
+"Menonaktifkannya membuat timer tetap aktif, tetapi menggunakan lebih banyak sumber daya."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:343
+msgid ""
+"Disables CSS and JavaScript animations.\n"
+"May improve performance on slower machines."
+msgstr ""
+"Menonaktifkan animasi CSS dan JavaScript.\n"
+"Dapat meningkatkan performa pada perangkat yang lebih lambat."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:349
+msgid ""
+"Disables pinch-to-zoom gesture on touchpads.\n"
+"Useful if accidental zooming occurs during scrolling."
+msgstr ""
+"Menonaktifkan gestur cubit untuk zoom pada touchpad.\n"
+"Berguna jika sering terjadi zoom tidak sengaja saat menggulir."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:355
+msgid ""
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web message fields.\n"
+"\n"
+"Restart or reload WhatsApp Web after changing this option."
+msgstr ""
+"Menggunakan Selection.modify() dengan arah visual untuk navigasi kata Ctrl+Panah.\n"
+"Ini memperbaiki arah kursor yang terbalik pada teks RTL di kolom pesan WhatsApp Web.\n"
+"\n"
+"Mulai ulang atau muat ulang WhatsApp Web setelah mengubah opsi ini."
+
+#: zapzap/features/settings/pages/performance_experimental/controller.py:361
+msgid ""
+"Restores all performance settings\n"
+"to safe default values."
+msgstr ""
+"Mengembalikan semua pengaturan performa\n"
+"ke nilai bawaan yang aman."
+
+#: zapzap/features/settings/pages/permissions/view.py:23
+msgid "Define which permissions can be granted automatically to WhatsApp Web."
+msgstr "Tentukan izin mana yang dapat diberikan secara otomatis ke WhatsApp Web."
+
+#: zapzap/features/settings/pages/permissions/view.py:40
+msgid "Disabled permissions will continue to be requested when needed."
+msgstr "Izin yang dinonaktifkan akan tetap diminta saat diperlukan."
+
+#: zapzap/features/settings/pages/permissions/view.py:51
+msgid "Allow all"
+msgstr "Izinkan semua"
+
+#: zapzap/features/settings/pages/permissions/view.py:52
+msgid "Remove all"
+msgstr "Hapus semua"
+
+#: zapzap/features/settings/pages/permissions/view.py:60
+msgid "Device access"
+msgstr "Akses perangkat"
+
+#: zapzap/features/settings/pages/permissions/view.py:82
+msgid "Location"
+msgstr "Lokasi"
+
+#: zapzap/features/settings/pages/permissions/view.py:83
+msgid "Automatically allow access to your location."
+msgstr "Izinkan akses ke lokasi Anda secara otomatis."
+
+#: zapzap/features/settings/pages/permissions/view.py:89
+msgid "Sharing"
+msgstr "Berbagi"
+
+#: zapzap/features/settings/pages/permissions/view.py:105
+msgid "Advanced"
+msgstr "Lanjutan"
+
+#: zapzap/features/settings/pages/permissions/view.py:109
+msgid "Pointer lock"
+msgstr "Kunci penunjuk"
+
+#: zapzap/features/settings/pages/permissions/view.py:110
+msgid "Automatically allow the page to capture the mouse pointer."
+msgstr "Izinkan halaman mengambil alih penunjuk tetikus secara otomatis."
+
+#: zapzap/features/settings/pages/system_startup/view.py:24
+msgid "Configure how ZapZap starts, behaves in the system, and integrates with Linux."
+msgstr "Atur cara ZapZap dimulai, berperilaku di sistem, dan berintegrasi dengan Linux."
+
+#: zapzap/features/settings/pages/system_startup/view.py:41
+msgid "Define how ZapZap behaves when your session starts."
+msgstr "Tentukan perilaku ZapZap saat sesi Anda dimulai."
+
+#: zapzap/features/settings/pages/system_startup/view.py:46
+msgid "Open ZapZap automatically when the session starts."
+msgstr "Buka ZapZap secara otomatis saat sesi dimulai."
+
+#: zapzap/features/settings/pages/system_startup/view.py:49
+msgid "Start in the background"
+msgstr "Mulai di latar belakang"
+
+#: zapzap/features/settings/pages/system_startup/view.py:50
+msgid "Open without showing the main window."
+msgstr "Buka tanpa menampilkan jendela utama."
+
+#: zapzap/features/settings/pages/system_startup/view.py:63
+msgid "Window"
+msgstr "Jendela"
+
+#: zapzap/features/settings/pages/system_startup/view.py:64
+msgid "Define what happens when the main window is closed."
+msgstr "Tentukan apa yang terjadi saat jendela utama ditutup."
+
+#: zapzap/features/settings/pages/system_startup/view.py:96
+msgid "Choose whether ZapZap continues in the background or quits when the window is closed."
+msgstr "Pilih apakah ZapZap tetap berjalan di latar belakang atau keluar saat jendela ditutup."
+
+#: zapzap/features/settings/pages/system_startup/view.py:110
+msgid "Linux integration"
+msgstr "Integrasi Linux"
+
+#: zapzap/features/settings/pages/system_startup/view.py:111
+msgid "Settings related to the desktop environment and platform."
+msgstr "Pengaturan yang berkaitan dengan lingkungan desktop dan platform."
+
+#: zapzap/features/settings/pages/system_startup/view.py:115
+msgid "System file dialogs"
+msgstr "Dialog file sistem"
+
+#: zapzap/features/settings/pages/system_startup/view.py:116
+msgid "Use the file picker provided by the desktop environment."
+msgstr "Gunakan pemilih file yang disediakan oleh lingkungan desktop."
+
+#: zapzap/features/settings/pages/system_startup/view.py:128
+msgid "Display backend"
+msgstr "Backend tampilan"
+
+#: zapzap/features/settings/pages/system_startup/view.py:130
+msgid "Automatic is recommended and uses the native backend for the current session. X11 is available as a compatibility fallback."
+msgstr "Otomatis disarankan dan menggunakan backend asli untuk sesi saat ini. X11 tersedia sebagai cadangan kompatibilitas."
+
+#: zapzap/features/settings/pages/system_startup/view.py:143
+msgid "Recommended. Use Wayland in Wayland sessions and X11 in X11 sessions."
+msgstr "Disarankan. Gunakan Wayland pada sesi Wayland dan X11 pada sesi X11."
+
+#: zapzap/features/settings/pages/system_startup/view.py:148
+msgid "Wayland"
+msgstr "Wayland"
+
+#: zapzap/features/settings/pages/system_startup/view.py:150
+msgid "Force the native Wayland backend."
+msgstr "Paksa backend Wayland asli."
+
+#: zapzap/features/settings/pages/system_startup/view.py:153
+msgid "X11 / XWayland"
+msgstr "X11 / XWayland"
+
+#: zapzap/features/settings/pages/system_startup/view.py:156
+msgid "Use the X11 backend. In Wayland sessions, this runs through XWayland."
+msgstr "Gunakan backend X11. Pada sesi Wayland, ini berjalan melalui XWayland."
+
+#: zapzap/features/settings/pages/system_startup/view.py:172
+msgid "Choose the Qt display backend. Changes require restart."
+msgstr "Pilih backend tampilan Qt. Perubahan memerlukan mulai ulang."
+
+#: zapzap/features/downloads/ui/download_dialog.py:101
+msgid "More"
+msgstr "Lainnya"
+
+#: zapzap/features/downloads/ui/download_dialog.py:105
+msgid "Save as"
+msgstr "Simpan sebagai"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:238
+#: zapzap/features/downloads/ui/downloads_menu.py:619
+msgid "Show in folder"
+msgstr "Tampilkan di folder"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:255
+#: zapzap/features/downloads/ui/downloads_menu.py:628
+msgid "Pause"
+msgstr "Jeda"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:262
+#: zapzap/features/downloads/ui/downloads_menu.py:639
+msgid "Resume"
+msgstr "Lanjutkan"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:430
+#: zapzap/features/downloads/ui/downloads_menu.py:431
+msgid "Queued"
+msgstr "Dalam antrean"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:432
+msgid "Paused"
+msgstr "Dijeda"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:433
+msgid "Interrupted"
+msgstr "Terputus"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:434
+msgid "Cancelled"
+msgstr "Dibatalkan"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:435
+msgid "Blocked"
+msgstr "Diblokir"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:436
+msgid "Completed"
+msgstr "Selesai"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:622
+msgid "Delete file"
+msgstr "Hapus file"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:655
+msgid "Remove from download history"
+msgstr "Hapus dari riwayat unduhan"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:692
+msgid "No recent downloads"
+msgstr "Belum ada unduhan terbaru"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:786
+#: zapzap/features/downloads/ui/downloads_menu.py:1070
+msgid "Open downloads folder"
+msgstr "Buka folder unduhan"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:824
+msgid "All download history"
+msgstr "Semua riwayat unduhan"
+
+#: zapzap/features/downloads/ui/downloads_menu.py:1061
+msgid "Clear download history"
+msgstr "Bersihkan riwayat unduhan"
+
+#: zapzap/features/downloads/ui/multiple_download_dialog.py:21
+msgid "Multiple downloads"
+msgstr "Banyak unduhan"
+
+#: zapzap/features/downloads/ui/multiple_download_dialog.py:22
+msgid "WhatsApp wants to download multiple files."
+msgstr "WhatsApp ingin mengunduh beberapa file."
+
+#: zapzap/features/downloads/ui/multiple_download_dialog.py:24
+msgid "Do you want to allow these additional downloads?"
+msgstr "Apakah Anda ingin mengizinkan unduhan tambahan ini?"
+
+#: zapzap/features/downloads/ui/multiple_download_dialog.py:28
+msgid "Allow once"
+msgstr "Izinkan sekali"
+
+#: zapzap/features/downloads/ui/multiple_download_dialog.py:32
+msgid "Always allow"
+msgstr "Selalu izinkan"
+
+#: zapzap/features/downloads/ui/multiple_download_dialog.py:36
+msgid "Block"
+msgstr "Blokir"
+
+#: zapzap/features/browser/shell/browser_controller.py:295
+msgid "Flatpak sandbox help"
+msgstr "Bantuan sandbox Flatpak"
+
+#: zapzap/features/browser/shell/browser_controller.py:320
+msgid "Flatpak sandbox"
+msgstr "Sandbox Flatpak"
+
+#: zapzap/features/browser/shell/browser_controller.py:321
+msgid "ZapZap is running in Flatpak sandbox."
+msgstr "ZapZap sedang berjalan di dalam sandbox Flatpak."
+
+#: zapzap/features/browser/shell/browser_controller.py:323
+msgid "Some features like opening files or drag-and-drop may require additional permissions."
+msgstr "Beberapa fitur seperti membuka file atau seret dan lepas mungkin memerlukan izin tambahan."
+
+#: zapzap/features/browser/shell/browser_controller.py:328
+msgid "Instructions"
+msgstr "Petunjuk"
+
+#: zapzap/features/browser/shell/browser_controller.py:329
+msgid "Copy command"
+msgstr "Salin perintah"
+
+#: zapzap/features/browser/shell/browser_controller.py:698
+msgid "Account disabled"
+msgstr "Akun dinonaktifkan"
+
+#: zapzap/features/browser/shell/browser_controller.py:699
+msgid "This account is disabled."
+msgstr "Akun ini dinonaktifkan."
+
+#: zapzap/features/browser/shell/browser_controller.py:701
+msgid "You can reactivate it now or use the right-click menu to manage this account."
+msgstr "Anda dapat mengaktifkannya kembali sekarang atau menggunakan menu klik kanan untuk mengelola akun ini."
+
+#: zapzap/features/browser/shell/browser_controller.py:706
+msgid "Activate"
+msgstr "Aktifkan"
+
+#: zapzap/features/browser/shell/browser_controller.py:707
+msgid "Not now"
+msgstr "Nanti saja"
+
+#: zapzap/features/browser/web/popup_window.py:65
+msgid "Manual close unavailable"
+msgstr "Tutup manual tidak tersedia"
+
+#: zapzap/features/browser/web/popup_window.py:67
+msgid "To prevent the application from becoming unresponsive, this window cannot be closed manually. Use WhatsApp's End call button. The window will close when WhatsApp requests it."
+msgstr "Untuk mencegah aplikasi menjadi tidak responsif, jendela ini tidak dapat ditutup secara manual. Gunakan tombol Akhiri panggilan di WhatsApp. Jendela akan tertutup saat WhatsApp memintanya."
+
+#: zapzap/features/browser/web/page_controller.py:314
+msgid "your microphone"
+msgstr "mikrofon Anda"
+
+#: zapzap/features/browser/web/page_controller.py:315
+msgid "your camera"
+msgstr "kamera Anda"
+
+#: zapzap/features/browser/web/page_controller.py:316
+msgid "your camera and microphone"
+msgstr "kamera dan mikrofon Anda"
+
+#: zapzap/features/browser/web/page_controller.py:317
+msgid "your location"
+msgstr "lokasi Anda"
+
+#: zapzap/features/browser/web/page_controller.py:318
+msgid "your screen contents"
+msgstr "konten layar Anda"
+
+#: zapzap/features/browser/web/page_controller.py:319
+msgid "your screen contents and audio"
+msgstr "konten layar dan audio Anda"
+
+#: zapzap/features/browser/web/page_controller.py:320
+msgid "mouse lock"
+msgstr "kunci tetikus"
+
+#: zapzap/features/browser/web/page_controller.py:322
+msgid "a system feature"
+msgstr "fitur sistem"
+
+#: zapzap/features/browser/web/page_controller.py:326
+msgid "Permission request"
+msgstr "Permintaan izin"
+
+#: zapzap/features/browser/web/page_controller.py:327
+#, python-brace-format
+msgid ""
+"WhatsApp Web is requesting access to {}.\n"
+"\n"
+"Allow?"
+msgstr ""
+"WhatsApp Web meminta akses ke {}.\n"
+"\n"
+"Izinkan?"
+
+#: zapzap/features/browser/web/web_view.py:357
+#: zapzap/ui/components/integrated_account_selector.py:57
+msgid "Account selector"
+msgstr "Pemilih akun"
+
+#: zapzap/features/browser/web/web_view.py:517
+msgid "Chat list width"
+msgstr "Lebar daftar obrolan"
+
+#: zapzap/features/browser/web/web_view.py:519
+msgid "Drag or use the arrow keys to resize. Double-click or press Enter to restore the default width."
+msgstr "Seret atau gunakan tombol panah untuk mengubah ukuran. Klik dua kali atau tekan Enter untuk mengembalikan lebar bawaan."
+
+#: zapzap/features/browser/web/web_view.py:600
+msgid "Undo"
+msgstr "Urungkan"
+
+#: zapzap/features/browser/web/web_view.py:600
+msgid "Redo"
+msgstr "Ulangi"
+
+#: zapzap/features/browser/web/web_view.py:600
+msgid "Cut"
+msgstr "Potong"
+
+#: zapzap/features/browser/web/web_view.py:601
+msgid "Paste"
+msgstr "Tempel"
+
+#: zapzap/features/browser/web/web_view.py:601
+msgid "Select all"
+msgstr "Pilih semua"
+
+#: zapzap/features/browser/web/web_view.py:602
+msgid "Save image"
+msgstr "Simpan gambar"
+
+#: zapzap/features/browser/web/web_view.py:602
+msgid "Copy image"
+msgstr "Salin gambar"
+
+#: zapzap/features/browser/web/web_view.py:603
+#: zapzap/features/browser/web/web_view.py:633
+msgid "Copy link address"
+msgstr "Salin alamat tautan"
+
+#: zapzap/features/browser/web/web_view.py:651
+msgid "Check Spelling"
+msgstr "Periksa Ejaan"
+
+#: zapzap/features/browser/web/web_view.py:657
+msgid "Languages…"
+msgstr "Bahasa…"
+
+#: zapzap/features/browser/web/web_view.py:660
+msgid "Choose the languages used by the spell checker."
+msgstr "Pilih bahasa yang digunakan oleh pemeriksa ejaan."
+
+#: zapzap/features/browser/web/web_view.py:1178
+#: zapzap/ui/components/card_user.py:304
+msgid "Account"
+msgstr "Akun"
+
+#: zapzap/features/browser/web/web_view.py:1180
+#, python-brace-format
+msgid "DevTools - {}"
+msgstr "DevTools - {}"
+
+#: zapzap/features/accounts/domain/profile_sync.py:49
+msgid "WhatsApp Web is unavailable."
+msgstr "WhatsApp Web tidak tersedia."
+
+#: zapzap/features/accounts/domain/profile_sync.py:56
+#: zapzap/features/accounts/domain/profile_sync.py:113
+msgid "The WhatsApp page returned invalid avatar data."
+msgstr "Halaman WhatsApp mengembalikan data avatar yang tidak valid."
+
+#: zapzap/features/accounts/domain/profile_sync.py:81
+msgid "The profile photo URL is invalid."
+msgstr "URL foto profil tidak valid."
+
+#: zapzap/features/accounts/domain/profile_sync.py:91
+msgid "The profile photo could not be downloaded."
+msgstr "Foto profil tidak dapat diunduh."
+
+#: zapzap/features/accounts/domain/profile_sync.py:95
+msgid "The profile photo is invalid."
+msgstr "Foto profil tidak valid."
+
+#: zapzap/features/accounts/domain/profile_sync.py:120
+msgid "The profile photo is not readable."
+msgstr "Foto profil tidak dapat dibaca."
+
+#: zapzap/features/accounts/domain/profile_sync.py:124
+msgid "The profile photo is not base64 encoded."
+msgstr "Foto profil tidak berformat base64."
+
+#: zapzap/features/accounts/domain/profile_sync.py:127
+msgid "The profile photo could not be decoded."
+msgstr "Foto profil tidak dapat didekode."
+
+#: zapzap/features/accounts/domain/profile_sync.py:131
+msgid "The profile photo could not be read."
+msgstr "Foto profil tidak dapat dibaca."
+
+#: zapzap/ui/components/browser_grid_view.py:181
+msgid "Accounts overview"
+msgstr "Ringkasan akun"
+
+#: zapzap/ui/components/browser_grid_view.py:185
+msgid "Select an account to return to its chat."
+msgstr "Pilih akun untuk kembali ke obrolannya."
+
+#: zapzap/ui/components/browser_grid_view.py:198
+#: zapzap/ui/components/integrated_account_selector.py:33
+msgid "No active accounts to display."
+msgstr "Tidak ada akun aktif untuk ditampilkan."
+
+#: zapzap/ui/components/browser_sidebar.py:202
+msgid "New conversation by the phone number"
+msgstr "Percakapan baru lewat nomor telepon"
+
+#: zapzap/ui/components/browser_sidebar.py:206
+#: zapzap/ui/components/browser_sidebar.py:210
+msgid "Lock or configure WhatsApp Web app lock"
+msgstr "Kunci atau atur kunci aplikasi WhatsApp Web"
+
+#: zapzap/ui/components/browser_sidebar.py:208
+msgid "WhatsApp lock"
+msgstr "Kunci WhatsApp"
+
+#: zapzap/ui/components/browser_sidebar.py:213
+msgid "Open donations page"
+msgstr "Buka halaman donasi"
+
+#: zapzap/ui/components/browser_sidebar.py:215
+msgid "Show ways to support ZapZap development."
+msgstr "Tampilkan cara mendukung pengembangan ZapZap."
+
+#: zapzap/ui/components/browser_sidebar.py:221
+msgid "ZapZap Settings"
+msgstr "Pengaturan ZapZap"
+
+#: zapzap/ui/components/card_user.py:149 zapzap/ui/components/card_user.py:150
+#: zapzap/ui/components/card_user.py:491 zapzap/ui/components/card_user.py:494
+#: zapzap/ui/components/edit_account_dialog.py:66
+#: zapzap/ui/components/edit_account_dialog.py:171
+msgid "Edit account"
+msgstr "Sunting akun"
+
+#: zapzap/ui/components/card_user.py:158 zapzap/ui/components/card_user.py:159
+#: zapzap/ui/components/card_user.py:282 zapzap/ui/components/card_user.py:514
+#: zapzap/ui/components/card_user.py:518
+msgid "Remove account"
+msgstr "Hapus akun"
+
+#: zapzap/ui/components/card_user.py:173 zapzap/ui/components/card_user.py:306
+msgid "Account status"
+msgstr "Status akun"
+
+#: zapzap/ui/components/card_user.py:175
+msgid "Disabled accounts remain saved, but are not loaded and do not receive notifications."
+msgstr "Akun yang dinonaktifkan tetap tersimpan, tetapi tidak dimuat dan tidak menerima notifikasi."
+
+#: zapzap/ui/components/card_user.py:179 zapzap/ui/components/card_user.py:300
+#: zapzap/ui/components/card_user.py:302
+msgid "Enabled"
+msgstr "Diaktifkan"
+
+#: zapzap/ui/components/card_user.py:180 zapzap/ui/components/card_user.py:300
+#: zapzap/ui/components/card_user.py:302
+msgid "Disabled"
+msgstr "Dinonaktifkan"
+
+#: zapzap/ui/components/card_user.py:190 zapzap/ui/components/card_user.py:194
+#: zapzap/ui/components/card_user.py:307 zapzap/ui/components/card_user.py:498
+msgid "Do not disturb"
+msgstr "Jangan ganggu"
+
+#: zapzap/ui/components/card_user.py:191
+msgid "Silences notifications for this account."
+msgstr "Membisukan notifikasi untuk akun ini."
+
+#: zapzap/ui/components/card_user.py:249 zapzap/ui/components/card_user.py:690
+msgid "Unavailable while the account is disabled."
+msgstr "Tidak tersedia saat akun dinonaktifkan."
+
+#: zapzap/ui/components/card_user.py:284 zapzap/ui/components/card_user.py:659
+msgid "The default account cannot be removed."
+msgstr "Akun bawaan tidak dapat dihapus."
+
+#: zapzap/ui/components/card_user.py:484 zapzap/ui/components/card_user.py:487
+#: zapzap/ui/components/edit_account_dialog.py:358
+#: zapzap/ui/components/edit_account_dialog.py:361
+msgid "Sync profile photo"
+msgstr "Sinkronkan foto profil"
+
+#: zapzap/ui/components/card_user.py:505
+msgid "Disable account"
+msgstr "Nonaktifkan akun"
+
+#: zapzap/ui/components/card_user.py:520 zapzap/ui/components/card_user.py:657
+msgid "Destructive action: removes this account."
+msgstr "Tindakan permanen: menghapus akun ini."
+
+#: zapzap/ui/components/card_user.py:670
+msgid "Active account"
+msgstr "Akun aktif"
+
+#: zapzap/ui/components/card_user.py:672
+msgid "Disabled account"
+msgstr "Akun dinonaktifkan"
+
+#: zapzap/ui/components/card_user.py:699
+#, python-brace-format
+msgid "Account {name}, active."
+msgstr "Akun {name}, aktif."
+
+#: zapzap/ui/components/card_user.py:701
+#, python-brace-format
+msgid "Account {name}, disabled."
+msgstr "Akun {name}, dinonaktifkan."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:104
+msgid "Install dictionaries from the official ZapZap catalog for Qt WebEngine spell checking."
+msgstr "Pasang kamus dari katalog resmi ZapZap untuk pemeriksa ejaan Qt WebEngine."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:114
+msgid "Search language or code"
+msgstr "Cari bahasa atau kode"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:116
+msgid "Search dictionaries"
+msgstr "Cari kamus"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:118
+msgid "Filter dictionaries by readable language name or technical code."
+msgstr "Saring kamus berdasarkan nama bahasa atau kode teknis."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:121
+msgid "All"
+msgstr "Semua"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:122
+#: zapzap/ui/components/dictionary_manager_dialog.py:332
+msgid "Installed"
+msgstr "Terpasang"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:123
+#: zapzap/ui/components/dictionary_manager_dialog.py:334
+msgid "Available"
+msgstr "Tersedia"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:124
+msgid "Dictionary filter"
+msgstr "Filter kamus"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:125
+msgid "Refresh list"
+msgstr "Segarkan daftar"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:127
+msgid "Download the latest dictionary catalog."
+msgstr "Unduh katalog kamus terbaru."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:133
+#: zapzap/ui/components/dictionary_manager_dialog.py:290
+msgid "Loading dictionary catalog…"
+msgstr "Memuat katalog kamus…"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:134
+msgid "Dictionary catalog status"
+msgstr "Status katalog kamus"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:136
+#: zapzap/ui/components/dictionary_manager_dialog.py:326
+msgid "No active dictionary"
+msgstr "Tidak ada kamus aktif"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:137
+msgid "Active spell checker languages"
+msgstr "Bahasa pemeriksa ejaan aktif"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:143
+msgid "Code"
+msgstr "Kode"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:143
+msgid "Status"
+msgstr "Status"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:149
+msgid "Dictionaries"
+msgstr "Kamus"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:151
+msgid "Select a dictionary to install, remove, or inspect its status."
+msgstr "Pilih kamus untuk memasang, menghapus, atau memeriksa statusnya."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:165
+msgid "No dictionary matches this view."
+msgstr "Tidak ada kamus yang cocok dengan tampilan ini."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:172
+msgid "Dictionary operation status"
+msgstr "Status operasi kamus"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:177
+msgid "Dictionary download progress"
+msgstr "Progres unduhan kamus"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:187
+msgid "Import files…"
+msgstr "Impor file…"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:188
+msgid "Import folder…"
+msgstr "Impor folder…"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:189
+msgid "Active languages…"
+msgstr "Bahasa aktif…"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:190
+msgid "Install"
+msgstr "Pasang"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:192
+msgid "Cancel download"
+msgstr "Batalkan unduhan"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:274
+#, python-brace-format
+msgid "Offline catalog from {date}"
+msgstr "Katalog luring dari {date}"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:278
+#, python-brace-format
+msgid "Catalog {revision}: {count} dictionaries"
+msgstr "Katalog {revision}: {count} kamus"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:294
+msgid "The online catalog is unavailable. Installed dictionaries remain usable."
+msgstr "Katalog daring tidak tersedia. Kamus yang terpasang tetap dapat digunakan."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:303
+#, python-brace-format
+msgid "Could not refresh the catalog; using the saved copy. {detail}"
+msgstr "Tidak dapat menyegarkan katalog; menggunakan salinan tersimpan. {detail}"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:309
+#, python-brace-format
+msgid "Could not load the dictionary catalog. {detail}"
+msgstr "Tidak dapat memuat katalog kamus. {detail}"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:323
+#, python-brace-format
+msgid "Active: {languages}"
+msgstr "Aktif: {languages}"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:330
+msgid "Active"
+msgstr "Aktif"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:336
+msgid "Local"
+msgstr "Lokal"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:349
+#, python-brace-format
+msgid "{language}, {code}, {status}"
+msgstr "{language}, {code}, {status}"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:379
+msgid "No dictionary matches the search."
+msgstr "Tidak ada kamus yang cocok dengan pencarian."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:381
+msgid "The dictionary catalog is loading."
+msgstr "Katalog kamus sedang dimuat."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:383
+msgid "No dictionaries are installed."
+msgstr "Belum ada kamus yang terpasang."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:385
+msgid "The available catalog could not be loaded."
+msgstr "Katalog yang tersedia tidak dapat dimuat."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:387
+msgid "No dictionaries are available to install."
+msgstr "Tidak ada kamus yang tersedia untuk dipasang."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:389
+msgid "No dictionaries are installed or available."
+msgstr "Tidak ada kamus yang terpasang atau tersedia."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:460
+msgid "Import dictionaries"
+msgstr "Impor kamus"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:462
+msgid "Qt WebEngine dictionaries (*.bdic)"
+msgstr "Kamus Qt WebEngine (*.bdic)"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:468
+msgid "Import dictionary folder"
+msgstr "Impor folder kamus"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:478
+#, python-brace-format
+msgid "Downloading {code}…"
+msgstr "Mengunduh {code}…"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:499
+#, python-brace-format
+msgid "Dictionary {code} is ready."
+msgstr "Kamus {code} siap digunakan."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:503
+#, python-brace-format
+msgid "Dictionary operation failed: {detail}"
+msgstr "Operasi kamus gagal: {detail}"
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:512
+msgid "The file or filename is invalid."
+msgstr "File atau nama file tidak valid."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:513
+msgid "A different dictionary with this name already exists."
+msgstr "Kamus lain dengan nama ini sudah ada."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:514
+msgid "ZapZap could not write to the dictionary directory."
+msgstr "ZapZap tidak dapat menulis ke direktori kamus."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:515
+msgid "There is not enough free disk space."
+msgstr "Ruang disk kosong tidak mencukupi."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:516
+msgid "The last active dictionary is protected."
+msgstr "Kamus aktif terakhir dilindungi."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:517
+msgid "The dictionary is not installed."
+msgstr "Kamus belum terpasang."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:518
+msgid "The download was cancelled."
+msgstr "Unduhan dibatalkan."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:519
+msgid "Check the connection and try again."
+msgstr "Periksa koneksi lalu coba lagi."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:520
+msgid "The download timed out. Try again."
+msgstr "Waktu unduhan habis. Coba lagi."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:521
+msgid "GitHub temporarily limited catalog requests."
+msgstr "GitHub membatasi permintaan katalog untuk sementara."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:522
+msgid "The dictionary server returned an error."
+msgstr "Server kamus mengembalikan kesalahan."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:523
+msgid "The server redirected to an untrusted address."
+msgstr "Server mengalihkan ke alamat yang tidak tepercaya."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:524
+msgid "The downloaded size does not match the catalog."
+msgstr "Ukuran unduhan tidak cocok dengan katalog."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:525
+msgid "The downloaded file failed integrity verification."
+msgstr "File yang diunduh gagal melewati verifikasi integritas."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:526
+msgid "This dictionary operation is already in progress."
+msgstr "Operasi kamus ini sedang berlangsung."
+
+#: zapzap/ui/components/dictionary_manager_dialog.py:529
+msgid "Unknown dictionary error."
+msgstr "Kesalahan kamus tidak diketahui."
+
+#: zapzap/ui/components/edit_account_dialog.py:247
+msgid "Change the name and icon used to identify this account."
+msgstr "Ubah nama dan ikon yang digunakan untuk mengenali akun ini."
+
+#: zapzap/ui/components/edit_account_dialog.py:255
+#: zapzap/ui/components/edit_account_dialog.py:257
+msgid "Account name"
+msgstr "Nama akun"
+
+#: zapzap/ui/components/edit_account_dialog.py:261
+msgid "Account name error"
+msgstr "Kesalahan nama akun"
+
+#: zapzap/ui/components/edit_account_dialog.py:269
+#: zapzap/ui/components/edit_account_dialog.py:289
+msgid "Account icon"
+msgstr "Ikon akun"
+
+#: zapzap/ui/components/edit_account_dialog.py:281
+msgid "Photo"
+msgstr "Foto"
+
+#: zapzap/ui/components/edit_account_dialog.py:311
+#: zapzap/ui/components/edit_account_dialog.py:319
+msgid "Current icon"
+msgstr "Ikon saat ini"
+
+#: zapzap/ui/components/edit_account_dialog.py:330
+msgid "Change icon"
+msgstr "Ubah ikon"
+
+#: zapzap/ui/components/edit_account_dialog.py:335
+msgid "Generate new colors for the icon"
+msgstr "Buat warna baru untuk ikon"
+
+#: zapzap/ui/components/edit_account_dialog.py:337
+msgid "Restore standard"
+msgstr "Pulihkan standar"
+
+#: zapzap/ui/components/edit_account_dialog.py:347
+#: zapzap/ui/components/edit_account_dialog.py:355
+#: zapzap/ui/components/edit_account_dialog.py:661
+msgid "Choose photo"
+msgstr "Pilih foto"
+
+#: zapzap/ui/components/edit_account_dialog.py:368
+#: zapzap/ui/components/edit_account_dialog.py:382
+#: zapzap/ui/components/edit_account_dialog.py:751
+msgid "Keep current icon"
+msgstr "Pertahankan ikon saat ini"
+
+#: zapzap/ui/components/edit_account_dialog.py:395
+msgid "Advanced options"
+msgstr "Opsi lanjutan"
+
+#: zapzap/ui/components/edit_account_dialog.py:407
+#: zapzap/ui/components/edit_account_dialog.py:426
+msgid "User-Agent"
+msgstr "User-Agent"
+
+#: zapzap/ui/components/edit_account_dialog.py:413
+msgid "Changes the identification used by this account when loading pages."
+msgstr "Mengubah identifikasi yang digunakan akun ini saat memuat halaman."
+
+#: zapzap/ui/components/edit_account_dialog.py:417
+msgid "User-Agent information"
+msgstr "Informasi User-Agent"
+
+#: zapzap/ui/components/edit_account_dialog.py:623
+msgid "New icon colors selected."
+msgstr "Warna ikon baru dipilih."
+
+#: zapzap/ui/components/edit_account_dialog.py:628
+#: zapzap/ui/components/edit_account_dialog.py:641
+msgid "Standard icon selected."
+msgstr "Ikon standar dipilih."
+
+#: zapzap/ui/components/edit_account_dialog.py:778
+msgid "Account name is required."
+msgstr "Nama akun wajib diisi."
+
+#: zapzap/ui/components/edit_account_dialog.py:813
+msgid "Discard account changes?"
+msgstr "Buang perubahan akun?"
+
+#: zapzap/ui/components/edit_account_dialog.py:814
+msgid "There are unsaved changes to this account."
+msgstr "Ada perubahan yang belum disimpan pada akun ini."
+
+#: zapzap/ui/components/edit_account_dialog.py:815
+msgid "Discarding them restores the values from before editing."
+msgstr "Membuangnya akan mengembalikan nilai sebelum disunting."
+
+#: zapzap/ui/components/edit_account_dialog.py:826
+msgid "Keep editing"
+msgstr "Lanjut menyunting"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:283
+#: zapzap/ui/components/floating_monitoring_panel.py:285
+msgid "Quick access"
+msgstr "Akses cepat"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:284
+msgid "No account activity to show yet."
+msgstr "Belum ada aktivitas akun untuk ditampilkan."
+
+#: zapzap/ui/components/floating_monitoring_panel.py:286
+msgid "Monitoring panel"
+msgstr "Panel pemantauan"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:287
+#: zapzap/ui/components/floating_monitoring_panel.py:288
+msgid "Unlock position"
+msgstr "Buka kunci posisi"
+
+#: zapzap/ui/components/floating_monitoring_panel.py:291
+#: zapzap/ui/components/floating_monitoring_panel.py:292
+msgid "Audio"
+msgstr "Audio"
+
+#: zapzap/ui/components/main_window.py:140
+msgid "File"
+msgstr "File"
+
+#: zapzap/ui/components/main_window.py:141
+msgid "View"
+msgstr "Tampilan"
+
+#: zapzap/ui/components/main_window.py:142
+msgid "Chat"
+msgstr "Obrolan"
+
+#: zapzap/ui/components/main_window.py:143
+msgid "Users"
+msgstr "Pengguna"
+
+#: zapzap/ui/components/main_window.py:144
+msgid "Help"
+msgstr "Bantuan"
+
+#: zapzap/ui/components/main_window.py:146
+msgid "Ctrl+Q"
+msgstr "Ctrl+Q"
+
+#: zapzap/ui/components/main_window.py:148
+msgid "Ctrl+W"
+msgstr "Ctrl+W"
+
+#: zapzap/ui/components/main_window.py:150
+msgid "Ctrl+P"
+msgstr "Ctrl+P"
+
+#: zapzap/ui/components/main_window.py:152
+msgid "Ctrl+0"
+msgstr "Ctrl+0"
+
+#: zapzap/ui/components/main_window.py:154
+msgid "Ctrl++"
+msgstr "Ctrl++"
+
+#: zapzap/ui/components/main_window.py:156
+msgid "Ctrl+-"
+msgstr "Ctrl+-"
+
+#: zapzap/ui/components/main_window.py:157
+msgid "Toggle full screen"
+msgstr "Aktifkan/nonaktifkan layar penuh"
+
+#: zapzap/ui/components/main_window.py:158
+msgid "F11"
+msgstr "F11"
+
+#: zapzap/ui/components/main_window.py:159
+msgid "Open DevTools"
+msgstr "Buka DevTools"
+
+#: zapzap/ui/components/main_window.py:160
+msgid "Ctrl+Shift+I"
+msgstr "Ctrl+Shift+I"
+
+#: zapzap/ui/components/main_window.py:161
+msgid "Grid View"
+msgstr "Tampilan Kisi"
+
+#: zapzap/ui/components/main_window.py:162
+msgid "Ctrl+G"
+msgstr "Ctrl+G"
+
+#: zapzap/ui/components/main_window.py:166
+msgid "Show sidebar"
+msgstr "Tampilkan bilah sisi"
+
+#: zapzap/ui/components/main_window.py:168
+msgid "Ctrl+Alt+1"
+msgstr "Ctrl+Alt+1"
+
+#: zapzap/ui/components/main_window.py:170
+msgid "Ctrl+Alt+2"
+msgstr "Ctrl+Alt+2"
+
+#: zapzap/ui/components/main_window.py:172
+msgid "Ctrl+Alt+3"
+msgstr "Ctrl+Alt+3"
+
+#: zapzap/ui/components/main_window.py:173
+msgid "Reload"
+msgstr "Muat ulang"
+
+#: zapzap/ui/components/main_window.py:174
+msgid "F5"
+msgstr "F5"
+
+#: zapzap/ui/components/main_window.py:175
+msgid "New chat"
+msgstr "Obrolan baru"
+
+#: zapzap/ui/components/main_window.py:176
+msgid "Ctrl+N"
+msgstr "Ctrl+N"
+
+#: zapzap/ui/components/main_window.py:177
+msgid "By number phone"
+msgstr "Lewat nomor telepon"
+
+#: zapzap/ui/components/main_window.py:178
+msgid "Ctrl+M"
+msgstr "Ctrl+M"
+
+#: zapzap/ui/components/main_window.py:180
+msgid "Ctrl+Shift+/, Ctrl+?"
+msgstr "Ctrl+Shift+/, Ctrl+?"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:71
+#: zapzap/ui/components/send_message_to_number_dialog.py:122
+msgid "Send message to number"
+msgstr "Kirim pesan ke nomor"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:127
+msgid "Chat with someone who is not in your contact list."
+msgstr "Mengobrol dengan seseorang yang belum ada di daftar kontak Anda."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:157
+#: zapzap/ui/components/send_message_to_number_dialog.py:166
+msgid "Country code"
+msgstr "Kode negara"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:158
+#: zapzap/ui/components/send_message_to_number_dialog.py:181
+msgid "Phone number"
+msgstr "Nomor telepon"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:168
+msgid "Search by country name, region code, or international prefix."
+msgstr "Cari berdasarkan nama negara, kode wilayah, atau awalan internasional."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:173
+msgid "Example: 11 99999-9999"
+msgstr "Contoh: 812 3456 7890"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:183
+msgid "Enter the national number without repeating the country code."
+msgstr "Masukkan nomor nasional tanpa mengulang kode negara."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:194
+msgid "Enter the national number without the country code."
+msgstr "Masukkan nomor nasional tanpa kode negara."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:202
+msgid "Phone number error"
+msgstr "Kesalahan nomor telepon"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:208
+#: zapzap/ui/components/send_message_to_number_dialog.py:223
+msgid "Optional message"
+msgstr "Pesan opsional"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:213
+msgid "Message character count"
+msgstr "Jumlah karakter pesan"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:220
+msgid "Hello! How are you?"
+msgstr "Halo! Apa kabar?"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:225
+msgid "Type an initial message. Press Control+Enter to continue."
+msgstr "Ketik pesan awal. Tekan Control+Enter untuk melanjutkan."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:232
+msgid "Type a message to start the conversation."
+msgstr "Ketik pesan untuk memulai percakapan."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:244
+msgid "Your privacy is protected"
+msgstr "Privasi Anda terlindungi"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:248
+msgid "The message will be sent directly to the number provided."
+msgstr "Pesan akan dikirim langsung ke nomor yang diberikan."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:264
+#: zapzap/ui/components/send_message_to_number_dialog.py:269
+msgid "Send message"
+msgstr "Kirim pesan"
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:413
+#, python-brace-format
+msgid "{count} of {maximum} characters used."
+msgstr "{count} dari {maximum} karakter digunakan."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:434
+msgid "Select a country code."
+msgstr "Pilih kode negara."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:435
+msgid "Enter a phone number."
+msgstr "Masukkan nomor telepon."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:437
+msgid "The phone number appears to be incomplete."
+msgstr "Nomor telepon tampaknya belum lengkap."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:440
+msgid "The phone number exceeds the international limit."
+msgstr "Nomor telepon melebihi batas internasional."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:443
+msgid "Do not include the country code again in this field."
+msgstr "Jangan sertakan kode negara lagi di kolom ini."
+
+#: zapzap/ui/components/send_message_to_number_dialog.py:446
+msgid "The message can contain up to 500 characters."
+msgstr "Pesan dapat berisi hingga 500 karakter."
+
+#: zapzap/ui/components/settings_restart_bar.py:54
+msgid "A restart is required to apply the changes."
+msgstr "Diperlukan mulai ulang untuk menerapkan perubahan."
+
+#: zapzap/ui/components/settings_restart_bar.py:55
+msgid "Restart now"
+msgstr "Mulai ulang sekarang"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:126
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:169
+msgid "Languages"
+msgstr "Bahasa"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:184
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:186
+msgid "Search language"
+msgstr "Cari bahasa"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:188
+msgid "Filter languages by name or dictionary code."
+msgstr "Saring bahasa berdasarkan nama atau kode kamus."
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:195
+msgid "Selected languages"
+msgstr "Bahasa yang dipilih"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:201
+msgid "They will be used for spell checking."
+msgstr "Bahasa ini akan digunakan untuk pemeriksa ejaan."
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:217
+msgid "Language selection status"
+msgstr "Status pemilihan bahasa"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:225
+msgid "Recent"
+msgstr "Terbaru"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:231
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:239
+msgid "All languages"
+msgstr "Semua bahasa"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:241
+msgid "Use Space to select or remove the focused language."
+msgstr "Gunakan Spasi untuk memilih atau menghapus bahasa yang disorot."
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:246
+msgid "No language found"
+msgstr "Bahasa tidak ditemukan"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:259
+msgid "Install or configure a dictionary to use the spell checker."
+msgstr "Pasang atau konfigurasikan kamus untuk menggunakan pemeriksa ejaan."
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:279
+msgid "Open the spell checker dictionary settings."
+msgstr "Buka pengaturan kamus pemeriksa ejaan."
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:411
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:477
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:512
+msgid "You can select up to 10 languages."
+msgstr "Anda dapat memilih hingga 10 bahasa."
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:421
+msgid "At least one language must remain selected."
+msgstr "Setidaknya satu bahasa harus tetap dipilih."
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:451
+#, python-brace-format
+msgid "Remove {language}"
+msgstr "Hapus {language}"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:453
+msgid "Remove this language from the temporary selection."
+msgstr "Hapus bahasa ini dari pilihan sementara."
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:462
+#, python-brace-format
+msgid "{count} of {maximum} languages selected"
+msgstr "{count} dari {maximum} bahasa dipilih"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:485
+msgid "selected"
+msgstr "dipilih"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:485
+msgid "not selected"
+msgstr "tidak dipilih"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:506
+#, python-brace-format
+msgid "Add {language}"
+msgstr "Tambah {language}"
+
+#: zapzap/ui/components/spellcheck_language_picker_dialog.py:508
+msgid "Add this recent language to the temporary selection."
+msgstr "Tambahkan bahasa terbaru ini ke pilihan sementara."
+
+#: zapzap/ui/components/update_available_popover.py:106
+msgid "Release notes"
+msgstr "Catatan rilis"
+
+#: zapzap/ui/components/update_available_popover.py:107
+msgid "Open release notes"
+msgstr "Buka catatan rilis"
+
+#: zapzap/ui/components/update_available_popover.py:113
+msgid "Open downloads page"
+msgstr "Buka halaman unduhan"
+
+#: zapzap/ui/components/update_available_popover.py:146
+#, python-brace-format
+msgid "Current version: {version}"
+msgstr "Versi saat ini: {version}"
+
+#: zapzap/ui/components/update_available_popover.py:149
+#, python-brace-format
+msgid "Latest version: {version}"
+msgstr "Versi terbaru: {version}"
+
+#: zapzap/ui/components/update_available_popover.py:166
+#, python-brace-format
+msgid "Released on {date}"
+msgstr "Dirilis pada {date}"
+
+#: zapzap/ui/components/update_available_popover.py:171
+#, python-brace-format
+msgid "ZapZap {latest} is available. Current version: {current}."
+msgstr "ZapZap {latest} tersedia. Versi saat ini: {current}."
