@@ -51,6 +51,11 @@ releases and the AppStream metadata.
   photo that failed to render removed photos from every later notification
   until ZapZap restarted. Now it only learns from fields it actually sent, with
   a regression test.
+- Stop the theme shortcuts from hijacking AltGr combinations (#999). Windows
+  reports AltGr as `Ctrl+Alt`, so `Ctrl+Alt+2` switched to the light theme
+  instead of typing `@` on Spanish and other European layouts. Move the
+  Automatic, Light and Dark theme shortcuts to `Ctrl+Shift+1`, `Ctrl+Shift+2`
+  and `Ctrl+Shift+3` and refresh the translation catalogs.
 
 ## [7.5.1] - 2026-10-15
 
