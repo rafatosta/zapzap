@@ -88,6 +88,20 @@ class LanguageDownloadSettingsView(SettingsPage):
         row.control.layout().addWidget(self.btn_restore_path_download)
         card.add_row(row)
 
+        self.organize_by_chat_row = SettingsSwitchRow(
+            _("Save into a folder named after the chat"),
+            _(
+                "Files go to a subfolder of the download directory named "
+                "after the open chat, also from contact or group info. Files "
+                "from starred messages, chat list search or the all-chats "
+                "media gallery go to the download directory."
+            ),
+        )
+        self.organize_by_chat_row.checkbox.setAccessibleName(
+            _("Save into a folder named after the chat")
+        )
+        card.add_row(self.organize_by_chat_row)
+
         self.remember_save_as_row = SettingsSwitchRow(
             _('Remember last folder when using "Save as"'),
             _("Only for the current account session."),
