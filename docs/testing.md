@@ -297,11 +297,14 @@ gráfica real.
    Com várias contas do WhatsApp abertas, confirme que todas compartilham o
    mesmo limite de seis.
 10. Sem decisão salva, faça um primeiro download do WhatsApp e confirme que ele
-    segue normalmente. Depois faça novos pedidos, inclusive esperando mais de
-    dez segundos entre eles: cada pedido posterior deve pedir permissão enquanto
-    a decisão permanecer em **perguntar**. Teste **permitir uma vez**, confirme
-    que o pedido seguinte volta a perguntar, depois teste **permitir sempre** e
-    **bloquear**; por fim use Configurações para limpar a decisão lembrada.
+    segue normalmente. Depois selecione várias mídias e baixe-as de uma vez:
+    os pedidos feitos a menos de dois segundos do anterior devem pedir
+    permissão enquanto a decisão permanecer em **perguntar**. Teste **permitir
+    uma vez**, confirme que a rajada seguinte volta a perguntar, depois teste
+    **permitir sempre** e **bloquear**. Com **bloquear** salvo, confirme que
+    downloads isolados, feitos com mais de dois segundos de intervalo,
+    continuam funcionando sem reiniciar o ZapZap; por fim use Configurações
+    para limpar a decisão lembrada.
 11. Durante um download, confira o ícone de tipo de arquivo fornecido pelo
     sistema, a barra de progresso, o percentual, a velocidade instantânea e a
     estimativa de tempo restante. A velocidade deve permanecer estável o bastante
