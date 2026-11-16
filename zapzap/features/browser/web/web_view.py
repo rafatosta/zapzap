@@ -9,7 +9,7 @@ from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings, QWebEnginePage, QWebEngineScript
 from PyQt6.QtCore import QUrl, pyqtSignal, QTimer, QEvent, Qt, QFile, QTextStream, QObject, pyqtSlot, QRect
 from PyQt6.QtWidgets import QApplication, QWidget
-from PyQt6.QtGui import QAction
+from PyQt6.QtGui import QAction, QKeySequence
 
 from zapzap.core.theme.theme_manager import ThemeManager
 from zapzap.core.config.settings.appearance import AppearanceSettings
@@ -33,6 +33,10 @@ from zapzap.features.dictionaries.spellcheck_language_picker import (
 )
 from zapzap.features.downloads.download_manager import DownloadManager
 from zapzap.features.browser.web.clipboard_table import calc_table_as_plain_text
+from zapzap.features.browser.web.clipboard_image import (
+    clipboard_image,
+    image_paste_script,
+)
 from zapzap.core.config.settings_manager import SettingsManager
 from zapzap.core.config.settings.system import SystemSettings
 from zapzap.core.config.settings.performance import (
@@ -46,6 +50,9 @@ from zapzap.core.diagnostics.webengine_probe import diagnostic_mode, probe
 
 
 _EVENT_MODE = diagnostic_mode()
+_PASTE_KEYS = frozenset(
+    (Qt.Key.Key_V, Qt.Key.Key_Insert, Qt.Key.Key_F18, Qt.Key.Key_Paste)
+)
 
 from gettext import gettext as _
 
@@ -606,6 +613,7 @@ class WebView(QWebEngineView):
 
         # 3. Adiciona novo comportamento para "Copy link address"
         self._set_copy_link_behavior(menu)
+        self._set_paste_behavior(menu)
 
         # 4. Configuração de correção ortográfica
         self._add_spellcheck_actions(menu)
@@ -643,6 +651,23 @@ class WebView(QWebEngineView):
                                mode=cb.Mode.Clipboard)
 
                 action.triggered.connect(setClipboard)
+
+    def _set_paste_behavior(self, menu):
+        """Route the context-menu Paste through the clipboard image path."""
+        # The menu holds the page's shared Paste action; replace it in this
+        # menu only instead of rewiring the page action itself.
+        for action in menu.actions():
+            if action.text() == _("Paste"):
+                replacement = QAction(action.icon(), action.text(), menu)
+                replacement.setShortcut(action.shortcut())
+                mime = QApplication.clipboard().mimeData()
+                replacement.setEnabled(
+                    action.isEnabled() or bool(mime and mime.hasImage())
+                )
+                replacement.triggered.connect(self._paste_from_context_menu)
+                menu.insertAction(action, replacement)
+                menu.removeAction(action)
+                break
 
     def _add_spellcheck_actions(self, menu):
         """Adiciona opções de correção ortográfica e seleção de idiomas."""
@@ -909,6 +934,45 @@ class WebView(QWebEngineView):
             return False
         return True
 
+    def paste_clipboard_image(self):
+        """Give an image-only clipboard to WhatsApp as a file (#284, #974).
+
+        Returns False when the selection is not an image-only one, so the
+        caller lets QtWebEngine paste natively. The clipboard is only read.
+        """
+        image = clipboard_image(QApplication.clipboard())
+        if image is None:
+            return False
+        probe.technical("clipboard", "image-paste")
+        try:
+            page = self.page()
+            page.runJavaScript(
+                image_paste_script(image),
+                lambda result, target=page, size=len(image.data), kind=image.mime_type: (
+                    self._finish_image_paste(target, result, size, kind)
+                ),
+            )
+        except RuntimeError:
+            return False
+        return True
+
+    @staticmethod
+    def _finish_image_paste(page, result, size=0, mime_type=""):
+        """Fall back to the native paste if the page took neither event."""
+        logger.info(
+            "Clipboard image paste: %s (%s, %d bytes)", result, mime_type, size
+        )
+        if result in ("paste", "drop"):
+            return
+        try:
+            page.triggerAction(QWebEnginePage.WebAction.Paste)
+        except RuntimeError:
+            pass
+
+    def _paste_from_context_menu(self):
+        if not self.paste_clipboard_image():
+            self.page().triggerAction(QWebEnginePage.WebAction.Paste)
+
     def eventFilter(self, watched, event):
         """Handle WebEngine child events that do not reach WebView directly."""
         # This filter sees every application event once per account; check the
@@ -921,7 +985,14 @@ class WebView(QWebEngineView):
             and event.key() == Qt.Key.Key_Escape
         )
         is_native_gesture = event_type == QEvent.Type.NativeGesture
-        if not is_escape and not is_native_gesture:
+        # matches() looks up the platform key bindings, so only ask for keys
+        # that can be bound to Paste (Ctrl+V, Shift+Insert, F18, Paste).
+        is_paste = (
+            event_type == QEvent.Type.KeyPress
+            and event.key() in _PASTE_KEYS
+            and event.matches(QKeySequence.StandardKey.Paste)
+        )
+        if not is_escape and not is_native_gesture and not is_paste:
             return False
 
         targets_web_content = watched is self or (
@@ -934,6 +1005,15 @@ class WebView(QWebEngineView):
             and (watched is self or watched.window() is self.window())
         ):
             self.clear_download_directory()
+
+        if (
+            is_paste
+            and targets_web_content
+            and (watched is self or watched.window() is self.window())
+        ):
+            # Only image-only selections are taken over; everything else
+            # continues to QtWebEngine's native paste.
+            return self.paste_clipboard_image()
 
         if is_native_gesture and targets_web_content:
             if probe.enabled:

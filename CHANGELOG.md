@@ -51,6 +51,17 @@ releases and the AppStream metadata.
   photo that failed to render removed photos from every later notification
   until ZapZap restarted. Now it only learns from fields it actually sent, with
   a regression test.
+- Paste images copied with "Copy image" in Chromium-based browsers (Chrome,
+  Brave, Vivaldi) (#284, #974). Qt WebEngine gave the page no file for these
+  clipboards, and the image normalization on window focus skipped them because
+  Qt's `hasText()` is also true when the clipboard only holds URLs. Ctrl+V,
+  Shift+Insert and the context menu Paste now read the image bytes directly
+  when the clipboard holds an image and no text or copied files, and hand them
+  to WhatsApp Web as a file in a paste event, with a drop on the open chat as
+  fallback. Everything else still uses the normal paste. The normalization on
+  focus is removed, so ZapZap no longer writes to the clipboard when it gains
+  focus (#498, #523, #969). Its tests are replaced with tests for the new
+  selection rules and for the paste script in a real WebEngine page.
 
 ## [7.5.1] - 2026-10-15
 

@@ -141,7 +141,7 @@ relatório automático, mas o relatório manual e o ZIP ainda eram ambíguos.
 | #939, #950, #952, #977 | Ambiente da sessão anterior, sinal explícito, fase e frames; marcador sozinho não prova crash nem SIGSEGV. Backtrace nativo e horário observado continuam manuais. |
 | #963, #972 | Etapa pedido/seletor/resultado terminal e classe MIME no trace opcional; conclusão do WebEngine não prova integridade do arquivo salvo. |
 | #956 | Entrada/aceitação/cancelamento do editor, sem nome, ID ou avatar; aceitação é anterior à persistência e não prova sucesso do salvamento. |
-| #284, #974 | Colagem sem formatação e presença de classes MIME conhecidas; Ctrl+V continua nativo e não é interceptado. Comparação com o aplicativo de origem e clipboard real continua manual. |
+| #284, #974 | Colagem sem formatação, colagem de imagem (`image-paste`) e presença de classes MIME conhecidas; Ctrl+V só é interceptado para seleções somente de imagem. Comparação com o aplicativo de origem e clipboard real continua manual. |
 | #841, #975 | Resultado técnico de carregamento; sucesso não prova login nem presença de QR. Não se consulta nem captura QR, DOM de conversas ou storage. |
 | #928 | Resultado de carregamento da página não identifica recursos de figurinhas; tipo de recurso/código de erro ainda exige reprodução assistida sem URL/conteúdo. |
 | #876, #914, #961, #968 | Bibliotecas, flags, sessão Qt, GPU/driver visível e mute informado manualmente; codecs, erros de captura/reprodução, dispositivos e xruns não são comprovados por esse inventário. |
