@@ -395,13 +395,15 @@ Valide clique, teclado, recarga, montagem tardia, temas e zoom em sessão real.
   respeita o segundo plano; ações “Sair” usam `request_quit()`.
 - Valide restauração normal, maximizada e fullscreen. Aparência, movimento e
   redimensionamento da moldura CSR ainda exigem uma sessão gráfica real.
-- A normalização de imagens do clipboard ao ativar a janela não deve regravar
-  uma seleção que o ZapZap já possui (`ownsClipboard()`). No Wayland, a posse
-  ainda é informada logo após o foco, antes de chegar uma seleção mais nova de
-  outro cliente; regravar nesse momento substitui o conteúdo novo pela imagem
-  anterior. Pelo mesmo motivo, a escrita adiada é descartada se `dataChanged`
-  ocorrer durante a recodificação, que leva centenas de milissegundos em
-  imagens grandes. Preserve também os formatos de texto de clipboards mistos.
+- O ZapZap não escreve no clipboard global para colar imagens. A antiga
+  normalização ao ativar a janela regravava seleções de outros aplicativos
+  (#498, #523, #969) e não alcançava o caso dos navegadores, pois
+  `QMimeData.hasText()` também é verdadeiro quando a seleção só tem URLs. Em
+  **Ctrl+V**/Shift+Insert e no **Colar** do menu de contexto,
+  `clipboard_image.py` decide pela lista de formatos: sem texto real e sem
+  arquivos locais, os bytes originais da imagem são lidos e entregues à página
+  como `File` em um evento paste sintético, com fallback por drop em `#main`.
+  Qualquer outra seleção continua com a colagem nativa do QtWebEngine.
 
 ### Verificação passiva de versão
 

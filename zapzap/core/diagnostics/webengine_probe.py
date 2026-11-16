@@ -84,7 +84,7 @@ class WebEngineProbe:
             "settings": {"accounts", "appearance", "notifications", "language_downloads", "network_privacy", "performance_experimental", "debugging", "system_startup", "permissions", "advanced_customizations", "about"},
             "account": {"edit-open", "edit-accepted", "edit-cancelled"},
             "page": {"load-ok", "load-failed"},
-            "clipboard": {"plain-text-paste", "mime-text", "mime-html", "mime-image", "mime-uri"},
+            "clipboard": {"plain-text-paste", "image-paste", "mime-text", "mime-html", "mime-image", "mime-uri"},
             "notification": {"global-disabled", "account-disabled", "backend-unavailable", "forwarded", "forward-failed"},
         }
         if not self.enabled or stage not in allowed.get(category, ()):

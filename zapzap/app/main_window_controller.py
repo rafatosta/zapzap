@@ -1,16 +1,13 @@
 import sys
 from gettext import gettext as _
 
-from PyQt6.QtCore import QBuffer
 from PyQt6.QtCore import QEvent
-from PyQt6.QtCore import QIODevice
 from PyQt6.QtCore import QRectF
 from PyQt6.QtCore import QTimer
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QActionGroup
 from PyQt6.QtGui import QKeySequence
 from PyQt6.QtGui import QShortcut
-from PyQt6.QtGui import QImage
 from PyQt6.QtGui import QPainter
 from PyQt6.QtGui import QPen
 from PyQt6.QtWidgets import QApplication, QDialog, QLabel, QWidget
@@ -172,77 +169,12 @@ class MainWindowController(MainWindowView):
             else UpdateChecker(self.update_state, self)
         )
         self.app_settings = None
-        self._last_sanitized_key = None
-        self._clipboard_generation = 0
         self._send_message_dialog = None
         self.theme_action_group = None
         self._setup_ui()
-        QApplication.clipboard().dataChanged.connect(self._on_clipboard_changed)
         self.update_state.changed.connect(self._on_update_info_changed)
         self._on_update_info_changed(self.update_state.info)
         QTimer.singleShot(0, self.update_checker.start_once)
-
-    def changeEvent(self, event):
-        super().changeEvent(event)
-        # For #509: Use delayed clipboard access to avoid race condition with wayland comp
-        if event.type() == QEvent.Type.ActivationChange and self.isActiveWindow():
-            clipboard = QApplication.clipboard()
-            if not clipboard.image().isNull():
-                QTimer.singleShot(50, self._on_paste)
-
-    def _on_paste(self):
-        clipboard = QApplication.clipboard()
-
-        # Our own selection is already normalized. On Wayland, ownership is
-        # still reported briefly after refocus, before a newer selection from
-        # another client arrives; writing back then replaces it (#969).
-        if clipboard.ownsClipboard():
-            return
-
-        generation = self._clipboard_generation
-        mime_data = clipboard.mimeData()
-
-        # Spreadsheet/rich-text clipboards may expose an image preview too.
-        # Keep their text representation intact for Ctrl+Shift+V.
-        if mime_data is not None and mime_data.hasText():
-            return
-
-        image = clipboard.image()
-        if image.isNull():
-            return
-
-        # Avoid processing the same image multiple times
-        if image.cacheKey() == self._last_sanitized_key:
-            return
-
-        self._last_sanitized_key = image.cacheKey()
-
-        # Same logic as before but in RAM (privacy+speed)
-        # Converts clipboard image to standardized PNG format that QWebEngine can read
-        buffer = QBuffer()
-        try:
-            buffer.open(QIODevice.OpenModeFlag.ReadWrite)
-            if image.save(buffer, "PNG"):
-                clean_img = QImage()
-                clean_img.loadFromData(buffer.data(), "PNG")
-                QTimer.singleShot(
-                    0,
-                    lambda img=clean_img.copy(): self._write_normalized_image(
-                        img, generation
-                    ),
-                )
-        finally:
-            buffer.close()
-
-    def _on_clipboard_changed(self):
-        self._clipboard_generation += 1
-
-    def _write_normalized_image(self, image, generation):
-        # Re-encoding a large image takes hundreds of milliseconds. If another
-        # selection arrived meanwhile, writing would replace it (#969).
-        if generation != self._clipboard_generation:
-            return
-        QApplication.clipboard().setImage(image)
 
     # === Configuração Inicial ===
 

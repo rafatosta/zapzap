@@ -120,7 +120,7 @@ documente o que ele protege.
 | `test_browser_account_lifecycle.py` | registro estável, criação lazy de contas desativadas, isolamento/retentativa de perfil com erro, reativação, remoção, notificações e encerramento idempotente |
 | `test_browser_page_button_ui.py` | avatar sem número, grayscale de conta desativada, ponto de estado, card, temas, escala e clique |
 | `test_check_box.py` | API, variantes, tamanhos, pintura, temas, tri-state, mouse, teclado e acessibilidade do CheckBox |
-| `test_clipboard_image_normalization.py` | normalização da imagem do clipboard ao ativar a janela, sem regravar seleção própria do ZapZap, sem substituir uma seleção mais nova recebida durante a recodificação e sem descartar formatos de texto |
+| `test_clipboard_image_paste.py` | colagem de imagem do clipboard sem regravá-lo: seleção "Copiar imagem" de navegador aceita apesar de `hasText()`, texto real e arquivos locais mantêm a colagem nativa, bytes originais preservados, limite de tamanho, e script real no WebEngine entregando o `File` por paste, com fallback por drop e resultado `none` |
 | `test_component_typography.py` | pesos de fonte de primitives, menus, combos, atalhos e tabs |
 | `test_custom_js_injection.py` | JavaScript customizado executado sob CSP com nonce, um arquivo por chamada, escopo global compartilhado e arquivo quebrado sem afetar os demais |
 | `test_debugging_settings_ui.py` | manutenção, relatórios, informações de runtime, cópia e feedback |
@@ -189,7 +189,7 @@ documente o que ele protege.
 - `test_browser_grid_view_ui.py`
 - `test_browser_page_button_ui.py`
 - `test_check_box.py`
-- `test_clipboard_image_normalization.py`
+- `test_clipboard_image_paste.py`
 - `test_component_typography.py`
 - `test_custom_js_injection.py`
 - `test_debugging_settings_ui.py`
@@ -400,22 +400,22 @@ Use uma conversa de teste e uma sessão gráfica real.
    atalho sem formatação usa apenas a apresentação textual compatível com o
    campo de mensagem.
 
-## Validação manual da normalização de imagens do clipboard
+## Validação manual da colagem de imagens do clipboard
 
 Use uma sessão gráfica real, de preferência Wayland, e imagens sem dados
 sensíveis.
 
-1. Copie uma imagem em um navegador, ative o ZapZap e cole-a com **Ctrl+V** em
-   uma conversa de teste; a imagem deve ser anexada normalmente.
-2. Com o ZapZap focado e dono dessa imagem, capture uma área da tela com a
-   ferramenta do compositor que copia para o clipboard. Depois que o foco
-   voltar ao ZapZap, cole em outro aplicativo e confirme que a nova captura
-   permanece no clipboard, não a imagem anterior.
-3. Alterne o foco entre o ZapZap e outra janela várias vezes e confirme, por
+1. Use **Copiar imagem** em Chrome/Chromium, Brave ou Vivaldi e cole com
+   **Ctrl+V** em uma conversa de teste; a prévia de anexo do WhatsApp deve
+   abrir com a imagem uma única vez. Repita pelo item **Colar** do menu de
+   contexto e com uma captura de tela copiada pela ferramenta do compositor.
+2. Copie um arquivo de imagem no gerenciador de arquivos e cole; o
+   comportamento nativo deve continuar anexando o arquivo.
+3. Copie células do LibreOffice Calc e cole com **Ctrl+V**; o comportamento
+   normal do WhatsApp Web deve permanecer inalterado.
+4. Alterne o foco entre o ZapZap e outra janela várias vezes e confirme, por
    exemplo com `wl-paste --watch` ou um gerenciador de clipboard, que o ZapZap
-   não regrava uma imagem que já é sua.
-4. Copie células do LibreOffice Calc, ative o ZapZap e confirme que outro
-   aplicativo ainda recebe o texto, não somente uma imagem.
+   não escreve no clipboard em nenhum momento.
 
 ## Validação manual do mute global
 
