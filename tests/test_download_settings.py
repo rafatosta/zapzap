@@ -368,6 +368,43 @@ class RepeatedDownloadSecurityTests(TemporarySettingsTest):
         self.assertFalse(DownloadManager._authorize_repeated_download(None))
         ask.assert_not_called()
 
+    @patch(
+        "zapzap.features.downloads.ui.multiple_download_dialog."
+        "MultipleDownloadDialog.ask"
+    )
+    def test_block_decision_refuses_once_without_saving_a_permanent_block(
+        self, ask
+    ):
+        ask.return_value = MultipleDownloadDecision.BLOCK
+
+        self.assertTrue(DownloadManager._authorize_repeated_download(None))
+        self.assertFalse(DownloadManager._authorize_repeated_download(None))
+        self.assertEqual(
+            DownloadSettings().multiple_download_permission,
+            MultipleDownloadPermission.ASK,
+        )
+
+        ask.return_value = MultipleDownloadDecision.ALLOW_ONCE
+        self.assertTrue(DownloadManager._authorize_repeated_download(None))
+        self.assertEqual(ask.call_count, 2)
+
+    @patch(
+        "zapzap.features.downloads.ui.multiple_download_dialog."
+        "MultipleDownloadDialog.ask"
+    )
+    def test_always_allow_decision_is_still_remembered(self, ask):
+        ask.return_value = MultipleDownloadDecision.ALWAYS_ALLOW
+
+        self.assertTrue(DownloadManager._authorize_repeated_download(None))
+        self.assertTrue(DownloadManager._authorize_repeated_download(None))
+        self.assertEqual(
+            DownloadSettings().multiple_download_permission,
+            MultipleDownloadPermission.ALLOW,
+        )
+
+        self.assertTrue(DownloadManager._authorize_repeated_download(None))
+        self.assertEqual(ask.call_count, 1)
+
 
 class DownloadNamingSecurityTests(unittest.TestCase):
 
