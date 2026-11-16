@@ -51,6 +51,13 @@ releases and the AppStream metadata.
   photo that failed to render removed photos from every later notification
   until ZapZap restarted. Now it only learns from fields it actually sent, with
   a regression test.
+- Stop the repeated-download dialog from saving a permanent block (#1006,
+  #992). Choosing Block, pressing Esc or closing the dialog stored a
+  permanent block, after which every later WhatsApp download was refused with
+  no dialog to undo it, so only the first download of each session worked
+  until the permission was reset in Settings. Those answers now refuse only
+  the current request and the dialog appears again; Always allow is still
+  remembered and an already saved block can still be cleared with Reset.
 
 ## [7.5.1] - 2026-10-15
 

@@ -237,7 +237,9 @@ class DownloadManager:
         if decision == MultipleDownloadDecision.ALLOW_ONCE:
             return True
 
-        settings.multiple_download_permission = MultipleDownloadPermission.BLOCK
+        # Block, Esc and closing the dialog only refuse this request. A
+        # permanent block was silently saved by an accidental dismissal and
+        # left every later download blocked with no dialog to undo it.
         return False
 
     @staticmethod
