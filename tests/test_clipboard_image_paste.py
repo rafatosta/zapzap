@@ -1,10 +1,13 @@
 """Clipboard image paste: selection rules and the injected page script."""
 
 import unittest
+from types import SimpleNamespace
 from unittest.mock import patch
 
-from PyQt6.QtCore import QBuffer, QEventLoop, QIODevice, QMimeData, QTimer, QUrl
-from PyQt6.QtGui import QColor, QImage
+from PyQt6.QtCore import (
+    QBuffer, QEvent, QEventLoop, QIODevice, QMimeData, Qt, QTimer, QUrl,
+)
+from PyQt6.QtGui import QColor, QImage, QKeyEvent
 from PyQt6.QtWebEngineCore import QWebEnginePage
 
 from qt_test_case import QtTestCase
@@ -14,6 +17,7 @@ from zapzap.features.browser.web.clipboard_image import (
     clipboard_image,
     image_paste_script,
 )
+from zapzap.features.browser.web.web_view import WebView
 
 
 WEBENGINE_TIMEOUT_MS = 15000
@@ -121,6 +125,29 @@ class ClipboardImageSelectionTests(QtTestCase):
         mime.setData("image/png", b"x" * 11)
         with patch.object(module, "MAX_IMAGE_BYTES", 10):
             self.assertIsNone(clipboard_image(ReadOnlyClipboard(mime)))
+
+
+class PasteShortcutFilterTests(QtTestCase):
+
+    def _filter(self, key, modifiers, handled):
+        calls = []
+        owner = SimpleNamespace(
+            paste_clipboard_image=lambda: (calls.append(True), handled)[1],
+            clear_download_directory=lambda: None,
+        )
+        event = QKeyEvent(QEvent.Type.KeyPress, key, modifiers)
+        return WebView.eventFilter(owner, owner, event), calls
+
+    def test_ctrl_v_in_web_content_goes_through_the_image_path(self):
+        ctrl = Qt.KeyboardModifier.ControlModifier
+        self.assertEqual(self._filter(Qt.Key.Key_V, ctrl, True), (True, [True]))
+        # Not an image: the event continues to QtWebEngine's native paste.
+        self.assertEqual(self._filter(Qt.Key.Key_V, ctrl, False), (False, [True]))
+
+    def test_other_keys_do_not_reach_the_image_path(self):
+        none = Qt.KeyboardModifier.NoModifier
+        self.assertEqual(self._filter(Qt.Key.Key_V, none, True), (False, []))
+        self.assertEqual(self._filter(Qt.Key.Key_A, none, True), (False, []))
 
 
 class ImagePasteScriptTests(QtTestCase):

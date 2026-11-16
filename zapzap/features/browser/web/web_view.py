@@ -50,6 +50,9 @@ from zapzap.core.diagnostics.webengine_probe import diagnostic_mode, probe
 
 
 _EVENT_MODE = diagnostic_mode()
+_PASTE_KEYS = frozenset(
+    (Qt.Key.Key_V, Qt.Key.Key_Insert, Qt.Key.Key_F18, Qt.Key.Key_Paste)
+)
 
 from gettext import gettext as _
 
@@ -982,8 +985,11 @@ class WebView(QWebEngineView):
             and event.key() == Qt.Key.Key_Escape
         )
         is_native_gesture = event_type == QEvent.Type.NativeGesture
+        # matches() looks up the platform key bindings, so only ask for keys
+        # that can be bound to Paste (Ctrl+V, Shift+Insert, F18, Paste).
         is_paste = (
             event_type == QEvent.Type.KeyPress
+            and event.key() in _PASTE_KEYS
             and event.matches(QKeySequence.StandardKey.Paste)
         )
         if not is_escape and not is_native_gesture and not is_paste:
