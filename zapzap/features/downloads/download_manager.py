@@ -38,13 +38,14 @@ class DownloadManager:
     PROGRESS_RING_MIN_ETA_SECONDS = 5.0
     MAX_RECENT_DOWNLOADS = 100
     MAX_SESSION_RECORDS = 100
+    REPEATED_DOWNLOAD_WINDOW_SECONDS = 2.0
 
     _floating_cards = []
     _active_downloads = []
     _queued_downloads = []
     _download_meta = {}
     _terminal_records = []
-    _has_seen_download_request = False
+    _last_download_request_at = None
     _sequence = 0
 
     _RECENT_DOWNLOADS_KEY = "system/recent_downloads"
@@ -212,11 +213,16 @@ class DownloadManager:
         )
 
         # Qt does not expose whether downloadRequested came from a user gesture.
-        # Therefore only the first request in an application session is
-        # implicitly allowed. Every later request requires the persisted
-        # WhatsApp-wide permission or an explicit one-time decision.
-        if not DownloadManager._has_seen_download_request:
-            DownloadManager._has_seen_download_request = True
+        # A request is implicitly allowed unless it follows another one within
+        # a short window; only such bursts need the WhatsApp-wide permission or
+        # an explicit one-time decision.
+        now = time.monotonic()
+        previous = DownloadManager._last_download_request_at
+        DownloadManager._last_download_request_at = now
+        if (
+            previous is None
+            or now - previous > DownloadManager.REPEATED_DOWNLOAD_WINDOW_SECONDS
+        ):
             return True
 
         settings = DownloadSettings()
@@ -228,6 +234,8 @@ class DownloadManager:
             return False
 
         decision = MultipleDownloadDialog.ask(parent)
+        # Requests queued while the dialog was open still belong to the burst.
+        DownloadManager._last_download_request_at = time.monotonic()
         if decision == MultipleDownloadDecision.ALWAYS_ALLOW:
             settings.multiple_download_permission = (
                 MultipleDownloadPermission.ALLOW

@@ -51,6 +51,13 @@ releases and the AppStream metadata.
   photo that failed to render removed photos from every later notification
   until ZapZap restarted. Now it only learns from fields it actually sent, with
   a regression test.
+- Let later downloads work without restarting ZapZap. The repeated-download
+  protection treated every download after the first one of the session as a
+  "multiple download", so once the prompt had been dismissed or answered with
+  Block (also the Enter/Escape default), every later download was silently
+  cancelled until restart. Only requests that follow another one within two
+  seconds now count as a burst that needs the permission; separate downloads
+  are always allowed. Update the regression tests accordingly.
 
 ## [7.5.1] - 2026-10-15
 

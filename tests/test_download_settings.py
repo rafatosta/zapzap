@@ -332,26 +332,35 @@ class RepeatedDownloadSecurityTests(TemporarySettingsTest):
 
     def setUp(self):
         super().setUp()
-        self._previous_seen = DownloadManager._has_seen_download_request
-        DownloadManager._has_seen_download_request = False
+        self._previous_request_at = DownloadManager._last_download_request_at
+        DownloadManager._last_download_request_at = None
+        self.clock = 1000.0
+        monotonic = patch(
+            "zapzap.features.downloads.download_manager.time.monotonic",
+            side_effect=lambda: self.clock,
+        )
+        monotonic.start()
+        self.addCleanup(monotonic.stop)
 
     def tearDown(self):
-        DownloadManager._has_seen_download_request = self._previous_seen
+        DownloadManager._last_download_request_at = self._previous_request_at
         super().tearDown()
 
     @patch(
         "zapzap.features.downloads.ui.multiple_download_dialog."
         "MultipleDownloadDialog.ask"
     )
-    def test_only_first_session_request_is_implicitly_allowed(self, ask):
+    def test_only_first_request_of_a_burst_is_implicitly_allowed(self, ask):
         ask.return_value = MultipleDownloadDecision.ALLOW_ONCE
 
         self.assertTrue(DownloadManager._authorize_repeated_download(None))
         ask.assert_not_called()
 
+        self.clock += 0.5
         self.assertTrue(DownloadManager._authorize_repeated_download(None))
         self.assertEqual(ask.call_count, 1)
 
+        self.clock += 0.5
         self.assertTrue(DownloadManager._authorize_repeated_download(None))
         self.assertEqual(ask.call_count, 2)
 
@@ -359,13 +368,28 @@ class RepeatedDownloadSecurityTests(TemporarySettingsTest):
         "zapzap.features.downloads.ui.multiple_download_dialog."
         "MultipleDownloadDialog.ask"
     )
-    def test_block_permission_denies_every_later_request(self, ask):
+    def test_block_permission_denies_requests_inside_a_burst(self, ask):
         settings = DownloadSettings()
         settings.multiple_download_permission = MultipleDownloadPermission.BLOCK
 
         self.assertTrue(DownloadManager._authorize_repeated_download(None))
+        self.clock += 0.5
         self.assertFalse(DownloadManager._authorize_repeated_download(None))
+        self.clock += 0.5
         self.assertFalse(DownloadManager._authorize_repeated_download(None))
+        ask.assert_not_called()
+
+    @patch(
+        "zapzap.features.downloads.ui.multiple_download_dialog."
+        "MultipleDownloadDialog.ask"
+    )
+    def test_separate_downloads_are_allowed_after_block(self, ask):
+        settings = DownloadSettings()
+        settings.multiple_download_permission = MultipleDownloadPermission.BLOCK
+
+        for _ in range(3):
+            self.assertTrue(DownloadManager._authorize_repeated_download(None))
+            self.clock += DownloadManager.REPEATED_DOWNLOAD_WINDOW_SECONDS + 1
         ask.assert_not_called()
 
 
