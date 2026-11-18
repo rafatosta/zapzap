@@ -132,7 +132,11 @@ ao `QApplication`, portanto sobrevivem a uma reconstrução apenas da interface
 sem repetir a consulta.
 
 `SingleApplication` também coordena mensagens entre instâncias, reinício apenas
-da interface e reinício completo do processo. Configurações lidas antes da
+da interface e reinício completo do processo. Quando o socket local não responde,
+a instância toma `instance.lock` (`QLockFile`) no diretório de dados antes de
+criar qualquer perfil WebEngine; se outro processo vivo ainda o mantém, sai com
+uma mensagem em vez de abrir o mesmo perfil. A espera de até 10 segundos cobre o
+reinício completo, cujo sucessor inicia antes de o processo antigo terminar. Configurações lidas antes da
 criação do QtWebEngine, como escala, plataforma gráfica e flags Chromium,
 normalmente exigem reinício completo.
 

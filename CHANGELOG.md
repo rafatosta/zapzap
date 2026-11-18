@@ -62,6 +62,15 @@ releases and the AppStream metadata.
   focus is removed, so ZapZap no longer writes to the clipboard when it gains
   focus (#498, #523, #969). Its tests are replaced with tests for the new
   selection rules and for the paste script in a real WebEngine page.
+- Stop a second instance from opening the profile while an earlier ZapZap
+  process still holds it but no longer answers on the single-instance socket
+  (#1038). The second instance showed the QR login page and reset the quota
+  database. Each instance now takes a lock file in the data directory before
+  it creates any WebEngine profile, and exits with a message naming the other
+  process when the lock stays taken. A successor started by "Restart
+  application" waits up to 10 seconds for the old process to exit, and the
+  lock of a crashed or killed process is taken over. Add regression tests
+  that run real separate instances.
 
 ## [7.5.1] - 2026-10-15
 
