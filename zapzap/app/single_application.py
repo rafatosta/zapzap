@@ -73,6 +73,9 @@ class SingleApplication(QApplication):
         if lock.tryLock(self.INSTANCE_LOCK_TIMEOUT_MS):
             self._instanceLock = lock
             return
+        # An unwritable data directory is not proof of another instance.
+        if lock.error() != QLockFile.LockError.LockFailedError:
+            return
 
         _found, pid, _host, _app = lock.getLockInfo()
         print(

@@ -33,6 +33,10 @@ app.exec()
 """
 
 
+@unittest.skipUnless(
+    sys.platform.startswith("linux"),
+    "uses XDG_DATA_HOME and a socket file in TMPDIR",
+)
 class SingleInstanceLockTests(unittest.TestCase):
     def setUp(self):
         self._dir = tempfile.TemporaryDirectory(prefix="zapzap-lock-")
@@ -80,7 +84,7 @@ class SingleInstanceLockTests(unittest.TestCase):
         old = time.time() - 3600
         os.utime(self.lock_path, (old, old))
 
-        second = self.start()
+        second = self.start(seconds=1)
         stdout, stderr = second.communicate(timeout=30)
 
         self.assertEqual(second.returncode, 1, stderr)
