@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: ZapZap\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-11-11 19:12+0100\n"
-"PO-Revision-Date: 2026-08-26 14:30-0300\n"
+"PO-Revision-Date: 2026-11-18 00:00+0000\n"
 "Last-Translator: ZapZap contributors\n"
 "Language-Team: Brazilian Portuguese\n"
 "Language: pt_BR\n"
@@ -32,7 +32,7 @@ msgstr "Não pergunte novamente"
 #: zapzap/features/tray/sys_tray_manager.py:250
 #: zapzap/ui/components/floating_monitoring_panel.py:335
 msgid "Unmute"
-msgstr ""
+msgstr "Reativar som"
 
 #: zapzap/app/main_window_controller.py:326
 #: zapzap/features/shortcuts/model.py:29
@@ -200,8 +200,8 @@ msgid ""
 "Its session will be closed and related local data may be permanently "
 "removed. This action cannot be undone."
 msgstr ""
-"A sessão será encerrada e os dados locais relacionados poderão ser removidos "
-"permanentemente. Esta ação não pode ser desfeita."
+"A sessão será encerrada e os dados locais relacionados poderão ser removidos"
+" permanentemente. Esta ação não pode ser desfeita."
 
 #: zapzap/features/accounts/card_user_controller.py:237
 #: zapzap/ui/components/card_user.py:153
@@ -229,8 +229,10 @@ msgstr "Agente do usuário alterado"
 
 #: zapzap/features/accounts/card_user_controller.py:274
 msgid ""
-"Please restart this session (or the application) to apply the new User-Agent."
-msgstr "Reinicie esta sessão (ou o aplicativo) para aplicar o novo User-Agent."
+"Please restart this session (or the application) to apply the new User-"
+"Agent."
+msgstr ""
+"Reinicie esta sessão (ou o aplicativo) para aplicar o novo User-Agent."
 
 #: zapzap/features/accounts/card_user_controller.py:303
 msgid "The notification state could not be changed."
@@ -294,26 +296,28 @@ msgstr ""
 "Não é possível criar mais usuários!"
 
 #: zapzap/features/alerts/alert_manager.py:260
-#, fuzzy
 msgid "Single process mode active"
-msgstr "Processo único"
+msgstr "Modo de processo único ativo"
 
 #: zapzap/features/alerts/alert_manager.py:262
 msgid ""
 "Single process mode supports only 1 account profile.\n"
-"Disable 'Single process' in Performance settings and restart ZapZap to use "
-"multiple accounts."
+"Disable 'Single process' in Performance settings and restart ZapZap to use multiple accounts."
 msgstr ""
+"O modo de processo único suporta apenas 1 perfil de conta.\n"
+"Desative o 'Processo único' nas configurações de Desempenho e reinicie o ZapZap para usar várias contas."
 
 #: zapzap/features/alerts/alert_manager.py:271
 msgid "Cannot enable single process mode"
-msgstr ""
+msgstr "Não foi possível ativar o modo de processo único"
 
 #: zapzap/features/alerts/alert_manager.py:273
 msgid ""
 "Single process mode supports only 1 account profile.\n"
 "Remove extra accounts before enabling 'Single process'."
 msgstr ""
+"O modo de processo único suporta apenas 1 perfil de conta.\n"
+"Remova as contas extras antes de ativar o 'Processo único'."
 
 #: zapzap/features/alerts/alert_manager.py:280
 msgid "Attention"
@@ -342,8 +346,8 @@ msgid ""
 "This is the last active dictionary. Disable the spell checker and remove "
 "{code}?"
 msgstr ""
-"Este é o último dicionário ativo. Desativar o corretor ortográfico e remover "
-"{code}?"
+"Este é o último dicionário ativo. Desativar o corretor ortográfico e remover"
+" {code}?"
 
 #: zapzap/features/dictionaries/dictionary_manager.py:145
 #: zapzap/features/dictionaries/dictionary_manager.py:174
@@ -392,8 +396,10 @@ msgstr "Wise"
 
 #: zapzap/features/donation/model.py:69
 msgid ""
-"International contributions with reduced fees and competitive exchange rates."
-msgstr "Contribuições internacionais com taxas reduzidas e câmbio competitivo."
+"International contributions with reduced fees and competitive exchange "
+"rates."
+msgstr ""
+"Contribuições internacionais com taxas reduzidas e câmbio competitivo."
 
 #: zapzap/features/donation/model.py:77
 msgid "Ko-fi"
@@ -440,8 +446,8 @@ msgid ""
 "ZapZap is free and open source. Your contributions help keep the project "
 "active, improve the application, and develop new features."
 msgstr ""
-"O ZapZap é gratuito e de código aberto. Suas contribuições ajudam a manter o "
-"projeto ativo, melhorar o aplicativo e desenvolver novos recursos."
+"O ZapZap é gratuito e de código aberto. Suas contribuições ajudam a manter o"
+" projeto ativo, melhorar o aplicativo e desenvolver novos recursos."
 
 #: zapzap/features/donation/page.py:195 zapzap/features/donation/page.py:280
 msgid "Close donations page"
@@ -541,7 +547,8 @@ msgid "Welcome to ZapZap"
 msgstr "Bem-vindo ao ZapZap"
 
 #: zapzap/features/initial_setup/view.py:90
-msgid "Choose the essentials now. You can change everything later in Settings."
+msgid ""
+"Choose the essentials now. You can change everything later in Settings."
 msgstr ""
 "Escolha o essencial agora. Você pode alterar tudo posteriormente em "
 "Configurações."
@@ -739,7 +746,8 @@ msgstr "Ícone da bandeja"
 
 #: zapzap/features/initial_setup/view.py:248
 msgid "Control tray icon visibility and unread counter."
-msgstr "Controle a visibilidade do ícone da bandeja e o contador de não lidos."
+msgstr ""
+"Controle a visibilidade do ícone da bandeja e o contador de não lidos."
 
 #: zapzap/features/initial_setup/view.py:253
 msgid "Enable tray icon"
@@ -830,8 +838,8 @@ msgstr "Downloads e digitação"
 
 #: zapzap/features/initial_setup/view.py:326
 msgid ""
-"Choose where files are saved and enable spell checking when dictionaries are "
-"available."
+"Choose where files are saved and enable spell checking when dictionaries are"
+" available."
 msgstr ""
 "Escolha onde os arquivos serão salvos e ative a verificação ortográfica "
 "quando os dicionários estiverem disponível."
@@ -919,8 +927,8 @@ msgid ""
 "Enable only the permissions you want to grant automatically when the page "
 "requests them."
 msgstr ""
-"Ative apenas as permissões que você deseja conceder automaticamente quando a "
-"página solicitar."
+"Ative apenas as permissões que você deseja conceder automaticamente quando a"
+" página solicitar."
 
 #: zapzap/features/initial_setup/view.py:389
 #: zapzap/features/settings/pages/permissions/view.py:64
@@ -1033,8 +1041,8 @@ msgstr "Tudo pronto"
 
 #: zapzap/features/initial_setup/view.py:468
 msgid ""
-"ZapZap will save these preferences now. Advanced options remain available in "
-"Settings."
+"ZapZap will save these preferences now. Advanced options remain available in"
+" Settings."
 msgstr ""
 "O ZapZap salvará essas preferências agora. As opções avançadas continuarão "
 "disponíveis nas Configurações."
@@ -1049,9 +1057,9 @@ msgstr "Revise as opções avançadas mais tarde, sempre que precisar delas."
 
 #: zapzap/features/initial_setup/view.py:479
 msgid ""
-"You can revisit all choices from Settings at any time. Proxy, custom CSS/"
-"JavaScript, Flatpak permissions, and performance tweaks are still available "
-"there."
+"You can revisit all choices from Settings at any time. Proxy, custom "
+"CSS/JavaScript, Flatpak permissions, and performance tweaks are still "
+"available there."
 msgstr ""
 "Você pode revisitar todas as opções em Configurações a qualquer momento. "
 "Proxy, CSS/JavaScript personalizados, permissões do Flatpak e ajustes de "
@@ -1201,8 +1209,8 @@ msgid ""
 "ZapZap will copy the report to the clipboard and open GitHub. Paste it into "
 "the issue description before publishing. A GitHub account is required."
 msgstr ""
-"O ZapZap copiará o relatório para a área de transferência e abrirá o GitHub. "
-"Cole-o na descrição da issue antes de publicar. É necessário ter uma conta "
+"O ZapZap copiará o relatório para a área de transferência e abrirá o GitHub."
+" Cole-o na descrição da issue antes de publicar. É necessário ter uma conta "
 "no GitHub."
 
 #: zapzap/features/reporting/dialogs.py:109
@@ -1216,8 +1224,8 @@ msgid ""
 "Never sent: messages, contacts, phone numbers, cookies, WhatsApp session "
 "data, conversation content, passwords, or authentication tokens."
 msgstr ""
-"Nunca são enviados: mensagens, contatos, números de telefone, cookies, dados "
-"da sessão do WhatsApp, conteúdo de conversas, senhas ou tokens de "
+"Nunca são enviados: mensagens, contatos, números de telefone, cookies, dados"
+" da sessão do WhatsApp, conteúdo de conversas, senhas ou tokens de "
 "autenticação."
 
 #: zapzap/features/reporting/dialogs.py:136
@@ -1232,8 +1240,8 @@ msgstr "Reportar um problema"
 
 #: zapzap/features/reporting/dialogs.py:162
 msgid ""
-"Describe what happened. You will review everything before anything is copied "
-"or GitHub is opened."
+"Describe what happened. You will review everything before anything is copied"
+" or GitHub is opened."
 msgstr ""
 "Descreva o que aconteceu. Você poderá revisar tudo antes que qualquer "
 "conteúdo seja copiado ou que o GitHub seja aberto."
@@ -1282,8 +1290,8 @@ msgid ""
 "The complete report will be copied to the clipboard. After GitHub opens, "
 "paste it into the issue description."
 msgstr ""
-"O relatório completo será copiado para a área de transferência. Depois que o "
-"GitHub abrir, cole-o na descrição da issue."
+"O relatório completo será copiado para a área de transferência. Depois que o"
+" GitHub abrir, cole-o na descrição da issue."
 
 #: zapzap/features/reporting/dialogs.py:237
 msgid "Complete report preview"
@@ -1311,7 +1319,8 @@ msgid "Copy report to the clipboard and open GitHub"
 msgstr "Copiar o relatório para a área de transferência e abrir o GitHub"
 
 #: zapzap/features/reporting/dialogs.py:268
-msgid "After GitHub opens, paste the copied report into the issue description."
+msgid ""
+"After GitHub opens, paste the copied report into the issue description."
 msgstr "Depois que o GitHub abrir, cole o relatório na descrição da issue."
 
 #: zapzap/features/reporting/dialogs.py:292
@@ -1607,7 +1616,8 @@ msgstr "Licença"
 
 #: zapzap/features/settings/pages/about/controller.py:64
 #, python-brace-format
-msgid "ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
+msgid ""
+"ZapZap is free software licensed under {license_id} (GPL-3.0-or-later)."
 msgstr ""
 "O ZapZap é um software livre licenciado sob a {license_id} (GPL-3.0-or-"
 "later)."
@@ -1623,8 +1633,8 @@ msgid ""
 "Created and maintained by {author}. Thanks to everyone who contributes "
 "translations, code, testing, and feedback."
 msgstr ""
-"Criado e mantido por {author}. Agradecemos a todas as pessoas que contribuem "
-"com traduções, código, testes e feedback."
+"Criado e mantido por {author}. Agradecemos a todas as pessoas que contribuem"
+" com traduções, código, testes e feedback."
 
 #: zapzap/features/settings/pages/about/model.py:64
 msgid "Version"
@@ -1710,7 +1720,8 @@ msgstr "Informe bugs ou sugira melhorias no GitHub."
 
 #: zapzap/features/settings/pages/about/view.py:337
 msgid ""
-"ZapZap is an independent project and is not affiliated with WhatsApp or Meta."
+"ZapZap is an independent project and is not affiliated with WhatsApp or "
+"Meta."
 msgstr ""
 "O ZapZap é um projeto independente e não possui afiliação com o WhatsApp ou "
 "a Meta."
@@ -1752,6 +1763,8 @@ msgid ""
 "Single process mode supports only 1 account. Disable 'Single process' in "
 "Performance settings to add more accounts."
 msgstr ""
+"O modo de processo único suporta apenas 1 conta. Desative o 'Processo único'"
+" nas configurações de Desempenho para adicionar mais contas."
 
 #: zapzap/features/settings/pages/accounts/view.py:90
 #, python-brace-format
@@ -2235,13 +2248,12 @@ msgid "Windows"
 msgstr "Windows"
 
 #: zapzap/features/settings/pages/appearance/view.py:25
-#, fuzzy
 msgid ""
 "Adjust interface chrome, quick access, theme, tray icon, grid view, and "
 "window decorations."
 msgstr ""
-"Ajuste a interface, o tema, o ícone da bandeja, a visualização em grade e as "
-"decorações da janela."
+"Ajuste a interface, o acesso rápido, o tema, o ícone da bandeja, a "
+"visualização em grade e as decorações da janela."
 
 #: zapzap/features/settings/pages/appearance/view.py:43
 msgid "Interface"
@@ -2301,8 +2313,8 @@ msgstr "Escala da interface"
 #: zapzap/features/settings/pages/appearance/view.py:71
 msgid "Scale the interface for high-DPI or accessibility needs."
 msgstr ""
-"Ajuste a escala da interface para telas de alta densidade ou necessidades de "
-"acessibilidade."
+"Ajuste a escala da interface para telas de alta densidade ou necessidades de"
+" acessibilidade."
 
 #: zapzap/features/settings/pages/appearance/view.py:88
 msgid "Quick Access"
@@ -2313,8 +2325,9 @@ msgid ""
 "Control the floating monitoring panel and the account selector integrated "
 "into WhatsApp Web. Both are independent and can be shown at the same time."
 msgstr ""
-"Controle o painel flutuante de monitoramento e o seletor de contas integrado "
-"ao WhatsApp Web. Ambos são independentes e podem ser exibidos ao mesmo tempo."
+"Controle o painel flutuante de monitoramento e o seletor de contas integrado"
+" ao WhatsApp Web. Ambos são independentes e podem ser exibidos ao mesmo "
+"tempo."
 
 #: zapzap/features/settings/pages/appearance/view.py:97
 msgid "Floating monitoring panel"
@@ -2508,27 +2521,17 @@ msgstr "Informações e privacidade"
 
 #: zapzap/features/settings/pages/debugging/controller.py:64
 msgid ""
-"Reports may include the ZapZap version, operating system, installation type, "
-"architecture, Python/Qt versions, error details, and sanitized logs.\n"
+"Reports may include the ZapZap version, operating system, installation type, architecture, Python/Qt versions, error details, and sanitized logs.\n"
 "\n"
-"Never sent: messages, contacts, phone numbers, cookies, WhatsApp session "
-"data, conversation content, passwords, or authentication tokens.\n"
+"Never sent: messages, contacts, phone numbers, cookies, WhatsApp session data, conversation content, passwords, or authentication tokens.\n"
 "\n"
-"ZapZap does not send reports. After review, it copies the report and opens "
-"the official GitHub repository rafatosta/zapzap. You need a GitHub account "
-"to publish the public issue."
+"ZapZap does not send reports. After review, it copies the report and opens the official GitHub repository rafatosta/zapzap. You need a GitHub account to publish the public issue."
 msgstr ""
-"Os relatórios podem incluir a versão do ZapZap, o sistema operacional, o "
-"tipo de instalação, a arquitetura, as versões do Python/Qt, detalhes do erro "
-"e registros sanitizados.\n"
+"Os relatórios podem incluir a versão do ZapZap, o sistema operacional, o tipo de instalação, a arquitetura, as versões do Python/Qt, detalhes do erro e registros sanitizados.\n"
 "\n"
-"Nunca são enviados: mensagens, contatos, números de telefone, cookies, dados "
-"da sessão do WhatsApp, conteúdo de conversas, senhas ou tokens de "
-"autenticação.\n"
+"Nunca são enviados: mensagens, contatos, números de telefone, cookies, dados da sessão do WhatsApp, conteúdo de conversas, senhas ou tokens de autenticação.\n"
 "\n"
-"O ZapZap não envia relatórios. Depois da revisão, ele copia o relatório e "
-"abre o repositório oficial rafatosta/zapzap no GitHub. É necessário ter uma "
-"conta no GitHub para publicar a issue pública."
+"O ZapZap não envia relatórios. Depois da revisão, ele copia o relatório e abre o repositório oficial rafatosta/zapzap no GitHub. É necessário ter uma conta no GitHub para publicar a issue pública."
 
 #: zapzap/features/settings/pages/debugging/controller.py:74
 msgid "Notify me when a failure occurs?"
@@ -2536,13 +2539,11 @@ msgstr "Notificar quando ocorrer uma falha?"
 
 #: zapzap/features/settings/pages/debugging/controller.py:76
 msgid ""
-"ZapZap can prepare a sanitized technical report locally after a serious "
-"failure. You will review it on the next startup.\n"
+"ZapZap can prepare a sanitized technical report locally after a serious failure. You will review it on the next startup.\n"
 "\n"
 "ZapZap never transmits or publishes the report automatically."
 msgstr ""
-"O ZapZap pode preparar localmente um relatório técnico sanitizado depois de "
-"uma falha grave. Você poderá revisá-lo na próxima inicialização.\n"
+"O ZapZap pode preparar localmente um relatório técnico sanitizado depois de uma falha grave. Você poderá revisá-lo na próxima inicialização.\n"
 "\n"
 "O ZapZap nunca transmite nem publica o relatório automaticamente."
 
@@ -2616,8 +2617,7 @@ msgid ""
 "\n"
 "The application will need to be restarted to complete the operation."
 msgstr ""
-"Todas as configurações personalizadas do ZapZap serão restauradas para os "
-"valores padrão.\n"
+"Todas as configurações personalizadas do ZapZap serão restauradas para os valores padrão.\n"
 "\n"
 "O aplicativo precisará ser reiniciado para concluir a operação."
 
@@ -2647,14 +2647,16 @@ msgstr "Detalhes completos"
 
 #: zapzap/features/settings/pages/debugging/view.py:161
 msgid "Prepare a sanitized report to publish with your GitHub account."
-msgstr "Prepare um relatório sanitizado para publicar com sua conta do GitHub."
+msgstr ""
+"Prepare um relatório sanitizado para publicar com sua conta do GitHub."
 
 #: zapzap/features/settings/pages/debugging/view.py:179
 msgid ""
 "You will always review the complete report before copying it and opening "
 "GitHub."
 msgstr ""
-"Você sempre revisará o relatório completo antes de copiá-lo e abrir o GitHub."
+"Você sempre revisará o relatório completo antes de copiá-lo e abrir o "
+"GitHub."
 
 #: zapzap/features/settings/pages/debugging/view.py:185
 msgid "Something is not working?"
@@ -2772,7 +2774,8 @@ msgstr "Manutenção"
 
 #: zapzap/features/settings/pages/debugging/view.py:348
 msgid ""
-"Restore ZapZap's default settings. The application will need to be restarted."
+"Restore ZapZap's default settings. The application will need to be "
+"restarted."
 msgstr ""
 "Restaura as configurações padrão do ZapZap. O aplicativo precisará ser "
 "reiniciado."
@@ -2846,14 +2849,12 @@ msgid "Ask where to save every time"
 msgstr "Perguntar onde salvar sempre"
 
 #: zapzap/features/settings/pages/language_downloads/controller.py:118
-#, fuzzy
 msgid "Preview in WhatsApp"
-msgstr "Integrado ao WhatsApp"
+msgstr "Visualizar no WhatsApp"
 
 #: zapzap/features/settings/pages/language_downloads/controller.py:119
-#, fuzzy
 msgid "Download directly (where supported)"
-msgstr "Diretório de downloads"
+msgstr "Baixar diretamente (quando houver suporte)"
 
 #: zapzap/features/settings/pages/language_downloads/controller.py:204
 #: zapzap/features/settings/pages/language_downloads/view.py:146
@@ -2886,13 +2887,15 @@ msgstr "Escolha o que acontece quando um download começa."
 
 #: zapzap/features/settings/pages/language_downloads/view.py:69
 msgid "PDF file clicks"
-msgstr ""
+msgstr "Cliques em arquivos PDF"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:70
 msgid ""
 "Preview PDF files in WhatsApp or download them when the browser handles the "
 "PDF. WhatsApp's own preview may still open."
 msgstr ""
+"Visualize arquivos PDF no WhatsApp ou baixe-os quando o navegador processar "
+"o PDF. A visualização do próprio WhatsApp ainda pode abrir."
 
 #: zapzap/features/settings/pages/language_downloads/view.py:80
 msgid "Set a custom folder or restore the default download location."
@@ -2941,7 +2944,8 @@ msgstr "Permissão para vários downloads do WhatsApp"
 
 #: zapzap/features/settings/pages/language_downloads/view.py:121
 msgid ""
-"Clear the remembered allow or block decision for repeated WhatsApp downloads."
+"Clear the remembered allow or block decision for repeated WhatsApp "
+"downloads."
 msgstr ""
 "Limpar a decisão lembrada de permitir ou bloquear downloads repetidos do "
 "WhatsApp."
@@ -3056,7 +3060,8 @@ msgstr ""
 
 #: zapzap/features/settings/pages/network_privacy/controller.py:270
 msgid "Strict proxy isolation and WebRTC protection will not be changed."
-msgstr "O isolamento estrito de proxy e a proteção WebRTC não serão alterados."
+msgstr ""
+"O isolamento estrito de proxy e a proteção WebRTC não serão alterados."
 
 #: zapzap/features/settings/pages/network_privacy/view.py:36
 #: zapzap/features/settings/pages/network_privacy/view.py:42
@@ -3298,34 +3303,38 @@ msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:58
 msgid "Rendering profile"
-msgstr ""
+msgstr "Perfil de renderização"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:60
 msgid ""
 "Choose a predefined rendering configuration or customize individual options."
 msgstr ""
+"Escolha uma configuração de renderização predefinida ou personalize opções "
+"individuais."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:66
 msgid "Compatibility"
-msgstr ""
+msgstr "Compatibilidade"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:67
 msgid "Manual"
-msgstr ""
+msgstr "Manual"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:69
 msgid "Recommended settings with hardware acceleration enabled."
-msgstr ""
+msgstr "Configurações recomendadas com aceleração de hardware ativada."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:71
 msgid ""
-"Improves stability on systems with video, flickering or GPU rendering issues."
+"Improves stability on systems with video, flickering or GPU rendering "
+"issues."
 msgstr ""
+"Melhora a estabilidade em sistemas com problemas de vídeo, cintilação ou "
+"renderização por GPU."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:74
-#, fuzzy
 msgid "Use custom GPU and rendering options."
-msgstr "GPU e renderização"
+msgstr "Usar opções personalizadas de GPU e renderização."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:97
 msgid "Cache"
@@ -3391,8 +3400,8 @@ msgstr "Solução alternativa automática para múltiplas GPUs"
 msgid ""
 "Honors DRI_PRIME or adjusts GPU compositing for a headless secondary GPU."
 msgstr ""
-"Respeita DRI_PRIME ou ajusta a composição da GPU para uma GPU secundária sem "
-"monitor."
+"Respeita DRI_PRIME ou ajusta a composição da GPU para uma GPU secundária sem"
+" monitor."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:147
 msgid "Disable GPU VSync"
@@ -3412,24 +3421,27 @@ msgstr "Use apenas para problemas gráficos."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:155
 msgid "Disable GPU memory buffer for video"
-msgstr ""
+msgstr "Desativar buffer de memória da GPU para vídeo"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:157
 msgid ""
 "Avoid GPU-backed video frame buffers. May help with black screens, "
 "flickering and GPU crashes."
 msgstr ""
+"Evita buffers de quadros de vídeo apoiados na GPU. Pode ajudar com telas "
+"pretas, cintilação e travamentos da GPU."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:162
-#, fuzzy
 msgid "Disable zero-copy"
-msgstr "Desativar conta"
+msgstr "Desativar cópia zero (zero-copy)"
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:164
 msgid ""
 "Disable zero-copy GPU buffer transfers. May improve compatibility with some "
 "graphics drivers."
 msgstr ""
+"Desativa transferências de buffer da GPU com cópia zero (zero-copy). Pode "
+"melhorar a compatibilidade com alguns drivers de vídeo."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:169
 msgid "Use software video decoding"
@@ -3440,9 +3452,9 @@ msgid ""
 "Disables hardware video decoding to fix videos that appear white, black, "
 "flicker, or cause crashes. This may increase CPU and battery usage."
 msgstr ""
-"Desativa a decodificação de vídeo por hardware para corrigir vídeos com tela "
-"branca, preta, piscando ou causando falhas. Pode aumentar o uso da CPU e da "
-"bateria."
+"Desativa a decodificação de vídeo por hardware para corrigir vídeos com tela"
+" branca, preta, piscando ou causando falhas. Pode aumentar o uso da CPU e da"
+" bateria."
 
 #: zapzap/features/settings/pages/performance_experimental/view.py:177
 msgid "Force GBM"
@@ -3625,19 +3637,13 @@ msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:247
 msgid ""
-"Automatically honors an unambiguous DRI_PRIME selector on systems with "
-"multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when "
-"one GPU has no connected display.\n"
+"Automatically honors an unambiguous DRI_PRIME selector on systems with multiple Linux render GPUs. Otherwise, adds --disable-gpu-compositing when one GPU has no connected display.\n"
 "\n"
-"Disable this only if the automatic workaround causes problems. Restart "
-"required."
+"Disable this only if the automatic workaround causes problems. Restart required."
 msgstr ""
-"Respeita automaticamente um seletor DRI_PRIME inequívoco em sistemas Linux "
-"com várias GPUs de renderização. Caso contrário, adiciona --disable-gpu-"
-"compositing quando uma GPU não possui monitor conectado.\n"
+"Respeita automaticamente um seletor DRI_PRIME inequívoco em sistemas Linux com várias GPUs de renderização. Caso contrário, adiciona --disable-gpu-compositing quando uma GPU não possui monitor conectado.\n"
 "\n"
-"Desative esta opção somente se a solução alternativa automática causar "
-"problemas. É necessário reiniciar."
+"Desative esta opção somente se a solução alternativa automática causar problemas. É necessário reiniciar."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:256
 msgid ""
@@ -3645,8 +3651,7 @@ msgid ""
 "May reduce latency, but can increase power usage and tearing."
 msgstr ""
 "Desativa o VSync da GPU.\n"
-"Pode reduzir a latência, mas aumentar o consumo de energia e rasgos na "
-"imagem."
+"Pode reduzir a latência, mas aumentar o consumo de energia e rasgos na imagem."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:262
 msgid ""
@@ -3664,6 +3669,9 @@ msgid ""
 "May help with black screens, flickering, and GPU crashes.\n"
 "Restart required."
 msgstr ""
+"Evita buffers de quadros de vídeo apoiados na GPU.\n"
+"Pode ajudar com telas pretas, cintilação e travamentos da GPU.\n"
+"Requer reinício."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:276
 msgid ""
@@ -3671,18 +3679,18 @@ msgid ""
 "May improve compatibility with some graphics drivers.\n"
 "Restart required."
 msgstr ""
+"Desativa transferências de buffer da GPU com cópia zero (zero-copy).\n"
+"Pode melhorar a compatibilidade com alguns drivers de vídeo.\n"
+"Requer reinício."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:283
 msgid ""
 "Disables hardware video decoding without disabling all GPU acceleration.\n"
-"Use when videos play only audio, appear white or black, flicker, or cause "
-"crashes.\n"
+"Use when videos play only audio, appear white or black, flicker, or cause crashes.\n"
 "May increase CPU and battery usage. Restart required."
 msgstr ""
-"Desativa a decodificação de vídeo por hardware sem desativar toda a "
-"aceleração da GPU.\n"
-"Use quando os vídeos reproduzirem apenas áudio, ficarem brancos ou pretos, "
-"piscarem ou causarem falhas.\n"
+"Desativa a decodificação de vídeo por hardware sem desativar toda a aceleração da GPU.\n"
+"Use quando os vídeos reproduzirem apenas áudio, ficarem brancos ou pretos, piscarem ou causarem falhas.\n"
 "Pode aumentar o uso da CPU e da bateria. Reinicialização necessária."
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:292
@@ -3738,14 +3746,12 @@ msgstr ""
 #: zapzap/features/settings/pages/performance_experimental/controller.py:326
 msgid ""
 "Enables V8 predictable garbage collection schedule.\n"
-"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to "
-"QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"This adds --js-flags=--predictable-gc-schedule and --disable-gpu to QTWEBENGINE_CHROMIUM_FLAGS.\n"
 "\n"
 "Experimental option. Restart required."
 msgstr ""
 "Ativa o agendamento previsível da coleta de lixo do V8.\n"
-"Isso adiciona --js-flags=--predictable-gc-schedule e --disable-gpu a "
-"QTWEBENGINE_CHROMIUM_FLAGS.\n"
+"Isso adiciona --js-flags=--predictable-gc-schedule e --disable-gpu a QTWEBENGINE_CHROMIUM_FLAGS.\n"
 "\n"
 "Opção experimental. Reinício necessário."
 
@@ -3783,17 +3789,13 @@ msgstr ""
 
 #: zapzap/features/settings/pages/performance_experimental/controller.py:355
 msgid ""
-"Uses Selection.modify() with visual directions for Ctrl+Arrow word "
-"navigation.\n"
-"This fixes reversed cursor movement in RTL text inside WhatsApp Web message "
-"fields.\n"
+"Uses Selection.modify() with visual directions for Ctrl+Arrow word navigation.\n"
+"This fixes reversed cursor movement in RTL text inside WhatsApp Web message fields.\n"
 "\n"
 "Restart or reload WhatsApp Web after changing this option."
 msgstr ""
-"Usa Selection.modify() com direções visuais para navegar entre palavras com "
-"Ctrl+Seta.\n"
-"Isso corrige o movimento invertido do cursor em textos RTL nos campos de "
-"mensagem do WhatsApp Web.\n"
+"Usa Selection.modify() com direções visuais para navegar entre palavras com Ctrl+Seta.\n"
+"Isso corrige o movimento invertido do cursor em textos RTL nos campos de mensagem do WhatsApp Web.\n"
 "\n"
 "Reinicie ou recarregue o WhatsApp Web após alterar esta opção."
 
@@ -3808,7 +3810,8 @@ msgstr ""
 #: zapzap/features/settings/pages/permissions/view.py:23
 msgid "Define which permissions can be granted automatically to WhatsApp Web."
 msgstr ""
-"Defina quais permissões podem ser concedidas automaticamente ao WhatsApp Web."
+"Defina quais permissões podem ser concedidas automaticamente ao WhatsApp "
+"Web."
 
 #: zapzap/features/settings/pages/permissions/view.py:40
 msgid "Disabled permissions will continue to be requested when needed."
@@ -3856,7 +3859,8 @@ msgid ""
 "Configure how ZapZap starts, behaves in the system, and integrates with "
 "Linux."
 msgstr ""
-"Configure como o ZapZap inicia, se comporta no sistema e se integra ao Linux."
+"Configure como o ZapZap inicia, se comporta no sistema e se integra ao "
+"Linux."
 
 #: zapzap/features/settings/pages/system_startup/view.py:41
 msgid "Define how ZapZap behaves when your session starts."
@@ -3908,39 +3912,40 @@ msgstr "Usar o seletor de arquivos fornecido pelo ambiente de desktop."
 
 #: zapzap/features/settings/pages/system_startup/view.py:128
 msgid "Display backend"
-msgstr ""
+msgstr "Backend de exibição"
 
 #: zapzap/features/settings/pages/system_startup/view.py:130
 msgid ""
 "Automatic is recommended and uses the native backend for the current "
 "session. X11 is available as a compatibility fallback."
 msgstr ""
+"O modo automático é recomendado e usa o backend nativo da sessão atual. O "
+"X11 está disponível como alternativa de compatibilidade."
 
 #: zapzap/features/settings/pages/system_startup/view.py:143
 msgid "Recommended. Use Wayland in Wayland sessions and X11 in X11 sessions."
-msgstr ""
+msgstr "Recomendado. Usa o Wayland em sessões Wayland e o X11 em sessões X11."
 
 #: zapzap/features/settings/pages/system_startup/view.py:148
 msgid "Wayland"
-msgstr ""
+msgstr "Wayland"
 
 #: zapzap/features/settings/pages/system_startup/view.py:150
-#, fuzzy
 msgid "Force the native Wayland backend."
-msgstr "Usar o backend Wayland quando disponível."
+msgstr "Forçar o backend nativo do Wayland."
 
 #: zapzap/features/settings/pages/system_startup/view.py:153
 msgid "X11 / XWayland"
-msgstr ""
+msgstr "X11 / XWayland"
 
 #: zapzap/features/settings/pages/system_startup/view.py:156
 msgid "Use the X11 backend. In Wayland sessions, this runs through XWayland."
 msgstr ""
+"Usa o backend X11. Em sessões Wayland, ele é executado através do XWayland."
 
 #: zapzap/features/settings/pages/system_startup/view.py:172
-#, fuzzy
 msgid "Choose the Qt display backend. Changes require restart."
-msgstr "Usar o backend Wayland quando disponível. Requer reinício."
+msgstr "Escolha o backend de exibição do Qt. As alterações exigem reinício."
 
 #: zapzap/features/downloads/ui/download_dialog.py:101
 msgid "More"
@@ -3991,9 +3996,8 @@ msgid "Completed"
 msgstr "Concluído"
 
 #: zapzap/features/downloads/ui/downloads_menu.py:622
-#, fuzzy
 msgid "Delete file"
-msgstr "Selecionar arquivo"
+msgstr "Excluir arquivo"
 
 #: zapzap/features/downloads/ui/downloads_menu.py:655
 msgid "Remove from download history"
@@ -4078,7 +4082,8 @@ msgstr "Esta conta está desativada."
 
 #: zapzap/features/browser/shell/browser_controller.py:701
 msgid ""
-"You can reactivate it now or use the right-click menu to manage this account."
+"You can reactivate it now or use the right-click menu to manage this "
+"account."
 msgstr ""
 "Você pode reativá-lo agora ou usar o menu do botão direito para gerenciar "
 "esta conta."
@@ -4097,13 +4102,13 @@ msgstr "Fechamento manual indisponível"
 
 #: zapzap/features/browser/web/popup_window.py:67
 msgid ""
-"To prevent the application from becoming unresponsive, this window cannot be "
-"closed manually. Use WhatsApp's End call button. The window will close when "
-"WhatsApp requests it."
+"To prevent the application from becoming unresponsive, this window cannot be"
+" closed manually. Use WhatsApp's End call button. The window will close when"
+" WhatsApp requests it."
 msgstr ""
 "Para evitar que o aplicativo pare de responder, esta janela não pode ser "
-"fechada manualmente. Use o botão Encerrar chamada do WhatsApp. A janela será "
-"fechada quando o WhatsApp solicitar."
+"fechada manualmente. Use o botão Encerrar chamada do WhatsApp. A janela será"
+" fechada quando o WhatsApp solicitar."
 
 #: zapzap/features/browser/web/page_controller.py:314
 msgid "your microphone"
@@ -4154,9 +4159,8 @@ msgstr ""
 
 #: zapzap/features/browser/web/web_view.py:357
 #: zapzap/ui/components/integrated_account_selector.py:57
-#, fuzzy
 msgid "Account selector"
-msgstr "Lista de contas"
+msgstr "Seletor de contas"
 
 #: zapzap/features/browser/web/web_view.py:517
 msgid "Chat list width"
@@ -4164,8 +4168,8 @@ msgstr "Largura da lista de conversas"
 
 #: zapzap/features/browser/web/web_view.py:519
 msgid ""
-"Drag or use the arrow keys to resize. Double-click or press Enter to restore "
-"the default width."
+"Drag or use the arrow keys to resize. Double-click or press Enter to restore"
+" the default width."
 msgstr ""
 "Arraste ou use as setas do teclado para redimensionar. Clique duas vezes ou "
 "pressione Enter para voltar à largura padrão."
@@ -4386,8 +4390,8 @@ msgstr "Conta {name}, desativada."
 
 #: zapzap/ui/components/dictionary_manager_dialog.py:104
 msgid ""
-"Install dictionaries from the official ZapZap catalog for Qt WebEngine spell "
-"checking."
+"Install dictionaries from the official ZapZap catalog for Qt WebEngine spell"
+" checking."
 msgstr ""
 "Instale dicionários do catálogo oficial do ZapZap para a correção "
 "ortográfica do Qt WebEngine."
@@ -4761,12 +4765,11 @@ msgstr "Acesso rápido"
 
 #: zapzap/ui/components/floating_monitoring_panel.py:284
 msgid "No account activity to show yet."
-msgstr ""
+msgstr "Ainda não há atividade de conta para exibir."
 
 #: zapzap/ui/components/floating_monitoring_panel.py:286
-#, fuzzy
 msgid "Monitoring panel"
-msgstr "Fixar painel"
+msgstr "Painel de monitoramento"
 
 #: zapzap/ui/components/floating_monitoring_panel.py:287
 #: zapzap/ui/components/floating_monitoring_panel.py:288
@@ -4776,7 +4779,7 @@ msgstr "Desbloquear posição"
 #: zapzap/ui/components/floating_monitoring_panel.py:291
 #: zapzap/ui/components/floating_monitoring_panel.py:292
 msgid "Audio"
-msgstr ""
+msgstr "Áudio"
 
 #: zapzap/ui/components/main_window.py:140
 msgid "File"
@@ -4911,7 +4914,8 @@ msgstr "Número de telefone"
 
 #: zapzap/ui/components/send_message_to_number_dialog.py:168
 msgid "Search by country name, region code, or international prefix."
-msgstr "Pesquise pelo nome do país, código da região ou prefixo internacional."
+msgstr ""
+"Pesquise pelo nome do país, código da região ou prefixo internacional."
 
 #: zapzap/ui/components/send_message_to_number_dialog.py:173
 msgid "Example: 11 99999-9999"
@@ -5185,14 +5189,11 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 #~ msgstr "Fechar janela do WhatsApp?"
 
 #~ msgid ""
-#~ "Closing this window may not end an active call. To ensure the call ends, "
-#~ "use WhatsApp's End call button before closing.\n"
+#~ "Closing this window may not end an active call. To ensure the call ends, use WhatsApp's End call button before closing.\n"
 #~ "\n"
 #~ "Close the window anyway?"
 #~ msgstr ""
-#~ "Fechar esta janela pode não encerrar uma chamada ativa. Para garantir que "
-#~ "a chamada seja encerrada, use o botão Encerrar chamada do WhatsApp antes "
-#~ "de fechar.\n"
+#~ "Fechar esta janela pode não encerrar uma chamada ativa. Para garantir que a chamada seja encerrada, use o botão Encerrar chamada do WhatsApp antes de fechar.\n"
 #~ "\n"
 #~ "Fechar a janela mesmo assim?"
 
@@ -5243,8 +5244,7 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 #~ msgstr "Escolha onde essas configurações serão aplicadas."
 
 #~ msgid "Settings for this account override the all-accounts default."
-#~ msgstr ""
-#~ "As configurações desta conta substituem o padrão de todas as contas."
+#~ msgstr "As configurações desta conta substituem o padrão de todas as contas."
 
 #~ msgid "Reduces IP address exposure through WebRTC."
 #~ msgstr "Reduz a exposição do endereço IP através de WebRTC."
@@ -5268,8 +5268,7 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 #~ msgstr "Ajude a manter o desenvolvimento do ZapZap."
 
 #~ msgid ""
-#~ "Invalid number! Please enter at least 9 digits, including the country "
-#~ "code."
+#~ "Invalid number! Please enter at least 9 digits, including the country code."
 #~ msgstr ""
 #~ "Número inválido! Insira pelo menos 9 dígitos, incluindo o código do país."
 
@@ -5310,11 +5309,11 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 #~ msgstr "Pedir confirmação antes de fechar o ZapZap."
 
 #~ msgid ""
-#~ "No compiled dictionaries were found. You can configure dictionaries later "
-#~ "in Settings."
+#~ "No compiled dictionaries were found. You can configure dictionaries later in"
+#~ " Settings."
 #~ msgstr ""
-#~ "Nenhum dicionário compilado foi encontrado. Você pode configurar "
-#~ "dicionários posteriormente em Configurações."
+#~ "Nenhum dicionário compilado foi encontrado. Você pode configurar dicionários"
+#~ " posteriormente em Configurações."
 
 #~ msgid "Screen contents"
 #~ msgstr "Conteúdo da tela"
@@ -5373,11 +5372,10 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 #~ msgstr "Conteúdo das notificações"
 
 #~ msgid ""
-#~ "Manage language, startup, downloads, spell checking, and Linux "
-#~ "integration."
+#~ "Manage language, startup, downloads, spell checking, and Linux integration."
 #~ msgstr ""
-#~ "Gerencie idioma, inicialização, downloads, corretor ortográfico e "
-#~ "integração com Linux."
+#~ "Gerencie idioma, inicialização, downloads, corretor ortográfico e integração"
+#~ " com Linux."
 
 #~ msgid "Configure close behavior and native dialogs."
 #~ msgstr "Configure o comportamento ao fechar e os diálogos nativos."
@@ -5396,8 +5394,7 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 #~ "Use diálogos de arquivo do Qt em vez do portal da área de trabalho ou "
 #~ "seletor nativo."
 
-#~ msgid ""
-#~ "Options that affect how ZapZap integrates with Linux desktop sessions."
+#~ msgid "Options that affect how ZapZap integrates with Linux desktop sessions."
 #~ msgstr ""
 #~ "Opções que afetam como o ZapZap se integra às sessões de desktop Linux."
 
@@ -5428,17 +5425,15 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 
 #, python-brace-format
 #~ msgid ""
-#~ "Crash reports are stored in this folder. You can open the directory or "
-#~ "clean old files.\n"
+#~ "Crash reports are stored in this folder. You can open the directory or clean old files.\n"
 #~ "{details}"
 #~ msgstr ""
-#~ "Os relatórios de falhas são armazenados nesta pasta. Você pode abrir o "
-#~ "diretório ou limpar arquivos antigos.\n"
+#~ "Os relatórios de falhas são armazenados nesta pasta. Você pode abrir o diretório ou limpar arquivos antigos.\n"
 #~ "{details}"
 
 #~ msgid ""
-#~ "This will delete your current settings file (.config) and requires "
-#~ "restart. Continue?"
+#~ "This will delete your current settings file (.config) and requires restart. "
+#~ "Continue?"
 #~ msgstr ""
 #~ "Isso excluirá seu arquivo de configurações atuais (.config) e exigirá "
 #~ "reinicialização. Continuar?"
@@ -5498,8 +5493,8 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 
 #~ msgid "Restart the full application to apply interface scale changes."
 #~ msgstr ""
-#~ "Reinicie o aplicativo por completo para aplicar as alterações na escala "
-#~ "da interface."
+#~ "Reinicie o aplicativo por completo para aplicar as alterações na escala da "
+#~ "interface."
 
 #~ msgid "Restart interface"
 #~ msgstr "Reiniciar interface"
@@ -5510,8 +5505,8 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 #~ "decoração."
 
 #~ msgid ""
-#~ "Restart the full application now to apply environment and Chromium "
-#~ "startup flags."
+#~ "Restart the full application now to apply environment and Chromium startup "
+#~ "flags."
 #~ msgstr ""
 #~ "Reinicie o aplicativo por completo agora para aplicar as variáveis de "
 #~ "ambiente e os parâmetros de inicialização do Chromium."
@@ -5539,8 +5534,8 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 #~ msgstr "Escolha o escopo da customização."
 
 #~ msgid ""
-#~ "When inherit is disabled, account customizations are appended after "
-#~ "global settings."
+#~ "When inherit is disabled, account customizations are appended after global "
+#~ "settings."
 #~ msgstr ""
 #~ "Quando a herança estiver desativada, as personalizações da conta são "
 #~ "aplicadas após as configurações globais."
@@ -5564,8 +5559,7 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 #~ msgstr "Pré-visualização do CSS"
 
 #~ msgid "Attach and preview a screenshot for the selected CSS file."
-#~ msgstr ""
-#~ "Anexe e visualize uma captura de tela para o arquivo CSS selecionado."
+#~ msgstr "Anexe e visualize uma captura de tela para o arquivo CSS selecionado."
 
 #~ msgid "JavaScript customizations"
 #~ msgstr "Personalizações JavaScript"
@@ -5579,8 +5573,8 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 #~ msgid ""
 #~ "⚠ Custom JavaScript runs with full page privileges. Use trusted code only."
 #~ msgstr ""
-#~ "⚠ JavaScript personalizado é executado com privilégios completos da "
-#~ "página. Utilize apenas código confiável."
+#~ "⚠ JavaScript personalizado é executado com privilégios completos da página. "
+#~ "Utilize apenas código confiável."
 
 #~ msgid "Import .js"
 #~ msgstr "Importar .js"
@@ -5661,18 +5655,18 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 #~ msgstr "Permissões de sandbox Flatpak"
 
 #~ msgid ""
-#~ "If opening files, drag-and-drop or uploads fail, this is usually caused "
-#~ "by sandbox permissions."
+#~ "If opening files, drag-and-drop or uploads fail, this is usually caused by "
+#~ "sandbox permissions."
 #~ msgstr ""
-#~ "Se abrir arquivos, arrastar e soltar ou uploads falharem, isso geralmente "
-#~ "é causado por permissões de sandbox."
+#~ "Se abrir arquivos, arrastar e soltar ou uploads falharem, isso geralmente é "
+#~ "causado por permissões de sandbox."
 
 #~ msgid "Setup complete"
 #~ msgstr "Configuração concluída"
 
 #~ msgid ""
-#~ "Your preferences were saved. You can review and change them at any time "
-#~ "in Settings."
+#~ "Your preferences were saved. You can review and change them at any time in "
+#~ "Settings."
 #~ msgstr ""
 #~ "Suas preferências foram salvas. Você pode revisar e alterá-las a qualquer "
 #~ "momento em Configurações."
@@ -5745,15 +5739,15 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 #~ msgstr "color: #c77800;"
 
 #~ msgid ""
-#~ "<html><head/><body><p><span style=\" font-weight:700;\">Flatpak sandbox.</"
-#~ "span> If file access fails, grant folder permissions using <span style=\" "
-#~ "font-weight:700;\">Flatseal</span> or a command-line tool such as <span "
-#~ "style=\" font-weight:700;\">flatpak override</span>.</p></body></html>"
+#~ "<html><head/><body><p><span style=\" font-weight:700;\">Flatpak "
+#~ "sandbox.</span> If file access fails, grant folder permissions using <span "
+#~ "style=\" font-weight:700;\">Flatseal</span> or a command-line tool such as "
+#~ "<span style=\" font-weight:700;\">flatpak override</span>.</p></body></html>"
 #~ msgstr ""
-#~ "<html><head/><body><p><span style=\" font-weight:700;\">Sandbox Flatpak.</"
-#~ "span> Se o acesso ao arquivo falhar, conceda permissões à pasta usando "
-#~ "<span style=\" font-weight:700;\">Flatseal</span> ou uma ferramenta de "
-#~ "linha de comando como <span style=\" font-weight:700;\">substituição do "
+#~ "<html><head/><body><p><span style=\" font-weight:700;\">Sandbox "
+#~ "Flatpak.</span> Se o acesso ao arquivo falhar, conceda permissões à pasta "
+#~ "usando <span style=\" font-weight:700;\">Flatseal</span> ou uma ferramenta "
+#~ "de linha de comando como <span style=\" font-weight:700;\">substituição do "
 #~ "flatpak</span>.</p></body></html>"
 
 #~ msgid "Download Directory"
@@ -5783,8 +5777,7 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 #~ msgid "Description"
 #~ msgstr "Descrição"
 
-#~ msgid ""
-#~ "Prevents websites from discovering your network address using WebRTC."
+#~ msgid "Prevents websites from discovering your network address using WebRTC."
 #~ msgstr "Impede que sites descubram seu endereço de rede usando WebRTC."
 
 #~ msgid "Prevent WebRTC IP leak (Mask local IPs)"
@@ -5797,8 +5790,8 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 #~ msgstr "Ocultar a notificação de doação"
 
 #~ msgid ""
-#~ "To change the notification sound, go to WhatsApp settings using the ⚙ "
-#~ "(cog) button in the main WhatsApp interface."
+#~ "To change the notification sound, go to WhatsApp settings using the ⚙ (cog) "
+#~ "button in the main WhatsApp interface."
 #~ msgstr ""
 #~ "Para alterar o som da notificação, acesse as configurações do WhatsApp "
 #~ "usando o ⚙ (engrenagem) botão na interface principal do WhatsApp."
@@ -5870,8 +5863,7 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 #~ msgstr "Abrir PDFs e imagens automaticamente"
 
 #~ msgid ""
-#~ "Open completed PDF and image downloads with the system default "
-#~ "application."
+#~ "Open completed PDF and image downloads with the system default application."
 #~ msgstr ""
 #~ "Abrir downloads concluídos de PDF e imagens com o aplicativo padrão do "
 #~ "sistema."
@@ -5886,8 +5878,8 @@ msgstr "ZapZap {latest} está disponível. Versão atual: {current}."
 #~ "Clear remembered allow or block decisions for sites that request multiple "
 #~ "downloads."
 #~ msgstr ""
-#~ "Limpar decisões lembradas de permitir ou bloquear sites que solicitam "
-#~ "vários downloads."
+#~ "Limpar decisões lembradas de permitir ou bloquear sites que solicitam vários"
+#~ " downloads."
 
 #~ msgid "This site"
 #~ msgstr "Este site"
