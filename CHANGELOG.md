@@ -28,6 +28,22 @@ releases and the AppStream metadata.
   regression tests, translate the two new strings for Italian and Brazilian
   Portuguese and document the manual validation.
 
+### Security
+
+- Refuse to hand popup URLs with schemes other than `http`, `https` and
+  `mailto` to the desktop. A popup opened by the page used to reach
+  `QDesktopServices.openUrl` with any scheme, so `file:`, `smb:`, `ssh:` or a
+  custom URL handler registered on the system could be launched from web
+  content. The refused popup is still disposed once, and a warning is logged.
+  Cover both the refused and the accepted schemes with regression tests.
+- Escape the notification body for Freedesktop notification servers that
+  advertise `body-markup`. The body comes from the page (message text and
+  contact names), and servers such as KDE Plasma render a subset of HTML in
+  it, including clickable `<a href>` links. The capability is read once per
+  connection with `GetCapabilities`; servers without markup, or a failed
+  query, keep receiving plain text. Cover the three cases with regression
+  tests.
+
 ### Fixed
 
 - Prevent QtWebEngine `SIGABRT` (`Single mode supports only single profile.`)

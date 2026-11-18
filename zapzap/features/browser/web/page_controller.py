@@ -27,6 +27,10 @@ from gettext import gettext as _
 logger = logging.getLogger(__name__)
 
 INTERNAL_POPUP_SCHEMES = frozenset({"blob", "data"})
+# Esquemas que um pop-up da página pode entregar ao desktop. Qualquer outro
+# (file:, smb:, ssh:, handlers personalizados...) é recusado: o conteúdo da
+# página não escolhe qual aplicativo local abre.
+EXTERNAL_URL_SCHEMES = frozenset({"http", "https", "mailto"})
 TRANSIENT_POPUP_URLS = frozenset({"", "about:blank"})
 
 
@@ -99,9 +103,15 @@ class PageController(QWebEnginePage):
                 return False
             page.setProperty("externalUrlOpened", True)
 
-        normalized_url = self.normalize_url(url.toString())
-
+        scheme = (url.scheme() or "").lower()
         try:
+            if scheme not in EXTERNAL_URL_SCHEMES:
+                logger.warning(
+                    "Refused to open a popup URL with scheme %r on the desktop",
+                    scheme,
+                )
+                return False
+            normalized_url = self.normalize_url(url.toString())
             QDesktopServices.openUrl(QUrl(normalized_url))
         finally:
             if isinstance(page, QWebEnginePage):

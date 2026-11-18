@@ -38,10 +38,11 @@ class FakeReply:
 
 
 class FakeInterface:
-    def __init__(self, valid=True, reply=None, error=None):
+    def __init__(self, valid=True, reply=None, error=None, capabilities=None):
         self._valid = valid
         self._reply = reply or FakeReply(QDBusMessage.MessageType.ReplyMessage)
         self._error = error
+        self._capabilities = capabilities
         self.calls = []
 
     def isValid(self):
@@ -51,6 +52,11 @@ class FakeInterface:
         self.calls.append((method, *args))
         if self._error is not None:
             raise self._error
+        if method == "GetCapabilities" and self._capabilities is not None:
+            return FakeReply(
+                QDBusMessage.MessageType.ReplyMessage,
+                arguments=(list(self._capabilities),),
+            )
         return self._reply
 
 
@@ -190,6 +196,47 @@ class FreedesktopNotificationBackendTests(QtTestCase):
             service = notification_service.NotificationService()
         self.assertIsNone(service.backend)
         self.assertIn("No notification backend is available", logs.output[0])
+
+
+class FreedesktopBodyMarkupTests(QtTestCase):
+    """The body comes from the page, so markup in it must not render."""
+
+    HOSTILE_BODY = '<a href="file:///etc/passwd">open</a> & <b>bold</b>'
+
+    def _notified_body(self, interface):
+        with (
+            patch.object(
+                backend_module.QtDBusConnection, "sessionBus",
+                return_value=fake_bus(),
+            ),
+            patch.object(
+                backend_module, "QDBusInterface", return_value=interface,
+            ),
+        ):
+            connection = DBusConnection("zapzap-tests")
+        notification = FakeNotification()
+        notification.body = self.HOSTILE_BODY
+        self.assertTrue(connection.notify(notification))
+        notify_call = [c for c in interface.calls if c[0] == "Notify"][-1]
+        return notify_call[5]
+
+    def test_body_is_escaped_when_the_server_renders_markup(self):
+        body = self._notified_body(
+            FakeInterface(capabilities=["actions", "body", "body-markup"])
+        )
+        self.assertEqual(
+            body,
+            '&lt;a href="file:///etc/passwd"&gt;open&lt;/a&gt; &amp; '
+            "&lt;b&gt;bold&lt;/b&gt;",
+        )
+
+    def test_body_stays_plain_when_the_server_does_not_render_markup(self):
+        body = self._notified_body(FakeInterface(capabilities=["actions", "body"]))
+        self.assertEqual(body, self.HOSTILE_BODY)
+
+    def test_body_stays_plain_when_capabilities_cannot_be_read(self):
+        body = self._notified_body(FakeInterface())
+        self.assertEqual(body, self.HOSTILE_BODY)
 
 
 class IconRendererTests(QtTestCase):
