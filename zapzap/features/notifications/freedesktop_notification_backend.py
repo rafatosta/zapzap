@@ -468,7 +468,7 @@ class FreedesktopNotificationBackend:
             title=title,
             body=message,
             icon=icon_path,   # fallback
-            timeout=3000,
+            timeout=-1,       # use notification servers default timeout
             web_notification=notification,
         )
 
