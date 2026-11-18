@@ -1,15 +1,27 @@
 """Single-instance QApplication implementation."""
 
+import os
 import subprocess
 import sys
 
-from PyQt6.QtCore import Qt, QTextStream, QTimer, pyqtSignal, pyqtSlot
+from PyQt6.QtCore import (
+    QLockFile,
+    QStandardPaths,
+    Qt,
+    QTextStream,
+    QTimer,
+    pyqtSignal,
+    pyqtSlot,
+)
 from PyQt6.QtNetwork import QLocalServer, QLocalSocket
 from PyQt6.QtWidgets import QApplication
 
 
 class SingleApplication(QApplication):
     RESTART_MESSAGE = "zapzap://restart"
+    INSTANCE_LOCK_NAME = "instance.lock"
+    # A restarting instance starts its successor before it finishes exiting.
+    INSTANCE_LOCK_TIMEOUT_MS = 10000
 
     messageReceived = pyqtSignal(str)
 
@@ -28,6 +40,7 @@ class SingleApplication(QApplication):
         self.window = None
         self._window_factory = None
         self._interface_restarting = False
+        self._instanceLock = None
 
         if self._isRunning:
             self._outStream = QTextStream(self._outSocket)
@@ -37,6 +50,7 @@ class SingleApplication(QApplication):
                     break
             sys.exit(0)
         else:
+            self._acquireInstanceLock()
             error = self._outSocket.error()
             if error == QLocalSocket.LocalSocketError.ConnectionRefusedError:
                 self.close()
@@ -45,6 +59,31 @@ class SingleApplication(QApplication):
             self._server = QLocalServer()
             self._server.listen(self._appid)
             self._server.newConnection.connect(self._onNewConnection)
+
+    def _acquireInstanceLock(self):
+        """Exit when another live process still holds the profile data.
+
+        The local socket alone cannot tell, because a process can stay alive
+        without it. QLockFile frees the lock of a dead process by itself.
+        """
+        data_dir = QStandardPaths.writableLocation(
+            QStandardPaths.StandardLocation.AppDataLocation)
+        os.makedirs(data_dir, exist_ok=True)
+        lock = QLockFile(os.path.join(data_dir, self.INSTANCE_LOCK_NAME))
+        if lock.tryLock(self.INSTANCE_LOCK_TIMEOUT_MS):
+            self._instanceLock = lock
+            return
+        # An unwritable data directory is not proof of another instance.
+        if lock.error() != QLockFile.LockError.LockFailedError:
+            return
+
+        _found, pid, _host, _app = lock.getLockInfo()
+        print(
+            f"ZapZap is already running (PID {pid}) but does not answer. "
+            "Close that process and start ZapZap again.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
 
     def close(self):
         if self._inSocket:
